@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">Maaaring hindi available ang source.</string>
 <string name="detail_load_failed_headline">Hindi mabuksan ang pamagat na ito</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d nagda-download</item><item quantity="other">%d nagda-download</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d nakapila</item><item quantity="other">%d nakapila</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Burahin ang %d download?</item><item quantity="other">Burahin ang %d download?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episode</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d nabigo</item><item quantity="other">%d nabigo</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d pamagat · %2$s</item><item quantity="other">%1$d pamagat · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Hindi na-load ang %d seksyon</item><item quantity="other">Hindi na-load ang %d seksyon</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Maghanap sa %d source</item><item quantity="other">Maghanap sa lahat ng %d source</item></plurals>
@@ -80,10 +85,17 @@
 <string name="downloaded">Downloaded</string>
 <string name="downloading">Downloading</string>
 <string name="downloads_browse_library">I-browse ang library</string>
+<string name="downloads_cancel_confirm_body">Itatapon nito ang %s na na-download na.</string>
+<string name="downloads_cancel_confirm_title">Kanselahin ang download na ito?</string>
+<string name="downloads_cancel_download">Kanselahin ang download</string>
+<string name="downloads_column_size">Laki</string>
 <string name="downloads_delete_all">Tanggalin lahat</string>
+<string name="downloads_delete_confirm_body">Magpapalaya ito ng %s at hindi na ito maaaring bawiin.</string>
 <string name="downloads_empty_body">Lalabas dito ang mga download na sinimulan mo mula sa listahan ng episode ng isang pamagat at mapapanood nang walang koneksyon.</string>
 <string name="downloads_empty_headline">Wala pang mga download</string>
+<string name="downloads_free">%s libre</string>
 <string name="downloads_free_up_space">Magbakante ng espasyo</string>
+<string name="downloads_keep_downloading">Ituloy ang pag-download</string>
 <string name="downloads_load_failed_body">Hindi nabago ang mga na-download mong file.</string>
 <string name="downloads_load_failed_headline">Hindi mabasa ang iyong mga download</string>
 <string name="downloads_offline_pill">Offline · walang koneksyon</string>
@@ -97,6 +109,8 @@
 <string name="downloads_reason_storage_unavailable">Hindi maabot ang storage</string>
 <string name="downloads_retry_failed">Subukang muli ang nabigo (%d)</string>
 <string name="downloads_select">Piliin</string>
+<string name="downloads_selected_status">%1$d sa %2$d ang napili · %3$s</string>
+<string name="downloads_show_in_finder">Ipakita sa Finder</string>
 <string name="downloads_state_queued">Nakapila</string>
 <string name="downloads_storage_full_headline">Kulang ang storage</string>
 <string name="downloads_storage_legend">%1$s ng %2$s ang gamit · %3$s sa mga download</string>

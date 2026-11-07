@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">Sumber mungkin tidak tersedia.</string>
 <string name="detail_load_failed_headline">Tajuk ini tidak dapat dibuka</string>
+<plurals name="downloads_count_downloading"><item quantity="other">%d sedang dimuat turun</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="other">%d dalam baris gilir</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="other">Padam %d muat turun?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="other">%d episod</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d gagal</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="other">%1$d tajuk · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">%d PENANDA HALAMAN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d bahagian gagal dimuatkan</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">Cari dalam semua %d sumber</item></plurals>
@@ -159,12 +164,19 @@
 <string name="downloaded_file">Fail dimuat turun</string>
 <string name="downloading">Memuat turun</string>
 <string name="downloads_browse_library">Layari perpustakaan</string>
+<string name="downloads_cancel_confirm_body">Ini akan membuang %s yang telah dimuat turun.</string>
+<string name="downloads_cancel_confirm_title">Batalkan muat turun ini?</string>
+<string name="downloads_cancel_download">Batalkan muat turun</string>
+<string name="downloads_column_size">Saiz</string>
 <string name="downloads_delete_all">Padam semua</string>
+<string name="downloads_delete_confirm_body">Ini mengosongkan %s dan tidak boleh dibuat asal.</string>
 <string name="downloads_delete_select">Pilih benda untuk dibuang</string>
 <string name="downloads_empty">Tiada yang dimuat turun.</string>
 <string name="downloads_empty_body">Muat turun yang anda mulakan daripada senarai episod tajuk muncul di sini dan dipasang tanpa sambungan.</string>
 <string name="downloads_empty_headline">Belum ada muat turun</string>
+<string name="downloads_free">%s kosong</string>
 <string name="downloads_free_up_space">Kosongkan ruang</string>
+<string name="downloads_keep_downloading">Teruskan muat turun</string>
 <string name="downloads_load_failed_body">Fail muat turun anda tidak diubah.</string>
 <string name="downloads_load_failed_headline">Tidak dapat membaca muat turun anda</string>
 <string name="downloads_offline_pill">Luar talian · tiada sambungan</string>
@@ -178,6 +190,8 @@
 <string name="downloads_reason_storage_unavailable">Storan tidak tersedia</string>
 <string name="downloads_retry_failed">Cuba lagi yang gagal (%d)</string>
 <string name="downloads_select">Pilih</string>
+<string name="downloads_selected_status">%1$d daripada %2$d dipilih · %3$s</string>
+<string name="downloads_show_in_finder">Tunjukkan dalam Finder</string>
 <string name="downloads_state_queued">Dalam baris gilir</string>
 <string name="downloads_storage_full_headline">Storan tidak mencukupi</string>
 <string name="downloads_storage_legend">%1$s daripada %2$s diguna · %3$s dalam muat turun</string>

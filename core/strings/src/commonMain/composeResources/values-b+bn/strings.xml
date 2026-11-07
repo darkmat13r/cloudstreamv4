@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">সোর্সটি হয়তো পাওয়া যাচ্ছে না।</string>
 <string name="detail_load_failed_headline">এই শিরোনামটি খোলা যায়নি</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%dটি ডাউনলোড হচ্ছে</item><item quantity="other">%dটি ডাউনলোড হচ্ছে</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%dটি সারিতে</item><item quantity="other">%dটি সারিতে</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%dটি ডাউনলোড মুছবেন?</item><item quantity="other">%dটি ডাউনলোড মুছবেন?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%dটি পর্ব</item><item quantity="other">%dটি পর্ব</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%dটি ব্যর্থ</item><item quantity="other">%dটি ব্যর্থ</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$dটি শিরোনাম · %2$s</item><item quantity="other">%1$dটি শিরোনাম · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d টি বুকমার্ক</item><item quantity="other">%d টি বুকমার্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%dটি বিভাগ লোড করা যায়নি</item><item quantity="other">%dটি বিভাগ লোড করা যায়নি</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%dটি উৎসে খুঁজুন</item><item quantity="other">সব %dটি উৎসে খুঁজুন</item></plurals>
@@ -118,12 +123,19 @@
 <string name="downloaded">ডাউনলোড হয়েছে</string>
 <string name="downloading">ডাউনলোড চলছে</string>
 <string name="downloads_browse_library">লাইব্রেরী ব্রাউজ করুন</string>
+<string name="downloads_cancel_confirm_body">এতে এখন পর্যন্ত ডাউনলোড হওয়া %s বাদ যাবে।</string>
+<string name="downloads_cancel_confirm_title">এই ডাউনলোড বাতিল করবেন?</string>
+<string name="downloads_cancel_download">ডাউনলোড বাতিল করুন</string>
+<string name="downloads_column_size">আকার</string>
 <string name="downloads_delete_all">সব ডিলিট</string>
+<string name="downloads_delete_confirm_body">এটি %s খালি করবে এবং পূর্বাবস্থায় ফেরানো যাবে না।</string>
 <string name="downloads_delete_select">ডিলিট করার জন্য আইটেম সিলেক্ট করুন</string>
 <string name="downloads_empty">বর্তমানে কোনো ডাউনলোড নেই।</string>
 <string name="downloads_empty_body">কোনো শিরোনামের এপিসোড তালিকা থেকে শুরু করা ডাউনলোডগুলো এখানে দেখা যাবে এবং সংযোগ ছাড়াই চলবে।</string>
 <string name="downloads_empty_headline">এখনো কোনো ডাউনলোড নেই</string>
+<string name="downloads_free">%s খালি</string>
 <string name="downloads_free_up_space">জায়গা খালি করুন</string>
+<string name="downloads_keep_downloading">ডাউনলোড চালিয়ে যান</string>
 <string name="downloads_load_failed_body">আপনার ডাউনলোড করা ফাইলগুলো পরিবর্তন করা হয়নি।</string>
 <string name="downloads_load_failed_headline">আপনার ডাউনলোডগুলো পড়া যায়নি</string>
 <string name="downloads_offline_pill">অফলাইন · কোনো সংযোগ নেই</string>
@@ -137,6 +149,8 @@
 <string name="downloads_reason_storage_unavailable">স্টোরেজ অনুপলব্ধ</string>
 <string name="downloads_retry_failed">ব্যর্থগুলো আবার চেষ্টা করুন (%d)</string>
 <string name="downloads_select">সিলেক্ট করুন</string>
+<string name="downloads_selected_status">%2$dটির মধ্যে %1$dটি নির্বাচিত · %3$s</string>
+<string name="downloads_show_in_finder">Finder-এ দেখান</string>
 <string name="downloads_state_queued">অপেক্ষা করছে</string>
 <string name="downloads_storage_full_headline">যথেষ্ট স্টোরেজ নেই</string>
 <string name="downloads_storage_legend">%1$s / %2$s ব্যবহৃত · ডাউনলোডে %3$s</string>

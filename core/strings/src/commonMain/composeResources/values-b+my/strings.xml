@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">ရင်းမြစ်ကို မရနိုင်ဘဲ ဖြစ်နေနိုင်သည်။</string>
 <string name="detail_load_failed_headline">ဤခေါင်းစဉ်ကို ဖွင့်၍မရပါ</string>
+<plurals name="downloads_count_downloading"><item quantity="other">%d ခု ဒေါင်းလုဒ်လုပ်နေသည်</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="other">%d ခု စောင့်ဆိုင်းနေသည်</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="other">ဒေါင်းလုဒ် %d ခုကို ဖျက်မလား။</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="other">အပိုင်း %d ပိုင်း</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d ခု မအောင်မြင်</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="other">ခေါင်းစဉ် %1$d ခု · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">စာမှတ် %d ခု</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">အပိုင်း %d ခု တင်သွင်း၍မရပါ</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်</item></plurals>
@@ -136,10 +141,17 @@
 <string name="downloaded_file">ဖိုင်ဒေါင်းလုဒ်လုပ်ပြီး</string>
 <string name="downloading">ဒေါင်းလုဒ် လုပ်နေသည်</string>
 <string name="downloads_browse_library">လိုက်ဘရီကို ကြည့်ရှုရန်</string>
+<string name="downloads_cancel_confirm_body">ယခုထိ ဒေါင်းလုဒ်ဆွဲထားသော %s ကို ဖယ်ရှားပါမည်။</string>
+<string name="downloads_cancel_confirm_title">ဤဒေါင်းလုဒ်ကို ပယ်ဖျက်မလား။</string>
+<string name="downloads_cancel_download">ဒေါင်းလုဒ် ပယ်ဖျက်ရန်</string>
+<string name="downloads_column_size">အရွယ်အစား</string>
 <string name="downloads_delete_all">အားလုံးဖျက်ရန်</string>
+<string name="downloads_delete_confirm_body">၎င်းသည် %s ကို လွတ်စေပြီး ပြန်ပြင်၍မရပါ။</string>
 <string name="downloads_empty_body">ခေါင်းစဉ်တစ်ခု၏ အပိုင်းစာရင်းမှ စတင်သော ဒေါင်းလုဒ်များသည် ဤနေရာတွင် ပေါ်လာပြီး အင်တာနက်မလိုဘဲ ဖွင့်နိုင်သည်။</string>
 <string name="downloads_empty_headline">ဒေါင်းလုဒ် မရှိသေးပါ</string>
+<string name="downloads_free">%s လွတ်</string>
 <string name="downloads_free_up_space">နေရာလွတ်ယူရန်</string>
+<string name="downloads_keep_downloading">ဆက်လက် ဒေါင်းလုဒ်ဆွဲရန်</string>
 <string name="downloads_load_failed_body">ဒေါင်းလုဒ်လုပ်ထားသော ဖိုင်များကို မပြောင်းလဲထားပါ။</string>
 <string name="downloads_load_failed_headline">ဒေါင်းလုဒ်များကို ဖတ်၍မရပါ</string>
 <string name="downloads_offline_pill">အော့ဖ်လိုင်း · ချိတ်ဆက်မှုမရှိပါ</string>
@@ -153,6 +165,8 @@
 <string name="downloads_reason_storage_unavailable">သိုလှောင်ရုံ မရရှိနိုင်ပါ</string>
 <string name="downloads_retry_failed">မအောင်မြင်သည်များ ထပ်ကြိုးစားရန် (%d)</string>
 <string name="downloads_select">ရွေးချယ်ရန်</string>
+<string name="downloads_selected_status">%2$d ခုအနက် %1$d ခု ရွေးထားသည် · %3$s</string>
+<string name="downloads_show_in_finder">Finder တွင် ပြပါ</string>
 <string name="downloads_state_queued">နောက်အစီအစဥ်</string>
 <string name="downloads_storage_full_headline">သိုလှောင်ရုံ မလုံလောက်ပါ</string>
 <string name="downloads_storage_legend">%1$s / %2$s အသုံးပြုပြီး · ဒေါင်းလုဒ်တွင် %3$s</string>

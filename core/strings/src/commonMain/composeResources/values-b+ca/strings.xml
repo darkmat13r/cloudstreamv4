@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">Potser la font no està disponible.</string>
 <string name="detail_load_failed_headline">No s'ha pogut obrir aquest títol</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d en baixada</item><item quantity="many">%d en baixada</item><item quantity="other">%d en baixada</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d a la cua</item><item quantity="many">%d a la cua</item><item quantity="other">%d a la cua</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Voleu suprimir %d baixada?</item><item quantity="many">Voleu suprimir %d baixades?</item><item quantity="other">Voleu suprimir %d baixades?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episodi</item><item quantity="many">%d episodis</item><item quantity="other">%d episodis</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d fallida</item><item quantity="many">%d fallides</item><item quantity="other">%d fallides</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d títol · %2$s</item><item quantity="many">%1$d títols · %2$s</item><item quantity="other">%1$d títols · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d FAVORIT</item><item quantity="many">%d DE FAVORITS</item><item quantity="other">%d FAVORITS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">No s'ha pogut carregar %d secció</item><item quantity="many">No s'han pogut carregar %d seccions</item><item quantity="other">No s'han pogut carregar %d seccions</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Cercar a %d font</item><item quantity="many">Cercar a totes les %d fonts</item><item quantity="other">Cercar a totes les %d fonts</item></plurals>
@@ -73,12 +78,19 @@
 <string name="downloaded_file">Fitxer descarregat</string>
 <string name="downloading">Descarregant</string>
 <string name="downloads_browse_library">Explora la biblioteca</string>
+<string name="downloads_cancel_confirm_body">Això descarta els %s baixats fins ara.</string>
+<string name="downloads_cancel_confirm_title">Voleu cancel·lar aquesta baixada?</string>
+<string name="downloads_cancel_download">Cancel·la la baixada</string>
+<string name="downloads_column_size">Mida</string>
 <string name="downloads_delete_all">Esborra-ho tot</string>
+<string name="downloads_delete_confirm_body">Això allibera %s i no es pot desfer.</string>
 <string name="downloads_delete_select">Selecciona els elements a eliminar</string>
 <string name="downloads_empty">No hi ha descàrregues en curs.</string>
 <string name="downloads_empty_body">Les descàrregues que inicieu des de la llista d'episodis d'un títol apareixen aquí i es reprodueixen sense connexió.</string>
 <string name="downloads_empty_headline">Encara no hi ha descàrregues</string>
+<string name="downloads_free">%s lliures</string>
 <string name="downloads_free_up_space">Allibera espai</string>
+<string name="downloads_keep_downloading">Continua baixant</string>
 <string name="downloads_load_failed_body">Els fitxers descarregats no s'han modificat.</string>
 <string name="downloads_load_failed_headline">No s'han pogut llegir les descàrregues</string>
 <string name="downloads_offline_pill">Fora de línia · sense connexió</string>
@@ -92,6 +104,8 @@
 <string name="downloads_reason_storage_unavailable">Emmagatzematge no disponible</string>
 <string name="downloads_retry_failed">Reintenta les fallides (%d)</string>
 <string name="downloads_select">Selecciona</string>
+<string name="downloads_selected_status">%1$d de %2$d seleccionats · %3$s</string>
+<string name="downloads_show_in_finder">Mostra al Finder</string>
 <string name="downloads_state_queued">A la cua</string>
 <string name="downloads_storage_full_headline">No hi ha prou emmagatzematge</string>
 <string name="downloads_storage_legend">%1$s de %2$s usats · %3$s en descàrregues</string>

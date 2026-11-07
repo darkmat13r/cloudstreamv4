@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">ייתכן שהמקור אינו זמין.</string>
 <string name="detail_load_failed_headline">לא ניתן לפתוח את הכותר הזה</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d בהורדה</item><item quantity="two">%d בהורדה</item><item quantity="other">%d בהורדה</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d בתור</item><item quantity="two">%d בתור</item><item quantity="other">%d בתור</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">למחוק %d הורדה?</item><item quantity="two">למחוק %d הורדות?</item><item quantity="other">למחוק %d הורדות?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d פרק</item><item quantity="two">%d פרקים</item><item quantity="other">%d פרקים</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d נכשלה</item><item quantity="two">%d נכשלו</item><item quantity="other">%d נכשלו</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d כותר · %2$s</item><item quantity="two">%1$d כותרים · %2$s</item><item quantity="other">%1$d כותרים · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d סימנייה</item><item quantity="two">%d סימניות</item><item quantity="other">%d סימניות</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">טעינת %d קטע נכשלה</item><item quantity="two">טעינת %d קטעים נכשלה</item><item quantity="other">טעינת %d קטעים נכשלה</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">חיפוש ב-%d מקור</item><item quantity="two">חיפוש בכל %d המקורות</item><item quantity="other">חיפוש בכל %d המקורות</item></plurals>
@@ -142,12 +147,19 @@
 <string name="downloaded_file">קובץ שהורד</string>
 <string name="downloading">מוריד</string>
 <string name="downloads_browse_library">עיון בספריה</string>
+<string name="downloads_cancel_confirm_body">פעולה זו תמחק את %s שהורדו עד כה.</string>
+<string name="downloads_cancel_confirm_title">לבטל את ההורדה הזו?</string>
+<string name="downloads_cancel_download">ביטול ההורדה</string>
+<string name="downloads_column_size">גודל</string>
 <string name="downloads_delete_all">מחק הכל</string>
+<string name="downloads_delete_confirm_body">פעולה זו תפנה %s ולא ניתן לבטל אותה.</string>
 <string name="downloads_delete_select">בחר פריטים למחוק</string>
 <string name="downloads_empty">אין הורדות כרגע.</string>
 <string name="downloads_empty_body">הורדות שתתחיל מרשימת הפרקים של כותר יופיעו כאן ויופעלו ללא חיבור.</string>
 <string name="downloads_empty_headline">אין עדיין הורדות</string>
+<string name="downloads_free">%s פנויים</string>
 <string name="downloads_free_up_space">פינוי מקום</string>
+<string name="downloads_keep_downloading">המשך בהורדה</string>
 <string name="downloads_load_failed_body">הקבצים שהורדת לא שונו.</string>
 <string name="downloads_load_failed_headline">לא ניתן לקרוא את ההורדות שלך</string>
 <string name="downloads_offline_pill">אופליין · אין חיבור</string>
@@ -161,6 +173,8 @@
 <string name="downloads_reason_storage_unavailable">האחסון אינו זמין</string>
 <string name="downloads_retry_failed">ניסיון חוזר לנכשלים (%d)</string>
 <string name="downloads_select">בחר</string>
+<string name="downloads_selected_status">נבחרו %1$d מתוך %2$d · %3$s</string>
+<string name="downloads_show_in_finder">הצג ב-Finder</string>
 <string name="downloads_state_queued">בתור</string>
 <string name="downloads_storage_full_headline">אין מספיק אחסון</string>
 <string name="downloads_storage_legend">%1$s מתוך %2$s בשימוש · %3$s בהורדות</string>

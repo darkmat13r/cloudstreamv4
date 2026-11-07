@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">Mənbə əlçatmaz ola bilər.</string>
 <string name="detail_load_failed_headline">Bu başlıq açıla bilmədi</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d endirilir</item><item quantity="other">%d endirilir</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d növbədə</item><item quantity="other">%d növbədə</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d endirmə silinsin?</item><item quantity="other">%d endirmə silinsin?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d bölüm</item><item quantity="other">%d bölüm</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d uğursuz</item><item quantity="other">%d uğursuz</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d başlıq · %2$s</item><item quantity="other">%1$d başlıq · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ƏLFƏCİN</item><item quantity="other">%d ƏLFƏCİN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d bölmə yüklənmədi</item><item quantity="other">%d bölmə yüklənmədi</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d mənbədə axtar</item><item quantity="other">Bütün %d mənbədə axtar</item></plurals>
@@ -54,12 +59,19 @@
 <string name="downloaded">Yükləndi</string>
 <string name="downloading">Yüklənir</string>
 <string name="downloads_browse_library">Kitabxanaya bax</string>
+<string name="downloads_cancel_confirm_body">Bu, indiyədək endirilmiş %s-ı siləcək.</string>
+<string name="downloads_cancel_confirm_title">Bu endirmə ləğv edilsin?</string>
+<string name="downloads_cancel_download">Endirməni ləğv et</string>
+<string name="downloads_column_size">Ölçü</string>
 <string name="downloads_delete_all">Hamısını sil</string>
+<string name="downloads_delete_confirm_body">Bu, %s boşaldacaq və geri qaytarıla bilməz.</string>
 <string name="downloads_delete_select">Silinəcək faylları seçin</string>
 <string name="downloads_empty">Hal-hazırda heç bir yükləmə yoxdur.</string>
 <string name="downloads_empty_body">Başlığın bölüm siyahısından başlatdığınız yükləmələr burada görünür və bağlantı olmadan oynadılır.</string>
 <string name="downloads_empty_headline">Hələ yükləmə yoxdur</string>
+<string name="downloads_free">%s boş</string>
 <string name="downloads_free_up_space">Yer boşalt</string>
+<string name="downloads_keep_downloading">Endirməyə davam et</string>
 <string name="downloads_load_failed_body">Yüklənmiş fayllarınız dəyişdirilməyib.</string>
 <string name="downloads_load_failed_headline">Yükləmələriniz oxuna bilmədi</string>
 <string name="downloads_offline_pill">Oflayn · bağlantı yoxdur</string>
@@ -73,6 +85,8 @@
 <string name="downloads_reason_storage_unavailable">Yaddaş əlçatan deyil</string>
 <string name="downloads_retry_failed">Yenidən cəhd et (%d)</string>
 <string name="downloads_select">Seç</string>
+<string name="downloads_selected_status">%2$d-dən %1$d seçildi · %3$s</string>
+<string name="downloads_show_in_finder">Finder-də göstər</string>
 <string name="downloads_state_queued">Növbədə</string>
 <string name="downloads_storage_full_headline">Yaddaş kifayət deyil</string>
 <string name="downloads_storage_legend">%1$s / %2$s istifadə olunub · Yükləmələrdə %3$s</string>

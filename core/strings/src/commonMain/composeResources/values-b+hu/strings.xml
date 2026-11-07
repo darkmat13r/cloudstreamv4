@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">Lehet, hogy a forrás nem érhető el.</string>
 <string name="detail_load_failed_headline">Ezt a címet nem sikerült megnyitni</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d letöltés folyamatban</item><item quantity="other">%d letöltés folyamatban</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d várakozik</item><item quantity="other">%d várakozik</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Törölsz %d letöltést?</item><item quantity="other">Törölsz %d letöltést?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d epizód</item><item quantity="other">%d epizód</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d sikertelen</item><item quantity="other">%d sikertelen</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d cím · %2$s</item><item quantity="other">%1$d cím · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d KÖNYVJELZŐ</item><item quantity="other">%d KÖNYVJELZŐ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d szakasz betöltése sikertelen</item><item quantity="other">%d szakasz betöltése sikertelen</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Keresés %d forrásban</item><item quantity="other">Keresés mind a(z) %d forrásban</item></plurals>
@@ -172,12 +177,19 @@
 <string name="downloaded_file">Letöltött fájl</string>
 <string name="downloading">Letöltés</string>
 <string name="downloads_browse_library">Könyvtár böngészése</string>
+<string name="downloads_cancel_confirm_body">Ezzel elveted az eddig letöltött %s adatot.</string>
+<string name="downloads_cancel_confirm_title">Megszakítod ezt a letöltést?</string>
+<string name="downloads_cancel_download">Letöltés megszakítása</string>
+<string name="downloads_column_size">Méret</string>
 <string name="downloads_delete_all">Összes törlése</string>
+<string name="downloads_delete_confirm_body">Ezzel %s szabadul fel, és nem vonható vissza.</string>
 <string name="downloads_delete_select">Válassza ki a Törlendő Elemeket</string>
 <string name="downloads_empty">Jelenleg nincs letöltés.</string>
 <string name="downloads_empty_body">A cím epizódlistájából indított letöltések itt jelennek meg, és kapcsolat nélkül is lejátszhatók.</string>
 <string name="downloads_empty_headline">Még nincs letöltés</string>
+<string name="downloads_free">%s szabad</string>
 <string name="downloads_free_up_space">Hely felszabadítása</string>
+<string name="downloads_keep_downloading">Letöltés folytatása</string>
 <string name="downloads_load_failed_body">A letöltött fájlok nem változtak.</string>
 <string name="downloads_load_failed_headline">Nem sikerült beolvasni a letöltéseket</string>
 <string name="downloads_offline_pill">Offline · nincs kapcsolat</string>
@@ -191,6 +203,8 @@
 <string name="downloads_reason_storage_unavailable">Tárhely nem elérhető</string>
 <string name="downloads_retry_failed">Sikertelenek újra (%d)</string>
 <string name="downloads_select">Kiválasztás</string>
+<string name="downloads_selected_status">%2$d közül %1$d kiválasztva · %3$s</string>
+<string name="downloads_show_in_finder">Megjelenítés a Finderben</string>
 <string name="downloads_state_queued">Sorban áll</string>
 <string name="downloads_storage_full_headline">Nincs elég tárhely</string>
 <string name="downloads_storage_legend">%1$s / %2$s használatban · %3$s a letöltésekben</string>

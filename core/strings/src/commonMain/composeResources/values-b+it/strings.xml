@@ -4,8 +4,13 @@
 <string name="detail_load_failed_body">La fonte potrebbe non essere disponibile.</string>
 <string name="detail_load_failed_headline">Impossibile aprire questo titolo</string>
 <plurals name="downloads_active"><item quantity="one">%d download attivo</item><item quantity="many">%d download attivi</item><item quantity="other">%d download attivi</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d in download</item><item quantity="many">%d in download</item><item quantity="other">%d in download</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d in coda</item><item quantity="many">%d in coda</item><item quantity="other">%d in coda</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Eliminare %d download?</item><item quantity="many">Eliminare %d download?</item><item quantity="other">Eliminare %d download?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episodio</item><item quantity="many">%d episodi</item><item quantity="other">%d episodi</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d fallito</item><item quantity="many">%d falliti</item><item quantity="other">%d falliti</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download in coda</item><item quantity="many">%d download in coda</item><item quantity="other">%d download in coda</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d titolo · %2$s</item><item quantity="many">%1$d titoli · %2$s</item><item quantity="other">%1$d titoli · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d SEGNALIBRO</item><item quantity="many">%d DI SEGNALIBRI</item><item quantity="other">%d SEGNALIBRI</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Impossibile caricare %d sezione</item><item quantity="many">Impossibile caricare %d sezioni</item><item quantity="other">Impossibile caricare %d sezioni</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d collegamento nascosto</item><item quantity="many">%d collegamenti nascosti</item><item quantity="other">%d collegamenti nascosti</item></plurals>
@@ -203,12 +208,19 @@
 <string name="downloaded_file">File scaricato</string>
 <string name="downloading">Download in corso</string>
 <string name="downloads_browse_library">Sfoglia libreria</string>
+<string name="downloads_cancel_confirm_body">Verranno scartati i %s scaricati finora.</string>
+<string name="downloads_cancel_confirm_title">Annullare questo download?</string>
+<string name="downloads_cancel_download">Annulla download</string>
+<string name="downloads_column_size">Dimensione</string>
 <string name="downloads_delete_all">Elimina tutto</string>
+<string name="downloads_delete_confirm_body">Così si liberano %s e non si può annullare.</string>
 <string name="downloads_delete_select">Seleziona elementi da eliminare</string>
 <string name="downloads_empty">Al momento non ci sono download.</string>
 <string name="downloads_empty_body">I download avviati dall'elenco degli episodi di un titolo appaiono qui e si riproducono senza connessione.</string>
 <string name="downloads_empty_headline">Ancora nessun download</string>
+<string name="downloads_free">%s liberi</string>
 <string name="downloads_free_up_space">Libera spazio</string>
+<string name="downloads_keep_downloading">Continua a scaricare</string>
 <string name="downloads_load_failed_body">I file scaricati non sono stati modificati.</string>
 <string name="downloads_load_failed_headline">Impossibile leggere i download</string>
 <string name="downloads_offline_pill">Offline · nessuna connessione</string>
@@ -222,6 +234,8 @@
 <string name="downloads_reason_storage_unavailable">Archiviazione non disponibile</string>
 <string name="downloads_retry_failed">Riprova falliti (%d)</string>
 <string name="downloads_select">Seleziona</string>
+<string name="downloads_selected_status">%1$d di %2$d selezionati · %3$s</string>
+<string name="downloads_show_in_finder">Mostra nel Finder</string>
 <string name="downloads_state_queued">In coda</string>
 <string name="downloads_storage_full_headline">Spazio di archiviazione insufficiente</string>
 <string name="downloads_storage_legend">%1$s di %2$s usati · %3$s nei download</string>

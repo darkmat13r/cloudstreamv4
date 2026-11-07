@@ -4,8 +4,13 @@
 <string name="detail_load_failed_body">Its source may be unavailable.</string>
 <string name="detail_load_failed_headline">Couldn't open this title</string>
 <plurals name="downloads_active"><item quantity="one">%d active download</item><item quantity="other">%d active downloads</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d downloading</item><item quantity="other">%d downloading</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d queued</item><item quantity="other">%d queued</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Delete %d download?</item><item quantity="other">Delete %d downloads?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episodes</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d failed</item><item quantity="other">%d failed</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download queued</item><item quantity="other">%d downloads queued</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d title · %2$s</item><item quantity="other">%1$d titles · %2$s</item></plurals>
 <plurals name="episodes"><item quantity="one">Episode</item><item quantity="other">Episodes</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARKS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d section failed to load</item><item quantity="other">%d sections failed to load</item></plurals>
@@ -214,16 +219,23 @@
 <string name="downloaded_file">Downloaded file</string>
 <string name="downloading">Downloading</string>
 <string name="downloads_browse_library">Browse library</string>
+<string name="downloads_cancel_confirm_body">This discards the %s downloaded so far.</string>
+<string name="downloads_cancel_confirm_title">Cancel this download?</string>
+<string name="downloads_cancel_download">Cancel download</string>
+<string name="downloads_column_size">Size</string>
 <string name="downloads_delete_all">Delete all</string>
 <string name="downloads_delete_chosen">%1$s (%2$d · %3$s)</string>
+<string name="downloads_delete_confirm_body">This frees %s and can't be undone.</string>
 <string name="downloads_delete_select">Select Items to Delete</string>
 <string name="downloads_empty">There are currently no downloads.</string>
 <string name="downloads_empty_body">Downloads you start from a title's episode list appear here and play with no connection.</string>
 <string name="downloads_empty_headline">No downloads yet</string>
 <string name="downloads_episode_code">%1$s%2$d · %3$s%4$d</string>
 <string name="downloads_film_subtitle">%1$s · %2$s</string>
+<string name="downloads_free">%s free</string>
 <string name="downloads_free_up_space">Free up space</string>
 <string name="downloads_joined">%1$s · %2$s</string>
+<string name="downloads_keep_downloading">Keep downloading</string>
 <string name="downloads_load_failed_body">Your downloaded files have not been changed.</string>
 <string name="downloads_load_failed_headline">Couldn't read your downloads</string>
 <string name="downloads_offline_pill">Offline · no connection</string>
@@ -238,7 +250,9 @@
 <string name="downloads_reason_storage_unavailable">Storage unavailable</string>
 <string name="downloads_retry_failed">Retry failed (%d)</string>
 <string name="downloads_select">Select</string>
+<string name="downloads_selected_status">%1$d of %2$d selected · %3$s</string>
 <string name="downloads_series_subtitle">%1$d %2$s · %3$s</string>
+<string name="downloads_show_in_finder">Show in Finder</string>
 <string name="downloads_state_queued">Queued</string>
 <string name="downloads_storage_full_headline">Not enough storage</string>
 <string name="downloads_storage_legend">%1$s of %2$s used · %3$s in downloads</string>

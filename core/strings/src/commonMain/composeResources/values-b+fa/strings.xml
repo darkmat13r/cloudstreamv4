@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">ممکن است منبع در دسترس نباشد.</string>
 <string name="detail_load_failed_headline">این عنوان باز نشد</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d در حال بارگیری</item><item quantity="other">%d در حال بارگیری</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d در صف</item><item quantity="other">%d در صف</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d بارگیری حذف شود؟</item><item quantity="other">%d بارگیری حذف شود؟</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d قسمت</item><item quantity="other">%d قسمت</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ناموفق</item><item quantity="other">%d ناموفق</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d عنوان · %2$s</item><item quantity="other">%1$d عنوان · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d نشانک</item><item quantity="other">%d نشانک</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بخش بارگیری نشد</item><item quantity="other">%d بخش بارگیری نشد</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">جست‌وجو در %d منبع</item><item quantity="other">جست‌وجو در همهٔ %d منبع</item></plurals>
@@ -103,12 +108,19 @@
 <string name="downloaded">دانلود شده</string>
 <string name="downloading">در حال دانلود</string>
 <string name="downloads_browse_library">مرور کتابخانه</string>
+<string name="downloads_cancel_confirm_body">این کار %s بارگیری‌شده تا اکنون را دور می‌ریزد.</string>
+<string name="downloads_cancel_confirm_title">این بارگیری لغو شود؟</string>
+<string name="downloads_cancel_download">لغو بارگیری</string>
+<string name="downloads_column_size">اندازه</string>
 <string name="downloads_delete_all">حذف همه</string>
+<string name="downloads_delete_confirm_body">این کار %s فضا آزاد می‌کند و قابل بازگشت نیست.</string>
 <string name="downloads_delete_select">انتخاب برای حذف</string>
 <string name="downloads_empty">در حال حاضر دانلودی وجود ندارد.</string>
 <string name="downloads_empty_body">دانلودهایی که از فهرست قسمت‌های یک عنوان شروع می‌کنید اینجا نمایش داده می‌شوند و بدون اتصال پخش می‌شوند.</string>
 <string name="downloads_empty_headline">هنوز دانلودی وجود ندارد</string>
+<string name="downloads_free">%s آزاد</string>
 <string name="downloads_free_up_space">آزاد کردن فضا</string>
+<string name="downloads_keep_downloading">ادامهٔ بارگیری</string>
 <string name="downloads_load_failed_body">فایل‌های دانلودشده شما تغییر نکرده‌اند.</string>
 <string name="downloads_load_failed_headline">دانلودهای شما خوانده نشد</string>
 <string name="downloads_offline_pill">آفلاین · بدون اتصال</string>
@@ -122,6 +134,8 @@
 <string name="downloads_reason_storage_unavailable">حافظه در دسترس نیست</string>
 <string name="downloads_retry_failed">تلاش دوباره (%d)</string>
 <string name="downloads_select">انتخاب</string>
+<string name="downloads_selected_status">%1$d از %2$d انتخاب شده · %3$s</string>
+<string name="downloads_show_in_finder">نمایش در Finder</string>
 <string name="downloads_state_queued">در صف</string>
 <string name="downloads_storage_full_headline">حافظه کافی نیست</string>
 <string name="downloads_storage_legend">%1$s از %2$s استفاده شده · %3$s در دانلودها</string>

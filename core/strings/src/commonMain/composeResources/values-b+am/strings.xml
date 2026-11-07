@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">ምንጩ ላይገኝ ይችላል።</string>
 <string name="detail_load_failed_headline">ይህን ርዕስ መክፈት አልተቻለም</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d በማውረድ ላይ</item><item quantity="other">%d በማውረድ ላይ</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d በወረፋ</item><item quantity="other">%d በወረፋ</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d ውርዶችን ይሰርዙ?</item><item quantity="other">%d ውርዶችን ይሰርዙ?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d ክፍሎች</item><item quantity="other">%d ክፍሎች</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d አልተሳካም</item><item quantity="other">%d አልተሳኩም</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d ርዕሶች · %2$s</item><item quantity="other">%1$d ርዕሶች · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ዕልባት</item><item quantity="other">%d ዕልባቶች</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ክፍል መጫን አልተቻለም</item><item quantity="other">%d ክፍል መጫን አልተቻለም</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ምንጭ ፈልግ</item><item quantity="other">ሁሉንም %d ምንጮች ፈልግ</item></plurals>
@@ -33,10 +38,17 @@
 <string name="downloaded">ወርዷል</string>
 <string name="downloading">በማውረድ ላይ</string>
 <string name="downloads_browse_library">ቤተ-መጽሐፍት አስስ</string>
+<string name="downloads_cancel_confirm_body">ይህ እስካሁን የወረደውን %s ያስወግዳል።</string>
+<string name="downloads_cancel_confirm_title">ይህን ውርድ ይሰርዙ?</string>
+<string name="downloads_cancel_download">ውርድን ሰርዝ</string>
+<string name="downloads_column_size">መጠን</string>
 <string name="downloads_delete_all">ሁሉንም ሰርዝ</string>
+<string name="downloads_delete_confirm_body">ይህ %s ነጻ ያደርጋል እና መቀልበስ አይቻልም።</string>
 <string name="downloads_empty_body">ከርዕስ የክፍሎች ዝርዝር የጀመሯቸው ውርዶች እዚህ ይታያሉ፣ ያለ ግንኙነትም ይጫወታሉ።</string>
 <string name="downloads_empty_headline">እስካሁን ምንም ውርዶች የሉም</string>
+<string name="downloads_free">%s ነጻ</string>
 <string name="downloads_free_up_space">ቦታ አስለቅቅ</string>
+<string name="downloads_keep_downloading">ማውረድ ቀጥል</string>
 <string name="downloads_load_failed_body">የወረዱ ፋይሎችዎ አልተቀየሩም።</string>
 <string name="downloads_load_failed_headline">ውርዶችዎን ማንበብ አልተቻለም</string>
 <string name="downloads_offline_pill">ከመስመር ውጭ · ግንኙነት የለም</string>
@@ -50,6 +62,8 @@
 <string name="downloads_reason_storage_unavailable">ማከማቻ አይገኝም</string>
 <string name="downloads_retry_failed">እንደገና ሞክር (%d)</string>
 <string name="downloads_select">ምረጥ</string>
+<string name="downloads_selected_status">ከ%2$d %1$d ተመርጠዋል · %3$s</string>
+<string name="downloads_show_in_finder">በFinder ውስጥ አሳይ</string>
 <string name="downloads_state_queued">በወረፋ ላይ</string>
 <string name="downloads_storage_full_headline">በቂ ማከማቻ የለም</string>
 <string name="downloads_storage_legend">%1$s ከ%2$s ጥቅም ላይ ውሏል · %3$s በውርዶች ውስጥ</string>

@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">स्रोत उपलब्ध नहुन सक्छ।</string>
 <string name="detail_load_failed_headline">यो शीर्षक खोल्न सकिएन</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d डाउनलोड हुँदै</item><item quantity="other">%d डाउनलोड हुँदै</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d लाममा</item><item quantity="other">%d लाममा</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d डाउनलोड मेटाउने?</item><item quantity="other">%d डाउनलोड मेटाउने?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d एपिसोड</item><item quantity="other">%d एपिसोड</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d असफल</item><item quantity="other">%d असफल</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d शीर्षक · %2$s</item><item quantity="other">%1$d शीर्षक · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d खण्ड लोड हुन सकेन</item><item quantity="other">%d खण्डहरू लोड हुन सकेनन्</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d स्रोतमा खोज्नुहोस्</item><item quantity="other">सबै %d स्रोतहरूमा खोज्नुहोस्</item></plurals>
@@ -34,10 +39,17 @@
 <string name="downloaded">डाउनलोड भयो</string>
 <string name="downloading">डाउनलोड हुदैछ</string>
 <string name="downloads_browse_library">लाइब्रेरी हेर्नुहोस्</string>
+<string name="downloads_cancel_confirm_body">यसले अहिलेसम्म डाउनलोड भएको %s हटाउँछ।</string>
+<string name="downloads_cancel_confirm_title">यो डाउनलोड रद्द गर्ने?</string>
+<string name="downloads_cancel_download">डाउनलोड रद्द गर्नुहोस्</string>
+<string name="downloads_column_size">आकार</string>
 <string name="downloads_delete_all">सबै मेटाउनुहोस्</string>
+<string name="downloads_delete_confirm_body">यसले %s खाली गर्छ र यसलाई पूर्ववत गर्न सकिँदैन।</string>
 <string name="downloads_empty_body">शीर्षकको एपिसोड सूचीबाट सुरु गरिएका डाउनलोडहरू यहाँ देखिन्छन् र जडान बिना प्ले हुन्छन्।</string>
 <string name="downloads_empty_headline">अहिलेसम्म कुनै डाउनलोड छैन</string>
+<string name="downloads_free">%s खाली</string>
 <string name="downloads_free_up_space">ठाउँ खाली गर्नुहोस्</string>
+<string name="downloads_keep_downloading">डाउनलोड जारी राख्नुहोस्</string>
 <string name="downloads_load_failed_body">तपाईंका डाउनलोड गरिएका फाइलहरू परिवर्तन गरिएका छैनन्।</string>
 <string name="downloads_load_failed_headline">तपाईंका डाउनलोडहरू पढ्न सकिएन</string>
 <string name="downloads_offline_pill">अफलाइन · जडान छैन</string>
@@ -51,6 +63,8 @@
 <string name="downloads_reason_storage_unavailable">स्टोरेज उपलब्ध छैन</string>
 <string name="downloads_retry_failed">असफल फेरि प्रयास गर्नुहोस् (%d)</string>
 <string name="downloads_select">चयन गर्नुहोस्</string>
+<string name="downloads_selected_status">%2$d मध्ये %1$d चयन गरियो · %3$s</string>
+<string name="downloads_show_in_finder">Finder मा देखाउनुहोस्</string>
 <string name="downloads_state_queued">लाइनमा</string>
 <string name="downloads_storage_full_headline">पर्याप्त स्टोरेज छैन</string>
 <string name="downloads_storage_legend">%1$s / %2$s प्रयोग भयो · डाउनलोडमा %3$s</string>

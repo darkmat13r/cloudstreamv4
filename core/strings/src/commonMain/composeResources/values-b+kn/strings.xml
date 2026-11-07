@@ -3,7 +3,12 @@
 <resources>
 <string name="detail_load_failed_body">ಮೂಲ ಲಭ್ಯವಿಲ್ಲದಿರಬಹುದು.</string>
 <string name="detail_load_failed_headline">ಈ ಶೀರ್ಷಿಕೆಯನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</item><item quantity="other">%d ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d ಸರದಿಯಲ್ಲಿ</item><item quantity="other">%d ಸರದಿಯಲ್ಲಿ</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</item><item quantity="other">%d ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d ಸಂಚಿಕೆಗಳು</item><item quantity="other">%d ಸಂಚಿಕೆಗಳು</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ವಿಫಲವಾಗಿದೆ</item><item quantity="other">%d ವಿಫಲವಾಗಿವೆ</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item><item quantity="other">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ಬುಕ್‌ಮಾರ್ಕ್</item><item quantity="other">%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item><item quantity="other">%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ಮೂಲದಲ್ಲಿ ಹುಡುಕಿ</item><item quantity="other">ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಿ</item></plurals>
@@ -39,10 +44,17 @@
 <string name="downloaded">ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗಿದೆ</string>
 <string name="downloading">ಡೌನ್‌ಲೋಡ್ ಮಾಡಲಾಗುತ್ತಿದೆ</string>
 <string name="downloads_browse_library">ಲೈಬ್ರರಿ ಬ್ರೌಸ್ ಮಾಡಿ</string>
+<string name="downloads_cancel_confirm_body">ಇದು ಇಲ್ಲಿಯವರೆಗೆ ಡೌನ್‌ಲೋಡ್ ಆದ %s ಅನ್ನು ತ್ಯಜಿಸುತ್ತದೆ.</string>
+<string name="downloads_cancel_confirm_title">ಈ ಡೌನ್‌ಲೋಡ್ ರದ್ದುಗೊಳಿಸುವುದೇ?</string>
+<string name="downloads_cancel_download">ಡೌನ್‌ಲೋಡ್ ರದ್ದುಮಾಡಿ</string>
+<string name="downloads_column_size">ಗಾತ್ರ</string>
 <string name="downloads_delete_all">ಎಲ್ಲವನ್ನೂ ಅಳಿಸಿ</string>
+<string name="downloads_delete_confirm_body">ಇದು %s ಮುಕ್ತಗೊಳಿಸುತ್ತದೆ ಮತ್ತು ರದ್ದುಗೊಳಿಸಲಾಗುವುದಿಲ್ಲ.</string>
 <string name="downloads_empty_body">ಶೀರ್ಷಿಕೆಯ ಸಂಚಿಕೆ ಪಟ್ಟಿಯಿಂದ ನೀವು ಪ್ರಾರಂಭಿಸುವ ಡೌನ್‌ಲೋಡ್‌ಗಳು ಇಲ್ಲಿ ಕಾಣಿಸುತ್ತವೆ ಮತ್ತು ಸಂಪರ್ಕವಿಲ್ಲದೆ ಪ್ಲೇ ಆಗುತ್ತವೆ.</string>
 <string name="downloads_empty_headline">ಇನ್ನೂ ಡೌನ್‌ಲೋಡ್‌ಗಳಿಲ್ಲ</string>
+<string name="downloads_free">%s ಖಾಲಿ</string>
 <string name="downloads_free_up_space">ಸ್ಥಳವನ್ನು ಖಾಲಿ ಮಾಡಿ</string>
+<string name="downloads_keep_downloading">ಡೌನ್‌ಲೋಡ್ ಮುಂದುವರಿಸಿ</string>
 <string name="downloads_load_failed_body">ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳನ್ನು ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ.</string>
 <string name="downloads_load_failed_headline">ನಿಮ್ಮ ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ</string>
 <string name="downloads_offline_pill">ಆಫ್‌ಲೈನ್ · ಸಂಪರ್ಕವಿಲ್ಲ</string>
@@ -56,6 +68,8 @@
 <string name="downloads_reason_storage_unavailable">ಸ್ಟೋರೇಜ್ ಲಭ್ಯವಿಲ್ಲ</string>
 <string name="downloads_retry_failed">ಮರುಪ್ರಯತ್ನಿಸಿ (%d)</string>
 <string name="downloads_select">ಆಯ್ಕೆಮಾಡಿ</string>
+<string name="downloads_selected_status">%2$d ರಲ್ಲಿ %1$d ಆಯ್ಕೆಮಾಡಲಾಗಿದೆ · %3$s</string>
+<string name="downloads_show_in_finder">Finder ನಲ್ಲಿ ತೋರಿಸಿ</string>
 <string name="downloads_state_queued">ಸರತಿಯಲ್ಲಿದೆ</string>
 <string name="downloads_storage_full_headline">ಸಾಕಷ್ಟು ಸ್ಟೋರೇಜ್ ಇಲ್ಲ</string>
 <string name="downloads_storage_legend">%1$s / %2$s ಬಳಸಲಾಗಿದೆ · ಡೌನ್‌ಲೋಡ್‌ಗಳಲ್ಲಿ %3$s</string>
