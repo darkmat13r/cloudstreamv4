@@ -12,6 +12,7 @@ import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.mainWork
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager
+import com.lagradost.cloudstream4.download.EngineVideoDownload
 
 typealias DownloadStatusTell = VideoDownloadManager.DownloadType
 
@@ -79,7 +80,8 @@ abstract class BaseFetchButton(context: Context, attributeSet: AttributeSet) :
         val appContext = context.applicationContext
 
         ioSafe {
-            val savedData = VideoDownloadManager.getDownloadFileInfo(appContext, id)
+            // KMP-60: an engine download with no destination yet shows its staged bytes, as a partial file would.
+            val savedData = EngineVideoDownload.getDownloadListInfo(appContext, id)
             mainWork {
                 if (savedData != null) {
                     val downloadedBytes = savedData.fileLength

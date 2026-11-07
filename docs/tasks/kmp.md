@@ -5048,22 +5048,110 @@ Their `fileLength <= 1` filters and the play actions would need to handle it. No
 - A DNS setting change rebuilding the client.
 - The two space refusals on a device (unit tests only).
 
-## KMP-60 — Engine downloads listed while they run · **open**, blocks turning `KMP-59`'s switch on
+## KMP-60 — Engine downloads listed while they run · **built 2026-11-07**, blocks turning `KMP-59`'s switch on
 
-With `EngineDownloadSwitch.useSegmentedEngine` on, a download appears in no Downloads list until its copy finishes:
-- `getDownloadFileInfo` returns null while the destination file is missing (`DownloadManager.kt` ~1699).
-- All four list readers drop null.
-- The pruning in `calculateDownloadStats` keys off the same null.
+With `EngineDownloadSwitch.useSegmentedEngine` on, a download used to appear in no Downloads list until its copy finished:
+`getDownloadFileInfo` returns null while the destination file is missing, every list reader dropped null, and the
+pruning in `calculateDownloadStats` keyed off the same null.
 
-Writing `KEY_DOWNLOAD_INFO` at start changes nothing by itself. Smallest fix, as reported in `KMP-59`:
-- Add a `getDownloadListInfo(id)` that falls back to `KEY_DOWNLOAD_INFO`, with the staged length and an empty path.
-- Use it in `DownloadViewModel.calculateDownloadStats`, `DownloadViewModel.updateChildList`, `AndroidDownloadsSource.readEpisodes` and `AndroidDownloadSeriesSource`.
-- The `fileLength <= 1` filters must let a just-started download through.
-- The play actions must refuse the empty path.
+**What was built.** All new code is in `EngineVideoDownload`'s companion; the existing files get one-line changes.
+- **The record at start.** The wrapper writes `KEY_DOWNLOAD_INFO` at the run's first snapshot, and again when the total
+  first becomes known, through the same `DownloadMetaData.setDownloadFileInfoTemplate` that `downloadThing` uses after
+  its headers. It holds what `downloadThing`'s holds: total, folder, display name, base path and `linkHash`. No URL,
+  header or referer.
+- **`getDownloadListInfo(context, id)`.** Returns `getDownloadFileInfo` when the destination file exists. Otherwise, only with
+  the switch on and only when `<staging root>/<id>/` exists and the record does, it returns the staged bytes (file
+  sizes under the staging directory, the marker aside, capped at the total), the record's total and `Uri.EMPTY`.
+  With the switch off it is `getDownloadFileInfo` and reads nothing else.
+- **`refusesPlay(context, id)`.** True only with the switch on, a staging directory, and no destination file.
+- **`deleteStagingForDelete(context, id)`.** `deleteFile` found no file and returned false, so a listed engine download
+  could not be deleted. Now it does, only when the file lookup is null: a running download's staging is left to its
+  own stop, which the delete's Stop event triggers; an idle one's is removed. With the switch off it is false.
 
-Tests to write before the switch goes on (not needed for `KMP-59`'s merge):
-- Stop or Cancel during the fetch, and during the copy. The staging and the destination must both be gone.
-- Pause and Resume sent through `downloadEvent` during a run. Resume must go on from disk.
+**The readers.** Every caller of `getDownloadFileInfo`, and what it does now:
+
+| Caller | Now |
+|---|---|
+| `DownloadViewModel.calculateDownloadStats` | `getDownloadListInfo`; its `fileLength <= 1` filter lets an empty path through. Not pruned while it has staging |
+| `DownloadViewModel.updateChildList` | `getDownloadListInfo` |
+| `AndroidDownloadsSource.readEpisodes` | `getDownloadListInfo`; its `fileLength <= 1` filter lets an empty path through |
+| `AndroidDownloadSeriesSource.read` | `getDownloadListInfo` |
+| `BaseFetchButton.setPersistentId` (result-page and list buttons) | `getDownloadListInfo`, so a staged download shows its bytes and offers Resume/Pause as a partial file does |
+| `DownloadButtonSetup` `DOWNLOAD_ACTION_LONG_CLICK` | Unchanged: the "available offline" snackbar stays file-only |
+| `DownloadQueueManager.addToQueue` (the 98% check) | Unchanged on purpose: a 99%-staged download must still be queueable, and `fileLengthOnDisk` must never get an empty path |
+| `DownloadFileGenerator.generateLinks` | Refuses (below) |
+| `DownloadQueueAdapter` (reads `KEY_DOWNLOAD_INFO`) | Unchanged code; now offers "Delete file" for a running engine download, which works through `deleteStagingForDelete` |
+
+**The play actions.** Every play route goes through `DownloadButtonSetup.handleDownloadClick(DOWNLOAD_ACTION_PLAY_FILE)`
+and then `DownloadFileGenerator`:
+- Phone Downloads: `DownloadAdapter` (a film's header row, a child row).
+- The download button's popup, "Play file" (`PieFetchButton`), on the result page and in the lists.
+- Continue Watching from a download (`SearchHelper`).
+- TV Downloads, a film (`DownloadsTvFragment.open`), and TV series Play and Play next (`DownloadSeriesTvFragment`).
+
+The refusal is at both seams. `handleDownloadClick` refuses the episode with a "Downloading" toast (an existing string) and
+does not navigate. It also leaves running engine episodes out of the playlist it builds. `DownloadFileGenerator` returns
+no links for an empty-path episode that `refusesPlay` names, instead of handing the player `Uri.EMPTY`. No download has a
+share or "open with" action: the result page's share sends the title's page link. During the copy, the destination
+file exists, so a play opens the partial copy, which is what `downloadThing`'s partial file does.
+
+**What changes with the switch on** (the switch defaults to off):
+
+| Old (switch on, `KMP-59`) | New | Who notices |
+|---|---|---|
+| Not listed until the copy ends | Listed from the first snapshot, with the staged bytes | Everyone |
+| A failed download's staged parts are invisible; the list prunes its entry when idle | Listed with its staged bytes and offered Resume, which resumes from staging. Not pruned | Users with failed downloads |
+| The result-page button shows nothing for a staged download; a click starts again from 0 | Shows the staged bytes and offers Resume/Pause/Delete | Result-page users |
+| The queue popup offers Cancel | Offers "Delete file", which stops the run and removes its staging | Queue users |
+| — | Play on a running download shows "Downloading" and stays put; the playlist skips it | Anyone who taps it |
+| — | During the copy, the row's bytes drop to the copy's progress, because the real file wins | Big files on slow storage |
+
+**Switch off.** Every new branch checks the switch first and reads nothing when it is off: `getDownloadListInfo` is
+`getDownloadFileInfo`, the `<= 1` filters see a real path, `refusesPlay` and `deleteStagingForDelete` are false.
+
+**`checkExtensionApi`.** 3 added lines and 0 removed or changed, all on `EngineVideoDownload$Companion`:
+`getDownloadListInfo`, `refusesPlay` and `deleteStagingForDelete`. The record is read with `DataStore`'s `Class` overload,
+because the reified one inlines a `TypeReference` class into `classes.jar`.
+
+**Tests** (`EngineDownloadListDeviceTest`, switch on, against `EngineTestServer`, throttled so each download is still
+running when the test looks). All local, none CI, on `Television_720p` (API 36):
+1. **Listed while running.** After 2 MiB are staged, `getDownloadFileInfo` is still null, and each of the four readers
+   lists the episode through its real code: `updateHeaderList` (so `calculateDownloadStats`), `updateChildList`,
+   `AndroidDownloadsSource.contents` and `AndroidDownloadSeriesSource.contents`, each with progress bytes > 1 and the
+   right total. The two Compose sources get no facts, so only their disk read can list it. `getDownloadListInfo`'s path is
+   `Uri.EMPTY`, and the record holds the folder, display name, `linkHash` and nothing else.
+2. **Play refused.** `refusesPlay` is true, and `DownloadFileGenerator.generateLinks` returns false without handing the
+   player anything. In the real `MainActivity`, `handleDownloadClick(DOWNLOAD_ACTION_PLAY_FILE)` runs with an activity and
+   does not navigate to the player. Read, not driven by taps: `DownloadAdapter`, `PieFetchButton`'s popup, `SearchHelper`
+   and the two TV fragments, which all send that same click.
+3. **Not pruned.** With the queue idle as `calculateDownloadStats` sees it, a control episode with no record is pruned and
+   the running download's entry is not.
+4. **Stop and Cancel.** A Stop through `downloadEvent` during the fetch, a Cancel (`EpisodeDownloadInstance.cancelDownload`,
+   which is what `DownloadQueueManager.cancelDownload` calls for a running one) during the fetch, and a Stop at the copy.
+   Each leaves no staging directory, no destination file and no listing. The record stays, as stopping `downloadThing`
+   leaves it, and the stop ends as `success`, as `DOWNLOAD_STOPPED` does. The copy is reached by a restart after a
+   crash after the copy, and the Stop is sent from the notification it raises as it starts copying, so the copy loop's
+   stop check ends it with the destination open.
+5. **Delete.** `deleteFilesAndUpdateSettings` on a running engine download reports it deleted, stops it, and leaves no
+   staging, no file and no record.
+6. **Pause and Resume through `downloadEvent`.** After the pause, no request is made, no byte is sent and no part file
+   grows for 2 s. After the resume, no request overlaps a held range by more than the channel's discard (1 MiB,
+   `KMP-69`), and the file is byte-identical.
+
+8/8 pass. The full `:app` device suite: 120 tests, 0 failures, 1 skipped (`TvHomeRealPluginProof`), including
+`DownloadFactsDeviceTest` 7/7, `DownloadFactsDiskFullDeviceTest` 1/1 and `EngineDownloadDeviceTest` 8/8, all unchanged.
+(The full run predates test 5; 8/8 is from a class run after it was added.) `:app:testPrereleaseDebugUnitTest`: 244/0.
+`EngineTestServer` now treats an interrupt in a throttled body as the client leaving: closing it mid-transfer used to
+crash the test process.
+
+**Not verified.**
+- API 24/25: the new tests ran on API 36 only.
+- A Cancel during the copy. It reaches the engine as the same `downloadEvent` Stop (`EpisodeDownloadInstance.cleanup`), read, not run.
+- A stop in the middle of a long copy. The test's stop lands at the copy's first buffer.
+- The play actions driven by real taps on the phone and TV lists, the popup and Continue Watching (read: all use the tested click).
+- `BaseFetchButton` showing staged bytes; a failed engine download listed, resumed from staging, and not pruned while idle;
+  deleting an idle staged download.
+- Document-tree and SD-card destinations.
 
 ## KMP-61 — Engine: a work steal refetches an in-flight range's tail · **open**, measured, no fix
 
