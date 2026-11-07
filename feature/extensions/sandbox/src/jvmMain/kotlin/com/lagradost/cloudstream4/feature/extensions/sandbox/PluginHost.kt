@@ -49,8 +49,11 @@ object PluginHost {
     /** `file:/…`, with any number of slashes, up to the next whitespace. */
     private val FILE_URI = Regex("(?i)\\bfile:/\\S+")
 
-    /** `scheme://[userinfo@]host[:port]`, then whatever follows up to the next whitespace. */
-    private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*)://(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
+    /**
+     * `scheme://[userinfo@]host[:port]`, then whatever follows up to the next whitespace. BUG-52: also
+     * when whitespace splits `scheme:` from `//` (`https:<tab>//`), which would otherwise leave the url whole.
+     */
+    private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*):\\s*//(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
 
     /**
      * An absolute path under a storage, home or volume root, up to a newline, a quote, `": "` or the
@@ -71,12 +74,13 @@ object PluginHost {
 
     /**
      * BUG-52: control and format characters (Unicode Cc and Cf: ZWSP, ZWJ, ZWNJ, BOM, bidi marks and the
-     * rest) out, except the line breaks and tabs that shape a stack trace. One inside `://`
-     * (`https:<ZWSP>//`) would hide a url from [URL_IN_TEXT], so they go before any pattern runs.
+     * rest) out before any pattern runs, since one inside `://` (`https:<ZWSP>//`) would hide a url from
+     * [URL_IN_TEXT]. Line breaks stay, because they shape a stack trace. A tab becomes a space: a screen
+     * that strips controls after redaction (Home, Detail, the HUD) would otherwise rejoin `https:<tab>//`.
      */
-    private fun String.withoutHiddenCharacters(): String = filterNot { c ->
+    private fun String.withoutHiddenCharacters(): String = replace('\t', ' ').filterNot { c ->
         c.category == CharCategory.FORMAT ||
-            (c.category == CharCategory.CONTROL && c != '\n' && c != '\r' && c != '\t')
+            (c.category == CharCategory.CONTROL && c != '\n' && c != '\r')
     }
 
     /**

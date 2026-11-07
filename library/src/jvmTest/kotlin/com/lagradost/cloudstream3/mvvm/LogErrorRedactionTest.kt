@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream3.mvvm
 
+import com.lagradost.cloudstream3.ErrorLoadingException
 import java.io.ByteArrayOutputStream
 import java.io.FileNotFoundException
 import java.io.IOException
@@ -50,7 +51,10 @@ class LogErrorRedactionTest {
         // BUG-52: an invisible character must not hide a url from the patterns, and line breaks must survive.
         "cdn https:\u200B//cdn.example/x?token=MARKER_QUERY" to "cdn https://cdn.example/<…>",
         "bom ht\uFEFFtps://cdn.example/MARKER_PATH" to "bom https://cdn.example/<…>",
-        "keeps\nlines\r\nand\ttabs" to "keeps\nlines\r\nand\ttabs",
+        // A tab or a line break inside "://" must not hide the url, nor rejoin it once a screen strips controls.
+        "https:\t//host/p?token=MARKER_QUERY" to "https://host/<…>",
+        "nl https:\n//host/p?token=MARKER_QUERY" to "nl https://host/<…>",
+        "keeps\nlines\r\nand\ttabs" to "keeps\nlines\r\nand tabs",
     )
 
     private fun captured(block: () -> Unit): String {
@@ -75,6 +79,9 @@ class LogErrorRedactionTest {
             val text = captured { logError(IllegalStateException(input)) }
             assertTrue(text.contains("safeApiCall: $expected\n"), "for '$input':\n$text")
             markers.forEach { assertFalse(text.contains(it), "'$it' leaked into:\n$text") }
+            // BUG-52: what a screen shows after it strips controls, as Home, Detail and the HUD do.
+            val shown = text.filterNot { it.isISOControl() }
+            markers.forEach { assertFalse(shown.contains(it), "'$it' rejoined on screen: $shown") }
         }
     }
 
@@ -104,5 +111,21 @@ class LogErrorRedactionTest {
         // getStackTracePretty puts the message first, joined straight onto the first frame's "File.kt line".
         assertTrue(shown.errorString.startsWith("\nGET https://host.example/<…> failed"), shown.errorString)
         assertTrue(shown.errorString.contains("LogErrorRedactionTest.kt"), shown.errorString)
+    }
+
+    /**
+     * BUG-52: an [ErrorLoadingException]'s message became `errorString` unredacted, and Android's Home and Detail
+     * failure lines show its first line.
+     */
+    @Test
+    fun anErrorLoadingExceptionsMessageReachesTheScreenRedacted() {
+        val message = "refused https://MARKER_USER@host.example/MARKER_PATH?t=MARKER_QUERY, try again"
+        val shown = throwAbleToResource<Unit>(ErrorLoadingException(message)) as Resource.Failure
+        assertEquals("refused https://host.example/<…> try again", shown.errorString)
+        assertEquals(true, shown.isNetworkError)
+        markers.forEach { assertFalse(shown.errorString.contains(it), "'$it' reached the screen: ${shown.errorString}") }
+
+        val noMessage = throwAbleToResource<Unit>(ErrorLoadingException()) as Resource.Failure
+        assertEquals("Error loading, try again later.", noMessage.errorString)
     }
 }

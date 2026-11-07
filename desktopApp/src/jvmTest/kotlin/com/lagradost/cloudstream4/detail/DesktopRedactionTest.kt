@@ -39,7 +39,10 @@ class DesktopRedactionTest {
         // BUG-52: an invisible character must not hide a url from the patterns, and line breaks must survive.
         "cdn https:\u200B//cdn.example/x?token=MARKER_QUERY" to "cdn https://cdn.example/<…>",
         "bom ht\uFEFFtps://cdn.example/MARKER_PATH" to "bom https://cdn.example/<…>",
-        "keeps\nlines\r\nand\ttabs" to "keeps\nlines\r\nand\ttabs",
+        // A tab or a line break inside "://" must not hide the url, nor rejoin it once a screen strips controls.
+        "https:\t//host/p?token=MARKER_QUERY" to "https://host/<…>",
+        "nl https:\n//host/p?token=MARKER_QUERY" to "nl https://host/<…>",
+        "keeps\nlines\r\nand\ttabs" to "keeps\nlines\r\nand tabs",
     )
 
     @Test
@@ -48,6 +51,9 @@ class DesktopRedactionTest {
             val text = input.withoutUrls()
             assertEquals(expected, text, input)
             markers.forEach { assertFalse(text.contains(it), "'$it' leaked into: $text") }
+            // BUG-52: what a screen shows after it strips controls, as Home, Detail and the HUD do.
+            val shown = text.filterNot { it.isISOControl() }
+            markers.forEach { assertFalse(shown.contains(it), "'$it' rejoined on screen: $shown") }
         }
     }
 
