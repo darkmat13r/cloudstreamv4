@@ -15,6 +15,10 @@ values	plurals	links_hidden	one	%d hidden link
 values	plurals	links_hidden	other	%d hidden links
 values	plurals	search_state_no_results_body	one	%d selected source answered and it does not carry it.
 values	plurals	search_state_no_results_body	other	All %d selected sources answered and none of them carry it.
+values	plurals	search_state_no_suggestions_action	one	Search %d source
+values	plurals	search_state_no_suggestions_action	other	Search all %d sources
+values	plurals	search_state_no_suggestions_body	one	Press the keyboard’s search key to search %d source anyway.
+values	plurals	search_state_no_suggestions_body	other	Press the keyboard’s search key to search all %d sources anyway.
 values	plurals	search_state_partial_headline	one	%d source failed
 values	plurals	search_state_partial_headline	other	%d sources failed
 values	plurals	search_tv_recent_count	one	%d SAVED
@@ -23,6 +27,8 @@ values	plurals	search_tv_result_count	one	%d RESULT
 values	plurals	search_tv_result_count	other	%d RESULTS
 values	plurals	search_tv_sources_count	one	%1$d / %2$d
 values	plurals	search_tv_sources_count	other	%1$d / %2$d
+values	plurals	search_tv_suggestion_sources	one	%d SOURCE
+values	plurals	search_tv_suggestion_sources	other	%d SOURCES
 values	string	account	-	account
 values	string	action_add_to_bookmarks	-	Set watch status
 values	string	action_add_to_favorites	-	Add to favorites
@@ -662,6 +668,8 @@ values	string	search_state_no_results_body_unknown	-	Every selected source answe
 values	string	search_state_no_results_detail	-	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS
 values	string	search_state_no_results_headline	-	No results
 values	string	search_state_no_results_type_filter	-	%s only. Your type filter is narrowing the search.
+values	string	search_state_no_suggestions_detail	-	0 SUGGESTIONS · 0 RECENT MATCHES
+values	string	search_state_no_suggestions_headline	-	Nothing matches “%s”
 values	string	search_state_offline_body	-	Search needs a connection. Your downloads are still available.
 values	string	search_state_offline_headline	-	You are offline
 values	string	search_state_retry	-	Try again
@@ -675,6 +683,9 @@ values	string	search_tv_source_failed	-	FAILED %s
 values	string	search_tv_source_pinned	-	PINNED
 values	string	search_tv_sources_label	-	Sources
 values	string	search_tv_sources_panel_meta	-	%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE
+values	string	search_tv_suggestion_recent	-	RECENT · %s
+values	string	search_tv_suggestion_recent_suggested	-	RECENT · ALSO SUGGESTED
+values	string	search_tv_suggestion_suggested	-	SUGGESTED
 values	string	season	-	Season
 values	string	season_format	-	%1$s %2$d%3$s
 values	string	season_short	-	S
@@ -899,6 +910,12 @@ values-b+af	plurals	home_bookmarks_count	one	%d BOEKMERK
 values-b+af	plurals	home_bookmarks_count	other	%d BOEKMERKE
 values-b+af	plurals	home_sections_failed	one	%d afdeling kon nie laai nie
 values-b+af	plurals	home_sections_failed	other	%d afdelings kon nie laai nie
+values-b+af	plurals	search_state_no_suggestions_action	one	Soek %d bron
+values-b+af	plurals	search_state_no_suggestions_action	other	Soek al %d bronne
+values-b+af	plurals	search_state_no_suggestions_body	one	Druk die sleutelbord se soeksleutel om tog %d bron te deursoek.
+values-b+af	plurals	search_state_no_suggestions_body	other	Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek.
+values-b+af	plurals	search_tv_suggestion_sources	one	%d BRON
+values-b+af	plurals	search_tv_suggestion_sources	other	%d BRONNE
 values-b+af	string	action_add_to_bookmarks	-	Stel kykstatus
 values-b+af	string	action_open_play	-	Speel
 values-b+af	string	action_remove_from_bookmarks	-	Verwyder
@@ -1068,9 +1085,14 @@ values-b+af	string	search_provider_text_providers	-	Soek deur verskaffers te geb
 values-b+af	string	search_provider_text_types	-	Soek met behulp van tipes
 values-b+af	string	search_state_idle_body_desktop	-	Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord.
 values-b+af	string	search_state_no_results_type_filter	-	Slegs %s. Jou tipe-filter beperk die soektog.
+values-b+af	string	search_state_no_suggestions_detail	-	0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE
+values-b+af	string	search_state_no_suggestions_headline	-	Niks stem ooreen met “%s” nie
 values-b+af	string	search_tv_source_failed	-	MISLUK %s
 values-b+af	string	search_tv_source_pinned	-	VASGESPELD
 values-b+af	string	search_tv_sources_panel_meta	-	%1$d VAN %2$d GEAKTIVEER · WYSIGINGS GELD BY KLAAR
+values-b+af	string	search_tv_suggestion_recent	-	ONLANGS · %s
+values-b+af	string	search_tv_suggestion_recent_suggested	-	ONLANGS · OOK VOORGESTEL
+values-b+af	string	search_tv_suggestion_suggested	-	VOORGESTEL
 values-b+af	string	season	-	Seisoen
 values-b+af	string	seek_back_10_seconds	-	Spring 10 sekondes terug
 values-b+af	string	seek_forward_10_seconds	-	Spring 10 sekondes vorentoe
@@ -1120,6 +1142,12 @@ values-b+am	plurals	home_bookmarks_count	one	%d ዕልባት
 values-b+am	plurals	home_bookmarks_count	other	%d ዕልባቶች
 values-b+am	plurals	home_sections_failed	one	%d ክፍል መጫን አልተቻለም
 values-b+am	plurals	home_sections_failed	other	%d ክፍል መጫን አልተቻለም
+values-b+am	plurals	search_state_no_suggestions_action	one	%d ምንጭ ፈልግ
+values-b+am	plurals	search_state_no_suggestions_action	other	ሁሉንም %d ምንጮች ፈልግ
+values-b+am	plurals	search_state_no_suggestions_body	one	ለማንኛውም %d ምንጭ ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።
+values-b+am	plurals	search_state_no_suggestions_body	other	ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።
+values-b+am	plurals	search_tv_suggestion_sources	one	%d ምንጭ
+values-b+am	plurals	search_tv_suggestion_sources	other	%d ምንጮች
 values-b+am	string	action_add_to_bookmarks	-	የምልከታ ሁኔታን ያቀናብሩ
 values-b+am	string	action_open_play	-	አጫውት
 values-b+am	string	action_open_watching	-	ተጨማሪ መረጃ
@@ -1279,9 +1307,14 @@ values-b+am	string	search_provider_text_providers	-	አቅራቢዎችን በመ
 values-b+am	string	search_provider_text_types	-	ዓይነቶችን በመጠቀም ይፈልጉ
 values-b+am	string	search_state_idle_body_desktop	-	ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።
 values-b+am	string	search_state_no_results_type_filter	-	%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።
+values-b+am	string	search_state_no_suggestions_detail	-	0 ጥቆማዎች · 0 የቅርብ ጊዜ ተዛማጆች
+values-b+am	string	search_state_no_suggestions_headline	-	ከ«%s» ጋር የሚዛመድ ምንም የለም
 values-b+am	string	search_tv_source_failed	-	አልተሳካም %s
 values-b+am	string	search_tv_source_pinned	-	ተሰክቷል
 values-b+am	string	search_tv_sources_panel_meta	-	ከ%2$d ውስጥ %1$d ነቅተዋል · ለውጦች በተከናውኗል ላይ ይተገበራሉ
+values-b+am	string	search_tv_suggestion_recent	-	የቅርብ ጊዜ · %s
+values-b+am	string	search_tv_suggestion_recent_suggested	-	የቅርብ ጊዜ · የተጠቆመም
+values-b+am	string	search_tv_suggestion_suggested	-	የተጠቆመ
 values-b+am	string	seek_back_10_seconds	-	10 ሰከንድ ወደ ኋላ
 values-b+am	string	seek_forward_10_seconds	-	10 ሰከንድ ወደ ፊት
 values-b+am	string	skip_loading	-	መጫንን ዝለል
@@ -1333,6 +1366,12 @@ values-b+apc	plurals	home_bookmarks_count	one	%d إشارة مرجعية
 values-b+apc	plurals	home_bookmarks_count	other	%d إشارات مرجعية
 values-b+apc	plurals	home_sections_failed	one	م قدرنا نفتح %d قسم
 values-b+apc	plurals	home_sections_failed	other	م قدرنا نفتح %d أقسام
+values-b+apc	plurals	search_state_no_suggestions_action	one	نبّش بـ%d مصدر
+values-b+apc	plurals	search_state_no_suggestions_action	other	نبّش بكل المصادر الـ%d
+values-b+apc	plurals	search_state_no_suggestions_body	one	اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال.
+values-b+apc	plurals	search_state_no_suggestions_body	other	اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال.
+values-b+apc	plurals	search_tv_suggestion_sources	one	%d مصدر
+values-b+apc	plurals	search_tv_suggestion_sources	other	%d مصادر
 values-b+apc	string	account	-	أكونت
 values-b+apc	string	action_add_to_bookmarks	-	عدل حالة الحَضِر
 values-b+apc	string	action_add_to_favorites	-	زيدو ع المفضل
@@ -1942,11 +1981,16 @@ values-b+apc	string	search_provider_text_providers	-	عوزو المصادر ل�
 values-b+apc	string	search_provider_text_types	-	عوزو الأنواع ل تنبّشو
 values-b+apc	string	search_state_idle_body_desktop	-	اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.
 values-b+apc	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع عم يضيّق البحث.
+values-b+apc	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق مؤخراً
+values-b+apc	string	search_state_no_suggestions_headline	-	ما في شي بيطابق «%s»
 values-b+apc	string	search_suggestions	-	اقتراحات التنبيش
 values-b+apc	string	search_suggestions_des	-	بت فرجي اقتراحات إنتا و عم بت نَبّش
 values-b+apc	string	search_tv_source_failed	-	فشل %s
 values-b+apc	string	search_tv_source_pinned	-	مثبّت
 values-b+apc	string	search_tv_sources_panel_meta	-	%1$d من %2$d مفعّل · التغييرات بتنطبق عند خلصت
+values-b+apc	string	search_tv_suggestion_recent	-	مؤخراً · %s
+values-b+apc	string	search_tv_suggestion_recent_suggested	-	مؤخراً · ومقترح كمان
+values-b+apc	string	search_tv_suggestion_suggested	-	مقترح
 values-b+apc	string	season	-	جزء
 values-b+apc	string	season_format	-	%1$s%2$d%3$s
 values-b+apc	string	season_short	-	ج
@@ -2193,6 +2237,24 @@ values-b+ar	plurals	home_sections_failed	one	تعذر تحميل %d قسم
 values-b+ar	plurals	home_sections_failed	other	تعذر تحميل %d قسم
 values-b+ar	plurals	home_sections_failed	two	تعذر تحميل %d قسمين
 values-b+ar	plurals	home_sections_failed	zero	تعذر تحميل %d قسم
+values-b+ar	plurals	search_state_no_suggestions_action	few	ابحث في جميع المصادر الـ%d
+values-b+ar	plurals	search_state_no_suggestions_action	many	ابحث في جميع المصادر الـ%d
+values-b+ar	plurals	search_state_no_suggestions_action	one	ابحث في %d مصدر
+values-b+ar	plurals	search_state_no_suggestions_action	other	ابحث في جميع المصادر الـ%d
+values-b+ar	plurals	search_state_no_suggestions_action	two	ابحث في جميع المصادر الـ%d
+values-b+ar	plurals	search_state_no_suggestions_action	zero	ابحث في %d مصدر
+values-b+ar	plurals	search_state_no_suggestions_body	few	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
+values-b+ar	plurals	search_state_no_suggestions_body	many	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
+values-b+ar	plurals	search_state_no_suggestions_body	one	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.
+values-b+ar	plurals	search_state_no_suggestions_body	other	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
+values-b+ar	plurals	search_state_no_suggestions_body	two	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
+values-b+ar	plurals	search_state_no_suggestions_body	zero	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.
+values-b+ar	plurals	search_tv_suggestion_sources	few	%d مصادر
+values-b+ar	plurals	search_tv_suggestion_sources	many	%d مصدرًا
+values-b+ar	plurals	search_tv_suggestion_sources	one	%d مصدر
+values-b+ar	plurals	search_tv_suggestion_sources	other	%d مصدر
+values-b+ar	plurals	search_tv_suggestion_sources	two	%d مصدران
+values-b+ar	plurals	search_tv_suggestion_sources	zero	%d مصدر
 values-b+ar	string	account	-	حساب
 values-b+ar	string	action_add_to_bookmarks	-	إعداد حالة المشاهدة
 values-b+ar	string	action_add_to_favorites	-	اضافة الى المفضلة
@@ -2805,11 +2867,16 @@ values-b+ar	string	search_provider_text_providers	-	البحث باستخدام 
 values-b+ar	string	search_provider_text_types	-	البحث باستخدام الأنواع
 values-b+ar	string	search_state_idle_body_desktop	-	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.
 values-b+ar	string	search_state_no_results_type_filter	-	%s فقط. عامل تصفية النوع يضيّق نطاق البحث.
+values-b+ar	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق حديث
+values-b+ar	string	search_state_no_suggestions_headline	-	لا شيء يطابق «%s»
 values-b+ar	string	search_suggestions	-	اقتراحات البحث
 values-b+ar	string	search_suggestions_des	-	عرض اقتراحات البحث أثناء الكتابة
 values-b+ar	string	search_tv_source_failed	-	فشل %s
 values-b+ar	string	search_tv_source_pinned	-	مثبّت
 values-b+ar	string	search_tv_sources_panel_meta	-	%1$d من %2$d مفعّل · تُطبَّق التغييرات عند «تم»
+values-b+ar	string	search_tv_suggestion_recent	-	حديثًا · %s
+values-b+ar	string	search_tv_suggestion_recent_suggested	-	حديثًا · ومقترح أيضًا
+values-b+ar	string	search_tv_suggestion_suggested	-	مقترح
 values-b+ar	string	season	-	موسم
 values-b+ar	string	season_format	-	%1$s %2$d%3$s
 values-b+ar	string	season_short	-	م
@@ -3046,6 +3113,24 @@ values-b+ars	plurals	home_sections_failed	one	تعذر تحميل %d قسم
 values-b+ars	plurals	home_sections_failed	other	تعذر تحميل %d قسم
 values-b+ars	plurals	home_sections_failed	two	تعذر تحميل %d قسمين
 values-b+ars	plurals	home_sections_failed	zero	تعذر تحميل %d قسم
+values-b+ars	plurals	search_state_no_suggestions_action	few	ابحث في جميع المصادر الـ%d
+values-b+ars	plurals	search_state_no_suggestions_action	many	ابحث في جميع المصادر الـ%d
+values-b+ars	plurals	search_state_no_suggestions_action	one	ابحث في %d مصدر
+values-b+ars	plurals	search_state_no_suggestions_action	other	ابحث في جميع المصادر الـ%d
+values-b+ars	plurals	search_state_no_suggestions_action	two	ابحث في جميع المصادر الـ%d
+values-b+ars	plurals	search_state_no_suggestions_action	zero	ابحث في %d مصدر
+values-b+ars	plurals	search_state_no_suggestions_body	few	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
+values-b+ars	plurals	search_state_no_suggestions_body	many	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
+values-b+ars	plurals	search_state_no_suggestions_body	one	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.
+values-b+ars	plurals	search_state_no_suggestions_body	other	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
+values-b+ars	plurals	search_state_no_suggestions_body	two	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
+values-b+ars	plurals	search_state_no_suggestions_body	zero	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.
+values-b+ars	plurals	search_tv_suggestion_sources	few	%d مصادر
+values-b+ars	plurals	search_tv_suggestion_sources	many	%d مصدرًا
+values-b+ars	plurals	search_tv_suggestion_sources	one	%d مصدر
+values-b+ars	plurals	search_tv_suggestion_sources	other	%d مصدر
+values-b+ars	plurals	search_tv_suggestion_sources	two	%d مصدران
+values-b+ars	plurals	search_tv_suggestion_sources	zero	%d مصدر
 values-b+ars	string	action_add_to_bookmarks	-	ضبط حالة المشاهدة
 values-b+ars	string	action_default	-	عادي
 values-b+ars	string	action_mark_as_watched	-	وضع علامة كما شاهدت
@@ -3360,9 +3445,14 @@ values-b+ars	string	search_provider_text_providers	-	البحث باستخدام
 values-b+ars	string	search_provider_text_types	-	البحث باستخدام الأنواع
 values-b+ars	string	search_state_idle_body_desktop	-	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.
 values-b+ars	string	search_state_no_results_type_filter	-	%s بس. فلتر النوع يضيّق البحث.
+values-b+ars	string	search_state_no_suggestions_detail	-	0 اقتراحات · 0 تطابق حديث
+values-b+ars	string	search_state_no_suggestions_headline	-	لا شيء يطابق «%s»
 values-b+ars	string	search_tv_source_failed	-	فشل %s
 values-b+ars	string	search_tv_source_pinned	-	مثبّت
 values-b+ars	string	search_tv_sources_panel_meta	-	%1$d من %2$d مفعّل · التغييرات تنطبق عند «تم»
+values-b+ars	string	search_tv_suggestion_recent	-	حديثًا · %s
+values-b+ars	string	search_tv_suggestion_recent_suggested	-	حديثًا · ومقترح أيضًا
+values-b+ars	string	search_tv_suggestion_suggested	-	مقترح
 values-b+ars	string	season	-	موسم
 values-b+ars	string	season_format	-	%1$s%2$d%3$s
 values-b+ars	string	season_short	-	س
@@ -3487,6 +3577,12 @@ values-b+as	plurals	home_bookmarks_count	one	%d টা বুকমাৰ্ক
 values-b+as	plurals	home_bookmarks_count	other	%d টা বুকমাৰ্ক
 values-b+as	plurals	home_sections_failed	one	%d টা অংশ লোড কৰিব পৰা নগ'ল
 values-b+as	plurals	home_sections_failed	other	%d টা অংশ লোড কৰিব পৰা নগ'ল
+values-b+as	plurals	search_state_no_suggestions_action	one	%dটা উৎস সন্ধান কৰক
+values-b+as	plurals	search_state_no_suggestions_action	other	আটাইকেইটা %dটা উৎস সন্ধান কৰক
+values-b+as	plurals	search_state_no_suggestions_body	one	তথাপি %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।
+values-b+as	plurals	search_state_no_suggestions_body	other	তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।
+values-b+as	plurals	search_tv_suggestion_sources	one	%d উৎস
+values-b+as	plurals	search_tv_suggestion_sources	other	%d উৎস
 values-b+as	string	account	-	একাউন্ট
 values-b+as	string	action_add_to_bookmarks	-	দেখাৰ অৱস্থা নিৰ্ধাৰণ কৰক
 values-b+as	string	action_add_to_favorites	-	প্ৰিয় তালিকালৈ যোগ কৰক
@@ -4039,9 +4135,14 @@ values-b+as	string	search_provider_text_providers	-	প্ৰদানকাৰ�
 values-b+as	string	search_provider_text_types	-	প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক
 values-b+as	string	search_state_idle_body_desktop	-	এটা শিৰোনাম টাইপ কৰক। প্ৰতিটো উৎসই উত্তৰ দিয়াৰ লগে লগে ফলাফল তাৰ তলত দেখা যাব।
 values-b+as	string	search_state_no_results_type_filter	-	কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।
+values-b+as	string	search_state_no_suggestions_detail	-	0 টা পৰামৰ্শ · 0 টা শেহতীয়া মিল
+values-b+as	string	search_state_no_suggestions_headline	-	“%s”ৰ সৈতে একো নিমিলে
 values-b+as	string	search_tv_source_failed	-	ব্যৰ্থ %s
 values-b+as	string	search_tv_source_pinned	-	পিন কৰা হৈছে
 values-b+as	string	search_tv_sources_panel_meta	-	%2$dৰ ভিতৰত %1$d সক্ষম · পৰিৱৰ্তনসমূহ সম্পূৰ্ণ ত প্ৰয়োগ হয়
+values-b+as	string	search_tv_suggestion_recent	-	শেহতীয়া · %s
+values-b+as	string	search_tv_suggestion_recent_suggested	-	শেহতীয়া · পৰামৰ্শিতো
+values-b+as	string	search_tv_suggestion_suggested	-	পৰামৰ্শিত
 values-b+as	string	season	-	চিজন
 values-b+as	string	season_format	-	%1$s %2$d%3$s
 values-b+as	string	season_short	-	চি
@@ -4229,6 +4330,12 @@ values-b+az	plurals	home_bookmarks_count	one	%d ƏLFƏCİN
 values-b+az	plurals	home_bookmarks_count	other	%d ƏLFƏCİN
 values-b+az	plurals	home_sections_failed	one	%d bölmə yüklənmədi
 values-b+az	plurals	home_sections_failed	other	%d bölmə yüklənmədi
+values-b+az	plurals	search_state_no_suggestions_action	one	%d mənbədə axtar
+values-b+az	plurals	search_state_no_suggestions_action	other	Bütün %d mənbədə axtar
+values-b+az	plurals	search_state_no_suggestions_body	one	Yenə də %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.
+values-b+az	plurals	search_state_no_suggestions_body	other	Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.
+values-b+az	plurals	search_tv_suggestion_sources	one	%d MƏNBƏ
+values-b+az	plurals	search_tv_suggestion_sources	other	%d MƏNBƏ
 values-b+az	string	advanced_search	-	Təkmilləşdirilmiş Axtarış
 values-b+az	string	anime	-	Anime-lər
 values-b+az	string	anime_singular	-	Anime
@@ -4429,9 +4536,14 @@ values-b+az	string	search_hint	-	Axtar…
 values-b+az	string	search_poster_img_des	-	Afişa
 values-b+az	string	search_state_idle_body_desktop	-	Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.
 values-b+az	string	search_state_no_results_type_filter	-	Yalnız %s. Növ filtriniz axtarışı daraldır.
+values-b+az	string	search_state_no_suggestions_detail	-	0 TƏKLİF · 0 SON UYĞUNLUQ
+values-b+az	string	search_state_no_suggestions_headline	-	«%s» ilə uyğun heç nə yoxdur
 values-b+az	string	search_tv_source_failed	-	UĞURSUZ %s
 values-b+az	string	search_tv_source_pinned	-	SABİTLƏNİB
 values-b+az	string	search_tv_sources_panel_meta	-	%2$d İÇİNDƏN %1$d AKTİV · DƏYİŞİKLİKLƏR HAZIR İLƏ TƏTBİQ OLUNUR
+values-b+az	string	search_tv_suggestion_recent	-	SON · %s
+values-b+az	string	search_tv_suggestion_recent_suggested	-	SON · HƏM DƏ TƏKLİF OLUNUB
+values-b+az	string	search_tv_suggestion_suggested	-	TƏKLİF OLUNUB
 values-b+az	string	season	-	Sezon
 values-b+az	string	season_short	-	S
 values-b+az	string	seek_back_10_seconds	-	10 saniyə geri keç
@@ -4490,6 +4602,18 @@ values-b+be	plurals	home_sections_failed	few	Не ўдалося загрузі�
 values-b+be	plurals	home_sections_failed	many	Не ўдалося загрузіць %d раздзелаў
 values-b+be	plurals	home_sections_failed	one	Не ўдалося загрузіць %d раздзел
 values-b+be	plurals	home_sections_failed	other	Не ўдалося загрузіць %d раздзелаў
+values-b+be	plurals	search_state_no_suggestions_action	few	Шукаць ва ўсіх %d крыніцах
+values-b+be	plurals	search_state_no_suggestions_action	many	Шукаць ва ўсіх %d крыніцах
+values-b+be	plurals	search_state_no_suggestions_action	one	Шукаць у %d крыніцы
+values-b+be	plurals	search_state_no_suggestions_action	other	Шукаць ва ўсіх %d крыніцах
+values-b+be	plurals	search_state_no_suggestions_body	few	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.
+values-b+be	plurals	search_state_no_suggestions_body	many	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.
+values-b+be	plurals	search_state_no_suggestions_body	one	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць у %d крыніцы.
+values-b+be	plurals	search_state_no_suggestions_body	other	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.
+values-b+be	plurals	search_tv_suggestion_sources	few	%d КРЫНІЦЫ
+values-b+be	plurals	search_tv_suggestion_sources	many	%d КРЫНІЦ
+values-b+be	plurals	search_tv_suggestion_sources	one	%d КРЫНІЦА
+values-b+be	plurals	search_tv_suggestion_sources	other	%d КРЫНІЦЫ
 values-b+be	string	account	-	уліковы запіс
 values-b+be	string	action_add_to_bookmarks	-	Задаць статус прагляду
 values-b+be	string	action_add_to_favorites	-	Дадаць у абранае
@@ -5099,11 +5223,16 @@ values-b+be	string	search_provider_text_providers	-	Пошук праз паст
 values-b+be	string	search_provider_text_types	-	Пошук праз тыпы
 values-b+be	string	search_state_idle_body_desktop	-	Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.
 values-b+be	string	search_state_no_results_type_filter	-	Толькі %s. Фільтр па тыпе звужае пошук.
+values-b+be	string	search_state_no_suggestions_detail	-	0 ПРАПАНОЎ · 0 НЯДАЎНІХ СУПАДЗЕННЯЎ
+values-b+be	string	search_state_no_suggestions_headline	-	Нічога не адпавядае «%s»
 values-b+be	string	search_suggestions	-	Прапановы пошуку
 values-b+be	string	search_suggestions_des	-	Паказваць прапановы пошуку падчас уводу тэксту
 values-b+be	string	search_tv_source_failed	-	ЗБОЙ %s
 values-b+be	string	search_tv_source_pinned	-	ЗАМАЦАВАНА
 values-b+be	string	search_tv_sources_panel_meta	-	%1$d З %2$d УКЛЮЧАНА · ЗМЕНЫ ПРЫМЯНЯЮЦЦА ПАСЛЯ ГАТОВА
+values-b+be	string	search_tv_suggestion_recent	-	НЯДАЎНА · %s
+values-b+be	string	search_tv_suggestion_recent_suggested	-	НЯДАЎНА · ТАКСАМА ПРАПАНАВАНА
+values-b+be	string	search_tv_suggestion_suggested	-	ПРАПАНАВАНА
 values-b+be	string	season	-	Сезон
 values-b+be	string	season_format	-	%1$s %2$d%3$s
 values-b+be	string	season_short	-	Сез
@@ -5330,6 +5459,12 @@ values-b+bg	plurals	home_bookmarks_count	one	%d ОТМЕТКА
 values-b+bg	plurals	home_bookmarks_count	other	%d ОТМЕТКИ
 values-b+bg	plurals	home_sections_failed	one	%d секция не се зареди
 values-b+bg	plurals	home_sections_failed	other	%d секции не се заредиха
+values-b+bg	plurals	search_state_no_suggestions_action	one	Търсене в %d източник
+values-b+bg	plurals	search_state_no_suggestions_action	other	Търсене във всички %d източника
+values-b+bg	plurals	search_state_no_suggestions_body	one	Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това в %d източник.
+values-b+bg	plurals	search_state_no_suggestions_body	other	Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това във всички %d източника.
+values-b+bg	plurals	search_tv_suggestion_sources	one	%d ИЗТОЧНИК
+values-b+bg	plurals	search_tv_suggestion_sources	other	%d ИЗТОЧНИКА
 values-b+bg	string	account	-	Акаунт
 values-b+bg	string	action_add_to_bookmarks	-	Задайте статус на гледане
 values-b+bg	string	action_add_to_favorites	-	Добави в любими
@@ -5932,11 +6067,16 @@ values-b+bg	string	search_provider_text_providers	-	Търсене чрез до
 values-b+bg	string	search_provider_text_types	-	Търсене с помощта на типове
 values-b+bg	string	search_state_idle_body_desktop	-	Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори.
 values-b+bg	string	search_state_no_results_type_filter	-	Само %s. Филтърът по тип стеснява търсенето.
+values-b+bg	string	search_state_no_suggestions_detail	-	0 ПРЕДЛОЖЕНИЯ · 0 СКОРОШНИ СЪВПАДЕНИЯ
+values-b+bg	string	search_state_no_suggestions_headline	-	Нищо не съответства на „%s“
 values-b+bg	string	search_suggestions	-	Предложения за търсене
 values-b+bg	string	search_suggestions_des	-	Показвай предложения за търсене по време на писане
 values-b+bg	string	search_tv_source_failed	-	НЕУСПЕШНО %s
 values-b+bg	string	search_tv_source_pinned	-	ЗАКАЧЕН
 values-b+bg	string	search_tv_sources_panel_meta	-	%1$d ОТ %2$d ВКЛЮЧЕНИ · ПРОМЕНИТЕ СЕ ПРИЛАГАТ СЛЕД КРАЙ
+values-b+bg	string	search_tv_suggestion_recent	-	СКОРОШНО · %s
+values-b+bg	string	search_tv_suggestion_recent_suggested	-	СКОРОШНО · СЪЩО ПРЕДЛОЖЕНО
+values-b+bg	string	search_tv_suggestion_suggested	-	ПРЕДЛОЖЕНО
 values-b+bg	string	season	-	Сезон
 values-b+bg	string	season_format	-	%1$s %2$d%3$s
 values-b+bg	string	season_short	-	С
@@ -6156,6 +6296,12 @@ values-b+bn	plurals	home_bookmarks_count	one	%d টি বুকমার্ক
 values-b+bn	plurals	home_bookmarks_count	other	%d টি বুকমার্ক
 values-b+bn	plurals	home_sections_failed	one	%dটি বিভাগ লোড করা যায়নি
 values-b+bn	plurals	home_sections_failed	other	%dটি বিভাগ লোড করা যায়নি
+values-b+bn	plurals	search_state_no_suggestions_action	one	%dটি উৎসে খুঁজুন
+values-b+bn	plurals	search_state_no_suggestions_action	other	সব %dটি উৎসে খুঁজুন
+values-b+bn	plurals	search_state_no_suggestions_body	one	তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।
+values-b+bn	plurals	search_state_no_suggestions_body	other	তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।
+values-b+bn	plurals	search_tv_suggestion_sources	one	%d উৎস
+values-b+bn	plurals	search_tv_suggestion_sources	other	%d উৎস
 values-b+bn	string	account	-	অ্যাকাউন্ট
 values-b+bn	string	action_add_to_bookmarks	-	বুকমার্ক করুন
 values-b+bn	string	action_default	-	ডিফল্ট
@@ -6537,11 +6683,16 @@ values-b+bn	string	search_provider_text_providers	-	প্রভাইডার 
 values-b+bn	string	search_provider_text_types	-	ধরণ অনুযায়ি খুঁজুন
 values-b+bn	string	search_state_idle_body_desktop	-	একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।
 values-b+bn	string	search_state_no_results_type_filter	-	শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।
+values-b+bn	string	search_state_no_suggestions_detail	-	0টি সাজেশন · 0টি সাম্প্রতিক মিল
+values-b+bn	string	search_state_no_suggestions_headline	-	“%s”-এর সাথে কিছুই মেলেনি
 values-b+bn	string	search_suggestions	-	সার্চ সাজেশন
 values-b+bn	string	search_suggestions_des	-	টাইপ করার সময় সার্চ সাজেশন দেখান
 values-b+bn	string	search_tv_source_failed	-	ব্যর্থ %s
 values-b+bn	string	search_tv_source_pinned	-	পিন করা
 values-b+bn	string	search_tv_sources_panel_meta	-	%2$d-এর মধ্যে %1$d চালু · সম্পন্ন চাপলে পরিবর্তন প্রযোজ্য হবে
+values-b+bn	string	search_tv_suggestion_recent	-	সাম্প্রতিক · %s
+values-b+bn	string	search_tv_suggestion_recent_suggested	-	সাম্প্রতিক · প্রস্তাবিতও
+values-b+bn	string	search_tv_suggestion_suggested	-	প্রস্তাবিত
 values-b+bn	string	season	-	সিজন
 values-b+bn	string	season_format	-	%1$s %2$d%3$s
 values-b+bn	string	season_short	-	S
@@ -6665,6 +6816,15 @@ values-b+ca	plurals	home_bookmarks_count	other	%d FAVORITS
 values-b+ca	plurals	home_sections_failed	many	No s'han pogut carregar %d seccions
 values-b+ca	plurals	home_sections_failed	one	No s'ha pogut carregar %d secció
 values-b+ca	plurals	home_sections_failed	other	No s'han pogut carregar %d seccions
+values-b+ca	plurals	search_state_no_suggestions_action	many	Cercar a totes les %d fonts
+values-b+ca	plurals	search_state_no_suggestions_action	one	Cercar a %d font
+values-b+ca	plurals	search_state_no_suggestions_action	other	Cercar a totes les %d fonts
+values-b+ca	plurals	search_state_no_suggestions_body	many	Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.
+values-b+ca	plurals	search_state_no_suggestions_body	one	Prem la tecla de cerca del teclat per cercar igualment a %d font.
+values-b+ca	plurals	search_state_no_suggestions_body	other	Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.
+values-b+ca	plurals	search_tv_suggestion_sources	many	%d FONTS
+values-b+ca	plurals	search_tv_suggestion_sources	one	%d FONT
+values-b+ca	plurals	search_tv_suggestion_sources	other	%d FONTS
 values-b+ca	string	account	-	compte
 values-b+ca	string	action_add_to_bookmarks	-	Defineix l'estat de visualització
 values-b+ca	string	action_add_to_favorites	-	Afegir als favorits
@@ -6986,9 +7146,14 @@ values-b+ca	string	search_provider_text_providers	-	Cerca amb proveïdors
 values-b+ca	string	search_provider_text_types	-	Cerca per tipus
 values-b+ca	string	search_state_idle_body_desktop	-	Escriu un títol. Els resultats apareixen sota cada font quan respon.
 values-b+ca	string	search_state_no_results_type_filter	-	Només %s. El filtre de tipus està limitant la cerca.
+values-b+ca	string	search_state_no_suggestions_detail	-	0 SUGGERIMENTS · 0 COINCIDÈNCIES RECENTS
+values-b+ca	string	search_state_no_suggestions_headline	-	Res no coincideix amb «%s»
 values-b+ca	string	search_tv_source_failed	-	HA FALLAT %s
 values-b+ca	string	search_tv_source_pinned	-	FIXAT
 values-b+ca	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ACTIVATS · ELS CANVIS ES REGISTREN AMB FET
+values-b+ca	string	search_tv_suggestion_recent	-	RECENT · %s
+values-b+ca	string	search_tv_suggestion_recent_suggested	-	RECENT · TAMBÉ SUGGERIT
+values-b+ca	string	search_tv_suggestion_suggested	-	SUGGERIT
 values-b+ca	string	seek_back_10_seconds	-	Retrocedeix 10 segons
 values-b+ca	string	seek_forward_10_seconds	-	Avança 10 segons
 values-b+ca	string	select_all	-	Seleccionar tot
@@ -7095,6 +7260,12 @@ values-b+ckb	plurals	home_bookmarks_count	one	%d ئاماژە
 values-b+ckb	plurals	home_bookmarks_count	other	%d ئاماژە
 values-b+ckb	plurals	home_sections_failed	one	%d بەش بار نەکرا
 values-b+ckb	plurals	home_sections_failed	other	%d بەش بار نەکرا
+values-b+ckb	plurals	search_state_no_suggestions_action	one	گەڕان لە %d سەرچاوە
+values-b+ckb	plurals	search_state_no_suggestions_action	other	گەڕان لە هەموو %d سەرچاوەکە
+values-b+ckb	plurals	search_state_no_suggestions_body	one	کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە %d سەرچاوە بگەڕێیت.
+values-b+ckb	plurals	search_state_no_suggestions_body	other	کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت.
+values-b+ckb	plurals	search_tv_suggestion_sources	one	%d سەرچاوە
+values-b+ckb	plurals	search_tv_suggestion_sources	other	%d سەرچاوە
 values-b+ckb	string	action_add_to_bookmarks	-	دۆخی تەماشاکردن دابنێ
 values-b+ckb	string	action_remove_from_bookmarks	-	لابردن
 values-b+ckb	string	app_dub_sub_episode_text_format	-	%1$sئەڵقەى%2$d
@@ -7246,9 +7417,14 @@ values-b+ckb	string	search_hint_site	-	بگەڕێ بۆ%s…
 values-b+ckb	string	search_poster_img_des	-	پۆستەر
 values-b+ckb	string	search_state_idle_body_desktop	-	ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.
 values-b+ckb	string	search_state_no_results_type_filter	-	تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.
+values-b+ckb	string	search_state_no_suggestions_detail	-	0 پێشنیار · 0 هاوتای دوایین
+values-b+ckb	string	search_state_no_suggestions_headline	-	هیچ شتێک لەگەڵ «%s» ناگونجێت
 values-b+ckb	string	search_tv_source_failed	-	شکستی هێنا %s
 values-b+ckb	string	search_tv_source_pinned	-	جێگیرکراو
 values-b+ckb	string	search_tv_sources_panel_meta	-	%1$d لە %2$d چالاککراون · گۆڕانکارییەکان دوای تەواو جێبەجێ دەبن
+values-b+ckb	string	search_tv_suggestion_recent	-	دوایین · %s
+values-b+ckb	string	search_tv_suggestion_recent_suggested	-	دوایین · هەروەها پێشنیارکراو
+values-b+ckb	string	search_tv_suggestion_suggested	-	پێشنیارکراو
 values-b+ckb	string	seek_back_10_seconds	-	10 چرکە بگەڕێوە دواوە
 values-b+ckb	string	seek_forward_10_seconds	-	10 چرکە بڕۆ پێشەوە
 values-b+ckb	string	select_all	-	هەموو هەڵبژێرە
@@ -7297,6 +7473,18 @@ values-b+cs	plurals	links_hidden	few	%d skryté odkazy
 values-b+cs	plurals	links_hidden	many	%d skrytých odkazů
 values-b+cs	plurals	links_hidden	one	%d skrytý odkaz
 values-b+cs	plurals	links_hidden	other	%d skrytých odkazů
+values-b+cs	plurals	search_state_no_suggestions_action	few	Hledat ve všech %d zdrojích
+values-b+cs	plurals	search_state_no_suggestions_action	many	Hledat ve všech %d zdrojích
+values-b+cs	plurals	search_state_no_suggestions_action	one	Hledat v %d zdroji
+values-b+cs	plurals	search_state_no_suggestions_action	other	Hledat ve všech %d zdrojích
+values-b+cs	plurals	search_state_no_suggestions_body	few	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všechny %d zdroje.
+values-b+cs	plurals	search_state_no_suggestions_body	many	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdroje.
+values-b+cs	plurals	search_state_no_suggestions_body	one	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte %d zdroj.
+values-b+cs	plurals	search_state_no_suggestions_body	other	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů.
+values-b+cs	plurals	search_tv_suggestion_sources	few	%d ZDROJE
+values-b+cs	plurals	search_tv_suggestion_sources	many	%d ZDROJE
+values-b+cs	plurals	search_tv_suggestion_sources	one	%d ZDROJ
+values-b+cs	plurals	search_tv_suggestion_sources	other	%d ZDROJŮ
 values-b+cs	string	account	-	účet
 values-b+cs	string	action_add_to_bookmarks	-	Nastavit stav sledování
 values-b+cs	string	action_add_to_favorites	-	Přidat do oblíbených
@@ -7909,11 +8097,16 @@ values-b+cs	string	search_provider_text_providers	-	Hledat pomocí poskytovatel�
 values-b+cs	string	search_provider_text_types	-	Hledat pomocí typů
 values-b+cs	string	search_state_idle_body_desktop	-	Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví.
 values-b+cs	string	search_state_no_results_type_filter	-	Pouze %s. Filtr typů zužuje hledání.
+values-b+cs	string	search_state_no_suggestions_detail	-	0 NÁVRHŮ · 0 NEDÁVNÝCH SHOD
+values-b+cs	string	search_state_no_suggestions_headline	-	Nic neodpovídá „%s“
 values-b+cs	string	search_suggestions	-	Návrhy vyhledávání
 values-b+cs	string	search_suggestions_des	-	Zobrazit návrhy vyhledávání během psaní
 values-b+cs	string	search_tv_source_failed	-	SELHALO %s
 values-b+cs	string	search_tv_source_pinned	-	PŘIPNUTO
 values-b+cs	string	search_tv_sources_panel_meta	-	%1$d Z %2$d ZAPNUTO · ZMĚNY SE UPLATNÍ STISKNUTÍM HOTOVO
+values-b+cs	string	search_tv_suggestion_recent	-	NEDÁVNÉ · %s
+values-b+cs	string	search_tv_suggestion_recent_suggested	-	NEDÁVNÉ · TAKÉ NAVRŽENO
+values-b+cs	string	search_tv_suggestion_suggested	-	NAVRŽENO
 values-b+cs	string	season	-	Sezóna
 values-b+cs	string	season_format	-	%1$s %2$d%3$s
 values-b+cs	string	season_short	-	S
@@ -8144,6 +8337,12 @@ values-b+de	plurals	home_sections_failed	one	%d Bereich konnte nicht geladen wer
 values-b+de	plurals	home_sections_failed	other	%d Bereiche konnten nicht geladen werden
 values-b+de	plurals	links_hidden	one	%d ausgeblendeter Link
 values-b+de	plurals	links_hidden	other	%d ausgeblendete Links
+values-b+de	plurals	search_state_no_suggestions_action	one	%d Quelle durchsuchen
+values-b+de	plurals	search_state_no_suggestions_action	other	Alle %d Quellen durchsuchen
+values-b+de	plurals	search_state_no_suggestions_body	one	Drücke die Suchtaste der Tastatur, um trotzdem %d Quelle zu durchsuchen.
+values-b+de	plurals	search_state_no_suggestions_body	other	Drücke die Suchtaste der Tastatur, um trotzdem alle %d Quellen zu durchsuchen.
+values-b+de	plurals	search_tv_suggestion_sources	one	%d QUELLE
+values-b+de	plurals	search_tv_suggestion_sources	other	%d QUELLEN
 values-b+de	string	account	-	Account
 values-b+de	string	action_add_to_bookmarks	-	Status setzen
 values-b+de	string	action_add_to_favorites	-	Zu Favoriten hinzufügen
@@ -8756,11 +8955,16 @@ values-b+de	string	search_provider_text_providers	-	Suche anhand Anbietern
 values-b+de	string	search_provider_text_types	-	Suche anhand Typen
 values-b+de	string	search_state_idle_body_desktop	-	Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet.
 values-b+de	string	search_state_no_results_type_filter	-	Nur %s. Der Typfilter schränkt die Suche ein.
+values-b+de	string	search_state_no_suggestions_detail	-	0 VORSCHLÄGE · 0 TREFFER IM VERLAUF
+values-b+de	string	search_state_no_suggestions_headline	-	Nichts passt zu „%s“
 values-b+de	string	search_suggestions	-	Empfehlungen suchen
 values-b+de	string	search_suggestions_des	-	Beim Tippen Suchempfehlungen anzeigen
 values-b+de	string	search_tv_source_failed	-	FEHLGESCHLAGEN %s
 values-b+de	string	search_tv_source_pinned	-	ANGEPINNT
 values-b+de	string	search_tv_sources_panel_meta	-	%1$d VON %2$d AKTIV · ÄNDERUNGEN WERDEN BEI FERTIG ÜBERNOMMEN
+values-b+de	string	search_tv_suggestion_recent	-	ZULETZT · %s
+values-b+de	string	search_tv_suggestion_recent_suggested	-	ZULETZT · AUCH VORGESCHLAGEN
+values-b+de	string	search_tv_suggestion_suggested	-	VORGESCHLAGEN
 values-b+de	string	season	-	Staffel
 values-b+de	string	season_format	-	%1$s %2$d%3$s
 values-b+de	string	season_short	-	S
@@ -8985,6 +9189,12 @@ values-b+el	plurals	home_bookmarks_count	one	%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ
 values-b+el	plurals	home_bookmarks_count	other	%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ
 values-b+el	plurals	home_sections_failed	one	Αποτυχία φόρτωσης %d ενότητας
 values-b+el	plurals	home_sections_failed	other	Αποτυχία φόρτωσης %d ενοτήτων
+values-b+el	plurals	search_state_no_suggestions_action	one	Αναζήτηση σε %d πηγή
+values-b+el	plurals	search_state_no_suggestions_action	other	Αναζήτηση σε όλες τις %d πηγές
+values-b+el	plurals	search_state_no_suggestions_body	one	Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως.
+values-b+el	plurals	search_state_no_suggestions_body	other	Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως.
+values-b+el	plurals	search_tv_suggestion_sources	one	%d ΠΗΓΗ
+values-b+el	plurals	search_tv_suggestion_sources	other	%d ΠΗΓΕΣ
 values-b+el	string	account	-	Λογαριασμός
 values-b+el	string	action_add_to_bookmarks	-	Ορισμός κατάστασης θέασης
 values-b+el	string	action_add_to_favorites	-	Προσθήκη στα Αγαπημένα
@@ -9545,9 +9755,14 @@ values-b+el	string	search_provider_text_providers	-	Αναζήτηση βάσε�
 values-b+el	string	search_provider_text_types	-	Αναζήτηση βάσει τύπων
 values-b+el	string	search_state_idle_body_desktop	-	Πληκτρολογήστε έναν τίτλο. Τα αποτελέσματα εμφανίζονται κάτω από κάθε πηγή μόλις απαντήσει.
 values-b+el	string	search_state_no_results_type_filter	-	Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.
+values-b+el	string	search_state_no_suggestions_detail	-	0 ΠΡΟΤΑΣΕΙΣ · 0 ΠΡΟΣΦΑΤΕΣ ΑΝΤΙΣΤΟΙΧΙΕΣ
+values-b+el	string	search_state_no_suggestions_headline	-	Τίποτα δεν ταιριάζει με «%s»
 values-b+el	string	search_tv_source_failed	-	ΑΠΟΤΥΧΙΑ %s
 values-b+el	string	search_tv_source_pinned	-	ΚΑΡΦΙΤΣΩΜΕΝΟ
 values-b+el	string	search_tv_sources_panel_meta	-	%1$d ΑΠΟ %2$d ΕΝΕΡΓΕΣ · ΟΙ ΑΛΛΑΓΕΣ ΕΦΑΡΜΟΖΟΝΤΑΙ ΜΕ ΤΟ ΕΓΙΝΕ
+values-b+el	string	search_tv_suggestion_recent	-	ΠΡΟΣΦΑΤΑ · %s
+values-b+el	string	search_tv_suggestion_recent_suggested	-	ΠΡΟΣΦΑΤΑ · ΕΠΙΣΗΣ ΠΡΟΤΕΙΝΕΤΑΙ
+values-b+el	string	search_tv_suggestion_suggested	-	ΠΡΟΤΕΙΝΕΤΑΙ
 values-b+el	string	season	-	Κύκλος
 values-b+el	string	season_format	-	%1$s %2$d%3$s
 values-b+el	string	season_short	-	Σ
@@ -9754,6 +9969,12 @@ values-b+eo	plurals	home_bookmarks_count	one	%d LEGOSIGNO
 values-b+eo	plurals	home_bookmarks_count	other	%d LEGOSIGNOJ
 values-b+eo	plurals	home_sections_failed	one	%d sekcio ne ŝargiĝis
 values-b+eo	plurals	home_sections_failed	other	%d sekcioj ne ŝargiĝis
+values-b+eo	plurals	search_state_no_suggestions_action	one	Serĉi en %d fonto
+values-b+eo	plurals	search_state_no_suggestions_action	other	Serĉi en ĉiuj %d fontoj
+values-b+eo	plurals	search_state_no_suggestions_body	one	Premu la serĉoklavon de la klavaro por tamen serĉi en %d fonto.
+values-b+eo	plurals	search_state_no_suggestions_body	other	Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj.
+values-b+eo	plurals	search_tv_suggestion_sources	one	%d FONTO
+values-b+eo	plurals	search_tv_suggestion_sources	other	%d FONTOJ
 values-b+eo	string	account	-	konto
 values-b+eo	string	action_open_play	-	Spekti
 values-b+eo	string	action_open_watching	-	Pli da informoj
@@ -9970,10 +10191,15 @@ values-b+eo	string	search_provider_text_providers	-	Serĉi uzante provizantojn
 values-b+eo	string	search_provider_text_types	-	Serĉi uzante tipojn
 values-b+eo	string	search_state_idle_body_desktop	-	Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas.
 values-b+eo	string	search_state_no_results_type_filter	-	Nur %s. Via tipfiltrilo mallarĝigas la serĉon.
+values-b+eo	string	search_state_no_suggestions_detail	-	0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ
+values-b+eo	string	search_state_no_suggestions_headline	-	Nenio kongruas kun “%s”
 values-b+eo	string	search_suggestions	-	Serĉaj Sugestoj
 values-b+eo	string	search_tv_source_failed	-	MALSUKCESIS %s
 values-b+eo	string	search_tv_source_pinned	-	FIKSITA
 values-b+eo	string	search_tv_sources_panel_meta	-	%1$d EL %2$d ŜALTITAJ · ŜANĜOJ APLIKIĜAS PER FARITE
+values-b+eo	string	search_tv_suggestion_recent	-	LASTATEMPA · %s
+values-b+eo	string	search_tv_suggestion_recent_suggested	-	LASTATEMPA · ANKAŬ SUGESTITA
+values-b+eo	string	search_tv_suggestion_suggested	-	SUGESTITA
 values-b+eo	string	season	-	Sezono
 values-b+eo	string	season_format	-	%1$s %2$d%3$s
 values-b+eo	string	season_short	-	S
@@ -10054,6 +10280,15 @@ values-b+es	plurals	home_sections_failed	other	No se pudieron cargar %d seccione
 values-b+es	plurals	links_hidden	many	%d enlaces ocultos
 values-b+es	plurals	links_hidden	one	%d enlace oculto
 values-b+es	plurals	links_hidden	other	%d enlaces ocultos
+values-b+es	plurals	search_state_no_suggestions_action	many	Buscar en las %d fuentes
+values-b+es	plurals	search_state_no_suggestions_action	one	Buscar en %d fuente
+values-b+es	plurals	search_state_no_suggestions_action	other	Buscar en las %d fuentes
+values-b+es	plurals	search_state_no_suggestions_body	many	Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.
+values-b+es	plurals	search_state_no_suggestions_body	one	Pulsa la tecla de búsqueda del teclado para buscar igualmente en %d fuente.
+values-b+es	plurals	search_state_no_suggestions_body	other	Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.
+values-b+es	plurals	search_tv_suggestion_sources	many	%d FUENTES
+values-b+es	plurals	search_tv_suggestion_sources	one	%d FUENTE
+values-b+es	plurals	search_tv_suggestion_sources	other	%d FUENTES
 values-b+es	string	account	-	Cuenta
 values-b+es	string	action_add_to_bookmarks	-	Seleccionar estado de visualización
 values-b+es	string	action_add_to_favorites	-	Añadido a favoritos
@@ -10666,11 +10901,16 @@ values-b+es	string	search_provider_text_providers	-	Buscar usando proveedores
 values-b+es	string	search_provider_text_types	-	Buscar por tipos
 values-b+es	string	search_state_idle_body_desktop	-	Escriba un título. Los resultados aparecen bajo cada fuente cuando responde.
 values-b+es	string	search_state_no_results_type_filter	-	Solo %s. Su filtro de tipo está reduciendo la búsqueda.
+values-b+es	string	search_state_no_suggestions_detail	-	0 SUGERENCIAS · 0 COINCIDENCIAS RECIENTES
+values-b+es	string	search_state_no_suggestions_headline	-	Nada coincide con «%s»
 values-b+es	string	search_suggestions	-	Sugerencias de Búsqueda
 values-b+es	string	search_suggestions_des	-	Mostrar sugerencias de búsqueda mientras escribe
 values-b+es	string	search_tv_source_failed	-	FALLÓ %s
 values-b+es	string	search_tv_source_pinned	-	FIJADO
 values-b+es	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ACTIVADOS · LOS CAMBIOS SE APLICAN AL PULSAR HECHO
+values-b+es	string	search_tv_suggestion_recent	-	RECIENTE · %s
+values-b+es	string	search_tv_suggestion_recent_suggested	-	RECIENTE · TAMBIÉN SUGERIDO
+values-b+es	string	search_tv_suggestion_suggested	-	SUGERIDO
 values-b+es	string	season	-	Temporada
 values-b+es	string	season_format	-	%1$s %2$d%3$s
 values-b+es	string	season_short	-	T
@@ -10895,6 +11135,12 @@ values-b+fa	plurals	home_bookmarks_count	one	%d نشانک
 values-b+fa	plurals	home_bookmarks_count	other	%d نشانک
 values-b+fa	plurals	home_sections_failed	one	%d بخش بارگیری نشد
 values-b+fa	plurals	home_sections_failed	other	%d بخش بارگیری نشد
+values-b+fa	plurals	search_state_no_suggestions_action	one	جست‌وجو در %d منبع
+values-b+fa	plurals	search_state_no_suggestions_action	other	جست‌وجو در همهٔ %d منبع
+values-b+fa	plurals	search_state_no_suggestions_body	one	برای جست‌وجو در %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.
+values-b+fa	plurals	search_state_no_suggestions_body	other	برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.
+values-b+fa	plurals	search_tv_suggestion_sources	one	%d منبع
+values-b+fa	plurals	search_tv_suggestion_sources	other	%d منبع
 values-b+fa	string	action_add_to_bookmarks	-	تنظیم وضعیت تماشا
 values-b+fa	string	action_default	-	پیش‌فرض
 values-b+fa	string	action_open_play	-	نمایش
@@ -11240,9 +11486,14 @@ values-b+fa	string	search_provider_text_providers	-	جستجو از طریق ا�
 values-b+fa	string	search_provider_text_types	-	جستجو از طریق انواع
 values-b+fa	string	search_state_idle_body_desktop	-	عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود.
 values-b+fa	string	search_state_no_results_type_filter	-	فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.
+values-b+fa	string	search_state_no_suggestions_detail	-	0 پیشنهاد · 0 مورد منطبق اخیر
+values-b+fa	string	search_state_no_suggestions_headline	-	هیچ چیزی با «%s» مطابقت ندارد
 values-b+fa	string	search_tv_source_failed	-	ناموفق %s
 values-b+fa	string	search_tv_source_pinned	-	سنجاق‌شده
 values-b+fa	string	search_tv_sources_panel_meta	-	%1$d از %2$d فعال · تغییرات پس از «انجام شد» اعمال می‌شود
+values-b+fa	string	search_tv_suggestion_recent	-	اخیر · %s
+values-b+fa	string	search_tv_suggestion_recent_suggested	-	اخیر · پیشنهادشده نیز
+values-b+fa	string	search_tv_suggestion_suggested	-	پیشنهادشده
 values-b+fa	string	season	-	فصل
 values-b+fa	string	season_short	-	ف
 values-b+fa	string	seek_back_10_seconds	-	۱۰ ثانیه به عقب
@@ -11347,6 +11598,12 @@ values-b+fil	plurals	home_bookmarks_count	one	%d BOOKMARK
 values-b+fil	plurals	home_bookmarks_count	other	%d BOOKMARK
 values-b+fil	plurals	home_sections_failed	one	Hindi na-load ang %d seksyon
 values-b+fil	plurals	home_sections_failed	other	Hindi na-load ang %d seksyon
+values-b+fil	plurals	search_state_no_suggestions_action	one	Maghanap sa %d mapagkukunan
+values-b+fil	plurals	search_state_no_suggestions_action	other	Maghanap sa lahat ng %d mapagkukunan
+values-b+fil	plurals	search_state_no_suggestions_body	one	Pindutin ang search key ng keyboard para maghanap pa rin sa %d mapagkukunan.
+values-b+fil	plurals	search_state_no_suggestions_body	other	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.
+values-b+fil	plurals	search_tv_suggestion_sources	one	%d MAPAGKUKUNAN
+values-b+fil	plurals	search_tv_suggestion_sources	other	%d MAPAGKUKUNAN
 values-b+fil	string	action_add_to_bookmarks	-	Itakda ang kapalaran ng panonood
 values-b+fil	string	action_add_to_favorites	-	Idagdag sa mga paborito <3
 values-b+fil	string	action_mark_as_watched	-	I-tanda bilang napanood na
@@ -11630,9 +11887,14 @@ values-b+fil	string	search_provider_text_providers	-	Maghanap gamit ang mga taga
 values-b+fil	string	search_provider_text_types	-	Maghanap gamit ang mga uri
 values-b+fil	string	search_state_idle_body_desktop	-	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.
 values-b+fil	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
+values-b+fil	string	search_state_no_suggestions_detail	-	0 MUNGKAHI · 0 KAMAKAILANG TUGMA
+values-b+fil	string	search_state_no_suggestions_headline	-	Walang tumutugma sa “%s”
 values-b+fil	string	search_tv_source_failed	-	NABIGO %s
 values-b+fil	string	search_tv_source_pinned	-	NAKA-PIN
 values-b+fil	string	search_tv_sources_panel_meta	-	%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA
+values-b+fil	string	search_tv_suggestion_recent	-	KAMAKAILAN · %s
+values-b+fil	string	search_tv_suggestion_recent_suggested	-	KAMAKAILAN · IMINUNGKAHI RIN
+values-b+fil	string	search_tv_suggestion_suggested	-	IMINUNGKAHI
 values-b+fil	string	seek_back_10_seconds	-	Bumalik ng 10 segundo
 values-b+fil	string	seek_forward_10_seconds	-	Umabante ng 10 segundo
 values-b+fil	string	select_all	-	Piliin Lahat
@@ -11732,6 +11994,15 @@ values-b+fr	plurals	home_sections_failed	other	%d sections n'ont pas pu être ch
 values-b+fr	plurals	links_hidden	many	%d liens cachés
 values-b+fr	plurals	links_hidden	one	%d lien caché
 values-b+fr	plurals	links_hidden	other	%d liens cachés
+values-b+fr	plurals	search_state_no_suggestions_action	many	Rechercher dans les %d sources
+values-b+fr	plurals	search_state_no_suggestions_action	one	Rechercher dans %d source
+values-b+fr	plurals	search_state_no_suggestions_action	other	Rechercher dans les %d sources
+values-b+fr	plurals	search_state_no_suggestions_body	many	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.
+values-b+fr	plurals	search_state_no_suggestions_body	one	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans %d source.
+values-b+fr	plurals	search_state_no_suggestions_body	other	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.
+values-b+fr	plurals	search_tv_suggestion_sources	many	%d SOURCES
+values-b+fr	plurals	search_tv_suggestion_sources	one	%d SOURCE
+values-b+fr	plurals	search_tv_suggestion_sources	other	%d SOURCES
 values-b+fr	string	account	-	compte
 values-b+fr	string	action_add_to_bookmarks	-	Définir le statut de visionage
 values-b+fr	string	action_add_to_favorites	-	Ajouter aux favoris
@@ -12343,11 +12614,16 @@ values-b+fr	string	search_provider_text_providers	-	Recherche par fournisseur
 values-b+fr	string	search_provider_text_types	-	Recherche par types
 values-b+fr	string	search_state_idle_body_desktop	-	Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond.
 values-b+fr	string	search_state_no_results_type_filter	-	%s uniquement. Votre filtre de type restreint la recherche.
+values-b+fr	string	search_state_no_suggestions_detail	-	0 SUGGESTION · 0 CORRESPONDANCE RÉCENTE
+values-b+fr	string	search_state_no_suggestions_headline	-	Aucun résultat pour « %s »
 values-b+fr	string	search_suggestions	-	Suggestions de recherche
 values-b+fr	string	search_suggestions_des	-	Afficher des suggestions de recherche pendant la saisie
 values-b+fr	string	search_tv_source_failed	-	ÉCHEC %s
 values-b+fr	string	search_tv_source_pinned	-	ÉPINGLÉ
 values-b+fr	string	search_tv_sources_panel_meta	-	%1$d SUR %2$d ACTIVÉS · LES MODIFICATIONS PRENNENT EFFET AVEC FINIR
+values-b+fr	string	search_tv_suggestion_recent	-	RÉCENT · %s
+values-b+fr	string	search_tv_suggestion_recent_suggested	-	RÉCENT · ÉGALEMENT SUGGÉRÉ
+values-b+fr	string	search_tv_suggestion_suggested	-	SUGGÉRÉ
 values-b+fr	string	season	-	Saison
 values-b+fr	string	season_format	-	%1$s %2$d%3$s
 values-b+fr	string	season_short	-	S
@@ -12572,6 +12848,12 @@ values-b+gl	plurals	home_bookmarks_count	one	%d MARCADOR
 values-b+gl	plurals	home_bookmarks_count	other	%d MARCADORES
 values-b+gl	plurals	home_sections_failed	one	Non se puido cargar %d sección
 values-b+gl	plurals	home_sections_failed	other	Non se puideron cargar %d seccións
+values-b+gl	plurals	search_state_no_suggestions_action	one	Procurar en %d fonte
+values-b+gl	plurals	search_state_no_suggestions_action	other	Procurar en todas as %d fontes
+values-b+gl	plurals	search_state_no_suggestions_body	one	Preme a tecla de busca do teclado para procurar igualmente en %d fonte.
+values-b+gl	plurals	search_state_no_suggestions_body	other	Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes.
+values-b+gl	plurals	search_tv_suggestion_sources	one	%d FONTE
+values-b+gl	plurals	search_tv_suggestion_sources	other	%d FONTES
 values-b+gl	string	action_add_to_bookmarks	-	Seleccionar estado de visualización
 values-b+gl	string	action_default	-	Por defecto
 values-b+gl	string	action_open_play	-	Reproducir
@@ -12865,9 +13147,14 @@ values-b+gl	string	search_provider_text_providers	-	Procurar usando proveedores
 values-b+gl	string	search_provider_text_types	-	Procurar por tipos
 values-b+gl	string	search_state_idle_body_desktop	-	Escriba un título. Os resultados aparecen baixo cada fonte cando responde.
 values-b+gl	string	search_state_no_results_type_filter	-	Só %s. O filtro de tipo está limitando a busca.
+values-b+gl	string	search_state_no_suggestions_detail	-	0 SUXESTIÓNS · 0 COINCIDENCIAS RECENTES
+values-b+gl	string	search_state_no_suggestions_headline	-	Nada coincide con «%s»
 values-b+gl	string	search_tv_source_failed	-	FALLOU %s
 values-b+gl	string	search_tv_source_pinned	-	FIXADO
 values-b+gl	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ACTIVADOS · OS CAMBIOS APLÍCANSE CON FEITO
+values-b+gl	string	search_tv_suggestion_recent	-	RECENTE · %s
+values-b+gl	string	search_tv_suggestion_recent_suggested	-	RECENTE · TAMÉN SUXERIDO
+values-b+gl	string	search_tv_suggestion_suggested	-	SUXERIDO
 values-b+gl	string	season	-	Temporada
 values-b+gl	string	season_format	-	%1$s %2$d%3$s
 values-b+gl	string	season_short	-	T
@@ -12968,6 +13255,15 @@ values-b+he	plurals	home_bookmarks_count	two	%d סימניות
 values-b+he	plurals	home_sections_failed	one	טעינת %d קטע נכשלה
 values-b+he	plurals	home_sections_failed	other	טעינת %d קטעים נכשלה
 values-b+he	plurals	home_sections_failed	two	טעינת %d קטעים נכשלה
+values-b+he	plurals	search_state_no_suggestions_action	one	חיפוש ב-%d מקור
+values-b+he	plurals	search_state_no_suggestions_action	other	חיפוש בכל %d המקורות
+values-b+he	plurals	search_state_no_suggestions_action	two	חיפוש בכל %d המקורות
+values-b+he	plurals	search_state_no_suggestions_body	one	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.
+values-b+he	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
+values-b+he	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
+values-b+he	plurals	search_tv_suggestion_sources	one	%d מקור
+values-b+he	plurals	search_tv_suggestion_sources	other	%d מקורות
+values-b+he	plurals	search_tv_suggestion_sources	two	%d מקורות
 values-b+he	string	account	-	חשבון
 values-b+he	string	action_add_to_bookmarks	-	הגדר מצב צפייה
 values-b+he	string	action_default	-	ברירת מחדל
@@ -13444,9 +13740,14 @@ values-b+he	string	search_provider_text_providers	-	חפש באמצעות הספ
 values-b+he	string	search_provider_text_types	-	חפש באמצעות סוגים
 values-b+he	string	search_state_idle_body_desktop	-	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.
 values-b+he	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
+values-b+he	string	search_state_no_suggestions_detail	-	0 הצעות · 0 התאמות אחרונות
+values-b+he	string	search_state_no_suggestions_headline	-	שום דבר לא תואם ל-“%s”
 values-b+he	string	search_tv_source_failed	-	נכשל %s
 values-b+he	string	search_tv_source_pinned	-	מוצמד
 values-b+he	string	search_tv_sources_panel_meta	-	%1$d מתוך %2$d פעילים · השינויים יחולו בלחיצה על סוים
+values-b+he	string	search_tv_suggestion_recent	-	לאחרונה · %s
+values-b+he	string	search_tv_suggestion_recent_suggested	-	לאחרונה · גם מוצע
+values-b+he	string	search_tv_suggestion_suggested	-	מוצע
 values-b+he	string	season	-	עונה
 values-b+he	string	season_format	-	%1$s %2$d%3$s
 values-b+he	string	season_short	-	עו
@@ -13621,6 +13922,12 @@ values-b+hi	plurals	home_bookmarks_count	one	%d बुकमार्क
 values-b+hi	plurals	home_bookmarks_count	other	%d बुकमार्क
 values-b+hi	plurals	home_sections_failed	one	%d अनुभाग लोड नहीं हो सका
 values-b+hi	plurals	home_sections_failed	other	%d अनुभाग लोड नहीं हो सके
+values-b+hi	plurals	search_state_no_suggestions_action	one	%d स्रोत में खोजें
+values-b+hi	plurals	search_state_no_suggestions_action	other	सभी %d स्रोतों में खोजें
+values-b+hi	plurals	search_state_no_suggestions_body	one	फिर भी %d स्रोत में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।
+values-b+hi	plurals	search_state_no_suggestions_body	other	फिर भी सभी %d स्रोतों में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।
+values-b+hi	plurals	search_tv_suggestion_sources	one	%d स्रोत
+values-b+hi	plurals	search_tv_suggestion_sources	other	%d स्रोत
 values-b+hi	string	account	-	खाता
 values-b+hi	string	action_add_to_bookmarks	-	दर्शन स्थिति सेट करें
 values-b+hi	string	action_default	-	डिफॉल्ट
@@ -14018,9 +14325,14 @@ values-b+hi	string	search_provider_text_providers	-	प्रोवाइडर�
 values-b+hi	string	search_provider_text_types	-	प्रकार का उपयोग करके खोजें
 values-b+hi	string	search_state_idle_body_desktop	-	कोई शीर्षक लिखें। हर स्रोत के जवाब देने पर नतीजे उसके नीचे दिखेंगे।
 values-b+hi	string	search_state_no_results_type_filter	-	सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।
+values-b+hi	string	search_state_no_suggestions_detail	-	0 सुझाव · 0 हालिया मिलान
+values-b+hi	string	search_state_no_suggestions_headline	-	“%s” से कुछ भी मेल नहीं खाता
 values-b+hi	string	search_tv_source_failed	-	विफल %s
 values-b+hi	string	search_tv_source_pinned	-	पिन किया गया
 values-b+hi	string	search_tv_sources_panel_meta	-	%2$d में से %1$d चालू · बदलाव हो गया दबाने पर लागू होंगे
+values-b+hi	string	search_tv_suggestion_recent	-	हाल ही में · %s
+values-b+hi	string	search_tv_suggestion_recent_suggested	-	हाल ही में · सुझाया भी गया
+values-b+hi	string	search_tv_suggestion_suggested	-	सुझाया गया
 values-b+hi	string	season	-	सत्र
 values-b+hi	string	season_format	-	%1$s %2$d%3$s
 values-b+hi	string	season_short	-	S
@@ -14149,6 +14461,15 @@ values-b+hr	plurals	home_bookmarks_count	other	%d OZNAKA
 values-b+hr	plurals	home_sections_failed	few	Nisu učitana %d odjeljka
 values-b+hr	plurals	home_sections_failed	one	Nije učitan %d odjeljak
 values-b+hr	plurals	home_sections_failed	other	Nije učitano %d odjeljaka
+values-b+hr	plurals	search_state_no_suggestions_action	few	Pretraži sva %d izvora
+values-b+hr	plurals	search_state_no_suggestions_action	one	Pretraži %d izvor
+values-b+hr	plurals	search_state_no_suggestions_action	other	Pretraži svih %d izvora
+values-b+hr	plurals	search_state_no_suggestions_body	few	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili sva %d izvora.
+values-b+hr	plurals	search_state_no_suggestions_body	one	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili %d izvor.
+values-b+hr	plurals	search_state_no_suggestions_body	other	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora.
+values-b+hr	plurals	search_tv_suggestion_sources	few	%d IZVORA
+values-b+hr	plurals	search_tv_suggestion_sources	one	%d IZVOR
+values-b+hr	plurals	search_tv_suggestion_sources	other	%d IZVORA
 values-b+hr	string	account	-	račun
 values-b+hr	string	action_add_to_bookmarks	-	Postavi status gledanja
 values-b+hr	string	action_add_to_favorites	-	Dodaj u favorite
@@ -14758,11 +15079,16 @@ values-b+hr	string	search_provider_text_providers	-	Traži koristeći pružatelj
 values-b+hr	string	search_provider_text_types	-	Traži koristeći vrste
 values-b+hr	string	search_state_idle_body_desktop	-	Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori.
 values-b+hr	string	search_state_no_results_type_filter	-	Samo %s. Vaš filtar vrste sužava pretraživanje.
+values-b+hr	string	search_state_no_suggestions_detail	-	0 PRIJEDLOGA · 0 NEDAVNIH PODUDARANJA
+values-b+hr	string	search_state_no_suggestions_headline	-	Ništa ne odgovara „%s“
 values-b+hr	string	search_suggestions	-	Prijedlozi za pretraživanje
 values-b+hr	string	search_suggestions_des	-	Prikaži prijedloge za pretraživanje tijekom tipkanja
 values-b+hr	string	search_tv_source_failed	-	NEUSPJELO %s
 values-b+hr	string	search_tv_source_pinned	-	PRIKVAČENO
 values-b+hr	string	search_tv_sources_panel_meta	-	%1$d OD %2$d UKLJUČENO · PROMJENE VRIJEDE NAKON GOTOVO
+values-b+hr	string	search_tv_suggestion_recent	-	NEDAVNO · %s
+values-b+hr	string	search_tv_suggestion_recent_suggested	-	NEDAVNO · TAKOĐER PREDLOŽENO
+values-b+hr	string	search_tv_suggestion_suggested	-	PREDLOŽENO
 values-b+hr	string	season	-	Sezona
 values-b+hr	string	season_format	-	%1$s %2$d%3$s
 values-b+hr	string	season_short	-	S
@@ -14985,6 +15311,12 @@ values-b+hu	plurals	home_bookmarks_count	one	%d KÖNYVJELZŐ
 values-b+hu	plurals	home_bookmarks_count	other	%d KÖNYVJELZŐ
 values-b+hu	plurals	home_sections_failed	one	%d szakasz betöltése sikertelen
 values-b+hu	plurals	home_sections_failed	other	%d szakasz betöltése sikertelen
+values-b+hu	plurals	search_state_no_suggestions_action	one	Keresés %d forrásban
+values-b+hu	plurals	search_state_no_suggestions_action	other	Keresés mind a(z) %d forrásban
+values-b+hu	plurals	search_state_no_suggestions_body	one	Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen %d forrásban.
+values-b+hu	plurals	search_state_no_suggestions_body	other	Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban.
+values-b+hu	plurals	search_tv_suggestion_sources	one	%d FORRÁS
+values-b+hu	plurals	search_tv_suggestion_sources	other	%d FORRÁS
 values-b+hu	string	account	-	Fiók
 values-b+hu	string	action_add_to_bookmarks	-	Megtekintés állapotának beállítása
 values-b+hu	string	action_add_to_favorites	-	Hozzáadás a kedvencekhez
@@ -15536,11 +15868,16 @@ values-b+hu	string	search_provider_text_providers	-	Keresés szolgáltatók szer
 values-b+hu	string	search_provider_text_types	-	Keresés típusok szerint
 values-b+hu	string	search_state_idle_body_desktop	-	Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak.
 values-b+hu	string	search_state_no_results_type_filter	-	Csak %s. A típusszűrő szűkíti a keresést.
+values-b+hu	string	search_state_no_suggestions_detail	-	0 JAVASLAT · 0 LEGUTÓBBI TALÁLAT
+values-b+hu	string	search_state_no_suggestions_headline	-	Semmi sem egyezik ezzel: „%s”
 values-b+hu	string	search_suggestions	-	Keresési javaslatok
 values-b+hu	string	search_suggestions_des	-	Mutasson keresési javaslatok gépelés közben
 values-b+hu	string	search_tv_source_failed	-	SIKERTELEN %s
 values-b+hu	string	search_tv_source_pinned	-	KITŰZVE
 values-b+hu	string	search_tv_sources_panel_meta	-	%2$d KÖZÜL %1$d ENGEDÉLYEZVE · A VÁLTOZÁSOK A KÉSZ GOMBBAL ÉRVÉNYESÜLNEK
+values-b+hu	string	search_tv_suggestion_recent	-	LEGUTÓBBI · %s
+values-b+hu	string	search_tv_suggestion_recent_suggested	-	LEGUTÓBBI · JAVASOLT IS
+values-b+hu	string	search_tv_suggestion_suggested	-	JAVASOLT
 values-b+hu	string	season	-	Évad
 values-b+hu	string	season_format	-	%1$s %2$d%3$s
 values-b+hu	string	season_short	-	Év
@@ -15728,6 +16065,9 @@ values-b+id	plurals	episodes	other	Episode
 values-b+id	plurals	home_bookmarks_count	other	%d MARKAH
 values-b+id	plurals	home_sections_failed	other	%d bagian gagal dimuat
 values-b+id	plurals	links_hidden	other	%d link tersembunyi
+values-b+id	plurals	search_state_no_suggestions_action	other	Cari di semua %d sumber
+values-b+id	plurals	search_state_no_suggestions_body	other	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.
+values-b+id	plurals	search_tv_suggestion_sources	other	%d SUMBER
 values-b+id	string	account	-	akun
 values-b+id	string	action_add_to_bookmarks	-	Atur status tontonan
 values-b+id	string	action_add_to_favorites	-	Tambahkan ke favorit
@@ -16338,11 +16678,16 @@ values-b+id	string	search_provider_text_providers	-	Cari menggunakan penyedia
 values-b+id	string	search_provider_text_types	-	Cari menggunakan jenis
 values-b+id	string	search_state_idle_body_desktop	-	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.
 values-b+id	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
+values-b+id	string	search_state_no_suggestions_detail	-	0 SARAN · 0 COCOK TERBARU
+values-b+id	string	search_state_no_suggestions_headline	-	Tidak ada yang cocok dengan “%s”
 values-b+id	string	search_suggestions	-	Saran pencarian
 values-b+id	string	search_suggestions_des	-	Tampilkan saran pencarian saat mengetik
 values-b+id	string	search_tv_source_failed	-	GAGAL %s
 values-b+id	string	search_tv_source_pinned	-	DISEMATKAN
 values-b+id	string	search_tv_sources_panel_meta	-	%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI
+values-b+id	string	search_tv_suggestion_recent	-	TERBARU · %s
+values-b+id	string	search_tv_suggestion_recent_suggested	-	TERBARU · JUGA DISARANKAN
+values-b+id	string	search_tv_suggestion_suggested	-	DISARANKAN
 values-b+id	string	season	-	Season
 values-b+id	string	season_format	-	%1$s %2$d%3$s
 values-b+id	string	season_short	-	S
@@ -16567,6 +16912,9 @@ values-b+in	plurals	episodes	other	Episode
 values-b+in	plurals	home_bookmarks_count	other	%d MARKAH
 values-b+in	plurals	home_sections_failed	other	%d bagian gagal dimuat
 values-b+in	plurals	links_hidden	other	%d link tersembunyi
+values-b+in	plurals	search_state_no_suggestions_action	other	Cari di semua %d sumber
+values-b+in	plurals	search_state_no_suggestions_body	other	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.
+values-b+in	plurals	search_tv_suggestion_sources	other	%d SUMBER
 values-b+in	string	account	-	akun
 values-b+in	string	action_add_to_bookmarks	-	Atur status tontonan
 values-b+in	string	action_add_to_favorites	-	Tambahkan ke favorit
@@ -17177,11 +17525,16 @@ values-b+in	string	search_provider_text_providers	-	Cari menggunakan penyedia
 values-b+in	string	search_provider_text_types	-	Cari menggunakan jenis
 values-b+in	string	search_state_idle_body_desktop	-	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.
 values-b+in	string	search_state_no_results_type_filter	-	Hanya %s. Filter jenis Anda mempersempit pencarian.
+values-b+in	string	search_state_no_suggestions_detail	-	0 SARAN · 0 COCOK TERBARU
+values-b+in	string	search_state_no_suggestions_headline	-	Tidak ada yang cocok dengan “%s”
 values-b+in	string	search_suggestions	-	Saran pencarian
 values-b+in	string	search_suggestions_des	-	Tampilkan saran pencarian saat mengetik
 values-b+in	string	search_tv_source_failed	-	GAGAL %s
 values-b+in	string	search_tv_source_pinned	-	DISEMATKAN
 values-b+in	string	search_tv_sources_panel_meta	-	%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI
+values-b+in	string	search_tv_suggestion_recent	-	TERBARU · %s
+values-b+in	string	search_tv_suggestion_recent_suggested	-	TERBARU · JUGA DISARANKAN
+values-b+in	string	search_tv_suggestion_suggested	-	DISARANKAN
 values-b+in	string	season	-	Season
 values-b+in	string	season_format	-	%1$s %2$d%3$s
 values-b+in	string	season_short	-	S
@@ -17418,6 +17771,15 @@ values-b+it	plurals	home_sections_failed	other	Impossibile caricare %d sezioni
 values-b+it	plurals	links_hidden	many	%d collegamenti nascosti
 values-b+it	plurals	links_hidden	one	%d collegamento nascosto
 values-b+it	plurals	links_hidden	other	%d collegamenti nascosti
+values-b+it	plurals	search_state_no_suggestions_action	many	Cerca in tutte le %d fonti
+values-b+it	plurals	search_state_no_suggestions_action	one	Cerca in %d fonte
+values-b+it	plurals	search_state_no_suggestions_action	other	Cerca in tutte le %d fonti
+values-b+it	plurals	search_state_no_suggestions_body	many	Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.
+values-b+it	plurals	search_state_no_suggestions_body	one	Premi il tasto di ricerca della tastiera per cercare comunque in %d fonte.
+values-b+it	plurals	search_state_no_suggestions_body	other	Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.
+values-b+it	plurals	search_tv_suggestion_sources	many	%d FONTI
+values-b+it	plurals	search_tv_suggestion_sources	one	%d FONTE
+values-b+it	plurals	search_tv_suggestion_sources	other	%d FONTI
 values-b+it	string	account	-	account
 values-b+it	string	action_add_to_bookmarks	-	Imposta stato riproduzione
 values-b+it	string	action_add_to_favorites	-	Aggiungi ai preferiti
@@ -18028,11 +18390,16 @@ values-b+it	string	search_provider_text_providers	-	Cerca per provider
 values-b+it	string	search_provider_text_types	-	Cerca per tipo
 values-b+it	string	search_state_idle_body_desktop	-	Digita un titolo. I risultati compaiono sotto ogni fonte quando risponde.
 values-b+it	string	search_state_no_results_type_filter	-	Solo %s. Il filtro per tipo sta restringendo la ricerca.
+values-b+it	string	search_state_no_suggestions_detail	-	0 SUGGERIMENTI · 0 CORRISPONDENZE RECENTI
+values-b+it	string	search_state_no_suggestions_headline	-	Nessun risultato per «%s»
 values-b+it	string	search_suggestions	-	Suggerimenti per la ricerca
 values-b+it	string	search_suggestions_des	-	Mostra suggerimenti di ricerca durante la digitazione
 values-b+it	string	search_tv_source_failed	-	FALLITO %s
 values-b+it	string	search_tv_source_pinned	-	FISSATO
 values-b+it	string	search_tv_sources_panel_meta	-	%1$d SU %2$d ATTIVI · LE MODIFICHE SI APPLICANO CON FATTO
+values-b+it	string	search_tv_suggestion_recent	-	RECENTE · %s
+values-b+it	string	search_tv_suggestion_recent_suggested	-	RECENTE · ANCHE SUGGERITO
+values-b+it	string	search_tv_suggestion_suggested	-	SUGGERITO
 values-b+it	string	season	-	Stagione
 values-b+it	string	season_format	-	%1$s %2$d%3$s
 values-b+it	string	season_short	-	S
@@ -18260,6 +18627,15 @@ values-b+iw	plurals	home_bookmarks_count	two	%d סימניות
 values-b+iw	plurals	home_sections_failed	one	טעינת %d קטע נכשלה
 values-b+iw	plurals	home_sections_failed	other	טעינת %d קטעים נכשלה
 values-b+iw	plurals	home_sections_failed	two	טעינת %d קטעים נכשלה
+values-b+iw	plurals	search_state_no_suggestions_action	one	חיפוש ב-%d מקור
+values-b+iw	plurals	search_state_no_suggestions_action	other	חיפוש בכל %d המקורות
+values-b+iw	plurals	search_state_no_suggestions_action	two	חיפוש בכל %d המקורות
+values-b+iw	plurals	search_state_no_suggestions_body	one	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.
+values-b+iw	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
+values-b+iw	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
+values-b+iw	plurals	search_tv_suggestion_sources	one	%d מקור
+values-b+iw	plurals	search_tv_suggestion_sources	other	%d מקורות
+values-b+iw	plurals	search_tv_suggestion_sources	two	%d מקורות
 values-b+iw	string	account	-	חשבון
 values-b+iw	string	action_add_to_bookmarks	-	הגדר מצב צפייה
 values-b+iw	string	action_default	-	ברירת מחדל
@@ -18736,9 +19112,14 @@ values-b+iw	string	search_provider_text_providers	-	חפש באמצעות הספ
 values-b+iw	string	search_provider_text_types	-	חפש באמצעות סוגים
 values-b+iw	string	search_state_idle_body_desktop	-	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.
 values-b+iw	string	search_state_no_results_type_filter	-	%s בלבד. מסנן הסוג מצמצם את החיפוש.
+values-b+iw	string	search_state_no_suggestions_detail	-	0 הצעות · 0 התאמות אחרונות
+values-b+iw	string	search_state_no_suggestions_headline	-	שום דבר לא תואם ל-“%s”
 values-b+iw	string	search_tv_source_failed	-	נכשל %s
 values-b+iw	string	search_tv_source_pinned	-	מוצמד
 values-b+iw	string	search_tv_sources_panel_meta	-	%1$d מתוך %2$d פעילים · השינויים יחולו בלחיצה על סוים
+values-b+iw	string	search_tv_suggestion_recent	-	לאחרונה · %s
+values-b+iw	string	search_tv_suggestion_recent_suggested	-	לאחרונה · גם מוצע
+values-b+iw	string	search_tv_suggestion_suggested	-	מוצע
 values-b+iw	string	season	-	עונה
 values-b+iw	string	season_format	-	%1$s %2$d%3$s
 values-b+iw	string	season_short	-	עו
@@ -18913,6 +19294,9 @@ values-b+ja	plurals	episodes	other	エピソード
 values-b+ja	plurals	home_bookmarks_count	other	%d 件のブックマーク
 values-b+ja	plurals	home_sections_failed	other	%d 件のセクションを読み込めませんでした
 values-b+ja	plurals	links_hidden	other	%d件の非表示リンク
+values-b+ja	plurals	search_state_no_suggestions_action	other	全 %d ソースを検索
+values-b+ja	plurals	search_state_no_suggestions_body	other	それでも全 %d ソースを検索するには、キーボードの検索キーを押してください。
+values-b+ja	plurals	search_tv_suggestion_sources	other	%d ソース
 values-b+ja	string	account	-	アカウント
 values-b+ja	string	action_add_to_bookmarks	-	視聴状態を設定
 values-b+ja	string	action_add_to_favorites	-	お気に入りに追加
@@ -19525,11 +19909,16 @@ values-b+ja	string	search_provider_text_providers	-	プロバイダーから探�
 values-b+ja	string	search_provider_text_types	-	使用タイプの検索
 values-b+ja	string	search_state_idle_body_desktop	-	タイトルを入力してください。各ソースが応答すると、その下に結果が表示されます。
 values-b+ja	string	search_state_no_results_type_filter	-	%sのみ。種類フィルターで検索が絞り込まれています。
+values-b+ja	string	search_state_no_suggestions_detail	-	候補 0 件 · 最近の一致 0 件
+values-b+ja	string	search_state_no_suggestions_headline	-	「%s」に一致するものはありません
 values-b+ja	string	search_suggestions	-	検索候補
 values-b+ja	string	search_suggestions_des	-	入力中に検索候補を表示する
 values-b+ja	string	search_tv_source_failed	-	失敗 %s
 values-b+ja	string	search_tv_source_pinned	-	固定済み
 values-b+ja	string	search_tv_sources_panel_meta	-	%2$d件中%1$d件が有効 · 変更は「完了」で反映
+values-b+ja	string	search_tv_suggestion_recent	-	最近 · %s
+values-b+ja	string	search_tv_suggestion_recent_suggested	-	最近 · 候補にもあり
+values-b+ja	string	search_tv_suggestion_suggested	-	候補
 values-b+ja	string	season	-	シーズン
 values-b+ja	string	season_format	-	%1$s %2$d%3$s
 values-b+ja	string	season_short	-	シーズン
@@ -19752,6 +20141,12 @@ values-b+kn	plurals	home_bookmarks_count	one	%d ಬುಕ್‌ಮಾರ್ಕ�
 values-b+kn	plurals	home_bookmarks_count	other	%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು
 values-b+kn	plurals	home_sections_failed	one	%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ
 values-b+kn	plurals	home_sections_failed	other	%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ
+values-b+kn	plurals	search_state_no_suggestions_action	one	%d ಮೂಲದಲ್ಲಿ ಹುಡುಕಿ
+values-b+kn	plurals	search_state_no_suggestions_action	other	ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಿ
+values-b+kn	plurals	search_state_no_suggestions_body	one	ಹಾಗಿದ್ದರೂ %d ಮೂಲದಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.
+values-b+kn	plurals	search_state_no_suggestions_body	other	ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.
+values-b+kn	plurals	search_tv_suggestion_sources	one	%d ಮೂಲ
+values-b+kn	plurals	search_tv_suggestion_sources	other	%d ಮೂಲಗಳು
 values-b+kn	string	action_add_to_bookmarks	-	ಸೆಟ್ ವಾಚ್ ಸ್ಟೇಟಸ್
 values-b+kn	string	action_open_play	-	@ಸ್ಟ್ರಿಂಗ್/ಹೋಮ್_ಪ್ಲೇ
 values-b+kn	string	action_open_watching	-	ಹೆಚ್ಚಿನ ಮಾಹಿತಿ
@@ -19923,9 +20318,14 @@ values-b+kn	string	search_provider_text_providers	-	ಪೂರೈಕೆದಾರ�
 values-b+kn	string	search_provider_text_types	-	ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ
 values-b+kn	string	search_state_idle_body_desktop	-	ಶೀರ್ಷಿಕೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಮೂಲ ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಅದರ ಕೆಳಗೆ ಕಾಣಿಸುತ್ತವೆ.
 values-b+kn	string	search_state_no_results_type_filter	-	%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ.
+values-b+kn	string	search_state_no_suggestions_detail	-	0 ಸಲಹೆಗಳು · 0 ಇತ್ತೀಚಿನ ಹೊಂದಾಣಿಕೆಗಳು
+values-b+kn	string	search_state_no_suggestions_headline	-	“%s” ಗೆ ಯಾವುದೂ ಹೊಂದುವುದಿಲ್ಲ
 values-b+kn	string	search_tv_source_failed	-	ವಿಫಲ %s
 values-b+kn	string	search_tv_source_pinned	-	ಪಿನ್ ಮಾಡಲಾಗಿದೆ
 values-b+kn	string	search_tv_sources_panel_meta	-	%2$d ರಲ್ಲಿ %1$d ಸಕ್ರಿಯ · ಬದಲಾವಣೆಗಳು ಮುಗಿದಿದೆ ನಂತರ ಅನ್ವಯವಾಗುತ್ತವೆ
+values-b+kn	string	search_tv_suggestion_recent	-	ಇತ್ತೀಚಿನ · %s
+values-b+kn	string	search_tv_suggestion_recent_suggested	-	ಇತ್ತೀಚಿನ · ಸೂಚಿಸಲಾಗಿದೆ ಕೂಡ
+values-b+kn	string	search_tv_suggestion_suggested	-	ಸೂಚಿಸಲಾಗಿದೆ
 values-b+kn	string	seek_back_10_seconds	-	10 ಸೆಕೆಂಡುಗಳು ಹಿಂದೆ ಹೋಗು
 values-b+kn	string	seek_forward_10_seconds	-	10 ಸೆಕೆಂಡುಗಳು ಮುಂದೆ ಹೋಗು
 values-b+kn	string	show_log_cat	-	ಲಾಗ್‌ಕ್ಯಾಟ್ 🐈 ತೋರಿಸಿ
@@ -19980,6 +20380,9 @@ values-b+ko	plurals	episodes	one	에피소드
 values-b+ko	plurals	episodes	other	에피소드
 values-b+ko	plurals	home_bookmarks_count	other	북마크 %d개
 values-b+ko	plurals	home_sections_failed	other	섹션 %d개를 불러오지 못했습니다
+values-b+ko	plurals	search_state_no_suggestions_action	other	소스 %d개 모두 검색
+values-b+ko	plurals	search_state_no_suggestions_body	other	그래도 소스 %d개를 모두 검색하려면 키보드의 검색 키를 누르세요.
+values-b+ko	plurals	search_tv_suggestion_sources	other	%d 소스
 values-b+ko	string	account	-	계정
 values-b+ko	string	action_add_to_bookmarks	-	시청 상태 설정
 values-b+ko	string	action_add_to_favorites	-	즐겨찾기에 추가
@@ -20589,11 +20992,16 @@ values-b+ko	string	search_provider_text_providers	-	소스로 검색
 values-b+ko	string	search_provider_text_types	-	유형을 사용하여 검색
 values-b+ko	string	search_state_idle_body_desktop	-	제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다.
 values-b+ko	string	search_state_no_results_type_filter	-	%s만. 유형 필터가 검색을 좁히고 있습니다.
+values-b+ko	string	search_state_no_suggestions_detail	-	추천 0개 · 최근 일치 0개
+values-b+ko	string	search_state_no_suggestions_headline	-	“%s”와(과) 일치하는 항목이 없습니다
 values-b+ko	string	search_suggestions	-	검색어 제안
 values-b+ko	string	search_suggestions_des	-	입력하는 동안 검색어 제안 표시
 values-b+ko	string	search_tv_source_failed	-	실패 %s
 values-b+ko	string	search_tv_source_pinned	-	고정됨
 values-b+ko	string	search_tv_sources_panel_meta	-	%2$d개 중 %1$d개 사용 중 · 변경 사항은 완료를 누르면 적용됩니다
+values-b+ko	string	search_tv_suggestion_recent	-	최근 · %s
+values-b+ko	string	search_tv_suggestion_recent_suggested	-	최근 · 추천 항목
+values-b+ko	string	search_tv_suggestion_suggested	-	추천
 values-b+ko	string	season	-	시즌
 values-b+ko	string	season_format	-	%1$s %2$d%3$s
 values-b+ko	string	season_short	-	시즌
@@ -20822,6 +21230,18 @@ values-b+lt	plurals	home_sections_failed	few	Nepavyko įkelti %d skilčių
 values-b+lt	plurals	home_sections_failed	many	Nepavyko įkelti %d skilties
 values-b+lt	plurals	home_sections_failed	one	Nepavyko įkelti %d skilties
 values-b+lt	plurals	home_sections_failed	other	Nepavyko įkelti %d skilčių
+values-b+lt	plurals	search_state_no_suggestions_action	few	Ieškoti visuose šaltiniuose (%d)
+values-b+lt	plurals	search_state_no_suggestions_action	many	Ieškoti visuose šaltiniuose (%d)
+values-b+lt	plurals	search_state_no_suggestions_action	one	Ieškoti %d šaltinyje
+values-b+lt	plurals	search_state_no_suggestions_action	other	Ieškoti visuose šaltiniuose (%d)
+values-b+lt	plurals	search_state_no_suggestions_body	few	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).
+values-b+lt	plurals	search_state_no_suggestions_body	many	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).
+values-b+lt	plurals	search_state_no_suggestions_body	one	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte %d šaltinyje.
+values-b+lt	plurals	search_state_no_suggestions_body	other	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).
+values-b+lt	plurals	search_tv_suggestion_sources	few	%d ŠALTINIAI
+values-b+lt	plurals	search_tv_suggestion_sources	many	%d ŠALTINIO
+values-b+lt	plurals	search_tv_suggestion_sources	one	%d ŠALTINIS
+values-b+lt	plurals	search_tv_suggestion_sources	other	%d ŠALTINIŲ
 values-b+lt	string	action_add_to_bookmarks	-	Nustatyti žiūrėjimo statusą
 values-b+lt	string	action_mark_as_watched	-	Pažymėti kaip žiūrima
 values-b+lt	string	action_open_play	-	Paleisti
@@ -21112,9 +21532,14 @@ values-b+lt	string	search_provider_text_providers	-	Ieškoti naudojant tiekėjus
 values-b+lt	string	search_provider_text_types	-	Ieškoti naudojant tipus
 values-b+lt	string	search_state_idle_body_desktop	-	Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako.
 values-b+lt	string	search_state_no_results_type_filter	-	Tik %s. Jūsų tipų filtras siaurina paiešką.
+values-b+lt	string	search_state_no_suggestions_detail	-	0 PASIŪLYMŲ · 0 NESENIŲ ATITIKMENŲ
+values-b+lt	string	search_state_no_suggestions_headline	-	Niekas neatitinka „%s“
 values-b+lt	string	search_tv_source_failed	-	NEPAVYKO %s
 values-b+lt	string	search_tv_source_pinned	-	PRISEGTA
 values-b+lt	string	search_tv_sources_panel_meta	-	ĮJUNGTA %1$d IŠ %2$d · PAKEITIMAI TAIKOMI PASPAUDUS BAIGTA
+values-b+lt	string	search_tv_suggestion_recent	-	NESENIAI · %s
+values-b+lt	string	search_tv_suggestion_recent_suggested	-	NESENIAI · TAIP PAT SIŪLOMA
+values-b+lt	string	search_tv_suggestion_suggested	-	SIŪLOMA
 values-b+lt	string	season	-	Sezonas
 values-b+lt	string	seek_back_10_seconds	-	Atsukti 10 sekundžių atgal
 values-b+lt	string	seek_forward_10_seconds	-	Persukti 10 sekundžių į priekį
@@ -21227,6 +21652,15 @@ values-b+lv	plurals	home_bookmarks_count	zero	%d GRĀMATZĪMJU
 values-b+lv	plurals	home_sections_failed	one	Neizdevās ielādēt %d sadaļu
 values-b+lv	plurals	home_sections_failed	other	Neizdevās ielādēt %d sadaļas
 values-b+lv	plurals	home_sections_failed	zero	Neizdevās ielādēt %d sadaļu
+values-b+lv	plurals	search_state_no_suggestions_action	one	Meklēt %d devējā
+values-b+lv	plurals	search_state_no_suggestions_action	other	Meklēt visos %d devējos
+values-b+lv	plurals	search_state_no_suggestions_action	zero	Meklēt visos %d devējos
+values-b+lv	plurals	search_state_no_suggestions_body	one	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā.
+values-b+lv	plurals	search_state_no_suggestions_body	other	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.
+values-b+lv	plurals	search_state_no_suggestions_body	zero	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.
+values-b+lv	plurals	search_tv_suggestion_sources	one	%d DEVĒJS
+values-b+lv	plurals	search_tv_suggestion_sources	other	%d DEVĒJI
+values-b+lv	plurals	search_tv_suggestion_sources	zero	%d DEVĒJU
 values-b+lv	string	account	-	Konts
 values-b+lv	string	action_add_to_bookmarks	-	Ieliec skatīšanās statusu
 values-b+lv	string	action_default	-	Parastais
@@ -21755,10 +22189,15 @@ values-b+lv	string	search_provider_text_providers	-	Meklēt izmantojot devējus
 values-b+lv	string	search_provider_text_types	-	Meklēt izmantojot tipus
 values-b+lv	string	search_state_idle_body_desktop	-	Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild.
 values-b+lv	string	search_state_no_results_type_filter	-	Tikai %s. Jūsu veida filtrs sašaurina meklēšanu.
+values-b+lv	string	search_state_no_suggestions_detail	-	0 IETEIKUMU · 0 NESENU ATBILSTĪBU
+values-b+lv	string	search_state_no_suggestions_headline	-	Nekas neatbilst „%s”
 values-b+lv	string	search_suggestions	-	Meklēšanas ieteikumi
 values-b+lv	string	search_tv_source_failed	-	NEIZDEVĀS %s
 values-b+lv	string	search_tv_source_pinned	-	PIESPRAUSTS
 values-b+lv	string	search_tv_sources_panel_meta	-	IESLĒGTI %1$d NO %2$d · IZMAIŅAS TIEK PIEMĒROTAS, NOSPIEŽOT PABEIGTS
+values-b+lv	string	search_tv_suggestion_recent	-	NESEN · %s
+values-b+lv	string	search_tv_suggestion_recent_suggested	-	NESEN · ARĪ IETEIKTS
+values-b+lv	string	search_tv_suggestion_suggested	-	IETEIKTS
 values-b+lv	string	season	-	Sezona
 values-b+lv	string	season_format	-	%1$s %2$d%3$s
 values-b+lv	string	season_short	-	S
@@ -21949,6 +22388,12 @@ values-b+mk	plurals	home_bookmarks_count	one	%d ОБЕЛЕЖУВАЧ
 values-b+mk	plurals	home_bookmarks_count	other	%d ОБЕЛЕЖУВАЧИ
 values-b+mk	plurals	home_sections_failed	one	%d дел не се вчита
 values-b+mk	plurals	home_sections_failed	other	%d делови не се вчитаа
+values-b+mk	plurals	search_state_no_suggestions_action	one	Барај во %d извор
+values-b+mk	plurals	search_state_no_suggestions_action	other	Барај во сите %d извори
+values-b+mk	plurals	search_state_no_suggestions_body	one	Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во %d извор.
+values-b+mk	plurals	search_state_no_suggestions_body	other	Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во сите %d извори.
+values-b+mk	plurals	search_tv_suggestion_sources	one	%d ИЗВОР
+values-b+mk	plurals	search_tv_suggestion_sources	other	%d ИЗВОРИ
 values-b+mk	string	account	-	Корисничко име
 values-b+mk	string	action_add_to_bookmarks	-	Постави статус на пратење
 values-b+mk	string	action_add_to_favorites	-	Додади во омилени
@@ -22558,11 +23003,16 @@ values-b+mk	string	search_provider_text_providers	-	Пребарувај кор�
 values-b+mk	string	search_provider_text_types	-	Пребарувај користејќи типови
 values-b+mk	string	search_state_idle_body_desktop	-	Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори.
 values-b+mk	string	search_state_no_results_type_filter	-	Само %s. Вашиот филтер за тип го стеснува пребарувањето.
+values-b+mk	string	search_state_no_suggestions_detail	-	0 ПРЕДЛОЗИ · 0 НЕОДАМНЕШНИ СОВПАЃАЊА
+values-b+mk	string	search_state_no_suggestions_headline	-	Ништо не одговара на „%s“
 values-b+mk	string	search_suggestions	-	Предлози за пребарување
 values-b+mk	string	search_suggestions_des	-	Прикажувај предлози за пребарување додека пишуваш
 values-b+mk	string	search_tv_source_failed	-	НЕУСПЕШНО %s
 values-b+mk	string	search_tv_source_pinned	-	ЗАКАЧЕНО
 values-b+mk	string	search_tv_sources_panel_meta	-	%1$d ОД %2$d ОВОЗМОЖЕНИ · ПРОМЕНИТЕ СЕ ПРИМЕНУВААТ ПО ГОТОВО
+values-b+mk	string	search_tv_suggestion_recent	-	НЕОДАМНА · %s
+values-b+mk	string	search_tv_suggestion_recent_suggested	-	НЕОДАМНА · ИСТО ТАКА ПРЕДЛОЖЕНО
+values-b+mk	string	search_tv_suggestion_suggested	-	ПРЕДЛОЖЕНО
 values-b+mk	string	season	-	Сезона
 values-b+mk	string	season_format	-	%1$s %2$d%3$s
 values-b+mk	string	season_short	-	С
@@ -22785,6 +23235,12 @@ values-b+ml	plurals	home_bookmarks_count	one	%d ബുക്ക്‌മാർ�
 values-b+ml	plurals	home_bookmarks_count	other	%d ബുക്ക്‌മാർക്കുകൾ
 values-b+ml	plurals	home_sections_failed	one	%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല
 values-b+ml	plurals	home_sections_failed	other	%d വിഭാഗങ്ങൾ ലോഡ് ചെയ്യാനായില്ല
+values-b+ml	plurals	search_state_no_suggestions_action	one	%d ഉറവിടത്തിൽ തിരയുക
+values-b+ml	plurals	search_state_no_suggestions_action	other	എല്ലാ %d ഉറവിടങ്ങളിലും തിരയുക
+values-b+ml	plurals	search_state_no_suggestions_body	one	എന്നിട്ടും %d ഉറവിടത്തിൽ തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.
+values-b+ml	plurals	search_state_no_suggestions_body	other	എന്നിട്ടും എല്ലാ %d ഉറവിടങ്ങളിലും തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.
+values-b+ml	plurals	search_tv_suggestion_sources	one	%d ഉറവിടം
+values-b+ml	plurals	search_tv_suggestion_sources	other	%d ഉറവിടങ്ങൾ
 values-b+ml	string	action_add_to_bookmarks	-	വാച്ച് സ്റ്റാറ്റസ് സജ്ജീകരിക്കുക
 values-b+ml	string	action_mark_as_watched	-	കണ്ടതാണെന്ന് അടയാളപ്പെടുത്തുക
 values-b+ml	string	action_open_play	-	പ്ലേയ്
@@ -23066,9 +23522,14 @@ values-b+ml	string	search_provider_text_providers	-	സ്രോതസ് അട
 values-b+ml	string	search_provider_text_types	-	തരം അടിസ്ഥാനത്തിൽ തിരയുക
 values-b+ml	string	search_state_idle_body_desktop	-	ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും.
 values-b+ml	string	search_state_no_results_type_filter	-	%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.
+values-b+ml	string	search_state_no_suggestions_detail	-	0 നിർദ്ദേശങ്ങൾ · 0 സമീപകാല പൊരുത്തങ്ങൾ
+values-b+ml	string	search_state_no_suggestions_headline	-	“%s” എന്നതുമായി ഒന്നും പൊരുത്തപ്പെടുന്നില്ല
 values-b+ml	string	search_tv_source_failed	-	പരാജയപ്പെട്ടു %s
 values-b+ml	string	search_tv_source_pinned	-	പിൻ ചെയ്തു
 values-b+ml	string	search_tv_sources_panel_meta	-	%2$d-ൽ %1$d പ്രവർത്തനക്ഷമം · പൂർത്തിയായി അമർത്തുമ്പോൾ മാറ്റങ്ങൾ ബാധകമാകും
+values-b+ml	string	search_tv_suggestion_recent	-	സമീപകാലം · %s
+values-b+ml	string	search_tv_suggestion_recent_suggested	-	സമീപകാലം · നിർദ്ദേശിച്ചതും
+values-b+ml	string	search_tv_suggestion_suggested	-	നിർദ്ദേശിച്ചത്
 values-b+ml	string	season	-	സീസൺ
 values-b+ml	string	seek_back_10_seconds	-	10 സെക്കൻഡ് പിന്നോട്ട് പോകുക
 values-b+ml	string	seek_forward_10_seconds	-	10 സെക്കൻഡ് മുന്നോട്ട് പോകുക
@@ -23172,6 +23633,9 @@ values-b+ms	plurals	episodes	one	Episod
 values-b+ms	plurals	episodes	other	Episodes
 values-b+ms	plurals	home_bookmarks_count	other	%d PENANDA HALAMAN
 values-b+ms	plurals	home_sections_failed	other	%d bahagian gagal dimuatkan
+values-b+ms	plurals	search_state_no_suggestions_action	other	Cari dalam semua %d sumber
+values-b+ms	plurals	search_state_no_suggestions_body	other	Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.
+values-b+ms	plurals	search_tv_suggestion_sources	other	%d SUMBER
 values-b+ms	string	account	-	akaun
 values-b+ms	string	action_add_to_bookmarks	-	Tetapkan status tontonan
 values-b+ms	string	action_add_to_favorites	-	Tambah ke kegemaran
@@ -23659,9 +24123,14 @@ values-b+ms	string	search_provider_text_providers	-	Carian mengikut sumber
 values-b+ms	string	search_provider_text_types	-	Carian mengikut jenis
 values-b+ms	string	search_state_idle_body_desktop	-	Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.
 values-b+ms	string	search_state_no_results_type_filter	-	Hanya %s. Penapis jenis anda mengecilkan carian.
+values-b+ms	string	search_state_no_suggestions_detail	-	0 CADANGAN · 0 PADANAN TERKINI
+values-b+ms	string	search_state_no_suggestions_headline	-	Tiada yang sepadan dengan “%s”
 values-b+ms	string	search_tv_source_failed	-	GAGAL %s
 values-b+ms	string	search_tv_source_pinned	-	DISEMATKAN
 values-b+ms	string	search_tv_sources_panel_meta	-	%1$d DARIPADA %2$d DIDAYAKAN · PERUBAHAN DIGUNAKAN SELEPAS TAMAT
+values-b+ms	string	search_tv_suggestion_recent	-	TERKINI · %s
+values-b+ms	string	search_tv_suggestion_recent_suggested	-	TERKINI · JUGA DICADANGKAN
+values-b+ms	string	search_tv_suggestion_suggested	-	DICADANGKAN
 values-b+ms	string	season	-	Musim
 values-b+ms	string	season_format	-	%1$s %2$d%3$s
 values-b+ms	string	season_short	-	S
@@ -23819,6 +24288,21 @@ values-b+mt	plurals	home_sections_failed	many	Ma setgħux jiġu mgħobbija %d ta
 values-b+mt	plurals	home_sections_failed	one	Ma setgħetx tiġi mgħobbija %d taqsima
 values-b+mt	plurals	home_sections_failed	other	Ma setgħux jiġu mgħobbija %d taqsima
 values-b+mt	plurals	home_sections_failed	two	Ma setgħux jiġu mgħobbija %d taqsimat
+values-b+mt	plurals	search_state_no_suggestions_action	few	Fittex fil-%d sorsi kollha
+values-b+mt	plurals	search_state_no_suggestions_action	many	Fittex fil-%d sors kollha
+values-b+mt	plurals	search_state_no_suggestions_action	one	Fittex f'%d sors
+values-b+mt	plurals	search_state_no_suggestions_action	other	Fittex fil-%d sors kollha
+values-b+mt	plurals	search_state_no_suggestions_action	two	Fittex fil-%d sorsi kollha
+values-b+mt	plurals	search_state_no_suggestions_body	few	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.
+values-b+mt	plurals	search_state_no_suggestions_body	many	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.
+values-b+mt	plurals	search_state_no_suggestions_body	one	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta f'%d sors.
+values-b+mt	plurals	search_state_no_suggestions_body	other	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.
+values-b+mt	plurals	search_state_no_suggestions_body	two	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.
+values-b+mt	plurals	search_tv_suggestion_sources	few	%d SORSI
+values-b+mt	plurals	search_tv_suggestion_sources	many	%d SORS
+values-b+mt	plurals	search_tv_suggestion_sources	one	%d SORS
+values-b+mt	plurals	search_tv_suggestion_sources	other	%d SORS
+values-b+mt	plurals	search_tv_suggestion_sources	two	%d SORSI
 values-b+mt	string	action_add_to_bookmarks	-	Issettja l-istatus ta-rajtux
 values-b+mt	string	action_open_play	-	Ibda
 values-b+mt	string	action_open_watching	-	Iktar informazzjoni
@@ -23985,9 +24469,14 @@ values-b+mt	string	search_provider_text_providers	-	Fittex bl-użu ta' fornituri
 values-b+mt	string	search_provider_text_types	-	Fittex bl-użu ta 'tipi
 values-b+mt	string	search_state_idle_body_desktop	-	Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb.
 values-b+mt	string	search_state_no_results_type_filter	-	%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.
+values-b+mt	string	search_state_no_suggestions_detail	-	0 SUĠĠERIMENTI · 0 TAQBIL REĊENTI
+values-b+mt	string	search_state_no_suggestions_headline	-	Xejn ma jaqbel ma' “%s”
 values-b+mt	string	search_tv_source_failed	-	FALLA %s
 values-b+mt	string	search_tv_source_pinned	-	IPPINJAT
 values-b+mt	string	search_tv_sources_panel_meta	-	%1$d MINN %2$d ATTIVATI · IL-BIDLIET JIDĦLU FIS-SEĦĦ META TAGĦFAS LEST
+values-b+mt	string	search_tv_suggestion_recent	-	REĊENTI · %s
+values-b+mt	string	search_tv_suggestion_recent_suggested	-	REĊENTI · SUĠĠERIT UKOLL
+values-b+mt	string	search_tv_suggestion_suggested	-	SUĠĠERIT
 values-b+mt	string	seek_back_10_seconds	-	Mur lura 10 sekondi
 values-b+mt	string	seek_forward_10_seconds	-	Mur 'il quddiem 10 sekondi
 values-b+mt	string	show_log_cat	-	Uri Logcat 🐈
@@ -24038,6 +24527,9 @@ values-b+my	plurals	episodes	one	အပိုင်း
 values-b+my	plurals	episodes	other	အပိုင်းများ
 values-b+my	plurals	home_bookmarks_count	other	စာမှတ် %d ခု
 values-b+my	plurals	home_sections_failed	other	အပိုင်း %d ခု တင်သွင်း၍မရပါ
+values-b+my	plurals	search_state_no_suggestions_action	other	ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်
+values-b+my	plurals	search_state_no_suggestions_body	other	မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။
+values-b+my	plurals	search_tv_suggestion_sources	other	%d ရင်းမြစ်
 values-b+my	string	account	-	အကောင့်
 values-b+my	string	action_add_to_bookmarks	-	ကြည့်ရှုမှုအခြေအနေသတ်မှတ်ခြင်း
 values-b+my	string	action_default	-	ပုံသေ
@@ -24497,9 +24989,14 @@ values-b+my	string	search_provider_text_providers	-	ပ့ံပိုးပေ�
 values-b+my	string	search_provider_text_types	-	အမျိုးအစားများအသုံးပြု၍ရှာရန်
 values-b+my	string	search_state_idle_body_desktop	-	ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။
 values-b+my	string	search_state_no_results_type_filter	-	%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။
+values-b+my	string	search_state_no_suggestions_detail	-	အကြံပြုချက် 0 ခု · မကြာသေးမီ ကိုက်ညီမှု 0 ခု
+values-b+my	string	search_state_no_suggestions_headline	-	“%s” နှင့် ကိုက်ညီသည့်အရာ မရှိပါ
 values-b+my	string	search_tv_source_failed	-	မအောင်မြင်ပါ %s
 values-b+my	string	search_tv_source_pinned	-	ပင်ထိုးထား
 values-b+my	string	search_tv_sources_panel_meta	-	%2$d ခုအနက် %1$d ခု ဖွင့်ထား · ပြောင်းလဲမှုများကို ပြီးပြီ တွင် အသုံးပြုမည်
+values-b+my	string	search_tv_suggestion_recent	-	မကြာသေးမီ · %s
+values-b+my	string	search_tv_suggestion_recent_suggested	-	မကြာသေးမီ · အကြံပြုထားသည်လည်း
+values-b+my	string	search_tv_suggestion_suggested	-	အကြံပြုထားသည်
 values-b+my	string	season	-	အတွဲ
 values-b+my	string	season_format	-	%1$s %2$d%3$s
 values-b+my	string	season_short	-	အတွဲ
@@ -24666,6 +25163,12 @@ values-b+ne	plurals	home_bookmarks_count	one	%d बुकमार्क
 values-b+ne	plurals	home_bookmarks_count	other	%d बुकमार्क
 values-b+ne	plurals	home_sections_failed	one	%d खण्ड लोड हुन सकेन
 values-b+ne	plurals	home_sections_failed	other	%d खण्डहरू लोड हुन सकेनन्
+values-b+ne	plurals	search_state_no_suggestions_action	one	%d स्रोतमा खोज्नुहोस्
+values-b+ne	plurals	search_state_no_suggestions_action	other	सबै %d स्रोतहरूमा खोज्नुहोस्
+values-b+ne	plurals	search_state_no_suggestions_body	one	जे भए पनि %d स्रोतमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।
+values-b+ne	plurals	search_state_no_suggestions_body	other	जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।
+values-b+ne	plurals	search_tv_suggestion_sources	one	%d स्रोत
+values-b+ne	plurals	search_tv_suggestion_sources	other	%d स्रोतहरू
 values-b+ne	string	action_add_to_bookmarks	-	हेरेको स्थिति निर्धारण गर्नुहोस्
 values-b+ne	string	action_open_play	-	प्ले
 values-b+ne	string	action_open_watching	-	अधिक जानकारी
@@ -24838,9 +25341,14 @@ values-b+ne	string	search_provider_text_providers	-	प्रोभाईडर 
 values-b+ne	string	search_provider_text_types	-	प्रकारको उपयोग गरी खोज्नुहोस्
 values-b+ne	string	search_state_idle_body_desktop	-	शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।
 values-b+ne	string	search_state_no_results_type_filter	-	%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।
+values-b+ne	string	search_state_no_suggestions_detail	-	0 सुझाव · 0 हालैका मेल
+values-b+ne	string	search_state_no_suggestions_headline	-	“%s” सँग केही पनि मेल खाँदैन
 values-b+ne	string	search_tv_source_failed	-	असफल %s
 values-b+ne	string	search_tv_source_pinned	-	पिन गरिएको
 values-b+ne	string	search_tv_sources_panel_meta	-	%2$d मध्ये %1$d सक्रिय · सकियो थिच्दा परिवर्तन लागू हुन्छ
+values-b+ne	string	search_tv_suggestion_recent	-	हालैको · %s
+values-b+ne	string	search_tv_suggestion_recent_suggested	-	हालैको · सुझाव पनि गरिएको
+values-b+ne	string	search_tv_suggestion_suggested	-	सुझाव गरिएको
 values-b+ne	string	seek_back_10_seconds	-	10 सेकेन्ड पछाडि जानुहोस्
 values-b+ne	string	seek_forward_10_seconds	-	10 सेकेन्ड अगाडि जानुहोस्
 values-b+ne	string	show_log_cat	-	Logcat देखाउनुहोस
@@ -24894,6 +25402,12 @@ values-b+nl	plurals	home_bookmarks_count	one	%d BLADWIJZER
 values-b+nl	plurals	home_bookmarks_count	other	%d BLADWIJZERS
 values-b+nl	plurals	home_sections_failed	one	%d sectie kon niet worden geladen
 values-b+nl	plurals	home_sections_failed	other	%d secties konden niet worden geladen
+values-b+nl	plurals	search_state_no_suggestions_action	one	Zoek in %d bron
+values-b+nl	plurals	search_state_no_suggestions_action	other	Zoek in alle %d bronnen
+values-b+nl	plurals	search_state_no_suggestions_body	one	Druk op de zoektoets van het toetsenbord om toch in %d bron te zoeken.
+values-b+nl	plurals	search_state_no_suggestions_body	other	Druk op de zoektoets van het toetsenbord om toch in alle %d bronnen te zoeken.
+values-b+nl	plurals	search_tv_suggestion_sources	one	%d BRON
+values-b+nl	plurals	search_tv_suggestion_sources	other	%d BRONNEN
 values-b+nl	string	account	-	account
 values-b+nl	string	action_add_to_bookmarks	-	Zet kijkstatus
 values-b+nl	string	action_add_to_favorites	-	Voeg toe aan favorieten
@@ -25467,11 +25981,16 @@ values-b+nl	string	search_provider_text_providers	-	Zoeken met providers
 values-b+nl	string	search_provider_text_types	-	Zoeken met types
 values-b+nl	string	search_state_idle_body_desktop	-	Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt.
 values-b+nl	string	search_state_no_results_type_filter	-	Alleen %s. Je typefilter beperkt de zoekopdracht.
+values-b+nl	string	search_state_no_suggestions_detail	-	0 SUGGESTIES · 0 RECENTE OVEREENKOMSTEN
+values-b+nl	string	search_state_no_suggestions_headline	-	Niets komt overeen met “%s”
 values-b+nl	string	search_suggestions	-	Zoeksuggesties
 values-b+nl	string	search_suggestions_des	-	Zoeksuggesties laten zien tijdens het typen
 values-b+nl	string	search_tv_source_failed	-	MISLUKT %s
 values-b+nl	string	search_tv_source_pinned	-	VASTGEPIND
 values-b+nl	string	search_tv_sources_panel_meta	-	%1$d VAN %2$d INGESCHAKELD · WIJZIGINGEN GELDEN NA KLAAR
+values-b+nl	string	search_tv_suggestion_recent	-	RECENT · %s
+values-b+nl	string	search_tv_suggestion_recent_suggested	-	RECENT · OOK VOORGESTELD
+values-b+nl	string	search_tv_suggestion_suggested	-	VOORGESTELD
 values-b+nl	string	season	-	Seizoen
 values-b+nl	string	season_format	-	%1$s %2$d%3$s
 values-b+nl	string	season_short	-	S
@@ -25684,6 +26203,12 @@ values-b+nn	plurals	home_bookmarks_count	one	%d BOKMERKE
 values-b+nn	plurals	home_bookmarks_count	other	%d BOKMERKE
 values-b+nn	plurals	home_sections_failed	one	%d del kunne ikkje lastast
 values-b+nn	plurals	home_sections_failed	other	%d delar kunne ikkje lastast
+values-b+nn	plurals	search_state_no_suggestions_action	one	Søk i %d kjelde
+values-b+nn	plurals	search_state_no_suggestions_action	other	Søk i alle %d kjeldene
+values-b+nn	plurals	search_state_no_suggestions_body	one	Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel.
+values-b+nn	plurals	search_state_no_suggestions_body	other	Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel.
+values-b+nn	plurals	search_tv_suggestion_sources	one	%d KJELDE
+values-b+nn	plurals	search_tv_suggestion_sources	other	%d KJELDER
 values-b+nn	string	action_add_to_bookmarks	-	Sett visingstatus
 values-b+nn	string	action_default	-	Standard
 values-b+nn	string	action_open_play	-	Spel(e) av
@@ -25911,9 +26436,14 @@ values-b+nn	string	search_provider_text_providers	-	Søk basert på leverandør
 values-b+nn	string	search_provider_text_types	-	Søk ved bruk av typer
 values-b+nn	string	search_state_idle_body_desktop	-	Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar.
 values-b+nn	string	search_state_no_results_type_filter	-	Berre %s. Typefilteret ditt avgrensar søket.
+values-b+nn	string	search_state_no_suggestions_detail	-	0 FORSLAG · 0 NYLEGE TREFF
+values-b+nn	string	search_state_no_suggestions_headline	-	Ingenting samsvarar med «%s»
 values-b+nn	string	search_tv_source_failed	-	FEILA %s
 values-b+nn	string	search_tv_source_pinned	-	FESTA
 values-b+nn	string	search_tv_sources_panel_meta	-	%1$d AV %2$d AKTIVERTE · ENDRINGAR GJELD ETTER FERDIG
+values-b+nn	string	search_tv_suggestion_recent	-	NYLEG · %s
+values-b+nn	string	search_tv_suggestion_recent_suggested	-	NYLEG · OGSÅ FORESLÅTT
+values-b+nn	string	search_tv_suggestion_suggested	-	FORESLÅTT
 values-b+nn	string	season	-	Sesong
 values-b+nn	string	season_format	-	%1$s %2$d%3$s
 values-b+nn	string	season_short	-	S
@@ -25989,6 +26519,12 @@ values-b+no	plurals	home_bookmarks_count	one	%d BOKMERKE
 values-b+no	plurals	home_bookmarks_count	other	%d BOKMERKER
 values-b+no	plurals	home_sections_failed	one	%d del kunne ikke lastes inn
 values-b+no	plurals	home_sections_failed	other	%d deler kunne ikke lastes inn
+values-b+no	plurals	search_state_no_suggestions_action	one	Søk i %d kilde
+values-b+no	plurals	search_state_no_suggestions_action	other	Søk i alle %d kilder
+values-b+no	plurals	search_state_no_suggestions_body	one	Trykk på søketasten på tastaturet for å søke i %d kilde likevel.
+values-b+no	plurals	search_state_no_suggestions_body	other	Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel.
+values-b+no	plurals	search_tv_suggestion_sources	one	%d KILDE
+values-b+no	plurals	search_tv_suggestion_sources	other	%d KILDER
 values-b+no	string	account	-	konto
 values-b+no	string	action_add_to_bookmarks	-	Sett visningsstatus
 values-b+no	string	action_default	-	Misligholde
@@ -26440,9 +26976,14 @@ values-b+no	string	search_provider_text_providers	-	Søk med leverandører
 values-b+no	string	search_provider_text_types	-	Søk med typer
 values-b+no	string	search_state_idle_body_desktop	-	Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.
 values-b+no	string	search_state_no_results_type_filter	-	Bare %s. Typefilteret ditt begrenser søket.
+values-b+no	string	search_state_no_suggestions_detail	-	0 FORSLAG · 0 NYLIGE TREFF
+values-b+no	string	search_state_no_suggestions_headline	-	Ingenting samsvarer med «%s»
 values-b+no	string	search_tv_source_failed	-	FEILET %s
 values-b+no	string	search_tv_source_pinned	-	FESTET
 values-b+no	string	search_tv_sources_panel_meta	-	%1$d AV %2$d AKTIVERT · ENDRINGER GJELDER ETTER FERDIG
+values-b+no	string	search_tv_suggestion_recent	-	NYLIG · %s
+values-b+no	string	search_tv_suggestion_recent_suggested	-	NYLIG · OGSÅ FORESLÅTT
+values-b+no	string	search_tv_suggestion_suggested	-	FORESLÅTT
 values-b+no	string	season	-	Sesong
 values-b+no	string	season_format	-	%1$s %2$d%3$s
 values-b+no	string	season_short	-	S
@@ -26608,6 +27149,12 @@ values-b+or	plurals	home_bookmarks_count	one	%d ବୁକମାର୍କ
 values-b+or	plurals	home_bookmarks_count	other	%d ବୁକମାର୍କ
 values-b+or	plurals	home_sections_failed	one	%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ
 values-b+or	plurals	home_sections_failed	other	%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ
+values-b+or	plurals	search_state_no_suggestions_action	one	%d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ
+values-b+or	plurals	search_state_no_suggestions_action	other	ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ
+values-b+or	plurals	search_state_no_suggestions_body	one	ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।
+values-b+or	plurals	search_state_no_suggestions_body	other	ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।
+values-b+or	plurals	search_tv_suggestion_sources	one	%d ଉତ୍ସ
+values-b+or	plurals	search_tv_suggestion_sources	other	%d ଉତ୍ସ
 values-b+or	string	action_default	-	ଡିଫଲ୍ଟ
 values-b+or	string	action_open_play	-	ଚଲାଅ
 values-b+or	string	added_sync_format	-	%s ଯୋଡ଼ାଗଲା
@@ -26803,9 +27350,14 @@ values-b+or	string	search_poster_img_des	-	ପୋଷ୍ଟର୍
 values-b+or	string	search_provider_text_providers	-	ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା
 values-b+or	string	search_state_idle_body_desktop	-	ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।
 values-b+or	string	search_state_no_results_type_filter	-	କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।
+values-b+or	string	search_state_no_suggestions_detail	-	0 ପରାମର୍ଶ · 0 ସାମ୍ପ୍ରତିକ ମେଳ
+values-b+or	string	search_state_no_suggestions_headline	-	“%s” ସହ କିଛି ମେଳ ଖାଉନାହିଁ
 values-b+or	string	search_tv_source_failed	-	ବିଫଳ %s
 values-b+or	string	search_tv_source_pinned	-	ପିନ୍ କରାଯାଇଛି
 values-b+or	string	search_tv_sources_panel_meta	-	%2$d ମଧ୍ୟରୁ %1$d ସକ୍ରିୟ · ହେଲା ଦବାଇଲେ ପରିବର୍ତ୍ତନ ଲାଗୁ ହେବ
+values-b+or	string	search_tv_suggestion_recent	-	ସାମ୍ପ୍ରତିକ · %s
+values-b+or	string	search_tv_suggestion_recent_suggested	-	ସାମ୍ପ୍ରତିକ · ପରାମର୍ଶିତ ମଧ୍ୟ
+values-b+or	string	search_tv_suggestion_suggested	-	ପରାମର୍ଶିତ
 values-b+or	string	season	-	ଋତୁ
 values-b+or	string	season_short	-	ଋ
 values-b+or	string	seek_back_10_seconds	-	୧୦ ସେକେଣ୍ଡ ପଛକୁ ଯାଅ
@@ -26888,6 +27440,18 @@ values-b+pl	plurals	links_hidden	few	%d ukryte odnośniki
 values-b+pl	plurals	links_hidden	many	%d ukrytych odnośników
 values-b+pl	plurals	links_hidden	one	%d ukryty odnośnik
 values-b+pl	plurals	links_hidden	other	%d ukrytych odnośników
+values-b+pl	plurals	search_state_no_suggestions_action	few	Szukaj we wszystkich %d źródłach
+values-b+pl	plurals	search_state_no_suggestions_action	many	Szukaj we wszystkich %d źródłach
+values-b+pl	plurals	search_state_no_suggestions_action	one	Szukaj w %d źródle
+values-b+pl	plurals	search_state_no_suggestions_action	other	Szukaj we wszystkich %d źródłach
+values-b+pl	plurals	search_state_no_suggestions_body	few	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.
+values-b+pl	plurals	search_state_no_suggestions_body	many	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródeł.
+values-b+pl	plurals	search_state_no_suggestions_body	one	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać %d źródło.
+values-b+pl	plurals	search_state_no_suggestions_body	other	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.
+values-b+pl	plurals	search_tv_suggestion_sources	few	%d ŹRÓDŁA
+values-b+pl	plurals	search_tv_suggestion_sources	many	%d ŹRÓDEŁ
+values-b+pl	plurals	search_tv_suggestion_sources	one	%d ŹRÓDŁO
+values-b+pl	plurals	search_tv_suggestion_sources	other	%d ŹRÓDŁA
 values-b+pl	string	account	-	konto
 values-b+pl	string	action_add_to_bookmarks	-	Ustaw status oglądania
 values-b+pl	string	action_add_to_favorites	-	Dodaj do ulubionych
@@ -27500,11 +28064,16 @@ values-b+pl	string	search_provider_text_providers	-	Szukaj według źródeł
 values-b+pl	string	search_provider_text_types	-	Szukaj według typów
 values-b+pl	string	search_state_idle_body_desktop	-	Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.
 values-b+pl	string	search_state_no_results_type_filter	-	Tylko %s. Filtr typu zawęża wyszukiwanie.
+values-b+pl	string	search_state_no_suggestions_detail	-	0 SUGESTII · 0 OSTATNICH DOPASOWAŃ
+values-b+pl	string	search_state_no_suggestions_headline	-	Nic nie pasuje do „%s”
 values-b+pl	string	search_suggestions	-	Sugestie wyszukiwania
 values-b+pl	string	search_suggestions_des	-	Pokaż sugestie wyszukiwania podczas pisania
 values-b+pl	string	search_tv_source_failed	-	BŁĄD %s
 values-b+pl	string	search_tv_source_pinned	-	PRZYPIĘTE
 values-b+pl	string	search_tv_sources_panel_meta	-	WŁĄCZONO %1$d Z %2$d · ZMIANY OBOWIĄZUJĄ PO GOTOWE
+values-b+pl	string	search_tv_suggestion_recent	-	OSTATNIE · %s
+values-b+pl	string	search_tv_suggestion_recent_suggested	-	OSTATNIE · RÓWNIEŻ SUGEROWANE
+values-b+pl	string	search_tv_suggestion_suggested	-	SUGEROWANE
 values-b+pl	string	season	-	Sezon
 values-b+pl	string	season_format	-	%1$s %2$d%3$s
 values-b+pl	string	season_short	-	S
@@ -27741,6 +28310,15 @@ values-b+pt	plurals	home_sections_failed	other	Falha ao carregar %d secções
 values-b+pt	plurals	links_hidden	many	%d link ocultos
 values-b+pt	plurals	links_hidden	one	%d link oculto
 values-b+pt	plurals	links_hidden	other	%d link ocultos
+values-b+pt	plurals	search_state_no_suggestions_action	many	Pesquisar em todas as %d fontes
+values-b+pt	plurals	search_state_no_suggestions_action	one	Pesquisar em %d fonte
+values-b+pt	plurals	search_state_no_suggestions_action	other	Pesquisar em todas as %d fontes
+values-b+pt	plurals	search_state_no_suggestions_body	many	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
+values-b+pt	plurals	search_state_no_suggestions_body	one	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.
+values-b+pt	plurals	search_state_no_suggestions_body	other	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
+values-b+pt	plurals	search_tv_suggestion_sources	many	%d FONTES
+values-b+pt	plurals	search_tv_suggestion_sources	one	%d FONTE
+values-b+pt	plurals	search_tv_suggestion_sources	other	%d FONTES
 values-b+pt	string	account	-	Conta
 values-b+pt	string	action_add_to_bookmarks	-	Marcar como visto/não visto
 values-b+pt	string	action_add_to_favorites	-	Adicionar aos favoritos
@@ -28353,11 +28931,16 @@ values-b+pt	string	search_provider_text_providers	-	Procurar usando fornecedores
 values-b+pt	string	search_provider_text_types	-	Procurar usando tipos
 values-b+pt	string	search_state_idle_body_desktop	-	Escreva um título. Os resultados aparecem sob cada fonte assim que ela responde.
 values-b+pt	string	search_state_no_results_type_filter	-	Apenas %s. O filtro de tipo está a limitar a pesquisa.
+values-b+pt	string	search_state_no_suggestions_detail	-	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES
+values-b+pt	string	search_state_no_suggestions_headline	-	Nada corresponde a «%s»
 values-b+pt	string	search_suggestions	-	Sugestões de pesquisa
 values-b+pt	string	search_suggestions_des	-	Mostrar sugestões de pesquisa enquanto digita
 values-b+pt	string	search_tv_source_failed	-	FALHOU %s
 values-b+pt	string	search_tv_source_pinned	-	FIXADO
 values-b+pt	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES APLICAM-SE APÓS FEITO
+values-b+pt	string	search_tv_suggestion_recent	-	RECENTE · %s
+values-b+pt	string	search_tv_suggestion_recent_suggested	-	RECENTE · TAMBÉM SUGERIDO
+values-b+pt	string	search_tv_suggestion_suggested	-	SUGERIDO
 values-b+pt	string	season	-	Temporada
 values-b+pt	string	season_format	-	%1$s %2$d%3$s
 values-b+pt	string	season_short	-	T
@@ -28592,6 +29175,15 @@ values-b+pt+BR	plurals	home_sections_failed	other	Falha ao carregar %d seções
 values-b+pt+BR	plurals	links_hidden	many	%d link ocultos
 values-b+pt+BR	plurals	links_hidden	one	%d link oculto
 values-b+pt+BR	plurals	links_hidden	other	%d link ocultos
+values-b+pt+BR	plurals	search_state_no_suggestions_action	many	Pesquisar em todas as %d fontes
+values-b+pt+BR	plurals	search_state_no_suggestions_action	one	Pesquisar em %d fonte
+values-b+pt+BR	plurals	search_state_no_suggestions_action	other	Pesquisar em todas as %d fontes
+values-b+pt+BR	plurals	search_state_no_suggestions_body	many	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
+values-b+pt+BR	plurals	search_state_no_suggestions_body	one	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.
+values-b+pt+BR	plurals	search_state_no_suggestions_body	other	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
+values-b+pt+BR	plurals	search_tv_suggestion_sources	many	%d FONTES
+values-b+pt+BR	plurals	search_tv_suggestion_sources	one	%d FONTE
+values-b+pt+BR	plurals	search_tv_suggestion_sources	other	%d FONTES
 values-b+pt+BR	string	account	-	Conta
 values-b+pt+BR	string	action_add_to_bookmarks	-	Adicionar a lista
 values-b+pt+BR	string	action_add_to_favorites	-	Adicionar aos favoritos
@@ -29199,11 +29791,16 @@ values-b+pt+BR	string	search_provider_text_providers	-	Pesquisar usando forneced
 values-b+pt+BR	string	search_provider_text_types	-	Pesquisar usando tipos
 values-b+pt+BR	string	search_state_idle_body_desktop	-	Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde.
 values-b+pt+BR	string	search_state_no_results_type_filter	-	Somente %s. O filtro de tipo está restringindo a pesquisa.
+values-b+pt+BR	string	search_state_no_suggestions_detail	-	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES
+values-b+pt+BR	string	search_state_no_suggestions_headline	-	Nada corresponde a “%s”
 values-b+pt+BR	string	search_suggestions	-	Sugestões de Busca
 values-b+pt+BR	string	search_suggestions_des	-	Exibir sugestões de pesquisa durante a digitação
 values-b+pt+BR	string	search_tv_source_failed	-	FALHOU %s
 values-b+pt+BR	string	search_tv_source_pinned	-	FIXADO
 values-b+pt+BR	string	search_tv_sources_panel_meta	-	%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES SÃO APLICADAS APÓS FEITO
+values-b+pt+BR	string	search_tv_suggestion_recent	-	RECENTE · %s
+values-b+pt+BR	string	search_tv_suggestion_recent_suggested	-	RECENTE · TAMBÉM SUGERIDO
+values-b+pt+BR	string	search_tv_suggestion_suggested	-	SUGERIDO
 values-b+pt+BR	string	season	-	Temporada
 values-b+pt+BR	string	season_format	-	%1$s %2$d%3$s
 values-b+pt+BR	string	season_short	-	T
@@ -29424,6 +30021,9 @@ values-b+qt	plurals	episodes	one	ahhhaaahhu
 values-b+qt	plurals	episodes	other	ahhh ooooo
 values-b+qt	plurals	home_bookmarks_count	other	%d OOUUH OOH
 values-b+qt	plurals	home_sections_failed	other	%d oooogg ooh aaahhu
+values-b+qt	plurals	search_state_no_suggestions_action	other	aaoog %d ooh uugg
+values-b+qt	plurals	search_state_no_suggestions_body	other	uuh aagg oooh aaahh uug %d ooogg aah.
+values-b+qt	plurals	search_tv_suggestion_sources	other	%d OOGAH
 values-b+qt	string	account	-	aaaaggg
 values-b+qt	string	action_add_to_bookmarks	-	auugggguuuuuuhhh uuuu hhhhhhhhuhggghggg
 values-b+qt	string	action_add_to_favorites	-	uuh ah aaaahhhag
@@ -29969,9 +30569,14 @@ values-b+qt	string	search_provider_text_providers	-	aauuhaauugghhahhh ohaauugghh
 values-b+qt	string	search_provider_text_types	-	ahhhahoooohhaa ahhhoohahh
 values-b+qt	string	search_state_idle_body_desktop	-	oouuh aaaaggg uuuk ooh
 values-b+qt	string	search_state_no_results_type_filter	-	%s uuhaa. oouuh aagggh uuk.
+values-b+qt	string	search_state_no_suggestions_detail	-	0 AAAHHUU · 0 AAOOH UUGH
+values-b+qt	string	search_state_no_suggestions_headline	-	ooh aagg “%s”
 values-b+qt	string	search_tv_source_failed	-	AAGGH %s
 values-b+qt	string	search_tv_source_pinned	-	OOHHAA
 values-b+qt	string	search_tv_sources_panel_meta	-	%1$d OOHH %2$d AAHH · UUGH AAK EEEK
+values-b+qt	string	search_tv_suggestion_recent	-	AAOOH · %s
+values-b+qt	string	search_tv_suggestion_recent_suggested	-	AAOOH · UUGG AAH
+values-b+qt	string	search_tv_suggestion_suggested	-	UUGGAH
 values-b+qt	string	season	-	ooo-ahah
 values-b+qt	string	season_format	-	%1$s %2$d%3$s
 values-b+qt	string	season_short	-	H
@@ -30157,6 +30762,15 @@ values-b+ro	plurals	home_bookmarks_count	other	%d DE MARCAJE
 values-b+ro	plurals	home_sections_failed	few	Nu s-au putut încărca %d secțiuni
 values-b+ro	plurals	home_sections_failed	one	Nu s-a putut încărca %d secțiune
 values-b+ro	plurals	home_sections_failed	other	Nu s-au putut încărca %d de secțiuni
+values-b+ro	plurals	search_state_no_suggestions_action	few	Caută în toate cele %d surse
+values-b+ro	plurals	search_state_no_suggestions_action	one	Caută în %d sursă
+values-b+ro	plurals	search_state_no_suggestions_action	other	Caută în toate cele %d de surse
+values-b+ro	plurals	search_state_no_suggestions_body	few	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d surse.
+values-b+ro	plurals	search_state_no_suggestions_body	one	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în %d sursă.
+values-b+ro	plurals	search_state_no_suggestions_body	other	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d de surse.
+values-b+ro	plurals	search_tv_suggestion_sources	few	%d SURSE
+values-b+ro	plurals	search_tv_suggestion_sources	one	%d SURSĂ
+values-b+ro	plurals	search_tv_suggestion_sources	other	%d DE SURSE
 values-b+ro	string	account	-	Cont
 values-b+ro	string	action_add_to_bookmarks	-	Adaugă
 values-b+ro	string	action_add_to_favorites	-	Adaugă la favoriți/te
@@ -30703,9 +31317,14 @@ values-b+ro	string	search_provider_text_providers	-	Căutare în funcție de fur
 values-b+ro	string	search_provider_text_types	-	Căutare în funcție de tip
 values-b+ro	string	search_state_idle_body_desktop	-	Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.
 values-b+ro	string	search_state_no_results_type_filter	-	Doar %s. Filtrul de tip restrânge căutarea.
+values-b+ro	string	search_state_no_suggestions_detail	-	0 SUGESTII · 0 POTRIVIRI RECENTE
+values-b+ro	string	search_state_no_suggestions_headline	-	Nimic nu se potrivește cu „%s”
 values-b+ro	string	search_tv_source_failed	-	EȘUAT %s
 values-b+ro	string	search_tv_source_pinned	-	FIXAT
 values-b+ro	string	search_tv_sources_panel_meta	-	%1$d DIN %2$d ACTIVATE · MODIFICĂRILE SE APLICĂ LA TERMINAT
+values-b+ro	string	search_tv_suggestion_recent	-	RECENT · %s
+values-b+ro	string	search_tv_suggestion_recent_suggested	-	RECENT · ȘI SUGERAT
+values-b+ro	string	search_tv_suggestion_suggested	-	SUGERAT
 values-b+ro	string	season	-	Sezonul
 values-b+ro	string	season_format	-	%1$s %2$d%3$s
 values-b+ro	string	season_short	-	S
@@ -30907,6 +31526,18 @@ values-b+ru	plurals	links_hidden	few	%d скрытые ссылки
 values-b+ru	plurals	links_hidden	many	%d скрытых ссылок
 values-b+ru	plurals	links_hidden	one	%d скрытая ссылка
 values-b+ru	plurals	links_hidden	other	%d скрытых ссылок
+values-b+ru	plurals	search_state_no_suggestions_action	few	Искать во всех %d источниках
+values-b+ru	plurals	search_state_no_suggestions_action	many	Искать во всех %d источниках
+values-b+ru	plurals	search_state_no_suggestions_action	one	Искать в %d источнике
+values-b+ru	plurals	search_state_no_suggestions_action	other	Искать во всех %d источниках
+values-b+ru	plurals	search_state_no_suggestions_body	few	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.
+values-b+ru	plurals	search_state_no_suggestions_body	many	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.
+values-b+ru	plurals	search_state_no_suggestions_body	one	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать в %d источнике.
+values-b+ru	plurals	search_state_no_suggestions_body	other	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.
+values-b+ru	plurals	search_tv_suggestion_sources	few	%d ИСТОЧНИКА
+values-b+ru	plurals	search_tv_suggestion_sources	many	%d ИСТОЧНИКОВ
+values-b+ru	plurals	search_tv_suggestion_sources	one	%d ИСТОЧНИК
+values-b+ru	plurals	search_tv_suggestion_sources	other	%d ИСТОЧНИКА
 values-b+ru	string	account	-	учётная запись
 values-b+ru	string	action_add_to_bookmarks	-	Установите смотреть состояние
 values-b+ru	string	action_add_to_favorites	-	Добавить в любимое
@@ -31519,11 +32150,16 @@ values-b+ru	string	search_provider_text_providers	-	Поиск с использ
 values-b+ru	string	search_provider_text_types	-	Поиск с использованием типов
 values-b+ru	string	search_state_idle_body_desktop	-	Введите название. Результаты появятся под каждым источником, когда он ответит.
 values-b+ru	string	search_state_no_results_type_filter	-	Только %s. Фильтр по типу сужает поиск.
+values-b+ru	string	search_state_no_suggestions_detail	-	0 ПОДСКАЗОК · 0 НЕДАВНИХ СОВПАДЕНИЙ
+values-b+ru	string	search_state_no_suggestions_headline	-	Ничего не найдено по запросу «%s»
 values-b+ru	string	search_suggestions	-	Поиск предложений
 values-b+ru	string	search_suggestions_des	-	Показывать подсказки поиска при вводе текста
 values-b+ru	string	search_tv_source_failed	-	СБОЙ %s
 values-b+ru	string	search_tv_source_pinned	-	ЗАКРЕПЛЕНО
 values-b+ru	string	search_tv_sources_panel_meta	-	ВКЛЮЧЕНО %1$d ИЗ %2$d · ИЗМЕНЕНИЯ ВСТУПЯТ В СИЛУ ПОСЛЕ НАЖАТИЯ ГОТОВО
+values-b+ru	string	search_tv_suggestion_recent	-	НЕДАВНЕЕ · %s
+values-b+ru	string	search_tv_suggestion_recent_suggested	-	НЕДАВНЕЕ · ТАКЖЕ ПРЕДЛОЖЕНО
+values-b+ru	string	search_tv_suggestion_suggested	-	ПРЕДЛОЖЕНО
 values-b+ru	string	season	-	Сезон
 values-b+ru	string	season_format	-	%1$s %2$d%3$s
 values-b+ru	string	season_short	-	С
@@ -31754,6 +32390,18 @@ values-b+sk	plurals	home_sections_failed	few	Nepodarilo sa načítať %d sekcie
 values-b+sk	plurals	home_sections_failed	many	Nepodarilo sa načítať %d sekcií
 values-b+sk	plurals	home_sections_failed	one	Nepodarilo sa načítať %d sekciu
 values-b+sk	plurals	home_sections_failed	other	Nepodarilo sa načítať %d sekcií
+values-b+sk	plurals	search_state_no_suggestions_action	few	Hľadať vo všetkých %d zdrojoch
+values-b+sk	plurals	search_state_no_suggestions_action	many	Hľadať vo všetkých %d zdrojoch
+values-b+sk	plurals	search_state_no_suggestions_action	one	Hľadať v %d zdroji
+values-b+sk	plurals	search_state_no_suggestions_action	other	Hľadať vo všetkých %d zdrojoch
+values-b+sk	plurals	search_state_no_suggestions_body	few	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetky %d zdroje.
+values-b+sk	plurals	search_state_no_suggestions_body	many	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.
+values-b+sk	plurals	search_state_no_suggestions_body	one	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte %d zdroj.
+values-b+sk	plurals	search_state_no_suggestions_body	other	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.
+values-b+sk	plurals	search_tv_suggestion_sources	few	%d ZDROJE
+values-b+sk	plurals	search_tv_suggestion_sources	many	%d ZDROJA
+values-b+sk	plurals	search_tv_suggestion_sources	one	%d ZDROJ
+values-b+sk	plurals	search_tv_suggestion_sources	other	%d ZDROJOV
 values-b+sk	string	account	-	účet
 values-b+sk	string	action_add_to_bookmarks	-	Nastaviť stav sledovania
 values-b+sk	string	action_default	-	Predvolené
@@ -32189,11 +32837,16 @@ values-b+sk	string	search_provider_text_providers	-	Hľadať pomocou poskytovate
 values-b+sk	string	search_provider_text_types	-	Hľadať pomocou typov
 values-b+sk	string	search_state_idle_body_desktop	-	Zadajte názov. Výsledky sa zobrazia pod každým zdrojom, keď odpovie.
 values-b+sk	string	search_state_no_results_type_filter	-	Iba %s. Filter typov zužuje hľadanie.
+values-b+sk	string	search_state_no_suggestions_detail	-	0 NÁVRHOV · 0 NEDÁVNYCH ZHÔD
+values-b+sk	string	search_state_no_suggestions_headline	-	Nič nezodpovedá „%s“
 values-b+sk	string	search_suggestions	-	Návrhy vyhľadávania
 values-b+sk	string	search_suggestions_des	-	Zobraziť návrhy vyhľadávania pri písaní
 values-b+sk	string	search_tv_source_failed	-	ZLYHALO %s
 values-b+sk	string	search_tv_source_pinned	-	PRIPNUTÉ
 values-b+sk	string	search_tv_sources_panel_meta	-	%1$d Z %2$d ZAPNUTÝCH · ZMENY SA UPLATNIA PO STLAČENÍ HOTOVO
+values-b+sk	string	search_tv_suggestion_recent	-	NEDÁVNE · %s
+values-b+sk	string	search_tv_suggestion_recent_suggested	-	NEDÁVNE · TIEŽ NAVRHNUTÉ
+values-b+sk	string	search_tv_suggestion_suggested	-	NAVRHNUTÉ
 values-b+sk	string	season	-	Sezóna
 values-b+sk	string	season_format	-	%1$s %2$d%3$s
 values-b+sk	string	season_short	-	S
@@ -32335,6 +32988,12 @@ values-b+so	plurals	home_bookmarks_count	one	%d CALAAMAD
 values-b+so	plurals	home_bookmarks_count	other	%d CALAAMADOOD
 values-b+so	plurals	home_sections_failed	one	Waa ka keeni kari waayey %d qayb
 values-b+so	plurals	home_sections_failed	other	Waa ka keeni kari waayey %d qaybood
+values-b+so	plurals	search_state_no_suggestions_action	one	Ka raadi %d il
+values-b+so	plurals	search_state_no_suggestions_action	other	Ka raadi dhammaan %d ilood
+values-b+so	plurals	search_state_no_suggestions_body	one	Riix furaha raadinta ee kiiboodhka si aad u raadiso %d il si kastaba ha ahaatee.
+values-b+so	plurals	search_state_no_suggestions_body	other	Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee.
+values-b+so	plurals	search_tv_suggestion_sources	one	%d IL
+values-b+so	plurals	search_tv_suggestion_sources	other	%d ILOOD
 values-b+so	string	account	-	Akoonka
 values-b+so	string	action_add_to_bookmarks	-	Xagee marinaysaa
 values-b+so	string	action_default	-	Sidiisaa
@@ -32790,11 +33449,16 @@ values-b+so	string	search_provider_text_providers	-	Ku raadi qaybiyeyaasha
 values-b+so	string	search_provider_text_types	-	Ku raadi noocyada
 values-b+so	string	search_state_idle_body_desktop	-	Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto.
 values-b+so	string	search_state_no_results_type_filter	-	Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta.
+values-b+so	string	search_state_no_suggestions_detail	-	0 TALOOYIN · 0 ISKU-EG DHOWAAN
+values-b+so	string	search_state_no_suggestions_headline	-	Waxba kuma habboona “%s”
 values-b+so	string	search_suggestions	-	Talooyinka Raadinta
 values-b+so	string	search_suggestions_des	-	Soo bandhig talooyinka inta aad wax qorayso
 values-b+so	string	search_tv_source_failed	-	FASHILAY %s
 values-b+so	string	search_tv_source_pinned	-	LA DHEJIYAY
 values-b+so	string	search_tv_sources_panel_meta	-	%1$d KA %2$d LA HAWLGELIYAY · ISBEDDELADA WAXAY DHAQAN GALAAN MARKA LA DOOTO DHAN
+values-b+so	string	search_tv_suggestion_recent	-	DHOWAAN · %s
+values-b+so	string	search_tv_suggestion_recent_suggested	-	DHOWAAN · SIDOO KALE LA SOO JEEDIYAY
+values-b+so	string	search_tv_suggestion_suggested	-	LA SOO JEEDIYAY
 values-b+so	string	season	-	Kalka
 values-b+so	string	season_format	-	%1$s %2$d%3$s
 values-b+so	string	season_short	-	K
@@ -32954,6 +33618,12 @@ values-b+sq	plurals	home_sections_failed	one	Nuk mund të ngarkohej %d seksion
 values-b+sq	plurals	home_sections_failed	other	Nuk mund të ngarkoheshin %d seksione
 values-b+sq	plurals	links_hidden	one	%d link i fshehur
 values-b+sq	plurals	links_hidden	other	%d linqe të fshehura
+values-b+sq	plurals	search_state_no_suggestions_action	one	Kërko në %d burim
+values-b+sq	plurals	search_state_no_suggestions_action	other	Kërko në të gjitha %d burimet
+values-b+sq	plurals	search_state_no_suggestions_body	one	Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në %d burim.
+values-b+sq	plurals	search_state_no_suggestions_body	other	Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet.
+values-b+sq	plurals	search_tv_suggestion_sources	one	%d BURIM
+values-b+sq	plurals	search_tv_suggestion_sources	other	%d BURIME
 values-b+sq	string	account	-	llogaria
 values-b+sq	string	action_add_to_bookmarks	-	Vendos statusin e shikueshmërisë
 values-b+sq	string	action_add_to_favorites	-	Shto te të preferuarat
@@ -33566,11 +34236,16 @@ values-b+sq	string	search_provider_text_providers	-	Kërko duke përdorur ofrues
 values-b+sq	string	search_provider_text_types	-	Kërko duke përdorur tipet
 values-b+sq	string	search_state_idle_body_desktop	-	Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet.
 values-b+sq	string	search_state_no_results_type_filter	-	Vetëm %s. Filtri i llojit po e ngushton kërkimin.
+values-b+sq	string	search_state_no_suggestions_detail	-	0 SUGJERIME · 0 PËRPUTHJE TË FUNDIT
+values-b+sq	string	search_state_no_suggestions_headline	-	Asgjë nuk përputhet me “%s”
 values-b+sq	string	search_suggestions	-	Kërkime të sugjeruara
 values-b+sq	string	search_suggestions_des	-	Trego sugjerimet ndërkohë që shkruani
 values-b+sq	string	search_tv_source_failed	-	DËSHTOI %s
 values-b+sq	string	search_tv_source_pinned	-	I FIKSUAR
 values-b+sq	string	search_tv_sources_panel_meta	-	%1$d NGA %2$d AKTIVIZUAR · NDRYSHIMET ZBATOHEN ME U KRYE
+values-b+sq	string	search_tv_suggestion_recent	-	SË FUNDI · %s
+values-b+sq	string	search_tv_suggestion_recent_suggested	-	SË FUNDI · GJITHASHTU E SUGJERUAR
+values-b+sq	string	search_tv_suggestion_suggested	-	E SUGJERUAR
 values-b+sq	string	season	-	Sezoni
 values-b+sq	string	season_format	-	%1$s %2$d%3$s
 values-b+sq	string	season_short	-	S
@@ -33801,6 +34476,12 @@ values-b+sv	plurals	home_sections_failed	one	%d sektion kunde inte laddas
 values-b+sv	plurals	home_sections_failed	other	%d sektioner kunde inte laddas
 values-b+sv	plurals	links_hidden	one	%d dold länk
 values-b+sv	plurals	links_hidden	other	%d dolda länkar
+values-b+sv	plurals	search_state_no_suggestions_action	one	Sök i %d källa
+values-b+sv	plurals	search_state_no_suggestions_action	other	Sök i alla %d källor
+values-b+sv	plurals	search_state_no_suggestions_body	one	Tryck på tangentbordets söktangent för att söka i %d källa ändå.
+values-b+sv	plurals	search_state_no_suggestions_body	other	Tryck på tangentbordets söktangent för att söka i alla %d källor ändå.
+values-b+sv	plurals	search_tv_suggestion_sources	one	%d KÄLLA
+values-b+sv	plurals	search_tv_suggestion_sources	other	%d KÄLLOR
 values-b+sv	string	account	-	konto
 values-b+sv	string	action_add_to_bookmarks	-	Ange visningsstatus
 values-b+sv	string	action_add_to_favorites	-	Lägg till i favoriter
@@ -34413,11 +35094,16 @@ values-b+sv	string	search_provider_text_providers	-	Sök med hjälp av leverant�
 values-b+sv	string	search_provider_text_types	-	Sök med hjälp av typer
 values-b+sv	string	search_state_idle_body_desktop	-	Skriv en titel. Resultaten visas under varje källa när den svarar.
 values-b+sv	string	search_state_no_results_type_filter	-	Endast %s. Ditt typfilter begränsar sökningen.
+values-b+sv	string	search_state_no_suggestions_detail	-	0 FÖRSLAG · 0 NYLIGA TRÄFFAR
+values-b+sv	string	search_state_no_suggestions_headline	-	Inget matchar ”%s”
 values-b+sv	string	search_suggestions	-	Sökförslag
 values-b+sv	string	search_suggestions_des	-	Visa sökförslag medan du skriver
 values-b+sv	string	search_tv_source_failed	-	MISSLYCKADES %s
 values-b+sv	string	search_tv_source_pinned	-	FASTSATT
 values-b+sv	string	search_tv_sources_panel_meta	-	%1$d AV %2$d AKTIVERADE · ÄNDRINGAR TILLÄMPAS VID KLAR
+values-b+sv	string	search_tv_suggestion_recent	-	NYLIGEN · %s
+values-b+sv	string	search_tv_suggestion_recent_suggested	-	NYLIGEN · ÄVEN FÖRESLAGEN
+values-b+sv	string	search_tv_suggestion_suggested	-	FÖRESLAGEN
 values-b+sv	string	season	-	Säsong
 values-b+sv	string	season_format	-	%1$s %2$d%3$s
 values-b+sv	string	season_short	-	S
@@ -34648,6 +35334,12 @@ values-b+ta	plurals	home_sections_failed	one	%d பிரிவை ஏற்ற 
 values-b+ta	plurals	home_sections_failed	other	%d பிரிவுகளை ஏற்ற முடியவில்லை
 values-b+ta	plurals	links_hidden	one	%d மறைக்கப்பட்ட இணைப்பு
 values-b+ta	plurals	links_hidden	other	%d மறைக்கப்பட்ட இணைப்புகள்
+values-b+ta	plurals	search_state_no_suggestions_action	one	%d மூலத்தில் தேடு
+values-b+ta	plurals	search_state_no_suggestions_action	other	அனைத்து %d மூலங்களிலும் தேடு
+values-b+ta	plurals	search_state_no_suggestions_body	one	இருந்தாலும் %d மூலத்தில் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.
+values-b+ta	plurals	search_state_no_suggestions_body	other	இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.
+values-b+ta	plurals	search_tv_suggestion_sources	one	%d மூலம்
+values-b+ta	plurals	search_tv_suggestion_sources	other	%d மூலங்கள்
 values-b+ta	string	account	-	கணக்கு
 values-b+ta	string	action_add_to_bookmarks	-	கடிகார நிலையை அமைக்கவும்
 values-b+ta	string	action_add_to_favorites	-	பிடித்தவையில் சேர்
@@ -35260,11 +35952,16 @@ values-b+ta	string	search_provider_text_providers	-	வழங்குபவர�
 values-b+ta	string	search_provider_text_types	-	வகைகளைப் பயன்படுத்தி தேடுங்கள்
 values-b+ta	string	search_state_idle_body_desktop	-	ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.
 values-b+ta	string	search_state_no_results_type_filter	-	%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.
+values-b+ta	string	search_state_no_suggestions_detail	-	0 பரிந்துரைகள் · 0 சமீபத்திய பொருத்தங்கள்
+values-b+ta	string	search_state_no_suggestions_headline	-	“%s” உடன் எதுவும் பொருந்தவில்லை
 values-b+ta	string	search_suggestions	-	தேடல் பரிந்துரைகள்
 values-b+ta	string	search_suggestions_des	-	தட்டச்சு செய்யும் போது தேடல் பரிந்துரைகளைக் காட்டு
 values-b+ta	string	search_tv_source_failed	-	தோல்வி %s
 values-b+ta	string	search_tv_source_pinned	-	பின் செய்யப்பட்டது
 values-b+ta	string	search_tv_sources_panel_meta	-	%2$d இல் %1$d இயக்கப்பட்டது · முடிந்தது அழுத்தியதும் மாற்றங்கள் பொருந்தும்
+values-b+ta	string	search_tv_suggestion_recent	-	சமீபத்தியது · %s
+values-b+ta	string	search_tv_suggestion_recent_suggested	-	சமீபத்தியது · பரிந்துரைக்கப்பட்டதும்
+values-b+ta	string	search_tv_suggestion_suggested	-	பரிந்துரைக்கப்பட்டது
 values-b+ta	string	season	-	பருவம்
 values-b+ta	string	season_format	-	%1$s %2$d %3$s
 values-b+ta	string	season_short	-	கள்
@@ -35487,6 +36184,12 @@ values-b+ti	plurals	home_bookmarks_count	one	%d ምልክታት
 values-b+ti	plurals	home_bookmarks_count	other	%d ምልክታት
 values-b+ti	plurals	home_sections_failed	one	%d ክፍሊ ክጽዓን ኣይከኣለን
 values-b+ti	plurals	home_sections_failed	other	%d ክፍሊ ክጽዓን ኣይከኣለን
+values-b+ti	plurals	search_state_no_suggestions_action	one	ኣብ %d ምንጪ ድለ
+values-b+ti	plurals	search_state_no_suggestions_action	other	ኣብ ኩሎም %d ምንጭታት ድለ
+values-b+ti	plurals	search_state_no_suggestions_body	one	ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።
+values-b+ti	plurals	search_state_no_suggestions_body	other	ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።
+values-b+ti	plurals	search_tv_suggestion_sources	one	%d ምንጪ
+values-b+ti	plurals	search_tv_suggestion_sources	other	%d ምንጭታት
 values-b+ti	string	app_dub_sub_episode_text_format	-	%1$s ክፋል %2$d
 values-b+ti	string	cast	-	ተዋሳእቲ
 values-b+ti	string	cast_format	-	ተዋሳእቲ፡ %s
@@ -35573,9 +36276,14 @@ values-b+ti	string	player_source_switch	-	ቀይር
 values-b+ti	string	player_unmute	-	ድምጺ ወልዕ
 values-b+ti	string	search_state_idle_body_desktop	-	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።
 values-b+ti	string	search_state_no_results_type_filter	-	%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።
+values-b+ti	string	search_state_no_suggestions_detail	-	0 ሓሳባት · 0 ናይ ቀረባ ተመሳሰልቲ
+values-b+ti	string	search_state_no_suggestions_headline	-	ምስ «%s» ዝሰማማዕ የለን
 values-b+ti	string	search_tv_source_failed	-	ኣይተኻኣለን %s
 values-b+ti	string	search_tv_source_pinned	-	ተሰኪሉ
 values-b+ti	string	search_tv_sources_panel_meta	-	%1$d ካብ %2$d ተኸፊቱ · ለውጥታት ብተፈጸመ ይትግበሩ
+values-b+ti	string	search_tv_suggestion_recent	-	ናይ ቀረባ · %s
+values-b+ti	string	search_tv_suggestion_recent_suggested	-	ናይ ቀረባ · ከምኡውን ዝተመኽረ
+values-b+ti	string	search_tv_suggestion_suggested	-	ዝተመኽረ
 values-b+ti	string	seek_back_10_seconds	-	10 ካልኢት ንድሕሪት
 values-b+ti	string	seek_forward_10_seconds	-	10 ካልኢት ንቕድሚት
 values-b+ti	string	subtitles_file_empty	-	እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ
@@ -35587,6 +36295,12 @@ values-b+tl	plurals	home_bookmarks_count	one	%d BOOKMARK
 values-b+tl	plurals	home_bookmarks_count	other	%d BOOKMARK
 values-b+tl	plurals	home_sections_failed	one	Hindi na-load ang %d seksyon
 values-b+tl	plurals	home_sections_failed	other	Hindi na-load ang %d seksyon
+values-b+tl	plurals	search_state_no_suggestions_action	one	Maghanap sa %d source
+values-b+tl	plurals	search_state_no_suggestions_action	other	Maghanap sa lahat ng %d source
+values-b+tl	plurals	search_state_no_suggestions_body	one	Pindutin ang search key ng keyboard para maghanap pa rin sa %d source.
+values-b+tl	plurals	search_state_no_suggestions_body	other	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d source.
+values-b+tl	plurals	search_tv_suggestion_sources	one	%d SOURCE
+values-b+tl	plurals	search_tv_suggestion_sources	other	%d SOURCES
 values-b+tl	string	action_add_to_bookmarks	-	I-set ang Status
 values-b+tl	string	action_add_to_favorites	-	Idagdag sa mga paborito <3
 values-b+tl	string	action_default	-	Default
@@ -35895,9 +36609,14 @@ values-b+tl	string	search_provider_text_providers	-	Search using providers
 values-b+tl	string	search_provider_text_types	-	Search using types
 values-b+tl	string	search_state_idle_body_desktop	-	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.
 values-b+tl	string	search_state_no_results_type_filter	-	%s lang. Pinipigilan ng type filter mo ang paghahanap.
+values-b+tl	string	search_state_no_suggestions_detail	-	0 MUNGKAHI · 0 KAMAKAILANG TUGMA
+values-b+tl	string	search_state_no_suggestions_headline	-	Walang tumutugma sa “%s”
 values-b+tl	string	search_tv_source_failed	-	NABIGO %s
 values-b+tl	string	search_tv_source_pinned	-	NAKA-PIN
 values-b+tl	string	search_tv_sources_panel_meta	-	%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA
+values-b+tl	string	search_tv_suggestion_recent	-	KAMAKAILAN · %s
+values-b+tl	string	search_tv_suggestion_recent_suggested	-	KAMAKAILAN · IMINUNGKAHI RIN
+values-b+tl	string	search_tv_suggestion_suggested	-	IMINUNGKAHI
 values-b+tl	string	season	-	Season
 values-b+tl	string	season_short	-	S
 values-b+tl	string	seek_back_10_seconds	-	Bumalik ng 10 segundo
@@ -36003,6 +36722,12 @@ values-b+tr	plurals	home_sections_failed	one	%d kısım yüklenemedi
 values-b+tr	plurals	home_sections_failed	other	%d kısım yüklenemedi
 values-b+tr	plurals	links_hidden	one	%d gizli bağlantı
 values-b+tr	plurals	links_hidden	other	%d gizli bağlantı
+values-b+tr	plurals	search_state_no_suggestions_action	one	%d kaynakta ara
+values-b+tr	plurals	search_state_no_suggestions_action	other	Tüm %d kaynakta ara
+values-b+tr	plurals	search_state_no_suggestions_body	one	Yine de %d kaynakta aramak için klavyenin arama tuşuna basın.
+values-b+tr	plurals	search_state_no_suggestions_body	other	Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın.
+values-b+tr	plurals	search_tv_suggestion_sources	one	%d KAYNAK
+values-b+tr	plurals	search_tv_suggestion_sources	other	%d KAYNAK
 values-b+tr	string	account	-	hesap
 values-b+tr	string	action_add_to_bookmarks	-	İzleme durumunu ayarla
 values-b+tr	string	action_add_to_favorites	-	Favorilere ekle
@@ -36615,11 +37340,16 @@ values-b+tr	string	search_provider_text_providers	-	Sağlayıcıları kullanarak
 values-b+tr	string	search_provider_text_types	-	Türleri kullanarak ara
 values-b+tr	string	search_state_idle_body_desktop	-	Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür.
 values-b+tr	string	search_state_no_results_type_filter	-	Yalnızca %s. Tür filtreniz aramayı daraltıyor.
+values-b+tr	string	search_state_no_suggestions_detail	-	0 ÖNERİ · 0 YAKIN ZAMANLI EŞLEŞME
+values-b+tr	string	search_state_no_suggestions_headline	-	“%s” ile eşleşen bir şey yok
 values-b+tr	string	search_suggestions	-	Arama Önerileri
 values-b+tr	string	search_suggestions_des	-	Yazarken arama önerilerini göster
 values-b+tr	string	search_tv_source_failed	-	BAŞARISIZ %s
 values-b+tr	string	search_tv_source_pinned	-	SABİTLENDİ
 values-b+tr	string	search_tv_sources_panel_meta	-	%2$d İÇİNDEN %1$d ETKİN · DEĞİŞİKLİKLER BİTTİ İLE UYGULANIR
+values-b+tr	string	search_tv_suggestion_recent	-	YAKIN ZAMANDA · %s
+values-b+tr	string	search_tv_suggestion_recent_suggested	-	YAKIN ZAMANDA · AYRICA ÖNERİLDİ
+values-b+tr	string	search_tv_suggestion_suggested	-	ÖNERİLEN
 values-b+tr	string	season	-	Sezon
 values-b+tr	string	season_format	-	%1$s %2$d%3$s
 values-b+tr	string	season_short	-	S
@@ -36862,6 +37592,18 @@ values-b+uk	plurals	links_hidden	few	%d приховані посилання
 values-b+uk	plurals	links_hidden	many	%d прихованих посилань
 values-b+uk	plurals	links_hidden	one	%d приховане посилання
 values-b+uk	plurals	links_hidden	other	%d прихованих посилань
+values-b+uk	plurals	search_state_no_suggestions_action	few	Шукати в усіх %d джерелах
+values-b+uk	plurals	search_state_no_suggestions_action	many	Шукати в усіх %d джерелах
+values-b+uk	plurals	search_state_no_suggestions_action	one	Шукати в %d джерелі
+values-b+uk	plurals	search_state_no_suggestions_action	other	Шукати в усіх %d джерелах
+values-b+uk	plurals	search_state_no_suggestions_body	few	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.
+values-b+uk	plurals	search_state_no_suggestions_body	many	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.
+values-b+uk	plurals	search_state_no_suggestions_body	one	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в %d джерелі.
+values-b+uk	plurals	search_state_no_suggestions_body	other	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.
+values-b+uk	plurals	search_tv_suggestion_sources	few	%d ДЖЕРЕЛА
+values-b+uk	plurals	search_tv_suggestion_sources	many	%d ДЖЕРЕЛ
+values-b+uk	plurals	search_tv_suggestion_sources	one	%d ДЖЕРЕЛО
+values-b+uk	plurals	search_tv_suggestion_sources	other	%d ДЖЕРЕЛА
 values-b+uk	string	account	-	обліковий запис
 values-b+uk	string	action_add_to_bookmarks	-	Змінити стан перегляду
 values-b+uk	string	action_add_to_favorites	-	Додати до обраного
@@ -37474,11 +38216,16 @@ values-b+uk	string	search_provider_text_providers	-	Пошук за постач
 values-b+uk	string	search_provider_text_types	-	Пошук за типами
 values-b+uk	string	search_state_idle_body_desktop	-	Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість.
 values-b+uk	string	search_state_no_results_type_filter	-	Лише %s. Фільтр за типом звужує пошук.
+values-b+uk	string	search_state_no_suggestions_detail	-	0 ПІДКАЗОК · 0 НЕЩОДАВНІХ ЗБІГІВ
+values-b+uk	string	search_state_no_suggestions_headline	-	Нічого не відповідає «%s»
 values-b+uk	string	search_suggestions	-	Пропозиції пошуку
 values-b+uk	string	search_suggestions_des	-	Показувати підказки пошуку під час введення тексту
 values-b+uk	string	search_tv_source_failed	-	ЗБІЙ %s
 values-b+uk	string	search_tv_source_pinned	-	ЗАКРІПЛЕНО
 values-b+uk	string	search_tv_sources_panel_meta	-	УВІМКНЕНО %1$d З %2$d · ЗМІНИ ЗАСТОСОВУЮТЬСЯ ПІСЛЯ НАТИСКАННЯ ГОТОВО
+values-b+uk	string	search_tv_suggestion_recent	-	НЕЩОДАВНЄ · %s
+values-b+uk	string	search_tv_suggestion_recent_suggested	-	НЕЩОДАВНЄ · ТАКОЖ ЗАПРОПОНОВАНО
+values-b+uk	string	search_tv_suggestion_suggested	-	ЗАПРОПОНОВАНО
 values-b+uk	string	season	-	Сезон
 values-b+uk	string	season_format	-	%1$s %2$d%3$s
 values-b+uk	string	season_short	-	С
@@ -37703,6 +38450,12 @@ values-b+ur	plurals	home_bookmarks_count	one	%d بک مارک
 values-b+ur	plurals	home_bookmarks_count	other	%d بک مارکس
 values-b+ur	plurals	home_sections_failed	one	%d سیکشن لوڈ نہیں ہو سکا
 values-b+ur	plurals	home_sections_failed	other	%d سیکشنز لوڈ نہیں ہو سکے
+values-b+ur	plurals	search_state_no_suggestions_action	one	%d ذریعے میں تلاش کریں
+values-b+ur	plurals	search_state_no_suggestions_action	other	تمام %d ذرائع میں تلاش کریں
+values-b+ur	plurals	search_state_no_suggestions_body	one	پھر بھی %d ذریعے میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔
+values-b+ur	plurals	search_state_no_suggestions_body	other	پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔
+values-b+ur	plurals	search_tv_suggestion_sources	one	%d ذریعہ
+values-b+ur	plurals	search_tv_suggestion_sources	other	%d ذرائع
 values-b+ur	string	account	-	اكاؤنٹ
 values-b+ur	string	action_add_to_bookmarks	-	واچ اسٹیٹس کو سیٹ کریں
 values-b+ur	string	action_add_to_favorites	-	پسندیدہ میں شامل کریں
@@ -38226,9 +38979,14 @@ values-b+ur	string	search_provider_text_providers	-	ذرائع کا استعما
 values-b+ur	string	search_provider_text_types	-	انواع کا استعمال کرتے ہوئے تلاش کریں
 values-b+ur	string	search_state_idle_body_desktop	-	عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔
 values-b+ur	string	search_state_no_results_type_filter	-	صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔
+values-b+ur	string	search_state_no_suggestions_detail	-	0 تجاویز · 0 حالیہ مماثلتیں
+values-b+ur	string	search_state_no_suggestions_headline	-	“%s” سے کچھ بھی مماثل نہیں
 values-b+ur	string	search_tv_source_failed	-	ناکام %s
 values-b+ur	string	search_tv_source_pinned	-	پن کیا گیا
 values-b+ur	string	search_tv_sources_panel_meta	-	%2$d میں سے %1$d فعال · تبدیلیاں ہو گیا پر لاگو ہوں گی
+values-b+ur	string	search_tv_suggestion_recent	-	حالیہ · %s
+values-b+ur	string	search_tv_suggestion_recent_suggested	-	حالیہ · تجویز کردہ بھی
+values-b+ur	string	search_tv_suggestion_suggested	-	تجویز کردہ
 values-b+ur	string	season	-	سیزن
 values-b+ur	string	season_format	-	%1$s %2$d%3$s
 values-b+ur	string	season_short	-	S
@@ -38411,6 +39169,9 @@ values-b+vi	plurals	episodes	other	Tập
 values-b+vi	plurals	home_bookmarks_count	other	%d MỤC
 values-b+vi	plurals	home_sections_failed	other	Không tải được %d mục
 values-b+vi	plurals	links_hidden	other	%d liên kết bị ẩn
+values-b+vi	plurals	search_state_no_suggestions_action	other	Tìm kiếm trên cả %d nguồn
+values-b+vi	plurals	search_state_no_suggestions_body	other	Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.
+values-b+vi	plurals	search_tv_suggestion_sources	other	%d NGUỒN
 values-b+vi	string	account	-	tài khoản
 values-b+vi	string	action_add_to_bookmarks	-	Đặt trạng thái xem
 values-b+vi	string	action_add_to_favorites	-	Thêm vào mục yêu thích
@@ -39023,11 +39784,16 @@ values-b+vi	string	search_provider_text_providers	-	Tìm kiếm theo nguồn phi
 values-b+vi	string	search_provider_text_types	-	Tìm kiếm theo thể loại
 values-b+vi	string	search_state_idle_body_desktop	-	Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi.
 values-b+vi	string	search_state_no_results_type_filter	-	Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm.
+values-b+vi	string	search_state_no_suggestions_detail	-	0 GỢI Ý · 0 KẾT QUẢ GẦN ĐÂY KHỚP
+values-b+vi	string	search_state_no_suggestions_headline	-	Không có gì khớp với “%s”
 values-b+vi	string	search_suggestions	-	Gợi ý tìm kiếm
 values-b+vi	string	search_suggestions_des	-	Hiển thị gợi ý tìm kiếm khi đang nhập
 values-b+vi	string	search_tv_source_failed	-	THẤT BẠI %s
 values-b+vi	string	search_tv_source_pinned	-	ĐÃ GHIM
 values-b+vi	string	search_tv_sources_panel_meta	-	%1$d TRÊN %2$d ĐÃ BẬT · THAY ĐỔI ÁP DỤNG KHI NHẤN HOÀN TẤT
+values-b+vi	string	search_tv_suggestion_recent	-	GẦN ĐÂY · %s
+values-b+vi	string	search_tv_suggestion_recent_suggested	-	GẦN ĐÂY · CŨNG ĐƯỢC GỢI Ý
+values-b+vi	string	search_tv_suggestion_suggested	-	ĐƯỢC GỢI Ý
 values-b+vi	string	season	-	Mùa
 values-b+vi	string	season_format	-	%1$s %2$d%3$s
 values-b+vi	string	season_short	-	Mùa
@@ -39252,6 +40018,9 @@ values-b+zh	plurals	episodes	other	集
 values-b+zh	plurals	home_bookmarks_count	other	%d 个书签
 values-b+zh	plurals	home_sections_failed	other	%d 个分区加载失败
 values-b+zh	plurals	links_hidden	other	%d 条隐藏链接
+values-b+zh	plurals	search_state_no_suggestions_action	other	搜索全部 %d 个来源
+values-b+zh	plurals	search_state_no_suggestions_body	other	按键盘上的搜索键，仍然搜索全部 %d 个来源。
+values-b+zh	plurals	search_tv_suggestion_sources	other	%d 来源
 values-b+zh	string	account	-	账户
 values-b+zh	string	action_add_to_bookmarks	-	设置观看状态
 values-b+zh	string	action_add_to_favorites	-	添加到收藏夹
@@ -39864,11 +40633,16 @@ values-b+zh	string	search_provider_text_providers	-	按片源搜索
 values-b+zh	string	search_provider_text_types	-	按类型搜索
 values-b+zh	string	search_state_idle_body_desktop	-	输入标题。每个来源响应后，结果会显示在其下方。
 values-b+zh	string	search_state_no_results_type_filter	-	仅限%s。类型筛选正在缩小搜索范围。
+values-b+zh	string	search_state_no_suggestions_detail	-	0 个建议 · 0 个最近匹配
+values-b+zh	string	search_state_no_suggestions_headline	-	没有与“%s”匹配的内容
 values-b+zh	string	search_suggestions	-	搜索建议
 values-b+zh	string	search_suggestions_des	-	输入时显示搜索建议
 values-b+zh	string	search_tv_source_failed	-	失败 %s
 values-b+zh	string	search_tv_source_pinned	-	已置顶
 values-b+zh	string	search_tv_sources_panel_meta	-	已启用 %1$d / %2$d · 更改将在点击完成后生效
+values-b+zh	string	search_tv_suggestion_recent	-	最近 · %s
+values-b+zh	string	search_tv_suggestion_recent_suggested	-	最近 · 也是建议
+values-b+zh	string	search_tv_suggestion_suggested	-	建议
 values-b+zh	string	season	-	季
 values-b+zh	string	season_format	-	%1$s %2$d%3$s
 values-b+zh	string	season_short	-	S
@@ -40092,6 +40866,9 @@ values-b+zh+TW	plurals	home_bookmarks_count	other	%d 個書籤
 values-b+zh+TW	plurals	home_sections_failed	other	%d 個分區載入失敗
 values-b+zh+TW	plurals	links_hidden	one	%d hidden link
 values-b+zh+TW	plurals	links_hidden	other	%d hidden links
+values-b+zh+TW	plurals	search_state_no_suggestions_action	other	搜尋全部 %d 個來源
+values-b+zh+TW	plurals	search_state_no_suggestions_body	other	按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。
+values-b+zh+TW	plurals	search_tv_suggestion_sources	other	%d 來源
 values-b+zh+TW	string	account	-	帳號
 values-b+zh+TW	string	action_add_to_bookmarks	-	設定觀看狀態
 values-b+zh+TW	string	action_add_to_favorites	-	加入我的最愛
@@ -40702,11 +41479,16 @@ values-b+zh+TW	string	search_provider_text_providers	-	按片源搜尋
 values-b+zh+TW	string	search_provider_text_types	-	按類型搜尋
 values-b+zh+TW	string	search_state_idle_body_desktop	-	輸入標題。每個來源回應後，結果會顯示在其下方。
 values-b+zh+TW	string	search_state_no_results_type_filter	-	僅限%s。類型篩選器正在縮小搜尋範圍。
+values-b+zh+TW	string	search_state_no_suggestions_detail	-	0 個建議 · 0 個最近相符
+values-b+zh+TW	string	search_state_no_suggestions_headline	-	沒有符合「%s」的內容
 values-b+zh+TW	string	search_suggestions	-	搜尋建議
 values-b+zh+TW	string	search_suggestions_des	-	輸入時顯示搜尋建議
 values-b+zh+TW	string	search_tv_source_failed	-	失敗 %s
 values-b+zh+TW	string	search_tv_source_pinned	-	已置頂
 values-b+zh+TW	string	search_tv_sources_panel_meta	-	已啟用 %1$d / %2$d · 變更將在點選完成後生效
+values-b+zh+TW	string	search_tv_suggestion_recent	-	最近 · %s
+values-b+zh+TW	string	search_tv_suggestion_recent_suggested	-	最近 · 也是建議
+values-b+zh+TW	string	search_tv_suggestion_suggested	-	建議
 values-b+zh+TW	string	season	-	季
 values-b+zh+TW	string	season_format	-	%1$s %2$d%3$s
 values-b+zh+TW	string	season_short	-	S

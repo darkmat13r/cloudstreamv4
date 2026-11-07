@@ -7,6 +7,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ЗАКЛАДКА"</item><item quantity="few">"%d ЗАКЛАДКИ"</item><item quantity="many">"%d ЗАКЛАДОК"</item><item quantity="other">"%d ЗАКЛАДКИ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Не вдалося завантажити %d розділ"</item><item quantity="few">"Не вдалося завантажити %d розділи"</item><item quantity="many">"Не вдалося завантажити %d розділів"</item><item quantity="other">"Не вдалося завантажити %d розділів"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d приховане посилання"</item><item quantity="few">"%d приховані посилання"</item><item quantity="many">"%d прихованих посилань"</item><item quantity="other">"%d прихованих посилань"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"Шукати в %d джерелі"</item><item quantity="few">"Шукати в усіх %d джерелах"</item><item quantity="many">"Шукати в усіх %d джерелах"</item><item quantity="other">"Шукати в усіх %d джерелах"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в %d джерелі."</item><item quantity="few">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах."</item><item quantity="many">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах."</item><item quantity="other">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ДЖЕРЕЛО"</item><item quantity="few">"%d ДЖЕРЕЛА"</item><item quantity="many">"%d ДЖЕРЕЛ"</item><item quantity="other">"%d ДЖЕРЕЛА"</item></plurals>
 <string name="account">"обліковий запис"</string>
 <string name="action_add_to_bookmarks">"Змінити стан перегляду"</string>
 <string name="action_add_to_favorites">"Додати до обраного"</string>
@@ -613,11 +616,16 @@
 <string name="search_provider_text_types">"Пошук за типами"</string>
 <string name="search_state_idle_body_desktop">"Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Лише %s. Фільтр за типом звужує пошук."</string>
+<string name="search_state_no_suggestions_detail">"0 ПІДКАЗОК · 0 НЕЩОДАВНІХ ЗБІГІВ"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Нічого не відповідає «%s»"</string>
 <string name="search_suggestions">"Пропозиції пошуку"</string>
 <string name="search_suggestions_des">"Показувати підказки пошуку під час введення тексту"</string>
 <string name="search_tv_source_failed" formatted="true">"ЗБІЙ %s"</string>
 <string name="search_tv_source_pinned">"ЗАКРІПЛЕНО"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"УВІМКНЕНО %1$d З %2$d · ЗМІНИ ЗАСТОСОВУЮТЬСЯ ПІСЛЯ НАТИСКАННЯ ГОТОВО"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"НЕЩОДАВНЄ · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"НЕЩОДАВНЄ · ТАКОЖ ЗАПРОПОНОВАНО"</string>
+<string name="search_tv_suggestion_suggested">"ЗАПРОПОНОВАНО"</string>
 <string name="season">"Сезон"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"С"</string>

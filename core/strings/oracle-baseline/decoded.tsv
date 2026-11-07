@@ -5,6 +5,12 @@ values-b+af/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOEKMERK
 values-b+af/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOEKMERKE	
 values-b+af/strings.xml	plurals	home_sections_failed	one	STR	%d afdeling kon nie laai nie	
 values-b+af/strings.xml	plurals	home_sections_failed	other	STR	%d afdelings kon nie laai nie	
+values-b+af/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Soek %d bron	
+values-b+af/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Soek al %d bronne	
+values-b+af/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Druk die sleutelbord se soeksleutel om tog %d bron te deursoek.	
+values-b+af/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek.	
+values-b+af/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d BRON	
+values-b+af/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d BRONNE	
 values-b+af/strings.xml	string	action_add_to_bookmarks	-	STR	Stel kykstatus	
 values-b+af/strings.xml	string	action_remove_from_bookmarks	-	STR	Verwyder	
 values-b+af/strings.xml	string	action_remove_watching	-	STR	Verwyder	
@@ -170,9 +176,14 @@ values-b+af/strings.xml	string	search_provider_text_providers	-	STR	Soek deur ve
 values-b+af/strings.xml	string	search_provider_text_types	-	STR	Soek met behulp van tipes	
 values-b+af/strings.xml	string	search_state_idle_body_desktop	-	STR	Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord.	
 values-b+af/strings.xml	string	search_state_no_results_type_filter	-	STR	Slegs %s. Jou tipe-filter beperk die soektog.	
+values-b+af/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE	
+values-b+af/strings.xml	string	search_state_no_suggestions_headline	-	STR	Niks stem ooreen met “%s” nie	
 values-b+af/strings.xml	string	search_tv_source_failed	-	STR	MISLUK %s	
 values-b+af/strings.xml	string	search_tv_source_pinned	-	STR	VASGESPELD	
 values-b+af/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d VAN %2$d GEAKTIVEER · WYSIGINGS GELD BY KLAAR	
+values-b+af/strings.xml	string	search_tv_suggestion_recent	-	STR	ONLANGS · %s	
+values-b+af/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ONLANGS · OOK VOORGESTEL	
+values-b+af/strings.xml	string	search_tv_suggestion_suggested	-	STR	VOORGESTEL	
 values-b+af/strings.xml	string	season	-	STR	Seisoen	
 values-b+af/strings.xml	string	seek_back_10_seconds	-	STR	Spring 10 sekondes terug	
 values-b+af/strings.xml	string	seek_forward_10_seconds	-	STR	Spring 10 sekondes vorentoe	
@@ -221,6 +232,12 @@ values-b+am/strings.xml	plurals	home_bookmarks_count	one	STR	%d ዕልባት
 values-b+am/strings.xml	plurals	home_bookmarks_count	other	STR	%d ዕልባቶች	
 values-b+am/strings.xml	plurals	home_sections_failed	one	STR	%d ክፍል መጫን አልተቻለም	
 values-b+am/strings.xml	plurals	home_sections_failed	other	STR	%d ክፍል መጫን አልተቻለም	
+values-b+am/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d ምንጭ ፈልግ	
+values-b+am/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ሁሉንም %d ምንጮች ፈልግ	
+values-b+am/strings.xml	plurals	search_state_no_suggestions_body	one	STR	ለማንኛውም %d ምንጭ ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።	
+values-b+am/strings.xml	plurals	search_state_no_suggestions_body	other	STR	ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።	
+values-b+am/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ምንጭ	
+values-b+am/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ምንጮች	
 values-b+am/strings.xml	string	action_add_to_bookmarks	-	STR	የምልከታ ሁኔታን ያቀናብሩ	
 values-b+am/strings.xml	string	action_open_watching	-	STR	ተጨማሪ መረጃ	
 values-b+am/strings.xml	string	action_remove_from_bookmarks	-	STR	ያስወግዱ	
@@ -377,9 +394,14 @@ values-b+am/strings.xml	string	search_provider_text_providers	-	STR	አቅራቢ
 values-b+am/strings.xml	string	search_provider_text_types	-	STR	ዓይነቶችን በመጠቀም ይፈልጉ	
 values-b+am/strings.xml	string	search_state_idle_body_desktop	-	STR	ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።	
 values-b+am/strings.xml	string	search_state_no_results_type_filter	-	STR	%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።	
+values-b+am/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ጥቆማዎች · 0 የቅርብ ጊዜ ተዛማጆች	
+values-b+am/strings.xml	string	search_state_no_suggestions_headline	-	STR	ከ«%s» ጋር የሚዛመድ ምንም የለም	
 values-b+am/strings.xml	string	search_tv_source_failed	-	STR	አልተሳካም %s	
 values-b+am/strings.xml	string	search_tv_source_pinned	-	STR	ተሰክቷል	
 values-b+am/strings.xml	string	search_tv_sources_panel_meta	-	STR	ከ%2$d ውስጥ %1$d ነቅተዋል · ለውጦች በተከናውኗል ላይ ይተገበራሉ	
+values-b+am/strings.xml	string	search_tv_suggestion_recent	-	STR	የቅርብ ጊዜ · %s	
+values-b+am/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	የቅርብ ጊዜ · የተጠቆመም	
+values-b+am/strings.xml	string	search_tv_suggestion_suggested	-	STR	የተጠቆመ	
 values-b+am/strings.xml	string	seek_back_10_seconds	-	STR	10 ሰከንድ ወደ ኋላ	
 values-b+am/strings.xml	string	seek_forward_10_seconds	-	STR	10 ሰከንድ ወደ ፊት	
 values-b+am/strings.xml	string	skip_loading	-	STR	መጫንን ዝለል	
@@ -429,6 +451,12 @@ values-b+apc/strings.xml	plurals	home_bookmarks_count	one	STR	%d إشارة مر
 values-b+apc/strings.xml	plurals	home_bookmarks_count	other	STR	%d إشارات مرجعية	
 values-b+apc/strings.xml	plurals	home_sections_failed	one	STR	م قدرنا نفتح %d قسم	
 values-b+apc/strings.xml	plurals	home_sections_failed	other	STR	م قدرنا نفتح %d أقسام	
+values-b+apc/strings.xml	plurals	search_state_no_suggestions_action	one	STR	نبّش بـ%d مصدر	
+values-b+apc/strings.xml	plurals	search_state_no_suggestions_action	other	STR	نبّش بكل المصادر الـ%d	
+values-b+apc/strings.xml	plurals	search_state_no_suggestions_body	one	STR	اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال.	
+values-b+apc/strings.xml	plurals	search_state_no_suggestions_body	other	STR	اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال.	
+values-b+apc/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d مصدر	
+values-b+apc/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d مصادر	
 values-b+apc/strings.xml	string	account	-	STR	أكونت	
 values-b+apc/strings.xml	string	action_add_to_bookmarks	-	STR	عدل حالة الحَضِر	
 values-b+apc/strings.xml	string	action_add_to_favorites	-	STR	زيدو ع المفضل	
@@ -1032,11 +1060,16 @@ values-b+apc/strings.xml	string	search_provider_text_providers	-	STR	عوزو ا
 values-b+apc/strings.xml	string	search_provider_text_types	-	STR	عوزو الأنواع ل تنبّشو	
 values-b+apc/strings.xml	string	search_state_idle_body_desktop	-	STR	اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.	
 values-b+apc/strings.xml	string	search_state_no_results_type_filter	-	STR	%s بس. فلتر النوع عم يضيّق البحث.	
+values-b+apc/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 اقتراحات · 0 تطابق مؤخراً	
+values-b+apc/strings.xml	string	search_state_no_suggestions_headline	-	STR	ما في شي بيطابق «%s»	
 values-b+apc/strings.xml	string	search_suggestions	-	STR	اقتراحات التنبيش	
 values-b+apc/strings.xml	string	search_suggestions_des	-	STR	بت فرجي اقتراحات إنتا و عم بت نَبّش	
 values-b+apc/strings.xml	string	search_tv_source_failed	-	STR	فشل %s	
 values-b+apc/strings.xml	string	search_tv_source_pinned	-	STR	مثبّت	
 values-b+apc/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d من %2$d مفعّل · التغييرات بتنطبق عند خلصت	
+values-b+apc/strings.xml	string	search_tv_suggestion_recent	-	STR	مؤخراً · %s	
+values-b+apc/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	مؤخراً · ومقترح كمان	
+values-b+apc/strings.xml	string	search_tv_suggestion_suggested	-	STR	مقترح	
 values-b+apc/strings.xml	string	season	-	STR	جزء	
 values-b+apc/strings.xml	string	season_format	-	STR	%1$s%2$d%3$s	
 values-b+apc/strings.xml	string	season_short	-	STR	ج	
@@ -1278,6 +1311,24 @@ values-b+ar/strings.xml	plurals	home_sections_failed	two	STR	تعذر تحميل
 values-b+ar/strings.xml	plurals	home_sections_failed	few	STR	تعذر تحميل %d أقسام	
 values-b+ar/strings.xml	plurals	home_sections_failed	many	STR	تعذر تحميل %d قسمًا	
 values-b+ar/strings.xml	plurals	home_sections_failed	other	STR	تعذر تحميل %d قسم	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_action	zero	STR	ابحث في %d مصدر	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_action	one	STR	ابحث في %d مصدر	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_action	two	STR	ابحث في جميع المصادر الـ%d	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_action	few	STR	ابحث في جميع المصادر الـ%d	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_action	many	STR	ابحث في جميع المصادر الـ%d	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ابحث في جميع المصادر الـ%d	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_body	zero	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_body	one	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_body	two	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_body	few	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_body	many	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
+values-b+ar/strings.xml	plurals	search_state_no_suggestions_body	other	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
+values-b+ar/strings.xml	plurals	search_tv_suggestion_sources	zero	STR	%d مصدر	
+values-b+ar/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d مصدر	
+values-b+ar/strings.xml	plurals	search_tv_suggestion_sources	two	STR	%d مصدران	
+values-b+ar/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d مصادر	
+values-b+ar/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d مصدرًا	
+values-b+ar/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d مصدر	
 values-b+ar/strings.xml	string	account	-	STR	حساب	
 values-b+ar/strings.xml	string	action_add_to_bookmarks	-	STR	إعداد حالة المشاهدة	
 values-b+ar/strings.xml	string	action_add_to_favorites	-	STR	اضافة الى المفضلة	
@@ -1884,11 +1935,16 @@ values-b+ar/strings.xml	string	search_provider_text_providers	-	STR	البحث �
 values-b+ar/strings.xml	string	search_provider_text_types	-	STR	البحث باستخدام الأنواع	
 values-b+ar/strings.xml	string	search_state_idle_body_desktop	-	STR	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.	
 values-b+ar/strings.xml	string	search_state_no_results_type_filter	-	STR	%s فقط. عامل تصفية النوع يضيّق نطاق البحث.	
+values-b+ar/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 اقتراحات · 0 تطابق حديث	
+values-b+ar/strings.xml	string	search_state_no_suggestions_headline	-	STR	لا شيء يطابق «%s»	
 values-b+ar/strings.xml	string	search_suggestions	-	STR	اقتراحات البحث	
 values-b+ar/strings.xml	string	search_suggestions_des	-	STR	عرض اقتراحات البحث أثناء الكتابة	
 values-b+ar/strings.xml	string	search_tv_source_failed	-	STR	فشل %s	
 values-b+ar/strings.xml	string	search_tv_source_pinned	-	STR	مثبّت	
 values-b+ar/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d من %2$d مفعّل · تُطبَّق التغييرات عند «تم»	
+values-b+ar/strings.xml	string	search_tv_suggestion_recent	-	STR	حديثًا · %s	
+values-b+ar/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	حديثًا · ومقترح أيضًا	
+values-b+ar/strings.xml	string	search_tv_suggestion_suggested	-	STR	مقترح	
 values-b+ar/strings.xml	string	season	-	STR	موسم	
 values-b+ar/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+ar/strings.xml	string	season_short	-	STR	م	
@@ -2120,6 +2176,24 @@ values-b+ars/strings.xml	plurals	home_sections_failed	two	STR	تعذر تحمي�
 values-b+ars/strings.xml	plurals	home_sections_failed	few	STR	تعذر تحميل %d أقسام	
 values-b+ars/strings.xml	plurals	home_sections_failed	many	STR	تعذر تحميل %d قسمًا	
 values-b+ars/strings.xml	plurals	home_sections_failed	other	STR	تعذر تحميل %d قسم	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_action	zero	STR	ابحث في %d مصدر	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_action	one	STR	ابحث في %d مصدر	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_action	two	STR	ابحث في جميع المصادر الـ%d	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_action	few	STR	ابحث في جميع المصادر الـ%d	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_action	many	STR	ابحث في جميع المصادر الـ%d	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ابحث في جميع المصادر الـ%d	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_body	zero	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_body	one	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_body	two	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_body	few	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_body	many	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
+values-b+ars/strings.xml	plurals	search_state_no_suggestions_body	other	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
+values-b+ars/strings.xml	plurals	search_tv_suggestion_sources	zero	STR	%d مصدر	
+values-b+ars/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d مصدر	
+values-b+ars/strings.xml	plurals	search_tv_suggestion_sources	two	STR	%d مصدران	
+values-b+ars/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d مصادر	
+values-b+ars/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d مصدرًا	
+values-b+ars/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d مصدر	
 values-b+ars/strings.xml	string	action_add_to_bookmarks	-	STR	ضبط حالة المشاهدة	
 values-b+ars/strings.xml	string	action_default	-	STR	عادي	
 values-b+ars/strings.xml	string	action_mark_as_watched	-	STR	وضع علامة كما شاهدت	
@@ -2427,9 +2501,14 @@ values-b+ars/strings.xml	string	search_provider_text_providers	-	STR	البحث 
 values-b+ars/strings.xml	string	search_provider_text_types	-	STR	البحث باستخدام الأنواع	
 values-b+ars/strings.xml	string	search_state_idle_body_desktop	-	STR	اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.	
 values-b+ars/strings.xml	string	search_state_no_results_type_filter	-	STR	%s بس. فلتر النوع يضيّق البحث.	
+values-b+ars/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 اقتراحات · 0 تطابق حديث	
+values-b+ars/strings.xml	string	search_state_no_suggestions_headline	-	STR	لا شيء يطابق «%s»	
 values-b+ars/strings.xml	string	search_tv_source_failed	-	STR	فشل %s	
 values-b+ars/strings.xml	string	search_tv_source_pinned	-	STR	مثبّت	
 values-b+ars/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d من %2$d مفعّل · التغييرات تنطبق عند «تم»	
+values-b+ars/strings.xml	string	search_tv_suggestion_recent	-	STR	حديثًا · %s	
+values-b+ars/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	حديثًا · ومقترح أيضًا	
+values-b+ars/strings.xml	string	search_tv_suggestion_suggested	-	STR	مقترح	
 values-b+ars/strings.xml	string	season	-	STR	موسم	
 values-b+ars/strings.xml	string	season_format	-	STR	%1$s%2$d%3$s	
 values-b+ars/strings.xml	string	season_short	-	STR	س	
@@ -2551,6 +2630,12 @@ values-b+as/strings.xml	plurals	home_bookmarks_count	one	STR	%d টা বুক
 values-b+as/strings.xml	plurals	home_bookmarks_count	other	STR	%d টা বুকমাৰ্ক	
 values-b+as/strings.xml	plurals	home_sections_failed	one	STR	%d টা অংশ লোড কৰিব পৰা নগ'ল	
 values-b+as/strings.xml	plurals	home_sections_failed	other	STR	%d টা অংশ লোড কৰিব পৰা নগ'ল	
+values-b+as/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%dটা উৎস সন্ধান কৰক	
+values-b+as/strings.xml	plurals	search_state_no_suggestions_action	other	STR	আটাইকেইটা %dটা উৎস সন্ধান কৰক	
+values-b+as/strings.xml	plurals	search_state_no_suggestions_body	one	STR	তথাপি %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।	
+values-b+as/strings.xml	plurals	search_state_no_suggestions_body	other	STR	তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।	
+values-b+as/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d উৎস	
+values-b+as/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d উৎস	
 values-b+as/strings.xml	string	account	-	STR	একাউন্ট	
 values-b+as/strings.xml	string	action_add_to_bookmarks	-	STR	দেখাৰ অৱস্থা নিৰ্ধাৰণ কৰক	
 values-b+as/strings.xml	string	action_add_to_favorites	-	STR	প্ৰিয় তালিকালৈ যোগ কৰক	
@@ -3097,9 +3182,14 @@ values-b+as/strings.xml	string	search_provider_text_providers	-	STR	প্ৰদ
 values-b+as/strings.xml	string	search_provider_text_types	-	STR	প্ৰকাৰৰ দ্বাৰা সন্ধান কৰক	
 values-b+as/strings.xml	string	search_state_idle_body_desktop	-	STR	এটা শিৰোনাম টাইপ কৰক। প্ৰতিটো উৎসই উত্তৰ দিয়াৰ লগে লগে ফলাফল তাৰ তলত দেখা যাব।	
 values-b+as/strings.xml	string	search_state_no_results_type_filter	-	STR	কেৱল %s। আপোনাৰ ধৰণৰ ফিল্টাৰে সন্ধান সংকীৰ্ণ কৰিছে।	
+values-b+as/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 টা পৰামৰ্শ · 0 টা শেহতীয়া মিল	
+values-b+as/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s”ৰ সৈতে একো নিমিলে	
 values-b+as/strings.xml	string	search_tv_source_failed	-	STR	ব্যৰ্থ %s	
 values-b+as/strings.xml	string	search_tv_source_pinned	-	STR	পিন কৰা হৈছে	
 values-b+as/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$dৰ ভিতৰত %1$d সক্ষম · পৰিৱৰ্তনসমূহ সম্পূৰ্ণ ত প্ৰয়োগ হয়	
+values-b+as/strings.xml	string	search_tv_suggestion_recent	-	STR	শেহতীয়া · %s	
+values-b+as/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	শেহতীয়া · পৰামৰ্শিতো	
+values-b+as/strings.xml	string	search_tv_suggestion_suggested	-	STR	পৰামৰ্শিত	
 values-b+as/strings.xml	string	season	-	STR	চিজন	
 values-b+as/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+as/strings.xml	string	season_short	-	STR	চি	
@@ -3284,6 +3374,12 @@ values-b+az/strings.xml	plurals	home_bookmarks_count	one	STR	%d ƏLFƏCİN
 values-b+az/strings.xml	plurals	home_bookmarks_count	other	STR	%d ƏLFƏCİN	
 values-b+az/strings.xml	plurals	home_sections_failed	one	STR	%d bölmə yüklənmədi	
 values-b+az/strings.xml	plurals	home_sections_failed	other	STR	%d bölmə yüklənmədi	
+values-b+az/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d mənbədə axtar	
+values-b+az/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Bütün %d mənbədə axtar	
+values-b+az/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Yenə də %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.	
+values-b+az/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.	
+values-b+az/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d MƏNBƏ	
+values-b+az/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d MƏNBƏ	
 values-b+az/strings.xml	string	advanced_search	-	STR	Təkmilləşdirilmiş Axtarış	
 values-b+az/strings.xml	string	anime	-	STR	Anime-lər	
 values-b+az/strings.xml	string	anime_singular	-	STR	Anime	
@@ -3481,9 +3577,14 @@ values-b+az/strings.xml	string	search_hint	-	STR	Axtar…
 values-b+az/strings.xml	string	search_poster_img_des	-	STR	Afişa	
 values-b+az/strings.xml	string	search_state_idle_body_desktop	-	STR	Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.	
 values-b+az/strings.xml	string	search_state_no_results_type_filter	-	STR	Yalnız %s. Növ filtriniz axtarışı daraldır.	
+values-b+az/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 TƏKLİF · 0 SON UYĞUNLUQ	
+values-b+az/strings.xml	string	search_state_no_suggestions_headline	-	STR	«%s» ilə uyğun heç nə yoxdur	
 values-b+az/strings.xml	string	search_tv_source_failed	-	STR	UĞURSUZ %s	
 values-b+az/strings.xml	string	search_tv_source_pinned	-	STR	SABİTLƏNİB	
 values-b+az/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d İÇİNDƏN %1$d AKTİV · DƏYİŞİKLİKLƏR HAZIR İLƏ TƏTBİQ OLUNUR	
+values-b+az/strings.xml	string	search_tv_suggestion_recent	-	STR	SON · %s	
+values-b+az/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	SON · HƏM DƏ TƏKLİF OLUNUB	
+values-b+az/strings.xml	string	search_tv_suggestion_suggested	-	STR	TƏKLİF OLUNUB	
 values-b+az/strings.xml	string	season	-	STR	Sezon	
 values-b+az/strings.xml	string	season_short	-	STR	S	
 values-b+az/strings.xml	string	seek_back_10_seconds	-	STR	10 saniyə geri keç	
@@ -3539,6 +3640,18 @@ values-b+be/strings.xml	plurals	home_sections_failed	one	STR	Не ўдалося
 values-b+be/strings.xml	plurals	home_sections_failed	few	STR	Не ўдалося загрузіць %d раздзелы	
 values-b+be/strings.xml	plurals	home_sections_failed	many	STR	Не ўдалося загрузіць %d раздзелаў	
 values-b+be/strings.xml	plurals	home_sections_failed	other	STR	Не ўдалося загрузіць %d раздзелаў	
+values-b+be/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Шукаць у %d крыніцы	
+values-b+be/strings.xml	plurals	search_state_no_suggestions_action	few	STR	Шукаць ва ўсіх %d крыніцах	
+values-b+be/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Шукаць ва ўсіх %d крыніцах	
+values-b+be/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Шукаць ва ўсіх %d крыніцах	
+values-b+be/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць у %d крыніцы.	
+values-b+be/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.	
+values-b+be/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.	
+values-b+be/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.	
+values-b+be/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d КРЫНІЦА	
+values-b+be/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d КРЫНІЦЫ	
+values-b+be/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d КРЫНІЦ	
+values-b+be/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d КРЫНІЦЫ	
 values-b+be/strings.xml	string	account	-	STR	уліковы запіс	
 values-b+be/strings.xml	string	action_add_to_bookmarks	-	STR	Задаць статус прагляду	
 values-b+be/strings.xml	string	action_add_to_favorites	-	STR	Дадаць у абранае	
@@ -4142,11 +4255,16 @@ values-b+be/strings.xml	string	search_provider_text_providers	-	STR	Пошук �
 values-b+be/strings.xml	string	search_provider_text_types	-	STR	Пошук праз тыпы	
 values-b+be/strings.xml	string	search_state_idle_body_desktop	-	STR	Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.	
 values-b+be/strings.xml	string	search_state_no_results_type_filter	-	STR	Толькі %s. Фільтр па тыпе звужае пошук.	
+values-b+be/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПРАПАНОЎ · 0 НЯДАЎНІХ СУПАДЗЕННЯЎ	
+values-b+be/strings.xml	string	search_state_no_suggestions_headline	-	STR	Нічога не адпавядае «%s»	
 values-b+be/strings.xml	string	search_suggestions	-	STR	Прапановы пошуку	
 values-b+be/strings.xml	string	search_suggestions_des	-	STR	Паказваць прапановы пошуку падчас уводу тэксту	
 values-b+be/strings.xml	string	search_tv_source_failed	-	STR	ЗБОЙ %s	
 values-b+be/strings.xml	string	search_tv_source_pinned	-	STR	ЗАМАЦАВАНА	
 values-b+be/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d З %2$d УКЛЮЧАНА · ЗМЕНЫ ПРЫМЯНЯЮЦЦА ПАСЛЯ ГАТОВА	
+values-b+be/strings.xml	string	search_tv_suggestion_recent	-	STR	НЯДАЎНА · %s	
+values-b+be/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	НЯДАЎНА · ТАКСАМА ПРАПАНАВАНА	
+values-b+be/strings.xml	string	search_tv_suggestion_suggested	-	STR	ПРАПАНАВАНА	
 values-b+be/strings.xml	string	season	-	STR	Сезон	
 values-b+be/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+be/strings.xml	string	season_short	-	STR	Сез	
@@ -4368,6 +4486,12 @@ values-b+bg/strings.xml	plurals	home_bookmarks_count	one	STR	%d ОТМЕТКА
 values-b+bg/strings.xml	plurals	home_bookmarks_count	other	STR	%d ОТМЕТКИ	
 values-b+bg/strings.xml	plurals	home_sections_failed	one	STR	%d секция не се зареди	
 values-b+bg/strings.xml	plurals	home_sections_failed	other	STR	%d секции не се заредиха	
+values-b+bg/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Търсене в %d източник	
+values-b+bg/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Търсене във всички %d източника	
+values-b+bg/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това в %d източник.	
+values-b+bg/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това във всички %d източника.	
+values-b+bg/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ИЗТОЧНИК	
+values-b+bg/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ИЗТОЧНИКА	
 values-b+bg/strings.xml	string	account	-	STR	Акаунт	
 values-b+bg/strings.xml	string	action_add_to_bookmarks	-	STR	Задайте статус на гледане	
 values-b+bg/strings.xml	string	action_add_to_favorites	-	STR	Добави в любими	
@@ -4964,11 +5088,16 @@ values-b+bg/strings.xml	string	search_provider_text_providers	-	STR	Търсен
 values-b+bg/strings.xml	string	search_provider_text_types	-	STR	Търсене с помощта на типове	
 values-b+bg/strings.xml	string	search_state_idle_body_desktop	-	STR	Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори.	
 values-b+bg/strings.xml	string	search_state_no_results_type_filter	-	STR	Само %s. Филтърът по тип стеснява търсенето.	
+values-b+bg/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПРЕДЛОЖЕНИЯ · 0 СКОРОШНИ СЪВПАДЕНИЯ	
+values-b+bg/strings.xml	string	search_state_no_suggestions_headline	-	STR	Нищо не съответства на „%s“	
 values-b+bg/strings.xml	string	search_suggestions	-	STR	Предложения за търсене	
 values-b+bg/strings.xml	string	search_suggestions_des	-	STR	Показвай предложения за търсене по време на писане	
 values-b+bg/strings.xml	string	search_tv_source_failed	-	STR	НЕУСПЕШНО %s	
 values-b+bg/strings.xml	string	search_tv_source_pinned	-	STR	ЗАКАЧЕН	
 values-b+bg/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d ОТ %2$d ВКЛЮЧЕНИ · ПРОМЕНИТЕ СЕ ПРИЛАГАТ СЛЕД КРАЙ	
+values-b+bg/strings.xml	string	search_tv_suggestion_recent	-	STR	СКОРОШНО · %s	
+values-b+bg/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	СКОРОШНО · СЪЩО ПРЕДЛОЖЕНО	
+values-b+bg/strings.xml	string	search_tv_suggestion_suggested	-	STR	ПРЕДЛОЖЕНО	
 values-b+bg/strings.xml	string	season	-	STR	Сезон	
 values-b+bg/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+bg/strings.xml	string	season_short	-	STR	С	
@@ -5183,6 +5312,12 @@ values-b+bn/strings.xml	plurals	home_bookmarks_count	one	STR	%d টি বুক
 values-b+bn/strings.xml	plurals	home_bookmarks_count	other	STR	%d টি বুকমার্ক	
 values-b+bn/strings.xml	plurals	home_sections_failed	one	STR	%dটি বিভাগ লোড করা যায়নি	
 values-b+bn/strings.xml	plurals	home_sections_failed	other	STR	%dটি বিভাগ লোড করা যায়নি	
+values-b+bn/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%dটি উৎসে খুঁজুন	
+values-b+bn/strings.xml	plurals	search_state_no_suggestions_action	other	STR	সব %dটি উৎসে খুঁজুন	
+values-b+bn/strings.xml	plurals	search_state_no_suggestions_body	one	STR	তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।	
+values-b+bn/strings.xml	plurals	search_state_no_suggestions_body	other	STR	তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।	
+values-b+bn/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d উৎস	
+values-b+bn/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d উৎস	
 values-b+bn/strings.xml	string	account	-	STR	অ্যাকাউন্ট	
 values-b+bn/strings.xml	string	action_add_to_bookmarks	-	STR	বুকমার্ক করুন	
 values-b+bn/strings.xml	string	action_default	-	STR	ডিফল্ট	
@@ -5558,11 +5693,16 @@ values-b+bn/strings.xml	string	search_provider_text_providers	-	STR	প্রভ
 values-b+bn/strings.xml	string	search_provider_text_types	-	STR	ধরণ অনুযায়ি খুঁজুন	
 values-b+bn/strings.xml	string	search_state_idle_body_desktop	-	STR	একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।	
 values-b+bn/strings.xml	string	search_state_no_results_type_filter	-	STR	শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।	
+values-b+bn/strings.xml	string	search_state_no_suggestions_detail	-	STR	0টি সাজেশন · 0টি সাম্প্রতিক মিল	
+values-b+bn/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s”-এর সাথে কিছুই মেলেনি	
 values-b+bn/strings.xml	string	search_suggestions	-	STR	সার্চ সাজেশন	
 values-b+bn/strings.xml	string	search_suggestions_des	-	STR	টাইপ করার সময় সার্চ সাজেশন দেখান	
 values-b+bn/strings.xml	string	search_tv_source_failed	-	STR	ব্যর্থ %s	
 values-b+bn/strings.xml	string	search_tv_source_pinned	-	STR	পিন করা	
 values-b+bn/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d-এর মধ্যে %1$d চালু · সম্পন্ন চাপলে পরিবর্তন প্রযোজ্য হবে	
+values-b+bn/strings.xml	string	search_tv_suggestion_recent	-	STR	সাম্প্রতিক · %s	
+values-b+bn/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	সাম্প্রতিক · প্রস্তাবিতও	
+values-b+bn/strings.xml	string	search_tv_suggestion_suggested	-	STR	প্রস্তাবিত	
 values-b+bn/strings.xml	string	season	-	STR	সিজন	
 values-b+bn/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+bn/strings.xml	string	season_short	-	STR	S	
@@ -5685,6 +5825,15 @@ values-b+ca/strings.xml	plurals	home_bookmarks_count	other	STR	%d FAVORITS
 values-b+ca/strings.xml	plurals	home_sections_failed	one	STR	No s'ha pogut carregar %d secció	
 values-b+ca/strings.xml	plurals	home_sections_failed	many	STR	No s'han pogut carregar %d seccions	
 values-b+ca/strings.xml	plurals	home_sections_failed	other	STR	No s'han pogut carregar %d seccions	
+values-b+ca/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Cercar a %d font	
+values-b+ca/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Cercar a totes les %d fonts	
+values-b+ca/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Cercar a totes les %d fonts	
+values-b+ca/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Prem la tecla de cerca del teclat per cercar igualment a %d font.	
+values-b+ca/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.	
+values-b+ca/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.	
+values-b+ca/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONT	
+values-b+ca/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d FONTS	
+values-b+ca/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTS	
 values-b+ca/strings.xml	string	account	-	STR	compte	
 values-b+ca/strings.xml	string	action_add_to_bookmarks	-	STR	Defineix l'estat de visualització	
 values-b+ca/strings.xml	string	action_add_to_favorites	-	STR	Afegir als favorits	
@@ -6004,9 +6153,14 @@ values-b+ca/strings.xml	string	search_provider_text_providers	-	STR	Cerca amb pr
 values-b+ca/strings.xml	string	search_provider_text_types	-	STR	Cerca per tipus	
 values-b+ca/strings.xml	string	search_state_idle_body_desktop	-	STR	Escriu un títol. Els resultats apareixen sota cada font quan respon.	
 values-b+ca/strings.xml	string	search_state_no_results_type_filter	-	STR	Només %s. El filtre de tipus està limitant la cerca.	
+values-b+ca/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGERIMENTS · 0 COINCIDÈNCIES RECENTS	
+values-b+ca/strings.xml	string	search_state_no_suggestions_headline	-	STR	Res no coincideix amb «%s»	
 values-b+ca/strings.xml	string	search_tv_source_failed	-	STR	HA FALLAT %s	
 values-b+ca/strings.xml	string	search_tv_source_pinned	-	STR	FIXAT	
 values-b+ca/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d DE %2$d ACTIVATS · ELS CANVIS ES REGISTREN AMB FET	
+values-b+ca/strings.xml	string	search_tv_suggestion_recent	-	STR	RECENT · %s	
+values-b+ca/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECENT · TAMBÉ SUGGERIT	
+values-b+ca/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGGERIT	
 values-b+ca/strings.xml	string	seek_back_10_seconds	-	STR	Retrocedeix 10 segons	
 values-b+ca/strings.xml	string	seek_forward_10_seconds	-	STR	Avança 10 segons	
 values-b+ca/strings.xml	string	select_all	-	STR	Seleccionar tot	
@@ -6111,6 +6265,12 @@ values-b+ckb/strings.xml	plurals	home_bookmarks_count	one	STR	%d ئاماژە
 values-b+ckb/strings.xml	plurals	home_bookmarks_count	other	STR	%d ئاماژە	
 values-b+ckb/strings.xml	plurals	home_sections_failed	one	STR	%d بەش بار نەکرا	
 values-b+ckb/strings.xml	plurals	home_sections_failed	other	STR	%d بەش بار نەکرا	
+values-b+ckb/strings.xml	plurals	search_state_no_suggestions_action	one	STR	گەڕان لە %d سەرچاوە	
+values-b+ckb/strings.xml	plurals	search_state_no_suggestions_action	other	STR	گەڕان لە هەموو %d سەرچاوەکە	
+values-b+ckb/strings.xml	plurals	search_state_no_suggestions_body	one	STR	کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە %d سەرچاوە بگەڕێیت.	
+values-b+ckb/strings.xml	plurals	search_state_no_suggestions_body	other	STR	کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت.	
+values-b+ckb/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d سەرچاوە	
+values-b+ckb/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d سەرچاوە	
 values-b+ckb/strings.xml	string	action_add_to_bookmarks	-	STR	دۆخی تەماشاکردن دابنێ	
 values-b+ckb/strings.xml	string	action_remove_from_bookmarks	-	STR	لابردن	
 values-b+ckb/strings.xml	string	app_dub_sub_episode_text_format	-	STR	%1$sئەڵقەى%2$d	
@@ -6261,9 +6421,14 @@ values-b+ckb/strings.xml	string	search_hint_site	-	STR	بگەڕێ بۆ%s…
 values-b+ckb/strings.xml	string	search_poster_img_des	-	STR	پۆستەر	
 values-b+ckb/strings.xml	string	search_state_idle_body_desktop	-	STR	ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.	
 values-b+ckb/strings.xml	string	search_state_no_results_type_filter	-	STR	تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.	
+values-b+ckb/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 پێشنیار · 0 هاوتای دوایین	
+values-b+ckb/strings.xml	string	search_state_no_suggestions_headline	-	STR	هیچ شتێک لەگەڵ «%s» ناگونجێت	
 values-b+ckb/strings.xml	string	search_tv_source_failed	-	STR	شکستی هێنا %s	
 values-b+ckb/strings.xml	string	search_tv_source_pinned	-	STR	جێگیرکراو	
 values-b+ckb/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d لە %2$d چالاککراون · گۆڕانکارییەکان دوای تەواو جێبەجێ دەبن	
+values-b+ckb/strings.xml	string	search_tv_suggestion_recent	-	STR	دوایین · %s	
+values-b+ckb/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	دوایین · هەروەها پێشنیارکراو	
+values-b+ckb/strings.xml	string	search_tv_suggestion_suggested	-	STR	پێشنیارکراو	
 values-b+ckb/strings.xml	string	seek_back_10_seconds	-	STR	10 چرکە بگەڕێوە دواوە	
 values-b+ckb/strings.xml	string	seek_forward_10_seconds	-	STR	10 چرکە بڕۆ پێشەوە	
 values-b+ckb/strings.xml	string	select_all	-	STR	هەموو هەڵبژێرە	
@@ -6310,6 +6475,18 @@ values-b+cs/strings.xml	plurals	links_hidden	one	STR	%d skrytý odkaz
 values-b+cs/strings.xml	plurals	links_hidden	few	STR	%d skryté odkazy	
 values-b+cs/strings.xml	plurals	links_hidden	many	STR	%d skrytých odkazů	
 values-b+cs/strings.xml	plurals	links_hidden	other	STR	%d skrytých odkazů	
+values-b+cs/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Hledat v %d zdroji	
+values-b+cs/strings.xml	plurals	search_state_no_suggestions_action	few	STR	Hledat ve všech %d zdrojích	
+values-b+cs/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Hledat ve všech %d zdrojích	
+values-b+cs/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Hledat ve všech %d zdrojích	
+values-b+cs/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte %d zdroj.	
+values-b+cs/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všechny %d zdroje.	
+values-b+cs/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdroje.	
+values-b+cs/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů.	
+values-b+cs/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ZDROJ	
+values-b+cs/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ZDROJE	
+values-b+cs/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ZDROJE	
+values-b+cs/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ZDROJŮ	
 values-b+cs/strings.xml	string	account	-	STR	účet	
 values-b+cs/strings.xml	string	action_add_to_bookmarks	-	STR	Nastavit stav sledování	
 values-b+cs/strings.xml	string	action_add_to_favorites	-	STR	Přidat do oblíbených	
@@ -6916,11 +7093,16 @@ values-b+cs/strings.xml	string	search_provider_text_providers	-	STR	Hledat pomoc
 values-b+cs/strings.xml	string	search_provider_text_types	-	STR	Hledat pomocí typů	
 values-b+cs/strings.xml	string	search_state_idle_body_desktop	-	STR	Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví.	
 values-b+cs/strings.xml	string	search_state_no_results_type_filter	-	STR	Pouze %s. Filtr typů zužuje hledání.	
+values-b+cs/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 NÁVRHŮ · 0 NEDÁVNÝCH SHOD	
+values-b+cs/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nic neodpovídá „%s“	
 values-b+cs/strings.xml	string	search_suggestions	-	STR	Návrhy vyhledávání	
 values-b+cs/strings.xml	string	search_suggestions_des	-	STR	Zobrazit návrhy vyhledávání během psaní	
 values-b+cs/strings.xml	string	search_tv_source_failed	-	STR	SELHALO %s	
 values-b+cs/strings.xml	string	search_tv_source_pinned	-	STR	PŘIPNUTO	
 values-b+cs/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d Z %2$d ZAPNUTO · ZMĚNY SE UPLATNÍ STISKNUTÍM HOTOVO	
+values-b+cs/strings.xml	string	search_tv_suggestion_recent	-	STR	NEDÁVNÉ · %s	
+values-b+cs/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NEDÁVNÉ · TAKÉ NAVRŽENO	
+values-b+cs/strings.xml	string	search_tv_suggestion_suggested	-	STR	NAVRŽENO	
 values-b+cs/strings.xml	string	season	-	STR	Sezóna	
 values-b+cs/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+cs/strings.xml	string	season_short	-	STR	S	
@@ -7146,6 +7328,12 @@ values-b+de/strings.xml	plurals	home_sections_failed	one	STR	%d Bereich konnte n
 values-b+de/strings.xml	plurals	home_sections_failed	other	STR	%d Bereiche konnten nicht geladen werden	
 values-b+de/strings.xml	plurals	links_hidden	one	STR	%d ausgeblendeter Link	
 values-b+de/strings.xml	plurals	links_hidden	other	STR	%d ausgeblendete Links	
+values-b+de/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d Quelle durchsuchen	
+values-b+de/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Alle %d Quellen durchsuchen	
+values-b+de/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Drücke die Suchtaste der Tastatur, um trotzdem %d Quelle zu durchsuchen.	
+values-b+de/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Drücke die Suchtaste der Tastatur, um trotzdem alle %d Quellen zu durchsuchen.	
+values-b+de/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d QUELLE	
+values-b+de/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d QUELLEN	
 values-b+de/strings.xml	string	account	-	STR	Account	
 values-b+de/strings.xml	string	action_add_to_bookmarks	-	STR	Status setzen	
 values-b+de/strings.xml	string	action_add_to_favorites	-	STR	Zu Favoriten hinzufügen	
@@ -7752,11 +7940,16 @@ values-b+de/strings.xml	string	search_provider_text_providers	-	STR	Suche anhand
 values-b+de/strings.xml	string	search_provider_text_types	-	STR	Suche anhand Typen	
 values-b+de/strings.xml	string	search_state_idle_body_desktop	-	STR	Titel eingeben. Ergebnisse erscheinen unter jeder Quelle, sobald sie antwortet.	
 values-b+de/strings.xml	string	search_state_no_results_type_filter	-	STR	Nur %s. Der Typfilter schränkt die Suche ein.	
+values-b+de/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 VORSCHLÄGE · 0 TREFFER IM VERLAUF	
+values-b+de/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nichts passt zu „%s“	
 values-b+de/strings.xml	string	search_suggestions	-	STR	Empfehlungen suchen	
 values-b+de/strings.xml	string	search_suggestions_des	-	STR	Beim Tippen Suchempfehlungen anzeigen	
 values-b+de/strings.xml	string	search_tv_source_failed	-	STR	FEHLGESCHLAGEN %s	
 values-b+de/strings.xml	string	search_tv_source_pinned	-	STR	ANGEPINNT	
 values-b+de/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d VON %2$d AKTIV · ÄNDERUNGEN WERDEN BEI FERTIG ÜBERNOMMEN	
+values-b+de/strings.xml	string	search_tv_suggestion_recent	-	STR	ZULETZT · %s	
+values-b+de/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ZULETZT · AUCH VORGESCHLAGEN	
+values-b+de/strings.xml	string	search_tv_suggestion_suggested	-	STR	VORGESCHLAGEN	
 values-b+de/strings.xml	string	season	-	STR	Staffel	
 values-b+de/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+de/strings.xml	string	season_short	-	STR	S	
@@ -7976,6 +8169,12 @@ values-b+el/strings.xml	plurals	home_bookmarks_count	one	STR	%d ΣΕΛΙΔΟΔΕ
 values-b+el/strings.xml	plurals	home_bookmarks_count	other	STR	%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ	
 values-b+el/strings.xml	plurals	home_sections_failed	one	STR	Αποτυχία φόρτωσης %d ενότητας	
 values-b+el/strings.xml	plurals	home_sections_failed	other	STR	Αποτυχία φόρτωσης %d ενοτήτων	
+values-b+el/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Αναζήτηση σε %d πηγή	
+values-b+el/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Αναζήτηση σε όλες τις %d πηγές	
+values-b+el/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως.	
+values-b+el/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως.	
+values-b+el/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ΠΗΓΗ	
+values-b+el/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ΠΗΓΕΣ	
 values-b+el/strings.xml	string	account	-	STR	Λογαριασμός	
 values-b+el/strings.xml	string	action_add_to_bookmarks	-	STR	Ορισμός κατάστασης θέασης	
 values-b+el/strings.xml	string	action_add_to_favorites	-	STR	Προσθήκη στα Αγαπημένα	
@@ -8530,9 +8729,14 @@ values-b+el/strings.xml	string	search_provider_text_providers	-	STR	Αναζήτ
 values-b+el/strings.xml	string	search_provider_text_types	-	STR	Αναζήτηση βάσει τύπων	
 values-b+el/strings.xml	string	search_state_idle_body_desktop	-	STR	Πληκτρολογήστε έναν τίτλο. Τα αποτελέσματα εμφανίζονται κάτω από κάθε πηγή μόλις απαντήσει.	
 values-b+el/strings.xml	string	search_state_no_results_type_filter	-	STR	Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.	
+values-b+el/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ΠΡΟΤΑΣΕΙΣ · 0 ΠΡΟΣΦΑΤΕΣ ΑΝΤΙΣΤΟΙΧΙΕΣ	
+values-b+el/strings.xml	string	search_state_no_suggestions_headline	-	STR	Τίποτα δεν ταιριάζει με «%s»	
 values-b+el/strings.xml	string	search_tv_source_failed	-	STR	ΑΠΟΤΥΧΙΑ %s	
 values-b+el/strings.xml	string	search_tv_source_pinned	-	STR	ΚΑΡΦΙΤΣΩΜΕΝΟ	
 values-b+el/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d ΑΠΟ %2$d ΕΝΕΡΓΕΣ · ΟΙ ΑΛΛΑΓΕΣ ΕΦΑΡΜΟΖΟΝΤΑΙ ΜΕ ΤΟ ΕΓΙΝΕ	
+values-b+el/strings.xml	string	search_tv_suggestion_recent	-	STR	ΠΡΟΣΦΑΤΑ · %s	
+values-b+el/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ΠΡΟΣΦΑΤΑ · ΕΠΙΣΗΣ ΠΡΟΤΕΙΝΕΤΑΙ	
+values-b+el/strings.xml	string	search_tv_suggestion_suggested	-	STR	ΠΡΟΤΕΙΝΕΤΑΙ	
 values-b+el/strings.xml	string	season	-	STR	Κύκλος	
 values-b+el/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+el/strings.xml	string	season_short	-	STR	Σ	
@@ -8734,6 +8938,12 @@ values-b+eo/strings.xml	plurals	home_bookmarks_count	one	STR	%d LEGOSIGNO
 values-b+eo/strings.xml	plurals	home_bookmarks_count	other	STR	%d LEGOSIGNOJ	
 values-b+eo/strings.xml	plurals	home_sections_failed	one	STR	%d sekcio ne ŝargiĝis	
 values-b+eo/strings.xml	plurals	home_sections_failed	other	STR	%d sekcioj ne ŝargiĝis	
+values-b+eo/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Serĉi en %d fonto	
+values-b+eo/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Serĉi en ĉiuj %d fontoj	
+values-b+eo/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Premu la serĉoklavon de la klavaro por tamen serĉi en %d fonto.	
+values-b+eo/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj.	
+values-b+eo/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTO	
+values-b+eo/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTOJ	
 values-b+eo/strings.xml	string	account	-	STR	konto	
 values-b+eo/strings.xml	string	action_open_play	-	REF	string/home_play	
 values-b+eo/strings.xml	string	action_open_watching	-	STR	Pli da informoj	
@@ -8946,10 +9156,15 @@ values-b+eo/strings.xml	string	search_provider_text_providers	-	STR	Serĉi uzant
 values-b+eo/strings.xml	string	search_provider_text_types	-	STR	Serĉi uzante tipojn	
 values-b+eo/strings.xml	string	search_state_idle_body_desktop	-	STR	Tajpu titolon. Rezultoj aperas sub ĉiu fonto kiam ĝi respondas.	
 values-b+eo/strings.xml	string	search_state_no_results_type_filter	-	STR	Nur %s. Via tipfiltrilo mallarĝigas la serĉon.	
+values-b+eo/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ	
+values-b+eo/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nenio kongruas kun “%s”	
 values-b+eo/strings.xml	string	search_suggestions	-	STR	Serĉaj Sugestoj	
 values-b+eo/strings.xml	string	search_tv_source_failed	-	STR	MALSUKCESIS %s	
 values-b+eo/strings.xml	string	search_tv_source_pinned	-	STR	FIKSITA	
 values-b+eo/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d EL %2$d ŜALTITAJ · ŜANĜOJ APLIKIĜAS PER FARITE	
+values-b+eo/strings.xml	string	search_tv_suggestion_recent	-	STR	LASTATEMPA · %s	
+values-b+eo/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	LASTATEMPA · ANKAŬ SUGESTITA	
+values-b+eo/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGESTITA	
 values-b+eo/strings.xml	string	season	-	STR	Sezono	
 values-b+eo/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+eo/strings.xml	string	season_short	-	STR	S	
@@ -9025,6 +9240,15 @@ values-b+es/strings.xml	plurals	home_sections_failed	other	STR	No se pudieron ca
 values-b+es/strings.xml	plurals	links_hidden	one	STR	%d enlace oculto	
 values-b+es/strings.xml	plurals	links_hidden	many	STR	%d enlaces ocultos	
 values-b+es/strings.xml	plurals	links_hidden	other	STR	%d enlaces ocultos	
+values-b+es/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Buscar en %d fuente	
+values-b+es/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Buscar en las %d fuentes	
+values-b+es/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Buscar en las %d fuentes	
+values-b+es/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Pulsa la tecla de búsqueda del teclado para buscar igualmente en %d fuente.	
+values-b+es/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.	
+values-b+es/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.	
+values-b+es/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FUENTE	
+values-b+es/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d FUENTES	
+values-b+es/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FUENTES	
 values-b+es/strings.xml	string	account	-	STR	Cuenta	
 values-b+es/strings.xml	string	action_add_to_bookmarks	-	STR	Seleccionar estado de visualización	
 values-b+es/strings.xml	string	action_add_to_favorites	-	STR	Añadido a favoritos	
@@ -9631,11 +9855,16 @@ values-b+es/strings.xml	string	search_provider_text_providers	-	STR	Buscar usand
 values-b+es/strings.xml	string	search_provider_text_types	-	STR	Buscar por tipos	
 values-b+es/strings.xml	string	search_state_idle_body_desktop	-	STR	Escriba un título. Los resultados aparecen bajo cada fuente cuando responde.	
 values-b+es/strings.xml	string	search_state_no_results_type_filter	-	STR	Solo %s. Su filtro de tipo está reduciendo la búsqueda.	
+values-b+es/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGERENCIAS · 0 COINCIDENCIAS RECIENTES	
+values-b+es/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nada coincide con «%s»	
 values-b+es/strings.xml	string	search_suggestions	-	STR	Sugerencias de Búsqueda	
 values-b+es/strings.xml	string	search_suggestions_des	-	STR	Mostrar sugerencias de búsqueda mientras escribe	
 values-b+es/strings.xml	string	search_tv_source_failed	-	STR	FALLÓ %s	
 values-b+es/strings.xml	string	search_tv_source_pinned	-	STR	FIJADO	
 values-b+es/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d DE %2$d ACTIVADOS · LOS CAMBIOS SE APLICAN AL PULSAR HECHO	
+values-b+es/strings.xml	string	search_tv_suggestion_recent	-	STR	RECIENTE · %s	
+values-b+es/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECIENTE · TAMBIÉN SUGERIDO	
+values-b+es/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGERIDO	
 values-b+es/strings.xml	string	season	-	STR	Temporada	
 values-b+es/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+es/strings.xml	string	season_short	-	STR	T	
@@ -9855,6 +10084,12 @@ values-b+fa/strings.xml	plurals	home_bookmarks_count	one	STR	%d نشانک
 values-b+fa/strings.xml	plurals	home_bookmarks_count	other	STR	%d نشانک	
 values-b+fa/strings.xml	plurals	home_sections_failed	one	STR	%d بخش بارگیری نشد	
 values-b+fa/strings.xml	plurals	home_sections_failed	other	STR	%d بخش بارگیری نشد	
+values-b+fa/strings.xml	plurals	search_state_no_suggestions_action	one	STR	جست‌وجو در %d منبع	
+values-b+fa/strings.xml	plurals	search_state_no_suggestions_action	other	STR	جست‌وجو در همهٔ %d منبع	
+values-b+fa/strings.xml	plurals	search_state_no_suggestions_body	one	STR	برای جست‌وجو در %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.	
+values-b+fa/strings.xml	plurals	search_state_no_suggestions_body	other	STR	برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.	
+values-b+fa/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d منبع	
+values-b+fa/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d منبع	
 values-b+fa/strings.xml	string	action_add_to_bookmarks	-	STR	تنظیم وضعیت تماشا	
 values-b+fa/strings.xml	string	action_default	-	STR	پیش‌فرض	
 values-b+fa/strings.xml	string	action_open_play	-	REF	string/home_play	
@@ -10195,9 +10430,14 @@ values-b+fa/strings.xml	string	search_provider_text_providers	-	STR	جستجو �
 values-b+fa/strings.xml	string	search_provider_text_types	-	STR	جستجو از طریق انواع	
 values-b+fa/strings.xml	string	search_state_idle_body_desktop	-	STR	عنوانی را بنویسید. نتایج هر منبع پس از پاسخ آن، زیر نامش نمایش داده می‌شود.	
 values-b+fa/strings.xml	string	search_state_no_results_type_filter	-	STR	فقط %s. فیلتر نوع شما جستجو را محدود می‌کند.	
+values-b+fa/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 پیشنهاد · 0 مورد منطبق اخیر	
+values-b+fa/strings.xml	string	search_state_no_suggestions_headline	-	STR	هیچ چیزی با «%s» مطابقت ندارد	
 values-b+fa/strings.xml	string	search_tv_source_failed	-	STR	ناموفق %s	
 values-b+fa/strings.xml	string	search_tv_source_pinned	-	STR	سنجاق‌شده	
 values-b+fa/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d از %2$d فعال · تغییرات پس از «انجام شد» اعمال می‌شود	
+values-b+fa/strings.xml	string	search_tv_suggestion_recent	-	STR	اخیر · %s	
+values-b+fa/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	اخیر · پیشنهادشده نیز	
+values-b+fa/strings.xml	string	search_tv_suggestion_suggested	-	STR	پیشنهادشده	
 values-b+fa/strings.xml	string	season	-	STR	فصل	
 values-b+fa/strings.xml	string	season_short	-	STR	ف	
 values-b+fa/strings.xml	string	seek_back_10_seconds	-	STR	۱۰ ثانیه به عقب	
@@ -10299,6 +10539,12 @@ values-b+fil/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOOKMARK
 values-b+fil/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOOKMARK	
 values-b+fil/strings.xml	plurals	home_sections_failed	one	STR	Hindi na-load ang %d seksyon	
 values-b+fil/strings.xml	plurals	home_sections_failed	other	STR	Hindi na-load ang %d seksyon	
+values-b+fil/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Maghanap sa %d mapagkukunan	
+values-b+fil/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Maghanap sa lahat ng %d mapagkukunan	
+values-b+fil/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Pindutin ang search key ng keyboard para maghanap pa rin sa %d mapagkukunan.	
+values-b+fil/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.	
+values-b+fil/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d MAPAGKUKUNAN	
+values-b+fil/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d MAPAGKUKUNAN	
 values-b+fil/strings.xml	string	action_add_to_bookmarks	-	STR	Itakda ang kapalaran ng panonood	
 values-b+fil/strings.xml	string	action_add_to_favorites	-	STR	Idagdag sa mga paborito <3	
 values-b+fil/strings.xml	string	action_remove_from_bookmarks	-	STR	Alisin	
@@ -10497,9 +10743,14 @@ values-b+fil/strings.xml	string	search_provider_text_providers	-	STR	Maghanap ga
 values-b+fil/strings.xml	string	search_provider_text_types	-	STR	Maghanap gamit ang mga uri	
 values-b+fil/strings.xml	string	search_state_idle_body_desktop	-	STR	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.	
 values-b+fil/strings.xml	string	search_state_no_results_type_filter	-	STR	%s lang. Pinipigilan ng type filter mo ang paghahanap.	
+values-b+fil/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 MUNGKAHI · 0 KAMAKAILANG TUGMA	
+values-b+fil/strings.xml	string	search_state_no_suggestions_headline	-	STR	Walang tumutugma sa “%s”	
 values-b+fil/strings.xml	string	search_tv_source_failed	-	STR	NABIGO %s	
 values-b+fil/strings.xml	string	search_tv_source_pinned	-	STR	NAKA-PIN	
 values-b+fil/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA	
+values-b+fil/strings.xml	string	search_tv_suggestion_recent	-	STR	KAMAKAILAN · %s	
+values-b+fil/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	KAMAKAILAN · IMINUNGKAHI RIN	
+values-b+fil/strings.xml	string	search_tv_suggestion_suggested	-	STR	IMINUNGKAHI	
 values-b+fil/strings.xml	string	seek_back_10_seconds	-	STR	Bumalik ng 10 segundo	
 values-b+fil/strings.xml	string	seek_forward_10_seconds	-	STR	Umabante ng 10 segundo	
 values-b+fil/strings.xml	string	select_all	-	STR	Piliin Lahat	
@@ -10565,6 +10816,15 @@ values-b+fr/strings.xml	plurals	home_sections_failed	other	STR	%d sections n'ont
 values-b+fr/strings.xml	plurals	links_hidden	one	STR	%d lien caché	
 values-b+fr/strings.xml	plurals	links_hidden	many	STR	%d liens cachés	
 values-b+fr/strings.xml	plurals	links_hidden	other	STR	%d liens cachés	
+values-b+fr/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Rechercher dans %d source	
+values-b+fr/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Rechercher dans les %d sources	
+values-b+fr/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Rechercher dans les %d sources	
+values-b+fr/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans %d source.	
+values-b+fr/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.	
+values-b+fr/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.	
+values-b+fr/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d SOURCE	
+values-b+fr/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d SOURCES	
+values-b+fr/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SOURCES	
 values-b+fr/strings.xml	string	account	-	STR	compte	
 values-b+fr/strings.xml	string	action_add_to_bookmarks	-	STR	Définir le statut de visionage	
 values-b+fr/strings.xml	string	action_add_to_favorites	-	STR	Ajouter aux favoris	
@@ -11171,11 +11431,16 @@ values-b+fr/strings.xml	string	search_provider_text_providers	-	STR	Recherche pa
 values-b+fr/strings.xml	string	search_provider_text_types	-	STR	Recherche par types	
 values-b+fr/strings.xml	string	search_state_idle_body_desktop	-	STR	Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond.	
 values-b+fr/strings.xml	string	search_state_no_results_type_filter	-	STR	%s uniquement. Votre filtre de type restreint la recherche.	
+values-b+fr/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGESTION · 0 CORRESPONDANCE RÉCENTE	
+values-b+fr/strings.xml	string	search_state_no_suggestions_headline	-	STR	Aucun résultat pour « %s »	
 values-b+fr/strings.xml	string	search_suggestions	-	STR	Suggestions de recherche	
 values-b+fr/strings.xml	string	search_suggestions_des	-	STR	Afficher des suggestions de recherche pendant la saisie	
 values-b+fr/strings.xml	string	search_tv_source_failed	-	STR	ÉCHEC %s	
 values-b+fr/strings.xml	string	search_tv_source_pinned	-	STR	ÉPINGLÉ	
 values-b+fr/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d SUR %2$d ACTIVÉS · LES MODIFICATIONS PRENNENT EFFET AVEC FINIR	
+values-b+fr/strings.xml	string	search_tv_suggestion_recent	-	STR	RÉCENT · %s	
+values-b+fr/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RÉCENT · ÉGALEMENT SUGGÉRÉ	
+values-b+fr/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGGÉRÉ	
 values-b+fr/strings.xml	string	season	-	STR	Saison	
 values-b+fr/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+fr/strings.xml	string	season_short	-	STR	S	
@@ -11395,6 +11660,12 @@ values-b+gl/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARCADOR
 values-b+gl/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARCADORES	
 values-b+gl/strings.xml	plurals	home_sections_failed	one	STR	Non se puido cargar %d sección	
 values-b+gl/strings.xml	plurals	home_sections_failed	other	STR	Non se puideron cargar %d seccións	
+values-b+gl/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Procurar en %d fonte	
+values-b+gl/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Procurar en todas as %d fontes	
+values-b+gl/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Preme a tecla de busca do teclado para procurar igualmente en %d fonte.	
+values-b+gl/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes.	
+values-b+gl/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTE	
+values-b+gl/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTES	
 values-b+gl/strings.xml	string	action_add_to_bookmarks	-	STR	Seleccionar estado de visualización	
 values-b+gl/strings.xml	string	action_default	-	STR	Por defecto	
 values-b+gl/strings.xml	string	action_open_play	-	REF	string/home_play	
@@ -11682,9 +11953,14 @@ values-b+gl/strings.xml	string	search_provider_text_providers	-	STR	Procurar usa
 values-b+gl/strings.xml	string	search_provider_text_types	-	STR	Procurar por tipos	
 values-b+gl/strings.xml	string	search_state_idle_body_desktop	-	STR	Escriba un título. Os resultados aparecen baixo cada fonte cando responde.	
 values-b+gl/strings.xml	string	search_state_no_results_type_filter	-	STR	Só %s. O filtro de tipo está limitando a busca.	
+values-b+gl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUXESTIÓNS · 0 COINCIDENCIAS RECENTES	
+values-b+gl/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nada coincide con «%s»	
 values-b+gl/strings.xml	string	search_tv_source_failed	-	STR	FALLOU %s	
 values-b+gl/strings.xml	string	search_tv_source_pinned	-	STR	FIXADO	
 values-b+gl/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d DE %2$d ACTIVADOS · OS CAMBIOS APLÍCANSE CON FEITO	
+values-b+gl/strings.xml	string	search_tv_suggestion_recent	-	STR	RECENTE · %s	
+values-b+gl/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECENTE · TAMÉN SUXERIDO	
+values-b+gl/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUXERIDO	
 values-b+gl/strings.xml	string	season	-	STR	Temporada	
 values-b+gl/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+gl/strings.xml	string	season_short	-	STR	T	
@@ -11779,6 +12055,12 @@ values-b+hi/strings.xml	plurals	home_bookmarks_count	one	STR	%d बुकमा�
 values-b+hi/strings.xml	plurals	home_bookmarks_count	other	STR	%d बुकमार्क	
 values-b+hi/strings.xml	plurals	home_sections_failed	one	STR	%d अनुभाग लोड नहीं हो सका	
 values-b+hi/strings.xml	plurals	home_sections_failed	other	STR	%d अनुभाग लोड नहीं हो सके	
+values-b+hi/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d स्रोत में खोजें	
+values-b+hi/strings.xml	plurals	search_state_no_suggestions_action	other	STR	सभी %d स्रोतों में खोजें	
+values-b+hi/strings.xml	plurals	search_state_no_suggestions_body	one	STR	फिर भी %d स्रोत में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।	
+values-b+hi/strings.xml	plurals	search_state_no_suggestions_body	other	STR	फिर भी सभी %d स्रोतों में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।	
+values-b+hi/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d स्रोत	
+values-b+hi/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d स्रोत	
 values-b+hi/strings.xml	string	account	-	STR	खाता	
 values-b+hi/strings.xml	string	action_add_to_bookmarks	-	STR	दर्शन स्थिति सेट करें	
 values-b+hi/strings.xml	string	action_default	-	STR	डिफॉल्ट	
@@ -12170,9 +12452,14 @@ values-b+hi/strings.xml	string	search_provider_text_providers	-	STR	प्रो
 values-b+hi/strings.xml	string	search_provider_text_types	-	STR	प्रकार का उपयोग करके खोजें	
 values-b+hi/strings.xml	string	search_state_idle_body_desktop	-	STR	कोई शीर्षक लिखें। हर स्रोत के जवाब देने पर नतीजे उसके नीचे दिखेंगे।	
 values-b+hi/strings.xml	string	search_state_no_results_type_filter	-	STR	सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।	
+values-b+hi/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 सुझाव · 0 हालिया मिलान	
+values-b+hi/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” से कुछ भी मेल नहीं खाता	
 values-b+hi/strings.xml	string	search_tv_source_failed	-	STR	विफल %s	
 values-b+hi/strings.xml	string	search_tv_source_pinned	-	STR	पिन किया गया	
 values-b+hi/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d में से %1$d चालू · बदलाव हो गया दबाने पर लागू होंगे	
+values-b+hi/strings.xml	string	search_tv_suggestion_recent	-	STR	हाल ही में · %s	
+values-b+hi/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	हाल ही में · सुझाया भी गया	
+values-b+hi/strings.xml	string	search_tv_suggestion_suggested	-	STR	सुझाया गया	
 values-b+hi/strings.xml	string	season	-	STR	सत्र	
 values-b+hi/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+hi/strings.xml	string	season_short	-	STR	S	
@@ -12298,6 +12585,15 @@ values-b+hr/strings.xml	plurals	home_bookmarks_count	other	STR	%d OZNAKA
 values-b+hr/strings.xml	plurals	home_sections_failed	one	STR	Nije učitan %d odjeljak	
 values-b+hr/strings.xml	plurals	home_sections_failed	few	STR	Nisu učitana %d odjeljka	
 values-b+hr/strings.xml	plurals	home_sections_failed	other	STR	Nije učitano %d odjeljaka	
+values-b+hr/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Pretraži %d izvor	
+values-b+hr/strings.xml	plurals	search_state_no_suggestions_action	few	STR	Pretraži sva %d izvora	
+values-b+hr/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Pretraži svih %d izvora	
+values-b+hr/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili %d izvor.	
+values-b+hr/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili sva %d izvora.	
+values-b+hr/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora.	
+values-b+hr/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d IZVOR	
+values-b+hr/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d IZVORA	
+values-b+hr/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d IZVORA	
 values-b+hr/strings.xml	string	account	-	STR	račun	
 values-b+hr/strings.xml	string	action_add_to_bookmarks	-	STR	Postavi status gledanja	
 values-b+hr/strings.xml	string	action_add_to_favorites	-	STR	Dodaj u favorite	
@@ -12901,11 +13197,16 @@ values-b+hr/strings.xml	string	search_provider_text_providers	-	STR	Traži koris
 values-b+hr/strings.xml	string	search_provider_text_types	-	STR	Traži koristeći vrste	
 values-b+hr/strings.xml	string	search_state_idle_body_desktop	-	STR	Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori.	
 values-b+hr/strings.xml	string	search_state_no_results_type_filter	-	STR	Samo %s. Vaš filtar vrste sužava pretraživanje.	
+values-b+hr/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 PRIJEDLOGA · 0 NEDAVNIH PODUDARANJA	
+values-b+hr/strings.xml	string	search_state_no_suggestions_headline	-	STR	Ništa ne odgovara „%s“	
 values-b+hr/strings.xml	string	search_suggestions	-	STR	Prijedlozi za pretraživanje	
 values-b+hr/strings.xml	string	search_suggestions_des	-	STR	Prikaži prijedloge za pretraživanje tijekom tipkanja	
 values-b+hr/strings.xml	string	search_tv_source_failed	-	STR	NEUSPJELO %s	
 values-b+hr/strings.xml	string	search_tv_source_pinned	-	STR	PRIKVAČENO	
 values-b+hr/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d OD %2$d UKLJUČENO · PROMJENE VRIJEDE NAKON GOTOVO	
+values-b+hr/strings.xml	string	search_tv_suggestion_recent	-	STR	NEDAVNO · %s	
+values-b+hr/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NEDAVNO · TAKOĐER PREDLOŽENO	
+values-b+hr/strings.xml	string	search_tv_suggestion_suggested	-	STR	PREDLOŽENO	
 values-b+hr/strings.xml	string	season	-	STR	Sezona	
 values-b+hr/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+hr/strings.xml	string	season_short	-	STR	S	
@@ -13123,6 +13424,12 @@ values-b+hu/strings.xml	plurals	home_bookmarks_count	one	STR	%d KÖNYVJELZŐ
 values-b+hu/strings.xml	plurals	home_bookmarks_count	other	STR	%d KÖNYVJELZŐ	
 values-b+hu/strings.xml	plurals	home_sections_failed	one	STR	%d szakasz betöltése sikertelen	
 values-b+hu/strings.xml	plurals	home_sections_failed	other	STR	%d szakasz betöltése sikertelen	
+values-b+hu/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Keresés %d forrásban	
+values-b+hu/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Keresés mind a(z) %d forrásban	
+values-b+hu/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen %d forrásban.	
+values-b+hu/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban.	
+values-b+hu/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FORRÁS	
+values-b+hu/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FORRÁS	
 values-b+hu/strings.xml	string	account	-	STR	Fiók	
 values-b+hu/strings.xml	string	action_add_to_bookmarks	-	STR	Megtekintés állapotának beállítása	
 values-b+hu/strings.xml	string	action_add_to_favorites	-	STR	Hozzáadás a kedvencekhez	
@@ -13668,11 +13975,16 @@ values-b+hu/strings.xml	string	search_provider_text_providers	-	STR	Keresés szo
 values-b+hu/strings.xml	string	search_provider_text_types	-	STR	Keresés típusok szerint	
 values-b+hu/strings.xml	string	search_state_idle_body_desktop	-	STR	Írjon be egy címet. Az eredmények az egyes források alatt jelennek meg, amint válaszolnak.	
 values-b+hu/strings.xml	string	search_state_no_results_type_filter	-	STR	Csak %s. A típusszűrő szűkíti a keresést.	
+values-b+hu/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 JAVASLAT · 0 LEGUTÓBBI TALÁLAT	
+values-b+hu/strings.xml	string	search_state_no_suggestions_headline	-	STR	Semmi sem egyezik ezzel: „%s”	
 values-b+hu/strings.xml	string	search_suggestions	-	STR	Keresési javaslatok	
 values-b+hu/strings.xml	string	search_suggestions_des	-	STR	Mutasson keresési javaslatok gépelés közben	
 values-b+hu/strings.xml	string	search_tv_source_failed	-	STR	SIKERTELEN %s	
 values-b+hu/strings.xml	string	search_tv_source_pinned	-	STR	KITŰZVE	
 values-b+hu/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d KÖZÜL %1$d ENGEDÉLYEZVE · A VÁLTOZÁSOK A KÉSZ GOMBBAL ÉRVÉNYESÜLNEK	
+values-b+hu/strings.xml	string	search_tv_suggestion_recent	-	STR	LEGUTÓBBI · %s	
+values-b+hu/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	LEGUTÓBBI · JAVASOLT IS	
+values-b+hu/strings.xml	string	search_tv_suggestion_suggested	-	STR	JAVASOLT	
 values-b+hu/strings.xml	string	season	-	STR	Évad	
 values-b+hu/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+hu/strings.xml	string	season_short	-	STR	Év	
@@ -13855,6 +14167,9 @@ values-b+in/strings.xml	plurals	downloads_queued	other	STR	%d unduhan dalam antr
 values-b+in/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARKAH	
 values-b+in/strings.xml	plurals	home_sections_failed	other	STR	%d bagian gagal dimuat	
 values-b+in/strings.xml	plurals	links_hidden	other	STR	%d link tersembunyi	
+values-b+in/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Cari di semua %d sumber	
+values-b+in/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.	
+values-b+in/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SUMBER	
 values-b+in/strings.xml	string	account	-	STR	akun	
 values-b+in/strings.xml	string	action_add_to_bookmarks	-	STR	Atur status tontonan	
 values-b+in/strings.xml	string	action_add_to_favorites	-	STR	Tambahkan ke favorit	
@@ -14461,11 +14776,16 @@ values-b+in/strings.xml	string	search_provider_text_providers	-	STR	Cari menggun
 values-b+in/strings.xml	string	search_provider_text_types	-	STR	Cari menggunakan jenis	
 values-b+in/strings.xml	string	search_state_idle_body_desktop	-	STR	Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.	
 values-b+in/strings.xml	string	search_state_no_results_type_filter	-	STR	Hanya %s. Filter jenis Anda mempersempit pencarian.	
+values-b+in/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SARAN · 0 COCOK TERBARU	
+values-b+in/strings.xml	string	search_state_no_suggestions_headline	-	STR	Tidak ada yang cocok dengan “%s”	
 values-b+in/strings.xml	string	search_suggestions	-	STR	Saran pencarian	
 values-b+in/strings.xml	string	search_suggestions_des	-	STR	Tampilkan saran pencarian saat mengetik	
 values-b+in/strings.xml	string	search_tv_source_failed	-	STR	GAGAL %s	
 values-b+in/strings.xml	string	search_tv_source_pinned	-	STR	DISEMATKAN	
 values-b+in/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI	
+values-b+in/strings.xml	string	search_tv_suggestion_recent	-	STR	TERBARU · %s	
+values-b+in/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	TERBARU · JUGA DISARANKAN	
+values-b+in/strings.xml	string	search_tv_suggestion_suggested	-	STR	DISARANKAN	
 values-b+in/strings.xml	string	season	-	STR	Season	
 values-b+in/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+in/strings.xml	string	season_short	-	STR	S	
@@ -14697,6 +15017,15 @@ values-b+it/strings.xml	plurals	home_sections_failed	other	STR	Impossibile caric
 values-b+it/strings.xml	plurals	links_hidden	one	STR	%d collegamento nascosto	
 values-b+it/strings.xml	plurals	links_hidden	many	STR	%d collegamenti nascosti	
 values-b+it/strings.xml	plurals	links_hidden	other	STR	%d collegamenti nascosti	
+values-b+it/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Cerca in %d fonte	
+values-b+it/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Cerca in tutte le %d fonti	
+values-b+it/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Cerca in tutte le %d fonti	
+values-b+it/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Premi il tasto di ricerca della tastiera per cercare comunque in %d fonte.	
+values-b+it/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.	
+values-b+it/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.	
+values-b+it/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTE	
+values-b+it/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d FONTI	
+values-b+it/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTI	
 values-b+it/strings.xml	string	account	-	STR	account	
 values-b+it/strings.xml	string	action_add_to_bookmarks	-	STR	Imposta stato riproduzione	
 values-b+it/strings.xml	string	action_add_to_favorites	-	STR	Aggiungi ai preferiti	
@@ -15303,11 +15632,16 @@ values-b+it/strings.xml	string	search_provider_text_providers	-	STR	Cerca per pr
 values-b+it/strings.xml	string	search_provider_text_types	-	STR	Cerca per tipo	
 values-b+it/strings.xml	string	search_state_idle_body_desktop	-	STR	Digita un titolo. I risultati compaiono sotto ogni fonte quando risponde.	
 values-b+it/strings.xml	string	search_state_no_results_type_filter	-	STR	Solo %s. Il filtro per tipo sta restringendo la ricerca.	
+values-b+it/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGERIMENTI · 0 CORRISPONDENZE RECENTI	
+values-b+it/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nessun risultato per «%s»	
 values-b+it/strings.xml	string	search_suggestions	-	STR	Suggerimenti per la ricerca	
 values-b+it/strings.xml	string	search_suggestions_des	-	STR	Mostra suggerimenti di ricerca durante la digitazione	
 values-b+it/strings.xml	string	search_tv_source_failed	-	STR	FALLITO %s	
 values-b+it/strings.xml	string	search_tv_source_pinned	-	STR	FISSATO	
 values-b+it/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d SU %2$d ATTIVI · LE MODIFICHE SI APPLICANO CON FATTO	
+values-b+it/strings.xml	string	search_tv_suggestion_recent	-	STR	RECENTE · %s	
+values-b+it/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECENTE · ANCHE SUGGERITO	
+values-b+it/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGGERITO	
 values-b+it/strings.xml	string	season	-	STR	Stagione	
 values-b+it/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+it/strings.xml	string	season_short	-	STR	S	
@@ -15530,6 +15864,15 @@ values-b+iw/strings.xml	plurals	home_bookmarks_count	other	STR	%d סימניות
 values-b+iw/strings.xml	plurals	home_sections_failed	one	STR	טעינת %d קטע נכשלה	
 values-b+iw/strings.xml	plurals	home_sections_failed	two	STR	טעינת %d קטעים נכשלה	
 values-b+iw/strings.xml	plurals	home_sections_failed	other	STR	טעינת %d קטעים נכשלה	
+values-b+iw/strings.xml	plurals	search_state_no_suggestions_action	one	STR	חיפוש ב-%d מקור	
+values-b+iw/strings.xml	plurals	search_state_no_suggestions_action	two	STR	חיפוש בכל %d המקורות	
+values-b+iw/strings.xml	plurals	search_state_no_suggestions_action	other	STR	חיפוש בכל %d המקורות	
+values-b+iw/strings.xml	plurals	search_state_no_suggestions_body	one	STR	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.	
+values-b+iw/strings.xml	plurals	search_state_no_suggestions_body	two	STR	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.	
+values-b+iw/strings.xml	plurals	search_state_no_suggestions_body	other	STR	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.	
+values-b+iw/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d מקור	
+values-b+iw/strings.xml	plurals	search_tv_suggestion_sources	two	STR	%d מקורות	
+values-b+iw/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d מקורות	
 values-b+iw/strings.xml	string	account	-	STR	חשבון	
 values-b+iw/strings.xml	string	action_add_to_bookmarks	-	STR	הגדר מצב צפייה	
 values-b+iw/strings.xml	string	action_default	-	STR	ברירת מחדל	
@@ -16000,9 +16343,14 @@ values-b+iw/strings.xml	string	search_provider_text_providers	-	STR	חפש בא�
 values-b+iw/strings.xml	string	search_provider_text_types	-	STR	חפש באמצעות סוגים	
 values-b+iw/strings.xml	string	search_state_idle_body_desktop	-	STR	הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.	
 values-b+iw/strings.xml	string	search_state_no_results_type_filter	-	STR	%s בלבד. מסנן הסוג מצמצם את החיפוש.	
+values-b+iw/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 הצעות · 0 התאמות אחרונות	
+values-b+iw/strings.xml	string	search_state_no_suggestions_headline	-	STR	שום דבר לא תואם ל-“%s”	
 values-b+iw/strings.xml	string	search_tv_source_failed	-	STR	נכשל %s	
 values-b+iw/strings.xml	string	search_tv_source_pinned	-	STR	מוצמד	
 values-b+iw/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d מתוך %2$d פעילים · השינויים יחולו בלחיצה על סוים	
+values-b+iw/strings.xml	string	search_tv_suggestion_recent	-	STR	לאחרונה · %s	
+values-b+iw/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	לאחרונה · גם מוצע	
+values-b+iw/strings.xml	string	search_tv_suggestion_suggested	-	STR	מוצע	
 values-b+iw/strings.xml	string	season	-	STR	עונה	
 values-b+iw/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+iw/strings.xml	string	season_short	-	STR	עו	
@@ -16172,6 +16520,9 @@ values-b+ja/strings.xml	plurals	downloads_queued	other	STR	%d 件が待機中
 values-b+ja/strings.xml	plurals	home_bookmarks_count	other	STR	%d 件のブックマーク	
 values-b+ja/strings.xml	plurals	home_sections_failed	other	STR	%d 件のセクションを読み込めませんでした	
 values-b+ja/strings.xml	plurals	links_hidden	other	STR	%d件の非表示リンク	
+values-b+ja/strings.xml	plurals	search_state_no_suggestions_action	other	STR	全 %d ソースを検索	
+values-b+ja/strings.xml	plurals	search_state_no_suggestions_body	other	STR	それでも全 %d ソースを検索するには、キーボードの検索キーを押してください。	
+values-b+ja/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ソース	
 values-b+ja/strings.xml	string	account	-	STR	アカウント	
 values-b+ja/strings.xml	string	action_add_to_bookmarks	-	STR	視聴状態を設定	
 values-b+ja/strings.xml	string	action_add_to_favorites	-	STR	お気に入りに追加	
@@ -16778,11 +17129,16 @@ values-b+ja/strings.xml	string	search_provider_text_providers	-	STR	プロバイ
 values-b+ja/strings.xml	string	search_provider_text_types	-	STR	使用タイプの検索	
 values-b+ja/strings.xml	string	search_state_idle_body_desktop	-	STR	タイトルを入力してください。各ソースが応答すると、その下に結果が表示されます。	
 values-b+ja/strings.xml	string	search_state_no_results_type_filter	-	STR	%sのみ。種類フィルターで検索が絞り込まれています。	
+values-b+ja/strings.xml	string	search_state_no_suggestions_detail	-	STR	候補 0 件 · 最近の一致 0 件	
+values-b+ja/strings.xml	string	search_state_no_suggestions_headline	-	STR	「%s」に一致するものはありません	
 values-b+ja/strings.xml	string	search_suggestions	-	STR	検索候補	
 values-b+ja/strings.xml	string	search_suggestions_des	-	STR	入力中に検索候補を表示する	
 values-b+ja/strings.xml	string	search_tv_source_failed	-	STR	失敗 %s	
 values-b+ja/strings.xml	string	search_tv_source_pinned	-	STR	固定済み	
 values-b+ja/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d件中%1$d件が有効 · 変更は「完了」で反映	
+values-b+ja/strings.xml	string	search_tv_suggestion_recent	-	STR	最近 · %s	
+values-b+ja/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	最近 · 候補にもあり	
+values-b+ja/strings.xml	string	search_tv_suggestion_suggested	-	STR	候補	
 values-b+ja/strings.xml	string	season	-	STR	シーズン	
 values-b+ja/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+ja/strings.xml	string	season_short	-	STR	シーズン	
@@ -17002,6 +17358,12 @@ values-b+kn/strings.xml	plurals	home_bookmarks_count	one	STR	%d ಬುಕ್‌�
 values-b+kn/strings.xml	plurals	home_bookmarks_count	other	STR	%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು	
 values-b+kn/strings.xml	plurals	home_sections_failed	one	STR	%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ	
 values-b+kn/strings.xml	plurals	home_sections_failed	other	STR	%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ	
+values-b+kn/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d ಮೂಲದಲ್ಲಿ ಹುಡುಕಿ	
+values-b+kn/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಿ	
+values-b+kn/strings.xml	plurals	search_state_no_suggestions_body	one	STR	ಹಾಗಿದ್ದರೂ %d ಮೂಲದಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.	
+values-b+kn/strings.xml	plurals	search_state_no_suggestions_body	other	STR	ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.	
+values-b+kn/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ಮೂಲ	
+values-b+kn/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ಮೂಲಗಳು	
 values-b+kn/strings.xml	string	action_add_to_bookmarks	-	STR	ಸೆಟ್ ವಾಚ್ ಸ್ಟೇಟಸ್	
 values-b+kn/strings.xml	string	action_open_play	-	STR	@ಸ್ಟ್ರಿಂಗ್/ಹೋಮ್_ಪ್ಲೇ	
 values-b+kn/strings.xml	string	action_open_watching	-	STR	ಹೆಚ್ಚಿನ ಮಾಹಿತಿ	
@@ -17171,9 +17533,14 @@ values-b+kn/strings.xml	string	search_provider_text_providers	-	STR	ಪೂರೈ
 values-b+kn/strings.xml	string	search_provider_text_types	-	STR	ಪ್ರಕಾರಗಳನ್ನು ಬಳಸಿಕೊಂಡು ಹುಡುಕಿ	
 values-b+kn/strings.xml	string	search_state_idle_body_desktop	-	STR	ಶೀರ್ಷಿಕೆಯನ್ನು ಟೈಪ್ ಮಾಡಿ. ಪ್ರತಿಯೊಂದು ಮೂಲ ಉತ್ತರಿಸಿದಂತೆ ಫಲಿತಾಂಶಗಳು ಅದರ ಕೆಳಗೆ ಕಾಣಿಸುತ್ತವೆ.	
 values-b+kn/strings.xml	string	search_state_no_results_type_filter	-	STR	%s ಮಾತ್ರ. ನಿಮ್ಮ ಪ್ರಕಾರದ ಫಿಲ್ಟರ್ ಹುಡುಕಾಟವನ್ನು ಕಿರಿದುಗೊಳಿಸುತ್ತಿದೆ.	
+values-b+kn/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ಸಲಹೆಗಳು · 0 ಇತ್ತೀಚಿನ ಹೊಂದಾಣಿಕೆಗಳು	
+values-b+kn/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” ಗೆ ಯಾವುದೂ ಹೊಂದುವುದಿಲ್ಲ	
 values-b+kn/strings.xml	string	search_tv_source_failed	-	STR	ವಿಫಲ %s	
 values-b+kn/strings.xml	string	search_tv_source_pinned	-	STR	ಪಿನ್ ಮಾಡಲಾಗಿದೆ	
 values-b+kn/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d ರಲ್ಲಿ %1$d ಸಕ್ರಿಯ · ಬದಲಾವಣೆಗಳು ಮುಗಿದಿದೆ ನಂತರ ಅನ್ವಯವಾಗುತ್ತವೆ	
+values-b+kn/strings.xml	string	search_tv_suggestion_recent	-	STR	ಇತ್ತೀಚಿನ · %s	
+values-b+kn/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ಇತ್ತೀಚಿನ · ಸೂಚಿಸಲಾಗಿದೆ ಕೂಡ	
+values-b+kn/strings.xml	string	search_tv_suggestion_suggested	-	STR	ಸೂಚಿಸಲಾಗಿದೆ	
 values-b+kn/strings.xml	string	seek_back_10_seconds	-	STR	10 ಸೆಕೆಂಡುಗಳು ಹಿಂದೆ ಹೋಗು	
 values-b+kn/strings.xml	string	seek_forward_10_seconds	-	STR	10 ಸೆಕೆಂಡುಗಳು ಮುಂದೆ ಹೋಗು	
 values-b+kn/strings.xml	string	show_log_cat	-	STR	ಲಾಗ್‌ಕ್ಯಾಟ್ 🐈 ತೋರಿಸಿ	
@@ -17226,6 +17593,9 @@ values-b+ko/strings.xml	plurals	downloads_failed_count	other	STR	%d개 실패
 values-b+ko/strings.xml	plurals	downloads_queued	other	STR	%d 다운로드	
 values-b+ko/strings.xml	plurals	home_bookmarks_count	other	STR	북마크 %d개	
 values-b+ko/strings.xml	plurals	home_sections_failed	other	STR	섹션 %d개를 불러오지 못했습니다	
+values-b+ko/strings.xml	plurals	search_state_no_suggestions_action	other	STR	소스 %d개 모두 검색	
+values-b+ko/strings.xml	plurals	search_state_no_suggestions_body	other	STR	그래도 소스 %d개를 모두 검색하려면 키보드의 검색 키를 누르세요.	
+values-b+ko/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d 소스	
 values-b+ko/strings.xml	string	account	-	STR	계정	
 values-b+ko/strings.xml	string	action_add_to_bookmarks	-	STR	시청 상태 설정	
 values-b+ko/strings.xml	string	action_add_to_favorites	-	STR	즐겨찾기에 추가	
@@ -17829,11 +18199,16 @@ values-b+ko/strings.xml	string	search_provider_text_providers	-	STR	소스로 �
 values-b+ko/strings.xml	string	search_provider_text_types	-	STR	유형을 사용하여 검색	
 values-b+ko/strings.xml	string	search_state_idle_body_desktop	-	STR	제목을 입력하세요. 각 소스가 응답하면 그 아래에 결과가 표시됩니다.	
 values-b+ko/strings.xml	string	search_state_no_results_type_filter	-	STR	%s만. 유형 필터가 검색을 좁히고 있습니다.	
+values-b+ko/strings.xml	string	search_state_no_suggestions_detail	-	STR	추천 0개 · 최근 일치 0개	
+values-b+ko/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s”와(과) 일치하는 항목이 없습니다	
 values-b+ko/strings.xml	string	search_suggestions	-	STR	검색어 제안	
 values-b+ko/strings.xml	string	search_suggestions_des	-	STR	입력하는 동안 검색어 제안 표시	
 values-b+ko/strings.xml	string	search_tv_source_failed	-	STR	실패 %s	
 values-b+ko/strings.xml	string	search_tv_source_pinned	-	STR	고정됨	
 values-b+ko/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d개 중 %1$d개 사용 중 · 변경 사항은 완료를 누르면 적용됩니다	
+values-b+ko/strings.xml	string	search_tv_suggestion_recent	-	STR	최근 · %s	
+values-b+ko/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	최근 · 추천 항목	
+values-b+ko/strings.xml	string	search_tv_suggestion_suggested	-	STR	추천	
 values-b+ko/strings.xml	string	season	-	STR	시즌	
 values-b+ko/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+ko/strings.xml	string	season_short	-	STR	시즌	
@@ -18057,6 +18432,18 @@ values-b+lt/strings.xml	plurals	home_sections_failed	one	STR	Nepavyko įkelti %d
 values-b+lt/strings.xml	plurals	home_sections_failed	few	STR	Nepavyko įkelti %d skilčių	
 values-b+lt/strings.xml	plurals	home_sections_failed	many	STR	Nepavyko įkelti %d skilties	
 values-b+lt/strings.xml	plurals	home_sections_failed	other	STR	Nepavyko įkelti %d skilčių	
+values-b+lt/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Ieškoti %d šaltinyje	
+values-b+lt/strings.xml	plurals	search_state_no_suggestions_action	few	STR	Ieškoti visuose šaltiniuose (%d)	
+values-b+lt/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Ieškoti visuose šaltiniuose (%d)	
+values-b+lt/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Ieškoti visuose šaltiniuose (%d)	
+values-b+lt/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte %d šaltinyje.	
+values-b+lt/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).	
+values-b+lt/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).	
+values-b+lt/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).	
+values-b+lt/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ŠALTINIS	
+values-b+lt/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ŠALTINIAI	
+values-b+lt/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ŠALTINIO	
+values-b+lt/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ŠALTINIŲ	
 values-b+lt/strings.xml	string	action_add_to_bookmarks	-	STR	Nustatyti žiūrėjimo statusą	
 values-b+lt/strings.xml	string	action_mark_as_watched	-	STR	Pažymėti kaip žiūrima	
 values-b+lt/strings.xml	string	action_open_watching	-	STR	Daugiau informacijos	
@@ -18343,9 +18730,14 @@ values-b+lt/strings.xml	string	search_provider_text_providers	-	STR	Ieškoti nau
 values-b+lt/strings.xml	string	search_provider_text_types	-	STR	Ieškoti naudojant tipus	
 values-b+lt/strings.xml	string	search_state_idle_body_desktop	-	STR	Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako.	
 values-b+lt/strings.xml	string	search_state_no_results_type_filter	-	STR	Tik %s. Jūsų tipų filtras siaurina paiešką.	
+values-b+lt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 PASIŪLYMŲ · 0 NESENIŲ ATITIKMENŲ	
+values-b+lt/strings.xml	string	search_state_no_suggestions_headline	-	STR	Niekas neatitinka „%s“	
 values-b+lt/strings.xml	string	search_tv_source_failed	-	STR	NEPAVYKO %s	
 values-b+lt/strings.xml	string	search_tv_source_pinned	-	STR	PRISEGTA	
 values-b+lt/strings.xml	string	search_tv_sources_panel_meta	-	STR	ĮJUNGTA %1$d IŠ %2$d · PAKEITIMAI TAIKOMI PASPAUDUS BAIGTA	
+values-b+lt/strings.xml	string	search_tv_suggestion_recent	-	STR	NESENIAI · %s	
+values-b+lt/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NESENIAI · TAIP PAT SIŪLOMA	
+values-b+lt/strings.xml	string	search_tv_suggestion_suggested	-	STR	SIŪLOMA	
 values-b+lt/strings.xml	string	season	-	STR	Sezonas	
 values-b+lt/strings.xml	string	seek_back_10_seconds	-	STR	Atsukti 10 sekundžių atgal	
 values-b+lt/strings.xml	string	seek_forward_10_seconds	-	STR	Persukti 10 sekundžių į priekį	
@@ -18455,6 +18847,15 @@ values-b+lv/strings.xml	plurals	home_bookmarks_count	other	STR	%d GRĀMATZĪMES
 values-b+lv/strings.xml	plurals	home_sections_failed	zero	STR	Neizdevās ielādēt %d sadaļu	
 values-b+lv/strings.xml	plurals	home_sections_failed	one	STR	Neizdevās ielādēt %d sadaļu	
 values-b+lv/strings.xml	plurals	home_sections_failed	other	STR	Neizdevās ielādēt %d sadaļas	
+values-b+lv/strings.xml	plurals	search_state_no_suggestions_action	zero	STR	Meklēt visos %d devējos	
+values-b+lv/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Meklēt %d devējā	
+values-b+lv/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Meklēt visos %d devējos	
+values-b+lv/strings.xml	plurals	search_state_no_suggestions_body	zero	STR	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.	
+values-b+lv/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā.	
+values-b+lv/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.	
+values-b+lv/strings.xml	plurals	search_tv_suggestion_sources	zero	STR	%d DEVĒJU	
+values-b+lv/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d DEVĒJS	
+values-b+lv/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d DEVĒJI	
 values-b+lv/strings.xml	string	account	-	STR	Konts	
 values-b+lv/strings.xml	string	action_add_to_bookmarks	-	STR	Ieliec skatīšanās statusu	
 values-b+lv/strings.xml	string	action_default	-	STR	Parastais	
@@ -18977,10 +19378,15 @@ values-b+lv/strings.xml	string	search_provider_text_providers	-	STR	Meklēt izma
 values-b+lv/strings.xml	string	search_provider_text_types	-	STR	Meklēt izmantojot tipus	
 values-b+lv/strings.xml	string	search_state_idle_body_desktop	-	STR	Ievadiet nosaukumu. Rezultāti parādās zem katra devēja, tiklīdz tas atbild.	
 values-b+lv/strings.xml	string	search_state_no_results_type_filter	-	STR	Tikai %s. Jūsu veida filtrs sašaurina meklēšanu.	
+values-b+lv/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 IETEIKUMU · 0 NESENU ATBILSTĪBU	
+values-b+lv/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nekas neatbilst „%s”	
 values-b+lv/strings.xml	string	search_suggestions	-	STR	Meklēšanas ieteikumi	
 values-b+lv/strings.xml	string	search_tv_source_failed	-	STR	NEIZDEVĀS %s	
 values-b+lv/strings.xml	string	search_tv_source_pinned	-	STR	PIESPRAUSTS	
 values-b+lv/strings.xml	string	search_tv_sources_panel_meta	-	STR	IESLĒGTI %1$d NO %2$d · IZMAIŅAS TIEK PIEMĒROTAS, NOSPIEŽOT PABEIGTS	
+values-b+lv/strings.xml	string	search_tv_suggestion_recent	-	STR	NESEN · %s	
+values-b+lv/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NESEN · ARĪ IETEIKTS	
+values-b+lv/strings.xml	string	search_tv_suggestion_suggested	-	STR	IETEIKTS	
 values-b+lv/strings.xml	string	season	-	STR	Sezona	
 values-b+lv/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+lv/strings.xml	string	season_short	-	STR	S	
@@ -19166,6 +19572,12 @@ values-b+mk/strings.xml	plurals	home_bookmarks_count	one	STR	%d ОБЕЛЕЖУВ
 values-b+mk/strings.xml	plurals	home_bookmarks_count	other	STR	%d ОБЕЛЕЖУВАЧИ	
 values-b+mk/strings.xml	plurals	home_sections_failed	one	STR	%d дел не се вчита	
 values-b+mk/strings.xml	plurals	home_sections_failed	other	STR	%d делови не се вчитаа	
+values-b+mk/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Барај во %d извор	
+values-b+mk/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Барај во сите %d извори	
+values-b+mk/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во %d извор.	
+values-b+mk/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во сите %d извори.	
+values-b+mk/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ИЗВОР	
+values-b+mk/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ИЗВОРИ	
 values-b+mk/strings.xml	string	account	-	STR	Корисничко име	
 values-b+mk/strings.xml	string	action_add_to_bookmarks	-	STR	Постави статус на пратење	
 values-b+mk/strings.xml	string	action_add_to_favorites	-	STR	Додади во омилени	
@@ -19769,11 +20181,16 @@ values-b+mk/strings.xml	string	search_provider_text_providers	-	STR	Пребар
 values-b+mk/strings.xml	string	search_provider_text_types	-	STR	Пребарувај користејќи типови	
 values-b+mk/strings.xml	string	search_state_idle_body_desktop	-	STR	Внеси наслов. Резултатите се појавуваат под секој извор кога ќе одговори.	
 values-b+mk/strings.xml	string	search_state_no_results_type_filter	-	STR	Само %s. Вашиот филтер за тип го стеснува пребарувањето.	
+values-b+mk/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПРЕДЛОЗИ · 0 НЕОДАМНЕШНИ СОВПАЃАЊА	
+values-b+mk/strings.xml	string	search_state_no_suggestions_headline	-	STR	Ништо не одговара на „%s“	
 values-b+mk/strings.xml	string	search_suggestions	-	STR	Предлози за пребарување	
 values-b+mk/strings.xml	string	search_suggestions_des	-	STR	Прикажувај предлози за пребарување додека пишуваш	
 values-b+mk/strings.xml	string	search_tv_source_failed	-	STR	НЕУСПЕШНО %s	
 values-b+mk/strings.xml	string	search_tv_source_pinned	-	STR	ЗАКАЧЕНО	
 values-b+mk/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d ОД %2$d ОВОЗМОЖЕНИ · ПРОМЕНИТЕ СЕ ПРИМЕНУВААТ ПО ГОТОВО	
+values-b+mk/strings.xml	string	search_tv_suggestion_recent	-	STR	НЕОДАМНА · %s	
+values-b+mk/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	НЕОДАМНА · ИСТО ТАКА ПРЕДЛОЖЕНО	
+values-b+mk/strings.xml	string	search_tv_suggestion_suggested	-	STR	ПРЕДЛОЖЕНО	
 values-b+mk/strings.xml	string	season	-	STR	Сезона	
 values-b+mk/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+mk/strings.xml	string	season_short	-	STR	С	
@@ -19991,6 +20408,12 @@ values-b+ml/strings.xml	plurals	home_bookmarks_count	one	STR	%d ബുക്ക�
 values-b+ml/strings.xml	plurals	home_bookmarks_count	other	STR	%d ബുക്ക്‌മാർക്കുകൾ	
 values-b+ml/strings.xml	plurals	home_sections_failed	one	STR	%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല	
 values-b+ml/strings.xml	plurals	home_sections_failed	other	STR	%d വിഭാഗങ്ങൾ ലോഡ് ചെയ്യാനായില്ല	
+values-b+ml/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d ഉറവിടത്തിൽ തിരയുക	
+values-b+ml/strings.xml	plurals	search_state_no_suggestions_action	other	STR	എല്ലാ %d ഉറവിടങ്ങളിലും തിരയുക	
+values-b+ml/strings.xml	plurals	search_state_no_suggestions_body	one	STR	എന്നിട്ടും %d ഉറവിടത്തിൽ തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.	
+values-b+ml/strings.xml	plurals	search_state_no_suggestions_body	other	STR	എന്നിട്ടും എല്ലാ %d ഉറവിടങ്ങളിലും തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.	
+values-b+ml/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ഉറവിടം	
+values-b+ml/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ഉറവിടങ്ങൾ	
 values-b+ml/strings.xml	string	action_add_to_bookmarks	-	STR	വാച്ച് സ്റ്റാറ്റസ് സജ്ജീകരിക്കുക	
 values-b+ml/strings.xml	string	action_mark_as_watched	-	STR	കണ്ടതാണെന്ന് അടയാളപ്പെടുത്തുക	
 values-b+ml/strings.xml	string	action_open_play	-	REF	string/home_play	
@@ -20268,9 +20691,14 @@ values-b+ml/strings.xml	string	search_provider_text_providers	-	STR	സ്രോ
 values-b+ml/strings.xml	string	search_provider_text_types	-	STR	തരം അടിസ്ഥാനത്തിൽ തിരയുക	
 values-b+ml/strings.xml	string	search_state_idle_body_desktop	-	STR	ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും.	
 values-b+ml/strings.xml	string	search_state_no_results_type_filter	-	STR	%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.	
+values-b+ml/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 നിർദ്ദേശങ്ങൾ · 0 സമീപകാല പൊരുത്തങ്ങൾ	
+values-b+ml/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” എന്നതുമായി ഒന്നും പൊരുത്തപ്പെടുന്നില്ല	
 values-b+ml/strings.xml	string	search_tv_source_failed	-	STR	പരാജയപ്പെട്ടു %s	
 values-b+ml/strings.xml	string	search_tv_source_pinned	-	STR	പിൻ ചെയ്തു	
 values-b+ml/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d-ൽ %1$d പ്രവർത്തനക്ഷമം · പൂർത്തിയായി അമർത്തുമ്പോൾ മാറ്റങ്ങൾ ബാധകമാകും	
+values-b+ml/strings.xml	string	search_tv_suggestion_recent	-	STR	സമീപകാലം · %s	
+values-b+ml/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	സമീപകാലം · നിർദ്ദേശിച്ചതും	
+values-b+ml/strings.xml	string	search_tv_suggestion_suggested	-	STR	നിർദ്ദേശിച്ചത്	
 values-b+ml/strings.xml	string	season	-	STR	സീസൺ	
 values-b+ml/strings.xml	string	seek_back_10_seconds	-	STR	10 സെക്കൻഡ് പിന്നോട്ട് പോകുക	
 values-b+ml/strings.xml	string	seek_forward_10_seconds	-	STR	10 സെക്കൻഡ് മുന്നോട്ട് പോകുക	
@@ -20371,6 +20799,9 @@ values-b+ml/strings.xml	string	year	-	STR	വർഷം
 values-b+ms/strings.xml	plurals	downloads_failed_count	other	STR	%d gagal	
 values-b+ms/strings.xml	plurals	home_bookmarks_count	other	STR	%d PENANDA HALAMAN	
 values-b+ms/strings.xml	plurals	home_sections_failed	other	STR	%d bahagian gagal dimuatkan	
+values-b+ms/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Cari dalam semua %d sumber	
+values-b+ms/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.	
+values-b+ms/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SUMBER	
 values-b+ms/strings.xml	string	account	-	STR	akaun	
 values-b+ms/strings.xml	string	action_add_to_bookmarks	-	STR	Tetapkan status tontonan	
 values-b+ms/strings.xml	string	action_add_to_favorites	-	STR	Tambah ke kegemaran	
@@ -20854,9 +21285,14 @@ values-b+ms/strings.xml	string	search_provider_text_providers	-	STR	Carian mengi
 values-b+ms/strings.xml	string	search_provider_text_types	-	STR	Carian mengikut jenis	
 values-b+ms/strings.xml	string	search_state_idle_body_desktop	-	STR	Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.	
 values-b+ms/strings.xml	string	search_state_no_results_type_filter	-	STR	Hanya %s. Penapis jenis anda mengecilkan carian.	
+values-b+ms/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 CADANGAN · 0 PADANAN TERKINI	
+values-b+ms/strings.xml	string	search_state_no_suggestions_headline	-	STR	Tiada yang sepadan dengan “%s”	
 values-b+ms/strings.xml	string	search_tv_source_failed	-	STR	GAGAL %s	
 values-b+ms/strings.xml	string	search_tv_source_pinned	-	STR	DISEMATKAN	
 values-b+ms/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d DARIPADA %2$d DIDAYAKAN · PERUBAHAN DIGUNAKAN SELEPAS TAMAT	
+values-b+ms/strings.xml	string	search_tv_suggestion_recent	-	STR	TERKINI · %s	
+values-b+ms/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	TERKINI · JUGA DICADANGKAN	
+values-b+ms/strings.xml	string	search_tv_suggestion_suggested	-	STR	DICADANGKAN	
 values-b+ms/strings.xml	string	season	-	STR	Musim	
 values-b+ms/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+ms/strings.xml	string	season_short	-	STR	S	
@@ -21011,6 +21447,21 @@ values-b+mt/strings.xml	plurals	home_sections_failed	two	STR	Ma setgħux jiġu m
 values-b+mt/strings.xml	plurals	home_sections_failed	few	STR	Ma setgħux jiġu mgħobbija %d taqsimat	
 values-b+mt/strings.xml	plurals	home_sections_failed	many	STR	Ma setgħux jiġu mgħobbija %d taqsima	
 values-b+mt/strings.xml	plurals	home_sections_failed	other	STR	Ma setgħux jiġu mgħobbija %d taqsima	
+values-b+mt/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Fittex f'%d sors	
+values-b+mt/strings.xml	plurals	search_state_no_suggestions_action	two	STR	Fittex fil-%d sorsi kollha	
+values-b+mt/strings.xml	plurals	search_state_no_suggestions_action	few	STR	Fittex fil-%d sorsi kollha	
+values-b+mt/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Fittex fil-%d sors kollha	
+values-b+mt/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Fittex fil-%d sors kollha	
+values-b+mt/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta f'%d sors.	
+values-b+mt/strings.xml	plurals	search_state_no_suggestions_body	two	STR	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.	
+values-b+mt/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.	
+values-b+mt/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.	
+values-b+mt/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.	
+values-b+mt/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d SORS	
+values-b+mt/strings.xml	plurals	search_tv_suggestion_sources	two	STR	%d SORSI	
+values-b+mt/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d SORSI	
+values-b+mt/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d SORS	
+values-b+mt/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SORS	
 values-b+mt/strings.xml	string	action_add_to_bookmarks	-	STR	Issettja l-istatus ta-rajtux	
 values-b+mt/strings.xml	string	action_open_play	-	REF	string/home_play	
 values-b+mt/strings.xml	string	action_open_watching	-	STR	Iktar informazzjoni	
@@ -21175,9 +21626,14 @@ values-b+mt/strings.xml	string	search_provider_text_providers	-	STR	Fittex bl-u�
 values-b+mt/strings.xml	string	search_provider_text_types	-	STR	Fittex bl-użu ta 'tipi	
 values-b+mt/strings.xml	string	search_state_idle_body_desktop	-	STR	Ikteb titlu. Ir-riżultati jidhru taħt kull sors meta jwieġeb.	
 values-b+mt/strings.xml	string	search_state_no_results_type_filter	-	STR	%s biss. Il-filtru tat-tip qed jirrestrinġi l-fittxija.	
+values-b+mt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUĠĠERIMENTI · 0 TAQBIL REĊENTI	
+values-b+mt/strings.xml	string	search_state_no_suggestions_headline	-	STR	Xejn ma jaqbel ma' “%s”	
 values-b+mt/strings.xml	string	search_tv_source_failed	-	STR	FALLA %s	
 values-b+mt/strings.xml	string	search_tv_source_pinned	-	STR	IPPINJAT	
 values-b+mt/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d MINN %2$d ATTIVATI · IL-BIDLIET JIDĦLU FIS-SEĦĦ META TAGĦFAS LEST	
+values-b+mt/strings.xml	string	search_tv_suggestion_recent	-	STR	REĊENTI · %s	
+values-b+mt/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	REĊENTI · SUĠĠERIT UKOLL	
+values-b+mt/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUĠĠERIT	
 values-b+mt/strings.xml	string	seek_back_10_seconds	-	STR	Mur lura 10 sekondi	
 values-b+mt/strings.xml	string	seek_forward_10_seconds	-	STR	Mur 'il quddiem 10 sekondi	
 values-b+mt/strings.xml	string	show_log_cat	-	STR	Uri Logcat 🐈	
@@ -21226,6 +21682,9 @@ values-b+mt/strings.xml	string	vpn_torrent	-	STR	Dan il-fornitur huwa torrent, V
 values-b+my/strings.xml	plurals	downloads_failed_count	other	STR	%d ခု မအောင်မြင်	
 values-b+my/strings.xml	plurals	home_bookmarks_count	other	STR	စာမှတ် %d ခု	
 values-b+my/strings.xml	plurals	home_sections_failed	other	STR	အပိုင်း %d ခု တင်သွင်း၍မရပါ	
+values-b+my/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်	
+values-b+my/strings.xml	plurals	search_state_no_suggestions_body	other	STR	မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။	
+values-b+my/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ရင်းမြစ်	
 values-b+my/strings.xml	string	account	-	STR	အကောင့်	
 values-b+my/strings.xml	string	action_add_to_bookmarks	-	STR	ကြည့်ရှုမှုအခြေအနေသတ်မှတ်ခြင်း	
 values-b+my/strings.xml	string	action_default	-	STR	ပုံသေ	
@@ -21679,9 +22138,14 @@ values-b+my/strings.xml	string	search_provider_text_providers	-	STR	ပ့ံပ
 values-b+my/strings.xml	string	search_provider_text_types	-	STR	အမျိုးအစားများအသုံးပြု၍ရှာရန်	
 values-b+my/strings.xml	string	search_state_idle_body_desktop	-	STR	ခေါင်းစဉ်တစ်ခု ရိုက်ထည့်ပါ။ ရင်းမြစ်တစ်ခုစီ တုံ့ပြန်သည်နှင့် ရလဒ်များကို ၎င်းအောက်တွင် ပြသပါမည်။	
 values-b+my/strings.xml	string	search_state_no_results_type_filter	-	STR	%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။	
+values-b+my/strings.xml	string	search_state_no_suggestions_detail	-	STR	အကြံပြုချက် 0 ခု · မကြာသေးမီ ကိုက်ညီမှု 0 ခု	
+values-b+my/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” နှင့် ကိုက်ညီသည့်အရာ မရှိပါ	
 values-b+my/strings.xml	string	search_tv_source_failed	-	STR	မအောင်မြင်ပါ %s	
 values-b+my/strings.xml	string	search_tv_source_pinned	-	STR	ပင်ထိုးထား	
 values-b+my/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d ခုအနက် %1$d ခု ဖွင့်ထား · ပြောင်းလဲမှုများကို ပြီးပြီ တွင် အသုံးပြုမည်	
+values-b+my/strings.xml	string	search_tv_suggestion_recent	-	STR	မကြာသေးမီ · %s	
+values-b+my/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	မကြာသေးမီ · အကြံပြုထားသည်လည်း	
+values-b+my/strings.xml	string	search_tv_suggestion_suggested	-	STR	အကြံပြုထားသည်	
 values-b+my/strings.xml	string	season	-	STR	အတွဲ	
 values-b+my/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+my/strings.xml	string	season_short	-	STR	အတွဲ	
@@ -21845,6 +22309,12 @@ values-b+ne/strings.xml	plurals	home_bookmarks_count	one	STR	%d बुकमा�
 values-b+ne/strings.xml	plurals	home_bookmarks_count	other	STR	%d बुकमार्क	
 values-b+ne/strings.xml	plurals	home_sections_failed	one	STR	%d खण्ड लोड हुन सकेन	
 values-b+ne/strings.xml	plurals	home_sections_failed	other	STR	%d खण्डहरू लोड हुन सकेनन्	
+values-b+ne/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d स्रोतमा खोज्नुहोस्	
+values-b+ne/strings.xml	plurals	search_state_no_suggestions_action	other	STR	सबै %d स्रोतहरूमा खोज्नुहोस्	
+values-b+ne/strings.xml	plurals	search_state_no_suggestions_body	one	STR	जे भए पनि %d स्रोतमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।	
+values-b+ne/strings.xml	plurals	search_state_no_suggestions_body	other	STR	जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।	
+values-b+ne/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d स्रोत	
+values-b+ne/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d स्रोतहरू	
 values-b+ne/strings.xml	string	action_add_to_bookmarks	-	STR	हेरेको स्थिति निर्धारण गर्नुहोस्	
 values-b+ne/strings.xml	string	action_open_watching	-	STR	अधिक जानकारी	
 values-b+ne/strings.xml	string	action_remove_from_bookmarks	-	STR	हटाउनुहोस्	
@@ -22014,9 +22484,14 @@ values-b+ne/strings.xml	string	search_provider_text_providers	-	STR	प्रो
 values-b+ne/strings.xml	string	search_provider_text_types	-	STR	प्रकारको उपयोग गरी खोज्नुहोस्	
 values-b+ne/strings.xml	string	search_state_idle_body_desktop	-	STR	शीर्षक टाइप गर्नुहोस्। प्रत्येक स्रोतले जवाफ दिएपछि नतिजा त्यसको तल देखिन्छ।	
 values-b+ne/strings.xml	string	search_state_no_results_type_filter	-	STR	%s मात्र। तपाईंको प्रकार फिल्टरले खोजी साँघुरो बनाइरहेको छ।	
+values-b+ne/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 सुझाव · 0 हालैका मेल	
+values-b+ne/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” सँग केही पनि मेल खाँदैन	
 values-b+ne/strings.xml	string	search_tv_source_failed	-	STR	असफल %s	
 values-b+ne/strings.xml	string	search_tv_source_pinned	-	STR	पिन गरिएको	
 values-b+ne/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d मध्ये %1$d सक्रिय · सकियो थिच्दा परिवर्तन लागू हुन्छ	
+values-b+ne/strings.xml	string	search_tv_suggestion_recent	-	STR	हालैको · %s	
+values-b+ne/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	हालैको · सुझाव पनि गरिएको	
+values-b+ne/strings.xml	string	search_tv_suggestion_suggested	-	STR	सुझाव गरिएको	
 values-b+ne/strings.xml	string	seek_back_10_seconds	-	STR	10 सेकेन्ड पछाडि जानुहोस्	
 values-b+ne/strings.xml	string	seek_forward_10_seconds	-	STR	10 सेकेन्ड अगाडि जानुहोस्	
 values-b+ne/strings.xml	string	show_log_cat	-	STR	Logcat देखाउनुहोस	
@@ -22068,6 +22543,12 @@ values-b+nl/strings.xml	plurals	home_bookmarks_count	one	STR	%d BLADWIJZER
 values-b+nl/strings.xml	plurals	home_bookmarks_count	other	STR	%d BLADWIJZERS	
 values-b+nl/strings.xml	plurals	home_sections_failed	one	STR	%d sectie kon niet worden geladen	
 values-b+nl/strings.xml	plurals	home_sections_failed	other	STR	%d secties konden niet worden geladen	
+values-b+nl/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Zoek in %d bron	
+values-b+nl/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Zoek in alle %d bronnen	
+values-b+nl/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Druk op de zoektoets van het toetsenbord om toch in %d bron te zoeken.	
+values-b+nl/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Druk op de zoektoets van het toetsenbord om toch in alle %d bronnen te zoeken.	
+values-b+nl/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d BRON	
+values-b+nl/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d BRONNEN	
 values-b+nl/strings.xml	string	account	-	STR	account	
 values-b+nl/strings.xml	string	action_add_to_bookmarks	-	STR	Zet kijkstatus	
 values-b+nl/strings.xml	string	action_add_to_favorites	-	STR	Voeg toe aan favorieten	
@@ -22635,11 +23116,16 @@ values-b+nl/strings.xml	string	search_provider_text_providers	-	STR	Zoeken met p
 values-b+nl/strings.xml	string	search_provider_text_types	-	STR	Zoeken met types	
 values-b+nl/strings.xml	string	search_state_idle_body_desktop	-	STR	Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt.	
 values-b+nl/strings.xml	string	search_state_no_results_type_filter	-	STR	Alleen %s. Je typefilter beperkt de zoekopdracht.	
+values-b+nl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGESTIES · 0 RECENTE OVEREENKOMSTEN	
+values-b+nl/strings.xml	string	search_state_no_suggestions_headline	-	STR	Niets komt overeen met “%s”	
 values-b+nl/strings.xml	string	search_suggestions	-	STR	Zoeksuggesties	
 values-b+nl/strings.xml	string	search_suggestions_des	-	STR	Zoeksuggesties laten zien tijdens het typen	
 values-b+nl/strings.xml	string	search_tv_source_failed	-	STR	MISLUKT %s	
 values-b+nl/strings.xml	string	search_tv_source_pinned	-	STR	VASTGEPIND	
 values-b+nl/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d VAN %2$d INGESCHAKELD · WIJZIGINGEN GELDEN NA KLAAR	
+values-b+nl/strings.xml	string	search_tv_suggestion_recent	-	STR	RECENT · %s	
+values-b+nl/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECENT · OOK VOORGESTELD	
+values-b+nl/strings.xml	string	search_tv_suggestion_suggested	-	STR	VOORGESTELD	
 values-b+nl/strings.xml	string	season	-	STR	Seizoen	
 values-b+nl/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+nl/strings.xml	string	season_short	-	STR	S	
@@ -22847,6 +23333,12 @@ values-b+nn/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOKMERKE
 values-b+nn/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOKMERKE	
 values-b+nn/strings.xml	plurals	home_sections_failed	one	STR	%d del kunne ikkje lastast	
 values-b+nn/strings.xml	plurals	home_sections_failed	other	STR	%d delar kunne ikkje lastast	
+values-b+nn/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Søk i %d kjelde	
+values-b+nn/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Søk i alle %d kjeldene	
+values-b+nn/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel.	
+values-b+nn/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel.	
+values-b+nn/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KJELDE	
+values-b+nn/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KJELDER	
 values-b+nn/strings.xml	string	action_add_to_bookmarks	-	STR	Sett visingstatus	
 values-b+nn/strings.xml	string	action_default	-	STR	Standard	
 values-b+nn/strings.xml	string	action_open_watching	-	STR	Meir informasjon	
@@ -23067,9 +23559,14 @@ values-b+nn/strings.xml	string	search_provider_text_providers	-	STR	Søk basert 
 values-b+nn/strings.xml	string	search_provider_text_types	-	STR	Søk ved bruk av typer	
 values-b+nn/strings.xml	string	search_state_idle_body_desktop	-	STR	Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar.	
 values-b+nn/strings.xml	string	search_state_no_results_type_filter	-	STR	Berre %s. Typefilteret ditt avgrensar søket.	
+values-b+nn/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 FORSLAG · 0 NYLEGE TREFF	
+values-b+nn/strings.xml	string	search_state_no_suggestions_headline	-	STR	Ingenting samsvarar med «%s»	
 values-b+nn/strings.xml	string	search_tv_source_failed	-	STR	FEILA %s	
 values-b+nn/strings.xml	string	search_tv_source_pinned	-	STR	FESTA	
 values-b+nn/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d AV %2$d AKTIVERTE · ENDRINGAR GJELD ETTER FERDIG	
+values-b+nn/strings.xml	string	search_tv_suggestion_recent	-	STR	NYLEG · %s	
+values-b+nn/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NYLEG · OGSÅ FORESLÅTT	
+values-b+nn/strings.xml	string	search_tv_suggestion_suggested	-	STR	FORESLÅTT	
 values-b+nn/strings.xml	string	season	-	STR	Sesong	
 values-b+nn/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+nn/strings.xml	string	season_short	-	STR	S	
@@ -23142,6 +23639,12 @@ values-b+no/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOKMERKE
 values-b+no/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOKMERKER	
 values-b+no/strings.xml	plurals	home_sections_failed	one	STR	%d del kunne ikke lastes inn	
 values-b+no/strings.xml	plurals	home_sections_failed	other	STR	%d deler kunne ikke lastes inn	
+values-b+no/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Søk i %d kilde	
+values-b+no/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Søk i alle %d kilder	
+values-b+no/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Trykk på søketasten på tastaturet for å søke i %d kilde likevel.	
+values-b+no/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel.	
+values-b+no/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KILDE	
+values-b+no/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KILDER	
 values-b+no/strings.xml	string	account	-	STR	konto	
 values-b+no/strings.xml	string	action_add_to_bookmarks	-	STR	Sett visningsstatus	
 values-b+no/strings.xml	string	action_default	-	STR	Misligholde	
@@ -23587,9 +24090,14 @@ values-b+no/strings.xml	string	search_provider_text_providers	-	STR	Søk med lev
 values-b+no/strings.xml	string	search_provider_text_types	-	STR	Søk med typer	
 values-b+no/strings.xml	string	search_state_idle_body_desktop	-	STR	Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.	
 values-b+no/strings.xml	string	search_state_no_results_type_filter	-	STR	Bare %s. Typefilteret ditt begrenser søket.	
+values-b+no/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 FORSLAG · 0 NYLIGE TREFF	
+values-b+no/strings.xml	string	search_state_no_suggestions_headline	-	STR	Ingenting samsvarer med «%s»	
 values-b+no/strings.xml	string	search_tv_source_failed	-	STR	FEILET %s	
 values-b+no/strings.xml	string	search_tv_source_pinned	-	STR	FESTET	
 values-b+no/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d AV %2$d AKTIVERT · ENDRINGER GJELDER ETTER FERDIG	
+values-b+no/strings.xml	string	search_tv_suggestion_recent	-	STR	NYLIG · %s	
+values-b+no/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NYLIG · OGSÅ FORESLÅTT	
+values-b+no/strings.xml	string	search_tv_suggestion_suggested	-	STR	FORESLÅTT	
 values-b+no/strings.xml	string	season	-	STR	Sesong	
 values-b+no/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+no/strings.xml	string	season_short	-	STR	S	
@@ -23750,6 +24258,12 @@ values-b+or/strings.xml	plurals	home_bookmarks_count	one	STR	%d ବୁକମା�
 values-b+or/strings.xml	plurals	home_bookmarks_count	other	STR	%d ବୁକମାର୍କ	
 values-b+or/strings.xml	plurals	home_sections_failed	one	STR	%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ	
 values-b+or/strings.xml	plurals	home_sections_failed	other	STR	%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ	
+values-b+or/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ	
+values-b+or/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ	
+values-b+or/strings.xml	plurals	search_state_no_suggestions_body	one	STR	ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।	
+values-b+or/strings.xml	plurals	search_state_no_suggestions_body	other	STR	ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।	
+values-b+or/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ଉତ୍ସ	
+values-b+or/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ଉତ୍ସ	
 values-b+or/strings.xml	string	action_default	-	STR	ଡିଫଲ୍ଟ	
 values-b+or/strings.xml	string	added_sync_format	-	STR	%s ଯୋଡ଼ାଗଲା	
 values-b+or/strings.xml	string	all_languages_preference	-	STR	ସବୁ ଭାଷା	
@@ -23940,9 +24454,14 @@ values-b+or/strings.xml	string	search_poster_img_des	-	STR	ପୋଷ୍ଟର୍
 values-b+or/strings.xml	string	search_provider_text_providers	-	STR	ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା	
 values-b+or/strings.xml	string	search_state_idle_body_desktop	-	STR	ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।	
 values-b+or/strings.xml	string	search_state_no_results_type_filter	-	STR	କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।	
+values-b+or/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ପରାମର୍ଶ · 0 ସାମ୍ପ୍ରତିକ ମେଳ	
+values-b+or/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” ସହ କିଛି ମେଳ ଖାଉନାହିଁ	
 values-b+or/strings.xml	string	search_tv_source_failed	-	STR	ବିଫଳ %s	
 values-b+or/strings.xml	string	search_tv_source_pinned	-	STR	ପିନ୍ କରାଯାଇଛି	
 values-b+or/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d ମଧ୍ୟରୁ %1$d ସକ୍ରିୟ · ହେଲା ଦବାଇଲେ ପରିବର୍ତ୍ତନ ଲାଗୁ ହେବ	
+values-b+or/strings.xml	string	search_tv_suggestion_recent	-	STR	ସାମ୍ପ୍ରତିକ · %s	
+values-b+or/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ସାମ୍ପ୍ରତିକ · ପରାମର୍ଶିତ ମଧ୍ୟ	
+values-b+or/strings.xml	string	search_tv_suggestion_suggested	-	STR	ପରାମର୍ଶିତ	
 values-b+or/strings.xml	string	season	-	STR	ଋତୁ	
 values-b+or/strings.xml	string	season_short	-	STR	ଋ	
 values-b+or/strings.xml	string	seek_back_10_seconds	-	STR	୧୦ ସେକେଣ୍ଡ ପଛକୁ ଯାଅ	
@@ -24023,6 +24542,18 @@ values-b+pl/strings.xml	plurals	links_hidden	one	STR	%d ukryty odnośnik
 values-b+pl/strings.xml	plurals	links_hidden	few	STR	%d ukryte odnośniki	
 values-b+pl/strings.xml	plurals	links_hidden	many	STR	%d ukrytych odnośników	
 values-b+pl/strings.xml	plurals	links_hidden	other	STR	%d ukrytych odnośników	
+values-b+pl/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Szukaj w %d źródle	
+values-b+pl/strings.xml	plurals	search_state_no_suggestions_action	few	STR	Szukaj we wszystkich %d źródłach	
+values-b+pl/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Szukaj we wszystkich %d źródłach	
+values-b+pl/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Szukaj we wszystkich %d źródłach	
+values-b+pl/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać %d źródło.	
+values-b+pl/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.	
+values-b+pl/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródeł.	
+values-b+pl/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.	
+values-b+pl/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ŹRÓDŁO	
+values-b+pl/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ŹRÓDŁA	
+values-b+pl/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ŹRÓDEŁ	
+values-b+pl/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ŹRÓDŁA	
 values-b+pl/strings.xml	string	account	-	STR	konto	
 values-b+pl/strings.xml	string	action_add_to_bookmarks	-	STR	Ustaw status oglądania	
 values-b+pl/strings.xml	string	action_add_to_favorites	-	STR	Dodaj do ulubionych	
@@ -24629,11 +25160,16 @@ values-b+pl/strings.xml	string	search_provider_text_providers	-	STR	Szukaj wedł
 values-b+pl/strings.xml	string	search_provider_text_types	-	STR	Szukaj według typów	
 values-b+pl/strings.xml	string	search_state_idle_body_desktop	-	STR	Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.	
 values-b+pl/strings.xml	string	search_state_no_results_type_filter	-	STR	Tylko %s. Filtr typu zawęża wyszukiwanie.	
+values-b+pl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTII · 0 OSTATNICH DOPASOWAŃ	
+values-b+pl/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nic nie pasuje do „%s”	
 values-b+pl/strings.xml	string	search_suggestions	-	STR	Sugestie wyszukiwania	
 values-b+pl/strings.xml	string	search_suggestions_des	-	STR	Pokaż sugestie wyszukiwania podczas pisania	
 values-b+pl/strings.xml	string	search_tv_source_failed	-	STR	BŁĄD %s	
 values-b+pl/strings.xml	string	search_tv_source_pinned	-	STR	PRZYPIĘTE	
 values-b+pl/strings.xml	string	search_tv_sources_panel_meta	-	STR	WŁĄCZONO %1$d Z %2$d · ZMIANY OBOWIĄZUJĄ PO GOTOWE	
+values-b+pl/strings.xml	string	search_tv_suggestion_recent	-	STR	OSTATNIE · %s	
+values-b+pl/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	OSTATNIE · RÓWNIEŻ SUGEROWANE	
+values-b+pl/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGEROWANE	
 values-b+pl/strings.xml	string	season	-	STR	Sezon	
 values-b+pl/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+pl/strings.xml	string	season_short	-	STR	S	
@@ -24865,6 +25401,15 @@ values-b+pt+BR/strings.xml	plurals	home_sections_failed	other	STR	Falha ao carre
 values-b+pt+BR/strings.xml	plurals	links_hidden	one	STR	%d link oculto	
 values-b+pt+BR/strings.xml	plurals	links_hidden	many	STR	%d link ocultos	
 values-b+pt+BR/strings.xml	plurals	links_hidden	other	STR	%d link ocultos	
+values-b+pt+BR/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Pesquisar em %d fonte	
+values-b+pt+BR/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Pesquisar em todas as %d fontes	
+values-b+pt+BR/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Pesquisar em todas as %d fontes	
+values-b+pt+BR/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.	
+values-b+pt+BR/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.	
+values-b+pt+BR/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.	
+values-b+pt+BR/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTE	
+values-b+pt+BR/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d FONTES	
+values-b+pt+BR/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTES	
 values-b+pt+BR/strings.xml	string	account	-	STR	Conta	
 values-b+pt+BR/strings.xml	string	action_add_to_bookmarks	-	STR	Adicionar a lista	
 values-b+pt+BR/strings.xml	string	action_add_to_favorites	-	STR	Adicionar aos favoritos	
@@ -25471,11 +26016,16 @@ values-b+pt+BR/strings.xml	string	search_provider_text_providers	-	STR	Pesquisar
 values-b+pt+BR/strings.xml	string	search_provider_text_types	-	STR	Pesquisar usando tipos	
 values-b+pt+BR/strings.xml	string	search_state_idle_body_desktop	-	STR	Digite um título. Os resultados aparecem abaixo de cada fonte assim que ela responde.	
 values-b+pt+BR/strings.xml	string	search_state_no_results_type_filter	-	STR	Somente %s. O filtro de tipo está restringindo a pesquisa.	
+values-b+pt+BR/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES	
+values-b+pt+BR/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nada corresponde a “%s”	
 values-b+pt+BR/strings.xml	string	search_suggestions	-	STR	Sugestões de Busca	
 values-b+pt+BR/strings.xml	string	search_suggestions_des	-	STR	Exibir sugestões de pesquisa durante a digitação	
 values-b+pt+BR/strings.xml	string	search_tv_source_failed	-	STR	FALHOU %s	
 values-b+pt+BR/strings.xml	string	search_tv_source_pinned	-	STR	FIXADO	
 values-b+pt+BR/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES SÃO APLICADAS APÓS FEITO	
+values-b+pt+BR/strings.xml	string	search_tv_suggestion_recent	-	STR	RECENTE · %s	
+values-b+pt+BR/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECENTE · TAMBÉM SUGERIDO	
+values-b+pt+BR/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGERIDO	
 values-b+pt+BR/strings.xml	string	season	-	STR	Temporada	
 values-b+pt+BR/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+pt+BR/strings.xml	string	season_short	-	STR	T	
@@ -25704,6 +26254,15 @@ values-b+pt/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARCADORES
 values-b+pt/strings.xml	plurals	home_sections_failed	one	STR	Falha ao carregar %d secção	
 values-b+pt/strings.xml	plurals	home_sections_failed	many	STR	Falha ao carregar %d secções	
 values-b+pt/strings.xml	plurals	home_sections_failed	other	STR	Falha ao carregar %d secções	
+values-b+pt/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Pesquisar em %d fonte	
+values-b+pt/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Pesquisar em todas as %d fontes	
+values-b+pt/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Pesquisar em todas as %d fontes	
+values-b+pt/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.	
+values-b+pt/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.	
+values-b+pt/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.	
+values-b+pt/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTE	
+values-b+pt/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d FONTES	
+values-b+pt/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTES	
 values-b+pt/strings.xml	string	account	-	STR	Conta	
 values-b+pt/strings.xml	string	action_add_to_bookmarks	-	STR	Marcar como visto/não visto	
 values-b+pt/strings.xml	string	action_add_to_favorites	-	STR	Adicionar aos favoritos	
@@ -26307,11 +26866,16 @@ values-b+pt/strings.xml	string	search_provider_text_providers	-	STR	Procurar usa
 values-b+pt/strings.xml	string	search_provider_text_types	-	STR	Procurar usando tipos	
 values-b+pt/strings.xml	string	search_state_idle_body_desktop	-	STR	Escreva um título. Os resultados aparecem sob cada fonte assim que ela responde.	
 values-b+pt/strings.xml	string	search_state_no_results_type_filter	-	STR	Apenas %s. O filtro de tipo está a limitar a pesquisa.	
+values-b+pt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTÕES · 0 CORRESPONDÊNCIAS RECENTES	
+values-b+pt/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nada corresponde a «%s»	
 values-b+pt/strings.xml	string	search_suggestions	-	STR	Sugestões de pesquisa	
 values-b+pt/strings.xml	string	search_suggestions_des	-	STR	Mostrar sugestões de pesquisa enquanto digita	
 values-b+pt/strings.xml	string	search_tv_source_failed	-	STR	FALHOU %s	
 values-b+pt/strings.xml	string	search_tv_source_pinned	-	STR	FIXADO	
 values-b+pt/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d DE %2$d ATIVADOS · AS ALTERAÇÕES APLICAM-SE APÓS FEITO	
+values-b+pt/strings.xml	string	search_tv_suggestion_recent	-	STR	RECENTE · %s	
+values-b+pt/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECENTE · TAMBÉM SUGERIDO	
+values-b+pt/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGERIDO	
 values-b+pt/strings.xml	string	season	-	STR	Temporada	
 values-b+pt/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+pt/strings.xml	string	season_short	-	STR	T	
@@ -26526,6 +27090,9 @@ values-b+pt/strings.xml	string	yes	-	STR	Sim
 values-b+qt/strings.xml	plurals	downloads_failed_count	other	STR	%d oooogg	
 values-b+qt/strings.xml	plurals	home_bookmarks_count	other	STR	%d OOUUH OOH	
 values-b+qt/strings.xml	plurals	home_sections_failed	other	STR	%d oooogg ooh aaahhu	
+values-b+qt/strings.xml	plurals	search_state_no_suggestions_action	other	STR	aaoog %d ooh uugg	
+values-b+qt/strings.xml	plurals	search_state_no_suggestions_body	other	STR	uuh aagg oooh aaahh uug %d ooogg aah.	
+values-b+qt/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d OOGAH	
 values-b+qt/strings.xml	string	account	-	STR	aaaaggg	
 values-b+qt/strings.xml	string	action_add_to_bookmarks	-	STR	auugggguuuuuuhhh uuuu hhhhhhhhuhggghggg	
 values-b+qt/strings.xml	string	action_add_to_favorites	-	STR	uuh ah aaaahhhag	
@@ -27065,9 +27632,14 @@ values-b+qt/strings.xml	string	search_provider_text_providers	-	STR	aauuhaauuggh
 values-b+qt/strings.xml	string	search_provider_text_types	-	STR	ahhhahoooohhaa ahhhoohahh	
 values-b+qt/strings.xml	string	search_state_idle_body_desktop	-	STR	oouuh aaaaggg uuuk ooh	
 values-b+qt/strings.xml	string	search_state_no_results_type_filter	-	STR	%s uuhaa. oouuh aagggh uuk.	
+values-b+qt/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 AAAHHUU · 0 AAOOH UUGH	
+values-b+qt/strings.xml	string	search_state_no_suggestions_headline	-	STR	ooh aagg “%s”	
 values-b+qt/strings.xml	string	search_tv_source_failed	-	STR	AAGGH %s	
 values-b+qt/strings.xml	string	search_tv_source_pinned	-	STR	OOHHAA	
 values-b+qt/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d OOHH %2$d AAHH · UUGH AAK EEEK	
+values-b+qt/strings.xml	string	search_tv_suggestion_recent	-	STR	AAOOH · %s	
+values-b+qt/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	AAOOH · UUGG AAH	
+values-b+qt/strings.xml	string	search_tv_suggestion_suggested	-	STR	UUGGAH	
 values-b+qt/strings.xml	string	season	-	STR	ooo-ahah	
 values-b+qt/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+qt/strings.xml	string	season_short	-	STR	H	
@@ -27248,6 +27820,15 @@ values-b+ro/strings.xml	plurals	home_bookmarks_count	other	STR	%d DE MARCAJE
 values-b+ro/strings.xml	plurals	home_sections_failed	one	STR	Nu s-a putut încărca %d secțiune	
 values-b+ro/strings.xml	plurals	home_sections_failed	few	STR	Nu s-au putut încărca %d secțiuni	
 values-b+ro/strings.xml	plurals	home_sections_failed	other	STR	Nu s-au putut încărca %d de secțiuni	
+values-b+ro/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Caută în %d sursă	
+values-b+ro/strings.xml	plurals	search_state_no_suggestions_action	few	STR	Caută în toate cele %d surse	
+values-b+ro/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Caută în toate cele %d de surse	
+values-b+ro/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în %d sursă.	
+values-b+ro/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d surse.	
+values-b+ro/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d de surse.	
+values-b+ro/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d SURSĂ	
+values-b+ro/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d SURSE	
+values-b+ro/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d DE SURSE	
 values-b+ro/strings.xml	string	account	-	STR	Cont	
 values-b+ro/strings.xml	string	action_add_to_bookmarks	-	STR	Adaugă	
 values-b+ro/strings.xml	string	action_add_to_favorites	-	STR	Adaugă la favoriți/te	
@@ -27788,9 +28369,14 @@ values-b+ro/strings.xml	string	search_provider_text_providers	-	STR	Căutare în
 values-b+ro/strings.xml	string	search_provider_text_types	-	STR	Căutare în funcție de tip	
 values-b+ro/strings.xml	string	search_state_idle_body_desktop	-	STR	Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.	
 values-b+ro/strings.xml	string	search_state_no_results_type_filter	-	STR	Doar %s. Filtrul de tip restrânge căutarea.	
+values-b+ro/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGESTII · 0 POTRIVIRI RECENTE	
+values-b+ro/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nimic nu se potrivește cu „%s”	
 values-b+ro/strings.xml	string	search_tv_source_failed	-	STR	EȘUAT %s	
 values-b+ro/strings.xml	string	search_tv_source_pinned	-	STR	FIXAT	
 values-b+ro/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d DIN %2$d ACTIVATE · MODIFICĂRILE SE APLICĂ LA TERMINAT	
+values-b+ro/strings.xml	string	search_tv_suggestion_recent	-	STR	RECENT · %s	
+values-b+ro/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECENT · ȘI SUGERAT	
+values-b+ro/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGERAT	
 values-b+ro/strings.xml	string	season	-	STR	Sezonul	
 values-b+ro/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+ro/strings.xml	string	season_short	-	STR	S	
@@ -27987,6 +28573,18 @@ values-b+ru/strings.xml	plurals	links_hidden	one	STR	%d скрытая ссыл�
 values-b+ru/strings.xml	plurals	links_hidden	few	STR	%d скрытые ссылки	
 values-b+ru/strings.xml	plurals	links_hidden	many	STR	%d скрытых ссылок	
 values-b+ru/strings.xml	plurals	links_hidden	other	STR	%d скрытых ссылок	
+values-b+ru/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Искать в %d источнике	
+values-b+ru/strings.xml	plurals	search_state_no_suggestions_action	few	STR	Искать во всех %d источниках	
+values-b+ru/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Искать во всех %d источниках	
+values-b+ru/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Искать во всех %d источниках	
+values-b+ru/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать в %d источнике.	
+values-b+ru/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.	
+values-b+ru/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.	
+values-b+ru/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.	
+values-b+ru/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ИСТОЧНИК	
+values-b+ru/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ИСТОЧНИКА	
+values-b+ru/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ИСТОЧНИКОВ	
+values-b+ru/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ИСТОЧНИКА	
 values-b+ru/strings.xml	string	account	-	STR	учётная запись	
 values-b+ru/strings.xml	string	action_add_to_bookmarks	-	STR	Установите смотреть состояние	
 values-b+ru/strings.xml	string	action_add_to_favorites	-	STR	Добавить в любимое	
@@ -28593,11 +29191,16 @@ values-b+ru/strings.xml	string	search_provider_text_providers	-	STR	Поиск �
 values-b+ru/strings.xml	string	search_provider_text_types	-	STR	Поиск с использованием типов	
 values-b+ru/strings.xml	string	search_state_idle_body_desktop	-	STR	Введите название. Результаты появятся под каждым источником, когда он ответит.	
 values-b+ru/strings.xml	string	search_state_no_results_type_filter	-	STR	Только %s. Фильтр по типу сужает поиск.	
+values-b+ru/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПОДСКАЗОК · 0 НЕДАВНИХ СОВПАДЕНИЙ	
+values-b+ru/strings.xml	string	search_state_no_suggestions_headline	-	STR	Ничего не найдено по запросу «%s»	
 values-b+ru/strings.xml	string	search_suggestions	-	STR	Поиск предложений	
 values-b+ru/strings.xml	string	search_suggestions_des	-	STR	Показывать подсказки поиска при вводе текста	
 values-b+ru/strings.xml	string	search_tv_source_failed	-	STR	СБОЙ %s	
 values-b+ru/strings.xml	string	search_tv_source_pinned	-	STR	ЗАКРЕПЛЕНО	
 values-b+ru/strings.xml	string	search_tv_sources_panel_meta	-	STR	ВКЛЮЧЕНО %1$d ИЗ %2$d · ИЗМЕНЕНИЯ ВСТУПЯТ В СИЛУ ПОСЛЕ НАЖАТИЯ ГОТОВО	
+values-b+ru/strings.xml	string	search_tv_suggestion_recent	-	STR	НЕДАВНЕЕ · %s	
+values-b+ru/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	НЕДАВНЕЕ · ТАКЖЕ ПРЕДЛОЖЕНО	
+values-b+ru/strings.xml	string	search_tv_suggestion_suggested	-	STR	ПРЕДЛОЖЕНО	
 values-b+ru/strings.xml	string	season	-	STR	Сезон	
 values-b+ru/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+ru/strings.xml	string	season_short	-	STR	С	
@@ -28823,6 +29426,18 @@ values-b+sk/strings.xml	plurals	home_sections_failed	one	STR	Nepodarilo sa nač�
 values-b+sk/strings.xml	plurals	home_sections_failed	few	STR	Nepodarilo sa načítať %d sekcie	
 values-b+sk/strings.xml	plurals	home_sections_failed	many	STR	Nepodarilo sa načítať %d sekcií	
 values-b+sk/strings.xml	plurals	home_sections_failed	other	STR	Nepodarilo sa načítať %d sekcií	
+values-b+sk/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Hľadať v %d zdroji	
+values-b+sk/strings.xml	plurals	search_state_no_suggestions_action	few	STR	Hľadať vo všetkých %d zdrojoch	
+values-b+sk/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Hľadať vo všetkých %d zdrojoch	
+values-b+sk/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Hľadať vo všetkých %d zdrojoch	
+values-b+sk/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte %d zdroj.	
+values-b+sk/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetky %d zdroje.	
+values-b+sk/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.	
+values-b+sk/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.	
+values-b+sk/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ZDROJ	
+values-b+sk/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ZDROJE	
+values-b+sk/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ZDROJA	
+values-b+sk/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ZDROJOV	
 values-b+sk/strings.xml	string	account	-	STR	účet	
 values-b+sk/strings.xml	string	action_add_to_bookmarks	-	STR	Nastaviť stav sledovania	
 values-b+sk/strings.xml	string	action_default	-	STR	Predvolené	
@@ -29252,11 +29867,16 @@ values-b+sk/strings.xml	string	search_provider_text_providers	-	STR	Hľadať pom
 values-b+sk/strings.xml	string	search_provider_text_types	-	STR	Hľadať pomocou typov	
 values-b+sk/strings.xml	string	search_state_idle_body_desktop	-	STR	Zadajte názov. Výsledky sa zobrazia pod každým zdrojom, keď odpovie.	
 values-b+sk/strings.xml	string	search_state_no_results_type_filter	-	STR	Iba %s. Filter typov zužuje hľadanie.	
+values-b+sk/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 NÁVRHOV · 0 NEDÁVNYCH ZHÔD	
+values-b+sk/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nič nezodpovedá „%s“	
 values-b+sk/strings.xml	string	search_suggestions	-	STR	Návrhy vyhľadávania	
 values-b+sk/strings.xml	string	search_suggestions_des	-	STR	Zobraziť návrhy vyhľadávania pri písaní	
 values-b+sk/strings.xml	string	search_tv_source_failed	-	STR	ZLYHALO %s	
 values-b+sk/strings.xml	string	search_tv_source_pinned	-	STR	PRIPNUTÉ	
 values-b+sk/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d Z %2$d ZAPNUTÝCH · ZMENY SA UPLATNIA PO STLAČENÍ HOTOVO	
+values-b+sk/strings.xml	string	search_tv_suggestion_recent	-	STR	NEDÁVNE · %s	
+values-b+sk/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NEDÁVNE · TIEŽ NAVRHNUTÉ	
+values-b+sk/strings.xml	string	search_tv_suggestion_suggested	-	STR	NAVRHNUTÉ	
 values-b+sk/strings.xml	string	season	-	STR	Sezóna	
 values-b+sk/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+sk/strings.xml	string	season_short	-	STR	S	
@@ -29393,6 +30013,12 @@ values-b+so/strings.xml	plurals	home_bookmarks_count	one	STR	%d CALAAMAD
 values-b+so/strings.xml	plurals	home_bookmarks_count	other	STR	%d CALAAMADOOD	
 values-b+so/strings.xml	plurals	home_sections_failed	one	STR	Waa ka keeni kari waayey %d qayb	
 values-b+so/strings.xml	plurals	home_sections_failed	other	STR	Waa ka keeni kari waayey %d qaybood	
+values-b+so/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Ka raadi %d il	
+values-b+so/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Ka raadi dhammaan %d ilood	
+values-b+so/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Riix furaha raadinta ee kiiboodhka si aad u raadiso %d il si kastaba ha ahaatee.	
+values-b+so/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee.	
+values-b+so/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d IL	
+values-b+so/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ILOOD	
 values-b+so/strings.xml	string	account	-	STR	Akoonka	
 values-b+so/strings.xml	string	action_add_to_bookmarks	-	STR	Xagee marinaysaa	
 values-b+so/strings.xml	string	action_default	-	STR	Sidiisaa	
@@ -29842,11 +30468,16 @@ values-b+so/strings.xml	string	search_provider_text_providers	-	STR	Ku raadi qay
 values-b+so/strings.xml	string	search_provider_text_types	-	STR	Ku raadi noocyada	
 values-b+so/strings.xml	string	search_state_idle_body_desktop	-	STR	Qor cinwaan. Natiijooyinku waxay ka muuqdaan xigasho kasta hoosteeda marka ay jawaabto.	
 values-b+so/strings.xml	string	search_state_no_results_type_filter	-	STR	Kaliya %s. Shaandhada nooca ayaa soo koobaya raadinta.	
+values-b+so/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 TALOOYIN · 0 ISKU-EG DHOWAAN	
+values-b+so/strings.xml	string	search_state_no_suggestions_headline	-	STR	Waxba kuma habboona “%s”	
 values-b+so/strings.xml	string	search_suggestions	-	STR	Talooyinka Raadinta	
 values-b+so/strings.xml	string	search_suggestions_des	-	STR	Soo bandhig talooyinka inta aad wax qorayso	
 values-b+so/strings.xml	string	search_tv_source_failed	-	STR	FASHILAY %s	
 values-b+so/strings.xml	string	search_tv_source_pinned	-	STR	LA DHEJIYAY	
 values-b+so/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d KA %2$d LA HAWLGELIYAY · ISBEDDELADA WAXAY DHAQAN GALAAN MARKA LA DOOTO DHAN	
+values-b+so/strings.xml	string	search_tv_suggestion_recent	-	STR	DHOWAAN · %s	
+values-b+so/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	DHOWAAN · SIDOO KALE LA SOO JEEDIYAY	
+values-b+so/strings.xml	string	search_tv_suggestion_suggested	-	STR	LA SOO JEEDIYAY	
 values-b+so/strings.xml	string	season	-	STR	Kalka	
 values-b+so/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+so/strings.xml	string	season_short	-	STR	K	
@@ -30001,6 +30632,12 @@ values-b+sq/strings.xml	plurals	home_sections_failed	one	STR	Nuk mund të ngarko
 values-b+sq/strings.xml	plurals	home_sections_failed	other	STR	Nuk mund të ngarkoheshin %d seksione	
 values-b+sq/strings.xml	plurals	links_hidden	one	STR	%d link i fshehur	
 values-b+sq/strings.xml	plurals	links_hidden	other	STR	%d linqe të fshehura	
+values-b+sq/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Kërko në %d burim	
+values-b+sq/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Kërko në të gjitha %d burimet	
+values-b+sq/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në %d burim.	
+values-b+sq/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet.	
+values-b+sq/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d BURIM	
+values-b+sq/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d BURIME	
 values-b+sq/strings.xml	string	account	-	STR	llogaria	
 values-b+sq/strings.xml	string	action_add_to_bookmarks	-	STR	Vendos statusin e shikueshmërisë	
 values-b+sq/strings.xml	string	action_add_to_favorites	-	STR	Shto te të preferuarat	
@@ -30607,11 +31244,16 @@ values-b+sq/strings.xml	string	search_provider_text_providers	-	STR	Kërko duke 
 values-b+sq/strings.xml	string	search_provider_text_types	-	STR	Kërko duke përdorur tipet	
 values-b+sq/strings.xml	string	search_state_idle_body_desktop	-	STR	Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet.	
 values-b+sq/strings.xml	string	search_state_no_results_type_filter	-	STR	Vetëm %s. Filtri i llojit po e ngushton kërkimin.	
+values-b+sq/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGJERIME · 0 PËRPUTHJE TË FUNDIT	
+values-b+sq/strings.xml	string	search_state_no_suggestions_headline	-	STR	Asgjë nuk përputhet me “%s”	
 values-b+sq/strings.xml	string	search_suggestions	-	STR	Kërkime të sugjeruara	
 values-b+sq/strings.xml	string	search_suggestions_des	-	STR	Trego sugjerimet ndërkohë që shkruani	
 values-b+sq/strings.xml	string	search_tv_source_failed	-	STR	DËSHTOI %s	
 values-b+sq/strings.xml	string	search_tv_source_pinned	-	STR	I FIKSUAR	
 values-b+sq/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d NGA %2$d AKTIVIZUAR · NDRYSHIMET ZBATOHEN ME U KRYE	
+values-b+sq/strings.xml	string	search_tv_suggestion_recent	-	STR	SË FUNDI · %s	
+values-b+sq/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	SË FUNDI · GJITHASHTU E SUGJERUAR	
+values-b+sq/strings.xml	string	search_tv_suggestion_suggested	-	STR	E SUGJERUAR	
 values-b+sq/strings.xml	string	season	-	STR	Sezoni	
 values-b+sq/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+sq/strings.xml	string	season_short	-	STR	S	
@@ -30837,6 +31479,12 @@ values-b+sv/strings.xml	plurals	home_sections_failed	one	STR	%d sektion kunde in
 values-b+sv/strings.xml	plurals	home_sections_failed	other	STR	%d sektioner kunde inte laddas	
 values-b+sv/strings.xml	plurals	links_hidden	one	STR	%d dold länk	
 values-b+sv/strings.xml	plurals	links_hidden	other	STR	%d dolda länkar	
+values-b+sv/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Sök i %d källa	
+values-b+sv/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Sök i alla %d källor	
+values-b+sv/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Tryck på tangentbordets söktangent för att söka i %d källa ändå.	
+values-b+sv/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Tryck på tangentbordets söktangent för att söka i alla %d källor ändå.	
+values-b+sv/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KÄLLA	
+values-b+sv/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KÄLLOR	
 values-b+sv/strings.xml	string	account	-	STR	konto	
 values-b+sv/strings.xml	string	action_add_to_bookmarks	-	STR	Ange visningsstatus	
 values-b+sv/strings.xml	string	action_add_to_favorites	-	STR	Lägg till i favoriter	
@@ -31443,11 +32091,16 @@ values-b+sv/strings.xml	string	search_provider_text_providers	-	STR	Sök med hj�
 values-b+sv/strings.xml	string	search_provider_text_types	-	STR	Sök med hjälp av typer	
 values-b+sv/strings.xml	string	search_state_idle_body_desktop	-	STR	Skriv en titel. Resultaten visas under varje källa när den svarar.	
 values-b+sv/strings.xml	string	search_state_no_results_type_filter	-	STR	Endast %s. Ditt typfilter begränsar sökningen.	
+values-b+sv/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 FÖRSLAG · 0 NYLIGA TRÄFFAR	
+values-b+sv/strings.xml	string	search_state_no_suggestions_headline	-	STR	Inget matchar ”%s”	
 values-b+sv/strings.xml	string	search_suggestions	-	STR	Sökförslag	
 values-b+sv/strings.xml	string	search_suggestions_des	-	STR	Visa sökförslag medan du skriver	
 values-b+sv/strings.xml	string	search_tv_source_failed	-	STR	MISSLYCKADES %s	
 values-b+sv/strings.xml	string	search_tv_source_pinned	-	STR	FASTSATT	
 values-b+sv/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d AV %2$d AKTIVERADE · ÄNDRINGAR TILLÄMPAS VID KLAR	
+values-b+sv/strings.xml	string	search_tv_suggestion_recent	-	STR	NYLIGEN · %s	
+values-b+sv/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	NYLIGEN · ÄVEN FÖRESLAGEN	
+values-b+sv/strings.xml	string	search_tv_suggestion_suggested	-	STR	FÖRESLAGEN	
 values-b+sv/strings.xml	string	season	-	STR	Säsong	
 values-b+sv/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+sv/strings.xml	string	season_short	-	STR	S	
@@ -31673,6 +32326,12 @@ values-b+ta/strings.xml	plurals	home_sections_failed	one	STR	%d பிரிவ�
 values-b+ta/strings.xml	plurals	home_sections_failed	other	STR	%d பிரிவுகளை ஏற்ற முடியவில்லை	
 values-b+ta/strings.xml	plurals	links_hidden	one	STR	%d மறைக்கப்பட்ட இணைப்பு	
 values-b+ta/strings.xml	plurals	links_hidden	other	STR	%d மறைக்கப்பட்ட இணைப்புகள்	
+values-b+ta/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d மூலத்தில் தேடு	
+values-b+ta/strings.xml	plurals	search_state_no_suggestions_action	other	STR	அனைத்து %d மூலங்களிலும் தேடு	
+values-b+ta/strings.xml	plurals	search_state_no_suggestions_body	one	STR	இருந்தாலும் %d மூலத்தில் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.	
+values-b+ta/strings.xml	plurals	search_state_no_suggestions_body	other	STR	இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.	
+values-b+ta/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d மூலம்	
+values-b+ta/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d மூலங்கள்	
 values-b+ta/strings.xml	string	account	-	STR	கணக்கு	
 values-b+ta/strings.xml	string	action_add_to_bookmarks	-	STR	கடிகார நிலையை அமைக்கவும்	
 values-b+ta/strings.xml	string	action_add_to_favorites	-	STR	பிடித்தவையில் சேர்	
@@ -32279,11 +32938,16 @@ values-b+ta/strings.xml	string	search_provider_text_providers	-	STR	வழங்
 values-b+ta/strings.xml	string	search_provider_text_types	-	STR	வகைகளைப் பயன்படுத்தி தேடுங்கள்	
 values-b+ta/strings.xml	string	search_state_idle_body_desktop	-	STR	ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.	
 values-b+ta/strings.xml	string	search_state_no_results_type_filter	-	STR	%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.	
+values-b+ta/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 பரிந்துரைகள் · 0 சமீபத்திய பொருத்தங்கள்	
+values-b+ta/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” உடன் எதுவும் பொருந்தவில்லை	
 values-b+ta/strings.xml	string	search_suggestions	-	STR	தேடல் பரிந்துரைகள்	
 values-b+ta/strings.xml	string	search_suggestions_des	-	STR	தட்டச்சு செய்யும் போது தேடல் பரிந்துரைகளைக் காட்டு	
 values-b+ta/strings.xml	string	search_tv_source_failed	-	STR	தோல்வி %s	
 values-b+ta/strings.xml	string	search_tv_source_pinned	-	STR	பின் செய்யப்பட்டது	
 values-b+ta/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d இல் %1$d இயக்கப்பட்டது · முடிந்தது அழுத்தியதும் மாற்றங்கள் பொருந்தும்	
+values-b+ta/strings.xml	string	search_tv_suggestion_recent	-	STR	சமீபத்தியது · %s	
+values-b+ta/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	சமீபத்தியது · பரிந்துரைக்கப்பட்டதும்	
+values-b+ta/strings.xml	string	search_tv_suggestion_suggested	-	STR	பரிந்துரைக்கப்பட்டது	
 values-b+ta/strings.xml	string	season	-	STR	பருவம்	
 values-b+ta/strings.xml	string	season_format	-	STR	%1$s %2$d %3$s	
 values-b+ta/strings.xml	string	season_short	-	STR	கள்	
@@ -32503,6 +33167,12 @@ values-b+ti/strings.xml	plurals	home_bookmarks_count	one	STR	%d ምልክታት
 values-b+ti/strings.xml	plurals	home_bookmarks_count	other	STR	%d ምልክታት	
 values-b+ti/strings.xml	plurals	home_sections_failed	one	STR	%d ክፍሊ ክጽዓን ኣይከኣለን	
 values-b+ti/strings.xml	plurals	home_sections_failed	other	STR	%d ክፍሊ ክጽዓን ኣይከኣለን	
+values-b+ti/strings.xml	plurals	search_state_no_suggestions_action	one	STR	ኣብ %d ምንጪ ድለ	
+values-b+ti/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ኣብ ኩሎም %d ምንጭታት ድለ	
+values-b+ti/strings.xml	plurals	search_state_no_suggestions_body	one	STR	ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።	
+values-b+ti/strings.xml	plurals	search_state_no_suggestions_body	other	STR	ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።	
+values-b+ti/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ምንጪ	
+values-b+ti/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ምንጭታት	
 values-b+ti/strings.xml	string	app_dub_sub_episode_text_format	-	STR	%1$s ክፋል %2$d	
 values-b+ti/strings.xml	string	cast	-	STR	ተዋሳእቲ	
 values-b+ti/strings.xml	string	cast_format	-	STR	ተዋሳእቲ፡ %s	
@@ -32589,9 +33259,14 @@ values-b+ti/strings.xml	string	player_source_switch	-	STR	ቀይር
 values-b+ti/strings.xml	string	player_unmute	-	STR	ድምጺ ወልዕ	
 values-b+ti/strings.xml	string	search_state_idle_body_desktop	-	STR	ኣርእስቲ ጽሓፍ። ውጽኢታት ነፍሲ ወከፍ ምንጪ ምስ መለሰ ኣብ ትሕቲኡ ይርአዩ።	
 values-b+ti/strings.xml	string	search_state_no_results_type_filter	-	STR	%s ጥራይ። ማጣሪያ ዓይነትካ ፍለጋ የጽብብ ኣሎ።	
+values-b+ti/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ሓሳባት · 0 ናይ ቀረባ ተመሳሰልቲ	
+values-b+ti/strings.xml	string	search_state_no_suggestions_headline	-	STR	ምስ «%s» ዝሰማማዕ የለን	
 values-b+ti/strings.xml	string	search_tv_source_failed	-	STR	ኣይተኻኣለን %s	
 values-b+ti/strings.xml	string	search_tv_source_pinned	-	STR	ተሰኪሉ	
 values-b+ti/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d ካብ %2$d ተኸፊቱ · ለውጥታት ብተፈጸመ ይትግበሩ	
+values-b+ti/strings.xml	string	search_tv_suggestion_recent	-	STR	ናይ ቀረባ · %s	
+values-b+ti/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	ናይ ቀረባ · ከምኡውን ዝተመኽረ	
+values-b+ti/strings.xml	string	search_tv_suggestion_suggested	-	STR	ዝተመኽረ	
 values-b+ti/strings.xml	string	seek_back_10_seconds	-	STR	10 ካልኢት ንድሕሪት	
 values-b+ti/strings.xml	string	seek_forward_10_seconds	-	STR	10 ካልኢት ንቕድሚት	
 values-b+ti/strings.xml	string	subtitles_file_empty	-	STR	እዚ ፋይል ንኡስ ጽሑፍ ባዶ እዩ	
@@ -32603,6 +33278,12 @@ values-b+tl/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOOKMARK
 values-b+tl/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOOKMARK	
 values-b+tl/strings.xml	plurals	home_sections_failed	one	STR	Hindi na-load ang %d seksyon	
 values-b+tl/strings.xml	plurals	home_sections_failed	other	STR	Hindi na-load ang %d seksyon	
+values-b+tl/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Maghanap sa %d source	
+values-b+tl/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Maghanap sa lahat ng %d source	
+values-b+tl/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Pindutin ang search key ng keyboard para maghanap pa rin sa %d source.	
+values-b+tl/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d source.	
+values-b+tl/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d SOURCE	
+values-b+tl/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SOURCES	
 values-b+tl/strings.xml	string	action_add_to_bookmarks	-	STR	I-set ang Status	
 values-b+tl/strings.xml	string	action_default	-	STR	Default	
 values-b+tl/strings.xml	string	action_mark_as_watched	-	STR	I-tanda bilang napanood na	
@@ -32863,9 +33544,14 @@ values-b+tl/strings.xml	string	search_provider_text_providers	-	STR	Search using
 values-b+tl/strings.xml	string	search_provider_text_types	-	STR	Search using types	
 values-b+tl/strings.xml	string	search_state_idle_body_desktop	-	STR	Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.	
 values-b+tl/strings.xml	string	search_state_no_results_type_filter	-	STR	%s lang. Pinipigilan ng type filter mo ang paghahanap.	
+values-b+tl/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 MUNGKAHI · 0 KAMAKAILANG TUGMA	
+values-b+tl/strings.xml	string	search_state_no_suggestions_headline	-	STR	Walang tumutugma sa “%s”	
 values-b+tl/strings.xml	string	search_tv_source_failed	-	STR	NABIGO %s	
 values-b+tl/strings.xml	string	search_tv_source_pinned	-	STR	NAKA-PIN	
 values-b+tl/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA	
+values-b+tl/strings.xml	string	search_tv_suggestion_recent	-	STR	KAMAKAILAN · %s	
+values-b+tl/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	KAMAKAILAN · IMINUNGKAHI RIN	
+values-b+tl/strings.xml	string	search_tv_suggestion_suggested	-	STR	IMINUNGKAHI	
 values-b+tl/strings.xml	string	season	-	STR	Season	
 values-b+tl/strings.xml	string	season_short	-	STR	S	
 values-b+tl/strings.xml	string	seek_back_10_seconds	-	STR	Bumalik ng 10 segundo	
@@ -32956,6 +33642,12 @@ values-b+tr/strings.xml	plurals	home_sections_failed	one	STR	%d kısım yüklene
 values-b+tr/strings.xml	plurals	home_sections_failed	other	STR	%d kısım yüklenemedi	
 values-b+tr/strings.xml	plurals	links_hidden	one	STR	%d gizli bağlantı	
 values-b+tr/strings.xml	plurals	links_hidden	other	STR	%d gizli bağlantı	
+values-b+tr/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d kaynakta ara	
+values-b+tr/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Tüm %d kaynakta ara	
+values-b+tr/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Yine de %d kaynakta aramak için klavyenin arama tuşuna basın.	
+values-b+tr/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın.	
+values-b+tr/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KAYNAK	
+values-b+tr/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KAYNAK	
 values-b+tr/strings.xml	string	account	-	STR	hesap	
 values-b+tr/strings.xml	string	action_add_to_bookmarks	-	STR	İzleme durumunu ayarla	
 values-b+tr/strings.xml	string	action_add_to_favorites	-	STR	Favorilere ekle	
@@ -33562,11 +34254,16 @@ values-b+tr/strings.xml	string	search_provider_text_providers	-	STR	Sağlayıcı
 values-b+tr/strings.xml	string	search_provider_text_types	-	STR	Türleri kullanarak ara	
 values-b+tr/strings.xml	string	search_state_idle_body_desktop	-	STR	Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür.	
 values-b+tr/strings.xml	string	search_state_no_results_type_filter	-	STR	Yalnızca %s. Tür filtreniz aramayı daraltıyor.	
+values-b+tr/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ÖNERİ · 0 YAKIN ZAMANLI EŞLEŞME	
+values-b+tr/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” ile eşleşen bir şey yok	
 values-b+tr/strings.xml	string	search_suggestions	-	STR	Arama Önerileri	
 values-b+tr/strings.xml	string	search_suggestions_des	-	STR	Yazarken arama önerilerini göster	
 values-b+tr/strings.xml	string	search_tv_source_failed	-	STR	BAŞARISIZ %s	
 values-b+tr/strings.xml	string	search_tv_source_pinned	-	STR	SABİTLENDİ	
 values-b+tr/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d İÇİNDEN %1$d ETKİN · DEĞİŞİKLİKLER BİTTİ İLE UYGULANIR	
+values-b+tr/strings.xml	string	search_tv_suggestion_recent	-	STR	YAKIN ZAMANDA · %s	
+values-b+tr/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	YAKIN ZAMANDA · AYRICA ÖNERİLDİ	
+values-b+tr/strings.xml	string	search_tv_suggestion_suggested	-	STR	ÖNERİLEN	
 values-b+tr/strings.xml	string	season	-	STR	Sezon	
 values-b+tr/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+tr/strings.xml	string	season_short	-	STR	S	
@@ -33804,6 +34501,18 @@ values-b+uk/strings.xml	plurals	links_hidden	one	STR	%d приховане по�
 values-b+uk/strings.xml	plurals	links_hidden	few	STR	%d приховані посилання	
 values-b+uk/strings.xml	plurals	links_hidden	many	STR	%d прихованих посилань	
 values-b+uk/strings.xml	plurals	links_hidden	other	STR	%d прихованих посилань	
+values-b+uk/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Шукати в %d джерелі	
+values-b+uk/strings.xml	plurals	search_state_no_suggestions_action	few	STR	Шукати в усіх %d джерелах	
+values-b+uk/strings.xml	plurals	search_state_no_suggestions_action	many	STR	Шукати в усіх %d джерелах	
+values-b+uk/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Шукати в усіх %d джерелах	
+values-b+uk/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в %d джерелі.	
+values-b+uk/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.	
+values-b+uk/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.	
+values-b+uk/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.	
+values-b+uk/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ДЖЕРЕЛО	
+values-b+uk/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ДЖЕРЕЛА	
+values-b+uk/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ДЖЕРЕЛ	
+values-b+uk/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ДЖЕРЕЛА	
 values-b+uk/strings.xml	string	account	-	STR	обліковий запис	
 values-b+uk/strings.xml	string	action_add_to_bookmarks	-	STR	Змінити стан перегляду	
 values-b+uk/strings.xml	string	action_add_to_favorites	-	STR	Додати до обраного	
@@ -34410,11 +35119,16 @@ values-b+uk/strings.xml	string	search_provider_text_providers	-	STR	Пошук �
 values-b+uk/strings.xml	string	search_provider_text_types	-	STR	Пошук за типами	
 values-b+uk/strings.xml	string	search_state_idle_body_desktop	-	STR	Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість.	
 values-b+uk/strings.xml	string	search_state_no_results_type_filter	-	STR	Лише %s. Фільтр за типом звужує пошук.	
+values-b+uk/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 ПІДКАЗОК · 0 НЕЩОДАВНІХ ЗБІГІВ	
+values-b+uk/strings.xml	string	search_state_no_suggestions_headline	-	STR	Нічого не відповідає «%s»	
 values-b+uk/strings.xml	string	search_suggestions	-	STR	Пропозиції пошуку	
 values-b+uk/strings.xml	string	search_suggestions_des	-	STR	Показувати підказки пошуку під час введення тексту	
 values-b+uk/strings.xml	string	search_tv_source_failed	-	STR	ЗБІЙ %s	
 values-b+uk/strings.xml	string	search_tv_source_pinned	-	STR	ЗАКРІПЛЕНО	
 values-b+uk/strings.xml	string	search_tv_sources_panel_meta	-	STR	УВІМКНЕНО %1$d З %2$d · ЗМІНИ ЗАСТОСОВУЮТЬСЯ ПІСЛЯ НАТИСКАННЯ ГОТОВО	
+values-b+uk/strings.xml	string	search_tv_suggestion_recent	-	STR	НЕЩОДАВНЄ · %s	
+values-b+uk/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	НЕЩОДАВНЄ · ТАКОЖ ЗАПРОПОНОВАНО	
+values-b+uk/strings.xml	string	search_tv_suggestion_suggested	-	STR	ЗАПРОПОНОВАНО	
 values-b+uk/strings.xml	string	season	-	STR	Сезон	
 values-b+uk/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+uk/strings.xml	string	season_short	-	STR	С	
@@ -34634,6 +35348,12 @@ values-b+ur/strings.xml	plurals	home_bookmarks_count	one	STR	%d بک مارک
 values-b+ur/strings.xml	plurals	home_bookmarks_count	other	STR	%d بک مارکس	
 values-b+ur/strings.xml	plurals	home_sections_failed	one	STR	%d سیکشن لوڈ نہیں ہو سکا	
 values-b+ur/strings.xml	plurals	home_sections_failed	other	STR	%d سیکشنز لوڈ نہیں ہو سکے	
+values-b+ur/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d ذریعے میں تلاش کریں	
+values-b+ur/strings.xml	plurals	search_state_no_suggestions_action	other	STR	تمام %d ذرائع میں تلاش کریں	
+values-b+ur/strings.xml	plurals	search_state_no_suggestions_body	one	STR	پھر بھی %d ذریعے میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔	
+values-b+ur/strings.xml	plurals	search_state_no_suggestions_body	other	STR	پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔	
+values-b+ur/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ذریعہ	
+values-b+ur/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ذرائع	
 values-b+ur/strings.xml	string	account	-	STR	اكاؤنٹ	
 values-b+ur/strings.xml	string	action_add_to_bookmarks	-	STR	واچ اسٹیٹس کو سیٹ کریں	
 values-b+ur/strings.xml	string	action_add_to_favorites	-	STR	پسندیدہ میں شامل کریں	
@@ -35151,9 +35871,14 @@ values-b+ur/strings.xml	string	search_provider_text_providers	-	STR	ذرائع �
 values-b+ur/strings.xml	string	search_provider_text_types	-	STR	انواع کا استعمال کرتے ہوئے تلاش کریں	
 values-b+ur/strings.xml	string	search_state_idle_body_desktop	-	STR	عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔	
 values-b+ur/strings.xml	string	search_state_no_results_type_filter	-	STR	صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔	
+values-b+ur/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 تجاویز · 0 حالیہ مماثلتیں	
+values-b+ur/strings.xml	string	search_state_no_suggestions_headline	-	STR	“%s” سے کچھ بھی مماثل نہیں	
 values-b+ur/strings.xml	string	search_tv_source_failed	-	STR	ناکام %s	
 values-b+ur/strings.xml	string	search_tv_source_pinned	-	STR	پن کیا گیا	
 values-b+ur/strings.xml	string	search_tv_sources_panel_meta	-	STR	%2$d میں سے %1$d فعال · تبدیلیاں ہو گیا پر لاگو ہوں گی	
+values-b+ur/strings.xml	string	search_tv_suggestion_recent	-	STR	حالیہ · %s	
+values-b+ur/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	حالیہ · تجویز کردہ بھی	
+values-b+ur/strings.xml	string	search_tv_suggestion_suggested	-	STR	تجویز کردہ	
 values-b+ur/strings.xml	string	season	-	STR	سیزن	
 values-b+ur/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+ur/strings.xml	string	season_short	-	STR	S	
@@ -35331,6 +36056,9 @@ values-b+vi/strings.xml	plurals	downloads_queued	other	STR	%d tải xuống đan
 values-b+vi/strings.xml	plurals	home_bookmarks_count	other	STR	%d MỤC	
 values-b+vi/strings.xml	plurals	home_sections_failed	other	STR	Không tải được %d mục	
 values-b+vi/strings.xml	plurals	links_hidden	other	STR	%d liên kết bị ẩn	
+values-b+vi/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Tìm kiếm trên cả %d nguồn	
+values-b+vi/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.	
+values-b+vi/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d NGUỒN	
 values-b+vi/strings.xml	string	account	-	STR	tài khoản	
 values-b+vi/strings.xml	string	action_add_to_bookmarks	-	STR	Đặt trạng thái xem	
 values-b+vi/strings.xml	string	action_add_to_favorites	-	STR	Thêm vào mục yêu thích	
@@ -35937,11 +36665,16 @@ values-b+vi/strings.xml	string	search_provider_text_providers	-	STR	Tìm kiếm 
 values-b+vi/strings.xml	string	search_provider_text_types	-	STR	Tìm kiếm theo thể loại	
 values-b+vi/strings.xml	string	search_state_idle_body_desktop	-	STR	Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi.	
 values-b+vi/strings.xml	string	search_state_no_results_type_filter	-	STR	Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm.	
+values-b+vi/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 GỢI Ý · 0 KẾT QUẢ GẦN ĐÂY KHỚP	
+values-b+vi/strings.xml	string	search_state_no_suggestions_headline	-	STR	Không có gì khớp với “%s”	
 values-b+vi/strings.xml	string	search_suggestions	-	STR	Gợi ý tìm kiếm	
 values-b+vi/strings.xml	string	search_suggestions_des	-	STR	Hiển thị gợi ý tìm kiếm khi đang nhập	
 values-b+vi/strings.xml	string	search_tv_source_failed	-	STR	THẤT BẠI %s	
 values-b+vi/strings.xml	string	search_tv_source_pinned	-	STR	ĐÃ GHIM	
 values-b+vi/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d TRÊN %2$d ĐÃ BẬT · THAY ĐỔI ÁP DỤNG KHI NHẤN HOÀN TẤT	
+values-b+vi/strings.xml	string	search_tv_suggestion_recent	-	STR	GẦN ĐÂY · %s	
+values-b+vi/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	GẦN ĐÂY · CŨNG ĐƯỢC GỢI Ý	
+values-b+vi/strings.xml	string	search_tv_suggestion_suggested	-	STR	ĐƯỢC GỢI Ý	
 values-b+vi/strings.xml	string	season	-	STR	Mùa	
 values-b+vi/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+vi/strings.xml	string	season_short	-	STR	Mùa	
@@ -36160,6 +36893,9 @@ values-b+zh+TW/strings.xml	plurals	downloads_failed_count	other	STR	%d 個失敗
 values-b+zh+TW/strings.xml	plurals	downloads_queued	other	STR	佇列中有 %d 個下載	
 values-b+zh+TW/strings.xml	plurals	home_bookmarks_count	other	STR	%d 個書籤	
 values-b+zh+TW/strings.xml	plurals	home_sections_failed	other	STR	%d 個分區載入失敗	
+values-b+zh+TW/strings.xml	plurals	search_state_no_suggestions_action	other	STR	搜尋全部 %d 個來源	
+values-b+zh+TW/strings.xml	plurals	search_state_no_suggestions_body	other	STR	按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。	
+values-b+zh+TW/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d 來源	
 values-b+zh+TW/strings.xml	string	account	-	STR	帳號	
 values-b+zh+TW/strings.xml	string	action_add_to_bookmarks	-	STR	設定觀看狀態	
 values-b+zh+TW/strings.xml	string	action_add_to_favorites	-	STR	加入我的最愛	
@@ -36763,11 +37499,16 @@ values-b+zh+TW/strings.xml	string	search_provider_text_providers	-	STR	按片源
 values-b+zh+TW/strings.xml	string	search_provider_text_types	-	STR	按類型搜尋	
 values-b+zh+TW/strings.xml	string	search_state_idle_body_desktop	-	STR	輸入標題。每個來源回應後，結果會顯示在其下方。	
 values-b+zh+TW/strings.xml	string	search_state_no_results_type_filter	-	STR	僅限%s。類型篩選器正在縮小搜尋範圍。	
+values-b+zh+TW/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 個建議 · 0 個最近相符	
+values-b+zh+TW/strings.xml	string	search_state_no_suggestions_headline	-	STR	沒有符合「%s」的內容	
 values-b+zh+TW/strings.xml	string	search_suggestions	-	STR	搜尋建議	
 values-b+zh+TW/strings.xml	string	search_suggestions_des	-	STR	輸入時顯示搜尋建議	
 values-b+zh+TW/strings.xml	string	search_tv_source_failed	-	STR	失敗 %s	
 values-b+zh+TW/strings.xml	string	search_tv_source_pinned	-	STR	已置頂	
 values-b+zh+TW/strings.xml	string	search_tv_sources_panel_meta	-	STR	已啟用 %1$d / %2$d · 變更將在點選完成後生效	
+values-b+zh+TW/strings.xml	string	search_tv_suggestion_recent	-	STR	最近 · %s	
+values-b+zh+TW/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	最近 · 也是建議	
+values-b+zh+TW/strings.xml	string	search_tv_suggestion_suggested	-	STR	建議	
 values-b+zh+TW/strings.xml	string	season	-	STR	季	
 values-b+zh+TW/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+zh+TW/strings.xml	string	season_short	-	STR	S	
@@ -36985,6 +37726,9 @@ values-b+zh/strings.xml	plurals	downloads_queued	other	STR	队列中有 %d 个�
 values-b+zh/strings.xml	plurals	home_bookmarks_count	other	STR	%d 个书签	
 values-b+zh/strings.xml	plurals	home_sections_failed	other	STR	%d 个分区加载失败	
 values-b+zh/strings.xml	plurals	links_hidden	other	STR	%d 条隐藏链接	
+values-b+zh/strings.xml	plurals	search_state_no_suggestions_action	other	STR	搜索全部 %d 个来源	
+values-b+zh/strings.xml	plurals	search_state_no_suggestions_body	other	STR	按键盘上的搜索键，仍然搜索全部 %d 个来源。	
+values-b+zh/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d 来源	
 values-b+zh/strings.xml	string	account	-	STR	账户	
 values-b+zh/strings.xml	string	action_add_to_bookmarks	-	STR	设置观看状态	
 values-b+zh/strings.xml	string	action_add_to_favorites	-	STR	添加到收藏夹	
@@ -37591,11 +38335,16 @@ values-b+zh/strings.xml	string	search_provider_text_providers	-	STR	按片源搜
 values-b+zh/strings.xml	string	search_provider_text_types	-	STR	按类型搜索	
 values-b+zh/strings.xml	string	search_state_idle_body_desktop	-	STR	输入标题。每个来源响应后，结果会显示在其下方。	
 values-b+zh/strings.xml	string	search_state_no_results_type_filter	-	STR	仅限%s。类型筛选正在缩小搜索范围。	
+values-b+zh/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 个建议 · 0 个最近匹配	
+values-b+zh/strings.xml	string	search_state_no_suggestions_headline	-	STR	没有与“%s”匹配的内容	
 values-b+zh/strings.xml	string	search_suggestions	-	STR	搜索建议	
 values-b+zh/strings.xml	string	search_suggestions_des	-	STR	输入时显示搜索建议	
 values-b+zh/strings.xml	string	search_tv_source_failed	-	STR	失败 %s	
 values-b+zh/strings.xml	string	search_tv_source_pinned	-	STR	已置顶	
 values-b+zh/strings.xml	string	search_tv_sources_panel_meta	-	STR	已启用 %1$d / %2$d · 更改将在点击完成后生效	
+values-b+zh/strings.xml	string	search_tv_suggestion_recent	-	STR	最近 · %s	
+values-b+zh/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	最近 · 也是建议	
+values-b+zh/strings.xml	string	search_tv_suggestion_suggested	-	STR	建议	
 values-b+zh/strings.xml	string	season	-	STR	季	
 values-b+zh/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values-b+zh/strings.xml	string	season_short	-	STR	S	
@@ -37935,6 +38684,10 @@ values/strings.xml	plurals	links_hidden	one	STR	%d hidden link
 values/strings.xml	plurals	links_hidden	other	STR	%d hidden links	
 values/strings.xml	plurals	search_state_no_results_body	one	STR	%d selected source answered and it does not carry it.	
 values/strings.xml	plurals	search_state_no_results_body	other	STR	All %d selected sources answered and none of them carry it.	
+values/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Search %d source	
+values/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Search all %d sources	
+values/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Press the keyboard’s search key to search %d source anyway.	
+values/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Press the keyboard’s search key to search all %d sources anyway.	
 values/strings.xml	plurals	search_state_partial_headline	one	STR	%d source failed	
 values/strings.xml	plurals	search_state_partial_headline	other	STR	%d sources failed	
 values/strings.xml	plurals	search_tv_recent_count	one	STR	%d SAVED	
@@ -37943,6 +38696,8 @@ values/strings.xml	plurals	search_tv_result_count	one	STR	%d RESULT
 values/strings.xml	plurals	search_tv_result_count	other	STR	%d RESULTS	
 values/strings.xml	plurals	search_tv_sources_count	one	STR	%1$d / %2$d	
 values/strings.xml	plurals	search_tv_sources_count	other	STR	%1$d / %2$d	
+values/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d SOURCE	
+values/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SOURCES	
 values/strings.xml	string	account	-	STR	account	
 values/strings.xml	string	action_add_to_bookmarks	-	STR	Set watch status	
 values/strings.xml	string	action_add_to_favorites	-	STR	Add to favorites	
@@ -38582,6 +39337,8 @@ values/strings.xml	string	search_state_no_results_body_unknown	-	STR	Every selec
 values/strings.xml	string	search_state_no_results_detail	-	STR	%1$d QUERIED · %2$d ANSWERED · %3$d FAILED · %4$d RESULTS	
 values/strings.xml	string	search_state_no_results_headline	-	STR	No results	
 values/strings.xml	string	search_state_no_results_type_filter	-	STR	%s only. Your type filter is narrowing the search.	
+values/strings.xml	string	search_state_no_suggestions_detail	-	STR	0 SUGGESTIONS · 0 RECENT MATCHES	
+values/strings.xml	string	search_state_no_suggestions_headline	-	STR	Nothing matches “%s”	
 values/strings.xml	string	search_state_offline_body	-	STR	Search needs a connection. Your downloads are still available.	
 values/strings.xml	string	search_state_offline_headline	-	STR	You are offline	
 values/strings.xml	string	search_state_retry	-	STR	Try again	
@@ -38595,6 +39352,9 @@ values/strings.xml	string	search_tv_source_failed	-	STR	FAILED %s
 values/strings.xml	string	search_tv_source_pinned	-	STR	PINNED	
 values/strings.xml	string	search_tv_sources_label	-	STR	Sources	
 values/strings.xml	string	search_tv_sources_panel_meta	-	STR	%1$d OF %2$d ENABLED · CHANGES APPLY ON DONE	
+values/strings.xml	string	search_tv_suggestion_recent	-	STR	RECENT · %s	
+values/strings.xml	string	search_tv_suggestion_recent_suggested	-	STR	RECENT · ALSO SUGGESTED	
+values/strings.xml	string	search_tv_suggestion_suggested	-	STR	SUGGESTED	
 values/strings.xml	string	season	-	STR	Season	
 values/strings.xml	string	season_format	-	STR	%1$s %2$d%3$s	
 values/strings.xml	string	season_short	-	STR	S	

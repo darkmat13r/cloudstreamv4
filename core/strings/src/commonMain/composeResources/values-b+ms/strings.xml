@@ -6,6 +6,9 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d gagal</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">%d PENANDA HALAMAN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d bahagian gagal dimuatkan</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">Cari dalam semua %d sumber</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">%d SUMBER</item></plurals>
 <string name="account">akaun</string>
 <string name="action_add_to_bookmarks">Tetapkan status tontonan</string>
 <string name="action_add_to_favorites">Tambah ke kegemaran</string>
@@ -487,9 +490,14 @@
 <string name="search_provider_text_types">Carian mengikut jenis</string>
 <string name="search_state_idle_body_desktop">Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.</string>
 <string name="search_state_no_results_type_filter">Hanya %s. Penapis jenis anda mengecilkan carian.</string>
+<string name="search_state_no_suggestions_detail">0 CADANGAN · 0 PADANAN TERKINI</string>
+<string name="search_state_no_suggestions_headline">Tiada yang sepadan dengan “%s”</string>
 <string name="search_tv_source_failed">GAGAL %s</string>
 <string name="search_tv_source_pinned">DISEMATKAN</string>
 <string name="search_tv_sources_panel_meta">%1$d DARIPADA %2$d DIDAYAKAN · PERUBAHAN DIGUNAKAN SELEPAS TAMAT</string>
+<string name="search_tv_suggestion_recent">TERKINI · %s</string>
+<string name="search_tv_suggestion_recent_suggested">TERKINI · JUGA DICADANGKAN</string>
+<string name="search_tv_suggestion_suggested">DICADANGKAN</string>
 <string name="season">Musim</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

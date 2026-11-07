@@ -4,6 +4,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d አልተሳካም"</item><item quantity="other">"%d አልተሳኩም"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ዕልባት"</item><item quantity="other">"%d ዕልባቶች"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d ክፍል መጫን አልተቻለም"</item><item quantity="other">"%d ክፍል መጫን አልተቻለም"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ምንጭ ፈልግ"</item><item quantity="other">"ሁሉንም %d ምንጮች ፈልግ"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"ለማንኛውም %d ምንጭ ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።"</item><item quantity="other">"ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።"</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ምንጭ"</item><item quantity="other">"%d ምንጮች"</item></plurals>
 <string name="action_add_to_bookmarks">"የምልከታ ሁኔታን ያቀናብሩ"</string>
 <string name="action_open_watching">"ተጨማሪ መረጃ"</string>
 <string name="action_remove_from_bookmarks">"ያስወግዱ"</string>
@@ -160,9 +163,14 @@
 <string name="search_provider_text_types">"ዓይነቶችን በመጠቀም ይፈልጉ"</string>
 <string name="search_state_idle_body_desktop">"ርዕስ ይተይቡ። ውጤቶች እያንዳንዱ ምንጭ ሲመልስ ከሱ ስር ይታያሉ።"</string>
 <string name="search_state_no_results_type_filter" formatted="true">"%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።"</string>
+<string name="search_state_no_suggestions_detail">"0 ጥቆማዎች · 0 የቅርብ ጊዜ ተዛማጆች"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"ከ«%s» ጋር የሚዛመድ ምንም የለም"</string>
 <string name="search_tv_source_failed" formatted="true">"አልተሳካም %s"</string>
 <string name="search_tv_source_pinned">"ተሰክቷል"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"ከ%2$d ውስጥ %1$d ነቅተዋል · ለውጦች በተከናውኗል ላይ ይተገበራሉ"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"የቅርብ ጊዜ · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"የቅርብ ጊዜ · የተጠቆመም"</string>
+<string name="search_tv_suggestion_suggested">"የተጠቆመ"</string>
 <string name="seek_back_10_seconds">"10 ሰከንድ ወደ ኋላ"</string>
 <string name="seek_forward_10_seconds">"10 ሰከንድ ወደ ፊት"</string>
 <string name="skip_loading">"መጫንን ዝለል"</string>

@@ -4,6 +4,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d feila"</item><item quantity="other">"%d feila"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOKMERKE"</item><item quantity="other">"%d BOKMERKE"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d del kunne ikkje lastast"</item><item quantity="other">"%d delar kunne ikkje lastast"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"Søk i %d kjelde"</item><item quantity="other">"Søk i alle %d kjeldene"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel."</item><item quantity="other">"Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KJELDE"</item><item quantity="other">"%d KJELDER"</item></plurals>
 <string name="action_add_to_bookmarks">"Sett visingstatus"</string>
 <string name="action_default">"Standard"</string>
 <string name="action_open_watching">"Meir informasjon"</string>
@@ -224,9 +227,14 @@
 <string name="search_provider_text_types">"Søk ved bruk av typer"</string>
 <string name="search_state_idle_body_desktop">"Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Berre %s. Typefilteret ditt avgrensar søket."</string>
+<string name="search_state_no_suggestions_detail">"0 FORSLAG · 0 NYLEGE TREFF"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"Ingenting samsvarar med «%s»"</string>
 <string name="search_tv_source_failed" formatted="true">"FEILA %s"</string>
 <string name="search_tv_source_pinned">"FESTA"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d AV %2$d AKTIVERTE · ENDRINGAR GJELD ETTER FERDIG"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"NYLEG · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"NYLEG · OGSÅ FORESLÅTT"</string>
+<string name="search_tv_suggestion_suggested">"FORESLÅTT"</string>
 <string name="season">"Sesong"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>

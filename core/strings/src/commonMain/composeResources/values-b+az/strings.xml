@@ -6,6 +6,9 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d uğursuz</item><item quantity="other">%d uğursuz</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ƏLFƏCİN</item><item quantity="other">%d ƏLFƏCİN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d bölmə yüklənmədi</item><item quantity="other">%d bölmə yüklənmədi</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">%d mənbədə axtar</item><item quantity="other">Bütün %d mənbədə axtar</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Yenə də %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.</item><item quantity="other">Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d MƏNBƏ</item><item quantity="other">%d MƏNBƏ</item></plurals>
 <string name="advanced_search">Təkmilləşdirilmiş Axtarış</string>
 <string name="anime">Anime-lər</string>
 <string name="anime_singular">Anime</string>
@@ -201,9 +204,14 @@
 <string name="search_poster_img_des">Afişa</string>
 <string name="search_state_idle_body_desktop">Başlıq yazın. Hər mənbə cavab verdikcə nəticələr onun altında görünür.</string>
 <string name="search_state_no_results_type_filter">Yalnız %s. Növ filtriniz axtarışı daraldır.</string>
+<string name="search_state_no_suggestions_detail">0 TƏKLİF · 0 SON UYĞUNLUQ</string>
+<string name="search_state_no_suggestions_headline">«%s» ilə uyğun heç nə yoxdur</string>
 <string name="search_tv_source_failed">UĞURSUZ %s</string>
 <string name="search_tv_source_pinned">SABİTLƏNİB</string>
 <string name="search_tv_sources_panel_meta">%2$d İÇİNDƏN %1$d AKTİV · DƏYİŞİKLİKLƏR HAZIR İLƏ TƏTBİQ OLUNUR</string>
+<string name="search_tv_suggestion_recent">SON · %s</string>
+<string name="search_tv_suggestion_recent_suggested">SON · HƏM DƏ TƏKLİF OLUNUB</string>
+<string name="search_tv_suggestion_suggested">TƏKLİF OLUNUB</string>
 <string name="season">Sezon</string>
 <string name="season_short">S</string>
 <string name="seek_back_10_seconds">10 saniyə geri keç</string>

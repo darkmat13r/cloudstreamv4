@@ -7,6 +7,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d YER İMİ"</item><item quantity="other">"%d YER İMİ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d kısım yüklenemedi"</item><item quantity="other">"%d kısım yüklenemedi"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d gizli bağlantı"</item><item quantity="other">"%d gizli bağlantı"</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">"%d kaynakta ara"</item><item quantity="other">"Tüm %d kaynakta ara"</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">"Yine de %d kaynakta aramak için klavyenin arama tuşuna basın."</item><item quantity="other">"Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın."</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KAYNAK"</item><item quantity="other">"%d KAYNAK"</item></plurals>
 <string name="account">"hesap"</string>
 <string name="action_add_to_bookmarks">"İzleme durumunu ayarla"</string>
 <string name="action_add_to_favorites">"Favorilere ekle"</string>
@@ -613,11 +616,16 @@
 <string name="search_provider_text_types">"Türleri kullanarak ara"</string>
 <string name="search_state_idle_body_desktop">"Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür."</string>
 <string name="search_state_no_results_type_filter" formatted="true">"Yalnızca %s. Tür filtreniz aramayı daraltıyor."</string>
+<string name="search_state_no_suggestions_detail">"0 ÖNERİ · 0 YAKIN ZAMANLI EŞLEŞME"</string>
+<string name="search_state_no_suggestions_headline" formatted="true">"“%s” ile eşleşen bir şey yok"</string>
 <string name="search_suggestions">"Arama Önerileri"</string>
 <string name="search_suggestions_des">"Yazarken arama önerilerini göster"</string>
 <string name="search_tv_source_failed" formatted="true">"BAŞARISIZ %s"</string>
 <string name="search_tv_source_pinned">"SABİTLENDİ"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%2$d İÇİNDEN %1$d ETKİN · DEĞİŞİKLİKLER BİTTİ İLE UYGULANIR"</string>
+<string name="search_tv_suggestion_recent" formatted="true">"YAKIN ZAMANDA · %s"</string>
+<string name="search_tv_suggestion_recent_suggested">"YAKIN ZAMANDA · AYRICA ÖNERİLDİ"</string>
+<string name="search_tv_suggestion_suggested">"ÖNERİLEN"</string>
 <string name="season">"Sezon"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
 <string name="season_short">"S"</string>
