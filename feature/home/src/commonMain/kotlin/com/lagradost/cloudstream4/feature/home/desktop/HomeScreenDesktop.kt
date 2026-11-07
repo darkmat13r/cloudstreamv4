@@ -64,6 +64,7 @@ import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.continue_watching
+import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_joined
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_offline_pill
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_bookmarks_text
@@ -405,7 +406,7 @@ private fun RowHeader(
 
             is HomeMore.Failed -> {
                 BasicText(
-                    text = "${stringResource(Res.string.source_error)} · ${more.detail}",
+                    text = stringResource(Res.string.downloads_joined, stringResource(Res.string.source_error), more.detail),
                     style = typography.caption.copy(color = colors.muted),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,

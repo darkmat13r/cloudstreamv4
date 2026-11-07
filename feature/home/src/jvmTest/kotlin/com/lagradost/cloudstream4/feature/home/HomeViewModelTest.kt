@@ -79,7 +79,8 @@ class HomeViewModelTest {
         val source = Fake(listOf(option(a))) { _, _, _ -> page("A", "1") }
         source.failSources = IllegalStateException("broken")
         val vm = model(source)
-        assertEquals(HomeStatus.Failed("broken"), vm.state.value.status)
+        // Its type, never its message: a message can carry an address (`#200`).
+        assertEquals(HomeStatus.Failed("IllegalStateException"), vm.state.value.status)
 
         source.failSources = null
         vm.onAction(HomeAction.Retry)
@@ -89,7 +90,7 @@ class HomeViewModelTest {
     @Test
     fun `a host that throws instead of replying is a failure and not a crash`() = runTest {
         val vm = model(Fake(listOf(option(a))) { _, _, _ -> throw IllegalStateException("boom") })
-        assertEquals(HomeStatus.Failed("boom"), vm.state.value.status)
+        assertEquals(HomeStatus.Failed("IllegalStateException"), vm.state.value.status)
     }
 
     @Test

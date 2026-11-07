@@ -449,9 +449,17 @@ class HomeViewModel(
         HomePageReply.Failed(failure.reason())
     }
 
-    private fun Exception.reason() = message.orEmpty().ifEmpty { this::class.simpleName.orEmpty() }
+    /**
+     * A thrown failure, in the words the screen may show: its type and never its message. A host's or a plugin's message
+     * can carry an address, a path or a token, and the detail line goes on screen and into a pasted bug report. A host
+     * that has words worth showing replies `HomePageReply.Failed` with them, cleaned at its boundary.
+     */
+    private fun Exception.reason() = this::class.simpleName ?: UNNAMED_FAILURE
 
     private companion object {
+        /** A failure whose type has no name, such as an anonymous class. */
+        const val UNNAMED_FAILURE = "Exception"
+
         /** The old home asks for three. */
         const val HERO_CANDIDATES = 3
 
