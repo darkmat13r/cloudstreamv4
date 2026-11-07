@@ -6,6 +6,7 @@ import android.net.Uri
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.core.net.toUri
 import androidx.fragment.app.FragmentActivity
@@ -23,6 +24,7 @@ import com.lagradost.cloudstream3.syncproviders.providers.MALApi.Companion.MAL_C
 import com.lagradost.cloudstream3.syncproviders.providers.KitsuApi.Companion.KITSU_CACHED_LIST
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
+import com.lagradost.cloudstream3.utils.AppUtils.toJsonLiteral
 import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.main
 import com.lagradost.cloudstream3.utils.DataStore.getDefaultSharedPrefs
@@ -139,9 +141,31 @@ object BackupUtils {
         @JsonProperty("settings") @SerialName("settings") val settings: BackupVars,
     )
 
+    /** `DataStoreHelper.accounts`'s key: the profile list, whose entries carry `lockPin`. */
+    private const val PROFILES_KEY = "${DataStoreHelper.TAG}/account"
+
+    /**
+     * `BUG-50`: the profile list without its PINs, or null when it does not parse, in which case it is left out
+     * entirely rather than exported with a PIN in it. A restored profile comes back unlocked.
+     */
+    private fun profilesWithoutPins(json: String): String? = runCatching {
+        parseJson<Array<DataStoreHelper.Account>>(json).map { it.copy(lockPin = null) }.toTypedArray().toJsonLiteral()
+    }.getOrNull()
+
+    /** [PROFILES_KEY] with every PIN removed, both ways: out of a new export and out of an old file being restored. */
+    private fun <T> Map<String, T>.withoutPins(): Map<String, T> {
+        val json = this[PROFILES_KEY] as? String ?: return this
+        @Suppress("UNCHECKED_CAST")
+        return profilesWithoutPins(json)?.let { this + (PROFILES_KEY to it as T) } ?: (this - PROFILES_KEY)
+    }
+
+    /** What an export holds, without writing a file; for `CredentialStoreBackupTest`. */
+    @VisibleForTesting
+    internal fun exportForTest(context: Context): BackupFile = getBackup(context)
+
     @Suppress("UNCHECKED_CAST")
     private fun getBackup(context: Context): BackupFile {
-        val allData = context.getSharedPrefs().all.filter { it.key.isTransferable() }
+        val allData = context.getSharedPrefs().all.filter { it.key.isTransferable() }.withoutPins()
         val allSettings = context.getDefaultSharedPrefs().all.filter { it.key.isTransferable() }
 
         val allDataSorted = BackupVars(
@@ -188,7 +212,7 @@ object BackupUtils {
         if (restoreDataStore) {
             context.restoreMap(backupFile.datastore.bool)
             context.restoreMap(backupFile.datastore.int)
-            context.restoreMap(backupFile.datastore.string)
+            context.restoreMap(backupFile.datastore.string?.withoutPins())
             context.restoreMap(backupFile.datastore.float)
             context.restoreMap(backupFile.datastore.long)
             context.restoreMap(backupFile.datastore.stringSet)

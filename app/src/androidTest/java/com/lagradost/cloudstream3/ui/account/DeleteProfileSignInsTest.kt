@@ -2,10 +2,9 @@ package com.lagradost.cloudstream3.ui.account
 
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
-import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
-import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.syncproviders.AccountManager
+import com.lagradost.cloudstream3.syncproviders.CredentialStore
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -37,7 +36,7 @@ class DeleteProfileSignInsTest {
     private fun id(provider: String, index: Int) = "${AccountManager.ACCOUNT_IDS}/$provider/$index"
 
     private fun signIn(vararg keys: String) = instrumentation.runOnMainSync {
-        keys.forEach { setKey(it, MARKER); written += it }
+        keys.forEach { CredentialStore.write(it, MARKER); written += it }
     }
 
     private fun profiles(vararg indices: Int, selected: Int) = instrumentation.runOnMainSync {
@@ -45,8 +44,8 @@ class DeleteProfileSignInsTest {
         DataStoreHelper.selectedKeyIndex = selected
     }
 
-    private fun assertGone(key: String) = assertNull("A sign-in survived at $key", getKey<String>(key))
-    private fun assertKept(key: String) = assertEquals("A sign-in was removed at $key", MARKER, getKey<String>(key))
+    private fun assertGone(key: String) = assertNull("A sign-in survived at $key", CredentialStore.getKey<String>(key))
+    private fun assertKept(key: String) = assertEquals("A sign-in was removed at $key", MARKER, CredentialStore.getKey<String>(key))
 
     @Before
     fun saveDevice() = instrumentation.runOnMainSync {
@@ -56,7 +55,7 @@ class DeleteProfileSignInsTest {
 
     @After
     fun restoreDevice() = instrumentation.runOnMainSync {
-        written.forEach { removeKey(it) }
+        written.forEach { CredentialStore.remove(it) }
         DataStoreHelper.accounts = accountsBefore
         DataStoreHelper.selectedKeyIndex = selectedBefore
     }

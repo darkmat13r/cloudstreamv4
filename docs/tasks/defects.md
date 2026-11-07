@@ -2245,3 +2245,65 @@ and saves the token in one call.
 
 **Published API:** `classes-jar.api` +13 / −5. The 5 removed lines are the compiler-generated anonymous timer class
 `SettingsAccount$Companion$showPin$2$1$2`, approved for removal by the owner on 2026-11-07.
+
+## BUG-50 — Android backup carried every sign-in token, and the app's export carried profile PINs · **high, security** · measured 2026-11-07
+
+**Status:** fixed in pr, stacked on `BUG-48` (#209) · found 2026-11-07 while measuring `Q16` · the owner ruled on the
+fix the same day · `app/src/main/res/xml/backup_descriptor.xml`, `data_extraction_rules.xml`; `BackupUtils.kt`
+
+Two leaks of the same kind:
+- **Android's own backup.** The manifest has `allowBackup="true"`, and both backup rule files were empty, so cloud
+  backup and device-to-device transfer carried the whole main preferences file: every provider token
+  (`auth_tokens/…`) and account id (`auth_ids/…`). The app's export left those keys out (`nonTransferableKeys`), but
+  that list never applied to Android's backup.
+- **The app's export file** carried the profile list, PINs included, in plain text, wherever the user saved or shared
+  the file.
+
+**Fix, as the owner ruled:**
+- **`CredentialStore`**: sign-ins live in their own preferences file, `cs_credentials`, which both rule files exclude
+  (`full-backup-content`, and `cloud-backup` plus `device-transfer`). `AccountManager` and `ProfileSignIns` read and
+  write it. After a move to a new device, the user signs in again.
+- **Migration**, once per process on first use: each sign-in key in the main file is copied as its raw stored string,
+  the copy is committed, and only then are the old keys removed. A key already in the new file is newer and wins.
+- **The export strips `lockPin`** from the profile list, and so does a restore of an older export: a restored profile
+  comes back unlocked. A profile list that does not parse is left out of the export, never exported with a PIN.
+- The `auth_*` keys stay in `nonTransferableKeys`, as a second guard.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| A device transfer or cloud restore brought every sign-in with it | The user signs in again on the new device | Tokens never leave the device (owner's ruling) |
+| The export file held each profile's PIN in plain text | It holds no PIN; a restored profile comes back unlocked | Same |
+| Restoring an older export brought its PINs back | Not any more | Same outcome whichever file is restored |
+
+### Every reader or writer of the sign-in keys
+
+Searched across the repo: the literals, `ACCOUNT_TOKEN` / `ACCOUNT_IDS`, every whole-store reader, and every
+`getKeys` / `removeKeys` caller including those passed a folder variable.
+
+| Where | What it did | Now |
+|---|---|---|
+| `AccountManager`: `accounts`, `updateAccounts`, `updateAccountsId`, `updateAccountIds`, `init` | Read and wrote the main file | `CredentialStore` |
+| `ProfileSignIns` (`BUG-48`) | Listed and removed sign-ins in the main file | `CredentialStore` |
+| `BackupUtils.nonTransferableKeys` | Left the keys out of the export | Kept as a second guard; the export reads the main file, which no longer holds them |
+| `:core:storage` `AndroidStorage.secrets` | Documented as reading `auth_tokens` from the main file | **No callers, and no module depends on `:core:storage`.** Its KDoc is corrected, since a future caller would find nothing there |
+
+Nothing in `:library`, the extension sandbox or desktop touches these keys. A third-party extension that read
+`auth_tokens/…` straight from the main file would now find nothing; nothing in this repo does.
+
+**Tests:** `CredentialStoreBackupTest` (`:app` device, 6), marker values only:
+- migration moves every sign-in with no loss and removes the old keys, leaving a key that is not a sign-in alone;
+- a value already in the new file wins over a stale one;
+- `AccountManager` writes sign-ins to the new file only;
+- the export holds no token and no PIN, and still holds the profile;
+- restoring an old export with a PIN brings the profile back unlocked;
+- the backup rules exclude `cs_credentials.xml` in all three places Android reads.
+
+`BUG-48`'s `DeleteProfileSignInsTest` (5) runs against the new file. **These tests cannot fail on master first:** they
+test the new file, which master does not have.
+
+**Published API:** additions only, `classes-jar.api` +21 / −0. Two things kept it that way. `CredentialStore`'s inline
+reader is named `getKey`, as the function it replaces, because callers' compiler-generated `TypeReference` classes are
+named after it (a first name, `read`, renamed three of them). And `getBackup` stays private behind a separate
+`exportForTest`, which keeps its synthetic accessor.
