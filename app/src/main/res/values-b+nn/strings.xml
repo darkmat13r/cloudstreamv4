@@ -14,6 +14,24 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Søk i %d kjelde"</item><item quantity="other">"Søk i alle %d kjeldene"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel."</item><item quantity="other">"Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KJELDE"</item><item quantity="other">"%d KJELDER"</item></plurals>
+<string name="account_add_profile">"Legg til profil"</string>
+<string name="account_manage_profiles">"Handter profilar"</string>
+<string name="account_pair_code">"Koden din"</string>
+<string name="account_pair_instructions">"Opne dette på telefonen og skriv inn koden nedanfor."</string>
+<string name="account_pair_new_code">"Få ein ny kode"</string>
+<string name="account_pair_title" formatted="true">"Kople til %s"</string>
+<string name="account_profile_current">"Gjeldande"</string>
+<string name="account_profile_locked">"Låst · PIN"</string>
+<string name="account_profile_no_sync">"Inga synkronisering"</string>
+<string name="account_select_note">"Eiga sjåhistorikk · ikkje innloggingar"</string>
+<string name="account_select_title">"Kven ser på?"</string>
+<string name="account_sync_connected">"Tilkopla · logga inn på denne eininga"</string>
+<string name="account_sync_needs_browser">"Innlogging krev ein nettlesar. Denne eininga har ingen."</string>
+<string name="account_sync_note">"Valfritt. Synkroniserer framdrifta med ein konto du alt har."</string>
+<string name="account_sync_pair">"Kople til med ein kode"</string>
+<string name="account_sync_remove">"Fjern frå denne eininga"</string>
+<string name="account_sync_title">"Synkroniseringstenester"</string>
+<string name="account_sync_unavailable">"Ikkje tilgjengeleg her"</string>
 <string name="action_add_to_bookmarks">"Sett visingstatus"</string>
 <string name="action_default">"Standard"</string>
 <string name="action_open_watching">"Meir informasjon"</string>

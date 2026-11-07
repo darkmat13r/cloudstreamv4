@@ -14,6 +14,24 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"ኣብ %d ምንጪ ድለ"</item><item quantity="other">"ኣብ ኩሎም %d ምንጭታት ድለ"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።"</item><item quantity="other">"ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ምንጪ"</item><item quantity="other">"%d ምንጭታት"</item></plurals>
+<string name="account_add_profile">"መግለጺ ወስኽ"</string>
+<string name="account_manage_profiles">"መግለጺታት ኣመሓድር"</string>
+<string name="account_pair_code">"ኮድካ"</string>
+<string name="account_pair_instructions">"ነዚ ኣብ ተሌፎንካ ክፈቶ እሞ ኣብ ታሕቲ ዘሎ ኮድ ኣእቱ።"</string>
+<string name="account_pair_new_code">"ሓድሽ ኮድ ውሰድ"</string>
+<string name="account_pair_title" formatted="true">"%s ኣጣምር"</string>
+<string name="account_profile_current">"ናይ ሕጂ"</string>
+<string name="account_profile_locked">"ተዓጽዩ · PIN"</string>
+<string name="account_profile_no_sync">"ምትእስሳር የለን"</string>
+<string name="account_select_note">"ፍሉይ ታሪኽ ምርኣይ · መእተዊታት ኣይኮኑን"</string>
+<string name="account_select_title">"መን እዩ ዝርኢ ዘሎ?"</string>
+<string name="account_sync_connected">"ተራኺቡ · ኣብዚ መሳርሒ ኣቲዩ"</string>
+<string name="account_sync_needs_browser">"ምእታው መርበብ ሓበሬታ ይደሊ። እዚ መሳርሒ የብሉን።"</string>
+<string name="account_sync_note">"ኣማራጺ። ምዕባለ ምርኣይ ምስ ዘለካ ሕሳብ የተኣሳስር።"</string>
+<string name="account_sync_pair">"ብኮድ ኣጣምር"</string>
+<string name="account_sync_remove">"ካብዚ መሳርሒ ኣልግስ"</string>
+<string name="account_sync_title">"ኣገልግሎታት ምትእስሳር"</string>
+<string name="account_sync_unavailable">"ኣብዚ ኣይርከብን"</string>
 <string name="app_dub_sub_episode_text_format" formatted="true">"%1$s ክፋል %2$d"</string>
 <string name="cast">"ተዋሳእቲ"</string>
 <string name="cast_format" formatted="true">"ተዋሳእቲ፡ %s"</string>

@@ -14,6 +14,24 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Ieškoti %d šaltinyje"</item><item quantity="few">"Ieškoti visuose šaltiniuose (%d)"</item><item quantity="many">"Ieškoti visuose šaltiniuose (%d)"</item><item quantity="other">"Ieškoti visuose šaltiniuose (%d)"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte %d šaltinyje."</item><item quantity="few">"Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d)."</item><item quantity="many">"Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d)."</item><item quantity="other">"Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d)."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ŠALTINIS"</item><item quantity="few">"%d ŠALTINIAI"</item><item quantity="many">"%d ŠALTINIO"</item><item quantity="other">"%d ŠALTINIŲ"</item></plurals>
+<string name="account_add_profile">"Pridėti profilį"</string>
+<string name="account_manage_profiles">"Tvarkyti profilius"</string>
+<string name="account_pair_code">"Jūsų kodas"</string>
+<string name="account_pair_instructions">"Atidarykite tai telefone ir įveskite toliau esantį kodą."</string>
+<string name="account_pair_new_code">"Gauti naują kodą"</string>
+<string name="account_pair_title" formatted="true">"Susieti %s"</string>
+<string name="account_profile_current">"Dabartinis"</string>
+<string name="account_profile_locked">"Užrakinta · PIN"</string>
+<string name="account_profile_no_sync">"Be sinchronizavimo"</string>
+<string name="account_select_note">"Atskira žiūrėjimo istorija · ne prisijungimai"</string>
+<string name="account_select_title">"Kas žiūri?"</string>
+<string name="account_sync_connected">"Prijungta · prisijungta šiame įrenginyje"</string>
+<string name="account_sync_needs_browser">"Prisijungti reikia žiniatinklio naršyklės. Šiame įrenginyje jos nėra."</string>
+<string name="account_sync_note">"Neprivaloma. Sinchronizuoja žiūrėjimo eigą su jau turima paskyra."</string>
+<string name="account_sync_pair">"Susieti kodu"</string>
+<string name="account_sync_remove">"Pašalinti iš šio įrenginio"</string>
+<string name="account_sync_title">"Sinchronizavimo paslaugos"</string>
+<string name="account_sync_unavailable">"Čia nepasiekiama"</string>
 <string name="action_add_to_bookmarks">"Nustatyti žiūrėjimo statusą"</string>
 <string name="action_mark_as_watched">"Pažymėti kaip žiūrima"</string>
 <string name="action_open_watching">"Daugiau informacijos"</string>

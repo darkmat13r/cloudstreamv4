@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d SUMBER"</item></plurals>
 <string name="account">"akun"</string>
+<string name="account_add_profile">"Tambah profil"</string>
+<string name="account_manage_profiles">"Kelola profil"</string>
+<string name="account_pair_code">"Kode Anda"</string>
+<string name="account_pair_instructions">"Buka ini di ponsel Anda dan masukkan kode di bawah."</string>
+<string name="account_pair_new_code">"Dapatkan kode baru"</string>
+<string name="account_pair_title" formatted="true">"Sandingkan %s"</string>
+<string name="account_profile_current">"Saat ini"</string>
+<string name="account_profile_locked">"Terkunci · PIN"</string>
+<string name="account_profile_no_sync">"Tanpa sinkronisasi"</string>
+<string name="account_select_note">"Riwayat tontonan terpisah · bukan login"</string>
+<string name="account_select_title">"Siapa yang menonton?"</string>
+<string name="account_sync_connected">"Terhubung · masuk di perangkat ini"</string>
+<string name="account_sync_needs_browser">"Masuk memerlukan browser web. Perangkat ini tidak memilikinya."</string>
+<string name="account_sync_note">"Opsional. Menyinkronkan progres tontonan ke akun yang sudah Anda miliki."</string>
+<string name="account_sync_pair">"Sandingkan dengan kode"</string>
+<string name="account_sync_remove">"Hapus dari perangkat ini"</string>
+<string name="account_sync_title">"Layanan sinkronisasi"</string>
+<string name="account_sync_unavailable">"Tidak tersedia di sini"</string>
 <string name="action_add_to_bookmarks">"Atur status tontonan"</string>
 <string name="action_add_to_favorites">"Tambahkan ke favorit"</string>
 <string name="action_default">"Default"</string>

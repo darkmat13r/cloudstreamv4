@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"இருந்தாலும் %d மூலத்தில் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்."</item><item quantity="other">"இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d மூலம்"</item><item quantity="other">"%d மூலங்கள்"</item></plurals>
 <string name="account">"கணக்கு"</string>
+<string name="account_add_profile">"சுயவிவரம் சேர்"</string>
+<string name="account_manage_profiles">"சுயவிவரங்களை நிர்வகி"</string>
+<string name="account_pair_code">"உங்கள் குறியீடு"</string>
+<string name="account_pair_instructions">"இதை உங்கள் தொலைபேசியில் திறந்து கீழே உள்ள குறியீட்டை உள்ளிடவும்."</string>
+<string name="account_pair_new_code">"புதிய குறியீடு பெறு"</string>
+<string name="account_pair_title" formatted="true">"%s இணை"</string>
+<string name="account_profile_current">"தற்போதைய"</string>
+<string name="account_profile_locked">"பூட்டப்பட்டது · PIN"</string>
+<string name="account_profile_no_sync">"ஒத்திசைவு இல்லை"</string>
+<string name="account_select_note">"தனி பார்வை வரலாறு · உள்நுழைவுகள் அல்ல"</string>
+<string name="account_select_title">"யார் பார்க்கிறார்கள்?"</string>
+<string name="account_sync_connected">"இணைக்கப்பட்டது · இந்தச் சாதனத்தில் உள்நுழைந்துள்ளது"</string>
+<string name="account_sync_needs_browser">"உள்நுழைய இணைய உலாவி தேவை. இந்தச் சாதனத்தில் இல்லை."</string>
+<string name="account_sync_note">"விருப்பத்தேர்வு. பார்வை முன்னேற்றத்தை உங்களிடம் ஏற்கெனவே உள்ள கணக்குடன் ஒத்திசைக்கிறது."</string>
+<string name="account_sync_pair">"குறியீட்டுடன் இணை"</string>
+<string name="account_sync_remove">"இந்தச் சாதனத்திலிருந்து அகற்று"</string>
+<string name="account_sync_title">"ஒத்திசைவு சேவைகள்"</string>
+<string name="account_sync_unavailable">"இங்கே கிடைக்கவில்லை"</string>
 <string name="action_add_to_bookmarks">"கடிகார நிலையை அமைக்கவும்"</string>
 <string name="action_add_to_favorites">"பிடித்தவையில் சேர்"</string>
 <string name="action_default">"இயல்புநிலை"</string>
