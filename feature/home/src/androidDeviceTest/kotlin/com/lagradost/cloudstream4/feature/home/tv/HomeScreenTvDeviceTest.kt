@@ -1172,22 +1172,25 @@ class HomeScreenTvDeviceTest {
     fun aPersonWhoPressedIntoTheBookmarksBeforeTheHeroLandedKeepsFocusThere() {
         rails(1)
         featuring(FEATURED)
-        bookmarking(2)
+        // Enough cards to reach under the chrome's cells, which sit at the right.
+        bookmarking(12)
         val pages = kotlinx.coroutines.CompletableDeferred<Unit>()
         source.gate = pages
         showScreen()
         awaitText(WATCHING)
         rule.onNodeWithContentDescription(ACCOUNTS).performSemanticsAction(SemanticsActions.RequestFocus)
         awaitFocus(ACCOUNTS)
-        pressUntil(Dpad.Down, WATCHING)
+        val entered = dpad.press(Dpad.Down)
+        assertTrue("DOWN enters the bookmarks rail, was $entered", entered == WATCHING || entered?.startsWith(SAVED) == true)
 
         pages.complete(Unit)
         // The hero is found from the rows' first title, so it being shown means the rows landed too.
         rule.waitUntil(WAIT_MS) { viewModel.state.value.hero is HomeHero.Shown }
         awaitText("A")
         rule.waitForIdle()
-        assertEquals("focus stays where the person put it", WATCHING, dpad.focused())
+        assertEquals("focus stays where the person put it", entered, dpad.focused())
     }
+
 
     @Test
     fun noBookmarksIsNoRail() {
