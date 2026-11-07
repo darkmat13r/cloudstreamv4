@@ -32,12 +32,14 @@ internal object LibraryShelf {
      * whether or not that position is resumable — a finished thing in "Watching" should look finished.
      *
      * @param filter keeps titles containing this text, ignoring case. Blank keeps everything.
+     * @param sort orders a bucket's titles. Continue watching is always newest watched first: it is what to resume.
      */
     fun cards(
         tab: LibraryTab,
         titles: List<LibraryTitle>,
         positions: List<WatchPosition>,
         filter: String = "",
+        sort: LibrarySort = LibrarySort.Default,
     ): List<LibraryCard> {
         val newest = latestByTitle(positions)
         val needle = filter.trim()
@@ -53,7 +55,7 @@ internal object LibraryShelf {
 
             is LibraryTab.Bucket -> titles
                 .filter { it.bucket == tab.bucket }
-                .sortedByDescending { it.keptAt }
+                .sortedFor(sort)
                 .map { it.toCard(newest[it.id]) }
 
             // A service's list is not a bucket of the store's: see [syncedCards].
@@ -68,15 +70,34 @@ internal object LibraryShelf {
      * No position is joined: the service's titles are not the store's, and a position under the same id would be
      * a coincidence. The bar is the service's own count, episodes seen over episodes in all, where it has both.
      */
-    fun syncedCards(list: SyncedList, filter: String = ""): List<LibraryCard> =
+    fun syncedCards(list: SyncedList, filter: String = "", sort: LibrarySort = LibrarySort.Default): List<LibraryCard> =
         list.titles
-            .sortedByDescending { it.keptAt }
+            .sortedFor(sort)
             .distinctBy { it.id }
             .map { it.toCard(position = null) }
             .narrowedTo(filter.trim())
 
     /** Different titles across a service's lists: one in two lists is one title. */
     fun syncedTotal(lists: List<SyncedList>): Int = lists.flatMap { it.titles }.distinctBy { it.id }.size
+
+    /**
+     * [sort] over titles newest kept first, so titles that tie keep that order. A title with nothing to sort by, no year
+     * or no rating, goes last whichever way round.
+     */
+    internal fun List<LibraryTitle>.sortedFor(sort: LibrarySort): List<LibraryTitle> {
+        val newest = sortedByDescending { it.keptAt }
+        fun <T : Comparable<T>> by(key: (LibraryTitle) -> T?): Comparator<LibraryTitle> =
+            compareBy(nullsLast(if (sort.descending) reverseOrder() else naturalOrder()), key)
+        return when (sort.criterion) {
+            LibrarySortCriterion.Updated -> if (sort.descending) newest else newest.reversed()
+            LibrarySortCriterion.Title -> {
+                val names = compareBy(String.CASE_INSENSITIVE_ORDER) { title: LibraryTitle -> title.title }
+                newest.sortedWith(if (sort.descending) names.reversed() else names)
+            }
+            LibrarySortCriterion.Released -> newest.sortedWith(by { it.releaseYear })
+            LibrarySortCriterion.Rating -> newest.sortedWith(by { it.ratingValue })
+        }
+    }
 
     private fun List<LibraryCard>.narrowedTo(needle: String) =
         if (needle.isEmpty()) this else filter { it.title.contains(needle, ignoreCase = true) }

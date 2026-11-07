@@ -10,6 +10,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d LEGOSIGNO"</item><item quantity="other">"%d LEGOSIGNOJ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d sekcio ne ŝargiĝis"</item><item quantity="other">"%d sekcioj ne ŝargiĝis"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sekcio"</item><item quantity="other">"%d sekcioj"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d titolo"</item><item quantity="other">"%d titoloj"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Serĉi en %d fonto"</item><item quantity="other">"Serĉi en ĉiuj %d fontoj"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Premu la serĉoklavon de la klavaro por tamen serĉi en %d fonto."</item><item quantity="other">"Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTO"</item><item quantity="other">"%d FONTOJ"</item></plurals>
@@ -169,10 +170,21 @@
 <string name="home_source_picker_body">"Vicoj venas de unu etendaĵo samtempe."</string>
 <string name="home_source_picker_title">"Hejma fonto"</string>
 <string name="home_source_unreachable">"Ne atingebla lastfoje"</string>
+<string name="library_go_to_list" formatted="true">"Iri al %s"</string>
+<string name="library_list_empty_body" formatted="true">"Titoloj, kiujn vi aldonas al %s, aperas ĉi tie."</string>
+<string name="library_list_empty_headline" formatted="true">"Nenio en %s"</string>
 <string name="library_not_connected">"Ne konektita"</string>
 <string name="library_on_device">"En aparato"</string>
+<string name="library_sort_current" formatted="true">"Ordigo: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s ne konservas tion"</string>
+<string name="library_sort_supported" formatted="true">"%1$s subtenas %2$d el %3$d"</string>
 <string name="library_source">"Fonto de biblioteko"</string>
 <string name="library_source_note">"Po unu · ŝanĝo reŝargas"</string>
+<string name="library_sync_cached">"Kaŝmemorita"</string>
+<string name="library_sync_failed" formatted="true">"Ne eblis sinkronigi %1$s. Ĉi tiuj estas de antaŭ %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Senkonekte · kaŝmemorita antaŭ %s"</string>
+<string name="library_sync_retry">"Resinkronigi"</string>
+<string name="library_sync_unreachable" formatted="true">"Neatingebla · kaŝmemorita antaŭ %s"</string>
 <string name="library_synced_format" formatted="true">"Sinkronigita antaŭ %s"</string>
 <string name="load_more">"Ŝargi pli"</string>
 <string name="loading">"Ŝarĝante…"</string>
@@ -213,6 +225,14 @@
 <string name="player_fit_screen">"Plenigi ekranon"</string>
 <string name="player_fit_title">"Bildgrando"</string>
 <string name="player_fit_width">"Plenigi larĝon"</string>
+<string name="player_hud_buffering">"BUFRADO"</string>
+<string name="player_hud_failed_detail">"Elektu alian fonton sube."</string>
+<string name="player_hud_offline_copy">"Neniu konekto — ludiĝas la elŝutita kopio"</string>
+<string name="player_hud_previous_episode">"Antaŭa epizodo"</string>
+<string name="player_hud_seek_back">"Malantaŭen"</string>
+<string name="player_hud_seek_forward">"Antaŭen"</string>
+<string name="player_hud_speed">"Rapido"</string>
+<string name="player_hud_up_next" formatted="true">"Sekva · %s"</string>
 <string name="player_mute">"Silentigi"</string>
 <string name="player_size_settings_des">"Forigi nigrajn borderaĵojn"</string>
 <string name="player_source_playing">"Ludanta"</string>
@@ -255,6 +275,7 @@
 <string name="search_state_no_suggestions_detail">"0 SUGESTOJ · 0 LASTATEMPAJ KONGRUOJ"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Nenio kongruas kun “%s”"</string>
 <string name="search_suggestions">"Serĉaj Sugestoj"</string>
+<string name="search_suggestions_return_hint">"Enigo serĉas ĉie"</string>
 <string name="search_tv_source_failed" formatted="true">"MALSUKCESIS %s"</string>
 <string name="search_tv_source_pinned">"FIKSITA"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d EL %2$d ŜALTITAJ · ŜANĜOJ APLIKIĜAS PER FARITE"</string>
@@ -263,7 +284,9 @@
 <string name="search_tv_suggestion_suggested">"SUGESTITA"</string>
 <string name="season">"Sezono"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Aliaj"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Specialaĵoj"</string>
 <string name="seek_back_10_seconds">"Salti 10 sekundojn malantaŭen"</string>
 <string name="seek_forward_10_seconds">"Salti 10 sekundojn antaŭen"</string>
 <string name="select_all">"Selekti Ĉion"</string>

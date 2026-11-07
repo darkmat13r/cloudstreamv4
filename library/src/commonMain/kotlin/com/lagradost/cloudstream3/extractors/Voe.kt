@@ -117,7 +117,7 @@ open class Voe : ExtractorApi() {
             val vAtob = base64Decode(vF6)
             parseJson<VoeDecrypted>(vAtob)
         } catch (e: Exception) {
-            println("Decryption error: ${e.message}")
+            println("Decryption error: ${e::class.simpleName}")
             null
         }
     }

@@ -26,8 +26,10 @@ import com.lagradost.cloudstream3.APIHolder.getApiFromNameNull
 import com.lagradost.cloudstream3.BuildConfig
 import com.lagradost.cloudstream3.CloudStreamApp
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
+import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKeyClass
 import com.lagradost.cloudstream3.CommonActivity.showToast
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
+import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKeys
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.IDownloadableMinimum
 import com.lagradost.cloudstream3.MainActivity
@@ -54,9 +56,11 @@ import com.lagradost.cloudstream3.utils.Coroutines.ioSafe
 import com.lagradost.cloudstream3.utils.Coroutines.main
 import com.lagradost.cloudstream3.utils.DOWNLOAD_EPISODE_CACHE
 import com.lagradost.cloudstream3.utils.DOWNLOAD_HEADER_CACHE
+import com.lagradost.cloudstream3.utils.DataStore.containsKey
 import com.lagradost.cloudstream3.utils.DataStore.getFolderName
 import com.lagradost.cloudstream3.utils.DataStore.getKey
 import com.lagradost.cloudstream3.utils.DataStore.removeKey
+import com.lagradost.cloudstream3.utils.DataStore.removeKeys
 import com.lagradost.cloudstream3.utils.Event
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
@@ -81,6 +85,7 @@ import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.DownloadedFil
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.LazyStreamDownloadResponse
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.StreamData
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.DownloadQueueWrapper
+import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.DownloadQueueItem
 import com.lagradost.cloudstream3.utils.downloader.DownloadUtils.appendAndDontOverride
 import com.lagradost.cloudstream3.utils.downloader.DownloadUtils.cancel
 import com.lagradost.cloudstream3.utils.downloader.DownloadUtils.downloadSubtitle
@@ -112,6 +117,7 @@ import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
 import java.io.Closeable
+import java.security.MessageDigest
 import java.io.IOException
 import java.io.OutputStream
 
@@ -215,6 +221,15 @@ object VideoDownloadManager {
      */
     const val KEY_RESUME_IN_QUEUE = "download_resume_queue_key"
 //    private const val KEY_RESUME_QUEUE_PACKAGES = "download_q_resume"
+
+    /**
+     * KMP-62: what a resume asks the provider with, so no stored package needs a link. One folder per
+     * episode id: `item` is the [DownloadObjects.DownloadQueueItem] without `links` and `subs`, `mirror`
+     * the SHA-256 of the `source` and `name` of a link the user picked, and `attempt` that of the link the
+     * partial file came from. It goes with [KEY_RESUME_PACKAGES], on every delete, and when the download completes.
+     * [DownloadQueueManager] and `BackupUtils` restate the name: a shared constant would be classes.jar API.
+     */
+    private const val KEY_RESUME_SOURCE = "download_resume_source"
 
     val downloadStatus = HashMap<Int, DownloadType>()
     val downloadStatusEvent = Event<Pair<Int, DownloadType>>()
@@ -1028,7 +1043,7 @@ object VideoDownloadManager {
 
         Log.d(
             TAG,
-            "Starting stream with url=$url, startByte=$startByte, contentLength=$contentLength, hasRangeSupport=$hasRangeSupport"
+            "Starting stream with startByte=$startByte, contentLength=$contentLength, hasRangeSupport=$hasRangeSupport"
         )
 
         var downloadLength: Long? = null
@@ -1749,7 +1764,12 @@ object VideoDownloadManager {
 
     private fun deleteFileAndUpdateSettings(context: Context, id: Int): Boolean {
         val success = deleteFile(context, id)
-        if (success) context.removeKey(KEY_DOWNLOAD_INFO, id.toString())
+        if (success) {
+            context.removeKey(KEY_DOWNLOAD_INFO, id.toString())
+            // KMP-62: every delete comes through here, and the queue service's Stop handling only runs while it does
+            context.removeKey(KEY_RESUME_PACKAGES, id.toString())
+            context.removeKeys("$KEY_RESUME_SOURCE/$id")
+        }
         return success
     }
 
@@ -1888,6 +1908,12 @@ object VideoDownloadManager {
             }
 
         companion object {
+            /** The parts of a KEY_RESUME_SOURCE folder, which [DownloadQueueManager] restates. */
+            private const val ITEM = "item"
+            private const val MIRROR = "mirror"
+            private const val ATTEMPT = "attempt"
+            private const val HEX = "0123456789abcdef"
+
             private fun displayNotification(context: Context, id: Int, notification: Notification) {
                 safe {
                     if (context.checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS)
@@ -1920,11 +1946,15 @@ object VideoDownloadManager {
                     val link = item.links[index]
                     val resume = downloadResumePackage.linkIndex == index
 
+                    // KMP-62: with a side record to ask the provider again, the package keeps no link. A package
+                    // saved before the update that has none keeps its links until it finishes or is removed.
+                    val canAskAgain = hasResumeSource(id)
                     setKey(
                         KEY_RESUME_PACKAGES,
                         id.toString(),
-                        DownloadResumePackage(item, index)
+                        DownloadResumePackage(if (canAskAgain) item.copy(links = emptyList()) else item, index)
                     )
+                    if (canAskAgain) setKey(resumeSourceKey(id, ATTEMPT), linkLabel(link))
 
                     var connectionResult =
                         downloadSingleEpisode(
@@ -1951,6 +1981,8 @@ object VideoDownloadManager {
 
                     if (connectionResult.success) { // SUCCESS
                         isCompleted = true
+                        // KMP-62: a finished file needs nothing to resume from, and a stop has removed both already
+                        forgetResume(id)
                         break
                     } else if (!connectionResult.tryNext || index >= item.links.lastIndex) {
                         isFailed = true
@@ -1974,7 +2006,9 @@ object VideoDownloadManager {
         ) {
             try {
                 if (info != null) {
-                    getDownloadResumePackage(context, info.ep.id)?.let { dpkg ->
+                    getDownloadResumePackage(context, info.ep.id)?.let { stored ->
+                        // KMP-62: a package stored without links carries on with the links just asked for
+                        val dpkg = if (stored.item.links.isEmpty()) DownloadResumePackage(info, resumeIndex(info)) else stored
                         downloadFromResume(dpkg) { id, notification ->
                             displayNotification(context, id, notification)
                         }
@@ -2008,10 +2042,22 @@ object VideoDownloadManager {
 
         fun startDownload() {
             Log.d(TAG, "Starting download ${downloadQueueWrapper.id}")
-            setKey(KEY_RESUME_IN_QUEUE, downloadQueueWrapper.id.toString(), downloadQueueWrapper)
+            setKey(KEY_RESUME_IN_QUEUE, downloadQueueWrapper.id.toString(), withoutLinks(downloadQueueWrapper))
+
+            // KMP-62: a package stored without links asks the provider again, from the side record.
+            val askAgain = downloadQueueWrapper.resumePackage?.item?.links?.isEmpty() == true
+            if (askAgain) resumeSource = readResumeSource(downloadQueueWrapper.id)
+            val canAskAgain = resumeSource != null
 
             ioSafe {
-                if (downloadQueueWrapper.resumePackage != null) {
+                if (askAgain) {
+                    if (canAskAgain) {
+                        downloadEpisodeWithoutLinks()
+                    } else {
+                        DownloadFacts.note(downloadQueueWrapper.id, DownloadFailure.NoUsableLink)
+                        isFailed = true
+                    }
+                } else if (downloadQueueWrapper.resumePackage != null) {
                     downloadFromResume()
                     // Load links if they are not already loaded
                 } else if (downloadQueueWrapper.downloadItem != null && downloadQueueWrapper.downloadItem.links.isNullOrEmpty()) {
@@ -2029,8 +2075,11 @@ object VideoDownloadManager {
             links: List<ExtractorLink>,
             subs: List<SubtitleData>?
         ) {
-            val downloadItem = downloadQueueWrapper.downloadItem ?: return
+            val downloadItem = downloadQueueWrapper.downloadItem ?: resumeSource ?: return
             try {
+                // KMP-62: what a resume asks the provider with, before any package that leaves its links out
+                setKey(resumeSourceKey(downloadItem.episode.id, ITEM), downloadItem.copy(links = null, subs = null))
+
                 // Prepare visual keys
                 setKey(
                     DOWNLOAD_HEADER_CACHE,
@@ -2132,7 +2181,7 @@ object VideoDownloadManager {
         }
 
         private suspend fun downloadEpisodeWithoutLinks() {
-            val downloadItem = downloadQueueWrapper.downloadItem ?: return
+            val downloadItem = downloadQueueWrapper.downloadItem ?: resumeSource ?: return
 
             val generator = RepoLinkGenerator(listOf(downloadItem.episode))
             val currentLinks = mutableSetOf<ExtractorLink>()
@@ -2223,9 +2272,65 @@ object VideoDownloadManager {
             }
 
             downloadEpisodeWithLinks(
-                sortedLinks,
+                pickedFirst(downloadItem.episode.id, sortedLinks),
                 sortSubs(currentSubs),
             )
+        }
+
+        // KMP-62: the side record under KEY_RESUME_SOURCE. Only a download that has not finished reads it.
+
+        /** Set when a package stored without links is resumed: the episode to ask the provider for. */
+        private var resumeSource: DownloadQueueItem? = null
+
+        private fun resumeSourceKey(id: Int, part: String) = "$KEY_RESUME_SOURCE/$id/$part"
+
+        private fun hasResumeSource(id: Int) = context.containsKey(resumeSourceKey(id, ITEM))
+
+        private fun readResumeSource(id: Int): DownloadQueueItem? =
+            getKeyClass(resumeSourceKey(id, ITEM), DownloadQueueItem::class.java)
+
+        private fun readLabel(id: Int, part: String): String? =
+            getKeyClass(resumeSourceKey(id, part), String::class.java)
+
+        /**
+         * Names a link for an equality check only. A source or name is the provider's and can hold a host or a
+         * url, so what is stored is the SHA-256 of them, never the text. [DownloadQueueManager] restates it.
+         */
+        private fun linkLabel(link: ExtractorLink): String {
+            val digest = MessageDigest.getInstance("SHA-256").digest("${link.source}\u001F${link.name}".toByteArray())
+            val hex = StringBuilder(digest.size * 2)
+            for (byte in digest) hex.append(HEX[(byte.toInt() shr 4) and 0xF]).append(HEX[byte.toInt() and 0xF])
+            return hex.toString()
+        }
+
+        /**
+         * A picked mirror's links if the provider still offers them, else every link: the fallback is the
+         * profile's order, not a failure. Then the link the partial file came from goes first.
+         */
+        private fun pickedFirst(id: Int, sorted: List<ExtractorLink>): List<ExtractorLink> {
+            val mirror = readLabel(id, MIRROR)
+            val chosen = sorted.filter { linkLabel(it) == mirror }.ifEmpty { sorted }
+            val attempt = readLabel(id, ATTEMPT)
+            return chosen.filter { linkLabel(it) == attempt } + chosen.filterNot { linkLabel(it) == attempt }
+        }
+
+        /** Resumes the file only on the link it came from; any other link starts it again, as a next mirror does. */
+        private fun resumeIndex(info: DownloadItem): Int? {
+            val first = info.links.firstOrNull() ?: return null
+            return if (linkLabel(first) == readLabel(info.ep.id, ATTEMPT)) 0 else null
+        }
+
+        /** The package as stored: no link once a resume can ask the provider again, and never a subtitle. */
+        private fun withoutLinks(wrapper: DownloadQueueWrapper) = DownloadQueueWrapper(
+            wrapper.resumePackage?.let { pkg ->
+                if (hasResumeSource(wrapper.id)) pkg.copy(item = pkg.item.copy(links = emptyList())) else pkg
+            },
+            wrapper.downloadItem?.copy(links = null, subs = null),
+        )
+
+        private fun forgetResume(id: Int) {
+            removeKey(KEY_RESUME_PACKAGES, id.toString())
+            removeKeys("$KEY_RESUME_SOURCE/$id")
         }
     }
 }

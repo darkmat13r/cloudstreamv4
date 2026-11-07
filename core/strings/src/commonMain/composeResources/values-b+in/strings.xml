@@ -14,6 +14,7 @@
 <plurals name="home_bookmarks_count"><item quantity="other">%d MARKAH</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d bagian gagal dimuat</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">%d bagian</item></plurals>
+<plurals name="library_title_count"><item quantity="other">%d judul</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d link tersembunyi</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">Cari di semua %d sumber</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.</item></plurals>
@@ -396,10 +397,21 @@
 <string name="kitsu_settings">Tampilkan poster dari Kitsu</string>
 <string name="legal_notice">Disclaimer</string>
 <string name="library">Pustaka</string>
+<string name="library_go_to_list">Buka %s</string>
+<string name="library_list_empty_body">Judul yang Anda tambahkan ke %s muncul di sini.</string>
+<string name="library_list_empty_headline">Tidak ada apa pun di %s</string>
 <string name="library_not_connected">Tidak terhubung</string>
 <string name="library_on_device">Di perangkat</string>
+<string name="library_sort_current">Urutan: %s</string>
+<string name="library_sort_supported">%1$s mendukung %2$d dari %3$d</string>
+<string name="library_sort_not_kept">Tidak disimpan oleh %s</string>
 <string name="library_source">Sumber pustaka</string>
 <string name="library_source_note">Satu per satu · beralih memuat ulang</string>
+<string name="library_sync_cached">Tersimpan</string>
+<string name="library_sync_failed">Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.</string>
+<string name="library_sync_offline">Offline · disimpan %s yang lalu</string>
+<string name="library_sync_retry">Sinkronkan ulang</string>
+<string name="library_sync_unreachable">Tidak terjangkau · disimpan %s yang lalu</string>
 <string name="library_synced_format">Disinkronkan %s lalu</string>
 <string name="lightnovel">Aplikasi novel ringan dari developer yang sama</string>
 <string name="limit_title">Karakter maksimal judul pemutar video</string>
@@ -492,6 +504,14 @@
 <string name="player_fit_screen">Isi layar</string>
 <string name="player_fit_title">Ukuran gambar</string>
 <string name="player_fit_width">Isi lebar</string>
+<string name="player_hud_buffering">BUFFERING</string>
+<string name="player_hud_failed_detail">Pilih sumber lain di bawah.</string>
+<string name="player_hud_offline_copy">Tidak ada koneksi — memutar salinan unduhan</string>
+<string name="player_hud_previous_episode">Episode sebelumnya</string>
+<string name="player_hud_seek_back">Mundur</string>
+<string name="player_hud_seek_forward">Maju</string>
+<string name="player_hud_speed">Kecepatan</string>
+<string name="player_hud_up_next">Berikutnya · %s</string>
 <string name="player_is_live">Live</string>
 <string name="player_load_one_subtitle_online">Muat yang pertama tersedia</string>
 <string name="player_load_subtitles">Muat dari file</string>
@@ -653,6 +673,7 @@
 <string name="search_state_no_suggestions_headline">Tidak ada yang cocok dengan “%s”</string>
 <string name="search_suggestions">Saran pencarian</string>
 <string name="search_suggestions_des">Tampilkan saran pencarian saat mengetik</string>
+<string name="search_suggestions_return_hint">Return mencari semua</string>
 <string name="search_tv_source_failed">GAGAL %s</string>
 <string name="search_tv_source_pinned">DISEMATKAN</string>
 <string name="search_tv_sources_panel_meta">%1$d DARI %2$d DIAKTIFKAN · PERUBAHAN BERLAKU SETELAH SELESAI</string>
@@ -661,7 +682,9 @@
 <string name="search_tv_suggestion_suggested">DISARANKAN</string>
 <string name="season">Season</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Lainnya</string>
 <string name="season_short">S</string>
+<string name="season_specials">Spesial</string>
 <string name="seek_back_10_seconds">Mundur 10 detik</string>
 <string name="seek_forward_10_seconds">Maju 10 detik</string>
 <string name="select_all">Pilih Semua</string>

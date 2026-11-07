@@ -42,6 +42,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.input.key.KeyEventType
+import androidx.compose.ui.input.key.onPreviewKeyEvent
+import androidx.compose.ui.input.key.type
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
@@ -94,6 +97,7 @@ import com.lagradost.cloudstream4.feature.home.HomeRowKey
 import com.lagradost.cloudstream4.feature.home.HomeState
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.rows
+import com.lagradost.cloudstream4.feature.home.shown
 import com.lagradost.cloudstream4.feature.home.toUiState
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
@@ -125,6 +129,8 @@ import org.jetbrains.compose.resources.stringResource
  *
  * @param artwork draws a title's poster. Image loading is the host's.
  * @param mayTakeFocus whether focus is this screen's to move. Read at the moment it would move.
+ * @param hostFocus the host's own request for focus as the page first opens, so that focus it gives is not taken for a
+ *   person's choice. Null on a host that makes none.
  */
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -134,6 +140,7 @@ fun HomeScreenTv(
     modifier: Modifier = Modifier,
     artwork: @Composable (HomeItem) -> Unit = {},
     mayTakeFocus: () -> Boolean = { true },
+    hostFocus: HomeHostFocus? = null,
 ) {
     val installLabel = stringResource(Res.string.extensions)
     val install = remember(installLabel, onAction) {
@@ -150,6 +157,11 @@ fun HomeScreenTv(
     // A view built again, coming back by the nav rail, lands once as the first open does. Measured in `:app`: the window
     // gives a rebuilt view's focus to its first stop, the source control, before the rows can, and it stayed there.
     var landingInView by remember { mutableStateOf(true) }
+    // Whether the focus the page holds is the one the host's own request gave it ([hostFocus]), with no key pressed since.
+    // That is the one arrival that is not a person's (`BUG-41`): the bookmarks are one local read, so at launch they can be
+    // on screen before the rows, and the host's first request then lands on a chip. Every other arrival in Continue
+    // watching or the bookmarks, from a key on this page or from the nav rail, which is a view of its own, is a choice.
+    var focusFromHost by remember { mutableStateOf(false) }
     val hasRows = rows.isNotEmpty()
     // Only beside the rows it came from: a page that failed or went offline has no hero, whatever was found before.
     val hero = (state.hero as? HomeHero.Shown)?.takeIf { hasRows }
@@ -163,7 +175,7 @@ fun HomeScreenTv(
     val hasLocalRails = hasContinue || hasBookmarks
     val itemsBeforeBookmarks = if (hasContinue) ITEMS_BEFORE_CONTINUE + 1 else ITEMS_BEFORE_CONTINUE
     val itemsBeforeRails = if (hasBookmarks) itemsBeforeBookmarks + 1 else itemsBeforeBookmarks
-    val offline = state.status is HomeStatus.Offline
+    val offline = state.status.shown is HomeStatus.Offline
     val unsourced = state.status == HomeStatus.Unsourced
     val scope = rememberCoroutineScope()
     val stops = remember { HomeStops() }
@@ -198,8 +210,11 @@ fun HomeScreenTv(
         if (!landable || !state.appeared || returnTo != null || !heroSettled) return@LaunchedEffect
         // After a frame, so that a button these rows replaced has given focus up.
         withFrameNanos { }
-        val free = (state.landingOwed || landingInView || !screenHasFocus) && !continueHasFocus && !bookmarksHaveFocus
+        val inLocalRail = continueHasFocus || bookmarksHaveFocus
+        val free = (state.landingOwed || landingInView || !screenHasFocus) && !(inLocalRail && !focusFromHost)
         if (free && !state.pickerOpen && mayTakeFocus()) focusTarget = landingTarget(hero, resume, shownBookmarks, rows)
+        // A request that gave the page no focus must not mark a later arrival as the host's.
+        hostFocus?.requested = false
         landingInView = false
         if (state.landingOwed) onAction(HomeAction.LandingHandled)
     }
@@ -213,7 +228,19 @@ fun HomeScreenTv(
     SidePanelHost(
         expanded = state.pickerOpen,
         onDismissRequest = { onAction(HomeAction.PickerDismissed) },
-        modifier = modifier.onFocusChanged { screenHasFocus = it.hasFocus },
+        modifier = modifier
+            .onFocusChanged {
+                if (it.hasFocus && !screenHasFocus) {
+                    focusFromHost = hostFocus?.requested == true
+                    hostFocus?.requested = false
+                }
+                if (!it.hasFocus) focusFromHost = false
+                screenHasFocus = it.hasFocus
+            }
+            .onPreviewKeyEvent {
+                if (it.type == KeyEventType.KeyDown) focusFromHost = false
+                false
+            },
         panel = { HomeSourcePanelTv(state, onAction) },
     ) {
         BoxWithConstraints(Modifier.fillMaxSize().homeStopsGroup(stops)) {
@@ -465,6 +492,20 @@ fun HomeScreenTv(
 }
 
 /**
+ * The host's own focus request as the page first opens (`HomeTvFragment.onResume`, `BUG-41`). The window gives that focus
+ * to the first stop it finds, which can be a bookmark chip; marked, the page still lands on the hero.
+ */
+class HomeHostFocus {
+    internal var requested = false
+
+    /** Runs the host's [requestFocus] for a page that does not hold focus, marking the arrival it causes as the host's. */
+    fun request(requestFocus: () -> Boolean) {
+        requested = true
+        if (!requestFocus()) requested = false
+    }
+}
+
+/**
  * The first thing on the page: the hero's button, else the first Continue watching card, else the first bookmark shown,
  * else the first card.
  */
@@ -577,7 +618,7 @@ private fun HomeChromeRow(
     modifier: Modifier = Modifier,
 ) {
     val hasRows = state.status.rows.isNotEmpty() && !state.unsourced
-    val searchable = state.selectedOption != null && state.status !is HomeStatus.Offline
+    val searchable = state.selectedOption != null && state.status.shown !is HomeStatus.Offline
     Row(
         modifier = modifier.fillMaxWidth().height(CloudStreamDimens.ChromeRowHeight),
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),

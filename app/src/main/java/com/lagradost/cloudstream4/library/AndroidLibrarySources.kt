@@ -10,8 +10,12 @@ import com.lagradost.cloudstream3.syncproviders.SyncIdName
 import com.lagradost.cloudstream3.syncproviders.SyncRepo
 import com.lagradost.cloudstream3.syncproviders.providers.LocalList
 import com.lagradost.cloudstream3.ui.library.LAST_SYNC_API_KEY
+import com.lagradost.cloudstream3.ui.library.ListSorting
+import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.DataStoreHelper.currentAccount
 import com.lagradost.cloudstream3.utils.UiText
+import com.lagradost.cloudstream4.feature.library.LibrarySort
+import com.lagradost.cloudstream4.feature.library.LibrarySortCriterion
 import com.lagradost.cloudstream4.feature.library.LibrarySource
 import com.lagradost.cloudstream4.feature.library.LibrarySourceId
 import com.lagradost.cloudstream4.feature.library.LibrarySources
@@ -22,6 +26,8 @@ import com.lagradost.cloudstream4.search.encodeId
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.util.Calendar
+import java.util.Date
 import java.util.Locale
 import java.util.concurrent.ConcurrentHashMap
 
@@ -40,12 +46,16 @@ internal class SyncLibrarySource(
     val id = LibrarySourceId(repo.name)
 }
 
-/** What the sources remember: the old screen's own key for the choice, and the time of each read. */
+/** What the sources remember: the old screen's own keys for the choice and the sort, and the time of each read. */
 internal interface LibrarySourceRecords {
     fun chosen(): String?
     fun choose(name: String)
     fun syncedAt(name: String): Long?
     fun synced(name: String, at: Long)
+
+    /** The old screen's `ListSorting` ordinal, or null where none was ever stored. */
+    fun sortingMode(): Int? = null
+    fun sortBy(mode: Int) = Unit
 }
 
 /**
@@ -58,7 +68,18 @@ internal object DataStoreLibrarySourceRecords : LibrarySourceRecords {
     override fun syncedAt(name: String): Long? = getKey<Long>("$currentAccount/$SYNCED_AT_FOLDER", name)
     override fun synced(name: String, at: Long) = setKey("$currentAccount/$SYNCED_AT_FOLDER", name, at)
 
+    /**
+     * `DataStoreHelper.librarySortingMode`'s own key, read raw: the delegate answers `AlphabeticalA` where nothing is
+     * stored, and nothing stored is this screen's default, not a choice. The old screen stores one as soon as it shows
+     * a list, so a user who has opened it gets the order it showed them.
+     */
+    override fun sortingMode(): Int? = getKey<Int>("$currentAccount/$SORTING_MODE_KEY")
+    override fun sortBy(mode: Int) {
+        DataStoreHelper.librarySortingMode = mode
+    }
+
     private const val SYNCED_AT_FOLDER = "library_synced_at"
+    private const val SORTING_MODE_KEY = "library_sorting_mode"
 }
 
 /** A title read from a tracking service, and what the old screen's opener needs to open it. */
@@ -116,6 +137,9 @@ internal class AndroidLibrarySources(
     @Volatile
     private var shown: LibrarySourceId? = null
 
+    /** What each service's last read said it can sort by, `LibraryMetadata.supportedListSorting`. */
+    private val sorts = ConcurrentHashMap<LibrarySourceId, Set<LibrarySortCriterion>>()
+
     override suspend fun sources(): List<LibrarySource> = withContext(io) {
         val count = runCatching { localCount() }.getOrNull()
         listed(all()).map { source ->
@@ -127,9 +151,17 @@ internal class AndroidLibrarySources(
                 account = if (source.local) null else source.account()?.sourceText()?.ifEmpty { null },
                 syncedAt = if (source.local) null else records.syncedAt(source.id.value),
                 titleCount = if (source.local) count else null,
+                // A service says what it can sort by only with its lists. Before a read, nothing is ruled out.
+                sorts = if (source.local) LOCAL_SORTS else sorts[source.id] ?: LibrarySortCriterion.entries.toSet(),
             )
         }
     }
+
+    override suspend fun sort(): LibrarySort? = withContext(io) {
+        records.sortingMode()?.let { ListSorting.entries.getOrNull(it) }?.toLibrarySort()
+    }
+
+    override suspend fun sortBy(sort: LibrarySort) = withContext(io) { records.sortBy(sort.toListSorting().ordinal) }
 
     override suspend fun current(): LibrarySourceId = withContext(io) {
         val available = all().filter { it.local || it.connected() }
@@ -147,6 +179,7 @@ internal class AndroidLibrarySources(
         val metadata = repo.library().getOrThrow() ?: throw IllegalStateException("Unable to fetch library")
         repo.requireLibraryRefresh = false
         records.synced(id.value, clock())
+        sorts[id] = metadata.supportedListSorting.mapNotNull { it.toLibrarySort()?.criterion }.toSet()
         val read = mutableMapOf<LibraryTitleId, SyncedTitle>()
         val lists = syncedLists(metadata, labels(), typeLabels()) { titleId, item ->
             read[titleId] = SyncedTitle(item, repo.syncIdName)
@@ -160,6 +193,25 @@ internal class AndroidLibrarySources(
     fun synced(id: LibraryTitleId): SyncedTitle? = shown?.let { titles[it] }?.get(id)
 
     companion object {
+        /** `LocalList.library`'s `supportedListSorting`: everything but a rating, which a local list does not keep. */
+        internal val LOCAL_SORTS =
+            setOf(LibrarySortCriterion.Updated, LibrarySortCriterion.Title, LibrarySortCriterion.Released)
+
+        /** The old screen's eight sorts, each a criterion and a direction. `Query`, no sort at all, is none of them. */
+        internal fun ListSorting.toLibrarySort(): LibrarySort? = when (this) {
+            ListSorting.Query -> null
+            ListSorting.RatingHigh -> LibrarySort(LibrarySortCriterion.Rating, descending = true)
+            ListSorting.RatingLow -> LibrarySort(LibrarySortCriterion.Rating, descending = false)
+            ListSorting.UpdatedNew -> LibrarySort(LibrarySortCriterion.Updated, descending = true)
+            ListSorting.UpdatedOld -> LibrarySort(LibrarySortCriterion.Updated, descending = false)
+            ListSorting.AlphabeticalA -> LibrarySort(LibrarySortCriterion.Title, descending = false)
+            ListSorting.AlphabeticalZ -> LibrarySort(LibrarySortCriterion.Title, descending = true)
+            ListSorting.ReleaseDateNew -> LibrarySort(LibrarySortCriterion.Released, descending = true)
+            ListSorting.ReleaseDateOld -> LibrarySort(LibrarySortCriterion.Released, descending = false)
+        }
+
+        internal fun LibrarySort.toListSorting(): ListSorting = ListSorting.entries.first { it.toLibrarySort() == this }
+
         /**
          * Which sources the panel lists, and in what order: all five the app has (`Trakt`, drawn on 5e, is not one of
          * them, and Kitsu, which is, is not drawn), signed-in ones first, each group in the app's own order. 5e draws
@@ -202,6 +254,7 @@ internal class AndroidLibrarySources(
         private fun SyncAPI.LibraryItem.toTitle(typeLabel: (TvType) -> String): LibraryTitle? {
             val title = name.sourceText().ifEmpty { return null }
             if (url.isBlank() || apiName.isBlank()) return null
+            val rating = personalRating?.let { runCatching { it.toStringNull(MIN_RATING, MAX_RATING) }.getOrNull() }
             return LibraryTitle(
                 id = LibraryTitleId(encodeId(apiName, url).value),
                 title = title,
@@ -215,12 +268,18 @@ internal class AndroidLibrarySources(
                     ?.ifEmpty { null },
                 episodesWatched = episodesCompleted?.takeIf { it >= 0 },
                 episodesTotal = episodesTotal?.takeIf { it > 0 },
-                rating = personalRating?.let { runCatching { it.toStringNull(MIN_RATING, MAX_RATING) }.getOrNull() },
+                rating = rating,
+                releaseYear = releaseDate?.year(),
+                // Only where it shows a rating: 0 is AniList's and MAL's "not rated", which sorts last.
+                ratingValue = if (rating == null) null else personalRating.toInt(RATING_SCALE),
             )
         }
+
+        private fun Date.year(): Int = Calendar.getInstance().also { it.time = this }.get(Calendar.YEAR)
 
         /** Below this a service means "not rated": AniList and MAL send 0 for that. */
         private const val MIN_RATING = 0.1
         private const val MAX_RATING = 10
+        private const val RATING_SCALE = 100
     }
 }

@@ -15,6 +15,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARKS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d section failed to load</item><item quantity="other">%d sections failed to load</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d section</item><item quantity="other">%d sections</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d title</item><item quantity="other">%d titles</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d hidden link</item><item quantity="other">%d hidden links</item></plurals>
 <plurals name="search_state_no_results_body"><item quantity="one">%d selected source answered and it does not carry it.</item><item quantity="other">All %d selected sources answered and none of them carry it.</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Search %d source</item><item quantity="other">Search all %d sources</item></plurals>
@@ -421,10 +422,21 @@
 <string name="legal_notice_text">Any legal issues regarding the content on this application should be taken up with the actual file hosts and providers themselves as we are not affiliated with them. \n\nIn case of copyright infringement, please directly contact the responsible parties or the streaming websites. \n\nThe app is purely for educational and personal use. \n\nCloudStream does not host any content on the app, and has no control over what media is put up or taken down. CloudStream functions like any other search engine, such as Google. CloudStream does not host, upload or manage any videos, films or content. It simply crawls, aggregates and displays links in a convenient, user-friendly interface. \n\nIt merely scrapes 3rd-party websites that are publicly accessible via any regular web browser. It is the responsibility of user to avoid any actions that might violate the laws governing his/her locality. Use CloudStream at your own risk.</string>
 <string name="library">Library</string>
 <string name="library_episodes_progress">%1$d / %2$d %3$s</string>
+<string name="library_go_to_list">Go to %s</string>
+<string name="library_list_empty_body">Titles you add to %s land here.</string>
+<string name="library_list_empty_headline">Nothing in %s</string>
 <string name="library_not_connected">Not connected</string>
 <string name="library_on_device">On device</string>
+<string name="library_sort_current">Sort: %s</string>
+<string name="library_sort_supported">%1$s supports %2$d of %3$d</string>
+<string name="library_sort_not_kept">Not kept by %s</string>
 <string name="library_source">Library source</string>
 <string name="library_source_note">One at a time · switching reloads</string>
+<string name="library_sync_cached">Cached</string>
+<string name="library_sync_failed">Couldn't sync %1$s. These are from %2$s ago.</string>
+<string name="library_sync_offline">Offline · cached %s ago</string>
+<string name="library_sync_retry">Retry sync</string>
+<string name="library_sync_unreachable">Unreachable · cached %s ago</string>
 <string name="library_synced_format">Synced %s ago</string>
 <string name="lightnovel">Light novel app by the same devs</string>
 <string name="limit_title">Video player title max chars</string>
@@ -518,6 +530,14 @@
 <string name="player_fit_screen">Fill screen</string>
 <string name="player_fit_title">Picture size</string>
 <string name="player_fit_width">Fill width</string>
+<string name="player_hud_buffering">BUFFERING</string>
+<string name="player_hud_failed_detail">Choose another source below.</string>
+<string name="player_hud_offline_copy">No connection — playing the downloaded copy</string>
+<string name="player_hud_previous_episode">Previous episode</string>
+<string name="player_hud_seek_back">Seek back</string>
+<string name="player_hud_seek_forward">Seek forward</string>
+<string name="player_hud_speed">Speed</string>
+<string name="player_hud_up_next">Up next · %s</string>
 <string name="player_is_live">Live</string>
 <string name="player_load_one_subtitle_online">Load first available</string>
 <string name="player_load_subtitles">Load from file</string>
@@ -696,6 +716,7 @@
 <string name="search_state_retry_failed">Retry failed</string>
 <string name="search_suggestions">Search Suggestions</string>
 <string name="search_suggestions_des">Show search suggestions while typing</string>
+<string name="search_suggestions_return_hint">Return searches all</string>
 <string name="search_tv_clear_all">Clear all searches</string>
 <string name="search_tv_field_placeholder">Search all sources</string>
 <string name="search_tv_recent_headline">Recent searches</string>
@@ -708,7 +729,9 @@
 <string name="search_tv_suggestion_suggested">SUGGESTED</string>
 <string name="season">Season</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Other</string>
 <string name="season_short">S</string>
+<string name="season_specials">Specials</string>
 <string name="seek_back_10_seconds">Skip back 10 seconds</string>
 <string name="seek_forward_10_seconds">Skip forward 10 seconds</string>
 <string name="select_all">Select All</string>

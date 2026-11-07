@@ -86,6 +86,24 @@ sealed interface LibraryStatus {
 
     /** The store could not be read. [detail] is the exception's own words, for a bug report. */
     data class Failed(val detail: String) : LibraryStatus
+
+    /**
+     * The shown tracking service needs a connection, the device has none, and no read of it is held (`KMP-51`). Not a
+     * [Failed]: nothing was tried, and nothing went wrong but the network.
+     */
+    data object Offline : LibraryStatus
+}
+
+/**
+ * Why the shown tracking service's lists are a read held from earlier rather than a new one (`TV Library` 5b). The age
+ * is the source's own [LibrarySource.syncedAt], recorded when that read was made.
+ */
+enum class LibraryStale {
+    /** A read was tried and failed. */
+    Unreachable,
+
+    /** The device is offline, so none was tried. */
+    Offline,
 }
 
 @Immutable
@@ -120,10 +138,20 @@ data class LibraryState(
     val syncedCounts: Map<String, Int> = emptyMap(),
     /** Whether the panel that chooses a source (`TV Library` 5e) is open. */
     val sourcesOpen: Boolean = false,
+    /** The sort chosen, for every source. What a source shows is [appliedSort], which may be the fallback. */
+    val sort: LibrarySort = LibrarySort.Default,
+    /** Whether the sort panel (`TV Library` 5d) is open. */
+    val sortOpen: Boolean = false,
+    /** Non-null where the cards are a held read of the shown service, and why (5b). Every card is then marked. */
+    val stale: LibraryStale? = null,
 ) {
     /** The source being shown, where it is known. */
     val shownSource: LibrarySource?
         get() = source?.let { id -> sources.firstOrNull { it.id == id } }
+
+    /** The sort the shown source's cards are in: [sort], or the fallback where the source cannot sort by it. */
+    val appliedSort: LibrarySort
+        get() = sort.appliedTo(shownSource)
 
     /** The card the picker is open for, where it is still on screen. */
     val pickingCard: LibraryCard?
@@ -193,6 +221,18 @@ sealed interface LibraryAction {
 
     /** Shows [id]'s lists, and remembers it as the source to open on. A source that is not connected is refused. */
     data class SourceChosen(val id: LibrarySourceId) : LibraryAction
+
+    /** Opens the sort panel. */
+    data object SortOpened : LibraryAction
+
+    /** Closes it. A choice is already applied. */
+    data object SortDismissed : LibraryAction
+
+    /**
+     * Sorts by [criterion], at once (`DEC-17`, a single choice). The criterion already applied turns the other way
+     * round. One the shown source cannot sort by is refused.
+     */
+    data class SortChosen(val criterion: LibrarySortCriterion) : LibraryAction
 }
 
 sealed interface LibraryEffect {

@@ -108,6 +108,8 @@ object BackupUtils {
         KEY_RESUME_IN_QUEUE,
         KEY_RESUME_PACKAGES,
         QUEUE_KEY,
+        // KMP-62: VideoDownloadManager.KEY_RESUME_SOURCE, private to the downloader
+        "download_resume_source",
 
         // Prevent automatic plugin download after restoring backup
         "auto_download_plugins_key2"

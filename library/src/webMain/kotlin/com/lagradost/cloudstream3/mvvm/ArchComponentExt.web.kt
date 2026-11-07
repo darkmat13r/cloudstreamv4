@@ -30,3 +30,7 @@ actual fun <T> platformThrowAbleToResource(throwable: Throwable): Resource<T> {
         else -> safeFail(throwable)
     }
 }
+
+internal actual fun printToStandardError(text: String) {
+    console.error(text)
+}

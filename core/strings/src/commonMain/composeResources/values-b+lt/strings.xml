@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d pavadinimas · %2$s</item><item quantity="few">%1$d pavadinimai · %2$s</item><item quantity="many">%1$d pavadinimo · %2$s</item><item quantity="other">%1$d pavadinimų · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ŽYMA</item><item quantity="few">%d ŽYMOS</item><item quantity="many">%d ŽYMOS</item><item quantity="other">%d ŽYMŲ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepavyko įkelti %d skilties</item><item quantity="few">Nepavyko įkelti %d skilčių</item><item quantity="many">Nepavyko įkelti %d skilties</item><item quantity="other">Nepavyko įkelti %d skilčių</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d pavadinimas</item><item quantity="few">%d pavadinimai</item><item quantity="many">%d pavadinimo</item><item quantity="other">%d pavadinimų</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Ieškoti %d šaltinyje</item><item quantity="few">Ieškoti visuose šaltiniuose (%d)</item><item quantity="many">Ieškoti visuose šaltiniuose (%d)</item><item quantity="other">Ieškoti visuose šaltiniuose (%d)</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte %d šaltinyje.</item><item quantity="few">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item><item quantity="many">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item><item quantity="other">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ŠALTINIS</item><item quantity="few">%d ŠALTINIAI</item><item quantity="many">%d ŠALTINIO</item><item quantity="other">%d ŠALTINIŲ</item></plurals>
@@ -209,10 +210,21 @@
 <string name="home_source_unreachable">Praėjusį kartą nepasiekiamas</string>
 <string name="is_adult">18+</string>
 <string name="library">Biblioteka</string>
+<string name="library_go_to_list">Eiti į „%s“</string>
+<string name="library_list_empty_body">Čia atsiranda pavadinimai, kuriuos pridedate į „%s“.</string>
+<string name="library_list_empty_headline">Sąrašas „%s“ tuščias</string>
 <string name="library_not_connected">Neprijungta</string>
 <string name="library_on_device">Įrenginyje</string>
+<string name="library_sort_current">Rikiavimas: %s</string>
+<string name="library_sort_supported">%1$s palaiko %2$d iš %3$d</string>
+<string name="library_sort_not_kept">%s to nesaugo</string>
 <string name="library_source">Bibliotekos šaltinis</string>
 <string name="library_source_note">Po vieną · perjungus įkeliama iš naujo</string>
+<string name="library_sync_cached">Iš podėlio</string>
+<string name="library_sync_failed">Nepavyko sinchronizuoti %1$s. Tai duomenys prieš %2$s.</string>
+<string name="library_sync_offline">Neprisijungus · podėlyje prieš %s</string>
+<string name="library_sync_retry">Sinchronizuoti iš naujo</string>
+<string name="library_sync_unreachable">Nepasiekiama · podėlyje prieš %s</string>
 <string name="library_synced_format">Sinchronizuota prieš %s</string>
 <string name="links_reloaded_toast">Nuorodos perkrautos</string>
 <string name="live_singular">Gyva transliacija</string>
@@ -259,6 +271,14 @@
 <string name="player_fit_screen">Užpildyti ekraną</string>
 <string name="player_fit_title">Vaizdo dydis</string>
 <string name="player_fit_width">Užpildyti plotį</string>
+<string name="player_hud_buffering">BUFERIZAVIMAS</string>
+<string name="player_hud_failed_detail">Žemiau pasirinkite kitą šaltinį.</string>
+<string name="player_hud_offline_copy">Nėra ryšio — leidžiama atsisiųsta kopija</string>
+<string name="player_hud_previous_episode">Ankstesnė serija</string>
+<string name="player_hud_seek_back">Atgal</string>
+<string name="player_hud_seek_forward">Pirmyn</string>
+<string name="player_hud_speed">Greitis</string>
+<string name="player_hud_up_next">Toliau · %s</string>
 <string name="player_mute">Nutildyti</string>
 <string name="player_settings_play_in_app">Integruotas grotuvas</string>
 <string name="player_size_settings">Grotuvo dydžio pakeitimo mygtukas</string>
@@ -328,6 +348,7 @@
 <string name="search_state_no_results_type_filter">Tik %s. Jūsų tipų filtras siaurina paiešką.</string>
 <string name="search_state_no_suggestions_detail">0 PASIŪLYMŲ · 0 NESENIŲ ATITIKMENŲ</string>
 <string name="search_state_no_suggestions_headline">Niekas neatitinka „%s“</string>
+<string name="search_suggestions_return_hint">Return ieško visur</string>
 <string name="search_tv_source_failed">NEPAVYKO %s</string>
 <string name="search_tv_source_pinned">PRISEGTA</string>
 <string name="search_tv_sources_panel_meta">ĮJUNGTA %1$d IŠ %2$d · PAKEITIMAI TAIKOMI PASPAUDUS BAIGTA</string>
@@ -335,6 +356,8 @@
 <string name="search_tv_suggestion_recent_suggested">NESENIAI · TAIP PAT SIŪLOMA</string>
 <string name="search_tv_suggestion_suggested">SIŪLOMA</string>
 <string name="season">Sezonas</string>
+<string name="season_other">Kita</string>
+<string name="season_specials">Specialieji</string>
 <string name="seek_back_10_seconds">Atsukti 10 sekundžių atgal</string>
 <string name="seek_forward_10_seconds">Persukti 10 sekundžių į priekį</string>
 <string name="select_all">Pasirinkti viską</string>

@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="other">"%d MỤC"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"Không tải được %d mục"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d mục"</item></plurals>
+<plurals name="library_title_count"><item quantity="other">"%d tựa"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d liên kết bị ẩn"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"Tìm kiếm trên cả %d nguồn"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn."</item></plurals>
@@ -396,10 +397,21 @@
 <string name="kitsu_settings">"Hiển thị poster từ Kitsu"</string>
 <string name="legal_notice">"Tuyên bố miễn trừ trách nhiệm"</string>
 <string name="library">"Thư viện"</string>
+<string name="library_go_to_list" formatted="true">"Đi tới %s"</string>
+<string name="library_list_empty_body" formatted="true">"Các tựa bạn thêm vào %s sẽ xuất hiện ở đây."</string>
+<string name="library_list_empty_headline" formatted="true">"Không có gì trong %s"</string>
 <string name="library_not_connected">"Chưa kết nối"</string>
 <string name="library_on_device">"Trên thiết bị"</string>
+<string name="library_sort_current" formatted="true">"Sắp xếp: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s không lưu mục này"</string>
+<string name="library_sort_supported" formatted="true">"%1$s hỗ trợ %2$d/%3$d"</string>
 <string name="library_source">"Nguồn thư viện"</string>
 <string name="library_source_note">"Mỗi lần một nguồn · chuyển sẽ tải lại"</string>
+<string name="library_sync_cached">"Đã lưu đệm"</string>
+<string name="library_sync_failed" formatted="true">"Không thể đồng bộ %1$s. Đây là dữ liệu từ %2$s trước."</string>
+<string name="library_sync_offline" formatted="true">"Ngoại tuyến · đã lưu bộ nhớ đệm %s trước"</string>
+<string name="library_sync_retry">"Đồng bộ lại"</string>
+<string name="library_sync_unreachable" formatted="true">"Không truy cập được · đã lưu bộ nhớ đệm %s trước"</string>
 <string name="library_synced_format" formatted="true">"Đã đồng bộ %s trước"</string>
 <string name="lightnovel">"Ứng dụng đọc tiểu thuyết của cùng nhà phát triển"</string>
 <string name="limit_title">"Số ký tự tối đa tiêu đề trình phát"</string>
@@ -492,6 +504,14 @@
 <string name="player_fit_screen">"Lấp đầy màn hình"</string>
 <string name="player_fit_title">"Kích thước hình ảnh"</string>
 <string name="player_fit_width">"Lấp đầy chiều rộng"</string>
+<string name="player_hud_buffering">"ĐANG TẢI ĐỆM"</string>
+<string name="player_hud_failed_detail">"Chọn nguồn khác bên dưới."</string>
+<string name="player_hud_offline_copy">"Không có kết nối — đang phát bản đã tải xuống"</string>
+<string name="player_hud_previous_episode">"Tập trước"</string>
+<string name="player_hud_seek_back">"Tua lại"</string>
+<string name="player_hud_seek_forward">"Tua tới"</string>
+<string name="player_hud_speed">"Tốc độ"</string>
+<string name="player_hud_up_next" formatted="true">"Tiếp theo · %s"</string>
 <string name="player_is_live">"Trực tiếp"</string>
 <string name="player_load_one_subtitle_online">"Tải phụ đề đầu tiên có sẵn"</string>
 <string name="player_load_subtitles">"Chọn từ tệp"</string>
@@ -653,6 +673,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"Không có gì khớp với “%s”"</string>
 <string name="search_suggestions">"Gợi ý tìm kiếm"</string>
 <string name="search_suggestions_des">"Hiển thị gợi ý tìm kiếm khi đang nhập"</string>
+<string name="search_suggestions_return_hint">"Return tìm ở mọi nơi"</string>
 <string name="search_tv_source_failed" formatted="true">"THẤT BẠI %s"</string>
 <string name="search_tv_source_pinned">"ĐÃ GHIM"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d TRÊN %2$d ĐÃ BẬT · THAY ĐỔI ÁP DỤNG KHI NHẤN HOÀN TẤT"</string>
@@ -661,7 +682,9 @@
 <string name="search_tv_suggestion_suggested">"ĐƯỢC GỢI Ý"</string>
 <string name="season">"Mùa"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Khác"</string>
 <string name="season_short">"Mùa"</string>
+<string name="season_specials">"Đặc biệt"</string>
 <string name="seek_back_10_seconds">"Tua lùi 10 giây"</string>
 <string name="seek_forward_10_seconds">"Tua tới 10 giây"</string>
 <string name="select_all">"Chọn tất cả"</string>
