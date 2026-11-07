@@ -3191,17 +3191,26 @@ public final static class com/lagradost/cloudstream3/R$navigation : java/lang/Ob
 
 public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Object {
 	public static field downloads_active I
+	public static field downloads_count_downloading I
+	public static field downloads_count_queued I
+	public static field downloads_delete_confirm_title I
+	public static field downloads_episode_count I
 	public static field downloads_failed_count I
 	public static field downloads_queued I
+	public static field downloads_titles_status I
 	public static field episodes I
 	public static field home_bookmarks_count I
 	public static field home_sections_failed I
+	public static field home_source_sections I
 	public static field links_hidden I
 	public static field search_state_no_results_body I
+	public static field search_state_no_suggestions_action I
+	public static field search_state_no_suggestions_body I
 	public static field search_state_partial_headline I
 	public static field search_tv_recent_count I
 	public static field search_tv_result_count I
 	public static field search_tv_sources_count I
+	public static field search_tv_suggestion_sources I
 }
 
 public final static class com/lagradost/cloudstream3/R$string : java/lang/Object {
@@ -3382,8 +3391,13 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field delete_repository I
 	public static field delete_repository_plugins I
 	public static field deselect_all I
+	public static field desktop_menu_go I
 	public static field detail_load_failed_body I
 	public static field detail_load_failed_headline I
+	public static field detail_source_resolving I
+	public static field detail_sources_done I
+	public static field detail_sources_progress I
+	public static field detail_start_over I
 	public static field device_pin_counter_text I
 	public static field device_pin_error_message I
 	public static field device_pin_expired_message I
@@ -3434,16 +3448,23 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field downloaded_file I
 	public static field downloading I
 	public static field downloads_browse_library I
+	public static field downloads_cancel_confirm_body I
+	public static field downloads_cancel_confirm_title I
+	public static field downloads_cancel_download I
+	public static field downloads_column_size I
 	public static field downloads_delete_all I
 	public static field downloads_delete_chosen I
+	public static field downloads_delete_confirm_body I
 	public static field downloads_delete_select I
 	public static field downloads_empty I
 	public static field downloads_empty_body I
 	public static field downloads_empty_headline I
 	public static field downloads_episode_code I
 	public static field downloads_film_subtitle I
+	public static field downloads_free I
 	public static field downloads_free_up_space I
 	public static field downloads_joined I
+	public static field downloads_keep_downloading I
 	public static field downloads_load_failed_body I
 	public static field downloads_load_failed_headline I
 	public static field downloads_offline_pill I
@@ -3458,7 +3479,9 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field downloads_reason_storage_unavailable I
 	public static field downloads_retry_failed I
 	public static field downloads_select I
+	public static field downloads_selected_status I
 	public static field downloads_series_subtitle I
+	public static field downloads_show_in_finder I
 	public static field downloads_state_queued I
 	public static field downloads_storage_full_headline I
 	public static field downloads_storage_legend I
@@ -3598,6 +3621,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field home_bookmarks_no_status_body I
 	public static field home_bookmarks_no_status_headline I
 	public static field home_change_provider_img_des I
+	public static field home_choose_source I
 	public static field home_expanded_hide I
 	public static field home_info I
 	public static field home_main_poster_img_des I
@@ -3609,9 +3633,14 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field home_offline_source_headline I
 	public static field home_play I
 	public static field home_random I
+	public static field home_reload_failed I
 	public static field home_search_only_body I
 	public static field home_source I
+	public static field home_source_none_line I
 	public static field home_source_none_subtitle I
+	public static field home_source_picker_body I
+	public static field home_source_picker_title I
+	public static field home_source_unreachable I
 	public static field install_prerelease I
 	public static field install_prerelease_key I
 	public static field is_adult I
@@ -3908,6 +3937,13 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_provider_text_providers I
 	public static field search_provider_text_types I
 	public static field search_providers_list_key I
+	public static field search_quick_empty_body I
+	public static field search_quick_empty_headline I
+	public static field search_quick_meta_answered I
+	public static field search_quick_meta_answering I
+	public static field search_quick_open_full I
+	public static field search_quick_status I
+	public static field search_quick_title I
 	public static field search_state_failed_body I
 	public static field search_state_failed_headline I
 	public static field search_state_idle_action I
@@ -3919,6 +3955,8 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_state_no_results_detail I
 	public static field search_state_no_results_headline I
 	public static field search_state_no_results_type_filter I
+	public static field search_state_no_suggestions_detail I
+	public static field search_state_no_suggestions_headline I
 	public static field search_state_offline_body I
 	public static field search_state_offline_headline I
 	public static field search_state_retry I
@@ -3932,6 +3970,9 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_tv_source_pinned I
 	public static field search_tv_sources_label I
 	public static field search_tv_sources_panel_meta I
+	public static field search_tv_suggestion_recent I
+	public static field search_tv_suggestion_recent_suggested I
+	public static field search_tv_suggestion_suggested I
 	public static field search_types_list_key I
 	public static field season I
 	public static field season_format I
@@ -38138,10 +38179,12 @@ public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSource :
 	public static final synthetic fun access$getProviderHealth$cp ()Ljava/util/concurrent/ConcurrentHashMap;
 	public static final synthetic fun access$labelContext (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;)Landroid/content/Context;
 	public static final synthetic fun access$noTargets (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;ZLjava/util/Set;)Lcom/lagradost/cloudstream4/feature/search/SearchOutcome;
+	public static final synthetic fun access$progressOf (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;[Lcom/lagradost/cloudstream3/mvvm/Resource;)Lcom/lagradost/cloudstream4/feature/search/QuickSearchProgress;
 	public static final synthetic fun access$selectedProviders (Lcom/lagradost/cloudstream4/search/ApiRepositorySearchSource;Ljava/util/Set;)Ljava/util/List;
 	public fun choices (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun clearFilters (Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun quickSearch (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun quickSearchPanel (Ljava/util/Set;)Lcom/lagradost/cloudstream4/feature/search/QuickSearchSource;
 	public fun search (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun searchMore (Ljava/lang/String;Ljava/lang/String;ILkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun selectSources (Ljava/util/Set;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
@@ -38174,6 +38217,12 @@ public final static synthetic class com/lagradost/cloudstream4/search/ApiReposit
 public final static class com/lagradost/cloudstream4/search/ApiRepositorySearchSourceKt$pinnedFirst$$inlined$sortedBy$1 : java/lang/Object, java/util/Comparator {
 	public fun <init> ([Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
+}
+
+public final class com/lagradost/cloudstream4/search/ComposableSingletons$QuickSearchTvFragmentKt : java/lang/Object {
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/search/ComposableSingletons$QuickSearchTvFragmentKt;
+	public fun <init> ()V
+	public final fun getLambda$-1408151337$app ()Lkotlin/jvm/functions/Function2;
 }
 
 public final class com/lagradost/cloudstream4/search/ComposableSingletons$SearchTvFragmentKt : java/lang/Object {
@@ -38220,6 +38269,51 @@ public final class com/lagradost/cloudstream4/search/ProviderHealth : java/lang/
 	public final fun getFailedAt ()Ljava/lang/Long;
 	public fun hashCode ()I
 	public fun toString ()Ljava/lang/String;
+}
+
+public final class com/lagradost/cloudstream4/search/QuickSearchTvFragment : androidx/fragment/app/DialogFragment {
+	public static final field $stable I
+	public fun <init> ()V
+	public static final synthetic fun access$getViewModel (Lcom/lagradost/cloudstream4/search/QuickSearchTvFragment;)Lcom/lagradost/cloudstream4/feature/search/QuickSearchViewModel;
+	public static final synthetic fun access$onCreateView$lambda$0$0$3 (Landroidx/compose/runtime/MutableState;Z)V
+	public static final synthetic fun access$onEffect (Lcom/lagradost/cloudstream4/search/QuickSearchTvFragment;Lcom/lagradost/cloudstream4/feature/search/QuickSearchEffect;)V
+	public fun onCreate (Landroid/os/Bundle;)V
+	public fun onCreateView (Landroid/view/LayoutInflater;Landroid/view/ViewGroup;Landroid/os/Bundle;)Landroid/view/View;
+	public fun onStart ()V
+}
+
+public final static class com/lagradost/cloudstream4/search/QuickSearchTvFragment$special$$inlined$viewModels$default$1 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;)V
+	public final fun invoke ()Landroidx/fragment/app/Fragment;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/search/QuickSearchTvFragment$special$$inlined$viewModels$default$2 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/jvm/functions/Function0;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelStoreOwner;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/search/QuickSearchTvFragment$special$$inlined$viewModels$default$3 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelStore;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/search/QuickSearchTvFragment$special$$inlined$viewModels$default$4 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Lkotlin/jvm/functions/Function0;Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/viewmodel/CreationExtras;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/search/QuickSearchTvFragment$special$$inlined$viewModels$default$5 : kotlin/jvm/internal/Lambda, kotlin/jvm/functions/Function0 {
+	public fun <init> (Landroidx/fragment/app/Fragment;Lkotlin/Lazy;)V
+	public final fun invoke ()Landroidx/lifecycle/ViewModelProvider$Factory;
+	public synthetic fun invoke ()Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream4/search/QuickSearchTvFragmentKt : java/lang/Object {
+	public static final fun openQuickSearchOnTvScreen (Landroidx/navigation/NavController;)V
 }
 
 public final class com/lagradost/cloudstream4/search/SearchResultTarget : java/lang/Object {

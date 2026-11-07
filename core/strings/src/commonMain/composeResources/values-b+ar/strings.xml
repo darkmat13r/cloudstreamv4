@@ -4,10 +4,19 @@
 <string name="detail_load_failed_body">قد يكون مصدره غير متاح.</string>
 <string name="detail_load_failed_headline">تعذّر فتح هذا العنوان</string>
 <plurals name="downloads_active"><item quantity="zero">%d لا يوجد تنزيل نشط</item><item quantity="one">%d تنزيل واحد نشط</item><item quantity="two">%d تنزيلان نشطان</item><item quantity="few">%d تنزيلات نشطة</item><item quantity="many">%d تنزيل نشط</item><item quantity="other">%d تنزيل نشط</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="zero">%d قيد التنزيل</item><item quantity="one">%d قيد التنزيل</item><item quantity="two">%d قيد التنزيل</item><item quantity="few">%d قيد التنزيل</item><item quantity="many">%d قيد التنزيل</item><item quantity="other">%d قيد التنزيل</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="zero">%d في قائمة الانتظار</item><item quantity="one">%d في قائمة الانتظار</item><item quantity="two">%d في قائمة الانتظار</item><item quantity="few">%d في قائمة الانتظار</item><item quantity="many">%d في قائمة الانتظار</item><item quantity="other">%d في قائمة الانتظار</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="zero">حذف %d تنزيل؟</item><item quantity="one">حذف %d تنزيل؟</item><item quantity="two">حذف %d تنزيلين؟</item><item quantity="few">حذف %d تنزيلات؟</item><item quantity="many">حذف %d تنزيلًا؟</item><item quantity="other">حذف %d تنزيل؟</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="zero">%d حلقة</item><item quantity="one">%d حلقة</item><item quantity="two">%d حلقتان</item><item quantity="few">%d حلقات</item><item quantity="many">%d حلقة</item><item quantity="other">%d حلقة</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="zero">فشل %d</item><item quantity="one">فشل %d</item><item quantity="two">فشل %d</item><item quantity="few">فشل %d</item><item quantity="many">فشل %d</item><item quantity="other">فشل %d</item></plurals>
 <plurals name="downloads_queued"><item quantity="zero">%d لا يوجد تنزيلات في قائمة الانتظار</item><item quantity="one">%d تنزيل واحد قيد الانتظار</item><item quantity="two">%d تنزيلان قيد الانتظار</item><item quantity="few">%d تنزيلات قيد الانتظار</item><item quantity="many">%d تنزيل قيد الانتظار</item><item quantity="other">%d تنزيل قيد الانتظار</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="zero">%1$d عنوان · %2$s</item><item quantity="one">%1$d عنوان · %2$s</item><item quantity="two">%1$d عنوانان · %2$s</item><item quantity="few">%1$d عناوين · %2$s</item><item quantity="many">%1$d عنوانًا · %2$s</item><item quantity="other">%1$d عنوان · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="zero">%d إشارة مرجعية</item><item quantity="one">%d إشارة مرجعية</item><item quantity="two">%d إشارتان مرجعيتان</item><item quantity="few">%d إشارات مرجعية</item><item quantity="many">%d إشارة مرجعية</item><item quantity="other">%d إشارة مرجعية</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">تعذر تحميل %d قسم</item><item quantity="one">تعذر تحميل %d قسم</item><item quantity="two">تعذر تحميل %d قسمين</item><item quantity="few">تعذر تحميل %d أقسام</item><item quantity="many">تعذر تحميل %d قسمًا</item><item quantity="other">تعذر تحميل %d قسم</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="zero">ابحث في %d مصدر</item><item quantity="one">ابحث في %d مصدر</item><item quantity="two">ابحث في جميع المصادر الـ%d</item><item quantity="few">ابحث في جميع المصادر الـ%d</item><item quantity="many">ابحث في جميع المصادر الـ%d</item><item quantity="other">ابحث في جميع المصادر الـ%d</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="zero">اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.</item><item quantity="one">اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.</item><item quantity="two">اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.</item><item quantity="few">اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.</item><item quantity="many">اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.</item><item quantity="other">اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="zero">%d مصدر</item><item quantity="one">%d مصدر</item><item quantity="two">%d مصدران</item><item quantity="few">%d مصادر</item><item quantity="many">%d مصدرًا</item><item quantity="other">%d مصدر</item></plurals>
+<plurals name="home_source_sections"><item quantity="zero">%d قسم</item><item quantity="one">%d قسم</item><item quantity="two">%d قسمان</item><item quantity="few">%d أقسام</item><item quantity="many">%d قسمًا</item><item quantity="other">%d قسم</item></plurals>
 <string name="account">حساب</string>
 <string name="action_add_to_bookmarks">إعداد حالة المشاهدة</string>
 <string name="action_add_to_favorites">اضافة الى المفضلة</string>
@@ -160,6 +169,11 @@
 <string name="delete_repository">ازالة مستودع</string>
 <string name="delete_repository_plugins">سوف يتم محو جميع إضافات المستودع</string>
 <string name="deselect_all">إلغاء تحديد الكل</string>
+<string name="desktop_menu_go">انتقال</string>
+<string name="detail_source_resolving">جارٍ الاستخراج…</string>
+<string name="detail_sources_done">أجاب %1$d من %2$d</string>
+<string name="detail_sources_progress">أجاب %1$d من %2$d · جارٍ التحميل…</string>
+<string name="detail_start_over">البدء من جديد</string>
 <string name="device_pin_counter_text">تنتهي صلاحية الرمز خلال %1$dm %2$ds</string>
 <string name="device_pin_error_message">لا يمكن الحصول على رمز PIN للجهاز، حاول المصادقة المحلية</string>
 <string name="device_pin_expired_message">لقد انتهت صلاحية الرمز السري الآن!</string>
@@ -199,12 +213,19 @@
 <string name="downloaded_file">الملف الذي تم تنزيله</string>
 <string name="downloading">جاري التنزيل</string>
 <string name="downloads_browse_library">تصفّح المكتبة</string>
+<string name="downloads_cancel_confirm_body">سيؤدي هذا إلى تجاهل %s تم تنزيلها حتى الآن.</string>
+<string name="downloads_cancel_confirm_title">هل تريد إلغاء هذا التنزيل؟</string>
+<string name="downloads_cancel_download">إلغاء التنزيل</string>
+<string name="downloads_column_size">الحجم</string>
 <string name="downloads_delete_all">حذف الكل</string>
+<string name="downloads_delete_confirm_body">سيؤدي هذا إلى تحرير %s ولا يمكن التراجع عنه.</string>
 <string name="downloads_delete_select">الرجاء تحديد العناصر للحذف</string>
 <string name="downloads_empty">لا يوجد حالياً اى تنزيلات.</string>
 <string name="downloads_empty_body">تظهر هنا التنزيلات التي تبدأها من قائمة حلقات العنوان، ويمكن تشغيلها دون اتصال.</string>
 <string name="downloads_empty_headline">لا توجد تنزيلات بعد</string>
+<string name="downloads_free">%s متاحة</string>
 <string name="downloads_free_up_space">إخلاء مساحة</string>
+<string name="downloads_keep_downloading">متابعة التنزيل</string>
 <string name="downloads_load_failed_body">لم تتغيّر ملفاتك التي تم تنزيلها.</string>
 <string name="downloads_load_failed_headline">تعذّرت قراءة تنزيلاتك</string>
 <string name="downloads_offline_pill">غير متصل · لا يوجد اتصال</string>
@@ -218,6 +239,8 @@
 <string name="downloads_reason_storage_unavailable">التخزين غير متاح</string>
 <string name="downloads_retry_failed">إعادة محاولة الفاشلة (%d)</string>
 <string name="downloads_select">تحديد</string>
+<string name="downloads_selected_status">تم تحديد %1$d من %2$d · %3$s</string>
+<string name="downloads_show_in_finder">إظهار في Finder</string>
 <string name="downloads_state_queued">في قائمة الانتظار</string>
 <string name="downloads_storage_full_headline">مساحة التخزين غير كافية</string>
 <string name="downloads_storage_legend">%1$s من %2$s مستخدم · %3$s في التنزيلات</string>
@@ -344,6 +367,7 @@
 <string name="home_bookmarks_no_status_body">اختر حالة من الأعلى لعرض تلك الإشارات المرجعية.</string>
 <string name="home_bookmarks_no_status_headline">لم تُختر أي حالة</string>
 <string name="home_change_provider_img_des">تغيير المصدر</string>
+<string name="home_choose_source">اختيار المصدر</string>
 <string name="home_expanded_hide">إخفاء</string>
 <string name="home_info">معلومات</string>
 <string name="home_main_poster_img_des">الملصق الرئيسي</string>
@@ -355,9 +379,14 @@
 <string name="home_offline_source_headline">يحتاج %1$s إلى اتصال</string>
 <string name="home_play">تشغيل</string>
 <string name="home_random">عشوائي</string>
+<string name="home_reload_failed">تعذّرت إعادة تحميل %1$s. هذه الصفوف من قبل %2$s.</string>
 <string name="home_search_only_body">لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها.</string>
 <string name="home_source">مصدر</string>
+<string name="home_source_none_line">لا صفوف؛ تبقى مكتبتك</string>
 <string name="home_source_none_subtitle">لا صفوف · تبقى صفوفك</string>
+<string name="home_source_picker_body">تأتي الصفوف من إضافة واحدة في كل مرة.</string>
+<string name="home_source_picker_title">مصدر الصفحة الرئيسية</string>
+<string name="home_source_unreachable">تعذّر الوصول إليه في المرة السابقة</string>
 <string name="install_prerelease">تثبيت الإصدار التجريبي</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">تعذر الوصول إلى جيثب. تشغيل وكيل jsDelivr …</string>
@@ -610,13 +639,25 @@
 <string name="search_poster_img_des">الصورة الدعائية</string>
 <string name="search_provider_text_providers">البحث باستخدام المصادر</string>
 <string name="search_provider_text_types">البحث باستخدام الأنواع</string>
+<string name="search_quick_empty_body">ردّت جميع المصادر ولا يحتوي أيٌّ منها على «%s». جرّب بحثًا أقصر، أو افتح البحث الكامل لتغيير المصادر.</string>
+<string name="search_quick_empty_headline">لا توجد تطابقات</string>
+<string name="search_quick_meta_answered">ردّت جميع المصادر</string>
+<string name="search_quick_meta_answering">تصل النتائج مع ردّ المصادر</string>
+<string name="search_quick_open_full">فتح البحث الكامل</string>
+<string name="search_quick_status">ردّ %1$d من %2$d · فشل %3$d</string>
+<string name="search_quick_title">بحث سريع</string>
 <string name="search_state_idle_body_desktop">اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.</string>
 <string name="search_state_no_results_type_filter">%s فقط. عامل تصفية النوع يضيّق نطاق البحث.</string>
+<string name="search_state_no_suggestions_detail">0 اقتراحات · 0 تطابق حديث</string>
+<string name="search_state_no_suggestions_headline">لا شيء يطابق «%s»</string>
 <string name="search_suggestions">اقتراحات البحث</string>
 <string name="search_suggestions_des">عرض اقتراحات البحث أثناء الكتابة</string>
 <string name="search_tv_source_failed">فشل %s</string>
 <string name="search_tv_source_pinned">مثبّت</string>
 <string name="search_tv_sources_panel_meta">%1$d من %2$d مفعّل · تُطبَّق التغييرات عند «تم»</string>
+<string name="search_tv_suggestion_recent">حديثًا · %s</string>
+<string name="search_tv_suggestion_recent_suggested">حديثًا · ومقترح أيضًا</string>
+<string name="search_tv_suggestion_suggested">مقترح</string>
 <string name="season">موسم</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">م</string>

@@ -4,11 +4,20 @@
 <string name="detail_load_failed_body">Källan kanske inte är tillgänglig.</string>
 <string name="detail_load_failed_headline">Titeln kunde inte öppnas</string>
 <plurals name="downloads_active"><item quantity="one">%d aktiv nedladdning</item><item quantity="other">%d aktiva nedladdningar</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d laddas ned</item><item quantity="other">%d laddas ned</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d i kö</item><item quantity="other">%d i kö</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Radera %d nedladdning?</item><item quantity="other">Radera %d nedladdningar?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d avsnitt</item><item quantity="other">%d avsnitt</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d misslyckades</item><item quantity="other">%d misslyckades</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d nedladdning i kö</item><item quantity="other">%d nedladdningar i kö</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d titel · %2$s</item><item quantity="other">%1$d titlar · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMÄRKE</item><item quantity="other">%d BOKMÄRKEN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d sektion kunde inte laddas</item><item quantity="other">%d sektioner kunde inte laddas</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d avsnitt</item><item quantity="other">%d avsnitt</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d dold länk</item><item quantity="other">%d dolda länkar</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Sök i %d källa</item><item quantity="other">Sök i alla %d källor</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Tryck på tangentbordets söktangent för att söka i %d källa ändå.</item><item quantity="other">Tryck på tangentbordets söktangent för att söka i alla %d källor ändå.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d KÄLLA</item><item quantity="other">%d KÄLLOR</item></plurals>
 <string name="account">konto</string>
 <string name="action_add_to_bookmarks">Ange visningsstatus</string>
 <string name="action_add_to_favorites">Lägg till i favoriter</string>
@@ -161,6 +170,11 @@
 <string name="delete_repository">Radera databasen</string>
 <string name="delete_repository_plugins">Detta kommer också att ta bort alla tillägg för databasen</string>
 <string name="deselect_all">Avmarkera alla</string>
+<string name="desktop_menu_go">Gå</string>
+<string name="detail_source_resolving">Löser…</string>
+<string name="detail_sources_done">%1$d av %2$d svarade</string>
+<string name="detail_sources_progress">%1$d av %2$d svarade · läser in…</string>
+<string name="detail_start_over">Börja om</string>
 <string name="device_pin_counter_text">Koden löper ut om %1$dm %2$ds</string>
 <string name="device_pin_error_message">Det går inte att hämta enhetens PIN-kod, prova lokal autentisering</string>
 <string name="device_pin_expired_message">PIN-koden har upphört att gälla!</string>
@@ -200,12 +214,19 @@
 <string name="downloaded_file">Nedladdad fil</string>
 <string name="downloading">Laddar ner</string>
 <string name="downloads_browse_library">Bläddra i biblioteket</string>
+<string name="downloads_cancel_confirm_body">Det slänger de %s som har laddats ned hittills.</string>
+<string name="downloads_cancel_confirm_title">Avbryta den här nedladdningen?</string>
+<string name="downloads_cancel_download">Avbryt nedladdning</string>
+<string name="downloads_column_size">Storlek</string>
 <string name="downloads_delete_all">Ta bort alla</string>
+<string name="downloads_delete_confirm_body">Det frigör %s och kan inte ångras.</string>
 <string name="downloads_delete_select">Välj objekt att ta bort</string>
 <string name="downloads_empty">Det finns för närvarande inga nedladdningar.</string>
 <string name="downloads_empty_body">Nerladdningar du startar från en titels avsnittslista visas här och spelas upp utan anslutning.</string>
 <string name="downloads_empty_headline">Inga nerladdningar ännu</string>
+<string name="downloads_free">%s ledigt</string>
 <string name="downloads_free_up_space">Frigör utrymme</string>
+<string name="downloads_keep_downloading">Fortsätt ladda ned</string>
 <string name="downloads_load_failed_body">Dina nerladdade filer har inte ändrats.</string>
 <string name="downloads_load_failed_headline">Kunde inte läsa dina nerladdningar</string>
 <string name="downloads_offline_pill">Offline · ingen anslutning</string>
@@ -219,6 +240,8 @@
 <string name="downloads_reason_storage_unavailable">Lagring otillgänglig</string>
 <string name="downloads_retry_failed">Försök misslyckade igen (%d)</string>
 <string name="downloads_select">Välj</string>
+<string name="downloads_selected_status">%1$d av %2$d valda · %3$s</string>
+<string name="downloads_show_in_finder">Visa i Finder</string>
 <string name="downloads_state_queued">I kö</string>
 <string name="downloads_storage_full_headline">Inte tillräckligt med lagring</string>
 <string name="downloads_storage_legend">%1$s av %2$s använt · %3$s i nerladdningar</string>
@@ -345,6 +368,7 @@
 <string name="home_bookmarks_no_status_body">Välj en ovan för att se de bokmärkena.</string>
 <string name="home_bookmarks_no_status_headline">Ingen status vald</string>
 <string name="home_change_provider_img_des">Byt leverantör</string>
+<string name="home_choose_source">Välj källa</string>
 <string name="home_expanded_hide">Göm</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Affisch</string>
@@ -356,9 +380,14 @@
 <string name="home_offline_source_headline">%1$s behöver en anslutning</string>
 <string name="home_play">Spela upp</string>
 <string name="home_random">Slumpmässig</string>
+<string name="home_reload_failed">Det gick inte att läsa in %1$s igen. Raderna är från för %2$s sedan.</string>
 <string name="home_search_only_body">Inget av dina tillägg har en startsida, men du kan fortfarande söka i dem.</string>
 <string name="home_source">Källa</string>
+<string name="home_source_none_line">Inga rader; biblioteket finns kvar</string>
 <string name="home_source_none_subtitle">INGA RADER · DINA RADER BLIR KVAR</string>
+<string name="home_source_picker_body">Raderna kommer från ett tillägg i taget.</string>
+<string name="home_source_picker_title">Källa för startsidan</string>
+<string name="home_source_unreachable">Gick inte att nå förra gången</string>
 <string name="install_prerelease">Installera förhandsversionen</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Kunde inte nå GitHub, sätter på jsDelivr proxy…</string>
@@ -611,13 +640,25 @@
 <string name="search_poster_img_des">Affisch</string>
 <string name="search_provider_text_providers">Sök med hjälp av leverantörer</string>
 <string name="search_provider_text_types">Sök med hjälp av typer</string>
+<string name="search_quick_empty_body">Alla källor svarade och ingen har ”%s”. Prova en kortare sökning, eller öppna fullständig sökning för att byta källor.</string>
+<string name="search_quick_empty_headline">Inga träffar</string>
+<string name="search_quick_meta_answered">ALLA KÄLLOR HAR SVARAT</string>
+<string name="search_quick_meta_answering">RESULTATEN KOMMER NÄR KÄLLORNA SVARAR</string>
+<string name="search_quick_open_full">Öppna fullständig sökning</string>
+<string name="search_quick_status">%1$d AV %2$d HAR SVARAT · %3$d MISSLYCKADES</string>
+<string name="search_quick_title">Snabbsökning</string>
 <string name="search_state_idle_body_desktop">Skriv en titel. Resultaten visas under varje källa när den svarar.</string>
 <string name="search_state_no_results_type_filter">Endast %s. Ditt typfilter begränsar sökningen.</string>
+<string name="search_state_no_suggestions_detail">0 FÖRSLAG · 0 NYLIGA TRÄFFAR</string>
+<string name="search_state_no_suggestions_headline">Inget matchar ”%s”</string>
 <string name="search_suggestions">Sökförslag</string>
 <string name="search_suggestions_des">Visa sökförslag medan du skriver</string>
 <string name="search_tv_source_failed">MISSLYCKADES %s</string>
 <string name="search_tv_source_pinned">FASTSATT</string>
 <string name="search_tv_sources_panel_meta">%1$d AV %2$d AKTIVERADE · ÄNDRINGAR TILLÄMPAS VID KLAR</string>
+<string name="search_tv_suggestion_recent">NYLIGEN · %s</string>
+<string name="search_tv_suggestion_recent_suggested">NYLIGEN · ÄVEN FÖRESLAGEN</string>
+<string name="search_tv_suggestion_suggested">FÖRESLAGEN</string>
 <string name="season">Säsong</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

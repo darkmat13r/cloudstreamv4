@@ -4,11 +4,20 @@
 <string name="detail_load_failed_body">மூலம் கிடைக்காமல் இருக்கலாம்.</string>
 <string name="detail_load_failed_headline">இந்தத் தலைப்பைத் திறக்க முடியவில்லை</string>
 <plurals name="downloads_active"><item quantity="one">%d செயலில் பதிவிறக்கம்</item><item quantity="other">%d செயலில் உள்ள பதிவிறக்கங்கள்</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d பதிவிறக்கப்படுகிறது</item><item quantity="other">%d பதிவிறக்கப்படுகிறது</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d வரிசையில்</item><item quantity="other">%d வரிசையில்</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d பதிவிறக்கத்தை நீக்கவா?</item><item quantity="other">%d பதிவிறக்கங்களை நீக்கவா?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d அத்தியாயம்</item><item quantity="other">%d அத்தியாயங்கள்</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d தோல்வி</item><item quantity="other">%d தோல்வி</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d பதிவிறக்கம் வரிசையில் உள்ளது</item><item quantity="other">%d பதிவிறக்கங்கள் வரிசையில் உள்ளன</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d தலைப்பு · %2$s</item><item quantity="other">%1$d தலைப்புகள் · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d புக்மார்க்</item><item quantity="other">%d புக்மார்க்குகள்</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d பிரிவை ஏற்ற முடியவில்லை</item><item quantity="other">%d பிரிவுகளை ஏற்ற முடியவில்லை</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d பிரிவு</item><item quantity="other">%d பிரிவுகள்</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d மறைக்கப்பட்ட இணைப்பு</item><item quantity="other">%d மறைக்கப்பட்ட இணைப்புகள்</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">%d மூலத்தில் தேடு</item><item quantity="other">அனைத்து %d மூலங்களிலும் தேடு</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">இருந்தாலும் %d மூலத்தில் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.</item><item quantity="other">இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d மூலம்</item><item quantity="other">%d மூலங்கள்</item></plurals>
 <string name="account">கணக்கு</string>
 <string name="action_add_to_bookmarks">கடிகார நிலையை அமைக்கவும்</string>
 <string name="action_add_to_favorites">பிடித்தவையில் சேர்</string>
@@ -161,6 +170,11 @@
 <string name="delete_repository">களஞ்சியத்தை நீக்கு</string>
 <string name="delete_repository_plugins">இது அனைத்து களஞ்சிய செருகுநிரல்களையும் நீக்கிவிடும்</string>
 <string name="deselect_all">அனைத்தையும் தேர்வு செய்யுங்கள்</string>
+<string name="desktop_menu_go">செல்</string>
+<string name="detail_source_resolving">தீர்க்கிறது…</string>
+<string name="detail_sources_done">%2$d இல் %1$d பதிலளித்தன</string>
+<string name="detail_sources_progress">%2$d இல் %1$d பதிலளித்தன · ஏற்றுகிறது…</string>
+<string name="detail_start_over">மீண்டும் தொடங்கு</string>
 <string name="device_pin_counter_text">குறியீடு %1$dm %2$ds இல் காலாவதியாகிறது</string>
 <string name="device_pin_error_message">சாதன முள் குறியீட்டைப் பெற முடியாது, உள்ளக அங்கீகாரத்தை முயற்சிக்கவும்</string>
 <string name="device_pin_expired_message">முள் குறியீடு இப்போது காலாவதியானது!</string>
@@ -200,12 +214,19 @@
 <string name="downloaded_file">பதிவிறக்கம் செய்யப்பட்ட கோப்பு</string>
 <string name="downloading">பதிவிறக்குகிறது</string>
 <string name="downloads_browse_library">நூலகத்தை உலாவு</string>
+<string name="downloads_cancel_confirm_body">இதுவரை பதிவிறக்கிய %s நிராகரிக்கப்படும்.</string>
+<string name="downloads_cancel_confirm_title">இந்தப் பதிவிறக்கத்தை ரத்துசெய்யவா?</string>
+<string name="downloads_cancel_download">பதிவிறக்கத்தை ரத்துசெய்</string>
+<string name="downloads_column_size">அளவு</string>
 <string name="downloads_delete_all">அனைத்தையும் அழி</string>
+<string name="downloads_delete_confirm_body">இது %s இடத்தை விடுவிக்கும், இதைச் செயல்தவிர்க்க முடியாது.</string>
 <string name="downloads_delete_select">அழிப்பதற்கு தேர்ந்தெடுக்கவும்</string>
 <string name="downloads_empty">தற்போது பதிவிறக்கங்கள் எதுவும் இல்லை.</string>
 <string name="downloads_empty_body">தலைப்பின் எபிசோட் பட்டியலிலிருந்து நீங்கள் தொடங்கும் பதிவிறக்கங்கள் இங்கே தோன்றும், இணைப்பு இல்லாமல் இயங்கும்.</string>
 <string name="downloads_empty_headline">இன்னும் பதிவிறக்கங்கள் இல்லை</string>
+<string name="downloads_free">%s காலி</string>
 <string name="downloads_free_up_space">இடத்தை விடுவி</string>
+<string name="downloads_keep_downloading">பதிவிறக்கத்தைத் தொடர்</string>
 <string name="downloads_load_failed_body">நீங்கள் பதிவிறக்கிய கோப்புகள் மாற்றப்படவில்லை.</string>
 <string name="downloads_load_failed_headline">உங்கள் பதிவிறக்கங்களைப் படிக்க முடியவில்லை</string>
 <string name="downloads_offline_pill">ஆஃப்லைன் · இணைப்பு இல்லை</string>
@@ -219,6 +240,8 @@
 <string name="downloads_reason_storage_unavailable">சேமிப்பகம் கிடைக்கவில்லை</string>
 <string name="downloads_retry_failed">தோல்வியடைந்தவற்றை மீண்டும் முயல்க (%d)</string>
 <string name="downloads_select">தேர்ந்தெடு</string>
+<string name="downloads_selected_status">%2$d இல் %1$d தேர்ந்தெடுக்கப்பட்டது · %3$s</string>
+<string name="downloads_show_in_finder">Finder இல் காட்டு</string>
 <string name="downloads_state_queued">வரிசையில்</string>
 <string name="downloads_storage_full_headline">போதுமான சேமிப்பகம் இல்லை</string>
 <string name="downloads_storage_legend">%1$s / %2$s பயன்படுத்தப்பட்டது · பதிவிறக்கங்களில் %3$s</string>
@@ -345,6 +368,7 @@
 <string name="home_bookmarks_no_status_body">அந்த புக்மார்க்குகளைக் காண மேலே ஒன்றைத் தேர்ந்தெடுக்கவும்.</string>
 <string name="home_bookmarks_no_status_headline">எந்த நிலையும் தேர்ந்தெடுக்கப்படவில்லை</string>
 <string name="home_change_provider_img_des">வழங்குநரை மாற்றவும்</string>
+<string name="home_choose_source">மூலத்தைத் தேர்ந்தெடு</string>
 <string name="home_expanded_hide">மறை</string>
 <string name="home_info">செய்தி</string>
 <string name="home_main_poster_img_des">முதன்மையான போச்டர்</string>
@@ -356,9 +380,14 @@
 <string name="home_offline_source_headline">%1$s க்கு இணைப்பு தேவை</string>
 <string name="home_play">விளையாடுங்கள்</string>
 <string name="home_random">சீரற்ற</string>
+<string name="home_reload_failed">%1$s ஐ மீண்டும் ஏற்ற முடியவில்லை. இந்த வரிசைகள் %2$s முன்பு உள்ளவை.</string>
 <string name="home_search_only_body">உங்கள் நீட்டிப்புகள் எதிலும் முகப்புப் பக்கம் இல்லை, ஆனால் அவற்றில் இன்னும் தேடலாம்.</string>
 <string name="home_source">மூலம்</string>
+<string name="home_source_none_line">வரிசைகள் இல்லை; உங்கள் நூலகம் இருக்கும்</string>
 <string name="home_source_none_subtitle">வரிசைகள் இல்லை · உங்கள் வரிசைகள் இருக்கும்</string>
+<string name="home_source_picker_body">வரிசைகள் ஒரு நேரத்தில் ஒரு நீட்டிப்பிலிருந்து வருகின்றன.</string>
+<string name="home_source_picker_title">முகப்பு மூலம்</string>
+<string name="home_source_unreachable">கடந்த முறை அணுக முடியவில்லை</string>
 <string name="install_prerelease">வெளியீட்டிற்கு முந்தைய பதிப்பை நிறுவவும்</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">கிட்அப்பை அடைய முடியவில்லை. Jsdelivr ப்ராக்சியை இயக்குதல்…</string>
@@ -611,13 +640,25 @@
 <string name="search_poster_img_des">போச்டர்</string>
 <string name="search_provider_text_providers">வழங்குபவர்கள் பயன்படுத்தி தேடுங்கள்</string>
 <string name="search_provider_text_types">வகைகளைப் பயன்படுத்தி தேடுங்கள்</string>
+<string name="search_quick_empty_body">எல்லா மூலங்களும் பதிலளித்தன, ஆனால் எதிலும் “%s” இல்லை. சிறிய தேடலை முயலவும், அல்லது மூலங்களை மாற்ற முழுத் தேடலைத் திறக்கவும்.</string>
+<string name="search_quick_empty_headline">பொருத்தங்கள் இல்லை</string>
+<string name="search_quick_meta_answered">எல்லா மூலங்களும் பதிலளித்தன</string>
+<string name="search_quick_meta_answering">மூலங்கள் பதிலளிக்கும்போது முடிவுகள் வருகின்றன</string>
+<string name="search_quick_open_full">முழுத் தேடலைத் திற</string>
+<string name="search_quick_status">%2$d இல் %1$d பதிலளித்தன · %3$d தோல்வி</string>
+<string name="search_quick_title">விரைவுத் தேடல்</string>
 <string name="search_state_idle_body_desktop">ஒரு தலைப்பைத் தட்டச்சு செய்யவும். ஒவ்வொரு மூலமும் பதிலளிக்கும்போது முடிவுகள் அதன் கீழ் தோன்றும்.</string>
 <string name="search_state_no_results_type_filter">%s மட்டும். உங்கள் வகை வடிப்பான் தேடலைக் குறுக்குகிறது.</string>
+<string name="search_state_no_suggestions_detail">0 பரிந்துரைகள் · 0 சமீபத்திய பொருத்தங்கள்</string>
+<string name="search_state_no_suggestions_headline">“%s” உடன் எதுவும் பொருந்தவில்லை</string>
 <string name="search_suggestions">தேடல் பரிந்துரைகள்</string>
 <string name="search_suggestions_des">தட்டச்சு செய்யும் போது தேடல் பரிந்துரைகளைக் காட்டு</string>
 <string name="search_tv_source_failed">தோல்வி %s</string>
 <string name="search_tv_source_pinned">பின் செய்யப்பட்டது</string>
 <string name="search_tv_sources_panel_meta">%2$d இல் %1$d இயக்கப்பட்டது · முடிந்தது அழுத்தியதும் மாற்றங்கள் பொருந்தும்</string>
+<string name="search_tv_suggestion_recent">சமீபத்தியது · %s</string>
+<string name="search_tv_suggestion_recent_suggested">சமீபத்தியது · பரிந்துரைக்கப்பட்டதும்</string>
+<string name="search_tv_suggestion_suggested">பரிந்துரைக்கப்பட்டது</string>
 <string name="season">பருவம்</string>
 <string name="season_format">%1$s %2$d %3$s</string>
 <string name="season_short">கள்</string>

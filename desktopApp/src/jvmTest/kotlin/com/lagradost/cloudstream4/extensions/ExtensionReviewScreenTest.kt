@@ -28,6 +28,8 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanFinding
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanReport
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanSeverity
 import com.lagradost.cloudstream4.feature.home.HomePageReply
+import com.lagradost.cloudstream4.home.DesktopShortcuts
+import com.lagradost.cloudstream4.home.TopLevelDestination
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSources
@@ -217,7 +219,7 @@ class ExtensionReviewScreenTest {
         scene.settle()
         assertEquals("Home", at)
         scene.save("review-08-notice-on-home")
-        scene.click(Offset(NOTICE_X, TAB_Y))
+        scene.click(Offset(NOTICE_X, NOTICE_Y))
         assertEquals("Extensions", at)
         scene.settle()
         assertTrue(escape.handle(), "Escape goes back from the list")
@@ -225,11 +227,50 @@ class ExtensionReviewScreenTest {
         assertEquals("Home", at)
         assertFalse(escape.handle(), "and home has nothing under it")
 
-        scene.click(Offset(SEARCH_TAB_X, TAB_Y))
+        scene.click(Offset(SIDEBAR_ITEM_X, SEARCH_ITEM_Y))
         assertEquals("Search", at)
         scene.save("review-09-notice-on-search")
-        scene.click(Offset(NOTICE_X, TAB_Y))
+        scene.click(Offset(NOTICE_X, NOTICE_Y))
         assertEquals("Extensions", at)
+        scene.close()
+    }
+
+    /**
+     * The menu bar's Go menu must not leave the list of held extensions (`KMP-53` step 2). The list is pushed over the
+     * top level, so its destinations are greyed and do nothing, Back is the one way out, and leaving decides nothing:
+     * the extension is still held, not allowed.
+     */
+    @Test
+    fun `the Go menu cannot leave the held list, and Back leaves it with the extension still held`() {
+        val escape = EscapeHandler()
+        val shortcuts = DesktopShortcuts()
+        var at = ""
+        val control = RecordingControl()
+        val report = SandboxReport(
+            File("/nowhere"),
+            listOf(load("BingeCloud.jar", LoadState.Held, finding("telemetry", "com/x/Ping names a device identifier: \"installId\""))),
+        )
+        val approvals = ExtensionApprovals(control, report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
+        val scene = scene {
+            DesktopApp(escape, EmptyHome, approvals, InMemoryLibraryStore(), onScreen = { at = it }, shortcuts = shortcuts)
+        }
+        scene.settle()
+        scene.click(Offset(NOTICE_X, NOTICE_Y))
+        assertEquals("Extensions", at)
+        assertFalse(shortcuts.atTop, "the destinations are greyed over the list")
+        assertTrue(shortcuts.canGoBack)
+
+        shortcuts.go(TopLevelDestination.Search)
+        scene.settle()
+        assertEquals("Extensions", at, "Go › Search does nothing while the list is up")
+
+        shortcuts.back()
+        scene.settle()
+        assertEquals("Home", at)
+        assertTrue(shortcuts.atTop)
+        assertFalse(shortcuts.canGoBack)
+        assertEquals(1, approvals.state.value.waiting, "leaving decided nothing: still held")
+        assertEquals(emptyList(), control.calls, "nothing was allowed or kept off")
         scene.close()
     }
 
@@ -241,7 +282,7 @@ class ExtensionReviewScreenTest {
         val approvals = ExtensionApprovals(RecordingControl(), report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
         val scene = scene { DesktopApp(escape, EmptyHome, approvals, InMemoryLibraryStore(), onScreen = { at = it }) }
         scene.settle()
-        scene.click(Offset(NOTICE_X, TAB_Y))
+        scene.click(Offset(NOTICE_X, NOTICE_Y))
         assertEquals("Home", at)
         scene.close()
     }
@@ -255,7 +296,7 @@ class ExtensionReviewScreenTest {
         val scene = scene { DesktopApp(escape, EmptyHome, approvals, InMemoryLibraryStore(), onScreen = { at = it }) }
         scene.settle()
         scene.save("review-10-quiet-entry")
-        scene.click(Offset(NOTICE_X, TAB_Y))
+        scene.click(Offset(NOTICE_X, NOTICE_Y))
         assertEquals("Extensions", at)
         scene.close()
     }
@@ -457,8 +498,10 @@ class ExtensionReviewScreenTest {
         const val ALLOW_FROM_RIGHT = 37
         const val KEEP_OFF_FROM_RIGHT = 130
         const val LONE_BUTTON_FROM_RIGHT = 37
-        const val NOTICE_X = 1150f
-        const val TAB_Y = 34f
-        const val SEARCH_TAB_X = 130f
+        /** The notice sits at the foot of the sidebar (`KMP-53`): 24 up from the bottom, a 36 button. */
+        const val NOTICE_X = 60f
+        const val NOTICE_Y = 758f
+        const val SIDEBAR_ITEM_X = 100f
+        const val SEARCH_ITEM_Y = 76f
     }
 }

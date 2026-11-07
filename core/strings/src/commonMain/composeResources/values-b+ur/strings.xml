@@ -3,9 +3,18 @@
 <resources>
 <string name="detail_load_failed_body">ممکن ہے ذریعہ دستیاب نہ ہو۔</string>
 <string name="detail_load_failed_headline">یہ عنوان نہیں کھل سکا</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d ڈاؤن لوڈ ہو رہے ہیں</item><item quantity="other">%d ڈاؤن لوڈ ہو رہے ہیں</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d قطار میں</item><item quantity="other">%d قطار میں</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d ڈاؤن لوڈز حذف کریں؟</item><item quantity="other">%d ڈاؤن لوڈز حذف کریں؟</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d اقساط</item><item quantity="other">%d اقساط</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ناکام</item><item quantity="other">%d ناکام</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d عنوانات · %2$s</item><item quantity="other">%1$d عنوانات · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d بک مارک</item><item quantity="other">%d بک مارکس</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d سیکشن لوڈ نہیں ہو سکا</item><item quantity="other">%d سیکشنز لوڈ نہیں ہو سکے</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">%d ذریعے میں تلاش کریں</item><item quantity="other">تمام %d ذرائع میں تلاش کریں</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">پھر بھی %d ذریعے میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔</item><item quantity="other">پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ذریعہ</item><item quantity="other">%d ذرائع</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d حصہ</item><item quantity="other">%d حصے</item></plurals>
 <string name="account">اكاؤنٹ</string>
 <string name="action_add_to_bookmarks">واچ اسٹیٹس کو سیٹ کریں</string>
 <string name="action_add_to_favorites">پسندیدہ میں شامل کریں</string>
@@ -132,6 +141,11 @@
 <string name="delete_repository">ذخیرہ کو حذف کریں</string>
 <string name="delete_repository_plugins">اس سے تمام ریپوزٹری پلگ ان بھی حذف ہو جائیں گے</string>
 <string name="deselect_all">سب غیر منتخب کریں</string>
+<string name="desktop_menu_go">جائیں</string>
+<string name="detail_source_resolving">حل ہو رہا ہے…</string>
+<string name="detail_sources_done">%2$d میں سے %1$d نے جواب دیا</string>
+<string name="detail_sources_progress">%2$d میں سے %1$d نے جواب دیا · لوڈ ہو رہا ہے…</string>
+<string name="detail_start_over">دوبارہ شروع کریں</string>
 <string name="device_pin_url_message">اپنے اسمارٹ فون یا کمپیوٹر پر یہ %s وزٹ کریں اور مندرجہ بالا کوڈ ڈالیں</string>
 <string name="disable">غیرفعال کریں</string>
 <string name="discord">ڈسکارڈ میں شامل ہوں</string>
@@ -159,12 +173,19 @@
 <string name="downloaded_file">ڈاؤن لوڈڈ فائل</string>
 <string name="downloading">ڈاؤن لوڈ ہو رہا ہے</string>
 <string name="downloads_browse_library">لائبریری براؤز کریں</string>
+<string name="downloads_cancel_confirm_body">اس سے اب تک ڈاؤن لوڈ ہونے والا %s ضائع ہو جائے گا۔</string>
+<string name="downloads_cancel_confirm_title">یہ ڈاؤن لوڈ منسوخ کریں؟</string>
+<string name="downloads_cancel_download">ڈاؤن لوڈ منسوخ کریں</string>
+<string name="downloads_column_size">سائز</string>
 <string name="downloads_delete_all">سب مٹا دیں</string>
+<string name="downloads_delete_confirm_body">اس سے %s خالی ہو جائے گا اور اسے کالعدم نہیں کیا جا سکتا۔</string>
 <string name="downloads_delete_select">ڈیلیٹ کرنے کے لئے چیزیں چنیں</string>
 <string name="downloads_empty">فی الحال کوئی ڈاونلوڈ نہیں۔</string>
 <string name="downloads_empty_body">کسی عنوان کی اقساط کی فہرست سے شروع کیے گئے ڈاؤن لوڈ یہاں نظر آتے ہیں اور کنکشن کے بغیر چلتے ہیں۔</string>
 <string name="downloads_empty_headline">ابھی تک کوئی ڈاؤن لوڈ نہیں</string>
+<string name="downloads_free">%s خالی</string>
 <string name="downloads_free_up_space">جگہ خالی کریں</string>
+<string name="downloads_keep_downloading">ڈاؤن لوڈ جاری رکھیں</string>
 <string name="downloads_load_failed_body">آپ کی ڈاؤن لوڈ کردہ فائلیں تبدیل نہیں ہوئیں۔</string>
 <string name="downloads_load_failed_headline">آپ کے ڈاؤن لوڈ پڑھے نہیں جا سکے</string>
 <string name="downloads_offline_pill">آف لائن · کوئی کنکشن نہیں</string>
@@ -178,6 +199,8 @@
 <string name="downloads_reason_storage_unavailable">سٹوریج دستیاب نہیں</string>
 <string name="downloads_retry_failed">ناکام دوبارہ کوشش کریں (%d)</string>
 <string name="downloads_select">چنیں</string>
+<string name="downloads_selected_status">%2$d میں سے %1$d منتخب · %3$s</string>
+<string name="downloads_show_in_finder">Finder میں دکھائیں</string>
 <string name="downloads_state_queued">قطار میں</string>
 <string name="downloads_storage_full_headline">کافی سٹوریج نہیں</string>
 <string name="downloads_storage_legend">%1$s از %2$s استعمال شُدہ · ڈاؤن لوڈ میں %3$s</string>
@@ -290,6 +313,7 @@
 <string name="home_bookmarks_no_status_body">وہ بک مارکس دیکھنے کے لیے اوپر سے ایک منتخب کریں۔</string>
 <string name="home_bookmarks_no_status_headline">کوئی حیثیت منتخب نہیں</string>
 <string name="home_change_provider_img_des">ذریعہ تبدیل کریں</string>
+<string name="home_choose_source">ماخذ منتخب کریں</string>
 <string name="home_expanded_hide">چھپائیں</string>
 <string name="home_info">معلومات</string>
 <string name="home_main_poster_img_des">مرکزی پوسٹر</string>
@@ -301,9 +325,14 @@
 <string name="home_offline_source_headline">%1$s کو کنکشن درکار ہے</string>
 <string name="home_play">چلائیں</string>
 <string name="home_random">بے ترتیب</string>
+<string name="home_reload_failed">%1$s دوبارہ لوڈ نہیں ہو سکا۔ یہ قطاریں %2$s پہلے کی ہیں۔</string>
 <string name="home_search_only_body">آپ کی کسی بھی ایکسٹینشن میں ہوم پیج نہیں ہے، لیکن آپ پھر بھی ان میں تلاش کر سکتے ہیں۔</string>
 <string name="home_source">ذریعہ</string>
+<string name="home_source_none_line">کوئی قطار نہیں؛ آپ کی لائبریری رہے گی</string>
 <string name="home_source_none_subtitle">کوئی قطار نہیں · آپ کی قطاریں رہتی ہیں</string>
+<string name="home_source_picker_body">قطاریں ایک وقت میں ایک ایکسٹینشن سے آتی ہیں۔</string>
+<string name="home_source_picker_title">ہوم ماخذ</string>
+<string name="home_source_unreachable">پچھلی بار رسائی نہیں ہو سکی</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Could not reach GitHub. Turning on jsDelivr proxy…</string>
 <string name="jsdelivr_proxy">GitHub Proxy</string>
@@ -519,11 +548,23 @@
 <string name="search_poster_img_des">پروموشنل تصویر</string>
 <string name="search_provider_text_providers">ذرائع کا استعمال کرتے ہوئے تلاش کریں</string>
 <string name="search_provider_text_types">انواع کا استعمال کرتے ہوئے تلاش کریں</string>
+<string name="search_quick_empty_body">تمام ذرائع نے جواب دیا اور کسی کے پاس “%s” نہیں ہے۔ مختصر تلاش آزمائیں، یا ذرائع بدلنے کے لیے مکمل تلاش کھولیں۔</string>
+<string name="search_quick_empty_headline">کوئی مماثلت نہیں</string>
+<string name="search_quick_meta_answered">تمام ذرائع نے جواب دیا</string>
+<string name="search_quick_meta_answering">ذرائع کے جواب کے ساتھ نتائج آتے ہیں</string>
+<string name="search_quick_open_full">مکمل تلاش کھولیں</string>
+<string name="search_quick_status">%2$d میں سے %1$d نے جواب دیا · %3$d ناکام</string>
+<string name="search_quick_title">فوری تلاش</string>
 <string name="search_state_idle_body_desktop">عنوان لکھیں۔ ہر ذریعہ کے جواب دینے پر نتائج اس کے نیچے ظاہر ہوں گے۔</string>
 <string name="search_state_no_results_type_filter">صرف %s۔ آپ کا قسم فلٹر تلاش کو محدود کر رہا ہے۔</string>
+<string name="search_state_no_suggestions_detail">0 تجاویز · 0 حالیہ مماثلتیں</string>
+<string name="search_state_no_suggestions_headline">“%s” سے کچھ بھی مماثل نہیں</string>
 <string name="search_tv_source_failed">ناکام %s</string>
 <string name="search_tv_source_pinned">پن کیا گیا</string>
 <string name="search_tv_sources_panel_meta">%2$d میں سے %1$d فعال · تبدیلیاں ہو گیا پر لاگو ہوں گی</string>
+<string name="search_tv_suggestion_recent">حالیہ · %s</string>
+<string name="search_tv_suggestion_recent_suggested">حالیہ · تجویز کردہ بھی</string>
+<string name="search_tv_suggestion_suggested">تجویز کردہ</string>
 <string name="season">سیزن</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>
