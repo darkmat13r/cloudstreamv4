@@ -520,6 +520,15 @@
 <string name="player_mute">"静音"</string>
 <string name="player_notification_channel_description">"控制后台播放的播放器通知"</string>
 <string name="player_notification_channel_name">"播放器通知"</string>
+<string name="player_panel_failed">"失败"</string>
+<string name="player_panel_keeps" formatted="true">"保留 %s"</string>
+<string name="player_panel_on">"开"</string>
+<string name="player_panel_open">"打开"</string>
+<string name="player_panel_quality_profile">"画质配置"</string>
+<string name="player_panel_quality_unknown">"画质未知"</string>
+<string name="player_panel_retry_all">"重试所有来源"</string>
+<string name="player_panel_style">"字幕样式"</string>
+<string name="player_panel_use">"使用"</string>
 <string name="player_pref">"首选视频播放器"</string>
 <string name="player_settings_always_ask">"始终询问"</string>
 <string name="player_settings_play_in_app">"内部播放器"</string>

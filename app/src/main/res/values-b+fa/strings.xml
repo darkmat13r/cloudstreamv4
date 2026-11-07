@@ -317,6 +317,15 @@
 <string name="player_hud_speed">"سرعت"</string>
 <string name="player_hud_up_next" formatted="true">"بعدی · %s"</string>
 <string name="player_mute">"بی‌صدا"</string>
+<string name="player_panel_failed">"ناموفق"</string>
+<string name="player_panel_keeps" formatted="true">"%s را نگه می‌دارد"</string>
+<string name="player_panel_on">"روشن"</string>
+<string name="player_panel_open">"باز کردن"</string>
+<string name="player_panel_quality_profile">"نمایهٔ کیفیت"</string>
+<string name="player_panel_quality_unknown">"کیفیت نامشخص"</string>
+<string name="player_panel_retry_all">"تلاش دوباره برای همه منابع"</string>
+<string name="player_panel_style">"سبک زیرنویس"</string>
+<string name="player_panel_use">"استفاده"</string>
 <string name="player_pref">"پخش‌کننده ویدئو برگزیده"</string>
 <string name="player_size_settings">"دکمه تغییر‌اندازه پخش‌کننده"</string>
 <string name="player_size_settings_des">"حذف حاشیه سیاه"</string>

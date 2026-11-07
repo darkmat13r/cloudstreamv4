@@ -221,6 +221,15 @@
 <string name="player_hud_speed">Rapido</string>
 <string name="player_hud_up_next">Sekva · %s</string>
 <string name="player_mute">Silentigi</string>
+<string name="player_panel_failed">malsukcesis</string>
+<string name="player_panel_keeps">konservas %s</string>
+<string name="player_panel_on">Ŝaltita</string>
+<string name="player_panel_open">Malfermi</string>
+<string name="player_panel_quality_profile">Kvalita profilo</string>
+<string name="player_panel_quality_unknown">nekonata kvalito</string>
+<string name="player_panel_retry_all">Reprovi ĉiujn fontojn</string>
+<string name="player_panel_style">Stilo de subtekstoj</string>
+<string name="player_panel_use">Uzi</string>
 <string name="player_size_settings_des">Forigi nigrajn borderaĵojn</string>
 <string name="player_source_playing">Ludanta</string>
 <string name="player_source_resumes_at">Ŝanĝo konservas vian lokon: daŭrigas ĉe %1$s</string>

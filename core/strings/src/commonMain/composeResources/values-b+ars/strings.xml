@@ -307,6 +307,15 @@
 <string name="player_hud_speed">السرعة</string>
 <string name="player_hud_up_next">التالي · %s</string>
 <string name="player_mute">كتم الصوت</string>
+<string name="player_panel_failed">فشل</string>
+<string name="player_panel_keeps">يحافظ على %s</string>
+<string name="player_panel_on">مفعّل</string>
+<string name="player_panel_open">افتح</string>
+<string name="player_panel_quality_profile">ملف الجودة</string>
+<string name="player_panel_quality_unknown">الجودة غير معروفة</string>
+<string name="player_panel_retry_all">جرّب كل المصادر مرة ثانية</string>
+<string name="player_panel_style">شكل الترجمة</string>
+<string name="player_panel_use">استخدم</string>
 <string name="player_size_settings">زر تغيير حجم المشغل</string>
 <string name="player_size_settings_des">إزالة الحدود السوداء</string>
 <string name="player_source_playing">قيد التشغيل</string>

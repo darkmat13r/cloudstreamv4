@@ -486,6 +486,15 @@
 <string name="player_mute">Dempen</string>
 <string name="player_notification_channel_description">De speler melding om de kijkervaring van de achtergrond de besturen</string>
 <string name="player_notification_channel_name">Speler meldingen</string>
+<string name="player_panel_failed">mislukt</string>
+<string name="player_panel_keeps">behoudt %s</string>
+<string name="player_panel_on">Aan</string>
+<string name="player_panel_open">Openen</string>
+<string name="player_panel_quality_profile">Kwaliteitsprofiel</string>
+<string name="player_panel_quality_unknown">kwaliteit onbekend</string>
+<string name="player_panel_retry_all">Alle bronnen opnieuw proberen</string>
+<string name="player_panel_style">Ondertitelstijl</string>
+<string name="player_panel_use">Gebruiken</string>
 <string name="player_pref">Gewenste videospeler</string>
 <string name="player_settings_always_ask">Vraag altijd</string>
 <string name="player_settings_play_in_app">Interne speler</string>

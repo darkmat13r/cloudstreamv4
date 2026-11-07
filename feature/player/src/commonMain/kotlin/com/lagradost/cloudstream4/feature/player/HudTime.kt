@@ -5,9 +5,9 @@ import kotlin.math.roundToLong
 
 /**
  * 7d's times: `42:13`, `1:01:44`, `-19:31`. Minutes and seconds always two digits after the first field; hours only when
- * there are any. Numbers, not words, so nothing here is translated.
+ * there are any. Numbers, not words, so nothing here is translated. Public so `:app` writes 7e's `keeps 42:13` the same way.
  */
-internal object HudTime {
+object HudTime {
     fun clock(ms: Long): String {
         val total = (ms.coerceAtLeast(0) / 1000)
         val h = total / 3600

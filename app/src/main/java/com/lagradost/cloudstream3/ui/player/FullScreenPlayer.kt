@@ -65,7 +65,10 @@ import com.lagradost.cloudstream3.utils.UIHelper.popCurrentPage
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.txt
+import com.lagradost.cloudstream4.feature.player.PanelKind
+import com.lagradost.cloudstream4.feature.player.PlaybackPanelState
 import com.lagradost.cloudstream4.feature.player.PlayerHudAction
+import com.lagradost.cloudstream4.player.PanelStep
 import com.lagradost.cloudstream4.player.TvHudFacts
 import com.lagradost.cloudstream4.player.TvPlayerHud
 import com.lagradost.cloudstream4.player.TvPlayerHudSwitch
@@ -1338,6 +1341,15 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
      */
     internal open fun tvHudFacts(): TvHudFacts? = null
 
+    /** Artboard 7e's panel of [kind] at [level], or `null` to keep that selector on its old dialog (`KMP-66`). */
+    internal open fun tvPanel(kind: PanelKind, level: String?): PlaybackPanelState? = null
+
+    /** A 7e row was pressed: commit it, and say what the panel does next. */
+    internal open fun onTvPanelRow(kind: PanelKind, key: String, level: String?): PanelStep = PanelStep.Close
+
+    /** The subtitle delay dialog, for 7e's subtitle settings. */
+    internal fun openSubtitleDelay() = showSubtitleOffsetDialog()
+
     private fun startTvHud(binding: FragmentPlayerBinding) {
         playerHostView?.exoPlayerView?.useController = false
         tvHud = TvPlayerHud(
@@ -1347,6 +1359,8 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
             shownSeekMs = androidTVInterfaceOnSeekTime,
             facts = ::tvHudFacts,
             onAction = ::onTvHudAction,
+            panels = ::tvPanel,
+            onPanelRow = ::onTvPanelRow,
         )
     }
 
@@ -1361,10 +1375,12 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
             PlayerHudAction.PreviousEpisode -> prevEpisode()
             PlayerHudAction.NextEpisode -> nextEpisode()
             PlayerHudAction.Skip -> player.handleEvent(CSPlayerEvent.SkipCurrentChapter)
-            // One dialog holds sources and subtitles today; 7e's separate panels are Q25.
+            // Reached only when the player has no 7e panel to offer: the old dialogs (KMP-66).
             PlayerHudAction.OpenSource, PlayerHudAction.OpenSubtitles -> showMirrorsDialogue()
             PlayerHudAction.OpenAudio -> showTracksDialogue()
             PlayerHudAction.OpenSpeed -> showSpeedDialog()
+            // The host keeps these: a panel's rows, its BACK and its Done never reach the player as actions.
+            is PlayerHudAction.PanelRowPressed, PlayerHudAction.PanelBack, PlayerHudAction.PanelDone -> Unit
         }
         tvHud?.refresh()
     }

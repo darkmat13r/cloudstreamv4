@@ -293,6 +293,15 @@
 <string name="player_hud_speed">"Velocidade"</string>
 <string name="player_hud_up_next" formatted="true">"Seguinte · %s"</string>
 <string name="player_mute">"Silenciar"</string>
+<string name="player_panel_failed">"fallou"</string>
+<string name="player_panel_keeps" formatted="true">"mantén %s"</string>
+<string name="player_panel_on">"Activado"</string>
+<string name="player_panel_open">"Abrir"</string>
+<string name="player_panel_quality_profile">"Perfil de calidade"</string>
+<string name="player_panel_quality_unknown">"calidade descoñecida"</string>
+<string name="player_panel_retry_all">"Tentar de novo todas as fontes"</string>
+<string name="player_panel_style">"Estilo dos subtítulos"</string>
+<string name="player_panel_use">"Usar"</string>
 <string name="player_size_settings">"Botón de cambio de tamaño do reprodutor"</string>
 <string name="player_size_settings_des">"Eliminar bordes negros"</string>
 <string name="player_source_playing">"Reproducindo"</string>

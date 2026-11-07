@@ -520,6 +520,15 @@
 <string name="player_mute">"ミュート"</string>
 <string name="player_notification_channel_description">"バックグラウンドから再生を制御するためのプレーヤー通知"</string>
 <string name="player_notification_channel_name">"プレーヤー通知"</string>
+<string name="player_panel_failed">"失敗"</string>
+<string name="player_panel_keeps" formatted="true">"%s を維持"</string>
+<string name="player_panel_on">"オン"</string>
+<string name="player_panel_open">"開く"</string>
+<string name="player_panel_quality_profile">"画質プロファイル"</string>
+<string name="player_panel_quality_unknown">"画質不明"</string>
+<string name="player_panel_retry_all">"すべてのソースを再試行"</string>
+<string name="player_panel_style">"字幕スタイル"</string>
+<string name="player_panel_use">"使用"</string>
 <string name="player_pref">"優先ビデオプレーヤー"</string>
 <string name="player_settings_always_ask">"常に尋ねること"</string>
 <string name="player_settings_play_in_app">"内部プレーヤー"</string>

@@ -520,6 +520,15 @@
 <string name="player_mute">"Stummschalten"</string>
 <string name="player_notification_channel_description">"Player-Benachrichtigung zur Steuerung der Hintergrundwiedergabe"</string>
 <string name="player_notification_channel_name">"Player-Benachrichtigung"</string>
+<string name="player_panel_failed">"fehlgeschlagen"</string>
+<string name="player_panel_keeps" formatted="true">"behält %s"</string>
+<string name="player_panel_on">"An"</string>
+<string name="player_panel_open">"Öffnen"</string>
+<string name="player_panel_quality_profile">"Qualitätsprofil"</string>
+<string name="player_panel_quality_unknown">"Qualität unbekannt"</string>
+<string name="player_panel_retry_all">"Alle Quellen erneut versuchen"</string>
+<string name="player_panel_style">"Untertitelstil"</string>
+<string name="player_panel_use">"Verwenden"</string>
 <string name="player_pref">"Bevorzugter Videoplayer"</string>
 <string name="player_settings_always_ask">"Immer fragen"</string>
 <string name="player_settings_play_in_app">"Interner Player"</string>

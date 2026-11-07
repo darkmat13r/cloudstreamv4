@@ -519,6 +519,15 @@
 <string name="player_mute">كتّم الصوت</string>
 <string name="player_notification_channel_description">نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح</string>
 <string name="player_notification_channel_name">شغل الڤيديو عبر النوتيفيكايشنز</string>
+<string name="player_panel_failed">فشل</string>
+<string name="player_panel_keeps">بيحافظ على %s</string>
+<string name="player_panel_on">شغّال</string>
+<string name="player_panel_open">افتح</string>
+<string name="player_panel_quality_profile">ملف الجودة</string>
+<string name="player_panel_quality_unknown">الجودة مش معروفة</string>
+<string name="player_panel_retry_all">جرّب كل المصادر من جديد</string>
+<string name="player_panel_style">شكل الترجمة</string>
+<string name="player_panel_use">استخدم</string>
 <string name="player_pref">مشغل الڤيديو المفضل</string>
 <string name="player_settings_always_ask">دايمًا سئالوني</string>
 <string name="player_settings_play_in_app">المشغل يللي ب "كلود ستريم"</string>

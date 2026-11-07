@@ -520,6 +520,15 @@
 <string name="player_mute">"Sesi kapat"</string>
 <string name="player_notification_channel_description">"Oynatıcı bildirimi arka planda oynatmasını kontrol etmek içindir"</string>
 <string name="player_notification_channel_name">"Oynatıcı bildirimleri"</string>
+<string name="player_panel_failed">"başarısız"</string>
+<string name="player_panel_keeps" formatted="true">"%s korunur"</string>
+<string name="player_panel_on">"Açık"</string>
+<string name="player_panel_open">"Aç"</string>
+<string name="player_panel_quality_profile">"Kalite profili"</string>
+<string name="player_panel_quality_unknown">"kalite bilinmiyor"</string>
+<string name="player_panel_retry_all">"Tüm kaynakları yeniden dene"</string>
+<string name="player_panel_style">"Altyazı stili"</string>
+<string name="player_panel_use">"Kullan"</string>
 <string name="player_pref">"Tercih edilen video oynatıcısı"</string>
 <string name="player_settings_always_ask">"Her zaman sor"</string>
 <string name="player_settings_play_in_app">"Dahili oynatıcı"</string>

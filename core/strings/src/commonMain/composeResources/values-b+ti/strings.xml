@@ -119,6 +119,15 @@
 <string name="player_hud_speed">ቅልጣፈ</string>
 <string name="player_hud_up_next">ቀጺሉ · %s</string>
 <string name="player_mute">ድምጺ ኣጥፍእ</string>
+<string name="player_panel_failed">ፈሺሉ</string>
+<string name="player_panel_keeps">%s ይሕዝ</string>
+<string name="player_panel_on">ክፉት</string>
+<string name="player_panel_open">ክፈት</string>
+<string name="player_panel_quality_profile">ናይ ዓይነት መገለጺ</string>
+<string name="player_panel_quality_unknown">ዓይነት ኣይፍለጥን</string>
+<string name="player_panel_retry_all">ኩሎም ምንጭታት ደጊምካ ፈትን</string>
+<string name="player_panel_style">ቅዲ ንኡስ ጽሑፍ</string>
+<string name="player_panel_use">ተጠቐም</string>
 <string name="player_source_playing">ይጻወት ኣሎ</string>
 <string name="player_source_resumes_at">ምቕያር ቦታኻ ይሕልው፦ ካብ %1$s ይቕጽል</string>
 <string name="player_source_retry">እንደገና ፈትን</string>

@@ -192,6 +192,15 @@
 <string name="player_hud_speed">"ವೇಗ"</string>
 <string name="player_hud_up_next" formatted="true">"ಮುಂದಿನದು · %s"</string>
 <string name="player_mute">"ಮ್ಯೂಟ್ ಮಾಡಿ"</string>
+<string name="player_panel_failed">"ವಿಫಲ"</string>
+<string name="player_panel_keeps" formatted="true">"%s ಉಳಿಸುತ್ತದೆ"</string>
+<string name="player_panel_on">"ಆನ್"</string>
+<string name="player_panel_open">"ತೆರೆಯಿರಿ"</string>
+<string name="player_panel_quality_profile">"ಗುಣಮಟ್ಟದ ಪ್ರೊಫೈಲ್"</string>
+<string name="player_panel_quality_unknown">"ಗುಣಮಟ್ಟ ಅಜ್ಞಾತ"</string>
+<string name="player_panel_retry_all">"ಎಲ್ಲಾ ಮೂಲಗಳನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"</string>
+<string name="player_panel_style">"ಉಪಶೀರ್ಷಿಕೆ ಶೈಲಿ"</string>
+<string name="player_panel_use">"ಬಳಸಿ"</string>
 <string name="player_size_settings">"ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್"</string>
 <string name="player_size_settings_des">"ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ"</string>
 <string name="player_source_playing">"ಪ್ಲೇ ಆಗುತ್ತಿದೆ"</string>

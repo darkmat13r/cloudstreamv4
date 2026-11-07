@@ -270,6 +270,15 @@
 <string name="player_hud_up_next">അടുത്തത് · %s</string>
 <string name="player_is_live">തൽസമയം</string>
 <string name="player_mute">നിശബ്‌ദമാക്കുക</string>
+<string name="player_panel_failed">പരാജയപ്പെട്ടു</string>
+<string name="player_panel_keeps">%s നിലനിർത്തുന്നു</string>
+<string name="player_panel_on">ഓൺ</string>
+<string name="player_panel_open">തുറക്കുക</string>
+<string name="player_panel_quality_profile">ഗുണനിലവാര പ്രൊഫൈൽ</string>
+<string name="player_panel_quality_unknown">ഗുണനിലവാരം അറിയില്ല</string>
+<string name="player_panel_retry_all">എല്ലാ ഉറവിടങ്ങളും വീണ്ടും ശ്രമിക്കുക</string>
+<string name="player_panel_style">സബ്‌ടൈറ്റിൽ ശൈലി</string>
+<string name="player_panel_use">ഉപയോഗിക്കുക</string>
 <string name="player_size_settings">പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ</string>
 <string name="player_size_settings_des">കറുത്ത അതിർത്തി നീക്കംചെയ്യുക</string>
 <string name="player_source_playing">പ്ലേ ചെയ്യുന്നു</string>

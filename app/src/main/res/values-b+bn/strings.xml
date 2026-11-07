@@ -351,6 +351,15 @@
 <string name="player_hud_speed">"গতি"</string>
 <string name="player_hud_up_next" formatted="true">"পরবর্তী · %s"</string>
 <string name="player_mute">"মিউট করুন"</string>
+<string name="player_panel_failed">"ব্যর্থ"</string>
+<string name="player_panel_keeps" formatted="true">"%s রাখে"</string>
+<string name="player_panel_on">"চালু"</string>
+<string name="player_panel_open">"খুলুন"</string>
+<string name="player_panel_quality_profile">"মানের প্রোফাইল"</string>
+<string name="player_panel_quality_unknown">"মান অজানা"</string>
+<string name="player_panel_retry_all">"সব উৎস আবার চেষ্টা করুন"</string>
+<string name="player_panel_style">"সাবটাইটেলের স্টাইল"</string>
+<string name="player_panel_use">"ব্যবহার করুন"</string>
 <string name="player_size_settings">"প্লেয়ারের সাইজ পরিবর্তন বাটন"</string>
 <string name="player_size_settings_des">"কালো প্রান্ত অপসারণ করুন"</string>
 <string name="player_source_playing">"চলছে"</string>

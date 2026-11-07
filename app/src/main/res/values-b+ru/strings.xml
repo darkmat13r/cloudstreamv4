@@ -520,6 +520,15 @@
 <string name="player_mute">"Выключить звук"</string>
 <string name="player_notification_channel_description">"Уведомление проигрывателя для управления воспроизведением в фоновом режиме"</string>
 <string name="player_notification_channel_name">"Уведомления плеера"</string>
+<string name="player_panel_failed">"сбой"</string>
+<string name="player_panel_keeps" formatted="true">"сохраняет %s"</string>
+<string name="player_panel_on">"Вкл."</string>
+<string name="player_panel_open">"Открыть"</string>
+<string name="player_panel_quality_profile">"Профиль качества"</string>
+<string name="player_panel_quality_unknown">"качество неизвестно"</string>
+<string name="player_panel_retry_all">"Повторить все источники"</string>
+<string name="player_panel_style">"Стиль субтитров"</string>
+<string name="player_panel_use">"Использовать"</string>
 <string name="player_pref">"Предпочитаемый видеоплеер"</string>
 <string name="player_settings_always_ask">"Спрашивать всегда"</string>
 <string name="player_settings_play_in_app">"Внутренний проигрыватель"</string>

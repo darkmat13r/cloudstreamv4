@@ -520,6 +520,15 @@
 <string name="player_mute">"Stäng av ljudet"</string>
 <string name="player_notification_channel_description">"Spelarnotisen för att styra uppspelningen i bakgrunden"</string>
 <string name="player_notification_channel_name">"Spelarnotiser"</string>
+<string name="player_panel_failed">"misslyckades"</string>
+<string name="player_panel_keeps" formatted="true">"behåller %s"</string>
+<string name="player_panel_on">"På"</string>
+<string name="player_panel_open">"Öppna"</string>
+<string name="player_panel_quality_profile">"Kvalitetsprofil"</string>
+<string name="player_panel_quality_unknown">"okänd kvalitet"</string>
+<string name="player_panel_retry_all">"Försök med alla källor igen"</string>
+<string name="player_panel_style">"Undertextstil"</string>
+<string name="player_panel_use">"Använd"</string>
 <string name="player_pref">"Önskad videospelare"</string>
 <string name="player_settings_always_ask">"Fråga alltid"</string>
 <string name="player_settings_play_in_app">"Intern spelare"</string>

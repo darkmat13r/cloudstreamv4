@@ -431,6 +431,15 @@
 <string name="player_hud_speed">"Kelajuan"</string>
 <string name="player_hud_up_next" formatted="true">"Seterusnya · %s"</string>
 <string name="player_mute">"Redam"</string>
+<string name="player_panel_failed">"gagal"</string>
+<string name="player_panel_keeps" formatted="true">"kekalkan %s"</string>
+<string name="player_panel_on">"Hidup"</string>
+<string name="player_panel_open">"Buka"</string>
+<string name="player_panel_quality_profile">"Profil kualiti"</string>
+<string name="player_panel_quality_unknown">"kualiti tidak diketahui"</string>
+<string name="player_panel_retry_all">"Cuba semula semua sumber"</string>
+<string name="player_panel_style">"Gaya sari kata"</string>
+<string name="player_panel_use">"Guna"</string>
 <string name="player_settings_play_in_app">"Pemain dalaman"</string>
 <string name="player_size_settings">"Saiz butang pemain"</string>
 <string name="player_size_settings_des">"Buang sempadan hitam"</string>

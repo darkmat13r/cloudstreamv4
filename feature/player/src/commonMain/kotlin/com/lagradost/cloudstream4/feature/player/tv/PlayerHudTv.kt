@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.panel.SidePanelHost
 import com.lagradost.cloudstream4.core.designsystem.primitive.Badge
 import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDot
 import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDotState
@@ -77,6 +79,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.player.HudBanner
 import com.lagradost.cloudstream4.feature.player.HudTime
+import com.lagradost.cloudstream4.feature.player.PlaybackPanelState
 import com.lagradost.cloudstream4.feature.player.PlayerHudAction
 import com.lagradost.cloudstream4.feature.player.PlayerHudState
 import com.lagradost.cloudstream4.feature.player.ScrubReadout
@@ -108,10 +111,40 @@ fun PlayerHudTv(
     shownSeekMs: Long,
     onAction: (PlayerHudAction) -> Unit,
     modifier: Modifier = Modifier,
+    panel: PlaybackPanelState? = null,
+) {
+    // 7e over 7d: the HUD stays mounted under the panel, and closing it gives focus back to the selector that opened it.
+    val lastPanel = rememberLastPanel(panel)
+    SidePanelHost(
+        expanded = panel != null,
+        onDismissRequest = { onAction(PlayerHudAction.PanelBack) },
+        modifier = modifier,
+        panel = { lastPanel?.let { PlaybackPanelTv(it, onAction) } },
+    ) {
+        Hud(state, shown, readout, clock, shownSeekMs, onAction)
+    }
+}
+
+/** The panel last shown, so one sliding out keeps drawing what it closed on. */
+@Composable
+private fun rememberLastPanel(panel: PlaybackPanelState?): PlaybackPanelState? {
+    val last = remember { mutableStateOf(panel) }
+    if (panel != null) last.value = panel
+    return last.value
+}
+
+@Composable
+private fun Hud(
+    state: PlayerHudState,
+    shown: Boolean,
+    readout: ScrubReadout?,
+    clock: String,
+    shownSeekMs: Long,
+    onAction: (PlayerHudAction) -> Unit,
 ) {
     val playPause = remember { FocusRequester() }
     val seekCell = remember { FocusRequester() }
-    Box(modifier.fillMaxSize()) {
+    Box(Modifier.fillMaxSize()) {
         if (shown) {
             Scrims()
             ChromeRow(state, clock, onAction)

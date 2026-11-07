@@ -520,6 +520,15 @@
 <string name="player_mute">"Bisukan"</string>
 <string name="player_notification_channel_description">"Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang"</string>
 <string name="player_notification_channel_name">"Notifikasi pemain"</string>
+<string name="player_panel_failed">"gagal"</string>
+<string name="player_panel_keeps" formatted="true">"mempertahankan %s"</string>
+<string name="player_panel_on">"Aktif"</string>
+<string name="player_panel_open">"Buka"</string>
+<string name="player_panel_quality_profile">"Profil kualitas"</string>
+<string name="player_panel_quality_unknown">"kualitas tidak diketahui"</string>
+<string name="player_panel_retry_all">"Coba lagi semua sumber"</string>
+<string name="player_panel_style">"Gaya subtitel"</string>
+<string name="player_panel_use">"Gunakan"</string>
 <string name="player_pref">"Pemutar video utama"</string>
 <string name="player_settings_always_ask">"Selalu tanya"</string>
 <string name="player_settings_play_in_app">"Pemutar Bawaan"</string>

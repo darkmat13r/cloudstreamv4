@@ -519,6 +519,15 @@
 <string name="player_mute">Исклучи звук</string>
 <string name="player_notification_channel_description">Известување од плеерот за контрола на репродукцијата од позадина</string>
 <string name="player_notification_channel_name">Известувања од плеерот</string>
+<string name="player_panel_failed">неуспешно</string>
+<string name="player_panel_keeps">задржува %s</string>
+<string name="player_panel_on">Вклучено</string>
+<string name="player_panel_open">Отвори</string>
+<string name="player_panel_quality_profile">Профил за квалитет</string>
+<string name="player_panel_quality_unknown">непознат квалитет</string>
+<string name="player_panel_retry_all">Обиди ги сите извори повторно</string>
+<string name="player_panel_style">Стил на преводот</string>
+<string name="player_panel_use">Користи</string>
 <string name="player_pref">Префериран видео плеер</string>
 <string name="player_settings_always_ask">Секогаш прашувај</string>
 <string name="player_settings_play_in_app">Внатрешен плеер</string>

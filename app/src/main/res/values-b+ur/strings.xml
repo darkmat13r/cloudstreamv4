@@ -447,6 +447,15 @@
 <string name="player_load_subtitles_online">"انٹرنیٹ سے لوڈ کریں"</string>
 <string name="player_loaded_subtitles" formatted="true">"لوڈ %s"</string>
 <string name="player_mute">"خاموش کریں"</string>
+<string name="player_panel_failed">"ناکام"</string>
+<string name="player_panel_keeps" formatted="true">"%s برقرار رکھتا ہے"</string>
+<string name="player_panel_on">"آن"</string>
+<string name="player_panel_open">"کھولیں"</string>
+<string name="player_panel_quality_profile">"معیار کی پروفائل"</string>
+<string name="player_panel_quality_unknown">"معیار نامعلوم"</string>
+<string name="player_panel_retry_all">"تمام ذرائع دوبارہ آزمائیں"</string>
+<string name="player_panel_style">"سب ٹائٹل کا انداز"</string>
+<string name="player_panel_use">"استعمال کریں"</string>
 <string name="player_pref">"ترجیحی ویڈیو پلیئر"</string>
 <string name="player_settings_play_in_app">"اندرونی پلیئر"</string>
 <string name="player_size_settings">"پلیئر کا سائز تبدیل کرنے کا بٹن"</string>

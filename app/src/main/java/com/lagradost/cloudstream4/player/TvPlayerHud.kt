@@ -11,6 +11,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.lifecycleScope
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.player.HudKey
+import com.lagradost.cloudstream4.feature.player.PanelKind
+import com.lagradost.cloudstream4.feature.player.PlaybackPanelState
 import com.lagradost.cloudstream4.feature.player.PlayerHudAction
 import com.lagradost.cloudstream4.feature.player.PlayerHudController
 import com.lagradost.cloudstream4.feature.player.PlayerHudState
@@ -21,6 +23,18 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.util.Date
+
+/** What a pressed 7e row asks of the panel next. */
+internal sealed interface PanelStep {
+    /** Done: the panel closes and focus goes back to its selector. */
+    data object Close : PanelStep
+
+    /** The row committed and the panel stays, redrawn: a subtitle or an audio track now in use. */
+    data object Stay : PanelStep
+
+    /** Into a second level (a subtitle's variants, its settings, the video tracks), or back to the first with `null`. */
+    data class Level(val level: String?) : PanelStep
+}
 
 /**
  * **The switch.** `false` puts the old controller back on Android TV: `FullScreenPlayer` never builds a [TvPlayerHud]
@@ -45,17 +59,26 @@ object TvPlayerHudSwitch {
  *
  * @param facts what the player knows now. Called on the main thread.
  */
-internal class TvPlayerHud(
+// @JvmOverloads keeps #189's six-argument constructor in the extension dump: KMP-66 adds the panel hooks with defaults,
+// and a dump line must not be removed or changed (classes-jar.api).
+internal class TvPlayerHud @JvmOverloads constructor(
     private val container: ViewGroup,
     owner: LifecycleOwner,
     hiddenSeekMs: Long,
     private val shownSeekMs: Long,
     private val facts: () -> TvHudFacts?,
-    onAction: (PlayerHudAction) -> Unit,
+    private val onAction: (PlayerHudAction) -> Unit,
+    private val panels: (PanelKind, String?) -> PlaybackPanelState? = { _, _ -> null },
+    private val onPanelRow: (PanelKind, String, String?) -> PanelStep = { _, _, _ -> PanelStep.Close },
 ) {
     private val state = MutableStateFlow(PlayerHudState())
     private val clock = MutableStateFlow("")
-    private val controller = PlayerHudController(owner.lifecycleScope, hiddenSeekMs, onAction)
+    private val controller = PlayerHudController(owner.lifecycleScope, hiddenSeekMs, ::handle)
+
+    /** 7e: which panel is open, and which of its levels; `null` level is the panel's first. */
+    private var panelKind: PanelKind? = null
+    private var panelLevel: String? = null
+    private val panel = MutableStateFlow<PlaybackPanelState?>(null)
 
     /** Key codes whose down was used here, so their up is used here too and never reaches a view on its own. */
     private val consumedDowns = HashSet<Int>()
@@ -67,6 +90,7 @@ internal class TvPlayerHud(
             val shown by controller.shown.collectAsState()
             val readout by controller.readout.collectAsState()
             val time by clock.collectAsState()
+            val open by panel.collectAsState()
             CloudStreamTheme {
                 PlayerHudTv(
                     state = now,
@@ -74,7 +98,8 @@ internal class TvPlayerHud(
                     readout = readout,
                     clock = time,
                     shownSeekMs = shownSeekMs,
-                    onAction = onAction,
+                    onAction = ::handle,
+                    panel = open,
                 )
             }
         }
@@ -99,6 +124,44 @@ internal class TvPlayerHud(
         state.value = next
         controller.state = next
         clock.value = DateFormat.getTimeFormat(container.context).format(Date())
+        // Rows follow the player: links still arriving, a source that just failed, the track now in use.
+        panelKind?.let { kind -> panel.value = panels(kind, panelLevel) ?: panel.value }
+    }
+
+    /** The HUD's and the panels' actions. A panel the player cannot draw falls back to its old dialog. */
+    private fun handle(action: PlayerHudAction) {
+        val kind = when (action) {
+            PlayerHudAction.OpenSource -> PanelKind.Source
+            PlayerHudAction.OpenSubtitles -> PanelKind.Subtitles
+            PlayerHudAction.OpenAudio -> PanelKind.Audio
+            is PlayerHudAction.PanelRowPressed -> return step(onPanelRow(action.kind, action.key, panelLevel))
+            PlayerHudAction.PanelBack -> return if (panelLevel != null) step(PanelStep.Level(null)) else closePanel()
+            PlayerHudAction.PanelDone -> return closePanel()
+            else -> return onAction(action)
+        }
+        val first = panels(kind, null) ?: return onAction(action)
+        panelKind = kind
+        panelLevel = null
+        panel.value = first
+        controller.panelOpen = true
+    }
+
+    private fun step(next: PanelStep) {
+        when (next) {
+            PanelStep.Close -> closePanel()
+            PanelStep.Stay -> refresh()
+            is PanelStep.Level -> {
+                panelLevel = next.level
+                refresh()
+            }
+        }
+    }
+
+    private fun closePanel() {
+        panelKind = null
+        panelLevel = null
+        panel.value = null
+        controller.panelOpen = false
     }
 
     fun reveal() = controller.reveal()
@@ -108,6 +171,12 @@ internal class TvPlayerHud(
         val code = event.keyCode
         if (event.action == KeyEvent.ACTION_UP) return consumedDowns.remove(code)
         if (event.action != KeyEvent.ACTION_DOWN) return false
+        // A panel owns BACK: up a level or closed, never out of the player under it.
+        if (panelKind != null && (code == KeyEvent.KEYCODE_BACK || code == KeyEvent.KEYCODE_ESCAPE)) {
+            handle(PlayerHudAction.PanelBack)
+            consumedDowns += code
+            return true
+        }
         val used = controller.onKey(hudKey(code))
         if (used) consumedDowns += code
         return used

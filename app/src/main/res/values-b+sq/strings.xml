@@ -520,6 +520,15 @@
 <string name="player_mute">"Hiq zërin"</string>
 <string name="player_notification_channel_description">"Njoftimi për kontrollin e luajtjes nga sfondi"</string>
 <string name="player_notification_channel_name">"Njoftimet e luajtësit"</string>
+<string name="player_panel_failed">"dështoi"</string>
+<string name="player_panel_keeps" formatted="true">"ruan %s"</string>
+<string name="player_panel_on">"Aktiv"</string>
+<string name="player_panel_open">"Hap"</string>
+<string name="player_panel_quality_profile">"Profili i cilësisë"</string>
+<string name="player_panel_quality_unknown">"cilësi e panjohur"</string>
+<string name="player_panel_retry_all">"Riprovo të gjitha burimet"</string>
+<string name="player_panel_style">"Stili i titrave"</string>
+<string name="player_panel_use">"Përdor"</string>
 <string name="player_pref">"Luajtësi i preferuar i videove"</string>
 <string name="player_settings_always_ask">"Pyet gjithmonë"</string>
 <string name="player_settings_play_in_app">"Luajtësi i integruar"</string>

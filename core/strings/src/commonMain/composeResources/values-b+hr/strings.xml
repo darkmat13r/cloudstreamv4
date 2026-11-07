@@ -519,6 +519,15 @@
 <string name="player_mute">Isključi zvuk</string>
 <string name="player_notification_channel_description">Obavijest reproduktora za upravljanje reprodukcijom iz pozadine</string>
 <string name="player_notification_channel_name">Obavijesti reproduktora</string>
+<string name="player_panel_failed">neuspjelo</string>
+<string name="player_panel_keeps">zadržava %s</string>
+<string name="player_panel_on">Uključeno</string>
+<string name="player_panel_open">Otvori</string>
+<string name="player_panel_quality_profile">Profil kvalitete</string>
+<string name="player_panel_quality_unknown">nepoznata kvaliteta</string>
+<string name="player_panel_retry_all">Ponovi sve izvore</string>
+<string name="player_panel_style">Stil titlova</string>
+<string name="player_panel_use">Koristi</string>
 <string name="player_pref">Preferirani video player</string>
 <string name="player_settings_always_ask">Uvijek pitaj</string>
 <string name="player_settings_play_in_app">Interni player</string>

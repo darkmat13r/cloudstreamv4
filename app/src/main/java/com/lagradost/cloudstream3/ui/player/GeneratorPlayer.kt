@@ -132,7 +132,15 @@ import com.lagradost.cloudstream3.utils.redactedThrowable
 import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream3.utils.videoskip.VideoSkipStamp
+import com.lagradost.cloudstream4.feature.player.HudTime
+import com.lagradost.cloudstream4.feature.player.PanelKind
+import com.lagradost.cloudstream4.feature.player.PanelRow
+import com.lagradost.cloudstream4.feature.player.PlaybackPanelState
+import com.lagradost.cloudstream4.feature.player.RowVerb
+import com.lagradost.cloudstream4.player.PanelStep
 import com.lagradost.cloudstream4.player.TvHudFacts
+import com.lagradost.cloudstream4.player.TvPanelRows
+import com.lagradost.cloudstream4.player.hudLabel
 import com.lagradost.safefile.SafeFile
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -148,6 +156,23 @@ import java.util.concurrent.atomic.AtomicBoolean
 @OptIn(UnstableApi::class)
 class GeneratorPlayer : FullScreenPlayer() {
     companion object {
+        // 7e's row keys (KMP-66): opaque to the HUD, read back by onTvPanelRow.
+        private const val SOURCE_KEY = "source:"
+        private const val PROFILE_KEY = "profile"
+        private const val RETRY_ALL_KEY = "retryAll"
+        private const val OFF_KEY = "off"
+        private const val GROUP_KEY = "group:"
+        private const val VARIANT_KEY = "variant:"
+        private const val FILE_KEY = "file"
+        private const val ONLINE_KEY = "online"
+        private const val SETTINGS_KEY = "settings"
+        private const val STYLE_KEY = "style"
+        private const val DELAY_KEY = "delay"
+        private const val ENCODING_KEY = "encoding"
+        private const val AUDIO_KEY = "audio:"
+        private const val VIDEO_KEY = "video"
+        private const val VIDEO_TRACK_KEY = "videoTrack:"
+
         const val NOTIFICATION_ID = 2326
         const val CHANNEL_ID = 7340
         const val STOP_ACTION = "stopcs3"
@@ -188,6 +213,13 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     /** For the TV HUD (`KMP-64`): the skip button's words while it is offered. */
     private var hudSkipLabel: String? = null
+
+    /** For 7e (`KMP-66`): the decoded size, and the lists the open panel's rows were drawn from, by index. */
+    private var hudDecoded: Pair<Int, Int>? = null
+    private var hudSources: List<VideoLink> = emptyList()
+    private var hudSubtitleGroups: List<List<SubtitleData>> = emptyList()
+    private var hudAudio: List<AudioTrack> = emptyList()
+    private var hudVideo: List<VideoTrack> = emptyList()
     private val currentMeta: Any? get() = viewModel.state.generatorState?.meta
     private val nextMeta: Any? get() = viewModel.state.generatorState?.nextMeta
 
@@ -504,7 +536,8 @@ class GeneratorPlayer : FullScreenPlayer() {
         }
     }
 
-    private fun loadLink(link: VideoLink?, sameEpisode: Boolean) {
+    /** @param autoPlay whether it plays once loaded: 7e's switch keeps a paused player paused (`KMP-66`). */
+    private fun loadLink(link: VideoLink?, sameEpisode: Boolean, autoPlay: Boolean = true) {
         if (link == null) return
         isPlayerActive.set(true)
         // manage UI
@@ -547,6 +580,7 @@ class GeneratorPlayer : FullScreenPlayer() {
                 (if (sameEpisode) currentSelectedSubtitles else null) ?: getAutoSelectSubtitle(
                     subtitles, settings = true, downloads = true
                 ),
+                autoPlay = autoPlay,
                 preview = true
             )
         }
@@ -2046,6 +2080,7 @@ class GeneratorPlayer : FullScreenPlayer() {
 
     override fun playerDimensionsLoaded(width: Int, height: Int) {
         super.playerDimensionsLoaded(width, height)
+        hudDecoded = width to height
         setPlayerDimen(width to height)
     }
 
@@ -2186,6 +2221,285 @@ class GeneratorPlayer : FullScreenPlayer() {
             failed = tvHudFailed,
             offline = !ctx.isNetworkAvailable(),
         )
+    }
+
+    override fun tvPanel(kind: PanelKind, level: String?): PlaybackPanelState? {
+        val ctx = context ?: return null
+        return when (kind) {
+            PanelKind.Source -> sourcePanel(ctx)
+            PanelKind.Subtitles -> subtitlePanel(ctx, level)
+            PanelKind.Audio -> audioPanel(ctx, level)
+        }
+    }
+
+    /**
+     * 7e's Source panel: what a switch can go to, in the quality profile's order, the playing link kept even when the
+     * profile would hide it, and failed links kept and marked. Then the quality profile, whose editor is the old one.
+     */
+    private fun sourcePanel(ctx: Context): PlaybackPanelState {
+        val state = viewModel.state
+        val playing = currentSelectedLink
+        val sorted = state.sortLinks(currentQualityProfile)
+        val shown = sorted.filter { it.shouldUseLink || it.link == playing }
+        hudSources = shown.map { it.link }
+        val position = player.getPosition() ?: 0L
+        val loading = state.loading is Resource.Loading
+        val rows = shown.mapIndexed { index, display ->
+            val link = display.link
+            val active = link == playing
+            val failed = !active && link in state.erroredLinks
+            val quality = TvPanelRows.sourceQuality(link.first)
+            PanelRow(
+                key = "$SOURCE_KEY$index",
+                title = TvPanelRows.sourceTitle(link.first, link.second, "${ctx.getString(R.string.video_source)} ${index + 1}"),
+                detail = when {
+                    active -> hudDecoded?.let { (w, h) -> "$w×$h" }
+                    failed -> ctx.getString(R.string.player_panel_failed)
+                    quality == null && link.first != null -> ctx.getString(R.string.player_panel_quality_unknown)
+                    else -> ctx.getString(R.string.player_panel_keeps, HudTime.clock(position))
+                },
+                verb = when {
+                    active -> RowVerb.Playing
+                    failed -> RowVerb.Retry
+                    else -> RowVerb.Switch
+                },
+                active = active,
+                failed = failed,
+            )
+        }
+        val hidden = sorted.size - shown.size
+        val profile = PanelRow(
+            key = PROFILE_KEY,
+            title = ctx.getString(R.string.player_panel_quality_profile),
+            detail = QualityDataHelper.getProfileName(currentQualityProfile).asString(ctx),
+            verb = RowVerb.Open,
+        )
+        val retryAll = PanelRow(key = RETRY_ALL_KEY, title = ctx.getString(R.string.player_panel_retry_all), verb = RowVerb.Retry)
+        return PlaybackPanelState(
+            kind = PanelKind.Source,
+            title = ctx.getString(R.string.video_source),
+            meta = listOfNotNull(
+                ctx.getString(R.string.loading).takeIf { loading },
+                ctx.resources.getQuantityString(R.plurals.links_hidden, hidden).format(hidden).takeIf { hidden > 0 },
+                ctx.getString(R.string.player_source_resumes_at, HudTime.clock(position)).takeIf { rows.size > 1 && position > 0 },
+            ),
+            // 7e's Empty: the first row is Retry all sources.
+            rows = if (rows.isEmpty() && !loading) listOf(retryAll, profile) else rows + profile,
+            offline = !ctx.isNetworkAvailable(),
+        )
+    }
+
+    /** 7e's Subtitles panel: Off, the groups, then the doors to a file, an online search and the settings. */
+    private fun subtitlePanel(ctx: Context, level: String?): PlaybackPanelState {
+        val groups = sortSubs(viewModel.state.subtitles).groupBy { it.originalName }.values
+            .map { group -> group.sortedBy { it.nameSuffix.toIntOrNull() ?: 0 } }
+        hudSubtitleGroups = groups
+        val current = currentSelectedSubtitles
+        val title = ctx.getString(R.string.player_subtitles_settings)
+        fun use(on: Boolean) = if (on) RowVerb.On else RowVerb.Use
+        if (level == SETTINGS_KEY) {
+            return PlaybackPanelState(
+                kind = PanelKind.Subtitles,
+                title = ctx.getString(R.string.subtitles_settings),
+                nested = true,
+                rows = listOf(
+                    PanelRow(STYLE_KEY, ctx.getString(R.string.player_panel_style), verb = RowVerb.Open),
+                    PanelRow(DELAY_KEY, ctx.getString(R.string.subtitle_offset), verb = RowVerb.Open),
+                    PanelRow(ENCODING_KEY, ctx.getString(R.string.subtitles_encoding), verb = RowVerb.Open),
+                ),
+            )
+        }
+        val opened = level?.removePrefix(GROUP_KEY)?.toIntOrNull()?.let { groups.getOrNull(it) }
+        if (opened != null) {
+            val index = groups.indexOf(opened)
+            return PlaybackPanelState(
+                kind = PanelKind.Subtitles,
+                title = TvPanelRows.subtitleGroupTitle(opened.first(), "$title ${index + 1}"),
+                nested = true,
+                rows = opened.mapIndexed { variant, subtitle ->
+                    PanelRow(
+                        key = "$VARIANT_KEY$index:$variant",
+                        title = TvPanelRows.subtitleVariantTitle(subtitle, ctx.getString(originOf(subtitle))),
+                        detail = ctx.getString(originOf(subtitle)),
+                        verb = use(subtitle == current),
+                        active = subtitle == current,
+                    )
+                },
+            )
+        }
+        val rows = buildList {
+            add(PanelRow(OFF_KEY, ctx.getString(R.string.no_subtitles), verb = use(current == null), active = current == null))
+            groups.forEachIndexed { index, group ->
+                val on = current != null && current in group
+                add(
+                    PanelRow(
+                        key = "$GROUP_KEY$index",
+                        title = TvPanelRows.subtitleGroupTitle(group.first(), "$title ${index + 1}"),
+                        detail = ctx.getString(originOf(group.first())),
+                        verb = if (group.size > 1) RowVerb.Open else use(on),
+                        active = on,
+                    ),
+                )
+            }
+            add(PanelRow(FILE_KEY, ctx.getString(R.string.player_load_subtitles), verb = RowVerb.Open))
+            if (subsProvidersIsActive) add(PanelRow(ONLINE_KEY, ctx.getString(R.string.player_load_subtitles_online), verb = RowVerb.Open))
+            add(PanelRow(SETTINGS_KEY, ctx.getString(R.string.subtitles_settings), verb = RowVerb.Open))
+        }
+        return PlaybackPanelState(kind = PanelKind.Subtitles, title = title, rows = rows)
+    }
+
+    private fun originOf(subtitle: SubtitleData): Int = when (subtitle.origin) {
+        SubtitleOrigin.URL -> R.string.subtitles_from_online
+        SubtitleOrigin.DOWNLOADED_FILE -> R.string.downloaded
+        SubtitleOrigin.EMBEDDED_IN_VIDEO -> R.string.subtitles_from_embedded
+    }
+
+    /** 7e's Audio panel: the audio tracks, committed with no reload, and the video tracks when there is a choice. */
+    private fun audioPanel(ctx: Context, level: String?): PlaybackPanelState {
+        val tracks = player.getVideoTracks()
+        hudAudio = tracks.allAudioTracks
+        hudVideo = tracks.allVideoTracks.filter { it.width != null && it.height != null }
+        fun use(on: Boolean) = if (on) RowVerb.On else RowVerb.Use
+        if (level == VIDEO_KEY) {
+            return PlaybackPanelState(
+                kind = PanelKind.Audio,
+                title = ctx.getString(R.string.video_tracks),
+                nested = true,
+                rows = hudVideo.mapIndexed { index, video ->
+                    val on = video == tracks.currentVideoTrack
+                    PanelRow(
+                        key = "$VIDEO_TRACK_KEY$index",
+                        title = listOfNotNull("${video.width}×${video.height}", videoCodecName(video.sampleMimeType)).joinToString(" · "),
+                        verb = use(on),
+                        active = on,
+                    )
+                },
+            )
+        }
+        val rows = hudAudio.mapIndexed { index, audio ->
+            val on = audio == tracks.currentAudioTrack
+            val words = listOfNotNull(
+                hudLabel(fromTagToLanguageName(audio.language) ?: audio.label),
+                audio.channelCount?.let(::hudChannels),
+                audioCodecName(audio.sampleMimeType).ifBlank { null },
+            ).joinToString(" · ")
+            PanelRow(
+                key = "$AUDIO_KEY$index",
+                title = words.ifBlank { "${ctx.getString(R.string.audio_singular)} ${index + 1}" },
+                verb = use(on),
+                active = on,
+            )
+        }
+        val video = tracks.currentVideoTrack
+        val videoRow = PanelRow(
+            key = VIDEO_KEY,
+            title = ctx.getString(R.string.video_tracks),
+            detail = video?.let { "${it.width}×${it.height}" },
+            verb = RowVerb.Open,
+        ).takeIf { hudVideo.size > 1 }
+        return PlaybackPanelState(kind = PanelKind.Audio, title = ctx.getString(R.string.audio_singular), rows = rows + listOfNotNull(videoRow))
+    }
+
+    /** A 7e row pressed. Each commits through what the old dialogs called, on press, with no Apply. */
+    override fun onTvPanelRow(kind: PanelKind, key: String, level: String?): PanelStep {
+        val ctx = context ?: return PanelStep.Close
+        fun indexAfter(prefix: String) = key.removePrefix(prefix).toIntOrNull()
+        when {
+            key.startsWith(SOURCE_KEY) -> {
+                val link = indexAfter(SOURCE_KEY)?.let { hudSources.getOrNull(it) } ?: return PanelStep.Close
+                if (link == currentSelectedLink) return PanelStep.Close
+                // Keeps the position (same episode) and the play state: a paused player stays paused.
+                loadLink(link, sameEpisode = true, autoPlay = player.getIsPlaying())
+                return PanelStep.Close
+            }
+            key == RETRY_ALL_KEY -> viewModel.loadLinks()
+            key == PROFILE_KEY -> openQualityProfile()
+            key == OFF_KEY -> noSubtitles()
+            key.startsWith(GROUP_KEY) -> {
+                val group = indexAfter(GROUP_KEY)?.let { hudSubtitleGroups.getOrNull(it) } ?: return PanelStep.Stay
+                if (group.size > 1) return PanelStep.Level(key)
+                setSubtitles(group.first(), true)
+            }
+            key.startsWith(VARIANT_KEY) -> {
+                val (group, variant) = key.removePrefix(VARIANT_KEY).split(':').mapNotNull { it.toIntOrNull() }
+                    .takeIf { it.size == 2 } ?: return PanelStep.Stay
+                hudSubtitleGroups.getOrNull(group)?.getOrNull(variant)?.let { setSubtitles(it, true) }
+                return PanelStep.Level(null)
+            }
+            key == FILE_KEY -> {
+                openSubPicker()
+                return PanelStep.Close
+            }
+            key == ONLINE_KEY -> {
+                openOnlineSubPicker(ctx, viewModel.state.generatorState?.response) {}
+                return PanelStep.Close
+            }
+            key == SETTINGS_KEY -> return PanelStep.Level(SETTINGS_KEY)
+            key == STYLE_KEY -> {
+                safe {
+                    val style = SubtitlesFragment()
+                    style.systemBarsAddPadding = true
+                    style.show(this.parentFragmentManager, "SubtitleSettings")
+                }
+                return PanelStep.Close
+            }
+            key == DELAY_KEY -> {
+                openSubtitleDelay()
+                return PanelStep.Close
+            }
+            key == ENCODING_KEY -> {
+                chooseSubtitleEncoding(ctx)
+                return PanelStep.Close
+            }
+            key.startsWith(AUDIO_KEY) -> indexAfter(AUDIO_KEY)?.let { hudAudio.getOrNull(it) }?.let { audio ->
+                player.setPreferredAudioTrack(audio.language, audio.id, audio.formatIndex)
+            }
+            key == VIDEO_KEY -> return PanelStep.Level(VIDEO_KEY)
+            key.startsWith(VIDEO_TRACK_KEY) -> {
+                indexAfter(VIDEO_TRACK_KEY)?.let { hudVideo.getOrNull(it) }?.let { video ->
+                    val width = video.width
+                    val height = video.height
+                    if (width != null && height != null) player.setMaxVideoSize(width, height, video.id)
+                }
+                return PanelStep.Level(null)
+            }
+        }
+        return PanelStep.Stay
+    }
+
+    /** The old dialog's quality-profile editor, as its Profiles button opened it. */
+    private fun openQualityProfile() {
+        val activity = activity ?: return
+        val dialog = QualityProfileDialog(
+            activity,
+            R.style.DialogFullscreenPlayer,
+            viewModel.state.links.mapNotNull { it.first?.let { link -> LinkSource(link) } },
+            currentQualityProfile,
+        ) { profile ->
+            currentQualityProfile = profile.id
+        }
+        dialog.setOnDismissListener { viewModel.state.clearSortedLinksCache() }
+        dialog.show()
+    }
+
+    /** The old dialog's encoding chooser, the same preference and the same refresh. */
+    private fun chooseSubtitleEncoding(ctx: Context) {
+        val settingsManager = PreferenceManager.getDefaultSharedPreferences(ctx)
+        val prefNames = ctx.resources.getStringArray(R.array.subtitles_encoding_list)
+        val prefValues = ctx.resources.getStringArray(R.array.subtitles_encoding_values)
+        val current = settingsManager.getString(ctx.getString(R.string.subtitles_encoding_key), null)
+        val index = prefValues.indexOf(current)
+        activity?.showDialog(
+            prefNames.toList(),
+            if (index == -1) 0 else index,
+            ctx.getString(R.string.subtitles_encoding),
+            true,
+            {},
+        ) {
+            settingsManager.edit { putString(ctx.getString(R.string.subtitles_encoding_key), prefValues[it]) }
+            updateForcedEncoding(ctx)
+            player.seekTime(-1) // to update subtitles, as the old dialog does
+        }
     }
 
     /** The old info line's names for a channel count: `Stereo`, `5.1`. */

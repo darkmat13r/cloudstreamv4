@@ -367,6 +367,15 @@
 <string name="player_hud_speed">गति</string>
 <string name="player_hud_up_next">अगला · %s</string>
 <string name="player_mute">म्यूट करें</string>
+<string name="player_panel_failed">विफल</string>
+<string name="player_panel_keeps">%s बनाए रखता है</string>
+<string name="player_panel_on">चालू</string>
+<string name="player_panel_open">खोलें</string>
+<string name="player_panel_quality_profile">गुणवत्ता प्रोफ़ाइल</string>
+<string name="player_panel_quality_unknown">गुणवत्ता अज्ञात</string>
+<string name="player_panel_retry_all">सभी स्रोत फिर से आज़माएँ</string>
+<string name="player_panel_style">सबटाइटल शैली</string>
+<string name="player_panel_use">उपयोग करें</string>
 <string name="player_size_settings">प्लेयर आकार परिवर्तन बटन</string>
 <string name="player_size_settings_des">काले बॉर्डर हटाएँ</string>
 <string name="player_source_playing">चल रहा है</string>

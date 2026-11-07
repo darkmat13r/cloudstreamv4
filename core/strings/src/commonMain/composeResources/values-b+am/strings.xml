@@ -170,6 +170,15 @@
 <string name="player_hud_speed">ፍጥነት</string>
 <string name="player_hud_up_next">ቀጣይ · %s</string>
 <string name="player_mute">ድምፅ አጥፋ</string>
+<string name="player_panel_failed">አልተሳካም</string>
+<string name="player_panel_keeps">%s ይቆያል</string>
+<string name="player_panel_on">በርቷል</string>
+<string name="player_panel_open">ክፈት</string>
+<string name="player_panel_quality_profile">የጥራት መገለጫ</string>
+<string name="player_panel_quality_unknown">ጥራት አይታወቅም</string>
+<string name="player_panel_retry_all">ሁሉንም ምንጮች እንደገና ሞክር</string>
+<string name="player_panel_style">የንዑስ ርዕስ ዘይቤ</string>
+<string name="player_panel_use">ተጠቀም</string>
 <string name="player_source_playing">በመጫወት ላይ</string>
 <string name="player_source_resumes_at">መቀየር ቦታዎን ይጠብቃል፦ ከ%1$s ይቀጥላል</string>
 <string name="player_source_retry">እንደገና ሞክር</string>

@@ -67,7 +67,7 @@ private fun episodeLabel(season: Int?, episode: Int?): String? = when {
 internal fun hudText(text: String?): String? {
     val clean = text?.filterNot { it.isISOControl() }?.trim()?.take(MAX_TEXT_CHARS)?.takeIf { it.isNotBlank() }
         ?: return null
-    return clean.takeUnless { looksLikeAddress(it) }
+    return clean.takeUnless { looksLikeAddress(it, HOST_WITH_TAIL) }
 }
 
 /**
@@ -76,16 +76,22 @@ internal fun hudText(text: String?): String? {
  * alone or to the localised fallback: a lost label is the cheap side of that trade (review of `KMP-64`).
  */
 internal fun hudLabel(text: String?): String? =
-    hudText(text)?.takeUnless { label -> label.any { it in STRICT_CHARACTERS } }
+    hudText(text)?.takeUnless { label -> label.any { it in STRICT_CHARACTERS } || looksLikeAddress(label, BARE_HOST) }
 
-private fun looksLikeAddress(text: String): Boolean {
+private fun looksLikeAddress(text: String, host: Regex): Boolean {
     val lower = text.lowercase()
     return "://" in lower || lower.startsWith("/") || lower.startsWith("content:") || lower.startsWith("file:") ||
-        BARE_HOST.containsMatchIn(lower)
+        host.containsMatchIn(lower)
 }
 
-/** A host at the start, with an optional port, then a path, query or fragment or the end: `cdn.host.to/v`, `a.com:8443`. */
+/**
+ * A host at the start, with an optional port, then a path, query or fragment or the end: `cdn.host.to/v`, `a.com:8443`,
+ * `stream.example.to`. For a source's or subtitle's name only: as a title it would blank `Dr.Stone` and `Mr.Robot`.
+ */
 private val BARE_HOST = Regex("""^[\w.-]+\.[a-z]{2,}(:\d+)?([/?#]|$)""")
+
+/** The same host, but only with a port, path, query or fragment after it: a title is never just `Dr.Stone`'s shape. */
+private val HOST_WITH_TAIL = Regex("""^[\w.-]+\.[a-z]{2,}(:\d+|[/?#])""")
 private val STRICT_CHARACTERS = setOf('?', '=', '/', '\\')
 
 internal fun TvHudFacts.toHudState(): PlayerHudState {

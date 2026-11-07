@@ -520,6 +520,15 @@
 <string name="player_mute">Вимкнути звук</string>
 <string name="player_notification_channel_description">Сповіщення програвача для керування відтворенням у фоновому режимі</string>
 <string name="player_notification_channel_name">Сповіщення програвача</string>
+<string name="player_panel_failed">збій</string>
+<string name="player_panel_keeps">зберігає %s</string>
+<string name="player_panel_on">Увімк.</string>
+<string name="player_panel_open">Відкрити</string>
+<string name="player_panel_quality_profile">Профіль якості</string>
+<string name="player_panel_quality_unknown">якість невідома</string>
+<string name="player_panel_retry_all">Повторити всі джерела</string>
+<string name="player_panel_style">Стиль субтитрів</string>
+<string name="player_panel_use">Використати</string>
 <string name="player_pref">Бажаний відеопрогравач</string>
 <string name="player_settings_always_ask">Завжди запитувати</string>
 <string name="player_settings_play_in_app">Вбудований програвач</string>

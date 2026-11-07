@@ -520,6 +520,15 @@
 <string name="player_mute">Vypnout zvuk</string>
 <string name="player_notification_channel_description">Oznámení přehrávače pro ovládání přehrávání na pozadí</string>
 <string name="player_notification_channel_name">Oznámení přehrávače</string>
+<string name="player_panel_failed">selhalo</string>
+<string name="player_panel_keeps">zachová %s</string>
+<string name="player_panel_on">Zapnuto</string>
+<string name="player_panel_open">Otevřít</string>
+<string name="player_panel_quality_profile">Profil kvality</string>
+<string name="player_panel_quality_unknown">neznámá kvalita</string>
+<string name="player_panel_retry_all">Zkusit znovu všechny zdroje</string>
+<string name="player_panel_style">Styl titulků</string>
+<string name="player_panel_use">Použít</string>
 <string name="player_pref">Preferovaný přehrávač videí</string>
 <string name="player_settings_always_ask">Vždy se zeptat</string>
 <string name="player_settings_play_in_app">Interní přehrávač</string>

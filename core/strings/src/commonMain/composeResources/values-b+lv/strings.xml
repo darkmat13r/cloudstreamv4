@@ -449,6 +449,15 @@
 <string name="player_load_subtitles_online">Lejupielādēt no interneta</string>
 <string name="player_loaded_subtitles">Ielādēti %s</string>
 <string name="player_mute">Izslēgt skaņu</string>
+<string name="player_panel_failed">neizdevās</string>
+<string name="player_panel_keeps">saglabā %s</string>
+<string name="player_panel_on">Ieslēgts</string>
+<string name="player_panel_open">Atvērt</string>
+<string name="player_panel_quality_profile">Kvalitātes profils</string>
+<string name="player_panel_quality_unknown">kvalitāte nezināma</string>
+<string name="player_panel_retry_all">Mēģināt visus avotus vēlreiz</string>
+<string name="player_panel_style">Subtitru stils</string>
+<string name="player_panel_use">Izmantot</string>
 <string name="player_pref">Vēlamais video atskaņotājs</string>
 <string name="player_settings_play_in_app">Iekšējais atskaņotājs</string>
 <string name="player_size_settings">Players izmēra poga</string>

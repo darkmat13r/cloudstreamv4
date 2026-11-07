@@ -520,6 +520,15 @@
 <string name="player_mute">"Couper le son"</string>
 <string name="player_notification_channel_description">"La notification du lecteur pour contrôler la lecture en arrière-plan"</string>
 <string name="player_notification_channel_name">"Notifications du lecteur"</string>
+<string name="player_panel_failed">"échec"</string>
+<string name="player_panel_keeps" formatted="true">"garde %s"</string>
+<string name="player_panel_on">"Activé"</string>
+<string name="player_panel_open">"Ouvrir"</string>
+<string name="player_panel_quality_profile">"Profil de qualité"</string>
+<string name="player_panel_quality_unknown">"qualité inconnue"</string>
+<string name="player_panel_retry_all">"Réessayer toutes les sources"</string>
+<string name="player_panel_style">"Style des sous-titres"</string>
+<string name="player_panel_use">"Utiliser"</string>
 <string name="player_pref">"Lecteur vidéo préféré"</string>
 <string name="player_settings_always_ask">"Demandez toujours"</string>
 <string name="player_settings_play_in_app">"Lecteur interne"</string>

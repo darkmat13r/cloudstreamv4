@@ -520,6 +520,15 @@
 <string name="player_mute">Desativar som</string>
 <string name="player_notification_channel_description">Notificação do player para controlar a reprodução em segundo plano</string>
 <string name="player_notification_channel_name">Notificações de reprodução</string>
+<string name="player_panel_failed">falhou</string>
+<string name="player_panel_keeps">mantém %s</string>
+<string name="player_panel_on">Ativado</string>
+<string name="player_panel_open">Abrir</string>
+<string name="player_panel_quality_profile">Perfil de qualidade</string>
+<string name="player_panel_quality_unknown">qualidade desconhecida</string>
+<string name="player_panel_retry_all">Tentar todas as fontes de novo</string>
+<string name="player_panel_style">Estilo das legendas</string>
+<string name="player_panel_use">Usar</string>
 <string name="player_pref">Player de vídeo preferido</string>
 <string name="player_settings_always_ask">Perguntar sempre</string>
 <string name="player_settings_play_in_app">Player interno</string>

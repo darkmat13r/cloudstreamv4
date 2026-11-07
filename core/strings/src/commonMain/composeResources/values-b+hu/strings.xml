@@ -466,6 +466,15 @@
 <string name="player_load_subtitles_online">Betöltés az internetről</string>
 <string name="player_loaded_subtitles">%s betöltve</string>
 <string name="player_mute">Némítás</string>
+<string name="player_panel_failed">sikertelen</string>
+<string name="player_panel_keeps">megtartja: %s</string>
+<string name="player_panel_on">Be</string>
+<string name="player_panel_open">Megnyitás</string>
+<string name="player_panel_quality_profile">Minőségi profil</string>
+<string name="player_panel_quality_unknown">ismeretlen minőség</string>
+<string name="player_panel_retry_all">Összes forrás újrapróbálása</string>
+<string name="player_panel_style">Feliratstílus</string>
+<string name="player_panel_use">Használat</string>
 <string name="player_pref">Előnyben részesített videolejátszó</string>
 <string name="player_settings_always_ask">Mindig kérdezzen</string>
 <string name="player_settings_play_in_app">Belső lejátszó</string>

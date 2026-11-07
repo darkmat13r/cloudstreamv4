@@ -182,6 +182,15 @@
 <string name="player_hud_speed">"خێرایی"</string>
 <string name="player_hud_up_next" formatted="true">"دواتر · %s"</string>
 <string name="player_mute">"بێدەنگکردن"</string>
+<string name="player_panel_failed">"شکستی هێنا"</string>
+<string name="player_panel_keeps" formatted="true">"%s دەهێڵێتەوە"</string>
+<string name="player_panel_on">"چالاک"</string>
+<string name="player_panel_open">"کردنەوە"</string>
+<string name="player_panel_quality_profile">"پرۆفایلی کوالیتی"</string>
+<string name="player_panel_quality_unknown">"کوالیتی نەزانراو"</string>
+<string name="player_panel_retry_all">"هەموو سەرچاوەکان دووبارە تاقی بکەرەوە"</string>
+<string name="player_panel_style">"شێوازی ژێرنووس"</string>
+<string name="player_panel_use">"بەکارهێنان"</string>
 <string name="player_source_playing">"لێدەدرێت"</string>
 <string name="player_source_resumes_at" formatted="true">"گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت"</string>
 <string name="player_source_retry">"دووبارە هەوڵبدەرەوە"</string>

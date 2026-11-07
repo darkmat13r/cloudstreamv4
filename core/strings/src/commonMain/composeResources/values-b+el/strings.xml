@@ -476,6 +476,15 @@
 <string name="player_mute">Σίγαση</string>
 <string name="player_notification_channel_description">Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο</string>
 <string name="player_notification_channel_name">Ειδοποίησεις αναπαραγωγής</string>
+<string name="player_panel_failed">απέτυχε</string>
+<string name="player_panel_keeps">κρατά %s</string>
+<string name="player_panel_on">Ενεργό</string>
+<string name="player_panel_open">Άνοιγμα</string>
+<string name="player_panel_quality_profile">Προφίλ ποιότητας</string>
+<string name="player_panel_quality_unknown">άγνωστη ποιότητα</string>
+<string name="player_panel_retry_all">Επανάληψη όλων των πηγών</string>
+<string name="player_panel_style">Στυλ υποτίτλων</string>
+<string name="player_panel_use">Χρήση</string>
 <string name="player_pref">Προτεινόμενο πρόγραμμα αναπαραγωγής</string>
 <string name="player_settings_play_in_app">Ενσωματωμένο πρόγραμμα αναπαραγωγής</string>
 <string name="player_settings_select_cast_device">Επιλογή συσκευής για αναμετάδοση</string>

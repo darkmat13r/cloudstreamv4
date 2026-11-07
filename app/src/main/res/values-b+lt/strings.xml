@@ -280,6 +280,15 @@
 <string name="player_hud_speed">"Greitis"</string>
 <string name="player_hud_up_next" formatted="true">"Toliau · %s"</string>
 <string name="player_mute">"Nutildyti"</string>
+<string name="player_panel_failed">"nepavyko"</string>
+<string name="player_panel_keeps" formatted="true">"išlaiko %s"</string>
+<string name="player_panel_on">"Įjungta"</string>
+<string name="player_panel_open">"Atidaryti"</string>
+<string name="player_panel_quality_profile">"Kokybės profilis"</string>
+<string name="player_panel_quality_unknown">"kokybė nežinoma"</string>
+<string name="player_panel_retry_all">"Bandyti visus šaltinius iš naujo"</string>
+<string name="player_panel_style">"Subtitrų stilius"</string>
+<string name="player_panel_use">"Naudoti"</string>
 <string name="player_settings_play_in_app">"Integruotas grotuvas"</string>
 <string name="player_size_settings">"Grotuvo dydžio pakeitimo mygtukas"</string>
 <string name="player_size_settings_des">"Pašalinti juodas paraštes"</string>

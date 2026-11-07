@@ -237,6 +237,15 @@
 <string name="player_hud_speed">"Fart"</string>
 <string name="player_hud_up_next" formatted="true">"Neste · %s"</string>
 <string name="player_mute">"Slå av lyd"</string>
+<string name="player_panel_failed">"feila"</string>
+<string name="player_panel_keeps" formatted="true">"held på %s"</string>
+<string name="player_panel_on">"På"</string>
+<string name="player_panel_open">"Opne"</string>
+<string name="player_panel_quality_profile">"Kvalitetsprofil"</string>
+<string name="player_panel_quality_unknown">"ukjend kvalitet"</string>
+<string name="player_panel_retry_all">"Prøv alle kjeldene på nytt"</string>
+<string name="player_panel_style">"Stil for undertekstar"</string>
+<string name="player_panel_use">"Bruk"</string>
 <string name="player_size_settings_des">"Fjern dei svarte kantane"</string>
 <string name="player_source_playing">"Spelar"</string>
 <string name="player_source_resumes_at" formatted="true">"Bytet held på plassen din: held fram frå %1$s"</string>

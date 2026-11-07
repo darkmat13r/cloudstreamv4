@@ -512,6 +512,15 @@
 <string name="player_mute">Без звук</string>
 <string name="player_notification_channel_description">Известие на плейъра за контролиране на възпроизвеждането от фона</string>
 <string name="player_notification_channel_name">Известия на плейъра</string>
+<string name="player_panel_failed">неуспешно</string>
+<string name="player_panel_keeps">запазва %s</string>
+<string name="player_panel_on">Вкл.</string>
+<string name="player_panel_open">Отвори</string>
+<string name="player_panel_quality_profile">Профил за качество</string>
+<string name="player_panel_quality_unknown">неизвестно качество</string>
+<string name="player_panel_retry_all">Опитай всички източници отново</string>
+<string name="player_panel_style">Стил на субтитрите</string>
+<string name="player_panel_use">Използвай</string>
 <string name="player_pref">Предпочитан видео плеър</string>
 <string name="player_settings_always_ask">Винаги изпращай запитване</string>
 <string name="player_settings_play_in_app">Вътрешен плеър</string>

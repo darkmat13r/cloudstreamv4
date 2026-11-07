@@ -404,6 +404,15 @@
 <string name="player_load_subtitles_online">טען מהאינטרנט</string>
 <string name="player_loaded_subtitles">נטען %s</string>
 <string name="player_mute">השתקה</string>
+<string name="player_panel_failed">נכשל</string>
+<string name="player_panel_keeps">שומר על %s</string>
+<string name="player_panel_on">פועל</string>
+<string name="player_panel_open">פתיחה</string>
+<string name="player_panel_quality_profile">פרופיל איכות</string>
+<string name="player_panel_quality_unknown">איכות לא ידועה</string>
+<string name="player_panel_retry_all">לנסות שוב את כל המקורות</string>
+<string name="player_panel_style">סגנון כתוביות</string>
+<string name="player_panel_use">שימוש</string>
 <string name="player_pref">נגן וידאו מועדף</string>
 <string name="player_settings_play_in_app">נגן פנימי</string>
 <string name="player_size_settings">כפתור שינוי גודל הנגן</string>
