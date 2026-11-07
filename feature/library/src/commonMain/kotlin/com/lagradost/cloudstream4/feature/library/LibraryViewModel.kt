@@ -56,8 +56,14 @@ class LibraryViewModel(
     /**
      * Each service's last good read **in this session**, shown again where a new one fails or cannot be tried (5b). In
      * memory only: a service's lists are the user's account on someone else's site, and nothing here writes them down.
+     *
+     * Read from more than one coroutine, which a host's scope may run on more than one thread. An immutable map,
+     * replaced whole: a reader sees one map or the next, never one half written. Only the latest read writes it
+     * (`request != generation` returns first), so two writes do not race. `ConcurrentHashMap` would do too, on the
+     * JVM only, and this is common code.
      */
-    private val held = mutableMapOf<LibrarySourceId, List<SyncedList>>()
+    @Volatile
+    private var held: Map<LibrarySourceId, List<SyncedList>> = emptyMap()
 
     init {
         read()
@@ -292,7 +298,7 @@ class LibraryViewModel(
         }
         val known = runCatching { host.sources() }.getOrNull()
         if (request != generation) return
-        held[id] = lists
+        held = held + (id to lists)
         showSynced(lists, known, stale = null)
     }
 
