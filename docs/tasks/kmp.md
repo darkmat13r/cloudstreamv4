@@ -6093,8 +6093,18 @@ The boards are `Desktop Search.dc.html` S1 to S7, a board file in the owner's Cl
 **Decided** (reported to the PM):
 - Picks and chips last as long as the app runs. There is no desktop preference store yet, as with Home's bookmark
   filter (`KMP-55`).
-- A failure's detail goes through `withoutUrls()`, and the home directory becomes `~`, as `#200` did for Home. Before
-  this, the first line of a plugin's `errorString` reached the screen unredacted.
+- A failure's detail goes through `withoutUrls()`. Before this, the first line of a plugin's `errorString` reached the screen
+  unredacted.
+- **After review (`#221`):**
+  - `:desktopApp`'s `withoutUrls` is now the fourth synced copy of the BUG-43/44/47 rules, with the same case table
+    (`DesktopRedactionTest`). The sandbox's copy is `internal` to its module. So Home's, Search's and a title's lines now
+    keep a url's host, and lose its path, query, userinfo and fragment, plus `file:` URIs and the home, volume, storage and
+    Windows user paths. The old rule wrote `<url>` for the whole url. The home-directory-to-`~` rule is gone; `<path>`
+    covers it.
+  - Invisible characters are stripped **before** redacting, on Search and Home: one inside `://` hid the url from the
+    pattern, and stripping afterwards put it back together. Proved by mutation: with the old order,
+    `a url split by an invisible character does not reach the detail` fails with the whole token on screen.
+  - The failed-provider glyph is described with the existing `error` key.
 
 **Tests:**
 - `SearchScreenTest`: the Sources button and a chip; the panel's row, Done and scrim; and Escape closing the panel

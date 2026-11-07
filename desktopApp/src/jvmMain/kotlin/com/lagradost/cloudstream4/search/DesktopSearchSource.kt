@@ -15,6 +15,7 @@ import com.lagradost.cloudstream4.feature.search.SearchSourceHealth
 import com.lagradost.cloudstream4.feature.search.SearchSources
 import com.lagradost.cloudstream4.feature.search.SearchTypeFilter
 import com.lagradost.cloudstream4.feature.search.SearchTypeFilters
+import com.lagradost.cloudstream4.detail.withoutInvisible
 import com.lagradost.cloudstream4.detail.withoutUrls
 import java.util.concurrent.ConcurrentHashMap
 import kotlinx.coroutines.Dispatchers
@@ -215,7 +216,8 @@ class DesktopSearchSource : SearchSource {
     private fun List<Resource.Failure>.detail(): String =
         // The first line: the rest of errorString is a stack trace, which is not for this screen.
         // A plugin's words reach the screen and a pasted bug report: no address, no home directory (`KMP-56`, as `#200`).
-        map { it.errorString.trim().lineSequence().first().withoutUrls().withoutHome().cleanText(MAX_REASON_CHARS).ifEmpty { UNKNOWN_ERROR } }
+        // Invisible characters out first: one inside a url would hide it from the pattern (`#221` review).
+        map { it.errorString.trim().lineSequence().first().withoutInvisible().withoutUrls().cleanText(MAX_REASON_CHARS).ifEmpty { UNKNOWN_ERROR } }
             .distinct()
             .take(MAX_DETAIL_REASONS)
             .joinToString(DETAIL_SEPARATOR)
@@ -233,9 +235,6 @@ class DesktopSearchSource : SearchSource {
         dubLabel = null,
         watchProgress = null,
     )
-
-    private fun String.withoutHome(): String =
-        System.getProperty("user.home")?.takeIf { it.length > 1 }?.let { replace(it, "~") } ?: this
 
     /** Third-party text on its way to the screen: no control or format characters, and capped. */
     private fun String.cleanText(max: Int): String =

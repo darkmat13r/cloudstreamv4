@@ -76,6 +76,7 @@ import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.error
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_idle_body_desktop
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_clear_all
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_field_placeholder
@@ -321,7 +322,8 @@ private fun SourceChoiceRow(choice: SearchSourceChoice, selected: Boolean, onAct
             modifier = Modifier.padding(end = DesktopDimens.RowPadding),
         ) {
             if (choice.health == SearchSourceHealth.Failed) {
-                CloudStreamIcon(CloudStreamIcons.Warning, null, size = CloudStreamIconSize.Small, tint = colors.muted)
+                // Said, not only drawn: the glyph is the only sign the provider failed last time (`#221` review).
+                CloudStreamIcon(CloudStreamIcons.Warning, stringResource(Res.string.error), size = CloudStreamIconSize.Small, tint = colors.muted)
             }
             if (selected) CloudStreamIcon(CloudStreamIcons.Done, null, size = CloudStreamIconSize.Small)
         }

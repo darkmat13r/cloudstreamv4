@@ -116,10 +116,24 @@ class DesktopSearchSelectionTest {
         try {
             val partial = assertIs<SearchOutcome.Partial>(DesktopSearchSource().search("q"))
             assertTrue("HTTP 403" in partial.detail, partial.detail)
-            assertTrue("example.com" !in partial.detail && "s3cret" !in partial.detail, partial.detail)
+            // The host stays, as in every copy of the rules; the path and the token never do.
+            assertTrue("/x" !in partial.detail && "s3cret" !in partial.detail, partial.detail)
             assertTrue(home !in partial.detail, partial.detail)
         } finally {
             APIHolder.removePluginMapping(leaky)
+        }
+    }
+
+    /** `#221` review: cleaning after redacting would join a split url back together, on screen. */
+    @Test
+    fun `a url split by an invisible character does not reach the detail`() = runBlocking {
+        val split = Fake("Split", setOf(TvType.Movie), failure = "HTTP 403 for https:\u200B//cdn.example.com/x?token=s3cret")
+        APIHolder.addPluginMapping(split)
+        try {
+            val partial = assertIs<SearchOutcome.Partial>(DesktopSearchSource().search("q"))
+            assertTrue("s3cret" !in partial.detail && "/x" !in partial.detail, partial.detail)
+        } finally {
+            APIHolder.removePluginMapping(split)
         }
     }
 }
