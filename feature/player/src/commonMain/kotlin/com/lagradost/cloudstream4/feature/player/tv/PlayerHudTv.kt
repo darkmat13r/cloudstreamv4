@@ -31,6 +31,7 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
@@ -43,13 +44,14 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.primitive.Badge
 import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDot
 import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDotState
 
 import com.lagradost.cloudstream4.core.designsystem.target.GhostTextButton
-import com.lagradost.cloudstream4.core.designsystem.target.IconOnlyButton
+import com.lagradost.cloudstream4.core.designsystem.target.IconCell
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.action_open_play
@@ -170,7 +172,7 @@ private fun ChromeRow(state: PlayerHudState, clock: String, onAction: (PlayerHud
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
         verticalAlignment = Alignment.Top,
     ) {
-        IconOnlyButton(icon = CloudStreamIcons.Back, label = stringResource(Res.string.go_back), onClick = { onAction(PlayerHudAction.Back) })
+        HudCell(CloudStreamIcons.Back, stringResource(Res.string.go_back), { onAction(PlayerHudAction.Back) })
         Column(Modifier.weight(1f)) {
             Text(state.title, style = typography.railTitle, color = colors.ink, maxLines = 1, overflow = TextOverflow.Ellipsis)
             if (state.meta.isNotEmpty()) {
@@ -237,7 +239,8 @@ private fun LowerStack(
     ) {
         Times(state)
         Spacer(Modifier.height(CloudStreamDimens.MinFocusGap))
-        SeekCell(state, shownSeekMs, onAction, Modifier.focusRequester(seekCell))
+        // 7d: Down from the seek cell is play/pause, not whichever transport cell is nearest.
+        SeekCell(state, shownSeekMs, onAction, Modifier.focusRequester(seekCell).focusProperties { down = playPause })
         Spacer(Modifier.height(CloudStreamDimens.MinFocusGap))
         Transport(state, onAction, playPause)
         Spacer(Modifier.height(CloudStreamDimens.MinFocusGap))
@@ -337,25 +340,27 @@ private fun Transport(state: PlayerHudState, onAction: (PlayerHudAction) -> Unit
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        IconOnlyButton(
+        HudCell(
             icon = if (state.playing) CloudStreamIcons.Pause else CloudStreamIcons.Play,
-            label = stringResource(if (state.playing) Res.string.pause else Res.string.action_open_play),
+            description = stringResource(if (state.playing) Res.string.pause else Res.string.action_open_play),
             onClick = { onAction(PlayerHudAction.PlayPause) },
-            modifier = Modifier.focusRequester(playPause),
+            modifier = Modifier.focusRequester(playPause).focusProperties { left = FocusRequester.Cancel },
         )
-        IconOnlyButton(CloudStreamIcons.SeekBackward, stringResource(Res.string.player_hud_seek_back), { onAction(PlayerHudAction.SeekBackward) })
-        IconOnlyButton(CloudStreamIcons.SeekForward, stringResource(Res.string.player_hud_seek_forward), { onAction(PlayerHudAction.SeekForward) })
-        IconOnlyButton(
+        HudCell(CloudStreamIcons.SeekBackward, stringResource(Res.string.player_hud_seek_back), { onAction(PlayerHudAction.SeekBackward) })
+        HudCell(CloudStreamIcons.SeekForward, stringResource(Res.string.player_hud_seek_forward), { onAction(PlayerHudAction.SeekForward) })
+        HudCell(
             CloudStreamIcons.PreviousEpisode,
             stringResource(Res.string.player_hud_previous_episode),
             { onAction(PlayerHudAction.PreviousEpisode) },
             enabled = state.hasPrevious,
         )
-        IconOnlyButton(
+        // The row ends at the last cell: Right from it finds nothing, as 7d has nothing there to reach.
+        HudCell(
             CloudStreamIcons.NextEpisode,
             stringResource(Res.string.next_episode),
             { onAction(PlayerHudAction.NextEpisode) },
             enabled = state.hasNext,
+            modifier = Modifier.focusProperties { right = FocusRequester.Cancel },
         )
         Spacer(Modifier.weight(1f))
         state.upNext?.let { next ->
@@ -369,6 +374,26 @@ private fun Transport(state: PlayerHudState, onAction: (PlayerHudAction) -> Unit
                 modifier = Modifier.widthIn(max = PlayerHudDefaults.UpNextMaxWidth),
             )
         }
+    }
+}
+
+/**
+ * A transport or chrome cell, icon-only with its content description and no label on focus: the design system's rule
+ * for 7d's transport controls and the Back cell (the review of #159, `docs/tasks/design-system.md`). A disabled cell draws muted and is not a stop.
+ */
+@Composable
+private fun HudCell(icon: ImageVector, description: String, onClick: () -> Unit, modifier: Modifier = Modifier, enabled: Boolean = true) {
+    val colors = CloudStreamTheme.colors
+    IconCell(onClick = onClick, modifier = modifier, enabled = enabled) { focused ->
+        CloudStreamIcon(
+            icon = icon,
+            contentDescription = description,
+            tint = when {
+                !enabled -> colors.muted
+                focused -> colors.ink
+                else -> colors.ink2
+            },
+        )
     }
 }
 

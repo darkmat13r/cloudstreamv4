@@ -125,6 +125,10 @@ Waiting on the owner, from that switch: **voice search is lost on TV**. The prov
 the type chips came back with `KMP-42`, and a chip narrows a search. The full behaviour table is in
 `docs/tasks/kmp.md`.
 
+**The TV player draws artboard 7d since `KMP-64`**: a Compose HUD over the existing player (`FullScreenPlayer`), with
+the old Media3 controller off; `TvPlayerHudSwitch.useComposeHud = false` is the rollback. The pickers it opens are the old
+dialogs until `Q25`. It shows titles, source names, quality and track labels only, never a URL, header or path.
+
 **Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
 process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code
 no longer runs in the app's JVM, and where there is no sandbox nothing loads. Try it headless:

@@ -3,6 +3,7 @@ package com.lagradost.cloudstream4.player
 import android.content.Context
 import android.media.AudioManager
 import android.net.Uri
+import android.view.KeyEvent
 import androidx.navigation.fragment.NavHostFragment
 import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
@@ -22,7 +23,6 @@ import com.lagradost.cloudstream3.ui.player.ExtractorUri
 import com.lagradost.cloudstream3.ui.player.GeneratorPlayer
 import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
-import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
 import org.junit.After
 import org.junit.Assert.assertEquals
@@ -148,12 +148,13 @@ class TvPlayerHudNavigationTest {
             assertTrue(device.wait(Until.hasObject(By.text(SOURCE)), WAIT_MS))
             assertTrue("It did not hide while playing", device.wait(Until.gone(By.text(SOURCE)), HIDE_WAIT_MS))
 
-            dpad.press(Dpad.Right)
-            assertTrue("No readout", device.wait(Until.hasObject(By.textStartsWith("+00:10")), WAIT_MS))
+            // Sent and checked at once: the readout lives 1500 ms, and DpadDriver.press waits on the accessibility tree.
+            device.pressKeyCode(KeyEvent.KEYCODE_DPAD_RIGHT)
+            assertTrue("No readout", device.wait(Until.hasObject(By.textStartsWith("+00:10")), READOUT_WAIT_MS))
             assertFalse("A hidden scrub revealed the HUD", device.hasObject(By.text(SOURCE)))
             assertTrue("The readout stayed", device.wait(Until.gone(By.textStartsWith("+00:10")), WAIT_MS))
 
-            dpad.press(Dpad.Up)
+            device.pressKeyCode(KeyEvent.KEYCODE_DPAD_UP)
             assertTrue("Up did not reveal", device.wait(Until.hasObject(By.text(SOURCE)), WAIT_MS))
             assertEquals(PAUSE, dpad.focused())
         }
@@ -180,5 +181,6 @@ class TvPlayerHudNavigationTest {
         const val WAIT_MS = 15_000L
         const val HIDE_WAIT_MS = 8_000L
         const val NO_HUD_WAIT_MS = 4_000L
+        const val READOUT_WAIT_MS = 1_400L
     }
 }
