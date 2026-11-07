@@ -3196,6 +3196,7 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field episodes I
 	public static field home_bookmarks_count I
 	public static field home_sections_failed I
+	public static field library_title_count I
 	public static field links_hidden I
 	public static field search_state_no_results_body I
 	public static field search_state_no_suggestions_action I
@@ -3629,10 +3630,19 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field legal_notice_text I
 	public static field library I
 	public static field library_episodes_progress I
+	public static field library_go_to_list I
+	public static field library_list_empty_body I
+	public static field library_list_empty_headline I
 	public static field library_not_connected I
 	public static field library_on_device I
+	public static field library_sort_current I
+	public static field library_sort_supported I
+	public static field library_sort_unsupported I
 	public static field library_source I
 	public static field library_source_note I
+	public static field library_sync_failed I
+	public static field library_sync_retry I
+	public static field library_sync_unreachable I
 	public static field library_synced_format I
 	public static field lightnovel I
 	public static field limit_title I
@@ -3930,6 +3940,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field search_state_retry_failed I
 	public static field search_suggestions I
 	public static field search_suggestions_des I
+	public static field search_suggestions_return_hint I
 	public static field search_tv_clear_all I
 	public static field search_tv_field_placeholder I
 	public static field search_tv_recent_headline I
