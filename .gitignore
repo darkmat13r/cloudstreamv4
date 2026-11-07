@@ -232,3 +232,7 @@ fabric.properties
 # in this repo, and Claude Code only loads them from this path.
 /.claude/*
 !/.claude/rules/
+
+# Local-only: design exports and AI working memory (not published)
+/design/
+/docs/memory/
