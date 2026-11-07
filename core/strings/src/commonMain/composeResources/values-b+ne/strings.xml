@@ -6,6 +6,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d असफल</item><item quantity="other">%d असफल</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d खण्ड लोड हुन सकेन</item><item quantity="other">%d खण्डहरू लोड हुन सकेनन्</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d शीर्षक</item><item quantity="other">%d शीर्षकहरू</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d स्रोतमा खोज्नुहोस्</item><item quantity="other">सबै %d स्रोतहरूमा खोज्नुहोस्</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">जे भए पनि %d स्रोतमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।</item><item quantity="other">जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d स्रोत</item><item quantity="other">%d स्रोतहरू</item></plurals>
@@ -108,6 +109,9 @@
 <string name="home_play">प्ले</string>
 <string name="home_search_only_body">तपाईंका कुनै पनि एक्सटेन्सनमा होम पेज छैन, तर तपाईं तिनमा अझै खोज्न सक्नुहुन्छ।</string>
 <string name="home_source_none_subtitle">पङ्क्ति छैन · तपाईंका पङ्क्ति रहन्छन्</string>
+<string name="library_go_to_list">%s मा जानुहोस्</string>
+<string name="library_list_empty_body">तपाईंले %s मा थप्नुभएका शीर्षकहरू यहाँ आउँछन्।</string>
+<string name="library_list_empty_headline">%s मा केही छैन</string>
 <string name="links_reloaded_toast">लिङ्कहरू रिलोड गरियो</string>
 <string name="load_more">थप लोड गर्नुहोस्</string>
 <string name="loading">लोड हुँदै…</string>
@@ -226,7 +230,14 @@
 <string name="vpn_torrent">यो प्रोभाईडर torrent हो त्यसैले VPN प्रयाेग गर्नुहुन सिफारिश गरिन्छ</string>
 <string name="library_not_connected">जडान छैन</string>
 <string name="library_on_device">यन्त्रमा</string>
+<string name="library_sort_current">क्रम: %s</string>
+<string name="library_sort_supported">%1$s ले %3$d मध्ये %2$d समर्थन गर्छ</string>
+<string name="library_sort_unsupported">%s ले यसलाई सुरक्षित गर्दैन</string>
 <string name="library_source">लाइब्रेरी स्रोत</string>
 <string name="library_source_note">एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ</string>
+<string name="library_sync_failed">%1$s सिंक गर्न सकिएन। यी %2$s अघिका हुन्।</string>
+<string name="library_sync_retry">फेरि सिंक गर्नुहोस्</string>
+<string name="library_sync_unreachable">पुग्न सकिएन · %s अघि क्यास गरिएको</string>
 <string name="library_synced_format">%s अघि सिंक गरियो</string>
+<string name="search_suggestions_return_hint">Return ले सबैतिर खोज्छ</string>
 </resources>

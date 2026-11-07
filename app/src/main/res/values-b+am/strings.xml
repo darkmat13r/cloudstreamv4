@@ -4,6 +4,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d አልተሳካም"</item><item quantity="other">"%d አልተሳኩም"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ዕልባት"</item><item quantity="other">"%d ዕልባቶች"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d ክፍል መጫን አልተቻለም"</item><item quantity="other">"%d ክፍል መጫን አልተቻለም"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d ርዕስ"</item><item quantity="other">"%d ርዕሶች"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ምንጭ ፈልግ"</item><item quantity="other">"ሁሉንም %d ምንጮች ፈልግ"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"ለማንኛውም %d ምንጭ ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።"</item><item quantity="other">"ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ምንጭ"</item><item quantity="other">"%d ምንጮች"</item></plurals>
@@ -107,10 +108,19 @@
 <string name="home_play">"አጫውት"</string>
 <string name="home_search_only_body">"ከቅጥያዎችህ አንዳቸውም መነሻ ገጽ የላቸውም፣ ነገር ግን አሁንም በእነሱ መፈለግ ትችላለህ።"</string>
 <string name="home_source_none_subtitle">"ረድፎች የሉም · የእርስዎ ረድፎች ይቆያሉ"</string>
+<string name="library_go_to_list" formatted="true">"ወደ %s ሂድ"</string>
+<string name="library_list_empty_body" formatted="true">"ወደ %s የሚያክሏቸው ርዕሶች እዚህ ይገኛሉ።"</string>
+<string name="library_list_empty_headline" formatted="true">"በ%s ውስጥ ምንም የለም"</string>
 <string name="library_not_connected">"አልተገናኘም"</string>
 <string name="library_on_device">"በመሣሪያ ላይ"</string>
+<string name="library_sort_current" formatted="true">"ደርድር፦ %s"</string>
+<string name="library_sort_supported" formatted="true">"%1$s ከ%3$d %2$d ይደግፋል"</string>
+<string name="library_sort_unsupported" formatted="true">"በ%s አይቀመጥም"</string>
 <string name="library_source">"የቤተ-መጽሐፍት ምንጭ"</string>
 <string name="library_source_note">"አንድ በአንድ · መቀየር እንደገና ይጭናል"</string>
+<string name="library_sync_failed" formatted="true">"%1$sን ማመሳሰል አልተቻለም። እነዚህ ከ%2$s በፊት የነበሩ ናቸው።"</string>
+<string name="library_sync_retry">"እንደገና አመሳስል"</string>
+<string name="library_sync_unreachable" formatted="true">"ሊደረስበት አልቻለም · ከ%s በፊት የተቀመጠ"</string>
 <string name="library_synced_format" formatted="true">"ከ%s በፊት ተመሳስሏል"</string>
 <string name="load_more">"ተጨማሪ ጫን"</string>
 <string name="loading">"በመጫን ላይ…"</string>
@@ -165,6 +175,7 @@
 <string name="search_state_no_results_type_filter" formatted="true">"%s ብቻ። የአይነት ማጣሪያዎ ፍለጋውን እያጠበበው ነው።"</string>
 <string name="search_state_no_suggestions_detail">"0 ጥቆማዎች · 0 የቅርብ ጊዜ ተዛማጆች"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"ከ«%s» ጋር የሚዛመድ ምንም የለም"</string>
+<string name="search_suggestions_return_hint">"Return ሁሉንም ይፈልጋል"</string>
 <string name="search_tv_source_failed" formatted="true">"አልተሳካም %s"</string>
 <string name="search_tv_source_pinned">"ተሰክቷል"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"ከ%2$d ውስጥ %1$d ነቅተዋል · ለውጦች በተከናውኗል ላይ ይተገበራሉ"</string>

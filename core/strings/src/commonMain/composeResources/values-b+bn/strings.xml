@@ -6,6 +6,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%dটি ব্যর্থ</item><item quantity="other">%dটি ব্যর্থ</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d টি বুকমার্ক</item><item quantity="other">%d টি বুকমার্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%dটি বিভাগ লোড করা যায়নি</item><item quantity="other">%dটি বিভাগ লোড করা যায়নি</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%dটি শিরোনাম</item><item quantity="other">%dটি শিরোনাম</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%dটি উৎসে খুঁজুন</item><item quantity="other">সব %dটি উৎসে খুঁজুন</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item><item quantity="other">তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d উৎস</item><item quantity="other">%d উৎস</item></plurals>
@@ -239,10 +240,19 @@
 <string name="kitsu_settings">Kitsu থেকে পোস্টারসমূহ প্রদর্শন করুন</string>
 <string name="legal_notice">দাবিত্যাগ</string>
 <string name="library">লাইব্রেরী</string>
+<string name="library_go_to_list">%s-এ যান</string>
+<string name="library_list_empty_body">আপনি %s-এ যে শিরোনাম যোগ করেন তা এখানে আসে।</string>
+<string name="library_list_empty_headline">%s-এ কিছু নেই</string>
 <string name="library_not_connected">সংযুক্ত নয়</string>
 <string name="library_on_device">ডিভাইসে</string>
+<string name="library_sort_current">সাজান: %s</string>
+<string name="library_sort_supported">%1$s %3$dটির মধ্যে %2$dটি সমর্থন করে</string>
+<string name="library_sort_unsupported">%s সংরক্ষণ করে না</string>
 <string name="library_source">লাইব্রেরির উৎস</string>
 <string name="library_source_note">একবারে একটি · পরিবর্তন করলে আবার লোড হয়</string>
+<string name="library_sync_failed">%1$s সিঙ্ক করা যায়নি। এগুলি %2$s আগের।</string>
+<string name="library_sync_retry">আবার সিঙ্ক করুন</string>
+<string name="library_sync_unreachable">পৌঁছানো যাচ্ছে না · %s আগে ক্যাশ করা</string>
 <string name="library_synced_format">%s আগে সিঙ্ক হয়েছে</string>
 <string name="lightnovel">আমাদের তৈরি ছোট উপন্যাস পড়ার অ্যাপ্লিকেশন</string>
 <string name="limit_title">ভিডিও প্লেয়ারের টাইটেল এ সর্বোচ্চ ক্যারেক্টার</string>
@@ -386,6 +396,7 @@
 <string name="search_state_no_suggestions_headline">“%s”-এর সাথে কিছুই মেলেনি</string>
 <string name="search_suggestions">সার্চ সাজেশন</string>
 <string name="search_suggestions_des">টাইপ করার সময় সার্চ সাজেশন দেখান</string>
+<string name="search_suggestions_return_hint">Return সবখানে খোঁজে</string>
 <string name="search_tv_source_failed">ব্যর্থ %s</string>
 <string name="search_tv_source_pinned">পিন করা</string>
 <string name="search_tv_sources_panel_meta">%2$d-এর মধ্যে %1$d চালু · সম্পন্ন চাপলে পরিবর্তন প্রযোজ্য হবে</string>

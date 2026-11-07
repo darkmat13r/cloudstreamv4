@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="one">"%d shkarkim në radhë"</item><item quantity="other">"%d shkarkime në radhë"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d TË RUAJTURA"</item><item quantity="other">"%d TË RUAJTURA"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nuk mund të ngarkohej %d seksion"</item><item quantity="other">"Nuk mund të ngarkoheshin %d seksione"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d titull"</item><item quantity="other">"%d tituj"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d link i fshehur"</item><item quantity="other">"%d linqe të fshehura"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Kërko në %d burim"</item><item quantity="other">"Kërko në të gjitha %d burimet"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në %d burim."</item><item quantity="other">"Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet."</item></plurals>
@@ -370,10 +371,19 @@
 <string name="kitsu_settings">"Shfaq posterat nga Kitsu"</string>
 <string name="legal_notice">"Mohim përgjegjësie"</string>
 <string name="library">"Bilblioteka"</string>
+<string name="library_go_to_list" formatted="true">"Shko te %s"</string>
+<string name="library_list_empty_body" formatted="true">"Titujt që shton te %s shfaqen këtu."</string>
+<string name="library_list_empty_headline" formatted="true">"Asgjë te %s"</string>
 <string name="library_not_connected">"Nuk është lidhur"</string>
 <string name="library_on_device">"Në pajisje"</string>
+<string name="library_sort_current" formatted="true">"Renditja: %s"</string>
+<string name="library_sort_supported" formatted="true">"%1$s mbështet %2$d nga %3$d"</string>
+<string name="library_sort_unsupported" formatted="true">"Nuk ruhet nga %s"</string>
 <string name="library_source">"Burimi i bibliotekës"</string>
 <string name="library_source_note">"Një në një kohë · ndërrimi ringarkon"</string>
+<string name="library_sync_failed" formatted="true">"%1$s nuk u sinkronizua dot. Këto janë para %2$s."</string>
+<string name="library_sync_retry">"Sinkronizo sërish"</string>
+<string name="library_sync_unreachable" formatted="true">"E paarritshme · në memorie para %s"</string>
 <string name="library_synced_format" formatted="true">"Sinkronizuar para %s"</string>
 <string name="lightnovel">"Aplikacioni Light Novel nga të njëjtit developer-a"</string>
 <string name="limit_title">"Numri maksimal i karaktereve të titullit"</string>
@@ -620,6 +630,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"Asgjë nuk përputhet me “%s”"</string>
 <string name="search_suggestions">"Kërkime të sugjeruara"</string>
 <string name="search_suggestions_des">"Trego sugjerimet ndërkohë që shkruani"</string>
+<string name="search_suggestions_return_hint">"Return kërkon kudo"</string>
 <string name="search_tv_source_failed" formatted="true">"DËSHTOI %s"</string>
 <string name="search_tv_source_pinned">"I FIKSUAR"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d NGA %2$d AKTIVIZUAR · NDRYSHIMET ZBATOHEN ME U KRYE"</string>

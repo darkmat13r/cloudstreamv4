@@ -4,6 +4,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d विफल"</item><item quantity="other">"%d विफल"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d बुकमार्क"</item><item quantity="other">"%d बुकमार्क"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d अनुभाग लोड नहीं हो सका"</item><item quantity="other">"%d अनुभाग लोड नहीं हो सके"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d शीर्षक"</item><item quantity="other">"%d शीर्षक"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d स्रोत में खोजें"</item><item quantity="other">"सभी %d स्रोतों में खोजें"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"फिर भी %d स्रोत में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।"</item><item quantity="other">"फिर भी सभी %d स्रोतों में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d स्रोत"</item><item quantity="other">"%d स्रोत"</item></plurals>
@@ -251,10 +252,19 @@
 <string name="kitsu_settings">"Kitsu से पोस्टर दिखाएं"</string>
 <string name="legal_notice">"अस्वीकरण"</string>
 <string name="library">"लाइब्रेरी"</string>
+<string name="library_go_to_list" formatted="true">"%s पर जाएँ"</string>
+<string name="library_list_empty_body" formatted="true">"आप %s में जो शीर्षक जोड़ते हैं वे यहाँ आते हैं।"</string>
+<string name="library_list_empty_headline" formatted="true">"%s में कुछ नहीं"</string>
 <string name="library_not_connected">"कनेक्ट नहीं है"</string>
 <string name="library_on_device">"डिवाइस पर"</string>
+<string name="library_sort_current" formatted="true">"क्रम: %s"</string>
+<string name="library_sort_supported" formatted="true">"%1$s %3$d में से %2$d का समर्थन करता है"</string>
+<string name="library_sort_unsupported" formatted="true">"%s इसे सहेजता नहीं"</string>
 <string name="library_source">"लाइब्रेरी स्रोत"</string>
 <string name="library_source_note">"एक समय में एक · बदलने पर फिर से लोड होता है"</string>
+<string name="library_sync_failed" formatted="true">"%1$s सिंक नहीं हो सका। ये %2$s पहले के हैं।"</string>
+<string name="library_sync_retry">"फिर से सिंक करें"</string>
+<string name="library_sync_unreachable" formatted="true">"पहुँच नहीं · %s पहले कैश किया"</string>
 <string name="library_synced_format" formatted="true">"%s पहले सिंक हुआ"</string>
 <string name="lightnovel">"उन्हीं डेवलपर्स द्वारा Light novel ऐप"</string>
 <string name="limit_title">"वीडियो प्लेयर शीर्षक अधिकतम वर्ण"</string>
@@ -400,6 +410,7 @@
 <string name="search_state_no_results_type_filter" formatted="true">"सिर्फ़ %s। आपका प्रकार फ़िल्टर खोज को सीमित कर रहा है।"</string>
 <string name="search_state_no_suggestions_detail">"0 सुझाव · 0 हालिया मिलान"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"“%s” से कुछ भी मेल नहीं खाता"</string>
+<string name="search_suggestions_return_hint">"Return सब जगह खोजता है"</string>
 <string name="search_tv_source_failed" formatted="true">"विफल %s"</string>
 <string name="search_tv_source_pinned">"पिन किया गया"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%2$d में से %1$d चालू · बदलाव हो गया दबाने पर लागू होंगे"</string>

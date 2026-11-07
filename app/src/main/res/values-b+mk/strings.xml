@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="one">"%d преземање во редицата"</item><item quantity="other">"%d преземања во редицата"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ОБЕЛЕЖУВАЧ"</item><item quantity="other">"%d ОБЕЛЕЖУВАЧИ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d дел не се вчита"</item><item quantity="other">"%d делови не се вчитаа"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d наслов"</item><item quantity="other">"%d наслови"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Барај во %d извор"</item><item quantity="other">"Барај во сите %d извори"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во %d извор."</item><item quantity="other">"Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во сите %d извори."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ИЗВОР"</item><item quantity="other">"%d ИЗВОРИ"</item></plurals>
@@ -369,10 +370,19 @@
 <string name="kitsu_settings">"Прикажи постери од Kitsu"</string>
 <string name="legal_notice">"Disclaimer"</string>
 <string name="library">"Библиотека"</string>
+<string name="library_go_to_list" formatted="true">"Оди во „%s“"</string>
+<string name="library_list_empty_body" formatted="true">"Насловите што ги додавате во „%s“ се појавуваат тука."</string>
+<string name="library_list_empty_headline" formatted="true">"Нема ништо во „%s“"</string>
 <string name="library_not_connected">"Не е поврзано"</string>
 <string name="library_on_device">"На уредот"</string>
+<string name="library_sort_current" formatted="true">"Подредување: %s"</string>
+<string name="library_sort_supported" formatted="true">"%1$s поддржува %2$d од %3$d"</string>
+<string name="library_sort_unsupported" formatted="true">"%s не го зачувува"</string>
 <string name="library_source">"Извор на библиотеката"</string>
 <string name="library_source_note">"Еден по еден · менувањето превчитува"</string>
+<string name="library_sync_failed" formatted="true">"%1$s не може да се синхронизира. Ова е од пред %2$s."</string>
+<string name="library_sync_retry">"Повторно синхронизирај"</string>
+<string name="library_sync_unreachable" formatted="true">"Недостапно · кеширано пред %s"</string>
 <string name="library_synced_format" formatted="true">"Синхронизирано пред %s"</string>
 <string name="lightnovel">"Едноставна апликација за новели од истите развивачи"</string>
 <string name="limit_title">"Наслов на видео плеер максимални знаци"</string>
@@ -616,6 +626,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"Ништо не одговара на „%s“"</string>
 <string name="search_suggestions">"Предлози за пребарување"</string>
 <string name="search_suggestions_des">"Прикажувај предлози за пребарување додека пишуваш"</string>
+<string name="search_suggestions_return_hint">"Return бара насекаде"</string>
 <string name="search_tv_source_failed" formatted="true">"НЕУСПЕШНО %s"</string>
 <string name="search_tv_source_pinned">"ЗАКАЧЕНО"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d ОД %2$d ОВОЗМОЖЕНИ · ПРОМЕНИТЕ СЕ ПРИМЕНУВААТ ПО ГОТОВО"</string>

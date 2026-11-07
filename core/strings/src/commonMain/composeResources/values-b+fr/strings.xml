@@ -8,6 +8,7 @@
 <plurals name="downloads_queued"><item quantity="one">%d téléchargement en attente</item><item quantity="many">%d téléchargements en attente</item><item quantity="other">%d téléchargements en attente</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARQUE-PAGE</item><item quantity="many">%d DE MARQUE-PAGES</item><item quantity="other">%d MARQUE-PAGES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d section n'a pas pu être chargée</item><item quantity="many">%d sections n'ont pas pu être chargées</item><item quantity="other">%d sections n'ont pas pu être chargées</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d titre</item><item quantity="many">%d titres</item><item quantity="other">%d titres</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d lien caché</item><item quantity="many">%d liens cachés</item><item quantity="other">%d liens cachés</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Rechercher dans %d source</item><item quantity="many">Rechercher dans les %d sources</item><item quantity="other">Rechercher dans les %d sources</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Appuyez sur la touche de recherche du clavier pour rechercher quand même dans %d source.</item><item quantity="many">Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.</item><item quantity="other">Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.</item></plurals>
@@ -370,10 +371,19 @@
 <string name="kitsu_settings">Montrer les affiches provenant de Kitsu</string>
 <string name="legal_notice">Non-responsabilité</string>
 <string name="library">Bibliothèque</string>
+<string name="library_go_to_list">Aller à « %s »</string>
+<string name="library_list_empty_body">Les titres que vous ajoutez à « %s » apparaissent ici.</string>
+<string name="library_list_empty_headline">Rien dans « %s »</string>
 <string name="library_not_connected">Non connecté</string>
 <string name="library_on_device">Sur l'appareil</string>
+<string name="library_sort_current">Tri : %s</string>
+<string name="library_sort_supported">%1$s prend en charge %2$d sur %3$d</string>
+<string name="library_sort_unsupported">Non stocké par %s</string>
 <string name="library_source">Source de la bibliothèque</string>
 <string name="library_source_note">Une à la fois · changer recharge</string>
+<string name="library_sync_failed">Impossible de synchroniser %1$s. Ces données datent d'il y a %2$s.</string>
+<string name="library_sync_retry">Resynchroniser</string>
+<string name="library_sync_unreachable">Injoignable · en cache depuis %s</string>
 <string name="library_synced_format">Synchronisé il y a %s</string>
 <string name="lightnovel">Application Light Novel par les mêmes devs</string>
 <string name="limit_title">Nombre maximal de caractères dans le titre du lecteur vidéo</string>
@@ -620,6 +630,7 @@
 <string name="search_state_no_suggestions_headline">Aucun résultat pour « %s »</string>
 <string name="search_suggestions">Suggestions de recherche</string>
 <string name="search_suggestions_des">Afficher des suggestions de recherche pendant la saisie</string>
+<string name="search_suggestions_return_hint">Entrée cherche partout</string>
 <string name="search_tv_source_failed">ÉCHEC %s</string>
 <string name="search_tv_source_pinned">ÉPINGLÉ</string>
 <string name="search_tv_sources_panel_meta">%1$d SUR %2$d ACTIVÉS · LES MODIFICATIONS PRENNENT EFFET AVEC FINIR</string>

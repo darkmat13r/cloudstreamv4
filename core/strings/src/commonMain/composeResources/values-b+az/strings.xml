@@ -6,6 +6,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d uğursuz</item><item quantity="other">%d uğursuz</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ƏLFƏCİN</item><item quantity="other">%d ƏLFƏCİN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d bölmə yüklənmədi</item><item quantity="other">%d bölmə yüklənmədi</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d başlıq</item><item quantity="other">%d başlıq</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d mənbədə axtar</item><item quantity="other">Bütün %d mənbədə axtar</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Yenə də %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.</item><item quantity="other">Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d MƏNBƏ</item><item quantity="other">%d MƏNBƏ</item></plurals>
@@ -131,10 +132,19 @@
 <string name="home_source_none_subtitle">SIRA YOXDUR · SIRALARINIZ QALIR</string>
 <string name="kitsu_settings">Kitsu afişalarını, posterlərini göstər</string>
 <string name="library">Kitabxana</string>
+<string name="library_go_to_list">%s siyahısına keç</string>
+<string name="library_list_empty_body">%s siyahısına əlavə etdiyiniz başlıqlar burada görünür.</string>
+<string name="library_list_empty_headline">%s boşdur</string>
 <string name="library_not_connected">Qoşulmayıb</string>
 <string name="library_on_device">Cihazda</string>
+<string name="library_sort_current">Sırala: %s</string>
+<string name="library_sort_supported">%1$s %3$d meyardan %2$d-ni dəstəkləyir</string>
+<string name="library_sort_unsupported">%s tərəfindən saxlanmır</string>
 <string name="library_source">Kitabxana mənbəyi</string>
 <string name="library_source_note">Eyni anda bir · dəyişmək yenidən yükləyir</string>
+<string name="library_sync_failed">%1$s sinxronlaşdırılmadı. Bunlar %2$s əvvəlkidir.</string>
+<string name="library_sync_retry">Yenidən sinxronlaşdır</string>
+<string name="library_sync_unreachable">Əlçatmazdır · %s əvvəl keşlənib</string>
 <string name="library_synced_format">%s əvvəl sinxronlaşdırılıb</string>
 <string name="live_singular">Canlı yayım</string>
 <string name="livestreams">Canlı yayımlar</string>
@@ -206,6 +216,7 @@
 <string name="search_state_no_results_type_filter">Yalnız %s. Növ filtriniz axtarışı daraldır.</string>
 <string name="search_state_no_suggestions_detail">0 TƏKLİF · 0 SON UYĞUNLUQ</string>
 <string name="search_state_no_suggestions_headline">«%s» ilə uyğun heç nə yoxdur</string>
+<string name="search_suggestions_return_hint">Return hamısında axtarır</string>
 <string name="search_tv_source_failed">UĞURSUZ %s</string>
 <string name="search_tv_source_pinned">SABİTLƏNİB</string>
 <string name="search_tv_sources_panel_meta">%2$d İÇİNDƏN %1$d AKTİV · DƏYİŞİKLİKLƏR HAZIR İLƏ TƏTBİQ OLUNUR</string>

@@ -8,6 +8,7 @@
 <plurals name="downloads_queued"><item quantity="zero">%d لا يوجد تنزيلات في قائمة الانتظار</item><item quantity="one">%d تنزيل واحد قيد الانتظار</item><item quantity="two">%d تنزيلان قيد الانتظار</item><item quantity="few">%d تنزيلات قيد الانتظار</item><item quantity="many">%d تنزيل قيد الانتظار</item><item quantity="other">%d تنزيل قيد الانتظار</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="zero">%d إشارة مرجعية</item><item quantity="one">%d إشارة مرجعية</item><item quantity="two">%d إشارتان مرجعيتان</item><item quantity="few">%d إشارات مرجعية</item><item quantity="many">%d إشارة مرجعية</item><item quantity="other">%d إشارة مرجعية</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">تعذر تحميل %d قسم</item><item quantity="one">تعذر تحميل %d قسم</item><item quantity="two">تعذر تحميل %d قسمين</item><item quantity="few">تعذر تحميل %d أقسام</item><item quantity="many">تعذر تحميل %d قسمًا</item><item quantity="other">تعذر تحميل %d قسم</item></plurals>
+<plurals name="library_title_count"><item quantity="zero">%d عنوان</item><item quantity="one">%d عنوان</item><item quantity="two">%d عنوانان</item><item quantity="few">%d عناوين</item><item quantity="many">%d عنوانًا</item><item quantity="other">%d عنوان</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="zero">ابحث في %d مصدر</item><item quantity="one">ابحث في %d مصدر</item><item quantity="two">ابحث في جميع المصادر الـ%d</item><item quantity="few">ابحث في جميع المصادر الـ%d</item><item quantity="many">ابحث في جميع المصادر الـ%d</item><item quantity="other">ابحث في جميع المصادر الـ%d</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="zero">اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.</item><item quantity="one">اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.</item><item quantity="two">اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.</item><item quantity="few">اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.</item><item quantity="many">اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.</item><item quantity="other">اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="zero">%d مصدر</item><item quantity="one">%d مصدر</item><item quantity="two">%d مصدران</item><item quantity="few">%d مصادر</item><item quantity="many">%d مصدرًا</item><item quantity="other">%d مصدر</item></plurals>
@@ -369,10 +370,19 @@
 <string name="kitsu_settings">عرض ملصقات من كيتسو</string>
 <string name="legal_notice">إخلاء مسؤولية</string>
 <string name="library">المكتبة</string>
+<string name="library_go_to_list">الانتقال إلى %s</string>
+<string name="library_list_empty_body">العناوين التي تضيفها إلى %s تظهر هنا.</string>
+<string name="library_list_empty_headline">لا شيء في %s</string>
 <string name="library_not_connected">غير متصل</string>
 <string name="library_on_device">على الجهاز</string>
+<string name="library_sort_current">الترتيب: %s</string>
+<string name="library_sort_supported">يدعم %1$s %2$d من %3$d</string>
+<string name="library_sort_unsupported">لا يخزّنه %s</string>
 <string name="library_source">مصدر المكتبة</string>
 <string name="library_source_note">مصدر واحد في كل مرة · التبديل يعيد التحميل</string>
+<string name="library_sync_failed">تعذّرت مزامنة %1$s. هذه من قبل %2$s.</string>
+<string name="library_sync_retry">إعادة المزامنة</string>
+<string name="library_sync_unreachable">تعذّر الوصول · مخزّن منذ %s</string>
 <string name="library_synced_format">تمت المزامنة منذ %s</string>
 <string name="lightnovel">تطبيق روايات خفيف من نفس المطورين</string>
 <string name="limit_title">أقصى عدد لحروف عنوان مُشغل الفيديو</string>
@@ -619,6 +629,7 @@
 <string name="search_state_no_suggestions_headline">لا شيء يطابق «%s»</string>
 <string name="search_suggestions">اقتراحات البحث</string>
 <string name="search_suggestions_des">عرض اقتراحات البحث أثناء الكتابة</string>
+<string name="search_suggestions_return_hint">Return يبحث في الكل</string>
 <string name="search_tv_source_failed">فشل %s</string>
 <string name="search_tv_source_pinned">مثبّت</string>
 <string name="search_tv_sources_panel_meta">%1$d من %2$d مفعّل · تُطبَّق التغييرات عند «تم»</string>

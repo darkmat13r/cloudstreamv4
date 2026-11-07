@@ -8,6 +8,7 @@
 <plurals name="downloads_queued"><item quantity="one">%d indirme kuyrukta</item><item quantity="other">%d indirilecekler kuyruğa alındı</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d YER İMİ</item><item quantity="other">%d YER İMİ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d kısım yüklenemedi</item><item quantity="other">%d kısım yüklenemedi</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d başlık</item><item quantity="other">%d başlık</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d gizli bağlantı</item><item quantity="other">%d gizli bağlantı</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d kaynakta ara</item><item quantity="other">Tüm %d kaynakta ara</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Yine de %d kaynakta aramak için klavyenin arama tuşuna basın.</item><item quantity="other">Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın.</item></plurals>
@@ -370,10 +371,19 @@
 <string name="kitsu_settings">Kitsu posterlerini göster</string>
 <string name="legal_notice">Yasal uyarı</string>
 <string name="library">Kütüphane</string>
+<string name="library_go_to_list">%s listesine git</string>
+<string name="library_list_empty_body">%s listesine eklediğin başlıklar burada görünür.</string>
+<string name="library_list_empty_headline">%s listesinde bir şey yok</string>
 <string name="library_not_connected">Bağlı değil</string>
 <string name="library_on_device">Cihazda</string>
+<string name="library_sort_current">Sıralama: %s</string>
+<string name="library_sort_supported">%1$s, %3$d ölçütten %2$d tanesini destekler</string>
+<string name="library_sort_unsupported">%s tarafından saklanmaz</string>
 <string name="library_source">Kütüphane kaynağı</string>
 <string name="library_source_note">Aynı anda bir tane · değiştirmek yeniden yükler</string>
+<string name="library_sync_failed">%1$s eşitlenemedi. Bunlar %2$s öncesine ait.</string>
+<string name="library_sync_retry">Yeniden eşitle</string>
+<string name="library_sync_unreachable">Ulaşılamıyor · %s önce önbelleğe alındı</string>
 <string name="library_synced_format">%s önce eşitlendi</string>
 <string name="lightnovel">Aynı geliştiricilerin Lightnovel Crawler uygulaması</string>
 <string name="limit_title">Video oynatıcı başlığı karakter üst sınırı</string>
@@ -620,6 +630,7 @@
 <string name="search_state_no_suggestions_headline">“%s” ile eşleşen bir şey yok</string>
 <string name="search_suggestions">Arama Önerileri</string>
 <string name="search_suggestions_des">Yazarken arama önerilerini göster</string>
+<string name="search_suggestions_return_hint">Return her yerde arar</string>
 <string name="search_tv_source_failed">BAŞARISIZ %s</string>
 <string name="search_tv_source_pinned">SABİTLENDİ</string>
 <string name="search_tv_sources_panel_meta">%2$d İÇİNDEN %1$d ETKİN · DEĞİŞİKLİKLER BİTTİ İLE UYGULANIR</string>

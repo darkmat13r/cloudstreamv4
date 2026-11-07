@@ -6,6 +6,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d ခု မအောင်မြင်</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">စာမှတ် %d ခု</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">အပိုင်း %d ခု တင်သွင်း၍မရပါ</item></plurals>
+<plurals name="library_title_count"><item quantity="other">ခေါင်းစဉ် %d ခု</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d ရင်းမြစ်</item></plurals>
@@ -271,10 +272,19 @@
 <string name="kitsu_settings">Kitsu မှ ပိုစတာများကိုပြရန်</string>
 <string name="legal_notice">ရှင်းလင်းချက်</string>
 <string name="library">လိုက်ဘရီ</string>
+<string name="library_go_to_list">%s သို့ သွားရန်</string>
+<string name="library_list_empty_body">%s သို့ ထည့်သော ခေါင်းစဉ်များ ဤနေရာတွင် ပေါ်လာမည်။</string>
+<string name="library_list_empty_headline">%s တွင် ဘာမျှမရှိ</string>
 <string name="library_not_connected">ချိတ်ဆက်မထားပါ</string>
 <string name="library_on_device">စက်ပေါ်တွင်</string>
+<string name="library_sort_current">စီရန်: %s</string>
+<string name="library_sort_supported">%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်</string>
+<string name="library_sort_unsupported">%s တွင် မသိမ်းပါ</string>
 <string name="library_source">လိုက်ဘရီ ရင်းမြစ်</string>
 <string name="library_source_note">တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်</string>
+<string name="library_sync_failed">%1$s ကို ချိန်ကိုက်၍မရပါ။ ဤအရာများသည် လွန်ခဲ့သော %2$s ကဖြစ်သည်။</string>
+<string name="library_sync_retry">ပြန်ချိန်ကိုက်ရန်</string>
+<string name="library_sync_unreachable">ချိတ်ဆက်၍မရ · လွန်ခဲ့သော %s က သိမ်းထားသည်</string>
 <string name="library_synced_format">%s က ချိန်ကိုက်ခဲ့သည်</string>
 <string name="lightnovel">တူညီသောအက်ပ်ရေးသားသူများ၏ ဝတ္ထုရှည်များဖတ်နိုင်သည့် အက်ပ်</string>
 <string name="limit_title">ခေါင်းစဥ်အတွက်စာလုံးရေပြည့်ခြင်း</string>
@@ -462,6 +472,7 @@
 <string name="search_state_no_results_type_filter">%s သာ။ သင့်အမျိုးအစား စစ်ထုတ်မှုက ရှာဖွေမှုကို ကျဉ်းစေနေသည်။</string>
 <string name="search_state_no_suggestions_detail">အကြံပြုချက် 0 ခု · မကြာသေးမီ ကိုက်ညီမှု 0 ခု</string>
 <string name="search_state_no_suggestions_headline">“%s” နှင့် ကိုက်ညီသည့်အရာ မရှိပါ</string>
+<string name="search_suggestions_return_hint">Return ဖြင့် အားလုံးရှာသည်</string>
 <string name="search_tv_source_failed">မအောင်မြင်ပါ %s</string>
 <string name="search_tv_source_pinned">ပင်ထိုးထား</string>
 <string name="search_tv_sources_panel_meta">%2$d ခုအနက် %1$d ခု ဖွင့်ထား · ပြောင်းလဲမှုများကို ပြီးပြီ တွင် အသုံးပြုမည်</string>

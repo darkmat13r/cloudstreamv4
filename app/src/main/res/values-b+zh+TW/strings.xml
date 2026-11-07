@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="other">"佇列中有 %d 個下載"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d 個書籤"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d 個分區載入失敗"</item></plurals>
+<plurals name="library_title_count"><item quantity="other">"%d 部作品"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"搜尋全部 %d 個來源"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d 來源"</item></plurals>
@@ -369,10 +370,19 @@
 <string name="kitsu_settings">"顯示來自 Kitsu 的封面"</string>
 <string name="legal_notice">"免責聲明"</string>
 <string name="library">"媒體庫"</string>
+<string name="library_go_to_list" formatted="true">"前往「%s」"</string>
+<string name="library_list_empty_body" formatted="true">"你新增到「%s」的作品會顯示在這裡。"</string>
+<string name="library_list_empty_headline" formatted="true">"「%s」中沒有內容"</string>
 <string name="library_not_connected">"未連線"</string>
 <string name="library_on_device">"本機"</string>
+<string name="library_sort_current" formatted="true">"排序：%s"</string>
+<string name="library_sort_supported" formatted="true">"%1$s 支援 %3$d 項中的 %2$d 項"</string>
+<string name="library_sort_unsupported" formatted="true">"%s 不會儲存此項"</string>
 <string name="library_source">"媒體庫來源"</string>
 <string name="library_source_note">"一次一個 · 切換會重新載入"</string>
+<string name="library_sync_failed" formatted="true">"無法同步 %1$s。這些是 %2$s 前的內容。"</string>
+<string name="library_sync_retry">"重新同步"</string>
+<string name="library_sync_unreachable" formatted="true">"無法連線 · %s 前的快取"</string>
 <string name="library_synced_format" formatted="true">"%s前已同步"</string>
 <string name="lightnovel">"由相同開發者開發的輕小說應用程式"</string>
 <string name="limit_title">"影片播放器標題最大字數"</string>
@@ -616,6 +626,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"沒有符合「%s」的內容"</string>
 <string name="search_suggestions">"搜尋建議"</string>
 <string name="search_suggestions_des">"輸入時顯示搜尋建議"</string>
+<string name="search_suggestions_return_hint">"按 Return 搜尋全部"</string>
 <string name="search_tv_source_failed" formatted="true">"失敗 %s"</string>
 <string name="search_tv_source_pinned">"已置頂"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"已啟用 %1$d / %2$d · 變更將在點選完成後生效"</string>
