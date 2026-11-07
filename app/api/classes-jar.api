@@ -34228,6 +34228,15 @@ public final static synthetic class com/lagradost/cloudstream3/utils/Levenshtein
 	public static final synthetic field $EnumSwitchMapping$0 [I
 }
 
+public final class com/lagradost/cloudstream3/utils/LogRedactionKt : java/lang/Object {
+	public static final fun redactedLinkInfo (Lcom/lagradost/cloudstream3/ui/player/ExtractorUri;)Ljava/lang/String;
+	public static final fun redactedLinkInfo (Lcom/lagradost/cloudstream3/utils/ExtractorLink;)Ljava/lang/String;
+	public static final fun redactedLinkInfo (Lkotlin/Pair;)Ljava/lang/String;
+	public static final fun redactedSubtitleInfo (Lcom/lagradost/cloudstream3/SubtitleFile;)Ljava/lang/String;
+	public static final fun redactedSubtitleInfo (Lcom/lagradost/cloudstream3/ui/player/SubtitleData;)Ljava/lang/String;
+	public static final fun redactedThrowable (Ljava/lang/Throwable;)Ljava/lang/String;
+}
+
 public final class com/lagradost/cloudstream3/utils/M3u8Helper : java/lang/Object {
 	public static final field Companion Lcom/lagradost/cloudstream3/utils/M3u8Helper$Companion;
 	public fun <init> ()V

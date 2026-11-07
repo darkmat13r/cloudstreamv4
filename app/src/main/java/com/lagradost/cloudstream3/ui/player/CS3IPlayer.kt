@@ -107,6 +107,9 @@ import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.PLAYREADY_DRM_UUID
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromTagToLanguageName
 import com.lagradost.cloudstream3.utils.WIDEVINE_DRM_UUID
+import com.lagradost.cloudstream3.utils.redactedLinkInfo
+import com.lagradost.cloudstream3.utils.redactedSubtitleInfo
+import com.lagradost.cloudstream3.utils.redactedThrowable
 import com.lagradost.cloudstream3.utils.videoskip.VideoSkipStamp
 import kotlinx.coroutines.delay
 import okhttp3.Interceptor
@@ -497,7 +500,7 @@ class CS3IPlayer : IPlayer {
      * @return True if the player should be reloaded
      * */
     override fun setPreferredSubtitles(subtitle: SubtitleData?): Boolean {
-        Log.i(TAG, "setPreferredSubtitles init $subtitle")
+        Log.i(TAG, "setPreferredSubtitles init ${redactedSubtitleInfo(subtitle)}")
         currentSubtitles = subtitle
         val trackSelector = exoPlayer?.trackSelector as? DefaultTrackSelector ?: return false
         // Disable subtitles if null
@@ -777,7 +780,7 @@ class CS3IPlayer : IPlayer {
                     .build().also { buildEngine ->
                         Log.d(
                             TAG,
-                            "Created CronetEngine with cache at ${cacheDirectory.absolutePath}"
+                            "Created CronetEngine with a disk cache"
                         )
                         cronetEngine = buildEngine
                     }
@@ -799,10 +802,10 @@ class CS3IPlayer : IPlayer {
 
             val source = if (interceptor == null) {
                 if (engine == null) {
-                    Log.d(TAG, "Using DefaultHttpDataSource for $link")
+                    Log.d(TAG, "Using DefaultHttpDataSource for ${redactedLinkInfo(link)}")
                     OkHttpDataSource.Factory(app.baseClient).setUserAgent(userAgent)
                 } else {
-                    Log.d(TAG, "Using CronetDataSource for $link")
+                    Log.d(TAG, "Using CronetDataSource for ${redactedLinkInfo(link)}")
                     CronetDataSource.Factory(engine, Executors.newSingleThreadExecutor())
                         .setUserAgent(userAgent)
                         .setConnectionTimeoutMs(CRONET_TIMEOUT_MS)
@@ -811,7 +814,7 @@ class CS3IPlayer : IPlayer {
                         .setHandleSetCookieRequests(true)
                 }
             } else {
-                Log.d(TAG, "Using OkHttpDataSource for $link")
+                Log.d(TAG, "Using OkHttpDataSource for ${redactedLinkInfo(link)}")
                 val client = app.baseClient.newBuilder()
                     .addInterceptor(interceptor)
                     .build()
@@ -1762,7 +1765,7 @@ class CS3IPlayer : IPlayer {
                 val dataSourceFactory = createOnlineSource(audio.headers, interceptor)
                 DefaultMediaSourceFactory(dataSourceFactory).createMediaSource(mediaItem)
             } catch (e: Exception) {
-                Log.e(TAG, "Failed to create audio source for ${audio.url}: ${e.message}")
+                Log.e(TAG, "Failed to create audio source: ${redactedThrowable(e)}")
                 null
             }
         }
@@ -1800,7 +1803,7 @@ class CS3IPlayer : IPlayer {
     @SuppressLint("UnsafeOptInUsageError")
     @MainThread
     private fun loadOnlinePlayer(context: Context, link: ExtractorLink, retry: Boolean = false) {
-        Log.i(TAG, "loadOnlinePlayer $link")
+        Log.i(TAG, "loadOnlinePlayer ${redactedLinkInfo(link)}")
         try {
             val mime = when (link.type) {
                 ExtractorLinkType.M3U8 -> MimeTypes.APPLICATION_M3U8

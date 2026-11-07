@@ -1043,7 +1043,7 @@ object VideoDownloadManager {
 
         Log.d(
             TAG,
-            "Starting stream with url=$url, startByte=$startByte, contentLength=$contentLength, hasRangeSupport=$hasRangeSupport"
+            "Starting stream with startByte=$startByte, contentLength=$contentLength, hasRangeSupport=$hasRangeSupport"
         )
 
         var downloadLength: Long? = null

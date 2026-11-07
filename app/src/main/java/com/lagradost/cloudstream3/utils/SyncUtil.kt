@@ -34,7 +34,7 @@ object SyncUtil {
 
     suspend fun getIdsFromUrl(url: String?): Pair<String?, String?>? {
         if (url == null) return null
-        Log.i(TAG, "getIdsFromUrl $url")
+        Log.i(TAG, "getIdsFromUrl")
         for (regex in regexs) {
             regex.find(url)?.let { match ->
                 if (match.groupValues.size == 3) {

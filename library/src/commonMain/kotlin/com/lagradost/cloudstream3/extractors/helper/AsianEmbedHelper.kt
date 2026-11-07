@@ -23,7 +23,7 @@ class AsianEmbedHelper {
                     //Log.i("AsianEmbed", "Result => (datavid) ${datavid}")
                     if (datavid.isNotBlank()) {
                         val res = loadExtractor(datavid, url, subtitleCallback, callback)
-                        Log.i("AsianEmbed", "Result => ($res) (datavid) $datavid")
+                        Log.i("AsianEmbed", "Result => ($res) (datavid)")
                     }
                 }
             }

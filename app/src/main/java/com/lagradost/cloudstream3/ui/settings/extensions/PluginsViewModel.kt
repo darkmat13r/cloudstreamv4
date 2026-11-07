@@ -75,7 +75,7 @@ class PluginsViewModel : ViewModel() {
             repository: RepositoryData,
             canUseCache: Boolean = true
         ): List<PluginWrapper> {
-            Log.i(TAG, "getPlugins = $repository")
+            Log.i(TAG, "getPlugins = ${repository.name}")
             if (canUseCache && repositoryCache.containsKey(repository.url)) {
                 repositoryCache[repository.url]?.let {
                     return it
@@ -160,7 +160,7 @@ class PluginsViewModel : ViewModel() {
         pluginWrapper: PluginWrapper,
         isLocal: Boolean
     ) = ioSafe {
-        Log.i(TAG, "handlePluginAction = ${repositoryUrls}, $pluginWrapper, $isLocal")
+        Log.i(TAG, "handlePluginAction = ${repositoryUrls.size} repositories, ${pluginWrapper.plugin.internalName}, $isLocal")
 
         if (activity == null) return@ioSafe
         val (_, repositoryData, metadata) = pluginWrapper
@@ -284,7 +284,7 @@ class PluginsViewModel : ViewModel() {
     fun updatePluginList(context: Context?, repositories: List<RepositoryData>) =
         viewModelScope.launchSafe {
             if (context == null) return@launchSafe
-            Log.i(TAG, "updatePluginList = $repositories")
+            Log.i(TAG, "updatePluginList = ${repositories.map { it.name }}")
             updatePluginListPrivate(context, repositories)
         }
 

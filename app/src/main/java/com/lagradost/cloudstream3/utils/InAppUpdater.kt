@@ -188,7 +188,7 @@ object InAppUpdater {
 
     private suspend fun Activity.downloadUpdate(url: String): Boolean {
         try {
-            Log.d(LOG_TAG, "Downloading update: $url")
+            Log.d(LOG_TAG, "Downloading update")
             val appUpdateName = "CloudStream"
             val appUpdateSuffix = "apk"
 

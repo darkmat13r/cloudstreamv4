@@ -126,6 +126,9 @@ import com.lagradost.cloudstream3.utils.UIHelper.popCurrentPage
 import com.lagradost.cloudstream3.utils.UIHelper.showProgress
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import com.lagradost.cloudstream3.utils.downloader.DownloadUtils.getImageBitmapFromUrl
+import com.lagradost.cloudstream3.utils.redactedLinkInfo
+import com.lagradost.cloudstream3.utils.redactedSubtitleInfo
+import com.lagradost.cloudstream3.utils.redactedThrowable
 import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream3.utils.videoskip.VideoSkipStamp
@@ -928,7 +931,7 @@ class GeneratorPlayer : FullScreenPlayer() {
 
                 val file = SafeFile.fromUri(ctx, uri)
                 val fileName = file?.name()
-                println("Loaded subtitle file. Selected URI path: $uri - Name: $fileName")
+                println("Loaded subtitle file. Name known: ${fileName != null}")
                 // DO NOT REMOVE THE FILE EXTENSION FROM NAME, IT'S NEEDED FOR MIME TYPES
                 val name = fileName ?: uri.toString()
 
@@ -1572,18 +1575,13 @@ class GeneratorPlayer : FullScreenPlayer() {
             viewModel.modifyState { this.addError(link) }
         }
 
-        val currentUrl =
-            currentSelectedLink?.let { it.first?.url ?: it.second?.uri?.toString() } ?: "unknown"
-        val headers = currentSelectedLink?.first?.headers?.toString() ?: "none"
-        val referer = currentSelectedLink?.first?.referer ?: "none"
         Log.e(
             TAG,
-            "playerError: $currentSelectedLink, " +
-                    "type=${exception::class.qualifiedName}, " +
-                    "message=${exception.message}, url=$currentUrl, headers=$headers, " +
-                    "referer=$referer, position=${player.getPosition() ?: "unknown"}, " +
+            "playerError: ${redactedLinkInfo(currentSelectedLink)}, " +
+                    "type=${redactedThrowable(exception)}, " +
+                    "position=${player.getPosition() ?: "unknown"}, " +
                     "duration=${player.getDuration() ?: "unknown"}, " +
-                    "isPlaying=${player.getIsPlaying()}", exception
+                    "isPlaying=${player.getIsPlaying()}"
         )
 
         if (!hasNextMirror()) {
@@ -1821,7 +1819,7 @@ class GeneratorPlayer : FullScreenPlayer() {
         // auto select subtitle based on settings
         val langCode = preferredAutoSelectSubtitles
         val current = player.getCurrentPreferredSubtitle()
-        Log.i(TAG, "autoSelectFromSettings = $current")
+        Log.i(TAG, "autoSelectFromSettings = ${redactedSubtitleInfo(current)}")
         context?.let { ctx ->
             // Only use the player preferred subtitle if it matches the available language
             if (current != null && (langCode == null || current.matchesLanguageCode(langCode))) {
