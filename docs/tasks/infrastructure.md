@@ -742,7 +742,7 @@ The owner's rulings of 2026-11-07, after `#204` made the repo public:
 - **Left, on purpose:**
   - `docs/tasks/defects.md:1239` and `:2047–2060`, plus the redaction and sandbox tests: they are the paths a sandbox
     or a redaction must handle, not this machine's.
-  - `scripts/device-tests.sh:91`, `review=/private/tmp/…`: code, not a comment. Moving the folder is a behaviour change
+  - `scripts/device-tests.sh:91`, the `review=` line that names the folder's absolute path: code, not a comment. Moving the folder is a behaviour change
     for every session that reads it, so it is not in this PR.
 - Pushed history keeps its commit footers (owner: leave history). New commits carry only the `Co-Authored-By` line, and
   PR bodies carry no local paths or session links.
