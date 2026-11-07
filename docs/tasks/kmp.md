@@ -5274,3 +5274,13 @@ Tests:
   desktop-only. It wants its own task, with the action added to the shared model. Hover lift is in.
 - **The bookmark filter is kept while the window is open.** There is no desktop preference store yet.
 - **H4's kept rows and their age** wait on `KMP-68`. Until then, a failed reload draws as 3m, under the device's rails.
+
+## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
+
+`#200` made Home's failure detail safe. A thrown failure is now its type, such as `IllegalStateException`, never its message,
+because a message can carry an address, a path or a token. That holds on both platforms. It is developer language on a TV,
+though. To do:
+1. Map the common types to a typed reason in `:feature:home`: network, timeout, refused, other.
+2. Give each reason a key with its plain, translated words (an `I18N` task first). A screen draws the words; the type
+   stays only as the pasteable detail.
+3. Keep the rule that no message, address or path reaches the screen. Rerun the TV Home device suite.
