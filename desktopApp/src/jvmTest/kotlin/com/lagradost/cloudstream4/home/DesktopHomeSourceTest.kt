@@ -150,6 +150,17 @@ class DesktopHomeSourceTest {
         assertTrue("Trace" !in failed.detail, failed.detail)
     }
 
+    /** `#200`: the reason reaches the screen and a pasted bug report, so it keeps the words and loses the places. */
+    @Test
+    fun `a failure's reason carries no address and no home directory`() = runBlocking {
+        val home = System.getProperty("user.home")
+        val api = Fake { _, _ -> throw IOException("HTTP 403 for https://cdn.example.com/x?token=s3cret reading $home/.cloudstream4/a") }
+        val failed = assertIs<HomePageReply.Failed>(source(api).page(HomeSourceId("Fake"), 0, 1))
+        assertTrue("HTTP 403" in failed.detail, failed.detail)
+        assertTrue("example.com" !in failed.detail && "s3cret" !in failed.detail, failed.detail)
+        assertTrue(home !in failed.detail, failed.detail)
+    }
+
     /** The shape a sandboxed host reports a lost connection in: the class name, as text. */
     @Test
     fun `a host reporting a lost connection is offline`() = runBlocking {

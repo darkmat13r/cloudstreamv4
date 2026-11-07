@@ -22,6 +22,7 @@ import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.focusRequester
@@ -126,10 +127,20 @@ private object SidePanelMotion {
  * user cannot see they are on. Focus moves into the panel when it opens — onto its first **row**,
  * which is not where it used to land; see [PanelLayer].
  *
- * On close, focus returns to the control that opened the panel. That is `Modifier.focusRestorer`
- * on the content group: the group records its focused child when focus leaves it and restores
- * that child when focus is asked back in. It needs no wiring from the caller and it stays correct
- * when several different controls can open the same panel.
+ * On close, focus returns to the control that opened the panel. **Hand that control's
+ * [FocusRequester] in, through the overload that takes `opener`,** unless it is a direct child of the content
+ * (`BUG-36`).
+ *
+ * Without one, the content group's `Modifier.focusRestorer` is what restores focus, and it records
+ * only the group's **direct** child. An opener inside a `Row`, a `LazyColumn` item or any other focus
+ * group is not one: the restore then fails and focus enters the content at its first stop, which on a
+ * real screen is nowhere near the control the viewer pressed. Measured in `SidePanelMotionTest`:
+ * `FocusRequester.saveFocusedChild` has the same limit, and a restorer on the opener's row is not
+ * enough once a lazy list sits between them. Only every group between the content and the opener
+ * carrying its own restorer worked, which is wiring in every caller that breaks silently the first time
+ * someone wraps the opener in another group. Handing the opener in works however deep it is.
+ *
+ * A screen with several panels hands in the one that opened the panel being shown.
  *
  * **The slide does not get in the way of either.** Focus is requested into the panel on the frame
  * the slide starts, not when it ends, so the first D-pad press of an opening panel is never
@@ -165,6 +176,34 @@ fun SidePanelHost(
     expanded: Boolean,
     onDismissRequest: () -> Unit,
     modifier: Modifier = Modifier,
+    panel: @Composable () -> Unit,
+    content: @Composable () -> Unit,
+) = PanelHost(expanded, onDismissRequest, modifier, opener = null, panel, content)
+
+/**
+ * [SidePanelHost], handed [opener], the control that opened the panel, which gets focus back when it closes
+ * (`BUG-36`). Use this one wherever the opener is not a direct child of the content, which on a real screen is
+ * nearly everywhere. Where [opener] has left the screen by then, focus falls back to the content group's restore.
+ *
+ * An overload rather than a parameter with a default: adding one to [SidePanelHost] changes the shape of every call
+ * site, and with it the names the Compose compiler generates for the lambdas passed in, which `classes-jar.api` lists.
+ */
+@Composable
+fun SidePanelHost(
+    expanded: Boolean,
+    onDismissRequest: () -> Unit,
+    opener: FocusRequester,
+    modifier: Modifier = Modifier,
+    panel: @Composable () -> Unit,
+    content: @Composable () -> Unit,
+) = PanelHost(expanded, onDismissRequest, modifier, opener, panel, content)
+
+@Composable
+private fun PanelHost(
+    expanded: Boolean,
+    onDismissRequest: () -> Unit,
+    modifier: Modifier,
+    opener: FocusRequester?,
     panel: @Composable () -> Unit,
     content: @Composable () -> Unit,
 ) {
@@ -205,7 +244,8 @@ fun SidePanelHost(
             hasEverOpened = true
             panelFocus.requestFocus()
         } else if (hasEverOpened) {
-            contentFocus.requestFocus()
+            // The opener where the caller handed one in and it is still on screen; the group's restore otherwise.
+            if (opener == null || !opener.requestFocusIfAttached()) contentFocus.requestFocus()
         }
     }
 
@@ -334,3 +374,10 @@ private fun KeyEvent.consumeAsDismiss(onDismissRequest: () -> Unit): Boolean {
     if (type == KeyEventType.KeyUp) onDismissRequest()
     return true
 }
+
+/**
+ * Asks for focus and says whether it moved. False where the control has left the screen, and where its requester was
+ * never attached, which throws.
+ */
+private fun FocusRequester.requestFocusIfAttached(): Boolean =
+    runCatching { requestFocus(FocusDirection.Enter) }.getOrDefault(false)
