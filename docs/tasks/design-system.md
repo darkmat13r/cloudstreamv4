@@ -753,11 +753,11 @@ Still open, not the owner's: the new strings go through `:core:strings` with `KM
 
 ## DS-20 — Board correction: 7i's "DOWN past the last row loads the next page" · **measured 2026-11-07**
 
-**Status:** open · **Scope:** the board, not the code.
-**Numbered `DS-19` in `#181`'s first commit**, which collided with the component layer's `DS-19`
-(already referenced at `decisions.md:737`). Renumbered here; IDs are now claimed through
-the shared claim script, which reads every branch rather than this file. `design/TV Detail Row.dc.html`, board 7i's FOCUS note.
+**Status:** open · **Scope:** the board, not the code. `design/TV Detail Row.dc.html`, board 7i's FOCUS note.
 **Found by:** `KMP-38`'s PR 2a, measuring 7i before building it.
+**Numbered `DS-19` in `#181`'s first commit**, which collided with the component layer's `DS-19`
+(already referenced at `decisions.md:737`). Renumbered here; IDs are now claimed through the shared
+claim script, which reads every branch rather than this file.
 
 7i's FOCUS note reads *"DOWN past the last row loads the next page of episodes."* There is no next page,
 and there is nothing below the last row to take focus. Both halves are measured, not argued:
