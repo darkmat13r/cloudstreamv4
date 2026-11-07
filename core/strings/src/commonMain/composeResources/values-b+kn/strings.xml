@@ -297,6 +297,7 @@
 <string name="library_sort_supported">%1$s %3$d ರಲ್ಲಿ %2$d ಬೆಂಬಲಿಸುತ್ತದೆ</string>
 <string name="library_sort_not_kept">%s ಇದನ್ನು ಇರಿಸುವುದಿಲ್ಲ</string>
 <string name="library_source">ಲೈಬ್ರರಿ ಮೂಲ</string>
+<string name="library_source_local">ಸ್ಥಳೀಯ</string>
 <string name="library_source_note">ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ</string>
 <string name="library_sync_cached">ಕ್ಯಾಶ್</string>
 <string name="library_sync_failed">%1$s ಸಿಂಕ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ಇವು %2$s ಹಿಂದಿನವು.</string>

@@ -237,6 +237,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s to nesaugo"</string>
 <string name="library_sort_supported" formatted="true">"%1$s palaiko %2$d iš %3$d"</string>
 <string name="library_source">"Bibliotekos šaltinis"</string>
+<string name="library_source_local">"Vietinis"</string>
 <string name="library_source_note">"Po vieną · perjungus įkeliama iš naujo"</string>
 <string name="library_sync_cached">"Iš podėlio"</string>
 <string name="library_sync_failed" formatted="true">"Nepavyko sinchronizuoti %1$s. Tai duomenys prieš %2$s."</string>

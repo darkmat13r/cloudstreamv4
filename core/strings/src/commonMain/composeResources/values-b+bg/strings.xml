@@ -417,6 +417,7 @@
 <string name="library_sort_supported">%1$s поддържа %2$d от %3$d</string>
 <string name="library_sort_not_kept">%s не го пази</string>
 <string name="library_source">Източник на библиотеката</string>
+<string name="library_source_local">Местен</string>
 <string name="library_source_note">Един по един · превключването презарежда</string>
 <string name="library_sync_cached">Кеширано</string>
 <string name="library_sync_failed">%1$s не можа да се синхронизира. Това е отпреди %2$s.</string>

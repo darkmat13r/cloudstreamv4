@@ -424,6 +424,7 @@
 <string name="library_sort_supported">%1$s hỗ trợ %2$d/%3$d</string>
 <string name="library_sort_not_kept">%s không lưu mục này</string>
 <string name="library_source">Nguồn thư viện</string>
+<string name="library_source_local">Cục bộ</string>
 <string name="library_source_note">Mỗi lần một nguồn · chuyển sẽ tải lại</string>
 <string name="library_sync_cached">Đã lưu đệm</string>
 <string name="library_sync_failed">Không thể đồng bộ %1$s. Đây là dữ liệu từ %2$s trước.</string>

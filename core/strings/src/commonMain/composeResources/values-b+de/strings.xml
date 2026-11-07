@@ -424,6 +424,7 @@
 <string name="library_sort_supported">%1$s unterstützt %2$d von %3$d</string>
 <string name="library_sort_not_kept">Von %s nicht gespeichert</string>
 <string name="library_source">Bibliotheksquelle</string>
+<string name="library_source_local">Lokal</string>
 <string name="library_source_note">Jeweils eine · Wechsel lädt neu</string>
 <string name="library_sync_cached">Zwischengespeichert</string>
 <string name="library_sync_failed">%1$s konnte nicht synchronisiert werden. Das ist der Stand von vor %2$s.</string>

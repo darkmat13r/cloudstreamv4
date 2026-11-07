@@ -293,6 +293,7 @@
 <string name="library_sort_supported">%1$s %3$dটির মধ্যে %2$dটি সমর্থন করে</string>
 <string name="library_sort_not_kept">%s এটি রাখে না</string>
 <string name="library_source">লাইব্রেরির উৎস</string>
+<string name="library_source_local">লোকাল</string>
 <string name="library_source_note">একবারে একটি · পরিবর্তন করলে আবার লোড হয়</string>
 <string name="library_sync_cached">ক্যাশ করা</string>
 <string name="library_sync_failed">%1$s সিঙ্ক করা যায়নি। এগুলি %2$s আগের।</string>

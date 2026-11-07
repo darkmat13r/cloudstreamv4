@@ -423,6 +423,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s에는 저장되지 않음"</string>
 <string name="library_sort_supported" formatted="true">"%1$s은(는) %3$d개 중 %2$d개 지원"</string>
 <string name="library_source">"라이브러리 소스"</string>
+<string name="library_source_local">"로컬"</string>
 <string name="library_source_note">"한 번에 하나 · 전환하면 다시 불러옴"</string>
 <string name="library_sync_cached">"캐시됨"</string>
 <string name="library_sync_failed" formatted="true">"%1$s을(를) 동기화하지 못했습니다. %2$s 전 데이터입니다."</string>

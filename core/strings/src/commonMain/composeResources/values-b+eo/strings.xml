@@ -351,6 +351,7 @@
 <string name="library_sort_supported">%1$s subtenas %2$d el %3$d</string>
 <string name="library_sort_not_kept">%s ne konservas tion</string>
 <string name="library_source">Fonto de biblioteko</string>
+<string name="library_source_local">Loka</string>
 <string name="library_source_note">Po unu · ŝanĝo reŝargas</string>
 <string name="library_sync_cached">Kaŝmemorita</string>
 <string name="library_sync_failed">Ne eblis sinkronigi %1$s. Ĉi tiuj estas de antaŭ %2$s.</string>

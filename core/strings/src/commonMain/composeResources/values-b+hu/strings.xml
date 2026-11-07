@@ -385,6 +385,7 @@
 <string name="library_sort_supported">A(z) %1$s %3$d szempontból %2$d-t támogat</string>
 <string name="library_sort_not_kept">A(z) %s nem tárolja</string>
 <string name="library_source">Könyvtár forrása</string>
+<string name="library_source_local">Helyi</string>
 <string name="library_source_note">Egyszerre egy · váltáskor újratölt</string>
 <string name="library_sync_cached">Gyorsítótárból</string>
 <string name="library_sync_failed">A(z) %1$s nem szinkronizálható. Ezek %2$s előttiek.</string>

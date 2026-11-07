@@ -423,6 +423,7 @@
 <string name="library_sort_supported">%1$s podržava %2$d od %3$d</string>
 <string name="library_sort_not_kept">%s to ne čuva</string>
 <string name="library_source">Izvor biblioteke</string>
+<string name="library_source_local">Lokalno</string>
 <string name="library_source_note">Jedan po jedan · promjena ponovno učitava</string>
 <string name="library_sync_cached">Iz predmemorije</string>
 <string name="library_sync_failed">Nije moguće sinkronizirati %1$s. Ovo je od prije %2$s.</string>

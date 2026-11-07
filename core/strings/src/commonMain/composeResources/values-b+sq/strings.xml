@@ -424,6 +424,7 @@
 <string name="library_sort_supported">%1$s mbështet %2$d nga %3$d</string>
 <string name="library_sort_not_kept">Nuk ruhet nga %s</string>
 <string name="library_source">Burimi i bibliotekës</string>
+<string name="library_source_local">Lokale</string>
 <string name="library_source_note">Një në një kohë · ndërrimi ringarkon</string>
 <string name="library_sync_cached">Nga memoria</string>
 <string name="library_sync_failed">%1$s nuk u sinkronizua dot. Këto janë para %2$s.</string>

@@ -383,6 +383,7 @@
 <string name="library_sort_not_kept" formatted="true">"Nu este păstrat de %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s acceptă %2$d din %3$d"</string>
 <string name="library_source">"Sursa bibliotecii"</string>
+<string name="library_source_local">"Local"</string>
 <string name="library_source_note">"Câte una · schimbarea reîncarcă"</string>
 <string name="library_sync_cached">"Din cache"</string>
 <string name="library_sync_failed" formatted="true">"%1$s nu a putut fi sincronizat. Sunt de acum %2$s."</string>

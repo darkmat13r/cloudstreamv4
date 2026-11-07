@@ -424,6 +424,7 @@
 <string name="library_sort_supported">%1$s obsługuje %2$d z %3$d</string>
 <string name="library_sort_not_kept">%s tego nie przechowuje</string>
 <string name="library_source">Źródło biblioteki</string>
+<string name="library_source_local">Lokalna</string>
 <string name="library_source_note">Jedno naraz · przełączenie wczytuje ponownie</string>
 <string name="library_sync_cached">Z pamięci podręcznej</string>
 <string name="library_sync_failed">Nie udało się zsynchronizować %1$s. To dane sprzed %2$s.</string>

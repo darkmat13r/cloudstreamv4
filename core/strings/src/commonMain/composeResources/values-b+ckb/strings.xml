@@ -253,6 +253,7 @@
 <string name="library_sort_supported">%1$s پشتگیری %2$d لە %3$d دەکات</string>
 <string name="library_sort_not_kept">%s ئەمە هەڵناگرێت</string>
 <string name="library_source">سەرچاوەی کتێبخانە</string>
+<string name="library_source_local">ناوخۆیی</string>
 <string name="library_source_note">یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە</string>
 <string name="library_sync_cached">هەڵگیراوە</string>
 <string name="library_sync_failed">نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن.</string>

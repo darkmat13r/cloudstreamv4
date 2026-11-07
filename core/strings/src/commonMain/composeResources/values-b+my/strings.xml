@@ -325,6 +325,7 @@
 <string name="library_sort_supported">%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်</string>
 <string name="library_sort_not_kept">%s က ဒါကို မသိမ်းထားပါ</string>
 <string name="library_source">လိုက်ဘရီ ရင်းမြစ်</string>
+<string name="library_source_local">စက်တွင်း</string>
 <string name="library_source_note">တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်</string>
 <string name="library_sync_cached">သိမ်းထားသည်</string>
 <string name="library_sync_failed">%1$s ကို ချိန်ကိုက်၍မရပါ။ ဤအရာများသည် လွန်ခဲ့သော %2$s ကဖြစ်သည်။</string>

@@ -368,6 +368,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s اسے نہیں رکھتا"</string>
 <string name="library_sort_supported" formatted="true">"%1$s %3$d میں سے %2$d کی معاونت کرتا ہے"</string>
 <string name="library_source">"لائبریری کا ذریعہ"</string>
+<string name="library_source_local">"لوکل"</string>
 <string name="library_source_note">"ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے"</string>
 <string name="library_sync_cached">"کیش شدہ"</string>
 <string name="library_sync_failed" formatted="true">"%1$s کو ہم آہنگ نہیں کیا جا سکا۔ یہ %2$s پہلے کے ہیں۔"</string>

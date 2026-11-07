@@ -288,6 +288,7 @@
 <string name="library_sort_supported">%1$s ondersteun %2$d van %3$d</string>
 <string name="library_sort_not_kept">Nie deur %s gehou nie</string>
 <string name="library_source">Biblioteekbron</string>
+<string name="library_source_local">Plaaslik</string>
 <string name="library_source_note">Een op 'n slag · oorskakel herlaai</string>
 <string name="library_sync_cached">Gekas</string>
 <string name="library_sync_failed">Kon %1$s nie sinkroniseer nie. Hierdie is van %2$s gelede.</string>

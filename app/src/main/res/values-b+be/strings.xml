@@ -423,6 +423,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s гэтага не захоўвае"</string>
 <string name="library_sort_supported" formatted="true">"%1$s падтрымлівае %2$d з %3$d"</string>
 <string name="library_source">"Крыніца бібліятэкі"</string>
+<string name="library_source_local">"Лакальны"</string>
 <string name="library_source_note">"Па адной · пераключэнне перазагружае"</string>
 <string name="library_sync_cached">"З кэша"</string>
 <string name="library_sync_failed" formatted="true">"Не ўдалося сінхранізаваць %1$s. Гэта даныя %2$s таму."</string>

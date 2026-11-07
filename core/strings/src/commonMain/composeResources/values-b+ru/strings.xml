@@ -424,6 +424,7 @@
 <string name="library_sort_supported">%1$s поддерживает %2$d из %3$d</string>
 <string name="library_sort_not_kept">%s этого не хранит</string>
 <string name="library_source">Источник библиотеки</string>
+<string name="library_source_local">Локальный</string>
 <string name="library_source_note">По одному · переключение перезагружает</string>
 <string name="library_sync_cached">Из кеша</string>
 <string name="library_sync_failed">Не удалось синхронизировать %1$s. Это данные %2$s назад.</string>

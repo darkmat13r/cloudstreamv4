@@ -356,6 +356,7 @@
 <string name="library_sort_supported">%1$s menyokong %2$d daripada %3$d</string>
 <string name="library_sort_not_kept">Tidak disimpan oleh %s</string>
 <string name="library_source">Sumber perpustakaan</string>
+<string name="library_source_local">Tempatan</string>
 <string name="library_source_note">Satu demi satu · menukar memuat semula</string>
 <string name="library_sync_cached">Dicache</string>
 <string name="library_sync_failed">Tidak dapat menyegerakkan %1$s. Ini dari %2$s yang lalu.</string>

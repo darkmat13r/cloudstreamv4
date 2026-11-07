@@ -185,6 +185,7 @@
 <string name="library_sort_not_kept" formatted="true">"Hindi itinatabi ng %s"</string>
 <string name="library_sort_supported" formatted="true">"Sinusuportahan ng %1$s ang %2$d sa %3$d"</string>
 <string name="library_source">"Pinagmulan ng library"</string>
+<string name="library_source_local">"Local"</string>
 <string name="library_source_note">"Isa-isa · nagre-reload kapag nagpalit"</string>
 <string name="library_sync_cached">"Naka-cache"</string>
 <string name="library_sync_failed" formatted="true">"Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito."</string>

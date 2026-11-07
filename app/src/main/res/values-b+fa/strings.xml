@@ -257,6 +257,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s این را نگه نمی‌دارد"</string>
 <string name="library_sort_supported" formatted="true">"%1$s از %3$d مورد %2$d را پشتیبانی می‌کند"</string>
 <string name="library_source">"منبع کتابخانه"</string>
+<string name="library_source_local">"محلی"</string>
 <string name="library_source_note">"هر بار یکی · تغییر، دوباره بارگذاری می‌کند"</string>
 <string name="library_sync_cached">"ذخیره‌شده"</string>
 <string name="library_sync_failed" formatted="true">"همگام‌سازی %1$s ممکن نشد. این‌ها مال %2$s پیش هستند."</string>

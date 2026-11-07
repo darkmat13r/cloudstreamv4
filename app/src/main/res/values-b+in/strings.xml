@@ -424,6 +424,7 @@
 <string name="library_sort_not_kept" formatted="true">"Tidak disimpan oleh %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s mendukung %2$d dari %3$d"</string>
 <string name="library_source">"Sumber pustaka"</string>
+<string name="library_source_local">"Lokal"</string>
 <string name="library_source_note">"Satu per satu · beralih memuat ulang"</string>
 <string name="library_sync_cached">"Tersimpan"</string>
 <string name="library_sync_failed" formatted="true">"Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu."</string>
