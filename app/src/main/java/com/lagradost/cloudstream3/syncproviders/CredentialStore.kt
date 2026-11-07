@@ -19,10 +19,16 @@ import com.lagradost.cloudstream3.utils.DataStore.getSharedPrefs
  *
  * Values are stored exactly as the main store stored them (JSON via `toJsonLiteral`), so nothing changes shape. Nothing
  * here logs a key's value.
+ *
+ * `BUG-51`: profile PINs live here too, under [PIN_FOLDER]`/<profile index>`, so they stay off Android's backup as the
+ * sign-ins do. `DataStoreHelper.accounts` moves them out of the profile list; see [pins] and [replacePins].
  */
 internal object CredentialStore {
     /** The preferences file name; the backup rules exclude `$FILE.xml`. */
     const val FILE = "cs_credentials"
+
+    /** `BUG-51`: each profile's PIN, as `lock_pin/<profile index>`, stored as the plain PIN string. */
+    const val PIN_FOLDER = "lock_pin"
 
     private val folders = listOf(AccountManager.ACCOUNT_TOKEN, AccountManager.ACCOUNT_IDS)
 
@@ -37,15 +43,17 @@ internal object CredentialStore {
     private fun store(): SharedPreferences? {
         val ctx = context ?: return null
         if (!migrated) synchronized(this) {
-            if (!migrated) {
-                migrate(ctx)
-                migrated = true
-            }
+            // A failed copy leaves the old keys in place, and the next call tries again; marking it done would read
+            // an empty store for the rest of the process and look signed out.
+            if (!migrated) migrated = migrate(ctx) >= 0
         }
         return file(ctx)
     }
 
-    /** Moves sign-in keys from the main store into [FILE]. Returns how many keys moved. */
+    /**
+     * Moves sign-in keys from the main store into [FILE]. Returns how many keys moved, 0 when there was nothing to
+     * move, or -1 when the copy could not be written, in which case nothing was removed.
+     */
     fun migrate(ctx: Context): Int {
         val main = ctx.getSharedPrefs()
         val moving = main.all.filter { (key, value) -> isSignInKey(key) && value is String }
@@ -53,12 +61,16 @@ internal object CredentialStore {
         val target = file(ctx)
         val copy = target.edit()
         moving.forEach { (key, value) -> if (!target.contains(key)) copy.putString(key, value as String) }
-        if (!copy.commit()) return 0 // nothing is removed unless the copy is on disk
+        if (!copy.commit()) return -1 // nothing is removed unless the copy is on disk
         main.edit().apply { moving.keys.forEach { remove(it) } }.commit()
         return moving.size
     }
 
-    fun readRaw(key: String): String? = store()?.getString(key, null)
+    /** Until the move has succeeded, a sign-in still in the main store is read from there. */
+    private fun unmoved(): SharedPreferences? = if (migrated) null else context?.getSharedPrefs()
+
+    fun readRaw(key: String): String? =
+        store()?.getString(key, null) ?: unmoved()?.takeIf { isSignInKey(key) }?.getString(key, null)
 
     /**
      * As the main store's `getKey`: null when absent or when the stored value does not parse. Named `getKey` on
@@ -73,11 +85,37 @@ internal object CredentialStore {
 
     fun remove(key: String) {
         store()?.edit()?.remove(key)?.apply()
+        // A sign-out must not come back on the next move.
+        unmoved()?.takeIf { isSignInKey(key) && it.contains(key) }?.edit()?.remove(key)?.apply()
     }
 
     /** Every key under [folder] (`auth_tokens` or `auth_ids`). */
     fun keys(folder: String): List<String> {
         val prefix = folder.trimEnd('/') + "/"
-        return store()?.all?.keys?.filter { it.startsWith(prefix) }.orEmpty()
+        val moved = store()?.all?.keys?.filter { it.startsWith(prefix) }.orEmpty()
+        val left = unmoved()?.all?.keys?.filter { it.startsWith(prefix) && isSignInKey(it) }.orEmpty()
+        return (moved + left).distinct()
+    }
+
+    /** Every stored PIN by profile index, or null without a context. */
+    fun pins(): Map<Int, String>? {
+        val prefix = "$PIN_FOLDER/"
+        return store()?.all?.mapNotNull { (key, value) ->
+            val index = key.removePrefix(prefix).takeIf { key.startsWith(prefix) }?.toIntOrNull()
+            if (index != null && value is String) index to value else null
+        }?.toMap()
+    }
+
+    /**
+     * Makes the stored PINs exactly [pins]: each one written, and every other profile's PIN removed, so a reused
+     * profile index never inherits an old lock. Returns false, having changed nothing, when it could not be written.
+     */
+    fun replacePins(pins: Map<Int, String>): Boolean {
+        val store = store() ?: return false
+        val prefix = "$PIN_FOLDER/"
+        val edit = store.edit()
+        store.all.keys.filter { it.startsWith(prefix) }.forEach { edit.remove(it) }
+        pins.forEach { (index, pin) -> edit.putString("$prefix$index", pin) }
+        return edit.commit()
     }
 }

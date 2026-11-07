@@ -19,6 +19,7 @@ import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.plugins.PLUGINS_KEY
 import com.lagradost.cloudstream3.plugins.PLUGINS_KEY_LOCAL
 import com.lagradost.cloudstream3.syncproviders.AccountManager
+import com.lagradost.cloudstream3.syncproviders.CredentialStore
 import com.lagradost.cloudstream3.syncproviders.providers.AniListApi.Companion.ANILIST_CACHED_LIST
 import com.lagradost.cloudstream3.syncproviders.providers.MALApi.Companion.MAL_CACHED_LIST
 import com.lagradost.cloudstream3.syncproviders.providers.KitsuApi.Companion.KITSU_CACHED_LIST
@@ -212,7 +213,11 @@ object BackupUtils {
         if (restoreDataStore) {
             context.restoreMap(backupFile.datastore.bool)
             context.restoreMap(backupFile.datastore.int)
-            context.restoreMap(backupFile.datastore.string?.withoutPins())
+            val strings = backupFile.datastore.string?.withoutPins()
+            context.restoreMap(strings)
+            // `BUG-51`: a restored profile list comes back unlocked. This device's PINs belong to the profiles it had,
+            // keyed by index, and a different profile restored at the same index must not inherit one.
+            if (strings?.containsKey(PROFILES_KEY) == true) CredentialStore.replacePins(emptyMap())
             context.restoreMap(backupFile.datastore.float)
             context.restoreMap(backupFile.datastore.long)
             context.restoreMap(backupFile.datastore.stringSet)
