@@ -522,6 +522,7 @@ values	string	picture_in_picture_des	-	Continues playback in a miniature player 
 values	string	pin	-	PIN
 values	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values	string	pin_error_length	-	PIN must be 4 characters
+values	string	pin_error_wait	-	Too many wrong PINs. Try again in %1$s
 values	string	play_episode	-	Play Episode
 values	string	play_episode_toast	-	Play Episode
 values	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -1117,6 +1118,7 @@ values-b+af	string	pick_source	-	Bronne
 values-b+af	string	pick_subtitle	-	Onderskrifte
 values-b+af	string	pin_error_incorrect	-	Verkeerde PIN. Probeer weer.
 values-b+af	string	pin_error_length	-	PIN moet 4 karakters bevat
+values-b+af	string	pin_error_wait	-	Te veel verkeerde PIN's. Probeer weer oor %1$s
 values-b+af	string	play_episode	-	Speel Episode
 values-b+af	string	play_livestream_button	-	Speel Regstreeks
 values-b+af	string	play_movie_button	-	Speel Fliek
@@ -1378,6 +1380,7 @@ values-b+am	string	next_episode_time_min_format	-	%dደቂቃ
 values-b+am	string	no_data	-	ውሂብ የለም
 values-b+am	string	pick_source	-	ምንጮች
 values-b+am	string	pick_subtitle	-	የትርጉም ጽሑፎች
+values-b+am	string	pin_error_wait	-	በጣም ብዙ የተሳሳቱ ፒኖች። ከ%1$s በኋላ እንደገና ይሞክሩ
 values-b+am	string	play_episode	-	ክፍልን አጫውት
 values-b+am	string	play_livestream_button	-	የቀጥታ ስርጭት አጫውት
 values-b+am	string	play_movie_button	-	ሙቪ አጫውት
@@ -1967,6 +1970,7 @@ values-b+apc	string	picture_in_picture_des	-	بعد ما تسكر "كلود ست
 values-b+apc	string	pin	-	الأرقام السرية
 values-b+apc	string	pin_error_incorrect	-	الأرقام السرية يللي نحطت مش صحيحة. جرب مرة أخرى.
 values-b+apc	string	pin_error_length	-	لازم يكونو 4 أرقام
+values-b+apc	string	pin_error_wait	-	كتير PIN غلط. جرّب مرة تانية بعد %1$s
 values-b+apc	string	play_episode	-	مشّي الحلقة
 values-b+apc	string	play_episode_toast	-	مشّي الحلقة
 values-b+apc	string	play_from_beginning_img_des	-	بلشه من الأول
@@ -2913,6 +2917,7 @@ values-b+ar	string	picture_in_picture_des	-	يستمر في التشغيل في 
 values-b+ar	string	pin	-	PIN
 values-b+ar	string	pin_error_incorrect	-	رقم PIN غير صحيح. برجاء المحاولة مرة اخرى.
 values-b+ar	string	pin_error_length	-	رقم ال PIN يجب ان يكون 4 ارقام
+values-b+ar	string	pin_error_wait	-	محاولات PIN خاطئة كثيرة جدًا. حاول مرة أخرى بعد %1$s
 values-b+ar	string	play_episode	-	تشغيل الحلقة
 values-b+ar	string	play_episode_toast	-	تشغيل الحلقة
 values-b+ar	string	play_from_beginning_img_des	-	تشغيل من البداية
@@ -3652,6 +3657,7 @@ values-b+ars	string	pick_source	-	مصادر
 values-b+ars	string	pick_subtitle	-	ترجمات
 values-b+ars	string	picture_in_picture	-	صور في صور
 values-b+ars	string	picture_in_picture_des	-	يستمر التشغيل في مشغل مصغر فوق التطبيقات الأخرى
+values-b+ars	string	pin_error_wait	-	محاولات PIN غلط كثيرة. حاول مرة ثانية بعد %1$s
 values-b+ars	string	play_episode	-	تشغيل الحلقة
 values-b+ars	string	play_episode_toast	-	تشغيل الحلقة
 values-b+ars	string	play_livestream_button	-	تشغيل البث المباشر
@@ -4299,6 +4305,7 @@ values-b+as	string	picture_in_picture_des	-	অন্য এপ্‌সমূ�
 values-b+as	string	pin	-	পিন
 values-b+as	string	pin_error_incorrect	-	ভুল পিন। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।
 values-b+as	string	pin_error_length	-	পিন ৪ অক্ষৰৰ হ'ব লাগিব
+values-b+as	string	pin_error_wait	-	বহুতো ভুল PIN। %1$s পিছত পুনৰ চেষ্টা কৰক
 values-b+as	string	play_episode	-	এপিচ'ড প্লে কৰক
 values-b+as	string	play_episode_toast	-	এপিচ’ড প্লে কৰক
 values-b+as	string	play_from_beginning_img_des	-	আৰম্ভৰ পৰা প্লে কৰক
@@ -4847,6 +4854,7 @@ values-b+az	string	pause	-	Dayandır
 values-b+az	string	pick_source	-	Mənbələr
 values-b+az	string	pick_subtitle	-	Altyazılar
 values-b+az	string	picture_in_picture	-	Şəkil içində şəkil
+values-b+az	string	pin_error_wait	-	Həddindən çox səhv PIN. %1$s sonra yenidən cəhd edin
 values-b+az	string	play_episode	-	Bölümü oynat
 values-b+az	string	play_from_beginning_img_des	-	Əvvəldən oynat
 values-b+az	string	play_livestream_button	-	Canlı Yayını oynat
@@ -5464,6 +5472,7 @@ values-b+be	string	picture_in_picture_des	-	Працягвае прайграв�
 values-b+be	string	pin	-	PIN-код
 values-b+be	string	pin_error_incorrect	-	Няправільны PIN-код. Паспрабуйце яшчэ раз.
 values-b+be	string	pin_error_length	-	PIN-код павінны быць з 4 сімвалаў
+values-b+be	string	pin_error_wait	-	Занадта шмат няправільных PIN-кодаў. Паспрабуйце зноў праз %1$s
 values-b+be	string	play_episode	-	Прайграць серыю
 values-b+be	string	play_episode_toast	-	Прайграць серыю
 values-b+be	string	play_from_beginning_img_des	-	Прайграць з пачатку
@@ -6348,6 +6357,7 @@ values-b+bg	string	picture_in_picture_des	-	Продължава възпрои�
 values-b+bg	string	pin	-	ПИН
 values-b+bg	string	pin_error_incorrect	-	Неверен ПИН. Моля опитайте отново.
 values-b+bg	string	pin_error_length	-	ПИН трябва да е 4 символа
+values-b+bg	string	pin_error_wait	-	Твърде много грешни ПИН кодове. Опитайте отново след %1$s
 values-b+bg	string	play_episode	-	Пусни епизод
 values-b+bg	string	play_episode_toast	-	Пусни епизода
 values-b+bg	string	play_from_beginning_img_des	-	Пусни от самото начало
@@ -7071,6 +7081,7 @@ values-b+bn	string	pick_source	-	উৎসসমূহ
 values-b+bn	string	pick_subtitle	-	সাবটাইটেলসমূহ
 values-b+bn	string	picture_in_picture	-	পিকচার ইন পিকচার
 values-b+bn	string	picture_in_picture_des	-	অন্য অ্যাপ এর উপর ভিডিও চালাতে থাকুন
+values-b+bn	string	pin_error_wait	-	অনেকবার ভুল PIN। %1$s পরে আবার চেষ্টা করুন
 values-b+bn	string	play_episode	-	পর্ব চালান
 values-b+bn	string	play_episode_toast	-	এপিসোড পরলে করুন
 values-b+bn	string	play_from_beginning_img_des	-	শুরু থেকে চালু করুন
@@ -7584,6 +7595,7 @@ values-b+ca	string	picture_in_picture_des	-	Continua la reproducció en una fine
 values-b+ca	string	pin	-	PIN
 values-b+ca	string	pin_error_incorrect	-	PIN incorrecte. Si us plau, torneu a intentar-ho.
 values-b+ca	string	pin_error_length	-	El PIN ha de tenir 4 caràcters
+values-b+ca	string	pin_error_wait	-	Massa PIN incorrectes. Torna-ho a provar en %1$s
 values-b+ca	string	play_episode	-	Reprodueix l'episodi
 values-b+ca	string	play_from_beginning_img_des	-	Reproduïr des del començament
 values-b+ca	string	play_livestream_button	-	Reprodueix Livestream
@@ -7953,6 +7965,7 @@ values-b+ckb	string	offline_file	-	بەردەستە بۆ سەیرکردنی ئۆ
 values-b+ckb	string	open_local_video	-	ڤیدیۆی ناوخۆیی بکەرەوە
 values-b+ckb	string	pick_source	-	سەرچاوەکان
 values-b+ckb	string	pick_subtitle	-	ژێرنووسەکان
+values-b+ckb	string	pin_error_wait	-	زۆر PINی هەڵە. دوای %1$s دووبارە هەوڵ بدەرەوە
 values-b+ckb	string	play_from_beginning_img_des	-	لە سەرەتاوە دەست پێ بکە
 values-b+ckb	string	play_torrent_button	-	تۆرێنت ستریم بکە
 values-b+ckb	string	player_enter_fullscreen	-	چوونە ناو پڕ بە شاشە
@@ -8548,6 +8561,7 @@ values-b+cs	string	picture_in_picture_des	-	Přehrávání bude pokračovat v mi
 values-b+cs	string	pin	-	PIN
 values-b+cs	string	pin_error_incorrect	-	Nesprávný PIN. Zkuste to prosím znovu.
 values-b+cs	string	pin_error_length	-	PIN musí obsahovat 4 znaky
+values-b+cs	string	pin_error_wait	-	Příliš mnoho chybných PINů. Zkuste to znovu za %1$s
 values-b+cs	string	play_episode	-	Přehrát epizodu
 values-b+cs	string	play_episode_toast	-	Přehrát epizodu
 values-b+cs	string	play_from_beginning_img_des	-	Přehrát od začátku
@@ -9445,6 +9459,7 @@ values-b+de	string	picture_in_picture_des	-	Setzt die Wiedergabe in einem kleine
 values-b+de	string	pin	-	PIN
 values-b+de	string	pin_error_incorrect	-	Falsche PIN. Bitte versuche es erneut.
 values-b+de	string	pin_error_length	-	PIN muss 4 Zeichen sein
+values-b+de	string	pin_error_wait	-	Zu viele falsche PINs. Erneut versuchen in %1$s
 values-b+de	string	play_episode	-	Episode abspielen
 values-b+de	string	play_episode_toast	-	Episode abspielen
 values-b+de	string	play_from_beginning_img_des	-	Vom Beginn an spielen
@@ -10297,6 +10312,7 @@ values-b+el	string	picture_in_picture_des	-	Συνεχίζει την αναπα
 values-b+el	string	pin	-	Κωδικός
 values-b+el	string	pin_error_incorrect	-	Εσφαλμένος Κωδικός. Προσπαθήστε ξανά.
 values-b+el	string	pin_error_length	-	Ο κωδικός να περιέχει 4 χαρακτήρες
+values-b+el	string	pin_error_wait	-	Πάρα πολλά λάθος PIN. Δοκιμάστε ξανά σε %1$s
 values-b+el	string	play_episode	-	Αναπαραγωγή επεισοδίου
 values-b+el	string	play_episode_toast	-	Αναπαραγωγή επεισοδίου
 values-b+el	string	play_from_beginning_img_des	-	Παίξε από την αρχή
@@ -10879,6 +10895,7 @@ values-b+eo	string	others	-	Aliaj
 values-b+eo	string	pause	-	Paŭzigi
 values-b+eo	string	pick_source	-	Fontoj
 values-b+eo	string	pick_subtitle	-	Subtekstoj
+values-b+eo	string	pin_error_wait	-	Tro da malĝustaj PIN-oj. Reprovu post %1$s
 values-b+eo	string	play_episode	-	Ludi Epizodon
 values-b+eo	string	play_from_beginning_img_des	-	Legi ekde la komenco
 values-b+eo	string	play_livestream_button	-	Ludi tuj-elsendfluon
@@ -11514,6 +11531,7 @@ values-b+es	string	picture_in_picture_des	-	Continúa la reproducción en un rep
 values-b+es	string	pin	-	PIN
 values-b+es	string	pin_error_incorrect	-	PIN incorrecto. Por favor, inténtelo de nuevo.
 values-b+es	string	pin_error_length	-	El PIN debe tener 4 caracteres
+values-b+es	string	pin_error_wait	-	Demasiados PIN incorrectos. Inténtalo de nuevo en %1$s
 values-b+es	string	play_episode	-	Reproducir Episodio
 values-b+es	string	play_episode_toast	-	Reproducir Episodio
 values-b+es	string	play_from_beginning_img_des	-	Reproducir desde el principio
@@ -12213,6 +12231,7 @@ values-b+fa	string	pick_source	-	منابع
 values-b+fa	string	pick_subtitle	-	زیرنویس‌ها
 values-b+fa	string	picture_in_picture	-	تصویر در تصویر
 values-b+fa	string	picture_in_picture_des	-	پخش را در یک پخش کننده مینیاتوری در بالای برنامه های دیگر ادامه می دهد
+values-b+fa	string	pin_error_wait	-	PIN اشتباه بیش از حد. %1$s دیگر دوباره امتحان کنید
 values-b+fa	string	play_episode	-	پخش قسمت
 values-b+fa	string	play_episode_toast	-	پخش قسمت
 values-b+fa	string	play_from_beginning_img_des	-	پخش از ابتدا
@@ -12681,6 +12700,7 @@ values-b+fil	string	pick_source	-	Mga Mapagkukunan
 values-b+fil	string	pick_subtitle	-	Mga saling-teksto
 values-b+fil	string	picture_in_picture_des	-	Ipinagpapatuloy ang pag-playback sa isang miniature na player sa ibabaw ng iba pang mga app
 values-b+fil	string	pin_error_incorrect	-	Maling PIN. Pakisubukang muli.
+values-b+fil	string	pin_error_wait	-	Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s
 values-b+fil	string	play_episode	-	Ipatugtog ang Kabanata
 values-b+fil	string	play_from_beginning_img_des	-	Ipatugtog mula sa Simula
 values-b+fil	string	play_full_series_button	-	Ipatugtog ang Buong Serye
@@ -13351,6 +13371,7 @@ values-b+fr	string	picture_in_picture_des	-	Poursuite de la lecture dans un lect
 values-b+fr	string	pin	-	PIN
 values-b+fr	string	pin_error_incorrect	-	PIN incorrect. Ressayez s'il vous plait.
 values-b+fr	string	pin_error_length	-	Le PIN doit être de 4 caractères
+values-b+fr	string	pin_error_wait	-	Trop de codes PIN erronés. Réessayez dans %1$s
 values-b+fr	string	play_episode	-	Lire l'Épisode
 values-b+fr	string	play_episode_toast	-	Lecture de l'episode
 values-b+fr	string	play_from_beginning_img_des	-	Regarder depuis le début
@@ -14025,6 +14046,7 @@ values-b+gl	string	pick_source	-	Fontes
 values-b+gl	string	pick_subtitle	-	Subtítulos
 values-b+gl	string	picture_in_picture	-	Imaxe en Imaxe
 values-b+gl	string	picture_in_picture_des	-	Continúa a reprodución nun reproductor miniatura enriba doutras aplicacións
+values-b+gl	string	pin_error_wait	-	Demasiados PIN incorrectos. Téntao de novo en %1$s
 values-b+gl	string	play_episode	-	Reproducir Episodio
 values-b+gl	string	play_episode_toast	-	Reproducir capítulo
 values-b+gl	string	play_from_beginning_img_des	-	Reproducir dende o comezo
@@ -14588,6 +14610,7 @@ values-b+he	string	pick_source	-	מקורות
 values-b+he	string	pick_subtitle	-	כתוביות
 values-b+he	string	picture_in_picture	-	מצב תמונה בתמונה
 values-b+he	string	picture_in_picture_des	-	ממשיך ניגון בנגן מינימלי מעל ישומים אחרים
+values-b+he	string	pin_error_wait	-	יותר מדי קודי PIN שגויים. נסו שוב בעוד %1$s
 values-b+he	string	play_episode	-	נגן פרק
 values-b+he	string	play_episode_toast	-	נגן את הפרק
 values-b+he	string	play_from_beginning_img_des	-	נגן מההתחלה
@@ -15256,6 +15279,7 @@ values-b+hi	string	picture_in_picture_des	-	अन्य ऐप्स के ऊ
 values-b+hi	string	pin	-	पिन
 values-b+hi	string	pin_error_incorrect	-	ग़लत पिन. कृपया पुन: प्रयास करें।
 values-b+hi	string	pin_error_length	-	पिन 4 अक्षर का होना चाहिए
+values-b+hi	string	pin_error_wait	-	बहुत सारे गलत PIN। %1$s बाद फिर से कोशिश करें
 values-b+hi	string	play_episode	-	एपिसोड चलाएं
 values-b+hi	string	play_episode_toast	-	एपिसोड चलायें
 values-b+hi	string	play_from_beginning_img_des	-	आरम्भ से शुरू करें
@@ -15986,6 +16010,7 @@ values-b+hr	string	picture_in_picture_des	-	Nastavlja reprodukciju u minijaturno
 values-b+hr	string	pin	-	PIN
 values-b+hr	string	pin_error_incorrect	-	Netočan PIN. Pokušajte ponovno.
 values-b+hr	string	pin_error_length	-	PIN mora imati 4 znaka
+values-b+hr	string	pin_error_wait	-	Previše pogrešnih PIN-ova. Pokušajte ponovno za %1$s
 values-b+hr	string	play_episode	-	Pokreni epizodu
 values-b+hr	string	play_episode_toast	-	Pokreni epizodu
 values-b+hr	string	play_from_beginning_img_des	-	Pokreni od početka
@@ -16824,6 +16849,7 @@ values-b+hu	string	picture_in_picture_des	-	Folytatja a lejátszást egy miniat�
 values-b+hu	string	pin	-	PIN
 values-b+hu	string	pin_error_incorrect	-	Hibás PIN. Próbálja újra.
 values-b+hu	string	pin_error_length	-	A PIN 4 karakter hosszú kell legyen
+values-b+hu	string	pin_error_wait	-	Túl sok hibás PIN. Próbáld újra %1$s múlva
 values-b+hu	string	play_episode	-	Epizód lejátszása
 values-b+hu	string	play_episode_toast	-	Epizód lejátszása
 values-b+hu	string	play_from_beginning_img_des	-	Lejátszás az elejétől
@@ -17654,6 +17680,7 @@ values-b+id	string	picture_in_picture_des	-	Lanjutkan pemutaran di pemutar mini 
 values-b+id	string	pin	-	PIN
 values-b+id	string	pin_error_incorrect	-	PIN Salah. Silahkan coba lagi.
 values-b+id	string	pin_error_length	-	PIN harus terdiri 4 karakter
+values-b+id	string	pin_error_wait	-	Terlalu banyak PIN yang salah. Coba lagi dalam %1$s
 values-b+id	string	play_episode	-	Putar Episode
 values-b+id	string	play_episode_toast	-	Putar Episode
 values-b+id	string	play_from_beginning_img_des	-	Putar dari awal
@@ -18534,6 +18561,7 @@ values-b+in	string	picture_in_picture_des	-	Lanjutkan pemutaran di pemutar mini 
 values-b+in	string	pin	-	PIN
 values-b+in	string	pin_error_incorrect	-	PIN Salah. Silahkan coba lagi.
 values-b+in	string	pin_error_length	-	PIN harus terdiri 4 karakter
+values-b+in	string	pin_error_wait	-	Terlalu banyak PIN yang salah. Coba lagi dalam %1$s
 values-b+in	string	play_episode	-	Putar Episode
 values-b+in	string	play_episode_toast	-	Putar Episode
 values-b+in	string	play_from_beginning_img_des	-	Putar dari awal
@@ -19444,6 +19472,7 @@ values-b+it	string	picture_in_picture_des	-	Continua la riproduzione in un letto
 values-b+it	string	pin	-	PIN
 values-b+it	string	pin_error_incorrect	-	PIN non corretto. Riprova.
 values-b+it	string	pin_error_length	-	Il PIN deve essere almeno di 4 caratteri
+values-b+it	string	pin_error_wait	-	Troppi PIN errati. Riprova tra %1$s
 values-b+it	string	play_episode	-	Riproduci episodio
 values-b+it	string	play_episode_toast	-	Riproduci episodio
 values-b+it	string	play_from_beginning_img_des	-	Riproduci dall'inizio
@@ -20239,6 +20268,7 @@ values-b+iw	string	pick_source	-	מקורות
 values-b+iw	string	pick_subtitle	-	כתוביות
 values-b+iw	string	picture_in_picture	-	מצב תמונה בתמונה
 values-b+iw	string	picture_in_picture_des	-	ממשיך ניגון בנגן מינימלי מעל ישומים אחרים
+values-b+iw	string	pin_error_wait	-	יותר מדי קודי PIN שגויים. נסו שוב בעוד %1$s
 values-b+iw	string	play_episode	-	נגן פרק
 values-b+iw	string	play_episode_toast	-	נגן את הפרק
 values-b+iw	string	play_from_beginning_img_des	-	נגן מההתחלה
@@ -21041,6 +21071,7 @@ values-b+ja	string	picture_in_picture_des	-	他のアプリの上にミニプレ
 values-b+ja	string	pin	-	PIN
 values-b+ja	string	pin_error_incorrect	-	PINが違います。もう一度試してください。
 values-b+ja	string	pin_error_length	-	PINは4文字でなければなりません
+values-b+ja	string	pin_error_wait	-	PIN の入力ミスが多すぎます。%1$s 後にもう一度お試しください
 values-b+ja	string	play_episode	-	再生エピソード
 values-b+ja	string	play_episode_toast	-	再生エピソード
 values-b+ja	string	play_from_beginning_img_des	-	最初から再生する
@@ -21612,6 +21643,7 @@ values-b+kn	string	pick_source	-	ಮೂಲಗಳು
 values-b+kn	string	pick_subtitle	-	ಸಬ್ ಟೈಟಲ್ಸ್
 values-b+kn	string	picture_in_picture	-	ಚಿತ್ರದಲ್ಲಿ-ಚಿತ್ರದಲ್ಲಿ
 values-b+kn	string	picture_in_picture_des	-	ಇತರ ಅಪ್ಲಿಕೇಶನ್‌ಗಳ ಮೇಲೆ ಚಿಕಣಿ ಪ್ಲೇಯರ್‌ನಲ್ಲಿ ಪ್ಲೇಬ್ಯಾಕ್ ಅನ್ನು ಮುಂದುವರಿಸುತ್ತದೆ
+values-b+kn	string	pin_error_wait	-	ತುಂಬಾ ತಪ್ಪು PIN ಗಳು. %1$s ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ
 values-b+kn	string	play_episode	-	ಸಂಚಿಕೆಯನ್ನು ಪ್ಲೇ ಮಾಡಿ
 values-b+kn	string	play_livestream_button	-	ಲೈವ್‌ಸ್ಟ್ರೀಮ್ ಪ್ಲೇ ಮಾಡಿ
 values-b+kn	string	play_movie_button	-	ಚಲನಚಿತ್ರವನ್ನು ಪ್ಲೇ ಮಾಡಿ
@@ -22199,6 +22231,7 @@ values-b+ko	string	picture_in_picture_des	-	미니플레이어를 통해 다른 
 values-b+ko	string	pin	-	PIN
 values-b+ko	string	pin_error_incorrect	-	잘못된 PIN입니다. 다시 시도하세요.
 values-b+ko	string	pin_error_length	-	PIN은 4자여야 합니다
+values-b+ko	string	pin_error_wait	-	잘못된 PIN을 너무 많이 입력했습니다. %1$s 후에 다시 시도하세요
 values-b+ko	string	play_episode	-	에피소드 재생
 values-b+ko	string	play_episode_toast	-	에피소드 재생
 values-b+ko	string	play_from_beginning_img_des	-	처음부터 재생
@@ -22879,6 +22912,7 @@ values-b+lt	string	pick_source	-	Šaltiniai
 values-b+lt	string	pick_subtitle	-	Subtitrai
 values-b+lt	string	picture_in_picture	-	Vaizdas vaizde
 values-b+lt	string	picture_in_picture_des	-	Tęsia atkūrimą mažame grotuve virš kitų programų
+values-b+lt	string	pin_error_wait	-	Per daug neteisingų PIN kodų. Bandykite dar kartą po %1$s
 values-b+lt	string	play_episode	-	Paleisti seriją
 values-b+lt	string	play_episode_toast	-	Leisti seriją
 values-b+lt	string	play_full_series_button	-	Paleisti visą seriją
@@ -23507,6 +23541,7 @@ values-b+lv	string	picture_in_picture_des	-	Turpina atskaņošanu miniatūrā at
 values-b+lv	string	pin	-	PIN kods
 values-b+lv	string	pin_error_incorrect	-	Nepareizs PIN kods. Lūdzu, ievadiet to no jauna.
 values-b+lv	string	pin_error_length	-	PIN kods satur 4 rakstzīmes
+values-b+lv	string	pin_error_wait	-	Pārāk daudz nepareizu PIN. Mēģiniet vēlreiz pēc %1$s
 values-b+lv	string	play_episode	-	Palaist epizodi
 values-b+lv	string	play_episode_toast	-	Atskaņot epizodi
 values-b+lv	string	play_from_beginning_img_des	-	Atskaņot no sākuma
@@ -24345,6 +24380,7 @@ values-b+mk	string	picture_in_picture_des	-	Продолжува со репро
 values-b+mk	string	pin	-	PIN
 values-b+mk	string	pin_error_incorrect	-	Неточен ПИН. Обиди се повторно.
 values-b+mk	string	pin_error_length	-	ПИН-кодот мора да има 4 знаци
+values-b+mk	string	pin_error_wait	-	Премногу погрешни PIN-кодови. Обидете се повторно за %1$s
 values-b+mk	string	play_episode	-	Вклучи епизода
 values-b+mk	string	play_episode_toast	-	Пушти ја епизодата
 values-b+mk	string	play_from_beginning_img_des	-	Пушти од почеток
@@ -25001,6 +25037,7 @@ values-b+ml	string	picture_in_picture_des	-	മറ്റ് ആപ്പുക�
 values-b+ml	string	pin	-	പിൻ
 values-b+ml	string	pin_error_incorrect	-	തെറ്റായ പിൻ. ദയവായി വീണ്ടും ശ്രമിക്കുക.
 values-b+ml	string	pin_error_length	-	പിൻ 4 പ്രതീകങ്ങൾ ആയിരിക്കണം
+values-b+ml	string	pin_error_wait	-	വളരെയധികം തെറ്റായ PIN-കൾ. %1$s കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക
 values-b+ml	string	play_episode	-	എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക
 values-b+ml	string	play_episode_toast	-	എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക
 values-b+ml	string	play_from_beginning_img_des	-	തുടക്കം മുതൽ പ്ലേ ചെയ്യുക
@@ -25579,6 +25616,7 @@ values-b+ms	string	picture_in_picture_des	-	Sambung Rakaman didalam pemain mini 
 values-b+ms	string	pin	-	PIN
 values-b+ms	string	pin_error_incorrect	-	PIN salah. Sila cuba sekali lagi.
 values-b+ms	string	pin_error_length	-	PIN perlu mempunyai 4 aksara
+values-b+ms	string	pin_error_wait	-	Terlalu banyak PIN salah. Cuba lagi dalam %1$s
 values-b+ms	string	play_episode	-	Pasang Episod
 values-b+ms	string	play_episode_toast	-	Main episod
 values-b+ms	string	play_from_beginning_img_des	-	Main dari mula
@@ -26061,6 +26099,7 @@ values-b+mt	string	pick_source	-	Sorsi
 values-b+mt	string	pick_subtitle	-	Sottotitli
 values-b+mt	string	picture_in_picture	-	Stampa f-istampa
 values-b+mt	string	picture_in_picture_des	-	Ikompli d-daqq fi player minjatura fuq apps oħra
+values-b+mt	string	pin_error_wait	-	Wisq PINs ħżiena. Ipprova mill-ġdid fi żmien %1$s
 values-b+mt	string	play_episode	-	Ibda l-episodju
 values-b+mt	string	play_livestream_button	-	Ibda l-livestream
 values-b+mt	string	play_movie_button	-	Ibda l-film
@@ -26522,6 +26561,7 @@ values-b+my	string	pick_source	-	ရင်းမြစ်များ
 values-b+my	string	pick_subtitle	-	စာတန်းထိုး
 values-b+my	string	picture_in_picture	-	ရုပ်ပုံထပ်
 values-b+my	string	picture_in_picture_des	-	ပြန်ကြည့်ခြင်းကိုအသေးစား ကြည့်ရှုမှုတွင်ဆက်ပြပါ
+values-b+my	string	pin_error_wait	-	PIN မှားယွင်းမှု များလွန်းသည်။ %1$s အကြာတွင် ထပ်စမ်းကြည့်ပါ
 values-b+my	string	play_episode	-	အပိုင်း ကြည့်မည်
 values-b+my	string	play_episode_toast	-	အပိုင်းကြည့်မည်
 values-b+my	string	play_livestream_button	-	လိုက်ခ် ကြည့်မည်
@@ -27001,6 +27041,7 @@ values-b+ne	string	pick_source	-	स्रोतहरू
 values-b+ne	string	pick_subtitle	-	उपशीर्षक
 values-b+ne	string	picture_in_picture	-	Picture-in-picture
 values-b+ne	string	picture_in_picture_des	-	अरु एप माथी सानो प्लेयरमा पलेब्याक जारी राख्दछ
+values-b+ne	string	pin_error_wait	-	धेरै पटक गलत PIN। %1$s पछि फेरि प्रयास गर्नुहोस्
 values-b+ne	string	play_episode	-	एपिसोड प्ले गर्नुहोस्
 values-b+ne	string	play_livestream_button	-	लाइभस्ट्रिम प्ले गर्नुहोस्
 values-b+ne	string	play_movie_button	-	चलचित्र प्ले गर्नुहोस्
@@ -27569,6 +27610,7 @@ values-b+nl	string	picture_in_picture_des	-	Blijft afspelen in een miniatuurspel
 values-b+nl	string	pin	-	PIN
 values-b+nl	string	pin_error_incorrect	-	Onjuiste PIN. Probeer het opnieuw.
 values-b+nl	string	pin_error_length	-	PIN moet 4 teken bevatten
+values-b+nl	string	pin_error_wait	-	Te veel verkeerde pincodes. Probeer het over %1$s opnieuw
 values-b+nl	string	play_episode	-	Aflevering afspelen
 values-b+nl	string	play_episode_toast	-	Aflevering afspelen
 values-b+nl	string	play_from_beginning_img_des	-	Speel van het begin
@@ -28167,6 +28209,7 @@ values-b+nn	string	pause	-	Pause
 values-b+nn	string	pick_source	-	Kjelder
 values-b+nn	string	pick_subtitle	-	Undertekstar
 values-b+nn	string	picture_in_picture	-	Bilde i bilde
+values-b+nn	string	pin_error_wait	-	For mange feil PIN-kodar. Prøv igjen om %1$s
 values-b+nn	string	play_episode	-	Spel av episode
 values-b+nn	string	play_episode_toast	-	Spel av episode
 values-b+nn	string	play_from_beginning_img_des	-	Spel av frå start
@@ -28668,6 +28711,7 @@ values-b+no	string	pick_source	-	Kilder
 values-b+no	string	pick_subtitle	-	Undertekster
 values-b+no	string	picture_in_picture	-	Bilde-i-bilde
 values-b+no	string	picture_in_picture_des	-	Fortsetter avspilling i en miniatyr spiller på toppen av andre apper
+values-b+no	string	pin_error_wait	-	For mange feil PIN-koder. Prøv igjen om %1$s
 values-b+no	string	play_episode	-	Spille Episode
 values-b+no	string	play_episode_toast	-	spille episode
 values-b+no	string	play_livestream_button	-	Spill direktestrøm
@@ -29173,6 +29217,7 @@ values-b+or	string	no_season	-	କୌଣସି ଋତୁ ନାହିଁ
 values-b+or	string	no_update_found	-	କୌଣସି ଅଦ୍ୟତନ ମିଳିଲା ନାହିଁ
 values-b+or	string	other_singular	-	ଵିଡ଼ିଓ
 values-b+or	string	others	-	ଅନ୍ୟାନ୍ୟ
+values-b+or	string	pin_error_wait	-	ଅତ୍ୟଧିକ ଭୁଲ PIN। %1$s ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ
 values-b+or	string	play_episode	-	ଅଧ୍ୟାୟ ଚଲାଅ
 values-b+or	string	play_episode_toast	-	ଅଧ୍ୟାୟ ଚଲାଅ
 values-b+or	string	play_movie_button	-	ଚଳଚ୍ଚିତ୍ର ଚଲାଅ
@@ -29811,6 +29856,7 @@ values-b+pl	string	picture_in_picture_des	-	Oglądaj w małym, pływającym okie
 values-b+pl	string	pin	-	PIN
 values-b+pl	string	pin_error_incorrect	-	Nieprawidłowy PIN. Spróbuj ponownie.
 values-b+pl	string	pin_error_length	-	Kod PIN musi mieć 4 znaki
+values-b+pl	string	pin_error_wait	-	Zbyt wiele błędnych kodów PIN. Spróbuj ponownie za %1$s
 values-b+pl	string	play_episode	-	Odtwórz odcinek
 values-b+pl	string	play_episode_toast	-	Odtwórz odcinek
 values-b+pl	string	play_from_beginning_img_des	-	Odtwarzaj od początku
@@ -30723,6 +30769,7 @@ values-b+pt	string	picture_in_picture_des	-	Continua a reprodução num player e
 values-b+pt	string	pin	-	PIN
 values-b+pt	string	pin_error_incorrect	-	PIN incorreto. Por favor, tente novamente.
 values-b+pt	string	pin_error_length	-	O PIN deve ter 4 caracteres
+values-b+pt	string	pin_error_wait	-	Demasiados PIN errados. Tente novamente dentro de %1$s
 values-b+pt	string	play_episode	-	Reproduzir episódio
 values-b+pt	string	play_episode_toast	-	Reproduzir episódio
 values-b+pt	string	play_from_beginning_img_des	-	Recomeçar
@@ -31629,6 +31676,7 @@ values-b+pt+BR	string	picture_in_picture_des	-	Continua o vídeo em tamanho mini
 values-b+pt+BR	string	pin	-	PIN
 values-b+pt+BR	string	pin_error_incorrect	-	PIN incorreto. Por favor, tente novamente.
 values-b+pt+BR	string	pin_error_length	-	O PIN deve ter 4 caracteres
+values-b+pt+BR	string	pin_error_wait	-	Muitos PINs incorretos. Tente novamente em %1$s
 values-b+pt+BR	string	play_episode	-	Reproduzir episódio
 values-b+pt+BR	string	play_episode_toast	-	Assistir episódio
 values-b+pt+BR	string	play_from_beginning_img_des	-	Reproduzir do começo
@@ -32457,6 +32505,7 @@ values-b+qt	string	picture_in_picture_des	-	ooooooohhaa ouuhhh ouuhhhohahh oh ah
 values-b+qt	string	pin	-	oog
 values-b+qt	string	pin_error_incorrect	-	oooohhhag uug oooohh uuh eeeek
 values-b+qt	string	pin_error_length	-	ooh oogg uh 4 uuuuhhhooh
+values-b+qt	string	pin_error_wait	-	oooohhhag uug ooh %1$s eeek
 values-b+qt	string	play_episode	-	aaaaa oh ohaouuhhh
 values-b+qt	string	play_episode_toast	-	ouuhhhoouuh ouuhhh
 values-b+qt	string	play_from_beginning_img_des	-	aahh oohh uuh uuuuggguh
@@ -33248,6 +33297,7 @@ values-b+ro	string	picture_in_picture_des	-	Continuă redarea într-un mini-play
 values-b+ro	string	pin	-	PIN
 values-b+ro	string	pin_error_incorrect	-	PIN incorect. Te rog să încerci din nou.
 values-b+ro	string	pin_error_length	-	PIN-ul trebuie să fie format din 4 caractere
+values-b+ro	string	pin_error_wait	-	Prea multe PIN-uri greșite. Încercați din nou peste %1$s
 values-b+ro	string	play_episode	-	Redă episodul
 values-b+ro	string	play_episode_toast	-	Redare episod
 values-b+ro	string	play_from_beginning_img_des	-	Redă de la început
@@ -34116,6 +34166,7 @@ values-b+ru	string	picture_in_picture_des	-	Продолжение воспро�
 values-b+ru	string	pin	-	ПИН-код
 values-b+ru	string	pin_error_incorrect	-	Неверный ПИН-код. Пожалуйста, введите его заново.
 values-b+ru	string	pin_error_length	-	ПИН-код должен содержать 4 символа
+values-b+ru	string	pin_error_wait	-	Слишком много неверных PIN-кодов. Повторите попытку через %1$s
 values-b+ru	string	play_episode	-	Смотреть серию
 values-b+ru	string	play_episode_toast	-	Смотреть серию
 values-b+ru	string	play_from_beginning_img_des	-	Играть с самого начала
@@ -34902,6 +34953,7 @@ values-b+sk	string	pick_source	-	Zdroje
 values-b+sk	string	pick_subtitle	-	Titulky
 values-b+sk	string	picture_in_picture	-	Obraz v obraze
 values-b+sk	string	picture_in_picture_des	-	Pokračuje v prehrávaní v miniatúrnom prehrávači nad ostatnými aplikáciami
+values-b+sk	string	pin_error_wait	-	Príliš veľa nesprávnych PIN kódov. Skúste to znova o %1$s
 values-b+sk	string	play_episode	-	Prehrať epizódu
 values-b+sk	string	play_episode_toast	-	Prehrať epizódu
 values-b+sk	string	play_from_beginning_img_des	-	Hrať od začiatku
@@ -35540,6 +35592,7 @@ values-b+so	string	pick_source	-	Xigashooyinka
 values-b+so	string	pick_subtitle	-	Qrl-hoosaadka
 values-b+so	string	picture_in_picture	-	Sawir-daaqadlaha
 values-b+so	string	picture_in_picture_des	-	Ka sii wado daawashada daaqad yar oo appska kale dul istaagi doonta
+values-b+so	string	pin_error_wait	-	PIN qaldan oo aad u badan. Isku day mar kale %1$s kadib
 values-b+so	string	play_episode	-	Xalqadda daaro
 values-b+so	string	play_episode_toast	-	Daari xalqaddan
 values-b+so	string	play_from_beginning_img_des	-	Ka bilow bilowga
@@ -36331,6 +36384,7 @@ values-b+sq	string	picture_in_picture_des	-	Vazhdo shikimin në një luajtës t�
 values-b+sq	string	pin	-	PIN
 values-b+sq	string	pin_error_incorrect	-	PIN-i i gabuar. Ju lutem provoni përsëri.
 values-b+sq	string	pin_error_length	-	PIN-i duhet të ketë 4 karaktere
+values-b+sq	string	pin_error_wait	-	Shumë PIN të gabuar. Provo përsëri pas %1$s
 values-b+sq	string	play_episode	-	Luaj Episodin
 values-b+sq	string	play_episode_toast	-	Luaj Episodin
 values-b+sq	string	play_from_beginning_img_des	-	Luaj nga fillimi
@@ -37228,6 +37282,7 @@ values-b+sv	string	picture_in_picture_des	-	Fortsätter uppspelning i en miniaty
 values-b+sv	string	pin	-	PIN-kod
 values-b+sv	string	pin_error_incorrect	-	Felaktig PIN-kod. Försök igen.
 values-b+sv	string	pin_error_length	-	PIN-koden måste vara fyra tecken
+values-b+sv	string	pin_error_wait	-	För många felaktiga PIN-koder. Försök igen om %1$s
 values-b+sv	string	play_episode	-	Spela avsnitt
 values-b+sv	string	play_episode_toast	-	Spela upp avsnitt
 values-b+sv	string	play_from_beginning_img_des	-	Spela från början
@@ -38125,6 +38180,7 @@ values-b+ta	string	picture_in_picture_des	-	மற்ற பயன்பாட�
 values-b+ta	string	pin	-	முள்
 values-b+ta	string	pin_error_incorrect	-	தவறான முள். தயவு செய்து மீண்டும் முயற்சிக்கவும்.
 values-b+ta	string	pin_error_length	-	முள் 4 எழுத்துகளாக இருக்க வேண்டும்
+values-b+ta	string	pin_error_wait	-	பல தவறான PIN-கள். %1$s கழித்து மீண்டும் முயலவும்
 values-b+ta	string	play_episode	-	அத்தியாயத்தை இயக்கு
 values-b+ta	string	play_episode_toast	-	அத்தியாயம் விளையாடுங்கள்
 values-b+ta	string	play_from_beginning_img_des	-	முதலில் இருந்து ஆரம்பி
@@ -38640,6 +38696,7 @@ values-b+ti	string	library_synced_format	-	ቅድሚ %s ተሰማሚዑ
 values-b+ti	string	load_more	-	ተወሳኺ ጽዓን
 values-b+ti	string	more_like_this	-	ተመሳሳሊ
 values-b+ti	string	next_episode_format	-	ክፋል %d በ ላይ ይወጣል
+values-b+ti	string	pin_error_wait	-	ብዙሕ ጌጋ PIN። ድሕሪ %1$s እንደገና ፈትኑ
 values-b+ti	string	player_enter_fullscreen	-	ናብ ምሉእ ስክሪን እቶ
 values-b+ti	string	player_exit_fullscreen	-	ካብ ምሉእ ስክሪን ውጻእ
 values-b+ti	string	player_fit_original	-	መበቆል ዝምድና
@@ -38954,6 +39011,7 @@ values-b+tl	string	pick_subtitle	-	Subtitles
 values-b+tl	string	picture_in_picture	-	Picture-in-picture
 values-b+tl	string	picture_in_picture_des	-	Magpatuloy ang playback sa isang maliit na player sa ibabaw ng ibang apps
 values-b+tl	string	pin_error_incorrect	-	Maling PIN. Pakisubukang muli.
+values-b+tl	string	pin_error_wait	-	Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s
 values-b+tl	string	play_episode	-	I-play ang episode
 values-b+tl	string	play_episode_toast	-	Play Episode
 values-b+tl	string	play_from_beginning_img_des	-	Ipatugtog mula sa Simula
@@ -39630,6 +39688,7 @@ values-b+tr	string	picture_in_picture_des	-	İçerik diğer uygulamaların üzer
 values-b+tr	string	pin	-	PIN
 values-b+tr	string	pin_error_incorrect	-	Yanlış PIN. Lütfen tekrar deneyin.
 values-b+tr	string	pin_error_length	-	PIN 4 karakterden oluşmalı
+values-b+tr	string	pin_error_wait	-	Çok fazla hatalı PIN. %1$s sonra tekrar deneyin
 values-b+tr	string	play_episode	-	Bölümü Oynat
 values-b+tr	string	play_episode_toast	-	Bölümü oynat
 values-b+tr	string	play_from_beginning_img_des	-	Baştan Oynat
@@ -40557,6 +40616,7 @@ values-b+uk	string	picture_in_picture_des	-	Продовжувати відтв�
 values-b+uk	string	pin	-	PIN-код
 values-b+uk	string	pin_error_incorrect	-	Неправильний PIN-код. Спробуйте ще раз.
 values-b+uk	string	pin_error_length	-	PIN-код має складатися із 4 символів
+values-b+uk	string	pin_error_wait	-	Забагато неправильних PIN-кодів. Спробуйте ще раз через %1$s
 values-b+uk	string	play_episode	-	Відтворити епізод
 values-b+uk	string	play_episode_toast	-	Переглянути епізод
 values-b+uk	string	play_from_beginning_img_des	-	Відтворити з початку
@@ -41383,6 +41443,7 @@ values-b+ur	string	picture_in_picture_des	-	دوسری ایپس کے اوپر ا
 values-b+ur	string	pin	-	پن
 values-b+ur	string	pin_error_incorrect	-	غلط پن۔ دوبارہ کوشش کریں۔
 values-b+ur	string	pin_error_length	-	پن چار حروف کا ہونا چاہیے
+values-b+ur	string	pin_error_wait	-	بہت زیادہ غلط PIN۔ %1$s بعد دوبارہ کوشش کریں
 values-b+ur	string	play_episode	-	قسط چلائیں
 values-b+ur	string	play_episode_toast	-	قسط چلائیں
 values-b+ur	string	play_from_beginning_img_des	-	شروع سےپلے کریں
@@ -42197,6 +42258,7 @@ values-b+vi	string	picture_in_picture_des	-	Tiếp tục phát trong trình phá
 values-b+vi	string	pin	-	PIN
 values-b+vi	string	pin_error_incorrect	-	Mã PIN không đúng. Vui lòng thử lại.
 values-b+vi	string	pin_error_length	-	Mã PIN phải có 4 ký tự
+values-b+vi	string	pin_error_wait	-	Nhập sai PIN quá nhiều lần. Thử lại sau %1$s
 values-b+vi	string	play_episode	-	Phát Tập phim
 values-b+vi	string	play_episode_toast	-	Phát Tập phim
 values-b+vi	string	play_from_beginning_img_des	-	Phát từ đầu
@@ -43079,6 +43141,7 @@ values-b+zh	string	picture_in_picture_des	-	在其他应用上层的迷你播放
 values-b+zh	string	pin	-	PIN
 values-b+zh	string	pin_error_incorrect	-	PIN码不正确，请再试一次。
 values-b+zh	string	pin_error_length	-	PIN码必须为4个字符
+values-b+zh	string	pin_error_wait	-	PIN 错误次数过多。请在 %1$s 后重试
 values-b+zh	string	play_episode	-	播放剧集
 values-b+zh	string	play_episode_toast	-	播放剧集
 values-b+zh	string	play_from_beginning_img_des	-	从头播放
@@ -43958,6 +44021,7 @@ values-b+zh+TW	string	picture_in_picture_des	-	在其他應用程式上的子母
 values-b+zh+TW	string	pin	-	PIN 碼
 values-b+zh+TW	string	pin_error_incorrect	-	PIN 碼不符，請再試一次。
 values-b+zh+TW	string	pin_error_length	-	PIN 碼需為 4 個字元
+values-b+zh+TW	string	pin_error_wait	-	PIN 錯誤次數過多。請在 %1$s 後再試一次
 values-b+zh+TW	string	play_episode	-	播放劇集
 values-b+zh+TW	string	play_episode_toast	-	播放劇集
 values-b+zh+TW	string	play_from_beginning_img_des	-	從頭開始播放

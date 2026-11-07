@@ -120,6 +120,26 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Twenty-fourth move, 2026-11-08 — `BUG-55`, 1 new key for the wrong-PIN wait
+
+New keys are approved in general (`I18N-09`). Additive: `pin_error_wait`, "Too many wrong PINs. Try again in %1$s",
+authored in all 62 directories, not a plural (the time is a `0:30`-style countdown). Numbered after master's
+twenty-third; a train that lands another move first renumbers it.
+
+| file | before | after | changed | lost |
+|---|---|---|---|---|
+| `lookup.tsv` | 82,413 | 82,500 | **0** | **0** |
+| `decoded.tsv` | 42,148 | 42,210 | **0** | **0** |
+| `emitted.tsv` | 44,357 | 44,421 | **0** | **0** |
+| `requests.tsv` | 87 | 87 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 |
+
+Measured two ways, by set difference over sorted whole lines and by a multiset with an order check: every line that was
+in a file before is in it after, in the same order, and every new line names `pin_error_wait`: 62 in `decoded.tsv`, 64
+in `emitted.tsv`, 87 in `lookup.tsv`. `report.txt` moved only in its counts: `OWN` 40,866 -> 40,928 (62), visible keys
+923 -> 924, and one more value in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
+`ANDROID_FALLBACK` at 173.** `expectedOwn` 40,866 -> 40,928.
+
 ## Twentieth move, 2026-11-07 — Train 3 (`#176`, `#181`, `#178`, `#179`, `#185`, `#186`, `#191`), one move: 33 new keys
 
 One combined baseline move for the train that merges `#176` (`KMP-48`), `#181` (`KMP-38` PR 2a), `#178` (`I18N-11`), `#179`
