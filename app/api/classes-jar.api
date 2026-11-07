@@ -16980,11 +16980,14 @@ public final class com/lagradost/cloudstream3/syncproviders/CredentialStore : ja
 	public static final field $stable I
 	public static final field FILE Ljava/lang/String;
 	public static final field INSTANCE Lcom/lagradost/cloudstream3/syncproviders/CredentialStore;
+	public static final field PIN_FOLDER Ljava/lang/String;
 	public final synthetic fun getKey (Ljava/lang/String;)Ljava/lang/Object;
 	public final fun keys (Ljava/lang/String;)Ljava/util/List;
 	public final fun migrate (Landroid/content/Context;)I
+	public final fun pins ()Ljava/util/Map;
 	public final fun readRaw (Ljava/lang/String;)Ljava/lang/String;
 	public final fun remove (Ljava/lang/String;)V
+	public final fun replacePins (Ljava/util/Map;)Z
 	public final fun write (Ljava/lang/String;Ljava/lang/Object;)V
 }
 

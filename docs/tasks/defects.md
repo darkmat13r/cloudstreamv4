@@ -1885,3 +1885,53 @@ test the new file, which master does not have.
 reader is named `getKey`, as the function it replaces, because callers' compiler-generated `TypeReference` classes are
 named after it (a first name, `read`, renamed three of them). And `getBackup` stays private behind a separate
 `exportForTest`, which keeps its synthetic accessor.
+
+## BUG-51 — Android backup still carried profile PINs; a failed sign-in move was marked done · **high, security** · measured 2026-11-08
+
+**Status:** fixed in pr, stacked on `BUG-50` (#215) · the owner ruled 2026-11-07 that PINs stay off Android's backup
+too; the second half is #215's review · `DataStoreHelper.kt`, `CredentialStore.kt`
+
+- **PINs.** `BUG-50` took PINs out of the app's export, but each profile's `lockPin` still sat inside the profile list
+  in the main preferences file, which Android's cloud backup and device transfer carry. Now `DataStoreHelper.accounts`
+  keeps each PIN in `CredentialStore`'s file, under `lock_pin/<profile index>`, and joins it back on read, so every
+  caller (`AccountViewModel`, `AccountSelectActivity`, `AccountHelper`, the adapters) sees `lockPin` as before. The
+  stored list holds no PIN. A restore onto another device brings locked profiles back unlocked.
+- **Migration** on the first read of a list that still holds PINs: they are copied and committed, and only then is
+  the list rewritten without them. A PIN already in the credential file is newer and wins. If the copy cannot be
+  written, the PINs stay in the list and the lock still works.
+- **No inherited locks.** Writing the list makes the stored PINs exactly the list's: a removed profile's PIN goes with
+  it, so a later profile on the same index is not locked by it.
+- **The review's case.** `CredentialStore` marked its sign-in move done even when the copy's `commit()` failed. Now it
+  is marked done only when the copy was written or there was nothing to move. Until then a sign-in still in the main
+  file is read from there, a sign-out removes it from there too, and the next call retries the move.
+
+Measured while testing: a failed `commit()` still updates `SharedPreferences`' in-memory copy, so in practice the
+process did not read as signed out. The old code did, however, never retry the move in that process. The fix does not
+rely on the in-memory copy.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| A device transfer or cloud restore brought each profile's PIN with it | Locked profiles come back unlocked on the new device | PINs stay off Android's backup (owner's ruling) |
+| An app restore on this device: PIN-less list | Unchanged, but a profile whose index has a PIN on this device stays locked with it | The PIN never left the device; the safer outcome |
+| A failed sign-in move was not retried until the next process | Retried on the next read | #215 review |
+
+**DECIDED:** PINs are stored as plain strings, as they were in the list (Q16's notes record the plain-text PIN as the
+owner's call). They are keyed by profile index, as sign-ins are.
+
+**Tests:** `ProfilePinStoreTest` (`:app` device, 4), marker PINs only:
+- a locked profile's PIN is not in the backed-up list, and the lock still reads back;
+- a list still holding a PIN is moved on first read, with no loss, and the move is on disk;
+- a reused index does not inherit an old PIN;
+- a move whose copy cannot be written (the preferences folder made read-only) is not marked done, the old key stays
+  readable and in place, and the move is retried once writing works.
+
+Against #215's code (its `CredentialStore.kt` and `DataStoreHelper.kt` put back), 3 of the 4 fail: "A PIN is in the
+backed-up profile list" and "A move that was not written was marked done", and the move test, which reaches a field
+that code does not have. The reused-index test passes there, since that code kept each PIN inside its profile's own
+entry; it guards the new store. `CredentialStoreBackupTest` (6) and `DeleteProfileSignInsTest` (5) still pass: 15 / 0
+in all.
+
+**Published API:** additions only, `classes-jar.api` +3 / −0 (`PIN_FOLDER`, `pins`, `replacePins`). `accounts` keeps
+its getter and setter; only its private backing property changed.
