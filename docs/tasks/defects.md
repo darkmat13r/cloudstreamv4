@@ -1543,7 +1543,7 @@ and the host's first focus request, which is why the same commit passed 17/17 at
 | the class alone, from a cleared app (each run boots the `-read-only` AVD and installs fresh), unfixed master x3 | `Television_720p` | 17/17 each time (18:41, 18:48, 18:56Z): the race went the hero's way |
 | a module case that fixes the order, unfixed: bookmarks on screen, pages held, the host view asked for focus as `onResume` does, then the pages released | `Television_720p` | **red**, `what holds focus expected:<More info · The Long Dark> but was:<[Watching]>`, the app's symptom |
 | the same case with the fix, and the whole module suite | `Television_720p` | 79/79, 18 screenshots `same` at 0/0 |
-| `c5f3b18d3` (first fix), the reviewer's real-path case: rows held, LEFT to the nav rail, RIGHT into the bookmarks, release | `Television_720p` | **green**, 330 s: LEFT's key-down had reached Home |
+| `c5f3b18d3` (first fix), the reviewer's real-path case: rows held, LEFT to the nav rail, RIGHT into the bookmarks, release | `Television_720p_2` | **green**, 11.5 s: LEFT's key-down had reached Home |
 | the full `:app` suite with the first fix | `Television_720p_2` | 93 run, 92 passed, 0 failed, 1 skipped (`TvHomeRealPluginProof`), 21:10:32Z; `TvHomeNavigationTest` 17/17 |
 | the class alone with the first fix, x2 | `Television_720p_2` | 17/17 each time (21:20, 21:33Z) |
 | the final fix: gates, `HomeScreenTvDeviceTest`, the class alone, the full `:app` suite | see the PR | FINAL_RESULTS |
@@ -1564,6 +1564,11 @@ though, the LEFT that reaches the nav rail starts on Home, so its key-down had a
 green on `c5f3b18d3` (below). A rail with no key ever pressed on Home was tried too: RIGHT from it enters the chrome
 (`Switch account`), not a rail, so that path does not exist. The fix was still changed, to name the one arrival that is not a
 person's rather than infer it.
+
+**Holding the rows on the real path needs animations off.** While a page is held the loading skeleton pulses for ever, so the
+main thread is never idle, and `ActivityScenario`, which waits for idle, sat until the held page timed out: measured, 480 s before
+the first step ran, after which there were no rows and no hero. The case turns the animator scale to 0 for itself and puts it
+back in `@After`; it then takes 11.5 s.
 
 **Not verified.** A failing in-app run on unfixed master on this machine: 0 of 3 class-alone runs hit the race. worker-2's two
 failures are the in-app evidence. The unfixed runs here all took slot 1 and the fixed `:app` runs slot 2, so neither slot is shown to make it likelier.

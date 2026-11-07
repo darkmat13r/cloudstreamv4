@@ -10,7 +10,6 @@ import androidx.test.core.app.ActivityScenario
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.By
-import androidx.test.uiautomator.Configurator
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
 import com.lagradost.cloudstream3.APIHolder
@@ -76,6 +75,12 @@ class TvHomeNavigationTest {
     private val one = FakeProvider(ONE)
     private val two = FakeProvider(TWO)
     private val sources = context.getString(R.string.pick_source)
+    /** The device's animator scale before a case turned animations off, to put back. */
+    private var animationScaleBefore: String? = null
+
+    private fun shell(command: String): String =
+        android.os.ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand(command))
+            .bufferedReader().use { it.readText().trim() }
 
     @Before
     fun aPersonWhoHasSetUp() {
@@ -87,7 +92,10 @@ class TvHomeNavigationTest {
 
     @After
     fun restore() {
-        Configurator.getInstance().waitForIdleTimeout = DEFAULT_IDLE_TIMEOUT_MS
+        animationScaleBefore?.let { before ->
+            shell(if (before == "null" || before.isEmpty()) "settings delete global $ANIMATOR_SCALE" else "settings put global $ANIMATOR_SCALE $before")
+            animationScaleBefore = null
+        }
         listOf(one, two).forEach { it.gate?.complete(Unit) }
         forgetPlaying()
         forgetBookmarks()
@@ -600,11 +608,11 @@ class TvHomeNavigationTest {
         bookmark(one, BOOKMARKED, WatchType.WATCHING)
         val pages = CompletableDeferred<Unit>()
         one.gate = pages
-        // While the pages are held the skeleton pulses, so the window is never idle, and every UiAutomator read waits out
-        // its idle timeout first (10 s): measured, the presses alone took over 500 s and the held page timed out.
-        val configurator = Configurator.getInstance()
-        val idleTimeout = configurator.waitForIdleTimeout
-        configurator.waitForIdleTimeout = HELD_IDLE_TIMEOUT_MS
+        // While the pages are held the loading skeleton pulses for ever, so the main thread is never idle, and
+        // `ActivityScenario`, which waits for idle, sat until the held page timed out (measured: 480 s, then no rows). With
+        // animations off for this case the skeleton does not pulse. Restored in `restore`.
+        animationScaleBefore = shell("settings get global $ANIMATOR_SCALE")
+        shell("settings put global $ANIMATOR_SCALE 0")
         launch {
             waitForHome()
             val watching = context.getString(R.string.type_watching)
@@ -616,7 +624,6 @@ class TvHomeNavigationTest {
             assertFalse("and leaves the nav rail", railHasFocus)
 
             pages.complete(Unit)
-            configurator.waitForIdleTimeout = idleTimeout
             waitFor("the hero's title is asked for") { "https://example.invalid/$ONE A 0" in one.loaded }
             Thread.sleep(SETTLE_MS)
             assertEquals("focus stays where the person put it", entered, dpad.focused())
@@ -679,9 +686,6 @@ class TvHomeNavigationTest {
         val loaded = CopyOnWriteArrayList<String>()
         /** Every home page waits until this completes. */
         @Volatile var gate: CompletableDeferred<Unit>? = null
-        // A held page keeps the skeleton pulsing, so the window is never idle and every focus read waits out UiAutomator's
-        // idle timeout: the presses alone came within reach of the default 120 s, after which a held page fails.
-        override val getMainPageTimeoutMs: Long = 480_000L
 
         override suspend fun getMainPage(page: Int, request: MainPageRequest): HomePageResponse {
             asked += "${request.data}/$page"
@@ -723,9 +727,7 @@ class TvHomeNavigationTest {
         const val SCREEN_WAIT_MS = 15_000L
         const val POLL_MS = 200L
         const val SETTLE_MS = 1_500L
-        /** UiAutomator's own default, put back after any case that lowers it. */
-        const val DEFAULT_IDLE_TIMEOUT_MS = 10_000L
-        const val HELD_IDLE_TIMEOUT_MS = 500L
+        const val ANIMATOR_SCALE = "animator_duration_scale"
         const val TIMER_MARGIN_MS = 2_000L
         const val PLUGIN_STAGES_MS = 4_000L
         const val MAX_PRESSES = 6
