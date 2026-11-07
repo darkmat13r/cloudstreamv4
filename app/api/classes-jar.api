@@ -37897,6 +37897,7 @@ public final class com/lagradost/cloudstream4/player/TvHudFacts : java/lang/Obje
 }
 
 public final class com/lagradost/cloudstream4/player/TvHudFactsKt : java/lang/Object {
+	public static final fun hudLabel (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun hudText (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun toHudState (Lcom/lagradost/cloudstream4/player/TvHudFacts;)Lcom/lagradost/cloudstream4/feature/player/PlayerHudState;
 }

@@ -28,13 +28,14 @@ class TvHudFactsTest {
     )
 
     private fun facts(
+        title: String = "Arcane",
         link: ExtractorLink? = link(),
         downloaded: Boolean = false,
         subtitle: String? = "English (SRT)",
         offline: Boolean = false,
         failed: Boolean = false,
     ) = TvHudFacts(
-        title = "Arcane",
+        title = title,
         season = 1,
         episode = 4,
         episodeName = "Powder",
@@ -94,6 +95,40 @@ class TvHudFactsTest {
             assertNull(state.subtitles)
             assertFalse(state.toString(), SECRET_PATH in state.toString())
         }
+    }
+
+    /**
+     * Addresses with no scheme and token-bearing names (review of `KMP-64`): a bare host with a path, a port or a query,
+     * a name carrying a signature, a backslash path. Each is dropped from a source's and a subtitle's name.
+     */
+    @Test
+    fun schemelessAddressesAndTokenNamesAreDroppedToo() {
+        for (name in listOf(
+            "cdn.host.to/v/$SECRET_PATH?token=$SECRET_TOKEN",
+            "host.com:8443/$SECRET_PATH",
+            "stream.example.invalid",
+            "Mirror ?sig=$SECRET_TOKEN",
+            "Mirror sig=$SECRET_TOKEN",
+            "C:\\$SECRET_PATH\\movie.mkv",
+        )) {
+            val state = facts(link = link(name = name), subtitle = name).toHudState()
+            assertEquals(name, "1080p", state.source)
+            assertNull(name, state.subtitles)
+            assertFalse(state.toString(), SECRET_PATH in state.toString() || SECRET_TOKEN in state.toString())
+        }
+    }
+
+    /** The stricter rule costs a real name with a slash its label, and the row says the quality alone. */
+    @Test
+    fun aNameWithASlashFallsBackToTheQuality() {
+        assertEquals("1080p", facts(link = link(name = "Server 1/2")).toHudState().source)
+    }
+
+    /** Titles keep their punctuation: only an address is dropped from them, not a question mark. */
+    @Test
+    fun aTitleWithAQuestionMarkStays() {
+        val state = facts(title = "What If...?").toHudState()
+        assertEquals("What If...?", state.title)
     }
 
     @Test

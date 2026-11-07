@@ -57,14 +57,36 @@ private fun episodeLabel(season: Int?, episode: Int?): String? = when {
 
 /**
  * Text from a provider or a file on its way to the screen: no control characters, capped, and **never anything that
- * reads as an address**. A provider can put whatever it likes in a link's name, so one that looks like a URL is
- * dropped rather than shown.
+ * reads as an address**. A provider can put whatever it likes in its strings, so one that looks like a URL is dropped
+ * rather than shown: a scheme (`https://`, `content:`, `file:`), an absolute path, or a bare host (`cdn.host.to/v/…`,
+ * `host.com:8443`).
+ *
+ * For titles and episode names. A name the HUD shows beside a stream, a source's or a subtitle's, goes through the
+ * stricter [hudLabel].
  */
 internal fun hudText(text: String?): String? {
     val clean = text?.filterNot { it.isISOControl() }?.trim()?.take(MAX_TEXT_CHARS)?.takeIf { it.isNotBlank() }
         ?: return null
-    return clean.takeUnless { "://" in it || it.startsWith("/") || it.startsWith("content:") || it.startsWith("file:") }
+    return clean.takeUnless { looksLikeAddress(it) }
 }
+
+/**
+ * A source's or a subtitle's name: [hudText], and also nothing with `?`, `=`, `/` or `\` in it, which is where a query
+ * string, a token or a path shows. A real name like `Server 1/2` is dropped too, and the row falls back to the quality
+ * alone or to the localised fallback: a lost label is the cheap side of that trade (review of `KMP-64`).
+ */
+internal fun hudLabel(text: String?): String? =
+    hudText(text)?.takeUnless { label -> label.any { it in STRICT_CHARACTERS } }
+
+private fun looksLikeAddress(text: String): Boolean {
+    val lower = text.lowercase()
+    return "://" in lower || lower.startsWith("/") || lower.startsWith("content:") || lower.startsWith("file:") ||
+        BARE_HOST.containsMatchIn(lower)
+}
+
+/** A host at the start, with an optional port, then a path, query or fragment or the end: `cdn.host.to/v`, `a.com:8443`. */
+private val BARE_HOST = Regex("""^[\w.-]+\.[a-z]{2,}(:\d+)?([/?#]|$)""")
+private val STRICT_CHARACTERS = setOf('?', '=', '/', '\\')
 
 internal fun TvHudFacts.toHudState(): PlayerHudState {
     val quality = videoHeight?.let { Qualities.getStringByInt(it) }?.takeIf { it.isNotBlank() }
@@ -78,7 +100,7 @@ internal fun TvHudFacts.toHudState(): PlayerHudState {
     val source = if (downloaded) {
         listOfNotNull(sourceFallback, quality).joinToString(" · ")
     } else {
-        listOfNotNull(hudText(link?.name), quality).joinToString(" · ").ifBlank { null }
+        listOfNotNull(hudLabel(link?.name), quality).joinToString(" · ").ifBlank { null }
     }
     val upNext = if (!hasNext) {
         null
@@ -100,7 +122,7 @@ internal fun TvHudFacts.toHudState(): PlayerHudState {
         hasNext = hasNext,
         upNext = upNext,
         source = source,
-        subtitles = hudText(subtitle),
+        subtitles = hudLabel(subtitle),
         audio = listOfNotNull(hudText(audioLanguage), hudText(audioChannels), hudText(audioCodec))
             .joinToString(" · ").ifBlank { null },
         speed = speed,

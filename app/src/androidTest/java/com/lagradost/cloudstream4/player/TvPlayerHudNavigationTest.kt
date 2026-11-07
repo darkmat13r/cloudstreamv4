@@ -113,6 +113,22 @@ class TvPlayerHudNavigationTest {
         return on
     }
 
+    private fun ActivityScenario<MainActivity>.position(): Long {
+        val fragment = playerFragment() ?: error("No player")
+        var at = 0L
+        instrumentation.runOnMainSync { at = fragment.player.getPosition() ?: 0L }
+        return at
+    }
+
+    private fun ActivityScenario<MainActivity>.oldControlsShown(): Boolean {
+        val fragment = playerFragment() ?: error("No player")
+        var shown = false
+        instrumentation.runOnMainSync {
+            shown = fragment.view?.findViewById<androidx.media3.ui.PlayerView>(R.id.player_view)?.isControllerFullyVisible == true
+        }
+        return shown
+    }
+
     /** Every text and description on screen, for the checks that nothing leaks. */
     private fun everythingOnScreen(): List<String> =
         device.findObjects(By.pkg(context.packageName)).flatMap { listOfNotNull(it.text, it.contentDescription) }
@@ -169,6 +185,16 @@ class TvPlayerHudNavigationTest {
             assertTrue(device.wait(Until.hasObject(By.res(context.packageName, "player_view")), WAIT_MS))
             assertFalse("The HUD drew with the switch off", device.wait(Until.hasObject(By.text(SOURCE)), NO_HUD_WAIT_MS))
             assertTrue("The old controller is off", scenario.controllerOn())
+
+            // The key path, not just the view: Right goes to the old handler, which seeks hidden or works its controls.
+            val before = scenario.position()
+            device.pressKeyCode(KeyEvent.KEYCODE_DPAD_RIGHT)
+            Thread.sleep(OLD_HANDLER_SETTLE_MS)
+            val moved = scenario.position() - before
+            assertTrue(
+                "Right did nothing the old player does: moved $moved ms, controller shown ${scenario.oldControlsShown()}",
+                moved >= SEEK_FLOOR_MS || scenario.oldControlsShown(),
+            )
         }
     }
 
@@ -182,5 +208,8 @@ class TvPlayerHudNavigationTest {
         const val HIDE_WAIT_MS = 8_000L
         const val NO_HUD_WAIT_MS = 4_000L
         const val READOUT_WAIT_MS = 1_400L
+        const val OLD_HANDLER_SETTLE_MS = 800L
+        /** The hidden seek is 10 s by default; most of it must show even with the frame's own clock running. */
+        const val SEEK_FLOOR_MS = 8_000L
     }
 }
