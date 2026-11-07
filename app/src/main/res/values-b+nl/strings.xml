@@ -352,10 +352,11 @@
 <string name="library_on_device">"Op apparaat"</string>
 <string name="library_sort_current" formatted="true">"Sorteren: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s ondersteunt %2$d van %3$d"</string>
-<string name="library_sort_unsupported" formatted="true">"Niet opgeslagen door %s"</string>
 <string name="library_source">"Bibliotheekbron"</string>
 <string name="library_source_note">"Eén tegelijk · wisselen laadt opnieuw"</string>
+<string name="library_sync_cached">"Uit cache"</string>
 <string name="library_sync_failed" formatted="true">"%1$s kon niet worden gesynchroniseerd. Dit is van %2$s geleden."</string>
+<string name="library_sync_offline" formatted="true">"Offline · %s geleden in cache"</string>
 <string name="library_sync_retry">"Opnieuw synchroniseren"</string>
 <string name="library_sync_unreachable" formatted="true">"Niet bereikbaar · %s geleden in cache"</string>
 <string name="library_synced_format" formatted="true">"%s geleden gesynchroniseerd"</string>

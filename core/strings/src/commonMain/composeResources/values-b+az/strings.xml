@@ -139,10 +139,11 @@
 <string name="library_on_device">Cihazda</string>
 <string name="library_sort_current">Sırala: %s</string>
 <string name="library_sort_supported">%1$s %3$d meyardan %2$d-ni dəstəkləyir</string>
-<string name="library_sort_unsupported">%s tərəfindən saxlanmır</string>
 <string name="library_source">Kitabxana mənbəyi</string>
 <string name="library_source_note">Eyni anda bir · dəyişmək yenidən yükləyir</string>
+<string name="library_sync_cached">Keşlənib</string>
 <string name="library_sync_failed">%1$s sinxronlaşdırılmadı. Bunlar %2$s əvvəlkidir.</string>
+<string name="library_sync_offline">Oflayn · %s əvvəl keşlənib</string>
 <string name="library_sync_retry">Yenidən sinxronlaşdır</string>
 <string name="library_sync_unreachable">Əlçatmazdır · %s əvvəl keşlənib</string>
 <string name="library_synced_format">%s əvvəl sinxronlaşdırılıb</string>

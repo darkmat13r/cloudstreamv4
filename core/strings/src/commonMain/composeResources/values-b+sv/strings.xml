@@ -378,10 +378,11 @@
 <string name="library_on_device">På enheten</string>
 <string name="library_sort_current">Sortering: %s</string>
 <string name="library_sort_supported">%1$s stöder %2$d av %3$d</string>
-<string name="library_sort_unsupported">Sparas inte av %s</string>
 <string name="library_source">Bibliotekskälla</string>
 <string name="library_source_note">En i taget · byte laddar om</string>
+<string name="library_sync_cached">Cachad</string>
 <string name="library_sync_failed">Det gick inte att synkronisera %1$s. Detta är från för %2$s sedan.</string>
+<string name="library_sync_offline">Offline · cachad för %s sedan</string>
 <string name="library_sync_retry">Synkronisera igen</string>
 <string name="library_sync_unreachable">Går inte att nå · cachad för %s sedan</string>
 <string name="library_synced_format">Synkroniserad för %s sedan</string>

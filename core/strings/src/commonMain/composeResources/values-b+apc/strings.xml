@@ -377,10 +377,11 @@
 <string name="library_on_device">عالجهاز</string>
 <string name="library_sort_current">الترتيب: %s</string>
 <string name="library_sort_supported">%1$s بيدعم %2$d من %3$d</string>
-<string name="library_sort_unsupported">%s ما بيخزّنه</string>
 <string name="library_source">مصدر الرفّ</string>
 <string name="library_source_note">وحدة بكل مرة · التبديل بيعيد التحميل</string>
+<string name="library_sync_cached">محفوظ</string>
 <string name="library_sync_failed">ما قدرنا نزامن %1$s. هدول من قبل %2$s.</string>
+<string name="library_sync_offline">بلا إنترنت · محفوظ من %s</string>
 <string name="library_sync_retry">رجّع زامن</string>
 <string name="library_sync_unreachable">ما فينا نوصل · محفوظ من %s</string>
 <string name="library_synced_format">تزامن من %s</string>

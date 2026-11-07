@@ -377,10 +377,11 @@
 <string name="library_on_device">На прыладзе</string>
 <string name="library_sort_current">Парадак: %s</string>
 <string name="library_sort_supported">%1$s падтрымлівае %2$d з %3$d</string>
-<string name="library_sort_unsupported">Не захоўваецца ў %s</string>
 <string name="library_source">Крыніца бібліятэкі</string>
 <string name="library_source_note">Па адной · пераключэнне перазагружае</string>
+<string name="library_sync_cached">З кэша</string>
 <string name="library_sync_failed">Не ўдалося сінхранізаваць %1$s. Гэта даныя %2$s таму.</string>
+<string name="library_sync_offline">Па-за сеткай · кэш %s таму</string>
 <string name="library_sync_retry">Паўтарыць сінхранізацыю</string>
 <string name="library_sync_unreachable">Недаступна · кэш %s таму</string>
 <string name="library_synced_format">Сінхранізавана %s таму</string>

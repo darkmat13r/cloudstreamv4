@@ -378,10 +378,11 @@
 <string name="library_on_device">"சாதனத்தில்"</string>
 <string name="library_sort_current" formatted="true">"வரிசை: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s %3$d இல் %2$d ஐ ஆதரிக்கிறது"</string>
-<string name="library_sort_unsupported" formatted="true">"%s இதைச் சேமிப்பதில்லை"</string>
 <string name="library_source">"நூலக மூலம்"</string>
 <string name="library_source_note">"ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்"</string>
+<string name="library_sync_cached">"தேக்கியது"</string>
 <string name="library_sync_failed" formatted="true">"%1$s ஐ ஒத்திசைக்க முடியவில்லை. இவை %2$s முன்பு உள்ளவை."</string>
+<string name="library_sync_offline" formatted="true">"ஆஃப்லைன் · %s முன்பு தேக்கியது"</string>
 <string name="library_sync_retry">"மீண்டும் ஒத்திசை"</string>
 <string name="library_sync_unreachable" formatted="true">"அணுக முடியவில்லை · %s முன்பு தேக்கியது"</string>
 <string name="library_synced_format" formatted="true">"%s முன்பு ஒத்திசைக்கப்பட்டது"</string>

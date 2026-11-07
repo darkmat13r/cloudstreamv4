@@ -139,10 +139,11 @@
 <string name="library_on_device">"Sa device"</string>
 <string name="library_sort_current" formatted="true">"Pagkakasunod: %s"</string>
 <string name="library_sort_supported" formatted="true">"Sinusuportahan ng %1$s ang %2$d sa %3$d"</string>
-<string name="library_sort_unsupported" formatted="true">"Hindi iniimbak ng %s"</string>
 <string name="library_source">"Pinagmulan ng library"</string>
 <string name="library_source_note">"Isa-isa · nagre-reload kapag nagpalit"</string>
+<string name="library_sync_cached">"Naka-cache"</string>
 <string name="library_sync_failed" formatted="true">"Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito."</string>
+<string name="library_sync_offline" formatted="true">"Offline · naka-cache %s ang nakalipas"</string>
 <string name="library_sync_retry">"Subukang i-sync ulit"</string>
 <string name="library_sync_unreachable" formatted="true">"Hindi maabot · naka-cache %s ang nakalipas"</string>
 <string name="library_synced_format" formatted="true">"Na-sync %s ang nakalipas"</string>

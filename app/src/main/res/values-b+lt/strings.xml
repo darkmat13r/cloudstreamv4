@@ -191,10 +191,11 @@
 <string name="library_on_device">"Įrenginyje"</string>
 <string name="library_sort_current" formatted="true">"Rikiavimas: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s palaiko %2$d iš %3$d"</string>
-<string name="library_sort_unsupported" formatted="true">"%s to nesaugo"</string>
 <string name="library_source">"Bibliotekos šaltinis"</string>
 <string name="library_source_note">"Po vieną · perjungus įkeliama iš naujo"</string>
+<string name="library_sync_cached">"Iš podėlio"</string>
 <string name="library_sync_failed" formatted="true">"Nepavyko sinchronizuoti %1$s. Tai duomenys prieš %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Neprisijungus · podėlyje prieš %s"</string>
 <string name="library_sync_retry">"Sinchronizuoti iš naujo"</string>
 <string name="library_sync_unreachable" formatted="true">"Nepasiekiama · podėlyje prieš %s"</string>
 <string name="library_synced_format" formatted="true">"Sinchronizuota prieš %s"</string>

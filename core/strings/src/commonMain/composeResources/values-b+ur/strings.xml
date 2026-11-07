@@ -322,10 +322,11 @@
 <string name="library_on_device">ڈیوائس پر</string>
 <string name="library_sort_current">ترتیب: %s</string>
 <string name="library_sort_supported">%1$s %3$d میں سے %2$d کی معاونت کرتا ہے</string>
-<string name="library_sort_unsupported">%s اسے محفوظ نہیں کرتا</string>
 <string name="library_source">لائبریری کا ذریعہ</string>
 <string name="library_source_note">ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے</string>
+<string name="library_sync_cached">کیش شدہ</string>
 <string name="library_sync_failed">%1$s کو ہم آہنگ نہیں کیا جا سکا۔ یہ %2$s پہلے کے ہیں۔</string>
+<string name="library_sync_offline">آف لائن · %s پہلے کیش کیا گیا</string>
 <string name="library_sync_retry">دوبارہ ہم آہنگ کریں</string>
 <string name="library_sync_unreachable">رسائی نہیں · %s پہلے کیش کیا گیا</string>
 <string name="library_synced_format">%s پہلے ہم آہنگ کیا گیا</string>

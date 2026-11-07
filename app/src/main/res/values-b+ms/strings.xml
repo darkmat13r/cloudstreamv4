@@ -310,10 +310,11 @@
 <string name="library_on_device">"Pada peranti"</string>
 <string name="library_sort_current" formatted="true">"Isih: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s menyokong %2$d daripada %3$d"</string>
-<string name="library_sort_unsupported" formatted="true">"Tidak disimpan oleh %s"</string>
 <string name="library_source">"Sumber perpustakaan"</string>
 <string name="library_source_note">"Satu demi satu · menukar memuat semula"</string>
+<string name="library_sync_cached">"Dicache"</string>
 <string name="library_sync_failed" formatted="true">"Tidak dapat menyegerakkan %1$s. Ini dari %2$s yang lalu."</string>
+<string name="library_sync_offline" formatted="true">"Luar talian · dicache %s yang lalu"</string>
 <string name="library_sync_retry">"Segerak semula"</string>
 <string name="library_sync_unreachable" formatted="true">"Tidak dapat dicapai · dicache %s yang lalu"</string>
 <string name="library_synced_format" formatted="true">"Disegerakkan %s lalu"</string>

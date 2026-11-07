@@ -378,10 +378,11 @@
 <string name="library_on_device">"На пристрої"</string>
 <string name="library_sort_current" formatted="true">"Сортування: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s підтримує %2$d з %3$d"</string>
-<string name="library_sort_unsupported" formatted="true">"Не зберігається в %s"</string>
 <string name="library_source">"Джерело бібліотеки"</string>
 <string name="library_source_note">"По одному · перемикання перезавантажує"</string>
+<string name="library_sync_cached">"З кешу"</string>
 <string name="library_sync_failed" formatted="true">"Не вдалося синхронізувати %1$s. Це дані %2$s тому."</string>
+<string name="library_sync_offline" formatted="true">"Офлайн · кеш %s тому"</string>
 <string name="library_sync_retry">"Синхронізувати знову"</string>
 <string name="library_sync_unreachable" formatted="true">"Недоступно · кеш %s тому"</string>
 <string name="library_synced_format" formatted="true">"Синхронізовано %s тому"</string>

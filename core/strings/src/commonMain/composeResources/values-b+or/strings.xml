@@ -141,10 +141,11 @@
 <string name="library_on_device">ଡିଭାଇସରେ</string>
 <string name="library_sort_current">କ୍ରମ: %s</string>
 <string name="library_sort_supported">%1$s %3$d ମଧ୍ୟରୁ %2$d ସମର୍ଥନ କରେ</string>
-<string name="library_sort_unsupported">%s ଏହାକୁ ସଞ୍ଚୟ କରେ ନାହିଁ</string>
 <string name="library_source">ଲାଇବ୍ରେରୀ ଉତ୍ସ</string>
 <string name="library_source_note">ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ</string>
+<string name="library_sync_cached">କ୍ୟାଶ୍</string>
 <string name="library_sync_failed">%1$s ସିଙ୍କ୍ ହୋଇପାରିଲା ନାହିଁ। ଏଗୁଡ଼ିକ %2$s ପୂର୍ବର।</string>
+<string name="library_sync_offline">ଅଫଲାଇନ୍ · %s ପୂର୍ବରୁ କ୍ୟାଶ୍</string>
 <string name="library_sync_retry">ପୁଣି ସିଙ୍କ୍ କରନ୍ତୁ</string>
 <string name="library_sync_unreachable">ପହଞ୍ଚି ହେଉନାହିଁ · %s ପୂର୍ବରୁ କ୍ୟାଶ୍</string>
 <string name="library_synced_format">%s ପୂର୍ବରୁ ସିଙ୍କ ହୋଇଛି</string>

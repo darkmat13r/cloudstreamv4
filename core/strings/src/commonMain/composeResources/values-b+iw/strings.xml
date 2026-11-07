@@ -288,10 +288,11 @@
 <string name="library_on_device">במכשיר</string>
 <string name="library_sort_current">מיון: %s</string>
 <string name="library_sort_supported">%1$s תומך ב-%2$d מתוך %3$d</string>
-<string name="library_sort_unsupported">לא נשמר ב-%s</string>
 <string name="library_source">מקור הספריה</string>
 <string name="library_source_note">אחד בכל פעם · החלפה טוענת מחדש</string>
+<string name="library_sync_cached">מהמטמון</string>
 <string name="library_sync_failed">לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.</string>
+<string name="library_sync_offline">לא מקוון · במטמון מלפני %s</string>
 <string name="library_sync_retry">סנכרון מחדש</string>
 <string name="library_sync_unreachable">לא זמין · במטמון מלפני %s</string>
 <string name="library_synced_format">סונכרן לפני %s</string>

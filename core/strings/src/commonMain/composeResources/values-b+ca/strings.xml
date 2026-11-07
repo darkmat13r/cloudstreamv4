@@ -435,10 +435,11 @@
 <string name="library_on_device">Al dispositiu</string>
 <string name="library_sort_current">Ordre: %s</string>
 <string name="library_sort_supported">%1$s admet %2$d de %3$d</string>
-<string name="library_sort_unsupported">%s no ho desa</string>
 <string name="library_source">Font de la biblioteca</string>
 <string name="library_source_note">Una alhora · canviar torna a carregar</string>
+<string name="library_sync_cached">A la memòria cau</string>
 <string name="library_sync_failed">No s'ha pogut sincronitzar %1$s. Són de fa %2$s.</string>
+<string name="library_sync_offline">Sense connexió · a la memòria cau fa %s</string>
 <string name="library_sync_retry">Torna a sincronitzar</string>
 <string name="library_sync_unreachable">Inaccessible · a la memòria cau fa %s</string>
 <string name="library_synced_format">Sincronitzat fa %s</string>

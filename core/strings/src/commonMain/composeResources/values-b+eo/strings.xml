@@ -288,10 +288,11 @@
 <string name="library_on_device">En aparato</string>
 <string name="library_sort_current">Ordigo: %s</string>
 <string name="library_sort_supported">%1$s subtenas %2$d el %3$d</string>
-<string name="library_sort_unsupported">Ne konservata de %s</string>
 <string name="library_source">Fonto de biblioteko</string>
 <string name="library_source_note">Po unu · ŝanĝo reŝargas</string>
+<string name="library_sync_cached">Kaŝmemorita</string>
 <string name="library_sync_failed">Ne eblis sinkronigi %1$s. Ĉi tiuj estas de antaŭ %2$s.</string>
+<string name="library_sync_offline">Senkonekte · kaŝmemorita antaŭ %s</string>
 <string name="library_sync_retry">Resinkronigi</string>
 <string name="library_sync_unreachable">Neatingebla · kaŝmemorita antaŭ %s</string>
 <string name="library_synced_format">Sinkronigita antaŭ %s</string>

@@ -225,10 +225,11 @@
 <string name="library_on_device">Op toestel</string>
 <string name="library_sort_current">Sorteer: %s</string>
 <string name="library_sort_supported">%1$s ondersteun %2$d van %3$d</string>
-<string name="library_sort_unsupported">Nie deur %s gestoor nie</string>
 <string name="library_source">Biblioteekbron</string>
 <string name="library_source_note">Een op 'n slag · oorskakel herlaai</string>
+<string name="library_sync_cached">Gekas</string>
 <string name="library_sync_failed">Kon %1$s nie sinkroniseer nie. Hierdie is van %2$s gelede.</string>
+<string name="library_sync_offline">Vanlyn · %s gelede gekas</string>
 <string name="library_sync_retry">Probeer weer sinkroniseer</string>
 <string name="library_sync_unreachable">Onbereikbaar · %s gelede gekas</string>
 <string name="library_synced_format">%s gelede gesinkroniseer</string>

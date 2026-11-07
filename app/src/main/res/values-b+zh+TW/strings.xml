@@ -377,10 +377,11 @@
 <string name="library_on_device">"本機"</string>
 <string name="library_sort_current" formatted="true">"排序：%s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s 支援 %3$d 項中的 %2$d 項"</string>
-<string name="library_sort_unsupported" formatted="true">"%s 不會儲存此項"</string>
 <string name="library_source">"媒體庫來源"</string>
 <string name="library_source_note">"一次一個 · 切換會重新載入"</string>
+<string name="library_sync_cached">"已快取"</string>
 <string name="library_sync_failed" formatted="true">"無法同步 %1$s。這些是 %2$s 前的內容。"</string>
+<string name="library_sync_offline" formatted="true">"離線 · %s 前的快取"</string>
 <string name="library_sync_retry">"重新同步"</string>
 <string name="library_sync_unreachable" formatted="true">"無法連線 · %s 前的快取"</string>
 <string name="library_synced_format" formatted="true">"%s前已同步"</string>

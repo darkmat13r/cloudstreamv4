@@ -378,10 +378,11 @@
 <string name="library_on_device">"Auf dem Gerät"</string>
 <string name="library_sort_current" formatted="true">"Sortierung: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s unterstützt %2$d von %3$d"</string>
-<string name="library_sort_unsupported" formatted="true">"Nicht von %s gespeichert"</string>
 <string name="library_source">"Bibliotheksquelle"</string>
 <string name="library_source_note">"Jeweils eine · Wechsel lädt neu"</string>
+<string name="library_sync_cached">"Zwischengespeichert"</string>
 <string name="library_sync_failed" formatted="true">"%1$s konnte nicht synchronisiert werden. Das ist der Stand von vor %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Offline · zwischengespeichert vor %s"</string>
 <string name="library_sync_retry">"Erneut synchronisieren"</string>
 <string name="library_sync_unreachable" formatted="true">"Nicht erreichbar · zwischengespeichert vor %s"</string>
 <string name="library_synced_format" formatted="true">"Vor %s synchronisiert"</string>

@@ -377,10 +377,11 @@
 <string name="library_on_device">"على الجهاز"</string>
 <string name="library_sort_current" formatted="true">"الترتيب: %s"</string>
 <string name="library_sort_supported" formatted="true">"يدعم %1$s %2$d من %3$d"</string>
-<string name="library_sort_unsupported" formatted="true">"لا يخزّنه %s"</string>
 <string name="library_source">"مصدر المكتبة"</string>
 <string name="library_source_note">"مصدر واحد في كل مرة · التبديل يعيد التحميل"</string>
+<string name="library_sync_cached">"مخزّن"</string>
 <string name="library_sync_failed" formatted="true">"تعذّرت مزامنة %1$s. هذه من قبل %2$s."</string>
+<string name="library_sync_offline" formatted="true">"غير متصل · مخزّن منذ %s"</string>
 <string name="library_sync_retry">"إعادة المزامنة"</string>
 <string name="library_sync_unreachable" formatted="true">"تعذّر الوصول · مخزّن منذ %s"</string>
 <string name="library_synced_format" formatted="true">"تمت المزامنة منذ %s"</string>

@@ -378,10 +378,11 @@
 <string name="library_on_device">En el dispositivo</string>
 <string name="library_sort_current">Orden: %s</string>
 <string name="library_sort_supported">%1$s admite %2$d de %3$d</string>
-<string name="library_sort_unsupported">%s no lo guarda</string>
 <string name="library_source">Origen de la biblioteca</string>
 <string name="library_source_note">Uno a la vez · cambiar recarga</string>
+<string name="library_sync_cached">En caché</string>
 <string name="library_sync_failed">No se pudo sincronizar %1$s. Son de hace %2$s.</string>
+<string name="library_sync_offline">Sin conexión · en caché hace %s</string>
 <string name="library_sync_retry">Volver a sincronizar</string>
 <string name="library_sync_unreachable">Inaccesible · en caché hace %s</string>
 <string name="library_synced_format">Sincronizado hace %s</string>

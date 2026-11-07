@@ -259,10 +259,11 @@
 <string name="library_on_device">"डिवाइस पर"</string>
 <string name="library_sort_current" formatted="true">"क्रम: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s %3$d में से %2$d का समर्थन करता है"</string>
-<string name="library_sort_unsupported" formatted="true">"%s इसे सहेजता नहीं"</string>
 <string name="library_source">"लाइब्रेरी स्रोत"</string>
 <string name="library_source_note">"एक समय में एक · बदलने पर फिर से लोड होता है"</string>
+<string name="library_sync_cached">"कैश किया"</string>
 <string name="library_sync_failed" formatted="true">"%1$s सिंक नहीं हो सका। ये %2$s पहले के हैं।"</string>
+<string name="library_sync_offline" formatted="true">"ऑफ़लाइन · %s पहले कैश किया"</string>
 <string name="library_sync_retry">"फिर से सिंक करें"</string>
 <string name="library_sync_unreachable" formatted="true">"पहुँच नहीं · %s पहले कैश किया"</string>
 <string name="library_synced_format" formatted="true">"%s पहले सिंक हुआ"</string>

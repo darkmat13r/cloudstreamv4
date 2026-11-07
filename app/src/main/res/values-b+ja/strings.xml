@@ -378,10 +378,11 @@
 <string name="library_on_device">"このデバイス"</string>
 <string name="library_sort_current" formatted="true">"並べ替え：%s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s は %3$d 項目中 %2$d 項目に対応"</string>
-<string name="library_sort_unsupported" formatted="true">"%s には保存されません"</string>
 <string name="library_source">"ライブラリのソース"</string>
 <string name="library_source_note">"一度に1つ · 切り替えると再読み込み"</string>
+<string name="library_sync_cached">"キャッシュ"</string>
 <string name="library_sync_failed" formatted="true">"%1$s を同期できませんでした。%2$s 前のデータです。"</string>
+<string name="library_sync_offline" formatted="true">"オフライン · %s 前のキャッシュ"</string>
 <string name="library_sync_retry">"再同期"</string>
 <string name="library_sync_unreachable" formatted="true">"接続できません · %s 前のキャッシュ"</string>
 <string name="library_synced_format" formatted="true">"%s前に同期"</string>

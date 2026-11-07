@@ -213,10 +213,11 @@
 <string name="library_on_device">በመሣሪያ ላይ</string>
 <string name="library_sort_current">ደርድር፦ %s</string>
 <string name="library_sort_supported">%1$s ከ%3$d %2$d ይደግፋል</string>
-<string name="library_sort_unsupported">በ%s አይቀመጥም</string>
 <string name="library_source">የቤተ-መጽሐፍት ምንጭ</string>
 <string name="library_source_note">አንድ በአንድ · መቀየር እንደገና ይጭናል</string>
+<string name="library_sync_cached">የተቀመጠ</string>
 <string name="library_sync_failed">%1$sን ማመሳሰል አልተቻለም። እነዚህ ከ%2$s በፊት የነበሩ ናቸው።</string>
+<string name="library_sync_offline">ከመስመር ውጭ · ከ%s በፊት የተቀመጠ</string>
 <string name="library_sync_retry">እንደገና አመሳስል</string>
 <string name="library_sync_unreachable">ሊደረስበት አልቻለም · ከ%s በፊት የተቀመጠ</string>
 <string name="library_synced_format">ከ%s በፊት ተመሳስሏል</string>

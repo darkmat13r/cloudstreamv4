@@ -276,10 +276,11 @@
 <string name="library_on_device">"På enheten"</string>
 <string name="library_sort_current" formatted="true">"Sortering: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s støtter %2$d av %3$d"</string>
-<string name="library_sort_unsupported" formatted="true">"Ikke lagret av %s"</string>
 <string name="library_source">"Bibliotekkilde"</string>
 <string name="library_source_note">"Én om gangen · bytte laster inn på nytt"</string>
+<string name="library_sync_cached">"Mellomlagret"</string>
 <string name="library_sync_failed" formatted="true">"Kunne ikke synkronisere %1$s. Disse er fra for %2$s siden."</string>
+<string name="library_sync_offline" formatted="true">"Frakoblet · mellomlagret for %s siden"</string>
 <string name="library_sync_retry">"Synkroniser på nytt"</string>
 <string name="library_sync_unreachable" formatted="true">"Utilgjengelig · mellomlagret for %s siden"</string>
 <string name="library_synced_format" formatted="true">"Synkronisert for %s siden"</string>

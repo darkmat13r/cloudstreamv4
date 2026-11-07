@@ -121,10 +121,11 @@
 <string name="library_on_device">"ಸಾಧನದಲ್ಲಿ"</string>
 <string name="library_sort_current" formatted="true">"ವಿಂಗಡಣೆ: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s %3$d ರಲ್ಲಿ %2$d ಬೆಂಬಲಿಸುತ್ತದೆ"</string>
-<string name="library_sort_unsupported" formatted="true">"%s ಇದನ್ನು ಉಳಿಸುವುದಿಲ್ಲ"</string>
 <string name="library_source">"ಲೈಬ್ರರಿ ಮೂಲ"</string>
 <string name="library_source_note">"ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ"</string>
+<string name="library_sync_cached">"ಕ್ಯಾಶ್"</string>
 <string name="library_sync_failed" formatted="true">"%1$s ಸಿಂಕ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ಇವು %2$s ಹಿಂದಿನವು."</string>
+<string name="library_sync_offline" formatted="true">"ಆಫ್‌ಲೈನ್ · %s ಹಿಂದೆ ಕ್ಯಾಶ್"</string>
 <string name="library_sync_retry">"ಮತ್ತೆ ಸಿಂಕ್ ಮಾಡಿ"</string>
 <string name="library_sync_unreachable" formatted="true">"ತಲುಪಲಾಗುತ್ತಿಲ್ಲ · %s ಹಿಂದೆ ಕ್ಯಾಶ್"</string>
 <string name="library_synced_format" formatted="true">"%s ಹಿಂದೆ ಸಿಂಕ್ ಮಾಡಲಾಗಿದೆ"</string>

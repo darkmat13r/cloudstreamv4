@@ -190,10 +190,11 @@
 <string name="library_on_device">لەسەر ئامێر</string>
 <string name="library_sort_current">ڕیزکردن: %s</string>
 <string name="library_sort_supported">%1$s پشتگیری %2$d لە %3$d دەکات</string>
-<string name="library_sort_unsupported">%s پاشەکەوتی ناکات</string>
 <string name="library_source">سەرچاوەی کتێبخانە</string>
 <string name="library_source_note">یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە</string>
+<string name="library_sync_cached">هەڵگیراوە</string>
 <string name="library_sync_failed">نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن.</string>
+<string name="library_sync_offline">دەرهێڵ · %s لەمەوبەر هەڵگیراوە</string>
 <string name="library_sync_retry">دووبارە هاوکاتکردن</string>
 <string name="library_sync_unreachable">نەگەیشترا · %s لەمەوبەر هەڵگیراوە</string>
 <string name="library_synced_format">%s لەمەوبەر هاوکات کرا</string>

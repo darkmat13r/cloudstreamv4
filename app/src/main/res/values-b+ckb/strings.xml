@@ -116,10 +116,11 @@
 <string name="library_on_device">"لەسەر ئامێر"</string>
 <string name="library_sort_current" formatted="true">"ڕیزکردن: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s پشتگیری %2$d لە %3$d دەکات"</string>
-<string name="library_sort_unsupported" formatted="true">"%s پاشەکەوتی ناکات"</string>
 <string name="library_source">"سەرچاوەی کتێبخانە"</string>
 <string name="library_source_note">"یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە"</string>
+<string name="library_sync_cached">"هەڵگیراوە"</string>
 <string name="library_sync_failed" formatted="true">"نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن."</string>
+<string name="library_sync_offline" formatted="true">"دەرهێڵ · %s لەمەوبەر هەڵگیراوە"</string>
 <string name="library_sync_retry">"دووبارە هاوکاتکردن"</string>
 <string name="library_sync_unreachable" formatted="true">"نەگەیشترا · %s لەمەوبەر هەڵگیراوە"</string>
 <string name="library_synced_format" formatted="true">"%s لەمەوبەر هاوکات کرا"</string>

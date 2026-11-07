@@ -377,10 +377,11 @@
 <string name="library_on_device">На уредот</string>
 <string name="library_sort_current">Подредување: %s</string>
 <string name="library_sort_supported">%1$s поддржува %2$d од %3$d</string>
-<string name="library_sort_unsupported">%s не го зачувува</string>
 <string name="library_source">Извор на библиотеката</string>
 <string name="library_source_note">Еден по еден · менувањето превчитува</string>
+<string name="library_sync_cached">Кеширано</string>
 <string name="library_sync_failed">%1$s не може да се синхронизира. Ова е од пред %2$s.</string>
+<string name="library_sync_offline">Офлајн · кеширано пред %s</string>
 <string name="library_sync_retry">Повторно синхронизирај</string>
 <string name="library_sync_unreachable">Недостапно · кеширано пред %s</string>
 <string name="library_synced_format">Синхронизирано пред %s</string>

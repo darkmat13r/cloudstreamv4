@@ -378,10 +378,11 @@
 <string name="library_on_device">Në pajisje</string>
 <string name="library_sort_current">Renditja: %s</string>
 <string name="library_sort_supported">%1$s mbështet %2$d nga %3$d</string>
-<string name="library_sort_unsupported">Nuk ruhet nga %s</string>
 <string name="library_source">Burimi i bibliotekës</string>
 <string name="library_source_note">Një në një kohë · ndërrimi ringarkon</string>
+<string name="library_sync_cached">Nga memoria</string>
 <string name="library_sync_failed">%1$s nuk u sinkronizua dot. Këto janë para %2$s.</string>
+<string name="library_sync_offline">Jashtë linje · në memorie para %s</string>
 <string name="library_sync_retry">Sinkronizo sërish</string>
 <string name="library_sync_unreachable">E paarritshme · në memorie para %s</string>
 <string name="library_synced_format">Sinkronizuar para %s</string>

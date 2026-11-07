@@ -279,10 +279,11 @@
 <string name="library_on_device">Qalabka ku jira</string>
 <string name="library_sort_current">Kala soocid: %s</string>
 <string name="library_sort_supported">%1$s wuxuu taageeraa %2$d ka mid ah %3$d</string>
-<string name="library_sort_unsupported">Ma kaydiyo %s</string>
 <string name="library_source">Isha kaydka</string>
 <string name="library_source_note">Mid mid · beddelku wuu dib u soo raraa</string>
+<string name="library_sync_cached">La kaydiyay</string>
 <string name="library_sync_failed">Lama isku waafajin karin %1$s. Kuwani waa kuwii %2$s ka hor.</string>
+<string name="library_sync_offline">Khadka ka maqan · la kaydiyay %s ka hor</string>
 <string name="library_sync_retry">Mar kale isku waafaji</string>
 <string name="library_sync_unreachable">Lama gaari karo · la kaydiyay %s ka hor</string>
 <string name="library_synced_format">La waafajiyay %s kahor</string>

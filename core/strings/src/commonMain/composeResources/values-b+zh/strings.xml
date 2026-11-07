@@ -378,10 +378,11 @@
 <string name="library_on_device">本机</string>
 <string name="library_sort_current">排序：%s</string>
 <string name="library_sort_supported">%1$s 支持 %3$d 项中的 %2$d 项</string>
-<string name="library_sort_unsupported">%s 不保存此项</string>
 <string name="library_source">媒体库来源</string>
 <string name="library_source_note">一次一个 · 切换会重新加载</string>
+<string name="library_sync_cached">已缓存</string>
 <string name="library_sync_failed">无法同步 %1$s。这些是 %2$s 前的内容。</string>
+<string name="library_sync_offline">离线 · %s 前的缓存</string>
 <string name="library_sync_retry">重新同步</string>
 <string name="library_sync_unreachable">无法连接 · %s 前的缓存</string>
 <string name="library_synced_format">%s前已同步</string>

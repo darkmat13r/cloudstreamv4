@@ -304,10 +304,11 @@
 <string name="library_on_device">På eininga</string>
 <string name="library_sort_current">Sortering: %s</string>
 <string name="library_sort_supported">%1$s støttar %2$d av %3$d</string>
-<string name="library_sort_unsupported">Ikkje lagra av %s</string>
 <string name="library_source">Bibliotekskjelde</string>
 <string name="library_source_note">Éin om gongen · byte lastar på nytt</string>
+<string name="library_sync_cached">Mellomlagra</string>
 <string name="library_sync_failed">Kunne ikkje synkronisera %1$s. Desse er frå for %2$s sidan.</string>
+<string name="library_sync_offline">Fråkopla · mellomlagra for %s sidan</string>
 <string name="library_sync_retry">Synkroniser på nytt</string>
 <string name="library_sync_unreachable">Utilgjengeleg · mellomlagra for %s sidan</string>
 <string name="library_synced_format">Synkronisert for %s sidan</string>

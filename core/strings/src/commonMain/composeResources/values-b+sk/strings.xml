@@ -269,10 +269,11 @@
 <string name="library_on_device">V zariadení</string>
 <string name="library_sort_current">Zoradenie: %s</string>
 <string name="library_sort_supported">%1$s podporuje %2$d z %3$d</string>
-<string name="library_sort_unsupported">%s neukladá</string>
 <string name="library_source">Zdroj knižnice</string>
 <string name="library_source_note">Jeden naraz · prepnutie znova načíta</string>
+<string name="library_sync_cached">Z vyrovnávacej pamäte</string>
 <string name="library_sync_failed">%1$s sa nepodarilo synchronizovať. Sú to údaje spred %2$s.</string>
+<string name="library_sync_offline">Offline · vo vyrovnávacej pamäti spred %s</string>
 <string name="library_sync_retry">Znova synchronizovať</string>
 <string name="library_sync_unreachable">Nedostupné · vo vyrovnávacej pamäti spred %s</string>
 <string name="library_synced_format">Synchronizované pred %s</string>

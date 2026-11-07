@@ -319,10 +319,11 @@
 <string name="library_on_device">Ierīcē</string>
 <string name="library_sort_current">Kārtošana: %s</string>
 <string name="library_sort_supported">%1$s atbalsta %2$d no %3$d</string>
-<string name="library_sort_unsupported">%s to neglabā</string>
 <string name="library_source">Bibliotēkas avots</string>
 <string name="library_source_note">Pa vienam · pārslēgšana pārlādē</string>
+<string name="library_sync_cached">No kešatmiņas</string>
 <string name="library_sync_failed">Neizdevās sinhronizēt %1$s. Šie dati ir no pirms %2$s.</string>
+<string name="library_sync_offline">Bezsaistē · kešatmiņā pirms %s</string>
 <string name="library_sync_retry">Sinhronizēt vēlreiz</string>
 <string name="library_sync_unreachable">Nav sasniedzams · kešatmiņā pirms %s</string>
 <string name="library_synced_format">Sinhronizēts pirms %s</string>

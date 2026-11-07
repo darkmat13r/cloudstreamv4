@@ -377,10 +377,11 @@
 <string name="library_on_device">"기기에 저장됨"</string>
 <string name="library_sort_current" formatted="true">"정렬: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s은(는) %3$d개 중 %2$d개 지원"</string>
-<string name="library_sort_unsupported" formatted="true">"%s에 저장되지 않음"</string>
 <string name="library_source">"라이브러리 소스"</string>
 <string name="library_source_note">"한 번에 하나 · 전환하면 다시 불러옴"</string>
+<string name="library_sync_cached">"캐시됨"</string>
 <string name="library_sync_failed" formatted="true">"%1$s을(를) 동기화하지 못했습니다. %2$s 전 데이터입니다."</string>
+<string name="library_sync_offline" formatted="true">"오프라인 · %s 전 캐시"</string>
 <string name="library_sync_retry">"다시 동기화"</string>
 <string name="library_sync_unreachable" formatted="true">"연결할 수 없음 · %s 전 캐시"</string>
 <string name="library_synced_format" formatted="true">"%s 전에 동기화됨"</string>

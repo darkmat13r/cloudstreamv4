@@ -279,10 +279,11 @@
 <string name="library_on_device">စက်ပေါ်တွင်</string>
 <string name="library_sort_current">စီရန်: %s</string>
 <string name="library_sort_supported">%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်</string>
-<string name="library_sort_unsupported">%s တွင် မသိမ်းပါ</string>
 <string name="library_source">လိုက်ဘရီ ရင်းမြစ်</string>
 <string name="library_source_note">တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်</string>
+<string name="library_sync_cached">သိမ်းထားသည်</string>
 <string name="library_sync_failed">%1$s ကို ချိန်ကိုက်၍မရပါ။ ဤအရာများသည် လွန်ခဲ့သော %2$s ကဖြစ်သည်။</string>
+<string name="library_sync_offline">အော့ဖ်လိုင်း · လွန်ခဲ့သော %s က သိမ်းထားသည်</string>
 <string name="library_sync_retry">ပြန်ချိန်ကိုက်ရန်</string>
 <string name="library_sync_unreachable">ချိတ်ဆက်၍မရ · လွန်ခဲ့သော %s က သိမ်းထားသည်</string>
 <string name="library_synced_format">%s က ချိန်ကိုက်ခဲ့သည်</string>

@@ -116,10 +116,11 @@
 <string name="library_on_device">"Fuq l-apparat"</string>
 <string name="library_sort_current" formatted="true">"Ordni: %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s jappoġġja %2$d minn %3$d"</string>
-<string name="library_sort_unsupported" formatted="true">"Mhux maħżun minn %s"</string>
 <string name="library_source">"Sors tal-librerija"</string>
 <string name="library_source_note">"Wieħed kull darba · il-bidla tgħabbi mill-ġdid"</string>
+<string name="library_sync_cached">"Fil-cache"</string>
 <string name="library_sync_failed" formatted="true">"Ma setax jiġi sinkronizzat %1$s. Dawn huma minn %2$s ilu."</string>
+<string name="library_sync_offline" formatted="true">"Offline · fil-cache minn %s ilu"</string>
 <string name="library_sync_retry">"Erġa' ssinkronizza"</string>
 <string name="library_sync_unreachable" formatted="true">"Ma jintlaħaqx · fil-cache minn %s ilu"</string>
 <string name="library_synced_format" formatted="true">"Sinkronizzat %s ilu"</string>
