@@ -6063,3 +6063,77 @@ though. To do:
 2. Give each reason a key with its plain, translated words (an `I18N` task first). A screen draws the words; the type
    stays only as the pasteable detail.
 3. Keep the rule that no message, address or path reaches the screen. Rerun the TV Home device suite.
+
+## KMP-58 — The Mac's title page, built from `DS-21` (E1 to E6)
+
+**Status:** in review · took over from desktop-session-1, the PM's call of 2026-11-08 · scope approved by the PM before
+building
+
+`DetailScreenDesktop` now draws the `DS-21` boards on the shared `DetailViewModel`:
+- **The bar:** Back, then where the page was opened from (Home, Search or Library), which goes back too, then the title.
+- **E1:**
+  - the poster beside the name;
+  - the shared run of facts, then the kind of title and its provider;
+  - a two-line synopsis that opens in place (`SynopsisToggled`).
+- **E1's actions:**
+  - Resume `S1:E3` with its rule and what is left under it (`resume_time_left` on one line), else Play;
+  - Start over (`detail_start_over`), the same episode or film from its beginning;
+  - the watch list, `Add` or `Done` by whether the title is on one, which opens the watch-status panel.
+- **Episodes** are on the page under a button per season, opening on Resume's season. Season 0 is `season_specials`.
+  Episodes with no season are `season_other`, last (`I18N-12`).
+- **E2:** a row's Play shows while the pointer or focus is on it, and its words never move for it.
+- **E3:** the sources panel, with Cancel. The loading words have a line of their own, so finishing moves no row (`BUG-19`).
+- **E4** is the skeleton. **E5** has Try again and Go back, and shows nothing of the failure (`BUG-21`).
+- **E6:** in the 800×520 window the name is a size down, and everything still answers.
+
+Every action that plays sends `PlaybackRequested`. The desktop host turns it into its source list with the right start:
+the stored position for a Resume, the beginning for Start over or another episode (`startPosition`, tested). Escape
+closes the source list, then the watch-status panel, then the page.
+
+`LibraryDetailSource` adds what this computer remembers about the title, from the same store the library reads:
+- **Resume:** the newest resumable position, only on an episode the provider still lists.
+- **Seasons**, counted from the episodes.
+- **The watch list** and `setWatchStatus`. A title put on a list for the first time keeps its name, poster and provider.
+  None does not take a title out of Favourites, which the page cannot show.
+
+A library that cannot be read costs only these, and the page still opens.
+
+**Tests** (`:desktopApp:jvmTest`, real pointer and key events):
+- `DetailScreenTest` (14): each control is found by what a screen reader is told, then pressed at its middle.
+  - E1's actions, the watch list, the synopsis, the bar's way back.
+  - Seasons: the selected one in semantics, Specials and Other in order.
+  - E2's hover verb, E3's panel, the watch-status panel's selection, E4, E5 (no failure text), E6, Tab to Resume.
+  - The start position.
+- `LibraryDetailSourceTest` (7).
+- `SourcesPanelTest`: the header is a reserved line taller, so `HEADER_BOTTOM` is 64 → 80 and `FIRST_ROW_Y` is 88 → 104,
+  measured off its renders. One case is renamed: Cancel, not Close, keeps its place.
+
+**DECIDED** (approved by the PM before building):
+- **Score, tags, certification, status, runtime and the trailer do not reach the Mac yet.** The plugin sandbox's
+  `RemoteDetails` does not carry them, and changing that format is a security-boundary change. It is `KMP-76`.
+- **Per-episode Watched and time left, and their rules,** wait on `KMP-63`. The contract has no per-episode watch state.
+- **E2's Download and Mark watched** need `DetailAction`s that do not exist, and the Mac's downloads are `KMP-75`. The
+  row's verb is Play alone, with no tooltip: one verb that is the row's own says nothing a tooltip would add.
+- **No episode thumbnails, Share or More.** `DetailEpisode` has no image, there is no share action on desktop, and nothing
+  More would hold works here yet.
+- **The synopsis has no "More" word.** There is no such key. The block itself is the target, named `synopsis` for a
+  screen reader.
+- **The sidebar on E1 is `KMP-77` (shell)**, desktop-session-1's, for every pushed screen.
+
+## KMP-76 — The plugin sandbox carries a title's facts to the Mac · **open**, follow-up of `KMP-58`
+
+`RemoteDetails` (`HostProtocol.kt`) carries a title's name, type, plot, poster, year, data and episodes, and nothing else.
+E1's run of facts and its Trailer need more from `LoadResponse`:
+- the score;
+- the tags;
+- the content rating;
+- the show status;
+- the runtime;
+- whether a trailer exists, but no trailer URL, which stays in the sandbox until played.
+
+This is third-party data crossing the sandbox, so:
+- Bound every new field: a length for each string, a count for the tags, a range for the score and the runtime. A value
+  over its bound is dropped, not truncated into something else.
+- Validate on the reading side as well as the writing side. The writer is the plugin's process and is not trusted.
+- Strip control and format characters, as `DesktopLibraryStore` does for what it reads back.
+- Get a security review before merging.

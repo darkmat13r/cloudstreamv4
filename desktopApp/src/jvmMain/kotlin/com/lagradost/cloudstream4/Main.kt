@@ -52,6 +52,7 @@ import com.lagradost.cloudstream4.library.LibraryHost
 import com.lagradost.cloudstream4.library.WatchRecorder
 import com.lagradost.cloudstream4.feature.detail.DetailEffect
 import com.lagradost.cloudstream4.feature.detail.StreamLink
+import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceMemory
@@ -333,9 +334,11 @@ internal fun DesktopApp(
                     scope = scope,
                     escape = escape,
                     resume = screen.resume,
+                    library = library,
+                    origin = stack.first().originLabel(),
                     onBack = { back(screen) },
-                    onPlay = { kept, episodeData, title, link ->
-                        stack += Screen.Player(kept, episodeData, title, link, screen.resume?.positionMillis ?: 0L)
+                    onPlay = { kept, episodeData, title, link, startAt ->
+                        stack += Screen.Player(kept, episodeData, title, link, startAt)
                     },
                 )
             }
@@ -442,20 +445,41 @@ private fun DetailHost(
     scope: CoroutineScope,
     escape: EscapeHandler,
     resume: LibraryResume?,
+    library: LibraryStore,
+    origin: String?,
     onBack: () -> Unit,
-    onPlay: (LibraryTitle, String?, String, StreamLink) -> Unit,
+    onPlay: (LibraryTitle, String?, String, StreamLink, Long) -> Unit,
 ) {
-    val viewModel = remember(id) { DesktopDetailViewModels.get(id, scope) }
+    val viewModel = remember(id) { DesktopDetailViewModels.get(id, scope, library) }
     val state by viewModel.state.collectAsState()
     var playing by remember(id) { mutableStateOf<String?>(null) }
+    // Where the player starts: the library's position when it asked to come back here, else what the page asked for.
+    var startAt by remember(id) { mutableStateOf(resume?.positionMillis ?: 0L) }
     val act: (DetailAction) -> Unit = { action ->
-        if (action is DetailAction.PlayRequested) playing = action.data
-        viewModel.onAction(action)
+        when (action) {
+            // KMP-58: the page says what to play and whether from the start. Here that is the source list, as Play
+            // always was, with the start the page meant: the stored position for a Resume, nothing for Start over.
+            is DetailAction.PlaybackRequested -> {
+                startAt = startPosition(viewModel.state.value.detail, action.data, action.fromStart)
+                playing = action.data
+                viewModel.onAction(DetailAction.PlayRequested(action.data))
+            }
+            is DetailAction.PlayRequested -> {
+                playing = action.data
+                viewModel.onAction(action)
+            }
+            else -> viewModel.onAction(action)
+        }
     }
     SideEffect {
-        // The same two steps as the visible Back button: the source list first, then the page.
+        // The same steps as the visible buttons: the source list first, then a panel, then the page.
         escape.onEscape = {
-            if (viewModel.state.value.links != null) viewModel.onAction(DetailAction.LinksDismissed) else onBack()
+            val now = viewModel.state.value
+            when {
+                now.links != null -> viewModel.onAction(DetailAction.LinksDismissed)
+                now.watchStatusPicking -> viewModel.onAction(DetailAction.PanelDismissed)
+                else -> onBack()
+            }
         }
     }
     val loaded = (state.content as? DetailLoad.Loaded)?.value
@@ -477,11 +501,10 @@ private fun DetailHost(
                 providerName = detail?.providerName,
             )
             when (effect) {
-                is DetailEffect.Play -> onPlay(kept, playing, effect.title, effect.link)
-                // The three Android effects. `DetailScreenDesktop` sends none of the actions that
-                // produce them — it plays by picking a stream from the source list, which is
-                // `PlayRequested` and then `Play` above, and it draws no trailer button and no
-                // recommendations rail. They are named rather than swept up by an `else` so that a
+                is DetailEffect.Play -> onPlay(kept, playing, effect.title, effect.link, startAt)
+                // The three Android effects. None of the actions that produce them reach the ViewModel from
+                // here: the page's `PlaybackRequested` is turned into `PlayRequested` above, and it draws no
+                // trailer button and no recommendations rail. They are named rather than swept up by an `else` so that a
                 // fourth effect still fails this build instead of being silently dropped here.
                 is DetailEffect.OpenPlayer, DetailEffect.PlayTrailer, is DetailEffect.OpenTitle -> Unit
             }
@@ -492,7 +515,27 @@ private fun DetailHost(
         onAction = act,
         onBack = onBack,
         artwork = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
+        origin = origin,
     )
+}
+
+/**
+ * Where the player starts for a page's [DetailAction.PlaybackRequested] (`KMP-58`): the stored position when what is
+ * asked for is what was being resumed, and the beginning for anything else, Start over included.
+ */
+internal fun startPosition(detail: TitleDetail?, data: String, fromStart: Boolean): Long {
+    if (fromStart) return 0L
+    val resume = detail?.resume?.takeIf { it.data == data } ?: return 0L
+    return if (resume.fraction == null) 0L else resume.positionMs
+}
+
+/** The name of a top-level screen, for a title page's way back to it. Null for one the sidebar does not name. */
+@Composable
+private fun Screen.originLabel(): String? = when (this) {
+    Screen.Home -> TopLevelDestination.Home.label()
+    Screen.Search -> TopLevelDestination.Search.label()
+    Screen.Library -> TopLevelDestination.Library.label()
+    else -> null
 }
 
 private const val WINDOW_TITLE = "CloudStream"
