@@ -3,9 +3,18 @@
 <resources>
 <string name="detail_load_failed_body">Maaaring hindi available ang source.</string>
 <string name="detail_load_failed_headline">Hindi mabuksan ang pamagat na ito</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d nagda-download</item><item quantity="other">%d nagda-download</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d nakapila</item><item quantity="other">%d nakapila</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Burahin ang %d download?</item><item quantity="other">Burahin ang %d download?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episode</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d nabigo</item><item quantity="other">%d nabigo</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d pamagat · %2$s</item><item quantity="other">%1$d pamagat · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Hindi na-load ang %d seksyon</item><item quantity="other">Hindi na-load ang %d seksyon</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Maghanap sa %d source</item><item quantity="other">Maghanap sa lahat ng %d source</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Pindutin ang search key ng keyboard para maghanap pa rin sa %d source.</item><item quantity="other">Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d source.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d SOURCE</item><item quantity="other">%d SOURCES</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d seksyon</item><item quantity="other">%d na seksyon</item></plurals>
 <string name="action_add_to_bookmarks">I-set ang Status</string>
 <string name="action_default">Default</string>
 <string name="action_mark_as_watched">I-tanda bilang napanood na</string>
@@ -58,6 +67,11 @@
 <string name="delete">Tanggalin</string>
 <string name="delete_file">Burahin ang file</string>
 <string name="delete_message">This will permanently delete %s \nAre you sure?</string>
+<string name="desktop_menu_go">Pumunta</string>
+<string name="detail_source_resolving">Nireresolba…</string>
+<string name="detail_sources_done">%1$d sa %2$d ang sumagot</string>
+<string name="detail_sources_progress">%1$d sa %2$d ang sumagot · naglo-load…</string>
+<string name="detail_start_over">Magsimula ulit</string>
 <string name="discord">Sumali sa Discord</string>
 <string name="display_subbed_dubbed_settings">Display Dubbed/Subbed Anime</string>
 <string name="dns_pref">DNS over HTTPS</string>
@@ -77,10 +91,17 @@
 <string name="downloaded">Downloaded</string>
 <string name="downloading">Downloading</string>
 <string name="downloads_browse_library">I-browse ang library</string>
+<string name="downloads_cancel_confirm_body">Itatapon nito ang %s na na-download na.</string>
+<string name="downloads_cancel_confirm_title">Kanselahin ang download na ito?</string>
+<string name="downloads_cancel_download">Kanselahin ang download</string>
+<string name="downloads_column_size">Laki</string>
 <string name="downloads_delete_all">Tanggalin lahat</string>
+<string name="downloads_delete_confirm_body">Magpapalaya ito ng %s at hindi na ito maaaring bawiin.</string>
 <string name="downloads_empty_body">Lalabas dito ang mga download na sinimulan mo mula sa listahan ng episode ng isang pamagat at mapapanood nang walang koneksyon.</string>
 <string name="downloads_empty_headline">Wala pang mga download</string>
+<string name="downloads_free">%s libre</string>
 <string name="downloads_free_up_space">Magbakante ng espasyo</string>
+<string name="downloads_keep_downloading">Ituloy ang pag-download</string>
 <string name="downloads_load_failed_body">Hindi nabago ang mga na-download mong file.</string>
 <string name="downloads_load_failed_headline">Hindi mabasa ang iyong mga download</string>
 <string name="downloads_offline_pill">Offline · walang koneksyon</string>
@@ -94,6 +115,8 @@
 <string name="downloads_reason_storage_unavailable">Hindi maabot ang storage</string>
 <string name="downloads_retry_failed">Subukang muli ang nabigo (%d)</string>
 <string name="downloads_select">Piliin</string>
+<string name="downloads_selected_status">%1$d sa %2$d ang napili · %3$s</string>
+<string name="downloads_show_in_finder">Ipakita sa Finder</string>
 <string name="downloads_state_queued">Nakapila</string>
 <string name="downloads_storage_full_headline">Kulang ang storage</string>
 <string name="downloads_storage_legend">%1$s ng %2$s ang gamit · %3$s sa mga download</string>
@@ -158,6 +181,7 @@
 <string name="home_bookmarks_no_status_body">Pumili ng isa sa itaas para makita ang mga bookmark na iyon.</string>
 <string name="home_bookmarks_no_status_headline">Walang napiling status</string>
 <string name="home_change_provider_img_des">Change Provider</string>
+<string name="home_choose_source">Pumili ng source</string>
 <string name="home_expanded_hide">Itago</string>
 <string name="home_info">Impormasyon</string>
 <string name="home_main_poster_img_des">Main Poster</string>
@@ -168,8 +192,13 @@
 <string name="home_offline_bookmarks_body">Naka-save sa device na ito ang mga bookmark mo.</string>
 <string name="home_offline_source_headline">Kailangan ng %1$s ng koneksyon</string>
 <string name="home_play">I-play</string>
+<string name="home_reload_failed">Hindi ma-reload ang %1$s. Mula %2$s na ang nakalipas ang mga row na ito.</string>
 <string name="home_search_only_body">Wala sa mga extension mo ang may home page, pero puwede ka pa ring maghanap sa mga ito.</string>
+<string name="home_source_none_line">Walang row; mananatili ang library mo</string>
 <string name="home_source_none_subtitle">WALANG ROW · NANANATILI ANG MGA ROW MO</string>
+<string name="home_source_picker_body">Galing sa isang extension sa bawat pagkakataon ang mga row.</string>
+<string name="home_source_picker_title">Source ng Home</string>
+<string name="home_source_unreachable">Hindi ito naabot noong huli</string>
 <string name="kitsu_settings">Ipakita ang posters mula sa Kitsu</string>
 <string name="lightnovel">Light novel app ng parehong devs</string>
 <string name="load_more">Mag-load pa</string>
@@ -257,11 +286,23 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Search using providers</string>
 <string name="search_provider_text_types">Search using types</string>
+<string name="search_quick_empty_body">Sumagot ang lahat ng source at wala ni isang may “%s”. Subukan ang mas maikling paghahanap, o buksan ang buong paghahanap para palitan ang mga source.</string>
+<string name="search_quick_empty_headline">Walang tugma</string>
+<string name="search_quick_meta_answered">SUMAGOT NA ANG LAHAT NG SOURCE</string>
+<string name="search_quick_meta_answering">DUMARATING ANG MGA RESULTA HABANG SUMASAGOT ANG MGA SOURCE</string>
+<string name="search_quick_open_full">Buksan ang buong paghahanap</string>
+<string name="search_quick_status">%1$d SA %2$d ANG SUMAGOT · %3$d ANG NABIGO</string>
+<string name="search_quick_title">Mabilis na paghahanap</string>
 <string name="search_state_idle_body_desktop">Mag-type ng pamagat. Lalabas ang mga resulta sa ilalim ng bawat source kapag sumagot ito.</string>
 <string name="search_state_no_results_type_filter">%s lang. Pinipigilan ng type filter mo ang paghahanap.</string>
+<string name="search_state_no_suggestions_detail">0 MUNGKAHI · 0 KAMAKAILANG TUGMA</string>
+<string name="search_state_no_suggestions_headline">Walang tumutugma sa “%s”</string>
 <string name="search_tv_source_failed">NABIGO %s</string>
 <string name="search_tv_source_pinned">NAKA-PIN</string>
 <string name="search_tv_sources_panel_meta">%1$d SA %2$d ANG NAKA-ENABLE · ILALAPAT ANG MGA PAGBABAGO KAPAG PININDOT ANG TAPOS NA</string>
+<string name="search_tv_suggestion_recent">KAMAKAILAN · %s</string>
+<string name="search_tv_suggestion_recent_suggested">KAMAKAILAN · IMINUNGKAHI RIN</string>
+<string name="search_tv_suggestion_suggested">IMINUNGKAHI</string>
 <string name="season">Season</string>
 <string name="season_short">S</string>
 <string name="seek_back_10_seconds">Bumalik ng 10 segundo</string>

@@ -4,13 +4,27 @@ import androidx.compose.runtime.Immutable
 import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import kotlinx.coroutines.flow.Flow
 
-/** One episode of a series. [data] is opaque, and goes back to [DetailSource.links] unread. */
+/**
+ * One episode of a series. [data] is opaque, and goes back to [DetailSource.links] unread.
+ *
+ * @param runTimeMinutes how long the episode runs, as the provider said. Null where it said nothing,
+ *   which is most providers; board 7i's `24 min` is drawn only where there is one.
+ * @param airDateMs when the episode aired, as epoch milliseconds. **Carried but not yet drawn**, and
+ *   that is deliberate: `Episode.addDate` stores this by resolving a date to start-of-day in
+ *   `TimeZone.currentSystemDefault()`, so the value is already timezone-dependent before this module
+ *   sees it — which is `BUG-08`, the reason `EpisodeDateTest` fails off UTC. Rendering it back needs a
+ *   locale-aware formatter (`:core:strings` has no date one; `NumberSymbols` is the precedent for what
+ *   one costs) *and* a ruling on which zone to render in. Both are their own task, so 7i's
+ *   `12 Mar 2019` is not drawn here rather than drawn wrongly.
+ */
 @Immutable
 data class DetailEpisode(
     val name: String?,
     val data: String,
     val season: Int?,
     val episode: Int?,
+    val runTimeMinutes: Int? = null,
+    val airDateMs: Long? = null,
 )
 
 /**

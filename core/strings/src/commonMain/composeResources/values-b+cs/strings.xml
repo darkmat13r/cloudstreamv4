@@ -4,11 +4,20 @@
 <string name="detail_load_failed_body">Zdroj možná není dostupný.</string>
 <string name="detail_load_failed_headline">Tento titul se nepodařilo otevřít</string>
 <plurals name="downloads_active"><item quantity="one">%d aktivní stahování</item><item quantity="few">%d aktivní stahování</item><item quantity="many">%d aktivních stahování</item><item quantity="other">%d aktivních stahování</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">stahuje se %d</item><item quantity="few">stahuje se %d</item><item quantity="many">stahuje se %d</item><item quantity="other">stahuje se %d</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d ve frontě</item><item quantity="few">%d ve frontě</item><item quantity="many">%d ve frontě</item><item quantity="other">%d ve frontě</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Smazat %d stažený soubor?</item><item quantity="few">Smazat %d stažené soubory?</item><item quantity="many">Smazat %d staženého souboru?</item><item quantity="other">Smazat %d stažených souborů?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d epizoda</item><item quantity="few">%d epizody</item><item quantity="many">%d epizody</item><item quantity="other">%d epizod</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d neúspěšné</item><item quantity="few">%d neúspěšná</item><item quantity="many">%d neúspěšných</item><item quantity="other">%d neúspěšných</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d stahování uloženo do fronty</item><item quantity="few">%d stahování uložena do fronty</item><item quantity="many">%d stahování uloženo do fronty</item><item quantity="other">%d stahování uloženo do fronty</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d titul · %2$s</item><item quantity="few">%1$d tituly · %2$s</item><item quantity="many">%1$d titulu · %2$s</item><item quantity="other">%1$d titulů · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽEK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepodařilo se načíst %d sekci</item><item quantity="few">Nepodařilo se načíst %d sekce</item><item quantity="many">Nepodařilo se načíst %d sekcí</item><item quantity="other">Nepodařilo se načíst %d sekcí</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d sekce</item><item quantity="few">%d sekce</item><item quantity="many">%d sekce</item><item quantity="other">%d sekcí</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d skrytý odkaz</item><item quantity="few">%d skryté odkazy</item><item quantity="many">%d skrytých odkazů</item><item quantity="other">%d skrytých odkazů</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Hledat v %d zdroji</item><item quantity="few">Hledat ve všech %d zdrojích</item><item quantity="many">Hledat ve všech %d zdrojích</item><item quantity="other">Hledat ve všech %d zdrojích</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte %d zdroj.</item><item quantity="few">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všechny %d zdroje.</item><item quantity="many">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdroje.</item><item quantity="other">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ZDROJ</item><item quantity="few">%d ZDROJE</item><item quantity="many">%d ZDROJE</item><item quantity="other">%d ZDROJŮ</item></plurals>
 <string name="account">účet</string>
 <string name="action_add_to_bookmarks">Nastavit stav sledování</string>
 <string name="action_add_to_favorites">Přidat do oblíbených</string>
@@ -161,6 +170,11 @@
 <string name="delete_repository">Odstranit repozitář</string>
 <string name="delete_repository_plugins">Tímto také odstraníte všechny doplňky repozitářů</string>
 <string name="deselect_all">Zrušit výběr všeho</string>
+<string name="desktop_menu_go">Přejít</string>
+<string name="detail_source_resolving">Zjišťování…</string>
+<string name="detail_sources_done">Odpovědělo: %1$d z %2$d</string>
+<string name="detail_sources_progress">Odpovědělo: %1$d z %2$d · načítání…</string>
+<string name="detail_start_over">Začít znovu</string>
 <string name="device_pin_counter_text">Kód vyprší za %1$dm %2$ds</string>
 <string name="device_pin_error_message">Nepodařilo se získat PIN kód, zkuste místní ověření</string>
 <string name="device_pin_expired_message">PIN kód vypršel!</string>
@@ -200,12 +214,19 @@
 <string name="downloaded_file">Stažen soubor</string>
 <string name="downloading">Stahování</string>
 <string name="downloads_browse_library">Procházet knihovnu</string>
+<string name="downloads_cancel_confirm_body">Tím se zahodí dosud stažených %s.</string>
+<string name="downloads_cancel_confirm_title">Zrušit toto stahování?</string>
+<string name="downloads_cancel_download">Zrušit stahování</string>
+<string name="downloads_column_size">Velikost</string>
 <string name="downloads_delete_all">Smazat vše</string>
+<string name="downloads_delete_confirm_body">Tím se uvolní %s a nelze to vrátit zpět.</string>
 <string name="downloads_delete_select">Zvolte položky k odstranění</string>
 <string name="downloads_empty">Aktuálně neprobíhají žádná stahování.</string>
 <string name="downloads_empty_body">Stahování spuštěná ze seznamu epizod titulu se zobrazí zde a přehrají se bez připojení.</string>
 <string name="downloads_empty_headline">Zatím žádná stahování</string>
+<string name="downloads_free">%s volné</string>
 <string name="downloads_free_up_space">Uvolnit místo</string>
+<string name="downloads_keep_downloading">Pokračovat ve stahování</string>
 <string name="downloads_load_failed_body">Vaše stažené soubory nebyly změněny.</string>
 <string name="downloads_load_failed_headline">Stahování se nepodařilo načíst</string>
 <string name="downloads_offline_pill">Offline · bez připojení</string>
@@ -219,6 +240,8 @@
 <string name="downloads_reason_storage_unavailable">Úložiště nedostupné</string>
 <string name="downloads_retry_failed">Zkusit znovu neúspěšné (%d)</string>
 <string name="downloads_select">Vybrat</string>
+<string name="downloads_selected_status">Vybráno %1$d z %2$d · %3$s</string>
+<string name="downloads_show_in_finder">Zobrazit ve Finderu</string>
 <string name="downloads_state_queued">Ve frontě</string>
 <string name="downloads_storage_full_headline">Nedostatek úložiště</string>
 <string name="downloads_storage_legend">Použito %1$s z %2$s · %3$s ve stahování</string>
@@ -345,6 +368,7 @@
 <string name="home_bookmarks_no_status_body">Vyberte jeden nahoře a uvidíte tyto záložky.</string>
 <string name="home_bookmarks_no_status_headline">Není vybrán žádný stav</string>
 <string name="home_change_provider_img_des">Změnit poskytovatele</string>
+<string name="home_choose_source">Vybrat zdroj</string>
 <string name="home_expanded_hide">Skrýt</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Hlavní plakát</string>
@@ -356,9 +380,14 @@
 <string name="home_offline_source_headline">%1$s potřebuje připojení</string>
 <string name="home_play">Přehrát</string>
 <string name="home_random">Náhodný</string>
+<string name="home_reload_failed">%1$s se nepodařilo znovu načíst. Tyto řádky jsou z doby před %2$s.</string>
 <string name="home_search_only_body">Žádné z vašich rozšíření nemá domovskou stránku, ale stále v nich můžete hledat.</string>
 <string name="home_source">Zdroj</string>
+<string name="home_source_none_line">Žádné řádky; knihovna zůstane</string>
 <string name="home_source_none_subtitle">ŽÁDNÉ ŘADY · VAŠE ŘADY ZŮSTÁVAJÍ</string>
+<string name="home_source_picker_body">Řádky pocházejí vždy z jednoho rozšíření.</string>
+<string name="home_source_picker_title">Zdroj domovské stránky</string>
+<string name="home_source_unreachable">Minule se nepodařilo připojit</string>
 <string name="install_prerelease">Nainstalovat předběžnou verzi</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Nelze se připojit k serveru GitHub. Zapínání proxy jsDelivr…</string>
@@ -611,13 +640,25 @@
 <string name="search_poster_img_des">Plakát</string>
 <string name="search_provider_text_providers">Hledat pomocí poskytovatelů</string>
 <string name="search_provider_text_types">Hledat pomocí typů</string>
+<string name="search_quick_empty_body">Všechny zdroje odpověděly a žádný nemá „%s“. Zkuste kratší dotaz nebo otevřete úplné hledání a změňte zdroje.</string>
+<string name="search_quick_empty_headline">Žádné shody</string>
+<string name="search_quick_meta_answered">VŠECHNY ZDROJE ODPOVĚDĚLY</string>
+<string name="search_quick_meta_answering">VÝSLEDKY PŘIBÝVAJÍ, JAK ZDROJE ODPOVÍDAJÍ</string>
+<string name="search_quick_open_full">Otevřít úplné hledání</string>
+<string name="search_quick_status">ODPOVĚDĚLO %1$d Z %2$d · SELHALO %3$d</string>
+<string name="search_quick_title">Rychlé hledání</string>
 <string name="search_state_idle_body_desktop">Zadejte název. Výsledky se zobrazí pod každým zdrojem, jakmile odpoví.</string>
 <string name="search_state_no_results_type_filter">Pouze %s. Filtr typů zužuje hledání.</string>
+<string name="search_state_no_suggestions_detail">0 NÁVRHŮ · 0 NEDÁVNÝCH SHOD</string>
+<string name="search_state_no_suggestions_headline">Nic neodpovídá „%s“</string>
 <string name="search_suggestions">Návrhy vyhledávání</string>
 <string name="search_suggestions_des">Zobrazit návrhy vyhledávání během psaní</string>
 <string name="search_tv_source_failed">SELHALO %s</string>
 <string name="search_tv_source_pinned">PŘIPNUTO</string>
 <string name="search_tv_sources_panel_meta">%1$d Z %2$d ZAPNUTO · ZMĚNY SE UPLATNÍ STISKNUTÍM HOTOVO</string>
+<string name="search_tv_suggestion_recent">NEDÁVNÉ · %s</string>
+<string name="search_tv_suggestion_recent_suggested">NEDÁVNÉ · TAKÉ NAVRŽENO</string>
+<string name="search_tv_suggestion_suggested">NAVRŽENO</string>
 <string name="season">Sezóna</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

@@ -1,12 +1,12 @@
-package com.lagradost.cloudstream4.feature.downloads.tv
+package com.lagradost.cloudstream4.core.designsystem.scroll
 
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
-class DownloadsRowScrollTest {
+class RowScrollTest {
 
     private fun distance(offset: Float, size: Float = ROW) =
-        DownloadsRowScroll.distance(offset, size, CONTAINER, START, END, ROW, PITCH)
+        RowScroll.distance(offset, size, CONTAINER, START, END, ROW, PITCH)
 
     /**
      * What Compose does: asks, scrolls some of the way, asks again with the row where it is now, until the answer is 0.
@@ -72,7 +72,7 @@ class DownloadsRowScrollTest {
     @Test
     fun theFurthestScrollIsAWholeNumberOfRows() {
         for (rows in 1..50) {
-            val end = DownloadsRowScroll.listEndPadding(VIEWPORT, rows, 32, 36, 80, 16)
+            val end = RowScroll.listEndPadding(VIEWPORT, rows, 32, 36, 80, 16)
             val content = 32 + rows * 80 - 16 + end
             assertEquals(0, (content - VIEWPORT).mod(80), "$rows rows")
             assertEquals(true, end >= 36, "$rows rows keep the ring's inset")

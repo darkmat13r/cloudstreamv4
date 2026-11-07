@@ -39,6 +39,8 @@ data class SeriesState(
     val status: SeriesStatus = SeriesStatus.Loading,
     val offline: Boolean = false,
     val returnTo: SeriesReturn? = null,
+    /** From [DownloadSeriesContents.freeBytes]. */
+    val freeBytes: Long? = null,
 ) {
     val episodes: List<DownloadEpisode>
         get() = (status as? SeriesStatus.Showing)?.episodes.orEmpty()
@@ -53,6 +55,9 @@ sealed interface SeriesAction {
     data class StateVerbRequested(val id: DownloadEpisodeId) : SeriesAction
 
     data class DeleteRequested(val id: DownloadEpisodeId, val firstVisibleIndex: Int) : SeriesAction
+
+    /** Stops a running or waiting download, keeping nothing of it: the Mac's Cancel beside Pause (board D4). */
+    data class CancelRequested(val id: DownloadEpisodeId) : SeriesAction
 
     data object PlayNextRequested : SeriesAction
 

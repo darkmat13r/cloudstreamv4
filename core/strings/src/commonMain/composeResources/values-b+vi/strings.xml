@@ -4,11 +4,20 @@
 <string name="detail_load_failed_body">Nguồn có thể không khả dụng.</string>
 <string name="detail_load_failed_headline">Không thể mở tựa này</string>
 <plurals name="downloads_active"><item quantity="other">%d đang tải xuống</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="other">%d đang tải xuống</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="other">%d đang chờ</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="other">Xóa %d bản tải xuống?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="other">%d tập</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d thất bại</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d tải xuống đang chờ</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="other">%1$d tựa · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">%d MỤC</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">Không tải được %d mục</item></plurals>
+<plurals name="home_source_sections"><item quantity="other">%d mục</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d liên kết bị ẩn</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">Tìm kiếm trên cả %d nguồn</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">%d NGUỒN</item></plurals>
 <string name="account">tài khoản</string>
 <string name="action_add_to_bookmarks">Đặt trạng thái xem</string>
 <string name="action_add_to_favorites">Thêm vào mục yêu thích</string>
@@ -161,6 +170,11 @@
 <string name="delete_repository">Xoá kho nguồn phim</string>
 <string name="delete_repository_plugins">Việc này sẽ xóa tất cả tiện ích mở rộng trong kho nguồn phim</string>
 <string name="deselect_all">Bỏ chọn tất cả</string>
+<string name="desktop_menu_go">Đi</string>
+<string name="detail_source_resolving">Đang phân giải…</string>
+<string name="detail_sources_done">%1$d/%2$d đã phản hồi</string>
+<string name="detail_sources_progress">%1$d/%2$d đã phản hồi · đang tải…</string>
+<string name="detail_start_over">Bắt đầu lại</string>
 <string name="device_pin_counter_text">Mã sẽ hết hạn trong %1$d phút %2$d giây</string>
 <string name="device_pin_error_message">Không lấy được mã PIN, vui lòng thử xác thực cục bộ</string>
 <string name="device_pin_expired_message">Mã PIN đã hết hạn!</string>
@@ -200,12 +214,19 @@
 <string name="downloaded_file">Tệp đã tải xuống</string>
 <string name="downloading">Đang tải xuống</string>
 <string name="downloads_browse_library">Duyệt thư viện</string>
+<string name="downloads_cancel_confirm_body">Thao tác này sẽ bỏ %s đã tải xuống.</string>
+<string name="downloads_cancel_confirm_title">Hủy bản tải xuống này?</string>
+<string name="downloads_cancel_download">Hủy tải xuống</string>
+<string name="downloads_column_size">Kích thước</string>
 <string name="downloads_delete_all">Xóa tất cả</string>
+<string name="downloads_delete_confirm_body">Thao tác này giải phóng %s và không thể hoàn tác.</string>
 <string name="downloads_delete_select">Chọn mục để xoá</string>
 <string name="downloads_empty">Không có tải xuống nào.</string>
 <string name="downloads_empty_body">Các mục tải xuống bạn bắt đầu từ danh sách tập của một tựa sẽ xuất hiện ở đây và phát được khi không có kết nối.</string>
 <string name="downloads_empty_headline">Chưa có tải xuống nào</string>
+<string name="downloads_free">Còn trống %s</string>
 <string name="downloads_free_up_space">Giải phóng dung lượng</string>
+<string name="downloads_keep_downloading">Tiếp tục tải xuống</string>
 <string name="downloads_load_failed_body">Các tệp đã tải xuống của bạn không bị thay đổi.</string>
 <string name="downloads_load_failed_headline">Không thể đọc các tải xuống của bạn</string>
 <string name="downloads_offline_pill">Ngoại tuyến · không có kết nối</string>
@@ -219,6 +240,8 @@
 <string name="downloads_reason_storage_unavailable">Không truy cập được bộ nhớ</string>
 <string name="downloads_retry_failed">Thử lại mục lỗi (%d)</string>
 <string name="downloads_select">Chọn</string>
+<string name="downloads_selected_status">Đã chọn %1$d trong %2$d · %3$s</string>
+<string name="downloads_show_in_finder">Hiển thị trong Finder</string>
 <string name="downloads_state_queued">Hàng chờ</string>
 <string name="downloads_storage_full_headline">Không đủ bộ nhớ</string>
 <string name="downloads_storage_legend">Đã dùng %1$s trên %2$s · %3$s cho tải xuống</string>
@@ -345,6 +368,7 @@
 <string name="home_bookmarks_no_status_body">Chọn một mục ở trên để xem các mục đó.</string>
 <string name="home_bookmarks_no_status_headline">Chưa chọn trạng thái</string>
 <string name="home_change_provider_img_des">Thay đổi Nguồn phim</string>
+<string name="home_choose_source">Chọn nguồn</string>
 <string name="home_expanded_hide">Ẩn</string>
 <string name="home_info">Thông tin</string>
 <string name="home_main_poster_img_des">Poster chính</string>
@@ -356,9 +380,14 @@
 <string name="home_offline_source_headline">%1$s cần kết nối</string>
 <string name="home_play">Phát</string>
 <string name="home_random">Ngẫu nhiên</string>
+<string name="home_reload_failed">Không thể tải lại %1$s. Các hàng này từ %2$s trước.</string>
 <string name="home_search_only_body">Không có tiện ích mở rộng nào của bạn có trang chủ, nhưng bạn vẫn có thể tìm kiếm trong đó.</string>
 <string name="home_source">Nguồn</string>
+<string name="home_source_none_line">Không có hàng; thư viện của bạn vẫn còn</string>
 <string name="home_source_none_subtitle">KHÔNG CÓ HÀNG · HÀNG CỦA BẠN VẪN Ở LẠI</string>
+<string name="home_source_picker_body">Các hàng đến từ một tiện ích mỗi lần.</string>
+<string name="home_source_picker_title">Nguồn trang chủ</string>
+<string name="home_source_unreachable">Không truy cập được lần trước</string>
 <string name="install_prerelease">Cài đặt phiên bản phát hành trước</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Không thể kết nối được tới GitHub. Đang bật jsDelivr proxy…</string>
@@ -611,13 +640,25 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Tìm kiếm theo nguồn phim</string>
 <string name="search_provider_text_types">Tìm kiếm theo thể loại</string>
+<string name="search_quick_empty_body">Tất cả nguồn đã trả lời và không nguồn nào có “%s”. Hãy thử tìm ngắn hơn, hoặc mở tìm kiếm đầy đủ để đổi nguồn.</string>
+<string name="search_quick_empty_headline">Không có kết quả khớp</string>
+<string name="search_quick_meta_answered">TẤT CẢ NGUỒN ĐÃ TRẢ LỜI</string>
+<string name="search_quick_meta_answering">KẾT QUẢ ĐẾN KHI CÁC NGUỒN TRẢ LỜI</string>
+<string name="search_quick_open_full">Mở tìm kiếm đầy đủ</string>
+<string name="search_quick_status">%1$d/%2$d ĐÃ TRẢ LỜI · %3$d THẤT BẠI</string>
+<string name="search_quick_title">Tìm kiếm nhanh</string>
 <string name="search_state_idle_body_desktop">Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi.</string>
 <string name="search_state_no_results_type_filter">Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm.</string>
+<string name="search_state_no_suggestions_detail">0 GỢI Ý · 0 KẾT QUẢ GẦN ĐÂY KHỚP</string>
+<string name="search_state_no_suggestions_headline">Không có gì khớp với “%s”</string>
 <string name="search_suggestions">Gợi ý tìm kiếm</string>
 <string name="search_suggestions_des">Hiển thị gợi ý tìm kiếm khi đang nhập</string>
 <string name="search_tv_source_failed">THẤT BẠI %s</string>
 <string name="search_tv_source_pinned">ĐÃ GHIM</string>
 <string name="search_tv_sources_panel_meta">%1$d TRÊN %2$d ĐÃ BẬT · THAY ĐỔI ÁP DỤNG KHI NHẤN HOÀN TẤT</string>
+<string name="search_tv_suggestion_recent">GẦN ĐÂY · %s</string>
+<string name="search_tv_suggestion_recent_suggested">GẦN ĐÂY · CŨNG ĐƯỢC GỢI Ý</string>
+<string name="search_tv_suggestion_suggested">ĐƯỢC GỢI Ý</string>
 <string name="season">Mùa</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">Mùa</string>

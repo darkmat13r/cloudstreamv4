@@ -3,9 +3,18 @@
 <resources>
 <string name="detail_load_failed_body">Die bron is dalk nie beskikbaar nie.</string>
 <string name="detail_load_failed_headline">Kon nie hierdie titel oopmaak nie</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d laai af</item><item quantity="other">%d laai af</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d in die tou</item><item quantity="other">%d in die tou</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Skrap %d aflaai?</item><item quantity="other">Skrap %d aflaaie?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episodes</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d het misluk</item><item quantity="other">%d het misluk</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d titel · %2$s</item><item quantity="other">%1$d titels · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOEKMERK</item><item quantity="other">%d BOEKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d afdeling kon nie laai nie</item><item quantity="other">%d afdelings kon nie laai nie</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Soek %d bron</item><item quantity="other">Soek al %d bronne</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Druk die sleutelbord se soeksleutel om tog %d bron te deursoek.</item><item quantity="other">Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d BRON</item><item quantity="other">%d BRONNE</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d afdeling</item><item quantity="other">%d afdelings</item></plurals>
 <string name="action_add_to_bookmarks">Stel kykstatus</string>
 <string name="action_remove_from_bookmarks">Verwyder</string>
 <string name="action_remove_watching">Verwyder</string>
@@ -23,6 +32,11 @@
 <string name="category_providers">Verskaffers</string>
 <string name="continue_watching">Kyk verder</string>
 <string name="delete">Wis Uit</string>
+<string name="desktop_menu_go">Gaan</string>
+<string name="detail_source_resolving">Los op…</string>
+<string name="detail_sources_done">%1$d van %2$d het geantwoord</string>
+<string name="detail_sources_progress">%1$d van %2$d het geantwoord · laai…</string>
+<string name="detail_start_over">Begin oor</string>
 <string name="download">Laai af</string>
 <string name="download_canceled">Aflaai gekanselleer</string>
 <string name="download_done">Klaar Afgelaai</string>
@@ -33,11 +47,18 @@
 <string name="downloaded">Afgelaai</string>
 <string name="downloading">Laai tans af</string>
 <string name="downloads_browse_library">Blaai deur biblioteek</string>
+<string name="downloads_cancel_confirm_body">Dit gooi die %s wat reeds afgelaai is weg.</string>
+<string name="downloads_cancel_confirm_title">Kanselleer hierdie aflaai?</string>
+<string name="downloads_cancel_download">Kanselleer aflaai</string>
+<string name="downloads_column_size">Grootte</string>
 <string name="downloads_delete_all">Wis alles uit</string>
+<string name="downloads_delete_confirm_body">Dit maak %s vry en kan nie ontdoen word nie.</string>
 <string name="downloads_delete_select">Kies items om te verwyder</string>
 <string name="downloads_empty_body">Aflaaie wat jy vanaf 'n titel se episodelys begin, verskyn hier en speel sonder 'n verbinding.</string>
 <string name="downloads_empty_headline">Nog geen aflaaie nie</string>
+<string name="downloads_free">%s vry</string>
 <string name="downloads_free_up_space">Maak spasie vry</string>
+<string name="downloads_keep_downloading">Hou aan aflaai</string>
 <string name="downloads_load_failed_body">Jou afgelaaide lêers is nie verander nie.</string>
 <string name="downloads_load_failed_headline">Kon nie jou aflaaie lees nie</string>
 <string name="downloads_offline_pill">Vanlyn · geen verbinding nie</string>
@@ -51,6 +72,8 @@
 <string name="downloads_reason_storage_unavailable">Berging onbeskikbaar</string>
 <string name="downloads_retry_failed">Probeer mislukte weer (%d)</string>
 <string name="downloads_select">Kies</string>
+<string name="downloads_selected_status">%1$d van %2$d gekies · %3$s</string>
+<string name="downloads_show_in_finder">Wys in Finder</string>
 <string name="downloads_state_queued">In wagry</string>
 <string name="downloads_storage_full_headline">Nie genoeg berging nie</string>
 <string name="downloads_storage_legend">%1$s van %2$s gebruik · %3$s in aflaaie</string>
@@ -99,6 +122,7 @@
 <string name="home_bookmarks_no_status_body">Kies een hierbo om daardie boekmerke te sien.</string>
 <string name="home_bookmarks_no_status_headline">Geen status gekies</string>
 <string name="home_change_provider_img_des">Verander Verskaffer</string>
+<string name="home_choose_source">Kies bron</string>
 <string name="home_expanded_hide">Versteek</string>
 <string name="home_info">Inligting</string>
 <string name="home_main_poster_img_des">Hoofplakkaat</string>
@@ -109,8 +133,13 @@
 <string name="home_offline_bookmarks_body">Jou boekmerke is op hierdie toestel gestoor.</string>
 <string name="home_offline_source_headline">%1$s het ’n verbinding nodig</string>
 <string name="home_play">Speel</string>
+<string name="home_reload_failed">Kon %1$s nie herlaai nie. Hierdie rye is van %2$s gelede.</string>
 <string name="home_search_only_body">Geen van jou uitbreidings het 'n tuisblad nie, maar jy kan steeds daarin soek.</string>
+<string name="home_source_none_line">Geen rye nie; jou biblioteek bly</string>
 <string name="home_source_none_subtitle">GEEN RYE · JOU RYE BLY</string>
+<string name="home_source_picker_body">Rye kom van een uitbreiding op 'n slag.</string>
+<string name="home_source_picker_title">Tuisbron</string>
+<string name="home_source_unreachable">Kon dit laas nie bereik nie</string>
 <string name="load_more">Laai meer</string>
 <string name="loading">Laai tans…</string>
 <string name="more_like_this">Meer soos hierdie</string>
@@ -162,11 +191,23 @@
 <string name="search_poster_img_des">Plakkaat</string>
 <string name="search_provider_text_providers">Soek deur verskaffers te gebruik</string>
 <string name="search_provider_text_types">Soek met behulp van tipes</string>
+<string name="search_quick_empty_body">Elke bron het geantwoord en nie een het “%s” nie. Probeer ’n korter soektog, of maak die volle soektog oop om die bronne te verander.</string>
+<string name="search_quick_empty_headline">Geen passende resultate nie</string>
+<string name="search_quick_meta_answered">ALLE BRONNE HET GEANTWOORD</string>
+<string name="search_quick_meta_answering">RESULTATE KOM IN SOOS BRONNE ANTWOORD</string>
+<string name="search_quick_open_full">Maak volle soektog oop</string>
+<string name="search_quick_status">%1$d VAN %2$d GEANTWOORD · %3$d MISLUK</string>
+<string name="search_quick_title">Vinnige soektog</string>
 <string name="search_state_idle_body_desktop">Tik 'n titel. Resultate verskyn onder elke bron soos dit antwoord.</string>
 <string name="search_state_no_results_type_filter">Slegs %s. Jou tipe-filter beperk die soektog.</string>
+<string name="search_state_no_suggestions_detail">0 VOORSTELLE · 0 ONLANGSE OOREENKOMSTE</string>
+<string name="search_state_no_suggestions_headline">Niks stem ooreen met “%s” nie</string>
 <string name="search_tv_source_failed">MISLUK %s</string>
 <string name="search_tv_source_pinned">VASGESPELD</string>
 <string name="search_tv_sources_panel_meta">%1$d VAN %2$d GEAKTIVEER · WYSIGINGS GELD BY KLAAR</string>
+<string name="search_tv_suggestion_recent">ONLANGS · %s</string>
+<string name="search_tv_suggestion_recent_suggested">ONLANGS · OOK VOORGESTEL</string>
+<string name="search_tv_suggestion_suggested">VOORGESTEL</string>
 <string name="season">Seisoen</string>
 <string name="seek_back_10_seconds">Spring 10 sekondes terug</string>
 <string name="seek_forward_10_seconds">Spring 10 sekondes vorentoe</string>

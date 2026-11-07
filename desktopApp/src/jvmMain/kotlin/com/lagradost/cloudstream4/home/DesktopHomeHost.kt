@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -94,25 +95,21 @@ internal fun TopLevelScreen(
     trailing: @Composable () -> Unit = {},
     content: @Composable () -> Unit,
 ) {
-    Column(Modifier.fillMaxSize()) {
-        Row(
-            horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(start = DesktopDimens.WindowMargin, end = DesktopDimens.WindowMargin, top = DesktopDimens.GroupGap),
-        ) {
-            TopLevelDestination.entries.forEach { destination ->
-                TopLevelTab(destination.label(), destination == selected) { onSelect(destination) }
-            }
-            Spacer(Modifier.weight(1f))
-            trailing()
-        }
-        Box(Modifier.weight(1f)) { content() }
+    // The sidebar, not a row of tabs, since `KMP-53`: `DesktopShell.kt` says why.
+    Row(Modifier.fillMaxSize()) {
+        DesktopSidebar(
+            destinations = TopLevelDestination.entries,
+            selected = selected,
+            onSelect = onSelect,
+            label = { it.label() },
+            foot = trailing,
+        )
+        Box(Modifier.weight(1f).fillMaxHeight()) { content() }
     }
 }
 
 @Composable
-private fun TopLevelDestination.label(): String = when (this) {
+internal fun TopLevelDestination.label(): String = when (this) {
     TopLevelDestination.Home -> stringResource(Res.string.title_home)
     TopLevelDestination.Search -> stringResource(Res.string.title_search)
     TopLevelDestination.Library -> stringResource(Res.string.library)

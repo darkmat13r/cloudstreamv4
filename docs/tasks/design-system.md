@@ -751,6 +751,53 @@ Answered by the owner, 2026-11-06, relayed by the coordinator, and recorded in `
 Still open, not the owner's: the new strings go through `:core:strings` with `KMP-54`, and the transfer rate in D4 waits on
 `KMP-52` to report it.
 
+## DS-20 — Board correction: 7i's "DOWN past the last row loads the next page" · **measured 2026-11-07**
+
+**Status:** open · **Scope:** the board, not the code.
+**Numbered `DS-19` in `#181`'s first commit**, which collided with the component layer's `DS-19`
+(already referenced at `decisions.md:737`). Renumbered here; IDs are now claimed through
+`/private/tmp/cloudstream-shared/claim-id.sh`, which reads every branch rather than this file. `design/TV Detail Row.dc.html`, board 7i's FOCUS note.
+**Found by:** `KMP-38`'s PR 2a, measuring 7i before building it.
+
+7i's FOCUS note reads *"DOWN past the last row loads the next page of episodes."* There is no next page,
+and there is nothing below the last row to take focus. Both halves are measured, not argued:
+
+- **No pagination exists anywhere in the stack.** `DetailSource.details(id)` is a single `suspend` that
+  returns the whole `TitleDetail` (`DetailContracts.kt:187`); `episodes` is one flat list; the screen
+  draws all of it with `items(detail.episodes.size, …)` (`DetailScreenTv.kt:320`). No page size, cursor,
+  token or `loadMore` exists on the interface — `links()` is its only `Flow` and it carries streams.
+- **It cannot be faked from what is there.** `DetailSeason.episodeCount` is *derived from the same list
+  it would page*: `toSeasons()` is `episodes.mapNotNull { it.season }.groupingBy { it }.eachCount()`
+  (`AndroidDetailSource.kt:577-582`). A count can therefore never exceed what is already loaded, so
+  nothing can even say that a further page exists.
+- **DOWN at the last row does nothing, on a device.** `DetailScreenTvDeviceTest.downAtTheLastEpisodeRowStaysOnIt`
+  presses DOWN three times *after* arriving on the last row and asserts focus has not moved. It passes.
+  The existing forty-episode test could not show this: `pressUntil` stops at its first match, so it never
+  presses past the row it was looking for.
+
+### Second correction: the pill is drawn on a finished episode
+
+7i draws `WATCHED` on episode 1 and `24 MIN LEFT` on episode 2, and puts the marker on **episode 1**
+("Drawn on episode 1, the selected row"). So the board marks an episode the viewer has finished while
+the next one is part-watched — and Resume on that page would start episode 2, not episode 1.
+
+`#181` marks **what Play or Resume will start** instead, which on that fixture is episode 2. The
+owner's call, via `PM` (2026-11-07): a pill a viewer can act on beats one that says where they have
+been. `selectedEpisodeIndex`'s KDoc states the divergence rather than implying the board agrees.
+
+**Suggested correction:** move 7i's marker to episode 2, or change episode 1's badge so the marked row
+is the one Resume would start. Either keeps "the selected row" meaning one thing.
+
+**One trap for whoever picks this up:** `DetailTvFragment.kt:194` reads
+`RepoLinkGenerator(episodes, page = parts.response)`. That `page` is the extension API's `LoadResponse`
+parameter name, **not** a pagination cursor. It greps as if paging existed.
+
+**Suggested correction:** the note becomes "DOWN at the last row stays there — every episode is loaded in
+one answer." If paging is actually wanted, it is a `DetailSource` contract change and belongs on the `KMP`
+track, not in a board note; nothing in the current contract can express it.
+
+PR 2a draws the rest of 7i and leaves this line alone, which is why it is written down here.
+
 ## DS-21 — Boards: Home and a title's page on desktop, phone and tablet
 
 **Status:** drawn, PR open · boards only, no Kotlin · unblocks `KMP-55` (Home) and `KMP-58` (Detail) · `DEC-19`

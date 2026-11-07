@@ -61,6 +61,9 @@ import com.lagradost.cloudstream4.feature.search.SearchEffect
 import com.lagradost.cloudstream4.feature.search.SearchViewModel
 import com.lagradost.cloudstream4.feature.search.desktop.SearchScreenDesktop
 import com.lagradost.cloudstream4.home.DesktopHomeSource
+import com.lagradost.cloudstream4.home.DesktopMenuBar
+import com.lagradost.cloudstream4.home.DesktopShortcuts
+import com.lagradost.cloudstream4.home.label
 import com.lagradost.cloudstream4.home.HomeHost
 import com.lagradost.cloudstream4.home.TopLevelScreen
 import com.lagradost.cloudstream4.home.TopLevelTab
@@ -157,6 +160,7 @@ fun main(args: Array<String>) {
 
     application {
         val escape = remember { EscapeHandler() }
+        val shortcuts = remember { DesktopShortcuts() }
         val windowState = rememberWindowState(size = DpSize(WINDOW_WIDTH, WINDOW_HEIGHT))
         val homeMemory = remember { FileHomeSourceMemory() }
         Window(
@@ -168,13 +172,15 @@ fun main(args: Array<String>) {
                 event.key == Key.Escape && event.type == KeyEventType.KeyDown && escape.handle()
             },
         ) {
+            // The window's ⌘ keys live here and nowhere else, so none fires twice.
+            DesktopMenuBar(shortcuts) { it.label() }
             LaunchedEffect(window) {
                 window.minimumSize = java.awt.Dimension(MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT)
             }
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                        DesktopApp(escape, approvals = approvals, window = windowState, homeMemory = homeMemory)
+                        DesktopApp(escape, approvals = approvals, window = windowState, homeMemory = homeMemory, shortcuts = shortcuts)
                     }
                 }
             }
@@ -220,6 +226,7 @@ private sealed interface Screen {
  * @param onScreen told where the window is, for a test to read.
  * @param window what the player puts in full screen. Null where there is no window, as in a test.
  * @param homeMemory the home source chosen last. Keeps nothing by default, so a test cannot write to a real home.
+ * @param shortcuts what the menu bar's Go menu and its keys do; this sets it for the screen on top (`KMP-53`).
  */
 @Composable
 internal fun DesktopApp(
@@ -231,6 +238,7 @@ internal fun DesktopApp(
     onScreen: (String) -> Unit = {},
     window: WindowState? = null,
     homeMemory: HomeSourceMemory = HomeSourceMemory.None,
+    shortcuts: DesktopShortcuts = remember { DesktopShortcuts() },
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
@@ -280,6 +288,11 @@ internal fun DesktopApp(
                     TopLevelDestination.Library -> Screen.Library
                 },
             )
+        }
+        // ⌘1 to ⌘3 work only at the top level, as the sidebar is only there; ⌘[ wherever there is something under.
+        SideEffect {
+            shortcuts.onDestination = if (stack.size == 1) toTab else null
+            shortcuts.onBack = if (stack.size > 1) ({ back(screen) }) else null
         }
         when (screen) {
             Screen.Home -> TopLevelScreen(TopLevelDestination.Home, toTab, trailing = notice) {
