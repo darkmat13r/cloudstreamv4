@@ -5427,3 +5427,93 @@ Verified by grep, not assumed.
 
 **Why PR 2a does not do it:** a readout whose data does not exist is worse than none — the same reason
 `KMP-38` left Download and Mark watched out of the action row.
+
+## KMP-54 — The Mac downloads pages, boards D1 to D6 · **built 2026-11-07, not wired**
+
+`DownloadsScreenDesktop` in `:feature:downloads`, `desktop/`, from `design/Desktop Downloads.dc.html` (`DS-18`, #172). It runs
+on `DownloadsViewModel` and `DownloadsState` unchanged: what is shared is the state, the logic and the words; what is the Mac's
+is the row, the selection, the menu and the sheet (`DEC-19`). Built on `DesktopFoundation`'s existing components; the
+desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), which this stacks on.
+
+**What it does.**
+- **D1:** a 56 row per title with art, name and kind, status with its rule, and size. On hover the row shows its verbs:
+  Retry or Resume, Show in Finder, and Delete. They are glyph-only 24 cells with tooltips (rule 4, extended by the owner).
+- **D2:** selection is the pointer's, as in Finder. Click, ⌘-click, ⇧-click and ⌘A all act on press.
+  - `DownloadsDesktopSelection` turns each gesture into the view model's existing actions, so TV's choosing mode is
+    untouched.
+  - Right-click, or Control-click, opens a menu at the pointer (Show in Finder, Delete), which acts on the selection.
+  - The footer counts the titles and their size, or what is selected.
+- **D3:** the confirmation sheet hangs under the toolbar, and Cancel is the filled default (rule 1). Return and Escape
+  both cancel; only a click deletes.
+- **D5:** the offline pill sits beside the title. The storage-full banner offers Free up space, and the view model decides
+  between choosing rows and the system's storage settings. Empty and failed are `StateView`s that never take focus.
+- **D6:** below a 780-wide page the size column folds into the second line.
+- **D4, one series:** `DownloadSeriesScreenDesktop` on `DownloadSeriesViewModel` unchanged.
+  - The toolbar has Back (⌘[) and the path, Downloads › the series.
+  - Below the art and counts: Play next, Retry failed (when there is one), and Delete all, through the same sheet.
+  - Episodes sit under season headers, which now give the count through `downloads_episode_count`.
+  - Each row's hover verbs follow the board: Play on a finished row; Pause and Cancel on a running one; Resume (the `Play`
+    glyph, one glyph per meaning) on a paused one; Retry on a failed one; Cancel on a waiting one. Show in Finder appears
+    once the file is on the disk, and Delete is always last. A double-click plays.
+  - The meta line reads "7 EPISODES · 3.94 GB ON DISK · 12.40 GB FREE", the counts read "1 downloading · 1 queued · 1
+    failed", the footer reads "Season 1 · 7 episodes · 3.94 GB", and the breadcrumb's Downloads is a muted link. The new
+    keys are in `I18N-11`.
+  - **A failure names its reason.** The owner ruled on `KMP-52` that a resume asks the extension for a fresh link, so a resume
+    that finds none reads "Download Failed · No working link" and offers Retry.
+- **Keys:** ⌘A, ⌘⌫ (asks first), Return opens the one selected title, ⌘R shows it in Finder, and Escape clears.
+- `CloudStreamIcons.Folder` (Tabler `Folder`) is added for Show in Finder, as the glyph table rules.
+
+**Measured.** All local:
+- `DownloadsScreenTest`: 7 tests in `:desktopApp`, with real pointer and key events against a fake source and the real view
+  model. Renders: `-Pcloudstream.downloads.renders=<dir>`.
+- `DownloadsDesktopSelectionTest`: 10 tests in `commonTest`.
+
+**Not here.**
+- **Wiring.** The host needs:
+  - `KMP-52`'s source (#177): `fileOf` behind `canReveal` and `onReveal`, and `delete` after the sheet;
+  - the shell's sidebar entry (`KMP-53`).
+
+  Both are a few lines in `:desktopApp` once those land. #177 also adds `:feature:downloads` to `:desktopApp`, so the second
+  to land drops the duplicate line.
+- **Open in the menu.** No word for it yet; double-click and Return open.
+- **The transfer rate.** `DownloadTitle` carries none.
+- **New components.** The tooltip, the context menu and the bottom rule are private here. They are candidates for `DS-19`.
+- **Shared words.** The failure reason and the episode code's fallback are copies of TV's private rules in `SeriesRows`,
+  kept identical until `KMP-65`. The line itself is the name alone, on purpose: D4 has a number column.
+- **Cancelling asks first when there is something to lose.** A running or waiting episode with bytes on the disk opens a
+  sheet before Cancel discards them ("Cancel this download?", with Keep downloading as the filled default); one with
+  nothing fetched cancels at once. This is the PM's call (2026-11-07), following rule 1's pattern for destructive
+  confirmations; the words are in `I18N-11`.
+- **"Show in Finder" is the Mac's word.** It sits in a shared key; Windows and Linux will need their own ("Show in folder")
+  when those builds exist.
+
+**DECIDED** (small calls on the recommended option, the owner's standing rule of 2026-11-07):
+- **Cancel on a running episode.** Options were (A) an additive `SeriesAction.CancelRequested` that calls the source's
+  `cancel`, (B) routing Cancel through Delete, or (C) leaving Cancel off the running row. Chose A: the board draws it, and
+  `KMP-52`'s host cancels in any state. TV never sends it.
+- **Free space on D4.** Options were (A) an optional `DownloadSeriesContents.freeBytes`, defaulting to null so every host
+  compiles unchanged, or (B) a second source for the disk. Chose A: one emission carries the page. `KMP-52` fills it,
+  and the line leaves it out while it is null.
+
+**Reductions from the board**, where existing copy was reused rather than adding keys:
+- "Download Failed" and "Download Paused · 40%" for D1's "1 failed" and "Paused · 40%".
+- "Download queue · 1/4" for "Queue 1/4".
+- "Play from link" for "Play link".
+- "Movie" for "Film".
+- "4.24 GB / 5.10 GB" for "4.24 GB of 5.10 GB".
+- "Not enough storage · Needs 2.40 GB more" for D5's sentence.
+- "Free up space" for "Open Storage Settings".
+- D5's empty copy is TV's.
+- The D3 sheet's body gives the size freed without the titles' names.
+
+## KMP-65 — One source for a series' words on TV and the Mac · **open**, follow-up of `KMP-54`
+
+`DownloadSeriesScreenDesktop` copies two private rules from TV's `series/tv/SeriesRows.kt`: `titleOf` ("S1 · E3 ·
+Name") and `reason` (a `DownloadFailure` in words). The reason mapping and the code's fallback logic are kept identical
+meanwhile. **The line's format differs on purpose**: TV draws "S1 · E3 · Name" in one line, and the Mac draws the name
+alone, because board D4 gives the number its own column (the code stands in only where there is no name). To do:
+1. Move both into one `internal` function in `series/`, and have both screens call it.
+2. Replace `"${episode_short}$number"`, the one-number fallback in both copies, with a key that takes the number as
+   an argument, so a translation can place it.
+3. Rerun the TV downloads device suite and keep its screenshots at 0/0, because this touches a `tv/` file.
+

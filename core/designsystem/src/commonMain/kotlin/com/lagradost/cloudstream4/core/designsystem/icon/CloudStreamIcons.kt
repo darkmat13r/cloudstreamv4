@@ -17,6 +17,7 @@ import compose.icons.tablericons.Dots
 import compose.icons.tablericons.Dice
 import compose.icons.tablericons.Download
 import compose.icons.tablericons.ExternalLink
+import compose.icons.tablericons.Folder
 import compose.icons.tablericons.Gauge
 import compose.icons.tablericons.Headphones
 import compose.icons.tablericons.Heart
@@ -119,6 +120,8 @@ object CloudStreamIcons {
     val Retry: ImageVector get() = TablerIcons.Refresh
     val Warning: ImageVector get() = TablerIcons.AlertTriangle
     val Share: ImageVector get() = TablerIcons.Share
+    /** Where a download is on the disk: the Mac's Show in Finder (`DEC-19`). */
+    val Folder: ImageVector get() = TablerIcons.Folder
     val Favorite: ImageVector get() = TablerIcons.Heart
     val Bookmark: ImageVector get() = TablerIcons.Bookmark
     val Star: ImageVector get() = TablerIcons.Star

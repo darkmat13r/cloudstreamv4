@@ -48,6 +48,7 @@ class DownloadSeriesViewModel(
             }
 
             is SeriesAction.StateVerbRequested -> verb(action.id)
+            is SeriesAction.CancelRequested -> source.cancel(action.id)
             is SeriesAction.DeleteRequested -> {
                 remember(SeriesStop.Episode(action.id, SeriesVerb.Delete), action.firstVisibleIndex)
                 post(SeriesEffect.ConfirmDelete(action.id))
@@ -122,6 +123,7 @@ class DownloadSeriesViewModel(
             copy(
                 name = contents.name,
                 status = if (episodes.isEmpty()) SeriesStatus.Empty else SeriesStatus.Showing(episodes),
+                freeBytes = contents.freeBytes,
             )
         }
     }
