@@ -3637,10 +3637,11 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field library_on_device I
 	public static field library_sort_current I
 	public static field library_sort_supported I
-	public static field library_sort_unsupported I
 	public static field library_source I
 	public static field library_source_note I
+	public static field library_sync_cached I
 	public static field library_sync_failed I
+	public static field library_sync_offline I
 	public static field library_sync_retry I
 	public static field library_sync_unreachable I
 	public static field library_synced_format I
