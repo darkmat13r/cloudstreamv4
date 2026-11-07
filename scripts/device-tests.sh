@@ -12,7 +12,7 @@
 # what it may use, and ANDROID_SERIAL keeps Gradle off any other emulator or device on this machine. In a git worktree add -x :app:generateGitHash.
 #
 # Screenshots: what assertScreenshot wrote comes off the device before the emulator stops, to <module>/build/screenshots and
-# /private/tmp/cloudstream-shared/review/shots/<module>. With -Pandroid.testInstrumentationRunnerArguments.screenshots=record,
+# shots/<module> in the shared local review folder. With -Pandroid.testInstrumentationRunnerArguments.screenshots=record,
 # the recorded PNGs also replace the module's references, for a person to look at in `git diff` and commit.
 : ${ANDROID_HOME:=$HOME/Library/Android/sdk}
 export ANDROID_HOME
@@ -78,6 +78,12 @@ fi
 # sys.boot_completed comes first: straight after it, Gradle's uninstall fails with
 # DELETE_FAILED_INTERNAL_ERROR on two cores.
 sleep 20
+
+# Every run starts with animations at their normal speed, whatever a case or an earlier run left: a case may turn
+# the animator scale off for itself (`BUG-41`), and no run should depend on whether it put it back.
+for scale in animator_duration_scale transition_animation_scale window_animation_scale; do
+    "$adb" -s $ANDROID_SERIAL shell settings put global $scale 1
+done
 
 TZ=UTC taskpolicy -c utility ./gradlew $flags $tasks
 gradle_exit=$?

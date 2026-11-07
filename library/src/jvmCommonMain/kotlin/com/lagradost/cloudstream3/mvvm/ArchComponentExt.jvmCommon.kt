@@ -35,3 +35,7 @@ actual fun <T> platformThrowAbleToResource(throwable: Throwable): Resource<T> {
         else -> safeFail(throwable)
     }
 }
+
+internal actual fun printToStandardError(text: String) {
+    System.err.println(text)
+}

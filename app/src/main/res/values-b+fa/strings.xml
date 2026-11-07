@@ -10,6 +10,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d نشانک"</item><item quantity="other">"%d نشانک"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d بخش بارگیری نشد"</item><item quantity="other">"%d بخش بارگیری نشد"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d بخش"</item><item quantity="other">"%d بخش"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d عنوان"</item><item quantity="other">"%d عنوان"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"جست‌وجو در %d منبع"</item><item quantity="other">"جست‌وجو در همهٔ %d منبع"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"برای جست‌وجو در %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید."</item><item quantity="other">"برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d منبع"</item><item quantity="other">"%d منبع"</item></plurals>
@@ -229,10 +230,21 @@
 <string name="kitsu_settings">"نمیش پوستر از kitsu"</string>
 <string name="legal_notice">"هشدار"</string>
 <string name="library">"کتابخانه"</string>
+<string name="library_go_to_list" formatted="true">"رفتن به %s"</string>
+<string name="library_list_empty_body" formatted="true">"عنوان‌هایی که به %s اضافه می‌کنید اینجا می‌آیند."</string>
+<string name="library_list_empty_headline" formatted="true">"چیزی در %s نیست"</string>
 <string name="library_not_connected">"متصل نیست"</string>
 <string name="library_on_device">"روی دستگاه"</string>
+<string name="library_sort_current" formatted="true">"ترتیب: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s این را نگه نمی‌دارد"</string>
+<string name="library_sort_supported" formatted="true">"%1$s از %3$d مورد %2$d را پشتیبانی می‌کند"</string>
 <string name="library_source">"منبع کتابخانه"</string>
 <string name="library_source_note">"هر بار یکی · تغییر، دوباره بارگذاری می‌کند"</string>
+<string name="library_sync_cached">"ذخیره‌شده"</string>
+<string name="library_sync_failed" formatted="true">"همگام‌سازی %1$s ممکن نشد. این‌ها مال %2$s پیش هستند."</string>
+<string name="library_sync_offline" formatted="true">"آفلاین · %s پیش ذخیره شده"</string>
+<string name="library_sync_retry">"همگام‌سازی دوباره"</string>
+<string name="library_sync_unreachable" formatted="true">"در دسترس نیست · %s پیش ذخیره شده"</string>
 <string name="library_synced_format" formatted="true">"%s پیش همگام‌سازی شد"</string>
 <string name="lightnovel">"برنامه سبک رمان از توسعه دهندگان یکسان"</string>
 <string name="limit_title_rez">"کیفیت پخش‌کننده ویدئو"</string>
@@ -296,6 +308,14 @@
 <string name="player_fit_screen">"پر کردن صفحه"</string>
 <string name="player_fit_title">"اندازه تصویر"</string>
 <string name="player_fit_width">"پر کردن عرض"</string>
+<string name="player_hud_buffering">"در حال بافر"</string>
+<string name="player_hud_failed_detail">"منبع دیگری را در پایین انتخاب کنید."</string>
+<string name="player_hud_offline_copy">"اتصال نیست — نسخهٔ دانلودشده پخش می‌شود"</string>
+<string name="player_hud_previous_episode">"قسمت قبلی"</string>
+<string name="player_hud_seek_back">"عقب"</string>
+<string name="player_hud_seek_forward">"جلو"</string>
+<string name="player_hud_speed">"سرعت"</string>
+<string name="player_hud_up_next" formatted="true">"بعدی · %s"</string>
 <string name="player_mute">"بی‌صدا"</string>
 <string name="player_pref">"پخش‌کننده ویدئو برگزیده"</string>
 <string name="player_size_settings">"دکمه تغییر‌اندازه پخش‌کننده"</string>
@@ -382,6 +402,7 @@
 <string name="search_state_no_results_type_filter" formatted="true">"فقط %s. فیلتر نوع شما جستجو را محدود می‌کند."</string>
 <string name="search_state_no_suggestions_detail">"0 پیشنهاد · 0 مورد منطبق اخیر"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"هیچ چیزی با «%s» مطابقت ندارد"</string>
+<string name="search_suggestions_return_hint">"Return همه را جست‌وجو می‌کند"</string>
 <string name="search_tv_source_failed" formatted="true">"ناموفق %s"</string>
 <string name="search_tv_source_pinned">"سنجاق‌شده"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d از %2$d فعال · تغییرات پس از «انجام شد» اعمال می‌شود"</string>
@@ -389,7 +410,9 @@
 <string name="search_tv_suggestion_recent_suggested">"اخیر · پیشنهادشده نیز"</string>
 <string name="search_tv_suggestion_suggested">"پیشنهادشده"</string>
 <string name="season">"فصل"</string>
+<string name="season_other">"سایر"</string>
 <string name="season_short">"ف"</string>
+<string name="season_specials">"ویژه"</string>
 <string name="seek_back_10_seconds">"۱۰ ثانیه به عقب"</string>
 <string name="seek_forward_10_seconds">"۱۰ ثانیه به جلو"</string>
 <string name="select_all">"انتخاب همه"</string>

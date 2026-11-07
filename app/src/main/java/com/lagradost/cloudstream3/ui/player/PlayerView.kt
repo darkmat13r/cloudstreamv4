@@ -66,6 +66,7 @@ import com.lagradost.cloudstream3.utils.UIHelper.hideSystemUI
 import com.lagradost.cloudstream3.utils.UIHelper.popCurrentPage
 import com.lagradost.cloudstream3.utils.UIHelper.showSystemUI
 import com.lagradost.cloudstream3.utils.UserPreferenceDelegate
+import com.lagradost.cloudstream3.utils.redactedThrowable
 import com.lagradost.cloudstream3.utils.videoskip.VideoSkipStamp
 import java.net.SocketTimeoutException
 
@@ -738,7 +739,10 @@ class PlayerView @JvmOverloads constructor(
     @MainThread
     fun mainCallback(event: PlayerEvent) {
         // We don't want to spam DownloadEvent.
-        if (event !is DownloadEvent) Log.i(TAG, "Handle event: $event")
+        if (event !is DownloadEvent) Log.i(
+            TAG,
+            "Handle event: ${if (event is ErrorEvent) "ErrorEvent(${redactedThrowable(event.error)})" else event}"
+        )
         when (event) {
             is DownloadEvent -> callbacks?.onDownload(event)
             is ResizedEvent -> {

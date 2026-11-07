@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d título · %2$s</item><item quantity="other">%1$d títulos · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Non se puido cargar %d sección</item><item quantity="other">Non se puideron cargar %d seccións</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="other">%d títulos</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Procurar en %d fonte</item><item quantity="other">Procurar en todas as %d fontes</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Preme a tecla de busca do teclado para procurar igualmente en %d fonte.</item><item quantity="other">Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONTE</item><item quantity="other">%d FONTES</item></plurals>
@@ -215,10 +216,21 @@
 <string name="home_source_unreachable">Non se puido acceder a última vez</string>
 <string name="kitsu_settings">Mostrar pósters de Kitsu</string>
 <string name="library">Biblioteca</string>
+<string name="library_go_to_list">Ir a %s</string>
+<string name="library_list_empty_body">Os títulos que engadas a %s aparecen aquí.</string>
+<string name="library_list_empty_headline">Non hai nada en %s</string>
 <string name="library_not_connected">Non conectado</string>
 <string name="library_on_device">No dispositivo</string>
+<string name="library_sort_current">Orde: %s</string>
+<string name="library_sort_supported">%1$s admite %2$d de %3$d</string>
+<string name="library_sort_not_kept">%s non o garda</string>
 <string name="library_source">Orixe da biblioteca</string>
 <string name="library_source_note">Unha de cada vez · cambiar recarga</string>
+<string name="library_sync_cached">Na caché</string>
+<string name="library_sync_failed">Non se puido sincronizar %1$s. Son de hai %2$s.</string>
+<string name="library_sync_offline">Sen conexión · na caché hai %s</string>
+<string name="library_sync_retry">Volver sincronizar</string>
+<string name="library_sync_unreachable">Inaccesible · na caché hai %s</string>
 <string name="library_synced_format">Sincronizado hai %s</string>
 <string name="lightnovel">Aplicativo de novela lixeira dos mesmos desenvolvedores</string>
 <string name="links_reloaded_toast">Ligazóns recargadas</string>
@@ -272,6 +284,14 @@
 <string name="player_fit_screen">Encher a pantalla</string>
 <string name="player_fit_title">Tamaño da imaxe</string>
 <string name="player_fit_width">Encher o ancho</string>
+<string name="player_hud_buffering">CARGANDO</string>
+<string name="player_hud_failed_detail">Escolle outra fonte embaixo.</string>
+<string name="player_hud_offline_copy">Sen conexión — reprodúcese a copia descargada</string>
+<string name="player_hud_previous_episode">Episodio anterior</string>
+<string name="player_hud_seek_back">Retroceder</string>
+<string name="player_hud_seek_forward">Avanzar</string>
+<string name="player_hud_speed">Velocidade</string>
+<string name="player_hud_up_next">Seguinte · %s</string>
 <string name="player_mute">Silenciar</string>
 <string name="player_size_settings">Botón de cambio de tamaño do reprodutor</string>
 <string name="player_size_settings_des">Eliminar bordes negros</string>
@@ -329,6 +349,7 @@
 <string name="search_state_no_results_type_filter">Só %s. O filtro de tipo está limitando a busca.</string>
 <string name="search_state_no_suggestions_detail">0 SUXESTIÓNS · 0 COINCIDENCIAS RECENTES</string>
 <string name="search_state_no_suggestions_headline">Nada coincide con «%s»</string>
+<string name="search_suggestions_return_hint">Intro busca en todo</string>
 <string name="search_tv_source_failed">FALLOU %s</string>
 <string name="search_tv_source_pinned">FIXADO</string>
 <string name="search_tv_sources_panel_meta">%1$d DE %2$d ACTIVADOS · OS CAMBIOS APLÍCANSE CON FEITO</string>
@@ -337,7 +358,9 @@
 <string name="search_tv_suggestion_suggested">SUXERIDO</string>
 <string name="season">Temporada</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Outros</string>
 <string name="season_short">T</string>
+<string name="season_specials">Especiais</string>
 <string name="seek_back_10_seconds">Retroceder 10 segundos</string>
 <string name="seek_forward_10_seconds">Avanzar 10 segundos</string>
 <string name="select_all">Seleccionar todo</string>

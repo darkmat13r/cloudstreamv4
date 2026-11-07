@@ -26,6 +26,8 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 
 **Android TV opens the new downloads screen since `KMP-40`**, boards 6c and 6e. Deleting one line in `MainActivity` is the rollback, and `DownloadFragment` stays on every other layout.
 **The TV library reads its sources since `KMP-49`**: the provider button and 5e's panel over `AccountManager.syncApis`, a service's own lists as tabs, and its titles through the old opener. The owner's rulings are `DEC-20`.
+**The TV library sorts since `KMP-50`**: 5d's panel and the sort button, one choice for every source under the old screen's own key (`library_sorting_mode`), falling back to last updated where a source cannot sort by it (`DEC-20`). Focus after the panel closes is `BUG-36`, pinned.
+**The TV library says when a service cannot be read since `KMP-51`**: 5b's held read, marked `Cached` with Retry beside the provider button, and offline without asking the service; the held read is in memory only. `BUG-33` is fixed.
 
 **One series' downloads open the new page on Android TV since `KMP-43`**, boards 6d and 6b, from the same destination and arguments. Deleting one line in `MainActivity` is the rollback, and `DownloadChildFragment` stays on every other layout.
 
@@ -130,6 +132,10 @@ setting. Since `KMP-48` Quick Search (`QuickSearchFragment.pushSearch`) opens on
 its caller (boards 8d and 8e): `navigation_quick_search` becomes a dialog destination with the same id.
 The full behaviour table is in `docs/tasks/kmp.md`.
 
+**The TV player draws artboard 7d since `KMP-64`**: a Compose HUD over the existing player (`FullScreenPlayer`), with
+the old Media3 controller off; `TvPlayerHudSwitch.useComposeHud = false` is the rollback. The pickers it opens are the old
+dialogs until `Q25`. It shows titles, source names, quality and track labels only, never a URL, header or path.
+
 **Desktop runs extensions in a sandbox** (`KMP-14`, `docs/tasks/kmp.md`): one Seatbelt-confined child
 process per extension, scanned first, `.cs3` converted with dex2jar in a no-network sandbox. Plugin code
 no longer runs in the app's JVM, and where there is no sandbox nothing loads. Try it headless:
@@ -189,14 +195,14 @@ consumed, master no longer permanently red.
 
 ## The design
 
-The redesign's design files live in **`design/` at the repo root**: `.dc.html` files that open in a
-browser. They were exported on 2026-10-14 from the Claude Design project *CloudStream 4 — Redesign
-(TV / Mobile / Desktop)*, https://claude.ai/design/p/a9ab3c83-bcc5-4ef4-854b-846c95da8438.
-`Design System v2.dc.html` is authoritative. `docs/plans/screen-implementation-handover.md` §2
-lists every file and the ones that are superseded.
-A second Claude Design project, *Project file storage*,
-https://claude.ai/design/p/c5fd7e44-70f5-41b6-8a48-e850eb88334b, holds the same 13 files as
-`design/` (12 `.dc.html` + `support.js`, every size identical, checked 2026-10-15); it is a copy, not a newer version.
+The redesign's design files are `.dc.html` files that open in a browser. They live in the owner's Claude Design
+project *CloudStream 4 — Redesign (TV / Mobile / Desktop)*, and a local export sits in `design/` at the repo root
+on the owner's machine. **They are not in the repository** (`INF-12`, owner, 2026-11-07: the repo is public, and
+designs stay out of it; `/design/` is in `.gitignore`). A `design/X.dc.html` named anywhere in these docs is that
+board file in the owner's Claude Design project. `Design System v2.dc.html` is authoritative.
+`docs/plans/screen-implementation-handover.md` §2 lists every file and the ones that are superseded.
+A second project in the owner's Claude Design account, *Project file storage*, holds a copy of the same 13 files
+(12 `.dc.html` + `support.js`, every size identical, checked 2026-10-15); it is not a newer version.
 
 ---
 
@@ -359,7 +365,7 @@ Record, which replaces the references in the working tree, then read `git diff` 
 Compare with the same command without the `screenshots=record` line, or as part of the whole gate. `tests_regex` runs only the cases.
 A missing reference fails, and never records itself. To record one case, narrow `tests_regex` to its name.
 
-Images go to `<module>/build/screenshots`, and to `/private/tmp/cloudstream-shared/review/shots/<branch>/<module>/` for the reviewer (the branch name with `/` as `-`, because several branches record the same module at once), with `:` as `-`:
+Images go to `<module>/build/screenshots`, and to `shots/<branch>/<module>/` in the shared local review folder for the reviewer (the branch name with `/` as `-`, because several branches record the same module at once), with `:` as `-`:
 `recorded/<name>.png`, `failures/<name>.{actual,reference,diff}.png`, and `comparisons.tsv` with each case's result, different pixels and largest delta.
 In a diff, magenta is what changed. Never re-record to make red go away: fix it, or say in the PR that the change is intended.
 
@@ -588,7 +594,7 @@ re-checked by hand before anything was pushed. One of their claims, that the 06c
 `f2e0e435`, sounded wrong and turned out to be right. Give parallel agents **separate scratch
 subdirectories**. Two agents sharing one scratchpad overwrote each other's runner script mid-run.
 
-**More than one session works in `/Volumes/Projects/CloudStream/app` at a time.** Stage explicit
+**More than one session works in the primary checkout at a time.** Stage explicit
 paths; never `git add -A` or `git commit -a` there. A `git add -A` on 2026-10-14 swept another
 session's uncommitted `design/` folder into a PR, and that session then moved HEAD out from under
 this one mid-task. Work in a `git worktree` when another session is active.

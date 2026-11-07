@@ -32,6 +32,7 @@ import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.ui.quicksearch.QuickSearchFragment
 import com.lagradost.cloudstream3.utils.AppContextUtils.loadResult
 import com.lagradost.cloudstream3.utils.BaseComposeFragment
+import com.lagradost.cloudstream4.core.connectivity.AndroidConnectivityFlow
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.library.LibraryAction
 import com.lagradost.cloudstream4.feature.library.LibraryCard
@@ -67,6 +68,7 @@ class LibraryTvFragment : BaseComposeFragment() {
                     scope = scope,
                     initialTab = LibraryTvTabs.first(),
                     sources = sources,
+                    connectivity = AndroidConnectivityFlow(app, scope),
                 ).also {
                     it.addCloseable(AutoCloseable { scope.cancel() })
                     // Kept with the ViewModel, so a new fragment after a configuration change opens what it shows.
@@ -89,7 +91,7 @@ class LibraryTvFragment : BaseComposeFragment() {
     }
 
     /**
-     * BACK closes the source panel, as `DetailTvFragment.wirePanelBack` does for its panels and for the same reason:
+     * BACK closes the source or sort panel, as `DetailTvFragment.wirePanelBack` does for its panels and for the same reason:
      * `SidePanelHost` takes BACK only as a key event, and on `Television_720p` an injected BACK reaches the activity
      * first, which here would leave the library with the panel open. Enabled only while the panel is, so BACK with no
      * panel up still leaves the screen.
@@ -97,12 +99,13 @@ class LibraryTvFragment : BaseComposeFragment() {
     private fun wirePanelBack() {
         val callback = object : OnBackPressedCallback(false) {
             override fun handleOnBackPressed() {
-                viewModel.onAction(LibraryAction.SourcesDismissed)
+                val sortOpen = viewModel.state.value.sortOpen
+                viewModel.onAction(if (sortOpen) LibraryAction.SortDismissed else LibraryAction.SourcesDismissed)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner, callback)
         viewLifecycleOwner.lifecycleScope.launch {
-            viewModel.state.collect { callback.isEnabled = it.sourcesOpen }
+            viewModel.state.collect { callback.isEnabled = it.sourcesOpen || it.sortOpen }
         }
     }
 

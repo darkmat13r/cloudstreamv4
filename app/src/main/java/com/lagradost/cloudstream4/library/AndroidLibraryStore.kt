@@ -251,6 +251,7 @@ internal class AndroidLibraryStore(
             posterHeaders = record.posterHeaders
                 ?.filter { (key, value) -> key.isHeaderSafe() && value.isHeaderSafe() }
                 ?.ifEmpty { null },
+            releaseYear = record.year,
         )
     }
 

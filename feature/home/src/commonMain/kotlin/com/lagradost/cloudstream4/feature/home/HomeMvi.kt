@@ -145,7 +145,24 @@ sealed interface HomeStatus {
 
     /** `None` is chosen (3i). Nothing was asked of a source, so this is neither empty nor a failure. */
     data object Unsourced : HomeStatus
+
+    /**
+     * A reload (3j) that failed after the source's rows had loaded (`KMP-68`). [failure] is what the reload said, a
+     * [Failed] or [Offline], and is all a screen that draws 3m shows: the rows are gone and the failure stands where they
+     * were. [kept] are the rows from before, held in memory only and never written anywhere, with [loadedAt], when they
+     * loaded, in epoch milliseconds, for a screen that keeps them and says how old they are (the Mac's H4, `DS-21`).
+     *
+     * [rows] is empty, as it is for [failure], so everything that reads rows behaves as it did before this existed.
+     */
+    data class Stale(val failure: HomeStatus, val kept: List<HomeRow>, val loadedAt: Long) : HomeStatus {
+        init {
+            require(failure is Failed || failure == Offline) { "a reload fails as Failed or Offline" }
+        }
+    }
 }
+
+/** What a screen drawing 3m shows for this status: a [HomeStatus.Stale] is its failure, anything else is itself. */
+val HomeStatus.shown: HomeStatus get() = if (this is HomeStatus.Stale) failure else this
 
 sealed interface HomeAction {
     data object PickerOpened : HomeAction

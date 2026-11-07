@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d MARQUE-PAGE"</item><item quantity="many">"%d DE MARQUE-PAGES"</item><item quantity="other">"%d MARQUE-PAGES"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d section n'a pas pu être chargée"</item><item quantity="many">"%d sections n'ont pas pu être chargées"</item><item quantity="other">"%d sections n'ont pas pu être chargées"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d section"</item><item quantity="many">"%d sections"</item><item quantity="other">"%d sections"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d titre"</item><item quantity="many">"%d titres"</item><item quantity="other">"%d titres"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d lien caché"</item><item quantity="many">"%d liens cachés"</item><item quantity="other">"%d liens cachés"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Rechercher dans %d source"</item><item quantity="many">"Rechercher dans les %d sources"</item><item quantity="other">"Rechercher dans les %d sources"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans %d source."</item><item quantity="many">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources."</item><item quantity="other">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources."</item></plurals>
@@ -396,10 +397,21 @@
 <string name="kitsu_settings">"Montrer les affiches provenant de Kitsu"</string>
 <string name="legal_notice">"Non-responsabilité"</string>
 <string name="library">"Bibliothèque"</string>
+<string name="library_go_to_list" formatted="true">"Aller à « %s »"</string>
+<string name="library_list_empty_body" formatted="true">"Les titres que vous ajoutez à « %s » apparaissent ici."</string>
+<string name="library_list_empty_headline" formatted="true">"Rien dans « %s »"</string>
 <string name="library_not_connected">"Non connecté"</string>
 <string name="library_on_device">"Sur l'appareil"</string>
+<string name="library_sort_current" formatted="true">"Tri : %s"</string>
+<string name="library_sort_not_kept" formatted="true">"Non conservé par %s"</string>
+<string name="library_sort_supported" formatted="true">"%1$s prend en charge %2$d sur %3$d"</string>
 <string name="library_source">"Source de la bibliothèque"</string>
 <string name="library_source_note">"Une à la fois · changer recharge"</string>
+<string name="library_sync_cached">"En cache"</string>
+<string name="library_sync_failed" formatted="true">"Impossible de synchroniser %1$s. Ces données datent d'il y a %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Hors ligne · en cache depuis %s"</string>
+<string name="library_sync_retry">"Resynchroniser"</string>
+<string name="library_sync_unreachable" formatted="true">"Injoignable · en cache depuis %s"</string>
 <string name="library_synced_format" formatted="true">"Synchronisé il y a %s"</string>
 <string name="lightnovel">"Application Light Novel par les mêmes devs"</string>
 <string name="limit_title">"Nombre maximal de caractères dans le titre du lecteur vidéo"</string>
@@ -492,6 +504,14 @@
 <string name="player_fit_screen">"Remplir l’écran"</string>
 <string name="player_fit_title">"Taille de la vidéo"</string>
 <string name="player_fit_width">"Remplir la largeur"</string>
+<string name="player_hud_buffering">"MISE EN MÉMOIRE"</string>
+<string name="player_hud_failed_detail">"Choisissez une autre source ci-dessous."</string>
+<string name="player_hud_offline_copy">"Pas de connexion — lecture de la copie téléchargée"</string>
+<string name="player_hud_previous_episode">"Épisode précédent"</string>
+<string name="player_hud_seek_back">"Reculer"</string>
+<string name="player_hud_seek_forward">"Avancer"</string>
+<string name="player_hud_speed">"Vitesse"</string>
+<string name="player_hud_up_next" formatted="true">"À suivre · %s"</string>
 <string name="player_is_live">"Live"</string>
 <string name="player_load_one_subtitle_online">"Charger le premier disponible"</string>
 <string name="player_load_subtitles">"Charger depuis le fichier"</string>
@@ -653,6 +673,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"Aucun résultat pour « %s »"</string>
 <string name="search_suggestions">"Suggestions de recherche"</string>
 <string name="search_suggestions_des">"Afficher des suggestions de recherche pendant la saisie"</string>
+<string name="search_suggestions_return_hint">"Entrée cherche partout"</string>
 <string name="search_tv_source_failed" formatted="true">"ÉCHEC %s"</string>
 <string name="search_tv_source_pinned">"ÉPINGLÉ"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d SUR %2$d ACTIVÉS · LES MODIFICATIONS PRENNENT EFFET AVEC FINIR"</string>
@@ -661,7 +682,9 @@
 <string name="search_tv_suggestion_suggested">"SUGGÉRÉ"</string>
 <string name="season">"Saison"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Autres"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Spéciaux"</string>
 <string name="seek_back_10_seconds">"Reculer de 10 secondes"</string>
 <string name="seek_forward_10_seconds">"Avancer de 10 secondes"</string>
 <string name="select_all">"Tout sélectionner"</string>

@@ -11,7 +11,7 @@ Static read only. I ran no Gradle, emulator or device, so "exists" means the sou
 
 | Alias | Absolute path |
 |---|---|
-| `WT/` | `/Volumes/Projects/CloudStream/wt-sec-merge/` |
+| `WT/` | the root of the worktree this audit was made in |
 | `A/` | `WT/app/src/main/java/com/lagradost/cloudstream3/` |
 | `A4/` | `WT/app/src/main/java/com/lagradost/cloudstream4/` |
 | `MA` | `A/MainActivity.kt` |
@@ -259,7 +259,7 @@ Columns: Strings = yes/no, estimated from a spot check of `values/strings.xml` k
 | **Q9** ✅ done, `KMP-37` | Home rails | 3d | `:feature:home/tv/`, `A4/home/` (model on `DK/home/DesktopHomeSource.kt:33`), `app/build.gradle.kts` | Yes, `navigation_home` (start destination, `NAV:6,293`) | yes | yes for a few | `HomeSourceMemory` impl | Q1, Q5 geometry |
 | **Q10** ✅ done, `KMP-41` | Home hero + continue, and watch progress on Home's cards | 3c | `:feature:home`, `A4/home/`, DS below-art card, `BackdropCard` | no | yes | Few | Resume seam; per-card source/quality missing → owner: reduce or add | Q9 |
 | **Q11** (**done**, `KMP-34`) | Library grid, local provider | 5a, 5c | `:feature:library/tv/`, `A4/library/` | Yes, `navigation_library` (`NAV:173`) | yes | Some | **Model decision:** `LibraryStore` has no provider; `:app` is `SyncAPI`. New seam needed | Q1 |
-| **Q12** (5e and the provider button done, `KMP-49`; sort `KMP-50`, unreachable `KMP-51`) | Library sort + provider panels + unreachable | 5b, 5d, 5e | same | no | sidecar | Some | `lastSynced`, page counts (published `Page`), typed failure | Q3, Q11 |
+| **Q12** (5e and the provider button done, `KMP-49`; 5d and the sort button done, `KMP-50`; 5b and offline done, `KMP-51`) | Library sort + provider panels + unreachable | 5b, 5d, 5e | same | no | sidecar | Some | `lastSynced`, page counts (published `Page`), typed failure | Q3, Q11 |
 | **Q13** ✅ done, `KMP-36` | Download facts, sidecar | enables 6b–6e | `:app` downloader (`A4/download/DownloadFacts.kt`, a flow rather than an event; downloader behaviour unchanged), `:media:model` `DownloadProgress` | no | yes, additive | no | **Corrections, measured:** `DownloadProgress` already existed, with rate, ETA and state. "Recorded as complete" past 50 MB is narrower than it reads, and the same truncation also happens under 50 MB; a full disk hangs instead of failing. All three fixed by `BUG-35`, see `KMP-36` | none |
 | **Q14** ✅ done, `KMP-40` | Downloads list | 6c, 6e | **new `:feature:downloads`**, `A4/download/` | Yes, `navigation_downloads` (`NAV:327`) | yes | yes | P:O8. Queue and Play-from-URL undrawn | Q2, Q13 |
 | **Q15** ✅ done, `KMP-43` | Downloads one series | 6d, 6b | `:feature:downloads` | Yes, `navigation_download_child` (`NAV:452`) | yes | Some | Q3 trailing stop | Q14 |
@@ -271,7 +271,7 @@ Columns: Strings = yes/no, estimated from a spot check of `values/strings.xml` k
 | **Q21** | Episode panel | 6a | `:feature:detail`, Q3 | no | yes | Few | `_episodes` failure, batched download state | Q13, Q20 |
 | **Q22** | Link loading, reduced | 7c without per-source failure | `:feature:detail`, `A4/detail/` | no | yes | Some | Built on existing `DetailSource.links` flow; drawn rows reduced, tell owner | Q20 |
 | **Q23** | Link loading, full | 7c | `:library` (hook), `:core:data`, `:app` | no | **yes, published** | Some | `SourceId`, `ResolutionFailure`, per-source timeout: additive hook on `MainAPI`, needs owner | Q22 |
-| **Q24** | Player HUD | 7d | **new `:feature:player`** (commonMain HUD), `:app` host | Yes, `navigation_player` (`NAV:564`), runtime | yes | Some | `getBufferedPosition` addition to published `IPlayer` needs a default. Auto-hide and pop behaviours | Q1, Q2 |
+| **Q24** ✅ done, `KMP-64` | Player HUD | 7d | **new `:feature:player`** (commonMain HUD), `:app` host | Yes, `navigation_player` (`NAV:564`), runtime | yes | Some | `getBufferedPosition` addition to published `IPlayer` needs a default. Auto-hide and pop behaviours | Q1, Q2 |
 | **Q25** | Playback panels | 7e | `:feature:player`, `:app` | no | yes | Some | Style editor, online subs, quality profile undrawn (H:247) | Q3, Q24 |
 | **Q26** | Undrawn boards | queue, profile editor, settings re-skin, subtitle styles, plugin details | designs first, per H:93-100 | later | later | later | `DS-01`, `DS-05` for settings | owner |
 

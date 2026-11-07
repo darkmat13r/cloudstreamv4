@@ -91,6 +91,10 @@ data class LibraryTitle(
     val episodesTotal: Int? = null,
     /** The user's own rating, already formatted, or null where there is none. Never the public score. */
     val rating: String? = null,
+    /** The year it came out, where the host knows it. A title without one sorts last by release, either way round. */
+    val releaseYear: Int? = null,
+    /** [rating] as a number out of 100, to sort by. Null where there is no rating, which sorts last either way round. */
+    val ratingValue: Int? = null,
 )
 
 /**

@@ -92,8 +92,7 @@ class FcastManager {
                             override fun onServiceUpdated(serviceInfo: NsdServiceInfo) {
                                 Log.d(
                                     tag,
-                                    "Service updated: ${serviceInfo.serviceName}," +
-                                            "Net: ${serviceInfo.hostAddresses.firstOrNull()?.hostAddress}"
+                                    "Service updated: receiver ${serviceInfo.serviceName}"
                                 )
                                 synchronized(_currentDevices) {
                                     _currentDevices.removeIf { it.rawName == serviceInfo.serviceName }
@@ -128,7 +127,7 @@ class FcastManager {
 
                             Log.d(
                                 tag,
-                                "Service found: ${serviceInfo.serviceName}, Net: ${serviceInfo.host.hostAddress}"
+                                "Service found: receiver ${serviceInfo.serviceName}"
                             )
                         }
                     })

@@ -65,6 +65,10 @@ import com.lagradost.cloudstream3.utils.UIHelper.popCurrentPage
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.txt
+import com.lagradost.cloudstream4.feature.player.PlayerHudAction
+import com.lagradost.cloudstream4.player.TvHudFacts
+import com.lagradost.cloudstream4.player.TvPlayerHud
+import com.lagradost.cloudstream4.player.TvPlayerHudSwitch
 import kotlin.math.roundToInt
 
 private const val SUBTITLE_DELAY_BUNDLE_KEY = "subtitle_delay"
@@ -82,6 +86,17 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
     protected var isShowing = false
     protected var isLocked = false
     protected var timestampShowState = false
+
+    /** Artboard 7d over this player on TV (`KMP-64`), or `null` with the old controller. See [TvPlayerHudSwitch]. */
+    private var tvHud: TvPlayerHud? = null
+
+    /** The playing link failed: 7d's error banner. Cleared by the subclass when it loads another link. */
+    protected var tvHudFailed = false
+
+    override fun playerError(exception: Throwable) {
+        tvHudFailed = true
+        super.playerError(exception)
+    }
     private var metadataVisibilityToken = 0
     protected var hasEpisodes = false
         private set
@@ -221,6 +236,8 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
     }
 
     override fun onDestroyView() {
+        tvHud?.release()
+        tvHud = null
         playerHostView?.releaseOverlayLayoutListener()
         playerBinding = null
         super.onDestroyView()
@@ -438,6 +455,17 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
                         (event.keyCode == KeyEvent.KEYCODE_VOLUME_UP ||
                                 event.keyCode == KeyEvent.KEYCODE_VOLUME_DOWN) ->
                     playerHostView?.handleVolumeKey(event.keyCode) ?: false
+
+                // KMP-64: the HUD has every key first; the D-pad and OK stay its own, anything else is the old handler's.
+                player.isActive() && tvHud != null -> {
+                    val hud = tvHud
+                    when {
+                        hud == null -> false
+                        hud.onKey(event) -> true
+                        hud.ownsNavigation(event) -> false
+                        else -> handleKeyEvent(event, hasNavigated)
+                    }
+                }
 
                 player.isActive() -> handleKeyEvent(event, hasNavigated)
                 else -> false
@@ -1300,6 +1328,45 @@ open class FullScreenPlayer : AbstractPlayerFragment<FragmentPlayerBinding>(
         } catch (e: Exception) {
             logError(e)
         }
+        // KMP-64: TV draws 7d over the video instead of the old controller. Removing this one line is the rollback.
+        if (isLayout(TV) && TvPlayerHudSwitch.useComposeHud) startTvHud(binding)
+    }
+
+    /**
+     * What the TV HUD shows, read four times a second. The base knows only the numbers; `GeneratorPlayer` knows the
+     * title, the source and the tracks.
+     */
+    internal open fun tvHudFacts(): TvHudFacts? = null
+
+    private fun startTvHud(binding: FragmentPlayerBinding) {
+        playerHostView?.exoPlayerView?.useController = false
+        tvHud = TvPlayerHud(
+            container = binding.root,
+            owner = viewLifecycleOwner,
+            hiddenSeekMs = androidTVInterfaceOffSeekTime,
+            shownSeekMs = androidTVInterfaceOnSeekTime,
+            facts = ::tvHudFacts,
+            onAction = ::onTvHudAction,
+        )
+    }
+
+    /** 7d's controls, each onto what the old controls did. */
+    private fun onTvHudAction(action: PlayerHudAction) {
+        when (action) {
+            PlayerHudAction.Back -> activity?.popCurrentPage()
+            PlayerHudAction.PlayPause -> player.handleEvent(CSPlayerEvent.PlayPauseToggle)
+            PlayerHudAction.SeekBackward -> player.seekTime(-androidTVInterfaceOnSeekTime)
+            PlayerHudAction.SeekForward -> player.seekTime(androidTVInterfaceOnSeekTime)
+            is PlayerHudAction.SeekBy -> player.seekTime(action.deltaMs)
+            PlayerHudAction.PreviousEpisode -> prevEpisode()
+            PlayerHudAction.NextEpisode -> nextEpisode()
+            PlayerHudAction.Skip -> player.handleEvent(CSPlayerEvent.SkipCurrentChapter)
+            // One dialog holds sources and subtitles today; 7e's separate panels are Q25.
+            PlayerHudAction.OpenSource, PlayerHudAction.OpenSubtitles -> showMirrorsDialogue()
+            PlayerHudAction.OpenAudio -> showTracksDialogue()
+            PlayerHudAction.OpenSpeed -> showSpeedDialog()
+        }
+        tvHud?.refresh()
     }
 
     private fun toggleRotate() {
