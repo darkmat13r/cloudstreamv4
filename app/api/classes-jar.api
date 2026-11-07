@@ -16976,6 +16976,22 @@ public abstract class com/lagradost/cloudstream3/syncproviders/BackupAPI : com/l
 	public fun uploadFile (Lcom/lagradost/cloudstream3/syncproviders/AuthData;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public final class com/lagradost/cloudstream3/syncproviders/CredentialStore : java/lang/Object {
+	public static final field $stable I
+	public static final field FILE Ljava/lang/String;
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/syncproviders/CredentialStore;
+	public final synthetic fun getKey (Ljava/lang/String;)Ljava/lang/Object;
+	public final fun keys (Ljava/lang/String;)Ljava/util/List;
+	public final fun migrate (Landroid/content/Context;)I
+	public final fun readRaw (Ljava/lang/String;)Ljava/lang/String;
+	public final fun remove (Ljava/lang/String;)V
+	public final fun write (Ljava/lang/String;Ljava/lang/Object;)V
+}
+
+public final static class com/lagradost/cloudstream3/syncproviders/CredentialStore$getKey$lambda$0$0$$inlined$parseJson$1 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
+}
+
 public final class com/lagradost/cloudstream3/syncproviders/PlainAuthRepo : com/lagradost/cloudstream3/syncproviders/AuthRepo {
 	public static final field $stable I
 	public fun <init> (Lcom/lagradost/cloudstream3/syncproviders/AuthAPI;)V
@@ -32256,6 +32272,7 @@ public final class com/lagradost/cloudstream3/utils/BackupUtils : java/lang/Obje
 	public static final field INSTANCE Lcom/lagradost/cloudstream3/utils/BackupUtils;
 	public static final synthetic fun access$getBackup (Lcom/lagradost/cloudstream3/utils/BackupUtils;Landroid/content/Context;)Lcom/lagradost/cloudstream3/utils/BackupUtils$BackupFile;
 	public final fun backup (Landroid/content/Context;)Lkotlinx/coroutines/Job;
+	public final fun exportForTest$app (Landroid/content/Context;)Lcom/lagradost/cloudstream3/utils/BackupUtils$BackupFile;
 	public final fun getCurrentBackupDir (Landroid/content/Context;)Lkotlin/Pair;
 	public final fun getDefaultBackupDir (Landroid/content/Context;)Lcom/lagradost/safefile/SafeFile;
 	public final fun restore (Landroid/content/Context;Lcom/lagradost/cloudstream3/utils/BackupUtils$BackupFile;ZZ)V
@@ -32346,6 +32363,10 @@ public final static synthetic class com/lagradost/cloudstream3/utils/BackupUtils
 public final static class com/lagradost/cloudstream3/utils/BackupUtils$BackupVars$Companion : java/lang/Object {
 	public synthetic fun <init> (Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final static class com/lagradost/cloudstream3/utils/BackupUtils$profilesWithoutPins$lambda$0$$inlined$parseJson$1 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
 }
 
 public final static class com/lagradost/cloudstream3/utils/BackupUtils$setUpBackup$1$1$invokeSuspend$$inlined$parseJson$1 : com/fasterxml/jackson/core/type/TypeReference {
