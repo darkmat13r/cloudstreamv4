@@ -11,7 +11,7 @@ Static read only. I ran no Gradle, emulator or device, so "exists" means the sou
 
 | Alias | Absolute path |
 |---|---|
-| `WT/` | `/Volumes/Projects/CloudStream/wt-sec-merge/` |
+| `WT/` | the root of the worktree this audit was made in |
 | `A/` | `WT/app/src/main/java/com/lagradost/cloudstream3/` |
 | `A4/` | `WT/app/src/main/java/com/lagradost/cloudstream4/` |
 | `MA` | `A/MainActivity.kt` |

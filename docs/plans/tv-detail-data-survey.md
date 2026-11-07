@@ -5,7 +5,7 @@ A read-only survey of `:app`'s result-loading path, done to establish exactly wh
 other than this one was changed. No Gradle, emulator or adb was run; every claim below is read off
 the source or off the committed ABI dump.
 
-Paths are relative to the worktree root `/Volumes/Projects/CloudStream/wt-tv-detail`. Line numbers
+Paths are relative to the root of the worktree this survey was made in. Line numbers
 are as of the commit this worktree is on.
 
 The two seam files read first:

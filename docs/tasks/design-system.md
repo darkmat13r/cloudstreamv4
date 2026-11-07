@@ -739,7 +739,7 @@ Both are drawn at 1 px = 1 dp, not the TV's px ÷ 2. Glyphs are the Tabler pack 
 drawn. Measured from `getBoundingClientRect` in Chromium: desktop 343 boxes, 0 off the 4 dp step, 0 overflowing. Phone and
 tablet 375 boxes; the only ones off the step are two families derived from the screen's width, the four `weight(1f)` cells of
 the bottom navigation (103 at 412) and P4's two equal secondaries (186). Neither is a typed number. 0 overflowing, and all 19
-glyph URLs answer 200. Renders are in `/private/tmp/cloudstream-shared/review/boards/DS18-*.png`.
+glyph URLs answer 200. Renders: in the shared local review folder (not published).
 
 Answered by the owner, 2026-11-06, relayed by the coordinator, and recorded in `DEC-19` and `.claude/rules/ui-components.md`:
 - `Folder` is a new `CloudStreamIcons` entry (Tabler `Folder`) for Show in Finder. It is in the glyph table now; the code
@@ -756,7 +756,7 @@ Still open, not the owner's: the new strings go through `:core:strings` with `KM
 **Status:** open · **Scope:** the board, not the code.
 **Numbered `DS-19` in `#181`'s first commit**, which collided with the component layer's `DS-19`
 (already referenced at `decisions.md:737`). Renumbered here; IDs are now claimed through
-`/private/tmp/cloudstream-shared/claim-id.sh`, which reads every branch rather than this file. `design/TV Detail Row.dc.html`, board 7i's FOCUS note.
+the shared claim script, which reads every branch rather than this file. `design/TV Detail Row.dc.html`, board 7i's FOCUS note.
 **Found by:** `KMP-38`'s PR 2a, measuring 7i before building it.
 
 7i's FOCUS note reads *"DOWN past the last row loads the next page of episodes."* There is no next page,
