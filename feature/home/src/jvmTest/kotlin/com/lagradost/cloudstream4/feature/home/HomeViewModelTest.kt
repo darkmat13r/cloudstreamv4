@@ -821,16 +821,51 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `a reload that fails is a failure, and with nothing loaded there is nothing to reload`() = runTest {
+    fun `a reload that fails is 3m's failure, and with nothing loaded there is nothing to reload`() = runTest {
         var fail = false
         val source = Fake(listOf(option(a))) { _, _, _ -> if (fail) HomePageReply.Failed("HTTP 503") else page("A", "1") }
         val vm = model(source)
         fail = true
         vm.onAction(HomeAction.ReloadRequested)
-        assertEquals(HomeStatus.Failed("HTTP 503"), vm.state.value.status)
+        val stale = assertIs<HomeStatus.Stale>(vm.state.value.status)
+        assertEquals(HomeStatus.Failed("HTTP 503"), stale.shown)
+        assertTrue(stale.rows.isEmpty())
+
+        val never = model(Fake(listOf(option(a))) { _, _, _ -> HomePageReply.Failed("HTTP 503") })
+        assertEquals(HomeStatus.Failed("HTTP 503"), never.state.value.status)
         val asked = source.calls.size
-        vm.onAction(HomeAction.ReloadRequested)
+        never.onAction(HomeAction.ReloadRequested)
+        assertEquals(HomeStatus.Failed("HTTP 503"), never.state.value.status)
         assertEquals(asked, source.calls.size)
+    }
+
+    @Test
+    fun `a reload that fails after one that loaded keeps the old rows and when they loaded, and can be reloaded`() = runTest {
+        var clock = 1_000L
+        var reply: HomePageReply = page("A", "r0")
+        val source = Fake(listOf(option(a))) { _, _, _ -> reply }
+        val vm = HomeViewModel(source, TestScope(UnconfinedTestDispatcher(testScheduler)), now = { clock })
+        val before = vm.state.value.status.rows
+
+        clock = 61_000L
+        reply = HomePageReply.Offline
+        vm.onAction(HomeAction.ReloadRequested)
+        val stale = assertIs<HomeStatus.Stale>(vm.state.value.status)
+        assertEquals(HomeStatus.Offline, stale.failure)
+        assertEquals(before, stale.kept)
+        assertEquals(1_000L, stale.loadedAt)
+
+        clock = 121_000L
+        reply = HomePageReply.Failed("HTTP 503")
+        vm.onAction(HomeAction.ReloadRequested)
+        val again = assertIs<HomeStatus.Stale>(vm.state.value.status)
+        assertEquals(HomeStatus.Failed("HTTP 503"), again.failure)
+        assertEquals(before, again.kept)
+        assertEquals(1_000L, again.loadedAt)
+
+        reply = page("A", "r1")
+        vm.onAction(HomeAction.ReloadRequested)
+        assertEquals(listOf("r1"), assertIs<HomeStatus.Showing>(vm.state.value.status).rows.single().items.map { it.id })
     }
 
     @Test

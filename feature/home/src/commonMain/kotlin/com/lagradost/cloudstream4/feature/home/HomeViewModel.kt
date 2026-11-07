@@ -8,6 +8,7 @@ import com.lagradost.cloudstream4.compose.EffectContainer
 import com.lagradost.cloudstream4.compose.StateContainer
 import kotlin.concurrent.Volatile
 import kotlin.random.Random
+import kotlin.time.Clock
 import kotlin.coroutines.cancellation.CancellationException
 import kotlinx.coroutines.CompletableJob
 import kotlinx.coroutines.CoroutineScope
@@ -40,6 +41,7 @@ import kotlinx.coroutines.withTimeoutOrNull
  * @param bookmarkStore the bookmarks rail (`TV Home Extras` 3e) and its filter. Read when [history] is, for the same reasons, and
  *   kept on screen the same way.
  * @param random what Random picks with (3j). A test passes a seeded one.
+ * @param now the time in epoch milliseconds, for when the rows on screen loaded (`KMP-68`). A test passes its own.
  */
 class HomeViewModel(
     private val source: HomeSource,
@@ -48,6 +50,7 @@ class HomeViewModel(
     private val history: HomeWatchHistory = HomeWatchHistory.None,
     private val bookmarkStore: HomeBookmarkStore = HomeBookmarkStore.None,
     private val random: Random = Random.Default,
+    private val now: () -> Long = { Clock.System.now().toEpochMilliseconds() },
 ) : ViewModel(),
     StateContainer<HomeState> by DefaultStateContainer(HomeState()),
     EffectContainer<HomeEffect> by DefaultEffectContainer(),
@@ -58,6 +61,10 @@ class HomeViewModel(
     private var generation = 0
 
     private var work: CompletableJob = newWork()
+
+    /** When the rows on screen last loaded in full, for [HomeStatus.Stale]. Memory only. */
+    @Volatile
+    private var rowsLoadedAt = 0L
 
     /** The latest read of [history]. A newer one replaces it, so an older answer cannot land last. */
     private var historyRead: Job? = null
@@ -252,7 +259,7 @@ class HomeViewModel(
     /** Rows, or a first page on its way, stay. Anything else was the source's last word, and is worth asking again. */
     private val HomeStatus.wantsReload: Boolean
         get() = this is HomeStatus.NoSources || this is HomeStatus.Failed || this is HomeStatus.Offline ||
-            this is HomeStatus.Empty
+            this is HomeStatus.Empty || this is HomeStatus.Stale
 
     /** `None` (3i): no hero, no source rails, and nothing asked of a source. */
     private fun HomeState.unsourced(options: List<HomeSourceOption>) = copy(
@@ -292,14 +299,21 @@ class HomeViewModel(
     private fun reload() {
         val current = state.value
         val option = current.selectedOption ?: return
-        if (current.reloading || current.status.rows.isEmpty()) return
+        // A stale screen (`KMP-68`) can reload what it kept; TV's 3m has no Reload to press, since its rails are gone.
+        val kept = current.status.rows.ifEmpty { (current.status as? HomeStatus.Stale)?.kept.orEmpty() }
+        if (current.reloading || kept.isEmpty()) return
         val request = restart()
         updateState { copy(reloading = true) }
         scope.launch(work) {
             val replies = ask(option, (0 until option.sections).toList())
             val next = HomePaging.fold(emptyList(), replies, option.sections)
+            val failed = next is HomeStatus.Failed || next is HomeStatus.Offline
+            if (!failed) rowsLoadedAt = now()
             updateCurrent(request) {
-                copy(status = next, reloading = false, hero = if (next.rows.isEmpty()) HomeHero.None else hero)
+                // `KMP-68`: a failure keeps what was on screen, in memory, for a screen that shows it stale.
+                val before = status.rows.ifEmpty { (status as? HomeStatus.Stale)?.kept.orEmpty() }
+                val shown = if (failed && before.isNotEmpty()) HomeStatus.Stale(next, before, rowsLoadedAt) else next
+                copy(status = shown, reloading = false, hero = if (next.rows.isEmpty()) HomeHero.None else hero)
             }
         }
     }
@@ -316,6 +330,7 @@ class HomeViewModel(
         val replies = ask(option, (0 until option.sections).toList())
         val next = HomePaging.fold(emptyList(), replies, option.sections)
         val rows = next.rows
+        if (rows.isNotEmpty()) rowsLoadedAt = now()
         updateCurrent(request) { copy(status = next, hero = if (rows.isEmpty()) HomeHero.None else HomeHero.Loading) }
         if (rows.isNotEmpty()) loadHero(rows, request)
     }

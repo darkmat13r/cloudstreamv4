@@ -94,6 +94,7 @@ import com.lagradost.cloudstream4.feature.home.HomeRowKey
 import com.lagradost.cloudstream4.feature.home.HomeState
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.rows
+import com.lagradost.cloudstream4.feature.home.shown
 import com.lagradost.cloudstream4.feature.home.toUiState
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
@@ -163,7 +164,7 @@ fun HomeScreenTv(
     val hasLocalRails = hasContinue || hasBookmarks
     val itemsBeforeBookmarks = if (hasContinue) ITEMS_BEFORE_CONTINUE + 1 else ITEMS_BEFORE_CONTINUE
     val itemsBeforeRails = if (hasBookmarks) itemsBeforeBookmarks + 1 else itemsBeforeBookmarks
-    val offline = state.status is HomeStatus.Offline
+    val offline = state.status.shown is HomeStatus.Offline
     val unsourced = state.status == HomeStatus.Unsourced
     val scope = rememberCoroutineScope()
     val stops = remember { HomeStops() }
@@ -577,7 +578,7 @@ private fun HomeChromeRow(
     modifier: Modifier = Modifier,
 ) {
     val hasRows = state.status.rows.isNotEmpty() && !state.unsourced
-    val searchable = state.selectedOption != null && state.status !is HomeStatus.Offline
+    val searchable = state.selectedOption != null && state.status.shown !is HomeStatus.Offline
     Row(
         modifier = modifier.fillMaxWidth().height(CloudStreamDimens.ChromeRowHeight),
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
