@@ -5613,6 +5613,9 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
 - "4.24 GB / 5.10 GB" for "4.24 GB of 5.10 GB".
 - "Not enough storage · Needs 2.40 GB more" for D5's sentence.
 - "Free up space" for "Open Storage Settings".
+- **D1's Play from link and Download queue are not drawn on the Mac** (`KMP-75`, the PM's call: no dead controls). The Mac has
+  no page behind either. `DownloadsScreenDesktop`'s `canPlayFromLink` and `canOpenQueue` draw them once a host has one;
+  the toolbar band stays, so nothing below moves.
 - D5's empty copy is TV's.
 - The D3 sheet's body gives the size freed without the titles' names.
 
@@ -6082,10 +6085,20 @@ What `KMP-54` left for wiring:
   reads or writes the real downloads file; the page is then empty.
 - **Sizes** are formatted Finder's way: decimal units, two decimal places from GB up, with the locale's decimal mark.
 
+**Hidden:** D1's Play from link and Download queue, which have no Mac page behind them (the PM's call: no dead
+controls). See the reduction in `KMP-54`.
+
+**Fixed on the way: a press on a row's hover verb was also the row's.** `DesktopVerb` consumes its press now, and both
+row handlers skip a consumed one.
+- Before, a click on a title and then, within the double-click time, on its Delete verb read as a double-click. It opened
+  the title and asked nothing.
+- On D4, a click on an episode and then on its Delete verb played the episode.
+- Each has a test, proved by mutation. With the row's check removed:
+  - the titles test fails `expected:<[DownloadTitleId(value=2)]> but was:<null>`;
+  - the series test fails with `[Play(id=…1), ConfirmDelete(id=…1)]`.
+
 **Not here:**
 - **Playing a downloaded episode** (D4's Play) is `KMP-74`. The player takes a `StreamLink`, not a local file.
-- **D1's Play from link and Download queue** have no Mac page behind them, so their effects do nothing here. They are
-  `KMP-54`'s buttons; whether the Mac shows them is a board question for the PM.
 
 **Tests** (`DownloadsHostTest`, against the real service and a loopback server in a temporary folder):
 - A film is downloaded; ⌘⌫ asks and Cancel keeps the file; the row's menu Delete, then the sheet's Delete, removes the
@@ -6093,5 +6106,12 @@ What `KMP-54` left for wiring:
 - ⌘4 and the sidebar's fourth row open Downloads through `DesktopApp`.
 - The size format.
 
-Observed and left for `KMP-54`: after the sheet is cancelled with Return, the row's hover Delete verb did not reopen it in
-the test scene, while the row's menu did. In a fresh scene the verb works.
+**The PM asked whether a Return-cancel breaks the row's Delete verb in the same window.** It does not:
+- `after Return cancels the sheet, the row's Delete verb asks again` passes.
+- What looked like it in `DownloadsHostTest` was its presses all stamped time 0, which the row read as a double-click.
+  That is how the verb bug above was found.
+
+**Flaky on master, not touched here:** two `DesktopDownloadsTest` (`KMP-52`) tests, both being fixed as `BUG-53`:
+- `a series page reports the same free bytes as the titles page` reads the live volume twice. It failed 3 of 5 lone runs
+  on this branch.
+- `after a restart a resolver with no VIDEO link…` failed once in a full gate run.

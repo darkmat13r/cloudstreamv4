@@ -131,12 +131,17 @@ class DownloadsHostTest {
         }
     }
 
+    /**
+     * At the scene's clock, which [settle] moves on by a second: the row reads two presses close together as a
+     * double-click, and events that all said "time 0" were read as one, which opened the title instead of deleting.
+     */
     private fun ImageComposeScene.press(at: Offset, secondary: Boolean = false) {
         val button = if (secondary) PointerButton.Secondary else PointerButton.Primary
         val down = if (secondary) PointerButtons(isSecondaryPressed = true) else PointerButtons(isPrimaryPressed = true)
-        sendPointerEvent(PointerEventType.Move, at)
-        sendPointerEvent(PointerEventType.Press, at, buttons = down, button = button)
-        sendPointerEvent(PointerEventType.Release, at, buttons = PointerButtons(), button = button)
+        val time = clock / NANOS_PER_MILLI
+        sendPointerEvent(PointerEventType.Move, at, timeMillis = time)
+        sendPointerEvent(PointerEventType.Press, at, buttons = down, button = button, timeMillis = time)
+        sendPointerEvent(PointerEventType.Release, at, buttons = PointerButtons(), button = button, timeMillis = time)
         settle()
     }
 
@@ -168,15 +173,12 @@ class DownloadsHostTest {
         scene.key(Key.Enter)
         assertTrue(file.exists(), "Cancel deletes nothing")
 
-        // The second time through the row's own Delete verb, which shows under the pointer beside Show in Finder: Show in
-        // Finder is there only because the host's `fileOf` found the file.
+        // The second time through the row's own Delete verb, in the same window after the Return-cancel. It shows under
+        // the pointer beside Show in Finder, which is there only because the host's `fileOf` found the file.
         scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, FIRST_ROW_Y))
         scene.settle()
         scene.save("host-D2-verbs")
-        // Then through the row's menu, as `DownloadsScreenTest` drives it: a right click, then Delete.
-        scene.press(Offset(NAME_X, FIRST_ROW_Y), secondary = true)
-        scene.save("host-D2-menu")
-        scene.press(Offset(NAME_X + MENU_ITEM_X, FIRST_ROW_Y + MENU_DELETE_Y))
+        scene.press(Offset(DELETE_VERB_X, FIRST_ROW_Y))
         scene.save("host-D3-asking-again")
         scene.press(Offset(SHEET_DELETE_X, SHEET_BUTTON_Y))
         scene.until { !file.exists() }
@@ -227,9 +229,9 @@ class DownloadsHostTest {
         const val NAME_X = 120f
         const val SHEET_DELETE_X = 575f
         const val SHEET_BUTTON_Y = 181f
-        /** `DownloadsScreenTest`'s menu: Show in Finder, a rule, then Delete, at the pointer. */
-        const val MENU_ITEM_X = 40f
-        const val MENU_DELETE_Y = 61f
+        /** The row's Delete verb, the trailing one of its hover verbs, measured from `host-D2-verbs.png`. */
+        const val DELETE_VERB_X = 1024f
+        const val NANOS_PER_MILLI = 1_000_000L
         /** `HomeScreenTest`'s sidebar: 24 down, then rows 36 apart; the fourth is Downloads. */
         const val SIDEBAR_X = 100f
         const val SIDEBAR_DOWNLOADS_Y = 148f

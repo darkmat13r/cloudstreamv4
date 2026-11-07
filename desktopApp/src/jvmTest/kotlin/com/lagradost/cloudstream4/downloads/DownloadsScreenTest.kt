@@ -51,6 +51,7 @@ import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNull
+import kotlin.test.assertTrue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
@@ -270,6 +271,41 @@ class DownloadsScreenTest {
         scene.close()
     }
 
+    /**
+     * `KMP-75`: a press on a verb is the verb's. The row also read it as a press of its own, so a click on the row and
+     * then, within the double-click time, on its Delete verb opened the title and asked nothing.
+     */
+    @Test
+    fun `a click on the row then quickly on its Delete verb asks to delete, and opens nothing`() {
+        val harness = Harness(contents())
+        val scene = scene(harness)
+        scene.settle()
+        scene.press(Offset(NAME_X, rowY(1)), timeMillis = 5_000)
+        scene.press(Offset(DELETE_VERB_X, rowY(1)), timeMillis = 5_150)
+        assertEquals(setOf(DownloadTitleId(2)), harness.confirming)
+        assertTrue(harness.effects.none { it is DownloadsEffect.OpenTitle }, "${harness.effects}")
+        scene.close()
+    }
+
+    /** `KMP-75`: a sheet cancelled with Return must leave the row's own Delete verb working, in the same window. */
+    @Test
+    fun `after Return cancels the sheet, the row's Delete verb asks again`() {
+        val harness = Harness(contents())
+        val scene = scene(harness)
+        scene.settle()
+        scene.press(Offset(NAME_X, rowY(1)))
+        scene.key(Key.Backspace, meta = true)
+        assertEquals(setOf(DownloadTitleId(2)), harness.confirming)
+        scene.key(Key.Enter)
+        assertNull(harness.confirming)
+        assertNull(harness.deleted)
+
+        scene.hover(Offset(NAME_X, rowY(1)))
+        scene.press(Offset(DELETE_VERB_X, rowY(1)))
+        assertEquals(setOf(DownloadTitleId(2)), harness.confirming, "selection after the cancel: ${harness.state.selection}")
+        scene.close()
+    }
+
     @Test
     fun `hovering a failed row shows Retry, which asks the source for what is left`() {
         // Severance's finished episodes are on the disk, so all three verbs show: Retry, Show in Finder, Delete.
@@ -339,6 +375,8 @@ class DownloadsScreenTest {
         const val ROW_PITCH = 56f
         const val NAME_X = 120f
         const val FIRST_VERB_X = 960f
+        /** The last of the hover verbs, Delete: always the trailing one. */
+        const val DELETE_VERB_X = 1024f
         const val MENU_ITEM_X = 40f
         const val MENU_DELETE_Y = 61f
         const val SHEET_DELETE_X = 575f
