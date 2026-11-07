@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"按键盘上的搜索键，仍然搜索全部 %d 个来源。"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d 来源"</item></plurals>
 <string name="account">"账户"</string>
+<string name="account_add_profile">"添加个人资料"</string>
+<string name="account_manage_profiles">"管理个人资料"</string>
+<string name="account_pair_code">"你的代码"</string>
+<string name="account_pair_instructions">"在手机上打开此页面并输入下方代码。"</string>
+<string name="account_pair_new_code">"获取新代码"</string>
+<string name="account_pair_title" formatted="true">"配对 %s"</string>
+<string name="account_profile_current">"当前"</string>
+<string name="account_profile_locked">"已锁定 · PIN"</string>
+<string name="account_profile_no_sync">"不同步"</string>
+<string name="account_select_note">"独立的观看记录 · 不是登录账号"</string>
+<string name="account_select_title">"谁在观看？"</string>
+<string name="account_sync_connected">"已连接 · 已在此设备登录"</string>
+<string name="account_sync_needs_browser">"登录需要网页浏览器。此设备没有。"</string>
+<string name="account_sync_note">"可选。将观看进度同步到你已有的账号。"</string>
+<string name="account_sync_pair">"使用代码配对"</string>
+<string name="account_sync_remove">"从此设备移除"</string>
+<string name="account_sync_title">"同步服务"</string>
+<string name="account_sync_unavailable">"此处不可用"</string>
 <string name="action_add_to_bookmarks">"设置观看状态"</string>
 <string name="action_add_to_favorites">"添加到收藏夹"</string>
 <string name="action_default">"默认"</string>

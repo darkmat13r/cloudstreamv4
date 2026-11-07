@@ -17,6 +17,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili %d izvor."</item><item quantity="few">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili sva %d izvora."</item><item quantity="other">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d IZVOR"</item><item quantity="few">"%d IZVORA"</item><item quantity="other">"%d IZVORA"</item></plurals>
 <string name="account">"račun"</string>
+<string name="account_add_profile">"Dodaj profil"</string>
+<string name="account_manage_profiles">"Upravljaj profilima"</string>
+<string name="account_pair_code">"Vaš kôd"</string>
+<string name="account_pair_instructions">"Otvorite ovo na telefonu i unesite kôd u nastavku."</string>
+<string name="account_pair_new_code">"Dohvati novi kôd"</string>
+<string name="account_pair_title" formatted="true">"Upari %s"</string>
+<string name="account_profile_current">"Trenutni"</string>
+<string name="account_profile_locked">"Zaključano · PIN"</string>
+<string name="account_profile_no_sync">"Bez sinkronizacije"</string>
+<string name="account_select_note">"Zasebna povijest gledanja · nisu prijave"</string>
+<string name="account_select_title">"Tko gleda?"</string>
+<string name="account_sync_connected">"Povezano · prijavljeno na ovom uređaju"</string>
+<string name="account_sync_needs_browser">"Prijava zahtijeva web-preglednik. Ovaj uređaj ga nema."</string>
+<string name="account_sync_note">"Neobavezno. Sinkronizira napredak gledanja s računom koji već imate."</string>
+<string name="account_sync_pair">"Upari kodom"</string>
+<string name="account_sync_remove">"Ukloni s ovog uređaja"</string>
+<string name="account_sync_title">"Usluge sinkronizacije"</string>
+<string name="account_sync_unavailable">"Ovdje nije dostupno"</string>
 <string name="action_add_to_bookmarks">"Postavi status gledanja"</string>
 <string name="action_add_to_favorites">"Dodaj u favorite"</string>
 <string name="action_default">"Zadano"</string>

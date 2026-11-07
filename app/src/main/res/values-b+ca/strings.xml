@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Prem la tecla de cerca del teclat per cercar igualment a %d font."</item><item quantity="many">"Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts."</item><item quantity="other">"Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONT"</item><item quantity="many">"%d FONTS"</item><item quantity="other">"%d FONTS"</item></plurals>
 <string name="account">"compte"</string>
+<string name="account_add_profile">"Afegeix un perfil"</string>
+<string name="account_manage_profiles">"Gestiona els perfils"</string>
+<string name="account_pair_code">"El teu codi"</string>
+<string name="account_pair_instructions">"Obre això al telèfon i introdueix el codi de sota."</string>
+<string name="account_pair_new_code">"Obtén un codi nou"</string>
+<string name="account_pair_title" formatted="true">"Vincula %s"</string>
+<string name="account_profile_current">"Actual"</string>
+<string name="account_profile_locked">"Bloquejat · PIN"</string>
+<string name="account_profile_no_sync">"Sense sincronització"</string>
+<string name="account_select_note">"Historial de visualització separat · no són inicis de sessió"</string>
+<string name="account_select_title">"Qui mira?"</string>
+<string name="account_sync_connected">"Connectat · sessió iniciada en aquest dispositiu"</string>
+<string name="account_sync_needs_browser">"Per iniciar la sessió cal un navegador web. Aquest dispositiu no en té."</string>
+<string name="account_sync_note">"Opcional. Sincronitza el progrés de visualització amb un compte que ja tens."</string>
+<string name="account_sync_pair">"Vincula amb un codi"</string>
+<string name="account_sync_remove">"Elimina d'aquest dispositiu"</string>
+<string name="account_sync_title">"Serveis de sincronització"</string>
+<string name="account_sync_unavailable">"No disponible aquí"</string>
 <string name="action_add_to_bookmarks">"Defineix l'estat de visualització"</string>
 <string name="action_add_to_favorites">"Afegir als favorits"</string>
 <string name="action_open_play">@string/home_play</string>

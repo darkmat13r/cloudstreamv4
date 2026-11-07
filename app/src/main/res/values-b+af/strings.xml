@@ -14,6 +14,24 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Soek %d bron"</item><item quantity="other">"Soek al %d bronne"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Druk die sleutelbord se soeksleutel om tog %d bron te deursoek."</item><item quantity="other">"Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d BRON"</item><item quantity="other">"%d BRONNE"</item></plurals>
+<string name="account_add_profile">"Voeg profiel by"</string>
+<string name="account_manage_profiles">"Bestuur profiele"</string>
+<string name="account_pair_code">"Jou kode"</string>
+<string name="account_pair_instructions">"Maak dit op jou foon oop en voer die kode hieronder in."</string>
+<string name="account_pair_new_code">"Kry 'n nuwe kode"</string>
+<string name="account_pair_title" formatted="true">"Koppel %s"</string>
+<string name="account_profile_current">"Huidig"</string>
+<string name="account_profile_locked">"Gesluit · PIN"</string>
+<string name="account_profile_no_sync">"Geen sinkronisasie"</string>
+<string name="account_select_note">"Aparte kykgeskiedenis · nie aanmeldings nie"</string>
+<string name="account_select_title">"Wie kyk?"</string>
+<string name="account_sync_connected">"Gekoppel · aangemeld op hierdie toestel"</string>
+<string name="account_sync_needs_browser">"Aanmelding het 'n webblaaier nodig. Hierdie toestel het nie een nie."</string>
+<string name="account_sync_note">"Opsioneel. Sinkroniseer kykvordering met 'n rekening wat jy reeds het."</string>
+<string name="account_sync_pair">"Koppel met 'n kode"</string>
+<string name="account_sync_remove">"Verwyder van hierdie toestel"</string>
+<string name="account_sync_title">"Sinkroniseringsdienste"</string>
+<string name="account_sync_unavailable">"Nie hier beskikbaar nie"</string>
 <string name="action_add_to_bookmarks">"Stel kykstatus"</string>
 <string name="action_remove_from_bookmarks">"Verwyder"</string>
 <string name="action_remove_watching">"Verwyder"</string>

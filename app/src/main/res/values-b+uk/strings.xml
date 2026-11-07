@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в %d джерелі."</item><item quantity="few">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах."</item><item quantity="many">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах."</item><item quantity="other">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ДЖЕРЕЛО"</item><item quantity="few">"%d ДЖЕРЕЛА"</item><item quantity="many">"%d ДЖЕРЕЛ"</item><item quantity="other">"%d ДЖЕРЕЛА"</item></plurals>
 <string name="account">"обліковий запис"</string>
+<string name="account_add_profile">"Додати профіль"</string>
+<string name="account_manage_profiles">"Керувати профілями"</string>
+<string name="account_pair_code">"Ваш код"</string>
+<string name="account_pair_instructions">"Відкрийте це на телефоні та введіть код нижче."</string>
+<string name="account_pair_new_code">"Отримати новий код"</string>
+<string name="account_pair_title" formatted="true">"Зв'язати %s"</string>
+<string name="account_profile_current">"Поточний"</string>
+<string name="account_profile_locked">"Заблоковано · PIN"</string>
+<string name="account_profile_no_sync">"Без синхронізації"</string>
+<string name="account_select_note">"Окрема історія перегляду · не входи в акаунт"</string>
+<string name="account_select_title">"Хто дивиться?"</string>
+<string name="account_sync_connected">"Підключено · вхід виконано на цьому пристрої"</string>
+<string name="account_sync_needs_browser">"Для входу потрібен веб-браузер. На цьому пристрої його немає."</string>
+<string name="account_sync_note">"Необов'язково. Синхронізує прогрес перегляду з акаунтом, який у вас уже є."</string>
+<string name="account_sync_pair">"Зв'язати за кодом"</string>
+<string name="account_sync_remove">"Видалити з цього пристрою"</string>
+<string name="account_sync_title">"Сервіси синхронізації"</string>
+<string name="account_sync_unavailable">"Тут недоступно"</string>
 <string name="action_add_to_bookmarks">"Змінити стан перегляду"</string>
 <string name="action_add_to_favorites">"Додати до обраного"</string>
 <string name="action_default">"Типово"</string>

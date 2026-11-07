@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Trykk på søketasten på tastaturet for å søke i %d kilde likevel."</item><item quantity="other">"Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KILDE"</item><item quantity="other">"%d KILDER"</item></plurals>
 <string name="account">"konto"</string>
+<string name="account_add_profile">"Legg til profil"</string>
+<string name="account_manage_profiles">"Administrer profiler"</string>
+<string name="account_pair_code">"Koden din"</string>
+<string name="account_pair_instructions">"Åpne dette på telefonen og skriv inn koden nedenfor."</string>
+<string name="account_pair_new_code">"Få en ny kode"</string>
+<string name="account_pair_title" formatted="true">"Koble til %s"</string>
+<string name="account_profile_current">"Gjeldende"</string>
+<string name="account_profile_locked">"Låst · PIN"</string>
+<string name="account_profile_no_sync">"Ingen synkronisering"</string>
+<string name="account_select_note">"Egen seerhistorikk · ikke innlogginger"</string>
+<string name="account_select_title">"Hvem ser på?"</string>
+<string name="account_sync_connected">"Tilkoblet · logget inn på denne enheten"</string>
+<string name="account_sync_needs_browser">"Innlogging krever en nettleser. Denne enheten har ingen."</string>
+<string name="account_sync_note">"Valgfritt. Synkroniserer fremdriften med en konto du allerede har."</string>
+<string name="account_sync_pair">"Koble til med en kode"</string>
+<string name="account_sync_remove">"Fjern fra denne enheten"</string>
+<string name="account_sync_title">"Synkroniseringstjenester"</string>
+<string name="account_sync_unavailable">"Ikke tilgjengelig her"</string>
 <string name="action_add_to_bookmarks">"Sett visningsstatus"</string>
 <string name="action_default">"Misligholde"</string>
 <string name="action_mark_as_watched">"Marker som sett"</string>
