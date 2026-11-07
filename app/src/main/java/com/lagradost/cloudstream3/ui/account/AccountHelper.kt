@@ -225,6 +225,20 @@ object AccountHelper {
         forStartup: Boolean = false,
         errorText: String? = null,
         callback: (String?) -> Unit
+    ) = showPinInputDialog(context, currentPin, editAccount, forStartup, errorText, title = null, callback)
+
+    /**
+     * As above, with [title] in place of the default title. `BUG-54`: a restore asks for several profiles' PINs in turn,
+     * so each prompt names its profile. An overload, so the published signature above stays as it is.
+     */
+    fun showPinInputDialog(
+        context: Context,
+        currentPin: String?,
+        editAccount: Boolean,
+        forStartup: Boolean,
+        errorText: String?,
+        title: String?,
+        callback: (String?) -> Unit
     ) {
         fun TextView.visibleWithText(@StringRes textRes: Int) {
             isVisible = true
@@ -260,6 +274,8 @@ object AccountHelper {
                     callback.invoke(null)
                 }
             }
+
+        if (title != null) builder.setTitle(title)
 
         if (forStartup) {
             val currentAccount = DataStoreHelper.accounts.firstOrNull {
