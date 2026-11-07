@@ -104,6 +104,7 @@ import com.lagradost.cloudstream3.ui.APIRepository
 import com.lagradost.cloudstream3.ui.SyncWatchType
 import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.account.AccountHelper.showAccountSelectLinear
+import com.lagradost.cloudstream3.ui.account.ProfileSignIns
 import com.lagradost.cloudstream3.ui.download.DOWNLOAD_NAVIGATE_TO
 import com.lagradost.cloudstream3.ui.home.HomeViewModel
 import com.lagradost.cloudstream3.ui.library.LibraryViewModel
@@ -1338,6 +1339,9 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         binding?.homeRoot?.setPadding(padding, padding, padding, padding)
 
         changeStatusBarState(isLayout(EMULATOR))
+
+        // BUG-48: sign-ins no profile can reach (left by old deletes, or detached by a backup restore).
+        runCatching { ProfileSignIns.removeOrphans() }
 
         /** Biometric stuff for users without accounts **/
         val noAccounts = settingsManager.getBoolean(

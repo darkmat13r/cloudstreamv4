@@ -1778,3 +1778,42 @@ past the end of the list (read from the code, not run). The fix is `-= 1`.
 **Test:** `PreviousEpisodeTest` (`:app` device, 3), on a fake generator of three episodes that asks nobody for links:
 previous from the second lands on the first, previous from the first stays, and next from the second still lands on
 the third. The first failed on the old code, measured before the fix.
+
+## BUG-48 — A deleted profile's sign-ins pass to the next profile · **high, security** · measured 2026-11-07
+
+**Status:** fixed in pr · found 2026-11-07 as the precondition the TV audit names for `Q16` (account select, 8d) ·
+`app/.../ui/account/AccountViewModel.kt`, `handleAccountDelete`; `AccountAdapter.kt`, the add dialog
+
+Deleting a profile ran `removeKeys("<keyIndex>")`, which removes keys under `<keyIndex>/`. A profile's sign-ins are not
+there: they are at `auth_tokens/<provider>/<keyIndex>` and `auth_ids/<provider>/<keyIndex>` (`AccountManager`), and
+survived. The add dialog gave a new profile `max + 1`, so deleting the newest profile and adding one left the new
+profile signed in to the deleted one's MAL, AniList, Simkl and subtitle accounts.
+
+**Fix**, all in `ProfileSignIns`, with key-only operations (no value is read or logged):
+
+- **On delete**, every sign-in whose key ends in exactly `/<keyIndex>` goes, so profile 14242 keeps its own when 4242
+  goes.
+- **A new profile never takes an index that still has a sign-in:** the next index is one past the highest of any
+  profile and any sign-in.
+- **Once at startup** (`MainActivity.onCreate`), sign-ins no profile can reach are removed: an index that is not 0 (the
+  default profile, synthesized when the stored list is empty, as on a fresh install), not in the stored list, and not
+  the selected one. These are left by deletes before this fix, or detached by a backup restore, which brings the
+  profile list but not the sign-ins.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| Deleting a profile kept its sign-ins on the device | They go with it | A deleted profile's credentials were reachable only by inheritance |
+| A new profile could be signed in to a deleted one's services | It never is | Security |
+| Sign-ins left by old deletes stayed forever | Removed at the next start | Same; the default and the selected profile are never touched |
+| After a backup restore, sign-ins on an index the restored list lacks stayed | Removed at the next start | No listed profile could use them |
+
+**Test:** `DeleteProfileSignInsTest` (`:app` device, 3), marker values only:
+- delete removes the profile's tokens and ids and keeps another profile's and the 14242 neighbour's (failed on master,
+  measured before the fix);
+- a sign-in above every profile pushes the next index past it;
+- the startup cleanup keeps 0, a listed index, the selected index and 14242, and removes the unreachable one.
+
+**Not covered:** the TV audit's other account finding, that the account screen never shows on a fresh install
+(`skipStartup` tests the empty stored array, `AccountSelectActivity`), is `Q16`'s to measure, not this fix's.
