@@ -2168,20 +2168,22 @@ The review of the first version found the tab case and the `ErrorLoadingExceptio
 - `"cdn https:\u200B//cdn.example/x?token=MARKER_QUERY"` failed in all four tests (`StackTraceRedactionTest`, `LogErrorRedactionTest` through `logError`, `PluginHostRedactionTest`, `DesktopRedactionTest`), with `?token=MARKER_QUERY` in the output.
 - `"https:\t//host/p?token=MARKER_QUERY"` failed in all four, with the output `https:\t//host/p?token=MARKER_QUERY`.
 - `LogErrorRedactionTest.anErrorLoadingExceptionsMessageReachesTheScreenRedacted` failed: `errorString` held `MARKER_USER@host.example/MARKER_PATH?t=MARKER_QUERY`.
+- `"https:\u00A0//host/p?token=MARKER_QUERY"` (a no-break space, review round 2) failed in all four once whitespace inside `://` was handled with `\s*`, which does not match NBSP. The output was the input, token and all.
 
 The `:app`, `:library` and sandbox copies were byte-identical to master `42bf120c6` when this was measured, so master leaks the same way.
 
 **The fix.**
 
 - Each copy's `withoutUrls` begins with `withoutHiddenCharacters()`, a private helper. It turns a tab into a space, then drops every other Unicode Cc and Cf character before any pattern runs: ZWSP, ZWJ, ZWNJ, BOM, LRM/RLM, the bidi embeddings and isolates, and the C0/C1 controls. It keeps `\n` and `\r`, because they shape a stack trace and the path rule ends at a line break. The tab becomes a space rather than staying, so a later control strip cannot rejoin it.
-- Each copy's url pattern accepts whitespace (spaces, the mapped tab, line breaks) between `scheme:` and `//`, and the output is the usual `scheme://host[:port]/<…>`.
+- Each copy's url pattern accepts whitespace and Unicode spaces between `scheme:` and `//`: `[\s\p{Z}]*`, which covers spaces, the mapped tab, line breaks, NBSP and the other `\p{Z}` separators. The output is the usual `scheme://host[:port]/<…>`.
 - `throwAbleToResource`'s `ErrorLoadingException` branch now passes `throwable.message?.withoutUrls()`. A missing message still falls back to the same default text.
 - Every caller goes through `withoutUrls`, so all of them are covered: `redactedText`, `redactedStackTrace`, `logError`, `getStackTracePretty`, the `ErrorLoadingException` text, the plugin host's failure line and the desktop failure lines. `:desktopApp`'s separate `withoutInvisible()` is left as it is.
 
-**Two visible differences.**
+**Three visible differences.**
 
 - A stack trace that goes through the rules now indents its frames with a space instead of a tab: logcat, `logError`'s stderr and the crash file.
 - A word directly followed by `: //` (`Note: //x/y`) now reads as a url, so it becomes `Note://x/<…>`. That over-redacts, which is the safe way round.
+- An extension's `ErrorLoadingException` message that contains a url now shows as `scheme://host/<…>` on Android's Home and Detail failure lines. This is published `:library` behaviour, so extension authors will see it in the app.
 
 **Tests.** Every copy's table gains these cases:
 
@@ -2189,6 +2191,7 @@ The `:app`, `:library` and sandbox copies were byte-identical to master `42bf120
 - a BOM inside the scheme
 - a tab inside `://`
 - a line break inside `://`
+- a no-break space (U+00A0) inside `://`
 - `keeps\nlines\r\nand\ttabs`, which must come out as `keeps\nlines\r\nand tabs`
 
 Every case is also checked after an `isISOControl` strip, the way Home, Detail and the HUD show text. `LogErrorRedactionTest` gains an `ErrorLoadingException` marker test, and the default text for a missing message is checked too.

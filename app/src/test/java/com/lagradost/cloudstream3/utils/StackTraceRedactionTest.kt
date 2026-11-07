@@ -48,6 +48,7 @@ class StackTraceRedactionTest {
         // A tab or a line break inside "://" must not hide the url, nor rejoin it once a screen strips controls.
         "https:\t//host/p?token=MARKER_QUERY" to "https://host/<…>",
         "nl https:\n//host/p?token=MARKER_QUERY" to "nl https://host/<…>",
+        "https:\u00A0//host/p?token=MARKER_QUERY" to "https://host/<…>",
         "keeps\nlines\r\nand\ttabs" to "keeps\nlines\r\nand tabs",
     )
 

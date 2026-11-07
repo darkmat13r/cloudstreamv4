@@ -97,9 +97,9 @@ private val FILE_URI = Regex("(?i)\\bfile:/\\S+")
 
 /**
  * `scheme://[userinfo@]host[:port]`, then whatever follows up to the next whitespace. BUG-52: also
- * when whitespace splits `scheme:` from `//` (`https:<tab>//`), which would otherwise leave the url whole.
+ * when whitespace or a Unicode space (`\p{Z}`, NBSP among them) splits `scheme:` from `//`.
  */
-private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*):\\s*//(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
+private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*):[\\s\\p{Z}]*//(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
 
 /**
  * An absolute path under a storage, home or volume root, up to a newline, a quote, `": "` or the end. A path may hold
