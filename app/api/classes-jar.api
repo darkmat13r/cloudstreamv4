@@ -3196,6 +3196,7 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field episodes I
 	public static field home_bookmarks_count I
 	public static field home_sections_failed I
+	public static field home_source_sections I
 	public static field links_hidden I
 	public static field search_state_no_results_body I
 	public static field search_state_partial_headline I
@@ -3384,6 +3385,10 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field deselect_all I
 	public static field detail_load_failed_body I
 	public static field detail_load_failed_headline I
+	public static field detail_source_resolving I
+	public static field detail_sources_done I
+	public static field detail_sources_progress I
+	public static field detail_start_over I
 	public static field device_pin_counter_text I
 	public static field device_pin_error_message I
 	public static field device_pin_expired_message I
@@ -3598,6 +3603,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field home_bookmarks_no_status_body I
 	public static field home_bookmarks_no_status_headline I
 	public static field home_change_provider_img_des I
+	public static field home_choose_source I
 	public static field home_expanded_hide I
 	public static field home_info I
 	public static field home_main_poster_img_des I
@@ -3609,9 +3615,14 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field home_offline_source_headline I
 	public static field home_play I
 	public static field home_random I
+	public static field home_reload_failed I
 	public static field home_search_only_body I
 	public static field home_source I
+	public static field home_source_none_line I
 	public static field home_source_none_subtitle I
+	public static field home_source_picker_body I
+	public static field home_source_picker_title I
+	public static field home_source_unreachable I
 	public static field install_prerelease I
 	public static field install_prerelease_key I
 	public static field is_adult I
