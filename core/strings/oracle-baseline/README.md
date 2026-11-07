@@ -120,6 +120,41 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Twenty-first move, 2026-11-07 — Train 4 (`#183`, `#199`, `#197`, `#196`, `#195`, `#201`, `#194`), one move: 15 new keys
+
+One combined baseline move for the train that merges `#183` (`BUG-41`), `#199` (`BUG-45`), `#197` (`KMP-68`), `#196`
+(`I18N-15`), `#195` (`KMP-50`), `#201` (`KMP-51`) and `#194` (`I18N-12`) together. Three of them carry keys of their own, and
+each had recorded its own move from its own branch point: `#196` as the "next move after the nineteenth", `#195` and `#194`
+each as a "nineteenth", and `#201` as a move "on a stacked branch" that carries `#195`'s key over `#196`. Those headings collided
+with each other and with master's nineteenth and twentieth, so none of them is kept: the train regenerated once from the live
+generator on master's baseline with the twentieth in it, and all of them are recorded here as this one move. `#201` adds no
+key of its own (its one key is `#195`'s); `#183`, `#199` and `#197` add none.
+
+New keys are approved in general (`I18N-09`, above). Additive, every key authored in all 62 directories (`OWN` grows by
+15 x 62 = 930):
+
+| PR | keys | of which plurals | `decoded` | `emitted` | `lookup` |
+|---|---:|---:|---:|---:|---:|
+| `#196` `I18N-15`, Search and Library (`DS-22`) | 12 | 1 | 832 | 858 | 1,153 |
+| `#195` `KMP-50`, the TV library's sort | 1 | 0 | 62 | 64 | 87 |
+| `#194` `I18N-12`, board 7i's season chips | 2 | 0 | 124 | 128 | 174 |
+| **total** | **15** | **1** | **1,018** | **1,050** | **1,414** |
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 42,148 | 43,166 | 1,018 | 0 | 0 |
+| `emitted.tsv` | 44,357 | 45,407 | 1,050 | 0 | 0 |
+| `lookup.tsv` | 82,413 | 83,827 | 1,414 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`:
+0 lines lost in any file, and every added line names one of the 15 keys, all 15 present. Split by the PR that owns each key,
+the added lines equal, file by file, what each PR measured on its own branch (the per-PR columns above). `report.txt` moved
+only in its counts: `OWN` 40,866 -> 41,796, visible keys 923 -> 938, plurals 21 -> 22 (`library_title_count`), and 15 more
+values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn`
+40,866 -> 41,796.
+
 ## Twentieth move, 2026-11-07 — Train 3 (`#176`, `#181`, `#178`, `#179`, `#185`, `#186`, `#191`), one move: 33 new keys
 
 One combined baseline move for the train that merges `#176` (`KMP-48`), `#181` (`KMP-38` PR 2a), `#178` (`I18N-11`), `#179`

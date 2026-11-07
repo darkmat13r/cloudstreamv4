@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d OZNAKA"</item><item quantity="few">"%d OZNAKE"</item><item quantity="other">"%d OZNAKA"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nije učitan %d odjeljak"</item><item quantity="few">"Nisu učitana %d odjeljka"</item><item quantity="other">"Nije učitano %d odjeljaka"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d odjeljak"</item><item quantity="few">"%d odjeljka"</item><item quantity="other">"%d odjeljaka"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d naslov"</item><item quantity="few">"%d naslova"</item><item quantity="other">"%d naslova"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Pretraži %d izvor"</item><item quantity="few">"Pretraži sva %d izvora"</item><item quantity="other">"Pretraži svih %d izvora"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili %d izvor."</item><item quantity="few">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili sva %d izvora."</item><item quantity="other">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d IZVOR"</item><item quantity="few">"%d IZVORA"</item><item quantity="other">"%d IZVORA"</item></plurals>
@@ -395,10 +396,21 @@
 <string name="kitsu_settings">"Prikaži postere iz Kitsua"</string>
 <string name="legal_notice">"Pravna obavijest"</string>
 <string name="library">"Biblioteka"</string>
+<string name="library_go_to_list" formatted="true">"Idi na %s"</string>
+<string name="library_list_empty_body" formatted="true">"Ovdje se pojavljuju naslovi koje dodate u %s."</string>
+<string name="library_list_empty_headline" formatted="true">"Ništa u popisu %s"</string>
 <string name="library_not_connected">"Nije povezano"</string>
 <string name="library_on_device">"Na uređaju"</string>
+<string name="library_sort_current" formatted="true">"Poredak: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s to ne čuva"</string>
+<string name="library_sort_supported" formatted="true">"%1$s podržava %2$d od %3$d"</string>
 <string name="library_source">"Izvor biblioteke"</string>
 <string name="library_source_note">"Jedan po jedan · promjena ponovno učitava"</string>
+<string name="library_sync_cached">"Iz predmemorije"</string>
+<string name="library_sync_failed" formatted="true">"Nije moguće sinkronizirati %1$s. Ovo je od prije %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Izvan mreže · predmemorirano prije %s"</string>
+<string name="library_sync_retry">"Ponovno sinkroniziraj"</string>
+<string name="library_sync_unreachable" formatted="true">"Nedostupno · predmemorirano prije %s"</string>
 <string name="library_synced_format" formatted="true">"Sinkronizirano prije %s"</string>
 <string name="lightnovel">"Aplikacija za romane od istih programera"</string>
 <string name="limit_title">"Maksimalni broj znakova u naslovu video playera"</string>
@@ -649,6 +661,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"Ništa ne odgovara „%s“"</string>
 <string name="search_suggestions">"Prijedlozi za pretraživanje"</string>
 <string name="search_suggestions_des">"Prikaži prijedloge za pretraživanje tijekom tipkanja"</string>
+<string name="search_suggestions_return_hint">"Return pretražuje sve"</string>
 <string name="search_tv_source_failed" formatted="true">"NEUSPJELO %s"</string>
 <string name="search_tv_source_pinned">"PRIKVAČENO"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d OD %2$d UKLJUČENO · PROMJENE VRIJEDE NAKON GOTOVO"</string>
@@ -657,7 +670,9 @@
 <string name="search_tv_suggestion_suggested">"PREDLOŽENO"</string>
 <string name="season">"Sezona"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Ostalo"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Specijali"</string>
 <string name="seek_back_10_seconds">"Pomakni natrag 10 sekundi"</string>
 <string name="seek_forward_10_seconds">"Pomakni naprijed 10 sekundi"</string>
 <string name="select_all">"Označi sve"</string>

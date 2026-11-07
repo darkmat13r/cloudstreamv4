@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ZÁLOŽKA"</item><item quantity="few">"%d ZÁLOŽKY"</item><item quantity="many">"%d ZÁLOŽKY"</item><item quantity="other">"%d ZÁLOŽEK"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nepodařilo se načíst %d sekci"</item><item quantity="few">"Nepodařilo se načíst %d sekce"</item><item quantity="many">"Nepodařilo se načíst %d sekcí"</item><item quantity="other">"Nepodařilo se načíst %d sekcí"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sekce"</item><item quantity="few">"%d sekce"</item><item quantity="many">"%d sekce"</item><item quantity="other">"%d sekcí"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d titul"</item><item quantity="few">"%d tituly"</item><item quantity="many">"%d titulu"</item><item quantity="other">"%d titulů"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d skrytý odkaz"</item><item quantity="few">"%d skryté odkazy"</item><item quantity="many">"%d skrytých odkazů"</item><item quantity="other">"%d skrytých odkazů"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Hledat v %d zdroji"</item><item quantity="few">"Hledat ve všech %d zdrojích"</item><item quantity="many">"Hledat ve všech %d zdrojích"</item><item quantity="other">"Hledat ve všech %d zdrojích"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte %d zdroj."</item><item quantity="few">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všechny %d zdroje."</item><item quantity="many">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdroje."</item><item quantity="other">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů."</item></plurals>
@@ -396,10 +397,21 @@
 <string name="kitsu_settings">"Zobrazit plakáty z Kitsu"</string>
 <string name="legal_notice">"Odmítnutí odpovědnosti"</string>
 <string name="library">"Knihovna"</string>
+<string name="library_go_to_list" formatted="true">"Přejít na %s"</string>
+<string name="library_list_empty_body" formatted="true">"Sem přibývají tituly, které přidáte do seznamu %s."</string>
+<string name="library_list_empty_headline" formatted="true">"V seznamu %s nic není"</string>
 <string name="library_not_connected">"Nepřipojeno"</string>
 <string name="library_on_device">"V zařízení"</string>
+<string name="library_sort_current" formatted="true">"Řazení: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s toto neuchovává"</string>
+<string name="library_sort_supported" formatted="true">"%1$s podporuje %2$d z %3$d"</string>
 <string name="library_source">"Zdroj knihovny"</string>
 <string name="library_source_note">"Jeden po druhém · přepnutí znovu načte"</string>
+<string name="library_sync_cached">"Z mezipaměti"</string>
+<string name="library_sync_failed" formatted="true">"%1$s se nepodařilo synchronizovat. Tato data jsou z doby před %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Offline · v mezipaměti před %s"</string>
+<string name="library_sync_retry">"Znovu synchronizovat"</string>
+<string name="library_sync_unreachable" formatted="true">"Nedostupné · v mezipaměti před %s"</string>
 <string name="library_synced_format" formatted="true">"Synchronizováno před %s"</string>
 <string name="lightnovel">"Nenáročná aplikace pro romány od stejných vývojářů"</string>
 <string name="limit_title">"Maximální počet znaků v názvu přehrávače"</string>
@@ -653,6 +665,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"Nic neodpovídá „%s“"</string>
 <string name="search_suggestions">"Návrhy vyhledávání"</string>
 <string name="search_suggestions_des">"Zobrazit návrhy vyhledávání během psaní"</string>
+<string name="search_suggestions_return_hint">"Return hledá všude"</string>
 <string name="search_tv_source_failed" formatted="true">"SELHALO %s"</string>
 <string name="search_tv_source_pinned">"PŘIPNUTO"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d Z %2$d ZAPNUTO · ZMĚNY SE UPLATNÍ STISKNUTÍM HOTOVO"</string>
@@ -661,7 +674,9 @@
 <string name="search_tv_suggestion_suggested">"NAVRŽENO"</string>
 <string name="season">"Sezóna"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Ostatní"</string>
 <string name="season_short">"S"</string>
+<string name="season_specials">"Speciály"</string>
 <string name="seek_back_10_seconds">"Posunout o 10 sekund zpět"</string>
 <string name="seek_forward_10_seconds">"Posunout o 10 sekund vpřed"</string>
 <string name="select_all">"Vybrat vše"</string>

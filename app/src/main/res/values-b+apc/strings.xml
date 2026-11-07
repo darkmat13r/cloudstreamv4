@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d إشارة مرجعية"</item><item quantity="other">"%d إشارات مرجعية"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"م قدرنا نفتح %d قسم"</item><item quantity="other">"م قدرنا نفتح %d أقسام"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d قسم"</item><item quantity="other">"%d أقسام"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d عنوان"</item><item quantity="other">"%d عناوين"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"نبّش بـ%d مصدر"</item><item quantity="other">"نبّش بكل المصادر الـ%d"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال."</item><item quantity="other">"اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d مصدر"</item><item quantity="other">"%d مصادر"</item></plurals>
@@ -395,10 +396,21 @@
 <string name="kitsu_settings">"فرجي الپوسترات من موقع \"كيتسو\""</string>
 <string name="legal_notice">"إخلاء مسؤولية"</string>
 <string name="library">"رفّ"</string>
+<string name="library_go_to_list" formatted="true">"روح على %s"</string>
+<string name="library_list_empty_body" formatted="true">"العناوين اللي بتضيفها لـ %s بتطلع هون."</string>
+<string name="library_list_empty_headline" formatted="true">"ما في شي بـ %s"</string>
 <string name="library_not_connected">"مش متصل"</string>
 <string name="library_on_device">"عالجهاز"</string>
+<string name="library_sort_current" formatted="true">"الترتيب: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s ما بيحفظه"</string>
+<string name="library_sort_supported" formatted="true">"%1$s بيدعم %2$d من %3$d"</string>
 <string name="library_source">"مصدر الرفّ"</string>
 <string name="library_source_note">"وحدة بكل مرة · التبديل بيعيد التحميل"</string>
+<string name="library_sync_cached">"محفوظ"</string>
+<string name="library_sync_failed" formatted="true">"ما قدرنا نزامن %1$s. هدول من قبل %2$s."</string>
+<string name="library_sync_offline" formatted="true">"بلا إنترنت · محفوظ من %s"</string>
+<string name="library_sync_retry">"رجّع زامن"</string>
+<string name="library_sync_unreachable" formatted="true">"ما فينا نوصل · محفوظ من %s"</string>
 <string name="library_synced_format" formatted="true">"تزامن من %s"</string>
 <string name="lightnovel">"آپ من نفس المطورين للروايات الخفيفة، بدل من الڤيديوات"</string>
 <string name="limit_title">"الحد الأعلى للحروف بعنوان الڤيديو"</string>
@@ -649,6 +661,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"ما في شي بيطابق «%s»"</string>
 <string name="search_suggestions">"اقتراحات التنبيش"</string>
 <string name="search_suggestions_des">"بت فرجي اقتراحات إنتا و عم بت نَبّش"</string>
+<string name="search_suggestions_return_hint">"Return بيدوّر بالكل"</string>
 <string name="search_tv_source_failed" formatted="true">"فشل %s"</string>
 <string name="search_tv_source_pinned">"مثبّت"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d من %2$d مفعّل · التغييرات بتنطبق عند خلصت"</string>
@@ -657,7 +670,9 @@
 <string name="search_tv_suggestion_suggested">"مقترح"</string>
 <string name="season">"جزء"</string>
 <string name="season_format" formatted="true">"%1$s%2$d%3$s"</string>
+<string name="season_other">"أخرى"</string>
 <string name="season_short">"ج"</string>
+<string name="season_specials">"خاصة"</string>
 <string name="seek_back_10_seconds">"رجّع 10 ثواني"</string>
 <string name="seek_forward_10_seconds">"قدّم 10 ثواني"</string>
 <string name="select_all">"نقي كل شي"</string>
