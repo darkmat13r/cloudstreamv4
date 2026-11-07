@@ -34,4 +34,11 @@ internal object EngineDownloadSwitch {
     /** Test-only: where downloads are staged. `null` is `noBackupFilesDir/downloads`. */
     @JvmField
     var stagingRootForTests: File? = null
+
+    /**
+     * Test-only: the engine's `minPartBytes`, which also decides whether a part can be split. `null` is the engine's
+     * default. Production never sets it.
+     */
+    @JvmField
+    var minPartBytesForTests: Long? = null
 }

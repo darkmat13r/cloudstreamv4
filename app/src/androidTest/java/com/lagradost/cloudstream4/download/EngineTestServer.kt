@@ -3,6 +3,7 @@ package com.lagradost.cloudstream4.download
 import com.lagradost.cloudstream4.media.download.DownloadStorage
 import com.lagradost.cloudstream4.media.download.FileKitStorage
 import io.github.vinceglb.filekit.PlatformFile
+import io.github.vinceglb.filekit.name
 import kotlinx.io.Buffer
 import kotlinx.io.RawSink
 import java.io.BufferedInputStream
@@ -242,4 +243,31 @@ class QuotaStorage(
     }
 
     override suspend fun availableBytes(directory: PlatformFile): Long = 64L * 1024 * 1024 * 1024
+}
+
+/**
+ * A [DownloadStorage] that delegates everything to [FileKitStorage] and records every [size] answer,
+ * in call order. The engine's rule 1 reads a part file's size before each attempt and requests from
+ * `part.start + size`, so this is the offset the next request for that part must carry.
+ *
+ * [stamp] is read at each call; given the server's request count it orders a size read against the
+ * requests the server has already seen.
+ */
+class SizeRecordingStorage(
+    private val stamp: () -> Int,
+    private val inner: DownloadStorage = FileKitStorage(),
+) : DownloadStorage by inner {
+    /** One [size] call: the file's name, what it returned (`null` when missing), and [stamp] at the time. */
+    class SizeRead(val name: String, val size: Long?, val stamp: Int) {
+        override fun toString() = "$name=$size@$stamp"
+    }
+
+    val reads: CopyOnWriteArrayList<SizeRead> = CopyOnWriteArrayList()
+
+    override fun size(file: PlatformFile): Long? {
+        val stampBefore = stamp()
+        return inner.size(file).also { reads += SizeRead(file.name, it, stampBefore) }
+    }
+
+    fun readsOf(name: String): List<SizeRead> = reads.filter { it.name == name }
 }

@@ -37617,6 +37617,7 @@ public final class com/lagradost/cloudstream4/download/EngineDownloadSwitch : ja
 	public static final field $stable I
 	public static final field INSTANCE Lcom/lagradost/cloudstream4/download/EngineDownloadSwitch;
 	public static field allowPrivateAddressesForTests Z
+	public static field minPartBytesForTests Ljava/lang/Long;
 	public static field stagingRootForTests Ljava/io/File;
 	public static field storageForTests Lcom/lagradost/cloudstream4/media/download/DownloadStorage;
 	public static field useSegmentedEngine Z

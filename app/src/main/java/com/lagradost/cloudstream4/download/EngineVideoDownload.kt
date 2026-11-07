@@ -216,7 +216,9 @@ internal class EngineVideoDownload(
         referer = link.referer,
         // A staged file left by a crash between the engine's move and the marker is not provably complete.
         overwrite = true,
-        options = DownloadOptions(allowPrivateAddresses = allowPrivateAddresses),
+        options = EngineDownloadSwitch.minPartBytesForTests
+            ?.let { DownloadOptions(allowPrivateAddresses = allowPrivateAddresses, minPartBytes = it) }
+            ?: DownloadOptions(allowPrivateAddresses = allowPrivateAddresses),
     )
 
     /** Runs the engine until it ends, pausing and resuming on `downloadEvent`. */

@@ -1852,7 +1852,7 @@ past the end of the list (read from the code, not run). The fix is `-= 1`.
 previous from the second lands on the first, previous from the first stays, and next from the second still lands on
 the third. The first failed on the old code, measured before the fix.
 
-## BUG-45 — An engine device test cut a connection inside Ktor's buffer, so it was flaky · **low** · measured 2026-11-07
+## BUG-45 — An engine device test cut a connection inside Ktor's buffer, so it was flaky · **low** · measured 2026-11-07, reopened and fixed again 2026-11-07
 
 `EngineDownloadDeviceTest.aConnectionDroppedMidPartIsResumedWithinThePartAndTheFileIsByteIdentical` (from `KMP-59`, #174)
 failed about 1 run in 2 on master `5e103443b`, and 3 runs in 3 on #190's branch.
@@ -1866,6 +1866,62 @@ failed about 1 run in 2 on master `5e103443b`, and 3 runs in 3 on #190's branch.
   bytes on disk are never fetched again. The engine is unchanged.
 - **Not hidden.** The discard is still an engine trait. It costs up to 1 MiB of refetch per dropped connection and is
   logged as `KMP-69`.
+
+### Reopened 2026-11-07: the 1 MiB bound was wrong · **fixed, test only** · measured 2026-11-07
+
+The 1.5 MiB fix still required the resume to start within `CHANNEL_DISCARD = 1 MiB` of the cut. In the merge train's runs
+the loss ranged from 0 to about 1.36 MB, and master failed once with 1,359,872 bytes lost.
+- **Cause.** A failed body loses far more than 1 MiB: up to about 5 MiB, from the bytecode (`KMP-69` has the
+  detail), and 2,416,838 bytes in one measured run. The body passes through **two** Ktor `ByteChannel`s, and a failure
+  throws away what both hold. At 1.5 MiB of a 2 MiB part, the whole cut could be lost.
+- **The geometry now.** The test uses a 32 MiB source, so the engine's 8 parts are 4 MiB each, and cuts the third body
+  request at 3 MiB. That was chosen against a 2 MiB + 16 KiB bound, which counted only one channel; with two, it does
+  **not** guarantee `onDisk > 0`, so the test no longer asserts it (below).
+- **What the test asserts now.** The engine's own rule 1, not a guess at the loss. `SizeRecordingStorage` (in
+  `EngineTestServer.kt`) wraps `FileKitStorage` and records each `size(file)` answer by file name, in call order,
+  together with how many requests the server had seen at that moment. The dropped part's file is found from the run's
+  snapshots (`PartSnapshot.id` → `start`). Of the size reads made after the server saw the dropped request, the first
+  is the read after the failure (rule 20) and the second is the next attempt's offset, `onDisk`. The test asserts that:
+  - the two reads agree;
+  - `onDisk <= dropAfter`, since the disk cannot hold bytes that were never sent;
+  - a later request starts at **exactly** `start + onDisk`;
+  - no request after the drop starts inside `[start, start + onDisk)`.
+
+  `CHANNEL_DISCARD` is gone: nothing else in the file used it.
+- **Work stealing is off in this test.** `PartTable.next()` splits an active or retrying part that has at least
+  `2 * minPartBytes` left. At the 1 MiB default, the 4 MiB dropped part can be split, including mid-attempt, below the
+  cut; the server then never sends `dropAfter` bytes, and the run tests no drop at all. The test sets
+  `EngineDownloadSwitch.minPartBytesForTests` to the part size, 4 MiB, which keeps the 8 parts and means no part can
+  ever have 8 MiB left. `@After` resets it. `EngineVideoDownload.request()` passes it into
+  `DownloadOptions(minPartBytes = …)` only when it is set; production keeps the default. With splitting off, the
+  dropped request is deterministic, and the test asserts it: the request the fault chose (the third body request) was
+  cut at exactly `dropAfter`, and it is the only request that was.
+- **Measured, at the earlier 1.5 MiB of a 2 MiB geometry.** The test logs `drop-loss: dropAfter= onDisk= lost=`. On
+  `Television_720p`, run as the class, 10 valid runs in a row, every run was 8 tests with 0 failures and 0 errors. One
+  more run failed because the emulator did not boot, and was replaced. Lost bytes per run: 0, 917,504, 0, 1,417,216,
+  270,336, 0, 966,656, 0, 892,928, 1,327,302. The minimum was 0 and the maximum 1,417,216 (1.35 MiB), so 2 of the 10
+  runs would have failed the old 1 MiB bound.
+  As a second check, each run's request log was read separately from the assertion: the one later request inside the
+  dropped part started at `start + onDisk` every time.
+- **Measured, at 3 MiB of a 4 MiB part, before splitting was turned off.** On `Television_720p`, 5 runs of the class,
+  every run was 8 tests with 0 failures and 0 errors. Lost bytes per run: 638,976, 835,584, 1,040,384, 253,952 and
+  974,848. `onDisk` was 2,105,344 to 2,891,776, so the dropped part had less than 2 MiB left and no run split it. Run
+  three came within 8 KiB of the split threshold. A run that loses more than 1 MiB would have left the part splittable,
+  which is why splitting is now off. The request log check (above) matched in all 5 runs.
+- **Measured, the test as it is now (3 MiB of a 4 MiB part, splitting off).** On `Television_720p`, 5 runs of the class
+  in a row, every run was 8 tests with 0 failures and 0 errors, and every run made 9 body requests: 8 parts and one
+  resume. Lost bytes per run: 0, 1,138,886, **2,416,838**, 1,605,632 and 443,746. The request log check matched in
+  all 5. In two runs the fault's third call was request #5, not #4: requests reach the server concurrently, which is
+  why the test takes the dropped request from the fault itself rather than from an index.
+- **`onDisk > 0` is not asserted (decided 2026-11-07).** 2,416,838 bytes lost is more than the 2 MiB + 16 KiB that 3 MiB
+  was chosen against, and the two-channel bound (about 5 to 6 MiB) is derived from bytecode, not measured. A cut
+  chosen against it would rest on a third derived figure after two wrong ones. Losing the whole cut and restarting the
+  part from its start is correct engine behaviour, and the exact-offset assertions above hold whatever Ktor drops.
+  `onDisk` is still logged on every run. It was above 0 in all 21 runs so far, as low as 155,648 bytes.
+- **The engine does not lose bytes it has read.** `PartFetcher.stream` writes each chunk to the part file's sink as
+  soon as `readAvailable` returns it, and closes the sink in a `finally` under `NonCancellable`, which flushes the
+  sink's last partial segment. There is no queue between the read and the write. Every lost byte was still in Ktor's
+  channels.
 
 ---
 
