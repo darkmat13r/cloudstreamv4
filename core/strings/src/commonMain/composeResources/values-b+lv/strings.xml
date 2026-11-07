@@ -15,6 +15,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="zero">Meklēt visos %d devējos</item><item quantity="one">Meklēt %d devējā</item><item quantity="other">Meklēt visos %d devējos</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="zero">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item><item quantity="one">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā.</item><item quantity="other">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="zero">%d DEVĒJU</item><item quantity="one">%d DEVĒJS</item><item quantity="other">%d DEVĒJI</item></plurals>
+<plurals name="home_source_sections"><item quantity="zero">%d sadaļu</item><item quantity="one">%d sadaļa</item><item quantity="other">%d sadaļas</item></plurals>
 <string name="account">Konts</string>
 <string name="action_add_to_bookmarks">Ieliec skatīšanās statusu</string>
 <string name="action_default">Parastais</string>
@@ -133,6 +134,10 @@
 <string name="delete_repository">Dzēst repozitoriju</string>
 <string name="delete_repository_plugins">Tiks izdzēsti arī visi repozitorija papildinājumi</string>
 <string name="desktop_menu_go">Doties</string>
+<string name="detail_source_resolving">Nosaka…</string>
+<string name="detail_sources_done">Atbildēja: %1$d no %2$d</string>
+<string name="detail_sources_progress">Atbildēja: %1$d no %2$d · ielādē…</string>
+<string name="detail_start_over">Sākt no jauna</string>
 <string name="disable">Atspējot</string>
 <string name="discord">Ienāc discordā</string>
 <string name="display_subbed_dubbed_settings">Radīt Dubbed/Subbed Anime</string>
@@ -305,6 +310,7 @@
 <string name="home_bookmarks_no_status_body">Izvēlieties vienu augšā, lai redzētu šīs grāmatzīmes.</string>
 <string name="home_bookmarks_no_status_headline">Nav izvēlēts statuss</string>
 <string name="home_change_provider_img_des">Nomainīt dvēju</string>
+<string name="home_choose_source">Izvēlēties avotu</string>
 <string name="home_expanded_hide">Slēpt</string>
 <string name="home_info">Informācija</string>
 <string name="home_main_poster_img_des">Galvenais plakāts</string>
@@ -316,9 +322,14 @@
 <string name="home_offline_source_headline">%1$s nepieciešams savienojums</string>
 <string name="home_play">Atskaņot</string>
 <string name="home_random">Randoms</string>
+<string name="home_reload_failed">Neizdevās atkārtoti ielādēt %1$s. Šīs rindas ir no pirms %2$s.</string>
 <string name="home_search_only_body">Nevienam no jūsu papildinājumiem nav sākumlapas, taču tajos joprojām var meklēt.</string>
 <string name="home_source">Devējs</string>
+<string name="home_source_none_line">Nav rindu; bibliotēka paliek</string>
 <string name="home_source_none_subtitle">NAV RINDU · JŪSU RINDAS PALIEK</string>
+<string name="home_source_picker_body">Rindas nāk no viena paplašinājuma vienlaikus.</string>
+<string name="home_source_picker_title">Sākuma avots</string>
+<string name="home_source_unreachable">Pagājušajā reizē nebija sasniedzams</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Neizdevās sasniegt GitHub. Pieslēdzas starpniekserverim caur jsDelivr…</string>
 <string name="jsdelivr_proxy">GitHub starpniekserveris</string>

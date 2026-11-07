@@ -14,6 +14,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item><item quantity="other">ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item><item quantity="other">ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ଉତ୍ସ</item><item quantity="other">%d ଉତ୍ସ</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d ବିଭାଗ</item><item quantity="other">%d ବିଭାଗ</item></plurals>
 <string name="action_default">ଡିଫଲ୍ଟ</string>
 <string name="added_sync_format">%s ଯୋଡ଼ାଗଲା</string>
 <string name="all_languages_preference">ସବୁ ଭାଷା</string>
@@ -42,6 +43,10 @@
 <string name="delete">ଵିଲୋପ କର</string>
 <string name="delete_file">ଫାଇଲ୍ ଵିଲୋପ କରିବେ</string>
 <string name="desktop_menu_go">ଯାଆନ୍ତୁ</string>
+<string name="detail_source_resolving">ସମାଧାନ ହେଉଛି…</string>
+<string name="detail_sources_done">%2$d ମଧ୍ୟରୁ %1$d ଉତ୍ତର ଦେଲେ</string>
+<string name="detail_sources_progress">%2$d ମଧ୍ୟରୁ %1$d ଉତ୍ତର ଦେଲେ · ଲୋଡ୍ ହେଉଛି…</string>
+<string name="detail_start_over">ପୁଣି ଆରମ୍ଭ କରନ୍ତୁ</string>
 <string name="documentaries">ଵୃତ୍ତଚିତ୍ର</string>
 <string name="documentaries_singular">ଵୃତ୍ତଚିତ୍ର</string>
 <string name="dont_show_again">ପୁନଃ ଦେଖାଅନି</string>
@@ -136,6 +141,7 @@
 <string name="home_bookmarks_no_status_body">ସେହି ବୁକମାର୍କଗୁଡ଼ିକ ଦେଖିବାକୁ ଉପରୁ ଗୋଟିଏ ବାଛନ୍ତୁ।</string>
 <string name="home_bookmarks_no_status_headline">କୌଣସି ସ୍ଥିତି ବଛାଯାଇନାହିଁ</string>
 <string name="home_change_provider_img_des">ପ୍ରଦାତା ବଦଳାଅ</string>
+<string name="home_choose_source">ଉତ୍ସ ବାଛନ୍ତୁ</string>
 <string name="home_expanded_hide">ଲୁଚାଅ</string>
 <string name="home_info">ସୂଚନା</string>
 <string name="home_main_poster_img_des">ମୁଖ୍ୟ ପୋଷ୍ଟର୍</string>
@@ -145,8 +151,13 @@
 <string name="home_offline_bookmarks_body">ଆପଣଙ୍କ ବୁକମାର୍କଗୁଡ଼ିକ ଏହି ଡିଭାଇସରେ ସଞ୍ଚିତ ଅଛି।</string>
 <string name="home_offline_source_headline">%1$s ପାଇଁ ସଂଯୋଗ ଆବଶ୍ୟକ</string>
 <string name="home_play">ଚଲାଅ</string>
+<string name="home_reload_failed">%1$s ପୁଣି ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ। ଏହି ଧାଡ଼ିଗୁଡ଼ିକ %2$s ପୂର୍ବର।</string>
 <string name="home_search_only_body">ଆପଣଙ୍କର କୌଣସି ଏକ୍ସଟେନସନରେ ହୋମ୍ ପୃଷ୍ଠା ନାହିଁ, କିନ୍ତୁ ଆପଣ ସେଗୁଡ଼ିକରେ ସନ୍ଧାନ କରିପାରିବେ।</string>
+<string name="home_source_none_line">କୌଣସି ଧାଡ଼ି ନାହିଁ; ଆପଣଙ୍କ ଲାଇବ୍ରେରୀ ରହିବ</string>
 <string name="home_source_none_subtitle">ଧାଡ଼ି ନାହିଁ · ଆପଣଙ୍କ ଧାଡ଼ି ରହେ</string>
+<string name="home_source_picker_body">ଧାଡ଼ିଗୁଡ଼ିକ ଥରକେ ଗୋଟିଏ ଏକ୍ସଟେନସନରୁ ଆସେ।</string>
+<string name="home_source_picker_title">ହୋମ୍ ଉତ୍ସ</string>
+<string name="home_source_unreachable">ଗତ ଥର ପହଞ୍ଚି ହେଲା ନାହିଁ</string>
 <string name="library">ଲାଇବ୍ରେରୀ</string>
 <string name="library_not_connected">ସଂଯୁକ୍ତ ନାହିଁ</string>
 <string name="library_on_device">ଡିଭାଇସରେ</string>

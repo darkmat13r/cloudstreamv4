@@ -14,6 +14,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Soek %d bron</item><item quantity="other">Soek al %d bronne</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Druk die sleutelbord se soeksleutel om tog %d bron te deursoek.</item><item quantity="other">Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BRON</item><item quantity="other">%d BRONNE</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d afdeling</item><item quantity="other">%d afdelings</item></plurals>
 <string name="action_add_to_bookmarks">Stel kykstatus</string>
 <string name="action_remove_from_bookmarks">Verwyder</string>
 <string name="action_remove_watching">Verwyder</string>
@@ -32,6 +33,10 @@
 <string name="continue_watching">Kyk verder</string>
 <string name="delete">Wis Uit</string>
 <string name="desktop_menu_go">Gaan</string>
+<string name="detail_source_resolving">Los op…</string>
+<string name="detail_sources_done">%1$d van %2$d het geantwoord</string>
+<string name="detail_sources_progress">%1$d van %2$d het geantwoord · laai…</string>
+<string name="detail_start_over">Begin oor</string>
 <string name="download">Laai af</string>
 <string name="download_canceled">Aflaai gekanselleer</string>
 <string name="download_done">Klaar Afgelaai</string>
@@ -117,6 +122,7 @@
 <string name="home_bookmarks_no_status_body">Kies een hierbo om daardie boekmerke te sien.</string>
 <string name="home_bookmarks_no_status_headline">Geen status gekies</string>
 <string name="home_change_provider_img_des">Verander Verskaffer</string>
+<string name="home_choose_source">Kies bron</string>
 <string name="home_expanded_hide">Versteek</string>
 <string name="home_info">Inligting</string>
 <string name="home_main_poster_img_des">Hoofplakkaat</string>
@@ -127,8 +133,13 @@
 <string name="home_offline_bookmarks_body">Jou boekmerke is op hierdie toestel gestoor.</string>
 <string name="home_offline_source_headline">%1$s het ’n verbinding nodig</string>
 <string name="home_play">Speel</string>
+<string name="home_reload_failed">Kon %1$s nie herlaai nie. Hierdie rye is van %2$s gelede.</string>
 <string name="home_search_only_body">Geen van jou uitbreidings het 'n tuisblad nie, maar jy kan steeds daarin soek.</string>
+<string name="home_source_none_line">Geen rye nie; jou biblioteek bly</string>
 <string name="home_source_none_subtitle">GEEN RYE · JOU RYE BLY</string>
+<string name="home_source_picker_body">Rye kom van een uitbreiding op 'n slag.</string>
+<string name="home_source_picker_title">Tuisbron</string>
+<string name="home_source_unreachable">Kon dit laas nie bereik nie</string>
 <string name="load_more">Laai meer</string>
 <string name="loading">Laai tans…</string>
 <string name="more_like_this">Meer soos hierdie</string>

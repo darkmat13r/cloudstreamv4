@@ -18,6 +18,11 @@
 <string name="cast">ተዋሳእቲ</string>
 <string name="cast_format">ተዋሳእቲ፡ %s</string>
 <string name="desktop_menu_go">ኪድ</string>
+<plurals name="home_source_sections"><item quantity="one">%d ክፋል</item><item quantity="other">%d ክፋላት</item></plurals>
+<string name="detail_source_resolving">ይፈትሕ ኣሎ…</string>
+<string name="detail_sources_done">ካብ %2$d %1$d መሊሶም</string>
+<string name="detail_sources_progress">ካብ %2$d %1$d መሊሶም · ይጽዕን ኣሎ…</string>
+<string name="detail_start_over">ካብ መጀመርታ ጀምር</string>
 <string name="downloads_browse_library">ቤተ-መጻሕፍቲ ድለ</string>
 <string name="downloads_cancel_confirm_body">እዚ ክሳብ ሕጂ ዝወረደ %s ይድርብዮ።</string>
 <string name="downloads_cancel_confirm_title">እዚ ውርዲ ይሰረዝ?</string>
@@ -80,12 +85,18 @@
 <string name="extensions_waiting_count">ንዓኻ ዝጽበዩ መስፋሕፋሕቲ: %d</string>
 <string name="home_bookmarks_no_status_body">ነቶም ምልክታት ንምርኣይ ካብ ላዕሊ ሓደ ምረጹ።</string>
 <string name="home_bookmarks_no_status_headline">ዝተመረጸ ኩነታት የለን</string>
+<string name="home_choose_source">ምንጪ ምረጽ</string>
 <string name="home_none_body">መስመራቱ ኣብዚ ንምርኣይ ምንጪ ምረጹ። ምርኣይ ቀጽሉን ምልክታትኩምን ብዘይ ምንጪ ይጸንሑ።</string>
 <string name="home_none_headline">ዝተመረጸ ምንጪ የለን</string>
 <string name="home_offline_bookmarks_body">ምልክታትኩም ኣብዚ መሳርሒ ተዓቂቦም ኣለዉ።</string>
 <string name="home_offline_source_headline">%1$s ምትእስሳር የድልዮ</string>
+<string name="home_reload_failed">%1$s ዳግማይ ክጽዓን ኣይከኣለን። እዞም መስርዕታት ቅድሚ %2$s ዝነበሩ እዮም።</string>
 <string name="home_search_only_body">ካብ መስፋሕፋሕትኻ ሓደ እኳ መበገሲ ገጽ የብሉን፡ ግን ሕጂ'ውን ኣብኡ ክትደሊ ትኽእል ኢኻ።</string>
+<string name="home_source_none_line">መስርዕ የለን፤ ቤተ-መጻሕፍትኻ ይጸንሕ</string>
 <string name="home_source_none_subtitle">መስመራት የለን · መስመራትኩም ይጸንሑ</string>
+<string name="home_source_picker_body">መስርዕታት ብሓደ እዋን ካብ ሓደ ተወሳኺ ይመጹ።</string>
+<string name="home_source_picker_title">ምንጪ ቀንዲ</string>
+<string name="home_source_unreachable">ዝሓለፈ ግዜ ክብጻሕ ኣይከኣለን</string>
 <string name="load_more">ተወሳኺ ጽዓን</string>
 <string name="more_like_this">ተመሳሳሊ</string>
 <string name="next_episode_format">ክፋል %d በ ላይ ይወጣል</string>

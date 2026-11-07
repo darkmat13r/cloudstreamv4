@@ -14,6 +14,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">חיפוש ב-%d מקור</item><item quantity="two">חיפוש בכל %d המקורות</item><item quantity="other">חיפוש בכל %d המקורות</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.</item><item quantity="two">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.</item><item quantity="other">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d מקור</item><item quantity="two">%d מקורות</item><item quantity="other">%d מקורות</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d קטע</item><item quantity="two">%d קטעים</item><item quantity="other">%d קטעים</item></plurals>
 <string name="account">חשבון</string>
 <string name="action_add_to_bookmarks">הגדר מצב צפייה</string>
 <string name="action_default">ברירת מחדל</string>
@@ -119,6 +120,10 @@
 <string name="delete_repository_plugins">פעולה זו תמחק גם את כל תוספי המאגר</string>
 <string name="deselect_all">הסר בחירה מהכל</string>
 <string name="desktop_menu_go">מעבר</string>
+<string name="detail_source_resolving">מאתר…</string>
+<string name="detail_sources_done">%1$d מתוך %2$d ענו</string>
+<string name="detail_sources_progress">%1$d מתוך %2$d ענו · בטעינה…</string>
+<string name="detail_start_over">התחלה מחדש</string>
 <string name="disable">ביטול</string>
 <string name="discord">הצטרפות לדיסקורד</string>
 <string name="display_subbed_dubbed_settings">הצג אנימות מדובבות/מתורגמות</string>
@@ -274,6 +279,7 @@
 <string name="home_bookmarks_no_status_body">בחרו אחד למעלה כדי לראות את הסימניות האלה.</string>
 <string name="home_bookmarks_no_status_headline">לא נבחר סטטוס</string>
 <string name="home_change_provider_img_des">לשנות ספק</string>
+<string name="home_choose_source">בחירת מקור</string>
 <string name="home_expanded_hide">להתחבא</string>
 <string name="home_info">מידע</string>
 <string name="home_main_poster_img_des">פוסטר ראשי</string>
@@ -285,9 +291,14 @@
 <string name="home_offline_source_headline">%1$s צריך חיבור</string>
 <string name="home_play">נגן</string>
 <string name="home_random">אקראי</string>
+<string name="home_reload_failed">לא ניתן לטעון מחדש את %1$s. השורות האלה מלפני %2$s.</string>
 <string name="home_search_only_body">לאף אחת מההרחבות שלך אין דף בית, אבל עדיין אפשר לחפש בהן.</string>
 <string name="home_source">מקור</string>
+<string name="home_source_none_line">אין שורות; הספרייה שלך נשארת</string>
 <string name="home_source_none_subtitle">אין שורות · השורות שלך נשארות</string>
+<string name="home_source_picker_body">השורות מגיעות מתוסף אחד בכל פעם.</string>
+<string name="home_source_picker_title">מקור לדף הבית</string>
+<string name="home_source_unreachable">לא היה זמין בפעם הקודמת</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">ההתחברות אל GitHub נכשלה. מדליק פרוקסי אל jsDelivr…</string>
 <string name="jsdelivr_proxy">פרוקסי עבור raw.githubusercontent.com</string>

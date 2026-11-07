@@ -16,6 +16,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Барај во %d извор</item><item quantity="other">Барај во сите %d извори</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во %d извор.</item><item quantity="other">Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во сите %d извори.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ИЗВОР</item><item quantity="other">%d ИЗВОРИ</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d дел</item><item quantity="other">%d делови</item></plurals>
 <string name="account">Корисничко име</string>
 <string name="action_add_to_bookmarks">Постави статус на пратење</string>
 <string name="action_add_to_favorites">Додади во омилени</string>
@@ -169,6 +170,10 @@
 <string name="delete_repository_plugins">Ова исто така ќе ги избрише сите приклучоци</string>
 <string name="deselect_all">Деселектирај сѐ</string>
 <string name="desktop_menu_go">Оди</string>
+<string name="detail_source_resolving">Се разрешува…</string>
+<string name="detail_sources_done">Одговорија: %1$d од %2$d</string>
+<string name="detail_sources_progress">Одговорија: %1$d од %2$d · се вчитува…</string>
+<string name="detail_start_over">Почни одново</string>
 <string name="device_pin_counter_text">Кодот истекува за %1$d минута/и и %2$d секунда/и</string>
 <string name="device_pin_error_message">Не може да се добие PIN-кодот на уредот, обиди се со локална автентикација</string>
 <string name="device_pin_expired_message">ПИН-кодот сега е истечен!</string>
@@ -362,6 +367,7 @@
 <string name="home_bookmarks_no_status_body">Изберете еден горе за да ги видите тие обележувачи.</string>
 <string name="home_bookmarks_no_status_headline">Не е избран статус</string>
 <string name="home_change_provider_img_des">Смени провајдер</string>
+<string name="home_choose_source">Избери извор</string>
 <string name="home_expanded_hide">Скриј</string>
 <string name="home_info">Информации</string>
 <string name="home_main_poster_img_des">Главен постер</string>
@@ -373,9 +379,14 @@
 <string name="home_offline_source_headline">%1$s има потреба од врска</string>
 <string name="home_play">Пушти</string>
 <string name="home_random">Случајно</string>
+<string name="home_reload_failed">%1$s не може повторно да се вчита. Овие редови се од пред %2$s.</string>
 <string name="home_search_only_body">Ниту една од твоите екстензии нема почетна страница, но сепак можеш да пребаруваш во нив.</string>
 <string name="home_source">Извор на видео и превод</string>
+<string name="home_source_none_line">Нема редови; библиотеката останува</string>
 <string name="home_source_none_subtitle">НЕМА РЕДОВИ · ВАШИТЕ РЕДОВИ ОСТАНУВААТ</string>
+<string name="home_source_picker_body">Редовите доаѓаат од едно проширување во исто време.</string>
+<string name="home_source_picker_title">Извор за почетна</string>
+<string name="home_source_unreachable">Претходниот пат не беше достапен</string>
 <string name="install_prerelease">Инсталирај предиздавачка верзија</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Не успеа да стигне до GitHub. Вклучувам jsDelivr прокси…</string>

@@ -14,6 +14,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d स्रोत में खोजें</item><item quantity="other">सभी %d स्रोतों में खोजें</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">फिर भी %d स्रोत में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।</item><item quantity="other">फिर भी सभी %d स्रोतों में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d स्रोत</item><item quantity="other">%d स्रोत</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d सेक्शन</item><item quantity="other">%d सेक्शन</item></plurals>
 <string name="account">खाता</string>
 <string name="action_add_to_bookmarks">दर्शन स्थिति सेट करें</string>
 <string name="action_default">डिफॉल्ट</string>
@@ -101,6 +102,10 @@
 <string name="delete_message_series_section">आप निम्नलिखित श्रृंखला के सभी प्रकरण भी स्थायी रूप से हटा देंगे:\n\n%s</string>
 <string name="deselect_all">सभी अचयनित करें</string>
 <string name="desktop_menu_go">जाएँ</string>
+<string name="detail_source_resolving">हल हो रहा है…</string>
+<string name="detail_sources_done">%2$d में से %1$d ने जवाब दिया</string>
+<string name="detail_sources_progress">%2$d में से %1$d ने जवाब दिया · लोड हो रहा है…</string>
+<string name="detail_start_over">फिर से शुरू करें</string>
 <string name="discord">Discord से जुड़िये</string>
 <string name="display_subbed_dubbed_settings">डब किए /सबब् किए एनीमे दिखाएं</string>
 <string name="dns_pref">एचटीटीपीएस पर डीएनएस</string>
@@ -247,6 +252,7 @@
 <string name="home_bookmarks_no_status_body">वे बुकमार्क देखने के लिए ऊपर से एक चुनें।</string>
 <string name="home_bookmarks_no_status_headline">कोई स्थिति नहीं चुनी गई</string>
 <string name="home_change_provider_img_des">प्रोवाइडर बदलें</string>
+<string name="home_choose_source">स्रोत चुनें</string>
 <string name="home_expanded_hide">छिपाएं</string>
 <string name="home_info">जानकारी</string>
 <string name="home_main_poster_img_des">मुख्य पोस्टर</string>
@@ -257,8 +263,13 @@
 <string name="home_offline_bookmarks_body">आपके बुकमार्क इस डिवाइस पर सहेजे गए हैं।</string>
 <string name="home_offline_source_headline">%1$s को कनेक्शन चाहिए</string>
 <string name="home_play">चलाएं</string>
+<string name="home_reload_failed">%1$s को फिर से लोड नहीं कर सके। ये पंक्तियाँ %2$s पहले की हैं।</string>
 <string name="home_search_only_body">आपके किसी भी एक्सटेंशन में होम पेज नहीं है, फिर भी आप उनमें खोज सकते हैं।</string>
+<string name="home_source_none_line">कोई पंक्ति नहीं; आपकी लाइब्रेरी बनी रहती है</string>
 <string name="home_source_none_subtitle">कोई पंक्ति नहीं · आपकी पंक्तियाँ रहती हैं</string>
+<string name="home_source_picker_body">पंक्तियाँ एक समय में एक एक्सटेंशन से आती हैं।</string>
+<string name="home_source_picker_title">होम स्रोत</string>
+<string name="home_source_unreachable">पिछली बार इस तक नहीं पहुँच सके</string>
 <string name="install_prerelease">प्री-रिलीज़ संस्करण स्थापित करें</string>
 <string name="jsdelivr_enabled">गिटहब तक नहीं पहुंचा जा सका। जेएस डीलीवर प्रॉक्सी चालू किया जा रहा है…</string>
 <string name="jsdelivr_proxy">गिटहब प्रॉक्सी</string>

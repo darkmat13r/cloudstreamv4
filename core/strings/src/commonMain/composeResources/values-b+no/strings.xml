@@ -14,6 +14,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Søk i %d kilde</item><item quantity="other">Søk i alle %d kilder</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Trykk på søketasten på tastaturet for å søke i %d kilde likevel.</item><item quantity="other">Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KILDE</item><item quantity="other">%d KILDER</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d seksjon</item><item quantity="other">%d seksjoner</item></plurals>
 <string name="account">konto</string>
 <string name="action_add_to_bookmarks">Sett visningsstatus</string>
 <string name="action_default">Misligholde</string>
@@ -114,6 +115,10 @@
 <string name="delete_repository">Slett pakkebrønn</string>
 <string name="delete_repository_plugins">Dette vil også slette alle pakkebrønnsprogramtillegg</string>
 <string name="desktop_menu_go">Gå</string>
+<string name="detail_source_resolving">Løser…</string>
+<string name="detail_sources_done">%1$d av %2$d svarte</string>
+<string name="detail_sources_progress">%1$d av %2$d svarte · laster inn…</string>
+<string name="detail_start_over">Start på nytt</string>
 <string name="discord">Bli med Discord</string>
 <string name="display_subbed_dubbed_settings">Vis dubbet/subbed Anime</string>
 <string name="dns_pref">DNS rundt HTTPS</string>
@@ -263,6 +268,7 @@
 <string name="home_bookmarks_no_status_body">Velg en ovenfor for å se de bokmerkene.</string>
 <string name="home_bookmarks_no_status_headline">Ingen status valgt</string>
 <string name="home_change_provider_img_des">Bytt leverandør</string>
+<string name="home_choose_source">Velg kilde</string>
 <string name="home_expanded_hide">Gjemme seg</string>
 <string name="home_info">Informasjon</string>
 <string name="home_main_poster_img_des">Main Plakat</string>
@@ -274,9 +280,14 @@
 <string name="home_offline_source_headline">%1$s trenger tilkobling</string>
 <string name="home_play">Spille</string>
 <string name="home_random">Tilfeldig</string>
+<string name="home_reload_failed">Kunne ikke laste inn %1$s på nytt. Disse radene er fra for %2$s siden.</string>
 <string name="home_search_only_body">Ingen av utvidelsene dine har en hjemmeside, men du kan fortsatt søke i dem.</string>
 <string name="home_source">Kilde</string>
+<string name="home_source_none_line">Ingen rader; biblioteket blir værende</string>
 <string name="home_source_none_subtitle">INGEN RADER · RADENE DINE BLIR</string>
+<string name="home_source_picker_body">Radene kommer fra én utvidelse om gangen.</string>
+<string name="home_source_picker_title">Kilde for startsiden</string>
+<string name="home_source_unreachable">Var ikke tilgjengelig sist</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Kunne ikke nå GitHub. Skrur på jsDelivr-mellomtjener …</string>
 <string name="jsdelivr_proxy">raw.githubusercontent.com-mellomtjener</string>

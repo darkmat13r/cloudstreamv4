@@ -13,6 +13,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titre · %2$s</item><item quantity="many">%1$d titres · %2$s</item><item quantity="other">%1$d titres · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARQUE-PAGE</item><item quantity="many">%d DE MARQUE-PAGES</item><item quantity="other">%d MARQUE-PAGES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d section n'a pas pu être chargée</item><item quantity="many">%d sections n'ont pas pu être chargées</item><item quantity="other">%d sections n'ont pas pu être chargées</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d section</item><item quantity="many">%d sections</item><item quantity="other">%d sections</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d lien caché</item><item quantity="many">%d liens cachés</item><item quantity="other">%d liens cachés</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Rechercher dans %d source</item><item quantity="many">Rechercher dans les %d sources</item><item quantity="other">Rechercher dans les %d sources</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Appuyez sur la touche de recherche du clavier pour rechercher quand même dans %d source.</item><item quantity="many">Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.</item><item quantity="other">Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.</item></plurals>
@@ -170,6 +171,10 @@
 <string name="delete_repository_plugins">Cela supprimera également tous les plugins du repository</string>
 <string name="deselect_all">Tout désélectionner</string>
 <string name="desktop_menu_go">Aller</string>
+<string name="detail_source_resolving">Résolution…</string>
+<string name="detail_sources_done">%1$d sur %2$d ont répondu</string>
+<string name="detail_sources_progress">%1$d sur %2$d ont répondu · chargement…</string>
+<string name="detail_start_over">Recommencer</string>
 <string name="device_pin_counter_text">Code expire dans %1$dm %2$ds</string>
 <string name="device_pin_error_message">Impossible d’obtenir le code PIN de l’appareil, essayez l’authentification locale</string>
 <string name="device_pin_expired_message">Le code PIN est maintenant expiré !</string>
@@ -363,6 +368,7 @@
 <string name="home_bookmarks_no_status_body">Choisissez-en un ci-dessus pour voir ces marque-pages.</string>
 <string name="home_bookmarks_no_status_headline">Aucun statut choisi</string>
 <string name="home_change_provider_img_des">Changer le fournisseur</string>
+<string name="home_choose_source">Choisir une source</string>
 <string name="home_expanded_hide">Cacher</string>
 <string name="home_info">Infos</string>
 <string name="home_main_poster_img_des">Affiche principale</string>
@@ -374,9 +380,14 @@
 <string name="home_offline_source_headline">%1$s a besoin d'une connexion</string>
 <string name="home_play">Lecture</string>
 <string name="home_random">Aléatoire</string>
+<string name="home_reload_failed">Impossible de recharger %1$s. Ces rangées datent d'il y a %2$s.</string>
 <string name="home_search_only_body">Aucune de vos extensions n'a de page d'accueil, mais vous pouvez quand même y effectuer une recherche.</string>
 <string name="home_source">Source</string>
+<string name="home_source_none_line">Aucune rangée ; votre bibliothèque reste</string>
 <string name="home_source_none_subtitle">AUCUNE RANGÉE · VOS RANGÉES RESTENT</string>
+<string name="home_source_picker_body">Les rangées viennent d'une extension à la fois.</string>
+<string name="home_source_picker_title">Source de l'accueil</string>
+<string name="home_source_unreachable">Injoignable la dernière fois</string>
 <string name="install_prerelease">Installer la version préliminaire</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Impossible d'atteindre GitHub. Activation du proxy jsDelivr…</string>

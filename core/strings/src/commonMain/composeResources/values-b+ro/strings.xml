@@ -14,6 +14,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Caută în %d sursă</item><item quantity="few">Caută în toate cele %d surse</item><item quantity="other">Caută în toate cele %d de surse</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în %d sursă.</item><item quantity="few">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d surse.</item><item quantity="other">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d de surse.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d SURSĂ</item><item quantity="few">%d SURSE</item><item quantity="other">%d DE SURSE</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d secțiune</item><item quantity="few">%d secțiuni</item><item quantity="other">%d de secțiuni</item></plurals>
 <string name="account">Cont</string>
 <string name="action_add_to_bookmarks">Adaugă</string>
 <string name="action_add_to_favorites">Adaugă la favoriți/te</string>
@@ -149,6 +150,10 @@
 <string name="delete_repository_plugins">Acest lucru va șterge, de asemenea, toate plugin-urile din depozit</string>
 <string name="deselect_all">Deselectionati totul</string>
 <string name="desktop_menu_go">Mergi</string>
+<string name="detail_source_resolving">Se rezolvă…</string>
+<string name="detail_sources_done">Au răspuns %1$d din %2$d</string>
+<string name="detail_sources_progress">Au răspuns %1$d din %2$d · se încarcă…</string>
+<string name="detail_start_over">Începe de la capăt</string>
 <string name="disable">Dezactivați</string>
 <string name="discord">Alăturați-vă pe Discord</string>
 <string name="dismiss">Închide</string>
@@ -322,6 +327,7 @@
 <string name="home_bookmarks_no_status_body">Alegeți unul mai sus pentru a vedea acele marcaje.</string>
 <string name="home_bookmarks_no_status_headline">Niciun status ales</string>
 <string name="home_change_provider_img_des">Schimbă furnizorul</string>
+<string name="home_choose_source">Alege sursa</string>
 <string name="home_expanded_hide">Ascunde</string>
 <string name="home_info">Informații</string>
 <string name="home_main_poster_img_des">Poster Principal</string>
@@ -333,9 +339,14 @@
 <string name="home_offline_source_headline">%1$s are nevoie de conexiune</string>
 <string name="home_play">Începe</string>
 <string name="home_random">Aleatoriu</string>
+<string name="home_reload_failed">%1$s nu a putut fi reîncărcat. Aceste rânduri sunt de acum %2$s.</string>
 <string name="home_search_only_body">Niciuna dintre extensiile dvs. nu are o pagină principală, dar puteți căuta în continuare în ele.</string>
 <string name="home_source">Sursa</string>
+<string name="home_source_none_line">Fără rânduri; biblioteca rămâne</string>
 <string name="home_source_none_subtitle">FĂRĂ RÂNDURI · RÂNDURILE DVS. RĂMÂN</string>
+<string name="home_source_picker_body">Rândurile vin de la o singură extensie odată.</string>
+<string name="home_source_picker_title">Sursa paginii principale</string>
+<string name="home_source_unreachable">Nu a putut fi accesată data trecută</string>
 <string name="install_prerelease">Instalează versiunea preliminară</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Nu s-a putut ajunge la GitHub. Se activează proxy-ul jsDelivr…</string>

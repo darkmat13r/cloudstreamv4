@@ -14,6 +14,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Fittex f'%d sors</item><item quantity="two">Fittex fil-%d sorsi kollha</item><item quantity="few">Fittex fil-%d sorsi kollha</item><item quantity="many">Fittex fil-%d sors kollha</item><item quantity="other">Fittex fil-%d sors kollha</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta f'%d sors.</item><item quantity="two">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.</item><item quantity="few">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.</item><item quantity="many">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.</item><item quantity="other">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d SORS</item><item quantity="two">%d SORSI</item><item quantity="few">%d SORSI</item><item quantity="many">%d SORS</item><item quantity="other">%d SORS</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d taqsima</item><item quantity="two">%d taqsimiet</item><item quantity="few">%d taqsimiet</item><item quantity="many">%d-il taqsima</item><item quantity="other">%d taqsima</item></plurals>
 <string name="action_add_to_bookmarks">Issettja l-istatus ta-rajtux</string>
 <string name="action_open_play">Ibda</string>
 <string name="action_open_watching">Iktar informazzjoni</string>
@@ -30,6 +31,10 @@
 <string name="cast_format">Atturi: %s</string>
 <string name="continue_watching">Kompli Ara</string>
 <string name="desktop_menu_go">Mur</string>
+<string name="detail_source_resolving">Qed isolvi…</string>
+<string name="detail_sources_done">Wieġbu %1$d minn %2$d</string>
+<string name="detail_sources_progress">Wieġbu %1$d minn %2$d · qed jitgħabba…</string>
+<string name="detail_start_over">Erġa' ibda</string>
 <string name="download">Niżżel</string>
 <string name="download_canceled">Tniżżil ikkanċellat</string>
 <string name="download_done">Lest it-tniżżil</string>
@@ -111,6 +116,7 @@
 <string name="home_bookmarks_no_status_body">Agħżel wieħed hawn fuq biex tara dawk il-bookmarks.</string>
 <string name="home_bookmarks_no_status_headline">Ebda status magħżul</string>
 <string name="home_change_provider_img_des">Ibdel Il-fornitur</string>
+<string name="home_choose_source">Agħżel sors</string>
 <string name="home_expanded_hide">Aħbi</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Kartellun Principali</string>
@@ -121,8 +127,13 @@
 <string name="home_offline_bookmarks_body">Il-bookmarks tiegħek huma salvati fuq dan l-apparat.</string>
 <string name="home_offline_source_headline">%1$s jeħtieġ konnessjoni</string>
 <string name="home_play">Ibda</string>
+<string name="home_reload_failed">Ma setax jerġa' jitgħabba %1$s. Dawn ir-ringieli huma minn %2$s ilu.</string>
 <string name="home_search_only_body">L-ebda waħda mill-estensjonijiet tiegħek m'għandha paġna ewlenija, imma xorta tista' tfittex fihom.</string>
+<string name="home_source_none_line">L-ebda ringiela; il-librerija tiegħek tibqa'</string>
 <string name="home_source_none_subtitle">EBDA RINGIELI · IR-RINGIELI TIEGĦEK JIBQGĦU</string>
+<string name="home_source_picker_body">Ir-ringieli jiġu minn estensjoni waħda kull darba.</string>
+<string name="home_source_picker_title">Sors tad-dar</string>
+<string name="home_source_unreachable">Ma setax jintlaħaq l-aħħar darba</string>
 <string name="links_reloaded_toast">Links regaw gew mogħbija</string>
 <string name="load_more">Għabbi iktar</string>
 <string name="loading">Tagħbija…</string>

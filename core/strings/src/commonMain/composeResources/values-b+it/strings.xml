@@ -13,6 +13,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titolo · %2$s</item><item quantity="many">%1$d titoli · %2$s</item><item quantity="other">%1$d titoli · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d SEGNALIBRO</item><item quantity="many">%d DI SEGNALIBRI</item><item quantity="other">%d SEGNALIBRI</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Impossibile caricare %d sezione</item><item quantity="many">Impossibile caricare %d sezioni</item><item quantity="other">Impossibile caricare %d sezioni</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d sezione</item><item quantity="many">%d sezioni</item><item quantity="other">%d sezioni</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d collegamento nascosto</item><item quantity="many">%d collegamenti nascosti</item><item quantity="other">%d collegamenti nascosti</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Cerca in %d fonte</item><item quantity="many">Cerca in tutte le %d fonti</item><item quantity="other">Cerca in tutte le %d fonti</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Premi il tasto di ricerca della tastiera per cercare comunque in %d fonte.</item><item quantity="many">Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.</item><item quantity="other">Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.</item></plurals>
@@ -170,6 +171,10 @@
 <string name="delete_repository_plugins">Questo eliminerà anche tutti i plugin del repository</string>
 <string name="deselect_all">Deseleziona tutto</string>
 <string name="desktop_menu_go">Vai</string>
+<string name="detail_source_resolving">Risoluzione…</string>
+<string name="detail_sources_done">Hanno risposto %1$d su %2$d</string>
+<string name="detail_sources_progress">Hanno risposto %1$d su %2$d · caricamento…</string>
+<string name="detail_start_over">Ricomincia</string>
 <string name="device_pin_counter_text">Il codice scadrà tra %1$dm %2$ds</string>
 <string name="device_pin_error_message">Impossibile ottenere il codice PIN del dispositivo, prova l'autenticazione locale</string>
 <string name="device_pin_expired_message">Il codice PIN è scaduto!</string>
@@ -363,6 +368,7 @@
 <string name="home_bookmarks_no_status_body">Scegline uno sopra per vedere quei segnalibri.</string>
 <string name="home_bookmarks_no_status_headline">Nessuno stato scelto</string>
 <string name="home_change_provider_img_des">Cambia provider</string>
+<string name="home_choose_source">Scegli fonte</string>
 <string name="home_expanded_hide">Nascondi</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Poster principale</string>
@@ -374,9 +380,14 @@
 <string name="home_offline_source_headline">%1$s richiede una connessione</string>
 <string name="home_play">Riproduci</string>
 <string name="home_random">Casuale</string>
+<string name="home_reload_failed">Impossibile ricaricare %1$s. Queste righe sono di %2$s fa.</string>
 <string name="home_search_only_body">Nessuna delle tue estensioni ha una pagina iniziale, ma puoi comunque cercare al loro interno.</string>
 <string name="home_source">Fonte</string>
+<string name="home_source_none_line">Nessuna riga; la tua libreria resta</string>
 <string name="home_source_none_subtitle">NESSUNA RIGA · LE TUE RIGHE RESTANO</string>
+<string name="home_source_picker_body">Le righe arrivano da un'estensione alla volta.</string>
+<string name="home_source_picker_title">Fonte della home</string>
+<string name="home_source_unreachable">Non raggiungibile l'ultima volta</string>
 <string name="install_prerelease">Installa la versione pre-release</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Impossibile raggiungere GitHub. Attivazione proxy jsDelivr…</string>

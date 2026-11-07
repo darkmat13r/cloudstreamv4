@@ -13,6 +13,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titul · %2$s</item><item quantity="few">%1$d tituly · %2$s</item><item quantity="many">%1$d titulu · %2$s</item><item quantity="other">%1$d titulů · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽEK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepodařilo se načíst %d sekci</item><item quantity="few">Nepodařilo se načíst %d sekce</item><item quantity="many">Nepodařilo se načíst %d sekcí</item><item quantity="other">Nepodařilo se načíst %d sekcí</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d sekce</item><item quantity="few">%d sekce</item><item quantity="many">%d sekce</item><item quantity="other">%d sekcí</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d skrytý odkaz</item><item quantity="few">%d skryté odkazy</item><item quantity="many">%d skrytých odkazů</item><item quantity="other">%d skrytých odkazů</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Hledat v %d zdroji</item><item quantity="few">Hledat ve všech %d zdrojích</item><item quantity="many">Hledat ve všech %d zdrojích</item><item quantity="other">Hledat ve všech %d zdrojích</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte %d zdroj.</item><item quantity="few">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všechny %d zdroje.</item><item quantity="many">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdroje.</item><item quantity="other">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů.</item></plurals>
@@ -170,6 +171,10 @@
 <string name="delete_repository_plugins">Tímto také odstraníte všechny doplňky repozitářů</string>
 <string name="deselect_all">Zrušit výběr všeho</string>
 <string name="desktop_menu_go">Přejít</string>
+<string name="detail_source_resolving">Zjišťování…</string>
+<string name="detail_sources_done">Odpovědělo: %1$d z %2$d</string>
+<string name="detail_sources_progress">Odpovědělo: %1$d z %2$d · načítání…</string>
+<string name="detail_start_over">Začít znovu</string>
 <string name="device_pin_counter_text">Kód vyprší za %1$dm %2$ds</string>
 <string name="device_pin_error_message">Nepodařilo se získat PIN kód, zkuste místní ověření</string>
 <string name="device_pin_expired_message">PIN kód vypršel!</string>
@@ -363,6 +368,7 @@
 <string name="home_bookmarks_no_status_body">Vyberte jeden nahoře a uvidíte tyto záložky.</string>
 <string name="home_bookmarks_no_status_headline">Není vybrán žádný stav</string>
 <string name="home_change_provider_img_des">Změnit poskytovatele</string>
+<string name="home_choose_source">Vybrat zdroj</string>
 <string name="home_expanded_hide">Skrýt</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Hlavní plakát</string>
@@ -374,9 +380,14 @@
 <string name="home_offline_source_headline">%1$s potřebuje připojení</string>
 <string name="home_play">Přehrát</string>
 <string name="home_random">Náhodný</string>
+<string name="home_reload_failed">%1$s se nepodařilo znovu načíst. Tyto řádky jsou z doby před %2$s.</string>
 <string name="home_search_only_body">Žádné z vašich rozšíření nemá domovskou stránku, ale stále v nich můžete hledat.</string>
 <string name="home_source">Zdroj</string>
+<string name="home_source_none_line">Žádné řádky; knihovna zůstane</string>
 <string name="home_source_none_subtitle">ŽÁDNÉ ŘADY · VAŠE ŘADY ZŮSTÁVAJÍ</string>
+<string name="home_source_picker_body">Řádky pocházejí vždy z jednoho rozšíření.</string>
+<string name="home_source_picker_title">Zdroj domovské stránky</string>
+<string name="home_source_unreachable">Minule se nepodařilo připojit</string>
 <string name="install_prerelease">Nainstalovat předběžnou verzi</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Nelze se připojit k serveru GitHub. Zapínání proxy jsDelivr…</string>

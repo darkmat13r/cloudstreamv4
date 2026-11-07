@@ -14,6 +14,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Keresés %d forrásban</item><item quantity="other">Keresés mind a(z) %d forrásban</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen %d forrásban.</item><item quantity="other">Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FORRÁS</item><item quantity="other">%d FORRÁS</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d szakasz</item><item quantity="other">%d szakasz</item></plurals>
 <string name="account">Fiók</string>
 <string name="action_add_to_bookmarks">Megtekintés állapotának beállítása</string>
 <string name="action_add_to_favorites">Hozzáadás a kedvencekhez</string>
@@ -143,6 +144,10 @@
 <string name="delete_repository_plugins">Ez az összes tároló bővítményt is törli</string>
 <string name="deselect_all">Mindent Kijelölés Eltávolítása</string>
 <string name="desktop_menu_go">Ugrás</string>
+<string name="detail_source_resolving">Feloldás…</string>
+<string name="detail_sources_done">%2$d közül %1$d válaszolt</string>
+<string name="detail_sources_progress">%2$d közül %1$d válaszolt · betöltés…</string>
+<string name="detail_start_over">Újrakezdés</string>
 <string name="device_pin_counter_text">A kód %1$dm %2$ds után lejár</string>
 <string name="device_pin_error_message">Nem működik az eszköz PIN-kódja, próbálkozzon helyi hitelesítéssel</string>
 <string name="device_pin_expired_message">A PIN-kód most lejárt!</string>
@@ -324,6 +329,7 @@
 <string name="home_bookmarks_no_status_body">Válasszon egyet fent, hogy lássa azokat a könyvjelzőket.</string>
 <string name="home_bookmarks_no_status_headline">Nincs kiválasztott állapot</string>
 <string name="home_change_provider_img_des">Szolgáltató Váltás</string>
+<string name="home_choose_source">Forrás választása</string>
 <string name="home_expanded_hide">Elrejtés</string>
 <string name="home_info">Információ</string>
 <string name="home_main_poster_img_des">Fő Plakát</string>
@@ -335,9 +341,14 @@
 <string name="home_offline_source_headline">A(z) %1$s kapcsolatot igényel</string>
 <string name="home_play">Lejátszás</string>
 <string name="home_random">Lepj meg</string>
+<string name="home_reload_failed">A(z) %1$s nem tölthető újra. Ezek a sorok %2$s előttiek.</string>
 <string name="home_search_only_body">Egyik bővítményének sincs kezdőlapja, de továbbra is kereshet bennük.</string>
 <string name="home_source">Forrás</string>
+<string name="home_source_none_line">Nincsenek sorok; a könyvtárad megmarad</string>
 <string name="home_source_none_subtitle">NINCSENEK SOROK · A SAJÁT SORAI MARADNAK</string>
+<string name="home_source_picker_body">A sorok egyszerre egy bővítményből származnak.</string>
+<string name="home_source_picker_title">Kezdőlap forrása</string>
+<string name="home_source_unreachable">Legutóbb nem volt elérhető</string>
 <string name="install_prerelease">Telepít kiadás előtti verziót</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Nem sikerült elérni a GitHubot, a jsdelivr proxy bekapcsolva…</string>

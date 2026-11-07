@@ -13,6 +13,7 @@
 <plurals name="downloads_titles_status"><item quantity="other">%1$d tựa · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">%d MỤC</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">Không tải được %d mục</item></plurals>
+<plurals name="home_source_sections"><item quantity="other">%d mục</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d liên kết bị ẩn</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">Tìm kiếm trên cả %d nguồn</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.</item></plurals>
@@ -170,6 +171,10 @@
 <string name="delete_repository_plugins">Việc này sẽ xóa tất cả tiện ích mở rộng trong kho nguồn phim</string>
 <string name="deselect_all">Bỏ chọn tất cả</string>
 <string name="desktop_menu_go">Đi</string>
+<string name="detail_source_resolving">Đang phân giải…</string>
+<string name="detail_sources_done">%1$d/%2$d đã phản hồi</string>
+<string name="detail_sources_progress">%1$d/%2$d đã phản hồi · đang tải…</string>
+<string name="detail_start_over">Bắt đầu lại</string>
 <string name="device_pin_counter_text">Mã sẽ hết hạn trong %1$d phút %2$d giây</string>
 <string name="device_pin_error_message">Không lấy được mã PIN, vui lòng thử xác thực cục bộ</string>
 <string name="device_pin_expired_message">Mã PIN đã hết hạn!</string>
@@ -363,6 +368,7 @@
 <string name="home_bookmarks_no_status_body">Chọn một mục ở trên để xem các mục đó.</string>
 <string name="home_bookmarks_no_status_headline">Chưa chọn trạng thái</string>
 <string name="home_change_provider_img_des">Thay đổi Nguồn phim</string>
+<string name="home_choose_source">Chọn nguồn</string>
 <string name="home_expanded_hide">Ẩn</string>
 <string name="home_info">Thông tin</string>
 <string name="home_main_poster_img_des">Poster chính</string>
@@ -374,9 +380,14 @@
 <string name="home_offline_source_headline">%1$s cần kết nối</string>
 <string name="home_play">Phát</string>
 <string name="home_random">Ngẫu nhiên</string>
+<string name="home_reload_failed">Không thể tải lại %1$s. Các hàng này từ %2$s trước.</string>
 <string name="home_search_only_body">Không có tiện ích mở rộng nào của bạn có trang chủ, nhưng bạn vẫn có thể tìm kiếm trong đó.</string>
 <string name="home_source">Nguồn</string>
+<string name="home_source_none_line">Không có hàng; thư viện của bạn vẫn còn</string>
 <string name="home_source_none_subtitle">KHÔNG CÓ HÀNG · HÀNG CỦA BẠN VẪN Ở LẠI</string>
+<string name="home_source_picker_body">Các hàng đến từ một tiện ích mỗi lần.</string>
+<string name="home_source_picker_title">Nguồn trang chủ</string>
+<string name="home_source_unreachable">Không truy cập được lần trước</string>
 <string name="install_prerelease">Cài đặt phiên bản phát hành trước</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Không thể kết nối được tới GitHub. Đang bật jsDelivr proxy…</string>

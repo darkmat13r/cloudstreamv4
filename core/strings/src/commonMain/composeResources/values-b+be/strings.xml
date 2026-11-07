@@ -16,6 +16,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Шукаць у %d крыніцы</item><item quantity="few">Шукаць ва ўсіх %d крыніцах</item><item quantity="many">Шукаць ва ўсіх %d крыніцах</item><item quantity="other">Шукаць ва ўсіх %d крыніцах</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць у %d крыніцы.</item><item quantity="few">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.</item><item quantity="many">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.</item><item quantity="other">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d КРЫНІЦА</item><item quantity="few">%d КРЫНІЦЫ</item><item quantity="many">%d КРЫНІЦ</item><item quantity="other">%d КРЫНІЦЫ</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d раздзел</item><item quantity="few">%d раздзелы</item><item quantity="many">%d раздзелаў</item><item quantity="other">%d раздзела</item></plurals>
 <string name="account">уліковы запіс</string>
 <string name="action_add_to_bookmarks">Задаць статус прагляду</string>
 <string name="action_add_to_favorites">Дадаць у абранае</string>
@@ -169,6 +170,10 @@
 <string name="delete_repository_plugins">Гэта таксама прывядзе да выдалення ўсіх убудоў рэпазіторыя</string>
 <string name="deselect_all">Зняць выбар</string>
 <string name="desktop_menu_go">Пераход</string>
+<string name="detail_source_resolving">Вызначэнне…</string>
+<string name="detail_sources_done">Адказалі: %1$d з %2$d</string>
+<string name="detail_sources_progress">Адказалі: %1$d з %2$d · загрузка…</string>
+<string name="detail_start_over">Пачаць спачатку</string>
 <string name="device_pin_counter_text">Код мінуе праз %1$dхв %2$dс</string>
 <string name="device_pin_error_message">Не ўдалося атрымаць PIN-код прылады, паспрабуйце лакальную праверку сапраўднасці</string>
 <string name="device_pin_expired_message">PIN-код састарэў!</string>
@@ -362,6 +367,7 @@
 <string name="home_bookmarks_no_status_body">Абярыце адзін вышэй, каб убачыць гэтыя закладкі.</string>
 <string name="home_bookmarks_no_status_headline">Статус не абраны</string>
 <string name="home_change_provider_img_des">Змяніць пастаўшчыка</string>
+<string name="home_choose_source">Выбраць крыніцу</string>
 <string name="home_expanded_hide">Схаваць</string>
 <string name="home_info">Звесткі</string>
 <string name="home_main_poster_img_des">Асноўны плакат</string>
@@ -373,9 +379,14 @@
 <string name="home_offline_source_headline">%1$s патрабуе злучэння</string>
 <string name="home_play">Прайграць</string>
 <string name="home_random">Выпадковае</string>
+<string name="home_reload_failed">Не ўдалося перазагрузіць %1$s. Гэтыя радкі %2$s таму.</string>
 <string name="home_search_only_body">Ніводнае з вашых пашырэнняў не мае дамашняй старонкі, але ў іх усё яшчэ можна шукаць.</string>
 <string name="home_source">Крыніца</string>
+<string name="home_source_none_line">Без радкоў; бібліятэка застаецца</string>
 <string name="home_source_none_subtitle">НЯМА РАДКОЎ · ВАШЫ РАДКІ ЗАСТАЮЦЦА</string>
+<string name="home_source_picker_body">Радкі бяруцца з аднаго пашырэння за раз.</string>
+<string name="home_source_picker_title">Крыніца галоўнай</string>
+<string name="home_source_unreachable">Не ўдалося дасягнуць у мінулы раз</string>
 <string name="install_prerelease">Усталяваць перадфінальную версію</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Не ўдалося дасягнуць GitHub. Уключэнне проксі jsDelivr…</string>

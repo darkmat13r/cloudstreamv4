@@ -14,6 +14,7 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Ka raadi %d il</item><item quantity="other">Ka raadi dhammaan %d ilood</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Riix furaha raadinta ee kiiboodhka si aad u raadiso %d il si kastaba ha ahaatee.</item><item quantity="other">Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d IL</item><item quantity="other">%d ILOOD</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d qayb</item><item quantity="other">%d qaybood</item></plurals>
 <string name="account">Akoonka</string>
 <string name="action_add_to_bookmarks">Xagee marinaysaa</string>
 <string name="action_default">Sidiisaa</string>
@@ -114,6 +115,10 @@
 <string name="delete_repository_plugins">Waxa la saarayaa dhammaan sidkanayaasha kayd-weynaha</string>
 <string name="deselect_all">Ha dooran dhammaan</string>
 <string name="desktop_menu_go">Tag</string>
+<string name="detail_source_resolving">Xallinaya…</string>
+<string name="detail_sources_done">%1$d ka mid ah %2$d ayaa jawaabay</string>
+<string name="detail_sources_progress">%1$d ka mid ah %2$d ayaa jawaabay · soo raraya…</string>
+<string name="detail_start_over">Dib u bilow</string>
 <string name="discord">Discord naga soo qabo</string>
 <string name="display_subbed_dubbed_settings">Tusi Anemaha Turjuman/Leh Qrl-hoosaad</string>
 <string name="dns_pref">DNS ka horreysi HTTPS</string>
@@ -267,6 +272,7 @@
 <string name="home_bookmarks_no_status_body">Mid ka dooro korka si aad u aragto calaamadahaas.</string>
 <string name="home_bookmarks_no_status_headline">Xaalad lama dooran</string>
 <string name="home_change_provider_img_des">Beddel qaybiyaha</string>
+<string name="home_choose_source">Dooro isha</string>
 <string name="home_expanded_hide">Qari</string>
 <string name="home_info">Warbixin</string>
 <string name="home_main_poster_img_des">Boodhka weyn</string>
@@ -278,9 +284,14 @@
 <string name="home_offline_source_headline">%1$s wuxuu u baahan yahay xiriir</string>
 <string name="home_play">Daar</string>
 <string name="home_random">Xulasho la'aan</string>
+<string name="home_reload_failed">Lama dib u soo rari karin %1$s. Safafyadani waa kuwii %2$s ka hor.</string>
 <string name="home_search_only_body">Mid ka mid ah kordhiyeyaashaada ma laha bog hore, laakiin weli waad ka raadin kartaa.</string>
 <string name="home_source">Xigashada</string>
+<string name="home_source_none_line">Safaf ma jiro; maktabaddaadu way sii jirtaa</string>
 <string name="home_source_none_subtitle">SAFAF MA JIRAAN · SAFAFKAAGU WAY JIRAAN</string>
+<string name="home_source_picker_body">Safafyadu waxay ka yimaadaan hal kordhin markiiba.</string>
+<string name="home_source_picker_title">Isha bogga hore</string>
+<string name="home_source_unreachable">Lama gaari karin markii ugu dambeysay</string>
 <string name="install_prerelease">Soo deji nooca hordhaca ah</string>
 <string name="is_adult">18+</string>
 <string name="kitsu_settings">Tusi Boodhka Kitsu</string>
