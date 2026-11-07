@@ -16876,6 +16876,7 @@ public abstract class com/lagradost/cloudstream3/syncproviders/AuthRepo : java/l
 	public final fun isValidRedirectUrl (Ljava/lang/String;)Z
 	public final fun login (Lcom/lagradost/cloudstream3/syncproviders/AuthLoginResponse;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun login (Lcom/lagradost/cloudstream3/syncproviders/AuthPinData;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+	public final fun login (Lcom/lagradost/cloudstream3/syncproviders/AuthPinData;Lkotlin/jvm/functions/Function0;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun login (Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun logout (Lcom/lagradost/cloudstream3/syncproviders/AuthUser;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public final fun openOAuth2Page ()Z
@@ -16999,6 +17000,18 @@ public abstract class com/lagradost/cloudstream3/syncproviders/BackupAPI : com/l
 	public fun downloadFile (Lcom/lagradost/cloudstream3/syncproviders/AuthData;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public fun getFilename ()Ljava/lang/String;
 	public fun uploadFile (Lcom/lagradost/cloudstream3/syncproviders/AuthData;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final class com/lagradost/cloudstream3/syncproviders/DevicePinPoll : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (Lcom/lagradost/cloudstream3/syncproviders/AuthPinData;Lkotlin/jvm/functions/Function3;J)V
+	public synthetic fun <init> (Lcom/lagradost/cloudstream3/syncproviders/AuthPinData;Lkotlin/jvm/functions/Function3;JILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final synthetic fun access$getPin$p (Lcom/lagradost/cloudstream3/syncproviders/DevicePinPoll;)Lcom/lagradost/cloudstream3/syncproviders/AuthPinData;
+	public static final synthetic fun access$getSignIn$p (Lcom/lagradost/cloudstream3/syncproviders/DevicePinPoll;)Lkotlin/jvm/functions/Function3;
+	public static final synthetic fun access$getTickMillis$p (Lcom/lagradost/cloudstream3/syncproviders/DevicePinPoll;)J
+	public final fun cancel ()V
+	public final fun isCancelled ()Z
+	public final fun start (Lkotlinx/coroutines/CoroutineScope;Lkotlin/coroutines/CoroutineContext;Lkotlin/coroutines/CoroutineContext;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
 }
 
 public final class com/lagradost/cloudstream3/syncproviders/PlainAuthRepo : com/lagradost/cloudstream3/syncproviders/AuthRepo {
@@ -30865,11 +30878,6 @@ public final static class com/lagradost/cloudstream3/ui/settings/SettingsAccount
 	public final fun showAppLogin (Landroid/app/Activity;Lcom/lagradost/cloudstream3/syncproviders/AuthRepo;)V
 	public final fun showLoginInfo (Landroid/app/Activity;Lcom/lagradost/cloudstream3/syncproviders/AuthRepo;Lcom/lagradost/cloudstream3/syncproviders/AuthUser;I)V
 	public final fun showPin (Landroid/app/Activity;Lcom/lagradost/cloudstream3/syncproviders/AuthRepo;)V
-}
-
-public final static class com/lagradost/cloudstream3/ui/settings/SettingsAccount$Companion$showPin$2$1$2 : android/os/CountDownTimer {
-	public fun onFinish ()V
-	public fun onTick (J)V
 }
 
 public final class com/lagradost/cloudstream3/ui/settings/SettingsAccount2 : com/lagradost/cloudstream3/utils/BaseComposeFragment, com/mihon/presentation/settings/SearchableSettings {
