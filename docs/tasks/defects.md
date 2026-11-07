@@ -1717,7 +1717,8 @@ exit-window focus hole, so fixing this fails that test and the fix gets looked a
 
 **Second pinned caller, `KMP-50`** (2026-11-07): the library's sort panel (5d). BACK lands on the chrome row's first
 stop, the provider button, not on Sort, the button that opened it. `LibrarySourcesTvDeviceTest.
-backClosesTheSortPanelWithTheChoiceAppliedAndFocusOnTheRowsFirstStop` pins it. The source panel (5e) never showed it,
+backClosesTheSortPanelWithTheChoiceAppliedAndFocusOnTheRowsFirstStop` pins it, at the assertion
+`"BUG-36: the row's first stop"`: **the component's fix flips that assertion to `SORT`.** The source panel (5e) never showed it,
 because its button is that first stop.
 
 Not to be confused with the separate, already-recorded defect in the same component: a D-pad move during the
@@ -1726,7 +1727,8 @@ leaving panel"*).
 
 ## BUG-33 — Choosing a list after a failed read says the list is empty · **low** · read 2026-11-04
 
-**Status:** open. **Read from the code, not run:** no test or device has shown this happening.
+**Status:** **fixed by `KMP-51`** (2026-11-07): after a failed read, a tab or a filter keeps the failure, on desktop and
+on TV. `LibraryOfflineViewModelTest`'s `BUG-33` test covers both. Was: open, read from the code, not run.
 
 `LibraryViewModel.load` keeps `titles` and `positions` empty when the read fails, and `showTab` rebuilds the status from
 them unless the status is `Loading`. So from `LibraryStatus.Failed`, choosing another tab replaces the failure with

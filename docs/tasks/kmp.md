@@ -5583,7 +5583,7 @@ shows no sort button; its cards are in the same order as before, and its tests p
   the grid is not in.
 - **A press** (`chooseSort`) applies at once and leaves the panel open (`DEC-17`, a single choice). The row already
   applied turns the other way round. A criterion the shown source keeps nothing for is refused.
-- **Ties and gaps** (`LibraryShelf.sortedBy`): titles are put newest kept first before the sort, so a tie keeps that
+- **Ties and gaps** (`LibraryShelf.sortedFor`): titles are put newest kept first before the sort, so a tie keeps that
   order. A title with no year, or no rating, goes last both ways round. A name sorts ignoring case. Continue watching is
   always newest watched first.
 
@@ -5646,3 +5646,85 @@ change only by the sort button in the right slot, which was empty. Each looked a
   screen's own reading of them was not run.
 - **A real service's `supportedListSorting`.** Every service read in a test is a fake.
 - **A native speaker reading the new string** in any language.
+
+## KMP-51 — The TV library when a service cannot be read (5b), offline, and `BUG-33` (queue `Q12`, third slice) · **measured 2026-11-07**
+
+**Status:** in pr, stacked on `KMP-50` (`#195`) with `#196` (`I18N-15`) merged in for its words. Android TV only.
+
+**What the screen does now.**
+
+| The shown tracking service | Before | Now |
+|---|---|---|
+| Fails, after a good read in this session | the failure page | **that read stays up, marked:** every card's top-left badge is `Cached`, the provider button has a failed dot and `Unreachable · cached 2h ago`, and `Retry sync` is the next stop to its right (5b) |
+| Fails, with nothing held | the failure page | the same |
+| The device is offline, a read held | it was asked, and failed | **not asked:** that read, with `Offline · cached 2h ago` |
+| The device is offline, nothing held | it was asked, and failed | **not asked:** `You are offline` / `AniList needs a connection`, with Retry |
+| The device comes back online | — | **read again once,** after the connection has held for 2 s, where what it shows is held or offline |
+
+The local list never depends on the network: offline it reads as before. Connectivity is `:core:connectivity`'s
+`ConnectivityFlow`, the one the downloads screens use. `UNKNOWN` is never offline.
+
+**`BUG-33`, fixed.** After a failed read, choosing another tab or typing a filter kept the failure off the screen and said
+the list was empty. Both now keep the failure. This reaches desktop too, as `BUG-33` says it should.
+
+**The rules, each in one place.**
+
+- **What is held** (`LibraryViewModel.held`): each service's last good read **in this session, in memory only**. A
+  service's lists are the user's account on someone else's site, and nothing here writes them to disk. After the
+  process dies nothing is held, and a failure is the failure page, as before.
+- **The age** is the source's `syncedAt`, recorded when that read was made (`KMP-49`), so `2h` is a fact. Without a
+  clock the button keeps its usual line beside the failed dot.
+- **Coming back** (`reconnected`): only the shown service, only where it shows a held read or the offline page, and
+  only once the connection has held for `RECONNECT_SETTLE_MS`. The collector takes the latest status, so a network that
+  flaps cancels the wait each time and makes one read when it settles, not one per flap.
+- **The failure is the words and the dot's shape, not a colour** (`DEC-17`): the meta line stays muted, as the board's
+  red would break that ruling.
+
+### The words
+
+`KMP-51` adds no keys. It uses `#196`'s, agreed with `I18N-15` so each sentence has one owner and the age sits where
+each language puts it: `library_sync_unreachable` and `library_sync_offline` ("… · cached %s ago"),
+`library_sync_cached` ("Cached") and `library_sync_retry` ("Retry sync"). The offline page reuses Search's
+`You are offline` and Home's `%1$s needs a connection`. The age reuses the formats `KMP-49`'s `Synced %s ago` uses.
+
+### What the board draws that this does not, or draws differently
+
+| Board | Drawn | Here | Why |
+|---|---|---|---|
+| 5b | The meta line in red | Muted, with the failed dot | `DEC-17`: a failure is a hollow neutral marker, never a colour |
+| 5b | `CACHED` on every card | `Cached` in the type badge's place | The type is not the fact that matters while the read is old |
+| 5b | `UNREACHABLE · CACHED 2H` | `Unreachable · cached 2h ago` | `#196`'s sentence, one per reason |
+| 5b | The field narrowed to make room | The field takes what is left | It is weighted already, so Retry's width comes out of it |
+
+### Measured, a wrong turn first
+
+- **The first read did not see a starting OFFLINE.** It ran before the connectivity collector had stored the status,
+  so the service was asked. It reads the flow's current value now, which is never stale while the ViewModel collects.
+  Three JVM tests went red on it, and green after.
+
+### Each critical test shown to fail
+
+Temporary changes, each reverted, on the JVM.
+
+| Change | What went red |
+|---|---|
+| A failed read never shows the held one | `a service that fails after a good read shows that read, marked unreachable` |
+| No settle before reading again | `back online, the shown service is read once, after the connection has held` and `a network that flaps is one read when it settles, not one per flap` |
+
+### Tested
+
+- **JVM.** `LibraryOfflineViewModelTest` 9: a failure after a good read keeps it marked, and a good read clears it; a
+  failure with nothing held; offline with and without a held read, the service not asked; `UNKNOWN` is online; one read
+  after the connection holds, none before; **a flapping network is one read**; a live service or the local list is not
+  read again; and `BUG-33` on a tab and a filter.
+- **Device, `:feature:library`.** 3 added to `LibrarySourcesTvDeviceTest`: 5b's held read with its badges, Retry as the
+  button's next stop, and Retry clearing it; offline with nothing held, the service not asked; and a screenshot.
+
+**Screenshots:** `library-service-unreachable-focus-retry` is new, looked at.
+
+### Not verified
+
+- **A real network dropping and coming back** on a device. The flow is the downloads screens' own; this screen's use
+  of it is tested with a fake.
+- **A held read across a configuration change**: it lives with the ViewModel, so it should survive one, but no test
+  rotates.

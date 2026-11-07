@@ -55,7 +55,7 @@ internal object LibraryShelf {
 
             is LibraryTab.Bucket -> titles
                 .filter { it.bucket == tab.bucket }
-                .sortedBy(sort)
+                .sortedFor(sort)
                 .map { it.toCard(newest[it.id]) }
 
             // A service's list is not a bucket of the store's: see [syncedCards].
@@ -72,7 +72,7 @@ internal object LibraryShelf {
      */
     fun syncedCards(list: SyncedList, filter: String = "", sort: LibrarySort = LibrarySort.Default): List<LibraryCard> =
         list.titles
-            .sortedBy(sort)
+            .sortedFor(sort)
             .distinctBy { it.id }
             .map { it.toCard(position = null) }
             .narrowedTo(filter.trim())
@@ -84,7 +84,7 @@ internal object LibraryShelf {
      * [sort] over titles newest kept first, so titles that tie keep that order. A title with nothing to sort by, no year
      * or no rating, goes last whichever way round.
      */
-    internal fun List<LibraryTitle>.sortedBy(sort: LibrarySort): List<LibraryTitle> {
+    internal fun List<LibraryTitle>.sortedFor(sort: LibrarySort): List<LibraryTitle> {
         val newest = sortedByDescending { it.keptAt }
         fun <T : Comparable<T>> by(key: (LibraryTitle) -> T?): Comparator<LibraryTitle> =
             compareBy(nullsLast(if (sort.descending) reverseOrder() else naturalOrder()), key)

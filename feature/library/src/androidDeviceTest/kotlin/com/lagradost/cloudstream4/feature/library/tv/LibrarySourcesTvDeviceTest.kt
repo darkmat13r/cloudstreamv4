@@ -32,6 +32,8 @@ import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.requestFocus
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import com.lagradost.cloudstream4.core.connectivity.Connectivity
+import com.lagradost.cloudstream4.core.connectivity.ConnectivityFlow
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
@@ -59,6 +61,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.MutableStateFlow
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -87,8 +90,15 @@ class LibrarySourcesTvDeviceTest {
     @After
     fun stopTheViewModel() = scope.cancel()
 
+    /** The device's network as the test sets it. Unknown, which is never offline, unless a test says otherwise. */
+    private val network = object : ConnectivityFlow {
+        override val status = MutableStateFlow(Connectivity.UNKNOWN)
+    }
+
     private val viewModel by lazy {
-        LibraryViewModel(FakeStore(), scope, initialTab = LibraryTvTabs.first(), sources = sources)
+        LibraryViewModel(
+            FakeStore(), scope, initialTab = LibraryTvTabs.first(), sources = sources, connectivity = network,
+        )
     }
 
     /** Beside the rail, as the app shows it, with a fixed clock and one-colour posters. */
@@ -335,6 +345,52 @@ class LibrarySourcesTvDeviceTest {
         assertEquals(2, sources.reads.get())
     }
 
+    // ---- KMP-51: a service that cannot be read (5b), and offline ------------------------------------------------------
+
+    /** A good read, then a failed one: the good one stays up, marked, with Retry as the button's next stop. */
+    private fun showUnreachable() {
+        showScreen()
+        awaitShowing(SyncedNames.size)
+        sources.failing = true
+        rule.runOnIdle { viewModel.onAction(LibraryAction.Retry) }
+        awaitText("Unreachable · cached 4m ago")
+    }
+
+    @Test
+    fun aServiceThatCannotBeReadKeepsItsHeldReadMarkedAndRetryIsTheButtonsNextStop() {
+        showUnreachable()
+        awaitShowing(SyncedNames.size)
+        assertEquals(SyncedNames.size, rule.onAllNodesWithText(CACHED).fetchSemanticsNodes().size)
+        rule.onAllNodesWithText(ANILIST).onFirst().requestFocus()
+        rule.waitUntil(WAIT_MS) { rule.focusedLabel() == ANILIST }
+        assertEquals(SYNC_RETRY, dpad.press(Dpad.Right))
+
+        sources.failing = false
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { rule.onAllNodesWithText(CACHED).fetchSemanticsNodes().isEmpty() }
+        awaitText("lagradost · Synced 4m ago")
+        assertEquals(3, sources.reads.get())
+    }
+
+    /** Offline with nothing held: the service is not asked, and the page says what needs the connection. */
+    @Test
+    fun offlineWithNothingHeldTheServiceIsNotAskedAndThePageSaysWhatNeedsAConnection() {
+        network.status.value = Connectivity.OFFLINE
+        showScreen()
+        awaitText("You are offline")
+        awaitText("AniList needs a connection")
+        assertEquals(0, sources.reads.get())
+    }
+
+    @Test
+    fun screenshotServiceUnreachableFocusOnRetry() {
+        showUnreachable()
+        rule.onAllNodesWithText(ANILIST).onFirst().requestFocus()
+        rule.waitUntil(WAIT_MS) { rule.focusedLabel() == ANILIST }
+        assertEquals(SYNC_RETRY, dpad.press(Dpad.Right))
+        rule.assertScreenshot("library-service-unreachable-focus-retry")
+    }
+
     // ---- KMP-50: sort (5d) ------------------------------------------------------------------------------------------
 
     @Test
@@ -442,6 +498,8 @@ class LibrarySourcesTvDeviceTest {
         const val FAILED = "Error"
         const val RETRY = "Try again"
         const val SORT = "Sort"
+        const val CACHED = "Cached"
+        const val SYNC_RETRY = "Retry sync"
         const val SORT_PANEL = "Sort by"
         const val UPDATED_NEW = "Updated (New to Old)"
         const val TITLE_A = "Alphabetical (A to Z)"

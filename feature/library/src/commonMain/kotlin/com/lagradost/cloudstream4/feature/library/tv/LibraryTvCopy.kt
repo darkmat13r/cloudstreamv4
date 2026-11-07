@@ -16,6 +16,7 @@ import com.lagradost.cloudstream4.feature.library.LibraryState
 import com.lagradost.cloudstream4.feature.library.LibraryStatus
 import com.lagradost.cloudstream4.feature.library.LibraryTab
 import com.lagradost.cloudstream4.feature.library.label
+import com.lagradost.cloudstream4.feature.library.offlineBody
 import com.lagradost.cloudstream4.feature.library.toUiState
 import org.jetbrains.compose.resources.stringResource
 
@@ -30,6 +31,11 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 internal fun LibraryState.toTvUiState(onAction: (LibraryAction) -> Unit): UiState<List<LibraryCard>> {
     val shared = status.toUiState(onAction)
+    if (status == LibraryStatus.Offline && shared is UiState.Offline) {
+        // The service by name: it is what needs the connection, and the local list does not.
+        val name = shownSource?.name ?: return shared
+        return UiState.Offline(shared.prompt.copy(body = offlineBody(name)))
+    }
     if (status != LibraryStatus.Empty) return shared
     val here = countOf(tab)
     val elsewhere = tvTabs().firstOrNull { it != tab && (countOf(it) ?: 0) > 0 }
