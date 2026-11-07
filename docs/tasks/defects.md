@@ -1652,7 +1652,8 @@ leaving panel"*).
 
 ## BUG-33 — Choosing a list after a failed read says the list is empty · **low** · read 2026-11-04
 
-**Status:** open. **Read from the code, not run:** no test or device has shown this happening.
+**Status:** **fixed by `KMP-51`** (2026-11-07): after a failed read, a tab or a filter keeps the failure, on desktop and
+on TV. `LibraryOfflineViewModelTest`'s `BUG-33` test covers both. Was: open, read from the code, not run.
 
 `LibraryViewModel.load` keeps `titles` and `positions` empty when the read fails, and `showTab` rebuilds the status from
 them unless the status is `Loading`. So from `LibraryStatus.Failed`, choosing another tab replaces the failure with

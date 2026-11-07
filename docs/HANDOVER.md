@@ -27,6 +27,7 @@ when twenty-three more had merged since. **Trust `git log` over this heading.**
 **Android TV opens the new downloads screen since `KMP-40`**, boards 6c and 6e. Deleting one line in `MainActivity` is the rollback, and `DownloadFragment` stays on every other layout.
 **The TV library reads its sources since `KMP-49`**: the provider button and 5e's panel over `AccountManager.syncApis`, a service's own lists as tabs, and its titles through the old opener. The owner's rulings are `DEC-20`.
 **The TV library sorts since `KMP-50`**: 5d's panel and the sort button, one choice for every source under the old screen's own key (`library_sorting_mode`), falling back to last updated where a source cannot sort by it (`DEC-20`). Focus after the panel closes is `BUG-36`, pinned.
+**The TV library says when a service cannot be read since `KMP-51`**: 5b's held read, marked `Cached` with Retry beside the provider button, and offline without asking the service; the held read is in memory only. `BUG-33` is fixed.
 
 **One series' downloads open the new page on Android TV since `KMP-43`**, boards 6d and 6b, from the same destination and arguments. Deleting one line in `MainActivity` is the rollback, and `DownloadChildFragment` stays on every other layout.
 
