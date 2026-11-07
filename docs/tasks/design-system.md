@@ -805,7 +805,7 @@ PR 2a draws the rest of 7i and leaves this line alone, which is why it is writte
 The PM's call, 2026-11-07: the Mac and phone boards for Home, Search, Library and Detail, drawn from the TV boards as DS-18
 was, Home and Detail first. Search and Library follow in their own task.
 
-- `design/Desktop Home.dc.html`, H1 to H6:
+- `Desktop Home.dc.html` (a board file in the owner's Claude Design project), H1 to H6:
   - H1, Home at rest: the hero as a card in the page, Continue watching, and Bookmarks with status chips.
   - H2, scrolled: a provider row with Load more, and a hovered card with its context menu.
   - H3, the source panel with None.
@@ -814,7 +814,7 @@ was, Home and Detail first. Search and Library follow in their own task.
   - H6, the 800×520 minimum.
 
   From TV Home 3c to 3m and the built `HomeScreenDesktop`.
-- `design/Desktop Detail.dc.html`, E1 to E6:
+- `Desktop Detail.dc.html` (a board file in the owner's Claude Design project), E1 to E6:
   - E1, a series:
     - poster, title, meta and a synopsis that opens;
     - Resume with its rule and the time left;
@@ -828,7 +828,7 @@ was, Home and Detail first. Search and Library follow in their own task.
   - E6, the minimum window.
 
   From TV Detail 7a to 7c and the built `DetailScreenDesktop`.
-- `design/Phone Home Detail.dc.html`:
+- `Phone Home Detail.dc.html` (a board file in the owner's Claude Design project):
   - P1 to P3: phone Home, with a source chip and sheet, rails, and offline.
   - PD1 and PD2: a phone title's page, in `ui-components.md`'s phone direction (Resume full width, Start over, the
     labelled glyph row), with a sources sheet.
@@ -844,7 +844,7 @@ Drawn at 1 px = 1 dp, with Tabler 1.119.0 glyphs as masks, never drawn by hand.
 - Horizontal rails run past the phone's edge on purpose; that is the peek.
 - All 21 distinct glyph URLs answer 200, checked with curl.
 
-Renders are in `/private/tmp/cloudstream-shared/review/boards/DS21-*.png`.
+Renders: in the shared local review folder (not published).
 
 **Words with no key yet**, to add through an `I18N` task before `KMP-55` and `KMP-58` use them:
 - "Home source" and its line, "Rows come from one extension at a time."
