@@ -831,12 +831,13 @@ class HomeViewModelTest {
         assertEquals(HomeStatus.Failed("HTTP 503"), stale.shown)
         assertTrue(stale.rows.isEmpty())
 
-        val never = model(Fake(listOf(option(a))) { _, _, _ -> HomePageReply.Failed("HTTP 503") })
+        val unloaded = Fake(listOf(option(a))) { _, _, _ -> HomePageReply.Failed("HTTP 503") }
+        val never = model(unloaded)
         assertEquals(HomeStatus.Failed("HTTP 503"), never.state.value.status)
-        val asked = source.calls.size
+        val asked = unloaded.calls.size
         never.onAction(HomeAction.ReloadRequested)
         assertEquals(HomeStatus.Failed("HTTP 503"), never.state.value.status)
-        assertEquals(asked, source.calls.size)
+        assertEquals(asked, unloaded.calls.size)
     }
 
     @Test
