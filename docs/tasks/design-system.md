@@ -739,7 +739,7 @@ Both are drawn at 1 px = 1 dp, not the TV's px ÷ 2. Glyphs are the Tabler pack 
 drawn. Measured from `getBoundingClientRect` in Chromium: desktop 343 boxes, 0 off the 4 dp step, 0 overflowing. Phone and
 tablet 375 boxes; the only ones off the step are two families derived from the screen's width, the four `weight(1f)` cells of
 the bottom navigation (103 at 412) and P4's two equal secondaries (186). Neither is a typed number. 0 overflowing, and all 19
-glyph URLs answer 200. Renders are in `/private/tmp/cloudstream-shared/review/boards/DS18-*.png`.
+glyph URLs answer 200. Renders: in the shared local review folder (not published).
 
 Answered by the owner, 2026-11-06, relayed by the coordinator, and recorded in `DEC-19` and `.claude/rules/ui-components.md`:
 - `Folder` is a new `CloudStreamIcons` entry (Tabler `Folder`) for Show in Finder. It is in the glyph table now; the code
@@ -756,7 +756,7 @@ Still open, not the owner's: the new strings go through `:core:strings` with `KM
 **Status:** open · **Scope:** the board, not the code.
 **Numbered `DS-19` in `#181`'s first commit**, which collided with the component layer's `DS-19`
 (already referenced at `decisions.md:737`). Renumbered here; IDs are now claimed through
-`/private/tmp/cloudstream-shared/claim-id.sh`, which reads every branch rather than this file. `design/TV Detail Row.dc.html`, board 7i's FOCUS note.
+the shared claim script, which reads every branch rather than this file. `design/TV Detail Row.dc.html`, board 7i's FOCUS note.
 **Found by:** `KMP-38`'s PR 2a, measuring 7i before building it.
 
 7i's FOCUS note reads *"DOWN past the last row loads the next page of episodes."* There is no next page,
@@ -797,3 +797,128 @@ one answer." If paging is actually wanted, it is a `DetailSource` contract chang
 track, not in a board note; nothing in the current contract can express it.
 
 PR 2a draws the rest of 7i and leaves this line alone, which is why it is written down here.
+
+## DS-21 — Boards: Home and a title's page on desktop, phone and tablet
+
+**Status:** drawn, PR open · boards only, no Kotlin · unblocks `KMP-55` (Home) and `KMP-58` (Detail) · `DEC-19`
+
+The PM's call, 2026-11-07: the Mac and phone boards for Home, Search, Library and Detail, drawn from the TV boards as DS-18
+was, Home and Detail first. Search and Library follow in their own task.
+
+- `Desktop Home.dc.html` (a board file in the owner's Claude Design project), H1 to H6:
+  - H1, Home at rest: the hero as a card in the page, Continue watching, and Bookmarks with status chips.
+  - H2, scrolled: a provider row with Load more, and a hovered card with its context menu.
+  - H3, the source panel with None.
+  - H4, offline with a failed reload, the rows kept.
+  - H5, no home source.
+  - H6, the 800×520 minimum.
+
+  From TV Home 3c to 3m and the built `HomeScreenDesktop`.
+- `Desktop Detail.dc.html` (a board file in the owner's Claude Design project), E1 to E6:
+  - E1, a series:
+    - poster, title, meta and a synopsis that opens;
+    - Resume with its rule and the time left;
+    - Start over and Trailer outlined;
+    - the watchlist toggle and More icon-only;
+    - episodes on the page under season buttons.
+  - E2, an episode's hover verbs with a tooltip.
+  - E3, a film with the sources panel growing as links arrive.
+  - E4, loading.
+  - E5, couldn't open it.
+  - E6, the minimum window.
+
+  From TV Detail 7a to 7c and the built `DetailScreenDesktop`.
+- `Phone Home Detail.dc.html` (a board file in the owner's Claude Design project):
+  - P1 to P3: phone Home, with a source chip and sheet, rails, and offline.
+  - PD1 and PD2: a phone title's page, in `ui-components.md`'s phone direction (Resume full width, Start over, the
+    labelled glyph row), with a sources sheet.
+  - TH1 and TD1: the tablet, with the navigation rail. Its title's page puts the art and actions in a left column and the
+    episodes beside them.
+
+Drawn at 1 px = 1 dp, with Tabler 1.119.0 glyphs as masks, never drawn by hand.
+
+**Measured** in Chromium with `getBoundingClientRect`, on every artboard:
+- Desktop Home: 302 boxes. Desktop Detail: 243 boxes. Both have 0 off the 4 dp step and 0 text overflowing its box.
+- Phone and tablet: 315 boxes. The only ones off the step are the bottom navigation's `weight(1f)` cells (103 at 412),
+  DS-18's recorded exemption.
+- Horizontal rails run past the phone's edge on purpose; that is the peek.
+- All 21 distinct glyph URLs answer 200, checked with curl.
+
+Renders: in the shared local review folder (not published).
+
+**Words with no key yet**, to add through an `I18N` task before `KMP-55` and `KMP-58` use them:
+- "Home source" and its line, "Rows come from one extension at a time."
+- "No rows; your library stays", and the empty prompt "No home source" with its line and "Choose source".
+- "Couldn't reload %s. These rows are from %s ago."
+- The time-left line "29 min left", which waits on `I18N-10`.
+
+The rest reuses existing keys.
+
+**Open for the owner:**
+- Home's hero is a card inside the page, not full-bleed, on the Mac.
+- A title's action row keeps its secondaries' words on the Mac. The TV-only ruled exception makes them icon-only;
+  the window has the room.
+- The phone's season is a chip that opens a sheet.
+
+## DS-22 — Boards: Search and Library on desktop, phone and tablet
+
+**Status:** drawn, PR open · boards only, no Kotlin · for `KMP-56` (Search) and `KMP-57` (Library) · `DEC-19`
+
+This is DS-21's second half, the PM's call of 2026-11-07, drawn from the TV boards as DS-18 and DS-21 were.
+
+- `Desktop Search.dc.html` (a board file in the owner's Claude Design project), S1 to S7. Drawn from TV Search 4a to 4d, Suggestions 8a to 8c and the built
+  `SearchScreenDesktop`.
+  - S1: recent searches before typing.
+  - S2: results grouped by source, each group with its count.
+  - S3: a partial search, with a banner that retries exactly what failed.
+  - S4: the sources side panel.
+  - S5: suggestions as a popover under the field.
+  - S6: no results, naming the filter that narrowed the search.
+  - S7: the 800×520 minimum window.
+- `Desktop Library.dc.html` (a board file in the owner's Claude Design project), L1 to L7. Drawn from TV Library 5a to 5e and the built `LibraryScreenDesktop`.
+  - L1: a list, with the source and its sync in the bar, filter, Sort, the lists as buttons, and a hovered card with Remove.
+  - L2: a sync that failed, the cards kept and dimmed.
+  - L3: an empty list.
+  - L4: Sort, where an unsupported criterion stays greyed with its reason.
+  - L5: the library's source.
+  - L6: moving a card, using the built list picker.
+  - L7: the minimum window.
+- `Phone Search Library.dc.html` (a board file in the owner's Claude Design project):
+  - PS1 to PS3: phone Search (recent searches, a three-column grid, the sources sheet).
+  - PL1 to PL3: phone Library (chips, Sort sheet, failed sync).
+  - TS1 and TL1: the tablet, with the navigation rail.
+
+**Measured** in Chromium with `getBoundingClientRect`, on every artboard:
+- Desktop Search (370 boxes) and Desktop Library (389 boxes): 0 off the 4 dp step and 0 overflowing text.
+- Phone and tablet (396 boxes): off the step only in the bottom navigation's derived cells, DS-18's recorded exemption.
+- All 34 glyph URLs answer 200, checked with curl.
+- Poster heights are 2:3 rounded to the step (188→280, 164→248, 116→176), as DS-21's were.
+
+Renders: in the shared local review folder (not published).
+
+**Decisions taken here** (reported to the PM):
+- Sources is a button that opens the side panel on every platform. The built screen's read-out stands only until
+  the picker is built.
+- Suggestions are a popover, not a page.
+- Quick Search (8d, 8e) is not drawn. On a Mac, ⌘F brings the window to Search.
+
+**Reused keys:**
+- Search: `search_tv_field_placeholder`, `search_tv_recent_headline`, `search_tv_clear_all`, `search_tv_sources_label`, and
+  the `search_state_no_results_*` set.
+- Library: `library_source`, `library_source_note`, `library_not_connected`, `library_on_device`, `library_synced_format`.
+- Shared: `sort`, `action_remove_from_bookmarks`, `continue_watching`, `type_*`.
+
+**Words with no key yet**, for an `I18N` task before `KMP-56` and `KMP-57` use them:
+- Search:
+  - the partial banner ("%d sources didn't answer. %s timed out after %d s.") and "Retry %d sources";
+  - the suggestion origins ("Suggested", "Recent · also suggested") and their "%d sources" count;
+  - the popover's "%1$d of %2$d answered · %3$d failed" and "Return searches all";
+  - the sources panel's sentence-case line. TV's `search_tv_sources_panel_meta` is in capitals.
+- Library:
+  - "Filter this list" and "Sort: %s";
+  - "Last updated" and "Your rating", and the criteria's lines;
+  - "%1$s supports %2$d of %3$d";
+  - "unreachable · cached %s", "Couldn't sync %1$s. These are from %2$s ago." and "Retry sync";
+  - each list's empty words ("Nothing on hold", "Titles you pause land here.", "Go to %s");
+  - "Move to another list" and "%d titles".
+
