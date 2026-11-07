@@ -3,9 +3,17 @@
 <resources>
 <string name="detail_load_failed_body">Sumber mungkin tidak tersedia.</string>
 <string name="detail_load_failed_headline">Tajuk ini tidak dapat dibuka</string>
+<plurals name="downloads_count_downloading"><item quantity="other">%d sedang dimuat turun</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="other">%d dalam baris gilir</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="other">Padam %d muat turun?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="other">%d episod</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d gagal</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="other">%1$d tajuk · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">%d PENANDA HALAMAN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d bahagian gagal dimuatkan</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="other">Cari dalam semua %d sumber</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="other">Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="other">%d SUMBER</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">%d bahagian</item></plurals>
 <string name="account">akaun</string>
 <string name="action_add_to_bookmarks">Tetapkan status tontonan</string>
@@ -124,6 +132,7 @@
 <string name="delete_message_series_section">Anda juga akan memadamkan semua episod dalam siri berikut secara kekal:\n\n%s</string>
 <string name="delete_repository">Padam repositori</string>
 <string name="deselect_all">Nyahpilih semua</string>
+<string name="desktop_menu_go">Pergi</string>
 <string name="detail_source_resolving">Menyelesaikan…</string>
 <string name="detail_sources_done">%1$d daripada %2$d menjawab</string>
 <string name="detail_sources_progress">%1$d daripada %2$d menjawab · memuatkan…</string>
@@ -161,12 +170,19 @@
 <string name="downloaded_file">Fail dimuat turun</string>
 <string name="downloading">Memuat turun</string>
 <string name="downloads_browse_library">Layari perpustakaan</string>
+<string name="downloads_cancel_confirm_body">Ini akan membuang %s yang telah dimuat turun.</string>
+<string name="downloads_cancel_confirm_title">Batalkan muat turun ini?</string>
+<string name="downloads_cancel_download">Batalkan muat turun</string>
+<string name="downloads_column_size">Saiz</string>
 <string name="downloads_delete_all">Padam semua</string>
+<string name="downloads_delete_confirm_body">Ini mengosongkan %s dan tidak boleh dibuat asal.</string>
 <string name="downloads_delete_select">Pilih benda untuk dibuang</string>
 <string name="downloads_empty">Tiada yang dimuat turun.</string>
 <string name="downloads_empty_body">Muat turun yang anda mulakan daripada senarai episod tajuk muncul di sini dan dipasang tanpa sambungan.</string>
 <string name="downloads_empty_headline">Belum ada muat turun</string>
+<string name="downloads_free">%s kosong</string>
 <string name="downloads_free_up_space">Kosongkan ruang</string>
+<string name="downloads_keep_downloading">Teruskan muat turun</string>
 <string name="downloads_load_failed_body">Fail muat turun anda tidak diubah.</string>
 <string name="downloads_load_failed_headline">Tidak dapat membaca muat turun anda</string>
 <string name="downloads_offline_pill">Luar talian · tiada sambungan</string>
@@ -180,6 +196,8 @@
 <string name="downloads_reason_storage_unavailable">Storan tidak tersedia</string>
 <string name="downloads_retry_failed">Cuba lagi yang gagal (%d)</string>
 <string name="downloads_select">Pilih</string>
+<string name="downloads_selected_status">%1$d daripada %2$d dipilih · %3$s</string>
+<string name="downloads_show_in_finder">Tunjukkan dalam Finder</string>
 <string name="downloads_state_queued">Dalam baris gilir</string>
 <string name="downloads_storage_full_headline">Storan tidak mencukupi</string>
 <string name="downloads_storage_legend">%1$s daripada %2$s diguna · %3$s dalam muat turun</string>
@@ -496,11 +514,23 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Carian mengikut sumber</string>
 <string name="search_provider_text_types">Carian mengikut jenis</string>
+<string name="search_quick_empty_body">Semua sumber menjawab dan tiada satu pun yang mempunyai “%s”. Cuba carian yang lebih pendek, atau buka carian penuh untuk menukar sumber.</string>
+<string name="search_quick_empty_headline">Tiada padanan</string>
+<string name="search_quick_meta_answered">SEMUA SUMBER TELAH MENJAWAB</string>
+<string name="search_quick_meta_answering">HASIL TIBA APABILA SUMBER MENJAWAB</string>
+<string name="search_quick_open_full">Buka carian penuh</string>
+<string name="search_quick_status">%1$d DARIPADA %2$d MENJAWAB · %3$d GAGAL</string>
+<string name="search_quick_title">Carian pantas</string>
 <string name="search_state_idle_body_desktop">Taip tajuk. Hasil muncul di bawah setiap sumber apabila ia menjawab.</string>
 <string name="search_state_no_results_type_filter">Hanya %s. Penapis jenis anda mengecilkan carian.</string>
+<string name="search_state_no_suggestions_detail">0 CADANGAN · 0 PADANAN TERKINI</string>
+<string name="search_state_no_suggestions_headline">Tiada yang sepadan dengan “%s”</string>
 <string name="search_tv_source_failed">GAGAL %s</string>
 <string name="search_tv_source_pinned">DISEMATKAN</string>
 <string name="search_tv_sources_panel_meta">%1$d DARIPADA %2$d DIDAYAKAN · PERUBAHAN DIGUNAKAN SELEPAS TAMAT</string>
+<string name="search_tv_suggestion_recent">TERKINI · %s</string>
+<string name="search_tv_suggestion_recent_suggested">TERKINI · JUGA DICADANGKAN</string>
+<string name="search_tv_suggestion_suggested">DICADANGKAN</string>
 <string name="season">Musim</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

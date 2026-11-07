@@ -29,6 +29,8 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.rows.DownloadProgressRow
 import com.lagradost.cloudstream4.core.designsystem.rows.DownloadProgressRowState
+import com.lagradost.cloudstream4.core.designsystem.scroll.RowScroll
+import com.lagradost.cloudstream4.core.designsystem.scroll.RowScrollSpec
 import com.lagradost.cloudstream4.core.designsystem.state.SkeletonListRow
 import com.lagradost.cloudstream4.core.designsystem.target.GhostTextButton
 import com.lagradost.cloudstream4.core.strings.UiString
@@ -93,10 +95,10 @@ internal fun DownloadRows(
     val row = with(density) { CloudStreamDimens.ListRowHeight.roundToPx() }
     val pitch = row + gap
     val scrollSpec = remember(top, end, row, pitch) {
-        DownloadsRowScrollSpec(top.toFloat(), end.toFloat(), row.toFloat(), pitch.toFloat())
+        RowScrollSpec(top.toFloat(), end.toFloat(), row.toFloat(), pitch.toFloat())
     }
     BoxWithConstraints(modifier) {
-        val endPadding = DownloadsRowScroll.listEndPadding(constraints.maxHeight, titles.size, top, end, pitch, gap)
+        val endPadding = RowScroll.listEndPadding(constraints.maxHeight, titles.size, top, end, pitch, gap)
         CompositionLocalProvider(LocalBringIntoViewSpec provides scrollSpec) {
             LazyColumn(
                 modifier = Modifier

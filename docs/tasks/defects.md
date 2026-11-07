@@ -1516,7 +1516,16 @@ a focusable. The ring is in the 4 dp above the row, so it is outside the viewpor
 **The reference holds the bug.** `feature/search/src/androidDeviceTest/resources/screenshots/search-history-focus-row.png` was recorded with the top edge
 missing, so the comparison passes today. A fix will fail that case: look at the diff, check that the only change is the ring's top edge, and re-record it.
 
-Not checked: whether the last row is cut off at the bottom when the list is full, and whether other TV screens with a `LazyColumn` do the same.
+Not checked: whether other TV screens with a `LazyColumn` do the same.
+
+**The last row is not cut off, on the TV detail page at least** (measured 2026-11-07, `#181`). In
+`feature/detail/.../screenshots/detail-episodes-selected-row.png` (`Television_720p`, 1280x720) the last
+episode row holds focus with the list scrolled to its end, and the ring is **whole**: full-width edges at
+y614..615 and y686..687. Its bottom edge sits 32 px above the frame — **24.00 dp** at this page's
+1.3333 px/dp — so it falls inside `CloudStreamDimens.FocusBandInset` (28 dp), which the list carries as
+`contentPadding`, with the 4 dp ring bleed to spare. That is the same remedy this entry records for the
+top edge, working at the other end. It does **not** generalise: the figure is this page's list with its
+own bottom padding, and a `LazyColumn` without that padding would still clip.
 
 ## BUG-40 — The TV detail page's text ladder runs about 5dp high against its boards · **low** · measured 2026-11-06
 
@@ -1756,3 +1765,16 @@ bytecode), instead of deleting it and making another at the same path. The same 
 
 **After both fixes,** the test below ran 300 rounds with every check on: each round ended failed with its file kept, the bytes read back equal
 to `bytesWritten`, and every byte right. The log had 0 `ENOENT` and 0 `UNIQUE constraint` lines.
+
+## BUG-42 — The player's previous episode plays the next one · **medium** · measured 2026-11-07
+
+**Status:** fixed in pr · found 2026-11-07 while building `KMP-64`'s HUD, whose previous-episode cell calls it ·
+`app/.../ui/player/PlayerGeneratorViewModel.kt`, `loadLinksPrev`
+
+`loadLinksPrev` checked `generator.hasPrev(episodeIndex)` and then did `episodeIndex += 1`, the same step as
+`loadLinksNext`. So from any episode but the first, "previous" loaded the next episode; from the last it would step
+past the end of the list (read from the code, not run). The fix is `-= 1`.
+
+**Test:** `PreviousEpisodeTest` (`:app` device, 3), on a fake generator of three episodes that asks nobody for links:
+previous from the second lands on the first, previous from the first stays, and next from the second still lands on
+the third. The first failed on the old code, measured before the fix.

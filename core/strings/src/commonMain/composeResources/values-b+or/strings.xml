@@ -3,9 +3,17 @@
 <resources>
 <string name="detail_load_failed_body">ଉତ୍ସ ଉପଲବ୍ଧ ନ ହୋଇପାରେ।</string>
 <string name="detail_load_failed_headline">ଏହି ଶୀର୍ଷକ ଖୋଲିହେଲା ନାହିଁ</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d ଡାଉନଲୋଡ୍ ହେଉଛି</item><item quantity="other">%d ଡାଉନଲୋଡ୍ ହେଉଛି</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d ଧାଡ଼ିରେ</item><item quantity="other">%d ଧାଡ଼ିରେ</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d ଡାଉନଲୋଡ୍ ଡିଲିଟ୍ କରିବେ?</item><item quantity="other">%d ଡାଉନଲୋଡ୍ ଡିଲିଟ୍ କରିବେ?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d ଏପିସୋଡ୍</item><item quantity="other">%d ଏପିସୋଡ୍</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ଵିଫଳ ହେଲା</item><item quantity="other">%d ଵିଫଳ ହେଲା</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d ଶୀର୍ଷକ · %2$s</item><item quantity="other">%1$d ଶୀର୍ଷକ · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ବୁକମାର୍କ</item><item quantity="other">%d ବୁକମାର୍କ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item><item quantity="other">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">%d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item><item quantity="other">ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item><item quantity="other">ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ଉତ୍ସ</item><item quantity="other">%d ଉତ୍ସ</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d ବିଭାଗ</item><item quantity="other">%d ବିଭାଗ</item></plurals>
 <string name="action_default">ଡିଫଲ୍ଟ</string>
 <string name="added_sync_format">%s ଯୋଡ଼ାଗଲା</string>
@@ -34,6 +42,7 @@
 <string name="copy_link_toast">ଲିଙ୍କ୍ କ୍ଲିପ୍‌ବୋର୍ଡରେ କପି କରିନିଆଗଲା</string>
 <string name="delete">ଵିଲୋପ କର</string>
 <string name="delete_file">ଫାଇଲ୍ ଵିଲୋପ କରିବେ</string>
+<string name="desktop_menu_go">ଯାଆନ୍ତୁ</string>
 <string name="detail_source_resolving">ସମାଧାନ ହେଉଛି…</string>
 <string name="detail_sources_done">%2$d ମଧ୍ୟରୁ %1$d ଉତ୍ତର ଦେଲେ</string>
 <string name="detail_sources_progress">%2$d ମଧ୍ୟରୁ %1$d ଉତ୍ତର ଦେଲେ · ଲୋଡ୍ ହେଉଛି…</string>
@@ -44,10 +53,17 @@
 <string name="download_storage_text">ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍</string>
 <string name="download_time_left_hour_min_sec_format">%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ</string>
 <string name="downloads_browse_library">ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର</string>
+<string name="downloads_cancel_confirm_body">ଏହା ଏପର୍ଯ୍ୟନ୍ତ ଡାଉନଲୋଡ୍ ହୋଇଥିବା %s କୁ ହଟାଇଦେବ।</string>
+<string name="downloads_cancel_confirm_title">ଏହି ଡାଉନଲୋଡ୍ ବାତିଲ କରିବେ?</string>
+<string name="downloads_cancel_download">ଡାଉନଲୋଡ୍ ବାତିଲ କରନ୍ତୁ</string>
+<string name="downloads_column_size">ଆକାର</string>
 <string name="downloads_delete_all">ସବୁ ଵିଲୋପ କର</string>
+<string name="downloads_delete_confirm_body">ଏହା %s ଖାଲି କରିବ ଏବଂ ଏହାକୁ ପୂର୍ବାବସ୍ଥାକୁ ଫେରାଇ ହେବ ନାହିଁ।</string>
 <string name="downloads_empty_body">ଶୀର୍ଷକର ଏପିସୋଡ୍ ତାଲିକାରୁ ଆରମ୍ଭ କରାଯାଇଥିବା ଡାଉନଲୋଡ୍ ଏଠାରେ ଦେଖାଯାଏ ଏବଂ ସଂଯୋଗ ବିନା ଚାଲେ।</string>
 <string name="downloads_empty_headline">ଏପର୍ଯ୍ୟନ୍ତ କୌଣସି ଡାଉନଲୋଡ୍ ନାହିଁ</string>
+<string name="downloads_free">%s ଖାଲି</string>
 <string name="downloads_free_up_space">ସ୍ଥାନ ଖାଲି କର</string>
+<string name="downloads_keep_downloading">ଡାଉନଲୋଡ୍ ଜାରି ରଖନ୍ତୁ</string>
 <string name="downloads_load_failed_body">ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ହୋଇଥିବା ଫାଇଲଗୁଡ଼ିକ ବଦଳାଯାଇନାହିଁ।</string>
 <string name="downloads_load_failed_headline">ଆପଣଙ୍କ ଡାଉନଲୋଡ୍ ପଢ଼ିହେଲା ନାହିଁ</string>
 <string name="downloads_offline_pill">ଅଫଲାଇନ୍ · ସଂଯୋଗ ନାହିଁ</string>
@@ -61,6 +77,8 @@
 <string name="downloads_reason_storage_unavailable">ଷ୍ଟୋରେଜ୍ ଉପଲବ୍ଧ ନାହିଁ</string>
 <string name="downloads_retry_failed">ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ (%d)</string>
 <string name="downloads_select">ବାଛ</string>
+<string name="downloads_selected_status">%2$d ମଧ୍ୟରୁ %1$d ବଛାଯାଇଛି · %3$s</string>
+<string name="downloads_show_in_finder">Finder ରେ ଦେଖାନ୍ତୁ</string>
 <string name="downloads_state_queued">ଧାଡ଼ିରେ ଅଛି</string>
 <string name="downloads_storage_full_headline">ପର୍ଯ୍ୟାପ୍ତ ଷ୍ଟୋରେଜ୍ ନାହିଁ</string>
 <string name="downloads_storage_legend">%1$s / %2$s ଵ୍ୟଵହୃତ · ଡାଉନଲୋଡରେ %3$s</string>
@@ -203,11 +221,23 @@
 <string name="search_hint_site">%s ସନ୍ଧାନ କରିବା…</string>
 <string name="search_poster_img_des">ପୋଷ୍ଟର୍</string>
 <string name="search_provider_text_providers">ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା</string>
+<string name="search_quick_empty_body">ସମସ୍ତ ଉତ୍ସ ଉତ୍ତର ଦେଲେ କିନ୍ତୁ କାହା ପାଖରେ “%s” ନାହିଁ। ଛୋଟ ସନ୍ଧାନ ଚେଷ୍ଟା କରନ୍ତୁ, କିମ୍ବା ଉତ୍ସ ବଦଳାଇବାକୁ ପୂର୍ଣ୍ଣ ସନ୍ଧାନ ଖୋଲନ୍ତୁ।</string>
+<string name="search_quick_empty_headline">କୌଣସି ମେଳ ନାହିଁ</string>
+<string name="search_quick_meta_answered">ସମସ୍ତ ଉତ୍ସ ଉତ୍ତର ଦେଲେ</string>
+<string name="search_quick_meta_answering">ଉତ୍ସଗୁଡ଼ିକ ଉତ୍ତର ଦେବା ସହିତ ଫଳାଫଳ ଆସେ</string>
+<string name="search_quick_open_full">ପୂର୍ଣ୍ଣ ସନ୍ଧାନ ଖୋଲନ୍ତୁ</string>
+<string name="search_quick_status">%2$d ମଧ୍ୟରୁ %1$d ଉତ୍ତର ଦେଲେ · %3$d ବିଫଳ</string>
+<string name="search_quick_title">ଦ୍ରୁତ ସନ୍ଧାନ</string>
 <string name="search_state_idle_body_desktop">ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।</string>
 <string name="search_state_no_results_type_filter">କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।</string>
+<string name="search_state_no_suggestions_detail">0 ପରାମର୍ଶ · 0 ସାମ୍ପ୍ରତିକ ମେଳ</string>
+<string name="search_state_no_suggestions_headline">“%s” ସହ କିଛି ମେଳ ଖାଉନାହିଁ</string>
 <string name="search_tv_source_failed">ବିଫଳ %s</string>
 <string name="search_tv_source_pinned">ପିନ୍ କରାଯାଇଛି</string>
 <string name="search_tv_sources_panel_meta">%2$d ମଧ୍ୟରୁ %1$d ସକ୍ରିୟ · ହେଲା ଦବାଇଲେ ପରିବର୍ତ୍ତନ ଲାଗୁ ହେବ</string>
+<string name="search_tv_suggestion_recent">ସାମ୍ପ୍ରତିକ · %s</string>
+<string name="search_tv_suggestion_recent_suggested">ସାମ୍ପ୍ରତିକ · ପରାମର୍ଶିତ ମଧ୍ୟ</string>
+<string name="search_tv_suggestion_suggested">ପରାମର୍ଶିତ</string>
 <string name="season">ଋତୁ</string>
 <string name="season_short">ଋ</string>
 <string name="seek_back_10_seconds">୧୦ ସେକେଣ୍ଡ ପଛକୁ ଯାଅ</string>

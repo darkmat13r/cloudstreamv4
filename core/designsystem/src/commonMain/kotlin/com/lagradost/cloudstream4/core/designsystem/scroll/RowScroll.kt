@@ -1,4 +1,4 @@
-package com.lagradost.cloudstream4.feature.downloads.tv
+package com.lagradost.cloudstream4.core.designsystem.scroll
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.gestures.BringIntoViewSpec
@@ -13,7 +13,7 @@ import kotlin.math.roundToInt
  * All sizes are pixels. Every scroll position is then a whole number of pitches, which [listEndPadding] keeps true at the
  * end of the list as well.
  */
-internal object DownloadsRowScroll {
+object RowScroll {
 
     /**
      * Compose asks again on every step of the scroll and takes the answer as what is left to go, so this names a fixed line
@@ -56,14 +56,14 @@ internal object DownloadsRowScroll {
     private const val TOLERANCE = 0.5f
 }
 
-/** [DownloadsRowScroll.distance], for the list. */
+/** [RowScroll.distance], for the list. */
 @OptIn(ExperimentalFoundationApi::class)
-internal class DownloadsRowScrollSpec(
+class RowScrollSpec(
     private val start: Float,
     private val end: Float,
     private val row: Float,
     private val pitch: Float,
 ) : BringIntoViewSpec {
     override fun calculateScrollDistance(offset: Float, size: Float, containerSize: Float): Float =
-        DownloadsRowScroll.distance(offset, size, containerSize, start, end, row, pitch)
+        RowScroll.distance(offset, size, containerSize, start, end, row, pitch)
 }

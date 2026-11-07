@@ -417,7 +417,7 @@ class HomeScreenTest {
         assertFalse(escape.handle(), "nothing under home, so Escape is the window's")
 
         // A double click: must take one Back to undo.
-        val card = Offset(CARD_X, CARD_Y + TAB_BAR_HEIGHT)
+        val card = Offset(CARD_X + SIDEBAR_WIDTH, CARD_Y)
         scene.sendPointerEvent(PointerEventType.Move, card)
         scene.sendPointerEvent(PointerEventType.Press, card)
         scene.sendPointerEvent(PointerEventType.Release, card)
@@ -431,7 +431,7 @@ class HomeScreenTest {
         assertEquals("Home", at, "one Back, after a double click")
         assertFalse(escape.handle(), "the title's handler went with it")
 
-        scene.click(Offset(PICKER_X, TOOLBAR_Y + TAB_BAR_HEIGHT))
+        scene.click(Offset(PICKER_X + SIDEBAR_WIDTH, TOOLBAR_Y))
         assertTrue(escape.handle(), "Escape closes the picker")
         scene.settle()
         Thread.sleep(WAIT_MILLIS)
@@ -439,13 +439,13 @@ class HomeScreenTest {
         assertEquals("Home", at, "and stays on home")
         assertFalse(escape.handle(), "the picker is closed, so Escape is the window's again")
 
-        scene.click(Offset(SEARCH_TAB_X, TAB_Y))
+        scene.click(Offset(SIDEBAR_ITEM_X, SEARCH_ITEM_Y))
         assertEquals("Search", at)
         assertFalse(escape.handle(), "search is top level too, and Escape belongs to its field")
         val typed = scene.sendKeyEvent(KeyEvent(Key.Escape, KeyEventType.KeyDown))
         assertFalse(typed, "an empty field passes it on")
 
-        scene.click(Offset(HOME_TAB_X, TAB_Y))
+        scene.click(Offset(SIDEBAR_ITEM_X, HOME_ITEM_Y))
         assertEquals("Home", at)
         scene.close()
     }
@@ -472,9 +472,11 @@ class HomeScreenTest {
         /** Measured from `18-kept-picker.png`: the panel's title, its line, then None, then each source. */
         const val PANEL_NONE_Y = 120f
         const val PANEL_ROW_STEP = 49f
-        const val TAB_BAR_HEIGHT = 52f
-        const val TAB_Y = 34f
-        const val HOME_TAB_X = 50f
-        const val SEARCH_TAB_X = 130f
+        /** In the window the page sits beside the 220 sidebar (`KMP-53`), so everything is further right. */
+        const val SIDEBAR_WIDTH = 220f
+        /** Sidebar rows: 24 down, then 32 rows 4 apart. */
+        const val SIDEBAR_ITEM_X = 100f
+        const val HOME_ITEM_Y = 40f
+        const val SEARCH_ITEM_Y = 76f
     }
 }

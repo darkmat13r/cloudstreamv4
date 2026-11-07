@@ -3,9 +3,17 @@
 <resources>
 <string name="detail_load_failed_body">Η πηγή ίσως δεν είναι διαθέσιμη.</string>
 <string name="detail_load_failed_headline">Δεν ήταν δυνατό το άνοιγμα αυτού του τίτλου</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d σε λήψη</item><item quantity="other">%d σε λήψη</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d σε αναμονή</item><item quantity="other">%d σε αναμονή</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Διαγραφή %d λήψης;</item><item quantity="other">Διαγραφή %d λήψεων;</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d επεισόδιο</item><item quantity="other">%d επεισόδια</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d απέτυχε</item><item quantity="other">%d απέτυχαν</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d τίτλος · %2$s</item><item quantity="other">%1$d τίτλοι · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ</item><item quantity="other">%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Αποτυχία φόρτωσης %d ενότητας</item><item quantity="other">Αποτυχία φόρτωσης %d ενοτήτων</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Αναζήτηση σε %d πηγή</item><item quantity="other">Αναζήτηση σε όλες τις %d πηγές</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως.</item><item quantity="other">Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ΠΗΓΗ</item><item quantity="other">%d ΠΗΓΕΣ</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d ενότητα</item><item quantity="other">%d ενότητες</item></plurals>
 <string name="account">Λογαριασμός</string>
 <string name="action_add_to_bookmarks">Ορισμός κατάστασης θέασης</string>
@@ -148,6 +156,7 @@
 <string name="delete_repository">Διαγραφή αποθετηρίου</string>
 <string name="delete_repository_plugins">Αυτό θα διαγράψει όλα τα πρόσθετα του αποθετηρίου</string>
 <string name="deselect_all">Αποεπιλογή Όλων</string>
+<string name="desktop_menu_go">Μετάβαση</string>
 <string name="detail_source_resolving">Επίλυση…</string>
 <string name="detail_sources_done">Απάντησαν %1$d από %2$d</string>
 <string name="detail_sources_progress">Απάντησαν %1$d από %2$d · φόρτωση…</string>
@@ -184,12 +193,19 @@
 <string name="downloaded_file">Λήψη αρχείου</string>
 <string name="downloading">Κατεβαίνει</string>
 <string name="downloads_browse_library">Περιήγηση στη βιβλιοθήκη</string>
+<string name="downloads_cancel_confirm_body">Θα απορριφθούν τα %s που έχουν ληφθεί μέχρι τώρα.</string>
+<string name="downloads_cancel_confirm_title">Ακύρωση αυτής της λήψης;</string>
+<string name="downloads_cancel_download">Ακύρωση λήψης</string>
+<string name="downloads_column_size">Μέγεθος</string>
 <string name="downloads_delete_all">Διαγραφή όλων</string>
+<string name="downloads_delete_confirm_body">Έτσι ελευθερώνονται %s και δεν μπορεί να αναιρεθεί.</string>
 <string name="downloads_delete_select">Επιλέξτε στοιχεία για Διαγραφή</string>
 <string name="downloads_empty">Δεν υπάρχουν προς το παρόν λήψεις.</string>
 <string name="downloads_empty_body">Οι λήψεις που ξεκινάτε από τη λίστα επεισοδίων ενός τίτλου εμφανίζονται εδώ και αναπαράγονται χωρίς σύνδεση.</string>
 <string name="downloads_empty_headline">Δεν υπάρχουν ακόμα λήψεις</string>
+<string name="downloads_free">%s ελεύθερα</string>
 <string name="downloads_free_up_space">Απελευθέρωση χώρου</string>
+<string name="downloads_keep_downloading">Συνέχεια λήψης</string>
 <string name="downloads_load_failed_body">Τα ληφθέντα αρχεία σας δεν έχουν αλλάξει.</string>
 <string name="downloads_load_failed_headline">Δεν ήταν δυνατή η ανάγνωση των λήψεών σας</string>
 <string name="downloads_offline_pill">Εκτός σύνδεσης · δεν υπάρχει σύνδεση</string>
@@ -203,6 +219,8 @@
 <string name="downloads_reason_storage_unavailable">Μη διαθέσιμος χώρος αποθήκευσης</string>
 <string name="downloads_retry_failed">Επανάληψη αποτυχημένων (%d)</string>
 <string name="downloads_select">Επιλογή</string>
+<string name="downloads_selected_status">Επιλέχθηκαν %1$d από %2$d · %3$s</string>
+<string name="downloads_show_in_finder">Εμφάνιση στο Finder</string>
 <string name="downloads_state_queued">Στην ουρά</string>
 <string name="downloads_storage_full_headline">Ανεπαρκής χώρος αποθήκευσης</string>
 <string name="downloads_storage_legend">%1$s από %2$s σε χρήση · %3$s σε λήψεις</string>
@@ -567,11 +585,23 @@
 <string name="search_poster_img_des">Αφίσα</string>
 <string name="search_provider_text_providers">Αναζήτηση βάσει παρόχων</string>
 <string name="search_provider_text_types">Αναζήτηση βάσει τύπων</string>
+<string name="search_quick_empty_body">Όλες οι πηγές απάντησαν και καμία δεν έχει «%s». Δοκιμάστε μικρότερη αναζήτηση ή ανοίξτε την πλήρη αναζήτηση για να αλλάξετε τις πηγές.</string>
+<string name="search_quick_empty_headline">Καμία αντιστοιχία</string>
+<string name="search_quick_meta_answered">ΑΠΑΝΤΗΣΑΝ ΟΛΕΣ ΟΙ ΠΗΓΕΣ</string>
+<string name="search_quick_meta_answering">ΤΑ ΑΠΟΤΕΛΕΣΜΑΤΑ ΕΡΧΟΝΤΑΙ ΚΑΘΩΣ ΑΠΑΝΤΟΥΝ ΟΙ ΠΗΓΕΣ</string>
+<string name="search_quick_open_full">Άνοιγμα πλήρους αναζήτησης</string>
+<string name="search_quick_status">ΑΠΑΝΤΗΣΑΝ %1$d ΑΠΟ %2$d · ΑΠΕΤΥΧΑΝ %3$d</string>
+<string name="search_quick_title">Γρήγορη αναζήτηση</string>
 <string name="search_state_idle_body_desktop">Πληκτρολογήστε έναν τίτλο. Τα αποτελέσματα εμφανίζονται κάτω από κάθε πηγή μόλις απαντήσει.</string>
 <string name="search_state_no_results_type_filter">Μόνο %s. Το φίλτρο τύπου περιορίζει την αναζήτηση.</string>
+<string name="search_state_no_suggestions_detail">0 ΠΡΟΤΑΣΕΙΣ · 0 ΠΡΟΣΦΑΤΕΣ ΑΝΤΙΣΤΟΙΧΙΕΣ</string>
+<string name="search_state_no_suggestions_headline">Τίποτα δεν ταιριάζει με «%s»</string>
 <string name="search_tv_source_failed">ΑΠΟΤΥΧΙΑ %s</string>
 <string name="search_tv_source_pinned">ΚΑΡΦΙΤΣΩΜΕΝΟ</string>
 <string name="search_tv_sources_panel_meta">%1$d ΑΠΟ %2$d ΕΝΕΡΓΕΣ · ΟΙ ΑΛΛΑΓΕΣ ΕΦΑΡΜΟΖΟΝΤΑΙ ΜΕ ΤΟ ΕΓΙΝΕ</string>
+<string name="search_tv_suggestion_recent">ΠΡΟΣΦΑΤΑ · %s</string>
+<string name="search_tv_suggestion_recent_suggested">ΠΡΟΣΦΑΤΑ · ΕΠΙΣΗΣ ΠΡΟΤΕΙΝΕΤΑΙ</string>
+<string name="search_tv_suggestion_suggested">ΠΡΟΤΕΙΝΕΤΑΙ</string>
 <string name="season">Κύκλος</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">Σ</string>

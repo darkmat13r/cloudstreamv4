@@ -50,6 +50,8 @@ data class DownloadEpisode(
 data class DownloadSeriesContents(
     val name: String,
     val episodes: List<DownloadEpisode>,
+    /** What is left on the volume the downloads are on, or null where the host does not say. The Mac's D4 shows it. */
+    val freeBytes: Long? = null,
 )
 
 /** Where the series page gets what it shows, and where its verbs go. Android's lives in `:app`. */
@@ -65,7 +67,11 @@ interface DownloadSeriesSource {
     /** Resumes a paused download, or retries a failed one: the old screen's Resume, which did both. */
     fun resume(id: DownloadEpisodeId)
 
-    /** Takes a waiting download out of the queue. */
+    /**
+     * Stops a waiting or running download and discards what it fetched. TV sends it only for a waiting one, which is
+     * all Android's host is relied on for. The Mac's D4 also sends it for a running one (`SeriesAction.CancelRequested`),
+     * which `KMP-52`'s host stops and removes. A finished download is deleted, not cancelled.
+     */
     fun cancel(id: DownloadEpisodeId)
 }
 

@@ -3,9 +3,17 @@
 <resources>
 <string name="detail_load_failed_body">Sursa poate fi indisponibilă.</string>
 <string name="detail_load_failed_headline">Titlul nu a putut fi deschis</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d în descărcare</item><item quantity="few">%d în descărcare</item><item quantity="other">%d în descărcare</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d în coadă</item><item quantity="few">%d în coadă</item><item quantity="other">%d în coadă</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Ștergi %d descărcare?</item><item quantity="few">Ștergi %d descărcări?</item><item quantity="other">Ștergi %d de descărcări?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episod</item><item quantity="few">%d episoade</item><item quantity="other">%d de episoade</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d a eșuat</item><item quantity="few">%d au eșuat</item><item quantity="other">%d au eșuat</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d titlu · %2$s</item><item quantity="few">%1$d titluri · %2$s</item><item quantity="other">%1$d de titluri · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCAJ</item><item quantity="few">%d MARCAJE</item><item quantity="other">%d DE MARCAJE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nu s-a putut încărca %d secțiune</item><item quantity="few">Nu s-au putut încărca %d secțiuni</item><item quantity="other">Nu s-au putut încărca %d de secțiuni</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Caută în %d sursă</item><item quantity="few">Caută în toate cele %d surse</item><item quantity="other">Caută în toate cele %d de surse</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în %d sursă.</item><item quantity="few">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d surse.</item><item quantity="other">Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d de surse.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d SURSĂ</item><item quantity="few">%d SURSE</item><item quantity="other">%d DE SURSE</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d secțiune</item><item quantity="few">%d secțiuni</item><item quantity="other">%d de secțiuni</item></plurals>
 <string name="account">Cont</string>
 <string name="action_add_to_bookmarks">Adaugă</string>
@@ -141,6 +149,7 @@
 <string name="delete_repository">Ștergeți depozitul</string>
 <string name="delete_repository_plugins">Acest lucru va șterge, de asemenea, toate plugin-urile din depozit</string>
 <string name="deselect_all">Deselectionati totul</string>
+<string name="desktop_menu_go">Mergi</string>
 <string name="detail_source_resolving">Se rezolvă…</string>
 <string name="detail_sources_done">Au răspuns %1$d din %2$d</string>
 <string name="detail_sources_progress">Au răspuns %1$d din %2$d · se încarcă…</string>
@@ -175,12 +184,19 @@
 <string name="downloaded_file">Fișier descărcat</string>
 <string name="downloading">Se descarcă</string>
 <string name="downloads_browse_library">Răsfoiește biblioteca</string>
+<string name="downloads_cancel_confirm_body">Se vor elimina cei %s descărcați până acum.</string>
+<string name="downloads_cancel_confirm_title">Anulezi această descărcare?</string>
+<string name="downloads_cancel_download">Anulează descărcarea</string>
+<string name="downloads_column_size">Dimensiune</string>
 <string name="downloads_delete_all">Șterge tot</string>
+<string name="downloads_delete_confirm_body">Astfel se eliberează %s și nu se poate anula.</string>
 <string name="downloads_delete_select">Selectionati elementele de sters</string>
 <string name="downloads_empty">Nu există descărcări.</string>
 <string name="downloads_empty_body">Descărcările pornite din lista de episoade a unui titlu apar aici și pot fi redate fără conexiune.</string>
 <string name="downloads_empty_headline">Încă nu există descărcări</string>
+<string name="downloads_free">%s liberi</string>
 <string name="downloads_free_up_space">Eliberează spațiu</string>
+<string name="downloads_keep_downloading">Continuă descărcarea</string>
 <string name="downloads_load_failed_body">Fișierele descărcate nu au fost modificate.</string>
 <string name="downloads_load_failed_headline">Descărcările nu au putut fi citite</string>
 <string name="downloads_offline_pill">Offline · fără conexiune</string>
@@ -194,6 +210,8 @@
 <string name="downloads_reason_storage_unavailable">Stocare indisponibilă</string>
 <string name="downloads_retry_failed">Reîncearcă eșuatele (%d)</string>
 <string name="downloads_select">Selectează</string>
+<string name="downloads_selected_status">%1$d din %2$d selectate · %3$s</string>
+<string name="downloads_show_in_finder">Afișează în Finder</string>
 <string name="downloads_state_queued">În coadă</string>
 <string name="downloads_storage_full_headline">Stocare insuficientă</string>
 <string name="downloads_storage_legend">%1$s din %2$s folosiți · %3$s în descărcări</string>
@@ -553,11 +571,23 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Căutare în funcție de furnizor</string>
 <string name="search_provider_text_types">Căutare în funcție de tip</string>
+<string name="search_quick_empty_body">Toate sursele au răspuns și niciuna nu are „%s”. Încercați o căutare mai scurtă sau deschideți căutarea completă pentru a schimba sursele.</string>
+<string name="search_quick_empty_headline">Nicio potrivire</string>
+<string name="search_quick_meta_answered">TOATE SURSELE AU RĂSPUNS</string>
+<string name="search_quick_meta_answering">REZULTATELE SOSESC PE MĂSURĂ CE SURSELE RĂSPUND</string>
+<string name="search_quick_open_full">Deschide căutarea completă</string>
+<string name="search_quick_status">AU RĂSPUNS %1$d DIN %2$d · %3$d EȘUATE</string>
+<string name="search_quick_title">Căutare rapidă</string>
 <string name="search_state_idle_body_desktop">Tastați un titlu. Rezultatele apar sub fiecare sursă când răspunde.</string>
 <string name="search_state_no_results_type_filter">Doar %s. Filtrul de tip restrânge căutarea.</string>
+<string name="search_state_no_suggestions_detail">0 SUGESTII · 0 POTRIVIRI RECENTE</string>
+<string name="search_state_no_suggestions_headline">Nimic nu se potrivește cu „%s”</string>
 <string name="search_tv_source_failed">EȘUAT %s</string>
 <string name="search_tv_source_pinned">FIXAT</string>
 <string name="search_tv_sources_panel_meta">%1$d DIN %2$d ACTIVATE · MODIFICĂRILE SE APLICĂ LA TERMINAT</string>
+<string name="search_tv_suggestion_recent">RECENT · %s</string>
+<string name="search_tv_suggestion_recent_suggested">RECENT · ȘI SUGERAT</string>
+<string name="search_tv_suggestion_suggested">SUGERAT</string>
 <string name="season">Sezonul</string>
 <string name="season_format">%1$s %2$d%3$s</string>
 <string name="season_short">S</string>

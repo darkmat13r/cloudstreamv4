@@ -3,9 +3,17 @@
 <resources>
 <string name="detail_load_failed_body">ڕەنگە سەرچاوەکە بەردەست نەبێت.</string>
 <string name="detail_load_failed_headline">نەتوانرا ئەم ناونیشانە بکرێتەوە</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d دادەگیرێت</item><item quantity="other">%d دادەگیرێت</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d لە ڕیزدا</item><item quantity="other">%d لە ڕیزدا</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d داگرتن بسڕدرێتەوە؟</item><item quantity="other">%d داگرتن بسڕدرێتەوە؟</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d ئەڵقە</item><item quantity="other">%d ئەڵقە</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d شکستی هێنا</item><item quantity="other">%d شکستی هێنا</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d ناونیشان · %2$s</item><item quantity="other">%1$d ناونیشان · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ئاماژە</item><item quantity="other">%d ئاماژە</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بەش بار نەکرا</item><item quantity="other">%d بەش بار نەکرا</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">گەڕان لە %d سەرچاوە</item><item quantity="other">گەڕان لە هەموو %d سەرچاوەکە</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە %d سەرچاوە بگەڕێیت.</item><item quantity="other">کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d سەرچاوە</item><item quantity="other">%d سەرچاوە</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d بەش</item><item quantity="other">%d بەش</item></plurals>
 <string name="action_add_to_bookmarks">دۆخی تەماشاکردن دابنێ</string>
 <string name="action_remove_from_bookmarks">لابردن</string>
@@ -18,6 +26,7 @@
 <string name="cast">تیم</string>
 <string name="cast_format">تیم:%s</string>
 <string name="deselect_all">هەمووی لابدە</string>
+<string name="desktop_menu_go">بڕۆ</string>
 <string name="detail_source_resolving">چارەسەرکردن…</string>
 <string name="detail_sources_done">%1$d لە %2$d وەڵامیان دایەوە</string>
 <string name="detail_sources_progress">%1$d لە %2$d وەڵامیان دایەوە · بارکردن…</string>
@@ -35,12 +44,19 @@
 <string name="downloaded">دابەزێنراوە</string>
 <string name="downloading">دادەبەزێندرێت</string>
 <string name="downloads_browse_library">گەڕان لە کتێبخانە</string>
+<string name="downloads_cancel_confirm_body">ئەمە ئەو %s ـەی تا ئێستا داگیراوە فڕێ دەدات.</string>
+<string name="downloads_cancel_confirm_title">ئەم داگرتنە هەڵبوەشێنرێتەوە؟</string>
+<string name="downloads_cancel_download">هەڵوەشاندنەوەی داگرتن</string>
+<string name="downloads_column_size">قەبارە</string>
 <string name="downloads_delete_all">هەمووی بسڕەوە</string>
+<string name="downloads_delete_confirm_body">ئەمە %s ئازاد دەکات و ناگەڕێتەوە.</string>
 <string name="downloads_delete_select">ئەو شتانە هەڵبژێرە کە دەتەوێت بیسڕیتەوە</string>
 <string name="downloads_empty">لە ئێستادا هیچ داونلۆدێک نییە.</string>
 <string name="downloads_empty_body">ئەو داونلۆدانەی لە لیستی ئەڵقەکانی ناونیشانێکەوە دەستی پێ دەکەیت لێرە دەردەکەون و بەبێ پەیوەندی لێدەدرێن.</string>
 <string name="downloads_empty_headline">هێشتا هیچ داونلۆدێک نییە</string>
+<string name="downloads_free">%s بەتاڵ</string>
 <string name="downloads_free_up_space">بۆشایی چۆڵ بکە</string>
+<string name="downloads_keep_downloading">بەردەوامبوون لە داگرتن</string>
 <string name="downloads_load_failed_body">فایلە داونلۆدکراوەکانت نەگۆڕدراون.</string>
 <string name="downloads_load_failed_headline">نەتوانرا داونلۆدەکانت بخوێنرێنەوە</string>
 <string name="downloads_offline_pill">ئۆفلاین · پەیوەندی نییە</string>
@@ -54,6 +70,8 @@
 <string name="downloads_reason_storage_unavailable">کۆگا بەردەست نییە</string>
 <string name="downloads_retry_failed">دووبارە هەوڵبدەرەوە (%d)</string>
 <string name="downloads_select">هەڵبژێرە</string>
+<string name="downloads_selected_status">%1$d لە %2$d هەڵبژێردراوە · %3$s</string>
+<string name="downloads_show_in_finder">لە Finder پیشانی بدە</string>
 <string name="downloads_state_queued">لە ڕیزدایە</string>
 <string name="downloads_storage_full_headline">کۆگا بەش ناکات</string>
 <string name="downloads_storage_legend">%1$s لە %2$s بەکارهاتووە · %3$s لە داونلۆدەکان</string>
@@ -158,11 +176,23 @@
 <string name="search_hint">گەڕان…</string>
 <string name="search_hint_site">بگەڕێ بۆ%s…</string>
 <string name="search_poster_img_des">پۆستەر</string>
+<string name="search_quick_empty_body">هەموو سەرچاوەکان وەڵامیان دایەوە و هیچیان «%s»ـیان نییە. گەڕانێکی کورتتر تاقی بکەرەوە، یان گەڕانی تەواو بکەرەوە بۆ گۆڕینی سەرچاوەکان.</string>
+<string name="search_quick_empty_headline">هیچ گونجانێک نییە</string>
+<string name="search_quick_meta_answered">هەموو سەرچاوەکان وەڵامیان دایەوە</string>
+<string name="search_quick_meta_answering">ئەنجامەکان لەگەڵ وەڵامدانەوەی سەرچاوەکان دێن</string>
+<string name="search_quick_open_full">کردنەوەی گەڕانی تەواو</string>
+<string name="search_quick_status">%1$d لە %2$d وەڵامیان دایەوە · %3$d شکستیان هێنا</string>
+<string name="search_quick_title">گەڕانی خێرا</string>
 <string name="search_state_idle_body_desktop">ناونیشانێک بنووسە. ئەنجامەکان لە ژێر هەر سەرچاوەیەک دەردەکەون کاتێک وەڵام دەداتەوە.</string>
 <string name="search_state_no_results_type_filter">تەنها %s. فلتەری جۆرەکەت گەڕانەکە سنووردار دەکات.</string>
+<string name="search_state_no_suggestions_detail">0 پێشنیار · 0 هاوتای دوایین</string>
+<string name="search_state_no_suggestions_headline">هیچ شتێک لەگەڵ «%s» ناگونجێت</string>
 <string name="search_tv_source_failed">شکستی هێنا %s</string>
 <string name="search_tv_source_pinned">جێگیرکراو</string>
 <string name="search_tv_sources_panel_meta">%1$d لە %2$d چالاککراون · گۆڕانکارییەکان دوای تەواو جێبەجێ دەبن</string>
+<string name="search_tv_suggestion_recent">دوایین · %s</string>
+<string name="search_tv_suggestion_recent_suggested">دوایین · هەروەها پێشنیارکراو</string>
+<string name="search_tv_suggestion_suggested">پێشنیارکراو</string>
 <string name="seek_back_10_seconds">10 چرکە بگەڕێوە دواوە</string>
 <string name="seek_forward_10_seconds">10 چرکە بڕۆ پێشەوە</string>
 <string name="select_all">هەموو هەڵبژێرە</string>

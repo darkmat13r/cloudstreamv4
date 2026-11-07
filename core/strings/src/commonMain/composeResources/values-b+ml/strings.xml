@@ -3,9 +3,17 @@
 <resources>
 <string name="detail_load_failed_body">ഉറവിടം ലഭ്യമല്ലായിരിക്കാം.</string>
 <string name="detail_load_failed_headline">ഈ ശീർഷകം തുറക്കാനായില്ല</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d ഡൗൺലോഡ് ചെയ്യുന്നു</item><item quantity="other">%d ഡൗൺലോഡ് ചെയ്യുന്നു</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d ക്യൂവിൽ</item><item quantity="other">%d ക്യൂവിൽ</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d ഡൗൺലോഡുകൾ ഇല്ലാതാക്കണോ?</item><item quantity="other">%d ഡൗൺലോഡുകൾ ഇല്ലാതാക്കണോ?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d എപ്പിസോഡുകൾ</item><item quantity="other">%d എപ്പിസോഡുകൾ</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d പരാജയപ്പെട്ടു</item><item quantity="other">%d പരാജയപ്പെട്ടു</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d ശീർഷകങ്ങൾ · %2$s</item><item quantity="other">%1$d ശീർഷകങ്ങൾ · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ബുക്ക്‌മാർക്ക്</item><item quantity="other">%d ബുക്ക്‌മാർക്കുകൾ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല</item><item quantity="other">%d വിഭാഗങ്ങൾ ലോഡ് ചെയ്യാനായില്ല</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">%d ഉറവിടത്തിൽ തിരയുക</item><item quantity="other">എല്ലാ %d ഉറവിടങ്ങളിലും തിരയുക</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">എന്നിട്ടും %d ഉറവിടത്തിൽ തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.</item><item quantity="other">എന്നിട്ടും എല്ലാ %d ഉറവിടങ്ങളിലും തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d ഉറവിടം</item><item quantity="other">%d ഉറവിടങ്ങൾ</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d വിഭാഗം</item><item quantity="other">%d വിഭാഗങ്ങൾ</item></plurals>
 <string name="action_add_to_bookmarks">വാച്ച് സ്റ്റാറ്റസ് സജ്ജീകരിക്കുക</string>
 <string name="action_mark_as_watched">കണ്ടതാണെന്ന് അടയാളപ്പെടുത്തുക</string>
@@ -55,6 +63,7 @@
 <string name="delete_repository">ശേഖരം ഇല്ലാതാക്കുക</string>
 <string name="delete_repository_plugins">ഇത് എല്ലാ റിപ്പോസിറ്ററി പ്ലഗിന്നുകളും ഇല്ലാതാക്കും</string>
 <string name="deselect_all">തിരഞ്ഞെടുത്തവയെല്ലാം ഒഴിവാക്കു</string>
+<string name="desktop_menu_go">പോകുക</string>
 <string name="detail_source_resolving">പരിഹരിക്കുന്നു…</string>
 <string name="detail_sources_done">%2$d-ൽ %1$d മറുപടി നൽകി</string>
 <string name="detail_sources_progress">%2$d-ൽ %1$d മറുപടി നൽകി · ലോഡ് ചെയ്യുന്നു…</string>
@@ -82,12 +91,19 @@
 <string name="downloaded">ഡൌൺലോഡ് ചെയ്തവ</string>
 <string name="downloading">ഡൌൺലോഡ് ചെയ്യുന്നു</string>
 <string name="downloads_browse_library">ലൈബ്രറി ബ്രൗസ് ചെയ്യുക</string>
+<string name="downloads_cancel_confirm_body">ഇതുവരെ ഡൗൺലോഡ് ചെയ്ത %s ഉപേക്ഷിക്കും.</string>
+<string name="downloads_cancel_confirm_title">ഈ ഡൗൺലോഡ് റദ്ദാക്കണോ?</string>
+<string name="downloads_cancel_download">ഡൗൺലോഡ് റദ്ദാക്കുക</string>
+<string name="downloads_column_size">വലുപ്പം</string>
 <string name="downloads_delete_all">എല്ലാം ഡിലീറ്റ് ചെയ്യുക</string>
+<string name="downloads_delete_confirm_body">ഇത് %s ഒഴിവാക്കും, ഇത് പഴയപടിയാക്കാനാകില്ല.</string>
 <string name="downloads_delete_select">ഡിലീറ്റ് ചെയ്യേണ്ടവ തിരഞ്ഞെടുക്കുക</string>
 <string name="downloads_empty">നിലവിൽ ഡൗൺലോഡുകൾ ഒന്നും തന്നെയില്ല.</string>
 <string name="downloads_empty_body">ഒരു ശീർഷകത്തിന്റെ എപ്പിസോഡ് ലിസ്റ്റിൽ നിന്ന് ആരംഭിക്കുന്ന ഡൗൺലോഡുകൾ ഇവിടെ കാണാം, കണക്ഷനില്ലാതെ പ്ലേ ചെയ്യാം.</string>
 <string name="downloads_empty_headline">ഇതുവരെ ഡൗൺലോഡുകളൊന്നുമില്ല</string>
+<string name="downloads_free">%s ശൂന്യം</string>
 <string name="downloads_free_up_space">ഇടം ഒഴിവാക്കുക</string>
+<string name="downloads_keep_downloading">ഡൗൺലോഡ് തുടരുക</string>
 <string name="downloads_load_failed_body">നിങ്ങൾ ഡൗൺലോഡ് ചെയ്ത ഫയലുകൾ മാറ്റിയിട്ടില്ല.</string>
 <string name="downloads_load_failed_headline">നിങ്ങളുടെ ഡൗൺലോഡുകൾ വായിക്കാനായില്ല</string>
 <string name="downloads_offline_pill">ഓഫ്‌ലൈൻ · കണക്ഷനില്ല</string>
@@ -101,6 +117,8 @@
 <string name="downloads_reason_storage_unavailable">സ്റ്റോറേജ് ലഭ്യമല്ല</string>
 <string name="downloads_retry_failed">പരാജയപ്പെട്ടവ വീണ്ടും ശ്രമിക്കുക (%d)</string>
 <string name="downloads_select">തിരഞ്ഞെടുക്കുക</string>
+<string name="downloads_selected_status">%2$d-ൽ %1$d എണ്ണം തിരഞ്ഞെടുത്തു · %3$s</string>
+<string name="downloads_show_in_finder">Finder-ൽ കാണിക്കുക</string>
 <string name="downloads_state_queued">ക്യൂവിലാണ്</string>
 <string name="downloads_storage_full_headline">ആവശ്യത്തിന് സ്റ്റോറേജില്ല</string>
 <string name="downloads_storage_legend">%1$s / %2$s ഉപയോഗത്തിൽ · ഡൗൺലോഡുകളിൽ %3$s</string>
@@ -285,11 +303,23 @@
 <string name="search_poster_img_des">പോസ്റ്റർ</string>
 <string name="search_provider_text_providers">സ്രോതസ് അടിസ്ഥാനത്തിൽ തിരയുക</string>
 <string name="search_provider_text_types">തരം അടിസ്ഥാനത്തിൽ തിരയുക</string>
+<string name="search_quick_empty_body">എല്ലാ ഉറവിടങ്ങളും മറുപടി നൽകി, പക്ഷേ ഒന്നിലും “%s” ഇല്ല. ചെറിയ തിരയൽ പരീക്ഷിക്കുക, അല്ലെങ്കിൽ ഉറവിടങ്ങൾ മാറ്റാൻ പൂർണ്ണ തിരയൽ തുറക്കുക.</string>
+<string name="search_quick_empty_headline">പൊരുത്തങ്ങളില്ല</string>
+<string name="search_quick_meta_answered">എല്ലാ ഉറവിടങ്ങളും മറുപടി നൽകി</string>
+<string name="search_quick_meta_answering">ഉറവിടങ്ങൾ മറുപടി നൽകുന്നതനുസരിച്ച് ഫലങ്ങൾ വരുന്നു</string>
+<string name="search_quick_open_full">പൂർണ്ണ തിരയൽ തുറക്കുക</string>
+<string name="search_quick_status">%2$d-ൽ %1$d മറുപടി നൽകി · %3$d പരാജയപ്പെട്ടു</string>
+<string name="search_quick_title">ദ്രുത തിരയൽ</string>
 <string name="search_state_idle_body_desktop">ഒരു ശീർഷകം ടൈപ്പ് ചെയ്യുക. ഓരോ ഉറവിടവും മറുപടി നൽകുമ്പോൾ ഫലങ്ങൾ അതിനു താഴെ കാണിക്കും.</string>
 <string name="search_state_no_results_type_filter">%s മാത്രം. നിങ്ങളുടെ തരം ഫിൽട്ടർ തിരയൽ ചുരുക്കുന്നു.</string>
+<string name="search_state_no_suggestions_detail">0 നിർദ്ദേശങ്ങൾ · 0 സമീപകാല പൊരുത്തങ്ങൾ</string>
+<string name="search_state_no_suggestions_headline">“%s” എന്നതുമായി ഒന്നും പൊരുത്തപ്പെടുന്നില്ല</string>
 <string name="search_tv_source_failed">പരാജയപ്പെട്ടു %s</string>
 <string name="search_tv_source_pinned">പിൻ ചെയ്തു</string>
 <string name="search_tv_sources_panel_meta">%2$d-ൽ %1$d പ്രവർത്തനക്ഷമം · പൂർത്തിയായി അമർത്തുമ്പോൾ മാറ്റങ്ങൾ ബാധകമാകും</string>
+<string name="search_tv_suggestion_recent">സമീപകാലം · %s</string>
+<string name="search_tv_suggestion_recent_suggested">സമീപകാലം · നിർദ്ദേശിച്ചതും</string>
+<string name="search_tv_suggestion_suggested">നിർദ്ദേശിച്ചത്</string>
 <string name="season">സീസൺ</string>
 <string name="seek_back_10_seconds">10 സെക്കൻഡ് പിന്നോട്ട് പോകുക</string>
 <string name="seek_forward_10_seconds">10 സെക്കൻഡ് മുന്നോട്ട് പോകുക</string>

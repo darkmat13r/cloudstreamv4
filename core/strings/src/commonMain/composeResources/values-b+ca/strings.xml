@@ -3,9 +3,17 @@
 <resources>
 <string name="detail_load_failed_body">Potser la font no està disponible.</string>
 <string name="detail_load_failed_headline">No s'ha pogut obrir aquest títol</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d en baixada</item><item quantity="many">%d en baixada</item><item quantity="other">%d en baixada</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d a la cua</item><item quantity="many">%d a la cua</item><item quantity="other">%d a la cua</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Voleu suprimir %d baixada?</item><item quantity="many">Voleu suprimir %d baixades?</item><item quantity="other">Voleu suprimir %d baixades?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episodi</item><item quantity="many">%d episodis</item><item quantity="other">%d episodis</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d fallida</item><item quantity="many">%d fallides</item><item quantity="other">%d fallides</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d títol · %2$s</item><item quantity="many">%1$d títols · %2$s</item><item quantity="other">%1$d títols · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d FAVORIT</item><item quantity="many">%d DE FAVORITS</item><item quantity="other">%d FAVORITS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">No s'ha pogut carregar %d secció</item><item quantity="many">No s'han pogut carregar %d seccions</item><item quantity="other">No s'han pogut carregar %d seccions</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">Cercar a %d font</item><item quantity="many">Cercar a totes les %d fonts</item><item quantity="other">Cercar a totes les %d fonts</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">Prem la tecla de cerca del teclat per cercar igualment a %d font.</item><item quantity="many">Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.</item><item quantity="other">Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONT</item><item quantity="many">%d FONTS</item><item quantity="other">%d FONTS</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d secció</item><item quantity="many">%d seccions</item><item quantity="other">%d seccions</item></plurals>
 <string name="account">compte</string>
 <string name="action_add_to_bookmarks">Defineix l'estat de visualització</string>
@@ -56,6 +64,7 @@
 <string name="create_account">Crea un compte</string>
 <string name="custom_media_singular">Mitjà</string>
 <string name="deselect_all">Deseleccionar tot</string>
+<string name="desktop_menu_go">Vés</string>
 <string name="detail_source_resolving">S'està resolent…</string>
 <string name="detail_sources_done">Han respost %1$d de %2$d</string>
 <string name="detail_sources_progress">Han respost %1$d de %2$d · s'està carregant…</string>
@@ -75,12 +84,19 @@
 <string name="downloaded_file">Fitxer descarregat</string>
 <string name="downloading">Descarregant</string>
 <string name="downloads_browse_library">Explora la biblioteca</string>
+<string name="downloads_cancel_confirm_body">Això descarta els %s baixats fins ara.</string>
+<string name="downloads_cancel_confirm_title">Voleu cancel·lar aquesta baixada?</string>
+<string name="downloads_cancel_download">Cancel·la la baixada</string>
+<string name="downloads_column_size">Mida</string>
 <string name="downloads_delete_all">Esborra-ho tot</string>
+<string name="downloads_delete_confirm_body">Això allibera %s i no es pot desfer.</string>
 <string name="downloads_delete_select">Selecciona els elements a eliminar</string>
 <string name="downloads_empty">No hi ha descàrregues en curs.</string>
 <string name="downloads_empty_body">Les descàrregues que inicieu des de la llista d'episodis d'un títol apareixen aquí i es reprodueixen sense connexió.</string>
 <string name="downloads_empty_headline">Encara no hi ha descàrregues</string>
+<string name="downloads_free">%s lliures</string>
 <string name="downloads_free_up_space">Allibera espai</string>
+<string name="downloads_keep_downloading">Continua baixant</string>
 <string name="downloads_load_failed_body">Els fitxers descarregats no s'han modificat.</string>
 <string name="downloads_load_failed_headline">No s'han pogut llegir les descàrregues</string>
 <string name="downloads_offline_pill">Fora de línia · sense connexió</string>
@@ -94,6 +110,8 @@
 <string name="downloads_reason_storage_unavailable">Emmagatzematge no disponible</string>
 <string name="downloads_retry_failed">Reintenta les fallides (%d)</string>
 <string name="downloads_select">Selecciona</string>
+<string name="downloads_selected_status">%1$d de %2$d seleccionats · %3$s</string>
+<string name="downloads_show_in_finder">Mostra al Finder</string>
 <string name="downloads_state_queued">A la cua</string>
 <string name="downloads_storage_full_headline">No hi ha prou emmagatzematge</string>
 <string name="downloads_storage_legend">%1$s de %2$s usats · %3$s en descàrregues</string>
@@ -327,11 +345,23 @@
 <string name="search_poster_img_des">Cartell</string>
 <string name="search_provider_text_providers">Cerca amb proveïdors</string>
 <string name="search_provider_text_types">Cerca per tipus</string>
+<string name="search_quick_empty_body">Totes les fonts han respost i cap no té «%s». Proveu una cerca més curta o obriu la cerca completa per canviar les fonts.</string>
+<string name="search_quick_empty_headline">Cap coincidència</string>
+<string name="search_quick_meta_answered">TOTES LES FONTS HAN RESPOST</string>
+<string name="search_quick_meta_answering">ELS RESULTATS ARRIBEN A MESURA QUE RESPONEN LES FONTS</string>
+<string name="search_quick_open_full">Obre la cerca completa</string>
+<string name="search_quick_status">%1$d DE %2$d HAN RESPOST · %3$d HAN FALLAT</string>
+<string name="search_quick_title">Cerca ràpida</string>
 <string name="search_state_idle_body_desktop">Escriu un títol. Els resultats apareixen sota cada font quan respon.</string>
 <string name="search_state_no_results_type_filter">Només %s. El filtre de tipus està limitant la cerca.</string>
+<string name="search_state_no_suggestions_detail">0 SUGGERIMENTS · 0 COINCIDÈNCIES RECENTS</string>
+<string name="search_state_no_suggestions_headline">Res no coincideix amb «%s»</string>
 <string name="search_tv_source_failed">HA FALLAT %s</string>
 <string name="search_tv_source_pinned">FIXAT</string>
 <string name="search_tv_sources_panel_meta">%1$d DE %2$d ACTIVATS · ELS CANVIS ES REGISTREN AMB FET</string>
+<string name="search_tv_suggestion_recent">RECENT · %s</string>
+<string name="search_tv_suggestion_recent_suggested">RECENT · TAMBÉ SUGGERIT</string>
+<string name="search_tv_suggestion_suggested">SUGGERIT</string>
 <string name="seek_back_10_seconds">Retrocedeix 10 segons</string>
 <string name="seek_forward_10_seconds">Avança 10 segons</string>
 <string name="select_all">Seleccionar tot</string>

@@ -2,6 +2,9 @@ package com.lagradost.cloudstream4.feature.search
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lagradost.cloudstream4.core.connectivity.Connectivity
+import com.lagradost.cloudstream4.core.connectivity.ConnectivityFlow
+import com.lagradost.cloudstream4.core.connectivity.UnknownConnectivityFlow
 import com.lagradost.cloudstream4.compose.ActionHandler
 import com.lagradost.cloudstream4.compose.DebounceQuery
 import com.lagradost.cloudstream4.compose.DefaultEffectContainer
@@ -12,6 +15,11 @@ import com.lagradost.cloudstream4.compose.StateContainer
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
@@ -36,6 +44,12 @@ import kotlinx.coroutines.sync.withLock
  *
  * [dispatcher] is injected rather than hardcoded to `Dispatchers.IO`, so tests drive it.
  *
+ * With [suggestions], typing shows artboard 8a's column instead of rails, and only a submit or a row shows
+ * results. Without it, typing runs the quick search into rails, as before; desktop passes none.
+ *
+ * [connectivity] is how 8b tells offline from nothing matching when no fan-out ran. The default knows nothing, and
+ * behaves as online.
+ *
  * ## Why [scope] is a parameter, and why that is not a rule violation
  *
  * `.claude/rules/mvi-viewmodel.md` says "`viewModelScope` only, never `GlobalScope`", and the
@@ -53,6 +67,8 @@ class SearchViewModel(
     private val history: SearchHistoryStore,
     dispatcher: CoroutineDispatcher = Dispatchers.Default,
     private val scope: CoroutineScope? = null,
+    private val suggestions: SearchSuggestionSource? = null,
+    private val connectivity: ConnectivityFlow = UnknownConnectivityFlow,
 ) : ViewModel(),
     StateContainer<SearchState> by DefaultStateContainer(SearchState()),
     EffectContainer<SearchEffect> by DefaultEffectContainer(),
@@ -78,6 +94,14 @@ class SearchViewModel(
     /** [scope] when the host supplied one, `viewModelScope` otherwise. */
     private val work: CoroutineScope get() = scope ?: viewModelScope
 
+    /**
+     * [connectivity], subscribed for this view model's lifetime. `AndroidConnectivityFlow` shares `WhileSubscribed`, so
+     * reading its `value` with no collector gives what it read when it was made, and a network lost after search opened
+     * was never seen (review of `KMP-47`). Collecting here keeps its callback registered while search exists.
+     */
+    private val network: StateFlow<Connectivity> =
+        connectivity.status.stateIn(work, SharingStarted.Eagerly, connectivity.status.value)
+
     init {
         // Start on the idle prompt rather than Loading: the history read is fast and local, and a
         // skeleton that flashes for one frame reads as a glitch.
@@ -91,7 +115,7 @@ class SearchViewModel(
             debounce.launch {
                 val current = state.value.query
                 if (current.isNotBlank() && current != submitted) {
-                    runSearch(current, quick = true)
+                    if (suggestions != null) runSuggestions(current, suggestions) else runSearch(current, quick = true)
                 }
             }
         }
@@ -134,11 +158,9 @@ class SearchViewModel(
 
             SearchAction.SearchEverything -> applyFiltersThenSearch { source.clearFilters() }
 
-            is SearchAction.RecentActivated -> {
-                submitted = action.query
-                updateState { copy(query = action.query, status = SearchStatus.Loading) }
-                work.launch { runSearch(action.query, quick = false) }
-            }
+            is SearchAction.RecentActivated -> searchNow(action.query)
+
+            is SearchAction.SuggestionActivated -> searchNow(action.query)
 
             is SearchAction.RecentRemoved -> work.launch {
                 history.remove(action.query)
@@ -157,10 +179,17 @@ class SearchViewModel(
         updateState { copy(query = query) }
         if (query.isBlank()) {
             showIdle()
-        } else if (state.value.sources.quickSearchable) {
+        } else if (suggestions != null || state.value.sources.quickSearchable) {
             updateState { copy(status = SearchStatus.Loading) }
             work.launch { debounce.emit(query) }
         }
+    }
+
+    /** This exact text, full search, now: a recent search or a suggestion. */
+    private fun searchNow(query: String) {
+        submitted = query
+        updateState { copy(query = query, status = SearchStatus.Loading) }
+        work.launch { runSearch(query, quick = false) }
     }
 
     private fun submitCurrentQuery() {
@@ -266,6 +295,45 @@ class SearchViewModel(
             val outcome = if (quick) source.quickSearch(query) else source.search(query)
             updateState { copy(status = outcome.toStatus(sources.selected)) }
         }
+    }
+
+    /**
+     * Artboard 8a: the suggestion service and the recent searches give the rows, and the quick search's fan-out gives
+     * their counts once it has answered. The rows land first, with no count, so a slow source does not hold them back.
+     *
+     * With no source that can quick-search there is no fan-out, and the rows never get a count.
+     */
+    private suspend fun runSuggestions(query: String, suggestions: SearchSuggestionSource) {
+        pages.clear()
+        inFlight.launch {
+            coroutineScope {
+                val fanOut = if (state.value.sources.quickSearchable) async { source.quickSearch(query) } else null
+                val recent = history.recent()
+                val rows = mergeSuggestions(query, suggestions.suggest(query), recent)
+                if (rows.isEmpty()) {
+                    // Offline also empties the suggestions, and saying nothing matches would be wrong. The fan-out only runs
+                    // for quick-searchable sources, which most installs have none of, so the device is asked directly too.
+                    val offline = network.value == Connectivity.OFFLINE || fanOut?.await() == SearchOutcome.Offline
+                    updateState {
+                        copy(status = if (offline) SearchStatus.Offline else SearchStatus.NoSuggestions(query, sources.selected))
+                    }
+                    return@coroutineScope
+                }
+                updateState { copy(status = SearchStatus.Showing(SearchContent.Suggestions(rows))) }
+                val outcome = fanOut?.await() ?: return@coroutineScope
+                updateState { copy(status = outcome.toSuggestionStatus(rows, sources.selected)) }
+            }
+        }
+    }
+
+    /** The rows with their counts, and the fan-out's shortfall on the chip row as with results. */
+    private fun SearchOutcome.toSuggestionStatus(rows: List<SearchSuggestion>, selected: Int): SearchStatus = when (this) {
+        is SearchOutcome.Complete -> SearchStatus.Showing(SearchContent.Suggestions(rows.withSourceCounts(items)))
+        is SearchOutcome.Partial ->
+            SearchStatus.Partial(SearchContent.Suggestions(rows.withSourceCounts(items)), answered, total, detail)
+        // Nothing answered, so no row can have a count; the rows stay, and so does what went wrong.
+        is SearchOutcome.Failed -> SearchStatus.Partial(SearchContent.Suggestions(rows), 0, selected, detail)
+        SearchOutcome.Offline -> SearchStatus.Partial(SearchContent.Suggestions(rows), 0, selected, OFFLINE_DETAIL)
     }
 
     /**

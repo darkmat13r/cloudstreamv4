@@ -4,10 +4,18 @@
 <string name="detail_load_failed_body">يمكن المصدر مو متوفر.</string>
 <string name="detail_load_failed_headline">ما قدرنا نفتح هالعنوان</string>
 <plurals name="downloads_active"><item quantity="one">م شي عم يتنزل</item><item quantity="other">شي واحد عم يتنزل</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d عم ينزل</item><item quantity="other">%d عم ينزل</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d بالدور</item><item quantity="other">%d بالدور</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">بدك تمحي %d تنزيل؟</item><item quantity="other">بدك تمحي %d تنزيلات؟</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d حلقة</item><item quantity="other">%d حلقات</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">فشل %d</item><item quantity="other">فشلوا %d</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">مافي شي بعد بده يبلش يتنزل</item><item quantity="other">فيه شي واحد بعد بده يبلش يتنزل</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d عنوان · %2$s</item><item quantity="other">%1$d عناوين · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d إشارة مرجعية</item><item quantity="other">%d إشارات مرجعية</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">م قدرنا نفتح %d قسم</item><item quantity="other">م قدرنا نفتح %d أقسام</item></plurals>
+<plurals name="search_state_no_suggestions_action"><item quantity="one">نبّش بـ%d مصدر</item><item quantity="other">نبّش بكل المصادر الـ%d</item></plurals>
+<plurals name="search_state_no_suggestions_body"><item quantity="one">اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال.</item><item quantity="other">اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال.</item></plurals>
+<plurals name="search_tv_suggestion_sources"><item quantity="one">%d مصدر</item><item quantity="other">%d مصادر</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d قسم</item><item quantity="other">%d أقسام</item></plurals>
 <string name="account">أكونت</string>
 <string name="action_add_to_bookmarks">عدل حالة الحَضِر</string>
@@ -161,6 +169,7 @@
 <string name="delete_repository">محي الريپو</string>
 <string name="delete_repository_plugins">محي الريپو كمان بمحي الإضافات يللي فيه</string>
 <string name="deselect_all">شيل التنقاية</string>
+<string name="desktop_menu_go">روح</string>
 <string name="detail_source_resolving">عم يستخرج…</string>
 <string name="detail_sources_done">%1$d من %2$d ردّوا</string>
 <string name="detail_sources_progress">%1$d من %2$d ردّوا · عم يحمّل…</string>
@@ -204,12 +213,19 @@
 <string name="downloaded_file">الملفات المنزلة</string>
 <string name="downloading">عم يتنَزَل</string>
 <string name="downloads_browse_library">تصفّح الرفّ</string>
+<string name="downloads_cancel_confirm_body">هيك بتخسر الـ %s اللي نزلوا لهلأ.</string>
+<string name="downloads_cancel_confirm_title">بدك تلغي هالتنزيل؟</string>
+<string name="downloads_cancel_download">إلغاء التنزيل</string>
+<string name="downloads_column_size">الحجم</string>
 <string name="downloads_delete_all">امحي الكل</string>
+<string name="downloads_delete_confirm_body">هيك بتفضّي %s وما فيك ترجّعها.</string>
 <string name="downloads_delete_select">نقي الإشيا اللي بدك تمحيها</string>
 <string name="downloads_empty">مافي تنزيلات هلّق.</string>
 <string name="downloads_empty_body">التنزيلات اللي بتبلّشها من قائمة حلقات العنوان بتطلع هون وبتمشي بلا إنترنت.</string>
 <string name="downloads_empty_headline">لسا مافي تنزيلات</string>
+<string name="downloads_free">%s فاضي</string>
 <string name="downloads_free_up_space">فضّي مساحة</string>
+<string name="downloads_keep_downloading">كمّل التنزيل</string>
 <string name="downloads_load_failed_body">ملفاتك المنزّلة ما تغيّرت.</string>
 <string name="downloads_load_failed_headline">ما قدرنا نقرا تنزيلاتك</string>
 <string name="downloads_offline_pill">بلا إنترنت · مافي اتصال</string>
@@ -223,6 +239,8 @@
 <string name="downloads_reason_storage_unavailable">التخزين مش متاح</string>
 <string name="downloads_retry_failed">جرّب كمان مرة (%d)</string>
 <string name="downloads_select">نقي</string>
+<string name="downloads_selected_status">%1$d من %2$d منقّاة · %3$s</string>
+<string name="downloads_show_in_finder">فرجيه بـ Finder</string>
 <string name="downloads_state_queued">بلايحة النَطر</string>
 <string name="downloads_storage_full_headline">مافي مساحة تخزين كفاية</string>
 <string name="downloads_storage_legend">%1$s من %2$s مستعمل · %3$s بالتنزيلات</string>
@@ -618,13 +636,25 @@
 <string name="search_poster_img_des">پوستر</string>
 <string name="search_provider_text_providers">عوزو المصادر لَ تنبّشو</string>
 <string name="search_provider_text_types">عوزو الأنواع ل تنبّشو</string>
+<string name="search_quick_empty_body">كل المصادر ردّت وما حدا فيهن عندو «%s». جرّب بحث أقصر، أو افتح البحث الكامل لتغيّر المصادر.</string>
+<string name="search_quick_empty_headline">ما في تطابق</string>
+<string name="search_quick_meta_answered">كل المصادر ردّت</string>
+<string name="search_quick_meta_answering">النتائج عم توصل لما المصادر ترد</string>
+<string name="search_quick_open_full">افتح البحث الكامل</string>
+<string name="search_quick_status">%1$d من %2$d ردّوا · %3$d فشلوا</string>
+<string name="search_quick_title">بحث سريع</string>
 <string name="search_state_idle_body_desktop">اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.</string>
 <string name="search_state_no_results_type_filter">%s بس. فلتر النوع عم يضيّق البحث.</string>
+<string name="search_state_no_suggestions_detail">0 اقتراحات · 0 تطابق مؤخراً</string>
+<string name="search_state_no_suggestions_headline">ما في شي بيطابق «%s»</string>
 <string name="search_suggestions">اقتراحات التنبيش</string>
 <string name="search_suggestions_des">بت فرجي اقتراحات إنتا و عم بت نَبّش</string>
 <string name="search_tv_source_failed">فشل %s</string>
 <string name="search_tv_source_pinned">مثبّت</string>
 <string name="search_tv_sources_panel_meta">%1$d من %2$d مفعّل · التغييرات بتنطبق عند خلصت</string>
+<string name="search_tv_suggestion_recent">مؤخراً · %s</string>
+<string name="search_tv_suggestion_recent_suggested">مؤخراً · ومقترح كمان</string>
+<string name="search_tv_suggestion_suggested">مقترح</string>
 <string name="season">جزء</string>
 <string name="season_format">%1$s%2$d%3$s</string>
 <string name="season_short">ج</string>

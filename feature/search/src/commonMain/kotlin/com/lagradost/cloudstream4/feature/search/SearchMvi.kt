@@ -63,6 +63,12 @@ sealed interface SearchStatus {
      */
     data class NoResults(val queried: Int) : SearchStatus
 
+    /**
+     * Typing, and the suggestion service and the recent searches have nothing for it: artboard **8b**.
+     * [query] is what the headline quotes, and [selected] the number of sources its action would ask.
+     */
+    data class NoSuggestions(val query: String, val selected: Int) : SearchStatus
+
     /** Every source failed. [detail] is the machine-readable line. */
     data class Failed(val detail: String) : SearchStatus
 
@@ -101,6 +107,9 @@ sealed interface SearchAction {
      * and the press — a remove on another row shifts every index after it.
      */
     data class RecentActivated(val query: String) : SearchAction
+
+    /** A row of 8a's column was activated: the same as [RecentActivated], a full search for its words. */
+    data class SuggestionActivated(val query: String) : SearchAction
 
     /**
      * The set of sources may have changed: plugins finished loading, or the user came back from

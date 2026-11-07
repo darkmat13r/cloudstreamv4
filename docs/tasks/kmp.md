@@ -5227,6 +5227,312 @@ Temporary changes, each reverted, on `Television_720p`.
 - **Any language but English on a device**, or a native speaker reading the five new translations. Least sure: `ti`,
   `am`, `so`, `mt`, `ckb`, `my`, `or`, `as`, `kn`, `ml`, `ne`, `eo` and `apc`.
 
+---
+
+## KMP-47 — TV search suggests while typing, boards 8a and 8b (queue `Q7`) · **measured 2026-11-06**
+
+**Status:** in pr. Boards 8a and 8b of `design/TV Search Suggestions.dc.html` on `Television_720p`, API 36.
+
+### What it adds
+
+- **8a: one column of suggestions while typing.** Up to six rows. They merge what the suggestion service offers with recent searches that contain the typed words. A recent search and a suggestion that differ only in case fold into one row, `RECENT · ALSO SUGGESTED`, keeping the recent search's words. Recent searches keep two of the six places. The row equal to the typed text comes first, then the service's order, then recent-only rows.
+- **A count per row, `7 SOURCES`.** It is the number of distinct sources whose quick search returned that exact title (ignoring case). Before the fan-out answers, a row shows no number, so nothing is shown that could change. A partial fan-out rides the chip row as `FailureBanner` with `Retry failed`, and the counts are of the sources that answered.
+- **OK on a row** runs the full search for its words and records them in history.
+- **8b: nothing matches.** Nothing suggested and nothing recent matching gives `Nothing matches “…”` with the query quoted, and `Search all N sources` on the chip row. **The field keeps the focus** (8c's action takes it; 8b's does not, because the user is still typing). Offline with nothing suggested says offline, not that nothing matches.
+- **The old `SearchSuggestionApi` is wrapped, not moved** (plan §5.3). `:feature:search` has a `SearchSuggestionSource` seam; `SearchTvFragment` passes one when `search_suggestions_enabled` is on (default on), and none when it is off. With none, typing runs the quick search into rails as before. Desktop passes none.
+- 8 new keys, in all 62 locales.
+
+### Focus
+
+| Press | Goes to |
+|---|---|
+| Down from the field, with suggestions | The first chip, then Down to the first row |
+| Down / Up in the column | The next / previous row |
+| Right on a row | Stays |
+| Down from the field, 8b | The first chip; Right along the chips reaches `Search all N sources` |
+
+### Reduced from the boards
+
+- **The count and its word are one line, `7 SOURCES`,** not the board's number over a word. A plural word without its number fails lint's `ImpliedQuantity` in 19 locales (wherever one form covers several numbers: `fr` 0 and 1, `ru` 1, 21, 31…), and `:app:lintPrereleaseDebug` stops on it. The trail is at least 120 dp (`.trail` 240 px) and grows for a long word.
+- **8b's copy changed for `BUG-30`:** "Press OK on the field" is now "Press the keyboard’s search key", since OK on the field opens the keyboard.
+- `dune messiah` sits sixth, where the board has it fifth: recent-only rows follow the service's suggestions.
+- The focused row has no selected fill, like 4c; 8a draws one.
+- The retry keeps `Retry failed`, not the board's `Retry 3 sources`.
+- History dates stay lower case (`2 days ago`), as in `KMP-42`.
+- Captions use the theme's caption face; the board draws them in mono.
+- **8b's mono line counts instead of claiming an answer:** `0 SUGGESTIONS · 0 RECENT MATCHES`, not the board's `SUGGESTIONS ANSWERED · 0 MATCHES`, which a failed service would make false (the Found item below).
+- **Offline is read from the device on 8b's path** (`:core:connectivity`'s `ConnectivityFlow`), not only from the fan-out, which runs only for quick-searchable sources. Before this, offline on most installs showed "Nothing matches". `UNKNOWN` behaves as online. The view model collects the flow for its lifetime (`stateIn(Eagerly)` in its scope): `AndroidConnectivityFlow` shares `WhileSubscribed`, so a bare `value` read with no collector stays at what it read when it was made, and a network lost after search opened was missed (caught in review).
+- **A suggestion service that is down reads as 8b.** `SearchSuggestionApi.getSuggestions` returns an empty list on any failure (it logs it), so "down" and "answered with nothing" cannot be told apart without changing it.
+- **Counts appear only when the selected sources can quick-search.** `MainAPI.hasQuickSearch` defaults to false, so on most installs typing runs no fan-out and the rows have no counts. A full search per settled keystroke was ruled out: it would query every provider on every keystroke (Found, not changed).
+- The setting is read when the screen is made, so changing it applies on the next visit.
+
+### Tests
+
+- `SearchSuggestionsTest` (common, 7): the board's merge, the six-row and two-recent caps, filling from recent, exclusion, blank input, the counts.
+- `SearchSuggestionsViewModelTest` (JVM, 12): offline with no quick-searchable source (it failed before the connectivity check); losing the network after search opened, with a fake shared `WhileSubscribed` like the real flow (it failed on a bare `value` read); online and unknown being 8b; and only the settled query is asked, rows before counts, 8b, 8b's Submit, offline, a partial fan-out, no quick search, a row's full search, no suggestion source.
+- `SearchSuggestionsDeviceTest` (device, 8, the board's data): six rows with counts 7, 9, 6, 4, 2, 0; the D-pad walk; OK on a row; 8b keeps the field focused and its action searches; screenshots `search-suggestions-counted`, `-counting`, `-partial`, `-nothing-matches`, each looked at before it was recorded.
+- `TvSearchNavigationTest` (`:app`, the real path): with suggestions on, typing one letter by remote (OK, the keyboard, then `input text`) shows 8b through the real fragment, setting and `SearchSuggestionApi`; with them off, no suggestions appear. One letter, because the API answers it without the network. The test waits for 8b's action on the chip row, not its headline: it first passed, then failed twice waiting for the headline, and a run that printed the screen's text showed the query, `Search all 0 sources` and the open keyboard's own words, with no headline. The keyboard covers the middle of the screen, where 8b's headline sits.
+
+**The gates caught one more:** `HashMap.putIfAbsent` in the merge is `java.util`'s, so the iOS canary did not resolve it and lint's `NewApi` stopped on it at minSdk 23. It is `getOrPut` now. The JVM and Android builds compiled it.
+
+**One fix was caught by a test, and one test was made deterministic.** The first device run failed `nothingMatchesKeeps…` at the field's focus (`Focused = 'false'`): the chip row's action requested focus on appearing, as 8c wants. The screenshot showed the ring on `Search all 12 sources`.
+
+### Found, not changed
+
+```
+Found: `SearchSuggestionApi.getSuggestions` returns an empty list on every failure
+Suggest: return a result that tells a failure from no suggestions
+Why: a suggestion service that is down shows 8b's "Nothing matches", which is not true. 8b's mono line is worded to be true either way meanwhile.
+
+Found: rows count only quick-searchable sources, and `MainAPI.hasQuickSearch` defaults to false, so most installs show no counts
+Suggest: nothing; a full search per settled keystroke was ruled out (app-10, 2026-11-06)
+Why: it would query every provider on every keystroke, which costs their servers and gets the app throttled.
+```
+
+**A board correction, logged for the owner's next design pass:** 8b assumed no on-screen keyboard. While the keyboard is open, 8b's headline and body sit behind it; only the chip row's action shows. Recorded under "Owed on the boards" in `docs/plans/tv-screen-audit.md`; no change now (app-10, 2026-11-06).
+
+### Not verified
+
+`TalkBack`, a real remote, the live TMDB answer on the device (the real-path test's one letter never reaches the network), counts against a real quick-searchable provider (none is installed on the AVD), and the least-confident translations: `ti`, `am`, `ckb`, `my`, `or`, `as`, `mt`, `apc`.
+
+### Published API
+
+Additions only. `app/api/classes-jar.api` gains 8 `R` fields (3 `R$plurals`, 5 `R$string`), 0 removed or changed.
+
+## KMP-53 — The Mac window's shell: a sidebar, a menu bar and their keys · **steps 1 and 2 built 2026-11-07**
+
+`docs/plans/desktop-design.md` kept three tabs while three did the job: "A sidebar is worth it at the fourth"
+(lines 117-118). Downloads is the fourth (`KMP-54`), so the bar becomes board D1's sidebar for every top-level screen.
+
+**Step 1, this change.**
+- `DesktopSidebar` in `:desktopApp`, `home/DesktopShell.kt`:
+  - a 220 column on `surface` with a hairline on its right edge;
+  - 32 rows with a 16 glyph and the destination's name, the chosen row `raised`;
+  - at its foot, the extensions notice, which sat at the end of the tab bar before.
+
+  `TopLevelScreen` keeps its signature, so no screen changed.
+- `DesktopShortcuts`, read by the window before any screen, as `EscapeHandler` is:
+  - ⌘1 to ⌘3 go to Home, Search and Library, at the top level only, where the sidebar is;
+  - ⌘[ goes back wherever there is something under.
+- Tests in `:desktopApp`:
+  - `DesktopShellTest` (3): the shortcuts, plain keys ignored, and a click on a row;
+  - the four window-level tests that clicked the old tab bar now click the sidebar, with coordinates measured from renders.
+
+**Next steps.**
+- **Downloads as the fourth row, and ⌘4.** It is the one-line wiring once `KMP-52` (#177) and `KMP-54` (#179) are on
+  master: `TopLevelDestination.Downloads`, its glyph `Download`, and the host composing `DownloadsScreenDesktop` over
+  `DesktopDownloadsSource`.
+- **Settings ⌘,.** Board D1 puts it at the sidebar's foot, but the Mac has no settings screen yet.
+
+**Step 2, the menu bar.** Its one new word is `I18N-13` (#185).
+- `DesktopMenuBar` puts the screen's menu bar in the window. Its Go menu lists Home, Search and Library with their keys, a
+  separator, then Back. What does nothing is greyed: the destinations away from the top level, and Back where nothing is
+  under.
+- **The menu owns the keys, and nothing else reads them.** Compose's `MenuBar` binds each item's shortcut. The window's
+  `onPreviewKeyEvent` from step 1 would have fired each key a second time, and a doubled ⌘[ pops two screens. So it now
+  handles only Escape.
+- **Keys per platform.** On a Mac, ⌘1 to ⌘3 and ⌘[, as Finder and Safari. Elsewhere, Ctrl+1 to Ctrl+3 and Alt+Left, as
+  Windows' and GNOME's file browsers.
+- `DesktopShellTest`: the Go menu's routing and greying, and the key table on both platforms. A `MenuBar` needs a real
+  window, so the menu itself is not drawn in a test.
+
+**DECIDED.** The menu has only Go. Options were (A) also File (Play from link) and Window, or (B) Go alone. Chose B:
+Play from link has no Mac host yet, and macOS gives every app its own app and Window menus.
+
+**DECIDED.** The menu bar is split off. Options were (A) ship it now with English menu titles, or (B) defer it to an
+`I18N` task that adds the titles. Chose B: every word comes from `:core:strings`, and the shortcuts already work without it.
+
+## KMP-48 — TV Quick Search is a side panel over its caller, boards 8d and 8e (queue `Q8`) · **measured 2026-11-06**
+
+**Status:** in pr, stacked on `KMP-47`'s branch (Q6–Q8 are serial in the audit). Boards 8d and 8e of `design/TV Search Suggestions.dc.html` on `Television_720p`, API 36.
+
+### What it adds
+
+- **The panel is drawn over the screen that opened it, which does not reflow.** On TV, `navigation_quick_search` is replaced at runtime by a `DialogFragmentNavigator` destination with the same id (`openQuickSearchOnTvScreen`, one line in `MainActivity`, which is the rollback). A fragment destination would replace the caller; the board's note is that the caller stays. The dialog window covers the nav host, not the rail, so the rail is dimmed by `SidePanelOutsideDim` once, as for 4d.
+- **Every `QuickSearchFragment.pushSearch` caller reaches it unchanged:** Home, the result pages and the library pass the same arguments (the query, trimmed of `(DUB)`/`(SUB)` there, and optionally the providers).
+- **8d, answering.** `SidePanel` with `Quick search`, `RESULTS STREAM IN AS SOURCES ANSWER` and `3 OF 12 ANSWERED · 2 FAILED`, which update as each source answers (`QuickSearchSource`, a `Flow`; `ApiRepositorySearchSource.quickSearchPanel` launches one search per provider and emits after each). Rows are `ListRow`s with the chassis disc and `PROVIDER · TYPE · QUALITY`, in the order the providers were asked, pinned first. Until a source answers the only stop is `Done`; the first answer moves focus to the first row, and later answers leave it where it is.
+- **8e, empty.** Every source answered and none carries it: `No matches`, the query quoted, and `Open full search` as the commit row, focused. It takes the query to the search screen through `nextSearchQuery` and the rail item, as the intent handler does.
+- **Every source failed** says `Search failed`, or `You are offline` when every failure was the network's, with `Try again`, which carries `Retry` (`DEC-17`). Not drawn on the board; the copy is the search screen's 4b copy. Their glyphs are the pack's `Warning` and `Offline`; 8e's is `Search`, as 8b's is.
+- **OK on a row** opens the title. The navigation pops the dialog, so BACK from the title returns to the caller.
+- **More rows than fit scroll by whole rows** with `RowScroll`, moved from `:feature:downloads` to `:core:designsystem` in its own commit (approved by app-10; the downloads call sites change only names and imports, and the downloads suite stays 61/0 with its 17 screenshots 0/0). Five rows fit whole and do not move the list.
+- 7 new keys, in all 62 locales, none a plural.
+
+### Focus
+
+| Press | Goes to |
+|---|---|
+| Opening, before any answer | `Done` |
+| The first answer | The first row |
+| Down / Up | The next / previous row, then the commit row |
+| Left / Right, Down past the commit row | Stays (the panel's trap) |
+| BACK, `Done` | Closes; the caller keeps its focus and state |
+
+### Reduced from the boards
+
+- **No year in a row's line.** `SearchResultItem` carries no year, so the line is `VIDSRC · MOVIE · 4K`, not `VIDSRC · 2024 · MOVIE`. Adding one is a change to the shared item.
+- **8e's body does not spell the number.** `Every source answered and none of them carry “…”` instead of `All twelve sources answered…`: the status line above already says `12 OF 12`, and a number in the sentence would make it a plural in 62 locales.
+- **The meta line is left out once a source has failed,** since `ALL SOURCES ANSWERED` would not be true; the status line moves up into its place.
+- **No paging, and one search for every caller.** The old fragment gave a single provider with `hasQuickSearch` a quick search as you typed and a paged grid. The panel runs every provider's full first-page search, a single provider included.
+- **8e and every-source-failed have no `Done`.** Their action takes `Done`'s slot, as 8e draws it, so BACK is the only way to close the panel from those two states.
+- **It closes without sliding out.** The dialog goes with the press; `SidePanelHost` has no signal for the end of its exit.
+- The caller is the old fragment's callers' screens; the board draws the search screen behind the panel.
+- The board's panel title sits at y64; `SidePanel`'s header is at `ChromeRowTop` (y56), as 4d's is.
+- With no providers at all the panel says `Search failed`, as the search screen's `noTargets` does.
+
+### Tests
+
+- `QuickSearchViewModelTest` (JVM, 5): the trimmed query asked once, each answer replacing the last, a blank query asking nobody, `Try again` starting over, each action's effect, when a round is finished.
+- `QuickSearchPanelDeviceTest` (device, 14, the board's data): a sixth row moving the list by exactly one row and back; counting and the first row's focus; Down through the rows to `Done` and `Done` closing; OK on a row; a later answer keeping focus; 8e's copy and `Open full search`; every source failed and `Try again`; offline; screenshots `quick-search-asking`, `-answering`, `-scrolled`, `-empty`, `-failed`, `-offline`, each looked at before it was recorded.
+
+**The scroll test caught a layout bug.** Its first run failed at "a row that fits moved the list". Logging the spec's inputs showed a 379px viewport, not 395px: `SidePanel`'s rows slot spaces its children `RowGap` apart, and the list and the rule were two children, so the list was 12dp short and cut the fifth row's foot. They are one child now.
+- `TvQuickSearchNavigationTest` (`:app`, the real path, 4): 8e's `Open full search` lands on the real search screen with the query in the field and the Compose rail (`TvRailSwitch.useComposeRail`) on Search; and `pushSearch` from the new Home with two fake providers registered where plugins go, one answering and one failing. The panel is a `FloatingWindow` destination over the same, still drawn `HomeTvFragment`; it counts `1 OF 2 ANSWERED · 1 FAILED`; the `(DUB)` suffix is trimmed before the provider is asked; BACK and `Done` leave Home as it was; OK on a row loads that title through the provider, and BACK from the title returns to Home.
+
+### Found, not changed
+
+```
+Found: SidePanelHost has no callback for the end of its exit slide
+Suggest: an onClosed parameter, raised when the panel unmounts
+Why: a host in its own window (this dialog) cannot slide the panel out before closing the window.
+```
+
+### Not verified
+
+`TalkBack`, a real remote, a real provider's answer (the fakes stand in), the Home and result-page buttons that call `pushSearch` (the test calls it directly; the result page needs a loaded title), and the least-confident translations: `ti`, `am`, `ckb`, `my`, `or`, `as`, `mt`, `apc`.
+
+### Published API
+
+Additions only. `app/api/classes-jar.api` gains 60 lines: 7 `R$string` fields, `QuickSearchTvFragment` and its synthetic classes, `ApiRepositorySearchSource.quickSearchPanel`, and `openQuickSearchOnTvScreen`. 0 removed or changed.
+
+## KMP-63 — Per-episode watch state across the detail seam (board 7i's `WATCHED` and `24 MIN LEFT`) · **measured 2026-11-07**
+
+**Status:** open · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
+
+Board 7i draws two readouts on an episode row that nothing in the tree can supply: `WATCHED` on a
+finished episode and `24 MIN LEFT` on a started one. 7i's other two row fields were simply discarded
+in one mapping and are carried as of PR 2a (`DetailEpisode.runTimeMinutes`, `.airDateMs`). These two
+are **not a mapping fix**, and that is the whole content of this task.
+
+### Why it is a contract question
+
+Per-episode progress is `LocalDetailRecords.viewPosition(id)` (`AndroidDetailSource.kt:288`), keyed on
+`:app`'s **episode id**. `DetailEpisode` carries no id, and that is deliberate: its `data` is opaque and
+"goes back to `DetailSource.links` unread" by its own KDoc, which is what keeps `:feature:detail` free
+of any `:app` or `:library` edge. The only progress this seam carries is `DetailResume`, and that is
+**title-level** — one resume for the last-watched episode, not one per row.
+
+So the question is what crosses the seam, not how to format it:
+
+| Option | Shape | Cost |
+|---|---|---|
+| A | `DetailEpisode.progress: DetailResume?` per row | No id leaves `:app`; the host does the lookup it already does for `resume`. No new concept. |
+| B | `DetailEpisode.watched: Boolean` + `remainingMinutes: Int?` | Smallest surface, but two derived fields the host must keep consistent with each other. |
+| C | An id on `DetailEpisode` plus a `progress(id)` call on `DetailSource` | Puts `:app`'s id into the contract and adds a round trip per row. |
+
+**Recommendation: A.** `resumeOf` (`AndroidDetailSource.kt:591`) already builds a `DetailResume` from a
+stored position, so a per-episode one is that function called per row rather than a new mapping, and
+`DetailResume` already owns the zero-duration guard that `ResultEpisode.getWatchProgress()` lacks
+(`DetailContracts.kt:72-75`). B re-derives in the host what `DetailResume.remainingMinutes` already
+computes in the module. C is last because it is the only one that changes what the seam *means*.
+
+**`classes-jar.api`:** A and B add fields to a type that is not in it — `DetailEpisode` appears nowhere
+in `app/api/classes-jar.api`, and `toTitleDetail` takes an erased `List`, so no published line changes.
+Verified by grep, not assumed.
+
+**Why PR 2a does not do it:** a readout whose data does not exist is worse than none — the same reason
+`KMP-38` left Download and Mark watched out of the action row.
+
+## KMP-54 — The Mac downloads pages, boards D1 to D6 · **built 2026-11-07, not wired**
+
+`DownloadsScreenDesktop` in `:feature:downloads`, `desktop/`, from `design/Desktop Downloads.dc.html` (`DS-18`, #172). It runs
+on `DownloadsViewModel` and `DownloadsState` unchanged: what is shared is the state, the logic and the words; what is the Mac's
+is the row, the selection, the menu and the sheet (`DEC-19`). Built on `DesktopFoundation`'s existing components; the
+desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), which this stacks on.
+
+**What it does.**
+- **D1:** a 56 row per title with art, name and kind, status with its rule, and size. On hover the row shows its verbs:
+  Retry or Resume, Show in Finder, and Delete. They are glyph-only 24 cells with tooltips (rule 4, extended by the owner).
+- **D2:** selection is the pointer's, as in Finder. Click, ⌘-click, ⇧-click and ⌘A all act on press.
+  - `DownloadsDesktopSelection` turns each gesture into the view model's existing actions, so TV's choosing mode is
+    untouched.
+  - Right-click, or Control-click, opens a menu at the pointer (Show in Finder, Delete), which acts on the selection.
+  - The footer counts the titles and their size, or what is selected.
+- **D3:** the confirmation sheet hangs under the toolbar, and Cancel is the filled default (rule 1). Return and Escape
+  both cancel; only a click deletes.
+- **D5:** the offline pill sits beside the title. The storage-full banner offers Free up space, and the view model decides
+  between choosing rows and the system's storage settings. Empty and failed are `StateView`s that never take focus.
+- **D6:** below a 780-wide page the size column folds into the second line.
+- **D4, one series:** `DownloadSeriesScreenDesktop` on `DownloadSeriesViewModel` unchanged.
+  - The toolbar has Back (⌘[) and the path, Downloads › the series.
+  - Below the art and counts: Play next, Retry failed (when there is one), and Delete all, through the same sheet.
+  - Episodes sit under season headers, which now give the count through `downloads_episode_count`.
+  - Each row's hover verbs follow the board: Play on a finished row; Pause and Cancel on a running one; Resume (the `Play`
+    glyph, one glyph per meaning) on a paused one; Retry on a failed one; Cancel on a waiting one. Show in Finder appears
+    once the file is on the disk, and Delete is always last. A double-click plays.
+  - The meta line reads "7 EPISODES · 3.94 GB ON DISK · 12.40 GB FREE", the counts read "1 downloading · 1 queued · 1
+    failed", the footer reads "Season 1 · 7 episodes · 3.94 GB", and the breadcrumb's Downloads is a muted link. The new
+    keys are in `I18N-11`.
+  - **A failure names its reason.** The owner ruled on `KMP-52` that a resume asks the extension for a fresh link, so a resume
+    that finds none reads "Download Failed · No working link" and offers Retry.
+- **Keys:** ⌘A, ⌘⌫ (asks first), Return opens the one selected title, ⌘R shows it in Finder, and Escape clears.
+- `CloudStreamIcons.Folder` (Tabler `Folder`) is added for Show in Finder, as the glyph table rules.
+
+**Measured.** All local:
+- `DownloadsScreenTest`: 7 tests in `:desktopApp`, with real pointer and key events against a fake source and the real view
+  model. Renders: `-Pcloudstream.downloads.renders=<dir>`.
+- `DownloadsDesktopSelectionTest`: 10 tests in `commonTest`.
+
+**Not here.**
+- **Wiring.** The host needs:
+  - `KMP-52`'s source (#177): `fileOf` behind `canReveal` and `onReveal`, and `delete` after the sheet;
+  - the shell's sidebar entry (`KMP-53`).
+
+  Both are a few lines in `:desktopApp` once those land. #177 also adds `:feature:downloads` to `:desktopApp`, so the second
+  to land drops the duplicate line.
+- **Open in the menu.** No word for it yet; double-click and Return open.
+- **The transfer rate.** `DownloadTitle` carries none.
+- **New components.** The tooltip, the context menu and the bottom rule are private here. They are candidates for `DS-19`.
+- **Shared words.** The failure reason and the episode code's fallback are copies of TV's private rules in `SeriesRows`,
+  kept identical until `KMP-65`. The line itself is the name alone, on purpose: D4 has a number column.
+- **Cancelling asks first when there is something to lose.** A running or waiting episode with bytes on the disk opens a
+  sheet before Cancel discards them ("Cancel this download?", with Keep downloading as the filled default); one with
+  nothing fetched cancels at once. This is the PM's call (2026-11-07), following rule 1's pattern for destructive
+  confirmations; the words are in `I18N-11`.
+- **"Show in Finder" is the Mac's word.** It sits in a shared key; Windows and Linux will need their own ("Show in folder")
+  when those builds exist.
+
+**DECIDED** (small calls on the recommended option, the owner's standing rule of 2026-11-07):
+- **Cancel on a running episode.** Options were (A) an additive `SeriesAction.CancelRequested` that calls the source's
+  `cancel`, (B) routing Cancel through Delete, or (C) leaving Cancel off the running row. Chose A: the board draws it, and
+  `KMP-52`'s host cancels in any state. TV never sends it.
+- **Free space on D4.** Options were (A) an optional `DownloadSeriesContents.freeBytes`, defaulting to null so every host
+  compiles unchanged, or (B) a second source for the disk. Chose A: one emission carries the page. `KMP-52` fills it,
+  and the line leaves it out while it is null.
+
+**Reductions from the board**, where existing copy was reused rather than adding keys:
+- "Download Failed" and "Download Paused · 40%" for D1's "1 failed" and "Paused · 40%".
+- "Download queue · 1/4" for "Queue 1/4".
+- "Play from link" for "Play link".
+- "Movie" for "Film".
+- "4.24 GB / 5.10 GB" for "4.24 GB of 5.10 GB".
+- "Not enough storage · Needs 2.40 GB more" for D5's sentence.
+- "Free up space" for "Open Storage Settings".
+- D5's empty copy is TV's.
+- The D3 sheet's body gives the size freed without the titles' names.
+
+## KMP-65 — One source for a series' words on TV and the Mac · **open**, follow-up of `KMP-54`
+
+`DownloadSeriesScreenDesktop` copies two private rules from TV's `series/tv/SeriesRows.kt`: `titleOf` ("S1 · E3 ·
+Name") and `reason` (a `DownloadFailure` in words). The reason mapping and the code's fallback logic are kept identical
+meanwhile. **The line's format differs on purpose**: TV draws "S1 · E3 · Name" in one line, and the Mac draws the name
+alone, because board D4 gives the number its own column (the code stands in only where there is no name). To do:
+1. Move both into one `internal` function in `series/`, and have both screens call it.
+2. Replace `"${episode_short}$number"`, the one-number fallback in both copies, with a key that takes the number as
+   an argument, so a translation can place it.
+   The same concatenation is in `HomeResume.line()` in `HomeScreenDesktop.kt` (`KMP-55`): `season_short` and
+   `episode_short` glued to their numbers for Continue watching's "S2 E4". It should use the same key, with a sibling
+   for the season, so both read the same in every language.
+3. Rerun the TV downloads device suite and keep its screenshots at 0/0, because this touches a `tv/` file.
+
 ## KMP-55 — The Mac's Home, built from `DS-21`
 
 **Status:** in review · stacked on `#191` (`I18N-14`) · H4 waits on `KMP-68` (`#197`)
