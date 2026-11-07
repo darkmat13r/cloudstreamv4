@@ -1529,7 +1529,20 @@ own bottom padding, and a `LazyColumn` without that padding would still clip.
 
 ## BUG-41 — On TV, Home's first focus could stay on the bookmarks' first chip instead of landing on the hero · **medium** · measured 2026-11-06
 
-**Status:** fixed, in a PR of its own · found by `TvHomeNavigationTest.aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept`
+**Reopened 2026-11-07, and fixed again.** With #183 on master (`9db8c4b66`), the same test failed the same way in #212's
+full run (`was Watching`), on a branch that changes no Home code. #183 marked only the arrival its own request in
+`HomeTvFragment.onResume` causes, and `onResume` asks only where the page holds no focus. **The window can give the page
+focus on its own first**, onto its first stop, a chip when the bookmarks are on screen before the rows. `onResume` then
+asked for nothing, nothing was marked, and the chip counted as a person's choice. Reproduced deterministically by
+`HomeScreenTvDeviceTest.focusTheWindowGaveTheBookmarksBeforeTheHostAskedStillGoesToTheHero` (red on master:
+`expected More info · The Long Dark, was Watching`). Fixed in `HomeHostFocus.resumed`, which the fragment and the test
+both call: with a landing owed, a page that already holds focus has it from the window, not a person, and that arrival
+is marked as the host's too, **but only while no key has been pressed on the page**: a person who pressed DOWN into
+the bookmarks and is then resumed before the rows land keeps their place
+(`aPersonWhoPressedIntoTheBookmarksKeepsFocusThereThroughAResume`, red without that guard: `expected Saved 9, was
+More info`). #183's three cases stay green.
+
+**Status:** fixed (reopened and fixed again, above) · found by `TvHomeNavigationTest.aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept`
 on master `d0b21dc56` (worker-2, twice on `Television_720p`: in #175's full run, and alone at 18:29:22) ·
 `feature/home/.../tv/HomeScreenTv.kt`, the landing's `free`
 
