@@ -275,6 +275,14 @@
 <string name="player_fit_screen">Omple la pantalla</string>
 <string name="player_fit_title">Mida de la imatge</string>
 <string name="player_fit_width">Omple l’amplada</string>
+<string name="player_hud_buffering">CARREGANT</string>
+<string name="player_hud_failed_detail">Trieu una altra font a sota.</string>
+<string name="player_hud_offline_copy">Sense connexió — es reprodueix la còpia baixada</string>
+<string name="player_hud_previous_episode">Episodi anterior</string>
+<string name="player_hud_seek_back">Enrere</string>
+<string name="player_hud_seek_forward">Endavant</string>
+<string name="player_hud_speed">Velocitat</string>
+<string name="player_hud_up_next">Següent · %s</string>
 <string name="player_load_one_subtitle_online">Carrega el primer disponible</string>
 <string name="player_load_subtitles">Carrega des del fitxer</string>
 <string name="player_load_subtitles_online">Carrega des d'internet</string>

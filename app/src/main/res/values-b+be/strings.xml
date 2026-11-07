@@ -503,6 +503,14 @@
 <string name="player_fit_screen">"Запоўніць экран"</string>
 <string name="player_fit_title">"Памер выявы"</string>
 <string name="player_fit_width">"Запоўніць шырыню"</string>
+<string name="player_hud_buffering">"БУФЕРЫЗАЦЫЯ"</string>
+<string name="player_hud_failed_detail">"Выберыце іншую крыніцу ніжэй."</string>
+<string name="player_hud_offline_copy">"Няма злучэння — прайграецца спампаваная копія"</string>
+<string name="player_hud_previous_episode">"Папярэдняя серыя"</string>
+<string name="player_hud_seek_back">"Перамотка назад"</string>
+<string name="player_hud_seek_forward">"Перамотка ўперад"</string>
+<string name="player_hud_speed">"Хуткасць"</string>
+<string name="player_hud_up_next" formatted="true">"Далей · %s"</string>
 <string name="player_is_live">"Ужывую"</string>
 <string name="player_load_one_subtitle_online">"Спампаваць першыя даступныя"</string>
 <string name="player_load_subtitles">"Загрузіць з файла"</string>

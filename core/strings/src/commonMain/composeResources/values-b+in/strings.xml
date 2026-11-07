@@ -504,6 +504,14 @@
 <string name="player_fit_screen">Isi layar</string>
 <string name="player_fit_title">Ukuran gambar</string>
 <string name="player_fit_width">Isi lebar</string>
+<string name="player_hud_buffering">BUFFERING</string>
+<string name="player_hud_failed_detail">Pilih sumber lain di bawah.</string>
+<string name="player_hud_offline_copy">Tidak ada koneksi — memutar salinan unduhan</string>
+<string name="player_hud_previous_episode">Episode sebelumnya</string>
+<string name="player_hud_seek_back">Mundur</string>
+<string name="player_hud_seek_forward">Maju</string>
+<string name="player_hud_speed">Kecepatan</string>
+<string name="player_hud_up_next">Berikutnya · %s</string>
 <string name="player_is_live">Live</string>
 <string name="player_load_one_subtitle_online">Muat yang pertama tersedia</string>
 <string name="player_load_subtitles">Muat dari file</string>

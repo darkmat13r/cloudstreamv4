@@ -120,6 +120,33 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Twenty-second move, 2026-11-07 — Train 5 (`#189`, `#190`, `#188`, `#198`, `#202`), one move: `KMP-64`'s 8 new keys for the TV player HUD
+
+One combined baseline move for the train that merges `#189` (`KMP-64`), `#190` (`KMP-62`), `#188` (`BUG-43`), `#198` (`BUG-44`) and
+`#202` (`BUG-47`) together. Only `#189` adds strings; the other four add none, and the regenerated oracle confirms that. `#189`
+recorded its keys as its own "eighteenth" move, branched from master's seventeenth; master's eighteenth to twenty-first landed
+first, so that heading is not kept. The train regenerated once from the live generator on master's baseline with the twenty-first
+in it.
+
+New keys are approved in general (`I18N-09`, above). Additive, all eight authored in all 62 directories, none a plural
+(`player_hud_buffering`, `player_hud_failed_detail`, `player_hud_offline_copy`, `player_hud_previous_episode`, `player_hud_seek_back`,
+`player_hud_seek_forward`, `player_hud_speed`, `player_hud_up_next`).
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 43,166 | 43,662 | 496 | 0 | 0 |
+| `emitted.tsv` | 45,407 | 45,919 | 512 | 0 | 0 |
+| `lookup.tsv` | 83,827 | 84,523 | 696 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines lost
+in any file, every line that was in a file before is in it after in the same order, and every added line names exactly one of the
+eight keys, all eight present. These are the additions `#189` measured on its own branch (496, 512, 696): 8 x 62, 8 x 64 and
+8 x 87. `report.txt` moved only in its counts: `OWN` 41,796 -> 42,292 (8 x 62), visible keys 938 -> 946, plurals unchanged at 22,
+and 8 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.**
+`expectedOwn` 41,796 -> 42,292.
+
 ## Twenty-first move, 2026-11-07 — Train 4 (`#183`, `#199`, `#197`, `#196`, `#195`, `#201`, `#194`), one move: 15 new keys
 
 One combined baseline move for the train that merges `#183` (`BUG-41`), `#199` (`BUG-45`), `#197` (`KMP-68`), `#196`

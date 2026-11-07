@@ -27,6 +27,7 @@ import com.lagradost.cloudstream3.utils.ImageLoader.loadImage
 import com.lagradost.cloudstream3.utils.SubtitleHelper.getNameNextToFlagEmoji
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import com.lagradost.cloudstream3.utils.getImageFromDrawable
+import com.lagradost.cloudstream3.utils.redactedStackTrace
 import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.txt
 import java.text.DecimalFormat
@@ -131,7 +132,7 @@ class PluginAdapter(
                         Log.e(
                             "PluginAdapter",
                             "Failed to open $name settings: ${
-                                Log.getStackTraceString(e)
+                                redactedStackTrace(e)
                             }"
                         )
                     }

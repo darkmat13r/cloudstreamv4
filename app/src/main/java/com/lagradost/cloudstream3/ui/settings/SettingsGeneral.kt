@@ -51,6 +51,7 @@ import com.lagradost.cloudstream3.utils.USER_PROVIDER_API
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.getBasePath
 import com.lagradost.cloudstream3.utils.downloader.DownloadQueueManager
+import com.lagradost.cloudstream3.utils.redactedStackTrace
 import kotlinx.serialization.ExperimentalSerializationApi
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -451,7 +452,7 @@ class SettingsGeneral : BasePreferenceFragmentCompat() {
                 }
             }
         } catch (e: Exception) {
-            e.printStackTrace()
+            System.err.println(redactedStackTrace(e))
         }
     }
 }

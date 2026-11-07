@@ -503,6 +503,14 @@
 <string name="player_fit_screen">화면 채우기</string>
 <string name="player_fit_title">화면 크기</string>
 <string name="player_fit_width">너비 맞춤</string>
+<string name="player_hud_buffering">버퍼링 중</string>
+<string name="player_hud_failed_detail">아래에서 다른 소스를 선택하세요.</string>
+<string name="player_hud_offline_copy">연결 없음 — 다운로드한 사본 재생 중</string>
+<string name="player_hud_previous_episode">이전 에피소드</string>
+<string name="player_hud_seek_back">뒤로 이동</string>
+<string name="player_hud_seek_forward">앞으로 이동</string>
+<string name="player_hud_speed">속도</string>
+<string name="player_hud_up_next">다음 · %s</string>
 <string name="player_is_live">라이브</string>
 <string name="player_load_one_subtitle_online">사용 가능한 자막 불러오기</string>
 <string name="player_load_subtitles">파일에서 불러오기</string>

@@ -228,6 +228,14 @@
 <string name="player_fit_screen">"Fyll skjermen"</string>
 <string name="player_fit_title">"Biletstorleik"</string>
 <string name="player_fit_width">"Fyll breidda"</string>
+<string name="player_hud_buffering">"BUFRAR"</string>
+<string name="player_hud_failed_detail">"Vel ei anna kjelde nedanfor."</string>
+<string name="player_hud_offline_copy">"Inga tilkopling — den nedlasta kopien blir spelt"</string>
+<string name="player_hud_previous_episode">"Førre episode"</string>
+<string name="player_hud_seek_back">"Spol tilbake"</string>
+<string name="player_hud_seek_forward">"Spol fram"</string>
+<string name="player_hud_speed">"Fart"</string>
+<string name="player_hud_up_next" formatted="true">"Neste · %s"</string>
 <string name="player_mute">"Slå av lyd"</string>
 <string name="player_size_settings_des">"Fjern dei svarte kantane"</string>
 <string name="player_source_playing">"Spelar"</string>

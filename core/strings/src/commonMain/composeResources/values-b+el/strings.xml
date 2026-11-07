@@ -461,6 +461,14 @@
 <string name="player_fit_screen">Γέμισμα οθόνης</string>
 <string name="player_fit_title">Μέγεθος εικόνας</string>
 <string name="player_fit_width">Γέμισμα πλάτους</string>
+<string name="player_hud_buffering">ΦΟΡΤΩΣΗ</string>
+<string name="player_hud_failed_detail">Επιλέξτε άλλη πηγή παρακάτω.</string>
+<string name="player_hud_offline_copy">Χωρίς σύνδεση — αναπαράγεται το ληφθέν αντίγραφο</string>
+<string name="player_hud_previous_episode">Προηγούμενο επεισόδιο</string>
+<string name="player_hud_seek_back">Πίσω</string>
+<string name="player_hud_seek_forward">Μπροστά</string>
+<string name="player_hud_speed">Ταχύτητα</string>
+<string name="player_hud_up_next">Επόμενο · %s</string>
 <string name="player_load_one_subtitle_online">Φορτώστε το πρώτο διαθέσιμο</string>
 <string name="player_load_subtitles">Φόρτωση από αρχείο</string>
 <string name="player_load_subtitles_online">Φόρτωση από το Ίντερνετ</string>

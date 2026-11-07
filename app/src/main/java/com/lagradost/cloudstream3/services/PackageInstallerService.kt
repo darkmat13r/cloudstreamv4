@@ -60,7 +60,7 @@ class PackageInstallerService : Service() {
 
     private suspend fun downloadUpdate(url: String): Boolean {
         try {
-            Log.d("PackageInstallerService", "Downloading update: $url")
+            Log.d("PackageInstallerService", "Downloading update")
 
             // Delete all old updates
             ioSafe {

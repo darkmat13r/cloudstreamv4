@@ -19,6 +19,7 @@ import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream3.utils.M3u8Helper
 import com.lagradost.cloudstream3.utils.M3u8Helper2
+import com.lagradost.cloudstream3.utils.redactedLinkInfo
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -218,7 +219,7 @@ class PreviewGenerator : IPreviewGenerator {
             }
 
             else -> {
-                Log.i("PreviewImg", "unsupported format for $link")
+                Log.i("PreviewImg", "unsupported format for ${redactedLinkInfo(link)}")
             }
         }
     }
@@ -320,7 +321,7 @@ private class M3u8PreviewGenerator(override var params: ImageParams) : IPreviewG
         currentJob?.cancel()
         currentJob = ioSafe {
             withContext(Dispatchers.IO) {
-                Log.i(TAG, "Loading with url = $url headers = $headers")
+                Log.i(TAG, "Loading from a URL with ${headers.size} headers")
                 //tmpFile =
                 //    File.createTempFile("video", ".ts", context.cacheDir).apply {
                 //        deleteOnExit()
@@ -481,7 +482,7 @@ private class Mp4PreviewGenerator(override var params: ImageParams) : IPreviewGe
     fun load(url: String, headers: Map<String, String>) {
         currentJob?.cancel()
         currentJob = ioSafe {
-            Log.i(TAG, "Loading with url = $url headers = $headers")
+            Log.i(TAG, "Loading from a URL with ${headers.size} headers")
             clear(true)
             retriever.setDataSource(url, headers)
             start(this)
@@ -491,7 +492,7 @@ private class Mp4PreviewGenerator(override var params: ImageParams) : IPreviewGe
     fun load(keepCache: Boolean, context: Context, uri: Uri) {
         currentJob?.cancel()
         currentJob = ioSafe {
-            Log.i(TAG, "Loading with uri = $uri")
+            Log.i(TAG, "Loading from a local uri")
             clear(keepCache)
             retriever.setDataSource(context, uri)
             start(this)

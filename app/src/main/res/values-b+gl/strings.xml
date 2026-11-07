@@ -284,6 +284,14 @@
 <string name="player_fit_screen">"Encher a pantalla"</string>
 <string name="player_fit_title">"Tamaño da imaxe"</string>
 <string name="player_fit_width">"Encher o ancho"</string>
+<string name="player_hud_buffering">"CARGANDO"</string>
+<string name="player_hud_failed_detail">"Escolle outra fonte embaixo."</string>
+<string name="player_hud_offline_copy">"Sen conexión — reprodúcese a copia descargada"</string>
+<string name="player_hud_previous_episode">"Episodio anterior"</string>
+<string name="player_hud_seek_back">"Retroceder"</string>
+<string name="player_hud_seek_forward">"Avanzar"</string>
+<string name="player_hud_speed">"Velocidade"</string>
+<string name="player_hud_up_next" formatted="true">"Seguinte · %s"</string>
 <string name="player_mute">"Silenciar"</string>
 <string name="player_size_settings">"Botón de cambio de tamaño do reprodutor"</string>
 <string name="player_size_settings_des">"Eliminar bordes negros"</string>

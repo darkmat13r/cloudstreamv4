@@ -422,6 +422,14 @@
 <string name="player_fit_screen">Isi skrin</string>
 <string name="player_fit_title">Saiz gambar</string>
 <string name="player_fit_width">Isi lebar</string>
+<string name="player_hud_buffering">MENIMBAL</string>
+<string name="player_hud_failed_detail">Pilih sumber lain di bawah.</string>
+<string name="player_hud_offline_copy">Tiada sambungan — memainkan salinan muat turun</string>
+<string name="player_hud_previous_episode">Episod sebelumnya</string>
+<string name="player_hud_seek_back">Undur</string>
+<string name="player_hud_seek_forward">Maju</string>
+<string name="player_hud_speed">Kelajuan</string>
+<string name="player_hud_up_next">Seterusnya · %s</string>
 <string name="player_mute">Redam</string>
 <string name="player_settings_play_in_app">Pemain dalaman</string>
 <string name="player_size_settings">Saiz butang pemain</string>

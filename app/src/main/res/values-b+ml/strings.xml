@@ -273,6 +273,14 @@
 <string name="player_fit_screen">"സ്ക്രീൻ നിറയ്ക്കുക"</string>
 <string name="player_fit_title">"ചിത്ര വലുപ്പം"</string>
 <string name="player_fit_width">"വീതി നിറയ്ക്കുക"</string>
+<string name="player_hud_buffering">"ബഫർ ചെയ്യുന്നു"</string>
+<string name="player_hud_failed_detail">"താഴെ മറ്റൊരു ഉറവിടം തിരഞ്ഞെടുക്കുക."</string>
+<string name="player_hud_offline_copy">"കണക്ഷനില്ല — ഡൗൺലോഡ് ചെയ്ത പകർപ്പ് പ്ലേ ചെയ്യുന്നു"</string>
+<string name="player_hud_previous_episode">"മുൻ എപ്പിസോഡ്"</string>
+<string name="player_hud_seek_back">"പിന്നോട്ട്"</string>
+<string name="player_hud_seek_forward">"മുന്നോട്ട്"</string>
+<string name="player_hud_speed">"വേഗത"</string>
+<string name="player_hud_up_next" formatted="true">"അടുത്തത് · %s"</string>
 <string name="player_is_live">"തൽസമയം"</string>
 <string name="player_mute">"നിശബ്‌ദമാക്കുക"</string>
 <string name="player_size_settings">"പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ"</string>

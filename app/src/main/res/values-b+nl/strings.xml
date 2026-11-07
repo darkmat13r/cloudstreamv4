@@ -471,6 +471,14 @@
 <string name="player_fit_screen">"Scherm vullen"</string>
 <string name="player_fit_title">"Beeldformaat"</string>
 <string name="player_fit_width">"Breedte vullen"</string>
+<string name="player_hud_buffering">"BUFFEREN"</string>
+<string name="player_hud_failed_detail">"Kies hieronder een andere bron."</string>
+<string name="player_hud_offline_copy">"Geen verbinding — de gedownloade kopie wordt afgespeeld"</string>
+<string name="player_hud_previous_episode">"Vorige aflevering"</string>
+<string name="player_hud_seek_back">"Terugspoelen"</string>
+<string name="player_hud_seek_forward">"Vooruitspoelen"</string>
+<string name="player_hud_speed">"Snelheid"</string>
+<string name="player_hud_up_next" formatted="true">"Hierna · %s"</string>
 <string name="player_load_one_subtitle_online">"Laad eerst beschikbare"</string>
 <string name="player_load_subtitles">"Laden uit bestand"</string>
 <string name="player_load_subtitles_online">"Laden vanaf internet"</string>

@@ -315,6 +315,8 @@ dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:library"))
     implementation(project(":feature:downloads"))
+    // KMP-64: the TV player HUD (7d), hosted over FullScreenPlayer.
+    implementation(project(":feature:player"))
     implementation(project(":core:designsystem"))
 
     // Plan row 17: AndroidExtensionRuntime implements the seam :feature:extensions declares.

@@ -503,6 +503,14 @@
 <string name="player_fit_screen">Ispuni zaslon</string>
 <string name="player_fit_title">Veličina slike</string>
 <string name="player_fit_width">Ispuni širinu</string>
+<string name="player_hud_buffering">MEĐUSPREMANJE</string>
+<string name="player_hud_failed_detail">Odaberite drugi izvor ispod.</string>
+<string name="player_hud_offline_copy">Nema veze — reproducira se preuzeta kopija</string>
+<string name="player_hud_previous_episode">Prethodna epizoda</string>
+<string name="player_hud_seek_back">Premotaj natrag</string>
+<string name="player_hud_seek_forward">Premotaj naprijed</string>
+<string name="player_hud_speed">Brzina</string>
+<string name="player_hud_up_next">Sljedeće · %s</string>
 <string name="player_is_live">Uživo</string>
 <string name="player_load_one_subtitle_online">Učitaj prvi dostupni</string>
 <string name="player_load_subtitles">Učitaj iz datoteke</string>

@@ -130,8 +130,8 @@ class OpenSubtitlesApi : SubtitleAPI() {
                 Pair("Content-Type", "application/json")
             ) + headers,
         )
-        Log.i(TAG, "searchQueryUrl => ${searchQueryUrl}")
-        Log.i(TAG, "Search Req => ${req.text}")
+        Log.i(TAG, "searchQuery sent")
+        Log.i(TAG, "Search Req => (${req.code}) ${req.text.length} chars")
         if (!req.isSuccessful) {
             if (req.code == 429)
                 throwGotTooManyRequests()
@@ -206,12 +206,12 @@ class OpenSubtitlesApi : SubtitleAPI() {
                 Pair("file_id", subtitle.data)
             )
         )
-        Log.i(TAG, "Request result  => (${req.code}) ${req.text}")
+        Log.i(TAG, "Request result  => (${req.code}) ${req.text.length} chars")
         //Log.i(TAG, "Request headers => ${req.headers}")
         if (req.isSuccessful) {
             AppUtils.tryParseJson<ResultDownloadLink>(req.text)?.let {
                 val link = it.link ?: ""
-                Log.i(TAG, "Request load link => $link")
+                Log.i(TAG, "Request load link => found: ${link.isNotBlank()}")
                 return link
             }
         } else {
