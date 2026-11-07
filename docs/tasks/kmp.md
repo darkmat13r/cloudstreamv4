@@ -6190,3 +6190,63 @@ though. To do:
 **The production BACK callback** (`closesPairing`, removed and re-added in `AccountSelectTv.attach`) is not covered: the
 real panel needs Simkl's live code endpoint, and the feature test builds its own callback, so it covers the same BACK
 handling, not this code. Also: a real browser sign-in, Kitsu's form, `TalkBack`, a real remote.
+
+## KMP-56 — The Mac's Search, built from `DS-22` S1 to S7 · **built 2026-11-07**
+
+The boards are `Desktop Search.dc.html` S1 to S7, a board file in the owner's Claude Design project (`DS-22`).
+
+- **S1:**
+  - The type chips: the types some installed provider serves, lit by their outline, as Home's status chips are.
+  - Sources is a button, `Sources 12 / 48`, that opens the panel. It used to be a read-out.
+- **S2:** results grouped by source, each group with its count, as built before.
+- **S3:** a partial search keeps its results under the failure banner, with "Retry failed". The exact sentence on the
+  board ("%d sources didn't answer. %s timed out after %d s.") has no key, and a `SearchOutcome` carries no timeout,
+  so the banner keeps `search_state_partial_headline`.
+- **S4:** the sources panel from the right edge, over a scrim:
+  - A row toggles a draft; Done commits it; the scrim and Escape discard it (`DEC-17`).
+  - Escape is caught at the screen's root, so it closes the panel even while the field holds focus, and never empties
+    the field instead.
+  - A row is checked when on, and shows a warning glyph when its provider's last answer failed.
+- **S6:** no results names the lit chips, through the existing `narrowedBy`.
+- **S7:** renders at 580×520, the page's share of an 800×520 window beside the 220 sidebar.
+- **S5** (suggestions as a popover) is `KMP-72`.
+
+`DesktopSearchSource` now implements `choices`, `selectSources`, `typeFilters`, `selectTypes` and `clearFilters`:
+- Desktop has no language preference, so every installed provider is eligible.
+- Picks and chips follow Android's rules: a pick that matches nothing installed falls back to every provider; chips
+  that nobody serves narrow nothing; a row the chips hid keeps its state through Done.
+- The `SearchTypeFilter` → `TvType` mapping is a copy of `:app`'s, which desktop cannot reach. Keep the two the same.
+
+**Decided** (reported to the PM):
+- Picks and chips last as long as the app runs. There is no desktop preference store yet, as with Home's bookmark
+  filter (`KMP-55`).
+- A failure's detail goes through `withoutUrls()`. Before this, the first line of a plugin's `errorString` reached the screen
+  unredacted.
+- **After review (`#221`):**
+  - `:desktopApp`'s `withoutUrls` is now the fourth synced copy of the BUG-43/44/47 rules, with the same case table
+    (`DesktopRedactionTest`). The sandbox's copy is `internal` to its module. So Home's, Search's and a title's lines now
+    keep a url's host, and lose its path, query, userinfo and fragment, plus `file:` URIs and the home, volume, storage and
+    Windows user paths. The old rule wrote `<url>` for the whole url. The home-directory-to-`~` rule is gone; `<path>`
+    covers it.
+  - Invisible characters are stripped **before** redacting, on Search and Home: one inside `://` hid the url from the
+    pattern, and stripping afterwards put it back together. Proved by mutation: with the old order,
+    `a url split by an invisible character does not reach the detail` fails with the whole token on screen.
+  - The failed-provider glyph is described with the existing `error` key.
+
+**Tests:**
+- `SearchScreenTest`: the Sources button and a chip; the panel's row, Done and scrim; and Escape closing the panel
+  rather than clearing the query. That last one was proved by mutation: with the root handler off, it fails
+  `expected:<[SourcePanelDismissed]> but was:<[Cleared]>`.
+- `DesktopSearchSelectionTest`: picks, chips, a hidden row, Search everything, the fallback, health and redaction.
+- Two `DesktopInteractionTest` cases rested on the old premise that only the field takes focus. They now assert that
+  Tab lands on Sources, not on the clear button.
+
+## KMP-72 — The Mac's suggestions as a popover over the results, `DS-22` S5 · **open**, follow-up of `KMP-56`
+
+- The shared `SearchViewModel` replaces the results with TV's 8a column when it has a suggestion source. S5 keeps the
+  results under a popover instead, which is a change to the shared view model and needs a TV device run.
+- The only suggestion source today is Android's `SearchSuggestionApi`, which sends every keystroke to a third-party
+  service. On the Mac, start recent-only, from local history. **A service is the owner's call** (security first, the
+  PM's ruling of 2026-11-07); raise it when this task starts.
+- Words: `search_suggestions_return_hint` (`I18N-15`). The rest reuse `search_tv_suggestion_*` and
+  `search_quick_meta_answered`.

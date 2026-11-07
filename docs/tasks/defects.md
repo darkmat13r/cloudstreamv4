@@ -2069,13 +2069,16 @@ The exception class and the stack frames are kept, because frames carry no URLs 
 6. **Voe** prints `Decryption error: <exception class>`.
 7. **Fcast** logs `receiver <service name>` and no address.
 
-**Three copies of the rules, which must stay in sync:**
+**Four copies of the rules, which must stay in sync:**
 
 - `:app` `app/src/main/java/com/lagradost/cloudstream3/utils/LogRedaction.kt`
 - `:library` `library/src/commonMain/kotlin/com/lagradost/cloudstream3/mvvm/ArchComponentExt.kt`
 - `:feature:extensions:sandbox` `feature/extensions/sandbox/src/jvmMain/kotlin/com/lagradost/cloudstream4/feature/extensions/sandbox/PluginHost.kt`
+- `:desktopApp` `desktopApp/src/jvmMain/kotlin/com/lagradost/cloudstream4/detail/DesktopDetailSource.kt`'s `withoutUrls`, since
+  `KMP-56` (`#221`). Its test, `DesktopRedactionTest`, copies the sandbox test's table verbatim. Strip invisible characters
+  (`withoutInvisible`) before it: one inside `://` hides a url from the pattern.
 
-They cannot share one: `:library` is the published API and cannot depend on an internal module, and in `:library` the rules are `private`. Each copy's test runs the same table of cases. `:desktopApp`'s `withoutUrls` (`DesktopDetailSource.kt`) is a fourth, older rule that still writes `<url>` for the whole URL. It is not part of this change.
+They cannot share one: `:library` is the published API and cannot depend on an internal module, and in `:library` the rules are `private`. Each copy's test runs the same table of cases. `:desktopApp`'s `withoutUrls` was a fourth, older rule that wrote `<url>` for the whole URL; `KMP-56` made it the fourth copy.
 
 **One difference in content, not just in redaction.** `Log.getStackTraceString` returns an empty string when an `UnknownHostException` is anywhere in the chain. `redactedStackTrace` prints that chain like any other. That adds lines (frames and class names, redacted), and nothing it adds can carry a URL or a path.
 
