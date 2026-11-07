@@ -1897,8 +1897,14 @@ too; the second half is #215's review · `DataStoreHelper.kt`, `CredentialStore.
   caller (`AccountViewModel`, `AccountSelectActivity`, `AccountHelper`, the adapters) sees `lockPin` as before. The
   stored list holds no PIN. A restore onto another device brings locked profiles back unlocked.
 - **Migration** on the first read of a list that still holds PINs: they are copied and committed, and only then is
-  the list rewritten without them. A PIN already in the credential file is newer and wins. If the copy cannot be
-  written, the PINs stay in the list and the lock still works.
+  the list rewritten without them. A PIN in the list wins over one in the credential file: it is the newer one after a
+  setter whose credential write failed. If the copy cannot be written, the PINs stay in the list and the lock still
+  works.
+- **The limit:** the move happens on the first read, so a backup Android takes after the update but before the app is
+  first opened still carries the PIN (the same limit as `BUG-50`'s tokens).
+- **An app restore clears every PIN.** When `BackupUtils.restore` writes a profile list, it empties `lock_pin/*`, so
+  restored profiles come back unlocked, as the owner ruled. A different profile restored at a locked index (say "Dad" at
+  index 1, where "Kids" was locked) must not inherit that lock.
 - **No inherited locks.** Writing the list makes the stored PINs exactly the list's: a removed profile's PIN goes with
   it, so a later profile on the same index is not locked by it.
 - **The review's case.** `CredentialStore` marked its sign-in move done even when the copy's `commit()` failed. Now it
@@ -1914,24 +1920,33 @@ rely on the in-memory copy.
 | Before | Now | Why |
 |---|---|---|
 | A device transfer or cloud restore brought each profile's PIN with it | Locked profiles come back unlocked on the new device | PINs stay off Android's backup (owner's ruling) |
-| An app restore on this device: PIN-less list | Unchanged, but a profile whose index has a PIN on this device stays locked with it | The PIN never left the device; the safer outcome |
+| An app restore on this device | Restored profiles come back unlocked; this device's PINs are cleared | A PIN keyed by index would lock a different profile restored there (review blocker on #222) |
 | A failed sign-in move was not retried until the next process | Retried on the next read | #215 review |
 
 **DECIDED:** PINs are stored as plain strings, as they were in the list (Q16's notes record the plain-text PIN as the
-owner's call). They are keyed by profile index, as sign-ins are.
+owner's call). They are keyed by profile index, as sign-ins are. (A first DECIDED, keeping a device's PIN across an app
+restore, was overturned in review: see the restore point above.)
 
-**Tests:** `ProfilePinStoreTest` (`:app` device, 4), marker PINs only:
+**Tests:** `ProfilePinStoreTest` (`:app` device, 7), marker PINs only:
 - a locked profile's PIN is not in the backed-up list, and the lock still reads back;
 - a list still holding a PIN is moved on first read, with no loss, and the move is on disk;
 - a reused index does not inherit an old PIN;
+- a restore with a different profile at a locked index brings it back unlocked, and `lock_pin/<index>` is gone;
+- a PIN change whose credential write failed (new PIN in the list, old one in the file) is not reverted on the next read;
+- while the preferences folder is read-only, the PIN stays in the list and the lock holds; once writable, the next read
+  moves it;
 - a move whose copy cannot be written (the preferences folder made read-only) is not marked done, the old key stays
   readable and in place, and the move is retried once writing works.
 
 Against #215's code (its `CredentialStore.kt` and `DataStoreHelper.kt` put back), 3 of the 4 fail: "A PIN is in the
 backed-up profile list" and "A move that was not written was marked done", and the move test, which reaches a field
 that code does not have. The reused-index test passes there, since that code kept each PIN inside its profile's own
-entry; it guards the new store. `CredentialStoreBackupTest` (6) and `DeleteProfileSignInsTest` (5) still pass: 15 / 0
-in all.
+entry; it guards the new store.
+
+After review, against #222's first head (its `BackupUtils.kt` and `DataStoreHelper.kt` put back), 2 of the 7 fail: "A
+restored profile inherited this device's PIN" (it was `4951`) and "The PIN change was reverted" (`4951`, not `4952`). The
+read-only PIN test passes there too: that head already kept the lock and retried; the test guards it.
+`CredentialStoreBackupTest` (6) and `DeleteProfileSignInsTest` (5) still pass: 18 / 0 in all.
 
 **Published API:** additions only, `classes-jar.api` +3 / −0 (`PIN_FOLDER`, `pins`, `replacePins`). `accounts` keeps
 its getter and setter; only its private backing property changed.

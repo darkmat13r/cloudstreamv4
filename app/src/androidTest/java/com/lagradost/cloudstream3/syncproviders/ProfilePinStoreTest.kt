@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
+import com.lagradost.cloudstream3.utils.BackupUtils
 import com.lagradost.cloudstream3.utils.DataStore.getSharedPrefs
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.PreferenceDelegate
@@ -92,6 +93,61 @@ class ProfilePinStoreTest {
         val accounts = DataStoreHelper.accounts
         assertNull("A new profile inherited an old PIN", accounts.single { it.keyIndex == INDEX }.lockPin)
         assertEquals(PIN_2, accounts.single { it.keyIndex == INDEX + 1 }.lockPin)
+    }
+
+    /** A restore brings its profiles back unlocked: a different profile restored at a locked index does not inherit it. */
+    @Test
+    fun aRestoredProfileDoesNotInheritThisDevicesPin() {
+        instrumentation.runOnMainSync { DataStoreHelper.accounts = arrayOf(locked(INDEX, PIN)) }
+        val restoredList = arrayOf(DataStoreHelper.Account(INDEX, "Restored", defaultImageIndex = 0)).toJson()
+        val file = BackupUtils.BackupFile(
+            datastore = BackupUtils.BackupVars(null, null, mapOf(PROFILES_KEY to restoredList), null, null, null),
+            settings = BackupUtils.BackupVars(null, null, null, null, null, null),
+        )
+
+        BackupUtils.restore(context, file, restoreSettings = false, restoreDataStore = true)
+        forgetCachedList()
+
+        val restored = DataStoreHelper.accounts.single { it.keyIndex == INDEX }
+        assertEquals("Restored", restored.name)
+        assertNull("A restored profile inherited this device's PIN", restored.lockPin)
+        assertFalse(credentials.contains(pinKey(INDEX)))
+    }
+
+    /**
+     * What a setter whose credential write failed leaves on disk: the new PIN in the list, the old one in the credential
+     * file. The next read keeps the new one.
+     */
+    @Test
+    fun aPinChangeWhoseCredentialWriteFailedIsNotReverted() {
+        credentials.edit().putString(pinKey(INDEX), PIN).commit()
+        main.edit().putString(PROFILES_KEY, arrayOf(locked(INDEX, PIN_2)).toJson()).commit()
+        forgetCachedList()
+
+        assertEquals("The PIN change was reverted", PIN_2, DataStoreHelper.accounts.single { it.keyIndex == INDEX }.lockPin)
+        assertEquals(PIN_2, credentials.getString(pinKey(INDEX), null))
+        assertFalse(storedList().contains(PIN_2))
+    }
+
+    /** The PIN half of "fails, then retried": the lock holds while the move cannot be written, and the move happens after. */
+    @Test
+    fun aPinMoveThatCannotBeWrittenKeepsTheLockAndIsRetried() {
+        main.edit().putString(PROFILES_KEY, arrayOf(locked(INDEX, PIN)).toJson()).commit()
+        forgetCachedList()
+
+        assertTrue(prefsFolder().setWritable(false, false))
+        try {
+            assertEquals("The lock was lost", PIN, DataStoreHelper.accounts.single { it.keyIndex == INDEX }.lockPin)
+            assertTrue("The PIN left the list before its copy was written", storedList().contains(PIN))
+        } finally {
+            prefsFolder().setWritable(true, true)
+        }
+
+        assertEquals(PIN, DataStoreHelper.accounts.single { it.keyIndex == INDEX }.lockPin)
+        assertEquals(PIN, credentials.getString(pinKey(INDEX), null))
+        assertFalse("The PIN was left in the backed-up profile list", storedList().contains(PIN))
+        forgetCachedList()
+        assertEquals("The move did not reach disk", PIN, DataStoreHelper.accounts.single { it.keyIndex == INDEX }.lockPin)
     }
 
     /**

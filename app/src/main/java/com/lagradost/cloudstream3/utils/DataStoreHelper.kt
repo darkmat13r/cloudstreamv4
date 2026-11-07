@@ -172,17 +172,18 @@ object DataStoreHelper {
      * exclude, and joined back here, so callers see `lockPin` as before. A profile restored onto another device comes
      * back unlocked.
      *
-     * A list still holding PINs (written before this change, or by an old cloud restore) is moved on first read: the
-     * PINs are copied and committed, and only then is the list rewritten without them. If the copy cannot be written,
-     * the PINs stay in the list and the lock still works.
+     * A list still holding PINs (written before this change, or left by a setter whose credential write failed) is moved
+     * on first read: the PINs are copied and committed, and only then is the list rewritten without them. A PIN in the
+     * list wins over one already in the credential file, being the newer. If the copy cannot be written, the PINs stay
+     * in the list and the lock still works.
      */
     var accounts: Array<Account>
         get() {
             val stored = storedAccounts
             if (stored.any { it.lockPin != null }) {
                 val held = CredentialStore.pins() ?: return stored
-                // A PIN already in the credential file is the newer one.
-                val moved = stored.filter { it.lockPin != null }.associate { it.keyIndex to it.lockPin!! } + held
+                // The list's own PIN wins: it is the newer one after a setter whose credential write failed.
+                val moved = held + stored.filter { it.lockPin != null }.associate { it.keyIndex to it.lockPin!! }
                 if (!CredentialStore.replacePins(moved)) return stored
                 storedAccounts = stored.map { it.copy(lockPin = null) }.toTypedArray()
             }
