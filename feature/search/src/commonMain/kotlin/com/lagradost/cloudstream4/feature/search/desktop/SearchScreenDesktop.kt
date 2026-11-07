@@ -1,5 +1,11 @@
 package com.lagradost.cloudstream4.feature.search.desktop
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.FiniteAnimationSpec
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -12,11 +18,14 @@ import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.aspectRatio
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.GridItemSpan
@@ -28,6 +37,8 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -45,11 +56,13 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
@@ -68,6 +81,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_cle
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_field_placeholder
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_recent_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_sources_label
+import com.lagradost.cloudstream4.core.strings.generated.resources.setup_done
 import com.lagradost.cloudstream4.core.strings.generated.resources.sort_clear
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -76,10 +90,15 @@ import com.lagradost.cloudstream4.feature.search.SearchContent
 import com.lagradost.cloudstream4.feature.search.SearchHistoryEntry
 import com.lagradost.cloudstream4.feature.search.SearchResultGroup
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
+import com.lagradost.cloudstream4.feature.search.SearchSourceChoice
+import com.lagradost.cloudstream4.feature.search.SearchSourceHealth
 import com.lagradost.cloudstream4.feature.search.SearchState
+import com.lagradost.cloudstream4.feature.search.SearchTypeFilters
+import com.lagradost.cloudstream4.feature.search.SourcePanelState
 import com.lagradost.cloudstream4.feature.search.resultCountText
 import com.lagradost.cloudstream4.feature.search.sourcesCountText
 import com.lagradost.cloudstream4.feature.search.toUiState
+import com.lagradost.cloudstream4.feature.search.typeFilterLabel
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -98,9 +117,37 @@ fun SearchScreenDesktop(
     modifier: Modifier = Modifier,
     artwork: @Composable (SearchResultItem) -> Unit = {},
 ) {
-    val status = state.status.toUiState(onAction, Res.string.search_state_idle_body_desktop)
-    Column(modifier.fillMaxSize()) {
+    val status = state.status.toUiState(
+        onAction,
+        Res.string.search_state_idle_body_desktop,
+        narrowedBy = state.typeFilters.selected,
+    )
+    val panelOpen = state.sourcePanel != null
+    Box(
+        modifier
+            .fillMaxSize()
+            // Escape closes the panel wherever focus is, the field included: a preview on the ancestor runs first.
+            .onPreviewKeyEvent { event ->
+                val closes = panelOpen && event.key == Key.Escape && event.type == KeyEventType.KeyDown
+                if (closes) onAction(SearchAction.SourcePanelDismissed)
+                closes
+            },
+    ) {
+        Page(state, status, onAction, artwork)
+        SourcePanel(state.sourcePanel, onAction)
+    }
+}
+
+@Composable
+private fun Page(
+    state: SearchState,
+    status: UiState<SearchContent>,
+    onAction: (SearchAction) -> Unit,
+    artwork: @Composable (SearchResultItem) -> Unit,
+) {
+    Column(Modifier.fillMaxSize()) {
         Toolbar(state, onAction)
+        TypeChips(state.typeFilters, onAction)
         status.failureNotice?.let { notice ->
             Box(Modifier.padding(horizontal = DesktopDimens.WindowMargin)) { FailureBanner(notice = notice) }
         }
@@ -143,13 +190,141 @@ private fun Toolbar(state: SearchState, onAction: (SearchAction) -> Unit) {
         modifier = Modifier.fillMaxWidth().padding(DesktopDimens.WindowMargin),
     ) {
         QueryField(state.query, stringResource(Res.string.search_tv_field_placeholder), onAction, Modifier.weight(1f))
-        // A readout and deliberately not a chip: the source picker is not built, and something shaped
-        // like a control has to behave like one.
-        BasicText(
-            text = "${stringResource(Res.string.search_tv_sources_label)} ${sourcesCountText(state.sources)}",
-            style = typography.caption.copy(color = colors.muted),
-            maxLines = 1,
+        // S1, S4: a button that opens the panel, now that the panel is built (`KMP-56`).
+        DesktopButton(
+            label = "${stringResource(Res.string.search_tv_sources_label)} ${sourcesCountText(state.sources)}",
+            onClick = { onAction(SearchAction.SourcePanelOpened) },
+            icon = CloudStreamIcons.Source,
         )
+    }
+}
+
+/** S1's chips: the types some provider serves. A lit chip narrows every search until it is pressed again. */
+@Composable
+private fun TypeChips(filters: SearchTypeFilters, onAction: (SearchAction) -> Unit) {
+    if (filters.available.isEmpty()) return
+    LazyRow(
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+        contentPadding = PaddingValues(horizontal = DesktopDimens.WindowMargin),
+        modifier = Modifier.fillMaxWidth().padding(bottom = DesktopDimens.GroupGap),
+    ) {
+        items(filters.available.size, key = { filters.available[it].name }) { index ->
+            val type = filters.available[index]
+            TypeChip(
+                label = typeFilterLabel(type),
+                lit = type in filters.selected,
+                onClick = { onAction(SearchAction.TypeFilterToggled(type)) },
+            )
+        }
+    }
+}
+
+/** Lit by its outline, as Home's status chips are (`DS-21`): the fill stays, so a row of them reads as one. */
+@Composable
+private fun TypeChip(label: String, lit: Boolean, onClick: () -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val source = remember { MutableInteractionSource() }
+    val focused by source.collectIsFocusedAsState()
+    val shape = CloudStreamTheme.shapes.pill
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .desktopFeedback(source, lift = false)
+            .tvFocusRing(focused = focused, shape = shape)
+            .height(SearchScreenDesktopDefaults.ChipHeight)
+            .background(colors.raised, shape)
+            .border(CloudStreamDimens.Hairline, if (lit) colors.ink else colors.line, shape)
+            .clickable(interactionSource = source, indication = null, onClick = onClick)
+            .padding(horizontal = DesktopDimens.RowPadding),
+    ) {
+        BasicText(text = label, style = CloudStreamTheme.typography.caption.copy(color = colors.ink), maxLines = 1)
+    }
+}
+
+/**
+ * S4: the sources, over the page from the right edge. Multi-select, so nothing is written until Done; the scrim and
+ * Escape discard the draft (`DEC-17`), as TV's 4d does.
+ */
+@Composable
+private fun SourcePanel(panel: SourcePanelState?, onAction: (SearchAction) -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val dismiss = { onAction(SearchAction.SourcePanelDismissed) }
+    AnimatedVisibility(visible = panel != null, enter = fadeIn(), exit = fadeOut()) {
+        Box(
+            Modifier
+                .fillMaxSize()
+                .background(colors.bg.copy(alpha = SearchScreenDesktopDefaults.ScrimAlpha))
+                .clickable(interactionSource = remember { MutableInteractionSource() }, indication = null, onClick = dismiss),
+        )
+    }
+    // Kept while it slides out, so the rows do not vanish before the panel has gone.
+    var shown by remember { mutableStateOf(panel) }
+    if (panel != null) shown = panel
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.CenterEnd) {
+        val spec: FiniteAnimationSpec<IntOffset> = DesktopMotion.spec()
+        AnimatedVisibility(
+            visible = panel != null,
+            enter = slideInHorizontally(spec) { it },
+            exit = slideOutHorizontally(spec) { it },
+        ) {
+            val current = shown ?: return@AnimatedVisibility
+            Column(
+                Modifier
+                    .width(DesktopDimens.SidePanelWidth)
+                    .fillMaxHeight()
+                    .background(colors.surface)
+                    .border(CloudStreamDimens.Hairline, colors.line)
+                    .padding(DesktopDimens.RowPadding),
+            ) {
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(start = DesktopDimens.RowPadding, bottom = DesktopDimens.GroupGap),
+                ) {
+                    BasicText(
+                        text = stringResource(Res.string.search_tv_sources_label),
+                        style = CloudStreamTheme.typography.railTitle.copy(color = colors.ink),
+                        modifier = Modifier.weight(1f),
+                    )
+                    DesktopButton(
+                        label = stringResource(Res.string.setup_done),
+                        onClick = { onAction(SearchAction.SourcePanelDone) },
+                        primary = true,
+                    )
+                }
+                LazyColumn(Modifier.fillMaxSize()) {
+                    items(current.choices.size, key = { current.choices[it].id }) { index ->
+                        val choice = current.choices[index]
+                        SourceChoiceRow(choice, selected = choice.id in current.draft, onAction)
+                    }
+                }
+            }
+        }
+    }
+}
+
+/** A standing fill and a check say which are on; a warning glyph, which answered badly last time. */
+@Composable
+private fun SourceChoiceRow(choice: SearchSourceChoice, selected: Boolean, onAction: (SearchAction) -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val shape = CloudStreamTheme.shapes.medium
+    Box(contentAlignment = Alignment.CenterEnd) {
+        DesktopRow(
+            title = choice.name,
+            subtitle = choice.detail,
+            onClick = { onAction(SearchAction.SourceToggled(choice.id)) },
+            modifier = if (selected) Modifier.background(colors.raised, shape) else Modifier,
+        )
+        Row(
+            horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+            modifier = Modifier.padding(end = DesktopDimens.RowPadding),
+        ) {
+            if (choice.health == SearchSourceHealth.Failed) {
+                CloudStreamIcon(CloudStreamIcons.Warning, null, size = CloudStreamIconSize.Small, tint = colors.muted)
+            }
+            if (selected) CloudStreamIcon(CloudStreamIcons.Done, null, size = CloudStreamIconSize.Small)
+        }
     }
 }
 
@@ -405,6 +580,10 @@ private fun SkeletonGrid() {
 
 object SearchScreenDesktopDefaults {
     val CardMinWidth: Dp = 160.dp
+    /** S1's type chips. Mirrors Home's `ChipHeight` (`DS-21`). */
+    val ChipHeight: Dp = 32.dp
+    /** Over the page while the sources panel is open. Mirrors Home's. */
+    const val ScrimAlpha = 0.6f
     const val PosterRatio = 2f / 3f
     const val TitleLines = 2
     const val SkeletonCount = 12

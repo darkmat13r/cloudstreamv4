@@ -95,8 +95,7 @@ interface SearchSource {
     /**
      * The rows of artboard 4d's side panel, in the order they are drawn, each saying whether it is on.
      *
-     * Empty by default, for a source with no selection of its own: desktop has no picker, and every
-     * one of its providers is always asked.
+     * Empty by default, for a source with no selection of its own, whose every provider is always asked.
      */
     suspend fun choices(): List<SearchSourceChoice> = emptyList()
 
