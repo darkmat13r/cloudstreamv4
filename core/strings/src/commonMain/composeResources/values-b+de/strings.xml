@@ -477,6 +477,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Falsche PIN. Bitte versuche es erneut.</string>
 <string name="pin_error_length">PIN muss 4 Zeichen sein</string>
+<string name="pin_error_wait">Zu viele falsche PINs. Erneut versuchen in %1$s</string>
 <string name="play_episode">Episode abspielen</string>
 <string name="play_episode_toast">Episode abspielen</string>
 <string name="play_from_beginning_img_des">Vom Beginn an spielen</string>

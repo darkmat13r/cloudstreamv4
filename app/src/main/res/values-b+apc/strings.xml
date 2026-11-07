@@ -476,6 +476,7 @@
 <string name="pin">"الأرقام السرية"</string>
 <string name="pin_error_incorrect">"الأرقام السرية يللي نحطت مش صحيحة. جرب مرة أخرى."</string>
 <string name="pin_error_length">"لازم يكونو 4 أرقام"</string>
+<string name="pin_error_wait" formatted="true">"كتير PIN غلط. جرّب مرة تانية بعد %1$s"</string>
 <string name="play_episode">"مشّي الحلقة"</string>
 <string name="play_episode_toast">"مشّي الحلقة"</string>
 <string name="play_from_beginning_img_des">"بلشه من الأول"</string>

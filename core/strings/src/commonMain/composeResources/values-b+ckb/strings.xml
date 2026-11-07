@@ -148,6 +148,7 @@
 <string name="open_local_video">ڤیدیۆی ناوخۆیی بکەرەوە</string>
 <string name="pick_source">سەرچاوەکان</string>
 <string name="pick_subtitle">ژێرنووسەکان</string>
+<string name="pin_error_wait">زۆر PINی هەڵە. دوای %1$s دووبارە هەوڵ بدەرەوە</string>
 <string name="play_from_beginning_img_des">لە سەرەتاوە دەست پێ بکە</string>
 <string name="play_torrent_button">تۆرێنت ستریم بکە</string>
 <string name="player_enter_fullscreen">چوونە ناو پڕ بە شاشە</string>

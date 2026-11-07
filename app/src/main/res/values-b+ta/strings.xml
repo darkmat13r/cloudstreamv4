@@ -477,6 +477,7 @@
 <string name="pin">"முள்"</string>
 <string name="pin_error_incorrect">"தவறான முள். தயவு செய்து மீண்டும் முயற்சிக்கவும்."</string>
 <string name="pin_error_length">"முள் 4 எழுத்துகளாக இருக்க வேண்டும்"</string>
+<string name="pin_error_wait" formatted="true">"பல தவறான PIN-கள். %1$s கழித்து மீண்டும் முயலவும்"</string>
 <string name="play_episode">"அத்தியாயத்தை இயக்கு"</string>
 <string name="play_episode_toast">"அத்தியாயம் விளையாடுங்கள்"</string>
 <string name="play_from_beginning_img_des">"முதலில் இருந்து ஆரம்பி"</string>

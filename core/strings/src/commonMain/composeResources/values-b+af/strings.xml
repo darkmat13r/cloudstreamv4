@@ -154,6 +154,7 @@
 <string name="pick_subtitle">Onderskrifte</string>
 <string name="pin_error_incorrect">Verkeerde PIN. Probeer weer.</string>
 <string name="pin_error_length">PIN moet 4 karakters bevat</string>
+<string name="pin_error_wait">Te veel verkeerde PIN's. Probeer weer oor %1$s</string>
 <string name="play_episode">Speel Episode</string>
 <string name="play_livestream_button">Speel Regstreeks</string>
 <string name="play_movie_button">Speel Fliek</string>

@@ -183,6 +183,7 @@
 <string name="pick_subtitle">"Mga saling-teksto"</string>
 <string name="picture_in_picture_des">"Ipinagpapatuloy ang pag-playback sa isang miniature na player sa ibabaw ng iba pang mga app"</string>
 <string name="pin_error_incorrect">"Maling PIN. Pakisubukang muli."</string>
+<string name="pin_error_wait" formatted="true">"Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s"</string>
 <string name="play_episode">"Ipatugtog ang Kabanata"</string>
 <string name="play_from_beginning_img_des">"Ipatugtog mula sa Simula"</string>
 <string name="play_full_series_button">"Ipatugtog ang Buong Serye"</string>

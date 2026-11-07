@@ -435,6 +435,7 @@
 <string name="pin">"Κωδικός"</string>
 <string name="pin_error_incorrect">"Εσφαλμένος Κωδικός. Προσπαθήστε ξανά."</string>
 <string name="pin_error_length">"Ο κωδικός να περιέχει 4 χαρακτήρες"</string>
+<string name="pin_error_wait" formatted="true">"Πάρα πολλά λάθος PIN. Δοκιμάστε ξανά σε %1$s"</string>
 <string name="play_episode">"Αναπαραγωγή επεισοδίου"</string>
 <string name="play_episode_toast">"Αναπαραγωγή επεισοδίου"</string>
 <string name="play_from_beginning_img_des">"Παίξε από την αρχή"</string>

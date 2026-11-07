@@ -348,6 +348,7 @@
 <string name="pick_subtitle">"Undertekster"</string>
 <string name="picture_in_picture">"Bilde-i-bilde"</string>
 <string name="picture_in_picture_des">"Fortsetter avspilling i en miniatyr spiller på toppen av andre apper"</string>
+<string name="pin_error_wait" formatted="true">"For mange feil PIN-koder. Prøv igjen om %1$s"</string>
 <string name="play_episode">"Spille Episode"</string>
 <string name="play_episode_toast">"spille episode"</string>
 <string name="play_livestream_button">"Spill direktestrøm"</string>

@@ -396,6 +396,7 @@
 <string name="pin">"PIN"</string>
 <string name="pin_error_incorrect">"PIN salah. Sila cuba sekali lagi."</string>
 <string name="pin_error_length">"PIN perlu mempunyai 4 aksara"</string>
+<string name="pin_error_wait" formatted="true">"Terlalu banyak PIN salah. Cuba lagi dalam %1$s"</string>
 <string name="play_episode">"Pasang Episod"</string>
 <string name="play_episode_toast">"Main episod"</string>
 <string name="play_from_beginning_img_des">"Main dari mula"</string>

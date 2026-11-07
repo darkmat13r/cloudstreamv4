@@ -331,6 +331,7 @@
 <string name="pin">"पिन"</string>
 <string name="pin_error_incorrect">"ग़लत पिन. कृपया पुन: प्रयास करें।"</string>
 <string name="pin_error_length">"पिन 4 अक्षर का होना चाहिए"</string>
+<string name="pin_error_wait" formatted="true">"बहुत सारे गलत PIN। %1$s बाद फिर से कोशिश करें"</string>
 <string name="play_episode">"एपिसोड चलाएं"</string>
 <string name="play_episode_toast">"एपिसोड चलायें"</string>
 <string name="play_from_beginning_img_des">"आरम्भ से शुरू करें"</string>

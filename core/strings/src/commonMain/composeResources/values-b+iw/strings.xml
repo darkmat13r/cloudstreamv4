@@ -366,6 +366,7 @@
 <string name="pick_subtitle">כתוביות</string>
 <string name="picture_in_picture">מצב תמונה בתמונה</string>
 <string name="picture_in_picture_des">ממשיך ניגון בנגן מינימלי מעל ישומים אחרים</string>
+<string name="pin_error_wait">יותר מדי קודי PIN שגויים. נסו שוב בעוד %1$s</string>
 <string name="play_episode">נגן פרק</string>
 <string name="play_episode_toast">נגן את הפרק</string>
 <string name="play_from_beginning_img_des">נגן מההתחלה</string>

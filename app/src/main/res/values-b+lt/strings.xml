@@ -245,6 +245,7 @@
 <string name="pick_subtitle">"Subtitrai"</string>
 <string name="picture_in_picture">"Vaizdas vaizde"</string>
 <string name="picture_in_picture_des">"Tęsia atkūrimą mažame grotuve virš kitų programų"</string>
+<string name="pin_error_wait" formatted="true">"Per daug neteisingų PIN kodų. Bandykite dar kartą po %1$s"</string>
 <string name="play_episode">"Paleisti seriją"</string>
 <string name="play_episode_toast">"Leisti seriją"</string>
 <string name="play_full_series_button">"Paleisti visą seriją"</string>

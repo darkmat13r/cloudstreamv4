@@ -273,6 +273,7 @@
 <string name="pick_subtitle">ترجمات</string>
 <string name="picture_in_picture">صور في صور</string>
 <string name="picture_in_picture_des">يستمر التشغيل في مشغل مصغر فوق التطبيقات الأخرى</string>
+<string name="pin_error_wait">محاولات PIN غلط كثيرة. حاول مرة ثانية بعد %1$s</string>
 <string name="play_episode">تشغيل الحلقة</string>
 <string name="play_episode_toast">تشغيل الحلقة</string>
 <string name="play_livestream_button">تشغيل البث المباشر</string>

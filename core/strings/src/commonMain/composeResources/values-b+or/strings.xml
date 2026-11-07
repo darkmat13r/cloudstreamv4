@@ -184,6 +184,7 @@
 <string name="no_update_found">କୌଣସି ଅଦ୍ୟତନ ମିଳିଲା ନାହିଁ</string>
 <string name="other_singular">ଵିଡ଼ିଓ</string>
 <string name="others">ଅନ୍ୟାନ୍ୟ</string>
+<string name="pin_error_wait">ଅତ୍ୟଧିକ ଭୁଲ PIN। %1$s ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ</string>
 <string name="play_episode">ଅଧ୍ୟାୟ ଚଲାଅ</string>
 <string name="play_episode_toast">ଅଧ୍ୟାୟ ଚଲାଅ</string>
 <string name="play_movie_button">ଚଳଚ୍ଚିତ୍ର ଚଲାଅ</string>

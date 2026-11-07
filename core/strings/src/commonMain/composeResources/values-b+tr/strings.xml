@@ -477,6 +477,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Yanlış PIN. Lütfen tekrar deneyin.</string>
 <string name="pin_error_length">PIN 4 karakterden oluşmalı</string>
+<string name="pin_error_wait">Çok fazla hatalı PIN. %1$s sonra tekrar deneyin</string>
 <string name="play_episode">Bölümü Oynat</string>
 <string name="play_episode_toast">Bölümü oynat</string>
 <string name="play_from_beginning_img_des">Baştan Oynat</string>

@@ -476,6 +476,7 @@
 <string name="pin">"PIN"</string>
 <string name="pin_error_incorrect">"Netočan PIN. Pokušajte ponovno."</string>
 <string name="pin_error_length">"PIN mora imati 4 znaka"</string>
+<string name="pin_error_wait" formatted="true">"Previše pogrešnih PIN-ova. Pokušajte ponovno za %1$s"</string>
 <string name="play_episode">"Pokreni epizodu"</string>
 <string name="play_episode_toast">"Pokreni epizodu"</string>
 <string name="play_from_beginning_img_des">"Pokreni od početka"</string>

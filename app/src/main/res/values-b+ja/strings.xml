@@ -477,6 +477,7 @@
 <string name="pin">"PIN"</string>
 <string name="pin_error_incorrect">"PINが違います。もう一度試してください。"</string>
 <string name="pin_error_length">"PINは4文字でなければなりません"</string>
+<string name="pin_error_wait" formatted="true">"PIN の入力ミスが多すぎます。%1$s 後にもう一度お試しください"</string>
 <string name="play_episode">"再生エピソード"</string>
 <string name="play_episode_toast">"再生エピソード"</string>
 <string name="play_from_beginning_img_des">"最初から再生する"</string>

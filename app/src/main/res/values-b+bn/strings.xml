@@ -315,6 +315,7 @@
 <string name="pick_subtitle">"সাবটাইটেলসমূহ"</string>
 <string name="picture_in_picture">"পিকচার ইন পিকচার"</string>
 <string name="picture_in_picture_des">"অন্য অ্যাপ এর উপর ভিডিও চালাতে থাকুন"</string>
+<string name="pin_error_wait" formatted="true">"অনেকবার ভুল PIN। %1$s পরে আবার চেষ্টা করুন"</string>
 <string name="play_episode">"পর্ব চালান"</string>
 <string name="play_episode_toast">"এপিসোড পরলে করুন"</string>
 <string name="play_from_beginning_img_des">"শুরু থেকে চালু করুন"</string>

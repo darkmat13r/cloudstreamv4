@@ -258,6 +258,7 @@
 <string name="pick_subtitle">Subtítulos</string>
 <string name="picture_in_picture">Imaxe en Imaxe</string>
 <string name="picture_in_picture_des">Continúa a reprodución nun reproductor miniatura enriba doutras aplicacións</string>
+<string name="pin_error_wait">Demasiados PIN incorrectos. Téntao de novo en %1$s</string>
 <string name="play_episode">Reproducir Episodio</string>
 <string name="play_episode_toast">Reproducir capítulo</string>
 <string name="play_from_beginning_img_des">Reproducir dende o comezo</string>

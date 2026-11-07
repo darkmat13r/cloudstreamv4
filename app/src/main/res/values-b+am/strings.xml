@@ -150,6 +150,7 @@
 <string name="no_data">"ውሂብ የለም"</string>
 <string name="pick_source">"ምንጮች"</string>
 <string name="pick_subtitle">"የትርጉም ጽሑፎች"</string>
+<string name="pin_error_wait" formatted="true">"በጣም ብዙ የተሳሳቱ ፒኖች። ከ%1$s በኋላ እንደገና ይሞክሩ"</string>
 <string name="play_episode">"ክፍልን አጫውት"</string>
 <string name="play_livestream_button">"የቀጥታ ስርጭት አጫውት"</string>
 <string name="play_movie_button">"ሙቪ አጫውት"</string>

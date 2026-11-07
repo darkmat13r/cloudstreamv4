@@ -2,4 +2,6 @@
 <!-- BUG-50: sign-ins stay on this device (CredentialStore.FILE). Android 11 and lower. -->
 <full-backup-content>
     <exclude domain="sharedpref" path="cs_credentials.xml" />
+    <!-- BUG-55: wrong-PIN counts and waits (PinAttempts.FILE) stay on this device. -->
+    <exclude domain="sharedpref" path="cs_pin_attempts.xml" />
 </full-backup-content>

@@ -477,6 +477,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">PIN Salah. Silahkan coba lagi.</string>
 <string name="pin_error_length">PIN harus terdiri 4 karakter</string>
+<string name="pin_error_wait">Terlalu banyak PIN yang salah. Coba lagi dalam %1$s</string>
 <string name="play_episode">Putar Episode</string>
 <string name="play_episode_toast">Putar Episode</string>
 <string name="play_from_beginning_img_des">Putar dari awal</string>

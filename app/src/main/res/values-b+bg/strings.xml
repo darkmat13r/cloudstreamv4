@@ -470,6 +470,7 @@
 <string name="pin">"ПИН"</string>
 <string name="pin_error_incorrect">"Неверен ПИН. Моля опитайте отново."</string>
 <string name="pin_error_length">"ПИН трябва да е 4 символа"</string>
+<string name="pin_error_wait" formatted="true">"Твърде много грешни ПИН кодове. Опитайте отново след %1$s"</string>
 <string name="play_episode">"Пусни епизод"</string>
 <string name="play_episode_toast">"Пусни епизода"</string>
 <string name="play_from_beginning_img_des">"Пусни от самото начало"</string>

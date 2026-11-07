@@ -476,6 +476,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">잘못된 PIN입니다. 다시 시도하세요.</string>
 <string name="pin_error_length">PIN은 4자여야 합니다</string>
+<string name="pin_error_wait">잘못된 PIN을 너무 많이 입력했습니다. %1$s 후에 다시 시도하세요</string>
 <string name="play_episode">에피소드 재생</string>
 <string name="play_episode_toast">에피소드 재생</string>
 <string name="play_from_beginning_img_des">처음부터 재생</string>

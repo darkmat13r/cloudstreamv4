@@ -150,6 +150,7 @@
 <string name="pick_subtitle">Sottotitli</string>
 <string name="picture_in_picture">Stampa f-istampa</string>
 <string name="picture_in_picture_des">Ikompli d-daqq fi player minjatura fuq apps oħra</string>
+<string name="pin_error_wait">Wisq PINs ħżiena. Ipprova mill-ġdid fi żmien %1$s</string>
 <string name="play_episode">Ibda l-episodju</string>
 <string name="play_livestream_button">Ibda l-livestream</string>
 <string name="play_movie_button">Ibda l-film</string>

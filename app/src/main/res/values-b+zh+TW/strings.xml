@@ -476,6 +476,7 @@
 <string name="pin">"PIN 碼"</string>
 <string name="pin_error_incorrect">"PIN 碼不符，請再試一次。"</string>
 <string name="pin_error_length">"PIN 碼需為 4 個字元"</string>
+<string name="pin_error_wait" formatted="true">"PIN 錯誤次數過多。請在 %1$s 後再試一次"</string>
 <string name="play_episode">"播放劇集"</string>
 <string name="play_episode_toast">"播放劇集"</string>
 <string name="play_from_beginning_img_des">"從頭開始播放"</string>

@@ -425,6 +425,7 @@
 <string name="pin">"oog"</string>
 <string name="pin_error_incorrect">"oooohhhag uug oooohh uuh eeeek"</string>
 <string name="pin_error_length">"ooh oogg uh 4 uuuuhhhooh"</string>
+<string name="pin_error_wait" formatted="true">"oooohhhag uug ooh %1$s eeek"</string>
 <string name="play_episode">"aaaaa oh ohaouuhhh"</string>
 <string name="play_episode_toast">"ouuhhhoouuh ouuhhh"</string>
 <string name="play_from_beginning_img_des">"aahh oohh uuh uuuuggguh"</string>

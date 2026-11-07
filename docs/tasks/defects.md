@@ -1985,3 +1985,49 @@ Also from #222's review: a restore whose clearing of the PINs cannot be written 
 | Before | Now |
 |---|---|
 | Restore wrote the file straight away | With a locked profile, it asks each locked profile's PIN first; Cancel writes nothing |
+
+## BUG-55 — A profile PIN could be guessed without limit · **medium, security** · measured 2026-11-08
+
+**Status:** fixed in pr, stacked on `BUG-54` (#227) · raised by the PM after #227's review · `PinAttempts.kt`,
+`AccountHelper.kt`, `AccountViewModel.kt`, `BackupUtils.kt`, the backup rules
+
+Every PIN prompt (switching profile, the startup prompt, editing a locked profile, changing its PIN, and since `BUG-54`
+a restore) compared each PIN typed with no limit. A PIN has 10,000 values, so any lock could be guessed.
+
+**Fix:** `PinAttempts`, used inside `showPinInputDialog`, so every prompt has the same rule. The PM's call:
+- Four wrong PINs cost nothing. The fifth starts a 30-second wait; each wrong PIN after it doubles the wait (60, 120,
+  240 s, …), capped at 2^20 doublings so it cannot overflow. A right PIN clears the profile's count.
+- During a wait the field is off and counts down ("Too many wrong PINs. Try again in 00:30"). The limit is an
+  `InputFilter` in front of the field, so during a wait nothing typed reaches it, and no PIN is compared or counted.
+  The prompt's own comparison is left exactly as it was: its compiled watcher class is in `classes-jar.api`, and
+  changing what it captures changed that line, so the limit stays out of it.
+- Counted per profile, by its index. The published `showPinInputDialog`, which an extension could call, names no
+  profile, so its prompts share one count and are limited too.
+- **Kept across restarts.** The PM first chose memory only. Worked out against that: restarting the app gives five more
+  guesses, so the whole space falls in about 2,000 restarts, hours with a remote. So the count and the wait are stored
+  in `cs_pin_attempts`, a private file excluded from Android's backup and device transfer like `cs_credentials`. It
+  holds no PIN and nothing taken from one, only the count, the wait, and the uptime it started at.
+- **Clock:** uptime (`elapsedRealtime`), so setting the device's time forward ends nothing. A wait ends at its start
+  plus its length; if uptime is now below its start (a reboot), the whole wait runs again from boot. Either way, at
+  least the wait has truly passed, so a reboot never shortens one.
+- If the file cannot be written, the process's own copy still holds the limit.
+
+Clearing the app's data clears the counts, but it also clears the profiles and their PINs, so it opens nothing.
+
+Also from #227's review: `restoreAfterPins` says why no context is still fail-safe, and each of its prompts answers once
+(`answered`), so a second callback cannot ask the next profile twice or restore twice.
+
+### Behaviour changes
+
+| Before | Now |
+|---|---|
+| Any number of wrong PINs, each checked at once | After five wrong PINs on a profile, a wait that doubles with each further one; a right PIN resets it |
+
+### Tests
+
+- `PinAttemptsTest` (JVM, 9): four free then 30 s; doubling; the cap; a right PIN clears; per profile; the count and
+  wait survive a restart; a reboot never shortens a wait; a record holds no PIN; a failed write still limits.
+- `PinAttemptsPromptTest` (device, 2): the profile-switch prompt and the restore prompt each show the wait after five
+  wrong PINs, keep the right PIN out during it, store the count with no PIN, keep the wait after a restart, and take
+  the right PIN once the wait is over.
+- `CredentialStoreBackupTest`: the backup rules exclude `cs_pin_attempts.xml` in all three places.

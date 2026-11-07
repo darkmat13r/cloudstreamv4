@@ -409,6 +409,7 @@
 <string name="pin">"PIN kods"</string>
 <string name="pin_error_incorrect">"Nepareizs PIN kods. Lūdzu, ievadiet to no jauna."</string>
 <string name="pin_error_length">"PIN kods satur 4 rakstzīmes"</string>
+<string name="pin_error_wait" formatted="true">"Pārāk daudz nepareizu PIN. Mēģiniet vēlreiz pēc %1$s"</string>
 <string name="play_episode">"Palaist epizodi"</string>
 <string name="play_episode_toast">"Atskaņot epizodi"</string>
 <string name="play_from_beginning_img_des">"Atskaņot no sākuma"</string>

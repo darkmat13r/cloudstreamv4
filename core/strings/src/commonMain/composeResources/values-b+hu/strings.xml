@@ -426,6 +426,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Hibás PIN. Próbálja újra.</string>
 <string name="pin_error_length">A PIN 4 karakter hosszú kell legyen</string>
+<string name="pin_error_wait">Túl sok hibás PIN. Próbáld újra %1$s múlva</string>
 <string name="play_episode">Epizód lejátszása</string>
 <string name="play_episode_toast">Epizód lejátszása</string>
 <string name="play_from_beginning_img_des">Lejátszás az elejétől</string>

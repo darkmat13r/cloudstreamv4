@@ -246,6 +246,7 @@
 <string name="pin">"പിൻ"</string>
 <string name="pin_error_incorrect">"തെറ്റായ പിൻ. ദയവായി വീണ്ടും ശ്രമിക്കുക."</string>
 <string name="pin_error_length">"പിൻ 4 പ്രതീകങ്ങൾ ആയിരിക്കണം"</string>
+<string name="pin_error_wait" formatted="true">"വളരെയധികം തെറ്റായ PIN-കൾ. %1$s കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക"</string>
 <string name="play_episode">"എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക"</string>
 <string name="play_episode_toast">"എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക"</string>
 <string name="play_from_beginning_img_des">"തുടക്കം മുതൽ പ്ലേ ചെയ്യുക"</string>
