@@ -359,6 +359,14 @@
 <string name="player_fit_screen">Vyplniť obrazovku</string>
 <string name="player_fit_title">Veľkosť obrazu</string>
 <string name="player_fit_width">Vyplniť šírku</string>
+<string name="player_hud_buffering">NAČÍTAVANIE</string>
+<string name="player_hud_failed_detail">Nižšie vyberte iný zdroj.</string>
+<string name="player_hud_offline_copy">Bez pripojenia — prehráva sa stiahnutá kópia</string>
+<string name="player_hud_previous_episode">Predchádzajúca epizóda</string>
+<string name="player_hud_seek_back">Pretočiť späť</string>
+<string name="player_hud_seek_forward">Pretočiť dopredu</string>
+<string name="player_hud_speed">Rýchlosť</string>
+<string name="player_hud_up_next">Ďalej · %s</string>
 <string name="player_load_one_subtitle_online">Načítať prvé k dispozícii</string>
 <string name="player_load_subtitles">Načítať z súboru</string>
 <string name="player_load_subtitles_online">Načítať z internetu</string>

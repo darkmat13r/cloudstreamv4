@@ -492,6 +492,14 @@
 <string name="player_fit_screen">"填满屏幕"</string>
 <string name="player_fit_title">"画面大小"</string>
 <string name="player_fit_width">"填满宽度"</string>
+<string name="player_hud_buffering">"缓冲中"</string>
+<string name="player_hud_failed_detail">"请在下方选择其他来源。"</string>
+<string name="player_hud_offline_copy">"无网络连接 — 正在播放已下载的副本"</string>
+<string name="player_hud_previous_episode">"上一集"</string>
+<string name="player_hud_seek_back">"后退"</string>
+<string name="player_hud_seek_forward">"快进"</string>
+<string name="player_hud_speed">"速度"</string>
+<string name="player_hud_up_next" formatted="true">"接下来 · %s"</string>
 <string name="player_is_live">"播放中"</string>
 <string name="player_load_one_subtitle_online">"加载第一个可用的字幕"</string>
 <string name="player_load_subtitles">"从文件加载"</string>

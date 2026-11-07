@@ -5530,3 +5530,69 @@ alone, because board D4 gives the number its own column (the code stands in only
    an argument, so a translation can place it.
 3. Rerun the TV downloads device suite and keep its screenshots at 0/0, because this touches a `tv/` file.
 
+
+
+## KMP-64 — The TV player HUD, artboard 7d (queue `Q24`) · **measured 2026-11-07**
+
+**Status:** in pr. Board 7d of `design/TV Detail Player.dc.html` on `Television_720p`, API 36, over the existing player.
+
+### What it adds
+
+- **New `:feature:player`** (commonMain): `PlayerHudState` (labels and numbers only), `PlayerHudController` (7d's visibility and key rules), `PlayerHudTv` (the screen). In the iOS canary.
+- **`:app` hosts it over `FullScreenPlayer` on TV** (`TvPlayerHud`, one line in `onBindingCreated`), behind `TvPlayerHudSwitch.useComposeHud` (on; off is the old controller, tested). The Media3 controller is off while it is up; the video, subtitles and pre-roll overlay are the old player's.
+- **Every 7d readout from what the player already knows** (measured before building): title and `S1:E4 · Powder · 1080p · AVC · English 5.1`, `DOWNLOADED`, the clock, elapsed / remaining / total, played and **buffered** bands in one track, skip stamps as ticks, `Skip opening`, transport, `Up next · S1:E5 …` (from the generator's episode list), and SOURCE, SUBTITLES, AUDIO, SPEED as value over label.
+- **States:** shown; hidden with the scrub readout (`+00:30 → 42:43`) over its rule; buffering (badge, auto-hide suspended); a playback error banner whose action is the SOURCE selector; offline over a downloaded copy.
+- **Keys** keep the old player's settings and feel: auto-hide 3000 ms while playing; hidden, Left/Right scrub by `android_tv_interface_off_seek_key` (10 s default) without revealing; Up/Down reveal; Centre toggles and reveals, or takes an offered skip; shown, the seek cell moves by `android_tv_interface_on_seek_key`. The activity's key listener asks the HUD first; keys it does not use, other than the D-pad and OK, still reach the old handler (MENU, keyboard shortcuts).
+- **The one published addition:** `CS3IPlayer.getBufferedPosition()`, on the final class only, not on `IPlayer` (app-10's ruling: no new member for implementers of the published interface).
+- 8 new keys in all 62 locales, none a plural.
+
+### Security
+
+`TvHudFacts.toHudState` is the boundary. The link goes in for its display name and quality; its URL, headers and referer never come out. A downloaded file comes in as a flag only, so its path never enters. Provider text loses control characters, and a name that reads as an address (`://`, `/…`, `content:`, `file:`) is dropped. The HUD code logs nothing.
+
+### Focus
+
+| Press | Goes to |
+|---|---|
+| Reveal | Play/pause |
+| Down from the chrome row or `Skip` | The seek cell |
+| Down from the seek cell | Play/pause |
+| Along the transport | Back, forward, previous, next; Right past next and Left past play/pause stay |
+| Down from the transport | SOURCE |
+| Up from AUDIO or SPEED | The seek cell, which spans them |
+
+### Reduced from the board
+
+- **Buffering keeps the play/pause glyph:** 7d draws an indeterminate ring in the cell, and the pack has none; drawing one is a design-system component.
+- **The transport's four cells** are seek back, seek forward, previous and next episode, the pack's glyphs; 7d draws them unlabelled.
+- **One dialog for SOURCE and SUBTITLES,** the old sources-and-subtitles picker; AUDIO opens the tracks picker and SPEED the speed dialog. 7e's panels are `Q25`.
+- **`Skip opening`, not `Skip intro`:** the label is the skip stamp's own.
+- **The skip ticks are skip stamps:** the player has no chapters.
+- **Ticks are 2dp** (7d's 4px), a stroke weight.
+- **Empty (no usable link)** is the old player's toast and exit, not 7d's full-screen state; it happens before the HUD exists.
+- **Previous episode played the next one,** an existing bug: fixed separately in `BUG-42` (#182), so this cell works once that merges.
+
+### Tests
+
+- `HudTimeTest` (common, 4) and `PlayerHudControllerTest` (JVM, 7): the board's times; auto-hide re-armed by keys, held while paused or buffering; a hidden scrub burst and its readout clearing after 1500 ms; scrubs kept inside the title; Up/Down/Centre while hidden; Centre taking an offered skip.
+- `TvHudFactsTest` (`:app` JVM, 5): the board's lines from the board's facts; a link whose URL, referer and headers carry markers leaves none in the state; names that read as addresses are dropped; control characters go; the offline banner needs a download.
+- `PlayerHudTvDeviceTest` (device, 14, no video so no sound): every readout; reveal focus; the transport and its ends; Up to the seek cell; the seek cell's Left/Right; each control's action; a disabled previous cell; hidden draws only the skip and readout; screenshots `player-hud-shown`, `-hidden-scrub`, `-buffering`, `-failed`, `-offline`, `-nothing-known`, each looked at before it was kept.
+- `TvPlayerHudNavigationTest` (`:app`, the real path, 4): a downloaded file played through `GeneratorPlayer` over `DownloadFileGenerator`. The file is `hud-silent.mp4` (28 KB, digitally silent, -91 dB, made with `ffmpeg`) and the media volume is 0 for the test. The HUD draws and the old controller is off; the file's path, which carries a marker, is nowhere on screen; it hides while playing, a hidden Right shows the readout without revealing, and Up reveals with focus on Pause; with the switch off the old controller is back.
+
+**The device run caught three things.** `IconOnlyButton` shows its label on focus, so `Pause` sat over SOURCE: the cells are `IconCell`, icon-only with a content description, as the design system rules for 7d's transport. Right from the last cell and Down from the seek cell went where geometry led, not where 7d says. And the real-path scrub test looked for a readout after `DpadDriver.press`, which waits on the accessibility tree longer than the readout lives.
+
+### Found, not changed
+
+```
+Found: GeneratorPlayer.playerError logs the stream URL, headers and referer (Log.e)
+Suggest: drop them from the line
+Why: headers can be credentials; the owner's rule is no URLs, headers or paths in logs. Taken by the security sweep, BUG-43.
+```
+
+### Not verified
+
+`TalkBack`, a real remote, a real provider's stream (only the local file), the episodes overlay on MENU with the HUD up, chapters (the player has none), and the least-confident translations: `ti`, `am`, `ckb`, `my`, `or`, `as`, `mt`, `apc`.
+
+### Published API
+
+Additions only. `app/api/classes-jar.api` +70 / −0: 8 `R$string` fields, `CS3IPlayer.getBufferedPosition`, `FullScreenPlayer`'s `playerError` override and failure flag, `GeneratorPlayer`'s facts override, and the HUD host classes.

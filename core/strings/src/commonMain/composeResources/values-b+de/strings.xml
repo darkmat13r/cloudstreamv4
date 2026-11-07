@@ -492,6 +492,14 @@
 <string name="player_fit_screen">Bildschirm ausfüllen</string>
 <string name="player_fit_title">Bildgröße</string>
 <string name="player_fit_width">Breite ausfüllen</string>
+<string name="player_hud_buffering">PUFFERN</string>
+<string name="player_hud_failed_detail">Wähle unten eine andere Quelle.</string>
+<string name="player_hud_offline_copy">Keine Verbindung — die heruntergeladene Kopie wird abgespielt</string>
+<string name="player_hud_previous_episode">Vorherige Folge</string>
+<string name="player_hud_seek_back">Zurückspulen</string>
+<string name="player_hud_seek_forward">Vorspulen</string>
+<string name="player_hud_speed">Geschwindigkeit</string>
+<string name="player_hud_up_next">Als Nächstes · %s</string>
 <string name="player_is_live">Live</string>
 <string name="player_load_one_subtitle_online">Erste verfügbare laden</string>
 <string name="player_load_subtitles">Aus Datei laden</string>

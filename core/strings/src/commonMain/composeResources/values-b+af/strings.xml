@@ -166,6 +166,14 @@
 <string name="player_fit_screen">Vul skerm</string>
 <string name="player_fit_title">Beeldgrootte</string>
 <string name="player_fit_width">Vul breedte</string>
+<string name="player_hud_buffering">BUFFER</string>
+<string name="player_hud_failed_detail">Kies hieronder ’n ander bron.</string>
+<string name="player_hud_offline_copy">Geen verbinding nie — die afgelaaide kopie speel</string>
+<string name="player_hud_previous_episode">Vorige episode</string>
+<string name="player_hud_seek_back">Spoel terug</string>
+<string name="player_hud_seek_forward">Spoel vorentoe</string>
+<string name="player_hud_speed">Spoed</string>
+<string name="player_hud_up_next">Volgende · %s</string>
 <string name="player_mute">Demp</string>
 <string name="player_source_playing">Speel</string>
 <string name="player_source_resumes_at">Wissel behou jou posisie: gaan voort by %1$s</string>

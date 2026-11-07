@@ -259,6 +259,14 @@
 <string name="player_fit_screen">"Užpildyti ekraną"</string>
 <string name="player_fit_title">"Vaizdo dydis"</string>
 <string name="player_fit_width">"Užpildyti plotį"</string>
+<string name="player_hud_buffering">"BUFERIZAVIMAS"</string>
+<string name="player_hud_failed_detail">"Žemiau pasirinkite kitą šaltinį."</string>
+<string name="player_hud_offline_copy">"Nėra ryšio — leidžiama atsisiųsta kopija"</string>
+<string name="player_hud_previous_episode">"Ankstesnė serija"</string>
+<string name="player_hud_seek_back">"Atgal"</string>
+<string name="player_hud_seek_forward">"Pirmyn"</string>
+<string name="player_hud_speed">"Greitis"</string>
+<string name="player_hud_up_next" formatted="true">"Toliau · %s"</string>
 <string name="player_mute">"Nutildyti"</string>
 <string name="player_settings_play_in_app">"Integruotas grotuvas"</string>
 <string name="player_size_settings">"Grotuvo dydžio pakeitimo mygtukas"</string>

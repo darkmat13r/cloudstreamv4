@@ -444,6 +444,14 @@
 <string name="player_fit_screen">"স্ক্ৰীন পূৰণ কৰক"</string>
 <string name="player_fit_title">"ছবিৰ আকাৰ"</string>
 <string name="player_fit_width">"প্ৰস্থ পূৰণ কৰক"</string>
+<string name="player_hud_buffering">"বাফাৰ হৈ আছে"</string>
+<string name="player_hud_failed_detail">"তলত আন এটা উৎস বাছক।"</string>
+<string name="player_hud_offline_copy">"সংযোগ নাই — ডাউনলোড কৰা কপি চলি আছে"</string>
+<string name="player_hud_previous_episode">"আগৰ পৰ্ব"</string>
+<string name="player_hud_seek_back">"পিছলৈ যাওক"</string>
+<string name="player_hud_seek_forward">"আগলৈ যাওক"</string>
+<string name="player_hud_speed">"গতি"</string>
+<string name="player_hud_up_next" formatted="true">"পৰৱৰ্তী · %s"</string>
 <string name="player_load_one_subtitle_online">"প্ৰথম উপলব্ধটো লোড কৰক"</string>
 <string name="player_load_subtitles">"ফাইলৰ পৰা ল'ড কৰক"</string>
 <string name="player_load_subtitles_online">"ইণ্টাৰনেটৰ পৰা ল'ড কৰক"</string>

@@ -439,6 +439,14 @@
 <string name="player_fit_screen">oouuh aah</string>
 <string name="player_fit_title">aaaaa oh</string>
 <string name="player_fit_width">haa oh</string>
+<string name="player_hud_buffering">OOHH AAGH</string>
+<string name="player_hud_failed_detail">oohh aagh uuk.</string>
+<string name="player_hud_offline_copy">aagh oohh — uuk aah oohh</string>
+<string name="player_hud_previous_episode">oohh aagh uuk</string>
+<string name="player_hud_seek_back">aagh ooh</string>
+<string name="player_hud_seek_forward">ooh aagh</string>
+<string name="player_hud_speed">uuk</string>
+<string name="player_hud_up_next">aagh · %s</string>
 <string name="player_load_subtitles">aagg aahh uuuk</string>
 <string name="player_load_subtitles_online">eeek aahh oooohhhh</string>
 <string name="player_loaded_subtitles">oooohh %s</string>

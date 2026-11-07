@@ -330,6 +330,14 @@
 <string name="player_fit_screen">"স্ক্রিন পূরণ করুন"</string>
 <string name="player_fit_title">"ছবির আকার"</string>
 <string name="player_fit_width">"প্রস্থ পূরণ করুন"</string>
+<string name="player_hud_buffering">"বাফার হচ্ছে"</string>
+<string name="player_hud_failed_detail">"নিচে অন্য একটি উৎস বেছে নিন।"</string>
+<string name="player_hud_offline_copy">"সংযোগ নেই — ডাউনলোড করা কপি চলছে"</string>
+<string name="player_hud_previous_episode">"আগের পর্ব"</string>
+<string name="player_hud_seek_back">"পিছিয়ে যান"</string>
+<string name="player_hud_seek_forward">"এগিয়ে যান"</string>
+<string name="player_hud_speed">"গতি"</string>
+<string name="player_hud_up_next" formatted="true">"পরবর্তী · %s"</string>
 <string name="player_mute">"মিউট করুন"</string>
 <string name="player_size_settings">"প্লেয়ারের সাইজ পরিবর্তন বাটন"</string>
 <string name="player_size_settings_des">"কালো প্রান্ত অপসারণ করুন"</string>

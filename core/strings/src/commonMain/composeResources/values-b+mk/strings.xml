@@ -491,6 +491,14 @@
 <string name="player_fit_screen">Пополни екран</string>
 <string name="player_fit_title">Големина на сликата</string>
 <string name="player_fit_width">Пополни ширина</string>
+<string name="player_hud_buffering">БАФЕРИРАЊЕ</string>
+<string name="player_hud_failed_detail">Изберете друг извор подолу.</string>
+<string name="player_hud_offline_copy">Нема врска — се пушта преземената копија</string>
+<string name="player_hud_previous_episode">Претходна епизода</string>
+<string name="player_hud_seek_back">Назад</string>
+<string name="player_hud_seek_forward">Напред</string>
+<string name="player_hud_speed">Брзина</string>
+<string name="player_hud_up_next">Следно · %s</string>
 <string name="player_is_live">Во живо</string>
 <string name="player_load_one_subtitle_online">Вчитај прво достапно</string>
 <string name="player_load_subtitles">Вчитај од датотека</string>

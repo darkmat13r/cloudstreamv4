@@ -491,6 +491,14 @@
 <string name="player_fit_screen">"ملء الشاشة"</string>
 <string name="player_fit_title">"حجم الصورة"</string>
 <string name="player_fit_width">"ملء العرض"</string>
+<string name="player_hud_buffering">"جارٍ التخزين المؤقت"</string>
+<string name="player_hud_failed_detail">"اختر مصدرًا آخر أدناه."</string>
+<string name="player_hud_offline_copy">"لا يوجد اتصال — يتم تشغيل النسخة المنزّلة"</string>
+<string name="player_hud_previous_episode">"الحلقة السابقة"</string>
+<string name="player_hud_seek_back">"ترجيع"</string>
+<string name="player_hud_seek_forward">"تقديم"</string>
+<string name="player_hud_speed">"السرعة"</string>
+<string name="player_hud_up_next" formatted="true">"التالي · %s"</string>
 <string name="player_is_live">"البث قائم"</string>
 <string name="player_load_one_subtitle_online">"تحميل أول ترجمة متاحة"</string>
 <string name="player_load_subtitles">"إختيار ملف"</string>

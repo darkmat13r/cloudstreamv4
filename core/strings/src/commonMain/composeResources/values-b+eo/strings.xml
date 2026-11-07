@@ -208,6 +208,14 @@
 <string name="player_fit_screen">Plenigi ekranon</string>
 <string name="player_fit_title">Bildgrando</string>
 <string name="player_fit_width">Plenigi larĝon</string>
+<string name="player_hud_buffering">BUFRADO</string>
+<string name="player_hud_failed_detail">Elektu alian fonton sube.</string>
+<string name="player_hud_offline_copy">Neniu konekto — ludiĝas la elŝutita kopio</string>
+<string name="player_hud_previous_episode">Antaŭa epizodo</string>
+<string name="player_hud_seek_back">Malantaŭen</string>
+<string name="player_hud_seek_forward">Antaŭen</string>
+<string name="player_hud_speed">Rapido</string>
+<string name="player_hud_up_next">Sekva · %s</string>
 <string name="player_mute">Silentigi</string>
 <string name="player_size_settings_des">Forigi nigrajn borderaĵojn</string>
 <string name="player_source_playing">Ludanta</string>

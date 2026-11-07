@@ -492,6 +492,14 @@
 <string name="player_fit_screen">"திரையை நிரப்பு"</string>
 <string name="player_fit_title">"பட அளவு"</string>
 <string name="player_fit_width">"அகலத்தை நிரப்பு"</string>
+<string name="player_hud_buffering">"இடையகப்படுத்துகிறது"</string>
+<string name="player_hud_failed_detail">"கீழே வேறு மூலத்தைத் தேர்ந்தெடுக்கவும்."</string>
+<string name="player_hud_offline_copy">"இணைப்பு இல்லை — பதிவிறக்கிய நகல் இயங்குகிறது"</string>
+<string name="player_hud_previous_episode">"முந்தைய எபிசோடு"</string>
+<string name="player_hud_seek_back">"பின்னோக்கி"</string>
+<string name="player_hud_seek_forward">"முன்னோக்கி"</string>
+<string name="player_hud_speed">"வேகம்"</string>
+<string name="player_hud_up_next" formatted="true">"அடுத்து · %s"</string>
 <string name="player_is_live">"வாழ்க"</string>
 <string name="player_load_one_subtitle_online">"முதலில் கிடைக்கிறது"</string>
 <string name="player_load_subtitles">"கோப்பிலிருந்து ஏற்றவும்"</string>

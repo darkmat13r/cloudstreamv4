@@ -111,6 +111,14 @@
 <string name="player_fit_screen">"ስክሪን ምላእ"</string>
 <string name="player_fit_title">"መጠን ስእሊ"</string>
 <string name="player_fit_width">"ስፍሓት ምላእ"</string>
+<string name="player_hud_buffering">"ይጽዕን ኣሎ"</string>
+<string name="player_hud_failed_detail">"ኣብ ታሕቲ ካልእ ምንጪ ምረጹ።"</string>
+<string name="player_hud_offline_copy">"ርክብ የለን — እቲ ዝወረደ ቅዳሕ ይጻወት ኣሎ"</string>
+<string name="player_hud_previous_episode">"ዝሓለፈ ክፋል"</string>
+<string name="player_hud_seek_back">"ንድሕሪት"</string>
+<string name="player_hud_seek_forward">"ንቕድሚት"</string>
+<string name="player_hud_speed">"ቅልጣፈ"</string>
+<string name="player_hud_up_next" formatted="true">"ቀጺሉ · %s"</string>
 <string name="player_mute">"ድምጺ ኣጥፍእ"</string>
 <string name="player_source_playing">"ይጻወት ኣሎ"</string>
 <string name="player_source_resumes_at" formatted="true">"ምቕያር ቦታኻ ይሕልው፦ ካብ %1$s ይቕጽል"</string>

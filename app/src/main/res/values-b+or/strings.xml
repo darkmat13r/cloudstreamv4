@@ -193,6 +193,14 @@
 <string name="player_fit_screen">"ସ୍କ୍ରିନ ପୂରଣ କରନ୍ତୁ"</string>
 <string name="player_fit_title">"ଚିତ୍ର ଆକାର"</string>
 <string name="player_fit_width">"ପ୍ରସ୍ଥ ପୂରଣ କରନ୍ତୁ"</string>
+<string name="player_hud_buffering">"ବଫର୍ ହେଉଛି"</string>
+<string name="player_hud_failed_detail">"ତଳେ ଅନ୍ୟ ଏକ ଉତ୍ସ ବାଛନ୍ତୁ।"</string>
+<string name="player_hud_offline_copy">"ସଂଯୋଗ ନାହିଁ — ଡାଉନଲୋଡ୍ ହୋଇଥିବା କପି ଚାଲୁଛି"</string>
+<string name="player_hud_previous_episode">"ପୂର୍ବ ଏପିସୋଡ୍"</string>
+<string name="player_hud_seek_back">"ପଛକୁ"</string>
+<string name="player_hud_seek_forward">"ଆଗକୁ"</string>
+<string name="player_hud_speed">"ଗତି"</string>
+<string name="player_hud_up_next" formatted="true">"ପରବର୍ତ୍ତୀ · %s"</string>
 <string name="player_mute">"ମ୍ୟୁଟ କରନ୍ତୁ"</string>
 <string name="player_settings_play_in_app">"ଅନ୍ତଃ-ଚାଳକ"</string>
 <string name="player_source_playing">"ଚାଲୁଛି"</string>
