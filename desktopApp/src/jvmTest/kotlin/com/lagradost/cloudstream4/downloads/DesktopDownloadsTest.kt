@@ -481,6 +481,30 @@ class DesktopDownloadsTest {
         assertEquals(DownloadFailure.Unknown, StoredFailure.decode("ServerRefused", listOf(-1L)))
     }
 
+    /**
+     * BUG-57: a retry is published as Running before its run starts. Otherwise a reader opened while the run asks the
+     * extension sees the old failure, and the screen reads as the retry failing at once. The resolver itself reads
+     * the published state, so the check runs exactly while the run is going.
+     */
+    @Test
+    fun `a retry is published as running before its run asks the extension`() = runBlocking {
+        server.add("retried.bin", 64 * 1024)
+        lateinit var host: DesktopDownloads
+        val seen = CopyOnWriteArrayList<DownloadEpisode>()
+        host = host(resolver = {
+            seen += host.series(DownloadTitleId(1600)).contents.first().episodes.single()
+            listOf(DesktopDownloadLink(server.url("retried.bin")))
+        })
+        host.enqueue(film(16, "Retried", server.url("retried-missing.bin")))
+        assertEquals(DownloadFailure.ServerRefused(404), host.awaitEpisode(1600, 16) { it.state == DownloadEpisodeState.Failed }.failure)
+
+        host.retry(DownloadEpisodeId(16))
+        host.awaitDone(1600, 16)
+        val atAsk = seen.single()
+        assertEquals(DownloadEpisodeState.Running, atAsk.state, "what a reader saw while the retry asked: ${atAsk.state}")
+        assertNull(atAsk.failure, "the old failure is gone")
+    }
+
     @Test
     fun `a retry asks the extension again, a resume of a pause does not`() = runBlocking {
         val body = server.add("retry.bin", 1024 * 1024)

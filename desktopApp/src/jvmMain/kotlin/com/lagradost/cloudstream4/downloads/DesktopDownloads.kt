@@ -798,6 +798,9 @@ class DesktopDownloads internal constructor(
         item.phase = Phase.Running
         item.failure = null
         item.startedSeq = nextSeq++
+        // Readers see Running before the run can ask the extension or fail: otherwise a retry shows its old failure
+        // until the caller's own publish, and reads as failing at once (BUG-57).
+        publish()
         run.job.start()
     }
 
