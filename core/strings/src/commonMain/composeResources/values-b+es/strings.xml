@@ -14,6 +14,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="many">%d DE MARCADORES</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">No se pudo cargar %d sección</item><item quantity="many">No se pudieron cargar %d secciones</item><item quantity="other">No se pudieron cargar %d secciones</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d sección</item><item quantity="many">%d secciones</item><item quantity="other">%d secciones</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="many">%d títulos</item><item quantity="other">%d títulos</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d enlace oculto</item><item quantity="many">%d enlaces ocultos</item><item quantity="other">%d enlaces ocultos</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Buscar en %d fuente</item><item quantity="many">Buscar en las %d fuentes</item><item quantity="other">Buscar en las %d fuentes</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Pulsa la tecla de búsqueda del teclado para buscar igualmente en %d fuente.</item><item quantity="many">Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.</item><item quantity="other">Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.</item></plurals>
@@ -396,10 +397,20 @@
 <string name="kitsu_settings">Mostrar pósters de Kitsu</string>
 <string name="legal_notice">Descargo de responsabilidad</string>
 <string name="library">Biblioteca</string>
+<string name="library_go_to_list">Ir a %s</string>
+<string name="library_list_empty_body">Los títulos que añadas a %s aparecen aquí.</string>
+<string name="library_list_empty_headline">No hay nada en %s</string>
 <string name="library_not_connected">No conectado</string>
 <string name="library_on_device">En el dispositivo</string>
+<string name="library_sort_current">Orden: %s</string>
+<string name="library_sort_supported">%1$s admite %2$d de %3$d</string>
 <string name="library_source">Origen de la biblioteca</string>
 <string name="library_source_note">Uno a la vez · cambiar recarga</string>
+<string name="library_sync_cached">En caché</string>
+<string name="library_sync_failed">No se pudo sincronizar %1$s. Son de hace %2$s.</string>
+<string name="library_sync_offline">Sin conexión · en caché hace %s</string>
+<string name="library_sync_retry">Volver a sincronizar</string>
+<string name="library_sync_unreachable">Inaccesible · en caché hace %s</string>
 <string name="library_synced_format">Sincronizado hace %s</string>
 <string name="lightnovel">App de novela ligera de los mismos desarrolladores</string>
 <string name="limit_title">Máxima cantidad de caracteres en el título del reproductor</string>
@@ -653,6 +664,7 @@
 <string name="search_state_no_suggestions_headline">Nada coincide con «%s»</string>
 <string name="search_suggestions">Sugerencias de Búsqueda</string>
 <string name="search_suggestions_des">Mostrar sugerencias de búsqueda mientras escribe</string>
+<string name="search_suggestions_return_hint">Intro busca en todo</string>
 <string name="search_tv_source_failed">FALLÓ %s</string>
 <string name="search_tv_source_pinned">FIJADO</string>
 <string name="search_tv_sources_panel_meta">%1$d DE %2$d ACTIVADOS · LOS CAMBIOS SE APLICAN AL PULSAR HECHO</string>

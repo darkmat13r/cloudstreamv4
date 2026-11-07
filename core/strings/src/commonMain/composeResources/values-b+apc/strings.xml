@@ -13,6 +13,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d عنوان · %2$s</item><item quantity="other">%1$d عناوين · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d إشارة مرجعية</item><item quantity="other">%d إشارات مرجعية</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">م قدرنا نفتح %d قسم</item><item quantity="other">م قدرنا نفتح %d أقسام</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عناوين</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">نبّش بـ%d مصدر</item><item quantity="other">نبّش بكل المصادر الـ%d</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال.</item><item quantity="other">اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d مصدر</item><item quantity="other">%d مصادر</item></plurals>
@@ -395,10 +396,20 @@
 <string name="kitsu_settings">فرجي الپوسترات من موقع "كيتسو"</string>
 <string name="legal_notice">إخلاء مسؤولية</string>
 <string name="library">رفّ</string>
+<string name="library_go_to_list">روح على %s</string>
+<string name="library_list_empty_body">العناوين اللي بتضيفها لـ %s بتطلع هون.</string>
+<string name="library_list_empty_headline">ما في شي بـ %s</string>
 <string name="library_not_connected">مش متصل</string>
 <string name="library_on_device">عالجهاز</string>
+<string name="library_sort_current">الترتيب: %s</string>
+<string name="library_sort_supported">%1$s بيدعم %2$d من %3$d</string>
 <string name="library_source">مصدر الرفّ</string>
 <string name="library_source_note">وحدة بكل مرة · التبديل بيعيد التحميل</string>
+<string name="library_sync_cached">محفوظ</string>
+<string name="library_sync_failed">ما قدرنا نزامن %1$s. هدول من قبل %2$s.</string>
+<string name="library_sync_offline">بلا إنترنت · محفوظ من %s</string>
+<string name="library_sync_retry">رجّع زامن</string>
+<string name="library_sync_unreachable">ما فينا نوصل · محفوظ من %s</string>
 <string name="library_synced_format">تزامن من %s</string>
 <string name="lightnovel">آپ من نفس المطورين للروايات الخفيفة، بدل من الڤيديوات</string>
 <string name="limit_title">الحد الأعلى للحروف بعنوان الڤيديو</string>
@@ -649,6 +660,7 @@
 <string name="search_state_no_suggestions_headline">ما في شي بيطابق «%s»</string>
 <string name="search_suggestions">اقتراحات التنبيش</string>
 <string name="search_suggestions_des">بت فرجي اقتراحات إنتا و عم بت نَبّش</string>
+<string name="search_suggestions_return_hint">Return بيدوّر بالكل</string>
 <string name="search_tv_source_failed">فشل %s</string>
 <string name="search_tv_source_pinned">مثبّت</string>
 <string name="search_tv_sources_panel_meta">%1$d من %2$d مفعّل · التغييرات بتنطبق عند خلصت</string>

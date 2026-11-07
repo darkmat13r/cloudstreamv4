@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d tittel · %2$s</item><item quantity="other">%1$d titlar · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikkje lastast</item><item quantity="other">%d delar kunne ikkje lastast</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d tittel</item><item quantity="other">%d titlar</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Søk i %d kjelde</item><item quantity="other">Søk i alle %d kjeldene</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel.</item><item quantity="other">Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KJELDE</item><item quantity="other">%d KJELDER</item></plurals>
@@ -168,6 +169,9 @@
 <string name="home_source_picker_title">Kjelde for startsida</string>
 <string name="home_source_unreachable">Var ikkje tilgjengeleg sist</string>
 <string name="kitsu_settings">Vis miniatyrbilete frå Kitsu</string>
+<string name="library_go_to_list">Gå til %s</string>
+<string name="library_list_empty_body">Titlar du legg til i %s, kjem her.</string>
+<string name="library_list_empty_headline">Ingenting i %s</string>
 <string name="lightnovel">Lysnovelleprogram av dei same utviklarane</string>
 <string name="live_singular">Direktesending</string>
 <string name="livestreams">Direktesendingar</string>
@@ -331,7 +335,15 @@
 <string name="year">År</string>
 <string name="library_not_connected">Ikkje tilkopla</string>
 <string name="library_on_device">På eininga</string>
+<string name="library_sort_current">Sortering: %s</string>
+<string name="library_sort_supported">%1$s støttar %2$d av %3$d</string>
 <string name="library_source">Bibliotekskjelde</string>
 <string name="library_source_note">Éin om gongen · byte lastar på nytt</string>
+<string name="library_sync_cached">Mellomlagra</string>
+<string name="library_sync_failed">Kunne ikkje synkronisera %1$s. Desse er frå for %2$s sidan.</string>
+<string name="library_sync_offline">Fråkopla · mellomlagra for %s sidan</string>
+<string name="library_sync_retry">Synkroniser på nytt</string>
+<string name="library_sync_unreachable">Utilgjengeleg · mellomlagra for %s sidan</string>
 <string name="library_synced_format">Synkronisert for %s sidan</string>
+<string name="search_suggestions_return_hint">Return søkjer overalt</string>
 </resources>

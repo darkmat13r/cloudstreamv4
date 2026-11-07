@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d pamagat · %2$s</item><item quantity="other">%1$d pamagat · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Hindi na-load ang %d seksyon</item><item quantity="other">Hindi na-load ang %d seksyon</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d pamagat</item><item quantity="other">%d na pamagat</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Maghanap sa %d mapagkukunan</item><item quantity="other">Maghanap sa lahat ng %d mapagkukunan</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Pindutin ang search key ng keyboard para maghanap pa rin sa %d mapagkukunan.</item><item quantity="other">Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d MAPAGKUKUNAN</item><item quantity="other">%d MAPAGKUKUNAN</item></plurals>
@@ -157,6 +158,9 @@
 <string name="home_source_picker_body">Galing sa isang extension sa bawat pagkakataon ang mga row.</string>
 <string name="home_source_picker_title">Source ng Home</string>
 <string name="home_source_unreachable">Hindi ito naabot noong huli</string>
+<string name="library_go_to_list">Pumunta sa %s</string>
+<string name="library_list_empty_body">Dito napupunta ang mga pamagat na idaragdag mo sa %s.</string>
+<string name="library_list_empty_headline">Walang laman ang %s</string>
 <string name="links_reloaded_toast">Ini-load muli ang mga link</string>
 <string name="load_more">Mag-load pa</string>
 <string name="loading">Naglo-load…</string>
@@ -290,7 +294,15 @@
 <string name="vpn_torrent">Ang provider na ito ay isang torrent, inirerekomendang gumamit ng VPN</string>
 <string name="library_not_connected">Hindi nakakonekta</string>
 <string name="library_on_device">Sa device</string>
+<string name="library_sort_current">Pagkakasunod: %s</string>
+<string name="library_sort_supported">Sinusuportahan ng %1$s ang %2$d sa %3$d</string>
 <string name="library_source">Pinagmulan ng library</string>
 <string name="library_source_note">Isa-isa · nagre-reload kapag nagpalit</string>
+<string name="library_sync_cached">Naka-cache</string>
+<string name="library_sync_failed">Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.</string>
+<string name="library_sync_offline">Offline · naka-cache %s ang nakalipas</string>
+<string name="library_sync_retry">Subukang i-sync ulit</string>
+<string name="library_sync_unreachable">Hindi maabot · naka-cache %s ang nakalipas</string>
 <string name="library_synced_format">Na-sync %s ang nakalipas</string>
+<string name="search_suggestions_return_hint">Hinahanap ng Return ang lahat</string>
 </resources>

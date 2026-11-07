@@ -14,6 +14,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d SEGNALIBRO</item><item quantity="many">%d DI SEGNALIBRI</item><item quantity="other">%d SEGNALIBRI</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Impossibile caricare %d sezione</item><item quantity="many">Impossibile caricare %d sezioni</item><item quantity="other">Impossibile caricare %d sezioni</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d sezione</item><item quantity="many">%d sezioni</item><item quantity="other">%d sezioni</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d titolo</item><item quantity="many">%d titoli</item><item quantity="other">%d titoli</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d collegamento nascosto</item><item quantity="many">%d collegamenti nascosti</item><item quantity="other">%d collegamenti nascosti</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Cerca in %d fonte</item><item quantity="many">Cerca in tutte le %d fonti</item><item quantity="other">Cerca in tutte le %d fonti</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Premi il tasto di ricerca della tastiera per cercare comunque in %d fonte.</item><item quantity="many">Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.</item><item quantity="other">Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.</item></plurals>
@@ -396,10 +397,20 @@
 <string name="kitsu_settings">Mostra poster da Kitsu</string>
 <string name="legal_notice">Avvertenza</string>
 <string name="library">Libreria</string>
+<string name="library_go_to_list">Vai a %s</string>
+<string name="library_list_empty_body">I titoli che aggiungi a %s compaiono qui.</string>
+<string name="library_list_empty_headline">Niente in %s</string>
 <string name="library_not_connected">Non connesso</string>
 <string name="library_on_device">Sul dispositivo</string>
+<string name="library_sort_current">Ordine: %s</string>
+<string name="library_sort_supported">%1$s supporta %2$d di %3$d</string>
 <string name="library_source">Origine della libreria</string>
 <string name="library_source_note">Una alla volta · cambiare ricarica</string>
+<string name="library_sync_cached">In cache</string>
+<string name="library_sync_failed">Impossibile sincronizzare %1$s. Sono di %2$s fa.</string>
+<string name="library_sync_offline">Offline · in cache da %s</string>
+<string name="library_sync_retry">Risincronizza</string>
+<string name="library_sync_unreachable">Non raggiungibile · in cache da %s</string>
 <string name="library_synced_format">Sincronizzato %s fa</string>
 <string name="lightnovel">App per Light Novel degli stessi sviluppatori</string>
 <string name="limit_title">Limita i caratteri del titolo nel lettore</string>
@@ -653,6 +664,7 @@
 <string name="search_state_no_suggestions_headline">Nessun risultato per «%s»</string>
 <string name="search_suggestions">Suggerimenti per la ricerca</string>
 <string name="search_suggestions_des">Mostra suggerimenti di ricerca durante la digitazione</string>
+<string name="search_suggestions_return_hint">Invio cerca ovunque</string>
 <string name="search_tv_source_failed">FALLITO %s</string>
 <string name="search_tv_source_pinned">FISSATO</string>
 <string name="search_tv_sources_panel_meta">%1$d SU %2$d ATTIVI · LE MODIFICHE SI APPLICANO CON FATTO</string>

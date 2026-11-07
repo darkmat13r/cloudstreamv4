@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d títol · %2$s</item><item quantity="many">%1$d títols · %2$s</item><item quantity="other">%1$d títols · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d FAVORIT</item><item quantity="many">%d DE FAVORITS</item><item quantity="other">%d FAVORITS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">No s'ha pogut carregar %d secció</item><item quantity="many">No s'han pogut carregar %d seccions</item><item quantity="other">No s'han pogut carregar %d seccions</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d títol</item><item quantity="many">%d títols</item><item quantity="other">%d títols</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Cercar a %d font</item><item quantity="many">Cercar a totes les %d fonts</item><item quantity="other">Cercar a totes les %d fonts</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Prem la tecla de cerca del teclat per cercar igualment a %d font.</item><item quantity="many">Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.</item><item quantity="other">Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONT</item><item quantity="many">%d FONTS</item><item quantity="other">%d FONTS</item></plurals>
@@ -219,6 +220,9 @@
 <string name="home_source_picker_body">Les files provenen d'una extensió cada vegada.</string>
 <string name="home_source_picker_title">Font de l'inici</string>
 <string name="home_source_unreachable">No s'hi va poder accedir l'última vegada</string>
+<string name="library_go_to_list">Ves a %s</string>
+<string name="library_list_empty_body">Els títols que afegeixis a %s apareixen aquí.</string>
+<string name="library_list_empty_headline">No hi ha res a %s</string>
 <string name="limit_title">Caràcters màxims al títol del reproductor</string>
 <string name="limit_title_rez">Resolució del reproductor de vídeo</string>
 <string name="links_reloaded_toast">S'han tornat a carregar els enllaços</string>
@@ -462,7 +466,15 @@
 <string name="watch_quality_pref_data">Qualitat de vídeo preferida (dades mòbils)</string>
 <string name="library_not_connected">No connectat</string>
 <string name="library_on_device">Al dispositiu</string>
+<string name="library_sort_current">Ordre: %s</string>
+<string name="library_sort_supported">%1$s admet %2$d de %3$d</string>
 <string name="library_source">Font de la biblioteca</string>
 <string name="library_source_note">Una alhora · canviar torna a carregar</string>
+<string name="library_sync_cached">A la memòria cau</string>
+<string name="library_sync_failed">No s'ha pogut sincronitzar %1$s. Són de fa %2$s.</string>
+<string name="library_sync_offline">Sense connexió · a la memòria cau fa %s</string>
+<string name="library_sync_retry">Torna a sincronitzar</string>
+<string name="library_sync_unreachable">Inaccessible · a la memòria cau fa %s</string>
 <string name="library_synced_format">Sincronitzat fa %s</string>
+<string name="search_suggestions_return_hint">Retorn ho cerca tot</string>
 </resources>
