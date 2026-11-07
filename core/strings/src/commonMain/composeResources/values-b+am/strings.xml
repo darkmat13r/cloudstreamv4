@@ -28,6 +28,7 @@
 <string name="cast">ተዋናዮች</string>
 <string name="cast_format">ተዋናዮች: %s</string>
 <string name="continue_watching">መመልከትዎን ይቀጥሉ</string>
+<string name="desktop_menu_go">ሂድ</string>
 <string name="download">ማውረጃ</string>
 <string name="download_canceled">ማውረድ ተቋርጧል</string>
 <string name="download_done">ማውረድ ተከናውኗል</string>

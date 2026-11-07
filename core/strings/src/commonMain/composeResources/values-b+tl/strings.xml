@@ -66,6 +66,7 @@
 <string name="delete">Tanggalin</string>
 <string name="delete_file">Burahin ang file</string>
 <string name="delete_message">This will permanently delete %s \nAre you sure?</string>
+<string name="desktop_menu_go">Pumunta</string>
 <string name="discord">Sumali sa Discord</string>
 <string name="display_subbed_dubbed_settings">Display Dubbed/Subbed Anime</string>
 <string name="dns_pref">DNS over HTTPS</string>

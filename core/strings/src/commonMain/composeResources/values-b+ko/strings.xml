@@ -168,6 +168,7 @@
 <string name="delete_repository">저장소 삭제</string>
 <string name="delete_repository_plugins">이렇게 하면 모든 저장소의 플러그인도 삭제됩니다</string>
 <string name="deselect_all">모두 선택해제</string>
+<string name="desktop_menu_go">이동</string>
 <string name="device_pin_counter_text">코드 만료까지 남은 시간: %1$dm %2$ds</string>
 <string name="device_pin_error_message">장치 PIN 코드를 가져올 수 없습니다, 로컬 인증을 시도하세요</string>
 <string name="device_pin_expired_message">PIN 코드가 만료되었습니다!</string>

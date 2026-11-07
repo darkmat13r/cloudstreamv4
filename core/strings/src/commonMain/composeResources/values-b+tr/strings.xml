@@ -169,6 +169,7 @@
 <string name="delete_repository">Depoyu sil</string>
 <string name="delete_repository_plugins">Bu aynı zamanda tüm depo eklentilerini de siler</string>
 <string name="deselect_all">Tüm Seçimi Kaldır</string>
+<string name="desktop_menu_go">Git</string>
 <string name="device_pin_counter_text">Kodun süresi %1$dm %2$ds içinde doluyor</string>
 <string name="device_pin_error_message">Cihaz PIN kodu alınamıyor, yerel kimlik doğrulamayı deneyin</string>
 <string name="device_pin_expired_message">PIN kodunun süresi doldu!</string>

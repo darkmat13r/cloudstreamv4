@@ -25,6 +25,7 @@
 <string name="cast">تیم</string>
 <string name="cast_format">تیم:%s</string>
 <string name="deselect_all">هەمووی لابدە</string>
+<string name="desktop_menu_go">بڕۆ</string>
 <string name="download">داونلۆد</string>
 <string name="download_canceled">داونلۆد هەڵوەشایەوە</string>
 <string name="download_done">داونلۆد تەواو بووە</string>

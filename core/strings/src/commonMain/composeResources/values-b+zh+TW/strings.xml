@@ -168,6 +168,7 @@
 <string name="delete_repository">刪除資源庫</string>
 <string name="delete_repository_plugins">這也將刪除所有在資源庫中的外掛</string>
 <string name="deselect_all">取消全選</string>
+<string name="desktop_menu_go">前往</string>
 <string name="device_pin_counter_text">驗證碼將在 %1$d 分 %2$d 秒後過期</string>
 <string name="device_pin_error_message">無法取得裝置 PIN 碼，請嘗試本機驗證</string>
 <string name="device_pin_expired_message">PIN 碼已過期！</string>

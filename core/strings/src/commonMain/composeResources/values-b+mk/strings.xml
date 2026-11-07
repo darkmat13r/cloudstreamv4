@@ -168,6 +168,7 @@
 <string name="delete_repository">Избриши извор</string>
 <string name="delete_repository_plugins">Ова исто така ќе ги избрише сите приклучоци</string>
 <string name="deselect_all">Деселектирај сѐ</string>
+<string name="desktop_menu_go">Оди</string>
 <string name="device_pin_counter_text">Кодот истекува за %1$d минута/и и %2$d секунда/и</string>
 <string name="device_pin_error_message">Не може да се добие PIN-кодот на уредот, обиди се со локална автентикација</string>
 <string name="device_pin_expired_message">ПИН-кодот сега е истечен!</string>

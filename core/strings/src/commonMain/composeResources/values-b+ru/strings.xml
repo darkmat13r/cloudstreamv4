@@ -169,6 +169,7 @@
 <string name="delete_repository">Удалить репозиторий</string>
 <string name="delete_repository_plugins">Это также удалит все дополнения из источника</string>
 <string name="deselect_all">Отменить выбор</string>
+<string name="desktop_menu_go">Переход</string>
 <string name="device_pin_counter_text">Код истекает через %1$dмин %2$dсек</string>
 <string name="device_pin_error_message">Невозможно получить ПИН-код устройства, попробуйте локальную аутентификацию</string>
 <string name="device_pin_expired_message">ПИН-код больше не действителен !</string>

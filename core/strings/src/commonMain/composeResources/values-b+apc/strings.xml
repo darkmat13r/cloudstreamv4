@@ -168,6 +168,7 @@
 <string name="delete_repository">محي الريپو</string>
 <string name="delete_repository_plugins">محي الريپو كمان بمحي الإضافات يللي فيه</string>
 <string name="deselect_all">شيل التنقاية</string>
+<string name="desktop_menu_go">روح</string>
 <string name="device_pin_counter_text">بتخلص مدة الپِن ب %1$d دقايق و%2$d ثانية</string>
 <string name="device_pin_error_message">فشلنا ب فتح پِن الجهاز، جرب تفوت ع أكونت محليًا</string>
 <string name="device_pin_expired_message">خلصت مدة الپِن!</string>

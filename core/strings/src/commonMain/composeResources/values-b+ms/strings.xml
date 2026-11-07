@@ -131,6 +131,7 @@
 <string name="delete_message_series_section">Anda juga akan memadamkan semua episod dalam siri berikut secara kekal:\n\n%s</string>
 <string name="delete_repository">Padam repositori</string>
 <string name="deselect_all">Nyahpilih semua</string>
+<string name="desktop_menu_go">Pergi</string>
 <string name="device_pin_counter_text">Kod luput dalam %1$dm%2$ds</string>
 <string name="device_pin_error_message">Tidak dapat Kod PIN peranti, cuba pengesahan lokal</string>
 <string name="device_pin_expired_message">Kod PIN telah luput!</string>

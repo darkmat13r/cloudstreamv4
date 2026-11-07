@@ -140,6 +140,7 @@
 <string name="delete_repository">ذخیرہ کو حذف کریں</string>
 <string name="delete_repository_plugins">اس سے تمام ریپوزٹری پلگ ان بھی حذف ہو جائیں گے</string>
 <string name="deselect_all">سب غیر منتخب کریں</string>
+<string name="desktop_menu_go">جائیں</string>
 <string name="device_pin_url_message">اپنے اسمارٹ فون یا کمپیوٹر پر یہ %s وزٹ کریں اور مندرجہ بالا کوڈ ڈالیں</string>
 <string name="disable">غیرفعال کریں</string>
 <string name="discord">ڈسکارڈ میں شامل ہوں</string>

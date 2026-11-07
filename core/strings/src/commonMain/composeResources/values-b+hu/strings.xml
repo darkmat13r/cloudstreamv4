@@ -142,6 +142,7 @@
 <string name="delete_repository">Tároló törlése</string>
 <string name="delete_repository_plugins">Ez az összes tároló bővítményt is törli</string>
 <string name="deselect_all">Mindent Kijelölés Eltávolítása</string>
+<string name="desktop_menu_go">Ugrás</string>
 <string name="device_pin_counter_text">A kód %1$dm %2$ds után lejár</string>
 <string name="device_pin_error_message">Nem működik az eszköz PIN-kódja, próbálkozzon helyi hitelesítéssel</string>
 <string name="device_pin_expired_message">A PIN-kód most lejárt!</string>

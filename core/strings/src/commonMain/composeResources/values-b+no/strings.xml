@@ -113,6 +113,7 @@
 <string name="delete_message">Dette vil slette %s \nEr du sikker?</string>
 <string name="delete_repository">Slett pakkebrønn</string>
 <string name="delete_repository_plugins">Dette vil også slette alle pakkebrønnsprogramtillegg</string>
+<string name="desktop_menu_go">Gå</string>
 <string name="discord">Bli med Discord</string>
 <string name="display_subbed_dubbed_settings">Vis dubbet/subbed Anime</string>
 <string name="dns_pref">DNS rundt HTTPS</string>

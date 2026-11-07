@@ -132,6 +132,7 @@
 <string name="delete_plugin">Dzēst papildinājumu</string>
 <string name="delete_repository">Dzēst repozitoriju</string>
 <string name="delete_repository_plugins">Tiks izdzēsti arī visi repozitorija papildinājumi</string>
+<string name="desktop_menu_go">Doties</string>
 <string name="disable">Atspējot</string>
 <string name="discord">Ienāc discordā</string>
 <string name="display_subbed_dubbed_settings">Radīt Dubbed/Subbed Anime</string>

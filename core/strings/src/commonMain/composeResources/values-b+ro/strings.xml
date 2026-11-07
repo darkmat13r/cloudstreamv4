@@ -148,6 +148,7 @@
 <string name="delete_repository">Ștergeți depozitul</string>
 <string name="delete_repository_plugins">Acest lucru va șterge, de asemenea, toate plugin-urile din depozit</string>
 <string name="deselect_all">Deselectionati totul</string>
+<string name="desktop_menu_go">Mergi</string>
 <string name="disable">Dezactivați</string>
 <string name="discord">Alăturați-vă pe Discord</string>
 <string name="dismiss">Închide</string>

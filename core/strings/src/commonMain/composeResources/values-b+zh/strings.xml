@@ -169,6 +169,7 @@
 <string name="delete_repository">删除仓库</string>
 <string name="delete_repository_plugins">这也将删除所有仓库插件</string>
 <string name="deselect_all">全不选</string>
+<string name="desktop_menu_go">前往</string>
 <string name="device_pin_counter_text">验证码 %1$dm %2$ds 后过期</string>
 <string name="device_pin_error_message">无法获取设备 PIN 码，尝试本地身份验证</string>
 <string name="device_pin_expired_message">PIN 码现已过期！</string>
