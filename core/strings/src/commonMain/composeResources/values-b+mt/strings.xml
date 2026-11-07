@@ -260,6 +260,7 @@
 <string name="library_on_device">Fuq l-apparat</string>
 <string name="library_sort_current">Ordni: %s</string>
 <string name="library_sort_supported">%1$s jappoġġja %2$d minn %3$d</string>
+<string name="library_sort_not_kept">Mhux miżmum minn %s</string>
 <string name="library_source">Sors tal-librerija</string>
 <string name="library_source_note">Wieħed kull darba · il-bidla tgħabbi mill-ġdid</string>
 <string name="library_sync_cached">Fil-cache</string>

@@ -397,6 +397,7 @@
 <string name="library_on_device">На устройството</string>
 <string name="library_sort_current">Подреждане: %s</string>
 <string name="library_sort_supported">%1$s поддържа %2$d от %3$d</string>
+<string name="library_sort_not_kept">%s не го пази</string>
 <string name="library_source">Източник на библиотеката</string>
 <string name="library_source_note">Един по един · превключването презарежда</string>
 <string name="library_sync_cached">Кеширано</string>

@@ -265,6 +265,7 @@
 <string name="library_on_device">यन्त्रमा</string>
 <string name="library_sort_current">क्रम: %s</string>
 <string name="library_sort_supported">%1$s ले %3$d मध्ये %2$d समर्थन गर्छ</string>
+<string name="library_sort_not_kept">%s ले यो राख्दैन</string>
 <string name="library_source">लाइब्रेरी स्रोत</string>
 <string name="library_source_note">एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ</string>
 <string name="library_sync_cached">क्यास गरिएको</string>

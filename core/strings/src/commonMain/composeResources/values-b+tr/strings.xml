@@ -404,6 +404,7 @@
 <string name="library_on_device">Cihazda</string>
 <string name="library_sort_current">Sıralama: %s</string>
 <string name="library_sort_supported">%1$s, %3$d ölçütten %2$d tanesini destekler</string>
+<string name="library_sort_not_kept">%s bunu tutmuyor</string>
 <string name="library_source">Kütüphane kaynağı</string>
 <string name="library_source_note">Aynı anda bir tane · değiştirmek yeniden yükler</string>
 <string name="library_sync_cached">Önbellekten</string>

@@ -305,6 +305,7 @@
 <string name="library_on_device">စက်ပေါ်တွင်</string>
 <string name="library_sort_current">စီရန်: %s</string>
 <string name="library_sort_supported">%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်</string>
+<string name="library_sort_not_kept">%s က ဒါကို မသိမ်းထားပါ</string>
 <string name="library_source">လိုက်ဘရီ ရင်းမြစ်</string>
 <string name="library_source_note">တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်</string>
 <string name="library_sync_cached">သိမ်းထားသည်</string>

@@ -429,6 +429,7 @@
 <string name="library_on_device">On device</string>
 <string name="library_sort_current">Sort: %s</string>
 <string name="library_sort_supported">%1$s supports %2$d of %3$d</string>
+<string name="library_sort_not_kept">Not kept by %s</string>
 <string name="library_source">Library source</string>
 <string name="library_source_note">One at a time · switching reloads</string>
 <string name="library_sync_cached">Cached</string>

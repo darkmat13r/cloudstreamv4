@@ -348,6 +348,7 @@
 <string name="library_on_device">ڈیوائس پر</string>
 <string name="library_sort_current">ترتیب: %s</string>
 <string name="library_sort_supported">%1$s %3$d میں سے %2$d کی معاونت کرتا ہے</string>
+<string name="library_sort_not_kept">%s اسے نہیں رکھتا</string>
 <string name="library_source">لائبریری کا ذریعہ</string>
 <string name="library_source_note">ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے</string>
 <string name="library_sync_cached">کیش شدہ</string>

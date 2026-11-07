@@ -371,6 +371,7 @@
 <string name="library_on_device">Στη συσκευή</string>
 <string name="library_sort_current">Ταξινόμηση: %s</string>
 <string name="library_sort_supported">Το %1$s υποστηρίζει %2$d από %3$d</string>
+<string name="library_sort_not_kept">Δεν το κρατά το %s</string>
 <string name="library_source">Πηγή βιβλιοθήκης</string>
 <string name="library_source_note">Μία κάθε φορά · η εναλλαγή επαναφορτώνει</string>
 <string name="library_sync_cached">Από προσωρινή μνήμη</string>

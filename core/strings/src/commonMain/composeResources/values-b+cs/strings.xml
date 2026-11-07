@@ -404,6 +404,7 @@
 <string name="library_on_device">V zařízení</string>
 <string name="library_sort_current">Řazení: %s</string>
 <string name="library_sort_supported">%1$s podporuje %2$d z %3$d</string>
+<string name="library_sort_not_kept">%s toto neuchovává</string>
 <string name="library_source">Zdroj knihovny</string>
 <string name="library_source_note">Jeden po druhém · přepnutí znovu načte</string>
 <string name="library_sync_cached">Z mezipaměti</string>

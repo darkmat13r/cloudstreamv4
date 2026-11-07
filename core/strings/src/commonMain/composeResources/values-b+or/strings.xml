@@ -167,6 +167,7 @@
 <string name="library_on_device">ଡିଭାଇସରେ</string>
 <string name="library_sort_current">କ୍ରମ: %s</string>
 <string name="library_sort_supported">%1$s %3$d ମଧ୍ୟରୁ %2$d ସମର୍ଥନ କରେ</string>
+<string name="library_sort_not_kept">%s ଏହା ରଖେ ନାହିଁ</string>
 <string name="library_source">ଲାଇବ୍ରେରୀ ଉତ୍ସ</string>
 <string name="library_source_note">ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ</string>
 <string name="library_sync_cached">କ୍ୟାଶ୍</string>

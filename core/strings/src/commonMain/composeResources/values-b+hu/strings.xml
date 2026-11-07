@@ -365,6 +365,7 @@
 <string name="library_on_device">Az eszközön</string>
 <string name="library_sort_current">Rendezés: %s</string>
 <string name="library_sort_supported">A(z) %1$s %3$d szempontból %2$d-t támogat</string>
+<string name="library_sort_not_kept">A(z) %s nem tárolja</string>
 <string name="library_source">Könyvtár forrása</string>
 <string name="library_source_note">Egyszerre egy · váltáskor újratölt</string>
 <string name="library_sync_cached">Gyorsítótárból</string>

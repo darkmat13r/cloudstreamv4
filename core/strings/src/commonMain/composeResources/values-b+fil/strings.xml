@@ -296,6 +296,7 @@
 <string name="library_on_device">Sa device</string>
 <string name="library_sort_current">Pagkakasunod: %s</string>
 <string name="library_sort_supported">Sinusuportahan ng %1$s ang %2$d sa %3$d</string>
+<string name="library_sort_not_kept">Hindi itinatabi ng %s</string>
 <string name="library_source">Pinagmulan ng library</string>
 <string name="library_source_note">Isa-isa · nagre-reload kapag nagpalit</string>
 <string name="library_sync_cached">Naka-cache</string>

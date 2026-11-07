@@ -305,6 +305,7 @@
 <string name="library_on_device">Qalabka ku jira</string>
 <string name="library_sort_current">Kala soocid: %s</string>
 <string name="library_sort_supported">%1$s wuxuu taageeraa %2$d ka mid ah %3$d</string>
+<string name="library_sort_not_kept">%s ma kaydiyo</string>
 <string name="library_source">Isha kaydka</string>
 <string name="library_source_note">Mid mid · beddelku wuu dib u soo raraa</string>
 <string name="library_sync_cached">La kaydiyay</string>

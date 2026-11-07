@@ -404,6 +404,7 @@
 <string name="library_on_device">На пристрої</string>
 <string name="library_sort_current">Сортування: %s</string>
 <string name="library_sort_supported">%1$s підтримує %2$d з %3$d</string>
+<string name="library_sort_not_kept">%s цього не зберігає</string>
 <string name="library_source">Джерело бібліотеки</string>
 <string name="library_source_note">По одному · перемикання перезавантажує</string>
 <string name="library_sync_cached">З кешу</string>

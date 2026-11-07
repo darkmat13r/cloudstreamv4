@@ -404,6 +404,7 @@
 <string name="library_on_device">En el dispositivo</string>
 <string name="library_sort_current">Orden: %s</string>
 <string name="library_sort_supported">%1$s admite %2$d de %3$d</string>
+<string name="library_sort_not_kept">%s no lo guarda</string>
 <string name="library_source">Origen de la biblioteca</string>
 <string name="library_source_note">Uno a la vez · cambiar recarga</string>
 <string name="library_sync_cached">En caché</string>

@@ -285,6 +285,7 @@
 <string name="library_on_device">डिवाइस पर</string>
 <string name="library_sort_current">क्रम: %s</string>
 <string name="library_sort_supported">%1$s %3$d में से %2$d का समर्थन करता है</string>
+<string name="library_sort_not_kept">%s इसे नहीं रखता</string>
 <string name="library_source">लाइब्रेरी स्रोत</string>
 <string name="library_source_note">एक समय में एक · बदलने पर फिर से लोड होता है</string>
 <string name="library_sync_cached">कैश किया</string>

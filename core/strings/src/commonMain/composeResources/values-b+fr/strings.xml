@@ -404,6 +404,7 @@
 <string name="library_on_device">Sur l'appareil</string>
 <string name="library_sort_current">Tri : %s</string>
 <string name="library_sort_supported">%1$s prend en charge %2$d sur %3$d</string>
+<string name="library_sort_not_kept">Non conservé par %s</string>
 <string name="library_source">Source de la bibliothèque</string>
 <string name="library_source_note">Une à la fois · changer recharge</string>
 <string name="library_sync_cached">En cache</string>

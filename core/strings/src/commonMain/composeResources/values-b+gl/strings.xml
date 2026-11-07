@@ -223,6 +223,7 @@
 <string name="library_on_device">No dispositivo</string>
 <string name="library_sort_current">Orde: %s</string>
 <string name="library_sort_supported">%1$s admite %2$d de %3$d</string>
+<string name="library_sort_not_kept">%s non o garda</string>
 <string name="library_source">Orixe da biblioteca</string>
 <string name="library_source_note">Unha de cada vez · cambiar recarga</string>
 <string name="library_sync_cached">Na caché</string>

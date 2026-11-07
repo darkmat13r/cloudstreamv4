@@ -404,6 +404,7 @@
 <string name="library_on_device">சாதனத்தில்</string>
 <string name="library_sort_current">வரிசை: %s</string>
 <string name="library_sort_supported">%1$s %3$d இல் %2$d ஐ ஆதரிக்கிறது</string>
+<string name="library_sort_not_kept">%s இதை வைத்திருக்காது</string>
 <string name="library_source">நூலக மூலம்</string>
 <string name="library_source_note">ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்</string>
 <string name="library_sync_cached">தேக்கியது</string>

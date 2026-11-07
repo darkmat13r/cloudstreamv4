@@ -363,6 +363,7 @@
 <string name="library_on_device">Pe dispozitiv</string>
 <string name="library_sort_current">Sortare: %s</string>
 <string name="library_sort_supported">%1$s acceptă %2$d din %3$d</string>
+<string name="library_sort_not_kept">Nu este păstrat de %s</string>
 <string name="library_source">Sursa bibliotecii</string>
 <string name="library_source_note">Câte una · schimbarea reîncarcă</string>
 <string name="library_sync_cached">Din cache</string>

@@ -63,11 +63,6 @@ import org.jetbrains.compose.resources.stringResource
 /**
  * 5a's provider button: the shown source's name over what it is, in the chrome row's left slot. It opens 5e.
  *
- * The board's `.cbtn`: `ChromeButton`'s ground, inset hairline, ring and padding, with a two-line stack of 16 + 4 + 12
- * that centres at +8 in the 48dp row, as [LibraryScreenTvDefaults] and the readout it replaces already do. It is not a
- * `ChromeButton`: that one is a label and a count on one line, and this is the only two-line chrome button so far, so a
- * variant in the design system would have one caller.
- *
  * @param now the time an age is measured to, or null to show none. From the host, because this module has no clock.
  */
 @Composable
@@ -77,15 +72,36 @@ internal fun LibraryProviderButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+    val shown = state.shownSource
+    LibraryChromeButton(
+        title = shown?.name.orEmpty(),
+        meta = shown?.line(state.totalTitles, now),
+        onClick = onClick,
+        modifier = modifier,
+    )
+}
+
+/**
+ * The board's `.cbtn`, 5a's provider and sort buttons: `ChromeButton`'s ground, inset hairline, ring and padding, with
+ * a two-line stack of 16 + 4 + 12 that centres at +8 in the 48dp row, as [LibraryScreenTvDefaults] and the readout it
+ * replaces already do. It is not a `ChromeButton`: that one is a label and a count on one line, and these two are the
+ * only two-line chrome buttons so far, both on this screen.
+ */
+@Composable
+internal fun LibraryChromeButton(
+    title: String,
+    meta: String?,
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     val shape = CloudStreamTheme.shapes.medium
     val interaction = remember { MutableInteractionSource() }
     val focused by interaction.collectIsFocusedAsState()
-    val shown = state.shownSource
-    val title = typography.label
+    val titleStyle = typography.label
     // `.cbm` is 20/24px mono: the caption's, which fills the 12dp line box. The label's 32px line would clip it.
-    val meta = typography.captionMono
+    val metaStyle = typography.captionMono
     Column(
         modifier = modifier
             .height(CloudStreamDimens.ChromeRowHeight)
@@ -97,17 +113,16 @@ internal fun LibraryProviderButton(
         verticalArrangement = Arrangement.spacedBy(CloudStreamDimens.StackGap, Alignment.CenterVertically),
     ) {
         BasicText(
-            text = shown?.name.orEmpty(),
-            style = remember(title, colors) { title.copy(color = colors.ink) },
+            text = title,
+            style = remember(titleStyle, colors) { titleStyle.copy(color = colors.ink) },
             maxLines = SINGLE_LINE,
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.height(CloudStreamDimens.StackTitleLineBox),
         )
-        val line = shown?.line(state.totalTitles, now)
-        if (line != null) {
+        if (meta != null) {
             BasicText(
-                text = line,
-                style = remember(meta, colors) { meta.copy(color = colors.muted) },
+                text = meta,
+                style = remember(metaStyle, colors) { metaStyle.copy(color = colors.muted) },
                 maxLines = SINGLE_LINE,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.height(CloudStreamDimens.StackSubtitleLineBox),

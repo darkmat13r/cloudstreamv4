@@ -165,6 +165,7 @@
 <string name="library_on_device">Cihazda</string>
 <string name="library_sort_current">Sırala: %s</string>
 <string name="library_sort_supported">%1$s %3$d meyardan %2$d-ni dəstəkləyir</string>
+<string name="library_sort_not_kept">%s bunu saxlamır</string>
 <string name="library_source">Kitabxana mənbəyi</string>
 <string name="library_source_note">Eyni anda bir · dəyişmək yenidən yükləyir</string>
 <string name="library_sync_cached">Keşlənib</string>

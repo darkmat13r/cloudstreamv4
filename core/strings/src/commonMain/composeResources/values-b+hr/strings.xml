@@ -403,6 +403,7 @@
 <string name="library_on_device">Na uređaju</string>
 <string name="library_sort_current">Poredak: %s</string>
 <string name="library_sort_supported">%1$s podržava %2$d od %3$d</string>
+<string name="library_sort_not_kept">%s to ne čuva</string>
 <string name="library_source">Izvor biblioteke</string>
 <string name="library_source_note">Jedan po jedan · promjena ponovno učitava</string>
 <string name="library_sync_cached">Iz predmemorije</string>

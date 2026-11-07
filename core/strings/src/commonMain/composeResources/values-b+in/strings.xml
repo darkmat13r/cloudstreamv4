@@ -404,6 +404,7 @@
 <string name="library_on_device">Di perangkat</string>
 <string name="library_sort_current">Urutan: %s</string>
 <string name="library_sort_supported">%1$s mendukung %2$d dari %3$d</string>
+<string name="library_sort_not_kept">Tidak disimpan oleh %s</string>
 <string name="library_source">Sumber pustaka</string>
 <string name="library_source_note">Satu per satu · beralih memuat ulang</string>
 <string name="library_sync_cached">Tersimpan</string>

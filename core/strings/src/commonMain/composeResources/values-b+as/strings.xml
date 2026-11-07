@@ -367,6 +367,7 @@
 <string name="library_on_device">ডিভাইচত</string>
 <string name="library_sort_current">সজোৱা: %s</string>
 <string name="library_sort_supported">%1$s-এ %3$d টাৰ %2$d টা সমৰ্থন কৰে</string>
+<string name="library_sort_not_kept">%s-এ ৰখা নহয়</string>
 <string name="library_source">পুথিভঁৰালৰ উৎস</string>
 <string name="library_source_note">এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়</string>
 <string name="library_sync_cached">কেশ্ব কৰা</string>

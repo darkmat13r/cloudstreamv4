@@ -404,6 +404,7 @@
 <string name="library_on_device">Në pajisje</string>
 <string name="library_sort_current">Renditja: %s</string>
 <string name="library_sort_supported">%1$s mbështet %2$d nga %3$d</string>
+<string name="library_sort_not_kept">Nuk ruhet nga %s</string>
 <string name="library_source">Burimi i bibliotekës</string>
 <string name="library_source_note">Një në një kohë · ndërrimi ringarkon</string>
 <string name="library_sync_cached">Nga memoria</string>

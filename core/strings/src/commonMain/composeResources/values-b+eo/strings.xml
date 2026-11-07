@@ -321,6 +321,7 @@
 <string name="library_on_device">En aparato</string>
 <string name="library_sort_current">Ordigo: %s</string>
 <string name="library_sort_supported">%1$s subtenas %2$d el %3$d</string>
+<string name="library_sort_not_kept">%s ne konservas tion</string>
 <string name="library_source">Fonto de biblioteko</string>
 <string name="library_source_note">Po unu · ŝanĝo reŝargas</string>
 <string name="library_sync_cached">Kaŝmemorita</string>

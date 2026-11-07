@@ -43,6 +43,8 @@ import com.lagradost.cloudstream4.core.devicetest.solidPoster
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.library.LibraryAction
 import com.lagradost.cloudstream4.feature.library.LibraryBucket
+import com.lagradost.cloudstream4.feature.library.LibrarySort
+import com.lagradost.cloudstream4.feature.library.LibrarySortCriterion
 import com.lagradost.cloudstream4.feature.library.LibrarySource
 import com.lagradost.cloudstream4.feature.library.LibrarySourceId
 import com.lagradost.cloudstream4.feature.library.LibrarySources
@@ -93,7 +95,9 @@ class LibrarySourcesTvDeviceTest {
     private fun showScreen() {
         rule.setContent {
             val state by viewModel.state.collectAsState()
-            PanelBackHost(enabled = state.sourcesOpen) { viewModel.onAction(LibraryAction.SourcesDismissed) }
+            PanelBackHost(enabled = state.sourcesOpen || state.sortOpen) {
+                viewModel.onAction(if (state.sortOpen) LibraryAction.SortDismissed else LibraryAction.SourcesDismissed)
+            }
             CloudStreamTheme {
                 Row(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
                     NavRail(ShotRail, selectedIndex = LIBRARY_INDEX, onSelect = {})
@@ -156,6 +160,19 @@ class LibrarySourcesTvDeviceTest {
     private fun awaitShowing(cards: Int) = rule.waitUntil(WAIT_MS) {
         (viewModel.state.value.status as? LibraryStatus.Showing)?.cards?.size == cards
     }
+
+    /** The sort button is the chrome row's last stop: Right from the field. */
+    private fun openSortPanel() {
+        focusProviderButton(ANILIST)
+        dpad.press(Dpad.Right)
+        rule.waitUntil(WAIT_MS) { rule.onAllNodes(Field and isFocused()).fetchSemanticsNodes().isNotEmpty() }
+        assertEquals(SORT, dpad.press(Dpad.Right))
+        dpad.center()
+        awaitText(SORT_PANEL)
+        awaitFocusInThePanel()
+    }
+
+    private fun shownTitles() = (viewModel.state.value.status as? LibraryStatus.Showing)?.cards.orEmpty().map { it.title }
 
     private fun openPanel(shown: String) {
         focusProviderButton(shown)
@@ -318,6 +335,75 @@ class LibrarySourcesTvDeviceTest {
         assertEquals(2, sources.reads.get())
     }
 
+    // ---- KMP-50: sort (5d) ------------------------------------------------------------------------------------------
+
+    @Test
+    fun theSortButtonNamesTheAppliedSortAndItsPanelOpensOnIt() {
+        showScreen()
+        awaitText(UPDATED_NEW)
+        openSortPanel()
+        assertEquals(UPDATED_NEW, rule.focusedLabel())
+        awaitText(TITLE_A)
+        awaitText("Not kept by AniList")
+    }
+
+    /** One choice, applied at once with the panel still open; the same row again is the other way round. */
+    @Test
+    fun aRowAppliesAtOnceAndPressingItAgainTurnsItTheOtherWayRound() {
+        showScreen()
+        openSortPanel()
+        assertEquals(TITLE_A, dpad.press(Dpad.Down))
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { shownTitles() == SyncedNames.sortedBy { it.lowercase() } }
+        assertTrue("still open", rule.onAllNodesWithText(SORT_PANEL).fetchSemanticsNodes().isNotEmpty())
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { rule.focusedLabel() == TITLE_Z }
+        rule.waitUntil(WAIT_MS) { shownTitles() == SyncedNames.sortedBy { it.lowercase() }.reversed() }
+        assertEquals(
+            listOf(LibrarySort(LibrarySortCriterion.Title, false), LibrarySort(LibrarySortCriterion.Title, true)),
+            sources.sorted,
+        )
+    }
+
+    /** Disabled with its reason, and still a stop, as a source that is not connected is in 5e. */
+    @Test
+    fun aCriterionTheSourceKeepsNothingForIsAStopThatChoosesNothing() {
+        showScreen()
+        openSortPanel()
+        assertEquals(RELEASE_NEW, pressUntil(Dpad.Down) { it == RELEASE_NEW })
+        dpad.center()
+        rule.waitForIdle()
+        assertTrue(sources.sorted.isEmpty())
+        assertEquals(RELEASE_NEW, rule.focusedLabel())
+    }
+
+    /**
+     * BACK closes it with the choice applied. Focus then lands on the chrome row's first stop, the provider button, not
+     * on Sort: that is `BUG-36`, `SidePanelHost`'s restore entering a nested opener at its first stop. Pinned as it is,
+     * as `DetailScreenTvDeviceTest` pins it, so the component's fix fails this and is looked at.
+     */
+    @Test
+    fun backClosesTheSortPanelWithTheChoiceAppliedAndFocusOnTheRowsFirstStop() {
+        showScreen()
+        openSortPanel()
+        assertEquals(TITLE_A, dpad.press(Dpad.Down))
+        dpad.center()
+        pressRemoteBack()
+        rule.waitUntil(WAIT_MS) { rule.onAllNodesWithText(SORT_PANEL).fetchSemanticsNodes().isEmpty() }
+        rule.waitUntil(WAIT_MS) { rule.focusedLabel() != null }
+        rule.waitForIdle()
+        assertEquals("BUG-36: the row's first stop", ANILIST, rule.focusedLabel())
+        awaitText(TITLE_A)
+    }
+
+    @Test
+    fun screenshotSortPanelOnTheAppliedSort() {
+        showScreen()
+        openSortPanel()
+        assertEquals(UPDATED_NEW, rule.focusedLabel())
+        rule.assertScreenshot("library-sort-panel")
+    }
+
     // ---- Screenshots: 5a over a service, 5e open, and a service that failed --------------------------------------------------------------
 
     @Test
@@ -355,6 +441,12 @@ class LibrarySourcesTvDeviceTest {
         const val DONE = "Done"
         const val FAILED = "Error"
         const val RETRY = "Try again"
+        const val SORT = "Sort"
+        const val SORT_PANEL = "Sort by"
+        const val UPDATED_NEW = "Updated (New to Old)"
+        const val TITLE_A = "Alphabetical (A to Z)"
+        const val TITLE_Z = "Alphabetical (Z to A)"
+        const val RELEASE_NEW = "Release Date (New to Old)"
         const val SOURCE_PANEL = "Library source"
         const val FIRST_LIST = "Watching"
         const val NOW = 10_000_000L
@@ -409,12 +501,21 @@ class LibrarySourcesTvDeviceTest {
         @Volatile var failing = false
 
         override suspend fun sources() = listOf(
-            LibrarySource(LibrarySourceId(ANILIST), ANILIST, account = "lagradost", syncedAt = SYNCED_AT),
+            // AniList keeps no release date here, so 5d has a disabled row to show.
+            LibrarySource(
+                LibrarySourceId(ANILIST), ANILIST, account = "lagradost", syncedAt = SYNCED_AT,
+                sorts = setOf(LibrarySortCriterion.Updated, LibrarySortCriterion.Title, LibrarySortCriterion.Rating),
+            ),
             LibrarySource(LibrarySourceId(LOCAL), LOCAL, local = true, titleCount = 308),
             LibrarySource(LibrarySourceId(MAL), MAL, connected = false),
         )
 
         override suspend fun current() = current
+
+        val sorted = CopyOnWriteArrayList<LibrarySort>()
+        override suspend fun sortBy(sort: LibrarySort) {
+            sorted += sort
+        }
 
         override suspend fun choose(id: LibrarySourceId) {
             chosen += id

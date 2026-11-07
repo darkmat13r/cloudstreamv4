@@ -403,6 +403,7 @@
 <string name="library_on_device">عالجهاز</string>
 <string name="library_sort_current">الترتيب: %s</string>
 <string name="library_sort_supported">%1$s بيدعم %2$d من %3$d</string>
+<string name="library_sort_not_kept">%s ما بيحفظه</string>
 <string name="library_source">مصدر الرفّ</string>
 <string name="library_source_note">وحدة بكل مرة · التبديل بيعيد التحميل</string>
 <string name="library_sync_cached">محفوظ</string>
