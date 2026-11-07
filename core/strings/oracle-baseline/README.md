@@ -120,6 +120,29 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Move for `I18N-16`, 2026-11-07 — 18 new keys for TV account select (board 8d)
+
+Branched from master's twenty-second move (Train 5); a train that lands others first renumbers this and regenerates once.
+New keys are approved in general (`I18N-09`). Additive, all eighteen authored in all 62 directories, none a plural:
+`account_select_title`, `account_select_note`, `account_manage_profiles`, `account_add_profile`, `account_profile_current`,
+`account_profile_locked`, `account_profile_no_sync`, `account_sync_title`, `account_sync_note`, `account_sync_pair`,
+`account_sync_needs_browser`, `account_sync_unavailable`, `account_sync_connected`, `account_sync_remove`,
+`account_pair_title`, `account_pair_instructions`, `account_pair_code`, `account_pair_new_code`.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 43,662 | 44,778 | 1,116 | 0 | 0 |
+| `emitted.tsv` | 45,919 | 47,071 | 1,152 | 0 | 0 |
+| `lookup.tsv` | 84,523 | 86,089 | 1,566 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines
+lost in any file, every line that was in a file before is in it after in the same order, and every added line names exactly
+one of the eighteen keys, all eighteen present: 18 x 62, 18 x 64 and 18 x 87. `report.txt` moved only in its counts: `OWN`
+42,292 -> 43,408 (18 x 62), visible keys 946 -> 964, plurals unchanged at 22, and 18 more values in each of the two locale
+copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 42,292 -> 43,408.
+
 ## Twenty-second move, 2026-11-07 — Train 5 (`#189`, `#190`, `#188`, `#198`, `#202`), one move: `KMP-64`'s 8 new keys for the TV player HUD
 
 One combined baseline move for the train that merges `#189` (`KMP-64`), `#190` (`KMP-62`), `#188` (`BUG-43`), `#198` (`BUG-44`) and
