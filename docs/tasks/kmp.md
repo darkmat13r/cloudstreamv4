@@ -5633,7 +5633,7 @@ alone, because board D4 gives the number its own column (the code stands in only
    for the season, so both read the same in every language.
 3. Rerun the TV downloads device suite and keep its screenshots at 0/0, because this touches a `tv/` file.
 
-## KMP-69 — Engine: a dropped body loses up to 1 MiB already received · **open**, low, follow-up to `KMP-61`
+## KMP-69 — Engine: a dropped body loses megabytes already received (about 5 MiB at most) · **open**, low, follow-up to `KMP-61`
 
 Measured in `KMP-46`: Ktor's `ByteChannel` buffer is 1 MiB (ktor-io-jvm 3.6.0). When the engine fails a body, the
 unread bytes in it are discarded. A raw socket received all 1,000,003 bytes in 15 of 15 attempts, and a bare Ktor
@@ -5643,6 +5643,53 @@ device test.
   disk are always the truth.
 - The fix means reading below Ktor (draining the channel into the part file before failing, or a smaller channel).
   Not started; measure the cost on a metered link first.
+
+**"Up to 1 MiB" is wrong: it is up to about 5 MiB** (measured 2026-11-07, `BUG-45` reopened).
+- **Measured on a device.** `EngineDownloadDeviceTest` cuts a part with a clean close (a FIN). The loss is the bytes
+  sent minus the part file's size at the resume.
+  - Cut at 1.5 MiB of a 2 MiB part, 10 runs on `Television_720p`: 0, 917,504, 0, 1,417,216, 270,336, 0, 966,656, 0,
+    892,928 and 1,327,302 bytes.
+  - Cut at 3 MiB of a 4 MiB part, 10 runs: 638,976, 835,584, 1,040,384, 253,952 and 974,848, then (splitting off)
+    0, 1,138,886, **2,416,838**, 1,605,632 and 443,746.
+
+  The maximum, 2,416,838, is more than one channel can hold. Each run gives only a lower bound on the worst case,
+  which the code sets.
+- **Where the bytes are**, from `javap` of ktor-client-core-jvm, ktor-client-okhttp-jvm and ktor-io-jvm 3.6.0, and
+  okhttp-jvm 5.3.2. The body crosses **two** `ByteChannel`s.
+  - *Channel 1, the OkHttp engine's: two buffers.* The OkHttp engine's `toChannel` loop (`OkHttpEngineKt$toChannel$1`) runs
+    `writeAvailable { source.read(ByteBuffer) }`, then `flushWriteBuffer()`, then `flush()` only when `!hasFreeSpace`.
+    `hasFreeSpace` is `flushBufferSize < 1048576`. So `flushBuffer` grows to 1 MiB plus one read, of at most one 8 KiB
+    segment, before the writer waits. `moveFlushToReadBuffer` moves all of `flushBuffer` into `_readBuffer`, but only
+    when `_readBuffer` is exhausted. So the reader's buffer can hold about 1 MiB while `flushBuffer` fills to about
+    1 MiB again.
+  - *Channel 2, the response pipeline's copy.* `bodyAsChannel()` asks `HttpClientCall.bodyNullable` for a
+    `ByteReadChannel`. `defaultTransformers` (`DefaultTransformKt$defaultTransformers$2`) answers that type with a new
+    channel, filled by `writer { body.copyTo(channel) }`. `copyTo` moves **all** of channel 1's `readBuffer` (up to
+    about 1 MiB + 8 KiB) into channel 2's `writeBuffer`, then calls `flush()`. `flush()` moves all of that into
+    `flushBuffer` and only then waits while `flushBufferSize >= 1 MiB`, so channel 2's `flushBuffer` can reach about
+    2 MiB + 8 KiB, and its `_readBuffer` the same once moved. This channel is what the engine reads.
+  - *The bound, from the code, not measured:* channel 1's `flushBuffer` (1 MiB + 8 KiB), plus channel 2's two
+    buffers (2 MiB + 8 KiB each), so about 5 MiB + 24 KiB. Counting channel 1's `readBuffer` too, which `copyTo`
+    empties at each step, gives 6 MiB + 24 KiB at most.
+  - *Why it is all lost.* When the body throws, the engine's writer job calls `ByteChannel.cancel(cause)` on channel 1.
+    After that, `isClosedForRead` is true whenever `closedCause` is set, whatever is still buffered, and
+    `getReadBuffer()` throws. `copyTo` then fails, cancels channel 1 and closes channel 2 with the cause, which drops
+    channel 2's buffers the same way. `readAvailable` returns -1 and the engine sees `closedCause`
+    (`PartFetcher.stream`).
+  - *OkHttp and Okio add nothing on a clean close.* `Http1ExchangeCodec$FixedLengthSource.read` throws
+    `ProtocolException("unexpected end of stream")` only when the socket read returns -1. That happens after every
+    byte before the FIN has been handed on, so no Okio segment and no socket receive buffer still holds body bytes
+    when the channel is cancelled. A reset (RST) instead of a FIN could also drop what the socket held. That case is
+    not tested or measured here.
+  - *The engine adds nothing.* `PartFetcher.stream` reads at most `bufferBytes` (64 KiB), reserves it and writes it
+    to the part file's buffered sink before reading again. The sink is closed in a `finally` under `NonCancellable`,
+    which flushes its last partial 8 KiB segment. There is no queue between the network read and the file write. In
+    every run the size read after the failure equalled the next attempt's offset. `KMP-46`'s heap note, "8 × 64 KiB
+    of queue", fits 8 workers each with a 64 KiB read buffer. No write queue exists in the code.
+- **So the cost is up to about 5 MiB refetched per dropped connection,** or the whole cut when less than that was
+  sent. A fix that drains the channel before failing would have to reach channel 2, which the pipeline owns, or read
+  the body without the pipeline's copy. Correctness is unaffected: the resume offset is always what the disk holds (rule 1), and `BUG-45`'s test now
+  asserts exactly that.
 
 ## KMP-68 — A reload that fails keeps the last rows, in memory, for the Mac's H4
 

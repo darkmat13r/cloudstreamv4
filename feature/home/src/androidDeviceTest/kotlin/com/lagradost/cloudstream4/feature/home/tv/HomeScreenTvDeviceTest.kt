@@ -159,6 +159,12 @@ class HomeScreenTvDeviceTest {
         if (resume) rule.runOnIdle { viewModel.onAction(HomeAction.Reappeared) }
     }
 
+    /** What `HomeTvFragment.onResume` does about focus, through the same function. */
+    private fun onResume() {
+        val view = hostView!!
+        hostFocus.resumed(viewModel.state.value.landingOwed, hasFocus = { view.hasFocus() }, requestFocus = { view.requestFocus() })
+    }
+
     private fun awaitText(text: String) = rule.waitUntil(WAIT_MS) {
         rule.onAllNodesWithText(text).fetchSemanticsNodes().isNotEmpty()
     }
@@ -1142,6 +1148,33 @@ class HomeScreenTvDeviceTest {
     }
 
     /**
+     * `BUG-41`, reopened. The window can give the page focus on its own, before `HomeTvFragment.onResume`, which then sees
+     * a page that holds focus and asks for none, so nothing marks the arrival as the host's. Focus sits on a chip, nothing
+     * pressed, and the hero still has to take it when it lands. #183's design covered only the arrival its own request
+     * causes.
+     */
+    @Test
+    fun focusTheWindowGaveTheBookmarksBeforeTheHostAskedStillGoesToTheHero() {
+        rails(1)
+        featuring(FEATURED)
+        bookmarking(2)
+        val pages = kotlinx.coroutines.CompletableDeferred<Unit>()
+        source.gate = pages
+        showScreen()
+        awaitText(WATCHING)
+        // The window's own grant: no request, so nothing is marked.
+        rule.runOnIdle { hostView!!.requestFocus() }
+        rule.waitForIdle()
+        val given = dpad.focused()
+        assertTrue("the window gave focus to the bookmarks rail, was $given", given == WATCHING || given?.startsWith(SAVED) == true)
+        // Then what `onResume` does with a page that already holds focus.
+        rule.runOnIdle { onResume() }
+
+        pages.complete(Unit)
+        awaitFocus(HERO)
+    }
+
+    /**
      * `BUG-41` on the other local rail: Continue watching is one local read too, so at launch it can be on screen before
      * the hero, and the host's first request then lands on its first card (worker-2's run: "was Played Before"). Not a
      * person's choice either, so when the hero lands it takes focus.
@@ -1185,6 +1218,33 @@ class HomeScreenTvDeviceTest {
 
         pages.complete(Unit)
         // The hero is found from the rows' first title, so it being shown means the rows landed too.
+        rule.waitUntil(WAIT_MS) { viewModel.state.value.hero is HomeHero.Shown }
+        awaitText("A")
+        rule.waitForIdle()
+        assertEquals("focus stays where the person put it", entered, dpad.focused())
+    }
+
+    /**
+     * `BUG-41`'s fix, checked against its other side: [HomeHostFocus.resumed] takes focus the page already holds as the
+     * window's. A person who pressed DOWN into the bookmarks has chosen them, so a resume that comes before the rows land
+     * must not make that focus the host's and hand it to the hero.
+     */
+    @Test
+    fun aPersonWhoPressedIntoTheBookmarksKeepsFocusThereThroughAResume() {
+        rails(1)
+        featuring(FEATURED)
+        bookmarking(12)
+        val pages = kotlinx.coroutines.CompletableDeferred<Unit>()
+        source.gate = pages
+        showScreen()
+        awaitText(WATCHING)
+        rule.onNodeWithContentDescription(ACCOUNTS).performSemanticsAction(SemanticsActions.RequestFocus)
+        awaitFocus(ACCOUNTS)
+        val entered = dpad.press(Dpad.Down)
+        assertTrue("DOWN enters the bookmarks rail, was $entered", entered == WATCHING || entered?.startsWith(SAVED) == true)
+        rule.runOnIdle { onResume() }
+
+        pages.complete(Unit)
         rule.waitUntil(WAIT_MS) { viewModel.state.value.hero is HomeHero.Shown }
         awaitText("A")
         rule.waitForIdle()

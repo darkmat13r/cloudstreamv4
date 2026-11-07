@@ -14,6 +14,24 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ምንጭ ፈልግ"</item><item quantity="other">"ሁሉንም %d ምንጮች ፈልግ"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"ለማንኛውም %d ምንጭ ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።"</item><item quantity="other">"ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ምንጭ"</item><item quantity="other">"%d ምንጮች"</item></plurals>
+<string name="account_add_profile">"መገለጫ አክል"</string>
+<string name="account_manage_profiles">"መገለጫዎችን አስተዳድር"</string>
+<string name="account_pair_code">"የእርስዎ ኮድ"</string>
+<string name="account_pair_instructions">"ይህን በስልክዎ ላይ ይክፈቱ እና ከታች ያለውን ኮድ ያስገቡ።"</string>
+<string name="account_pair_new_code">"አዲስ ኮድ ያግኙ"</string>
+<string name="account_pair_title" formatted="true">"%s አጣምር"</string>
+<string name="account_profile_current">"የአሁኑ"</string>
+<string name="account_profile_locked">"ተቆልፏል · ፒን"</string>
+<string name="account_profile_no_sync">"ማመሳሰል የለም"</string>
+<string name="account_select_note">"የተለየ የእይታ ታሪክ · መግቢያዎች አይደሉም"</string>
+<string name="account_select_title">"ማን እየተመለከተ ነው?"</string>
+<string name="account_sync_connected">"ተገናኝቷል · በዚህ መሣሪያ ላይ ገብቷል"</string>
+<string name="account_sync_needs_browser">"መግባት የድር አሳሽ ይፈልጋል። ይህ መሣሪያ የለውም።"</string>
+<string name="account_sync_note">"አማራጭ። የእይታ ሂደትን ቀድሞ ካለዎት መለያ ጋር ያመሳስላል።"</string>
+<string name="account_sync_pair">"በኮድ አጣምር"</string>
+<string name="account_sync_remove">"ከዚህ መሣሪያ አስወግድ"</string>
+<string name="account_sync_title">"የማመሳሰል አገልግሎቶች"</string>
+<string name="account_sync_unavailable">"እዚህ አይገኝም"</string>
 <string name="action_add_to_bookmarks">"የምልከታ ሁኔታን ያቀናብሩ"</string>
 <string name="action_open_watching">"ተጨማሪ መረጃ"</string>
 <string name="action_remove_from_bookmarks">"ያስወግዱ"</string>

@@ -14,6 +14,24 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"گەڕان لە %d سەرچاوە"</item><item quantity="other">"گەڕان لە هەموو %d سەرچاوەکە"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە %d سەرچاوە بگەڕێیت."</item><item quantity="other">"کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d سەرچاوە"</item><item quantity="other">"%d سەرچاوە"</item></plurals>
+<string name="account_add_profile">"زیادکردنی پرۆفایل"</string>
+<string name="account_manage_profiles">"بەڕێوەبردنی پرۆفایلەکان"</string>
+<string name="account_pair_code">"کۆدەکەت"</string>
+<string name="account_pair_instructions">"ئەمە لەسەر مۆبایلەکەت بکەرەوە و کۆدەکەی خوارەوە بنووسە."</string>
+<string name="account_pair_new_code">"کۆدێکی نوێ وەربگرە"</string>
+<string name="account_pair_title" formatted="true">"بەستنەوەی %s"</string>
+<string name="account_profile_current">"ئێستا"</string>
+<string name="account_profile_locked">"داخراو · PIN"</string>
+<string name="account_profile_no_sync">"هاوکاتکردن نییە"</string>
+<string name="account_select_note">"مێژووی سەیرکردنی جیا · چوونەژوورەوە نییە"</string>
+<string name="account_select_title">"کێ سەیر دەکات؟"</string>
+<string name="account_sync_connected">"پەیوەستە · لەسەر ئەم ئامێرە چووەتە ژوورەوە"</string>
+<string name="account_sync_needs_browser">"چوونەژوورەوە وێبگەڕێکی پێویستە. ئەم ئامێرە نییەتی."</string>
+<string name="account_sync_note">"ئارەزوومەندانە. پێشکەوتنی سەیرکردن لەگەڵ هەژمارێک کە پێشتر هەتە هاوکات دەکات."</string>
+<string name="account_sync_pair">"بە کۆد بەستنەوە"</string>
+<string name="account_sync_remove">"لەم ئامێرە لابردن"</string>
+<string name="account_sync_title">"خزمەتگوزارییەکانی هاوکاتکردن"</string>
+<string name="account_sync_unavailable">"لێرە بەردەست نییە"</string>
 <string name="action_add_to_bookmarks">"دۆخی تەماشاکردن دابنێ"</string>
 <string name="action_remove_from_bookmarks">"لابردن"</string>
 <string name="app_dub_sub_episode_text_format" formatted="true">"%1$sئەڵقەى%2$d"</string>

@@ -157,11 +157,14 @@ fun HomeScreenTv(
     // A view built again, coming back by the nav rail, lands once as the first open does. Measured in `:app`: the window
     // gives a rebuilt view's focus to its first stop, the source control, before the rows can, and it stayed there.
     var landingInView by remember { mutableStateOf(true) }
-    // Whether the focus the page holds is the one the host's own request gave it ([hostFocus]), with no key pressed since.
-    // That is the one arrival that is not a person's (`BUG-41`): the bookmarks are one local read, so at launch they can be
+    // Whether the focus the page holds is the one the host's own request gave it, or the window gave it before the host
+    // resumed the page ([hostFocus]), with no key pressed since. Those are the arrivals that are not a person's (`BUG-41`): the bookmarks are one local read, so at launch they can be
     // on screen before the rows, and the host's first request then lands on a chip. Every other arrival in Continue
     // watching or the bookmarks, from a key on this page or from the nav rail, which is a view of its own, is a choice.
     var focusFromHost by remember { mutableStateOf(false) }
+    // Whether a key has been pressed on this page since it was built. A focus the host finds already held can be the
+    // window's only while nothing has been pressed: after a key, wherever focus is, a person put it there.
+    var pressedOnPage by remember { mutableStateOf(false) }
     val hasRows = rows.isNotEmpty()
     // Only beside the rows it came from: a page that failed or went offline has no hero, whatever was found before.
     val hero = (state.hero as? HomeHero.Shown)?.takeIf { hasRows }
@@ -218,6 +221,13 @@ fun HomeScreenTv(
         landingInView = false
         if (state.landingOwed) onAction(HomeAction.LandingHandled)
     }
+    // The window's own grant, which the host found already made as it resumed the page (`HomeHostFocus.resumed`).
+    LaunchedEffect(hostFocus?.adopted) {
+        val host = hostFocus ?: return@LaunchedEffect
+        if (!host.adopted) return@LaunchedEffect
+        if (screenHasFocus && !pressedOnPage) focusFromHost = true
+        host.adopted = false
+    }
     val onFocusTaken: () -> Unit = {
         // Whatever took it, a return included, is this view's landing.
         landingInView = false
@@ -238,7 +248,10 @@ fun HomeScreenTv(
                 screenHasFocus = it.hasFocus
             }
             .onPreviewKeyEvent {
-                if (it.type == KeyEventType.KeyDown) focusFromHost = false
+                if (it.type == KeyEventType.KeyDown) {
+                    focusFromHost = false
+                    pressedOnPage = true
+                }
                 false
             },
         panel = { HomeSourcePanelTv(state, onAction) },
@@ -498,10 +511,31 @@ fun HomeScreenTv(
 class HomeHostFocus {
     internal var requested = false
 
+    /**
+     * Set where the page already held focus when the host resumed it with a landing owed: the window gave it on its own,
+     * and nothing has been pressed, so that focus is not a person's either. The screen takes it as the host's and clears
+     * this. Observed, because the arrival it describes has already happened.
+     */
+    internal var adopted by mutableStateOf(false)
+
     /** Runs the host's [requestFocus] for a page that does not hold focus, marking the arrival it causes as the host's. */
     fun request(requestFocus: () -> Boolean) {
         requested = true
         if (!requestFocus()) requested = false
+    }
+
+    /**
+     * What a host does as the page resumes, with a landing still owed: asks for focus through [request] where the page
+     * holds none, and **marks the focus it already holds as the host's** where it does (`BUG-41`, reopened). The window
+     * can give the page focus on its own before the host resumes it, onto the first stop it finds, a chip when the
+     * bookmarks are on screen before the rows; #183 marked only the arrival its own request caused, so that one counted as
+     * a person's choice and the hero never took focus. One place, so a host and a test make the same decision.
+     *
+     * @param landingOwed `HomeState.landingOwed`: nothing has been pressed on this page since it opened.
+     */
+    fun resumed(landingOwed: Boolean, hasFocus: () -> Boolean, requestFocus: () -> Boolean) {
+        if (!landingOwed) return
+        if (hasFocus()) adopted = true else request(requestFocus)
     }
 }
 

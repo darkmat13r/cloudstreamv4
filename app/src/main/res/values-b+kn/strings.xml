@@ -14,6 +14,24 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ಮೂಲದಲ್ಲಿ ಹುಡುಕಿ"</item><item quantity="other">"ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಿ"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"ಹಾಗಿದ್ದರೂ %d ಮೂಲದಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ."</item><item quantity="other">"ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ಮೂಲ"</item><item quantity="other">"%d ಮೂಲಗಳು"</item></plurals>
+<string name="account_add_profile">"ಪ್ರೊಫೈಲ್ ಸೇರಿಸಿ"</string>
+<string name="account_manage_profiles">"ಪ್ರೊಫೈಲ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ"</string>
+<string name="account_pair_code">"ನಿಮ್ಮ ಕೋಡ್"</string>
+<string name="account_pair_instructions">"ಇದನ್ನು ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ ತೆರೆದು ಕೆಳಗಿನ ಕೋಡ್ ನಮೂದಿಸಿ."</string>
+<string name="account_pair_new_code">"ಹೊಸ ಕೋಡ್ ಪಡೆಯಿರಿ"</string>
+<string name="account_pair_title" formatted="true">"%s ಜೋಡಿಸಿ"</string>
+<string name="account_profile_current">"ಪ್ರಸ್ತುತ"</string>
+<string name="account_profile_locked">"ಲಾಕ್ ಆಗಿದೆ · ಪಿನ್"</string>
+<string name="account_profile_no_sync">"ಸಿಂಕ್ ಇಲ್ಲ"</string>
+<string name="account_select_note">"ಪ್ರತ್ಯೇಕ ವೀಕ್ಷಣಾ ಇತಿಹಾಸ · ಲಾಗಿನ್‌ಗಳಲ್ಲ"</string>
+<string name="account_select_title">"ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?"</string>
+<string name="account_sync_connected">"ಸಂಪರ್ಕಗೊಂಡಿದೆ · ಈ ಸಾಧನದಲ್ಲಿ ಸೈನ್ ಇನ್"</string>
+<string name="account_sync_needs_browser">"ಸೈನ್ ಇನ್‌ಗೆ ವೆಬ್ ಬ್ರೌಸರ್ ಬೇಕು. ಈ ಸಾಧನದಲ್ಲಿ ಇಲ್ಲ."</string>
+<string name="account_sync_note">"ಐಚ್ಛಿಕ. ವೀಕ್ಷಣಾ ಪ್ರಗತಿಯನ್ನು ನಿಮ್ಮ ಈಗಿರುವ ಖಾತೆಗೆ ಸಿಂಕ್ ಮಾಡುತ್ತದೆ."</string>
+<string name="account_sync_pair">"ಕೋಡ್‌ನಿಂದ ಜೋಡಿಸಿ"</string>
+<string name="account_sync_remove">"ಈ ಸಾಧನದಿಂದ ತೆಗೆದುಹಾಕಿ"</string>
+<string name="account_sync_title">"ಸಿಂಕ್ ಸೇವೆಗಳು"</string>
+<string name="account_sync_unavailable">"ಇಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ"</string>
 <string name="action_add_to_bookmarks">"ಸೆಟ್ ವಾಚ್ ಸ್ಟೇಟಸ್"</string>
 <string name="action_open_play">"@ಸ್ಟ್ರಿಂಗ್/ಹೋಮ್_ಪ್ಲೇ"</string>
 <string name="action_open_watching">"ಹೆಚ್ಚಿನ ಮಾಹಿತಿ"</string>

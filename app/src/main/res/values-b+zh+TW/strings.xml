@@ -17,6 +17,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d 來源"</item></plurals>
 <string name="account">"帳號"</string>
+<string name="account_add_profile">"新增個人檔案"</string>
+<string name="account_manage_profiles">"管理個人檔案"</string>
+<string name="account_pair_code">"你的代碼"</string>
+<string name="account_pair_instructions">"在手機上開啟此頁面並輸入下方代碼。"</string>
+<string name="account_pair_new_code">"取得新代碼"</string>
+<string name="account_pair_title" formatted="true">"配對 %s"</string>
+<string name="account_profile_current">"目前"</string>
+<string name="account_profile_locked">"已鎖定 · PIN"</string>
+<string name="account_profile_no_sync">"不同步"</string>
+<string name="account_select_note">"獨立的觀看紀錄 · 不是登入帳號"</string>
+<string name="account_select_title">"誰在觀看？"</string>
+<string name="account_sync_connected">"已連線 · 已在此裝置登入"</string>
+<string name="account_sync_needs_browser">"登入需要網頁瀏覽器。此裝置沒有。"</string>
+<string name="account_sync_note">"選用。將觀看進度同步到你已有的帳號。"</string>
+<string name="account_sync_pair">"使用代碼配對"</string>
+<string name="account_sync_remove">"從此裝置移除"</string>
+<string name="account_sync_title">"同步服務"</string>
+<string name="account_sync_unavailable">"此處無法使用"</string>
 <string name="action_add_to_bookmarks">"設定觀看狀態"</string>
 <string name="action_add_to_favorites">"加入我的最愛"</string>
 <string name="action_default">"預設"</string>
