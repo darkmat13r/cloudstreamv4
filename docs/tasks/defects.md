@@ -1844,3 +1844,18 @@ past the end of the list (read from the code, not run). The fix is `-= 1`.
 **Test:** `PreviousEpisodeTest` (`:app` device, 3), on a fake generator of three episodes that asks nobody for links:
 previous from the second lands on the first, previous from the first stays, and next from the second still lands on
 the third. The first failed on the old code, measured before the fix.
+
+## BUG-45 — An engine device test cut a connection inside Ktor's buffer, so it was flaky · **low** · measured 2026-11-07
+
+`EngineDownloadDeviceTest.aConnectionDroppedMidPartIsResumedWithinThePartAndTheFileIsByteIdentical` (from `KMP-59`, #174)
+failed about 1 run in 2 on master `5e103443b`, and 3 runs in 3 on #190's branch.
+- **Cause.** The test dropped the third body request after 256 KiB and required a later request to start inside the
+  first 256 KiB of that part. Ktor's `ByteChannel` holds up to 1 MiB, and a body the engine fails throws its unread bytes
+  away (recorded in `KMP-46`). So all 256 KiB could be lost before reaching the part file. The engine then correctly
+  refetched the part from its start (`GET 10485760-12582911` cut at 262144, then `GET 10485760-11534335`), and the
+  assertion failed.
+- **Fix, test only.** The drop is now at 1.5 MiB of the 2 MiB part. Even with a full 1 MiB discarded, at least 512 KiB
+  is on disk, so a resume that reads the part file's length must start inside the part. That is the test's intent:
+  bytes on disk are never fetched again. The engine is unchanged.
+- **Not hidden.** The discard is still an engine trait. It costs up to 1 MiB of refetch per dropped connection and is
+  logged as `KMP-69`.

@@ -5530,3 +5530,13 @@ alone, because board D4 gives the number its own column (the code stands in only
    an argument, so a translation can place it.
 3. Rerun the TV downloads device suite and keep its screenshots at 0/0, because this touches a `tv/` file.
 
+## KMP-69 — Engine: a dropped body loses up to 1 MiB already received · **open**, low, follow-up to `KMP-61`
+
+Measured in `KMP-46`: Ktor's `ByteChannel` buffer is 1 MiB (ktor-io-jvm 3.6.0). When the engine fails a body, the
+unread bytes in it are discarded. A raw socket received all 1,000,003 bytes in 15 of 15 attempts, and a bare Ktor
+read loop got 270,336 to 1,000,003. So each dropped connection can refetch up to about 1 MiB. `BUG-45` hit this in a
+device test.
+- Like `KMP-61` (a work steal refetching a tail), it wastes bandwidth and does not corrupt anything: the bytes on
+  disk are always the truth.
+- The fix means reading below Ktor (draining the channel into the part file before failing, or a smaller channel).
+  Not started; measure the cost on a metered link first.
