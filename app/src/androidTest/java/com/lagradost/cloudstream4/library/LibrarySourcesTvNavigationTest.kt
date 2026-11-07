@@ -16,7 +16,9 @@ import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.MainActivity
 import com.lagradost.cloudstream3.syncproviders.AccountManager
 import com.lagradost.cloudstream3.ui.library.LAST_SYNC_API_KEY
+import com.lagradost.cloudstream3.ui.library.ListSorting
 import com.lagradost.cloudstream3.ui.setup.HAS_DONE_SETUP_KEY
+import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.DataStoreHelper.currentAccount
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
@@ -42,6 +44,7 @@ class LibrarySourcesTvNavigationTest {
     private val device = UiDevice.getInstance(instrumentation)
     private val dpad = DpadDriver()
     private var chosenBefore: String? = null
+    private var sortBefore: Int? = null
 
     @Before
     fun startFromTheLocalList() {
@@ -49,6 +52,7 @@ class LibrarySourcesTvNavigationTest {
             setKey(HAS_DONE_SETUP_KEY, true)
             chosenBefore = getKey<String>(CHOSEN_KEY)
             removeKey(CHOSEN_KEY)
+            sortBefore = getKey<Int>(SORT_KEY)
         }
     }
 
@@ -57,6 +61,7 @@ class LibrarySourcesTvNavigationTest {
         instrumentation.runOnMainSync {
             chosenBefore?.let { setKey(CHOSEN_KEY, it) } ?: removeKey(CHOSEN_KEY)
             removeKey("$currentAccount/library_synced_at", RECORD_NAME)
+            sortBefore?.let { setKey(SORT_KEY, it) } ?: removeKey(SORT_KEY)
         }
     }
 
@@ -131,6 +136,19 @@ class LibrarySourcesTvNavigationTest {
         }
     }
 
+    /** `KMP-50`: the sort under the old screen's own key, as its ordinal, so the old screen reads the same choice. */
+    @Test
+    fun theSortIsKeptUnderTheOldScreensKeyAsItsOrdinal() {
+        instrumentation.runOnMainSync {
+            removeKey(SORT_KEY)
+            assertNull("nothing stored is the default, not the delegate's A to Z", DataStoreLibrarySourceRecords.sortingMode())
+            DataStoreLibrarySourceRecords.sortBy(ListSorting.ReleaseDateOld.ordinal)
+            assertEquals(ListSorting.ReleaseDateOld.ordinal, getKey<Int>(SORT_KEY))
+            assertEquals(ListSorting.ReleaseDateOld.ordinal, DataStoreHelper.librarySortingMode)
+            assertEquals(ListSorting.ReleaseDateOld.ordinal, DataStoreLibrarySourceRecords.sortingMode())
+        }
+    }
+
     /**
      * BACK as a remote sends it. `UiDevice.pressBack()` is not that key (`DetailScreenTvDeviceTest`), and the panel
      * takes BACK as a key event.
@@ -151,6 +169,7 @@ class LibrarySourcesTvNavigationTest {
 
     private companion object {
         val CHOSEN_KEY get() = "$currentAccount/$LAST_SYNC_API_KEY"
+        val SORT_KEY get() = "$currentAccount/library_sorting_mode"
         const val RECORD_NAME = "KMP49TestSource"
         const val LOCAL = "Local"
         const val PANEL = "Library source"

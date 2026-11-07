@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item><item quantity="other">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ಬುಕ್‌ಮಾರ್ಕ್</item><item quantity="other">%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item><item quantity="other">%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d ಶೀರ್ಷಿಕೆ</item><item quantity="other">%d ಶೀರ್ಷಿಕೆಗಳು</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ಮೂಲದಲ್ಲಿ ಹುಡುಕಿ</item><item quantity="other">ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಿ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ಹಾಗಿದ್ದರೂ %d ಮೂಲದಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.</item><item quantity="other">ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ಮೂಲ</item><item quantity="other">%d ಮೂಲಗಳು</item></plurals>
@@ -139,6 +140,9 @@
 <string name="home_source_picker_body">ಸಾಲುಗಳು ಒಮ್ಮೆಗೆ ಒಂದು ವಿಸ್ತರಣೆಯಿಂದ ಬರುತ್ತವೆ.</string>
 <string name="home_source_picker_title">ಹೋಮ್ ಮೂಲ</string>
 <string name="home_source_unreachable">ಕಳೆದ ಬಾರಿ ತಲುಪಲಾಗಲಿಲ್ಲ</string>
+<string name="library_go_to_list">%s ಗೆ ಹೋಗಿ</string>
+<string name="library_list_empty_body">ನೀವು %s ಗೆ ಸೇರಿಸುವ ಶೀರ್ಷಿಕೆಗಳು ಇಲ್ಲಿ ಬರುತ್ತವೆ.</string>
+<string name="library_list_empty_headline">%s ನಲ್ಲಿ ಏನೂ ಇಲ್ಲ</string>
 <string name="load_more">ಇನ್ನಷ್ಟು ಲೋಡ್ ಮಾಡಿ</string>
 <string name="loading">ಲೋಡಿಂಗ್…</string>
 <string name="more_like_this">ಇಂತಹ ಇನ್ನಷ್ಟು</string>
@@ -212,6 +216,8 @@
 <string name="search_tv_suggestion_recent">ಇತ್ತೀಚಿನ · %s</string>
 <string name="search_tv_suggestion_recent_suggested">ಇತ್ತೀಚಿನ · ಸೂಚಿಸಲಾಗಿದೆ ಕೂಡ</string>
 <string name="search_tv_suggestion_suggested">ಸೂಚಿಸಲಾಗಿದೆ</string>
+<string name="season_other">ಇತರೆ</string>
+<string name="season_specials">ವಿಶೇಷ</string>
 <string name="seek_back_10_seconds">10 ಸೆಕೆಂಡುಗಳು ಹಿಂದೆ ಹೋಗು</string>
 <string name="seek_forward_10_seconds">10 ಸೆಕೆಂಡುಗಳು ಮುಂದೆ ಹೋಗು</string>
 <string name="show_log_cat">ಲಾಗ್‌ಕ್ಯಾಟ್ 🐈 ತೋರಿಸಿ</string>
@@ -261,7 +267,16 @@
 <string name="vpn_torrent">ಈ ಪೂರೈಕೆದಾರರು ಟೊರೆಂಟ್ ಆಗಿದೆ, VPN ಅನ್ನು ಶಿಫಾರಸು ಮಾಡಲಾಗಿದೆ</string>
 <string name="library_not_connected">ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲ</string>
 <string name="library_on_device">ಸಾಧನದಲ್ಲಿ</string>
+<string name="library_sort_current">ವಿಂಗಡಣೆ: %s</string>
+<string name="library_sort_supported">%1$s %3$d ರಲ್ಲಿ %2$d ಬೆಂಬಲಿಸುತ್ತದೆ</string>
+<string name="library_sort_not_kept">%s ಇದನ್ನು ಇರಿಸುವುದಿಲ್ಲ</string>
 <string name="library_source">ಲೈಬ್ರರಿ ಮೂಲ</string>
 <string name="library_source_note">ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ</string>
+<string name="library_sync_cached">ಕ್ಯಾಶ್</string>
+<string name="library_sync_failed">%1$s ಸಿಂಕ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ಇವು %2$s ಹಿಂದಿನವು.</string>
+<string name="library_sync_offline">ಆಫ್‌ಲೈನ್ · %s ಹಿಂದೆ ಕ್ಯಾಶ್</string>
+<string name="library_sync_retry">ಮತ್ತೆ ಸಿಂಕ್ ಮಾಡಿ</string>
+<string name="library_sync_unreachable">ತಲುಪಲಾಗುತ್ತಿಲ್ಲ · %s ಹಿಂದೆ ಕ್ಯಾಶ್</string>
 <string name="library_synced_format">%s ಹಿಂದೆ ಸಿಂಕ್ ಮಾಡಲಾಗಿದೆ</string>
+<string name="search_suggestions_return_hint">Return ಎಲ್ಲವನ್ನೂ ಹುಡುಕುತ್ತದೆ</string>
 </resources>

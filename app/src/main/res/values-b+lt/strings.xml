@@ -10,6 +10,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ŽYMA"</item><item quantity="few">"%d ŽYMOS"</item><item quantity="many">"%d ŽYMOS"</item><item quantity="other">"%d ŽYMŲ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nepavyko įkelti %d skilties"</item><item quantity="few">"Nepavyko įkelti %d skilčių"</item><item quantity="many">"Nepavyko įkelti %d skilties"</item><item quantity="other">"Nepavyko įkelti %d skilčių"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d skiltis"</item><item quantity="few">"%d skiltys"</item><item quantity="many">"%d skilties"</item><item quantity="other">"%d skilčių"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d pavadinimas"</item><item quantity="few">"%d pavadinimai"</item><item quantity="many">"%d pavadinimo"</item><item quantity="other">"%d pavadinimų"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Ieškoti %d šaltinyje"</item><item quantity="few">"Ieškoti visuose šaltiniuose (%d)"</item><item quantity="many">"Ieškoti visuose šaltiniuose (%d)"</item><item quantity="other">"Ieškoti visuose šaltiniuose (%d)"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte %d šaltinyje."</item><item quantity="few">"Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d)."</item><item quantity="many">"Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d)."</item><item quantity="other">"Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d)."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ŠALTINIS"</item><item quantity="few">"%d ŠALTINIAI"</item><item quantity="many">"%d ŠALTINIO"</item><item quantity="other">"%d ŠALTINIŲ"</item></plurals>
@@ -209,10 +210,21 @@
 <string name="home_source_unreachable">"Praėjusį kartą nepasiekiamas"</string>
 <string name="is_adult">"18+"</string>
 <string name="library">"Biblioteka"</string>
+<string name="library_go_to_list" formatted="true">"Eiti į „%s“"</string>
+<string name="library_list_empty_body" formatted="true">"Čia atsiranda pavadinimai, kuriuos pridedate į „%s“."</string>
+<string name="library_list_empty_headline" formatted="true">"Sąrašas „%s“ tuščias"</string>
 <string name="library_not_connected">"Neprijungta"</string>
 <string name="library_on_device">"Įrenginyje"</string>
+<string name="library_sort_current" formatted="true">"Rikiavimas: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s to nesaugo"</string>
+<string name="library_sort_supported" formatted="true">"%1$s palaiko %2$d iš %3$d"</string>
 <string name="library_source">"Bibliotekos šaltinis"</string>
 <string name="library_source_note">"Po vieną · perjungus įkeliama iš naujo"</string>
+<string name="library_sync_cached">"Iš podėlio"</string>
+<string name="library_sync_failed" formatted="true">"Nepavyko sinchronizuoti %1$s. Tai duomenys prieš %2$s."</string>
+<string name="library_sync_offline" formatted="true">"Neprisijungus · podėlyje prieš %s"</string>
+<string name="library_sync_retry">"Sinchronizuoti iš naujo"</string>
+<string name="library_sync_unreachable" formatted="true">"Nepasiekiama · podėlyje prieš %s"</string>
 <string name="library_synced_format" formatted="true">"Sinchronizuota prieš %s"</string>
 <string name="links_reloaded_toast">"Nuorodos perkrautos"</string>
 <string name="live_singular">"Gyva transliacija"</string>
@@ -328,6 +340,7 @@
 <string name="search_state_no_results_type_filter" formatted="true">"Tik %s. Jūsų tipų filtras siaurina paiešką."</string>
 <string name="search_state_no_suggestions_detail">"0 PASIŪLYMŲ · 0 NESENIŲ ATITIKMENŲ"</string>
 <string name="search_state_no_suggestions_headline" formatted="true">"Niekas neatitinka „%s“"</string>
+<string name="search_suggestions_return_hint">"Return ieško visur"</string>
 <string name="search_tv_source_failed" formatted="true">"NEPAVYKO %s"</string>
 <string name="search_tv_source_pinned">"PRISEGTA"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"ĮJUNGTA %1$d IŠ %2$d · PAKEITIMAI TAIKOMI PASPAUDUS BAIGTA"</string>
@@ -335,6 +348,8 @@
 <string name="search_tv_suggestion_recent_suggested">"NESENIAI · TAIP PAT SIŪLOMA"</string>
 <string name="search_tv_suggestion_suggested">"SIŪLOMA"</string>
 <string name="season">"Sezonas"</string>
+<string name="season_other">"Kita"</string>
+<string name="season_specials">"Specialieji"</string>
 <string name="seek_back_10_seconds">"Atsukti 10 sekundžių atgal"</string>
 <string name="seek_forward_10_seconds">"Persukti 10 sekundžių į priekį"</string>
 <string name="select_all">"Pasirinkti viską"</string>

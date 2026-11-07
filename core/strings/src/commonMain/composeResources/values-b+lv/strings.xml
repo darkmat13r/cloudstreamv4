@@ -12,6 +12,7 @@
 <plurals name="downloads_titles_status"><item quantity="zero">%1$d nosaukumu · %2$s</item><item quantity="one">%1$d nosaukums · %2$s</item><item quantity="other">%1$d nosaukumi · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="zero">%d GRĀMATZĪMJU</item><item quantity="one">%d GRĀMATZĪME</item><item quantity="other">%d GRĀMATZĪMES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">Neizdevās ielādēt %d sadaļu</item><item quantity="one">Neizdevās ielādēt %d sadaļu</item><item quantity="other">Neizdevās ielādēt %d sadaļas</item></plurals>
+<plurals name="library_title_count"><item quantity="zero">%d nosaukumu</item><item quantity="one">%d nosaukums</item><item quantity="other">%d nosaukumi</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="zero">Meklēt visos %d devējos</item><item quantity="one">Meklēt %d devējā</item><item quantity="other">Meklēt visos %d devējos</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="zero">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item><item quantity="one">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā.</item><item quantity="other">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="zero">%d DEVĒJU</item><item quantity="one">%d DEVĒJS</item><item quantity="other">%d DEVĒJI</item></plurals>
@@ -337,10 +338,21 @@
 <string name="kitsu_settings">Rādīt Kitsu vietnes plakātus</string>
 <string name="legal_notice">Atruna</string>
 <string name="library">Library</string>
+<string name="library_go_to_list">Uz „%s“</string>
+<string name="library_list_empty_body">Šeit parādās nosaukumi, ko pievienojat sarakstam „%s“.</string>
+<string name="library_list_empty_headline">Sarakstā „%s“ nekā nav</string>
 <string name="library_not_connected">Nav savienots</string>
 <string name="library_on_device">Ierīcē</string>
+<string name="library_sort_current">Kārtošana: %s</string>
+<string name="library_sort_supported">%1$s atbalsta %2$d no %3$d</string>
+<string name="library_sort_not_kept">%s to neglabā</string>
 <string name="library_source">Bibliotēkas avots</string>
 <string name="library_source_note">Pa vienam · pārslēgšana pārlādē</string>
+<string name="library_sync_cached">No kešatmiņas</string>
+<string name="library_sync_failed">Neizdevās sinhronizēt %1$s. Šie dati ir no pirms %2$s.</string>
+<string name="library_sync_offline">Bezsaistē · kešatmiņā pirms %s</string>
+<string name="library_sync_retry">Sinhronizēt vēlreiz</string>
+<string name="library_sync_unreachable">Nav sasniedzams · kešatmiņā pirms %s</string>
 <string name="library_synced_format">Sinhronizēts pirms %s</string>
 <string name="lightnovel">Viegla romānu lietotne no šiem pašiem izstrādātājiem</string>
 <string name="limit_title">Video players nosaukuma maksimālie burti</string>
@@ -566,6 +578,7 @@
 <string name="search_state_no_suggestions_detail">0 IETEIKUMU · 0 NESENU ATBILSTĪBU</string>
 <string name="search_state_no_suggestions_headline">Nekas neatbilst „%s”</string>
 <string name="search_suggestions">Meklēšanas ieteikumi</string>
+<string name="search_suggestions_return_hint">Return meklē visur</string>
 <string name="search_tv_source_failed">NEIZDEVĀS %s</string>
 <string name="search_tv_source_pinned">PIESPRAUSTS</string>
 <string name="search_tv_sources_panel_meta">IESLĒGTI %1$d NO %2$d · IZMAIŅAS TIEK PIEMĒROTAS, NOSPIEŽOT PABEIGTS</string>
@@ -574,7 +587,9 @@
 <string name="search_tv_suggestion_suggested">IETEIKTS</string>
 <string name="season">Sezona</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Citi</string>
 <string name="season_short">S</string>
+<string name="season_specials">Speciālie</string>
 <string name="seek_back_10_seconds">Pārtīt atpakaļ 10 sekundes</string>
 <string name="seek_forward_10_seconds">Pārtīt uz priekšu 10 sekundes</string>
 <string name="select_an_account">Atlasiet kontu</string>

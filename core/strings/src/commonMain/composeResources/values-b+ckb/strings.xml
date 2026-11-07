@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d ناونیشان · %2$s</item><item quantity="other">%1$d ناونیشان · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ئاماژە</item><item quantity="other">%d ئاماژە</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بەش بار نەکرا</item><item quantity="other">%d بەش بار نەکرا</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d ناونیشان</item><item quantity="other">%d ناونیشان</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">گەڕان لە %d سەرچاوە</item><item quantity="other">گەڕان لە هەموو %d سەرچاوەکە</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە %d سەرچاوە بگەڕێیت.</item><item quantity="other">کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d سەرچاوە</item><item quantity="other">%d سەرچاوە</item></plurals>
@@ -134,6 +135,9 @@
 <string name="home_source_picker_body">ڕیزەکان لە یەک کاتدا لە یەک پێوەکراوەوە دێن.</string>
 <string name="home_source_picker_title">سەرچاوەی سەرەکی</string>
 <string name="home_source_unreachable">جاری پێشوو نەگەیشترا</string>
+<string name="library_go_to_list">بڕۆ بۆ %s</string>
+<string name="library_list_empty_body">ئەو ناونیشانانەی بۆ %s زیادی دەکەیت لێرە دەردەکەون.</string>
+<string name="library_list_empty_headline">هیچ شتێک لە %s نییە</string>
 <string name="load_more">زیاتر باربکە</string>
 <string name="more_like_this">زیاتر لەم جۆرە</string>
 <string name="new_update_format">نوێکاری نوێ دۆزرایەوە!\n%1$s-&gt;%2$s</string>
@@ -193,6 +197,8 @@
 <string name="search_tv_suggestion_recent">دوایین · %s</string>
 <string name="search_tv_suggestion_recent_suggested">دوایین · هەروەها پێشنیارکراو</string>
 <string name="search_tv_suggestion_suggested">پێشنیارکراو</string>
+<string name="season_other">ئەوانی تر</string>
+<string name="season_specials">تایبەت</string>
 <string name="seek_back_10_seconds">10 چرکە بگەڕێوە دواوە</string>
 <string name="seek_forward_10_seconds">10 چرکە بڕۆ پێشەوە</string>
 <string name="select_all">هەموو هەڵبژێرە</string>
@@ -217,7 +223,16 @@
 <string name="update_started">نوێکردنەوە دەستی پێکرد</string>
 <string name="library_not_connected">پەیوەست نییە</string>
 <string name="library_on_device">لەسەر ئامێر</string>
+<string name="library_sort_current">ڕیزکردن: %s</string>
+<string name="library_sort_supported">%1$s پشتگیری %2$d لە %3$d دەکات</string>
+<string name="library_sort_not_kept">%s ئەمە هەڵناگرێت</string>
 <string name="library_source">سەرچاوەی کتێبخانە</string>
 <string name="library_source_note">یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە</string>
+<string name="library_sync_cached">هەڵگیراوە</string>
+<string name="library_sync_failed">نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن.</string>
+<string name="library_sync_offline">دەرهێڵ · %s لەمەوبەر هەڵگیراوە</string>
+<string name="library_sync_retry">دووبارە هاوکاتکردن</string>
+<string name="library_sync_unreachable">نەگەیشترا · %s لەمەوبەر هەڵگیراوە</string>
 <string name="library_synced_format">%s لەمەوبەر هاوکات کرا</string>
+<string name="search_suggestions_return_hint">Return لە هەمووی دەگەڕێت</string>
 </resources>

@@ -12,6 +12,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ЗАКЛАДКА"</item><item quantity="few">"%d ЗАКЛАДКІ"</item><item quantity="many">"%d ЗАКЛАДАК"</item><item quantity="other">"%d ЗАКЛАДКІ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Не ўдалося загрузіць %d раздзел"</item><item quantity="few">"Не ўдалося загрузіць %d раздзелы"</item><item quantity="many">"Не ўдалося загрузіць %d раздзелаў"</item><item quantity="other">"Не ўдалося загрузіць %d раздзелаў"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d раздзел"</item><item quantity="few">"%d раздзелы"</item><item quantity="many">"%d раздзелаў"</item><item quantity="other">"%d раздзела"</item></plurals>
+<plurals name="library_title_count"><item quantity="one">"%d назва"</item><item quantity="few">"%d назвы"</item><item quantity="many">"%d назваў"</item><item quantity="other">"%d назвы"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Шукаць у %d крыніцы"</item><item quantity="few">"Шукаць ва ўсіх %d крыніцах"</item><item quantity="many">"Шукаць ва ўсіх %d крыніцах"</item><item quantity="other">"Шукаць ва ўсіх %d крыніцах"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць у %d крыніцы."</item><item quantity="few">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item><item quantity="many">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item><item quantity="other">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d КРЫНІЦА"</item><item quantity="few">"%d КРЫНІЦЫ"</item><item quantity="many">"%d КРЫНІЦ"</item><item quantity="other">"%d КРЫНІЦЫ"</item></plurals>
@@ -395,10 +396,21 @@
 <string name="kitsu_settings">"Паказваць плакаты з Kitsu"</string>
 <string name="legal_notice">"Адмова ад адказнасці"</string>
 <string name="library">"Бібліятэка"</string>
+<string name="library_go_to_list" formatted="true">"Перайсці ў «%s»"</string>
+<string name="library_list_empty_body" formatted="true">"Тут з'яўляюцца назвы, дададзеныя ў «%s»."</string>
+<string name="library_list_empty_headline" formatted="true">"Пуста: %s"</string>
 <string name="library_not_connected">"Не падключана"</string>
 <string name="library_on_device">"На прыладзе"</string>
+<string name="library_sort_current" formatted="true">"Парадак: %s"</string>
+<string name="library_sort_not_kept" formatted="true">"%s гэтага не захоўвае"</string>
+<string name="library_sort_supported" formatted="true">"%1$s падтрымлівае %2$d з %3$d"</string>
 <string name="library_source">"Крыніца бібліятэкі"</string>
 <string name="library_source_note">"Па адной · пераключэнне перазагружае"</string>
+<string name="library_sync_cached">"З кэша"</string>
+<string name="library_sync_failed" formatted="true">"Не ўдалося сінхранізаваць %1$s. Гэта даныя %2$s таму."</string>
+<string name="library_sync_offline" formatted="true">"Па-за сеткай · кэш %s таму"</string>
+<string name="library_sync_retry">"Паўтарыць сінхранізацыю"</string>
+<string name="library_sync_unreachable" formatted="true">"Недаступна · кэш %s таму"</string>
 <string name="library_synced_format" formatted="true">"Сінхранізавана %s таму"</string>
 <string name="lightnovel">"Лёгкая праграма для раманаў ад тых жа распрацоўшчыкаў"</string>
 <string name="limit_title">"Максімальная колькасць сімвалаў у загалоўку праглядальніка"</string>
@@ -649,6 +661,7 @@
 <string name="search_state_no_suggestions_headline" formatted="true">"Нічога не адпавядае «%s»"</string>
 <string name="search_suggestions">"Прапановы пошуку"</string>
 <string name="search_suggestions_des">"Паказваць прапановы пошуку падчас уводу тэксту"</string>
+<string name="search_suggestions_return_hint">"Return шукае ўсюды"</string>
 <string name="search_tv_source_failed" formatted="true">"ЗБОЙ %s"</string>
 <string name="search_tv_source_pinned">"ЗАМАЦАВАНА"</string>
 <string name="search_tv_sources_panel_meta" formatted="true">"%1$d З %2$d УКЛЮЧАНА · ЗМЕНЫ ПРЫМЯНЯЮЦЦА ПАСЛЯ ГАТОВА"</string>
@@ -657,7 +670,9 @@
 <string name="search_tv_suggestion_suggested">"ПРАПАНАВАНА"</string>
 <string name="season">"Сезон"</string>
 <string name="season_format" formatted="true">"%1$s %2$d%3$s"</string>
+<string name="season_other">"Іншае"</string>
 <string name="season_short">"Сез"</string>
+<string name="season_specials">"Спецвыпускі"</string>
 <string name="seek_back_10_seconds">"Перамотаць назад на 10 секунд"</string>
 <string name="seek_forward_10_seconds">"Перамотаць наперад на 10 секунд"</string>
 <string name="select_all">"Выбраць ўсё"</string>

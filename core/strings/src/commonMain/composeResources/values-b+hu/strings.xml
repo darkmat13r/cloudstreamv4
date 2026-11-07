@@ -11,6 +11,7 @@
 <plurals name="downloads_titles_status"><item quantity="one">%1$d cím · %2$s</item><item quantity="other">%1$d cím · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d KÖNYVJELZŐ</item><item quantity="other">%d KÖNYVJELZŐ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d szakasz betöltése sikertelen</item><item quantity="other">%d szakasz betöltése sikertelen</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d cím</item><item quantity="other">%d cím</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Keresés %d forrásban</item><item quantity="other">Keresés mind a(z) %d forrásban</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen %d forrásban.</item><item quantity="other">Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FORRÁS</item><item quantity="other">%d FORRÁS</item></plurals>
@@ -357,10 +358,21 @@
 <string name="kitsu_settings">Poszterek megjelenítése Kitsu-ról</string>
 <string name="legal_notice">Jogi nyilatkozat</string>
 <string name="library">Könyvtár</string>
+<string name="library_go_to_list">Ugrás ide: %s</string>
+<string name="library_list_empty_body">A(z) %s listához adott címek itt jelennek meg.</string>
+<string name="library_list_empty_headline">Üres: %s</string>
 <string name="library_not_connected">Nincs csatlakoztatva</string>
 <string name="library_on_device">Az eszközön</string>
+<string name="library_sort_current">Rendezés: %s</string>
+<string name="library_sort_supported">A(z) %1$s %3$d szempontból %2$d-t támogat</string>
+<string name="library_sort_not_kept">A(z) %s nem tárolja</string>
 <string name="library_source">Könyvtár forrása</string>
 <string name="library_source_note">Egyszerre egy · váltáskor újratölt</string>
+<string name="library_sync_cached">Gyorsítótárból</string>
+<string name="library_sync_failed">A(z) %1$s nem szinkronizálható. Ezek %2$s előttiek.</string>
+<string name="library_sync_offline">Offline · %s óta gyorsítótárban</string>
+<string name="library_sync_retry">Szinkronizálás újra</string>
+<string name="library_sync_unreachable">Nem érhető el · %s óta gyorsítótárban</string>
 <string name="library_synced_format">%s ezelőtt szinkronizálva</string>
 <string name="lightnovel">Light novel applikáció ugyanazoktól a fejlesztőktől</string>
 <string name="limit_title">Videolejátszó cím max karakterek</string>
@@ -589,6 +601,7 @@
 <string name="search_state_no_suggestions_headline">Semmi sem egyezik ezzel: „%s”</string>
 <string name="search_suggestions">Keresési javaslatok</string>
 <string name="search_suggestions_des">Mutasson keresési javaslatok gépelés közben</string>
+<string name="search_suggestions_return_hint">A Return mindenhol keres</string>
 <string name="search_tv_source_failed">SIKERTELEN %s</string>
 <string name="search_tv_source_pinned">KITŰZVE</string>
 <string name="search_tv_sources_panel_meta">%2$d KÖZÜL %1$d ENGEDÉLYEZVE · A VÁLTOZÁSOK A KÉSZ GOMBBAL ÉRVÉNYESÜLNEK</string>
@@ -597,7 +610,9 @@
 <string name="search_tv_suggestion_suggested">JAVASOLT</string>
 <string name="season">Évad</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Egyéb</string>
 <string name="season_short">Év</string>
+<string name="season_specials">Különkiadások</string>
 <string name="seek_back_10_seconds">Ugrás 10 másodpercet hátra</string>
 <string name="seek_forward_10_seconds">Ugrás 10 másodpercet előre</string>
 <string name="select_all">Mindet Kiválaszt</string>

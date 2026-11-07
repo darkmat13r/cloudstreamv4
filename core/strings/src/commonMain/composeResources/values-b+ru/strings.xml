@@ -14,6 +14,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ЗАКЛАДКА</item><item quantity="few">%d ЗАКЛАДКИ</item><item quantity="many">%d ЗАКЛАДОК</item><item quantity="other">%d ЗАКЛАДКИ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Не удалось загрузить %d раздел</item><item quantity="few">Не удалось загрузить %d раздела</item><item quantity="many">Не удалось загрузить %d разделов</item><item quantity="other">Не удалось загрузить %d разделов</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d раздел</item><item quantity="few">%d раздела</item><item quantity="many">%d разделов</item><item quantity="other">%d раздела</item></plurals>
+<plurals name="library_title_count"><item quantity="one">%d название</item><item quantity="few">%d названия</item><item quantity="many">%d названий</item><item quantity="other">%d названия</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d скрытая ссылка</item><item quantity="few">%d скрытые ссылки</item><item quantity="many">%d скрытых ссылок</item><item quantity="other">%d скрытых ссылок</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Искать в %d источнике</item><item quantity="few">Искать во всех %d источниках</item><item quantity="many">Искать во всех %d источниках</item><item quantity="other">Искать во всех %d источниках</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать в %d источнике.</item><item quantity="few">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.</item><item quantity="many">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.</item><item quantity="other">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.</item></plurals>
@@ -396,10 +397,21 @@
 <string name="kitsu_settings">Показывать афиши из Kitsu</string>
 <string name="legal_notice">Оговорка</string>
 <string name="library">Библиотека</string>
+<string name="library_go_to_list">Перейти в «%s»</string>
+<string name="library_list_empty_body">Здесь появляются названия, добавленные в «%s».</string>
+<string name="library_list_empty_headline">Пусто: %s</string>
 <string name="library_not_connected">Не подключено</string>
 <string name="library_on_device">На устройстве</string>
+<string name="library_sort_current">Сортировка: %s</string>
+<string name="library_sort_supported">%1$s поддерживает %2$d из %3$d</string>
+<string name="library_sort_not_kept">%s этого не хранит</string>
 <string name="library_source">Источник библиотеки</string>
 <string name="library_source_note">По одному · переключение перезагружает</string>
+<string name="library_sync_cached">Из кеша</string>
+<string name="library_sync_failed">Не удалось синхронизировать %1$s. Это данные %2$s назад.</string>
+<string name="library_sync_offline">Офлайн · кеш %s назад</string>
+<string name="library_sync_retry">Синхронизировать снова</string>
+<string name="library_sync_unreachable">Недоступно · кеш %s назад</string>
 <string name="library_synced_format">Синхронизировано %s назад</string>
 <string name="lightnovel">Лёгкое приложение для новелл от тех же разработчиков</string>
 <string name="limit_title">Максимум символов</string>
@@ -653,6 +665,7 @@
 <string name="search_state_no_suggestions_headline">Ничего не найдено по запросу «%s»</string>
 <string name="search_suggestions">Поиск предложений</string>
 <string name="search_suggestions_des">Показывать подсказки поиска при вводе текста</string>
+<string name="search_suggestions_return_hint">Return ищет везде</string>
 <string name="search_tv_source_failed">СБОЙ %s</string>
 <string name="search_tv_source_pinned">ЗАКРЕПЛЕНО</string>
 <string name="search_tv_sources_panel_meta">ВКЛЮЧЕНО %1$d ИЗ %2$d · ИЗМЕНЕНИЯ ВСТУПЯТ В СИЛУ ПОСЛЕ НАЖАТИЯ ГОТОВО</string>
@@ -661,7 +674,9 @@
 <string name="search_tv_suggestion_suggested">ПРЕДЛОЖЕНО</string>
 <string name="season">Сезон</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Другое</string>
 <string name="season_short">С</string>
+<string name="season_specials">Спецвыпуски</string>
 <string name="seek_back_10_seconds">Перемотать назад на 10 секунд</string>
 <string name="seek_forward_10_seconds">Перемотать вперёд на 10 секунд</string>
 <string name="select_all">Выбрать всё</string>

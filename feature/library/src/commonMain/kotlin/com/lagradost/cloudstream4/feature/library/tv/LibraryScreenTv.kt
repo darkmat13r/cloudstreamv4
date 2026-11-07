@@ -42,10 +42,13 @@ import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.target.Chip
 import com.lagradost.cloudstream4.core.designsystem.target.ChipRow
+import com.lagradost.cloudstream4.core.designsystem.target.PrimaryTextButton
 import com.lagradost.cloudstream4.core.designsystem.target.TextField
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.filter_bookmarks
 import com.lagradost.cloudstream4.core.strings.generated.resources.library
+import com.lagradost.cloudstream4.core.strings.generated.resources.library_sync_cached
+import com.lagradost.cloudstream4.core.strings.generated.resources.library_sync_retry
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.library.LibraryAction
@@ -74,7 +77,7 @@ val LibraryTvTabs: List<LibraryTab> = LibraryBucket.entries.map { LibraryTab.Buc
  * ## What is here for 5b, 5d and 5e to land in
  *
  * The chrome row keeps 5a's three slots even though only the field is built. The left slot holds a readout
- * that the provider control replaces, the right slot is empty until the sort control fills it, and the
+ * that the provider control replaces, the right slot holds the sort button (`KMP-50`) where there are sources, and the
  * field already has the middle width it has on the board. So those controls move nothing. A provider's
  * failure lands on the left slot and its `Retry` beside it, both inside this band.
  *
@@ -148,11 +151,16 @@ fun LibraryScreenTv(
         if (!screenHasFocus) focusMemory.left()
     }
 
+    // One panel at a time: each opens from its own button, which the other panel's scrim covers.
     SidePanelHost(
-        expanded = state.sourcesOpen,
-        onDismissRequest = { onAction(LibraryAction.SourcesDismissed) },
+        expanded = state.sourcesOpen || state.sortOpen,
+        onDismissRequest = {
+            onAction(if (state.sortOpen) LibraryAction.SortDismissed else LibraryAction.SourcesDismissed)
+        },
         modifier = modifier.fillMaxSize().onFocusChanged { screenHasFocus = it.hasFocus },
-        panel = { LibrarySourcePanelTv(state, now, onAction) },
+        panel = {
+            if (state.sortOpen) LibrarySortPanelTv(state, onAction) else LibrarySourcePanelTv(state, now, onAction)
+        },
     ) {
         Column(Modifier.fillMaxSize()) {
             Spacer(Modifier.height(CloudStreamDimens.ChromeRowTop))
@@ -161,6 +169,7 @@ fun LibraryScreenTv(
             LibraryTabRow(state, tabs, tabFocus, focusMemory, onAction)
 
             val region = Modifier.contentInset().fillMaxSize()
+            val cachedWord = if (state.stale == null) null else stringResource(Res.string.library_sync_cached)
             when (content) {
                 is UiState.Empty -> StateView(
                     prompt = content.prompt,
@@ -171,6 +180,8 @@ fun LibraryScreenTv(
                 )
 
                 is UiState.Error -> StateView(content.prompt, region, content.detail, requestInitialFocus = false)
+                // A service that needs a connection (`KMP-51`): its Retry is a stop below the chrome row, as the failure's is.
+                is UiState.Offline -> StateView(content.prompt, region, requestInitialFocus = false)
                 else -> UiStateHost(
                     state = content,
                     modifier = region,
@@ -185,6 +196,7 @@ fun LibraryScreenTv(
                             onAction = onAction,
                             artwork = artwork,
                             modifier = Modifier.fillMaxSize(),
+                            cached = cachedWord,
                         )
                     }
                 }
@@ -212,6 +224,8 @@ private fun LibraryChromeRow(
 ) {
     val fieldFocus = remember { FocusRequester() }
     val providerFocus = remember { FocusRequester() }
+    val sortFocus = remember { FocusRequester() }
+    val retryFocus = remember { FocusRequester() }
     val keyboard = LocalSoftwareKeyboardController.current
     Row(
         modifier = modifier.height(CloudStreamDimens.ChromeRowHeight),
@@ -228,6 +242,15 @@ private fun LibraryChromeRow(
                 onClick = { onAction(LibraryAction.SourcesOpened) },
                 modifier = slot.libraryStop(providerFocus, focusMemory),
             )
+            // 5b: over a held read, Retry is the next stop to the right of the control the failure belongs to.
+            if (state.stale != null) {
+                PrimaryTextButton(
+                    label = stringResource(Res.string.library_sync_retry),
+                    onClick = { onAction(LibraryAction.Retry) },
+                    icon = CloudStreamIcons.Retry,
+                    modifier = Modifier.libraryStop(retryFocus, focusMemory),
+                )
+            }
         }
         TextField(
             value = state.filter,
@@ -242,7 +265,15 @@ private fun LibraryChromeRow(
             // The provider button is to its left where there is one; this is for when nothing is.
             onLeftEdge = onLeftEdge,
         )
-        Spacer(Modifier.width(LibraryScreenTvDefaults.ChromeSlotWidth))
+        if (state.sources.isEmpty()) {
+            Spacer(slot)
+        } else {
+            LibrarySortButton(
+                state = state,
+                onClick = { onAction(LibraryAction.SortOpened) },
+                modifier = slot.libraryStop(sortFocus, focusMemory),
+            )
+        }
     }
 }
 
