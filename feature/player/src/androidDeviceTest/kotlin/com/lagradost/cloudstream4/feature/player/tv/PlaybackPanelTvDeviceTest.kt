@@ -10,6 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.test.isFocused
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithText
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.lagradost.cloudstream4.core.devicetest.Dpad
@@ -152,6 +153,49 @@ class PlaybackPanelTvDeviceTest {
         }
     }
 
+    /**
+     * `RowScroll`, as Quick Search's: five rows fit and do not move the list; each row past the fifth moves it by one
+     * whole pitch, and the focused row sits whole between the header and 7e's rule, never cut against either.
+     *
+     * The rule is a hairline with no semantics, so the lower bound is where the fifth row ends before anything moves:
+     * 7e ends it a `RuleGap` above the rule. Measured, not derived from Done: each dp rounds to whole pixels on its own
+     * (1.1 px apart on `Television_720p`).
+     */
+    @Test
+    fun rowsPastTheFifthMoveTheListByWholeRowsAndStayBetweenHeaderAndRule() {
+        show(initial = Long)
+        val names = Long.rows.map { it.title }
+        assertEquals(names[0], dpad.focused())
+
+        val headerBottom = bounds(Long.title).bottom
+        val aboveRule = bounds(names[4]).bottom
+        val firstTop = bounds(names[0]).top
+        val fifthTop = bounds(names[4]).top
+        val height = bounds(names[0]).height
+        // Measured before anything moves: after, every row is a pitch higher and a difference of two reads nothing.
+        val pitch = bounds(names[1]).top - firstTop
+
+        assertEquals(names.subList(1, 5), (1..4).map { dpad.press(Dpad.Down) })
+        rule.waitForIdle()
+        // The first row is still there: measured on the default scroll, it had left the list entirely by now.
+        val first = rule.onAllNodesWithText(names[0]).fetchSemanticsNodes().singleOrNull()
+        assertTrue("A row that fits scrolled ${names[0]} out of the list", first != null)
+        assertEquals("A row that fits moved the list", firstTop, first!!.boundsInRoot.top, 0.5f)
+
+        for (next in 5 until names.size) {
+            assertEquals(names[next], dpad.press(Dpad.Down))
+            rule.waitForIdle()
+            val focused = bounds(names[next])
+            assertEquals("${names[next]} is not where the fifth row was", fifthTop, focused.top, 0.5f)
+            assertEquals("Not one whole pitch", fifthTop - pitch, bounds(names[next - 1]).top, 0.5f)
+            assertEquals("${names[next]} is cut", height, focused.height, 0.5f)
+            assertTrue("${names[next]} runs under the header", focused.top >= headerBottom)
+            assertTrue("${names[next]} runs past the rule", focused.bottom <= aboveRule + 0.5f)
+        }
+    }
+
+    private fun bounds(text: String) = rule.onNodeWithText(text).fetchSemanticsNode().boundsInRoot
+
     private fun focusedNode(): Int? = rule.onAllNodes(isFocused()).fetchSemanticsNodes().firstOrNull()?.id
 
     // ---- Screenshots ----
@@ -235,6 +279,15 @@ class PlaybackPanelTvDeviceTest {
                     PanelRow("video", "Video tracks", "1920×1080", RowVerb.Open),
                 ),
             ),
+        )
+
+        /** Seven rows, two more than fit, under a title nothing in the HUD shares. */
+        val Long = PlaybackPanelState(
+            kind = PanelKind.Subtitles,
+            title = "More languages",
+            rows = listOf("Arabic", "Czech", "Danish", "Dutch", "Finnish", "French", "German").mapIndexed { i, name ->
+                PanelRow("group:$i", name, "Online", RowVerb.Use, active = i == 0)
+            },
         )
 
         val Variants = PlaybackPanelState(
