@@ -87,8 +87,25 @@ class LogRedactionTest {
             languageCode = "en",
         )
         val text = redactedSubtitleInfo(subtitle)
-        assertEquals("name=English 1 origin=URL mime=application/x-subrip lang=en", text)
+        assertEquals("origin=URL mime=application/x-subrip lang=en", text)
         assertNoMarker(text)
+    }
+
+    @Test
+    fun `a subtitle picked from the device drops its name, which is the file name or the uri`() {
+        val picked = SubtitleData(
+            originalName = "content://com.android.externalstorage.documents/MARKER_PATH/file.srt",
+            nameSuffix = "1",
+            url = "content://com.android.externalstorage.documents/MARKER_PATH/file.srt",
+            origin = SubtitleOrigin.DOWNLOADED_FILE,
+            mimeType = "application/x-subrip",
+            headers = emptyMap(),
+            languageCode = null,
+        )
+        val text = redactedSubtitleInfo(picked)
+        assertEquals("origin=DOWNLOADED_FILE mime=application/x-subrip lang=null", text)
+        assertNoMarker(text)
+        assertFalse(text, text.contains("content://"))
     }
 
     @Test

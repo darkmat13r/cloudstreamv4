@@ -1765,13 +1765,13 @@ to `bytesWritten`, and every byte right. The log had 0 `ENOENT` and 0 `UNIQUE co
 
 **The defect.** Log calls (`Log.*`, `println`, `debugPrint`, `debugWarning`, `System.err`) interpolated values that are or contain a URL: an `ExtractorLink`, `SubtitleFile` or `SubtitleData` (their `toString` prints the URL, and for `SubtitleData` the headers too), a header map, a referer, a repository or plugin URL, an OAuth redirect, a response body, or an absolute path. On Android that is logcat, which bug reports, `adb` and any app holding `READ_LOGS` can read, and which the app's own logcat export shares. Headers and redirects can carry cookies and auth tokens. The worst was `GeneratorPlayer.playerError`, which logged the selected link, `url=`, `headers=`, `referer=`, the exception's message and its stack trace on every playback failure.
 
-**The fix.** Only the log text changes, and nothing else does. A log line now keeps the event, a fixed description, the provider's display name, the quality, the link type, the HTTP status, the position and duration, and the exception's class. Where a host name helps (Cloudflare, the WebView resolver), it keeps the host and drops the path and query. `:app` gets `utils/LogRedaction.kt`, all `internal`: `redactedLinkInfo` (`source=<name> quality=<q> type=<type>`, or `type=local` for a downloaded file), `redactedSubtitleInfo` (`lang=` / `name= origin= mime= lang=`) and `redactedThrowable` (the cause chain as class names, plus media3's error-code name and an `InvalidResponseCodeException`'s status). `:library` is the published API, so it gets no helper and its lines are edited inline. Commented-out log lines are left as they are.
+**The fix.** Only the log text changes, and nothing else does. A log line now keeps the event, a fixed description, the provider's display name, the quality, the link type, the HTTP status, the position and duration, and the exception's class. Where a host name helps (Cloudflare, the WebView resolver), it keeps the host and drops the path and query. `:app` gets `utils/LogRedaction.kt`, all `internal`: `redactedLinkInfo` (`source=<name> quality=<q> type=<type>`, or `type=local` for a downloaded file), `redactedSubtitleInfo` (`lang=` / `origin= mime= lang=`; never the name, which for a file picked from the device is the file name or the whole `content://` uri) and `redactedThrowable` (the cause chain as class names, plus media3's error-code name and an `InvalidResponseCodeException`'s status). `:library` is the published API, so it gets no helper and its lines are edited inline. Commented-out log lines are left as they are.
 
 **Extension API.** `:app:dumpExtensionApi` adds 9 lines to `app/api/classes-jar.api` and removes or changes none. The additions are the class `com/lagradost/cloudstream3/utils/LogRedactionKt` and its six functions. The dump reads bytecode, where `internal` is `public`, so the class shows up even though Kotlin extensions cannot call it. Keeping the helpers out of the jar would need a module `:app` depends on that is not merged into `classes.jar` and can see `SubtitleData` and `ExtractorUri`, which live in `:app`, and no such module exists.
 
-**Test.** `app/src/test/.../utils/LogRedactionTest.kt` builds a link, a `SubtitleFile`, a `SubtitleData` and a `PlaybackException` whose URL, headers, referer, extractor data and messages hold marker strings, and asserts no marker survives the helpers. It also asserts that `ExtractorLink.toString()` does leak, which is what the old lines printed. Control: with `url=${link.url}` planted in `redactedLinkInfo`, 2 of the 5 tests failed.
+**Test.** `app/src/test/.../utils/LogRedactionTest.kt` builds a link, a `SubtitleFile`, a `SubtitleData` and a `PlaybackException` whose URL, headers, referer, extractor data and messages hold marker strings, and asserts no marker survives the helpers. A device-picked subtitle (`origin=DOWNLOADED_FILE`, name a `content://…/MARKER_PATH/file.srt` uri) is its own case; it failed against the first version, which printed `name=`. It also asserts that `ExtractorLink.toString()` does leak, which is what the old lines printed. Control: with `url=${link.url}` planted in `redactedLinkInfo`, 2 of the 5 tests failed.
 
-### Call sites changed (66)
+### Call sites changed (67)
 
 | File (line on master) | Before | After |
 |---|---|---|
@@ -1790,13 +1790,14 @@ to `bytesWritten`, and every byte right. The log had 0 `ENOENT` and 0 `UNIQUE co
 | `MainActivity.kt:305` | repository URL | fixed text |
 | `MainActivity.kt:312` | OAuth redirect URL (can carry a code or token) | the sync provider's name |
 | `MainActivity.kt:737`, `:739` | temporary file's absolute path | file name |
+| `MainActivity.kt:825` | navigation exception's message (quotes the deep-link uri, which can be an OAuth redirect) | `redactedThrowable` |
 | `ui/settings/SettingsGeneralScreen.kt:71`, `SettingsUpdatesScreen.kt:63`, `utils/DirectoryPicker.kt:25` | picked folder's URI and full path | whether a path resolved |
 | `ui/settings/extensions/PluginsViewModel.kt:78`, `:163`, `:287` | `RepositoryData`/`PluginWrapper` (URLs) | repository names, plugin internal name |
 | `ui/result/SyncViewModel.kt:111`, `utils/SyncUtil.kt:37` | the sync URL | whether one was given / fixed text |
 | `syncproviders/providers/OpenSubtitlesApi.kt:133`, `:134`, `:209`, `:214` | query URL, response bodies, the signed download link | status code, body length, whether a link was found |
 | `syncproviders/providers/SimklApi.kt:601` | API URL | type and Simkl id |
 | `plugins/VotingApi.kt:38`, `:45` | vote URL (names the plugin) | fixed text |
-| `plugins/PluginManager.kt:172`, `:219`, `:300`, `:597`, `:678`, `:690`, `:693`, `:700`, `:778` | plugin URLs, `PluginData`/`OnlinePluginData` (URL, path), absolute paths | internal names, version, file names |
+| `plugins/PluginManager.kt:172`, `:219`, `:300`, `:597`, `:678`, `:690`, `:693`, `:700`, `:778` | plugin URLs, `PluginData`/`OnlinePluginData` (URL, path), absolute paths; at `:678` and `:700`, `Log.getStackTraceString`, whose cause messages carry the plugin's full path | internal names, version, file names; `redactedThrowable` at `:678` and `:700` |
 | `network/CloudflareKiller.kt:65`, `:75`, `:118` | full request URL | host |
 | `utils/InAppUpdater.kt:191`, `services/PackageInstallerService.kt:63` | update URL | fixed text |
 | `utils/ImageModuleCoil.kt:84`, `:85` | error message, the request's URL | exception class, data type |

@@ -57,6 +57,7 @@ import com.lagradost.cloudstream3.utils.UIHelper.colorFromAttribute
 import com.lagradost.cloudstream3.utils.UiText
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.sanitizeFilename
 import com.lagradost.cloudstream3.utils.extractorApis
+import com.lagradost.cloudstream3.utils.redactedThrowable
 import com.lagradost.cloudstream3.utils.txt
 import dalvik.system.PathClassLoader
 import kotlinx.coroutines.sync.Mutex
@@ -675,7 +676,7 @@ object PluginManager {
             currentlyLoading = null
             true
         } catch (e: Throwable) {
-            Log.e(TAG, "Failed to load ${file.name}: ${Log.getStackTraceString(e)}")
+            Log.e(TAG, "Failed to load ${file.name}: ${redactedThrowable(e)}")
             showToast(
                 // context.getActivity(), // we are not always on the main thread
                 context.getString(R.string.plugin_load_fail).format(fileName),
@@ -697,7 +698,7 @@ object PluginManager {
         try {
             plugin.beforeUnload()
         } catch (e: Throwable) {
-            Log.e(TAG, "Failed to run beforeUnload ${File(absolutePath).name}: ${Log.getStackTraceString(e)}")
+            Log.e(TAG, "Failed to run beforeUnload ${File(absolutePath).name}: ${redactedThrowable(e)}")
         }
 
         // remove all registered apis

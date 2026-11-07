@@ -38,11 +38,13 @@ internal fun redactedLinkInfo(selection: Pair<ExtractorLink?, ExtractorUri?>?): 
 internal fun redactedSubtitleInfo(file: SubtitleFile?): String =
     if (file == null) "subtitle=none" else "lang=${file.lang}"
 
-/** `name=<display name> origin=<origin> mime=<mime> lang=<code>`, or `subtitle=none`. */
+/**
+ * `origin=<origin> mime=<mime> lang=<code>`, or `subtitle=none`. Never the name: for a file picked
+ * from the device it is the file name or the whole `content://` uri.
+ */
 internal fun redactedSubtitleInfo(subtitle: SubtitleData?): String =
     if (subtitle == null) "subtitle=none"
-    else "name=${subtitle.name} origin=${subtitle.origin} mime=${subtitle.mimeType} " +
-        "lang=${subtitle.languageCode}"
+    else "origin=${subtitle.origin} mime=${subtitle.mimeType} lang=${subtitle.languageCode}"
 
 /**
  * The cause chain as class names, outermost first: `a.B(ERROR_CODE_X) <- c.D(status=403)`.

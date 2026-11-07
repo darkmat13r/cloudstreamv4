@@ -176,6 +176,7 @@ import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import com.lagradost.cloudstream3.utils.USER_PROVIDER_API
 import com.lagradost.cloudstream3.utils.USER_SELECTED_HOMEPAGE_API
 import com.lagradost.cloudstream3.utils.downloader.DownloadQueueManager
+import com.lagradost.cloudstream3.utils.redactedThrowable
 import com.lagradost.cloudstream3.utils.setText
 import com.lagradost.cloudstream3.utils.setTextHtml
 import com.lagradost.cloudstream3.utils.txt
@@ -822,7 +823,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
             navController.navigate(destinationId, null, builder.build())
             navController.currentDestination?.matchDestination(destinationId) == true
         } catch (e: IllegalArgumentException) {
-            Log.e("NavigationError", "Failed to navigate: ${e.message}")
+            Log.e("NavigationError", "Failed to navigate: ${redactedThrowable(e)}")
             false
         }
     }
