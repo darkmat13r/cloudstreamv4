@@ -2143,3 +2143,35 @@ profile signed in to the deleted one's MAL, AniList, Simkl and subtitle accounts
 
 **Not covered:** the TV audit's other account finding, that the account screen never shows on a fresh install
 (`skipStartup` tests the empty stored array, `AccountSelectActivity`), is `Q16`'s to measure, not this fix's.
+
+---
+
+## BUG-52 — An invisible character inside `://` hid a url, and its token, from the log redaction · **high, security** · measured 2026-11-08
+
+**Status:** fixed in the PR that adds this entry, stacked on #221 (`KMP-56`), whose head makes `:desktopApp`'s rules the fourth synced copy. The fix is made in all four copies of the rules listed under `BUG-44`:
+
+- `:app` `utils/LogRedaction.kt`
+- `:library` `mvvm/ArchComponentExt.kt`
+- `:feature:extensions:sandbox` `PluginHost.kt`
+- `:desktopApp` `detail/DesktopDetailSource.kt`
+
+**The defect.** `withoutUrls` finds a url by its `scheme://`. A control or format character between `https:` and `//`, such as `https:<ZWSP>//cdn.example/x?token=…`, stops the pattern matching, so the whole url, query and token stay in the text. Zero-width characters and bidi marks are invisible wherever the text is shown. A url in an exception's message is whatever a provider or server wrote, so it can carry one.
+
+**Measured before the fix.** The case `"cdn https:​//cdn.example/x?token=MARKER_QUERY"` was added to the shared table, and each copy's test then failed with `?token=MARKER_QUERY` still in the output:
+
+- `StackTraceRedactionTest` (`:app`)
+- `LogErrorRedactionTest` (`:library`, through `logError`'s `safeApiCall:` line)
+- `PluginHostRedactionTest` (the sandbox)
+- `DesktopRedactionTest` (`:desktopApp`)
+
+The `:app`, `:library` and sandbox copies were byte-identical to master `42bf120c6` when this was measured, so master leaks the same way.
+
+**The fix.** Each copy's `withoutUrls` now begins with `withoutHiddenCharacters()`, a private helper. It drops every Unicode Cc and Cf character (ZWSP, ZWJ, ZWNJ, BOM, LRM/RLM, the bidi embeddings and isolates, and the C0/C1 controls) before any pattern runs. It keeps `\n`, `\r` and `\t`: they shape a stack trace, and the path rule ends at a line break. Every caller (`redactedText`, `redactedStackTrace`, `logError`, `getStackTracePretty`, the plugin host's failure line and the desktop failure lines) goes through `withoutUrls`, so all of them are covered. `:desktopApp`'s separate `withoutInvisible()`, which its line-shaped callers already call first, is left as it is.
+
+**Tests.** The shared table, run by all four copies' tests, gains three cases:
+
+- the ZWSP case above
+- a BOM inside the scheme (`ht<BOM>tps://…`)
+- a line `keeps\nlines\r\nand\ttabs` that must come out unchanged. It guards against stripping the line breaks a trace needs.
+
+**Not covered.** A *visible* break inside `://`, such as a newline or a space, is not joined, so such a url is not recognised. Joining across visible whitespace would merge unrelated words.

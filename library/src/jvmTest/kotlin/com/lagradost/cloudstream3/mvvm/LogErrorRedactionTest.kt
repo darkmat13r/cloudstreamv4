@@ -47,6 +47,10 @@ class LogErrorRedactionTest {
         "only the host https://host.example" to "only the host https://host.example",
         "index 3 out of bounds" to "index 3 out of bounds",
         "frame at com.example.Home(Home.kt:12)" to "frame at com.example.Home(Home.kt:12)",
+        // BUG-52: an invisible character must not hide a url from the patterns, and line breaks must survive.
+        "cdn https:\u200B//cdn.example/x?token=MARKER_QUERY" to "cdn https://cdn.example/<…>",
+        "bom ht\uFEFFtps://cdn.example/MARKER_PATH" to "bom https://cdn.example/<…>",
+        "keeps\nlines\r\nand\ttabs" to "keeps\nlines\r\nand\ttabs",
     )
 
     private fun captured(block: () -> Unit): String {

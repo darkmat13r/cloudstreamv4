@@ -46,12 +46,23 @@ private val WINDOWS_USER_PATH = Regex(
 )
 
 /**
+ * BUG-52: control and format characters (Unicode Cc and Cf: ZWSP, ZWJ, ZWNJ, BOM, bidi marks and the
+ * rest) out, except the line breaks and tabs that shape a stack trace. One inside `://`
+ * (`https:<ZWSP>//`) would hide a url from [URL_IN_TEXT], so they go before any pattern runs.
+ */
+private fun String.withoutHiddenCharacters(): String = filterNot { c ->
+    c.category == CharCategory.FORMAT ||
+        (c.category == CharCategory.CONTROL && c != '\n' && c != '\r' && c != '\t')
+}
+
+/**
  * Text with a `file:` uri, a path under `/storage`, `/sdcard`, `/data/user`, `/mnt`, `/Users`, `/home`
  * or `/Volumes`, or a Windows `C:\Users\…` path replaced by `<path>`, and every other url cut to
  * `scheme://host[:port]/<…>`. The host is kept because it helps triage and is not a secret; the
  * userinfo, path, query and fragment are not.
  */
 private fun String.withoutUrls(): String = this
+    .withoutHiddenCharacters()
     .replace(FILE_URI, "<path>")
     .replace(URL_IN_TEXT) { match ->
         val (scheme, host, rest) = match.destructured
