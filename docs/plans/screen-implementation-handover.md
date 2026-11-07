@@ -32,17 +32,13 @@ hand-rolled TV focus engine. Nothing has been migrated out of it yet.
 
 **1. The designs** — Claude Design project *CloudStream 4 — Redesign (TV / Mobile / Desktop)*:
 
-**Destination: `design/` at the repo root.** Every file below lives there, exported from the
-project on 2026-10-14. Read and update the `.dc.html` files in `design/`; they open in a browser,
-with `support.js` beside them.
-
-The origin is the Claude Design project,
-https://claude.ai/design/p/a9ab3c83-bcc5-4ef4-854b-846c95da8438. Per file, append `?file=<name>`,
-e.g. `?file=TV+Home.dc.html`. A change made only in the project is not in `design/` until someone
-re-exports it.
-A second Claude Design project, *Project file storage*,
-https://claude.ai/design/p/c5fd7e44-70f5-41b6-8a48-e850eb88334b, holds the same 13 files as
-`design/` (12 `.dc.html` + `support.js`, every size identical, checked 2026-10-15); it is a copy, not a newer version.
+**The origin is the owner's Claude Design project.** Every file below lives there. A local export, exported on
+2026-10-14, sits in `design/` at the repo root on the owner's machine: the `.dc.html` files open in a browser, with
+`support.js` beside them. A change made only in the project is not in that export until someone re-exports it.
+**None of it is in the repository** (`INF-12`, owner, 2026-11-07: the repo is public; `/design/` is in
+`.gitignore`). A `design/X.dc.html` named in these docs is that board file in the owner's Claude Design project.
+A second project in the owner's Claude Design account, *Project file storage*, holds a copy of the same 13 files
+(12 `.dc.html` + `support.js`, every size identical, checked 2026-10-15); it is not a newer version.
 
 | File | Contents |
 |---|---|
