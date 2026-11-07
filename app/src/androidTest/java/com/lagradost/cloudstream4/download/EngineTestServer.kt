@@ -138,6 +138,8 @@ class EngineTestServer(val source: SeededSource, private val etag: String = "\"v
             respond(client, requestLine.substringBefore(' '), headers)
         } catch (_: IOException) {
             // The client hung up.
+        } catch (_: InterruptedException) {
+            // close() while a throttled body was sleeping: ending the response is all that is left to do.
         } finally {
             open -= client
             runCatching { client.close() }

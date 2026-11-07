@@ -37658,7 +37658,10 @@ public final class com/lagradost/cloudstream4/download/EngineVideoDownload : jav
 public final static class com/lagradost/cloudstream4/download/EngineVideoDownload$Companion : java/lang/Object {
 	public synthetic fun <init> (Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun defaultStagingRoot (Landroid/content/Context;)Ljava/io/File;
+	public final fun deleteStagingForDelete (Landroid/content/Context;I)Z
 	public final fun fromSwitch (Landroid/content/Context;)Lcom/lagradost/cloudstream4/download/EngineVideoDownload;
+	public final fun getDownloadListInfo (Landroid/content/Context;I)Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$DownloadedFileInfoResult;
+	public final fun refusesPlay (Landroid/content/Context;I)Z
 	public final fun sweepOrphanedStaging (Landroid/content/Context;Ljava/util/Collection;Ljava/io/File;)V
 	public static synthetic fun sweepOrphanedStaging$default (Lcom/lagradost/cloudstream4/download/EngineVideoDownload$Companion;Landroid/content/Context;Ljava/util/Collection;Ljava/io/File;ILjava/lang/Object;)V
 }

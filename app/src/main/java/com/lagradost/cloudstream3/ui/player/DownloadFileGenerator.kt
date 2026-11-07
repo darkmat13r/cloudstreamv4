@@ -12,6 +12,7 @@ import com.lagradost.cloudstream3.utils.SubtitleUtils.cleanDisplayName
 import com.lagradost.cloudstream3.utils.SubtitleUtils.isMatchingSubtitle
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.getFolder
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.getDownloadFileInfo
+import com.lagradost.cloudstream4.download.EngineVideoDownload
 
 class DownloadFileGenerator(
     episodes: List<ExtractorUri>
@@ -43,6 +44,9 @@ class DownloadFileGenerator(
             if (info != null) {
                 val newMeta = meta.copy(uri = info.path)
                 callback(null to newMeta)
+            } else if (meta.id?.let { id -> context?.let { EngineVideoDownload.refusesPlay(it, id) } } == true) {
+                // KMP-60: an engine download whose file does not exist yet; never hand the player an empty path.
+                return false
             } else callback(null to meta)
         } else callback(null to meta)
 

@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.download
 
 import android.content.Context
+import android.net.Uri
 import androidx.lifecycle.asFlow
 import com.lagradost.cloudstream3.isEpisodeBased
 import com.lagradost.cloudstream3.mvvm.Resource
@@ -13,7 +14,7 @@ import com.lagradost.cloudstream3.utils.DOWNLOAD_EPISODE_CACHE
 import com.lagradost.cloudstream3.utils.DataStore.getKey
 import com.lagradost.cloudstream3.utils.DataStore.getKeys
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
-import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.getDownloadFileInfo
+import com.lagradost.cloudstream4.download.EngineVideoDownload.Companion.getDownloadListInfo
 import com.lagradost.cloudstream4.feature.downloads.DownloadShelf
 import com.lagradost.cloudstream4.feature.downloads.DownloadStorage
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
@@ -117,8 +118,9 @@ internal class AndroidDownloadsSource(
             .mapNotNull { appContext.getKey<DownloadObjects.DownloadEpisodeCached>(it) }
             .distinctBy { it.id }
             .mapNotNull { cached ->
-                val file = getDownloadFileInfo(appContext, cached.id) ?: return@mapNotNull null
-                if (file.fileLength <= 1) return@mapNotNull null
+                val file = getDownloadListInfo(appContext, cached.id) ?: return@mapNotNull null
+                // An engine download that has only just started has an empty path and may hold no byte yet (KMP-60).
+                if (file.fileLength <= 1 && file.path != Uri.EMPTY) return@mapNotNull null
                 Episode(cached, EpisodeOnDisk(cached.id, file.fileLength, file.totalBytes))
             }
             .groupBy { it.cached.parentId }
