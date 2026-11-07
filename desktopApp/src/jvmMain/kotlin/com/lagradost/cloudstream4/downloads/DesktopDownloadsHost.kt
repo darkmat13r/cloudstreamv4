@@ -104,7 +104,7 @@ internal fun DownloadSeriesHost(
                 is SeriesEffect.ConfirmDelete -> confirming = listOf(effect.id)
                 is SeriesEffect.ConfirmDeleteAll -> confirming = effect.ids
                 SeriesEffect.Close -> onClose()
-                // Playing a file from the disk needs the player to take a local file, which it does not yet (`KMP-73`).
+                // Playing a file from the disk needs the player to take a local file, which it does not yet (`KMP-74`).
                 is SeriesEffect.Play -> Unit
             }
         }

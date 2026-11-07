@@ -6063,3 +6063,35 @@ though. To do:
 2. Give each reason a key with its plain, translated words (an `I18N` task first). A screen draws the words; the type
    stays only as the pasteable detail.
 3. Keep the rule that no message, address or path reaches the screen. Rerun the TV Home device suite.
+
+## KMP-75 — Downloads in the Mac's sidebar, over `KMP-52`'s service · **built 2026-11-08**
+
+What `KMP-54` left for wiring:
+- **The fourth sidebar row, with ⌘4** (Ctrl+4 elsewhere): `TopLevelDestination.Downloads`, with `CloudStreamIcons.Download`
+  and `title_downloads`. The Go menu lists it with its key.
+- **`DownloadsHost` and `DownloadSeriesHost`** (`desktopApp/.../downloads/DesktopDownloadsHost.kt`), over
+  `DesktopDownloads`:
+  - Delete goes through the page's own sheet. `ConfirmDelete` names exactly what is asked about. The sheet's Delete
+    calls `delete` (titles) or `deleteEpisodes` (D4); its Cancel and Escape remove nothing.
+  - Show in Finder is offered only for what `fileOf` finds on the disk, a finished file or a series' folder, and selects
+    it with `Desktop.browseFileDirectory`.
+  - Free space on D4 is the source's own `freeBytes`, from the same volume as the titles page.
+  - A file removed in Finder is noticed on arrival: `refresh()`, then `Reappeared`.
+- **`main()` makes the one `DesktopDownloads`** (`~/Downloads/CloudStream`, `~/.cloudstream4/downloads.json`) and closes
+  it in a shutdown hook, so a running download comes back Paused. `DesktopApp`'s `downloads` defaults to null, so no test
+  reads or writes the real downloads file; the page is then empty.
+- **Sizes** are formatted Finder's way: decimal units, two decimal places from GB up, with the locale's decimal mark.
+
+**Not here:**
+- **Playing a downloaded episode** (D4's Play) is `KMP-74`. The player takes a `StreamLink`, not a local file.
+- **D1's Play from link and Download queue** have no Mac page behind them, so their effects do nothing here. They are
+  `KMP-54`'s buttons; whether the Mac shows them is a board question for the PM.
+
+**Tests** (`DownloadsHostTest`, against the real service and a loopback server in a temporary folder):
+- A film is downloaded; ⌘⌫ asks and Cancel keeps the file; the row's menu Delete, then the sheet's Delete, removes the
+  file and its record.
+- ⌘4 and the sidebar's fourth row open Downloads through `DesktopApp`.
+- The size format.
+
+Observed and left for `KMP-54`: after the sheet is cancelled with Return, the row's hover Delete verb did not reopen it in
+the test scene, while the row's menu did. In a fresh scene the verb works.
