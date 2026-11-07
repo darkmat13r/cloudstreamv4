@@ -56,6 +56,9 @@ internal class LibraryDetailSource(
             bucket == null -> Unit
             else -> {
                 // First time on a list: the card needs its words and poster, which only the page had.
+                // Only a page that was opened can put a title on a list, and opening it is what fills `seen`. Without
+                // it there is no name or poster to keep, and a card with neither is worse than no card, so nothing is
+                // written: the page's own state already shows the choice, and the next open can make it again.
                 val detail = seen[id] ?: return
                 store.remember(
                     LibraryTitle(

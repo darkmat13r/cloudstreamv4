@@ -165,6 +165,10 @@ class DetailScreenTest {
 
     private fun ImageComposeScene.has(words: String) = nodes(words).isNotEmpty()
 
+    /** What a screen reader is told about the one control that reads as [words], beside its name. */
+    private fun ImageComposeScene.stateOf(words: String): String? =
+        nodes(words).single().config.getOrNull(SemanticsProperties.StateDescription)
+
     private fun ImageComposeScene.isSelected(words: String): Boolean {
         val found = nodes(words).filter { SemanticsProperties.Selected in it.config }
         val node = found.singleOrNull() ?: error("expected one choice reading \"$words\", found ${found.size}")
@@ -224,6 +228,16 @@ class DetailScreenTest {
         scene.click(scene.centreOf("Home"))
         assertEquals(2, backs)
         scene.close()
+    }
+
+    @Test
+    fun `the watch list button says which list the title is on, or None`() {
+        val on = page(loaded(series))
+        assertEquals("Watching", on.stateOf("Set watch status"))
+        on.close()
+        val off = page(loaded(film))
+        assertEquals("None", off.stateOf("Set watch status"))
+        off.close()
     }
 
     // ---- Seasons and episodes (E1, E2) ----

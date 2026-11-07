@@ -37,6 +37,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -76,6 +77,7 @@ import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.code
 import com.lagradost.cloudstream4.feature.detail.episodeSubtitle
+import com.lagradost.cloudstream4.feature.detail.label
 import com.lagradost.cloudstream4.feature.detail.metaRun
 import com.lagradost.cloudstream4.feature.detail.resumeCaption
 import com.lagradost.cloudstream4.feature.detail.toPageUiState
@@ -374,10 +376,14 @@ private fun Actions(detail: TitleDetail, onAction: (DetailAction) -> Unit) {
         }
         val status = detail.watchStatus
         if (status != null) {
+            // The glyph's shape says whether the title is on a list. A screen reader is told which one, or None, on the
+            // button's own node: "Set watch status, Watching".
+            val state = status.label()
             DesktopIconButton(
                 icon = if (status != DetailWatchStatus.None) CloudStreamIcons.Done else CloudStreamIcons.Add,
                 contentDescription = stringResource(Res.string.action_add_to_bookmarks),
                 onClick = { onAction(DetailAction.WatchStatusPickerOpened) },
+                modifier = Modifier.semantics { stateDescription = state },
             )
         }
     }
