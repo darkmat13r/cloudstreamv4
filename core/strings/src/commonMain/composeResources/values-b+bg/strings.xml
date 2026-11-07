@@ -4,13 +4,19 @@
 <string name="detail_load_failed_body">Източникът може да не е наличен.</string>
 <string name="detail_load_failed_headline">Заглавието не можа да се отвори</string>
 <plurals name="downloads_active"><item quantity="one">%d активно изтегляне</item><item quantity="other">%d активни изтегляния</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d се изтеглят</item><item quantity="other">%d се изтеглят</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d в опашка</item><item quantity="other">%d в опашка</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Изтриване на %d изтегляне?</item><item quantity="other">Изтриване на %d изтегляния?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d епизод</item><item quantity="other">%d епизода</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d неуспешно</item><item quantity="other">%d неуспешни</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d изтегляне в опашката</item><item quantity="other">%d изтегляния в опашката</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d заглавие · %2$s</item><item quantity="other">%1$d заглавия · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ОТМЕТКА</item><item quantity="other">%d ОТМЕТКИ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d секция не се зареди</item><item quantity="other">%d секции не се заредиха</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Търсене в %d източник</item><item quantity="other">Търсене във всички %d източника</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това в %d източник.</item><item quantity="other">Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това във всички %d източника.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ИЗТОЧНИК</item><item quantity="other">%d ИЗТОЧНИКА</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d раздел</item><item quantity="other">%d раздела</item></plurals>
 <string name="account">Акаунт</string>
 <string name="action_add_to_bookmarks">Задайте статус на гледане</string>
 <string name="action_add_to_favorites">Добави в любими</string>
@@ -163,6 +169,11 @@
 <string name="delete_repository">Изтриване на хранилище</string>
 <string name="delete_repository_plugins">Това също ще изтрие всички хранилища за плъгини</string>
 <string name="deselect_all">Премахване на избора на всички</string>
+<string name="desktop_menu_go">Отиди</string>
+<string name="detail_source_resolving">Извличане…</string>
+<string name="detail_sources_done">Отговорили: %1$d от %2$d</string>
+<string name="detail_sources_progress">Отговорили: %1$d от %2$d · зареждане…</string>
+<string name="detail_start_over">Отначало</string>
 <string name="device_pin_counter_text">Кодът изтича след %1$dm %2$ds</string>
 <string name="device_pin_error_message">Не може да се получи PIN кода на устройството, опитайте локално удостоверяване</string>
 <string name="device_pin_expired_message">PIN кодът е изтекъл !</string>
@@ -199,12 +210,19 @@
 <string name="downloaded_file">Изтеглен файл</string>
 <string name="downloading">Изтегля се</string>
 <string name="downloads_browse_library">Преглед на библиотеката</string>
+<string name="downloads_cancel_confirm_body">Така ще се изхвърлят изтеглените досега %s.</string>
+<string name="downloads_cancel_confirm_title">Отказване на това изтегляне?</string>
+<string name="downloads_cancel_download">Отказ на изтеглянето</string>
+<string name="downloads_column_size">Размер</string>
 <string name="downloads_delete_all">Изтрий всички</string>
+<string name="downloads_delete_confirm_body">Това освобождава %s и не може да бъде отменено.</string>
 <string name="downloads_delete_select">Изберете елементите за изтриване</string>
 <string name="downloads_empty">В момента няма изтегляния.</string>
 <string name="downloads_empty_body">Изтеглянията, стартирани от списъка с епизоди на заглавие, се показват тук и се възпроизвеждат без връзка.</string>
 <string name="downloads_empty_headline">Все още няма изтегляния</string>
+<string name="downloads_free">%s свободни</string>
 <string name="downloads_free_up_space">Освобождаване на място</string>
+<string name="downloads_keep_downloading">Продължи изтеглянето</string>
 <string name="downloads_load_failed_body">Изтеглените ви файлове не са променени.</string>
 <string name="downloads_load_failed_headline">Изтеглянията ви не можаха да се прочетат</string>
 <string name="downloads_offline_pill">Офлайн · няма връзка</string>
@@ -218,6 +236,8 @@
 <string name="downloads_reason_storage_unavailable">Паметта е недостъпна</string>
 <string name="downloads_retry_failed">Нов опит за неуспешните (%d)</string>
 <string name="downloads_select">Избиране</string>
+<string name="downloads_selected_status">Избрани %1$d от %2$d · %3$s</string>
+<string name="downloads_show_in_finder">Покажи във Finder</string>
 <string name="downloads_state_queued">На опашката</string>
 <string name="downloads_storage_full_headline">Няма достатъчно памет</string>
 <string name="downloads_storage_legend">%1$s от %2$s използвани · %3$s в изтегляния</string>
@@ -341,6 +361,7 @@
 <string name="home_bookmarks_no_status_body">Изберете един отгоре, за да видите тези отметки.</string>
 <string name="home_bookmarks_no_status_headline">Не е избран статус</string>
 <string name="home_change_provider_img_des">Смяна на доставчика</string>
+<string name="home_choose_source">Избор на източник</string>
 <string name="home_expanded_hide">Скрий</string>
 <string name="home_info">Информация</string>
 <string name="home_main_poster_img_des">Main Poster</string>
@@ -352,9 +373,14 @@
 <string name="home_offline_source_headline">%1$s се нуждае от връзка</string>
 <string name="home_play">Пусни</string>
 <string name="home_random">Случаен</string>
+<string name="home_reload_failed">%1$s не можа да се презареди. Тези редове са отпреди %2$s.</string>
 <string name="home_search_only_body">Нито едно от разширенията ви няма начална страница, но все пак можете да търсите в тях.</string>
 <string name="home_source">Източник</string>
+<string name="home_source_none_line">Без редове; библиотеката остава</string>
 <string name="home_source_none_subtitle">БЕЗ РЕДОВЕ · ВАШИТЕ РЕДОВЕ ОСТАВАТ</string>
+<string name="home_source_picker_body">Редовете идват от едно разширение наведнъж.</string>
+<string name="home_source_picker_title">Източник за началото</string>
+<string name="home_source_unreachable">Не беше достъпен миналия път</string>
 <string name="install_prerelease">Инсталирай предварителна версия</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Неуспешно свързване с GitHub. Включване на jsDelivr прокси…</string>
@@ -603,6 +629,13 @@
 <string name="search_poster_img_des">Постер</string>
 <string name="search_provider_text_providers">Търсене чрез доставчици</string>
 <string name="search_provider_text_types">Търсене с помощта на типове</string>
+<string name="search_quick_empty_body">Всички източници отговориха и никой няма „%s“. Опитайте по-кратко търсене или отворете пълното търсене, за да смените източниците.</string>
+<string name="search_quick_empty_headline">Няма съвпадения</string>
+<string name="search_quick_meta_answered">ВСИЧКИ ИЗТОЧНИЦИ ОТГОВОРИХА</string>
+<string name="search_quick_meta_answering">РЕЗУЛТАТИТЕ ИДВАТ С ОТГОВОРИТЕ НА ИЗТОЧНИЦИТЕ</string>
+<string name="search_quick_open_full">Отвори пълното търсене</string>
+<string name="search_quick_status">ОТГОВОРИЛИ %1$d ОТ %2$d · НЕУСПЕШНИ %3$d</string>
+<string name="search_quick_title">Бързо търсене</string>
 <string name="search_state_idle_body_desktop">Въведете заглавие. Резултатите се появяват под всеки източник, когато той отговори.</string>
 <string name="search_state_no_results_type_filter">Само %s. Филтърът по тип стеснява търсенето.</string>
 <string name="search_state_no_suggestions_detail">0 ПРЕДЛОЖЕНИЯ · 0 СКОРОШНИ СЪВПАДЕНИЯ</string>

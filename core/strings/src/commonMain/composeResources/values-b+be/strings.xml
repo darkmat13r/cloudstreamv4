@@ -4,13 +4,19 @@
 <string name="detail_load_failed_body">Крыніца можа быць недаступная.</string>
 <string name="detail_load_failed_headline">Не ўдалося адкрыць гэты загаловак</string>
 <plurals name="downloads_active"><item quantity="one">%d актыўнае спампоўванне</item><item quantity="few">%d актыўных спампоўвання</item><item quantity="many">%d актыўных спампоўванняў</item><item quantity="other">%d актыўных спампоўванняў</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d спампоўваецца</item><item quantity="few">%d спампоўваецца</item><item quantity="many">%d спампоўваецца</item><item quantity="other">%d спампоўваецца</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d у чарзе</item><item quantity="few">%d у чарзе</item><item quantity="many">%d у чарзе</item><item quantity="other">%d у чарзе</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Выдаліць %d спампоўку?</item><item quantity="few">Выдаліць %d спампоўкі?</item><item quantity="many">Выдаліць %d спамповак?</item><item quantity="other">Выдаліць %d спампоўкі?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d серыя</item><item quantity="few">%d серыі</item><item quantity="many">%d серый</item><item quantity="other">%d серыі</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d няўдалае</item><item quantity="few">%d няўдалыя</item><item quantity="many">%d няўдалых</item><item quantity="other">%d няўдалых</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d спампоўванне ў чарзе</item><item quantity="few">%d спампоўвання ў чарзе</item><item quantity="many">%d спампоўванняў у чарзе</item><item quantity="other">%d спампоўванняў у чарзе</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d назва · %2$s</item><item quantity="few">%1$d назвы · %2$s</item><item quantity="many">%1$d назваў · %2$s</item><item quantity="other">%1$d назвы · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ЗАКЛАДКА</item><item quantity="few">%d ЗАКЛАДКІ</item><item quantity="many">%d ЗАКЛАДАК</item><item quantity="other">%d ЗАКЛАДКІ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Не ўдалося загрузіць %d раздзел</item><item quantity="few">Не ўдалося загрузіць %d раздзелы</item><item quantity="many">Не ўдалося загрузіць %d раздзелаў</item><item quantity="other">Не ўдалося загрузіць %d раздзелаў</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Шукаць у %d крыніцы</item><item quantity="few">Шукаць ва ўсіх %d крыніцах</item><item quantity="many">Шукаць ва ўсіх %d крыніцах</item><item quantity="other">Шукаць ва ўсіх %d крыніцах</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць у %d крыніцы.</item><item quantity="few">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.</item><item quantity="many">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.</item><item quantity="other">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d КРЫНІЦА</item><item quantity="few">%d КРЫНІЦЫ</item><item quantity="many">%d КРЫНІЦ</item><item quantity="other">%d КРЫНІЦЫ</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d раздзел</item><item quantity="few">%d раздзелы</item><item quantity="many">%d раздзелаў</item><item quantity="other">%d раздзела</item></plurals>
 <string name="account">уліковы запіс</string>
 <string name="action_add_to_bookmarks">Задаць статус прагляду</string>
 <string name="action_add_to_favorites">Дадаць у абранае</string>
@@ -163,6 +169,11 @@
 <string name="delete_repository">Выдаліць рэпазіторый</string>
 <string name="delete_repository_plugins">Гэта таксама прывядзе да выдалення ўсіх убудоў рэпазіторыя</string>
 <string name="deselect_all">Зняць выбар</string>
+<string name="desktop_menu_go">Пераход</string>
+<string name="detail_source_resolving">Вызначэнне…</string>
+<string name="detail_sources_done">Адказалі: %1$d з %2$d</string>
+<string name="detail_sources_progress">Адказалі: %1$d з %2$d · загрузка…</string>
+<string name="detail_start_over">Пачаць спачатку</string>
 <string name="device_pin_counter_text">Код мінуе праз %1$dхв %2$dс</string>
 <string name="device_pin_error_message">Не ўдалося атрымаць PIN-код прылады, паспрабуйце лакальную праверку сапраўднасці</string>
 <string name="device_pin_expired_message">PIN-код састарэў!</string>
@@ -202,12 +213,19 @@
 <string name="downloaded_file">Спампаваны файл</string>
 <string name="downloading">Ідзе спампоўванне</string>
 <string name="downloads_browse_library">Агляд бібліятэкі</string>
+<string name="downloads_cancel_confirm_body">Спампаванае дагэтуль (%s) будзе адкінута.</string>
+<string name="downloads_cancel_confirm_title">Скасаваць гэтую спампоўку?</string>
+<string name="downloads_cancel_download">Скасаваць спампоўку</string>
+<string name="downloads_column_size">Памер</string>
 <string name="downloads_delete_all">Выдаліць усе</string>
+<string name="downloads_delete_confirm_body">Гэта вызваліць %s, і гэта нельга адрабіць.</string>
 <string name="downloads_delete_select">Выберыце элементы для выдалення</string>
 <string name="downloads_empty">Спамповак пакуль што няма.</string>
 <string name="downloads_empty_body">Спампоўкі, запушчаныя са спіса серый, з'яўляюцца тут і прайграюцца без злучэння.</string>
 <string name="downloads_empty_headline">Спамповак пакуль няма</string>
+<string name="downloads_free">%s вольна</string>
 <string name="downloads_free_up_space">Вызваліць месца</string>
+<string name="downloads_keep_downloading">Працягваць спампоўку</string>
 <string name="downloads_load_failed_body">Вашы спампаваныя файлы не зменены.</string>
 <string name="downloads_load_failed_headline">Не ўдалося прачытаць спампоўкі</string>
 <string name="downloads_offline_pill">Па-за сеткай · няма злучэння</string>
@@ -221,6 +239,8 @@
 <string name="downloads_reason_storage_unavailable">Сховішча недаступнае</string>
 <string name="downloads_retry_failed">Паўтарыць няўдалыя (%d)</string>
 <string name="downloads_select">Выбраць</string>
+<string name="downloads_selected_status">Выбрана %1$d з %2$d · %3$s</string>
+<string name="downloads_show_in_finder">Паказаць у Finder</string>
 <string name="downloads_state_queued">У чарзе</string>
 <string name="downloads_storage_full_headline">Недастаткова месца ў сховішчы</string>
 <string name="downloads_storage_legend">Ужыта %1$s з %2$s · %3$s у спампоўках</string>
@@ -347,6 +367,7 @@
 <string name="home_bookmarks_no_status_body">Абярыце адзін вышэй, каб убачыць гэтыя закладкі.</string>
 <string name="home_bookmarks_no_status_headline">Статус не абраны</string>
 <string name="home_change_provider_img_des">Змяніць пастаўшчыка</string>
+<string name="home_choose_source">Выбраць крыніцу</string>
 <string name="home_expanded_hide">Схаваць</string>
 <string name="home_info">Звесткі</string>
 <string name="home_main_poster_img_des">Асноўны плакат</string>
@@ -358,9 +379,14 @@
 <string name="home_offline_source_headline">%1$s патрабуе злучэння</string>
 <string name="home_play">Прайграць</string>
 <string name="home_random">Выпадковае</string>
+<string name="home_reload_failed">Не ўдалося перазагрузіць %1$s. Гэтыя радкі %2$s таму.</string>
 <string name="home_search_only_body">Ніводнае з вашых пашырэнняў не мае дамашняй старонкі, але ў іх усё яшчэ можна шукаць.</string>
 <string name="home_source">Крыніца</string>
+<string name="home_source_none_line">Без радкоў; бібліятэка застаецца</string>
 <string name="home_source_none_subtitle">НЯМА РАДКОЎ · ВАШЫ РАДКІ ЗАСТАЮЦЦА</string>
+<string name="home_source_picker_body">Радкі бяруцца з аднаго пашырэння за раз.</string>
+<string name="home_source_picker_title">Крыніца галоўнай</string>
+<string name="home_source_unreachable">Не ўдалося дасягнуць у мінулы раз</string>
 <string name="install_prerelease">Усталяваць перадфінальную версію</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Не ўдалося дасягнуць GitHub. Уключэнне проксі jsDelivr…</string>
@@ -610,6 +636,13 @@
 <string name="search_poster_img_des">Плакат</string>
 <string name="search_provider_text_providers">Пошук праз пастаўшчыкоў</string>
 <string name="search_provider_text_types">Пошук праз тыпы</string>
+<string name="search_quick_empty_body">Усе крыніцы адказалі, і ні ў адной няма «%s». Паспрабуйце карацейшы запыт або адкрыйце поўны пошук, каб змяніць крыніцы.</string>
+<string name="search_quick_empty_headline">Няма супадзенняў</string>
+<string name="search_quick_meta_answered">УСЕ КРЫНІЦЫ АДКАЗАЛІ</string>
+<string name="search_quick_meta_answering">ВЫНІКІ З'ЯЎЛЯЮЦЦА ПА МЕРЫ АДКАЗАЎ КРЫНІЦ</string>
+<string name="search_quick_open_full">Адкрыць поўны пошук</string>
+<string name="search_quick_status">АДКАЗАЛІ %1$d З %2$d · ЗБОЙ %3$d</string>
+<string name="search_quick_title">Хуткі пошук</string>
 <string name="search_state_idle_body_desktop">Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.</string>
 <string name="search_state_no_results_type_filter">Толькі %s. Фільтр па тыпе звужае пошук.</string>
 <string name="search_state_no_suggestions_detail">0 ПРАПАНОЎ · 0 НЯДАЎНІХ СУПАДЗЕННЯЎ</string>

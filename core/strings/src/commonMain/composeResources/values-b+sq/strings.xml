@@ -4,10 +4,16 @@
 <string name="detail_load_failed_body">Burimi mund të mos jetë i disponueshëm.</string>
 <string name="detail_load_failed_headline">Titulli nuk mund të hapej</string>
 <plurals name="downloads_active"><item quantity="one">%d shkarkim aktiv</item><item quantity="other">%d shkarkime aktive</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d po shkarkohen</item><item quantity="other">%d po shkarkohen</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d në radhë</item><item quantity="other">%d në radhë</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Të fshihet %d shkarkim?</item><item quantity="other">Të fshihen %d shkarkime?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episod</item><item quantity="other">%d episode</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d dështoi</item><item quantity="other">%d dështuan</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d shkarkim në radhë</item><item quantity="other">%d shkarkime në radhë</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d titull · %2$s</item><item quantity="other">%1$d tituj · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d TË RUAJTURA</item><item quantity="other">%d TË RUAJTURA</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nuk mund të ngarkohej %d seksion</item><item quantity="other">Nuk mund të ngarkoheshin %d seksione</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d seksion</item><item quantity="other">%d seksione</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d link i fshehur</item><item quantity="other">%d linqe të fshehura</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Kërko në %d burim</item><item quantity="other">Kërko në të gjitha %d burimet</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në %d burim.</item><item quantity="other">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet.</item></plurals>
@@ -164,6 +170,11 @@
 <string name="delete_repository">Fshi repository-n</string>
 <string name="delete_repository_plugins">Kjo do të heqë të gjitha shtesat</string>
 <string name="deselect_all">Çzgjidh të gjitha</string>
+<string name="desktop_menu_go">Shko</string>
+<string name="detail_source_resolving">Po zgjidhet…</string>
+<string name="detail_sources_done">U përgjigjën %1$d nga %2$d</string>
+<string name="detail_sources_progress">U përgjigjën %1$d nga %2$d · po ngarkohet…</string>
+<string name="detail_start_over">Fillo nga e para</string>
 <string name="device_pin_counter_text">Kodi skadon pas %1$dm %2$ds</string>
 <string name="device_pin_error_message">Nuk u mor kodi PIN i pajisjes, provo verifikim lokal</string>
 <string name="device_pin_expired_message">PIN-i ka skaduar!</string>
@@ -203,12 +214,19 @@
 <string name="downloaded_file">Skedar i shkarkuar</string>
 <string name="downloading">Duke u shkarkuar</string>
 <string name="downloads_browse_library">Shfleto bibliotekën</string>
+<string name="downloads_cancel_confirm_body">Kjo hedh poshtë %s e shkarkuara deri tani.</string>
+<string name="downloads_cancel_confirm_title">Të anulohet ky shkarkim?</string>
+<string name="downloads_cancel_download">Anulo shkarkimin</string>
+<string name="downloads_column_size">Madhësia</string>
 <string name="downloads_delete_all">Fshiji të gjitha</string>
+<string name="downloads_delete_confirm_body">Kjo liron %s dhe nuk mund të zhbëhet.</string>
 <string name="downloads_delete_select">Zgjidhni artikuj për të fshirë</string>
 <string name="downloads_empty">Momentalisht nuk ka shkarkime.</string>
 <string name="downloads_empty_body">Shkarkimet që nis nga lista e episodeve të një titulli shfaqen këtu dhe luhen pa lidhje.</string>
 <string name="downloads_empty_headline">Ende nuk ka shkarkime</string>
+<string name="downloads_free">%s të lira</string>
 <string name="downloads_free_up_space">Liro hapësirë</string>
+<string name="downloads_keep_downloading">Vazhdo shkarkimin</string>
 <string name="downloads_load_failed_body">Skedarët e shkarkuar nuk janë ndryshuar.</string>
 <string name="downloads_load_failed_headline">Shkarkimet nuk mund të lexoheshin</string>
 <string name="downloads_offline_pill">Offline · pa lidhje</string>
@@ -222,6 +240,8 @@
 <string name="downloads_reason_storage_unavailable">Memoria e paarritshme</string>
 <string name="downloads_retry_failed">Riprovo të dështuarat (%d)</string>
 <string name="downloads_select">Zgjidh</string>
+<string name="downloads_selected_status">%1$d nga %2$d të zgjedhura · %3$s</string>
+<string name="downloads_show_in_finder">Shfaq në Finder</string>
 <string name="downloads_state_queued">Në radhë</string>
 <string name="downloads_storage_full_headline">Memorie e pamjaftueshme</string>
 <string name="downloads_storage_legend">%1$s nga %2$s të përdorura · %3$s në shkarkime</string>
@@ -348,6 +368,7 @@
 <string name="home_bookmarks_no_status_body">Zgjidhni një më sipër për të parë ato të ruajtura.</string>
 <string name="home_bookmarks_no_status_headline">Nuk është zgjedhur asnjë status</string>
 <string name="home_change_provider_img_des">Ndrysho ofruesin</string>
+<string name="home_choose_source">Zgjidh burimin</string>
 <string name="home_expanded_hide">Fsheh</string>
 <string name="home_info">Informacion</string>
 <string name="home_main_poster_img_des">Posteri kryesor</string>
@@ -359,9 +380,14 @@
 <string name="home_offline_source_headline">%1$s ka nevojë për lidhje</string>
 <string name="home_play">Luaj</string>
 <string name="home_random">Rastësor</string>
+<string name="home_reload_failed">%1$s nuk u ringarkua dot. Këta rreshta janë para %2$s.</string>
 <string name="home_search_only_body">Asnjë nga shtesat tuaja nuk ka faqe kryesore, por mund të kërkoni ende në to.</string>
 <string name="home_source">Burimi</string>
+<string name="home_source_none_line">Pa rreshta; biblioteka mbetet</string>
 <string name="home_source_none_subtitle">PA RRESHTA · RRESHTAT TUAJ MBETEN</string>
+<string name="home_source_picker_body">Rreshtat vijnë nga një shtesë në një kohë.</string>
+<string name="home_source_picker_title">Burimi i kreut</string>
+<string name="home_source_unreachable">Nuk u arrit herën e fundit</string>
 <string name="install_prerelease">Instalo versione beta</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Nuk mund të arrihej GitHub. Po aktivizohet proxy jsDelivr…</string>
@@ -614,6 +640,13 @@
 <string name="search_poster_img_des">Posteri</string>
 <string name="search_provider_text_providers">Kërko duke përdorur ofruesit</string>
 <string name="search_provider_text_types">Kërko duke përdorur tipet</string>
+<string name="search_quick_empty_body">Të gjitha burimet u përgjigjën dhe asnjë nuk ka “%s”. Provoni një kërkim më të shkurtër ose hapni kërkimin e plotë për të ndryshuar burimet.</string>
+<string name="search_quick_empty_headline">Asnjë përputhje</string>
+<string name="search_quick_meta_answered">TË GJITHA BURIMET U PËRGJIGJËN</string>
+<string name="search_quick_meta_answering">REZULTATET VIJNË NDËRSA BURIMET PËRGJIGJEN</string>
+<string name="search_quick_open_full">Hap kërkimin e plotë</string>
+<string name="search_quick_status">U PËRGJIGJËN %1$d NGA %2$d · DËSHTUAN %3$d</string>
+<string name="search_quick_title">Kërkim i shpejtë</string>
 <string name="search_state_idle_body_desktop">Shkruani një titull. Rezultatet shfaqen nën çdo burim sapo ai përgjigjet.</string>
 <string name="search_state_no_results_type_filter">Vetëm %s. Filtri i llojit po e ngushton kërkimin.</string>
 <string name="search_state_no_suggestions_detail">0 SUGJERIME · 0 PËRPUTHJE TË FUNDIT</string>

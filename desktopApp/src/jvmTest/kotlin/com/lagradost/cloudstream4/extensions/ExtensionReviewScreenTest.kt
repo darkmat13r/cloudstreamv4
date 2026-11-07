@@ -28,6 +28,8 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanFinding
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanReport
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanSeverity
 import com.lagradost.cloudstream4.feature.home.HomePageReply
+import com.lagradost.cloudstream4.home.DesktopShortcuts
+import com.lagradost.cloudstream4.home.TopLevelDestination
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSources
@@ -230,6 +232,45 @@ class ExtensionReviewScreenTest {
         scene.save("review-09-notice-on-search")
         scene.click(Offset(NOTICE_X, NOTICE_Y))
         assertEquals("Extensions", at)
+        scene.close()
+    }
+
+    /**
+     * The menu bar's Go menu must not leave the list of held extensions (`KMP-53` step 2). The list is pushed over the
+     * top level, so its destinations are greyed and do nothing, Back is the one way out, and leaving decides nothing:
+     * the extension is still held, not allowed.
+     */
+    @Test
+    fun `the Go menu cannot leave the held list, and Back leaves it with the extension still held`() {
+        val escape = EscapeHandler()
+        val shortcuts = DesktopShortcuts()
+        var at = ""
+        val control = RecordingControl()
+        val report = SandboxReport(
+            File("/nowhere"),
+            listOf(load("BingeCloud.jar", LoadState.Held, finding("telemetry", "com/x/Ping names a device identifier: \"installId\""))),
+        )
+        val approvals = ExtensionApprovals(control, report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
+        val scene = scene {
+            DesktopApp(escape, EmptyHome, approvals, InMemoryLibraryStore(), onScreen = { at = it }, shortcuts = shortcuts)
+        }
+        scene.settle()
+        scene.click(Offset(NOTICE_X, NOTICE_Y))
+        assertEquals("Extensions", at)
+        assertFalse(shortcuts.atTop, "the destinations are greyed over the list")
+        assertTrue(shortcuts.canGoBack)
+
+        shortcuts.go(TopLevelDestination.Search)
+        scene.settle()
+        assertEquals("Extensions", at, "Go › Search does nothing while the list is up")
+
+        shortcuts.back()
+        scene.settle()
+        assertEquals("Home", at)
+        assertTrue(shortcuts.atTop)
+        assertFalse(shortcuts.canGoBack)
+        assertEquals(1, approvals.state.value.waiting, "leaving decided nothing: still held")
+        assertEquals(emptyList(), control.calls, "nothing was allowed or kept off")
         scene.close()
     }
 

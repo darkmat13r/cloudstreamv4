@@ -4,10 +4,16 @@
 <string name="detail_load_failed_body">Kaynak kullanılamıyor olabilir.</string>
 <string name="detail_load_failed_headline">Bu başlık açılamadı</string>
 <plurals name="downloads_active"><item quantity="one">%d aktif indirme</item><item quantity="other">%d aktif indirmeler</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d indiriliyor</item><item quantity="other">%d indiriliyor</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d sırada</item><item quantity="other">%d sırada</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d indirme silinsin mi?</item><item quantity="other">%d indirme silinsin mi?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d bölüm</item><item quantity="other">%d bölüm</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d başarısız</item><item quantity="other">%d başarısız</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d indirme kuyrukta</item><item quantity="other">%d indirilecekler kuyruğa alındı</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d başlık · %2$s</item><item quantity="other">%1$d başlık · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d YER İMİ</item><item quantity="other">%d YER İMİ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d kısım yüklenemedi</item><item quantity="other">%d kısım yüklenemedi</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d bölüm</item><item quantity="other">%d bölüm</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d gizli bağlantı</item><item quantity="other">%d gizli bağlantı</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d kaynakta ara</item><item quantity="other">Tüm %d kaynakta ara</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Yine de %d kaynakta aramak için klavyenin arama tuşuna basın.</item><item quantity="other">Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın.</item></plurals>
@@ -164,6 +170,11 @@
 <string name="delete_repository">Depoyu sil</string>
 <string name="delete_repository_plugins">Bu aynı zamanda tüm depo eklentilerini de siler</string>
 <string name="deselect_all">Tüm Seçimi Kaldır</string>
+<string name="desktop_menu_go">Git</string>
+<string name="detail_source_resolving">Çözümleniyor…</string>
+<string name="detail_sources_done">%2$d kaynaktan %1$d yanıt verdi</string>
+<string name="detail_sources_progress">%2$d kaynaktan %1$d yanıt verdi · yükleniyor…</string>
+<string name="detail_start_over">Baştan başla</string>
 <string name="device_pin_counter_text">Kodun süresi %1$dm %2$ds içinde doluyor</string>
 <string name="device_pin_error_message">Cihaz PIN kodu alınamıyor, yerel kimlik doğrulamayı deneyin</string>
 <string name="device_pin_expired_message">PIN kodunun süresi doldu!</string>
@@ -203,12 +214,19 @@
 <string name="downloaded_file">İndirilen dosya</string>
 <string name="downloading">İndiriliyor</string>
 <string name="downloads_browse_library">Kütüphaneye göz at</string>
+<string name="downloads_cancel_confirm_body">Şimdiye kadar indirilen %s silinir.</string>
+<string name="downloads_cancel_confirm_title">Bu indirme iptal edilsin mi?</string>
+<string name="downloads_cancel_download">İndirmeyi iptal et</string>
+<string name="downloads_column_size">Boyut</string>
 <string name="downloads_delete_all">Tümünü sil</string>
+<string name="downloads_delete_confirm_body">Bu işlem %s yer açar ve geri alınamaz.</string>
 <string name="downloads_delete_select">Silinecek Öğeleri Seçin</string>
 <string name="downloads_empty">Şu an hiç bir indirme bulunmamaktadır.</string>
 <string name="downloads_empty_body">Bir başlığın bölüm listesinden başlattığınız indirmeler burada görünür ve bağlantı olmadan oynatılır.</string>
 <string name="downloads_empty_headline">Henüz indirme yok</string>
+<string name="downloads_free">%s boş</string>
 <string name="downloads_free_up_space">Yer aç</string>
+<string name="downloads_keep_downloading">İndirmeye devam et</string>
 <string name="downloads_load_failed_body">İndirilen dosyalarınız değiştirilmedi.</string>
 <string name="downloads_load_failed_headline">İndirmeleriniz okunamadı</string>
 <string name="downloads_offline_pill">Çevrimdışı · bağlantı yok</string>
@@ -222,6 +240,8 @@
 <string name="downloads_reason_storage_unavailable">Depolama kullanılamıyor</string>
 <string name="downloads_retry_failed">Başarısızları yeniden dene (%d)</string>
 <string name="downloads_select">Seç</string>
+<string name="downloads_selected_status">%2$d öğeden %1$d seçildi · %3$s</string>
+<string name="downloads_show_in_finder">Finder'da Göster</string>
 <string name="downloads_state_queued">Sırada</string>
 <string name="downloads_storage_full_headline">Yeterli depolama yok</string>
 <string name="downloads_storage_legend">%1$s / %2$s kullanıldı · İndirilenlerde %3$s</string>
@@ -348,6 +368,7 @@
 <string name="home_bookmarks_no_status_body">Bu yer imlerini görmek için yukarıdan birini seçin.</string>
 <string name="home_bookmarks_no_status_headline">Durum seçilmedi</string>
 <string name="home_change_provider_img_des">Sağlayıcıyı Değiştir</string>
+<string name="home_choose_source">Kaynak seç</string>
 <string name="home_expanded_hide">Gizle</string>
 <string name="home_info">Bilgi</string>
 <string name="home_main_poster_img_des">Ana Afiş</string>
@@ -359,9 +380,14 @@
 <string name="home_offline_source_headline">%1$s bağlantı gerektirir</string>
 <string name="home_play">Oynat</string>
 <string name="home_random">Rastgele</string>
+<string name="home_reload_failed">%1$s yeniden yüklenemedi. Bu satırlar %2$s öncesine ait.</string>
 <string name="home_search_only_body">Eklentilerinizin hiçbirinde ana sayfa yok, ancak yine de onlarda arama yapabilirsiniz.</string>
 <string name="home_source">Kaynak</string>
+<string name="home_source_none_line">Satır yok; kitaplığınız kalır</string>
 <string name="home_source_none_subtitle">SIRA YOK · SIRALARINIZ KALIR</string>
+<string name="home_source_picker_body">Satırlar her seferinde tek bir uzantıdan gelir.</string>
+<string name="home_source_picker_title">Ana sayfa kaynağı</string>
+<string name="home_source_unreachable">Son seferinde ulaşılamadı</string>
 <string name="install_prerelease">Ön sürümünü yükleyin</string>
 <string name="is_adult">+18</string>
 <string name="jsdelivr_enabled">GitHub'a ulaşılamadı. jsDelivr vekil sunucusu etkinleştiriliyor…</string>
@@ -614,6 +640,13 @@
 <string name="search_poster_img_des">Afiş</string>
 <string name="search_provider_text_providers">Sağlayıcıları kullanarak ara</string>
 <string name="search_provider_text_types">Türleri kullanarak ara</string>
+<string name="search_quick_empty_body">Tüm kaynaklar yanıt verdi ve hiçbirinde “%s” yok. Daha kısa bir arama deneyin veya kaynakları değiştirmek için tam aramayı açın.</string>
+<string name="search_quick_empty_headline">Eşleşme yok</string>
+<string name="search_quick_meta_answered">TÜM KAYNAKLAR YANIT VERDİ</string>
+<string name="search_quick_meta_answering">KAYNAKLAR YANIT VERDİKÇE SONUÇLAR GELİR</string>
+<string name="search_quick_open_full">Tam aramayı aç</string>
+<string name="search_quick_status">%2$d KAYNAKTAN %1$d YANIT VERDİ · %3$d BAŞARISIZ</string>
+<string name="search_quick_title">Hızlı arama</string>
 <string name="search_state_idle_body_desktop">Bir başlık yazın. Sonuçlar, her kaynak yanıt verdikçe onun altında görünür.</string>
 <string name="search_state_no_results_type_filter">Yalnızca %s. Tür filtreniz aramayı daraltıyor.</string>
 <string name="search_state_no_suggestions_detail">0 ÖNERİ · 0 YAKIN ZAMANLI EŞLEŞME</string>

@@ -3,12 +3,18 @@
 <resources>
 <string name="detail_load_failed_body">De bron is mogelijk niet beschikbaar.</string>
 <string name="detail_load_failed_headline">Deze titel kon niet worden geopend</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d bezig</item><item quantity="other">%d bezig</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d in wachtrij</item><item quantity="other">%d in wachtrij</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%d download verwijderen?</item><item quantity="other">%d downloads verwijderen?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d aflevering</item><item quantity="other">%d afleveringen</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d mislukt</item><item quantity="other">%d mislukt</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d titel · %2$s</item><item quantity="other">%1$d titels · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BLADWIJZER</item><item quantity="other">%d BLADWIJZERS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d sectie kon niet worden geladen</item><item quantity="other">%d secties konden niet worden geladen</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Zoek in %d bron</item><item quantity="other">Zoek in alle %d bronnen</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Druk op de zoektoets van het toetsenbord om toch in %d bron te zoeken.</item><item quantity="other">Druk op de zoektoets van het toetsenbord om toch in alle %d bronnen te zoeken.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BRON</item><item quantity="other">%d BRONNEN</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d sectie</item><item quantity="other">%d secties</item></plurals>
 <string name="account">account</string>
 <string name="action_add_to_bookmarks">Zet kijkstatus</string>
 <string name="action_add_to_favorites">Voeg toe aan favorieten</string>
@@ -146,6 +152,11 @@
 <string name="delete_repository">Wis repository</string>
 <string name="delete_repository_plugins">Dit zal ook alle repository plugins verwijderen</string>
 <string name="deselect_all">Deselecteer alles</string>
+<string name="desktop_menu_go">Ga</string>
+<string name="detail_source_resolving">Bezig met omzetten…</string>
+<string name="detail_sources_done">%1$d van %2$d antwoordden</string>
+<string name="detail_sources_progress">%1$d van %2$d antwoordden · laden…</string>
+<string name="detail_start_over">Opnieuw beginnen</string>
 <string name="device_pin_counter_text">Code verloopt in %1$dm %2$ds</string>
 <string name="device_pin_error_message">Kon de apparaat PIN niet vinden, probeer locale authenticatie</string>
 <string name="device_pin_expired_message">PIN-code is nu verlopen!</string>
@@ -183,12 +194,19 @@
 <string name="downloaded_file">Gedownload bestand</string>
 <string name="downloading">Downloaden</string>
 <string name="downloads_browse_library">Bibliotheek bekijken</string>
+<string name="downloads_cancel_confirm_body">De %s die al is gedownload, wordt weggegooid.</string>
+<string name="downloads_cancel_confirm_title">Deze download annuleren?</string>
+<string name="downloads_cancel_download">Download annuleren</string>
+<string name="downloads_column_size">Grootte</string>
 <string name="downloads_delete_all">Alles verwijderen</string>
+<string name="downloads_delete_confirm_body">Dit maakt %s vrij en kan niet ongedaan worden gemaakt.</string>
 <string name="downloads_delete_select">Selecteer items om te verwijderen</string>
 <string name="downloads_empty">Er zijn momenteel geen downloads beschikbaar.</string>
 <string name="downloads_empty_body">Downloads die je start vanuit de afleveringenlijst van een titel verschijnen hier en spelen af zonder verbinding.</string>
 <string name="downloads_empty_headline">Nog geen downloads</string>
+<string name="downloads_free">%s vrij</string>
 <string name="downloads_free_up_space">Ruimte vrijmaken</string>
+<string name="downloads_keep_downloading">Doorgaan met downloaden</string>
 <string name="downloads_load_failed_body">Je gedownloade bestanden zijn niet gewijzigd.</string>
 <string name="downloads_load_failed_headline">Kon je downloads niet lezen</string>
 <string name="downloads_offline_pill">Offline · geen verbinding</string>
@@ -202,6 +220,8 @@
 <string name="downloads_reason_storage_unavailable">Opslag niet beschikbaar</string>
 <string name="downloads_retry_failed">Mislukte opnieuw (%d)</string>
 <string name="downloads_select">Selecteren</string>
+<string name="downloads_selected_status">%1$d van %2$d geselecteerd · %3$s</string>
+<string name="downloads_show_in_finder">Toon in Finder</string>
 <string name="downloads_state_queued">In wachtrij</string>
 <string name="downloads_storage_full_headline">Niet genoeg opslag</string>
 <string name="downloads_storage_legend">%1$s van %2$s gebruikt · %3$s in downloads</string>
@@ -322,6 +342,7 @@
 <string name="home_bookmarks_no_status_body">Kies er hierboven een om die bladwijzers te zien.</string>
 <string name="home_bookmarks_no_status_headline">Geen status gekozen</string>
 <string name="home_change_provider_img_des">Wijzig provider</string>
+<string name="home_choose_source">Bron kiezen</string>
 <string name="home_expanded_hide">Verberg</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Hoofdposter</string>
@@ -333,9 +354,14 @@
 <string name="home_offline_source_headline">%1$s heeft een verbinding nodig</string>
 <string name="home_play">Speel</string>
 <string name="home_random">Willekeurig</string>
+<string name="home_reload_failed">%1$s kon niet opnieuw worden geladen. Deze rijen zijn van %2$s geleden.</string>
 <string name="home_search_only_body">Geen van je uitbreidingen heeft een startpagina, maar je kunt er nog steeds in zoeken.</string>
 <string name="home_source">Bron</string>
+<string name="home_source_none_line">Geen rijen; je bibliotheek blijft</string>
 <string name="home_source_none_subtitle">GEEN RIJEN · JE RIJEN BLIJVEN</string>
+<string name="home_source_picker_body">Rijen komen steeds uit één extensie.</string>
+<string name="home_source_picker_title">Bron voor start</string>
+<string name="home_source_unreachable">Vorige keer niet bereikbaar</string>
 <string name="install_prerelease">Pre-releaseversie installeren</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Kan GitHub niet bereiken, schakel jsDelivr proxy in…</string>
@@ -572,6 +598,13 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Zoeken met providers</string>
 <string name="search_provider_text_types">Zoeken met types</string>
+<string name="search_quick_empty_body">Alle bronnen hebben geantwoord en geen enkele heeft “%s”. Probeer een kortere zoekopdracht, of open volledig zoeken om de bronnen te wijzigen.</string>
+<string name="search_quick_empty_headline">Geen overeenkomsten</string>
+<string name="search_quick_meta_answered">ALLE BRONNEN HEBBEN GEANTWOORD</string>
+<string name="search_quick_meta_answering">RESULTATEN KOMEN BINNEN ZODRA BRONNEN ANTWOORDEN</string>
+<string name="search_quick_open_full">Volledig zoeken openen</string>
+<string name="search_quick_status">%1$d VAN %2$d GEANTWOORD · %3$d MISLUKT</string>
+<string name="search_quick_title">Snel zoeken</string>
 <string name="search_state_idle_body_desktop">Typ een titel. Resultaten verschijnen onder elke bron zodra die antwoordt.</string>
 <string name="search_state_no_results_type_filter">Alleen %s. Je typefilter beperkt de zoekopdracht.</string>
 <string name="search_state_no_suggestions_detail">0 SUGGESTIES · 0 RECENTE OVEREENKOMSTEN</string>

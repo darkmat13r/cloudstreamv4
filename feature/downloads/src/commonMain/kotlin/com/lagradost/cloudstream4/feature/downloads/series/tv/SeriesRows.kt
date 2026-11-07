@@ -28,6 +28,8 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.rows.DownloadProgressRow
 import com.lagradost.cloudstream4.core.designsystem.rows.DownloadProgressRowState
+import com.lagradost.cloudstream4.core.designsystem.scroll.RowScroll
+import com.lagradost.cloudstream4.core.designsystem.scroll.RowScrollSpec
 import com.lagradost.cloudstream4.core.designsystem.target.IconOnlyButton
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
@@ -69,8 +71,6 @@ import com.lagradost.cloudstream4.feature.downloads.series.SeriesState
 import com.lagradost.cloudstream4.feature.downloads.series.SeriesStop
 import com.lagradost.cloudstream4.feature.downloads.series.SeriesVerb
 import com.lagradost.cloudstream4.feature.downloads.tv.DownloadsFocusMemory
-import com.lagradost.cloudstream4.feature.downloads.tv.DownloadsRowScroll
-import com.lagradost.cloudstream4.feature.downloads.tv.DownloadsRowScrollSpec
 import com.lagradost.cloudstream4.feature.downloads.tv.DownloadsScreenTvDefaults
 import com.lagradost.cloudstream4.feature.downloads.tv.downloadsStop
 import com.lagradost.cloudstream4.media.model.DownloadFailure
@@ -97,7 +97,7 @@ private fun itemsOf(episodes: List<DownloadEpisode>): List<SeriesItem> =
     }
 
 /**
- * 6d's list. Scrolling is `DownloadsRowScroll`'s: a row that fits does not move the list, and one that does not moves it
+ * 6d's list. Scrolling is `RowScroll`'s: a row that fits does not move the list, and one that does not moves it
  * by whole rows, so nothing is left half drawn against the buttons. A season's header is a row tall for that reason:
  * 6d draws it 28 dp, which would put every row after it off the pitch.
  */
@@ -121,10 +121,10 @@ internal fun SeriesRows(
     val row = with(density) { CloudStreamDimens.ListRowHeight.roundToPx() }
     val pitch = row + gap
     val scrollSpec = remember(top, end, row, pitch) {
-        DownloadsRowScrollSpec(top.toFloat(), end.toFloat(), row.toFloat(), pitch.toFloat())
+        RowScrollSpec(top.toFloat(), end.toFloat(), row.toFloat(), pitch.toFloat())
     }
     BoxWithConstraints(modifier) {
-        val endPadding = DownloadsRowScroll.listEndPadding(constraints.maxHeight, items.size, top, end, pitch, gap)
+        val endPadding = RowScroll.listEndPadding(constraints.maxHeight, items.size, top, end, pitch, gap)
         CompositionLocalProvider(LocalBringIntoViewSpec provides scrollSpec) {
             LazyColumn(
                 modifier = Modifier

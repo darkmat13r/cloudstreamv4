@@ -4,11 +4,17 @@
 <string name="detail_load_failed_body">Its source may be unavailable.</string>
 <string name="detail_load_failed_headline">Couldn't open this title</string>
 <plurals name="downloads_active"><item quantity="one">%d active download</item><item quantity="other">%d active downloads</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">%d downloading</item><item quantity="other">%d downloading</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d queued</item><item quantity="other">%d queued</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Delete %d download?</item><item quantity="other">Delete %d downloads?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episodes</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d failed</item><item quantity="other">%d failed</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download queued</item><item quantity="other">%d downloads queued</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d title · %2$s</item><item quantity="other">%1$d titles · %2$s</item></plurals>
 <plurals name="episodes"><item quantity="one">Episode</item><item quantity="other">Episodes</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARKS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d section failed to load</item><item quantity="other">%d sections failed to load</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d section</item><item quantity="other">%d sections</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d hidden link</item><item quantity="other">%d hidden links</item></plurals>
 <plurals name="search_state_no_results_body"><item quantity="one">%d selected source answered and it does not carry it.</item><item quantity="other">All %d selected sources answered and none of them carry it.</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Search %d source</item><item quantity="other">Search all %d sources</item></plurals>
@@ -173,6 +179,11 @@
 <string name="delete_repository">Delete repository</string>
 <string name="delete_repository_plugins">This will also delete all repository plugins</string>
 <string name="deselect_all">Deselect All</string>
+<string name="desktop_menu_go">Go</string>
+<string name="detail_source_resolving">Resolving…</string>
+<string name="detail_sources_done">%1$d of %2$d answered</string>
+<string name="detail_sources_progress">%1$d of %2$d answered · loading…</string>
+<string name="detail_start_over">Start over</string>
 <string name="device_pin_counter_text">Code expires in %1$dm %2$ds</string>
 <string name="device_pin_error_message">Can't get the device PIN code, try local authentication</string>
 <string name="device_pin_expired_message">PIN code is now expired !</string>
@@ -214,16 +225,23 @@
 <string name="downloaded_file">Downloaded file</string>
 <string name="downloading">Downloading</string>
 <string name="downloads_browse_library">Browse library</string>
+<string name="downloads_cancel_confirm_body">This discards the %s downloaded so far.</string>
+<string name="downloads_cancel_confirm_title">Cancel this download?</string>
+<string name="downloads_cancel_download">Cancel download</string>
+<string name="downloads_column_size">Size</string>
 <string name="downloads_delete_all">Delete all</string>
 <string name="downloads_delete_chosen">%1$s (%2$d · %3$s)</string>
+<string name="downloads_delete_confirm_body">This frees %s and can't be undone.</string>
 <string name="downloads_delete_select">Select Items to Delete</string>
 <string name="downloads_empty">There are currently no downloads.</string>
 <string name="downloads_empty_body">Downloads you start from a title's episode list appear here and play with no connection.</string>
 <string name="downloads_empty_headline">No downloads yet</string>
 <string name="downloads_episode_code">%1$s%2$d · %3$s%4$d</string>
 <string name="downloads_film_subtitle">%1$s · %2$s</string>
+<string name="downloads_free">%s free</string>
 <string name="downloads_free_up_space">Free up space</string>
 <string name="downloads_joined">%1$s · %2$s</string>
+<string name="downloads_keep_downloading">Keep downloading</string>
 <string name="downloads_load_failed_body">Your downloaded files have not been changed.</string>
 <string name="downloads_load_failed_headline">Couldn't read your downloads</string>
 <string name="downloads_offline_pill">Offline · no connection</string>
@@ -238,7 +256,9 @@
 <string name="downloads_reason_storage_unavailable">Storage unavailable</string>
 <string name="downloads_retry_failed">Retry failed (%d)</string>
 <string name="downloads_select">Select</string>
+<string name="downloads_selected_status">%1$d of %2$d selected · %3$s</string>
 <string name="downloads_series_subtitle">%1$d %2$s · %3$s</string>
+<string name="downloads_show_in_finder">Show in Finder</string>
 <string name="downloads_state_queued">Queued</string>
 <string name="downloads_storage_full_headline">Not enough storage</string>
 <string name="downloads_storage_legend">%1$s of %2$s used · %3$s in downloads</string>
@@ -371,6 +391,7 @@
 <string name="home_bookmarks_no_status_body">Choose one above to see those bookmarks.</string>
 <string name="home_bookmarks_no_status_headline">No status chosen</string>
 <string name="home_change_provider_img_des">Change Provider</string>
+<string name="home_choose_source">Choose source</string>
 <string name="home_expanded_hide">Hide</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Main Poster</string>
@@ -382,9 +403,14 @@
 <string name="home_offline_source_headline">%1$s needs a connection</string>
 <string name="home_play">Play</string>
 <string name="home_random">Random</string>
+<string name="home_reload_failed">Couldn't reload %1$s. These rows are from %2$s ago.</string>
 <string name="home_search_only_body">None of your extensions has a home page, but you can still search them.</string>
 <string name="home_source">Source</string>
+<string name="home_source_none_line">No rows; your library stays</string>
 <string name="home_source_none_subtitle">NO RAILS · YOUR ROWS STAY</string>
+<string name="home_source_picker_body">Rows come from one extension at a time.</string>
+<string name="home_source_picker_title">Home source</string>
+<string name="home_source_unreachable">Couldn't reach it last time</string>
 <string name="install_prerelease">Install pre-release version</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Could not reach GitHub. Turning on jsDelivr proxy…</string>
@@ -644,6 +670,13 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Search using providers</string>
 <string name="search_provider_text_types">Search using types</string>
+<string name="search_quick_empty_body">Every source answered and none of them carry “%s”. Try a shorter query, or open full search to change the source set.</string>
+<string name="search_quick_empty_headline">No matches</string>
+<string name="search_quick_meta_answered">ALL SOURCES ANSWERED</string>
+<string name="search_quick_meta_answering">RESULTS STREAM IN AS SOURCES ANSWER</string>
+<string name="search_quick_open_full">Open full search</string>
+<string name="search_quick_status">%1$d OF %2$d ANSWERED · %3$d FAILED</string>
+<string name="search_quick_title">Quick search</string>
 <string name="search_state_failed_body">None of your sources answered.</string>
 <string name="search_state_failed_headline">Search failed</string>
 <string name="search_state_idle_action">Browse home</string>

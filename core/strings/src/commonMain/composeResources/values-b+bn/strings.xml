@@ -3,12 +3,18 @@
 <resources>
 <string name="detail_load_failed_body">সোর্সটি হয়তো পাওয়া যাচ্ছে না।</string>
 <string name="detail_load_failed_headline">এই শিরোনামটি খোলা যায়নি</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%dটি ডাউনলোড হচ্ছে</item><item quantity="other">%dটি ডাউনলোড হচ্ছে</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%dটি সারিতে</item><item quantity="other">%dটি সারিতে</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">%dটি ডাউনলোড মুছবেন?</item><item quantity="other">%dটি ডাউনলোড মুছবেন?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%dটি পর্ব</item><item quantity="other">%dটি পর্ব</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%dটি ব্যর্থ</item><item quantity="other">%dটি ব্যর্থ</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$dটি শিরোনাম · %2$s</item><item quantity="other">%1$dটি শিরোনাম · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d টি বুকমার্ক</item><item quantity="other">%d টি বুকমার্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%dটি বিভাগ লোড করা যায়নি</item><item quantity="other">%dটি বিভাগ লোড করা যায়নি</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%dটি উৎসে খুঁজুন</item><item quantity="other">সব %dটি উৎসে খুঁজুন</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item><item quantity="other">তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d উৎস</item><item quantity="other">%d উৎস</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%dটি বিভাগ</item><item quantity="other">%dটি বিভাগ</item></plurals>
 <string name="account">অ্যাকাউন্ট</string>
 <string name="action_add_to_bookmarks">বুকমার্ক করুন</string>
 <string name="action_default">ডিফল্ট</string>
@@ -91,6 +97,11 @@
 <string name="delete_message_series_only">আপনি কি নিশ্চিত যে আপনি নিচের সিরিজটির সব এপিসোড স্থায়ীভাবে মুছে ফেলতে চান?\n\n%s</string>
 <string name="delete_message_series_section">আপনি নিচের সিরিজগুলোর সব এপিসোডও স্থায়ীভাবে মুছে ফেলবেন:\n\n%s</string>
 <string name="deselect_all">সব ডিসিলেক্ট করুন</string>
+<string name="desktop_menu_go">যান</string>
+<string name="detail_source_resolving">সমাধান হচ্ছে…</string>
+<string name="detail_sources_done">%2$dটির মধ্যে %1$dটি উত্তর দিয়েছে</string>
+<string name="detail_sources_progress">%2$dটির মধ্যে %1$dটি উত্তর দিয়েছে · লোড হচ্ছে…</string>
+<string name="detail_start_over">আবার শুরু করুন</string>
 <string name="discord">ডিসকর্ডে যোগ দিন</string>
 <string name="display_subbed_dubbed_settings">ডাব/সাব এনিমে দেখান</string>
 <string name="dns_pref">ডিএনএস ওভার এইচটিটিপিএস</string>
@@ -118,12 +129,19 @@
 <string name="downloaded">ডাউনলোড হয়েছে</string>
 <string name="downloading">ডাউনলোড চলছে</string>
 <string name="downloads_browse_library">লাইব্রেরী ব্রাউজ করুন</string>
+<string name="downloads_cancel_confirm_body">এতে এখন পর্যন্ত ডাউনলোড হওয়া %s বাদ যাবে।</string>
+<string name="downloads_cancel_confirm_title">এই ডাউনলোড বাতিল করবেন?</string>
+<string name="downloads_cancel_download">ডাউনলোড বাতিল করুন</string>
+<string name="downloads_column_size">আকার</string>
 <string name="downloads_delete_all">সব ডিলিট</string>
+<string name="downloads_delete_confirm_body">এটি %s খালি করবে এবং পূর্বাবস্থায় ফেরানো যাবে না।</string>
 <string name="downloads_delete_select">ডিলিট করার জন্য আইটেম সিলেক্ট করুন</string>
 <string name="downloads_empty">বর্তমানে কোনো ডাউনলোড নেই।</string>
 <string name="downloads_empty_body">কোনো শিরোনামের এপিসোড তালিকা থেকে শুরু করা ডাউনলোডগুলো এখানে দেখা যাবে এবং সংযোগ ছাড়াই চলবে।</string>
 <string name="downloads_empty_headline">এখনো কোনো ডাউনলোড নেই</string>
+<string name="downloads_free">%s খালি</string>
 <string name="downloads_free_up_space">জায়গা খালি করুন</string>
+<string name="downloads_keep_downloading">ডাউনলোড চালিয়ে যান</string>
 <string name="downloads_load_failed_body">আপনার ডাউনলোড করা ফাইলগুলো পরিবর্তন করা হয়নি।</string>
 <string name="downloads_load_failed_headline">আপনার ডাউনলোডগুলো পড়া যায়নি</string>
 <string name="downloads_offline_pill">অফলাইন · কোনো সংযোগ নেই</string>
@@ -137,6 +155,8 @@
 <string name="downloads_reason_storage_unavailable">স্টোরেজ অনুপলব্ধ</string>
 <string name="downloads_retry_failed">ব্যর্থগুলো আবার চেষ্টা করুন (%d)</string>
 <string name="downloads_select">সিলেক্ট করুন</string>
+<string name="downloads_selected_status">%2$dটির মধ্যে %1$dটি নির্বাচিত · %3$s</string>
+<string name="downloads_show_in_finder">Finder-এ দেখান</string>
 <string name="downloads_state_queued">অপেক্ষা করছে</string>
 <string name="downloads_storage_full_headline">যথেষ্ট স্টোরেজ নেই</string>
 <string name="downloads_storage_legend">%1$s / %2$s ব্যবহৃত · ডাউনলোডে %3$s</string>
@@ -220,6 +240,7 @@
 <string name="home_bookmarks_no_status_body">সেই বুকমার্কগুলো দেখতে উপরে একটি বাছাই করুন।</string>
 <string name="home_bookmarks_no_status_headline">কোনো স্ট্যাটাস বাছাই করা হয়নি</string>
 <string name="home_change_provider_img_des">প্রোভাইডার পরিবর্তন করুন</string>
+<string name="home_choose_source">উৎস বেছে নিন</string>
 <string name="home_expanded_hide">বন্ধ করুন</string>
 <string name="home_info">তথ্য</string>
 <string name="home_main_poster_img_des">মূল পোস্টার</string>
@@ -230,8 +251,13 @@
 <string name="home_offline_bookmarks_body">আপনার বুকমার্কগুলো এই ডিভাইসে সংরক্ষিত আছে।</string>
 <string name="home_offline_source_headline">%1$s-এর সংযোগ প্রয়োজন</string>
 <string name="home_play">চালান</string>
+<string name="home_reload_failed">%1$s পুনরায় লোড করা যায়নি। এই সারিগুলি %2$s আগের।</string>
 <string name="home_search_only_body">আপনার কোনো এক্সটেনশনের হোম পেজ নেই, তবে আপনি সেগুলোতে খুঁজতে পারেন।</string>
+<string name="home_source_none_line">কোনো সারি নেই; আপনার লাইব্রেরি থাকবে</string>
 <string name="home_source_none_subtitle">কোনো সারি নেই · আপনার সারি থাকে</string>
+<string name="home_source_picker_body">সারিগুলি একবারে একটি এক্সটেনশন থেকে আসে।</string>
+<string name="home_source_picker_title">হোম উৎস</string>
+<string name="home_source_unreachable">গতবার এতে পৌঁছানো যায়নি</string>
 <string name="install_prerelease">প্রাক-মুক্তি সংস্করণ ইনস্টলেশন</string>
 <string name="jsdelivr_enabled">GitHub-এর সাথে সংযোগ করা যায়নি। jsDelivr proxy চালু করা হচ্ছে।</string>
 <string name="jsdelivr_proxy">গিডহাব প্রক্সি</string>
@@ -380,6 +406,13 @@
 <string name="search_poster_img_des">পোস্টার</string>
 <string name="search_provider_text_providers">প্রভাইডার অনুযায়ি খুঁজুন</string>
 <string name="search_provider_text_types">ধরণ অনুযায়ি খুঁজুন</string>
+<string name="search_quick_empty_body">সব উৎস উত্তর দিয়েছে কিন্তু কারও কাছে “%s” নেই। ছোট অনুসন্ধান চেষ্টা করুন, অথবা উৎস বদলাতে পূর্ণ অনুসন্ধান খুলুন।</string>
+<string name="search_quick_empty_headline">কোনো মিল নেই</string>
+<string name="search_quick_meta_answered">সব উৎস উত্তর দিয়েছে</string>
+<string name="search_quick_meta_answering">উৎসগুলো উত্তর দিলেই ফলাফল আসে</string>
+<string name="search_quick_open_full">পূর্ণ অনুসন্ধান খুলুন</string>
+<string name="search_quick_status">%2$d-এর মধ্যে %1$d উত্তর দিয়েছে · %3$d ব্যর্থ</string>
+<string name="search_quick_title">দ্রুত অনুসন্ধান</string>
 <string name="search_state_idle_body_desktop">একটি শিরোনাম লিখুন। প্রতিটি সোর্স উত্তর দিলে ফলাফল তার নিচে দেখা যাবে।</string>
 <string name="search_state_no_results_type_filter">শুধু %s। আপনার ধরনের ফিল্টার অনুসন্ধান সীমিত করছে।</string>
 <string name="search_state_no_suggestions_detail">0টি সাজেশন · 0টি সাম্প্রতিক মিল</string>

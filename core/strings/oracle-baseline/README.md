@@ -120,6 +120,41 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Twentieth move, 2026-11-07 — Train 3 (`#176`, `#181`, `#178`, `#179`, `#185`, `#186`, `#191`), one move: 33 new keys
+
+One combined baseline move for the train that merges `#176` (`KMP-48`), `#181` (`KMP-38` PR 2a), `#178` (`I18N-11`), `#179`
+(`KMP-54`), `#185` (`I18N-13`), `#186` (`KMP-53` step 2) and `#191` (`I18N-14`) together. Four of them carry keys, and each had
+recorded its own move, numbered from its own branch point: `#176` as an "eighteenth", `#178` as a "seventeenth", `#185` as a
+"nineteenth" and `#191` as the "next move after the eighteenth". Those headings collided with each other and with master's
+seventeenth to nineteenth, so none of them is kept: the train regenerated once from the live generator on master's baseline
+with the nineteenth in it, and all four are recorded here as this one move. `#179` contains `#178` and `#186` contains `#185`,
+and neither adds a key of its own; `#181` adds none.
+
+New keys are approved in general (`I18N-09`, above). Additive, every key authored in all 62 directories (`OWN` grows by
+33 x 62 = 2,046):
+
+| PR | keys | of which plurals | `decoded` | `emitted` | `lookup` |
+|---|---:|---:|---:|---:|---:|
+| `#176` `KMP-48`, TV Quick Search | 7 | 0 | 434 | 448 | 609 |
+| `#178` `I18N-11`, the desktop downloads pages | 14 | 5 | 1,308 | 1,346 | 1,763 |
+| `#185` `I18N-13`, the Mac menu bar's Go menu | 1 | 0 | 62 | 64 | 87 |
+| `#191` `I18N-14`, Home and a title's page (`DS-21`) | 11 | 1 | 770 | 794 | 1,066 |
+| **total** | **33** | **6** | **2,574** | **2,652** | **3,525** |
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 39,574 | 42,148 | 2,574 | 0 | 0 |
+| `emitted.tsv` | 41,705 | 44,357 | 2,652 | 0 | 0 |
+| `lookup.tsv` | 78,888 | 82,413 | 3,525 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`:
+0 lines lost in any file, and every added line names one of the 33 keys, all 33 present. Split by the PR that owns each key,
+the added lines equal, file by file, what each PR measured on its own branch (the per-PR columns above). `report.txt` moved
+only in its counts: `OWN` 38,820 -> 40,866, visible keys 890 -> 923, plurals 15 -> 21, and 33 more values in each of the two
+locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 38,820 -> 40,866.
+
 ## Nineteenth move, 2026-11-07 — Train 2 (`#173`, `#182`, `#180`), one move: `KMP-47`'s 8 new keys for TV search's suggestions
 
 One combined baseline move for the train that merges `#173` (`KMP-47`), `#182` (`BUG-42`) and `#180` (`KMP-53`) together.

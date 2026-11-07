@@ -4,10 +4,16 @@
 <string name="detail_load_failed_body">Źródło może być niedostępne.</string>
 <string name="detail_load_failed_headline">Nie udało się otworzyć tego tytułu</string>
 <plurals name="downloads_active"><item quantity="one">%d aktywne pobieranie</item><item quantity="few">%d aktywne pobierania</item><item quantity="many">%d aktywnych pobierań</item><item quantity="other">%d aktywnych pobierań</item></plurals>
+<plurals name="downloads_count_downloading"><item quantity="one">pobieranie: %d</item><item quantity="few">pobieranie: %d</item><item quantity="many">pobieranie: %d</item><item quantity="other">pobieranie: %d</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">w kolejce: %d</item><item quantity="few">w kolejce: %d</item><item quantity="many">w kolejce: %d</item><item quantity="other">w kolejce: %d</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Usunąć %d pobrany plik?</item><item quantity="few">Usunąć %d pobrane pliki?</item><item quantity="many">Usunąć %d pobranych plików?</item><item quantity="other">Usunąć %d pobranego pliku?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d odcinek</item><item quantity="few">%d odcinki</item><item quantity="many">%d odcinków</item><item quantity="other">%d odcinka</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d nieudane</item><item quantity="few">%d nieudane</item><item quantity="many">%d nieudanych</item><item quantity="other">%d nieudanych</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d pobieranie w kolejce</item><item quantity="few">%d pobierania w kolejce</item><item quantity="many">%d pobierań w kolejce</item><item quantity="other">%d pobierań w kolejce</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d tytuł · %2$s</item><item quantity="few">%1$d tytuły · %2$s</item><item quantity="many">%1$d tytułów · %2$s</item><item quantity="other">%1$d tytułu · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZAKŁADKA</item><item quantity="few">%d ZAKŁADKI</item><item quantity="many">%d ZAKŁADEK</item><item quantity="other">%d ZAKŁADKI</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nie udało się załadować %d sekcji</item><item quantity="few">Nie udało się załadować %d sekcji</item><item quantity="many">Nie udało się załadować %d sekcji</item><item quantity="other">Nie udało się załadować %d sekcji</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d sekcja</item><item quantity="few">%d sekcje</item><item quantity="many">%d sekcji</item><item quantity="other">%d sekcji</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d ukryty odnośnik</item><item quantity="few">%d ukryte odnośniki</item><item quantity="many">%d ukrytych odnośników</item><item quantity="other">%d ukrytych odnośników</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Szukaj w %d źródle</item><item quantity="few">Szukaj we wszystkich %d źródłach</item><item quantity="many">Szukaj we wszystkich %d źródłach</item><item quantity="other">Szukaj we wszystkich %d źródłach</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać %d źródło.</item><item quantity="few">Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.</item><item quantity="many">Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródeł.</item><item quantity="other">Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.</item></plurals>
@@ -164,6 +170,11 @@
 <string name="delete_repository">Usuń repozytorium</string>
 <string name="delete_repository_plugins">Ta akcja usunie także wszystkie rozszerzenia z repozytorium</string>
 <string name="deselect_all">Odznacz wszystkie</string>
+<string name="desktop_menu_go">Idź</string>
+<string name="detail_source_resolving">Ustalanie…</string>
+<string name="detail_sources_done">Odpowiedziało: %1$d z %2$d</string>
+<string name="detail_sources_progress">Odpowiedziało: %1$d z %2$d · wczytywanie…</string>
+<string name="detail_start_over">Zacznij od nowa</string>
 <string name="device_pin_counter_text">Kod wygasa za %1$dm %2$ds</string>
 <string name="device_pin_error_message">Nie można uzyskać kodu PIN urządzenia. Spróbuj uwierzytelnienia lokalnego</string>
 <string name="device_pin_expired_message">Kod PIN stracił ważność!</string>
@@ -203,12 +214,19 @@
 <string name="downloaded_file">Pobrano plik</string>
 <string name="downloading">Pobieranie</string>
 <string name="downloads_browse_library">Przeglądaj bibliotekę</string>
+<string name="downloads_cancel_confirm_body">Spowoduje to odrzucenie pobranych dotąd %s.</string>
+<string name="downloads_cancel_confirm_title">Anulować to pobieranie?</string>
+<string name="downloads_cancel_download">Anuluj pobieranie</string>
+<string name="downloads_column_size">Rozmiar</string>
 <string name="downloads_delete_all">Usuń wszystkie</string>
+<string name="downloads_delete_confirm_body">Zwolni to %s i nie można tego cofnąć.</string>
 <string name="downloads_delete_select">Zaznacz elementy do usunięcia</string>
 <string name="downloads_empty">Obecnie nie ma żadnych pobrań.</string>
 <string name="downloads_empty_body">Pobrania rozpoczęte z listy odcinków tytułu pojawiają się tutaj i można je odtwarzać bez połączenia.</string>
 <string name="downloads_empty_headline">Nie ma jeszcze pobranych</string>
+<string name="downloads_free">%s wolne</string>
 <string name="downloads_free_up_space">Zwolnij miejsce</string>
+<string name="downloads_keep_downloading">Pobieraj dalej</string>
 <string name="downloads_load_failed_body">Pobrane pliki nie zostały zmienione.</string>
 <string name="downloads_load_failed_headline">Nie udało się odczytać pobranych</string>
 <string name="downloads_offline_pill">Offline · brak połączenia</string>
@@ -222,6 +240,8 @@
 <string name="downloads_reason_storage_unavailable">Pamięć niedostępna</string>
 <string name="downloads_retry_failed">Ponów nieudane (%d)</string>
 <string name="downloads_select">Zaznacz</string>
+<string name="downloads_selected_status">Wybrano %1$d z %2$d · %3$s</string>
+<string name="downloads_show_in_finder">Pokaż w Finderze</string>
 <string name="downloads_state_queued">W kolejce</string>
 <string name="downloads_storage_full_headline">Za mało pamięci</string>
 <string name="downloads_storage_legend">Użyto %1$s z %2$s · %3$s w pobranych</string>
@@ -348,6 +368,7 @@
 <string name="home_bookmarks_no_status_body">Wybierz jeden powyżej, aby zobaczyć te zakładki.</string>
 <string name="home_bookmarks_no_status_headline">Nie wybrano statusu</string>
 <string name="home_change_provider_img_des">Zmień źródło</string>
+<string name="home_choose_source">Wybierz źródło</string>
 <string name="home_expanded_hide">Ukryj</string>
 <string name="home_info">Informacje</string>
 <string name="home_main_poster_img_des">Główny obrazek</string>
@@ -359,9 +380,14 @@
 <string name="home_offline_source_headline">%1$s wymaga połączenia</string>
 <string name="home_play">Odtwórz</string>
 <string name="home_random">Losowy</string>
+<string name="home_reload_failed">Nie udało się ponownie wczytać %1$s. Te wiersze są sprzed %2$s.</string>
 <string name="home_search_only_body">Żadne z twoich rozszerzeń nie ma strony głównej, ale nadal możesz w nich szukać.</string>
 <string name="home_source">Źródło</string>
+<string name="home_source_none_line">Brak wierszy; biblioteka zostaje</string>
 <string name="home_source_none_subtitle">BRAK RZĘDÓW · TWOJE RZĘDY ZOSTAJĄ</string>
+<string name="home_source_picker_body">Wiersze pochodzą z jednego rozszerzenia naraz.</string>
+<string name="home_source_picker_title">Źródło strony głównej</string>
+<string name="home_source_unreachable">Ostatnio był niedostępny</string>
 <string name="install_prerelease">Zainstaluj wersję przedpremierową</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Nie udało się połączyć z GitHubem. Włączono serwer pośredniczący jsDelivr…</string>
@@ -614,6 +640,13 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Szukaj według źródeł</string>
 <string name="search_provider_text_types">Szukaj według typów</string>
+<string name="search_quick_empty_body">Wszystkie źródła odpowiedziały i żadne nie ma „%s”. Spróbuj krótszego zapytania albo otwórz pełne wyszukiwanie, aby zmienić źródła.</string>
+<string name="search_quick_empty_headline">Brak dopasowań</string>
+<string name="search_quick_meta_answered">WSZYSTKIE ŹRÓDŁA ODPOWIEDZIAŁY</string>
+<string name="search_quick_meta_answering">WYNIKI NAPŁYWAJĄ W MIARĘ ODPOWIEDZI ŹRÓDEŁ</string>
+<string name="search_quick_open_full">Otwórz pełne wyszukiwanie</string>
+<string name="search_quick_status">ODPOWIEDZIAŁO %1$d Z %2$d · BŁĘDY: %3$d</string>
+<string name="search_quick_title">Szybkie wyszukiwanie</string>
 <string name="search_state_idle_body_desktop">Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.</string>
 <string name="search_state_no_results_type_filter">Tylko %s. Filtr typu zawęża wyszukiwanie.</string>
 <string name="search_state_no_suggestions_detail">0 SUGESTII · 0 OSTATNICH DOPASOWAŃ</string>

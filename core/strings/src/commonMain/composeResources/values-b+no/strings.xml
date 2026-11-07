@@ -3,12 +3,18 @@
 <resources>
 <string name="detail_load_failed_body">Kilden er kanskje ikke tilgjengelig.</string>
 <string name="detail_load_failed_headline">Kunne ikke åpne denne tittelen</string>
+<plurals name="downloads_count_downloading"><item quantity="one">%d lastes ned</item><item quantity="other">%d lastes ned</item></plurals>
+<plurals name="downloads_count_queued"><item quantity="one">%d i kø</item><item quantity="other">%d i kø</item></plurals>
+<plurals name="downloads_delete_confirm_title"><item quantity="one">Slette %d nedlasting?</item><item quantity="other">Slette %d nedlastinger?</item></plurals>
+<plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episoder</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d mislyktes</item><item quantity="other">%d mislyktes</item></plurals>
+<plurals name="downloads_titles_status"><item quantity="one">%1$d tittel · %2$s</item><item quantity="other">%1$d titler · %2$s</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKER</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikke lastes inn</item><item quantity="other">%d deler kunne ikke lastes inn</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Søk i %d kilde</item><item quantity="other">Søk i alle %d kilder</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Trykk på søketasten på tastaturet for å søke i %d kilde likevel.</item><item quantity="other">Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KILDE</item><item quantity="other">%d KILDER</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d seksjon</item><item quantity="other">%d seksjoner</item></plurals>
 <string name="account">konto</string>
 <string name="action_add_to_bookmarks">Sett visningsstatus</string>
 <string name="action_default">Misligholde</string>
@@ -108,6 +114,11 @@
 <string name="delete_message">Dette vil slette %s \nEr du sikker?</string>
 <string name="delete_repository">Slett pakkebrønn</string>
 <string name="delete_repository_plugins">Dette vil også slette alle pakkebrønnsprogramtillegg</string>
+<string name="desktop_menu_go">Gå</string>
+<string name="detail_source_resolving">Løser…</string>
+<string name="detail_sources_done">%1$d av %2$d svarte</string>
+<string name="detail_sources_progress">%1$d av %2$d svarte · laster inn…</string>
+<string name="detail_start_over">Start på nytt</string>
 <string name="discord">Bli med Discord</string>
 <string name="display_subbed_dubbed_settings">Vis dubbet/subbed Anime</string>
 <string name="dns_pref">DNS rundt HTTPS</string>
@@ -133,10 +144,17 @@
 <string name="downloaded_file">Nedlastet fil</string>
 <string name="downloading">Nedlasting pågår</string>
 <string name="downloads_browse_library">Bla i biblioteket</string>
+<string name="downloads_cancel_confirm_body">Dette forkaster de %s som er lastet ned så langt.</string>
+<string name="downloads_cancel_confirm_title">Avbryte denne nedlastingen?</string>
+<string name="downloads_cancel_download">Avbryt nedlasting</string>
+<string name="downloads_column_size">Størrelse</string>
 <string name="downloads_delete_all">Slett alle</string>
+<string name="downloads_delete_confirm_body">Dette frigjør %s og kan ikke angres.</string>
 <string name="downloads_empty_body">Nedlastinger du starter fra episodelisten til en tittel, vises her og kan spilles av uten tilkobling.</string>
 <string name="downloads_empty_headline">Ingen nedlastinger ennå</string>
+<string name="downloads_free">%s ledig</string>
 <string name="downloads_free_up_space">Frigjør plass</string>
+<string name="downloads_keep_downloading">Fortsett nedlastingen</string>
 <string name="downloads_load_failed_body">De nedlastede filene dine er ikke endret.</string>
 <string name="downloads_load_failed_headline">Kunne ikke lese nedlastingene dine</string>
 <string name="downloads_offline_pill">Frakoblet · ingen tilkobling</string>
@@ -150,6 +168,8 @@
 <string name="downloads_reason_storage_unavailable">Lagring utilgjengelig</string>
 <string name="downloads_retry_failed">Prøv mislykkede igjen (%d)</string>
 <string name="downloads_select">Velg</string>
+<string name="downloads_selected_status">%1$d av %2$d valgt · %3$s</string>
+<string name="downloads_show_in_finder">Vis i Finder</string>
 <string name="downloads_state_queued">I kø</string>
 <string name="downloads_storage_full_headline">Ikke nok lagringsplass</string>
 <string name="downloads_storage_legend">%1$s av %2$s brukt · %3$s i nedlastinger</string>
@@ -248,6 +268,7 @@
 <string name="home_bookmarks_no_status_body">Velg en ovenfor for å se de bokmerkene.</string>
 <string name="home_bookmarks_no_status_headline">Ingen status valgt</string>
 <string name="home_change_provider_img_des">Bytt leverandør</string>
+<string name="home_choose_source">Velg kilde</string>
 <string name="home_expanded_hide">Gjemme seg</string>
 <string name="home_info">Informasjon</string>
 <string name="home_main_poster_img_des">Main Plakat</string>
@@ -259,9 +280,14 @@
 <string name="home_offline_source_headline">%1$s trenger tilkobling</string>
 <string name="home_play">Spille</string>
 <string name="home_random">Tilfeldig</string>
+<string name="home_reload_failed">Kunne ikke laste inn %1$s på nytt. Disse radene er fra for %2$s siden.</string>
 <string name="home_search_only_body">Ingen av utvidelsene dine har en hjemmeside, men du kan fortsatt søke i dem.</string>
 <string name="home_source">Kilde</string>
+<string name="home_source_none_line">Ingen rader; biblioteket blir værende</string>
 <string name="home_source_none_subtitle">INGEN RADER · RADENE DINE BLIR</string>
+<string name="home_source_picker_body">Radene kommer fra én utvidelse om gangen.</string>
+<string name="home_source_picker_title">Kilde for startsiden</string>
+<string name="home_source_unreachable">Var ikke tilgjengelig sist</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Kunne ikke nå GitHub. Skrur på jsDelivr-mellomtjener …</string>
 <string name="jsdelivr_proxy">raw.githubusercontent.com-mellomtjener</string>
@@ -450,6 +476,13 @@
 <string name="search_poster_img_des">Plakat</string>
 <string name="search_provider_text_providers">Søk med leverandører</string>
 <string name="search_provider_text_types">Søk med typer</string>
+<string name="search_quick_empty_body">Alle kildene svarte, og ingen av dem har «%s». Prøv et kortere søk, eller åpne fullt søk for å endre kildene.</string>
+<string name="search_quick_empty_headline">Ingen treff</string>
+<string name="search_quick_meta_answered">ALLE KILDENE HAR SVART</string>
+<string name="search_quick_meta_answering">RESULTATER KOMMER ETTER HVERT SOM KILDENE SVARER</string>
+<string name="search_quick_open_full">Åpne fullt søk</string>
+<string name="search_quick_status">%1$d AV %2$d HAR SVART · %3$d FEILET</string>
+<string name="search_quick_title">Hurtigsøk</string>
 <string name="search_state_idle_body_desktop">Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.</string>
 <string name="search_state_no_results_type_filter">Bare %s. Typefilteret ditt begrenser søket.</string>
 <string name="search_state_no_suggestions_detail">0 FORSLAG · 0 NYLIGE TREFF</string>
