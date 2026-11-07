@@ -6,6 +6,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d nabigo</item><item quantity="other">%d nabigo</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Hindi na-load ang %d seksyon</item><item quantity="other">Hindi na-load ang %d seksyon</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d seksyon</item><item quantity="other">%d na seksyon</item></plurals>
 <string name="action_add_to_bookmarks">Itakda ang kapalaran ng panonood</string>
 <string name="action_add_to_favorites">Idagdag sa mga paborito &lt;3</string>
 <string name="action_remove_from_bookmarks">Alisin</string>
@@ -32,6 +33,10 @@
 <string name="confirm_before_exiting_desc">Ipakita ang dialog bago lumabas sa app</string>
 <string name="confirm_before_exiting_title">Kumpirmahin bago lumabas</string>
 <string name="deselect_all">Alisin sa pagkakapili ang Lahat</string>
+<string name="detail_source_resolving">Nireresolba…</string>
+<string name="detail_sources_done">%1$d sa %2$d ang sumagot</string>
+<string name="detail_sources_progress">%1$d sa %2$d ang sumagot · naglo-load…</string>
+<string name="detail_start_over">Magsimula ulit</string>
 <string name="download">I-download</string>
 <string name="download_all_plugins_from_repo">Babala: Walang pananagutan ang CloudStream 3 sa paggamit ng mga extension ng third-party at hindi kami nagbibigay ng anumang suporta para sa kanila!</string>
 <string name="download_canceled">Kinansela ang pag-download</string>
@@ -117,6 +122,7 @@
 <string name="home_bookmarks_no_status_body">Pumili ng isa sa itaas para makita ang mga bookmark na iyon.</string>
 <string name="home_bookmarks_no_status_headline">Walang napiling status</string>
 <string name="home_change_provider_img_des">Baguhin ang Tagatustos</string>
+<string name="home_choose_source">Pumili ng source</string>
 <string name="home_expanded_hide">Itago</string>
 <string name="home_info">Impormasyon</string>
 <string name="home_more_info">Higit pang impormasyon</string>
@@ -126,8 +132,13 @@
 <string name="home_offline_bookmarks_body">Naka-save sa device na ito ang mga bookmark mo.</string>
 <string name="home_offline_source_headline">Kailangan ng %1$s ng koneksyon</string>
 <string name="home_play">Ipatugtog</string>
+<string name="home_reload_failed">Hindi ma-reload ang %1$s. Mula %2$s na ang nakalipas ang mga row na ito.</string>
 <string name="home_search_only_body">Wala sa iyong mga extension ang may home page, pero maaari ka pa ring maghanap sa mga ito.</string>
+<string name="home_source_none_line">Walang row; mananatili ang library mo</string>
 <string name="home_source_none_subtitle">WALANG ROW · NANANATILI ANG MGA ROW MO</string>
+<string name="home_source_picker_body">Galing sa isang extension sa bawat pagkakataon ang mga row.</string>
+<string name="home_source_picker_title">Source ng Home</string>
+<string name="home_source_unreachable">Hindi ito naabot noong huli</string>
 <string name="links_reloaded_toast">Ini-load muli ang mga link</string>
 <string name="load_more">Mag-load pa</string>
 <string name="loading">Naglo-load…</string>

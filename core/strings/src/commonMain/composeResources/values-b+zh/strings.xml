@@ -8,6 +8,7 @@
 <plurals name="downloads_queued"><item quantity="other">队列中有 %d 个下载</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">%d 个书签</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d 个分区加载失败</item></plurals>
+<plurals name="home_source_sections"><item quantity="other">%d 个版块</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d 条隐藏链接</item></plurals>
 <string name="account">账户</string>
 <string name="action_add_to_bookmarks">设置观看状态</string>
@@ -161,6 +162,10 @@
 <string name="delete_repository">删除仓库</string>
 <string name="delete_repository_plugins">这也将删除所有仓库插件</string>
 <string name="deselect_all">全不选</string>
+<string name="detail_source_resolving">正在解析…</string>
+<string name="detail_sources_done">%2$d 个中有 %1$d 个已响应</string>
+<string name="detail_sources_progress">%2$d 个中有 %1$d 个已响应 · 正在加载…</string>
+<string name="detail_start_over">从头开始</string>
 <string name="device_pin_counter_text">验证码 %1$dm %2$ds 后过期</string>
 <string name="device_pin_error_message">无法获取设备 PIN 码，尝试本地身份验证</string>
 <string name="device_pin_expired_message">PIN 码现已过期！</string>
@@ -345,6 +350,7 @@
 <string name="home_bookmarks_no_status_body">在上方选择一个即可查看这些书签。</string>
 <string name="home_bookmarks_no_status_headline">未选择状态</string>
 <string name="home_change_provider_img_des">更改片源</string>
+<string name="home_choose_source">选择来源</string>
 <string name="home_expanded_hide">隐藏</string>
 <string name="home_info">信息</string>
 <string name="home_main_poster_img_des">主封面</string>
@@ -356,9 +362,14 @@
 <string name="home_offline_source_headline">%1$s 需要网络连接</string>
 <string name="home_play">播放</string>
 <string name="home_random">随机</string>
+<string name="home_reload_failed">无法重新加载 %1$s。这些内容行来自 %2$s 前。</string>
 <string name="home_search_only_body">你的扩展都没有主页，但仍可在其中搜索。</string>
 <string name="home_source">来源</string>
+<string name="home_source_none_line">无内容行；你的媒体库保留</string>
 <string name="home_source_none_subtitle">无行 · 你的行保留</string>
+<string name="home_source_picker_body">每次只显示一个扩展的内容行。</string>
+<string name="home_source_picker_title">主页来源</string>
+<string name="home_source_unreachable">上次无法连接</string>
 <string name="install_prerelease">安装预发行版</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">无法访问 GitHub。正在开启 jsDelivr 代理…</string>

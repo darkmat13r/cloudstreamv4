@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="one">"%d pobieranie w kolejce"</item><item quantity="few">"%d pobierania w kolejce"</item><item quantity="many">"%d pobierań w kolejce"</item><item quantity="other">"%d pobierań w kolejce"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ZAKŁADKA"</item><item quantity="few">"%d ZAKŁADKI"</item><item quantity="many">"%d ZAKŁADEK"</item><item quantity="other">"%d ZAKŁADKI"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nie udało się załadować %d sekcji"</item><item quantity="few">"Nie udało się załadować %d sekcji"</item><item quantity="many">"Nie udało się załadować %d sekcji"</item><item quantity="other">"Nie udało się załadować %d sekcji"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d sekcja"</item><item quantity="few">"%d sekcje"</item><item quantity="many">"%d sekcji"</item><item quantity="other">"%d sekcji"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d ukryty odnośnik"</item><item quantity="few">"%d ukryte odnośniki"</item><item quantity="many">"%d ukrytych odnośników"</item><item quantity="other">"%d ukrytych odnośników"</item></plurals>
 <string name="account">"konto"</string>
 <string name="action_add_to_bookmarks">"Ustaw status oglądania"</string>
@@ -161,6 +162,10 @@
 <string name="deselect_all">"Odznacz wszystkie"</string>
 <string name="detail_load_failed_body">"Źródło może być niedostępne."</string>
 <string name="detail_load_failed_headline">"Nie udało się otworzyć tego tytułu"</string>
+<string name="detail_source_resolving">"Ustalanie…"</string>
+<string name="detail_sources_done" formatted="true">"Odpowiedziało: %1$d z %2$d"</string>
+<string name="detail_sources_progress" formatted="true">"Odpowiedziało: %1$d z %2$d · wczytywanie…"</string>
+<string name="detail_start_over">"Zacznij od nowa"</string>
 <string name="device_pin_counter_text" formatted="true">"Kod wygasa za %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Nie można uzyskać kodu PIN urządzenia. Spróbuj uwierzytelnienia lokalnego"</string>
 <string name="device_pin_expired_message">"Kod PIN stracił ważność!"</string>
@@ -345,6 +350,7 @@
 <string name="home_bookmarks_no_status_body">"Wybierz jeden powyżej, aby zobaczyć te zakładki."</string>
 <string name="home_bookmarks_no_status_headline">"Nie wybrano statusu"</string>
 <string name="home_change_provider_img_des">"Zmień źródło"</string>
+<string name="home_choose_source">"Wybierz źródło"</string>
 <string name="home_expanded_hide">"Ukryj"</string>
 <string name="home_info">"Informacje"</string>
 <string name="home_main_poster_img_des">"Główny obrazek"</string>
@@ -356,9 +362,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s wymaga połączenia"</string>
 <string name="home_play">"Odtwórz"</string>
 <string name="home_random">"Losowy"</string>
+<string name="home_reload_failed" formatted="true">"Nie udało się ponownie wczytać %1$s. Te wiersze są sprzed %2$s."</string>
 <string name="home_search_only_body">"Żadne z twoich rozszerzeń nie ma strony głównej, ale nadal możesz w nich szukać."</string>
 <string name="home_source">"Źródło"</string>
+<string name="home_source_none_line">"Brak wierszy; biblioteka zostaje"</string>
 <string name="home_source_none_subtitle">"BRAK RZĘDÓW · TWOJE RZĘDY ZOSTAJĄ"</string>
+<string name="home_source_picker_body">"Wiersze pochodzą z jednego rozszerzenia naraz."</string>
+<string name="home_source_picker_title">"Źródło strony głównej"</string>
+<string name="home_source_unreachable">"Ostatnio był niedostępny"</string>
 <string name="install_prerelease">"Zainstaluj wersję przedpremierową"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Nie udało się połączyć z GitHubem. Włączono serwer pośredniczący jsDelivr…"</string>

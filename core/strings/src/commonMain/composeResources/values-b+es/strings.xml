@@ -8,6 +8,7 @@
 <plurals name="downloads_queued"><item quantity="one">%d descarga encolada</item><item quantity="many">%d descargas encoladas</item><item quantity="other">%d descargas encoladas</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="many">%d DE MARCADORES</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">No se pudo cargar %d sección</item><item quantity="many">No se pudieron cargar %d secciones</item><item quantity="other">No se pudieron cargar %d secciones</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d sección</item><item quantity="many">%d secciones</item><item quantity="other">%d secciones</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d enlace oculto</item><item quantity="many">%d enlaces ocultos</item><item quantity="other">%d enlaces ocultos</item></plurals>
 <string name="account">Cuenta</string>
 <string name="action_add_to_bookmarks">Seleccionar estado de visualización</string>
@@ -161,6 +162,10 @@
 <string name="delete_repository">Borrar repositorio</string>
 <string name="delete_repository_plugins">Esto también eliminará todos los plugins del repositorio</string>
 <string name="deselect_all">Deseleccionar todo</string>
+<string name="detail_source_resolving">Resolviendo…</string>
+<string name="detail_sources_done">Respondieron %1$d de %2$d</string>
+<string name="detail_sources_progress">Respondieron %1$d de %2$d · cargando…</string>
+<string name="detail_start_over">Empezar de nuevo</string>
 <string name="device_pin_counter_text">El código caduca en %1$d mín y %2$d s</string>
 <string name="device_pin_error_message">No puedo obtener el código PIN del dispositivo; intente con la autenticación local</string>
 <string name="device_pin_expired_message">¡El código PIN ya ha caducado!</string>
@@ -345,6 +350,7 @@
 <string name="home_bookmarks_no_status_body">Elige uno arriba para ver esos marcadores.</string>
 <string name="home_bookmarks_no_status_headline">Ningún estado elegido</string>
 <string name="home_change_provider_img_des">Cambiar proveedor</string>
+<string name="home_choose_source">Elegir fuente</string>
 <string name="home_expanded_hide">Ocultar</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Póster principal</string>
@@ -356,9 +362,14 @@
 <string name="home_offline_source_headline">%1$s necesita conexión</string>
 <string name="home_play">Reproducir</string>
 <string name="home_random">Aleatorio</string>
+<string name="home_reload_failed">No se pudo recargar %1$s. Estas filas son de hace %2$s.</string>
 <string name="home_search_only_body">Ninguna de sus extensiones tiene página de inicio, pero aún puede buscar en ellas.</string>
 <string name="home_source">Fuente</string>
+<string name="home_source_none_line">Sin filas; tu biblioteca se mantiene</string>
 <string name="home_source_none_subtitle">SIN FILAS · TUS FILAS SE QUEDAN</string>
+<string name="home_source_picker_body">Las filas vienen de una extensión a la vez.</string>
+<string name="home_source_picker_title">Fuente de inicio</string>
+<string name="home_source_unreachable">No se pudo acceder la última vez</string>
 <string name="install_prerelease">Instalar version pre-lanzamiento</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">No se ha podido acceder a GitHub. Activando el proxy jsDelivr…</string>

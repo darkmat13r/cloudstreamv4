@@ -4,6 +4,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">"%d oooogg"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d OOUUH OOH"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d oooogg ooh aaahhu"</item></plurals>
+<plurals name="home_source_sections"><item quantity="other">"%d oouh"</item></plurals>
 <string name="account">"aaaaggg"</string>
 <string name="action_add_to_bookmarks">"auugggguuuuuuhhh uuuu hhhhhhhhuhggghggg"</string>
 <string name="action_add_to_favorites">"uuh ah aaaahhhag"</string>
@@ -140,6 +141,10 @@
 <string name="deselect_all">"eeeeeekh uug"</string>
 <string name="detail_load_failed_body">"uhaauauau ahuuouaha oooohhaaaghh."</string>
 <string name="detail_load_failed_headline">"ahooo uuhh ahhhaauugghh oouuh"</string>
+<string name="detail_source_resolving">"oouhh…"</string>
+<string name="detail_sources_done" formatted="true">"%1$d ooh %2$d"</string>
+<string name="detail_sources_progress" formatted="true">"%1$d ooh %2$d · aahh…"</string>
+<string name="detail_start_over">"uuh aah"</string>
 <string name="device_pin_counter_text" formatted="true">"aagg uuuuggg og %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Can\t aah uuh aaaagg oog code, uuh ooogg uuuuggguuuuggg"</string>
 <string name="device_pin_expired_message">"ooh uuuk oh aah oooohhh !"</string>
@@ -304,6 +309,7 @@
 <string name="home_bookmarks_no_status_body">"ooh aaa uuh ooh-ahh oouuh ooh."</string>
 <string name="home_bookmarks_no_status_headline">"oooh ahh uuu"</string>
 <string name="home_change_provider_img_des">"ah ohaaaaghh aaahhu"</string>
+<string name="home_choose_source">"aah uuh"</string>
 <string name="home_expanded_hide">"oh ahhh"</string>
 <string name="home_info">"aauugghh"</string>
 <string name="home_main_poster_img_des">"ahhhahaaaaaahhhaaaghh"</string>
@@ -315,9 +321,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s ooogg eek"</string>
 <string name="home_play">"ooo-ahahouuhhh"</string>
 <string name="home_random">"aaaagg"</string>
+<string name="home_reload_failed" formatted="true">"Ooh %1$s uuh. Ahh oooh %2$s aah."</string>
 <string name="home_search_only_body">"aaaagg og ooogg oouuh"</string>
 <string name="home_source">"aaaahh"</string>
+<string name="home_source_none_line">"ooh aah; uuh ahh"</string>
 <string name="home_source_none_subtitle">"OOH UUU · OOUUH AHH"</string>
+<string name="home_source_picker_body">"aah ooh uuh ahh oooh uuu."</string>
+<string name="home_source_picker_title">"ooh uuh"</string>
+<string name="home_source_unreachable">"uuh ahh ooh aah"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"aaahh uug uuuhh aaaahh uuuuggg og uuuuhhhk proxy…"</string>
 <string name="jsdelivr_proxy">"eeeeek uuugg"</string>

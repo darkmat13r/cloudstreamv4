@@ -4,6 +4,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d असफल"</item><item quantity="other">"%d असफल"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d बुकमार्क"</item><item quantity="other">"%d बुकमार्क"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d खण्ड लोड हुन सकेन"</item><item quantity="other">"%d खण्डहरू लोड हुन सकेनन्"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d खण्ड"</item><item quantity="other">"%d खण्डहरू"</item></plurals>
 <string name="action_add_to_bookmarks">"हेरेको स्थिति निर्धारण गर्नुहोस्"</string>
 <string name="action_open_watching">"अधिक जानकारी"</string>
 <string name="action_remove_from_bookmarks">"हटाउनुहोस्"</string>
@@ -21,6 +22,10 @@
 <string name="continue_watching">"हेर्न सुचारु राख्नुहोस"</string>
 <string name="detail_load_failed_body">"स्रोत उपलब्ध नहुन सक्छ।"</string>
 <string name="detail_load_failed_headline">"यो शीर्षक खोल्न सकिएन"</string>
+<string name="detail_source_resolving">"समाधान गर्दै…"</string>
+<string name="detail_sources_done" formatted="true">"%2$d मध्ये %1$d ले जवाफ दिए"</string>
+<string name="detail_sources_progress" formatted="true">"%2$d मध्ये %1$d ले जवाफ दिए · लोड हुँदै…"</string>
+<string name="detail_start_over">"फेरि सुरु गर्नुहोस्"</string>
 <string name="download">"डाउनलोड"</string>
 <string name="download_canceled">"डाउनलोड रद्द गरियो"</string>
 <string name="download_done">"डाउनलोड भयो"</string>
@@ -93,6 +98,7 @@
 <string name="home_bookmarks_no_status_body">"ती बुकमार्कहरू हेर्न माथिबाट एउटा छान्नुहोस्।"</string>
 <string name="home_bookmarks_no_status_headline">"कुनै स्थिति छानिएको छैन"</string>
 <string name="home_change_provider_img_des">"प्रोवाइडर परिवर्तन गर्नुहोस्"</string>
+<string name="home_choose_source">"स्रोत छान्नुहोस्"</string>
 <string name="home_expanded_hide">"लुकाउनुहोस्"</string>
 <string name="home_info">"जानकारी"</string>
 <string name="home_main_poster_img_des">"मुख्य पोस्टर"</string>
@@ -103,8 +109,13 @@
 <string name="home_offline_bookmarks_body">"तपाईंका बुकमार्कहरू यो यन्त्रमा सुरक्षित छन्।"</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s लाई जडान चाहिन्छ"</string>
 <string name="home_play">"प्ले"</string>
+<string name="home_reload_failed" formatted="true">"%1$s पुनः लोड गर्न सकिएन। यी पङ्क्तिहरू %2$s अघिका हुन्।"</string>
 <string name="home_search_only_body">"तपाईंका कुनै पनि एक्सटेन्सनमा होम पेज छैन, तर तपाईं तिनमा अझै खोज्न सक्नुहुन्छ।"</string>
+<string name="home_source_none_line">"कुनै पङ्क्ति छैन; तपाईंको पुस्तकालय रहन्छ"</string>
 <string name="home_source_none_subtitle">"पङ्क्ति छैन · तपाईंका पङ्क्ति रहन्छन्"</string>
+<string name="home_source_picker_body">"पङ्क्तिहरू एक पटकमा एउटा एक्सटेन्सनबाट आउँछन्।"</string>
+<string name="home_source_picker_title">"गृह स्रोत"</string>
+<string name="home_source_unreachable">"गत पटक पुग्न सकिएन"</string>
 <string name="library_not_connected">"जडान छैन"</string>
 <string name="library_on_device">"यन्त्रमा"</string>
 <string name="library_source">"लाइब्रेरी स्रोत"</string>

@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="one">"%d download na sequência"</item><item quantity="many">"%d downloads na sequência"</item><item quantity="other">"%d downloads na sequência"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d MARCADOR"</item><item quantity="many">"%d DE MARCADORES"</item><item quantity="other">"%d MARCADORES"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Falha ao carregar %d seção"</item><item quantity="many">"Falha ao carregar %d seções"</item><item quantity="other">"Falha ao carregar %d seções"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d seção"</item><item quantity="many">"%d seções"</item><item quantity="other">"%d seções"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d link oculto"</item><item quantity="many">"%d link ocultos"</item><item quantity="other">"%d link ocultos"</item></plurals>
 <string name="account">"Conta"</string>
 <string name="action_add_to_bookmarks">"Adicionar a lista"</string>
@@ -161,6 +162,10 @@
 <string name="deselect_all">"Desmarcar todos"</string>
 <string name="detail_load_failed_body">"A fonte pode estar indisponível."</string>
 <string name="detail_load_failed_headline">"Não foi possível abrir este título"</string>
+<string name="detail_source_resolving">"Resolvendo…"</string>
+<string name="detail_sources_done" formatted="true">"%1$d de %2$d responderam"</string>
+<string name="detail_sources_progress" formatted="true">"%1$d de %2$d responderam · carregando…"</string>
+<string name="detail_start_over">"Começar de novo"</string>
 <string name="device_pin_counter_text" formatted="true">"O código expira em %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Não é possível obter o código PIN do dispositivo, tente a autenticação local"</string>
 <string name="device_pin_expired_message">"O código PIN expirou!"</string>
@@ -345,6 +350,7 @@
 <string name="home_bookmarks_no_status_body">"Escolha um acima para ver esses marcadores."</string>
 <string name="home_bookmarks_no_status_headline">"Nenhum status escolhido"</string>
 <string name="home_change_provider_img_des">"Alterar provedor"</string>
+<string name="home_choose_source">"Escolher fonte"</string>
 <string name="home_expanded_hide">"Ocultar"</string>
 <string name="home_info">"Informações"</string>
 <string name="home_main_poster_img_des">"Pôster principal"</string>
@@ -356,9 +362,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s precisa de conexão"</string>
 <string name="home_play">"Reproduzir"</string>
 <string name="home_random">"Aleatório"</string>
+<string name="home_reload_failed" formatted="true">"Não foi possível recarregar %1$s. Estas fileiras são de %2$s atrás."</string>
 <string name="home_search_only_body">"Nenhuma das suas extensões tem página inicial, mas você ainda pode pesquisar nelas."</string>
 <string name="home_source">"Fonte"</string>
+<string name="home_source_none_line">"Sem fileiras; sua biblioteca continua"</string>
 <string name="home_source_none_subtitle">"SEM FILEIRAS · SUAS FILEIRAS FICAM"</string>
+<string name="home_source_picker_body">"As fileiras vêm de uma extensão por vez."</string>
+<string name="home_source_picker_title">"Fonte do início"</string>
+<string name="home_source_unreachable">"Não foi possível acessar da última vez"</string>
 <string name="install_prerelease">"Instalar versão antecipada"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Não foi possível se conectar ao GitHub. Ativando proxy JsDelivr…"</string>

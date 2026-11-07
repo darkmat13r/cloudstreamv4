@@ -8,6 +8,7 @@
 <plurals name="downloads_queued"><item quantity="other">佇列中有 %d 個下載</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">%d 個書籤</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d 個分區載入失敗</item></plurals>
+<plurals name="home_source_sections"><item quantity="other">%d 個區塊</item></plurals>
 <string name="account">帳號</string>
 <string name="action_add_to_bookmarks">設定觀看狀態</string>
 <string name="action_add_to_favorites">加入我的最愛</string>
@@ -160,6 +161,10 @@
 <string name="delete_repository">刪除資源庫</string>
 <string name="delete_repository_plugins">這也將刪除所有在資源庫中的外掛</string>
 <string name="deselect_all">取消全選</string>
+<string name="detail_source_resolving">正在解析…</string>
+<string name="detail_sources_done">%2$d 個中有 %1$d 個已回應</string>
+<string name="detail_sources_progress">%2$d 個中有 %1$d 個已回應 · 正在載入…</string>
+<string name="detail_start_over">從頭開始</string>
 <string name="device_pin_counter_text">驗證碼將在 %1$d 分 %2$d 秒後過期</string>
 <string name="device_pin_error_message">無法取得裝置 PIN 碼，請嘗試本機驗證</string>
 <string name="device_pin_expired_message">PIN 碼已過期！</string>
@@ -344,6 +349,7 @@
 <string name="home_bookmarks_no_status_body">在上方選擇一個即可查看這些書籤。</string>
 <string name="home_bookmarks_no_status_headline">未選擇狀態</string>
 <string name="home_change_provider_img_des">更改片源</string>
+<string name="home_choose_source">選擇來源</string>
 <string name="home_expanded_hide">隱藏</string>
 <string name="home_info">資訊</string>
 <string name="home_main_poster_img_des">主封面</string>
@@ -355,9 +361,14 @@
 <string name="home_offline_source_headline">%1$s 需要網路連線</string>
 <string name="home_play">播放</string>
 <string name="home_random">隨機</string>
+<string name="home_reload_failed">無法重新載入 %1$s。這些內容列來自 %2$s 前。</string>
 <string name="home_search_only_body">你的擴充功能都沒有主畫面，但仍可在其中搜尋。</string>
 <string name="home_source">來源</string>
+<string name="home_source_none_line">沒有內容列；你的媒體庫會保留</string>
 <string name="home_source_none_subtitle">無列 · 你的列保留</string>
+<string name="home_source_picker_body">每次只顯示一個擴充功能的內容列。</string>
+<string name="home_source_picker_title">首頁來源</string>
+<string name="home_source_unreachable">上次無法連線</string>
 <string name="install_prerelease">安裝提前發行版</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">無法存取 GitHub。 正在開啟 jsDelivr proxy…</string>

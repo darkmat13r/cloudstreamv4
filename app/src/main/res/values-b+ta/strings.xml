@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="one">"%d பதிவிறக்கம் வரிசையில் உள்ளது"</item><item quantity="other">"%d பதிவிறக்கங்கள் வரிசையில் உள்ளன"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d புக்மார்க்"</item><item quantity="other">"%d புக்மார்க்குகள்"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d பிரிவை ஏற்ற முடியவில்லை"</item><item quantity="other">"%d பிரிவுகளை ஏற்ற முடியவில்லை"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d பிரிவு"</item><item quantity="other">"%d பிரிவுகள்"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d மறைக்கப்பட்ட இணைப்பு"</item><item quantity="other">"%d மறைக்கப்பட்ட இணைப்புகள்"</item></plurals>
 <string name="account">"கணக்கு"</string>
 <string name="action_add_to_bookmarks">"கடிகார நிலையை அமைக்கவும்"</string>
@@ -161,6 +162,10 @@
 <string name="deselect_all">"அனைத்தையும் தேர்வு செய்யுங்கள்"</string>
 <string name="detail_load_failed_body">"மூலம் கிடைக்காமல் இருக்கலாம்."</string>
 <string name="detail_load_failed_headline">"இந்தத் தலைப்பைத் திறக்க முடியவில்லை"</string>
+<string name="detail_source_resolving">"தீர்க்கிறது…"</string>
+<string name="detail_sources_done" formatted="true">"%2$d இல் %1$d பதிலளித்தன"</string>
+<string name="detail_sources_progress" formatted="true">"%2$d இல் %1$d பதிலளித்தன · ஏற்றுகிறது…"</string>
+<string name="detail_start_over">"மீண்டும் தொடங்கு"</string>
 <string name="device_pin_counter_text" formatted="true">"குறியீடு %1$dm %2$ds இல் காலாவதியாகிறது"</string>
 <string name="device_pin_error_message">"சாதன முள் குறியீட்டைப் பெற முடியாது, உள்ளக அங்கீகாரத்தை முயற்சிக்கவும்"</string>
 <string name="device_pin_expired_message">"முள் குறியீடு இப்போது காலாவதியானது!"</string>
@@ -345,6 +350,7 @@
 <string name="home_bookmarks_no_status_body">"அந்த புக்மார்க்குகளைக் காண மேலே ஒன்றைத் தேர்ந்தெடுக்கவும்."</string>
 <string name="home_bookmarks_no_status_headline">"எந்த நிலையும் தேர்ந்தெடுக்கப்படவில்லை"</string>
 <string name="home_change_provider_img_des">"வழங்குநரை மாற்றவும்"</string>
+<string name="home_choose_source">"மூலத்தைத் தேர்ந்தெடு"</string>
 <string name="home_expanded_hide">"மறை"</string>
 <string name="home_info">"செய்தி"</string>
 <string name="home_main_poster_img_des">"முதன்மையான போச்டர்"</string>
@@ -356,9 +362,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s க்கு இணைப்பு தேவை"</string>
 <string name="home_play">"விளையாடுங்கள்"</string>
 <string name="home_random">"சீரற்ற"</string>
+<string name="home_reload_failed" formatted="true">"%1$s ஐ மீண்டும் ஏற்ற முடியவில்லை. இந்த வரிசைகள் %2$s முன்பு உள்ளவை."</string>
 <string name="home_search_only_body">"உங்கள் நீட்டிப்புகள் எதிலும் முகப்புப் பக்கம் இல்லை, ஆனால் அவற்றில் இன்னும் தேடலாம்."</string>
 <string name="home_source">"மூலம்"</string>
+<string name="home_source_none_line">"வரிசைகள் இல்லை; உங்கள் நூலகம் இருக்கும்"</string>
 <string name="home_source_none_subtitle">"வரிசைகள் இல்லை · உங்கள் வரிசைகள் இருக்கும்"</string>
+<string name="home_source_picker_body">"வரிசைகள் ஒரு நேரத்தில் ஒரு நீட்டிப்பிலிருந்து வருகின்றன."</string>
+<string name="home_source_picker_title">"முகப்பு மூலம்"</string>
+<string name="home_source_unreachable">"கடந்த முறை அணுக முடியவில்லை"</string>
 <string name="install_prerelease">"வெளியீட்டிற்கு முந்தைய பதிப்பை நிறுவவும்"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"கிட்அப்பை அடைய முடியவில்லை. Jsdelivr ப்ராக்சியை இயக்குதல்…"</string>

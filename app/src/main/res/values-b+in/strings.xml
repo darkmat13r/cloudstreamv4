@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="other">"%d unduhan dalam antrean"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d MARKAH"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d bagian gagal dimuat"</item></plurals>
+<plurals name="home_source_sections"><item quantity="other">"%d bagian"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d link tersembunyi"</item></plurals>
 <string name="account">"akun"</string>
 <string name="action_add_to_bookmarks">"Atur status tontonan"</string>
@@ -161,6 +162,10 @@
 <string name="deselect_all">"Batal Pilih Semua"</string>
 <string name="detail_load_failed_body">"Sumbernya mungkin tidak tersedia."</string>
 <string name="detail_load_failed_headline">"Tidak dapat membuka judul ini"</string>
+<string name="detail_source_resolving">"Menguraikan…"</string>
+<string name="detail_sources_done" formatted="true">"%1$d dari %2$d menjawab"</string>
+<string name="detail_sources_progress" formatted="true">"%1$d dari %2$d menjawab · memuat…"</string>
+<string name="detail_start_over">"Mulai dari awal"</string>
 <string name="device_pin_counter_text" formatted="true">"Kode kedaluwarsa dalam %1$dm %2$dd"</string>
 <string name="device_pin_error_message">"Tidak bisa mendapatkan kode PIN perangkat, coba autentikasi lokal"</string>
 <string name="device_pin_expired_message">"Kode PIN sudah kedaluwarsa!"</string>
@@ -345,6 +350,7 @@
 <string name="home_bookmarks_no_status_body">"Pilih salah satu di atas untuk melihat markah tersebut."</string>
 <string name="home_bookmarks_no_status_headline">"Tidak ada status dipilih"</string>
 <string name="home_change_provider_img_des">"Ganti Penyedia"</string>
+<string name="home_choose_source">"Pilih sumber"</string>
 <string name="home_expanded_hide">"Sembunyikan"</string>
 <string name="home_info">"Info"</string>
 <string name="home_main_poster_img_des">"Poster Utama"</string>
@@ -356,9 +362,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s memerlukan koneksi"</string>
 <string name="home_play">"Putar"</string>
 <string name="home_random">"Acak"</string>
+<string name="home_reload_failed" formatted="true">"Tidak dapat memuat ulang %1$s. Baris ini dari %2$s yang lalu."</string>
 <string name="home_search_only_body">"Tidak ada ekstensi Anda yang memiliki beranda, tetapi Anda tetap dapat mencari di dalamnya."</string>
 <string name="home_source">"Sumber"</string>
+<string name="home_source_none_line">"Tanpa baris; pustaka Anda tetap ada"</string>
 <string name="home_source_none_subtitle">"TANPA BARIS · BARIS ANDA TETAP"</string>
+<string name="home_source_picker_body">"Baris berasal dari satu ekstensi dalam satu waktu."</string>
+<string name="home_source_picker_title">"Sumber beranda"</string>
+<string name="home_source_unreachable">"Tidak dapat dijangkau terakhir kali"</string>
 <string name="install_prerelease">"Pasang versi pra-rilis"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Gagal terhubung ke GitHub. Mengaktifkan proksi jsDelivr…"</string>

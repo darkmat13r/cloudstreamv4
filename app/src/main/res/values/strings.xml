@@ -7,6 +7,7 @@
 <plurals name="episodes"><item quantity="one">@string/episode</item><item quantity="other">@string/episodes</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOOKMARK"</item><item quantity="other">"%d BOOKMARKS"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d section failed to load"</item><item quantity="other">"%d sections failed to load"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d section"</item><item quantity="other">"%d sections"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d hidden link"</item><item quantity="other">"%d hidden links"</item></plurals>
 <plurals name="search_state_no_results_body"><item quantity="one">"%d selected source answered and it does not carry it."</item><item quantity="other">"All %d selected sources answered and none of them carry it."</item></plurals>
 <plurals name="search_state_partial_headline"><item quantity="one">"%d source failed"</item><item quantity="other">"%d sources failed"</item></plurals>
@@ -170,6 +171,10 @@
 <string name="deselect_all">"Deselect All"</string>
 <string name="detail_load_failed_body">"Its source may be unavailable."</string>
 <string name="detail_load_failed_headline">"Couldn't open this title"</string>
+<string name="detail_source_resolving">"Resolving…"</string>
+<string name="detail_sources_done" formatted="true">"%1$d of %2$d answered"</string>
+<string name="detail_sources_progress" formatted="true">"%1$d of %2$d answered · loading…"</string>
+<string name="detail_start_over">"Start over"</string>
 <string name="device_pin_counter_text" formatted="true">"Code expires in %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Can't get the device PIN code, try local authentication"</string>
 <string name="device_pin_expired_message">"PIN code is now expired !"</string>
@@ -368,6 +373,7 @@
 <string name="home_bookmarks_no_status_body">"Choose one above to see those bookmarks."</string>
 <string name="home_bookmarks_no_status_headline">"No status chosen"</string>
 <string name="home_change_provider_img_des">"Change Provider"</string>
+<string name="home_choose_source">"Choose source"</string>
 <string name="home_expanded_hide">"Hide"</string>
 <string name="home_info">"Info"</string>
 <string name="home_main_poster_img_des">"Main Poster"</string>
@@ -379,9 +385,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s needs a connection"</string>
 <string name="home_play">"Play"</string>
 <string name="home_random">"Random"</string>
+<string name="home_reload_failed" formatted="true">"Couldn't reload %1$s. These rows are from %2$s ago."</string>
 <string name="home_search_only_body">"None of your extensions has a home page, but you can still search them."</string>
 <string name="home_source">"Source"</string>
+<string name="home_source_none_line">"No rows; your library stays"</string>
 <string name="home_source_none_subtitle">"NO RAILS · YOUR ROWS STAY"</string>
+<string name="home_source_picker_body">"Rows come from one extension at a time."</string>
+<string name="home_source_picker_title">"Home source"</string>
+<string name="home_source_unreachable">"Couldn't reach it last time"</string>
 <string name="install_prerelease">"Install pre-release version"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Could not reach GitHub. Turning on jsDelivr proxy…"</string>

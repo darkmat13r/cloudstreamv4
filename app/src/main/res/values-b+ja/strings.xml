@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="other">"%d 件が待機中"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d 件のブックマーク"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d 件のセクションを読み込めませんでした"</item></plurals>
+<plurals name="home_source_sections"><item quantity="other">"%d セクション"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d件の非表示リンク"</item></plurals>
 <string name="account">"アカウント"</string>
 <string name="action_add_to_bookmarks">"視聴状態を設定"</string>
@@ -161,6 +162,10 @@
 <string name="deselect_all">"すべて選択解除"</string>
 <string name="detail_load_failed_body">"ソースが利用できない可能性があります。"</string>
 <string name="detail_load_failed_headline">"このタイトルを開けませんでした"</string>
+<string name="detail_source_resolving">"解決中…"</string>
+<string name="detail_sources_done" formatted="true">"%2$d 件中 %1$d 件が応答"</string>
+<string name="detail_sources_progress" formatted="true">"%2$d 件中 %1$d 件が応答 · 読み込み中…"</string>
+<string name="detail_start_over">"最初から"</string>
 <string name="device_pin_counter_text" formatted="true">"%1$dm %2$ds でコードが切れます"</string>
 <string name="device_pin_error_message">"デバイスPINコードを取得できません。ローカル認証を試してください"</string>
 <string name="device_pin_expired_message">"PINコードが期限切れになりました！"</string>
@@ -345,6 +350,7 @@
 <string name="home_bookmarks_no_status_body">"上で 1 つ選ぶと、そのブックマークが表示されます。"</string>
 <string name="home_bookmarks_no_status_headline">"ステータスが選択されていません"</string>
 <string name="home_change_provider_img_des">"プロバイダーの変更"</string>
+<string name="home_choose_source">"ソースを選択"</string>
 <string name="home_expanded_hide">"閉じる"</string>
 <string name="home_info">"情報"</string>
 <string name="home_main_poster_img_des">"主要ポスター"</string>
@@ -356,9 +362,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s には接続が必要です"</string>
 <string name="home_play">"再生"</string>
 <string name="home_random">"任意"</string>
+<string name="home_reload_failed" formatted="true">"%1$s を再読み込みできませんでした。これらの行は %2$s 前のものです。"</string>
 <string name="home_search_only_body">"ホームページを持つ拡張機能はありませんが、検索は引き続き利用できます。"</string>
 <string name="home_source">"ソース"</string>
+<string name="home_source_none_line">"行なし。ライブラリはそのまま"</string>
 <string name="home_source_none_subtitle">"列なし · あなたの列は残ります"</string>
+<string name="home_source_picker_body">"行は一度に 1 つの拡張機能から表示されます。"</string>
+<string name="home_source_picker_title">"ホームのソース"</string>
+<string name="home_source_unreachable">"前回は接続できませんでした"</string>
 <string name="install_prerelease">"プレリリース版をインストール"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"GitHubに接続できません。jsDelivrプロキシをオンにします…"</string>

@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="one">"%d Download in Warteschlange"</item><item quantity="other">"%d Downloads in Warteschlange"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d LESEZEICHEN"</item><item quantity="other">"%d LESEZEICHEN"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d Bereich konnte nicht geladen werden"</item><item quantity="other">"%d Bereiche konnten nicht geladen werden"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d Bereich"</item><item quantity="other">"%d Bereiche"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d ausgeblendeter Link"</item><item quantity="other">"%d ausgeblendete Links"</item></plurals>
 <string name="account">"Account"</string>
 <string name="action_add_to_bookmarks">"Status setzen"</string>
@@ -161,6 +162,10 @@
 <string name="deselect_all">"Alle abwählen"</string>
 <string name="detail_load_failed_body">"Die Quelle ist möglicherweise nicht verfügbar."</string>
 <string name="detail_load_failed_headline">"Titel konnte nicht geöffnet werden"</string>
+<string name="detail_source_resolving">"Wird aufgelöst…"</string>
+<string name="detail_sources_done" formatted="true">"%1$d von %2$d haben geantwortet"</string>
+<string name="detail_sources_progress" formatted="true">"%1$d von %2$d haben geantwortet · wird geladen…"</string>
+<string name="detail_start_over">"Von vorn beginnen"</string>
 <string name="device_pin_counter_text" formatted="true">"Code läuft ab in %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"PIN-Code vom Gerät nicht abrufbar, versuche lokale Authentifizierung"</string>
 <string name="device_pin_expired_message">"PIN-Code ist jetzt abgelaufen!"</string>
@@ -345,6 +350,7 @@
 <string name="home_bookmarks_no_status_body">"Wählen Sie oben einen, um diese Lesezeichen zu sehen."</string>
 <string name="home_bookmarks_no_status_headline">"Kein Status gewählt"</string>
 <string name="home_change_provider_img_des">"Anbieter wechseln"</string>
+<string name="home_choose_source">"Quelle wählen"</string>
 <string name="home_expanded_hide">"Verstecken"</string>
 <string name="home_info">"Info"</string>
 <string name="home_main_poster_img_des">"Medienvorschaubild"</string>
@@ -356,9 +362,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s braucht eine Verbindung"</string>
 <string name="home_play">"Abspielen"</string>
 <string name="home_random">"Zufällig"</string>
+<string name="home_reload_failed" formatted="true">"%1$s konnte nicht neu geladen werden. Diese Zeilen sind von vor %2$s."</string>
 <string name="home_search_only_body">"Keine Ihrer Erweiterungen hat eine Startseite, aber Sie können trotzdem darin suchen."</string>
 <string name="home_source">"Quelle"</string>
+<string name="home_source_none_line">"Keine Zeilen; die Bibliothek bleibt"</string>
 <string name="home_source_none_subtitle">"KEINE REIHEN · IHRE REIHEN BLEIBEN"</string>
+<string name="home_source_picker_body">"Zeilen kommen jeweils aus einer Erweiterung."</string>
+<string name="home_source_picker_title">"Startseitenquelle"</string>
+<string name="home_source_unreachable">"War letztes Mal nicht erreichbar"</string>
 <string name="install_prerelease">"Vorabversion installieren"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"GitHub konnte nicht erreicht werden. Der jsDelivr-Proxy wird aktiviert …"</string>

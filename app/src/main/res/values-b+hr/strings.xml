@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="one">"%d preuzimanje u redu čekanja"</item><item quantity="few">"%d preuzimanja u redu čekanja"</item><item quantity="other">"%d preuzimanja u redu čekanja"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d OZNAKA"</item><item quantity="few">"%d OZNAKE"</item><item quantity="other">"%d OZNAKA"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nije učitan %d odjeljak"</item><item quantity="few">"Nisu učitana %d odjeljka"</item><item quantity="other">"Nije učitano %d odjeljaka"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d odjeljak"</item><item quantity="few">"%d odjeljka"</item><item quantity="other">"%d odjeljaka"</item></plurals>
 <string name="account">"račun"</string>
 <string name="action_add_to_bookmarks">"Postavi status gledanja"</string>
 <string name="action_add_to_favorites">"Dodaj u favorite"</string>
@@ -160,6 +161,10 @@
 <string name="deselect_all">"Odznači sve"</string>
 <string name="detail_load_failed_body">"Izvor možda nije dostupan."</string>
 <string name="detail_load_failed_headline">"Naslov se nije mogao otvoriti"</string>
+<string name="detail_source_resolving">"Razrješavanje…"</string>
+<string name="detail_sources_done" formatted="true">"Odgovorilo: %1$d od %2$d"</string>
+<string name="detail_sources_progress" formatted="true">"Odgovorilo: %1$d od %2$d · učitavanje…"</string>
+<string name="detail_start_over">"Počni ispočetka"</string>
 <string name="device_pin_counter_text" formatted="true">"Kod isteče za %1$d min %2$d s"</string>
 <string name="device_pin_error_message">"Neuspjelo dobivanje PIN koda uređaja, pokušaj s lokalnom autentifikacijom"</string>
 <string name="device_pin_expired_message">"PIN kod je sada istekao!"</string>
@@ -344,6 +349,7 @@
 <string name="home_bookmarks_no_status_body">"Odaberite jedan gore da biste vidjeli te oznake."</string>
 <string name="home_bookmarks_no_status_headline">"Nije odabran status"</string>
 <string name="home_change_provider_img_des">"Promijeni pružatelja usluge"</string>
+<string name="home_choose_source">"Odaberi izvor"</string>
 <string name="home_expanded_hide">"Sakrij"</string>
 <string name="home_info">"Informacije"</string>
 <string name="home_main_poster_img_des">"Glavni poster"</string>
@@ -355,9 +361,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s treba vezu"</string>
 <string name="home_play">"Pokreni"</string>
 <string name="home_random">"Slučajno"</string>
+<string name="home_reload_failed" formatted="true">"Nije moguće ponovno učitati %1$s. Ovi su redovi od prije %2$s."</string>
 <string name="home_search_only_body">"Nijedno vaše proširenje nema početnu stranicu, ali i dalje možete pretraživati u njima."</string>
 <string name="home_source">"Izvor"</string>
+<string name="home_source_none_line">"Nema redova; knjižnica ostaje"</string>
 <string name="home_source_none_subtitle">"NEMA REDOVA · VAŠI REDOVI OSTAJU"</string>
+<string name="home_source_picker_body">"Redovi dolaze iz jednog proširenja odjednom."</string>
+<string name="home_source_picker_title">"Izvor početne"</string>
+<string name="home_source_unreachable">"Prošli put nije bio dostupan"</string>
 <string name="install_prerelease">"Instaliraj predizdanje"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Neuspješno dohvaćanje GitHuba. Uključuje se jsdelivr proxy …"</string>

@@ -4,6 +4,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d neúspešné"</item><item quantity="few">"%d neúspešné"</item><item quantity="many">"%d neúspešných"</item><item quantity="other">"%d neúspešných"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ZÁLOŽKA"</item><item quantity="few">"%d ZÁLOŽKY"</item><item quantity="many">"%d ZÁLOŽKY"</item><item quantity="other">"%d ZÁLOŽIEK"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nepodarilo sa načítať %d sekciu"</item><item quantity="few">"Nepodarilo sa načítať %d sekcie"</item><item quantity="many">"Nepodarilo sa načítať %d sekcií"</item><item quantity="other">"Nepodarilo sa načítať %d sekcií"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d sekcia"</item><item quantity="few">"%d sekcie"</item><item quantity="many">"%d sekcie"</item><item quantity="other">"%d sekcií"</item></plurals>
 <string name="account">"účet"</string>
 <string name="action_add_to_bookmarks">"Nastaviť stav sledovania"</string>
 <string name="action_default">"Predvolené"</string>
@@ -102,6 +103,10 @@
 <string name="deselect_all">"Zrušiť výber všetkých"</string>
 <string name="detail_load_failed_body">"Zdroj možno nie je dostupný."</string>
 <string name="detail_load_failed_headline">"Tento titul sa nepodarilo otvoriť"</string>
+<string name="detail_source_resolving">"Zisťuje sa…"</string>
+<string name="detail_sources_done" formatted="true">"Odpovedalo: %1$d z %2$d"</string>
+<string name="detail_sources_progress" formatted="true">"Odpovedalo: %1$d z %2$d · načítava sa…"</string>
+<string name="detail_start_over">"Začať odznova"</string>
 <string name="disable">"Zakázať"</string>
 <string name="discord">"Pripojte sa na Discord"</string>
 <string name="display_subbed_dubbed_settings">"Zobraziť anime dabované/s titulkami"</string>
@@ -237,6 +242,7 @@
 <string name="home_bookmarks_no_status_body">"Vyberte jeden hore a uvidíte tieto záložky."</string>
 <string name="home_bookmarks_no_status_headline">"Nie je vybraný žiadny stav"</string>
 <string name="home_change_provider_img_des">"Zmeniť poskytovateľa"</string>
+<string name="home_choose_source">"Vybrať zdroj"</string>
 <string name="home_expanded_hide">"Skryť"</string>
 <string name="home_info">"Info"</string>
 <string name="home_main_poster_img_des">"Hlavný plagát"</string>
@@ -248,9 +254,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s potrebuje pripojenie"</string>
 <string name="home_play">"Prehrať"</string>
 <string name="home_random">"Náhodné"</string>
+<string name="home_reload_failed" formatted="true">"%1$s sa nepodarilo znova načítať. Tieto riadky sú spred %2$s."</string>
 <string name="home_search_only_body">"Žiadne z vašich rozšírení nemá domovskú stránku, no stále v nich môžete hľadať."</string>
 <string name="home_source">"Zdroj"</string>
+<string name="home_source_none_line">"Žiadne riadky; knižnica zostane"</string>
 <string name="home_source_none_subtitle">"ŽIADNE RADY · VAŠE RADY ZOSTÁVAJÚ"</string>
+<string name="home_source_picker_body">"Riadky pochádzajú vždy z jedného rozšírenia."</string>
+<string name="home_source_picker_title">"Zdroj domovskej stránky"</string>
+<string name="home_source_unreachable">"Minule nebol dostupný"</string>
 <string name="install_prerelease">"Nainštalujte pre-release verziu"</string>
 <string name="jsdelivr_enabled">"Nepodarilo sa pripojiť na GitHub. Zapína sa proxy jsDelivr…"</string>
 <string name="jsdelivr_proxy">"GitHub Proxy"</string>

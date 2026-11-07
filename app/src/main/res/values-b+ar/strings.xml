@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="zero">"%d لا يوجد تنزيلات في قائمة الانتظار"</item><item quantity="one">"%d تنزيل واحد قيد الانتظار"</item><item quantity="two">"%d تنزيلان قيد الانتظار"</item><item quantity="few">"%d تنزيلات قيد الانتظار"</item><item quantity="many">"%d تنزيل قيد الانتظار"</item><item quantity="other">"%d تنزيل قيد الانتظار"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="zero">"%d إشارة مرجعية"</item><item quantity="one">"%d إشارة مرجعية"</item><item quantity="two">"%d إشارتان مرجعيتان"</item><item quantity="few">"%d إشارات مرجعية"</item><item quantity="many">"%d إشارة مرجعية"</item><item quantity="other">"%d إشارة مرجعية"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">"تعذر تحميل %d قسم"</item><item quantity="one">"تعذر تحميل %d قسم"</item><item quantity="two">"تعذر تحميل %d قسمين"</item><item quantity="few">"تعذر تحميل %d أقسام"</item><item quantity="many">"تعذر تحميل %d قسمًا"</item><item quantity="other">"تعذر تحميل %d قسم"</item></plurals>
+<plurals name="home_source_sections"><item quantity="zero">"%d قسم"</item><item quantity="one">"%d قسم"</item><item quantity="two">"%d قسمان"</item><item quantity="few">"%d أقسام"</item><item quantity="many">"%d قسمًا"</item><item quantity="other">"%d قسم"</item></plurals>
 <string name="account">"حساب"</string>
 <string name="action_add_to_bookmarks">"إعداد حالة المشاهدة"</string>
 <string name="action_add_to_favorites">"اضافة الى المفضلة"</string>
@@ -160,6 +161,10 @@
 <string name="deselect_all">"إلغاء تحديد الكل"</string>
 <string name="detail_load_failed_body">"قد يكون مصدره غير متاح."</string>
 <string name="detail_load_failed_headline">"تعذّر فتح هذا العنوان"</string>
+<string name="detail_source_resolving">"جارٍ الاستخراج…"</string>
+<string name="detail_sources_done" formatted="true">"أجاب %1$d من %2$d"</string>
+<string name="detail_sources_progress" formatted="true">"أجاب %1$d من %2$d · جارٍ التحميل…"</string>
+<string name="detail_start_over">"البدء من جديد"</string>
 <string name="device_pin_counter_text" formatted="true">"تنتهي صلاحية الرمز خلال %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"لا يمكن الحصول على رمز PIN للجهاز، حاول المصادقة المحلية"</string>
 <string name="device_pin_expired_message">"لقد انتهت صلاحية الرمز السري الآن!"</string>
@@ -344,6 +349,7 @@
 <string name="home_bookmarks_no_status_body">"اختر حالة من الأعلى لعرض تلك الإشارات المرجعية."</string>
 <string name="home_bookmarks_no_status_headline">"لم تُختر أي حالة"</string>
 <string name="home_change_provider_img_des">"تغيير المصدر"</string>
+<string name="home_choose_source">"اختيار المصدر"</string>
 <string name="home_expanded_hide">"إخفاء"</string>
 <string name="home_info">"معلومات"</string>
 <string name="home_main_poster_img_des">"الملصق الرئيسي"</string>
@@ -355,9 +361,14 @@
 <string name="home_offline_source_headline" formatted="true">"يحتاج %1$s إلى اتصال"</string>
 <string name="home_play">"تشغيل"</string>
 <string name="home_random">"عشوائي"</string>
+<string name="home_reload_failed" formatted="true">"تعذّرت إعادة تحميل %1$s. هذه الصفوف من قبل %2$s."</string>
 <string name="home_search_only_body">"لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها."</string>
 <string name="home_source">"مصدر"</string>
+<string name="home_source_none_line">"لا صفوف؛ تبقى مكتبتك"</string>
 <string name="home_source_none_subtitle">"لا صفوف · تبقى صفوفك"</string>
+<string name="home_source_picker_body">"تأتي الصفوف من إضافة واحدة في كل مرة."</string>
+<string name="home_source_picker_title">"مصدر الصفحة الرئيسية"</string>
+<string name="home_source_unreachable">"تعذّر الوصول إليه في المرة السابقة"</string>
 <string name="install_prerelease">"تثبيت الإصدار التجريبي"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"تعذر الوصول إلى جيثب. تشغيل وكيل jsDelivr …"</string>

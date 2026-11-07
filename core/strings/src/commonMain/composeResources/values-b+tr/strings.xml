@@ -8,6 +8,7 @@
 <plurals name="downloads_queued"><item quantity="one">%d indirme kuyrukta</item><item quantity="other">%d indirilecekler kuyruğa alındı</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d YER İMİ</item><item quantity="other">%d YER İMİ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d kısım yüklenemedi</item><item quantity="other">%d kısım yüklenemedi</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d bölüm</item><item quantity="other">%d bölüm</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d gizli bağlantı</item><item quantity="other">%d gizli bağlantı</item></plurals>
 <string name="account">hesap</string>
 <string name="action_add_to_bookmarks">İzleme durumunu ayarla</string>
@@ -161,6 +162,10 @@
 <string name="delete_repository">Depoyu sil</string>
 <string name="delete_repository_plugins">Bu aynı zamanda tüm depo eklentilerini de siler</string>
 <string name="deselect_all">Tüm Seçimi Kaldır</string>
+<string name="detail_source_resolving">Çözümleniyor…</string>
+<string name="detail_sources_done">%2$d kaynaktan %1$d yanıt verdi</string>
+<string name="detail_sources_progress">%2$d kaynaktan %1$d yanıt verdi · yükleniyor…</string>
+<string name="detail_start_over">Baştan başla</string>
 <string name="device_pin_counter_text">Kodun süresi %1$dm %2$ds içinde doluyor</string>
 <string name="device_pin_error_message">Cihaz PIN kodu alınamıyor, yerel kimlik doğrulamayı deneyin</string>
 <string name="device_pin_expired_message">PIN kodunun süresi doldu!</string>
@@ -345,6 +350,7 @@
 <string name="home_bookmarks_no_status_body">Bu yer imlerini görmek için yukarıdan birini seçin.</string>
 <string name="home_bookmarks_no_status_headline">Durum seçilmedi</string>
 <string name="home_change_provider_img_des">Sağlayıcıyı Değiştir</string>
+<string name="home_choose_source">Kaynak seç</string>
 <string name="home_expanded_hide">Gizle</string>
 <string name="home_info">Bilgi</string>
 <string name="home_main_poster_img_des">Ana Afiş</string>
@@ -356,9 +362,14 @@
 <string name="home_offline_source_headline">%1$s bağlantı gerektirir</string>
 <string name="home_play">Oynat</string>
 <string name="home_random">Rastgele</string>
+<string name="home_reload_failed">%1$s yeniden yüklenemedi. Bu satırlar %2$s öncesine ait.</string>
 <string name="home_search_only_body">Eklentilerinizin hiçbirinde ana sayfa yok, ancak yine de onlarda arama yapabilirsiniz.</string>
 <string name="home_source">Kaynak</string>
+<string name="home_source_none_line">Satır yok; kitaplığınız kalır</string>
 <string name="home_source_none_subtitle">SIRA YOK · SIRALARINIZ KALIR</string>
+<string name="home_source_picker_body">Satırlar her seferinde tek bir uzantıdan gelir.</string>
+<string name="home_source_picker_title">Ana sayfa kaynağı</string>
+<string name="home_source_unreachable">Son seferinde ulaşılamadı</string>
 <string name="install_prerelease">Ön sürümünü yükleyin</string>
 <string name="is_adult">+18</string>
 <string name="jsdelivr_enabled">GitHub'a ulaşılamadı. jsDelivr vekil sunucusu etkinleştiriliyor…</string>

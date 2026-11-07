@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="one">"%d изтегляне в опашката"</item><item quantity="other">"%d изтегляния в опашката"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ОТМЕТКА"</item><item quantity="other">"%d ОТМЕТКИ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d секция не се зареди"</item><item quantity="other">"%d секции не се заредиха"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d раздел"</item><item quantity="other">"%d раздела"</item></plurals>
 <string name="account">"Акаунт"</string>
 <string name="action_add_to_bookmarks">"Задайте статус на гледане"</string>
 <string name="action_add_to_favorites">"Добави в любими"</string>
@@ -160,6 +161,10 @@
 <string name="deselect_all">"Премахване на избора на всички"</string>
 <string name="detail_load_failed_body">"Източникът може да не е наличен."</string>
 <string name="detail_load_failed_headline">"Заглавието не можа да се отвори"</string>
+<string name="detail_source_resolving">"Извличане…"</string>
+<string name="detail_sources_done" formatted="true">"Отговорили: %1$d от %2$d"</string>
+<string name="detail_sources_progress" formatted="true">"Отговорили: %1$d от %2$d · зареждане…"</string>
+<string name="detail_start_over">"Отначало"</string>
 <string name="device_pin_counter_text" formatted="true">"Кодът изтича след %1$dm %2$ds"</string>
 <string name="device_pin_error_message">"Не може да се получи PIN кода на устройството, опитайте локално удостоверяване"</string>
 <string name="device_pin_expired_message">"PIN кодът е изтекъл !"</string>
@@ -338,6 +343,7 @@
 <string name="home_bookmarks_no_status_body">"Изберете един отгоре, за да видите тези отметки."</string>
 <string name="home_bookmarks_no_status_headline">"Не е избран статус"</string>
 <string name="home_change_provider_img_des">"Смяна на доставчика"</string>
+<string name="home_choose_source">"Избор на източник"</string>
 <string name="home_expanded_hide">"Скрий"</string>
 <string name="home_info">"Информация"</string>
 <string name="home_main_poster_img_des">"Main Poster"</string>
@@ -349,9 +355,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s се нуждае от връзка"</string>
 <string name="home_play">"Пусни"</string>
 <string name="home_random">"Случаен"</string>
+<string name="home_reload_failed" formatted="true">"%1$s не можа да се презареди. Тези редове са отпреди %2$s."</string>
 <string name="home_search_only_body">"Нито едно от разширенията ви няма начална страница, но все пак можете да търсите в тях."</string>
 <string name="home_source">"Източник"</string>
+<string name="home_source_none_line">"Без редове; библиотеката остава"</string>
 <string name="home_source_none_subtitle">"БЕЗ РЕДОВЕ · ВАШИТЕ РЕДОВЕ ОСТАВАТ"</string>
+<string name="home_source_picker_body">"Редовете идват от едно разширение наведнъж."</string>
+<string name="home_source_picker_title">"Източник за началото"</string>
+<string name="home_source_unreachable">"Не беше достъпен миналия път"</string>
 <string name="install_prerelease">"Инсталирай предварителна версия"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"Неуспешно свързване с GitHub. Включване на jsDelivr прокси…"</string>

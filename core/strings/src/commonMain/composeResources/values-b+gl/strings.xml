@@ -6,6 +6,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d fallida</item><item quantity="other">%d fallidas</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Non se puido cargar %d sección</item><item quantity="other">Non se puideron cargar %d seccións</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d sección</item><item quantity="other">%d seccións</item></plurals>
 <string name="action_add_to_bookmarks">Seleccionar estado de visualización</string>
 <string name="action_default">Por defecto</string>
 <string name="action_open_play">Reproducir</string>
@@ -67,6 +68,10 @@
 <string name="delete_message_series_only">Está seguro de querer borrar permanentemente todos os episodios da serie?\n\n%s</string>
 <string name="delete_message_series_section">Tamén borrará permanentemente todos os capítulos das seguintes series:\n\n%s</string>
 <string name="deselect_all">Deseleccionar todo</string>
+<string name="detail_source_resolving">Resolvendo…</string>
+<string name="detail_sources_done">Responderon %1$d de %2$d</string>
+<string name="detail_sources_progress">Responderon %1$d de %2$d · cargando…</string>
+<string name="detail_start_over">Comezar de novo</string>
 <string name="discord">Únete o Discord</string>
 <string name="documentaries">Documentales</string>
 <string name="documentaries_singular">Documental</string>
@@ -172,6 +177,7 @@
 <string name="home_bookmarks_no_status_body">Escolle un arriba para ver eses marcadores.</string>
 <string name="home_bookmarks_no_status_headline">Ningún estado escollido</string>
 <string name="home_change_provider_img_des">Cambiar provedor</string>
+<string name="home_choose_source">Escoller fonte</string>
 <string name="home_expanded_hide">Agochar</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Póster Principal</string>
@@ -182,8 +188,13 @@
 <string name="home_offline_bookmarks_body">Os teus marcadores están gardados neste dispositivo.</string>
 <string name="home_offline_source_headline">%1$s precisa conexión</string>
 <string name="home_play">Reproducir</string>
+<string name="home_reload_failed">Non se puido volver cargar %1$s. Estas filas son de hai %2$s.</string>
 <string name="home_search_only_body">Ningunha das súas extensións ten páxina de inicio, pero aínda pode buscar nelas.</string>
+<string name="home_source_none_line">Sen filas; a túa biblioteca mantense</string>
 <string name="home_source_none_subtitle">SEN FILAS · AS TÚAS FILAS QUEDAN</string>
+<string name="home_source_picker_body">As filas veñen dunha extensión de cada vez.</string>
+<string name="home_source_picker_title">Fonte de inicio</string>
+<string name="home_source_unreachable">Non se puido acceder a última vez</string>
 <string name="kitsu_settings">Mostrar pósters de Kitsu</string>
 <string name="library">Biblioteca</string>
 <string name="library_not_connected">Non conectado</string>

@@ -8,6 +8,7 @@
 <plurals name="downloads_queued"><item quantity="one">%d nedladdning i kö</item><item quantity="other">%d nedladdningar i kö</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMÄRKE</item><item quantity="other">%d BOKMÄRKEN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d sektion kunde inte laddas</item><item quantity="other">%d sektioner kunde inte laddas</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d avsnitt</item><item quantity="other">%d avsnitt</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d dold länk</item><item quantity="other">%d dolda länkar</item></plurals>
 <string name="account">konto</string>
 <string name="action_add_to_bookmarks">Ange visningsstatus</string>
@@ -161,6 +162,10 @@
 <string name="delete_repository">Radera databasen</string>
 <string name="delete_repository_plugins">Detta kommer också att ta bort alla tillägg för databasen</string>
 <string name="deselect_all">Avmarkera alla</string>
+<string name="detail_source_resolving">Löser…</string>
+<string name="detail_sources_done">%1$d av %2$d svarade</string>
+<string name="detail_sources_progress">%1$d av %2$d svarade · läser in…</string>
+<string name="detail_start_over">Börja om</string>
 <string name="device_pin_counter_text">Koden löper ut om %1$dm %2$ds</string>
 <string name="device_pin_error_message">Det går inte att hämta enhetens PIN-kod, prova lokal autentisering</string>
 <string name="device_pin_expired_message">PIN-koden har upphört att gälla!</string>
@@ -345,6 +350,7 @@
 <string name="home_bookmarks_no_status_body">Välj en ovan för att se de bokmärkena.</string>
 <string name="home_bookmarks_no_status_headline">Ingen status vald</string>
 <string name="home_change_provider_img_des">Byt leverantör</string>
+<string name="home_choose_source">Välj källa</string>
 <string name="home_expanded_hide">Göm</string>
 <string name="home_info">Info</string>
 <string name="home_main_poster_img_des">Affisch</string>
@@ -356,9 +362,14 @@
 <string name="home_offline_source_headline">%1$s behöver en anslutning</string>
 <string name="home_play">Spela upp</string>
 <string name="home_random">Slumpmässig</string>
+<string name="home_reload_failed">Det gick inte att läsa in %1$s igen. Raderna är från för %2$s sedan.</string>
 <string name="home_search_only_body">Inget av dina tillägg har en startsida, men du kan fortfarande söka i dem.</string>
 <string name="home_source">Källa</string>
+<string name="home_source_none_line">Inga rader; biblioteket finns kvar</string>
 <string name="home_source_none_subtitle">INGA RADER · DINA RADER BLIR KVAR</string>
+<string name="home_source_picker_body">Raderna kommer från ett tillägg i taget.</string>
+<string name="home_source_picker_title">Källa för startsidan</string>
+<string name="home_source_unreachable">Gick inte att nå förra gången</string>
 <string name="install_prerelease">Installera förhandsversionen</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Kunde inte nå GitHub, sätter på jsDelivr proxy…</string>

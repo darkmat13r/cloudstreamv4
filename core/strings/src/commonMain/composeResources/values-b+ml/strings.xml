@@ -6,6 +6,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d പരാജയപ്പെട്ടു</item><item quantity="other">%d പരാജയപ്പെട്ടു</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ബുക്ക്‌മാർക്ക്</item><item quantity="other">%d ബുക്ക്‌മാർക്കുകൾ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല</item><item quantity="other">%d വിഭാഗങ്ങൾ ലോഡ് ചെയ്യാനായില്ല</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d വിഭാഗം</item><item quantity="other">%d വിഭാഗങ്ങൾ</item></plurals>
 <string name="action_add_to_bookmarks">വാച്ച് സ്റ്റാറ്റസ് സജ്ജീകരിക്കുക</string>
 <string name="action_mark_as_watched">കണ്ടതാണെന്ന് അടയാളപ്പെടുത്തുക</string>
 <string name="action_open_play">പ്ലേയ്</string>
@@ -54,6 +55,10 @@
 <string name="delete_repository">ശേഖരം ഇല്ലാതാക്കുക</string>
 <string name="delete_repository_plugins">ഇത് എല്ലാ റിപ്പോസിറ്ററി പ്ലഗിന്നുകളും ഇല്ലാതാക്കും</string>
 <string name="deselect_all">തിരഞ്ഞെടുത്തവയെല്ലാം ഒഴിവാക്കു</string>
+<string name="detail_source_resolving">പരിഹരിക്കുന്നു…</string>
+<string name="detail_sources_done">%2$d-ൽ %1$d മറുപടി നൽകി</string>
+<string name="detail_sources_progress">%2$d-ൽ %1$d മറുപടി നൽകി · ലോഡ് ചെയ്യുന്നു…</string>
+<string name="detail_start_over">വീണ്ടും തുടങ്ങുക</string>
 <string name="discord">ഡിസ്‌കോർഡിലേക്ക് സ്വാഗതം</string>
 <string name="dont_show_again">ഇനിയും കാണിക്കരുത്</string>
 <string name="double_tap_to_pause_settings">രണ്ടുവട്ടം ടാപ്പ് ചെയ്താൽ താൽകാലികമായി നിർത്തിവെക്കാം</string>
@@ -162,6 +167,7 @@
 <string name="home_bookmarks_no_status_body">ആ ബുക്ക്‌മാർക്കുകൾ കാണാൻ മുകളിൽ നിന്ന് ഒന്ന് തിരഞ്ഞെടുക്കുക.</string>
 <string name="home_bookmarks_no_status_headline">സ്റ്റാറ്റസൊന്നും തിരഞ്ഞെടുത്തിട്ടില്ല</string>
 <string name="home_change_provider_img_des">ദാതാവിനെ മാറ്റുക</string>
+<string name="home_choose_source">ഉറവിടം തിരഞ്ഞെടുക്കുക</string>
 <string name="home_expanded_hide">ഒളിക്കുക</string>
 <string name="home_info">വിവരം</string>
 <string name="home_main_poster_img_des">പ്രധാന പോസ്റ്റർ</string>
@@ -173,9 +179,14 @@
 <string name="home_offline_source_headline">%1$s-ന് കണക്ഷൻ ആവശ്യമാണ്</string>
 <string name="home_play">പ്ലേയ്</string>
 <string name="home_random">ക്രമരഹിതം</string>
+<string name="home_reload_failed">%1$s വീണ്ടും ലോഡ് ചെയ്യാനായില്ല. ഈ വരികൾ %2$s മുമ്പുള്ളതാണ്.</string>
 <string name="home_search_only_body">നിങ്ങളുടെ വിപുലീകരണങ്ങളിൽ ഒന്നിനും ഹോം പേജ് ഇല്ല, എങ്കിലും അവയിൽ തിരയാം.</string>
 <string name="home_source">ഉറവിടം</string>
+<string name="home_source_none_line">വരികളില്ല; നിങ്ങളുടെ ലൈബ്രറി നിലനിൽക്കും</string>
 <string name="home_source_none_subtitle">നിരകളില്ല · നിങ്ങളുടെ നിരകൾ നിലനിൽക്കും</string>
+<string name="home_source_picker_body">വരികൾ ഒരു സമയം ഒരു എക്സ്റ്റൻഷനിൽ നിന്നാണ് വരുന്നത്.</string>
+<string name="home_source_picker_title">ഹോം ഉറവിടം</string>
+<string name="home_source_unreachable">കഴിഞ്ഞ തവണ എത്താനായില്ല</string>
 <string name="lightnovel">നമ്മുടെ ലൈറ്റ് നോവൽ ആപ്പ്</string>
 <string name="links_reloaded_toast">ലിങ്കുകൾ വീണ്ടും ലോഡുചെയ്‌തു</string>
 <string name="load_more">കൂടുതൽ ലോഡ് ചെയ്യുക</string>

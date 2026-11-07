@@ -4,6 +4,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d nepavyko"</item><item quantity="few">"%d nepavyko"</item><item quantity="many">"%d nepavyko"</item><item quantity="other">"%d nepavyko"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ŽYMA"</item><item quantity="few">"%d ŽYMOS"</item><item quantity="many">"%d ŽYMOS"</item><item quantity="other">"%d ŽYMŲ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nepavyko įkelti %d skilties"</item><item quantity="few">"Nepavyko įkelti %d skilčių"</item><item quantity="many">"Nepavyko įkelti %d skilties"</item><item quantity="other">"Nepavyko įkelti %d skilčių"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d skiltis"</item><item quantity="few">"%d skiltys"</item><item quantity="many">"%d skilties"</item><item quantity="other">"%d skilčių"</item></plurals>
 <string name="action_add_to_bookmarks">"Nustatyti žiūrėjimo statusą"</string>
 <string name="action_mark_as_watched">"Pažymėti kaip žiūrima"</string>
 <string name="action_open_watching">"Daugiau informacijos"</string>
@@ -54,6 +55,10 @@
 <string name="deselect_all">"Panaikinti visus pasirinkimus"</string>
 <string name="detail_load_failed_body">"Šaltinis gali būti nepasiekiamas."</string>
 <string name="detail_load_failed_headline">"Nepavyko atidaryti šio pavadinimo"</string>
+<string name="detail_source_resolving">"Nustatoma…"</string>
+<string name="detail_sources_done" formatted="true">"Atsakė: %1$d iš %2$d"</string>
+<string name="detail_sources_progress" formatted="true">"Atsakė: %1$d iš %2$d · įkeliama…"</string>
+<string name="detail_start_over">"Pradėti iš naujo"</string>
 <string name="disable">"Išjungti"</string>
 <string name="documentaries">"Dokumentika"</string>
 <string name="dont_show_again">"Ne rodyti dar kartą"</string>
@@ -166,6 +171,7 @@
 <string name="home_bookmarks_no_status_body">"Pasirinkite vieną viršuje, kad matytumėte tas žymas."</string>
 <string name="home_bookmarks_no_status_headline">"Nepasirinkta jokia būsena"</string>
 <string name="home_change_provider_img_des">"Keisti teikėją"</string>
+<string name="home_choose_source">"Pasirinkti šaltinį"</string>
 <string name="home_expanded_hide">"Slėpti"</string>
 <string name="home_info">"Informacija"</string>
 <string name="home_main_poster_img_des">"Pagrindinis Plakatas"</string>
@@ -176,8 +182,13 @@
 <string name="home_offline_bookmarks_body">"Jūsų žymos išsaugotos šiame įrenginyje."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s reikia ryšio"</string>
 <string name="home_play">"Paleisti"</string>
+<string name="home_reload_failed" formatted="true">"Nepavyko iš naujo įkelti %1$s. Šios eilutės yra prieš %2$s."</string>
 <string name="home_search_only_body">"Nė vienas jūsų plėtinys neturi pagrindinio puslapio, bet juose vis tiek galite ieškoti."</string>
+<string name="home_source_none_line">"Eilučių nėra; biblioteka lieka"</string>
 <string name="home_source_none_subtitle">"NĖRA EILUČIŲ · JŪSŲ EILUTĖS LIEKA"</string>
+<string name="home_source_picker_body">"Eilutės gaunamos iš vieno plėtinio vienu metu."</string>
+<string name="home_source_picker_title">"Pradžios šaltinis"</string>
+<string name="home_source_unreachable">"Praėjusį kartą nepasiekiamas"</string>
 <string name="is_adult">"18+"</string>
 <string name="library">"Biblioteka"</string>
 <string name="library_not_connected">"Neprijungta"</string>

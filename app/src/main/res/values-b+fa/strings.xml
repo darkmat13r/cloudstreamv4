@@ -4,6 +4,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d ناموفق"</item><item quantity="other">"%d ناموفق"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d نشانک"</item><item quantity="other">"%d نشانک"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d بخش بارگیری نشد"</item><item quantity="other">"%d بخش بارگیری نشد"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d بخش"</item><item quantity="other">"%d بخش"</item></plurals>
 <string name="action_add_to_bookmarks">"تنظیم وضعیت تماشا"</string>
 <string name="action_default">"پیش‌فرض"</string>
 <string name="action_open_play">@string/home_play</string>
@@ -78,6 +79,10 @@
 <string name="deselect_all">"انتخاب نکردن همه"</string>
 <string name="detail_load_failed_body">"ممکن است منبع در دسترس نباشد."</string>
 <string name="detail_load_failed_headline">"این عنوان باز نشد"</string>
+<string name="detail_source_resolving">"در حال یافتن…"</string>
+<string name="detail_sources_done" formatted="true">"%1$d از %2$d پاسخ دادند"</string>
+<string name="detail_sources_progress" formatted="true">"%1$d از %2$d پاسخ دادند · در حال بارگذاری…"</string>
+<string name="detail_start_over">"شروع از اول"</string>
 <string name="discord">"عضویت در دیسکورد"</string>
 <string name="display_subbed_dubbed_settings">"نمایش دادن انیمه های دوبله شده یا دارای زیرنویس"</string>
 <string name="dns_pref_summary">"برای دورزدن سرویس‌دهنده اینترنت مفید است"</string>
@@ -184,6 +189,7 @@
 <string name="home_bookmarks_no_status_body">"یکی را در بالا انتخاب کنید تا آن نشانک‌ها را ببینید."</string>
 <string name="home_bookmarks_no_status_headline">"هیچ وضعیتی انتخاب نشده"</string>
 <string name="home_change_provider_img_des">"تغییر ارائه‌دهنده"</string>
+<string name="home_choose_source">"انتخاب منبع"</string>
 <string name="home_expanded_hide">"پنهان کردن"</string>
 <string name="home_info">"درباره"</string>
 <string name="home_main_poster_img_des">"پوستر اصلی"</string>
@@ -194,8 +200,13 @@
 <string name="home_offline_bookmarks_body">"نشانک‌های شما روی این دستگاه ذخیره شده‌اند."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s به اتصال نیاز دارد"</string>
 <string name="home_play">"نمایش"</string>
+<string name="home_reload_failed" formatted="true">"بارگذاری دوبارهٔ %1$s ممکن نشد. این ردیف‌ها مال %2$s پیش هستند."</string>
 <string name="home_search_only_body">"هیچ‌یک از افزونه‌های شما صفحهٔ اصلی ندارد، اما همچنان می‌توانید در آن‌ها جست‌وجو کنید."</string>
+<string name="home_source_none_line">"بدون ردیف؛ کتابخانه‌تان می‌ماند"</string>
 <string name="home_source_none_subtitle">"بدون ردیف · ردیف‌های شما می‌مانند"</string>
+<string name="home_source_picker_body">"ردیف‌ها هر بار از یک افزونه می‌آیند."</string>
+<string name="home_source_picker_title">"منبع خانه"</string>
+<string name="home_source_unreachable">"دفعهٔ قبل در دسترس نبود"</string>
 <string name="jsdelivr_proxy_summary">"دورزدن نشانی‌های خام github توسط jsDelivr. ممکن است باعث تاخیر چند روزه به‌روزرسانی شود."</string>
 <string name="kitsu_settings">"نمیش پوستر از kitsu"</string>
 <string name="legal_notice">"هشدار"</string>

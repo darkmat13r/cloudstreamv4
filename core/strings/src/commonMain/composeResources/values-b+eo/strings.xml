@@ -6,6 +6,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d malsukcesis</item><item quantity="other">%d malsukcesis</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d LEGOSIGNO</item><item quantity="other">%d LEGOSIGNOJ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d sekcio ne ŝargiĝis</item><item quantity="other">%d sekcioj ne ŝargiĝis</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d sekcio</item><item quantity="other">%d sekcioj</item></plurals>
 <string name="account">konto</string>
 <string name="action_open_play">Spekti</string>
 <string name="action_open_watching">Pli da informoj</string>
@@ -27,6 +28,10 @@
 <string name="delete_files">Forigi Dosierojn</string>
 <string name="delete_format">Forigi (%1$d | %2$s)</string>
 <string name="deselect_all">Malselekti Ĉion</string>
+<string name="detail_source_resolving">Solvante…</string>
+<string name="detail_sources_done">%1$d el %2$d respondis</string>
+<string name="detail_sources_progress">%1$d el %2$d respondis · ŝargante…</string>
+<string name="detail_start_over">Rekomenci</string>
 <string name="discord">Aligi Diskordon</string>
 <string name="download">Elŝuti</string>
 <string name="download_canceled">Elŝuto Nuligite</string>
@@ -128,6 +133,7 @@
 <string name="home_bookmarks_no_status_body">Elektu unu supre por vidi tiujn legosignojn.</string>
 <string name="home_bookmarks_no_status_headline">Neniu stato elektita</string>
 <string name="home_change_provider_img_des">Ŝanĝi Provizanton</string>
+<string name="home_choose_source">Elekti fonton</string>
 <string name="home_expanded_hide">Kaŝi</string>
 <string name="home_info">Informoj</string>
 <string name="home_main_poster_img_des">Ĉefa Afiŝo</string>
@@ -138,8 +144,13 @@
 <string name="home_offline_bookmarks_body">Viaj legosignoj estas konservitaj en ĉi tiu aparato.</string>
 <string name="home_offline_source_headline">%1$s bezonas konekton</string>
 <string name="home_play">Spekti</string>
+<string name="home_reload_failed">Ne eblis reŝargi %1$s. Ĉi tiuj vicoj estas de antaŭ %2$s.</string>
 <string name="home_search_only_body">Neniu el viaj kromprogramoj havas hejmpaĝon, sed vi ankoraŭ povas serĉi en ili.</string>
+<string name="home_source_none_line">Neniuj vicoj; via biblioteko restas</string>
 <string name="home_source_none_subtitle">NENIUJ VICOJ · VIAJ VICOJ RESTAS</string>
+<string name="home_source_picker_body">Vicoj venas de unu etendaĵo samtempe.</string>
+<string name="home_source_picker_title">Hejma fonto</string>
+<string name="home_source_unreachable">Ne atingebla lastfoje</string>
 <string name="load_more">Ŝargi pli</string>
 <string name="loading">Ŝarĝante…</string>
 <string name="login">Saluti</string>

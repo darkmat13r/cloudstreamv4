@@ -4,6 +4,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d विफल"</item><item quantity="other">"%d विफल"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d बुकमार्क"</item><item quantity="other">"%d बुकमार्क"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d अनुभाग लोड नहीं हो सका"</item><item quantity="other">"%d अनुभाग लोड नहीं हो सके"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d सेक्शन"</item><item quantity="other">"%d सेक्शन"</item></plurals>
 <string name="account">"खाता"</string>
 <string name="action_add_to_bookmarks">"दर्शन स्थिति सेट करें"</string>
 <string name="action_default">"डिफॉल्ट"</string>
@@ -92,6 +93,10 @@
 <string name="deselect_all">"सभी अचयनित करें"</string>
 <string name="detail_load_failed_body">"हो सकता है स्रोत उपलब्ध न हो।"</string>
 <string name="detail_load_failed_headline">"यह शीर्षक नहीं खुल सका"</string>
+<string name="detail_source_resolving">"हल हो रहा है…"</string>
+<string name="detail_sources_done" formatted="true">"%2$d में से %1$d ने जवाब दिया"</string>
+<string name="detail_sources_progress" formatted="true">"%2$d में से %1$d ने जवाब दिया · लोड हो रहा है…"</string>
+<string name="detail_start_over">"फिर से शुरू करें"</string>
 <string name="discord">"Discord से जुड़िये"</string>
 <string name="display_subbed_dubbed_settings">"डब किए /सबब् किए एनीमे दिखाएं"</string>
 <string name="dns_pref">"एचटीटीपीएस पर डीएनएस"</string>
@@ -229,6 +234,7 @@
 <string name="home_bookmarks_no_status_body">"वे बुकमार्क देखने के लिए ऊपर से एक चुनें।"</string>
 <string name="home_bookmarks_no_status_headline">"कोई स्थिति नहीं चुनी गई"</string>
 <string name="home_change_provider_img_des">"प्रोवाइडर बदलें"</string>
+<string name="home_choose_source">"स्रोत चुनें"</string>
 <string name="home_expanded_hide">"छिपाएं"</string>
 <string name="home_info">"जानकारी"</string>
 <string name="home_main_poster_img_des">"मुख्य पोस्टर"</string>
@@ -239,8 +245,13 @@
 <string name="home_offline_bookmarks_body">"आपके बुकमार्क इस डिवाइस पर सहेजे गए हैं।"</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s को कनेक्शन चाहिए"</string>
 <string name="home_play">"चलाएं"</string>
+<string name="home_reload_failed" formatted="true">"%1$s को फिर से लोड नहीं कर सके। ये पंक्तियाँ %2$s पहले की हैं।"</string>
 <string name="home_search_only_body">"आपके किसी भी एक्सटेंशन में होम पेज नहीं है, फिर भी आप उनमें खोज सकते हैं।"</string>
+<string name="home_source_none_line">"कोई पंक्ति नहीं; आपकी लाइब्रेरी बनी रहती है"</string>
 <string name="home_source_none_subtitle">"कोई पंक्ति नहीं · आपकी पंक्तियाँ रहती हैं"</string>
+<string name="home_source_picker_body">"पंक्तियाँ एक समय में एक एक्सटेंशन से आती हैं।"</string>
+<string name="home_source_picker_title">"होम स्रोत"</string>
+<string name="home_source_unreachable">"पिछली बार इस तक नहीं पहुँच सके"</string>
 <string name="install_prerelease">"प्री-रिलीज़ संस्करण स्थापित करें"</string>
 <string name="jsdelivr_enabled">"गिटहब तक नहीं पहुंचा जा सका। जेएस डीलीवर प्रॉक्सी चालू किया जा रहा है…"</string>
 <string name="jsdelivr_proxy">"गिटहब प्रॉक्सी"</string>

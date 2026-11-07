@@ -6,6 +6,7 @@
 <plurals name="downloads_queued"><item quantity="one">"مافي شي بعد بده يبلش يتنزل"</item><item quantity="other">"فيه شي واحد بعد بده يبلش يتنزل"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d إشارة مرجعية"</item><item quantity="other">"%d إشارات مرجعية"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"م قدرنا نفتح %d قسم"</item><item quantity="other">"م قدرنا نفتح %d أقسام"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d قسم"</item><item quantity="other">"%d أقسام"</item></plurals>
 <string name="account">"أكونت"</string>
 <string name="action_add_to_bookmarks">"عدل حالة الحَضِر"</string>
 <string name="action_add_to_favorites">"زيدو ع المفضل"</string>
@@ -160,6 +161,10 @@
 <string name="deselect_all">"شيل التنقاية"</string>
 <string name="detail_load_failed_body">"يمكن المصدر مو متوفر."</string>
 <string name="detail_load_failed_headline">"ما قدرنا نفتح هالعنوان"</string>
+<string name="detail_source_resolving">"عم يستخرج…"</string>
+<string name="detail_sources_done" formatted="true">"%1$d من %2$d ردّوا"</string>
+<string name="detail_sources_progress" formatted="true">"%1$d من %2$d ردّوا · عم يحمّل…"</string>
+<string name="detail_start_over">"ابدأ من الأول"</string>
 <string name="device_pin_counter_text" formatted="true">"بتخلص مدة الپِن ب %1$d دقايق و%2$d ثانية"</string>
 <string name="device_pin_error_message">"فشلنا ب فتح پِن الجهاز، جرب تفوت ع أكونت محليًا"</string>
 <string name="device_pin_expired_message">"خلصت مدة الپِن!"</string>
@@ -344,6 +349,7 @@
 <string name="home_bookmarks_no_status_body">"اختار وحدة من فوق لتشوف هالإشارات المرجعية."</string>
 <string name="home_bookmarks_no_status_headline">"ما في حالة مختارة"</string>
 <string name="home_change_provider_img_des">"غير المصدر"</string>
+<string name="home_choose_source">"اختار مصدر"</string>
 <string name="home_expanded_hide">"خبي"</string>
 <string name="home_info">"معلومات"</string>
 <string name="home_main_poster_img_des">"الپوسر الأساسية"</string>
@@ -355,9 +361,14 @@
 <string name="home_offline_source_headline" formatted="true">"%1$s بدو اتصال"</string>
 <string name="home_play">"مشي"</string>
 <string name="home_random">"عشوائي"</string>
+<string name="home_reload_failed" formatted="true">"ما قدرنا نعيد تحميل %1$s. هالصفوف من قبل %2$s."</string>
 <string name="home_search_only_body">"ما في ولا إضافة عندها صفحة رئيسية، بس فيك تنبش فيهن."</string>
 <string name="home_source">"مصدر"</string>
+<string name="home_source_none_line">"ما في صفوف؛ مكتبتك بتضل"</string>
 <string name="home_source_none_subtitle">"ما في صفوف · صفوفك بتضل"</string>
+<string name="home_source_picker_body">"الصفوف بتجي من إضافة وحدة بكل مرة."</string>
+<string name="home_source_picker_title">"مصدر الرئيسية"</string>
+<string name="home_source_unreachable">"ما قدرنا نوصلّه آخر مرة"</string>
 <string name="install_prerelease">"نزل النسخة التجريبية من الآپ"</string>
 <string name="is_adult">"18+"</string>
 <string name="jsdelivr_enabled">"م قدرنا نوصل ل \"گِت هَب\". عم ندَوِر پروكسي JSDelivr …"</string>

@@ -6,6 +6,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d ناکام</item><item quantity="other">%d ناکام</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">%d بک مارک</item><item quantity="other">%d بک مارکس</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d سیکشن لوڈ نہیں ہو سکا</item><item quantity="other">%d سیکشنز لوڈ نہیں ہو سکے</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">%d حصہ</item><item quantity="other">%d حصے</item></plurals>
 <string name="account">اكاؤنٹ</string>
 <string name="action_add_to_bookmarks">واچ اسٹیٹس کو سیٹ کریں</string>
 <string name="action_add_to_favorites">پسندیدہ میں شامل کریں</string>
@@ -132,6 +133,10 @@
 <string name="delete_repository">ذخیرہ کو حذف کریں</string>
 <string name="delete_repository_plugins">اس سے تمام ریپوزٹری پلگ ان بھی حذف ہو جائیں گے</string>
 <string name="deselect_all">سب غیر منتخب کریں</string>
+<string name="detail_source_resolving">حل ہو رہا ہے…</string>
+<string name="detail_sources_done">%2$d میں سے %1$d نے جواب دیا</string>
+<string name="detail_sources_progress">%2$d میں سے %1$d نے جواب دیا · لوڈ ہو رہا ہے…</string>
+<string name="detail_start_over">دوبارہ شروع کریں</string>
 <string name="device_pin_url_message">اپنے اسمارٹ فون یا کمپیوٹر پر یہ %s وزٹ کریں اور مندرجہ بالا کوڈ ڈالیں</string>
 <string name="disable">غیرفعال کریں</string>
 <string name="discord">ڈسکارڈ میں شامل ہوں</string>
@@ -290,6 +295,7 @@
 <string name="home_bookmarks_no_status_body">وہ بک مارکس دیکھنے کے لیے اوپر سے ایک منتخب کریں۔</string>
 <string name="home_bookmarks_no_status_headline">کوئی حیثیت منتخب نہیں</string>
 <string name="home_change_provider_img_des">ذریعہ تبدیل کریں</string>
+<string name="home_choose_source">ماخذ منتخب کریں</string>
 <string name="home_expanded_hide">چھپائیں</string>
 <string name="home_info">معلومات</string>
 <string name="home_main_poster_img_des">مرکزی پوسٹر</string>
@@ -301,9 +307,14 @@
 <string name="home_offline_source_headline">%1$s کو کنکشن درکار ہے</string>
 <string name="home_play">چلائیں</string>
 <string name="home_random">بے ترتیب</string>
+<string name="home_reload_failed">%1$s دوبارہ لوڈ نہیں ہو سکا۔ یہ قطاریں %2$s پہلے کی ہیں۔</string>
 <string name="home_search_only_body">آپ کی کسی بھی ایکسٹینشن میں ہوم پیج نہیں ہے، لیکن آپ پھر بھی ان میں تلاش کر سکتے ہیں۔</string>
 <string name="home_source">ذریعہ</string>
+<string name="home_source_none_line">کوئی قطار نہیں؛ آپ کی لائبریری رہے گی</string>
 <string name="home_source_none_subtitle">کوئی قطار نہیں · آپ کی قطاریں رہتی ہیں</string>
+<string name="home_source_picker_body">قطاریں ایک وقت میں ایک ایکسٹینشن سے آتی ہیں۔</string>
+<string name="home_source_picker_title">ہوم ماخذ</string>
+<string name="home_source_unreachable">پچھلی بار رسائی نہیں ہو سکی</string>
 <string name="is_adult">18+</string>
 <string name="jsdelivr_enabled">Could not reach GitHub. Turning on jsDelivr proxy…</string>
 <string name="jsdelivr_proxy">GitHub Proxy</string>

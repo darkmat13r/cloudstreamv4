@@ -6,6 +6,7 @@
 <plurals name="downloads_failed_count"><item quantity="zero">فشل %d</item><item quantity="one">فشل %d</item><item quantity="two">فشل %d</item><item quantity="few">فشل %d</item><item quantity="many">فشل %d</item><item quantity="other">فشل %d</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="zero">%d إشارة مرجعية</item><item quantity="one">%d إشارة مرجعية</item><item quantity="two">%d إشارتان مرجعيتان</item><item quantity="few">%d إشارات مرجعية</item><item quantity="many">%d إشارة مرجعية</item><item quantity="other">%d إشارة مرجعية</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">تعذر تحميل %d قسم</item><item quantity="one">تعذر تحميل %d قسم</item><item quantity="two">تعذر تحميل %d قسمين</item><item quantity="few">تعذر تحميل %d أقسام</item><item quantity="many">تعذر تحميل %d قسمًا</item><item quantity="other">تعذر تحميل %d قسم</item></plurals>
+<plurals name="home_source_sections"><item quantity="zero">%d قسم</item><item quantity="one">%d قسم</item><item quantity="two">%d قسمان</item><item quantity="few">%d أقسام</item><item quantity="many">%d قسمًا</item><item quantity="other">%d قسم</item></plurals>
 <string name="action_add_to_bookmarks">ضبط حالة المشاهدة</string>
 <string name="action_default">عادي</string>
 <string name="action_mark_as_watched">وضع علامة كما شاهدت</string>
@@ -72,6 +73,10 @@
 <string name="delete">مسح</string>
 <string name="delete_file">حذف ملف</string>
 <string name="delete_message">نهائيا %sسيؤدي هذا الى حذف \nهل أنت متأكد؟</string>
+<string name="detail_source_resolving">جارٍ الاستخراج…</string>
+<string name="detail_sources_done">أجاب %1$d من %2$d</string>
+<string name="detail_sources_progress">أجاب %1$d من %2$d · جارٍ التحميل…</string>
+<string name="detail_start_over">البدء من جديد</string>
 <string name="discord">انضم إلى الديسكورد</string>
 <string name="display_subbed_dubbed_settings">عرض الأنمي المدبلج/المترجم</string>
 <string name="dns_pref">DNS عبر HTTPS</string>
@@ -184,6 +189,7 @@
 <string name="home_bookmarks_no_status_body">اختر وحدة من فوق عشان تشوف هالإشارات المرجعية.</string>
 <string name="home_bookmarks_no_status_headline">ما اخترت أي حالة</string>
 <string name="home_change_provider_img_des">تغيير مزود</string>
+<string name="home_choose_source">اختيار المصدر</string>
 <string name="home_expanded_hide">اخفي</string>
 <string name="home_info">معلومات</string>
 <string name="home_main_poster_img_des">اللافتة الاساسية</string>
@@ -194,8 +200,13 @@
 <string name="home_offline_bookmarks_body">إشاراتك المرجعية محفوظة على هالجهاز.</string>
 <string name="home_offline_source_headline">%1$s يحتاج اتصال</string>
 <string name="home_play">العب</string>
+<string name="home_reload_failed">تعذّرت إعادة تحميل %1$s. هذه الصفوف من قبل %2$s.</string>
 <string name="home_search_only_body">لا تحتوي أي من إضافاتك على صفحة رئيسية، لكن يمكنك البحث فيها.</string>
+<string name="home_source_none_line">لا صفوف؛ تبقى مكتبتك</string>
 <string name="home_source_none_subtitle">ما فيه صفوف · صفوفك تبقى</string>
+<string name="home_source_picker_body">تأتي الصفوف من إضافة واحدة في كل مرة.</string>
+<string name="home_source_picker_title">مصدر الصفحة الرئيسية</string>
+<string name="home_source_unreachable">تعذّر الوصول إليه في المرة السابقة</string>
 <string name="jsdelivr_enabled">...jsDelivr لا يمكن الوصول إلى جيتهاب. جارٍ تشغيل وكيل</string>
 <string name="jsdelivr_proxy_summary">.قد يتسبب في تأخير التحديثات لبضعة أيام .jsDelivr باستخدام GitHubيتجاوز حظر</string>
 <string name="kitsu_settings">عرض الملصقات من كيتسو</string>

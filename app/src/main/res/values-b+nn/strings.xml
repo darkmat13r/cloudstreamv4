@@ -4,6 +4,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d feila"</item><item quantity="other">"%d feila"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOKMERKE"</item><item quantity="other">"%d BOKMERKE"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d del kunne ikkje lastast"</item><item quantity="other">"%d delar kunne ikkje lastast"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d seksjon"</item><item quantity="other">"%d seksjonar"</item></plurals>
 <string name="action_add_to_bookmarks">"Sett visingstatus"</string>
 <string name="action_default">"Standard"</string>
 <string name="action_open_watching">"Meir informasjon"</string>
@@ -35,6 +36,10 @@
 <string name="delete_message" formatted="true">"Dette vil slette %s permanent. \nEr du sikker på dette?"</string>
 <string name="detail_load_failed_body">"Kjelda er kanskje ikkje tilgjengeleg."</string>
 <string name="detail_load_failed_headline">"Kunne ikkje opne denne tittelen"</string>
+<string name="detail_source_resolving">"Løyser…"</string>
+<string name="detail_sources_done" formatted="true">"%1$d av %2$d svarte"</string>
+<string name="detail_sources_progress" formatted="true">"%1$d av %2$d svarte · lastar…"</string>
+<string name="detail_start_over">"Start på nytt"</string>
 <string name="discord">"Bli med i Discord"</string>
 <string name="dns_pref">"DNS over HTTPS"</string>
 <string name="documentaries">"Dokumentarar"</string>
@@ -126,6 +131,7 @@
 <string name="home_bookmarks_no_status_body">"Vel ein ovanfor for å sjå dei bokmerka."</string>
 <string name="home_bookmarks_no_status_headline">"Ingen status vald"</string>
 <string name="home_change_provider_img_des">"Endre leverandør"</string>
+<string name="home_choose_source">"Vel kjelde"</string>
 <string name="home_expanded_hide">"Gøym"</string>
 <string name="home_info">"Informasjon"</string>
 <string name="home_main_poster_img_des">"Hovudminiatyrbilete"</string>
@@ -136,8 +142,13 @@
 <string name="home_offline_bookmarks_body">"Bokmerka dine er lagra på denne eininga."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s treng tilkopling"</string>
 <string name="home_play">"Spel(e) av"</string>
+<string name="home_reload_failed" formatted="true">"Kunne ikkje lasta %1$s på nytt. Desse radene er frå for %2$s sidan."</string>
 <string name="home_search_only_body">"Ingen av utvidingane dine har ei heimeside, men du kan framleis søkje i dei."</string>
+<string name="home_source_none_line">"Ingen rader; biblioteket blir verande"</string>
 <string name="home_source_none_subtitle">"INGEN RADER · RADENE DINE BLIR"</string>
+<string name="home_source_picker_body">"Radene kjem frå éi utviding om gongen."</string>
+<string name="home_source_picker_title">"Kjelde for startsida"</string>
+<string name="home_source_unreachable">"Var ikkje tilgjengeleg sist"</string>
 <string name="kitsu_settings">"Vis miniatyrbilete frå Kitsu"</string>
 <string name="library_not_connected">"Ikkje tilkopla"</string>
 <string name="library_on_device">"På eininga"</string>

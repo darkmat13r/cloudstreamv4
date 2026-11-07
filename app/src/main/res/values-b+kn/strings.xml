@@ -4,6 +4,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d ವಿಫಲವಾಗಿದೆ"</item><item quantity="other">"%d ವಿಫಲವಾಗಿವೆ"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ಬುಕ್‌ಮಾರ್ಕ್"</item><item quantity="other">"%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ"</item><item quantity="other">"%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ"</item></plurals>
+<plurals name="home_source_sections"><item quantity="one">"%d ವಿಭಾಗ"</item><item quantity="other">"%d ವಿಭಾಗಗಳು"</item></plurals>
 <string name="action_add_to_bookmarks">"ಸೆಟ್ ವಾಚ್ ಸ್ಟೇಟಸ್"</string>
 <string name="action_open_play">"@ಸ್ಟ್ರಿಂಗ್/ಹೋಮ್_ಪ್ಲೇ"</string>
 <string name="action_open_watching">"ಹೆಚ್ಚಿನ ಮಾಹಿತಿ"</string>
@@ -25,6 +26,10 @@
 <string name="continue_watching">"ಕಂಟಿನ್ಯೂ ವಾಟಚಿಂಗ್"</string>
 <string name="detail_load_failed_body">"ಮೂಲ ಲಭ್ಯವಿಲ್ಲದಿರಬಹುದು."</string>
 <string name="detail_load_failed_headline">"ಈ ಶೀರ್ಷಿಕೆಯನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"</string>
+<string name="detail_source_resolving">"ಪರಿಹರಿಸಲಾಗುತ್ತಿದೆ…"</string>
+<string name="detail_sources_done" formatted="true">"%2$d ರಲ್ಲಿ %1$d ಉತ್ತರಿಸಿವೆ"</string>
+<string name="detail_sources_progress" formatted="true">"%2$d ರಲ್ಲಿ %1$d ಉತ್ತರಿಸಿವೆ · ಲೋಡ್ ಆಗುತ್ತಿದೆ…"</string>
+<string name="detail_start_over">"ಮತ್ತೆ ಪ್ರಾರಂಭಿಸಿ"</string>
 <string name="double_tap_to_seek_settings">"ಮುಂದೂಡಲು ಅಥವಾ ಇಂದೂಡಲು ಎರಡು ಬಾರಿ ಟ್ಯಾಪ್ ಮಾಡಿ"</string>
 <string name="download">"ಡೌನ್‌ಲೋಡ್"</string>
 <string name="download_canceled">"ಡೌನ್‌ಲೋಡ್ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ"</string>
@@ -98,6 +103,7 @@
 <string name="home_bookmarks_no_status_body">"ಆ ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳನ್ನು ನೋಡಲು ಮೇಲೆ ಒಂದನ್ನು ಆಯ್ಕೆಮಾಡಿ."</string>
 <string name="home_bookmarks_no_status_headline">"ಯಾವುದೇ ಸ್ಥಿತಿ ಆಯ್ಕೆ ಮಾಡಿಲ್ಲ"</string>
 <string name="home_change_provider_img_des">"ಪ್ರೊವೈಡರ್ ಬದಲಾಯಿಸಿ"</string>
+<string name="home_choose_source">"ಮೂಲ ಆಯ್ಕೆಮಾಡಿ"</string>
 <string name="home_expanded_hide">"ಹೈಡ್"</string>
 <string name="home_info">"ಮಾಹಿತಿ"</string>
 <string name="home_main_poster_img_des">"ಮೇನ್ ಪೋಸ್ಟರ್"</string>
@@ -108,8 +114,13 @@
 <string name="home_offline_bookmarks_body">"ನಿಮ್ಮ ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳನ್ನು ಈ ಸಾಧನದಲ್ಲಿ ಉಳಿಸಲಾಗಿದೆ."</string>
 <string name="home_offline_source_headline" formatted="true">"%1$s ಗೆ ಸಂಪರ್ಕ ಬೇಕು"</string>
 <string name="home_play">"ಪ್ಲೇ"</string>
+<string name="home_reload_failed" formatted="true">"%1$s ಅನ್ನು ಮರುಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ಈ ಸಾಲುಗಳು %2$s ಹಿಂದಿನವು."</string>
 <string name="home_search_only_body">"ನಿಮ್ಮ ಯಾವುದೇ ವಿಸ್ತರಣೆಗೆ ಹೋಂ ಪುಟವಿಲ್ಲ, ಆದರೆ ನೀವು ಅವುಗಳಲ್ಲಿ ಹುಡುಕಬಹುದು."</string>
+<string name="home_source_none_line">"ಸಾಲುಗಳಿಲ್ಲ; ನಿಮ್ಮ ಲೈಬ್ರರಿ ಉಳಿಯುತ್ತದೆ"</string>
 <string name="home_source_none_subtitle">"ಸಾಲುಗಳಿಲ್ಲ · ನಿಮ್ಮ ಸಾಲುಗಳು ಉಳಿಯುತ್ತವೆ"</string>
+<string name="home_source_picker_body">"ಸಾಲುಗಳು ಒಮ್ಮೆಗೆ ಒಂದು ವಿಸ್ತರಣೆಯಿಂದ ಬರುತ್ತವೆ."</string>
+<string name="home_source_picker_title">"ಹೋಮ್ ಮೂಲ"</string>
+<string name="home_source_unreachable">"ಕಳೆದ ಬಾರಿ ತಲುಪಲಾಗಲಿಲ್ಲ"</string>
 <string name="library_not_connected">"ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲ"</string>
 <string name="library_on_device">"ಸಾಧನದಲ್ಲಿ"</string>
 <string name="library_source">"ಲೈಬ್ರರಿ ಮೂಲ"</string>
