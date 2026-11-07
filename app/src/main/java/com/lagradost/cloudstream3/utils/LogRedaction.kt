@@ -18,15 +18,44 @@ import com.lagradost.cloudstream3.ui.player.SubtitleData
 
 private const val MAX_CAUSES = 8
 
-/** Any `scheme://…` up to the next whitespace. The same pattern as `:desktopApp`'s `withoutUrls`. */
-private val URL_IN_TEXT = Regex("(?i)\\b[a-z][a-z0-9+.-]*://\\S+")
+// BUG-44: one of three identical copies, which must stay in sync: `:app` `utils/LogRedaction.kt`,
+// `:library` `mvvm/ArchComponentExt.kt` and `:feature:extensions:sandbox` `PluginHost.kt`.
+// `:library` is the published API and cannot depend on an internal module, so they cannot share one.
 
-/** BUG-44: [text] with every `scheme://…` replaced by `<url>`. `null` stays `"null"`, as interpolation printed it. */
-internal fun redactedText(text: String?): String = text?.replace(URL_IN_TEXT, "<url>") ?: "null"
+/** `file:/…`, with any number of slashes, up to the next whitespace. */
+private val FILE_URI = Regex("(?i)\\bfile:/\\S+")
+
+/** `scheme://[userinfo@]host[:port]`, then whatever follows up to the next whitespace. */
+private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*)://(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
+
+/**
+ * An absolute path under a storage or home root, up to a newline, a quote, `": "` or the end. A path
+ * may hold spaces, so it is not cut at whitespace: what follows a path on its line is lost with it,
+ * which is the safe way round.
+ */
+private val USER_PATH = Regex(
+    "(?<![\\w.:/-])/(?:storage|sdcard|data/user|mnt|Users|home)(?:/[^\\r\\n\"'<>]*?)?(?=: |[\\r\\n\"'<>]|\\z)"
+)
+
+/**
+ * Text with a `file:` uri or a path under `/storage`, `/sdcard`, `/data/user`, `/mnt`, `/Users` or
+ * `/home` replaced by `<path>`, and every other url cut to `scheme://host[:port]/<…>`. The host is
+ * kept because it helps triage and is not a secret; the userinfo, path, query and fragment are not.
+ */
+private fun String.withoutUrls(): String = this
+    .replace(FILE_URI, "<path>")
+    .replace(URL_IN_TEXT) { match ->
+        val (scheme, host, rest) = match.destructured
+        "$scheme://$host" + if (rest.isEmpty()) "" else "/<…>"
+    }
+    .replace(USER_PATH, "<path>")
+
+/** BUG-44: [text] with its urls and user paths redacted (see `withoutUrls`). `null` stays `"null"`, as interpolation printed it. */
+internal fun redactedText(text: String?): String = text?.withoutUrls() ?: "null"
 
 /**
  * BUG-44: [throwable]'s stack trace, as `printStackTrace` and `Log.getStackTraceString` print it (class,
- * message, frames, `Caused by:` and `Suppressed:`), with every URL in a message replaced by `<url>`.
+ * message, frames, `Caused by:` and `Suppressed:`), with the urls and user paths in every message redacted.
  * Use it where a throwable would otherwise go to the platform's `Log.x(tag, msg, throwable)`:
  * `Log.e(TAG, "$msg\n${redactedStackTrace(t)}")` prints the same lines.
  */

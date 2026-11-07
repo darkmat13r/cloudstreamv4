@@ -765,6 +765,7 @@ public final class com/lagradost/cloudstream3/ExceptionHandler : java/lang/Objec
 	public final fun getErrorFile ()Ljava/io/File;
 	public final fun getOnError ()Lkotlin/jvm/functions/Function0;
 	public fun uncaughtException (Ljava/lang/Thread;Ljava/lang/Throwable;)V
+	public final fun writeReport$app (Ljava/io/PrintStream;Ljava/lang/String;Ljava/lang/String;JLjava/lang/Throwable;)V
 }
 
 public final enum com/lagradost/cloudstream3/FocusDirection : java/lang/Enum {

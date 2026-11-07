@@ -1823,39 +1823,82 @@ to `bytesWritten`, and every byte right. The log had 0 `ENOENT` and 0 `UNIQUE co
 
 ---
 
-## BUG-44 — URLs reached the log through exception messages: `logError`, `Log.x(tag, msg, throwable)` and printed stack traces · **high** · found 2026-11-07
+## BUG-44 — URLs and user paths reached the log, the crash file and the error screen through exception messages · **high** · found 2026-11-07
 
-**Status:** fixed in the PR that adds this entry, stacked on `BUG-43` (#188). The scope (items 1 to 4 below) was set by the coordinator, from `BUG-43`'s "Found and left".
+**Status:** fixed in the PR that adds this entry, stacked on `BUG-43` (#188). The scope was set by the coordinator, from `BUG-43`'s "Found and left" and the review of this PR. The crash file, `getStackTracePretty` and Voe were first claimed as `BUG-46`, then folded into this entry on the coordinator's call, so `BUG-46` is unused.
 
-**The defect.** `BUG-43` cleaned the values that log lines interpolate, but not throwables. An HTTP, navigation or content-resolver failure's message often quotes its URL, and these paths print the message of the throwable, of every cause and of every suppressed throwable:
+**The defect.** `BUG-43` cleaned the values that log lines interpolate, but not throwables. An HTTP, navigation or content-resolver failure's message often quotes its URL, and a file failure's message quotes its path (`/storage/emulated/0/…: open failed: EACCES`). These places print the message of a throwable, of every cause and of every suppressed throwable:
 
-- `logError(throwable)` (`:library`, `mvvm/ArchComponentExt.kt`). It logs `"safeApiCall: " + throwable.message` and then `throwable.printStackTrace()`, which on Android goes to logcat as `System.err`. It has hundreds of callers, in the app and in every extension.
-- The platform's `Log.x(tag, msg, throwable)`, which appends `Log.getStackTraceString(throwable)`, and calls to `getStackTraceString` and `printStackTrace` themselves.
-- Two places that print an exception's message: `ControllerActivity`'s `println(e)` and the plugin host's failure line.
+- **`logError(throwable)`** (`:library`, `mvvm/ArchComponentExt.kt`). It logs `"safeApiCall: " + throwable.message` and then `throwable.printStackTrace()`, which on Android goes to logcat as `System.err`. It has hundreds of callers, in the app and in every extension.
+- **The platform's `Log.x(tag, msg, throwable)`**, which appends `Log.getStackTraceString(throwable)`, and direct calls to `getStackTraceString` and `printStackTrace`.
+- **`CloudStreamApp`'s uncaught-exception handler.** It writes `error.printStackTrace(ps)` to `filesDir/last_error`, the crash file people attach to bug reports, so a URL or path in it reaches whoever receives the report.
+- **`getStackTracePretty`.** It puts the message first, and `safeFail` shows that text on screen as a `Resource.Failure`.
+- **Messages printed directly:** `ControllerActivity`'s `println(e)`, the plugin host's failure line, and the TV-channel and clipboard error lines.
+- **`Voe.decryptF7`** printed `Decryption error: ${e.message}`. Its last step runs Jackson's `parseJson` on the decrypted text, whose `source` is the stream URL. A Jackson parse error quotes the input it failed on, and the base64 steps' errors can quote theirs.
 
 A cast receiver's LAN address was also logged. That is the user's network layout.
 
-**The fix.** Every `scheme://…` up to the next whitespace becomes `<url>`, using the pattern `:desktopApp`'s `withoutUrls` already uses. The exception class and the stack frames are kept, because frames carry no URLs.
+**The fix: the rules.** In every message:
 
-1. **`logError`.** The signature is unchanged. The `safeApiCall:` line has its URLs removed. The stack trace is now `throwable.stackTraceToString()` (the same text `printStackTrace` printed: class, message, frames, `Caused by:` and `Suppressed:`) with its URLs removed. It is still written to standard error, through a new `internal expect fun printToStandardError` with actuals in `jvmCommonMain` (`System.err.println`) and `webMain` (`console.error`). The pattern and `withoutUrls` are `private` to `ArchComponentExt.kt`.
-2. **The platform's `Log`.** `android.util.Log` is not patched. The app's calls are wrapped instead, using two new `internal` helpers in `:app`'s `utils/LogRedaction.kt`: `redactedText(text)` and `redactedStackTrace(throwable)`. `Log.e(TAG, msg, t)` becomes `Log.e(TAG, "$msg\n${redactedStackTrace(t)}")`, which prints the same lines. `Log.getStackTraceString(e)` becomes `redactedStackTrace(e)`, and `e.printStackTrace()` becomes `System.err.println(redactedStackTrace(e))`.
-3. `ControllerActivity` prints `redactedText(e.toString())`, and so do the TV-channel and clipboard error lines (`HomeFragment`, `TvChannelUtils:113`, `UIHelper`), which interpolated `$e` or `${e.message}` directly. The plugin host replaces URLs in `failure.message` with a `private` pattern inside `object PluginHost`.
-4. Fcast logs `receiver <service name>` and no address.
+- A `file:` uri, with any number of slashes, becomes `<path>`.
+- A URL is cut to `scheme://host[:port]/<…>`. The userinfo (`user:pass@`), path, query and fragment go. The host is kept, matching #188's Cloudflare and WebView lines: it helps triage and is not a secret.
+- An absolute path under `/storage`, `/sdcard`, `/data/user`, `/mnt`, `/Users` or `/home` becomes `<path>`. The path runs to a newline, a quote, `": "` or the end. Paths can hold spaces, so a path is not cut at whitespace, and what follows it on its line goes with it. That over-redacts, which is the safe way round.
 
-**One difference in content, not just in redaction.** `Log.getStackTraceString` returns an empty string when an `UnknownHostException` is anywhere in the chain. `redactedStackTrace` prints that chain like any other. That adds lines (frames and class names, with any URLs replaced), and nothing it adds can carry a URL.
+The exception class and the stack frames are kept, because frames carry no URLs or paths.
 
-**Extension API.** `:app:dumpExtensionApi` adds lines and removes or changes none: `LogRedactionKt` gains `redactedText` and `redactedStackTrace`, and `ArchComponentExt_jvmCommonKt` gains `printToStandardError` (it is `internal`, but the dump reads bytecode). `logError`'s line is unchanged.
+**Where the rules are applied:**
 
-**Tests.**
-- `library/src/jvmTest/.../mvvm/LogErrorRedactionTest.kt` captures stdout and stderr around `logError`. The throwable, its cause and a suppressed throwable carry marker URLs (https, http, file). The test asserts that no marker and no `://` comes out, and that the classes, the `Caused by:` and `Suppressed:` lines, the words around each URL and the frames all survive.
-- `app/src/test/.../utils/StackTraceRedactionTest.kt` does the same for `redactedStackTrace` and `redactedText`.
-- Control: with `logError`'s old body put back (`throwable.message`, then `printStackTrace()`), the marker case failed and the no-URL case passed.
+1. **`logError`** keeps its signature. The `safeApiCall:` line is redacted. The stack trace is `throwable.stackTraceToString()` (the same text `printStackTrace` printed: class, message, frames, `Caused by:` and `Suppressed:`) with the rules applied. It is still written to standard error, through a new `internal expect fun printToStandardError` with actuals in `jvmCommonMain` (`System.err.println`) and `webMain` (`console.error`).
+2. **The platform's `Log`.** `android.util.Log` is not patched. The app's calls are wrapped instead, using two `internal` helpers in `:app`'s `utils/LogRedaction.kt`: `redactedText(text)` and `redactedStackTrace(throwable)`. `Log.e(TAG, msg, t)` becomes `Log.e(TAG, "$msg\n${redactedStackTrace(t)}")`, which prints the same lines. `Log.getStackTraceString(e)` becomes `redactedStackTrace(e)`, and `e.printStackTrace()` becomes `System.err.println(redactedStackTrace(e))`.
+3. **The crash file** gets `ps.println(redactedStackTrace(error))` in place of `error.printStackTrace(ps)`. The three lines the handler writes moved into an `internal` member, `ExceptionHandler.writeReport(ps, currentlyLoading, threadName, threadId, error)`, which `uncaughtException` calls with the same values. That is so a JVM test can write the file: the handler reads `PluginManager.currentlyLoading`, and `PluginManager`'s initialiser fails without Android's external storage (`ExceptionInInitializerError`, measured when the test first drove the handler). The app's unit tests have only JUnit, and a mocking library would be a new dependency.
+4. **`getStackTracePretty`** redacts the message it puts first, so `safeFail`'s on-screen `Resource.Failure` does too.
+5. **Messages printed directly:** `ControllerActivity`, the TV-channel and clipboard lines print `redactedText(…)`, and the plugin host redacts `failure.message`.
+6. **Voe** prints `Decryption error: <exception class>`.
+7. **Fcast** logs `receiver <service name>` and no address.
 
-### Call sites changed (23)
+**Three copies of the rules, which must stay in sync:**
+
+- `:app` `app/src/main/java/com/lagradost/cloudstream3/utils/LogRedaction.kt`
+- `:library` `library/src/commonMain/kotlin/com/lagradost/cloudstream3/mvvm/ArchComponentExt.kt`
+- `:feature:extensions:sandbox` `feature/extensions/sandbox/src/jvmMain/kotlin/com/lagradost/cloudstream4/feature/extensions/sandbox/PluginHost.kt`
+
+They cannot share one: `:library` is the published API and cannot depend on an internal module, and in `:library` the rules are `private`. Each copy's test runs the same table of cases. `:desktopApp`'s `withoutUrls` (`DesktopDetailSource.kt`) is a fourth, older rule that still writes `<url>` for the whole URL. It is not part of this change.
+
+**One difference in content, not just in redaction.** `Log.getStackTraceString` returns an empty string when an `UnknownHostException` is anywhere in the chain. `redactedStackTrace` prints that chain like any other. That adds lines (frames and class names, redacted), and nothing it adds can carry a URL or a path.
+
+**Extension API.** `:app:dumpExtensionApi` adds lines and removes or changes none: `LogRedactionKt` gains `redactedText` and `redactedStackTrace`, `ExceptionHandler` gains `writeReport` (name-mangled), and `ArchComponentExt_jvmCommonKt` gains `printToStandardError`. All are `internal`, but the dump reads bytecode. The signatures of `logError`, `getStackTracePretty` and `safeFail` are unchanged.
+
+**Tests.** The table (in each copy's test) covers:
+
+- userinfo, port, path, query and fragment
+- a host with only a query
+- a `content://` uri
+- an `EACCES` `FileNotFoundException` message with a space in the path
+- single-slash and triple-slash `file:` uris
+- `/Users`, `/home`, `/data/user`, `/mnt` and `/sdcard` paths
+- a bare host (kept as it is)
+- plain text, and a frame (both unchanged)
+
+The tests themselves:
+
+- `app/src/test/.../utils/StackTraceRedactionTest.kt` runs the table through `redactedText`, and runs a chain (URL message, an `EACCES` cause, a `file:/` suppressed throwable) through `redactedStackTrace`.
+- `app/src/test/.../CrashFileRedactionTest.kt` writes a temporary `last_error` through `writeReport`, as the handler does. A fatal exception with a URL and an `EACCES` path leaves no marker in the file.
+- `library/src/jvmTest/.../mvvm/LogErrorRedactionTest.kt` runs the table through `logError` and a chain through its stack trace, capturing stdout and stderr. It also checks that `safeFail`'s on-screen text carries no marker.
+- `feature/extensions/sandbox/src/jvmTest/.../PluginHostRedactionTest.kt` runs the table through the plugin host's copy.
+
+**Controls.**
+
+- With the crash handler's old `error.printStackTrace(ps)` put back, `CrashFileRedactionTest` failed.
+- With `logError`'s old body put back (`throwable.message`, then `printStackTrace()`), the first version's marker case failed.
+
+### Call sites changed (26)
 
 | File (line on #188's head) | Before | After |
 |---|---|---|
-| `library` `mvvm/ArchComponentExt.kt:69` `logError` | message and `printStackTrace()` | URLs replaced, still to stderr |
+| `library` `mvvm/ArchComponentExt.kt:69` `logError` | message and `printStackTrace()` | redacted, still to stderr |
+| `library` `mvvm/ArchComponentExt.kt:137` `getStackTracePretty` (`safeFail`'s on-screen text) | the message | redacted |
+| `library` `extractors/Voe.kt:120` | `Decryption error: ${e.message}` | the exception class |
+| `CloudStreamApp.kt:59` `ExceptionHandler` (the crash file) | `error.printStackTrace(ps)` | `ps.println(redactedStackTrace(error))`, in `writeReport` |
 | `cloudstream4/download/DownloadFacts.kt:274` | `Log.e(TAG, msg, t)` | `redactedStackTrace(t)` |
 | `ui/settings/SettingsFragment.kt:215` | `Log.e(tag, msg, t)` | `redactedStackTrace(t)` |
 | `ui/player/CS3IPlayer.kt:1028`, `:1637`, `:1707`, `:1960` | `Log.e(TAG, msg, t)` | `redactedStackTrace(t)` |
@@ -1867,7 +1910,7 @@ A cast receiver's LAN address was also logged. That is the user's network layout
 | `ui/ControllerActivity.kt:336` | `println(e)` | `println(redactedText(e.toString()))` |
 | `ui/home/HomeFragment.kt:580`, `:599`, `utils/TvChannelUtils.kt:113` | a TV-channel `ContentResolver` failure's `$e` / message (can quote a `content://` uri) | `redactedText(...)` |
 | `utils/UIHelper.kt:164` | clipboard failure's `$t` | `redactedText(t.toString())` |
-| `feature/extensions/sandbox` `PluginHost.kt:73` | `failure.message` | URLs replaced |
+| `feature/extensions/sandbox` `PluginHost.kt:73` | `failure.message` | redacted |
 | `actions/temp/fcast/FcastManager.kt:95`, `:131` | service name and LAN address | `receiver <service name>` |
 
 `:app` paths are under `app/src/main/java/com/lagradost/cloudstream3/`, except `cloudstream4/download`.
@@ -1875,9 +1918,9 @@ A cast receiver's LAN address was also logged. That is the user's network layout
 ### Left, on the coordinator's call
 
 - `BasePlugin`'s `mainUrl` (a provider domain) and `:desktopApp`'s `ExtensionCheck` host list, which is output the user asked for, not a log.
+- The duplicated rules (above), until `:library` can share code with the app.
 
 ### Found and left
 
-- `CloudStreamApp`'s uncaught-exception handler writes `error.printStackTrace(ps)` to a crash **file**, not to the log. The person chooses whether to share it, so it was left as it is.
-- `Voe.kt:120` (`:library`) prints `Decryption error: ${e.message}`. That is a decryption failure, not an HTTP one, and was left. After this change it is the only unredacted exception message that this sweep's search found in the main code of `:app`, `:library`, `:core:*`, `:feature:*`, `:media:*` and `:desktopApp`. The search looked for log calls interpolating `$e`, `$t`, `$error` or a `.message` of those names, so a differently named variable would not have matched. `DesktopDetailSource` already uses `withoutUrls`.
-- Messages are only cleaned of URLs. A path without a scheme (`/data/…`) is kept, which is why `BUG-43`'s `PluginManager` lines use `redactedThrowable` and print no message at all.
+- Other `Resource.Failure` texts that put a message on screen: `ErrorLoadingException`'s (written by the extension), `UnknownHostException`'s (a host name), `SSLHandshakeException`'s, and the "outdated" text for `NoSuchMethodError` and its kin. None goes through `getStackTracePretty`, and none was in this PR's scope.
+- `/data/data/<package>` and other roots outside the six listed are not redacted. They are the app's own private storage, not the person's files.
