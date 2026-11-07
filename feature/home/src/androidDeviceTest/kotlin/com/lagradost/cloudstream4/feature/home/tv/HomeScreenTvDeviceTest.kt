@@ -1142,6 +1142,29 @@ class HomeScreenTvDeviceTest {
     }
 
     /**
+     * `BUG-41` on the other local rail: Continue watching is one local read too, so at launch it can be on screen before
+     * the hero, and the host's first request then lands on its first card (worker-2's run: "was Played Before"). Not a
+     * person's choice either, so when the hero lands it takes focus.
+     */
+    @Test
+    fun focusTheWindowGaveContinueWatchingBeforeTheHeroLandedStillGoesToTheHero() {
+        rails(1)
+        featuring(FEATURED)
+        resuming(2)
+        val pages = kotlinx.coroutines.CompletableDeferred<Unit>()
+        source.gate = pages
+        showScreen()
+        rule.waitUntil(WAIT_MS) { rule.onAllNodesWithContentDescription("$RESUME 0").fetchSemanticsNodes().isNotEmpty() }
+        rule.runOnIdle { hostFocus.request { hostView!!.requestFocus() } }
+        rule.waitForIdle()
+        val given = dpad.focused()
+        assertTrue("the window gave focus to Continue watching, was $given", given?.startsWith(RESUME) == true)
+
+        pages.complete(Unit)
+        awaitFocus(HERO)
+    }
+
+    /**
      * `BUG-41`'s other side: a person who presses into the bookmarks while the rows are still loading has chosen them, so
      * the hero landing later leaves focus where they put it.
      */

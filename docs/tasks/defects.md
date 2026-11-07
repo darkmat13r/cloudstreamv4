@@ -1548,6 +1548,10 @@ and the host's first focus request, which is why the same commit passed 17/17 at
 | the class alone with the first fix, x2 | `Television_720p_2` | 17/17 each time (21:20, 21:33Z) |
 | the final fix: gates, `HomeScreenTvDeviceTest`, the class alone, the full `:app` suite | see the PR | FINAL_RESULTS |
 
+Continue watching is the same race on the other local rail: worker-2's `:app` run also failed
+`somethingPlayedIsOnContinueWatchingAndOpensItsRealPageAndFocusComesBack` with `was Played Before`. The guard and the fix cover
+both rails alike, and a second module case forces that order too.
+
 The module case's first assertion is the precondition: the host's focus request does put focus on the chip. It is what makes the
 race deterministic, and what the fix is shown against.
 
