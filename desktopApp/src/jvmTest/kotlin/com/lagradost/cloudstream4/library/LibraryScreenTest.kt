@@ -18,6 +18,9 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerButton
 import androidx.compose.ui.input.pointer.PointerButtons
 import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.semantics.SemanticsNode
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.DesktopApp
@@ -416,6 +419,9 @@ class LibraryScreenTest {
         val scene = screen(open, { actions += it })
         scene.settle()
         scene.save("library-l4-sort")
+        // The applied sort is the selected row; a greyed one is not.
+        assertTrue(scene.isSelected("Updated (New to Old)"))
+        assertTrue(!scene.isSelected("Rating (High to Low)"))
         scene.click(Offset(PANEL_X, SORT_TITLE_ROW_Y))
         scene.click(Offset(PANEL_X, SORT_RATING_ROW_Y))
         // Title answers; Your rating stays in the list with its reason and does nothing.
@@ -449,11 +455,14 @@ class LibraryScreenTest {
     @Test
     fun `the picker offers every list and the way out of all of them (L6)`() {
         val actions = mutableListOf<LibraryAction>()
-        val cards = listOf(card(dune, "Dune"))
+        val cards = listOf(card(dune, "Dune", bucket = LibraryBucket.Completed))
         val open = state(LibraryStatus.Showing(cards)).copy(picking = dune)
         val scene = screen(open, { actions += it })
         scene.settle()
         scene.save("library-picker")
+        // The card's own list is the selected row, and only that one.
+        assertTrue(scene.isSelected("Completed"))
+        assertTrue(!scene.isSelected("Watching"))
         // Each row of the panel in turn: the six lists, then Remove.
         LibraryBucket.entries.forEachIndexed { index, bucket ->
             actions.clear()
@@ -605,6 +614,25 @@ class LibraryScreenTest {
         val bitmap = Bitmap.makeFromImage(render(SETTLE_FRAMES * FRAME_NANOS))
         return (WINDOW_CARD_LEFT until WINDOW_CARD_LEFT + WORDS_SPAN).map { bitmap.getColor(it, y) }
     }
+
+    /**
+     * Whether the choice whose words include [text] is said to be selected, read from the scene's merged semantics
+     * tree: what a screen reader is told, not what is drawn. Fails unless exactly one choice carries those words, so a
+     * row that says nothing about selection fails rather than reading as unselected.
+     */
+    private fun ImageComposeScene.isSelected(text: String): Boolean {
+        settle()
+        val found = semanticsOwners.flatMap { owner -> owner.rootSemanticsNode.all() }
+            // Only rows that say whether they are selected: a list's button behind the panel has the same words.
+            .filter { node -> SemanticsProperties.Selected in node.config }
+            .filter { node ->
+                node.config.getOrNull(SemanticsProperties.Text).orEmpty().any { it.text == text }
+            }
+        val node = found.singleOrNull() ?: error("expected one choice reading \"$text\", found ${found.size}")
+        return node.config[SemanticsProperties.Selected]
+    }
+
+    private fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
 
     private inline fun ImageComposeScene.use(block: (ImageComposeScene) -> Unit) {
         try {

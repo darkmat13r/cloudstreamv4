@@ -29,6 +29,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.IntOffset
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
@@ -274,25 +276,30 @@ private fun ColumnScope.PickerPanel(
 }
 
 /**
- * A row of a panel. Chosen is a standing fill, the row's hover colour, and a check (home's H3). Without [onClick] it
- * is greyed and takes no press: it stays in the list so the reason under it can be read (DS-22's L4).
+ * A row of a panel. Chosen is a standing fill, the row's hover colour, and a check (home's H3), and is said as
+ * selected to assistive technology. Without [onClick] it is greyed and takes no press: it stays in the list so the
+ * reason under it can be read (DS-22's L4).
  */
 @Composable
 private fun PanelChoice(title: String, subtitle: String?, selected: Boolean, onClick: (() -> Unit)?) {
     val colors = CloudStreamTheme.colors
     val shape = CloudStreamTheme.shapes.medium
+    // On the row's own node, so a screen reader hears "selected" on the thing it can press, not beside it.
+    val chosen = Modifier.semantics { this.selected = selected }
     Box(contentAlignment = Alignment.CenterEnd) {
         if (onClick != null) {
             DesktopRow(
                 title = title,
                 subtitle = subtitle,
                 onClick = onClick,
-                modifier = if (selected) Modifier.background(colors.raised, shape) else Modifier,
+                modifier = chosen.then(if (selected) Modifier.background(colors.raised, shape) else Modifier),
             )
         } else {
             Column(
                 verticalArrangement = Arrangement.Center,
                 modifier = Modifier
+                    // Merged, so its words and its state are read as one row, as the pressable rows are.
+                    .semantics(mergeDescendants = true) { this.selected = selected }
                     .fillMaxWidth()
                     .heightIn(min = DesktopDimens.RowMinHeight)
                     .padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
