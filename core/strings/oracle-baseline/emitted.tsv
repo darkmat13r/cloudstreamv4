@@ -568,6 +568,7 @@ values	string	player_notification_channel_description	-	The player notification 
 values	string	player_notification_channel_name	-	Player notifications
 values	string	player_panel_failed	-	failed
 values	string	player_panel_keeps	-	keeps %s
+values	string	player_panel_numbered	-	%1$s %2$d
 values	string	player_panel_on	-	On
 values	string	player_panel_open	-	Open
 values	string	player_panel_quality_profile	-	Quality profile
@@ -1186,6 +1187,7 @@ values-b+af	string	player_hud_up_next	-	Volgende · %s
 values-b+af	string	player_mute	-	Demp
 values-b+af	string	player_panel_failed	-	misluk
 values-b+af	string	player_panel_keeps	-	behou %s
+values-b+af	string	player_panel_numbered	-	%1$s %2$d
 values-b+af	string	player_panel_on	-	Aan
 values-b+af	string	player_panel_open	-	Maak oop
 values-b+af	string	player_panel_quality_profile	-	Kwaliteitsprofiel
@@ -1480,6 +1482,7 @@ values-b+am	string	player_hud_up_next	-	ቀጣይ · %s
 values-b+am	string	player_mute	-	ድምፅ አጥፋ
 values-b+am	string	player_panel_failed	-	አልተሳካም
 values-b+am	string	player_panel_keeps	-	%s ይቆያል
+values-b+am	string	player_panel_numbered	-	%1$s %2$d
 values-b+am	string	player_panel_on	-	በርቷል
 values-b+am	string	player_panel_open	-	ክፈት
 values-b+am	string	player_panel_quality_profile	-	የጥራት መገለጫ
@@ -2112,6 +2115,7 @@ values-b+apc	string	player_notification_channel_description	-	نوتيفيكاي
 values-b+apc	string	player_notification_channel_name	-	شغل الڤيديو عبر النوتيفيكايشنز
 values-b+apc	string	player_panel_failed	-	فشل
 values-b+apc	string	player_panel_keeps	-	بيحافظ على %s
+values-b+apc	string	player_panel_numbered	-	%1$s %2$d
 values-b+apc	string	player_panel_on	-	شغّال
 values-b+apc	string	player_panel_open	-	افتح
 values-b+apc	string	player_panel_quality_profile	-	ملف الجودة
@@ -3095,6 +3099,7 @@ values-b+ar	string	player_notification_channel_description	-	تنبيه المش
 values-b+ar	string	player_notification_channel_name	-	تنبيهات المشغل
 values-b+ar	string	player_panel_failed	-	فشل
 values-b+ar	string	player_panel_keeps	-	يحافظ على %s
+values-b+ar	string	player_panel_numbered	-	%1$s %2$d
 values-b+ar	string	player_panel_on	-	مُفعّل
 values-b+ar	string	player_panel_open	-	فتح
 values-b+ar	string	player_panel_quality_profile	-	ملف الجودة
@@ -3862,6 +3867,7 @@ values-b+ars	string	player_hud_up_next	-	التالي · %s
 values-b+ars	string	player_mute	-	كتم الصوت
 values-b+ars	string	player_panel_failed	-	فشل
 values-b+ars	string	player_panel_keeps	-	يحافظ على %s
+values-b+ars	string	player_panel_numbered	-	%1$s %2$d
 values-b+ars	string	player_panel_on	-	مفعّل
 values-b+ars	string	player_panel_open	-	افتح
 values-b+ars	string	player_panel_quality_profile	-	ملف الجودة
@@ -4547,6 +4553,7 @@ values-b+as	string	player_loaded_subtitles	-	%s ল'ড হৈছে
 values-b+as	string	player_mute	-	মৌন কৰক
 values-b+as	string	player_panel_failed	-	ব্যৰ্থ
 values-b+as	string	player_panel_keeps	-	%s ৰাখে
+values-b+as	string	player_panel_numbered	-	%1$s %2$d
 values-b+as	string	player_panel_on	-	অন
 values-b+as	string	player_panel_open	-	খোলক
 values-b+as	string	player_panel_quality_profile	-	গুণমান প্ৰফাইল
@@ -5122,6 +5129,7 @@ values-b+az	string	player_hud_up_next	-	Növbəti · %s
 values-b+az	string	player_mute	-	Səssizə al
 values-b+az	string	player_panel_failed	-	uğursuz
 values-b+az	string	player_panel_keeps	-	%s saxlanılır
+values-b+az	string	player_panel_numbered	-	%1$s %2$d
 values-b+az	string	player_panel_on	-	Açıq
 values-b+az	string	player_panel_open	-	Aç
 values-b+az	string	player_panel_quality_profile	-	Keyfiyyət profili
@@ -5784,6 +5792,7 @@ values-b+be	string	player_notification_channel_description	-	Апавяшчэн�
 values-b+be	string	player_notification_channel_name	-	Апавяшчэнні прайгравальніка
 values-b+be	string	player_panel_failed	-	збой
 values-b+be	string	player_panel_keeps	-	захоўвае %s
+values-b+be	string	player_panel_numbered	-	%1$s %2$d
 values-b+be	string	player_panel_on	-	Укл.
 values-b+be	string	player_panel_open	-	Адкрыць
 values-b+be	string	player_panel_quality_profile	-	Профіль якасці
@@ -6700,6 +6709,7 @@ values-b+bg	string	player_notification_channel_description	-	Известие н
 values-b+bg	string	player_notification_channel_name	-	Известия на плейъра
 values-b+bg	string	player_panel_failed	-	неуспешно
 values-b+bg	string	player_panel_keeps	-	запазва %s
+values-b+bg	string	player_panel_numbered	-	%1$s %2$d
 values-b+bg	string	player_panel_on	-	Вкл.
 values-b+bg	string	player_panel_open	-	Отвори
 values-b+bg	string	player_panel_quality_profile	-	Профил за качество
@@ -7450,6 +7460,7 @@ values-b+bn	string	player_hud_up_next	-	পরবর্তী · %s
 values-b+bn	string	player_mute	-	মিউট করুন
 values-b+bn	string	player_panel_failed	-	ব্যর্থ
 values-b+bn	string	player_panel_keeps	-	%s রাখে
+values-b+bn	string	player_panel_numbered	-	%1$s %2$d
 values-b+bn	string	player_panel_on	-	চালু
 values-b+bn	string	player_panel_open	-	খুলুন
 values-b+bn	string	player_panel_quality_profile	-	মানের প্রোফাইল
@@ -7999,6 +8010,7 @@ values-b+ca	string	player_loaded_subtitles	-	%s carregat
 values-b+ca	string	player_mute	-	Silencia
 values-b+ca	string	player_panel_failed	-	ha fallat
 values-b+ca	string	player_panel_keeps	-	manté %s
+values-b+ca	string	player_panel_numbered	-	%1$s %2$d
 values-b+ca	string	player_panel_on	-	Activat
 values-b+ca	string	player_panel_open	-	Obre
 values-b+ca	string	player_panel_quality_profile	-	Perfil de qualitat
@@ -8392,6 +8404,7 @@ values-b+ckb	string	player_hud_up_next	-	دواتر · %s
 values-b+ckb	string	player_mute	-	بێدەنگکردن
 values-b+ckb	string	player_panel_failed	-	شکستی هێنا
 values-b+ckb	string	player_panel_keeps	-	%s دەهێڵێتەوە
+values-b+ckb	string	player_panel_numbered	-	%1$s %2$d
 values-b+ckb	string	player_panel_on	-	چالاک
 values-b+ckb	string	player_panel_open	-	کردنەوە
 values-b+ckb	string	player_panel_quality_profile	-	پرۆفایلی کوالیتی
@@ -9036,6 +9049,7 @@ values-b+cs	string	player_notification_channel_description	-	Oznámení přehrá
 values-b+cs	string	player_notification_channel_name	-	Oznámení přehrávače
 values-b+cs	string	player_panel_failed	-	selhalo
 values-b+cs	string	player_panel_keeps	-	zachová %s
+values-b+cs	string	player_panel_numbered	-	%1$s %2$d
 values-b+cs	string	player_panel_on	-	Zapnuto
 values-b+cs	string	player_panel_open	-	Otevřít
 values-b+cs	string	player_panel_quality_profile	-	Profil kvality
@@ -9966,6 +9980,7 @@ values-b+de	string	player_notification_channel_description	-	Player-Benachrichti
 values-b+de	string	player_notification_channel_name	-	Player-Benachrichtigung
 values-b+de	string	player_panel_failed	-	fehlgeschlagen
 values-b+de	string	player_panel_keeps	-	behält %s
+values-b+de	string	player_panel_numbered	-	%1$s %2$d
 values-b+de	string	player_panel_on	-	An
 values-b+de	string	player_panel_open	-	Öffnen
 values-b+de	string	player_panel_quality_profile	-	Qualitätsprofil
@@ -10849,6 +10864,7 @@ values-b+el	string	player_notification_channel_description	-	Η ειδοποίη
 values-b+el	string	player_notification_channel_name	-	Ειδοποίησεις αναπαραγωγής
 values-b+el	string	player_panel_failed	-	απέτυχε
 values-b+el	string	player_panel_keeps	-	κρατά %s
+values-b+el	string	player_panel_numbered	-	%1$s %2$d
 values-b+el	string	player_panel_on	-	Ενεργό
 values-b+el	string	player_panel_open	-	Άνοιγμα
 values-b+el	string	player_panel_quality_profile	-	Προφίλ ποιότητας
@@ -11457,6 +11473,7 @@ values-b+eo	string	player_hud_up_next	-	Sekva · %s
 values-b+eo	string	player_mute	-	Silentigi
 values-b+eo	string	player_panel_failed	-	malsukcesis
 values-b+eo	string	player_panel_keeps	-	konservas %s
+values-b+eo	string	player_panel_numbered	-	%1$s %2$d
 values-b+eo	string	player_panel_on	-	Ŝaltita
 values-b+eo	string	player_panel_open	-	Malfermi
 values-b+eo	string	player_panel_quality_profile	-	Kvalita profilo
@@ -12135,6 +12152,7 @@ values-b+es	string	player_notification_channel_description	-	La notificación de
 values-b+es	string	player_notification_channel_name	-	Notificaciones del reproductor
 values-b+es	string	player_panel_failed	-	falló
 values-b+es	string	player_panel_keeps	-	mantiene %s
+values-b+es	string	player_panel_numbered	-	%1$s %2$d
 values-b+es	string	player_panel_on	-	Activado
 values-b+es	string	player_panel_open	-	Abrir
 values-b+es	string	player_panel_quality_profile	-	Perfil de calidad
@@ -12859,6 +12877,7 @@ values-b+fa	string	player_hud_up_next	-	بعدی · %s
 values-b+fa	string	player_mute	-	بی‌صدا
 values-b+fa	string	player_panel_failed	-	ناموفق
 values-b+fa	string	player_panel_keeps	-	%s را نگه می‌دارد
+values-b+fa	string	player_panel_numbered	-	%1$s %2$d
 values-b+fa	string	player_panel_on	-	روشن
 values-b+fa	string	player_panel_open	-	باز کردن
 values-b+fa	string	player_panel_quality_profile	-	نمایهٔ کیفیت
@@ -13361,6 +13380,7 @@ values-b+fil	string	player_mute	-	I-mute
 values-b+fil	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+fil	string	player_panel_failed	-	nabigo
 values-b+fil	string	player_panel_keeps	-	pinapanatili ang %s
+values-b+fil	string	player_panel_numbered	-	%1$s %2$d
 values-b+fil	string	player_panel_on	-	Naka-on
 values-b+fil	string	player_panel_open	-	Buksan
 values-b+fil	string	player_panel_quality_profile	-	Profile ng kalidad
@@ -14072,6 +14092,7 @@ values-b+fr	string	player_notification_channel_description	-	La notification du 
 values-b+fr	string	player_notification_channel_name	-	Notifications du lecteur
 values-b+fr	string	player_panel_failed	-	échec
 values-b+fr	string	player_panel_keeps	-	garde %s
+values-b+fr	string	player_panel_numbered	-	%1$s %2$d
 values-b+fr	string	player_panel_on	-	Activé
 values-b+fr	string	player_panel_open	-	Ouvrir
 values-b+fr	string	player_panel_quality_profile	-	Profil de qualité
@@ -14771,6 +14792,7 @@ values-b+gl	string	player_hud_up_next	-	Seguinte · %s
 values-b+gl	string	player_mute	-	Silenciar
 values-b+gl	string	player_panel_failed	-	fallou
 values-b+gl	string	player_panel_keeps	-	mantén %s
+values-b+gl	string	player_panel_numbered	-	%1$s %2$d
 values-b+gl	string	player_panel_on	-	Activado
 values-b+gl	string	player_panel_open	-	Abrir
 values-b+gl	string	player_panel_quality_profile	-	Perfil de calidade
@@ -15371,6 +15393,7 @@ values-b+he	string	player_loaded_subtitles	-	נטען %s
 values-b+he	string	player_mute	-	השתקה
 values-b+he	string	player_panel_failed	-	נכשל
 values-b+he	string	player_panel_keeps	-	שומר על %s
+values-b+he	string	player_panel_numbered	-	%1$s %2$d
 values-b+he	string	player_panel_on	-	פועל
 values-b+he	string	player_panel_open	-	פתיחה
 values-b+he	string	player_panel_quality_profile	-	פרופיל איכות
@@ -16070,6 +16093,7 @@ values-b+hi	string	player_hud_up_next	-	अगला · %s
 values-b+hi	string	player_mute	-	म्यूट करें
 values-b+hi	string	player_panel_failed	-	विफल
 values-b+hi	string	player_panel_keeps	-	%s बनाए रखता है
+values-b+hi	string	player_panel_numbered	-	%1$s %2$d
 values-b+hi	string	player_panel_on	-	चालू
 values-b+hi	string	player_panel_open	-	खोलें
 values-b+hi	string	player_panel_quality_profile	-	गुणवत्ता प्रोफ़ाइल
@@ -16841,6 +16865,7 @@ values-b+hr	string	player_notification_channel_description	-	Obavijest reprodukt
 values-b+hr	string	player_notification_channel_name	-	Obavijesti reproduktora
 values-b+hr	string	player_panel_failed	-	neuspjelo
 values-b+hr	string	player_panel_keeps	-	zadržava %s
+values-b+hr	string	player_panel_numbered	-	%1$s %2$d
 values-b+hr	string	player_panel_on	-	Uključeno
 values-b+hr	string	player_panel_open	-	Otvori
 values-b+hr	string	player_panel_quality_profile	-	Profil kvalitete
@@ -17709,6 +17734,7 @@ values-b+hu	string	player_loaded_subtitles	-	%s betöltve
 values-b+hu	string	player_mute	-	Némítás
 values-b+hu	string	player_panel_failed	-	sikertelen
 values-b+hu	string	player_panel_keeps	-	megtartja: %s
+values-b+hu	string	player_panel_numbered	-	%1$s %2$d
 values-b+hu	string	player_panel_on	-	Be
 values-b+hu	string	player_panel_open	-	Megnyitás
 values-b+hu	string	player_panel_quality_profile	-	Minőségi profil
@@ -18574,6 +18600,7 @@ values-b+id	string	player_notification_channel_description	-	Pemberitahuan pemut
 values-b+id	string	player_notification_channel_name	-	Notifikasi pemain
 values-b+id	string	player_panel_failed	-	gagal
 values-b+id	string	player_panel_keeps	-	mempertahankan %s
+values-b+id	string	player_panel_numbered	-	%1$s %2$d
 values-b+id	string	player_panel_on	-	Aktif
 values-b+id	string	player_panel_open	-	Buka
 values-b+id	string	player_panel_quality_profile	-	Profil kualitas
@@ -19486,6 +19513,7 @@ values-b+in	string	player_notification_channel_description	-	Pemberitahuan pemut
 values-b+in	string	player_notification_channel_name	-	Notifikasi pemain
 values-b+in	string	player_panel_failed	-	gagal
 values-b+in	string	player_panel_keeps	-	mempertahankan %s
+values-b+in	string	player_panel_numbered	-	%1$s %2$d
 values-b+in	string	player_panel_on	-	Aktif
 values-b+in	string	player_panel_open	-	Buka
 values-b+in	string	player_panel_quality_profile	-	Profil kualitas
@@ -20430,6 +20458,7 @@ values-b+it	string	player_notification_channel_description	-	La notifica del let
 values-b+it	string	player_notification_channel_name	-	Notifiche lettore
 values-b+it	string	player_panel_failed	-	non riuscito
 values-b+it	string	player_panel_keeps	-	mantiene %s
+values-b+it	string	player_panel_numbered	-	%1$s %2$d
 values-b+it	string	player_panel_on	-	Attivo
 values-b+it	string	player_panel_open	-	Apri
 values-b+it	string	player_panel_quality_profile	-	Profilo qualità
@@ -21254,6 +21283,7 @@ values-b+iw	string	player_loaded_subtitles	-	נטען %s
 values-b+iw	string	player_mute	-	השתקה
 values-b+iw	string	player_panel_failed	-	נכשל
 values-b+iw	string	player_panel_keeps	-	שומר על %s
+values-b+iw	string	player_panel_numbered	-	%1$s %2$d
 values-b+iw	string	player_panel_on	-	פועל
 values-b+iw	string	player_panel_open	-	פתיחה
 values-b+iw	string	player_panel_quality_profile	-	פרופיל איכות
@@ -22093,6 +22123,7 @@ values-b+ja	string	player_notification_channel_description	-	バックグラウ�
 values-b+ja	string	player_notification_channel_name	-	プレーヤー通知
 values-b+ja	string	player_panel_failed	-	失敗
 values-b+ja	string	player_panel_keeps	-	%s を維持
+values-b+ja	string	player_panel_numbered	-	%1$s %2$d
 values-b+ja	string	player_panel_on	-	オン
 values-b+ja	string	player_panel_open	-	開く
 values-b+ja	string	player_panel_quality_profile	-	画質プロファイル
@@ -22687,6 +22718,7 @@ values-b+kn	string	player_hud_up_next	-	ಮುಂದಿನದು · %s
 values-b+kn	string	player_mute	-	ಮ್ಯೂಟ್ ಮಾಡಿ
 values-b+kn	string	player_panel_failed	-	ವಿಫಲ
 values-b+kn	string	player_panel_keeps	-	%s ಉಳಿಸುತ್ತದೆ
+values-b+kn	string	player_panel_numbered	-	%1$s %2$d
 values-b+kn	string	player_panel_on	-	ಆನ್
 values-b+kn	string	player_panel_open	-	ತೆರೆಯಿರಿ
 values-b+kn	string	player_panel_quality_profile	-	ಗುಣಮಟ್ಟದ ಪ್ರೊಫೈಲ್
@@ -23316,6 +23348,7 @@ values-b+ko	string	player_notification_channel_description	-	백그라운드에�
 values-b+ko	string	player_notification_channel_name	-	플레이어 알림
 values-b+ko	string	player_panel_failed	-	실패
 values-b+ko	string	player_panel_keeps	-	%s 유지
+values-b+ko	string	player_panel_numbered	-	%1$s %2$d
 values-b+ko	string	player_panel_on	-	켜짐
 values-b+ko	string	player_panel_open	-	열기
 values-b+ko	string	player_panel_quality_profile	-	화질 프로필
@@ -24023,6 +24056,7 @@ values-b+lt	string	player_hud_up_next	-	Toliau · %s
 values-b+lt	string	player_mute	-	Nutildyti
 values-b+lt	string	player_panel_failed	-	nepavyko
 values-b+lt	string	player_panel_keeps	-	išlaiko %s
+values-b+lt	string	player_panel_numbered	-	%1$s %2$d
 values-b+lt	string	player_panel_on	-	Įjungta
 values-b+lt	string	player_panel_open	-	Atidaryti
 values-b+lt	string	player_panel_quality_profile	-	Kokybės profilis
@@ -24690,6 +24724,7 @@ values-b+lv	string	player_loaded_subtitles	-	Ielādēti %s
 values-b+lv	string	player_mute	-	Izslēgt skaņu
 values-b+lv	string	player_panel_failed	-	neizdevās
 values-b+lv	string	player_panel_keeps	-	saglabā %s
+values-b+lv	string	player_panel_numbered	-	%1$s %2$d
 values-b+lv	string	player_panel_on	-	Ieslēgts
 values-b+lv	string	player_panel_open	-	Atvērt
 values-b+lv	string	player_panel_quality_profile	-	Kvalitātes profils
@@ -25564,6 +25599,7 @@ values-b+mk	string	player_notification_channel_description	-	Известува�
 values-b+mk	string	player_notification_channel_name	-	Известувања од плеерот
 values-b+mk	string	player_panel_failed	-	неуспешно
 values-b+mk	string	player_panel_keeps	-	задржува %s
+values-b+mk	string	player_panel_numbered	-	%1$s %2$d
 values-b+mk	string	player_panel_on	-	Вклучено
 values-b+mk	string	player_panel_open	-	Отвори
 values-b+mk	string	player_panel_quality_profile	-	Профил за квалитет
@@ -26247,6 +26283,7 @@ values-b+ml	string	player_is_live	-	തൽസമയം
 values-b+ml	string	player_mute	-	നിശബ്‌ദമാക്കുക
 values-b+ml	string	player_panel_failed	-	പരാജയപ്പെട്ടു
 values-b+ml	string	player_panel_keeps	-	%s നിലനിർത്തുന്നു
+values-b+ml	string	player_panel_numbered	-	%1$s %2$d
 values-b+ml	string	player_panel_on	-	ഓൺ
 values-b+ml	string	player_panel_open	-	തുറക്കുക
 values-b+ml	string	player_panel_quality_profile	-	ഗുണനിലവാര പ്രൊഫൈൽ
@@ -26855,6 +26892,7 @@ values-b+ms	string	player_hud_up_next	-	Seterusnya · %s
 values-b+ms	string	player_mute	-	Redam
 values-b+ms	string	player_panel_failed	-	gagal
 values-b+ms	string	player_panel_keeps	-	kekalkan %s
+values-b+ms	string	player_panel_numbered	-	%1$s %2$d
 values-b+ms	string	player_panel_on	-	Hidup
 values-b+ms	string	player_panel_open	-	Buka
 values-b+ms	string	player_panel_quality_profile	-	Profil kualiti
@@ -27371,6 +27409,7 @@ values-b+mt	string	player_hud_up_next	-	Li jmiss · %s
 values-b+mt	string	player_mute	-	Itfi l-ħoss
 values-b+mt	string	player_panel_failed	-	falla
 values-b+mt	string	player_panel_keeps	-	iżomm %s
+values-b+mt	string	player_panel_numbered	-	%1$s %2$d
 values-b+mt	string	player_panel_on	-	Mixgħul
 values-b+mt	string	player_panel_open	-	Iftaħ
 values-b+mt	string	player_panel_quality_profile	-	Profil tal-kwalità
@@ -27868,6 +27907,7 @@ values-b+my	string	player_loaded_subtitles	-	တင်ပြီး %s
 values-b+my	string	player_mute	-	အသံပိတ်ရန်
 values-b+my	string	player_panel_failed	-	မအောင်မြင်ပါ
 values-b+my	string	player_panel_keeps	-	%s ကို ထိန်းထားသည်
+values-b+my	string	player_panel_numbered	-	%1$s %2$d
 values-b+my	string	player_panel_on	-	ဖွင့်
 values-b+my	string	player_panel_open	-	ဖွင့်ရန်
 values-b+my	string	player_panel_quality_profile	-	အရည်အသွေး ပရိုဖိုင်
@@ -28376,6 +28416,7 @@ values-b+ne	string	player_hud_up_next	-	अर्को · %s
 values-b+ne	string	player_mute	-	म्यूट गर्नुहोस्
 values-b+ne	string	player_panel_failed	-	असफल
 values-b+ne	string	player_panel_keeps	-	%s राख्छ
+values-b+ne	string	player_panel_numbered	-	%1$s %2$d
 values-b+ne	string	player_panel_on	-	अन
 values-b+ne	string	player_panel_open	-	खोल्नुहोस्
 values-b+ne	string	player_panel_quality_profile	-	गुणस्तर प्रोफाइल
@@ -28986,6 +29027,7 @@ values-b+nl	string	player_notification_channel_description	-	De speler melding o
 values-b+nl	string	player_notification_channel_name	-	Speler meldingen
 values-b+nl	string	player_panel_failed	-	mislukt
 values-b+nl	string	player_panel_keeps	-	behoudt %s
+values-b+nl	string	player_panel_numbered	-	%1$s %2$d
 values-b+nl	string	player_panel_on	-	Aan
 values-b+nl	string	player_panel_open	-	Openen
 values-b+nl	string	player_panel_quality_profile	-	Kwaliteitsprofiel
@@ -29611,6 +29653,7 @@ values-b+nn	string	player_hud_up_next	-	Neste · %s
 values-b+nn	string	player_mute	-	Slå av lyd
 values-b+nn	string	player_panel_failed	-	feila
 values-b+nn	string	player_panel_keeps	-	held på %s
+values-b+nn	string	player_panel_numbered	-	%1$s %2$d
 values-b+nn	string	player_panel_on	-	På
 values-b+nn	string	player_panel_open	-	Opne
 values-b+nn	string	player_panel_quality_profile	-	Kvalitetsprofil
@@ -30146,6 +30189,7 @@ values-b+no	string	player_loaded_subtitles	-	Lastet inn %s
 values-b+no	string	player_mute	-	Slå av lyden
 values-b+no	string	player_panel_failed	-	feilet
 values-b+no	string	player_panel_keeps	-	beholder %s
+values-b+no	string	player_panel_numbered	-	%1$s %2$d
 values-b+no	string	player_panel_on	-	På
 values-b+no	string	player_panel_open	-	Åpne
 values-b+no	string	player_panel_quality_profile	-	Kvalitetsprofil
@@ -30677,6 +30721,7 @@ values-b+or	string	player_hud_up_next	-	ପରବର୍ତ୍ତୀ · %s
 values-b+or	string	player_mute	-	ମ୍ୟୁଟ କରନ୍ତୁ
 values-b+or	string	player_panel_failed	-	ବିଫଳ
 values-b+or	string	player_panel_keeps	-	%s ରଖେ
+values-b+or	string	player_panel_numbered	-	%1$s %2$d
 values-b+or	string	player_panel_on	-	ଅନ୍
 values-b+or	string	player_panel_open	-	ଖୋଲନ୍ତୁ
 values-b+or	string	player_panel_quality_profile	-	ଗୁଣବତ୍ତା ପ୍ରୋଫାଇଲ୍
@@ -31363,6 +31408,7 @@ values-b+pl	string	player_notification_channel_description	-	Powiadomienie odtwa
 values-b+pl	string	player_notification_channel_name	-	Powiadomienia odtwarzacza
 values-b+pl	string	player_panel_failed	-	błąd
 values-b+pl	string	player_panel_keeps	-	zachowuje %s
+values-b+pl	string	player_panel_numbered	-	%1$s %2$d
 values-b+pl	string	player_panel_on	-	Wł.
 values-b+pl	string	player_panel_open	-	Otwórz
 values-b+pl	string	player_panel_quality_profile	-	Profil jakości
@@ -32309,6 +32355,7 @@ values-b+pt	string	player_notification_channel_description	-	Notificação do pl
 values-b+pt	string	player_notification_channel_name	-	Notificações de reprodução
 values-b+pt	string	player_panel_failed	-	falhou
 values-b+pt	string	player_panel_keeps	-	mantém %s
+values-b+pt	string	player_panel_numbered	-	%1$s %2$d
 values-b+pt	string	player_panel_on	-	Ativado
 values-b+pt	string	player_panel_open	-	Abrir
 values-b+pt	string	player_panel_quality_profile	-	Perfil de qualidade
@@ -33249,6 +33296,7 @@ values-b+pt+BR	string	player_notification_channel_description	-	Notificação do
 values-b+pt+BR	string	player_notification_channel_name	-	Notificações de reprodução
 values-b+pt+BR	string	player_panel_failed	-	falhou
 values-b+pt+BR	string	player_panel_keeps	-	mantém %s
+values-b+pt+BR	string	player_panel_numbered	-	%1$s %2$d
 values-b+pt+BR	string	player_panel_on	-	Ativado
 values-b+pt+BR	string	player_panel_open	-	Abrir
 values-b+pt+BR	string	player_panel_quality_profile	-	Perfil de qualidade
@@ -34104,6 +34152,7 @@ values-b+qt	string	player_loaded_subtitles	-	oooohh %s
 values-b+qt	string	player_mute	-	ooh oh
 values-b+qt	string	player_panel_failed	-	aagh
 values-b+qt	string	player_panel_keeps	-	ooh %s
+values-b+qt	string	player_panel_numbered	-	%1$s %2$d
 values-b+qt	string	player_panel_on	-	Ook
 values-b+qt	string	player_panel_open	-	Aah
 values-b+qt	string	player_panel_quality_profile	-	Oohh aagh
@@ -34931,6 +34980,7 @@ values-b+ro	string	player_loaded_subtitles	-	A fost încărcat %s
 values-b+ro	string	player_mute	-	Dezactivează sunetul
 values-b+ro	string	player_panel_failed	-	eșuat
 values-b+ro	string	player_panel_keeps	-	păstrează %s
+values-b+ro	string	player_panel_numbered	-	%1$s %2$d
 values-b+ro	string	player_panel_on	-	Activat
 values-b+ro	string	player_panel_open	-	Deschide
 values-b+ro	string	player_panel_quality_profile	-	Profil de calitate
@@ -35837,6 +35887,7 @@ values-b+ru	string	player_notification_channel_description	-	Уведомлен�
 values-b+ru	string	player_notification_channel_name	-	Уведомления плеера
 values-b+ru	string	player_panel_failed	-	сбой
 values-b+ru	string	player_panel_keeps	-	сохраняет %s
+values-b+ru	string	player_panel_numbered	-	%1$s %2$d
 values-b+ru	string	player_panel_on	-	Вкл.
 values-b+ru	string	player_panel_open	-	Открыть
 values-b+ru	string	player_panel_quality_profile	-	Профиль качества
@@ -36654,6 +36705,7 @@ values-b+sk	string	player_loaded_subtitles	-	Načítané %s
 values-b+sk	string	player_mute	-	Vypnúť zvuk
 values-b+sk	string	player_panel_failed	-	zlyhalo
 values-b+sk	string	player_panel_keeps	-	zachová %s
+values-b+sk	string	player_panel_numbered	-	%1$s %2$d
 values-b+sk	string	player_panel_on	-	Zapnuté
 values-b+sk	string	player_panel_open	-	Otvoriť
 values-b+sk	string	player_panel_quality_profile	-	Profil kvality
@@ -37325,6 +37377,7 @@ values-b+so	string	player_loaded_subtitles	-	Waxa laso kiciyey %s
 values-b+so	string	player_mute	-	Aamusi
 values-b+so	string	player_panel_failed	-	fashilay
 values-b+so	string	player_panel_keeps	-	wuxuu hayaa %s
+values-b+so	string	player_panel_numbered	-	%1$s %2$d
 values-b+so	string	player_panel_on	-	Shidan
 values-b+so	string	player_panel_open	-	Fur
 values-b+so	string	player_panel_quality_profile	-	Astaanta tayada
@@ -38153,6 +38206,7 @@ values-b+sq	string	player_notification_channel_description	-	Njoftimi për kontr
 values-b+sq	string	player_notification_channel_name	-	Njoftimet e luajtësit
 values-b+sq	string	player_panel_failed	-	dështoi
 values-b+sq	string	player_panel_keeps	-	ruan %s
+values-b+sq	string	player_panel_numbered	-	%1$s %2$d
 values-b+sq	string	player_panel_on	-	Aktiv
 values-b+sq	string	player_panel_open	-	Hap
 values-b+sq	string	player_panel_quality_profile	-	Profili i cilësisë
@@ -39083,6 +39137,7 @@ values-b+sv	string	player_notification_channel_description	-	Spelarnotisen för 
 values-b+sv	string	player_notification_channel_name	-	Spelarnotiser
 values-b+sv	string	player_panel_failed	-	misslyckades
 values-b+sv	string	player_panel_keeps	-	behåller %s
+values-b+sv	string	player_panel_numbered	-	%1$s %2$d
 values-b+sv	string	player_panel_on	-	På
 values-b+sv	string	player_panel_open	-	Öppna
 values-b+sv	string	player_panel_quality_profile	-	Kvalitetsprofil
@@ -40013,6 +40068,7 @@ values-b+ta	string	player_notification_channel_description	-	பின்னண�
 values-b+ta	string	player_notification_channel_name	-	பிளேயர் அறிவிப்புகள்
 values-b+ta	string	player_panel_failed	-	தோல்வி
 values-b+ta	string	player_panel_keeps	-	%s ஐத் தக்கவைக்கிறது
+values-b+ta	string	player_panel_numbered	-	%1$s %2$d
 values-b+ta	string	player_panel_on	-	இயக்கம்
 values-b+ta	string	player_panel_open	-	திற
 values-b+ta	string	player_panel_quality_profile	-	தர சுயவிவரம்
@@ -40545,6 +40601,7 @@ values-b+ti	string	player_hud_up_next	-	ቀጺሉ · %s
 values-b+ti	string	player_mute	-	ድምጺ ኣጥፍእ
 values-b+ti	string	player_panel_failed	-	ፈሺሉ
 values-b+ti	string	player_panel_keeps	-	%s ይሕዝ
+values-b+ti	string	player_panel_numbered	-	%1$s %2$d
 values-b+ti	string	player_panel_on	-	ክፉት
 values-b+ti	string	player_panel_open	-	ክፈት
 values-b+ti	string	player_panel_quality_profile	-	ናይ ዓይነት መገለጺ
@@ -40902,6 +40959,7 @@ values-b+tl	string	player_mute	-	I-mute
 values-b+tl	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+tl	string	player_panel_failed	-	nabigo
 values-b+tl	string	player_panel_keeps	-	pinapanatili ang %s
+values-b+tl	string	player_panel_numbered	-	%1$s %2$d
 values-b+tl	string	player_panel_on	-	Naka-on
 values-b+tl	string	player_panel_open	-	Buksan
 values-b+tl	string	player_panel_quality_profile	-	Profile ng kalidad
@@ -41617,6 +41675,7 @@ values-b+tr	string	player_notification_channel_description	-	Oynatıcı bildirim
 values-b+tr	string	player_notification_channel_name	-	Oynatıcı bildirimleri
 values-b+tr	string	player_panel_failed	-	başarısız
 values-b+tr	string	player_panel_keeps	-	%s korunur
+values-b+tr	string	player_panel_numbered	-	%1$s %2$d
 values-b+tr	string	player_panel_on	-	Açık
 values-b+tr	string	player_panel_open	-	Aç
 values-b+tr	string	player_panel_quality_profile	-	Kalite profili
@@ -42579,6 +42638,7 @@ values-b+uk	string	player_notification_channel_description	-	Сповіщенн�
 values-b+uk	string	player_notification_channel_name	-	Сповіщення програвача
 values-b+uk	string	player_panel_failed	-	збій
 values-b+uk	string	player_panel_keeps	-	зберігає %s
+values-b+uk	string	player_panel_numbered	-	%1$s %2$d
 values-b+uk	string	player_panel_on	-	Увімк.
 values-b+uk	string	player_panel_open	-	Відкрити
 values-b+uk	string	player_panel_quality_profile	-	Профіль якості
@@ -43433,6 +43493,7 @@ values-b+ur	string	player_loaded_subtitles	-	لوڈ %s
 values-b+ur	string	player_mute	-	خاموش کریں
 values-b+ur	string	player_panel_failed	-	ناکام
 values-b+ur	string	player_panel_keeps	-	%s برقرار رکھتا ہے
+values-b+ur	string	player_panel_numbered	-	%1$s %2$d
 values-b+ur	string	player_panel_on	-	آن
 values-b+ur	string	player_panel_open	-	کھولیں
 values-b+ur	string	player_panel_quality_profile	-	معیار کی پروفائل
@@ -44284,6 +44345,7 @@ values-b+vi	string	player_notification_channel_description	-	Điều khiển ph�
 values-b+vi	string	player_notification_channel_name	-	Thông báo trình phát
 values-b+vi	string	player_panel_failed	-	thất bại
 values-b+vi	string	player_panel_keeps	-	giữ %s
+values-b+vi	string	player_panel_numbered	-	%1$s %2$d
 values-b+vi	string	player_panel_on	-	Bật
 values-b+vi	string	player_panel_open	-	Mở
 values-b+vi	string	player_panel_quality_profile	-	Hồ sơ chất lượng
@@ -45198,6 +45260,7 @@ values-b+zh	string	player_notification_channel_description	-	控制后台播放�
 values-b+zh	string	player_notification_channel_name	-	播放器通知
 values-b+zh	string	player_panel_failed	-	失败
 values-b+zh	string	player_panel_keeps	-	保留 %s
+values-b+zh	string	player_panel_numbered	-	%1$s %2$d
 values-b+zh	string	player_panel_on	-	开
 values-b+zh	string	player_panel_open	-	打开
 values-b+zh	string	player_panel_quality_profile	-	画质配置
@@ -46109,6 +46172,7 @@ values-b+zh+TW	string	player_notification_channel_description	-	控制背景播�
 values-b+zh+TW	string	player_notification_channel_name	-	播放器通知
 values-b+zh+TW	string	player_panel_failed	-	失敗
 values-b+zh+TW	string	player_panel_keeps	-	保留 %s
+values-b+zh+TW	string	player_panel_numbered	-	%1$s %2$d
 values-b+zh+TW	string	player_panel_on	-	開
 values-b+zh+TW	string	player_panel_open	-	開啟
 values-b+zh+TW	string	player_panel_quality_profile	-	畫質設定檔

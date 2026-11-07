@@ -205,6 +205,7 @@ values-b+af/strings.xml	string	player_hud_up_next	-	STR	Volgende · %s
 values-b+af/strings.xml	string	player_mute	-	STR	Demp	
 values-b+af/strings.xml	string	player_panel_failed	-	STR	misluk	
 values-b+af/strings.xml	string	player_panel_keeps	-	STR	behou %s	
+values-b+af/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+af/strings.xml	string	player_panel_on	-	STR	Aan	
 values-b+af/strings.xml	string	player_panel_open	-	STR	Maak oop	
 values-b+af/strings.xml	string	player_panel_quality_profile	-	STR	Kwaliteitsprofiel	
@@ -495,6 +496,7 @@ values-b+am/strings.xml	string	player_hud_up_next	-	STR	ቀጣይ · %s
 values-b+am/strings.xml	string	player_mute	-	STR	ድምፅ አጥፋ	
 values-b+am/strings.xml	string	player_panel_failed	-	STR	አልተሳካም	
 values-b+am/strings.xml	string	player_panel_keeps	-	STR	%s ይቆያል	
+values-b+am/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+am/strings.xml	string	player_panel_on	-	STR	በርቷል	
 values-b+am/strings.xml	string	player_panel_open	-	STR	ክፈት	
 values-b+am/strings.xml	string	player_panel_quality_profile	-	STR	የጥራት መገለጫ	
@@ -1120,6 +1122,7 @@ values-b+apc/strings.xml	string	player_notification_channel_description	-	STR	ن
 values-b+apc/strings.xml	string	player_notification_channel_name	-	STR	شغل الڤيديو عبر النوتيفيكايشنز	
 values-b+apc/strings.xml	string	player_panel_failed	-	STR	فشل	
 values-b+apc/strings.xml	string	player_panel_keeps	-	STR	بيحافظ على %s	
+values-b+apc/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+apc/strings.xml	string	player_panel_on	-	STR	شغّال	
 values-b+apc/strings.xml	string	player_panel_open	-	STR	افتح	
 values-b+apc/strings.xml	string	player_panel_quality_profile	-	STR	ملف الجودة	
@@ -2092,6 +2095,7 @@ values-b+ar/strings.xml	string	player_notification_channel_description	-	STR	ت�
 values-b+ar/strings.xml	string	player_notification_channel_name	-	STR	تنبيهات المشغل	
 values-b+ar/strings.xml	string	player_panel_failed	-	STR	فشل	
 values-b+ar/strings.xml	string	player_panel_keeps	-	STR	يحافظ على %s	
+values-b+ar/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ar/strings.xml	string	player_panel_on	-	STR	مُفعّل	
 values-b+ar/strings.xml	string	player_panel_open	-	STR	فتح	
 values-b+ar/strings.xml	string	player_panel_quality_profile	-	STR	ملف الجودة	
@@ -2847,6 +2851,7 @@ values-b+ars/strings.xml	string	player_hud_up_next	-	STR	التالي · %s
 values-b+ars/strings.xml	string	player_mute	-	STR	كتم الصوت	
 values-b+ars/strings.xml	string	player_panel_failed	-	STR	فشل	
 values-b+ars/strings.xml	string	player_panel_keeps	-	STR	يحافظ على %s	
+values-b+ars/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ars/strings.xml	string	player_panel_on	-	STR	مفعّل	
 values-b+ars/strings.xml	string	player_panel_open	-	STR	افتح	
 values-b+ars/strings.xml	string	player_panel_quality_profile	-	STR	ملف الجودة	
@@ -3523,6 +3528,7 @@ values-b+as/strings.xml	string	player_loaded_subtitles	-	STR	%s ল'ড হৈ�
 values-b+as/strings.xml	string	player_mute	-	STR	মৌন কৰক	
 values-b+as/strings.xml	string	player_panel_failed	-	STR	ব্যৰ্থ	
 values-b+as/strings.xml	string	player_panel_keeps	-	STR	%s ৰাখে	
+values-b+as/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+as/strings.xml	string	player_panel_on	-	STR	অন	
 values-b+as/strings.xml	string	player_panel_open	-	STR	খোলক	
 values-b+as/strings.xml	string	player_panel_quality_profile	-	STR	গুণমান প্ৰফাইল	
@@ -4091,6 +4097,7 @@ values-b+az/strings.xml	string	player_hud_up_next	-	STR	Növbəti · %s
 values-b+az/strings.xml	string	player_mute	-	STR	Səssizə al	
 values-b+az/strings.xml	string	player_panel_failed	-	STR	uğursuz	
 values-b+az/strings.xml	string	player_panel_keeps	-	STR	%s saxlanılır	
+values-b+az/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+az/strings.xml	string	player_panel_on	-	STR	Açıq	
 values-b+az/strings.xml	string	player_panel_open	-	STR	Aç	
 values-b+az/strings.xml	string	player_panel_quality_profile	-	STR	Keyfiyyət profili	
@@ -4745,6 +4752,7 @@ values-b+be/strings.xml	string	player_notification_channel_description	-	STR	А�
 values-b+be/strings.xml	string	player_notification_channel_name	-	STR	Апавяшчэнні прайгравальніка	
 values-b+be/strings.xml	string	player_panel_failed	-	STR	збой	
 values-b+be/strings.xml	string	player_panel_keeps	-	STR	захоўвае %s	
+values-b+be/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+be/strings.xml	string	player_panel_on	-	STR	Укл.	
 values-b+be/strings.xml	string	player_panel_open	-	STR	Адкрыць	
 values-b+be/strings.xml	string	player_panel_quality_profile	-	STR	Профіль якасці	
@@ -5650,6 +5658,7 @@ values-b+bg/strings.xml	string	player_notification_channel_description	-	STR	И�
 values-b+bg/strings.xml	string	player_notification_channel_name	-	STR	Известия на плейъра	
 values-b+bg/strings.xml	string	player_panel_failed	-	STR	неуспешно	
 values-b+bg/strings.xml	string	player_panel_keeps	-	STR	запазва %s	
+values-b+bg/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+bg/strings.xml	string	player_panel_on	-	STR	Вкл.	
 values-b+bg/strings.xml	string	player_panel_open	-	STR	Отвори	
 values-b+bg/strings.xml	string	player_panel_quality_profile	-	STR	Профил за качество	
@@ -6389,6 +6398,7 @@ values-b+bn/strings.xml	string	player_hud_up_next	-	STR	পরবর্তী ·
 values-b+bn/strings.xml	string	player_mute	-	STR	মিউট করুন	
 values-b+bn/strings.xml	string	player_panel_failed	-	STR	ব্যর্থ	
 values-b+bn/strings.xml	string	player_panel_keeps	-	STR	%s রাখে	
+values-b+bn/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+bn/strings.xml	string	player_panel_on	-	STR	চালু	
 values-b+bn/strings.xml	string	player_panel_open	-	STR	খুলুন	
 values-b+bn/strings.xml	string	player_panel_quality_profile	-	STR	মানের প্রোফাইল	
@@ -6934,6 +6944,7 @@ values-b+ca/strings.xml	string	player_loaded_subtitles	-	STR	%s carregat
 values-b+ca/strings.xml	string	player_mute	-	STR	Silencia	
 values-b+ca/strings.xml	string	player_panel_failed	-	STR	ha fallat	
 values-b+ca/strings.xml	string	player_panel_keeps	-	STR	manté %s	
+values-b+ca/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ca/strings.xml	string	player_panel_on	-	STR	Activat	
 values-b+ca/strings.xml	string	player_panel_open	-	STR	Obre	
 values-b+ca/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de qualitat	
@@ -7324,6 +7335,7 @@ values-b+ckb/strings.xml	string	player_hud_up_next	-	STR	دواتر · %s
 values-b+ckb/strings.xml	string	player_mute	-	STR	بێدەنگکردن	
 values-b+ckb/strings.xml	string	player_panel_failed	-	STR	شکستی هێنا	
 values-b+ckb/strings.xml	string	player_panel_keeps	-	STR	%s دەهێڵێتەوە	
+values-b+ckb/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ckb/strings.xml	string	player_panel_on	-	STR	چالاک	
 values-b+ckb/strings.xml	string	player_panel_open	-	STR	کردنەوە	
 values-b+ckb/strings.xml	string	player_panel_quality_profile	-	STR	پرۆفایلی کوالیتی	
@@ -7961,6 +7973,7 @@ values-b+cs/strings.xml	string	player_notification_channel_description	-	STR	Ozn
 values-b+cs/strings.xml	string	player_notification_channel_name	-	STR	Oznámení přehrávače	
 values-b+cs/strings.xml	string	player_panel_failed	-	STR	selhalo	
 values-b+cs/strings.xml	string	player_panel_keeps	-	STR	zachová %s	
+values-b+cs/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+cs/strings.xml	string	player_panel_on	-	STR	Zapnuto	
 values-b+cs/strings.xml	string	player_panel_open	-	STR	Otevřít	
 values-b+cs/strings.xml	string	player_panel_quality_profile	-	STR	Profil kvality	
@@ -8880,6 +8893,7 @@ values-b+de/strings.xml	string	player_notification_channel_description	-	STR	Pla
 values-b+de/strings.xml	string	player_notification_channel_name	-	STR	Player-Benachrichtigung	
 values-b+de/strings.xml	string	player_panel_failed	-	STR	fehlgeschlagen	
 values-b+de/strings.xml	string	player_panel_keeps	-	STR	behält %s	
+values-b+de/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+de/strings.xml	string	player_panel_on	-	STR	An	
 values-b+de/strings.xml	string	player_panel_open	-	STR	Öffnen	
 values-b+de/strings.xml	string	player_panel_quality_profile	-	STR	Qualitätsprofil	
@@ -9752,6 +9766,7 @@ values-b+el/strings.xml	string	player_notification_channel_description	-	STR	Η 
 values-b+el/strings.xml	string	player_notification_channel_name	-	STR	Ειδοποίησεις αναπαραγωγής	
 values-b+el/strings.xml	string	player_panel_failed	-	STR	απέτυχε	
 values-b+el/strings.xml	string	player_panel_keeps	-	STR	κρατά %s	
+values-b+el/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+el/strings.xml	string	player_panel_on	-	STR	Ενεργό	
 values-b+el/strings.xml	string	player_panel_open	-	STR	Άνοιγμα	
 values-b+el/strings.xml	string	player_panel_quality_profile	-	STR	Προφίλ ποιότητας	
@@ -10351,6 +10366,7 @@ values-b+eo/strings.xml	string	player_hud_up_next	-	STR	Sekva · %s
 values-b+eo/strings.xml	string	player_mute	-	STR	Silentigi	
 values-b+eo/strings.xml	string	player_panel_failed	-	STR	malsukcesis	
 values-b+eo/strings.xml	string	player_panel_keeps	-	STR	konservas %s	
+values-b+eo/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+eo/strings.xml	string	player_panel_on	-	STR	Ŝaltita	
 values-b+eo/strings.xml	string	player_panel_open	-	STR	Malfermi	
 values-b+eo/strings.xml	string	player_panel_quality_profile	-	STR	Kvalita profilo	
@@ -11018,6 +11034,7 @@ values-b+es/strings.xml	string	player_notification_channel_description	-	STR	La 
 values-b+es/strings.xml	string	player_notification_channel_name	-	STR	Notificaciones del reproductor	
 values-b+es/strings.xml	string	player_panel_failed	-	STR	falló	
 values-b+es/strings.xml	string	player_panel_keeps	-	STR	mantiene %s	
+values-b+es/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+es/strings.xml	string	player_panel_on	-	STR	Activado	
 values-b+es/strings.xml	string	player_panel_open	-	STR	Abrir	
 values-b+es/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de calidad	
@@ -11731,6 +11748,7 @@ values-b+fa/strings.xml	string	player_hud_up_next	-	STR	بعدی · %s
 values-b+fa/strings.xml	string	player_mute	-	STR	بی‌صدا	
 values-b+fa/strings.xml	string	player_panel_failed	-	STR	ناموفق	
 values-b+fa/strings.xml	string	player_panel_keeps	-	STR	%s را نگه می‌دارد	
+values-b+fa/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+fa/strings.xml	string	player_panel_on	-	STR	روشن	
 values-b+fa/strings.xml	string	player_panel_open	-	STR	باز کردن	
 values-b+fa/strings.xml	string	player_panel_quality_profile	-	STR	نمایهٔ کیفیت	
@@ -12160,6 +12178,7 @@ values-b+fil/strings.xml	string	player_mute	-	STR	I-mute
 values-b+fil/strings.xml	string	player_notification_channel_description	-	STR	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background	
 values-b+fil/strings.xml	string	player_panel_failed	-	STR	nabigo	
 values-b+fil/strings.xml	string	player_panel_keeps	-	STR	pinapanatili ang %s	
+values-b+fil/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+fil/strings.xml	string	player_panel_on	-	STR	Naka-on	
 values-b+fil/strings.xml	string	player_panel_open	-	STR	Buksan	
 values-b+fil/strings.xml	string	player_panel_quality_profile	-	STR	Profile ng kalidad	
@@ -12817,6 +12836,7 @@ values-b+fr/strings.xml	string	player_notification_channel_description	-	STR	La 
 values-b+fr/strings.xml	string	player_notification_channel_name	-	STR	Notifications du lecteur	
 values-b+fr/strings.xml	string	player_panel_failed	-	STR	échec	
 values-b+fr/strings.xml	string	player_panel_keeps	-	STR	garde %s	
+values-b+fr/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+fr/strings.xml	string	player_panel_on	-	STR	Activé	
 values-b+fr/strings.xml	string	player_panel_open	-	STR	Ouvrir	
 values-b+fr/strings.xml	string	player_panel_quality_profile	-	STR	Profil de qualité	
@@ -13506,6 +13526,7 @@ values-b+gl/strings.xml	string	player_hud_up_next	-	STR	Seguinte · %s
 values-b+gl/strings.xml	string	player_mute	-	STR	Silenciar	
 values-b+gl/strings.xml	string	player_panel_failed	-	STR	fallou	
 values-b+gl/strings.xml	string	player_panel_keeps	-	STR	mantén %s	
+values-b+gl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+gl/strings.xml	string	player_panel_on	-	STR	Activado	
 values-b+gl/strings.xml	string	player_panel_open	-	STR	Abrir	
 values-b+gl/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de calidade	
@@ -14047,6 +14068,7 @@ values-b+hi/strings.xml	string	player_hud_up_next	-	STR	अगला · %s
 values-b+hi/strings.xml	string	player_mute	-	STR	म्यूट करें	
 values-b+hi/strings.xml	string	player_panel_failed	-	STR	विफल	
 values-b+hi/strings.xml	string	player_panel_keeps	-	STR	%s बनाए रखता है	
+values-b+hi/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+hi/strings.xml	string	player_panel_on	-	STR	चालू	
 values-b+hi/strings.xml	string	player_panel_open	-	STR	खोलें	
 values-b+hi/strings.xml	string	player_panel_quality_profile	-	STR	गुणवत्ता प्रोफ़ाइल	
@@ -14809,6 +14831,7 @@ values-b+hr/strings.xml	string	player_notification_channel_description	-	STR	Oba
 values-b+hr/strings.xml	string	player_notification_channel_name	-	STR	Obavijesti reproduktora	
 values-b+hr/strings.xml	string	player_panel_failed	-	STR	neuspjelo	
 values-b+hr/strings.xml	string	player_panel_keeps	-	STR	zadržava %s	
+values-b+hr/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+hr/strings.xml	string	player_panel_on	-	STR	Uključeno	
 values-b+hr/strings.xml	string	player_panel_open	-	STR	Otvori	
 values-b+hr/strings.xml	string	player_panel_quality_profile	-	STR	Profil kvalitete	
@@ -15666,6 +15689,7 @@ values-b+hu/strings.xml	string	player_loaded_subtitles	-	STR	%s betöltve
 values-b+hu/strings.xml	string	player_mute	-	STR	Némítás	
 values-b+hu/strings.xml	string	player_panel_failed	-	STR	sikertelen	
 values-b+hu/strings.xml	string	player_panel_keeps	-	STR	megtartja: %s	
+values-b+hu/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+hu/strings.xml	string	player_panel_on	-	STR	Be	
 values-b+hu/strings.xml	string	player_panel_open	-	STR	Megnyitás	
 values-b+hu/strings.xml	string	player_panel_quality_profile	-	STR	Minőségi profil	
@@ -16522,6 +16546,7 @@ values-b+in/strings.xml	string	player_notification_channel_description	-	STR	Pem
 values-b+in/strings.xml	string	player_notification_channel_name	-	STR	Notifikasi pemain	
 values-b+in/strings.xml	string	player_panel_failed	-	STR	gagal	
 values-b+in/strings.xml	string	player_panel_keeps	-	STR	mempertahankan %s	
+values-b+in/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+in/strings.xml	string	player_panel_on	-	STR	Aktif	
 values-b+in/strings.xml	string	player_panel_open	-	STR	Buka	
 values-b+in/strings.xml	string	player_panel_quality_profile	-	STR	Profil kualitas	
@@ -17457,6 +17482,7 @@ values-b+it/strings.xml	string	player_notification_channel_description	-	STR	La 
 values-b+it/strings.xml	string	player_notification_channel_name	-	STR	Notifiche lettore	
 values-b+it/strings.xml	string	player_panel_failed	-	STR	non riuscito	
 values-b+it/strings.xml	string	player_panel_keeps	-	STR	mantiene %s	
+values-b+it/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+it/strings.xml	string	player_panel_on	-	STR	Attivo	
 values-b+it/strings.xml	string	player_panel_open	-	STR	Apri	
 values-b+it/strings.xml	string	player_panel_quality_profile	-	STR	Profilo qualità	
@@ -18270,6 +18296,7 @@ values-b+iw/strings.xml	string	player_loaded_subtitles	-	STR	נטען %s
 values-b+iw/strings.xml	string	player_mute	-	STR	השתקה	
 values-b+iw/strings.xml	string	player_panel_failed	-	STR	נכשל	
 values-b+iw/strings.xml	string	player_panel_keeps	-	STR	שומר על %s	
+values-b+iw/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+iw/strings.xml	string	player_panel_on	-	STR	פועל	
 values-b+iw/strings.xml	string	player_panel_open	-	STR	פתיחה	
 values-b+iw/strings.xml	string	player_panel_quality_profile	-	STR	פרופיל איכות	
@@ -19098,6 +19125,7 @@ values-b+ja/strings.xml	string	player_notification_channel_description	-	STR	バ
 values-b+ja/strings.xml	string	player_notification_channel_name	-	STR	プレーヤー通知	
 values-b+ja/strings.xml	string	player_panel_failed	-	STR	失敗	
 values-b+ja/strings.xml	string	player_panel_keeps	-	STR	%s を維持	
+values-b+ja/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ja/strings.xml	string	player_panel_on	-	STR	オン	
 values-b+ja/strings.xml	string	player_panel_open	-	STR	開く	
 values-b+ja/strings.xml	string	player_panel_quality_profile	-	STR	画質プロファイル	
@@ -19686,6 +19714,7 @@ values-b+kn/strings.xml	string	player_hud_up_next	-	STR	ಮುಂದಿನದು
 values-b+kn/strings.xml	string	player_mute	-	STR	ಮ್ಯೂಟ್ ಮಾಡಿ	
 values-b+kn/strings.xml	string	player_panel_failed	-	STR	ವಿಫಲ	
 values-b+kn/strings.xml	string	player_panel_keeps	-	STR	%s ಉಳಿಸುತ್ತದೆ	
+values-b+kn/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+kn/strings.xml	string	player_panel_on	-	STR	ಆನ್	
 values-b+kn/strings.xml	string	player_panel_open	-	STR	ತೆರೆಯಿರಿ	
 values-b+kn/strings.xml	string	player_panel_quality_profile	-	STR	ಗುಣಮಟ್ಟದ ಪ್ರೊಫೈಲ್	
@@ -20308,6 +20337,7 @@ values-b+ko/strings.xml	string	player_notification_channel_description	-	STR	백
 values-b+ko/strings.xml	string	player_notification_channel_name	-	STR	플레이어 알림	
 values-b+ko/strings.xml	string	player_panel_failed	-	STR	실패	
 values-b+ko/strings.xml	string	player_panel_keeps	-	STR	%s 유지	
+values-b+ko/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ko/strings.xml	string	player_panel_on	-	STR	켜짐	
 values-b+ko/strings.xml	string	player_panel_open	-	STR	열기	
 values-b+ko/strings.xml	string	player_panel_quality_profile	-	STR	화질 프로필	
@@ -21005,6 +21035,7 @@ values-b+lt/strings.xml	string	player_hud_up_next	-	STR	Toliau · %s
 values-b+lt/strings.xml	string	player_mute	-	STR	Nutildyti	
 values-b+lt/strings.xml	string	player_panel_failed	-	STR	nepavyko	
 values-b+lt/strings.xml	string	player_panel_keeps	-	STR	išlaiko %s	
+values-b+lt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+lt/strings.xml	string	player_panel_on	-	STR	Įjungta	
 values-b+lt/strings.xml	string	player_panel_open	-	STR	Atidaryti	
 values-b+lt/strings.xml	string	player_panel_quality_profile	-	STR	Kokybės profilis	
@@ -21664,6 +21695,7 @@ values-b+lv/strings.xml	string	player_loaded_subtitles	-	STR	Ielādēti %s
 values-b+lv/strings.xml	string	player_mute	-	STR	Izslēgt skaņu	
 values-b+lv/strings.xml	string	player_panel_failed	-	STR	neizdevās	
 values-b+lv/strings.xml	string	player_panel_keeps	-	STR	saglabā %s	
+values-b+lv/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+lv/strings.xml	string	player_panel_on	-	STR	Ieslēgts	
 values-b+lv/strings.xml	string	player_panel_open	-	STR	Atvērt	
 values-b+lv/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitātes profils	
@@ -22527,6 +22559,7 @@ values-b+mk/strings.xml	string	player_notification_channel_description	-	STR	И�
 values-b+mk/strings.xml	string	player_notification_channel_name	-	STR	Известувања од плеерот	
 values-b+mk/strings.xml	string	player_panel_failed	-	STR	неуспешно	
 values-b+mk/strings.xml	string	player_panel_keeps	-	STR	задржува %s	
+values-b+mk/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+mk/strings.xml	string	player_panel_on	-	STR	Вклучено	
 values-b+mk/strings.xml	string	player_panel_open	-	STR	Отвори	
 values-b+mk/strings.xml	string	player_panel_quality_profile	-	STR	Профил за квалитет	
@@ -23201,6 +23234,7 @@ values-b+ml/strings.xml	string	player_is_live	-	STR	തൽസമയം
 values-b+ml/strings.xml	string	player_mute	-	STR	നിശബ്‌ദമാക്കുക	
 values-b+ml/strings.xml	string	player_panel_failed	-	STR	പരാജയപ്പെട്ടു	
 values-b+ml/strings.xml	string	player_panel_keeps	-	STR	%s നിലനിർത്തുന്നു	
+values-b+ml/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ml/strings.xml	string	player_panel_on	-	STR	ഓൺ	
 values-b+ml/strings.xml	string	player_panel_open	-	STR	തുറക്കുക	
 values-b+ml/strings.xml	string	player_panel_quality_profile	-	STR	ഗുണനിലവാര പ്രൊഫൈൽ	
@@ -23802,6 +23836,7 @@ values-b+ms/strings.xml	string	player_hud_up_next	-	STR	Seterusnya · %s
 values-b+ms/strings.xml	string	player_mute	-	STR	Redam	
 values-b+ms/strings.xml	string	player_panel_failed	-	STR	gagal	
 values-b+ms/strings.xml	string	player_panel_keeps	-	STR	kekalkan %s	
+values-b+ms/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ms/strings.xml	string	player_panel_on	-	STR	Hidup	
 values-b+ms/strings.xml	string	player_panel_open	-	STR	Buka	
 values-b+ms/strings.xml	string	player_panel_quality_profile	-	STR	Profil kualiti	
@@ -24312,6 +24347,7 @@ values-b+mt/strings.xml	string	player_hud_up_next	-	STR	Li jmiss · %s
 values-b+mt/strings.xml	string	player_mute	-	STR	Itfi l-ħoss	
 values-b+mt/strings.xml	string	player_panel_failed	-	STR	falla	
 values-b+mt/strings.xml	string	player_panel_keeps	-	STR	iżomm %s	
+values-b+mt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+mt/strings.xml	string	player_panel_on	-	STR	Mixgħul	
 values-b+mt/strings.xml	string	player_panel_open	-	STR	Iftaħ	
 values-b+mt/strings.xml	string	player_panel_quality_profile	-	STR	Profil tal-kwalità	
@@ -24802,6 +24838,7 @@ values-b+my/strings.xml	string	player_loaded_subtitles	-	STR	တင်ပြီ�
 values-b+my/strings.xml	string	player_mute	-	STR	အသံပိတ်ရန်	
 values-b+my/strings.xml	string	player_panel_failed	-	STR	မအောင်မြင်ပါ	
 values-b+my/strings.xml	string	player_panel_keeps	-	STR	%s ကို ထိန်းထားသည်	
+values-b+my/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+my/strings.xml	string	player_panel_on	-	STR	ဖွင့်	
 values-b+my/strings.xml	string	player_panel_open	-	STR	ဖွင့်ရန်	
 values-b+my/strings.xml	string	player_panel_quality_profile	-	STR	အရည်အသွေး ပရိုဖိုင်	
@@ -25303,6 +25340,7 @@ values-b+ne/strings.xml	string	player_hud_up_next	-	STR	अर्को · %s
 values-b+ne/strings.xml	string	player_mute	-	STR	म्यूट गर्नुहोस्	
 values-b+ne/strings.xml	string	player_panel_failed	-	STR	असफल	
 values-b+ne/strings.xml	string	player_panel_keeps	-	STR	%s राख्छ	
+values-b+ne/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ne/strings.xml	string	player_panel_on	-	STR	अन	
 values-b+ne/strings.xml	string	player_panel_open	-	STR	खोल्नुहोस्	
 values-b+ne/strings.xml	string	player_panel_quality_profile	-	STR	गुणस्तर प्रोफाइल	
@@ -25906,6 +25944,7 @@ values-b+nl/strings.xml	string	player_notification_channel_description	-	STR	De 
 values-b+nl/strings.xml	string	player_notification_channel_name	-	STR	Speler meldingen	
 values-b+nl/strings.xml	string	player_panel_failed	-	STR	mislukt	
 values-b+nl/strings.xml	string	player_panel_keeps	-	STR	behoudt %s	
+values-b+nl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+nl/strings.xml	string	player_panel_on	-	STR	Aan	
 values-b+nl/strings.xml	string	player_panel_open	-	STR	Openen	
 values-b+nl/strings.xml	string	player_panel_quality_profile	-	STR	Kwaliteitsprofiel	
@@ -26519,6 +26558,7 @@ values-b+nn/strings.xml	string	player_hud_up_next	-	STR	Neste · %s
 values-b+nn/strings.xml	string	player_mute	-	STR	Slå av lyd	
 values-b+nn/strings.xml	string	player_panel_failed	-	STR	feila	
 values-b+nn/strings.xml	string	player_panel_keeps	-	STR	held på %s	
+values-b+nn/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+nn/strings.xml	string	player_panel_on	-	STR	På	
 values-b+nn/strings.xml	string	player_panel_open	-	STR	Opne	
 values-b+nn/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitetsprofil	
@@ -27045,6 +27085,7 @@ values-b+no/strings.xml	string	player_loaded_subtitles	-	STR	Lastet inn %s
 values-b+no/strings.xml	string	player_mute	-	STR	Slå av lyden	
 values-b+no/strings.xml	string	player_panel_failed	-	STR	feilet	
 values-b+no/strings.xml	string	player_panel_keeps	-	STR	beholder %s	
+values-b+no/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+no/strings.xml	string	player_panel_on	-	STR	På	
 values-b+no/strings.xml	string	player_panel_open	-	STR	Åpne	
 values-b+no/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitetsprofil	
@@ -27565,6 +27606,7 @@ values-b+or/strings.xml	string	player_hud_up_next	-	STR	ପରବର୍ତ୍ତ
 values-b+or/strings.xml	string	player_mute	-	STR	ମ୍ୟୁଟ କରନ୍ତୁ	
 values-b+or/strings.xml	string	player_panel_failed	-	STR	ବିଫଳ	
 values-b+or/strings.xml	string	player_panel_keeps	-	STR	%s ରଖେ	
+values-b+or/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+or/strings.xml	string	player_panel_on	-	STR	ଅନ୍	
 values-b+or/strings.xml	string	player_panel_open	-	STR	ଖୋଲନ୍ତୁ	
 values-b+or/strings.xml	string	player_panel_quality_profile	-	STR	ଗୁଣବତ୍ତା ପ୍ରୋଫାଇଲ୍	
@@ -28244,6 +28286,7 @@ values-b+pl/strings.xml	string	player_notification_channel_description	-	STR	Pow
 values-b+pl/strings.xml	string	player_notification_channel_name	-	STR	Powiadomienia odtwarzacza	
 values-b+pl/strings.xml	string	player_panel_failed	-	STR	błąd	
 values-b+pl/strings.xml	string	player_panel_keeps	-	STR	zachowuje %s	
+values-b+pl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+pl/strings.xml	string	player_panel_on	-	STR	Wł.	
 values-b+pl/strings.xml	string	player_panel_open	-	STR	Otwórz	
 values-b+pl/strings.xml	string	player_panel_quality_profile	-	STR	Profil jakości	
@@ -29179,6 +29222,7 @@ values-b+pt+BR/strings.xml	string	player_notification_channel_description	-	STR	
 values-b+pt+BR/strings.xml	string	player_notification_channel_name	-	STR	Notificações de reprodução	
 values-b+pt+BR/strings.xml	string	player_panel_failed	-	STR	falhou	
 values-b+pt+BR/strings.xml	string	player_panel_keeps	-	STR	mantém %s	
+values-b+pt+BR/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+pt+BR/strings.xml	string	player_panel_on	-	STR	Ativado	
 values-b+pt+BR/strings.xml	string	player_panel_open	-	STR	Abrir	
 values-b+pt+BR/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de qualidade	
@@ -30111,6 +30155,7 @@ values-b+pt/strings.xml	string	player_notification_channel_description	-	STR	Not
 values-b+pt/strings.xml	string	player_notification_channel_name	-	STR	Notificações de reprodução	
 values-b+pt/strings.xml	string	player_panel_failed	-	STR	falhou	
 values-b+pt/strings.xml	string	player_panel_keeps	-	STR	mantém %s	
+values-b+pt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+pt/strings.xml	string	player_panel_on	-	STR	Ativado	
 values-b+pt/strings.xml	string	player_panel_open	-	STR	Abrir	
 values-b+pt/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de qualidade	
@@ -30952,6 +30997,7 @@ values-b+qt/strings.xml	string	player_loaded_subtitles	-	STR	oooohh %s
 values-b+qt/strings.xml	string	player_mute	-	STR	ooh oh	
 values-b+qt/strings.xml	string	player_panel_failed	-	STR	aagh	
 values-b+qt/strings.xml	string	player_panel_keeps	-	STR	ooh %s	
+values-b+qt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+qt/strings.xml	string	player_panel_on	-	STR	Ook	
 values-b+qt/strings.xml	string	player_panel_open	-	STR	Aah	
 values-b+qt/strings.xml	string	player_panel_quality_profile	-	STR	Oohh aagh	
@@ -31768,6 +31814,7 @@ values-b+ro/strings.xml	string	player_loaded_subtitles	-	STR	A fost încărcat %
 values-b+ro/strings.xml	string	player_mute	-	STR	Dezactivează sunetul	
 values-b+ro/strings.xml	string	player_panel_failed	-	STR	eșuat	
 values-b+ro/strings.xml	string	player_panel_keeps	-	STR	păstrează %s	
+values-b+ro/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ro/strings.xml	string	player_panel_on	-	STR	Activat	
 values-b+ro/strings.xml	string	player_panel_open	-	STR	Deschide	
 values-b+ro/strings.xml	string	player_panel_quality_profile	-	STR	Profil de calitate	
@@ -32663,6 +32710,7 @@ values-b+ru/strings.xml	string	player_notification_channel_description	-	STR	У�
 values-b+ru/strings.xml	string	player_notification_channel_name	-	STR	Уведомления плеера	
 values-b+ru/strings.xml	string	player_panel_failed	-	STR	сбой	
 values-b+ru/strings.xml	string	player_panel_keeps	-	STR	сохраняет %s	
+values-b+ru/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ru/strings.xml	string	player_panel_on	-	STR	Вкл.	
 values-b+ru/strings.xml	string	player_panel_open	-	STR	Открыть	
 values-b+ru/strings.xml	string	player_panel_quality_profile	-	STR	Профиль качества	
@@ -33469,6 +33517,7 @@ values-b+sk/strings.xml	string	player_loaded_subtitles	-	STR	Načítané %s
 values-b+sk/strings.xml	string	player_mute	-	STR	Vypnúť zvuk	
 values-b+sk/strings.xml	string	player_panel_failed	-	STR	zlyhalo	
 values-b+sk/strings.xml	string	player_panel_keeps	-	STR	zachová %s	
+values-b+sk/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+sk/strings.xml	string	player_panel_on	-	STR	Zapnuté	
 values-b+sk/strings.xml	string	player_panel_open	-	STR	Otvoriť	
 values-b+sk/strings.xml	string	player_panel_quality_profile	-	STR	Profil kvality	
@@ -34129,6 +34178,7 @@ values-b+so/strings.xml	string	player_loaded_subtitles	-	STR	Waxa laso kiciyey %
 values-b+so/strings.xml	string	player_mute	-	STR	Aamusi	
 values-b+so/strings.xml	string	player_panel_failed	-	STR	fashilay	
 values-b+so/strings.xml	string	player_panel_keeps	-	STR	wuxuu hayaa %s	
+values-b+so/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+so/strings.xml	string	player_panel_on	-	STR	Shidan	
 values-b+so/strings.xml	string	player_panel_open	-	STR	Fur	
 values-b+so/strings.xml	string	player_panel_quality_profile	-	STR	Astaanta tayada	
@@ -34946,6 +34996,7 @@ values-b+sq/strings.xml	string	player_notification_channel_description	-	STR	Njo
 values-b+sq/strings.xml	string	player_notification_channel_name	-	STR	Njoftimet e luajtësit	
 values-b+sq/strings.xml	string	player_panel_failed	-	STR	dështoi	
 values-b+sq/strings.xml	string	player_panel_keeps	-	STR	ruan %s	
+values-b+sq/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+sq/strings.xml	string	player_panel_on	-	STR	Aktiv	
 values-b+sq/strings.xml	string	player_panel_open	-	STR	Hap	
 values-b+sq/strings.xml	string	player_panel_quality_profile	-	STR	Profili i cilësisë	
@@ -35865,6 +35916,7 @@ values-b+sv/strings.xml	string	player_notification_channel_description	-	STR	Spe
 values-b+sv/strings.xml	string	player_notification_channel_name	-	STR	Spelarnotiser	
 values-b+sv/strings.xml	string	player_panel_failed	-	STR	misslyckades	
 values-b+sv/strings.xml	string	player_panel_keeps	-	STR	behåller %s	
+values-b+sv/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+sv/strings.xml	string	player_panel_on	-	STR	På	
 values-b+sv/strings.xml	string	player_panel_open	-	STR	Öppna	
 values-b+sv/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitetsprofil	
@@ -36784,6 +36836,7 @@ values-b+ta/strings.xml	string	player_notification_channel_description	-	STR	ப
 values-b+ta/strings.xml	string	player_notification_channel_name	-	STR	பிளேயர் அறிவிப்புகள்	
 values-b+ta/strings.xml	string	player_panel_failed	-	STR	தோல்வி	
 values-b+ta/strings.xml	string	player_panel_keeps	-	STR	%s ஐத் தக்கவைக்கிறது	
+values-b+ta/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ta/strings.xml	string	player_panel_on	-	STR	இயக்கம்	
 values-b+ta/strings.xml	string	player_panel_open	-	STR	திற	
 values-b+ta/strings.xml	string	player_panel_quality_profile	-	STR	தர சுயவிவரம்	
@@ -37312,6 +37365,7 @@ values-b+ti/strings.xml	string	player_hud_up_next	-	STR	ቀጺሉ · %s
 values-b+ti/strings.xml	string	player_mute	-	STR	ድምጺ ኣጥፍእ	
 values-b+ti/strings.xml	string	player_panel_failed	-	STR	ፈሺሉ	
 values-b+ti/strings.xml	string	player_panel_keeps	-	STR	%s ይሕዝ	
+values-b+ti/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ti/strings.xml	string	player_panel_on	-	STR	ክፉት	
 values-b+ti/strings.xml	string	player_panel_open	-	STR	ክፈት	
 values-b+ti/strings.xml	string	player_panel_quality_profile	-	STR	ናይ ዓይነት መገለጺ	
@@ -37629,6 +37683,7 @@ values-b+tl/strings.xml	string	player_hud_up_next	-	STR	Susunod · %s
 values-b+tl/strings.xml	string	player_mute	-	STR	I-mute	
 values-b+tl/strings.xml	string	player_panel_failed	-	STR	nabigo	
 values-b+tl/strings.xml	string	player_panel_keeps	-	STR	pinapanatili ang %s	
+values-b+tl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+tl/strings.xml	string	player_panel_on	-	STR	Naka-on	
 values-b+tl/strings.xml	string	player_panel_open	-	STR	Buksan	
 values-b+tl/strings.xml	string	player_panel_quality_profile	-	STR	Profile ng kalidad	
@@ -38316,6 +38371,7 @@ values-b+tr/strings.xml	string	player_notification_channel_description	-	STR	Oyn
 values-b+tr/strings.xml	string	player_notification_channel_name	-	STR	Oynatıcı bildirimleri	
 values-b+tr/strings.xml	string	player_panel_failed	-	STR	başarısız	
 values-b+tr/strings.xml	string	player_panel_keeps	-	STR	%s korunur	
+values-b+tr/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+tr/strings.xml	string	player_panel_on	-	STR	Açık	
 values-b+tr/strings.xml	string	player_panel_open	-	STR	Aç	
 values-b+tr/strings.xml	string	player_panel_quality_profile	-	STR	Kalite profili	
@@ -39267,6 +39323,7 @@ values-b+uk/strings.xml	string	player_notification_channel_description	-	STR	С�
 values-b+uk/strings.xml	string	player_notification_channel_name	-	STR	Сповіщення програвача	
 values-b+uk/strings.xml	string	player_panel_failed	-	STR	збій	
 values-b+uk/strings.xml	string	player_panel_keeps	-	STR	зберігає %s	
+values-b+uk/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+uk/strings.xml	string	player_panel_on	-	STR	Увімк.	
 values-b+uk/strings.xml	string	player_panel_open	-	STR	Відкрити	
 values-b+uk/strings.xml	string	player_panel_quality_profile	-	STR	Профіль якості	
@@ -40110,6 +40167,7 @@ values-b+ur/strings.xml	string	player_loaded_subtitles	-	STR	لوڈ %s
 values-b+ur/strings.xml	string	player_mute	-	STR	خاموش کریں	
 values-b+ur/strings.xml	string	player_panel_failed	-	STR	ناکام	
 values-b+ur/strings.xml	string	player_panel_keeps	-	STR	%s برقرار رکھتا ہے	
+values-b+ur/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+ur/strings.xml	string	player_panel_on	-	STR	آن	
 values-b+ur/strings.xml	string	player_panel_open	-	STR	کھولیں	
 values-b+ur/strings.xml	string	player_panel_quality_profile	-	STR	معیار کی پروفائل	
@@ -40950,6 +41008,7 @@ values-b+vi/strings.xml	string	player_notification_channel_description	-	STR	Đi
 values-b+vi/strings.xml	string	player_notification_channel_name	-	STR	Thông báo trình phát	
 values-b+vi/strings.xml	string	player_panel_failed	-	STR	thất bại	
 values-b+vi/strings.xml	string	player_panel_keeps	-	STR	giữ %s	
+values-b+vi/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+vi/strings.xml	string	player_panel_on	-	STR	Bật	
 values-b+vi/strings.xml	string	player_panel_open	-	STR	Mở	
 values-b+vi/strings.xml	string	player_panel_quality_profile	-	STR	Hồ sơ chất lượng	
@@ -41852,6 +41911,7 @@ values-b+zh+TW/strings.xml	string	player_notification_channel_description	-	STR	
 values-b+zh+TW/strings.xml	string	player_notification_channel_name	-	STR	播放器通知	
 values-b+zh+TW/strings.xml	string	player_panel_failed	-	STR	失敗	
 values-b+zh+TW/strings.xml	string	player_panel_keeps	-	STR	保留 %s	
+values-b+zh+TW/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+zh+TW/strings.xml	string	player_panel_on	-	STR	開	
 values-b+zh+TW/strings.xml	string	player_panel_open	-	STR	開啟	
 values-b+zh+TW/strings.xml	string	player_panel_quality_profile	-	STR	畫質設定檔	
@@ -42750,6 +42810,7 @@ values-b+zh/strings.xml	string	player_notification_channel_description	-	STR	控
 values-b+zh/strings.xml	string	player_notification_channel_name	-	STR	播放器通知	
 values-b+zh/strings.xml	string	player_panel_failed	-	STR	失败	
 values-b+zh/strings.xml	string	player_panel_keeps	-	STR	保留 %s	
+values-b+zh/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values-b+zh/strings.xml	string	player_panel_on	-	STR	开	
 values-b+zh/strings.xml	string	player_panel_open	-	STR	打开	
 values-b+zh/strings.xml	string	player_panel_quality_profile	-	STR	画质配置	
@@ -43811,6 +43872,7 @@ values/strings.xml	string	player_notification_channel_description	-	STR	The play
 values/strings.xml	string	player_notification_channel_name	-	STR	Player notifications	
 values/strings.xml	string	player_panel_failed	-	STR	failed	
 values/strings.xml	string	player_panel_keeps	-	STR	keeps %s	
+values/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
 values/strings.xml	string	player_panel_on	-	STR	On	
 values/strings.xml	string	player_panel_open	-	STR	Open	
 values/strings.xml	string	player_panel_quality_profile	-	STR	Quality profile	
