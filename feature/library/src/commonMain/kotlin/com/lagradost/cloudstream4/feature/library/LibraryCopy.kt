@@ -16,10 +16,12 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.continue_watc
 import com.lagradost.cloudstream4.core.strings.generated.resources.empty_library_logged_in_message
 import com.lagradost.cloudstream4.core.strings.generated.resources.error
 import com.lagradost.cloudstream4.core.strings.generated.resources.favorites_list_name
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_offline_source_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.library
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_data
 import com.lagradost.cloudstream4.core.strings.generated.resources.plugin_load_fail
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_offline_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_retry
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_search
 import com.lagradost.cloudstream4.core.strings.generated.resources.type_completed
@@ -62,6 +64,11 @@ fun LibraryTab.label(): String = when (this) {
     // Already in the service's words, from the host.
     is LibraryTab.Synced -> label
 }
+
+/** `%1$s needs a connection`, Home's words for the same fact. */
+@Composable
+internal fun offlineBody(what: String): String =
+    UiString.Resource(Res.string.home_offline_source_headline, listOf(what)).resolve()
 
 /** The words on a card's controls, resolved once for the whole screen rather than per card. */
 @Composable
@@ -107,6 +114,15 @@ fun LibraryStatus.toUiState(onAction: (LibraryAction) -> Unit): UiState<List<Lib
                 action = StateAction(stringResource(Res.string.search_state_retry), CloudStreamIcons.Retry, retry),
             ),
             detail,
+        )
+
+        // Desktop never gets here: it has no connectivity, and no tracking service. A TV screen names the service.
+        LibraryStatus.Offline -> UiState.Offline(
+            StatePrompt(
+                headline = stringResource(Res.string.search_state_offline_headline),
+                body = offlineBody(stringResource(Res.string.library)),
+                action = StateAction(stringResource(Res.string.search_state_retry), CloudStreamIcons.Retry, retry),
+            ),
         )
     }
 }

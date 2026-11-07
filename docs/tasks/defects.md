@@ -1642,7 +1642,8 @@ exit-window focus hole, so fixing this fails that test and the fix gets looked a
 
 **Second pinned caller, `KMP-50`** (2026-11-07): the library's sort panel (5d). BACK lands on the chrome row's first
 stop, the provider button, not on Sort, the button that opened it. `LibrarySourcesTvDeviceTest.
-backClosesTheSortPanelWithTheChoiceAppliedAndFocusOnTheRowsFirstStop` pins it. The source panel (5e) never showed it,
+backClosesTheSortPanelWithTheChoiceAppliedAndFocusOnTheRowsFirstStop` pins it, at the assertion
+`"BUG-36: the row's first stop"`: **the component's fix flips that assertion to `SORT`.** The source panel (5e) never showed it,
 because its button is that first stop.
 
 Not to be confused with the separate, already-recorded defect in the same component: a D-pad move during the

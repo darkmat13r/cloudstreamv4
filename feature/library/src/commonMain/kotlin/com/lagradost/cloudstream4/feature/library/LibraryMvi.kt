@@ -86,6 +86,24 @@ sealed interface LibraryStatus {
 
     /** The store could not be read. [detail] is the exception's own words, for a bug report. */
     data class Failed(val detail: String) : LibraryStatus
+
+    /**
+     * The shown tracking service needs a connection, the device has none, and no read of it is held (`KMP-51`). Not a
+     * [Failed]: nothing was tried, and nothing went wrong but the network.
+     */
+    data object Offline : LibraryStatus
+}
+
+/**
+ * Why the shown tracking service's lists are a read held from earlier rather than a new one (`TV Library` 5b). The age
+ * is the source's own [LibrarySource.syncedAt], recorded when that read was made.
+ */
+enum class LibraryStale {
+    /** A read was tried and failed. */
+    Unreachable,
+
+    /** The device is offline, so none was tried. */
+    Offline,
 }
 
 @Immutable
@@ -124,6 +142,8 @@ data class LibraryState(
     val sort: LibrarySort = LibrarySort.Default,
     /** Whether the sort panel (`TV Library` 5d) is open. */
     val sortOpen: Boolean = false,
+    /** Non-null where the cards are a held read of the shown service, and why (5b). Every card is then marked. */
+    val stale: LibraryStale? = null,
 ) {
     /** The source being shown, where it is known. */
     val shownSource: LibrarySource?

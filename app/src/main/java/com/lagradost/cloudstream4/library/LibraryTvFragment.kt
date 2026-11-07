@@ -32,6 +32,7 @@ import com.lagradost.cloudstream3.USER_AGENT
 import com.lagradost.cloudstream3.ui.quicksearch.QuickSearchFragment
 import com.lagradost.cloudstream3.utils.AppContextUtils.loadResult
 import com.lagradost.cloudstream3.utils.BaseComposeFragment
+import com.lagradost.cloudstream4.core.connectivity.AndroidConnectivityFlow
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.library.LibraryAction
 import com.lagradost.cloudstream4.feature.library.LibraryCard
@@ -67,6 +68,7 @@ class LibraryTvFragment : BaseComposeFragment() {
                     scope = scope,
                     initialTab = LibraryTvTabs.first(),
                     sources = sources,
+                    connectivity = AndroidConnectivityFlow(app, scope),
                 ).also {
                     it.addCloseable(AutoCloseable { scope.cancel() })
                     // Kept with the ViewModel, so a new fragment after a configuration change opens what it shows.

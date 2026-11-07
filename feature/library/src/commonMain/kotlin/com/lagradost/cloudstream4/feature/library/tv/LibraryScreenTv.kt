@@ -42,10 +42,13 @@ import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.target.Chip
 import com.lagradost.cloudstream4.core.designsystem.target.ChipRow
+import com.lagradost.cloudstream4.core.designsystem.target.PrimaryTextButton
 import com.lagradost.cloudstream4.core.designsystem.target.TextField
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.filter_bookmarks
 import com.lagradost.cloudstream4.core.strings.generated.resources.library
+import com.lagradost.cloudstream4.core.strings.generated.resources.library_sync_cached
+import com.lagradost.cloudstream4.core.strings.generated.resources.library_sync_retry
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.library.LibraryAction
@@ -166,6 +169,7 @@ fun LibraryScreenTv(
             LibraryTabRow(state, tabs, tabFocus, focusMemory, onAction)
 
             val region = Modifier.contentInset().fillMaxSize()
+            val cachedWord = if (state.stale == null) null else stringResource(Res.string.library_sync_cached)
             when (content) {
                 is UiState.Empty -> StateView(
                     prompt = content.prompt,
@@ -176,6 +180,8 @@ fun LibraryScreenTv(
                 )
 
                 is UiState.Error -> StateView(content.prompt, region, content.detail, requestInitialFocus = false)
+                // A service that needs a connection (`KMP-51`): its Retry is a stop below the chrome row, as the failure's is.
+                is UiState.Offline -> StateView(content.prompt, region, requestInitialFocus = false)
                 else -> UiStateHost(
                     state = content,
                     modifier = region,
@@ -190,6 +196,7 @@ fun LibraryScreenTv(
                             onAction = onAction,
                             artwork = artwork,
                             modifier = Modifier.fillMaxSize(),
+                            cached = cachedWord,
                         )
                     }
                 }
@@ -218,6 +225,7 @@ private fun LibraryChromeRow(
     val fieldFocus = remember { FocusRequester() }
     val providerFocus = remember { FocusRequester() }
     val sortFocus = remember { FocusRequester() }
+    val retryFocus = remember { FocusRequester() }
     val keyboard = LocalSoftwareKeyboardController.current
     Row(
         modifier = modifier.height(CloudStreamDimens.ChromeRowHeight),
@@ -234,6 +242,15 @@ private fun LibraryChromeRow(
                 onClick = { onAction(LibraryAction.SourcesOpened) },
                 modifier = slot.libraryStop(providerFocus, focusMemory),
             )
+            // 5b: over a held read, Retry is the next stop to the right of the control the failure belongs to.
+            if (state.stale != null) {
+                PrimaryTextButton(
+                    label = stringResource(Res.string.library_sync_retry),
+                    onClick = { onAction(LibraryAction.Retry) },
+                    icon = CloudStreamIcons.Retry,
+                    modifier = Modifier.libraryStop(retryFocus, focusMemory),
+                )
+            }
         }
         TextField(
             value = state.filter,

@@ -5247,7 +5247,7 @@ shows no sort button; its cards are in the same order as before, and its tests p
   the grid is not in.
 - **A press** (`chooseSort`) applies at once and leaves the panel open (`DEC-17`, a single choice). The row already
   applied turns the other way round. A criterion the shown source keeps nothing for is refused.
-- **Ties and gaps** (`LibraryShelf.sortedBy`): titles are put newest kept first before the sort, so a tie keeps that
+- **Ties and gaps** (`LibraryShelf.sortedFor`): titles are put newest kept first before the sort, so a tie keeps that
   order. A title with no year, or no rating, goes last both ways round. A name sorts ignoring case. Continue watching is
   always newest watched first.
 
