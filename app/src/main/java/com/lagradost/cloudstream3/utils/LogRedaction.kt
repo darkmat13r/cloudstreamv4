@@ -29,18 +29,27 @@ private val FILE_URI = Regex("(?i)\\bfile:/\\S+")
 private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*)://(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
 
 /**
- * An absolute path under a storage or home root, up to a newline, a quote, `": "` or the end. A path
- * may hold spaces, so it is not cut at whitespace: what follows a path on its line is lost with it,
- * which is the safe way round.
+ * An absolute path under a storage, home or volume root, up to a newline, a quote, `": "` or the
+ * end. A path may hold spaces, so it is not cut at whitespace: what follows a path on its line is
+ * lost with it, which is the safe way round.
  */
 private val USER_PATH = Regex(
-    "(?<![\\w.:/-])/(?:storage|sdcard|data/user|mnt|Users|home)(?:/[^\\r\\n\"'<>]*?)?(?=: |[\\r\\n\"'<>]|\\z)"
+    "(?<![\\w.:/-])/(?:storage|sdcard|data/user|mnt|Users|home|Volumes)(?:/[^\\r\\n\"'<>]*?)?(?=: |[\\r\\n\"'<>]|\\z)"
 )
 
 /**
- * Text with a `file:` uri or a path under `/storage`, `/sdcard`, `/data/user`, `/mnt`, `/Users` or
- * `/home` replaced by `<path>`, and every other url cut to `scheme://host[:port]/<…>`. The host is
- * kept because it helps triage and is not a secret; the userinfo, path, query and fragment are not.
+ * BUG-47: a Windows home path, `C:\Users\…` (any drive letter, either case, either slash), with the
+ * same ends as [USER_PATH].
+ */
+private val WINDOWS_USER_PATH = Regex(
+    "(?<![\\w.:/\\\\-])(?i:[a-z]):[\\\\/](?i:users)(?:[\\\\/][^\\r\\n\"'<>]*?)?(?=: |[\\r\\n\"'<>]|\\z)"
+)
+
+/**
+ * Text with a `file:` uri, a path under `/storage`, `/sdcard`, `/data/user`, `/mnt`, `/Users`, `/home`
+ * or `/Volumes`, or a Windows `C:\Users\…` path replaced by `<path>`, and every other url cut to
+ * `scheme://host[:port]/<…>`. The host is kept because it helps triage and is not a secret; the
+ * userinfo, path, query and fragment are not.
  */
 private fun String.withoutUrls(): String = this
     .replace(FILE_URI, "<path>")
@@ -49,6 +58,7 @@ private fun String.withoutUrls(): String = this
         "$scheme://$host" + if (rest.isEmpty()) "" else "/<…>"
     }
     .replace(USER_PATH, "<path>")
+    .replace(WINDOWS_USER_PATH, "<path>")
 
 /** BUG-44: [text] with its urls and user paths redacted (see `withoutUrls`). `null` stays `"null"`, as interpolation printed it. */
 internal fun redactedText(text: String?): String = text?.withoutUrls() ?: "null"
