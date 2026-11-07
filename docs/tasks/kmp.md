@@ -5273,14 +5273,15 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
 - *What stays out:* no `toString` includes the source or the link.
 
 **Tests** (local, none CI). Counted from the XML:
-- `DesktopDownloadsTest`: 20/20, against a JDK `HttpServer` with Range and ETag support; every completion is compared byte for byte.
+- `DesktopDownloadsTest`: 22/22 (10 runs in a row), against a JDK `HttpServer` with Range and ETag support; every completion is compared byte for byte.
   It covers:
   - done, and `fileOf` only at done
   - at most 3 running
   - pause and resume continuing from disk, with a ranged request after 0
   - a restart with a new host over the same files: same ids, Paused, then resumed and byte-identical
-  - cancel of a waiting download, and of a running one (it stops, and no part, file or record is left); delete of a title and of an
-    episode
+  - cancel of a waiting download, and of a running one (it stops, and no part, file or record is left); a cancel of a finished one
+    is refused and keeps its file and record; delete of a title and of an episode
+  - closing the host while a resolve is in flight leaves `downloads.json` byte-identical, and a new host reads the episode Paused
   - a file deleted outside the app, noticed on `refresh`
   - the emission rate: 2.64–2.68/s while running, every gap ≥ 240 ms, nothing over 1.25 s idle
   - the file's permissions are `rw-------`
@@ -5302,7 +5303,7 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
   and Last-Modified matched across the two runs, and both went through the same hosts. It was stopped at 15.4 MB of 645 MB.
   The live links call answered in 4 ms, so the timeout could not be seen cutting it there.
 - Without the 250 ms throttle and with a fourth slot, 3 of these fail.
-- Full `:desktopApp:jvmTest`: 414/0. `:desktopApp:createDistributable` builds; the app was not launched.
+- Full `:desktopApp:jvmTest`: 417/0. `:desktopApp:createDistributable` builds; the app was not launched.
 
 **Not verified.**
 - A whole download from a real host to the end, and a CDN that changes its ETag between resolves.

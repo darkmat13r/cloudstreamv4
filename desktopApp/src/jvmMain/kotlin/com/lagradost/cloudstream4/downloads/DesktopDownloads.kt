@@ -500,7 +500,10 @@ class DesktopDownloads internal constructor(
             is Command.Pause -> items[command.id]?.let { pauseNow(it) }
             is Command.Resume -> items[command.id]?.let { resumeNow(it) }
             is Command.ResumeTitle -> items.values.filter { it.titleId == command.titleId }.forEach { resumeNow(it) }
-            is Command.Cancel -> items[command.id]?.takeIf { it.phase != Phase.Done }?.let { remove(listOf(it)) }
+            is Command.Cancel -> items[command.id]?.let { item ->
+                // A finished file is deleted, never cancelled: a stale request must not discard it.
+                if (item.phase == Phase.Done) log("cancel refused for a finished download") else remove(listOf(item))
+            }
             is Command.Delete -> {
                 remove(items.values.filter { it.titleId in command.titleIds || it.episodeId in command.episodeIds })
                 command.reply.complete(Unit)

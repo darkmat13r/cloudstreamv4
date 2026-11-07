@@ -188,6 +188,10 @@ class DesktopDownloadsTest {
         return partFiles().sumOf { it.length() }
     }
 
+    /** Until a resolver has been asked once. */
+    private suspend fun awaitAsked(asked: java.util.concurrent.atomic.AtomicInteger) =
+        withTimeout(TIMEOUT) { while (asked.get() < 1) delay(10) }
+
     /** The engine's part files under the download root. */
     private fun partFiles(): List<File> =
         root.walkTopDown().filter { it.isFile && it.parentFile.name.endsWith(".csdl") && it.name.startsWith("part-") }.toList()
@@ -239,8 +243,16 @@ class DesktopDownloadsTest {
         val held = interruptedPartWay(film(8, "No Link", server.url("nolink.bin")))
         assertTrue(held > 0L)
 
-        val empty = host(resolver = { emptyList() })
+        // A failure is stored, so each new host below starts with the previous step's: Failed, NoUsableLink. Waiting
+        // for "Failed" alone could match that loaded state before the resume is processed. So each step first waits
+        // for its resolver to be asked (the queue publishes Queued and Running before that), then reads the episode
+        // through a new collector, whose first emission is built after the resume. A collector started earlier may see
+        // nothing at all: an episode that ends as it was loaded is not a change, and the flow drops repeats.
+        val emptyAsked = java.util.concurrent.atomic.AtomicInteger()
+        val empty = host(resolver = { emptyAsked.incrementAndGet(); emptyList() })
+        assertEquals(DownloadEpisodeState.Paused, empty.awaitEpisode(800, 8) { true }.state)
         empty.resume(DownloadEpisodeId(8))
+        awaitAsked(emptyAsked)
         val none = empty.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Failed }
         assertEquals(DownloadFailure.NoUsableLink, none.failure)
         assertEquals(held, partFiles().sumOf { it.length() }, "the parts are untouched")
@@ -248,18 +260,63 @@ class DesktopDownloadsTest {
         empty.close()
         hosts.remove(empty)
 
-        val hlsOnly = host(resolver = { listOf(DesktopDownloadLink(server.url("x.m3u8"), type = ExtractorLinkType.M3U8)) })
+        val hlsAsked = java.util.concurrent.atomic.AtomicInteger()
+        val hlsOnly = host(resolver = {
+            hlsAsked.incrementAndGet()
+            listOf(DesktopDownloadLink(server.url("x.m3u8"), type = ExtractorLinkType.M3U8))
+        })
+        assertEquals(DownloadFailure.NoUsableLink, hlsOnly.awaitEpisode(800, 8) { true }.failure, "the stored reason")
         hlsOnly.resume(DownloadEpisodeId(8))
-        assertEquals(DownloadFailure.NoUsableLink, hlsOnly.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Failed }.failure)
+        awaitAsked(hlsAsked)
+        val hls = hlsOnly.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Failed }
+        assertEquals(DownloadFailure.NoUsableLink, hls.failure)
         hlsOnly.close()
         hosts.remove(hlsOnly)
 
-        val throwing = host(resolver = { throw java.io.IOException("the extension is not loaded") })
+        val throwAsked = java.util.concurrent.atomic.AtomicInteger()
+        val throwing = host(resolver = { throwAsked.incrementAndGet(); throw java.io.IOException("the extension is not loaded") })
+        assertEquals(DownloadFailure.NoUsableLink, throwing.awaitEpisode(800, 8) { true }.failure, "the stored reason")
         throwing.resume(DownloadEpisodeId(8))
+        awaitAsked(throwAsked)
         val threw = throwing.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Failed }
         assertEquals(DownloadFailure.SourceFailed, threw.failure)
         assertEquals(held, partFiles().sumOf { it.length() }, "the parts are untouched")
         assertEquals(1, partFiles().size)
+    }
+
+    @Test
+    fun `closing while a resolve is in flight leaves the stored record as it was`() = runBlocking {
+        server.add("inflight.bin", 2 * 1024 * 1024)
+        server.chunkDelayMillis.set(10)
+        val held = interruptedPartWay(film(15, "In Flight", server.url("inflight.bin")))
+        assertTrue(held > 0L)
+
+        val asked = java.util.concurrent.CountDownLatch(1)
+        val host = host(resolver = { asked.countDown(); kotlinx.coroutines.awaitCancellation() })
+        assertEquals(DownloadEpisodeState.Paused, host.awaitEpisode(1500, 15) { true }.state)
+        val before = stateFile.readBytes()
+        host.resume(DownloadEpisodeId(15))
+        assertTrue(asked.await(10, java.util.concurrent.TimeUnit.SECONDS), "the resolver was reached")
+        // The run can reach the resolver before the queue has written its move into line: wait for that write.
+        withTimeout(TIMEOUT) { while ("\"state\":\"Running\"" !in stateFile.readText()) delay(10) }
+        val during = stateFile.readBytes().toString(Charsets.UTF_8)
+        host.close()
+        hosts.remove(host)
+
+        // The queue wrote the move into line (Queued, then Running); close must write nothing after that.
+        val after = stateFile.readBytes().toString(Charsets.UTF_8)
+        assertEquals(during, after, "close() rewrote the downloads file")
+        // "failure" is always written, as null when there is none: a reason is a string value.
+        listOf("\"state\":\"Failed\"", "\"failure\":\"").forEach { assertFalse(it in after, "$it after close") }
+        val record = { text: String -> Regex("\\{[^{}]*\"episodeId\":15,[^{}]*\\}").find(text)!!.value }
+        val bytes = { text: String -> Regex("\"bytesDone\":(\\d+)").find(record(text))!!.groupValues[1] }
+        assertEquals(bytes(before.toString(Charsets.UTF_8)), bytes(after), "bytes unchanged")
+        assertEquals(held, partFiles().sumOf { it.length() }, "the parts are untouched")
+
+        val again = host()
+        val reread = again.awaitEpisode(1500, 15) { true }
+        assertEquals(DownloadEpisodeState.Paused, reread.state, "a shutdown is not a failure")
+        assertNull(reread.failure)
     }
 
     @Test
@@ -536,6 +593,26 @@ class DesktopDownloadsTest {
         val requestsAfter = server.ranges["running.bin"]?.size ?: 0
         delay(500)
         assertEquals(requestsAfter, server.ranges["running.bin"]?.size ?: 0, "no request after the cancel")
+    }
+
+    /** A stale Cancel from the UI must never discard a finished file: only delete removes one. */
+    @Test
+    fun `cancelling a finished download keeps its file and its record`() = runBlocking {
+        val body = server.add("done.bin", 64 * 1024)
+        val logs = java.util.concurrent.CopyOnWriteArrayList<String>()
+        val host = host(log = { logs += it })
+        host.enqueue(film(1, "Finished", server.url("done.bin")))
+        host.awaitDone(100, 1)
+        val file = host.fileOf(DownloadEpisodeId(1))!!
+
+        host.cancel(DownloadEpisodeId(1))
+        host.refresh()
+        val after = host.awaitEpisode(100, 1) { true }
+        assertEquals(DownloadEpisodeState.Done, after.state)
+        assertContentEquals(body, file.readBytes())
+        assertEquals(file, host.fileOf(DownloadEpisodeId(1)))
+        assertTrue("Finished" in stateFile.readText(), "the record is kept")
+        kotlinx.coroutines.withTimeout(5_000) { while ("cancel refused for a finished download" !in logs) delay(20) }
     }
 
     @Test
