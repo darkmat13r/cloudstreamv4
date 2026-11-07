@@ -1546,7 +1546,7 @@ and the host's first focus request, which is why the same commit passed 17/17 at
 | `c5f3b18d3` (first fix), the reviewer's real-path case: rows held, LEFT to the nav rail, RIGHT into the bookmarks, release | `Television_720p_2` | **green**, 11.5 s: LEFT's key-down had reached Home |
 | the full `:app` suite with the first fix | `Television_720p_2` | 93 run, 92 passed, 0 failed, 1 skipped (`TvHomeRealPluginProof`), 21:10:32Z; `TvHomeNavigationTest` 17/17 |
 | the class alone with the first fix, x2 | `Television_720p_2` | 17/17 each time (21:20, 21:33Z) |
-| the final fix: gates, `HomeScreenTvDeviceTest`, the class alone, the full `:app` suite | see the PR | FINAL_RESULTS |
+| the final fix (`10c26f324` gated; later commits touch only device tests and docs) | both | gates all 0, 188 results; `HomeScreenTvDeviceTest` 81/81 on `156bd62cb` (`Television_720p`, 03:04Z), 18 screenshots `same`; the class alone 18/18 and the full `:app` 94 run, 93 passed, 1 skipped, on `72ce30aeb` (`Television_720p_2`, 01:50Z and 02:38Z) |
 
 Continue watching is the same race on the other local rail: worker-2's `:app` run also failed
 `somethingPlayedIsOnContinueWatchingAndOpensItsRealPageAndFocusComesBack` with `was Played Before`. The guard and the fix cover
