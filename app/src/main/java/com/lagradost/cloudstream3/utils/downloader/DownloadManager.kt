@@ -1778,7 +1778,9 @@ object VideoDownloadManager {
             context.getKey<DownloadedFileInfo>(KEY_DOWNLOAD_INFO, id.toString()) ?: return false
         val file = info.toFile(context)
 
-        val isFileDeleted = file?.delete() == true || file?.exists() == false
+        // KMP-60: an engine download listed before its file exists is deleted by removing its staging.
+        val isFileDeleted = file?.delete() == true || file?.exists() == false ||
+                (file == null && EngineVideoDownload.deleteStagingForDelete(context, id))
 
         if (isFileDeleted) {
             deleteMatchingSubtitles(context, info)

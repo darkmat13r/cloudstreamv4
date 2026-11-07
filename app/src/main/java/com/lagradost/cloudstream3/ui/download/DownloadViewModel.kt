@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.ui.download
 
 import android.content.Context
 import android.content.DialogInterface
+import android.net.Uri
 import android.os.Environment
 import android.os.StatFs
 import androidx.appcompat.app.AlertDialog
@@ -38,7 +39,7 @@ import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
 import com.lagradost.cloudstream3.utils.downloader.DownloadQueueManager
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.deleteFilesAndUpdateSettings
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.downloadDeleteEvent
-import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.getDownloadFileInfo
+import com.lagradost.cloudstream4.download.EngineVideoDownload.Companion.getDownloadListInfo
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
@@ -295,7 +296,7 @@ class DownloadViewModel : ViewModel() {
         val redundantDownloads = mutableListOf<Pair<Int, Int>>()
 
         children.forEach { child ->
-            val childFile = getDownloadFileInfo(context, child.id)
+            val childFile = getDownloadListInfo(context, child.id)
 
             if (childFile == null) {
                 // It may not be a redundant child if something is currently downloading.
@@ -306,7 +307,8 @@ class DownloadViewModel : ViewModel() {
                 }
                 return@forEach
             }
-            if (childFile.fileLength <= 1) return@forEach
+            // An engine download that has only just started has an empty path and may hold no byte yet (KMP-60).
+            if (childFile.fileLength <= 1 && childFile.path != Uri.EMPTY) return@forEach
 
             val len = childFile.totalBytes
             val flen = childFile.fileLength
@@ -377,7 +379,7 @@ class DownloadViewModel : ViewModel() {
                 context.getKey<DownloadObjects.DownloadEpisodeCached>(key)
             }.mapNotNull {
                 val isSelected = selectedItemIds.value?.contains(it.id) ?: false
-                val info = getDownloadFileInfo(context, it.id) ?: return@mapNotNull null
+                val info = getDownloadListInfo(context, it.id) ?: return@mapNotNull null
                 VisualDownloadCached.Child(
                     currentBytes = info.fileLength,
                     totalBytes = info.totalBytes,

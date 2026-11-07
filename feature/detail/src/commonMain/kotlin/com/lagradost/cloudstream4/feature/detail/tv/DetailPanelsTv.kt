@@ -7,8 +7,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
 import com.lagradost.cloudstream4.core.designsystem.panel.SidePanel
 import com.lagradost.cloudstream4.core.designsystem.panel.SidePanelHost
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
@@ -76,10 +79,17 @@ internal fun DetailPanelsTv(
     val latch = remember { PanelLatch() }
     if (opening != null) latch.kind = opening
     val showing = opening ?: latch.kind
+    val openers = remember { DetailPanelOpeners() }
 
     SidePanelHost(
         expanded = opening != null,
         onDismissRequest = { onAction(DetailAction.PanelDismissed) },
+        // Each control is nested in the action row, inside the page's lazy column: `SidePanelHost` cannot find it
+        // without being told (`BUG-36`).
+        opener = when (showing) {
+            DetailPanelKind.WatchStatus -> openers.watchStatus
+            DetailPanelKind.Synopsis -> openers.synopsis
+        },
         panel = {
             when (showing) {
                 DetailPanelKind.WatchStatus -> WatchStatusPanel(
@@ -92,9 +102,25 @@ internal fun DetailPanelsTv(
                     SynopsisPanel(plot = plot, onClose = { onAction(DetailAction.PanelDismissed) })
             }
         },
-        content = { content { onAction(DetailAction.WatchStatusPickerOpened) } },
+        content = {
+            CompositionLocalProvider(LocalDetailPanelOpeners provides openers) {
+                content { onAction(DetailAction.WatchStatusPickerOpened) }
+            }
+        },
     )
 }
+
+/** The two controls that open [DetailPanelsTv]'s panels, which get focus back when they close. */
+internal class DetailPanelOpeners {
+    val watchStatus = FocusRequester()
+    val synopsis = FocusRequester()
+}
+
+/**
+ * [DetailPanelOpeners] for the action row, which is three composables below the host. Null outside a host, where a
+ * control has no panel to give focus back from.
+ */
+internal val LocalDetailPanelOpeners = staticCompositionLocalOf<DetailPanelOpeners?> { null }
 
 /** Which of the two panels [DetailPanelsTv] is showing, or was showing while one slides out. */
 private enum class DetailPanelKind { Synopsis, WatchStatus }

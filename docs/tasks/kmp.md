@@ -5048,22 +5048,110 @@ Their `fileLength <= 1` filters and the play actions would need to handle it. No
 - A DNS setting change rebuilding the client.
 - The two space refusals on a device (unit tests only).
 
-## KMP-60 — Engine downloads listed while they run · **open**, blocks turning `KMP-59`'s switch on
+## KMP-60 — Engine downloads listed while they run · **built 2026-11-07**, blocks turning `KMP-59`'s switch on
 
-With `EngineDownloadSwitch.useSegmentedEngine` on, a download appears in no Downloads list until its copy finishes:
-- `getDownloadFileInfo` returns null while the destination file is missing (`DownloadManager.kt` ~1699).
-- All four list readers drop null.
-- The pruning in `calculateDownloadStats` keys off the same null.
+With `EngineDownloadSwitch.useSegmentedEngine` on, a download used to appear in no Downloads list until its copy finished:
+`getDownloadFileInfo` returns null while the destination file is missing, every list reader dropped null, and the
+pruning in `calculateDownloadStats` keyed off the same null.
 
-Writing `KEY_DOWNLOAD_INFO` at start changes nothing by itself. Smallest fix, as reported in `KMP-59`:
-- Add a `getDownloadListInfo(id)` that falls back to `KEY_DOWNLOAD_INFO`, with the staged length and an empty path.
-- Use it in `DownloadViewModel.calculateDownloadStats`, `DownloadViewModel.updateChildList`, `AndroidDownloadsSource.readEpisodes` and `AndroidDownloadSeriesSource`.
-- The `fileLength <= 1` filters must let a just-started download through.
-- The play actions must refuse the empty path.
+**What was built.** All new code is in `EngineVideoDownload`'s companion; the existing files get one-line changes.
+- **The record at start.** The wrapper writes `KEY_DOWNLOAD_INFO` at the run's first snapshot, and again when the total
+  first becomes known, through the same `DownloadMetaData.setDownloadFileInfoTemplate` that `downloadThing` uses after
+  its headers. It holds what `downloadThing`'s holds: total, folder, display name, base path and `linkHash`. No URL,
+  header or referer.
+- **`getDownloadListInfo(context, id)`.** Returns `getDownloadFileInfo` when the destination file exists. Otherwise, only with
+  the switch on and only when `<staging root>/<id>/` exists and the record does, it returns the staged bytes (file
+  sizes under the staging directory, the marker aside, capped at the total), the record's total and `Uri.EMPTY`.
+  With the switch off it is `getDownloadFileInfo` and reads nothing else.
+- **`refusesPlay(context, id)`.** True only with the switch on, a staging directory, and no destination file.
+- **`deleteStagingForDelete(context, id)`.** `deleteFile` found no file and returned false, so a listed engine download
+  could not be deleted. Now it does, only when the file lookup is null: a running download's staging is left to its
+  own stop, which the delete's Stop event triggers; an idle one's is removed. With the switch off it is false.
 
-Tests to write before the switch goes on (not needed for `KMP-59`'s merge):
-- Stop or Cancel during the fetch, and during the copy. The staging and the destination must both be gone.
-- Pause and Resume sent through `downloadEvent` during a run. Resume must go on from disk.
+**The readers.** Every caller of `getDownloadFileInfo`, and what it does now:
+
+| Caller | Now |
+|---|---|
+| `DownloadViewModel.calculateDownloadStats` | `getDownloadListInfo`; its `fileLength <= 1` filter lets an empty path through. Not pruned while it has staging |
+| `DownloadViewModel.updateChildList` | `getDownloadListInfo` |
+| `AndroidDownloadsSource.readEpisodes` | `getDownloadListInfo`; its `fileLength <= 1` filter lets an empty path through |
+| `AndroidDownloadSeriesSource.read` | `getDownloadListInfo` |
+| `BaseFetchButton.setPersistentId` (result-page and list buttons) | `getDownloadListInfo`, so a staged download shows its bytes and offers Resume/Pause as a partial file does |
+| `DownloadButtonSetup` `DOWNLOAD_ACTION_LONG_CLICK` | Unchanged: the "available offline" snackbar stays file-only |
+| `DownloadQueueManager.addToQueue` (the 98% check) | Unchanged on purpose: a 99%-staged download must still be queueable, and `fileLengthOnDisk` must never get an empty path |
+| `DownloadFileGenerator.generateLinks` | Refuses (below) |
+| `DownloadQueueAdapter` (reads `KEY_DOWNLOAD_INFO`) | Unchanged code; now offers "Delete file" for a running engine download, which works through `deleteStagingForDelete` |
+
+**The play actions.** Every play route goes through `DownloadButtonSetup.handleDownloadClick(DOWNLOAD_ACTION_PLAY_FILE)`
+and then `DownloadFileGenerator`:
+- Phone Downloads: `DownloadAdapter` (a film's header row, a child row).
+- The download button's popup, "Play file" (`PieFetchButton`), on the result page and in the lists.
+- Continue Watching from a download (`SearchHelper`).
+- TV Downloads, a film (`DownloadsTvFragment.open`), and TV series Play and Play next (`DownloadSeriesTvFragment`).
+
+The refusal is at both seams. `handleDownloadClick` refuses the episode with a "Downloading" toast (an existing string) and
+does not navigate. It also leaves running engine episodes out of the playlist it builds. `DownloadFileGenerator` returns
+no links for an empty-path episode that `refusesPlay` names, instead of handing the player `Uri.EMPTY`. No download has a
+share or "open with" action: the result page's share sends the title's page link. During the copy, the destination
+file exists, so a play opens the partial copy, which is what `downloadThing`'s partial file does.
+
+**What changes with the switch on** (the switch defaults to off):
+
+| Old (switch on, `KMP-59`) | New | Who notices |
+|---|---|---|
+| Not listed until the copy ends | Listed from the first snapshot, with the staged bytes | Everyone |
+| A failed download's staged parts are invisible; the list prunes its entry when idle | Listed with its staged bytes and offered Resume, which resumes from staging. Not pruned | Users with failed downloads |
+| The result-page button shows nothing for a staged download; a click starts again from 0 | Shows the staged bytes and offers Resume/Pause/Delete | Result-page users |
+| The queue popup offers Cancel | Offers "Delete file", which stops the run and removes its staging | Queue users |
+| — | Play on a running download shows "Downloading" and stays put; the playlist skips it | Anyone who taps it |
+| — | During the copy, the row's bytes drop to the copy's progress, because the real file wins | Big files on slow storage |
+
+**Switch off.** Every new branch checks the switch first and reads nothing when it is off: `getDownloadListInfo` is
+`getDownloadFileInfo`, the `<= 1` filters see a real path, `refusesPlay` and `deleteStagingForDelete` are false.
+
+**`checkExtensionApi`.** 3 added lines and 0 removed or changed, all on `EngineVideoDownload$Companion`:
+`getDownloadListInfo`, `refusesPlay` and `deleteStagingForDelete`. The record is read with `DataStore`'s `Class` overload,
+because the reified one inlines a `TypeReference` class into `classes.jar`.
+
+**Tests** (`EngineDownloadListDeviceTest`, switch on, against `EngineTestServer`, throttled so each download is still
+running when the test looks). All local, none CI, on `Television_720p` (API 36):
+1. **Listed while running.** After 2 MiB are staged, `getDownloadFileInfo` is still null, and each of the four readers
+   lists the episode through its real code: `updateHeaderList` (so `calculateDownloadStats`), `updateChildList`,
+   `AndroidDownloadsSource.contents` and `AndroidDownloadSeriesSource.contents`, each with progress bytes > 1 and the
+   right total. The two Compose sources get no facts, so only their disk read can list it. `getDownloadListInfo`'s path is
+   `Uri.EMPTY`, and the record holds the folder, display name, `linkHash` and nothing else.
+2. **Play refused.** `refusesPlay` is true, and `DownloadFileGenerator.generateLinks` returns false without handing the
+   player anything. In the real `MainActivity`, `handleDownloadClick(DOWNLOAD_ACTION_PLAY_FILE)` runs with an activity and
+   does not navigate to the player. Read, not driven by taps: `DownloadAdapter`, `PieFetchButton`'s popup, `SearchHelper`
+   and the two TV fragments, which all send that same click.
+3. **Not pruned.** With the queue idle as `calculateDownloadStats` sees it, a control episode with no record is pruned and
+   the running download's entry is not.
+4. **Stop and Cancel.** A Stop through `downloadEvent` during the fetch, a Cancel (`EpisodeDownloadInstance.cancelDownload`,
+   which is what `DownloadQueueManager.cancelDownload` calls for a running one) during the fetch, and a Stop at the copy.
+   Each leaves no staging directory, no destination file and no listing. The record stays, as stopping `downloadThing`
+   leaves it, and the stop ends as `success`, as `DOWNLOAD_STOPPED` does. The copy is reached by a restart after a
+   crash after the copy, and the Stop is sent from the notification it raises as it starts copying, so the copy loop's
+   stop check ends it with the destination open.
+5. **Delete.** `deleteFilesAndUpdateSettings` on a running engine download reports it deleted, stops it, and leaves no
+   staging, no file and no record.
+6. **Pause and Resume through `downloadEvent`.** After the pause, no request is made, no byte is sent and no part file
+   grows for 2 s. After the resume, no request overlaps a held range by more than the channel's discard (1 MiB,
+   `KMP-69`), and the file is byte-identical.
+
+8/8 pass. The full `:app` device suite: 120 tests, 0 failures, 1 skipped (`TvHomeRealPluginProof`), including
+`DownloadFactsDeviceTest` 7/7, `DownloadFactsDiskFullDeviceTest` 1/1 and `EngineDownloadDeviceTest` 8/8, all unchanged.
+(The full run predates test 5; 8/8 is from a class run after it was added.) `:app:testPrereleaseDebugUnitTest`: 244/0.
+`EngineTestServer` now treats an interrupt in a throttled body as the client leaving: closing it mid-transfer used to
+crash the test process.
+
+**Not verified.**
+- API 24/25: the new tests ran on API 36 only.
+- A Cancel during the copy. It reaches the engine as the same `downloadEvent` Stop (`EpisodeDownloadInstance.cleanup`), read, not run.
+- A stop in the middle of a long copy. The test's stop lands at the copy's first buffer.
+- The play actions driven by real taps on the phone and TV lists, the popup and Continue Watching (read: all use the tested click).
+- `BaseFetchButton` showing staged bytes; a failed engine download listed, resumed from staging, and not pruned while idle;
+  deleting an idle staged download.
+- Document-tree and SD-card destinations.
 
 ## KMP-61 — Engine: a work steal refetches an in-flight range's tail · **open**, measured, no fix
 
@@ -5105,18 +5193,6 @@ No `DownloadObjects` class changed, and `:app:checkExtensionApi` shows no diff.
   stop, finish, restart and migration.
 - **Known and left.** `KEY_DOWNLOAD_INFO.linkHash` (`url.hashCode()`) and `DOWNLOAD_HEADER_CACHE.url` (the result
   page URL).
-
-## KMP-52 — The Mac download service and its data · **open**
-
-`:media:download` on the JVM in `:desktopApp`, with real paths, a queue, persistence and data flows. No UI: the Downloads UI is `KMP-54`.
-The contract with `KMP-54`, all in `:desktopApp` under `com.lagradost.cloudstream4.downloads`:
-- `DesktopDownloadsSource : DownloadsSource`. Its storage is the volume holding the download folder, non-null from the first emission.
-- `DesktopDownloadSeriesSource : DownloadSeriesSource`.
-- A host class `DesktopDownloads` with `delete(ids: Set<DownloadTitleId>)`, `deleteEpisodes(ids: Set<DownloadEpisodeId>)`,
-  and `fileOf(id)`, which is null until the download is complete.
-- Ids stay the same across restarts.
-- `contents` emits at most about 4 times a second while running, and not at all when idle.
-- No change to `:feature:downloads`.
 
 ---
 
@@ -5549,6 +5625,9 @@ alone, because board D4 gives the number its own column (the code stands in only
 1. Move both into one `internal` function in `series/`, and have both screens call it.
 2. Replace `"${episode_short}$number"`, the one-number fallback in both copies, with a key that takes the number as
    an argument, so a translation can place it.
+   The same concatenation is in `HomeResume.line()` in `HomeScreenDesktop.kt` (`KMP-55`): `season_short` and
+   `episode_short` glued to their numbers for Continue watching's "S2 E4". It should use the same key, with a sibling
+   for the season, so both read the same in every language.
 3. Rerun the TV downloads device suite and keep its screenshots at 0/0, because this touches a `tv/` file.
 
 ## KMP-69 — Engine: a dropped body loses up to 1 MiB already received · **open**, low, follow-up to `KMP-61`
@@ -5815,3 +5894,172 @@ Why: headers can be credentials; the owner's rule is no URLs, headers or paths i
 ### Published API
 
 Additions only. `app/api/classes-jar.api` +70 / −0: 8 `R$string` fields, `CS3IPlayer.getBufferedPosition`, `FullScreenPlayer`'s `playerError` override and failure flag, `GeneratorPlayer`'s facts override, and the HUD host classes.
+
+## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **approved 2026-11-06**, scheduled after `KMP-52`
+
+It was found while checking `KMP-59` against the no-link ruling for `KMP-52`.
+- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
+  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
+  (`library/.../ExtractorApi.kt:700-708`). It is written to SharedPreferences.
+- **When.** With `KMP-59`'s switch on or off. The engine path adds no link of its own: its marker holds a size and a name, and its state
+  file holds the size, ETag, Last-Modified and the ranges.
+- **The owner's ruling (2026-11-06): the same no-link rule as `KMP-52`.** Keep `ep`, the provider and the episode's `loadLinks` data, and
+  run `loadLinks` again on resume, including the start-up re-queue in `DownloadQueueManager.init`.
+- **Notes for the build:**
+  - A resume package saved before the update keeps its old data until it finishes or is removed.
+  - After a successful migration, the stored `ExtractorLink`s are deleted from SharedPreferences.
+  - Behaviour change: a source that no longer answers fails that resume.
+
+## KMP-52 — The Mac download service and its data · **measured 2026-11-06**
+
+`:media:download` runs on the JVM in `:desktopApp`, in package `com.lagradost.cloudstream4.downloads`, with a queue, persistence and the two
+download sources. There is no UI: that is `KMP-54`, which wires `source()` and `series(id)` into its screen. No caller enqueues anything yet.
+
+**The contract with `KMP-54`.**
+- `DesktopDownloadsSource : DownloadsSource`. `storage` is the volume holding the download folder, non-null from the first emission.
+- `DesktopDownloadSeriesSource : DownloadSeriesSource`.
+- The host `DesktopDownloads` has `delete(Set<DownloadTitleId>)`, `deleteEpisodes(Set<DownloadEpisodeId>)`, and `fileOf` for a title and
+  for an episode. `fileOf` is null until done and on disk; for a series it gives the folder.
+- Ids are stable across restarts.
+- `contents` emits at most once every 250 ms while running, and not at all when idle.
+- `DownloadSeriesContents.freeBytes` (added by `KMP-54`) is filled from the download root's volume: the titles page's own
+  `total - used`, so the two pages agree. It is null only while the disk is unread.
+- There are no changes to `:feature:downloads`, except one KDoc line on `DownloadTitleState.Paused`. The PM cleared it: it now says that only Android reads a failure as Paused after a restart, until `KMP-60`/`KMP-62`.
+
+**Shape.**
+- `enqueue(DesktopDownloadRequest)` accepts VIDEO links only; HLS, DASH and torrents are refused with a typed `EnqueueRefusal`.
+  `DesktopDownloadLink.of(RemoteLink)` adapts the sandbox's link. A request names its source (`DownloadSourceRef`: provider and episode
+  data); its link is optional and only ever in memory.
+- At most 3 downloads run at once, first in, first out. Pause frees the slot (on Android a paused download keeps it).
+- Cancel discards the parts and the record.
+- Enqueuing a paused or failed episode again takes the new link, because signed URLs expire. A blank source is `EnqueueRefusal.NoSource`.
+- The engine writes straight into `~/Downloads/CloudStream/<title>/`. On the JVM its atomic move works, so there is no staging (unlike `KMP-59`).
+- File names are `S01E02 Name.mp4`, or the title for a film, with ` (2)` on a clash. `DownloadPaths` restates the engine's internal name
+  rules more strictly, so the result is always one safe path segment.
+- The HTTP client is `HttpClientFactory(posterHttpClient())`. It verifies TLS and checks the resolved and connected addresses, which also
+  closes the engine's DNS-rebinding gap on the Mac.
+- Delete removes only empty folders, and refuses a folder whose real path is not directly inside the download root.
+- After a restart nothing starts by itself. An unfinished episode comes back Paused, with its bytes measured from the engine's part files.
+  A finished episode whose file is gone is dropped.
+- Logging: the exception class and a fixed text only.
+
+**Persisted: `~/.cloudstream4/downloads.json`, format 3, `0600`, written atomically. No link (owner's ruling, 2026-11-06).**
+- *What it holds:*
+  - ids, metadata, folder and file name, state, byte counts and queue order;
+  - the episode's source: `provider` (the extension's name) and `episodeData`, the string the player passes to
+    `SandboxedProvider.links(data)`. **Unfinished episodes only:** both are cleared when an episode reaches Done, and a Done record
+    reads back without them (any other record without a source is dropped);
+  - a failure's typed reason: the `DownloadFailure` variant name plus its numbers (status code, byte counts), never text. So a
+    Failed episode stays Failed with its reason after a restart. `StoredFailure`'s `when` is exhaustive, so a new variant will not
+    compile until it is named.
+- *Not a link, but not "no URL at all":* `episodeData` is the same episode reference that watch history and bookmarks keep. It is often
+  an episode-page URL on the provider's site, and sometimes JSON with URLs inside.
+- *What it never holds:* the media link's `url`, `headers` or `referer`. Those stay in memory for the current process only.
+- *Resume and retry:* a resume after a restart, and every retry, asks the extension again through `LinkResolver`. In production that is
+  `SandboxLinkResolver`, which works the player's way: provider by name, then `links(data)`, then `isPublic`, then quality rank. The first
+  VIDEO link is used.
+  - No usable link: `NoUsableLink`.
+  - The resolver throws or takes more than 60 s: `SourceFailed`. The call runs under `runInterruptible`, so a resolver that blocks
+    a thread is interrupted too. `SandboxedProvider.links` already suspends and sends `OP_CANCEL` to the plugin host when cancelled.
+  - Either way the part files stay.
+- *Resume after a pause* in the same process reuses the link in memory.
+- *Reading it back:* everything is validated again (path segments, enum names), a bad record is dropped, and a format-1 file is refused.
+- *What stays out:* no `toString` includes the source or the link.
+
+**Tests** (local, none CI). Counted from the XML:
+- `DesktopDownloadsTest`: 23/23 (the 22 before it ran 10 times in a row), against a JDK `HttpServer` with Range and ETag support; every completion is compared byte for byte.
+  It covers:
+  - done, and `fileOf` only at done
+  - at most 3 running
+  - pause and resume continuing from disk, with a ranged request after 0
+  - a restart with a new host over the same files: same ids, Paused, then resumed and byte-identical
+  - cancel of a waiting download, and of a running one (it stops, and no part, file or record is left); a cancel of a finished one
+    is refused and keeps its file and record; delete of a title and of an episode
+  - the series page's `freeBytes` equals the titles page's free figure
+  - closing the host while a resolve is in flight leaves `downloads.json` byte-identical, and a new host reads the episode Paused
+  - a file deleted outside the app, noticed on `refresh`
+  - the emission rate: 2.64–2.68/s while running, every gap ≥ 240 ms, nothing over 1.25 s idle
+  - the file's permissions are `rw-------`
+  - no link text in logs, stdout, stderr or any public `toString`
+  - no link text on disk: marker strings in the url, a header, the user agent and the referer never appear in the raw bytes of
+    `downloads.json`, any other file in its folder, or any file under the download root (the engine's state and parts). This is checked
+    after each of Queued, Running, Running past the engine's state rewrite, Paused, Done and Failed.
+  - after a restart, the resolver is asked once with the stored provider and data; a fresh URL resumes from the parts, byte-identical
+  - a resolver with nothing, only HLS, or an exception: `NoUsableLink` or `SourceFailed`, with the parts unchanged
+  - a retry asks again; a resume after a pause does not
+  - a resolver that never answers, and one that blocks its thread, both fail `SourceFailed` within the (injected) timeout with
+    the parts kept; the blocked thread is released
+  - a failed `NoUsableLink` survives a restart as Failed, then a retry completes; every failure variant round-trips
+  - a finished episode leaves no provider or data marker on disk, is still Done with its file after a restart, and is gone after delete
+- **A real run with an official extension** (InternetArchive, in a throwaway `user.home`; nothing played, and no link or data
+  printed). The "big buck bunny" episode gave 4 VIDEO links. The download was enqueued with its source only. It fetched 5,301,880
+  bytes in 5 parts, then the host closed. A new host listed it Paused. Resume asked the extension once, and the fresh link resumed
+  **from the parts**: every one of the 8 fetches started at its part's planned start plus its bytes on disk, and none at 0. The ETag
+  and Last-Modified matched across the two runs, and both went through the same hosts. It was stopped at 15.4 MB of 645 MB.
+  The live links call answered in 4 ms, so the timeout could not be seen cutting it there.
+- Without the 250 ms throttle and with a fourth slot, 3 of these fail.
+- Full `:desktopApp:jvmTest`: 417/0. `:desktopApp:createDistributable` builds; the app was not launched.
+
+**Not verified.**
+- A whole download from a real host to the end, and a CDN that changes its ETag between resolves.
+- A full disk.
+- An unreadable downloads file, where `contents` throws and `enqueue` returns `StoreUnreadable`.
+- A process kill, as opposed to `close()`.
+
+## KMP-55 — The Mac's Home, built from `DS-21`
+
+**Status:** in review · stacked on `#191` (`I18N-14`) · H4 waits on `KMP-68` (`#197`)
+
+`HomeScreenDesktop` draws what the device keeps above the source's rows:
+- **The hero** (H1) is a card in the page, with More info.
+- **Continue watching** (3c) is one line of 16:9 cards, each with its resume rule in `live`.
+- **Bookmarks** (3e, 3f) are the status chips, with the chosen one outlined, and its titles. With no status chosen, the
+  prompt to choose one.
+
+These are local, so they stay through every state of the source's. The source's state draws where its rows would be:
+loading, a failure, offline, or None (H5, in `home_none_*` with `home_choose_source`). With none of them on screen, the
+page is exactly what it was, and every coordinate in the existing tests still holds.
+
+The bar:
+- the source, or None;
+- the offline pill (H4), `downloads_offline_pill`, beside the source;
+- Reload and Random (3j) as icon buttons, while the source's rows are on screen.
+
+The source panel (H3):
+- `home_source_picker_title` and its line;
+- None first, with `home_source_none_line`;
+- each source with its section count (`home_source_sections`);
+- a check on the chosen one;
+- Done.
+
+The Mac's library store now feeds Home, as Android's does: `DesktopHomeHistory` (resumable positions, newest first) and
+`DesktopHomeBookmarks` (a bucket is a status; Favourites is not one).
+
+**Measured** in real renders (`HomeScreenTest`'s `15`-`21`):
+- At 800×520 offline (`21-kept-minimum-offline`), the pill fits beside the source button with room to spare.
+- At 1280 the hero is 320 tall; under a 720 content width it is the compact 240 one, with the title a size down and no
+  synopsis (H6).
+
+Tests:
+- `DesktopHomeLibraryTest` (2).
+- `HomeScreenTest`'s picker case now also chooses None, and its coordinates are measured from `18-kept-picker`.
+- `:desktopApp` 397, `:feature:home` 68, 0 failures.
+
+**DECIDED** (reported to the PM):
+- **The hero has More info and no Play.** The shared contract has no "play from home"; TV's hero opens the title too.
+  Options: (A) More info only, (B) Play that opens the title, (C) a new play action. Chose A, because a button named Play
+  that opens a page says something untrue.
+- **The card context menu (H2) is deferred.** "Add to bookmarks" has no action in the contract, and the menu API is
+  desktop-only. It wants its own task, with the action added to the shared model. Hover lift is in.
+- **The bookmark filter is kept while the window is open.** There is no desktop preference store yet.
+- **H4's kept rows and their age** wait on `KMP-68`. Until then, a failed reload draws as 3m, under the device's rails.
+
+## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
+
+`#200` made Home's failure detail safe. A thrown failure is now its type, such as `IllegalStateException`, never its message,
+because a message can carry an address, a path or a token. That holds on both platforms. It is developer language on a TV,
+though. To do:
+1. Map the common types to a typed reason in `:feature:home`: network, timeout, refused, other.
+2. Give each reason a key with its plain, translated words (an `I18N` task first). A screen draws the words; the type
+   stays only as the pasteable detail.
+3. Keep the rule that no message, address or path reaches the screen. Rerun the TV Home device suite.
