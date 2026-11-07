@@ -28,6 +28,7 @@ import com.lagradost.cloudstream3.utils.BiometricAuthenticator.deviceHasPassword
 import com.lagradost.cloudstream3.utils.BiometricAuthenticator.isAuthEnabled
 import com.lagradost.cloudstream3.utils.BiometricAuthenticator.promptInfo
 import com.lagradost.cloudstream3.utils.BiometricAuthenticator.startBiometricAuthentication
+import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.DataStoreHelper.accounts
 import com.lagradost.cloudstream3.utils.DataStoreHelper.selectedKeyIndex
 import com.lagradost.cloudstream3.utils.DataStoreHelper.setAccount
@@ -35,6 +36,8 @@ import com.lagradost.cloudstream3.utils.UIHelper.enableEdgeToEdgeCompat
 import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.openActivity
 import com.lagradost.cloudstream3.utils.UIHelper.setNavigationBarColorCompat
+import com.lagradost.cloudstream4.account.AccountSelectTv
+import com.lagradost.cloudstream4.account.TvAccountSwitch
 
 class AccountSelectActivity : FragmentActivity(), BiometricCallback {
 
@@ -75,7 +78,7 @@ class AccountSelectActivity : FragmentActivity(), BiometricCallback {
         val settingsManager = PreferenceManager.getDefaultSharedPreferences(this)
         val skipStartup = settingsManager.getBoolean(
             getString(R.string.skip_startup_account_select_key), false
-        ) || accounts.count() <= 1
+        ) || DataStoreHelper.getAccounts(this).size <= 1 // KMP-73: count the synthesized default, which the stored list omits
 
         fun askBiometricAuth() {
 
@@ -125,6 +128,14 @@ class AccountSelectActivity : FragmentActivity(), BiometricCallback {
         }
 
         CommonActivity.init(this)
+
+        // KMP-73: TV draws artboard 8d over the same view model; selecting and the PIN check are unchanged.
+        if (isLayout(TV) && TvAccountSwitch.useComposeAccountSelect) {
+            AccountSelectTv(this, accountViewModel, onManageDone = if (isEditingFromMainActivity) ::navigateToMainActivity else null).attach()
+            if (isEditingFromMainActivity) accountViewModel.setIsEditing(true)
+            askBiometricAuth()
+            return
+        }
 
         val binding = ActivityAccountSelectBinding.inflate(layoutInflater)
         setContentView(binding.root)

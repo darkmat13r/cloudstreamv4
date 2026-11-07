@@ -154,7 +154,6 @@ import com.lagradost.cloudstream3.utils.Coroutines.main
 import com.lagradost.cloudstream3.utils.DataStore.getKey
 import com.lagradost.cloudstream3.utils.DataStore.setKey
 import com.lagradost.cloudstream3.utils.DataStoreHelper
-import com.lagradost.cloudstream3.utils.DataStoreHelper.accounts
 import com.lagradost.cloudstream3.utils.DataStoreHelper.migrateResumeWatching
 import com.lagradost.cloudstream3.utils.Event
 import com.lagradost.cloudstream3.utils.ImageLoader.loadImage
@@ -1348,7 +1347,7 @@ class MainActivity : AppCompatActivity(), ColorPickerDialogListener, BiometricCa
         val noAccounts = settingsManager.getBoolean(
             getString(R.string.skip_startup_account_select_key),
             false
-        ) || accounts.count() <= 1
+        ) || DataStoreHelper.getAccounts(this).size <= 1 // KMP-73: the same count AccountSelectActivity skips on
 
         if (isLayout(PHONE) && isAuthEnabled(this) && noAccounts) {
             if (deviceHasPasswordPinLock(this)) {
