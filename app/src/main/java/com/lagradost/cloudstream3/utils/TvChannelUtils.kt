@@ -61,7 +61,7 @@ object TvChannelUtils {
                 null
             }
         } catch (e: Exception) {
-            Log.e("TvChannelUtils", "Query failed: ${e.message}", e)
+            Log.e("TvChannelUtils", "Query failed: ${redactedText(e.message)}\n${redactedStackTrace(e)}")
             null
         }
     }
@@ -110,7 +110,7 @@ object TvChannelUtils {
                 }
 
             } catch (error: Exception) {
-                Log.e("TvChannelUtils", "Error inserting ${item.name}: $error")
+                Log.e("TvChannelUtils", "Error inserting ${item.name}: ${redactedText(error.toString())}")
             }
         }
     }
@@ -128,7 +128,7 @@ object TvChannelUtils {
                     Log.w("ProgramDelete", "No program found for ID: $id")
                 }
             } catch (e: Exception) {
-                Log.e("ProgramDelete", "Failed to delete program ID: $id", e)
+                Log.e("ProgramDelete", "Failed to delete program ID: $id\n${redactedStackTrace(e)}")
             }
         }
 

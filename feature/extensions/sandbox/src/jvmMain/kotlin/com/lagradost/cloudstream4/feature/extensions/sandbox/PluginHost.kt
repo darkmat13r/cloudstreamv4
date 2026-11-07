@@ -42,6 +42,38 @@ import org.schabi.newpipe.extractor.NewPipe
  * - `serve <storeDir> <jarName> <dataDir>`
  */
 object PluginHost {
+    // BUG-44: one of three identical copies, which must stay in sync: `:app` `utils/LogRedaction.kt`,
+    // `:library` `mvvm/ArchComponentExt.kt` and `:feature:extensions:sandbox` `PluginHost.kt`.
+    // `:library` is the published API and cannot depend on an internal module, so they cannot share one.
+
+    /** `file:/…`, with any number of slashes, up to the next whitespace. */
+    private val FILE_URI = Regex("(?i)\\bfile:/\\S+")
+
+    /** `scheme://[userinfo@]host[:port]`, then whatever follows up to the next whitespace. */
+    private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*)://(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
+
+    /**
+     * An absolute path under a storage or home root, up to a newline, a quote, `": "` or the end. A path
+     * may hold spaces, so it is not cut at whitespace: what follows a path on its line is lost with it,
+     * which is the safe way round.
+     */
+    private val USER_PATH = Regex(
+        "(?<![\\w.:/-])/(?:storage|sdcard|data/user|mnt|Users|home)(?:/[^\\r\\n\"'<>]*?)?(?=: |[\\r\\n\"'<>]|\\z)"
+    )
+
+    /**
+     * Text with a `file:` uri or a path under `/storage`, `/sdcard`, `/data/user`, `/mnt`, `/Users` or
+     * `/home` replaced by `<path>`, and every other url cut to `scheme://host[:port]/<…>`. The host is
+     * kept because it helps triage and is not a secret; the userinfo, path, query and fragment are not.
+     */
+    internal fun String.withoutUrls(): String = this
+        .replace(FILE_URI, "<path>")
+        .replace(URL_IN_TEXT) { match ->
+            val (scheme, host, rest) = match.destructured
+            "$scheme://$host" + if (rest.isEmpty()) "" else "/<…>"
+        }
+        .replace(USER_PATH, "<path>")
+
 
     /** Passed first on the command line. It is how a packaged launcher knows to become a host. */
     const val ARGUMENT = "--plugin-host"
@@ -70,7 +102,7 @@ object PluginHost {
                 else -> EXIT_USAGE
             }
         } catch (failure: Throwable) {
-            System.err.println("plugin host: ${failure::class.java.name}: ${failure.message}")
+            System.err.println("plugin host: ${failure::class.java.name}: ${failure.message?.withoutUrls()}")
             EXIT_FAILED
         }
         // halt, not exit: a plugin's shutdown hook or stuck thread must not be able to outlive us.

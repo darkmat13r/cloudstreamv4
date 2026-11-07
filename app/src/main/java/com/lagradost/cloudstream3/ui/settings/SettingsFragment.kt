@@ -34,6 +34,7 @@ import com.lagradost.cloudstream3.utils.UIHelper.fixSystemBarsPadding
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.UIHelper.toPx
 import com.lagradost.cloudstream3.utils.getImageFromDrawable
+import com.lagradost.cloudstream3.utils.redactedStackTrace
 import com.lagradost.cloudstream3.utils.txt
 import java.io.File
 import java.text.DateFormat
@@ -212,7 +213,7 @@ class SettingsFragment : BaseFragment<MainSettingsBinding>(
                 } ?: activity.let { DataStoreHelper.getDefaultAccount(activity) }
 
             } catch (t: IllegalStateException) {
-                Log.e("AccountManager", "Activity not found", t)
+                Log.e("AccountManager", "Activity not found\n${redactedStackTrace(t)}")
                 null
             }
 

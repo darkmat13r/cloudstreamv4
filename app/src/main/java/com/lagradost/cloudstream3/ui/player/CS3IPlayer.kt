@@ -108,6 +108,7 @@ import com.lagradost.cloudstream3.utils.PLAYREADY_DRM_UUID
 import com.lagradost.cloudstream3.utils.SubtitleHelper.fromTagToLanguageName
 import com.lagradost.cloudstream3.utils.WIDEVINE_DRM_UUID
 import com.lagradost.cloudstream3.utils.redactedLinkInfo
+import com.lagradost.cloudstream3.utils.redactedStackTrace
 import com.lagradost.cloudstream3.utils.redactedSubtitleInfo
 import com.lagradost.cloudstream3.utils.redactedThrowable
 import com.lagradost.cloudstream3.utils.videoskip.VideoSkipStamp
@@ -1031,7 +1032,7 @@ class CS3IPlayer : IPlayer {
                 }
             }
         } catch (t: Throwable) {
-            Log.e(TAG, "handleEvent error", t)
+            Log.e(TAG, "handleEvent error\n${redactedStackTrace(t)}")
             event(ErrorEvent(t))
         }
     }
@@ -1640,7 +1641,7 @@ class CS3IPlayer : IPlayer {
                 }
             }.also { playerListener = it })
         } catch (t: Throwable) {
-            Log.e(TAG, "loadExo error", t)
+            Log.e(TAG, "loadExo error\n${redactedStackTrace(t)}")
             event(ErrorEvent(t))
         }
     }
@@ -1710,7 +1711,7 @@ class CS3IPlayer : IPlayer {
             subtitleHelper.setActiveSubtitles(activeSubtitles.toSet())
             loadExo(context, listOf(MediaItemSlice(mediaItem, Long.MIN_VALUE)), subSources)
         } catch (t: Throwable) {
-            Log.e(TAG, "loadOfflinePlayer error", t)
+            Log.e(TAG, "loadOfflinePlayer error\n${redactedStackTrace(t)}")
             event(ErrorEvent(t))
         }
     }
@@ -1963,7 +1964,7 @@ class CS3IPlayer : IPlayer {
                 onlineSource = onlineSourceFactory
             )
         } catch (t: Throwable) {
-            Log.e(TAG, "loadOnlinePlayer error", t)
+            Log.e(TAG, "loadOnlinePlayer error\n${redactedStackTrace(t)}")
             event(ErrorEvent(t))
         }
     }
