@@ -1946,3 +1946,30 @@ The tests themselves:
 
 - Other `Resource.Failure` texts that put a message on screen: `ErrorLoadingException`'s (written by the extension), `UnknownHostException`'s (a host name), `SSLHandshakeException`'s, and the "outdated" text for `NoSuchMethodError` and its kin. None goes through `getStackTracePretty`, and none was in this PR's scope.
 - `/data/data/<package>` and other roots outside the six listed are not redacted. They are the app's own private storage, not the person's files.
+
+---
+
+## BUG-47 — Windows and macOS-volume user paths were not redacted · **low** · found 2026-11-07
+
+**Status:** fixed in the PR that adds this entry, stacked on `BUG-44` (#198). The scope was set by the coordinator.
+
+**The defect.** `BUG-44`'s rules turn paths under `/storage`, `/sdcard`, `/data/user`, `/mnt`, `/Users` and `/home` into `<path>`. They missed two other places a person's files live on the desktop app's platforms:
+
+- a Windows home path, `C:\Users\<name>\…`
+- a macOS external or second volume, `/Volumes/<disk name>/…`
+
+**The fix.** It is made in all three copies of the rules, listed under `BUG-44`:
+
+- `/Volumes` joins the absolute-path roots.
+- A new `WINDOWS_USER_PATH` rule takes any drive letter in either case, `Users` in any case, and either slash. Its ends are the same as for the other paths: a newline, a quote, `": "` or the end.
+- `C:\Program Files\…` and other non-home Windows paths are not redacted.
+
+**Tests.** The shared table, which each copy's test runs, gains five cases:
+
+- a `C:\Users\…` path ending in `": "`
+- a lower-case `d:\users\…`
+- `C:/Users/…` with forward slashes
+- a `/Volumes/…` path whose disk name holds a space
+- `C:\Program Files\…`, which is unchanged
+
+Control: against `BUG-44`'s rules, the new cases failed in all three copies' tests.
