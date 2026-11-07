@@ -580,7 +580,9 @@
 <string name="search_tv_suggestion_suggested">تجویز کردہ</string>
 <string name="season">سیزن</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">دیگر</string>
 <string name="season_short">S</string>
+<string name="season_specials">خصوصی</string>
 <string name="seek_back_10_seconds">10 سیکنڈ پیچھے جائیں</string>
 <string name="seek_forward_10_seconds">10 سیکنڈ آگے جائیں</string>
 <string name="select_all">سب چُنیں</string>

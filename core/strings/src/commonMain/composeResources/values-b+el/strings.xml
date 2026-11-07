@@ -617,7 +617,9 @@
 <string name="search_tv_suggestion_suggested">ΠΡΟΤΕΙΝΕΤΑΙ</string>
 <string name="season">Κύκλος</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Άλλα</string>
 <string name="season_short">Σ</string>
+<string name="season_specials">Ειδικά</string>
 <string name="seek_back_10_seconds">Μετάβαση 10 δευτερόλεπτα πίσω</string>
 <string name="seek_forward_10_seconds">Μετάβαση 10 δευτερόλεπτα μπροστά</string>
 <string name="select_all">Επιλογή όλων</string>

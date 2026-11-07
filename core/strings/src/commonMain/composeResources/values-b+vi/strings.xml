@@ -674,7 +674,9 @@
 <string name="search_tv_suggestion_suggested">ĐƯỢC GỢI Ý</string>
 <string name="season">Mùa</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Khác</string>
 <string name="season_short">Mùa</string>
+<string name="season_specials">Đặc biệt</string>
 <string name="seek_back_10_seconds">Tua lùi 10 giây</string>
 <string name="seek_forward_10_seconds">Tua tới 10 giây</string>
 <string name="select_all">Chọn tất cả</string>

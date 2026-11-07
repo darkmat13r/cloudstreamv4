@@ -259,7 +259,9 @@
 <string name="search_tv_suggestion_recent_suggested">SON · HƏM DƏ TƏKLİF OLUNUB</string>
 <string name="search_tv_suggestion_suggested">TƏKLİF OLUNUB</string>
 <string name="season">Sezon</string>
+<string name="season_other">Digər</string>
 <string name="season_short">S</string>
+<string name="season_specials">Xüsusi</string>
 <string name="seek_back_10_seconds">10 saniyə geri keç</string>
 <string name="seek_forward_10_seconds">10 saniyə irəli keç</string>
 <string name="settings_info">Məlumat</string>

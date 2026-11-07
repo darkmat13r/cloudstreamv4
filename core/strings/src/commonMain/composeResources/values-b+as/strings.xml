@@ -609,7 +609,9 @@
 <string name="search_tv_suggestion_suggested">পৰামৰ্শিত</string>
 <string name="season">চিজন</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">অন্যান্য</string>
 <string name="season_short">চি</string>
+<string name="season_specials">বিশেষ</string>
 <string name="seek_back_10_seconds">১০ ছেকেণ্ড পাছুৱাওক</string>
 <string name="seek_forward_10_seconds">১০ ছেকেণ্ড আগুৱাওক</string>
 <string name="select_all">সকলো বাছক</string>

@@ -610,7 +610,9 @@
 <string name="search_tv_suggestion_suggested">JAVASOLT</string>
 <string name="season">Évad</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Egyéb</string>
 <string name="season_short">Év</string>
+<string name="season_specials">Különkiadások</string>
 <string name="seek_back_10_seconds">Ugrás 10 másodpercet hátra</string>
 <string name="seek_forward_10_seconds">Ugrás 10 másodpercet előre</string>
 <string name="select_all">Mindet Kiválaszt</string>

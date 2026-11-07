@@ -197,6 +197,8 @@
 <string name="search_tv_suggestion_recent">دوایین · %s</string>
 <string name="search_tv_suggestion_recent_suggested">دوایین · هەروەها پێشنیارکراو</string>
 <string name="search_tv_suggestion_suggested">پێشنیارکراو</string>
+<string name="season_other">ئەوانی تر</string>
+<string name="season_specials">تایبەت</string>
 <string name="seek_back_10_seconds">10 چرکە بگەڕێوە دواوە</string>
 <string name="seek_forward_10_seconds">10 چرکە بڕۆ پێشەوە</string>
 <string name="select_all">هەموو هەڵبژێرە</string>

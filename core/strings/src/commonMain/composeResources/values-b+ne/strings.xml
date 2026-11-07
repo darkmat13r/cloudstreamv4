@@ -216,6 +216,8 @@
 <string name="search_tv_suggestion_recent">हालैको · %s</string>
 <string name="search_tv_suggestion_recent_suggested">हालैको · सुझाव पनि गरिएको</string>
 <string name="search_tv_suggestion_suggested">सुझाव गरिएको</string>
+<string name="season_other">अन्य</string>
+<string name="season_specials">विशेष</string>
 <string name="seek_back_10_seconds">10 सेकेन्ड पछाडि जानुहोस्</string>
 <string name="seek_forward_10_seconds">10 सेकेन्ड अगाडि जानुहोस्</string>
 <string name="show_log_cat">Logcat देखाउनुहोस</string>

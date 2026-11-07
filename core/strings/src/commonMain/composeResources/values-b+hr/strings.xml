@@ -670,7 +670,9 @@
 <string name="search_tv_suggestion_suggested">PREDLOŽENO</string>
 <string name="season">Sezona</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Ostalo</string>
 <string name="season_short">S</string>
+<string name="season_specials">Specijali</string>
 <string name="seek_back_10_seconds">Pomakni natrag 10 sekundi</string>
 <string name="seek_forward_10_seconds">Pomakni naprijed 10 sekundi</string>
 <string name="select_all">Označi sve</string>

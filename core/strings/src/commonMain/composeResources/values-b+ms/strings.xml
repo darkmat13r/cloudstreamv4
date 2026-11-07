@@ -546,7 +546,9 @@
 <string name="search_tv_suggestion_suggested">DICADANGKAN</string>
 <string name="season">Musim</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Lain-lain</string>
 <string name="season_short">S</string>
+<string name="season_specials">Istimewa</string>
 <string name="seek_back_10_seconds">Undur 10 saat</string>
 <string name="seek_forward_10_seconds">Maju 10 saat</string>
 <string name="select_all">Pilih semua</string>

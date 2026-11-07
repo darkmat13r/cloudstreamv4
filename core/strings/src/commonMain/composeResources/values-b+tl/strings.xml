@@ -308,7 +308,9 @@
 <string name="search_tv_suggestion_recent_suggested">KAMAKAILAN · IMINUNGKAHI RIN</string>
 <string name="search_tv_suggestion_suggested">IMINUNGKAHI</string>
 <string name="season">Season</string>
+<string name="season_other">Iba pa</string>
 <string name="season_short">S</string>
+<string name="season_specials">Espesyal</string>
 <string name="seek_back_10_seconds">Bumalik ng 10 segundo</string>
 <string name="seek_forward_10_seconds">Umabante ng 10 segundo</string>
 <string name="settings_info">Impormasyon</string>

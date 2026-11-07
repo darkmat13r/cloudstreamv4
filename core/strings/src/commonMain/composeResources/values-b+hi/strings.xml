@@ -454,7 +454,9 @@
 <string name="search_tv_suggestion_suggested">सुझाया गया</string>
 <string name="season">सत्र</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">अन्य</string>
 <string name="season_short">S</string>
+<string name="season_specials">विशेष</string>
 <string name="seek_back_10_seconds">१० सेकंड पीछे जाएं</string>
 <string name="seek_forward_10_seconds">१० सेकंड आगे जाएं</string>
 <string name="select_all">सभी चुनें</string>

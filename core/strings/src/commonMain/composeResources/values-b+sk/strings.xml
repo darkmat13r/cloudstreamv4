@@ -494,7 +494,9 @@
 <string name="search_tv_suggestion_suggested">NAVRHNUTÉ</string>
 <string name="season">Sezóna</string>
 <string name="season_format">%1$s %2$d%3$s</string>
+<string name="season_other">Ostatné</string>
 <string name="season_short">S</string>
+<string name="season_specials">Špeciály</string>
 <string name="seek_back_10_seconds">Pretočiť o 10 sekúnd späť</string>
 <string name="seek_forward_10_seconds">Pretočiť o 10 sekúnd vpred</string>
 <string name="select_all">Vybrať Všetko</string>

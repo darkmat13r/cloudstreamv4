@@ -211,6 +211,8 @@
 <string name="search_tv_suggestion_recent">REĊENTI · %s</string>
 <string name="search_tv_suggestion_recent_suggested">REĊENTI · SUĠĠERIT UKOLL</string>
 <string name="search_tv_suggestion_suggested">SUĠĠERIT</string>
+<string name="season_other">Oħrajn</string>
+<string name="season_specials">Speċjali</string>
 <string name="seek_back_10_seconds">Mur lura 10 sekondi</string>
 <string name="seek_forward_10_seconds">Mur 'il quddiem 10 sekondi</string>
 <string name="show_log_cat">Uri Logcat 🐈</string>

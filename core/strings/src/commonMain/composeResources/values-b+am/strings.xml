@@ -203,6 +203,8 @@
 <string name="search_tv_suggestion_recent">የቅርብ ጊዜ · %s</string>
 <string name="search_tv_suggestion_recent_suggested">የቅርብ ጊዜ · የተጠቆመም</string>
 <string name="search_tv_suggestion_suggested">የተጠቆመ</string>
+<string name="season_other">ሌላ</string>
+<string name="season_specials">ልዩ</string>
 <string name="seek_back_10_seconds">10 ሰከንድ ወደ ኋላ</string>
 <string name="seek_forward_10_seconds">10 ሰከንድ ወደ ፊት</string>
 <string name="skip_loading">መጫንን ዝለል</string>
