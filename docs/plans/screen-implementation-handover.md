@@ -54,6 +54,9 @@ A second project in the owner's Claude Design account, *Project file storage*, h
 | `Desktop Home.dc.html` | `DS-21`. Home on the Mac: hero, Continue watching, bookmarks with status chips, a card's menu, the source panel with None, offline and a failed reload, no source, minimum window. 1 px = 1 dp |
 | `Desktop Detail.dc.html` | `DS-21`. A title's page on the Mac: series and film, an episode's hover verbs, the sources panel as links arrive, loading, failed, minimum window. 1 px = 1 dp |
 | `Phone Home Detail.dc.html` | `DS-21`. Home and a title's page on phone (source sheet, offline, the glyph row, the sources sheet) and tablet (rail, two columns). 1 px = 1 dp |
+| `Desktop Search.dc.html` | `DS-22`. Search on the Mac: recent searches, results by source, a partial search, the sources panel, suggestions while typing, no results, minimum window. 1 px = 1 dp |
+| `Desktop Library.dc.html` | `DS-22`. Library on the Mac: a list, a sync that failed, an empty list, Sort, the library's source, moving a card, minimum window. 1 px = 1 dp |
+| `Phone Search Library.dc.html` | `DS-22`. Search and Library on phone (sheets, chips, three-column grids) and tablet (rail, six columns). 1 px = 1 dp |
 | `TV Detail Player.dc.html` | Show detail, movie detail, link loading, player HUD, selectors |
 | `TV Onboarding Extensions.dc.html` | First run, first run offline, extensions ×2, account select |
 | `Design System.dc.html`, `TV Directions.dc.html`, `TV Screens.dc.html` | **Superseded.** Do not build from these. `TV Screens` still contains the banned 320×180 rung. |

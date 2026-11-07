@@ -860,3 +860,65 @@ The rest reuses existing keys.
   the window has the room.
 - The phone's season is a chip that opens a sheet.
 
+## DS-22 — Boards: Search and Library on desktop, phone and tablet
+
+**Status:** drawn, PR open · boards only, no Kotlin · for `KMP-56` (Search) and `KMP-57` (Library) · `DEC-19`
+
+This is DS-21's second half, the PM's call of 2026-11-07, drawn from the TV boards as DS-18 and DS-21 were.
+
+- `Desktop Search.dc.html` (a board file in the owner's Claude Design project), S1 to S7. Drawn from TV Search 4a to 4d, Suggestions 8a to 8c and the built
+  `SearchScreenDesktop`.
+  - S1: recent searches before typing.
+  - S2: results grouped by source, each group with its count.
+  - S3: a partial search, with a banner that retries exactly what failed.
+  - S4: the sources side panel.
+  - S5: suggestions as a popover under the field.
+  - S6: no results, naming the filter that narrowed the search.
+  - S7: the 800×520 minimum window.
+- `Desktop Library.dc.html` (a board file in the owner's Claude Design project), L1 to L7. Drawn from TV Library 5a to 5e and the built `LibraryScreenDesktop`.
+  - L1: a list, with the source and its sync in the bar, filter, Sort, the lists as buttons, and a hovered card with Remove.
+  - L2: a sync that failed, the cards kept and dimmed.
+  - L3: an empty list.
+  - L4: Sort, where an unsupported criterion stays greyed with its reason.
+  - L5: the library's source.
+  - L6: moving a card, using the built list picker.
+  - L7: the minimum window.
+- `Phone Search Library.dc.html` (a board file in the owner's Claude Design project):
+  - PS1 to PS3: phone Search (recent searches, a three-column grid, the sources sheet).
+  - PL1 to PL3: phone Library (chips, Sort sheet, failed sync).
+  - TS1 and TL1: the tablet, with the navigation rail.
+
+**Measured** in Chromium with `getBoundingClientRect`, on every artboard:
+- Desktop Search (370 boxes) and Desktop Library (389 boxes): 0 off the 4 dp step and 0 overflowing text.
+- Phone and tablet (396 boxes): off the step only in the bottom navigation's derived cells, DS-18's recorded exemption.
+- All 34 glyph URLs answer 200, checked with curl.
+- Poster heights are 2:3 rounded to the step (188→280, 164→248, 116→176), as DS-21's were.
+
+Renders: in the shared local review folder (not published).
+
+**Decisions taken here** (reported to the PM):
+- Sources is a button that opens the side panel on every platform. The built screen's read-out stands only until
+  the picker is built.
+- Suggestions are a popover, not a page.
+- Quick Search (8d, 8e) is not drawn. On a Mac, ⌘F brings the window to Search.
+
+**Reused keys:**
+- Search: `search_tv_field_placeholder`, `search_tv_recent_headline`, `search_tv_clear_all`, `search_tv_sources_label`, and
+  the `search_state_no_results_*` set.
+- Library: `library_source`, `library_source_note`, `library_not_connected`, `library_on_device`, `library_synced_format`.
+- Shared: `sort`, `action_remove_from_bookmarks`, `continue_watching`, `type_*`.
+
+**Words with no key yet**, for an `I18N` task before `KMP-56` and `KMP-57` use them:
+- Search:
+  - the partial banner ("%d sources didn't answer. %s timed out after %d s.") and "Retry %d sources";
+  - the suggestion origins ("Suggested", "Recent · also suggested") and their "%d sources" count;
+  - the popover's "%1$d of %2$d answered · %3$d failed" and "Return searches all";
+  - the sources panel's sentence-case line. TV's `search_tv_sources_panel_meta` is in capitals.
+- Library:
+  - "Filter this list" and "Sort: %s";
+  - "Last updated" and "Your rating", and the criteria's lines;
+  - "%1$s supports %2$d of %3$d";
+  - "unreachable · cached %s", "Couldn't sync %1$s. These are from %2$s ago." and "Retry sync";
+  - each list's empty words ("Nothing on hold", "Titles you pause land here.", "Go to %s");
+  - "Move to another list" and "%d titles".
+
