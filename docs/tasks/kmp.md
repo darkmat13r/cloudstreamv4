@@ -6250,3 +6250,59 @@ The boards are `Desktop Search.dc.html` S1 to S7, a board file in the owner's Cl
   PM's ruling of 2026-11-07); raise it when this task starts.
 - Words: `search_suggestions_return_hint` (`I18N-15`). The rest reuse `search_tv_suggestion_*` and
   `search_quick_meta_answered`.
+
+## KMP-57 — The Mac's Library, built from `DS-22` (L1 to L7)
+
+**Status:** in review · took over from desktop-session-1, the PM's call of 2026-11-07, to run beside `KMP-56`
+
+`LibraryScreenDesktop` now draws the `DS-22` boards on the shared `LibraryViewModel` (`KMP-49` to `KMP-51`):
+- **L1:** the bar holds the source, its line (`library_on_device`, or the account and `library_synced_format`), the
+  filter (`filter_bookmarks`; Escape empties it) and Sort (`library_sort_current`). Under it, the lists as buttons,
+  each with its count in the mono face, and the cards in a grid, four to a line at 1280.
+  - A card's line is its kind, the user's rating with the pack's star, and its episode count, where each is known.
+  - **Remove** shows at the poster's top-right while the pointer or focus is on the card (DS-22's decision).
+- **L2:** over a held read, the bar's line says why (`library_sync_unreachable`, `library_sync_offline`). A banner says
+  `library_sync_failed` with the age and offers `library_sync_retry`. The cards stay, dimmed to half.
+- **L3:** an empty list says `library_list_empty_headline` and `library_list_empty_body` with the list's name, and offers
+  `library_go_to_list` for the first list with titles. With nothing kept anywhere, it offers Search. A filter that
+  hides a list's titles offers Clear.
+- **L4:** Sort lists all four criteria, with `library_sort_supported`. One the source does not keep stays in the list,
+  greyed, with `library_sort_not_kept`, and takes no press.
+- **L5:** the source panel, with a check on the source shown. One that is not connected says so and cannot be chosen.
+- **L6:** the list picker, each list with `library_title_count`, a check on the card's own, and Remove below a rule.
+- **L7:** under a 720 content width the sync line and the filter give way. The filter stays while it holds words, so a
+  list is never narrowed by something unseen.
+
+`DesktopLibrarySources` gives the window one source, the local list. It sorts by Updated and Title only, because
+`DesktopLibraryStore` keeps no rating and no year. The sort is kept in `~/.cloudstream4/library-sort`: one line, written
+atomically, owner-only, and read back only as a criterion's exact name and a direction. `DesktopApp`'s default keeps
+nothing, so no test writes to the real home directory. Escape closes whichever panel is open.
+
+**Tests** (`:desktopApp:jvmTest` with real pointer and key events):
+- `LibraryScreenTest`: 23 cases, 12 of them existing.
+  - New: L2, L3 (both actions), L4, L5, L7's filter, Remove on hover, the secondary click, the context-menu keys,
+    Escape in the filter, and Sort reordering a list in the whole window.
+  - Every coordinate is measured off the renders.
+- `LibrarySortMemoryTest`: 6 cases, covering the source, read back, owner-only, rejected text, too large, and `None`.
+- `:desktopApp` 458 and `:feature:library` 84, with 0 failures.
+
+**DECIDED** (reported to the PM):
+- **The desktop has the local list as its only source.** There is no tracking-service sign-in on desktop.
+  - Options: (A) local only; (B) also list the services as Not connected; (C) no sources at all.
+  - Chose A. B is a dead end, and C would offer sorts with no data behind them.
+  - L2 and L5 are built and tested with services in the state, so they work when sign-in arrives.
+- **The local source is named `Local`**, the name Android's `LocalList` gives it. No key in `:core:strings` means "local".
+  - The name reaches the panel and Sort's lines untranslated, as it already does on Android TV.
+  - A key for it is an `I18N` follow-up.
+- **L6 opens from a secondary click and the context-menu keys** (Menu, Shift+F10), because L1 dropped the built list
+  button.
+  - Options: (A) that; (B) a second hover verb, Move, which needs a new key and is a second verb DS-22 did not draw;
+    (C) keep the list button under the card.
+  - Chose A, because it is how a Mac opens a thing's menu.
+- **Cards keep the built 200 minimum.** That gives L1's four at 1280 and two at 800×520. L7 draws three at 164,
+  under the board's own stated minimum.
+- **Favourites keeps its list button**, seven in all where the board drew six. Hiding it would hide what is kept there.
+- **No sort, filter or chevron glyph.** `CloudStreamIcons` has none of them, and adding one is an icon decision. The bar
+  uses words, as Home's source button does.
+- **Sort's rows have no explanatory lines**, and the bar reads the full label (`Updated (New to Old)`), as `I18N-15`
+  decided by reusing the `sort_*` keys. It fits the minimum window.
