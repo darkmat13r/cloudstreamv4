@@ -614,6 +614,13 @@
 <string name="search_poster_img_des">Affisch</string>
 <string name="search_provider_text_providers">Sök med hjälp av leverantörer</string>
 <string name="search_provider_text_types">Sök med hjälp av typer</string>
+<string name="search_quick_empty_body">Alla källor svarade och ingen har ”%s”. Prova en kortare sökning, eller öppna fullständig sökning för att byta källor.</string>
+<string name="search_quick_empty_headline">Inga träffar</string>
+<string name="search_quick_meta_answered">ALLA KÄLLOR HAR SVARAT</string>
+<string name="search_quick_meta_answering">RESULTATEN KOMMER NÄR KÄLLORNA SVARAR</string>
+<string name="search_quick_open_full">Öppna fullständig sökning</string>
+<string name="search_quick_status">%1$d AV %2$d HAR SVARAT · %3$d MISSLYCKADES</string>
+<string name="search_quick_title">Snabbsökning</string>
 <string name="search_state_idle_body_desktop">Skriv en titel. Resultaten visas under varje källa när den svarar.</string>
 <string name="search_state_no_results_type_filter">Endast %s. Ditt typfilter begränsar sökningen.</string>
 <string name="search_state_no_suggestions_detail">0 FÖRSLAG · 0 NYLIGA TRÄFFAR</string>

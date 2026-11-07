@@ -610,6 +610,13 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Traži koristeći pružatelje usluga</string>
 <string name="search_provider_text_types">Traži koristeći vrste</string>
+<string name="search_quick_empty_body">Svi su izvori odgovorili i nijedan nema „%s“. Pokušajte s kraćim upitom ili otvorite potpuno pretraživanje da biste promijenili izvore.</string>
+<string name="search_quick_empty_headline">Nema podudaranja</string>
+<string name="search_quick_meta_answered">SVI SU IZVORI ODGOVORILI</string>
+<string name="search_quick_meta_answering">REZULTATI STIŽU KAKO IZVORI ODGOVARAJU</string>
+<string name="search_quick_open_full">Otvori potpuno pretraživanje</string>
+<string name="search_quick_status">ODGOVORILO %1$d OD %2$d · NEUSPJELO %3$d</string>
+<string name="search_quick_title">Brzo pretraživanje</string>
 <string name="search_state_idle_body_desktop">Upišite naslov. Rezultati se pojavljuju ispod svakog izvora kad odgovori.</string>
 <string name="search_state_no_results_type_filter">Samo %s. Vaš filtar vrste sužava pretraživanje.</string>
 <string name="search_state_no_suggestions_detail">0 PRIJEDLOGA · 0 NEDAVNIH PODUDARANJA</string>

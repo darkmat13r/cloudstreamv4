@@ -291,6 +291,13 @@
 <string name="search_poster_img_des">Plakatas</string>
 <string name="search_provider_text_providers">Ieškoti naudojant tiekėjus</string>
 <string name="search_provider_text_types">Ieškoti naudojant tipus</string>
+<string name="search_quick_empty_body">Atsakė visi šaltiniai, ir nė viename nėra „%s“. Pabandykite trumpesnę paiešką arba atidarykite visą paiešką ir pakeiskite šaltinius.</string>
+<string name="search_quick_empty_headline">Atitikmenų nėra</string>
+<string name="search_quick_meta_answered">ATSAKĖ VISI ŠALTINIAI</string>
+<string name="search_quick_meta_answering">REZULTATAI ATEINA ATSAKANT ŠALTINIAMS</string>
+<string name="search_quick_open_full">Atidaryti visą paiešką</string>
+<string name="search_quick_status">ATSAKĖ %1$d IŠ %2$d · NEPAVYKO %3$d</string>
+<string name="search_quick_title">Greita paieška</string>
 <string name="search_state_idle_body_desktop">Įveskite pavadinimą. Rezultatai rodomi po kiekvienu šaltiniu, kai šis atsako.</string>
 <string name="search_state_no_results_type_filter">Tik %s. Jūsų tipų filtras siaurina paiešką.</string>
 <string name="search_state_no_suggestions_detail">0 PASIŪLYMŲ · 0 NESENIŲ ATITIKMENŲ</string>

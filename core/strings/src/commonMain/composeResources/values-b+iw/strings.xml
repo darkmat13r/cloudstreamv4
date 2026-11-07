@@ -475,6 +475,13 @@
 <string name="search_poster_img_des">פוסטר</string>
 <string name="search_provider_text_providers">חפש באמצעות הספקים</string>
 <string name="search_provider_text_types">חפש באמצעות סוגים</string>
+<string name="search_quick_empty_body">כל המקורות ענו ואף אחד מהם לא מכיל את “%s”. נסו חיפוש קצר יותר, או פתחו את החיפוש המלא כדי לשנות את המקורות.</string>
+<string name="search_quick_empty_headline">אין התאמות</string>
+<string name="search_quick_meta_answered">כל המקורות ענו</string>
+<string name="search_quick_meta_answering">התוצאות מגיעות כשהמקורות עונים</string>
+<string name="search_quick_open_full">פתיחת החיפוש המלא</string>
+<string name="search_quick_status">%1$d מתוך %2$d ענו · %3$d נכשלו</string>
+<string name="search_quick_title">חיפוש מהיר</string>
 <string name="search_state_idle_body_desktop">הקלד כותרת. התוצאות יופיעו מתחת לכל מקור כשיענה.</string>
 <string name="search_state_no_results_type_filter">%s בלבד. מסנן הסוג מצמצם את החיפוש.</string>
 <string name="search_state_no_suggestions_detail">0 הצעות · 0 התאמות אחרונות</string>

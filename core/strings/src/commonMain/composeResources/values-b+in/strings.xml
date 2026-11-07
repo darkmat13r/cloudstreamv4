@@ -614,6 +614,13 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Cari menggunakan penyedia</string>
 <string name="search_provider_text_types">Cari menggunakan jenis</string>
+<string name="search_quick_empty_body">Semua sumber menjawab dan tidak ada yang memiliki “%s”. Coba pencarian yang lebih pendek, atau buka pencarian lengkap untuk mengganti sumber.</string>
+<string name="search_quick_empty_headline">Tidak ada yang cocok</string>
+<string name="search_quick_meta_answered">SEMUA SUMBER TELAH MENJAWAB</string>
+<string name="search_quick_meta_answering">HASIL MASUK SAAT SUMBER MENJAWAB</string>
+<string name="search_quick_open_full">Buka pencarian lengkap</string>
+<string name="search_quick_status">%1$d DARI %2$d MENJAWAB · %3$d GAGAL</string>
+<string name="search_quick_title">Pencarian cepat</string>
 <string name="search_state_idle_body_desktop">Ketik judul. Hasil muncul di bawah setiap sumber saat sumber itu menjawab.</string>
 <string name="search_state_no_results_type_filter">Hanya %s. Filter jenis Anda mempersempit pencarian.</string>
 <string name="search_state_no_suggestions_detail">0 SARAN · 0 COCOK TERBARU</string>

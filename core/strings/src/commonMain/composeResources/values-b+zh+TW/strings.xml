@@ -610,6 +610,13 @@
 <string name="search_poster_img_des">封面</string>
 <string name="search_provider_text_providers">按片源搜尋</string>
 <string name="search_provider_text_types">按類型搜尋</string>
+<string name="search_quick_empty_body">所有來源皆已回應，但都沒有「%s」。請嘗試更短的搜尋字詞，或開啟完整搜尋以變更來源。</string>
+<string name="search_quick_empty_headline">沒有符合項目</string>
+<string name="search_quick_meta_answered">所有來源皆已回應</string>
+<string name="search_quick_meta_answering">結果隨來源回應陸續出現</string>
+<string name="search_quick_open_full">開啟完整搜尋</string>
+<string name="search_quick_status">%2$d 個中 %1$d 個已回應 · %3$d 個失敗</string>
+<string name="search_quick_title">快速搜尋</string>
 <string name="search_state_idle_body_desktop">輸入標題。每個來源回應後，結果會顯示在其下方。</string>
 <string name="search_state_no_results_type_filter">僅限%s。類型篩選器正在縮小搜尋範圍。</string>
 <string name="search_state_no_suggestions_detail">0 個建議 · 0 個最近相符</string>

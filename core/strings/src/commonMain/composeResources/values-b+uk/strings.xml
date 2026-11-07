@@ -614,6 +614,13 @@
 <string name="search_poster_img_des">Плакат</string>
 <string name="search_provider_text_providers">Пошук за постачальниками</string>
 <string name="search_provider_text_types">Пошук за типами</string>
+<string name="search_quick_empty_body">Усі джерела відповіли, і в жодному немає «%s». Спробуйте коротший запит або відкрийте повний пошук, щоб змінити джерела.</string>
+<string name="search_quick_empty_headline">Немає збігів</string>
+<string name="search_quick_meta_answered">УСІ ДЖЕРЕЛА ВІДПОВІЛИ</string>
+<string name="search_quick_meta_answering">РЕЗУЛЬТАТИ НАДХОДЯТЬ, ЩОЙНО ДЖЕРЕЛА ВІДПОВІДАЮТЬ</string>
+<string name="search_quick_open_full">Відкрити повний пошук</string>
+<string name="search_quick_status">ВІДПОВІЛИ %1$d З %2$d · ЗБІЙ %3$d</string>
+<string name="search_quick_title">Швидкий пошук</string>
 <string name="search_state_idle_body_desktop">Введіть назву. Результати з'являться під кожним джерелом, коли воно відповість.</string>
 <string name="search_state_no_results_type_filter">Лише %s. Фільтр за типом звужує пошук.</string>
 <string name="search_state_no_suggestions_detail">0 ПІДКАЗОК · 0 НЕЩОДАВНІХ ЗБІГІВ</string>

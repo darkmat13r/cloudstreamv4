@@ -614,6 +614,13 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Szukaj według źródeł</string>
 <string name="search_provider_text_types">Szukaj według typów</string>
+<string name="search_quick_empty_body">Wszystkie źródła odpowiedziały i żadne nie ma „%s”. Spróbuj krótszego zapytania albo otwórz pełne wyszukiwanie, aby zmienić źródła.</string>
+<string name="search_quick_empty_headline">Brak dopasowań</string>
+<string name="search_quick_meta_answered">WSZYSTKIE ŹRÓDŁA ODPOWIEDZIAŁY</string>
+<string name="search_quick_meta_answering">WYNIKI NAPŁYWAJĄ W MIARĘ ODPOWIEDZI ŹRÓDEŁ</string>
+<string name="search_quick_open_full">Otwórz pełne wyszukiwanie</string>
+<string name="search_quick_status">ODPOWIEDZIAŁO %1$d Z %2$d · BŁĘDY: %3$d</string>
+<string name="search_quick_title">Szybkie wyszukiwanie</string>
 <string name="search_state_idle_body_desktop">Wpisz tytuł. Wyniki pojawiają się pod każdym źródłem, gdy odpowie.</string>
 <string name="search_state_no_results_type_filter">Tylko %s. Filtr typu zawęża wyszukiwanie.</string>
 <string name="search_state_no_suggestions_detail">0 SUGESTII · 0 OSTATNICH DOPASOWAŃ</string>

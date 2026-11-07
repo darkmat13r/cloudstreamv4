@@ -220,6 +220,13 @@
 <string name="search_poster_img_des">Plakat</string>
 <string name="search_provider_text_providers">Søk basert på leverandør</string>
 <string name="search_provider_text_types">Søk ved bruk av typer</string>
+<string name="search_quick_empty_body">Alle kjeldene svara, og ingen av dei har «%s». Prøv eit kortare søk, eller opne fullt søk for å endre kjeldene.</string>
+<string name="search_quick_empty_headline">Ingen treff</string>
+<string name="search_quick_meta_answered">ALLE KJELDENE HAR SVARA</string>
+<string name="search_quick_meta_answering">RESULTAT KJEM ETTER KVART SOM KJELDENE SVARAR</string>
+<string name="search_quick_open_full">Opne fullt søk</string>
+<string name="search_quick_status">%1$d AV %2$d HAR SVARA · %3$d FEILA</string>
+<string name="search_quick_title">Snøggsøk</string>
 <string name="search_state_idle_body_desktop">Skriv ein tittel. Resultata kjem under kvar kjelde når ho svarar.</string>
 <string name="search_state_no_results_type_filter">Berre %s. Typefilteret ditt avgrensar søket.</string>
 <string name="search_state_no_suggestions_detail">0 FORSLAG · 0 NYLEGE TREFF</string>

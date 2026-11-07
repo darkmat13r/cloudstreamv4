@@ -613,6 +613,13 @@
 <string name="search_poster_img_des">الصورة الدعائية</string>
 <string name="search_provider_text_providers">البحث باستخدام المصادر</string>
 <string name="search_provider_text_types">البحث باستخدام الأنواع</string>
+<string name="search_quick_empty_body">ردّت جميع المصادر ولا يحتوي أيٌّ منها على «%s». جرّب بحثًا أقصر، أو افتح البحث الكامل لتغيير المصادر.</string>
+<string name="search_quick_empty_headline">لا توجد تطابقات</string>
+<string name="search_quick_meta_answered">ردّت جميع المصادر</string>
+<string name="search_quick_meta_answering">تصل النتائج مع ردّ المصادر</string>
+<string name="search_quick_open_full">فتح البحث الكامل</string>
+<string name="search_quick_status">ردّ %1$d من %2$d · فشل %3$d</string>
+<string name="search_quick_title">بحث سريع</string>
 <string name="search_state_idle_body_desktop">اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.</string>
 <string name="search_state_no_results_type_filter">%s فقط. عامل تصفية النوع يضيّق نطاق البحث.</string>
 <string name="search_state_no_suggestions_detail">0 اقتراحات · 0 تطابق حديث</string>

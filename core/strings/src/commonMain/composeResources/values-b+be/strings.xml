@@ -610,6 +610,13 @@
 <string name="search_poster_img_des">Плакат</string>
 <string name="search_provider_text_providers">Пошук праз пастаўшчыкоў</string>
 <string name="search_provider_text_types">Пошук праз тыпы</string>
+<string name="search_quick_empty_body">Усе крыніцы адказалі, і ні ў адной няма «%s». Паспрабуйце карацейшы запыт або адкрыйце поўны пошук, каб змяніць крыніцы.</string>
+<string name="search_quick_empty_headline">Няма супадзенняў</string>
+<string name="search_quick_meta_answered">УСЕ КРЫНІЦЫ АДКАЗАЛІ</string>
+<string name="search_quick_meta_answering">ВЫНІКІ З'ЯЎЛЯЮЦЦА ПА МЕРЫ АДКАЗАЎ КРЫНІЦ</string>
+<string name="search_quick_open_full">Адкрыць поўны пошук</string>
+<string name="search_quick_status">АДКАЗАЛІ %1$d З %2$d · ЗБОЙ %3$d</string>
+<string name="search_quick_title">Хуткі пошук</string>
 <string name="search_state_idle_body_desktop">Увядзіце назву. Вынікі з'яўляюцца пад кожнай крыніцай, калі яна адказвае.</string>
 <string name="search_state_no_results_type_filter">Толькі %s. Фільтр па тыпе звужае пошук.</string>
 <string name="search_state_no_suggestions_detail">0 ПРАПАНОЎ · 0 НЯДАЎНІХ СУПАДЗЕННЯЎ</string>

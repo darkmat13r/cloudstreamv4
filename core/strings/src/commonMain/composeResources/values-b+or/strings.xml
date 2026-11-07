@@ -195,6 +195,13 @@
 <string name="search_hint_site">%s ସନ୍ଧାନ କରିବା…</string>
 <string name="search_poster_img_des">ପୋଷ୍ଟର୍</string>
 <string name="search_provider_text_providers">ପ୍ରଦାତା ଵ୍ୟଵହାର କରି ଖୋଜିବା</string>
+<string name="search_quick_empty_body">ସମସ୍ତ ଉତ୍ସ ଉତ୍ତର ଦେଲେ କିନ୍ତୁ କାହା ପାଖରେ “%s” ନାହିଁ। ଛୋଟ ସନ୍ଧାନ ଚେଷ୍ଟା କରନ୍ତୁ, କିମ୍ବା ଉତ୍ସ ବଦଳାଇବାକୁ ପୂର୍ଣ୍ଣ ସନ୍ଧାନ ଖୋଲନ୍ତୁ।</string>
+<string name="search_quick_empty_headline">କୌଣସି ମେଳ ନାହିଁ</string>
+<string name="search_quick_meta_answered">ସମସ୍ତ ଉତ୍ସ ଉତ୍ତର ଦେଲେ</string>
+<string name="search_quick_meta_answering">ଉତ୍ସଗୁଡ଼ିକ ଉତ୍ତର ଦେବା ସହିତ ଫଳାଫଳ ଆସେ</string>
+<string name="search_quick_open_full">ପୂର୍ଣ୍ଣ ସନ୍ଧାନ ଖୋଲନ୍ତୁ</string>
+<string name="search_quick_status">%2$d ମଧ୍ୟରୁ %1$d ଉତ୍ତର ଦେଲେ · %3$d ବିଫଳ</string>
+<string name="search_quick_title">ଦ୍ରୁତ ସନ୍ଧାନ</string>
 <string name="search_state_idle_body_desktop">ଏକ ଶୀର୍ଷକ ଟାଇପ୍ କରନ୍ତୁ। ପ୍ରତ୍ୟେକ ଉତ୍ସ ଉତ୍ତର ଦେଲେ ଫଳାଫଳ ତା ତଳେ ଦେଖାଯିବ।</string>
 <string name="search_state_no_results_type_filter">କେବଳ %s। ଆପଣଙ୍କ ପ୍ରକାର ଫିଲ୍ଟର ସନ୍ଧାନକୁ ସଂକୁଚିତ କରୁଛି।</string>
 <string name="search_state_no_suggestions_detail">0 ପରାମର୍ଶ · 0 ସାମ୍ପ୍ରତିକ ମେଳ</string>

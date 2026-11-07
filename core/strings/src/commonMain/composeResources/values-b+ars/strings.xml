@@ -312,6 +312,13 @@
 <string name="search_poster_img_des">لافتة</string>
 <string name="search_provider_text_providers">البحث باستخدام مقدمي الخدمات</string>
 <string name="search_provider_text_types">البحث باستخدام الأنواع</string>
+<string name="search_quick_empty_body">كل المصادر ردّت وما فيها شي يحتوي «%s». جرّب بحث أقصر، أو افتح البحث الكامل عشان تغيّر المصادر.</string>
+<string name="search_quick_empty_headline">ما فيه تطابق</string>
+<string name="search_quick_meta_answered">كل المصادر ردّت</string>
+<string name="search_quick_meta_answering">النتائج توصل مع ردّ المصادر</string>
+<string name="search_quick_open_full">افتح البحث الكامل</string>
+<string name="search_quick_status">ردّ %1$d من %2$d · فشل %3$d</string>
+<string name="search_quick_title">بحث سريع</string>
 <string name="search_state_idle_body_desktop">اكتب عنوانًا. تظهر النتائج تحت كل مصدر عند استجابته.</string>
 <string name="search_state_no_results_type_filter">%s بس. فلتر النوع يضيّق البحث.</string>
 <string name="search_state_no_suggestions_detail">0 اقتراحات · 0 تطابق حديث</string>

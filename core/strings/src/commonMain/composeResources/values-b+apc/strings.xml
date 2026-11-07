@@ -610,6 +610,13 @@
 <string name="search_poster_img_des">پوستر</string>
 <string name="search_provider_text_providers">عوزو المصادر لَ تنبّشو</string>
 <string name="search_provider_text_types">عوزو الأنواع ل تنبّشو</string>
+<string name="search_quick_empty_body">كل المصادر ردّت وما حدا فيهن عندو «%s». جرّب بحث أقصر، أو افتح البحث الكامل لتغيّر المصادر.</string>
+<string name="search_quick_empty_headline">ما في تطابق</string>
+<string name="search_quick_meta_answered">كل المصادر ردّت</string>
+<string name="search_quick_meta_answering">النتائج عم توصل لما المصادر ترد</string>
+<string name="search_quick_open_full">افتح البحث الكامل</string>
+<string name="search_quick_status">%1$d من %2$d ردّوا · %3$d فشلوا</string>
+<string name="search_quick_title">بحث سريع</string>
 <string name="search_state_idle_body_desktop">اكتب عنوان. النتايج بتطلع تحت كل مصدر لما يرد.</string>
 <string name="search_state_no_results_type_filter">%s بس. فلتر النوع عم يضيّق البحث.</string>
 <string name="search_state_no_suggestions_detail">0 اقتراحات · 0 تطابق مؤخراً</string>

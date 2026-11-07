@@ -450,6 +450,13 @@
 <string name="search_poster_img_des">Plakat</string>
 <string name="search_provider_text_providers">Søk med leverandører</string>
 <string name="search_provider_text_types">Søk med typer</string>
+<string name="search_quick_empty_body">Alle kildene svarte, og ingen av dem har «%s». Prøv et kortere søk, eller åpne fullt søk for å endre kildene.</string>
+<string name="search_quick_empty_headline">Ingen treff</string>
+<string name="search_quick_meta_answered">ALLE KILDENE HAR SVART</string>
+<string name="search_quick_meta_answering">RESULTATER KOMMER ETTER HVERT SOM KILDENE SVARER</string>
+<string name="search_quick_open_full">Åpne fullt søk</string>
+<string name="search_quick_status">%1$d AV %2$d HAR SVART · %3$d FEILET</string>
+<string name="search_quick_title">Hurtigsøk</string>
 <string name="search_state_idle_body_desktop">Skriv inn en tittel. Resultatene vises under hver kilde når den svarer.</string>
 <string name="search_state_no_results_type_filter">Bare %s. Typefilteret ditt begrenser søket.</string>
 <string name="search_state_no_suggestions_detail">0 FORSLAG · 0 NYLIGE TREFF</string>

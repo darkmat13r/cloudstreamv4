@@ -614,6 +614,13 @@
 <string name="search_poster_img_des">Affiche</string>
 <string name="search_provider_text_providers">Recherche par fournisseur</string>
 <string name="search_provider_text_types">Recherche par types</string>
+<string name="search_quick_empty_body">Toutes les sources ont répondu et aucune ne propose « %s ». Essayez une recherche plus courte, ou ouvrez la recherche complète pour changer de sources.</string>
+<string name="search_quick_empty_headline">Aucune correspondance</string>
+<string name="search_quick_meta_answered">TOUTES LES SOURCES ONT RÉPONDU</string>
+<string name="search_quick_meta_answering">LES RÉSULTATS ARRIVENT À MESURE QUE LES SOURCES RÉPONDENT</string>
+<string name="search_quick_open_full">Ouvrir la recherche complète</string>
+<string name="search_quick_status">%1$d SUR %2$d ONT RÉPONDU · %3$d EN ÉCHEC</string>
+<string name="search_quick_title">Recherche rapide</string>
 <string name="search_state_idle_body_desktop">Saisissez un titre. Les résultats apparaissent sous chaque source dès qu'elle répond.</string>
 <string name="search_state_no_results_type_filter">%s uniquement. Votre filtre de type restreint la recherche.</string>
 <string name="search_state_no_suggestions_detail">0 SUGGESTION · 0 CORRESPONDANCE RÉCENTE</string>

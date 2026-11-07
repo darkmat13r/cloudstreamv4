@@ -614,6 +614,13 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Cerca per provider</string>
 <string name="search_provider_text_types">Cerca per tipo</string>
+<string name="search_quick_empty_body">Tutte le fonti hanno risposto e nessuna ha «%s». Prova una ricerca più breve o apri la ricerca completa per cambiare le fonti.</string>
+<string name="search_quick_empty_headline">Nessuna corrispondenza</string>
+<string name="search_quick_meta_answered">TUTTE LE FONTI HANNO RISPOSTO</string>
+<string name="search_quick_meta_answering">I RISULTATI ARRIVANO MAN MANO CHE LE FONTI RISPONDONO</string>
+<string name="search_quick_open_full">Apri la ricerca completa</string>
+<string name="search_quick_status">%1$d SU %2$d HANNO RISPOSTO · %3$d NON RIUSCITE</string>
+<string name="search_quick_title">Ricerca rapida</string>
 <string name="search_state_idle_body_desktop">Digita un titolo. I risultati compaiono sotto ogni fonte quando risponde.</string>
 <string name="search_state_no_results_type_filter">Solo %s. Il filtro per tipo sta restringendo la ricerca.</string>
 <string name="search_state_no_suggestions_detail">0 SUGGERIMENTI · 0 CORRISPONDENZE RECENTI</string>

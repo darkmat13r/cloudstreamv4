@@ -614,6 +614,13 @@
 <string name="search_poster_img_des">Poster</string>
 <string name="search_provider_text_providers">Tìm kiếm theo nguồn phim</string>
 <string name="search_provider_text_types">Tìm kiếm theo thể loại</string>
+<string name="search_quick_empty_body">Tất cả nguồn đã trả lời và không nguồn nào có “%s”. Hãy thử tìm ngắn hơn, hoặc mở tìm kiếm đầy đủ để đổi nguồn.</string>
+<string name="search_quick_empty_headline">Không có kết quả khớp</string>
+<string name="search_quick_meta_answered">TẤT CẢ NGUỒN ĐÃ TRẢ LỜI</string>
+<string name="search_quick_meta_answering">KẾT QUẢ ĐẾN KHI CÁC NGUỒN TRẢ LỜI</string>
+<string name="search_quick_open_full">Mở tìm kiếm đầy đủ</string>
+<string name="search_quick_status">%1$d/%2$d ĐÃ TRẢ LỜI · %3$d THẤT BẠI</string>
+<string name="search_quick_title">Tìm kiếm nhanh</string>
 <string name="search_state_idle_body_desktop">Nhập tiêu đề. Kết quả sẽ hiện dưới mỗi nguồn khi nguồn đó phản hồi.</string>
 <string name="search_state_no_results_type_filter">Chỉ %s. Bộ lọc loại của bạn đang thu hẹp kết quả tìm kiếm.</string>
 <string name="search_state_no_suggestions_detail">0 GỢI Ý · 0 KẾT QUẢ GẦN ĐÂY KHỚP</string>
