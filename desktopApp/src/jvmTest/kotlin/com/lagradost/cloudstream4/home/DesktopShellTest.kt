@@ -79,7 +79,7 @@ class DesktopShellTest {
         assertEquals(KeyShortcut(Key.LeftBracket, meta = true), DesktopShortcuts.backKey(mac = true))
         assertEquals(KeyShortcut(Key.DirectionLeft, alt = true), DesktopShortcuts.backKey(mac = false))
         val keys = TopLevelDestination.entries.map { DesktopShortcuts.keyFor(it, mac = true) }
-        assertEquals(listOf(Key.One, Key.Two, Key.Three).map { KeyShortcut(it, meta = true) }, keys, "in the sidebar's order")
+        assertEquals(listOf(Key.One, Key.Two, Key.Three, Key.Four).map { KeyShortcut(it, meta = true) }, keys, "in the sidebar's order")
     }
 
     @Test
