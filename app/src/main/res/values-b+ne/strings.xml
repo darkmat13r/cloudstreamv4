@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d खण्ड लोड हुन सकेन"</item><item quantity="other">"%d खण्डहरू लोड हुन सकेनन्"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d खण्ड"</item><item quantity="other">"%d खण्डहरू"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d शीर्षक"</item><item quantity="other">"%d शीर्षकहरू"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d सेकेन्ड"</item><item quantity="other">"%d सेकेन्ड"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d स्रोत"</item><item quantity="other">"%d स्रोतहरू"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"%d से. मा अर्को एपिसोड"</item><item quantity="other">"%d से. मा अर्को एपिसोड"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d स्रोतमा खोज्नुहोस्"</item><item quantity="other">"सबै %d स्रोतहरूमा खोज्नुहोस्"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"जे भए पनि %d स्रोतमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।"</item><item quantity="other">"जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d स्रोत"</item><item quantity="other">"%d स्रोतहरू"</item></plurals>
@@ -192,6 +195,7 @@
 <string name="play_torrent_button">"स्ट्रिम टोरेन्ट"</string>
 <string name="play_trailer_button">"ट्रेलर प्ले गर्नुहोस्"</string>
 <string name="play_with_app_name">"क्लाउडस्ट्रीममा प्ले गर्नुहोस्"</string>
+<string name="player_audio_stereo">"स्टेरियो"</string>
 <string name="player_enter_fullscreen">"पूर्ण स्क्रिन मोडमा खोल्नुहोस्"</string>
 <string name="player_exit_fullscreen">"पूर्ण स्क्रिन मोडबाट बाहिरिनुहोस्"</string>
 <string name="player_fit_original">"मूल अनुपात"</string>
@@ -206,18 +210,24 @@
 <string name="player_hud_seek_forward">"अगाडि"</string>
 <string name="player_hud_speed">"गति"</string>
 <string name="player_hud_up_next" formatted="true">"अर्को · %s"</string>
+<string name="player_menu_playback">"प्लेब्याक"</string>
 <string name="player_mute">"म्यूट गर्नुहोस्"</string>
+<string name="player_play_now">"अहिले चलाउनुहोस्"</string>
 <string name="player_size_settings">"प्लेयर resize गर्ने वटन"</string>
 <string name="player_size_settings_des">"कालो सीमा हटाउनुहोस"</string>
+<string name="player_source_decoded" formatted="true">"%s डिकोड गरिएको"</string>
 <string name="player_source_playing">"चलिरहेको"</string>
 <string name="player_source_resumes_at" formatted="true">"बदल्दा तपाईंको स्थान रहन्छ: %1$s बाट जारी"</string>
 <string name="player_source_retry">"फेरि प्रयास गर्नुहोस्"</string>
 <string name="player_source_switch">"बदल्नुहोस्"</string>
+<string name="player_sources_all_failed">"हरेक स्रोतले त्रुटिसहित जवाफ दियो।"</string>
 <string name="player_speed">"प्लेयर स्पीड"</string>
 <string name="player_speed_text_format" formatted="true">"गति (%.2fx)"</string>
 <string name="player_subtitles_settings">"उपशीर्षक"</string>
 <string name="player_subtitles_settings_des">"प्लेयरको उपशीर्षकको सेटिङ"</string>
 <string name="player_unmute">"अनम्यूट गर्नुहोस्"</string>
+<string name="player_volume_down">"आवाज घटाउनुहोस्"</string>
+<string name="player_volume_up">"आवाज बढाउनुहोस्"</string>
 <string name="popup_delete_file">"फाइल मेट्नुहोस्"</string>
 <string name="popup_pause_download">"डाउनलोड रोक्नुहोस्"</string>
 <string name="popup_play_file">"फाइल प्ले गर्नुहोस्"</string>

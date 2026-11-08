@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Hindi na-load ang %d seksyon</item><item quantity="other">Hindi na-load ang %d seksyon</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d pamagat</item><item quantity="other">%d na pamagat</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d segundo</item><item quantity="other">%d na segundo</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d source</item><item quantity="other">%d na source</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Susunod na episode sa loob ng %d s</item><item quantity="other">Susunod na episode sa loob ng %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Maghanap sa %d source</item><item quantity="other">Maghanap sa lahat ng %d source</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Pindutin ang search key ng keyboard para maghanap pa rin sa %d source.</item><item quantity="other">Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d source.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d SOURCE</item><item quantity="other">%d SOURCES</item></plurals>
@@ -426,5 +429,12 @@
 <string name="library_sync_retry">Subukang i-sync ulit</string>
 <string name="library_sync_unreachable">Hindi maabot · naka-cache %s ang nakalipas</string>
 <string name="library_synced_format">Na-sync %s ang nakalipas</string>
+<string name="player_audio_stereo">stereo</string>
+<string name="player_menu_playback">Playback</string>
+<string name="player_play_now">I-play ngayon</string>
+<string name="player_source_decoded">%s na-decode</string>
+<string name="player_sources_all_failed">Nagbalik ng error ang bawat source.</string>
+<string name="player_volume_down">Hinaan ang volume</string>
+<string name="player_volume_up">Lakasan ang volume</string>
 <string name="search_suggestions_return_hint">Hinahanap ng Return ang lahat</string>
 </resources>

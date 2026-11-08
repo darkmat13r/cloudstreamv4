@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d টা বুকমাৰ্ক</item><item quantity="other">%d টা বুকমাৰ্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d টা অংশ লোড কৰিব পৰা নগ'ল</item><item quantity="other">%d টা অংশ লোড কৰিব পৰা নগ'ল</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d টা শিৰোনাম</item><item quantity="other">%d টা শিৰোনাম</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d ছেকেণ্ড</item><item quantity="other">%d ছেকেণ্ড</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d টা উৎস</item><item quantity="other">%d টা উৎস</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">%d ছে.-ত পৰৱৰ্তী পৰ্ব</item><item quantity="other">%d ছে.-ত পৰৱৰ্তী পৰ্ব</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%dটা উৎস সন্ধান কৰক</item><item quantity="other">আটাইকেইটা %dটা উৎস সন্ধান কৰক</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">তথাপি %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।</item><item quantity="other">তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d উৎস</item><item quantity="other">%d উৎস</item></plurals>
@@ -468,6 +471,7 @@
 <string name="play_torrent_button">ট'ৰেণ্ট ষ্ট্ৰীম কৰক</string>
 <string name="play_trailer_button">ট্ৰেইলাৰ প্লে কৰক</string>
 <string name="play_with_app_name">CloudStreamৰে প্লে কৰক</string>
+<string name="player_audio_stereo">ষ্টেৰিঅ'</string>
 <string name="player_enter_fullscreen">সম্পূৰ্ণ স্ক্ৰীনলৈ যাওক</string>
 <string name="player_exit_fullscreen">সম্পূৰ্ণ স্ক্ৰীনৰ পৰা ওলাওক</string>
 <string name="player_fit_original">মূল আকাৰ অনুপাত</string>
@@ -486,21 +490,27 @@
 <string name="player_load_subtitles">ফাইলৰ পৰা ল'ড কৰক</string>
 <string name="player_load_subtitles_online">ইণ্টাৰনেটৰ পৰা ল'ড কৰক</string>
 <string name="player_loaded_subtitles">%s ল'ড হৈছে</string>
+<string name="player_menu_playback">প্লেবেক</string>
 <string name="player_mute">মৌন কৰক</string>
+<string name="player_play_now">এতিয়া চলাওক</string>
 <string name="player_pref">পছন্দৰ ভিডিঅ' প্লেয়াৰ</string>
 <string name="player_settings_play_in_app">আভ্যন্তৰীণ প্লেয়াৰ</string>
 <string name="player_settings_select_cast_device">কাষ্ট ডিভাইচ চয়ন কৰক</string>
 <string name="player_size_settings">প্লেয়াৰৰ আকাৰ পৰিবৰ্তনৰ বুটাম</string>
 <string name="player_size_settings_des">ক’লা পাৰত আঁতৰাওক</string>
+<string name="player_source_decoded">%s ডিক'ড কৰা</string>
 <string name="player_source_playing">চলি আছে</string>
 <string name="player_source_resumes_at">সলনি কৰিলে আপোনাৰ স্থান ৰয়: %1$sত পুনৰ আৰম্ভ হ'ব</string>
 <string name="player_source_retry">পুনৰ চেষ্টা কৰক</string>
 <string name="player_source_switch">সলনি কৰক</string>
+<string name="player_sources_all_failed">প্ৰতিটো উৎসই এটা ত্ৰুটিৰে উত্তৰ দিলে।</string>
 <string name="player_speed">প্লেয়াৰ গতি</string>
 <string name="player_speed_text_format">গতি (%.2fx)</string>
 <string name="player_subtitles_settings">সাবটাইটেল</string>
 <string name="player_subtitles_settings_des">প্লেয়াৰৰ সাবটাইটেল চেটিংছ</string>
 <string name="player_unmute">মৌন আঁতৰাওক</string>
+<string name="player_volume_down">ভলিউম কমাওক</string>
+<string name="player_volume_up">ভলিউম বঢ়াওক</string>
 <string name="plugin">প্লাগইনসমূহ</string>
 <string name="plugin_deleted">প্লাগইন ডিলিট কৰা হ'ল</string>
 <string name="plugin_downloaded">প্লাগইন ডাউনলোড কৰা হ'ল</string>

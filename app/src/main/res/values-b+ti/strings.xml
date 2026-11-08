@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d ክፍሊ ክጽዓን ኣይከኣለን"</item><item quantity="other">"%d ክፍሊ ክጽዓን ኣይከኣለን"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d ክፋል"</item><item quantity="other">"%d ክፋላት"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d ኣርእስቲ"</item><item quantity="other">"%d ኣርእስትታት"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d ካልኢት"</item><item quantity="other">"%d ካልኢታት"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d ምንጪ"</item><item quantity="other">"%d ምንጭታት"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"ዝቕጽል ክፋል ኣብ %d ካ"</item><item quantity="other">"ዝቕጽል ክፋል ኣብ %d ካ"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"ኣብ %d ምንጪ ድለ"</item><item quantity="other">"ኣብ ኩሎም %d ምንጭታት ድለ"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።"</item><item quantity="other">"ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ምንጪ"</item><item quantity="other">"%d ምንጭታት"</item></plurals>
@@ -135,6 +138,7 @@
 <string name="load_more">"ተወሳኺ ጽዓን"</string>
 <string name="more_like_this">"ተመሳሳሊ"</string>
 <string name="next_episode_format" formatted="true">"ክፋል %d በ ላይ ይወጣል"</string>
+<string name="player_audio_stereo">"ስቴሪዮ"</string>
 <string name="player_enter_fullscreen">"ናብ ምሉእ ስክሪን እቶ"</string>
 <string name="player_exit_fullscreen">"ካብ ምሉእ ስክሪን ውጻእ"</string>
 <string name="player_fit_original">"መበቆል ዝምድና"</string>
@@ -149,12 +153,18 @@
 <string name="player_hud_seek_forward">"ንቕድሚት"</string>
 <string name="player_hud_speed">"ቅልጣፈ"</string>
 <string name="player_hud_up_next" formatted="true">"ቀጺሉ · %s"</string>
+<string name="player_menu_playback">"ምጽዋት"</string>
 <string name="player_mute">"ድምጺ ኣጥፍእ"</string>
+<string name="player_play_now">"ሕጂ ኣጻውት"</string>
+<string name="player_source_decoded" formatted="true">"%s ተፈቲሑ"</string>
 <string name="player_source_playing">"ይጻወት ኣሎ"</string>
 <string name="player_source_resumes_at" formatted="true">"ምቕያር ቦታኻ ይሕልው፦ ካብ %1$s ይቕጽል"</string>
 <string name="player_source_retry">"እንደገና ፈትን"</string>
 <string name="player_source_switch">"ቀይር"</string>
+<string name="player_sources_all_failed">"ነፍሲ ወከፍ ምንጪ ብጌጋ መለሰ።"</string>
 <string name="player_unmute">"ድምጺ ወልዕ"</string>
+<string name="player_volume_down">"ድምጺ ኣንኪ"</string>
+<string name="player_volume_up">"ድምጺ ኣልዕል"</string>
 <string name="search_quick_empty_body" formatted="true">"ኩሎም ምንጭታት መሊሶም፣ ሓደ ካብኦም ግን «%s» የብሉን። ሓጺር ምድላይ ፈትኑ፣ ወይ ምንጭታት ንምቕያር ምሉእ ምድላይ ክፈቱ።"</string>
 <string name="search_quick_empty_headline">"ዝሰማማዕ የለን"</string>
 <string name="search_quick_meta_answered">"ኩሎም ምንጭታት መሊሶም"</string>

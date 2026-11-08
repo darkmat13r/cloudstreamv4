@@ -34,6 +34,9 @@
 <plurals name="home_source_sections"><item quantity="one">%d раздел</item><item quantity="few">%d раздела</item><item quantity="many">%d разделов</item><item quantity="other">%d раздела</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d название</item><item quantity="few">%d названия</item><item quantity="many">%d названий</item><item quantity="other">%d названия</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d скрытая ссылка</item><item quantity="few">%d скрытые ссылки</item><item quantity="many">%d скрытых ссылок</item><item quantity="other">%d скрытых ссылок</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d секунда</item><item quantity="few">%d секунды</item><item quantity="many">%d секунд</item><item quantity="other">%d секунды</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d источник</item><item quantity="few">%d источника</item><item quantity="many">%d источников</item><item quantity="other">%d источника</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Следующая серия через %d с</item><item quantity="few">Следующая серия через %d с</item><item quantity="many">Следующая серия через %d с</item><item quantity="other">Следующая серия через %d с</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Искать в %d источнике</item><item quantity="few">Искать во всех %d источниках</item><item quantity="many">Искать во всех %d источниках</item><item quantity="other">Искать во всех %d источниках</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать в %d источнике.</item><item quantity="few">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.</item><item quantity="many">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.</item><item quantity="other">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ИСТОЧНИК</item><item quantity="few">%d ИСТОЧНИКА</item><item quantity="many">%d ИСТОЧНИКОВ</item><item quantity="other">%d ИСТОЧНИКА</item></plurals>
@@ -516,6 +519,7 @@
 <string name="play_torrent_button">Поток торрент</string>
 <string name="play_trailer_button">Смотреть трейлер</string>
 <string name="play_with_app_name">Смотреть с CloudStream</string>
+<string name="player_audio_stereo">стерео</string>
 <string name="player_enter_fullscreen">Полноэкранный режим</string>
 <string name="player_exit_fullscreen">Выйти из полноэкранного режима</string>
 <string name="player_fit_original">Исходные пропорции</string>
@@ -535,24 +539,30 @@
 <string name="player_load_subtitles">Загрузить из файла</string>
 <string name="player_load_subtitles_online">Скачивать из интернета</string>
 <string name="player_loaded_subtitles">Загружено %s</string>
+<string name="player_menu_playback">Воспроизведение</string>
 <string name="player_mute">Выключить звук</string>
 <string name="player_notification_channel_description">Уведомление проигрывателя для управления воспроизведением в фоновом режиме</string>
 <string name="player_notification_channel_name">Уведомления плеера</string>
+<string name="player_play_now">Смотреть сейчас</string>
 <string name="player_pref">Предпочитаемый видеоплеер</string>
 <string name="player_settings_always_ask">Спрашивать всегда</string>
 <string name="player_settings_play_in_app">Внутренний проигрыватель</string>
 <string name="player_settings_select_cast_device">Выберите устройство для трансляции</string>
 <string name="player_size_settings">Кнопка изменения размера проигрывателя</string>
 <string name="player_size_settings_des">Убрать черные границы</string>
+<string name="player_source_decoded">%s декодировано</string>
 <string name="player_source_playing">Воспроизводится</string>
 <string name="player_source_resumes_at">Переключение сохраняет позицию: продолжение с %1$s</string>
 <string name="player_source_retry">Повторить</string>
 <string name="player_source_switch">Переключить</string>
+<string name="player_sources_all_failed">Каждый источник ответил ошибкой.</string>
 <string name="player_speed">Скорость проигрывателя</string>
 <string name="player_speed_text_format">Скорость (%.2fx)</string>
 <string name="player_subtitles_settings">Субтитры</string>
 <string name="player_subtitles_settings_des">Настройки субтитров проигрывателя</string>
 <string name="player_unmute">Включить звук</string>
+<string name="player_volume_down">Тише</string>
+<string name="player_volume_up">Громче</string>
 <string name="plugin">дополнения</string>
 <string name="plugin_deleted">Дополнение удалено</string>
 <string name="plugin_downloaded">Дополнение скачано</string>

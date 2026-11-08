@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d CALAAMAD</item><item quantity="other">%d CALAAMADOOD</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Waa ka keeni kari waayey %d qayb</item><item quantity="other">Waa ka keeni kari waayey %d qaybood</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d cinwaan</item><item quantity="other">%d cinwaan</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d ilbiriqsi</item><item quantity="other">%d ilbiriqsi</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d il</item><item quantity="other">%d ilo</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Qaybta xigta %d il. kadib</item><item quantity="other">Qaybta xigta %d il. kadib</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Ka raadi %d il</item><item quantity="other">Ka raadi dhammaan %d ilood</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Riix furaha raadinta ee kiiboodhka si aad u raadiso %d il si kastaba ha ahaatee.</item><item quantity="other">Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d IL</item><item quantity="other">%d ILOOD</item></plurals>
@@ -391,6 +394,7 @@
 <string name="play_torrent_button">Daalaco toorentiga</string>
 <string name="play_trailer_button">Daar goos-gooska</string>
 <string name="play_with_app_name">Ku daawo CloudStream</string>
+<string name="player_audio_stereo">istiriyo</string>
 <string name="player_enter_fullscreen">Gal shaashadda buuxda</string>
 <string name="player_exit_fullscreen">Ka bax shaashadda buuxda</string>
 <string name="player_fit_original">Saamiga asalka ah</string>
@@ -408,20 +412,26 @@
 <string name="player_load_subtitles">Faylashaada ka keen</string>
 <string name="player_load_subtitles_online">Internetka ka keen</string>
 <string name="player_loaded_subtitles">Waxa laso kiciyey %s</string>
+<string name="player_menu_playback">Ciyaarid</string>
 <string name="player_mute">Aamusi</string>
+<string name="player_play_now">Hadda ciyaar</string>
 <string name="player_pref">Muqaal daaraha aad doorbiddo</string>
 <string name="player_settings_play_in_app">Muqaal daaraha appka</string>
 <string name="player_size_settings">Badhinka xajmiga daaraha</string>
 <string name="player_size_settings_des">Hareeraha madow ka saar markaad daawanayso</string>
+<string name="player_source_decoded">%s la furay</string>
 <string name="player_source_playing">Waa socdaa</string>
 <string name="player_source_resumes_at">Beddelku wuxuu ilaalinayaa meeshaada: wuxuu ka sii socdaa %1$s</string>
 <string name="player_source_retry">Isku day mar kale</string>
 <string name="player_source_switch">Beddel</string>
+<string name="player_sources_all_failed">Il kasta wuxuu ku jawaabay qalad.</string>
 <string name="player_speed">Xawaaraha daaraha</string>
 <string name="player_speed_text_format">Xawaaraha (%.2fx)</string>
 <string name="player_subtitles_settings">Qoraal-hoosaadka</string>
 <string name="player_subtitles_settings_des">Habaynta Qrl-hoosaadka daaraha</string>
 <string name="player_unmute">Ka qaad aamusnaanta</string>
+<string name="player_volume_down">Hoos u dhig codka</string>
+<string name="player_volume_up">Kor u qaad codka</string>
 <string name="plugin">Sidkanayaasha</string>
 <string name="plugin_deleted">Waa la tiray sidkanahan</string>
 <string name="plugin_downloaded">Waa ka dejiyey sidkanaha</string>

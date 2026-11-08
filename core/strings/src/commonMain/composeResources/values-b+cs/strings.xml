@@ -34,6 +34,9 @@
 <plurals name="home_source_sections"><item quantity="one">%d sekce</item><item quantity="few">%d sekce</item><item quantity="many">%d sekce</item><item quantity="other">%d sekcí</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titul</item><item quantity="few">%d tituly</item><item quantity="many">%d titulu</item><item quantity="other">%d titulů</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d skrytý odkaz</item><item quantity="few">%d skryté odkazy</item><item quantity="many">%d skrytých odkazů</item><item quantity="other">%d skrytých odkazů</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d sekunda</item><item quantity="few">%d sekundy</item><item quantity="many">%d sekundy</item><item quantity="other">%d sekund</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d zdroj</item><item quantity="few">%d zdroje</item><item quantity="many">%d zdroje</item><item quantity="other">%d zdrojů</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Další díl za %d s</item><item quantity="few">Další díl za %d s</item><item quantity="many">Další díl za %d s</item><item quantity="other">Další díl za %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Hledat v %d zdroji</item><item quantity="few">Hledat ve všech %d zdrojích</item><item quantity="many">Hledat ve všech %d zdrojích</item><item quantity="other">Hledat ve všech %d zdrojích</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte %d zdroj.</item><item quantity="few">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všechny %d zdroje.</item><item quantity="many">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdroje.</item><item quantity="other">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ZDROJ</item><item quantity="few">%d ZDROJE</item><item quantity="many">%d ZDROJE</item><item quantity="other">%d ZDROJŮ</item></plurals>
@@ -516,6 +519,7 @@
 <string name="play_torrent_button">Streamovat torrent</string>
 <string name="play_trailer_button">Přehrát trailer</string>
 <string name="play_with_app_name">Přehrát s CloudStream</string>
+<string name="player_audio_stereo">stereo</string>
 <string name="player_enter_fullscreen">Přejít do režimu celé obrazovky</string>
 <string name="player_exit_fullscreen">Ukončit režim celé obrazovky</string>
 <string name="player_fit_original">Původní poměr stran</string>
@@ -535,24 +539,30 @@
 <string name="player_load_subtitles">Načíst ze souboru</string>
 <string name="player_load_subtitles_online">Načíst z internetu</string>
 <string name="player_loaded_subtitles">Načteno %s</string>
+<string name="player_menu_playback">Přehrávání</string>
 <string name="player_mute">Vypnout zvuk</string>
 <string name="player_notification_channel_description">Oznámení přehrávače pro ovládání přehrávání na pozadí</string>
 <string name="player_notification_channel_name">Oznámení přehrávače</string>
+<string name="player_play_now">Přehrát hned</string>
 <string name="player_pref">Preferovaný přehrávač videí</string>
 <string name="player_settings_always_ask">Vždy se zeptat</string>
 <string name="player_settings_play_in_app">Interní přehrávač</string>
 <string name="player_settings_select_cast_device">Vyberte zařízení k vysílání</string>
 <string name="player_size_settings">Tlačítko pro změnu velikosti přehrávače</string>
 <string name="player_size_settings_des">Odebrat černá ohraničení</string>
+<string name="player_source_decoded">%s dekódováno</string>
 <string name="player_source_playing">Přehrává se</string>
 <string name="player_source_resumes_at">Přepnutí zachová pozici: pokračuje od %1$s</string>
 <string name="player_source_retry">Zkusit znovu</string>
 <string name="player_source_switch">Přepnout</string>
+<string name="player_sources_all_failed">Každý zdroj odpověděl chybou.</string>
 <string name="player_speed">Rychlost přehrávání</string>
 <string name="player_speed_text_format">Rychlost (%.2fx)</string>
 <string name="player_subtitles_settings">Titulky</string>
 <string name="player_subtitles_settings_des">Nastavení titulků přehrávače</string>
 <string name="player_unmute">Zapnout zvuk</string>
+<string name="player_volume_down">Zeslabit</string>
+<string name="player_volume_up">Zesílit</string>
 <string name="plugin">doplňků</string>
 <string name="plugin_deleted">Doplněk odstraněn</string>
 <string name="plugin_downloaded">Doplněk stažen</string>

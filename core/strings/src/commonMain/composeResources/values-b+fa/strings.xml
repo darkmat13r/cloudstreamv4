@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d نشانک</item><item quantity="other">%d نشانک</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بخش بارگیری نشد</item><item quantity="other">%d بخش بارگیری نشد</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عنوان</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d ثانیه</item><item quantity="other">%d ثانیه</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d منبع</item><item quantity="other">%d منبع</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">قسمت بعد تا %d ث دیگر</item><item quantity="other">قسمت بعد تا %d ث دیگر</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">جست‌وجو در %d منبع</item><item quantity="other">جست‌وجو در همهٔ %d منبع</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">برای جست‌وجو در %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.</item><item quantity="other">برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d منبع</item><item quantity="other">%d منبع</item></plurals>
@@ -320,6 +323,7 @@
 <string name="play_torrent_button">استریم تورنت</string>
 <string name="play_trailer_button">پخش تریلر</string>
 <string name="play_with_app_name">پخش با CloudStream</string>
+<string name="player_audio_stereo">استریو</string>
 <string name="player_enter_fullscreen">ورود به حالت تمام‌صفحه</string>
 <string name="player_exit_fullscreen">خروج از حالت تمام‌صفحه</string>
 <string name="player_fit_original">نسبت تصویر اصلی</string>
@@ -334,19 +338,25 @@
 <string name="player_hud_seek_forward">جلو</string>
 <string name="player_hud_speed">سرعت</string>
 <string name="player_hud_up_next">بعدی · %s</string>
+<string name="player_menu_playback">پخش</string>
 <string name="player_mute">بی‌صدا</string>
+<string name="player_play_now">اکنون پخش کن</string>
 <string name="player_pref">پخش‌کننده ویدئو برگزیده</string>
 <string name="player_size_settings">دکمه تغییر‌اندازه پخش‌کننده</string>
 <string name="player_size_settings_des">حذف حاشیه سیاه</string>
+<string name="player_source_decoded">%s رمزگشایی‌شده</string>
 <string name="player_source_playing">در حال پخش</string>
 <string name="player_source_resumes_at">تعویض موقعیت شما را حفظ می‌کند: ادامه از %1$s</string>
 <string name="player_source_retry">تلاش دوباره</string>
 <string name="player_source_switch">تعویض</string>
+<string name="player_sources_all_failed">همه منابع با خطا پاسخ دادند.</string>
 <string name="player_speed">سرعت پخش‌کننده</string>
 <string name="player_speed_text_format">سرعت (%.2f برابر)</string>
 <string name="player_subtitles_settings">زیرنویس‌ها</string>
 <string name="player_subtitles_settings_des">تنظیمات زیرنویس‌های پخش‌کننده</string>
 <string name="player_unmute">صدادار</string>
+<string name="player_volume_down">کاهش صدا</string>
+<string name="player_volume_up">افزایش صدا</string>
 <string name="plugin_deleted">افزونه حذف شد</string>
 <string name="podcast_singular">پادکست</string>
 <string name="popup_delete_file">حذف فایل</string>

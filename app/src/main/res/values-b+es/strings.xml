@@ -14,6 +14,9 @@
 <plurals name="home_source_sections"><item quantity="one">"%d sección"</item><item quantity="many">"%d secciones"</item><item quantity="other">"%d secciones"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d título"</item><item quantity="many">"%d títulos"</item><item quantity="other">"%d títulos"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d enlace oculto"</item><item quantity="many">"%d enlaces ocultos"</item><item quantity="other">"%d enlaces ocultos"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d segundo"</item><item quantity="many">"%d segundos"</item><item quantity="other">"%d segundos"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d fuente"</item><item quantity="many">"%d fuentes"</item><item quantity="other">"%d fuentes"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Siguiente episodio en %d s"</item><item quantity="many">"Siguiente episodio en %d s"</item><item quantity="other">"Siguiente episodio en %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Buscar en %d fuente"</item><item quantity="many">"Buscar en las %d fuentes"</item><item quantity="other">"Buscar en las %d fuentes"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Pulsa la tecla de búsqueda del teclado para buscar igualmente en %d fuente."</item><item quantity="many">"Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes."</item><item quantity="other">"Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FUENTE"</item><item quantity="many">"%d FUENTES"</item><item quantity="other">"%d FUENTES"</item></plurals>
@@ -516,6 +519,7 @@
 <string name="play_torrent_button">"Transmitir Torrent"</string>
 <string name="play_trailer_button">"Reproducir tráiler"</string>
 <string name="play_with_app_name">"Reproducir con Cloudstream"</string>
+<string name="player_audio_stereo">"estéreo"</string>
 <string name="player_enter_fullscreen">"Activar pantalla completa"</string>
 <string name="player_exit_fullscreen">"Salir de pantalla completa"</string>
 <string name="player_fit_original">"Relación de aspecto original"</string>
@@ -535,24 +539,30 @@
 <string name="player_load_subtitles">"Cargar desde archivo"</string>
 <string name="player_load_subtitles_online">"Cargar desde Internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s Cargado"</string>
+<string name="player_menu_playback">"Reproducción"</string>
 <string name="player_mute">"Silenciar"</string>
 <string name="player_notification_channel_description">"La notificación del reproductor para controlar la reproducción en segundo plano"</string>
 <string name="player_notification_channel_name">"Notificaciones del reproductor"</string>
+<string name="player_play_now">"Reproducir ahora"</string>
 <string name="player_pref">"Reproductor de video preferido"</string>
 <string name="player_settings_always_ask">"Preguntar siempre"</string>
 <string name="player_settings_play_in_app">"Reproductor interno"</string>
 <string name="player_settings_select_cast_device">"Seleccionar el dispositivo para transmitir"</string>
 <string name="player_size_settings">"Botón de cambio de tamaño del reproductor"</string>
 <string name="player_size_settings_des">"Eliminar bordes negros"</string>
+<string name="player_source_decoded" formatted="true">"%s descodificado"</string>
 <string name="player_source_playing">"Reproduciendo"</string>
 <string name="player_source_resumes_at" formatted="true">"Cambiar mantiene tu posición: continúa en %1$s"</string>
 <string name="player_source_retry">"Reintentar"</string>
 <string name="player_source_switch">"Cambiar"</string>
+<string name="player_sources_all_failed">"Todas las fuentes respondieron con un error."</string>
 <string name="player_speed">"Velocidad del reproductor"</string>
 <string name="player_speed_text_format" formatted="true">"Velocidad (%.2f×)"</string>
 <string name="player_subtitles_settings">"Subtítulos"</string>
 <string name="player_subtitles_settings_des">"Configuración de subtítulos del reproductor"</string>
 <string name="player_unmute">"Activar sonido"</string>
+<string name="player_volume_down">"Bajar volumen"</string>
+<string name="player_volume_up">"Subir volumen"</string>
 <string name="plugin">"plugins"</string>
 <string name="plugin_deleted">"Plugin Borrado"</string>
 <string name="plugin_downloaded">"Plugin descargado"</string>

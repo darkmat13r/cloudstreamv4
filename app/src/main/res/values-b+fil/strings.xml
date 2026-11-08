@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"Hindi na-load ang %d seksyon"</item><item quantity="other">"Hindi na-load ang %d seksyon"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d seksyon"</item><item quantity="other">"%d na seksyon"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d pamagat"</item><item quantity="other">"%d na pamagat"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d segundo"</item><item quantity="other">"%d na segundo"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d source"</item><item quantity="other">"%d na source"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Susunod na episode sa loob ng %d s"</item><item quantity="other">"Susunod na episode sa loob ng %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Maghanap sa %d mapagkukunan"</item><item quantity="other">"Maghanap sa lahat ng %d mapagkukunan"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Pindutin ang search key ng keyboard para maghanap pa rin sa %d mapagkukunan."</item><item quantity="other">"Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d MAPAGKUKUNAN"</item><item quantity="other">"%d MAPAGKUKUNAN"</item></plurals>
@@ -221,6 +224,7 @@
 <string name="play_torrent_button">"I-stream ang Torrent"</string>
 <string name="play_trailer_button">"Ipatugtog ang Trailer"</string>
 <string name="play_with_app_name">"Ipatugtog sa CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Mag-fullscreen"</string>
 <string name="player_exit_fullscreen">"Lumabas sa fullscreen"</string>
 <string name="player_fit_original">"Orihinal na aspect ratio"</string>
@@ -235,15 +239,21 @@
 <string name="player_hud_seek_forward">"I-forward"</string>
 <string name="player_hud_speed">"Bilis"</string>
 <string name="player_hud_up_next" formatted="true">"Susunod · %s"</string>
+<string name="player_menu_playback">"Playback"</string>
 <string name="player_mute">"I-mute"</string>
 <string name="player_notification_channel_description">"Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background"</string>
+<string name="player_play_now">"I-play ngayon"</string>
+<string name="player_source_decoded" formatted="true">"%s na-decode"</string>
 <string name="player_source_playing">"Nagpe-play"</string>
 <string name="player_source_resumes_at" formatted="true">"Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s"</string>
 <string name="player_source_retry">"Subukang muli"</string>
 <string name="player_source_switch">"Lumipat"</string>
+<string name="player_sources_all_failed">"Nagbalik ng error ang bawat source."</string>
 <string name="player_speed">"Bilis ng Manlalaro"</string>
 <string name="player_speed_text_format" formatted="true">"Bilis (%.2fx)"</string>
 <string name="player_unmute">"I-unmute"</string>
+<string name="player_volume_down">"Hinaan ang volume"</string>
+<string name="player_volume_up">"Lakasan ang volume"</string>
 <string name="plugins_updated_manually" formatted="true">"Matagumpay na na-update ang %d plugin!"</string>
 <string name="popup_delete_file">"Burahin ang File"</string>
 <string name="popup_pause_download">"Ihinto ang pag-download"</string>

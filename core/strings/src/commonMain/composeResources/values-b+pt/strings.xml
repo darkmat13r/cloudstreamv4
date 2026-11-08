@@ -32,6 +32,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="many">%d DE MARCADORES</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Falha ao carregar %d secção</item><item quantity="many">Falha ao carregar %d secções</item><item quantity="other">Falha ao carregar %d secções</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="many">%d títulos</item><item quantity="other">%d títulos</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d segundo</item><item quantity="many">%d segundos</item><item quantity="other">%d segundos</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d fonte</item><item quantity="many">%d fontes</item><item quantity="other">%d fontes</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Próximo episódio em %d s</item><item quantity="many">Próximo episódio em %d s</item><item quantity="other">Próximo episódio em %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Pesquisar em %d fonte</item><item quantity="many">Pesquisar em todas as %d fontes</item><item quantity="other">Pesquisar em todas as %d fontes</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.</item><item quantity="many">Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.</item><item quantity="other">Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONTE</item><item quantity="many">%d FONTES</item><item quantity="other">%d FONTES</item></plurals>
@@ -515,6 +518,7 @@
 <string name="play_torrent_button">Transmitir Torrent</string>
 <string name="play_trailer_button">Assistir Trailer</string>
 <string name="play_with_app_name">Assistir com o CloudStream</string>
+<string name="player_audio_stereo">estéreo</string>
 <string name="player_enter_fullscreen">Mudar para ecrã inteiro</string>
 <string name="player_exit_fullscreen">Sair do ecrã inteiro</string>
 <string name="player_fit_original">Proporção original</string>
@@ -534,24 +538,30 @@
 <string name="player_load_subtitles">Carregar de arquivo</string>
 <string name="player_load_subtitles_online">Carregar da Internet</string>
 <string name="player_loaded_subtitles">%s carregada</string>
+<string name="player_menu_playback">Reprodução</string>
 <string name="player_mute">Desativar som</string>
 <string name="player_notification_channel_description">Notificação do player para controlar a reprodução em segundo plano</string>
 <string name="player_notification_channel_name">Notificações de reprodução</string>
+<string name="player_play_now">Reproduzir agora</string>
 <string name="player_pref">Player de vídeo preferido</string>
 <string name="player_settings_always_ask">Sempre perguntar</string>
 <string name="player_settings_play_in_app">Player interno</string>
 <string name="player_settings_select_cast_device">Escolha o dispositivo</string>
 <string name="player_size_settings">Botão de redimensionamento do player</string>
 <string name="player_size_settings_des">Remover as bordas negras</string>
+<string name="player_source_decoded">%s descodificado</string>
 <string name="player_source_playing">A reproduzir</string>
 <string name="player_source_resumes_at">Mudar mantém a sua posição: retoma em %1$s</string>
 <string name="player_source_retry">Repetir</string>
 <string name="player_source_switch">Mudar</string>
+<string name="player_sources_all_failed">Todas as fontes responderam com um erro.</string>
 <string name="player_speed">Velocidade de Reprodução</string>
 <string name="player_speed_text_format">Velocidade (%.2fx)</string>
 <string name="player_subtitles_settings">Legendas</string>
 <string name="player_subtitles_settings_des">Configurações de legendas do player</string>
 <string name="player_unmute">Ativar som</string>
+<string name="player_volume_down">Diminuir volume</string>
+<string name="player_volume_up">Aumentar volume</string>
 <string name="plugin">plugins</string>
 <string name="plugin_deleted">Plugin Apagado</string>
 <string name="plugin_downloaded">Plugins baixados</string>

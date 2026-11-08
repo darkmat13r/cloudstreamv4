@@ -13,6 +13,9 @@
 <plurals name="home_sections_failed"><item quantity="other">"%d 個分區載入失敗"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d 個區塊"</item></plurals>
 <plurals name="library_title_count"><item quantity="other">"%d 部作品"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">"%d 秒"</item></plurals>
+<plurals name="player_source_count"><item quantity="other">"%d 個來源"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">"%d 秒後播放下一集"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"搜尋全部 %d 個來源"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d 來源"</item></plurals>
@@ -515,6 +518,7 @@
 <string name="play_torrent_button">"播放種子"</string>
 <string name="play_trailer_button">"播放預告片"</string>
 <string name="play_with_app_name">"使用 CloudStream 播放"</string>
+<string name="player_audio_stereo">"立體聲"</string>
 <string name="player_enter_fullscreen">"進入全螢幕模式"</string>
 <string name="player_exit_fullscreen">"結束全螢幕模式"</string>
 <string name="player_fit_original">"原始長寬比"</string>
@@ -534,24 +538,30 @@
 <string name="player_load_subtitles">"從檔案載入"</string>
 <string name="player_load_subtitles_online">"從網路載入"</string>
 <string name="player_loaded_subtitles" formatted="true">"已載入 %s"</string>
+<string name="player_menu_playback">"播放"</string>
 <string name="player_mute">"靜音"</string>
 <string name="player_notification_channel_description">"控制背景播放的通知"</string>
 <string name="player_notification_channel_name">"播放器通知"</string>
+<string name="player_play_now">"立即播放"</string>
 <string name="player_pref">"偏好影片播放器"</string>
 <string name="player_settings_always_ask">"總是詢問"</string>
 <string name="player_settings_play_in_app">"內部播放器"</string>
 <string name="player_settings_select_cast_device">"選擇投放裝置"</string>
 <string name="player_size_settings">"播放器調整大小按鈕"</string>
 <string name="player_size_settings_des">"移除黑色邊框"</string>
+<string name="player_source_decoded" formatted="true">"已解碼 %s"</string>
 <string name="player_source_playing">"播放中"</string>
 <string name="player_source_resumes_at" formatted="true">"切換會保留播放位置：從 %1$s 繼續"</string>
 <string name="player_source_retry">"重試"</string>
 <string name="player_source_switch">"切換"</string>
+<string name="player_sources_all_failed">"所有來源都傳回了錯誤。"</string>
 <string name="player_speed">"播放速度"</string>
 <string name="player_speed_text_format" formatted="true">"速度（%.2fx）"</string>
 <string name="player_subtitles_settings">"字幕"</string>
 <string name="player_subtitles_settings_des">"播放器字幕設定"</string>
 <string name="player_unmute">"取消靜音"</string>
+<string name="player_volume_down">"調低音量"</string>
+<string name="player_volume_up">"調高音量"</string>
 <string name="plugin">"外掛"</string>
 <string name="plugin_deleted">"外掛已刪除"</string>
 <string name="plugin_downloaded">"外掛程式已下載"</string>

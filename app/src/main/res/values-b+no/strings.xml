@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d del kunne ikke lastes inn"</item><item quantity="other">"%d deler kunne ikke lastes inn"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d seksjon"</item><item quantity="other">"%d seksjoner"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d tittel"</item><item quantity="other">"%d titler"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d sekund"</item><item quantity="other">"%d sekunder"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d kilde"</item><item quantity="other">"%d kilder"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Neste episode om %d s"</item><item quantity="other">"Neste episode om %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Søk i %d kilde"</item><item quantity="other">"Søk i alle %d kilder"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Trykk på søketasten på tastaturet for å søke i %d kilde likevel."</item><item quantity="other">"Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KILDE"</item><item quantity="other">"%d KILDER"</item></plurals>
@@ -385,6 +388,7 @@
 <string name="play_torrent_button">"Strøm Torrent"</string>
 <string name="play_trailer_button">"Spill forfilm"</string>
 <string name="play_with_app_name">"Spill med CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Se i fullskjerm"</string>
 <string name="player_exit_fullscreen">"Avslutt fullskjerm"</string>
 <string name="player_fit_original">"Opprinnelig sideforhold"</string>
@@ -402,20 +406,26 @@
 <string name="player_load_subtitles">"Last inn fra fil"</string>
 <string name="player_load_subtitles_online">"Last inn fra Internett"</string>
 <string name="player_loaded_subtitles" formatted="true">"Lastet inn %s"</string>
+<string name="player_menu_playback">"Avspilling"</string>
 <string name="player_mute">"Slå av lyden"</string>
+<string name="player_play_now">"Spill nå"</string>
 <string name="player_pref">"Foretrukket videospiller"</string>
 <string name="player_settings_play_in_app">"Intern spiller"</string>
 <string name="player_size_settings">"Knapp for størrelse på spiller"</string>
 <string name="player_size_settings_des">"Fjern de svarte kantene"</string>
+<string name="player_source_decoded" formatted="true">"%s dekodet"</string>
 <string name="player_source_playing">"Spiller"</string>
 <string name="player_source_resumes_at" formatted="true">"Bytte beholder posisjonen din: fortsetter fra %1$s"</string>
 <string name="player_source_retry">"Prøv igjen"</string>
 <string name="player_source_switch">"Bytt"</string>
+<string name="player_sources_all_failed">"Hver kilde svarte med en feil."</string>
 <string name="player_speed">"Spillerhastighet"</string>
 <string name="player_speed_text_format" formatted="true">"Avspillingshastighet (%.2fx)"</string>
 <string name="player_subtitles_settings">"Undertekster"</string>
 <string name="player_subtitles_settings_des">"Innstillinger for spillerens teksting"</string>
 <string name="player_unmute">"Slå på lyden"</string>
+<string name="player_volume_down">"Lavere volum"</string>
+<string name="player_volume_up">"Høyere volum"</string>
 <string name="plugin">"programtillegg"</string>
 <string name="plugin_deleted">"Programtillegg slettet"</string>
 <string name="plugin_downloaded">"Programtillegg nedlastet"</string>

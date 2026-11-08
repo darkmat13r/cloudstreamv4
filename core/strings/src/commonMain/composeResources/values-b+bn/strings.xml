@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d টি বুকমার্ক</item><item quantity="other">%d টি বুকমার্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%dটি বিভাগ লোড করা যায়নি</item><item quantity="other">%dটি বিভাগ লোড করা যায়নি</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%dটি শিরোনাম</item><item quantity="other">%dটি শিরোনাম</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d সেকেন্ড</item><item quantity="other">%d সেকেন্ড</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%dটি উৎস</item><item quantity="other">%dটি উৎস</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">%d সে.-এ পরের পর্ব</item><item quantity="other">%d সে.-এ পরের পর্ব</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%dটি উৎসে খুঁজুন</item><item quantity="other">সব %dটি উৎসে খুঁজুন</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item><item quantity="other">তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d উৎস</item><item quantity="other">%d উৎস</item></plurals>
@@ -354,6 +357,7 @@
 <string name="play_torrent_button">টরেন্ট স্ট্রিম করুন</string>
 <string name="play_trailer_button">ট্রেইলার চালু করুন</string>
 <string name="play_with_app_name">ক্লাউডস্ট্রিম দিয়ে চালান</string>
+<string name="player_audio_stereo">স্টেরিও</string>
 <string name="player_enter_fullscreen">ফুল-স্ক্রিন মোডে দেখুন</string>
 <string name="player_exit_fullscreen">ফুল-স্ক্রিন মোড ছেড়ে বেরোন</string>
 <string name="player_fit_original">আসল অনুপাত</string>
@@ -368,18 +372,24 @@
 <string name="player_hud_seek_forward">এগিয়ে যান</string>
 <string name="player_hud_speed">গতি</string>
 <string name="player_hud_up_next">পরবর্তী · %s</string>
+<string name="player_menu_playback">প্লেব্যাক</string>
 <string name="player_mute">মিউট করুন</string>
+<string name="player_play_now">এখনই চালান</string>
 <string name="player_size_settings">প্লেয়ারের সাইজ পরিবর্তন বাটন</string>
 <string name="player_size_settings_des">কালো প্রান্ত অপসারণ করুন</string>
+<string name="player_source_decoded">%s ডিকোড করা</string>
 <string name="player_source_playing">চলছে</string>
 <string name="player_source_resumes_at">পাল্টালে আপনার অবস্থান থাকবে: %1$s থেকে চলবে</string>
 <string name="player_source_retry">আবার চেষ্টা করুন</string>
 <string name="player_source_switch">পাল্টান</string>
+<string name="player_sources_all_failed">প্রতিটি উৎস একটি ত্রুটি দিয়ে উত্তর দিয়েছে।</string>
 <string name="player_speed">ভিডিও এর গতি</string>
 <string name="player_speed_text_format">গতি (%.2f গুণ)</string>
 <string name="player_subtitles_settings">সাবটাইটেল</string>
 <string name="player_subtitles_settings_des">প্লেয়ার এর সাবটাইটেলসমূহের সেটিংস</string>
 <string name="player_unmute">আনমিউট করুন</string>
+<string name="player_volume_down">ভলিউম কমান</string>
+<string name="player_volume_up">ভলিউম বাড়ান</string>
 <string name="podcast_singular">পডকাস্ট</string>
 <string name="popup_delete_file">ফাইল মুছুন</string>
 <string name="popup_pause_download">ডাউনলোড থামান</string>

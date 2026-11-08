@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"טעינת %d קטע נכשלה"</item><item quantity="two">"טעינת %d קטעים נכשלה"</item><item quantity="other">"טעינת %d קטעים נכשלה"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d קטע"</item><item quantity="two">"%d קטעים"</item><item quantity="other">"%d קטעים"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d כותר"</item><item quantity="two">"%d כותרים"</item><item quantity="other">"%d כותרים"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"שנייה %d"</item><item quantity="two">"%d שניות"</item><item quantity="other">"%d שניות"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"מקור %d"</item><item quantity="two">"%d מקורות"</item><item quantity="other">"%d מקורות"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"הפרק הבא בעוד %d ש׳"</item><item quantity="two">"הפרק הבא בעוד %d ש׳"</item><item quantity="other">"הפרק הבא בעוד %d ש׳"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"חיפוש ב-%d מקור"</item><item quantity="two">"חיפוש בכל %d המקורות"</item><item quantity="other">"חיפוש בכל %d המקורות"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור."</item><item quantity="two">"יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות."</item><item quantity="other">"יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d מקור"</item><item quantity="two">"%d מקורות"</item><item quantity="other">"%d מקורות"</item></plurals>
@@ -404,6 +407,7 @@
 <string name="play_torrent_button">"שדר טורנט"</string>
 <string name="play_trailer_button">"הפעל טריילר"</string>
 <string name="play_with_app_name">"נגן עם קלאודסטרים"</string>
+<string name="player_audio_stereo">"סטריאו"</string>
 <string name="player_enter_fullscreen">"כניסה למסך מלא"</string>
 <string name="player_exit_fullscreen">"יציאה ממסך מלא"</string>
 <string name="player_fit_original">"יחס גובה־רוחב מקורי"</string>
@@ -421,20 +425,26 @@
 <string name="player_load_subtitles">"טען מקובץ"</string>
 <string name="player_load_subtitles_online">"טען מהאינטרנט"</string>
 <string name="player_loaded_subtitles" formatted="true">"נטען %s"</string>
+<string name="player_menu_playback">"הפעלה"</string>
 <string name="player_mute">"השתקה"</string>
+<string name="player_play_now">"הפעלה עכשיו"</string>
 <string name="player_pref">"נגן וידאו מועדף"</string>
 <string name="player_settings_play_in_app">"נגן פנימי"</string>
 <string name="player_size_settings">"כפתור שינוי גודל הנגן"</string>
 <string name="player_size_settings_des">"הסר את הגבולות השחורים"</string>
+<string name="player_source_decoded" formatted="true">"%s מפוענח"</string>
 <string name="player_source_playing">"מתנגן"</string>
 <string name="player_source_resumes_at" formatted="true">"ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s"</string>
 <string name="player_source_retry">"ניסיון חוזר"</string>
 <string name="player_source_switch">"החלפה"</string>
+<string name="player_sources_all_failed">"כל המקורות השיבו בשגיאה."</string>
 <string name="player_speed">"מהירות הנגן"</string>
 <string name="player_speed_text_format" formatted="true">"מהירות (%.2fx)"</string>
 <string name="player_subtitles_settings">"כתוביות"</string>
 <string name="player_subtitles_settings_des">"הגדרות כתוביות הנגן"</string>
 <string name="player_unmute">"ביטול השתקה"</string>
+<string name="player_volume_down">"הנמכת עוצמה"</string>
+<string name="player_volume_up">"הגברת עוצמה"</string>
 <string name="plugin">"תוספים"</string>
 <string name="plugin_deleted">"התוסף נמחק"</string>
 <string name="plugin_downloaded">"תוסף הורד"</string>

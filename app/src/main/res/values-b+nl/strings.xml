@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d sectie kon niet worden geladen"</item><item quantity="other">"%d secties konden niet worden geladen"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sectie"</item><item quantity="other">"%d secties"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d titel"</item><item quantity="other">"%d titels"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d seconde"</item><item quantity="other">"%d seconden"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d bron"</item><item quantity="other">"%d bronnen"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Volgende aflevering over %d s"</item><item quantity="other">"Volgende aflevering over %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Zoek in %d bron"</item><item quantity="other">"Zoek in alle %d bronnen"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Druk op de zoektoets van het toetsenbord om toch in %d bron te zoeken."</item><item quantity="other">"Druk op de zoektoets van het toetsenbord om toch in alle %d bronnen te zoeken."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d BRON"</item><item quantity="other">"%d BRONNEN"</item></plurals>
@@ -483,6 +486,7 @@
 <string name="play_torrent_button">"Stream Torrent"</string>
 <string name="play_trailer_button">"Speel Trailer"</string>
 <string name="play_with_app_name">"Afspelen met CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Volledig scherm openen"</string>
 <string name="player_exit_fullscreen">"Volledig scherm sluiten"</string>
 <string name="player_fit_original">"Originele beeldverhouding"</string>
@@ -501,24 +505,30 @@
 <string name="player_load_subtitles">"Laden uit bestand"</string>
 <string name="player_load_subtitles_online">"Laden vanaf internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"Geladen %s"</string>
+<string name="player_menu_playback">"Afspelen"</string>
 <string name="player_mute">"Dempen"</string>
 <string name="player_notification_channel_description">"De speler melding om de kijkervaring van de achtergrond de besturen"</string>
 <string name="player_notification_channel_name">"Speler meldingen"</string>
+<string name="player_play_now">"Nu afspelen"</string>
 <string name="player_pref">"Gewenste videospeler"</string>
 <string name="player_settings_always_ask">"Vraag altijd"</string>
 <string name="player_settings_play_in_app">"Interne speler"</string>
 <string name="player_settings_select_cast_device">"Cast apparaat selecteren"</string>
 <string name="player_size_settings">"Afspeel knop wijzig"</string>
 <string name="player_size_settings_des">"Verwijder de zwarte randen"</string>
+<string name="player_source_decoded" formatted="true">"%s gedecodeerd"</string>
 <string name="player_source_playing">"Speelt af"</string>
 <string name="player_source_resumes_at" formatted="true">"Wisselen behoudt je positie: gaat verder op %1$s"</string>
 <string name="player_source_retry">"Opnieuw"</string>
 <string name="player_source_switch">"Wisselen"</string>
+<string name="player_sources_all_failed">"Elke bron antwoordde met een fout."</string>
 <string name="player_speed">"Afspelen Snelheid"</string>
 <string name="player_speed_text_format" formatted="true">"Snelheid (%.2fx)"</string>
 <string name="player_subtitles_settings">"Ondertitels"</string>
 <string name="player_subtitles_settings_des">"Speler Ondertiteling instellingen"</string>
 <string name="player_unmute">"Dempen opheffen"</string>
+<string name="player_volume_down">"Volume omlaag"</string>
+<string name="player_volume_up">"Volume omhoog"</string>
 <string name="plugin">"plugins"</string>
 <string name="plugin_deleted">"Plugin Verwijderd"</string>
 <string name="plugin_downloaded">"Plugin Gedownload"</string>

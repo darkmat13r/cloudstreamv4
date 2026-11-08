@@ -34,6 +34,9 @@
 <plurals name="home_source_sections"><item quantity="other">%d 个版块</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d 部作品</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d 条隐藏链接</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">%d 秒</item></plurals>
+<plurals name="player_source_count"><item quantity="other">%d 个来源</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">%d 秒后播放下一集</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">搜索全部 %d 个来源</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">按键盘上的搜索键，仍然搜索全部 %d 个来源。</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d 来源</item></plurals>
@@ -516,6 +519,7 @@
 <string name="play_torrent_button">播放种子</string>
 <string name="play_trailer_button">播放预告片</string>
 <string name="play_with_app_name">使用 CloudStream 播放</string>
+<string name="player_audio_stereo">立体声</string>
 <string name="player_enter_fullscreen">进入全屏模式</string>
 <string name="player_exit_fullscreen">退出全屏模式</string>
 <string name="player_fit_original">原始宽高比</string>
@@ -535,24 +539,30 @@
 <string name="player_load_subtitles">从文件加载</string>
 <string name="player_load_subtitles_online">从互联网加载</string>
 <string name="player_loaded_subtitles">已加载 %s</string>
+<string name="player_menu_playback">播放</string>
 <string name="player_mute">静音</string>
 <string name="player_notification_channel_description">控制后台播放的播放器通知</string>
 <string name="player_notification_channel_name">播放器通知</string>
+<string name="player_play_now">立即播放</string>
 <string name="player_pref">首选视频播放器</string>
 <string name="player_settings_always_ask">始终询问</string>
 <string name="player_settings_play_in_app">内部播放器</string>
 <string name="player_settings_select_cast_device">选择投射设备</string>
 <string name="player_size_settings">播放器画面调整按钮</string>
 <string name="player_size_settings_des">移除黑色边框</string>
+<string name="player_source_decoded">已解码 %s</string>
 <string name="player_source_playing">正在播放</string>
 <string name="player_source_resumes_at">切换会保留播放位置：从 %1$s 继续</string>
 <string name="player_source_retry">重试</string>
 <string name="player_source_switch">切换</string>
+<string name="player_sources_all_failed">所有来源都返回了错误。</string>
 <string name="player_speed">播放速度</string>
 <string name="player_speed_text_format">速度（%.2fx）</string>
 <string name="player_subtitles_settings">字幕</string>
 <string name="player_subtitles_settings_des">播放器字幕设置</string>
 <string name="player_unmute">取消静音</string>
+<string name="player_volume_down">调低音量</string>
+<string name="player_volume_up">调高音量</string>
 <string name="plugin">插件</string>
 <string name="plugin_deleted">插件已删除</string>
 <string name="plugin_downloaded">插件已下载</string>

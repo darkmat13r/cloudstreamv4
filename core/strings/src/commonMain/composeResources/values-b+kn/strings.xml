@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ಬುಕ್‌ಮಾರ್ಕ್</item><item quantity="other">%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item><item quantity="other">%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ಶೀರ್ಷಿಕೆ</item><item quantity="other">%d ಶೀರ್ಷಿಕೆಗಳು</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d ಸೆಕೆಂಡ್</item><item quantity="other">%d ಸೆಕೆಂಡುಗಳು</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d ಮೂಲ</item><item quantity="other">%d ಮೂಲಗಳು</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">%d ಸೆ. ನಲ್ಲಿ ಮುಂದಿನ ಸಂಚಿಕೆ</item><item quantity="other">%d ಸೆ. ನಲ್ಲಿ ಮುಂದಿನ ಸಂಚಿಕೆ</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ಮೂಲದಲ್ಲಿ ಹುಡುಕಿ</item><item quantity="other">ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಿ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ಹಾಗಿದ್ದರೂ %d ಮೂಲದಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.</item><item quantity="other">ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ಮೂಲ</item><item quantity="other">%d ಮೂಲಗಳು</item></plurals>
@@ -304,5 +307,12 @@
 <string name="library_sync_retry">ಮತ್ತೆ ಸಿಂಕ್ ಮಾಡಿ</string>
 <string name="library_sync_unreachable">ತಲುಪಲಾಗುತ್ತಿಲ್ಲ · %s ಹಿಂದೆ ಕ್ಯಾಶ್</string>
 <string name="library_synced_format">%s ಹಿಂದೆ ಸಿಂಕ್ ಮಾಡಲಾಗಿದೆ</string>
+<string name="player_audio_stereo">ಸ್ಟೀರಿಯೋ</string>
+<string name="player_menu_playback">ಪ್ಲೇಬ್ಯಾಕ್</string>
+<string name="player_play_now">ಈಗ ಪ್ಲೇ ಮಾಡಿ</string>
+<string name="player_source_decoded">%s ಡಿಕೋಡ್ ಮಾಡಲಾಗಿದೆ</string>
+<string name="player_sources_all_failed">ಪ್ರತಿಯೊಂದು ಮೂಲವೂ ದೋಷದೊಂದಿಗೆ ಉತ್ತರಿಸಿತು.</string>
+<string name="player_volume_down">ವಾಲ್ಯೂಮ್ ಕಡಿಮೆ ಮಾಡಿ</string>
+<string name="player_volume_up">ವಾಲ್ಯೂಮ್ ಹೆಚ್ಚಿಸಿ</string>
 <string name="search_suggestions_return_hint">Return ಎಲ್ಲವನ್ನೂ ಹುಡುಕುತ್ತದೆ</string>
 </resources>

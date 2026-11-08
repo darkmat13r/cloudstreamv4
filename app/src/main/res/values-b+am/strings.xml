@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d ክፍል መጫን አልተቻለም"</item><item quantity="other">"%d ክፍል መጫን አልተቻለም"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d ክፍል"</item><item quantity="other">"%d ክፍሎች"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d ርዕስ"</item><item quantity="other">"%d ርዕሶች"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d ሰከንዶች"</item><item quantity="other">"%d ሰከንዶች"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d ምንጮች"</item><item quantity="other">"%d ምንጮች"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"ቀጣዩ ክፍል በ%d ሰ ውስጥ"</item><item quantity="other">"ቀጣዩ ክፍል በ%d ሰ ውስጥ"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ምንጭ ፈልግ"</item><item quantity="other">"ሁሉንም %d ምንጮች ፈልግ"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"ለማንኛውም %d ምንጭ ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።"</item><item quantity="other">"ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ምንጭ"</item><item quantity="other">"%d ምንጮች"</item></plurals>
@@ -186,6 +189,7 @@
 <string name="play_torrent_button">"Torrent አጫውት"</string>
 <string name="play_trailer_button">"የፊልም ማስታወቂያ አጫውት"</string>
 <string name="play_with_app_name">"በCloudStream አጫውት"</string>
+<string name="player_audio_stereo">"ስቴሪዮ"</string>
 <string name="player_enter_fullscreen">"ወደ ሙሉ ማያ ገፅ ግባ"</string>
 <string name="player_exit_fullscreen">"ከሙሉ ማያገጽ ውጣ"</string>
 <string name="player_fit_original">"የመጀመሪያ ምጥጥነ ገጽታ"</string>
@@ -200,14 +204,20 @@
 <string name="player_hud_seek_forward">"ወደፊት ዝለል"</string>
 <string name="player_hud_speed">"ፍጥነት"</string>
 <string name="player_hud_up_next" formatted="true">"ቀጣይ · %s"</string>
+<string name="player_menu_playback">"መልሶ ማጫወት"</string>
 <string name="player_mute">"ድምፅ አጥፋ"</string>
+<string name="player_play_now">"አሁን አጫውት"</string>
+<string name="player_source_decoded" formatted="true">"%s ተፈትቷል"</string>
 <string name="player_source_playing">"በመጫወት ላይ"</string>
 <string name="player_source_resumes_at" formatted="true">"መቀየር ቦታዎን ይጠብቃል፦ ከ%1$s ይቀጥላል"</string>
 <string name="player_source_retry">"እንደገና ሞክር"</string>
 <string name="player_source_switch">"ቀይር"</string>
+<string name="player_sources_all_failed">"እያንዳንዱ ምንጭ በስህተት መለሰ።"</string>
 <string name="player_speed">"የአጫዋች ፍጥነት"</string>
 <string name="player_speed_text_format" formatted="true">"ፍጥነት(%.2fx)"</string>
 <string name="player_unmute">"ድምፅ አብራ"</string>
+<string name="player_volume_down">"ድምፅ ቀንስ"</string>
+<string name="player_volume_up">"ድምፅ ጨምር"</string>
 <string name="popup_delete_file">"ፋይል አጥፋ"</string>
 <string name="popup_pause_download">"ማውረድ ለአፍታ አቁም"</string>
 <string name="popup_play_file">"ፋይል አጫውት"</string>

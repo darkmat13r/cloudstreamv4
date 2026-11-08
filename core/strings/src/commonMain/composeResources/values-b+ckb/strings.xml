@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ئاماژە</item><item quantity="other">%d ئاماژە</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بەش بار نەکرا</item><item quantity="other">%d بەش بار نەکرا</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ناونیشان</item><item quantity="other">%d ناونیشان</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d چرکە</item><item quantity="other">%d چرکە</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d سەرچاوە</item><item quantity="other">%d سەرچاوە</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">ئەڵقەی داهاتوو لە %d چ دا</item><item quantity="other">ئەڵقەی داهاتوو لە %d چ دا</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">گەڕان لە %d سەرچاوە</item><item quantity="other">گەڕان لە هەموو %d سەرچاوەکە</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە %d سەرچاوە بگەڕێیت.</item><item quantity="other">کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d سەرچاوە</item><item quantity="other">%d سەرچاوە</item></plurals>
@@ -260,5 +263,12 @@
 <string name="library_sync_retry">دووبارە هاوکاتکردن</string>
 <string name="library_sync_unreachable">نەگەیشترا · %s لەمەوبەر هەڵگیراوە</string>
 <string name="library_synced_format">%s لەمەوبەر هاوکات کرا</string>
+<string name="player_audio_stereo">ستیریۆ</string>
+<string name="player_menu_playback">لێدان</string>
+<string name="player_play_now">ئێستا لێبدە</string>
+<string name="player_source_decoded">%s دیکۆدکراو</string>
+<string name="player_sources_all_failed">هەموو سەرچاوەکان بە هەڵەیەک وەڵامیان دایەوە.</string>
+<string name="player_volume_down">دەنگ نزمکردنەوە</string>
+<string name="player_volume_up">دەنگ بەرزکردنەوە</string>
 <string name="search_suggestions_return_hint">Return لە هەمووی دەگەڕێت</string>
 </resources>

@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"Αποτυχία φόρτωσης %d ενότητας"</item><item quantity="other">"Αποτυχία φόρτωσης %d ενοτήτων"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d ενότητα"</item><item quantity="other">"%d ενότητες"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d τίτλος"</item><item quantity="other">"%d τίτλοι"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d δευτερόλεπτο"</item><item quantity="other">"%d δευτερόλεπτα"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d πηγή"</item><item quantity="other">"%d πηγές"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Επόμενο επεισόδιο σε %d δ"</item><item quantity="other">"Επόμενο επεισόδιο σε %d δ"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Αναζήτηση σε %d πηγή"</item><item quantity="other">"Αναζήτηση σε όλες τις %d πηγές"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως."</item><item quantity="other">"Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ΠΗΓΗ"</item><item quantity="other">"%d ΠΗΓΕΣ"</item></plurals>
@@ -473,6 +476,7 @@
 <string name="play_torrent_button">"Μετάδοση Torrent"</string>
 <string name="play_trailer_button">"Αναπαραγωγή τρέιλερ"</string>
 <string name="play_with_app_name">"Άνοιγμα με CloudStream"</string>
+<string name="player_audio_stereo">"στερεοφωνικό"</string>
 <string name="player_enter_fullscreen">"Πλήρης οθόνη"</string>
 <string name="player_exit_fullscreen">"Έξοδος από πλήρη οθόνη"</string>
 <string name="player_fit_original">"Αρχική αναλογία"</string>
@@ -491,23 +495,29 @@
 <string name="player_load_subtitles">"Φόρτωση από αρχείο"</string>
 <string name="player_load_subtitles_online">"Φόρτωση από το Ίντερνετ"</string>
 <string name="player_loaded_subtitles" formatted="true">"Φόρτωση %s"</string>
+<string name="player_menu_playback">"Αναπαραγωγή"</string>
 <string name="player_mute">"Σίγαση"</string>
 <string name="player_notification_channel_description">"Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο"</string>
 <string name="player_notification_channel_name">"Ειδοποίησεις αναπαραγωγής"</string>
+<string name="player_play_now">"Αναπαραγωγή τώρα"</string>
 <string name="player_pref">"Προτεινόμενο πρόγραμμα αναπαραγωγής"</string>
 <string name="player_settings_play_in_app">"Ενσωματωμένο πρόγραμμα αναπαραγωγής"</string>
 <string name="player_settings_select_cast_device">"Επιλογή συσκευής για αναμετάδοση"</string>
 <string name="player_size_settings">"Αλλαγή μεγέθους παραθύρου"</string>
 <string name="player_size_settings_des">"Αφαίρεση μαύρων περιγραμμάτων"</string>
+<string name="player_source_decoded" formatted="true">"%s αποκωδικοποιημένο"</string>
 <string name="player_source_playing">"Αναπαράγεται"</string>
 <string name="player_source_resumes_at" formatted="true">"Η αλλαγή διατηρεί τη θέση σας: συνέχεια από %1$s"</string>
 <string name="player_source_retry">"Επανάληψη"</string>
 <string name="player_source_switch">"Αλλαγή"</string>
+<string name="player_sources_all_failed">"Κάθε πηγή απάντησε με σφάλμα."</string>
 <string name="player_speed">"Ταχύτητα αναπαραγωγής"</string>
 <string name="player_speed_text_format" formatted="true">"Ταχύτητα (%.2fx)"</string>
 <string name="player_subtitles_settings">"Υπότιτλοι"</string>
 <string name="player_subtitles_settings_des">"Ρυθμίσεις υποτίτλων του προγράμματος αναπαραγωγής"</string>
 <string name="player_unmute">"Κατάργηση σίγασης"</string>
+<string name="player_volume_down">"Μείωση έντασης"</string>
+<string name="player_volume_up">"Αύξηση έντασης"</string>
 <string name="plugin">"Πρόσθετα"</string>
 <string name="plugin_deleted">"Το πρόσθετο διαγράφηκε"</string>
 <string name="plugin_downloaded">"Το πρόσθετο κατέβει"</string>

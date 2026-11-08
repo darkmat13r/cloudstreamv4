@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല"</item><item quantity="other">"%d വിഭാഗങ്ങൾ ലോഡ് ചെയ്യാനായില്ല"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d വിഭാഗം"</item><item quantity="other">"%d വിഭാഗങ്ങൾ"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d ശീർഷകം"</item><item quantity="other">"%d ശീർഷകങ്ങൾ"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d സെക്കൻഡ്"</item><item quantity="other">"%d സെക്കൻഡ്"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d ഉറവിടം"</item><item quantity="other">"%d ഉറവിടങ്ങൾ"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"%d സെ. കഴിഞ്ഞ് അടുത്ത എപ്പിസോഡ്"</item><item quantity="other">"%d സെ. കഴിഞ്ഞ് അടുത്ത എപ്പിസോഡ്"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ഉറവിടത്തിൽ തിരയുക"</item><item quantity="other">"എല്ലാ %d ഉറവിടങ്ങളിലും തിരയുക"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"എന്നിട്ടും %d ഉറവിടത്തിൽ തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക."</item><item quantity="other">"എന്നിട്ടും എല്ലാ %d ഉറവിടങ്ങളിലും തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ഉറവിടം"</item><item quantity="other">"%d ഉറവിടങ്ങൾ"</item></plurals>
@@ -285,6 +288,7 @@
 <string name="play_torrent_button">"ടോറൻറ് സ്ട്രീം ചെയ്യുക"</string>
 <string name="play_trailer_button">"ട്രെയിലർ പ്ലേ ചെയ്യുക"</string>
 <string name="play_with_app_name">"ക്ലൗഡ് സ്ട്രീം ഉപയോഗിച്ച് പ്രവർത്തിപ്പിക്കുക"</string>
+<string name="player_audio_stereo">"സ്റ്റീരിയോ"</string>
 <string name="player_enter_fullscreen">"പൂർണ്ണ സ്‌ക്രീൻ ആക്കുക"</string>
 <string name="player_exit_fullscreen">"പൂർണ്ണ സ്‌ക്രീനിൽ നിന്ന് പുറത്തുകടക്കുക"</string>
 <string name="player_fit_original">"യഥാർത്ഥ അനുപാതം"</string>
@@ -300,18 +304,24 @@
 <string name="player_hud_speed">"വേഗത"</string>
 <string name="player_hud_up_next" formatted="true">"അടുത്തത് · %s"</string>
 <string name="player_is_live">"തൽസമയം"</string>
+<string name="player_menu_playback">"പ്ലേബാക്ക്"</string>
 <string name="player_mute">"നിശബ്‌ദമാക്കുക"</string>
+<string name="player_play_now">"ഇപ്പോൾ പ്ലേ ചെയ്യുക"</string>
 <string name="player_size_settings">"പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ"</string>
 <string name="player_size_settings_des">"കറുത്ത അതിർത്തി നീക്കംചെയ്യുക"</string>
+<string name="player_source_decoded" formatted="true">"%s ഡീകോഡ് ചെയ്‌തു"</string>
 <string name="player_source_playing">"പ്ലേ ചെയ്യുന്നു"</string>
 <string name="player_source_resumes_at" formatted="true">"മാറ്റിയാലും സ്ഥാനം നിലനിൽക്കും: %1$s മുതൽ തുടരും"</string>
 <string name="player_source_retry">"വീണ്ടും ശ്രമിക്കുക"</string>
 <string name="player_source_switch">"മാറ്റുക"</string>
+<string name="player_sources_all_failed">"എല്ലാ ഉറവിടവും ഒരു പിശകോടെ മറുപടി നൽകി."</string>
 <string name="player_speed">"പ്ലേയർ വേഗത"</string>
 <string name="player_speed_text_format" formatted="true">"വേഗം (%.2fx)"</string>
 <string name="player_subtitles_settings">"സബ്ടൈട്ടിൽസ്"</string>
 <string name="player_subtitles_settings_des">"പ്ലേയർ സബ്‌ടൈറ്റിലുകളുടെ സെറ്റിങ്‌സ്"</string>
 <string name="player_unmute">"നിശബ്‌ദത മാറ്റുക"</string>
+<string name="player_volume_down">"ശബ്‌ദം കുറയ്‌ക്കുക"</string>
+<string name="player_volume_up">"ശബ്‌ദം കൂട്ടുക"</string>
 <string name="popup_delete_file">"ഫയൽ ഡിലീറ്റ് ചെയ്യുക"</string>
 <string name="popup_pause_download">"ഡൌൺലോഡ് നിർത്തുക"</string>
 <string name="popup_play_file">"ഫയൽ പ്ലേയ് ചെയ്യുക"</string>

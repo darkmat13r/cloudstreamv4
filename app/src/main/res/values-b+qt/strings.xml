@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="other">"%d oooogg ooh aaahhu"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d oouh"</item></plurals>
 <plurals name="library_title_count"><item quantity="other">"%d oouh"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">"%d oouh"</item></plurals>
+<plurals name="player_source_count"><item quantity="other">"%d ooh"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">"Ooh uuh %d ahh"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"aaoog %d ooh uugg"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"uuh aagg oooh aaahh uug %d ooogg aah."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d OOGAH"</item></plurals>
@@ -463,6 +466,7 @@
 <string name="play_torrent_button">"aaaghhaaahhu aaaaa"</string>
 <string name="play_trailer_button">"ggaaaahhhhhhh gaauuuuuuuaaaau"</string>
 <string name="play_with_app_name">"oooooh aaah aauuuggghauuh"</string>
+<string name="player_audio_stereo">"ahh"</string>
 <string name="player_enter_fullscreen">"oouuh haa aaaaa"</string>
 <string name="player_exit_fullscreen">"aauugghhaaaghh aaaaa"</string>
 <string name="player_fit_original">"oh aah"</string>
@@ -480,21 +484,27 @@
 <string name="player_load_subtitles">"aagg aahh uuuk"</string>
 <string name="player_load_subtitles_online">"eeek aahh oooohhhh"</string>
 <string name="player_loaded_subtitles" formatted="true">"oooohh %s"</string>
+<string name="player_menu_playback">"Oouh"</string>
 <string name="player_mute">"ooh oh"</string>
+<string name="player_play_now">"Ahh ooh"</string>
 <string name="player_pref">"aaaagggah uuugg uuuugg"</string>
 <string name="player_settings_play_in_app">"aaaagggh uuuugg"</string>
 <string name="player_settings_select_cast_device">"aaaagg aahh oooohh"</string>
 <string name="player_size_settings">"oouuhaoouuh aaaaa aauuhohahhh oooooaaaghhoh oh aaaaa"</string>
 <string name="player_size_settings_des">"aaaghhaaahhuahooo oha aaaghh"</string>
+<string name="player_source_decoded" formatted="true">"%s uuh"</string>
 <string name="player_source_playing">"oouuh aaaaa"</string>
 <string name="player_source_resumes_at" formatted="true">"ooh haa oh aaaaa: oouuh %1$s"</string>
 <string name="player_source_retry">"oouuh ooh"</string>
 <string name="player_source_switch">"ooh haa"</string>
+<string name="player_sources_all_failed">"Ooh ahh uuh oouh."</string>
 <string name="player_speed">"oouuh aauuh oha"</string>
 <string name="player_speed_text_format" formatted="true">"aaaaaaaaaaaaahh (%.2foouo)"</string>
 <string name="player_subtitles_settings">"ahhhaauugghh"</string>
 <string name="player_subtitles_settings_des">"oha ooh ouuhhh oooohhahhh ouuhhh"</string>
 <string name="player_unmute">"oouuh oh"</string>
+<string name="player_volume_down">"Uuh ahh"</string>
+<string name="player_volume_up">"Ooh uuh"</string>
 <string name="plugin">"uuuuhhh"</string>
 <string name="plugin_deleted">"uuuugg uuuuhhh"</string>
 <string name="plugin_downloaded">"oooohh oooogggaah"</string>

@@ -13,6 +13,9 @@
 <plurals name="home_sections_failed"><item quantity="zero">"تعذر تحميل %d قسم"</item><item quantity="one">"تعذر تحميل %d قسم"</item><item quantity="two">"تعذر تحميل %d قسمين"</item><item quantity="few">"تعذر تحميل %d أقسام"</item><item quantity="many">"تعذر تحميل %d قسمًا"</item><item quantity="other">"تعذر تحميل %d قسم"</item></plurals>
 <plurals name="home_source_sections"><item quantity="zero">"%d قسم"</item><item quantity="one">"%d قسم"</item><item quantity="two">"%d قسمان"</item><item quantity="few">"%d أقسام"</item><item quantity="many">"%d قسمًا"</item><item quantity="other">"%d قسم"</item></plurals>
 <plurals name="library_title_count"><item quantity="zero">"%d عنوان"</item><item quantity="one">"%d عنوان"</item><item quantity="two">"%d عنوانان"</item><item quantity="few">"%d عناوين"</item><item quantity="many">"%d عنوانًا"</item><item quantity="other">"%d عنوان"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="zero">"%d ثانية"</item><item quantity="one">"%d ثانية"</item><item quantity="two">"%d ثانيتان"</item><item quantity="few">"%d ثوانٍ"</item><item quantity="many">"%d ثانية"</item><item quantity="other">"%d ثانية"</item></plurals>
+<plurals name="player_source_count"><item quantity="zero">"%d مصدر"</item><item quantity="one">"%d مصدر"</item><item quantity="two">"%d مصدران"</item><item quantity="few">"%d مصادر"</item><item quantity="many">"%d مصدرًا"</item><item quantity="other">"%d مصدر"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="zero">"الحلقة التالية بعد %d ث"</item><item quantity="one">"الحلقة التالية بعد %d ث"</item><item quantity="two">"الحلقة التالية بعد %d ث"</item><item quantity="few">"الحلقة التالية بعد %d ث"</item><item quantity="many">"الحلقة التالية بعد %d ث"</item><item quantity="other">"الحلقة التالية بعد %d ث"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="zero">"ابحث في %d مصدر"</item><item quantity="one">"ابحث في %d مصدر"</item><item quantity="two">"ابحث في جميع المصادر الـ%d"</item><item quantity="few">"ابحث في جميع المصادر الـ%d"</item><item quantity="many">"ابحث في جميع المصادر الـ%d"</item><item quantity="other">"ابحث في جميع المصادر الـ%d"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="zero">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال."</item><item quantity="one">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال."</item><item quantity="two">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item><item quantity="few">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item><item quantity="many">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item><item quantity="other">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="zero">"%d مصدر"</item><item quantity="one">"%d مصدر"</item><item quantity="two">"%d مصدران"</item><item quantity="few">"%d مصادر"</item><item quantity="many">"%d مصدرًا"</item><item quantity="other">"%d مصدر"</item></plurals>
@@ -515,6 +518,7 @@
 <string name="play_torrent_button">"تشغيل تورنت"</string>
 <string name="play_trailer_button">"تشغيل المقطع الدعائي"</string>
 <string name="play_with_app_name">"تشغيل بواسطة CloudStream"</string>
+<string name="player_audio_stereo">"ستيريو"</string>
 <string name="player_enter_fullscreen">"دخول إلى وضع ملء الشاشة"</string>
 <string name="player_exit_fullscreen">"خروج من وضع ملء الشاشة"</string>
 <string name="player_fit_original">"نسبة العرض إلى الارتفاع الأصلية"</string>
@@ -534,24 +538,30 @@
 <string name="player_load_subtitles">"إختيار ملف"</string>
 <string name="player_load_subtitles_online">"تحميل من الانترنت"</string>
 <string name="player_loaded_subtitles" formatted="true">"تم تحميل %s"</string>
+<string name="player_menu_playback">"التشغيل"</string>
 <string name="player_mute">"كتم الصوت"</string>
 <string name="player_notification_channel_description">"تنبيه المشغل المسؤول عن تشغيل الميديا في الخلفية"</string>
 <string name="player_notification_channel_name">"تنبيهات المشغل"</string>
+<string name="player_play_now">"شغّل الآن"</string>
 <string name="player_pref">"مُشغل الفيديو المفضل"</string>
 <string name="player_settings_always_ask">"أسال دائما"</string>
 <string name="player_settings_play_in_app">"مشغل داخلي"</string>
 <string name="player_settings_select_cast_device">"حدد جهاز البث"</string>
 <string name="player_size_settings">"زر تغيير حجم المُشغل"</string>
 <string name="player_size_settings_des">"إزالة الحدود السوداء"</string>
+<string name="player_source_decoded" formatted="true">"%s مفكوك الترميز"</string>
 <string name="player_source_playing">"قيد التشغيل"</string>
 <string name="player_source_resumes_at" formatted="true">"التبديل يحافظ على موضعك: يُستأنف عند %1$s"</string>
 <string name="player_source_retry">"إعادة المحاولة"</string>
 <string name="player_source_switch">"تبديل"</string>
+<string name="player_sources_all_failed">"أعادت كل المصادر خطأً."</string>
 <string name="player_speed">"سرعة المُشغل"</string>
 <string name="player_speed_text_format" formatted="true">"سرعة (%.2fx)"</string>
 <string name="player_subtitles_settings">"الترجمة"</string>
 <string name="player_subtitles_settings_des">"إعدادات ترجمة المُشغل"</string>
 <string name="player_unmute">"إلغاء كتم الصوت"</string>
+<string name="player_volume_down">"خفض الصوت"</string>
+<string name="player_volume_up">"رفع الصوت"</string>
 <string name="plugin">"إضافات"</string>
 <string name="plugin_deleted">"تم إزالة الإضافة"</string>
 <string name="plugin_downloaded">"تم تنزيل الإضافة"</string>

@@ -13,6 +13,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"م قدرنا نفتح %d قسم"</item><item quantity="other">"م قدرنا نفتح %d أقسام"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d قسم"</item><item quantity="other">"%d أقسام"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d عنوان"</item><item quantity="other">"%d عناوين"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d ثانية"</item><item quantity="other">"%d ثواني"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d مصدر"</item><item quantity="other">"%d مصادر"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"الحلقة الجاية بعد %d ث"</item><item quantity="other">"الحلقة الجاية بعد %d ث"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"نبّش بـ%d مصدر"</item><item quantity="other">"نبّش بكل المصادر الـ%d"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال."</item><item quantity="other">"اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d مصدر"</item><item quantity="other">"%d مصادر"</item></plurals>
@@ -515,6 +518,7 @@
 <string name="play_torrent_button">"عمول ستريم للتورنت"</string>
 <string name="play_trailer_button">"مشّي المقطع الدعائي"</string>
 <string name="play_with_app_name">"مَشّي بـ\"كلود ستريم\""</string>
+<string name="player_audio_stereo">"ستيريو"</string>
 <string name="player_enter_fullscreen">"فوت عالشاشة الكاملة"</string>
 <string name="player_exit_fullscreen">"اطلع من الشاشة الكاملة"</string>
 <string name="player_fit_original">"نسبة العرض الأصلية"</string>
@@ -534,24 +538,30 @@
 <string name="player_load_subtitles">"فتاح من ملف"</string>
 <string name="player_load_subtitles_online">"فتاح من الإنترنت"</string>
 <string name="player_loaded_subtitles" formatted="true">"نفَتح %s"</string>
+<string name="player_menu_playback">"التشغيل"</string>
 <string name="player_mute">"كتّم الصوت"</string>
 <string name="player_notification_channel_description">"نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح"</string>
 <string name="player_notification_channel_name">"شغل الڤيديو عبر النوتيفيكايشنز"</string>
+<string name="player_play_now">"شغّل هلق"</string>
 <string name="player_pref">"مشغل الڤيديو المفضل"</string>
 <string name="player_settings_always_ask">"دايمًا سئالوني"</string>
 <string name="player_settings_play_in_app">"المشغل يللي ب \"كلود ستريم\""</string>
 <string name="player_settings_select_cast_device">"نقي جهاز الكاست"</string>
 <string name="player_size_settings">"كبسة تغيير حجم الڤيديو"</string>
 <string name="player_size_settings_des">"شيل الأسود من الأطراف"</string>
+<string name="player_source_decoded" formatted="true">"%s مفكوك"</string>
 <string name="player_source_playing">"عم يشتغل"</string>
 <string name="player_source_resumes_at" formatted="true">"التبديل بيحافظ على مكانك: بيكمّل من %1$s"</string>
 <string name="player_source_retry">"جرّب كمان مرة"</string>
 <string name="player_source_switch">"بدّل"</string>
+<string name="player_sources_all_failed">"كل المصادر رجّعت غلط."</string>
 <string name="player_speed">"سرعة الڤيديو"</string>
 <string name="player_speed_text_format" formatted="true">"السرعة (%.2fx)"</string>
 <string name="player_subtitles_settings">"الترجمة"</string>
 <string name="player_subtitles_settings_des">"سَتِنگز ترجمة الڤيديو"</string>
 <string name="player_unmute">"شغّل الصوت"</string>
+<string name="player_volume_down">"وطّي الصوت"</string>
+<string name="player_volume_up">"علّي الصوت"</string>
 <string name="plugin">"إضافات"</string>
 <string name="plugin_deleted">"نمحت الإضافة"</string>
 <string name="plugin_downloaded">"تنزلت الإضافة"</string>

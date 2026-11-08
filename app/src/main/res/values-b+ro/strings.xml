@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"Nu s-a putut încărca %d secțiune"</item><item quantity="few">"Nu s-au putut încărca %d secțiuni"</item><item quantity="other">"Nu s-au putut încărca %d de secțiuni"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d secțiune"</item><item quantity="few">"%d secțiuni"</item><item quantity="other">"%d de secțiuni"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d titlu"</item><item quantity="few">"%d titluri"</item><item quantity="other">"%d de titluri"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d secundă"</item><item quantity="few">"%d secunde"</item><item quantity="other">"%d de secunde"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d sursă"</item><item quantity="few">"%d surse"</item><item quantity="other">"%d de surse"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Episodul următor în %d s"</item><item quantity="few">"Episodul următor în %d s"</item><item quantity="other">"Episodul următor în %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Caută în %d sursă"</item><item quantity="few">"Caută în toate cele %d surse"</item><item quantity="other">"Caută în toate cele %d de surse"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Apăsați tasta de căutare a tastaturii pentru a căuta oricum în %d sursă."</item><item quantity="few">"Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d surse."</item><item quantity="other">"Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d de surse."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d SURSĂ"</item><item quantity="few">"%d SURSE"</item><item quantity="other">"%d DE SURSE"</item></plurals>
@@ -463,6 +466,7 @@
 <string name="play_torrent_button">"Stream Torrent"</string>
 <string name="play_trailer_button">"Vizionează trailerul"</string>
 <string name="play_with_app_name">"Joacă cu CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Accesează în ecran complet"</string>
 <string name="player_exit_fullscreen">"Ieși din ecranul complet"</string>
 <string name="player_fit_original">"Raport de aspect original"</string>
@@ -481,21 +485,27 @@
 <string name="player_load_subtitles">"Încărcați din fișier"</string>
 <string name="player_load_subtitles_online">"Încărcare de pe Internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"A fost încărcat %s"</string>
+<string name="player_menu_playback">"Redare"</string>
 <string name="player_mute">"Dezactivează sunetul"</string>
+<string name="player_play_now">"Redă acum"</string>
 <string name="player_pref">"Player video preferat"</string>
 <string name="player_settings_play_in_app">"Player intern"</string>
 <string name="player_settings_select_cast_device">"Selectați divece-ul pe care doriți să faceți cast"</string>
 <string name="player_size_settings">"Buton de redimensionare video"</string>
 <string name="player_size_settings_des">"Eliminați marginile negre"</string>
+<string name="player_source_decoded" formatted="true">"%s decodat"</string>
 <string name="player_source_playing">"Se redă"</string>
 <string name="player_source_resumes_at" formatted="true">"Schimbarea păstrează poziția: continuă de la %1$s"</string>
 <string name="player_source_retry">"Reîncearcă"</string>
 <string name="player_source_switch">"Schimbă"</string>
+<string name="player_sources_all_failed">"Fiecare sursă a răspuns cu o eroare."</string>
 <string name="player_speed">"Viteză video"</string>
 <string name="player_speed_text_format" formatted="true">"Viteză (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitrare"</string>
 <string name="player_subtitles_settings_des">"Setări de subtitrare"</string>
 <string name="player_unmute">"Activează sunetul"</string>
+<string name="player_volume_down">"Volum mai încet"</string>
+<string name="player_volume_up">"Volum mai tare"</string>
 <string name="plugin">"plugin-uri"</string>
 <string name="plugin_deleted">"Plugin Șters"</string>
 <string name="plugin_downloaded">"Plugin Descărcat"</string>

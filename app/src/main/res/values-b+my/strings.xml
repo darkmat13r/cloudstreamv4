@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="other">"အပိုင်း %d ခု တင်သွင်း၍မရပါ"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"ကဏ္ဍ %d ခု"</item></plurals>
 <plurals name="library_title_count"><item quantity="other">"ခေါင်းစဉ် %d ခု"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">"%d စက္ကန့်"</item></plurals>
+<plurals name="player_source_count"><item quantity="other">"ရင်းမြစ် %d ခု"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">"နောက်အပိုင်း %d စက္ကန့်အတွင်း"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d ရင်းမြစ်"</item></plurals>
@@ -390,6 +393,7 @@
 <string name="play_torrent_button">"တောရပ် ကြည့်မည်"</string>
 <string name="play_trailer_button">"ထွေလာ ကြည့်မည်"</string>
 <string name="play_with_app_name">"CloudStream ဖြင့်ကြည့်ရန်"</string>
+<string name="player_audio_stereo">"စတီရီယို"</string>
 <string name="player_enter_fullscreen">"ဖန်သားပြင်အပြည့်သို့ ဝင်ရောက်ပါ"</string>
 <string name="player_exit_fullscreen">"ဖန်သားပြင်အပြည့်မှ ထွက်ရန်"</string>
 <string name="player_fit_original">"မူရင်းအချိုး"</string>
@@ -407,20 +411,26 @@
 <string name="player_load_subtitles">"ဖိုင်မှတင်သွင်းပြီး"</string>
 <string name="player_load_subtitles_online">"အင်တာနက်မှ တင်သွင်းမည်"</string>
 <string name="player_loaded_subtitles" formatted="true">"တင်ပြီး %s"</string>
+<string name="player_menu_playback">"ပြန်ဖွင့်ခြင်း"</string>
 <string name="player_mute">"အသံပိတ်ရန်"</string>
+<string name="player_play_now">"ယခုဖွင့်"</string>
 <string name="player_pref">"ဦးစားပေး ဗီဒီယိုဖွင့်စက်"</string>
 <string name="player_settings_play_in_app">"ဖုန်းတွင်းကြည့်ရှုမှု"</string>
 <string name="player_size_settings">"ကြည့်ရှုမှု စခရင်အရွယ်အစားချိန်ညိှမှု"</string>
 <string name="player_size_settings_des">"အနက်ရောင်ဘောင်များကို ဖယ်ရှားရန်"</string>
+<string name="player_source_decoded" formatted="true">"%s ကုဒ်ဖြည်ပြီး"</string>
 <string name="player_source_playing">"ဖွင့်နေသည်"</string>
 <string name="player_source_resumes_at" formatted="true">"ပြောင်းလည်း နေရာမပျောက်ပါ: %1$s မှ ဆက်ဖွင့်မည်"</string>
 <string name="player_source_retry">"ထပ်ကြိုးစားရန်"</string>
 <string name="player_source_switch">"ပြောင်းရန်"</string>
+<string name="player_sources_all_failed">"ရင်းမြစ်တိုင်းက အမှားဖြင့် ပြန်ဖြေသည်။"</string>
 <string name="player_speed">"ကြည့်ရှုမှုအရှိန်"</string>
 <string name="player_speed_text_format" formatted="true">"အရှိန် (%.2fx)"</string>
 <string name="player_subtitles_settings">"စာတန်းထိုးများ"</string>
 <string name="player_subtitles_settings_des">"ကြည့်ရှုမှုစာတန်းထိုးပြုပြင်စရာများ"</string>
 <string name="player_unmute">"အသံဖွင့်ရန်"</string>
+<string name="player_volume_down">"အသံတိုး"</string>
+<string name="player_volume_up">"အသံချဲ့"</string>
 <string name="plugin">"ဖြည့်စွက်များ"</string>
 <string name="plugin_deleted">"ဖြည့်စွက်များဖျက်ပြီး"</string>
 <string name="plugin_downloaded">"ဖြည့်စွက်များ ဒေါင်းလုဒ်လုပ်ပြီး"</string>

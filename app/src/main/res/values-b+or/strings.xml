@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ"</item><item quantity="other">"%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d ବିଭାଗ"</item><item quantity="other">"%d ବିଭାଗ"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d ଶୀର୍ଷକ"</item><item quantity="other">"%d ଶୀର୍ଷକ"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d ସେକେଣ୍ଡ"</item><item quantity="other">"%d ସେକେଣ୍ଡ"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d ଉତ୍ସ"</item><item quantity="other">"%d ଉତ୍ସ"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"%d ସେ. ପରେ ପରବର୍ତ୍ତୀ ଏପିସୋଡ୍"</item><item quantity="other">"%d ସେ. ପରେ ପରବର୍ତ୍ତୀ ଏପିସୋଡ୍"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ"</item><item quantity="other">"ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।"</item><item quantity="other">"ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ଉତ୍ସ"</item><item quantity="other">"%d ଉତ୍ସ"</item></plurals>
@@ -217,6 +220,7 @@
 <string name="play_episode">"ଅଧ୍ୟାୟ ଚଲାଅ"</string>
 <string name="play_episode_toast">"ଅଧ୍ୟାୟ ଚଲାଅ"</string>
 <string name="play_movie_button">"ଚଳଚ୍ଚିତ୍ର ଚଲାଅ"</string>
+<string name="player_audio_stereo">"ଷ୍ଟେରିଓ"</string>
 <string name="player_enter_fullscreen">"ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନକୁ ଯାଆନ୍ତୁ"</string>
 <string name="player_exit_fullscreen">"ପୂର୍ଣ୍ଣ ସ୍କ୍ରିନରୁ ବାହାରନ୍ତୁ"</string>
 <string name="player_fit_original">"ମୂଳ ଅନୁପାତ"</string>
@@ -231,15 +235,21 @@
 <string name="player_hud_seek_forward">"ଆଗକୁ"</string>
 <string name="player_hud_speed">"ଗତି"</string>
 <string name="player_hud_up_next" formatted="true">"ପରବର୍ତ୍ତୀ · %s"</string>
+<string name="player_menu_playback">"ପ୍ଲେବ୍ୟାକ୍"</string>
 <string name="player_mute">"ମ୍ୟୁଟ କରନ୍ତୁ"</string>
+<string name="player_play_now">"ବର୍ତ୍ତମାନ ଚଲାନ୍ତୁ"</string>
 <string name="player_settings_play_in_app">"ଅନ୍ତଃ-ଚାଳକ"</string>
+<string name="player_source_decoded" formatted="true">"%s ଡିକୋଡ୍ ହୋଇଛି"</string>
 <string name="player_source_playing">"ଚାଲୁଛି"</string>
 <string name="player_source_resumes_at" formatted="true">"ବଦଳାଇଲେ ଆପଣଙ୍କ ସ୍ଥାନ ରହେ: %1$s ରୁ ଜାରି"</string>
 <string name="player_source_retry">"ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ"</string>
 <string name="player_source_switch">"ବଦଳାନ୍ତୁ"</string>
+<string name="player_sources_all_failed">"ପ୍ରତ୍ୟେକ ଉତ୍ସ ଏକ ତ୍ରୁଟି ସହ ଉତ୍ତର ଦେଲା।"</string>
 <string name="player_speed_text_format" formatted="true">"ଵେଗ (%.2fଗୁଣ)"</string>
 <string name="player_subtitles_settings">"ଉପଶୀର୍ଷକ"</string>
 <string name="player_unmute">"ଅନମ୍ୟୁଟ କରନ୍ତୁ"</string>
+<string name="player_volume_down">"ଭଲ୍ୟୁମ୍ କମାନ୍ତୁ"</string>
+<string name="player_volume_up">"ଭଲ୍ୟୁମ୍ ବଢ଼ାନ୍ତୁ"</string>
 <string name="pref_category_actions">"କୃତ୍ୟ"</string>
 <string name="pref_category_android_tv">"ଆଣ୍ଡ୍ରଏଡ୍ ଟିଵି"</string>
 <string name="pref_category_backup">"ବ୍ୟାକଅପ୍"</string>

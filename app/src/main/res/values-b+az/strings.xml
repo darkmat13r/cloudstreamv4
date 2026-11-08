@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d bölmə yüklənmədi"</item><item quantity="other">"%d bölmə yüklənmədi"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d bölmə"</item><item quantity="other">"%d bölmə"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d başlıq"</item><item quantity="other">"%d başlıq"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d saniyə"</item><item quantity="other">"%d saniyə"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d mənbə"</item><item quantity="other">"%d mənbə"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Növbəti seriya %d san sonra"</item><item quantity="other">"Növbəti seriya %d san sonra"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d mənbədə axtar"</item><item quantity="other">"Bütün %d mənbədə axtar"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Yenə də %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın."</item><item quantity="other">"Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d MƏNBƏ"</item><item quantity="other">"%d MƏNBƏ"</item></plurals>
@@ -224,6 +227,7 @@
 <string name="play_movie_button">"Filmi oynat"</string>
 <string name="play_trailer_button">"Fraqmanı Oynat"</string>
 <string name="play_with_app_name">"CloudStream ilə oynat"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Tam ekrana daxil olun"</string>
 <string name="player_exit_fullscreen">"Tam ekrandan çıxın"</string>
 <string name="player_fit_original">"Orijinal nisbət"</string>
@@ -238,17 +242,23 @@
 <string name="player_hud_seek_forward">"İrəli çək"</string>
 <string name="player_hud_speed">"Sürət"</string>
 <string name="player_hud_up_next" formatted="true">"Növbəti · %s"</string>
+<string name="player_menu_playback">"Oxutma"</string>
 <string name="player_mute">"Səssizə al"</string>
+<string name="player_play_now">"İndi oxut"</string>
 <string name="player_size_settings">"Pleyeri yenidən ölçüləndirmə düyməsini"</string>
 <string name="player_size_settings_des">"Qara sərhədləri, kənarları sil"</string>
+<string name="player_source_decoded" formatted="true">"%s deşifrə edilib"</string>
 <string name="player_source_playing">"Oynayır"</string>
 <string name="player_source_resumes_at" formatted="true">"Dəyişmək mövqeyinizi saxlayır: %1$s anından davam edir"</string>
 <string name="player_source_retry">"Yenidən cəhd et"</string>
 <string name="player_source_switch">"Dəyiş"</string>
+<string name="player_sources_all_failed">"Hər mənbə xəta ilə cavab verdi."</string>
 <string name="player_speed_text_format" formatted="true">"Sürət (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitrlər"</string>
 <string name="player_subtitles_settings_des">"Pleyerin subtitr parametrləri"</string>
 <string name="player_unmute">"Səsi aç"</string>
+<string name="player_volume_down">"Səsi azalt"</string>
+<string name="player_volume_up">"Səsi artır"</string>
 <string name="podcast_singular">"Podkast"</string>
 <string name="pref_filter_search_quality">"Seçilmiş video keyfiyyətini axtarış nəticələrində gizlət"</string>
 <string name="preview_background_img_des">"Arxaplana ilkin baxış keçir"</string>
