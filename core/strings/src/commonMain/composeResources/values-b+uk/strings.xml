@@ -509,6 +509,7 @@
 <string name="pin">PIN-код</string>
 <string name="pin_error_incorrect">Неправильний PIN-код. Спробуйте ще раз.</string>
 <string name="pin_error_length">PIN-код має складатися із 4 символів</string>
+<string name="pin_error_wait">Забагато неправильних PIN-кодів. Спробуйте ще раз через %1$s</string>
 <string name="play_episode">Відтворити епізод</string>
 <string name="play_episode_toast">Переглянути епізод</string>
 <string name="play_from_beginning_img_des">Відтворити з початку</string>

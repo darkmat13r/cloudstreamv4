@@ -231,6 +231,7 @@
 <string name="pause">"Paŭzigi"</string>
 <string name="pick_source">"Fontoj"</string>
 <string name="pick_subtitle">"Subtekstoj"</string>
+<string name="pin_error_wait" formatted="true">"Tro da malĝustaj PIN-oj. Reprovu post %1$s"</string>
 <string name="play_episode">"Ludi Epizodon"</string>
 <string name="play_from_beginning_img_des">"Legi ekde la komenco"</string>
 <string name="play_livestream_button">"Ludi tuj-elsendfluon"</string>

@@ -509,6 +509,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Nieprawidłowy PIN. Spróbuj ponownie.</string>
 <string name="pin_error_length">Kod PIN musi mieć 4 znaki</string>
+<string name="pin_error_wait">Zbyt wiele błędnych kodów PIN. Spróbuj ponownie za %1$s</string>
 <string name="play_episode">Odtwórz odcinek</string>
 <string name="play_episode_toast">Odtwórz odcinek</string>
 <string name="play_from_beginning_img_des">Odtwarzaj od początku</string>

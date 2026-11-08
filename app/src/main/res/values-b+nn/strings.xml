@@ -232,6 +232,7 @@
 <string name="pick_source">"Kjelder"</string>
 <string name="pick_subtitle">"Undertekstar"</string>
 <string name="picture_in_picture">"Bilde i bilde"</string>
+<string name="pin_error_wait" formatted="true">"For mange feil PIN-kodar. Prøv igjen om %1$s"</string>
 <string name="play_episode">"Spel av episode"</string>
 <string name="play_episode_toast">"Spel av episode"</string>
 <string name="play_from_beginning_img_des">"Spel av frå start"</string>

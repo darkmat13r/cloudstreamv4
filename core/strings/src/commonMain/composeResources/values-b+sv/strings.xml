@@ -509,6 +509,7 @@
 <string name="pin">PIN-kod</string>
 <string name="pin_error_incorrect">Felaktig PIN-kod. Försök igen.</string>
 <string name="pin_error_length">PIN-koden måste vara fyra tecken</string>
+<string name="pin_error_wait">För många felaktiga PIN-koder. Försök igen om %1$s</string>
 <string name="play_episode">Spela avsnitt</string>
 <string name="play_episode_toast">Spela upp avsnitt</string>
 <string name="play_from_beginning_img_des">Spela från början</string>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!-- BUG-50: sign-ins stay on this device (CredentialStore.FILE), in cloud backup and in device-to-device transfer.
-     Android 12 and higher. -->
+     BUG-55: so do wrong-PIN counts and waits (PinAttempts.FILE). Android 12 and higher. -->
 <data-extraction-rules>
     <cloud-backup>
         <exclude domain="sharedpref" path="cs_credentials.xml" />
+        <exclude domain="sharedpref" path="cs_pin_attempts.xml" />
     </cloud-backup>
     <device-transfer>
         <exclude domain="sharedpref" path="cs_credentials.xml" />
+        <exclude domain="sharedpref" path="cs_pin_attempts.xml" />
     </device-transfer>
 </data-extraction-rules>

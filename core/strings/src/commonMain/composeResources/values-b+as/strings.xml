@@ -462,6 +462,7 @@
 <string name="pin">পিন</string>
 <string name="pin_error_incorrect">ভুল পিন। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।</string>
 <string name="pin_error_length">পিন ৪ অক্ষৰৰ হ'ব লাগিব</string>
+<string name="pin_error_wait">বহুতো ভুল PIN। %1$s পিছত পুনৰ চেষ্টা কৰক</string>
 <string name="play_episode">এপিচ'ড প্লে কৰক</string>
 <string name="play_episode_toast">এপিচ’ড প্লে কৰক</string>
 <string name="play_from_beginning_img_des">আৰম্ভৰ পৰা প্লে কৰক</string>

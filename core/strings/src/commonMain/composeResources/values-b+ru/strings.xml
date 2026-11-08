@@ -509,6 +509,7 @@
 <string name="pin">ПИН-код</string>
 <string name="pin_error_incorrect">Неверный ПИН-код. Пожалуйста, введите его заново.</string>
 <string name="pin_error_length">ПИН-код должен содержать 4 символа</string>
+<string name="pin_error_wait">Слишком много неверных PIN-кодов. Повторите попытку через %1$s</string>
 <string name="play_episode">Смотреть серию</string>
 <string name="play_episode_toast">Смотреть серию</string>
 <string name="play_from_beginning_img_des">Играть с самого начала</string>

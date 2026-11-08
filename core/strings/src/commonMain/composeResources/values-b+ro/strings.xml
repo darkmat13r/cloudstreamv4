@@ -456,6 +456,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">PIN incorect. Te rog să încerci din nou.</string>
 <string name="pin_error_length">PIN-ul trebuie să fie format din 4 caractere</string>
+<string name="pin_error_wait">Prea multe PIN-uri greșite. Încercați din nou peste %1$s</string>
 <string name="play_episode">Redă episodul</string>
 <string name="play_episode_toast">Redare episod</string>
 <string name="play_from_beginning_img_des">Redă de la început</string>

@@ -110,7 +110,10 @@ class AccountViewModel : ViewModel() {
                 context,
                 account.lockPin,
                 false,
-                forStartup
+                forStartup,
+                errorText = null,
+                title = null,
+                attemptsKey = account.keyIndex,
             ) { pin ->
                 if (pin == null) return@showPinInputDialog
                 // Pin is correct, proceed

@@ -509,6 +509,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">PIN non corretto. Riprova.</string>
 <string name="pin_error_length">Il PIN deve essere almeno di 4 caratteri</string>
+<string name="pin_error_wait">Troppi PIN errati. Riprova tra %1$s</string>
 <string name="play_episode">Riproduci episodio</string>
 <string name="play_episode_toast">Riproduci episodio</string>
 <string name="play_from_beginning_img_des">Riproduci dall'inizio</string>

@@ -508,6 +508,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Неточен ПИН. Обиди се повторно.</string>
 <string name="pin_error_length">ПИН-кодот мора да има 4 знаци</string>
+<string name="pin_error_wait">Премногу погрешни PIN-кодови. Обидете се повторно за %1$s</string>
 <string name="play_episode">Вклучи епизода</string>
 <string name="play_episode_toast">Пушти ја епизодата</string>
 <string name="play_from_beginning_img_des">Пушти од почеток</string>

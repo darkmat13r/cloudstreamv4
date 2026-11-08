@@ -509,6 +509,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Nesprávný PIN. Zkuste to prosím znovu.</string>
 <string name="pin_error_length">PIN musí obsahovat 4 znaky</string>
+<string name="pin_error_wait">Příliš mnoho chybných PINů. Zkuste to znovu za %1$s</string>
 <string name="play_episode">Přehrát epizodu</string>
 <string name="play_episode_toast">Přehrát epizodu</string>
 <string name="play_from_beginning_img_des">Přehrát od začátku</string>

@@ -136,6 +136,7 @@
 <string name="load_more">"ተወሳኺ ጽዓን"</string>
 <string name="more_like_this">"ተመሳሳሊ"</string>
 <string name="next_episode_format" formatted="true">"ክፋል %d በ ላይ ይወጣል"</string>
+<string name="pin_error_wait" formatted="true">"ብዙሕ ጌጋ PIN። ድሕሪ %1$s እንደገና ፈትኑ"</string>
 <string name="player_enter_fullscreen">"ናብ ምሉእ ስክሪን እቶ"</string>
 <string name="player_exit_fullscreen">"ካብ ምሉእ ስክሪን ውጻእ"</string>
 <string name="player_fit_original">"መበቆል ዝምድና"</string>

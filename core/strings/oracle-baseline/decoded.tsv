@@ -201,6 +201,7 @@ values-b+af/strings.xml	string	pick_source	-	STR	Bronne
 values-b+af/strings.xml	string	pick_subtitle	-	STR	Onderskrifte	
 values-b+af/strings.xml	string	pin_error_incorrect	-	STR	Verkeerde PIN. Probeer weer.	
 values-b+af/strings.xml	string	pin_error_length	-	STR	PIN moet 4 karakters bevat	
+values-b+af/strings.xml	string	pin_error_wait	-	STR	Te veel verkeerde PIN's. Probeer weer oor %1$s	
 values-b+af/strings.xml	string	play_episode	-	STR	Speel Episode	
 values-b+af/strings.xml	string	play_livestream_button	-	STR	Speel Regstreeks	
 values-b+af/strings.xml	string	play_movie_button	-	STR	Speel Fliek	
@@ -511,6 +512,7 @@ values-b+am/strings.xml	string	next_episode_time_min_format	-	STR	%dደቂቃ
 values-b+am/strings.xml	string	no_data	-	STR	ውሂብ የለም	
 values-b+am/strings.xml	string	pick_source	-	STR	ምንጮች	
 values-b+am/strings.xml	string	pick_subtitle	-	STR	የትርጉም ጽሑፎች	
+values-b+am/strings.xml	string	pin_error_wait	-	STR	በጣም ብዙ የተሳሳቱ ፒኖች። ከ%1$s በኋላ እንደገና ይሞክሩ	
 values-b+am/strings.xml	string	play_episode	-	STR	ክፍልን አጫውት	
 values-b+am/strings.xml	string	play_livestream_button	-	STR	የቀጥታ ስርጭት አጫውት	
 values-b+am/strings.xml	string	play_movie_button	-	STR	ሙቪ አጫውት	
@@ -1146,6 +1148,7 @@ values-b+apc/strings.xml	string	picture_in_picture_des	-	STR	بعد ما تسك�
 values-b+apc/strings.xml	string	pin	-	STR	الأرقام السرية	
 values-b+apc/strings.xml	string	pin_error_incorrect	-	STR	الأرقام السرية يللي نحطت مش صحيحة. جرب مرة أخرى.	
 values-b+apc/strings.xml	string	pin_error_length	-	STR	لازم يكونو 4 أرقام	
+values-b+apc/strings.xml	string	pin_error_wait	-	STR	كتير PIN غلط. جرّب مرة تانية بعد %1$s	
 values-b+apc/strings.xml	string	play_episode	-	STR	مشّي الحلقة	
 values-b+apc/strings.xml	string	play_episode_toast	-	STR	مشّي الحلقة	
 values-b+apc/strings.xml	string	play_from_beginning_img_des	-	STR	بلشه من الأول	
@@ -2138,6 +2141,7 @@ values-b+ar/strings.xml	string	picture_in_picture_des	-	STR	يستمر في ال
 values-b+ar/strings.xml	string	pin	-	STR	PIN	
 values-b+ar/strings.xml	string	pin_error_incorrect	-	STR	رقم PIN غير صحيح. برجاء المحاولة مرة اخرى.	
 values-b+ar/strings.xml	string	pin_error_length	-	STR	رقم ال PIN يجب ان يكون 4 ارقام	
+values-b+ar/strings.xml	string	pin_error_wait	-	STR	محاولات PIN خاطئة كثيرة جدًا. حاول مرة أخرى بعد %1$s	
 values-b+ar/strings.xml	string	play_episode	-	STR	تشغيل الحلقة	
 values-b+ar/strings.xml	string	play_episode_toast	-	STR	تشغيل الحلقة	
 values-b+ar/strings.xml	string	play_from_beginning_img_des	-	STR	تشغيل من البداية	
@@ -2922,6 +2926,7 @@ values-b+ars/strings.xml	string	pick_source	-	STR	مصادر
 values-b+ars/strings.xml	string	pick_subtitle	-	STR	ترجمات	
 values-b+ars/strings.xml	string	picture_in_picture	-	STR	صور في صور	
 values-b+ars/strings.xml	string	picture_in_picture_des	-	STR	يستمر التشغيل في مشغل مصغر فوق التطبيقات الأخرى	
+values-b+ars/strings.xml	string	pin_error_wait	-	STR	محاولات PIN غلط كثيرة. حاول مرة ثانية بعد %1$s	
 values-b+ars/strings.xml	string	play_episode	-	STR	تشغيل الحلقة	
 values-b+ars/strings.xml	string	play_episode_toast	-	STR	تشغيل الحلقة	
 values-b+ars/strings.xml	string	play_livestream_button	-	STR	تشغيل البث المباشر	
@@ -3613,6 +3618,7 @@ values-b+as/strings.xml	string	picture_in_picture_des	-	STR	অন্য এপ�
 values-b+as/strings.xml	string	pin	-	STR	পিন	
 values-b+as/strings.xml	string	pin_error_incorrect	-	STR	ভুল পিন। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।	
 values-b+as/strings.xml	string	pin_error_length	-	STR	পিন ৪ অক্ষৰৰ হ'ব লাগিব	
+values-b+as/strings.xml	string	pin_error_wait	-	STR	বহুতো ভুল PIN। %1$s পিছত পুনৰ চেষ্টা কৰক	
 values-b+as/strings.xml	string	play_episode	-	STR	এপিচ'ড প্লে কৰক	
 values-b+as/strings.xml	string	play_episode_toast	-	STR	এপিচ’ড প্লে কৰক	
 values-b+as/strings.xml	string	play_from_beginning_img_des	-	STR	আৰম্ভৰ পৰা প্লে কৰক	
@@ -4207,6 +4213,7 @@ values-b+az/strings.xml	string	pause	-	STR	Dayandır
 values-b+az/strings.xml	string	pick_source	-	STR	Mənbələr	
 values-b+az/strings.xml	string	pick_subtitle	-	STR	Altyazılar	
 values-b+az/strings.xml	string	picture_in_picture	-	STR	Şəkil içində şəkil	
+values-b+az/strings.xml	string	pin_error_wait	-	STR	Həddindən çox səhv PIN. %1$s sonra yenidən cəhd edin	
 values-b+az/strings.xml	string	play_episode	-	STR	Bölümü oynat	
 values-b+az/strings.xml	string	play_from_beginning_img_des	-	STR	Əvvəldən oynat	
 values-b+az/strings.xml	string	play_livestream_button	-	STR	Canlı Yayını oynat	
@@ -4871,6 +4878,7 @@ values-b+be/strings.xml	string	picture_in_picture_des	-	STR	Працягвае �
 values-b+be/strings.xml	string	pin	-	STR	PIN-код	
 values-b+be/strings.xml	string	pin_error_incorrect	-	STR	Няправільны PIN-код. Паспрабуйце яшчэ раз.	
 values-b+be/strings.xml	string	pin_error_length	-	STR	PIN-код павінны быць з 4 сімвалаў	
+values-b+be/strings.xml	string	pin_error_wait	-	STR	Занадта шмат няправільных PIN-кодаў. Паспрабуйце зноў праз %1$s	
 values-b+be/strings.xml	string	play_episode	-	STR	Прайграць серыю	
 values-b+be/strings.xml	string	play_episode_toast	-	STR	Прайграць серыю	
 values-b+be/strings.xml	string	play_from_beginning_img_des	-	STR	Прайграць з пачатку	
@@ -5797,6 +5805,7 @@ values-b+bg/strings.xml	string	picture_in_picture_des	-	STR	Продължава
 values-b+bg/strings.xml	string	pin	-	STR	ПИН	
 values-b+bg/strings.xml	string	pin_error_incorrect	-	STR	Неверен ПИН. Моля опитайте отново.	
 values-b+bg/strings.xml	string	pin_error_length	-	STR	ПИН трябва да е 4 символа	
+values-b+bg/strings.xml	string	pin_error_wait	-	STR	Твърде много грешни ПИН кодове. Опитайте отново след %1$s	
 values-b+bg/strings.xml	string	play_episode	-	STR	Пусни епизод	
 values-b+bg/strings.xml	string	play_episode_toast	-	STR	Пусни епизода	
 values-b+bg/strings.xml	string	play_from_beginning_img_des	-	STR	Пусни от самото начало	
@@ -6562,6 +6571,7 @@ values-b+bn/strings.xml	string	pick_source	-	STR	উৎসসমূহ
 values-b+bn/strings.xml	string	pick_subtitle	-	STR	সাবটাইটেলসমূহ	
 values-b+bn/strings.xml	string	picture_in_picture	-	STR	পিকচার ইন পিকচার	
 values-b+bn/strings.xml	string	picture_in_picture_des	-	STR	অন্য অ্যাপ এর উপর ভিডিও চালাতে থাকুন	
+values-b+bn/strings.xml	string	pin_error_wait	-	STR	অনেকবার ভুল PIN। %1$s পরে আবার চেষ্টা করুন	
 values-b+bn/strings.xml	string	play_episode	-	STR	পর্ব চালান	
 values-b+bn/strings.xml	string	play_episode_toast	-	STR	এপিসোড পরলে করুন	
 values-b+bn/strings.xml	string	play_from_beginning_img_des	-	STR	শুরু থেকে চালু করুন	
@@ -7125,6 +7135,7 @@ values-b+ca/strings.xml	string	picture_in_picture_des	-	STR	Continua la reproduc
 values-b+ca/strings.xml	string	pin	-	STR	PIN	
 values-b+ca/strings.xml	string	pin_error_incorrect	-	STR	PIN incorrecte. Si us plau, torneu a intentar-ho.	
 values-b+ca/strings.xml	string	pin_error_length	-	STR	El PIN ha de tenir 4 caràcters	
+values-b+ca/strings.xml	string	pin_error_wait	-	STR	Massa PIN incorrectes. Torna-ho a provar en %1$s	
 values-b+ca/strings.xml	string	play_episode	-	STR	Reprodueix l'episodi	
 values-b+ca/strings.xml	string	play_from_beginning_img_des	-	STR	Reproduïr des del començament	
 values-b+ca/strings.xml	string	play_livestream_button	-	STR	Reprodueix Livestream	
@@ -7544,6 +7555,7 @@ values-b+ckb/strings.xml	string	offline_file	-	STR	بەردەستە بۆ سەی�
 values-b+ckb/strings.xml	string	open_local_video	-	STR	ڤیدیۆی ناوخۆیی بکەرەوە	
 values-b+ckb/strings.xml	string	pick_source	-	STR	سەرچاوەکان	
 values-b+ckb/strings.xml	string	pick_subtitle	-	STR	ژێرنووسەکان	
+values-b+ckb/strings.xml	string	pin_error_wait	-	STR	زۆر PINی هەڵە. دوای %1$s دووبارە هەوڵ بدەرەوە	
 values-b+ckb/strings.xml	string	play_from_beginning_img_des	-	STR	لە سەرەتاوە دەست پێ بکە	
 values-b+ckb/strings.xml	string	play_torrent_button	-	STR	تۆرێنت ستریم بکە	
 values-b+ckb/strings.xml	string	player_enter_fullscreen	-	STR	چوونە ناو پڕ بە شاشە	
@@ -8187,6 +8199,7 @@ values-b+cs/strings.xml	string	picture_in_picture_des	-	STR	Přehrávání bude 
 values-b+cs/strings.xml	string	pin	-	STR	PIN	
 values-b+cs/strings.xml	string	pin_error_incorrect	-	STR	Nesprávný PIN. Zkuste to prosím znovu.	
 values-b+cs/strings.xml	string	pin_error_length	-	STR	PIN musí obsahovat 4 znaky	
+values-b+cs/strings.xml	string	pin_error_wait	-	STR	Příliš mnoho chybných PINů. Zkuste to znovu za %1$s	
 values-b+cs/strings.xml	string	play_episode	-	STR	Přehrát epizodu	
 values-b+cs/strings.xml	string	play_episode_toast	-	STR	Přehrát epizodu	
 values-b+cs/strings.xml	string	play_from_beginning_img_des	-	STR	Přehrát od začátku	
@@ -9126,6 +9139,7 @@ values-b+de/strings.xml	string	picture_in_picture_des	-	STR	Setzt die Wiedergabe
 values-b+de/strings.xml	string	pin	-	STR	PIN	
 values-b+de/strings.xml	string	pin_error_incorrect	-	STR	Falsche PIN. Bitte versuche es erneut.	
 values-b+de/strings.xml	string	pin_error_length	-	STR	PIN muss 4 Zeichen sein	
+values-b+de/strings.xml	string	pin_error_wait	-	STR	Zu viele falsche PINs. Erneut versuchen in %1$s	
 values-b+de/strings.xml	string	play_episode	-	STR	Episode abspielen	
 values-b+de/strings.xml	string	play_episode_toast	-	STR	Episode abspielen	
 values-b+de/strings.xml	string	play_from_beginning_img_des	-	STR	Vom Beginn an spielen	
@@ -10020,6 +10034,7 @@ values-b+el/strings.xml	string	picture_in_picture_des	-	STR	Συνεχίζει �
 values-b+el/strings.xml	string	pin	-	STR	Κωδικός	
 values-b+el/strings.xml	string	pin_error_incorrect	-	STR	Εσφαλμένος Κωδικός. Προσπαθήστε ξανά.	
 values-b+el/strings.xml	string	pin_error_length	-	STR	Ο κωδικός να περιέχει 4 χαρακτήρες	
+values-b+el/strings.xml	string	pin_error_wait	-	STR	Πάρα πολλά λάθος PIN. Δοκιμάστε ξανά σε %1$s	
 values-b+el/strings.xml	string	play_episode	-	STR	Αναπαραγωγή επεισοδίου	
 values-b+el/strings.xml	string	play_episode_toast	-	STR	Αναπαραγωγή επεισοδίου	
 values-b+el/strings.xml	string	play_from_beginning_img_des	-	STR	Παίξε από την αρχή	
@@ -10646,6 +10661,7 @@ values-b+eo/strings.xml	string	others	-	STR	Aliaj
 values-b+eo/strings.xml	string	pause	-	STR	Paŭzigi	
 values-b+eo/strings.xml	string	pick_source	-	STR	Fontoj	
 values-b+eo/strings.xml	string	pick_subtitle	-	STR	Subtekstoj	
+values-b+eo/strings.xml	string	pin_error_wait	-	STR	Tro da malĝustaj PIN-oj. Reprovu post %1$s	
 values-b+eo/strings.xml	string	play_episode	-	STR	Ludi Epizodon	
 values-b+eo/strings.xml	string	play_from_beginning_img_des	-	STR	Legi ekde la komenco	
 values-b+eo/strings.xml	string	play_livestream_button	-	STR	Ludi tuj-elsendfluon	
@@ -11324,6 +11340,7 @@ values-b+es/strings.xml	string	picture_in_picture_des	-	STR	Continúa la reprodu
 values-b+es/strings.xml	string	pin	-	STR	PIN	
 values-b+es/strings.xml	string	pin_error_incorrect	-	STR	PIN incorrecto. Por favor, inténtelo de nuevo.	
 values-b+es/strings.xml	string	pin_error_length	-	STR	El PIN debe tener 4 caracteres	
+values-b+es/strings.xml	string	pin_error_wait	-	STR	Demasiados PIN incorrectos. Inténtalo de nuevo en %1$s	
 values-b+es/strings.xml	string	play_episode	-	STR	Reproducir Episodio	
 values-b+es/strings.xml	string	play_episode_toast	-	STR	Reproducir Episodio	
 values-b+es/strings.xml	string	play_from_beginning_img_des	-	STR	Reproducir desde el principio	
@@ -12065,6 +12082,7 @@ values-b+fa/strings.xml	string	pick_source	-	STR	منابع
 values-b+fa/strings.xml	string	pick_subtitle	-	STR	زیرنویس‌ها	
 values-b+fa/strings.xml	string	picture_in_picture	-	STR	تصویر در تصویر	
 values-b+fa/strings.xml	string	picture_in_picture_des	-	STR	پخش را در یک پخش کننده مینیاتوری در بالای برنامه های دیگر ادامه می دهد	
+values-b+fa/strings.xml	string	pin_error_wait	-	STR	PIN اشتباه بیش از حد. %1$s دیگر دوباره امتحان کنید	
 values-b+fa/strings.xml	string	play_episode	-	STR	پخش قسمت	
 values-b+fa/strings.xml	string	play_episode_toast	-	STR	پخش قسمت	
 values-b+fa/strings.xml	string	play_from_beginning_img_des	-	STR	پخش از ابتدا	
@@ -12513,6 +12531,7 @@ values-b+fil/strings.xml	string	pick_source	-	STR	Mga Mapagkukunan
 values-b+fil/strings.xml	string	pick_subtitle	-	STR	Mga saling-teksto	
 values-b+fil/strings.xml	string	picture_in_picture_des	-	STR	Ipinagpapatuloy ang pag-playback sa isang miniature na player sa ibabaw ng iba pang mga app	
 values-b+fil/strings.xml	string	pin_error_incorrect	-	STR	Maling PIN. Pakisubukang muli.	
+values-b+fil/strings.xml	string	pin_error_wait	-	STR	Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s	
 values-b+fil/strings.xml	string	play_episode	-	STR	Ipatugtog ang Kabanata	
 values-b+fil/strings.xml	string	play_from_beginning_img_des	-	STR	Ipatugtog mula sa Simula	
 values-b+fil/strings.xml	string	play_full_series_button	-	STR	Ipatugtog ang Buong Serye	
@@ -13183,6 +13202,7 @@ values-b+fr/strings.xml	string	picture_in_picture_des	-	STR	Poursuite de la lect
 values-b+fr/strings.xml	string	pin	-	STR	PIN	
 values-b+fr/strings.xml	string	pin_error_incorrect	-	STR	PIN incorrect. Ressayez s'il vous plait.	
 values-b+fr/strings.xml	string	pin_error_length	-	STR	Le PIN doit être de 4 caractères	
+values-b+fr/strings.xml	string	pin_error_wait	-	STR	Trop de codes PIN erronés. Réessayez dans %1$s	
 values-b+fr/strings.xml	string	play_episode	-	STR	Lire l'Épisode	
 values-b+fr/strings.xml	string	play_episode_toast	-	STR	Lecture de l'episode	
 values-b+fr/strings.xml	string	play_from_beginning_img_des	-	STR	Regarder depuis le début	
@@ -13900,6 +13920,7 @@ values-b+gl/strings.xml	string	pick_source	-	STR	Fontes
 values-b+gl/strings.xml	string	pick_subtitle	-	STR	Subtítulos	
 values-b+gl/strings.xml	string	picture_in_picture	-	STR	Imaxe en Imaxe	
 values-b+gl/strings.xml	string	picture_in_picture_des	-	STR	Continúa a reprodución nun reproductor miniatura enriba doutras aplicacións	
+values-b+gl/strings.xml	string	pin_error_wait	-	STR	Demasiados PIN incorrectos. Téntao de novo en %1$s	
 values-b+gl/strings.xml	string	play_episode	-	STR	Reproducir Episodio	
 values-b+gl/strings.xml	string	play_episode_toast	-	STR	Reproducir capítulo	
 values-b+gl/strings.xml	string	play_from_beginning_img_des	-	STR	Reproducir dende o comezo	
@@ -14460,6 +14481,7 @@ values-b+hi/strings.xml	string	picture_in_picture_des	-	STR	अन्य ऐप�
 values-b+hi/strings.xml	string	pin	-	STR	पिन	
 values-b+hi/strings.xml	string	pin_error_incorrect	-	STR	ग़लत पिन. कृपया पुन: प्रयास करें।	
 values-b+hi/strings.xml	string	pin_error_length	-	STR	पिन 4 अक्षर का होना चाहिए	
+values-b+hi/strings.xml	string	pin_error_wait	-	STR	बहुत सारे गलत PIN। %1$s बाद फिर से कोशिश करें	
 values-b+hi/strings.xml	string	play_episode	-	STR	एपिसोड चलाएं	
 values-b+hi/strings.xml	string	play_episode_toast	-	STR	एपिसोड चलायें	
 values-b+hi/strings.xml	string	play_from_beginning_img_des	-	STR	आरम्भ से शुरू करें	
@@ -15235,6 +15257,7 @@ values-b+hr/strings.xml	string	picture_in_picture_des	-	STR	Nastavlja reprodukci
 values-b+hr/strings.xml	string	pin	-	STR	PIN	
 values-b+hr/strings.xml	string	pin_error_incorrect	-	STR	Netočan PIN. Pokušajte ponovno.	
 values-b+hr/strings.xml	string	pin_error_length	-	STR	PIN mora imati 4 znaka	
+values-b+hr/strings.xml	string	pin_error_wait	-	STR	Previše pogrešnih PIN-ova. Pokušajte ponovno za %1$s	
 values-b+hr/strings.xml	string	play_episode	-	STR	Pokreni epizodu	
 values-b+hr/strings.xml	string	play_episode_toast	-	STR	Pokreni epizodu	
 values-b+hr/strings.xml	string	play_from_beginning_img_des	-	STR	Pokreni od početka	
@@ -16115,6 +16138,7 @@ values-b+hu/strings.xml	string	picture_in_picture_des	-	STR	Folytatja a lejátsz
 values-b+hu/strings.xml	string	pin	-	STR	PIN	
 values-b+hu/strings.xml	string	pin_error_incorrect	-	STR	Hibás PIN. Próbálja újra.	
 values-b+hu/strings.xml	string	pin_error_length	-	STR	A PIN 4 karakter hosszú kell legyen	
+values-b+hu/strings.xml	string	pin_error_wait	-	STR	Túl sok hibás PIN. Próbáld újra %1$s múlva	
 values-b+hu/strings.xml	string	play_episode	-	STR	Epizód lejátszása	
 values-b+hu/strings.xml	string	play_episode_toast	-	STR	Epizód lejátszása	
 values-b+hu/strings.xml	string	play_from_beginning_img_des	-	STR	Lejátszás az elejétől	
@@ -16988,6 +17012,7 @@ values-b+in/strings.xml	string	picture_in_picture_des	-	STR	Lanjutkan pemutaran 
 values-b+in/strings.xml	string	pin	-	STR	PIN	
 values-b+in/strings.xml	string	pin_error_incorrect	-	STR	PIN Salah. Silahkan coba lagi.	
 values-b+in/strings.xml	string	pin_error_length	-	STR	PIN harus terdiri 4 karakter	
+values-b+in/strings.xml	string	pin_error_wait	-	STR	Terlalu banyak PIN yang salah. Coba lagi dalam %1$s	
 values-b+in/strings.xml	string	play_episode	-	STR	Putar Episode	
 values-b+in/strings.xml	string	play_episode_toast	-	STR	Putar Episode	
 values-b+in/strings.xml	string	play_from_beginning_img_des	-	STR	Putar dari awal	
@@ -17943,6 +17968,7 @@ values-b+it/strings.xml	string	picture_in_picture_des	-	STR	Continua la riproduz
 values-b+it/strings.xml	string	pin	-	STR	PIN	
 values-b+it/strings.xml	string	pin_error_incorrect	-	STR	PIN non corretto. Riprova.	
 values-b+it/strings.xml	string	pin_error_length	-	STR	Il PIN deve essere almeno di 4 caratteri	
+values-b+it/strings.xml	string	pin_error_wait	-	STR	Troppi PIN errati. Riprova tra %1$s	
 values-b+it/strings.xml	string	play_episode	-	STR	Riproduci episodio	
 values-b+it/strings.xml	string	play_episode_toast	-	STR	Riproduci episodio	
 values-b+it/strings.xml	string	play_from_beginning_img_des	-	STR	Riproduci dall'inizio	
@@ -18781,6 +18807,7 @@ values-b+iw/strings.xml	string	pick_source	-	STR	מקורות
 values-b+iw/strings.xml	string	pick_subtitle	-	STR	כתוביות	
 values-b+iw/strings.xml	string	picture_in_picture	-	STR	מצב תמונה בתמונה	
 values-b+iw/strings.xml	string	picture_in_picture_des	-	STR	ממשיך ניגון בנגן מינימלי מעל ישומים אחרים	
+values-b+iw/strings.xml	string	pin_error_wait	-	STR	יותר מדי קודי PIN שגויים. נסו שוב בעוד %1$s	
 values-b+iw/strings.xml	string	play_episode	-	STR	נגן פרק	
 values-b+iw/strings.xml	string	play_episode_toast	-	STR	נגן את הפרק	
 values-b+iw/strings.xml	string	play_from_beginning_img_des	-	STR	נגן מההתחלה	
@@ -19624,6 +19651,7 @@ values-b+ja/strings.xml	string	picture_in_picture_des	-	STR	他のアプリの�
 values-b+ja/strings.xml	string	pin	-	STR	PIN	
 values-b+ja/strings.xml	string	pin_error_incorrect	-	STR	PINが違います。もう一度試してください。	
 values-b+ja/strings.xml	string	pin_error_length	-	STR	PINは4文字でなければなりません	
+values-b+ja/strings.xml	string	pin_error_wait	-	STR	PIN の入力ミスが多すぎます。%1$s 後にもう一度お試しください	
 values-b+ja/strings.xml	string	play_episode	-	STR	再生エピソード	
 values-b+ja/strings.xml	string	play_episode_toast	-	STR	再生エピソード	
 values-b+ja/strings.xml	string	play_from_beginning_img_des	-	STR	最初から再生する	
@@ -20242,6 +20270,7 @@ values-b+kn/strings.xml	string	pick_source	-	STR	ಮೂಲಗಳು
 values-b+kn/strings.xml	string	pick_subtitle	-	STR	ಸಬ್ ಟೈಟಲ್ಸ್	
 values-b+kn/strings.xml	string	picture_in_picture	-	STR	ಚಿತ್ರದಲ್ಲಿ-ಚಿತ್ರದಲ್ಲಿ	
 values-b+kn/strings.xml	string	picture_in_picture_des	-	STR	ಇತರ ಅಪ್ಲಿಕೇಶನ್‌ಗಳ ಮೇಲೆ ಚಿಕಣಿ ಪ್ಲೇಯರ್‌ನಲ್ಲಿ ಪ್ಲೇಬ್ಯಾಕ್ ಅನ್ನು ಮುಂದುವರಿಸುತ್ತದೆ	
+values-b+kn/strings.xml	string	pin_error_wait	-	STR	ತುಂಬಾ ತಪ್ಪು PIN ಗಳು. %1$s ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ	
 values-b+kn/strings.xml	string	play_episode	-	STR	ಸಂಚಿಕೆಯನ್ನು ಪ್ಲೇ ಮಾಡಿ	
 values-b+kn/strings.xml	string	play_livestream_button	-	STR	ಲೈವ್‌ಸ್ಟ್ರೀಮ್ ಪ್ಲೇ ಮಾಡಿ	
 values-b+kn/strings.xml	string	play_movie_button	-	STR	ಚಲನಚಿತ್ರವನ್ನು ಪ್ಲೇ ಮಾಡಿ	
@@ -20874,6 +20903,7 @@ values-b+ko/strings.xml	string	picture_in_picture_des	-	STR	미니플레이어�
 values-b+ko/strings.xml	string	pin	-	STR	PIN	
 values-b+ko/strings.xml	string	pin_error_incorrect	-	STR	잘못된 PIN입니다. 다시 시도하세요.	
 values-b+ko/strings.xml	string	pin_error_length	-	STR	PIN은 4자여야 합니다	
+values-b+ko/strings.xml	string	pin_error_wait	-	STR	잘못된 PIN을 너무 많이 입력했습니다. %1$s 후에 다시 시도하세요	
 values-b+ko/strings.xml	string	play_episode	-	STR	에피소드 재생	
 values-b+ko/strings.xml	string	play_episode_toast	-	STR	에피소드 재생	
 values-b+ko/strings.xml	string	play_from_beginning_img_des	-	STR	처음부터 재생	
@@ -21599,6 +21629,7 @@ values-b+lt/strings.xml	string	pick_source	-	STR	Šaltiniai
 values-b+lt/strings.xml	string	pick_subtitle	-	STR	Subtitrai	
 values-b+lt/strings.xml	string	picture_in_picture	-	STR	Vaizdas vaizde	
 values-b+lt/strings.xml	string	picture_in_picture_des	-	STR	Tęsia atkūrimą mažame grotuve virš kitų programų	
+values-b+lt/strings.xml	string	pin_error_wait	-	STR	Per daug neteisingų PIN kodų. Bandykite dar kartą po %1$s	
 values-b+lt/strings.xml	string	play_episode	-	STR	Paleisti seriją	
 values-b+lt/strings.xml	string	play_episode_toast	-	STR	Leisti seriją	
 values-b+lt/strings.xml	string	play_full_series_button	-	STR	Paleisti visą seriją	
@@ -22273,6 +22304,7 @@ values-b+lv/strings.xml	string	picture_in_picture_des	-	STR	Turpina atskaņošan
 values-b+lv/strings.xml	string	pin	-	STR	PIN kods	
 values-b+lv/strings.xml	string	pin_error_incorrect	-	STR	Nepareizs PIN kods. Lūdzu, ievadiet to no jauna.	
 values-b+lv/strings.xml	string	pin_error_length	-	STR	PIN kods satur 4 rakstzīmes	
+values-b+lv/strings.xml	string	pin_error_wait	-	STR	Pārāk daudz nepareizu PIN. Mēģiniet vēlreiz pēc %1$s	
 values-b+lv/strings.xml	string	play_episode	-	STR	Palaist epizodi	
 values-b+lv/strings.xml	string	play_episode_toast	-	STR	Atskaņot epizodi	
 values-b+lv/strings.xml	string	play_from_beginning_img_des	-	STR	Atskaņot no sākuma	
@@ -23153,6 +23185,7 @@ values-b+mk/strings.xml	string	picture_in_picture_des	-	STR	Продолжува
 values-b+mk/strings.xml	string	pin	-	STR	PIN	
 values-b+mk/strings.xml	string	pin_error_incorrect	-	STR	Неточен ПИН. Обиди се повторно.	
 values-b+mk/strings.xml	string	pin_error_length	-	STR	ПИН-кодот мора да има 4 знаци	
+values-b+mk/strings.xml	string	pin_error_wait	-	STR	Премногу погрешни PIN-кодови. Обидете се повторно за %1$s	
 values-b+mk/strings.xml	string	play_episode	-	STR	Вклучи епизода	
 values-b+mk/strings.xml	string	play_episode_toast	-	STR	Пушти ја епизодата	
 values-b+mk/strings.xml	string	play_from_beginning_img_des	-	STR	Пушти од почеток	
@@ -23853,6 +23886,7 @@ values-b+ml/strings.xml	string	picture_in_picture_des	-	STR	മറ്റ് ആ�
 values-b+ml/strings.xml	string	pin	-	STR	പിൻ	
 values-b+ml/strings.xml	string	pin_error_incorrect	-	STR	തെറ്റായ പിൻ. ദയവായി വീണ്ടും ശ്രമിക്കുക.	
 values-b+ml/strings.xml	string	pin_error_length	-	STR	പിൻ 4 പ്രതീകങ്ങൾ ആയിരിക്കണം	
+values-b+ml/strings.xml	string	pin_error_wait	-	STR	വളരെയധികം തെറ്റായ PIN-കൾ. %1$s കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക	
 values-b+ml/strings.xml	string	play_episode	-	STR	എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക	
 values-b+ml/strings.xml	string	play_episode_toast	-	STR	എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക	
 values-b+ml/strings.xml	string	play_from_beginning_img_des	-	STR	തുടക്കം മുതൽ പ്ലേ ചെയ്യുക	
@@ -24476,6 +24510,7 @@ values-b+ms/strings.xml	string	picture_in_picture_des	-	STR	Sambung Rakaman dida
 values-b+ms/strings.xml	string	pin	-	STR	PIN	
 values-b+ms/strings.xml	string	pin_error_incorrect	-	STR	PIN salah. Sila cuba sekali lagi.	
 values-b+ms/strings.xml	string	pin_error_length	-	STR	PIN perlu mempunyai 4 aksara	
+values-b+ms/strings.xml	string	pin_error_wait	-	STR	Terlalu banyak PIN salah. Cuba lagi dalam %1$s	
 values-b+ms/strings.xml	string	play_episode	-	STR	Pasang Episod	
 values-b+ms/strings.xml	string	play_episode_toast	-	STR	Main episod	
 values-b+ms/strings.xml	string	play_from_beginning_img_des	-	STR	Main dari mula	
@@ -25008,6 +25043,7 @@ values-b+mt/strings.xml	string	pick_source	-	STR	Sorsi
 values-b+mt/strings.xml	string	pick_subtitle	-	STR	Sottotitli	
 values-b+mt/strings.xml	string	picture_in_picture	-	STR	Stampa f-istampa	
 values-b+mt/strings.xml	string	picture_in_picture_des	-	STR	Ikompli d-daqq fi player minjatura fuq apps oħra	
+values-b+mt/strings.xml	string	pin_error_wait	-	STR	Wisq PINs ħżiena. Ipprova mill-ġdid fi żmien %1$s	
 values-b+mt/strings.xml	string	play_episode	-	STR	Ibda l-episodju	
 values-b+mt/strings.xml	string	play_livestream_button	-	STR	Ibda l-livestream	
 values-b+mt/strings.xml	string	play_movie_button	-	STR	Ibda l-film	
@@ -25514,6 +25550,7 @@ values-b+my/strings.xml	string	pick_source	-	STR	ရင်းမြစ်မျ�
 values-b+my/strings.xml	string	pick_subtitle	-	STR	စာတန်းထိုး	
 values-b+my/strings.xml	string	picture_in_picture	-	STR	ရုပ်ပုံထပ်	
 values-b+my/strings.xml	string	picture_in_picture_des	-	STR	ပြန်ကြည့်ခြင်းကိုအသေးစား ကြည့်ရှုမှုတွင်ဆက်ပြပါ	
+values-b+my/strings.xml	string	pin_error_wait	-	STR	PIN မှားယွင်းမှု များလွန်းသည်။ %1$s အကြာတွင် ထပ်စမ်းကြည့်ပါ	
 values-b+my/strings.xml	string	play_episode	-	STR	အပိုင်း ကြည့်မည်	
 values-b+my/strings.xml	string	play_episode_toast	-	STR	အပိုင်းကြည့်မည်	
 values-b+my/strings.xml	string	play_livestream_button	-	STR	လိုက်ခ် ကြည့်မည်	
@@ -26039,6 +26076,7 @@ values-b+ne/strings.xml	string	pick_source	-	STR	स्रोतहरू
 values-b+ne/strings.xml	string	pick_subtitle	-	STR	उपशीर्षक	
 values-b+ne/strings.xml	string	picture_in_picture	-	STR	Picture-in-picture	
 values-b+ne/strings.xml	string	picture_in_picture_des	-	STR	अरु एप माथी सानो प्लेयरमा पलेब्याक जारी राख्दछ	
+values-b+ne/strings.xml	string	pin_error_wait	-	STR	धेरै पटक गलत PIN। %1$s पछि फेरि प्रयास गर्नुहोस्	
 values-b+ne/strings.xml	string	play_episode	-	STR	एपिसोड प्ले गर्नुहोस्	
 values-b+ne/strings.xml	string	play_livestream_button	-	STR	लाइभस्ट्रिम प्ले गर्नुहोस्	
 values-b+ne/strings.xml	string	play_movie_button	-	STR	चलचित्र प्ले गर्नुहोस्	
@@ -26653,6 +26691,7 @@ values-b+nl/strings.xml	string	picture_in_picture_des	-	STR	Blijft afspelen in e
 values-b+nl/strings.xml	string	pin	-	STR	PIN	
 values-b+nl/strings.xml	string	pin_error_incorrect	-	STR	Onjuiste PIN. Probeer het opnieuw.	
 values-b+nl/strings.xml	string	pin_error_length	-	STR	PIN moet 4 teken bevatten	
+values-b+nl/strings.xml	string	pin_error_wait	-	STR	Te veel verkeerde pincodes. Probeer het over %1$s opnieuw	
 values-b+nl/strings.xml	string	play_episode	-	STR	Aflevering afspelen	
 values-b+nl/strings.xml	string	play_episode_toast	-	STR	Aflevering afspelen	
 values-b+nl/strings.xml	string	play_from_beginning_img_des	-	STR	Speel van het begin	
@@ -27292,6 +27331,7 @@ values-b+nn/strings.xml	string	pause	-	STR	Pause
 values-b+nn/strings.xml	string	pick_source	-	STR	Kjelder	
 values-b+nn/strings.xml	string	pick_subtitle	-	STR	Undertekstar	
 values-b+nn/strings.xml	string	picture_in_picture	-	STR	Bilde i bilde	
+values-b+nn/strings.xml	string	pin_error_wait	-	STR	For mange feil PIN-kodar. Prøv igjen om %1$s	
 values-b+nn/strings.xml	string	play_episode	-	STR	Spel av episode	
 values-b+nn/strings.xml	string	play_episode_toast	-	STR	Spel av episode	
 values-b+nn/strings.xml	string	play_from_beginning_img_des	-	STR	Spel av frå start	
@@ -27837,6 +27877,7 @@ values-b+no/strings.xml	string	pick_source	-	STR	Kilder
 values-b+no/strings.xml	string	pick_subtitle	-	STR	Undertekster	
 values-b+no/strings.xml	string	picture_in_picture	-	STR	Bilde-i-bilde	
 values-b+no/strings.xml	string	picture_in_picture_des	-	STR	Fortsetter avspilling i en miniatyr spiller på toppen av andre apper	
+values-b+no/strings.xml	string	pin_error_wait	-	STR	For mange feil PIN-koder. Prøv igjen om %1$s	
 values-b+no/strings.xml	string	play_episode	-	STR	Spille Episode	
 values-b+no/strings.xml	string	play_episode_toast	-	STR	spille episode	
 values-b+no/strings.xml	string	play_livestream_button	-	STR	Spill direktestrøm	
@@ -28384,6 +28425,7 @@ values-b+or/strings.xml	string	no_season	-	STR	କୌଣସି ଋତୁ ନା�
 values-b+or/strings.xml	string	no_update_found	-	STR	କୌଣସି ଅଦ୍ୟତନ ମିଳିଲା ନାହିଁ	
 values-b+or/strings.xml	string	other_singular	-	STR	ଵିଡ଼ିଓ	
 values-b+or/strings.xml	string	others	-	STR	ଅନ୍ୟାନ୍ୟ	
+values-b+or/strings.xml	string	pin_error_wait	-	STR	ଅତ୍ୟଧିକ ଭୁଲ PIN। %1$s ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ	
 values-b+or/strings.xml	string	play_episode	-	STR	ଅଧ୍ୟାୟ ଚଲାଅ	
 values-b+or/strings.xml	string	play_episode_toast	-	STR	ଅଧ୍ୟାୟ ଚଲାଅ	
 values-b+or/strings.xml	string	play_movie_button	-	STR	ଚଳଚ୍ଚିତ୍ର ଚଲାଅ	
@@ -29070,6 +29112,7 @@ values-b+pl/strings.xml	string	picture_in_picture_des	-	STR	Oglądaj w małym, p
 values-b+pl/strings.xml	string	pin	-	STR	PIN	
 values-b+pl/strings.xml	string	pin_error_incorrect	-	STR	Nieprawidłowy PIN. Spróbuj ponownie.	
 values-b+pl/strings.xml	string	pin_error_length	-	STR	Kod PIN musi mieć 4 znaki	
+values-b+pl/strings.xml	string	pin_error_wait	-	STR	Zbyt wiele błędnych kodów PIN. Spróbuj ponownie za %1$s	
 values-b+pl/strings.xml	string	play_episode	-	STR	Odtwórz odcinek	
 values-b+pl/strings.xml	string	play_episode_toast	-	STR	Odtwórz odcinek	
 values-b+pl/strings.xml	string	play_from_beginning_img_des	-	STR	Odtwarzaj od początku	
@@ -30025,6 +30068,7 @@ values-b+pt+BR/strings.xml	string	picture_in_picture_des	-	STR	Continua o vídeo
 values-b+pt+BR/strings.xml	string	pin	-	STR	PIN	
 values-b+pt+BR/strings.xml	string	pin_error_incorrect	-	STR	PIN incorreto. Por favor, tente novamente.	
 values-b+pt+BR/strings.xml	string	pin_error_length	-	STR	O PIN deve ter 4 caracteres	
+values-b+pt+BR/strings.xml	string	pin_error_wait	-	STR	Muitos PINs incorretos. Tente novamente em %1$s	
 values-b+pt+BR/strings.xml	string	play_episode	-	STR	Reproduzir episódio	
 values-b+pt+BR/strings.xml	string	play_episode_toast	-	STR	Assistir episódio	
 values-b+pt+BR/strings.xml	string	play_from_beginning_img_des	-	STR	Reproduzir do começo	
@@ -30977,6 +31021,7 @@ values-b+pt/strings.xml	string	picture_in_picture_des	-	STR	Continua a reproduç
 values-b+pt/strings.xml	string	pin	-	STR	PIN	
 values-b+pt/strings.xml	string	pin_error_incorrect	-	STR	PIN incorreto. Por favor, tente novamente.	
 values-b+pt/strings.xml	string	pin_error_length	-	STR	O PIN deve ter 4 caracteres	
+values-b+pt/strings.xml	string	pin_error_wait	-	STR	Demasiados PIN errados. Tente novamente dentro de %1$s	
 values-b+pt/strings.xml	string	play_episode	-	STR	Reproduzir episódio	
 values-b+pt/strings.xml	string	play_episode_toast	-	STR	Reproduzir episódio	
 values-b+pt/strings.xml	string	play_from_beginning_img_des	-	STR	Recomeçar	
@@ -31843,6 +31888,7 @@ values-b+qt/strings.xml	string	picture_in_picture_des	-	STR	ooooooohhaa ouuhhh o
 values-b+qt/strings.xml	string	pin	-	STR	oog	
 values-b+qt/strings.xml	string	pin_error_incorrect	-	STR	oooohhhag uug oooohh uuh eeeek	
 values-b+qt/strings.xml	string	pin_error_length	-	STR	ooh oogg uh 4 uuuuhhhooh	
+values-b+qt/strings.xml	string	pin_error_wait	-	STR	oooohhhag uug ooh %1$s eeek	
 values-b+qt/strings.xml	string	play_episode	-	STR	aaaaa oh ohaouuhhh	
 values-b+qt/strings.xml	string	play_episode_toast	-	STR	ouuhhhoouuh ouuhhh	
 values-b+qt/strings.xml	string	play_from_beginning_img_des	-	STR	aahh oohh uuh uuuuggguh	
@@ -32677,6 +32723,7 @@ values-b+ro/strings.xml	string	picture_in_picture_des	-	STR	Continuă redarea î
 values-b+ro/strings.xml	string	pin	-	STR	PIN	
 values-b+ro/strings.xml	string	pin_error_incorrect	-	STR	PIN incorect. Te rog să încerci din nou.	
 values-b+ro/strings.xml	string	pin_error_length	-	STR	PIN-ul trebuie să fie format din 4 caractere	
+values-b+ro/strings.xml	string	pin_error_wait	-	STR	Prea multe PIN-uri greșite. Încercați din nou peste %1$s	
 values-b+ro/strings.xml	string	play_episode	-	STR	Redă episodul	
 values-b+ro/strings.xml	string	play_episode_toast	-	STR	Redare episod	
 values-b+ro/strings.xml	string	play_from_beginning_img_des	-	STR	Redă de la început	
@@ -33589,6 +33636,7 @@ values-b+ru/strings.xml	string	picture_in_picture_des	-	STR	Продолжени
 values-b+ru/strings.xml	string	pin	-	STR	ПИН-код	
 values-b+ru/strings.xml	string	pin_error_incorrect	-	STR	Неверный ПИН-код. Пожалуйста, введите его заново.	
 values-b+ru/strings.xml	string	pin_error_length	-	STR	ПИН-код должен содержать 4 символа	
+values-b+ru/strings.xml	string	pin_error_wait	-	STR	Слишком много неверных PIN-кодов. Повторите попытку через %1$s	
 values-b+ru/strings.xml	string	play_episode	-	STR	Смотреть серию	
 values-b+ru/strings.xml	string	play_episode_toast	-	STR	Смотреть серию	
 values-b+ru/strings.xml	string	play_from_beginning_img_des	-	STR	Играть с самого начала	
@@ -34419,6 +34467,7 @@ values-b+sk/strings.xml	string	pick_source	-	STR	Zdroje
 values-b+sk/strings.xml	string	pick_subtitle	-	STR	Titulky	
 values-b+sk/strings.xml	string	picture_in_picture	-	STR	Obraz v obraze	
 values-b+sk/strings.xml	string	picture_in_picture_des	-	STR	Pokračuje v prehrávaní v miniatúrnom prehrávači nad ostatnými aplikáciami	
+values-b+sk/strings.xml	string	pin_error_wait	-	STR	Príliš veľa nesprávnych PIN kódov. Skúste to znova o %1$s	
 values-b+sk/strings.xml	string	play_episode	-	STR	Prehrať epizódu	
 values-b+sk/strings.xml	string	play_episode_toast	-	STR	Prehrať epizódu	
 values-b+sk/strings.xml	string	play_from_beginning_img_des	-	STR	Hrať od začiatku	
@@ -35099,6 +35148,7 @@ values-b+so/strings.xml	string	pick_source	-	STR	Xigashooyinka
 values-b+so/strings.xml	string	pick_subtitle	-	STR	Qrl-hoosaadka	
 values-b+so/strings.xml	string	picture_in_picture	-	STR	Sawir-daaqadlaha	
 values-b+so/strings.xml	string	picture_in_picture_des	-	STR	Ka sii wado daawashada daaqad yar oo appska kale dul istaagi doonta	
+values-b+so/strings.xml	string	pin_error_wait	-	STR	PIN qaldan oo aad u badan. Isku day mar kale %1$s kadib	
 values-b+so/strings.xml	string	play_episode	-	STR	Xalqadda daaro	
 values-b+so/strings.xml	string	play_episode_toast	-	STR	Daari xalqaddan	
 values-b+so/strings.xml	string	play_from_beginning_img_des	-	STR	Ka bilow bilowga	
@@ -35932,6 +35982,7 @@ values-b+sq/strings.xml	string	picture_in_picture_des	-	STR	Vazhdo shikimin në 
 values-b+sq/strings.xml	string	pin	-	STR	PIN	
 values-b+sq/strings.xml	string	pin_error_incorrect	-	STR	PIN-i i gabuar. Ju lutem provoni përsëri.	
 values-b+sq/strings.xml	string	pin_error_length	-	STR	PIN-i duhet të ketë 4 karaktere	
+values-b+sq/strings.xml	string	pin_error_wait	-	STR	Shumë PIN të gabuar. Provo përsëri pas %1$s	
 values-b+sq/strings.xml	string	play_episode	-	STR	Luaj Episodin	
 values-b+sq/strings.xml	string	play_episode_toast	-	STR	Luaj Episodin	
 values-b+sq/strings.xml	string	play_from_beginning_img_des	-	STR	Luaj nga fillimi	
@@ -36871,6 +36922,7 @@ values-b+sv/strings.xml	string	picture_in_picture_des	-	STR	Fortsätter uppspeln
 values-b+sv/strings.xml	string	pin	-	STR	PIN-kod	
 values-b+sv/strings.xml	string	pin_error_incorrect	-	STR	Felaktig PIN-kod. Försök igen.	
 values-b+sv/strings.xml	string	pin_error_length	-	STR	PIN-koden måste vara fyra tecken	
+values-b+sv/strings.xml	string	pin_error_wait	-	STR	För många felaktiga PIN-koder. Försök igen om %1$s	
 values-b+sv/strings.xml	string	play_episode	-	STR	Spela avsnitt	
 values-b+sv/strings.xml	string	play_episode_toast	-	STR	Spela upp avsnitt	
 values-b+sv/strings.xml	string	play_from_beginning_img_des	-	STR	Spela från början	
@@ -37810,6 +37862,7 @@ values-b+ta/strings.xml	string	picture_in_picture_des	-	STR	மற்ற பய�
 values-b+ta/strings.xml	string	pin	-	STR	முள்	
 values-b+ta/strings.xml	string	pin_error_incorrect	-	STR	தவறான முள். தயவு செய்து மீண்டும் முயற்சிக்கவும்.	
 values-b+ta/strings.xml	string	pin_error_length	-	STR	முள் 4 எழுத்துகளாக இருக்க வேண்டும்	
+values-b+ta/strings.xml	string	pin_error_wait	-	STR	பல தவறான PIN-கள். %1$s கழித்து மீண்டும் முயலவும்	
 values-b+ta/strings.xml	string	play_episode	-	STR	அத்தியாயத்தை இயக்கு	
 values-b+ta/strings.xml	string	play_episode_toast	-	STR	அத்தியாயம் விளையாடுங்கள்	
 values-b+ta/strings.xml	string	play_from_beginning_img_des	-	STR	முதலில் இருந்து ஆரம்பி	
@@ -38374,6 +38427,7 @@ values-b+ti/strings.xml	string	library_synced_format	-	STR	ቅድሚ %s ተሰ�
 values-b+ti/strings.xml	string	load_more	-	STR	ተወሳኺ ጽዓን	
 values-b+ti/strings.xml	string	more_like_this	-	STR	ተመሳሳሊ	
 values-b+ti/strings.xml	string	next_episode_format	-	STR	ክፋል %d በ ላይ ይወጣል	
+values-b+ti/strings.xml	string	pin_error_wait	-	STR	ብዙሕ ጌጋ PIN። ድሕሪ %1$s እንደገና ፈትኑ	
 values-b+ti/strings.xml	string	player_enter_fullscreen	-	STR	ናብ ምሉእ ስክሪን እቶ	
 values-b+ti/strings.xml	string	player_exit_fullscreen	-	STR	ካብ ምሉእ ስክሪን ውጻእ	
 values-b+ti/strings.xml	string	player_fit_original	-	STR	መበቆል ዝምድና	
@@ -38704,6 +38758,7 @@ values-b+tl/strings.xml	string	pick_source	-	STR	Sources
 values-b+tl/strings.xml	string	pick_subtitle	-	STR	Subtitles	
 values-b+tl/strings.xml	string	picture_in_picture	-	STR	Picture-in-picture	
 values-b+tl/strings.xml	string	picture_in_picture_des	-	STR	Magpatuloy ang playback sa isang maliit na player sa ibabaw ng ibang apps	
+values-b+tl/strings.xml	string	pin_error_wait	-	STR	Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s	
 values-b+tl/strings.xml	string	play_episode	-	STR	I-play ang episode	
 values-b+tl/strings.xml	string	play_episode_toast	-	STR	Play Episode	
 values-b+tl/strings.xml	string	play_livestream_button	-	STR	Panuorin ang Livestream	
@@ -39402,6 +39457,7 @@ values-b+tr/strings.xml	string	picture_in_picture_des	-	STR	İçerik diğer uygu
 values-b+tr/strings.xml	string	pin	-	STR	PIN	
 values-b+tr/strings.xml	string	pin_error_incorrect	-	STR	Yanlış PIN. Lütfen tekrar deneyin.	
 values-b+tr/strings.xml	string	pin_error_length	-	STR	PIN 4 karakterden oluşmalı	
+values-b+tr/strings.xml	string	pin_error_wait	-	STR	Çok fazla hatalı PIN. %1$s sonra tekrar deneyin	
 values-b+tr/strings.xml	string	play_episode	-	STR	Bölümü Oynat	
 values-b+tr/strings.xml	string	play_episode_toast	-	STR	Bölümü oynat	
 values-b+tr/strings.xml	string	play_from_beginning_img_des	-	STR	Baştan Oynat	
@@ -40373,6 +40429,7 @@ values-b+uk/strings.xml	string	picture_in_picture_des	-	STR	Продовжува
 values-b+uk/strings.xml	string	pin	-	STR	PIN-код	
 values-b+uk/strings.xml	string	pin_error_incorrect	-	STR	Неправильний PIN-код. Спробуйте ще раз.	
 values-b+uk/strings.xml	string	pin_error_length	-	STR	PIN-код має складатися із 4 символів	
+values-b+uk/strings.xml	string	pin_error_wait	-	STR	Забагато неправильних PIN-кодів. Спробуйте ще раз через %1$s	
 values-b+uk/strings.xml	string	play_episode	-	STR	Відтворити епізод	
 values-b+uk/strings.xml	string	play_episode_toast	-	STR	Переглянути епізод	
 values-b+uk/strings.xml	string	play_from_beginning_img_des	-	STR	Відтворити з початку	
@@ -41241,6 +41298,7 @@ values-b+ur/strings.xml	string	picture_in_picture_des	-	STR	دوسری ایپس 
 values-b+ur/strings.xml	string	pin	-	STR	پن	
 values-b+ur/strings.xml	string	pin_error_incorrect	-	STR	غلط پن۔ دوبارہ کوشش کریں۔	
 values-b+ur/strings.xml	string	pin_error_length	-	STR	پن چار حروف کا ہونا چاہیے	
+values-b+ur/strings.xml	string	pin_error_wait	-	STR	بہت زیادہ غلط PIN۔ %1$s بعد دوبارہ کوشش کریں	
 values-b+ur/strings.xml	string	play_episode	-	STR	قسط چلائیں	
 values-b+ur/strings.xml	string	play_episode_toast	-	STR	قسط چلائیں	
 values-b+ur/strings.xml	string	play_from_beginning_img_des	-	STR	شروع سےپلے کریں	
@@ -42096,6 +42154,7 @@ values-b+vi/strings.xml	string	picture_in_picture_des	-	STR	Tiếp tục phát t
 values-b+vi/strings.xml	string	pin	-	STR	PIN	
 values-b+vi/strings.xml	string	pin_error_incorrect	-	STR	Mã PIN không đúng. Vui lòng thử lại.	
 values-b+vi/strings.xml	string	pin_error_length	-	STR	Mã PIN phải có 4 ký tự	
+values-b+vi/strings.xml	string	pin_error_wait	-	STR	Nhập sai PIN quá nhiều lần. Thử lại sau %1$s	
 values-b+vi/strings.xml	string	play_episode	-	STR	Phát Tập phim	
 values-b+vi/strings.xml	string	play_episode_toast	-	STR	Phát Tập phim	
 values-b+vi/strings.xml	string	play_from_beginning_img_des	-	STR	Phát từ đầu	
@@ -43018,6 +43077,7 @@ values-b+zh+TW/strings.xml	string	picture_in_picture_des	-	STR	在其他應用�
 values-b+zh+TW/strings.xml	string	pin	-	STR	PIN 碼	
 values-b+zh+TW/strings.xml	string	pin_error_incorrect	-	STR	PIN 碼不符，請再試一次。	
 values-b+zh+TW/strings.xml	string	pin_error_length	-	STR	PIN 碼需為 4 個字元	
+values-b+zh+TW/strings.xml	string	pin_error_wait	-	STR	PIN 錯誤次數過多。請在 %1$s 後再試一次	
 values-b+zh+TW/strings.xml	string	play_episode	-	STR	播放劇集	
 values-b+zh+TW/strings.xml	string	play_episode_toast	-	STR	播放劇集	
 values-b+zh+TW/strings.xml	string	play_from_beginning_img_des	-	STR	從頭開始播放	
@@ -43936,6 +43996,7 @@ values-b+zh/strings.xml	string	picture_in_picture_des	-	STR	在其他应用上�
 values-b+zh/strings.xml	string	pin	-	STR	PIN	
 values-b+zh/strings.xml	string	pin_error_incorrect	-	STR	PIN码不正确，请再试一次。	
 values-b+zh/strings.xml	string	pin_error_length	-	STR	PIN码必须为4个字符	
+values-b+zh/strings.xml	string	pin_error_wait	-	STR	PIN 错误次数过多。请在 %1$s 后重试	
 values-b+zh/strings.xml	string	play_episode	-	STR	播放剧集	
 values-b+zh/strings.xml	string	play_episode_toast	-	STR	播放剧集	
 values-b+zh/strings.xml	string	play_from_beginning_img_des	-	STR	从头播放	
@@ -45017,6 +45078,7 @@ values/strings.xml	string	picture_in_picture_des	-	STR	Continues playback in a m
 values/strings.xml	string	pin	-	STR	PIN	
 values/strings.xml	string	pin_error_incorrect	-	STR	Incorrect PIN. Please try again.	
 values/strings.xml	string	pin_error_length	-	STR	PIN must be 4 characters	
+values/strings.xml	string	pin_error_wait	-	STR	Too many wrong PINs. Try again in %1$s	
 values/strings.xml	string	play_episode	-	STR	Play Episode	
 values/strings.xml	string	play_episode_toast	-	STR	Play Episode	
 values/strings.xml	string	play_from_beginning_img_des	-	STR	Play from the Beginning	

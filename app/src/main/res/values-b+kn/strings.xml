@@ -190,6 +190,7 @@
 <string name="pick_subtitle">"ಸಬ್ ಟೈಟಲ್ಸ್"</string>
 <string name="picture_in_picture">"ಚಿತ್ರದಲ್ಲಿ-ಚಿತ್ರದಲ್ಲಿ"</string>
 <string name="picture_in_picture_des">"ಇತರ ಅಪ್ಲಿಕೇಶನ್‌ಗಳ ಮೇಲೆ ಚಿಕಣಿ ಪ್ಲೇಯರ್‌ನಲ್ಲಿ ಪ್ಲೇಬ್ಯಾಕ್ ಅನ್ನು ಮುಂದುವರಿಸುತ್ತದೆ"</string>
+<string name="pin_error_wait" formatted="true">"ತುಂಬಾ ತಪ್ಪು PIN ಗಳು. %1$s ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"</string>
 <string name="play_episode">"ಸಂಚಿಕೆಯನ್ನು ಪ್ಲೇ ಮಾಡಿ"</string>
 <string name="play_livestream_button">"ಲೈವ್‌ಸ್ಟ್ರೀಮ್ ಪ್ಲೇ ಮಾಡಿ"</string>
 <string name="play_movie_button">"ಚಲನಚಿತ್ರವನ್ನು ಪ್ಲೇ ಮಾಡಿ"</string>

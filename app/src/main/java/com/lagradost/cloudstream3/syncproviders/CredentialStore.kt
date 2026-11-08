@@ -97,7 +97,10 @@ internal object CredentialStore {
         return (moved + left).distinct()
     }
 
-    /** Every stored PIN by profile index, or null without a context. */
+    /**
+     * Every stored PIN by profile index, or null without a context. On null, `DataStoreHelper.accounts` returns the list
+     * without PINs; that is only reachable with no context, when the list itself has nothing to read either.
+     */
     fun pins(): Map<Int, String>? {
         val prefix = "$PIN_FOLDER/"
         return store()?.all?.mapNotNull { (key, value) ->

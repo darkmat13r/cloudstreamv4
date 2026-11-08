@@ -376,6 +376,7 @@
 <string name="pick_subtitle">"Titulky"</string>
 <string name="picture_in_picture">"Obraz v obraze"</string>
 <string name="picture_in_picture_des">"Pokračuje v prehrávaní v miniatúrnom prehrávači nad ostatnými aplikáciami"</string>
+<string name="pin_error_wait" formatted="true">"Príliš veľa nesprávnych PIN kódov. Skúste to znova o %1$s"</string>
 <string name="play_episode">"Prehrať epizódu"</string>
 <string name="play_episode_toast">"Prehrať epizódu"</string>
 <string name="play_from_beginning_img_des">"Hrať od začiatku"</string>

@@ -509,6 +509,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">PIN-i i gabuar. Ju lutem provoni përsëri.</string>
 <string name="pin_error_length">PIN-i duhet të ketë 4 karaktere</string>
+<string name="pin_error_wait">Shumë PIN të gabuar. Provo përsëri pas %1$s</string>
 <string name="play_episode">Luaj Episodin</string>
 <string name="play_episode_toast">Luaj Episodin</string>
 <string name="play_from_beginning_img_des">Luaj nga fillimi</string>

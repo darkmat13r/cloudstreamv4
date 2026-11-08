@@ -219,6 +219,7 @@
 <string name="pick_source">"Mənbələr"</string>
 <string name="pick_subtitle">"Altyazılar"</string>
 <string name="picture_in_picture">"Şəkil içində şəkil"</string>
+<string name="pin_error_wait" formatted="true">"Həddindən çox səhv PIN. %1$s sonra yenidən cəhd edin"</string>
 <string name="play_episode">"Bölümü oynat"</string>
 <string name="play_from_beginning_img_des">"Əvvəldən oynat"</string>
 <string name="play_livestream_button">"Canlı Yayını oynat"</string>

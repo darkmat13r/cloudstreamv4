@@ -330,6 +330,8 @@ object BackupUtils {
     @MainThread
     internal fun FragmentActivity.restoreAfterPins(file: BackupFile, onRestored: () -> Unit) {
         val activity = this
+        // With no context, `accounts` has no PINs to join, so nothing is locked and nothing is asked. The restore's
+        // `replacePins` then fails too, so this device's PINs stay: still fail-safe.
         val locked = if (replacesProfiles(file)) DataStoreHelper.accounts.filter { it.lockPin != null } else emptyList()
         fun ask(next: Int) {
             if (next == locked.size) {
@@ -345,10 +347,18 @@ object BackupUtils {
                 return
             }
             val profile = locked[next]
+            // One prompt answers once: a second call (IME Done after the fourth digit) must not ask the next profile
+            // twice or run the restore twice.
+            var answered = false
             showPinInputDialog(
                 activity, profile.lockPin, editAccount = false, forStartup = false, errorText = null,
                 title = getString(R.string.enter_pin_with_name, profile.name),
-            ) { pin -> if (pin != null) ask(next + 1) }
+                attemptsKey = profile.keyIndex,
+            ) { pin ->
+                if (answered) return@showPinInputDialog
+                answered = true
+                if (pin != null) ask(next + 1)
+            }
         }
         ask(0)
     }

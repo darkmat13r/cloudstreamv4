@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.DialogInterface
 import android.os.Bundle
 import android.text.Editable
+import android.text.InputFilter
+import android.text.format.DateUtils
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
@@ -112,7 +114,10 @@ object AccountHelper {
         binding.applyBtt.setOnClickListener {
             if (currentEditAccount.lockPin != null) {
                 // Ask for the current PIN
-                showPinInputDialog(context, currentEditAccount.lockPin, false) { pin ->
+                showPinInputDialog(
+                    context, currentEditAccount.lockPin, false, forStartup = false, errorText = null, title = null,
+                    attemptsKey = currentEditAccount.keyIndex,
+                ) { pin ->
                     if (pin == null) return@showPinInputDialog
                     // PIN is correct, proceed to update the account
                     accountEditCallback.invoke(currentEditAccount)
@@ -152,7 +157,10 @@ object AccountHelper {
             } else {
                 if (currentEditAccount.lockPin != null) {
                     // Ask for the current PIN
-                    showPinInputDialog(context, currentEditAccount.lockPin, true) { pin ->
+                    showPinInputDialog(
+                        context, currentEditAccount.lockPin, true, forStartup = false, errorText = null, title = null,
+                        attemptsKey = currentEditAccount.keyIndex,
+                    ) { pin ->
                         if (pin == null || pin != currentEditAccount.lockPin) {
                             canSetPin = false
                             binding.lockProfileCheckbox.isChecked = true
@@ -239,6 +247,22 @@ object AccountHelper {
         errorText: String?,
         title: String?,
         callback: (String?) -> Unit
+    ) = showPinInputDialog(context, currentPin, editAccount, forStartup, errorText, title, PinAttempts.UNKEYED, callback)
+
+    /**
+     * As above, counting wrong PINs under [attemptsKey], the profile's index (`BUG-55`, see [PinAttempts]). While the
+     * profile must wait, the field is disabled with a countdown, and a PIN typed anyway is kept out of the field, so it
+     * is never compared or counted.
+     */
+    internal fun showPinInputDialog(
+        context: Context,
+        currentPin: String?,
+        editAccount: Boolean,
+        forStartup: Boolean,
+        errorText: String?,
+        title: String?,
+        attemptsKey: Int,
+        callback: (String?) -> Unit
     ) {
         fun TextView.visibleWithText(@StringRes textRes: Int) {
             isVisible = true
@@ -321,6 +345,50 @@ object AccountHelper {
 
         val dialog = builder.create()
 
+        // `BUG-55`: while the profile must wait, the field is off and counts down; when the wait ends it takes input again.
+        val waitTick = object : Runnable {
+            override fun run() {
+                if (!dialog.isShowing) return
+                val left = PinAttempts.waitMs(attemptsKey)
+                if (left <= 0L) {
+                    binding.pinEditText.isEnabled = true
+                    binding.pinEditTextError.isVisible = false
+                    binding.pinEditText.requestFocus()
+                    return
+                }
+                binding.pinEditText.isEnabled = false
+                binding.pinEditTextError.visibleWithText(
+                    context.getString(R.string.pin_error_wait, DateUtils.formatElapsedTime((left + 999L) / 1000L))
+                )
+                binding.root.removeCallbacks(this)
+                binding.root.postDelayed(this, (left % 1000L).takeIf { it > 0L } ?: 1000L)
+            }
+        }
+
+        // One tick queued at a time, however many posts arrive while a wait shows.
+        fun postWaitTick() {
+            binding.root.removeCallbacks(waitTick)
+            binding.root.post(waitTick)
+        }
+
+        // `BUG-55`: the limit is a filter in front of the field, so the comparison below is left as it was. During a
+        // wait nothing reaches the field, so no PIN is compared or counted. Otherwise a whole PIN is counted here, wrong
+        // or right, and passed on to the comparison, which shows "incorrect" as before; the wait shows after it.
+        if (isPinSet) {
+            binding.pinEditText.filters += InputFilter { source, start, end, dest, dstart, dend ->
+                val result = dest.replaceRange(dstart, dend, source.subSequence(start, end)).toString()
+                when {
+                    PinAttempts.waitMs(attemptsKey) > 0L -> {
+                        postWaitTick()
+                        ""
+                    }
+                    result.length != 4 -> null
+                    result == currentPin -> null.also { PinAttempts.right(attemptsKey) }
+                    else -> null.also { if (PinAttempts.wrong(attemptsKey) > 0L) postWaitTick() }
+                }
+            }
+        }
+
         binding.pinEditText.doOnTextChanged { text, _, _, _ ->
             val enteredPin = text.toString()
             val isEnteredPinValid = enteredPin.length == 4
@@ -363,6 +431,7 @@ object AccountHelper {
         dialog.setCanceledOnTouchOutside(false)
 
         dialog.show()
+        if (isPinSet && PinAttempts.waitMs(attemptsKey) > 0L) waitTick.run()
 
         // Auto focus on PIN input and show keyboard
         binding.pinEditText.requestFocus()

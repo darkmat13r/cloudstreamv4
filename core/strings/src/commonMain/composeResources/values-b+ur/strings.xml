@@ -441,6 +441,7 @@
 <string name="pin">پن</string>
 <string name="pin_error_incorrect">غلط پن۔ دوبارہ کوشش کریں۔</string>
 <string name="pin_error_length">پن چار حروف کا ہونا چاہیے</string>
+<string name="pin_error_wait">بہت زیادہ غلط PIN۔ %1$s بعد دوبارہ کوشش کریں</string>
 <string name="play_episode">قسط چلائیں</string>
 <string name="play_episode_toast">قسط چلائیں</string>
 <string name="play_from_beginning_img_des">شروع سےپلے کریں</string>

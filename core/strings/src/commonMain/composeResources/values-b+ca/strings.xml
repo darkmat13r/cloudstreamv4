@@ -281,6 +281,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">PIN incorrecte. Si us plau, torneu a intentar-ho.</string>
 <string name="pin_error_length">El PIN ha de tenir 4 caràcters</string>
+<string name="pin_error_wait">Massa PIN incorrectes. Torna-ho a provar en %1$s</string>
 <string name="play_episode">Reprodueix l'episodi</string>
 <string name="play_from_beginning_img_des">Reproduïr des del començament</string>
 <string name="play_livestream_button">Reprodueix Livestream</string>

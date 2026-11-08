@@ -507,6 +507,7 @@
 <string name="pin">"PIN"</string>
 <string name="pin_error_incorrect">"رقم PIN غير صحيح. برجاء المحاولة مرة اخرى."</string>
 <string name="pin_error_length">"رقم ال PIN يجب ان يكون 4 ارقام"</string>
+<string name="pin_error_wait" formatted="true">"محاولات PIN خاطئة كثيرة جدًا. حاول مرة أخرى بعد %1$s"</string>
 <string name="play_episode">"تشغيل الحلقة"</string>
 <string name="play_episode_toast">"تشغيل الحلقة"</string>
 <string name="play_from_beginning_img_des">"تشغيل من البداية"</string>

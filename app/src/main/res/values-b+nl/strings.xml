@@ -475,6 +475,7 @@
 <string name="pin">"PIN"</string>
 <string name="pin_error_incorrect">"Onjuiste PIN. Probeer het opnieuw."</string>
 <string name="pin_error_length">"PIN moet 4 teken bevatten"</string>
+<string name="pin_error_wait" formatted="true">"Te veel verkeerde pincodes. Probeer het over %1$s opnieuw"</string>
 <string name="play_episode">"Aflevering afspelen"</string>
 <string name="play_episode_toast">"Aflevering afspelen"</string>
 <string name="play_from_beginning_img_des">"Speel van het begin"</string>

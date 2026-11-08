@@ -509,6 +509,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Mã PIN không đúng. Vui lòng thử lại.</string>
 <string name="pin_error_length">Mã PIN phải có 4 ký tự</string>
+<string name="pin_error_wait">Nhập sai PIN quá nhiều lần. Thử lại sau %1$s</string>
 <string name="play_episode">Phát Tập phim</string>
 <string name="play_episode_toast">Phát Tập phim</string>
 <string name="play_from_beginning_img_des">Phát từ đầu</string>

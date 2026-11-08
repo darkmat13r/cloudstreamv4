@@ -384,6 +384,7 @@
 <string name="pick_subtitle">Qrl-hoosaadka</string>
 <string name="picture_in_picture">Sawir-daaqadlaha</string>
 <string name="picture_in_picture_des">Ka sii wado daawashada daaqad yar oo appska kale dul istaagi doonta</string>
+<string name="pin_error_wait">PIN qaldan oo aad u badan. Isku day mar kale %1$s kadib</string>
 <string name="play_episode">Xalqadda daaro</string>
 <string name="play_episode_toast">Daari xalqaddan</string>
 <string name="play_from_beginning_img_des">Ka bilow bilowga</string>

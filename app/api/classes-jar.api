@@ -3777,6 +3777,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field pin I
 	public static field pin_error_incorrect I
 	public static field pin_error_length I
+	public static field pin_error_wait I
 	public static field pip_enabled_key I
 	public static field play_episode I
 	public static field play_episode_toast I
@@ -25537,10 +25538,12 @@ public final class com/lagradost/cloudstream3/ui/account/AccountHelper : java/la
 	public static final field $stable I
 	public static final field INSTANCE Lcom/lagradost/cloudstream3/ui/account/AccountHelper;
 	public static final synthetic fun access$showPinInputDialog$visibleWithText (Landroid/widget/TextView;I)V
+	public static final synthetic fun access$showPinInputDialog$visibleWithText$0 (Landroid/widget/TextView;Ljava/lang/String;)V
 	public final fun showAccountEditDialog (Landroid/content/Context;Lcom/lagradost/cloudstream3/utils/DataStoreHelper$Account;ZLkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
 	public final fun showAccountSelectLinear (Landroid/app/Activity;)V
 	public final fun showPinInputDialog (Landroid/content/Context;Ljava/lang/String;ZZLjava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public final fun showPinInputDialog (Landroid/content/Context;Ljava/lang/String;ZZLjava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun showPinInputDialog$app (Landroid/content/Context;Ljava/lang/String;ZZLjava/lang/String;Ljava/lang/String;ILkotlin/jvm/functions/Function1;)V
 	public static synthetic fun showPinInputDialog$default (Lcom/lagradost/cloudstream3/ui/account/AccountHelper;Landroid/content/Context;Ljava/lang/String;ZZLjava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 
@@ -25564,6 +25567,10 @@ public final static class com/lagradost/cloudstream3/ui/account/AccountHelper$sh
 	public fun afterTextChanged (Landroid/text/Editable;)V
 	public fun beforeTextChanged (Ljava/lang/CharSequence;III)V
 	public fun onTextChanged (Ljava/lang/CharSequence;III)V
+}
+
+public final static class com/lagradost/cloudstream3/ui/account/AccountHelper$showPinInputDialog$waitTick$1 : java/lang/Object, java/lang/Runnable {
+	public fun run ()V
 }
 
 public final class com/lagradost/cloudstream3/ui/account/AccountSelectActivity : androidx/fragment/app/FragmentActivity, com/lagradost/cloudstream3/utils/BiometricAuthenticator$BiometricCallback {
@@ -25622,6 +25629,47 @@ public final class com/lagradost/cloudstream3/ui/account/AccountViewModel : andr
 	public final fun isEditing ()Landroidx/lifecycle/LiveData;
 	public final fun setIsEditing (Z)V
 	public final fun toggleIsEditing ()V
+}
+
+public final class com/lagradost/cloudstream3/ui/account/PinAttempts : java/lang/Object {
+	public static final field $stable I
+	public static final field FILE Ljava/lang/String;
+	public static final field FIRST_WAIT_MS J
+	public static final field FREE_WRONG I
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/ui/account/PinAttempts;
+	public static final field MAX_WAIT_MS J
+	public static final field UNKEYED I
+	public final fun forgetHeld ()V
+	public final fun getClock ()Lkotlin/jvm/functions/Function0;
+	public static synthetic fun getClock$annotations ()V
+	public final fun getStore ()Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Store;
+	public static synthetic fun getStore$annotations ()V
+	public final fun right (I)V
+	public final fun setClock (Lkotlin/jvm/functions/Function0;)V
+	public final fun setStore (Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Store;)V
+	public final fun waitMs (I)J
+	public final fun wrong (I)J
+}
+
+public final static class com/lagradost/cloudstream3/ui/account/PinAttempts$Record : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (IJJ)V
+	public final fun component1 ()I
+	public final fun component2 ()J
+	public final fun component3 ()J
+	public final fun copy (IJJ)Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Record;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Record;IJJILjava/lang/Object;)Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Record;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getStartedAt ()J
+	public final fun getWaitMs ()J
+	public final fun getWrong ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public static interface com/lagradost/cloudstream3/ui/account/PinAttempts$Store : java/lang/Object {
+	public abstract fun read (I)Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Record;
+	public abstract fun write (ILcom/lagradost/cloudstream3/ui/account/PinAttempts$Record;)V
 }
 
 public final class com/lagradost/cloudstream3/ui/account/ProfileSignIns : java/lang/Object {

@@ -508,6 +508,7 @@
 <string name="pin">PIN-код</string>
 <string name="pin_error_incorrect">Няправільны PIN-код. Паспрабуйце яшчэ раз.</string>
 <string name="pin_error_length">PIN-код павінны быць з 4 сімвалаў</string>
+<string name="pin_error_wait">Занадта шмат няправільных PIN-кодаў. Паспрабуйце зноў праз %1$s</string>
 <string name="play_episode">Прайграць серыю</string>
 <string name="play_episode_toast">Прайграць серыю</string>
 <string name="play_from_beginning_img_des">Прайграць з пачатку</string>
