@@ -2417,3 +2417,16 @@ worker-2 on `KMP-58`'s branch and by desktop-session-1, and fixed together with 
   Failed for a moment, which reads as the retry failing at once. That fix is its own follow-up, `BUG-57`.
 - **Measured** under the `BUG-53` disk load: before, 1 failure in 20 runs on master, with exactly the reported
   message; after, 20 in a row with none (see `BUG-53`).
+
+## BUG-57 — After Retry, the Mac downloads list could show the old failure again · **low** · measured 2026-11-08
+
+Found while fixing `BUG-56`. `DesktopDownloads.resumeNow` (and every other path through `pump()`) started an episode's
+run before publishing. Its own `publish()` came only after `persist()` had written the downloads file. While that happened,
+the run could already be asking the extension, and anything that read the downloads list saw the episode as it was
+before: Failed, with the old reason. On a screen that reads as the retry failing at once.
+- **Fix.** `start()` publishes once the episode is Running, before it starts the run. Every caller of `pump()` has finished
+  changing its items by then, so the extra publish never shows a half-made change. The later `publish()` is unchanged.
+- **Test.** `a retry is published as running before its run asks the extension`: a film fails with a 404, then is retried.
+  The resolver reads the published episode as it is called, and that must be Running with no failure.
+  - Before, on master: failed 5 runs in 5 ("what a reader saw while the retry asked: Failed").
+  - After: 20 runs in a row under the `BUG-53` disk load, none failed.
