@@ -14,6 +14,9 @@
 <plurals name="home_source_sections"><item quantity="other">"%d セクション"</item></plurals>
 <plurals name="library_title_count"><item quantity="other">"%d 作品"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d件の非表示リンク"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">"%d 秒"</item></plurals>
+<plurals name="player_source_count"><item quantity="other">"%d 件のソース"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">"%d 秒後に次のエピソード"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"全 %d ソースを検索"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"それでも全 %d ソースを検索するには、キーボードの検索キーを押してください。"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d ソース"</item></plurals>
@@ -516,6 +519,7 @@
 <string name="play_torrent_button">"ストリームトレント"</string>
 <string name="play_trailer_button">"予告編を再生"</string>
 <string name="play_with_app_name">"CloudStreamで再生"</string>
+<string name="player_audio_stereo">"ステレオ"</string>
 <string name="player_enter_fullscreen">"全画面表示に変更"</string>
 <string name="player_exit_fullscreen">"全画面表示を終了"</string>
 <string name="player_fit_original">"元のアスペクト比"</string>
@@ -535,24 +539,31 @@
 <string name="player_load_subtitles">"ファイルから読み込む"</string>
 <string name="player_load_subtitles_online">"インターネットから読み込む"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s を読み込みました"</string>
+<string name="player_menu_playback">"再生"</string>
 <string name="player_mute">"ミュート"</string>
 <string name="player_notification_channel_description">"バックグラウンドから再生を制御するためのプレーヤー通知"</string>
 <string name="player_notification_channel_name">"プレーヤー通知"</string>
+<string name="player_play_now">"今すぐ再生"</string>
 <string name="player_pref">"優先ビデオプレーヤー"</string>
 <string name="player_settings_always_ask">"常に尋ねること"</string>
 <string name="player_settings_play_in_app">"内部プレーヤー"</string>
 <string name="player_settings_select_cast_device">"キャストデバイスを選択"</string>
 <string name="player_size_settings">"プレーヤーのサイズ変更ボタン"</string>
 <string name="player_size_settings_des">"黒い境界線を削除します"</string>
+<string name="player_source_decoded" formatted="true">"%s でデコード済み"</string>
 <string name="player_source_playing">"再生中"</string>
 <string name="player_source_resumes_at" formatted="true">"切り替えても位置は保たれます: %1$s から再開"</string>
 <string name="player_source_retry">"再試行"</string>
 <string name="player_source_switch">"切り替え"</string>
+<string name="player_sources_all_failed">"すべてのソースがエラーを返しました。"</string>
+<string name="player_sources_all_failed_detail">"下のソースを選んでもう一度お試しください。"</string>
 <string name="player_speed">"プレーヤーの速度"</string>
 <string name="player_speed_text_format" formatted="true">"再生速度 (%.2fx)"</string>
 <string name="player_subtitles_settings">"字幕"</string>
 <string name="player_subtitles_settings_des">"プレーヤーの字幕設定"</string>
 <string name="player_unmute">"ミュート解除"</string>
+<string name="player_volume_down">"音量を下げる"</string>
+<string name="player_volume_up">"音量を上げる"</string>
 <string name="plugin">"プラグイン"</string>
 <string name="plugin_deleted">"プラグインが消されました"</string>
 <string name="plugin_downloaded">"プラグインがダウンロードされました"</string>

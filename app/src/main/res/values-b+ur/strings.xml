@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d سیکشن لوڈ نہیں ہو سکا"</item><item quantity="other">"%d سیکشنز لوڈ نہیں ہو سکے"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d حصہ"</item><item quantity="other">"%d حصے"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d عنوان"</item><item quantity="other">"%d عنوانات"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d سیکنڈ"</item><item quantity="other">"%d سیکنڈ"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d ماخذ"</item><item quantity="other">"%d ماخذ"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"اگلی قسط %d سیکنڈ میں"</item><item quantity="other">"اگلی قسط %d سیکنڈ میں"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ذریعے میں تلاش کریں"</item><item quantity="other">"تمام %d ذرائع میں تلاش کریں"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"پھر بھی %d ذریعے میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔"</item><item quantity="other">"پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ذریعہ"</item><item quantity="other">"%d ذرائع"</item></plurals>
@@ -447,6 +450,7 @@
 <string name="play_torrent_button">"سٹریم ٹورینٹ"</string>
 <string name="play_trailer_button">"ٹریلر چلائیں"</string>
 <string name="play_with_app_name">"CloudStream کے ساتھ چلائیں"</string>
+<string name="player_audio_stereo">"سٹیریو"</string>
 <string name="player_enter_fullscreen">"پوری اسکرین میں داخل ہوں"</string>
 <string name="player_exit_fullscreen">"پوری اسکرین سے باہر نکلیں"</string>
 <string name="player_fit_original">"اصل تناسب"</string>
@@ -464,20 +468,27 @@
 <string name="player_load_subtitles">"فائل سے لوڈ کریں"</string>
 <string name="player_load_subtitles_online">"انٹرنیٹ سے لوڈ کریں"</string>
 <string name="player_loaded_subtitles" formatted="true">"لوڈ %s"</string>
+<string name="player_menu_playback">"پلے بیک"</string>
 <string name="player_mute">"خاموش کریں"</string>
+<string name="player_play_now">"ابھی چلائیں"</string>
 <string name="player_pref">"ترجیحی ویڈیو پلیئر"</string>
 <string name="player_settings_play_in_app">"اندرونی پلیئر"</string>
 <string name="player_size_settings">"پلیئر کا سائز تبدیل کرنے کا بٹن"</string>
 <string name="player_size_settings_des">"سیاہ سرحد کو ہٹا دیں"</string>
+<string name="player_source_decoded" formatted="true">"%s ڈی کوڈ شدہ"</string>
 <string name="player_source_playing">"چل رہا ہے"</string>
 <string name="player_source_resumes_at" formatted="true">"بدلنے سے آپ کی جگہ برقرار رہتی ہے: %1$s سے جاری"</string>
 <string name="player_source_retry">"دوبارہ کوشش کریں"</string>
 <string name="player_source_switch">"بدلیں"</string>
+<string name="player_sources_all_failed">"ہر ماخذ نے ایک خرابی کے ساتھ جواب دیا۔"</string>
+<string name="player_sources_all_failed_detail">"دوبارہ آزمانے کے لیے نیچے سے کوئی ماخذ منتخب کریں۔"</string>
 <string name="player_speed">"چلانے کی رفتار"</string>
 <string name="player_speed_text_format" formatted="true">"رفتار (%.2fx)"</string>
 <string name="player_subtitles_settings">"سنٹیٹلز"</string>
 <string name="player_subtitles_settings_des">"پلیئر کے ترجمہ کی ترتیبات"</string>
 <string name="player_unmute">"آواز کھولیں"</string>
+<string name="player_volume_down">"آواز کم کریں"</string>
+<string name="player_volume_up">"آواز بڑھائیں"</string>
 <string name="plugin">"پلگ ان"</string>
 <string name="plugin_deleted">"پلگ ان کو حذف کر دیا گیا"</string>
 <string name="plugin_downloaded">"پلگ ان ڈاؤن لوڈ ہو گیا"</string>

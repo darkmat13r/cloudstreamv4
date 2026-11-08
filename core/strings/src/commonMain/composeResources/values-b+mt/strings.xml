@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="two">%d BOOKMARKS</item><item quantity="few">%d BOOKMARKS</item><item quantity="many">%d BOOKMARKS</item><item quantity="other">%d BOOKMARKS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Ma setgħetx tiġi mgħobbija %d taqsima</item><item quantity="two">Ma setgħux jiġu mgħobbija %d taqsimat</item><item quantity="few">Ma setgħux jiġu mgħobbija %d taqsimat</item><item quantity="many">Ma setgħux jiġu mgħobbija %d taqsima</item><item quantity="other">Ma setgħux jiġu mgħobbija %d taqsima</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titlu</item><item quantity="two">%d titli</item><item quantity="few">%d titli</item><item quantity="many">%d-il titlu</item><item quantity="other">%d titlu</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d sekonda</item><item quantity="two">%d sekondi</item><item quantity="few">%d sekondi</item><item quantity="many">%d-il sekonda</item><item quantity="other">%d sekonda</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d sors</item><item quantity="two">%d sorsi</item><item quantity="few">%d sorsi</item><item quantity="many">%d-il sors</item><item quantity="other">%d sors</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">L-episodju li jmiss f'%d s</item><item quantity="two">L-episodju li jmiss f'%d s</item><item quantity="few">L-episodju li jmiss f'%d s</item><item quantity="many">L-episodju li jmiss f'%d s</item><item quantity="other">L-episodju li jmiss f'%d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Fittex f'%d sors</item><item quantity="two">Fittex fil-%d sorsi kollha</item><item quantity="few">Fittex fil-%d sorsi kollha</item><item quantity="many">Fittex fil-%d sors kollha</item><item quantity="other">Fittex fil-%d sors kollha</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta f'%d sors.</item><item quantity="two">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.</item><item quantity="few">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.</item><item quantity="many">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.</item><item quantity="other">Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d SORS</item><item quantity="two">%d SORSI</item><item quantity="few">%d SORSI</item><item quantity="many">%d SORS</item><item quantity="other">%d SORS</item></plurals>
@@ -297,5 +300,13 @@
 <string name="library_sync_retry">Erġa' ssinkronizza</string>
 <string name="library_sync_unreachable">Ma jintlaħaqx · fil-cache minn %s ilu</string>
 <string name="library_synced_format">Sinkronizzat %s ilu</string>
+<string name="player_audio_stereo">stereo</string>
+<string name="player_menu_playback">Playback</string>
+<string name="player_play_now">Ħaddem issa</string>
+<string name="player_source_decoded">%s dekodifikat</string>
+<string name="player_sources_all_failed">Kull sors wieġeb bi żball.</string>
+<string name="player_sources_all_failed_detail">Agħżel sors hawn taħt biex terġa' tipprova.</string>
+<string name="player_volume_down">Baxxi l-volum</string>
+<string name="player_volume_up">Għolli l-volum</string>
 <string name="search_suggestions_return_hint">Return ifittex kollox</string>
 </resources>

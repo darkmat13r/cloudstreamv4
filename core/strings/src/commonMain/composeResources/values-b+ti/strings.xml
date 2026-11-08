@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ምልክታት</item><item quantity="other">%d ምልክታት</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ክፍሊ ክጽዓን ኣይከኣለን</item><item quantity="other">%d ክፍሊ ክጽዓን ኣይከኣለን</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ኣርእስቲ</item><item quantity="other">%d ኣርእስትታት</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d ካልኢት</item><item quantity="other">%d ካልኢታት</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d ምንጪ</item><item quantity="other">%d ምንጭታት</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">ዝቕጽል ክፋል ኣብ %d ካ</item><item quantity="other">ዝቕጽል ክፋል ኣብ %d ካ</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">ኣብ %d ምንጪ ድለ</item><item quantity="other">ኣብ ኩሎም %d ምንጭታት ድለ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።</item><item quantity="other">ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ምንጪ</item><item quantity="other">%d ምንጭታት</item></plurals>
@@ -179,5 +182,13 @@
 <string name="library_sync_retry">ደጊምካ ኣሰማምዕ</string>
 <string name="library_sync_unreachable">ክብጻሕ ኣይከኣለን · ቅድሚ %s ዝተዓቀበ</string>
 <string name="library_synced_format">ቅድሚ %s ተሰማሚዑ</string>
+<string name="player_audio_stereo">ስቴሪዮ</string>
+<string name="player_menu_playback">ምጽዋት</string>
+<string name="player_play_now">ሕጂ ኣጻውት</string>
+<string name="player_source_decoded">%s ተፈቲሑ</string>
+<string name="player_sources_all_failed">ነፍሲ ወከፍ ምንጪ ብጌጋ መለሰ።</string>
+<string name="player_sources_all_failed_detail">ደጊምካ ንምፍታን ካብ ታሕቲ ምንጪ ምረጽ።</string>
+<string name="player_volume_down">ድምጺ ኣንኪ</string>
+<string name="player_volume_up">ድምጺ ኣልዕል</string>
 <string name="search_suggestions_return_hint">Return ኣብ ኩሉ ይደሊ</string>
 </resources>

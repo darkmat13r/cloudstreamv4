@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOEKMERK</item><item quantity="other">%d BOEKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d afdeling kon nie laai nie</item><item quantity="other">%d afdelings kon nie laai nie</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titel</item><item quantity="other">%d titels</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d sekonde</item><item quantity="other">%d sekondes</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d bron</item><item quantity="other">%d bronne</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Volgende episode oor %d s</item><item quantity="other">Volgende episode oor %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Soek %d bron</item><item quantity="other">Soek al %d bronne</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Druk die sleutelbord se soeksleutel om tog %d bron te deursoek.</item><item quantity="other">Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BRON</item><item quantity="other">%d BRONNE</item></plurals>
@@ -295,5 +298,13 @@
 <string name="library_sync_retry">Probeer weer sinkroniseer</string>
 <string name="library_sync_unreachable">Onbereikbaar · %s gelede gekas</string>
 <string name="library_synced_format">%s gelede gesinkroniseer</string>
+<string name="player_audio_stereo">stereo</string>
+<string name="player_menu_playback">Afspeel</string>
+<string name="player_play_now">Speel nou</string>
+<string name="player_source_decoded">%s gedekodeer</string>
+<string name="player_sources_all_failed">Elke bron het met 'n fout geantwoord.</string>
+<string name="player_sources_all_failed_detail">Kies 'n bron hieronder om dit weer te probeer.</string>
+<string name="player_volume_down">Volume af</string>
+<string name="player_volume_up">Volume op</string>
 <string name="search_suggestions_return_hint">Return soek alles</string>
 </resources>

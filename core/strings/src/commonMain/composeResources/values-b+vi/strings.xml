@@ -34,6 +34,9 @@
 <plurals name="home_source_sections"><item quantity="other">%d mục</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d tựa</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d liên kết bị ẩn</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">%d giây</item></plurals>
+<plurals name="player_source_count"><item quantity="other">%d nguồn</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">Tập tiếp theo sau %d giây</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">Tìm kiếm trên cả %d nguồn</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d NGUỒN</item></plurals>
@@ -516,6 +519,7 @@
 <string name="play_torrent_button">Phát Torrent</string>
 <string name="play_trailer_button">Phát Trailer</string>
 <string name="play_with_app_name">Phát bằng CloudStream</string>
+<string name="player_audio_stereo">âm thanh nổi</string>
 <string name="player_enter_fullscreen">Chuyển sang chế độ toàn màn hình</string>
 <string name="player_exit_fullscreen">Thoát khỏi chế độ toàn màn hình</string>
 <string name="player_fit_original">Tỷ lệ gốc</string>
@@ -535,24 +539,31 @@
 <string name="player_load_subtitles">Chọn từ tệp</string>
 <string name="player_load_subtitles_online">Chọn từ Internet</string>
 <string name="player_loaded_subtitles">Đã tải %s</string>
+<string name="player_menu_playback">Phát</string>
 <string name="player_mute">Tắt tiếng</string>
 <string name="player_notification_channel_description">Điều khiển phát lại trong nền bằng thông báo của trình phát</string>
 <string name="player_notification_channel_name">Thông báo trình phát</string>
+<string name="player_play_now">Phát ngay</string>
 <string name="player_pref">Trình phát ưu tiên</string>
 <string name="player_settings_always_ask">Luôn hỏi</string>
 <string name="player_settings_play_in_app">Trình phát tích hợp</string>
 <string name="player_settings_select_cast_device">Chọn thiết bị truyền</string>
 <string name="player_size_settings">Nút thay đổi kích thước trình phát</string>
 <string name="player_size_settings_des">Xóa bỏ các viền đen</string>
+<string name="player_source_decoded">Đã giải mã %s</string>
 <string name="player_source_playing">Đang phát</string>
 <string name="player_source_resumes_at">Chuyển vẫn giữ vị trí của bạn: tiếp tục từ %1$s</string>
 <string name="player_source_retry">Thử lại</string>
 <string name="player_source_switch">Chuyển</string>
+<string name="player_sources_all_failed">Mọi nguồn đều trả về lỗi.</string>
+<string name="player_sources_all_failed_detail">Chọn một nguồn bên dưới để thử lại.</string>
 <string name="player_speed">Tốc độ phát</string>
 <string name="player_speed_text_format">Tốc độ (%.2fx)</string>
 <string name="player_subtitles_settings">Phụ đề</string>
 <string name="player_subtitles_settings_des">Cài đặt phụ đề</string>
 <string name="player_unmute">Bật tiếng</string>
+<string name="player_volume_down">Giảm âm lượng</string>
+<string name="player_volume_up">Tăng âm lượng</string>
 <string name="plugin">tiện ích mở rộng</string>
 <string name="plugin_deleted">Tiện ích mở rộng đã xoá</string>
 <string name="plugin_downloaded">Tiện ích mở rộng đã tải xuống</string>

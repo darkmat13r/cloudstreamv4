@@ -13,6 +13,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"Nije učitan %d odjeljak"</item><item quantity="few">"Nisu učitana %d odjeljka"</item><item quantity="other">"Nije učitano %d odjeljaka"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d odjeljak"</item><item quantity="few">"%d odjeljka"</item><item quantity="other">"%d odjeljaka"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d naslov"</item><item quantity="few">"%d naslova"</item><item quantity="other">"%d naslova"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d sekunda"</item><item quantity="few">"%d sekunde"</item><item quantity="other">"%d sekundi"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d izvor"</item><item quantity="few">"%d izvora"</item><item quantity="other">"%d izvora"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Sljedeća epizoda za %d s"</item><item quantity="few">"Sljedeća epizoda za %d s"</item><item quantity="other">"Sljedeća epizoda za %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Pretraži %d izvor"</item><item quantity="few">"Pretraži sva %d izvora"</item><item quantity="other">"Pretraži svih %d izvora"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili %d izvor."</item><item quantity="few">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili sva %d izvora."</item><item quantity="other">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d IZVOR"</item><item quantity="few">"%d IZVORA"</item><item quantity="other">"%d IZVORA"</item></plurals>
@@ -515,6 +518,7 @@
 <string name="play_torrent_button">"Pokreni Torrent"</string>
 <string name="play_trailer_button">"Pokreni trailer"</string>
 <string name="play_with_app_name">"Pokreni s CloudStreamom"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Otvaranje prikaza na cijelom zaslonu"</string>
 <string name="player_exit_fullscreen">"Zatvaranje prikaza na cijelom zaslonu"</string>
 <string name="player_fit_original">"Izvorni omjer"</string>
@@ -534,24 +538,31 @@
 <string name="player_load_subtitles">"Učitaj iz datoteke"</string>
 <string name="player_load_subtitles_online">"Učitaj s interneta"</string>
 <string name="player_loaded_subtitles" formatted="true">"Učitano %s"</string>
+<string name="player_menu_playback">"Reprodukcija"</string>
 <string name="player_mute">"Isključi zvuk"</string>
 <string name="player_notification_channel_description">"Obavijest reproduktora za upravljanje reprodukcijom iz pozadine"</string>
 <string name="player_notification_channel_name">"Obavijesti reproduktora"</string>
+<string name="player_play_now">"Reproduciraj sada"</string>
 <string name="player_pref">"Preferirani video player"</string>
 <string name="player_settings_always_ask">"Uvijek pitaj"</string>
 <string name="player_settings_play_in_app">"Interni player"</string>
 <string name="player_settings_select_cast_device">"Odaberi uređaj za emitiranje"</string>
 <string name="player_size_settings">"Gumb za mijenjenje veličine playera"</string>
 <string name="player_size_settings_des">"Ukloni crne rubove"</string>
+<string name="player_source_decoded" formatted="true">"%s dekodirano"</string>
 <string name="player_source_playing">"Reproducira se"</string>
 <string name="player_source_resumes_at" formatted="true">"Promjena zadržava položaj: nastavlja se od %1$s"</string>
 <string name="player_source_retry">"Pokušaj ponovno"</string>
 <string name="player_source_switch">"Promijeni"</string>
+<string name="player_sources_all_failed">"Svaki je izvor odgovorio pogreškom."</string>
+<string name="player_sources_all_failed_detail">"Odaberite izvor ispod da biste ga ponovno pokušali."</string>
 <string name="player_speed">"Brzina playera"</string>
 <string name="player_speed_text_format" formatted="true">"Brzina (%.2f×)"</string>
 <string name="player_subtitles_settings">"Titlovi"</string>
 <string name="player_subtitles_settings_des">"Postavke titlova playera"</string>
 <string name="player_unmute">"Uključi zvuk"</string>
+<string name="player_volume_down">"Utišaj"</string>
+<string name="player_volume_up">"Pojačaj"</string>
 <string name="plugin">"dodaci"</string>
 <string name="plugin_deleted">"Dodatak izbrisan"</string>
 <string name="plugin_downloaded">"Dodatak preuzet"</string>

@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d KÖNYVJELZŐ</item><item quantity="other">%d KÖNYVJELZŐ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d szakasz betöltése sikertelen</item><item quantity="other">%d szakasz betöltése sikertelen</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d cím</item><item quantity="other">%d cím</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d másodperc</item><item quantity="other">%d másodperc</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d forrás</item><item quantity="other">%d forrás</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Következő rész %d mp múlva</item><item quantity="other">Következő rész %d mp múlva</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Keresés %d forrásban</item><item quantity="other">Keresés mind a(z) %d forrásban</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen %d forrásban.</item><item quantity="other">Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FORRÁS</item><item quantity="other">%d FORRÁS</item></plurals>
@@ -465,6 +468,7 @@
 <string name="play_torrent_button">Torrent streamelése</string>
 <string name="play_trailer_button">Előzetes lejátszása</string>
 <string name="play_with_app_name">Lejátszás CloudStreamel</string>
+<string name="player_audio_stereo">sztereó</string>
 <string name="player_enter_fullscreen">Teljes képernyő</string>
 <string name="player_exit_fullscreen">Kilépés a teljes képernyős módból</string>
 <string name="player_fit_original">Eredeti képarány</string>
@@ -483,22 +487,29 @@
 <string name="player_load_subtitles">Betöltés fájlból</string>
 <string name="player_load_subtitles_online">Betöltés az internetről</string>
 <string name="player_loaded_subtitles">%s betöltve</string>
+<string name="player_menu_playback">Lejátszás</string>
 <string name="player_mute">Némítás</string>
+<string name="player_play_now">Lejátszás most</string>
 <string name="player_pref">Előnyben részesített videolejátszó</string>
 <string name="player_settings_always_ask">Mindig kérdezzen</string>
 <string name="player_settings_play_in_app">Belső lejátszó</string>
 <string name="player_settings_select_cast_device">Válassza ki a lejátszó eszközt</string>
 <string name="player_size_settings">Lejátszó átméretezése gomb</string>
 <string name="player_size_settings_des">Fekete szegélyek eltávolítása</string>
+<string name="player_source_decoded">%s dekódolva</string>
 <string name="player_source_playing">Lejátszás</string>
 <string name="player_source_resumes_at">A váltás megőrzi a pozíciót: folytatás innen: %1$s</string>
 <string name="player_source_retry">Újra</string>
 <string name="player_source_switch">Váltás</string>
+<string name="player_sources_all_failed">Minden forrás hibával válaszolt.</string>
+<string name="player_sources_all_failed_detail">Válasszon alább egy forrást az újrapróbáláshoz.</string>
 <string name="player_speed">Lejátszás sebessége</string>
 <string name="player_speed_text_format">Sebesség (%.2fx)</string>
 <string name="player_subtitles_settings">Feliratok</string>
 <string name="player_subtitles_settings_des">Lejátszó feliratok beállításai</string>
 <string name="player_unmute">Némítás feloldása</string>
+<string name="player_volume_down">Hangerő le</string>
+<string name="player_volume_up">Hangerő fel</string>
 <string name="plugin">bővítmények</string>
 <string name="plugin_deleted">Bővítmény törölve</string>
 <string name="plugin_downloaded">Bővítmény letöltve</string>

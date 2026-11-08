@@ -31,6 +31,9 @@
 <plurals name="home_bookmarks_count"><item quantity="zero">%d GRĀMATZĪMJU</item><item quantity="one">%d GRĀMATZĪME</item><item quantity="other">%d GRĀMATZĪMES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">Neizdevās ielādēt %d sadaļu</item><item quantity="one">Neizdevās ielādēt %d sadaļu</item><item quantity="other">Neizdevās ielādēt %d sadaļas</item></plurals>
 <plurals name="library_title_count"><item quantity="zero">%d nosaukumu</item><item quantity="one">%d nosaukums</item><item quantity="other">%d nosaukumi</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="zero">%d sekunžu</item><item quantity="one">%d sekunde</item><item quantity="other">%d sekundes</item></plurals>
+<plurals name="player_source_count"><item quantity="zero">%d avotu</item><item quantity="one">%d avots</item><item quantity="other">%d avoti</item></plurals>
+<plurals name="player_up_next_in"><item quantity="zero">Nākamā sērija pēc %d s</item><item quantity="one">Nākamā sērija pēc %d s</item><item quantity="other">Nākamā sērija pēc %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="zero">Meklēt visos %d devējos</item><item quantity="one">Meklēt %d devējā</item><item quantity="other">Meklēt visos %d devējos</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="zero">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item><item quantity="one">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā.</item><item quantity="other">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="zero">%d DEVĒJU</item><item quantity="one">%d DEVĒJS</item><item quantity="other">%d DEVĒJI</item></plurals>
@@ -448,6 +451,7 @@
 <string name="play_torrent_button">Skatities Torrentu</string>
 <string name="play_trailer_button">Palaist Trelleri</string>
 <string name="play_with_app_name">Atskaņo ar cloudstream</string>
+<string name="player_audio_stereo">stereo</string>
 <string name="player_enter_fullscreen">Atvērt pilnekrāna režīmu</string>
 <string name="player_exit_fullscreen">Aizvērt pilnekrāna režīmu</string>
 <string name="player_fit_original">Sākotnējā attiecība</string>
@@ -466,20 +470,27 @@
 <string name="player_load_subtitles">Ielādēt no datnes</string>
 <string name="player_load_subtitles_online">Lejupielādēt no interneta</string>
 <string name="player_loaded_subtitles">Ielādēti %s</string>
+<string name="player_menu_playback">Atskaņošana</string>
 <string name="player_mute">Izslēgt skaņu</string>
+<string name="player_play_now">Atskaņot tagad</string>
 <string name="player_pref">Vēlamais video atskaņotājs</string>
 <string name="player_settings_play_in_app">Iekšējais atskaņotājs</string>
 <string name="player_size_settings">Players izmēra poga</string>
 <string name="player_size_settings_des">Noņemt melnās malas</string>
+<string name="player_source_decoded">%s atkodēts</string>
 <string name="player_source_playing">Atskaņo</string>
 <string name="player_source_resumes_at">Pārslēdzot pozīcija saglabājas: turpinās no %1$s</string>
 <string name="player_source_retry">Mēģināt vēlreiz</string>
 <string name="player_source_switch">Pārslēgt</string>
+<string name="player_sources_all_failed">Katrs avots atbildēja ar kļūdu.</string>
+<string name="player_sources_all_failed_detail">Izvēlieties avotu zemāk, lai mēģinātu vēlreiz.</string>
 <string name="player_speed">Atskaņošanas ātrums</string>
 <string name="player_speed_text_format">Ātrums (%.2fx)</string>
 <string name="player_subtitles_settings">Subtitri</string>
 <string name="player_subtitles_settings_des">Atskaņotāja subtitru iestatījumi</string>
 <string name="player_unmute">Ieslēgt skaņu</string>
+<string name="player_volume_down">Klusāk</string>
+<string name="player_volume_up">Skaļāk</string>
 <string name="plugin">papildinājumi</string>
 <string name="plugin_deleted">Papildinājums dzēsts</string>
 <string name="plugin_downloaded">Papildinājums lejupielādēts</string>

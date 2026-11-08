@@ -34,6 +34,9 @@
 <plurals name="home_source_sections"><item quantity="one">%d Bereich</item><item quantity="other">%d Bereiche</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d Titel</item><item quantity="other">%d Titel</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d ausgeblendeter Link</item><item quantity="other">%d ausgeblendete Links</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d Sekunde</item><item quantity="other">%d Sekunden</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d Quelle</item><item quantity="other">%d Quellen</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Nächste Folge in %d s</item><item quantity="other">Nächste Folge in %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d Quelle durchsuchen</item><item quantity="other">Alle %d Quellen durchsuchen</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Drücke die Suchtaste der Tastatur, um trotzdem %d Quelle zu durchsuchen.</item><item quantity="other">Drücke die Suchtaste der Tastatur, um trotzdem alle %d Quellen zu durchsuchen.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d QUELLE</item><item quantity="other">%d QUELLEN</item></plurals>
@@ -516,6 +519,7 @@
 <string name="play_torrent_button">Torrent streamen</string>
 <string name="play_trailer_button">Trailer abspielen</string>
 <string name="play_with_app_name">Mit CloudStream abspielen</string>
+<string name="player_audio_stereo">Stereo</string>
 <string name="player_enter_fullscreen">Vollbild aktivieren</string>
 <string name="player_exit_fullscreen">Vollbild beenden</string>
 <string name="player_fit_original">Originales Seitenverhältnis</string>
@@ -535,24 +539,31 @@
 <string name="player_load_subtitles">Aus Datei laden</string>
 <string name="player_load_subtitles_online">Aus Internet laden</string>
 <string name="player_loaded_subtitles">%s geladen</string>
+<string name="player_menu_playback">Wiedergabe</string>
 <string name="player_mute">Stummschalten</string>
 <string name="player_notification_channel_description">Player-Benachrichtigung zur Steuerung der Hintergrundwiedergabe</string>
 <string name="player_notification_channel_name">Player-Benachrichtigung</string>
+<string name="player_play_now">Jetzt abspielen</string>
 <string name="player_pref">Bevorzugter Videoplayer</string>
 <string name="player_settings_always_ask">Immer fragen</string>
 <string name="player_settings_play_in_app">Interner Player</string>
 <string name="player_settings_select_cast_device">Cast-Gerät auswählen</string>
 <string name="player_size_settings">Player-Skalierung anpassen</string>
 <string name="player_size_settings_des">Entfernt schwarze Ränder</string>
+<string name="player_source_decoded">%s dekodiert</string>
 <string name="player_source_playing">Läuft</string>
 <string name="player_source_resumes_at">Beim Wechsel bleibt die Position erhalten: weiter bei %1$s</string>
 <string name="player_source_retry">Wiederholen</string>
 <string name="player_source_switch">Wechseln</string>
+<string name="player_sources_all_failed">Jede Quelle hat mit einem Fehler geantwortet.</string>
+<string name="player_sources_all_failed_detail">Wähle unten eine Quelle, um es erneut zu versuchen.</string>
 <string name="player_speed">Player-Geschwindigkeit</string>
 <string name="player_speed_text_format">Geschwindigkeit (%.2fx)</string>
 <string name="player_subtitles_settings">Untertitel</string>
 <string name="player_subtitles_settings_des">Player-Untertiteleinstellungen</string>
 <string name="player_unmute">Stummschaltung aufheben</string>
+<string name="player_volume_down">Leiser</string>
+<string name="player_volume_up">Lauter</string>
 <string name="plugin">Plugins</string>
 <string name="plugin_deleted">Plugin gelöscht</string>
 <string name="plugin_downloaded">Das Plugin wurde heruntergeladen</string>

@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d sekcio ne ŝargiĝis"</item><item quantity="other">"%d sekcioj ne ŝargiĝis"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sekcio"</item><item quantity="other">"%d sekcioj"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d titolo"</item><item quantity="other">"%d titoloj"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d sekundo"</item><item quantity="other">"%d sekundoj"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d fonto"</item><item quantity="other">"%d fontoj"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Sekva epizodo post %d s"</item><item quantity="other">"Sekva epizodo post %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Serĉi en %d fonto"</item><item quantity="other">"Serĉi en ĉiuj %d fontoj"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Premu la serĉoklavon de la klavaro por tamen serĉi en %d fonto."</item><item quantity="other">"Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTO"</item><item quantity="other">"%d FONTOJ"</item></plurals>
@@ -237,6 +240,7 @@
 <string name="play_torrent_button">"Elsendflui Torenton"</string>
 <string name="play_trailer_button">"Ludi Antaŭfilmon"</string>
 <string name="play_with_app_name">"Ludi per CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Eniri plenekranan reĝimon"</string>
 <string name="player_exit_fullscreen">"Eliri el plenekrana reĝimo"</string>
 <string name="player_fit_original">"Originala proporcio"</string>
@@ -251,15 +255,22 @@
 <string name="player_hud_seek_forward">"Antaŭen"</string>
 <string name="player_hud_speed">"Rapido"</string>
 <string name="player_hud_up_next" formatted="true">"Sekva · %s"</string>
+<string name="player_menu_playback">"Ludado"</string>
 <string name="player_mute">"Silentigi"</string>
+<string name="player_play_now">"Ludi nun"</string>
 <string name="player_size_settings_des">"Forigi nigrajn borderaĵojn"</string>
+<string name="player_source_decoded" formatted="true">"%s malkodita"</string>
 <string name="player_source_playing">"Ludanta"</string>
 <string name="player_source_resumes_at" formatted="true">"Ŝanĝo konservas vian lokon: daŭrigas ĉe %1$s"</string>
 <string name="player_source_retry">"Reprovi"</string>
 <string name="player_source_switch">"Ŝanĝi"</string>
+<string name="player_sources_all_failed">"Ĉiu fonto respondis per eraro."</string>
+<string name="player_sources_all_failed_detail">"Elektu fonton sube por provi ĝin denove."</string>
 <string name="player_speed_text_format" formatted="true">"Rapido (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtekstoj"</string>
 <string name="player_unmute">"Malsilentigi"</string>
+<string name="player_volume_down">"Mallaŭtigi"</string>
+<string name="player_volume_up">"Plilaŭtigi"</string>
 <string name="popup_delete_file">"Forigi Dosieron"</string>
 <string name="popup_pause_download">"Paŭzigi Elŝuton"</string>
 <string name="popup_resume_download">"Daŭrigi Elŝuton"</string>

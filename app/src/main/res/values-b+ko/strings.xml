@@ -13,6 +13,9 @@
 <plurals name="home_sections_failed"><item quantity="other">"섹션 %d개를 불러오지 못했습니다"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"섹션 %d개"</item></plurals>
 <plurals name="library_title_count"><item quantity="other">"%d개 작품"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">"%d초"</item></plurals>
+<plurals name="player_source_count"><item quantity="other">"소스 %d개"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">"%d초 후 다음 에피소드"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"소스 %d개 모두 검색"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"그래도 소스 %d개를 모두 검색하려면 키보드의 검색 키를 누르세요."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d 소스"</item></plurals>
@@ -515,6 +518,7 @@
 <string name="play_torrent_button">"토렌트 재생"</string>
 <string name="play_trailer_button">"예고편 재생"</string>
 <string name="play_with_app_name">"CloudStream으로 재생"</string>
+<string name="player_audio_stereo">"스테레오"</string>
 <string name="player_enter_fullscreen">"전체 화면으로 전환"</string>
 <string name="player_exit_fullscreen">"전체 화면 종료"</string>
 <string name="player_fit_original">"원본 화면 비율"</string>
@@ -534,24 +538,31 @@
 <string name="player_load_subtitles">"파일에서 불러오기"</string>
 <string name="player_load_subtitles_online">"인터넷에서 불러오기"</string>
 <string name="player_loaded_subtitles" formatted="true">"로드됨 %s"</string>
+<string name="player_menu_playback">"재생"</string>
 <string name="player_mute">"음소거"</string>
 <string name="player_notification_channel_description">"백그라운드에서 재생을 제어하기 위한 플레이어 알림"</string>
 <string name="player_notification_channel_name">"플레이어 알림"</string>
+<string name="player_play_now">"지금 재생"</string>
 <string name="player_pref">"선호하는 동영상 플레이어"</string>
 <string name="player_settings_always_ask">"항상 묻기"</string>
 <string name="player_settings_play_in_app">"내부 플레이어"</string>
 <string name="player_settings_select_cast_device">"캐스트 장치 선택"</string>
 <string name="player_size_settings">"플레이어 크기 조정 버튼"</string>
 <string name="player_size_settings_des">"레터박스 제거"</string>
+<string name="player_source_decoded" formatted="true">"%s 디코딩됨"</string>
 <string name="player_source_playing">"재생 중"</string>
 <string name="player_source_resumes_at" formatted="true">"전환해도 위치가 유지됩니다: %1$s부터 재개"</string>
 <string name="player_source_retry">"다시 시도"</string>
 <string name="player_source_switch">"전환"</string>
+<string name="player_sources_all_failed">"모든 소스가 오류로 응답했습니다."</string>
+<string name="player_sources_all_failed_detail">"아래에서 소스를 선택해 다시 시도하세요."</string>
 <string name="player_speed">"재생 속도"</string>
 <string name="player_speed_text_format" formatted="true">"속도 (%.2fx)"</string>
 <string name="player_subtitles_settings">"자막"</string>
 <string name="player_subtitles_settings_des">"플레이어 자막 설정"</string>
 <string name="player_unmute">"음소거 해제"</string>
+<string name="player_volume_down">"볼륨 낮추기"</string>
+<string name="player_volume_up">"볼륨 높이기"</string>
 <string name="plugin">"플러그인"</string>
 <string name="plugin_deleted">"플러그인 삭제됨"</string>
 <string name="plugin_downloaded">"플러그인 다운로드"</string>

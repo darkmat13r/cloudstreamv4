@@ -14,6 +14,9 @@
 <plurals name="home_source_sections"><item quantity="one">"%d bölüm"</item><item quantity="other">"%d bölüm"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d başlık"</item><item quantity="other">"%d başlık"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d gizli bağlantı"</item><item quantity="other">"%d gizli bağlantı"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d saniye"</item><item quantity="other">"%d saniye"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d kaynak"</item><item quantity="other">"%d kaynak"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Sonraki bölüm %d sn sonra"</item><item quantity="other">"Sonraki bölüm %d sn sonra"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d kaynakta ara"</item><item quantity="other">"Tüm %d kaynakta ara"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Yine de %d kaynakta aramak için klavyenin arama tuşuna basın."</item><item quantity="other">"Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KAYNAK"</item><item quantity="other">"%d KAYNAK"</item></plurals>
@@ -516,6 +519,7 @@
 <string name="play_torrent_button">"Torrent Oynat"</string>
 <string name="play_trailer_button">"Fragmanı Oynat"</string>
 <string name="play_with_app_name">"CloudStream ile oynat"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Tam ekrana geç"</string>
 <string name="player_exit_fullscreen">"Tam ekrandan çık"</string>
 <string name="player_fit_original">"Orijinal en boy oranı"</string>
@@ -535,24 +539,31 @@
 <string name="player_load_subtitles">"Dosyadan yükle"</string>
 <string name="player_load_subtitles_online">"İnternetten yükle"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s eklendi"</string>
+<string name="player_menu_playback">"Oynatma"</string>
 <string name="player_mute">"Sesi kapat"</string>
 <string name="player_notification_channel_description">"Oynatıcı bildirimi arka planda oynatmasını kontrol etmek içindir"</string>
 <string name="player_notification_channel_name">"Oynatıcı bildirimleri"</string>
+<string name="player_play_now">"Şimdi oynat"</string>
 <string name="player_pref">"Tercih edilen video oynatıcısı"</string>
 <string name="player_settings_always_ask">"Her zaman sor"</string>
 <string name="player_settings_play_in_app">"Dahili oynatıcı"</string>
 <string name="player_settings_select_cast_device">"Yansıtılacak cihaz seç"</string>
 <string name="player_size_settings">"Oynatıcı yeniden boyutlandırma butonu"</string>
 <string name="player_size_settings_des">"Siyah kenarlıkları kaldır"</string>
+<string name="player_source_decoded" formatted="true">"%s çözüldü"</string>
 <string name="player_source_playing">"Oynatılıyor"</string>
 <string name="player_source_resumes_at" formatted="true">"Değiştirmek konumunuzu korur: %1$s konumundan devam eder"</string>
 <string name="player_source_retry">"Yeniden dene"</string>
 <string name="player_source_switch">"Değiştir"</string>
+<string name="player_sources_all_failed">"Her kaynak bir hatayla yanıt verdi."</string>
+<string name="player_sources_all_failed_detail">"Yeniden denemek için aşağıdan bir kaynak seçin."</string>
 <string name="player_speed">"Oynatıcı Hızı"</string>
 <string name="player_speed_text_format" formatted="true">"Hız (%.2fx)"</string>
 <string name="player_subtitles_settings">"Altyazılar"</string>
 <string name="player_subtitles_settings_des">"Oynatıcı altyazı ayarları"</string>
 <string name="player_unmute">"Sesi aç"</string>
+<string name="player_volume_down">"Sesi kıs"</string>
+<string name="player_volume_up">"Sesi aç"</string>
 <string name="plugin">"eklentiler"</string>
 <string name="plugin_deleted">"Eklenti Silindi"</string>
 <string name="plugin_downloaded">"Eklenti İndirildi"</string>

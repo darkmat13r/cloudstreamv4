@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d del kunne ikkje lastast"</item><item quantity="other">"%d delar kunne ikkje lastast"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d seksjon"</item><item quantity="other">"%d seksjonar"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d tittel"</item><item quantity="other">"%d titlar"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d sekund"</item><item quantity="other">"%d sekund"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d kjelde"</item><item quantity="other">"%d kjelder"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Neste episode om %d s"</item><item quantity="other">"Neste episode om %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Søk i %d kjelde"</item><item quantity="other">"Søk i alle %d kjeldene"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel."</item><item quantity="other">"Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KJELDE"</item><item quantity="other">"%d KJELDER"</item></plurals>
@@ -240,6 +243,7 @@
 <string name="play_torrent_button">"Strøm Torrent"</string>
 <string name="play_trailer_button">"Spel av trailer"</string>
 <string name="play_with_app_name">"Spel av med CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Vis i fullskjerm"</string>
 <string name="player_exit_fullscreen">"Avslutt fullskjerm"</string>
 <string name="player_fit_original">"Opphavleg sideforhold"</string>
@@ -254,17 +258,24 @@
 <string name="player_hud_seek_forward">"Spol fram"</string>
 <string name="player_hud_speed">"Fart"</string>
 <string name="player_hud_up_next" formatted="true">"Neste · %s"</string>
+<string name="player_menu_playback">"Avspeling"</string>
 <string name="player_mute">"Slå av lyd"</string>
+<string name="player_play_now">"Spel no"</string>
 <string name="player_size_settings_des">"Fjern dei svarte kantane"</string>
+<string name="player_source_decoded" formatted="true">"%s dekoda"</string>
 <string name="player_source_playing">"Spelar"</string>
 <string name="player_source_resumes_at" formatted="true">"Bytet held på plassen din: held fram frå %1$s"</string>
 <string name="player_source_retry">"Prøv igjen"</string>
 <string name="player_source_switch">"Byt"</string>
+<string name="player_sources_all_failed">"Kvar kjelde svarte med ein feil."</string>
+<string name="player_sources_all_failed_detail">"Vel ei kjelde nedanfor for å prøve igjen."</string>
 <string name="player_speed">"Avspelinghastigheit"</string>
 <string name="player_speed_text_format" formatted="true">"Avspelinghastigheit (%.2fx)"</string>
 <string name="player_subtitles_settings">"Undertekstar"</string>
 <string name="player_subtitles_settings_des">"Innstillinger for avspilling av undertekster"</string>
 <string name="player_unmute">"Slå på lyd"</string>
+<string name="player_volume_down">"Lågare volum"</string>
+<string name="player_volume_up">"Høgare volum"</string>
 <string name="popup_delete_file">"Slett fil"</string>
 <string name="popup_pause_download">"Sett nedlasting på vent"</string>
 <string name="popup_play_file">"Spel av fil"</string>

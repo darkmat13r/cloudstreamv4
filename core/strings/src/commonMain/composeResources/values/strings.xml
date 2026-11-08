@@ -35,6 +35,9 @@
 <plurals name="home_source_sections"><item quantity="one">%d section</item><item quantity="other">%d sections</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d title</item><item quantity="other">%d titles</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d hidden link</item><item quantity="other">%d hidden links</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d second</item><item quantity="other">%d seconds</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d source</item><item quantity="other">%d sources</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Next episode in %d s</item><item quantity="other">Next episode in %d s</item></plurals>
 <plurals name="search_state_no_results_body"><item quantity="one">%d selected source answered and it does not carry it.</item><item quantity="other">All %d selected sources answered and none of them carry it.</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Search %d source</item><item quantity="other">Search all %d sources</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Press the keyboard’s search key to search %d source anyway.</item><item quantity="other">Press the keyboard’s search key to search all %d sources anyway.</item></plurals>
@@ -542,6 +545,7 @@
 <string name="play_torrent_button">Stream Torrent</string>
 <string name="play_trailer_button">Play Trailer</string>
 <string name="play_with_app_name">Play with CloudStream</string>
+<string name="player_audio_stereo">stereo</string>
 <string name="player_enter_fullscreen">Enter full screen</string>
 <string name="player_exit_fullscreen">Exit full screen</string>
 <string name="player_fit_original">Original aspect ratio</string>
@@ -561,24 +565,31 @@
 <string name="player_load_subtitles">Load from file</string>
 <string name="player_load_subtitles_online">Load from Internet</string>
 <string name="player_loaded_subtitles">Loaded %s</string>
+<string name="player_menu_playback">Playback</string>
 <string name="player_mute">Mute</string>
 <string name="player_notification_channel_description">The player notification for controlling the playback from the background</string>
 <string name="player_notification_channel_name">Player notifications</string>
+<string name="player_play_now">Play now</string>
 <string name="player_pref">Preferred video player</string>
 <string name="player_settings_always_ask">Always ask</string>
 <string name="player_settings_play_in_app">Internal player</string>
 <string name="player_settings_select_cast_device">Select cast device</string>
 <string name="player_size_settings">Player resize button</string>
 <string name="player_size_settings_des">Remove the black borders</string>
+<string name="player_source_decoded">%s decoded</string>
 <string name="player_source_playing">Playing</string>
 <string name="player_source_resumes_at">Switching keeps your position: resumes at %1$s</string>
 <string name="player_source_retry">Retry</string>
 <string name="player_source_switch">Switch</string>
+<string name="player_sources_all_failed">Every source answered with an error.</string>
+<string name="player_sources_all_failed_detail">Choose a source below to try it again.</string>
 <string name="player_speed">Player Speed</string>
 <string name="player_speed_text_format">Speed (%.2fx)</string>
 <string name="player_subtitles_settings">Subtitles</string>
 <string name="player_subtitles_settings_des">Player subtitles settings</string>
 <string name="player_unmute">Unmute</string>
+<string name="player_volume_down">Volume down</string>
+<string name="player_volume_up">Volume up</string>
 <string name="plugin">plugins</string>
 <string name="plugin_deleted">Plugin Deleted</string>
 <string name="plugin_downloaded">Plugin Downloaded</string>

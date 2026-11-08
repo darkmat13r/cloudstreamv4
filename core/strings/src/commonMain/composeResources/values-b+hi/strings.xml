@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d अनुभाग लोड नहीं हो सका</item><item quantity="other">%d अनुभाग लोड नहीं हो सके</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d शीर्षक</item><item quantity="other">%d शीर्षक</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d सेकंड</item><item quantity="other">%d सेकंड</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d स्रोत</item><item quantity="other">%d स्रोत</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">अगला एपिसोड %d से. में</item><item quantity="other">अगला एपिसोड %d से. में</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d स्रोत में खोजें</item><item quantity="other">सभी %d स्रोतों में खोजें</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">फिर भी %d स्रोत में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।</item><item quantity="other">फिर भी सभी %d स्रोतों में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d स्रोत</item><item quantity="other">%d स्रोत</item></plurals>
@@ -370,6 +373,7 @@
 <string name="play_torrent_button">टोरेंट चलाएं</string>
 <string name="play_trailer_button">ट्रेलर देखे</string>
 <string name="play_with_app_name">क्लाउडस्ट्रीम के साथ चलाएं</string>
+<string name="player_audio_stereo">स्टीरियो</string>
 <string name="player_enter_fullscreen">फ़ुलस्क्रीन मोड पर देखें</string>
 <string name="player_exit_fullscreen">फ़ुलस्क्रीन मोड से बाहर निकलें</string>
 <string name="player_fit_original">मूल आस्पेक्ट अनुपात</string>
@@ -384,18 +388,25 @@
 <string name="player_hud_seek_forward">आगे जाएँ</string>
 <string name="player_hud_speed">गति</string>
 <string name="player_hud_up_next">अगला · %s</string>
+<string name="player_menu_playback">प्लेबैक</string>
 <string name="player_mute">म्यूट करें</string>
+<string name="player_play_now">अभी चलाएँ</string>
 <string name="player_size_settings">प्लेयर आकार परिवर्तन बटन</string>
 <string name="player_size_settings_des">काले बॉर्डर हटाएँ</string>
+<string name="player_source_decoded">%s डिकोड किया गया</string>
 <string name="player_source_playing">चल रहा है</string>
 <string name="player_source_resumes_at">बदलने पर आपकी जगह बनी रहती है: %1$s से जारी</string>
 <string name="player_source_retry">फिर कोशिश करें</string>
 <string name="player_source_switch">बदलें</string>
+<string name="player_sources_all_failed">हर स्रोत ने त्रुटि के साथ जवाब दिया।</string>
+<string name="player_sources_all_failed_detail">फिर से आज़माने के लिए नीचे कोई स्रोत चुनें।</string>
 <string name="player_speed">प्लेयर स्पीड</string>
 <string name="player_speed_text_format">स्पीड (%.2fx)</string>
 <string name="player_subtitles_settings">उपशीर्षक</string>
 <string name="player_subtitles_settings_des">प्लेयर उपशीर्षक सेटिंग्स</string>
 <string name="player_unmute">अनम्यूट करें</string>
+<string name="player_volume_down">आवाज़ घटाएँ</string>
+<string name="player_volume_up">आवाज़ बढ़ाएँ</string>
 <string name="podcast_singular">पॉडकास्ट</string>
 <string name="popup_delete_file">फ़ाइल मिटाएँ</string>
 <string name="popup_pause_download">डाउनलोड रोकें</string>

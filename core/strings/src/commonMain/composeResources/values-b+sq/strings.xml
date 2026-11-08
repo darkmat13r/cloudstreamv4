@@ -34,6 +34,9 @@
 <plurals name="home_source_sections"><item quantity="one">%d seksion</item><item quantity="other">%d seksione</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titull</item><item quantity="other">%d tituj</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d link i fshehur</item><item quantity="other">%d linqe të fshehura</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d sekondë</item><item quantity="other">%d sekonda</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d burim</item><item quantity="other">%d burime</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Episodi tjetër pas %d s</item><item quantity="other">Episodi tjetër pas %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Kërko në %d burim</item><item quantity="other">Kërko në të gjitha %d burimet</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në %d burim.</item><item quantity="other">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BURIM</item><item quantity="other">%d BURIME</item></plurals>
@@ -516,6 +519,7 @@
 <string name="play_torrent_button">Transmeto Torrent</string>
 <string name="play_trailer_button">Luaj Trailerin</string>
 <string name="play_with_app_name">Luaj me CloudStream</string>
+<string name="player_audio_stereo">stereo</string>
 <string name="player_enter_fullscreen">Hyr në luajtjen me ekran të plotë</string>
 <string name="player_exit_fullscreen">Dil nga ekrani i plotë</string>
 <string name="player_fit_original">Raporti origjinal</string>
@@ -535,24 +539,31 @@
 <string name="player_load_subtitles">Ngarko nga skedari</string>
 <string name="player_load_subtitles_online">Ngarko nga interneti</string>
 <string name="player_loaded_subtitles">U ngarkua %s</string>
+<string name="player_menu_playback">Luajtja</string>
 <string name="player_mute">Hiq zërin</string>
 <string name="player_notification_channel_description">Njoftimi për kontrollin e luajtjes nga sfondi</string>
 <string name="player_notification_channel_name">Njoftimet e luajtësit</string>
+<string name="player_play_now">Luaj tani</string>
 <string name="player_pref">Luajtësi i preferuar i videove</string>
 <string name="player_settings_always_ask">Pyet gjithmonë</string>
 <string name="player_settings_play_in_app">Luajtësi i integruar</string>
 <string name="player_settings_select_cast_device">Zgjidh pajisjen për transmetim</string>
 <string name="player_size_settings">Butoni për ndryshimin e madhësisë së luajtësit</string>
 <string name="player_size_settings_des">Hiq kufijtë e errët</string>
+<string name="player_source_decoded">%s i dekoduar</string>
 <string name="player_source_playing">Po luhet</string>
 <string name="player_source_resumes_at">Ndërrimi e ruan pozicionin: vazhdon nga %1$s</string>
 <string name="player_source_retry">Provo përsëri</string>
 <string name="player_source_switch">Ndërro</string>
+<string name="player_sources_all_failed">Çdo burim u përgjigj me një gabim.</string>
+<string name="player_sources_all_failed_detail">Zgjidh një burim më poshtë për ta provuar sërish.</string>
 <string name="player_speed">Shpejtësia e luajtësit</string>
 <string name="player_speed_text_format">Shpejtësia (%.2fx)</string>
 <string name="player_subtitles_settings">Titrat</string>
 <string name="player_subtitles_settings_des">Cilësimet e titrave të luajtësit</string>
 <string name="player_unmute">Aktivizo zërin</string>
+<string name="player_volume_down">Ul volumin</string>
+<string name="player_volume_up">Rrit volumin</string>
 <string name="plugin">shtesa</string>
 <string name="plugin_deleted">Shtesa u fshi</string>
 <string name="plugin_downloaded">Shtesa u shkarkua</string>

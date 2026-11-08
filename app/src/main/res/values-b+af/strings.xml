@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d afdeling kon nie laai nie"</item><item quantity="other">"%d afdelings kon nie laai nie"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d afdeling"</item><item quantity="other">"%d afdelings"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d titel"</item><item quantity="other">"%d titels"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d sekonde"</item><item quantity="other">"%d sekondes"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d bron"</item><item quantity="other">"%d bronne"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Volgende episode oor %d s"</item><item quantity="other">"Volgende episode oor %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Soek %d bron"</item><item quantity="other">"Soek al %d bronne"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Druk die sleutelbord se soeksleutel om tog %d bron te deursoek."</item><item quantity="other">"Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d BRON"</item><item quantity="other">"%d BRONNE"</item></plurals>
@@ -195,6 +198,7 @@
 <string name="play_torrent_button">"Stroom Torrent"</string>
 <string name="play_trailer_button">"Speel Lokprent"</string>
 <string name="play_with_app_name">"Speel met CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Gaan na volskerm"</string>
 <string name="player_exit_fullscreen">"Verlaat volskerm"</string>
 <string name="player_fit_original">"Oorspronklike beeldverhouding"</string>
@@ -209,14 +213,21 @@
 <string name="player_hud_seek_forward">"Spoel vorentoe"</string>
 <string name="player_hud_speed">"Spoed"</string>
 <string name="player_hud_up_next" formatted="true">"Volgende · %s"</string>
+<string name="player_menu_playback">"Afspeel"</string>
 <string name="player_mute">"Demp"</string>
+<string name="player_play_now">"Speel nou"</string>
+<string name="player_source_decoded" formatted="true">"%s gedekodeer"</string>
 <string name="player_source_playing">"Speel"</string>
 <string name="player_source_resumes_at" formatted="true">"Wissel behou jou posisie: gaan voort by %1$s"</string>
 <string name="player_source_retry">"Probeer weer"</string>
 <string name="player_source_switch">"Wissel"</string>
+<string name="player_sources_all_failed">"Elke bron het met 'n fout geantwoord."</string>
+<string name="player_sources_all_failed_detail">"Kies 'n bron hieronder om dit weer te probeer."</string>
 <string name="player_speed">"Spelerspoed"</string>
 <string name="player_speed_text_format" formatted="true">"Spoed (%.2fx)"</string>
 <string name="player_unmute">"Ontdemp"</string>
+<string name="player_volume_down">"Volume af"</string>
+<string name="player_volume_up">"Volume op"</string>
 <string name="popup_delete_file">"Vee lêer uit"</string>
 <string name="popup_pause_download">"Laat aflaai rus"</string>
 <string name="popup_play_file">"Speel lêer"</string>

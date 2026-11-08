@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d بەش بار نەکرا"</item><item quantity="other">"%d بەش بار نەکرا"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d بەش"</item><item quantity="other">"%d بەش"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d ناونیشان"</item><item quantity="other">"%d ناونیشان"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d چرکە"</item><item quantity="other">"%d چرکە"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d سەرچاوە"</item><item quantity="other">"%d سەرچاوە"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"ئەڵقەی داهاتوو لە %d چ دا"</item><item quantity="other">"ئەڵقەی داهاتوو لە %d چ دا"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"گەڕان لە %d سەرچاوە"</item><item quantity="other">"گەڕان لە هەموو %d سەرچاوەکە"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە %d سەرچاوە بگەڕێیت."</item><item quantity="other">"کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d سەرچاوە"</item><item quantity="other">"%d سەرچاوە"</item></plurals>
@@ -185,6 +188,7 @@
 <string name="pick_subtitle">"ژێرنووسەکان"</string>
 <string name="play_from_beginning_img_des">"لە سەرەتاوە دەست پێ بکە"</string>
 <string name="play_torrent_button">"تۆرێنت ستریم بکە"</string>
+<string name="player_audio_stereo">"ستیریۆ"</string>
 <string name="player_enter_fullscreen">"چوونە ناو پڕ بە شاشە"</string>
 <string name="player_exit_fullscreen">"دەرچوون لە پڕ بە شاشە"</string>
 <string name="player_fit_original">"ڕێژەی ڕەسەن"</string>
@@ -199,13 +203,20 @@
 <string name="player_hud_seek_forward">"چوون بۆ پێشەوە"</string>
 <string name="player_hud_speed">"خێرایی"</string>
 <string name="player_hud_up_next" formatted="true">"دواتر · %s"</string>
+<string name="player_menu_playback">"لێدان"</string>
 <string name="player_mute">"بێدەنگکردن"</string>
+<string name="player_play_now">"ئێستا لێبدە"</string>
+<string name="player_source_decoded" formatted="true">"%s دیکۆدکراو"</string>
 <string name="player_source_playing">"لێدەدرێت"</string>
 <string name="player_source_resumes_at" formatted="true">"گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت"</string>
 <string name="player_source_retry">"دووبارە هەوڵبدەرەوە"</string>
 <string name="player_source_switch">"گۆڕین"</string>
+<string name="player_sources_all_failed">"هەموو سەرچاوەکان بە هەڵەیەک وەڵامیان دایەوە."</string>
+<string name="player_sources_all_failed_detail">"سەرچاوەیەک لە خوارەوە هەڵبژێرە بۆ ئەوەی دووبارە تاقی بکەیتەوە."</string>
 <string name="player_speed_text_format" formatted="true">"خێرای(x%.2f)"</string>
 <string name="player_unmute">"لابردنی بێدەنگی"</string>
+<string name="player_volume_down">"دەنگ نزمکردنەوە"</string>
+<string name="player_volume_up">"دەنگ بەرزکردنەوە"</string>
 <string name="popup_delete_file">"سڕینەوەی فایل"</string>
 <string name="popup_pause_download">"وەستاندنی دابەزاندن"</string>
 <string name="popup_resume_download">"دووبارە دەستپێکردنەوەی دابەزاندن"</string>

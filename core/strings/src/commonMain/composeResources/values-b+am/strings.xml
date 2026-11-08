@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ዕልባት</item><item quantity="other">%d ዕልባቶች</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ክፍል መጫን አልተቻለም</item><item quantity="other">%d ክፍል መጫን አልተቻለም</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ርዕስ</item><item quantity="other">%d ርዕሶች</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d ሰከንዶች</item><item quantity="other">%d ሰከንዶች</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d ምንጮች</item><item quantity="other">%d ምንጮች</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">ቀጣዩ ክፍል በ%d ሰ ውስጥ</item><item quantity="other">ቀጣዩ ክፍል በ%d ሰ ውስጥ</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ምንጭ ፈልግ</item><item quantity="other">ሁሉንም %d ምንጮች ፈልግ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ለማንኛውም %d ምንጭ ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።</item><item quantity="other">ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ምንጭ</item><item quantity="other">%d ምንጮች</item></plurals>
@@ -283,5 +286,13 @@
 <string name="library_sync_retry">እንደገና አመሳስል</string>
 <string name="library_sync_unreachable">ሊደረስበት አልቻለም · ከ%s በፊት የተቀመጠ</string>
 <string name="library_synced_format">ከ%s በፊት ተመሳስሏል</string>
+<string name="player_audio_stereo">ስቴሪዮ</string>
+<string name="player_menu_playback">መልሶ ማጫወት</string>
+<string name="player_play_now">አሁን አጫውት</string>
+<string name="player_source_decoded">%s ተፈትቷል</string>
+<string name="player_sources_all_failed">እያንዳንዱ ምንጭ በስህተት መለሰ።</string>
+<string name="player_sources_all_failed_detail">እንደገና ለመሞከር ከታች ምንጭ ይምረጡ።</string>
+<string name="player_volume_down">ድምፅ ቀንስ</string>
+<string name="player_volume_up">ድምፅ ጨምር</string>
 <string name="search_suggestions_return_hint">Return ሁሉንም ይፈልጋል</string>
 </resources>

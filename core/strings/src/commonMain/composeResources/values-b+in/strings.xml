@@ -34,6 +34,9 @@
 <plurals name="home_source_sections"><item quantity="other">%d bagian</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d judul</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d link tersembunyi</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">%d detik</item></plurals>
+<plurals name="player_source_count"><item quantity="other">%d sumber</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">Episode berikutnya dalam %d dtk</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">Cari di semua %d sumber</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d SUMBER</item></plurals>
@@ -516,6 +519,7 @@
 <string name="play_torrent_button">Stream Torrent</string>
 <string name="play_trailer_button">Putar Cuplikan</string>
 <string name="play_with_app_name">Putar di CloudStream</string>
+<string name="player_audio_stereo">stereo</string>
 <string name="player_enter_fullscreen">Masuk layar penuh</string>
 <string name="player_exit_fullscreen">Keluar dari layar penuh</string>
 <string name="player_fit_original">Rasio aspek asli</string>
@@ -535,24 +539,31 @@
 <string name="player_load_subtitles">Muat dari file</string>
 <string name="player_load_subtitles_online">Ambil dari internet</string>
 <string name="player_loaded_subtitles">Memuat %s</string>
+<string name="player_menu_playback">Pemutaran</string>
 <string name="player_mute">Bisukan</string>
 <string name="player_notification_channel_description">Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang</string>
 <string name="player_notification_channel_name">Notifikasi pemain</string>
+<string name="player_play_now">Putar sekarang</string>
 <string name="player_pref">Pemutar video utama</string>
 <string name="player_settings_always_ask">Selalu tanya</string>
 <string name="player_settings_play_in_app">Pemutar Bawaan</string>
 <string name="player_settings_select_cast_device">Pilih perangkat cast</string>
 <string name="player_size_settings">Tombol ubah ukuran pemutar</string>
 <string name="player_size_settings_des">Hapus garis tepi hitam</string>
+<string name="player_source_decoded">%s didekode</string>
 <string name="player_source_playing">Sedang diputar</string>
 <string name="player_source_resumes_at">Mengganti tetap menjaga posisi Anda: lanjut di %1$s</string>
 <string name="player_source_retry">Coba lagi</string>
 <string name="player_source_switch">Ganti</string>
+<string name="player_sources_all_failed">Setiap sumber menjawab dengan galat.</string>
+<string name="player_sources_all_failed_detail">Pilih sumber di bawah untuk mencobanya lagi.</string>
 <string name="player_speed">Kecepatan Pemutar</string>
 <string name="player_speed_text_format">Kecepatan (%.2fx)</string>
 <string name="player_subtitles_settings">Subtitel</string>
 <string name="player_subtitles_settings_des">Pengaturan subtitel pemutar</string>
 <string name="player_unmute">Bunyikan</string>
+<string name="player_volume_down">Turunkan volume</string>
+<string name="player_volume_up">Naikkan volume</string>
 <string name="plugin">plugin</string>
 <string name="plugin_deleted">Plugin terhapus</string>
 <string name="plugin_downloaded">Plugin terunduh</string>

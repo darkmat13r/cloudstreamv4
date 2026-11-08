@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Non se puido cargar %d sección</item><item quantity="other">Non se puideron cargar %d seccións</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="other">%d títulos</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d segundo</item><item quantity="other">%d segundos</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d fonte</item><item quantity="other">%d fontes</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Seguinte episodio en %d s</item><item quantity="other">Seguinte episodio en %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Procurar en %d fonte</item><item quantity="other">Procurar en todas as %d fontes</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Preme a tecla de busca do teclado para procurar igualmente en %d fonte.</item><item quantity="other">Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONTE</item><item quantity="other">%d FONTES</item></plurals>
@@ -296,6 +299,7 @@
 <string name="play_torrent_button">Transmitir Torrent</string>
 <string name="play_trailer_button">Reproducir Trailer</string>
 <string name="play_with_app_name">Reproducir con CloudStream</string>
+<string name="player_audio_stereo">estéreo</string>
 <string name="player_enter_fullscreen">Acceder a pantalla completa</string>
 <string name="player_exit_fullscreen">Saír de pantalla completa</string>
 <string name="player_fit_original">Proporción orixinal</string>
@@ -310,18 +314,25 @@
 <string name="player_hud_seek_forward">Avanzar</string>
 <string name="player_hud_speed">Velocidade</string>
 <string name="player_hud_up_next">Seguinte · %s</string>
+<string name="player_menu_playback">Reprodución</string>
 <string name="player_mute">Silenciar</string>
+<string name="player_play_now">Reproducir agora</string>
 <string name="player_size_settings">Botón de cambio de tamaño do reprodutor</string>
 <string name="player_size_settings_des">Eliminar bordes negros</string>
+<string name="player_source_decoded">%s descodificado</string>
 <string name="player_source_playing">Reproducindo</string>
 <string name="player_source_resumes_at">Cambiar mantén a túa posición: continúa en %1$s</string>
 <string name="player_source_retry">Tentar de novo</string>
 <string name="player_source_switch">Cambiar</string>
+<string name="player_sources_all_failed">Todas as fontes responderon cun erro.</string>
+<string name="player_sources_all_failed_detail">Escolle unha fonte abaixo para tentalo de novo.</string>
 <string name="player_speed">Velocidade do reproductor</string>
 <string name="player_speed_text_format">Velocidade (%.2fx)</string>
 <string name="player_subtitles_settings">Subtítulos</string>
 <string name="player_subtitles_settings_des">Configuración de subtítulos do reprodutor</string>
 <string name="player_unmute">Activar o son</string>
+<string name="player_volume_down">Baixar volume</string>
+<string name="player_volume_up">Subir volume</string>
 <string name="popup_delete_file">Borrar Arquivo</string>
 <string name="popup_pause_download">Pausar Descarga</string>
 <string name="popup_play_file">Reproducir Arquivo</string>

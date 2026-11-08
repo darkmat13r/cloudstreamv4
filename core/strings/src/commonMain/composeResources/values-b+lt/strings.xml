@@ -30,6 +30,9 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ŽYMA</item><item quantity="few">%d ŽYMOS</item><item quantity="many">%d ŽYMOS</item><item quantity="other">%d ŽYMŲ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepavyko įkelti %d skilties</item><item quantity="few">Nepavyko įkelti %d skilčių</item><item quantity="many">Nepavyko įkelti %d skilties</item><item quantity="other">Nepavyko įkelti %d skilčių</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d pavadinimas</item><item quantity="few">%d pavadinimai</item><item quantity="many">%d pavadinimo</item><item quantity="other">%d pavadinimų</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d sekundė</item><item quantity="few">%d sekundės</item><item quantity="many">%d sekundės</item><item quantity="other">%d sekundžių</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d šaltinis</item><item quantity="few">%d šaltiniai</item><item quantity="many">%d šaltinio</item><item quantity="other">%d šaltinių</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Kita serija po %d s</item><item quantity="few">Kita serija po %d s</item><item quantity="many">Kita serija po %d s</item><item quantity="other">Kita serija po %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Ieškoti %d šaltinyje</item><item quantity="few">Ieškoti visuose šaltiniuose (%d)</item><item quantity="many">Ieškoti visuose šaltiniuose (%d)</item><item quantity="other">Ieškoti visuose šaltiniuose (%d)</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte %d šaltinyje.</item><item quantity="few">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item><item quantity="many">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item><item quantity="other">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ŠALTINIS</item><item quantity="few">%d ŠALTINIAI</item><item quantity="many">%d ŠALTINIO</item><item quantity="other">%d ŠALTINIŲ</item></plurals>
@@ -283,6 +286,7 @@
 <string name="play_torrent_button">Transliuoti Torrentą</string>
 <string name="play_trailer_button">Paleisti anonsą</string>
 <string name="play_with_app_name">Paleisti su CloudStream</string>
+<string name="player_audio_stereo">stereo</string>
 <string name="player_enter_fullscreen">Įjungti viso ekrano režimą</string>
 <string name="player_exit_fullscreen">Išjungti viso ekrano režimą</string>
 <string name="player_fit_original">Originalus kraštinių santykis</string>
@@ -297,19 +301,26 @@
 <string name="player_hud_seek_forward">Pirmyn</string>
 <string name="player_hud_speed">Greitis</string>
 <string name="player_hud_up_next">Toliau · %s</string>
+<string name="player_menu_playback">Atkūrimas</string>
 <string name="player_mute">Nutildyti</string>
+<string name="player_play_now">Leisti dabar</string>
 <string name="player_settings_play_in_app">Integruotas grotuvas</string>
 <string name="player_size_settings">Grotuvo dydžio pakeitimo mygtukas</string>
 <string name="player_size_settings_des">Pašalinti juodas paraštes</string>
+<string name="player_source_decoded">%s iškoduota</string>
 <string name="player_source_playing">Leidžiama</string>
 <string name="player_source_resumes_at">Perjungus padėtis išlieka: tęsiama nuo %1$s</string>
 <string name="player_source_retry">Bandyti dar kartą</string>
 <string name="player_source_switch">Perjungti</string>
+<string name="player_sources_all_failed">Visi šaltiniai atsakė klaida.</string>
+<string name="player_sources_all_failed_detail">Pasirinkite šaltinį žemiau ir bandykite dar kartą.</string>
 <string name="player_speed">Grotuvo greitis</string>
 <string name="player_speed_text_format">Greitis (%.2fx)</string>
 <string name="player_subtitles_settings">Subtitrai</string>
 <string name="player_subtitles_settings_des">Grotuvo subtitrų nustatymai</string>
 <string name="player_unmute">Įjungti garsą</string>
+<string name="player_volume_down">Tyliau</string>
+<string name="player_volume_up">Garsiau</string>
 <string name="plugin_load_fail">Nepavyko įkelti %s</string>
 <string name="plugins_disabled">Išjungta: %d</string>
 <string name="plugins_downloaded">Atsiųsta: %d</string>

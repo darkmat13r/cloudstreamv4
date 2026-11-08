@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="other">"%d bahagian gagal dimuatkan"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d bahagian"</item></plurals>
 <plurals name="library_title_count"><item quantity="other">"%d tajuk"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">"%d saat"</item></plurals>
+<plurals name="player_source_count"><item quantity="other">"%d sumber"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">"Episod seterusnya dalam %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"Cari dalam semua %d sumber"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d SUMBER"</item></plurals>
@@ -434,6 +437,7 @@
 <string name="play_torrent_button">"Strim Torrent"</string>
 <string name="play_trailer_button">"Main Pra-tonton"</string>
 <string name="play_with_app_name">"Pasang dengan CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Masuk ke skrin penuh"</string>
 <string name="player_exit_fullscreen">"Keluar dari skrin penuh"</string>
 <string name="player_fit_original">"Nisbah aspek asal"</string>
@@ -448,19 +452,26 @@
 <string name="player_hud_seek_forward">"Maju"</string>
 <string name="player_hud_speed">"Kelajuan"</string>
 <string name="player_hud_up_next" formatted="true">"Seterusnya · %s"</string>
+<string name="player_menu_playback">"Main balik"</string>
 <string name="player_mute">"Redam"</string>
+<string name="player_play_now">"Main sekarang"</string>
 <string name="player_settings_play_in_app">"Pemain dalaman"</string>
 <string name="player_size_settings">"Saiz butang pemain"</string>
 <string name="player_size_settings_des">"Buang sempadan hitam"</string>
+<string name="player_source_decoded" formatted="true">"%s dinyahkod"</string>
 <string name="player_source_playing">"Sedang dimainkan"</string>
 <string name="player_source_resumes_at" formatted="true">"Menukar mengekalkan kedudukan anda: sambung pada %1$s"</string>
 <string name="player_source_retry">"Cuba lagi"</string>
 <string name="player_source_switch">"Tukar"</string>
+<string name="player_sources_all_failed">"Setiap sumber menjawab dengan ralat."</string>
+<string name="player_sources_all_failed_detail">"Pilih sumber di bawah untuk mencubanya semula."</string>
 <string name="player_speed">"Kelajuan Pemain"</string>
 <string name="player_speed_text_format" formatted="true">"Kelajuan (%.2fx)"</string>
 <string name="player_subtitles_settings">"Sari kata"</string>
 <string name="player_subtitles_settings_des">"Tetapan sari kata pemain"</string>
 <string name="player_unmute">"Nyahredam"</string>
+<string name="player_volume_down">"Perlahankan bunyi"</string>
+<string name="player_volume_up">"Kuatkan bunyi"</string>
 <string name="plugin_load_fail" formatted="true">"Tidak dapat papar %s"</string>
 <string name="plugins_disabled" formatted="true">"Dilumpuhkan: %d"</string>
 <string name="plugins_downloaded" formatted="true">"Dimuat turun: %d"</string>

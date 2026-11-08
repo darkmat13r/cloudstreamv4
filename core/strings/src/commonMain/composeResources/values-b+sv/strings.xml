@@ -34,6 +34,9 @@
 <plurals name="home_source_sections"><item quantity="one">%d avsnitt</item><item quantity="other">%d avsnitt</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titel</item><item quantity="other">%d titlar</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d dold länk</item><item quantity="other">%d dolda länkar</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d sekund</item><item quantity="other">%d sekunder</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d källa</item><item quantity="other">%d källor</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Nästa avsnitt om %d s</item><item quantity="other">Nästa avsnitt om %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Sök i %d källa</item><item quantity="other">Sök i alla %d källor</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Tryck på tangentbordets söktangent för att söka i %d källa ändå.</item><item quantity="other">Tryck på tangentbordets söktangent för att söka i alla %d källor ändå.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KÄLLA</item><item quantity="other">%d KÄLLOR</item></plurals>
@@ -516,6 +519,7 @@
 <string name="play_torrent_button">Strömma Torrent</string>
 <string name="play_trailer_button">Spela Trailer</string>
 <string name="play_with_app_name">Spela med CloudStream</string>
+<string name="player_audio_stereo">stereo</string>
 <string name="player_enter_fullscreen">Aktivera helskärm</string>
 <string name="player_exit_fullscreen">Lämna helskärm</string>
 <string name="player_fit_original">Ursprungligt bildförhållande</string>
@@ -535,24 +539,31 @@
 <string name="player_load_subtitles">Importera från fil</string>
 <string name="player_load_subtitles_online">Importera från Internet</string>
 <string name="player_loaded_subtitles">Laddat %s</string>
+<string name="player_menu_playback">Uppspelning</string>
 <string name="player_mute">Stäng av ljudet</string>
 <string name="player_notification_channel_description">Spelarnotisen för att styra uppspelningen i bakgrunden</string>
 <string name="player_notification_channel_name">Spelarnotiser</string>
+<string name="player_play_now">Spela nu</string>
 <string name="player_pref">Önskad videospelare</string>
 <string name="player_settings_always_ask">Fråga alltid</string>
 <string name="player_settings_play_in_app">Intern spelare</string>
 <string name="player_settings_select_cast_device">Välj cast-enhet</string>
 <string name="player_size_settings">Lägger till en knapp för att justera bildförhållandet</string>
 <string name="player_size_settings_des">Ta bort de svarta kanterna</string>
+<string name="player_source_decoded">%s avkodad</string>
 <string name="player_source_playing">Spelas</string>
 <string name="player_source_resumes_at">Att byta behåller din position: fortsätter vid %1$s</string>
 <string name="player_source_retry">Försök igen</string>
 <string name="player_source_switch">Byt</string>
+<string name="player_sources_all_failed">Varje källa svarade med ett fel.</string>
+<string name="player_sources_all_failed_detail">Välj en källa nedan för att försöka igen.</string>
 <string name="player_speed">Spelarhastighet</string>
 <string name="player_speed_text_format">Hastighet (%.2fx)</string>
 <string name="player_subtitles_settings">Undertexter</string>
 <string name="player_subtitles_settings_des">Inställningar för undertexter</string>
 <string name="player_unmute">Slå på ljudet</string>
+<string name="player_volume_down">Sänk volymen</string>
+<string name="player_volume_up">Höj volymen</string>
 <string name="plugin">Tillägg</string>
 <string name="plugin_deleted">Tillägg borttagen</string>
 <string name="plugin_downloaded">Tillägg nedladdad</string>

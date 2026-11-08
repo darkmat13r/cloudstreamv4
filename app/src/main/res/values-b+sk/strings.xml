@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"Nepodarilo sa načítať %d sekciu"</item><item quantity="few">"Nepodarilo sa načítať %d sekcie"</item><item quantity="many">"Nepodarilo sa načítať %d sekcií"</item><item quantity="other">"Nepodarilo sa načítať %d sekcií"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sekcia"</item><item quantity="few">"%d sekcie"</item><item quantity="many">"%d sekcie"</item><item quantity="other">"%d sekcií"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d titul"</item><item quantity="few">"%d tituly"</item><item quantity="many">"%d titulu"</item><item quantity="other">"%d titulov"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d sekunda"</item><item quantity="few">"%d sekundy"</item><item quantity="many">"%d sekundy"</item><item quantity="other">"%d sekúnd"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d zdroj"</item><item quantity="few">"%d zdroje"</item><item quantity="many">"%d zdroja"</item><item quantity="other">"%d zdrojov"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Ďalší diel o %d s"</item><item quantity="few">"Ďalší diel o %d s"</item><item quantity="many">"Ďalší diel o %d s"</item><item quantity="other">"Ďalší diel o %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Hľadať v %d zdroji"</item><item quantity="few">"Hľadať vo všetkých %d zdrojoch"</item><item quantity="many">"Hľadať vo všetkých %d zdrojoch"</item><item quantity="other">"Hľadať vo všetkých %d zdrojoch"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte %d zdroj."</item><item quantity="few">"Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetky %d zdroje."</item><item quantity="many">"Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov."</item><item quantity="other">"Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ZDROJ"</item><item quantity="few">"%d ZDROJE"</item><item quantity="many">"%d ZDROJA"</item><item quantity="other">"%d ZDROJOV"</item></plurals>
@@ -383,6 +386,7 @@
 <string name="play_torrent_button">"Streamovať torrent"</string>
 <string name="play_trailer_button">"Prehrať upútavku"</string>
 <string name="play_with_app_name">"Prehrať s CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Prejsť do režimu celej obrazovky"</string>
 <string name="player_exit_fullscreen">"Ukončiť režim celej obrazovky"</string>
 <string name="player_fit_original">"Pôvodný pomer strán"</string>
@@ -401,18 +405,25 @@
 <string name="player_load_subtitles">"Načítať z súboru"</string>
 <string name="player_load_subtitles_online">"Načítať z internetu"</string>
 <string name="player_loaded_subtitles" formatted="true">"Načítané %s"</string>
+<string name="player_menu_playback">"Prehrávanie"</string>
 <string name="player_mute">"Vypnúť zvuk"</string>
+<string name="player_play_now">"Prehrať teraz"</string>
 <string name="player_size_settings">"Tlačidlo na zmenu veľkosti prehrávača"</string>
 <string name="player_size_settings_des">"Odstrániť čierne okraje"</string>
+<string name="player_source_decoded" formatted="true">"%s dekódované"</string>
 <string name="player_source_playing">"Prehráva sa"</string>
 <string name="player_source_resumes_at" formatted="true">"Prepnutie zachová pozíciu: pokračuje od %1$s"</string>
 <string name="player_source_retry">"Skúsiť znova"</string>
 <string name="player_source_switch">"Prepnúť"</string>
+<string name="player_sources_all_failed">"Každý zdroj odpovedal chybou."</string>
+<string name="player_sources_all_failed_detail">"Vyberte zdroj nižšie a skúste ho znova."</string>
 <string name="player_speed">"Rýchlosť prehrávania"</string>
 <string name="player_speed_text_format" formatted="true">"Rýchlosť (%.2fx)"</string>
 <string name="player_subtitles_settings">"Titulky"</string>
 <string name="player_subtitles_settings_des">"Nastavenia titulkov prehrávača"</string>
 <string name="player_unmute">"Zapnúť zvuk"</string>
+<string name="player_volume_down">"Stlmiť"</string>
+<string name="player_volume_up">"Zosilniť"</string>
 <string name="podcast_singular">"Podcast"</string>
 <string name="popup_delete_file">"Zmazať súbor"</string>
 <string name="popup_pause_download">"Pozastaviť sťahovanie"</string>

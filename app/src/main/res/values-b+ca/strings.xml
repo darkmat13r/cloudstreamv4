@@ -11,6 +11,9 @@
 <plurals name="home_sections_failed"><item quantity="one">"No s'ha pogut carregar %d secció"</item><item quantity="many">"No s'han pogut carregar %d seccions"</item><item quantity="other">"No s'han pogut carregar %d seccions"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d secció"</item><item quantity="many">"%d seccions"</item><item quantity="other">"%d seccions"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d títol"</item><item quantity="many">"%d títols"</item><item quantity="other">"%d títols"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d segon"</item><item quantity="many">"%d segons"</item><item quantity="other">"%d segons"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d font"</item><item quantity="many">"%d fonts"</item><item quantity="other">"%d fonts"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Episodi següent d'aquí a %d s"</item><item quantity="many">"Episodi següent d'aquí a %d s"</item><item quantity="other">"Episodi següent d'aquí a %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Cercar a %d font"</item><item quantity="many">"Cercar a totes les %d fonts"</item><item quantity="other">"Cercar a totes les %d fonts"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Prem la tecla de cerca del teclat per cercar igualment a %d font."</item><item quantity="many">"Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts."</item><item quantity="other">"Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONT"</item><item quantity="many">"%d FONTS"</item><item quantity="other">"%d FONTS"</item></plurals>
@@ -300,6 +303,7 @@
 <string name="play_torrent_button">"Transmet Torrent"</string>
 <string name="play_trailer_button">"Reprodueix tràiler"</string>
 <string name="play_with_app_name">"Reprodueix amb CloudStream"</string>
+<string name="player_audio_stereo">"estèreo"</string>
 <string name="player_enter_fullscreen">"Entra a la pantalla completa"</string>
 <string name="player_exit_fullscreen">"Surt de la pantalla completa"</string>
 <string name="player_fit_original">"Proporció original"</string>
@@ -318,15 +322,22 @@
 <string name="player_load_subtitles">"Carrega des del fitxer"</string>
 <string name="player_load_subtitles_online">"Carrega des d'internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s carregat"</string>
+<string name="player_menu_playback">"Reproducció"</string>
 <string name="player_mute">"Silencia"</string>
+<string name="player_play_now">"Reprodueix ara"</string>
 <string name="player_size_settings">"Botó de canvi de mida del reproductor"</string>
+<string name="player_source_decoded" formatted="true">"%s descodificat"</string>
 <string name="player_source_playing">"S'està reproduint"</string>
 <string name="player_source_resumes_at" formatted="true">"Canviar conserva la posició: es reprèn a %1$s"</string>
 <string name="player_source_retry">"Torna-ho a provar"</string>
 <string name="player_source_switch">"Canvia"</string>
+<string name="player_sources_all_failed">"Totes les fonts han respost amb un error."</string>
+<string name="player_sources_all_failed_detail">"Tria una font a sota per tornar-la a provar."</string>
 <string name="player_speed">"Velocitat de reproducció"</string>
 <string name="player_speed_text_format" formatted="true">"Velocitat (%.2fx)"</string>
 <string name="player_unmute">"Deixa de silenciar"</string>
+<string name="player_volume_down">"Abaixa el volum"</string>
+<string name="player_volume_up">"Apuja el volum"</string>
 <string name="podcast_singular">"Pòdcast"</string>
 <string name="popup_delete_file">"Esborra el fitxer"</string>
 <string name="popup_pause_download">"Posa la descàrrega en espera"</string>
