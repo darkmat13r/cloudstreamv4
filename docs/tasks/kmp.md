@@ -6101,6 +6101,55 @@ Tests:
 - **The bookmark filter is kept while the window is open.** There is no desktop preference store yet.
 - **H4's kept rows and their age** wait on `KMP-68`. Until then, a failed reload draws as 3m, under the device's rails.
 
+## KMP-87 — The Mac player's HUD, `DS-23` M1 to M3, and its keyboard map
+
+**Status:** in review · `:desktopApp` · `DS-23` (merged) · over the built `PlayerScreen`
+
+- **M1, the top band:** Back, the title, then the episode, quieter: `S1:E4 · The Lighthouse`, from the episode playing
+  (`episodeMeta`, the app's own `S1:E4` in the translated letters, then its name). `DetailHost` works it out from the
+  episode it asked for and the player carries it (`Screen.Player.meta`).
+  - The source and its quality left the band for the Source selector, which already says `Source One · 1080p`.
+  - Where there is no selector (a host that cannot switch), they join the band's line instead (`hudMeta`), so the band
+    never says less than it did.
+- **M2, showing and hiding:** the pointer goes with the HUD and comes back with it (`playerPointer`).
+  - Only a pointer that really moved counts. Compose re-sends hover when something moves under a still pointer, as Skip
+    does when the HUD leaves, and counting that brought the HUD straight back: a flicker, found by the test.
+  - A pointer coming into the window counts as well: it arrives as Enter, before any Move.
+  - The wait is injected (`HudIdle`), three seconds in the app, so a test says when it has passed instead of sleeping.
+- **M3:**
+  - Resting on the timeline shows the time under the pointer, above the rule, until it leaves (`hoverTime`).
+  - **Skip** draws from the shared `HudSkip` (`:feature:player`, now a dependency of `:desktopApp`), outside the HUD, so it
+    stays while the HUD is hidden. The Mac has no skip stamps yet (`KMP-86`), so the host passes none and nothing is drawn.
+- **The keyboard map** is the built one, unchanged: Space, ← →, ↑ ↓, M, C, A, R, S, F, and Escape closing a list, then
+  full screen, then the player.
+
+**DECIDED:**
+- The band's code is `S1:E4`, the app's own form everywhere else, not the board's `S1 E4`.
+- `:desktopApp` depends on `:feature:player` for `HudSkip`, so the Mac and TV share the type `KMP-86` will fill. Its
+  runtime classpath gains that one project and nothing else (the dependency report, against master): no Android artifact,
+  no new library.
+
+**Tests** (`PlayerScreenTest`, 68 in all, all run):
+- `episodeMeta` and `hudMeta`, every case.
+- M1: the band draws the line beside the title, and nothing there without one.
+- M2: the HUD leaves when the wait passes while playing, and a move brings it back and waits again; paused, there is
+  nothing to wait out. Driven by a hand-run `HudIdle`: no sleep, no tolerance.
+- M3: the time is drawn above the pointer and goes when it leaves, and resting seeks nothing; `hoverTime` at the middle,
+  past the end, and over an hour. Skip answers with the HUD up and hidden, and nothing answers where it would be without
+  one.
+- The keyboard map: every key in one window, each doing what the Playback menu says.
+- Proved by mutation: counting every hover event fails the Skip test (the HUD never goes); without Enter on the rule,
+  the hover test fails. **Not proved:** Skip's floor at the window's margin while the HUD's inset grows back from 0. The
+  press lands before that frame, so no test sees it; read, not run.
+- **Changed existing test code:** the harness takes `meta`, `skip` and the idle; the fixtures `VidSrc`, `VidSrc Pro` and
+  `Filemoon` are now `Source One` and `Source Two`. Each assertion is the same as before with the name swapped.
+
+## KMP-86 — Skip stamps for the Mac player · **open**, follow-up of `KMP-87`
+
+`DS-23` M3 draws Skip Intro while the stream has something to skip. The Mac player draws it from `HudSkip` (`KMP-87`),
+as TV does, but nothing on the Mac fills it: TV's stamps come from its host. Find where the stamps come from for a
+title, read them for the episode playing, and pass the current one to `PlayerContent.skip`, with `onSkip` seeking past it.
+
 ## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
 
 `#200` made Home's failure detail safe. A thrown failure is now its type, such as `IllegalStateException`, never its message,
