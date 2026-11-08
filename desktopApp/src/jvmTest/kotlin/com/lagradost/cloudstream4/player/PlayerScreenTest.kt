@@ -10,6 +10,9 @@ import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.InternalComposeUiApi
+import androidx.compose.ui.semantics.getOrNull
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -869,8 +872,11 @@ class PlayerScreenTest {
 
     private val harbor = UpNext("S1:E5 · Low Tide", artUrl = null)
 
-    /** Twenty seconds from the end of an hour: inside the card's last 30 s. */
-    private val credits = PlayerStatus(playing = false, buffering = false, positionMillis = 3_580_000, lengthMillis = 3_600_000)
+    /** Ten seconds from the end of an hour: the card is up, and its count runs. */
+    private val credits = PlayerStatus(playing = false, buffering = false, positionMillis = 3_590_000, lengthMillis = 3_600_000)
+
+    /** Twenty seconds from the end: the card is up (the last 30 s), but its count waits for the last ten. */
+    private val beforeTheCount = credits.copy(positionMillis = 3_580_000)
 
     private fun Screen.cardDrawn(): Boolean = pixels()[CARD_PROBE_X, CARD_PROBE_Y] != Color.Black
 
@@ -894,6 +900,56 @@ class PlayerScreenTest {
         screen.second()
         assertEquals(1, screen.playNexts)
         assertEquals(0, screen.backs)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M13 the card comes 30 s from the end, and counts only in the last ten, so the episode is never cut`() {
+        val screen = Screen(status = beforeTheCount, upNext = harbor)
+        screen.settle()
+        screen.save("m13-up-next-waiting")
+        assertTrue(screen.cardDrawn(), "the card is up")
+        assertEquals(0, screen.tick.pending, "but nothing counts yet")
+        screen.status = credits
+        screen.settle()
+        assertEquals(1, screen.tick.pending, "ten seconds from the end, it counts")
+        repeat(UpNextDefaults.CountdownSeconds) { screen.second() }
+        assertEquals(1, screen.playNexts, "and plays as the episode ends")
+        screen.scene.close()
+    }
+
+    /** What the screen draws as text, from its semantics: words the pixels cannot be read for. */
+    private fun Screen.texts(): List<String> {
+        settle()
+        return scene.semanticsOwners.flatMap { it.rootSemanticsNode.allNodes() }
+            .flatMap { node -> node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text } }
+    }
+
+    private fun SemanticsNode.allNodes(): List<SemanticsNode> = listOf(this) + children.flatMap { it.allNodes() }
+
+    @Test
+    fun `M13 the count line says the number of seconds, never a bare %d`() {
+        // `pluralStringResource(res, n, n)` leaves a bare `%d` as it is; the card goes through `UiString.Plural`.
+        val screen = Screen(status = beforeTheCount, upNext = harbor)
+        assertTrue("Next episode" in screen.texts(), "before the count, the line names what is next")
+        screen.status = credits
+        assertTrue("Next episode in 10 s" in screen.texts(), screen.texts().toString())
+        repeat(2) { screen.second() }
+        val drawn = screen.texts()
+        assertTrue("Next episode in 8 s" in drawn, drawn.toString())
+        assertTrue(drawn.none { "%" in it }, "no format left unfilled: $drawn")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M16 Cancel before the count starts keeps it from starting`() {
+        val screen = Screen(status = beforeTheCount, upNext = harbor)
+        screen.settle()
+        screen.click(CANCEL)
+        screen.status = credits
+        screen.settle()
+        assertTrue(screen.cardDrawn())
+        assertEquals(0, screen.tick.pending, "the count that was coming was cancelled")
         screen.scene.close()
     }
 

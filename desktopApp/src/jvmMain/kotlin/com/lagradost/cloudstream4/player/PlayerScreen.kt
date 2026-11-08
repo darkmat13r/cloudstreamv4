@@ -326,14 +326,15 @@ internal fun PlayerContent(
     val countdown = remember(upNext, cardDue) { if (cardDue) UpNextCountdown(autoplayNext) else null }
     LaunchedEffect(countdown, autoplayNext) { countdown?.autoplayChanged(autoplayNext) }
     var pointerOnCard by remember(countdown) { mutableStateOf(false) }
+    val counting = upNextCounts(status)
     val playNext by rememberUpdatedState(onPlayNext)
-    // A second at a time, and only while nothing holds it: a panel open, or the pointer on the card. A hold cancels the
-    // second under way, so the count goes on from the same number once the hold ends.
-    LaunchedEffect(countdown, countdown?.left, listOpen, pointerOnCard) {
-        val counting = countdown ?: return@LaunchedEffect
-        if (counting.left == null || counting.starting || listOpen || pointerOnCard) return@LaunchedEffect
+    // A second at a time, only in the episode's last ten (`upNextCounts`), and only while nothing holds it: a panel open,
+    // or the pointer on the card. A hold cancels the second under way, so the count goes on from the same number.
+    LaunchedEffect(countdown, countdown?.left, counting, listOpen, pointerOnCard) {
+        val count = countdown ?: return@LaunchedEffect
+        if (!counting || count.left == null || count.starting || listOpen || pointerOnCard) return@LaunchedEffect
         upNextTick.second()
-        if (counting.tick()) playNext()
+        if (count.tick()) playNext()
     }
     // × puts the card away; at the end of the stream that leaves nothing to stay for.
     LaunchedEffect(countdown?.dismissed, status.finished) {
@@ -561,6 +562,7 @@ internal fun PlayerContent(
             UpNextCard(
                 upNext = upNext,
                 countdown = countdown,
+                counting = counting,
                 onPlayNow = { if (countdown.playNow()) playNext() },
                 onPointerOnCard = { pointerOnCard = it },
                 artwork = artwork,

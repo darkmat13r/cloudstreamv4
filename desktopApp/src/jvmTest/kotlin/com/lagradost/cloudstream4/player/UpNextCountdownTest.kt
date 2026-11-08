@@ -75,6 +75,16 @@ class UpNextCountdownTest {
     }
 
     @Test
+    fun theCountRunsOnlyInTheLastTenSecondsOrOnceTheStreamHasEnded() {
+        val hour = 3_600_000L
+        val ten = UpNextDefaults.CountdownSeconds * UpNextDefaults.SecondMillis
+        assertFalse(upNextCounts(PlayerStatus(positionMillis = hour - ten - 1, lengthMillis = hour)))
+        assertTrue(upNextCounts(PlayerStatus(positionMillis = hour - ten, lengthMillis = hour)))
+        assertTrue(upNextCounts(PlayerStatus(finished = true)))
+        assertTrue(upNextDue(PlayerStatus(positionMillis = hour - ten - 1, lengthMillis = hour)), "the card is up before")
+    }
+
+    @Test
     fun aHandoverKeepsTheSameFullScreenAndOnlyWhileItLasts() {
         val window = WindowState()
         val handover = PlayerHandover()

@@ -6310,12 +6310,16 @@ M5's Load from file, Load from Internet and Subtitle delay rows are not features
 
 ## KMP-94 — The Mac player's Up next, `DS-23` M13 and M16
 
-**Status:** in review · `:desktopApp`, `:feature:settings` · after `KMP-90` (#266) and `KMP-91` (#267)
+**Status:** in review · `:desktopApp`, `:feature:settings`, `:feature:detail` · stacked on `KMP-90e` (#274), which is on
+`KMP-90g` (#273)
 
 At the end of an episode with one after it, a card offers the next one (`UpNextCard`), above the controls at the right:
 its line (`S1:E5 · Low Tide`), the title's poster (an episode has no still of its own), and what happens next.
 - **It counts down 10 s, then plays** (the owner's ruling, `DS-23`): a line, `Next episode in 8 s`
   (`player_up_next_in`), and a rule along the card's foot that empties. Play now and Cancel are under it.
+- **The count runs only in the episode's last 10 s** (the PM's ruling in review), so autoplay never cuts an episode's
+  end. The card comes 30 s from the end showing `Next episode`; Cancel there stops the count that was to come. Until
+  `KMP-86`'s credit stamps reach the Mac, the end of the stream is the only "credits" the player knows.
 - **The count holds** while a panel is open or the pointer is on the card, and goes on from the same second.
 - **Cancel, or Esc, keeps the card** with no count (M16): Play now and × are left. × puts it away for the rest of the
   credits; the end of the stream then goes back, as it always did. Once nothing counts, Esc goes back as before.
@@ -6325,17 +6329,24 @@ its line (`S1:E5 · Low Tide`), the title's poster (an episode has no still of i
 - An episode that ends with the card unanswered stays on it; with no episode after it, the end goes back as before.
 - Skip gives way to the card. The card gives way to an open panel, and its count holds meanwhile.
 
-**Where the next episode comes from.** The title's page is under the player, so its view model is live: the next
-episode is the one after this one in the page's list (`nextEpisode`), and playing it asks the page for its sources as
-its Play does, playing the best found (`requestPlay`, `KMP-39`). It takes this player's place, and full screen stays as
-it was (`PlayerHandover`). With nothing to play, the player goes back to the page, whose source list says why.
+**Where the next episode comes from.** The title's page is under the player, so its view model is live.
+- **Which one:** the one after this one in the order a viewer goes through them, `playOrder()` (`:feature:detail`, public
+  for this). That is the seasons in `seasonGroups()`' order (numbered ascending, then Specials, then Other), each by
+  its episode number with an unnumbered one last, as `firstEpisodeToPlay` reads them. It is not the provider's order,
+  which can list S2 first, put specials among the numbers, or count a season down. Two episodes with the same `data`
+  cannot be told apart by the player, so the first in that order is taken as the one playing.
+- **Playing it** asks the page for its sources as its Play does, playing the best found (`requestPlay`, `KMP-39`). It
+  takes this player's place, and full screen stays as it was (`PlayerHandover`). With nothing to play, the player goes
+  back to the page, whose source list says why.
+- **Closed while it loads** (review of #276): the wait is cancelled with the player, and it dismisses the page's search,
+  so nothing that search finds later plays the episode that was backed out of.
 
 **Settings.** The Playback pane and its Play the next episode row are back (`SettingsRow.PlayNextEpisode`,
 `SettingsAction.SetAutoplayNext`), as `KMP-90` had them before #266's review took them out until this reader landed.
 
 **DECIDED (small calls, reported to the PM).**
-- **When the card comes:** the last 30 s, or the end of the stream. The Mac has no credit stamps (`KMP-86`); with
-  them, the card would come at the credits.
+- **When the card comes:** the last 30 s, or the end of the stream; the PM kept it, and moved the count's start to the
+  last 10 s. The Mac has no credit stamps (`KMP-86`); with them, the card would come at the credits.
 - **No "Up next" heading:** the boards' small heading would be a new key in 62 locales. The line under the title says
   `Next episode` when nothing counts, and the count when something does; both strings exist.
 - **The art is the title's poster**, because an episode carries no still.

@@ -63,8 +63,17 @@ internal fun interface UpNextTick {
 }
 
 /** Whether the card is due: at the credits, which without credit stamps on the Mac is the last [UpNextDefaults.LeadMillis], or once the stream has ended. */
-internal fun upNextDue(status: PlayerStatus): Boolean =
-    status.finished || (status.lengthMillis > 0 && status.lengthMillis - status.positionMillis <= UpNextDefaults.LeadMillis)
+internal fun upNextDue(status: PlayerStatus): Boolean = status.finished || status.remainsAtMost(UpNextDefaults.LeadMillis)
+
+/**
+ * Whether its count may run: only in the episode's last [UpNextDefaults.CountdownSeconds], or once it has ended, so
+ * autoplay never cuts the end of an episode (the PM's ruling on `KMP-94`). Until `KMP-86`'s credit stamps reach the Mac,
+ * the end of the stream is the only "credits" the player knows.
+ */
+internal fun upNextCounts(status: PlayerStatus): Boolean =
+    status.finished || status.remainsAtMost(UpNextDefaults.CountdownSeconds * UpNextDefaults.SecondMillis)
+
+private fun PlayerStatus.remainsAtMost(millis: Long): Boolean = lengthMillis > 0 && lengthMillis - positionMillis <= millis
 
 /**
  * The card's count, for one appearance (`DS-23` M13 and M16).
@@ -128,6 +137,8 @@ internal class UpNextCountdown(autoplay: Boolean, private val seconds: Int = UpN
  * `DS-23` M13 and M16. The next episode with its art, and its count as a line and a rule along the card's foot that
  * empties; Play now and Cancel under it, or Play now and × once nothing counts.
  *
+ * @param counting whether the count is running yet, which is only in the episode's last seconds ([upNextCounts]).
+ *   Until then the card shows no count, and Cancel already stops the one to come.
  * @param onPointerOnCard told when the pointer comes onto the card and leaves it, because the count holds meanwhile.
  */
 @OptIn(ExperimentalComposeUiApi::class) // onPointerEvent: Enter and Exit, for the hold.
@@ -135,6 +146,7 @@ internal class UpNextCountdown(autoplay: Boolean, private val seconds: Int = UpN
 internal fun UpNextCard(
     upNext: UpNext,
     countdown: UpNextCountdown,
+    counting: Boolean,
     onPlayNow: () -> Unit,
     onPointerOnCard: (Boolean) -> Unit,
     artwork: @Composable (String) -> Unit,
@@ -143,6 +155,7 @@ internal fun UpNextCard(
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     val left = countdown.left
+    val shownLeft = left?.takeIf { counting }
     Column(
         verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
         modifier = modifier
@@ -178,7 +191,7 @@ internal fun UpNextCard(
                     BasicText(
                         text = when {
                             countdown.starting -> stringResource(Res.string.loading)
-                            left != null -> UiString.Plural(Res.plurals.player_up_next_in, left).resolve()
+                            shownLeft != null -> UiString.Plural(Res.plurals.player_up_next_in, shownLeft).resolve()
                             else -> stringResource(Res.string.next_episode)
                         },
                         style = typography.caption.copy(color = colors.ink2),
@@ -187,9 +200,9 @@ internal fun UpNextCard(
                     )
                 }
             }
-            if (left != null) {
+            if (shownLeft != null) {
                 ProgressRule(
-                    progress = left.toFloat() / UpNextDefaults.CountdownSeconds,
+                    progress = shownLeft.toFloat() / UpNextDefaults.CountdownSeconds,
                     color = colors.ink,
                     trackColor = colors.line,
                     modifier = Modifier.fillMaxWidth(),

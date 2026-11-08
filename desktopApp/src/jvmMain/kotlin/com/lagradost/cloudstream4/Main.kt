@@ -519,7 +519,8 @@ internal fun DesktopApp(
                                 asking.launch {
                                     val play = requestPlay(page, episode.data)
                                     when {
-                                        stack.lastOrNull() != screen -> Unit
+                                        // Left some other way meanwhile: what was found is not wanted.
+                                        stack.lastOrNull() != screen -> page.onAction(DetailAction.LinksDismissed)
                                         // Nothing to play: the page says why, with its source list.
                                         play == null -> back(screen)
                                         else -> {
