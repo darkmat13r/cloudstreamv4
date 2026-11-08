@@ -197,7 +197,7 @@ As well as providing clear install steps, our [website](https://dweb.link/ipns/c
 
 ### Supported languages:
 
-Translations are managed by upstream CloudStream on Weblate. Even if you can't contribute to the code or documentation, we always look for those who can contribute to translation and language support. Your contribution is exceptionally appreciated; you can check our translation from the figure below. 
+Upstream CloudStream's translations are managed on Weblate; this fork's new strings are machine-translated and waiting on native review ([docs/tasks/i18n.md](docs/tasks/i18n.md)). Even if you can't contribute to the code or documentation, we always look for those who can contribute to translation and language support. Your contribution is exceptionally appreciated; you can check our translation from the figure below. 
 
 <a href="https://hosted.weblate.org/engage/cloudstream/">
   <img src="https://hosted.weblate.org/widgets/cloudstream/-/app/multi-auto.svg" alt="Translation status" />
