@@ -183,8 +183,11 @@ class PlayerScreenTest {
         /** At the right end of that row. */
         val fullscreenButton: Offset get() = Offset(rowRight - 16f - 18f, height - 24f - 8f - 20f)
 
-        /** Inside a list, which sits at the right of the controls' column. */
-        val panelX: Float get() = rowRight - 100f
+        /** Inside a list: `DS-23`'s panel from the right, 360 wide, so its middle. */
+        val panelX: Float get() = width - PANEL_HALF_WIDTH
+
+        /** A list's row [index], from the top: under the panel's heading, 48 apart (`KMP-91`). */
+        fun panelRow(index: Int): Offset = Offset(panelX, PANEL_FIRST_ROW_Y + index * PANEL_ROW_STEP)
 
         /** Transport row, at its right end: the volume rule ends here. */
         val ruleRight: Float get() = rowRight - 16f
@@ -343,12 +346,10 @@ class PlayerScreenTest {
         val screen = Screen()
         screen.settle()
         screen.click(screen.button)
-        // Opened at the panel's foot: Off, then the two tracks, each 48 tall, above the controls.
-        val x = screen.panelX
-        val foot = screen.height - 132f - 8f - 4f
-        val german = Offset(x, foot - 24f)
-        val englishRow = Offset(x, foot - 72f)
-        val off = Offset(x, foot - 120f)
+        // The panel from the right: Off, then the two tracks, each 48 tall, under its heading.
+        val german = screen.panelRow(2)
+        val englishRow = screen.panelRow(1)
+        val off = screen.panelRow(0)
         screen.click(german)
         assertEquals(this.german, assertIs<SubtitleSelection.Showing>(screen.session.selection.value).track)
         screen.click(screen.button)
@@ -722,6 +723,74 @@ class PlayerScreenTest {
         screen.scene.close()
     }
 
+    // ---------------------------------------------------------------- KMP-91: DS-23 M4 to M7, the panels from the right
+
+    @Test
+    fun `M4 a list is a panel from the right the window's height, and Done closes it`() {
+        val screen = Screen()
+        screen.settle()
+        val right = Offset(screen.width - PANEL_EDGE_INSET, screen.height / 2f)
+        val top = Offset(screen.width - PANEL_EDGE_INSET, PANEL_EDGE_INSET)
+        assertEquals(Color.Black, screen.pixels()[right.x.toInt(), right.y.toInt()], "no panel before")
+        screen.press(Key.C)
+        val open = screen.pixels()
+        screen.save("m4-panel")
+        assertTrue(open[right.x.toInt(), right.y.toInt()] != Color.Black, "the panel is at the right")
+        assertTrue(open[top.x.toInt(), top.y.toInt()] != Color.Black, "from the top of the window")
+        screen.click(Offset(screen.width - DONE_FROM_RIGHT, screen.height - DONE_FROM_BOTTOM))
+        assertEquals(Color.Black, screen.pixels()[right.x.toInt(), right.y.toInt()], "Done closed it")
+        assertEquals(SubtitleSelection.Off, screen.session.selection.value, "and chose nothing")
+        assertEquals(0, screen.backs)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M4 at the smallest window the controls end a margin short of the panel, with every selector`() {
+        val one = stream("Source One")
+        val screen = Screen(
+            width = 800,
+            height = 450,
+            fullscreen = PlayerFullscreen(WindowState()),
+            audio = threeTracks,
+            sources = PlayerSources(listOf(one), one, emptyList(), 0L) {},
+        )
+        screen.settle()
+        screen.press(Key.S)
+        val open = screen.pixels()
+        screen.save("m4-panel-minimum-window")
+        // The panel starts at 800 - 360 = 440; the controls keep the 24 margin before it, so 416 to 439 is picture.
+        val panelLeft = screen.width - PANEL_WIDTH
+        val glassTop = screen.height - CONTROLS_FROM_BOTTOM
+        val glassBottom = screen.height - CONTROLS_MARGIN - 1
+        for (y in glassTop..glassBottom) {
+            for (x in panelLeft - CONTROLS_MARGIN until panelLeft) {
+                assertEquals(Color.Black, open[x, y], "nothing of the controls at ($x, $y), in the margin before the panel")
+            }
+        }
+        assertTrue(open[panelLeft - CONTROLS_MARGIN - 1, screen.transportY.toInt()] != Color.Black, "the controls reach the margin")
+        // And the seek rule keeps its room: the volume rule gave way, so the rule runs unbroken where, with it, the
+        // end time and the speaker would be. On the rule's line, every pixel differs from the glass just above it.
+        val ruleY = screen.transportY.toInt()
+        for (x in SEEK_RULE_FROM..SEEK_RULE_TO) {
+            assertNotEquals(open[x, ruleY - RULE_CLEARANCE], open[x, ruleY], "the seek rule at x $x")
+        }
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M4 the controls move into the room the panel leaves, and back`() {
+        val screen = Screen()
+        screen.settle()
+        // Left of the controls' glass while they are centred in the window, inside it once they centre beside the panel.
+        val probe = Offset(LEFT_OF_CENTRED_CONTROLS, screen.transportY - TRANSPORT_ABOVE)
+        assertEquals(Color.Black, screen.pixels()[probe.x.toInt(), probe.y.toInt()])
+        screen.press(Key.R)
+        assertTrue(screen.pixels()[probe.x.toInt(), probe.y.toInt()] != Color.Black, "the controls moved left of the panel")
+        screen.escape()
+        assertEquals(Color.Black, screen.pixels()[probe.x.toInt(), probe.y.toInt()], "and back when it closed")
+        screen.scene.close()
+    }
+
     private fun stream(name: String, quality: String? = "1080p") =
         StreamLink(label = name, qualityLabel = quality, url = "https://a/$name", referer = null, userAgent = null, audioUrl = null, subtitles = emptyList())
 
@@ -930,8 +999,8 @@ class PlayerScreenTest {
         screen.settle()
         screen.click(screen.fitButton)
         screen.save("picture-fit-list")
-        // Rows of 48 above the 132 the controls take, with the 8 panel padding: the last is Fill screen.
-        screen.click(Offset(screen.panelX, screen.height - 132f - 8f - 24f))
+        // Rows of 48 under the panel's heading: the third is Fill screen.
+        screen.click(screen.panelRow(2))
         assertEquals(PictureFit.FILL_SCREEN, screen.fit.current)
         screen.scene.close()
     }
@@ -1039,8 +1108,8 @@ class PlayerScreenTest {
         // Three selectors of one width, so this one is in the middle.
         screen.click(Offset(screen.width / 2f, screen.button.y))
         screen.save("audio-tracks")
-        // The last row, at the foot of the list.
-        screen.click(Offset(screen.panelX, screen.height - 132f - 8f - 4f - 24f))
+        // The third row, the last track.
+        screen.click(screen.panelRow(2))
         assertEquals(listOf(3), screen.calls.audioChoices)
         screen.scene.close()
     }
@@ -1123,7 +1192,7 @@ class PlayerScreenTest {
         val after = screen.settle().toComposeImageBitmap().toPixelMap()
         screen.save("subtitle-no-tracks")
         val x = screen.panelX.toInt()
-        val y = screen.height - 132 - 40
+        val y = screen.panelRow(0).y.toInt()
         assertNotEquals(before[x, y], after[x, y], "the panel is there")
         // A click where a row would be is not a choice, and it leaves playback alone.
         screen.click(Offset(x.toFloat(), y.toFloat()))
@@ -1139,7 +1208,8 @@ class PlayerScreenTest {
         mouse.click(mouse.button)
         mouse.session.offer(listOf(english))
         mouse.settle()
-        mouse.click(Offset(mouse.panelX, mouse.height - 132f - 8f - 4f - 24f))
+        // Off, then the track that arrived.
+        mouse.click(mouse.panelRow(1))
         assertEquals(english, assertIs<SubtitleSelection.Showing>(mouse.session.selection.value).track)
         mouse.scene.close()
 
@@ -1161,11 +1231,15 @@ class PlayerScreenTest {
         screen.click(screen.button)
         screen.session.offer(listOf(english, german))
         screen.settle()
-        val lastRow = Offset(screen.panelX, screen.height - 132f - 8f - 4f - 24f)
-        screen.click(lastRow)
+        // Held while open: under English there is no German row yet, so a click there chooses nothing.
+        screen.click(screen.panelRow(2))
+        assertEquals(SubtitleSelection.Off, screen.session.selection.value)
+        // The list is still open: English is chosen from it.
+        screen.click(screen.panelRow(1))
         assertEquals(english, assertIs<SubtitleSelection.Showing>(screen.session.selection.value).track)
+        // Opened again, German is there under it.
         screen.click(screen.button)
-        screen.click(lastRow)
+        screen.click(screen.panelRow(2))
         assertEquals(german, assertIs<SubtitleSelection.Showing>(screen.session.selection.value).track)
         screen.scene.close()
     }
@@ -1264,6 +1338,25 @@ class PlayerScreenTest {
     }
 
     private companion object {
+        /** KMP-91: the panel's middle, and its rows: under the 24 margin, the 32 heading and an 8 gap, 48 apart. */
+        const val PANEL_HALF_WIDTH = 180f
+        /** `DesktopDimens.SidePanelWidth`; the controls' window margin; their glass's top, from the window's foot. */
+        const val PANEL_WIDTH = 360
+        const val CONTROLS_MARGIN = 24
+        const val CONTROLS_FROM_BOTTOM = 124
+        /** At 800 beside a panel: inside the seek rule once the volume rule gives way; its end time and speaker otherwise. */
+        const val SEEK_RULE_FROM = 244
+        const val SEEK_RULE_TO = 300
+        const val RULE_CLEARANCE = 8
+        const val PANEL_FIRST_ROW_Y = 88f
+        const val PANEL_ROW_STEP = 48f
+        /** Inside the panel, clear of its rows and words. */
+        const val PANEL_EDGE_INSET = 12f
+        /** Inside Done: the 24 margin, then into the button. */
+        const val DONE_FROM_RIGHT = 60f
+        const val DONE_FROM_BOTTOM = 42f
+        /** At 1280: the controls start at 280 centred in the window, and at 100 centred in the 920 the panel leaves. */
+        const val LEFT_OF_CENTRED_CONTROLS = 150f
         /** M1's band: right of "Title" (76 + its width), on the title's line, from `m1-band`. */
         const val BAND_LINE_FROM = 140
         const val BAND_LINE_TO = 400
