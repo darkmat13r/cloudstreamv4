@@ -64,11 +64,11 @@ import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
 import com.lagradost.cloudstream4.core.strings.UiString
+import com.lagradost.cloudstream4.core.strings.elapsedAge
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.continue_watching
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_joined
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_offline_pill
-import com.lagradost.cloudstream4.core.strings.generated.resources.duration_hours_minutes_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_bookmarks_text
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_bookmarks_no_status_body
@@ -86,8 +86,6 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.home_source_p
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_source_sections
 import com.lagradost.cloudstream4.core.strings.generated.resources.load_more
 import com.lagradost.cloudstream4.core.strings.generated.resources.loading
-import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_day_format
-import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_min_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.none
 import com.lagradost.cloudstream4.core.strings.generated.resources.reload_provider
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_retry
@@ -349,7 +347,7 @@ private fun StaleBanner(source: String, loadedAt: Long, now: () -> Long, onReloa
     ) {
         CloudStreamIcon(CloudStreamIcons.Warning, null, size = CloudStreamIconSize.Small, tint = colors.ink)
         BasicText(
-            text = stringResource(Res.string.home_reload_failed, source, homeAge(at - loadedAt).resolve()),
+            text = stringResource(Res.string.home_reload_failed, source, elapsedAge(at - loadedAt).resolve()),
             style = CloudStreamTheme.typography.body.copy(color = colors.ink),
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
@@ -358,28 +356,6 @@ private fun StaleBanner(source: String, loadedAt: Long, now: () -> Long, onReloa
         DesktopButton(label = stringResource(Res.string.search_state_retry), onClick = onReload, icon = CloudStreamIcons.Retry)
     }
 }
-
-/**
- * `4m`, `2h 5m`, `1d 2h 5m`, the age as `I18N-14` has `home_reload_failed` take it. A copy of the library's
- * (`LibrarySourcesTv.kt`), which is private to `:feature:library`. A clock behind the record reads as now.
- */
-internal fun homeAge(elapsedMillis: Long): UiString {
-    val minutes = (elapsedMillis.coerceAtLeast(0L) / MILLIS_PER_MINUTE).toInt()
-    val hours = minutes / MINUTES_PER_HOUR
-    val days = hours / HOURS_PER_DAY
-    return when {
-        hours == 0 -> UiString.Resource(Res.string.next_episode_time_min_format, listOf(minutes))
-        days == 0 -> UiString.Resource(Res.string.duration_hours_minutes_format, listOf(hours, minutes % MINUTES_PER_HOUR))
-        else -> UiString.Resource(
-            Res.string.next_episode_time_day_format,
-            listOf(days, hours % HOURS_PER_DAY, minutes % MINUTES_PER_HOUR),
-        )
-    }
-}
-
-private const val MILLIS_PER_MINUTE = 60_000L
-private const val MINUTES_PER_HOUR = 60
-private const val HOURS_PER_DAY = 24
 
 /** A state where the source's rows would be, under what the device keeps (H5, 3g, 3m). */
 @Composable
