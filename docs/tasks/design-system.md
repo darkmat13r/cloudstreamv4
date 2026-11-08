@@ -1005,3 +1005,92 @@ the app's own providers.
 - Up next's "Next episode in %d s" and "Play now". Cancel is the existing `cancel`.
 
 **Not drawn:** casting, picture in picture, and the subtitle style settings.
+
+## DS-24 — Boards: Settings on the Mac, the phone and the tablet
+
+**Status:** drawn, PR open · boards only, no Kotlin · `DEC-19` · the PM's call, 2026-11-08 · strings are `I18N-20`
+
+The Mac has no settings yet. The boards regroup Android's seven Settings entries (six XML screens and Extensions, about
+95 rows) into ten panes that every platform shares. The Mac drops what it cannot do, and the phone keeps what only a
+phone has.
+
+**The Mac** opens a Settings window with ⌘,, not a fourth tab in the main bar. It is 760 wide at all times: a 216
+sidebar and a 544 pane. It is 600 tall by default and can shrink to 480, in height only. The sidebar runs the full
+height with the traffic lights in it and a search field at the top. The pane's name is the window's title, in a 52 bar.
+Sheets attach under that bar, 440 wide and centred. `DS-25` draws its account sheets to this geometry.
+
+The ten panes, in order:
+
+| Pane | Holds | Dropped on the Mac, and why |
+|---|---|---|
+| General | App language, updates, run setup again, disclaimer | The four links move to the Help menu |
+| Appearance | Poster size, title under poster, badges, hide quality; trailers, cast, filler episodes; the Random button, suggestions | Primary colour (`DEC-13`), theme (`DS-01`), layout, overscan, the clock, Kitsu posters, advanced search (the Mac always groups by source) |
+| Playback | Play the next episode, Skip intro prompts, seek amount, watch progress, source order; libVLC's network buffer, the disk cache, clearing it | Preferred player, PiP, rotation ×2, gestures ×5, brightness, software decoding, the two TV seek amounts |
+| Subtitles | The `CaptionStyle` editor with a live preview, the preferred language (the Mac's existing `SubtitlePreference`), OpenSubtitles and SubDL | Chromecast subtitles |
+| Extensions | Repositories, what is installed with each one's scan state (`KMP-24`), languages, preferred media, dub and sub, adult content, auto-update, auto-install | Test all moves to Advanced |
+| Downloads | The folder, by its name only; downloads at once; connections per download | Battery optimisation |
+| Accounts and Privacy | Profiles, which open `DS-25`'s A6 (via A3/A4 when locked); Sync for the current profile: AniList, MyAnimeList, Simkl; skip choosing a profile; Lock with Touch ID, **a proposal for the owner** | Kitsu, which is off the Mac entirely |
+| Network | DNS over HTTPS, with no address drawn | Clone site and GitHub proxy, which send traffic through a third party (the PM's call) |
+| Backup | Back up now, how often, the folder, restore | |
+| Advanced | Logs (Show in Finder only, never their contents), test all extensions, reset | |
+
+Also dropped on the Mac: the APK installer and pre-release installs (distribution is `DEC-03`), confirm before exit
+(⌘Q is the convention), and benene.
+
+- `Desktop Settings.dc.html` (a board file in the owner's Claude Design project), at 1280×800:
+  - ST1 General at rest.
+  - ST2 Extensions: one repository unreachable with Retry, and one extension held by its scan with Review….
+  - ST3a Subtitles: the style editor and its preview. ST3b, scrolled: preferred language and the subtitle services.
+  - ST4 Accounts and Privacy.
+  - ST5a a backup restore in progress. ST5b the restore failed, saying that nothing changed.
+  - ST6 Downloads with the folder missing: Show in Finder disabled, Choose… offered.
+  - ST7 searching Settings with no results.
+  - ST8 Network, with the DNS over HTTPS menu open.
+  - ST9 Playback at the 760×480 minimum.
+  - ST10 Advanced: the Reset sheet names what it erases and what it keeps. Cancel is the primary and comes first
+    (`ui-components.md` rule 1, as in `DS-18`).
+  - ST11 Appearance.
+- `Phone Settings.dc.html` (a board file in the owner's Claude Design project):
+  - PS1 the Settings list: the same ten panes, each with what it holds, and search.
+  - PS2 Playback on a phone, keeping gestures, PiP and rotation in the new panes.
+  - PS3 Extensions offline, as a banner over lists that still work.
+  - PS4 search with no results.
+  - PS5 Reset as a bottom sheet, with ST10's words. On a phone, logs are shared as a file.
+  - TS1 the tablet: the list (360) and the pane side by side.
+
+Drawn at 1 px = 1 dp, with Tabler 1.119.0 glyphs as masks, never drawn by hand.
+
+**Sign-ins are `DS-25`'s.** A service row is its name, presence only (Connected or Not connected, never an account
+name or id, as `KMP-73` keeps it), and one button: Sign in… or Remove from this Mac…. Nothing after the press is drawn
+here. AniList and MyAnimeList sign in through the browser and Simkl with a code. OpenSubtitles and SubDL sign in with
+an email and password inside the app. That is the owner's exception, 2026-11-08, and `DS-25`'s A16 draws it.
+
+**Measured** in headless Chrome with `getBoundingClientRect`, on every artboard:
+- Mac: 796 boxes. Phone and tablet: 305 boxes. Both have 0 off the 4 dp step and 0 text overflowing its box.
+- x and width are checked on structure only. A button's or a menu's width comes from its words, and so does the x of
+  what follows it in a row (`dimension-scale.md`, "What the grid does not govern").
+- Words centred in a 36-tall `DesktopButton` sit at 6, which is the button's own geometry.
+- All 16 glyph URLs answer 200, checked with curl.
+
+**Security.** No board draws an address, a path, a token or an account name. A repository, a backup and a download
+folder are their names. Checked: the only addresses in either file are the Tabler glyph CDN and Google Fonts.
+
+**Made-up names only:** the profiles Alex and Sam, "Example Repository", "Harbor Mirror", "Source One" and "Source Five".
+
+Renders: in the shared local review folder (not published).
+
+**Decisions taken here** (the PM's calls, 2026-11-08):
+- **Row controls are 32 tall**, a compact `DesktopButton`, so that they centre in 48 and 64 rows. The build adds it to
+  `DesktopDimens` with a KDoc that says why. On a phone and a tablet the 32 control keeps a 48 touch cell, as a chip's
+  24 visual sits in its 48 cell.
+- **The pop-up button's glyph is Tabler `selector`**, a new `CloudStreamIcons` meaning. The build adds it to
+  `ui-components.md`'s table.
+- **The panes are words only.** A glyph per pane would be ten new meanings, and the main window's tabs are words too.
+- **Re-check ST10 against `D3`** in `design/Desktop Downloads.dc.html` once the design folder is on this machine.
+
+**Follow-up: DNS over HTTPS does not reach playback.** On the Mac the resolver can cover everything that resolves in
+the app's process. A sandboxed plugin host reaches the network only through `OutboundGate`, which resolves names itself
+(`OutboundGate.kt:93`). Posters and subtitles build their own OkHttp clients on `Dns.SYSTEM`. `DohProviders.kt` is
+already in `:core:network`'s `jvmCommonMain`. libVLC runs in the `--media-host` child and resolves stream hosts with the
+system's DNS, so ST8's line says so: "Video streams use your Mac's DNS." Worth looking at: whether the media host can
+resolve through the same resolver, so streams stop asking the system. The evidence is a reading of the code, not a run.
