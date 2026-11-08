@@ -46204,7 +46204,7 @@ values-b+nn	string	account_pin_on	-	På · blir spurd om ved opning
 values-b+nn	string	account_pin_prompt	-	Skriv inn den firesifra PIN-koden.
 values-b+nn	string	account_pin_remove	-	Fjern PIN
 values-b+nn	string	account_pin_set	-	Vel PIN
-values-b+nn	string	account_pin_set_title	-	Set ein PIN
+values-b+nn	string	account_pin_set_title	-	Vel ein PIN
 values-b+nn	string	account_profile_current	-	Gjeldande
 values-b+nn	string	account_profile_locked	-	Låst · PIN
 values-b+nn	string	account_profile_no_sync	-	Inga synkronisering

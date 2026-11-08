@@ -37,7 +37,7 @@
 <string name="account_pin_prompt">Skriv inn den firesifra PIN-koden.</string>
 <string name="account_pin_remove">Fjern PIN</string>
 <string name="account_pin_set">Vel PIN</string>
-<string name="account_pin_set_title">Set ein PIN</string>
+<string name="account_pin_set_title">Vel ein PIN</string>
 <string name="account_profile_current">Gjeldande</string>
 <string name="account_profile_locked">Låst · PIN</string>
 <string name="account_profile_no_sync">Inga synkronisering</string>
