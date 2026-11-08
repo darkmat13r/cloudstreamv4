@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d סימנייה</item><item quantity="two">%d סימניות</item><item quantity="other">%d סימניות</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">טעינת %d קטע נכשלה</item><item quantity="two">טעינת %d קטעים נכשלה</item><item quantity="other">טעינת %d קטעים נכשלה</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d כותר</item><item quantity="two">%d כותרים</item><item quantity="other">%d כותרים</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">חיפוש ב-%d מקור</item><item quantity="two">חיפוש בכל %d המקורות</item><item quantity="other">חיפוש בכל %d המקורות</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.</item><item quantity="two">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.</item><item quantity="other">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d מקור</item><item quantity="two">%d מקורות</item><item quantity="other">%d מקורות</item></plurals>
@@ -422,6 +423,15 @@
 <string name="player_load_subtitles_online">טען מהאינטרנט</string>
 <string name="player_loaded_subtitles">נטען %s</string>
 <string name="player_mute">השתקה</string>
+<string name="player_panel_failed">נכשל</string>
+<string name="player_panel_keeps">שומר על %s</string>
+<string name="player_panel_on">פועל</string>
+<string name="player_panel_open">פתיחה</string>
+<string name="player_panel_quality_profile">פרופיל איכות</string>
+<string name="player_panel_quality_unknown">איכות לא ידועה</string>
+<string name="player_panel_retry_all">לנסות שוב את כל המקורות</string>
+<string name="player_panel_style">סגנון כתוביות</string>
+<string name="player_panel_use">שימוש</string>
 <string name="player_pref">נגן וידאו מועדף</string>
 <string name="player_settings_play_in_app">נגן פנימי</string>
 <string name="player_size_settings">כפתור שינוי גודל הנגן</string>

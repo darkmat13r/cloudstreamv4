@@ -403,6 +403,16 @@
 <string name="player_load_subtitles_online">"Last inn fra Internett"</string>
 <string name="player_loaded_subtitles" formatted="true">"Lastet inn %s"</string>
 <string name="player_mute">"Slå av lyden"</string>
+<string name="player_panel_failed">"feilet"</string>
+<string name="player_panel_keeps" formatted="true">"beholder %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"På"</string>
+<string name="player_panel_open">"Åpne"</string>
+<string name="player_panel_quality_profile">"Kvalitetsprofil"</string>
+<string name="player_panel_quality_unknown">"ukjent kvalitet"</string>
+<string name="player_panel_retry_all">"Prøv alle kildene på nytt"</string>
+<string name="player_panel_style">"Undertekststil"</string>
+<string name="player_panel_use">"Bruk"</string>
 <string name="player_pref">"Foretrukket videospiller"</string>
 <string name="player_settings_play_in_app">"Intern spiller"</string>
 <string name="player_size_settings">"Knapp for størrelse på spiller"</string>

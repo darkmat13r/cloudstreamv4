@@ -221,6 +221,16 @@ values-b+af/strings.xml	string	player_hud_seek_forward	-	STR	Spoel vorentoe
 values-b+af/strings.xml	string	player_hud_speed	-	STR	Spoed	
 values-b+af/strings.xml	string	player_hud_up_next	-	STR	Volgende · %s	
 values-b+af/strings.xml	string	player_mute	-	STR	Demp	
+values-b+af/strings.xml	string	player_panel_failed	-	STR	misluk	
+values-b+af/strings.xml	string	player_panel_keeps	-	STR	behou %s	
+values-b+af/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+af/strings.xml	string	player_panel_on	-	STR	Aan	
+values-b+af/strings.xml	string	player_panel_open	-	STR	Maak oop	
+values-b+af/strings.xml	string	player_panel_quality_profile	-	STR	Kwaliteitsprofiel	
+values-b+af/strings.xml	string	player_panel_quality_unknown	-	STR	kwaliteit onbekend	
+values-b+af/strings.xml	string	player_panel_retry_all	-	STR	Probeer alle bronne weer	
+values-b+af/strings.xml	string	player_panel_style	-	STR	Onderskrifstyl	
+values-b+af/strings.xml	string	player_panel_use	-	STR	Gebruik	
 values-b+af/strings.xml	string	player_source_playing	-	STR	Speel	
 values-b+af/strings.xml	string	player_source_resumes_at	-	STR	Wissel behou jou posisie: gaan voort by %1$s	
 values-b+af/strings.xml	string	player_source_retry	-	STR	Probeer weer	
@@ -520,6 +530,16 @@ values-b+am/strings.xml	string	player_hud_seek_forward	-	STR	ወደፊት ዝለ
 values-b+am/strings.xml	string	player_hud_speed	-	STR	ፍጥነት	
 values-b+am/strings.xml	string	player_hud_up_next	-	STR	ቀጣይ · %s	
 values-b+am/strings.xml	string	player_mute	-	STR	ድምፅ አጥፋ	
+values-b+am/strings.xml	string	player_panel_failed	-	STR	አልተሳካም	
+values-b+am/strings.xml	string	player_panel_keeps	-	STR	%s ይቆያል	
+values-b+am/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+am/strings.xml	string	player_panel_on	-	STR	በርቷል	
+values-b+am/strings.xml	string	player_panel_open	-	STR	ክፈት	
+values-b+am/strings.xml	string	player_panel_quality_profile	-	STR	የጥራት መገለጫ	
+values-b+am/strings.xml	string	player_panel_quality_unknown	-	STR	ጥራት አይታወቅም	
+values-b+am/strings.xml	string	player_panel_retry_all	-	STR	ሁሉንም ምንጮች እንደገና ሞክር	
+values-b+am/strings.xml	string	player_panel_style	-	STR	የንዑስ ርዕስ ዘይቤ	
+values-b+am/strings.xml	string	player_panel_use	-	STR	ተጠቀም	
 values-b+am/strings.xml	string	player_source_playing	-	STR	በመጫወት ላይ	
 values-b+am/strings.xml	string	player_source_resumes_at	-	STR	መቀየር ቦታዎን ይጠብቃል፦ ከ%1$s ይቀጥላል	
 values-b+am/strings.xml	string	player_source_retry	-	STR	እንደገና ሞክር	
@@ -1154,6 +1174,16 @@ values-b+apc/strings.xml	string	player_loaded_subtitles	-	STR	نفَتح %s
 values-b+apc/strings.xml	string	player_mute	-	STR	كتّم الصوت	
 values-b+apc/strings.xml	string	player_notification_channel_description	-	STR	نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح	
 values-b+apc/strings.xml	string	player_notification_channel_name	-	STR	شغل الڤيديو عبر النوتيفيكايشنز	
+values-b+apc/strings.xml	string	player_panel_failed	-	STR	فشل	
+values-b+apc/strings.xml	string	player_panel_keeps	-	STR	بيحافظ على %s	
+values-b+apc/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+apc/strings.xml	string	player_panel_on	-	STR	شغّال	
+values-b+apc/strings.xml	string	player_panel_open	-	STR	افتح	
+values-b+apc/strings.xml	string	player_panel_quality_profile	-	STR	ملف الجودة	
+values-b+apc/strings.xml	string	player_panel_quality_unknown	-	STR	الجودة مش معروفة	
+values-b+apc/strings.xml	string	player_panel_retry_all	-	STR	جرّب كل المصادر من جديد	
+values-b+apc/strings.xml	string	player_panel_style	-	STR	شكل الترجمة	
+values-b+apc/strings.xml	string	player_panel_use	-	STR	استخدم	
 values-b+apc/strings.xml	string	player_pref	-	STR	مشغل الڤيديو المفضل	
 values-b+apc/strings.xml	string	player_settings_always_ask	-	STR	دايمًا سئالوني	
 values-b+apc/strings.xml	string	player_settings_play_in_app	-	STR	المشغل يللي ب "كلود ستريم"	
@@ -2135,6 +2165,16 @@ values-b+ar/strings.xml	string	player_loaded_subtitles	-	STR	تم تحميل %s
 values-b+ar/strings.xml	string	player_mute	-	STR	كتم الصوت	
 values-b+ar/strings.xml	string	player_notification_channel_description	-	STR	تنبيه المشغل المسؤول عن تشغيل الميديا في الخلفية	
 values-b+ar/strings.xml	string	player_notification_channel_name	-	STR	تنبيهات المشغل	
+values-b+ar/strings.xml	string	player_panel_failed	-	STR	فشل	
+values-b+ar/strings.xml	string	player_panel_keeps	-	STR	يحافظ على %s	
+values-b+ar/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ar/strings.xml	string	player_panel_on	-	STR	مُفعّل	
+values-b+ar/strings.xml	string	player_panel_open	-	STR	فتح	
+values-b+ar/strings.xml	string	player_panel_quality_profile	-	STR	ملف الجودة	
+values-b+ar/strings.xml	string	player_panel_quality_unknown	-	STR	الجودة غير معروفة	
+values-b+ar/strings.xml	string	player_panel_retry_all	-	STR	إعادة محاولة جميع المصادر	
+values-b+ar/strings.xml	string	player_panel_style	-	STR	نمط الترجمة	
+values-b+ar/strings.xml	string	player_panel_use	-	STR	استخدام	
 values-b+ar/strings.xml	string	player_pref	-	STR	مُشغل الفيديو المفضل	
 values-b+ar/strings.xml	string	player_settings_always_ask	-	STR	أسال دائما	
 values-b+ar/strings.xml	string	player_settings_play_in_app	-	STR	مشغل داخلي	
@@ -2899,6 +2939,16 @@ values-b+ars/strings.xml	string	player_hud_seek_forward	-	STR	تقديم
 values-b+ars/strings.xml	string	player_hud_speed	-	STR	السرعة	
 values-b+ars/strings.xml	string	player_hud_up_next	-	STR	التالي · %s	
 values-b+ars/strings.xml	string	player_mute	-	STR	كتم الصوت	
+values-b+ars/strings.xml	string	player_panel_failed	-	STR	فشل	
+values-b+ars/strings.xml	string	player_panel_keeps	-	STR	يحافظ على %s	
+values-b+ars/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ars/strings.xml	string	player_panel_on	-	STR	مفعّل	
+values-b+ars/strings.xml	string	player_panel_open	-	STR	افتح	
+values-b+ars/strings.xml	string	player_panel_quality_profile	-	STR	ملف الجودة	
+values-b+ars/strings.xml	string	player_panel_quality_unknown	-	STR	الجودة غير معروفة	
+values-b+ars/strings.xml	string	player_panel_retry_all	-	STR	جرّب كل المصادر مرة ثانية	
+values-b+ars/strings.xml	string	player_panel_style	-	STR	شكل الترجمة	
+values-b+ars/strings.xml	string	player_panel_use	-	STR	استخدم	
 values-b+ars/strings.xml	string	player_size_settings	-	STR	زر تغيير حجم المشغل	
 values-b+ars/strings.xml	string	player_size_settings_des	-	STR	إزالة الحدود السوداء	
 values-b+ars/strings.xml	string	player_source_playing	-	STR	قيد التشغيل	
@@ -3584,6 +3634,16 @@ values-b+as/strings.xml	string	player_load_subtitles	-	STR	ফাইলৰ প�
 values-b+as/strings.xml	string	player_load_subtitles_online	-	STR	ইণ্টাৰনেটৰ পৰা ল'ড কৰক	
 values-b+as/strings.xml	string	player_loaded_subtitles	-	STR	%s ল'ড হৈছে	
 values-b+as/strings.xml	string	player_mute	-	STR	মৌন কৰক	
+values-b+as/strings.xml	string	player_panel_failed	-	STR	ব্যৰ্থ	
+values-b+as/strings.xml	string	player_panel_keeps	-	STR	%s ৰাখে	
+values-b+as/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+as/strings.xml	string	player_panel_on	-	STR	অন	
+values-b+as/strings.xml	string	player_panel_open	-	STR	খোলক	
+values-b+as/strings.xml	string	player_panel_quality_profile	-	STR	গুণমান প্ৰফাইল	
+values-b+as/strings.xml	string	player_panel_quality_unknown	-	STR	গুণমান অজ্ঞাত	
+values-b+as/strings.xml	string	player_panel_retry_all	-	STR	সকলো উৎস পুনৰ চেষ্টা কৰক	
+values-b+as/strings.xml	string	player_panel_style	-	STR	উপশিৰোনামৰ শৈলী	
+values-b+as/strings.xml	string	player_panel_use	-	STR	ব্যৱহাৰ কৰক	
 values-b+as/strings.xml	string	player_pref	-	STR	পছন্দৰ ভিডিঅ' প্লেয়াৰ	
 values-b+as/strings.xml	string	player_settings_play_in_app	-	STR	আভ্যন্তৰীণ প্লেয়াৰ	
 values-b+as/strings.xml	string	player_settings_select_cast_device	-	STR	কাষ্ট ডিভাইচ চয়ন কৰক	
@@ -4161,6 +4221,16 @@ values-b+az/strings.xml	string	player_hud_seek_forward	-	STR	İrəli çək
 values-b+az/strings.xml	string	player_hud_speed	-	STR	Sürət	
 values-b+az/strings.xml	string	player_hud_up_next	-	STR	Növbəti · %s	
 values-b+az/strings.xml	string	player_mute	-	STR	Səssizə al	
+values-b+az/strings.xml	string	player_panel_failed	-	STR	uğursuz	
+values-b+az/strings.xml	string	player_panel_keeps	-	STR	%s saxlanılır	
+values-b+az/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+az/strings.xml	string	player_panel_on	-	STR	Açıq	
+values-b+az/strings.xml	string	player_panel_open	-	STR	Aç	
+values-b+az/strings.xml	string	player_panel_quality_profile	-	STR	Keyfiyyət profili	
+values-b+az/strings.xml	string	player_panel_quality_unknown	-	STR	keyfiyyət bilinmir	
+values-b+az/strings.xml	string	player_panel_retry_all	-	STR	Bütün mənbələri yenidən sına	
+values-b+az/strings.xml	string	player_panel_style	-	STR	Altyazı üslubu	
+values-b+az/strings.xml	string	player_panel_use	-	STR	İstifadə et	
 values-b+az/strings.xml	string	player_size_settings	-	STR	Pleyeri yenidən ölçüləndirmə düyməsini	
 values-b+az/strings.xml	string	player_size_settings_des	-	STR	Qara sərhədləri, kənarları sil	
 values-b+az/strings.xml	string	player_source_playing	-	STR	Oynayır	
@@ -4824,6 +4894,16 @@ values-b+be/strings.xml	string	player_loaded_subtitles	-	STR	Загружана 
 values-b+be/strings.xml	string	player_mute	-	STR	Выключыць гук	
 values-b+be/strings.xml	string	player_notification_channel_description	-	STR	Апавяшчэнне прайгравальніка для кіравання прайграваннем у фонавым рэжыме	
 values-b+be/strings.xml	string	player_notification_channel_name	-	STR	Апавяшчэнні прайгравальніка	
+values-b+be/strings.xml	string	player_panel_failed	-	STR	збой	
+values-b+be/strings.xml	string	player_panel_keeps	-	STR	захоўвае %s	
+values-b+be/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+be/strings.xml	string	player_panel_on	-	STR	Укл.	
+values-b+be/strings.xml	string	player_panel_open	-	STR	Адкрыць	
+values-b+be/strings.xml	string	player_panel_quality_profile	-	STR	Профіль якасці	
+values-b+be/strings.xml	string	player_panel_quality_unknown	-	STR	якасць невядомая	
+values-b+be/strings.xml	string	player_panel_retry_all	-	STR	Паўтарыць усе крыніцы	
+values-b+be/strings.xml	string	player_panel_style	-	STR	Стыль субцітраў	
+values-b+be/strings.xml	string	player_panel_use	-	STR	Выкарыстаць	
 values-b+be/strings.xml	string	player_pref	-	STR	Прыярытэтны прайгравальнік	
 values-b+be/strings.xml	string	player_settings_always_ask	-	STR	Заўсёды пытацца	
 values-b+be/strings.xml	string	player_settings_play_in_app	-	STR	Убудаваны прайгравальнік	
@@ -5738,6 +5818,16 @@ values-b+bg/strings.xml	string	player_loaded_subtitles	-	STR	Заредено %s
 values-b+bg/strings.xml	string	player_mute	-	STR	Без звук	
 values-b+bg/strings.xml	string	player_notification_channel_description	-	STR	Известие на плейъра за контролиране на възпроизвеждането от фона	
 values-b+bg/strings.xml	string	player_notification_channel_name	-	STR	Известия на плейъра	
+values-b+bg/strings.xml	string	player_panel_failed	-	STR	неуспешно	
+values-b+bg/strings.xml	string	player_panel_keeps	-	STR	запазва %s	
+values-b+bg/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+bg/strings.xml	string	player_panel_on	-	STR	Вкл.	
+values-b+bg/strings.xml	string	player_panel_open	-	STR	Отвори	
+values-b+bg/strings.xml	string	player_panel_quality_profile	-	STR	Профил за качество	
+values-b+bg/strings.xml	string	player_panel_quality_unknown	-	STR	неизвестно качество	
+values-b+bg/strings.xml	string	player_panel_retry_all	-	STR	Опитай всички източници отново	
+values-b+bg/strings.xml	string	player_panel_style	-	STR	Стил на субтитрите	
+values-b+bg/strings.xml	string	player_panel_use	-	STR	Използвай	
 values-b+bg/strings.xml	string	player_pref	-	STR	Предпочитан видео плеър	
 values-b+bg/strings.xml	string	player_settings_always_ask	-	STR	Винаги изпращай запитване	
 values-b+bg/strings.xml	string	player_settings_play_in_app	-	STR	Вътрешен плеър	
@@ -6486,6 +6576,16 @@ values-b+bn/strings.xml	string	player_hud_seek_forward	-	STR	এগিয়ে 
 values-b+bn/strings.xml	string	player_hud_speed	-	STR	গতি	
 values-b+bn/strings.xml	string	player_hud_up_next	-	STR	পরবর্তী · %s	
 values-b+bn/strings.xml	string	player_mute	-	STR	মিউট করুন	
+values-b+bn/strings.xml	string	player_panel_failed	-	STR	ব্যর্থ	
+values-b+bn/strings.xml	string	player_panel_keeps	-	STR	%s রাখে	
+values-b+bn/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+bn/strings.xml	string	player_panel_on	-	STR	চালু	
+values-b+bn/strings.xml	string	player_panel_open	-	STR	খুলুন	
+values-b+bn/strings.xml	string	player_panel_quality_profile	-	STR	মানের প্রোফাইল	
+values-b+bn/strings.xml	string	player_panel_quality_unknown	-	STR	মান অজানা	
+values-b+bn/strings.xml	string	player_panel_retry_all	-	STR	সব উৎস আবার চেষ্টা করুন	
+values-b+bn/strings.xml	string	player_panel_style	-	STR	সাবটাইটেলের স্টাইল	
+values-b+bn/strings.xml	string	player_panel_use	-	STR	ব্যবহার করুন	
 values-b+bn/strings.xml	string	player_size_settings	-	STR	প্লেয়ারের সাইজ পরিবর্তন বাটন	
 values-b+bn/strings.xml	string	player_size_settings_des	-	STR	কালো প্রান্ত অপসারণ করুন	
 values-b+bn/strings.xml	string	player_source_playing	-	STR	চলছে	
@@ -7040,6 +7140,16 @@ values-b+ca/strings.xml	string	player_load_subtitles	-	STR	Carrega des del fitxe
 values-b+ca/strings.xml	string	player_load_subtitles_online	-	STR	Carrega des d'internet	
 values-b+ca/strings.xml	string	player_loaded_subtitles	-	STR	%s carregat	
 values-b+ca/strings.xml	string	player_mute	-	STR	Silencia	
+values-b+ca/strings.xml	string	player_panel_failed	-	STR	ha fallat	
+values-b+ca/strings.xml	string	player_panel_keeps	-	STR	manté %s	
+values-b+ca/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ca/strings.xml	string	player_panel_on	-	STR	Activat	
+values-b+ca/strings.xml	string	player_panel_open	-	STR	Obre	
+values-b+ca/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de qualitat	
+values-b+ca/strings.xml	string	player_panel_quality_unknown	-	STR	qualitat desconeguda	
+values-b+ca/strings.xml	string	player_panel_retry_all	-	STR	Torna a provar totes les fonts	
+values-b+ca/strings.xml	string	player_panel_style	-	STR	Estil dels subtítols	
+values-b+ca/strings.xml	string	player_panel_use	-	STR	Fes servir	
 values-b+ca/strings.xml	string	player_size_settings	-	STR	Botó de canvi de mida del reproductor	
 values-b+ca/strings.xml	string	player_source_playing	-	STR	S'està reproduint	
 values-b+ca/strings.xml	string	player_source_resumes_at	-	STR	Canviar conserva la posició: es reprèn a %1$s	
@@ -7439,6 +7549,16 @@ values-b+ckb/strings.xml	string	player_hud_seek_forward	-	STR	چوون بۆ پێ
 values-b+ckb/strings.xml	string	player_hud_speed	-	STR	خێرایی	
 values-b+ckb/strings.xml	string	player_hud_up_next	-	STR	دواتر · %s	
 values-b+ckb/strings.xml	string	player_mute	-	STR	بێدەنگکردن	
+values-b+ckb/strings.xml	string	player_panel_failed	-	STR	شکستی هێنا	
+values-b+ckb/strings.xml	string	player_panel_keeps	-	STR	%s دەهێڵێتەوە	
+values-b+ckb/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ckb/strings.xml	string	player_panel_on	-	STR	چالاک	
+values-b+ckb/strings.xml	string	player_panel_open	-	STR	کردنەوە	
+values-b+ckb/strings.xml	string	player_panel_quality_profile	-	STR	پرۆفایلی کوالیتی	
+values-b+ckb/strings.xml	string	player_panel_quality_unknown	-	STR	کوالیتی نەزانراو	
+values-b+ckb/strings.xml	string	player_panel_retry_all	-	STR	هەموو سەرچاوەکان دووبارە تاقی بکەرەوە	
+values-b+ckb/strings.xml	string	player_panel_style	-	STR	شێوازی ژێرنووس	
+values-b+ckb/strings.xml	string	player_panel_use	-	STR	بەکارهێنان	
 values-b+ckb/strings.xml	string	player_source_playing	-	STR	لێدەدرێت	
 values-b+ckb/strings.xml	string	player_source_resumes_at	-	STR	گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت	
 values-b+ckb/strings.xml	string	player_source_retry	-	STR	دووبارە هەوڵبدەرەوە	
@@ -8085,6 +8205,16 @@ values-b+cs/strings.xml	string	player_loaded_subtitles	-	STR	Načteno %s
 values-b+cs/strings.xml	string	player_mute	-	STR	Vypnout zvuk	
 values-b+cs/strings.xml	string	player_notification_channel_description	-	STR	Oznámení přehrávače pro ovládání přehrávání na pozadí	
 values-b+cs/strings.xml	string	player_notification_channel_name	-	STR	Oznámení přehrávače	
+values-b+cs/strings.xml	string	player_panel_failed	-	STR	selhalo	
+values-b+cs/strings.xml	string	player_panel_keeps	-	STR	zachová %s	
+values-b+cs/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+cs/strings.xml	string	player_panel_on	-	STR	Zapnuto	
+values-b+cs/strings.xml	string	player_panel_open	-	STR	Otevřít	
+values-b+cs/strings.xml	string	player_panel_quality_profile	-	STR	Profil kvality	
+values-b+cs/strings.xml	string	player_panel_quality_unknown	-	STR	neznámá kvalita	
+values-b+cs/strings.xml	string	player_panel_retry_all	-	STR	Zkusit znovu všechny zdroje	
+values-b+cs/strings.xml	string	player_panel_style	-	STR	Styl titulků	
+values-b+cs/strings.xml	string	player_panel_use	-	STR	Použít	
 values-b+cs/strings.xml	string	player_pref	-	STR	Preferovaný přehrávač videí	
 values-b+cs/strings.xml	string	player_settings_always_ask	-	STR	Vždy se zeptat	
 values-b+cs/strings.xml	string	player_settings_play_in_app	-	STR	Interní přehrávač	
@@ -9013,6 +9143,16 @@ values-b+de/strings.xml	string	player_loaded_subtitles	-	STR	%s geladen
 values-b+de/strings.xml	string	player_mute	-	STR	Stummschalten	
 values-b+de/strings.xml	string	player_notification_channel_description	-	STR	Player-Benachrichtigung zur Steuerung der Hintergrundwiedergabe	
 values-b+de/strings.xml	string	player_notification_channel_name	-	STR	Player-Benachrichtigung	
+values-b+de/strings.xml	string	player_panel_failed	-	STR	fehlgeschlagen	
+values-b+de/strings.xml	string	player_panel_keeps	-	STR	behält %s	
+values-b+de/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+de/strings.xml	string	player_panel_on	-	STR	An	
+values-b+de/strings.xml	string	player_panel_open	-	STR	Öffnen	
+values-b+de/strings.xml	string	player_panel_quality_profile	-	STR	Qualitätsprofil	
+values-b+de/strings.xml	string	player_panel_quality_unknown	-	STR	Qualität unbekannt	
+values-b+de/strings.xml	string	player_panel_retry_all	-	STR	Alle Quellen erneut versuchen	
+values-b+de/strings.xml	string	player_panel_style	-	STR	Untertitelstil	
+values-b+de/strings.xml	string	player_panel_use	-	STR	Verwenden	
 values-b+de/strings.xml	string	player_pref	-	STR	Bevorzugter Videoplayer	
 values-b+de/strings.xml	string	player_settings_always_ask	-	STR	Immer fragen	
 values-b+de/strings.xml	string	player_settings_play_in_app	-	STR	Interner Player	
@@ -9894,6 +10034,16 @@ values-b+el/strings.xml	string	player_loaded_subtitles	-	STR	Φόρτωση %s
 values-b+el/strings.xml	string	player_mute	-	STR	Σίγαση	
 values-b+el/strings.xml	string	player_notification_channel_description	-	STR	Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο	
 values-b+el/strings.xml	string	player_notification_channel_name	-	STR	Ειδοποίησεις αναπαραγωγής	
+values-b+el/strings.xml	string	player_panel_failed	-	STR	απέτυχε	
+values-b+el/strings.xml	string	player_panel_keeps	-	STR	κρατά %s	
+values-b+el/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+el/strings.xml	string	player_panel_on	-	STR	Ενεργό	
+values-b+el/strings.xml	string	player_panel_open	-	STR	Άνοιγμα	
+values-b+el/strings.xml	string	player_panel_quality_profile	-	STR	Προφίλ ποιότητας	
+values-b+el/strings.xml	string	player_panel_quality_unknown	-	STR	άγνωστη ποιότητα	
+values-b+el/strings.xml	string	player_panel_retry_all	-	STR	Επανάληψη όλων των πηγών	
+values-b+el/strings.xml	string	player_panel_style	-	STR	Στυλ υποτίτλων	
+values-b+el/strings.xml	string	player_panel_use	-	STR	Χρήση	
 values-b+el/strings.xml	string	player_pref	-	STR	Προτεινόμενο πρόγραμμα αναπαραγωγής	
 values-b+el/strings.xml	string	player_settings_play_in_app	-	STR	Ενσωματωμένο πρόγραμμα αναπαραγωγής	
 values-b+el/strings.xml	string	player_settings_select_cast_device	-	STR	Επιλογή συσκευής για αναμετάδοση	
@@ -10502,6 +10652,16 @@ values-b+eo/strings.xml	string	player_hud_seek_forward	-	STR	Antaŭen
 values-b+eo/strings.xml	string	player_hud_speed	-	STR	Rapido	
 values-b+eo/strings.xml	string	player_hud_up_next	-	STR	Sekva · %s	
 values-b+eo/strings.xml	string	player_mute	-	STR	Silentigi	
+values-b+eo/strings.xml	string	player_panel_failed	-	STR	malsukcesis	
+values-b+eo/strings.xml	string	player_panel_keeps	-	STR	konservas %s	
+values-b+eo/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+eo/strings.xml	string	player_panel_on	-	STR	Ŝaltita	
+values-b+eo/strings.xml	string	player_panel_open	-	STR	Malfermi	
+values-b+eo/strings.xml	string	player_panel_quality_profile	-	STR	Kvalita profilo	
+values-b+eo/strings.xml	string	player_panel_quality_unknown	-	STR	nekonata kvalito	
+values-b+eo/strings.xml	string	player_panel_retry_all	-	STR	Reprovi ĉiujn fontojn	
+values-b+eo/strings.xml	string	player_panel_style	-	STR	Stilo de subtekstoj	
+values-b+eo/strings.xml	string	player_panel_use	-	STR	Uzi	
 values-b+eo/strings.xml	string	player_size_settings_des	-	STR	Forigi nigrajn borderaĵojn	
 values-b+eo/strings.xml	string	player_source_playing	-	STR	Ludanta	
 values-b+eo/strings.xml	string	player_source_resumes_at	-	STR	Ŝanĝo konservas vian lokon: daŭrigas ĉe %1$s	
@@ -11178,6 +11338,16 @@ values-b+es/strings.xml	string	player_loaded_subtitles	-	STR	%s Cargado
 values-b+es/strings.xml	string	player_mute	-	STR	Silenciar	
 values-b+es/strings.xml	string	player_notification_channel_description	-	STR	La notificación del reproductor para controlar la reproducción en segundo plano	
 values-b+es/strings.xml	string	player_notification_channel_name	-	STR	Notificaciones del reproductor	
+values-b+es/strings.xml	string	player_panel_failed	-	STR	falló	
+values-b+es/strings.xml	string	player_panel_keeps	-	STR	mantiene %s	
+values-b+es/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+es/strings.xml	string	player_panel_on	-	STR	Activado	
+values-b+es/strings.xml	string	player_panel_open	-	STR	Abrir	
+values-b+es/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de calidad	
+values-b+es/strings.xml	string	player_panel_quality_unknown	-	STR	calidad desconocida	
+values-b+es/strings.xml	string	player_panel_retry_all	-	STR	Reintentar todas las fuentes	
+values-b+es/strings.xml	string	player_panel_style	-	STR	Estilo de subtítulos	
+values-b+es/strings.xml	string	player_panel_use	-	STR	Usar	
 values-b+es/strings.xml	string	player_pref	-	STR	Reproductor de video preferido	
 values-b+es/strings.xml	string	player_settings_always_ask	-	STR	Preguntar siempre	
 values-b+es/strings.xml	string	player_settings_play_in_app	-	STR	Reproductor interno	
@@ -11900,6 +12070,16 @@ values-b+fa/strings.xml	string	player_hud_seek_forward	-	STR	جلو
 values-b+fa/strings.xml	string	player_hud_speed	-	STR	سرعت	
 values-b+fa/strings.xml	string	player_hud_up_next	-	STR	بعدی · %s	
 values-b+fa/strings.xml	string	player_mute	-	STR	بی‌صدا	
+values-b+fa/strings.xml	string	player_panel_failed	-	STR	ناموفق	
+values-b+fa/strings.xml	string	player_panel_keeps	-	STR	%s را نگه می‌دارد	
+values-b+fa/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+fa/strings.xml	string	player_panel_on	-	STR	روشن	
+values-b+fa/strings.xml	string	player_panel_open	-	STR	باز کردن	
+values-b+fa/strings.xml	string	player_panel_quality_profile	-	STR	نمایهٔ کیفیت	
+values-b+fa/strings.xml	string	player_panel_quality_unknown	-	STR	کیفیت نامشخص	
+values-b+fa/strings.xml	string	player_panel_retry_all	-	STR	تلاش دوباره برای همه منابع	
+values-b+fa/strings.xml	string	player_panel_style	-	STR	سبک زیرنویس	
+values-b+fa/strings.xml	string	player_panel_use	-	STR	استفاده	
 values-b+fa/strings.xml	string	player_pref	-	STR	پخش‌کننده ویدئو برگزیده	
 values-b+fa/strings.xml	string	player_size_settings	-	STR	دکمه تغییر‌اندازه پخش‌کننده	
 values-b+fa/strings.xml	string	player_size_settings_des	-	STR	حذف حاشیه سیاه	
@@ -12338,6 +12518,16 @@ values-b+fil/strings.xml	string	player_hud_speed	-	STR	Bilis
 values-b+fil/strings.xml	string	player_hud_up_next	-	STR	Susunod · %s	
 values-b+fil/strings.xml	string	player_mute	-	STR	I-mute	
 values-b+fil/strings.xml	string	player_notification_channel_description	-	STR	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background	
+values-b+fil/strings.xml	string	player_panel_failed	-	STR	nabigo	
+values-b+fil/strings.xml	string	player_panel_keeps	-	STR	pinapanatili ang %s	
+values-b+fil/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+fil/strings.xml	string	player_panel_on	-	STR	Naka-on	
+values-b+fil/strings.xml	string	player_panel_open	-	STR	Buksan	
+values-b+fil/strings.xml	string	player_panel_quality_profile	-	STR	Profile ng kalidad	
+values-b+fil/strings.xml	string	player_panel_quality_unknown	-	STR	hindi alam ang kalidad	
+values-b+fil/strings.xml	string	player_panel_retry_all	-	STR	Subukang muli ang lahat ng source	
+values-b+fil/strings.xml	string	player_panel_style	-	STR	Estilo ng subtitle	
+values-b+fil/strings.xml	string	player_panel_use	-	STR	Gamitin	
 values-b+fil/strings.xml	string	player_source_playing	-	STR	Nagpe-play	
 values-b+fil/strings.xml	string	player_source_resumes_at	-	STR	Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s	
 values-b+fil/strings.xml	string	player_source_retry	-	STR	Subukang muli	
@@ -13004,6 +13194,16 @@ values-b+fr/strings.xml	string	player_loaded_subtitles	-	STR	%s chargé
 values-b+fr/strings.xml	string	player_mute	-	STR	Couper le son	
 values-b+fr/strings.xml	string	player_notification_channel_description	-	STR	La notification du lecteur pour contrôler la lecture en arrière-plan	
 values-b+fr/strings.xml	string	player_notification_channel_name	-	STR	Notifications du lecteur	
+values-b+fr/strings.xml	string	player_panel_failed	-	STR	échec	
+values-b+fr/strings.xml	string	player_panel_keeps	-	STR	garde %s	
+values-b+fr/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+fr/strings.xml	string	player_panel_on	-	STR	Activé	
+values-b+fr/strings.xml	string	player_panel_open	-	STR	Ouvrir	
+values-b+fr/strings.xml	string	player_panel_quality_profile	-	STR	Profil de qualité	
+values-b+fr/strings.xml	string	player_panel_quality_unknown	-	STR	qualité inconnue	
+values-b+fr/strings.xml	string	player_panel_retry_all	-	STR	Réessayer toutes les sources	
+values-b+fr/strings.xml	string	player_panel_style	-	STR	Style des sous-titres	
+values-b+fr/strings.xml	string	player_panel_use	-	STR	Utiliser	
 values-b+fr/strings.xml	string	player_pref	-	STR	Lecteur vidéo préféré	
 values-b+fr/strings.xml	string	player_settings_always_ask	-	STR	Demandez toujours	
 values-b+fr/strings.xml	string	player_settings_play_in_app	-	STR	Lecteur interne	
@@ -13702,6 +13902,16 @@ values-b+gl/strings.xml	string	player_hud_seek_forward	-	STR	Avanzar
 values-b+gl/strings.xml	string	player_hud_speed	-	STR	Velocidade	
 values-b+gl/strings.xml	string	player_hud_up_next	-	STR	Seguinte · %s	
 values-b+gl/strings.xml	string	player_mute	-	STR	Silenciar	
+values-b+gl/strings.xml	string	player_panel_failed	-	STR	fallou	
+values-b+gl/strings.xml	string	player_panel_keeps	-	STR	mantén %s	
+values-b+gl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+gl/strings.xml	string	player_panel_on	-	STR	Activado	
+values-b+gl/strings.xml	string	player_panel_open	-	STR	Abrir	
+values-b+gl/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de calidade	
+values-b+gl/strings.xml	string	player_panel_quality_unknown	-	STR	calidade descoñecida	
+values-b+gl/strings.xml	string	player_panel_retry_all	-	STR	Tentar de novo todas as fontes	
+values-b+gl/strings.xml	string	player_panel_style	-	STR	Estilo dos subtítulos	
+values-b+gl/strings.xml	string	player_panel_use	-	STR	Usar	
 values-b+gl/strings.xml	string	player_size_settings	-	STR	Botón de cambio de tamaño do reprodutor	
 values-b+gl/strings.xml	string	player_size_settings_des	-	STR	Eliminar bordes negros	
 values-b+gl/strings.xml	string	player_source_playing	-	STR	Reproducindo	
@@ -14252,6 +14462,16 @@ values-b+hi/strings.xml	string	player_hud_seek_forward	-	STR	आगे जाए
 values-b+hi/strings.xml	string	player_hud_speed	-	STR	गति	
 values-b+hi/strings.xml	string	player_hud_up_next	-	STR	अगला · %s	
 values-b+hi/strings.xml	string	player_mute	-	STR	म्यूट करें	
+values-b+hi/strings.xml	string	player_panel_failed	-	STR	विफल	
+values-b+hi/strings.xml	string	player_panel_keeps	-	STR	%s बनाए रखता है	
+values-b+hi/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+hi/strings.xml	string	player_panel_on	-	STR	चालू	
+values-b+hi/strings.xml	string	player_panel_open	-	STR	खोलें	
+values-b+hi/strings.xml	string	player_panel_quality_profile	-	STR	गुणवत्ता प्रोफ़ाइल	
+values-b+hi/strings.xml	string	player_panel_quality_unknown	-	STR	गुणवत्ता अज्ञात	
+values-b+hi/strings.xml	string	player_panel_retry_all	-	STR	सभी स्रोत फिर से आज़माएँ	
+values-b+hi/strings.xml	string	player_panel_style	-	STR	सबटाइटल शैली	
+values-b+hi/strings.xml	string	player_panel_use	-	STR	उपयोग करें	
 values-b+hi/strings.xml	string	player_size_settings	-	STR	प्लेयर आकार परिवर्तन बटन	
 values-b+hi/strings.xml	string	player_size_settings_des	-	STR	काले बॉर्डर हटाएँ	
 values-b+hi/strings.xml	string	player_source_playing	-	STR	चल रहा है	
@@ -15023,6 +15243,16 @@ values-b+hr/strings.xml	string	player_loaded_subtitles	-	STR	Učitano %s
 values-b+hr/strings.xml	string	player_mute	-	STR	Isključi zvuk	
 values-b+hr/strings.xml	string	player_notification_channel_description	-	STR	Obavijest reproduktora za upravljanje reprodukcijom iz pozadine	
 values-b+hr/strings.xml	string	player_notification_channel_name	-	STR	Obavijesti reproduktora	
+values-b+hr/strings.xml	string	player_panel_failed	-	STR	neuspjelo	
+values-b+hr/strings.xml	string	player_panel_keeps	-	STR	zadržava %s	
+values-b+hr/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+hr/strings.xml	string	player_panel_on	-	STR	Uključeno	
+values-b+hr/strings.xml	string	player_panel_open	-	STR	Otvori	
+values-b+hr/strings.xml	string	player_panel_quality_profile	-	STR	Profil kvalitete	
+values-b+hr/strings.xml	string	player_panel_quality_unknown	-	STR	nepoznata kvaliteta	
+values-b+hr/strings.xml	string	player_panel_retry_all	-	STR	Ponovi sve izvore	
+values-b+hr/strings.xml	string	player_panel_style	-	STR	Stil titlova	
+values-b+hr/strings.xml	string	player_panel_use	-	STR	Koristi	
 values-b+hr/strings.xml	string	player_pref	-	STR	Preferirani video player	
 values-b+hr/strings.xml	string	player_settings_always_ask	-	STR	Uvijek pitaj	
 values-b+hr/strings.xml	string	player_settings_play_in_app	-	STR	Interni player	
@@ -15889,6 +16119,16 @@ values-b+hu/strings.xml	string	player_load_subtitles	-	STR	Betöltés fájlból
 values-b+hu/strings.xml	string	player_load_subtitles_online	-	STR	Betöltés az internetről	
 values-b+hu/strings.xml	string	player_loaded_subtitles	-	STR	%s betöltve	
 values-b+hu/strings.xml	string	player_mute	-	STR	Némítás	
+values-b+hu/strings.xml	string	player_panel_failed	-	STR	sikertelen	
+values-b+hu/strings.xml	string	player_panel_keeps	-	STR	megtartja: %s	
+values-b+hu/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+hu/strings.xml	string	player_panel_on	-	STR	Be	
+values-b+hu/strings.xml	string	player_panel_open	-	STR	Megnyitás	
+values-b+hu/strings.xml	string	player_panel_quality_profile	-	STR	Minőségi profil	
+values-b+hu/strings.xml	string	player_panel_quality_unknown	-	STR	ismeretlen minőség	
+values-b+hu/strings.xml	string	player_panel_retry_all	-	STR	Összes forrás újrapróbálása	
+values-b+hu/strings.xml	string	player_panel_style	-	STR	Feliratstílus	
+values-b+hu/strings.xml	string	player_panel_use	-	STR	Használat	
 values-b+hu/strings.xml	string	player_pref	-	STR	Előnyben részesített videolejátszó	
 values-b+hu/strings.xml	string	player_settings_always_ask	-	STR	Mindig kérdezzen	
 values-b+hu/strings.xml	string	player_settings_play_in_app	-	STR	Belső lejátszó	
@@ -16754,6 +16994,16 @@ values-b+in/strings.xml	string	player_loaded_subtitles	-	STR	Memuat %s
 values-b+in/strings.xml	string	player_mute	-	STR	Bisukan	
 values-b+in/strings.xml	string	player_notification_channel_description	-	STR	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang	
 values-b+in/strings.xml	string	player_notification_channel_name	-	STR	Notifikasi pemain	
+values-b+in/strings.xml	string	player_panel_failed	-	STR	gagal	
+values-b+in/strings.xml	string	player_panel_keeps	-	STR	mempertahankan %s	
+values-b+in/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+in/strings.xml	string	player_panel_on	-	STR	Aktif	
+values-b+in/strings.xml	string	player_panel_open	-	STR	Buka	
+values-b+in/strings.xml	string	player_panel_quality_profile	-	STR	Profil kualitas	
+values-b+in/strings.xml	string	player_panel_quality_unknown	-	STR	kualitas tidak diketahui	
+values-b+in/strings.xml	string	player_panel_retry_all	-	STR	Coba lagi semua sumber	
+values-b+in/strings.xml	string	player_panel_style	-	STR	Gaya subtitel	
+values-b+in/strings.xml	string	player_panel_use	-	STR	Gunakan	
 values-b+in/strings.xml	string	player_pref	-	STR	Pemutar video utama	
 values-b+in/strings.xml	string	player_settings_always_ask	-	STR	Selalu tanya	
 values-b+in/strings.xml	string	player_settings_play_in_app	-	STR	Pemutar Bawaan	
@@ -17698,6 +17948,16 @@ values-b+it/strings.xml	string	player_loaded_subtitles	-	STR	Caricato %s
 values-b+it/strings.xml	string	player_mute	-	STR	Disattiva audio	
 values-b+it/strings.xml	string	player_notification_channel_description	-	STR	La notifica del lettore per controllare la riproduzione in background	
 values-b+it/strings.xml	string	player_notification_channel_name	-	STR	Notifiche lettore	
+values-b+it/strings.xml	string	player_panel_failed	-	STR	non riuscito	
+values-b+it/strings.xml	string	player_panel_keeps	-	STR	mantiene %s	
+values-b+it/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+it/strings.xml	string	player_panel_on	-	STR	Attivo	
+values-b+it/strings.xml	string	player_panel_open	-	STR	Apri	
+values-b+it/strings.xml	string	player_panel_quality_profile	-	STR	Profilo qualità	
+values-b+it/strings.xml	string	player_panel_quality_unknown	-	STR	qualità sconosciuta	
+values-b+it/strings.xml	string	player_panel_retry_all	-	STR	Riprova tutte le fonti	
+values-b+it/strings.xml	string	player_panel_style	-	STR	Stile sottotitoli	
+values-b+it/strings.xml	string	player_panel_use	-	STR	Usa	
 values-b+it/strings.xml	string	player_pref	-	STR	Video lettore preferito	
 values-b+it/strings.xml	string	player_settings_always_ask	-	STR	Chiedi sempre	
 values-b+it/strings.xml	string	player_settings_play_in_app	-	STR	Lettore interno	
@@ -18520,6 +18780,16 @@ values-b+iw/strings.xml	string	player_load_subtitles	-	STR	טען מקובץ
 values-b+iw/strings.xml	string	player_load_subtitles_online	-	STR	טען מהאינטרנט	
 values-b+iw/strings.xml	string	player_loaded_subtitles	-	STR	נטען %s	
 values-b+iw/strings.xml	string	player_mute	-	STR	השתקה	
+values-b+iw/strings.xml	string	player_panel_failed	-	STR	נכשל	
+values-b+iw/strings.xml	string	player_panel_keeps	-	STR	שומר על %s	
+values-b+iw/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+iw/strings.xml	string	player_panel_on	-	STR	פועל	
+values-b+iw/strings.xml	string	player_panel_open	-	STR	פתיחה	
+values-b+iw/strings.xml	string	player_panel_quality_profile	-	STR	פרופיל איכות	
+values-b+iw/strings.xml	string	player_panel_quality_unknown	-	STR	איכות לא ידועה	
+values-b+iw/strings.xml	string	player_panel_retry_all	-	STR	לנסות שוב את כל המקורות	
+values-b+iw/strings.xml	string	player_panel_style	-	STR	סגנון כתוביות	
+values-b+iw/strings.xml	string	player_panel_use	-	STR	שימוש	
 values-b+iw/strings.xml	string	player_pref	-	STR	נגן וידאו מועדף	
 values-b+iw/strings.xml	string	player_settings_play_in_app	-	STR	נגן פנימי	
 values-b+iw/strings.xml	string	player_size_settings	-	STR	כפתור שינוי גודל הנגן	
@@ -19357,6 +19627,16 @@ values-b+ja/strings.xml	string	player_loaded_subtitles	-	STR	%s を読み込み�
 values-b+ja/strings.xml	string	player_mute	-	STR	ミュート	
 values-b+ja/strings.xml	string	player_notification_channel_description	-	STR	バックグラウンドから再生を制御するためのプレーヤー通知	
 values-b+ja/strings.xml	string	player_notification_channel_name	-	STR	プレーヤー通知	
+values-b+ja/strings.xml	string	player_panel_failed	-	STR	失敗	
+values-b+ja/strings.xml	string	player_panel_keeps	-	STR	%s を維持	
+values-b+ja/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ja/strings.xml	string	player_panel_on	-	STR	オン	
+values-b+ja/strings.xml	string	player_panel_open	-	STR	開く	
+values-b+ja/strings.xml	string	player_panel_quality_profile	-	STR	画質プロファイル	
+values-b+ja/strings.xml	string	player_panel_quality_unknown	-	STR	画質不明	
+values-b+ja/strings.xml	string	player_panel_retry_all	-	STR	すべてのソースを再試行	
+values-b+ja/strings.xml	string	player_panel_style	-	STR	字幕スタイル	
+values-b+ja/strings.xml	string	player_panel_use	-	STR	使用	
 values-b+ja/strings.xml	string	player_pref	-	STR	優先ビデオプレーヤー	
 values-b+ja/strings.xml	string	player_settings_always_ask	-	STR	常に尋ねること	
 values-b+ja/strings.xml	string	player_settings_play_in_app	-	STR	内部プレーヤー	
@@ -19954,6 +20234,16 @@ values-b+kn/strings.xml	string	player_hud_seek_forward	-	STR	ಮುಂದಕ್�
 values-b+kn/strings.xml	string	player_hud_speed	-	STR	ವೇಗ	
 values-b+kn/strings.xml	string	player_hud_up_next	-	STR	ಮುಂದಿನದು · %s	
 values-b+kn/strings.xml	string	player_mute	-	STR	ಮ್ಯೂಟ್ ಮಾಡಿ	
+values-b+kn/strings.xml	string	player_panel_failed	-	STR	ವಿಫಲ	
+values-b+kn/strings.xml	string	player_panel_keeps	-	STR	%s ಉಳಿಸುತ್ತದೆ	
+values-b+kn/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+kn/strings.xml	string	player_panel_on	-	STR	ಆನ್	
+values-b+kn/strings.xml	string	player_panel_open	-	STR	ತೆರೆಯಿರಿ	
+values-b+kn/strings.xml	string	player_panel_quality_profile	-	STR	ಗುಣಮಟ್ಟದ ಪ್ರೊಫೈಲ್	
+values-b+kn/strings.xml	string	player_panel_quality_unknown	-	STR	ಗುಣಮಟ್ಟ ಅಜ್ಞಾತ	
+values-b+kn/strings.xml	string	player_panel_retry_all	-	STR	ಎಲ್ಲಾ ಮೂಲಗಳನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ	
+values-b+kn/strings.xml	string	player_panel_style	-	STR	ಉಪಶೀರ್ಷಿಕೆ ಶೈಲಿ	
+values-b+kn/strings.xml	string	player_panel_use	-	STR	ಬಳಸಿ	
 values-b+kn/strings.xml	string	player_size_settings	-	STR	ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್	
 values-b+kn/strings.xml	string	player_size_settings_des	-	STR	ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ	
 values-b+kn/strings.xml	string	player_source_playing	-	STR	ಪ್ಲೇ ಆಗುತ್ತಿದೆ	
@@ -20585,6 +20875,16 @@ values-b+ko/strings.xml	string	player_loaded_subtitles	-	STR	로드됨 %s
 values-b+ko/strings.xml	string	player_mute	-	STR	음소거	
 values-b+ko/strings.xml	string	player_notification_channel_description	-	STR	백그라운드에서 재생을 제어하기 위한 플레이어 알림	
 values-b+ko/strings.xml	string	player_notification_channel_name	-	STR	플레이어 알림	
+values-b+ko/strings.xml	string	player_panel_failed	-	STR	실패	
+values-b+ko/strings.xml	string	player_panel_keeps	-	STR	%s 유지	
+values-b+ko/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ko/strings.xml	string	player_panel_on	-	STR	켜짐	
+values-b+ko/strings.xml	string	player_panel_open	-	STR	열기	
+values-b+ko/strings.xml	string	player_panel_quality_profile	-	STR	화질 프로필	
+values-b+ko/strings.xml	string	player_panel_quality_unknown	-	STR	화질 알 수 없음	
+values-b+ko/strings.xml	string	player_panel_retry_all	-	STR	모든 소스 다시 시도	
+values-b+ko/strings.xml	string	player_panel_style	-	STR	자막 스타일	
+values-b+ko/strings.xml	string	player_panel_use	-	STR	사용	
 values-b+ko/strings.xml	string	player_pref	-	STR	선호하는 동영상 플레이어	
 values-b+ko/strings.xml	string	player_settings_always_ask	-	STR	항상 묻기	
 values-b+ko/strings.xml	string	player_settings_play_in_app	-	STR	내부 플레이어	
@@ -21291,6 +21591,16 @@ values-b+lt/strings.xml	string	player_hud_seek_forward	-	STR	Pirmyn
 values-b+lt/strings.xml	string	player_hud_speed	-	STR	Greitis	
 values-b+lt/strings.xml	string	player_hud_up_next	-	STR	Toliau · %s	
 values-b+lt/strings.xml	string	player_mute	-	STR	Nutildyti	
+values-b+lt/strings.xml	string	player_panel_failed	-	STR	nepavyko	
+values-b+lt/strings.xml	string	player_panel_keeps	-	STR	išlaiko %s	
+values-b+lt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+lt/strings.xml	string	player_panel_on	-	STR	Įjungta	
+values-b+lt/strings.xml	string	player_panel_open	-	STR	Atidaryti	
+values-b+lt/strings.xml	string	player_panel_quality_profile	-	STR	Kokybės profilis	
+values-b+lt/strings.xml	string	player_panel_quality_unknown	-	STR	kokybė nežinoma	
+values-b+lt/strings.xml	string	player_panel_retry_all	-	STR	Bandyti visus šaltinius iš naujo	
+values-b+lt/strings.xml	string	player_panel_style	-	STR	Subtitrų stilius	
+values-b+lt/strings.xml	string	player_panel_use	-	STR	Naudoti	
 values-b+lt/strings.xml	string	player_settings_play_in_app	-	STR	Integruotas grotuvas	
 values-b+lt/strings.xml	string	player_size_settings	-	STR	Grotuvo dydžio pakeitimo mygtukas	
 values-b+lt/strings.xml	string	player_size_settings_des	-	STR	Pašalinti juodas paraštes	
@@ -21959,6 +22269,16 @@ values-b+lv/strings.xml	string	player_load_subtitles	-	STR	Ielādēt no datnes
 values-b+lv/strings.xml	string	player_load_subtitles_online	-	STR	Lejupielādēt no interneta	
 values-b+lv/strings.xml	string	player_loaded_subtitles	-	STR	Ielādēti %s	
 values-b+lv/strings.xml	string	player_mute	-	STR	Izslēgt skaņu	
+values-b+lv/strings.xml	string	player_panel_failed	-	STR	neizdevās	
+values-b+lv/strings.xml	string	player_panel_keeps	-	STR	saglabā %s	
+values-b+lv/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+lv/strings.xml	string	player_panel_on	-	STR	Ieslēgts	
+values-b+lv/strings.xml	string	player_panel_open	-	STR	Atvērt	
+values-b+lv/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitātes profils	
+values-b+lv/strings.xml	string	player_panel_quality_unknown	-	STR	kvalitāte nezināma	
+values-b+lv/strings.xml	string	player_panel_retry_all	-	STR	Mēģināt visus avotus vēlreiz	
+values-b+lv/strings.xml	string	player_panel_style	-	STR	Subtitru stils	
+values-b+lv/strings.xml	string	player_panel_use	-	STR	Izmantot	
 values-b+lv/strings.xml	string	player_pref	-	STR	Vēlamais video atskaņotājs	
 values-b+lv/strings.xml	string	player_settings_play_in_app	-	STR	Iekšējais atskaņotājs	
 values-b+lv/strings.xml	string	player_size_settings	-	STR	Players izmēra poga	
@@ -22831,6 +23151,16 @@ values-b+mk/strings.xml	string	player_loaded_subtitles	-	STR	Вчитан %s
 values-b+mk/strings.xml	string	player_mute	-	STR	Исклучи звук	
 values-b+mk/strings.xml	string	player_notification_channel_description	-	STR	Известување од плеерот за контрола на репродукцијата од позадина	
 values-b+mk/strings.xml	string	player_notification_channel_name	-	STR	Известувања од плеерот	
+values-b+mk/strings.xml	string	player_panel_failed	-	STR	неуспешно	
+values-b+mk/strings.xml	string	player_panel_keeps	-	STR	задржува %s	
+values-b+mk/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+mk/strings.xml	string	player_panel_on	-	STR	Вклучено	
+values-b+mk/strings.xml	string	player_panel_open	-	STR	Отвори	
+values-b+mk/strings.xml	string	player_panel_quality_profile	-	STR	Профил за квалитет	
+values-b+mk/strings.xml	string	player_panel_quality_unknown	-	STR	непознат квалитет	
+values-b+mk/strings.xml	string	player_panel_retry_all	-	STR	Обиди ги сите извори повторно	
+values-b+mk/strings.xml	string	player_panel_style	-	STR	Стил на преводот	
+values-b+mk/strings.xml	string	player_panel_use	-	STR	Користи	
 values-b+mk/strings.xml	string	player_pref	-	STR	Префериран видео плеер	
 values-b+mk/strings.xml	string	player_settings_always_ask	-	STR	Секогаш прашувај	
 values-b+mk/strings.xml	string	player_settings_play_in_app	-	STR	Внатрешен плеер	
@@ -23514,6 +23844,16 @@ values-b+ml/strings.xml	string	player_hud_speed	-	STR	വേഗത
 values-b+ml/strings.xml	string	player_hud_up_next	-	STR	അടുത്തത് · %s	
 values-b+ml/strings.xml	string	player_is_live	-	STR	തൽസമയം	
 values-b+ml/strings.xml	string	player_mute	-	STR	നിശബ്‌ദമാക്കുക	
+values-b+ml/strings.xml	string	player_panel_failed	-	STR	പരാജയപ്പെട്ടു	
+values-b+ml/strings.xml	string	player_panel_keeps	-	STR	%s നിലനിർത്തുന്നു	
+values-b+ml/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ml/strings.xml	string	player_panel_on	-	STR	ഓൺ	
+values-b+ml/strings.xml	string	player_panel_open	-	STR	തുറക്കുക	
+values-b+ml/strings.xml	string	player_panel_quality_profile	-	STR	ഗുണനിലവാര പ്രൊഫൈൽ	
+values-b+ml/strings.xml	string	player_panel_quality_unknown	-	STR	ഗുണനിലവാരം അറിയില്ല	
+values-b+ml/strings.xml	string	player_panel_retry_all	-	STR	എല്ലാ ഉറവിടങ്ങളും വീണ്ടും ശ്രമിക്കുക	
+values-b+ml/strings.xml	string	player_panel_style	-	STR	സബ്‌ടൈറ്റിൽ ശൈലി	
+values-b+ml/strings.xml	string	player_panel_use	-	STR	ഉപയോഗിക്കുക	
 values-b+ml/strings.xml	string	player_size_settings	-	STR	പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ	
 values-b+ml/strings.xml	string	player_size_settings_des	-	STR	കറുത്ത അതിർത്തി നീക്കംചെയ്യുക	
 values-b+ml/strings.xml	string	player_source_playing	-	STR	പ്ലേ ചെയ്യുന്നു	
@@ -24124,6 +24464,16 @@ values-b+ms/strings.xml	string	player_hud_seek_forward	-	STR	Maju
 values-b+ms/strings.xml	string	player_hud_speed	-	STR	Kelajuan	
 values-b+ms/strings.xml	string	player_hud_up_next	-	STR	Seterusnya · %s	
 values-b+ms/strings.xml	string	player_mute	-	STR	Redam	
+values-b+ms/strings.xml	string	player_panel_failed	-	STR	gagal	
+values-b+ms/strings.xml	string	player_panel_keeps	-	STR	kekalkan %s	
+values-b+ms/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ms/strings.xml	string	player_panel_on	-	STR	Hidup	
+values-b+ms/strings.xml	string	player_panel_open	-	STR	Buka	
+values-b+ms/strings.xml	string	player_panel_quality_profile	-	STR	Profil kualiti	
+values-b+ms/strings.xml	string	player_panel_quality_unknown	-	STR	kualiti tidak diketahui	
+values-b+ms/strings.xml	string	player_panel_retry_all	-	STR	Cuba semula semua sumber	
+values-b+ms/strings.xml	string	player_panel_style	-	STR	Gaya sari kata	
+values-b+ms/strings.xml	string	player_panel_use	-	STR	Guna	
 values-b+ms/strings.xml	string	player_settings_play_in_app	-	STR	Pemain dalaman	
 values-b+ms/strings.xml	string	player_size_settings	-	STR	Saiz butang pemain	
 values-b+ms/strings.xml	string	player_size_settings_des	-	STR	Buang sempadan hitam	
@@ -24643,6 +24993,16 @@ values-b+mt/strings.xml	string	player_hud_seek_forward	-	STR	Il-quddiem
 values-b+mt/strings.xml	string	player_hud_speed	-	STR	Veloċità	
 values-b+mt/strings.xml	string	player_hud_up_next	-	STR	Li jmiss · %s	
 values-b+mt/strings.xml	string	player_mute	-	STR	Itfi l-ħoss	
+values-b+mt/strings.xml	string	player_panel_failed	-	STR	falla	
+values-b+mt/strings.xml	string	player_panel_keeps	-	STR	iżomm %s	
+values-b+mt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+mt/strings.xml	string	player_panel_on	-	STR	Mixgħul	
+values-b+mt/strings.xml	string	player_panel_open	-	STR	Iftaħ	
+values-b+mt/strings.xml	string	player_panel_quality_profile	-	STR	Profil tal-kwalità	
+values-b+mt/strings.xml	string	player_panel_quality_unknown	-	STR	kwalità mhux magħrufa	
+values-b+mt/strings.xml	string	player_panel_retry_all	-	STR	Erġa' pprova s-sorsi kollha	
+values-b+mt/strings.xml	string	player_panel_style	-	STR	Stil tas-sottotitli	
+values-b+mt/strings.xml	string	player_panel_use	-	STR	Uża	
 values-b+mt/strings.xml	string	player_source_playing	-	STR	Qed jindaqq	
 values-b+mt/strings.xml	string	player_source_resumes_at	-	STR	Il-bidla żżomm il-post tiegħek: ikompli minn %1$s	
 values-b+mt/strings.xml	string	player_source_retry	-	STR	Erġa' pprova	
@@ -25142,6 +25502,16 @@ values-b+my/strings.xml	string	player_load_subtitles	-	STR	ဖိုင်မှ
 values-b+my/strings.xml	string	player_load_subtitles_online	-	STR	အင်တာနက်မှ တင်သွင်းမည်	
 values-b+my/strings.xml	string	player_loaded_subtitles	-	STR	တင်ပြီး %s	
 values-b+my/strings.xml	string	player_mute	-	STR	အသံပိတ်ရန်	
+values-b+my/strings.xml	string	player_panel_failed	-	STR	မအောင်မြင်ပါ	
+values-b+my/strings.xml	string	player_panel_keeps	-	STR	%s ကို ထိန်းထားသည်	
+values-b+my/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+my/strings.xml	string	player_panel_on	-	STR	ဖွင့်	
+values-b+my/strings.xml	string	player_panel_open	-	STR	ဖွင့်ရန်	
+values-b+my/strings.xml	string	player_panel_quality_profile	-	STR	အရည်အသွေး ပရိုဖိုင်	
+values-b+my/strings.xml	string	player_panel_quality_unknown	-	STR	အရည်အသွေး မသိ	
+values-b+my/strings.xml	string	player_panel_retry_all	-	STR	ရင်းမြစ်အားလုံး ထပ်စမ်းရန်	
+values-b+my/strings.xml	string	player_panel_style	-	STR	စာတန်းထိုး ပုံစံ	
+values-b+my/strings.xml	string	player_panel_use	-	STR	သုံးရန်	
 values-b+my/strings.xml	string	player_pref	-	STR	ဦးစားပေး ဗီဒီယိုဖွင့်စက်	
 values-b+my/strings.xml	string	player_settings_play_in_app	-	STR	ဖုန်းတွင်းကြည့်ရှုမှု	
 values-b+my/strings.xml	string	player_size_settings	-	STR	ကြည့်ရှုမှု စခရင်အရွယ်အစားချိန်ညိှမှု	
@@ -25652,6 +26022,16 @@ values-b+ne/strings.xml	string	player_hud_seek_forward	-	STR	अगाडि
 values-b+ne/strings.xml	string	player_hud_speed	-	STR	गति	
 values-b+ne/strings.xml	string	player_hud_up_next	-	STR	अर्को · %s	
 values-b+ne/strings.xml	string	player_mute	-	STR	म्यूट गर्नुहोस्	
+values-b+ne/strings.xml	string	player_panel_failed	-	STR	असफल	
+values-b+ne/strings.xml	string	player_panel_keeps	-	STR	%s राख्छ	
+values-b+ne/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ne/strings.xml	string	player_panel_on	-	STR	अन	
+values-b+ne/strings.xml	string	player_panel_open	-	STR	खोल्नुहोस्	
+values-b+ne/strings.xml	string	player_panel_quality_profile	-	STR	गुणस्तर प्रोफाइल	
+values-b+ne/strings.xml	string	player_panel_quality_unknown	-	STR	गुणस्तर अज्ञात	
+values-b+ne/strings.xml	string	player_panel_retry_all	-	STR	सबै स्रोत फेरि प्रयास गर्नुहोस्	
+values-b+ne/strings.xml	string	player_panel_style	-	STR	सबटाइटल शैली	
+values-b+ne/strings.xml	string	player_panel_use	-	STR	प्रयोग गर्नुहोस्	
 values-b+ne/strings.xml	string	player_size_settings	-	STR	प्लेयर resize गर्ने वटन	
 values-b+ne/strings.xml	string	player_size_settings_des	-	STR	कालो सीमा हटाउनुहोस	
 values-b+ne/strings.xml	string	player_source_playing	-	STR	चलिरहेको	
@@ -26264,6 +26644,16 @@ values-b+nl/strings.xml	string	player_loaded_subtitles	-	STR	Geladen %s
 values-b+nl/strings.xml	string	player_mute	-	STR	Dempen	
 values-b+nl/strings.xml	string	player_notification_channel_description	-	STR	De speler melding om de kijkervaring van de achtergrond de besturen	
 values-b+nl/strings.xml	string	player_notification_channel_name	-	STR	Speler meldingen	
+values-b+nl/strings.xml	string	player_panel_failed	-	STR	mislukt	
+values-b+nl/strings.xml	string	player_panel_keeps	-	STR	behoudt %s	
+values-b+nl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+nl/strings.xml	string	player_panel_on	-	STR	Aan	
+values-b+nl/strings.xml	string	player_panel_open	-	STR	Openen	
+values-b+nl/strings.xml	string	player_panel_quality_profile	-	STR	Kwaliteitsprofiel	
+values-b+nl/strings.xml	string	player_panel_quality_unknown	-	STR	kwaliteit onbekend	
+values-b+nl/strings.xml	string	player_panel_retry_all	-	STR	Alle bronnen opnieuw proberen	
+values-b+nl/strings.xml	string	player_panel_style	-	STR	Ondertitelstijl	
+values-b+nl/strings.xml	string	player_panel_use	-	STR	Gebruiken	
 values-b+nl/strings.xml	string	player_pref	-	STR	Gewenste videospeler	
 values-b+nl/strings.xml	string	player_settings_always_ask	-	STR	Vraag altijd	
 values-b+nl/strings.xml	string	player_settings_play_in_app	-	STR	Interne speler	
@@ -26886,6 +27276,16 @@ values-b+nn/strings.xml	string	player_hud_seek_forward	-	STR	Spol fram
 values-b+nn/strings.xml	string	player_hud_speed	-	STR	Fart	
 values-b+nn/strings.xml	string	player_hud_up_next	-	STR	Neste · %s	
 values-b+nn/strings.xml	string	player_mute	-	STR	Slå av lyd	
+values-b+nn/strings.xml	string	player_panel_failed	-	STR	feila	
+values-b+nn/strings.xml	string	player_panel_keeps	-	STR	held på %s	
+values-b+nn/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+nn/strings.xml	string	player_panel_on	-	STR	På	
+values-b+nn/strings.xml	string	player_panel_open	-	STR	Opne	
+values-b+nn/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitetsprofil	
+values-b+nn/strings.xml	string	player_panel_quality_unknown	-	STR	ukjend kvalitet	
+values-b+nn/strings.xml	string	player_panel_retry_all	-	STR	Prøv alle kjeldene på nytt	
+values-b+nn/strings.xml	string	player_panel_style	-	STR	Stil for undertekstar	
+values-b+nn/strings.xml	string	player_panel_use	-	STR	Bruk	
 values-b+nn/strings.xml	string	player_size_settings_des	-	STR	Fjern dei svarte kantane	
 values-b+nn/strings.xml	string	player_source_playing	-	STR	Spelar	
 values-b+nn/strings.xml	string	player_source_resumes_at	-	STR	Bytet held på plassen din: held fram frå %1$s	
@@ -27421,6 +27821,16 @@ values-b+no/strings.xml	string	player_load_subtitles	-	STR	Last inn fra fil
 values-b+no/strings.xml	string	player_load_subtitles_online	-	STR	Last inn fra Internett	
 values-b+no/strings.xml	string	player_loaded_subtitles	-	STR	Lastet inn %s	
 values-b+no/strings.xml	string	player_mute	-	STR	Slå av lyden	
+values-b+no/strings.xml	string	player_panel_failed	-	STR	feilet	
+values-b+no/strings.xml	string	player_panel_keeps	-	STR	beholder %s	
+values-b+no/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+no/strings.xml	string	player_panel_on	-	STR	På	
+values-b+no/strings.xml	string	player_panel_open	-	STR	Åpne	
+values-b+no/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitetsprofil	
+values-b+no/strings.xml	string	player_panel_quality_unknown	-	STR	ukjent kvalitet	
+values-b+no/strings.xml	string	player_panel_retry_all	-	STR	Prøv alle kildene på nytt	
+values-b+no/strings.xml	string	player_panel_style	-	STR	Undertekststil	
+values-b+no/strings.xml	string	player_panel_use	-	STR	Bruk	
 values-b+no/strings.xml	string	player_pref	-	STR	Foretrukket videospiller	
 values-b+no/strings.xml	string	player_settings_play_in_app	-	STR	Intern spiller	
 values-b+no/strings.xml	string	player_size_settings	-	STR	Knapp for størrelse på spiller	
@@ -27950,6 +28360,16 @@ values-b+or/strings.xml	string	player_hud_seek_forward	-	STR	ଆଗକୁ
 values-b+or/strings.xml	string	player_hud_speed	-	STR	ଗତି	
 values-b+or/strings.xml	string	player_hud_up_next	-	STR	ପରବର୍ତ୍ତୀ · %s	
 values-b+or/strings.xml	string	player_mute	-	STR	ମ୍ୟୁଟ କରନ୍ତୁ	
+values-b+or/strings.xml	string	player_panel_failed	-	STR	ବିଫଳ	
+values-b+or/strings.xml	string	player_panel_keeps	-	STR	%s ରଖେ	
+values-b+or/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+or/strings.xml	string	player_panel_on	-	STR	ଅନ୍	
+values-b+or/strings.xml	string	player_panel_open	-	STR	ଖୋଲନ୍ତୁ	
+values-b+or/strings.xml	string	player_panel_quality_profile	-	STR	ଗୁଣବତ୍ତା ପ୍ରୋଫାଇଲ୍	
+values-b+or/strings.xml	string	player_panel_quality_unknown	-	STR	ଗୁଣବତ୍ତା ଅଜଣା	
+values-b+or/strings.xml	string	player_panel_retry_all	-	STR	ସମସ୍ତ ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ	
+values-b+or/strings.xml	string	player_panel_style	-	STR	ସବଟାଇଟଲ୍ ଶୈଳୀ	
+values-b+or/strings.xml	string	player_panel_use	-	STR	ବ୍ୟବହାର କରନ୍ତୁ	
 values-b+or/strings.xml	string	player_settings_play_in_app	-	STR	ଅନ୍ତଃ-ଚାଳକ	
 values-b+or/strings.xml	string	player_source_playing	-	STR	ଚାଲୁଛି	
 values-b+or/strings.xml	string	player_source_resumes_at	-	STR	ବଦଳାଇଲେ ଆପଣଙ୍କ ସ୍ଥାନ ରହେ: %1$s ରୁ ଜାରି	
@@ -28638,6 +29058,16 @@ values-b+pl/strings.xml	string	player_loaded_subtitles	-	STR	Załadowano %s
 values-b+pl/strings.xml	string	player_mute	-	STR	Wycisz	
 values-b+pl/strings.xml	string	player_notification_channel_description	-	STR	Powiadomienie odtwarzacza umożliwiające sterowanie odtwarzaniem w tle	
 values-b+pl/strings.xml	string	player_notification_channel_name	-	STR	Powiadomienia odtwarzacza	
+values-b+pl/strings.xml	string	player_panel_failed	-	STR	błąd	
+values-b+pl/strings.xml	string	player_panel_keeps	-	STR	zachowuje %s	
+values-b+pl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+pl/strings.xml	string	player_panel_on	-	STR	Wł.	
+values-b+pl/strings.xml	string	player_panel_open	-	STR	Otwórz	
+values-b+pl/strings.xml	string	player_panel_quality_profile	-	STR	Profil jakości	
+values-b+pl/strings.xml	string	player_panel_quality_unknown	-	STR	nieznana jakość	
+values-b+pl/strings.xml	string	player_panel_retry_all	-	STR	Ponów wszystkie źródła	
+values-b+pl/strings.xml	string	player_panel_style	-	STR	Styl napisów	
+values-b+pl/strings.xml	string	player_panel_use	-	STR	Użyj	
 values-b+pl/strings.xml	string	player_pref	-	STR	Preferowany odtwarzacz wideo	
 values-b+pl/strings.xml	string	player_settings_always_ask	-	STR	Zawsze pytaj	
 values-b+pl/strings.xml	string	player_settings_play_in_app	-	STR	Odtwarzacz wewnętrzny	
@@ -29582,6 +30012,16 @@ values-b+pt+BR/strings.xml	string	player_loaded_subtitles	-	STR	%s carregada
 values-b+pt+BR/strings.xml	string	player_mute	-	STR	Desativar som	
 values-b+pt+BR/strings.xml	string	player_notification_channel_description	-	STR	Notificação do player para controlar a reprodução em segundo plano	
 values-b+pt+BR/strings.xml	string	player_notification_channel_name	-	STR	Notificações de reprodução	
+values-b+pt+BR/strings.xml	string	player_panel_failed	-	STR	falhou	
+values-b+pt+BR/strings.xml	string	player_panel_keeps	-	STR	mantém %s	
+values-b+pt+BR/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+pt+BR/strings.xml	string	player_panel_on	-	STR	Ativado	
+values-b+pt+BR/strings.xml	string	player_panel_open	-	STR	Abrir	
+values-b+pt+BR/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de qualidade	
+values-b+pt+BR/strings.xml	string	player_panel_quality_unknown	-	STR	qualidade desconhecida	
+values-b+pt+BR/strings.xml	string	player_panel_retry_all	-	STR	Tentar todas as fontes de novo	
+values-b+pt+BR/strings.xml	string	player_panel_style	-	STR	Estilo das legendas	
+values-b+pt+BR/strings.xml	string	player_panel_use	-	STR	Usar	
 values-b+pt+BR/strings.xml	string	player_pref	-	STR	Player de vídeo preferido	
 values-b+pt+BR/strings.xml	string	player_settings_always_ask	-	STR	Perguntar sempre	
 values-b+pt+BR/strings.xml	string	player_settings_play_in_app	-	STR	Player interno	
@@ -30523,6 +30963,16 @@ values-b+pt/strings.xml	string	player_loaded_subtitles	-	STR	%s carregada
 values-b+pt/strings.xml	string	player_mute	-	STR	Desativar som	
 values-b+pt/strings.xml	string	player_notification_channel_description	-	STR	Notificação do player para controlar a reprodução em segundo plano	
 values-b+pt/strings.xml	string	player_notification_channel_name	-	STR	Notificações de reprodução	
+values-b+pt/strings.xml	string	player_panel_failed	-	STR	falhou	
+values-b+pt/strings.xml	string	player_panel_keeps	-	STR	mantém %s	
+values-b+pt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+pt/strings.xml	string	player_panel_on	-	STR	Ativado	
+values-b+pt/strings.xml	string	player_panel_open	-	STR	Abrir	
+values-b+pt/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de qualidade	
+values-b+pt/strings.xml	string	player_panel_quality_unknown	-	STR	qualidade desconhecida	
+values-b+pt/strings.xml	string	player_panel_retry_all	-	STR	Tentar novamente todas as fontes	
+values-b+pt/strings.xml	string	player_panel_style	-	STR	Estilo das legendas	
+values-b+pt/strings.xml	string	player_panel_use	-	STR	Usar	
 values-b+pt/strings.xml	string	player_pref	-	STR	Player de vídeo preferido	
 values-b+pt/strings.xml	string	player_settings_always_ask	-	STR	Sempre perguntar	
 values-b+pt/strings.xml	string	player_settings_play_in_app	-	STR	Player interno	
@@ -31373,6 +31823,16 @@ values-b+qt/strings.xml	string	player_load_subtitles	-	STR	aagg aahh uuuk
 values-b+qt/strings.xml	string	player_load_subtitles_online	-	STR	eeek aahh oooohhhh	
 values-b+qt/strings.xml	string	player_loaded_subtitles	-	STR	oooohh %s	
 values-b+qt/strings.xml	string	player_mute	-	STR	ooh oh	
+values-b+qt/strings.xml	string	player_panel_failed	-	STR	aagh	
+values-b+qt/strings.xml	string	player_panel_keeps	-	STR	ooh %s	
+values-b+qt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+qt/strings.xml	string	player_panel_on	-	STR	Ook	
+values-b+qt/strings.xml	string	player_panel_open	-	STR	Aah	
+values-b+qt/strings.xml	string	player_panel_quality_profile	-	STR	Oohh aagh	
+values-b+qt/strings.xml	string	player_panel_quality_unknown	-	STR	oohh uuk	
+values-b+qt/strings.xml	string	player_panel_retry_all	-	STR	Aagh oohh uuk	
+values-b+qt/strings.xml	string	player_panel_style	-	STR	Oohh aak	
+values-b+qt/strings.xml	string	player_panel_use	-	STR	Uuk	
 values-b+qt/strings.xml	string	player_pref	-	STR	aaaagggah uuugg uuuugg	
 values-b+qt/strings.xml	string	player_settings_play_in_app	-	STR	aaaagggh uuuugg	
 values-b+qt/strings.xml	string	player_settings_select_cast_device	-	STR	aaaagg aahh oooohh	
@@ -32198,6 +32658,16 @@ values-b+ro/strings.xml	string	player_load_subtitles	-	STR	Încărcați din fiș
 values-b+ro/strings.xml	string	player_load_subtitles_online	-	STR	Încărcare de pe Internet	
 values-b+ro/strings.xml	string	player_loaded_subtitles	-	STR	A fost încărcat %s	
 values-b+ro/strings.xml	string	player_mute	-	STR	Dezactivează sunetul	
+values-b+ro/strings.xml	string	player_panel_failed	-	STR	eșuat	
+values-b+ro/strings.xml	string	player_panel_keeps	-	STR	păstrează %s	
+values-b+ro/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ro/strings.xml	string	player_panel_on	-	STR	Activat	
+values-b+ro/strings.xml	string	player_panel_open	-	STR	Deschide	
+values-b+ro/strings.xml	string	player_panel_quality_profile	-	STR	Profil de calitate	
+values-b+ro/strings.xml	string	player_panel_quality_unknown	-	STR	calitate necunoscută	
+values-b+ro/strings.xml	string	player_panel_retry_all	-	STR	Reîncearcă toate sursele	
+values-b+ro/strings.xml	string	player_panel_style	-	STR	Stilul subtitrărilor	
+values-b+ro/strings.xml	string	player_panel_use	-	STR	Folosește	
 values-b+ro/strings.xml	string	player_pref	-	STR	Player video preferat	
 values-b+ro/strings.xml	string	player_settings_play_in_app	-	STR	Player intern	
 values-b+ro/strings.xml	string	player_settings_select_cast_device	-	STR	Selectați divece-ul pe care doriți să faceți cast	
@@ -33102,6 +33572,16 @@ values-b+ru/strings.xml	string	player_loaded_subtitles	-	STR	Загружено 
 values-b+ru/strings.xml	string	player_mute	-	STR	Выключить звук	
 values-b+ru/strings.xml	string	player_notification_channel_description	-	STR	Уведомление проигрывателя для управления воспроизведением в фоновом режиме	
 values-b+ru/strings.xml	string	player_notification_channel_name	-	STR	Уведомления плеера	
+values-b+ru/strings.xml	string	player_panel_failed	-	STR	сбой	
+values-b+ru/strings.xml	string	player_panel_keeps	-	STR	сохраняет %s	
+values-b+ru/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ru/strings.xml	string	player_panel_on	-	STR	Вкл.	
+values-b+ru/strings.xml	string	player_panel_open	-	STR	Открыть	
+values-b+ru/strings.xml	string	player_panel_quality_profile	-	STR	Профиль качества	
+values-b+ru/strings.xml	string	player_panel_quality_unknown	-	STR	качество неизвестно	
+values-b+ru/strings.xml	string	player_panel_retry_all	-	STR	Повторить все источники	
+values-b+ru/strings.xml	string	player_panel_style	-	STR	Стиль субтитров	
+values-b+ru/strings.xml	string	player_panel_use	-	STR	Использовать	
 values-b+ru/strings.xml	string	player_pref	-	STR	Предпочитаемый видеоплеер	
 values-b+ru/strings.xml	string	player_settings_always_ask	-	STR	Спрашивать всегда	
 values-b+ru/strings.xml	string	player_settings_play_in_app	-	STR	Внутренний проигрыватель	
@@ -33917,6 +34397,16 @@ values-b+sk/strings.xml	string	player_load_subtitles	-	STR	Načítať z súboru
 values-b+sk/strings.xml	string	player_load_subtitles_online	-	STR	Načítať z internetu	
 values-b+sk/strings.xml	string	player_loaded_subtitles	-	STR	Načítané %s	
 values-b+sk/strings.xml	string	player_mute	-	STR	Vypnúť zvuk	
+values-b+sk/strings.xml	string	player_panel_failed	-	STR	zlyhalo	
+values-b+sk/strings.xml	string	player_panel_keeps	-	STR	zachová %s	
+values-b+sk/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+sk/strings.xml	string	player_panel_on	-	STR	Zapnuté	
+values-b+sk/strings.xml	string	player_panel_open	-	STR	Otvoriť	
+values-b+sk/strings.xml	string	player_panel_quality_profile	-	STR	Profil kvality	
+values-b+sk/strings.xml	string	player_panel_quality_unknown	-	STR	neznáma kvalita	
+values-b+sk/strings.xml	string	player_panel_retry_all	-	STR	Skúsiť znova všetky zdroje	
+values-b+sk/strings.xml	string	player_panel_style	-	STR	Štýl titulkov	
+values-b+sk/strings.xml	string	player_panel_use	-	STR	Použiť	
 values-b+sk/strings.xml	string	player_size_settings	-	STR	Tlačidlo na zmenu veľkosti prehrávača	
 values-b+sk/strings.xml	string	player_size_settings_des	-	STR	Odstrániť čierne okraje	
 values-b+sk/strings.xml	string	player_source_playing	-	STR	Prehráva sa	
@@ -34586,6 +35076,16 @@ values-b+so/strings.xml	string	player_load_subtitles	-	STR	Faylashaada ka keen
 values-b+so/strings.xml	string	player_load_subtitles_online	-	STR	Internetka ka keen	
 values-b+so/strings.xml	string	player_loaded_subtitles	-	STR	Waxa laso kiciyey %s	
 values-b+so/strings.xml	string	player_mute	-	STR	Aamusi	
+values-b+so/strings.xml	string	player_panel_failed	-	STR	fashilay	
+values-b+so/strings.xml	string	player_panel_keeps	-	STR	wuxuu hayaa %s	
+values-b+so/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+so/strings.xml	string	player_panel_on	-	STR	Shidan	
+values-b+so/strings.xml	string	player_panel_open	-	STR	Fur	
+values-b+so/strings.xml	string	player_panel_quality_profile	-	STR	Astaanta tayada	
+values-b+so/strings.xml	string	player_panel_quality_unknown	-	STR	tayada lama yaqaan	
+values-b+so/strings.xml	string	player_panel_retry_all	-	STR	Isku day mar kale dhammaan ilaha	
+values-b+so/strings.xml	string	player_panel_style	-	STR	Qaabka qoraalka hoose	
+values-b+so/strings.xml	string	player_panel_use	-	STR	Isticmaal	
 values-b+so/strings.xml	string	player_pref	-	STR	Muqaal daaraha aad doorbiddo	
 values-b+so/strings.xml	string	player_settings_play_in_app	-	STR	Muqaal daaraha appka	
 values-b+so/strings.xml	string	player_size_settings	-	STR	Badhinka xajmiga daaraha	
@@ -35412,6 +35912,16 @@ values-b+sq/strings.xml	string	player_loaded_subtitles	-	STR	U ngarkua %s
 values-b+sq/strings.xml	string	player_mute	-	STR	Hiq zërin	
 values-b+sq/strings.xml	string	player_notification_channel_description	-	STR	Njoftimi për kontrollin e luajtjes nga sfondi	
 values-b+sq/strings.xml	string	player_notification_channel_name	-	STR	Njoftimet e luajtësit	
+values-b+sq/strings.xml	string	player_panel_failed	-	STR	dështoi	
+values-b+sq/strings.xml	string	player_panel_keeps	-	STR	ruan %s	
+values-b+sq/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+sq/strings.xml	string	player_panel_on	-	STR	Aktiv	
+values-b+sq/strings.xml	string	player_panel_open	-	STR	Hap	
+values-b+sq/strings.xml	string	player_panel_quality_profile	-	STR	Profili i cilësisë	
+values-b+sq/strings.xml	string	player_panel_quality_unknown	-	STR	cilësi e panjohur	
+values-b+sq/strings.xml	string	player_panel_retry_all	-	STR	Riprovo të gjitha burimet	
+values-b+sq/strings.xml	string	player_panel_style	-	STR	Stili i titrave	
+values-b+sq/strings.xml	string	player_panel_use	-	STR	Përdor	
 values-b+sq/strings.xml	string	player_pref	-	STR	Luajtësi i preferuar i videove	
 values-b+sq/strings.xml	string	player_settings_always_ask	-	STR	Pyet gjithmonë	
 values-b+sq/strings.xml	string	player_settings_play_in_app	-	STR	Luajtësi i integruar	
@@ -36340,6 +36850,16 @@ values-b+sv/strings.xml	string	player_loaded_subtitles	-	STR	Laddat %s
 values-b+sv/strings.xml	string	player_mute	-	STR	Stäng av ljudet	
 values-b+sv/strings.xml	string	player_notification_channel_description	-	STR	Spelarnotisen för att styra uppspelningen i bakgrunden	
 values-b+sv/strings.xml	string	player_notification_channel_name	-	STR	Spelarnotiser	
+values-b+sv/strings.xml	string	player_panel_failed	-	STR	misslyckades	
+values-b+sv/strings.xml	string	player_panel_keeps	-	STR	behåller %s	
+values-b+sv/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+sv/strings.xml	string	player_panel_on	-	STR	På	
+values-b+sv/strings.xml	string	player_panel_open	-	STR	Öppna	
+values-b+sv/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitetsprofil	
+values-b+sv/strings.xml	string	player_panel_quality_unknown	-	STR	okänd kvalitet	
+values-b+sv/strings.xml	string	player_panel_retry_all	-	STR	Försök med alla källor igen	
+values-b+sv/strings.xml	string	player_panel_style	-	STR	Undertextstil	
+values-b+sv/strings.xml	string	player_panel_use	-	STR	Använd	
 values-b+sv/strings.xml	string	player_pref	-	STR	Önskad videospelare	
 values-b+sv/strings.xml	string	player_settings_always_ask	-	STR	Fråga alltid	
 values-b+sv/strings.xml	string	player_settings_play_in_app	-	STR	Intern spelare	
@@ -37268,6 +37788,16 @@ values-b+ta/strings.xml	string	player_loaded_subtitles	-	STR	ஏற்றப்�
 values-b+ta/strings.xml	string	player_mute	-	STR	ஒலியடக்கு	
 values-b+ta/strings.xml	string	player_notification_channel_description	-	STR	பின்னணியில் இருந்து பின்னணியைக் கட்டுப்படுத்துவதற்கான பிளேயர் அறிவிப்பு	
 values-b+ta/strings.xml	string	player_notification_channel_name	-	STR	பிளேயர் அறிவிப்புகள்	
+values-b+ta/strings.xml	string	player_panel_failed	-	STR	தோல்வி	
+values-b+ta/strings.xml	string	player_panel_keeps	-	STR	%s ஐத் தக்கவைக்கிறது	
+values-b+ta/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ta/strings.xml	string	player_panel_on	-	STR	இயக்கம்	
+values-b+ta/strings.xml	string	player_panel_open	-	STR	திற	
+values-b+ta/strings.xml	string	player_panel_quality_profile	-	STR	தர சுயவிவரம்	
+values-b+ta/strings.xml	string	player_panel_quality_unknown	-	STR	தரம் தெரியவில்லை	
+values-b+ta/strings.xml	string	player_panel_retry_all	-	STR	எல்லா மூலங்களையும் மீண்டும் முயலவும்	
+values-b+ta/strings.xml	string	player_panel_style	-	STR	வசன நடை	
+values-b+ta/strings.xml	string	player_panel_use	-	STR	பயன்படுத்து	
 values-b+ta/strings.xml	string	player_pref	-	STR	விருப்பமான வீடியோ பிளேயர்	
 values-b+ta/strings.xml	string	player_settings_always_ask	-	STR	எப்போதும் கேளுங்கள்	
 values-b+ta/strings.xml	string	player_settings_play_in_app	-	STR	உள் வீரர்	
@@ -37805,6 +38335,16 @@ values-b+ti/strings.xml	string	player_hud_seek_forward	-	STR	ንቕድሚት
 values-b+ti/strings.xml	string	player_hud_speed	-	STR	ቅልጣፈ	
 values-b+ti/strings.xml	string	player_hud_up_next	-	STR	ቀጺሉ · %s	
 values-b+ti/strings.xml	string	player_mute	-	STR	ድምጺ ኣጥፍእ	
+values-b+ti/strings.xml	string	player_panel_failed	-	STR	ፈሺሉ	
+values-b+ti/strings.xml	string	player_panel_keeps	-	STR	%s ይሕዝ	
+values-b+ti/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ti/strings.xml	string	player_panel_on	-	STR	ክፉት	
+values-b+ti/strings.xml	string	player_panel_open	-	STR	ክፈት	
+values-b+ti/strings.xml	string	player_panel_quality_profile	-	STR	ናይ ዓይነት መገለጺ	
+values-b+ti/strings.xml	string	player_panel_quality_unknown	-	STR	ዓይነት ኣይፍለጥን	
+values-b+ti/strings.xml	string	player_panel_retry_all	-	STR	ኩሎም ምንጭታት ደጊምካ ፈትን	
+values-b+ti/strings.xml	string	player_panel_style	-	STR	ቅዲ ንኡስ ጽሑፍ	
+values-b+ti/strings.xml	string	player_panel_use	-	STR	ተጠቐም	
 values-b+ti/strings.xml	string	player_source_playing	-	STR	ይጻወት ኣሎ	
 values-b+ti/strings.xml	string	player_source_resumes_at	-	STR	ምቕያር ቦታኻ ይሕልው፦ ካብ %1$s ይቕጽል	
 values-b+ti/strings.xml	string	player_source_retry	-	STR	እንደገና ፈትን	
@@ -38131,6 +38671,16 @@ values-b+tl/strings.xml	string	player_hud_seek_forward	-	STR	I-forward
 values-b+tl/strings.xml	string	player_hud_speed	-	STR	Bilis	
 values-b+tl/strings.xml	string	player_hud_up_next	-	STR	Susunod · %s	
 values-b+tl/strings.xml	string	player_mute	-	STR	I-mute	
+values-b+tl/strings.xml	string	player_panel_failed	-	STR	nabigo	
+values-b+tl/strings.xml	string	player_panel_keeps	-	STR	pinapanatili ang %s	
+values-b+tl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+tl/strings.xml	string	player_panel_on	-	STR	Naka-on	
+values-b+tl/strings.xml	string	player_panel_open	-	STR	Buksan	
+values-b+tl/strings.xml	string	player_panel_quality_profile	-	STR	Profile ng kalidad	
+values-b+tl/strings.xml	string	player_panel_quality_unknown	-	STR	hindi alam ang kalidad	
+values-b+tl/strings.xml	string	player_panel_retry_all	-	STR	Subukang muli ang lahat ng source	
+values-b+tl/strings.xml	string	player_panel_style	-	STR	Estilo ng subtitle	
+values-b+tl/strings.xml	string	player_panel_use	-	STR	Gamitin	
 values-b+tl/strings.xml	string	player_size_settings	-	STR	Pindutan upang baguhin ang laki	
 values-b+tl/strings.xml	string	player_size_settings_des	-	STR	Alisin ang black borders	
 values-b+tl/strings.xml	string	player_source_playing	-	STR	Nagpe-play	
@@ -38827,6 +39377,16 @@ values-b+tr/strings.xml	string	player_loaded_subtitles	-	STR	%s eklendi
 values-b+tr/strings.xml	string	player_mute	-	STR	Sesi kapat	
 values-b+tr/strings.xml	string	player_notification_channel_description	-	STR	Oynatıcı bildirimi arka planda oynatmasını kontrol etmek içindir	
 values-b+tr/strings.xml	string	player_notification_channel_name	-	STR	Oynatıcı bildirimleri	
+values-b+tr/strings.xml	string	player_panel_failed	-	STR	başarısız	
+values-b+tr/strings.xml	string	player_panel_keeps	-	STR	%s korunur	
+values-b+tr/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+tr/strings.xml	string	player_panel_on	-	STR	Açık	
+values-b+tr/strings.xml	string	player_panel_open	-	STR	Aç	
+values-b+tr/strings.xml	string	player_panel_quality_profile	-	STR	Kalite profili	
+values-b+tr/strings.xml	string	player_panel_quality_unknown	-	STR	kalite bilinmiyor	
+values-b+tr/strings.xml	string	player_panel_retry_all	-	STR	Tüm kaynakları yeniden dene	
+values-b+tr/strings.xml	string	player_panel_style	-	STR	Altyazı stili	
+values-b+tr/strings.xml	string	player_panel_use	-	STR	Kullan	
 values-b+tr/strings.xml	string	player_pref	-	STR	Tercih edilen video oynatıcısı	
 values-b+tr/strings.xml	string	player_settings_always_ask	-	STR	Her zaman sor	
 values-b+tr/strings.xml	string	player_settings_play_in_app	-	STR	Dahili oynatıcı	
@@ -39787,6 +40347,16 @@ values-b+uk/strings.xml	string	player_loaded_subtitles	-	STR	Завантаже�
 values-b+uk/strings.xml	string	player_mute	-	STR	Вимкнути звук	
 values-b+uk/strings.xml	string	player_notification_channel_description	-	STR	Сповіщення програвача для керування відтворенням у фоновому режимі	
 values-b+uk/strings.xml	string	player_notification_channel_name	-	STR	Сповіщення програвача	
+values-b+uk/strings.xml	string	player_panel_failed	-	STR	збій	
+values-b+uk/strings.xml	string	player_panel_keeps	-	STR	зберігає %s	
+values-b+uk/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+uk/strings.xml	string	player_panel_on	-	STR	Увімк.	
+values-b+uk/strings.xml	string	player_panel_open	-	STR	Відкрити	
+values-b+uk/strings.xml	string	player_panel_quality_profile	-	STR	Профіль якості	
+values-b+uk/strings.xml	string	player_panel_quality_unknown	-	STR	якість невідома	
+values-b+uk/strings.xml	string	player_panel_retry_all	-	STR	Повторити всі джерела	
+values-b+uk/strings.xml	string	player_panel_style	-	STR	Стиль субтитрів	
+values-b+uk/strings.xml	string	player_panel_use	-	STR	Використати	
 values-b+uk/strings.xml	string	player_pref	-	STR	Бажаний відеопрогравач	
 values-b+uk/strings.xml	string	player_settings_always_ask	-	STR	Завжди запитувати	
 values-b+uk/strings.xml	string	player_settings_play_in_app	-	STR	Вбудований програвач	
@@ -40639,6 +41209,16 @@ values-b+ur/strings.xml	string	player_load_subtitles	-	STR	فائل سے لوڈ 
 values-b+ur/strings.xml	string	player_load_subtitles_online	-	STR	انٹرنیٹ سے لوڈ کریں	
 values-b+ur/strings.xml	string	player_loaded_subtitles	-	STR	لوڈ %s	
 values-b+ur/strings.xml	string	player_mute	-	STR	خاموش کریں	
+values-b+ur/strings.xml	string	player_panel_failed	-	STR	ناکام	
+values-b+ur/strings.xml	string	player_panel_keeps	-	STR	%s برقرار رکھتا ہے	
+values-b+ur/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ur/strings.xml	string	player_panel_on	-	STR	آن	
+values-b+ur/strings.xml	string	player_panel_open	-	STR	کھولیں	
+values-b+ur/strings.xml	string	player_panel_quality_profile	-	STR	معیار کی پروفائل	
+values-b+ur/strings.xml	string	player_panel_quality_unknown	-	STR	معیار نامعلوم	
+values-b+ur/strings.xml	string	player_panel_retry_all	-	STR	تمام ذرائع دوبارہ آزمائیں	
+values-b+ur/strings.xml	string	player_panel_style	-	STR	سب ٹائٹل کا انداز	
+values-b+ur/strings.xml	string	player_panel_use	-	STR	استعمال کریں	
 values-b+ur/strings.xml	string	player_pref	-	STR	ترجیحی ویڈیو پلیئر	
 values-b+ur/strings.xml	string	player_settings_play_in_app	-	STR	اندرونی پلیئر	
 values-b+ur/strings.xml	string	player_size_settings	-	STR	پلیئر کا سائز تبدیل کرنے کا بٹن	
@@ -41488,6 +42068,16 @@ values-b+vi/strings.xml	string	player_loaded_subtitles	-	STR	Đã tải %s
 values-b+vi/strings.xml	string	player_mute	-	STR	Tắt tiếng	
 values-b+vi/strings.xml	string	player_notification_channel_description	-	STR	Điều khiển phát lại trong nền bằng thông báo của trình phát	
 values-b+vi/strings.xml	string	player_notification_channel_name	-	STR	Thông báo trình phát	
+values-b+vi/strings.xml	string	player_panel_failed	-	STR	thất bại	
+values-b+vi/strings.xml	string	player_panel_keeps	-	STR	giữ %s	
+values-b+vi/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+vi/strings.xml	string	player_panel_on	-	STR	Bật	
+values-b+vi/strings.xml	string	player_panel_open	-	STR	Mở	
+values-b+vi/strings.xml	string	player_panel_quality_profile	-	STR	Hồ sơ chất lượng	
+values-b+vi/strings.xml	string	player_panel_quality_unknown	-	STR	chất lượng không rõ	
+values-b+vi/strings.xml	string	player_panel_retry_all	-	STR	Thử lại mọi nguồn	
+values-b+vi/strings.xml	string	player_panel_style	-	STR	Kiểu phụ đề	
+values-b+vi/strings.xml	string	player_panel_use	-	STR	Dùng	
 values-b+vi/strings.xml	string	player_pref	-	STR	Trình phát ưu tiên	
 values-b+vi/strings.xml	string	player_settings_always_ask	-	STR	Luôn hỏi	
 values-b+vi/strings.xml	string	player_settings_play_in_app	-	STR	Trình phát tích hợp	
@@ -42399,6 +42989,16 @@ values-b+zh+TW/strings.xml	string	player_loaded_subtitles	-	STR	已載入 %s
 values-b+zh+TW/strings.xml	string	player_mute	-	STR	靜音	
 values-b+zh+TW/strings.xml	string	player_notification_channel_description	-	STR	控制背景播放的通知	
 values-b+zh+TW/strings.xml	string	player_notification_channel_name	-	STR	播放器通知	
+values-b+zh+TW/strings.xml	string	player_panel_failed	-	STR	失敗	
+values-b+zh+TW/strings.xml	string	player_panel_keeps	-	STR	保留 %s	
+values-b+zh+TW/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+zh+TW/strings.xml	string	player_panel_on	-	STR	開	
+values-b+zh+TW/strings.xml	string	player_panel_open	-	STR	開啟	
+values-b+zh+TW/strings.xml	string	player_panel_quality_profile	-	STR	畫質設定檔	
+values-b+zh+TW/strings.xml	string	player_panel_quality_unknown	-	STR	畫質不明	
+values-b+zh+TW/strings.xml	string	player_panel_retry_all	-	STR	重試所有來源	
+values-b+zh+TW/strings.xml	string	player_panel_style	-	STR	字幕樣式	
+values-b+zh+TW/strings.xml	string	player_panel_use	-	STR	使用	
 values-b+zh+TW/strings.xml	string	player_pref	-	STR	偏好影片播放器	
 values-b+zh+TW/strings.xml	string	player_settings_always_ask	-	STR	總是詢問	
 values-b+zh+TW/strings.xml	string	player_settings_play_in_app	-	STR	內部播放器	
@@ -43306,6 +43906,16 @@ values-b+zh/strings.xml	string	player_loaded_subtitles	-	STR	已加载 %s
 values-b+zh/strings.xml	string	player_mute	-	STR	静音	
 values-b+zh/strings.xml	string	player_notification_channel_description	-	STR	控制后台播放的播放器通知	
 values-b+zh/strings.xml	string	player_notification_channel_name	-	STR	播放器通知	
+values-b+zh/strings.xml	string	player_panel_failed	-	STR	失败	
+values-b+zh/strings.xml	string	player_panel_keeps	-	STR	保留 %s	
+values-b+zh/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+zh/strings.xml	string	player_panel_on	-	STR	开	
+values-b+zh/strings.xml	string	player_panel_open	-	STR	打开	
+values-b+zh/strings.xml	string	player_panel_quality_profile	-	STR	画质配置	
+values-b+zh/strings.xml	string	player_panel_quality_unknown	-	STR	画质未知	
+values-b+zh/strings.xml	string	player_panel_retry_all	-	STR	重试所有来源	
+values-b+zh/strings.xml	string	player_panel_style	-	STR	字幕样式	
+values-b+zh/strings.xml	string	player_panel_use	-	STR	使用	
 values-b+zh/strings.xml	string	player_pref	-	STR	首选视频播放器	
 values-b+zh/strings.xml	string	player_settings_always_ask	-	STR	始终询问	
 values-b+zh/strings.xml	string	player_settings_play_in_app	-	STR	内部播放器	
@@ -44376,6 +44986,16 @@ values/strings.xml	string	player_loaded_subtitles	-	STR	Loaded %s
 values/strings.xml	string	player_mute	-	STR	Mute	
 values/strings.xml	string	player_notification_channel_description	-	STR	The player notification for controlling the playback from the background	
 values/strings.xml	string	player_notification_channel_name	-	STR	Player notifications	
+values/strings.xml	string	player_panel_failed	-	STR	failed	
+values/strings.xml	string	player_panel_keeps	-	STR	keeps %s	
+values/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values/strings.xml	string	player_panel_on	-	STR	On	
+values/strings.xml	string	player_panel_open	-	STR	Open	
+values/strings.xml	string	player_panel_quality_profile	-	STR	Quality profile	
+values/strings.xml	string	player_panel_quality_unknown	-	STR	quality unknown	
+values/strings.xml	string	player_panel_retry_all	-	STR	Retry all sources	
+values/strings.xml	string	player_panel_style	-	STR	Subtitle style	
+values/strings.xml	string	player_panel_use	-	STR	Use	
 values/strings.xml	string	player_pref	-	STR	Preferred video player	
 values/strings.xml	string	player_settings_always_ask	-	STR	Always ask	
 values/strings.xml	string	player_settings_play_in_app	-	STR	Internal player	

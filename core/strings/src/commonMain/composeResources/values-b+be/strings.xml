@@ -32,6 +32,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ЗАКЛАДКА</item><item quantity="few">%d ЗАКЛАДКІ</item><item quantity="many">%d ЗАКЛАДАК</item><item quantity="other">%d ЗАКЛАДКІ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Не ўдалося загрузіць %d раздзел</item><item quantity="few">Не ўдалося загрузіць %d раздзелы</item><item quantity="many">Не ўдалося загрузіць %d раздзелаў</item><item quantity="other">Не ўдалося загрузіць %d раздзелаў</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d назва</item><item quantity="few">%d назвы</item><item quantity="many">%d назваў</item><item quantity="other">%d назвы</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Шукаць у %d крыніцы</item><item quantity="few">Шукаць ва ўсіх %d крыніцах</item><item quantity="many">Шукаць ва ўсіх %d крыніцах</item><item quantity="other">Шукаць ва ўсіх %d крыніцах</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць у %d крыніцы.</item><item quantity="few">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.</item><item quantity="many">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.</item><item quantity="other">Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d КРЫНІЦА</item><item quantity="few">%d КРЫНІЦЫ</item><item quantity="many">%d КРЫНІЦ</item><item quantity="other">%d КРЫНІЦЫ</item></plurals>
@@ -537,6 +538,15 @@
 <string name="player_mute">Выключыць гук</string>
 <string name="player_notification_channel_description">Апавяшчэнне прайгравальніка для кіравання прайграваннем у фонавым рэжыме</string>
 <string name="player_notification_channel_name">Апавяшчэнні прайгравальніка</string>
+<string name="player_panel_failed">збой</string>
+<string name="player_panel_keeps">захоўвае %s</string>
+<string name="player_panel_on">Укл.</string>
+<string name="player_panel_open">Адкрыць</string>
+<string name="player_panel_quality_profile">Профіль якасці</string>
+<string name="player_panel_quality_unknown">якасць невядомая</string>
+<string name="player_panel_retry_all">Паўтарыць усе крыніцы</string>
+<string name="player_panel_style">Стыль субцітраў</string>
+<string name="player_panel_use">Выкарыстаць</string>
 <string name="player_pref">Прыярытэтны прайгравальнік</string>
 <string name="player_settings_always_ask">Заўсёды пытацца</string>
 <string name="player_settings_play_in_app">Убудаваны прайгравальнік</string>

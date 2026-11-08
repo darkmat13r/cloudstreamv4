@@ -34,6 +34,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d avsnitt</item><item quantity="other">%d avsnitt</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titel</item><item quantity="other">%d titlar</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d dold länk</item><item quantity="other">%d dolda länkar</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Sök i %d källa</item><item quantity="other">Sök i alla %d källor</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Tryck på tangentbordets söktangent för att söka i %d källa ändå.</item><item quantity="other">Tryck på tangentbordets söktangent för att söka i alla %d källor ändå.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KÄLLA</item><item quantity="other">%d KÄLLOR</item></plurals>
@@ -538,6 +539,15 @@
 <string name="player_mute">Stäng av ljudet</string>
 <string name="player_notification_channel_description">Spelarnotisen för att styra uppspelningen i bakgrunden</string>
 <string name="player_notification_channel_name">Spelarnotiser</string>
+<string name="player_panel_failed">misslyckades</string>
+<string name="player_panel_keeps">behåller %s</string>
+<string name="player_panel_on">På</string>
+<string name="player_panel_open">Öppna</string>
+<string name="player_panel_quality_profile">Kvalitetsprofil</string>
+<string name="player_panel_quality_unknown">okänd kvalitet</string>
+<string name="player_panel_retry_all">Försök med alla källor igen</string>
+<string name="player_panel_style">Undertextstil</string>
+<string name="player_panel_use">Använd</string>
 <string name="player_pref">Önskad videospelare</string>
 <string name="player_settings_always_ask">Fråga alltid</string>
 <string name="player_settings_play_in_app">Intern spelare</string>

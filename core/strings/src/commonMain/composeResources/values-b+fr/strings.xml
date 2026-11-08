@@ -34,6 +34,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d section</item><item quantity="many">%d sections</item><item quantity="other">%d sections</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titre</item><item quantity="many">%d titres</item><item quantity="other">%d titres</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d lien caché</item><item quantity="many">%d liens cachés</item><item quantity="other">%d liens cachés</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Rechercher dans %d source</item><item quantity="many">Rechercher dans les %d sources</item><item quantity="other">Rechercher dans les %d sources</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Appuyez sur la touche de recherche du clavier pour rechercher quand même dans %d source.</item><item quantity="many">Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.</item><item quantity="other">Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d SOURCE</item><item quantity="many">%d SOURCES</item><item quantity="other">%d SOURCES</item></plurals>
@@ -538,6 +539,15 @@
 <string name="player_mute">Couper le son</string>
 <string name="player_notification_channel_description">La notification du lecteur pour contrôler la lecture en arrière-plan</string>
 <string name="player_notification_channel_name">Notifications du lecteur</string>
+<string name="player_panel_failed">échec</string>
+<string name="player_panel_keeps">garde %s</string>
+<string name="player_panel_on">Activé</string>
+<string name="player_panel_open">Ouvrir</string>
+<string name="player_panel_quality_profile">Profil de qualité</string>
+<string name="player_panel_quality_unknown">qualité inconnue</string>
+<string name="player_panel_retry_all">Réessayer toutes les sources</string>
+<string name="player_panel_style">Style des sous-titres</string>
+<string name="player_panel_use">Utiliser</string>
 <string name="player_pref">Lecteur vidéo préféré</string>
 <string name="player_settings_always_ask">Demandez toujours</string>
 <string name="player_settings_play_in_app">Lecteur interne</string>

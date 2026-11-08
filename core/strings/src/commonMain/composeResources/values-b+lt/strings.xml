@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ŽYMA</item><item quantity="few">%d ŽYMOS</item><item quantity="many">%d ŽYMOS</item><item quantity="other">%d ŽYMŲ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepavyko įkelti %d skilties</item><item quantity="few">Nepavyko įkelti %d skilčių</item><item quantity="many">Nepavyko įkelti %d skilties</item><item quantity="other">Nepavyko įkelti %d skilčių</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d pavadinimas</item><item quantity="few">%d pavadinimai</item><item quantity="many">%d pavadinimo</item><item quantity="other">%d pavadinimų</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Ieškoti %d šaltinyje</item><item quantity="few">Ieškoti visuose šaltiniuose (%d)</item><item quantity="many">Ieškoti visuose šaltiniuose (%d)</item><item quantity="other">Ieškoti visuose šaltiniuose (%d)</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte %d šaltinyje.</item><item quantity="few">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item><item quantity="many">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item><item quantity="other">Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ŠALTINIS</item><item quantity="few">%d ŠALTINIAI</item><item quantity="many">%d ŠALTINIO</item><item quantity="other">%d ŠALTINIŲ</item></plurals>
@@ -298,6 +299,15 @@
 <string name="player_hud_speed">Greitis</string>
 <string name="player_hud_up_next">Toliau · %s</string>
 <string name="player_mute">Nutildyti</string>
+<string name="player_panel_failed">nepavyko</string>
+<string name="player_panel_keeps">išlaiko %s</string>
+<string name="player_panel_on">Įjungta</string>
+<string name="player_panel_open">Atidaryti</string>
+<string name="player_panel_quality_profile">Kokybės profilis</string>
+<string name="player_panel_quality_unknown">kokybė nežinoma</string>
+<string name="player_panel_retry_all">Bandyti visus šaltinius iš naujo</string>
+<string name="player_panel_style">Subtitrų stilius</string>
+<string name="player_panel_use">Naudoti</string>
 <string name="player_settings_play_in_app">Integruotas grotuvas</string>
 <string name="player_size_settings">Grotuvo dydžio pakeitimo mygtukas</string>
 <string name="player_size_settings_des">Pašalinti juodas paraštes</string>

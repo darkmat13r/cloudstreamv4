@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikkje lastast</item><item quantity="other">%d delar kunne ikkje lastast</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d tittel</item><item quantity="other">%d titlar</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Søk i %d kjelde</item><item quantity="other">Søk i alle %d kjeldene</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel.</item><item quantity="other">Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KJELDE</item><item quantity="other">%d KJELDER</item></plurals>
@@ -242,6 +243,15 @@
 <string name="player_hud_speed">Fart</string>
 <string name="player_hud_up_next">Neste · %s</string>
 <string name="player_mute">Slå av lyd</string>
+<string name="player_panel_failed">feila</string>
+<string name="player_panel_keeps">held på %s</string>
+<string name="player_panel_on">På</string>
+<string name="player_panel_open">Opne</string>
+<string name="player_panel_quality_profile">Kvalitetsprofil</string>
+<string name="player_panel_quality_unknown">ukjend kvalitet</string>
+<string name="player_panel_retry_all">Prøv alle kjeldene på nytt</string>
+<string name="player_panel_style">Stil for undertekstar</string>
+<string name="player_panel_use">Bruk</string>
 <string name="player_size_settings_des">Fjern dei svarte kantane</string>
 <string name="player_source_playing">Spelar</string>
 <string name="player_source_resumes_at">Bytet held på plassen din: held fram frå %1$s</string>

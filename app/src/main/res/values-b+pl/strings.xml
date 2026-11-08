@@ -538,6 +538,16 @@
 <string name="player_mute">"Wycisz"</string>
 <string name="player_notification_channel_description">"Powiadomienie odtwarzacza umożliwiające sterowanie odtwarzaniem w tle"</string>
 <string name="player_notification_channel_name">"Powiadomienia odtwarzacza"</string>
+<string name="player_panel_failed">"błąd"</string>
+<string name="player_panel_keeps" formatted="true">"zachowuje %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Wł."</string>
+<string name="player_panel_open">"Otwórz"</string>
+<string name="player_panel_quality_profile">"Profil jakości"</string>
+<string name="player_panel_quality_unknown">"nieznana jakość"</string>
+<string name="player_panel_retry_all">"Ponów wszystkie źródła"</string>
+<string name="player_panel_style">"Styl napisów"</string>
+<string name="player_panel_use">"Użyj"</string>
 <string name="player_pref">"Preferowany odtwarzacz wideo"</string>
 <string name="player_settings_always_ask">"Zawsze pytaj"</string>
 <string name="player_settings_play_in_app">"Odtwarzacz wewnętrzny"</string>

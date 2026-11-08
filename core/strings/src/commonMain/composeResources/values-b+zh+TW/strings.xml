@@ -32,6 +32,7 @@
 <plurals name="home_bookmarks_count"><item quantity="other">%d 個書籤</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d 個分區載入失敗</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d 部作品</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">搜尋全部 %d 個來源</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d 來源</item></plurals>
@@ -537,6 +538,15 @@
 <string name="player_mute">靜音</string>
 <string name="player_notification_channel_description">控制背景播放的通知</string>
 <string name="player_notification_channel_name">播放器通知</string>
+<string name="player_panel_failed">失敗</string>
+<string name="player_panel_keeps">保留 %s</string>
+<string name="player_panel_on">開</string>
+<string name="player_panel_open">開啟</string>
+<string name="player_panel_quality_profile">畫質設定檔</string>
+<string name="player_panel_quality_unknown">畫質不明</string>
+<string name="player_panel_retry_all">重試所有來源</string>
+<string name="player_panel_style">字幕樣式</string>
+<string name="player_panel_use">使用</string>
 <string name="player_pref">偏好影片播放器</string>
 <string name="player_settings_always_ask">總是詢問</string>
 <string name="player_settings_play_in_app">內部播放器</string>

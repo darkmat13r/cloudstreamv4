@@ -34,6 +34,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d seksion</item><item quantity="other">%d seksione</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titull</item><item quantity="other">%d tituj</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d link i fshehur</item><item quantity="other">%d linqe të fshehura</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Kërko në %d burim</item><item quantity="other">Kërko në të gjitha %d burimet</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në %d burim.</item><item quantity="other">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BURIM</item><item quantity="other">%d BURIME</item></plurals>
@@ -538,6 +539,15 @@
 <string name="player_mute">Hiq zërin</string>
 <string name="player_notification_channel_description">Njoftimi për kontrollin e luajtjes nga sfondi</string>
 <string name="player_notification_channel_name">Njoftimet e luajtësit</string>
+<string name="player_panel_failed">dështoi</string>
+<string name="player_panel_keeps">ruan %s</string>
+<string name="player_panel_on">Aktiv</string>
+<string name="player_panel_open">Hap</string>
+<string name="player_panel_quality_profile">Profili i cilësisë</string>
+<string name="player_panel_quality_unknown">cilësi e panjohur</string>
+<string name="player_panel_retry_all">Riprovo të gjitha burimet</string>
+<string name="player_panel_style">Stili i titrave</string>
+<string name="player_panel_use">Përdor</string>
 <string name="player_pref">Luajtësi i preferuar i videove</string>
 <string name="player_settings_always_ask">Pyet gjithmonë</string>
 <string name="player_settings_play_in_app">Luajtësi i integruar</string>

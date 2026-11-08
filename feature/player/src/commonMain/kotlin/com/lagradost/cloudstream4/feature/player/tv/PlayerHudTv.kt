@@ -24,6 +24,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -46,6 +47,7 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.panel.SidePanelHost
 import com.lagradost.cloudstream4.core.designsystem.primitive.Badge
 import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDot
 import com.lagradost.cloudstream4.core.designsystem.primitive.StatusDotState
@@ -77,6 +79,8 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.player.HudBanner
 import com.lagradost.cloudstream4.feature.player.HudTime
+import com.lagradost.cloudstream4.feature.player.PanelKind
+import com.lagradost.cloudstream4.feature.player.PlaybackPanelState
 import com.lagradost.cloudstream4.feature.player.PlayerHudAction
 import com.lagradost.cloudstream4.feature.player.PlayerHudState
 import com.lagradost.cloudstream4.feature.player.ScrubReadout
@@ -108,15 +112,65 @@ fun PlayerHudTv(
     shownSeekMs: Long,
     onAction: (PlayerHudAction) -> Unit,
     modifier: Modifier = Modifier,
+    panel: PlaybackPanelState? = null,
+) {
+    // 7e over 7d: the HUD stays mounted under the panel, and closing it gives focus back to the selector that opened it.
+    val lastPanel = rememberLastPanel(panel)
+    val selectors = remember { SelectorFocus() }
+    SidePanelHost(
+        expanded = panel != null,
+        onDismissRequest = { onAction(PlayerHudAction.PanelBack) },
+        // `BUG-36`: the opener comes from the panel last shown, which outlives the exit, never from live state: by the
+        // time focus is handed back, `panel` is already null.
+        opener = selectors.of(lastPanel?.kind),
+        modifier = modifier,
+        panel = { lastPanel?.let { PlaybackPanelTv(it, onAction) } },
+    ) {
+        Hud(state, shown, readout, clock, shownSeekMs, onAction, panelOpen = panel != null, selectors = selectors)
+    }
+}
+
+/** The three selectors that open a panel, so the one that opened it gets focus back when it closes. */
+private class SelectorFocus {
+    val source = FocusRequester()
+    val subtitles = FocusRequester()
+    val audio = FocusRequester()
+
+    /** SOURCE before any panel has opened: nothing closes then, so nothing is handed back. */
+    fun of(kind: PanelKind?): FocusRequester = when (kind) {
+        PanelKind.Subtitles -> subtitles
+        PanelKind.Audio -> audio
+        PanelKind.Source, null -> source
+    }
+}
+
+/** The panel last shown, so one sliding out keeps drawing what it closed on. */
+@Composable
+private fun rememberLastPanel(panel: PlaybackPanelState?): PlaybackPanelState? {
+    val last = remember { mutableStateOf(panel) }
+    if (panel != null) last.value = panel
+    return last.value
+}
+
+@Composable
+private fun Hud(
+    state: PlayerHudState,
+    shown: Boolean,
+    readout: ScrubReadout?,
+    clock: String,
+    shownSeekMs: Long,
+    onAction: (PlayerHudAction) -> Unit,
+    panelOpen: Boolean,
+    selectors: SelectorFocus,
 ) {
     val playPause = remember { FocusRequester() }
     val seekCell = remember { FocusRequester() }
-    Box(modifier.fillMaxSize()) {
+    Box(Modifier.fillMaxSize()) {
         if (shown) {
             Scrims()
             ChromeRow(state, clock, onAction)
             state.banner?.let { Banner(it, Modifier.offset(y = PlayerHudDefaults.BannerTop)) }
-            LowerStack(state, shownSeekMs, onAction, playPause, seekCell)
+            LowerStack(state, shownSeekMs, onAction, playPause, seekCell, selectors)
         } else {
             readout?.let { Readout(it) }
         }
@@ -135,8 +189,8 @@ fun PlayerHudTv(
             }
         }
     }
-    // 7d: entry focus on reveal is play/pause.
-    LaunchedEffect(shown) { if (shown) runCatching { playPause.requestFocus() } }
+    // 7d: entry focus on reveal is play/pause. Not under an open panel, which holds focus itself (7e).
+    LaunchedEffect(shown) { if (shown && !panelOpen) runCatching { playPause.requestFocus() } }
 }
 
 /** `.scrimtop` and `.scrimbot`: the `bg` token at the board's 0.88 and 0.92, fading to nothing. */
@@ -230,6 +284,7 @@ private fun LowerStack(
     onAction: (PlayerHudAction) -> Unit,
     playPause: FocusRequester,
     seekCell: FocusRequester,
+    selectors: SelectorFocus,
 ) {
     Column(
         modifier = Modifier
@@ -244,7 +299,7 @@ private fun LowerStack(
         Spacer(Modifier.height(CloudStreamDimens.MinFocusGap))
         Transport(state, onAction, playPause)
         Spacer(Modifier.height(CloudStreamDimens.MinFocusGap))
-        Selectors(state, onAction, seekCell)
+        Selectors(state, onAction, seekCell, selectors)
     }
 }
 
@@ -399,26 +454,26 @@ private fun HudCell(icon: ImageVector, description: String, onClick: () -> Unit,
 
 /** SOURCE, SUBTITLES, AUDIO and SPEED: what is playing, value over label. Each opens the player's existing picker. */
 @Composable
-private fun Selectors(state: PlayerHudState, onAction: (PlayerHudAction) -> Unit, seekCell: FocusRequester) {
+private fun Selectors(state: PlayerHudState, onAction: (PlayerHudAction) -> Unit, seekCell: FocusRequester, focus: SelectorFocus) {
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap)) {
         Selector(
             value = state.source ?: NONE,
             label = stringResource(Res.string.video_source),
             onClick = { onAction(PlayerHudAction.OpenSource) },
-            modifier = Modifier.width(PlayerHudDefaults.SourceWidth),
+            modifier = Modifier.width(PlayerHudDefaults.SourceWidth).focusRequester(focus.source),
         )
         Selector(
             value = state.subtitles ?: stringResource(Res.string.no_subtitles),
             label = stringResource(Res.string.player_subtitles_settings),
             onClick = { onAction(PlayerHudAction.OpenSubtitles) },
-            modifier = Modifier.width(PlayerHudDefaults.SubtitlesWidth),
+            modifier = Modifier.width(PlayerHudDefaults.SubtitlesWidth).focusRequester(focus.subtitles),
         )
         // Up from AUDIO and SPEED is the seek cell, which spans them: no transport cell sits above them.
         Selector(
             value = state.audio ?: NONE,
             label = stringResource(Res.string.audio_singular),
             onClick = { onAction(PlayerHudAction.OpenAudio) },
-            modifier = Modifier.width(PlayerHudDefaults.AudioWidth).focusProperties { up = seekCell },
+            modifier = Modifier.width(PlayerHudDefaults.AudioWidth).focusRequester(focus.audio).focusProperties { up = seekCell },
         )
         Spacer(Modifier.weight(1f))
         Selector(

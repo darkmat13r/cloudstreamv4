@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d টি বুকমার্ক</item><item quantity="other">%d টি বুকমার্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%dটি বিভাগ লোড করা যায়নি</item><item quantity="other">%dটি বিভাগ লোড করা যায়নি</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%dটি শিরোনাম</item><item quantity="other">%dটি শিরোনাম</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%dটি উৎসে খুঁজুন</item><item quantity="other">সব %dটি উৎসে খুঁজুন</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item><item quantity="other">তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d উৎস</item><item quantity="other">%d উৎস</item></plurals>
@@ -369,6 +370,15 @@
 <string name="player_hud_speed">গতি</string>
 <string name="player_hud_up_next">পরবর্তী · %s</string>
 <string name="player_mute">মিউট করুন</string>
+<string name="player_panel_failed">ব্যর্থ</string>
+<string name="player_panel_keeps">%s রাখে</string>
+<string name="player_panel_on">চালু</string>
+<string name="player_panel_open">খুলুন</string>
+<string name="player_panel_quality_profile">মানের প্রোফাইল</string>
+<string name="player_panel_quality_unknown">মান অজানা</string>
+<string name="player_panel_retry_all">সব উৎস আবার চেষ্টা করুন</string>
+<string name="player_panel_style">সাবটাইটেলের স্টাইল</string>
+<string name="player_panel_use">ব্যবহার করুন</string>
 <string name="player_size_settings">প্লেয়ারের সাইজ পরিবর্তন বাটন</string>
 <string name="player_size_settings_des">কালো প্রান্ত অপসারণ করুন</string>
 <string name="player_source_playing">চলছে</string>

@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ବୁକମାର୍କ</item><item quantity="other">%d ବୁକମାର୍କ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item><item quantity="other">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ଶୀର୍ଷକ</item><item quantity="other">%d ଶୀର୍ଷକ</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item><item quantity="other">ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item><item quantity="other">ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ଉତ୍ସ</item><item quantity="other">%d ଉତ୍ସ</item></plurals>
@@ -232,6 +233,15 @@
 <string name="player_hud_speed">ଗତି</string>
 <string name="player_hud_up_next">ପରବର୍ତ୍ତୀ · %s</string>
 <string name="player_mute">ମ୍ୟୁଟ କରନ୍ତୁ</string>
+<string name="player_panel_failed">ବିଫଳ</string>
+<string name="player_panel_keeps">%s ରଖେ</string>
+<string name="player_panel_on">ଅନ୍</string>
+<string name="player_panel_open">ଖୋଲନ୍ତୁ</string>
+<string name="player_panel_quality_profile">ଗୁଣବତ୍ତା ପ୍ରୋଫାଇଲ୍</string>
+<string name="player_panel_quality_unknown">ଗୁଣବତ୍ତା ଅଜଣା</string>
+<string name="player_panel_retry_all">ସମସ୍ତ ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ</string>
+<string name="player_panel_style">ସବଟାଇଟଲ୍ ଶୈଳୀ</string>
+<string name="player_panel_use">ବ୍ୟବହାର କରନ୍ତୁ</string>
 <string name="player_settings_play_in_app">ଅନ୍ତଃ-ଚାଳକ</string>
 <string name="player_source_playing">ଚାଲୁଛି</string>
 <string name="player_source_resumes_at">ବଦଳାଇଲେ ଆପଣଙ୍କ ସ୍ଥାନ ରହେ: %1$s ରୁ ଜାରି</string>

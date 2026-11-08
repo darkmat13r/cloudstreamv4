@@ -34,6 +34,7 @@
 <plurals name="home_source_sections"><item quantity="other">%d mục</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d tựa</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d liên kết bị ẩn</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">Tìm kiếm trên cả %d nguồn</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d NGUỒN</item></plurals>
@@ -538,6 +539,15 @@
 <string name="player_mute">Tắt tiếng</string>
 <string name="player_notification_channel_description">Điều khiển phát lại trong nền bằng thông báo của trình phát</string>
 <string name="player_notification_channel_name">Thông báo trình phát</string>
+<string name="player_panel_failed">thất bại</string>
+<string name="player_panel_keeps">giữ %s</string>
+<string name="player_panel_on">Bật</string>
+<string name="player_panel_open">Mở</string>
+<string name="player_panel_quality_profile">Hồ sơ chất lượng</string>
+<string name="player_panel_quality_unknown">chất lượng không rõ</string>
+<string name="player_panel_retry_all">Thử lại mọi nguồn</string>
+<string name="player_panel_style">Kiểu phụ đề</string>
+<string name="player_panel_use">Dùng</string>
 <string name="player_pref">Trình phát ưu tiên</string>
 <string name="player_settings_always_ask">Luôn hỏi</string>
 <string name="player_settings_play_in_app">Trình phát tích hợp</string>

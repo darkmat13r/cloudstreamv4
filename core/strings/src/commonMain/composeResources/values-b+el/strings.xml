@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ</item><item quantity="other">%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Αποτυχία φόρτωσης %d ενότητας</item><item quantity="other">Αποτυχία φόρτωσης %d ενοτήτων</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d τίτλος</item><item quantity="other">%d τίτλοι</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Αναζήτηση σε %d πηγή</item><item quantity="other">Αναζήτηση σε όλες τις %d πηγές</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως.</item><item quantity="other">Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ΠΗΓΗ</item><item quantity="other">%d ΠΗΓΕΣ</item></plurals>
@@ -494,6 +495,15 @@
 <string name="player_mute">Σίγαση</string>
 <string name="player_notification_channel_description">Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο</string>
 <string name="player_notification_channel_name">Ειδοποίησεις αναπαραγωγής</string>
+<string name="player_panel_failed">απέτυχε</string>
+<string name="player_panel_keeps">κρατά %s</string>
+<string name="player_panel_on">Ενεργό</string>
+<string name="player_panel_open">Άνοιγμα</string>
+<string name="player_panel_quality_profile">Προφίλ ποιότητας</string>
+<string name="player_panel_quality_unknown">άγνωστη ποιότητα</string>
+<string name="player_panel_retry_all">Επανάληψη όλων των πηγών</string>
+<string name="player_panel_style">Στυλ υποτίτλων</string>
+<string name="player_panel_use">Χρήση</string>
 <string name="player_pref">Προτεινόμενο πρόγραμμα αναπαραγωγής</string>
 <string name="player_settings_play_in_app">Ενσωματωμένο πρόγραμμα αναπαραγωγής</string>
 <string name="player_settings_select_cast_device">Επιλογή συσκευής για αναμετάδοση</string>

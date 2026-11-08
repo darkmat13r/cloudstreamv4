@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ƏLFƏCİN</item><item quantity="other">%d ƏLFƏCİN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d bölmə yüklənmədi</item><item quantity="other">%d bölmə yüklənmədi</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d başlıq</item><item quantity="other">%d başlıq</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d mənbədə axtar</item><item quantity="other">Bütün %d mənbədə axtar</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Yenə də %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.</item><item quantity="other">Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d MƏNBƏ</item><item quantity="other">%d MƏNBƏ</item></plurals>
@@ -239,6 +240,15 @@
 <string name="player_hud_speed">Sürət</string>
 <string name="player_hud_up_next">Növbəti · %s</string>
 <string name="player_mute">Səssizə al</string>
+<string name="player_panel_failed">uğursuz</string>
+<string name="player_panel_keeps">%s saxlanılır</string>
+<string name="player_panel_on">Açıq</string>
+<string name="player_panel_open">Aç</string>
+<string name="player_panel_quality_profile">Keyfiyyət profili</string>
+<string name="player_panel_quality_unknown">keyfiyyət bilinmir</string>
+<string name="player_panel_retry_all">Bütün mənbələri yenidən sına</string>
+<string name="player_panel_style">Altyazı üslubu</string>
+<string name="player_panel_use">İstifadə et</string>
 <string name="player_size_settings">Pleyeri yenidən ölçüləndirmə düyməsini</string>
 <string name="player_size_settings_des">Qara sərhədləri, kənarları sil</string>
 <string name="player_source_playing">Oynayır</string>

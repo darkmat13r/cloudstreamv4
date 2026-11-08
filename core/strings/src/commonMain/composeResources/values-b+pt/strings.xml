@@ -32,6 +32,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="many">%d DE MARCADORES</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Falha ao carregar %d secção</item><item quantity="many">Falha ao carregar %d secções</item><item quantity="other">Falha ao carregar %d secções</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="many">%d títulos</item><item quantity="other">%d títulos</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Pesquisar em %d fonte</item><item quantity="many">Pesquisar em todas as %d fontes</item><item quantity="other">Pesquisar em todas as %d fontes</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.</item><item quantity="many">Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.</item><item quantity="other">Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONTE</item><item quantity="many">%d FONTES</item><item quantity="other">%d FONTES</item></plurals>
@@ -537,6 +538,15 @@
 <string name="player_mute">Desativar som</string>
 <string name="player_notification_channel_description">Notificação do player para controlar a reprodução em segundo plano</string>
 <string name="player_notification_channel_name">Notificações de reprodução</string>
+<string name="player_panel_failed">falhou</string>
+<string name="player_panel_keeps">mantém %s</string>
+<string name="player_panel_on">Ativado</string>
+<string name="player_panel_open">Abrir</string>
+<string name="player_panel_quality_profile">Perfil de qualidade</string>
+<string name="player_panel_quality_unknown">qualidade desconhecida</string>
+<string name="player_panel_retry_all">Tentar novamente todas as fontes</string>
+<string name="player_panel_style">Estilo das legendas</string>
+<string name="player_panel_use">Usar</string>
 <string name="player_pref">Player de vídeo preferido</string>
 <string name="player_settings_always_ask">Sempre perguntar</string>
 <string name="player_settings_play_in_app">Player interno</string>

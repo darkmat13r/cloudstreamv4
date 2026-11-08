@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽIEK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepodarilo sa načítať %d sekciu</item><item quantity="few">Nepodarilo sa načítať %d sekcie</item><item quantity="many">Nepodarilo sa načítať %d sekcií</item><item quantity="other">Nepodarilo sa načítať %d sekcií</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titul</item><item quantity="few">%d tituly</item><item quantity="many">%d titulu</item><item quantity="other">%d titulov</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Hľadať v %d zdroji</item><item quantity="few">Hľadať vo všetkých %d zdrojoch</item><item quantity="many">Hľadať vo všetkých %d zdrojoch</item><item quantity="other">Hľadať vo všetkých %d zdrojoch</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte %d zdroj.</item><item quantity="few">Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetky %d zdroje.</item><item quantity="many">Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.</item><item quantity="other">Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ZDROJ</item><item quantity="few">%d ZDROJE</item><item quantity="many">%d ZDROJA</item><item quantity="other">%d ZDROJOV</item></plurals>
@@ -402,6 +403,15 @@
 <string name="player_load_subtitles_online">Načítať z internetu</string>
 <string name="player_loaded_subtitles">Načítané %s</string>
 <string name="player_mute">Vypnúť zvuk</string>
+<string name="player_panel_failed">zlyhalo</string>
+<string name="player_panel_keeps">zachová %s</string>
+<string name="player_panel_on">Zapnuté</string>
+<string name="player_panel_open">Otvoriť</string>
+<string name="player_panel_quality_profile">Profil kvality</string>
+<string name="player_panel_quality_unknown">neznáma kvalita</string>
+<string name="player_panel_retry_all">Skúsiť znova všetky zdroje</string>
+<string name="player_panel_style">Štýl titulkov</string>
+<string name="player_panel_use">Použiť</string>
 <string name="player_size_settings">Tlačidlo na zmenu veľkosti prehrávača</string>
 <string name="player_size_settings_des">Odstrániť čierne okraje</string>
 <string name="player_source_playing">Prehráva sa</string>

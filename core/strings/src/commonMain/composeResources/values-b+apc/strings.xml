@@ -32,6 +32,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d إشارة مرجعية</item><item quantity="other">%d إشارات مرجعية</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">م قدرنا نفتح %d قسم</item><item quantity="other">م قدرنا نفتح %d أقسام</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عناوين</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">نبّش بـ%d مصدر</item><item quantity="other">نبّش بكل المصادر الـ%d</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال.</item><item quantity="other">اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d مصدر</item><item quantity="other">%d مصادر</item></plurals>
@@ -537,6 +538,15 @@
 <string name="player_mute">كتّم الصوت</string>
 <string name="player_notification_channel_description">نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح</string>
 <string name="player_notification_channel_name">شغل الڤيديو عبر النوتيفيكايشنز</string>
+<string name="player_panel_failed">فشل</string>
+<string name="player_panel_keeps">بيحافظ على %s</string>
+<string name="player_panel_on">شغّال</string>
+<string name="player_panel_open">افتح</string>
+<string name="player_panel_quality_profile">ملف الجودة</string>
+<string name="player_panel_quality_unknown">الجودة مش معروفة</string>
+<string name="player_panel_retry_all">جرّب كل المصادر من جديد</string>
+<string name="player_panel_style">شكل الترجمة</string>
+<string name="player_panel_use">استخدم</string>
 <string name="player_pref">مشغل الڤيديو المفضل</string>
 <string name="player_settings_always_ask">دايمًا سئالوني</string>
 <string name="player_settings_play_in_app">المشغل يللي ب "كلود ستريم"</string>

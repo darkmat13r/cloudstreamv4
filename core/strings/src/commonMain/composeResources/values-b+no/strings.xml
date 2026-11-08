@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKER</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikke lastes inn</item><item quantity="other">%d deler kunne ikke lastes inn</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d tittel</item><item quantity="other">%d titler</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Søk i %d kilde</item><item quantity="other">Søk i alle %d kilder</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Trykk på søketasten på tastaturet for å søke i %d kilde likevel.</item><item quantity="other">Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KILDE</item><item quantity="other">%d KILDER</item></plurals>
@@ -403,6 +404,15 @@
 <string name="player_load_subtitles_online">Last inn fra Internett</string>
 <string name="player_loaded_subtitles">Lastet inn %s</string>
 <string name="player_mute">Slå av lyden</string>
+<string name="player_panel_failed">feilet</string>
+<string name="player_panel_keeps">beholder %s</string>
+<string name="player_panel_on">På</string>
+<string name="player_panel_open">Åpne</string>
+<string name="player_panel_quality_profile">Kvalitetsprofil</string>
+<string name="player_panel_quality_unknown">ukjent kvalitet</string>
+<string name="player_panel_retry_all">Prøv alle kildene på nytt</string>
+<string name="player_panel_style">Undertekststil</string>
+<string name="player_panel_use">Bruk</string>
 <string name="player_pref">Foretrukket videospiller</string>
 <string name="player_settings_play_in_app">Intern spiller</string>
 <string name="player_size_settings">Knapp for størrelse på spiller</string>

@@ -537,6 +537,16 @@
 <string name="player_mute">"靜音"</string>
 <string name="player_notification_channel_description">"控制背景播放的通知"</string>
 <string name="player_notification_channel_name">"播放器通知"</string>
+<string name="player_panel_failed">"失敗"</string>
+<string name="player_panel_keeps" formatted="true">"保留 %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"開"</string>
+<string name="player_panel_open">"開啟"</string>
+<string name="player_panel_quality_profile">"畫質設定檔"</string>
+<string name="player_panel_quality_unknown">"畫質不明"</string>
+<string name="player_panel_retry_all">"重試所有來源"</string>
+<string name="player_panel_style">"字幕樣式"</string>
+<string name="player_panel_use">"使用"</string>
 <string name="player_pref">"偏好影片播放器"</string>
 <string name="player_settings_always_ask">"總是詢問"</string>
 <string name="player_settings_play_in_app">"內部播放器"</string>

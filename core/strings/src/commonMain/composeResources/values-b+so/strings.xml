@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d CALAAMAD</item><item quantity="other">%d CALAAMADOOD</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Waa ka keeni kari waayey %d qayb</item><item quantity="other">Waa ka keeni kari waayey %d qaybood</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d cinwaan</item><item quantity="other">%d cinwaan</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Ka raadi %d il</item><item quantity="other">Ka raadi dhammaan %d ilood</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Riix furaha raadinta ee kiiboodhka si aad u raadiso %d il si kastaba ha ahaatee.</item><item quantity="other">Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d IL</item><item quantity="other">%d ILOOD</item></plurals>
@@ -409,6 +410,15 @@
 <string name="player_load_subtitles_online">Internetka ka keen</string>
 <string name="player_loaded_subtitles">Waxa laso kiciyey %s</string>
 <string name="player_mute">Aamusi</string>
+<string name="player_panel_failed">fashilay</string>
+<string name="player_panel_keeps">wuxuu hayaa %s</string>
+<string name="player_panel_on">Shidan</string>
+<string name="player_panel_open">Fur</string>
+<string name="player_panel_quality_profile">Astaanta tayada</string>
+<string name="player_panel_quality_unknown">tayada lama yaqaan</string>
+<string name="player_panel_retry_all">Isku day mar kale dhammaan ilaha</string>
+<string name="player_panel_style">Qaabka qoraalka hoose</string>
+<string name="player_panel_use">Isticmaal</string>
 <string name="player_pref">Muqaal daaraha aad doorbiddo</string>
 <string name="player_settings_play_in_app">Muqaal daaraha appka</string>
 <string name="player_size_settings">Badhinka xajmiga daaraha</string>

@@ -35,6 +35,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d section</item><item quantity="other">%d sections</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d title</item><item quantity="other">%d titles</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d hidden link</item><item quantity="other">%d hidden links</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_results_body"><item quantity="one">%d selected source answered and it does not carry it.</item><item quantity="other">All %d selected sources answered and none of them carry it.</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Search %d source</item><item quantity="other">Search all %d sources</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Press the keyboard’s search key to search %d source anyway.</item><item quantity="other">Press the keyboard’s search key to search all %d sources anyway.</item></plurals>
@@ -564,6 +565,15 @@
 <string name="player_mute">Mute</string>
 <string name="player_notification_channel_description">The player notification for controlling the playback from the background</string>
 <string name="player_notification_channel_name">Player notifications</string>
+<string name="player_panel_failed">failed</string>
+<string name="player_panel_keeps">keeps %s</string>
+<string name="player_panel_on">On</string>
+<string name="player_panel_open">Open</string>
+<string name="player_panel_quality_profile">Quality profile</string>
+<string name="player_panel_quality_unknown">quality unknown</string>
+<string name="player_panel_retry_all">Retry all sources</string>
+<string name="player_panel_style">Subtitle style</string>
+<string name="player_panel_use">Use</string>
 <string name="player_pref">Preferred video player</string>
 <string name="player_settings_always_ask">Always ask</string>
 <string name="player_settings_play_in_app">Internal player</string>

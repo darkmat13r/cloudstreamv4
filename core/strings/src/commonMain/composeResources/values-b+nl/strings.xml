@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BLADWIJZER</item><item quantity="other">%d BLADWIJZERS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d sectie kon niet worden geladen</item><item quantity="other">%d secties konden niet worden geladen</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titel</item><item quantity="other">%d titels</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Zoek in %d bron</item><item quantity="other">Zoek in alle %d bronnen</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Druk op de zoektoets van het toetsenbord om toch in %d bron te zoeken.</item><item quantity="other">Druk op de zoektoets van het toetsenbord om toch in alle %d bronnen te zoeken.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BRON</item><item quantity="other">%d BRONNEN</item></plurals>
@@ -504,6 +505,15 @@
 <string name="player_mute">Dempen</string>
 <string name="player_notification_channel_description">De speler melding om de kijkervaring van de achtergrond de besturen</string>
 <string name="player_notification_channel_name">Speler meldingen</string>
+<string name="player_panel_failed">mislukt</string>
+<string name="player_panel_keeps">behoudt %s</string>
+<string name="player_panel_on">Aan</string>
+<string name="player_panel_open">Openen</string>
+<string name="player_panel_quality_profile">Kwaliteitsprofiel</string>
+<string name="player_panel_quality_unknown">kwaliteit onbekend</string>
+<string name="player_panel_retry_all">Alle bronnen opnieuw proberen</string>
+<string name="player_panel_style">Ondertitelstijl</string>
+<string name="player_panel_use">Gebruiken</string>
 <string name="player_pref">Gewenste videospeler</string>
 <string name="player_settings_always_ask">Vraag altijd</string>
 <string name="player_settings_play_in_app">Interne speler</string>

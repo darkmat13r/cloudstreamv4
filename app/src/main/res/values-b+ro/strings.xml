@@ -482,6 +482,16 @@
 <string name="player_load_subtitles_online">"Încărcare de pe Internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"A fost încărcat %s"</string>
 <string name="player_mute">"Dezactivează sunetul"</string>
+<string name="player_panel_failed">"eșuat"</string>
+<string name="player_panel_keeps" formatted="true">"păstrează %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Activat"</string>
+<string name="player_panel_open">"Deschide"</string>
+<string name="player_panel_quality_profile">"Profil de calitate"</string>
+<string name="player_panel_quality_unknown">"calitate necunoscută"</string>
+<string name="player_panel_retry_all">"Reîncearcă toate sursele"</string>
+<string name="player_panel_style">"Stilul subtitrărilor"</string>
+<string name="player_panel_use">"Folosește"</string>
 <string name="player_pref">"Player video preferat"</string>
 <string name="player_settings_play_in_app">"Player intern"</string>
 <string name="player_settings_select_cast_device">"Selectați divece-ul pe care doriți să faceți cast"</string>

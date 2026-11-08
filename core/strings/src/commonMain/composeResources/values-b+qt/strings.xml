@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="other">%d OOUUH OOH</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d oooogg ooh aaahhu</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d oouh</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">aaoog %d ooh uugg</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">uuh aagg oooh aaahh uug %d ooogg aah.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d OOGAH</item></plurals>
@@ -481,6 +482,15 @@
 <string name="player_load_subtitles_online">eeek aahh oooohhhh</string>
 <string name="player_loaded_subtitles">oooohh %s</string>
 <string name="player_mute">ooh oh</string>
+<string name="player_panel_failed">aagh</string>
+<string name="player_panel_keeps">ooh %s</string>
+<string name="player_panel_on">Ook</string>
+<string name="player_panel_open">Aah</string>
+<string name="player_panel_quality_profile">Oohh aagh</string>
+<string name="player_panel_quality_unknown">oohh uuk</string>
+<string name="player_panel_retry_all">Aagh oohh uuk</string>
+<string name="player_panel_style">Oohh aak</string>
+<string name="player_panel_use">Uuk</string>
 <string name="player_pref">aaaagggah uuugg uuuugg</string>
 <string name="player_settings_play_in_app">aaaagggh uuuugg</string>
 <string name="player_settings_select_cast_device">aaaagg aahh oooohh</string>

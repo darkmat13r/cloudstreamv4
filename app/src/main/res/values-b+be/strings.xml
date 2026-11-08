@@ -537,6 +537,16 @@
 <string name="player_mute">"Выключыць гук"</string>
 <string name="player_notification_channel_description">"Апавяшчэнне прайгравальніка для кіравання прайграваннем у фонавым рэжыме"</string>
 <string name="player_notification_channel_name">"Апавяшчэнні прайгравальніка"</string>
+<string name="player_panel_failed">"збой"</string>
+<string name="player_panel_keeps" formatted="true">"захоўвае %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Укл."</string>
+<string name="player_panel_open">"Адкрыць"</string>
+<string name="player_panel_quality_profile">"Профіль якасці"</string>
+<string name="player_panel_quality_unknown">"якасць невядомая"</string>
+<string name="player_panel_retry_all">"Паўтарыць усе крыніцы"</string>
+<string name="player_panel_style">"Стыль субцітраў"</string>
+<string name="player_panel_use">"Выкарыстаць"</string>
 <string name="player_pref">"Прыярытэтны прайгравальнік"</string>
 <string name="player_settings_always_ask">"Заўсёды пытацца"</string>
 <string name="player_settings_play_in_app">"Убудаваны прайгравальнік"</string>

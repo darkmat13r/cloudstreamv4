@@ -239,6 +239,16 @@
 <string name="player_hud_speed">"Sürət"</string>
 <string name="player_hud_up_next" formatted="true">"Növbəti · %s"</string>
 <string name="player_mute">"Səssizə al"</string>
+<string name="player_panel_failed">"uğursuz"</string>
+<string name="player_panel_keeps" formatted="true">"%s saxlanılır"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Açıq"</string>
+<string name="player_panel_open">"Aç"</string>
+<string name="player_panel_quality_profile">"Keyfiyyət profili"</string>
+<string name="player_panel_quality_unknown">"keyfiyyət bilinmir"</string>
+<string name="player_panel_retry_all">"Bütün mənbələri yenidən sına"</string>
+<string name="player_panel_style">"Altyazı üslubu"</string>
+<string name="player_panel_use">"İstifadə et"</string>
 <string name="player_size_settings">"Pleyeri yenidən ölçüləndirmə düyməsini"</string>
 <string name="player_size_settings_des">"Qara sərhədləri, kənarları sil"</string>
 <string name="player_source_playing">"Oynayır"</string>

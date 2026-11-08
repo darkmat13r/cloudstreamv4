@@ -31,6 +31,7 @@
 <plurals name="home_bookmarks_count"><item quantity="zero">%d GRĀMATZĪMJU</item><item quantity="one">%d GRĀMATZĪME</item><item quantity="other">%d GRĀMATZĪMES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">Neizdevās ielādēt %d sadaļu</item><item quantity="one">Neizdevās ielādēt %d sadaļu</item><item quantity="other">Neizdevās ielādēt %d sadaļas</item></plurals>
 <plurals name="library_title_count"><item quantity="zero">%d nosaukumu</item><item quantity="one">%d nosaukums</item><item quantity="other">%d nosaukumi</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="zero">Meklēt visos %d devējos</item><item quantity="one">Meklēt %d devējā</item><item quantity="other">Meklēt visos %d devējos</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="zero">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item><item quantity="one">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā.</item><item quantity="other">Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="zero">%d DEVĒJU</item><item quantity="one">%d DEVĒJS</item><item quantity="other">%d DEVĒJI</item></plurals>
@@ -467,6 +468,15 @@
 <string name="player_load_subtitles_online">Lejupielādēt no interneta</string>
 <string name="player_loaded_subtitles">Ielādēti %s</string>
 <string name="player_mute">Izslēgt skaņu</string>
+<string name="player_panel_failed">neizdevās</string>
+<string name="player_panel_keeps">saglabā %s</string>
+<string name="player_panel_on">Ieslēgts</string>
+<string name="player_panel_open">Atvērt</string>
+<string name="player_panel_quality_profile">Kvalitātes profils</string>
+<string name="player_panel_quality_unknown">kvalitāte nezināma</string>
+<string name="player_panel_retry_all">Mēģināt visus avotus vēlreiz</string>
+<string name="player_panel_style">Subtitru stils</string>
+<string name="player_panel_use">Izmantot</string>
 <string name="player_pref">Vēlamais video atskaņotājs</string>
 <string name="player_settings_play_in_app">Iekšējais atskaņotājs</string>
 <string name="player_size_settings">Players izmēra poga</string>

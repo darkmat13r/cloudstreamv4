@@ -206,6 +206,16 @@
 <string name="player_hud_speed">"Veloċità"</string>
 <string name="player_hud_up_next" formatted="true">"Li jmiss · %s"</string>
 <string name="player_mute">"Itfi l-ħoss"</string>
+<string name="player_panel_failed">"falla"</string>
+<string name="player_panel_keeps" formatted="true">"iżomm %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Mixgħul"</string>
+<string name="player_panel_open">"Iftaħ"</string>
+<string name="player_panel_quality_profile">"Profil tal-kwalità"</string>
+<string name="player_panel_quality_unknown">"kwalità mhux magħrufa"</string>
+<string name="player_panel_retry_all">"Erġa' pprova s-sorsi kollha"</string>
+<string name="player_panel_style">"Stil tas-sottotitli"</string>
+<string name="player_panel_use">"Uża"</string>
 <string name="player_source_playing">"Qed jindaqq"</string>
 <string name="player_source_resumes_at" formatted="true">"Il-bidla żżomm il-post tiegħek: ikompli minn %1$s"</string>
 <string name="player_source_retry">"Erġa' pprova"</string>

@@ -402,6 +402,16 @@
 <string name="player_load_subtitles_online">"Načítať z internetu"</string>
 <string name="player_loaded_subtitles" formatted="true">"Načítané %s"</string>
 <string name="player_mute">"Vypnúť zvuk"</string>
+<string name="player_panel_failed">"zlyhalo"</string>
+<string name="player_panel_keeps" formatted="true">"zachová %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Zapnuté"</string>
+<string name="player_panel_open">"Otvoriť"</string>
+<string name="player_panel_quality_profile">"Profil kvality"</string>
+<string name="player_panel_quality_unknown">"neznáma kvalita"</string>
+<string name="player_panel_retry_all">"Skúsiť znova všetky zdroje"</string>
+<string name="player_panel_style">"Štýl titulkov"</string>
+<string name="player_panel_use">"Použiť"</string>
 <string name="player_size_settings">"Tlačidlo na zmenu veľkosti prehrávača"</string>
 <string name="player_size_settings_des">"Odstrániť čierne okraje"</string>
 <string name="player_source_playing">"Prehráva sa"</string>

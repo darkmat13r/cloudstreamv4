@@ -34,6 +34,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d sekce</item><item quantity="few">%d sekce</item><item quantity="many">%d sekce</item><item quantity="other">%d sekcí</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titul</item><item quantity="few">%d tituly</item><item quantity="many">%d titulu</item><item quantity="other">%d titulů</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d skrytý odkaz</item><item quantity="few">%d skryté odkazy</item><item quantity="many">%d skrytých odkazů</item><item quantity="other">%d skrytých odkazů</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Hledat v %d zdroji</item><item quantity="few">Hledat ve všech %d zdrojích</item><item quantity="many">Hledat ve všech %d zdrojích</item><item quantity="other">Hledat ve všech %d zdrojích</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte %d zdroj.</item><item quantity="few">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všechny %d zdroje.</item><item quantity="many">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdroje.</item><item quantity="other">Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ZDROJ</item><item quantity="few">%d ZDROJE</item><item quantity="many">%d ZDROJE</item><item quantity="other">%d ZDROJŮ</item></plurals>
@@ -538,6 +539,15 @@
 <string name="player_mute">Vypnout zvuk</string>
 <string name="player_notification_channel_description">Oznámení přehrávače pro ovládání přehrávání na pozadí</string>
 <string name="player_notification_channel_name">Oznámení přehrávače</string>
+<string name="player_panel_failed">selhalo</string>
+<string name="player_panel_keeps">zachová %s</string>
+<string name="player_panel_on">Zapnuto</string>
+<string name="player_panel_open">Otevřít</string>
+<string name="player_panel_quality_profile">Profil kvality</string>
+<string name="player_panel_quality_unknown">neznámá kvalita</string>
+<string name="player_panel_retry_all">Zkusit znovu všechny zdroje</string>
+<string name="player_panel_style">Styl titulků</string>
+<string name="player_panel_use">Použít</string>
 <string name="player_pref">Preferovaný přehrávač videí</string>
 <string name="player_settings_always_ask">Vždy se zeptat</string>
 <string name="player_settings_play_in_app">Interní přehrávač</string>

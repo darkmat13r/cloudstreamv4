@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Non se puido cargar %d sección</item><item quantity="other">Non se puideron cargar %d seccións</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="other">%d títulos</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Procurar en %d fonte</item><item quantity="other">Procurar en todas as %d fontes</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Preme a tecla de busca do teclado para procurar igualmente en %d fonte.</item><item quantity="other">Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONTE</item><item quantity="other">%d FONTES</item></plurals>
@@ -311,6 +312,15 @@
 <string name="player_hud_speed">Velocidade</string>
 <string name="player_hud_up_next">Seguinte · %s</string>
 <string name="player_mute">Silenciar</string>
+<string name="player_panel_failed">fallou</string>
+<string name="player_panel_keeps">mantén %s</string>
+<string name="player_panel_on">Activado</string>
+<string name="player_panel_open">Abrir</string>
+<string name="player_panel_quality_profile">Perfil de calidade</string>
+<string name="player_panel_quality_unknown">calidade descoñecida</string>
+<string name="player_panel_retry_all">Tentar de novo todas as fontes</string>
+<string name="player_panel_style">Estilo dos subtítulos</string>
+<string name="player_panel_use">Usar</string>
 <string name="player_size_settings">Botón de cambio de tamaño do reprodutor</string>
 <string name="player_size_settings_des">Eliminar bordes negros</string>
 <string name="player_source_playing">Reproducindo</string>

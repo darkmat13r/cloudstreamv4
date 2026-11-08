@@ -34,6 +34,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d раздел</item><item quantity="few">%d раздела</item><item quantity="many">%d разделов</item><item quantity="other">%d раздела</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d название</item><item quantity="few">%d названия</item><item quantity="many">%d названий</item><item quantity="other">%d названия</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d скрытая ссылка</item><item quantity="few">%d скрытые ссылки</item><item quantity="many">%d скрытых ссылок</item><item quantity="other">%d скрытых ссылок</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Искать в %d источнике</item><item quantity="few">Искать во всех %d источниках</item><item quantity="many">Искать во всех %d источниках</item><item quantity="other">Искать во всех %d источниках</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать в %d источнике.</item><item quantity="few">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.</item><item quantity="many">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.</item><item quantity="other">Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ИСТОЧНИК</item><item quantity="few">%d ИСТОЧНИКА</item><item quantity="many">%d ИСТОЧНИКОВ</item><item quantity="other">%d ИСТОЧНИКА</item></plurals>
@@ -538,6 +539,15 @@
 <string name="player_mute">Выключить звук</string>
 <string name="player_notification_channel_description">Уведомление проигрывателя для управления воспроизведением в фоновом режиме</string>
 <string name="player_notification_channel_name">Уведомления плеера</string>
+<string name="player_panel_failed">сбой</string>
+<string name="player_panel_keeps">сохраняет %s</string>
+<string name="player_panel_on">Вкл.</string>
+<string name="player_panel_open">Открыть</string>
+<string name="player_panel_quality_profile">Профиль качества</string>
+<string name="player_panel_quality_unknown">качество неизвестно</string>
+<string name="player_panel_retry_all">Повторить все источники</string>
+<string name="player_panel_style">Стиль субтитров</string>
+<string name="player_panel_use">Использовать</string>
 <string name="player_pref">Предпочитаемый видеоплеер</string>
 <string name="player_settings_always_ask">Спрашивать всегда</string>
 <string name="player_settings_play_in_app">Внутренний проигрыватель</string>

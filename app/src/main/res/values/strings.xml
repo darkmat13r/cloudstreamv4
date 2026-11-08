@@ -564,6 +564,16 @@
 <string name="player_mute">"Mute"</string>
 <string name="player_notification_channel_description">"The player notification for controlling the playback from the background"</string>
 <string name="player_notification_channel_name">"Player notifications"</string>
+<string name="player_panel_failed">"failed"</string>
+<string name="player_panel_keeps" formatted="true">"keeps %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"On"</string>
+<string name="player_panel_open">"Open"</string>
+<string name="player_panel_quality_profile">"Quality profile"</string>
+<string name="player_panel_quality_unknown">"quality unknown"</string>
+<string name="player_panel_retry_all">"Retry all sources"</string>
+<string name="player_panel_style">"Subtitle style"</string>
+<string name="player_panel_use">"Use"</string>
 <string name="player_pref">"Preferred video player"</string>
 <string name="player_settings_always_ask">"Always ask"</string>
 <string name="player_settings_play_in_app">"Internal player"</string>

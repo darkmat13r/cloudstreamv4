@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d खण्ड लोड हुन सकेन</item><item quantity="other">%d खण्डहरू लोड हुन सकेनन्</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d शीर्षक</item><item quantity="other">%d शीर्षकहरू</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d स्रोतमा खोज्नुहोस्</item><item quantity="other">सबै %d स्रोतहरूमा खोज्नुहोस्</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">जे भए पनि %d स्रोतमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।</item><item quantity="other">जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d स्रोत</item><item quantity="other">%d स्रोतहरू</item></plurals>
@@ -194,6 +195,15 @@
 <string name="player_hud_speed">गति</string>
 <string name="player_hud_up_next">अर्को · %s</string>
 <string name="player_mute">म्यूट गर्नुहोस्</string>
+<string name="player_panel_failed">असफल</string>
+<string name="player_panel_keeps">%s राख्छ</string>
+<string name="player_panel_on">अन</string>
+<string name="player_panel_open">खोल्नुहोस्</string>
+<string name="player_panel_quality_profile">गुणस्तर प्रोफाइल</string>
+<string name="player_panel_quality_unknown">गुणस्तर अज्ञात</string>
+<string name="player_panel_retry_all">सबै स्रोत फेरि प्रयास गर्नुहोस्</string>
+<string name="player_panel_style">सबटाइटल शैली</string>
+<string name="player_panel_use">प्रयोग गर्नुहोस्</string>
 <string name="player_size_settings">प्लेयर resize गर्ने वटन</string>
 <string name="player_size_settings_des">कालो सीमा हटाउनुहोस</string>
 <string name="player_source_playing">चलिरहेको</string>

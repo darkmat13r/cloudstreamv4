@@ -284,6 +284,16 @@
 <string name="player_hud_speed">"Bilis"</string>
 <string name="player_hud_up_next" formatted="true">"Susunod · %s"</string>
 <string name="player_mute">"I-mute"</string>
+<string name="player_panel_failed">"nabigo"</string>
+<string name="player_panel_keeps" formatted="true">"pinapanatili ang %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Naka-on"</string>
+<string name="player_panel_open">"Buksan"</string>
+<string name="player_panel_quality_profile">"Profile ng kalidad"</string>
+<string name="player_panel_quality_unknown">"hindi alam ang kalidad"</string>
+<string name="player_panel_retry_all">"Subukang muli ang lahat ng source"</string>
+<string name="player_panel_style">"Estilo ng subtitle"</string>
+<string name="player_panel_use">"Gamitin"</string>
 <string name="player_size_settings">"Pindutan upang baguhin ang laki"</string>
 <string name="player_size_settings_des">"Alisin ang black borders"</string>
 <string name="player_source_playing">"Nagpe-play"</string>

@@ -319,6 +319,16 @@
 <string name="player_load_subtitles_online">"Carrega des d'internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s carregat"</string>
 <string name="player_mute">"Silencia"</string>
+<string name="player_panel_failed">"ha fallat"</string>
+<string name="player_panel_keeps" formatted="true">"manté %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Activat"</string>
+<string name="player_panel_open">"Obre"</string>
+<string name="player_panel_quality_profile">"Perfil de qualitat"</string>
+<string name="player_panel_quality_unknown">"qualitat desconeguda"</string>
+<string name="player_panel_retry_all">"Torna a provar totes les fonts"</string>
+<string name="player_panel_style">"Estil dels subtítols"</string>
+<string name="player_panel_use">"Fes servir"</string>
 <string name="player_size_settings">"Botó de canvi de mida del reproductor"</string>
 <string name="player_source_playing">"S'està reproduint"</string>
 <string name="player_source_resumes_at" formatted="true">"Canviar conserva la posició: es reprèn a %1$s"</string>

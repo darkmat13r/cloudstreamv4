@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d টা বুকমাৰ্ক</item><item quantity="other">%d টা বুকমাৰ্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d টা অংশ লোড কৰিব পৰা নগ'ল</item><item quantity="other">%d টা অংশ লোড কৰিব পৰা নগ'ল</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d টা শিৰোনাম</item><item quantity="other">%d টা শিৰোনাম</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%dটা উৎস সন্ধান কৰক</item><item quantity="other">আটাইকেইটা %dটা উৎস সন্ধান কৰক</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">তথাপি %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।</item><item quantity="other">তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d উৎস</item><item quantity="other">%d উৎস</item></plurals>
@@ -487,6 +488,15 @@
 <string name="player_load_subtitles_online">ইণ্টাৰনেটৰ পৰা ল'ড কৰক</string>
 <string name="player_loaded_subtitles">%s ল'ড হৈছে</string>
 <string name="player_mute">মৌন কৰক</string>
+<string name="player_panel_failed">ব্যৰ্থ</string>
+<string name="player_panel_keeps">%s ৰাখে</string>
+<string name="player_panel_on">অন</string>
+<string name="player_panel_open">খোলক</string>
+<string name="player_panel_quality_profile">গুণমান প্ৰফাইল</string>
+<string name="player_panel_quality_unknown">গুণমান অজ্ঞাত</string>
+<string name="player_panel_retry_all">সকলো উৎস পুনৰ চেষ্টা কৰক</string>
+<string name="player_panel_style">উপশিৰোনামৰ শৈলী</string>
+<string name="player_panel_use">ব্যৱহাৰ কৰক</string>
 <string name="player_pref">পছন্দৰ ভিডিঅ' প্লেয়াৰ</string>
 <string name="player_settings_play_in_app">আভ্যন্তৰীণ প্লেয়াৰ</string>
 <string name="player_settings_select_cast_device">কাষ্ট ডিভাইচ চয়ন কৰক</string>

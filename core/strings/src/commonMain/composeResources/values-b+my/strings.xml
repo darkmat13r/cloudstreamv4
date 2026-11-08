@@ -30,6 +30,7 @@
 <plurals name="home_bookmarks_count"><item quantity="other">စာမှတ် %d ခု</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">အပိုင်း %d ခု တင်သွင်း၍မရပါ</item></plurals>
 <plurals name="library_title_count"><item quantity="other">ခေါင်းစဉ် %d ခု</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d ရင်းမြစ်</item></plurals>
@@ -408,6 +409,15 @@
 <string name="player_load_subtitles_online">အင်တာနက်မှ တင်သွင်းမည်</string>
 <string name="player_loaded_subtitles">တင်ပြီး %s</string>
 <string name="player_mute">အသံပိတ်ရန်</string>
+<string name="player_panel_failed">မအောင်မြင်ပါ</string>
+<string name="player_panel_keeps">%s ကို ထိန်းထားသည်</string>
+<string name="player_panel_on">ဖွင့်</string>
+<string name="player_panel_open">ဖွင့်ရန်</string>
+<string name="player_panel_quality_profile">အရည်အသွေး ပရိုဖိုင်</string>
+<string name="player_panel_quality_unknown">အရည်အသွေး မသိ</string>
+<string name="player_panel_retry_all">ရင်းမြစ်အားလုံး ထပ်စမ်းရန်</string>
+<string name="player_panel_style">စာတန်းထိုး ပုံစံ</string>
+<string name="player_panel_use">သုံးရန်</string>
 <string name="player_pref">ဦးစားပေး ဗီဒီယိုဖွင့်စက်</string>
 <string name="player_settings_play_in_app">ဖုန်းတွင်းကြည့်ရှုမှု</string>
 <string name="player_size_settings">ကြည့်ရှုမှု စခရင်အရွယ်အစားချိန်ညိှမှု</string>
