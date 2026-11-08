@@ -1008,7 +1008,7 @@ the app's own providers.
 
 ## DS-24 — Boards: Settings on the Mac, the phone and the tablet
 
-**Status:** drawn, PR open · boards only, no Kotlin · `DEC-19` · the PM's call, 2026-11-08 · strings are `I18N-20`
+**Status:** drawn, in pr #252 · boards only, no Kotlin · `DEC-19` · the PM's call, 2026-11-08 · strings are `I18N-20`
 
 The Mac has no settings yet. The boards regroup Android's seven Settings entries (six XML screens and Extensions, about
 95 rows) into ten panes that every platform shares. The Mac drops what it cannot do, and the phone keeps what only a
