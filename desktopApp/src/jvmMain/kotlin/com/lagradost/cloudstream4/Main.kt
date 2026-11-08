@@ -50,6 +50,7 @@ import com.lagradost.cloudstream4.feature.library.LibraryStore
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.LibraryViewModel
+import com.lagradost.cloudstream4.feature.settings.AppearanceSettings
 import com.lagradost.cloudstream4.feature.settings.SettingsRepository
 import com.lagradost.cloudstream4.home.FileHomeSourceMemory
 import com.lagradost.cloudstream4.downloads.DesktopDownloads
@@ -222,6 +223,7 @@ fun main(args: Array<String>) {
                             homeMemory = homeMemory,
                             shortcuts = shortcuts,
                             downloads = downloads,
+                            appearance = settings,
                         )
                     }
                 }
@@ -299,6 +301,7 @@ internal fun DesktopApp(
     homeMemory: HomeSourceMemory = HomeSourceMemory.None,
     shortcuts: DesktopShortcuts = remember { DesktopShortcuts() },
     downloads: DesktopDownloads? = null,
+    appearance: AppearanceSettings = AppearanceSettings.Default,
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
@@ -387,6 +390,7 @@ internal fun DesktopApp(
                     setEscape = { escape.onEscape = it },
                     onOpen = open,
                     onSearch = { top(Screen.Search) },
+                    appearance = appearance,
                 )
             }
             Screen.Search -> TopLevelScreen(TopLevelDestination.Search, toTab, trailing = notice) {

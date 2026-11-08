@@ -6886,9 +6886,12 @@ only: a token or a password never goes in that file. Those go to the Keychain, w
 | `KMP-90b` | General: app language | An in-app locale switch on the Mac; today the app follows the system |
 | `KMP-90c` | General: check for updates at launch, Check now | A Mac updater (`DEC-03`, distribution) |
 | `KMP-90d` | General: Run setup again; Help and community; Disclaimer | A Mac setup flow; the Help menu; a disclaimer page |
-| `KMP-90e` | Appearance: poster size, title under poster, badges, hide quality in search | Home, Search and Library reading them |
-| `KMP-90f` | Appearance: trailers, cast, filler episodes | The Mac title page reading them |
-| `KMP-90g` | Appearance: Random button, suggestions while typing | Home's Random and Search's suggestions on the Mac |
+| `KMP-90e` | Appearance: poster size | Approved, in its own PR after `KMP-90g` (below) |
+| `KMP-90e` | Appearance: title under the poster | The Mac always draws the title under. Off means the title on the art (Android's `bottom_title_key` false), which needs an overlay and scrim design |
+| `KMP-90e` | Appearance: badges, hide quality in search | Labels to show: `DesktopSearchSource` sets `qualityLabel` and `dubLabel` to null. First draw them, resolving `SearchQuality` and `DubStatus` through the `quality_*` strings; then each row is a switch |
+| `KMP-90f` | Appearance: trailers, cast, filler episodes | The Mac title page drawing them; it draws none today |
+| `KMP-90g` | Appearance: Random button | Built (below) |
+| `KMP-90g` | Appearance: suggestions while typing | A suggestion source: the Mac passes none (`SearchScreenDesktop`'s `SearchContent.Suggestions` branch) |
 | `KMP-90h` | Playback: Offer Skip intro, seek amount, update watch progress | The Mac player reading them |
 | `KMP-90i` | Playback: source order (Edit) | A source-order editor |
 | `KMP-90j` | Playback: network buffer, disk cache, clear cache | libVLC's options from the host, and a cache to clear (hash-keyed, never by URL) |
@@ -6910,3 +6913,27 @@ only: a token or a password never goes in that file. Those go to the Keychain, w
 - desktopApp: `DesktopDownloadsTest`, `a changed Downloads at once applies to the next start`. Raised from 1 to 2, the
   waiting film starts beside the running one. Lowered back to 1, both keep running and a third waits.
 - Renders with `-Pcloudstream.settings.renders=<dir>`.
+
+## KMP-90g — Settings' Appearance pane, its first row: Random Button · **in review (#273)**
+
+**Status:** #273, on master after train 12. The PM's call, 2026-11-08: one PR per row, Random first, then Poster size
+(`KMP-90e`).
+
+- **The row.** Appearance enters the sidebar, before Downloads as `DS-24` orders it, with one group, Home and Search
+  (`settings_home_search`), and one switch, Random Button (`random_button_settings`, reused). No line under it: the
+  board's "On Home and Library." is untrue on the Mac, whose Library has no Random, and no new string is needed.
+- **The setting.** Android's `random_button_key`. On by default, where Android's is off: the owner approved the switch
+  on 2026-11-08, and it overrides the 2026-11-05 "always shown" ruling on the Mac only (noted in `design-system.md`
+  where that ruling is). Read through `AppearanceSettings.showRandom` in `:feature:settings` commonMain, beside
+  `PlaybackSettings` and `DownloadSettings`.
+- **The reader.** `HomeScreenDesktop(showRandom)`, default true, so every other caller is unchanged. `HomeHost` collects
+  the flow and `DesktopApp(appearance)` passes `Main.kt`'s `SettingsRepository`. Off, the top bar has no Random; Reload
+  stays.
+
+**Tests.**
+- `SettingsValuesTest`: default on; `false` reads back under `random_button_key`; anything else reads as on.
+- `SettingsSearchTest`: "random" finds Appearance.
+- `SettingsRepositoryTest`: written, read back by a new repository, and seen through `AppearanceSettings`.
+- `SettingsWindowTest`: on by default, no "On Home and Library." line, a click writes `false`, and a new window over
+  what was stored shows it off.
+- `HomeScreenTest`: off, nothing is named Random and Reload still acts; turned on, Random is back and acts.

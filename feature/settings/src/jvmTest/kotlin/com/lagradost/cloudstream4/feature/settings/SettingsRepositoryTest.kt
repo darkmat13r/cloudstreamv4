@@ -13,11 +13,14 @@ class SettingsRepositoryTest {
         val settings = SettingsRepository(storage)
         settings.setAutoplayNext(false)
         settings.setDownloadsAtOnce(5)
-        assertEquals(mapOf("autoplay_next_key" to "false", "download_parallel_key" to "5"), storage.stored)
+        settings.setShowRandom(false)
+        val stored = mapOf("autoplay_next_key" to "false", "download_parallel_key" to "5", "random_button_key" to "false")
+        assertEquals(stored, storage.stored)
 
         val reopened = SettingsRepository(storage)
         assertEquals(false, reopened.autoplayNext.value)
         assertEquals(5, reopened.downloadsAtOnce.value)
+        assertEquals(false, reopened.showRandom.value)
     }
 
     @Test
@@ -25,11 +28,14 @@ class SettingsRepositoryTest {
         val settings = SettingsRepository(SettingsStorage.InMemory())
         val player: PlaybackSettings = settings
         val downloads: DownloadSettings = settings
+        val appearance: AppearanceSettings = settings
         assertEquals(true, player.autoplayNext.value)
         settings.setAutoplayNext(false)
         settings.setDownloadsAtOnce(1)
         assertEquals(false, player.autoplayNext.value)
         assertEquals(1, downloads.downloadsAtOnce.value)
+        settings.setShowRandom(false)
+        assertEquals(false, appearance.showRandom.value)
     }
 
     @Test
@@ -75,7 +81,7 @@ class SettingsRepositoryTest {
             assertEquals(SettingsValues(autoplayNext = false, downloadsAtOnce = 5), settings.values.value)
             assertEquals(false, settings.autoplayNext.value)
             assertEquals(5, settings.downloadsAtOnce.value)
-            val both = mapOf("autoplay_next_key" to "false", "download_parallel_key" to "5")
+            val both = mapOf("autoplay_next_key" to "false", "download_parallel_key" to "5", "random_button_key" to "true")
             assertEquals(both, storage.stored, "the file ends on both")
         }
     }

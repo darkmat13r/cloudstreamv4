@@ -10,6 +10,7 @@ package com.lagradost.cloudstream4.feature.settings
 data class SettingsValues(
     val autoplayNext: Boolean = DEFAULT_AUTOPLAY_NEXT,
     val downloadsAtOnce: Int = DEFAULT_DOWNLOADS_AT_ONCE,
+    val showRandom: Boolean = DEFAULT_SHOW_RANDOM,
 ) {
     init {
         require(downloadsAtOnce in DOWNLOADS_AT_ONCE) { "downloadsAtOnce out of range" }
@@ -19,6 +20,7 @@ data class SettingsValues(
     fun toStored(): Map<String, String> = mapOf(
         KEY_AUTOPLAY_NEXT to autoplayNext.toString(),
         KEY_DOWNLOADS_AT_ONCE to downloadsAtOnce.toString(),
+        KEY_SHOW_RANDOM to showRandom.toString(),
     )
 
     companion object {
@@ -28,7 +30,16 @@ data class SettingsValues(
         /** Android's `download_parallel_key`. */
         const val KEY_DOWNLOADS_AT_ONCE = "download_parallel_key"
 
+        /** Android's `random_button_key`. */
+        const val KEY_SHOW_RANDOM = "random_button_key"
+
         const val DEFAULT_AUTOPLAY_NEXT = true
+
+        /**
+         * On, where Android's is off: the Mac's Home has always shown Random (the owner's call on `DS-24`, 2026-11-05),
+         * and the switch only lets someone hide it (the owner, 2026-11-08). The key means the same on both.
+         */
+        const val DEFAULT_SHOW_RANDOM = true
 
         /** Android's default, and the Mac engine's until now (`DesktopDownloads.MAX_RUNNING`). */
         const val DEFAULT_DOWNLOADS_AT_ONCE = 3
@@ -38,14 +49,18 @@ data class SettingsValues(
 
         /** Reads a stored map. Unknown keys are ignored; a bad value reads as that setting's default. */
         fun fromStored(stored: Map<String, String>): SettingsValues = SettingsValues(
-            autoplayNext = when (stored[KEY_AUTOPLAY_NEXT]?.trim()) {
-                "true" -> true
-                "false" -> false
-                else -> DEFAULT_AUTOPLAY_NEXT
-            },
+            autoplayNext = stored.flag(KEY_AUTOPLAY_NEXT, DEFAULT_AUTOPLAY_NEXT),
             downloadsAtOnce = stored[KEY_DOWNLOADS_AT_ONCE]?.trim()?.toIntOrNull()
                 ?.takeIf { it in DOWNLOADS_AT_ONCE }
                 ?: DEFAULT_DOWNLOADS_AT_ONCE,
+            showRandom = stored.flag(KEY_SHOW_RANDOM, DEFAULT_SHOW_RANDOM),
         )
+
+        /** `true` or `false` exactly, around spaces; anything else is [default]. */
+        private fun Map<String, String>.flag(key: String, default: Boolean): Boolean = when (this[key]?.trim()) {
+            "true" -> true
+            "false" -> false
+            else -> default
+        }
     }
 }

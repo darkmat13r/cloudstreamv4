@@ -46,10 +46,12 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.random_button_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.search
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_download_folder
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once_body
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_pane_appearance
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_downloads
@@ -110,6 +112,7 @@ class SettingsWindowState(pane: SettingsPane = SettingsPane.entries.first(), que
 
 /** What the window asks its host to do. Each setting change is written at once; there is no Apply. */
 sealed interface SettingsAction {
+    data class SetShowRandom(val on: Boolean) : SettingsAction
     data class SetDownloadsAtOnce(val count: Int) : SettingsAction
 
     /** Opens the download folder in Finder. Offered only while the folder exists. */
@@ -294,6 +297,7 @@ private fun PaneColumn(
                 .padding(start = DesktopDimens.WindowMargin, end = DesktopDimens.WindowMargin, bottom = DesktopDimens.WindowMargin),
         ) {
             when (pane) {
+                SettingsPane.Appearance -> AppearancePane(values, marked, onAction)
                 SettingsPane.Downloads -> DownloadsPane(values, folder, marked, onAction)
             }
         }
@@ -302,12 +306,15 @@ private fun PaneColumn(
 
 @Composable
 private fun paneName(pane: SettingsPane): String = when (pane) {
+    SettingsPane.Appearance -> stringResource(Res.string.settings_pane_appearance)
     SettingsPane.Downloads -> stringResource(Res.string.title_downloads)
 }
 
 /** Each row's words as search reads them: what the row shows, in the current language. */
 @Composable
 private fun rowWords(folder: DownloadFolder): Map<SettingsRow, List<String>> = mapOf(
+    // No line under it: the board's "On Home and Library." is untrue on the Mac, whose Library has no Random.
+    SettingsRow.RandomButton to listOf(stringResource(Res.string.random_button_settings)),
     SettingsRow.DownloadFolder to listOf(stringResource(Res.string.settings_download_folder), folder.name),
     SettingsRow.DownloadsAtOnce to listOf(
         stringResource(Res.string.settings_downloads_at_once),
