@@ -1089,8 +1089,11 @@ The board files were not on the drawing Mac, so every number comes from the code
   - it acts only while a sign-in from this window is pending, and ignores any unsolicited `cloudstreamapp://` URL;
   - it checks an OAuth `state` it generated, and the `state` is random. Android's MAL request sends `state=RequestID<n>`,
     a counter, which the owner ruled not acceptable for the Mac (2026-11-08);
-  - it uses PKCE where the provider supports it (MyAnimeList; Android sends the verifier as the challenge, the `plain`
-    method);
+  - it uses PKCE where the provider supports it. MyAnimeList supports only the `plain` method, so the verifier is the
+    challenge and travels in the authorize URL. So the verifier must be freshly random for every sign-in, 43 to 128
+    characters from a secure RNG, and never reused. Android's `AuthAPI.generateCodeVerifier` was checked, not assumed:
+    96 bytes from `SecureRandom`, base64url without padding, 128 characters. The Mac may reuse it only after the same
+    check against the copy it ends up with;
   - it never logs or stores the incoming URL. Only the token taken from it reaches storage.
 - **Tokens and the two subtitle credentials go in the macOS Keychain** (the owner, 2026-11-08). Reaching it from the
   JVM probably needs a library such as JNA. That is a dependency decision, so the build brings the four-point case
