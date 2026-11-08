@@ -199,6 +199,72 @@ class PluginHostClientTest {
         writeSearchPage(RemoteSearchPage(listOf(RemoteSearchItem(name, "u", null, null)), false))
     }
 
+    // ---- KMP-76: a title's facts from a host that lies
+
+    /** A load reply written by hand, as a host whose plugin bypassed every cap would write it. */
+    private fun loadReply(id: Int, section: java.io.DataOutputStream.() -> Unit) = HostProtocol.encode {
+        writeInt(id)
+        writeByte(HostProtocol.REPLY_DONE)
+        writeText("Title")
+        writeText("u")
+        writeText("TvSeries")
+        writeOptional(null)
+        writeOptional(null)
+        writeInt(Int.MIN_VALUE)
+        writeOptional(null)
+        writeInt(0)
+        section()
+    }
+
+    private suspend fun loaded(reply: (Int) -> ByteArray): RemoteDetails = withContext(Dispatchers.Default) {
+        val call = async { client.load("api", "u") }
+        fake.send(reply(fake.nextRequest()))
+        call.await()
+    }
+
+    @Test
+    fun `facts past every bound from a lying host cost only themselves, and keep the host`() = runTest {
+        val page = loaded { id ->
+            loadReply(id) {
+                val body = java.io.ByteArrayOutputStream()
+                java.io.DataOutputStream(body).use { out ->
+                    out.writeInt(Int.MAX_VALUE)
+                    out.writeInt(100_002)
+                    out.writeText("x".repeat(1024 * 1024))
+                    out.writeText("Drama\u202E")
+                    repeat(100_000) { out.writeText("") }
+                    out.writeOptional("<script>")
+                    out.writeByte(9)
+                    out.writeInt(-1)
+                }
+                writeByte(HostProtocol.FACTS_V1)
+                writeInt(body.size())
+                body.writeTo(this)
+            }
+        }
+        assertEquals("Title", page.name)
+        assertEquals(RemoteFacts(tags = listOf("Drama")), page.facts)
+        fake.assertAlive()
+        assertEquals("still", answeredCall("still"))
+    }
+
+    @Test
+    fun `a facts section cut short inside its length costs the facts, and keeps the page and the host`() = runTest {
+        val page = loaded { id -> loadReply(id) { writeByte(HostProtocol.FACTS_V1); writeInt(Int.SIZE_BYTES); writeInt(84) } }
+        assertEquals("Title", page.name)
+        assertEquals(RemoteFacts.NONE, page.facts)
+        fake.assertAlive()
+        assertEquals("still", answeredCall("still"))
+    }
+
+    @Test
+    fun `a facts section lying about its length ends the host and fails the call`() = runTest {
+        assertFailsWith<IOException> {
+            loaded { id -> loadReply(id) { writeByte(HostProtocol.FACTS_V1); writeInt(Int.MAX_VALUE) } }
+        }
+        fake.assertEnded()
+    }
+
     // ---- BUG-19: links as they arrive
 
     private fun link(name: String) = RemoteLink("s", name, "https://a.invalid/$name", 720, "VIDEO", null, null, null)

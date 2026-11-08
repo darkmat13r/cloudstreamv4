@@ -2069,13 +2069,16 @@ The exception class and the stack frames are kept, because frames carry no URLs 
 6. **Voe** prints `Decryption error: <exception class>`.
 7. **Fcast** logs `receiver <service name>` and no address.
 
-**Three copies of the rules, which must stay in sync:**
+**Four copies of the rules, which must stay in sync:**
 
 - `:app` `app/src/main/java/com/lagradost/cloudstream3/utils/LogRedaction.kt`
 - `:library` `library/src/commonMain/kotlin/com/lagradost/cloudstream3/mvvm/ArchComponentExt.kt`
 - `:feature:extensions:sandbox` `feature/extensions/sandbox/src/jvmMain/kotlin/com/lagradost/cloudstream4/feature/extensions/sandbox/PluginHost.kt`
+- `:desktopApp` `desktopApp/src/jvmMain/kotlin/com/lagradost/cloudstream4/detail/DesktopDetailSource.kt`'s `withoutUrls`, since
+  `KMP-56` (`#221`). Its test, `DesktopRedactionTest`, copies the sandbox test's table verbatim. Strip invisible characters
+  (`withoutInvisible`) before it: one inside `://` hides a url from the pattern.
 
-They cannot share one: `:library` is the published API and cannot depend on an internal module, and in `:library` the rules are `private`. Each copy's test runs the same table of cases. `:desktopApp`'s `withoutUrls` (`DesktopDetailSource.kt`) is a fourth, older rule that still writes `<url>` for the whole URL. It is not part of this change.
+They cannot share one: `:library` is the published API and cannot depend on an internal module, and in `:library` the rules are `private`. Each copy's test runs the same table of cases. `:desktopApp`'s `withoutUrls` was a fourth, older rule that wrote `<url>` for the whole URL; `KMP-56` made it the fourth copy.
 
 **One difference in content, not just in redaction.** `Log.getStackTraceString` returns an empty string when an `UnknownHostException` is anywhere in the chain. `redactedStackTrace` prints that chain like any other. That adds lines (frames and class names, redacted), and nothing it adds can carry a URL or a path.
 
@@ -2245,3 +2248,204 @@ and saves the token in one call.
 
 **Published API:** `classes-jar.api` +13 / −5. The 5 removed lines are the compiler-generated anonymous timer class
 `SettingsAccount$Companion$showPin$2$1$2`, approved for removal by the owner on 2026-11-07.
+
+## BUG-50 — Android backup carried every sign-in token, and the app's export carried profile PINs · **high, security** · measured 2026-11-07
+
+**Status:** fixed in pr, stacked on `BUG-48` (#209) · found 2026-11-07 while measuring `Q16` · the owner ruled on the
+fix the same day · `app/src/main/res/xml/backup_descriptor.xml`, `data_extraction_rules.xml`; `BackupUtils.kt`
+
+Two leaks of the same kind:
+- **Android's own backup.** The manifest has `allowBackup="true"`, and both backup rule files were empty, so cloud
+  backup and device-to-device transfer carried the whole main preferences file: every provider token
+  (`auth_tokens/…`) and account id (`auth_ids/…`). The app's export left those keys out (`nonTransferableKeys`), but
+  that list never applied to Android's backup.
+- **The app's export file** carried the profile list, PINs included, in plain text, wherever the user saved or shared
+  the file.
+
+**Fix, as the owner ruled:**
+- **`CredentialStore`**: sign-ins live in their own preferences file, `cs_credentials`, which both rule files exclude
+  (`full-backup-content`, and `cloud-backup` plus `device-transfer`). `AccountManager` and `ProfileSignIns` read and
+  write it. After a move to a new device, the user signs in again.
+- **Migration**, once per process on first use: each sign-in key in the main file is copied as its raw stored string,
+  the copy is committed, and only then are the old keys removed. A key already in the new file is newer and wins.
+- **The export strips `lockPin`** from the profile list, and so does a restore of an older export: a restored profile
+  comes back unlocked. A profile list that does not parse is left out of the export, never exported with a PIN.
+- The `auth_*` keys stay in `nonTransferableKeys`, as a second guard.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| A device transfer or cloud restore brought every sign-in with it | The user signs in again on the new device | Tokens never leave the device (owner's ruling) |
+| The export file held each profile's PIN in plain text | It holds no PIN; a restored profile comes back unlocked | Same |
+| Restoring an older export brought its PINs back | Not any more | Same outcome whichever file is restored |
+
+### Every reader or writer of the sign-in keys
+
+Searched across the repo: the literals, `ACCOUNT_TOKEN` / `ACCOUNT_IDS`, every whole-store reader, and every
+`getKeys` / `removeKeys` caller including those passed a folder variable.
+
+| Where | What it did | Now |
+|---|---|---|
+| `AccountManager`: `accounts`, `updateAccounts`, `updateAccountsId`, `updateAccountIds`, `init` | Read and wrote the main file | `CredentialStore` |
+| `ProfileSignIns` (`BUG-48`) | Listed and removed sign-ins in the main file | `CredentialStore` |
+| `BackupUtils.nonTransferableKeys` | Left the keys out of the export | Kept as a second guard; the export reads the main file, which no longer holds them |
+| `:core:storage` `AndroidStorage.secrets` | Documented as reading `auth_tokens` from the main file | **No callers, and no module depends on `:core:storage`.** Its KDoc is corrected, since a future caller would find nothing there |
+
+Nothing in `:library`, the extension sandbox or desktop touches these keys. A third-party extension that read
+`auth_tokens/…` straight from the main file would now find nothing; nothing in this repo does.
+
+**Tests:** `CredentialStoreBackupTest` (`:app` device, 6), marker values only:
+- migration moves every sign-in with no loss and removes the old keys, leaving a key that is not a sign-in alone;
+- a value already in the new file wins over a stale one;
+- `AccountManager` writes sign-ins to the new file only;
+- the export holds no token and no PIN, and still holds the profile;
+- restoring an old export with a PIN brings the profile back unlocked;
+- the backup rules exclude `cs_credentials.xml` in all three places Android reads.
+
+`BUG-48`'s `DeleteProfileSignInsTest` (5) runs against the new file. **These tests cannot fail on master first:** they
+test the new file, which master does not have.
+
+**Published API:** additions only, `classes-jar.api` +21 / −0. Two things kept it that way. `CredentialStore`'s inline
+reader is named `getKey`, as the function it replaces, because callers' compiler-generated `TypeReference` classes are
+named after it (a first name, `read`, renamed three of them). And `getBackup` stays private behind a separate
+`exportForTest`, which keeps its synthetic accessor.
+
+## BUG-51 — Android backup still carried profile PINs; a failed sign-in move was marked done · **high, security** · measured 2026-11-08
+
+**Status:** fixed in pr, stacked on `BUG-50` (#215) · the owner ruled 2026-11-07 that PINs stay off Android's backup
+too; the second half is #215's review · `DataStoreHelper.kt`, `CredentialStore.kt`
+
+- **PINs.** `BUG-50` took PINs out of the app's export, but each profile's `lockPin` still sat inside the profile list
+  in the main preferences file, which Android's cloud backup and device transfer carry. Now `DataStoreHelper.accounts`
+  keeps each PIN in `CredentialStore`'s file, under `lock_pin/<profile index>`, and joins it back on read, so every
+  caller (`AccountViewModel`, `AccountSelectActivity`, `AccountHelper`, the adapters) sees `lockPin` as before. The
+  stored list holds no PIN. A restore onto another device brings locked profiles back unlocked.
+- **Migration** on the first read of a list that still holds PINs: they are copied and committed, and only then is
+  the list rewritten without them. A PIN in the list wins over one in the credential file: it is the newer one after a
+  setter whose credential write failed. If the copy cannot be written, the PINs stay in the list and the lock still
+  works.
+- **The limit:** the move happens on the first read, so a backup Android takes after the update but before the app is
+  first opened still carries the PIN (the same limit as `BUG-50`'s tokens).
+- **An app restore clears every PIN.** When `BackupUtils.restore` writes a profile list, it empties `lock_pin/*`, so
+  restored profiles come back unlocked, as the owner ruled. A different profile restored at a locked index (say "Dad" at
+  index 1, where "Kids" was locked) must not inherit that lock.
+- **No inherited locks.** Writing the list makes the stored PINs exactly the list's: a removed profile's PIN goes with
+  it, so a later profile on the same index is not locked by it.
+- **The review's case.** `CredentialStore` marked its sign-in move done even when the copy's `commit()` failed. Now it
+  is marked done only when the copy was written or there was nothing to move. Until then a sign-in still in the main
+  file is read from there, a sign-out removes it from there too, and the next call retries the move.
+
+Measured while testing: a failed `commit()` still updates `SharedPreferences`' in-memory copy, so in practice the
+process did not read as signed out. The old code did, however, never retry the move in that process. The fix does not
+rely on the in-memory copy.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| A device transfer or cloud restore brought each profile's PIN with it | Locked profiles come back unlocked on the new device | PINs stay off Android's backup (owner's ruling) |
+| An app restore on this device | Restored profiles come back unlocked; this device's PINs are cleared | A PIN keyed by index would lock a different profile restored there (review blocker on #222) |
+| A failed sign-in move was not retried until the next process | Retried on the next read | #215 review |
+
+**DECIDED:** PINs are stored as plain strings, as they were in the list (Q16's notes record the plain-text PIN as the
+owner's call). They are keyed by profile index, as sign-ins are. (A first DECIDED, keeping a device's PIN across an app
+restore, was overturned in review: see the restore point above.)
+
+**Tests:** `ProfilePinStoreTest` (`:app` device, 7), marker PINs only:
+- a locked profile's PIN is not in the backed-up list, and the lock still reads back;
+- a list still holding a PIN is moved on first read, with no loss, and the move is on disk;
+- a reused index does not inherit an old PIN;
+- a restore with a different profile at a locked index brings it back unlocked, and `lock_pin/<index>` is gone;
+- a PIN change whose credential write failed (new PIN in the list, old one in the file) is not reverted on the next read;
+- while the preferences folder is read-only, the PIN stays in the list and the lock holds; once writable, the next read
+  moves it;
+- a move whose copy cannot be written (the preferences folder made read-only) is not marked done, the old key stays
+  readable and in place, and the move is retried once writing works.
+
+Against #215's code (its `CredentialStore.kt` and `DataStoreHelper.kt` put back), 3 of the 4 fail: "A PIN is in the
+backed-up profile list" and "A move that was not written was marked done", and the move test, which reaches a field
+that code does not have. The reused-index test passes there, since that code kept each PIN inside its profile's own
+entry; it guards the new store.
+
+After review, against #222's first head (its `BackupUtils.kt` and `DataStoreHelper.kt` put back), 2 of the 7 fail: "A
+restored profile inherited this device's PIN" (it was `4951`) and "The PIN change was reverted" (`4951`, not `4952`). The
+read-only PIN test passes there too: that head already kept the lock and retried; the test guards it.
+`CredentialStoreBackupTest` (6) and `DeleteProfileSignInsTest` (5) still pass: 18 / 0 in all.
+
+**Published API:** additions only, `classes-jar.api` +3 / −0 (`PIN_FOLDER`, `pins`, `replacePins`). `accounts` keeps
+its getter and setter; only its private backing property changed.
+
+## BUG-53 — Two Mac download tests read the live disk, so they were flaky under load · **low** · measured 2026-11-08
+
+Two tests in `DesktopDownloadsTest` (from `KMP-52`, #177) failed when other processes were writing to the disk. They
+turned `:desktopApp:jvmTest` and the gates red on master `42bf120c6`. With the two run alone 10 times beside a loop that
+writes and deletes 64 MiB files, each failed 2 times out of 10. The download code itself was not at fault.
+- **`no link text ever reaches the downloads file or the engine's state`.** Its scan listed the files, then read each one.
+  The engine renames its state file into place while it runs, so a listed file could be gone by the time it was read,
+  giving `FileNotFoundException`.
+  - *Fix:* a pass that finds a vanished file is thrown away, and the scan starts again. It passes only after a pass that
+    read every file it listed, and fails after 20 passes without one. No file is skipped.
+  - *Why not stop the download first:* the scans while it runs are the only check that the engine's mid-run state file
+    holds no link.
+- **`a series page reports the same free bytes as the titles page`.** Each page read the real volume's free space, one
+  after the other, so a write by anything else between the two reads moved the figure. On master the two came out 3 to
+  6 MB apart.
+  - *Fix:* `DesktopDownloads` takes the volume's size and free space from a `VolumeSpace` source. Production reads the
+    real volume, as before, once per figure. The test passes in a fixed volume (1,000 GiB, 400 GiB usable) and checks that
+    both pages give exactly 400 GiB. Nothing is allowed for rounding or drift.
+- **Measured** with the same disk-writing loop:
+  - before, on master: in 10 runs of the two, the scan failed in 2 (`FileNotFoundException`) and the free bytes in 2
+    (3–6 MB apart);
+  - after: these two and `BUG-56`'s test, 20 runs in a row, 0 failures;
+  - the full `:desktopApp:jvmTest`: 441/0, and the six gates pass (all local, none CI).
+
+## BUG-56 — A Mac download test could read the previous run's stored failure as the new one · **low** · measured 2026-11-08
+
+`DesktopDownloadsTest.after a restart a resolver with no VIDEO link fails the episode and keeps its parts` (from `KMP-52`,
+#177) failed now and then on branches that do not touch downloads: "expected SourceFailed, was NoUsableLink". Reported by
+worker-2 on `KMP-58`'s branch and by desktop-session-1, and fixed together with `BUG-53`.
+- **Cause.** Each step of the test starts a new host, and that host loads the previous step's stored failure, Failed with
+  `NoUsableLink`. `resumeNow` calls `pump()`, which starts the run, before `publish()`. So the resolver can be asked, and can
+  answer, while the published view still shows the stored state. The test waited for "asked", then for Failed, and could
+  match the stored Failed. In the first two steps the expected reason equals the stored one, so they could pass without
+  having checked anything.
+- **Fix, test only.** Each step's resolver waits on a gate. The test waits until the episode shows Running, which only a
+  publish after the resume shows, opens the gate, and only then waits for Failed. All three steps now check this step's
+  answer. There are no sleeps and no tolerance.
+- **Not changed here.** In production, too, the run starts before the publish. So after Retry the screen can show the old
+  Failed for a moment, which reads as the retry failing at once. That fix is its own follow-up, `BUG-57`.
+- **Measured** under the `BUG-53` disk load: before, 1 failure in 20 runs on master, with exactly the reported
+  message; after, 20 in a row with none (see `BUG-53`).
+
+## BUG-57 — After Retry, the Mac downloads list could show the old failure again · **low** · measured 2026-11-08
+
+Found while fixing `BUG-56`. `DesktopDownloads.resumeNow` (and every other path through `pump()`) started an episode's
+run before publishing. Its own `publish()` came only after `persist()` had written the downloads file. While that happened,
+the run could already be asking the extension, and anything that read the downloads list saw the episode as it was
+before: Failed, with the old reason. On a screen that reads as the retry failing at once.
+- **Fix.** `start()` publishes once the episode is Running, before it starts the run. Every caller of `pump()` has finished
+  changing its items by then, so the extra publish never shows a half-made change. The later `publish()` is unchanged.
+- **Test.** `a retry is published as running before its run asks the extension`: a film fails with a 404, then is retried.
+  The resolver reads the published episode as it is called, and that must be Running with no failure.
+  - Before, on master: failed 5 runs in 5 ("what a reader saw while the retry asked: Failed").
+  - After: 20 runs in a row under the `BUG-53` disk load, none failed.
+
+## BUG-58 — `HostLimitsTest` asserted the plugin host's niceness as an absolute 10 · **low, test only**
+
+**Status:** fixed in this PR · found 2026-11-08 by the gates on `KMP-76` (`#242`)
+
+The launcher starts a plugin host with `/usr/bin/nice -n 10`, which is relative to the process that starts it. The test
+read the host's niceness and asserted exactly 10, which is true only when the test JVM runs at 0. On `KMP-76`'s gates
+the test JVM ran at nice 5, and the host was at 15: the promise kept, the assertion failed. The other worktrees' runs of
+the same test logged 10 every time (44 results), all from a JVM at 0.
+
+**Fix:** the test reads this process's own niceness and asserts the host is exactly 10 above it. It refuses to pass when
+this process is above 10, where macOS's ceiling of 20 would clamp the step and hide it (Linux's ceiling is 19). The promise is
+unchanged: ten steps lower than what launched it. Nothing outside the test changed.
+
+**Measured** (`HostLimitsTest`, 10 cases each run):
+- At parent 0: host 10, pass.
+- At parent 5 (Gradle run under `nice -n 5`, no daemon): host 15, pass. This is the gates' failure, which the old
+  assertion failed on with `expected:<10> but was:<15>`.
+- **Red:** with `nice -n 10` taken out of the launcher, `expected:<10> but was:<0>`. Restored afterwards.

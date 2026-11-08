@@ -22,6 +22,7 @@ import com.lagradost.cloudstream3.SearchQuality
 import com.lagradost.cloudstream3.SearchResponse
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.syncproviders.AccountManager
+import com.lagradost.cloudstream3.syncproviders.CredentialStore
 import com.lagradost.cloudstream3.syncproviders.SyncAPI
 import com.lagradost.cloudstream3.ui.WatchType
 import com.lagradost.cloudstream3.ui.library.ListSorting
@@ -163,7 +164,40 @@ object DataStoreHelper {
     }
 
     const val TAG = "data_store_helper"
-    var accounts by PreferenceDelegate("$TAG/account", arrayOf<Account>())
+    /** The profile list as stored in the main, backed-up store: no PIN in it once [accounts] has run. */
+    private var storedAccounts by PreferenceDelegate("$TAG/account", arrayOf<Account>())
+
+    /**
+     * `BUG-51`: each profile's `lockPin` is kept in `CredentialStore`, which Android's backup and device transfer
+     * exclude, and joined back here, so callers see `lockPin` as before. A profile restored onto another device comes
+     * back unlocked.
+     *
+     * A list still holding PINs (written before this change, or left by a setter whose credential write failed) is moved
+     * on first read: the PINs are copied and committed, and only then is the list rewritten without them. A PIN in the
+     * list wins over one already in the credential file, being the newer. If the copy cannot be written, the PINs stay
+     * in the list and the lock still works.
+     */
+    var accounts: Array<Account>
+        get() {
+            val stored = storedAccounts
+            if (stored.any { it.lockPin != null }) {
+                val held = CredentialStore.pins() ?: return stored
+                // The list's own PIN wins: it is the newer one after a setter whose credential write failed.
+                val moved = held + stored.filter { it.lockPin != null }.associate { it.keyIndex to it.lockPin!! }
+                if (!CredentialStore.replacePins(moved)) return stored
+                storedAccounts = stored.map { it.copy(lockPin = null) }.toTypedArray()
+            }
+            val pins = CredentialStore.pins() ?: return storedAccounts
+            return storedAccounts.map { it.copy(lockPin = pins[it.keyIndex]) }.toTypedArray()
+        }
+        set(value) {
+            val pins = value.filter { it.lockPin != null }.associate { it.keyIndex to it.lockPin!! }
+            storedAccounts = if (CredentialStore.replacePins(pins)) {
+                value.map { it.copy(lockPin = null) }.toTypedArray()
+            } else {
+                value // no context, or the write failed: keep the PINs where they were rather than drop a lock
+            }
+        }
     var selectedKeyIndex by PreferenceDelegate("$TAG/account_key_index", 0)
     val currentAccount: String get() = selectedKeyIndex.toString()
 

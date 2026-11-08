@@ -54,6 +54,33 @@ internal object HostProtocol {
      */
     const val MAX_LINK_BYTES = MAX_FRAME_BYTES
 
+    /**
+     * The one version of a title's facts this app reads (`KMP-76`). The section follows the episodes, as this byte and
+     * its length, so a reader that does not know a version skips it whole and the page still opens.
+     */
+    const val FACTS_V1 = 1
+
+    /** A score out of ten, in tenths: 8.4 is 84. A whole number on the wire, so there is no NaN to send. */
+    const val MAX_SCORE_TENTHS = 100
+    const val MAX_TAGS = 16
+    const val MAX_TAG_CHARS = 64
+
+    /** A tag's bytes as sent. Past it the tag is skipped unread: 64 characters need at most 256. */
+    const val MAX_TAG_BYTES = 256
+
+    /** All tags' bytes as sent. Past it the rest are skipped unread. */
+    const val MAX_TAGS_BYTES = 16 * 1024
+    const val MAX_CONTENT_RATING_CHARS = 16
+
+    /** A certification's bytes as sent. Past it it is skipped unread: 16 characters need at most 64. */
+    const val MAX_CONTENT_RATING_BYTES = 64
+    const val MAX_RUNTIME_MINUTES = 24 * 60
+
+    /** A show's status, as one byte: what the page has words for, and nothing a plugin could spell its own way. */
+    const val STATUS_NONE = 0
+    const val STATUS_ONGOING = 1
+    const val STATUS_COMPLETED = 2
+
     /** One length-prefixed frame, or `null` at a clean end of stream. */
     fun readFrame(input: InputStream): ByteArray? {
         val first = input.read()
@@ -153,7 +180,38 @@ data class RemoteDetails(
     /** What to hand [PluginHostClient.loadLinks] for a movie or live stream; null for a series. */
     val dataUrl: String?,
     val episodes: List<RemoteEpisode>,
+    /** What a page says about the title beside its name (`KMP-76`). None from a host that sent no facts. */
+    val facts: RemoteFacts = RemoteFacts.NONE,
 )
+
+/**
+ * A title's facts, as the app keeps them: every one in its bound, or absent.
+ *
+ * The plugin runs in the host, so it can write any bytes the host could, and these are read as hostile. A value the
+ * reader cannot accept loses only itself: the page opens with the rest. A section that cannot be read loses the facts,
+ * and the page still opens. Only a section whose own length lies past the frame, which no reader can stay in step
+ * through, fails the call, as anywhere else in this format.
+ *
+ * @param scoreTenths out of ten, in tenths, `0..`[HostProtocol.MAX_SCORE_TENTHS].
+ * @param tags at most [HostProtocol.MAX_TAGS], each non-blank and at most [HostProtocol.MAX_TAG_CHARS], no two alike.
+ * @param contentRating a certification such as `TV-MA`: letters, digits, spaces and `-+/`, at most
+ *   [HostProtocol.MAX_CONTENT_RATING_CHARS].
+ * @param runtimeMinutes `1..`[HostProtocol.MAX_RUNTIME_MINUTES].
+ */
+data class RemoteFacts(
+    val scoreTenths: Int? = null,
+    val tags: List<String> = emptyList(),
+    val contentRating: String? = null,
+    val status: RemoteShowStatus? = null,
+    val runtimeMinutes: Int? = null,
+) {
+    companion object {
+        val NONE = RemoteFacts()
+    }
+}
+
+/** Named as `ShowStatus` names them, which is what the page's words are keyed by. */
+enum class RemoteShowStatus { Ongoing, Completed }
 
 data class RemoteLink(
     val source: String,
@@ -292,9 +350,14 @@ internal fun DataOutputStream.writeDetails(details: RemoteDetails) {
         writeInt(episode.season ?: NO_NUMBER)
         writeInt(episode.episode ?: NO_NUMBER)
     }
+    writeFacts(details.facts)
 }
 
-internal fun DataInputStream.readDetails(): RemoteDetails = RemoteDetails(
+/**
+ * @param dropped told the name of each fact left out and why, in words of this code's own: never the value, which is
+ *   the plugin's and can carry an address or a token.
+ */
+internal fun DataInputStream.readDetails(dropped: (String) -> Unit = {}): RemoteDetails = RemoteDetails(
     name = readText(),
     url = readText(),
     type = readText(),
@@ -305,7 +368,101 @@ internal fun DataInputStream.readDetails(): RemoteDetails = RemoteDetails(
     episodes = List(readCount()) {
         RemoteEpisode(readOptional(), readText(), readNumber(), readNumber())
     },
+    facts = readFacts(dropped),
 )
+
+/** After the episodes, so a reader from before `KMP-76` stops where it always did and never sees it. */
+private fun DataOutputStream.writeFacts(facts: RemoteFacts) {
+    val section = ByteArrayOutputStream()
+    DataOutputStream(section).use { out ->
+        out.writeInt(facts.scoreTenths ?: NO_NUMBER)
+        out.writeInt(facts.tags.size)
+        facts.tags.forEach { out.writeText(it) }
+        out.writeOptional(facts.contentRating)
+        out.writeByte(
+            when (facts.status) {
+                null -> HostProtocol.STATUS_NONE
+                RemoteShowStatus.Ongoing -> HostProtocol.STATUS_ONGOING
+                RemoteShowStatus.Completed -> HostProtocol.STATUS_COMPLETED
+            },
+        )
+        out.writeInt(facts.runtimeMinutes ?: NO_NUMBER)
+    }
+    writeByte(HostProtocol.FACTS_V1)
+    writeInt(section.size())
+    section.writeTo(this)
+}
+
+/**
+ * The facts section, or none. Nothing left means a host from before it: no facts, and the page as it was.
+ *
+ * Read from its own slice of the frame, so nothing in it can reach past its stated length, and what follows it stays
+ * in step whatever the section holds. So a section that cannot be read costs the facts and keeps the page.
+ */
+private fun DataInputStream.readFacts(dropped: (String) -> Unit): RemoteFacts {
+    if (available() == 0) return RemoteFacts.NONE
+    val version = readUnsignedByte()
+    val length = readInt()
+    if (length !in 0..available()) throw IOException("facts length $length out of range")
+    if (version != HostProtocol.FACTS_V1) {
+        skipNBytes(length.toLong())
+        dropped("facts: a version this app does not read")
+        return RemoteFacts.NONE
+    }
+    val section = readNBytes(length)
+    // Inside its slice, a section cut short or lying about a length cannot move this reader, which has already
+    // stepped past it: the facts are lost, the page is not. A lying length for the slice itself still fails, above.
+    return try {
+        DataInputStream(ByteArrayInputStream(section)).use { it.readFactsV1(dropped) }
+    } catch (unreadable: IOException) {
+        dropped("facts: a section that could not be read")
+        RemoteFacts.NONE
+    }
+}
+
+private fun DataInputStream.readFactsV1(dropped: (String) -> Unit): RemoteFacts {
+    val score = readNumber()
+    val tags = ArrayList<String>()
+    var tagBytes = 0
+    var skipped = 0
+    repeat(readCount()) {
+        val length = readInt()
+        if (length !in 0..available()) throw IOException("tag length $length out of range")
+        // Over its own cap, past the list's, or past the count kept: skipped, not decoded, and the reader stays in step.
+        // Only what is decoded counts toward the list's bytes, so one oversized tag costs no tag after it.
+        val fits = length <= HostProtocol.MAX_TAG_BYTES && tagBytes + length <= HostProtocol.MAX_TAGS_BYTES
+        if (!fits || tags.size == HostProtocol.MAX_TAGS) {
+            skipNBytes(length.toLong())
+            skipped++
+        } else {
+            tagBytes += length
+            tags += String(readNBytes(length), Charsets.UTF_8)
+        }
+    }
+    // Once for the list, so a plugin sending many cannot make as many lines of log.
+    if (skipped > 0) dropped("tags: $skipped past a bound")
+    val rating = if (readBoolean()) {
+        val length = readInt()
+        if (length !in 0..available()) throw IOException("rating length $length out of range")
+        if (length > HostProtocol.MAX_CONTENT_RATING_BYTES) {
+            skipNBytes(length.toLong())
+            dropped("contentRating: past its bytes")
+            null
+        } else {
+            String(readNBytes(length), Charsets.UTF_8)
+        }
+    } else {
+        null
+    }
+    val status = when (readUnsignedByte()) {
+        HostProtocol.STATUS_NONE -> null
+        HostProtocol.STATUS_ONGOING -> RemoteShowStatus.Ongoing
+        HostProtocol.STATUS_COMPLETED -> RemoteShowStatus.Completed
+        else -> null.also { dropped("status: not a code this app knows") }
+    }
+    val runtime = readNumber()
+    return RemoteFacts(score, tags, rating, status, runtime)
+}
 
 internal fun DataOutputStream.writeLinks(links: RemoteLinks) {
     writeInt(links.subtitles.size)

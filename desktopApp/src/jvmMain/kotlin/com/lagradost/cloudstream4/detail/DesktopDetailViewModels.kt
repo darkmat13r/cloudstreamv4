@@ -6,6 +6,7 @@ import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.DetailViewModel
 import com.lagradost.cloudstream4.feature.detail.StreamLink
+import com.lagradost.cloudstream4.feature.library.LibraryStore
 import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.Flow
@@ -20,10 +21,17 @@ import kotlin.time.Duration.Companion.seconds
  */
 internal object DesktopDetailViewModels {
     private val live = mutableMapOf<String, DetailViewModel>()
-    private val source: DetailSource = DesktopDetailSource()
+    private val plugins: DetailSource = DesktopDetailSource()
 
-    fun get(id: String, scope: CoroutineScope): DetailViewModel =
-        live.getOrPut(id) { DetailViewModel(id, source, scope, playBestAfter = BEST_LINK_WAIT) }
+    /**
+     * @param library what this computer remembers about the title (`KMP-58`): where it was left and which list it is
+     *   on. Null opens the page with the provider's word alone.
+     */
+    fun get(id: String, scope: CoroutineScope, library: LibraryStore? = null): DetailViewModel =
+        live.getOrPut(id) {
+            val source = library?.let { LibraryDetailSource(plugins, it) } ?: plugins
+            DetailViewModel(id, source, scope, playBestAfter = BEST_LINK_WAIT)
+        }
 
     /**
      * How long after a title's first playable link the best one found is played, unless a 2160p one arrives first

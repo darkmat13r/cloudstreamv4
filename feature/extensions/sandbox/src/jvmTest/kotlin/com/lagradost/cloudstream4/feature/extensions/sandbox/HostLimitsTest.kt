@@ -121,6 +121,10 @@ class HostLimitsTest {
             assertTrue("disk" in host.endedBecause.orEmpty(), host.endedBecause)
         }
 
+    private fun niceOf(pid: Long): Int =
+        ProcessBuilder("/bin/ps", "-o", "nice=", "-p", pid.toString()).start()
+            .inputStream.bufferedReader().readText().trim().toInt()
+
     @Test
     fun `the host runs at a lower priority`() {
         val launcher = HostLauncher.forThisProcess() ?: return
@@ -128,11 +132,17 @@ class HostLimitsTest {
             val (client, providers) = PluginHostClient.start(launcher, jar, data, "hostile")
             try {
                 providers.getOrThrow()
-                val pid = client.pid
-                val ps = ProcessBuilder("/bin/ps", "-o", "nice=", "-p", pid.toString()).start()
-                val nice = ps.inputStream.bufferedReader().readText().trim().toInt()
-                println("LIMIT nice: $nice")
-                assertEquals(10, nice)
+                // `nice -n 10` is relative to whoever starts the host, and Gradle's test JVM is not always at 0
+                // (`BUG-58`), so the promise is exactly ten steps below this process. Near the ceiling `nice` would
+                // clamp and the step could not be seen, so that is refused rather than measured.
+                val parent = niceOf(ProcessHandle.current().pid())
+                val nice = niceOf(client.pid)
+                println("LIMIT nice: $nice, parent $parent")
+                assertTrue(
+                    parent + HOST_NICE_STEP <= MAX_NICE,
+                    "too near the ceiling to see the whole step: parent $parent",
+                )
+                assertEquals(parent + HOST_NICE_STEP, nice)
             } finally {
                 client.close()
             }
@@ -169,5 +179,14 @@ class HostLimitsTest {
     private companion object {
         const val POLL_MILLIS = 200L
         const val WAIT_MILLIS = 60_000L
+
+        /** The launcher's `nice -n 10`. */
+        const val HOST_NICE_STEP = 10
+
+        /**
+         * The lowest priority macOS has: `nice` stops there. Linux stops at 19, so this would need to change with the
+         * host if a sandbox for Linux is ever added; today the test skips without `sandbox-exec`.
+         */
+        const val MAX_NICE = 20
     }
 }

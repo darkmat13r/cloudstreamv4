@@ -1,14 +1,23 @@
 package com.lagradost.cloudstream4.search
 
 import com.lagradost.cloudstream3.APIHolder
+import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.SearchResponse
+import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.mvvm.Resource
 import com.lagradost.cloudstream3.ui.APIRepository
 import com.lagradost.cloudstream4.feature.search.SearchOutcome
 import com.lagradost.cloudstream4.feature.search.SearchResultId
 import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchSource
+import com.lagradost.cloudstream4.feature.search.SearchSourceChoice
+import com.lagradost.cloudstream4.feature.search.SearchSourceHealth
 import com.lagradost.cloudstream4.feature.search.SearchSources
+import com.lagradost.cloudstream4.feature.search.SearchTypeFilter
+import com.lagradost.cloudstream4.feature.search.SearchTypeFilters
+import com.lagradost.cloudstream4.detail.withoutInvisible
+import com.lagradost.cloudstream4.detail.withoutUrls
+import java.util.concurrent.ConcurrentHashMap
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -54,15 +63,70 @@ import kotlinx.coroutines.withContext
 class DesktopSearchSource : SearchSource {
 
     /**
-     * Every provider is "selected", because desktop has no provider-selection UI.
+     * The panel's picks (`DS-22` S4), by provider name, or `null` for every provider: what a first launch asks.
      *
-     * On Android the selection comes from `Context.getApiSettings()`, which reads the user's
-     * language preferences. Artboard 4d draws the picker that would change it; until desktop has
-     * one, `selected == total` is the truth rather than a placeholder.
+     * Kept for as long as the app runs (`KMP-56`). There is no desktop preference store yet to keep it in between
+     * launches, as with Home's bookmark filter. Android keeps both in the account's data store.
      */
-    override suspend fun sources(): SearchSources {
-        val total = repositories().size
-        return SearchSources(selected = total, total = total)
+    @Volatile
+    private var picked: Set<String>? = null
+
+    /** The lit type chips (S1). None lit is no narrowing. */
+    @Volatile
+    private var types: Set<SearchTypeFilter> = emptySet()
+
+    /** Each provider's last answer, by name, for the panel's marker: `true` if it failed. */
+    private val failed = ConcurrentHashMap<String, Boolean>()
+
+    /**
+     * How many providers a search asks, out of every installed one.
+     *
+     * Desktop has no language preference, so every installed provider is eligible: what Android narrows by
+     * `getApiSettings()` before the picks, desktop does not.
+     */
+    override suspend fun sources(): SearchSources =
+        SearchSources(selected = selected().size, total = installed().size)
+
+    /** Every provider the chips leave, by name, each saying whether a search asks it. */
+    override suspend fun choices(): List<SearchSourceChoice> {
+        val asked = selected().mapTo(HashSet()) { it.name }
+        return underTypes(installed(), types).sortedBy { it.name.lowercase() }.map { api ->
+            SearchSourceChoice(
+                id = api.name,
+                name = api.name.cleanText(MAX_NAME_CHARS),
+                selected = api.name in asked,
+                health = when (failed[api.name]) {
+                    null -> SearchSourceHealth.Unknown
+                    true -> SearchSourceHealth.Failed
+                    false -> SearchSourceHealth.Ok
+                },
+            )
+        }
+    }
+
+    /** A row the chips hid keeps its state, as on Android: hiding one must not turn it off. */
+    override suspend fun selectSources(ids: Set<String>) {
+        val offered = choices().mapTo(HashSet()) { it.id }
+        val before = picked ?: installed().mapTo(HashSet()) { it.name }
+        picked = before.filterNotTo(HashSet()) { it in offered } + ids
+    }
+
+    override suspend fun typeFilters(): SearchTypeFilters {
+        val served = installed().flatMapTo(HashSet()) { it.supportedTypes }
+        return SearchTypeFilters(
+            available = SearchTypeFilter.entries.filter { filter -> filter.tvTypes().any { it in served } },
+            selected = types,
+        )
+    }
+
+    override suspend fun selectTypes(types: Set<SearchTypeFilter>) {
+        this.types = types
+    }
+
+    /** 8c's *Search everything*: every provider, no chip. */
+    override suspend fun clearFilters() {
+        picked = null
+        types = emptySet()
     }
 
     override suspend fun search(query: String): SearchOutcome =
@@ -82,8 +146,20 @@ class DesktopSearchSource : SearchSource {
             quick as? Resource.Success ?: repo.search(query, FIRST_PAGE)
         }
 
-    private fun repositories(): List<APIRepository> =
-        APIHolder.apis.withLock { APIHolder.apis.map { APIRepository(it) } }
+    private fun installed(): List<MainAPI> = APIHolder.apis.withLock { APIHolder.apis.toList() }
+
+    /**
+     * The picks under the lit chips. A pick that no longer matches anything falls back to every provider, and chips
+     * nobody serves narrow nothing: the rules Android's `selectSearchProviders` keeps.
+     */
+    private fun selected(): List<MainAPI> {
+        val all = installed()
+        val picks = picked
+        val chosen = if (picks == null) all else all.filter { it.name in picks }.ifEmpty { all }
+        return underTypes(chosen, types)
+    }
+
+    private fun repositories(): List<APIRepository> = selected().map { APIRepository(it) }
 
     /**
      * Asks every selected provider at once and folds the replies into one [SearchOutcome].
@@ -102,7 +178,7 @@ class DesktopSearchSource : SearchSource {
         // says "All nine selected sources answered and none of them carry it" — with nothing
         // queried that sentence blames the catalogue for a configuration problem. `:app`'s
         // implementation reached the same conclusion independently.
-        if (repos.isEmpty()) {
+        if (installed().isEmpty()) {
             return@withContext SearchOutcome.Failed("NO_SOURCES · 0 INSTALLED")
         }
 
@@ -110,6 +186,7 @@ class DesktopSearchSource : SearchSource {
             repos.map { repo -> async { repo to request(repo) } }.awaitAll()
         }
 
+        replies.forEach { (repo, reply) -> failed[repo.name] = reply is Resource.Failure }
         val answered = replies.filter { it.second is Resource.Success }
         val failures = replies.mapNotNull { it.second as? Resource.Failure }
         val items = answered.flatMap { (repo, reply) ->
@@ -138,7 +215,9 @@ class DesktopSearchSource : SearchSource {
      */
     private fun List<Resource.Failure>.detail(): String =
         // The first line: the rest of errorString is a stack trace, which is not for this screen.
-        map { it.errorString.trim().lineSequence().first().ifEmpty { UNKNOWN_ERROR } }
+        // A plugin's words reach the screen and a pasted bug report: no address, no home directory (`KMP-56`, as `#200`).
+        // Invisible characters out first: one inside a url would hide it from the pattern (`#221` review).
+        map { it.errorString.trim().lineSequence().first().withoutInvisible().withoutUrls().cleanText(MAX_REASON_CHARS).ifEmpty { UNKNOWN_ERROR } }
             .distinct()
             .take(MAX_DETAIL_REASONS)
             .joinToString(DETAIL_SEPARATOR)
@@ -157,8 +236,14 @@ class DesktopSearchSource : SearchSource {
         watchProgress = null,
     )
 
+    /** Third-party text on its way to the screen: no control or format characters, and capped. */
+    private fun String.cleanText(max: Int): String =
+        filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(max)
+
     companion object {
         private const val FIRST_PAGE = 1
+        private const val MAX_NAME_CHARS = 60
+        private const val MAX_REASON_CHARS = 200
         private const val UNKNOWN_ERROR = "UNKNOWN"
         private const val MAX_DETAIL_REASONS = 3
         private const val DETAIL_SEPARATOR = " · "
@@ -179,4 +264,28 @@ class DesktopSearchSource : SearchSource {
             return if (parts.size == 2) parts[0] to parts[1] else null
         }
     }
+}
+
+/** [providers] serving one of [types]' media, or all of them when that is nobody or [types] is empty. */
+private fun underTypes(providers: List<MainAPI>, types: Set<SearchTypeFilter>): List<MainAPI> {
+    if (types.isEmpty()) return providers
+    val media = types.flatMapTo(HashSet()) { it.tvTypes() }
+    return providers.filter { api -> api.supportedTypes.any { it in media } }.ifEmpty { providers }
+}
+
+/**
+ * Which `TvType`s a chip stands for. A copy of `:app`'s `SearchTypeFilter.tvTypes()` in `ApiRepositorySearchSource.kt`,
+ * which desktop cannot reach: keep the two the same.
+ */
+internal fun SearchTypeFilter.tvTypes(): List<TvType> = when (this) {
+    SearchTypeFilter.Movies -> listOf(TvType.Movie)
+    SearchTypeFilter.TvSeries -> listOf(TvType.TvSeries)
+    SearchTypeFilter.Anime -> listOf(TvType.Anime, TvType.OVA, TvType.AnimeMovie)
+    SearchTypeFilter.AsianDrama -> listOf(TvType.AsianDrama)
+    SearchTypeFilter.Cartoons -> listOf(TvType.Cartoon)
+    SearchTypeFilter.Documentaries -> listOf(TvType.Documentary)
+    SearchTypeFilter.Live -> listOf(TvType.Live)
+    SearchTypeFilter.Torrents -> listOf(TvType.Torrent)
+    SearchTypeFilter.Nsfw -> listOf(TvType.NSFW)
+    SearchTypeFilter.Others -> listOf(TvType.Others)
 }
