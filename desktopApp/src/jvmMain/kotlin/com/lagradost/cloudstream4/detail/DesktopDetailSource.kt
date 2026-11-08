@@ -111,9 +111,13 @@ private val FILE_URI = Regex("(?i)\\bfile:/\\S+")
 
 /**
  * `scheme://[userinfo@]host[:port]`, then whatever follows up to the next whitespace. BUG-52: also
- * when whitespace or a Unicode space (`\p{Z}`, NBSP among them) splits `scheme:` from `//`.
+ * when whitespace or a Unicode space (`\p{Z}`, NBSP among them) splits `scheme:` from `//`. BUG-64: and when
+ * up to two other characters do, such as a braille blank (U+2800), which a screen draws as nothing, or up to two
+ * that are neither letters nor digits sit between the slashes.
  */
-private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*):[\\s\\p{Z}]*//(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
+private val URL_IN_TEXT = Regex(
+    "(?i)\\b([a-z][a-z0-9+.-]*):[\\s\\p{Z}]*(?:[^\\s\\p{Z}/][\\s\\p{Z}]*){0,2}/[\\s\\p{Z}]*(?:[^\\s\\p{Z}/\\p{L}\\p{N}][\\s\\p{Z}]*){0,2}/(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)"
+)
 
 /**
  * An absolute path under a storage, home or volume root, up to a newline, a quote, `": "` or the end. A path may hold
@@ -133,10 +137,40 @@ private val WINDOWS_USER_PATH = Regex(
  * rest) out before any pattern runs, since one inside `://` (`https:<ZWSP>//`) would hide a url from
  * [URL_IN_TEXT]. Line breaks stay, because they shape a stack trace. A tab becomes a space: a screen
  * that strips controls after redaction (Home, Detail, the HUD) would otherwise rejoin `https:<tab>//`.
+ * BUG-64: then every code point Unicode calls default-ignorable, which Cc and Cf do not cover.
  */
 private fun String.withoutHiddenCharacters(): String = replace('\t', ' ').filterNot { c ->
     c.category == CharCategory.FORMAT ||
         (c.category == CharCategory.CONTROL && c != '\n' && c != '\r')
+}.withoutDefaultIgnorable()
+
+/**
+ * BUG-64: Unicode's Default_Ignorable_Code_Point (DerivedCoreProperties.txt), the code points a screen draws nothing
+ * for. Cc and Cf miss some of them: U+034F, the variation selectors, the Hangul fillers. One of these inside `://` or
+ * `/Users/` hides it from a pattern while the text reads the same. The same list is in every copy of this check.
+ */
+private fun isDefaultIgnorable(codePoint: Int): Boolean = when (codePoint) {
+    0x00AD, 0x034F, 0x061C, 0x3164, 0xFEFF, 0xFFA0 -> true
+    in 0x115F..0x1160, in 0x17B4..0x17B5, in 0x180B..0x180F, in 0x200B..0x200F, in 0x202A..0x202E,
+    in 0x2060..0x206F, in 0xFE00..0xFE0F, in 0xFFF0..0xFFF8, in 0x1BCA0..0x1BCA3, in 0x1D173..0x1D17A,
+    in 0xE0000..0xE0FFF -> true
+    else -> false
+}
+
+/** Without [isDefaultIgnorable]'s code points, read a code point at a time, so a surrogate pair goes or stays whole. */
+private fun String.withoutDefaultIgnorable(): String {
+    val text = this
+    return buildString(text.length) {
+        var i = 0
+        while (i < text.length) {
+            val pair = text[i].isHighSurrogate() && i + 1 < text.length && text[i + 1].isLowSurrogate()
+            val codePoint =
+                if (pair) 0x10000 + ((text[i].code - 0xD800) shl 10) + (text[i + 1].code - 0xDC00) else text[i].code
+            val end = if (pair) i + 2 else i + 1
+            if (!isDefaultIgnorable(codePoint)) appendRange(text, i, end)
+            i = end
+        }
+    }
 }
 
 /**
@@ -157,8 +191,12 @@ internal fun String.withoutUrls(): String = this
     .replace(USER_PATH, "<path>")
     .replace(WINDOWS_USER_PATH, "<path>")
 
-/** Control and format characters out, so nothing invisible can split a url or a path from [withoutUrls]'s patterns. */
-internal fun String.withoutInvisible(): String = filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }
+/**
+ * Control and format characters out, and every default-ignorable code point (BUG-64), so nothing invisible can split a
+ * url or a path from [withoutUrls]'s patterns.
+ */
+internal fun String.withoutInvisible(): String =
+    filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.withoutDefaultIgnorable()
 
 /**
  * What a plugin has offered so far, as streams, emitting whenever there is one more or a new subtitle for those.

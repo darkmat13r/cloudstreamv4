@@ -2977,3 +2977,49 @@ title, the episode line and the SOURCE cell, and in `source` also the four sourc
 or sites, nearly all already on master: "Dune" (307), "Witcher" (105), "Vidsrc" (28), "Arcane" (26), "Severance",
 "Nine Lives", "Gogoanime", "Naruto", "Internet Archive". `BUG-70` fixes the HUD tests' share on master. The rest is
 for its own task.
+
+## BUG-64 — A default-ignorable code point, or a blank-drawn character, inside `://` or `/Users/` still hid a url or a path from the redaction · **high, security** · measured 2026-11-08
+
+**Status:** fixed in the PR that adds this entry. It is built on #224 (`BUG-52`), and is rebased onto master once train 9 lands. The fix is made in every copy of the invisible-character check:
+
+- the four redaction copies listed under `BUG-44`: `:app` `utils/LogRedaction.kt`, `:library` `mvvm/ArchComponentExt.kt`, `:feature:extensions:sandbox` `PluginHost.kt` and `:desktopApp` `detail/DesktopDetailSource.kt`
+- `:desktopApp`'s `withoutInvisible()`, which Home and Search run before redacting
+- the sandbox's subtitle-label check (`PluginHostClient.kt`, `RemoteSubtitle.cleaned`)
+
+`#251` (`BUG-61`, Android Home's failure line) carries the same list and the same url pattern.
+
+**The defects.**
+
+1. **Cc and Cf are not everything a screen draws as nothing.** `BUG-52` drops Unicode Cc and Cf before redacting. Unicode's Default_Ignorable_Code_Point also covers code points in other categories: U+034F (combining grapheme joiner), the variation selectors U+FE00–FE0F and U+E0100–E01EF, the Hangul fillers U+115F, U+1160, U+3164 and U+FFA0, U+17B4–17B5 and U+180B–180F. The check also read text one `Char` at a time, so it never saw a supplementary code point: the tag characters U+E0020–E007F are Cf, but a surrogate pair is not. Any of these inside `https:<x>//` or `/Us<x>ers/` stopped the pattern, while the text on screen still read as the url or the path.
+2. **Some visible characters are drawn blank.** U+2800 (braille pattern blank) and U+1D159 (a null notehead) are neither ignorable nor `\p{Z}`. Between `https:` and `//`, or between the two slashes, they stopped the pattern too.
+
+**Measured before the fix.**
+
+- On master `bb06dacb3`, the new rows fail in every copy. The first is `"cgj https:͏//cdn.example/x?token=MARKER_QUERY"`, which comes out unchanged, token and all. That happens in `StackTraceRedactionTest`, `LogErrorRedactionTest` (through `logError`), `PluginHostRedactionTest` and `DesktopRedactionTest`. The label test fails with `Eng` + U+034F + `lish` + U+FE0F, U+3164, U+E0100 and U+E0041 left in the label, and the Mac's `withoutInvisible` test keeps U+034F.
+- Against `#224`'s rules (its strip and its pattern, rebuilt in `jshell` from the `#224` head), each of the 11 hostile rows below leaks its marker. Every row is needed on top of `BUG-52`.
+
+**The fix.**
+
+- One block, `isDefaultIgnorable` plus `withoutDefaultIgnorable`, is pasted verbatim into each copy, so its md5 is the same everywhere. The list is DerivedCoreProperties 18.0's Default_Ignorable_Code_Point, range for range. The walker reads a code point at a time, so a surrogate pair goes or stays whole, and an emoji or any other supplementary character that is not on the list is kept. `:library` keeps it private: only function bodies and private members change, and nothing public is added. In the sandbox, `PluginHost` and the label check share one copy, `DefaultIgnorable.kt`, whose walker is `internal`.
+- Each redaction copy's `withoutHiddenCharacters` runs the block after its Cc/Cf filter. The Mac's `withoutInvisible` and the subtitle label do the same.
+- Each copy's `URL_IN_TEXT` now allows up to two non-space, non-slash characters between `scheme:` and the first `/`. It also allows up to two that are neither letters nor digits between the slashes, with spaces around either group. The output is still `scheme://host[:port]/<…>`, so the blank character goes with the rest. The pattern line has one md5 across the four copies and `#251`.
+
+**What changes for a user.**
+
+- Text such as `Note: a//b`, or `word:` followed within two characters by `//`, now reads as a url and is redacted. That over-redacts, which is the safe way round. Keep-rows prove that `Ratio 16:9 // wide`, `Note: a/b`, `Note: a/b/c`, `x:a/b` and `1:2/3/4` come out unchanged.
+- In logs, and in subtitle labels on the Mac, a variation selector is dropped. An emoji's presentation can change there (`❤️` becomes `❤`). Titles and other on-screen text keep their own Cc/Cf cleaning and are untouched.
+
+**Tests.** Every copy's table gains these rows, and the four tables share one md5:
+
+- CGJ, U+FE0F, U+3164, U+E0100 and U+E0041 inside the scheme or `://`
+- CGJ inside `/Users/`
+- U+2800 and U+1D159 inside `://`
+- `https:/⠀/`, `https:⠀/⠀/` and `https: ⠀ //`
+- the keep-rows above, and `keeps 한국어 and 😀` unchanged
+
+`HostProtocolTest` gains a subtitle-label case, and `DesktopRedactionTest` gains a case for `withoutInvisible`.
+
+**Not covered.**
+
+- Supplementary Cf code points outside the list (U+110BD, U+110CD, U+13430–1343F) are still not stripped. They are not default-ignorable, and fonts draw them.
+- Three or more blank-drawn characters inside `://` are not recognised.
