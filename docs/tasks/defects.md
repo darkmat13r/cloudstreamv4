@@ -2449,3 +2449,38 @@ unchanged: ten steps lower than what launched it. Nothing outside the test chang
 - At parent 5 (Gradle run under `nice -n 5`, no daemon): host 15, pass. This is the gates' failure, which the old
   assertion failed on with `expected:<10> but was:<15>`.
 - **Red:** with `nice -n 10` taken out of the launcher, `expected:<10> but was:<0>`. Restored afterwards.
+
+## BUG-70 — Two HUD tests named a real streaming site and real titles · **low, test only**
+
+**Status:** fixed in this PR · the PM's call, 2026-11-08
+
+`TvHudFactsTest` (`:app`) and `PlayerHudTvDeviceTest` (`:feature:player`) used a real site's name ("VidSrc Pro", source id
+`vidsrc`), and the titles of real shows and films ("Arcane" with episodes "Powder" and "The Base Violence Necessary for
+Change", "What If...?", "Dune: Part Two"). Tests, screenshots and previews get copied, so they use names that belong to
+no real title or site, as `DS-23` set.
+
+**Fix, test code only:**
+
+| Was | Now |
+|---|---|
+| "VidSrc Pro", `vidsrc` | "Source One", `sourceone` |
+| "Vid\nSrc\u0007 Pro" | "Sou\nrce\u0007 One" |
+| "Arcane", "Powder" | "Quiet Harbor", "Low Tide" |
+| "The Base Violence Necessary for Change" | "The Night the Lighthouse Keeper Stayed" |
+| "What If...?" | "Harbor Lights...?" |
+| "Dune: Part Two" | "Northern Reach" |
+
+Every property a test depends on is kept:
+- The control-character variant still breaks a word with `\n` and puts `\u0007` before the space, and it still cleans to
+  the same name the default link has.
+- The title still ends in `...?`, which `toHudState` must keep.
+- The long Up next title is the same length, 38 characters.
+
+**Screenshots.** Five of `PlayerHudTvDeviceTest`'s six references changed. All five draw the title or the source:
+- `shown`, `buffering`, `failed` and `offline` differed in 8,036 pixels each;
+- `nothing-known` differed in 2,233;
+- `hidden-scrub` stayed the same.
+
+The diff was read before recording. Every changed pixel lies inside the four lines whose words changed (the title, the
+episode line, Up next and the source cell), and nothing else moved. After the re-record, a compare run on
+`Television_720p` passed 14 of 14 device tests, with all six screenshots identical (0 pixels). `TvHudFactsTest`: 8 of 8.
