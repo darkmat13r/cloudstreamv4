@@ -6156,7 +6156,7 @@ rebuilding the page as the service ticked, and D1's state was made again with no
     row's fill reads as unselected);
   - a series page's readers stop when it is left (undone, they are still running after 20 s).
 - **The Mac does not draw `returnTo`.** No desktop Downloads file reads it, so there is no return to the row's place
-  yet. It is kept in state for when one does; a follow-up, not built here.
+  yet. It is kept in state for when one does: `KMP-83`, not built here.
 - **The same check on the other pages:** Library and Search are made once per window, as now Downloads is. Detail is
   kept per title while the player is over it, and Back's `forget` stops its link search. Home is made again only when
   what is installed changes; it holds no reader that outlives its loads.
