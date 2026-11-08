@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.layout.layout
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 
 /**
@@ -31,10 +32,19 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
  *
  * ## Spacing
  *
- * [CloudStreamDimens.ChipRowSpacing] (24dp), the token named for this job. Note that this is
- * double [CloudStreamDimens.MinFocusGap] (12dp), which is the *minimum* legal gap between any two
- * focusables; chips sit at twice the minimum. There is no spacing parameter, because the design
- * has one chip row and one spacing.
+ * **[CloudStreamDimens.MinFocusGap] (12dp) between two chips' visuals** (`BUG-65`, owner,
+ * 2026-11-08: "the spacing between chips is too much", the gap to come from tokens only). It was
+ * [CloudStreamDimens.ChipRowSpacing] (24dp). Each [Chip]'s cell now holds its own ring, a
+ * [CloudStreamDimens.FocusRingBleed] (4dp) either side of the visual, so the cells sit
+ * `MinFocusGap - 2 * FocusRingBleed` (4dp) apart: a focused chip's ring ends 8dp short of its
+ * neighbour, and no two cells touch. There is no spacing parameter, because the design has one chip
+ * row and one spacing.
+ *
+ * ## Where the row starts and ends
+ *
+ * At the first chip's visual and the last one's, as before: the end cells' outer
+ * [CloudStreamDimens.FocusRingBleed] lies just outside the row, where the ring used to bleed, so a
+ * caller's inset still lines the first chip up with the content beside it.
  *
  * ## This row does not scroll
  *
@@ -54,11 +64,25 @@ fun ChipRow(
     modifier: Modifier = Modifier,
     content: @Composable RowScope.() -> Unit,
 ) {
-    val arrangement = remember { Arrangement.spacedBy(CloudStreamDimens.ChipRowSpacing) }
+    val arrangement = remember {
+        Arrangement.spacedBy(CloudStreamDimens.MinFocusGap - CloudStreamDimens.FocusRingBleed * 2)
+    }
     Row(
-        modifier = modifier.height(CloudStreamDimens.ChipFocusCell),
+        modifier = modifier.height(CloudStreamDimens.ChipFocusCell).ringRoomOutside(),
         horizontalArrangement = arrangement,
         verticalAlignment = Alignment.CenterVertically,
         content = content,
     )
+}
+
+/**
+ * Lays the cells out [CloudStreamDimens.FocusRingBleed] wider than the row on each side, and shifts them
+ * back by as much, so the row's own box runs from the first chip's visual to the last one's.
+ */
+private fun Modifier.ringRoomOutside(): Modifier = layout { measurable, constraints ->
+    val room = CloudStreamDimens.FocusRingBleed.roundToPx()
+    val wider = if (constraints.hasBoundedWidth) constraints.maxWidth + room * 2 else constraints.maxWidth
+    val placeable = measurable.measure(constraints.copy(minWidth = 0, maxWidth = wider))
+    val width = (placeable.width - room * 2).coerceIn(constraints.minWidth, constraints.maxWidth)
+    layout(width, placeable.height) { placeable.place(-room, 0) }
 }

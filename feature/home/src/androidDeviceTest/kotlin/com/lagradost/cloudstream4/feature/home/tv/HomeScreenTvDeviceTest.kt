@@ -1920,7 +1920,7 @@ class HomeScreenTvDeviceTest {
     }
 
     /**
-     * `BUG-60`: the chrome's icon cells touch (`ChromeCellGap`, the owner's exception to `MinFocusGap`), so each focused
+     * `BUG-60`: the chrome's icon cells touch (the owner's exception to `MinFocusGap`), so each focused
      * cell's ring is measured: inside its own 48dp cell on every side, so it never reaches a neighbour's, and no two cells
      * overlap. A tile grown past 40dp rings past its cell and fails here. The ring is what turns bright when the cell
      * takes focus, against a capture at rest, so the neighbours' glyphs are not counted.
@@ -1939,7 +1939,7 @@ class HomeScreenTvDeviceTest {
             assertEquals("${labels[i]}'s cell width", CloudStreamDimens.IconTargetCell.value, (cell.right - cell.left).value, GEOMETRY_SLACK)
             if (i > 0) {
                 val gap = (cell.left - cells[i - 1].right).value
-                assertEquals("from ${labels[i - 1]}'s cell to ${labels[i]}'s", HomeScreenTvDefaults.ChromeCellGap.value, gap, GEOMETRY_SLACK)
+                assertEquals("from ${labels[i - 1]}'s cell to ${labels[i]}'s", 0f, gap, GEOMETRY_SLACK)
             }
         }
         labels.forEachIndexed { i, label ->

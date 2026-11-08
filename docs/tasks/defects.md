@@ -2548,7 +2548,8 @@ design. 3c draws the account as a 32dp avatar.
 **Fix:**
 - The account is now an `IconOnlyButton` like the other three: the same 32dp outlined tile, the same 16dp glyph in
   `ink`, the same ring, and "Switch account" drawn under it on focus, as Random's name is.
-- **The four icon cells touch** (`HomeScreenTvDefaults.ChromeCellGap`, 0dp), so two tiles are 16dp apart. The owner's
+- **The four icon cells touch** (a `Row` with no arrangement; it was `HomeScreenTvDefaults.ChromeCellGap`, 0dp, until
+  `BUG-65` removed the number under the owner's tokens-only rule), so two tiles are 16dp apart. The owner's
   call on 2026-11-08, an approved exception to `MinFocusGap` for this row only. It is safe: a ring is the 32dp tile plus
   2dp offset and 2dp stroke on each side, 40dp, inside its 48dp cell with 4dp spare on each side, so two rings never
   overlap and every cell is still a whole 48dp target. The source control keeps `MinFocusGap` before the first cell.
@@ -3261,3 +3262,60 @@ path, query or fragment (`a@2x.jpg`) is kept, and so is `%40`.
   in both classes passed in that run (49 tests, 3 failed).
 - With the fix, `:desktopApp:jvmTest` passed 543 of 543, and `:feature:settings:jvmTest` 17 of 17.
 - The four gates each exited 0, and `check-test-results.py` read 242 files with 0 failures.
+
+## BUG-65 — TV chip rows: too far apart, and a focused chip's ring outside its cell · **low, visual** · measured 2026-11-08
+
+**Status:** fixed in pr · raised by the owner from a screenshot of TV Library's tabs ·
+`Chip.kt`, `ChipRow.kt`, `SearchChromeRow.kt`, `HomeScreenTv.kt`
+
+The owner: *"the spacing between chips is too much"*. Then: the visible gap should be 8dp or 12dp, *"and these come
+from tokens only"*.
+
+**Measured** on `Television_720p`, on the committed `library-grid-focus-tab` (1dp ≈ 1.33px), through the pills' middle:
+- **The pill** (the visible chip): 32px tall, 24dp (`ChipVisualHeight`). **Its focus cell** is 48dp tall (`ChipFocusCell`)
+  and exactly as wide as the pill.
+- **The visible gap** between two pills: 32px, 24dp, which is `ChipRowSpacing`. The owner's 50px was probably measured on
+  a 1080p screen, where 24dp is 48px.
+- **A focused chip's ring** ended 6px (4dp, `FocusRingBleed`) outside its own cell, into the gap.
+
+**Fix:**
+- **The ring stays inside its cell.** A chip's cell is now the pill plus `FocusRingBleed` on each side, the room the
+  ring takes.
+- **12dp between pills: `MinFocusGap`.** The owner preferred 12dp to 8dp. The cells are `MinFocusGap - 2 *
+  FocusRingBleed` (4dp) apart, so a focused ring ends 8dp short of its neighbour, and no two cells touch or overlap.
+- **The row still starts and ends at a pill.** `ChipRow` lays the cells out `FocusRingBleed` wider than itself on each
+  side and shifts them back, so the end cells' outer room lies where the ring used to bleed, and each caller's inset
+  still lines the first chip up with the content beside it.
+- **Every TV chip row** goes through `ChipRow`: Home's bookmark filters, Library's tabs, Search's type chips (which had
+  their own `Row` with `ChipRowSpacing`, now `ChipRow`), and both of Downloads' rows (the actions, and selection).
+- `ChipRowSpacing` is unchanged: it also spaces rail cards, the skeleton and Home's bookmarks title from its chips.
+- **`BUG-60`'s `ChromeCellGap` (0dp) is gone**, under the same tokens-only rule: Home's chrome cells sit in a `Row` with no
+  arrangement, which places them edge to edge with no number at all.
+
+### Behaviour changes
+
+| Before | Now |
+|---|---|
+| 24dp between chips | 12dp (`MinFocusGap`) |
+| A focused chip's ring 4dp outside its cell | Inside its cell |
+| A chip's focus target as wide as its pill | 4dp wider each side |
+
+### Tests
+
+All on `Television_720p`, locally (CI is off).
+
+- `ChipDeviceTest` (`:core:designsystem`, 3, all pass), two new, all three **failing on the old `Chip` and `ChipRow`**:
+  - `theVisibleGapBetweenChipsIsMinFocusGap`: the ground between two pills, in pixels, is `MinFocusGap`. Old: "expected
+    <15.975> but was <32.0>".
+  - `eachRingStaysInsideItsOwnCellAndOneKeyFocusesOneChip`: each focused ring stays inside its own cell and clear of the
+    next pill, and each key press leaves exactly one chip focused, the next one. Old: "Movies's ring x 32..122 passes its
+    cell x 37.0..118.0 on the left".
+  - `dpadMovesAcrossChipsAndTheRingStaysEvenWithNothingMoving` now measures the ring from the pill, since the cell is no
+    longer the pill. Old: "Movies left: the stroke is here".
+- `FocusRingGapTest` (JVM, 8): the touching-chips case now finds the ring from the pill, inside the cell, and asserts it
+  stays inside the cell.
+- Device suites, all pass against the new references: `:core:designsystem` 29, `:feature:home` 86, `:feature:library` 34,
+  `:feature:search` 62, `:feature:downloads` 61. `BUG-60`'s chrome tests pass with the cells' gap asserted as 0.
+- 30 screenshots recorded again across Home, Library, Search and Downloads. A pixel diff of each against its old version
+  shows changes only in its chip row's band, after the row's first pill, which stays put; each was looked at. Measured
+  after: 15 to 16px (12dp) between pills, and a focused ring ending 9px (about 7dp) short of the next pill.

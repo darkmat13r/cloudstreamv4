@@ -689,8 +689,12 @@ private fun HomeChromeRow(
         val cell: @Composable (ImageVector, String, String, () -> Unit) -> Unit = { icon, label, name, onClick ->
             HomeChromeCell(icon, label, name, stops, focusTarget, onFocusTaken, onClick)
         }
-        // `BUG-60`: the icon cells touch (`ChromeCellGap`); the source control keeps `MinFocusGap` before the first.
-        Row(horizontalArrangement = Arrangement.spacedBy(HomeScreenTvDefaults.ChromeCellGap)) {
+        // `BUG-60`: the icon cells touch, with no arrangement and so no number (owner, 2026-11-08: sizes from tokens
+        // only, `BUG-65`). Their 48dp cells sit edge to edge and two 32dp tiles are 16dp apart: an owner-approved
+        // exception to `MinFocusGap` for this row only. Safe because `IconOnlyButton` rings its 32dp tile 2dp clear with
+        // a 2dp stroke, 40dp across, inside its 48dp cell, so two rings never overlap and every cell is a whole 48dp
+        // target; `HomeScreenTvDeviceTest` measures both. The source control keeps `MinFocusGap` before the first.
+        Row {
             if (hasRows) {
                 cell(CloudStreamIcons.Retry, stringResource(Res.string.reload_provider), RELOAD_CELL) {
                     onAction(HomeAction.ReloadRequested)
@@ -889,19 +893,6 @@ object HomeScreenTvDefaults {
 
     /** Mirrors `FocusBandInset`. */
     val ContentInsetEnd: Dp = CloudStreamDimens.FocusBandInset
-
-    /**
-     * Between two of the chrome's icon cells (Reload, Random, Search, the account): none, so their 48dp cells touch and
-     * the visible gap between two 32dp tiles is 16dp. **An owner-approved exception to `CloudStreamDimens.MinFocusGap`**
-     * (2026-11-08, `BUG-60`: "the spacing is too much between icon button"), for this row only. 3c and 3j draw the cells
-     * `MinFocusGap` apart, which with their 24dp tiles is a 36dp visible gap, wider still.
-     *
-     * Safe because each ring stays inside its own cell: `IconOnlyButton` rings its 32dp tile `FocusRingOffset` (2dp)
-     * clear with a `FocusRingStroke` (2dp) stroke, so the ring is 40dp across in a 48dp cell, 4dp clear of each edge.
-     * Two cells that touch therefore never draw overlapping rings, and every cell is still a whole 48dp focus target.
-     * `HomeScreenTvDeviceTest` measures both; a tile past 40dp would put its ring over the neighbour and fail it.
-     */
-    val ChromeCellGap: Dp = 0.dp
 
     /** 3d's `.row { gap: 24px }`, so nine cards fit where it draws them. Mirrors `MinFocusGap`. */
     val CardGap: Dp = CloudStreamDimens.MinFocusGap
