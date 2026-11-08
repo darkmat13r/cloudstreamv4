@@ -34081,7 +34081,7 @@ values-b+nn/strings.xml	string	account_pin_off	-	STR	Av · alle kan opne denne p
 values-b+nn/strings.xml	string	account_pin_on	-	STR	På · blir spurd om ved opning	
 values-b+nn/strings.xml	string	account_pin_prompt	-	STR	Skriv inn den firesifra PIN-koden.	
 values-b+nn/strings.xml	string	account_pin_remove	-	STR	Fjern PIN	
-values-b+nn/strings.xml	string	account_pin_set	-	STR	Set PIN	
+values-b+nn/strings.xml	string	account_pin_set	-	STR	Vel PIN	
 values-b+nn/strings.xml	string	account_pin_set_title	-	STR	Set ein PIN	
 values-b+nn/strings.xml	string	account_profile_current	-	STR	Gjeldande	
 values-b+nn/strings.xml	string	account_profile_locked	-	STR	Låst · PIN	

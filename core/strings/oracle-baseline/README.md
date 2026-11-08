@@ -141,6 +141,9 @@ one of the 41 keys: 62 lines each in `decoded`, 64 in `emitted` (the `values-b+h
 29, and 41 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at
 173.** `expectedOwn` 51,964 -> 54,506.
 
+The review's fix changed one of the 41 values in place: nn `account_pin_set`, "Set PIN" -> "Vel PIN". One line changed
+in each of `decoded`, `emitted` and `lookup`, at the same row; no row was added or lost, and `report.txt` is unchanged.
+
 ## Twenty-fourth move, 2026-11-08 — Train 11 (`#249`, `#256`), one move: 138 new keys for the player and Settings
 
 One combined baseline move for Train 11, which merges `#249` (`I18N-19`) and `#256` (`I18N-20`) with nine PRs that add no
