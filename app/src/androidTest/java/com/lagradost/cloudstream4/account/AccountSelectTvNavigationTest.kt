@@ -1,10 +1,13 @@
 package com.lagradost.cloudstream4.account
 
+import android.app.Activity
 import android.view.KeyEvent
 import androidx.preference.PreferenceManager
 import android.content.Intent
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
+import androidx.test.runner.lifecycle.Stage
 import androidx.test.uiautomator.By
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.Until
@@ -26,6 +29,15 @@ import org.junit.runner.RunWith
  *
  * The sign-in here is a marker in the credential store, never a real token, and the test asserts it never reaches the
  * screen. The device's own profiles, selection and skip setting are put back afterwards.
+ *
+ * **Leaves nothing running.** These launches are not `ActivityScenario`s, so nothing closes what they start: the picker,
+ * and the `MainActivity` it hands over to. `MainActivity` is `singleTask`, so one left alive is reused by the next
+ * test's launch, with this test's profile and screens in it (train 8: `TvDetailNavigationTest` after this one found
+ * "Go Back" focused, not "Try again"). Every activity started here is finished and waited out before the state is put
+ * back, and the state includes the process's own copies: the sign-in IDs cached for the selected profile and
+ * [AccountSelectActivity.hasLoggedIn]. It also includes **touch mode**, which is the device's: the edit test's one tap
+ * turns it on, and that alone is what failed the detail test (measured: of the six tests, only the edit test paired
+ * with it failed it, and it changes no stored preference).
  */
 @RunWith(AndroidJUnit4::class)
 class AccountSelectTvNavigationTest {
@@ -38,10 +50,14 @@ class AccountSelectTvNavigationTest {
     private lateinit var profilesBefore: Array<DataStoreHelper.Account>
     private var selectedBefore = 0
     private var skipBefore: Boolean? = null
+    private var loggedInBefore = false
+    private var activitiesBefore = emptySet<Activity>()
     private val signIn = "${AccountManager.ACCOUNT_TOKEN}/simkl/0"
 
     @Before
     fun saveDevice() = instrumentation.runOnMainSync {
+        activitiesBefore = alive()
+        loggedInBefore = AccountSelectActivity.hasLoggedIn
         profilesBefore = DataStoreHelper.accounts
         selectedBefore = DataStoreHelper.selectedKeyIndex
         skipBefore = if (prefs.contains(skipKey)) prefs.getBoolean(skipKey, false) else null
@@ -51,12 +67,47 @@ class AccountSelectTvNavigationTest {
     }
 
     @After
-    fun restoreDevice() = instrumentation.runOnMainSync {
-        CredentialStore.remove(signIn)
-        DataStoreHelper.accounts = profilesBefore
-        DataStoreHelper.selectedKeyIndex = selectedBefore
-        prefs.edit().apply { skipBefore?.let { putBoolean(skipKey, it) } ?: remove(skipKey) }.commit()
-        AccountSelectActivity.hasLoggedIn = false
+    fun restoreDevice() {
+        finishWhatThisStarted()
+        // `apply.click()` is a touch, and touch mode is the whole device's until a key ends it. Left on, the next
+        // test's first focus request does not take, and its first D-pad press lands on the first stop instead.
+        instrumentation.setInTouchMode(false)
+        instrumentation.runOnMainSync {
+            CredentialStore.remove(signIn)
+            DataStoreHelper.accounts = profilesBefore
+            DataStoreHelper.selectedKeyIndex = selectedBefore
+            AccountManager.updateAccountIds() // the cache still holds the IDs of the profile the test switched to
+            prefs.edit().apply { skipBefore?.let { putBoolean(skipKey, it) } ?: remove(skipKey) }.commit()
+            AccountSelectActivity.hasLoggedIn = loggedInBefore
+        }
+    }
+
+    /** Every activity of this process that has not been destroyed. Main thread only. */
+    private fun alive(): Set<Activity> = LIVE_STAGES.flatMapTo(mutableSetOf()) {
+        ActivityLifecycleMonitorRegistry.getInstance().getActivitiesInStage(it)
+    }
+
+    /**
+     * Finishes every activity this test started and waits until each is destroyed, then for a quiet second: the hand-over
+     * sets [AccountSelectActivity.hasLoggedIn] before it starts `MainActivity`, so that one can still be on its way.
+     * Fails if one outlives the wait.
+     */
+    private fun finishWhatThisStarted() {
+        val deadline = System.currentTimeMillis() + 10_000
+        var left: Set<Activity> = emptySet()
+        var quietSince = 0L
+        while (System.currentTimeMillis() < deadline) {
+            instrumentation.runOnMainSync {
+                left = alive() - activitiesBefore
+                left.filterNot { it.isFinishing }.forEach { it.finish() }
+            }
+            val now = System.currentTimeMillis()
+            if (left.isNotEmpty()) quietSince = 0L
+            else if (quietSince == 0L) quietSince = now
+            else if (now - quietSince >= QUIET_MS) return
+            Thread.sleep(100)
+        }
+        throw AssertionError("Still running after the test: ${left.map { it.javaClass.simpleName }}")
     }
 
     private fun profiles(vararg extra: DataStoreHelper.Account) = instrumentation.runOnMainSync {
@@ -161,5 +212,8 @@ class AccountSelectTvNavigationTest {
         const val TITLE = "Who's watching?"
         const val TESTER = 4730
         const val MARKER = "NOT-A-REAL-TOKEN"
+        const val QUIET_MS = 1_000L
+        val LIVE_STAGES = listOf(Stage.PRE_ON_CREATE, Stage.CREATED, Stage.STARTED, Stage.RESUMED, Stage.PAUSED,
+            Stage.STOPPED, Stage.RESTARTED)
     }
 }
