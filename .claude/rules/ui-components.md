@@ -178,12 +178,16 @@ labels always visible.
   cannot see `R`, it is the `UiText` bridge (`UiText.Resource(id, args)`) that the migration plan
   describes — `Int` is not an Android type, so a ViewModel carrying one still compiles in
   `commonMain`.
-- Base strings live in `app/src/main/res/values/strings.xml`, with **62 locale directories**
-  managed by Weblate.
-- **Do not add strings to `composeResources`**, and do not migrate `res/values*` into it.
-  `shared/readme.md` asks for that to wait until Weblate is repointed, and the plan defers it to
-  the last phase. Adding one string there splits the translation pipeline in two.
-- Never hand-translate. Add the English string; Weblate handles the rest.
+- Every string's source is `core/strings/src/commonMain/composeResources/values*/strings.xml`,
+  **62 locale directories**. `app/src/main/res/values*/strings.xml` is generated from it: never
+  hand-edit it; regenerate with `./gradlew :core:strings:writeAndroidStrings`. Read
+  `docs/HANDOVER.md` before touching a string.
+- Weblate is retired (`I18N-07`; see the top of `docs/tasks/i18n.md`). A new English string is
+  machine-translated into every locale in the same PR and checked by script: every key present,
+  placeholders identical to English, and each locale's own plural categories. The task entry in
+  `docs/tasks/i18n.md` records that, and the key goes into its "Waiting on a native speaker" table.
+- One meaning, one key. Reuse an existing key only when the meaning is the same; a reworded
+  string is a new key.
 
 ## Previews and screenshots
 
