@@ -26,23 +26,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d சுயவிவரமும் அதன் PIN உம்"</item><item quantity="other">"%d சுயவிவரங்களும் அவற்றின் PIN களும்"</item></plurals>
 <string name="account">"கணக்கு"</string>
 <string name="account_add_profile">"சுயவிவரம் சேர்"</string>
+<string name="account_browser_body" formatted="true">"உங்கள் உலாவி %s ஐத் திறந்துள்ளது. அங்கே உள்நுழைந்து CloudStream ஐ அனுமதிக்கவும். இந்தச் சாளரம் தானாகவே தொடரும்."</string>
+<string name="account_browser_body_phone" formatted="true">"%s பக்கத்தில் உள்நுழைவை முடிக்கவும். இந்தத் திரை தானாகவே தொடரும்."</string>
+<string name="account_browser_open_again">"மீண்டும் திற"</string>
+<string name="account_browser_title" formatted="true">"%s இல் உள்நுழை"</string>
+<string name="account_browser_waiting">"உங்கள் உலாவிக்காகக் காத்திருக்கிறது…"</string>
+<string name="account_code_expired">"இந்தக் குறியீடு காலாவதியானது. மீண்டும் முயல புதிய குறியீடு பெறவும்."</string>
+<string name="account_code_expires" formatted="true">"%s இல் காலாவதியாகும்"</string>
+<string name="account_code_instructions" formatted="true">"ஏதேனும் உலாவியில் %s க்குச் சென்று குறியீட்டை உள்ளிடவும்."</string>
+<string name="account_code_open" formatted="true">"%s ஐத் திற"</string>
+<string name="account_delete_body" formatted="true">"%s சுயவிவரத்தின் பார்வை வரலாறு, புக்மார்க்குகள் மற்றும் ஒத்திசைவு உள்நுழைவுகள் இந்தச் சாதனத்திலிருந்து அழிக்கப்படும்."</string>
+<string name="account_delete_profile">"சுயவிவரத்தை அழி"</string>
+<string name="account_delete_title" formatted="true">"%s ஐ அழிக்கவா?"</string>
+<string name="account_edit_profile">"சுயவிவரத்தைத் தொகு"</string>
+<string name="account_email">"மின்னஞ்சல்"</string>
+<string name="account_image_address">"பட முகவரியைப் பயன்படுத்து"</string>
+<string name="account_manage_note">"தொகுக்க ஒரு சுயவிவரத்தைத் தேர்ந்தெடுக்கவும்"</string>
 <string name="account_manage_profiles">"சுயவிவரங்களை நிர்வகி"</string>
 <string name="account_pair_code">"உங்கள் குறியீடு"</string>
 <string name="account_pair_instructions">"இதை உங்கள் தொலைபேசியில் திறந்து கீழே உள்ள குறியீட்டை உள்ளிடவும்."</string>
 <string name="account_pair_new_code">"புதிய குறியீடு பெறு"</string>
 <string name="account_pair_title" formatted="true">"%s இணை"</string>
+<string name="account_password">"கடவுச்சொல்"</string>
+<string name="account_password_mismatch">"அந்த மின்னஞ்சலும் கடவுச்சொல்லும் பொருந்தவில்லை. அவற்றைச் சரிபார்த்து மீண்டும் முயலவும்."</string>
+<string name="account_password_note" formatted="true">"%s க்கு உலாவி உள்நுழைவு இல்லை, எனவே அது இங்கே தட்டச்சு செய்யப்படுகிறது. இது இந்தச் சாதனத்தில் மட்டுமே வைக்கப்படும், ஒருபோதும் காப்புப்பிரதி எடுக்கப்படாது."</string>
+<string name="account_picture">"படம்"</string>
+<string name="account_pin_change">"முள்ளை மாற்று"</string>
+<string name="account_pin_confirm">"உறுதிப்படுத்த மீண்டும் தட்டச்சு செய்யவும்."</string>
+<string name="account_pin_current">"இப்போது பயன்பாட்டில் உள்ள முள்ளைத் தட்டச்சு செய்யவும்."</string>
+<string name="account_pin_first_profile">"முதல் சுயவிவரத்தைப் பூட்ட முடியாது"</string>
+<string name="account_pin_new">"4 இலக்க முள்ளைத் தட்டச்சு செய்யவும்."</string>
+<string name="account_pin_off">"முடக்கம் · யார் வேண்டுமானாலும் இந்தச் சுயவிவரத்தைத் திறக்கலாம்"</string>
+<string name="account_pin_on">"இயக்கம் · திறக்கும்போது கேட்கப்படும்"</string>
+<string name="account_pin_prompt">"4 இலக்க முள்ளைத் தட்டச்சு செய்யவும்."</string>
+<string name="account_pin_remove">"முள்ளை அகற்று"</string>
+<string name="account_pin_set">"முள் அமை"</string>
+<string name="account_pin_set_title">"ஒரு முள் அமைக்கவும்"</string>
 <string name="account_profile_current">"தற்போதைய"</string>
 <string name="account_profile_locked">"பூட்டப்பட்டது · PIN"</string>
 <string name="account_profile_no_sync">"ஒத்திசைவு இல்லை"</string>
 <string name="account_select_note">"தனி பார்வை வரலாறு · உள்நுழைவுகள் அல்ல"</string>
 <string name="account_select_title">"யார் பார்க்கிறார்கள்?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s உள்நுழைவை உறுதிப்படுத்தவில்லை. எதுவும் சேமிக்கப்படவில்லை."</string>
+<string name="account_signin_failed_title" formatted="true">"%s இல் உள்நுழைய முடியவில்லை"</string>
+<string name="account_signin_offline_body" formatted="true">"%s இல் உள்நுழைய இணைப்பு தேவை. இந்தச் சாதனம் மீண்டும் ஆன்லைனுக்கு வந்ததும் முயலவும்."</string>
 <string name="account_sync_connected">"இணைக்கப்பட்டது · இந்தச் சாதனத்தில் உள்நுழைந்துள்ளது"</string>
 <string name="account_sync_needs_browser">"உள்நுழைய இணைய உலாவி தேவை. இந்தச் சாதனத்தில் இல்லை."</string>
 <string name="account_sync_note">"விருப்பத்தேர்வு. பார்வை முன்னேற்றத்தை உங்களிடம் ஏற்கெனவே உள்ள கணக்குடன் ஒத்திசைக்கிறது."</string>
 <string name="account_sync_pair">"குறியீட்டுடன் இணை"</string>
 <string name="account_sync_remove">"இந்தச் சாதனத்திலிருந்து அகற்று"</string>
+<string name="account_sync_remove_body" formatted="true">"%1$s சுயவிவரத்தின் %2$s உள்நுழைவு இந்தச் சாதனத்திலிருந்து அழிக்கப்படும். உங்கள் %2$s கணக்கும் அதன் பட்டியல்களும் அப்படியே இருக்கும்."</string>
+<string name="account_sync_remove_title" formatted="true">"இந்தச் சாதனத்திலிருந்து %s ஐ அகற்றவா?"</string>
 <string name="account_sync_title">"ஒத்திசைவு சேவைகள்"</string>
 <string name="account_sync_unavailable">"இங்கே கிடைக்கவில்லை"</string>
+<string name="account_touch_id_hint">"இந்தச் சுயவிவரத்தைத் திறக்க சென்சாரைத் தொடவும்."</string>
+<string name="account_touch_id_reason" formatted="true">"%s சுயவிவரத்தைத் திறக்க"</string>
+<string name="account_touch_id_title" formatted="true">"%s ஐத் திறக்க Touch ID ஐப் பயன்படுத்து"</string>
+<string name="account_undo_warning">"இதைச் செயல்தவிர்க்க முடியாது."</string>
+<string name="account_use_pin">"பதிலாக முள்ளைப் பயன்படுத்து"</string>
 <string name="action_add_to_bookmarks">"கடிகார நிலையை அமைக்கவும்"</string>
 <string name="action_add_to_favorites">"பிடித்தவையில் சேர்"</string>
 <string name="action_default">"இயல்புநிலை"</string>

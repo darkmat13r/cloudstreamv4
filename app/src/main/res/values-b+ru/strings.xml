@@ -26,23 +26,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d профиль и его PIN-код"</item><item quantity="few">"%d профиля и их PIN-коды"</item><item quantity="many">"%d профилей и их PIN-коды"</item><item quantity="other">"%d профиля и их PIN-коды"</item></plurals>
 <string name="account">"учётная запись"</string>
 <string name="account_add_profile">"Добавить профиль"</string>
+<string name="account_browser_body" formatted="true">"Ваш браузер открыл %s. Войдите там и разрешите доступ CloudStream. Это окно продолжит само."</string>
+<string name="account_browser_body_phone" formatted="true">"Завершите вход на странице %s. Этот экран продолжит сам."</string>
+<string name="account_browser_open_again">"Открыть снова"</string>
+<string name="account_browser_title" formatted="true">"Вход в %s"</string>
+<string name="account_browser_waiting">"Ожидание браузера…"</string>
+<string name="account_code_expired">"Срок действия кода истёк. Получите новый, чтобы попробовать снова."</string>
+<string name="account_code_expires" formatted="true">"Истекает через %s"</string>
+<string name="account_code_instructions" formatted="true">"Откройте %s в любом браузере и введите код."</string>
+<string name="account_code_open" formatted="true">"Открыть %s"</string>
+<string name="account_delete_body" formatted="true">"История просмотра, закладки и входы в сервисы синхронизации профиля %s будут удалены с этого устройства."</string>
+<string name="account_delete_profile">"Удалить профиль"</string>
+<string name="account_delete_title" formatted="true">"Удалить %s?"</string>
+<string name="account_edit_profile">"Изменить профиль"</string>
+<string name="account_email">"Эл. почта"</string>
+<string name="account_image_address">"Указать адрес изображения"</string>
+<string name="account_manage_note">"Выберите профиль, чтобы изменить его"</string>
 <string name="account_manage_profiles">"Управление профилями"</string>
 <string name="account_pair_code">"Ваш код"</string>
 <string name="account_pair_instructions">"Откройте это на телефоне и введите код ниже."</string>
 <string name="account_pair_new_code">"Получить новый код"</string>
 <string name="account_pair_title" formatted="true">"Связать %s"</string>
+<string name="account_password">"Пароль"</string>
+<string name="account_password_mismatch">"Эл. почта и пароль не совпадают. Проверьте их и попробуйте снова."</string>
+<string name="account_password_note" formatted="true">"У %s нет входа через браузер, поэтому пароль вводится здесь. Он хранится только на этом устройстве и никогда не попадает в резервные копии."</string>
+<string name="account_picture">"Изображение"</string>
+<string name="account_pin_change">"Изменить ПИН-код"</string>
+<string name="account_pin_confirm">"Введите его ещё раз для подтверждения."</string>
+<string name="account_pin_current">"Введите текущий ПИН-код."</string>
+<string name="account_pin_first_profile">"Первый профиль нельзя заблокировать"</string>
+<string name="account_pin_new">"Введите 4-значный ПИН-код."</string>
+<string name="account_pin_off">"Выкл. · этот профиль может открыть любой"</string>
+<string name="account_pin_on">"Вкл. · запрашивается при открытии"</string>
+<string name="account_pin_prompt">"Введите 4-значный ПИН-код."</string>
+<string name="account_pin_remove">"Удалить ПИН-код"</string>
+<string name="account_pin_set">"Задать ПИН-код"</string>
+<string name="account_pin_set_title">"Задайте ПИН-код"</string>
 <string name="account_profile_current">"Текущий"</string>
 <string name="account_profile_locked">"Заблокирован · PIN"</string>
 <string name="account_profile_no_sync">"Без синхронизации"</string>
 <string name="account_select_note">"Отдельная история просмотра · не входы в аккаунт"</string>
 <string name="account_select_title">"Кто смотрит?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s не подтвердил вход. Ничего не сохранено."</string>
+<string name="account_signin_failed_title" formatted="true">"Не удалось войти в %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Для входа в %s нужно подключение. Попробуйте снова, когда это устройство будет в сети."</string>
 <string name="account_sync_connected">"Подключено · вход выполнен на этом устройстве"</string>
 <string name="account_sync_needs_browser">"Для входа нужен веб-браузер. На этом устройстве его нет."</string>
 <string name="account_sync_note">"Необязательно. Синхронизирует прогресс просмотра с уже имеющимся аккаунтом."</string>
 <string name="account_sync_pair">"Связать по коду"</string>
 <string name="account_sync_remove">"Удалить с этого устройства"</string>
+<string name="account_sync_remove_body" formatted="true">"Вход в %2$s профиля %1$s будет удалён с этого устройства. Ваш аккаунт %2$s и его списки останутся без изменений."</string>
+<string name="account_sync_remove_title" formatted="true">"Удалить %s с этого устройства?"</string>
 <string name="account_sync_title">"Сервисы синхронизации"</string>
 <string name="account_sync_unavailable">"Здесь недоступно"</string>
+<string name="account_touch_id_hint">"Коснитесь датчика, чтобы открыть этот профиль."</string>
+<string name="account_touch_id_reason" formatted="true">"открыть профиль %s"</string>
+<string name="account_touch_id_title" formatted="true">"Откройте %s с помощью Touch ID"</string>
+<string name="account_undo_warning">"Это действие нельзя отменить."</string>
+<string name="account_use_pin">"Использовать ПИН-код"</string>
 <string name="action_add_to_bookmarks">"Установите смотреть состояние"</string>
 <string name="action_add_to_favorites">"Добавить в любимое"</string>
 <string name="action_default">"По умолчанию"</string>

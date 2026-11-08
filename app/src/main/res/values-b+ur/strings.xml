@@ -23,23 +23,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d پروفائل اور اس کا پن"</item><item quantity="other">"%d پروفائلز اور ان کے پن"</item></plurals>
 <string name="account">"اكاؤنٹ"</string>
 <string name="account_add_profile">"پروفائل شامل کریں"</string>
+<string name="account_browser_body" formatted="true">"آپ کے براؤزر نے %s کھول دیا ہے۔ وہاں سائن ان کریں اور CloudStream کو اجازت دیں۔ یہ ونڈو خود بخود آگے بڑھے گی۔"</string>
+<string name="account_browser_body_phone" formatted="true">"%s صفحے پر سائن ان مکمل کریں۔ یہ اسکرین خود بخود آگے بڑھے گی۔"</string>
+<string name="account_browser_open_again">"دوبارہ کھولیں"</string>
+<string name="account_browser_title" formatted="true">"%s میں سائن ان کریں"</string>
+<string name="account_browser_waiting">"آپ کے براؤزر کا انتظار ہے…"</string>
+<string name="account_code_expired">"اس کوڈ کی میعاد ختم ہو گئی۔ دوبارہ کوشش کرنے کے لیے نیا کوڈ حاصل کریں۔"</string>
+<string name="account_code_expires" formatted="true">"%s میں میعاد ختم ہوگی"</string>
+<string name="account_code_instructions" formatted="true">"کسی بھی براؤزر میں %s پر جائیں اور کوڈ درج کریں۔"</string>
+<string name="account_code_open" formatted="true">"%s کھولیں"</string>
+<string name="account_delete_body" formatted="true">"پروفائل %s کی دیکھنے کی سرگزشت، بک مارکس اور سنک سائن انز اس آلے سے مٹا دیے جائیں گے۔"</string>
+<string name="account_delete_profile">"پروفائل مٹا دیں"</string>
+<string name="account_delete_title" formatted="true">"%s کو مٹا دیں؟"</string>
+<string name="account_edit_profile">"پروفائل میں ترمیم کریں"</string>
+<string name="account_email">"ای میل"</string>
+<string name="account_image_address">"تصویر کا پتہ استعمال کریں"</string>
+<string name="account_manage_note">"ترمیم کرنے کے لیے ایک پروفائل منتخب کریں"</string>
 <string name="account_manage_profiles">"پروفائلز کا نظم کریں"</string>
 <string name="account_pair_code">"آپ کا کوڈ"</string>
 <string name="account_pair_instructions">"اسے اپنے فون پر کھولیں اور نیچے دیا گیا کوڈ درج کریں۔"</string>
 <string name="account_pair_new_code">"نیا کوڈ حاصل کریں"</string>
 <string name="account_pair_title" formatted="true">"%s جوڑیں"</string>
+<string name="account_password">"پاس ورڈ"</string>
+<string name="account_password_mismatch">"وہ ای میل اور پاس ورڈ مماثل نہیں تھے۔ انہیں چیک کریں اور دوبارہ کوشش کریں۔"</string>
+<string name="account_password_note" formatted="true">"%s میں براؤزر سے سائن ان نہیں ہوتا، اس لیے اسے یہاں ٹائپ کیا جاتا ہے۔ یہ صرف اسی آلے پر رکھا جاتا ہے اور کبھی بیک اپ نہیں ہوتا۔"</string>
+<string name="account_picture">"تصویر"</string>
+<string name="account_pin_change">"PIN تبدیل کریں"</string>
+<string name="account_pin_confirm">"تصدیق کے لیے اسے دوبارہ ٹائپ کریں۔"</string>
+<string name="account_pin_current">"ابھی استعمال ہونے والا PIN ٹائپ کریں۔"</string>
+<string name="account_pin_first_profile">"پہلی پروفائل کو مقفل نہیں کیا جا سکتا"</string>
+<string name="account_pin_new">"4 ہندسوں کا PIN ٹائپ کریں۔"</string>
+<string name="account_pin_off">"بند · کوئی بھی اس پروفائل کو کھول سکتا ہے"</string>
+<string name="account_pin_on">"آن · کھولنے کے لیے پوچھا جاتا ہے"</string>
+<string name="account_pin_prompt">"4 ہندسوں والا PIN ٹائپ کریں۔"</string>
+<string name="account_pin_remove">"PIN ہٹائیں"</string>
+<string name="account_pin_set">"PIN سیٹ کریں"</string>
+<string name="account_pin_set_title">"ایک PIN سیٹ کریں"</string>
 <string name="account_profile_current">"موجودہ"</string>
 <string name="account_profile_locked">"مقفل · PIN"</string>
 <string name="account_profile_no_sync">"کوئی ہم آہنگی نہیں"</string>
 <string name="account_select_note">"الگ دیکھنے کی سرگزشت · لاگ ان نہیں"</string>
 <string name="account_select_title">"کون دیکھ رہا ہے؟"</string>
+<string name="account_signin_failed_body" formatted="true">"%s نے سائن ان کی تصدیق نہیں کی۔ کچھ بھی محفوظ نہیں ہوا۔"</string>
+<string name="account_signin_failed_title" formatted="true">"%s میں سائن ان نہیں ہو سکا"</string>
+<string name="account_signin_offline_body" formatted="true">"%s میں سائن ان کرنے کے لیے کنکشن درکار ہے۔ یہ آلہ دوبارہ آن لائن ہونے پر کوشش کریں۔"</string>
 <string name="account_sync_connected">"منسلک · اس آلے پر سائن ان"</string>
 <string name="account_sync_needs_browser">"سائن ان کے لیے ویب براؤزر درکار ہے۔ اس آلے میں نہیں ہے۔"</string>
 <string name="account_sync_note">"اختیاری۔ دیکھنے کی پیش رفت کو آپ کے پہلے سے موجود اکاؤنٹ سے ہم آہنگ کرتا ہے۔"</string>
 <string name="account_sync_pair">"کوڈ سے جوڑیں"</string>
 <string name="account_sync_remove">"اس آلے سے ہٹائیں"</string>
+<string name="account_sync_remove_body" formatted="true">"پروفائل %1$s کا %2$s سائن ان اس آلے سے مٹا دیا جائے گا۔ آپ کا %2$s اکاؤنٹ اور اس کی فہرستیں جوں کی توں رہیں گی۔"</string>
+<string name="account_sync_remove_title" formatted="true">"%s کو اس آلے سے ہٹائیں؟"</string>
 <string name="account_sync_title">"ہم آہنگی کی خدمات"</string>
 <string name="account_sync_unavailable">"یہاں دستیاب نہیں"</string>
+<string name="account_touch_id_hint">"یہ پروفائل کھولنے کے لیے سینسر کو چھوئیں۔"</string>
+<string name="account_touch_id_reason" formatted="true">"پروفائل %s کھولنے"</string>
+<string name="account_touch_id_title" formatted="true">"%s کھولنے کے لیے Touch ID استعمال کریں"</string>
+<string name="account_undo_warning">"اسے کالعدم نہیں کیا جا سکتا۔"</string>
+<string name="account_use_pin">"اس کے بجائے PIN استعمال کریں"</string>
 <string name="action_add_to_bookmarks">"واچ اسٹیٹس کو سیٹ کریں"</string>
 <string name="action_add_to_favorites">"پسندیدہ میں شامل کریں"</string>
 <string name="action_default">"ڈیفالٹ"</string>

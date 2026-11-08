@@ -23,23 +23,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="other">"%d profil dan PIN masing-masing"</item></plurals>
 <string name="account">"akaun"</string>
 <string name="account_add_profile">"Tambah profil"</string>
+<string name="account_browser_body" formatted="true">"Pelayar anda telah membuka %s. Log masuk di sana dan benarkan CloudStream. Tetingkap ini akan meneruskan dengan sendirinya."</string>
+<string name="account_browser_body_phone" formatted="true">"Selesaikan log masuk pada halaman %s. Skrin ini akan meneruskan dengan sendirinya."</string>
+<string name="account_browser_open_again">"Buka semula"</string>
+<string name="account_browser_title" formatted="true">"Log masuk ke %s"</string>
+<string name="account_browser_waiting">"Menunggu pelayar anda…"</string>
+<string name="account_code_expired">"Kod ini telah tamat tempoh. Dapatkan kod baharu untuk mencuba lagi."</string>
+<string name="account_code_expires" formatted="true">"Tamat tempoh dalam %s"</string>
+<string name="account_code_instructions" formatted="true">"Pergi ke %s dalam mana-mana pelayar dan masukkan kod."</string>
+<string name="account_code_open" formatted="true">"Buka %s"</string>
+<string name="account_delete_body" formatted="true">"Sejarah tontonan, penanda halaman dan log masuk penyegerakan profil %s dipadam daripada peranti ini."</string>
+<string name="account_delete_profile">"Padam profil"</string>
+<string name="account_delete_title" formatted="true">"Padam %s?"</string>
+<string name="account_edit_profile">"Sunting profil"</string>
+<string name="account_email">"E-mel"</string>
+<string name="account_image_address">"Guna alamat imej"</string>
+<string name="account_manage_note">"Pilih profil untuk menyuntingnya"</string>
 <string name="account_manage_profiles">"Urus profil"</string>
 <string name="account_pair_code">"Kod anda"</string>
 <string name="account_pair_instructions">"Buka ini pada telefon anda dan masukkan kod di bawah."</string>
 <string name="account_pair_new_code">"Dapatkan kod baharu"</string>
 <string name="account_pair_title" formatted="true">"Pasangkan %s"</string>
+<string name="account_password">"Kata laluan"</string>
+<string name="account_password_mismatch">"E-mel dan kata laluan itu tidak sepadan. Semak dan cuba lagi."</string>
+<string name="account_password_note" formatted="true">"%s tiada log masuk melalui pelayar, jadi ia ditaip di sini. Ia disimpan pada peranti ini sahaja dan tidak pernah disandarkan."</string>
+<string name="account_picture">"Gambar"</string>
+<string name="account_pin_change">"Tukar PIN"</string>
+<string name="account_pin_confirm">"Taip sekali lagi untuk mengesahkan."</string>
+<string name="account_pin_current">"Taip PIN yang sedang digunakan."</string>
+<string name="account_pin_first_profile">"Profil pertama tidak boleh dikunci"</string>
+<string name="account_pin_new">"Taip PIN 4 digit."</string>
+<string name="account_pin_off">"Mati · sesiapa sahaja boleh membuka profil ini"</string>
+<string name="account_pin_on">"Hidup · diminta untuk membukanya"</string>
+<string name="account_pin_prompt">"Taip PIN 4 digit."</string>
+<string name="account_pin_remove">"Alih keluar PIN"</string>
+<string name="account_pin_set">"Tetapkan PIN"</string>
+<string name="account_pin_set_title">"Tetapkan PIN"</string>
 <string name="account_profile_current">"Semasa"</string>
 <string name="account_profile_locked">"Dikunci · PIN"</string>
 <string name="account_profile_no_sync">"Tiada penyegerakan"</string>
 <string name="account_select_note">"Sejarah tontonan berasingan · bukan log masuk"</string>
 <string name="account_select_title">"Siapa yang menonton?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s tidak mengesahkan log masuk. Tiada apa-apa yang disimpan."</string>
+<string name="account_signin_failed_title" formatted="true">"Tidak dapat log masuk ke %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Log masuk ke %s memerlukan sambungan. Cuba lagi apabila peranti ini kembali dalam talian."</string>
 <string name="account_sync_connected">"Bersambung · log masuk pada peranti ini"</string>
 <string name="account_sync_needs_browser">"Log masuk memerlukan pelayar web. Peranti ini tiada."</string>
 <string name="account_sync_note">"Pilihan. Menyegerakkan kemajuan tontonan dengan akaun yang anda sudah ada."</string>
 <string name="account_sync_pair">"Pasangkan dengan kod"</string>
 <string name="account_sync_remove">"Alih keluar daripada peranti ini"</string>
+<string name="account_sync_remove_body" formatted="true">"Log masuk %2$s bagi profil %1$s dipadam daripada peranti ini. Akaun %2$s anda dan senarainya kekal seperti sedia ada."</string>
+<string name="account_sync_remove_title" formatted="true">"Alih keluar %s daripada peranti ini?"</string>
 <string name="account_sync_title">"Perkhidmatan penyegerakan"</string>
 <string name="account_sync_unavailable">"Tidak tersedia di sini"</string>
+<string name="account_touch_id_hint">"Sentuh penderia untuk membuka profil ini."</string>
+<string name="account_touch_id_reason" formatted="true">"membuka profil %s"</string>
+<string name="account_touch_id_title" formatted="true">"Guna Touch ID untuk membuka %s"</string>
+<string name="account_undo_warning">"Tindakan ini tidak boleh dibuat asal."</string>
+<string name="account_use_pin">"Guna PIN sebaliknya"</string>
 <string name="action_add_to_bookmarks">"Tetapkan status tontonan"</string>
 <string name="action_add_to_favorites">"Tambah ke kegemaran"</string>
 <string name="action_mark_as_watched">"Tanda sebagai sudah ditonton"</string>

@@ -22,23 +22,64 @@
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d መስፋሕፋሕ · %2$s ተሓዲሱ"</item><item quantity="other">"%1$d መስፋሕፋሕቲ · %2$s ተሓዲሱ"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d መግለጺን PIN ኡን"</item><item quantity="other">"%d መግለጺታትን PIN ታቶምን"</item></plurals>
 <string name="account_add_profile">"መግለጺ ወስኽ"</string>
+<string name="account_browser_body" formatted="true">"መርበብ-ሓባሪኻ %s ከፊቱ ኣሎ። ኣብኡ እቶ እሞ ን CloudStream ፍቀደሉ። እዚ መስኮት ባዕሉ ይቕጽል።"</string>
+<string name="account_browser_body_phone" formatted="true">"ኣብ ገጽ %s ምእታው ወድእ። እዚ ስክሪን ባዕሉ ይቕጽል።"</string>
+<string name="account_browser_open_again">"እንደገና ክፈት"</string>
+<string name="account_browser_title" formatted="true">"ናብ %s እቶ"</string>
+<string name="account_browser_waiting">"ንመርበብ-ሓባሪኻ ይጽበ ኣሎ…"</string>
+<string name="account_code_expired">"እዚ ኮድ ግዚኡ ሓሊፉ። እንደገና ንምፍታን ሓድሽ ኮድ ውሰድ።"</string>
+<string name="account_code_expires" formatted="true">"ኣብ %s ግዚኡ ይውድእ"</string>
+<string name="account_code_instructions" formatted="true">"ኣብ ዝኾነ መርበብ-ሓባሪ ናብ %s ኪድ እሞ ነቲ ኮድ ኣእቱ።"</string>
+<string name="account_code_open" formatted="true">"%s ክፈት"</string>
+<string name="account_delete_body" formatted="true">"ታሪኽ ምርኣይ፣ ምልክታትን ምእታዋት ምትእስሳርን ናይ መግለጺ %s ካብዚ መሳርሒ ይድምሰሱ።"</string>
+<string name="account_delete_profile">"መግለጺ ደምስስ"</string>
+<string name="account_delete_title" formatted="true">"%s ይደምሰስ?"</string>
+<string name="account_edit_profile">"መግለጺ ኣርትዕ"</string>
+<string name="account_email">"ኢመይል"</string>
+<string name="account_image_address">"ኣድራሻ ስእሊ ተጠቐም"</string>
+<string name="account_manage_note">"ንምርታዕ መግለጺ ምረጽ"</string>
 <string name="account_manage_profiles">"መግለጺታት ኣመሓድር"</string>
 <string name="account_pair_code">"ኮድካ"</string>
 <string name="account_pair_instructions">"ነዚ ኣብ ተሌፎንካ ክፈቶ እሞ ኣብ ታሕቲ ዘሎ ኮድ ኣእቱ።"</string>
 <string name="account_pair_new_code">"ሓድሽ ኮድ ውሰድ"</string>
 <string name="account_pair_title" formatted="true">"%s ኣጣምር"</string>
+<string name="account_password">"መሕለፊ ቃል"</string>
+<string name="account_password_mismatch">"እቲ ኢመይልን መሕለፊ ቃልን ኣይተሰማምዑን። መርምሮም እሞ እንደገና ፈትን።"</string>
+<string name="account_password_note" formatted="true">"%s ብመርበብ-ሓባሪ ምእታው የብሉን፣ ስለዚ ኣብዚ ይጽሓፍ። ኣብዚ መሳርሒ ጥራይ ይዕቀብ፣ ፈጺሙ ኣይሕሎን (backup)።"</string>
+<string name="account_picture">"ስእሊ"</string>
+<string name="account_pin_change">"PIN ቀይር"</string>
+<string name="account_pin_confirm">"ንምርግጋጽ እንደገና ጽሓፎ።"</string>
+<string name="account_pin_current">"ሕጂ ኣብ ጥቕሚ ዘሎ PIN ጽሓፍ።"</string>
+<string name="account_pin_first_profile">"እቲ ቀዳማይ መግለጺ ክዕጾ ኣይክእልን"</string>
+<string name="account_pin_new">"4 ኣሃዝ ዘለዎ PIN ጽሓፍ።"</string>
+<string name="account_pin_off">"ጠፊኡ · ዝኾነ ሰብ ነዚ መግለጺ ክኸፍቶ ይኽእል"</string>
+<string name="account_pin_on">"በሪሁ · ንምኽፋት ይሕተት"</string>
+<string name="account_pin_prompt">"እቲ 4 ኣሃዝ ዘለዎ PIN ጽሓፍ።"</string>
+<string name="account_pin_remove">"PIN ኣልግስ"</string>
+<string name="account_pin_set">"PIN ኣቐምጥ"</string>
+<string name="account_pin_set_title">"PIN ኣቐምጥ"</string>
 <string name="account_profile_current">"ናይ ሕጂ"</string>
 <string name="account_profile_locked">"ተዓጽዩ · PIN"</string>
 <string name="account_profile_no_sync">"ምትእስሳር የለን"</string>
 <string name="account_select_note">"ፍሉይ ታሪኽ ምርኣይ · መእተዊታት ኣይኮኑን"</string>
 <string name="account_select_title">"መን እዩ ዝርኢ ዘሎ?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።"</string>
+<string name="account_signin_failed_title" formatted="true">"ናብ %s ምእታው ኣይተኻእለን"</string>
+<string name="account_signin_offline_body" formatted="true">"ናብ %s ንምእታው ምትእስሳር የድሊ። እዚ መሳርሒ ናብ መስመር ምስ ተመልሰ እንደገና ፈትን።"</string>
 <string name="account_sync_connected">"ተራኺቡ · ኣብዚ መሳርሒ ኣቲዩ"</string>
 <string name="account_sync_needs_browser">"ምእታው መርበብ ሓበሬታ ይደሊ። እዚ መሳርሒ የብሉን።"</string>
 <string name="account_sync_note">"ኣማራጺ። ምዕባለ ምርኣይ ምስ ዘለካ ሕሳብ የተኣሳስር።"</string>
 <string name="account_sync_pair">"ብኮድ ኣጣምር"</string>
 <string name="account_sync_remove">"ካብዚ መሳርሒ ኣልግስ"</string>
+<string name="account_sync_remove_body" formatted="true">"ምእታው %2$s ናይ መግለጺ %1$s ካብዚ መሳርሒ ይድምሰስ። ሕሳብ %2$s ኻን ዝርዝራቱን ከም ዘለዉ ይጸንሑ።"</string>
+<string name="account_sync_remove_title" formatted="true">"%s ካብዚ መሳርሒ ይልገስ?"</string>
 <string name="account_sync_title">"ኣገልግሎታት ምትእስሳር"</string>
 <string name="account_sync_unavailable">"ኣብዚ ኣይርከብን"</string>
+<string name="account_touch_id_hint">"ነዚ መግለጺ ንምኽፋት ነቲ ሰንሰር ተንክፎ።"</string>
+<string name="account_touch_id_reason" formatted="true">"መግለጺ %s ክኸፍት"</string>
+<string name="account_touch_id_title" formatted="true">"%s ንምኽፋት Touch ID ተጠቐም"</string>
+<string name="account_undo_warning">"እዚ ክምለስ ኣይክእልን።"</string>
+<string name="account_use_pin">"ኣብ ክንዳኡ PIN ተጠቐም"</string>
 <string name="app_dub_sub_episode_text_format" formatted="true">"%1$s ክፋል %2$d"</string>
 <string name="cast">"ተዋሳእቲ"</string>
 <string name="cast_format" formatted="true">"ተዋሳእቲ፡ %s"</string>

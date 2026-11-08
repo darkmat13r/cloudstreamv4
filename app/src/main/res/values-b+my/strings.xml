@@ -23,23 +23,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="other">"ပရိုဖိုင် %d ခုနှင့် ၎င်းတို့၏ PIN"</item></plurals>
 <string name="account">"အကောင့်"</string>
 <string name="account_add_profile">"ပရိုဖိုင် ထည့်ရန်"</string>
+<string name="account_browser_body" formatted="true">"သင့်ဘရောက်ဇာက %s ကို ဖွင့်ထားသည်။ ထိုနေရာတွင် ဝင်ရောက်ပြီး CloudStream ကို ခွင့်ပြုပါ။ ဤဝင်းဒိုးသည် အလိုအလျောက် ဆက်လုပ်ပါမည်။"</string>
+<string name="account_browser_body_phone" formatted="true">"%s စာမျက်နှာတွင် ဝင်ရောက်ခြင်းကို အပြီးသတ်ပါ။ ဤမျက်နှာပြင်သည် အလိုအလျောက် ဆက်လုပ်ပါမည်။"</string>
+<string name="account_browser_open_again">"ပြန်ဖွင့်ရန်"</string>
+<string name="account_browser_title" formatted="true">"%s သို့ ဝင်ရန်"</string>
+<string name="account_browser_waiting">"သင့်ဘရောက်ဇာကို စောင့်နေသည်…"</string>
+<string name="account_code_expired">"ဤကုဒ် သက်တမ်းကုန်သွားပါပြီ။ ထပ်စမ်းရန် ကုဒ်အသစ်တစ်ခု ယူပါ။"</string>
+<string name="account_code_expires" formatted="true">"%s အတွင်း သက်တမ်းကုန်မည်"</string>
+<string name="account_code_instructions" formatted="true">"မည်သည့်ဘရောက်ဇာတွင်မဆို %s သို့ သွားပြီး ကုဒ်ကို ထည့်ပါ။"</string>
+<string name="account_code_open" formatted="true">"%s ဖွင့်ရန်"</string>
+<string name="account_delete_body" formatted="true">"%s ၏ ကြည့်ရှုမှတ်တမ်း၊ မှတ်သားချက်များနှင့် စင့်ခ်ဝင်ရောက်မှုများကို ဤစက်မှ ဖျက်ပါမည်။"</string>
+<string name="account_delete_profile">"ပရိုဖိုင် ဖျက်ရန်"</string>
+<string name="account_delete_title" formatted="true">"%s ကို ဖျက်မလား?"</string>
+<string name="account_edit_profile">"ပရိုဖိုင် တည်းဖြတ်ရန်"</string>
+<string name="account_email">"အီးမေးလ်"</string>
+<string name="account_image_address">"ပုံလိပ်စာ သုံးရန်"</string>
+<string name="account_manage_note">"တည်းဖြတ်ရန် ပရိုဖိုင်တစ်ခု ရွေးပါ"</string>
 <string name="account_manage_profiles">"ပရိုဖိုင်များ စီမံရန်"</string>
 <string name="account_pair_code">"သင့်ကုဒ်"</string>
 <string name="account_pair_instructions">"၎င်းကို သင့်ဖုန်းတွင်ဖွင့်ပြီး အောက်ပါကုဒ်ကို ထည့်ပါ။"</string>
 <string name="account_pair_new_code">"ကုဒ်အသစ် ယူရန်"</string>
 <string name="account_pair_title" formatted="true">"%s တွဲချိတ်ရန်"</string>
+<string name="account_password">"စကားဝှက်"</string>
+<string name="account_password_mismatch">"ထိုအီးမေးလ်နှင့် စကားဝှက် မကိုက်ညီပါ။ စစ်ဆေးပြီး ထပ်စမ်းကြည့်ပါ။"</string>
+<string name="account_password_note" formatted="true">"%s တွင် ဘရောက်ဇာဖြင့် ဝင်ရောက်ခြင်း မရှိသဖြင့် ဤနေရာတွင် ရိုက်ထည့်ရသည်။ ၎င်းကို ဤစက်တွင်သာ သိမ်းထားပြီး မည်သည့်အခါမျှ အရန်မကူးပါ။"</string>
+<string name="account_picture">"ပုံ"</string>
+<string name="account_pin_change">"PIN ပြောင်းရန်"</string>
+<string name="account_pin_confirm">"အတည်ပြုရန် ထပ်မံ ရိုက်ထည့်ပါ။"</string>
+<string name="account_pin_current">"လက်ရှိသုံးနေသော PIN ကို ရိုက်ထည့်ပါ။"</string>
+<string name="account_pin_first_profile">"ပထမပရိုဖိုင်ကို လော့ခ်ချ၍ မရပါ"</string>
+<string name="account_pin_new">"ဂဏန်း ၄ လုံးပါ PIN တစ်ခု ရိုက်ထည့်ပါ။"</string>
+<string name="account_pin_off">"ပိတ်ထား · မည်သူမဆို ဤပရိုဖိုင်ကို ဖွင့်နိုင်သည်"</string>
+<string name="account_pin_on">"ဖွင့်ထား · ဖွင့်ရန် တောင်းမည်"</string>
+<string name="account_pin_prompt">"ဂဏန်း ၄ လုံးပါ PIN ကို ရိုက်ထည့်ပါ။"</string>
+<string name="account_pin_remove">"PIN ဖယ်ရှားရန်"</string>
+<string name="account_pin_set">"PIN သတ်မှတ်ရန်"</string>
+<string name="account_pin_set_title">"PIN သတ်မှတ်ခြင်း"</string>
 <string name="account_profile_current">"လက်ရှိ"</string>
 <string name="account_profile_locked">"လော့ခ်ချထား · PIN"</string>
 <string name="account_profile_no_sync">"စင့်ခ်မရှိ"</string>
 <string name="account_select_note">"သီးခြားကြည့်ရှုမှုမှတ်တမ်း · ဝင်ရောက်မှုမဟုတ်"</string>
 <string name="account_select_title">"ဘယ်သူကြည့်နေလဲ?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s က ဝင်ရောက်မှုကို အတည်မပြုခဲ့ပါ။ ဘာမျှ သိမ်းဆည်းမထားပါ။"</string>
+<string name="account_signin_failed_title" formatted="true">"%s သို့ ဝင်၍ မရပါ"</string>
+<string name="account_signin_offline_body" formatted="true">"%s သို့ ဝင်ရန် ချိတ်ဆက်မှု လိုအပ်သည်။ ဤစက် အွန်လိုင်း ပြန်ဖြစ်သောအခါ ထပ်စမ်းကြည့်ပါ။"</string>
 <string name="account_sync_connected">"ချိတ်ဆက်ထား · ဤစက်တွင် ဝင်ထား"</string>
 <string name="account_sync_needs_browser">"ဝင်ရောက်ရန် ဝဘ်ဘရောက်ဆာ လိုအပ်သည်။ ဤစက်တွင် မရှိပါ။"</string>
 <string name="account_sync_note">"ရွေးချယ်နိုင်သည်။ ကြည့်ရှုမှုတိုးတက်မှုကို သင့်တွင်ရှိပြီးသားအကောင့်နှင့် စင့်ခ်လုပ်သည်။"</string>
 <string name="account_sync_pair">"ကုဒ်ဖြင့် တွဲချိတ်ရန်"</string>
 <string name="account_sync_remove">"ဤစက်မှ ဖယ်ရှားရန်"</string>
+<string name="account_sync_remove_body" formatted="true">"%1$s ၏ %2$s ဝင်ရောက်မှုကို ဤစက်မှ ဖျက်ပါမည်။ သင်၏ %2$s အကောင့်နှင့် ၎င်း၏စာရင်းများမှာ မူလအတိုင်း ရှိနေပါမည်။"</string>
+<string name="account_sync_remove_title" formatted="true">"%s ကို ဤစက်မှ ဖယ်ရှားမလား?"</string>
 <string name="account_sync_title">"စင့်ခ်ဝန်ဆောင်မှုများ"</string>
 <string name="account_sync_unavailable">"ဤနေရာတွင် မရနိုင်ပါ"</string>
+<string name="account_touch_id_hint">"ဤပရိုဖိုင်ကို ဖွင့်ရန် အာရုံခံကိရိယာကို ထိပါ။"</string>
+<string name="account_touch_id_reason" formatted="true">"ပရိုဖိုင် %s ကို ဖွင့်ရန်"</string>
+<string name="account_touch_id_title" formatted="true">"%s ကို ဖွင့်ရန် Touch ID သုံးပါ"</string>
+<string name="account_undo_warning">"၎င်းကို ပြန်ပြင်၍မရပါ။"</string>
+<string name="account_use_pin">"PIN ကို အစားသုံးရန်"</string>
 <string name="action_add_to_bookmarks">"ကြည့်ရှုမှုအခြေအနေသတ်မှတ်ခြင်း"</string>
 <string name="action_default">"ပုံသေ"</string>
 <string name="action_mark_as_watched">"ကြည့်ပြီးအဖြစ်မှတ်ရန်"</string>

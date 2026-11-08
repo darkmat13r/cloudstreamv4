@@ -22,23 +22,64 @@
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d utviding · oppdatert %2$s"</item><item quantity="other">"%1$d utvidingar · oppdatert %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil og PIN-en hennar"</item><item quantity="other">"%d profilar og PIN-ane deira"</item></plurals>
 <string name="account_add_profile">"Legg til profil"</string>
+<string name="account_browser_body" formatted="true">"Nettlesaren din opna %s. Logg inn der og gje CloudStream løyve. Dette vindauget held fram av seg sjølv."</string>
+<string name="account_browser_body_phone" formatted="true">"Fullfør innlogginga på sida til %s. Denne skjermen held fram av seg sjølv."</string>
+<string name="account_browser_open_again">"Opne på nytt"</string>
+<string name="account_browser_title" formatted="true">"Logg inn på %s"</string>
+<string name="account_browser_waiting">"Ventar på nettlesaren…"</string>
+<string name="account_code_expired">"Denne koden har gått ut. Hent ein ny for å prøve igjen."</string>
+<string name="account_code_expires" formatted="true">"Går ut om %s"</string>
+<string name="account_code_instructions" formatted="true">"Gå til %s i ein nettlesar og skriv inn koden."</string>
+<string name="account_code_open" formatted="true">"Opne %s"</string>
+<string name="account_delete_body" formatted="true">"Sjåhistorikken, bokmerka og synkroniseringsinnloggingane til %s blir sletta frå denne eininga."</string>
+<string name="account_delete_profile">"Slett profil"</string>
+<string name="account_delete_title" formatted="true">"Slette %s?"</string>
+<string name="account_edit_profile">"Rediger profil"</string>
+<string name="account_email">"E-post"</string>
+<string name="account_image_address">"Bruk ei biletadresse"</string>
+<string name="account_manage_note">"Vel ein profil for å redigere han"</string>
 <string name="account_manage_profiles">"Handter profilar"</string>
 <string name="account_pair_code">"Koden din"</string>
 <string name="account_pair_instructions">"Opne dette på telefonen og skriv inn koden nedanfor."</string>
 <string name="account_pair_new_code">"Få ein ny kode"</string>
 <string name="account_pair_title" formatted="true">"Kople til %s"</string>
+<string name="account_password">"Passord"</string>
+<string name="account_password_mismatch">"E-postadressa og passordet passa ikkje saman. Sjekk dei og prøv igjen."</string>
+<string name="account_password_note" formatted="true">"%s har inga innlogging via nettlesar, så det blir skrive inn her. Det blir berre lagra på denne eininga og aldri sikkerheitskopiert."</string>
+<string name="account_picture">"Bilete"</string>
+<string name="account_pin_change">"Endre PIN"</string>
+<string name="account_pin_confirm">"Skriv han inn igjen for å stadfeste."</string>
+<string name="account_pin_current">"Skriv inn PIN-koden som er i bruk no."</string>
+<string name="account_pin_first_profile">"Den første profilen kan ikkje låsast"</string>
+<string name="account_pin_new">"Skriv inn ein firesifra PIN."</string>
+<string name="account_pin_off">"Av · alle kan opne denne profilen"</string>
+<string name="account_pin_on">"På · blir spurd om ved opning"</string>
+<string name="account_pin_prompt">"Skriv inn den firesifra PIN-koden."</string>
+<string name="account_pin_remove">"Fjern PIN"</string>
+<string name="account_pin_set">"Vel PIN"</string>
+<string name="account_pin_set_title">"Vel ein PIN"</string>
 <string name="account_profile_current">"Gjeldande"</string>
 <string name="account_profile_locked">"Låst · PIN"</string>
 <string name="account_profile_no_sync">"Inga synkronisering"</string>
 <string name="account_select_note">"Eiga sjåhistorikk · ikkje innloggingar"</string>
 <string name="account_select_title">"Kven ser på?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s stadfesta ikkje innlogginga. Ingenting vart lagra."</string>
+<string name="account_signin_failed_title" formatted="true">"Kunne ikkje logge inn på %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Innlogging på %s krev tilkopling. Prøv igjen når denne eininga er tilkopla att."</string>
 <string name="account_sync_connected">"Tilkopla · logga inn på denne eininga"</string>
 <string name="account_sync_needs_browser">"Innlogging krev ein nettlesar. Denne eininga har ingen."</string>
 <string name="account_sync_note">"Valfritt. Synkroniserer framdrifta med ein konto du alt har."</string>
 <string name="account_sync_pair">"Kople til med ein kode"</string>
 <string name="account_sync_remove">"Fjern frå denne eininga"</string>
+<string name="account_sync_remove_body" formatted="true">"%2$s-innlogginga til %1$s blir sletta frå denne eininga. %2$s-kontoen din og listene der blir verande som dei er."</string>
+<string name="account_sync_remove_title" formatted="true">"Fjerne %s frå denne eininga?"</string>
 <string name="account_sync_title">"Synkroniseringstenester"</string>
 <string name="account_sync_unavailable">"Ikkje tilgjengeleg her"</string>
+<string name="account_touch_id_hint">"Rør ved sensoren for å opne denne profilen."</string>
+<string name="account_touch_id_reason" formatted="true">"opne profilen %s"</string>
+<string name="account_touch_id_title" formatted="true">"Bruk Touch ID for å opne %s"</string>
+<string name="account_undo_warning">"Dette kan ikkje angrast."</string>
+<string name="account_use_pin">"Bruk PIN i staden"</string>
 <string name="action_add_to_bookmarks">"Sett visingstatus"</string>
 <string name="action_default">"Standard"</string>
 <string name="action_open_watching">"Meir informasjon"</string>
