@@ -284,24 +284,42 @@ class AndroidHomeSourceTest {
         }
         val hostile = listOf(
             IOException("Refused https://cdn.example/v/1.m3u8?token=SECRET0"),
-            IOException("Refused https:​//cdn.example/v/1.m3u8?token=SECRET1"),
+            IOException("Refused https:\u200B//cdn.example/v/1.m3u8?token=SECRET1"),
             IOException("Refused https:/\u0000/cdn.example/v/1.m3u8?token=SECRET2"),
             IOException("Refused https://cdn.example/v/1.m3u8\u0007?token=SECRET3"),
-            IOException("Cannot open /Us​ers/someone/Movies/film.mkv: denied"),
-            IOException("Cannot open fi​le:///storage/emulated/0/someone/film.mkv"),
+            IOException("Cannot open /Us\u200Bers/someone/Movies/film.mkv: denied"),
+            IOException("Cannot open fi\u200Ble:///storage/emulated/0/someone/film.mkv"),
             forgedFrame,
+            // Review: combining marks a screen draws as nothing, which are not format characters.
+            IOException("Refused https:\u034F//cdn.example/v/1.m3u8?token=SECRET5"),
+            IOException("Refused ht\uFE0Ftps:/\uFE0F/cdn.example/v/1.m3u8?token=SECRET6"),
+            IOException("Cannot open /Us\u034Fers/someone/Movies/film.mkv: denied"),
+            IOException("Cannot open /Users\u3164/someone/Movies/film.mkv: denied"),
+            // Review: a visible blank (braille U+2800) between `:` and `//`, which no scheme pattern reads as a url.
+            IOException("Refused https:\u2800//cdn.example/v/1.m3u8?token=SECRET7"),
+            IOException("Refused https:/\u2800/cdn.example/v/1.m3u8?token=SECRET8"),
+            IOException("Refused https:\u2800/\u2800/cdn.example/v/1.m3u8?token=SECRET9"),
+            IOException("Refused https: \u2800 //cdn.example/v/1.m3u8?token=SECRET10"),
+            IOException("Refused https:/ \u2800/cdn.example/v/1.m3u8?token=SECRET11"),
+            IOException("Refused https:\uD834\uDD59//cdn.example/v/1.m3u8?token=SECRET12"),
         )
-        for (thrown in hostile) {
+        // Every case is tried, and every one that leaks is named, so a failure shows all of them at once.
+        val leaks = hostile.withIndex().mapNotNull { (index, thrown) ->
             val api = Fake { _, _ -> throw thrown }
-            val failed = source(api).page(HomeSourceId("Fake"), 0, 1) as HomePageReply.Failed
-            assertFalse(failed.detail, "SECRET" in failed.detail)
-            assertFalse(failed.detail, "someone" in failed.detail)
-            assertFalse(failed.detail, "/v/1.m3u8" in failed.detail)
-            assertTrue(failed.detail, failed.detail.none { it.isISOControl() || it.category == CharCategory.FORMAT })
+            val detail = (source(api).page(HomeSourceId("Fake"), 0, 1) as HomePageReply.Failed).detail
+            val leaked = "SECRET" in detail || "someone" in detail || "/v/1.m3u8" in detail ||
+                detail.any { it.isISOControl() || it.category == CharCategory.FORMAT }
+            "case $index: $detail".takeIf { leaked }
         }
-        val kept = source(Fake { _, _ -> throw IOException("Refused https:​//cdn.example/a?token=SECRET") })
+        assertEquals(emptyList<String>(), leaks)
+        val kept = source(Fake { _, _ -> throw IOException("Refused https:\u200B//cdn.example/a?token=SECRET") })
             .page(HomeSourceId("Fake"), 0, 1) as HomePageReply.Failed
         assertTrue("The reason and the host stay: ${kept.detail}", kept.detail.startsWith("Refused https://cdn.example"))
+        // Text that only looks a little like a link is left as it was.
+        for (plain in listOf("Ratio 16:9 // wide", "Note: a/b", "Note: a/b/c", "x:a/b", "1:2/3/4")) {
+            val reply = source(Fake { _, _ -> throw IOException(plain) }).page(HomeSourceId("Fake"), 0, 1)
+            assertEquals(plain, (reply as HomePageReply.Failed).detail.substringBefore("AndroidHomeSourceTest"))
+        }
     }
 
     @Test

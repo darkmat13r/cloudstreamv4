@@ -151,8 +151,14 @@ internal class AndroidHomeSource(
         // The first line: the rest of errorString is a stack trace, which is not for this screen.
         // A provider's words reach the screen, so no address and no user path (`BUG-61`). Invisible characters go first:
         // one inside `://` or a path hides it from the redaction, and cleaning after it would put it back together.
-        val reason = redactedText(errorString.trim().lineSequence().first().withoutInvisible()).safeText()
-            .ifEmpty { UNKNOWN_ERROR }
+        val line = errorString.trim().lineSequence().first()
+            .filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }
+            .withoutDefaultIgnorable()
+        // A second pass with the wider link pattern; on text `redactedText` already cut, it changes nothing.
+        val reason = redactedText(line).replace(URL_IN_TEXT) { match ->
+            val (scheme, host, rest) = match.destructured
+            "$scheme://$host" + if (rest.isEmpty()) "" else "/<…>"
+        }.safeText().ifEmpty { UNKNOWN_ERROR }
         return if (isNetworkError) HomePageReply.Offline else HomePageReply.Failed(reason)
     }
 
@@ -192,9 +198,8 @@ internal class AndroidHomeSource(
             .associate { (name, value) -> name to value }
             .ifEmpty { null }
 
-    private fun String.withoutInvisible(): String = filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }
-
-    private fun String.safeText(): String = withoutInvisible().trim().take(MAX_TEXT_CHARS)
+    private fun String.safeText(): String =
+        filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(MAX_TEXT_CHARS)
 
     /** [safeText] with room for a synopsis. */
     private fun String.safeSynopsis(): String =
@@ -220,6 +225,14 @@ internal class AndroidHomeSource(
         val SPACE = Regex("\\s+")
         val HTTP_PREFIXES = listOf("http://", "https://")
         val HEADER_NAME = Regex("[A-Za-z0-9-]{1,64}")
+
+        /**
+         * `BUG-64`'s link pattern, the same text as in every redaction copy: a url, also when up to two drawn characters
+         * (a braille blank, U+2800) sit in `://`, which `redactedText` does not read as one until `BUG-64` lands.
+         */
+        val URL_IN_TEXT = Regex(
+            "(?i)\\b([a-z][a-z0-9+.-]*):[\\s\\p{Z}]*(?:[^\\s\\p{Z}/][\\s\\p{Z}]*){0,2}/[\\s\\p{Z}]*(?:[^\\s\\p{Z}/\\p{L}\\p{N}][\\s\\p{Z}]*){0,2}/(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)"
+        )
     }
 }
 
@@ -271,5 +284,34 @@ private fun posterLabels(context: Context): (SearchResponse) -> String? {
                     else -> null
                 }
             }
+    }
+}
+
+/**
+ * BUG-64: Unicode's Default_Ignorable_Code_Point (DerivedCoreProperties.txt), the code points a screen draws nothing
+ * for. Cc and Cf miss some of them: U+034F, the variation selectors, the Hangul fillers. One of these inside `://` or
+ * `/Users/` hides it from a pattern while the text reads the same. The same list is in every copy of this check.
+ */
+private fun isDefaultIgnorable(codePoint: Int): Boolean = when (codePoint) {
+    0x00AD, 0x034F, 0x061C, 0x3164, 0xFEFF, 0xFFA0 -> true
+    in 0x115F..0x1160, in 0x17B4..0x17B5, in 0x180B..0x180F, in 0x200B..0x200F, in 0x202A..0x202E,
+    in 0x2060..0x206F, in 0xFE00..0xFE0F, in 0xFFF0..0xFFF8, in 0x1BCA0..0x1BCA3, in 0x1D173..0x1D17A,
+    in 0xE0000..0xE0FFF -> true
+    else -> false
+}
+
+/** Without [isDefaultIgnorable]'s code points, read a code point at a time, so a surrogate pair goes or stays whole. */
+private fun String.withoutDefaultIgnorable(): String {
+    val text = this
+    return buildString(text.length) {
+        var i = 0
+        while (i < text.length) {
+            val pair = text[i].isHighSurrogate() && i + 1 < text.length && text[i + 1].isLowSurrogate()
+            val codePoint =
+                if (pair) 0x10000 + ((text[i].code - 0xD800) shl 10) + (text[i + 1].code - 0xDC00) else text[i].code
+            val end = if (pair) i + 2 else i + 1
+            if (!isDefaultIgnorable(codePoint)) appendRange(text, i, end)
+            i = end
+        }
     }
 }

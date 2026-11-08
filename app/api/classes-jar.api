@@ -37855,6 +37855,7 @@ public final class com/lagradost/cloudstream4/home/AndroidHomeSource : java/lang
 	public static final synthetic fun access$getSPACE$cp ()Lkotlin/text/Regex;
 	public static final synthetic fun access$getStillLoading$p (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;)Lkotlin/jvm/functions/Function0;
 	public static final synthetic fun access$getTAG$cp ()Lkotlin/text/Regex;
+	public static final synthetic fun access$getURL_IN_TEXT$cp ()Lkotlin/text/Regex;
 	public static final synthetic fun access$getYEARS$cp ()Lkotlin/ranges/IntRange;
 	public static final synthetic fun access$safeText (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;Ljava/lang/String;)Ljava/lang/String;
 	public static final synthetic fun access$toFeatured (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;Lcom/lagradost/cloudstream3/LoadResponse;Ljava/lang/String;)Lcom/lagradost/cloudstream4/feature/home/HomeFeatured;
@@ -37867,6 +37868,7 @@ public final class com/lagradost/cloudstream4/home/AndroidHomeSource : java/lang
 
 public final class com/lagradost/cloudstream4/home/AndroidHomeSourceKt : java/lang/Object {
 	public static final field PLUGIN_WAIT_MS J
+	public static final synthetic fun access$withoutDefaultIgnorable (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun androidHomeSource (Landroid/content/Context;J)Lcom/lagradost/cloudstream4/home/AndroidHomeSource;
 	public static final fun pluginsStillLoading (JJ)Z
 }
