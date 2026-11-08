@@ -1091,6 +1091,9 @@ Renders: in the shared local review folder (not published).
 - **No trailing ellipsis on buttons**, so the keys these boards reuse (`add_repository`, `account_add_profile`, `edit`,
   `reset_btn`) read the same as the new ones beside them.
 
+- **"Each update is scanned before it runs" is a promise to the user** (ST2). The build must confirm that `KMP-24`'s
+  scan runs on an automatic update, not only on first install, and add a test for it. If it does not, the line changes.
+
 **Open:** ST10's button order against board `D3` in `design/Desktop Downloads.dc.html`.
 
 **Follow-up:** DNS over HTTPS does not reach playback on the Mac yet, so ST8 says so in words. That is `KMP-88`.
