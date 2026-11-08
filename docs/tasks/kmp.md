@@ -5145,13 +5145,49 @@ running when the test looks). All local, none CI, on `Television_720p` (API 36):
 crash the test process.
 
 **Not verified.**
-- API 24/25: the new tests ran on API 36 only.
+- API 24: not run. API 25: 8/8 on `Api25_Test` (Android 7.1.1), run in `KMP-80`.
 - A Cancel during the copy. It reaches the engine as the same `downloadEvent` Stop (`EpisodeDownloadInstance.cleanup`), read, not run.
 - A stop in the middle of a long copy. The test's stop lands at the copy's first buffer.
 - The play actions driven by real taps on the phone and TV lists, the popup and Continue Watching (read: all use the tested click).
 - `BaseFetchButton` showing staged bytes; a failed engine download listed, resumed from staging, and not pruned while idle;
   deleting an idle staged download.
 - Document-tree and SD-card destinations.
+
+## KMP-80 — Switch on: a restart's fresh link reaches the engine's resume · **built 2026-11-08**, the last blocker for `KMP-59`'s switch
+
+`KMP-62` made a resume ask the provider again for a link; `KMP-59`'s engine resumes only when the file's identity
+(size, ETag, Last-Modified) still matches what it staged, and otherwise fails `SourceChanged`, deletes the staging and
+the mirror loop tries the next link from 0. The two had never run together: `NoStoredLinksDeviceTest` runs with the
+switch off. `EngineResumeAfterRestartDeviceTest` runs them together, switch on, through the real
+`EpisodeDownloadInstance`.
+
+- **The first run** is cut off the way an expired link is: once about a third is staged, the server cuts every connection
+  and answers 403. The run fails `ServerRefused(403)` and keeps its parts and its link-free resume package.
+- **The restart** leaves what a restart leaves: stored keys and staging on disk, no link cache, no status. A new instance
+  starts from the stored package; the provider answers with a fresh URL on another server, under the same labels.
+- **Same file behind the fresh link:** completes byte-identical, and the fresh server is asked for exactly the bytes the
+  staging lacked: no request overlaps a held range, and the union of requests is the file minus what was held.
+- **Another file behind it** (same size, another ETag): `SourceChanged` is reported, the staging holds 0 bytes at that
+  moment, no body byte is fetched from the changed link, and the next mirror downloads its own file from 0.
+- Parts are fixed at an eighth of the file (`minPartBytesForTests`), so no part is split and the held ranges are exact.
+- `EngineTestServer` gains a refusal status, a hook before each answer, and a way to cut connections in flight.
+
+**Results** (all local, none CI).
+- `EngineResumeAfterRestartDeviceTest`: 2/2 on `Television_720p` (API 36) and 2/2 on `Api25_Test` (Android 7.1.1).
+- **Control:** with the fresh link's ETag changed in the first case and the changed link's ETag set back to the
+  original in the second, both fail (2/2): "the resume failed … SourceChanged" and "SourceChanged was never reported".
+- `EngineDownloadListDeviceTest` (`KMP-60`): 8/8 on `Api25_Test`. It had run on API 36 only.
+
+**Not verified.** API 24; a real process kill (the restart here is a new instance on the same disk, as in `KMP-62`);
+a size change rather than an ETag change (the engine checks the size on the same line, read, not run); a picked
+mirror (no `mirror` label is stored when the queue item has no links).
+
+**Release notes for turning the switch on** (owner, 2026-11-08: accepted with no opt-in):
+- Downloads now check the server's security certificate. A source whose certificate is self-signed or expired can no
+  longer be downloaded from; the app tries its other mirrors.
+- Downloads from servers on your own network (home servers, local addresses) are no longer allowed.
+- A download needs free space for about twice its size on the device's internal storage while it runs, even when it is
+  saved to an SD card or USB drive. If there is not enough, the download stops with a not-enough-space failure before it fills the storage.
 
 ## KMP-61 — Engine: a work steal refetches an in-flight range's tail · **open**, measured, no fix
 
