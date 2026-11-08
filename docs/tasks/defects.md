@@ -2520,7 +2520,7 @@ Also from #227's review: `restoreAfterPins` says why no context is still fail-sa
 
 ## BUG-59 — A device test that taps left the whole device in touch mode, and the next test failed · **low, tests only** · measured 2026-11-08
 
-**Status:** fixed in pr · `core/devicetest/.../TouchModeReset.kt`, `SearchScreenTvDeviceTest.kt`
+**Status:** fixed in pr (#248, on train 9) · `core/devicetest/.../TouchModeReset.kt` and the device tests that tap or read focus
 
 A tap (`UiDevice.click`, `UiObject2.click`) puts the **whole device** in touch mode, not only the test's window. It
 stays on across tests, test classes and test APKs until a navigation key ends it. Back does not end it, so a test that
@@ -2538,15 +2538,33 @@ finds the wrong thing focused, for a reason that is not its own.
   key before they read focus.
 
 **Fix, tests only:** `TouchModeReset`, a JUnit rule in `:core:devicetest`, calls
-`Instrumentation.setInTouchMode(false)` after each test. Every device test that taps uses it:
+`Instrumentation.setInTouchMode(false)` **before and after** each test. Both sides use it, so the protection does not
+depend on every test that taps remembering to (review on #248):
 
-| Test | Taps | Before |
+- **Every test that taps:** `SearchScreenTvDeviceTest` (`device.click`), `RestorePinGateTest` (`cancelButton().click()`,
+  from #227), and `AccountSelectTvNavigationTest` (`apply.click()`, `KMP-73`), whose own `setInTouchMode(false)` in
+  `@After` is replaced by the rule. `PinAttemptsPromptTest` does not tap.
+- **Every test that reads focus:** each device-test class that asserts what has focus (`assertIsFocused`,
+  `isFocused`, `focusedText`, `focusedLabel`, or that drives a `DpadDriver`), 31 classes across `:app`,
+  `:core:designsystem` and the seven feature modules, `TvHomeNavigationTest`, `TvDetailNavigationTest` and
+  `TvPlaybackPanelsNavigationTest` among them. **DECIDED:** "asserts initial focus" can't be told from a grep, so the
+  options were (A) a hand-picked subset or (B) every class that asserts focus at all. B was chosen: a reset costs one
+  binder call per test, and a missed class is a flaky test later.
+- `StateActionDeviceTest` already calls `setInTouchMode(false)` itself and is left as it is.
+
+### Train 9 (measured 2026-11-08, `Television_720p` API 36)
+
+On train 9 (`ca95f7655`), `RestorePinGateTest` left touch mode on, and the train's paired runs failed
+`TvHomeNavigationTest.aRailEnteredFromTheNavRailBeforeTheRowsLandKeepsFocus` and `TvPlaybackPanelsNavigationTest`
+("No panel"); both pass alone. Measured here, one boot per head, each step a separate Gradle run:
+
+| Pair | Train head | With the rule |
 |---|---|---|
-| `SearchScreenTvDeviceTest.aTapOpensTheKeyboard` | `device.click` | No reset; now uses the rule |
-| `AccountSelectTvNavigationTest` (`KMP-73`) | `apply.click()` | Resets in its own `@After`; left as is |
-| `StateActionDeviceTest` | — | Calls `setInTouchMode(false)` itself; left as is |
+| `RestorePinGateTest` → `TvPlaybackPanelsNavigationTest` | touch mode `true`; **1 of 5 failed**: `switchingWhilePlayingKeepsPlayingAtThePosition`, "No panel" at `openSourcePanel` | touch mode `false`; **5/5, three times in a row** |
+| `RestorePinGateTest` → `TvHomeNavigationTest#aRailEntered…KeepsFocus` (that test alone) | touch mode `true`; passed: **did not reproduce** | touch mode `false`; passed three times in a row |
+| `RestorePinGateTest` → the whole `TvHomeNavigationTest` | touch mode `true`; 18/18: **did not reproduce** here | touch mode `false`; 18/18, three times in a row |
 
-Every other device test on master drives the screen with keys or semantics actions, which do not enter touch mode.
-
-**Open PRs:** `RestorePinGateTest` (#227, and #230 which carries it) taps `cancelButton().click()` and does not reset.
-It needs the rule.
+The train's own paired runs failed `aRailEntered…KeepsFocus` 3 of 3 ("the hero's title is asked for"); on this
+emulator the Home pair passed on the train head too, so these runs show the rule is safe for Home, **not** that it is
+the cause there. The train also saw `TvHomeNavigationTest` fail once alone; that is not touch mode and is not
+claimed here.

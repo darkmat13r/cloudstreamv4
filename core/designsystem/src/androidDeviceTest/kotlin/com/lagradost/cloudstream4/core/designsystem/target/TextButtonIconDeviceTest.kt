@@ -20,6 +20,7 @@ import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
+import com.lagradost.cloudstream4.core.devicetest.TouchModeReset
 import com.lagradost.cloudstream4.core.devicetest.assertScreenshot
 import com.lagradost.cloudstream4.core.devicetest.focusedLabel
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
@@ -40,6 +41,10 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class TextButtonIconDeviceTest {
+
+    /** `BUG-59`: starts and ends out of touch mode, whatever ran before it. */
+    @get:Rule
+    val touchMode = TouchModeReset()
 
     @get:Rule
     val rule = createComposeRule()

@@ -22,6 +22,7 @@ import com.lagradost.cloudstream4.core.designsystem.target.IconCell
 import com.lagradost.cloudstream4.core.designsystem.target.PrimaryTextButton
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
+import com.lagradost.cloudstream4.core.devicetest.TouchModeReset
 import com.lagradost.cloudstream4.core.devicetest.focusedLabel
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -49,6 +50,10 @@ import java.util.concurrent.CopyOnWriteArrayList
  */
 @RunWith(AndroidJUnit4::class)
 class FocusStopsDeviceTest {
+
+    /** `BUG-59`: starts and ends out of touch mode, whatever ran before it. */
+    @get:Rule
+    val touchMode = TouchModeReset()
 
     @get:Rule
     val rule = createComposeRule()
