@@ -326,10 +326,7 @@ internal fun DesktopApp(
     DisposableEffect(scope) {
         onDispose {
             scope.cancel()
-            // They ran in [scope] and read this window's library, so none may outlive it: a profile switch makes a new
-            // window's worth (`KMP-95`).
-            DesktopDetailViewModels.forgetAll()
-            DesktopSearchViewModels.live = null
+            forgetWindowViewModels()
         }
     }
     val stack = remember { mutableStateListOf<Screen>(Screen.Home) }
@@ -567,6 +564,17 @@ internal class EscapeHandler {
     var overlay: (() -> Unit)? = null
 
     fun handle(): Boolean = (overlay ?: onEscape)?.let { it(); true } ?: false
+}
+
+/**
+ * Drops every view model a window keeps beyond its screens: each title's, and search's. They run in the window's scope
+ * and a title's reads the library it was made with, and `DesktopDetailViewModels.get` keeps the first one made for an
+ * id, so one left over would show the last profile's resume and lists in the next. A profile switch calls this before
+ * the profile changes (`KMP-95`, the reviewer of `#278`), and the window's dispose calls it again.
+ */
+internal fun forgetWindowViewModels() {
+    DesktopDetailViewModels.forgetAll()
+    DesktopSearchViewModels.live = null
 }
 
 /** The ViewModel outlives this composable's branch, so going back returns to the results. */

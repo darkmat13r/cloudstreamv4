@@ -21,7 +21,8 @@ import kotlin.time.Duration.Companion.seconds
  */
 internal object DesktopDetailViewModels {
     private val live = mutableMapOf<String, DetailViewModel>()
-    private val plugins: DetailSource = DesktopDetailSource()
+    /** The installed plugins' answers. A test sets its own, to open a title with no plugin installed. */
+    internal var plugins: DetailSource = DesktopDetailSource()
 
     /**
      * @param library what this computer remembers about the title (`KMP-58`): where it was left and which list it is

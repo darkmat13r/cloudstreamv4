@@ -94,6 +94,16 @@ class DesktopProfilesTest {
     }
 
     @Test
+    fun `a long name is cut by code points, never through a surrogate pair`() {
+        val faces = "\uD83D\uDE00".repeat(DesktopProfileFile.MAX_NAME_CHARS + 6)
+        val cut = DesktopProfileFile.cleanName(faces)
+        assertEquals(DesktopProfileFile.MAX_NAME_CHARS, cut.codePointCount(0, cut.length))
+        assertEquals(DesktopProfileFile.MAX_NAME_CHARS * 2, cut.length)
+        assertFalse(cut.last().isHighSurrogate(), "no half pair at the end")
+        assertEquals("Sam", DesktopProfileFile.cleanName("Sam"))
+    }
+
+    @Test
     fun `no more than the cap is kept`() {
         val many = StoredProfiles(profiles = (0 until 100).map { StoredProfile(it, "P$it") }).cleaned()
         assertEquals(DesktopProfileFile.MAX_PROFILES, many.profiles.size)

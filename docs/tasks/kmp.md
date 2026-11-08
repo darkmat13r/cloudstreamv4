@@ -7230,8 +7230,8 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
   show our reason text.
 - **What a profile separates: the library only** (bookmarks, watch positions, resume), as Android's accounts do.
   Settings, downloads, extensions, the home source, the volume and the picture fit are the Mac's.
-- **The PIN before 95f** is kept in the profiles file, owner-only, written temp-then-move, never logged or shown. It is
-  not hashed: a hash of a 4-digit PIN is reversed at once, so it would only look safer (as `d081`, 2026-11-07). It
+- **The PIN before 95f** is kept in its own owner-only file, never in `profiles.json` (the reviewer of `#278`): written
+  temp-then-move, never logged, shown or in anything shared. It is not hashed: a hash of a 4-digit PIN is reversed at once, so it would only look safer (as `d081`, 2026-11-07). It
   moves to the Keychain in 95f.
 - **Sign-ins before 95f** are kept in memory only and lost on quit, and the window says so. None is ever on disk in
   plain text.
@@ -7243,7 +7243,7 @@ one watching. Profile 0 is always there; its name is empty in the file and drawn
 language. A file that is missing, too large (64 KB), not JSON or not this shape reads as profile 0 alone, which is what
 the Mac had before. A file that parses is cleaned on the way in:
 - a negative or repeated id is dropped;
-- a name loses control and format characters and is cut to 64;
+- a name loses control and format characters and is cut to 64 code points, never through a surrogate pair;
 - the list is cut to 32;
 - profile 0 is put back if missing, and a `current` that is not a profile becomes 0.
 
@@ -7258,9 +7258,11 @@ the Mac had before. A file that parses is cleaned on the way in:
   made beside `BoxWithConstraints` ran before its content existed and failed silently.
 - Below a 640 content height the heading moves up (A15), so four cards fit in one row at 800×520, and a fifth wraps.
 - The sidebar's foot has the profile button (A2), and its list opens above it, the current profile checked. Choosing
-  another makes the window again over that profile's library, under its key. The stack goes back to Home, and the
-  title pages' and search's view models are dropped with the window that made them (`DesktopApp`'s dispose), so
-  nothing of the last profile shows. A click outside, the list's Escape and the window's Escape all close it.
+  another makes the window again over that profile's library, under its key, and the stack goes back to Home.
+- **Nothing of one profile reaches the next** (the reviewer of `#278`). `DesktopDetailViewModels.get` keeps the first
+  view model made for a title, whatever library it is handed later. So a switch drops every title's view model, and
+  search's, **before** the profile changes (`forgetWindowViewModels`), and the window's dispose drops them again. A
+  test opens a title in one profile, switches, checks it was let go, and opens it in the next: no resume, no list. A click outside, the list's Escape and the window's Escape all close it.
   `EscapeHandler.overlay` lets the list take the window's Escape before the screen under it.
 - The choice is remembered for the next launch. If it cannot be written it still holds until the app quits, and the
   console says the class of the failure, never a path.
@@ -7281,8 +7283,9 @@ the Mac had before. A file that parses is cleaned on the way in:
 
 **Tests** (desktopApp jvmTest):
 - `DesktopProfilesTest`: no file; owner-only write, read back, no temporary file; an unknown or current choice writes
-  nothing; a failed write is reported and still holds; cleaning; the cap; too large and not this format; profile 0's
-  files are the old ones; a title kept by one profile is not in another's library.
+  nothing; a failed write is reported and still holds; cleaning; a name cut by code points; the cap; too large and not
+  this format; profile 0's files are the old ones; a title kept by one profile is not in another's library.
+- `ProfileTextTest` (`:feature:account` commonTest): initials, one outside the BMP kept whole.
 - `ProfilesScreenTest`, through real pointer and key events:
   - the picker opens with two profiles, and Return opens the current one;
   - the arrows move and Return opens the focused card;
@@ -7290,5 +7293,6 @@ the Mac had before. A file that parses is cleaned on the way in:
   - one profile shows no picker;
   - at the minimum window the heading moves up and four cards fit in one row;
   - the sidebar's list opens above its button, and a choice opens Home over the other profile's library;
-  - the list's Escape, the window's Escape and choosing the current profile all close it with nothing changed.
+  - the list's Escape, the window's Escape and choosing the current profile all close it with nothing changed;
+  - a title opened in one profile is let go on a switch, and opened in the next shows no resume and no list.
 - Renders with `-Pcloudstream.account.renders=<dir>`.

@@ -21,6 +21,12 @@ internal fun profileLineText(card: ProfileCard): String = when (val line = card.
     }
 }
 
-/** Up to two initials, for a disc with no picture: `Alex` is `A`, `Ana Lima` is `AL`. */
+/**
+ * Up to two initials, for a disc with no picture: `Alex` is `A`, `Ana Lima` is `AL`. Each is a word's first code point,
+ * so a letter outside the BMP is never cut to half a surrogate pair.
+ */
 internal fun profileInitials(name: String): String =
-    name.trim().split(Regex("\\s+")).filter { it.isNotEmpty() }.take(2).joinToString("") { it.take(1).uppercase() }
+    name.trim().split(Regex("\\s+")).filter { it.isNotEmpty() }.take(2).joinToString("") { it.firstCodePoint().uppercase() }
+
+private fun String.firstCodePoint(): String =
+    if (length >= 2 && this[0].isHighSurrogate() && this[1].isLowSurrogate()) substring(0, 2) else substring(0, 1)

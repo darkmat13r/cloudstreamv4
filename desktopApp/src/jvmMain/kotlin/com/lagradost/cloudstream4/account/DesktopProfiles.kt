@@ -86,6 +86,7 @@ internal class DesktopProfileFile(
     internal companion object {
         const val FILE_NAME = "profiles.json"
         const val MAX_FILE_BYTES = 64L * 1024
+        /** In code points. */
         const val MAX_NAME_CHARS = 64
 
         /** Far more than a household; a file with more was not written by this app. */
@@ -107,9 +108,15 @@ internal class DesktopProfileFile(
             )
         }
 
-        /** As the library does it: a FORMAT character reorders the text around it, and a control has no place in a name. */
-        fun cleanName(name: String): String =
-            name.filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(MAX_NAME_CHARS)
+        /**
+         * As the library does it: a FORMAT character reorders the text around it, and a control has no place in a name.
+         * Cut by code points, so a character outside the BMP is kept whole or not at all, never half a surrogate pair.
+         */
+        fun cleanName(name: String): String {
+            val kept = name.filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim()
+            val points = kept.codePointCount(0, kept.length)
+            return if (points <= MAX_NAME_CHARS) kept else kept.substring(0, kept.offsetByCodePoints(0, MAX_NAME_CHARS))
+        }
     }
 }
 

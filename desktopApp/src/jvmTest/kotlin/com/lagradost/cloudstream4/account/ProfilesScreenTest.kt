@@ -30,7 +30,21 @@ import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSources
+import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
+import com.lagradost.cloudstream4.feature.detail.DetailEpisode
+import com.lagradost.cloudstream4.feature.detail.DetailLoad
+import com.lagradost.cloudstream4.feature.detail.DetailSource
+import com.lagradost.cloudstream4.feature.detail.DetailViewModel
+import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
+import com.lagradost.cloudstream4.feature.detail.StreamLink
+import com.lagradost.cloudstream4.feature.detail.TitleDetail
+import com.lagradost.cloudstream4.feature.library.LibraryBucket
 import com.lagradost.cloudstream4.feature.library.LibraryStore
+import com.lagradost.cloudstream4.feature.library.WatchPosition
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.emptyFlow
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.home.DesktopShortcuts
@@ -42,6 +56,7 @@ import java.nio.file.Files
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -58,9 +73,20 @@ import kotlin.test.assertTrue
 class ProfilesScreenTest {
     private val directory: File = Files.createTempDirectory("profiles-screen").toFile()
 
+    private val plugins = DesktopDetailViewModels.plugins
+
     @AfterTest
     fun cleanUp() {
+        DesktopDetailViewModels.plugins = plugins
+        DesktopDetailViewModels.forgetAll()
         directory.deleteRecursively()
+    }
+
+    /** One provider's answer for every id, so a title opens with no plugin installed. */
+    private class OneShow(private val detail: TitleDetail) : DetailSource {
+        override suspend fun details(id: String) = detail
+
+        override fun links(id: String, data: String): Flow<List<StreamLink>> = emptyFlow()
     }
 
     private object EmptyHome : HomeSource {
@@ -226,9 +252,75 @@ class ProfilesScreenTest {
         }
     }
 
+    /**
+     * The reviewer of `#278`: `DesktopDetailViewModels.get` keeps the first view model made for an id, whatever library it
+     * is handed next, so one left from Alex would show Alex's resume and list in Robin's window. Checked on the state the
+     * page draws from, not on pixels.
+     */
+    @Test
+    fun `a title opened in one profile is let go on a switch, and opening it in the next shows none of the first's`() {
+        val id = "Prov\u0000https://example.com/harbor"
+        val show = TitleDetail("Quiet Harbor", "Prov", "TvSeries", 2019, null, null, null, listOf(DetailEpisode("Pilot", "s1e1", 1, 1)))
+        DesktopDetailViewModels.plugins = OneShow(show)
+        val profiles = household()
+        runBlocking {
+            val alex = profiles.libraryFor(0)
+            alex.remember(LibraryTitle(LibraryTitleId(id), "Quiet Harbor", LibraryBucket.Watching, keptAt = 1L, providerName = "Prov"))
+            alex.record(WatchPosition(LibraryTitleId(id), "s1e1", 600_000L, 2_400_000L, 2L))
+        }
+        val shortcuts = DesktopShortcuts()
+        var at = ""
+        val seen = mutableListOf<LibraryStore>()
+        val escape = EscapeHandler()
+        scene {
+            ProfilesHost(profiles, escape) { library, foot ->
+                seen += library
+                DesktopApp(escape, EmptyHome, library = library, onScreen = { at = it }, shortcuts = shortcuts, profileFoot = foot)
+            }
+        }.use { scene ->
+            scene.press(Key.Enter) // Alex
+            shortcuts.go(TopLevelDestination.Library)
+            scene.waitFor("Alex's card") { scene.find("Quiet Harbor", text = true) != null }
+            scene.click(scene.bounds("Quiet Harbor", text = true).center)
+            scene.waitFor("the title's page") { at.startsWith("Detail") }
+            assertTrue(DesktopDetailViewModels.isLive(id))
+            val alexPage = DesktopDetailViewModels.get(id, CoroutineScope(Dispatchers.Default))
+            val alexSees = scene.loaded(alexPage)
+            assertNotNull(alexSees.resume, "the setup is real: Alex's page has a resume")
+            assertEquals(DetailWatchStatus.Watching, alexSees.watchStatus, "and a list")
+
+            // From the title's own page, where the sidebar is too (`KMP-77`): leaving it for a tab would let it go anyway.
+            assertTrue(at.startsWith("Detail"), at)
+            scene.click(scene.bounds("Alex").center)
+            scene.click(scene.bounds("Robin, No sync").center)
+            assertEquals(2, profiles.stored.current)
+            assertFalse(DesktopDetailViewModels.isLive(id), "Alex's page went with the switch")
+
+            val robinPage = DesktopDetailViewModels.get(id, CoroutineScope(Dispatchers.Default), seen.last())
+            val robinSees = scene.loaded(robinPage)
+            assertNull(robinSees.resume, "Robin's page has no resume of Alex's")
+            assertEquals(DetailWatchStatus.None, robinSees.watchStatus, "and no list of Alex's")
+        }
+    }
+
     // ---- the scene --------------------------------------------------------------------------------------------------
 
     private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
+
+    /** For what happens off the frame clock: a store read on the IO dispatcher, a page loaded on Default. */
+    private fun ImageComposeScene.waitFor(what: String, done: () -> Boolean) {
+        repeat(WAIT_ROUNDS) {
+            if (done()) return
+            settle()
+            Thread.sleep(WAIT_STEP_MILLIS)
+        }
+        check(done()) { "never: $what" }
+    }
+
+    private fun ImageComposeScene.loaded(page: DetailViewModel): TitleDetail {
+        waitFor("the page to load") { page.state.value.content is DetailLoad.Loaded }
+        return (page.state.value.content as DetailLoad.Loaded).value
+    }
 
     /** A key as AWT sends it: desktop's `clickable` reads the native key code, not only [Key]. */
     private fun ImageComposeScene.press(key: Key) {
@@ -297,5 +389,7 @@ class ProfilesScreenTest {
         const val MIN_HEIGHT = 492
         const val SETTLE_FRAMES = 30
         const val FRAME_NANOS = 50_000_000L
+        const val WAIT_ROUNDS = 100
+        const val WAIT_STEP_MILLIS = 20L
     }
 }
