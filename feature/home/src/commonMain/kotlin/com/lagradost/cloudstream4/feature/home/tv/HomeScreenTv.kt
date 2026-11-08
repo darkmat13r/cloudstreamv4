@@ -537,6 +537,22 @@ class HomeHostFocus {
         if (!landingOwed) return
         if (hasFocus()) adopted = true else request(requestFocus)
     }
+
+    /**
+     * The window giving the page focus **from nothing focused**, after the host resumed it (`BUG-69`). At launch the window
+     * itself is often not focused yet when the host resumes the page, so the host's own [request] finds nothing to focus;
+     * the window then grants focus to the first stop it finds, a chip when the bookmarks or Continue watching are on
+     * screen before the rows, and that arrival was taken for a person's choice, so the hero never took focus (measured:
+     * `TvHomeNavigationTest` failed 5 of 5 that way). A person's arrival always comes from somewhere: a key on this page,
+     * or the nav rail, which is a view of its own. So a host calls this when focus enters the page and nothing in the
+     * window held it before, which Android reports before the page's own focus change; the page then treats the arrival
+     * as the host's, as it does one its own request caused.
+     *
+     * @param landingOwed `HomeState.landingOwed`: nothing has been pressed on this page since it opened.
+     */
+    fun grantedFromNothing(landingOwed: Boolean) {
+        if (landingOwed) requested = true
+    }
 }
 
 /**
