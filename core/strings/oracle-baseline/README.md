@@ -120,6 +120,28 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Twenty-fourth move, 2026-11-08 — `I18N-19`, 10 new keys for the player (`DS-23`)
+
+Branched from master's twenty-third move (Train 7), still master's latest. New keys are approved in general (`I18N-09`).
+Additive, all ten authored in all 62 directories, three of them plurals: `player_menu_playback`, `player_volume_up`,
+`player_volume_down`, `player_sources_all_failed`, `player_source_count` (plural), `player_source_decoded`,
+`player_audio_stereo`, `player_seek_seconds` (plural), `player_up_next_in` (plural), `player_play_now`.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 44,778 | 45,662 | 884 | 0 | 0 |
+| `emitted.tsv` | 47,071 | 47,981 | 910 | 0 | 0 |
+| `lookup.tsv` | 86,089 | 87,286 | 1,197 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines
+lost in any file, every line that was in a file before is in it after in the same order, and every added line names exactly
+one of the ten keys, all ten present (87 lookups each for a string, 196 for a plural, one per category). `report.txt` moved
+only in its counts: `OWN` 43,408 -> 44,028 (10 x 62), visible keys 964 -> 974, plurals 22 -> 25, and 10 more values in each
+of the two locale copies. Its first line keeps `guards=fail`. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK`
+at 173.** `expectedOwn` 43,408 -> 44,028.
+
 ## Twenty-third move, 2026-11-08 — Train 7 (`#213`, `#216`, `#219`, `#217`), one move: `I18N-16`'s 18 new keys for TV account select (board 8d)
 
 One combined baseline move for the train that merges `#213` (`BUG-49`), `#216` (`BUG-41`), `#219` (`BUG-45`) and `#217` (`I18N-16`)
