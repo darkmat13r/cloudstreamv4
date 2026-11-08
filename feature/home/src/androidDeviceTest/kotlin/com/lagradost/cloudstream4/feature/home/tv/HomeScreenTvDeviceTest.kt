@@ -1803,15 +1803,6 @@ class HomeScreenTvDeviceTest {
         rule.assertScreenshot("home-chrome-focus-random")
     }
 
-    /** `BUG-60`: 3j at rest, focus on the hero's button: the four chrome cells side by side, one tile and one glyph. */
-    @Test
-    fun screenshotChromeAtRest() {
-        shot3c()
-        showForScreenshot()
-        awaitFocus("$MORE_INFO · ${ShotTitles[0]}")
-        rule.assertScreenshot("home-chrome-rest")
-    }
-
     /** `BUG-60`: the account cell focused, ringed and named under its cell like the three before it. */
     @Test
     fun screenshotChromeFocusOnTheAccount() {
@@ -1823,11 +1814,6 @@ class HomeScreenTvDeviceTest {
         rule.assertScreenshot("home-chrome-focus-account")
     }
 
-    /**
-     * `BUG-60`, measured in pixels at rest: Reload, Random, Search and the account draw the same tile, their glyphs in
-     * the same colour, and each glyph as big as that glyph drawn on its own at the icon-only size. A strip of the four
-     * glyphs at `CloudStreamIconSize.Small` is drawn in the corner as the reference for the last.
-     */
     /**
      * 3c's page on the plain ground, with no artwork, so a pixel that differs from black is something the chrome drew,
      * and a strip of the chrome's four glyphs at `CloudStreamIconSize.Small` in the corner as a reference.
@@ -1859,6 +1845,11 @@ class HomeScreenTvDeviceTest {
         rule.waitForIdle()
     }
 
+    /**
+     * `BUG-60`, measured in pixels at rest: Reload, Random, Search and the account draw the same tile, their glyphs in
+     * the same colour, and each glyph as big as that glyph drawn on its own at the icon-only size. A strip of the four
+     * glyphs at `CloudStreamIconSize.Small` is drawn in the corner as the reference for the last.
+     */
     @Test
     fun theFourChromeCellsDrawOneTileAndOneGlyphSize() {
         shot3c()

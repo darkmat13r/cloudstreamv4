@@ -2277,6 +2277,11 @@ design. 3c draws the account as a 32dp avatar.
   overlap and every cell is still a whole 48dp target. The source control keeps `MinFocusGap` before the first cell.
   `MinFocusGap` and every other row are unchanged.
 
+- **A focused cell's name stays on screen** (review). `IconOnlyButton` drew its name centred under the cell whatever
+  was there, so under the last chrome cell a long translation ran off the right edge. The longest `switch_account` is
+  Macedonian's, 25 letters ("Промени корисничка сметка"), against English's 14. The name now moves inward just enough
+  to stay inside the root; one that fits centred does not move, so no recorded screenshot changed.
+
 The Mac Home toolbar (`HomeScreenDesktop`) has no such mismatch: its only icon buttons are Reload and Random, both
 `DesktopIconButton`, and it has no search or account cell.
 
@@ -2287,6 +2292,7 @@ The Mac Home toolbar (`HomeScreenDesktop`) has no such mismatch: its only icon b
 | The account cell a smaller filled tile with a dim glyph | The same tile, glyph and ring as Reload, Random and Search |
 | The account cell's name only read aloud | Also drawn under it on focus, like the other three |
 | 28dp between the buttons' tiles, 32dp before the account | 16dp between all four |
+| An icon-only button's name, at a screen edge, could run off screen | It moves inward to stay on screen |
 
 ### Tests
 
@@ -2300,6 +2306,7 @@ All on `Television_720p`, locally (CI is off).
     ring stays inside its own cell on every side. **Fails on master:** "from Reload Provider's cell to Random's
     expected:<0.0> but was:<12.018799>". **Fails with a 44dp tile** (a deliberate edit to `IconOnlyButtonDefaults`,
     reverted): "Reload Provider's ring x 985..1052 y 35..103 px passes its cell x 986..1051 y 37..101 on the left".
-  - Screenshots `home-chrome-rest` and `home-chrome-focus-account`, new.
+  - Screenshot `home-chrome-focus-account`, new. (A case at rest was dropped in review: it was byte for byte
+    `home-hero-focus-button`, which already shows the chrome at rest.)
 - 16 recorded screenshots moved, each only in the chrome's band (y 42 to 116 px): the account cell, and the cells and
   the source control where they now sit. Each was looked at.
