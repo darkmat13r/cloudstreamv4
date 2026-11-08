@@ -7,6 +7,7 @@ import androidx.compose.ui.layout.ContentScale
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
+import com.lagradost.cloudstream4.core.devicetest.TouchModeReset
 import com.lagradost.cloudstream4.core.devicetest.assertScreenshot
 import com.lagradost.cloudstream4.core.devicetest.solidPoster
 import androidx.compose.foundation.layout.Box
@@ -72,6 +73,10 @@ import java.util.concurrent.CopyOnWriteArrayList
  */
 @RunWith(AndroidJUnit4::class)
 class LibraryScreenTvDeviceTest {
+
+    /** `BUG-59`: starts and ends out of touch mode, whatever ran before it. */
+    @get:Rule
+    val touchMode = TouchModeReset()
 
     @get:Rule
     val rule = createComposeRule()

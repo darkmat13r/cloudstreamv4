@@ -2517,3 +2517,54 @@ Also from #227's review: `restoreAfterPins` says why no context is still fail-sa
   wrong PINs, keep the right PIN out during it, store the count with no PIN, keep the wait after a restart, and take
   the right PIN once the wait is over.
 - `CredentialStoreBackupTest`: the backup rules exclude `cs_pin_attempts.xml` in all three places.
+
+## BUG-59 — A device test that taps left the whole device in touch mode, and the next test failed · **low, tests only** · measured 2026-11-08
+
+**Status:** fixed in pr (#248, on train 9) · `core/devicetest/.../TouchModeReset.kt` and the device tests that tap or read focus
+
+A tap (`UiDevice.click`, `UiObject2.click`) puts the **whole device** in touch mode, not only the test's window. It
+stays on across tests, test classes and test APKs until a navigation key ends it. Back does not end it, so a test that
+closes the keyboard with Back leaves it on. A later test that reads the first focus before it presses a key then
+finds the wrong thing focused, for a reason that is not its own.
+
+**Measured** on `Television_720p` (API 36), one emulator boot, each step a separate Gradle run:
+- `dumpsys window` reads `mInTouchMode=false` at boot, `true` after
+  `SearchScreenTvDeviceTest.aTapOpensTheKeyboard` (`:feature:search`), and `false` again after one D-pad key.
+- **The failing pair.** That tap test, then `TvDetailNavigationTest` (`:app`), five times in a row on master:
+  **5 of 5 failed**, each on `withNoProviderThePageFailsAndItsRetryIsReachableAndBackLeaves` ("the failure rests focus
+  on its action expected:<[Try again]> but was:<[Go Back]>"). Run alone on the same boot, the class passes 3/3.
+- **With the fix**, the same five pairs: touch mode `false` after every tap test, **5 of 5 passed** (3/3 each).
+- Not affected after the tap: `TvHomeNavigationTest` 18/18 and `:core:designsystem`'s device tests 28/28. They press a
+  key before they read focus.
+
+**Fix, tests only:** `TouchModeReset`, a JUnit rule in `:core:devicetest`, calls
+`Instrumentation.setInTouchMode(false)` **before and after** each test. Both sides use it, so the protection does not
+depend on every test that taps remembering to (review on #248):
+
+- **Every test that taps:** `SearchScreenTvDeviceTest` (`device.click`), `RestorePinGateTest` (`cancelButton().click()`,
+  from #227), and `AccountSelectTvNavigationTest` (`apply.click()`, `KMP-73`), whose own `setInTouchMode(false)` in
+  `@After` is replaced by the rule. `PinAttemptsPromptTest` does not tap.
+- **Every test that reads focus:** each device-test class that asserts what has focus (`assertIsFocused`,
+  `isFocused`, `focusedText`, `focusedLabel`, or that drives a `DpadDriver`), 31 classes across `:app`,
+  `:core:designsystem` and the seven feature modules, `TvHomeNavigationTest`, `TvDetailNavigationTest` and
+  `TvPlaybackPanelsNavigationTest` among them. **DECIDED:** "asserts initial focus" can't be told from a grep, so the
+  options were (A) a hand-picked subset or (B) every class that asserts focus at all. B was chosen: a reset costs one
+  binder call per test, and a missed class is a flaky test later.
+- `StateActionDeviceTest` already calls `setInTouchMode(false)` itself and is left as it is.
+
+### Train 9 (measured 2026-11-08, `Television_720p` API 36)
+
+On train 9 (`ca95f7655`), `RestorePinGateTest` left touch mode on, and the train's paired runs failed
+`TvHomeNavigationTest.aRailEnteredFromTheNavRailBeforeTheRowsLandKeepsFocus` and `TvPlaybackPanelsNavigationTest`
+("No panel"); both pass alone. Measured here, one boot per head, each step a separate Gradle run:
+
+| Pair | Train head | With the rule |
+|---|---|---|
+| `RestorePinGateTest` → `TvPlaybackPanelsNavigationTest` | touch mode `true`; **1 of 5 failed**: `switchingWhilePlayingKeepsPlayingAtThePosition`, "No panel" at `openSourcePanel` | touch mode `false`; **5/5, three times in a row** |
+| `RestorePinGateTest` → `TvHomeNavigationTest#aRailEntered…KeepsFocus` (that test alone) | touch mode `true`; passed: **did not reproduce** | touch mode `false`; passed three times in a row |
+| `RestorePinGateTest` → the whole `TvHomeNavigationTest` | touch mode `true`; 18/18: **did not reproduce** here | touch mode `false`; 18/18, three times in a row |
+
+The train's own paired runs failed `aRailEntered…KeepsFocus` 3 of 3 ("the hero's title is asked for"); on this
+emulator the Home pair passed on the train head too, so these runs show the rule is safe for Home, **not** that it is
+the cause there. The train also saw `TvHomeNavigationTest` fail once alone; that is not touch mode and is not
+claimed here.

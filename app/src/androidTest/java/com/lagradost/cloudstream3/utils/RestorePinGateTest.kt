@@ -13,6 +13,7 @@ import com.lagradost.cloudstream3.syncproviders.CredentialStore
 import com.lagradost.cloudstream3.ui.account.AccountSelectActivity
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.BackupUtils.restoreAfterPins
+import com.lagradost.cloudstream4.core.devicetest.TouchModeReset
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
@@ -21,6 +22,7 @@ import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Assert.fail
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.ByteArrayOutputStream
@@ -35,6 +37,10 @@ import java.util.concurrent.atomic.AtomicBoolean
  */
 @RunWith(AndroidJUnit4::class)
 class RestorePinGateTest {
+
+    /** `BUG-59`: starts and ends out of touch mode, whatever ran before it. */
+    @get:Rule
+    val touchMode = TouchModeReset()
 
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
     private val context: Context = instrumentation.targetContext
