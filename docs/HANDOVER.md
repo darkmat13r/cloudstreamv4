@@ -142,7 +142,7 @@ no longer runs in the app's JVM, and where there is no sandbox nothing loads. Tr
 `CloudStream --check-extensions "query" --verbose`.
 
 **Desktop plays video** (`KMP-15`): search, the TV detail page, a source list and an embedded player over the user's
-installed VLC, through vlcj. libVLC runs in the app process, outside the sandbox; that is its largest remaining gap.
+installed VLC, through vlcj. Since `KMP-16`, libVLC runs in a sandboxed `--media-host` child, one per stream, with 0 libvlc mappings in the app process.
 `:app`'s `SearchViewModel` and home fragments are untouched. `SearchFragment` is still the live path on the phone and emulator layouts, and the Android app is otherwise unchanged by all of the desktop work.
 
 ---
