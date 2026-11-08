@@ -3205,6 +3205,9 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field home_source_sections I
 	public static field library_title_count I
 	public static field links_hidden I
+	public static field player_seek_seconds I
+	public static field player_source_count I
+	public static field player_up_next_in I
 	public static field search_state_no_results_body I
 	public static field search_state_no_suggestions_action I
 	public static field search_state_no_suggestions_body I
@@ -3787,6 +3790,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field play_trailer_button I
 	public static field play_with_app_name I
 	public static field playback_speed_enabled_key I
+	public static field player_audio_stereo I
 	public static field player_default_key I
 	public static field player_enter_fullscreen I
 	public static field player_exit_fullscreen I
@@ -3807,9 +3811,11 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field player_load_subtitles I
 	public static field player_load_subtitles_online I
 	public static field player_loaded_subtitles I
+	public static field player_menu_playback I
 	public static field player_mute I
 	public static field player_notification_channel_description I
 	public static field player_notification_channel_name I
+	public static field player_play_now I
 	public static field player_pref I
 	public static field player_resize_enabled_key I
 	public static field player_settings_always_ask I
@@ -3817,16 +3823,20 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field player_settings_select_cast_device I
 	public static field player_size_settings I
 	public static field player_size_settings_des I
+	public static field player_source_decoded I
 	public static field player_source_playing I
 	public static field player_source_priority_key I
 	public static field player_source_resumes_at I
 	public static field player_source_retry I
 	public static field player_source_switch I
+	public static field player_sources_all_failed I
 	public static field player_speed I
 	public static field player_speed_text_format I
 	public static field player_subtitles_settings I
 	public static field player_subtitles_settings_des I
 	public static field player_unmute I
+	public static field player_volume_down I
+	public static field player_volume_up I
 	public static field plugin I
 	public static field plugin_deleted I
 	public static field plugin_downloaded I
