@@ -23,23 +23,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil a jeho PIN"</item><item quantity="few">"%d profily a ich PIN"</item><item quantity="many">"%d profilu a ich PIN"</item><item quantity="other">"%d profilov a ich PIN"</item></plurals>
 <string name="account">"účet"</string>
 <string name="account_add_profile">"Pridať profil"</string>
+<string name="account_browser_body" formatted="true">"Prehliadač otvoril %s. Prihláste sa tam a povoľte CloudStream. Toto okno bude pokračovať samo."</string>
+<string name="account_browser_body_phone" formatted="true">"Dokončite prihlásenie na stránke %s. Táto obrazovka bude pokračovať sama."</string>
+<string name="account_browser_open_again">"Otvoriť znova"</string>
+<string name="account_browser_title" formatted="true">"Prihlásiť sa do %s"</string>
+<string name="account_browser_waiting">"Čaká sa na prehliadač…"</string>
+<string name="account_code_expired">"Platnosť kódu vypršala. Získajte nový a skúste to znova."</string>
+<string name="account_code_expires" formatted="true">"Vyprší o %s"</string>
+<string name="account_code_instructions" formatted="true">"V ľubovoľnom prehliadači prejdite na %s a zadajte kód."</string>
+<string name="account_code_open" formatted="true">"Otvoriť %s"</string>
+<string name="account_delete_body" formatted="true">"História pozerania, záložky a synchronizačné prihlásenia profilu %s sa z tohto zariadenia zmažú."</string>
+<string name="account_delete_profile">"Zmazať profil"</string>
+<string name="account_delete_title" formatted="true">"Zmazať %s?"</string>
+<string name="account_edit_profile">"Upraviť profil"</string>
+<string name="account_email">"E-mail"</string>
+<string name="account_image_address">"Použiť adresu obrázka"</string>
+<string name="account_manage_note">"Vyberte profil, ktorý chcete upraviť"</string>
 <string name="account_manage_profiles">"Spravovať profily"</string>
 <string name="account_pair_code">"Váš kód"</string>
 <string name="account_pair_instructions">"Otvorte to v telefóne a zadajte kód nižšie."</string>
 <string name="account_pair_new_code">"Získať nový kód"</string>
 <string name="account_pair_title" formatted="true">"Spárovať %s"</string>
+<string name="account_password">"Heslo"</string>
+<string name="account_password_mismatch">"E-mail a heslo sa nezhodujú. Skontrolujte ich a skúste to znova."</string>
+<string name="account_password_note" formatted="true">"%s nemá prihlásenie cez prehliadač, preto sa zadáva tu. Uchováva sa iba v tomto zariadení a nikdy sa nezálohuje."</string>
+<string name="account_picture">"Obrázok"</string>
+<string name="account_pin_change">"Zmeniť PIN"</string>
+<string name="account_pin_confirm">"Na potvrdenie ho zadajte znova."</string>
+<string name="account_pin_current">"Zadajte aktuálne používaný PIN."</string>
+<string name="account_pin_first_profile">"Prvý profil nemožno zamknúť"</string>
+<string name="account_pin_new">"Zadajte štvormiestny PIN."</string>
+<string name="account_pin_off">"Vypnuté · tento profil môže otvoriť ktokoľvek"</string>
+<string name="account_pin_on">"Zapnuté · vyžaduje sa pri otvorení"</string>
+<string name="account_pin_prompt">"Zadajte štvormiestny PIN."</string>
+<string name="account_pin_remove">"Odstrániť PIN"</string>
+<string name="account_pin_set">"Nastaviť PIN"</string>
+<string name="account_pin_set_title">"Nastavenie PIN"</string>
 <string name="account_profile_current">"Aktuálny"</string>
 <string name="account_profile_locked">"Zamknuté · PIN"</string>
 <string name="account_profile_no_sync">"Bez synchronizácie"</string>
 <string name="account_select_note">"Samostatná história pozerania · nie sú to prihlásenia"</string>
 <string name="account_select_title">"Kto sa pozerá?"</string>
+<string name="account_signin_failed_body" formatted="true">"Služba %s prihlásenie nepotvrdila. Nič sa neuložilo."</string>
+<string name="account_signin_failed_title" formatted="true">"Nepodarilo sa prihlásiť do %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Prihlásenie do %s vyžaduje pripojenie. Skúste to znova, keď bude toto zariadenie opäť online."</string>
 <string name="account_sync_connected">"Pripojené · prihlásené na tomto zariadení"</string>
 <string name="account_sync_needs_browser">"Prihlásenie vyžaduje webový prehliadač. Toto zariadenie ho nemá."</string>
 <string name="account_sync_note">"Voliteľné. Synchronizuje postup pozerania s účtom, ktorý už máte."</string>
 <string name="account_sync_pair">"Spárovať kódom"</string>
 <string name="account_sync_remove">"Odstrániť z tohto zariadenia"</string>
+<string name="account_sync_remove_body" formatted="true">"Prihlásenie do %2$s v profile %1$s sa z tohto zariadenia zmaže. Váš účet %2$s a jeho zoznamy zostanú bez zmeny."</string>
+<string name="account_sync_remove_title" formatted="true">"Odstrániť %s z tohto zariadenia?"</string>
 <string name="account_sync_title">"Synchronizačné služby"</string>
 <string name="account_sync_unavailable">"Tu nie je k dispozícii"</string>
+<string name="account_touch_id_hint">"Dotykom senzora otvoríte tento profil."</string>
+<string name="account_touch_id_reason" formatted="true">"otvoriť profil %s"</string>
+<string name="account_touch_id_title" formatted="true">"Otvoriť %s pomocou Touch ID"</string>
+<string name="account_undo_warning">"Túto akciu nie je možné vrátiť späť."</string>
+<string name="account_use_pin">"Použiť radšej PIN"</string>
 <string name="action_add_to_bookmarks">"Nastaviť stav sledovania"</string>
 <string name="action_default">"Predvolené"</string>
 <string name="action_open_play">@string/home_play</string>

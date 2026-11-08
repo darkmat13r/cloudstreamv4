@@ -22,23 +22,64 @@
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d estensjoni · aġġornat %2$s"</item><item quantity="two">"%1$d estensjonijiet · aġġornat %2$s"</item><item quantity="few">"%1$d estensjonijiet · aġġornat %2$s"</item><item quantity="many">"%1$d estensjoni · aġġornat %2$s"</item><item quantity="other">"%1$d estensjoni · aġġornat %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil u l-PIN tiegħu"</item><item quantity="two">"%d profili u l-PINs tagħhom"</item><item quantity="few">"%d profili u l-PINs tagħhom"</item><item quantity="many">"%d profil u l-PINs tagħhom"</item><item quantity="other">"%d profil u l-PINs tagħhom"</item></plurals>
 <string name="account_add_profile">"Żid profil"</string>
+<string name="account_browser_body" formatted="true">"Il-browser tiegħek fetaħ %s. Idħol hemmhekk u ppermetti lil CloudStream. Din it-tieqa tkompli waħedha."</string>
+<string name="account_browser_body_phone" formatted="true">"Lesti d-dħul fil-paġna ta' %s. Dan l-iskrin ikompli waħdu."</string>
+<string name="account_browser_open_again">"Iftaħ mill-ġdid"</string>
+<string name="account_browser_title" formatted="true">"Idħol f'%s"</string>
+<string name="account_browser_waiting">"Qed nistennew il-browser tiegħek…"</string>
+<string name="account_code_expired">"Dan il-kodiċi skada. Ikseb wieħed ġdid biex terġa' tipprova."</string>
+<string name="account_code_expires" formatted="true">"Jiskadi fi %s"</string>
+<string name="account_code_instructions" formatted="true">"Mur fuq %s minn kwalunkwe browser u daħħal il-kodiċi."</string>
+<string name="account_code_open" formatted="true">"Iftaħ %s"</string>
+<string name="account_delete_body" formatted="true">"L-istorja tal-wiri, il-bookmarks u d-dħul tas-sinkronizzazzjoni tal-profil %s jitħassru minn dan l-apparat."</string>
+<string name="account_delete_profile">"Ħassar il-profil"</string>
+<string name="account_delete_title" formatted="true">"Tħassar %s?"</string>
+<string name="account_edit_profile">"Editja l-profil"</string>
+<string name="account_email">"Email"</string>
+<string name="account_image_address">"Uża indirizz ta' immaġni"</string>
+<string name="account_manage_note">"Agħżel profil biex teditjah"</string>
 <string name="account_manage_profiles">"Immaniġġja l-profili"</string>
 <string name="account_pair_code">"Il-kodiċi tiegħek"</string>
 <string name="account_pair_instructions">"Iftaħ dan fuq it-telefon tiegħek u daħħal il-kodiċi hawn taħt."</string>
 <string name="account_pair_new_code">"Ikseb kodiċi ġdid"</string>
 <string name="account_pair_title" formatted="true">"Qabbad %s"</string>
+<string name="account_password">"Password"</string>
+<string name="account_password_mismatch">"Dak l-email u l-password ma qablux. Iċċekkjahom u erġa' pprova."</string>
+<string name="account_password_note" formatted="true">"%s m'għandux dħul bil-browser, għalhekk jiddaħħal hawn. Jinżamm fuq dan l-apparat biss u qatt ma jsirlu backup."</string>
+<string name="account_picture">"Stampa"</string>
+<string name="account_pin_change">"Ibdel il-PIN"</string>
+<string name="account_pin_confirm">"Erġa' ittajpjah biex tikkonferma."</string>
+<string name="account_pin_current">"Ittajpja l-PIN li qed jintuża issa."</string>
+<string name="account_pin_first_profile">"L-ewwel profil ma jistax jissakkar"</string>
+<string name="account_pin_new">"Ittajpja PIN ta' 4 ċifri."</string>
+<string name="account_pin_off">"Mitfi · kulħadd jista' jiftaħ dan il-profil"</string>
+<string name="account_pin_on">"Mixgħul · jintalab biex jinfetaħ"</string>
+<string name="account_pin_prompt">"Ittajpja l-PIN ta' 4 ċifri."</string>
+<string name="account_pin_remove">"Neħħi l-PIN"</string>
+<string name="account_pin_set">"Issettja l-PIN"</string>
+<string name="account_pin_set_title">"Issettja PIN"</string>
 <string name="account_profile_current">"Attwali"</string>
 <string name="account_profile_locked">"Imsakkar · PIN"</string>
 <string name="account_profile_no_sync">"L-ebda sinkronizzazzjoni"</string>
 <string name="account_select_note">"Storja tal-wiri separata · mhux logins"</string>
 <string name="account_select_title">"Min qed jara?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn."</string>
+<string name="account_signin_failed_title" formatted="true">"Ma setgħetx issir id-dħul f'%s"</string>
+<string name="account_signin_offline_body" formatted="true">"Biex tidħol f'%s trid konnessjoni. Erġa' pprova meta dan l-apparat jerġa' jkun online."</string>
 <string name="account_sync_connected">"Imqabbad · dħalt fuq dan l-apparat"</string>
 <string name="account_sync_needs_browser">"Id-dħul jeħtieġ browser tal-web. Dan l-apparat m'għandux."</string>
 <string name="account_sync_note">"Fakultattiv. Jissinkronizza l-progress mal-kont li diġà għandek."</string>
 <string name="account_sync_pair">"Qabbad b'kodiċi"</string>
 <string name="account_sync_remove">"Neħħi minn dan l-apparat"</string>
+<string name="account_sync_remove_body" formatted="true">"Id-dħul f'%2$s tal-profil %1$s jitħassar minn dan l-apparat. Il-kont tiegħek ta' %2$s u l-listi tiegħu jibqgħu kif inhuma."</string>
+<string name="account_sync_remove_title" formatted="true">"Tneħħi %s minn dan l-apparat?"</string>
 <string name="account_sync_title">"Servizzi ta' sinkronizzazzjoni"</string>
 <string name="account_sync_unavailable">"Mhux disponibbli hawn"</string>
+<string name="account_touch_id_hint">"Mess is-sensor biex tiftaħ dan il-profil."</string>
+<string name="account_touch_id_reason" formatted="true">"jiftaħ il-profil %s"</string>
+<string name="account_touch_id_title" formatted="true">"Uża Touch ID biex tiftaħ %s"</string>
+<string name="account_undo_warning">"Dan ma jistax jitreġġa' lura."</string>
+<string name="account_use_pin">"Uża l-PIN minflok"</string>
 <string name="action_add_to_bookmarks">"Issettja l-istatus ta-rajtux"</string>
 <string name="action_open_play">@string/home_play</string>
 <string name="action_open_watching">"Iktar informazzjoni"</string>

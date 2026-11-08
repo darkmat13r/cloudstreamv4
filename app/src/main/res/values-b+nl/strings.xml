@@ -23,23 +23,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profiel en de pincode"</item><item quantity="other">"%d profielen en hun pincodes"</item></plurals>
 <string name="account">"account"</string>
 <string name="account_add_profile">"Profiel toevoegen"</string>
+<string name="account_browser_body" formatted="true">"Je browser heeft %s geopend. Meld je daar aan en geef CloudStream toestemming. Dit venster gaat vanzelf verder."</string>
+<string name="account_browser_body_phone" formatted="true">"Rond het aanmelden af op de pagina van %s. Dit scherm gaat vanzelf verder."</string>
+<string name="account_browser_open_again">"Opnieuw openen"</string>
+<string name="account_browser_title" formatted="true">"Aanmelden bij %s"</string>
+<string name="account_browser_waiting">"Wachten op je browser…"</string>
+<string name="account_code_expired">"Deze code is verlopen. Vraag een nieuwe aan om het opnieuw te proberen."</string>
+<string name="account_code_expires" formatted="true">"Verloopt over %s"</string>
+<string name="account_code_instructions" formatted="true">"Ga in een willekeurige browser naar %s en voer de code in."</string>
+<string name="account_code_open" formatted="true">"%s openen"</string>
+<string name="account_delete_body" formatted="true">"De kijkgeschiedenis, bladwijzers en synchronisatie-aanmeldingen van %s worden van dit apparaat verwijderd."</string>
+<string name="account_delete_profile">"Profiel verwijderen"</string>
+<string name="account_delete_title" formatted="true">"%s verwijderen?"</string>
+<string name="account_edit_profile">"Profiel bewerken"</string>
+<string name="account_email">"E-mail"</string>
+<string name="account_image_address">"Afbeeldingsadres gebruiken"</string>
+<string name="account_manage_note">"Kies een profiel om het te bewerken"</string>
 <string name="account_manage_profiles">"Profielen beheren"</string>
 <string name="account_pair_code">"Je code"</string>
 <string name="account_pair_instructions">"Open dit op je telefoon en voer de code hieronder in."</string>
 <string name="account_pair_new_code">"Nieuwe code ophalen"</string>
 <string name="account_pair_title" formatted="true">"%s koppelen"</string>
+<string name="account_password">"Wachtwoord"</string>
+<string name="account_password_mismatch">"Dat e-mailadres en wachtwoord komen niet overeen. Controleer ze en probeer het opnieuw."</string>
+<string name="account_password_note" formatted="true">"%s heeft geen aanmelding via de browser, dus je typt je wachtwoord hier. Het wordt alleen op dit apparaat bewaard en nooit in een back-up opgenomen."</string>
+<string name="account_picture">"Afbeelding"</string>
+<string name="account_pin_change">"PIN wijzigen"</string>
+<string name="account_pin_confirm">"Typ hem nogmaals ter bevestiging."</string>
+<string name="account_pin_current">"Typ de huidige PIN."</string>
+<string name="account_pin_first_profile">"Het eerste profiel kan niet worden vergrendeld"</string>
+<string name="account_pin_new">"Typ een PIN van 4 cijfers."</string>
+<string name="account_pin_off">"Uit · iedereen kan dit profiel openen"</string>
+<string name="account_pin_on">"Aan · gevraagd bij openen"</string>
+<string name="account_pin_prompt">"Typ de PIN van 4 cijfers."</string>
+<string name="account_pin_remove">"PIN verwijderen"</string>
+<string name="account_pin_set">"PIN instellen"</string>
+<string name="account_pin_set_title">"PIN instellen"</string>
 <string name="account_profile_current">"Huidig"</string>
 <string name="account_profile_locked">"Vergrendeld · pincode"</string>
 <string name="account_profile_no_sync">"Geen synchronisatie"</string>
 <string name="account_select_note">"Aparte kijkgeschiedenis · geen aanmeldingen"</string>
 <string name="account_select_title">"Wie kijkt er?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen."</string>
+<string name="account_signin_failed_title" formatted="true">"Kan niet aanmelden bij %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Aanmelden bij %s vereist een verbinding. Probeer het opnieuw als dit apparaat weer online is."</string>
 <string name="account_sync_connected">"Verbonden · aangemeld op dit apparaat"</string>
 <string name="account_sync_needs_browser">"Aanmelden vereist een webbrowser. Dit apparaat heeft er geen."</string>
 <string name="account_sync_note">"Optioneel. Synchroniseert je kijkvoortgang met een account dat je al hebt."</string>
 <string name="account_sync_pair">"Koppelen met een code"</string>
 <string name="account_sync_remove">"Verwijderen van dit apparaat"</string>
+<string name="account_sync_remove_body" formatted="true">"De %2$s-aanmelding van %1$s wordt van dit apparaat verwijderd. Je %2$s-account en de lijsten daarin blijven zoals ze zijn."</string>
+<string name="account_sync_remove_title" formatted="true">"%s van dit apparaat verwijderen?"</string>
 <string name="account_sync_title">"Synchronisatiediensten"</string>
 <string name="account_sync_unavailable">"Hier niet beschikbaar"</string>
+<string name="account_touch_id_hint">"Raak de sensor aan om dit profiel te openen."</string>
+<string name="account_touch_id_reason" formatted="true">"het profiel %s te openen"</string>
+<string name="account_touch_id_title" formatted="true">"Touch ID gebruiken om %s te openen"</string>
+<string name="account_undo_warning">"Dit kan niet ongedaan worden gemaakt."</string>
+<string name="account_use_pin">"PIN gebruiken"</string>
 <string name="action_add_to_bookmarks">"Zet kijkstatus"</string>
 <string name="action_add_to_favorites">"Voeg toe aan favorieten"</string>
 <string name="action_default">"Standaard"</string>

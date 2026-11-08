@@ -2636,3 +2636,29 @@ compiler adds because the class reads the private pattern and the shared private
   The second needs a forged stack frame.
 - Search (`ApiRepositorySearchSource.detailOf`), detail (`AndroidDetailSource`) and downloads
   (`AndroidDownloadsSource`) also read `errorString`, with no redaction of their own.
+
+## BUG-71 — `SearchSuggestionsViewModelTest` waited on the real clock · **low, test only (hardening)**
+
+**Status:** fixed in this PR · found 2026-11-08 in `#262`'s gates, by `:feature:search:jvmTest`
+
+Once, in a gates run while device tests loaded the machine, one case failed with "expected suggestions, was Loading".
+The cause is in the setup. `DebounceQuery` ran its 200 ms window on a hardcoded `Dispatchers.Default` against the real
+clock, and the test's `settle()` slept 600 ms of real time on `Dispatchers.Default`. Nothing tied the two together, so
+a busy machine could leave the window still open when the test looked.
+
+**Fix.** `DebounceQuery` takes a `dispatcher` (default `Dispatchers.Default`, so the app is unchanged), and
+`SearchViewModel` passes its new `debounceDispatcher` (same default) to it. The test hands in its own test dispatcher,
+and `settle()` becomes `advanceTimeBy(600)` plus `runCurrent()` on the virtual clock. No test waits on real time, and
+there is no tolerance to tune. No app behaviour changed: every caller in the app keeps the defaults.
+
+**Not shown red.** I couldn't reproduce the failure on purpose. Every result below is local, on the main Mac:
+- The old test, run while device tests loaded the machine: 10 runs in 10 green (12 tests, 0 failures each).
+- Earlier, alone: 3 in 3 green.
+
+The one failure seen is the gates run above. So this is hardening, not a fix proven against a red run.
+
+**Proof**, `:feature:search:jvmTest --tests '*SearchSuggestionsViewModelTest*' --rerun`: 10 runs in a row, each exit 0, 12
+tests, 0 failures.
+
+`SearchViewModelTest` still waits on real time on purpose, as its own KDoc says. Moving it the same way would be a
+separate change.

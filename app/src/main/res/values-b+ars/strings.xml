@@ -22,23 +22,64 @@
 <plurals name="settings_repo_summary"><item quantity="zero">"%1$d إضافة · تحدّثت %2$s"</item><item quantity="one">"%1$d إضافة · تحدّثت %2$s"</item><item quantity="two">"%1$d إضافتين · تحدّثت %2$s"</item><item quantity="few">"%1$d إضافات · تحدّثت %2$s"</item><item quantity="many">"%1$d إضافة · تحدّثت %2$s"</item><item quantity="other">"%1$d إضافة · تحدّثت %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="zero">"%d ملف شخصي وأرقام PIN حقتها"</item><item quantity="one">"%d ملف شخصي ورقم PIN حقه"</item><item quantity="two">"%d ملفين شخصيين وأرقام PIN حقتها"</item><item quantity="few">"%d ملفات شخصية وأرقام PIN حقتها"</item><item quantity="many">"%d ملفًا شخصيًا وأرقام PIN حقتها"</item><item quantity="other">"%d ملف شخصي وأرقام PIN حقتها"</item></plurals>
 <string name="account_add_profile">"أضف ملف شخصي"</string>
+<string name="account_browser_body" formatted="true">"متصفحك فتح %s. سجّل دخول هناك واسمح لـ CloudStream. هالنافذة تكمّل لحالها."</string>
+<string name="account_browser_body_phone" formatted="true">"كمّل تسجيل الدخول في صفحة %s. هالشاشة تكمّل لحالها."</string>
+<string name="account_browser_open_again">"افتح مرة ثانية"</string>
+<string name="account_browser_title" formatted="true">"سجّل دخول في %s"</string>
+<string name="account_browser_waiting">"ننتظر متصفحك…"</string>
+<string name="account_code_expired">"هالرمز انتهى. خذ رمز جديد وحاول مرة ثانية."</string>
+<string name="account_code_expires" formatted="true">"ينتهي بعد %s"</string>
+<string name="account_code_instructions" formatted="true">"روح لـ %s من أي متصفح ودخّل الرمز."</string>
+<string name="account_code_open" formatted="true">"افتح %s"</string>
+<string name="account_delete_body" formatted="true">"سجل المشاهدة والإشارات المرجعية وتسجيلات دخول المزامنة للملف الشخصي %s تنمسح من هالجهاز."</string>
+<string name="account_delete_profile">"امسح الملف الشخصي"</string>
+<string name="account_delete_title" formatted="true">"تمسح %s؟"</string>
+<string name="account_edit_profile">"حرر الملف الشخصي"</string>
+<string name="account_email">"البريد الإلكتروني"</string>
+<string name="account_image_address">"استخدم رابط صورة"</string>
+<string name="account_manage_note">"اختر ملف شخصي عشان تحرره"</string>
 <string name="account_manage_profiles">"إدارة الملفات الشخصية"</string>
 <string name="account_pair_code">"رمزك"</string>
 <string name="account_pair_instructions">"افتح هذا على جوالك وأدخل الرمز اللي تحت."</string>
 <string name="account_pair_new_code">"خذ رمز جديد"</string>
 <string name="account_pair_title" formatted="true">"اربط %s"</string>
+<string name="account_password">"كلمة المرور"</string>
+<string name="account_password_mismatch">"البريد الإلكتروني وكلمة المرور ما تطابقوا. تأكد منهم وحاول مرة ثانية."</string>
+<string name="account_password_note" formatted="true">"%s ما عنده تسجيل دخول بالمتصفح، عشان كذا تكتبه هنا. ينحفظ على هالجهاز بس وما ينسخ احتياطياً أبد."</string>
+<string name="account_picture">"الصورة"</string>
+<string name="account_pin_change">"غيّر PIN"</string>
+<string name="account_pin_confirm">"اكتبه مرة ثانية للتأكيد."</string>
+<string name="account_pin_current">"اكتب الـ PIN المستخدم الحين."</string>
+<string name="account_pin_first_profile">"الملف الشخصي الأول ما ينقفل"</string>
+<string name="account_pin_new">"اكتب PIN من 4 أرقام."</string>
+<string name="account_pin_off">"مطفي · أي أحد يقدر يفتح هالملف الشخصي"</string>
+<string name="account_pin_on">"شغّال · ينطلب عند الفتح"</string>
+<string name="account_pin_prompt">"اكتب الـ PIN المكوّن من 4 أرقام."</string>
+<string name="account_pin_remove">"شيل PIN"</string>
+<string name="account_pin_set">"حط PIN"</string>
+<string name="account_pin_set_title">"حط PIN"</string>
 <string name="account_profile_current">"الحالي"</string>
 <string name="account_profile_locked">"مقفل · PIN"</string>
 <string name="account_profile_no_sync">"بدون مزامنة"</string>
 <string name="account_select_note">"سجل مشاهدة منفصل · مو تسجيل دخول"</string>
 <string name="account_select_title">"مين يشاهد؟"</string>
+<string name="account_signin_failed_body" formatted="true">"%s ما أكّد تسجيل الدخول. ما انحفظ شي."</string>
+<string name="account_signin_failed_title" formatted="true">"ما قدرنا نسجّل دخول في %s"</string>
+<string name="account_signin_offline_body" formatted="true">"تسجيل الدخول في %s يبي اتصال. حاول مرة ثانية لما يرجع هالجهاز متصل."</string>
 <string name="account_sync_connected">"متصل · مسجّل دخول على هالجهاز"</string>
 <string name="account_sync_needs_browser">"تسجيل الدخول يحتاج متصفح ويب. هالجهاز ما فيه."</string>
 <string name="account_sync_note">"اختياري. يزامن تقدّم المشاهدة مع حساب عندك من قبل."</string>
 <string name="account_sync_pair">"اربط برمز"</string>
 <string name="account_sync_remove">"احذف من هالجهاز"</string>
+<string name="account_sync_remove_body" formatted="true">"تسجيل دخول %2$s للملف الشخصي %1$s ينمسح من هالجهاز. حسابك في %2$s وقوائمه تبقى مثل ما هي."</string>
+<string name="account_sync_remove_title" formatted="true">"تشيل %s من هالجهاز؟"</string>
 <string name="account_sync_title">"خدمات المزامنة"</string>
 <string name="account_sync_unavailable">"مو متوفر هنا"</string>
+<string name="account_touch_id_hint">"المس المستشعر عشان تفتح هالملف الشخصي."</string>
+<string name="account_touch_id_reason" formatted="true">"فتح الملف الشخصي %s"</string>
+<string name="account_touch_id_title" formatted="true">"استخدم Touch ID لفتح %s"</string>
+<string name="account_undo_warning">"ما تقدر تتراجع عن هذا."</string>
+<string name="account_use_pin">"استخدم PIN بدالها"</string>
 <string name="action_add_to_bookmarks">"ضبط حالة المشاهدة"</string>
 <string name="action_default">"عادي"</string>
 <string name="action_mark_as_watched">"وضع علامة كما شاهدت"</string>

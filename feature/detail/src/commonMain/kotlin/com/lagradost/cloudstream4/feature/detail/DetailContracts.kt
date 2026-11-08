@@ -168,8 +168,11 @@ data class TitleDetail(
     val watchStatus: DetailWatchStatus? = null,
     val isFavourite: Boolean? = null,
 ) {
-    /** What the primary button plays: where the viewer stopped, else the title, else the first episode. */
-    val primaryData: String? get() = resume?.data ?: playData ?: episodes.firstOrNull()?.data
+    /**
+     * What the primary button plays: where the viewer stopped, else the title, else where an unstarted show starts —
+     * S1E1, not a special (`firstEpisodeToPlay`, `KMP-92`).
+     */
+    val primaryData: String? get() = resume?.data ?: playData ?: episodes.firstEpisodeToPlay()?.data
 }
 
 /**

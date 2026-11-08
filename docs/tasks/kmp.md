@@ -3974,10 +3974,9 @@ action plays, so Resume at S3E5 opens Season 3 with that row marked; otherwise i
 group. `shownSeasonIndex` resolves and clamps it on the screen, which keeps the empty-list guard.
 - `aResumeInSeasonTwoOpensOnSeasonTwoWithItsRowMarked` holds it on the device. It fails on #244's earlier
   head `9a837e7fe`, which opened on Season 1.
-- One consequence for a series with no resume: the primary plays the provider's first episode, so the
-  page opens on that episode's group. When a provider lists specials first, that group is Specials.
-  `SeasonGroups` now declares season 1's episode first, so its tests and `detail-season-chips` still
-  open on Season 1. That reference changed only by the marked "One One" row.
+- A series with no resume opens on the group of the episode Play starts. Since `KMP-92` that is S1E1,
+  not a special a provider lists first, so the page opens on Season 1. `detail-season-chips` changed in
+  2b only by the marked "One One" row.
 
 **Still open on 7i:** Season and Episodes leave the action row. Both still do the one thing the chips
 do not — each calls `onScrollToEpisodes` — so removing them is a focus-order and reference change of
@@ -6274,6 +6273,49 @@ both ways out; it wants its own task.
 as TV does, but nothing on the Mac fills it: TV's stamps come from its host. Find where the stamps come from for a
 title, read them for the episode playing, and pass the current one to `PlayerContent.skip`, with `onSkip` seeking past it.
 
+## KMP-91 — The Mac player's panels from the right, `DS-23` M4 to M7
+
+**Status:** in review · `:desktopApp` · after `KMP-87` (#257) and `I18N-19` (#249)
+
+The four lists (Source, Subtitles, Audio tracks, Picture size) were pop-ups over the controls. They are now one panel
+from the right (`PlayerListPanel`):
+- 360 wide (`DesktopDimens.SidePanelWidth`) and the window's height, with no scrim: the picture plays on beside it.
+- Its title is a heading; an optional line under it; the rows; then Done. Source's line is `2 sources`
+  (`player_source_count`).
+- The HUD's controls centre in the room left of it while it is open, and move back when it closes.
+- At the smallest window (800) beside a panel the controls are 392 wide. A fixed 80 volume rule there left the seek
+  rule none, so below 480 the volume rule gives way: the speaker still mutes, and the arrow keys still set the level.
+  The seek rule keeps about 80. The selectors shorten their words with an ellipsis, as they already did when narrow.
+- Done, Escape, the same key, or a click on the picture closes it, as before.
+- Picture size had its own pop-up; it uses the same panel now.
+
+Every behaviour the lists' tests pinned is unchanged: the keys, a list held while open, failed rows, an outside click
+choosing nothing.
+
+**Not here — the rows (`KMP-93`):** the panel's frame matches the boards, its rows do not yet. The boards' rows are 56
+tall with a mono second line (`1920×1080 decoded`, `3 variants`), a verb at the right (Use, On, Switch, Retry) and the
+4×24 marker on the chosen row; here, Source has the verbs and the marker, and the other lists keep a check at the left
+and one line. The words exist (`I18N-19`); the second lines need data the player does not have for every row yet.
+M5's Load from file, Load from Internet and Subtitle delay rows are not features yet, so they are not drawn.
+
+**Tests** (`PlayerScreenTest`, 71, all run):
+- New: the panel is at the right and the window's height, and Done closes it and chooses nothing; the controls move
+  into the room it leaves and back.
+- New: at the smallest window with every selector and full screen, nothing of the controls is in the 24 before the
+  panel, and the seek rule runs unbroken where the end time and the speaker would sit with a volume rule.
+- **Changed existing tests:** six clicked rows counted up from the old pop-up's foot. They now count down from the
+  panel's heading (`panelRow`). Each asserts what it did, except the held-list test, which keeps its point another way.
+  Before, it clicked the foot, which was English while the list was held. Now a click where German's row would be
+  chooses nothing while held, and German is there when the list opens again.
+
+## KMP-93 — The Mac player panels' rows, `DS-23` M4 to M7
+
+**Status:** open · `:desktopApp` · after `KMP-91`
+
+`KMP-91` built the panel; this makes its rows the boards' rows: 56 tall, a name and a mono second line, a verb at the
+right (Use, On, Switch, Retry, Open), the 4×24 marker on the chosen row. A second line is drawn only from data the player
+has; a row without one stays one line. Only the rows that are features get drawn.
+
 ## KMP-89 — Player KDoc examples use a made-up source
 
 **Status:** in review · comments only · from `KMP-87`'s review
@@ -6284,6 +6326,24 @@ do: `SourcePicker.kt`'s `sourceName()` and `PlayerHudState.source`. No code chan
 **Not here, for whoever owns them:** test fixtures that still use real site names, `app`'s `TvHudFactsTest` and
 `:feature:player`'s `PlayerHudTvDeviceTest` (a device suite this machine cannot run). `:library`'s extractors are real
 classes with real names and are not fixtures.
+
+## KMP-85 — One age formatter, in `:core:strings` · **built 2026-11-08**, follow-up of `KMP-84` (`#240`)
+
+The review of `#240` found two copies of the code that says how old something is (`4m`, `2h 5m`, `1d 2h 5m`):
+- the library's private `elapsed`, in `LibrarySourcesTv.kt`, for the sync line;
+- Home's `homeAge`, which `#240` copied from it for H4's kept rows.
+
+Both are now `elapsedAge(elapsedMillis): UiString`, in `:core:strings`. Each caller still wraps it in its own sentence, so
+the age sits where each language puts it. Neither screen changes what it shows: the same keys, the same arguments, and a
+clock behind the record still reads as now.
+
+**On master,** after `#240`, which brought Home's copy.
+
+**Tests:** `HomeAgeTest` moved to `:core:strings` as `ElapsedAgeTest`, its two cases unchanged, plus one that resolves
+the three forms in English. `:feature:home`, `:feature:library` and the Mac's Home and Library screen tests still pass.
+
+**Overlap with `#223` (`KMP-57`):** `#223` (on master) made it internal; this repoints LibraryScreenDesktop's caller to
+`elapsedAge(…).resolve()`.
 
 ## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
 
@@ -6728,3 +6788,125 @@ rebuilding the page as the service ticked, and D1's state was made again with no
 - `a series page reports the same free bytes as the titles page` reads the live volume twice. It failed 3 of 5 lone runs
   on this branch.
 - `after a restart a resolver with no VIDEO link…` failed once in a full gate run.
+
+## KMP-92 — An unstarted show's Play starts S1E1, not a special · **in pr #265** · the owner's ruling, 2026-11-08
+
+Found while fixing `#244`'s review. With no resume and no title-level `playData`, `TitleDetail.primaryData` was
+`episodes.firstOrNull()`: whatever the provider listed first. A provider that lists specials first therefore made
+Play start a special, and since `#244` the page also opened on the Specials chip.
+
+**The owner's rule.** An unstarted show starts S1E1: the lowest season above 0, and its first episode. With no
+numbered season at all (only specials, or only unnumbered episodes, as some anime have), it is the provider's
+first episode that is not a special, and with only specials, the first of them.
+
+**Where.** `primaryData` is the one place TV and the Mac ask what Play plays. It now ends in
+`firstEpisodeToPlay()` (`DetailSeasonGroups.kt`). "First" means the lowest episode number in that season, with
+unnumbered episodes after and list order between equals. A resume, then a film's `playData`, still come first.
+On TV the chip follows on its own through `shownSeasonIndex`, and so does the marked row. The Mac's episode list
+opens on the season of the episode `primaryData` names when there is no resume (`DetailScreenDesktop`'s `TitlePage`),
+so its list and its Play agree. Continue Watching's fallback on the Mac, `PlayRequested(resume.episodeData ?:
+primaryData)` in `Main.kt`, follows too.
+- **Not the phone yet.** The phone and emulator layouts still open the legacy `ResultFragment`, whose
+  `ResultViewModel2` picks its own season and episode and never reads `primaryData`. The legacy page is
+  unchanged here.
+
+**Follow-up, its own small PR after this one** (the PM, 2026-11-08: the owner's ruling covers the phone too):
+the legacy phone page applies the same S1E1 rule, reusing `firstEpisodeToPlay()`, until the Compose phone page
+replaces it. It comes with a jvm test. Two things to settle in that PR:
+- `firstEpisodeToPlay()` is `internal` to `:feature:detail` and takes `DetailEpisode`, so `:app` needs it public
+  or a mapping from `ResultEpisode`. Either way, the rule must stay in one place.
+- `ResultViewModel2` also remembers the last season viewed, so the rule applies only with no resume and no
+  remembered season.
+  Measure what it does today before changing it.
+
+**Tests.**
+- jvm (`DetailSeasonGroupsTest`):
+  - specials listed first, S1E1;
+  - a lower season and episode win over list order;
+  - only specials, the first special;
+  - no seasons, the provider's first episode, and an empty list gives null;
+  - no numbered season with a special listed first, the first unnumbered episode;
+  - within a season, a numbered episode before an unnumbered one listed first;
+  - a resume and a film's data still win.
+- Mac (`DetailScreenTest`): an unstarted show with a special listed first opens its list on Season 1, and Play Episode
+  plays S1E1.
+- Device: `SeasonGroups` is back to listing a special first, and `anUnstartedShowOpensOnSeasonOneNotTheSpecialListedFirst`
+  asserts Season 1 opens with "One One" marked.
+
+## KMP-90 — The Mac's Settings window, part 1, from `DS-24` · **in pr #266**
+
+**Status:** in pr #266, on master after train 11, which carried #256 (`I18N-20`'s keys) and #229 (`KMP-75`, the Mac's
+downloads engine in the window).
+
+**What part 1 is** (the PM's calls, 2026-11-08): the window, its sidebar and its search, and only the rows that take
+effect. No control in the window does nothing. A pane is in the sidebar only once it has a row that works, and search
+finds only rows that exist. The `DS-24` boards stay the target; every row they draw that is not here is listed below,
+with what it waits for.
+
+- **The window.** Settings… in the Mac's app menu on ⌘,, through `Desktop.setPreferencesHandler`. It is a second
+  window, 760 wide at every height, 600 tall by default, and never under 480 (ST9). Its title bar is transparent over the
+  content, so the sidebar runs the full height with the traffic lights in it. Off a Mac there is no such menu item, so
+  the window is not reachable there yet.
+- **The sidebar** lists Downloads, the one pane with a working row. A search keeps the panes whose name or a row's words
+  match, and marks the matching rows. With none, it says so ("No results for “%s”", ST7). Escape empties it.
+- **Playback: Play the next episode is not a row yet** (review of #266). Nothing on the Mac reads it until
+  desktop-session-1's Up next (`DS-23`) lands, so a switch for it would do nothing, and Playback stays out of the
+  sidebar. The setting is kept: `autoplay_next_key`, on by default, `SettingsRepository.setAutoplayNext`, and
+  `PlaybackSettings.autoplayNext`, the `StateFlow` in `:feature:settings` commonMain that Up next takes as a parameter
+  defaulting to `PlaybackSettings.Default` (agreed with that session through the PM). **The Up next PR adds the row back,
+  with the Playback pane, in the same PR as its reader**, along with `SettingsRow.PlayNextEpisode` and
+  `SettingsAction.SetAutoplayNext`.
+- **Downloads: the folder** by its name only (ST6), with Show in Finder while it exists. Missing, the line says so and
+  the button is not offered.
+- **Downloads: Downloads at once**, under Android's `download_parallel_key`, 1 to 5, 3 by default. The engine reads it at
+  every start, and `limitChanged()` starts what a raised limit now allows. `Main.kt` builds the settings before the
+  engine, passes `runningLimit = { settings.downloadsAtOnce.value }`, and calls `limitChanged()` on every new value.
+
+**Where things live.** `:feature:settings` holds the screens and the read interfaces (`PlaybackSettings`,
+`DownloadSettings`), in commonMain, under the iOS canary. It is not `:core:settings`. That module is Android's
+`AppSettings` over Mihon's `PreferenceStore`, with `:library` in its commonMain, so it is canary-exempt; screens go in
+`:feature:*` and storage in the host. The Mac stores the values in `~/.cloudstream4/settings.properties`: owner-only,
+written temp-then-move, capped at 16 KiB (read as at most 16 KiB + 1 byte), with anything malformed or out of range
+reading as its default. `~/.cloudstream4` is created owner-only (0700) if this is the first to create it; one that
+exists is left as it is. A change goes through `MutableStateFlow.update`, so two at once never lose one, and the views
+and the file always end on the latest. Preferences
+only: a token or a password never goes in that file. Those go to the Keychain, when there is one.
+
+**New in the design system.**
+- `DesktopDimens.RowControlHeight` (32), the compact control in a row (the PM's call on `DS-24`).
+- `DesktopSwitch` and `DesktopPopupButton`, with their geometry in `DesktopControlDefaults`. Nothing draws the switch
+  in part 1; Play the next episode is its first row, with Up next.
+- `CloudStreamIcons.Selector` (Tabler `Selector`), the pop-up button's mark. Its row in `ui-components.md`'s icon table
+  is in #259, the PM's rules PR.
+
+**Deferred rows, each with what it waits for:**
+
+| ID | Rows (`DS-24`) | Waits for |
+|---|---|---|
+| `KMP-90b` | General: app language | An in-app locale switch on the Mac; today the app follows the system |
+| `KMP-90c` | General: check for updates at launch, Check now | A Mac updater (`DEC-03`, distribution) |
+| `KMP-90d` | General: Run setup again; Help and community; Disclaimer | A Mac setup flow; the Help menu; a disclaimer page |
+| `KMP-90e` | Appearance: poster size, title under poster, badges, hide quality in search | Home, Search and Library reading them |
+| `KMP-90f` | Appearance: trailers, cast, filler episodes | The Mac title page reading them |
+| `KMP-90g` | Appearance: Random button, suggestions while typing | Home's Random and Search's suggestions on the Mac |
+| `KMP-90h` | Playback: Offer Skip intro, seek amount, update watch progress | The Mac player reading them |
+| `KMP-90i` | Playback: source order (Edit) | A source-order editor |
+| `KMP-90j` | Playback: network buffer, disk cache, clear cache | libVLC's options from the host, and a cache to clear (hash-keyed, never by URL) |
+| `KMP-90k` | Downloads: connections per download, Choose folder | The engine taking a per-download connection count, and a chosen root |
+| — | Subtitles, Extensions, Accounts and Privacy, Network, Backup, Advanced | Part 2; Accounts and Backup wait on the Keychain decision |
+
+**Tests.**
+- `:feature:settings` commonTest: parsing, the defaults, out-of-range values, and search. A pane's name finds its pane
+  and marks no row, and a word for a row that is not built, such as "episode", finds nothing.
+- `:feature:settings` jvmTest: the repository writes every change at once and a new one reads it back; an unchanged
+  value is not rewritten; a failed write keeps the value and reports only the exception's class; two changes on two
+  threads at once are both kept in memory, in the views and in the stored map, over 500 rounds.
+- desktopApp: `FileSettingsStorageTest`, covering owner-only file and created directory, an existing directory left
+  alone, no temporary file left, too large, exactly at the cap, bytes that are not UTF-8, malformed lines, and a value
+  that would break the file.
+- desktopApp: `SettingsWindowTest`, through real pointer and key events. Each control writes and reads its setting; the
+  folder shows its name, never a path, and no Show in Finder while missing; search finds and empties; the 760×480
+  window fits every pane.
+- desktopApp: `DesktopDownloadsTest`, `a changed Downloads at once applies to the next start`. Raised from 1 to 2, the
+  waiting film starts beside the running one. Lowered back to 1, both keep running and a third waits.
+- Renders with `-Pcloudstream.settings.renders=<dir>`.

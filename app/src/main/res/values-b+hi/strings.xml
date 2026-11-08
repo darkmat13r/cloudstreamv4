@@ -23,23 +23,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d प्रोफ़ाइल और उसका पिन"</item><item quantity="other">"%d प्रोफ़ाइल और उनके पिन"</item></plurals>
 <string name="account">"खाता"</string>
 <string name="account_add_profile">"प्रोफ़ाइल जोड़ें"</string>
+<string name="account_browser_body" formatted="true">"आपके ब्राउज़र में %s खुल गया है। वहाँ साइन इन करें और CloudStream को अनुमति दें। यह विंडो अपने आप आगे बढ़ेगी।"</string>
+<string name="account_browser_body_phone" formatted="true">"%s पेज पर साइन इन पूरा करें। यह स्क्रीन अपने आप आगे बढ़ेगी।"</string>
+<string name="account_browser_open_again">"फिर से खोलें"</string>
+<string name="account_browser_title" formatted="true">"%s में साइन इन करें"</string>
+<string name="account_browser_waiting">"आपके ब्राउज़र का इंतज़ार है…"</string>
+<string name="account_code_expired">"इस कोड की समय-सीमा खत्म हो गई। फिर से कोशिश करने के लिए नया कोड लें।"</string>
+<string name="account_code_expires" formatted="true">"%s में समाप्त होगा"</string>
+<string name="account_code_instructions" formatted="true">"किसी भी ब्राउज़र में %s पर जाएँ और कोड दर्ज करें।"</string>
+<string name="account_code_open" formatted="true">"%s खोलें"</string>
+<string name="account_delete_body" formatted="true">"%s प्रोफ़ाइल की वॉच हिस्ट्री, बुकमार्क और सिंक साइन-इन इस डिवाइस से डिलीट हो जाएँगे।"</string>
+<string name="account_delete_profile">"प्रोफ़ाइल डिलीट करें"</string>
+<string name="account_delete_title" formatted="true">"%s को डिलीट करें?"</string>
+<string name="account_edit_profile">"प्रोफ़ाइल संपादित करें"</string>
+<string name="account_email">"ईमेल"</string>
+<string name="account_image_address">"इमेज का पता इस्तेमाल करें"</string>
+<string name="account_manage_note">"संपादित करने के लिए कोई प्रोफ़ाइल चुनें"</string>
 <string name="account_manage_profiles">"प्रोफ़ाइल प्रबंधित करें"</string>
 <string name="account_pair_code">"आपका कोड"</string>
 <string name="account_pair_instructions">"इसे अपने फ़ोन पर खोलें और नीचे दिया कोड डालें।"</string>
 <string name="account_pair_new_code">"नया कोड लें"</string>
 <string name="account_pair_title" formatted="true">"%s जोड़ें"</string>
+<string name="account_password">"पासवर्ड"</string>
+<string name="account_password_mismatch">"वह ईमेल और पासवर्ड मेल नहीं खाए। उन्हें जाँचें और फिर से कोशिश करें।"</string>
+<string name="account_password_note" formatted="true">"%s में ब्राउज़र से साइन इन नहीं होता, इसलिए इसे यहाँ टाइप किया जाता है। यह सिर्फ़ इसी डिवाइस पर रखा जाता है और कभी बैकअप नहीं होता।"</string>
+<string name="account_picture">"तस्वीर"</string>
+<string name="account_pin_change">"पिन बदलें"</string>
+<string name="account_pin_confirm">"पुष्टि के लिए इसे फिर से टाइप करें।"</string>
+<string name="account_pin_current">"अभी इस्तेमाल हो रहा पिन टाइप करें।"</string>
+<string name="account_pin_first_profile">"पहली प्रोफ़ाइल लॉक नहीं की जा सकती"</string>
+<string name="account_pin_new">"4 अंकों का एक पिन टाइप करें।"</string>
+<string name="account_pin_off">"बंद · कोई भी इस प्रोफ़ाइल को खोल सकता है"</string>
+<string name="account_pin_on">"चालू · खोलने के लिए पूछा जाता है"</string>
+<string name="account_pin_prompt">"4 अंकों वाला पिन टाइप करें।"</string>
+<string name="account_pin_remove">"पिन हटाएँ"</string>
+<string name="account_pin_set">"पिन सेट करें"</string>
+<string name="account_pin_set_title">"पिन सेट करें"</string>
 <string name="account_profile_current">"मौजूदा"</string>
 <string name="account_profile_locked">"लॉक · पिन"</string>
 <string name="account_profile_no_sync">"कोई सिंक नहीं"</string>
 <string name="account_select_note">"अलग देखने का इतिहास · लॉगिन नहीं"</string>
 <string name="account_select_title">"कौन देख रहा है?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।"</string>
+<string name="account_signin_failed_title" formatted="true">"%s में साइन इन नहीं हो सका"</string>
+<string name="account_signin_offline_body" formatted="true">"%s में साइन इन करने के लिए कनेक्शन चाहिए। यह डिवाइस फिर से ऑनलाइन होने पर कोशिश करें।"</string>
 <string name="account_sync_connected">"कनेक्टेड · इस डिवाइस पर साइन इन"</string>
 <string name="account_sync_needs_browser">"साइन इन के लिए वेब ब्राउज़र चाहिए। इस डिवाइस में नहीं है।"</string>
 <string name="account_sync_note">"वैकल्पिक। देखने की प्रगति को आपके पहले से मौजूद खाते से सिंक करता है।"</string>
 <string name="account_sync_pair">"कोड से जोड़ें"</string>
 <string name="account_sync_remove">"इस डिवाइस से हटाएँ"</string>
+<string name="account_sync_remove_body" formatted="true">"%1$s प्रोफ़ाइल का %2$s साइन-इन इस डिवाइस से डिलीट हो जाएगा। आपका %2$s खाता और उसकी सूचियाँ जैसी हैं वैसी ही रहेंगी।"</string>
+<string name="account_sync_remove_title" formatted="true">"%s को इस डिवाइस से हटाएँ?"</string>
 <string name="account_sync_title">"सिंक सेवाएँ"</string>
 <string name="account_sync_unavailable">"यहाँ उपलब्ध नहीं"</string>
+<string name="account_touch_id_hint">"यह प्रोफ़ाइल खोलने के लिए सेंसर को छुएँ।"</string>
+<string name="account_touch_id_reason" formatted="true">"प्रोफ़ाइल %s खोलने"</string>
+<string name="account_touch_id_title" formatted="true">"%s खोलने के लिए Touch ID इस्तेमाल करें"</string>
+<string name="account_undo_warning">"इसे पूर्ववत नहीं किया जा सकता।"</string>
+<string name="account_use_pin">"इसके बजाय पिन इस्तेमाल करें"</string>
 <string name="action_add_to_bookmarks">"दर्शन स्थिति सेट करें"</string>
 <string name="action_default">"डिफॉल्ट"</string>
 <string name="action_mark_as_watched">"देखा हुआ चिह्नित करें"</string>

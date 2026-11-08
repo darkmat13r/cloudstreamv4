@@ -27,6 +27,7 @@ import java.io.PrintStream
 import java.nio.file.Files
 import java.nio.file.attribute.PosixFilePermissions
 import java.util.concurrent.CopyOnWriteArrayList
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
@@ -61,6 +62,7 @@ class DesktopDownloadsTest {
         resolver: LinkResolver = LinkResolver { error("no test here expects to be asked") },
         resolveTimeoutMillis: Long = DesktopDownloads.RESOLVE_TIMEOUT_MILLIS,
         volumeSpace: (File) -> VolumeSpace = VolumeSpace::of,
+        runningLimit: (() -> Int)? = null,
     ) = DesktopDownloads(
         downloadRoot = root,
         stateFile = stateFile,
@@ -72,6 +74,7 @@ class DesktopDownloadsTest {
         log = log,
         ownsClient = true,
         volumeSpace = volumeSpace,
+        runningLimit = runningLimit,
     ).also { hosts += it }
 
     private fun film(id: Int, name: String, url: String, headers: Map<String, String> = emptyMap(), referer: String? = null) =
@@ -157,6 +160,38 @@ class DesktopDownloadsTest {
         assertEquals(3, maxRunning, "never more than three, and three when four are waiting")
         assertTrue(sawQueueOfFour, "three running of four in line")
         (1..4).forEach { assertContentEquals(bodies[it - 1], host.fileOf(DownloadEpisodeId(it))!!.readBytes()) }
+    }
+
+    /**
+     * `KMP-90`: Settings' Downloads at once is read at every start. Raised, the next in line starts at once, without
+     * waiting for a finish. Lowered, nothing running stops, and the next in line waits.
+     */
+    @Test
+    fun `a changed Downloads at once applies to the next start`() = runBlocking {
+        val bodies = (1..3).map { server.add("limit$it.bin", 4 * 1024 * 1024) }
+        server.chunkDelayMillis.set(10)
+        val limit = AtomicInteger(1)
+        val host = host(runningLimit = limit::get)
+        host.enqueue(film(1, "Film 1", server.url("limit1.bin")))
+        host.awaitEpisode(100, 1) { it.state == DownloadEpisodeState.Running }
+        host.enqueue(film(2, "Film 2", server.url("limit2.bin")))
+        host.awaitEpisode(200, 2) { it.state == DownloadEpisodeState.Queued }
+
+        limit.set(2)
+        host.limitChanged()
+        host.awaitEpisode(200, 2) { it.state == DownloadEpisodeState.Running }
+        assertEquals(DownloadEpisodeState.Running, host.awaitEpisode(100, 1) { true }.state, "it started beside the first")
+
+        limit.set(1)
+        host.limitChanged()
+        host.enqueue(film(3, "Film 3", server.url("limit3.bin")))
+        host.awaitEpisode(300, 3) { it.state == DownloadEpisodeState.Queued }
+        val both = host.awaitContents { it.titles.size == 3 }
+        assertEquals(2, both.queue.running, "a lower limit stops nothing already running")
+        assertEquals(DownloadEpisodeState.Queued, host.awaitEpisode(300, 3) { true }.state)
+
+        (1..3).forEach { host.awaitDone(it * 100, it) }
+        (1..3).forEach { assertContentEquals(bodies[it - 1], host.fileOf(DownloadEpisodeId(it))!!.readBytes()) }
     }
 
     @Test

@@ -23,23 +23,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profilo kaj ĝia PIN"</item><item quantity="other">"%d profiloj kaj iliaj PIN-oj"</item></plurals>
 <string name="account">"konto"</string>
 <string name="account_add_profile">"Aldoni profilon"</string>
+<string name="account_browser_body" formatted="true">"Via retumilo malfermis %s. Ensalutu tie kaj permesu CloudStream. Ĉi tiu fenestro daŭrigos per si mem."</string>
+<string name="account_browser_body_phone" formatted="true">"Finu la ensaluton en la paĝo de %s. Ĉi tiu ekrano daŭrigos per si mem."</string>
+<string name="account_browser_open_again">"Malfermi denove"</string>
+<string name="account_browser_title" formatted="true">"Ensaluti al %s"</string>
+<string name="account_browser_waiting">"Atendante vian retumilon…"</string>
+<string name="account_code_expired">"Ĉi tiu kodo eksvalidiĝis. Ricevu novan por reprovi."</string>
+<string name="account_code_expires" formatted="true">"Eksvalidiĝos post %s"</string>
+<string name="account_code_instructions" formatted="true">"Iru al %s en iu ajn retumilo kaj enigu la kodon."</string>
+<string name="account_code_open" formatted="true">"Malfermi %s"</string>
+<string name="account_delete_body" formatted="true">"La spekthistorio, legosignoj kaj sinkronigaj ensalutoj de la profilo %s estos forigitaj el ĉi tiu aparato."</string>
+<string name="account_delete_profile">"Forigi profilon"</string>
+<string name="account_delete_title" formatted="true">"Ĉu forigi %s?"</string>
+<string name="account_edit_profile">"Redakti profilon"</string>
+<string name="account_email">"Retpoŝto"</string>
+<string name="account_image_address">"Uzi bildadreson"</string>
+<string name="account_manage_note">"Elektu profilon por redakti ĝin"</string>
 <string name="account_manage_profiles">"Administri profilojn"</string>
 <string name="account_pair_code">"Via kodo"</string>
 <string name="account_pair_instructions">"Malfermu ĉi tion en via telefono kaj enigu la suban kodon."</string>
 <string name="account_pair_new_code">"Ricevi novan kodon"</string>
 <string name="account_pair_title" formatted="true">"Pari %s"</string>
+<string name="account_password">"Pasvorto"</string>
+<string name="account_password_mismatch">"Tiu retpoŝtadreso kaj pasvorto ne kongruis. Kontrolu ilin kaj reprovu."</string>
+<string name="account_password_note" formatted="true">"%s ne havas ensaluton per retumilo, do ĝi estas tajpata ĉi tie. Ĝi estas konservata nur en ĉi tiu aparato kaj neniam savkopiata."</string>
+<string name="account_picture">"Bildo"</string>
+<string name="account_pin_change">"Ŝanĝi PIN"</string>
+<string name="account_pin_confirm">"Tajpu ĝin denove por konfirmi."</string>
+<string name="account_pin_current">"Tajpu la nune uzatan PIN."</string>
+<string name="account_pin_first_profile">"La unua profilo ne povas esti ŝlosita"</string>
+<string name="account_pin_new">"Tajpu 4-ciferan PIN."</string>
+<string name="account_pin_off">"Malŝaltita · iu ajn povas malfermi ĉi tiun profilon"</string>
+<string name="account_pin_on">"Ŝaltita · petata por malfermi ĝin"</string>
+<string name="account_pin_prompt">"Tajpu la 4-ciferan PIN."</string>
+<string name="account_pin_remove">"Forigi PIN"</string>
+<string name="account_pin_set">"Agordi PIN"</string>
+<string name="account_pin_set_title">"Agordi PIN"</string>
 <string name="account_profile_current">"Nuna"</string>
 <string name="account_profile_locked">"Ŝlosita · PIN"</string>
 <string name="account_profile_no_sync">"Sen sinkronigo"</string>
 <string name="account_select_note">"Aparta spekta historio · ne ensalutoj"</string>
 <string name="account_select_title">"Kiu spektas?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s ne konfirmis la ensaluton. Nenio estis konservita."</string>
+<string name="account_signin_failed_title" formatted="true">"Ne eblis ensaluti al %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Ensaluti al %s bezonas konekton. Reprovu kiam ĉi tiu aparato denove estos enreta."</string>
 <string name="account_sync_connected">"Konektita · ensalutinta en ĉi tiu aparato"</string>
 <string name="account_sync_needs_browser">"Ensaluto bezonas retumilon. Ĉi tiu aparato ne havas."</string>
 <string name="account_sync_note">"Laŭvola. Sinkronigas spektan progreson kun konto, kiun vi jam havas."</string>
 <string name="account_sync_pair">"Pari per kodo"</string>
 <string name="account_sync_remove">"Forigi el ĉi tiu aparato"</string>
+<string name="account_sync_remove_body" formatted="true">"La %2$s-ensaluto de la profilo %1$s estos forigita el ĉi tiu aparato. Via %2$s-konto kaj ĝiaj listoj restos kiel ili estas."</string>
+<string name="account_sync_remove_title" formatted="true">"Ĉu forigi %s el ĉi tiu aparato?"</string>
 <string name="account_sync_title">"Sinkronigaj servoj"</string>
 <string name="account_sync_unavailable">"Ne disponebla ĉi tie"</string>
+<string name="account_touch_id_hint">"Tuŝu la sensilon por malfermi ĉi tiun profilon."</string>
+<string name="account_touch_id_reason" formatted="true">"malfermi la profilon %s"</string>
+<string name="account_touch_id_title" formatted="true">"Uzi Touch ID por malfermi %s"</string>
+<string name="account_undo_warning">"Tio ne povas esti malfarita."</string>
+<string name="account_use_pin">"Uzi PIN anstataŭe"</string>
 <string name="action_open_play">@string/home_play</string>
 <string name="action_open_watching">"Pli da informoj"</string>
 <string name="action_remove_from_bookmarks">"Forigi"</string>

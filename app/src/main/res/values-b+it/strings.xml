@@ -26,23 +26,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profilo e il suo PIN"</item><item quantity="many">"%d profili e i loro PIN"</item><item quantity="other">"%d profili e i loro PIN"</item></plurals>
 <string name="account">"account"</string>
 <string name="account_add_profile">"Aggiungi profilo"</string>
+<string name="account_browser_body" formatted="true">"Il browser ha aperto %s. Accedi lì e autorizza CloudStream. Questa finestra proseguirà da sola."</string>
+<string name="account_browser_body_phone" formatted="true">"Completa l'accesso nella pagina di %s. Questa schermata proseguirà da sola."</string>
+<string name="account_browser_open_again">"Riapri"</string>
+<string name="account_browser_title" formatted="true">"Accedi a %s"</string>
+<string name="account_browser_waiting">"In attesa del browser…"</string>
+<string name="account_code_expired">"Questo codice è scaduto. Richiedine uno nuovo per riprovare."</string>
+<string name="account_code_expires" formatted="true">"Scade tra %s"</string>
+<string name="account_code_instructions" formatted="true">"Vai su %s da un browser qualsiasi e inserisci il codice."</string>
+<string name="account_code_open" formatted="true">"Apri %s"</string>
+<string name="account_delete_body" formatted="true">"La cronologia di visione, i segnalibri e gli accessi di sincronizzazione di %s vengono eliminati da questo dispositivo."</string>
+<string name="account_delete_profile">"Elimina profilo"</string>
+<string name="account_delete_title" formatted="true">"Eliminare %s?"</string>
+<string name="account_edit_profile">"Modifica profilo"</string>
+<string name="account_email">"Email"</string>
+<string name="account_image_address">"Usa un indirizzo immagine"</string>
+<string name="account_manage_note">"Scegli un profilo per modificarlo"</string>
 <string name="account_manage_profiles">"Gestisci profili"</string>
 <string name="account_pair_code">"Il tuo codice"</string>
 <string name="account_pair_instructions">"Apri questa pagina sul telefono e inserisci il codice qui sotto."</string>
 <string name="account_pair_new_code">"Ottieni un nuovo codice"</string>
 <string name="account_pair_title" formatted="true">"Associa %s"</string>
+<string name="account_password">"Password"</string>
+<string name="account_password_mismatch">"Email e password non corrispondono. Controllale e riprova."</string>
+<string name="account_password_note" formatted="true">"%s non prevede l'accesso dal browser, quindi la password va inserita qui. Resta solo su questo dispositivo e non viene mai inclusa nei backup."</string>
+<string name="account_picture">"Immagine"</string>
+<string name="account_pin_change">"Cambia PIN"</string>
+<string name="account_pin_confirm">"Digitalo di nuovo per confermare."</string>
+<string name="account_pin_current">"Digita il PIN attuale."</string>
+<string name="account_pin_first_profile">"Il primo profilo non può essere bloccato"</string>
+<string name="account_pin_new">"Digita un PIN di 4 cifre."</string>
+<string name="account_pin_off">"Disattivato · chiunque può aprire questo profilo"</string>
+<string name="account_pin_on">"Attivato · richiesto all'apertura"</string>
+<string name="account_pin_prompt">"Digita il PIN di 4 cifre."</string>
+<string name="account_pin_remove">"Rimuovi PIN"</string>
+<string name="account_pin_set">"Imposta PIN"</string>
+<string name="account_pin_set_title">"Imposta un PIN"</string>
 <string name="account_profile_current">"Attuale"</string>
 <string name="account_profile_locked">"Bloccato · PIN"</string>
 <string name="account_profile_no_sync">"Nessuna sincronizzazione"</string>
 <string name="account_select_note">"Cronologia di visione separata · non sono accessi"</string>
 <string name="account_select_title">"Chi sta guardando?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s non ha confermato l'accesso. Non è stato salvato nulla."</string>
+<string name="account_signin_failed_title" formatted="true">"Impossibile accedere a %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Per accedere a %s serve una connessione. Riprova quando questo dispositivo sarà di nuovo online."</string>
 <string name="account_sync_connected">"Connesso · accesso eseguito su questo dispositivo"</string>
 <string name="account_sync_needs_browser">"L'accesso richiede un browser web. Questo dispositivo non ne ha."</string>
 <string name="account_sync_note">"Facoltativo. Sincronizza i progressi con un account che hai già."</string>
 <string name="account_sync_pair">"Associa con un codice"</string>
 <string name="account_sync_remove">"Rimuovi da questo dispositivo"</string>
+<string name="account_sync_remove_body" formatted="true">"L'accesso a %2$s di %1$s viene eliminato da questo dispositivo. Il tuo account %2$s e i suoi elenchi restano invariati."</string>
+<string name="account_sync_remove_title" formatted="true">"Rimuovere %s da questo dispositivo?"</string>
 <string name="account_sync_title">"Servizi di sincronizzazione"</string>
 <string name="account_sync_unavailable">"Non disponibile qui"</string>
+<string name="account_touch_id_hint">"Tocca il sensore per aprire questo profilo."</string>
+<string name="account_touch_id_reason" formatted="true">"aprire il profilo %s"</string>
+<string name="account_touch_id_title" formatted="true">"Usa Touch ID per aprire %s"</string>
+<string name="account_undo_warning">"Questa azione non può essere annullata."</string>
+<string name="account_use_pin">"Usa invece il PIN"</string>
 <string name="action_add_to_bookmarks">"Imposta stato riproduzione"</string>
 <string name="action_add_to_favorites">"Aggiungi ai preferiti"</string>
 <string name="action_default">"Default"</string>

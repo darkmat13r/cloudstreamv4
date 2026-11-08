@@ -67,6 +67,7 @@ import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.strings.UiString
+import com.lagradost.cloudstream4.core.strings.elapsedAge
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.filter_bookmarks
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_source
@@ -84,7 +85,6 @@ import com.lagradost.cloudstream4.feature.library.LibraryTab
 import com.lagradost.cloudstream4.feature.library.label
 import com.lagradost.cloudstream4.feature.library.libraryCardWords
 import com.lagradost.cloudstream4.feature.library.tv.countOf
-import com.lagradost.cloudstream4.feature.library.tv.elapsed
 import com.lagradost.cloudstream4.feature.library.tv.label
 import com.lagradost.cloudstream4.feature.library.tv.line
 import com.lagradost.cloudstream4.feature.library.tv.metaLine
@@ -320,7 +320,7 @@ private fun SyncBanner(state: LibraryState, now: (() -> Long)?, onAction: (Libra
     val at = source.syncedAt
     val clock = now
     // Without an age the bar's line already says it is cached, and a sentence with a hole in it says less.
-    val age = if (at != null && clock != null) elapsed(clock() - at) else null
+    val age = if (at != null && clock != null) elapsedAge(clock() - at).resolve() else null
     val shape = CloudStreamTheme.shapes.medium
     Row(
         verticalAlignment = Alignment.CenterVertically,

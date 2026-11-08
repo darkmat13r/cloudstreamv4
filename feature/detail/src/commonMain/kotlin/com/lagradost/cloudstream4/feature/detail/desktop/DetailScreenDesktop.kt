@@ -194,9 +194,14 @@ private fun TitlePage(
     artwork: @Composable (String?) -> Unit,
 ) {
     val seasons = remember(detail.episodes) { seasonGroups(detail.episodes) }
-    // The season Resume is in, so the row it will play is on screen; else the first.
+    // The season Resume is in, else the one Play starts (KMP-92's S1E1), so the row it will play is on screen;
+    // else the first.
     var chosen by remember(detail.episodes) {
-        mutableStateOf(detail.resume?.episode?.let(::groupOf) ?: seasons.firstOrNull())
+        mutableStateOf(
+            detail.resume?.episode?.let(::groupOf)
+                ?: detail.episodes.firstOrNull { it.data == detail.primaryData }?.let(::groupOf)
+                ?: seasons.firstOrNull(),
+        )
     }
     val shown = remember(detail.episodes, chosen) {
         if (seasons.size <= 1) detail.episodes.withIndex().toList()

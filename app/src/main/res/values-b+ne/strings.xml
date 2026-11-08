@@ -22,23 +22,64 @@
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d एक्सटेन्सन · %2$s अपडेट गरियो"</item><item quantity="other">"%1$d एक्सटेन्सन · %2$s अपडेट गरियो"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d प्रोफाइल र यसको पिन"</item><item quantity="other">"%d प्रोफाइल र तिनका पिनहरू"</item></plurals>
 <string name="account_add_profile">"प्रोफाइल थप्नुहोस्"</string>
+<string name="account_browser_body" formatted="true">"तपाईंको ब्राउजरले %s खोलेको छ। त्यहाँ साइन इन गर्नुहोस् र CloudStream लाई अनुमति दिनुहोस्। यो विन्डो आफैं अगाडि बढ्छ।"</string>
+<string name="account_browser_body_phone" formatted="true">"%s पृष्ठमा साइन इन पूरा गर्नुहोस्। यो स्क्रिन आफैं अगाडि बढ्छ।"</string>
+<string name="account_browser_open_again">"फेरि खोल्नुहोस्"</string>
+<string name="account_browser_title" formatted="true">"%s मा साइन इन गर्नुहोस्"</string>
+<string name="account_browser_waiting">"तपाईंको ब्राउजरको प्रतीक्षा गर्दै…"</string>
+<string name="account_code_expired">"यो कोडको म्याद सकियो। फेरि प्रयास गर्न नयाँ कोड लिनुहोस्।"</string>
+<string name="account_code_expires" formatted="true">"%s मा म्याद सकिन्छ"</string>
+<string name="account_code_instructions" formatted="true">"कुनै पनि ब्राउजरमा %s मा जानुहोस् र कोड प्रविष्ट गर्नुहोस्।"</string>
+<string name="account_code_open" formatted="true">"%s खोल्नुहोस्"</string>
+<string name="account_delete_body" formatted="true">"%s को हेराइ इतिहास, बुकमार्कहरू र सिंक साइन इनहरू यो उपकरणबाट मेटाइन्छन्।"</string>
+<string name="account_delete_profile">"प्रोफाइल मेटाउनुहोस्"</string>
+<string name="account_delete_title" formatted="true">"%s मेटाउने?"</string>
+<string name="account_edit_profile">"प्रोफाइल सम्पादन गर्नुहोस्"</string>
+<string name="account_email">"इमेल"</string>
+<string name="account_image_address">"छविको ठेगाना प्रयोग गर्नुहोस्"</string>
+<string name="account_manage_note">"सम्पादन गर्न प्रोफाइल छान्नुहोस्"</string>
 <string name="account_manage_profiles">"प्रोफाइलहरू व्यवस्थापन गर्नुहोस्"</string>
 <string name="account_pair_code">"तपाईंको कोड"</string>
 <string name="account_pair_instructions">"यसलाई आफ्नो फोनमा खोल्नुहोस् र तलको कोड हाल्नुहोस्।"</string>
 <string name="account_pair_new_code">"नयाँ कोड लिनुहोस्"</string>
 <string name="account_pair_title" formatted="true">"%s जोड्नुहोस्"</string>
+<string name="account_password">"पासवर्ड"</string>
+<string name="account_password_mismatch">"त्यो इमेल र पासवर्ड मेल खाएनन्। तिनलाई जाँचेर फेरि प्रयास गर्नुहोस्।"</string>
+<string name="account_password_note" formatted="true">"%s मा ब्राउजर साइन इन छैन, त्यसैले पासवर्ड यहाँ टाइप गरिन्छ। यसलाई यो उपकरणमा मात्र राखिन्छ र कहिल्यै ब्याकअप गरिँदैन।"</string>
+<string name="account_picture">"तस्बिर"</string>
+<string name="account_pin_change">"पिन परिवर्तन गर्नुहोस्"</string>
+<string name="account_pin_confirm">"पुष्टि गर्न फेरि टाइप गर्नुहोस्।"</string>
+<string name="account_pin_current">"अहिले प्रयोगमा रहेको पिन टाइप गर्नुहोस्।"</string>
+<string name="account_pin_first_profile">"पहिलो प्रोफाइल लक गर्न सकिँदैन"</string>
+<string name="account_pin_new">"४ अङ्कको पिन टाइप गर्नुहोस्।"</string>
+<string name="account_pin_off">"निष्क्रिय · जो कोहीले यो प्रोफाइल खोल्न सक्छ"</string>
+<string name="account_pin_on">"सक्रिय · खोल्दा सोधिन्छ"</string>
+<string name="account_pin_prompt">"४ अङ्कको पिन टाइप गर्नुहोस्।"</string>
+<string name="account_pin_remove">"पिन हटाउनुहोस्"</string>
+<string name="account_pin_set">"पिन सेट गर्नुहोस्"</string>
+<string name="account_pin_set_title">"पिन सेट गर्नुहोस्"</string>
 <string name="account_profile_current">"हालको"</string>
 <string name="account_profile_locked">"लक गरिएको · पिन"</string>
 <string name="account_profile_no_sync">"सिंक छैन"</string>
 <string name="account_select_note">"छुट्टै हेराइ इतिहास · लगइन होइन"</string>
 <string name="account_select_title">"को हेर्दै हुनुहुन्छ?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।"</string>
+<string name="account_signin_failed_title" formatted="true">"%s मा साइन इन गर्न सकिएन"</string>
+<string name="account_signin_offline_body" formatted="true">"%s मा साइन इन गर्न इन्टरनेट जडान चाहिन्छ। यो उपकरण फेरि अनलाइन भएपछि पुनः प्रयास गर्नुहोस्।"</string>
 <string name="account_sync_connected">"जडान भयो · यो उपकरणमा साइन इन"</string>
 <string name="account_sync_needs_browser">"साइन इन गर्न वेब ब्राउजर चाहिन्छ। यो उपकरणमा छैन।"</string>
 <string name="account_sync_note">"वैकल्पिक। हेराइको प्रगति तपाईंसँग पहिल्यै भएको खातासँग सिंक गर्छ।"</string>
 <string name="account_sync_pair">"कोडले जोड्नुहोस्"</string>
 <string name="account_sync_remove">"यो उपकरणबाट हटाउनुहोस्"</string>
+<string name="account_sync_remove_body" formatted="true">"%1$s को %2$s साइन इन यो उपकरणबाट मेटाइन्छ। तपाईंको %2$s खाता र त्यसका सूचीहरू जस्ताको तस्तै रहन्छन्।"</string>
+<string name="account_sync_remove_title" formatted="true">"%s यो उपकरणबाट हटाउने?"</string>
 <string name="account_sync_title">"सिंक सेवाहरू"</string>
 <string name="account_sync_unavailable">"यहाँ उपलब्ध छैन"</string>
+<string name="account_touch_id_hint">"यो प्रोफाइल खोल्न सेन्सर छुनुहोस्।"</string>
+<string name="account_touch_id_reason" formatted="true">"प्रोफाइल %s खोल्न"</string>
+<string name="account_touch_id_title" formatted="true">"%s खोल्न Touch ID प्रयोग गर्नुहोस्"</string>
+<string name="account_undo_warning">"यसलाई पूर्ववत गर्न सकिँदैन।"</string>
+<string name="account_use_pin">"बरु पिन प्रयोग गर्नुहोस्"</string>
 <string name="action_add_to_bookmarks">"हेरेको स्थिति निर्धारण गर्नुहोस्"</string>
 <string name="action_open_watching">"अधिक जानकारी"</string>
 <string name="action_remove_from_bookmarks">"हटाउनुहोस्"</string>

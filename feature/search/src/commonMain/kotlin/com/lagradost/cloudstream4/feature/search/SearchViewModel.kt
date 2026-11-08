@@ -42,7 +42,9 @@ import kotlinx.coroutines.sync.withLock
  * - **A blank query is content, not a void.** Artboard 4c draws recent searches there; the old
  *   screen drew nothing at all for a new user and never showed the `searchedAt` it had stored.
  *
- * [dispatcher] is injected rather than hardcoded to `Dispatchers.IO`, so tests drive it.
+ * [dispatcher] is injected rather than hardcoded to `Dispatchers.IO`, so tests drive it. So is the debounce's own
+ * dispatcher, `Dispatchers.Default` unless a test hands in its own, so that a test's virtual clock moves the 200 ms
+ * window too and no test waits on real time (`BUG-71`).
  *
  * With [suggestions], typing shows artboard 8a's column instead of rails, and only a submit or a row shows
  * results. Without it, typing runs the quick search into rails, as before; desktop passes none.
@@ -69,12 +71,13 @@ class SearchViewModel(
     private val scope: CoroutineScope? = null,
     private val suggestions: SearchSuggestionSource? = null,
     private val connectivity: ConnectivityFlow = UnknownConnectivityFlow,
+    debounceDispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) : ViewModel(),
     StateContainer<SearchState> by DefaultStateContainer(SearchState()),
     EffectContainer<SearchEffect> by DefaultEffectContainer(),
     ActionHandler<SearchAction> {
 
-    private val debounce = DebounceQuery()
+    private val debounce = DebounceQuery(dispatcher = debounceDispatcher)
     private val inFlight = SingleActiveQuery(dispatcher)
     private val filterWrites = Mutex()
 

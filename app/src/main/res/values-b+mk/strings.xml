@@ -25,23 +25,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d профил и неговиот PIN"</item><item quantity="other">"%d профили и нивните PIN-ови"</item></plurals>
 <string name="account">"Корисничко име"</string>
 <string name="account_add_profile">"Додај профил"</string>
+<string name="account_browser_body" formatted="true">"Твојот прелистувач го отвори %s. Најави се таму и дозволи му на CloudStream. Овој прозорец продолжува сам."</string>
+<string name="account_browser_body_phone" formatted="true">"Заврши ја најавата на страницата на %s. Овој екран продолжува сам."</string>
+<string name="account_browser_open_again">"Отвори повторно"</string>
+<string name="account_browser_title" formatted="true">"Најави се на %s"</string>
+<string name="account_browser_waiting">"Се чека прелистувачот…"</string>
+<string name="account_code_expired">"Овој код истече. Добиј нов за да се обидеш повторно."</string>
+<string name="account_code_expires" formatted="true">"Истекува за %s"</string>
+<string name="account_code_instructions" formatted="true">"Оди на %s во кој било прелистувач и внеси го кодот."</string>
+<string name="account_code_open" formatted="true">"Отвори %s"</string>
+<string name="account_delete_body" formatted="true">"Историјата на гледање, обележувачите и најавите за синхронизација на профилот %s се бришат од овој уред."</string>
+<string name="account_delete_profile">"Избриши профил"</string>
+<string name="account_delete_title" formatted="true">"Да се избрише %s?"</string>
+<string name="account_edit_profile">"Уреди профил"</string>
+<string name="account_email">"Е-пошта"</string>
+<string name="account_image_address">"Користи адреса на слика"</string>
+<string name="account_manage_note">"Избери профил за да го уредиш"</string>
 <string name="account_manage_profiles">"Управувај со профили"</string>
 <string name="account_pair_code">"Вашиот код"</string>
 <string name="account_pair_instructions">"Отворете го ова на телефонот и внесете го кодот подолу."</string>
 <string name="account_pair_new_code">"Добиј нов код"</string>
 <string name="account_pair_title" formatted="true">"Поврзи %s"</string>
+<string name="account_password">"Лозинка"</string>
+<string name="account_password_mismatch">"Е-поштата и лозинката не се совпаѓаат. Провери ги и обиди се повторно."</string>
+<string name="account_password_note" formatted="true">"%s нема најава преку прелистувач, па лозинката се внесува тука. Се чува само на овој уред и никогаш не се прави нејзина резервна копија."</string>
+<string name="account_picture">"Слика"</string>
+<string name="account_pin_change">"Промени PIN"</string>
+<string name="account_pin_confirm">"Внеси го повторно за потврда."</string>
+<string name="account_pin_current">"Внеси го PIN-от што се користи сега."</string>
+<string name="account_pin_first_profile">"Првиот профил не може да се заклучи"</string>
+<string name="account_pin_new">"Внеси PIN со 4 цифри."</string>
+<string name="account_pin_off">"Исклучено · секој може да го отвори овој профил"</string>
+<string name="account_pin_on">"Вклучено · се бара при отворање"</string>
+<string name="account_pin_prompt">"Внеси го PIN-от со 4 цифри."</string>
+<string name="account_pin_remove">"Отстрани PIN"</string>
+<string name="account_pin_set">"Постави PIN"</string>
+<string name="account_pin_set_title">"Постави PIN"</string>
 <string name="account_profile_current">"Тековен"</string>
 <string name="account_profile_locked">"Заклучен · PIN"</string>
 <string name="account_profile_no_sync">"Без синхронизација"</string>
 <string name="account_select_note">"Посебна историја на гледање · не се најавувања"</string>
 <string name="account_select_title">"Кој гледа?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s не ја потврди најавата. Ништо не е зачувано."</string>
+<string name="account_signin_failed_title" formatted="true">"Не може да се најавиш на %s"</string>
+<string name="account_signin_offline_body" formatted="true">"За најава на %s е потребна врска. Обиди се повторно кога уредот ќе биде пак на интернет."</string>
 <string name="account_sync_connected">"Поврзано · најавено на овој уред"</string>
 <string name="account_sync_needs_browser">"За најава е потребен веб-прелистувач. Овој уред нема."</string>
 <string name="account_sync_note">"Опционално. Го синхронизира напредокот со сметка што веќе ја имате."</string>
 <string name="account_sync_pair">"Поврзи со код"</string>
 <string name="account_sync_remove">"Отстрани од овој уред"</string>
+<string name="account_sync_remove_body" formatted="true">"Најавата на %2$s за профилот %1$s се брише од овој уред. Твојата сметка на %2$s и нејзините листи остануваат такви какви што се."</string>
+<string name="account_sync_remove_title" formatted="true">"Да се отстрани %s од овој уред?"</string>
 <string name="account_sync_title">"Услуги за синхронизација"</string>
 <string name="account_sync_unavailable">"Не е достапно тука"</string>
+<string name="account_touch_id_hint">"Допри го сензорот за да го отвориш овој профил."</string>
+<string name="account_touch_id_reason" formatted="true">"го отвори профилот %s"</string>
+<string name="account_touch_id_title" formatted="true">"Користи Touch ID за да го отвориш %s"</string>
+<string name="account_undo_warning">"Ова не може да се врати."</string>
+<string name="account_use_pin">"Користи PIN"</string>
 <string name="action_add_to_bookmarks">"Постави статус на пратење"</string>
 <string name="action_add_to_favorites">"Додади во омилени"</string>
 <string name="action_default">"Стандардно"</string>

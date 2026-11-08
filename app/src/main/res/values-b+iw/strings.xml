@@ -23,23 +23,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d פרופיל וה-PIN שלו"</item><item quantity="two">"%d פרופילים וקודי ה-PIN שלהם"</item><item quantity="other">"%d פרופילים וקודי ה-PIN שלהם"</item></plurals>
 <string name="account">"חשבון"</string>
 <string name="account_add_profile">"הוספת פרופיל"</string>
+<string name="account_browser_body" formatted="true">"הדפדפן פתח את %s. יש להתחבר שם ולאשר את CloudStream. החלון הזה ימשיך מעצמו."</string>
+<string name="account_browser_body_phone" formatted="true">"יש להשלים את ההתחברות בדף של %s. המסך הזה ימשיך מעצמו."</string>
+<string name="account_browser_open_again">"פתיחה מחדש"</string>
+<string name="account_browser_title" formatted="true">"התחברות אל %s"</string>
+<string name="account_browser_waiting">"ממתין לדפדפן…"</string>
+<string name="account_code_expired">"תוקף הקוד הזה פג. יש לקבל קוד חדש כדי לנסות שוב."</string>
+<string name="account_code_expires" formatted="true">"יפוג בעוד %s"</string>
+<string name="account_code_instructions" formatted="true">"יש לגלוש אל %s בכל דפדפן ולהזין את הקוד."</string>
+<string name="account_code_open" formatted="true">"פתיחת %s"</string>
+<string name="account_delete_body" formatted="true">"היסטוריית הצפייה, הסימניות וההתחברויות לסנכרון של הפרופיל %s נמחקות מהמכשיר הזה."</string>
+<string name="account_delete_profile">"מחיקת פרופיל"</string>
+<string name="account_delete_title" formatted="true">"למחוק את %s?"</string>
+<string name="account_edit_profile">"עריכת פרופיל"</string>
+<string name="account_email">"אימייל"</string>
+<string name="account_image_address">"שימוש בכתובת של תמונה"</string>
+<string name="account_manage_note">"יש לבחור פרופיל כדי לערוך אותו"</string>
 <string name="account_manage_profiles">"ניהול פרופילים"</string>
 <string name="account_pair_code">"הקוד שלך"</string>
 <string name="account_pair_instructions">"פתחו את זה בטלפון והזינו את הקוד שלמטה."</string>
 <string name="account_pair_new_code">"קבלת קוד חדש"</string>
 <string name="account_pair_title" formatted="true">"צימוד %s"</string>
+<string name="account_password">"סיסמה"</string>
+<string name="account_password_mismatch">"האימייל והסיסמה לא תואמים. יש לבדוק אותם ולנסות שוב."</string>
+<string name="account_password_note" formatted="true">"ל-%s אין התחברות דרך הדפדפן, ולכן הסיסמה מוקלדת כאן. היא נשמרת במכשיר הזה בלבד ואף פעם לא מגובה."</string>
+<string name="account_picture">"תמונה"</string>
+<string name="account_pin_change">"שינוי PIN"</string>
+<string name="account_pin_confirm">"יש להקליד שוב לאישור."</string>
+<string name="account_pin_current">"יש להקליד את ה-PIN הנוכחי."</string>
+<string name="account_pin_first_profile">"אי אפשר לנעול את הפרופיל הראשון"</string>
+<string name="account_pin_new">"יש להקליד PIN בן 4 ספרות."</string>
+<string name="account_pin_off">"כבוי · כל אחד יכול לפתוח את הפרופיל הזה"</string>
+<string name="account_pin_on">"פועל · נדרש לפתיחה"</string>
+<string name="account_pin_prompt">"יש להקליד את ה-PIN בן 4 הספרות."</string>
+<string name="account_pin_remove">"הסרת PIN"</string>
+<string name="account_pin_set">"הגדרת PIN"</string>
+<string name="account_pin_set_title">"הגדרת PIN"</string>
 <string name="account_profile_current">"נוכחי"</string>
 <string name="account_profile_locked">"נעול · PIN"</string>
 <string name="account_profile_no_sync">"ללא סנכרון"</string>
 <string name="account_select_note">"היסטוריית צפייה נפרדת · לא התחברויות"</string>
 <string name="account_select_title">"מי צופה?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s לא אישר את ההתחברות. שום דבר לא נשמר."</string>
+<string name="account_signin_failed_title" formatted="true">"לא ניתן להתחבר אל %s"</string>
+<string name="account_signin_offline_body" formatted="true">"ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר."</string>
 <string name="account_sync_connected">"מחובר · מחובר במכשיר הזה"</string>
 <string name="account_sync_needs_browser">"ההתחברות דורשת דפדפן אינטרנט. אין במכשיר הזה."</string>
 <string name="account_sync_note">"אופציונלי. מסנכרן את התקדמות הצפייה עם חשבון שכבר יש לך."</string>
 <string name="account_sync_pair">"צימוד עם קוד"</string>
 <string name="account_sync_remove">"הסרה מהמכשיר הזה"</string>
+<string name="account_sync_remove_body" formatted="true">"ההתחברות של הפרופיל %1$s אל %2$s נמחקת מהמכשיר הזה. החשבון שלך ב-%2$s והרשימות שבו נשארים כמו שהם."</string>
+<string name="account_sync_remove_title" formatted="true">"להסיר את %s מהמכשיר הזה?"</string>
 <string name="account_sync_title">"שירותי סנכרון"</string>
 <string name="account_sync_unavailable">"לא זמין כאן"</string>
+<string name="account_touch_id_hint">"יש לגעת בחיישן כדי לפתוח את הפרופיל הזה."</string>
+<string name="account_touch_id_reason" formatted="true">"לפתוח את הפרופיל %s"</string>
+<string name="account_touch_id_title" formatted="true">"שימוש ב-Touch ID לפתיחת %s"</string>
+<string name="account_undo_warning">"אי אפשר לבטל את הפעולה הזו."</string>
+<string name="account_use_pin">"שימוש ב-PIN במקום"</string>
 <string name="action_add_to_bookmarks">"הגדר מצב צפייה"</string>
 <string name="action_default">"ברירת מחדל"</string>
 <string name="action_mark_as_watched">"סימון כנצפה"</string>

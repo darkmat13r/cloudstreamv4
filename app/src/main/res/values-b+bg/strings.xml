@@ -25,23 +25,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d профил и неговият ПИН"</item><item quantity="other">"%d профила и техните ПИН кодове"</item></plurals>
 <string name="account">"Акаунт"</string>
 <string name="account_add_profile">"Добави профил"</string>
+<string name="account_browser_body" formatted="true">"Браузърът ти отвори %s. Впиши се там и разреши на CloudStream. Този прозорец ще продължи сам."</string>
+<string name="account_browser_body_phone" formatted="true">"Довърши вписването на страницата на %s. Този екран ще продължи сам."</string>
+<string name="account_browser_open_again">"Отвори отново"</string>
+<string name="account_browser_title" formatted="true">"Вписване в %s"</string>
+<string name="account_browser_waiting">"Изчакване на браузъра…"</string>
+<string name="account_code_expired">"Този код изтече. Вземи нов, за да опиташ отново."</string>
+<string name="account_code_expires" formatted="true">"Изтича след %s"</string>
+<string name="account_code_instructions" formatted="true">"Отвори %s в който и да е браузър и въведи кода."</string>
+<string name="account_code_open" formatted="true">"Отвори %s"</string>
+<string name="account_delete_body" formatted="true">"Историята на гледане, отметките и вписванията за синхронизация на профила %s се изтриват от това устройство."</string>
+<string name="account_delete_profile">"Изтрий профила"</string>
+<string name="account_delete_title" formatted="true">"Да се изтрие ли %s?"</string>
+<string name="account_edit_profile">"Редактиране на профила"</string>
+<string name="account_email">"Имейл"</string>
+<string name="account_image_address">"Използвай адрес на изображение"</string>
+<string name="account_manage_note">"Избери профил, за да го редактираш"</string>
 <string name="account_manage_profiles">"Управление на профили"</string>
 <string name="account_pair_code">"Вашият код"</string>
 <string name="account_pair_instructions">"Отворете това на телефона си и въведете кода по-долу."</string>
 <string name="account_pair_new_code">"Вземи нов код"</string>
 <string name="account_pair_title" formatted="true">"Свържи %s"</string>
+<string name="account_password">"Парола"</string>
+<string name="account_password_mismatch">"Имейлът и паролата не съвпадат. Провери ги и опитай отново."</string>
+<string name="account_password_note" formatted="true">"%s няма вписване през браузър, затова паролата се въвежда тук. Пази се само на това устройство и никога не се архивира."</string>
+<string name="account_picture">"Снимка"</string>
+<string name="account_pin_change">"Смени ПИН"</string>
+<string name="account_pin_confirm">"Въведи го отново за потвърждение."</string>
+<string name="account_pin_current">"Въведи текущия ПИН."</string>
+<string name="account_pin_first_profile">"Първият профил не може да бъде заключен"</string>
+<string name="account_pin_new">"Въведи 4-цифрен ПИН."</string>
+<string name="account_pin_off">"Изключен · всеки може да отвори този профил"</string>
+<string name="account_pin_on">"Включен · иска се при отваряне"</string>
+<string name="account_pin_prompt">"Въведи 4-цифрения ПИН."</string>
+<string name="account_pin_remove">"Премахни ПИН"</string>
+<string name="account_pin_set">"Задай ПИН"</string>
+<string name="account_pin_set_title">"Задаване на ПИН"</string>
 <string name="account_profile_current">"Текущ"</string>
 <string name="account_profile_locked">"Заключен · ПИН"</string>
 <string name="account_profile_no_sync">"Без синхронизация"</string>
 <string name="account_select_note">"Отделна история на гледане · не са профили за вход"</string>
 <string name="account_select_title">"Кой гледа?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s не потвърди вписването. Нищо не е запазено."</string>
+<string name="account_signin_failed_title" formatted="true">"Неуспешно вписване в %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Вписването в %s изисква връзка. Опитай отново, когато устройството е отново онлайн."</string>
 <string name="account_sync_connected">"Свързан · вписан на това устройство"</string>
 <string name="account_sync_needs_browser">"Влизането изисква уеб браузър. Това устройство няма такъв."</string>
 <string name="account_sync_note">"По избор. Синхронизира напредъка на гледане с акаунт, който вече имате."</string>
 <string name="account_sync_pair">"Свържи с код"</string>
 <string name="account_sync_remove">"Премахни от това устройство"</string>
+<string name="account_sync_remove_body" formatted="true">"Вписването в %2$s на профила %1$s се изтрива от това устройство. Акаунтът ти в %2$s и списъците в него остават непроменени."</string>
+<string name="account_sync_remove_title" formatted="true">"Да се премахне ли %s от това устройство?"</string>
 <string name="account_sync_title">"Услуги за синхронизация"</string>
 <string name="account_sync_unavailable">"Не е налично тук"</string>
+<string name="account_touch_id_hint">"Докосни сензора, за да отвориш този профил."</string>
+<string name="account_touch_id_reason" formatted="true">"отвори профила %s"</string>
+<string name="account_touch_id_title" formatted="true">"Използвай Touch ID, за да отвориш %s"</string>
+<string name="account_undo_warning">"Това не може да бъде отменено."</string>
+<string name="account_use_pin">"Използвай ПИН"</string>
 <string name="action_add_to_bookmarks">"Задайте статус на гледане"</string>
 <string name="action_add_to_favorites">"Добави в любими"</string>
 <string name="action_default">"По подразбиране"</string>
