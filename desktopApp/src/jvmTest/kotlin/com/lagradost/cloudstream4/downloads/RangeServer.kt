@@ -102,14 +102,20 @@ internal class RangeServer : AutoCloseable {
                 out.flush()
                 at += n
                 // A held body waits here once, with bytes still to send; the probe's single byte never waits.
-                if (at < to) holds.remove(name)?.let { gate -> runBlocking { gate.await() } }
+                // The gate stays in [holds] while a thread waits on it, so [close] can still open it.
+                if (at < to) holds[name]?.let { gate -> runBlocking { gate.await() }; holds.remove(name, gate) }
                 val pause = chunkDelayMillis.get()
                 if (pause > 0) Thread.sleep(pause)
             }
         }
     }
 
-    override fun close() = server.stop(0)
+    /** Opens any hold still armed first, so a test that timed out never leaves a server thread parked on its gate. */
+    override fun close() {
+        holds.values.forEach { it.complete(Unit) }
+        holds.clear()
+        server.stop(0)
+    }
 
     companion object {
         const val CHUNK = 16 * 1024
