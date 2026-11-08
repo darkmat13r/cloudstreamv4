@@ -2245,3 +2245,22 @@ and saves the token in one call.
 
 **Published API:** `classes-jar.api` +13 / −5. The 5 removed lines are the compiler-generated anonymous timer class
 `SettingsAccount$Companion$showPin$2$1$2`, approved for removal by the owner on 2026-11-07.
+
+## BUG-58 — `HostLimitsTest` asserted the plugin host's niceness as an absolute 10 · **low, test only**
+
+**Status:** fixed in this PR · found 2026-11-08 by the gates on `KMP-76` (`#242`)
+
+The launcher starts a plugin host with `/usr/bin/nice -n 10`, which is relative to the process that starts it. The test
+read the host's niceness and asserted exactly 10, which is true only when the test JVM runs at 0. On `KMP-76`'s gates
+the test JVM ran at nice 5, and the host was at 15: the promise kept, the assertion failed. The other worktrees' runs of
+the same test logged 10 every time (44 results), all from a JVM at 0.
+
+**Fix:** the test reads this process's own niceness and asserts the host is 10 above it, capped at macOS's ceiling of 20.
+It refuses to pass when this process is already at 20, where a host without `nice` would look the same. The promise is
+unchanged: ten steps lower than what launched it. Nothing outside the test changed.
+
+**Measured** (`HostLimitsTest`, 10 cases each run):
+- At parent 0: host 10, pass.
+- At parent 5 (Gradle run under `nice -n 5`, no daemon): host 15, pass. This is the gates' failure, which the old
+  assertion failed on with `expected:<10> but was:<15>`.
+- **Red:** with `nice -n 10` taken out of the launcher, `expected:<10> but was:<0>`. Restored afterwards.
