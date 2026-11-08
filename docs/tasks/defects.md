@@ -3019,7 +3019,22 @@ for its own task.
 
 `HostProtocolTest` gains a subtitle-label case, and `DesktopRedactionTest` gains a case for `withoutInvisible`.
 
-**Not covered.**
+**Threat model.** Redaction covers URLs and paths as code writes them, and invisible-character disguises; it does not stop an extension that deliberately encodes a secret. On the Mac the sandbox is the boundary.
+
+**Not covered.** These were found by the review's bypass hunt (33 cases) and left out on purpose:
 
 - Supplementary Cf code points outside the list (U+110BD, U+110CD, U+13430–1343F) are still not stripped. They are not default-ignorable, and fonts draw them.
 - Three or more blank-drawn characters inside `://` are not recognised.
+- Look-alike punctuation:
+  - a fullwidth slash (U+FF0F), a division slash (U+2215) or a fraction slash (U+2044) in place of `/`
+  - a fullwidth colon (U+FF1A) in place of `:`
+- Homoglyph paths, such as `/Users/` written with a Cyrillic `ѕ`.
+- Encoded separators: a percent-encoded (`%2F`) or HTML-encoded (`&#47;`) slash, and a backslash in place of a slash in a url.
+- A url with no scheme (`cdn.example/x?token=…`, or a protocol-relative `//host/…`).
+- A braille blank inside `/Users/` or another user path. Only the url pattern allows blank-drawn characters; the path rules do not.
+
+NFKC normalisation before redacting would cover the fullwidth forms, but it cannot run in `:library`'s `commonMain`, so the shared table would split. It is `BUG-66`.
+
+## BUG-66 — Look-alike slashes and colons still hide a url from the redaction · **medium, security** · open
+
+**Status:** open, a follow-up to `BUG-64`. A fullwidth slash (U+FF0F), a fullwidth colon (U+FF1A), and other compatibility forms read as `https://` on screen but do not match the url pattern. NFKC normalisation before redacting would fold them. It cannot run in `:library`'s `commonMain`, where one of the four synced copies lives, so a fix has to keep the shared case table whole: an expect/actual, or a small folding table shared like `BUG-64`'s list. The division and fraction slashes (U+2215, U+2044) are not folded by NFKC, so they need a rule of their own.
