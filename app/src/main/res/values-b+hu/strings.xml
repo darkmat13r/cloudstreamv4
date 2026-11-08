@@ -15,6 +15,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen %d forrásban."</item><item quantity="other">"Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FORRÁS"</item><item quantity="other">"%d FORRÁS"</item></plurals>
 <string name="account">"Fiók"</string>
+<string name="account_add_profile">"Profil hozzáadása"</string>
+<string name="account_manage_profiles">"Profilok kezelése"</string>
+<string name="account_pair_code">"A kódod"</string>
+<string name="account_pair_instructions">"Nyisd meg ezt a telefonodon, és add meg az alábbi kódot."</string>
+<string name="account_pair_new_code">"Új kód kérése"</string>
+<string name="account_pair_title" formatted="true">"%s párosítása"</string>
+<string name="account_profile_current">"Jelenlegi"</string>
+<string name="account_profile_locked">"Zárolva · PIN"</string>
+<string name="account_profile_no_sync">"Nincs szinkronizálás"</string>
+<string name="account_select_note">"Külön megtekintési előzmények · nem bejelentkezések"</string>
+<string name="account_select_title">"Ki néz?"</string>
+<string name="account_sync_connected">"Csatlakoztatva · bejelentkezve ezen az eszközön"</string>
+<string name="account_sync_needs_browser">"A bejelentkezéshez webböngésző kell. Ezen az eszközön nincs."</string>
+<string name="account_sync_note">"Nem kötelező. A megtekintési előrehaladást egy meglévő fiókkal szinkronizálja."</string>
+<string name="account_sync_pair">"Párosítás kóddal"</string>
+<string name="account_sync_remove">"Eltávolítás erről az eszközről"</string>
+<string name="account_sync_title">"Szinkronizálási szolgáltatások"</string>
+<string name="account_sync_unavailable">"Itt nem érhető el"</string>
 <string name="action_add_to_bookmarks">"Megtekintés állapotának beállítása"</string>
 <string name="action_add_to_favorites">"Hozzáadás a kedvencekhez"</string>
 <string name="action_default">"Alapértelmezett"</string>

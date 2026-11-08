@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Tryck på tangentbordets söktangent för att söka i %d källa ändå."</item><item quantity="other">"Tryck på tangentbordets söktangent för att söka i alla %d källor ändå."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KÄLLA"</item><item quantity="other">"%d KÄLLOR"</item></plurals>
 <string name="account">"konto"</string>
+<string name="account_add_profile">"Lägg till profil"</string>
+<string name="account_manage_profiles">"Hantera profiler"</string>
+<string name="account_pair_code">"Din kod"</string>
+<string name="account_pair_instructions">"Öppna detta på telefonen och ange koden nedan."</string>
+<string name="account_pair_new_code">"Hämta en ny kod"</string>
+<string name="account_pair_title" formatted="true">"Parkoppla %s"</string>
+<string name="account_profile_current">"Aktuell"</string>
+<string name="account_profile_locked">"Låst · PIN"</string>
+<string name="account_profile_no_sync">"Ingen synkronisering"</string>
+<string name="account_select_note">"Egen visningshistorik · inte inloggningar"</string>
+<string name="account_select_title">"Vem tittar?"</string>
+<string name="account_sync_connected">"Ansluten · inloggad på den här enheten"</string>
+<string name="account_sync_needs_browser">"Inloggning kräver en webbläsare. Den här enheten har ingen."</string>
+<string name="account_sync_note">"Valfritt. Synkroniserar framstegen med ett konto du redan har."</string>
+<string name="account_sync_pair">"Parkoppla med en kod"</string>
+<string name="account_sync_remove">"Ta bort från den här enheten"</string>
+<string name="account_sync_title">"Synkroniseringstjänster"</string>
+<string name="account_sync_unavailable">"Inte tillgängligt här"</string>
 <string name="action_add_to_bookmarks">"Ange visningsstatus"</string>
 <string name="action_add_to_favorites">"Lägg till i favoriter"</string>
 <string name="action_default">"Standard"</string>

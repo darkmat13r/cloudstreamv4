@@ -143,9 +143,12 @@ class HomeTvFragment : BaseComposeFragment() {
         reloadAccountEvent += sourcesChanged
         reloadHomeEvent += reloadRequested
         // The first time the page opens the window may have handed focus to the first thing it found, the nav rail, which
-        // would open it over a page nobody has asked to leave. Nothing has been pressed yet, so it is this page's to take.
+        // would open it over a page nobody has asked to leave. Nothing has been pressed yet, so it is this page's to take; and
+        // focus the window has already given the page is not a person's either (`BUG-41`).
         val page = view
-        if (viewModel.state.value.landingOwed && page != null && !page.hasFocus()) hostFocus.request { page.requestFocus() }
+        if (page != null) {
+            hostFocus.resumed(viewModel.state.value.landingOwed, { page.hasFocus() }, { page.requestFocus() })
+        }
         viewModel.onAction(HomeAction.Reappeared)
         viewModel.onAction(HomeAction.SourcesChanged)
     }

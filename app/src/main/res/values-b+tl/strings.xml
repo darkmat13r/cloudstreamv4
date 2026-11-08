@@ -14,6 +14,24 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Maghanap sa %d source"</item><item quantity="other">"Maghanap sa lahat ng %d source"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Pindutin ang search key ng keyboard para maghanap pa rin sa %d source."</item><item quantity="other">"Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d source."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d SOURCE"</item><item quantity="other">"%d SOURCES"</item></plurals>
+<string name="account_add_profile">"Magdagdag ng profile"</string>
+<string name="account_manage_profiles">"Pamahalaan ang mga profile"</string>
+<string name="account_pair_code">"Ang iyong code"</string>
+<string name="account_pair_instructions">"Buksan ito sa iyong telepono at ilagay ang code sa ibaba."</string>
+<string name="account_pair_new_code">"Kumuha ng bagong code"</string>
+<string name="account_pair_title" formatted="true">"Ipares ang %s"</string>
+<string name="account_profile_current">"Kasalukuyan"</string>
+<string name="account_profile_locked">"Naka-lock · PIN"</string>
+<string name="account_profile_no_sync">"Walang sync"</string>
+<string name="account_select_note">"Hiwalay na kasaysayan ng panonood · hindi mga login"</string>
+<string name="account_select_title">"Sino ang nanonood?"</string>
+<string name="account_sync_connected">"Nakakonekta · naka-sign in sa device na ito"</string>
+<string name="account_sync_needs_browser">"Kailangan ng web browser para mag-sign in. Wala nito ang device na ito."</string>
+<string name="account_sync_note">"Opsyonal. Sini-sync ang progreso ng panonood sa account na mayroon ka na."</string>
+<string name="account_sync_pair">"Ipares gamit ang code"</string>
+<string name="account_sync_remove">"Alisin sa device na ito"</string>
+<string name="account_sync_title">"Mga serbisyo ng sync"</string>
+<string name="account_sync_unavailable">"Hindi available dito"</string>
 <string name="action_add_to_bookmarks">"I-set ang Status"</string>
 <string name="action_default">"Default"</string>
 <string name="action_mark_as_watched">"I-tanda bilang napanood na"</string>

@@ -148,6 +148,7 @@ internal fun DetailActionRowTv(
                 },
                 label = stringResource(Res.string.action_add_to_bookmarks),
                 onClick = onWatchStatusRequested,
+                modifier = LocalDetailPanelOpeners.current?.let { Modifier.focusRequester(it.watchStatus) } ?: Modifier,
             )
         }
         // Both are dropped where there is no one season to name — see `namedSeason`. A button of fixed
@@ -174,6 +175,7 @@ internal fun DetailActionRowTv(
             GhostTextButton(
                 label = stringResource(Res.string.synopsis),
                 onClick = { onAction(DetailAction.SynopsisToggled) },
+                modifier = LocalDetailPanelOpeners.current?.let { Modifier.focusRequester(it.synopsis) } ?: Modifier,
             )
         }
     }

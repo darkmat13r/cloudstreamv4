@@ -10,7 +10,7 @@ import com.lagradost.cloudstream3.utils.DataStore.getKeys
 import com.lagradost.cloudstream3.utils.DataStoreHelper.getViewPos
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
 import com.lagradost.cloudstream3.utils.downloader.DownloadQueueManager
-import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.getDownloadFileInfo
+import com.lagradost.cloudstream4.download.EngineVideoDownload.Companion.getDownloadListInfo
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadSeriesContents
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadSeriesSource
@@ -114,7 +114,7 @@ internal class AndroidDownloadSeriesSource(
             .distinctBy { it.id }
         cached = episodes.associateBy { it.id }
         episodes.mapNotNull { episode ->
-            val file = getDownloadFileInfo(appContext, episode.id) ?: return@mapNotNull null
+            val file = getDownloadListInfo(appContext, episode.id) ?: return@mapNotNull null
             val position = getViewPos(episode.id)
             val watched = position?.takeIf { it.duration > 0L }?.let { it.position.toFloat() / it.duration.toFloat() }
             OnDisk(episode, file.fileLength, file.totalBytes, watched)

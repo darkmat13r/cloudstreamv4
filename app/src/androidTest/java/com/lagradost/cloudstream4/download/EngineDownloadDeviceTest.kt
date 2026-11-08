@@ -45,17 +45,11 @@ import org.junit.Before
 import org.junit.Test
 import org.junit.runner.RunWith
 import java.io.File
+import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.concurrent.atomic.AtomicReference
 
 private const val MIB = 1_048_576L
-
-/**
- * The most a dropped body can lose before it reaches the part file: Ktor's 1 MiB `ByteChannel`, whose unread bytes
- * are discarded when the engine fails the body (`KMP-46`, logged as `KMP-69`). A resume that starts further back than
- * this re-fetches bytes that were on disk.
- */
-private const val CHANNEL_DISCARD = MIB
 private const val FOLDER = "EngineDownloadDeviceTest"
 private const val TAG = "EngineDownloadDeviceTest"
 
@@ -99,6 +93,7 @@ class EngineDownloadDeviceTest {
         EngineDownloadSwitch.allowPrivateAddressesForTests = false
         EngineDownloadSwitch.storageForTests = null
         EngineDownloadSwitch.stagingRootForTests = null
+        EngineDownloadSwitch.minPartBytesForTests = null
         ids.forEach { id ->
             visibleFiles(nameOf(id)).forEach { it.delete() }
             DownloadFacts.clear(id)
@@ -333,35 +328,70 @@ class EngineDownloadDeviceTest {
     @Test
     fun aConnectionDroppedMidPartIsResumedWithinThePartAndTheFileIsByteIdentical() = runBlocking {
         val id = newId(930_004)
-        val source = SeededSource(seed = 4, size = 16 * MIB)
+        // 32 MiB in the engine's 8 parts is 4 MiB a part, cut at 3 MiB. How much of the cut reaches the part file depends
+        // on how full Ktor's channels are when the body fails, so the test reads that from disk. The body passes through
+        // two ByteChannels (the OkHttp engine's and the one the response pipeline copies into), and a failed body loses
+        // what both hold: about 5 MiB at most, from the bytecode (KMP-69). So onDisk > 0 is not guaranteed by this
+        // geometry. The most lost in a measured run was 2,416,838 bytes.
+        val source = SeededSource(seed = 4, size = 32 * MIB)
+        // No part may be split. PartTable.next() splits a part with at least 2 * minPartBytes left, and with
+        // minPartBytes at the part size (32 MiB / 8) no part ever has that much. At the 1 MiB default an idle worker
+        // could split the dropped part mid-attempt, below the cut, and the server would never send dropAfter bytes.
+        // So the dropped request is always the one the fault chose, and it is always cut at exactly dropAfter.
+        EngineDownloadSwitch.minPartBytesForTests = 4 * MIB
         EngineTestServer(source).use { server ->
             val bodyRequests = AtomicInteger()
-            // BUG-45: past Ktor's 1 MiB channel, which a dropped body discards unread (KMP-46), so at least
-            // 512 KiB of the 2 MiB part is on disk and the resume has to start inside it. At 256 KiB the whole cut
-            // could be discarded and the part refetched from its start, which is correct and failed this test.
-            val dropAfter = 3 * MIB / 2
+            val dropAfter = 3 * MIB
+            val faulted = AtomicReference<Served?>(null)
             server.fault = { served ->
                 if (!served.isProbe && served.method == "GET" && bodyRequests.incrementAndGet() == 3) {
+                    faulted.set(served)
                     Fault.DropAfter(dropAfter)
                 } else {
                     null
                 }
             }
-            val status = wrapper().run(server, id, tryResume = false)
+            val storage = SizeRecordingStorage(stamp = { server.log.size })
+            val partStarts = ConcurrentHashMap<Int, Long>()
+            val status = wrapper(storage = storage, onSnapshot = { s -> s.parts.forEach { partStarts[it.id] = it.start } })
+                .run(server, id, tryResume = false)
             Log.i(TAG, "drop: status=$status requests=${server.log.toList()}")
 
             assertTrue(status.success)
             assertDestinationIsTheSource(id, source)
-            val dropped = server.bodyRequests().single { it.bytesSent == dropAfter && it.rangeEnd != null &&
-                it.rangeEnd!! - it.rangeStart!! + 1 > dropAfter }
+            // With splitting off, the drop is deterministic: the third body request is cut at exactly dropAfter, and
+            // it is the only request that was.
+            val dropped = faulted.get()
+            assertNotNull("no third body request was made", dropped)
+            dropped!!
+            assertEquals("the third body request was not cut at the drop", dropAfter, dropped.bytesSent)
+            assertEquals(
+                listOf(dropped),
+                server.bodyRequests().filter { it.bytesSent == dropAfter && it.rangeEnd != null &&
+                    it.rangeEnd!! - it.rangeStart!! + 1 > dropAfter },
+            )
             val start = dropped.rangeStart!!
-            // The part file is joined away by the time the run ends, so its length at the drop cannot be read here.
-            // Pin the lower bound instead: a resume may refetch at most the channel's discard, never more.
+            val partFile = "part-" + partStarts.entries.single { it.value == start }.key
+
+            // BUG-45: the engine's rule 1. Every attempt reads the part file's size and asks for `start + size`, so
+            // the resume is pinned to what the disk held, not to a guess at how much a dropped body loses.
+            // A read stamped at or past the dropped request's index came after the server saw it: the first is the
+            // read after the failed attempt (rule 20), the second is the next attempt's offset.
+            val afterDrop = storage.readsOf(partFile).filter { it.stamp >= dropped.index }
+            assertTrue("fewer than two size reads of the dropped part after the drop: $afterDrop", afterDrop.size >= 2)
+            val onDisk = afterDrop[1].size ?: 0L
+            Log.i(TAG, "drop-loss: dropAfter=$dropAfter onDisk=$onDisk lost=${dropAfter - onDisk}")
+            assertEquals("the part file changed between the failure and the resume", afterDrop[0].size ?: 0L, onDisk)
+            assertTrue("the part file holds $onDisk bytes, more than the $dropAfter sent", onDisk <= dropAfter)
+            // No `onDisk > 0`: Ktor can drop more than this cut (two channels; KMP-69 measured 2,416,838 bytes at 3 MiB),
+            // and restarting the part from its start is then correct. The rule is the exact offset, asserted below.
             assertTrue(
-                "no request carried on inside the dropped part, within the channel's discard",
-                server.bodyRequests().any {
-                    it.index > dropped.index && it.rangeStart!! in (start + dropAfter - CHANNEL_DISCARD)..(start + dropAfter)
-                },
+                "no request resumed the dropped part at exactly start + $onDisk",
+                server.bodyRequests().any { it.index > afterDrop[1].stamp && it.rangeStart == start + onDisk },
+            )
+            assertTrue(
+                "a request after the drop asked again for bytes the part file held",
+                server.bodyRequests().none { it.index > dropped.index && it.rangeStart!! in start until start + onDisk },
             )
         }
     }

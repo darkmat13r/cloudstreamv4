@@ -2,6 +2,7 @@ package com.lagradost.cloudstream3.ui.download
 
 import android.content.DialogInterface
 import android.net.Uri
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.google.android.material.snackbar.Snackbar
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
@@ -17,10 +18,12 @@ import com.lagradost.cloudstream3.utils.AppContextUtils.setDefaultFocus
 import com.lagradost.cloudstream3.utils.DOWNLOAD_EPISODE_CACHE
 import com.lagradost.cloudstream3.utils.DOWNLOAD_HEADER_CACHE
 import com.lagradost.cloudstream3.utils.SnackbarHelper.showSnackbar
+import com.lagradost.cloudstream3.CommonActivity.showToast
 import com.lagradost.cloudstream3.utils.UIHelper.navigate
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
 import com.lagradost.cloudstream3.utils.downloader.DownloadQueueManager
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager
+import com.lagradost.cloudstream4.download.EngineVideoDownload
 import kotlinx.coroutines.MainScope
 
 object DownloadButtonSetup {
@@ -117,6 +120,11 @@ object DownloadButtonSetup {
 
             DOWNLOAD_ACTION_PLAY_FILE -> {
                 activity?.let { act ->
+                    // KMP-60: an engine download listed before its file exists has nothing to play yet.
+                    if (EngineVideoDownload.refusesPlay(act, id)) {
+                        showToast(R.string.downloading, Toast.LENGTH_SHORT)
+                        return
+                    }
                     val parent = getKey<DownloadObjects.DownloadHeaderCached>(
                         DOWNLOAD_HEADER_CACHE,
                         click.data.parentId.toString()
@@ -135,6 +143,8 @@ object DownloadButtonSetup {
                         }.thenBy { it.episode })
 
                     allRelevantEpisodes?.forEach {
+                        // KMP-60: nor does the playlist take one, so playing on never reaches an empty path.
+                        if (EngineVideoDownload.refusesPlay(act, it.id)) return@forEach
                         val keyInfo = getKey<DownloadObjects.DownloadedFileInfo>(
                             VideoDownloadManager.KEY_DOWNLOAD_INFO,
                             it.id.toString()

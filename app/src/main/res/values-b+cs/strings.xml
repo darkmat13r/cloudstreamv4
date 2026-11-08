@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte %d zdroj."</item><item quantity="few">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všechny %d zdroje."</item><item quantity="many">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdroje."</item><item quantity="other">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ZDROJ"</item><item quantity="few">"%d ZDROJE"</item><item quantity="many">"%d ZDROJE"</item><item quantity="other">"%d ZDROJŮ"</item></plurals>
 <string name="account">"účet"</string>
+<string name="account_add_profile">"Přidat profil"</string>
+<string name="account_manage_profiles">"Spravovat profily"</string>
+<string name="account_pair_code">"Váš kód"</string>
+<string name="account_pair_instructions">"Otevřete to v telefonu a zadejte kód níže."</string>
+<string name="account_pair_new_code">"Získat nový kód"</string>
+<string name="account_pair_title" formatted="true">"Spárovat %s"</string>
+<string name="account_profile_current">"Aktuální"</string>
+<string name="account_profile_locked">"Zamčeno · PIN"</string>
+<string name="account_profile_no_sync">"Bez synchronizace"</string>
+<string name="account_select_note">"Samostatná historie sledování · nejde o přihlášení"</string>
+<string name="account_select_title">"Kdo se dívá?"</string>
+<string name="account_sync_connected">"Připojeno · přihlášeno na tomto zařízení"</string>
+<string name="account_sync_needs_browser">"Přihlášení vyžaduje webový prohlížeč. Toto zařízení žádný nemá."</string>
+<string name="account_sync_note">"Volitelné. Synchronizuje postup sledování s účtem, který už máte."</string>
+<string name="account_sync_pair">"Spárovat kódem"</string>
+<string name="account_sync_remove">"Odebrat z tohoto zařízení"</string>
+<string name="account_sync_title">"Synchronizační služby"</string>
+<string name="account_sync_unavailable">"Zde není k dispozici"</string>
 <string name="action_add_to_bookmarks">"Nastavit stav sledování"</string>
 <string name="action_add_to_favorites">"Přidat do oblíbených"</string>
 <string name="action_default">"Výchozí"</string>

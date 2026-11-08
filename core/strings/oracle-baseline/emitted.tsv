@@ -44,6 +44,24 @@ values	plurals	search_tv_sources_count	other	%1$d / %2$d
 values	plurals	search_tv_suggestion_sources	one	%d SOURCE
 values	plurals	search_tv_suggestion_sources	other	%d SOURCES
 values	string	account	-	account
+values	string	account_add_profile	-	Add profile
+values	string	account_manage_profiles	-	Manage profiles
+values	string	account_pair_code	-	Your code
+values	string	account_pair_instructions	-	Open this on your phone and enter the code below.
+values	string	account_pair_new_code	-	Get a new code
+values	string	account_pair_title	-	Pair %s
+values	string	account_profile_current	-	Current
+values	string	account_profile_locked	-	Locked · PIN
+values	string	account_profile_no_sync	-	No sync
+values	string	account_select_note	-	Separate watch history · not logins
+values	string	account_select_title	-	Who's watching?
+values	string	account_sync_connected	-	Connected · signed in on this device
+values	string	account_sync_needs_browser	-	Sign-in needs a web browser. This device has none.
+values	string	account_sync_note	-	Optional. Syncs watch progress to an account you already have.
+values	string	account_sync_pair	-	Pair with a code
+values	string	account_sync_remove	-	Remove from this device
+values	string	account_sync_title	-	Sync services
+values	string	account_sync_unavailable	-	Not available here
 values	string	action_add_to_bookmarks	-	Set watch status
 values	string	action_add_to_favorites	-	Add to favorites
 values	string	action_default	-	Default
@@ -993,6 +1011,24 @@ values-b+af	plurals	search_state_no_suggestions_body	one	Druk die sleutelbord se
 values-b+af	plurals	search_state_no_suggestions_body	other	Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek.
 values-b+af	plurals	search_tv_suggestion_sources	one	%d BRON
 values-b+af	plurals	search_tv_suggestion_sources	other	%d BRONNE
+values-b+af	string	account_add_profile	-	Voeg profiel by
+values-b+af	string	account_manage_profiles	-	Bestuur profiele
+values-b+af	string	account_pair_code	-	Jou kode
+values-b+af	string	account_pair_instructions	-	Maak dit op jou foon oop en voer die kode hieronder in.
+values-b+af	string	account_pair_new_code	-	Kry 'n nuwe kode
+values-b+af	string	account_pair_title	-	Koppel %s
+values-b+af	string	account_profile_current	-	Huidig
+values-b+af	string	account_profile_locked	-	Gesluit · PIN
+values-b+af	string	account_profile_no_sync	-	Geen sinkronisasie
+values-b+af	string	account_select_note	-	Aparte kykgeskiedenis · nie aanmeldings nie
+values-b+af	string	account_select_title	-	Wie kyk?
+values-b+af	string	account_sync_connected	-	Gekoppel · aangemeld op hierdie toestel
+values-b+af	string	account_sync_needs_browser	-	Aanmelding het 'n webblaaier nodig. Hierdie toestel het nie een nie.
+values-b+af	string	account_sync_note	-	Opsioneel. Sinkroniseer kykvordering met 'n rekening wat jy reeds het.
+values-b+af	string	account_sync_pair	-	Koppel met 'n kode
+values-b+af	string	account_sync_remove	-	Verwyder van hierdie toestel
+values-b+af	string	account_sync_title	-	Sinkroniseringsdienste
+values-b+af	string	account_sync_unavailable	-	Nie hier beskikbaar nie
 values-b+af	string	action_add_to_bookmarks	-	Stel kykstatus
 values-b+af	string	action_open_play	-	Speel
 values-b+af	string	action_remove_from_bookmarks	-	Verwyder
@@ -1288,6 +1324,24 @@ values-b+am	plurals	search_state_no_suggestions_body	one	ለማንኛውም %d �
 values-b+am	plurals	search_state_no_suggestions_body	other	ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።
 values-b+am	plurals	search_tv_suggestion_sources	one	%d ምንጭ
 values-b+am	plurals	search_tv_suggestion_sources	other	%d ምንጮች
+values-b+am	string	account_add_profile	-	መገለጫ አክል
+values-b+am	string	account_manage_profiles	-	መገለጫዎችን አስተዳድር
+values-b+am	string	account_pair_code	-	የእርስዎ ኮድ
+values-b+am	string	account_pair_instructions	-	ይህን በስልክዎ ላይ ይክፈቱ እና ከታች ያለውን ኮድ ያስገቡ።
+values-b+am	string	account_pair_new_code	-	አዲስ ኮድ ያግኙ
+values-b+am	string	account_pair_title	-	%s አጣምር
+values-b+am	string	account_profile_current	-	የአሁኑ
+values-b+am	string	account_profile_locked	-	ተቆልፏል · ፒን
+values-b+am	string	account_profile_no_sync	-	ማመሳሰል የለም
+values-b+am	string	account_select_note	-	የተለየ የእይታ ታሪክ · መግቢያዎች አይደሉም
+values-b+am	string	account_select_title	-	ማን እየተመለከተ ነው?
+values-b+am	string	account_sync_connected	-	ተገናኝቷል · በዚህ መሣሪያ ላይ ገብቷል
+values-b+am	string	account_sync_needs_browser	-	መግባት የድር አሳሽ ይፈልጋል። ይህ መሣሪያ የለውም።
+values-b+am	string	account_sync_note	-	አማራጭ። የእይታ ሂደትን ቀድሞ ካለዎት መለያ ጋር ያመሳስላል።
+values-b+am	string	account_sync_pair	-	በኮድ አጣምር
+values-b+am	string	account_sync_remove	-	ከዚህ መሣሪያ አስወግድ
+values-b+am	string	account_sync_title	-	የማመሳሰል አገልግሎቶች
+values-b+am	string	account_sync_unavailable	-	እዚህ አይገኝም
 values-b+am	string	action_add_to_bookmarks	-	የምልከታ ሁኔታን ያቀናብሩ
 values-b+am	string	action_open_play	-	አጫውት
 values-b+am	string	action_open_watching	-	ተጨማሪ መረጃ
@@ -1576,6 +1630,24 @@ values-b+apc	plurals	search_state_no_suggestions_body	other	اكبس زر الت
 values-b+apc	plurals	search_tv_suggestion_sources	one	%d مصدر
 values-b+apc	plurals	search_tv_suggestion_sources	other	%d مصادر
 values-b+apc	string	account	-	أكونت
+values-b+apc	string	account_add_profile	-	زيد بروفايل
+values-b+apc	string	account_manage_profiles	-	إدارة البروفايلات
+values-b+apc	string	account_pair_code	-	الكود تبعك
+values-b+apc	string	account_pair_instructions	-	افتح هاد على تلفونك وفوّت الكود اللي تحت.
+values-b+apc	string	account_pair_new_code	-	خود كود جديد
+values-b+apc	string	account_pair_title	-	اربط %s
+values-b+apc	string	account_profile_current	-	الحالي
+values-b+apc	string	account_profile_locked	-	مقفول · PIN
+values-b+apc	string	account_profile_no_sync	-	ما في مزامنة
+values-b+apc	string	account_select_note	-	سجل مشاهدة منفصل · مش تسجيل دخول
+values-b+apc	string	account_select_title	-	مين عم يحضر؟
+values-b+apc	string	account_sync_connected	-	متصل · مسجّل دخول على هالجهاز
+values-b+apc	string	account_sync_needs_browser	-	تسجيل الدخول بدو متصفح ويب. هالجهاز ما فيه.
+values-b+apc	string	account_sync_note	-	اختياري. بيزامن تقدّم المشاهدة مع حساب عندك أصلاً.
+values-b+apc	string	account_sync_pair	-	اربط بكود
+values-b+apc	string	account_sync_remove	-	شيل من هالجهاز
+values-b+apc	string	account_sync_title	-	خدمات المزامنة
+values-b+apc	string	account_sync_unavailable	-	مش متوفر هون
 values-b+apc	string	action_add_to_bookmarks	-	عدل حالة الحَضِر
 values-b+apc	string	action_add_to_favorites	-	زيدو ع المفضل
 values-b+apc	string	action_default	-	الإفتراضي
@@ -2550,6 +2622,24 @@ values-b+ar	plurals	search_tv_suggestion_sources	other	%d مصدر
 values-b+ar	plurals	search_tv_suggestion_sources	two	%d مصدران
 values-b+ar	plurals	search_tv_suggestion_sources	zero	%d مصدر
 values-b+ar	string	account	-	حساب
+values-b+ar	string	account_add_profile	-	إضافة ملف شخصي
+values-b+ar	string	account_manage_profiles	-	إدارة الملفات الشخصية
+values-b+ar	string	account_pair_code	-	رمزك
+values-b+ar	string	account_pair_instructions	-	افتح هذا على هاتفك وأدخل الرمز أدناه.
+values-b+ar	string	account_pair_new_code	-	الحصول على رمز جديد
+values-b+ar	string	account_pair_title	-	ربط %s
+values-b+ar	string	account_profile_current	-	الحالي
+values-b+ar	string	account_profile_locked	-	مقفل · رمز PIN
+values-b+ar	string	account_profile_no_sync	-	بلا مزامنة
+values-b+ar	string	account_select_note	-	سجل مشاهدة منفصل · ليس تسجيلات دخول
+values-b+ar	string	account_select_title	-	من يشاهد؟
+values-b+ar	string	account_sync_connected	-	متصل · تم تسجيل الدخول على هذا الجهاز
+values-b+ar	string	account_sync_needs_browser	-	يتطلب تسجيل الدخول متصفح ويب. لا يوجد متصفح على هذا الجهاز.
+values-b+ar	string	account_sync_note	-	اختياري. يزامن تقدّم المشاهدة مع حساب لديك بالفعل.
+values-b+ar	string	account_sync_pair	-	الربط برمز
+values-b+ar	string	account_sync_remove	-	إزالة من هذا الجهاز
+values-b+ar	string	account_sync_title	-	خدمات المزامنة
+values-b+ar	string	account_sync_unavailable	-	غير متاح هنا
 values-b+ar	string	action_add_to_bookmarks	-	إعداد حالة المشاهدة
 values-b+ar	string	action_add_to_favorites	-	اضافة الى المفضلة
 values-b+ar	string	action_default	-	الإفتراضي
@@ -3516,6 +3606,24 @@ values-b+ars	plurals	search_tv_suggestion_sources	one	%d مصدر
 values-b+ars	plurals	search_tv_suggestion_sources	other	%d مصدر
 values-b+ars	plurals	search_tv_suggestion_sources	two	%d مصدران
 values-b+ars	plurals	search_tv_suggestion_sources	zero	%d مصدر
+values-b+ars	string	account_add_profile	-	أضف ملف شخصي
+values-b+ars	string	account_manage_profiles	-	إدارة الملفات الشخصية
+values-b+ars	string	account_pair_code	-	رمزك
+values-b+ars	string	account_pair_instructions	-	افتح هذا على جوالك وأدخل الرمز اللي تحت.
+values-b+ars	string	account_pair_new_code	-	خذ رمز جديد
+values-b+ars	string	account_pair_title	-	اربط %s
+values-b+ars	string	account_profile_current	-	الحالي
+values-b+ars	string	account_profile_locked	-	مقفل · PIN
+values-b+ars	string	account_profile_no_sync	-	بدون مزامنة
+values-b+ars	string	account_select_note	-	سجل مشاهدة منفصل · مو تسجيل دخول
+values-b+ars	string	account_select_title	-	مين يشاهد؟
+values-b+ars	string	account_sync_connected	-	متصل · مسجّل دخول على هالجهاز
+values-b+ars	string	account_sync_needs_browser	-	تسجيل الدخول يحتاج متصفح ويب. هالجهاز ما فيه.
+values-b+ars	string	account_sync_note	-	اختياري. يزامن تقدّم المشاهدة مع حساب عندك من قبل.
+values-b+ars	string	account_sync_pair	-	اربط برمز
+values-b+ars	string	account_sync_remove	-	احذف من هالجهاز
+values-b+ars	string	account_sync_title	-	خدمات المزامنة
+values-b+ars	string	account_sync_unavailable	-	مو متوفر هنا
 values-b+ars	string	action_add_to_bookmarks	-	ضبط حالة المشاهدة
 values-b+ars	string	action_default	-	عادي
 values-b+ars	string	action_mark_as_watched	-	وضع علامة كما شاهدت
@@ -4032,6 +4140,24 @@ values-b+as	plurals	search_state_no_suggestions_body	other	তথাপি আ�
 values-b+as	plurals	search_tv_suggestion_sources	one	%d উৎস
 values-b+as	plurals	search_tv_suggestion_sources	other	%d উৎস
 values-b+as	string	account	-	একাউন্ট
+values-b+as	string	account_add_profile	-	প্ৰফাইল যোগ কৰক
+values-b+as	string	account_manage_profiles	-	প্ৰফাইল পৰিচালনা কৰক
+values-b+as	string	account_pair_code	-	আপোনাৰ ক'ড
+values-b+as	string	account_pair_instructions	-	এইটো আপোনাৰ ফোনত খোলক আৰু তলৰ ক'ডটো দিয়ক।
+values-b+as	string	account_pair_new_code	-	নতুন ক'ড লওক
+values-b+as	string	account_pair_title	-	%s যোৰা লগাওক
+values-b+as	string	account_profile_current	-	বৰ্তমান
+values-b+as	string	account_profile_locked	-	লক কৰা · PIN
+values-b+as	string	account_profile_no_sync	-	ছিংক নাই
+values-b+as	string	account_select_note	-	পৃথক চোৱাৰ ইতিহাস · লগইন নহয়
+values-b+as	string	account_select_title	-	কোনে চাই আছে?
+values-b+as	string	account_sync_connected	-	সংযুক্ত · এই ডিভাইচত ছাইন ইন কৰা
+values-b+as	string	account_sync_needs_browser	-	ছাইন-ইনৰ বাবে ৱেব ব্ৰাউজাৰ লাগে। এই ডিভাইচত নাই।
+values-b+as	string	account_sync_note	-	বৈকল্পিক। আপোনাৰ আগৰে পৰা থকা একাউণ্টলৈ চোৱাৰ অগ্ৰগতি ছিংক কৰে।
+values-b+as	string	account_sync_pair	-	ক'ডেৰে যোৰা লগাওক
+values-b+as	string	account_sync_remove	-	এই ডিভাইচৰ পৰা আঁতৰাওক
+values-b+as	string	account_sync_title	-	ছিংক সেৱাসমূহ
+values-b+as	string	account_sync_unavailable	-	ইয়াত উপলব্ধ নহয়
 values-b+as	string	action_add_to_bookmarks	-	দেখাৰ অৱস্থা নিৰ্ধাৰণ কৰক
 values-b+as	string	action_add_to_favorites	-	প্ৰিয় তালিকালৈ যোগ কৰক
 values-b+as	string	action_default	-	ডিফল্ট
@@ -4847,6 +4973,24 @@ values-b+az	plurals	search_state_no_suggestions_body	one	Yenə də %d mənbədə
 values-b+az	plurals	search_state_no_suggestions_body	other	Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.
 values-b+az	plurals	search_tv_suggestion_sources	one	%d MƏNBƏ
 values-b+az	plurals	search_tv_suggestion_sources	other	%d MƏNBƏ
+values-b+az	string	account_add_profile	-	Profil əlavə et
+values-b+az	string	account_manage_profiles	-	Profilləri idarə et
+values-b+az	string	account_pair_code	-	Kodunuz
+values-b+az	string	account_pair_instructions	-	Bunu telefonunuzda açın və aşağıdakı kodu daxil edin.
+values-b+az	string	account_pair_new_code	-	Yeni kod al
+values-b+az	string	account_pair_title	-	%s qoş
+values-b+az	string	account_profile_current	-	Cari
+values-b+az	string	account_profile_locked	-	Kilidli · PIN
+values-b+az	string	account_profile_no_sync	-	Sinxronizasiya yoxdur
+values-b+az	string	account_select_note	-	Ayrı baxış tarixçəsi · giriş deyil
+values-b+az	string	account_select_title	-	Kim baxır?
+values-b+az	string	account_sync_connected	-	Qoşulub · bu cihazda daxil olunub
+values-b+az	string	account_sync_needs_browser	-	Giriş üçün veb brauzer lazımdır. Bu cihazda yoxdur.
+values-b+az	string	account_sync_note	-	İstəyə bağlı. Baxış irəliləyişini artıq olan hesabınızla sinxronlaşdırır.
+values-b+az	string	account_sync_pair	-	Kodla qoşul
+values-b+az	string	account_sync_remove	-	Bu cihazdan sil
+values-b+az	string	account_sync_title	-	Sinxronizasiya xidmətləri
+values-b+az	string	account_sync_unavailable	-	Burada mövcud deyil
 values-b+az	string	advanced_search	-	Təkmilləşdirilmiş Axtarış
 values-b+az	string	anime	-	Anime-lər
 values-b+az	string	anime_singular	-	Anime
@@ -5203,6 +5347,24 @@ values-b+be	plurals	search_tv_suggestion_sources	many	%d КРЫНІЦ
 values-b+be	plurals	search_tv_suggestion_sources	one	%d КРЫНІЦА
 values-b+be	plurals	search_tv_suggestion_sources	other	%d КРЫНІЦЫ
 values-b+be	string	account	-	уліковы запіс
+values-b+be	string	account_add_profile	-	Дадаць профіль
+values-b+be	string	account_manage_profiles	-	Кіраваць профілямі
+values-b+be	string	account_pair_code	-	Ваш код
+values-b+be	string	account_pair_instructions	-	Адкрыйце гэта на тэлефоне і ўвядзіце код ніжэй.
+values-b+be	string	account_pair_new_code	-	Атрымаць новы код
+values-b+be	string	account_pair_title	-	Звязаць %s
+values-b+be	string	account_profile_current	-	Бягучы
+values-b+be	string	account_profile_locked	-	Заблакіраваны · PIN
+values-b+be	string	account_profile_no_sync	-	Без сінхранізацыі
+values-b+be	string	account_select_note	-	Асобная гісторыя прагляду · не ўваходы
+values-b+be	string	account_select_title	-	Хто глядзіць?
+values-b+be	string	account_sync_connected	-	Падключана · уваход на гэтай прыладзе
+values-b+be	string	account_sync_needs_browser	-	Для ўваходу патрэбны вэб-браўзер. На гэтай прыладзе яго няма.
+values-b+be	string	account_sync_note	-	Неабавязкова. Сінхранізуе прагрэс прагляду з уліковым запісам, які ў вас ужо ёсць.
+values-b+be	string	account_sync_pair	-	Звязаць з кодам
+values-b+be	string	account_sync_remove	-	Выдаліць з гэтай прылады
+values-b+be	string	account_sync_title	-	Сэрвісы сінхранізацыі
+values-b+be	string	account_sync_unavailable	-	Тут недаступна
 values-b+be	string	action_add_to_bookmarks	-	Задаць статус прагляду
 values-b+be	string	action_add_to_favorites	-	Дадаць у абранае
 values-b+be	string	action_default	-	Прадвызначаны
@@ -6117,6 +6279,24 @@ values-b+bg	plurals	search_state_no_suggestions_body	other	Натиснете к
 values-b+bg	plurals	search_tv_suggestion_sources	one	%d ИЗТОЧНИК
 values-b+bg	plurals	search_tv_suggestion_sources	other	%d ИЗТОЧНИКА
 values-b+bg	string	account	-	Акаунт
+values-b+bg	string	account_add_profile	-	Добави профил
+values-b+bg	string	account_manage_profiles	-	Управление на профили
+values-b+bg	string	account_pair_code	-	Вашият код
+values-b+bg	string	account_pair_instructions	-	Отворете това на телефона си и въведете кода по-долу.
+values-b+bg	string	account_pair_new_code	-	Вземи нов код
+values-b+bg	string	account_pair_title	-	Свържи %s
+values-b+bg	string	account_profile_current	-	Текущ
+values-b+bg	string	account_profile_locked	-	Заключен · ПИН
+values-b+bg	string	account_profile_no_sync	-	Без синхронизация
+values-b+bg	string	account_select_note	-	Отделна история на гледане · не са профили за вход
+values-b+bg	string	account_select_title	-	Кой гледа?
+values-b+bg	string	account_sync_connected	-	Свързан · вписан на това устройство
+values-b+bg	string	account_sync_needs_browser	-	Влизането изисква уеб браузър. Това устройство няма такъв.
+values-b+bg	string	account_sync_note	-	По избор. Синхронизира напредъка на гледане с акаунт, който вече имате.
+values-b+bg	string	account_sync_pair	-	Свържи с код
+values-b+bg	string	account_sync_remove	-	Премахни от това устройство
+values-b+bg	string	account_sync_title	-	Услуги за синхронизация
+values-b+bg	string	account_sync_unavailable	-	Не е налично тук
 values-b+bg	string	action_add_to_bookmarks	-	Задайте статус на гледане
 values-b+bg	string	action_add_to_favorites	-	Добави в любими
 values-b+bg	string	action_default	-	По подразбиране
@@ -7017,6 +7197,24 @@ values-b+bn	plurals	search_state_no_suggestions_body	other	তবুও সব %
 values-b+bn	plurals	search_tv_suggestion_sources	one	%d উৎস
 values-b+bn	plurals	search_tv_suggestion_sources	other	%d উৎস
 values-b+bn	string	account	-	অ্যাকাউন্ট
+values-b+bn	string	account_add_profile	-	প্রোফাইল যোগ করুন
+values-b+bn	string	account_manage_profiles	-	প্রোফাইল পরিচালনা করুন
+values-b+bn	string	account_pair_code	-	আপনার কোড
+values-b+bn	string	account_pair_instructions	-	এটি আপনার ফোনে খুলুন এবং নিচের কোডটি লিখুন।
+values-b+bn	string	account_pair_new_code	-	নতুন কোড নিন
+values-b+bn	string	account_pair_title	-	%s যুক্ত করুন
+values-b+bn	string	account_profile_current	-	বর্তমান
+values-b+bn	string	account_profile_locked	-	লক করা · পিন
+values-b+bn	string	account_profile_no_sync	-	সিঙ্ক নেই
+values-b+bn	string	account_select_note	-	আলাদা দেখার ইতিহাস · লগইন নয়
+values-b+bn	string	account_select_title	-	কে দেখছে?
+values-b+bn	string	account_sync_connected	-	সংযুক্ত · এই ডিভাইসে সাইন ইন করা
+values-b+bn	string	account_sync_needs_browser	-	সাইন-ইনের জন্য ওয়েব ব্রাউজার লাগে। এই ডিভাইসে নেই।
+values-b+bn	string	account_sync_note	-	ঐচ্ছিক। আপনার আগে থেকে থাকা অ্যাকাউন্টে দেখার অগ্রগতি সিঙ্ক করে।
+values-b+bn	string	account_sync_pair	-	কোড দিয়ে যুক্ত করুন
+values-b+bn	string	account_sync_remove	-	এই ডিভাইস থেকে সরান
+values-b+bn	string	account_sync_title	-	সিঙ্ক পরিষেবা
+values-b+bn	string	account_sync_unavailable	-	এখানে উপলব্ধ নয়
 values-b+bn	string	action_add_to_bookmarks	-	বুকমার্ক করুন
 values-b+bn	string	action_default	-	ডিফল্ট
 values-b+bn	string	action_open_play	-	চালান
@@ -7610,6 +7808,24 @@ values-b+ca	plurals	search_tv_suggestion_sources	many	%d FONTS
 values-b+ca	plurals	search_tv_suggestion_sources	one	%d FONT
 values-b+ca	plurals	search_tv_suggestion_sources	other	%d FONTS
 values-b+ca	string	account	-	compte
+values-b+ca	string	account_add_profile	-	Afegeix un perfil
+values-b+ca	string	account_manage_profiles	-	Gestiona els perfils
+values-b+ca	string	account_pair_code	-	El teu codi
+values-b+ca	string	account_pair_instructions	-	Obre això al telèfon i introdueix el codi de sota.
+values-b+ca	string	account_pair_new_code	-	Obtén un codi nou
+values-b+ca	string	account_pair_title	-	Vincula %s
+values-b+ca	string	account_profile_current	-	Actual
+values-b+ca	string	account_profile_locked	-	Bloquejat · PIN
+values-b+ca	string	account_profile_no_sync	-	Sense sincronització
+values-b+ca	string	account_select_note	-	Historial de visualització separat · no són inicis de sessió
+values-b+ca	string	account_select_title	-	Qui mira?
+values-b+ca	string	account_sync_connected	-	Connectat · sessió iniciada en aquest dispositiu
+values-b+ca	string	account_sync_needs_browser	-	Per iniciar la sessió cal un navegador web. Aquest dispositiu no en té.
+values-b+ca	string	account_sync_note	-	Opcional. Sincronitza el progrés de visualització amb un compte que ja tens.
+values-b+ca	string	account_sync_pair	-	Vincula amb un codi
+values-b+ca	string	account_sync_remove	-	Elimina d'aquest dispositiu
+values-b+ca	string	account_sync_title	-	Serveis de sincronització
+values-b+ca	string	account_sync_unavailable	-	No disponible aquí
 values-b+ca	string	action_add_to_bookmarks	-	Defineix l'estat de visualització
 values-b+ca	string	action_add_to_favorites	-	Afegir als favorits
 values-b+ca	string	action_open_play	-	Reprodueix
@@ -8113,6 +8329,24 @@ values-b+ckb	plurals	search_state_no_suggestions_body	one	کلیلی گەڕان�
 values-b+ckb	plurals	search_state_no_suggestions_body	other	کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت.
 values-b+ckb	plurals	search_tv_suggestion_sources	one	%d سەرچاوە
 values-b+ckb	plurals	search_tv_suggestion_sources	other	%d سەرچاوە
+values-b+ckb	string	account_add_profile	-	زیادکردنی پرۆفایل
+values-b+ckb	string	account_manage_profiles	-	بەڕێوەبردنی پرۆفایلەکان
+values-b+ckb	string	account_pair_code	-	کۆدەکەت
+values-b+ckb	string	account_pair_instructions	-	ئەمە لەسەر مۆبایلەکەت بکەرەوە و کۆدەکەی خوارەوە بنووسە.
+values-b+ckb	string	account_pair_new_code	-	کۆدێکی نوێ وەربگرە
+values-b+ckb	string	account_pair_title	-	بەستنەوەی %s
+values-b+ckb	string	account_profile_current	-	ئێستا
+values-b+ckb	string	account_profile_locked	-	داخراو · PIN
+values-b+ckb	string	account_profile_no_sync	-	هاوکاتکردن نییە
+values-b+ckb	string	account_select_note	-	مێژووی سەیرکردنی جیا · چوونەژوورەوە نییە
+values-b+ckb	string	account_select_title	-	کێ سەیر دەکات؟
+values-b+ckb	string	account_sync_connected	-	پەیوەستە · لەسەر ئەم ئامێرە چووەتە ژوورەوە
+values-b+ckb	string	account_sync_needs_browser	-	چوونەژوورەوە وێبگەڕێکی پێویستە. ئەم ئامێرە نییەتی.
+values-b+ckb	string	account_sync_note	-	ئارەزوومەندانە. پێشکەوتنی سەیرکردن لەگەڵ هەژمارێک کە پێشتر هەتە هاوکات دەکات.
+values-b+ckb	string	account_sync_pair	-	بە کۆد بەستنەوە
+values-b+ckb	string	account_sync_remove	-	لەم ئامێرە لابردن
+values-b+ckb	string	account_sync_title	-	خزمەتگوزارییەکانی هاوکاتکردن
+values-b+ckb	string	account_sync_unavailable	-	لێرە بەردەست نییە
 values-b+ckb	string	action_add_to_bookmarks	-	دۆخی تەماشاکردن دابنێ
 values-b+ckb	string	action_remove_from_bookmarks	-	لابردن
 values-b+ckb	string	app_dub_sub_episode_text_format	-	%1$sئەڵقەى%2$d
@@ -8410,6 +8644,24 @@ values-b+cs	plurals	search_tv_suggestion_sources	many	%d ZDROJE
 values-b+cs	plurals	search_tv_suggestion_sources	one	%d ZDROJ
 values-b+cs	plurals	search_tv_suggestion_sources	other	%d ZDROJŮ
 values-b+cs	string	account	-	účet
+values-b+cs	string	account_add_profile	-	Přidat profil
+values-b+cs	string	account_manage_profiles	-	Spravovat profily
+values-b+cs	string	account_pair_code	-	Váš kód
+values-b+cs	string	account_pair_instructions	-	Otevřete to v telefonu a zadejte kód níže.
+values-b+cs	string	account_pair_new_code	-	Získat nový kód
+values-b+cs	string	account_pair_title	-	Spárovat %s
+values-b+cs	string	account_profile_current	-	Aktuální
+values-b+cs	string	account_profile_locked	-	Zamčeno · PIN
+values-b+cs	string	account_profile_no_sync	-	Bez synchronizace
+values-b+cs	string	account_select_note	-	Samostatná historie sledování · nejde o přihlášení
+values-b+cs	string	account_select_title	-	Kdo se dívá?
+values-b+cs	string	account_sync_connected	-	Připojeno · přihlášeno na tomto zařízení
+values-b+cs	string	account_sync_needs_browser	-	Přihlášení vyžaduje webový prohlížeč. Toto zařízení žádný nemá.
+values-b+cs	string	account_sync_note	-	Volitelné. Synchronizuje postup sledování s účtem, který už máte.
+values-b+cs	string	account_sync_pair	-	Spárovat kódem
+values-b+cs	string	account_sync_remove	-	Odebrat z tohoto zařízení
+values-b+cs	string	account_sync_title	-	Synchronizační služby
+values-b+cs	string	account_sync_unavailable	-	Zde není k dispozici
 values-b+cs	string	action_add_to_bookmarks	-	Nastavit stav sledování
 values-b+cs	string	action_add_to_favorites	-	Přidat do oblíbených
 values-b+cs	string	action_default	-	Výchozí
@@ -9331,6 +9583,24 @@ values-b+de	plurals	search_state_no_suggestions_body	other	Drücke die Suchtaste
 values-b+de	plurals	search_tv_suggestion_sources	one	%d QUELLE
 values-b+de	plurals	search_tv_suggestion_sources	other	%d QUELLEN
 values-b+de	string	account	-	Account
+values-b+de	string	account_add_profile	-	Profil hinzufügen
+values-b+de	string	account_manage_profiles	-	Profile verwalten
+values-b+de	string	account_pair_code	-	Dein Code
+values-b+de	string	account_pair_instructions	-	Öffne das auf deinem Handy und gib den Code unten ein.
+values-b+de	string	account_pair_new_code	-	Neuen Code holen
+values-b+de	string	account_pair_title	-	%s koppeln
+values-b+de	string	account_profile_current	-	Aktuell
+values-b+de	string	account_profile_locked	-	Gesperrt · PIN
+values-b+de	string	account_profile_no_sync	-	Keine Synchronisierung
+values-b+de	string	account_select_note	-	Eigener Wiedergabeverlauf · keine Anmeldungen
+values-b+de	string	account_select_title	-	Wer schaut?
+values-b+de	string	account_sync_connected	-	Verbunden · auf diesem Gerät angemeldet
+values-b+de	string	account_sync_needs_browser	-	Die Anmeldung braucht einen Webbrowser. Dieses Gerät hat keinen.
+values-b+de	string	account_sync_note	-	Optional. Synchronisiert den Fortschritt mit einem Konto, das du schon hast.
+values-b+de	string	account_sync_pair	-	Mit Code koppeln
+values-b+de	string	account_sync_remove	-	Von diesem Gerät entfernen
+values-b+de	string	account_sync_title	-	Synchronisierungsdienste
+values-b+de	string	account_sync_unavailable	-	Hier nicht verfügbar
 values-b+de	string	action_add_to_bookmarks	-	Status setzen
 values-b+de	string	action_add_to_favorites	-	Zu Favoriten hinzufügen
 values-b+de	string	action_default	-	Standard
@@ -10246,6 +10516,24 @@ values-b+el	plurals	search_state_no_suggestions_body	other	Πατήστε το �
 values-b+el	plurals	search_tv_suggestion_sources	one	%d ΠΗΓΗ
 values-b+el	plurals	search_tv_suggestion_sources	other	%d ΠΗΓΕΣ
 values-b+el	string	account	-	Λογαριασμός
+values-b+el	string	account_add_profile	-	Προσθήκη προφίλ
+values-b+el	string	account_manage_profiles	-	Διαχείριση προφίλ
+values-b+el	string	account_pair_code	-	Ο κωδικός σας
+values-b+el	string	account_pair_instructions	-	Ανοίξτε το στο τηλέφωνό σας και εισαγάγετε τον παρακάτω κωδικό.
+values-b+el	string	account_pair_new_code	-	Νέος κωδικός
+values-b+el	string	account_pair_title	-	Σύζευξη %s
+values-b+el	string	account_profile_current	-	Τρέχον
+values-b+el	string	account_profile_locked	-	Κλειδωμένο · PIN
+values-b+el	string	account_profile_no_sync	-	Χωρίς συγχρονισμό
+values-b+el	string	account_select_note	-	Ξεχωριστό ιστορικό προβολής · όχι συνδέσεις
+values-b+el	string	account_select_title	-	Ποιος βλέπει;
+values-b+el	string	account_sync_connected	-	Συνδεδεμένο · σε αυτή τη συσκευή
+values-b+el	string	account_sync_needs_browser	-	Η σύνδεση χρειάζεται πρόγραμμα περιήγησης. Αυτή η συσκευή δεν έχει.
+values-b+el	string	account_sync_note	-	Προαιρετικό. Συγχρονίζει την πρόοδο προβολής με έναν λογαριασμό που ήδη έχετε.
+values-b+el	string	account_sync_pair	-	Σύζευξη με κωδικό
+values-b+el	string	account_sync_remove	-	Αφαίρεση από αυτή τη συσκευή
+values-b+el	string	account_sync_title	-	Υπηρεσίες συγχρονισμού
+values-b+el	string	account_sync_unavailable	-	Δεν είναι διαθέσιμο εδώ
 values-b+el	string	action_add_to_bookmarks	-	Ορισμός κατάστασης θέασης
 values-b+el	string	action_add_to_favorites	-	Προσθήκη στα Αγαπημένα
 values-b+el	string	action_default	-	Προεπιλεγμένοι υπότιτλοι
@@ -11089,6 +11377,24 @@ values-b+eo	plurals	search_state_no_suggestions_body	other	Premu la serĉoklavon
 values-b+eo	plurals	search_tv_suggestion_sources	one	%d FONTO
 values-b+eo	plurals	search_tv_suggestion_sources	other	%d FONTOJ
 values-b+eo	string	account	-	konto
+values-b+eo	string	account_add_profile	-	Aldoni profilon
+values-b+eo	string	account_manage_profiles	-	Administri profilojn
+values-b+eo	string	account_pair_code	-	Via kodo
+values-b+eo	string	account_pair_instructions	-	Malfermu ĉi tion en via telefono kaj enigu la suban kodon.
+values-b+eo	string	account_pair_new_code	-	Ricevi novan kodon
+values-b+eo	string	account_pair_title	-	Pari %s
+values-b+eo	string	account_profile_current	-	Nuna
+values-b+eo	string	account_profile_locked	-	Ŝlosita · PIN
+values-b+eo	string	account_profile_no_sync	-	Sen sinkronigo
+values-b+eo	string	account_select_note	-	Aparta spekta historio · ne ensalutoj
+values-b+eo	string	account_select_title	-	Kiu spektas?
+values-b+eo	string	account_sync_connected	-	Konektita · ensalutinta en ĉi tiu aparato
+values-b+eo	string	account_sync_needs_browser	-	Ensaluto bezonas retumilon. Ĉi tiu aparato ne havas.
+values-b+eo	string	account_sync_note	-	Laŭvola. Sinkronigas spektan progreson kun konto, kiun vi jam havas.
+values-b+eo	string	account_sync_pair	-	Pari per kodo
+values-b+eo	string	account_sync_remove	-	Forigi el ĉi tiu aparato
+values-b+eo	string	account_sync_title	-	Sinkronigaj servoj
+values-b+eo	string	account_sync_unavailable	-	Ne disponebla ĉi tie
 values-b+eo	string	action_open_play	-	Spekti
 values-b+eo	string	action_open_watching	-	Pli da informoj
 values-b+eo	string	action_remove_from_bookmarks	-	Forigi
@@ -11473,6 +11779,24 @@ values-b+es	plurals	search_tv_suggestion_sources	many	%d FUENTES
 values-b+es	plurals	search_tv_suggestion_sources	one	%d FUENTE
 values-b+es	plurals	search_tv_suggestion_sources	other	%d FUENTES
 values-b+es	string	account	-	Cuenta
+values-b+es	string	account_add_profile	-	Añadir perfil
+values-b+es	string	account_manage_profiles	-	Gestionar perfiles
+values-b+es	string	account_pair_code	-	Tu código
+values-b+es	string	account_pair_instructions	-	Abre esto en tu teléfono e introduce el código de abajo.
+values-b+es	string	account_pair_new_code	-	Obtener un código nuevo
+values-b+es	string	account_pair_title	-	Vincular %s
+values-b+es	string	account_profile_current	-	Actual
+values-b+es	string	account_profile_locked	-	Bloqueado · PIN
+values-b+es	string	account_profile_no_sync	-	Sin sincronización
+values-b+es	string	account_select_note	-	Historial de visualización aparte · no son inicios de sesión
+values-b+es	string	account_select_title	-	¿Quién está viendo?
+values-b+es	string	account_sync_connected	-	Conectado · sesión iniciada en este dispositivo
+values-b+es	string	account_sync_needs_browser	-	Iniciar sesión requiere un navegador web. Este dispositivo no tiene.
+values-b+es	string	account_sync_note	-	Opcional. Sincroniza el progreso con una cuenta que ya tienes.
+values-b+es	string	account_sync_pair	-	Vincular con un código
+values-b+es	string	account_sync_remove	-	Quitar de este dispositivo
+values-b+es	string	account_sync_title	-	Servicios de sincronización
+values-b+es	string	account_sync_unavailable	-	No disponible aquí
 values-b+es	string	action_add_to_bookmarks	-	Seleccionar estado de visualización
 values-b+es	string	action_add_to_favorites	-	Añadido a favoritos
 values-b+es	string	action_default	-	Predeterminado
@@ -12387,6 +12711,24 @@ values-b+fa	plurals	search_state_no_suggestions_body	one	برای جست‌وج�
 values-b+fa	plurals	search_state_no_suggestions_body	other	برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.
 values-b+fa	plurals	search_tv_suggestion_sources	one	%d منبع
 values-b+fa	plurals	search_tv_suggestion_sources	other	%d منبع
+values-b+fa	string	account_add_profile	-	افزودن نمایه
+values-b+fa	string	account_manage_profiles	-	مدیریت نمایه‌ها
+values-b+fa	string	account_pair_code	-	کد شما
+values-b+fa	string	account_pair_instructions	-	این را در تلفن خود باز کنید و کد زیر را وارد کنید.
+values-b+fa	string	account_pair_new_code	-	دریافت کد جدید
+values-b+fa	string	account_pair_title	-	جفت‌سازی %s
+values-b+fa	string	account_profile_current	-	فعلی
+values-b+fa	string	account_profile_locked	-	قفل‌شده · PIN
+values-b+fa	string	account_profile_no_sync	-	بدون همگام‌سازی
+values-b+fa	string	account_select_note	-	تاریخچهٔ تماشای جدا · ورود به حساب نیست
+values-b+fa	string	account_select_title	-	چه کسی تماشا می‌کند؟
+values-b+fa	string	account_sync_connected	-	متصل · واردشده در این دستگاه
+values-b+fa	string	account_sync_needs_browser	-	ورود به مرورگر وب نیاز دارد. این دستگاه مرورگر ندارد.
+values-b+fa	string	account_sync_note	-	اختیاری. پیشرفت تماشا را با حسابی که از قبل دارید همگام می‌کند.
+values-b+fa	string	account_sync_pair	-	جفت‌سازی با کد
+values-b+fa	string	account_sync_remove	-	حذف از این دستگاه
+values-b+fa	string	account_sync_title	-	سرویس‌های همگام‌سازی
+values-b+fa	string	account_sync_unavailable	-	اینجا در دسترس نیست
 values-b+fa	string	action_add_to_bookmarks	-	تنظیم وضعیت تماشا
 values-b+fa	string	action_default	-	پیش‌فرض
 values-b+fa	string	action_open_play	-	نمایش
@@ -12913,6 +13255,24 @@ values-b+fil	plurals	search_state_no_suggestions_body	one	Pindutin ang search ke
 values-b+fil	plurals	search_state_no_suggestions_body	other	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.
 values-b+fil	plurals	search_tv_suggestion_sources	one	%d MAPAGKUKUNAN
 values-b+fil	plurals	search_tv_suggestion_sources	other	%d MAPAGKUKUNAN
+values-b+fil	string	account_add_profile	-	Magdagdag ng profile
+values-b+fil	string	account_manage_profiles	-	Pamahalaan ang mga profile
+values-b+fil	string	account_pair_code	-	Ang iyong code
+values-b+fil	string	account_pair_instructions	-	Buksan ito sa iyong phone at ilagay ang code sa ibaba.
+values-b+fil	string	account_pair_new_code	-	Kumuha ng bagong code
+values-b+fil	string	account_pair_title	-	Ipares ang %s
+values-b+fil	string	account_profile_current	-	Kasalukuyan
+values-b+fil	string	account_profile_locked	-	Naka-lock · PIN
+values-b+fil	string	account_profile_no_sync	-	Walang sync
+values-b+fil	string	account_select_note	-	Hiwalay na history ng panonood · hindi mga login
+values-b+fil	string	account_select_title	-	Sino ang nanonood?
+values-b+fil	string	account_sync_connected	-	Nakakonekta · naka-sign in sa device na ito
+values-b+fil	string	account_sync_needs_browser	-	Kailangan ng web browser para mag-sign in. Wala nito ang device na ito.
+values-b+fil	string	account_sync_note	-	Opsyonal. Sini-sync ang progreso ng panonood sa account na mayroon ka na.
+values-b+fil	string	account_sync_pair	-	Ipares gamit ang code
+values-b+fil	string	account_sync_remove	-	Alisin sa device na ito
+values-b+fil	string	account_sync_title	-	Mga serbisyo ng sync
+values-b+fil	string	account_sync_unavailable	-	Hindi available dito
 values-b+fil	string	action_add_to_bookmarks	-	Itakda ang kapalaran ng panonood
 values-b+fil	string	action_add_to_favorites	-	Idagdag sa mga paborito <3
 values-b+fil	string	action_mark_as_watched	-	I-tanda bilang napanood na
@@ -13383,6 +13743,24 @@ values-b+fr	plurals	search_tv_suggestion_sources	many	%d SOURCES
 values-b+fr	plurals	search_tv_suggestion_sources	one	%d SOURCE
 values-b+fr	plurals	search_tv_suggestion_sources	other	%d SOURCES
 values-b+fr	string	account	-	compte
+values-b+fr	string	account_add_profile	-	Ajouter un profil
+values-b+fr	string	account_manage_profiles	-	Gérer les profils
+values-b+fr	string	account_pair_code	-	Votre code
+values-b+fr	string	account_pair_instructions	-	Ouvrez ceci sur votre téléphone et saisissez le code ci-dessous.
+values-b+fr	string	account_pair_new_code	-	Obtenir un nouveau code
+values-b+fr	string	account_pair_title	-	Associer %s
+values-b+fr	string	account_profile_current	-	Actuel
+values-b+fr	string	account_profile_locked	-	Verrouillé · PIN
+values-b+fr	string	account_profile_no_sync	-	Pas de synchronisation
+values-b+fr	string	account_select_note	-	Historique de visionnage séparé · pas des connexions
+values-b+fr	string	account_select_title	-	Qui regarde ?
+values-b+fr	string	account_sync_connected	-	Connecté · sur cet appareil
+values-b+fr	string	account_sync_needs_browser	-	La connexion nécessite un navigateur web. Cet appareil n'en a pas.
+values-b+fr	string	account_sync_note	-	Facultatif. Synchronise votre progression avec un compte que vous avez déjà.
+values-b+fr	string	account_sync_pair	-	Associer avec un code
+values-b+fr	string	account_sync_remove	-	Retirer de cet appareil
+values-b+fr	string	account_sync_title	-	Services de synchronisation
+values-b+fr	string	account_sync_unavailable	-	Indisponible ici
 values-b+fr	string	action_add_to_bookmarks	-	Définir le statut de visionage
 values-b+fr	string	action_add_to_favorites	-	Ajouter aux favoris
 values-b+fr	string	action_default	-	Défault
@@ -14296,6 +14674,24 @@ values-b+gl	plurals	search_state_no_suggestions_body	one	Preme a tecla de busca 
 values-b+gl	plurals	search_state_no_suggestions_body	other	Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes.
 values-b+gl	plurals	search_tv_suggestion_sources	one	%d FONTE
 values-b+gl	plurals	search_tv_suggestion_sources	other	%d FONTES
+values-b+gl	string	account_add_profile	-	Engadir perfil
+values-b+gl	string	account_manage_profiles	-	Xestionar perfís
+values-b+gl	string	account_pair_code	-	O teu código
+values-b+gl	string	account_pair_instructions	-	Abre isto no teu teléfono e introduce o código de abaixo.
+values-b+gl	string	account_pair_new_code	-	Obter un código novo
+values-b+gl	string	account_pair_title	-	Vincular %s
+values-b+gl	string	account_profile_current	-	Actual
+values-b+gl	string	account_profile_locked	-	Bloqueado · PIN
+values-b+gl	string	account_profile_no_sync	-	Sen sincronización
+values-b+gl	string	account_select_note	-	Historial de visualización separado · non son inicios de sesión
+values-b+gl	string	account_select_title	-	Quen está a ver?
+values-b+gl	string	account_sync_connected	-	Conectado · sesión iniciada neste dispositivo
+values-b+gl	string	account_sync_needs_browser	-	Iniciar sesión precisa dun navegador web. Este dispositivo non ten.
+values-b+gl	string	account_sync_note	-	Opcional. Sincroniza o progreso cunha conta que xa tes.
+values-b+gl	string	account_sync_pair	-	Vincular cun código
+values-b+gl	string	account_sync_remove	-	Quitar deste dispositivo
+values-b+gl	string	account_sync_title	-	Servizos de sincronización
+values-b+gl	string	account_sync_unavailable	-	Non dispoñible aquí
 values-b+gl	string	action_add_to_bookmarks	-	Seleccionar estado de visualización
 values-b+gl	string	action_default	-	Por defecto
 values-b+gl	string	action_open_play	-	Reproducir
@@ -14777,6 +15173,24 @@ values-b+he	plurals	search_tv_suggestion_sources	one	%d מקור
 values-b+he	plurals	search_tv_suggestion_sources	other	%d מקורות
 values-b+he	plurals	search_tv_suggestion_sources	two	%d מקורות
 values-b+he	string	account	-	חשבון
+values-b+he	string	account_add_profile	-	הוספת פרופיל
+values-b+he	string	account_manage_profiles	-	ניהול פרופילים
+values-b+he	string	account_pair_code	-	הקוד שלך
+values-b+he	string	account_pair_instructions	-	פתחו את זה בטלפון והזינו את הקוד שלמטה.
+values-b+he	string	account_pair_new_code	-	קבלת קוד חדש
+values-b+he	string	account_pair_title	-	צימוד %s
+values-b+he	string	account_profile_current	-	נוכחי
+values-b+he	string	account_profile_locked	-	נעול · PIN
+values-b+he	string	account_profile_no_sync	-	ללא סנכרון
+values-b+he	string	account_select_note	-	היסטוריית צפייה נפרדת · לא התחברויות
+values-b+he	string	account_select_title	-	מי צופה?
+values-b+he	string	account_sync_connected	-	מחובר · מחובר במכשיר הזה
+values-b+he	string	account_sync_needs_browser	-	ההתחברות דורשת דפדפן אינטרנט. אין במכשיר הזה.
+values-b+he	string	account_sync_note	-	אופציונלי. מסנכרן את התקדמות הצפייה עם חשבון שכבר יש לך.
+values-b+he	string	account_sync_pair	-	צימוד עם קוד
+values-b+he	string	account_sync_remove	-	הסרה מהמכשיר הזה
+values-b+he	string	account_sync_title	-	שירותי סנכרון
+values-b+he	string	account_sync_unavailable	-	לא זמין כאן
 values-b+he	string	action_add_to_bookmarks	-	הגדר מצב צפייה
 values-b+he	string	action_default	-	ברירת מחדל
 values-b+he	string	action_mark_as_watched	-	סימון כנצפה
@@ -15504,6 +15918,24 @@ values-b+hi	plurals	search_state_no_suggestions_body	other	फिर भी स�
 values-b+hi	plurals	search_tv_suggestion_sources	one	%d स्रोत
 values-b+hi	plurals	search_tv_suggestion_sources	other	%d स्रोत
 values-b+hi	string	account	-	खाता
+values-b+hi	string	account_add_profile	-	प्रोफ़ाइल जोड़ें
+values-b+hi	string	account_manage_profiles	-	प्रोफ़ाइल प्रबंधित करें
+values-b+hi	string	account_pair_code	-	आपका कोड
+values-b+hi	string	account_pair_instructions	-	इसे अपने फ़ोन पर खोलें और नीचे दिया कोड डालें।
+values-b+hi	string	account_pair_new_code	-	नया कोड लें
+values-b+hi	string	account_pair_title	-	%s जोड़ें
+values-b+hi	string	account_profile_current	-	मौजूदा
+values-b+hi	string	account_profile_locked	-	लॉक · पिन
+values-b+hi	string	account_profile_no_sync	-	कोई सिंक नहीं
+values-b+hi	string	account_select_note	-	अलग देखने का इतिहास · लॉगिन नहीं
+values-b+hi	string	account_select_title	-	कौन देख रहा है?
+values-b+hi	string	account_sync_connected	-	कनेक्टेड · इस डिवाइस पर साइन इन
+values-b+hi	string	account_sync_needs_browser	-	साइन इन के लिए वेब ब्राउज़र चाहिए। इस डिवाइस में नहीं है।
+values-b+hi	string	account_sync_note	-	वैकल्पिक। देखने की प्रगति को आपके पहले से मौजूद खाते से सिंक करता है।
+values-b+hi	string	account_sync_pair	-	कोड से जोड़ें
+values-b+hi	string	account_sync_remove	-	इस डिवाइस से हटाएँ
+values-b+hi	string	account_sync_title	-	सिंक सेवाएँ
+values-b+hi	string	account_sync_unavailable	-	यहाँ उपलब्ध नहीं
 values-b+hi	string	action_add_to_bookmarks	-	दर्शन स्थिति सेट करें
 values-b+hi	string	action_default	-	डिफॉल्ट
 values-b+hi	string	action_mark_as_watched	-	देखा हुआ चिह्नित करें
@@ -16116,6 +16548,24 @@ values-b+hr	plurals	search_tv_suggestion_sources	few	%d IZVORA
 values-b+hr	plurals	search_tv_suggestion_sources	one	%d IZVOR
 values-b+hr	plurals	search_tv_suggestion_sources	other	%d IZVORA
 values-b+hr	string	account	-	račun
+values-b+hr	string	account_add_profile	-	Dodaj profil
+values-b+hr	string	account_manage_profiles	-	Upravljaj profilima
+values-b+hr	string	account_pair_code	-	Vaš kôd
+values-b+hr	string	account_pair_instructions	-	Otvorite ovo na telefonu i unesite kôd u nastavku.
+values-b+hr	string	account_pair_new_code	-	Dohvati novi kôd
+values-b+hr	string	account_pair_title	-	Upari %s
+values-b+hr	string	account_profile_current	-	Trenutni
+values-b+hr	string	account_profile_locked	-	Zaključano · PIN
+values-b+hr	string	account_profile_no_sync	-	Bez sinkronizacije
+values-b+hr	string	account_select_note	-	Zasebna povijest gledanja · nisu prijave
+values-b+hr	string	account_select_title	-	Tko gleda?
+values-b+hr	string	account_sync_connected	-	Povezano · prijavljeno na ovom uređaju
+values-b+hr	string	account_sync_needs_browser	-	Prijava zahtijeva web-preglednik. Ovaj uređaj ga nema.
+values-b+hr	string	account_sync_note	-	Neobavezno. Sinkronizira napredak gledanja s računom koji već imate.
+values-b+hr	string	account_sync_pair	-	Upari kodom
+values-b+hr	string	account_sync_remove	-	Ukloni s ovog uređaja
+values-b+hr	string	account_sync_title	-	Usluge sinkronizacije
+values-b+hr	string	account_sync_unavailable	-	Ovdje nije dostupno
 values-b+hr	string	action_add_to_bookmarks	-	Postavi status gledanja
 values-b+hr	string	action_add_to_favorites	-	Dodaj u favorite
 values-b+hr	string	action_default	-	Zadano
@@ -17026,6 +17476,24 @@ values-b+hu	plurals	search_state_no_suggestions_body	other	Nyomja meg a billenty
 values-b+hu	plurals	search_tv_suggestion_sources	one	%d FORRÁS
 values-b+hu	plurals	search_tv_suggestion_sources	other	%d FORRÁS
 values-b+hu	string	account	-	Fiók
+values-b+hu	string	account_add_profile	-	Profil hozzáadása
+values-b+hu	string	account_manage_profiles	-	Profilok kezelése
+values-b+hu	string	account_pair_code	-	A kódod
+values-b+hu	string	account_pair_instructions	-	Nyisd meg ezt a telefonodon, és add meg az alábbi kódot.
+values-b+hu	string	account_pair_new_code	-	Új kód kérése
+values-b+hu	string	account_pair_title	-	%s párosítása
+values-b+hu	string	account_profile_current	-	Jelenlegi
+values-b+hu	string	account_profile_locked	-	Zárolva · PIN
+values-b+hu	string	account_profile_no_sync	-	Nincs szinkronizálás
+values-b+hu	string	account_select_note	-	Külön megtekintési előzmények · nem bejelentkezések
+values-b+hu	string	account_select_title	-	Ki néz?
+values-b+hu	string	account_sync_connected	-	Csatlakoztatva · bejelentkezve ezen az eszközön
+values-b+hu	string	account_sync_needs_browser	-	A bejelentkezéshez webböngésző kell. Ezen az eszközön nincs.
+values-b+hu	string	account_sync_note	-	Nem kötelező. A megtekintési előrehaladást egy meglévő fiókkal szinkronizálja.
+values-b+hu	string	account_sync_pair	-	Párosítás kóddal
+values-b+hu	string	account_sync_remove	-	Eltávolítás erről az eszközről
+values-b+hu	string	account_sync_title	-	Szinkronizálási szolgáltatások
+values-b+hu	string	account_sync_unavailable	-	Itt nem érhető el
 values-b+hu	string	action_add_to_bookmarks	-	Megtekintés állapotának beállítása
 values-b+hu	string	action_add_to_favorites	-	Hozzáadás a kedvencekhez
 values-b+hu	string	action_default	-	Alapértelmezett
@@ -17833,6 +18301,24 @@ values-b+id	plurals	search_state_no_suggestions_action	other	Cari di semua %d su
 values-b+id	plurals	search_state_no_suggestions_body	other	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.
 values-b+id	plurals	search_tv_suggestion_sources	other	%d SUMBER
 values-b+id	string	account	-	akun
+values-b+id	string	account_add_profile	-	Tambah profil
+values-b+id	string	account_manage_profiles	-	Kelola profil
+values-b+id	string	account_pair_code	-	Kode Anda
+values-b+id	string	account_pair_instructions	-	Buka ini di ponsel Anda dan masukkan kode di bawah.
+values-b+id	string	account_pair_new_code	-	Dapatkan kode baru
+values-b+id	string	account_pair_title	-	Sandingkan %s
+values-b+id	string	account_profile_current	-	Saat ini
+values-b+id	string	account_profile_locked	-	Terkunci · PIN
+values-b+id	string	account_profile_no_sync	-	Tanpa sinkronisasi
+values-b+id	string	account_select_note	-	Riwayat tontonan terpisah · bukan login
+values-b+id	string	account_select_title	-	Siapa yang menonton?
+values-b+id	string	account_sync_connected	-	Terhubung · masuk di perangkat ini
+values-b+id	string	account_sync_needs_browser	-	Masuk memerlukan browser web. Perangkat ini tidak memilikinya.
+values-b+id	string	account_sync_note	-	Opsional. Menyinkronkan progres tontonan ke akun yang sudah Anda miliki.
+values-b+id	string	account_sync_pair	-	Sandingkan dengan kode
+values-b+id	string	account_sync_remove	-	Hapus dari perangkat ini
+values-b+id	string	account_sync_title	-	Layanan sinkronisasi
+values-b+id	string	account_sync_unavailable	-	Tidak tersedia di sini
 values-b+id	string	action_add_to_bookmarks	-	Atur status tontonan
 values-b+id	string	action_add_to_favorites	-	Tambahkan ke favorit
 values-b+id	string	action_default	-	Default
@@ -18736,6 +19222,24 @@ values-b+in	plurals	search_state_no_suggestions_action	other	Cari di semua %d su
 values-b+in	plurals	search_state_no_suggestions_body	other	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.
 values-b+in	plurals	search_tv_suggestion_sources	other	%d SUMBER
 values-b+in	string	account	-	akun
+values-b+in	string	account_add_profile	-	Tambah profil
+values-b+in	string	account_manage_profiles	-	Kelola profil
+values-b+in	string	account_pair_code	-	Kode Anda
+values-b+in	string	account_pair_instructions	-	Buka ini di ponsel Anda dan masukkan kode di bawah.
+values-b+in	string	account_pair_new_code	-	Dapatkan kode baru
+values-b+in	string	account_pair_title	-	Sandingkan %s
+values-b+in	string	account_profile_current	-	Saat ini
+values-b+in	string	account_profile_locked	-	Terkunci · PIN
+values-b+in	string	account_profile_no_sync	-	Tanpa sinkronisasi
+values-b+in	string	account_select_note	-	Riwayat tontonan terpisah · bukan login
+values-b+in	string	account_select_title	-	Siapa yang menonton?
+values-b+in	string	account_sync_connected	-	Terhubung · masuk di perangkat ini
+values-b+in	string	account_sync_needs_browser	-	Masuk memerlukan browser web. Perangkat ini tidak memilikinya.
+values-b+in	string	account_sync_note	-	Opsional. Menyinkronkan progres tontonan ke akun yang sudah Anda miliki.
+values-b+in	string	account_sync_pair	-	Sandingkan dengan kode
+values-b+in	string	account_sync_remove	-	Hapus dari perangkat ini
+values-b+in	string	account_sync_title	-	Layanan sinkronisasi
+values-b+in	string	account_sync_unavailable	-	Tidak tersedia di sini
 values-b+in	string	action_add_to_bookmarks	-	Atur status tontonan
 values-b+in	string	action_add_to_favorites	-	Tambahkan ke favorit
 values-b+in	string	action_default	-	Default
@@ -19671,6 +20175,24 @@ values-b+it	plurals	search_tv_suggestion_sources	many	%d FONTI
 values-b+it	plurals	search_tv_suggestion_sources	one	%d FONTE
 values-b+it	plurals	search_tv_suggestion_sources	other	%d FONTI
 values-b+it	string	account	-	account
+values-b+it	string	account_add_profile	-	Aggiungi profilo
+values-b+it	string	account_manage_profiles	-	Gestisci profili
+values-b+it	string	account_pair_code	-	Il tuo codice
+values-b+it	string	account_pair_instructions	-	Apri questa pagina sul telefono e inserisci il codice qui sotto.
+values-b+it	string	account_pair_new_code	-	Ottieni un nuovo codice
+values-b+it	string	account_pair_title	-	Associa %s
+values-b+it	string	account_profile_current	-	Attuale
+values-b+it	string	account_profile_locked	-	Bloccato · PIN
+values-b+it	string	account_profile_no_sync	-	Nessuna sincronizzazione
+values-b+it	string	account_select_note	-	Cronologia di visione separata · non sono accessi
+values-b+it	string	account_select_title	-	Chi sta guardando?
+values-b+it	string	account_sync_connected	-	Connesso · accesso eseguito su questo dispositivo
+values-b+it	string	account_sync_needs_browser	-	L'accesso richiede un browser web. Questo dispositivo non ne ha.
+values-b+it	string	account_sync_note	-	Facoltativo. Sincronizza i progressi con un account che hai già.
+values-b+it	string	account_sync_pair	-	Associa con un codice
+values-b+it	string	account_sync_remove	-	Rimuovi da questo dispositivo
+values-b+it	string	account_sync_title	-	Servizi di sincronizzazione
+values-b+it	string	account_sync_unavailable	-	Non disponibile qui
 values-b+it	string	action_add_to_bookmarks	-	Imposta stato riproduzione
 values-b+it	string	action_add_to_favorites	-	Aggiungi ai preferiti
 values-b+it	string	action_default	-	Default
@@ -20597,6 +21119,24 @@ values-b+iw	plurals	search_tv_suggestion_sources	one	%d מקור
 values-b+iw	plurals	search_tv_suggestion_sources	other	%d מקורות
 values-b+iw	plurals	search_tv_suggestion_sources	two	%d מקורות
 values-b+iw	string	account	-	חשבון
+values-b+iw	string	account_add_profile	-	הוספת פרופיל
+values-b+iw	string	account_manage_profiles	-	ניהול פרופילים
+values-b+iw	string	account_pair_code	-	הקוד שלך
+values-b+iw	string	account_pair_instructions	-	פתחו את זה בטלפון והזינו את הקוד שלמטה.
+values-b+iw	string	account_pair_new_code	-	קבלת קוד חדש
+values-b+iw	string	account_pair_title	-	צימוד %s
+values-b+iw	string	account_profile_current	-	נוכחי
+values-b+iw	string	account_profile_locked	-	נעול · PIN
+values-b+iw	string	account_profile_no_sync	-	ללא סנכרון
+values-b+iw	string	account_select_note	-	היסטוריית צפייה נפרדת · לא התחברויות
+values-b+iw	string	account_select_title	-	מי צופה?
+values-b+iw	string	account_sync_connected	-	מחובר · מחובר במכשיר הזה
+values-b+iw	string	account_sync_needs_browser	-	ההתחברות דורשת דפדפן אינטרנט. אין במכשיר הזה.
+values-b+iw	string	account_sync_note	-	אופציונלי. מסנכרן את התקדמות הצפייה עם חשבון שכבר יש לך.
+values-b+iw	string	account_sync_pair	-	צימוד עם קוד
+values-b+iw	string	account_sync_remove	-	הסרה מהמכשיר הזה
+values-b+iw	string	account_sync_title	-	שירותי סנכרון
+values-b+iw	string	account_sync_unavailable	-	לא זמין כאן
 values-b+iw	string	action_add_to_bookmarks	-	הגדר מצב צפייה
 values-b+iw	string	action_default	-	ברירת מחדל
 values-b+iw	string	action_mark_as_watched	-	סימון כנצפה
@@ -21314,6 +21854,24 @@ values-b+ja	plurals	search_state_no_suggestions_action	other	全 %d ソースを
 values-b+ja	plurals	search_state_no_suggestions_body	other	それでも全 %d ソースを検索するには、キーボードの検索キーを押してください。
 values-b+ja	plurals	search_tv_suggestion_sources	other	%d ソース
 values-b+ja	string	account	-	アカウント
+values-b+ja	string	account_add_profile	-	プロフィールを追加
+values-b+ja	string	account_manage_profiles	-	プロフィールを管理
+values-b+ja	string	account_pair_code	-	あなたのコード
+values-b+ja	string	account_pair_instructions	-	スマートフォンでこれを開き、下のコードを入力してください。
+values-b+ja	string	account_pair_new_code	-	新しいコードを取得
+values-b+ja	string	account_pair_title	-	%s とペアリング
+values-b+ja	string	account_profile_current	-	現在
+values-b+ja	string	account_profile_locked	-	ロック中 · PIN
+values-b+ja	string	account_profile_no_sync	-	同期なし
+values-b+ja	string	account_select_note	-	視聴履歴は別々 · ログインではありません
+values-b+ja	string	account_select_title	-	誰が見ていますか?
+values-b+ja	string	account_sync_connected	-	接続済み · このデバイスでサインイン中
+values-b+ja	string	account_sync_needs_browser	-	サインインにはウェブブラウザが必要です。このデバイスにはありません。
+values-b+ja	string	account_sync_note	-	任意。視聴の進行状況を既にお持ちのアカウントと同期します。
+values-b+ja	string	account_sync_pair	-	コードでペアリング
+values-b+ja	string	account_sync_remove	-	このデバイスから削除
+values-b+ja	string	account_sync_title	-	同期サービス
+values-b+ja	string	account_sync_unavailable	-	ここでは利用できません
 values-b+ja	string	action_add_to_bookmarks	-	視聴状態を設定
 values-b+ja	string	action_add_to_favorites	-	お気に入りに追加
 values-b+ja	string	action_default	-	デフォルト
@@ -22226,6 +22784,24 @@ values-b+kn	plurals	search_state_no_suggestions_body	one	ಹಾಗಿದ್ದ�
 values-b+kn	plurals	search_state_no_suggestions_body	other	ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.
 values-b+kn	plurals	search_tv_suggestion_sources	one	%d ಮೂಲ
 values-b+kn	plurals	search_tv_suggestion_sources	other	%d ಮೂಲಗಳು
+values-b+kn	string	account_add_profile	-	ಪ್ರೊಫೈಲ್ ಸೇರಿಸಿ
+values-b+kn	string	account_manage_profiles	-	ಪ್ರೊಫೈಲ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ
+values-b+kn	string	account_pair_code	-	ನಿಮ್ಮ ಕೋಡ್
+values-b+kn	string	account_pair_instructions	-	ಇದನ್ನು ನಿಮ್ಮ ಫೋನ್‌ನಲ್ಲಿ ತೆರೆದು ಕೆಳಗಿನ ಕೋಡ್ ನಮೂದಿಸಿ.
+values-b+kn	string	account_pair_new_code	-	ಹೊಸ ಕೋಡ್ ಪಡೆಯಿರಿ
+values-b+kn	string	account_pair_title	-	%s ಜೋಡಿಸಿ
+values-b+kn	string	account_profile_current	-	ಪ್ರಸ್ತುತ
+values-b+kn	string	account_profile_locked	-	ಲಾಕ್ ಆಗಿದೆ · ಪಿನ್
+values-b+kn	string	account_profile_no_sync	-	ಸಿಂಕ್ ಇಲ್ಲ
+values-b+kn	string	account_select_note	-	ಪ್ರತ್ಯೇಕ ವೀಕ್ಷಣಾ ಇತಿಹಾಸ · ಲಾಗಿನ್‌ಗಳಲ್ಲ
+values-b+kn	string	account_select_title	-	ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?
+values-b+kn	string	account_sync_connected	-	ಸಂಪರ್ಕಗೊಂಡಿದೆ · ಈ ಸಾಧನದಲ್ಲಿ ಸೈನ್ ಇನ್
+values-b+kn	string	account_sync_needs_browser	-	ಸೈನ್ ಇನ್‌ಗೆ ವೆಬ್ ಬ್ರೌಸರ್ ಬೇಕು. ಈ ಸಾಧನದಲ್ಲಿ ಇಲ್ಲ.
+values-b+kn	string	account_sync_note	-	ಐಚ್ಛಿಕ. ವೀಕ್ಷಣಾ ಪ್ರಗತಿಯನ್ನು ನಿಮ್ಮ ಈಗಿರುವ ಖಾತೆಗೆ ಸಿಂಕ್ ಮಾಡುತ್ತದೆ.
+values-b+kn	string	account_sync_pair	-	ಕೋಡ್‌ನಿಂದ ಜೋಡಿಸಿ
+values-b+kn	string	account_sync_remove	-	ಈ ಸಾಧನದಿಂದ ತೆಗೆದುಹಾಕಿ
+values-b+kn	string	account_sync_title	-	ಸಿಂಕ್ ಸೇವೆಗಳು
+values-b+kn	string	account_sync_unavailable	-	ಇಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ
 values-b+kn	string	action_add_to_bookmarks	-	ಸೆಟ್ ವಾಚ್ ಸ್ಟೇಟಸ್
 values-b+kn	string	action_open_play	-	@ಸ್ಟ್ರಿಂಗ್/ಹೋಮ್_ಪ್ಲೇ
 values-b+kn	string	action_open_watching	-	ಹೆಚ್ಚಿನ ಮಾಹಿತಿ
@@ -22519,6 +23095,24 @@ values-b+ko	plurals	search_state_no_suggestions_action	other	소스 %d개 모두
 values-b+ko	plurals	search_state_no_suggestions_body	other	그래도 소스 %d개를 모두 검색하려면 키보드의 검색 키를 누르세요.
 values-b+ko	plurals	search_tv_suggestion_sources	other	%d 소스
 values-b+ko	string	account	-	계정
+values-b+ko	string	account_add_profile	-	프로필 추가
+values-b+ko	string	account_manage_profiles	-	프로필 관리
+values-b+ko	string	account_pair_code	-	내 코드
+values-b+ko	string	account_pair_instructions	-	휴대폰에서 이 주소를 열고 아래 코드를 입력하세요.
+values-b+ko	string	account_pair_new_code	-	새 코드 받기
+values-b+ko	string	account_pair_title	-	%s 연결
+values-b+ko	string	account_profile_current	-	현재
+values-b+ko	string	account_profile_locked	-	잠김 · PIN
+values-b+ko	string	account_profile_no_sync	-	동기화 없음
+values-b+ko	string	account_select_note	-	시청 기록은 따로 · 로그인이 아님
+values-b+ko	string	account_select_title	-	누가 보고 있나요?
+values-b+ko	string	account_sync_connected	-	연결됨 · 이 기기에서 로그인됨
+values-b+ko	string	account_sync_needs_browser	-	로그인하려면 웹 브라우저가 필요합니다. 이 기기에는 없습니다.
+values-b+ko	string	account_sync_note	-	선택 사항입니다. 이미 있는 계정과 시청 진행 상황을 동기화합니다.
+values-b+ko	string	account_sync_pair	-	코드로 연결
+values-b+ko	string	account_sync_remove	-	이 기기에서 제거
+values-b+ko	string	account_sync_title	-	동기화 서비스
+values-b+ko	string	account_sync_unavailable	-	여기서는 사용할 수 없음
 values-b+ko	string	action_add_to_bookmarks	-	시청 상태 설정
 values-b+ko	string	action_add_to_favorites	-	즐겨찾기에 추가
 values-b+ko	string	action_default	-	기본
@@ -23454,6 +24048,24 @@ values-b+lt	plurals	search_tv_suggestion_sources	few	%d ŠALTINIAI
 values-b+lt	plurals	search_tv_suggestion_sources	many	%d ŠALTINIO
 values-b+lt	plurals	search_tv_suggestion_sources	one	%d ŠALTINIS
 values-b+lt	plurals	search_tv_suggestion_sources	other	%d ŠALTINIŲ
+values-b+lt	string	account_add_profile	-	Pridėti profilį
+values-b+lt	string	account_manage_profiles	-	Tvarkyti profilius
+values-b+lt	string	account_pair_code	-	Jūsų kodas
+values-b+lt	string	account_pair_instructions	-	Atidarykite tai telefone ir įveskite toliau esantį kodą.
+values-b+lt	string	account_pair_new_code	-	Gauti naują kodą
+values-b+lt	string	account_pair_title	-	Susieti %s
+values-b+lt	string	account_profile_current	-	Dabartinis
+values-b+lt	string	account_profile_locked	-	Užrakinta · PIN
+values-b+lt	string	account_profile_no_sync	-	Be sinchronizavimo
+values-b+lt	string	account_select_note	-	Atskira žiūrėjimo istorija · ne prisijungimai
+values-b+lt	string	account_select_title	-	Kas žiūri?
+values-b+lt	string	account_sync_connected	-	Prijungta · prisijungta šiame įrenginyje
+values-b+lt	string	account_sync_needs_browser	-	Prisijungti reikia žiniatinklio naršyklės. Šiame įrenginyje jos nėra.
+values-b+lt	string	account_sync_note	-	Neprivaloma. Sinchronizuoja žiūrėjimo eigą su jau turima paskyra.
+values-b+lt	string	account_sync_pair	-	Susieti kodu
+values-b+lt	string	account_sync_remove	-	Pašalinti iš šio įrenginio
+values-b+lt	string	account_sync_title	-	Sinchronizavimo paslaugos
+values-b+lt	string	account_sync_unavailable	-	Čia nepasiekiama
 values-b+lt	string	action_add_to_bookmarks	-	Nustatyti žiūrėjimo statusą
 values-b+lt	string	action_mark_as_watched	-	Pažymėti kaip žiūrima
 values-b+lt	string	action_open_play	-	Paleisti
@@ -23944,6 +24556,24 @@ values-b+lv	plurals	search_tv_suggestion_sources	one	%d DEVĒJS
 values-b+lv	plurals	search_tv_suggestion_sources	other	%d DEVĒJI
 values-b+lv	plurals	search_tv_suggestion_sources	zero	%d DEVĒJU
 values-b+lv	string	account	-	Konts
+values-b+lv	string	account_add_profile	-	Pievienot profilu
+values-b+lv	string	account_manage_profiles	-	Pārvaldīt profilus
+values-b+lv	string	account_pair_code	-	Jūsu kods
+values-b+lv	string	account_pair_instructions	-	Atveriet to tālrunī un ievadiet tālāk redzamo kodu.
+values-b+lv	string	account_pair_new_code	-	Saņemt jaunu kodu
+values-b+lv	string	account_pair_title	-	Savienot %s
+values-b+lv	string	account_profile_current	-	Pašreizējais
+values-b+lv	string	account_profile_locked	-	Bloķēts · PIN
+values-b+lv	string	account_profile_no_sync	-	Bez sinhronizācijas
+values-b+lv	string	account_select_note	-	Atsevišķa skatīšanās vēsture · nav pieteikšanās
+values-b+lv	string	account_select_title	-	Kas skatās?
+values-b+lv	string	account_sync_connected	-	Savienots · pieteicies šajā ierīcē
+values-b+lv	string	account_sync_needs_browser	-	Pieteikšanās prasa tīmekļa pārlūku. Šajā ierīcē tāda nav.
+values-b+lv	string	account_sync_note	-	Neobligāti. Sinhronizē skatīšanās progresu ar kontu, kas jums jau ir.
+values-b+lv	string	account_sync_pair	-	Savienot ar kodu
+values-b+lv	string	account_sync_remove	-	Noņemt no šīs ierīces
+values-b+lv	string	account_sync_title	-	Sinhronizācijas pakalpojumi
+values-b+lv	string	account_sync_unavailable	-	Šeit nav pieejams
 values-b+lv	string	action_add_to_bookmarks	-	Ieliec skatīšanās statusu
 values-b+lv	string	action_default	-	Parastais
 values-b+lv	string	action_mark_as_watched	-	Atzīmēt kā skatītu
@@ -24740,6 +25370,24 @@ values-b+mk	plurals	search_state_no_suggestions_body	other	Притиснете 
 values-b+mk	plurals	search_tv_suggestion_sources	one	%d ИЗВОР
 values-b+mk	plurals	search_tv_suggestion_sources	other	%d ИЗВОРИ
 values-b+mk	string	account	-	Корисничко име
+values-b+mk	string	account_add_profile	-	Додај профил
+values-b+mk	string	account_manage_profiles	-	Управувај со профили
+values-b+mk	string	account_pair_code	-	Вашиот код
+values-b+mk	string	account_pair_instructions	-	Отворете го ова на телефонот и внесете го кодот подолу.
+values-b+mk	string	account_pair_new_code	-	Добиј нов код
+values-b+mk	string	account_pair_title	-	Поврзи %s
+values-b+mk	string	account_profile_current	-	Тековен
+values-b+mk	string	account_profile_locked	-	Заклучен · PIN
+values-b+mk	string	account_profile_no_sync	-	Без синхронизација
+values-b+mk	string	account_select_note	-	Посебна историја на гледање · не се најавувања
+values-b+mk	string	account_select_title	-	Кој гледа?
+values-b+mk	string	account_sync_connected	-	Поврзано · најавено на овој уред
+values-b+mk	string	account_sync_needs_browser	-	За најава е потребен веб-прелистувач. Овој уред нема.
+values-b+mk	string	account_sync_note	-	Опционално. Го синхронизира напредокот со сметка што веќе ја имате.
+values-b+mk	string	account_sync_pair	-	Поврзи со код
+values-b+mk	string	account_sync_remove	-	Отстрани од овој уред
+values-b+mk	string	account_sync_title	-	Услуги за синхронизација
+values-b+mk	string	account_sync_unavailable	-	Не е достапно тука
 values-b+mk	string	action_add_to_bookmarks	-	Постави статус на пратење
 values-b+mk	string	action_add_to_favorites	-	Додади во омилени
 values-b+mk	string	action_default	-	Стандардно
@@ -25649,6 +26297,24 @@ values-b+ml	plurals	search_state_no_suggestions_body	one	എന്നിട്�
 values-b+ml	plurals	search_state_no_suggestions_body	other	എന്നിട്ടും എല്ലാ %d ഉറവിടങ്ങളിലും തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.
 values-b+ml	plurals	search_tv_suggestion_sources	one	%d ഉറവിടം
 values-b+ml	plurals	search_tv_suggestion_sources	other	%d ഉറവിടങ്ങൾ
+values-b+ml	string	account_add_profile	-	പ്രൊഫൈൽ ചേർക്കുക
+values-b+ml	string	account_manage_profiles	-	പ്രൊഫൈലുകൾ നിയന്ത്രിക്കുക
+values-b+ml	string	account_pair_code	-	നിങ്ങളുടെ കോഡ്
+values-b+ml	string	account_pair_instructions	-	ഇത് നിങ്ങളുടെ ഫോണിൽ തുറന്ന് താഴെയുള്ള കോഡ് നൽകുക.
+values-b+ml	string	account_pair_new_code	-	പുതിയ കോഡ് നേടുക
+values-b+ml	string	account_pair_title	-	%s ജോടിയാക്കുക
+values-b+ml	string	account_profile_current	-	നിലവിലുള്ളത്
+values-b+ml	string	account_profile_locked	-	ലോക്ക് ചെയ്തു · പിൻ
+values-b+ml	string	account_profile_no_sync	-	സമന്വയമില്ല
+values-b+ml	string	account_select_note	-	പ്രത്യേക കാഴ്ച ചരിത്രം · ലോഗിനുകളല്ല
+values-b+ml	string	account_select_title	-	ആരാണ് കാണുന്നത്?
+values-b+ml	string	account_sync_connected	-	കണക്റ്റ് ചെയ്തു · ഈ ഉപകരണത്തിൽ സൈൻ ഇൻ ചെയ്തു
+values-b+ml	string	account_sync_needs_browser	-	സൈൻ ഇൻ ചെയ്യാൻ വെബ് ബ്രൗസർ വേണം. ഈ ഉപകരണത്തിൽ ഇല്ല.
+values-b+ml	string	account_sync_note	-	ഓപ്ഷണൽ. കാഴ്ചയുടെ പുരോഗതി നിങ്ങൾക്ക് ഇതിനകമുള്ള അക്കൗണ്ടുമായി സമന്വയിപ്പിക്കുന്നു.
+values-b+ml	string	account_sync_pair	-	കോഡ് ഉപയോഗിച്ച് ജോടിയാക്കുക
+values-b+ml	string	account_sync_remove	-	ഈ ഉപകരണത്തിൽ നിന്ന് നീക്കം ചെയ്യുക
+values-b+ml	string	account_sync_title	-	സമന്വയ സേവനങ്ങൾ
+values-b+ml	string	account_sync_unavailable	-	ഇവിടെ ലഭ്യമല്ല
 values-b+ml	string	action_add_to_bookmarks	-	വാച്ച് സ്റ്റാറ്റസ് സജ്ജീകരിക്കുക
 values-b+ml	string	action_mark_as_watched	-	കണ്ടതാണെന്ന് അടയാളപ്പെടുത്തുക
 values-b+ml	string	action_open_play	-	പ്ലേയ്
@@ -26101,6 +26767,24 @@ values-b+ms	plurals	search_state_no_suggestions_action	other	Cari dalam semua %d
 values-b+ms	plurals	search_state_no_suggestions_body	other	Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.
 values-b+ms	plurals	search_tv_suggestion_sources	other	%d SUMBER
 values-b+ms	string	account	-	akaun
+values-b+ms	string	account_add_profile	-	Tambah profil
+values-b+ms	string	account_manage_profiles	-	Urus profil
+values-b+ms	string	account_pair_code	-	Kod anda
+values-b+ms	string	account_pair_instructions	-	Buka ini pada telefon anda dan masukkan kod di bawah.
+values-b+ms	string	account_pair_new_code	-	Dapatkan kod baharu
+values-b+ms	string	account_pair_title	-	Pasangkan %s
+values-b+ms	string	account_profile_current	-	Semasa
+values-b+ms	string	account_profile_locked	-	Dikunci · PIN
+values-b+ms	string	account_profile_no_sync	-	Tiada penyegerakan
+values-b+ms	string	account_select_note	-	Sejarah tontonan berasingan · bukan log masuk
+values-b+ms	string	account_select_title	-	Siapa yang menonton?
+values-b+ms	string	account_sync_connected	-	Bersambung · log masuk pada peranti ini
+values-b+ms	string	account_sync_needs_browser	-	Log masuk memerlukan pelayar web. Peranti ini tiada.
+values-b+ms	string	account_sync_note	-	Pilihan. Menyegerakkan kemajuan tontonan dengan akaun yang anda sudah ada.
+values-b+ms	string	account_sync_pair	-	Pasangkan dengan kod
+values-b+ms	string	account_sync_remove	-	Alih keluar daripada peranti ini
+values-b+ms	string	account_sync_title	-	Perkhidmatan penyegerakan
+values-b+ms	string	account_sync_unavailable	-	Tidak tersedia di sini
 values-b+ms	string	action_add_to_bookmarks	-	Tetapkan status tontonan
 values-b+ms	string	action_add_to_favorites	-	Tambah ke kegemaran
 values-b+ms	string	action_mark_as_watched	-	Tanda sebagai sudah ditonton
@@ -26851,6 +27535,24 @@ values-b+mt	plurals	search_tv_suggestion_sources	many	%d SORS
 values-b+mt	plurals	search_tv_suggestion_sources	one	%d SORS
 values-b+mt	plurals	search_tv_suggestion_sources	other	%d SORS
 values-b+mt	plurals	search_tv_suggestion_sources	two	%d SORSI
+values-b+mt	string	account_add_profile	-	Żid profil
+values-b+mt	string	account_manage_profiles	-	Immaniġġja l-profili
+values-b+mt	string	account_pair_code	-	Il-kodiċi tiegħek
+values-b+mt	string	account_pair_instructions	-	Iftaħ dan fuq it-telefon tiegħek u daħħal il-kodiċi hawn taħt.
+values-b+mt	string	account_pair_new_code	-	Ikseb kodiċi ġdid
+values-b+mt	string	account_pair_title	-	Qabbad %s
+values-b+mt	string	account_profile_current	-	Attwali
+values-b+mt	string	account_profile_locked	-	Imsakkar · PIN
+values-b+mt	string	account_profile_no_sync	-	L-ebda sinkronizzazzjoni
+values-b+mt	string	account_select_note	-	Storja tal-wiri separata · mhux logins
+values-b+mt	string	account_select_title	-	Min qed jara?
+values-b+mt	string	account_sync_connected	-	Imqabbad · dħalt fuq dan l-apparat
+values-b+mt	string	account_sync_needs_browser	-	Id-dħul jeħtieġ browser tal-web. Dan l-apparat m'għandux.
+values-b+mt	string	account_sync_note	-	Fakultattiv. Jissinkronizza l-progress mal-kont li diġà għandek.
+values-b+mt	string	account_sync_pair	-	Qabbad b'kodiċi
+values-b+mt	string	account_sync_remove	-	Neħħi minn dan l-apparat
+values-b+mt	string	account_sync_title	-	Servizzi ta' sinkronizzazzjoni
+values-b+mt	string	account_sync_unavailable	-	Mhux disponibbli hawn
 values-b+mt	string	action_add_to_bookmarks	-	Issettja l-istatus ta-rajtux
 values-b+mt	string	action_open_play	-	Ibda
 values-b+mt	string	action_open_watching	-	Iktar informazzjoni
@@ -27135,6 +27837,24 @@ values-b+my	plurals	search_state_no_suggestions_action	other	ရင်းမြ�
 values-b+my	plurals	search_state_no_suggestions_body	other	မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။
 values-b+my	plurals	search_tv_suggestion_sources	other	%d ရင်းမြစ်
 values-b+my	string	account	-	အကောင့်
+values-b+my	string	account_add_profile	-	ပရိုဖိုင် ထည့်ရန်
+values-b+my	string	account_manage_profiles	-	ပရိုဖိုင်များ စီမံရန်
+values-b+my	string	account_pair_code	-	သင့်ကုဒ်
+values-b+my	string	account_pair_instructions	-	၎င်းကို သင့်ဖုန်းတွင်ဖွင့်ပြီး အောက်ပါကုဒ်ကို ထည့်ပါ။
+values-b+my	string	account_pair_new_code	-	ကုဒ်အသစ် ယူရန်
+values-b+my	string	account_pair_title	-	%s တွဲချိတ်ရန်
+values-b+my	string	account_profile_current	-	လက်ရှိ
+values-b+my	string	account_profile_locked	-	လော့ခ်ချထား · PIN
+values-b+my	string	account_profile_no_sync	-	စင့်ခ်မရှိ
+values-b+my	string	account_select_note	-	သီးခြားကြည့်ရှုမှုမှတ်တမ်း · ဝင်ရောက်မှုမဟုတ်
+values-b+my	string	account_select_title	-	ဘယ်သူကြည့်နေလဲ?
+values-b+my	string	account_sync_connected	-	ချိတ်ဆက်ထား · ဤစက်တွင် ဝင်ထား
+values-b+my	string	account_sync_needs_browser	-	ဝင်ရောက်ရန် ဝဘ်ဘရောက်ဆာ လိုအပ်သည်။ ဤစက်တွင် မရှိပါ။
+values-b+my	string	account_sync_note	-	ရွေးချယ်နိုင်သည်။ ကြည့်ရှုမှုတိုးတက်မှုကို သင့်တွင်ရှိပြီးသားအကောင့်နှင့် စင့်ခ်လုပ်သည်။
+values-b+my	string	account_sync_pair	-	ကုဒ်ဖြင့် တွဲချိတ်ရန်
+values-b+my	string	account_sync_remove	-	ဤစက်မှ ဖယ်ရှားရန်
+values-b+my	string	account_sync_title	-	စင့်ခ်ဝန်ဆောင်မှုများ
+values-b+my	string	account_sync_unavailable	-	ဤနေရာတွင် မရနိုင်ပါ
 values-b+my	string	action_add_to_bookmarks	-	ကြည့်ရှုမှုအခြေအနေသတ်မှတ်ခြင်း
 values-b+my	string	action_default	-	ပုံသေ
 values-b+my	string	action_mark_as_watched	-	ကြည့်ပြီးအဖြစ်မှတ်ရန်
@@ -27836,6 +28556,24 @@ values-b+ne	plurals	search_state_no_suggestions_body	one	जे भए पनि
 values-b+ne	plurals	search_state_no_suggestions_body	other	जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।
 values-b+ne	plurals	search_tv_suggestion_sources	one	%d स्रोत
 values-b+ne	plurals	search_tv_suggestion_sources	other	%d स्रोतहरू
+values-b+ne	string	account_add_profile	-	प्रोफाइल थप्नुहोस्
+values-b+ne	string	account_manage_profiles	-	प्रोफाइलहरू व्यवस्थापन गर्नुहोस्
+values-b+ne	string	account_pair_code	-	तपाईंको कोड
+values-b+ne	string	account_pair_instructions	-	यसलाई आफ्नो फोनमा खोल्नुहोस् र तलको कोड हाल्नुहोस्।
+values-b+ne	string	account_pair_new_code	-	नयाँ कोड लिनुहोस्
+values-b+ne	string	account_pair_title	-	%s जोड्नुहोस्
+values-b+ne	string	account_profile_current	-	हालको
+values-b+ne	string	account_profile_locked	-	लक गरिएको · पिन
+values-b+ne	string	account_profile_no_sync	-	सिंक छैन
+values-b+ne	string	account_select_note	-	छुट्टै हेराइ इतिहास · लगइन होइन
+values-b+ne	string	account_select_title	-	को हेर्दै हुनुहुन्छ?
+values-b+ne	string	account_sync_connected	-	जडान भयो · यो उपकरणमा साइन इन
+values-b+ne	string	account_sync_needs_browser	-	साइन इन गर्न वेब ब्राउजर चाहिन्छ। यो उपकरणमा छैन।
+values-b+ne	string	account_sync_note	-	वैकल्पिक। हेराइको प्रगति तपाईंसँग पहिल्यै भएको खातासँग सिंक गर्छ।
+values-b+ne	string	account_sync_pair	-	कोडले जोड्नुहोस्
+values-b+ne	string	account_sync_remove	-	यो उपकरणबाट हटाउनुहोस्
+values-b+ne	string	account_sync_title	-	सिंक सेवाहरू
+values-b+ne	string	account_sync_unavailable	-	यहाँ उपलब्ध छैन
 values-b+ne	string	action_add_to_bookmarks	-	हेरेको स्थिति निर्धारण गर्नुहोस्
 values-b+ne	string	action_open_play	-	प्ले
 values-b+ne	string	action_open_watching	-	अधिक जानकारी
@@ -28139,6 +28877,24 @@ values-b+nl	plurals	search_state_no_suggestions_body	other	Druk op de zoektoets 
 values-b+nl	plurals	search_tv_suggestion_sources	one	%d BRON
 values-b+nl	plurals	search_tv_suggestion_sources	other	%d BRONNEN
 values-b+nl	string	account	-	account
+values-b+nl	string	account_add_profile	-	Profiel toevoegen
+values-b+nl	string	account_manage_profiles	-	Profielen beheren
+values-b+nl	string	account_pair_code	-	Je code
+values-b+nl	string	account_pair_instructions	-	Open dit op je telefoon en voer de code hieronder in.
+values-b+nl	string	account_pair_new_code	-	Nieuwe code ophalen
+values-b+nl	string	account_pair_title	-	%s koppelen
+values-b+nl	string	account_profile_current	-	Huidig
+values-b+nl	string	account_profile_locked	-	Vergrendeld · pincode
+values-b+nl	string	account_profile_no_sync	-	Geen synchronisatie
+values-b+nl	string	account_select_note	-	Aparte kijkgeschiedenis · geen aanmeldingen
+values-b+nl	string	account_select_title	-	Wie kijkt er?
+values-b+nl	string	account_sync_connected	-	Verbonden · aangemeld op dit apparaat
+values-b+nl	string	account_sync_needs_browser	-	Aanmelden vereist een webbrowser. Dit apparaat heeft er geen.
+values-b+nl	string	account_sync_note	-	Optioneel. Synchroniseert je kijkvoortgang met een account dat je al hebt.
+values-b+nl	string	account_sync_pair	-	Koppelen met een code
+values-b+nl	string	account_sync_remove	-	Verwijderen van dit apparaat
+values-b+nl	string	account_sync_title	-	Synchronisatiediensten
+values-b+nl	string	account_sync_unavailable	-	Hier niet beschikbaar
 values-b+nl	string	action_add_to_bookmarks	-	Zet kijkstatus
 values-b+nl	string	action_add_to_favorites	-	Voeg toe aan favorieten
 values-b+nl	string	action_default	-	Standaard
@@ -29002,6 +29758,24 @@ values-b+nn	plurals	search_state_no_suggestions_body	one	Trykk på søkjeknappen
 values-b+nn	plurals	search_state_no_suggestions_body	other	Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel.
 values-b+nn	plurals	search_tv_suggestion_sources	one	%d KJELDE
 values-b+nn	plurals	search_tv_suggestion_sources	other	%d KJELDER
+values-b+nn	string	account_add_profile	-	Legg til profil
+values-b+nn	string	account_manage_profiles	-	Handter profilar
+values-b+nn	string	account_pair_code	-	Koden din
+values-b+nn	string	account_pair_instructions	-	Opne dette på telefonen og skriv inn koden nedanfor.
+values-b+nn	string	account_pair_new_code	-	Få ein ny kode
+values-b+nn	string	account_pair_title	-	Kople til %s
+values-b+nn	string	account_profile_current	-	Gjeldande
+values-b+nn	string	account_profile_locked	-	Låst · PIN
+values-b+nn	string	account_profile_no_sync	-	Inga synkronisering
+values-b+nn	string	account_select_note	-	Eiga sjåhistorikk · ikkje innloggingar
+values-b+nn	string	account_select_title	-	Kven ser på?
+values-b+nn	string	account_sync_connected	-	Tilkopla · logga inn på denne eininga
+values-b+nn	string	account_sync_needs_browser	-	Innlogging krev ein nettlesar. Denne eininga har ingen.
+values-b+nn	string	account_sync_note	-	Valfritt. Synkroniserer framdrifta med ein konto du alt har.
+values-b+nn	string	account_sync_pair	-	Kople til med ein kode
+values-b+nn	string	account_sync_remove	-	Fjern frå denne eininga
+values-b+nn	string	account_sync_title	-	Synkroniseringstenester
+values-b+nn	string	account_sync_unavailable	-	Ikkje tilgjengeleg her
 values-b+nn	string	action_add_to_bookmarks	-	Sett visingstatus
 values-b+nn	string	action_default	-	Standard
 values-b+nn	string	action_open_play	-	Spel(e) av
@@ -29382,6 +30156,24 @@ values-b+no	plurals	search_state_no_suggestions_body	other	Trykk på søketasten
 values-b+no	plurals	search_tv_suggestion_sources	one	%d KILDE
 values-b+no	plurals	search_tv_suggestion_sources	other	%d KILDER
 values-b+no	string	account	-	konto
+values-b+no	string	account_add_profile	-	Legg til profil
+values-b+no	string	account_manage_profiles	-	Administrer profiler
+values-b+no	string	account_pair_code	-	Koden din
+values-b+no	string	account_pair_instructions	-	Åpne dette på telefonen og skriv inn koden nedenfor.
+values-b+no	string	account_pair_new_code	-	Få en ny kode
+values-b+no	string	account_pair_title	-	Koble til %s
+values-b+no	string	account_profile_current	-	Gjeldende
+values-b+no	string	account_profile_locked	-	Låst · PIN
+values-b+no	string	account_profile_no_sync	-	Ingen synkronisering
+values-b+no	string	account_select_note	-	Egen seerhistorikk · ikke innlogginger
+values-b+no	string	account_select_title	-	Hvem ser på?
+values-b+no	string	account_sync_connected	-	Tilkoblet · logget inn på denne enheten
+values-b+no	string	account_sync_needs_browser	-	Innlogging krever en nettleser. Denne enheten har ingen.
+values-b+no	string	account_sync_note	-	Valgfritt. Synkroniserer fremdriften med en konto du allerede har.
+values-b+no	string	account_sync_pair	-	Koble til med en kode
+values-b+no	string	account_sync_remove	-	Fjern fra denne enheten
+values-b+no	string	account_sync_title	-	Synkroniseringstjenester
+values-b+no	string	account_sync_unavailable	-	Ikke tilgjengelig her
 values-b+no	string	action_add_to_bookmarks	-	Sett visningsstatus
 values-b+no	string	action_default	-	Misligholde
 values-b+no	string	action_mark_as_watched	-	Marker som sett
@@ -30074,6 +30866,24 @@ values-b+or	plurals	search_state_no_suggestions_body	one	ତଥାପି %d ଉ�
 values-b+or	plurals	search_state_no_suggestions_body	other	ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।
 values-b+or	plurals	search_tv_suggestion_sources	one	%d ଉତ୍ସ
 values-b+or	plurals	search_tv_suggestion_sources	other	%d ଉତ୍ସ
+values-b+or	string	account_add_profile	-	ପ୍ରୋଫାଇଲ୍ ଯୋଗ କରନ୍ତୁ
+values-b+or	string	account_manage_profiles	-	ପ୍ରୋଫାଇଲ୍ ପରିଚାଳନା କରନ୍ତୁ
+values-b+or	string	account_pair_code	-	ଆପଣଙ୍କ କୋଡ୍
+values-b+or	string	account_pair_instructions	-	ଏହାକୁ ଆପଣଙ୍କ ଫୋନରେ ଖୋଲନ୍ତୁ ଏବଂ ତଳ କୋଡ୍ ଦିଅନ୍ତୁ।
+values-b+or	string	account_pair_new_code	-	ନୂଆ କୋଡ୍ ନିଅନ୍ତୁ
+values-b+or	string	account_pair_title	-	%s ଯୋଡ଼ନ୍ତୁ
+values-b+or	string	account_profile_current	-	ବର୍ତ୍ତମାନର
+values-b+or	string	account_profile_locked	-	ଲକ୍ ହୋଇଛି · PIN
+values-b+or	string	account_profile_no_sync	-	ସିଙ୍କ୍ ନାହିଁ
+values-b+or	string	account_select_note	-	ଅଲଗା ଦେଖିବା ଇତିହାସ · ଲଗଇନ୍ ନୁହେଁ
+values-b+or	string	account_select_title	-	କିଏ ଦେଖୁଛନ୍ତି?
+values-b+or	string	account_sync_connected	-	ସଂଯୁକ୍ତ · ଏହି ଡିଭାଇସରେ ସାଇନ୍ ଇନ୍
+values-b+or	string	account_sync_needs_browser	-	ସାଇନ୍ ଇନ୍ ପାଇଁ ୱେବ୍ ବ୍ରାଉଜର୍ ଦରକାର। ଏହି ଡିଭାଇସରେ ନାହିଁ।
+values-b+or	string	account_sync_note	-	ବୈକଳ୍ପିକ। ଦେଖିବା ପ୍ରଗତିକୁ ଆପଣଙ୍କ ପାଖରେ ଥିବା ଆକାଉଣ୍ଟ ସହ ସିଙ୍କ୍ କରେ।
+values-b+or	string	account_sync_pair	-	କୋଡ୍ ସହ ଯୋଡ଼ନ୍ତୁ
+values-b+or	string	account_sync_remove	-	ଏହି ଡିଭାଇସରୁ ହଟାନ୍ତୁ
+values-b+or	string	account_sync_title	-	ସିଙ୍କ୍ ସେବା
+values-b+or	string	account_sync_unavailable	-	ଏଠାରେ ଉପଲବ୍ଧ ନାହିଁ
 values-b+or	string	action_default	-	ଡିଫଲ୍ଟ
 values-b+or	string	action_open_play	-	ଚଲାଅ
 values-b+or	string	added_sync_format	-	%s ଯୋଡ଼ାଗଲା
@@ -30449,6 +31259,24 @@ values-b+pl	plurals	search_tv_suggestion_sources	many	%d ŹRÓDEŁ
 values-b+pl	plurals	search_tv_suggestion_sources	one	%d ŹRÓDŁO
 values-b+pl	plurals	search_tv_suggestion_sources	other	%d ŹRÓDŁA
 values-b+pl	string	account	-	konto
+values-b+pl	string	account_add_profile	-	Dodaj profil
+values-b+pl	string	account_manage_profiles	-	Zarządzaj profilami
+values-b+pl	string	account_pair_code	-	Twój kod
+values-b+pl	string	account_pair_instructions	-	Otwórz to na telefonie i wpisz kod poniżej.
+values-b+pl	string	account_pair_new_code	-	Pobierz nowy kod
+values-b+pl	string	account_pair_title	-	Połącz %s
+values-b+pl	string	account_profile_current	-	Bieżący
+values-b+pl	string	account_profile_locked	-	Zablokowany · PIN
+values-b+pl	string	account_profile_no_sync	-	Bez synchronizacji
+values-b+pl	string	account_select_note	-	Osobna historia oglądania · to nie logowania
+values-b+pl	string	account_select_title	-	Kto ogląda?
+values-b+pl	string	account_sync_connected	-	Połączono · zalogowano na tym urządzeniu
+values-b+pl	string	account_sync_needs_browser	-	Logowanie wymaga przeglądarki. To urządzenie jej nie ma.
+values-b+pl	string	account_sync_note	-	Opcjonalne. Synchronizuje postęp oglądania z kontem, które już masz.
+values-b+pl	string	account_sync_pair	-	Połącz kodem
+values-b+pl	string	account_sync_remove	-	Usuń z tego urządzenia
+values-b+pl	string	account_sync_title	-	Usługi synchronizacji
+values-b+pl	string	account_sync_unavailable	-	Niedostępne tutaj
 values-b+pl	string	action_add_to_bookmarks	-	Ustaw status oglądania
 values-b+pl	string	action_add_to_favorites	-	Dodaj do ulubionych
 values-b+pl	string	action_default	-	Domyślne
@@ -31386,6 +32214,24 @@ values-b+pt	plurals	search_tv_suggestion_sources	many	%d FONTES
 values-b+pt	plurals	search_tv_suggestion_sources	one	%d FONTE
 values-b+pt	plurals	search_tv_suggestion_sources	other	%d FONTES
 values-b+pt	string	account	-	Conta
+values-b+pt	string	account_add_profile	-	Adicionar perfil
+values-b+pt	string	account_manage_profiles	-	Gerir perfis
+values-b+pt	string	account_pair_code	-	O seu código
+values-b+pt	string	account_pair_instructions	-	Abra isto no telemóvel e introduza o código abaixo.
+values-b+pt	string	account_pair_new_code	-	Obter um novo código
+values-b+pt	string	account_pair_title	-	Associar %s
+values-b+pt	string	account_profile_current	-	Atual
+values-b+pt	string	account_profile_locked	-	Bloqueado · PIN
+values-b+pt	string	account_profile_no_sync	-	Sem sincronização
+values-b+pt	string	account_select_note	-	Histórico de visualização separado · não são inícios de sessão
+values-b+pt	string	account_select_title	-	Quem está a ver?
+values-b+pt	string	account_sync_connected	-	Ligado · sessão iniciada neste dispositivo
+values-b+pt	string	account_sync_needs_browser	-	Iniciar sessão requer um navegador web. Este dispositivo não tem.
+values-b+pt	string	account_sync_note	-	Opcional. Sincroniza o progresso com uma conta que já tem.
+values-b+pt	string	account_sync_pair	-	Associar com um código
+values-b+pt	string	account_sync_remove	-	Remover deste dispositivo
+values-b+pt	string	account_sync_title	-	Serviços de sincronização
+values-b+pt	string	account_sync_unavailable	-	Indisponível aqui
 values-b+pt	string	action_add_to_bookmarks	-	Marcar como visto/não visto
 values-b+pt	string	action_add_to_favorites	-	Adicionar aos favoritos
 values-b+pt	string	action_default	-	Padrão
@@ -32321,6 +33167,24 @@ values-b+pt+BR	plurals	search_tv_suggestion_sources	many	%d FONTES
 values-b+pt+BR	plurals	search_tv_suggestion_sources	one	%d FONTE
 values-b+pt+BR	plurals	search_tv_suggestion_sources	other	%d FONTES
 values-b+pt+BR	string	account	-	Conta
+values-b+pt+BR	string	account_add_profile	-	Adicionar perfil
+values-b+pt+BR	string	account_manage_profiles	-	Gerenciar perfis
+values-b+pt+BR	string	account_pair_code	-	Seu código
+values-b+pt+BR	string	account_pair_instructions	-	Abra isto no celular e digite o código abaixo.
+values-b+pt+BR	string	account_pair_new_code	-	Obter um novo código
+values-b+pt+BR	string	account_pair_title	-	Parear %s
+values-b+pt+BR	string	account_profile_current	-	Atual
+values-b+pt+BR	string	account_profile_locked	-	Bloqueado · PIN
+values-b+pt+BR	string	account_profile_no_sync	-	Sem sincronização
+values-b+pt+BR	string	account_select_note	-	Histórico separado · não são logins
+values-b+pt+BR	string	account_select_title	-	Quem está assistindo?
+values-b+pt+BR	string	account_sync_connected	-	Conectado · logado neste dispositivo
+values-b+pt+BR	string	account_sync_needs_browser	-	O login precisa de um navegador. Este dispositivo não tem.
+values-b+pt+BR	string	account_sync_note	-	Opcional. Sincroniza o progresso com uma conta que você já tem.
+values-b+pt+BR	string	account_sync_pair	-	Parear com um código
+values-b+pt+BR	string	account_sync_remove	-	Remover deste dispositivo
+values-b+pt+BR	string	account_sync_title	-	Serviços de sincronização
+values-b+pt+BR	string	account_sync_unavailable	-	Indisponível aqui
 values-b+pt+BR	string	action_add_to_bookmarks	-	Adicionar a lista
 values-b+pt+BR	string	action_add_to_favorites	-	Adicionar aos favoritos
 values-b+pt+BR	string	action_default	-	Padrão
@@ -33217,6 +34081,24 @@ values-b+qt	plurals	search_state_no_suggestions_action	other	aaoog %d ooh uugg
 values-b+qt	plurals	search_state_no_suggestions_body	other	uuh aagg oooh aaahh uug %d ooogg aah.
 values-b+qt	plurals	search_tv_suggestion_sources	other	%d OOGAH
 values-b+qt	string	account	-	aaaaggg
+values-b+qt	string	account_add_profile	-	aah ooooggk
+values-b+qt	string	account_manage_profiles	-	aaaagg ooooggk
+values-b+qt	string	account_pair_code	-	ooh aagg
+values-b+qt	string	account_pair_instructions	-	oooh aah ooh aaagg oooh.
+values-b+qt	string	account_pair_new_code	-	oooh aah aagg
+values-b+qt	string	account_pair_title	-	ooh %s
+values-b+qt	string	account_profile_current	-	oooh
+values-b+qt	string	account_profile_locked	-	oooh-aah · ooh
+values-b+qt	string	account_profile_no_sync	-	aah oooh
+values-b+qt	string	account_select_note	-	oooh-aah aagg · ooh aah
+values-b+qt	string	account_select_title	-	ooh oooh aah?
+values-b+qt	string	account_sync_connected	-	oooh-aah · ooh aagg
+values-b+qt	string	account_sync_needs_browser	-	oooh aaagg aah. ooh oooh aah.
+values-b+qt	string	account_sync_note	-	ooh. oooh-aah aagg ooh aaaagg aah.
+values-b+qt	string	account_sync_pair	-	ooh aah oooh
+values-b+qt	string	account_sync_remove	-	aaagh ooh aagg
+values-b+qt	string	account_sync_title	-	oooh-aah aaagg
+values-b+qt	string	account_sync_unavailable	-	aah ooh-ooh
 values-b+qt	string	action_add_to_bookmarks	-	auugggguuuuuuhhh uuuu hhhhhhhhuhggghggg
 values-b+qt	string	action_add_to_favorites	-	uuh ah aaaahhhag
 values-b+qt	string	action_default	-	ahooooh
@@ -34034,6 +34916,24 @@ values-b+ro	plurals	search_tv_suggestion_sources	few	%d SURSE
 values-b+ro	plurals	search_tv_suggestion_sources	one	%d SURSĂ
 values-b+ro	plurals	search_tv_suggestion_sources	other	%d DE SURSE
 values-b+ro	string	account	-	Cont
+values-b+ro	string	account_add_profile	-	Adaugă profil
+values-b+ro	string	account_manage_profiles	-	Gestionează profilurile
+values-b+ro	string	account_pair_code	-	Codul tău
+values-b+ro	string	account_pair_instructions	-	Deschide asta pe telefon și introdu codul de mai jos.
+values-b+ro	string	account_pair_new_code	-	Obține un cod nou
+values-b+ro	string	account_pair_title	-	Asociază %s
+values-b+ro	string	account_profile_current	-	Curent
+values-b+ro	string	account_profile_locked	-	Blocat · PIN
+values-b+ro	string	account_profile_no_sync	-	Fără sincronizare
+values-b+ro	string	account_select_note	-	Istoric de vizionare separat · nu sunt conectări
+values-b+ro	string	account_select_title	-	Cine se uită?
+values-b+ro	string	account_sync_connected	-	Conectat · pe acest dispozitiv
+values-b+ro	string	account_sync_needs_browser	-	Conectarea necesită un browser web. Acest dispozitiv nu are.
+values-b+ro	string	account_sync_note	-	Opțional. Sincronizează progresul cu un cont pe care îl ai deja.
+values-b+ro	string	account_sync_pair	-	Asociază cu un cod
+values-b+ro	string	account_sync_remove	-	Elimină de pe acest dispozitiv
+values-b+ro	string	account_sync_title	-	Servicii de sincronizare
+values-b+ro	string	account_sync_unavailable	-	Indisponibil aici
 values-b+ro	string	action_add_to_bookmarks	-	Adaugă
 values-b+ro	string	action_add_to_favorites	-	Adaugă la favoriți/te
 values-b+ro	string	action_default	-	Implicit
@@ -34878,6 +35778,24 @@ values-b+ru	plurals	search_tv_suggestion_sources	many	%d ИСТОЧНИКОВ
 values-b+ru	plurals	search_tv_suggestion_sources	one	%d ИСТОЧНИК
 values-b+ru	plurals	search_tv_suggestion_sources	other	%d ИСТОЧНИКА
 values-b+ru	string	account	-	учётная запись
+values-b+ru	string	account_add_profile	-	Добавить профиль
+values-b+ru	string	account_manage_profiles	-	Управление профилями
+values-b+ru	string	account_pair_code	-	Ваш код
+values-b+ru	string	account_pair_instructions	-	Откройте это на телефоне и введите код ниже.
+values-b+ru	string	account_pair_new_code	-	Получить новый код
+values-b+ru	string	account_pair_title	-	Связать %s
+values-b+ru	string	account_profile_current	-	Текущий
+values-b+ru	string	account_profile_locked	-	Заблокирован · PIN
+values-b+ru	string	account_profile_no_sync	-	Без синхронизации
+values-b+ru	string	account_select_note	-	Отдельная история просмотра · не входы в аккаунт
+values-b+ru	string	account_select_title	-	Кто смотрит?
+values-b+ru	string	account_sync_connected	-	Подключено · вход выполнен на этом устройстве
+values-b+ru	string	account_sync_needs_browser	-	Для входа нужен веб-браузер. На этом устройстве его нет.
+values-b+ru	string	account_sync_note	-	Необязательно. Синхронизирует прогресс просмотра с уже имеющимся аккаунтом.
+values-b+ru	string	account_sync_pair	-	Связать по коду
+values-b+ru	string	account_sync_remove	-	Удалить с этого устройства
+values-b+ru	string	account_sync_title	-	Сервисы синхронизации
+values-b+ru	string	account_sync_unavailable	-	Здесь недоступно
 values-b+ru	string	action_add_to_bookmarks	-	Установите смотреть состояние
 values-b+ru	string	action_add_to_favorites	-	Добавить в любимое
 values-b+ru	string	action_default	-	По умолчанию
@@ -35819,6 +36737,24 @@ values-b+sk	plurals	search_tv_suggestion_sources	many	%d ZDROJA
 values-b+sk	plurals	search_tv_suggestion_sources	one	%d ZDROJ
 values-b+sk	plurals	search_tv_suggestion_sources	other	%d ZDROJOV
 values-b+sk	string	account	-	účet
+values-b+sk	string	account_add_profile	-	Pridať profil
+values-b+sk	string	account_manage_profiles	-	Spravovať profily
+values-b+sk	string	account_pair_code	-	Váš kód
+values-b+sk	string	account_pair_instructions	-	Otvorte to v telefóne a zadajte kód nižšie.
+values-b+sk	string	account_pair_new_code	-	Získať nový kód
+values-b+sk	string	account_pair_title	-	Spárovať %s
+values-b+sk	string	account_profile_current	-	Aktuálny
+values-b+sk	string	account_profile_locked	-	Zamknuté · PIN
+values-b+sk	string	account_profile_no_sync	-	Bez synchronizácie
+values-b+sk	string	account_select_note	-	Samostatná história pozerania · nie sú to prihlásenia
+values-b+sk	string	account_select_title	-	Kto sa pozerá?
+values-b+sk	string	account_sync_connected	-	Pripojené · prihlásené na tomto zariadení
+values-b+sk	string	account_sync_needs_browser	-	Prihlásenie vyžaduje webový prehliadač. Toto zariadenie ho nemá.
+values-b+sk	string	account_sync_note	-	Voliteľné. Synchronizuje postup pozerania s účtom, ktorý už máte.
+values-b+sk	string	account_sync_pair	-	Spárovať kódom
+values-b+sk	string	account_sync_remove	-	Odstrániť z tohto zariadenia
+values-b+sk	string	account_sync_title	-	Synchronizačné služby
+values-b+sk	string	account_sync_unavailable	-	Tu nie je k dispozícii
 values-b+sk	string	action_add_to_bookmarks	-	Nastaviť stav sledovania
 values-b+sk	string	action_default	-	Predvolené
 values-b+sk	string	action_open_play	-	Prehrať
@@ -36474,6 +37410,24 @@ values-b+so	plurals	search_state_no_suggestions_body	other	Riix furaha raadinta 
 values-b+so	plurals	search_tv_suggestion_sources	one	%d IL
 values-b+so	plurals	search_tv_suggestion_sources	other	%d ILOOD
 values-b+so	string	account	-	Akoonka
+values-b+so	string	account_add_profile	-	Ku dar astaan
+values-b+so	string	account_manage_profiles	-	Maamul astaanta
+values-b+so	string	account_pair_code	-	Koodkaaga
+values-b+so	string	account_pair_instructions	-	Ku fur kan taleefankaaga oo geli koodka hoose.
+values-b+so	string	account_pair_new_code	-	Hel kood cusub
+values-b+so	string	account_pair_title	-	Ku xir %s
+values-b+so	string	account_profile_current	-	Hadda
+values-b+so	string	account_profile_locked	-	La xiray · PIN
+values-b+so	string	account_profile_no_sync	-	Isku-dhafid ma jirto
+values-b+so	string	account_select_note	-	Taariikh daawasho gooni ah · ma aha gelitaan
+values-b+so	string	account_select_title	-	Yaa daawanaya?
+values-b+so	string	account_sync_connected	-	Waa ku xiran yahay · lagu galay qalabkan
+values-b+so	string	account_sync_needs_browser	-	Gelitaanku wuxuu u baahan yahay biraawsar. Qalabkan ma laha.
+values-b+so	string	account_sync_note	-	Ikhtiyaari. Waxay isku dhafaysaa horumarka daawashada iyo akoon aad horey u leedahay.
+values-b+so	string	account_sync_pair	-	Ku xir kood
+values-b+so	string	account_sync_remove	-	Ka saar qalabkan
+values-b+so	string	account_sync_title	-	Adeegyada isku-dhafidda
+values-b+so	string	account_sync_unavailable	-	Halkan lagama heli karo
 values-b+so	string	action_add_to_bookmarks	-	Xagee marinaysaa
 values-b+so	string	action_default	-	Sidiisaa
 values-b+so	string	action_mark_as_watched	-	Ku caalamadi in la daawaday
@@ -37167,6 +38121,24 @@ values-b+sq	plurals	search_state_no_suggestions_body	other	Shtyp tastin e kërki
 values-b+sq	plurals	search_tv_suggestion_sources	one	%d BURIM
 values-b+sq	plurals	search_tv_suggestion_sources	other	%d BURIME
 values-b+sq	string	account	-	llogaria
+values-b+sq	string	account_add_profile	-	Shto profil
+values-b+sq	string	account_manage_profiles	-	Menaxho profilet
+values-b+sq	string	account_pair_code	-	Kodi yt
+values-b+sq	string	account_pair_instructions	-	Hape këtë në telefon dhe fut kodin më poshtë.
+values-b+sq	string	account_pair_new_code	-	Merr një kod të ri
+values-b+sq	string	account_pair_title	-	Çifto %s
+values-b+sq	string	account_profile_current	-	Aktual
+values-b+sq	string	account_profile_locked	-	I kyçur · PIN
+values-b+sq	string	account_profile_no_sync	-	Pa sinkronizim
+values-b+sq	string	account_select_note	-	Historik shikimi më vete · jo hyrje
+values-b+sq	string	account_select_title	-	Kush po shikon?
+values-b+sq	string	account_sync_connected	-	E lidhur · e identifikuar në këtë pajisje
+values-b+sq	string	account_sync_needs_browser	-	Hyrja kërkon një shfletues uebi. Kjo pajisje nuk ka.
+values-b+sq	string	account_sync_note	-	Opsionale. Sinkronizon progresin me një llogari që e ke tashmë.
+values-b+sq	string	account_sync_pair	-	Çifto me kod
+values-b+sq	string	account_sync_remove	-	Hiqe nga kjo pajisje
+values-b+sq	string	account_sync_title	-	Shërbimet e sinkronizimit
+values-b+sq	string	account_sync_unavailable	-	Nuk ofrohet këtu
 values-b+sq	string	action_add_to_bookmarks	-	Vendos statusin e shikueshmërisë
 values-b+sq	string	action_add_to_favorites	-	Shto te të preferuarat
 values-b+sq	string	action_default	-	Parazgjedhur
@@ -38088,6 +39060,24 @@ values-b+sv	plurals	search_state_no_suggestions_body	other	Tryck på tangentbord
 values-b+sv	plurals	search_tv_suggestion_sources	one	%d KÄLLA
 values-b+sv	plurals	search_tv_suggestion_sources	other	%d KÄLLOR
 values-b+sv	string	account	-	konto
+values-b+sv	string	account_add_profile	-	Lägg till profil
+values-b+sv	string	account_manage_profiles	-	Hantera profiler
+values-b+sv	string	account_pair_code	-	Din kod
+values-b+sv	string	account_pair_instructions	-	Öppna detta på telefonen och ange koden nedan.
+values-b+sv	string	account_pair_new_code	-	Hämta en ny kod
+values-b+sv	string	account_pair_title	-	Parkoppla %s
+values-b+sv	string	account_profile_current	-	Aktuell
+values-b+sv	string	account_profile_locked	-	Låst · PIN
+values-b+sv	string	account_profile_no_sync	-	Ingen synkronisering
+values-b+sv	string	account_select_note	-	Egen visningshistorik · inte inloggningar
+values-b+sv	string	account_select_title	-	Vem tittar?
+values-b+sv	string	account_sync_connected	-	Ansluten · inloggad på den här enheten
+values-b+sv	string	account_sync_needs_browser	-	Inloggning kräver en webbläsare. Den här enheten har ingen.
+values-b+sv	string	account_sync_note	-	Valfritt. Synkroniserar framstegen med ett konto du redan har.
+values-b+sv	string	account_sync_pair	-	Parkoppla med en kod
+values-b+sv	string	account_sync_remove	-	Ta bort från den här enheten
+values-b+sv	string	account_sync_title	-	Synkroniseringstjänster
+values-b+sv	string	account_sync_unavailable	-	Inte tillgängligt här
 values-b+sv	string	action_add_to_bookmarks	-	Ange visningsstatus
 values-b+sv	string	action_add_to_favorites	-	Lägg till i favoriter
 values-b+sv	string	action_default	-	Standard
@@ -39009,6 +39999,24 @@ values-b+ta	plurals	search_state_no_suggestions_body	other	இருந்தா
 values-b+ta	plurals	search_tv_suggestion_sources	one	%d மூலம்
 values-b+ta	plurals	search_tv_suggestion_sources	other	%d மூலங்கள்
 values-b+ta	string	account	-	கணக்கு
+values-b+ta	string	account_add_profile	-	சுயவிவரம் சேர்
+values-b+ta	string	account_manage_profiles	-	சுயவிவரங்களை நிர்வகி
+values-b+ta	string	account_pair_code	-	உங்கள் குறியீடு
+values-b+ta	string	account_pair_instructions	-	இதை உங்கள் தொலைபேசியில் திறந்து கீழே உள்ள குறியீட்டை உள்ளிடவும்.
+values-b+ta	string	account_pair_new_code	-	புதிய குறியீடு பெறு
+values-b+ta	string	account_pair_title	-	%s இணை
+values-b+ta	string	account_profile_current	-	தற்போதைய
+values-b+ta	string	account_profile_locked	-	பூட்டப்பட்டது · PIN
+values-b+ta	string	account_profile_no_sync	-	ஒத்திசைவு இல்லை
+values-b+ta	string	account_select_note	-	தனி பார்வை வரலாறு · உள்நுழைவுகள் அல்ல
+values-b+ta	string	account_select_title	-	யார் பார்க்கிறார்கள்?
+values-b+ta	string	account_sync_connected	-	இணைக்கப்பட்டது · இந்தச் சாதனத்தில் உள்நுழைந்துள்ளது
+values-b+ta	string	account_sync_needs_browser	-	உள்நுழைய இணைய உலாவி தேவை. இந்தச் சாதனத்தில் இல்லை.
+values-b+ta	string	account_sync_note	-	விருப்பத்தேர்வு. பார்வை முன்னேற்றத்தை உங்களிடம் ஏற்கெனவே உள்ள கணக்குடன் ஒத்திசைக்கிறது.
+values-b+ta	string	account_sync_pair	-	குறியீட்டுடன் இணை
+values-b+ta	string	account_sync_remove	-	இந்தச் சாதனத்திலிருந்து அகற்று
+values-b+ta	string	account_sync_title	-	ஒத்திசைவு சேவைகள்
+values-b+ta	string	account_sync_unavailable	-	இங்கே கிடைக்கவில்லை
 values-b+ta	string	action_add_to_bookmarks	-	கடிகார நிலையை அமைக்கவும்
 values-b+ta	string	action_add_to_favorites	-	பிடித்தவையில் சேர்
 values-b+ta	string	action_default	-	இயல்புநிலை
@@ -39921,6 +40929,24 @@ values-b+ti	plurals	search_state_no_suggestions_body	one	ብዝኾነ ኣብ %d 
 values-b+ti	plurals	search_state_no_suggestions_body	other	ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።
 values-b+ti	plurals	search_tv_suggestion_sources	one	%d ምንጪ
 values-b+ti	plurals	search_tv_suggestion_sources	other	%d ምንጭታት
+values-b+ti	string	account_add_profile	-	መግለጺ ወስኽ
+values-b+ti	string	account_manage_profiles	-	መግለጺታት ኣመሓድር
+values-b+ti	string	account_pair_code	-	ኮድካ
+values-b+ti	string	account_pair_instructions	-	ነዚ ኣብ ተሌፎንካ ክፈቶ እሞ ኣብ ታሕቲ ዘሎ ኮድ ኣእቱ።
+values-b+ti	string	account_pair_new_code	-	ሓድሽ ኮድ ውሰድ
+values-b+ti	string	account_pair_title	-	%s ኣጣምር
+values-b+ti	string	account_profile_current	-	ናይ ሕጂ
+values-b+ti	string	account_profile_locked	-	ተዓጽዩ · PIN
+values-b+ti	string	account_profile_no_sync	-	ምትእስሳር የለን
+values-b+ti	string	account_select_note	-	ፍሉይ ታሪኽ ምርኣይ · መእተዊታት ኣይኮኑን
+values-b+ti	string	account_select_title	-	መን እዩ ዝርኢ ዘሎ?
+values-b+ti	string	account_sync_connected	-	ተራኺቡ · ኣብዚ መሳርሒ ኣቲዩ
+values-b+ti	string	account_sync_needs_browser	-	ምእታው መርበብ ሓበሬታ ይደሊ። እዚ መሳርሒ የብሉን።
+values-b+ti	string	account_sync_note	-	ኣማራጺ። ምዕባለ ምርኣይ ምስ ዘለካ ሕሳብ የተኣሳስር።
+values-b+ti	string	account_sync_pair	-	ብኮድ ኣጣምር
+values-b+ti	string	account_sync_remove	-	ካብዚ መሳርሒ ኣልግስ
+values-b+ti	string	account_sync_title	-	ኣገልግሎታት ምትእስሳር
+values-b+ti	string	account_sync_unavailable	-	ኣብዚ ኣይርከብን
 values-b+ti	string	app_dub_sub_episode_text_format	-	%1$s ክፋል %2$d
 values-b+ti	string	cast	-	ተዋሳእቲ
 values-b+ti	string	cast_format	-	ተዋሳእቲ፡ %s
@@ -40095,6 +41121,24 @@ values-b+tl	plurals	search_state_no_suggestions_body	one	Pindutin ang search key
 values-b+tl	plurals	search_state_no_suggestions_body	other	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d source.
 values-b+tl	plurals	search_tv_suggestion_sources	one	%d SOURCE
 values-b+tl	plurals	search_tv_suggestion_sources	other	%d SOURCES
+values-b+tl	string	account_add_profile	-	Magdagdag ng profile
+values-b+tl	string	account_manage_profiles	-	Pamahalaan ang mga profile
+values-b+tl	string	account_pair_code	-	Ang iyong code
+values-b+tl	string	account_pair_instructions	-	Buksan ito sa iyong telepono at ilagay ang code sa ibaba.
+values-b+tl	string	account_pair_new_code	-	Kumuha ng bagong code
+values-b+tl	string	account_pair_title	-	Ipares ang %s
+values-b+tl	string	account_profile_current	-	Kasalukuyan
+values-b+tl	string	account_profile_locked	-	Naka-lock · PIN
+values-b+tl	string	account_profile_no_sync	-	Walang sync
+values-b+tl	string	account_select_note	-	Hiwalay na kasaysayan ng panonood · hindi mga login
+values-b+tl	string	account_select_title	-	Sino ang nanonood?
+values-b+tl	string	account_sync_connected	-	Nakakonekta · naka-sign in sa device na ito
+values-b+tl	string	account_sync_needs_browser	-	Kailangan ng web browser para mag-sign in. Wala nito ang device na ito.
+values-b+tl	string	account_sync_note	-	Opsyonal. Sini-sync ang progreso ng panonood sa account na mayroon ka na.
+values-b+tl	string	account_sync_pair	-	Ipares gamit ang code
+values-b+tl	string	account_sync_remove	-	Alisin sa device na ito
+values-b+tl	string	account_sync_title	-	Mga serbisyo ng sync
+values-b+tl	string	account_sync_unavailable	-	Hindi available dito
 values-b+tl	string	action_add_to_bookmarks	-	I-set ang Status
 values-b+tl	string	action_add_to_favorites	-	Idagdag sa mga paborito <3
 values-b+tl	string	action_default	-	Default
@@ -40586,6 +41630,24 @@ values-b+tr	plurals	search_state_no_suggestions_body	other	Yine de tüm %d kayna
 values-b+tr	plurals	search_tv_suggestion_sources	one	%d KAYNAK
 values-b+tr	plurals	search_tv_suggestion_sources	other	%d KAYNAK
 values-b+tr	string	account	-	hesap
+values-b+tr	string	account_add_profile	-	Profil ekle
+values-b+tr	string	account_manage_profiles	-	Profilleri yönet
+values-b+tr	string	account_pair_code	-	Kodun
+values-b+tr	string	account_pair_instructions	-	Bunu telefonunda aç ve aşağıdaki kodu gir.
+values-b+tr	string	account_pair_new_code	-	Yeni kod al
+values-b+tr	string	account_pair_title	-	%s eşle
+values-b+tr	string	account_profile_current	-	Geçerli
+values-b+tr	string	account_profile_locked	-	Kilitli · PIN
+values-b+tr	string	account_profile_no_sync	-	Senkronizasyon yok
+values-b+tr	string	account_select_note	-	Ayrı izleme geçmişi · oturum açma değil
+values-b+tr	string	account_select_title	-	Kim izliyor?
+values-b+tr	string	account_sync_connected	-	Bağlı · bu cihazda oturum açık
+values-b+tr	string	account_sync_needs_browser	-	Oturum açmak için web tarayıcısı gerekir. Bu cihazda yok.
+values-b+tr	string	account_sync_note	-	İsteğe bağlı. İzleme ilerlemesini zaten sahip olduğun bir hesapla senkronize eder.
+values-b+tr	string	account_sync_pair	-	Kodla eşle
+values-b+tr	string	account_sync_remove	-	Bu cihazdan kaldır
+values-b+tr	string	account_sync_title	-	Senkronizasyon hizmetleri
+values-b+tr	string	account_sync_unavailable	-	Burada kullanılamaz
 values-b+tr	string	action_add_to_bookmarks	-	İzleme durumunu ayarla
 values-b+tr	string	action_add_to_favorites	-	Favorilere ekle
 values-b+tr	string	action_default	-	Varsayılan
@@ -41539,6 +42601,24 @@ values-b+uk	plurals	search_tv_suggestion_sources	many	%d ДЖЕРЕЛ
 values-b+uk	plurals	search_tv_suggestion_sources	one	%d ДЖЕРЕЛО
 values-b+uk	plurals	search_tv_suggestion_sources	other	%d ДЖЕРЕЛА
 values-b+uk	string	account	-	обліковий запис
+values-b+uk	string	account_add_profile	-	Додати профіль
+values-b+uk	string	account_manage_profiles	-	Керувати профілями
+values-b+uk	string	account_pair_code	-	Ваш код
+values-b+uk	string	account_pair_instructions	-	Відкрийте це на телефоні та введіть код нижче.
+values-b+uk	string	account_pair_new_code	-	Отримати новий код
+values-b+uk	string	account_pair_title	-	Зв'язати %s
+values-b+uk	string	account_profile_current	-	Поточний
+values-b+uk	string	account_profile_locked	-	Заблоковано · PIN
+values-b+uk	string	account_profile_no_sync	-	Без синхронізації
+values-b+uk	string	account_select_note	-	Окрема історія перегляду · не входи в акаунт
+values-b+uk	string	account_select_title	-	Хто дивиться?
+values-b+uk	string	account_sync_connected	-	Підключено · вхід виконано на цьому пристрої
+values-b+uk	string	account_sync_needs_browser	-	Для входу потрібен веб-браузер. На цьому пристрої його немає.
+values-b+uk	string	account_sync_note	-	Необов'язково. Синхронізує прогрес перегляду з акаунтом, який у вас уже є.
+values-b+uk	string	account_sync_pair	-	Зв'язати за кодом
+values-b+uk	string	account_sync_remove	-	Видалити з цього пристрою
+values-b+uk	string	account_sync_title	-	Сервіси синхронізації
+values-b+uk	string	account_sync_unavailable	-	Тут недоступно
 values-b+uk	string	action_add_to_bookmarks	-	Змінити стан перегляду
 values-b+uk	string	action_add_to_favorites	-	Додати до обраного
 values-b+uk	string	action_default	-	Типово
@@ -42454,6 +43534,24 @@ values-b+ur	plurals	search_state_no_suggestions_body	other	پھر بھی تما�
 values-b+ur	plurals	search_tv_suggestion_sources	one	%d ذریعہ
 values-b+ur	plurals	search_tv_suggestion_sources	other	%d ذرائع
 values-b+ur	string	account	-	اكاؤنٹ
+values-b+ur	string	account_add_profile	-	پروفائل شامل کریں
+values-b+ur	string	account_manage_profiles	-	پروفائلز کا نظم کریں
+values-b+ur	string	account_pair_code	-	آپ کا کوڈ
+values-b+ur	string	account_pair_instructions	-	اسے اپنے فون پر کھولیں اور نیچے دیا گیا کوڈ درج کریں۔
+values-b+ur	string	account_pair_new_code	-	نیا کوڈ حاصل کریں
+values-b+ur	string	account_pair_title	-	%s جوڑیں
+values-b+ur	string	account_profile_current	-	موجودہ
+values-b+ur	string	account_profile_locked	-	مقفل · PIN
+values-b+ur	string	account_profile_no_sync	-	کوئی ہم آہنگی نہیں
+values-b+ur	string	account_select_note	-	الگ دیکھنے کی سرگزشت · لاگ ان نہیں
+values-b+ur	string	account_select_title	-	کون دیکھ رہا ہے؟
+values-b+ur	string	account_sync_connected	-	منسلک · اس آلے پر سائن ان
+values-b+ur	string	account_sync_needs_browser	-	سائن ان کے لیے ویب براؤزر درکار ہے۔ اس آلے میں نہیں ہے۔
+values-b+ur	string	account_sync_note	-	اختیاری۔ دیکھنے کی پیش رفت کو آپ کے پہلے سے موجود اکاؤنٹ سے ہم آہنگ کرتا ہے۔
+values-b+ur	string	account_sync_pair	-	کوڈ سے جوڑیں
+values-b+ur	string	account_sync_remove	-	اس آلے سے ہٹائیں
+values-b+ur	string	account_sync_title	-	ہم آہنگی کی خدمات
+values-b+ur	string	account_sync_unavailable	-	یہاں دستیاب نہیں
 values-b+ur	string	action_add_to_bookmarks	-	واچ اسٹیٹس کو سیٹ کریں
 values-b+ur	string	action_add_to_favorites	-	پسندیدہ میں شامل کریں
 values-b+ur	string	action_default	-	ڈیفالٹ
@@ -43226,6 +44324,24 @@ values-b+vi	plurals	search_state_no_suggestions_action	other	Tìm kiếm trên c
 values-b+vi	plurals	search_state_no_suggestions_body	other	Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.
 values-b+vi	plurals	search_tv_suggestion_sources	other	%d NGUỒN
 values-b+vi	string	account	-	tài khoản
+values-b+vi	string	account_add_profile	-	Thêm hồ sơ
+values-b+vi	string	account_manage_profiles	-	Quản lý hồ sơ
+values-b+vi	string	account_pair_code	-	Mã của bạn
+values-b+vi	string	account_pair_instructions	-	Mở mục này trên điện thoại và nhập mã bên dưới.
+values-b+vi	string	account_pair_new_code	-	Lấy mã mới
+values-b+vi	string	account_pair_title	-	Ghép nối %s
+values-b+vi	string	account_profile_current	-	Hiện tại
+values-b+vi	string	account_profile_locked	-	Đã khóa · PIN
+values-b+vi	string	account_profile_no_sync	-	Không đồng bộ
+values-b+vi	string	account_select_note	-	Lịch sử xem riêng · không phải đăng nhập
+values-b+vi	string	account_select_title	-	Ai đang xem?
+values-b+vi	string	account_sync_connected	-	Đã kết nối · đã đăng nhập trên thiết bị này
+values-b+vi	string	account_sync_needs_browser	-	Đăng nhập cần trình duyệt web. Thiết bị này không có.
+values-b+vi	string	account_sync_note	-	Tùy chọn. Đồng bộ tiến độ xem với tài khoản bạn đã có.
+values-b+vi	string	account_sync_pair	-	Ghép nối bằng mã
+values-b+vi	string	account_sync_remove	-	Xóa khỏi thiết bị này
+values-b+vi	string	account_sync_title	-	Dịch vụ đồng bộ
+values-b+vi	string	account_sync_unavailable	-	Không có ở đây
 values-b+vi	string	action_add_to_bookmarks	-	Đặt trạng thái xem
 values-b+vi	string	action_add_to_favorites	-	Thêm vào mục yêu thích
 values-b+vi	string	action_default	-	Mặc định
@@ -44131,6 +45247,24 @@ values-b+zh	plurals	search_state_no_suggestions_action	other	搜索全部 %d 个
 values-b+zh	plurals	search_state_no_suggestions_body	other	按键盘上的搜索键，仍然搜索全部 %d 个来源。
 values-b+zh	plurals	search_tv_suggestion_sources	other	%d 来源
 values-b+zh	string	account	-	账户
+values-b+zh	string	account_add_profile	-	添加个人资料
+values-b+zh	string	account_manage_profiles	-	管理个人资料
+values-b+zh	string	account_pair_code	-	你的代码
+values-b+zh	string	account_pair_instructions	-	在手机上打开此页面并输入下方代码。
+values-b+zh	string	account_pair_new_code	-	获取新代码
+values-b+zh	string	account_pair_title	-	配对 %s
+values-b+zh	string	account_profile_current	-	当前
+values-b+zh	string	account_profile_locked	-	已锁定 · PIN
+values-b+zh	string	account_profile_no_sync	-	不同步
+values-b+zh	string	account_select_note	-	独立的观看记录 · 不是登录账号
+values-b+zh	string	account_select_title	-	谁在观看？
+values-b+zh	string	account_sync_connected	-	已连接 · 已在此设备登录
+values-b+zh	string	account_sync_needs_browser	-	登录需要网页浏览器。此设备没有。
+values-b+zh	string	account_sync_note	-	可选。将观看进度同步到你已有的账号。
+values-b+zh	string	account_sync_pair	-	使用代码配对
+values-b+zh	string	account_sync_remove	-	从此设备移除
+values-b+zh	string	account_sync_title	-	同步服务
+values-b+zh	string	account_sync_unavailable	-	此处不可用
 values-b+zh	string	action_add_to_bookmarks	-	设置观看状态
 values-b+zh	string	action_add_to_favorites	-	添加到收藏夹
 values-b+zh	string	action_default	-	默认
@@ -45035,6 +46169,24 @@ values-b+zh+TW	plurals	search_state_no_suggestions_action	other	搜尋全部 %d 
 values-b+zh+TW	plurals	search_state_no_suggestions_body	other	按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。
 values-b+zh+TW	plurals	search_tv_suggestion_sources	other	%d 來源
 values-b+zh+TW	string	account	-	帳號
+values-b+zh+TW	string	account_add_profile	-	新增個人檔案
+values-b+zh+TW	string	account_manage_profiles	-	管理個人檔案
+values-b+zh+TW	string	account_pair_code	-	你的代碼
+values-b+zh+TW	string	account_pair_instructions	-	在手機上開啟此頁面並輸入下方代碼。
+values-b+zh+TW	string	account_pair_new_code	-	取得新代碼
+values-b+zh+TW	string	account_pair_title	-	配對 %s
+values-b+zh+TW	string	account_profile_current	-	目前
+values-b+zh+TW	string	account_profile_locked	-	已鎖定 · PIN
+values-b+zh+TW	string	account_profile_no_sync	-	不同步
+values-b+zh+TW	string	account_select_note	-	獨立的觀看紀錄 · 不是登入帳號
+values-b+zh+TW	string	account_select_title	-	誰在觀看？
+values-b+zh+TW	string	account_sync_connected	-	已連線 · 已在此裝置登入
+values-b+zh+TW	string	account_sync_needs_browser	-	登入需要網頁瀏覽器。此裝置沒有。
+values-b+zh+TW	string	account_sync_note	-	選用。將觀看進度同步到你已有的帳號。
+values-b+zh+TW	string	account_sync_pair	-	使用代碼配對
+values-b+zh+TW	string	account_sync_remove	-	從此裝置移除
+values-b+zh+TW	string	account_sync_title	-	同步服務
+values-b+zh+TW	string	account_sync_unavailable	-	此處無法使用
 values-b+zh+TW	string	action_add_to_bookmarks	-	設定觀看狀態
 values-b+zh+TW	string	action_add_to_favorites	-	加入我的最愛
 values-b+zh+TW	string	action_default	-	預設

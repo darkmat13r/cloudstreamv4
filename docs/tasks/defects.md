@@ -1529,7 +1529,20 @@ own bottom padding, and a `LazyColumn` without that padding would still clip.
 
 ## BUG-41 — On TV, Home's first focus could stay on the bookmarks' first chip instead of landing on the hero · **medium** · measured 2026-11-06
 
-**Status:** fixed, in a PR of its own · found by `TvHomeNavigationTest.aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept`
+**Reopened 2026-11-07, and fixed again.** With #183 on master (`9db8c4b66`), the same test failed the same way in #212's
+full run (`was Watching`), on a branch that changes no Home code. #183 marked only the arrival its own request in
+`HomeTvFragment.onResume` causes, and `onResume` asks only where the page holds no focus. **The window can give the page
+focus on its own first**, onto its first stop, a chip when the bookmarks are on screen before the rows. `onResume` then
+asked for nothing, nothing was marked, and the chip counted as a person's choice. Reproduced deterministically by
+`HomeScreenTvDeviceTest.focusTheWindowGaveTheBookmarksBeforeTheHostAskedStillGoesToTheHero` (red on master:
+`expected More info · The Long Dark, was Watching`). Fixed in `HomeHostFocus.resumed`, which the fragment and the test
+both call: with a landing owed, a page that already holds focus has it from the window, not a person, and that arrival
+is marked as the host's too, **but only while no key has been pressed on the page**: a person who pressed DOWN into
+the bookmarks and is then resumed before the rows land keeps their place
+(`aPersonWhoPressedIntoTheBookmarksKeepsFocusThereThroughAResume`, red without that guard: `expected Saved 9, was
+More info`). #183's three cases stay green.
+
+**Status:** fixed (reopened and fixed again, above) · found by `TvHomeNavigationTest.aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept`
 on master `d0b21dc56` (worker-2, twice on `Television_720p`: in #175's full run, and alone at 18:29:22) ·
 `feature/home/.../tv/HomeScreenTv.kt`, the landing's `free`
 
@@ -1677,8 +1690,43 @@ read bounds before the bring-into-view scroll had settled.
 
 ## BUG-36 — `SidePanelHost` returns focus to the content's first stop, not to the control that opened the panel · **medium**
 
-**Status:** found, not fixed · found 2026-11-05 by `KMP-38`'s device suite (pr #153), the component's first production
-caller · `core/designsystem/.../panel/SidePanelHost.kt:168-207`
+**Status:** **fixed 2026-11-07**, by an `opener` handed to `SidePanelHost` (the owner's coordinator chose option (b)
+from the measurement below) · found 2026-11-05 by `KMP-38`'s device suite (pr #153), the component's first production
+caller · `core/designsystem/.../panel/SidePanelHost.kt`
+
+**The fix.** A second `SidePanelHost` overload takes `opener: FocusRequester`: on close, focus goes to it, and where it
+has left the screen, to the content group's restore as before. The first overload is unchanged, so a caller with no
+opener behaves exactly as it did. An overload rather than a defaulted parameter, measured: a parameter changes the shape
+of every call, and with it a Compose-generated lambda name in `QuickSearchTvFragment` that `classes-jar.api` lists, so
+the dump lost a line; with the overload it is unchanged. The detail
+page (the watch-status cell and the synopsis control), Search's Sources control (which replaced the restore it wrote by
+hand) and the library's provider and Sort buttons hand their opener in. **Home does not, on purpose:** its
+`homeStopsGroup` already sends focus entering the page to the last stop it held, which is the source control, and
+handing the control in as well collided with Home's own landing logic: measured, three `HomeScreenTvDeviceTest` cases
+and `TvHomeNavigationTest.backClosesThePickerAndNotTheApp` found focus on a card instead. Home keeps master's code.
+Quick Search (`QuickSearchTvFragment`) hands none: what opened it is a view on the screen below, outside its dialog's
+window, and Android gives focus back to that view when the dialog goes. It is left untouched: even a comment there moves
+a Compose lambda's generated name in `classes-jar.api`. Both pins are
+flipped to the opener: the detail page's watch-status picker, and the library's sort panel (5d), which now hands in the
+Sort button for 5d and the provider button for 5e. The library holds which panel was shown last through its exit, as
+the detail page does, so the leaving panel and the focus both belong to the one that was open.
+
+**Measured before choosing**, in `SidePanelMotionTest`, with the opener the second stop in a `Row`, and that row in a
+`LazyColumn`'s item:
+
+| | in a row | in a lazy item |
+|---|---|---|
+| the component as it was | content's first stop | content's first stop |
+| plus `FocusRequester.saveFocusedChild` / `restoreFocusedChild` | content's first stop | content's first stop |
+| (a) `focusRestorer` on the row | the opener | content's first stop |
+| (a) `focusRestorer` on the row and the list | the opener | the opener |
+| (b) the opener handed in | the opener | the opener |
+
+The restorer, and the save API, record only the group's direct child; a `Row` or `LazyColumn` group cannot take focus
+itself, so the restore fails and focus enters at the first stop. (a) works only with a restorer on every group between
+the content and the opener, which is wiring in every caller that breaks silently when someone adds a group.
+
+Was: found, not fixed.
 
 **Changes what users see on TV.** Dismissing a side panel drops focus on the first focusable in the content
 group instead of the cell the viewer opened the panel from, so they lose their place in the row every time.
@@ -1715,11 +1763,10 @@ is a contract decision and not a patch.
 The TV detail page's test asserts the **current** behaviour, the way `SidePanelMotionTest` pins its own
 exit-window focus hole, so fixing this fails that test and the fix gets looked at rather than landing silently.
 
-**Second pinned caller, `KMP-50`** (2026-11-07): the library's sort panel (5d). BACK lands on the chrome row's first
-stop, the provider button, not on Sort, the button that opened it. `LibrarySourcesTvDeviceTest.
-backClosesTheSortPanelWithTheChoiceAppliedAndFocusOnTheRowsFirstStop` pins it, at the assertion
-`"BUG-36: the row's first stop"`: **the component's fix flips that assertion to `SORT`.** The source panel (5e) never showed it,
-because its button is that first stop.
+**Second pinned caller, `KMP-50`** (2026-11-07): the library's sort panel (5d). BACK landed on the chrome row's first
+stop, the provider button, not on Sort, the button that opened it. Pinned until the fix, now flipped:
+`LibrarySourcesTvDeviceTest.backClosesTheSortPanelWithTheChoiceAppliedAndFocusBackOnSort` asserts `SORT`. The source
+panel (5e) never showed it, because its button is that first stop.
 
 Not to be confused with the separate, already-recorded defect in the same component: a D-pad move during the
 240 ms exit drops focus entirely (`SidePanelMotionTest`, *"a D-pad move during the exit does not re-enter the
@@ -1852,7 +1899,7 @@ past the end of the list (read from the code, not run). The fix is `-= 1`.
 previous from the second lands on the first, previous from the first stays, and next from the second still lands on
 the third. The first failed on the old code, measured before the fix.
 
-## BUG-45 — An engine device test cut a connection inside Ktor's buffer, so it was flaky · **low** · measured 2026-11-07
+## BUG-45 — An engine device test cut a connection inside Ktor's buffer, so it was flaky · **low** · measured 2026-11-07, reopened and fixed again 2026-11-07
 
 `EngineDownloadDeviceTest.aConnectionDroppedMidPartIsResumedWithinThePartAndTheFileIsByteIdentical` (from `KMP-59`, #174)
 failed about 1 run in 2 on master `5e103443b`, and 3 runs in 3 on #190's branch.
@@ -1866,6 +1913,62 @@ failed about 1 run in 2 on master `5e103443b`, and 3 runs in 3 on #190's branch.
   bytes on disk are never fetched again. The engine is unchanged.
 - **Not hidden.** The discard is still an engine trait. It costs up to 1 MiB of refetch per dropped connection and is
   logged as `KMP-69`.
+
+### Reopened 2026-11-07: the 1 MiB bound was wrong · **fixed, test only** · measured 2026-11-07
+
+The 1.5 MiB fix still required the resume to start within `CHANNEL_DISCARD = 1 MiB` of the cut. In the merge train's runs
+the loss ranged from 0 to about 1.36 MB, and master failed once with 1,359,872 bytes lost.
+- **Cause.** A failed body loses far more than 1 MiB: up to about 5 MiB, from the bytecode (`KMP-69` has the
+  detail), and 2,416,838 bytes in one measured run. The body passes through **two** Ktor `ByteChannel`s, and a failure
+  throws away what both hold. At 1.5 MiB of a 2 MiB part, the whole cut could be lost.
+- **The geometry now.** The test uses a 32 MiB source, so the engine's 8 parts are 4 MiB each, and cuts the third body
+  request at 3 MiB. That was chosen against a 2 MiB + 16 KiB bound, which counted only one channel; with two, it does
+  **not** guarantee `onDisk > 0`, so the test no longer asserts it (below).
+- **What the test asserts now.** The engine's own rule 1, not a guess at the loss. `SizeRecordingStorage` (in
+  `EngineTestServer.kt`) wraps `FileKitStorage` and records each `size(file)` answer by file name, in call order,
+  together with how many requests the server had seen at that moment. The dropped part's file is found from the run's
+  snapshots (`PartSnapshot.id` → `start`). Of the size reads made after the server saw the dropped request, the first
+  is the read after the failure (rule 20) and the second is the next attempt's offset, `onDisk`. The test asserts that:
+  - the two reads agree;
+  - `onDisk <= dropAfter`, since the disk cannot hold bytes that were never sent;
+  - a later request starts at **exactly** `start + onDisk`;
+  - no request after the drop starts inside `[start, start + onDisk)`.
+
+  `CHANNEL_DISCARD` is gone: nothing else in the file used it.
+- **Work stealing is off in this test.** `PartTable.next()` splits an active or retrying part that has at least
+  `2 * minPartBytes` left. At the 1 MiB default, the 4 MiB dropped part can be split, including mid-attempt, below the
+  cut; the server then never sends `dropAfter` bytes, and the run tests no drop at all. The test sets
+  `EngineDownloadSwitch.minPartBytesForTests` to the part size, 4 MiB, which keeps the 8 parts and means no part can
+  ever have 8 MiB left. `@After` resets it. `EngineVideoDownload.request()` passes it into
+  `DownloadOptions(minPartBytes = …)` only when it is set; production keeps the default. With splitting off, the
+  dropped request is deterministic, and the test asserts it: the request the fault chose (the third body request) was
+  cut at exactly `dropAfter`, and it is the only request that was.
+- **Measured, at the earlier 1.5 MiB of a 2 MiB geometry.** The test logs `drop-loss: dropAfter= onDisk= lost=`. On
+  `Television_720p`, run as the class, 10 valid runs in a row, every run was 8 tests with 0 failures and 0 errors. One
+  more run failed because the emulator did not boot, and was replaced. Lost bytes per run: 0, 917,504, 0, 1,417,216,
+  270,336, 0, 966,656, 0, 892,928, 1,327,302. The minimum was 0 and the maximum 1,417,216 (1.35 MiB), so 2 of the 10
+  runs would have failed the old 1 MiB bound.
+  As a second check, each run's request log was read separately from the assertion: the one later request inside the
+  dropped part started at `start + onDisk` every time.
+- **Measured, at 3 MiB of a 4 MiB part, before splitting was turned off.** On `Television_720p`, 5 runs of the class,
+  every run was 8 tests with 0 failures and 0 errors. Lost bytes per run: 638,976, 835,584, 1,040,384, 253,952 and
+  974,848. `onDisk` was 2,105,344 to 2,891,776, so the dropped part had less than 2 MiB left and no run split it. Run
+  three came within 8 KiB of the split threshold. A run that loses more than 1 MiB would have left the part splittable,
+  which is why splitting is now off. The request log check (above) matched in all 5 runs.
+- **Measured, the test as it is now (3 MiB of a 4 MiB part, splitting off).** On `Television_720p`, 5 runs of the class
+  in a row, every run was 8 tests with 0 failures and 0 errors, and every run made 9 body requests: 8 parts and one
+  resume. Lost bytes per run: 0, 1,138,886, **2,416,838**, 1,605,632 and 443,746. The request log check matched in
+  all 5. In two runs the fault's third call was request #5, not #4: requests reach the server concurrently, which is
+  why the test takes the dropped request from the fault itself rather than from an index.
+- **`onDisk > 0` is not asserted (decided 2026-11-07).** 2,416,838 bytes lost is more than the 2 MiB + 16 KiB that 3 MiB
+  was chosen against, and the two-channel bound (about 5 to 6 MiB) is derived from bytecode, not measured. A cut
+  chosen against it would rest on a third derived figure after two wrong ones. Losing the whole cut and restarting the
+  part from its start is correct engine behaviour, and the exact-offset assertions above hold whatever Ktor drops.
+  `onDisk` is still logged on every run. It was above 0 in all 21 runs so far, as low as 155,648 bytes.
+- **The engine does not lose bytes it has read.** `PartFetcher.stream` writes each chunk to the part file's sink as
+  soon as `readAvailable` returns it, and closes the sink in a `finally` under `NonCancellable`, which flushes the
+  sink's last partial segment. There is no queue between the read and the write. Every lost byte was still in Ktor's
+  channels.
 
 ---
 
@@ -2061,3 +2164,84 @@ The tests themselves:
 - `C:\Program Files\…`, which is unchanged
 
 Control: against `BUG-44`'s rules, the new cases failed in all three copies' tests.
+
+## BUG-48 — A deleted profile's sign-ins pass to the next profile · **high, security** · measured 2026-11-07
+
+**Status:** fixed in pr · found 2026-11-07 as the precondition the TV audit names for `Q16` (account select, 8d) ·
+`app/.../ui/account/AccountViewModel.kt`, `handleAccountDelete`; `AccountAdapter.kt`, the add dialog
+
+Deleting a profile ran `removeKeys("<keyIndex>")`, which removes keys under `<keyIndex>/`. A profile's sign-ins are not
+there: they are at `auth_tokens/<provider>/<keyIndex>` and `auth_ids/<provider>/<keyIndex>` (`AccountManager`), and
+survived. The add dialog gave a new profile `max + 1`, so deleting the newest profile and adding one left the new
+profile signed in to the deleted one's MAL, AniList, Simkl and subtitle accounts.
+
+**Fix**, all in `ProfileSignIns`, with key-only operations (no value is read or logged):
+
+- **On delete**, every sign-in whose key ends in exactly `/<keyIndex>` goes, so profile 14242 keeps its own when 4242
+  goes.
+- **A new profile never takes an index that still has a sign-in:** the next index is one past the highest of any
+  profile and any sign-in.
+- **Once at startup** (`MainActivity.onCreate`), sign-ins no profile can reach are removed: an index that is not 0 (the
+  default profile, synthesized when the stored list is empty, as on a fresh install), not in the stored list, and not
+  the selected one. These are left by deletes before this fix, or detached by a backup restore, which brings the
+  profile list but not the sign-ins. **If the stored list exists but does not parse, the cleanup does nothing**: the
+  app's reader turns an unparseable list into an empty one, which would make every profile's sign-ins look unreachable.
+- **The default profile is protected from the automatic cleanup only.** Deleting it is the user's own act and resets it
+  fully, sign-ins included; the synthesized default that replaces it starts signed out.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| Deleting a profile kept its sign-ins on the device | They go with it | A deleted profile's credentials were reachable only by inheritance |
+| A new profile could be signed in to a deleted one's services | It never is | Security |
+| Sign-ins left by old deletes stayed forever | Removed at the next start | Same; the default and the selected profile are never touched |
+| After a backup restore, sign-ins on an index the restored list lacks stayed | Removed at the next start | No listed profile could use them |
+| Deleting the default profile kept its sign-ins, and the default that came back was still signed in | The new default starts signed out | Deleting is the user's act; same no-inheritance outcome |
+
+**Test:** `DeleteProfileSignInsTest` (`:app` device, 5), marker values only:
+- delete removes the profile's tokens and ids and keeps another profile's and the 14242 neighbour's (failed on master,
+  measured before the fix);
+- a sign-in above every profile pushes the next index past it;
+- the startup cleanup keeps 0, a listed index, the selected index and 14242, and removes the unreachable one;
+- with an unparseable profile list stored, the cleanup removes nothing and a sign-in at index 7 survives;
+- deleting the default profile clears its sign-ins, keeps another profile's, and the default comes back at index 0.
+
+**Not covered:** the TV audit's other account finding, that the account screen never shows on a fresh install
+(`skipStartup` tests the empty stored array, `AccountSelectActivity`), is `Q16`'s to measure, not this fix's.
+
+## BUG-49 — Cancelling a device-code pairing still signed the TV in · **high, security** · measured 2026-11-07
+
+**Status:** fixed in pr · found 2026-11-07 while measuring `Q16` (account select, 8d), whose Simkl panel reuses the
+wait · `app/.../ui/settings/SettingsAccount.kt`, `showPin`
+
+The pairing dialog's Cancel was a no-op lambda, and its `CountDownTimer` was cancelled only on success. So after Cancel,
+BACK or a tap outside, the dialog kept polling until the code expired, and a code entered on the phone in that time
+signed the TV in. A poll already in flight when the user left was saved too: `AuthRepo.login(pin)` asks the provider
+and saves the token in one call.
+
+**Fix:**
+- `DevicePinPoll` replaces the timer. Every way out of the dialog (Cancel, BACK, outside, success, expiry) cancels it,
+  and the poll runs in the screen's lifecycle scope, so a screen that goes away takes the poll with it. Polls run one at
+  a time; the old timer could start a new request every interval while the last was still out.
+- `AuthRepo.login(pin, stillWanted)` asks `stillWanted` after the provider answers and before anything is saved, so a
+  response that lands after Cancel saves nothing.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| Cancel left the pairing live until the code expired | Cancel ends it | A cancelled pairing must not sign in |
+| A code entered after Cancel signed the TV in | It does not | Same |
+| A new poll could start while the last was still out | One poll at a time | No overlapping requests; the countdown can run a little slower than wall time by each request's length |
+
+**Tests:**
+- `DevicePinCancelTest` (`:app` device, 1): the real dialog with a fake provider (fixture code `FAKE00`, marker token, no
+  network); BACK, then the code is "entered": not signed in, and no further polls. **Failed on master** ("A cancelled
+  pairing signed in expected:<0> but was:<1>"), measured before the fix on a tree that was master plus the test.
+- `DevicePinPollTest` (`:app` JVM, 5): a poll in flight when the user cancels, with the code entered after and a
+  network call that ignores cancellation, saves nothing; the same when the screen goes; no poll after Cancel; a code
+  entered while open signs in once; an unentered code expires once, after one poll per interval.
+
+**Published API:** `classes-jar.api` +13 / −5. The 5 removed lines are the compiler-generated anonymous timer class
+`SettingsAccount$Companion$showPin$2$1$2`, approved for removal by the owner on 2026-11-07.

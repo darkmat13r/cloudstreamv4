@@ -1,17 +1,21 @@
 package com.lagradost.cloudstream4.download
 
 import android.content.Context
+import android.net.Uri
 import android.os.Environment
 import android.util.Log
 import com.lagradost.cloudstream3.IDownloadableMinimum
 import com.lagradost.cloudstream3.app
 import com.lagradost.cloudstream3.services.DownloadQueueService
 import com.lagradost.cloudstream3.utils.DOWNLOAD_EPISODE_CACHE
+import com.lagradost.cloudstream3.utils.DataStore.getFolderName
+import com.lagradost.cloudstream3.utils.DataStore.getKey
 import com.lagradost.cloudstream3.utils.DataStore.getKeys
 import com.lagradost.cloudstream3.utils.downloader.DownloadFileManagement.getBasePath
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.CreateNotificationMetadata
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.DownloadStatus
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.DownloadedFileInfo
+import com.lagradost.cloudstream3.utils.downloader.DownloadObjects.DownloadedFileInfoResult
 import com.lagradost.cloudstream3.utils.downloader.DownloadUtils.appendAndDontOverride
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.DownloadActionType
@@ -80,6 +84,12 @@ private data object RunNoTerminal : RunResult
  *   fails [DownloadFailure.SizeMismatch] without trying another mirror, which would throw the staged
  *   file away.
  *
+ * ## Listed while it runs (`KMP-60`)
+ *
+ * `KEY_DOWNLOAD_INFO` is written at the run's first snapshot, as `downloadThing` writes it after its headers, so the
+ * Downloads lists can show the episode before a destination file exists: [getDownloadListInfo] gives the staged bytes
+ * and an empty path, and [refusesPlay] keeps every play action off that path.
+ *
  * A staging directory whose episode is gone (stopped while not running, deleted, or pruned from the
  * Downloads list after a failure) is removed by [sweepOrphanedStaging], which `DownloadQueueManager.init`
  * runs at start-up.
@@ -136,6 +146,10 @@ internal class EngineVideoDownload(
         val stopRequested = AtomicBoolean(false)
         val paused = AtomicBoolean(false)
         var stagedName: String? = null
+
+        /** `KEY_DOWNLOAD_INFO` has been written for the list, and whether it carried a known total. */
+        var listed = false
+        var listedWithTotal = false
     }
 
     suspend fun download(
@@ -216,7 +230,9 @@ internal class EngineVideoDownload(
         referer = link.referer,
         // A staged file left by a crash between the engine's move and the marker is not provably complete.
         overwrite = true,
-        options = DownloadOptions(allowPrivateAddresses = allowPrivateAddresses),
+        options = EngineDownloadSwitch.minPartBytesForTests
+            ?.let { DownloadOptions(allowPrivateAddresses = allowPrivateAddresses, minPartBytes = it) }
+            ?: DownloadOptions(allowPrivateAddresses = allowPrivateAddresses),
     )
 
     /** Runs the engine until it ends, pausing and resuming on `downloadEvent`. */
@@ -297,6 +313,20 @@ internal class EngineVideoDownload(
                 metadata.addBytes(snapshot.bytesDone - metadata.bytesDownloaded)
 
                 val total = snapshot.bytesTotal
+                // KMP-60: the record the Downloads lists read, written as `downloadThing` writes it once it has its
+                // headers, and again when the total becomes known. It holds what that one holds: no URL or header.
+                if (!call.listed || (!call.listedWithTotal && total != null)) {
+                    call.listed = true
+                    call.listedWithTotal = total != null
+                    metadata.setDownloadFileInfoTemplate(
+                        DownloadedFileInfo(
+                            totalBytes = 0L, // replaced from the metadata's own total when written
+                            relativePath = call.folder,
+                            displayName = call.displayName,
+                            basePath = call.basePath,
+                        )
+                    )
+                }
                 if (!progress.spaceChecked && total != null) {
                     progress.spaceChecked = true
                     EngineDownloadRules.stagingShortfall(total, snapshot.bytesDone, availableSpace(call))
@@ -491,6 +521,67 @@ internal class EngineVideoDownload(
                 Log.w(TAG, "staging sweep failed: ${t.javaClass.name}")
             }
         }
+
+        /**
+         * What the Downloads lists read for one episode (`KMP-60`): [VideoDownloadManager.getDownloadFileInfo] when the
+         * destination file exists. Otherwise, with the switch on, an engine download that has a staging directory and a
+         * `KEY_DOWNLOAD_INFO` record is listed with the bytes its staging holds and [Uri.EMPTY] for a path, which every
+         * play action refuses ([refusesPlay]). With the switch off this is exactly `getDownloadFileInfo`.
+         */
+        fun getDownloadListInfo(context: Context, id: Int): DownloadedFileInfoResult? {
+            VideoDownloadManager.getDownloadFileInfo(context, id)?.let { return it }
+            if (!EngineDownloadSwitch.useSegmentedEngine) return null
+            return try {
+                val staging = stagingOf(context, id)
+                if (!staging.isDirectory) return null
+                // The Class overload: the reified one inlines a TypeReference class into classes.jar.
+                val info = context.getKey(
+                    getFolderName(VideoDownloadManager.KEY_DOWNLOAD_INFO, id.toString()),
+                    DownloadedFileInfo::class.java,
+                ) ?: return null
+                val staged = stagedBytes(staging)
+                DownloadedFileInfoResult(
+                    if (info.totalBytes > 0L) minOf(staged, info.totalBytes) else staged,
+                    info.totalBytes,
+                    Uri.EMPTY,
+                )
+            } catch (t: Throwable) {
+                Log.w(TAG, "list read failed: ${t.javaClass.name}")
+                null
+            }
+        }
+
+        /**
+         * True when [id] is an engine download whose destination does not exist yet: there is nothing to play, open or
+         * share, only the private staging. Always false with the switch off, and then nothing is read.
+         */
+        fun refusesPlay(context: Context, id: Int): Boolean =
+            EngineDownloadSwitch.useSegmentedEngine &&
+                stagingOf(context, id).isDirectory &&
+                VideoDownloadManager.getDownloadFileInfo(context, id) == null
+
+        /**
+         * For `deleteFile`, when the destination file is missing: true when [id] has engine staging, which is then what
+         * a delete removes. A running download's staging is left to its own stop, which the delete's Stop event sends;
+         * an idle one's is deleted here. Always false with the switch off.
+         */
+        fun deleteStagingForDelete(context: Context, id: Int): Boolean {
+            if (!EngineDownloadSwitch.useSegmentedEngine) return false
+            val staging = stagingOf(context, id)
+            if (!staging.isDirectory) return false
+            val running = VideoDownloadManager.currentDownloads.value.contains(id) ||
+                DownloadQueueService.downloadInstances.value.any { it.downloadQueueWrapper.id == id }
+            if (!running) staging.deleteRecursively()
+            return true
+        }
+
+        private fun stagingOf(context: Context, id: Int): File =
+            File(EngineDownloadSwitch.stagingRootForTests ?: defaultStagingRoot(context), id.toString())
+
+        /** The sizes of the files the staging holds, the marker aside. Sizes only: no file is opened. */
+        private fun stagedBytes(staging: File): Long = staging.walkTopDown()
+            .filter { it.isFile && it.name != EngineDownloadRules.MARKER_FILE_NAME }
+            .sumOf { it.length() }
 
         private const val TAG = "EngineVideoDownload"
     }

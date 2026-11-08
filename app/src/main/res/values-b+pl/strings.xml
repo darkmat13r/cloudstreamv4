@@ -18,6 +18,24 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać %d źródło."</item><item quantity="few">"Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła."</item><item quantity="many">"Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródeł."</item><item quantity="other">"Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ŹRÓDŁO"</item><item quantity="few">"%d ŹRÓDŁA"</item><item quantity="many">"%d ŹRÓDEŁ"</item><item quantity="other">"%d ŹRÓDŁA"</item></plurals>
 <string name="account">"konto"</string>
+<string name="account_add_profile">"Dodaj profil"</string>
+<string name="account_manage_profiles">"Zarządzaj profilami"</string>
+<string name="account_pair_code">"Twój kod"</string>
+<string name="account_pair_instructions">"Otwórz to na telefonie i wpisz kod poniżej."</string>
+<string name="account_pair_new_code">"Pobierz nowy kod"</string>
+<string name="account_pair_title" formatted="true">"Połącz %s"</string>
+<string name="account_profile_current">"Bieżący"</string>
+<string name="account_profile_locked">"Zablokowany · PIN"</string>
+<string name="account_profile_no_sync">"Bez synchronizacji"</string>
+<string name="account_select_note">"Osobna historia oglądania · to nie logowania"</string>
+<string name="account_select_title">"Kto ogląda?"</string>
+<string name="account_sync_connected">"Połączono · zalogowano na tym urządzeniu"</string>
+<string name="account_sync_needs_browser">"Logowanie wymaga przeglądarki. To urządzenie jej nie ma."</string>
+<string name="account_sync_note">"Opcjonalne. Synchronizuje postęp oglądania z kontem, które już masz."</string>
+<string name="account_sync_pair">"Połącz kodem"</string>
+<string name="account_sync_remove">"Usuń z tego urządzenia"</string>
+<string name="account_sync_title">"Usługi synchronizacji"</string>
+<string name="account_sync_unavailable">"Niedostępne tutaj"</string>
 <string name="action_add_to_bookmarks">"Ustaw status oglądania"</string>
 <string name="action_add_to_favorites">"Dodaj do ulubionych"</string>
 <string name="action_default">"Domyślne"</string>

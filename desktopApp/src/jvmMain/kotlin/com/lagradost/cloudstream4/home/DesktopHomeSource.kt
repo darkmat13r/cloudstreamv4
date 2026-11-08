@@ -6,6 +6,7 @@ import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.SearchResponse
 import com.lagradost.cloudstream3.mvvm.Resource
 import com.lagradost.cloudstream3.ui.APIRepository
+import com.lagradost.cloudstream4.detail.withoutUrls
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxedProvider
 import com.lagradost.cloudstream4.feature.home.HomeItem
 import com.lagradost.cloudstream4.feature.home.HomePageReply
@@ -68,7 +69,8 @@ class DesktopHomeSource(
 
     private fun Resource.Failure.toReply(): HomePageReply {
         // The first line: the rest of errorString is a stack trace, which is not for this screen.
-        val reason = errorString.trim().lineSequence().first().safeText().ifEmpty { UNKNOWN_ERROR }
+        // A plugin's words reach the screen and a pasted bug report, so no address and no home directory (`#200`).
+        val reason = errorString.trim().lineSequence().first().withoutUrls().withoutHome().safeText().ifEmpty { UNKNOWN_ERROR }
         // A host reports its failure as text, so a plugin's lost connection never arrives as a network
         // error. A plugin can lie with this, and all it gains is showing the offline state.
         return if (isNetworkError || NETWORK_FAILURES.any { it in reason }) {
@@ -96,6 +98,9 @@ class DesktopHomeSource(
             posterUrl = posterUrl?.takeIf { url -> HTTP_PREFIXES.any { url.startsWith(it, ignoreCase = true) } },
         )
     }
+
+    private fun String.withoutHome(): String =
+        System.getProperty("user.home")?.takeIf { it.length > 1 }?.let { replace(it, "~") } ?: this
 
     private fun String.safeText(): String =
         filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(MAX_TEXT_CHARS)

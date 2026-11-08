@@ -24,7 +24,13 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.home.HomeAction
+import com.lagradost.cloudstream4.feature.home.HomeBookmark
+import com.lagradost.cloudstream4.feature.home.HomeBookmarks
+import com.lagradost.cloudstream4.feature.home.HomeFeatured
+import com.lagradost.cloudstream4.feature.home.HomeHero
+import com.lagradost.cloudstream4.feature.home.HomeHistory
 import com.lagradost.cloudstream4.feature.home.HomeItem
+import com.lagradost.cloudstream4.feature.home.HomeResume
 import com.lagradost.cloudstream4.feature.home.HomeMore
 import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeRow
@@ -36,8 +42,13 @@ import com.lagradost.cloudstream4.feature.home.HomeSourceOption
 import com.lagradost.cloudstream4.feature.home.HomeSources
 import com.lagradost.cloudstream4.feature.home.HomeState
 import com.lagradost.cloudstream4.feature.home.HomeStatus
+import com.lagradost.cloudstream4.feature.home.HomeWatchStatus
 import com.lagradost.cloudstream4.feature.home.desktop.HomeScreenDesktop
 import com.lagradost.cloudstream4.feature.home.desktop.HomeScreenDesktopDefaults
+import com.lagradost.cloudstream4.feature.library.LibraryBucket
+import com.lagradost.cloudstream4.feature.library.LibraryTitle
+import com.lagradost.cloudstream4.feature.library.LibraryTitleId
+import com.lagradost.cloudstream4.feature.library.WatchPosition
 import com.lagradost.cloudstream4.library.InMemoryLibraryStore
 import java.io.File
 import java.util.Locale
@@ -222,8 +233,13 @@ class HomeScreenTest {
         actions.clear()
         val open = screen(state(HomeStatus.Loading, pickerOpen = true), { actions += it })
         open.settle()
-        open.click(Offset(WIDTH - 100f, FIRST_PANEL_ROW_Y + DesktopRowStep))
+        open.click(Offset(WIDTH - 100f, PANEL_NONE_Y + PANEL_ROW_STEP * 2))
         assertEquals(listOf<HomeAction>(HomeAction.SourceSelected(options[1].id)), actions)
+
+        // H3: None is the first row, above every source.
+        actions.clear()
+        open.click(Offset(WIDTH - 100f, PANEL_NONE_Y))
+        assertEquals(listOf<HomeAction>(HomeAction.SourceSelected(HomeSourceId.None)), actions)
 
         actions.clear()
         open.click(Offset(100f, HEIGHT - 20f))
@@ -276,7 +292,61 @@ class HomeScreenTest {
         }
         small.save("13-minimum-window")
         small.close()
+
+        // KMP-55: what the device keeps above the source's rows, in each state that matters, full size and minimum.
+        val kept = withKept(state(HomeStatus.Showing(rows)))
+        mapOf(
+            "15-kept-content" to kept,
+            "16-kept-offline" to kept.copy(status = HomeStatus.Offline),
+            "17-kept-unsourced" to kept.copy(selected = HomeSourceId.None, status = HomeStatus.Unsourced, hero = HomeHero.None),
+            "18-kept-picker" to kept.copy(pickerOpen = true),
+            "19-kept-no-status" to kept.copy(bookmarks = kept.bookmarks.copy(chosen = null)),
+        ).forEach { (name, value) ->
+            val scene = screen(value)
+            scene.save(name)
+            scene.close()
+        }
+        mapOf(
+            "20-kept-minimum" to kept,
+            "21-kept-minimum-offline" to kept.copy(status = HomeStatus.Offline),
+        ).forEach { (name, value) ->
+            val scene = scene(800, 520) {
+                HomeScreenDesktop(value, {}, artwork = { Box(Modifier.fillMaxSize().background(Color.DarkGray)) })
+            }
+            scene.save(name)
+            scene.close()
+        }
     }
+
+    /** A hero, two to resume and bookmarks in three statuses, Watching chosen. */
+    private fun withKept(base: HomeState) = base.copy(
+        hero = HomeHero.Shown(
+            HomeFeatured(
+                id = "hero",
+                title = "The Last Signal",
+                year = 2019,
+                genres = listOf("Drama", "Thriller"),
+                score = "8.4",
+                contentRating = "TV-MA",
+                synopsis = "Six months after the broadcast went dark, a salvage crew picks up a repeating signal from a station decommissioned forty years ago.",
+            ),
+        ),
+        history = HomeHistory(
+            resume = listOf(
+                HomeResume("r1", "Severance", progress = 0.62f, season = 2, episode = 4, sourceName = "YouTube"),
+                HomeResume("r2", "Arcane", progress = 0.35f, sourceName = "Internet Archive"),
+            ),
+        ),
+        bookmarks = HomeBookmarks(
+            all = listOf(
+                HomeBookmark(HomeItem("b1", "Deep Signal"), HomeWatchStatus.Watching, 3),
+                HomeBookmark(HomeItem("b2", "Quiet Harbor"), HomeWatchStatus.Watching, 2),
+                HomeBookmark(HomeItem("b3", "Nine Lives"), HomeWatchStatus.PlanToWatch, 1),
+                HomeBookmark(HomeItem("b4", "Salt Road"), HomeWatchStatus.Completed, 1),
+            ),
+            chosen = HomeWatchStatus.Watching,
+        ),
+    )
 
     private class FakeHome : HomeSource {
         override suspend fun sources() = HomeSources(listOf(HomeSourceOption(HomeSourceId("Fake"), "Fake")), 1)
@@ -285,6 +355,48 @@ class HomeScreenTest {
             listOf(HomeRowPage("Popular", false, List(12) { HomeItem(com.lagradost.cloudstream4.search.DesktopSearchSource.encodeId("Fake", "u$it"), "Title $it") })),
             hasNext = false,
         )
+    }
+
+    /** The device's library, as the window's own store reads it: two to resume and bookmarks in two statuses. */
+    private fun keptLibrary() = InMemoryLibraryStore(
+        titles = listOf("Severance", "Arcane", "Deep Signal", "Nine Lives").mapIndexed { index, name ->
+            LibraryTitle(
+                LibraryTitleId("k$index"),
+                name,
+                bucket = if (index < 2) null else if (index == 2) LibraryBucket.Watching else LibraryBucket.PlanToWatch,
+                keptAt = index.toLong(),
+                providerName = "Fake",
+            )
+        },
+        positions = listOf(
+            WatchPosition(LibraryTitleId("k0"), null, positionMillis = 30 * 60_000L, durationMillis = 50 * 60_000L, watchedAt = 2),
+            WatchPosition(LibraryTitleId("k1"), null, positionMillis = 10 * 60_000L, durationMillis = 40 * 60_000L, watchedAt = 1),
+        ),
+    )
+
+    /** A source that is there and offline: what H4's pill is for. */
+    private class OfflineHome : HomeSource {
+        override suspend fun sources() = HomeSources(listOf(HomeSourceOption(HomeSourceId("YouTube"), "YouTube")), 1)
+
+        override suspend fun page(source: HomeSourceId, section: Int, page: Int) = HomePageReply.Offline
+    }
+
+    /**
+     * H6 as the whole window, toolbar and all, at the 800×520 minimum (`KMP-55`): offline, where the pill sits beside the
+     * source, and with rows, where Reload and Random do. Renders only; the window's behaviour has its own tests.
+     */
+    @Test
+    fun `whole window renders at the minimum`() {
+        if (System.getProperty("cloudstream.home.renders") == null) return
+        listOf("22-window-minimum-offline" to OfflineHome(), "23-window-minimum-content" to FakeHome()).forEach { (name, home) ->
+            val scene = scene(800, 520) { DesktopApp(EscapeHandler(), home, library = keptLibrary()) }
+            repeat(WAIT_ROUNDS) {
+                scene.settle()
+                Thread.sleep(WAIT_MILLIS)
+            }
+            scene.save(name)
+            scene.close()
+        }
     }
 
     /** The whole window: where it opens, opening a title, and Back and Escape from there. */
@@ -357,8 +469,9 @@ class HomeScreenTest {
         const val PAST_ROW_TITLE = 80
         const val CARD_Y = 200f
         const val SECOND_LINE_Y = 480f
-        const val FIRST_PANEL_ROW_Y = 88f
-        const val DesktopRowStep = 64f
+        /** Measured from `18-kept-picker.png`: the panel's title, its line, then None, then each source. */
+        const val PANEL_NONE_Y = 120f
+        const val PANEL_ROW_STEP = 49f
         /** In the window the page sits beside the 220 sidebar (`KMP-53`), so everything is further right. */
         const val SIDEBAR_WIDTH = 220f
         /** Sidebar rows: 24 down, then 32 rows 4 apart. */
