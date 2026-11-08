@@ -107,6 +107,9 @@ import org.jetbrains.compose.resources.stringResource
  * @param confirming the titles the host is asking about, from [com.lagradost.cloudstream4.feature.downloads.DownloadsEffect.ConfirmDelete],
  *   until it is answered. Drawn as board D3's sheet, whose default is Cancel (`DEC-19`).
  * @param canReveal whether a title has something on the disk to show in Finder yet.
+ * @param canPlayFromLink whether D1's Play from link has a page behind it on this host. Off, the button is not drawn: no
+ *   dead controls (the PM's call, `KMP-75`). The Mac has none yet.
+ * @param canOpenQueue the same for D1's Download queue.
  * @param artwork draws a title's poster. Image loading is the host's.
  */
 @Composable
@@ -121,6 +124,8 @@ fun DownloadsScreenDesktop(
     canReveal: (DownloadTitle) -> Boolean = { false },
     onReveal: (DownloadTitleId) -> Unit = {},
     artwork: @Composable (DownloadTitle) -> Unit = {},
+    canPlayFromLink: Boolean = false,
+    canOpenQueue: Boolean = false,
 ) {
     val send: (List<DownloadsAction>) -> Unit = { actions -> actions.forEach(onAction) }
     var menu by remember { mutableStateOf<DownloadsMenu?>(null) }
@@ -148,7 +153,7 @@ fun DownloadsScreenDesktop(
             },
     ) {
         Column(Modifier.fillMaxSize()) {
-            Toolbar(state, onAction)
+            Toolbar(state, onAction, canPlayFromLink, canOpenQueue)
             Header(state, formatBytes)
             state.storageFull?.let { StorageFullBanner(it, onAction, formatBytes) }
             Body(
@@ -176,9 +181,12 @@ fun DownloadsScreenDesktop(
     }
 }
 
-/** Play from link and the queue, at the trailing end of the window's toolbar band. */
+/**
+ * Play from link and the queue, at the trailing end of the window's toolbar band: each only where the host has
+ * something behind it. The band stays either way, so the page below does not move when one arrives.
+ */
 @Composable
-private fun Toolbar(state: DownloadsState, onAction: (DownloadsAction) -> Unit) {
+private fun Toolbar(state: DownloadsState, onAction: (DownloadsAction) -> Unit, canPlayFromLink: Boolean, canOpenQueue: Boolean) {
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap, Alignment.End),
@@ -188,11 +196,14 @@ private fun Toolbar(state: DownloadsState, onAction: (DownloadsAction) -> Unit) 
             .border(CloudStreamDimens.Hairline, CloudStreamTheme.colors.line)
             .padding(horizontal = DesktopDimens.WindowMargin),
     ) {
-        DesktopButton(
-            label = stringResource(Res.string.downloads_play_from_link),
-            onClick = { onAction(DownloadsAction.PlayFromUrlRequested) },
-            icon = CloudStreamIcons.Link,
-        )
+        if (canPlayFromLink) {
+            DesktopButton(
+                label = stringResource(Res.string.downloads_play_from_link),
+                onClick = { onAction(DownloadsAction.PlayFromUrlRequested) },
+                icon = CloudStreamIcons.Link,
+            )
+        }
+        if (!canOpenQueue) return@Row
         val queue = stringResource(Res.string.download_queue)
         val label = if (state.queue.total > 0) {
             // The count joins the word through the shared separator key, so a translation and RTL order it.

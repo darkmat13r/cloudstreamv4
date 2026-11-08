@@ -144,6 +144,9 @@ internal fun DownloadsDesktopRow(
                             val event = awaitPointerEvent(PointerEventPass.Main)
                             if (event.type != PointerEventType.Press) continue
                             val change = event.changes.firstOrNull() ?: continue
+                            // A verb's own press (`DesktopVerb` consumes it), not the row's: counted here it read as the
+                            // second half of a double-click and opened the title instead of deleting it (`KMP-75`).
+                            if (change.isConsumed) continue
                             // Control-click is a right-click on a Mac.
                             val secondary = event.buttons.isSecondaryPressed ||
                                 (event.buttons.isPrimaryPressed && event.keyboardModifiers.isCtrlPressed)
@@ -289,7 +292,20 @@ internal fun DesktopVerb(icon: ImageVector, label: String, onClick: () -> Unit) 
             tip = true
         }
     }
-    Box(Modifier.hoverable(source)) {
+    Box(
+        Modifier
+            .hoverable(source)
+            // The button inside has seen the press by now (the main pass goes inner to outer); consuming it here keeps
+            // the row behind from taking it as a press of its own.
+            .pointerInput(Unit) {
+                awaitPointerEventScope {
+                    while (true) {
+                        val event = awaitPointerEvent(PointerEventPass.Main)
+                        if (event.type == PointerEventType.Press) event.changes.forEach { it.consume() }
+                    }
+                }
+            },
+    ) {
         DesktopIconButton(
             icon = icon,
             contentDescription = label,

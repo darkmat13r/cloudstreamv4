@@ -266,6 +266,21 @@ class DownloadSeriesScreenTest {
         scene.close()
     }
 
+    /** `KMP-75`: a press on an episode's verb is the verb's, so the episode then its Delete verb is not a double-click. */
+    @Test
+    fun `a click on an episode then quickly on its Delete verb asks to delete, and plays nothing`() {
+        val harness = Harness()
+        val scene = scene(harness)
+        scene.settle()
+        scene.sendPointerEvent(PointerEventType.Move, Offset(NAME_X, rowY(0)))
+        scene.settle()
+        scene.press(Offset(NAME_X, rowY(0)), timeMillis = 1_000)
+        scene.press(Offset(DELETE_VERB_X, rowY(0)), timeMillis = 1_100)
+        assertEquals(listOf(DownloadEpisodeId(1)), harness.confirming)
+        assertTrue(harness.effects.none { it is SeriesEffect.Play }, "${harness.effects}")
+        scene.close()
+    }
+
     @Test
     fun `a double click plays the episode`() {
         val harness = Harness()
@@ -317,6 +332,8 @@ class DownloadSeriesScreenTest {
         const val ROW_PITCH = 48f
         const val NAME_X = 120f
         const val FIRST_VERB_X = 960f
+        /** The last of the hover verbs, Delete: always the trailing one. */
+        const val DELETE_VERB_X = 1024f
         const val SHEET_CANCEL_DOWNLOAD_X = 447f
         const val SHEET_BUTTON_Y = 181f
         const val SHEET_PROBE_X = 700
