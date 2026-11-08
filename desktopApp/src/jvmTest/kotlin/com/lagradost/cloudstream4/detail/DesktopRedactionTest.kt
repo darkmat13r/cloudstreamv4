@@ -36,6 +36,14 @@ class DesktopRedactionTest {
         "only the host https://host.example" to "only the host https://host.example",
         "index 3 out of bounds" to "index 3 out of bounds",
         "frame at com.example.Home(Home.kt:12)" to "frame at com.example.Home(Home.kt:12)",
+        // BUG-52: an invisible character must not hide a url from the patterns, and line breaks must survive.
+        "cdn https:\u200B//cdn.example/x?token=MARKER_QUERY" to "cdn https://cdn.example/<…>",
+        "bom ht\uFEFFtps://cdn.example/MARKER_PATH" to "bom https://cdn.example/<…>",
+        // A tab or a line break inside "://" must not hide the url, nor rejoin it once a screen strips controls.
+        "https:\t//host/p?token=MARKER_QUERY" to "https://host/<…>",
+        "nl https:\n//host/p?token=MARKER_QUERY" to "nl https://host/<…>",
+        "https:\u00A0//host/p?token=MARKER_QUERY" to "https://host/<…>",
+        "keeps\nlines\r\nand\ttabs" to "keeps\nlines\r\nand tabs",
     )
 
     @Test
@@ -44,6 +52,9 @@ class DesktopRedactionTest {
             val text = input.withoutUrls()
             assertEquals(expected, text, input)
             markers.forEach { assertFalse(text.contains(it), "'$it' leaked into: $text") }
+            // BUG-52: what a screen shows after it strips controls, as Home, Detail and the HUD do.
+            val shown = text.filterNot { it.isISOControl() }
+            markers.forEach { assertFalse(shown.contains(it), "'$it' rejoined on screen: $shown") }
         }
     }
 

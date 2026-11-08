@@ -2375,3 +2375,60 @@ read-only PIN test passes there too: that head already kept the lock and retried
 
 **Published API:** additions only, `classes-jar.api` +3 / −0 (`PIN_FOLDER`, `pins`, `replacePins`). `accounts` keeps
 its getter and setter; only its private backing property changed.
+
+---
+
+## BUG-52 — An invisible character, or a tab, inside `://` hid a url and its token from the redaction; an `ErrorLoadingException`'s message reached the screen unredacted · **high, security** · measured 2026-11-08
+
+**Status:** fixed in the PR that adds this entry, stacked on #221 (`KMP-56`), whose head makes `:desktopApp`'s rules the fourth synced copy. The fix is made in all four copies of the rules listed under `BUG-44`:
+
+- `:app` `utils/LogRedaction.kt`
+- `:library` `mvvm/ArchComponentExt.kt`
+- `:feature:extensions:sandbox` `PluginHost.kt`
+- `:desktopApp` `detail/DesktopDetailSource.kt`
+
+The review of the first version found the tab case and the `ErrorLoadingException` gap.
+
+**The defects.**
+
+1. **An invisible character inside `://`.** `withoutUrls` finds a url by `scheme://`. A control or format character between `https:` and `//`, such as `https:<ZWSP>//cdn.example/x?token=…`, stopped the pattern, so the url, its query and its token stayed in the text. Zero-width characters and bidi marks are invisible wherever the text is shown. A url in an exception's message is whatever a provider or server wrote, so it can carry one.
+2. **A tab or a line break inside `://`** stopped the pattern the same way, so `https:<tab>//host/p?token=…` stayed whole. Logs got the token as it was. A screen that strips ISO controls after redaction (Android's Home and Detail failure lines, the HUD) rejoins a tab into a working url, `https://host/p?token=…`. Home and Detail show only the first line, so a line break there cuts the url rather than rejoining it, but the log still has both halves.
+3. **`throwAbleToResource`'s `ErrorLoadingException` branch** (`:library`) passed `throwable.message` into `errorString` with no redaction, and Android's Home and Detail failure lines show its first line. That is the same class of bug, in a path `BUG-44` did not cover.
+
+**Measured before the fix.** Every case below was added to the shared table, and each copy's test was run against the unfixed rules. A table's loop stops at its first failing case, so the cases were ordered to fail on the url they test.
+
+- `"cdn https:\u200B//cdn.example/x?token=MARKER_QUERY"` failed in all four tests (`StackTraceRedactionTest`, `LogErrorRedactionTest` through `logError`, `PluginHostRedactionTest`, `DesktopRedactionTest`), with `?token=MARKER_QUERY` in the output.
+- `"https:\t//host/p?token=MARKER_QUERY"` failed in all four, with the output `https:\t//host/p?token=MARKER_QUERY`.
+- `LogErrorRedactionTest.anErrorLoadingExceptionsMessageReachesTheScreenRedacted` failed: `errorString` held `MARKER_USER@host.example/MARKER_PATH?t=MARKER_QUERY`.
+- `"https:\u00A0//host/p?token=MARKER_QUERY"` (a no-break space, review round 2) failed in all four once whitespace inside `://` was handled with `\s*`, which does not match NBSP. The output was the input, token and all.
+
+The `:app`, `:library` and sandbox copies were byte-identical to master `42bf120c6` when this was measured, so master leaks the same way.
+
+**The fix.**
+
+- Each copy's `withoutUrls` begins with `withoutHiddenCharacters()`, a private helper. It turns a tab into a space, then drops every other Unicode Cc and Cf character before any pattern runs: ZWSP, ZWJ, ZWNJ, BOM, LRM/RLM, the bidi embeddings and isolates, and the C0/C1 controls. It keeps `\n` and `\r`, because they shape a stack trace and the path rule ends at a line break. The tab becomes a space rather than staying, so a later control strip cannot rejoin it.
+- Each copy's url pattern accepts whitespace and Unicode spaces between `scheme:` and `//`: `[\s\p{Z}]*`, which covers spaces, the mapped tab, line breaks, NBSP and the other `\p{Z}` separators. The output is the usual `scheme://host[:port]/<…>`.
+- `throwAbleToResource`'s `ErrorLoadingException` branch now passes `throwable.message?.withoutUrls()`. A missing message still falls back to the same default text.
+- Every caller goes through `withoutUrls`, so all of them are covered: `redactedText`, `redactedStackTrace`, `logError`, `getStackTracePretty`, the `ErrorLoadingException` text, the plugin host's failure line and the desktop failure lines. `:desktopApp`'s separate `withoutInvisible()` is left as it is.
+
+**Three visible differences.**
+
+- A stack trace that goes through the rules now indents its frames with a space instead of a tab: logcat, `logError`'s stderr and the crash file.
+- A word directly followed by `: //` (`Note: //x/y`) now reads as a url, so it becomes `Note://x/<…>`. That over-redacts, which is the safe way round.
+- An extension's `ErrorLoadingException` message that contains a url now shows as `scheme://host/<…>` on Android's Home and Detail failure lines. This is published `:library` behaviour, so extension authors will see it in the app.
+
+**Tests.** Every copy's table gains these cases:
+
+- ZWSP inside `://`
+- a BOM inside the scheme
+- a tab inside `://`
+- a line break inside `://`
+- a no-break space (U+00A0) inside `://`
+- `keeps\nlines\r\nand\ttabs`, which must come out as `keeps\nlines\r\nand tabs`
+
+Every case is also checked after an `isISOControl` strip, the way Home, Detail and the HUD show text. `LogErrorRedactionTest` gains an `ErrorLoadingException` marker test, and the default text for a missing message is checked too.
+
+**Not covered.**
+
+- A protocol-relative `//host/p?token=…` with no scheme at all is not recognised as a url.
+- Other on-screen `Resource.Failure` texts still carry their message: `SSLHandshakeException`'s, and the "outdated" text for `NoSuchMethodError` and its kin. They are listed under `BUG-44`. Neither comes from a provider's url.
