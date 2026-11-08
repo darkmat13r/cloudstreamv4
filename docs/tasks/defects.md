@@ -2607,3 +2607,46 @@ covers it.
   released, the provider is never asked within 15 s). It isn't this fix's failure. It's `BUG-72`, tracked
   separately, and it's the paired failure that remains.
   `aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept` passed in all six pairs.
+
+**Coverage.**
+- `HomeHostFocusTest` (common): a grant from nothing marks the arrival only while a landing is owed. With none owed,
+  it leaves a mark it didn't make, so `requested = landingOwed` would fail.
+- `HomeScreenTvDeviceTest.focusTheWindowGaveFromNothingBeforeTheHeroLandedGoesToTheHeroAndTheMarkIsCleared`: the hero
+  still takes focus, and the landing clears a mark no arrival took.
+- `HomeTvFragment`'s global focus listener, the wiring that calls `grantedFromNothing`, is covered by
+  `TvHomeNavigationTest` only, through the real window. No test of `:feature:home` reaches it.
+
+## BUG-72 — After `RestorePinGateTest`, TV Home's rows never arrived · **low, test harness**
+
+**Status:** fixed in this PR · found 2026-11-08, train 9's paired device runs
+
+Run after `RestorePinGateTest` (`#227`, train 9 only), `TvHomeNavigationTest.aRailEnteredFromTheNavRailBeforeTheRowsLandKeepsFocus`
+failed with "the hero's title is asked for". Alone, it passed. It isn't a fault in the app: a restore doesn't break
+Home's provider loading. The harness never let the screen settle.
+
+**Cause.** Compose (ui-android 1.12.1) keeps one animator scale per `Context` for the whole process
+(`WindowRecomposer_androidKt.animationScale`). It reads the setting once, when it first makes that state, and after that
+only a `ContentObserver` change updates it. Nothing re-reads it when a new window subscribes. `RestorePinGateTest`'s
+window read 1. The Home test then set `animator_duration_scale` to 0 for its own case, with no window up, so nothing
+saw the change. With the pages held, Home's loading skeleton pulsed for ever. `ActivityScenario.launch` waits for
+idle, so it sat until the held pages timed out (`safeApiCall`, 120 s). The first pages came back failed, with no rows,
+and the hero's title was never asked for.
+
+Measured on train 9 (`575a2d99b`), `Television_720p`, all local:
+- `RestorePinGateTest#withNoLockedProfileNothingIsAsked`, then the Home test: 3 of 3 red. With
+  `#aWrongPin…` first: 1 of 3 red.
+- With logging (not committed), 3 of 3 red: both pages asked for, none loaded, the first pages failed after 120 s.
+
+**Fix.** `:app`'s device tests run with `testOptions.animationsDisabled = true`, so every scale is 0 from the start of
+the run, for every window, and there's no cached 1 to go stale. The Home test's own setting flip is removed because
+it's now redundant. A fix that cleared Compose's cache by reflection also worked, but it was not taken, because it
+reaches into Compose internals.
+
+**Proof**, all local, `Television_720p`:
+- The 3-of-3 red pairing: 3 of 3 green.
+- The whole `RestorePinGateTest` with the whole `TvHomeNavigationTest`, on `575a2d99b`: 20/0, 20/0, then 20/1. The
+  one failure was `aBookmarkIsOnItsRail…` ("the hero of Fake One holds focus, was Watching"). That's `BUG-69`, which
+  `575a2d99b` doesn't have the fix for.
+- The same pair with `BUG-69`'s fix, which is train 9's real state: 20/0, three runs in three.
+- The full `:app` device suite: 173 tests, 0 failures, 1 skipped. The skip is `TvHomeRealPluginProof`, which is skipped
+  unless a plugin has been pushed to the device. No test relied on animations running.
