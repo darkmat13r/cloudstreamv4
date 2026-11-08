@@ -5942,21 +5942,6 @@ Why: headers can be credentials; the owner's rule is no URLs, headers or paths i
 
 Additions only. `app/api/classes-jar.api` +70 / −0: 8 `R$string` fields, `CS3IPlayer.getBufferedPosition`, `FullScreenPlayer`'s `playerError` override and failure flag, `GeneratorPlayer`'s facts override, and the HUD host classes.
 
-## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **approved 2026-11-06**, scheduled after `KMP-52`
-
-It was found while checking `KMP-59` against the no-link ruling for `KMP-52`.
-- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
-  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
-  (`library/.../ExtractorApi.kt:700-708`). It is written to SharedPreferences.
-- **When.** With `KMP-59`'s switch on or off. The engine path adds no link of its own: its marker holds a size and a name, and its state
-  file holds the size, ETag, Last-Modified and the ranges.
-- **The owner's ruling (2026-11-06): the same no-link rule as `KMP-52`.** Keep `ep`, the provider and the episode's `loadLinks` data, and
-  run `loadLinks` again on resume, including the start-up re-queue in `DownloadQueueManager.init`.
-- **Notes for the build:**
-  - A resume package saved before the update keeps its old data until it finishes or is removed.
-  - After a successful migration, the stored `ExtractorLink`s are deleted from SharedPreferences.
-  - Behaviour change: a source that no longer answers fails that resume.
-
 ## KMP-52 — The Mac download service and its data · **measured 2026-11-06**
 
 `:media:download` runs on the JVM in `:desktopApp`, in package `com.lagradost.cloudstream4.downloads`, with a queue, persistence and the two
@@ -5982,7 +5967,8 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
 - Enqueuing a paused or failed episode again takes the new link, because signed URLs expire. A blank source is `EnqueueRefusal.NoSource`.
 - The engine writes straight into `~/Downloads/CloudStream/<title>/`. On the JVM its atomic move works, so there is no staging (unlike `KMP-59`).
 - File names are `S01E02 Name.mp4`, or the title for a film, with ` (2)` on a clash. `DownloadPaths` restates the engine's internal name
-  rules more strictly, so the result is always one safe path segment.
+  rules more strictly, so the result is always one safe path segment. A title or episode name that reads as an address is dropped
+  before it is stored or names anything (`KMP-71`).
 - The HTTP client is `HttpClientFactory(posterHttpClient())`. It verifies TLS and checks the resolved and connected addresses, which also
   closes the engine's DNS-rebinding gap on the Mac.
 - Delete removes only empty folders, and refuses a folder whose real path is not directly inside the download root.
@@ -6053,6 +6039,32 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
 - An unreadable downloads file, where `contents` throws and `enqueue` returns `StoreUnreadable`.
 - A process kill, as opposed to `close()`.
 
+## KMP-71 — Mac downloads: a title or episode name that is an address never reaches disk · **built 2026-11-08**, waits on review
+
+A follow-up to `KMP-52`. A plugin's `titleName` and `episodeName` became the folder and file names and were written to
+`downloads.json`. A plugin can put a signed link there, so it could end up on disk as a file name.
+
+- **The rule** is the TV HUD's title rule as `KMP-66` tightens it, restated in `DownloadPaths.looksLikeAddress`:
+  - a scheme anywhere, or a path, `content:` or `file:` at the start;
+  - a host at the start followed by a port, path, query or fragment.
+  A dotted title on its own (`Dr.Stone`, `Mr.Robot`, `Vol.II`) stays. Only a source's name gets the HUD's stricter rule (a bare host,
+  `sig=`, a backslash path), and a title never does.
+- **Where it applies.** It goes in `DownloadPaths.displayText`, which every title and episode name already passes through:
+  - on enqueue, before the name is stored or names a folder or file;
+  - on reading `downloads.json` back, so a hand-edited file is checked too (not tested with an edited file).
+- **Fallbacks:**
+  - A title that is an address becomes `Download`, both as the row's name and as the folder. A blank title stays blank, as before.
+  - An episode name that is an address is dropped, so the file is `S01E05.mp4` and the list shows the episode's code.
+- **Not handled:** a record written before this change keeps its folder and file names. No caller enqueues anything yet (that is
+  `KMP-54`), so no such record exists.
+
+**Tests** (local, none CI). Counted from the XML:
+- `DownloadPathsTest`, new, 4/4. The address samples are copied from `TvHudFactsTest` (`KMP-64`); the dotted titles are `KMP-66`'s.
+- `DesktopDownloadsTest`, 24/24. The new test enqueues a series episode whose title is a link and whose name is a link carrying a
+  token, and runs it to Done. The file is `Download/S01E05.mp4`. Neither marker appears in `downloads.json`, in any other file in its
+  folder, or in any file's bytes or any path name under the download root, either then or after a restart.
+- With `looksLikeAddress` forced to false, 3 of these fail: 2 in `DownloadPathsTest` and the new one in `DesktopDownloadsTest`.
+
 ## KMP-55 — The Mac's Home, built from `DS-21`
 
 **Status:** in review · stacked on `#191` (`I18N-14`) · H4 waits on `KMP-68` (`#197`)
@@ -6100,6 +6112,46 @@ Tests:
   desktop-only. It wants its own task, with the action added to the shared model. Hover lift is in.
 - **The bookmark filter is kept while the window is open.** There is no desktop preference store yet.
 - **H4's kept rows and their age** wait on `KMP-68`. Until then, a failed reload draws as 3m, under the device's rails.
+  Built since in `KMP-84`.
+
+## KMP-84 — The Mac's H4: a failed reload keeps its rows, says how old they are, and Reload and Random act on them
+
+**Status:** in review · `:feature:home` and `:desktopApp` tests · over `KMP-68`'s `HomeStatus.Stale` · `DS-21` H4
+
+`KMP-68` kept a failed reload's rows in the view model, and the Mac still drew 3m. Now `HomeScreenDesktop` draws H4:
+- **A banner at the top of the page**, the board's: the Warning glyph, `home_reload_failed` with the source and the rows'
+  age, and Try again (Reload). The age is `4m`, `2h 5m` or `1d 2h 5m`, as `I18N-14` decided, counted from `loadedAt`
+  and read again each minute while the window is open.
+- **The kept rows under it**, after what the device keeps (Continue watching, Bookmarks). The hero goes with the
+  reload, as the view model already did.
+- **The offline pill** reads `status.shown`, so it shows for a reload that failed offline. A reload that failed some
+  other way has no pill.
+- **Reload and Random** show while there are kept rows. `HomeStatus.keptRows` (new, in `HomeMvi.kt`) is the rows on
+  screen or a `Stale`'s kept ones. Random now picks from it, so it is not a dead control on H4. TV does not change: its
+  Random is only beside rows, and a `Stale`'s `rows` is still empty.
+
+**DECIDED** (reported to the PM):
+- **A kept row has no Load more.** Its pages went with the reload, and `showMore` reads the rows on screen. A button
+  there would do nothing. Try again is the way on.
+- **The banner has no failure detail.** The board draws the sentence alone, and the pill already says when it is the
+  connection.
+- **The age formatter is a copy of the library's** (`LibrarySourcesTv.kt`), which is private to `:feature:library`.
+  Sharing it means a change there, which this PR does not make.
+
+**Tests:**
+- `HomeAgeTest` (new, 2): minutes, hours and minutes, days; a clock behind the record reads as now.
+- `HomeViewModelTest`: Random after a failed reload opens one of the kept titles.
+- `HomeScreenTest`:
+  - a failed reload's rows stay, and Try again, Reload, Random and a kept card each send their action, with nothing
+    where a Load more would be;
+  - the control for that: the same rows on screen do have their Load more at that point;
+  - the offline pill shows for `Stale(Offline)` and not for `Stale(Failed)`, sampled from the render;
+  - renders `24-stale-offline`, `25-stale-failed-nothing-kept-locally`, `26-stale-minimum-offline`, `27-stale-alone`.
+  Their coordinates were measured from those renders.
+- **Proved by mutation**, each failing only its own test:
+  - Random reading `rows` again: the Random test never gets its title (a one-minute timeout);
+  - the pill on `is Offline` again: the pill's pixel reads the background;
+  - kept rows given Load more: the click there sends `RowMoreRequested`.
 
 ## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
 
@@ -6316,6 +6368,145 @@ nothing, so no test writes to the real home directory. Escape closes whichever p
   uses words, as Home's source button does.
 - **Sort's rows have no explanatory lines**, and the bar reads the full label (`Updated (New to Old)`), as `I18N-15`
   decided by reusing the `sort_*` keys. It fits the minimum window.
+
+## KMP-58 — The Mac's title page, built from `DS-21` (E1 to E6)
+
+**Status:** in review · took over from desktop-session-1, the PM's call of 2026-11-08 · scope approved by the PM before
+building
+
+`DetailScreenDesktop` now draws the `DS-21` boards on the shared `DetailViewModel`:
+- **The bar:** Back, then where the page was opened from (Home, Search or Library), which goes back too, then the title.
+- **E1:**
+  - the poster beside the name;
+  - the shared run of facts, then the kind of title and its provider;
+  - a two-line synopsis that opens in place (`SynopsisToggled`).
+- **E1's actions:**
+  - Resume `S1:E3` with its rule and what is left under it (`resume_time_left` on one line), else Play;
+  - Start over (`detail_start_over`), the same episode or film from its beginning;
+  - the watch list, `Add` or `Done` by whether the title is on one, which opens the watch-status panel.
+- **Episodes** are on the page under a button per season, opening on Resume's season. Season 0 is `season_specials`.
+  Episodes with no season are `season_other`, last (`I18N-12`).
+- **E2:** a row's Play shows while the pointer or focus is on it, and its words never move for it.
+- **E3:** the sources panel, with Cancel. The loading words have a line of their own, so finishing moves no row (`BUG-19`).
+- **E4** is the skeleton. **E5** has Try again and Go back, and shows nothing of the failure (`BUG-21`).
+- **E6:** in the 800×520 window the name is a size down, and everything still answers.
+
+Every action that plays sends `PlaybackRequested`. The desktop host turns it into its source list with the right start:
+the stored position for a Resume, the beginning for Start over or another episode (`startPosition`, tested). Escape
+closes the source list, then the watch-status panel, then the page.
+
+`LibraryDetailSource` adds what this computer remembers about the title, from the same store the library reads:
+- **Resume:** the newest resumable position, only on an episode the provider still lists.
+- **Seasons**, counted from the episodes.
+- **The watch list** and `setWatchStatus`. A title put on a list for the first time keeps its name, poster and provider.
+  None does not take a title out of Favourites, which the page cannot show.
+
+A library that cannot be read costs only these, and the page still opens.
+
+**Tests** (`:desktopApp:jvmTest`, real pointer and key events):
+- `DetailScreenTest` (14): each control is found by what a screen reader is told, then pressed at its middle.
+  - E1's actions, the watch list, the synopsis, the bar's way back.
+  - Seasons: the selected one in semantics, Specials and Other in order.
+  - E2's hover verb, E3's panel, the watch-status panel's selection, E4, E5 (no failure text), E6, Tab to Resume.
+  - The start position.
+- `LibraryDetailSourceTest` (7).
+- `SourcesPanelTest`: the header is a reserved line taller, so `HEADER_BOTTOM` is 64 → 80 and `FIRST_ROW_Y` is 88 → 104,
+  measured off its renders. One case is renamed: Cancel, not Close, keeps its place.
+
+**DECIDED** (approved by the PM before building):
+- **Score, tags, certification, status, runtime and the trailer do not reach the Mac yet.** The plugin sandbox's
+  `RemoteDetails` does not carry them, and changing that format is a security-boundary change. It is `KMP-76`.
+- **Per-episode Watched and time left, and their rules,** wait on `KMP-63`. The contract has no per-episode watch state.
+- **E2's Download and Mark watched** need `DetailAction`s that do not exist, and the Mac's downloads are `KMP-75`. The
+  row's verb is Play alone, with no tooltip: one verb that is the row's own says nothing a tooltip would add.
+- **No episode thumbnails, Share or More.** `DetailEpisode` has no image, there is no share action on desktop, and nothing
+  More would hold works here yet.
+- **The synopsis has no "More" word.** There is no such key. The block itself is the target, named `synopsis` for a
+  screen reader.
+- **The sidebar on E1 is `KMP-77` (shell)**, desktop-session-1's, for every pushed screen.
+
+## KMP-76 — The plugin sandbox carries a title's facts to the Mac · **built 2026-11-08**, follow-up of `KMP-58`
+
+The design was approved by the owner on 2026-11-08, before any code. `RemoteDetails` now carries five facts from
+`LoadResponse`: the score, the tags, the content rating, the show status and the runtime. `DesktopDetailSource` maps them
+onto `TitleDetail`'s existing fields, which feed the shared run of facts under the title's name. Neither `feature/detail`
+nor Android changed.
+
+**The trust boundary is the app's reader.** The plugin runs inside the host process, so it can write any bytes the host
+could. The host's caps only help an honest plugin's page fit. Everything is checked again in the app, in three steps:
+1. **Shape**, in `readFacts`. Every length and count is checked against what is left before anything is allocated. The
+   section is read from its own slice of the frame, so nothing in it can reach past its stated length.
+2. **Bytes.** A tag over 256 bytes, or a certification over 64, is skipped without being decoded. So is a tag past
+   16 KiB of decoded tags, or past the 16th.
+3. **Meaning**, in `RemoteFacts.cleaned`:
+   - the score must be 0 to 100 tenths;
+   - the runtime must be 1 to 1440 minutes;
+   - the status must be code 1 or 2, never free text;
+   - a tag loses control and format characters (U+202E included), and is dropped if blank, repeated, or over 64
+     characters;
+   - a certification must be 1 to 16 letters, digits, spaces or `-+/`, or it is refused, not repaired.
+
+| Fact | Wire | Bound |
+|---|---|---|
+| score | `Int`, tenths of a point out of ten | `0..100` |
+| tags | count, then strings | 16, each ≤ 64 chars and ≤ 256 bytes, ≤ 16 KiB in all |
+| content rating | optional string | ≤ 16 chars, ≤ 64 bytes, letters, digits, space, `-+/` |
+| status | one byte | 0 none, 1 Ongoing, 2 Completed |
+| runtime | `Int`, minutes | `1..1440` |
+
+**A bad fact costs only itself.** The page opens with the rest. A section that cannot be read inside its own length, cut
+short or with a lying length within it, costs all the facts and keeps the page: the outer reader has already stepped past
+it. Only a section length that lies past the frame fails the call and ends the host, as any lying length does elsewhere in
+this format. Each drop is logged as the fact's name and a reason in the code's own words, never the value, not even a
+plugin's number, and many dropped tags make one line.
+
+**Compatibility.** The section follows the episodes as a version byte (`FACTS_V1`) and a length:
+- A reply that ends after the episodes (a host from before this) has no facts, and the page is as it was.
+- An app from before this ignores the trailing bytes.
+- A version this app does not know is skipped whole.
+- A later fact goes in a new version, never by redefining version 1.
+- `classes-jar.api` is untouched: the sandbox is not part of it.
+
+**Tests:**
+- `HostProtocolFactsTest` (15), hand-written frames:
+  - each bound, just inside and just past;
+  - an old reply and an unknown version;
+  - oversized bytes skipped with the reader still in step;
+  - a hundred thousand tags;
+  - a section length lying past the frame, which fails the call;
+  - a section cut short, or lying inside its own length, which keeps the page;
+  - no value, and no plugin-chosen number, reaches the log.
+- `PluginHostClientTest`, three lying-host cases through the real client:
+  - facts past every bound cost only themselves, and the host lives;
+  - a section cut short inside its length costs the facts, and the page and host live;
+  - a section lying about its length past the frame ends the host.
+- `SandboxEnforcementTest`, a malicious plugin in a real sandboxed host. Its score is valid, but it sends:
+  - a 1 MiB tag, 100,000 tags, and tags with terminal escapes, U+202E and zero-width joiners;
+  - `<script>` and a forged line as the rating;
+  - `Int.MAX_VALUE` minutes.
+  The page loads with each bounded or dropped, and the host lives on.
+- `TitleFactsTest` (2), the mapping onto `TitleDetail`.
+- **Not here: the facts on E1's screen.** Master's Mac title page does not draw the run of facts yet; `#226` (`KMP-58`)
+  does. Asserting them there is `KMP-82`, a one-line follow-up once both have landed.
+- **Red without the app's checks.** With `RemoteFacts.cleaned` switched off, 5 of these fail, the lying-host case among
+  them.
+
+**DECIDED** (approved with the design):
+- **No `hasTrailer`.** The Mac cannot play a trailer, so the flag would draw a button that does nothing. Playing one later
+  means a trailer URL crossing the sandbox, which needs link-style checks of its own. It belongs with trailer playback.
+- **The host shortens an honest plugin's tags to 64 characters** rather than losing them. The app does not shorten
+  anything: what arrives over a bound is dropped.
+- **Score on the wire is a whole number of tenths**, so no NaN or infinity can be sent. The page keeps it out of ten.
+- **A section unreadable inside its own length keeps the page** (the PM's call, after review). The reader of the reply
+  has already stepped past the slice, so it is still in step; only the facts are lost. This covers a lying length inside
+  the slice as well as a slice cut short, since both are contained by it.
+
+## KMP-82 — The Mac title page shows `KMP-76`'s facts, asserted on screen · **open**, follow-up of `KMP-76` and `KMP-58`
+
+`KMP-76` carries the score, tags, content rating, status and runtime into `TitleDetail`, and tests that mapping. The Mac
+title page on master does not draw the run of facts yet; `KMP-58` (`#226`) does. Once both are on master, add one case to
+`DetailScreenTest`: a title with all five facts shows them in E1's run under the name, in the shared order, and a title
+with none shows no empty separators. No production change is expected.
 
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 

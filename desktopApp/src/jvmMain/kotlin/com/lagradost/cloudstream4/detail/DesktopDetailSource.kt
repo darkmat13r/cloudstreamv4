@@ -5,6 +5,7 @@ import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
+import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteDetails
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLink
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLinks
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteSubtitle
@@ -54,16 +55,7 @@ class DesktopDetailSource : DetailSource {
             System.err.println("detail: ${provider.name} could not open a title: ${failure.message.orEmpty().withoutUrls()}")
             throw failure
         }
-        return TitleDetail(
-            title = details.name,
-            providerName = provider.name,
-            typeName = details.type,
-            year = details.year,
-            plot = details.plot?.withoutMarkup(),
-            posterUrl = details.posterUrl,
-            playData = details.dataUrl,
-            episodes = details.episodes.map { DetailEpisode(it.name, it.data, it.season, it.episode) },
-        )
+        return details.toTitleDetail(provider.name)
     }
 
     // Conflated: each value is the whole list so far, so a screen that cannot keep up misses nothing.
@@ -72,21 +64,43 @@ class DesktopDetailSource : DetailSource {
         emitAll(provider.linksAsTheyArrive(data).toStreamLinks())
     }.conflate().flowOn(Dispatchers.IO)
 
-    /**
-     * The plot as plain text. Providers send HTML (`<br>` in a YouTube description) and nothing here
-     * renders it, so tags are dropped and never interpreted.
-     */
-    private fun String.withoutMarkup(): String =
-        replace(BREAK_TAG, " ").replace(ANY_TAG, "").replace(RUN_OF_SPACES, " ").trim()
-
     private companion object {
         const val DETAIL_BAD_ID = "BAD_ID"
         const val DETAIL_NOT_LOADED = "NOT_LOADED"
-        val BREAK_TAG = Regex("(?i)<br\\s*/?>")
-        val ANY_TAG = Regex("<[^>]*>")
-        val RUN_OF_SPACES = Regex("\\s+")
     }
 }
+
+/**
+ * The page's title as the sandbox delivered it. Every fact has already passed the app's reader and its checks
+ * (`KMP-76`), so this only changes units: the page keeps a score out of ten, the wire sends tenths.
+ */
+internal fun RemoteDetails.toTitleDetail(providerName: String) = TitleDetail(
+    title = name,
+    providerName = providerName,
+    typeName = type,
+    year = year,
+    plot = plot?.withoutMarkup(),
+    posterUrl = posterUrl,
+    playData = dataUrl,
+    episodes = episodes.map { DetailEpisode(it.name, it.data, it.season, it.episode) },
+    score = facts.scoreTenths?.let { it / TENTHS },
+    tags = facts.tags,
+    contentRating = facts.contentRating,
+    statusName = facts.status?.name,
+    durationMinutes = facts.runtimeMinutes,
+)
+
+/**
+ * The plot as plain text. Providers send HTML (`<br>` in a YouTube description) and nothing here
+ * renders it, so tags are dropped and never interpreted.
+ */
+private fun String.withoutMarkup(): String =
+    replace(BREAK_TAG, " ").replace(ANY_TAG, "").replace(RUN_OF_SPACES, " ").trim()
+
+private const val TENTHS = 10f
+private val BREAK_TAG = Regex("(?i)<br\\s*/?>")
+private val ANY_TAG = Regex("<[^>]*>")
+private val RUN_OF_SPACES = Regex("\\s+")
 
 // BUG-44/47: the fourth of four identical copies of the redaction rules, which must stay in sync: `:app`
 // `utils/LogRedaction.kt`, `:library` `mvvm/ArchComponentExt.kt`, `:feature:extensions:sandbox` `PluginHost.kt`, and this one

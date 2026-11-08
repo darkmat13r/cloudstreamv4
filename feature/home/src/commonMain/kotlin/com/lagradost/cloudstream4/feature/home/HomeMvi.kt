@@ -164,6 +164,12 @@ sealed interface HomeStatus {
 /** What a screen drawing 3m shows for this status: a [HomeStatus.Stale] is its failure, anything else is itself. */
 val HomeStatus.shown: HomeStatus get() = if (this is HomeStatus.Stale) failure else this
 
+/**
+ * The source's rows for a screen that keeps them (the Mac's H4): those on screen, or a [HomeStatus.Stale]'s [kept][HomeStatus.Stale.kept]
+ * ones. Reload and Random act on these, so a failed reload leaves both with something to act on.
+ */
+val HomeStatus.keptRows: List<HomeRow> get() = if (this is HomeStatus.Stale) kept else rows
+
 sealed interface HomeAction {
     data object PickerOpened : HomeAction
     data object PickerDismissed : HomeAction
