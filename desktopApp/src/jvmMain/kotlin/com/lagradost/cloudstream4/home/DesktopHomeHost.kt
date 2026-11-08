@@ -31,6 +31,7 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.library
+import com.lagradost.cloudstream4.core.strings.generated.resources.title_downloads
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_home
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_search
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -86,6 +87,8 @@ internal enum class TopLevelDestination {
     Home,
     Search,
     Library,
+    /** `KMP-54`'s pages over `KMP-52`'s service. */
+    Downloads,
 }
 
 /** The screens that have nothing under them, and the control that moves between them. */
@@ -114,6 +117,7 @@ internal fun TopLevelDestination.label(): String = when (this) {
     TopLevelDestination.Home -> stringResource(Res.string.title_home)
     TopLevelDestination.Search -> stringResource(Res.string.title_search)
     TopLevelDestination.Library -> stringResource(Res.string.library)
+    TopLevelDestination.Downloads -> stringResource(Res.string.title_downloads)
 }
 
 /** Text only: the selected one is filled and in full ink, and there is no icon pack yet (`DEC-11`). */

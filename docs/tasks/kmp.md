@@ -5613,6 +5613,9 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
 - "4.24 GB / 5.10 GB" for "4.24 GB of 5.10 GB".
 - "Not enough storage · Needs 2.40 GB more" for D5's sentence.
 - "Free up space" for "Open Storage Settings".
+- **D1's Play from link and Download queue are not drawn on the Mac** (`KMP-75`, the PM's call: no dead controls). The Mac has
+  no page behind either. `DownloadsScreenDesktop`'s `canPlayFromLink` and `canOpenQueue` draw them once a host has one;
+  the toolbar band stays, so nothing below moves.
 - D5's empty copy is TV's.
 - The D3 sheet's body gives the size freed without the titles' names.
 
@@ -6528,3 +6531,71 @@ Mac's DNS."
       addresses it resolved, which has to keep TLS and the host header right.
 - [ ] If it can, the line under the setting goes, in the same PR.
 - [ ] If it cannot, record why here, and the line stays.
+
+## KMP-75 — Downloads in the Mac's sidebar, over `KMP-52`'s service · **built 2026-11-08**
+
+What `KMP-54` left for wiring:
+- **The fourth sidebar row, with ⌘4** (Ctrl+4 elsewhere): `TopLevelDestination.Downloads`, with `CloudStreamIcons.Download`
+  and `title_downloads`. The Go menu lists it with its key.
+- **`DownloadsHost` and `DownloadSeriesHost`** (`desktopApp/.../downloads/DesktopDownloadsHost.kt`), over
+  `DesktopDownloads`:
+  - Delete goes through the page's own sheet. `ConfirmDelete` names exactly what is asked about. The sheet's Delete
+    calls `delete` (titles) or `deleteEpisodes` (D4); its Cancel and Escape remove nothing.
+  - Show in Finder is offered only for what `fileOf` finds on the disk, a finished file or a series' folder, and selects
+    it with `Desktop.browseFileDirectory`.
+  - Free space on D4 is the source's own `freeBytes`, from the same volume as the titles page.
+  - A file removed in Finder is noticed on arrival: `refresh()`, then `Reappeared`.
+- **`main()` makes the one `DesktopDownloads`** (`~/Downloads/CloudStream`, `~/.cloudstream4/downloads.json`) and closes
+  it in a shutdown hook, so a running download comes back Paused. `DesktopApp`'s `downloads` defaults to null, so no test
+  reads or writes the real downloads file; the page is then empty.
+- **Sizes** are formatted Finder's way: decimal units, two decimal places from GB up, with the locale's decimal mark.
+
+**Hidden:** D1's Play from link and Download queue, which have no Mac page behind them (the PM's call: no dead
+controls). See the reduction in `KMP-54`.
+
+**Fixed on the way: a press on a row's hover verb was also the row's.** `DesktopVerb` consumes its press now, and both
+row handlers skip a consumed one.
+- Before, a click on a title and then, within the double-click time, on its Delete verb read as a double-click. It opened
+  the title and asked nothing.
+- On D4, a click on an episode and then on its Delete verb played the episode.
+- Each has a test, proved by mutation. With the row's check removed:
+  - the titles test fails `expected:<[DownloadTitleId(value=2)]> but was:<null>`;
+  - the series test fails with `[Play(id=…1), ConfirmDelete(id=…1)]`.
+
+**Review fix: the view models' lifetimes.** Both were made with `remember` in their hosts, while their readers ran in
+`DesktopApp`'s window-long scope. Every visit to Downloads or a series page left another set of readers running, each
+rebuilding the page as the service ticked, and D1's state was made again with nothing in it.
+- **D1's view model is `DesktopApp`'s**, made once beside the library's, so the selection and `returnTo` outlast a series
+  page, another tab, or a visit to Home.
+- **D4's runs in a child of the window's scope**, cancelled when the page leaves. A delete its sheet confirmed runs in the
+  window's scope itself, so leaving does not cut it short.
+- Two tests, each failing with its fix undone:
+  - the selection survives Downloads → Home → Downloads, and a series opens and closes over the list (undone, the
+    row's fill reads as unselected);
+  - a series page's readers stop when it is left (undone, they are still running after 20 s).
+- **The Mac does not draw `returnTo`.** No desktop Downloads file reads it, so there is no return to the row's place
+  yet. It is kept in state for when one does: `KMP-83`, not built here.
+- **The same check on the other pages:** Library and Search are made once per window, as now Downloads is. Detail is
+  kept per title while the player is over it, and Back's `forget` stops its link search. Home is made again only when
+  what is installed changes; it holds no reader that outlives its loads.
+
+**Not here:**
+- **Playing a downloaded episode** (D4's Play) is `KMP-74`. The player takes a `StreamLink`, not a local file.
+
+**Tests** (`DownloadsHostTest`, against the real service and a loopback server in a temporary folder):
+- A film is downloaded; ⌘⌫ asks and Cancel keeps the file; the row's menu Delete, then the sheet's Delete, removes the
+  file and its record.
+- ⌘4 and the sidebar's fourth row open Downloads through `DesktopApp`.
+- The size format.
+- The list's view model outlives a visit elsewhere, and a series page's readers stop with it (the review fix above).
+
+**The PM asked whether a Return-cancel breaks the row's Delete verb in the same window.** It does not:
+- `after Return cancels the sheet, the row's Delete verb asks again` passes.
+- What looked like it in `DownloadsHostTest` was its presses all stamped time 0, which the row read as a double-click.
+  That is how the verb bug above was found.
+
+**Flaky on master when this was built, not touched here:** two `DesktopDownloadsTest` (`KMP-52`) tests, since fixed as
+`BUG-53` (`#231`, on master before this merged):
+- `a series page reports the same free bytes as the titles page` reads the live volume twice. It failed 3 of 5 lone runs
+  on this branch.
+- `after a restart a resolver with no VIDEO link…` failed once in a full gate run.
