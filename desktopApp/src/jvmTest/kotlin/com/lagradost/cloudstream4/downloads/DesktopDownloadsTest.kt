@@ -244,10 +244,11 @@ class DesktopDownloadsTest {
         assertTrue(held > 0L)
 
         // A failure is stored, so each new host below loads the previous step's (Failed, NoUsableLink). A reader
-        // started too early could see that stored state and take it for the new answer (BUG-56). The resume starts the
-        // run before it publishes Queued and Running, so "the resolver was asked" alone is not enough. So each step
-        // gates its resolver: it waits until the episode shows Running, which only a publish after the resume shows,
-        // and only then lets the resolver answer. A Failed after that can only be this step's.
+        // started too early could see that stored state and take it for the new answer (BUG-56). Before BUG-57 the
+        // resume started the run before it published Running, so "the resolver was asked" alone was not enough. It now
+        // publishes Running first, but the test does not rely on that order. So each step gates its resolver: it waits
+        // until the episode shows Running, which only a publish after the resume shows, and only then lets the
+        // resolver answer. A Failed after that can only be this step's.
         suspend fun step(resolve: () -> List<DesktopDownloadLink>): DownloadEpisode {
             val gate = CompletableDeferred<Unit>()
             val stepHost = host(resolver = { gate.await(); resolve() })
