@@ -2375,3 +2375,45 @@ read-only PIN test passes there too: that head already kept the lock and retried
 
 **Published API:** additions only, `classes-jar.api` +3 / −0 (`PIN_FOLDER`, `pins`, `replacePins`). `accounts` keeps
 its getter and setter; only its private backing property changed.
+
+## BUG-53 — Two Mac download tests read the live disk, so they were flaky under load · **low** · measured 2026-11-08
+
+Two tests in `DesktopDownloadsTest` (from `KMP-52`, #177) failed when other processes were writing to the disk. They
+turned `:desktopApp:jvmTest` and the gates red on master `42bf120c6`. With the two run alone 10 times beside a loop that
+writes and deletes 64 MiB files, each failed 2 times out of 10. The download code itself was not at fault.
+- **`no link text ever reaches the downloads file or the engine's state`.** Its scan listed the files, then read each one.
+  The engine renames its state file into place while it runs, so a listed file could be gone by the time it was read,
+  giving `FileNotFoundException`.
+  - *Fix:* a pass that finds a vanished file is thrown away, and the scan starts again. It passes only after a pass that
+    read every file it listed, and fails after 20 passes without one. No file is skipped.
+  - *Why not stop the download first:* the scans while it runs are the only check that the engine's mid-run state file
+    holds no link.
+- **`a series page reports the same free bytes as the titles page`.** Each page read the real volume's free space, one
+  after the other, so a write by anything else between the two reads moved the figure. On master the two came out 3 to
+  6 MB apart.
+  - *Fix:* `DesktopDownloads` takes the volume's size and free space from a `VolumeSpace` source. Production reads the
+    real volume, as before, once per figure. The test passes in a fixed volume (1,000 GiB, 400 GiB usable) and checks that
+    both pages give exactly 400 GiB. Nothing is allowed for rounding or drift.
+- **Measured** with the same disk-writing loop:
+  - before, on master: in 10 runs of the two, the scan failed in 2 (`FileNotFoundException`) and the free bytes in 2
+    (3–6 MB apart);
+  - after: these two and `BUG-56`'s test, 20 runs in a row, 0 failures;
+  - the full `:desktopApp:jvmTest`: 441/0, and the six gates pass (all local, none CI).
+
+## BUG-56 — A Mac download test could read the previous run's stored failure as the new one · **low** · measured 2026-11-08
+
+`DesktopDownloadsTest.after a restart a resolver with no VIDEO link fails the episode and keeps its parts` (from `KMP-52`,
+#177) failed now and then on branches that do not touch downloads: "expected SourceFailed, was NoUsableLink". Reported by
+worker-2 on `KMP-58`'s branch and by desktop-session-1, and fixed together with `BUG-53`.
+- **Cause.** Each step of the test starts a new host, and that host loads the previous step's stored failure, Failed with
+  `NoUsableLink`. `resumeNow` calls `pump()`, which starts the run, before `publish()`. So the resolver can be asked, and can
+  answer, while the published view still shows the stored state. The test waited for "asked", then for Failed, and could
+  match the stored Failed. In the first two steps the expected reason equals the stored one, so they could pass without
+  having checked anything.
+- **Fix, test only.** Each step's resolver waits on a gate. The test waits until the episode shows Running, which only a
+  publish after the resume shows, opens the gate, and only then waits for Failed. All three steps now check this step's
+  answer. There are no sleeps and no tolerance.
+- **Not changed here.** In production, too, the run starts before the publish. So after Retry the screen can show the old
+  Failed for a moment, which reads as the retry failing at once. That fix is its own follow-up, `BUG-57`.
+- **Measured** under the `BUG-53` disk load: before, 1 failure in 20 runs on master, with exactly the reported
+  message; after, 20 in a row with none (see `BUG-53`).

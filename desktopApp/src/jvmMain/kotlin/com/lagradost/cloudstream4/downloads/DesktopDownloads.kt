@@ -135,6 +135,8 @@ class DesktopDownloads internal constructor(
     private val resolveTimeoutMillis: Long,
     private val log: (String) -> Unit,
     private val ownsClient: Boolean,
+    /** The size and free space of the volume holding a directory. The real volume in production; fixed in a test. */
+    private val volumeSpace: (File) -> VolumeSpace = VolumeSpace::of,
 ) {
     /**
      * @param downloadRoot where titles' folders go. Defaults to `~/Downloads/CloudStream`.
@@ -370,8 +372,9 @@ class DesktopDownloads internal constructor(
     private fun storageNow(episodes: List<EpisodeView>): DownloadStorage {
         var directory: File? = root
         while (directory != null && !directory.exists()) directory = directory.parentFile
-        val total = directory?.totalSpace ?: 0L
-        val usable = directory?.usableSpace ?: 0L
+        val space = directory?.let(volumeSpace)
+        val total = space?.totalBytes ?: 0L
+        val usable = space?.usableBytes ?: 0L
         val ours = episodes.sumOf { episode ->
             if (episode.phase == Phase.Running) live[episode.episodeId]?.bytesDone ?: episode.bytesOnDisk else episode.bytesOnDisk
         }
@@ -988,5 +991,12 @@ class DesktopDownloads internal constructor(
             if (uri.host.isNullOrEmpty() || uri.rawUserInfo != null) return null
             return encoded
         }
+    }
+}
+
+/** A volume's size and the bytes still usable on it, read once. */
+internal class VolumeSpace(val totalBytes: Long, val usableBytes: Long) {
+    companion object {
+        fun of(directory: File): VolumeSpace = VolumeSpace(directory.totalSpace, directory.usableSpace)
     }
 }
