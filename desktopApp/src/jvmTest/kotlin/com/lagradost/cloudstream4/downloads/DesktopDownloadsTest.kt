@@ -588,6 +588,44 @@ class DesktopDownloadsTest {
         assertFalse("episode-data-2" in kept, "a finished one keeps none")
     }
 
+    /** `KMP-71`: a title or episode name that is a link with a token never reaches the file, a folder or a file name. */
+    @Test
+    fun `a title or episode name that is an address names nothing and is not stored`() = runBlocking {
+        val secrets = listOf(DownloadPathsTest.SECRET_PATH, DownloadPathsTest.SECRET_TOKEN)
+        val body = server.add("named.bin", 64 * 1024)
+        val address = "cdn.host.to/v/${DownloadPathsTest.SECRET_PATH}?token=${DownloadPathsTest.SECRET_TOKEN}"
+        val request = DesktopDownloadRequest(
+            episodeId = 15, titleId = 1500, titleName = "https://cdn.example.invalid/${DownloadPathsTest.SECRET_PATH}",
+            kind = DownloadTitleKind.Series, season = 1, episode = 5, episodeName = address,
+            source = sourceOf(15), link = DesktopDownloadLink(server.url("named.bin")),
+        )
+        val host = host()
+        assertEquals(EnqueueResult.Queued, host.enqueue(request))
+        host.awaitDone(1500, 15)
+
+        assertEquals(File(File(root, "Download"), "S01E05.mp4"), host.fileOf(DownloadEpisodeId(15)))
+        assertContentEquals(body, host.fileOf(DownloadEpisodeId(15))!!.readBytes())
+        assertEquals("Download", host.awaitContents { true }.titles.single().name)
+        assertNull(host.awaitEpisode(1500, 15) { true }.name, "listed by its code")
+        fun scan(stage: String) {
+            val files = stateFile.parentFile.listFiles()!!.filter { it.isFile } + root.walkTopDown().filter { it.isFile }
+            files.forEach { file ->
+                val text = file.readBytes().toString(Charsets.ISO_8859_1)
+                secrets.forEach { assertFalse(it in text, "$stage: $it is in ${file.name}") }
+            }
+            root.walkTopDown().forEach { path ->
+                secrets.forEach { assertFalse(it in path.name, "$stage: $it names ${path.name}") }
+            }
+        }
+        scan("done")
+        host.close()
+        hosts.remove(host)
+
+        val again = host()
+        assertEquals("Download", again.awaitContents { it.titles.size == 1 }.titles.single().name)
+        scan("after a restart")
+    }
+
     @Test
     fun `a waiting download can be cancelled`() = runBlocking {
         server.add("long.bin", 2 * 1024 * 1024)

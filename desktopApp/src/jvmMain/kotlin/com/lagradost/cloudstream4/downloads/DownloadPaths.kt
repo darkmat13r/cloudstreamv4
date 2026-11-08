@@ -98,10 +98,32 @@ internal object DownloadPaths {
         return out.toString().trimmed()
     }
 
-    /** What a list shows of a plugin's title: no control or format character, trimmed, at most 200 characters. */
-    fun displayText(text: String?): String? =
+    /**
+     * What a list shows of a plugin's title or episode name, and what names a folder or file and is written to the
+     * downloads file: no control or format character, trimmed, at most 200 characters. Null when nothing is left, or
+     * when it reads as an address: a plugin can put a signed link there, and it would be stored and become a file name
+     * (`KMP-71`). An episode without a name is listed by its code and saved as `S01E05.mp4`.
+     */
+    fun displayText(text: String?): String? = cleaned(text)?.takeUnless { looksLikeAddress(it) }
+
+    /** [displayText] for a title, never null: `Download` when the title was an address, and empty when it was blank. */
+    fun titleText(text: String?): String = displayText(text) ?: if (cleaned(text) != null) FALLBACK else ""
+
+    private fun cleaned(text: String?): String? =
         text?.filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }?.trim()?.take(MAX_TEXT_CHARS)
             ?.takeIf { it.isNotEmpty() }
 
+    /**
+     * The TV HUD's rule for a title (`TvHudFacts.hudText`, as `KMP-66` tightened it), restated: a scheme anywhere, a
+     * path, `content:` or `file:` at the start, or a host at the start with a port, path, query or fragment after it.
+     * A dotted title on its own, `Dr.Stone` or `Mr.Robot`, is a title and stays.
+     */
+    internal fun looksLikeAddress(text: String): Boolean {
+        val lower = text.lowercase()
+        return "://" in lower || lower.startsWith("/") || lower.startsWith("content:") || lower.startsWith("file:") ||
+            HOST_WITH_TAIL.containsMatchIn(lower)
+    }
+
+    private val HOST_WITH_TAIL = Regex("""^[\w.-]+\.[a-z]{2,}(:\d+|[/?#])""")
     private const val MAX_TEXT_CHARS = 200
 }
