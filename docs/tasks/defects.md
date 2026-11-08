@@ -2662,3 +2662,51 @@ tests, 0 failures.
 
 `SearchViewModelTest` still waits on real time on purpose, as its own KDoc says. Moving it the same way would be a
 separate change.
+
+## BUG-73 — Two copies of JNA in the Mac app, and which one ran depended on how it was started · **low** · **in pr**
+
+**Status:** fixed in this PR · found 2026-11-08 while preparing `KMP-95`'s dependency case for the Keychain
+
+**What was wrong.** `:desktopApp`'s runtime classpath held JNA twice, as two module names Gradle does not see as one:
+- `jna` and `jna-platform` **5.19.1**, from FileKit 0.17.0 through `:media:download`;
+- `jna-jpms` and `jna-platform-jpms` **5.16.0**, from vlcj 4.12.1 through `vlcj-natives` 4.12.0.
+
+Both carry the same `com.sun.jna` classes, so whichever came first on the classpath was the JNA that ran:
+- **Under Gradle** (`:desktopApp:run`, and the tests), 5.16.0's jars were first: entries 143 and 144 of 149, before
+  5.19.1's at 146 and 148. So FileKit, built against 5.19.1, ran on 5.16.0.
+- **In the packaged app**, `CloudStream.cfg` lists the jars by file name, so `jna-5.19.1-…` sorted first and 5.19.1 ran.
+  vlcj there already ran on 5.19.1.
+
+Nothing had failed from it. But the app ran a different JNA depending on how it was started, and the Keychain work
+(`KMP-95f`) is about to call native code through JNA.
+
+**Measured two ways, before the fix.** Gradle's classpath order, printed from `jvmRuntimeClasspath`. And a probe on
+Temurin 17 asking where `com.sun.jna.Native` and `com.sun.jna.platform.mac.CoreFoundation` loaded from. Over the Gradle
+order both came from the 5.16.0 jars; over the packaged app's `.cfg` order both came from 5.19.1.
+
+**Fix.** `desktopApp/build.gradle.kts` excludes `jna-jpms` and `jna-platform-jpms` from vlcj, so one JNA is left: 5.19.1,
+the version the owner approved for the Keychain (2026-11-08). There is no new dependency and nothing in the catalog
+changes. The vlcj line takes its string form, built from the catalog entry so the version is still the catalog's,
+because the multiplatform dependency block takes an `exclude` only on that form.
+
+**What vlcj now leans on.** Its JNA comes from FileKit's 5.19.1. If `:media:download` ever stopped bringing FileKit,
+vlcj would have no JNA. `KMP-95f` declares `jna` 5.19.1 directly in `:desktopApp`, which covers that.
+
+**Proof, before and after, the same commands:**
+
+| | Before | After |
+|---|---|---|
+| Gradle classpath, JNA jars | 5.16.0 (×2), then 5.19.1 (×2) | 5.19.1 (×2) only |
+| Packaged app's jars | four | `jna-5.19.1`, `jna-platform-5.19.1` |
+| Probe, packaged order | `Native` and `CoreFoundation` from 5.19.1 | the same |
+| `--check-subtitle-render`, packaged | cue on screen, pause 0 ms, +10 s seek on the same frame, 8 PNGs | the same |
+| `--check-subtitle-render` under `:desktopApp:run` | the same lines, on 5.16.0 | the same lines, on 5.19.1 |
+| `--check-playback` on the local file | fails, `frames=0` | the same |
+
+The clip was 20 s of `ffmpeg`'s `testsrc2`, with no audio stream, and an SRT with a cue each second; nothing played a
+sound. Both subtitle checks exit 1 only because that clip carries no frame numbers, so the sync figures are noise. The
+lines above are the deterministic ones, and the PNGs were compared by eye. The stop position differed by under 0.5 s
+between runs, as it does between any two runs. **`--check-playback` tells nothing here:** it fails on a local file
+before the change too, so it is reported, not counted as a pass.
+
+**Gates:** see the PR.
