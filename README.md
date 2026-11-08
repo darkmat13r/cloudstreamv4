@@ -80,7 +80,8 @@ Extensions are third-party code, so this fork treats what they do and return as 
 - **No secrets in logs.** The app's own log lines, crash files and error messages no longer carry stream links,
   request headers, cookies, tokens, repository URLs or file paths (`BUG-43`, `BUG-44` in [docs/tasks/defects.md](docs/tasks/defects.md)).
 - **Sign-ins and stored links.** A deleted profile's sign-ins no longer pass to the next profile (`BUG-48`).
-  Sign-ins are kept out of Android's cloud backup and device-to-device transfer (`BUG-50`). The Android downloader no longer stores stream links (`KMP-62` in [docs/tasks/kmp.md](docs/tasks/kmp.md)).
+  Sign-ins (`BUG-50`) and profile PINs (`BUG-51`) are kept out of Android's cloud backup and device-to-device
+  transfer. The Android downloader no longer stores stream links (`KMP-62` in [docs/tasks/kmp.md](docs/tasks/kmp.md)).
 - **TLS stays on.** Playback no longer turns off certificate checks for the whole app (`BUG-10`).
 
 <a id="screenshots"></a>
