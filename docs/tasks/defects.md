@@ -2251,7 +2251,7 @@ and saves the token in one call.
 
 ## BUG-50 — Android backup carried every sign-in token, and the app's export carried profile PINs · **high, security** · measured 2026-11-07
 
-**Status:** fixed in pr, stacked on `BUG-48` (#209) · found 2026-11-07 while measuring `Q16` · the owner ruled on the
+**Status:** done · #215, merged in train 8 (`fc898c19b`) · found 2026-11-07 while measuring `Q16` · the owner ruled on the
 fix the same day · `app/src/main/res/xml/backup_descriptor.xml`, `data_extraction_rules.xml`; `BackupUtils.kt`
 
 Two leaks of the same kind:
@@ -2313,7 +2313,7 @@ named after it (a first name, `read`, renamed three of them). And `getBackup` st
 
 ## BUG-51 — Android backup still carried profile PINs; a failed sign-in move was marked done · **high, security** · measured 2026-11-08
 
-**Status:** fixed in pr, stacked on `BUG-50` (#215) · the owner ruled 2026-11-07 that PINs stay off Android's backup
+**Status:** done · #222, merged in train 8 (`1fdfe8f81`) · the owner ruled 2026-11-07 that PINs stay off Android's backup
 too; the second half is #215's review · `DataStoreHelper.kt`, `CredentialStore.kt`
 
 - **PINs.** `BUG-50` took PINs out of the app's export, but each profile's `lockPin` still sat inside the profile list
@@ -2580,3 +2580,59 @@ All on `Television_720p`, locally (CI is off).
     `home-hero-focus-button`, which already shows the chrome at rest.)
 - 16 recorded screenshots moved, each only in the chrome's band (y 42 to 116 px): the account cell, and the cells and
   the source control where they now sit. Each was looked at.
+
+## BUG-61 — Android Home could show a provider's URL and token in its failure line · **medium, security** · measured 2026-11-08
+
+**Status:** fixed in pr · `app/.../cloudstream4/home/AndroidHomeSource.kt`, `toReply`
+
+Home's failure line is the first line of `Resource.Failure.errorString`. Android's `toReply` cleaned that line (control
+and format characters out) and relied on `:library` to have redacted it. Desktop's copy redacts again after removing
+invisible characters (`#221` review); Android's did not. Every path into `toReply` on master:
+
+| Failure | First line | On screen? | Redacted before this fix? |
+|---|---|---|---|
+| `ErrorLoadingException`, timeouts, `UnknownHostException`, `SSLHandshakeException` | message or fixed text | No: `isNetworkError`, so Home shows Offline | — |
+| `NoSuchMethodError` and the rest of "outdated" | fixed text; the message is line 2 | Fixed text only | — |
+| `NotImplementedError` | fixed text | Yes | Nothing to redact |
+| Any other throwable (`safeFail`) | the message | Yes | Yes, upstream, **unless an invisible character hides the URL or path** |
+| `NullPointerException` with a `provider.kt` frame | `NullPointerException at <frame file>:<line>` | Yes | **No**: the frame's file name is not a message, and an extension can set it |
+
+- **The hole.** The upstream redaction looks for `://` and for `/Users/`, `/storage/` and the like. A zero-width space
+  or a NUL inside (`https:<ZWSP>//…`, `https:/<NUL>/…`, `/Us<ZWSP>ers/…`) hides the URL or path from it. Then
+  `toReply`'s own cleaning removes the invisible character and puts the URL back together, token included.
+- **Measured on master:** `AndroidHomeSourceTest.aFailureShowsNoAddressTokenOrUserPathHoweverItIsHidden` failed with
+  `Refused https://cdn.example/v/1.m3u8?token=SECRET1…` on the failure line.
+- **Fix:** `toReply` removes invisible characters first, then redacts with `redactedText` (`LogRedaction`, the `:app`
+  copy), then cleans, the same order as desktop. Home no longer depends on what `:library` did.
+- **Review, wider "invisible":** control and format characters were not enough. U+034F (combining grapheme joiner)
+  and VS16 (U+FE0F) are category Mn, and U+3164 is Lo; each, inside the scheme, `://` or `/Users/`, still leaked.
+  `toReply` now also removes Unicode's Default_Ignorable_Code_Point set, read a code point at a time. The list is
+  `BUG-64`'s, the same text in every copy.
+- **Review, a visible wedge:** a braille blank (U+2800) is drawn, so it is not ignorable, but `https:<U+2800>//…`
+  reads as a URL and the old pattern does not find it. After `redactedText`, a second pass uses `BUG-64`'s link
+  pattern (the same text as every redaction copy): up to two drawn characters, with spaces around them, may sit
+  between `scheme:` and `//`, and up to two that are not letters or digits between the slashes. The URL becomes
+  `scheme://host/<…>`, as everywhere. On text `redactedText` already cut, the pass changes nothing; once `BUG-64`
+  lands, `redactedText` does it itself. **DECIDED** (PM), the pattern agreed with `BUG-64` so there is one text.
+- **Logs:** `logError` redacts the message and the trace with the same patterns. `BUG-52` (#224) closes the
+  invisible-character hole there and in `ErrorLoadingException`'s text.
+
+**Test** (`:app` JVM), seventeen hostile failures through `page()`: a plain URL with a token; a ZWSP, a NUL and a BEL
+in or after `://`; a user path split by a ZWSP; a `file:` URI split by one; a `NullPointerException` with a forged
+frame whose file name is a URL with a token; and, from review, a CGJ in `://`, a VS16 in the scheme and between the
+slashes, a CGJ and a U+3164 in `/Users/`, and a braille blank or U+1D159 before, between and around the slashes.
+None leaves a token, a user path or a URL's path on the line, and none leaves an invisible character. The reason and
+the host stay, and five lines that only look like links (`Ratio 16:9 // wide`, `Note: a/b/c`, `1:2/3/4` and two
+more) come through unchanged. The test names every case that leaks, not only the first.
+
+**Published API:** additions only, `classes-jar.api` +2 / −0: the synthetic accessors
+`AndroidHomeSource.access$getURL_IN_TEXT$cp` and `AndroidHomeSourceKt.access$withoutDefaultIgnorable`, which the
+compiler adds because the class reads the private pattern and the shared private function.
+
+**Found and left:**
+- `getStackTracePretty` (`:library`) glues the first frame onto the message with no line break, so Home's reason ends in
+  a file name and line (`…SECRET1AndroidHomeSourceTest.kt 287`). With no message, the first line is that frame, with `:`
+  turned into a space, so a forged `https://` file name reads `https//` and no pattern can find it. Both are `:library`'s.
+  The second needs a forged stack frame.
+- Search (`ApiRepositorySearchSource.detailOf`), detail (`AndroidDetailSource`) and downloads
+  (`AndroidDownloadsSource`) also read `errorString`, with no redaction of their own.
