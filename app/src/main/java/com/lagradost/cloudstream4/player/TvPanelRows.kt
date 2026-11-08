@@ -14,7 +14,7 @@ import com.lagradost.cloudstream3.utils.Qualities
 internal object TvPanelRows {
 
     /**
-     * `Vidsrc · 1080p`. A name that is missing or reads as an address gives [fallback] (`Source 2`); a quality the
+     * `Source One · 1080p`. A name that is missing or reads as an address gives [fallback] (`Source 2`); a quality the
      * provider did not give is left out, and the row's detail says `quality unknown` instead.
      */
     fun sourceTitle(link: ExtractorLink?, file: ExtractorUri?, fallback: String): String {

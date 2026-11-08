@@ -2650,3 +2650,43 @@ reaches into Compose internals.
 - The same pair with `BUG-69`'s fix, which is train 9's real state: 20/0, three runs in three.
 - The full `:app` device suite: 173 tests, 0 failures, 1 skipped. The skip is `TvHomeRealPluginProof`, which is skipped
   unless a plugin has been pushed to the device. No test relied on animations running.
+
+## BUG-74 — Train 9's player panels named real sites and titles · **low, test only**
+
+**Status:** fixed in this PR · the PM's call, 2026-11-08 · the rule `BUG-70` applied to `#205`
+
+`#205` (TV player panels) came with the names of real streaming sites ("Vidsrc", "Filemoon", "Streamwish", "Doodstream")
+and real titles ("Arcane", "Powder", "What If...?", "Dr.Stone", "Mr.Robot"), in tests, screenshots and two KDoc
+examples. Tests, screenshots and previews get copied, so they use names that belong to no real title or site, as
+`DS-23` set.
+
+**Fix.** Test code, two KDoc comments and one line in `kmp.md`. No code that runs changes:
+
+| Was | Now |
+|---|---|
+| "Vidsrc", source id `vidsrc` | "Source One", `sourceone` |
+| "Filemoon", "Streamwish", "Doodstream" | "Source Two", "Source Three", "Source Four" |
+| "Arcane", "Powder" | "Quiet Harbor", "Low Tide" (`BUG-70`'s) |
+| "What If...?" | "Harbor Lights...?" (`BUG-70`'s, so the later merge with master keeps both) |
+| "Dr.Stone", "Mr.Robot" | "Dr.Harbor", "Mr.Lantern" |
+
+Every property a test depends on is kept:
+- The dotted titles keep their shape. Lowercased, they match `BARE_HOST` and do not match `HOST_WITH_TAIL`, as the old
+  ones did, so `aTitleWithAQuestionMarkStays` still checks that a title of a host's shape is kept.
+- The four source rows still start with four different words, so each focus assertion still tells them apart.
+- A source with no quality still has a name alone ("Source Three").
+
+**Screenshots.** All five `playback-panel-*` references changed. `source` differed in 8,687 pixels, and the other four
+in 4,740 each. The diff was read before recording. Every changed pixel lies inside the lines whose words changed (the
+title, the episode line and the SOURCE cell, and in `source` also the four source rows), and nothing else moved.
+
+**Proof,** all local on `Television_720p` (CI is off):
+- `PlaybackPanelTvDeviceTest`: before the re-record, 10 tests with 5 failures (the five screenshots). After it, 10/0
+  three times in a row, with all five screenshots identical (0 pixels).
+- `TvPlaybackPanelsNavigationTest` (`:app`): 5/0.
+- `TvHudFactsTest` 8/0 and `TvPanelRowsTest` 3/0 (JVM).
+
+**Still in the tree, not from `#205`.** A scan of train 9 finds about 466 lines in some 60 files that name real titles
+or sites, nearly all already on master: "Dune" (307), "Witcher" (105), "Vidsrc" (28), "Arcane" (26), "Severance",
+"Nine Lives", "Gogoanime", "Naruto", "Internet Archive". `BUG-70` fixes the HUD tests' share on master. The rest is
+for its own task.

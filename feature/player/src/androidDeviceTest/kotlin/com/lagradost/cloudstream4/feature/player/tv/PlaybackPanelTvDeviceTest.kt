@@ -87,28 +87,28 @@ class PlaybackPanelTvDeviceTest {
     @Test
     fun sourceOpensThePanelWithFocusInsideItAndDoneGivesItBackToSource() {
         show()
-        assertTrue("Down from play/pause is SOURCE", startsWith(dpad.press(Dpad.Down), "Vidsrc"))
+        assertTrue("Down from play/pause is SOURCE", startsWith(dpad.press(Dpad.Down), "Source One"))
         dpad.center()
         rule.waitForIdle()
         rule.onNodeWithText("Switching keeps your position: resumes at 42:13").assertExists()
-        assertTrue("Focus entered the panel's first row, was ${dpad.focused()}", startsWith(dpad.focused(), "Vidsrc · 1080p"))
+        assertTrue("Focus entered the panel's first row, was ${dpad.focused()}", startsWith(dpad.focused(), "Source One · 1080p"))
 
-        assertTrue(startsWith(dpad.press(Dpad.Down), "Filemoon"))
-        assertTrue("Left stays in the panel", startsWith(dpad.press(Dpad.Left), "Filemoon"))
-        assertTrue("Right stays in the panel", startsWith(dpad.press(Dpad.Right), "Filemoon"))
+        assertTrue(startsWith(dpad.press(Dpad.Down), "Source Two"))
+        assertTrue("Left stays in the panel", startsWith(dpad.press(Dpad.Left), "Source Two"))
+        assertTrue("Right stays in the panel", startsWith(dpad.press(Dpad.Right), "Source Two"))
         repeat(4) { dpad.press(Dpad.Down) }
         assertEquals("Done", dpad.focused())
 
         dpad.center()
         rule.waitForIdle()
-        rule.waitUntil(WAIT_MS) { startsWith(dpad.focused(), "Vidsrc · 1080p") && open == null }
-        assertTrue("Focus went back to SOURCE", startsWith(dpad.focused(), "Vidsrc · 1080p"))
+        rule.waitUntil(WAIT_MS) { startsWith(dpad.focused(), "Source One · 1080p") && open == null }
+        assertTrue("Focus went back to SOURCE", startsWith(dpad.focused(), "Source One · 1080p"))
     }
 
     @Test
     fun pressingARowIsTheCommit() {
         show(initial = Panels.getValue(PanelKind.Source))
-        assertTrue(startsWith(dpad.press(Dpad.Down), "Filemoon"))
+        assertTrue(startsWith(dpad.press(Dpad.Down), "Source Two"))
         dpad.center()
         rule.waitForIdle()
         assertEquals(PlayerHudAction.PanelRowPressed(PanelKind.Source, "source:1"), actions.last())
@@ -243,9 +243,9 @@ class PlaybackPanelTvDeviceTest {
         val Frame = Color(0xFF3A3A3A)
 
         val Hud = PlayerHudState(
-            title = "Arcane", meta = "S1:E4 · Powder · 1080p · AVC · English 5.1", playing = true,
+            title = "Quiet Harbor", meta = "S1:E4 · Low Tide · 1080p · AVC · English 5.1", playing = true,
             positionMs = 2_533_000, durationMs = 3_704_000, bufferedMs = 3_170_000, hasPrevious = true, hasNext = true,
-            source = "Vidsrc · 1080p", subtitles = "English (SRT)", audio = "English · 5.1 · EAC3",
+            source = "Source One · 1080p", subtitles = "English (SRT)", audio = "English · 5.1 · EAC3",
         )
 
         /** 7e's `praw`, `arawA` and `arawB`. */
@@ -255,10 +255,10 @@ class PlaybackPanelTvDeviceTest {
                 title = "Source",
                 meta = listOf("1 hidden link", "Switching keeps your position: resumes at 42:13"),
                 rows = listOf(
-                    PanelRow("source:0", "Vidsrc · 1080p", "1920×1080", RowVerb.Playing, active = true),
-                    PanelRow("source:1", "Filemoon · 1080p", "keeps 42:13", RowVerb.Switch),
-                    PanelRow("source:2", "Streamwish", "quality unknown", RowVerb.Switch),
-                    PanelRow("source:3", "Doodstream · 720p", "failed", RowVerb.Retry, failed = true),
+                    PanelRow("source:0", "Source One · 1080p", "1920×1080", RowVerb.Playing, active = true),
+                    PanelRow("source:1", "Source Two · 1080p", "keeps 42:13", RowVerb.Switch),
+                    PanelRow("source:2", "Source Three", "quality unknown", RowVerb.Switch),
+                    PanelRow("source:3", "Source Four · 720p", "failed", RowVerb.Retry, failed = true),
                     PanelRow("profile", "Quality profile", "Wi-Fi", RowVerb.Open),
                 ),
             ),

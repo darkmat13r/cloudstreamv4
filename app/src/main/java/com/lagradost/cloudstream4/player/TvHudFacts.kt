@@ -86,11 +86,11 @@ private fun looksLikeAddress(text: String, host: Regex): Boolean {
 
 /**
  * A host at the start, with an optional port, then a path, query or fragment or the end: `cdn.host.to/v`, `a.com:8443`,
- * `stream.example.to`. For a source's or subtitle's name only: as a title it would blank `Dr.Stone` and `Mr.Robot`.
+ * `stream.example.to`. For a source's or subtitle's name only: as a title it would blank `Dr.Harbor` and `Mr.Lantern`.
  */
 private val BARE_HOST = Regex("""^[\w.-]+\.[a-z]{2,}(:\d+)?([/?#]|$)""")
 
-/** The same host, but only with a port, path, query or fragment after it: a title is never just `Dr.Stone`'s shape. */
+/** The same host, but only with a port, path, query or fragment after it: a title is never just `Dr.Harbor`'s shape. */
 private val HOST_WITH_TAIL = Regex("""^[\w.-]+\.[a-z]{2,}(:\d+|[/?#])""")
 private val STRICT_CHARACTERS = setOf('?', '=', '/', '\\')
 

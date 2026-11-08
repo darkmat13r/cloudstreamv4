@@ -127,7 +127,7 @@ class TvHudFactsTest {
     /** Titles keep their punctuation and dotted words (review of `KMP-64`): only an address is dropped from them. */
     @Test
     fun aTitleWithAQuestionMarkStays() {
-        for (title in listOf("What If...?", "Dr.Stone", "Mr.Robot", "Vol.II")) {
+        for (title in listOf("Harbor Lights...?", "Dr.Harbor", "Mr.Lantern", "Vol.II")) {
             assertEquals(title, facts(title = title).toHudState().title)
         }
         // A title that is an address still goes.
