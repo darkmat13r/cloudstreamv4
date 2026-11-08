@@ -17,7 +17,7 @@ class TvPanelRowsTest {
 
     @Suppress("DEPRECATION")
     private fun link(name: String, quality: Int = 1080) = ExtractorLink(
-        source = "vidsrc",
+        source = "sourceone",
         name = name,
         url = "https://stream.example.invalid/$SECRET/master.m3u8?token=$TOKEN",
         referer = "https://referer.example.invalid/$SECRET",
@@ -38,15 +38,15 @@ class TvPanelRowsTest {
 
     @Test
     fun aSourceRowIsItsNameAndQuality() {
-        assertEquals("Vidsrc · 1080p", TvPanelRows.sourceTitle(link("Vidsrc"), null, "Source 1"))
-        assertEquals("Vidsrc · 4K", TvPanelRows.sourceTitle(link("Vidsrc", Qualities.P2160.value), null, "Source 1"))
-        assertEquals("Streamwish", TvPanelRows.sourceTitle(link("Streamwish", Qualities.Unknown.value), null, "Source 1"))
+        assertEquals("Source One · 1080p", TvPanelRows.sourceTitle(link("Source One"), null, "Source 1"))
+        assertEquals("Source One · 4K", TvPanelRows.sourceTitle(link("Source One", Qualities.P2160.value), null, "Source 1"))
+        assertEquals("Source Three", TvPanelRows.sourceTitle(link("Source Three", Qualities.Unknown.value), null, "Source 1"))
     }
 
     @Test
     fun noUrlTokenOrHeaderReachesASourceRow() {
         for (name in listOf(
-            "Vidsrc",
+            "Source One",
             "https://cdn.example.invalid/$SECRET",
             "cdn.host.to/v/$SECRET?token=$TOKEN",
             "host.com:8443/$SECRET",
