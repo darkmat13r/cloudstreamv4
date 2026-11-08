@@ -2330,6 +2330,13 @@ too; the second half is #215's review · `DataStoreHelper.kt`, `CredentialStore.
 - **An app restore clears every PIN.** When `BackupUtils.restore` writes a profile list, it empties `lock_pin/*`, so
   restored profiles come back unlocked, as the owner ruled. A different profile restored at a locked index (say "Dad" at
   index 1, where "Kids" was locked) must not inherit that lock.
+- **Restore was already a way around the lock.** Before this, a hand-made backup file restored its profile list as written,
+  so it could unlock any profile or set any PIN; the profile PIN is a soft lock. `BUG-54` closes it for the restore path:
+  a restore that replaces the list asks for every locked profile's PIN first.
+- **Fail-safe, both ways.** If clearing the PINs on restore cannot be written, the old PINs stay (logged, fixed text
+  only), so a restored profile at a locked index stays locked rather than open. And if removing a profile's PIN cannot be
+  written to the credential file, the next read joins the old PIN back: a removed lock comes back, rather than a lock
+  silently disappearing.
 - **No inherited locks.** Writing the list makes the stored PINs exactly the list's: a removed profile's PIN goes with
   it, so a later profile on the same index is not locked by it.
 - **The review's case.** `CredentialStore` marked its sign-in move done even when the copy's `commit()` failed. Now it
@@ -2432,3 +2439,31 @@ Every case is also checked after an `isISOControl` strip, the way Home, Detail a
 
 - A protocol-relative `//host/p?token=…` with no scheme at all is not recognised as a url.
 - Other on-screen `Resource.Failure` texts still carry their message: `SSLHandshakeException`'s, and the "outdated" text for `NoSuchMethodError` and its kin. They are listed under `BUG-44`. Neither comes from a provider's url.
+
+## BUG-54 — Restoring a backup lifted every profile lock without asking · **medium, security** · measured 2026-11-08
+
+**Status:** fixed in pr, stacked on `BUG-51` (#222) · found by the automated security review of #222; the PM chose the
+fix (option b) the same day · `BackupUtils.kt`, `AccountHelper.kt`
+
+A restore writes the backup's profile list, and since `BUG-50`/`BUG-51` its profiles come back unlocked. Settings →
+Restore is open to whichever profile is in use, so anyone could lift every lock by restoring a file; before that, a
+hand-made file could do the same.
+
+**Fix:** `BackupUtils.restoreAfterPins`. A restore whose file replaces the profile list first asks for the PIN of every
+profile locked now, one prompt each, titled with the profile's name ("Enter PIN for Kids"), through the profile lock's
+own prompt. Nothing is written until every PIN is given.
+- **Cancel** on any prompt aborts the restore with nothing changed.
+- **A wrong PIN** is refused by the prompt as it always is ("incorrect", the field cleared), which asks again until the
+  right PIN or Cancel. DECIDED: the existing prompt's behaviour, rather than a second kind that aborts on the first miss.
+- **No locked profile**, or a file that does not replace the profile list: nothing is asked.
+- The device credential (the PM's option c) is out: most TVs have no lock screen.
+
+`showPinInputDialog` gains an overload with a `title`; the published signature stays as it was.
+
+Also from #222's review: a restore whose clearing of the PINs cannot be written logs it, fixed text only.
+
+### Behaviour changes
+
+| Before | Now |
+|---|---|
+| Restore wrote the file straight away | With a locked profile, it asks each locked profile's PIN first; Cancel writes nothing |
