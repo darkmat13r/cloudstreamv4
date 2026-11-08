@@ -2981,3 +2981,37 @@ title, the episode line and the SOURCE cell, and in `source` also the four sourc
 or sites, nearly all already on master: "Dune" (307), "Witcher" (105), "Vidsrc" (28), "Arcane" (26), "Severance",
 "Nine Lives", "Gogoanime", "Naruto", "Internet Archive". `BUG-70` fixes the HUD tests' share on master. The rest is
 for its own task.
+
+---
+
+## BUG-76 — `--check-playback` on a local file never played: the sandbox cannot read it · **low, check only**
+
+**Status:** fixed in this PR · found 2026-11-08 by sys-desktop-2 (frames=0 on master, before `BUG-73` too)
+
+**Measured, on master (2a3f16b6a), a scratch `user.home`, nothing audible.** Two 20 s, 640×360 clips: `testsrc2` with
+no audio, and the same with a silent `anullsrc` track. Each was run by path and by `file://` URL, for 6 s:
+
+| Clip | Master | This PR |
+|---|---|---|
+| no audio, path | frames=0, failed=true | frames=68, 640x360, playing, failed=false |
+| no audio, `file://` | frames=0, failed=true | frames=82, playing, failed=false |
+| with audio, path | frames=0, failed=true | frames=84, playing, failed=false |
+| with audio, `file://` | frames=0, failed=true | frames=83, playing, failed=false |
+
+**So it was not the clip.** The media host runs under a sandbox that lets it read only its own directory, libVLC and
+a few system paths (`SeatbeltProfile.mediaHostRules`). `--check-playback` handed it the file where it was, which the
+host may not open. `--check-subtitle-render` already copies its clip in first (`VlcPlayer.stage`).
+
+**Fix.** `--check-playback` does the same for a local target. `localPlaybackFile` recognises a path or a `file://`
+URL to a file that exists, and that file is staged; anything else, a stream's URL included, goes to the host as before.
+Nothing the app plays changed.
+
+**Does real local playback work?** Nothing in the Mac app plays a local file today: the series page's Play is not wired
+(`DesktopDownloadsHost`: `SeriesEffect.Play -> Unit`), and every player the app opens plays a provider's stream.
+So no user meets this. But the same wall is there for whoever wires Play for a download: the host cannot read
+`~/Downloads/CloudStream`. Letting it read the download folder, or staging or serving the file, is a sandbox decision,
+reported to the PM rather than made here.
+
+**Tests.** `PlaybackCheckTest` (2, run): a path, a `file://` URL with its space encoded, and the scheme in any case
+are staged; a stream URL, a missing file, a folder and a malformed `file://` URL are passed on as they are. The
+playback itself needs VLC and the sandbox, so it is the measurement above, not a unit test.
