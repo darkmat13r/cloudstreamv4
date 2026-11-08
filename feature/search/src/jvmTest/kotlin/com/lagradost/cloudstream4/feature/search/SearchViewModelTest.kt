@@ -136,7 +136,7 @@ class SearchViewModelTest {
         try {
             val source = FakeSource(SearchOutcome.Complete(listOf(item("Tide"))))
             val vm = viewModel(source)
-            for (q in listOf("d", "du", "dun", "tide")) vm.onAction(SearchAction.QueryChanged(q))
+            for (q in listOf("t", "ti", "tid", "tide")) vm.onAction(SearchAction.QueryChanged(q))
             settle()
 
             assertEquals(listOf("tide"), source.quickSearched, "only the settled query is searched")

@@ -74,9 +74,9 @@ class QuickSearchViewModelTest {
 
     @Test
     fun eachActionBecomesItsEffect() = runTest(dispatcher) {
-        val viewModel = QuickSearchViewModel(query = "dunnne", source = StepSource())
+        val viewModel = QuickSearchViewModel(query = "tiddde", source = StepSource())
         viewModel.onAction(QuickSearchAction.FullSearchRequested)
-        assertEquals(QuickSearchEffect.OpenFullSearch("dunnne"), viewModel.effect.first())
+        assertEquals(QuickSearchEffect.OpenFullSearch("tiddde"), viewModel.effect.first())
         viewModel.onAction(QuickSearchAction.ResultActivated(item.id))
         assertEquals(QuickSearchEffect.OpenResult(item.id), viewModel.effect.first())
         viewModel.onAction(QuickSearchAction.Done)

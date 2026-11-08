@@ -118,7 +118,7 @@ class SearchSuggestionsViewModelTest {
         val suggestions = FakeSuggestions(listOf("Tide", "Tide: Part Two", "Tida"))
         val vm = viewModel(source, suggestions, FakeHistory("tide"))
 
-        for (q in listOf("d", "du", "dun", "tide")) vm.onAction(SearchAction.QueryChanged(q))
+        for (q in listOf("t", "ti", "tid", "tide")) vm.onAction(SearchAction.QueryChanged(q))
         settle()
 
         assertEquals(listOf("tide"), suggestions.asked, "only the settled query is asked")
@@ -148,23 +148,23 @@ class SearchSuggestionsViewModelTest {
     fun `nothing suggested and nothing recent is 8b, quoting the query and the selected sources`() = runTest(dispatcher) {
         val vm = viewModel(FakeSource(), FakeSuggestions(emptyList()), FakeHistory("salt road"))
 
-        vm.onAction(SearchAction.QueryChanged("dunnne"))
+        vm.onAction(SearchAction.QueryChanged("tiddde"))
         settle()
 
-        assertEquals(SearchStatus.NoSuggestions(query = "dunnne", selected = 12), vm.state.value.status)
+        assertEquals(SearchStatus.NoSuggestions(query = "tiddde", selected = 12), vm.state.value.status)
     }
 
     @Test
     fun `8b's action searches every selected source for what is typed`() = runTest(dispatcher) {
         val source = FakeSource(SearchOutcome.Complete(listOf(item("Tiddde", "Source A"))))
         val vm = viewModel(source, FakeSuggestions(emptyList()))
-        vm.onAction(SearchAction.QueryChanged("dunnne"))
+        vm.onAction(SearchAction.QueryChanged("tiddde"))
         settle()
 
         vm.onAction(SearchAction.Submit)
         settle()
 
-        assertEquals(listOf("dunnne"), source.searched)
+        assertEquals(listOf("tiddde"), source.searched)
         assertIs<SearchContent.Results>(assertIs<SearchStatus.Showing>(vm.state.value.status).content)
     }
 
