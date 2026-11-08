@@ -7304,7 +7304,9 @@ the Mac had before. A file that parses is cleaned on the way in:
 which sits under a rule. In Manage mode:
 - the heading says Manage profiles, and each card carries an Edit chip and opens its editor;
 - Add profile is the last card, which the ring reaches too;
-- Done goes back where Manage came from, the picker or the window.
+- Done goes back where Manage came from, the picker or the window. **From the window, Done lands on Home in a fresh
+  window:** Manage replaces the window rather than covering it, so a search, an open title and a scroll position are
+  gone.
 
 With one profile, the sidebar's list is the way to a second.
 
@@ -7320,8 +7322,15 @@ and Cancel, with Save as the one primary (Add when adding). Delete profile sits 
 
 **Delete** (A8) asks first. Cancel is the primary, and Return and Escape both land on it, as on the downloads sheet;
 only a click deletes. Cancel goes back to the editor.
-- The profile leaves `profiles.json` before its library files go, so a crash between the two leaves files no profile
-  reads.
+- The profile leaves `profiles.json` before its library files go, and **only if that write succeeded** (the reviewer of
+  `#281`). A delete that cannot be written still holds until the app quits, and the profile comes back at the next
+  launch with its library, never without it.
+- **At launch, a library under an id `profiles.json` no longer lists is removed**, so a deleted profile's history does
+  not sit on disk until its id is taken again. This happens only over a list read from the file. One that is missing,
+  unreadable or not this shape reads as the first profile alone, and trusting that would remove every other
+  profile's library.
+- Ids are below 10,000. A larger id in the file is dropped, so a hostile `Int.MAX_VALUE` cannot make the next id wrap
+  negative, and Add stops at the cap.
 - `add` clears any files under the id it takes, so a new profile never starts with what a deleted one left behind.
 - Deleting the profile watching makes the first profile watch. The window's view models are dropped first, through
   the same path as a switch.
@@ -7344,9 +7353,11 @@ The PIN row is `KMP-95c`, along with A6c's "can't be locked" line.
 - The sheets are on `surface`, as the downloads sheet is, so the secondary buttons read as buttons.
 
 **Tests** (desktopApp jvmTest):
-- `DesktopProfilesTest`, 15 cases. Add covers the next id, cleaning, a blank name and the cap. Rename covers a blank
+- `DesktopProfilesTest`, 19 cases. Add covers the next id, cleaning, a blank name and the cap. Rename covers a blank
   name and the first profile's default. Delete covers that the first is never deleted, that the library goes, and that
-  the first profile watches if the deleted one was watching. A new id never inherits a deleted one's files.
+  the first profile watches if the deleted one was watching. A new id never inherits a deleted one's files. A delete
+  whose save fails keeps the library. The launch sweep removes only unlisted ids' files, and nothing when the file
+  cannot be read. Ids are capped.
 - `ManageProfilesTest`, 6 cases through real pointer and key events, with names typed through the field's own
   `SetText`:
   - Manage from the sidebar with one profile, adding a second, and Done back to the window;

@@ -53,14 +53,18 @@ internal data class StoredProfiles(
 internal class DesktopProfileFile(
     private val file: File = File(DesktopLibraryStore.defaultTitlesFile().parentFile, FILE_NAME),
 ) {
-    fun load(): StoredProfiles {
+    fun load(): StoredProfiles = read() ?: StoredProfiles()
+
+    /**
+     * The file's profiles, cleaned, or null when there is no file this app wrote: missing, unreadable, too large or not
+     * this shape. Null is what tells [DesktopProfiles] not to trust the list, so it removes no library files.
+     */
+    fun read(): StoredProfiles? {
         val bytes = runCatching {
             if (!file.isFile) null else file.inputStream().use { it.readNBytes(MAX_FILE_BYTES.toInt() + 1) }
-        }.getOrNull() ?: return StoredProfiles()
-        if (bytes.size > MAX_FILE_BYTES) return StoredProfiles()
-        val read = runCatching { json.decodeFromString(StoredProfiles.serializer(), bytes.decodeToString()) }.getOrNull()
-            ?: return StoredProfiles()
-        return read.cleaned()
+        }.getOrNull() ?: return null
+        if (bytes.size > MAX_FILE_BYTES) return null
+        return runCatching { json.decodeFromString(StoredProfiles.serializer(), bytes.decodeToString()) }.getOrNull()?.cleaned()
     }
 
     fun save(profiles: StoredProfiles) {
@@ -91,6 +95,12 @@ internal class DesktopProfileFile(
 
         /** Far more than a household; a file with more was not written by this app. */
         const val MAX_PROFILES = 32
+
+        /**
+         * Ids are below this. A file with a larger one was not written by this app, and a hostile `Int.MAX_VALUE` would
+         * otherwise make the next id wrap negative.
+         */
+        const val MAX_ID = 10_000
         private const val OWNER_ONLY = "rw-------"
         private const val OWNER_DIR = "rwx------"
         private val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
@@ -98,7 +108,7 @@ internal class DesktopProfileFile(
         fun StoredProfiles.cleaned(): StoredProfiles {
             val seen = HashSet<Int>()
             val kept = profiles
-                .filter { it.id >= 0 && seen.add(it.id) }
+                .filter { it.id in 0 until MAX_ID && seen.add(it.id) }
                 .map { it.copy(name = it.name?.let(::cleanName)?.ifEmpty { null }) }
                 .take(MAX_PROFILES)
             val withFirst = if (kept.any { it.id == StoredProfiles.FIRST }) kept else listOf(StoredProfile(StoredProfiles.FIRST)) + kept
@@ -132,8 +142,17 @@ internal class DesktopProfiles(
     private val libraryDirectory: File = DesktopLibraryStore.defaultTitlesFile().parentFile,
     private val onSaveFailed: (Throwable) -> Unit = {},
 ) {
-    var stored: StoredProfiles by mutableStateOf(file.load())
+    var stored: StoredProfiles by mutableStateOf(StoredProfiles())
         private set
+
+    init {
+        val read = file.read()
+        stored = read ?: StoredProfiles()
+        // A deleted profile's history should not sit on disk until its id is taken again (the reviewer of #281). Only
+        // over a list read from the file: one that could not be read is only the first profile, and trusting it would
+        // remove every other profile's library.
+        if (read != null) clearLibrariesNotIn(read)
+    }
 
     /** The launch picker shows only with two profiles or more, the default counted (`KMP-73`, A1). */
     val picksAtLaunch: Boolean get() = stored.profiles.size >= 2
@@ -157,6 +176,7 @@ internal class DesktopProfiles(
     fun add(name: String, fallback: String): Int? {
         if (!canAdd) return null
         val id = stored.profiles.maxOf { it.id } + 1
+        if (id >= DesktopProfileFile.MAX_ID) return null
         clearLibrary(id)
         val cleaned = DesktopProfileFile.cleanName(name).ifEmpty { DesktopProfileFile.cleanName(fallback) }
         update(stored.copy(profiles = stored.profiles + StoredProfile(id, cleaned.ifEmpty { null })))
@@ -190,13 +210,15 @@ internal class DesktopProfiles(
      */
     fun delete(id: Int): Boolean {
         if (!canDelete(id)) return false
-        update(
+        val saved = update(
             stored.copy(
                 current = if (stored.current == id) StoredProfiles.FIRST else stored.current,
                 profiles = stored.profiles.filterNot { it.id == id },
             ),
         )
-        clearLibrary(id)
+        // Only once the file no longer lists it: a profile whose delete could not be written comes back at the next
+        // launch, and must come back with its library (the reviewer of #281).
+        if (saved) clearLibrary(id)
         return true
     }
 
@@ -208,9 +230,19 @@ internal class DesktopProfiles(
         listOf(titlesFile(id), positionsFile(id)).forEach { runCatching { Files.deleteIfExists(it.toPath()) }.onFailure(onSaveFailed) }
     }
 
-    private fun update(next: StoredProfiles) {
+    /** Holds [next] until the app quits, and returns whether it was also written. A failure is reported. */
+    private fun update(next: StoredProfiles): Boolean {
         stored = next
-        runCatching { file.save(next) }.onFailure(onSaveFailed)
+        return runCatching { file.save(next) }.onFailure(onSaveFailed).isSuccess
+    }
+
+    /** Removes `library-n.tsv` and `watch-positions-n.tsv` for every `n` that [profiles] does not list. */
+    private fun clearLibrariesNotIn(profiles: StoredProfiles) {
+        val kept = profiles.profiles.map { it.id }.toSet()
+        libraryDirectory.listFiles().orEmpty().forEach { file ->
+            val id = LIBRARY_FILE.matchEntire(file.name)?.groupValues?.get(2)?.toIntOrNull() ?: return@forEach
+            if (id != StoredProfiles.FIRST && id !in kept) runCatching { Files.deleteIfExists(file.toPath()) }.onFailure(onSaveFailed)
+        }
     }
 
     /** The cards the picker and the sidebar's list draw. Nothing is locked and nothing syncs until `KMP-95c` and `95d`. */
@@ -221,6 +253,11 @@ internal class DesktopProfiles(
             current = profile.id == stored.current,
             locked = false,
         )
+    }
+
+    private companion object {
+        /** A profile's own library file: `library-3.tsv`, `watch-positions-3.tsv`. */
+        val LIBRARY_FILE = Regex("""(library|watch-positions)-(\d{1,9})\.tsv""")
     }
 
     /** [id]'s library. The first profile's is the files the Mac had before profiles. */
