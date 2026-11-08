@@ -703,6 +703,24 @@ class DetailScreenTvDeviceTest {
     }
 
     /**
+     * An unstarted show whose provider lists a special first still opens on Season 1 with S1E1 marked,
+     * because Play starts S1E1, not the special (`KMP-92`, the owner's ruling). Nothing is chosen here:
+     * focus only walks DOWN to the list.
+     */
+    @Test
+    fun anUnstartedShowOpensOnSeasonOneNotTheSpecialListedFirst() {
+        show(DetailFixtures.SeasonGroups)
+        awaitFocus(PLAY_EPISODE)
+
+        // With the special as the primary, the page opened on Specials and DOWN stopped on its row.
+        assertEquals("One One", pressUntil(Dpad.Down, "One One"))
+        rule.onNodeWithText("One One").assertIsSelected()
+        assertNoText("Specials One")
+        rule.onNodeWithText("$SEASON 1").assertIsSelected()
+        rule.onNodeWithText(SPECIALS).assertIsNotSelected()
+    }
+
+    /**
      * One season draws no chip row. A lone chip filters nothing and would be a focus stop that does
      * nothing; 7i sends UP from the chips to the action row, so with no chips UP from the first
      * episode lands on exactly the same place.

@@ -259,6 +259,22 @@ class DetailScreenTest {
     }
 
     @Test
+    fun `an unstarted show with a special listed first opens its list on Season 1, the season Play starts (KMP-92)`() {
+        val actions = mutableListOf<DetailAction>()
+        val unstarted = series.copy(
+            episodes = listOf(DetailEpisode("Making of", "sp", 0, 1)) + episodes,
+            resume = null,
+        )
+        val scene = page(loaded(unstarted), { actions += it })
+        assertTrue(scene.isSelected("Season 1"))
+        assertFalse(scene.isSelected("Specials"))
+        assertTrue(scene.has("Pilot") && !scene.has("Making of"))
+        scene.click(scene.centreOf("Play Episode"))
+        assertEquals(listOf<DetailAction>(DetailAction.PlaybackRequested("s1e1", fromStart = false)), actions)
+        scene.close()
+    }
+
+    @Test
     fun `season 0 is Specials, and episodes with no season are Other, last`() {
         val odd = series.copy(
             episodes = listOf(

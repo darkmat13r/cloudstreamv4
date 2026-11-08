@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 /** Board 7i's season chips, as [seasonGroups] derives them. Pure, so none of this needs a device. */
 class DetailSeasonGroupsTest {
 
-    private fun episode(season: Int?, number: Int) =
+    private fun episode(season: Int?, number: Int?) =
         DetailEpisode(name = "E$number", data = "s$season-e$number", season = season, episode = number)
 
     @Test
@@ -133,5 +133,59 @@ class DetailSeasonGroupsTest {
     fun `the primary can open the Other group, which is what a null-season episode needs`() {
         val groups = listOf(episode(1, 1), episode(null, 1)).seasonGroups()
         assertEquals(1, groups.shownSeasonIndex(chosen = null, primaryData = "snull-e1"))
+    }
+
+    // ---- where an unstarted show starts: KMP-92, the owner's ruling ----
+
+    private fun title(episodes: List<DetailEpisode>, playData: String? = null, resume: DetailResume? = null) =
+        TitleDetail(
+            title = "T", providerName = "P", typeName = null, year = null, plot = null, posterUrl = null,
+            playData = playData, episodes = episodes, resume = resume,
+        )
+
+    @Test
+    fun `specials listed first, an unstarted show still starts at S1E1`() {
+        val episodes = listOf(episode(SPECIALS_SEASON, 1), episode(1, 1), episode(1, 2))
+        assertEquals("s1-e1", episodes.firstEpisodeToPlay()?.data)
+        assertEquals("s1-e1", title(episodes).primaryData)
+    }
+
+    @Test
+    fun `the lowest numbered season and its lowest episode win over list order`() {
+        val episodes = listOf(episode(2, 1), episode(1, 2), episode(1, 1), episode(SPECIALS_SEASON, 1))
+        assertEquals("s1-e1", episodes.firstEpisodeToPlay()?.data)
+    }
+
+    @Test
+    fun `only specials, it is the first special`() {
+        val episodes = listOf(episode(SPECIALS_SEASON, 2), episode(SPECIALS_SEASON, 1))
+        assertEquals("s0-e2", episodes.firstEpisodeToPlay()?.data)
+    }
+
+    @Test
+    fun `no seasons at all, it is the provider's first episode`() {
+        val episodes = listOf(episode(null, 3), episode(null, 1))
+        assertEquals("snull-e3", episodes.firstEpisodeToPlay()?.data)
+        assertEquals(null, emptyList<DetailEpisode>().firstEpisodeToPlay())
+    }
+
+    @Test
+    fun `no numbered season and a special listed first, it is the first episode that is not a special`() {
+        val episodes = listOf(episode(SPECIALS_SEASON, 1), episode(null, 1), episode(null, 2))
+        assertEquals("snull-e1", episodes.firstEpisodeToPlay()?.data)
+    }
+
+    @Test
+    fun `within a season, a numbered episode comes before an unnumbered one listed first`() {
+        val episodes = listOf(episode(1, null), episode(1, 2))
+        assertEquals("s1-e2", episodes.firstEpisodeToPlay()?.data)
+    }
+
+    @Test
+    fun `a resume, then a film's own data, still come before the first episode`() {
+        val episodes = listOf(episode(SPECIALS_SEASON, 1), episode(1, 1))
+        val resume = DetailResume("s0-e1", positionMs = 1_000L, durationMs = 2_000L, episode = episodes[0])
+        assertEquals("s0-e1", title(episodes, resume = resume).primaryData)
+        assertEquals("film", title(episodes, playData = "film").primaryData)
     }
 }

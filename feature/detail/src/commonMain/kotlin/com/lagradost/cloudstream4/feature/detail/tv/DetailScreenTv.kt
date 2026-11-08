@@ -751,8 +751,9 @@ private fun episodesHeaderIndex(detail: TitleDetail): Int =
 /**
  * Which episode row carries board 7i's pill: the one the primary button would act on.
  *
- * [TitleDetail.primaryData] is the resume target, else the title's own play data, else the first
- * episode, so the mark lands on the row Resume or Play Episode would play.
+ * [TitleDetail.primaryData] is the resume target, else the title's own play data, else the episode an unstarted
+ * show starts on (S1E1, `KMP-92`'s `firstEpisodeToPlay`), so the mark lands on the row Resume or Play Episode would
+ * play.
  *
  * **Board 7i does not agree, and this is deliberate.** 7i marks episode 1 while drawing `WATCHED` on
  * it and `24 MIN LEFT` on episode 2 — so the board's pill sits on a *finished* episode while the next
