@@ -3225,23 +3225,64 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 public final static class com/lagradost/cloudstream3/R$string : java/lang/Object {
 	public static field account I
 	public static field account_add_profile I
+	public static field account_browser_body I
+	public static field account_browser_body_phone I
+	public static field account_browser_open_again I
+	public static field account_browser_title I
+	public static field account_browser_waiting I
+	public static field account_code_expired I
+	public static field account_code_expires I
+	public static field account_code_instructions I
+	public static field account_code_open I
+	public static field account_delete_body I
+	public static field account_delete_profile I
+	public static field account_delete_title I
+	public static field account_edit_profile I
+	public static field account_email I
+	public static field account_image_address I
+	public static field account_manage_note I
 	public static field account_manage_profiles I
 	public static field account_pair_code I
 	public static field account_pair_instructions I
 	public static field account_pair_new_code I
 	public static field account_pair_title I
+	public static field account_password I
+	public static field account_password_mismatch I
+	public static field account_password_note I
+	public static field account_picture I
+	public static field account_pin_change I
+	public static field account_pin_confirm I
+	public static field account_pin_current I
+	public static field account_pin_first_profile I
+	public static field account_pin_new I
+	public static field account_pin_off I
+	public static field account_pin_on I
+	public static field account_pin_prompt I
+	public static field account_pin_remove I
+	public static field account_pin_set I
+	public static field account_pin_set_title I
 	public static field account_profile_current I
 	public static field account_profile_locked I
 	public static field account_profile_no_sync I
 	public static field account_select_note I
 	public static field account_select_title I
+	public static field account_signin_failed_body I
+	public static field account_signin_failed_title I
+	public static field account_signin_offline_body I
 	public static field account_sync_connected I
 	public static field account_sync_needs_browser I
 	public static field account_sync_note I
 	public static field account_sync_pair I
 	public static field account_sync_remove I
+	public static field account_sync_remove_body I
+	public static field account_sync_remove_title I
 	public static field account_sync_title I
 	public static field account_sync_unavailable I
+	public static field account_touch_id_hint I
+	public static field account_touch_id_reason I
+	public static field account_touch_id_title I
+	public static field account_undo_warning I
+	public static field account_use_pin I
 	public static field action_add_to_bookmarks I
 	public static field action_add_to_favorites I
 	public static field action_default I
