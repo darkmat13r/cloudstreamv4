@@ -2449,3 +2449,34 @@ unchanged: ten steps lower than what launched it. Nothing outside the test chang
 - At parent 5 (Gradle run under `nice -n 5`, no daemon): host 15, pass. This is the gates' failure, which the old
   assertion failed on with `expected:<10> but was:<15>`.
 - **Red:** with `nice -n 10` taken out of the launcher, `expected:<10> but was:<0>`. Restored afterwards.
+
+## BUG-67 — `DesktopDownloadsTest`'s retry wait missed the bytes on a fast machine · **low, test only**
+
+**Status:** fixed in pr #258 · found 2026-11-08 on the second Mac, by `:desktopApp:jvmTest`
+
+`a retry asks the extension again, a resume of a pause does not` waits, after `retry`, for a snapshot showing the
+episode Running with some bytes done, so that it can pause mid-download. Snapshots come from `DesktopDownloads.throttled`,
+at most one every `EMIT_INTERVAL_MILLIS` (250 ms). On the second Mac the retried 1 MiB body finished inside one window,
+so no snapshot ever matched, and the wait timed out at 30 s. The behaviour under test was right all along: the extension
+was asked exactly once.
+
+**Measured** on the second Mac, Temurin 17.0.21:
+- Red on master: 3 runs in 3 at `518c9b74f` (with `BUG-53`/`BUG-56`'s rework), and earlier 3 in 3 at `bb06dacb3` and 3
+  in 3 on `#232`'s head. The main Mac passed the class, so speed decides it.
+- A collector on the title's snapshots, from just before the retry (a local debug change, not committed):
+  ```
+       0 ms  Failed   bytes=0        failure=ServerRefused(404)
+     306 ms  Running  bytes=0        failure=null
+     561 ms  Running  bytes=0        failure=null
+     814 ms  Done     bytes=1048576  failure=null
+  ```
+
+**Fix, in the test only.** `RangeServer.holdAfterFirstChunk(name)` returns a gate. The next body of that file stops
+after its first 16 KiB and waits until the gate opens, so the engine holds bytes and no more, and a snapshot with
+bytes done must come. The test arms the gate before `retry`, pauses once it sees Running with bytes, and opens the gate
+after the pause has landed. The probe's single byte never waits. The gate is one-shot, so the resume is served normally.
+This follows `BUG-56`'s resolver gate. No timing changed: same file, same chunk delay. "Asked exactly once" is kept.
+
+**Proof** on the second Mac, Temurin 17.0.21, `:desktopApp:jvmTest --tests '*DesktopDownloadsTest*' --rerun`:
+- Before, on master `d061b20c2`: exit 1, 25 tests, 1 failed (this test, the same timeout).
+- After: 10 runs in a row, each exit 0, 25 tests, 0 failures, every XML timestamped by its own run.

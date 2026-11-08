@@ -8,6 +8,8 @@ import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArrayList
 import java.util.concurrent.Executors
 import java.util.concurrent.atomic.AtomicLong
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.runBlocking
 import kotlin.random.Random
 
 /**
@@ -25,6 +27,16 @@ internal class RangeServer : AutoCloseable {
 
     /** Every `Range` header received, by file name, in order. The probe's is `bytes=0-0`. */
     val ranges = ConcurrentHashMap<String, CopyOnWriteArrayList<String>>()
+
+    /**
+     * One-shot holds, by file name (`BUG-67`). A body for a held file stops after its first [CHUNK] and waits until the
+     * test completes the gate, so the engine has bytes on disk and nothing more: a snapshot with bytes done is certain,
+     * however fast loopback is. Completing the gate releases that body; later requests are not held.
+     */
+    private val holds = ConcurrentHashMap<String, CompletableDeferred<Unit>>()
+
+    /** Holds the next body of [name] after its first chunk until the returned gate is completed. */
+    fun holdAfterFirstChunk(name: String): CompletableDeferred<Unit> = CompletableDeferred<Unit>().also { holds[name] = it }
 
     init {
         server.executor = Executors.newCachedThreadPool { runnable -> Thread(runnable).apply { isDaemon = true } }
@@ -74,14 +86,14 @@ internal class RangeServer : AutoCloseable {
             val end = if (b.isEmpty()) body.size - 1 else minOf(b.toInt(), body.size - 1)
             exchange.responseHeaders.add("Content-Range", "bytes $start-$end/${body.size}")
             exchange.sendResponseHeaders(206, (end - start + 1).toLong())
-            write(exchange, body, start, end + 1)
+            write(exchange, name, body, start, end + 1)
         } else {
             exchange.sendResponseHeaders(200, body.size.toLong())
-            write(exchange, body, 0, body.size)
+            write(exchange, name, body, 0, body.size)
         }
     }
 
-    private fun write(exchange: HttpExchange, body: ByteArray, from: Int, to: Int) {
+    private fun write(exchange: HttpExchange, name: String, body: ByteArray, from: Int, to: Int) {
         exchange.responseBody.use { out ->
             var at = from
             while (at < to) {
@@ -89,13 +101,21 @@ internal class RangeServer : AutoCloseable {
                 out.write(body, at, n)
                 out.flush()
                 at += n
+                // A held body waits here once, with bytes still to send; the probe's single byte never waits.
+                // The gate stays in [holds] while a thread waits on it, so [close] can still open it.
+                if (at < to) holds[name]?.let { gate -> runBlocking { gate.await() }; holds.remove(name, gate) }
                 val pause = chunkDelayMillis.get()
                 if (pause > 0) Thread.sleep(pause)
             }
         }
     }
 
-    override fun close() = server.stop(0)
+    /** Opens any hold still armed first, so a test that timed out never leaves a server thread parked on its gate. */
+    override fun close() {
+        holds.values.forEach { it.complete(Unit) }
+        holds.clear()
+        server.stop(0)
+    }
 
     companion object {
         const val CHUNK = 16 * 1024
