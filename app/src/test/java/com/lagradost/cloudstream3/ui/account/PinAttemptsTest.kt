@@ -49,10 +49,24 @@ class PinAttemptsTest {
         assertEquals(listOf(30_000L, 60_000L, 120_000L, 240_000L), waits)
     }
 
+    /** 30 s doubled: 30, 60, 120, 240, 480, 960, 1920 s, and then the hour, where it stays. */
     @Test
-    fun theWaitStopsDoublingBeforeItOverflows() {
+    fun theWaitStopsAtOneHour() {
+        val waits = wrong(12).drop(4)
+        assertEquals(listOf(30_000L, 60_000L, 120_000L, 240_000L, 480_000L, 960_000L, 1_920_000L, 3_600_000L), waits)
+    }
+
+    @Test
+    fun theTwentiethWrongPinWaitsExactlyOneHour() {
+        wrong(19)
+        assertEquals(3_600_000L, PinAttempts.wrong(KIDS))
+        assertEquals(3_600_000L, PinAttempts.waitMs(KIDS))
+    }
+
+    @Test
+    fun theWaitStaysAtOneHourWithoutOverflowing() {
         wrong(200)
-        assertEquals(30_000L shl 20, PinAttempts.waitMs(KIDS))
+        assertEquals(3_600_000L, PinAttempts.waitMs(KIDS))
     }
 
     @Test

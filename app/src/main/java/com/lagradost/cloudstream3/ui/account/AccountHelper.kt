@@ -360,8 +360,15 @@ object AccountHelper {
                 binding.pinEditTextError.visibleWithText(
                     context.getString(R.string.pin_error_wait, DateUtils.formatElapsedTime((left + 999L) / 1000L))
                 )
+                binding.root.removeCallbacks(this)
                 binding.root.postDelayed(this, (left % 1000L).takeIf { it > 0L } ?: 1000L)
             }
+        }
+
+        // One tick queued at a time, however many posts arrive while a wait shows.
+        fun postWaitTick() {
+            binding.root.removeCallbacks(waitTick)
+            binding.root.post(waitTick)
         }
 
         // `BUG-55`: the limit is a filter in front of the field, so the comparison below is left as it was. During a
@@ -372,12 +379,12 @@ object AccountHelper {
                 val result = dest.replaceRange(dstart, dend, source.subSequence(start, end)).toString()
                 when {
                     PinAttempts.waitMs(attemptsKey) > 0L -> {
-                        binding.root.post(waitTick)
+                        postWaitTick()
                         ""
                     }
                     result.length != 4 -> null
                     result == currentPin -> null.also { PinAttempts.right(attemptsKey) }
-                    else -> null.also { if (PinAttempts.wrong(attemptsKey) > 0L) binding.root.post(waitTick) }
+                    else -> null.also { if (PinAttempts.wrong(attemptsKey) > 0L) postWaitTick() }
                 }
             }
         }

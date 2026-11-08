@@ -11,7 +11,8 @@ import com.lagradost.cloudstream3.CloudStreamApp.Companion.context
  * values, so without a limit any lock can be guessed.
  *
  * - The first [FREE_WRONG] - 1 wrong PINs cost nothing. The [FREE_WRONG]th starts a [FIRST_WAIT_MS] wait, and each
- *   wrong PIN after it doubles the wait.
+ *   wrong PIN after it doubles the wait, up to [MAX_WAIT_MS]. The cap keeps someone at the remote from locking the
+ *   owner out for good; at one guess an hour, the 10,000 PINs still take over a year, about 200 days on average.
  * - A right PIN clears the profile's count.
  * - **Kept across restarts** in [FILE], so restarting the app after each few guesses doesn't reset the limit. Only the
  *   count and the wait are stored, never a PIN or anything taken from one. [FILE] is excluded from Android's backup and
@@ -28,13 +29,16 @@ internal object PinAttempts {
     const val FREE_WRONG = 5
     const val FIRST_WAIT_MS = 30_000L
 
+    /** The longest wait: one hour, reached on the 12th wrong PIN (30 s doubled seven times would be 64 minutes). */
+    const val MAX_WAIT_MS = 3_600_000L
+
     /** The key for a prompt that names no profile. No profile index is negative. */
     const val UNKEYED = Int.MIN_VALUE
 
     /** The preferences file; the backup rules exclude `$FILE.xml`. */
     const val FILE = "cs_pin_attempts"
 
-    /** Doublings past this would overflow; at 2^20 the wait is already about a year. */
+    /** Keeps the shift from overflowing before the cap applies. */
     private const val MAX_DOUBLINGS = 20
 
     /** One profile's record: [wrong] PINs so far, and a wait of [waitMs] that started at uptime [startedAt]. */
@@ -96,7 +100,8 @@ internal object PinAttempts {
     @Synchronized
     fun wrong(key: Int): Long {
         val count = (record(key)?.wrong ?: 0) + 1
-        val wait = if (count < FREE_WRONG) 0L else FIRST_WAIT_MS shl (count - FREE_WRONG).coerceAtMost(MAX_DOUBLINGS)
+        val wait = if (count < FREE_WRONG) 0L
+        else (FIRST_WAIT_MS shl (count - FREE_WRONG).coerceAtMost(MAX_DOUBLINGS)).coerceAtMost(MAX_WAIT_MS)
         val next = Record(count, clock(), wait)
         held[key] = next
         store.write(key, next)

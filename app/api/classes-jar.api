@@ -25569,6 +25569,7 @@ public final class com/lagradost/cloudstream3/ui/account/PinAttempts : java/lang
 	public static final field FIRST_WAIT_MS J
 	public static final field FREE_WRONG I
 	public static final field INSTANCE Lcom/lagradost/cloudstream3/ui/account/PinAttempts;
+	public static final field MAX_WAIT_MS J
 	public static final field UNKEYED I
 	public final fun forgetHeld ()V
 	public final fun getClock ()Lkotlin/jvm/functions/Function0;

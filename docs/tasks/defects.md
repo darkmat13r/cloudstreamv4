@@ -1996,7 +1996,10 @@ a restore) compared each PIN typed with no limit. A PIN has 10,000 values, so an
 
 **Fix:** `PinAttempts`, used inside `showPinInputDialog`, so every prompt has the same rule. The PM's call:
 - Four wrong PINs cost nothing. The fifth starts a 30-second wait; each wrong PIN after it doubles the wait (60, 120,
-  240 s, …), capped at 2^20 doublings so it cannot overflow. A right PIN clears the profile's count.
+  240 s, …) up to **one hour**, reached on the 12th wrong PIN. A right PIN clears the profile's count. The cap is the
+  PM's call after #230's review: doubling without one let anyone at the remote lock the owner out for about a year,
+  with no way back. At one guess an hour, random guessing still takes about 200 days on average.
+- One countdown tick is queued at a time: each post removes the tick already queued first.
 - During a wait the field is off and counts down ("Too many wrong PINs. Try again in 00:30"). The limit is an
   `InputFilter` in front of the field, so during a wait nothing typed reaches it, and no PIN is compared or counted.
   The prompt's own comparison is left exactly as it was: its compiled watcher class is in `classes-jar.api`, and
@@ -2021,11 +2024,12 @@ Also from #227's review: `restoreAfterPins` says why no context is still fail-sa
 
 | Before | Now |
 |---|---|
-| Any number of wrong PINs, each checked at once | After five wrong PINs on a profile, a wait that doubles with each further one; a right PIN resets it |
+| Any number of wrong PINs, each checked at once | After five wrong PINs on a profile, a wait that doubles with each further one, up to an hour; a right PIN resets it |
 
 ### Tests
 
-- `PinAttemptsTest` (JVM, 9): four free then 30 s; doubling; the cap; a right PIN clears; per profile; the count and
+- `PinAttemptsTest` (JVM, 11): four free then 30 s; doubling; the wait stops at an hour; the 20th wrong PIN waits
+  exactly an hour; 200 wrong PINs still wait an hour; a right PIN clears; per profile; the count and
   wait survive a restart; a reboot never shortens a wait; a record holds no PIN; a failed write still limits.
 - `PinAttemptsPromptTest` (device, 2): the profile-switch prompt and the restore prompt each show the wait after five
   wrong PINs, keep the right PIN out during it, store the count with no PIN, keep the wait after a restart, and take
