@@ -1180,6 +1180,44 @@ class HomeScreenTvDeviceTest {
     }
 
     /**
+     * `BUG-69`. At launch the host's request can find an unfocused window, so the window later gives focus from nothing
+     * focused, to the first stop it finds. `HomeTvFragment` hears that before the page does and calls
+     * [HomeHostFocus.grantedFromNothing], so the hero still takes focus when it lands.
+     *
+     * The page takes the mark as focus arrives. A mark that no arrival took is cleared by the landing, so that no later
+     * arrival inherits it. With the page already holding focus, only the landing can clear the second mark here.
+     */
+    @Test
+    fun focusTheWindowGaveFromNothingBeforeTheHeroLandedGoesToTheHeroAndTheMarkIsCleared() {
+        rails(1)
+        featuring(FEATURED)
+        bookmarking(2)
+        val pages = kotlinx.coroutines.CompletableDeferred<Unit>()
+        source.gate = pages
+        showScreen()
+        awaitText(WATCHING)
+        // The order the window reports it in: the global change first, then the page's own.
+        rule.runOnIdle {
+            hostFocus.grantedFromNothing(viewModel.state.value.landingOwed)
+            assertTrue("a landing is owed, so the grant is marked", hostFocus.requested)
+            hostView!!.requestFocus()
+        }
+        rule.waitForIdle()
+        val given = dpad.focused()
+        assertTrue("the window gave focus to the bookmarks rail, was $given", given == WATCHING || given?.startsWith(SAVED) == true)
+        rule.runOnIdle {
+            assertFalse("the arrival took the mark", hostFocus.requested)
+            // A mark no arrival takes: the page already holds focus.
+            hostFocus.grantedFromNothing(viewModel.state.value.landingOwed)
+            assertTrue(hostFocus.requested)
+        }
+
+        pages.complete(Unit)
+        awaitFocus(HERO)
+        rule.runOnIdle { assertFalse("the landing cleared the mark", hostFocus.requested) }
+    }
+
+    /**
      * `BUG-41` on the other local rail: Continue watching is one local read too, so at launch it can be on screen before
      * the hero, and the host's first request then lands on its first card (worker-2's run: "was Played Before"). Not a
      * person's choice either, so when the hero lands it takes focus.
