@@ -35,7 +35,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d IL</item><item quantity="other">%d ILOOD</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d qayb</item><item quantity="other">%d qaybood</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d digniin baaritaan</item><item quantity="other">%d digniinood baaritaan</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d kordhiye</item><item quantity="other">Dhammaan %d kordhiye</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Dhammaan kordhiyeyaasha (%d)</item><item quantity="other">Dhammaan kordhiyeyaasha (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d kordhiye · la cusboonaysiiyey %2$s</item><item quantity="other">%1$d kordhiye · la cusboonaysiiyey %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d astaan iyo PIN-keeda</item><item quantity="other">%d astaamood iyo PIN-kooda</item></plurals>
 <string name="account">Akoonka</string>

@@ -45,8 +45,8 @@ values-b+af	plurals	search_tv_suggestion_sources	one	%d BRON
 values-b+af	plurals	search_tv_suggestion_sources	other	%d BRONNE
 values-b+af	plurals	settings_extension_scan_warnings	one	%d skanderingwaarskuwing
 values-b+af	plurals	settings_extension_scan_warnings	other	%d skanderingwaarskuwings
-values-b+af	plurals	settings_extensions_all	one	%d uitbreiding
-values-b+af	plurals	settings_extensions_all	other	Al %d uitbreidings
+values-b+af	plurals	settings_extensions_all	one	Alle uitbreidings (%d)
+values-b+af	plurals	settings_extensions_all	other	Alle uitbreidings (%d)
 values-b+af	plurals	settings_repo_summary	one	%1$d uitbreiding · bygewerk %2$s
 values-b+af	plurals	settings_repo_summary	other	%1$d uitbreidings · bygewerk %2$s
 values-b+af	plurals	settings_reset_item_profiles	one	%d profiel en sy PIN
@@ -1162,8 +1162,8 @@ values-b+am	plurals	search_tv_suggestion_sources	one	%d ምንጭ
 values-b+am	plurals	search_tv_suggestion_sources	other	%d ምንጮች
 values-b+am	plurals	settings_extension_scan_warnings	one	%d የቅኝት ማስጠንቀቂያ
 values-b+am	plurals	settings_extension_scan_warnings	other	%d የቅኝት ማስጠንቀቂያዎች
-values-b+am	plurals	settings_extensions_all	one	%d ቅጥያ
-values-b+am	plurals	settings_extensions_all	other	ሁሉም %d ቅጥያዎች
+values-b+am	plurals	settings_extensions_all	one	ሁሉም ቅጥያዎች (%d)
+values-b+am	plurals	settings_extensions_all	other	ሁሉም ቅጥያዎች (%d)
 values-b+am	plurals	settings_repo_summary	one	%1$d ቅጥያ · %2$s ተዘምኗል
 values-b+am	plurals	settings_repo_summary	other	%1$d ቅጥያዎች · %2$s ተዘምኗል
 values-b+am	plurals	settings_reset_item_profiles	one	%d መገለጫ እና ፒኑ
@@ -2279,8 +2279,8 @@ values-b+apc	plurals	search_tv_suggestion_sources	one	%d مصدر
 values-b+apc	plurals	search_tv_suggestion_sources	other	%d مصادر
 values-b+apc	plurals	settings_extension_scan_warnings	one	%d تحذير من الفحص
 values-b+apc	plurals	settings_extension_scan_warnings	other	%d تحذيرات من الفحص
-values-b+apc	plurals	settings_extensions_all	one	%d إضافة
-values-b+apc	plurals	settings_extensions_all	other	كل الإضافات الـ%d
+values-b+apc	plurals	settings_extensions_all	one	كل الإضافات (%d)
+values-b+apc	plurals	settings_extensions_all	other	كل الإضافات (%d)
 values-b+apc	plurals	settings_repo_summary	one	%1$d إضافة · تجدّدت %2$s
 values-b+apc	plurals	settings_repo_summary	other	%1$d إضافات · تجدّدت %2$s
 values-b+apc	plurals	settings_reset_item_profiles	one	%d بروفايل والـPIN تبعو
@@ -3458,11 +3458,11 @@ values-b+ar	plurals	settings_extension_scan_warnings	few	%d تحذيرات فح�
 values-b+ar	plurals	settings_extension_scan_warnings	many	%d تحذيرًا للفحص
 values-b+ar	plurals	settings_extension_scan_warnings	one	%d تحذير فحص
 values-b+ar	plurals	settings_extension_scan_warnings	other	%d تحذير فحص
-values-b+ar	plurals	settings_extension_scan_warnings	two	%d تحذير فحص
+values-b+ar	plurals	settings_extension_scan_warnings	two	تحذيرا فحص
 values-b+ar	plurals	settings_extension_scan_warnings	zero	%d تحذير فحص
 values-b+ar	plurals	settings_extensions_all	few	كل الإضافات (%d)
 values-b+ar	plurals	settings_extensions_all	many	كل الإضافات (%d)
-values-b+ar	plurals	settings_extensions_all	one	%d إضافة
+values-b+ar	plurals	settings_extensions_all	one	كل الإضافات (%d)
 values-b+ar	plurals	settings_extensions_all	other	كل الإضافات (%d)
 values-b+ar	plurals	settings_extensions_all	two	كل الإضافات (%d)
 values-b+ar	plurals	settings_extensions_all	zero	كل الإضافات (%d)
@@ -3476,7 +3476,7 @@ values-b+ar	plurals	settings_reset_item_profiles	few	%d ملفات شخصية و
 values-b+ar	plurals	settings_reset_item_profiles	many	%d ملفًا شخصيًا ورموز PIN الخاصة بها
 values-b+ar	plurals	settings_reset_item_profiles	one	%d ملف شخصي ورمز PIN الخاص به
 values-b+ar	plurals	settings_reset_item_profiles	other	%d ملف شخصي ورموز PIN الخاصة بها
-values-b+ar	plurals	settings_reset_item_profiles	two	%d ملف شخصي ورموز PIN الخاصة بهما
+values-b+ar	plurals	settings_reset_item_profiles	two	ملفان شخصيان ورموز PIN الخاصة بهما
 values-b+ar	plurals	settings_reset_item_profiles	zero	%d ملف شخصي ورموز PIN الخاصة بها
 values-b+ar	string	account	-	حساب
 values-b+ar	string	account_add_profile	-	إضافة ملف شخصي
@@ -4645,12 +4645,12 @@ values-b+ars	plurals	settings_extension_scan_warnings	one	%d تحذير من ا�
 values-b+ars	plurals	settings_extension_scan_warnings	other	%d تحذير من الفحص
 values-b+ars	plurals	settings_extension_scan_warnings	two	%d تحذيرين من الفحص
 values-b+ars	plurals	settings_extension_scan_warnings	zero	%d تحذير من الفحص
-values-b+ars	plurals	settings_extensions_all	few	كل الإضافات الـ%d
-values-b+ars	plurals	settings_extensions_all	many	كل الإضافات الـ%d
-values-b+ars	plurals	settings_extensions_all	one	%d إضافة
-values-b+ars	plurals	settings_extensions_all	other	كل الإضافات الـ%d
-values-b+ars	plurals	settings_extensions_all	two	كل الإضافات الـ%d
-values-b+ars	plurals	settings_extensions_all	zero	%d إضافة
+values-b+ars	plurals	settings_extensions_all	few	كل الإضافات (%d)
+values-b+ars	plurals	settings_extensions_all	many	كل الإضافات (%d)
+values-b+ars	plurals	settings_extensions_all	one	كل الإضافات (%d)
+values-b+ars	plurals	settings_extensions_all	other	كل الإضافات (%d)
+values-b+ars	plurals	settings_extensions_all	two	كل الإضافات (%d)
+values-b+ars	plurals	settings_extensions_all	zero	كل الإضافات (%d)
 values-b+ars	plurals	settings_repo_summary	few	%1$d إضافات · تحدّثت %2$s
 values-b+ars	plurals	settings_repo_summary	many	%1$d إضافة · تحدّثت %2$s
 values-b+ars	plurals	settings_repo_summary	one	%1$d إضافة · تحدّثت %2$s
@@ -5774,8 +5774,8 @@ values-b+as	plurals	search_tv_suggestion_sources	one	%d উৎস
 values-b+as	plurals	search_tv_suggestion_sources	other	%d উৎস
 values-b+as	plurals	settings_extension_scan_warnings	one	%d টা স্কেন সতৰ্কবাণী
 values-b+as	plurals	settings_extension_scan_warnings	other	%d টা স্কেন সতৰ্কবাণী
-values-b+as	plurals	settings_extensions_all	one	%d টা এক্সটেনশ্যন
-values-b+as	plurals	settings_extensions_all	other	সকলো %d টা এক্সটেনশ্যন
+values-b+as	plurals	settings_extensions_all	one	সকলো এক্সটেনশ্যন (%d)
+values-b+as	plurals	settings_extensions_all	other	সকলো এক্সটেনশ্যন (%d)
 values-b+as	plurals	settings_repo_summary	one	%1$d টা এক্সটেনশ্যন · আপডেট %2$s
 values-b+as	plurals	settings_repo_summary	other	%1$d টা এক্সটেনশ্যন · আপডেট %2$s
 values-b+as	plurals	settings_reset_item_profiles	one	%d টা প্ৰফাইল আৰু ইয়াৰ PIN
@@ -6891,8 +6891,8 @@ values-b+az	plurals	search_tv_suggestion_sources	one	%d MƏNBƏ
 values-b+az	plurals	search_tv_suggestion_sources	other	%d MƏNBƏ
 values-b+az	plurals	settings_extension_scan_warnings	one	%d yoxlama xəbərdarlığı
 values-b+az	plurals	settings_extension_scan_warnings	other	%d yoxlama xəbərdarlığı
-values-b+az	plurals	settings_extensions_all	one	%d uzantı
-values-b+az	plurals	settings_extensions_all	other	Bütün %d uzantı
+values-b+az	plurals	settings_extensions_all	one	Bütün uzantılar (%d)
+values-b+az	plurals	settings_extensions_all	other	Bütün uzantılar (%d)
 values-b+az	plurals	settings_repo_summary	one	%1$d uzantı · yenilənib %2$s
 values-b+az	plurals	settings_repo_summary	other	%1$d uzantı · yenilənib %2$s
 values-b+az	plurals	settings_reset_item_profiles	one	%d profil və onun PIN-i
@@ -8040,10 +8040,10 @@ values-b+be	plurals	settings_extension_scan_warnings	few	%d папярэджан
 values-b+be	plurals	settings_extension_scan_warnings	many	%d папярэджанняў сканавання
 values-b+be	plurals	settings_extension_scan_warnings	one	%d папярэджанне сканавання
 values-b+be	plurals	settings_extension_scan_warnings	other	%d папярэджання сканавання
-values-b+be	plurals	settings_extensions_all	few	Усе %d пашырэнні
-values-b+be	plurals	settings_extensions_all	many	Усе %d пашырэнняў
-values-b+be	plurals	settings_extensions_all	one	%d пашырэнне
-values-b+be	plurals	settings_extensions_all	other	Усе %d пашырэння
+values-b+be	plurals	settings_extensions_all	few	Усе пашырэнні (%d)
+values-b+be	plurals	settings_extensions_all	many	Усе пашырэнні (%d)
+values-b+be	plurals	settings_extensions_all	one	Усе пашырэнні (%d)
+values-b+be	plurals	settings_extensions_all	other	Усе пашырэнні (%d)
 values-b+be	plurals	settings_repo_summary	few	%1$d пашырэнні · абноўлена %2$s
 values-b+be	plurals	settings_repo_summary	many	%1$d пашырэнняў · абноўлена %2$s
 values-b+be	plurals	settings_repo_summary	one	%1$d пашырэнне · абноўлена %2$s
@@ -9163,8 +9163,8 @@ values-b+bg	plurals	search_tv_suggestion_sources	one	%d ИЗТОЧНИК
 values-b+bg	plurals	search_tv_suggestion_sources	other	%d ИЗТОЧНИКА
 values-b+bg	plurals	settings_extension_scan_warnings	one	%d предупреждение от сканиране
 values-b+bg	plurals	settings_extension_scan_warnings	other	%d предупреждения от сканиране
-values-b+bg	plurals	settings_extensions_all	one	%d разширение
-values-b+bg	plurals	settings_extensions_all	other	Всички %d разширения
+values-b+bg	plurals	settings_extensions_all	one	Всички разширения (%d)
+values-b+bg	plurals	settings_extensions_all	other	Всички разширения (%d)
 values-b+bg	plurals	settings_repo_summary	one	%1$d разширение · обновено %2$s
 values-b+bg	plurals	settings_repo_summary	other	%1$d разширения · обновено %2$s
 values-b+bg	plurals	settings_reset_item_profiles	one	%d профил и неговият ПИН
@@ -10280,8 +10280,8 @@ values-b+bn	plurals	search_tv_suggestion_sources	one	%d উৎস
 values-b+bn	plurals	search_tv_suggestion_sources	other	%d উৎস
 values-b+bn	plurals	settings_extension_scan_warnings	one	%dটি স্ক্যান সতর্কতা
 values-b+bn	plurals	settings_extension_scan_warnings	other	%dটি স্ক্যান সতর্কতা
-values-b+bn	plurals	settings_extensions_all	one	%dটি এক্সটেনশন
-values-b+bn	plurals	settings_extensions_all	other	সব %dটি এক্সটেনশন
+values-b+bn	plurals	settings_extensions_all	one	সব এক্সটেনশন (%d)
+values-b+bn	plurals	settings_extensions_all	other	সব এক্সটেনশন (%d)
 values-b+bn	plurals	settings_repo_summary	one	%1$dটি এক্সটেনশন · %2$s আপডেট হয়েছে
 values-b+bn	plurals	settings_repo_summary	other	%1$dটি এক্সটেনশন · %2$s আপডেট হয়েছে
 values-b+bn	plurals	settings_reset_item_profiles	one	%dটি প্রোফাইল ও এর পিন
@@ -11411,9 +11411,9 @@ values-b+ca	plurals	search_tv_suggestion_sources	other	%d FONTS
 values-b+ca	plurals	settings_extension_scan_warnings	many	%d avisos de l'anàlisi
 values-b+ca	plurals	settings_extension_scan_warnings	one	%d avís de l'anàlisi
 values-b+ca	plurals	settings_extension_scan_warnings	other	%d avisos de l'anàlisi
-values-b+ca	plurals	settings_extensions_all	many	Totes les %d extensions
-values-b+ca	plurals	settings_extensions_all	one	%d extensió
-values-b+ca	plurals	settings_extensions_all	other	Totes les %d extensions
+values-b+ca	plurals	settings_extensions_all	many	Totes les extensions (%d)
+values-b+ca	plurals	settings_extensions_all	one	Totes les extensions (%d)
+values-b+ca	plurals	settings_extensions_all	other	Totes les extensions (%d)
 values-b+ca	plurals	settings_repo_summary	many	%1$d extensions · actualitzat %2$s
 values-b+ca	plurals	settings_repo_summary	one	%1$d extensió · actualitzat %2$s
 values-b+ca	plurals	settings_repo_summary	other	%1$d extensions · actualitzat %2$s
@@ -12531,8 +12531,8 @@ values-b+ckb	plurals	search_tv_suggestion_sources	one	%d سەرچاوە
 values-b+ckb	plurals	search_tv_suggestion_sources	other	%d سەرچاوە
 values-b+ckb	plurals	settings_extension_scan_warnings	one	%d ئاگاداری پشکنین
 values-b+ckb	plurals	settings_extension_scan_warnings	other	%d ئاگاداری پشکنین
-values-b+ckb	plurals	settings_extensions_all	one	%d زیادکراوە
-values-b+ckb	plurals	settings_extensions_all	other	هەموو %d زیادکراوەکە
+values-b+ckb	plurals	settings_extensions_all	one	هەموو زیادکراوەکان (%d)
+values-b+ckb	plurals	settings_extensions_all	other	هەموو زیادکراوەکان (%d)
 values-b+ckb	plurals	settings_repo_summary	one	%1$d زیادکراوە · نوێکرایەوە %2$s
 values-b+ckb	plurals	settings_repo_summary	other	%1$d زیادکراوە · نوێکرایەوە %2$s
 values-b+ckb	plurals	settings_reset_item_profiles	one	%d پرۆفایل و PINەکەی
@@ -13682,10 +13682,10 @@ values-b+cs	plurals	settings_extension_scan_warnings	few	%d varování kontroly
 values-b+cs	plurals	settings_extension_scan_warnings	many	%d varování kontroly
 values-b+cs	plurals	settings_extension_scan_warnings	one	%d varování kontroly
 values-b+cs	plurals	settings_extension_scan_warnings	other	%d varování kontroly
-values-b+cs	plurals	settings_extensions_all	few	Všechna %d rozšíření
-values-b+cs	plurals	settings_extensions_all	many	Všech %d rozšíření
-values-b+cs	plurals	settings_extensions_all	one	%d rozšíření
-values-b+cs	plurals	settings_extensions_all	other	Všech %d rozšíření
+values-b+cs	plurals	settings_extensions_all	few	Všechna rozšíření (%d)
+values-b+cs	plurals	settings_extensions_all	many	Všechna rozšíření (%d)
+values-b+cs	plurals	settings_extensions_all	one	Všechna rozšíření (%d)
+values-b+cs	plurals	settings_extensions_all	other	Všechna rozšíření (%d)
 values-b+cs	plurals	settings_repo_summary	few	%1$d rozšíření · aktualizováno %2$s
 values-b+cs	plurals	settings_repo_summary	many	%1$d rozšíření · aktualizováno %2$s
 values-b+cs	plurals	settings_repo_summary	one	%1$d rozšíření · aktualizováno %2$s
@@ -14805,8 +14805,8 @@ values-b+de	plurals	search_tv_suggestion_sources	one	%d QUELLE
 values-b+de	plurals	search_tv_suggestion_sources	other	%d QUELLEN
 values-b+de	plurals	settings_extension_scan_warnings	one	%d Prüfwarnung
 values-b+de	plurals	settings_extension_scan_warnings	other	%d Prüfwarnungen
-values-b+de	plurals	settings_extensions_all	one	%d Erweiterung
-values-b+de	plurals	settings_extensions_all	other	Alle %d Erweiterungen
+values-b+de	plurals	settings_extensions_all	one	Alle Erweiterungen (%d)
+values-b+de	plurals	settings_extensions_all	other	Alle Erweiterungen (%d)
 values-b+de	plurals	settings_repo_summary	one	%1$d Erweiterung · aktualisiert %2$s
 values-b+de	plurals	settings_repo_summary	other	%1$d Erweiterungen · aktualisiert %2$s
 values-b+de	plurals	settings_reset_item_profiles	one	%d Profil und seine PIN
@@ -15922,8 +15922,8 @@ values-b+el	plurals	search_tv_suggestion_sources	one	%d ΠΗΓΗ
 values-b+el	plurals	search_tv_suggestion_sources	other	%d ΠΗΓΕΣ
 values-b+el	plurals	settings_extension_scan_warnings	one	%d προειδοποίηση σάρωσης
 values-b+el	plurals	settings_extension_scan_warnings	other	%d προειδοποιήσεις σάρωσης
-values-b+el	plurals	settings_extensions_all	one	%d επέκταση
-values-b+el	plurals	settings_extensions_all	other	Και οι %d επεκτάσεις
+values-b+el	plurals	settings_extensions_all	one	Όλες οι επεκτάσεις (%d)
+values-b+el	plurals	settings_extensions_all	other	Όλες οι επεκτάσεις (%d)
 values-b+el	plurals	settings_repo_summary	one	%1$d επέκταση · ενημέρωση %2$s
 values-b+el	plurals	settings_repo_summary	other	%1$d επεκτάσεις · ενημέρωση %2$s
 values-b+el	plurals	settings_reset_item_profiles	one	%d προφίλ και το PIN του
@@ -17039,8 +17039,8 @@ values-b+eo	plurals	search_tv_suggestion_sources	one	%d FONTO
 values-b+eo	plurals	search_tv_suggestion_sources	other	%d FONTOJ
 values-b+eo	plurals	settings_extension_scan_warnings	one	%d skana averto
 values-b+eo	plurals	settings_extension_scan_warnings	other	%d skanaj avertoj
-values-b+eo	plurals	settings_extensions_all	one	%d kromprogramo
-values-b+eo	plurals	settings_extensions_all	other	Ĉiuj %d kromprogramoj
+values-b+eo	plurals	settings_extensions_all	one	Ĉiuj kromprogramoj (%d)
+values-b+eo	plurals	settings_extensions_all	other	Ĉiuj kromprogramoj (%d)
 values-b+eo	plurals	settings_repo_summary	one	%1$d kromprogramo · ĝisdatigita %2$s
 values-b+eo	plurals	settings_repo_summary	other	%1$d kromprogramoj · ĝisdatigitaj %2$s
 values-b+eo	plurals	settings_reset_item_profiles	one	%d profilo kaj ĝia PIN
@@ -18173,9 +18173,9 @@ values-b+es	plurals	search_tv_suggestion_sources	other	%d FUENTES
 values-b+es	plurals	settings_extension_scan_warnings	many	%d avisos del análisis
 values-b+es	plurals	settings_extension_scan_warnings	one	%d aviso del análisis
 values-b+es	plurals	settings_extension_scan_warnings	other	%d avisos del análisis
-values-b+es	plurals	settings_extensions_all	many	Las %d extensiones
-values-b+es	plurals	settings_extensions_all	one	%d extensión
-values-b+es	plurals	settings_extensions_all	other	Las %d extensiones
+values-b+es	plurals	settings_extensions_all	many	Todas las extensiones (%d)
+values-b+es	plurals	settings_extensions_all	one	Todas las extensiones (%d)
+values-b+es	plurals	settings_extensions_all	other	Todas las extensiones (%d)
 values-b+es	plurals	settings_repo_summary	many	%1$d extensiones · actualizado %2$s
 values-b+es	plurals	settings_repo_summary	one	%1$d extensión · actualizado %2$s
 values-b+es	plurals	settings_repo_summary	other	%1$d extensiones · actualizado %2$s
@@ -19293,8 +19293,8 @@ values-b+fa	plurals	search_tv_suggestion_sources	one	%d منبع
 values-b+fa	plurals	search_tv_suggestion_sources	other	%d منبع
 values-b+fa	plurals	settings_extension_scan_warnings	one	%d هشدار اسکن
 values-b+fa	plurals	settings_extension_scan_warnings	other	%d هشدار اسکن
-values-b+fa	plurals	settings_extensions_all	one	%d افزونه
-values-b+fa	plurals	settings_extensions_all	other	همهٔ %d افزونه
+values-b+fa	plurals	settings_extensions_all	one	همهٔ افزونه‌ها (%d)
+values-b+fa	plurals	settings_extensions_all	other	همهٔ افزونه‌ها (%d)
 values-b+fa	plurals	settings_repo_summary	one	%1$d افزونه · به‌روزشده %2$s
 values-b+fa	plurals	settings_repo_summary	other	%1$d افزونه · به‌روزشده %2$s
 values-b+fa	plurals	settings_reset_item_profiles	one	%d نمایه و PIN آن
@@ -20410,8 +20410,8 @@ values-b+fil	plurals	search_tv_suggestion_sources	one	%d MAPAGKUKUNAN
 values-b+fil	plurals	search_tv_suggestion_sources	other	%d MAPAGKUKUNAN
 values-b+fil	plurals	settings_extension_scan_warnings	one	%d babala ng scan
 values-b+fil	plurals	settings_extension_scan_warnings	other	%d na babala ng scan
-values-b+fil	plurals	settings_extensions_all	one	%d extension
-values-b+fil	plurals	settings_extensions_all	other	Lahat ng %d extension
+values-b+fil	plurals	settings_extensions_all	one	Lahat ng extension (%d)
+values-b+fil	plurals	settings_extensions_all	other	Lahat ng extension (%d)
 values-b+fil	plurals	settings_repo_summary	one	%1$d extension · na-update %2$s
 values-b+fil	plurals	settings_repo_summary	other	%1$d na extension · na-update %2$s
 values-b+fil	plurals	settings_reset_item_profiles	one	%d profile at ang PIN nito
@@ -21544,9 +21544,9 @@ values-b+fr	plurals	search_tv_suggestion_sources	other	%d SOURCES
 values-b+fr	plurals	settings_extension_scan_warnings	many	%d avertissements d’analyse
 values-b+fr	plurals	settings_extension_scan_warnings	one	%d avertissement d’analyse
 values-b+fr	plurals	settings_extension_scan_warnings	other	%d avertissements d’analyse
-values-b+fr	plurals	settings_extensions_all	many	Les %d extensions
-values-b+fr	plurals	settings_extensions_all	one	%d extension
-values-b+fr	plurals	settings_extensions_all	other	Les %d extensions
+values-b+fr	plurals	settings_extensions_all	many	Toutes les extensions (%d)
+values-b+fr	plurals	settings_extensions_all	one	Toutes les extensions (%d)
+values-b+fr	plurals	settings_extensions_all	other	Toutes les extensions (%d)
 values-b+fr	plurals	settings_repo_summary	many	%1$d extensions · mis à jour %2$s
 values-b+fr	plurals	settings_repo_summary	one	%1$d extension · mis à jour %2$s
 values-b+fr	plurals	settings_repo_summary	other	%1$d extensions · mis à jour %2$s
@@ -22664,8 +22664,8 @@ values-b+gl	plurals	search_tv_suggestion_sources	one	%d FONTE
 values-b+gl	plurals	search_tv_suggestion_sources	other	%d FONTES
 values-b+gl	plurals	settings_extension_scan_warnings	one	%d aviso da análise
 values-b+gl	plurals	settings_extension_scan_warnings	other	%d avisos da análise
-values-b+gl	plurals	settings_extensions_all	one	%d extensión
-values-b+gl	plurals	settings_extensions_all	other	Todas as %d extensións
+values-b+gl	plurals	settings_extensions_all	one	Todas as extensións (%d)
+values-b+gl	plurals	settings_extensions_all	other	Todas as extensións (%d)
 values-b+gl	plurals	settings_repo_summary	one	%1$d extensión · actualizado %2$s
 values-b+gl	plurals	settings_repo_summary	other	%1$d extensións · actualizado %2$s
 values-b+gl	plurals	settings_reset_item_profiles	one	%d perfil e o seu PIN
@@ -23781,8 +23781,8 @@ values-b+hi	plurals	search_tv_suggestion_sources	one	%d स्रोत
 values-b+hi	plurals	search_tv_suggestion_sources	other	%d स्रोत
 values-b+hi	plurals	settings_extension_scan_warnings	one	%d स्कैन चेतावनी
 values-b+hi	plurals	settings_extension_scan_warnings	other	%d स्कैन चेतावनियाँ
-values-b+hi	plurals	settings_extensions_all	one	%d एक्सटेंशन
-values-b+hi	plurals	settings_extensions_all	other	सभी %d एक्सटेंशन
+values-b+hi	plurals	settings_extensions_all	one	सभी एक्सटेंशन (%d)
+values-b+hi	plurals	settings_extensions_all	other	सभी एक्सटेंशन (%d)
 values-b+hi	plurals	settings_repo_summary	one	%1$d एक्सटेंशन · %2$s अपडेट किया गया
 values-b+hi	plurals	settings_repo_summary	other	%1$d एक्सटेंशन · %2$s अपडेट किए गए
 values-b+hi	plurals	settings_reset_item_profiles	one	%d प्रोफ़ाइल और उसका पिन
@@ -24914,9 +24914,9 @@ values-b+hr	plurals	search_tv_suggestion_sources	other	%d IZVORA
 values-b+hr	plurals	settings_extension_scan_warnings	few	%d upozorenja skeniranja
 values-b+hr	plurals	settings_extension_scan_warnings	one	%d upozorenje skeniranja
 values-b+hr	plurals	settings_extension_scan_warnings	other	%d upozorenja skeniranja
-values-b+hr	plurals	settings_extensions_all	few	Sva %d proširenja
-values-b+hr	plurals	settings_extensions_all	one	%d proširenje
-values-b+hr	plurals	settings_extensions_all	other	Svih %d proširenja
+values-b+hr	plurals	settings_extensions_all	few	Sva proširenja (%d)
+values-b+hr	plurals	settings_extensions_all	one	Sva proširenja (%d)
+values-b+hr	plurals	settings_extensions_all	other	Sva proširenja (%d)
 values-b+hr	plurals	settings_repo_summary	few	%1$d proširenja · ažurirano %2$s
 values-b+hr	plurals	settings_repo_summary	one	%1$d proširenje · ažurirano %2$s
 values-b+hr	plurals	settings_repo_summary	other	%1$d proširenja · ažurirano %2$s
@@ -26034,8 +26034,8 @@ values-b+hu	plurals	search_tv_suggestion_sources	one	%d FORRÁS
 values-b+hu	plurals	search_tv_suggestion_sources	other	%d FORRÁS
 values-b+hu	plurals	settings_extension_scan_warnings	one	%d vizsgálati figyelmeztetés
 values-b+hu	plurals	settings_extension_scan_warnings	other	%d vizsgálati figyelmeztetés
-values-b+hu	plurals	settings_extensions_all	one	%d bővítmény
-values-b+hu	plurals	settings_extensions_all	other	Mind a(z) %d bővítmény
+values-b+hu	plurals	settings_extensions_all	one	Az összes bővítmény (%d)
+values-b+hu	plurals	settings_extensions_all	other	Az összes bővítmény (%d)
 values-b+hu	plurals	settings_repo_summary	one	%1$d bővítmény · frissítve: %2$s
 values-b+hu	plurals	settings_repo_summary	other	%1$d bővítmény · frissítve: %2$s
 values-b+hu	plurals	settings_reset_item_profiles	one	%d profil és a PIN-je
@@ -27134,7 +27134,7 @@ values-b+in	plurals	search_tv_sources_count	one	%1$d / %2$d
 values-b+in	plurals	search_tv_sources_count	other	%1$d / %2$d
 values-b+in	plurals	search_tv_suggestion_sources	other	%d SUMBER
 values-b+in	plurals	settings_extension_scan_warnings	other	%d peringatan pemindaian
-values-b+in	plurals	settings_extensions_all	other	Semua %d ekstensi
+values-b+in	plurals	settings_extensions_all	other	Semua ekstensi (%d)
 values-b+in	plurals	settings_repo_summary	other	%1$d ekstensi · diperbarui %2$s
 values-b+in	plurals	settings_reset_item_profiles	other	%d profil beserta PIN-nya
 values-b+in	string	account	-	akun
@@ -28265,9 +28265,9 @@ values-b+it	plurals	search_tv_suggestion_sources	other	%d FONTI
 values-b+it	plurals	settings_extension_scan_warnings	many	%d avvisi di scansione
 values-b+it	plurals	settings_extension_scan_warnings	one	%d avviso di scansione
 values-b+it	plurals	settings_extension_scan_warnings	other	%d avvisi di scansione
-values-b+it	plurals	settings_extensions_all	many	Tutte le %d estensioni
-values-b+it	plurals	settings_extensions_all	one	%d estensione
-values-b+it	plurals	settings_extensions_all	other	Tutte le %d estensioni
+values-b+it	plurals	settings_extensions_all	many	Tutte le estensioni (%d)
+values-b+it	plurals	settings_extensions_all	one	Tutte le estensioni (%d)
+values-b+it	plurals	settings_extensions_all	other	Tutte le estensioni (%d)
 values-b+it	plurals	settings_repo_summary	many	%1$d estensioni · aggiornato %2$s
 values-b+it	plurals	settings_repo_summary	one	%1$d estensione · aggiornato %2$s
 values-b+it	plurals	settings_repo_summary	other	%1$d estensioni · aggiornato %2$s
@@ -29399,9 +29399,9 @@ values-b+iw	plurals	search_tv_suggestion_sources	two	%d מקורות
 values-b+iw	plurals	settings_extension_scan_warnings	one	%d אזהרת סריקה
 values-b+iw	plurals	settings_extension_scan_warnings	other	%d אזהרות סריקה
 values-b+iw	plurals	settings_extension_scan_warnings	two	%d אזהרות סריקה
-values-b+iw	plurals	settings_extensions_all	one	%d הרחבה
-values-b+iw	plurals	settings_extensions_all	other	כל %d ההרחבות
-values-b+iw	plurals	settings_extensions_all	two	כל %d ההרחבות
+values-b+iw	plurals	settings_extensions_all	one	כל ההרחבות (%d)
+values-b+iw	plurals	settings_extensions_all	other	כל ההרחבות (%d)
+values-b+iw	plurals	settings_extensions_all	two	כל ההרחבות (%d)
 values-b+iw	plurals	settings_repo_summary	one	%1$d הרחבה · עודכן %2$s
 values-b+iw	plurals	settings_repo_summary	other	%1$d הרחבות · עודכן %2$s
 values-b+iw	plurals	settings_repo_summary	two	%1$d הרחבות · עודכן %2$s
@@ -31616,8 +31616,8 @@ values-b+kn	plurals	search_tv_suggestion_sources	one	%d ಮೂಲ
 values-b+kn	plurals	search_tv_suggestion_sources	other	%d ಮೂಲಗಳು
 values-b+kn	plurals	settings_extension_scan_warnings	one	%d ಸ್ಕ್ಯಾನ್ ಎಚ್ಚರಿಕೆ
 values-b+kn	plurals	settings_extension_scan_warnings	other	%d ಸ್ಕ್ಯಾನ್ ಎಚ್ಚರಿಕೆಗಳು
-values-b+kn	plurals	settings_extensions_all	one	%d ವಿಸ್ತರಣೆ
-values-b+kn	plurals	settings_extensions_all	other	ಎಲ್ಲಾ %d ವಿಸ್ತರಣೆಗಳು
+values-b+kn	plurals	settings_extensions_all	one	ಎಲ್ಲಾ ವಿಸ್ತರಣೆಗಳು (%d)
+values-b+kn	plurals	settings_extensions_all	other	ಎಲ್ಲಾ ವಿಸ್ತರಣೆಗಳು (%d)
 values-b+kn	plurals	settings_repo_summary	one	%1$d ವಿಸ್ತರಣೆ · %2$s ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ
 values-b+kn	plurals	settings_repo_summary	other	%1$d ವಿಸ್ತರಣೆಗಳು · %2$s ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ
 values-b+kn	plurals	settings_reset_item_profiles	one	%d ಪ್ರೊಫೈಲ್ ಮತ್ತು ಅದರ PIN
@@ -32717,7 +32717,7 @@ values-b+ko	plurals	search_tv_sources_count	one	%1$d / %2$d
 values-b+ko	plurals	search_tv_sources_count	other	%1$d / %2$d
 values-b+ko	plurals	search_tv_suggestion_sources	other	%d 소스
 values-b+ko	plurals	settings_extension_scan_warnings	other	검사 경고 %d개
-values-b+ko	plurals	settings_extensions_all	other	확장 기능 %d개 모두
+values-b+ko	plurals	settings_extensions_all	other	모든 확장 기능 (%d)
 values-b+ko	plurals	settings_repo_summary	other	확장 기능 %1$d개 · %2$s 업데이트됨
 values-b+ko	plurals	settings_reset_item_profiles	other	프로필 %d개 및 PIN
 values-b+ko	string	account	-	계정
@@ -33859,10 +33859,10 @@ values-b+lt	plurals	settings_extension_scan_warnings	few	%d patikros įspėjimai
 values-b+lt	plurals	settings_extension_scan_warnings	many	%d patikros įspėjimo
 values-b+lt	plurals	settings_extension_scan_warnings	one	%d patikros įspėjimas
 values-b+lt	plurals	settings_extension_scan_warnings	other	%d patikros įspėjimų
-values-b+lt	plurals	settings_extensions_all	few	Visi %d plėtiniai
-values-b+lt	plurals	settings_extensions_all	many	Visi %d plėtinio
-values-b+lt	plurals	settings_extensions_all	one	%d plėtinys
-values-b+lt	plurals	settings_extensions_all	other	Visi %d plėtinių
+values-b+lt	plurals	settings_extensions_all	few	Visi plėtiniai (%d)
+values-b+lt	plurals	settings_extensions_all	many	Visi plėtiniai (%d)
+values-b+lt	plurals	settings_extensions_all	one	Visi plėtiniai (%d)
+values-b+lt	plurals	settings_extensions_all	other	Visi plėtiniai (%d)
 values-b+lt	plurals	settings_repo_summary	few	%1$d plėtiniai · atnaujinta %2$s
 values-b+lt	plurals	settings_repo_summary	many	%1$d plėtinio · atnaujinta %2$s
 values-b+lt	plurals	settings_repo_summary	one	%1$d plėtinys · atnaujinta %2$s
@@ -34997,9 +34997,9 @@ values-b+lv	plurals	search_tv_suggestion_sources	zero	%d DEVĒJU
 values-b+lv	plurals	settings_extension_scan_warnings	one	%d skenēšanas brīdinājums
 values-b+lv	plurals	settings_extension_scan_warnings	other	%d skenēšanas brīdinājumi
 values-b+lv	plurals	settings_extension_scan_warnings	zero	%d skenēšanas brīdinājumu
-values-b+lv	plurals	settings_extensions_all	one	%d papildinājums
-values-b+lv	plurals	settings_extensions_all	other	Visi %d papildinājumi
-values-b+lv	plurals	settings_extensions_all	zero	%d papildinājumu
+values-b+lv	plurals	settings_extensions_all	one	Visi papildinājumi (%d)
+values-b+lv	plurals	settings_extensions_all	other	Visi papildinājumi (%d)
+values-b+lv	plurals	settings_extensions_all	zero	Visi papildinājumi (%d)
 values-b+lv	plurals	settings_repo_summary	one	%1$d papildinājums · atjaunināts %2$s
 values-b+lv	plurals	settings_repo_summary	other	%1$d papildinājumi · atjaunināts %2$s
 values-b+lv	plurals	settings_repo_summary	zero	%1$d papildinājumu · atjaunināts %2$s
@@ -36117,8 +36117,8 @@ values-b+mk	plurals	search_tv_suggestion_sources	one	%d ИЗВОР
 values-b+mk	plurals	search_tv_suggestion_sources	other	%d ИЗВОРИ
 values-b+mk	plurals	settings_extension_scan_warnings	one	%d предупредување од скенирање
 values-b+mk	plurals	settings_extension_scan_warnings	other	%d предупредувања од скенирање
-values-b+mk	plurals	settings_extensions_all	one	%d екстензија
-values-b+mk	plurals	settings_extensions_all	other	Сите %d екстензии
+values-b+mk	plurals	settings_extensions_all	one	Сите екстензии (%d)
+values-b+mk	plurals	settings_extensions_all	other	Сите екстензии (%d)
 values-b+mk	plurals	settings_repo_summary	one	%1$d екстензија · ажурирано %2$s
 values-b+mk	plurals	settings_repo_summary	other	%1$d екстензии · ажурирано %2$s
 values-b+mk	plurals	settings_reset_item_profiles	one	%d профил и неговиот PIN
@@ -37234,8 +37234,8 @@ values-b+ml	plurals	search_tv_suggestion_sources	one	%d ഉറവിടം
 values-b+ml	plurals	search_tv_suggestion_sources	other	%d ഉറവിടങ്ങൾ
 values-b+ml	plurals	settings_extension_scan_warnings	one	%d സ്കാൻ മുന്നറിയിപ്പ്
 values-b+ml	plurals	settings_extension_scan_warnings	other	%d സ്കാൻ മുന്നറിയിപ്പുകൾ
-values-b+ml	plurals	settings_extensions_all	one	%d വിപുലീകരണം
-values-b+ml	plurals	settings_extensions_all	other	എല്ലാ %d വിപുലീകരണങ്ങളും
+values-b+ml	plurals	settings_extensions_all	one	എല്ലാ വിപുലീകരണങ്ങളും (%d)
+values-b+ml	plurals	settings_extensions_all	other	എല്ലാ വിപുലീകരണങ്ങളും (%d)
 values-b+ml	plurals	settings_repo_summary	one	%1$d വിപുലീകരണം · %2$s അപ്ഡേറ്റ് ചെയ്തു
 values-b+ml	plurals	settings_repo_summary	other	%1$d വിപുലീകരണങ്ങൾ · %2$s അപ്ഡേറ്റ് ചെയ്തു
 values-b+ml	plurals	settings_reset_item_profiles	one	%d പ്രൊഫൈലും അതിന്റെ പിന്നും
@@ -38337,7 +38337,7 @@ values-b+ms	plurals	search_tv_sources_count	one	%1$d / %2$d
 values-b+ms	plurals	search_tv_sources_count	other	%1$d / %2$d
 values-b+ms	plurals	search_tv_suggestion_sources	other	%d SUMBER
 values-b+ms	plurals	settings_extension_scan_warnings	other	%d amaran imbasan
-values-b+ms	plurals	settings_extensions_all	other	Semua %d tambahan
+values-b+ms	plurals	settings_extensions_all	other	Semua tambahan (%d)
 values-b+ms	plurals	settings_repo_summary	other	%1$d tambahan · dikemas kini %2$s
 values-b+ms	plurals	settings_reset_item_profiles	other	%d profil dan PIN masing-masing
 values-b+ms	string	account	-	akaun
@@ -39493,11 +39493,11 @@ values-b+mt	plurals	settings_extension_scan_warnings	many	%d twissija tal-iskan
 values-b+mt	plurals	settings_extension_scan_warnings	one	%d twissija tal-iskan
 values-b+mt	plurals	settings_extension_scan_warnings	other	%d twissija tal-iskan
 values-b+mt	plurals	settings_extension_scan_warnings	two	%d twissijiet tal-iskan
-values-b+mt	plurals	settings_extensions_all	few	Il-%d estensjonijiet kollha
-values-b+mt	plurals	settings_extensions_all	many	Il-%d estensjoni kollha
-values-b+mt	plurals	settings_extensions_all	one	%d estensjoni
-values-b+mt	plurals	settings_extensions_all	other	Il-%d estensjoni kollha
-values-b+mt	plurals	settings_extensions_all	two	Il-%d estensjonijiet kollha
+values-b+mt	plurals	settings_extensions_all	few	L-estensjonijiet kollha (%d)
+values-b+mt	plurals	settings_extensions_all	many	L-estensjonijiet kollha (%d)
+values-b+mt	plurals	settings_extensions_all	one	L-estensjonijiet kollha (%d)
+values-b+mt	plurals	settings_extensions_all	other	L-estensjonijiet kollha (%d)
+values-b+mt	plurals	settings_extensions_all	two	L-estensjonijiet kollha (%d)
 values-b+mt	plurals	settings_repo_summary	few	%1$d estensjonijiet · aġġornat %2$s
 values-b+mt	plurals	settings_repo_summary	many	%1$d estensjoni · aġġornat %2$s
 values-b+mt	plurals	settings_repo_summary	one	%1$d estensjoni · aġġornat %2$s
@@ -40605,7 +40605,7 @@ values-b+my	plurals	search_tv_sources_count	one	%1$d / %2$d
 values-b+my	plurals	search_tv_sources_count	other	%1$d / %2$d
 values-b+my	plurals	search_tv_suggestion_sources	other	%d ရင်းမြစ်
 values-b+my	plurals	settings_extension_scan_warnings	other	စကင် သတိပေးချက် %d ခု
-values-b+my	plurals	settings_extensions_all	other	အဆက်အားလုံး %d ခု
+values-b+my	plurals	settings_extensions_all	other	အဆက်အားလုံး (%d)
 values-b+my	plurals	settings_repo_summary	other	အဆက် %1$d ခု · %2$s တွင် အပ်ဒိတ်
 values-b+my	plurals	settings_reset_item_profiles	other	ပရိုဖိုင် %d ခုနှင့် ၎င်းတို့၏ PIN
 values-b+my	string	account	-	အကောင့်
@@ -41719,8 +41719,8 @@ values-b+ne	plurals	search_tv_suggestion_sources	one	%d स्रोत
 values-b+ne	plurals	search_tv_suggestion_sources	other	%d स्रोतहरू
 values-b+ne	plurals	settings_extension_scan_warnings	one	%d स्क्यान चेतावनी
 values-b+ne	plurals	settings_extension_scan_warnings	other	%d स्क्यान चेतावनी
-values-b+ne	plurals	settings_extensions_all	one	%d एक्सटेन्सन
-values-b+ne	plurals	settings_extensions_all	other	सबै %d एक्सटेन्सनहरू
+values-b+ne	plurals	settings_extensions_all	one	सबै एक्सटेन्सनहरू (%d)
+values-b+ne	plurals	settings_extensions_all	other	सबै एक्सटेन्सनहरू (%d)
 values-b+ne	plurals	settings_repo_summary	one	%1$d एक्सटेन्सन · %2$s अपडेट गरियो
 values-b+ne	plurals	settings_repo_summary	other	%1$d एक्सटेन्सन · %2$s अपडेट गरियो
 values-b+ne	plurals	settings_reset_item_profiles	one	%d प्रोफाइल र यसको पिन
@@ -42836,8 +42836,8 @@ values-b+nl	plurals	search_tv_suggestion_sources	one	%d BRON
 values-b+nl	plurals	search_tv_suggestion_sources	other	%d BRONNEN
 values-b+nl	plurals	settings_extension_scan_warnings	one	%d scanwaarschuwing
 values-b+nl	plurals	settings_extension_scan_warnings	other	%d scanwaarschuwingen
-values-b+nl	plurals	settings_extensions_all	one	%d uitbreiding
-values-b+nl	plurals	settings_extensions_all	other	Alle %d uitbreidingen
+values-b+nl	plurals	settings_extensions_all	one	Alle uitbreidingen (%d)
+values-b+nl	plurals	settings_extensions_all	other	Alle uitbreidingen (%d)
 values-b+nl	plurals	settings_repo_summary	one	%1$d uitbreiding · bijgewerkt %2$s
 values-b+nl	plurals	settings_repo_summary	other	%1$d uitbreidingen · bijgewerkt %2$s
 values-b+nl	plurals	settings_reset_item_profiles	one	%d profiel en de pincode
@@ -43953,8 +43953,8 @@ values-b+nn	plurals	search_tv_suggestion_sources	one	%d KJELDE
 values-b+nn	plurals	search_tv_suggestion_sources	other	%d KJELDER
 values-b+nn	plurals	settings_extension_scan_warnings	one	%d skanningsåtvaring
 values-b+nn	plurals	settings_extension_scan_warnings	other	%d skanningsåtvaringar
-values-b+nn	plurals	settings_extensions_all	one	%d utviding
-values-b+nn	plurals	settings_extensions_all	other	Alle %d utvidingar
+values-b+nn	plurals	settings_extensions_all	one	Alle utvidingar (%d)
+values-b+nn	plurals	settings_extensions_all	other	Alle utvidingar (%d)
 values-b+nn	plurals	settings_repo_summary	one	%1$d utviding · oppdatert %2$s
 values-b+nn	plurals	settings_repo_summary	other	%1$d utvidingar · oppdatert %2$s
 values-b+nn	plurals	settings_reset_item_profiles	one	%d profil og PIN-en hennar
@@ -45070,8 +45070,8 @@ values-b+no	plurals	search_tv_suggestion_sources	one	%d KILDE
 values-b+no	plurals	search_tv_suggestion_sources	other	%d KILDER
 values-b+no	plurals	settings_extension_scan_warnings	one	%d skanneadvarsel
 values-b+no	plurals	settings_extension_scan_warnings	other	%d skanneadvarsler
-values-b+no	plurals	settings_extensions_all	one	%d utvidelse
-values-b+no	plurals	settings_extensions_all	other	Alle %d utvidelser
+values-b+no	plurals	settings_extensions_all	one	Alle utvidelser (%d)
+values-b+no	plurals	settings_extensions_all	other	Alle utvidelser (%d)
 values-b+no	plurals	settings_repo_summary	one	%1$d utvidelse · oppdatert %2$s
 values-b+no	plurals	settings_repo_summary	other	%1$d utvidelser · oppdatert %2$s
 values-b+no	plurals	settings_reset_item_profiles	one	%d profil og PIN-en dens
@@ -46187,8 +46187,8 @@ values-b+or	plurals	search_tv_suggestion_sources	one	%d ଉତ୍ସ
 values-b+or	plurals	search_tv_suggestion_sources	other	%d ଉତ୍ସ
 values-b+or	plurals	settings_extension_scan_warnings	one	%d ସ୍କାନ୍ ଚେତାବନୀ
 values-b+or	plurals	settings_extension_scan_warnings	other	%d ସ୍କାନ୍ ଚେତାବନୀ
-values-b+or	plurals	settings_extensions_all	one	%d ଏକ୍ସଟେନସନ
-values-b+or	plurals	settings_extensions_all	other	ସମସ୍ତ %d ଏକ୍ସଟେନସନ
+values-b+or	plurals	settings_extensions_all	one	ସମସ୍ତ ଏକ୍ସଟେନସନ (%d)
+values-b+or	plurals	settings_extensions_all	other	ସମସ୍ତ ଏକ୍ସଟେନସନ (%d)
 values-b+or	plurals	settings_repo_summary	one	%1$d ଏକ୍ସଟେନସନ · %2$s ଅଦ୍ୟତନ ହୋଇଛି
 values-b+or	plurals	settings_repo_summary	other	%1$d ଏକ୍ସଟେନସନ · %2$s ଅଦ୍ୟତନ ହୋଇଛି
 values-b+or	plurals	settings_reset_item_profiles	one	%d ପ୍ରୋଫାଇଲ୍ ଏବଂ ଏହାର PIN
@@ -47338,10 +47338,10 @@ values-b+pl	plurals	settings_extension_scan_warnings	few	%d ostrzeżenia skanowa
 values-b+pl	plurals	settings_extension_scan_warnings	many	%d ostrzeżeń skanowania
 values-b+pl	plurals	settings_extension_scan_warnings	one	%d ostrzeżenie skanowania
 values-b+pl	plurals	settings_extension_scan_warnings	other	%d ostrzeżenia skanowania
-values-b+pl	plurals	settings_extensions_all	few	Wszystkie %d rozszerzenia
-values-b+pl	plurals	settings_extensions_all	many	Wszystkie %d rozszerzeń
-values-b+pl	plurals	settings_extensions_all	one	%d rozszerzenie
-values-b+pl	plurals	settings_extensions_all	other	Wszystkie %d rozszerzenia
+values-b+pl	plurals	settings_extensions_all	few	Wszystkie rozszerzenia (%d)
+values-b+pl	plurals	settings_extensions_all	many	Wszystkie rozszerzenia (%d)
+values-b+pl	plurals	settings_extensions_all	one	Wszystkie rozszerzenia (%d)
+values-b+pl	plurals	settings_extensions_all	other	Wszystkie rozszerzenia (%d)
 values-b+pl	plurals	settings_repo_summary	few	%1$d rozszerzenia · zaktualizowano %2$s
 values-b+pl	plurals	settings_repo_summary	many	%1$d rozszerzeń · zaktualizowano %2$s
 values-b+pl	plurals	settings_repo_summary	one	%1$d rozszerzenie · zaktualizowano %2$s
@@ -48478,9 +48478,9 @@ values-b+pt	plurals	search_tv_suggestion_sources	other	%d FONTES
 values-b+pt	plurals	settings_extension_scan_warnings	many	%d avisos da análise
 values-b+pt	plurals	settings_extension_scan_warnings	one	%d aviso da análise
 values-b+pt	plurals	settings_extension_scan_warnings	other	%d avisos da análise
-values-b+pt	plurals	settings_extensions_all	many	Todas as %d extensões
-values-b+pt	plurals	settings_extensions_all	one	%d extensão
-values-b+pt	plurals	settings_extensions_all	other	Todas as %d extensões
+values-b+pt	plurals	settings_extensions_all	many	Todas as extensões (%d)
+values-b+pt	plurals	settings_extensions_all	one	Todas as extensões (%d)
+values-b+pt	plurals	settings_extensions_all	other	Todas as extensões (%d)
 values-b+pt	plurals	settings_repo_summary	many	%1$d extensões · atualizado %2$s
 values-b+pt	plurals	settings_repo_summary	one	%1$d extensão · atualizado %2$s
 values-b+pt	plurals	settings_repo_summary	other	%1$d extensões · atualizado %2$s
@@ -49615,9 +49615,9 @@ values-b+pt+BR	plurals	search_tv_suggestion_sources	other	%d FONTES
 values-b+pt+BR	plurals	settings_extension_scan_warnings	many	%d avisos da verificação
 values-b+pt+BR	plurals	settings_extension_scan_warnings	one	%d aviso da verificação
 values-b+pt+BR	plurals	settings_extension_scan_warnings	other	%d avisos da verificação
-values-b+pt+BR	plurals	settings_extensions_all	many	Todas as %d extensões
-values-b+pt+BR	plurals	settings_extensions_all	one	%d extensão
-values-b+pt+BR	plurals	settings_extensions_all	other	Todas as %d extensões
+values-b+pt+BR	plurals	settings_extensions_all	many	Todas as extensões (%d)
+values-b+pt+BR	plurals	settings_extensions_all	one	Todas as extensões (%d)
+values-b+pt+BR	plurals	settings_extensions_all	other	Todas as extensões (%d)
 values-b+pt+BR	plurals	settings_repo_summary	many	%1$d extensões · atualizado %2$s
 values-b+pt+BR	plurals	settings_repo_summary	one	%1$d extensão · atualizado %2$s
 values-b+pt+BR	plurals	settings_repo_summary	other	%1$d extensões · atualizado %2$s
@@ -50721,7 +50721,7 @@ values-b+qt	plurals	search_tv_sources_count	one	%1$d / %2$d
 values-b+qt	plurals	search_tv_sources_count	other	%1$d / %2$d
 values-b+qt	plurals	search_tv_suggestion_sources	other	%d OOGAH
 values-b+qt	plurals	settings_extension_scan_warnings	other	%d aahh aaahhhoo
-values-b+qt	plurals	settings_extensions_all	other	oog %d oooggguh
+values-b+qt	plurals	settings_extensions_all	other	oog oooggguh (%d)
 values-b+qt	plurals	settings_repo_summary	other	%1$d aaahhhoo · aaaghhh %2$s
 values-b+qt	plurals	settings_reset_item_profiles	other	%d oooggguh aah uuuhh PINs
 values-b+qt	string	account	-	aaaaggg
@@ -51849,9 +51849,9 @@ values-b+ro	plurals	search_tv_suggestion_sources	other	%d DE SURSE
 values-b+ro	plurals	settings_extension_scan_warnings	few	%d avertismente la scanare
 values-b+ro	plurals	settings_extension_scan_warnings	one	%d avertisment la scanare
 values-b+ro	plurals	settings_extension_scan_warnings	other	%d de avertismente la scanare
-values-b+ro	plurals	settings_extensions_all	few	Toate cele %d extensii
-values-b+ro	plurals	settings_extensions_all	one	%d extensie
-values-b+ro	plurals	settings_extensions_all	other	Toate cele %d de extensii
+values-b+ro	plurals	settings_extensions_all	few	Toate extensiile (%d)
+values-b+ro	plurals	settings_extensions_all	one	Toate extensiile (%d)
+values-b+ro	plurals	settings_extensions_all	other	Toate extensiile (%d)
 values-b+ro	plurals	settings_repo_summary	few	%1$d extensii · actualizat %2$s
 values-b+ro	plurals	settings_repo_summary	one	%1$d extensie · actualizat %2$s
 values-b+ro	plurals	settings_repo_summary	other	%1$d de extensii · actualizat %2$s
@@ -53003,10 +53003,10 @@ values-b+ru	plurals	settings_extension_scan_warnings	few	%d предупрежд
 values-b+ru	plurals	settings_extension_scan_warnings	many	%d предупреждений проверки
 values-b+ru	plurals	settings_extension_scan_warnings	one	%d предупреждение проверки
 values-b+ru	plurals	settings_extension_scan_warnings	other	%d предупреждения проверки
-values-b+ru	plurals	settings_extensions_all	few	Все %d дополнения
-values-b+ru	plurals	settings_extensions_all	many	Все %d дополнений
-values-b+ru	plurals	settings_extensions_all	one	%d дополнение
-values-b+ru	plurals	settings_extensions_all	other	Все %d дополнения
+values-b+ru	plurals	settings_extensions_all	few	Все дополнения (%d)
+values-b+ru	plurals	settings_extensions_all	many	Все дополнения (%d)
+values-b+ru	plurals	settings_extensions_all	one	Все дополнения (%d)
+values-b+ru	plurals	settings_extensions_all	other	Все дополнения (%d)
 values-b+ru	plurals	settings_repo_summary	few	%1$d дополнения · обновлено %2$s
 values-b+ru	plurals	settings_repo_summary	many	%1$d дополнений · обновлено %2$s
 values-b+ru	plurals	settings_repo_summary	one	%1$d дополнение · обновлено %2$s
@@ -54154,10 +54154,10 @@ values-b+sk	plurals	settings_extension_scan_warnings	few	%d upozornenia kontroly
 values-b+sk	plurals	settings_extension_scan_warnings	many	%d upozornenia kontroly
 values-b+sk	plurals	settings_extension_scan_warnings	one	%d upozornenie kontroly
 values-b+sk	plurals	settings_extension_scan_warnings	other	%d upozornení kontroly
-values-b+sk	plurals	settings_extensions_all	few	Všetky %d rozšírenia
-values-b+sk	plurals	settings_extensions_all	many	Všetkých %d rozšírenia
-values-b+sk	plurals	settings_extensions_all	one	%d rozšírenie
-values-b+sk	plurals	settings_extensions_all	other	Všetkých %d rozšírení
+values-b+sk	plurals	settings_extensions_all	few	Všetky rozšírenia (%d)
+values-b+sk	plurals	settings_extensions_all	many	Všetky rozšírenia (%d)
+values-b+sk	plurals	settings_extensions_all	one	Všetky rozšírenia (%d)
+values-b+sk	plurals	settings_extensions_all	other	Všetky rozšírenia (%d)
 values-b+sk	plurals	settings_repo_summary	few	%1$d rozšírenia · aktualizované %2$s
 values-b+sk	plurals	settings_repo_summary	many	%1$d rozšírenia · aktualizované %2$s
 values-b+sk	plurals	settings_repo_summary	one	%1$d rozšírenie · aktualizované %2$s
@@ -55277,8 +55277,8 @@ values-b+so	plurals	search_tv_suggestion_sources	one	%d IL
 values-b+so	plurals	search_tv_suggestion_sources	other	%d ILOOD
 values-b+so	plurals	settings_extension_scan_warnings	one	%d digniin baaritaan
 values-b+so	plurals	settings_extension_scan_warnings	other	%d digniinood baaritaan
-values-b+so	plurals	settings_extensions_all	one	%d kordhiye
-values-b+so	plurals	settings_extensions_all	other	Dhammaan %d kordhiye
+values-b+so	plurals	settings_extensions_all	one	Dhammaan kordhiyeyaasha (%d)
+values-b+so	plurals	settings_extensions_all	other	Dhammaan kordhiyeyaasha (%d)
 values-b+so	plurals	settings_repo_summary	one	%1$d kordhiye · la cusboonaysiiyey %2$s
 values-b+so	plurals	settings_repo_summary	other	%1$d kordhiye · la cusboonaysiiyey %2$s
 values-b+so	plurals	settings_reset_item_profiles	one	%d astaan iyo PIN-keeda
@@ -56394,8 +56394,8 @@ values-b+sq	plurals	search_tv_suggestion_sources	one	%d BURIM
 values-b+sq	plurals	search_tv_suggestion_sources	other	%d BURIME
 values-b+sq	plurals	settings_extension_scan_warnings	one	%d paralajmërim skanimi
 values-b+sq	plurals	settings_extension_scan_warnings	other	%d paralajmërime skanimi
-values-b+sq	plurals	settings_extensions_all	one	%d shtesë
-values-b+sq	plurals	settings_extensions_all	other	Të gjitha %d shtesat
+values-b+sq	plurals	settings_extensions_all	one	Të gjitha shtesat (%d)
+values-b+sq	plurals	settings_extensions_all	other	Të gjitha shtesat (%d)
 values-b+sq	plurals	settings_repo_summary	one	%1$d shtesë · përditësuar %2$s
 values-b+sq	plurals	settings_repo_summary	other	%1$d shtesa · përditësuar %2$s
 values-b+sq	plurals	settings_reset_item_profiles	one	%d profil dhe PIN-i i tij
@@ -57511,8 +57511,8 @@ values-b+sv	plurals	search_tv_suggestion_sources	one	%d KÄLLA
 values-b+sv	plurals	search_tv_suggestion_sources	other	%d KÄLLOR
 values-b+sv	plurals	settings_extension_scan_warnings	one	%d skanningsvarning
 values-b+sv	plurals	settings_extension_scan_warnings	other	%d skanningsvarningar
-values-b+sv	plurals	settings_extensions_all	one	%d tillägg
-values-b+sv	plurals	settings_extensions_all	other	Alla %d tillägg
+values-b+sv	plurals	settings_extensions_all	one	Alla tillägg (%d)
+values-b+sv	plurals	settings_extensions_all	other	Alla tillägg (%d)
 values-b+sv	plurals	settings_repo_summary	one	%1$d tillägg · uppdaterat %2$s
 values-b+sv	plurals	settings_repo_summary	other	%1$d tillägg · uppdaterade %2$s
 values-b+sv	plurals	settings_reset_item_profiles	one	%d profil och dess PIN-kod
@@ -58628,8 +58628,8 @@ values-b+ta	plurals	search_tv_suggestion_sources	one	%d மூலம்
 values-b+ta	plurals	search_tv_suggestion_sources	other	%d மூலங்கள்
 values-b+ta	plurals	settings_extension_scan_warnings	one	%d ஸ்கேன் எச்சரிக்கை
 values-b+ta	plurals	settings_extension_scan_warnings	other	%d ஸ்கேன் எச்சரிக்கைகள்
-values-b+ta	plurals	settings_extensions_all	one	%d நீட்டிப்பு
-values-b+ta	plurals	settings_extensions_all	other	அனைத்து %d நீட்டிப்புகளும்
+values-b+ta	plurals	settings_extensions_all	one	அனைத்து நீட்டிப்புகளும் (%d)
+values-b+ta	plurals	settings_extensions_all	other	அனைத்து நீட்டிப்புகளும் (%d)
 values-b+ta	plurals	settings_repo_summary	one	%1$d நீட்டிப்பு · %2$s புதுப்பிக்கப்பட்டது
 values-b+ta	plurals	settings_repo_summary	other	%1$d நீட்டிப்புகள் · %2$s புதுப்பிக்கப்பட்டது
 values-b+ta	plurals	settings_reset_item_profiles	one	%d சுயவிவரமும் அதன் PIN உம்
@@ -59745,8 +59745,8 @@ values-b+ti	plurals	search_tv_suggestion_sources	one	%d ምንጪ
 values-b+ti	plurals	search_tv_suggestion_sources	other	%d ምንጭታት
 values-b+ti	plurals	settings_extension_scan_warnings	one	%d መጠንቀቕታ ምርመራ
 values-b+ti	plurals	settings_extension_scan_warnings	other	%d መጠንቀቕታታት ምርመራ
-values-b+ti	plurals	settings_extensions_all	one	%d መስፋሕፋሕ
-values-b+ti	plurals	settings_extensions_all	other	ኩሎም %d መስፋሕፋሕቲ
+values-b+ti	plurals	settings_extensions_all	one	ኩሎም መስፋሕፋሕቲ (%d)
+values-b+ti	plurals	settings_extensions_all	other	ኩሎም መስፋሕፋሕቲ (%d)
 values-b+ti	plurals	settings_repo_summary	one	%1$d መስፋሕፋሕ · %2$s ተሓዲሱ
 values-b+ti	plurals	settings_repo_summary	other	%1$d መስፋሕፋሕቲ · %2$s ተሓዲሱ
 values-b+ti	plurals	settings_reset_item_profiles	one	%d መግለጺን PIN ኡን
@@ -60862,8 +60862,8 @@ values-b+tl	plurals	search_tv_suggestion_sources	one	%d SOURCE
 values-b+tl	plurals	search_tv_suggestion_sources	other	%d SOURCES
 values-b+tl	plurals	settings_extension_scan_warnings	one	%d babala ng pag-scan
 values-b+tl	plurals	settings_extension_scan_warnings	other	%d na babala ng pag-scan
-values-b+tl	plurals	settings_extensions_all	one	%d extension
-values-b+tl	plurals	settings_extensions_all	other	Lahat ng %d extension
+values-b+tl	plurals	settings_extensions_all	one	Lahat ng extension (%d)
+values-b+tl	plurals	settings_extensions_all	other	Lahat ng extension (%d)
 values-b+tl	plurals	settings_repo_summary	one	%1$d extension · na-update %2$s
 values-b+tl	plurals	settings_repo_summary	other	%1$d na extension · na-update %2$s
 values-b+tl	plurals	settings_reset_item_profiles	one	%d profile at ang PIN nito
@@ -61979,8 +61979,8 @@ values-b+tr	plurals	search_tv_suggestion_sources	one	%d KAYNAK
 values-b+tr	plurals	search_tv_suggestion_sources	other	%d KAYNAK
 values-b+tr	plurals	settings_extension_scan_warnings	one	%d tarama uyarısı
 values-b+tr	plurals	settings_extension_scan_warnings	other	%d tarama uyarısı
-values-b+tr	plurals	settings_extensions_all	one	%d eklenti
-values-b+tr	plurals	settings_extensions_all	other	Tüm %d eklenti
+values-b+tr	plurals	settings_extensions_all	one	Tüm eklentiler (%d)
+values-b+tr	plurals	settings_extensions_all	other	Tüm eklentiler (%d)
 values-b+tr	plurals	settings_repo_summary	one	%1$d eklenti · %2$s güncellendi
 values-b+tr	plurals	settings_repo_summary	other	%1$d eklenti · %2$s güncellendi
 values-b+tr	plurals	settings_reset_item_profiles	one	%d profil ve PIN’i
@@ -63130,10 +63130,10 @@ values-b+uk	plurals	settings_extension_scan_warnings	few	%d попереджен
 values-b+uk	plurals	settings_extension_scan_warnings	many	%d попереджень сканування
 values-b+uk	plurals	settings_extension_scan_warnings	one	%d попередження сканування
 values-b+uk	plurals	settings_extension_scan_warnings	other	%d попередження сканування
-values-b+uk	plurals	settings_extensions_all	few	Усі %d розширення
-values-b+uk	plurals	settings_extensions_all	many	Усі %d розширень
-values-b+uk	plurals	settings_extensions_all	one	%d розширення
-values-b+uk	plurals	settings_extensions_all	other	Усі %d розширення
+values-b+uk	plurals	settings_extensions_all	few	Усі розширення (%d)
+values-b+uk	plurals	settings_extensions_all	many	Усі розширення (%d)
+values-b+uk	plurals	settings_extensions_all	one	Усі розширення (%d)
+values-b+uk	plurals	settings_extensions_all	other	Усі розширення (%d)
 values-b+uk	plurals	settings_repo_summary	few	%1$d розширення · оновлено %2$s
 values-b+uk	plurals	settings_repo_summary	many	%1$d розширень · оновлено %2$s
 values-b+uk	plurals	settings_repo_summary	one	%1$d розширення · оновлено %2$s
@@ -64253,8 +64253,8 @@ values-b+ur	plurals	search_tv_suggestion_sources	one	%d ذریعہ
 values-b+ur	plurals	search_tv_suggestion_sources	other	%d ذرائع
 values-b+ur	plurals	settings_extension_scan_warnings	one	%d اسکین انتباہ
 values-b+ur	plurals	settings_extension_scan_warnings	other	%d اسکین انتباہات
-values-b+ur	plurals	settings_extensions_all	one	%d ایکسٹینشن
-values-b+ur	plurals	settings_extensions_all	other	تمام %d ایکسٹینشنز
+values-b+ur	plurals	settings_extensions_all	one	تمام ایکسٹینشنز (%d)
+values-b+ur	plurals	settings_extensions_all	other	تمام ایکسٹینشنز (%d)
 values-b+ur	plurals	settings_repo_summary	one	%1$d ایکسٹینشن · %2$s اپ ڈیٹ ہوئی
 values-b+ur	plurals	settings_repo_summary	other	%1$d ایکسٹینشنز · %2$s اپ ڈیٹ ہوئیں
 values-b+ur	plurals	settings_reset_item_profiles	one	%d پروفائل اور اس کا پن
@@ -65353,7 +65353,7 @@ values-b+vi	plurals	search_tv_sources_count	one	%1$d / %2$d
 values-b+vi	plurals	search_tv_sources_count	other	%1$d / %2$d
 values-b+vi	plurals	search_tv_suggestion_sources	other	%d NGUỒN
 values-b+vi	plurals	settings_extension_scan_warnings	other	%d cảnh báo khi quét
-values-b+vi	plurals	settings_extensions_all	other	Tất cả %d tiện ích mở rộng
+values-b+vi	plurals	settings_extensions_all	other	Tất cả tiện ích mở rộng (%d)
 values-b+vi	plurals	settings_repo_summary	other	%1$d tiện ích mở rộng · cập nhật %2$s
 values-b+vi	plurals	settings_reset_item_profiles	other	%d hồ sơ và PIN của chúng
 values-b+vi	string	account	-	tài khoản
@@ -66450,7 +66450,7 @@ values-b+zh	plurals	search_tv_sources_count	one	%1$d / %2$d
 values-b+zh	plurals	search_tv_sources_count	other	%1$d / %2$d
 values-b+zh	plurals	search_tv_suggestion_sources	other	%d 来源
 values-b+zh	plurals	settings_extension_scan_warnings	other	%d 个扫描警告
-values-b+zh	plurals	settings_extensions_all	other	全部 %d 个扩展
+values-b+zh	plurals	settings_extensions_all	other	全部扩展 (%d)
 values-b+zh	plurals	settings_repo_summary	other	%1$d 个扩展 · 更新于 %2$s
 values-b+zh	plurals	settings_reset_item_profiles	other	%d 个个人资料及其 PIN
 values-b+zh	string	account	-	账户
@@ -67548,7 +67548,7 @@ values-b+zh+TW	plurals	search_tv_sources_count	one	%1$d / %2$d
 values-b+zh+TW	plurals	search_tv_sources_count	other	%1$d / %2$d
 values-b+zh+TW	plurals	search_tv_suggestion_sources	other	%d 來源
 values-b+zh+TW	plurals	settings_extension_scan_warnings	other	%d 個掃描警告
-values-b+zh+TW	plurals	settings_extensions_all	other	全部 %d 個擴充功能
+values-b+zh+TW	plurals	settings_extensions_all	other	全部擴充功能 (%d)
 values-b+zh+TW	plurals	settings_repo_summary	other	%1$d 個擴充功能 · 更新於 %2$s
 values-b+zh+TW	plurals	settings_reset_item_profiles	other	%d 個個人檔案及其 PIN
 values-b+zh+TW	string	account	-	帳號
@@ -68662,7 +68662,7 @@ en	plurals	search_tv_suggestion_sources	one	%d SOURCE
 en	plurals	search_tv_suggestion_sources	other	%d SOURCES
 en	plurals	settings_extension_scan_warnings	one	%d scan warning
 en	plurals	settings_extension_scan_warnings	other	%d scan warnings
-en	plurals	settings_extensions_all	one	%d extension
+en	plurals	settings_extensions_all	one	All %d extension
 en	plurals	settings_extensions_all	other	All %d extensions
 en	plurals	settings_repo_summary	one	%1$d extension · updated %2$s
 en	plurals	settings_repo_summary	other	%1$d extensions · updated %2$s
@@ -69779,7 +69779,7 @@ en-US	plurals	search_tv_suggestion_sources	one	%d SOURCE
 en-US	plurals	search_tv_suggestion_sources	other	%d SOURCES
 en-US	plurals	settings_extension_scan_warnings	one	%d scan warning
 en-US	plurals	settings_extension_scan_warnings	other	%d scan warnings
-en-US	plurals	settings_extensions_all	one	%d extension
+en-US	plurals	settings_extensions_all	one	All %d extension
 en-US	plurals	settings_extensions_all	other	All %d extensions
 en-US	plurals	settings_repo_summary	one	%1$d extension · updated %2$s
 en-US	plurals	settings_repo_summary	other	%1$d extensions · updated %2$s
@@ -70896,7 +70896,7 @@ en-GB	plurals	search_tv_suggestion_sources	one	%d SOURCE
 en-GB	plurals	search_tv_suggestion_sources	other	%d SOURCES
 en-GB	plurals	settings_extension_scan_warnings	one	%d scan warning
 en-GB	plurals	settings_extension_scan_warnings	other	%d scan warnings
-en-GB	plurals	settings_extensions_all	one	%d extension
+en-GB	plurals	settings_extensions_all	one	All %d extension
 en-GB	plurals	settings_extensions_all	other	All %d extensions
 en-GB	plurals	settings_repo_summary	one	%1$d extension · updated %2$s
 en-GB	plurals	settings_repo_summary	other	%1$d extensions · updated %2$s
@@ -72030,9 +72030,9 @@ pt	plurals	search_tv_suggestion_sources	other	%d FONTES
 pt	plurals	settings_extension_scan_warnings	many	%d avisos da análise
 pt	plurals	settings_extension_scan_warnings	one	%d aviso da análise
 pt	plurals	settings_extension_scan_warnings	other	%d avisos da análise
-pt	plurals	settings_extensions_all	many	Todas as %d extensões
-pt	plurals	settings_extensions_all	one	%d extensão
-pt	plurals	settings_extensions_all	other	Todas as %d extensões
+pt	plurals	settings_extensions_all	many	Todas as extensões (%d)
+pt	plurals	settings_extensions_all	one	Todas as extensões (%d)
+pt	plurals	settings_extensions_all	other	Todas as extensões (%d)
 pt	plurals	settings_repo_summary	many	%1$d extensões · atualizado %2$s
 pt	plurals	settings_repo_summary	one	%1$d extensão · atualizado %2$s
 pt	plurals	settings_repo_summary	other	%1$d extensões · atualizado %2$s
@@ -73167,9 +73167,9 @@ pt-PT	plurals	search_tv_suggestion_sources	other	%d FONTES
 pt-PT	plurals	settings_extension_scan_warnings	many	%d avisos da análise
 pt-PT	plurals	settings_extension_scan_warnings	one	%d aviso da análise
 pt-PT	plurals	settings_extension_scan_warnings	other	%d avisos da análise
-pt-PT	plurals	settings_extensions_all	many	Todas as %d extensões
-pt-PT	plurals	settings_extensions_all	one	%d extensão
-pt-PT	plurals	settings_extensions_all	other	Todas as %d extensões
+pt-PT	plurals	settings_extensions_all	many	Todas as extensões (%d)
+pt-PT	plurals	settings_extensions_all	one	Todas as extensões (%d)
+pt-PT	plurals	settings_extensions_all	other	Todas as extensões (%d)
 pt-PT	plurals	settings_repo_summary	many	%1$d extensões · atualizado %2$s
 pt-PT	plurals	settings_repo_summary	one	%1$d extensão · atualizado %2$s
 pt-PT	plurals	settings_repo_summary	other	%1$d extensões · atualizado %2$s
@@ -74304,9 +74304,9 @@ pt-BR	plurals	search_tv_suggestion_sources	other	%d FONTES
 pt-BR	plurals	settings_extension_scan_warnings	many	%d avisos da verificação
 pt-BR	plurals	settings_extension_scan_warnings	one	%d aviso da verificação
 pt-BR	plurals	settings_extension_scan_warnings	other	%d avisos da verificação
-pt-BR	plurals	settings_extensions_all	many	Todas as %d extensões
-pt-BR	plurals	settings_extensions_all	one	%d extensão
-pt-BR	plurals	settings_extensions_all	other	Todas as %d extensões
+pt-BR	plurals	settings_extensions_all	many	Todas as extensões (%d)
+pt-BR	plurals	settings_extensions_all	one	Todas as extensões (%d)
+pt-BR	plurals	settings_extensions_all	other	Todas as extensões (%d)
 pt-BR	plurals	settings_repo_summary	many	%1$d extensões · atualizado %2$s
 pt-BR	plurals	settings_repo_summary	one	%1$d extensão · atualizado %2$s
 pt-BR	plurals	settings_repo_summary	other	%1$d extensões · atualizado %2$s
@@ -75424,8 +75424,8 @@ fil	plurals	search_tv_suggestion_sources	one	%d MAPAGKUKUNAN
 fil	plurals	search_tv_suggestion_sources	other	%d MAPAGKUKUNAN
 fil	plurals	settings_extension_scan_warnings	one	%d babala ng scan
 fil	plurals	settings_extension_scan_warnings	other	%d na babala ng scan
-fil	plurals	settings_extensions_all	one	%d extension
-fil	plurals	settings_extensions_all	other	Lahat ng %d extension
+fil	plurals	settings_extensions_all	one	Lahat ng extension (%d)
+fil	plurals	settings_extensions_all	other	Lahat ng extension (%d)
 fil	plurals	settings_repo_summary	one	%1$d extension · na-update %2$s
 fil	plurals	settings_repo_summary	other	%1$d na extension · na-update %2$s
 fil	plurals	settings_reset_item_profiles	one	%d profile at ang PIN nito
@@ -76541,8 +76541,8 @@ tl	plurals	search_tv_suggestion_sources	one	%d SOURCE
 tl	plurals	search_tv_suggestion_sources	other	%d SOURCES
 tl	plurals	settings_extension_scan_warnings	one	%d babala ng pag-scan
 tl	plurals	settings_extension_scan_warnings	other	%d na babala ng pag-scan
-tl	plurals	settings_extensions_all	one	%d extension
-tl	plurals	settings_extensions_all	other	Lahat ng %d extension
+tl	plurals	settings_extensions_all	one	Lahat ng extension (%d)
+tl	plurals	settings_extensions_all	other	Lahat ng extension (%d)
 tl	plurals	settings_repo_summary	one	%1$d extension · na-update %2$s
 tl	plurals	settings_repo_summary	other	%1$d na extension · na-update %2$s
 tl	plurals	settings_reset_item_profiles	one	%d profile at ang PIN nito
@@ -77658,8 +77658,8 @@ fil-PH	plurals	search_tv_suggestion_sources	one	%d MAPAGKUKUNAN
 fil-PH	plurals	search_tv_suggestion_sources	other	%d MAPAGKUKUNAN
 fil-PH	plurals	settings_extension_scan_warnings	one	%d babala ng scan
 fil-PH	plurals	settings_extension_scan_warnings	other	%d na babala ng scan
-fil-PH	plurals	settings_extensions_all	one	%d extension
-fil-PH	plurals	settings_extensions_all	other	Lahat ng %d extension
+fil-PH	plurals	settings_extensions_all	one	Lahat ng extension (%d)
+fil-PH	plurals	settings_extensions_all	other	Lahat ng extension (%d)
 fil-PH	plurals	settings_repo_summary	one	%1$d extension · na-update %2$s
 fil-PH	plurals	settings_repo_summary	other	%1$d na extension · na-update %2$s
 fil-PH	plurals	settings_reset_item_profiles	one	%d profile at ang PIN nito
@@ -78758,7 +78758,7 @@ zh	plurals	search_tv_sources_count	one	%1$d / %2$d
 zh	plurals	search_tv_sources_count	other	%1$d / %2$d
 zh	plurals	search_tv_suggestion_sources	other	%d 来源
 zh	plurals	settings_extension_scan_warnings	other	%d 个扫描警告
-zh	plurals	settings_extensions_all	other	全部 %d 个扩展
+zh	plurals	settings_extensions_all	other	全部扩展 (%d)
 zh	plurals	settings_repo_summary	other	%1$d 个扩展 · 更新于 %2$s
 zh	plurals	settings_reset_item_profiles	other	%d 个个人资料及其 PIN
 zh	string	account	-	账户
@@ -79855,7 +79855,7 @@ zh-CN	plurals	search_tv_sources_count	one	%1$d / %2$d
 zh-CN	plurals	search_tv_sources_count	other	%1$d / %2$d
 zh-CN	plurals	search_tv_suggestion_sources	other	%d 来源
 zh-CN	plurals	settings_extension_scan_warnings	other	%d 个扫描警告
-zh-CN	plurals	settings_extensions_all	other	全部 %d 个扩展
+zh-CN	plurals	settings_extensions_all	other	全部扩展 (%d)
 zh-CN	plurals	settings_repo_summary	other	%1$d 个扩展 · 更新于 %2$s
 zh-CN	plurals	settings_reset_item_profiles	other	%d 个个人资料及其 PIN
 zh-CN	string	account	-	账户
@@ -80952,7 +80952,7 @@ zh-Hans-CN	plurals	search_tv_sources_count	one	%1$d / %2$d
 zh-Hans-CN	plurals	search_tv_sources_count	other	%1$d / %2$d
 zh-Hans-CN	plurals	search_tv_suggestion_sources	other	%d 来源
 zh-Hans-CN	plurals	settings_extension_scan_warnings	other	%d 个扫描警告
-zh-Hans-CN	plurals	settings_extensions_all	other	全部 %d 个扩展
+zh-Hans-CN	plurals	settings_extensions_all	other	全部扩展 (%d)
 zh-Hans-CN	plurals	settings_repo_summary	other	%1$d 个扩展 · 更新于 %2$s
 zh-Hans-CN	plurals	settings_reset_item_profiles	other	%d 个个人资料及其 PIN
 zh-Hans-CN	string	account	-	账户
@@ -82050,7 +82050,7 @@ zh-TW	plurals	search_tv_sources_count	one	%1$d / %2$d
 zh-TW	plurals	search_tv_sources_count	other	%1$d / %2$d
 zh-TW	plurals	search_tv_suggestion_sources	other	%d 來源
 zh-TW	plurals	settings_extension_scan_warnings	other	%d 個掃描警告
-zh-TW	plurals	settings_extensions_all	other	全部 %d 個擴充功能
+zh-TW	plurals	settings_extensions_all	other	全部擴充功能 (%d)
 zh-TW	plurals	settings_repo_summary	other	%1$d 個擴充功能 · 更新於 %2$s
 zh-TW	plurals	settings_reset_item_profiles	other	%d 個個人檔案及其 PIN
 zh-TW	string	account	-	帳號
@@ -83148,7 +83148,7 @@ zh-Hant-TW	plurals	search_tv_sources_count	one	%1$d / %2$d
 zh-Hant-TW	plurals	search_tv_sources_count	other	%1$d / %2$d
 zh-Hant-TW	plurals	search_tv_suggestion_sources	other	%d 來源
 zh-Hant-TW	plurals	settings_extension_scan_warnings	other	%d 個掃描警告
-zh-Hant-TW	plurals	settings_extensions_all	other	全部 %d 個擴充功能
+zh-Hant-TW	plurals	settings_extensions_all	other	全部擴充功能 (%d)
 zh-Hant-TW	plurals	settings_repo_summary	other	%1$d 個擴充功能 · 更新於 %2$s
 zh-Hant-TW	plurals	settings_reset_item_profiles	other	%d 個個人檔案及其 PIN
 zh-Hant-TW	string	account	-	帳號
@@ -84246,7 +84246,7 @@ zh-HK	plurals	search_tv_sources_count	one	%1$d / %2$d
 zh-HK	plurals	search_tv_sources_count	other	%1$d / %2$d
 zh-HK	plurals	search_tv_suggestion_sources	other	%d 來源
 zh-HK	plurals	settings_extension_scan_warnings	other	%d 個掃描警告
-zh-HK	plurals	settings_extensions_all	other	全部 %d 個擴充功能
+zh-HK	plurals	settings_extensions_all	other	全部擴充功能 (%d)
 zh-HK	plurals	settings_repo_summary	other	%1$d 個擴充功能 · 更新於 %2$s
 zh-HK	plurals	settings_reset_item_profiles	other	%d 個個人檔案及其 PIN
 zh-HK	string	account	-	帳號
@@ -85344,7 +85344,7 @@ zh-Hant-HK	plurals	search_tv_sources_count	one	%1$d / %2$d
 zh-Hant-HK	plurals	search_tv_sources_count	other	%1$d / %2$d
 zh-Hant-HK	plurals	search_tv_suggestion_sources	other	%d 來源
 zh-Hant-HK	plurals	settings_extension_scan_warnings	other	%d 個掃描警告
-zh-Hant-HK	plurals	settings_extensions_all	other	全部 %d 個擴充功能
+zh-Hant-HK	plurals	settings_extensions_all	other	全部擴充功能 (%d)
 zh-Hant-HK	plurals	settings_repo_summary	other	%1$d 個擴充功能 · 更新於 %2$s
 zh-Hant-HK	plurals	settings_reset_item_profiles	other	%d 個個人檔案及其 PIN
 zh-Hant-HK	string	account	-	帳號
@@ -86458,8 +86458,8 @@ no	plurals	search_tv_suggestion_sources	one	%d KILDE
 no	plurals	search_tv_suggestion_sources	other	%d KILDER
 no	plurals	settings_extension_scan_warnings	one	%d skanneadvarsel
 no	plurals	settings_extension_scan_warnings	other	%d skanneadvarsler
-no	plurals	settings_extensions_all	one	%d utvidelse
-no	plurals	settings_extensions_all	other	Alle %d utvidelser
+no	plurals	settings_extensions_all	one	Alle utvidelser (%d)
+no	plurals	settings_extensions_all	other	Alle utvidelser (%d)
 no	plurals	settings_repo_summary	one	%1$d utvidelse · oppdatert %2$s
 no	plurals	settings_repo_summary	other	%1$d utvidelser · oppdatert %2$s
 no	plurals	settings_reset_item_profiles	one	%d profil og PIN-en dens
@@ -87575,7 +87575,7 @@ nb	plurals	search_tv_suggestion_sources	one	%d SOURCE
 nb	plurals	search_tv_suggestion_sources	other	%d SOURCES
 nb	plurals	settings_extension_scan_warnings	one	%d scan warning
 nb	plurals	settings_extension_scan_warnings	other	%d scan warnings
-nb	plurals	settings_extensions_all	one	%d extension
+nb	plurals	settings_extensions_all	one	All %d extension
 nb	plurals	settings_extensions_all	other	All %d extensions
 nb	plurals	settings_repo_summary	one	%1$d extension · updated %2$s
 nb	plurals	settings_repo_summary	other	%1$d extensions · updated %2$s
@@ -88692,7 +88692,7 @@ nb-NO	plurals	search_tv_suggestion_sources	one	%d SOURCE
 nb-NO	plurals	search_tv_suggestion_sources	other	%d SOURCES
 nb-NO	plurals	settings_extension_scan_warnings	one	%d scan warning
 nb-NO	plurals	settings_extension_scan_warnings	other	%d scan warnings
-nb-NO	plurals	settings_extensions_all	one	%d extension
+nb-NO	plurals	settings_extensions_all	one	All %d extension
 nb-NO	plurals	settings_extensions_all	other	All %d extensions
 nb-NO	plurals	settings_repo_summary	one	%1$d extension · updated %2$s
 nb-NO	plurals	settings_repo_summary	other	%1$d extensions · updated %2$s
@@ -89823,9 +89823,9 @@ iw	plurals	search_tv_suggestion_sources	two	%d מקורות
 iw	plurals	settings_extension_scan_warnings	one	%d אזהרת סריקה
 iw	plurals	settings_extension_scan_warnings	other	%d אזהרות סריקה
 iw	plurals	settings_extension_scan_warnings	two	%d אזהרות סריקה
-iw	plurals	settings_extensions_all	one	%d הרחבה
-iw	plurals	settings_extensions_all	other	כל %d ההרחבות
-iw	plurals	settings_extensions_all	two	כל %d ההרחבות
+iw	plurals	settings_extensions_all	one	כל ההרחבות (%d)
+iw	plurals	settings_extensions_all	other	כל ההרחבות (%d)
+iw	plurals	settings_extensions_all	two	כל ההרחבות (%d)
 iw	plurals	settings_repo_summary	one	%1$d הרחבה · עודכן %2$s
 iw	plurals	settings_repo_summary	other	%1$d הרחבות · עודכן %2$s
 iw	plurals	settings_repo_summary	two	%1$d הרחבות · עודכן %2$s
@@ -90957,9 +90957,9 @@ he	plurals	search_tv_suggestion_sources	two	%d מקורות
 he	plurals	settings_extension_scan_warnings	one	%d אזהרת סריקה
 he	plurals	settings_extension_scan_warnings	other	%d אזהרות סריקה
 he	plurals	settings_extension_scan_warnings	two	%d אזהרות סריקה
-he	plurals	settings_extensions_all	one	%d הרחבה
-he	plurals	settings_extensions_all	other	כל %d ההרחבות
-he	plurals	settings_extensions_all	two	כל %d ההרחבות
+he	plurals	settings_extensions_all	one	כל ההרחבות (%d)
+he	plurals	settings_extensions_all	other	כל ההרחבות (%d)
+he	plurals	settings_extensions_all	two	כל ההרחבות (%d)
 he	plurals	settings_repo_summary	one	%1$d הרחבה · עודכן %2$s
 he	plurals	settings_repo_summary	other	%1$d הרחבות · עודכן %2$s
 he	plurals	settings_repo_summary	two	%1$d הרחבות · עודכן %2$s
@@ -92091,9 +92091,9 @@ he-IL	plurals	search_tv_suggestion_sources	two	%d מקורות
 he-IL	plurals	settings_extension_scan_warnings	one	%d אזהרת סריקה
 he-IL	plurals	settings_extension_scan_warnings	other	%d אזהרות סריקה
 he-IL	plurals	settings_extension_scan_warnings	two	%d אזהרות סריקה
-he-IL	plurals	settings_extensions_all	one	%d הרחבה
-he-IL	plurals	settings_extensions_all	other	כל %d ההרחבות
-he-IL	plurals	settings_extensions_all	two	כל %d ההרחבות
+he-IL	plurals	settings_extensions_all	one	כל ההרחבות (%d)
+he-IL	plurals	settings_extensions_all	other	כל ההרחבות (%d)
+he-IL	plurals	settings_extensions_all	two	כל ההרחבות (%d)
 he-IL	plurals	settings_repo_summary	one	%1$d הרחבה · עודכן %2$s
 he-IL	plurals	settings_repo_summary	other	%1$d הרחבות · עודכן %2$s
 he-IL	plurals	settings_repo_summary	two	%1$d הרחבות · עודכן %2$s
@@ -93194,7 +93194,7 @@ in	plurals	search_tv_sources_count	one	%1$d / %2$d
 in	plurals	search_tv_sources_count	other	%1$d / %2$d
 in	plurals	search_tv_suggestion_sources	other	%d SUMBER
 in	plurals	settings_extension_scan_warnings	other	%d peringatan pemindaian
-in	plurals	settings_extensions_all	other	Semua %d ekstensi
+in	plurals	settings_extensions_all	other	Semua ekstensi (%d)
 in	plurals	settings_repo_summary	other	%1$d ekstensi · diperbarui %2$s
 in	plurals	settings_reset_item_profiles	other	%d profil beserta PIN-nya
 in	string	account	-	akun
@@ -94291,7 +94291,7 @@ id	plurals	search_tv_sources_count	one	%1$d / %2$d
 id	plurals	search_tv_sources_count	other	%1$d / %2$d
 id	plurals	search_tv_suggestion_sources	other	%d SUMBER
 id	plurals	settings_extension_scan_warnings	other	%d peringatan pemindaian
-id	plurals	settings_extensions_all	other	Semua %d ekstensi
+id	plurals	settings_extensions_all	other	Semua ekstensi (%d)
 id	plurals	settings_repo_summary	other	%1$d ekstensi · diperbarui %2$s
 id	plurals	settings_reset_item_profiles	other	%d profil beserta PIN-nya
 id	string	account	-	akun
@@ -95388,7 +95388,7 @@ id-ID	plurals	search_tv_sources_count	one	%1$d / %2$d
 id-ID	plurals	search_tv_sources_count	other	%1$d / %2$d
 id-ID	plurals	search_tv_suggestion_sources	other	%d SUMBER
 id-ID	plurals	settings_extension_scan_warnings	other	%d peringatan pemindaian
-id-ID	plurals	settings_extensions_all	other	Semua %d ekstensi
+id-ID	plurals	settings_extensions_all	other	Semua ekstensi (%d)
 id-ID	plurals	settings_repo_summary	other	%1$d ekstensi · diperbarui %2$s
 id-ID	plurals	settings_reset_item_profiles	other	%d profil beserta PIN-nya
 id-ID	string	account	-	akun
@@ -96502,7 +96502,7 @@ arz	plurals	search_tv_suggestion_sources	one	%d SOURCE
 arz	plurals	search_tv_suggestion_sources	other	%d SOURCES
 arz	plurals	settings_extension_scan_warnings	one	%d scan warning
 arz	plurals	settings_extension_scan_warnings	other	%d scan warnings
-arz	plurals	settings_extensions_all	one	%d extension
+arz	plurals	settings_extensions_all	one	All %d extension
 arz	plurals	settings_extensions_all	other	All %d extensions
 arz	plurals	settings_repo_summary	one	%1$d extension · updated %2$s
 arz	plurals	settings_repo_summary	other	%1$d extensions · updated %2$s

@@ -16,7 +16,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="zero">"Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos."</item><item quantity="one">"Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā."</item><item quantity="other">"Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="zero">"%d DEVĒJU"</item><item quantity="one">"%d DEVĒJS"</item><item quantity="other">"%d DEVĒJI"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="zero">"%d skenēšanas brīdinājumu"</item><item quantity="one">"%d skenēšanas brīdinājums"</item><item quantity="other">"%d skenēšanas brīdinājumi"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="zero">"%d papildinājumu"</item><item quantity="one">"%d papildinājums"</item><item quantity="other">"Visi %d papildinājumi"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="zero">"Visi papildinājumi (%d)"</item><item quantity="one">"Visi papildinājumi (%d)"</item><item quantity="other">"Visi papildinājumi (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="zero">"%1$d papildinājumu · atjaunināts %2$s"</item><item quantity="one">"%1$d papildinājums · atjaunināts %2$s"</item><item quantity="other">"%1$d papildinājumi · atjaunināts %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="zero">"%d profilu un to PIN"</item><item quantity="one">"%d profils un tā PIN"</item><item quantity="other">"%d profili un to PIN"</item></plurals>
 <string name="account">"Konts"</string>

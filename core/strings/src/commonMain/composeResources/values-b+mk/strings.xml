@@ -37,7 +37,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ИЗВОР</item><item quantity="other">%d ИЗВОРИ</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d дел</item><item quantity="other">%d делови</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d предупредување од скенирање</item><item quantity="other">%d предупредувања од скенирање</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d екстензија</item><item quantity="other">Сите %d екстензии</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Сите екстензии (%d)</item><item quantity="other">Сите екстензии (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d екстензија · ажурирано %2$s</item><item quantity="other">%1$d екстензии · ажурирано %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d профил и неговиот PIN</item><item quantity="other">%d профили и нивните PIN-ови</item></plurals>
 <string name="account">Корисничко име</string>

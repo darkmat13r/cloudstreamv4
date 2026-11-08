@@ -38,7 +38,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Premi il tasto di ricerca della tastiera per cercare comunque in %d fonte.</item><item quantity="many">Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.</item><item quantity="other">Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONTE</item><item quantity="many">%d FONTI</item><item quantity="other">%d FONTI</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d avviso di scansione</item><item quantity="many">%d avvisi di scansione</item><item quantity="other">%d avvisi di scansione</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d estensione</item><item quantity="many">Tutte le %d estensioni</item><item quantity="other">Tutte le %d estensioni</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Tutte le estensioni (%d)</item><item quantity="many">Tutte le estensioni (%d)</item><item quantity="other">Tutte le estensioni (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d estensione · aggiornato %2$s</item><item quantity="many">%1$d estensioni · aggiornato %2$s</item><item quantity="other">%1$d estensioni · aggiornato %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d profilo e il suo PIN</item><item quantity="many">%d profili e i loro PIN</item><item quantity="other">%d profili e i loro PIN</item></plurals>
 <string name="account">account</string>

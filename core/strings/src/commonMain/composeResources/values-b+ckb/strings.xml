@@ -35,7 +35,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d سەرچاوە</item><item quantity="other">%d سەرچاوە</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d بەش</item><item quantity="other">%d بەش</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d ئاگاداری پشکنین</item><item quantity="other">%d ئاگاداری پشکنین</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d زیادکراوە</item><item quantity="other">هەموو %d زیادکراوەکە</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">هەموو زیادکراوەکان (%d)</item><item quantity="other">هەموو زیادکراوەکان (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d زیادکراوە · نوێکرایەوە %2$s</item><item quantity="other">%1$d زیادکراوە · نوێکرایەوە %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d پرۆفایل و PINەکەی</item><item quantity="other">%d پرۆفایل و PINەکانیان</item></plurals>
 <string name="action_add_to_bookmarks">دۆخی تەماشاکردن دابنێ</string>

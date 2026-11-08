@@ -39,7 +39,7 @@
 <string name="desktop_menu_go">ኪድ</string>
 <plurals name="home_source_sections"><item quantity="one">%d ክፋል</item><item quantity="other">%d ክፋላት</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d መጠንቀቕታ ምርመራ</item><item quantity="other">%d መጠንቀቕታታት ምርመራ</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d መስፋሕፋሕ</item><item quantity="other">ኩሎም %d መስፋሕፋሕቲ</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">ኩሎም መስፋሕፋሕቲ (%d)</item><item quantity="other">ኩሎም መስፋሕፋሕቲ (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d መስፋሕፋሕ · %2$s ተሓዲሱ</item><item quantity="other">%1$d መስፋሕፋሕቲ · %2$s ተሓዲሱ</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d መግለጺን PIN ኡን</item><item quantity="other">%d መግለጺታትን PIN ታቶምን</item></plurals>
 <string name="detail_source_resolving">ይፈትሕ ኣሎ…</string>

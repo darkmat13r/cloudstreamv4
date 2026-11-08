@@ -17,7 +17,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d 來源"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">"%d 個掃描警告"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="other">"全部 %d 個擴充功能"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">"全部擴充功能 (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="other">"%1$d 個擴充功能 · 更新於 %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="other">"%d 個個人檔案及其 PIN"</item></plurals>
 <string name="account">"帳號"</string>

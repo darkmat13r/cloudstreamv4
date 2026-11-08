@@ -38,7 +38,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Yine de %d kaynakta aramak için klavyenin arama tuşuna basın.</item><item quantity="other">Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KAYNAK</item><item quantity="other">%d KAYNAK</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d tarama uyarısı</item><item quantity="other">%d tarama uyarısı</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d eklenti</item><item quantity="other">Tüm %d eklenti</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Tüm eklentiler (%d)</item><item quantity="other">Tüm eklentiler (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d eklenti · %2$s güncellendi</item><item quantity="other">%1$d eklenti · %2$s güncellendi</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d profil ve PIN’i</item><item quantity="other">%d profil ve PIN’leri</item></plurals>
 <string name="account">hesap</string>

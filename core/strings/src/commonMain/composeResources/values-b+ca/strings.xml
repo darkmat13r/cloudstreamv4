@@ -35,7 +35,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONT</item><item quantity="many">%d FONTS</item><item quantity="other">%d FONTS</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d secció</item><item quantity="many">%d seccions</item><item quantity="other">%d seccions</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d avís de l'anàlisi</item><item quantity="many">%d avisos de l'anàlisi</item><item quantity="other">%d avisos de l'anàlisi</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d extensió</item><item quantity="many">Totes les %d extensions</item><item quantity="other">Totes les %d extensions</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Totes les extensions (%d)</item><item quantity="many">Totes les extensions (%d)</item><item quantity="other">Totes les extensions (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d extensió · actualitzat %2$s</item><item quantity="many">%1$d extensions · actualitzat %2$s</item><item quantity="other">%1$d extensions · actualitzat %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d perfil i el seu PIN</item><item quantity="many">%d perfils i els seus PIN</item><item quantity="other">%d perfils i els seus PIN</item></plurals>
 <string name="account">compte</string>

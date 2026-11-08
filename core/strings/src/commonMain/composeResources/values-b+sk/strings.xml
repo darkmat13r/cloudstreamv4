@@ -35,7 +35,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ZDROJ</item><item quantity="few">%d ZDROJE</item><item quantity="many">%d ZDROJA</item><item quantity="other">%d ZDROJOV</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d sekcia</item><item quantity="few">%d sekcie</item><item quantity="many">%d sekcie</item><item quantity="other">%d sekcií</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d upozornenie kontroly</item><item quantity="few">%d upozornenia kontroly</item><item quantity="many">%d upozornenia kontroly</item><item quantity="other">%d upozornení kontroly</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d rozšírenie</item><item quantity="few">Všetky %d rozšírenia</item><item quantity="many">Všetkých %d rozšírenia</item><item quantity="other">Všetkých %d rozšírení</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Všetky rozšírenia (%d)</item><item quantity="few">Všetky rozšírenia (%d)</item><item quantity="many">Všetky rozšírenia (%d)</item><item quantity="other">Všetky rozšírenia (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d rozšírenie · aktualizované %2$s</item><item quantity="few">%1$d rozšírenia · aktualizované %2$s</item><item quantity="many">%1$d rozšírenia · aktualizované %2$s</item><item quantity="other">%1$d rozšírení · aktualizované %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d profil a jeho PIN</item><item quantity="few">%d profily a ich PIN</item><item quantity="many">%d profilu a ich PIN</item><item quantity="other">%d profilov a ich PIN</item></plurals>
 <string name="account">účet</string>

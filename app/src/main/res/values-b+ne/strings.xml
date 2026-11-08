@@ -15,7 +15,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"जे भए पनि %d स्रोतमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।"</item><item quantity="other">"जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d स्रोत"</item><item quantity="other">"%d स्रोतहरू"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d स्क्यान चेतावनी"</item><item quantity="other">"%d स्क्यान चेतावनी"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">"%d एक्सटेन्सन"</item><item quantity="other">"सबै %d एक्सटेन्सनहरू"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"सबै एक्सटेन्सनहरू (%d)"</item><item quantity="other">"सबै एक्सटेन्सनहरू (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d एक्सटेन्सन · %2$s अपडेट गरियो"</item><item quantity="other">"%1$d एक्सटेन्सन · %2$s अपडेट गरियो"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d प्रोफाइल र यसको पिन"</item><item quantity="other">"%d प्रोफाइल र तिनका पिनहरू"</item></plurals>
 <string name="account_add_profile">"प्रोफाइल थप्नुहोस्"</string>

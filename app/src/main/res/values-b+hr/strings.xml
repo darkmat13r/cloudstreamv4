@@ -17,7 +17,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili %d izvor."</item><item quantity="few">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili sva %d izvora."</item><item quantity="other">"Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d IZVOR"</item><item quantity="few">"%d IZVORA"</item><item quantity="other">"%d IZVORA"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d upozorenje skeniranja"</item><item quantity="few">"%d upozorenja skeniranja"</item><item quantity="other">"%d upozorenja skeniranja"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">"%d proširenje"</item><item quantity="few">"Sva %d proširenja"</item><item quantity="other">"Svih %d proširenja"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Sva proširenja (%d)"</item><item quantity="few">"Sva proširenja (%d)"</item><item quantity="other">"Sva proširenja (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d proširenje · ažurirano %2$s"</item><item quantity="few">"%1$d proširenja · ažurirano %2$s"</item><item quantity="other">"%1$d proširenja · ažurirano %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil i njegov PIN"</item><item quantity="few">"%d profila i njihovi PIN-ovi"</item><item quantity="other">"%d profila i njihovi PIN-ovi"</item></plurals>
 <string name="account">"račun"</string>

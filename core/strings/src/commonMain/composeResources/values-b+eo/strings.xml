@@ -35,7 +35,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONTO</item><item quantity="other">%d FONTOJ</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d sekcio</item><item quantity="other">%d sekcioj</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d skana averto</item><item quantity="other">%d skanaj avertoj</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d kromprogramo</item><item quantity="other">Ĉiuj %d kromprogramoj</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Ĉiuj kromprogramoj (%d)</item><item quantity="other">Ĉiuj kromprogramoj (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d kromprogramo · ĝisdatigita %2$s</item><item quantity="other">%1$d kromprogramoj · ĝisdatigitaj %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d profilo kaj ĝia PIN</item><item quantity="other">%d profiloj kaj iliaj PIN-oj</item></plurals>
 <string name="account">konto</string>

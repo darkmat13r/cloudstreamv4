@@ -15,7 +15,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Pindutin ang search key ng keyboard para maghanap pa rin sa %d source."</item><item quantity="other">"Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d source."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d SOURCE"</item><item quantity="other">"%d SOURCES"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d babala ng pag-scan"</item><item quantity="other">"%d na babala ng pag-scan"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">"%d extension"</item><item quantity="other">"Lahat ng %d extension"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Lahat ng extension (%d)"</item><item quantity="other">"Lahat ng extension (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d extension · na-update %2$s"</item><item quantity="other">"%1$d na extension · na-update %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profile at ang PIN nito"</item><item quantity="other">"%d na profile at ang mga PIN nila"</item></plurals>
 <string name="account_add_profile">"Magdagdag ng profile"</string>

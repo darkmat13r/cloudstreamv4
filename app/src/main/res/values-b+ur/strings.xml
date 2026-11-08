@@ -15,7 +15,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"پھر بھی %d ذریعے میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔"</item><item quantity="other">"پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ذریعہ"</item><item quantity="other">"%d ذرائع"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d اسکین انتباہ"</item><item quantity="other">"%d اسکین انتباہات"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">"%d ایکسٹینشن"</item><item quantity="other">"تمام %d ایکسٹینشنز"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"تمام ایکسٹینشنز (%d)"</item><item quantity="other">"تمام ایکسٹینشنز (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d ایکسٹینشن · %2$s اپ ڈیٹ ہوئی"</item><item quantity="other">"%1$d ایکسٹینشنز · %2$s اپ ڈیٹ ہوئیں"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d پروفائل اور اس کا پن"</item><item quantity="other">"%d پروفائلز اور ان کے پن"</item></plurals>
 <string name="account">"اكاؤنٹ"</string>

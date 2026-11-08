@@ -38,7 +38,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d NGUỒN</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">%d cảnh báo khi quét</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="other">Tất cả %d tiện ích mở rộng</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">Tất cả tiện ích mở rộng (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="other">%1$d tiện ích mở rộng · cập nhật %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="other">%d hồ sơ và PIN của chúng</item></plurals>
 <string name="account">tài khoản</string>

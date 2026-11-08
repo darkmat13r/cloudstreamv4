@@ -15,7 +15,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।"</item><item quantity="other">"তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d উৎস"</item><item quantity="other">"%d উৎস"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%dটি স্ক্যান সতর্কতা"</item><item quantity="other">"%dটি স্ক্যান সতর্কতা"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">"%dটি এক্সটেনশন"</item><item quantity="other">"সব %dটি এক্সটেনশন"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"সব এক্সটেনশন (%d)"</item><item quantity="other">"সব এক্সটেনশন (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">"%1$dটি এক্সটেনশন · %2$s আপডেট হয়েছে"</item><item quantity="other">"%1$dটি এক্সটেনশন · %2$s আপডেট হয়েছে"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%dটি প্রোফাইল ও এর পিন"</item><item quantity="other">"%dটি প্রোফাইল ও সেগুলোর পিন"</item></plurals>
 <string name="account">"অ্যাকাউন্ট"</string>

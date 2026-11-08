@@ -17,7 +17,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال."</item><item quantity="other">"اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d مصدر"</item><item quantity="other">"%d مصادر"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d تحذير من الفحص"</item><item quantity="other">"%d تحذيرات من الفحص"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">"%d إضافة"</item><item quantity="other">"كل الإضافات الـ%d"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"كل الإضافات (%d)"</item><item quantity="other">"كل الإضافات (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d إضافة · تجدّدت %2$s"</item><item quantity="other">"%1$d إضافات · تجدّدت %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d بروفايل والـPIN تبعو"</item><item quantity="other">"%d بروفايلات والـPIN تبعهن"</item></plurals>
 <string name="account">"أكونت"</string>

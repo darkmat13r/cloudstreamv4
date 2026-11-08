@@ -142,6 +142,11 @@ one of the 127 keys. A string key adds 62, 64 and 87 lines; a plural adds one li
 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.**
 `expectedOwn` 43,408 -> 51,282.
 
+The review's fixes then changed three keys' values in place (`settings_extensions_all` in all 62 directories, and the
+Arabic dual of `settings_extension_scan_warnings` and `settings_reset_item_profiles`): 145, 149 and 186 lines changed in
+`decoded.tsv`, `emitted.tsv` and `lookup.tsv`, each in its own position and each naming one of those three keys, measured by
+position and by `sort | comm`. No row count, `report.txt` line or request moved.
+
 ## Twenty-third move, 2026-11-08 — Train 7 (`#213`, `#216`, `#219`, `#217`), one move: `I18N-16`'s 18 new keys for TV account select (board 8d)
 
 One combined baseline move for the train that merges `#213` (`BUG-49`), `#216` (`BUG-41`), `#219` (`BUG-45`) and `#217` (`I18N-16`)

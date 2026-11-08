@@ -17,7 +17,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това в %d източник."</item><item quantity="other">"Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това във всички %d източника."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ИЗТОЧНИК"</item><item quantity="other">"%d ИЗТОЧНИКА"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d предупреждение от сканиране"</item><item quantity="other">"%d предупреждения от сканиране"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">"%d разширение"</item><item quantity="other">"Всички %d разширения"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Всички разширения (%d)"</item><item quantity="other">"Всички разширения (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d разширение · обновено %2$s"</item><item quantity="other">"%1$d разширения · обновено %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d профил и неговият ПИН"</item><item quantity="other">"%d профила и техните ПИН кодове"</item></plurals>
 <string name="account">"Акаунт"</string>

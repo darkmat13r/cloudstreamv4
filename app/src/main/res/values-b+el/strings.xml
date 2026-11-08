@@ -15,7 +15,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως."</item><item quantity="other">"Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ΠΗΓΗ"</item><item quantity="other">"%d ΠΗΓΕΣ"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d προειδοποίηση σάρωσης"</item><item quantity="other">"%d προειδοποιήσεις σάρωσης"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">"%d επέκταση"</item><item quantity="other">"Και οι %d επεκτάσεις"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Όλες οι επεκτάσεις (%d)"</item><item quantity="other">"Όλες οι επεκτάσεις (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d επέκταση · ενημέρωση %2$s"</item><item quantity="other">"%1$d επεκτάσεις · ενημέρωση %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d προφίλ και το PIN του"</item><item quantity="other">"%d προφίλ και τα PIN τους"</item></plurals>
 <string name="account">"Λογαριασμός"</string>

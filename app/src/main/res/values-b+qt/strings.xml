@@ -15,7 +15,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"uuh aagg oooh aaahh uug %d ooogg aah."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d OOGAH"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">"%d aahh aaahhhoo"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="other">"oog %d oooggguh"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">"oog oooggguh (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="other">"%1$d aaahhhoo · aaaghhh %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="other">"%d oooggguh aah uuuhh PINs"</item></plurals>
 <string name="account">"aaaaggg"</string>

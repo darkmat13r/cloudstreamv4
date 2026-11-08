@@ -38,7 +38,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në %d burim.</item><item quantity="other">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BURIM</item><item quantity="other">%d BURIME</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d paralajmërim skanimi</item><item quantity="other">%d paralajmërime skanimi</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d shtesë</item><item quantity="other">Të gjitha %d shtesat</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Të gjitha shtesat (%d)</item><item quantity="other">Të gjitha shtesat (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d shtesë · përditësuar %2$s</item><item quantity="other">%1$d shtesa · përditësuar %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d profil dhe PIN-i i tij</item><item quantity="other">%d profile dhe PIN-et e tyre</item></plurals>
 <string name="account">llogaria</string>

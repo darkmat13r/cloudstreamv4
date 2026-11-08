@@ -35,7 +35,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d SURSĂ</item><item quantity="few">%d SURSE</item><item quantity="other">%d DE SURSE</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d secțiune</item><item quantity="few">%d secțiuni</item><item quantity="other">%d de secțiuni</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d avertisment la scanare</item><item quantity="few">%d avertismente la scanare</item><item quantity="other">%d de avertismente la scanare</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d extensie</item><item quantity="few">Toate cele %d extensii</item><item quantity="other">Toate cele %d de extensii</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Toate extensiile (%d)</item><item quantity="few">Toate extensiile (%d)</item><item quantity="other">Toate extensiile (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d extensie · actualizat %2$s</item><item quantity="few">%1$d extensii · actualizat %2$s</item><item quantity="other">%1$d de extensii · actualizat %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d profil și PIN-ul său</item><item quantity="few">%d profiluri și PIN-urile lor</item><item quantity="other">%d de profiluri și PIN-urile lor</item></plurals>
 <string name="account">Cont</string>

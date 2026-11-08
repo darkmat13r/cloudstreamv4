@@ -38,7 +38,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">按键盘上的搜索键，仍然搜索全部 %d 个来源。</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d 来源</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">%d 个扫描警告</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="other">全部 %d 个扩展</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">全部扩展 (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="other">%1$d 个扩展 · 更新于 %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="other">%d 个个人资料及其 PIN</item></plurals>
 <string name="account">账户</string>

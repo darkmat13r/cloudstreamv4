@@ -27,8 +27,8 @@ values-b+af/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d BRON
 values-b+af/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d BRONNE	
 values-b+af/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d skanderingwaarskuwing	
 values-b+af/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d skanderingwaarskuwings	
-values-b+af/strings.xml	plurals	settings_extensions_all	one	STR	%d uitbreiding	
-values-b+af/strings.xml	plurals	settings_extensions_all	other	STR	Al %d uitbreidings	
+values-b+af/strings.xml	plurals	settings_extensions_all	one	STR	Alle uitbreidings (%d)	
+values-b+af/strings.xml	plurals	settings_extensions_all	other	STR	Alle uitbreidings (%d)	
 values-b+af/strings.xml	plurals	settings_repo_summary	one	STR	%1$d uitbreiding · bygewerk %2$s	
 values-b+af/strings.xml	plurals	settings_repo_summary	other	STR	%1$d uitbreidings · bygewerk %2$s	
 values-b+af/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profiel en sy PIN	
@@ -466,8 +466,8 @@ values-b+am/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ምን�
 values-b+am/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ምንጮች	
 values-b+am/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d የቅኝት ማስጠንቀቂያ	
 values-b+am/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d የቅኝት ማስጠንቀቂያዎች	
-values-b+am/strings.xml	plurals	settings_extensions_all	one	STR	%d ቅጥያ	
-values-b+am/strings.xml	plurals	settings_extensions_all	other	STR	ሁሉም %d ቅጥያዎች	
+values-b+am/strings.xml	plurals	settings_extensions_all	one	STR	ሁሉም ቅጥያዎች (%d)	
+values-b+am/strings.xml	plurals	settings_extensions_all	other	STR	ሁሉም ቅጥያዎች (%d)	
 values-b+am/strings.xml	plurals	settings_repo_summary	one	STR	%1$d ቅጥያ · %2$s ተዘምኗል	
 values-b+am/strings.xml	plurals	settings_repo_summary	other	STR	%1$d ቅጥያዎች · %2$s ተዘምኗል	
 values-b+am/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d መገለጫ እና ፒኑ	
@@ -897,8 +897,8 @@ values-b+apc/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d مصد�
 values-b+apc/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d مصادر	
 values-b+apc/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d تحذير من الفحص	
 values-b+apc/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d تحذيرات من الفحص	
-values-b+apc/strings.xml	plurals	settings_extensions_all	one	STR	%d إضافة	
-values-b+apc/strings.xml	plurals	settings_extensions_all	other	STR	كل الإضافات الـ%d	
+values-b+apc/strings.xml	plurals	settings_extensions_all	one	STR	كل الإضافات (%d)	
+values-b+apc/strings.xml	plurals	settings_extensions_all	other	STR	كل الإضافات (%d)	
 values-b+apc/strings.xml	plurals	settings_repo_summary	one	STR	%1$d إضافة · تجدّدت %2$s	
 values-b+apc/strings.xml	plurals	settings_repo_summary	other	STR	%1$d إضافات · تجدّدت %2$s	
 values-b+apc/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d بروفايل والـPIN تبعو	
@@ -2009,12 +2009,12 @@ values-b+ar/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d مصد�
 values-b+ar/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d مصدر	
 values-b+ar/strings.xml	plurals	settings_extension_scan_warnings	zero	STR	%d تحذير فحص	
 values-b+ar/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d تحذير فحص	
-values-b+ar/strings.xml	plurals	settings_extension_scan_warnings	two	STR	%d تحذير فحص	
+values-b+ar/strings.xml	plurals	settings_extension_scan_warnings	two	STR	تحذيرا فحص	
 values-b+ar/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d تحذيرات فحص	
 values-b+ar/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d تحذيرًا للفحص	
 values-b+ar/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d تحذير فحص	
 values-b+ar/strings.xml	plurals	settings_extensions_all	zero	STR	كل الإضافات (%d)	
-values-b+ar/strings.xml	plurals	settings_extensions_all	one	STR	%d إضافة	
+values-b+ar/strings.xml	plurals	settings_extensions_all	one	STR	كل الإضافات (%d)	
 values-b+ar/strings.xml	plurals	settings_extensions_all	two	STR	كل الإضافات (%d)	
 values-b+ar/strings.xml	plurals	settings_extensions_all	few	STR	كل الإضافات (%d)	
 values-b+ar/strings.xml	plurals	settings_extensions_all	many	STR	كل الإضافات (%d)	
@@ -2027,7 +2027,7 @@ values-b+ar/strings.xml	plurals	settings_repo_summary	many	STR	%1$d إضافةً
 values-b+ar/strings.xml	plurals	settings_repo_summary	other	STR	%1$d إضافة · حُدّث %2$s	
 values-b+ar/strings.xml	plurals	settings_reset_item_profiles	zero	STR	%d ملف شخصي ورموز PIN الخاصة بها	
 values-b+ar/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d ملف شخصي ورمز PIN الخاص به	
-values-b+ar/strings.xml	plurals	settings_reset_item_profiles	two	STR	%d ملف شخصي ورموز PIN الخاصة بهما	
+values-b+ar/strings.xml	plurals	settings_reset_item_profiles	two	STR	ملفان شخصيان ورموز PIN الخاصة بهما	
 values-b+ar/strings.xml	plurals	settings_reset_item_profiles	few	STR	%d ملفات شخصية ورموز PIN الخاصة بها	
 values-b+ar/strings.xml	plurals	settings_reset_item_profiles	many	STR	%d ملفًا شخصيًا ورموز PIN الخاصة بها	
 values-b+ar/strings.xml	plurals	settings_reset_item_profiles	other	STR	%d ملف شخصي ورموز PIN الخاصة بها	
@@ -3134,12 +3134,12 @@ values-b+ars/strings.xml	plurals	settings_extension_scan_warnings	two	STR	%d ت�
 values-b+ars/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d تحذيرات من الفحص	
 values-b+ars/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d تحذيرًا من الفحص	
 values-b+ars/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d تحذير من الفحص	
-values-b+ars/strings.xml	plurals	settings_extensions_all	zero	STR	%d إضافة	
-values-b+ars/strings.xml	plurals	settings_extensions_all	one	STR	%d إضافة	
-values-b+ars/strings.xml	plurals	settings_extensions_all	two	STR	كل الإضافات الـ%d	
-values-b+ars/strings.xml	plurals	settings_extensions_all	few	STR	كل الإضافات الـ%d	
-values-b+ars/strings.xml	plurals	settings_extensions_all	many	STR	كل الإضافات الـ%d	
-values-b+ars/strings.xml	plurals	settings_extensions_all	other	STR	كل الإضافات الـ%d	
+values-b+ars/strings.xml	plurals	settings_extensions_all	zero	STR	كل الإضافات (%d)	
+values-b+ars/strings.xml	plurals	settings_extensions_all	one	STR	كل الإضافات (%d)	
+values-b+ars/strings.xml	plurals	settings_extensions_all	two	STR	كل الإضافات (%d)	
+values-b+ars/strings.xml	plurals	settings_extensions_all	few	STR	كل الإضافات (%d)	
+values-b+ars/strings.xml	plurals	settings_extensions_all	many	STR	كل الإضافات (%d)	
+values-b+ars/strings.xml	plurals	settings_extensions_all	other	STR	كل الإضافات (%d)	
 values-b+ars/strings.xml	plurals	settings_repo_summary	zero	STR	%1$d إضافة · تحدّثت %2$s	
 values-b+ars/strings.xml	plurals	settings_repo_summary	one	STR	%1$d إضافة · تحدّثت %2$s	
 values-b+ars/strings.xml	plurals	settings_repo_summary	two	STR	%1$d إضافتين · تحدّثت %2$s	
@@ -3800,8 +3800,8 @@ values-b+as/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d উৎ�
 values-b+as/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d উৎস	
 values-b+as/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d টা স্কেন সতৰ্কবাণী	
 values-b+as/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d টা স্কেন সতৰ্কবাণী	
-values-b+as/strings.xml	plurals	settings_extensions_all	one	STR	%d টা এক্সটেনশ্যন	
-values-b+as/strings.xml	plurals	settings_extensions_all	other	STR	সকলো %d টা এক্সটেনশ্যন	
+values-b+as/strings.xml	plurals	settings_extensions_all	one	STR	সকলো এক্সটেনশ্যন (%d)	
+values-b+as/strings.xml	plurals	settings_extensions_all	other	STR	সকলো এক্সটেনশ্যন (%d)	
 values-b+as/strings.xml	plurals	settings_repo_summary	one	STR	%1$d টা এক্সটেনশ্যন · আপডেট %2$s	
 values-b+as/strings.xml	plurals	settings_repo_summary	other	STR	%1$d টা এক্সটেনশ্যন · আপডেট %2$s	
 values-b+as/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d টা প্ৰফাইল আৰু ইয়াৰ PIN	
@@ -4756,8 +4756,8 @@ values-b+az/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d MƏNBƏ
 values-b+az/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d MƏNBƏ	
 values-b+az/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d yoxlama xəbərdarlığı	
 values-b+az/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d yoxlama xəbərdarlığı	
-values-b+az/strings.xml	plurals	settings_extensions_all	one	STR	%d uzantı	
-values-b+az/strings.xml	plurals	settings_extensions_all	other	STR	Bütün %d uzantı	
+values-b+az/strings.xml	plurals	settings_extensions_all	one	STR	Bütün uzantılar (%d)	
+values-b+az/strings.xml	plurals	settings_extensions_all	other	STR	Bütün uzantılar (%d)	
 values-b+az/strings.xml	plurals	settings_repo_summary	one	STR	%1$d uzantı · yenilənib %2$s	
 values-b+az/strings.xml	plurals	settings_repo_summary	other	STR	%1$d uzantı · yenilənib %2$s	
 values-b+az/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profil və onun PIN-i	
@@ -5256,10 +5256,10 @@ values-b+be/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d па
 values-b+be/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d папярэджанні сканавання	
 values-b+be/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d папярэджанняў сканавання	
 values-b+be/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d папярэджання сканавання	
-values-b+be/strings.xml	plurals	settings_extensions_all	one	STR	%d пашырэнне	
-values-b+be/strings.xml	plurals	settings_extensions_all	few	STR	Усе %d пашырэнні	
-values-b+be/strings.xml	plurals	settings_extensions_all	many	STR	Усе %d пашырэнняў	
-values-b+be/strings.xml	plurals	settings_extensions_all	other	STR	Усе %d пашырэння	
+values-b+be/strings.xml	plurals	settings_extensions_all	one	STR	Усе пашырэнні (%d)	
+values-b+be/strings.xml	plurals	settings_extensions_all	few	STR	Усе пашырэнні (%d)	
+values-b+be/strings.xml	plurals	settings_extensions_all	many	STR	Усе пашырэнні (%d)	
+values-b+be/strings.xml	plurals	settings_extensions_all	other	STR	Усе пашырэнні (%d)	
 values-b+be/strings.xml	plurals	settings_repo_summary	one	STR	%1$d пашырэнне · абноўлена %2$s	
 values-b+be/strings.xml	plurals	settings_repo_summary	few	STR	%1$d пашырэнні · абноўлена %2$s	
 values-b+be/strings.xml	plurals	settings_repo_summary	many	STR	%1$d пашырэнняў · абноўлена %2$s	
@@ -6314,8 +6314,8 @@ values-b+bg/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ИЗТО
 values-b+bg/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ИЗТОЧНИКА	
 values-b+bg/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d предупреждение от сканиране	
 values-b+bg/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d предупреждения от сканиране	
-values-b+bg/strings.xml	plurals	settings_extensions_all	one	STR	%d разширение	
-values-b+bg/strings.xml	plurals	settings_extensions_all	other	STR	Всички %d разширения	
+values-b+bg/strings.xml	plurals	settings_extensions_all	one	STR	Всички разширения (%d)	
+values-b+bg/strings.xml	plurals	settings_extensions_all	other	STR	Всички разширения (%d)	
 values-b+bg/strings.xml	plurals	settings_repo_summary	one	STR	%1$d разширение · обновено %2$s	
 values-b+bg/strings.xml	plurals	settings_repo_summary	other	STR	%1$d разширения · обновено %2$s	
 values-b+bg/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d профил и неговият ПИН	
@@ -7352,8 +7352,8 @@ values-b+bn/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d উৎ�
 values-b+bn/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d উৎস	
 values-b+bn/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%dটি স্ক্যান সতর্কতা	
 values-b+bn/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%dটি স্ক্যান সতর্কতা	
-values-b+bn/strings.xml	plurals	settings_extensions_all	one	STR	%dটি এক্সটেনশন	
-values-b+bn/strings.xml	plurals	settings_extensions_all	other	STR	সব %dটি এক্সটেনশন	
+values-b+bn/strings.xml	plurals	settings_extensions_all	one	STR	সব এক্সটেনশন (%d)	
+values-b+bn/strings.xml	plurals	settings_extensions_all	other	STR	সব এক্সটেনশন (%d)	
 values-b+bn/strings.xml	plurals	settings_repo_summary	one	STR	%1$dটি এক্সটেনশন · %2$s আপডেট হয়েছে	
 values-b+bn/strings.xml	plurals	settings_repo_summary	other	STR	%1$dটি এক্সটেনশন · %2$s আপডেট হয়েছে	
 values-b+bn/strings.xml	plurals	settings_reset_item_profiles	one	STR	%dটি প্রোফাইল ও এর পিন	
@@ -8088,9 +8088,9 @@ values-b+ca/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTS
 values-b+ca/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d avís de l'anàlisi	
 values-b+ca/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d avisos de l'anàlisi	
 values-b+ca/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d avisos de l'anàlisi	
-values-b+ca/strings.xml	plurals	settings_extensions_all	one	STR	%d extensió	
-values-b+ca/strings.xml	plurals	settings_extensions_all	many	STR	Totes les %d extensions	
-values-b+ca/strings.xml	plurals	settings_extensions_all	other	STR	Totes les %d extensions	
+values-b+ca/strings.xml	plurals	settings_extensions_all	one	STR	Totes les extensions (%d)	
+values-b+ca/strings.xml	plurals	settings_extensions_all	many	STR	Totes les extensions (%d)	
+values-b+ca/strings.xml	plurals	settings_extensions_all	other	STR	Totes les extensions (%d)	
 values-b+ca/strings.xml	plurals	settings_repo_summary	one	STR	%1$d extensió · actualitzat %2$s	
 values-b+ca/strings.xml	plurals	settings_repo_summary	many	STR	%1$d extensions · actualitzat %2$s	
 values-b+ca/strings.xml	plurals	settings_repo_summary	other	STR	%1$d extensions · actualitzat %2$s	
@@ -8740,8 +8740,8 @@ values-b+ckb/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d سەر�
 values-b+ckb/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d سەرچاوە	
 values-b+ckb/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d ئاگاداری پشکنین	
 values-b+ckb/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d ئاگاداری پشکنین	
-values-b+ckb/strings.xml	plurals	settings_extensions_all	one	STR	%d زیادکراوە	
-values-b+ckb/strings.xml	plurals	settings_extensions_all	other	STR	هەموو %d زیادکراوەکە	
+values-b+ckb/strings.xml	plurals	settings_extensions_all	one	STR	هەموو زیادکراوەکان (%d)	
+values-b+ckb/strings.xml	plurals	settings_extensions_all	other	STR	هەموو زیادکراوەکان (%d)	
 values-b+ckb/strings.xml	plurals	settings_repo_summary	one	STR	%1$d زیادکراوە · نوێکرایەوە %2$s	
 values-b+ckb/strings.xml	plurals	settings_repo_summary	other	STR	%1$d زیادکراوە · نوێکرایەوە %2$s	
 values-b+ckb/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d پرۆفایل و PINەکەی	
@@ -9184,10 +9184,10 @@ values-b+cs/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d varo
 values-b+cs/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d varování kontroly	
 values-b+cs/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d varování kontroly	
 values-b+cs/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d varování kontroly	
-values-b+cs/strings.xml	plurals	settings_extensions_all	one	STR	%d rozšíření	
-values-b+cs/strings.xml	plurals	settings_extensions_all	few	STR	Všechna %d rozšíření	
-values-b+cs/strings.xml	plurals	settings_extensions_all	many	STR	Všech %d rozšíření	
-values-b+cs/strings.xml	plurals	settings_extensions_all	other	STR	Všech %d rozšíření	
+values-b+cs/strings.xml	plurals	settings_extensions_all	one	STR	Všechna rozšíření (%d)	
+values-b+cs/strings.xml	plurals	settings_extensions_all	few	STR	Všechna rozšíření (%d)	
+values-b+cs/strings.xml	plurals	settings_extensions_all	many	STR	Všechna rozšíření (%d)	
+values-b+cs/strings.xml	plurals	settings_extensions_all	other	STR	Všechna rozšíření (%d)	
 values-b+cs/strings.xml	plurals	settings_repo_summary	one	STR	%1$d rozšíření · aktualizováno %2$s	
 values-b+cs/strings.xml	plurals	settings_repo_summary	few	STR	%1$d rozšíření · aktualizováno %2$s	
 values-b+cs/strings.xml	plurals	settings_repo_summary	many	STR	%1$d rozšíření · aktualizováno %2$s	
@@ -10249,8 +10249,8 @@ values-b+de/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d QUELLE
 values-b+de/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d QUELLEN	
 values-b+de/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d Prüfwarnung	
 values-b+de/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d Prüfwarnungen	
-values-b+de/strings.xml	plurals	settings_extensions_all	one	STR	%d Erweiterung	
-values-b+de/strings.xml	plurals	settings_extensions_all	other	STR	Alle %d Erweiterungen	
+values-b+de/strings.xml	plurals	settings_extensions_all	one	STR	Alle Erweiterungen (%d)	
+values-b+de/strings.xml	plurals	settings_extensions_all	other	STR	Alle Erweiterungen (%d)	
 values-b+de/strings.xml	plurals	settings_repo_summary	one	STR	%1$d Erweiterung · aktualisiert %2$s	
 values-b+de/strings.xml	plurals	settings_repo_summary	other	STR	%1$d Erweiterungen · aktualisiert %2$s	
 values-b+de/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d Profil und seine PIN	
@@ -11302,8 +11302,8 @@ values-b+el/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ΠΗΓΗ
 values-b+el/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ΠΗΓΕΣ	
 values-b+el/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d προειδοποίηση σάρωσης	
 values-b+el/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d προειδοποιήσεις σάρωσης	
-values-b+el/strings.xml	plurals	settings_extensions_all	one	STR	%d επέκταση	
-values-b+el/strings.xml	plurals	settings_extensions_all	other	STR	Και οι %d επεκτάσεις	
+values-b+el/strings.xml	plurals	settings_extensions_all	one	STR	Όλες οι επεκτάσεις (%d)	
+values-b+el/strings.xml	plurals	settings_extensions_all	other	STR	Όλες οι επεκτάσεις (%d)	
 values-b+el/strings.xml	plurals	settings_repo_summary	one	STR	%1$d επέκταση · ενημέρωση %2$s	
 values-b+el/strings.xml	plurals	settings_repo_summary	other	STR	%1$d επεκτάσεις · ενημέρωση %2$s	
 values-b+el/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d προφίλ και το PIN του	
@@ -12283,8 +12283,8 @@ values-b+eo/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTO
 values-b+eo/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTOJ	
 values-b+eo/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d skana averto	
 values-b+eo/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d skanaj avertoj	
-values-b+eo/strings.xml	plurals	settings_extensions_all	one	STR	%d kromprogramo	
-values-b+eo/strings.xml	plurals	settings_extensions_all	other	STR	Ĉiuj %d kromprogramoj	
+values-b+eo/strings.xml	plurals	settings_extensions_all	one	STR	Ĉiuj kromprogramoj (%d)	
+values-b+eo/strings.xml	plurals	settings_extensions_all	other	STR	Ĉiuj kromprogramoj (%d)	
 values-b+eo/strings.xml	plurals	settings_repo_summary	one	STR	%1$d kromprogramo · ĝisdatigita %2$s	
 values-b+eo/strings.xml	plurals	settings_repo_summary	other	STR	%1$d kromprogramoj · ĝisdatigitaj %2$s	
 values-b+eo/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profilo kaj ĝia PIN	
@@ -12808,9 +12808,9 @@ values-b+es/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FUENTE
 values-b+es/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d aviso del análisis	
 values-b+es/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d avisos del análisis	
 values-b+es/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d avisos del análisis	
-values-b+es/strings.xml	plurals	settings_extensions_all	one	STR	%d extensión	
-values-b+es/strings.xml	plurals	settings_extensions_all	many	STR	Las %d extensiones	
-values-b+es/strings.xml	plurals	settings_extensions_all	other	STR	Las %d extensiones	
+values-b+es/strings.xml	plurals	settings_extensions_all	one	STR	Todas las extensiones (%d)	
+values-b+es/strings.xml	plurals	settings_extensions_all	many	STR	Todas las extensiones (%d)	
+values-b+es/strings.xml	plurals	settings_extensions_all	other	STR	Todas las extensiones (%d)	
 values-b+es/strings.xml	plurals	settings_repo_summary	one	STR	%1$d extensión · actualizado %2$s	
 values-b+es/strings.xml	plurals	settings_repo_summary	many	STR	%1$d extensiones · actualizado %2$s	
 values-b+es/strings.xml	plurals	settings_repo_summary	other	STR	%1$d extensiones · actualizado %2$s	
@@ -13864,8 +13864,8 @@ values-b+fa/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d منبع
 values-b+fa/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d منبع	
 values-b+fa/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d هشدار اسکن	
 values-b+fa/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d هشدار اسکن	
-values-b+fa/strings.xml	plurals	settings_extensions_all	one	STR	%d افزونه	
-values-b+fa/strings.xml	plurals	settings_extensions_all	other	STR	همهٔ %d افزونه	
+values-b+fa/strings.xml	plurals	settings_extensions_all	one	STR	همهٔ افزونه‌ها (%d)	
+values-b+fa/strings.xml	plurals	settings_extensions_all	other	STR	همهٔ افزونه‌ها (%d)	
 values-b+fa/strings.xml	plurals	settings_repo_summary	one	STR	%1$d افزونه · به‌روزشده %2$s	
 values-b+fa/strings.xml	plurals	settings_repo_summary	other	STR	%1$d افزونه · به‌روزشده %2$s	
 values-b+fa/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d نمایه و PIN آن	
@@ -14531,8 +14531,8 @@ values-b+fil/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d MAPAGKU
 values-b+fil/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d MAPAGKUKUNAN	
 values-b+fil/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d babala ng scan	
 values-b+fil/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d na babala ng scan	
-values-b+fil/strings.xml	plurals	settings_extensions_all	one	STR	%d extension	
-values-b+fil/strings.xml	plurals	settings_extensions_all	other	STR	Lahat ng %d extension	
+values-b+fil/strings.xml	plurals	settings_extensions_all	one	STR	Lahat ng extension (%d)	
+values-b+fil/strings.xml	plurals	settings_extensions_all	other	STR	Lahat ng extension (%d)	
 values-b+fil/strings.xml	plurals	settings_repo_summary	one	STR	%1$d extension · na-update %2$s	
 values-b+fil/strings.xml	plurals	settings_repo_summary	other	STR	%1$d na extension · na-update %2$s	
 values-b+fil/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profile at ang PIN nito	
@@ -15031,9 +15031,9 @@ values-b+fr/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SOURCE
 values-b+fr/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d avertissement d’analyse	
 values-b+fr/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d avertissements d’analyse	
 values-b+fr/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d avertissements d’analyse	
-values-b+fr/strings.xml	plurals	settings_extensions_all	one	STR	%d extension	
-values-b+fr/strings.xml	plurals	settings_extensions_all	many	STR	Les %d extensions	
-values-b+fr/strings.xml	plurals	settings_extensions_all	other	STR	Les %d extensions	
+values-b+fr/strings.xml	plurals	settings_extensions_all	one	STR	Toutes les extensions (%d)	
+values-b+fr/strings.xml	plurals	settings_extensions_all	many	STR	Toutes les extensions (%d)	
+values-b+fr/strings.xml	plurals	settings_extensions_all	other	STR	Toutes les extensions (%d)	
 values-b+fr/strings.xml	plurals	settings_repo_summary	one	STR	%1$d extension · mis à jour %2$s	
 values-b+fr/strings.xml	plurals	settings_repo_summary	many	STR	%1$d extensions · mis à jour %2$s	
 values-b+fr/strings.xml	plurals	settings_repo_summary	other	STR	%1$d extensions · mis à jour %2$s	
@@ -16087,8 +16087,8 @@ values-b+gl/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTE
 values-b+gl/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTES	
 values-b+gl/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d aviso da análise	
 values-b+gl/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d avisos da análise	
-values-b+gl/strings.xml	plurals	settings_extensions_all	one	STR	%d extensión	
-values-b+gl/strings.xml	plurals	settings_extensions_all	other	STR	Todas as %d extensións	
+values-b+gl/strings.xml	plurals	settings_extensions_all	one	STR	Todas as extensións (%d)	
+values-b+gl/strings.xml	plurals	settings_extensions_all	other	STR	Todas as extensións (%d)	
 values-b+gl/strings.xml	plurals	settings_repo_summary	one	STR	%1$d extensión · actualizado %2$s	
 values-b+gl/strings.xml	plurals	settings_repo_summary	other	STR	%1$d extensións · actualizado %2$s	
 values-b+gl/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d perfil e o seu PIN	
@@ -16694,8 +16694,8 @@ values-b+hi/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d स्�
 values-b+hi/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d स्रोत	
 values-b+hi/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d स्कैन चेतावनी	
 values-b+hi/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d स्कैन चेतावनियाँ	
-values-b+hi/strings.xml	plurals	settings_extensions_all	one	STR	%d एक्सटेंशन	
-values-b+hi/strings.xml	plurals	settings_extensions_all	other	STR	सभी %d एक्सटेंशन	
+values-b+hi/strings.xml	plurals	settings_extensions_all	one	STR	सभी एक्सटेंशन (%d)	
+values-b+hi/strings.xml	plurals	settings_extensions_all	other	STR	सभी एक्सटेंशन (%d)	
 values-b+hi/strings.xml	plurals	settings_repo_summary	one	STR	%1$d एक्सटेंशन · %2$s अपडेट किया गया	
 values-b+hi/strings.xml	plurals	settings_repo_summary	other	STR	%1$d एक्सटेंशन · %2$s अपडेट किए गए	
 values-b+hi/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d प्रोफ़ाइल और उसका पिन	
@@ -17447,9 +17447,9 @@ values-b+hr/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d IZVORA
 values-b+hr/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d upozorenje skeniranja	
 values-b+hr/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d upozorenja skeniranja	
 values-b+hr/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d upozorenja skeniranja	
-values-b+hr/strings.xml	plurals	settings_extensions_all	one	STR	%d proširenje	
-values-b+hr/strings.xml	plurals	settings_extensions_all	few	STR	Sva %d proširenja	
-values-b+hr/strings.xml	plurals	settings_extensions_all	other	STR	Svih %d proširenja	
+values-b+hr/strings.xml	plurals	settings_extensions_all	one	STR	Sva proširenja (%d)	
+values-b+hr/strings.xml	plurals	settings_extensions_all	few	STR	Sva proširenja (%d)	
+values-b+hr/strings.xml	plurals	settings_extensions_all	other	STR	Sva proširenja (%d)	
 values-b+hr/strings.xml	plurals	settings_repo_summary	one	STR	%1$d proširenje · ažurirano %2$s	
 values-b+hr/strings.xml	plurals	settings_repo_summary	few	STR	%1$d proširenja · ažurirano %2$s	
 values-b+hr/strings.xml	plurals	settings_repo_summary	other	STR	%1$d proširenja · ažurirano %2$s	
@@ -18498,8 +18498,8 @@ values-b+hu/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FORRÁS
 values-b+hu/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FORRÁS	
 values-b+hu/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d vizsgálati figyelmeztetés	
 values-b+hu/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d vizsgálati figyelmeztetés	
-values-b+hu/strings.xml	plurals	settings_extensions_all	one	STR	%d bővítmény	
-values-b+hu/strings.xml	plurals	settings_extensions_all	other	STR	Mind a(z) %d bővítmény	
+values-b+hu/strings.xml	plurals	settings_extensions_all	one	STR	Az összes bővítmény (%d)	
+values-b+hu/strings.xml	plurals	settings_extensions_all	other	STR	Az összes bővítmény (%d)	
 values-b+hu/strings.xml	plurals	settings_repo_summary	one	STR	%1$d bővítmény · frissítve: %2$s	
 values-b+hu/strings.xml	plurals	settings_repo_summary	other	STR	%1$d bővítmény · frissítve: %2$s	
 values-b+hu/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profil és a PIN-je	
@@ -19442,7 +19442,7 @@ values-b+in/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Car
 values-b+in/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.	
 values-b+in/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SUMBER	
 values-b+in/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d peringatan pemindaian	
-values-b+in/strings.xml	plurals	settings_extensions_all	other	STR	Semua %d ekstensi	
+values-b+in/strings.xml	plurals	settings_extensions_all	other	STR	Semua ekstensi (%d)	
 values-b+in/strings.xml	plurals	settings_repo_summary	other	STR	%1$d ekstensi · diperbarui %2$s	
 values-b+in/strings.xml	plurals	settings_reset_item_profiles	other	STR	%d profil beserta PIN-nya	
 values-b+in/strings.xml	string	account	-	STR	akun	
@@ -20515,9 +20515,9 @@ values-b+it/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTI
 values-b+it/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d avviso di scansione	
 values-b+it/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d avvisi di scansione	
 values-b+it/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d avvisi di scansione	
-values-b+it/strings.xml	plurals	settings_extensions_all	one	STR	%d estensione	
-values-b+it/strings.xml	plurals	settings_extensions_all	many	STR	Tutte le %d estensioni	
-values-b+it/strings.xml	plurals	settings_extensions_all	other	STR	Tutte le %d estensioni	
+values-b+it/strings.xml	plurals	settings_extensions_all	one	STR	Tutte le estensioni (%d)	
+values-b+it/strings.xml	plurals	settings_extensions_all	many	STR	Tutte le estensioni (%d)	
+values-b+it/strings.xml	plurals	settings_extensions_all	other	STR	Tutte le estensioni (%d)	
 values-b+it/strings.xml	plurals	settings_repo_summary	one	STR	%1$d estensione · aggiornato %2$s	
 values-b+it/strings.xml	plurals	settings_repo_summary	many	STR	%1$d estensioni · aggiornato %2$s	
 values-b+it/strings.xml	plurals	settings_repo_summary	other	STR	%1$d estensioni · aggiornato %2$s	
@@ -21585,9 +21585,9 @@ values-b+iw/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d מקו
 values-b+iw/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d אזהרת סריקה	
 values-b+iw/strings.xml	plurals	settings_extension_scan_warnings	two	STR	%d אזהרות סריקה	
 values-b+iw/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d אזהרות סריקה	
-values-b+iw/strings.xml	plurals	settings_extensions_all	one	STR	%d הרחבה	
-values-b+iw/strings.xml	plurals	settings_extensions_all	two	STR	כל %d ההרחבות	
-values-b+iw/strings.xml	plurals	settings_extensions_all	other	STR	כל %d ההרחבות	
+values-b+iw/strings.xml	plurals	settings_extensions_all	one	STR	כל ההרחבות (%d)	
+values-b+iw/strings.xml	plurals	settings_extensions_all	two	STR	כל ההרחבות (%d)	
+values-b+iw/strings.xml	plurals	settings_extensions_all	other	STR	כל ההרחבות (%d)	
 values-b+iw/strings.xml	plurals	settings_repo_summary	one	STR	%1$d הרחבה · עודכן %2$s	
 values-b+iw/strings.xml	plurals	settings_repo_summary	two	STR	%1$d הרחבות · עודכן %2$s	
 values-b+iw/strings.xml	plurals	settings_repo_summary	other	STR	%1$d הרחבות · עודכן %2$s	
@@ -23492,8 +23492,8 @@ values-b+kn/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ಮೂ�
 values-b+kn/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ಮೂಲಗಳು	
 values-b+kn/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d ಸ್ಕ್ಯಾನ್ ಎಚ್ಚರಿಕೆ	
 values-b+kn/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d ಸ್ಕ್ಯಾನ್ ಎಚ್ಚರಿಕೆಗಳು	
-values-b+kn/strings.xml	plurals	settings_extensions_all	one	STR	%d ವಿಸ್ತರಣೆ	
-values-b+kn/strings.xml	plurals	settings_extensions_all	other	STR	ಎಲ್ಲಾ %d ವಿಸ್ತರಣೆಗಳು	
+values-b+kn/strings.xml	plurals	settings_extensions_all	one	STR	ಎಲ್ಲಾ ವಿಸ್ತರಣೆಗಳು (%d)	
+values-b+kn/strings.xml	plurals	settings_extensions_all	other	STR	ಎಲ್ಲಾ ವಿಸ್ತರಣೆಗಳು (%d)	
 values-b+kn/strings.xml	plurals	settings_repo_summary	one	STR	%1$d ವಿಸ್ತರಣೆ · %2$s ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ	
 values-b+kn/strings.xml	plurals	settings_repo_summary	other	STR	%1$d ವಿಸ್ತರಣೆಗಳು · %2$s ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ	
 values-b+kn/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d ಪ್ರೊಫೈಲ್ ಮತ್ತು ಅದರ PIN	
@@ -23928,7 +23928,7 @@ values-b+ko/strings.xml	plurals	search_state_no_suggestions_action	other	STR	소
 values-b+ko/strings.xml	plurals	search_state_no_suggestions_body	other	STR	그래도 소스 %d개를 모두 검색하려면 키보드의 검색 키를 누르세요.	
 values-b+ko/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d 소스	
 values-b+ko/strings.xml	plurals	settings_extension_scan_warnings	other	STR	검사 경고 %d개	
-values-b+ko/strings.xml	plurals	settings_extensions_all	other	STR	확장 기능 %d개 모두	
+values-b+ko/strings.xml	plurals	settings_extensions_all	other	STR	모든 확장 기능 (%d)	
 values-b+ko/strings.xml	plurals	settings_repo_summary	other	STR	확장 기능 %1$d개 · %2$s 업데이트됨	
 values-b+ko/strings.xml	plurals	settings_reset_item_profiles	other	STR	프로필 %d개 및 PIN	
 values-b+ko/strings.xml	string	account	-	STR	계정	
@@ -25001,10 +25001,10 @@ values-b+lt/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d pati
 values-b+lt/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d patikros įspėjimai	
 values-b+lt/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d patikros įspėjimo	
 values-b+lt/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d patikros įspėjimų	
-values-b+lt/strings.xml	plurals	settings_extensions_all	one	STR	%d plėtinys	
-values-b+lt/strings.xml	plurals	settings_extensions_all	few	STR	Visi %d plėtiniai	
-values-b+lt/strings.xml	plurals	settings_extensions_all	many	STR	Visi %d plėtinio	
-values-b+lt/strings.xml	plurals	settings_extensions_all	other	STR	Visi %d plėtinių	
+values-b+lt/strings.xml	plurals	settings_extensions_all	one	STR	Visi plėtiniai (%d)	
+values-b+lt/strings.xml	plurals	settings_extensions_all	few	STR	Visi plėtiniai (%d)	
+values-b+lt/strings.xml	plurals	settings_extensions_all	many	STR	Visi plėtiniai (%d)	
+values-b+lt/strings.xml	plurals	settings_extensions_all	other	STR	Visi plėtiniai (%d)	
 values-b+lt/strings.xml	plurals	settings_repo_summary	one	STR	%1$d plėtinys · atnaujinta %2$s	
 values-b+lt/strings.xml	plurals	settings_repo_summary	few	STR	%1$d plėtiniai · atnaujinta %2$s	
 values-b+lt/strings.xml	plurals	settings_repo_summary	many	STR	%1$d plėtinio · atnaujinta %2$s	
@@ -25639,9 +25639,9 @@ values-b+lv/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d DEVĒJ
 values-b+lv/strings.xml	plurals	settings_extension_scan_warnings	zero	STR	%d skenēšanas brīdinājumu	
 values-b+lv/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d skenēšanas brīdinājums	
 values-b+lv/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d skenēšanas brīdinājumi	
-values-b+lv/strings.xml	plurals	settings_extensions_all	zero	STR	%d papildinājumu	
-values-b+lv/strings.xml	plurals	settings_extensions_all	one	STR	%d papildinājums	
-values-b+lv/strings.xml	plurals	settings_extensions_all	other	STR	Visi %d papildinājumi	
+values-b+lv/strings.xml	plurals	settings_extensions_all	zero	STR	Visi papildinājumi (%d)	
+values-b+lv/strings.xml	plurals	settings_extensions_all	one	STR	Visi papildinājumi (%d)	
+values-b+lv/strings.xml	plurals	settings_extensions_all	other	STR	Visi papildinājumi (%d)	
 values-b+lv/strings.xml	plurals	settings_repo_summary	zero	STR	%1$d papildinājumu · atjaunināts %2$s	
 values-b+lv/strings.xml	plurals	settings_repo_summary	one	STR	%1$d papildinājums · atjaunināts %2$s	
 values-b+lv/strings.xml	plurals	settings_repo_summary	other	STR	%1$d papildinājumi · atjaunināts %2$s	
@@ -26576,8 +26576,8 @@ values-b+mk/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ИЗВО
 values-b+mk/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ИЗВОРИ	
 values-b+mk/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d предупредување од скенирање	
 values-b+mk/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d предупредувања од скенирање	
-values-b+mk/strings.xml	plurals	settings_extensions_all	one	STR	%d екстензија	
-values-b+mk/strings.xml	plurals	settings_extensions_all	other	STR	Сите %d екстензии	
+values-b+mk/strings.xml	plurals	settings_extensions_all	one	STR	Сите екстензии (%d)	
+values-b+mk/strings.xml	plurals	settings_extensions_all	other	STR	Сите екстензии (%d)	
 values-b+mk/strings.xml	plurals	settings_repo_summary	one	STR	%1$d екстензија · ажурирано %2$s	
 values-b+mk/strings.xml	plurals	settings_repo_summary	other	STR	%1$d екстензии · ажурирано %2$s	
 values-b+mk/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d профил и неговиот PIN	
@@ -27624,8 +27624,8 @@ values-b+ml/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ഉറ�
 values-b+ml/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ഉറവിടങ്ങൾ	
 values-b+ml/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d സ്കാൻ മുന്നറിയിപ്പ്	
 values-b+ml/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d സ്കാൻ മുന്നറിയിപ്പുകൾ	
-values-b+ml/strings.xml	plurals	settings_extensions_all	one	STR	%d വിപുലീകരണം	
-values-b+ml/strings.xml	plurals	settings_extensions_all	other	STR	എല്ലാ %d വിപുലീകരണങ്ങളും	
+values-b+ml/strings.xml	plurals	settings_extensions_all	one	STR	എല്ലാ വിപുലീകരണങ്ങളും (%d)	
+values-b+ml/strings.xml	plurals	settings_extensions_all	other	STR	എല്ലാ വിപുലീകരണങ്ങളും (%d)	
 values-b+ml/strings.xml	plurals	settings_repo_summary	one	STR	%1$d വിപുലീകരണം · %2$s അപ്ഡേറ്റ് ചെയ്തു	
 values-b+ml/strings.xml	plurals	settings_repo_summary	other	STR	%1$d വിപുലീകരണങ്ങൾ · %2$s അപ്ഡേറ്റ് ചെയ്തു	
 values-b+ml/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d പ്രൊഫൈലും അതിന്റെ പിന്നും	
@@ -28216,7 +28216,7 @@ values-b+ms/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Car
 values-b+ms/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.	
 values-b+ms/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SUMBER	
 values-b+ms/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d amaran imbasan	
-values-b+ms/strings.xml	plurals	settings_extensions_all	other	STR	Semua %d tambahan	
+values-b+ms/strings.xml	plurals	settings_extensions_all	other	STR	Semua tambahan (%d)	
 values-b+ms/strings.xml	plurals	settings_repo_summary	other	STR	%1$d tambahan · dikemas kini %2$s	
 values-b+ms/strings.xml	plurals	settings_reset_item_profiles	other	STR	%d profil dan PIN masing-masing	
 values-b+ms/strings.xml	string	account	-	STR	akaun	
@@ -29109,11 +29109,11 @@ values-b+mt/strings.xml	plurals	settings_extension_scan_warnings	two	STR	%d twis
 values-b+mt/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d twissijiet tal-iskan	
 values-b+mt/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d twissija tal-iskan	
 values-b+mt/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d twissija tal-iskan	
-values-b+mt/strings.xml	plurals	settings_extensions_all	one	STR	%d estensjoni	
-values-b+mt/strings.xml	plurals	settings_extensions_all	two	STR	Il-%d estensjonijiet kollha	
-values-b+mt/strings.xml	plurals	settings_extensions_all	few	STR	Il-%d estensjonijiet kollha	
-values-b+mt/strings.xml	plurals	settings_extensions_all	many	STR	Il-%d estensjoni kollha	
-values-b+mt/strings.xml	plurals	settings_extensions_all	other	STR	Il-%d estensjoni kollha	
+values-b+mt/strings.xml	plurals	settings_extensions_all	one	STR	L-estensjonijiet kollha (%d)	
+values-b+mt/strings.xml	plurals	settings_extensions_all	two	STR	L-estensjonijiet kollha (%d)	
+values-b+mt/strings.xml	plurals	settings_extensions_all	few	STR	L-estensjonijiet kollha (%d)	
+values-b+mt/strings.xml	plurals	settings_extensions_all	many	STR	L-estensjonijiet kollha (%d)	
+values-b+mt/strings.xml	plurals	settings_extensions_all	other	STR	L-estensjonijiet kollha (%d)	
 values-b+mt/strings.xml	plurals	settings_repo_summary	one	STR	%1$d estensjoni · aġġornat %2$s	
 values-b+mt/strings.xml	plurals	settings_repo_summary	two	STR	%1$d estensjonijiet · aġġornat %2$s	
 values-b+mt/strings.xml	plurals	settings_repo_summary	few	STR	%1$d estensjonijiet · aġġornat %2$s	
@@ -29545,7 +29545,7 @@ values-b+my/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ရ
 values-b+my/strings.xml	plurals	search_state_no_suggestions_body	other	STR	မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။	
 values-b+my/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ရင်းမြစ်	
 values-b+my/strings.xml	plurals	settings_extension_scan_warnings	other	STR	စကင် သတိပေးချက် %d ခု	
-values-b+my/strings.xml	plurals	settings_extensions_all	other	STR	အဆက်အားလုံး %d ခု	
+values-b+my/strings.xml	plurals	settings_extensions_all	other	STR	အဆက်အားလုံး (%d)	
 values-b+my/strings.xml	plurals	settings_repo_summary	other	STR	အဆက် %1$d ခု · %2$s တွင် အပ်ဒိတ်	
 values-b+my/strings.xml	plurals	settings_reset_item_profiles	other	STR	ပရိုဖိုင် %d ခုနှင့် ၎င်းတို့၏ PIN	
 values-b+my/strings.xml	string	account	-	STR	အကောင့်	
@@ -30384,8 +30384,8 @@ values-b+ne/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d स्�
 values-b+ne/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d स्रोतहरू	
 values-b+ne/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d स्क्यान चेतावनी	
 values-b+ne/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d स्क्यान चेतावनी	
-values-b+ne/strings.xml	plurals	settings_extensions_all	one	STR	%d एक्सटेन्सन	
-values-b+ne/strings.xml	plurals	settings_extensions_all	other	STR	सबै %d एक्सटेन्सनहरू	
+values-b+ne/strings.xml	plurals	settings_extensions_all	one	STR	सबै एक्सटेन्सनहरू (%d)	
+values-b+ne/strings.xml	plurals	settings_extensions_all	other	STR	सबै एक्सटेन्सनहरू (%d)	
 values-b+ne/strings.xml	plurals	settings_repo_summary	one	STR	%1$d एक्सटेन्सन · %2$s अपडेट गरियो	
 values-b+ne/strings.xml	plurals	settings_repo_summary	other	STR	%1$d एक्सटेन्सन · %2$s अपडेट गरियो	
 values-b+ne/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d प्रोफाइल र यसको पिन	
@@ -30830,8 +30830,8 @@ values-b+nl/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d BRON
 values-b+nl/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d BRONNEN	
 values-b+nl/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d scanwaarschuwing	
 values-b+nl/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d scanwaarschuwingen	
-values-b+nl/strings.xml	plurals	settings_extensions_all	one	STR	%d uitbreiding	
-values-b+nl/strings.xml	plurals	settings_extensions_all	other	STR	Alle %d uitbreidingen	
+values-b+nl/strings.xml	plurals	settings_extensions_all	one	STR	Alle uitbreidingen (%d)	
+values-b+nl/strings.xml	plurals	settings_extensions_all	other	STR	Alle uitbreidingen (%d)	
 values-b+nl/strings.xml	plurals	settings_repo_summary	one	STR	%1$d uitbreiding · bijgewerkt %2$s	
 values-b+nl/strings.xml	plurals	settings_repo_summary	other	STR	%1$d uitbreidingen · bijgewerkt %2$s	
 values-b+nl/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profiel en de pincode	
@@ -31832,8 +31832,8 @@ values-b+nn/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KJELDE
 values-b+nn/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KJELDER	
 values-b+nn/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d skanningsåtvaring	
 values-b+nn/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d skanningsåtvaringar	
-values-b+nn/strings.xml	plurals	settings_extensions_all	one	STR	%d utviding	
-values-b+nn/strings.xml	plurals	settings_extensions_all	other	STR	Alle %d utvidingar	
+values-b+nn/strings.xml	plurals	settings_extensions_all	one	STR	Alle utvidingar (%d)	
+values-b+nn/strings.xml	plurals	settings_extensions_all	other	STR	Alle utvidingar (%d)	
 values-b+nn/strings.xml	plurals	settings_repo_summary	one	STR	%1$d utviding · oppdatert %2$s	
 values-b+nn/strings.xml	plurals	settings_repo_summary	other	STR	%1$d utvidingar · oppdatert %2$s	
 values-b+nn/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profil og PIN-en hennar	
@@ -32350,8 +32350,8 @@ values-b+no/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KILDE
 values-b+no/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KILDER	
 values-b+no/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d skanneadvarsel	
 values-b+no/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d skanneadvarsler	
-values-b+no/strings.xml	plurals	settings_extensions_all	one	STR	%d utvidelse	
-values-b+no/strings.xml	plurals	settings_extensions_all	other	STR	Alle %d utvidelser	
+values-b+no/strings.xml	plurals	settings_extensions_all	one	STR	Alle utvidelser (%d)	
+values-b+no/strings.xml	plurals	settings_extensions_all	other	STR	Alle utvidelser (%d)	
 values-b+no/strings.xml	plurals	settings_repo_summary	one	STR	%1$d utvidelse · oppdatert %2$s	
 values-b+no/strings.xml	plurals	settings_repo_summary	other	STR	%1$d utvidelser · oppdatert %2$s	
 values-b+no/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profil og PIN-en dens	
@@ -33181,8 +33181,8 @@ values-b+or/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ଉତ�
 values-b+or/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ଉତ୍ସ	
 values-b+or/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d ସ୍କାନ୍ ଚେତାବନୀ	
 values-b+or/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d ସ୍କାନ୍ ଚେତାବନୀ	
-values-b+or/strings.xml	plurals	settings_extensions_all	one	STR	%d ଏକ୍ସଟେନସନ	
-values-b+or/strings.xml	plurals	settings_extensions_all	other	STR	ସମସ୍ତ %d ଏକ୍ସଟେନସନ	
+values-b+or/strings.xml	plurals	settings_extensions_all	one	STR	ସମସ୍ତ ଏକ୍ସଟେନସନ (%d)	
+values-b+or/strings.xml	plurals	settings_extensions_all	other	STR	ସମସ୍ତ ଏକ୍ସଟେନସନ (%d)	
 values-b+or/strings.xml	plurals	settings_repo_summary	one	STR	%1$d ଏକ୍ସଟେନସନ · %2$s ଅଦ୍ୟତନ ହୋଇଛି	
 values-b+or/strings.xml	plurals	settings_repo_summary	other	STR	%1$d ଏକ୍ସଟେନସନ · %2$s ଅଦ୍ୟତନ ହୋଇଛି	
 values-b+or/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d ପ୍ରୋଫାଇଲ୍ ଏବଂ ଏହାର PIN	
@@ -33699,10 +33699,10 @@ values-b+pl/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d ostr
 values-b+pl/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d ostrzeżenia skanowania	
 values-b+pl/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d ostrzeżeń skanowania	
 values-b+pl/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d ostrzeżenia skanowania	
-values-b+pl/strings.xml	plurals	settings_extensions_all	one	STR	%d rozszerzenie	
-values-b+pl/strings.xml	plurals	settings_extensions_all	few	STR	Wszystkie %d rozszerzenia	
-values-b+pl/strings.xml	plurals	settings_extensions_all	many	STR	Wszystkie %d rozszerzeń	
-values-b+pl/strings.xml	plurals	settings_extensions_all	other	STR	Wszystkie %d rozszerzenia	
+values-b+pl/strings.xml	plurals	settings_extensions_all	one	STR	Wszystkie rozszerzenia (%d)	
+values-b+pl/strings.xml	plurals	settings_extensions_all	few	STR	Wszystkie rozszerzenia (%d)	
+values-b+pl/strings.xml	plurals	settings_extensions_all	many	STR	Wszystkie rozszerzenia (%d)	
+values-b+pl/strings.xml	plurals	settings_extensions_all	other	STR	Wszystkie rozszerzenia (%d)	
 values-b+pl/strings.xml	plurals	settings_repo_summary	one	STR	%1$d rozszerzenie · zaktualizowano %2$s	
 values-b+pl/strings.xml	plurals	settings_repo_summary	few	STR	%1$d rozszerzenia · zaktualizowano %2$s	
 values-b+pl/strings.xml	plurals	settings_repo_summary	many	STR	%1$d rozszerzeń · zaktualizowano %2$s	
@@ -34781,9 +34781,9 @@ values-b+pt+BR/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FON
 values-b+pt+BR/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d aviso da verificação	
 values-b+pt+BR/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d avisos da verificação	
 values-b+pt+BR/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d avisos da verificação	
-values-b+pt+BR/strings.xml	plurals	settings_extensions_all	one	STR	%d extensão	
-values-b+pt+BR/strings.xml	plurals	settings_extensions_all	many	STR	Todas as %d extensões	
-values-b+pt+BR/strings.xml	plurals	settings_extensions_all	other	STR	Todas as %d extensões	
+values-b+pt+BR/strings.xml	plurals	settings_extensions_all	one	STR	Todas as extensões (%d)	
+values-b+pt+BR/strings.xml	plurals	settings_extensions_all	many	STR	Todas as extensões (%d)	
+values-b+pt+BR/strings.xml	plurals	settings_extensions_all	other	STR	Todas as extensões (%d)	
 values-b+pt+BR/strings.xml	plurals	settings_repo_summary	one	STR	%1$d extensão · atualizado %2$s	
 values-b+pt+BR/strings.xml	plurals	settings_repo_summary	many	STR	%1$d extensões · atualizado %2$s	
 values-b+pt+BR/strings.xml	plurals	settings_repo_summary	other	STR	%1$d extensões · atualizado %2$s	
@@ -35857,9 +35857,9 @@ values-b+pt/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTES
 values-b+pt/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d aviso da análise	
 values-b+pt/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d avisos da análise	
 values-b+pt/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d avisos da análise	
-values-b+pt/strings.xml	plurals	settings_extensions_all	one	STR	%d extensão	
-values-b+pt/strings.xml	plurals	settings_extensions_all	many	STR	Todas as %d extensões	
-values-b+pt/strings.xml	plurals	settings_extensions_all	other	STR	Todas as %d extensões	
+values-b+pt/strings.xml	plurals	settings_extensions_all	one	STR	Todas as extensões (%d)	
+values-b+pt/strings.xml	plurals	settings_extensions_all	many	STR	Todas as extensões (%d)	
+values-b+pt/strings.xml	plurals	settings_extensions_all	other	STR	Todas as extensões (%d)	
 values-b+pt/strings.xml	plurals	settings_repo_summary	one	STR	%1$d extensão · atualizado %2$s	
 values-b+pt/strings.xml	plurals	settings_repo_summary	many	STR	%1$d extensões · atualizado %2$s	
 values-b+pt/strings.xml	plurals	settings_repo_summary	other	STR	%1$d extensões · atualizado %2$s	
@@ -36894,7 +36894,7 @@ values-b+qt/strings.xml	plurals	search_state_no_suggestions_action	other	STR	aao
 values-b+qt/strings.xml	plurals	search_state_no_suggestions_body	other	STR	uuh aagg oooh aaahh uug %d ooogg aah.	
 values-b+qt/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d OOGAH	
 values-b+qt/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d aahh aaahhhoo	
-values-b+qt/strings.xml	plurals	settings_extensions_all	other	STR	oog %d oooggguh	
+values-b+qt/strings.xml	plurals	settings_extensions_all	other	STR	oog oooggguh (%d)	
 values-b+qt/strings.xml	plurals	settings_repo_summary	other	STR	%1$d aaahhhoo · aaaghhh %2$s	
 values-b+qt/strings.xml	plurals	settings_reset_item_profiles	other	STR	%d oooggguh aah uuuhh PINs	
 values-b+qt/strings.xml	string	account	-	STR	aaaaggg	
@@ -37847,9 +37847,9 @@ values-b+ro/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d DE SUR
 values-b+ro/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d avertisment la scanare	
 values-b+ro/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d avertismente la scanare	
 values-b+ro/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d de avertismente la scanare	
-values-b+ro/strings.xml	plurals	settings_extensions_all	one	STR	%d extensie	
-values-b+ro/strings.xml	plurals	settings_extensions_all	few	STR	Toate cele %d extensii	
-values-b+ro/strings.xml	plurals	settings_extensions_all	other	STR	Toate cele %d de extensii	
+values-b+ro/strings.xml	plurals	settings_extensions_all	one	STR	Toate extensiile (%d)	
+values-b+ro/strings.xml	plurals	settings_extensions_all	few	STR	Toate extensiile (%d)	
+values-b+ro/strings.xml	plurals	settings_extensions_all	other	STR	Toate extensiile (%d)	
 values-b+ro/strings.xml	plurals	settings_repo_summary	one	STR	%1$d extensie · actualizat %2$s	
 values-b+ro/strings.xml	plurals	settings_repo_summary	few	STR	%1$d extensii · actualizat %2$s	
 values-b+ro/strings.xml	plurals	settings_repo_summary	other	STR	%1$d de extensii · actualizat %2$s	
@@ -38834,10 +38834,10 @@ values-b+ru/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d пр
 values-b+ru/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d предупреждения проверки	
 values-b+ru/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d предупреждений проверки	
 values-b+ru/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d предупреждения проверки	
-values-b+ru/strings.xml	plurals	settings_extensions_all	one	STR	%d дополнение	
-values-b+ru/strings.xml	plurals	settings_extensions_all	few	STR	Все %d дополнения	
-values-b+ru/strings.xml	plurals	settings_extensions_all	many	STR	Все %d дополнений	
-values-b+ru/strings.xml	plurals	settings_extensions_all	other	STR	Все %d дополнения	
+values-b+ru/strings.xml	plurals	settings_extensions_all	one	STR	Все дополнения (%d)	
+values-b+ru/strings.xml	plurals	settings_extensions_all	few	STR	Все дополнения (%d)	
+values-b+ru/strings.xml	plurals	settings_extensions_all	many	STR	Все дополнения (%d)	
+values-b+ru/strings.xml	plurals	settings_extensions_all	other	STR	Все дополнения (%d)	
 values-b+ru/strings.xml	plurals	settings_repo_summary	one	STR	%1$d дополнение · обновлено %2$s	
 values-b+ru/strings.xml	plurals	settings_repo_summary	few	STR	%1$d дополнения · обновлено %2$s	
 values-b+ru/strings.xml	plurals	settings_repo_summary	many	STR	%1$d дополнений · обновлено %2$s	
@@ -39921,10 +39921,10 @@ values-b+sk/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d upoz
 values-b+sk/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d upozornenia kontroly	
 values-b+sk/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d upozornenia kontroly	
 values-b+sk/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d upozornení kontroly	
-values-b+sk/strings.xml	plurals	settings_extensions_all	one	STR	%d rozšírenie	
-values-b+sk/strings.xml	plurals	settings_extensions_all	few	STR	Všetky %d rozšírenia	
-values-b+sk/strings.xml	plurals	settings_extensions_all	many	STR	Všetkých %d rozšírenia	
-values-b+sk/strings.xml	plurals	settings_extensions_all	other	STR	Všetkých %d rozšírení	
+values-b+sk/strings.xml	plurals	settings_extensions_all	one	STR	Všetky rozšírenia (%d)	
+values-b+sk/strings.xml	plurals	settings_extensions_all	few	STR	Všetky rozšírenia (%d)	
+values-b+sk/strings.xml	plurals	settings_extensions_all	many	STR	Všetky rozšírenia (%d)	
+values-b+sk/strings.xml	plurals	settings_extensions_all	other	STR	Všetky rozšírenia (%d)	
 values-b+sk/strings.xml	plurals	settings_repo_summary	one	STR	%1$d rozšírenie · aktualizované %2$s	
 values-b+sk/strings.xml	plurals	settings_repo_summary	few	STR	%1$d rozšírenia · aktualizované %2$s	
 values-b+sk/strings.xml	plurals	settings_repo_summary	many	STR	%1$d rozšírenia · aktualizované %2$s	
@@ -40720,8 +40720,8 @@ values-b+so/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d IL
 values-b+so/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ILOOD	
 values-b+so/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d digniin baaritaan	
 values-b+so/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d digniinood baaritaan	
-values-b+so/strings.xml	plurals	settings_extensions_all	one	STR	%d kordhiye	
-values-b+so/strings.xml	plurals	settings_extensions_all	other	STR	Dhammaan %d kordhiye	
+values-b+so/strings.xml	plurals	settings_extensions_all	one	STR	Dhammaan kordhiyeyaasha (%d)	
+values-b+so/strings.xml	plurals	settings_extensions_all	other	STR	Dhammaan kordhiyeyaasha (%d)	
 values-b+so/strings.xml	plurals	settings_repo_summary	one	STR	%1$d kordhiye · la cusboonaysiiyey %2$s	
 values-b+so/strings.xml	plurals	settings_repo_summary	other	STR	%1$d kordhiye · la cusboonaysiiyey %2$s	
 values-b+so/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d astaan iyo PIN-keeda	
@@ -41551,8 +41551,8 @@ values-b+sq/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d BURIM
 values-b+sq/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d BURIME	
 values-b+sq/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d paralajmërim skanimi	
 values-b+sq/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d paralajmërime skanimi	
-values-b+sq/strings.xml	plurals	settings_extensions_all	one	STR	%d shtesë	
-values-b+sq/strings.xml	plurals	settings_extensions_all	other	STR	Të gjitha %d shtesat	
+values-b+sq/strings.xml	plurals	settings_extensions_all	one	STR	Të gjitha shtesat (%d)	
+values-b+sq/strings.xml	plurals	settings_extensions_all	other	STR	Të gjitha shtesat (%d)	
 values-b+sq/strings.xml	plurals	settings_repo_summary	one	STR	%1$d shtesë · përditësuar %2$s	
 values-b+sq/strings.xml	plurals	settings_repo_summary	other	STR	%1$d shtesa · përditësuar %2$s	
 values-b+sq/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profil dhe PIN-i i tij	
@@ -42610,8 +42610,8 @@ values-b+sv/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KÄLLA
 values-b+sv/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KÄLLOR	
 values-b+sv/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d skanningsvarning	
 values-b+sv/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d skanningsvarningar	
-values-b+sv/strings.xml	plurals	settings_extensions_all	one	STR	%d tillägg	
-values-b+sv/strings.xml	plurals	settings_extensions_all	other	STR	Alla %d tillägg	
+values-b+sv/strings.xml	plurals	settings_extensions_all	one	STR	Alla tillägg (%d)	
+values-b+sv/strings.xml	plurals	settings_extensions_all	other	STR	Alla tillägg (%d)	
 values-b+sv/strings.xml	plurals	settings_repo_summary	one	STR	%1$d tillägg · uppdaterat %2$s	
 values-b+sv/strings.xml	plurals	settings_repo_summary	other	STR	%1$d tillägg · uppdaterade %2$s	
 values-b+sv/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profil och dess PIN-kod	
@@ -43669,8 +43669,8 @@ values-b+ta/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d மூ�
 values-b+ta/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d மூலங்கள்	
 values-b+ta/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d ஸ்கேன் எச்சரிக்கை	
 values-b+ta/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d ஸ்கேன் எச்சரிக்கைகள்	
-values-b+ta/strings.xml	plurals	settings_extensions_all	one	STR	%d நீட்டிப்பு	
-values-b+ta/strings.xml	plurals	settings_extensions_all	other	STR	அனைத்து %d நீட்டிப்புகளும்	
+values-b+ta/strings.xml	plurals	settings_extensions_all	one	STR	அனைத்து நீட்டிப்புகளும் (%d)	
+values-b+ta/strings.xml	plurals	settings_extensions_all	other	STR	அனைத்து நீட்டிப்புகளும் (%d)	
 values-b+ta/strings.xml	plurals	settings_repo_summary	one	STR	%1$d நீட்டிப்பு · %2$s புதுப்பிக்கப்பட்டது	
 values-b+ta/strings.xml	plurals	settings_repo_summary	other	STR	%1$d நீட்டிப்புகள் · %2$s புதுப்பிக்கப்பட்டது	
 values-b+ta/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d சுயவிவரமும் அதன் PIN உம்	
@@ -44722,8 +44722,8 @@ values-b+ti/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ምን�
 values-b+ti/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ምንጭታት	
 values-b+ti/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d መጠንቀቕታ ምርመራ	
 values-b+ti/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d መጠንቀቕታታት ምርመራ	
-values-b+ti/strings.xml	plurals	settings_extensions_all	one	STR	%d መስፋሕፋሕ	
-values-b+ti/strings.xml	plurals	settings_extensions_all	other	STR	ኩሎም %d መስፋሕፋሕቲ	
+values-b+ti/strings.xml	plurals	settings_extensions_all	one	STR	ኩሎም መስፋሕፋሕቲ (%d)	
+values-b+ti/strings.xml	plurals	settings_extensions_all	other	STR	ኩሎም መስፋሕፋሕቲ (%d)	
 values-b+ti/strings.xml	plurals	settings_repo_summary	one	STR	%1$d መስፋሕፋሕ · %2$s ተሓዲሱ	
 values-b+ti/strings.xml	plurals	settings_repo_summary	other	STR	%1$d መስፋሕፋሕቲ · %2$s ተሓዲሱ	
 values-b+ti/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d መግለጺን PIN ኡን	
@@ -45045,8 +45045,8 @@ values-b+tl/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d SOURCE
 values-b+tl/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SOURCES	
 values-b+tl/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d babala ng pag-scan	
 values-b+tl/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d na babala ng pag-scan	
-values-b+tl/strings.xml	plurals	settings_extensions_all	one	STR	%d extension	
-values-b+tl/strings.xml	plurals	settings_extensions_all	other	STR	Lahat ng %d extension	
+values-b+tl/strings.xml	plurals	settings_extensions_all	one	STR	Lahat ng extension (%d)	
+values-b+tl/strings.xml	plurals	settings_extensions_all	other	STR	Lahat ng extension (%d)	
 values-b+tl/strings.xml	plurals	settings_repo_summary	one	STR	%1$d extension · na-update %2$s	
 values-b+tl/strings.xml	plurals	settings_repo_summary	other	STR	%1$d na extension · na-update %2$s	
 values-b+tl/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profile at ang PIN nito	
@@ -45621,8 +45621,8 @@ values-b+tr/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KAYNAK
 values-b+tr/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KAYNAK	
 values-b+tr/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d tarama uyarısı	
 values-b+tr/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d tarama uyarısı	
-values-b+tr/strings.xml	plurals	settings_extensions_all	one	STR	%d eklenti	
-values-b+tr/strings.xml	plurals	settings_extensions_all	other	STR	Tüm %d eklenti	
+values-b+tr/strings.xml	plurals	settings_extensions_all	one	STR	Tüm eklentiler (%d)	
+values-b+tr/strings.xml	plurals	settings_extensions_all	other	STR	Tüm eklentiler (%d)	
 values-b+tr/strings.xml	plurals	settings_repo_summary	one	STR	%1$d eklenti · %2$s güncellendi	
 values-b+tr/strings.xml	plurals	settings_repo_summary	other	STR	%1$d eklenti · %2$s güncellendi	
 values-b+tr/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d profil ve PIN’i	
@@ -46714,10 +46714,10 @@ values-b+uk/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d по
 values-b+uk/strings.xml	plurals	settings_extension_scan_warnings	few	STR	%d попередження сканування	
 values-b+uk/strings.xml	plurals	settings_extension_scan_warnings	many	STR	%d попереджень сканування	
 values-b+uk/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d попередження сканування	
-values-b+uk/strings.xml	plurals	settings_extensions_all	one	STR	%d розширення	
-values-b+uk/strings.xml	plurals	settings_extensions_all	few	STR	Усі %d розширення	
-values-b+uk/strings.xml	plurals	settings_extensions_all	many	STR	Усі %d розширень	
-values-b+uk/strings.xml	plurals	settings_extensions_all	other	STR	Усі %d розширення	
+values-b+uk/strings.xml	plurals	settings_extensions_all	one	STR	Усі розширення (%d)	
+values-b+uk/strings.xml	plurals	settings_extensions_all	few	STR	Усі розширення (%d)	
+values-b+uk/strings.xml	plurals	settings_extensions_all	many	STR	Усі розширення (%d)	
+values-b+uk/strings.xml	plurals	settings_extensions_all	other	STR	Усі розширення (%d)	
 values-b+uk/strings.xml	plurals	settings_repo_summary	one	STR	%1$d розширення · оновлено %2$s	
 values-b+uk/strings.xml	plurals	settings_repo_summary	few	STR	%1$d розширення · оновлено %2$s	
 values-b+uk/strings.xml	plurals	settings_repo_summary	many	STR	%1$d розширень · оновлено %2$s	
@@ -47773,8 +47773,8 @@ values-b+ur/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ذریع
 values-b+ur/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ذرائع	
 values-b+ur/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d اسکین انتباہ	
 values-b+ur/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d اسکین انتباہات	
-values-b+ur/strings.xml	plurals	settings_extensions_all	one	STR	%d ایکسٹینشن	
-values-b+ur/strings.xml	plurals	settings_extensions_all	other	STR	تمام %d ایکسٹینشنز	
+values-b+ur/strings.xml	plurals	settings_extensions_all	one	STR	تمام ایکسٹینشنز (%d)	
+values-b+ur/strings.xml	plurals	settings_extensions_all	other	STR	تمام ایکسٹینشنز (%d)	
 values-b+ur/strings.xml	plurals	settings_repo_summary	one	STR	%1$d ایکسٹینشن · %2$s اپ ڈیٹ ہوئی	
 values-b+ur/strings.xml	plurals	settings_repo_summary	other	STR	%1$d ایکسٹینشنز · %2$s اپ ڈیٹ ہوئیں	
 values-b+ur/strings.xml	plurals	settings_reset_item_profiles	one	STR	%d پروفائل اور اس کا پن	
@@ -48682,7 +48682,7 @@ values-b+vi/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Tì
 values-b+vi/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.	
 values-b+vi/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d NGUỒN	
 values-b+vi/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d cảnh báo khi quét	
-values-b+vi/strings.xml	plurals	settings_extensions_all	other	STR	Tất cả %d tiện ích mở rộng	
+values-b+vi/strings.xml	plurals	settings_extensions_all	other	STR	Tất cả tiện ích mở rộng (%d)	
 values-b+vi/strings.xml	plurals	settings_repo_summary	other	STR	%1$d tiện ích mở rộng · cập nhật %2$s	
 values-b+vi/strings.xml	plurals	settings_reset_item_profiles	other	STR	%d hồ sơ và PIN của chúng	
 values-b+vi/strings.xml	string	account	-	STR	tài khoản	
@@ -49720,7 +49720,7 @@ values-b+zh+TW/strings.xml	plurals	search_state_no_suggestions_action	other	STR	
 values-b+zh+TW/strings.xml	plurals	search_state_no_suggestions_body	other	STR	按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。	
 values-b+zh+TW/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d 來源	
 values-b+zh+TW/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d 個掃描警告	
-values-b+zh+TW/strings.xml	plurals	settings_extensions_all	other	STR	全部 %d 個擴充功能	
+values-b+zh+TW/strings.xml	plurals	settings_extensions_all	other	STR	全部擴充功能 (%d)	
 values-b+zh+TW/strings.xml	plurals	settings_repo_summary	other	STR	%1$d 個擴充功能 · 更新於 %2$s	
 values-b+zh+TW/strings.xml	plurals	settings_reset_item_profiles	other	STR	%d 個個人檔案及其 PIN	
 values-b+zh+TW/strings.xml	string	account	-	STR	帳號	
@@ -50754,7 +50754,7 @@ values-b+zh/strings.xml	plurals	search_state_no_suggestions_action	other	STR	搜
 values-b+zh/strings.xml	plurals	search_state_no_suggestions_body	other	STR	按键盘上的搜索键，仍然搜索全部 %d 个来源。	
 values-b+zh/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d 来源	
 values-b+zh/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d 个扫描警告	
-values-b+zh/strings.xml	plurals	settings_extensions_all	other	STR	全部 %d 个扩展	
+values-b+zh/strings.xml	plurals	settings_extensions_all	other	STR	全部扩展 (%d)	
 values-b+zh/strings.xml	plurals	settings_repo_summary	other	STR	%1$d 个扩展 · 更新于 %2$s	
 values-b+zh/strings.xml	plurals	settings_reset_item_profiles	other	STR	%d 个个人资料及其 PIN	
 values-b+zh/strings.xml	string	account	-	STR	账户	
@@ -51932,7 +51932,7 @@ values/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d SOURCE
 values/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SOURCES	
 values/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d scan warning	
 values/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d scan warnings	
-values/strings.xml	plurals	settings_extensions_all	one	STR	%d extension	
+values/strings.xml	plurals	settings_extensions_all	one	STR	All %d extension	
 values/strings.xml	plurals	settings_extensions_all	other	STR	All %d extensions	
 values/strings.xml	plurals	settings_repo_summary	one	STR	%1$d extension · updated %2$s	
 values/strings.xml	plurals	settings_repo_summary	other	STR	%1$d extensions · updated %2$s	

@@ -35,7 +35,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ഉറവിടം</item><item quantity="other">%d ഉറവിടങ്ങൾ</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d വിഭാഗം</item><item quantity="other">%d വിഭാഗങ്ങൾ</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d സ്കാൻ മുന്നറിയിപ്പ്</item><item quantity="other">%d സ്കാൻ മുന്നറിയിപ്പുകൾ</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d വിപുലീകരണം</item><item quantity="other">എല്ലാ %d വിപുലീകരണങ്ങളും</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">എല്ലാ വിപുലീകരണങ്ങളും (%d)</item><item quantity="other">എല്ലാ വിപുലീകരണങ്ങളും (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d വിപുലീകരണം · %2$s അപ്ഡേറ്റ് ചെയ്തു</item><item quantity="other">%1$d വിപുലീകരണങ്ങൾ · %2$s അപ്ഡേറ്റ് ചെയ്തു</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d പ്രൊഫൈലും അതിന്റെ പിന്നും</item><item quantity="other">%d പ്രൊഫൈലുകളും അവയുടെ പിന്നുകളും</item></plurals>
 <string name="action_add_to_bookmarks">വാച്ച് സ്റ്റാറ്റസ് സജ്ജീകരിക്കുക</string>

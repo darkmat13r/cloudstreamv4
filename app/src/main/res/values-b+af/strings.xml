@@ -15,7 +15,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Druk die sleutelbord se soeksleutel om tog %d bron te deursoek."</item><item quantity="other">"Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d BRON"</item><item quantity="other">"%d BRONNE"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d skanderingwaarskuwing"</item><item quantity="other">"%d skanderingwaarskuwings"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">"%d uitbreiding"</item><item quantity="other">"Al %d uitbreidings"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Alle uitbreidings (%d)"</item><item quantity="other">"Alle uitbreidings (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d uitbreiding · bygewerk %2$s"</item><item quantity="other">"%1$d uitbreidings · bygewerk %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profiel en sy PIN"</item><item quantity="other">"%d profiele en hul PIN's"</item></plurals>
 <string name="account_add_profile">"Voeg profiel by"</string>

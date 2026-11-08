@@ -35,7 +35,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d MƏNBƏ</item><item quantity="other">%d MƏNBƏ</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d bölmə</item><item quantity="other">%d bölmə</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d yoxlama xəbərdarlığı</item><item quantity="other">%d yoxlama xəbərdarlığı</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d uzantı</item><item quantity="other">Bütün %d uzantı</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Bütün uzantılar (%d)</item><item quantity="other">Bütün uzantılar (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d uzantı · yenilənib %2$s</item><item quantity="other">%1$d uzantı · yenilənib %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d profil və onun PIN-i</item><item quantity="other">%d profil və onların PIN-ləri</item></plurals>
 <string name="advanced_search">Təkmilləşdirilmiş Axtarış</string>

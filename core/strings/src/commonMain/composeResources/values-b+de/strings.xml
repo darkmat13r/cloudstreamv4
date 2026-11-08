@@ -38,7 +38,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Drücke die Suchtaste der Tastatur, um trotzdem %d Quelle zu durchsuchen.</item><item quantity="other">Drücke die Suchtaste der Tastatur, um trotzdem alle %d Quellen zu durchsuchen.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d QUELLE</item><item quantity="other">%d QUELLEN</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d Prüfwarnung</item><item quantity="other">%d Prüfwarnungen</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d Erweiterung</item><item quantity="other">Alle %d Erweiterungen</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Alle Erweiterungen (%d)</item><item quantity="other">Alle Erweiterungen (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d Erweiterung · aktualisiert %2$s</item><item quantity="other">%1$d Erweiterungen · aktualisiert %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d Profil und seine PIN</item><item quantity="other">%d Profile und ihre PINs</item></plurals>
 <string name="account">Account</string>

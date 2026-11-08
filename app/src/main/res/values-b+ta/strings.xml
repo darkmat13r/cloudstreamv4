@@ -18,7 +18,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"இருந்தாலும் %d மூலத்தில் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்."</item><item quantity="other">"இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d மூலம்"</item><item quantity="other">"%d மூலங்கள்"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d ஸ்கேன் எச்சரிக்கை"</item><item quantity="other">"%d ஸ்கேன் எச்சரிக்கைகள்"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">"%d நீட்டிப்பு"</item><item quantity="other">"அனைத்து %d நீட்டிப்புகளும்"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"அனைத்து நீட்டிப்புகளும் (%d)"</item><item quantity="other">"அனைத்து நீட்டிப்புகளும் (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d நீட்டிப்பு · %2$s புதுப்பிக்கப்பட்டது"</item><item quantity="other">"%1$d நீட்டிப்புகள் · %2$s புதுப்பிக்கப்பட்டது"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d சுயவிவரமும் அதன் PIN உம்"</item><item quantity="other">"%d சுயவிவரங்களும் அவற்றின் PIN களும்"</item></plurals>
 <string name="account">"கணக்கு"</string>

@@ -15,7 +15,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d ရင်းမြစ်"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">"စကင် သတိပေးချက် %d ခု"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="other">"အဆက်အားလုံး %d ခု"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">"အဆက်အားလုံး (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="other">"အဆက် %1$d ခု · %2$s တွင် အပ်ဒိတ်"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="other">"ပရိုဖိုင် %d ခုနှင့် ၎င်းတို့၏ PIN"</item></plurals>
 <string name="account">"အကောင့်"</string>

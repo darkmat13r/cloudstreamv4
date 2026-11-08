@@ -35,7 +35,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d SUMBER</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">%d bahagian</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">%d amaran imbasan</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="other">Semua %d tambahan</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">Semua tambahan (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="other">%1$d tambahan · dikemas kini %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="other">%d profil dan PIN masing-masing</item></plurals>
 <string name="account">akaun</string>

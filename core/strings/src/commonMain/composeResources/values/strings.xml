@@ -44,7 +44,7 @@
 <plurals name="search_tv_sources_count"><item quantity="one">%1$d / %2$d</item><item quantity="other">%1$d / %2$d</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d SOURCE</item><item quantity="other">%d SOURCES</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d scan warning</item><item quantity="other">%d scan warnings</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d extension</item><item quantity="other">All %d extensions</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">All %d extension</item><item quantity="other">All %d extensions</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d extension · updated %2$s</item><item quantity="other">%1$d extensions · updated %2$s</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d profile and its PIN</item><item quantity="other">%d profiles and their PINs</item></plurals>
 <string name="account">account</string>

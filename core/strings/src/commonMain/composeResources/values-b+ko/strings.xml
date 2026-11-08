@@ -37,7 +37,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d 소스</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">섹션 %d개</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">검사 경고 %d개</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="other">확장 기능 %d개 모두</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">모든 확장 기능 (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="other">확장 기능 %1$d개 · %2$s 업데이트됨</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="other">프로필 %d개 및 PIN</item></plurals>
 <string name="account">계정</string>

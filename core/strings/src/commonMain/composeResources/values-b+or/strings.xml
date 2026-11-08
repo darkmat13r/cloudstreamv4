@@ -35,7 +35,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ଉତ୍ସ</item><item quantity="other">%d ଉତ୍ସ</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d ବିଭାଗ</item><item quantity="other">%d ବିଭାଗ</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d ସ୍କାନ୍ ଚେତାବନୀ</item><item quantity="other">%d ସ୍କାନ୍ ଚେତାବନୀ</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d ଏକ୍ସଟେନସନ</item><item quantity="other">ସମସ୍ତ %d ଏକ୍ସଟେନସନ</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">ସମସ୍ତ ଏକ୍ସଟେନସନ (%d)</item><item quantity="other">ସମସ୍ତ ଏକ୍ସଟେନସନ (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d ଏକ୍ସଟେନସନ · %2$s ଅଦ୍ୟତନ ହୋଇଛି</item><item quantity="other">%1$d ଏକ୍ସଟେନସନ · %2$s ଅଦ୍ୟତନ ହୋଇଛି</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d ପ୍ରୋଫାଇଲ୍ ଏବଂ ଏହାର PIN</item><item quantity="other">%d ପ୍ରୋଫାଇଲ୍ ଏବଂ ସେଗୁଡ଼ିକର PIN</item></plurals>
 <string name="action_default">ଡିଫଲ୍ଟ</string>

@@ -35,7 +35,7 @@
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d स्रोत</item><item quantity="other">%d स्रोत</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d सेक्शन</item><item quantity="other">%d सेक्शन</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d स्कैन चेतावनी</item><item quantity="other">%d स्कैन चेतावनियाँ</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">%d एक्सटेंशन</item><item quantity="other">सभी %d एक्सटेंशन</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">सभी एक्सटेंशन (%d)</item><item quantity="other">सभी एक्सटेंशन (%d)</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">%1$d एक्सटेंशन · %2$s अपडेट किया गया</item><item quantity="other">%1$d एक्सटेंशन · %2$s अपडेट किए गए</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">%d प्रोफ़ाइल और उसका पिन</item><item quantity="other">%d प्रोफ़ाइल और उनके पिन</item></plurals>
 <string name="account">खाता</string>

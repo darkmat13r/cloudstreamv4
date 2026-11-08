@@ -18,7 +18,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Tryck på tangentbordets söktangent för att söka i %d källa ändå."</item><item quantity="other">"Tryck på tangentbordets söktangent för att söka i alla %d källor ändå."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KÄLLA"</item><item quantity="other">"%d KÄLLOR"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d skanningsvarning"</item><item quantity="other">"%d skanningsvarningar"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="one">"%d tillägg"</item><item quantity="other">"Alla %d tillägg"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Alla tillägg (%d)"</item><item quantity="other">"Alla tillägg (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="one">"%1$d tillägg · uppdaterat %2$s"</item><item quantity="other">"%1$d tillägg · uppdaterade %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil och dess PIN-kod"</item><item quantity="other">"%d profiler och deras PIN-koder"</item></plurals>
 <string name="account">"konto"</string>

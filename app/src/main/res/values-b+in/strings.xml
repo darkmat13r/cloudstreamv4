@@ -18,7 +18,7 @@
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d SUMBER"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">"%d peringatan pemindaian"</item></plurals>
-<plurals name="settings_extensions_all"><item quantity="other">"Semua %d ekstensi"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">"Semua ekstensi (%d)"</item></plurals>
 <plurals name="settings_repo_summary"><item quantity="other">"%1$d ekstensi · diperbarui %2$s"</item></plurals>
 <plurals name="settings_reset_item_profiles"><item quantity="other">"%d profil beserta PIN-nya"</item></plurals>
 <string name="account">"akun"</string>
