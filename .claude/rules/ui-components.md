@@ -190,6 +190,9 @@ labels always visible.
   `docs/tasks/i18n.md` records that, and the key goes into its "Waiting on a native speaker" table.
 - One meaning, one key. Reuse an existing key only when the meaning is the same; a reworded
   string is a new key.
+- A plural's forms agree with the number; they never change wording. In many locales `one`
+  also covers 21, 31… (`settings_extensions_all`, `I18N-20`). A form may drop its `%d` only
+  where the language says the number itself (the Arabic dual) and the strings guards accept it.
 
 ## Previews and screenshots
 
