@@ -17,6 +17,10 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d மூலத்தில் தேடு"</item><item quantity="other">"அனைத்து %d மூலங்களிலும் தேடு"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"இருந்தாலும் %d மூலத்தில் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்."</item><item quantity="other">"இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d மூலம்"</item><item quantity="other">"%d மூலங்கள்"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d ஸ்கேன் எச்சரிக்கை"</item><item quantity="other">"%d ஸ்கேன் எச்சரிக்கைகள்"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"%d நீட்டிப்பு"</item><item quantity="other">"அனைத்து %d நீட்டிப்புகளும்"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d நீட்டிப்பு · %2$s புதுப்பிக்கப்பட்டது"</item><item quantity="other">"%1$d நீட்டிப்புகள் · %2$s புதுப்பிக்கப்பட்டது"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d சுயவிவரமும் அதன் PIN உம்"</item><item quantity="other">"%d சுயவிவரங்களும் அவற்றின் PIN களும்"</item></plurals>
 <string name="account">"கணக்கு"</string>
 <string name="account_add_profile">"சுயவிவரம் சேர்"</string>
 <string name="account_manage_profiles">"சுயவிவரங்களை நிர்வகி"</string>
@@ -709,7 +713,130 @@
 <string name="select_an_account">"ஒரு கணக்கைத் தேர்ந்தெடுக்கவும்"</string>
 <string name="select_library">"நூலகத்தைத் தேர்ந்தெடுக்கவும்"</string>
 <string name="set_default">"இயல்புநிலையை அமைக்கவும்"</string>
+<string name="settings_adult_content">"வயது வந்தோர் உள்ளடக்கம்"</string>
+<string name="settings_adult_content_body">"நீட்டிப்பு ஆதரிக்கும் இடங்களில் மட்டும். மறுதொடக்கத்திற்குப் பிறகு."</string>
+<string name="settings_anime_audio">"அனிமே ஒலி"</string>
+<string name="settings_anime_audio_both">"டப் மற்றும் சப்"</string>
+<string name="settings_at_launch">"தொடங்கும்போது"</string>
+<string name="settings_back_up">"காப்புப்பிரதி எடு"</string>
+<string name="settings_back_up_now">"இப்போது காப்புப்பிரதி எடு"</string>
+<string name="settings_backup_automatically">"தானாக"</string>
+<string name="settings_backup_folder">"காப்புப்பிரதி கோப்புறை"</string>
+<string name="settings_change">"மாற்று"</string>
+<string name="settings_choose">"தேர்வுசெய்"</string>
+<string name="settings_choose_another">"வேறொன்றைத் தேர்வுசெய்"</string>
+<string name="settings_clear">"அழி"</string>
+<string name="settings_clear_cache">"தற்காலிகச் சேமிப்பை அழி"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"வீடியோ %1$s · படங்கள் %2$s"</string>
+<string name="settings_color_white">"வெள்ளை"</string>
+<string name="settings_color_yellow">"மஞ்சள்"</string>
+<string name="settings_connections_per_download">"ஒரு பதிவிறக்கத்திற்கான இணைப்புகள்"</string>
+<string name="settings_connections_per_download_body">"மூலம் அனுமதித்தால், அதிக இணைப்புகள் வேகமாக இருக்கலாம்."</string>
+<string name="settings_diagnostics">"கண்டறிதல்"</string>
+<string name="settings_disk_cache">"வட்டு தற்காலிகச் சேமிப்பு"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"நீட்டிப்புகள், படங்கள் மற்றும் வசனங்களுக்கு. வீடியோ ஸ்ட்ரீம்கள் உங்கள் Mac இன் DNS ஐப் பயன்படுத்தும்."</string>
+<string name="settings_download_folder">"பதிவிறக்கக் கோப்புறை"</string>
+<string name="settings_downloads_at_once">"ஒரே நேரத்தில் பதிவிறக்கங்கள்"</string>
+<string name="settings_downloads_at_once_body">"எத்தனை தலைப்புகள் ஒன்றாகப் பதிவிறக்கப்படும்."</string>
+<string name="settings_downloads_wait">"கோப்புறை திரும்பும் வரை அல்லது வேறொன்று தேர்வுசெய்யப்படும் வரை புதிய பதிவிறக்கங்கள் காத்திருக்கும்."</string>
+<string name="settings_extension_languages">"மொழிகள்"</string>
+<string name="settings_extension_review">"மதிப்பாய்வு செய்"</string>
+<string name="settings_extensions_auto_install">"என் களஞ்சியங்களிலிருந்து புதியவற்றை நிறுவு"</string>
+<string name="settings_extensions_auto_install_body">"ஒவ்வொன்றும் இயங்கும் முன் ஸ்கேன் செய்யப்படும்."</string>
+<string name="settings_extensions_auto_update">"நீட்டிப்புகளைத் தானாகப் புதுப்பி"</string>
+<string name="settings_extensions_auto_update_body">"ஒவ்வொரு புதுப்பிப்பும் இயங்கும் முன் ஸ்கேன் செய்யப்படும்."</string>
+<string name="settings_extensions_installed" formatted="true">"நிறுவப்பட்டவை · %d"</string>
+<string name="settings_filler_episodes">"நிரப்பி அத்தியாயங்கள்"</string>
+<string name="settings_filler_episodes_body">"அனிமேக்கு, மூலம் அவற்றைக் குறிக்கும் இடங்களில்."</string>
+<string name="settings_folder">"கோப்புறை"</string>
+<string name="settings_folder_missing" formatted="true">"%s காணவில்லை. அதன் வட்டு இணைக்கப்படாமல் இருக்கலாம்."</string>
+<string name="settings_help_community">"உதவி மற்றும் சமூகம்"</string>
+<string name="settings_help_community_body">"GitHub, Discord மற்றும் விக்கி உதவி மெனுவில் உள்ளன."</string>
+<string name="settings_hide_search_quality">"தேடல் முடிவுகளில் தரத்தை மறை"</string>
+<string name="settings_home_search">"முகப்பு மற்றும் தேடல்"</string>
 <string name="settings_info">"செய்தி"</string>
+<string name="settings_last_backup" formatted="true">"கடைசி காப்புப்பிரதி: %s"</string>
+<string name="settings_logs">"பதிவுகள்"</string>
+<string name="settings_logs_mac_body">"இந்த Mac இல் 7 நாட்கள் வைக்கப்படும். எங்கும் அனுப்பப்படாது."</string>
+<string name="settings_logs_phone_body">"இந்தத் தொலைபேசியில் 7 நாட்கள் வைக்கப்படும். எங்கும் அனுப்பப்படாது."</string>
+<string name="settings_network_buffer">"நெட்வொர்க் இடையகம்"</string>
+<string name="settings_offline_repos" formatted="true">"களஞ்சியங்களைச் சரிபார்க்க முடியவில்லை. இந்தப் பட்டியல்கள் %s இலிருந்து."</string>
+<string name="settings_pane_accounts_privacy">"கணக்குகள் மற்றும் தனியுரிமை"</string>
+<string name="settings_pane_advanced">"மேம்பட்டவை"</string>
+<string name="settings_pane_appearance">"தோற்றம்"</string>
+<string name="settings_pane_network">"நெட்வொர்க்"</string>
+<string name="settings_pane_playback">"இயக்குதல்"</string>
+<string name="settings_play_next">"அடுத்த அத்தியாயத்தை இயக்கு"</string>
+<string name="settings_play_next_body">"அத்தியாயத்தின் முடிவில் 10 s கவுண்ட்டவுன்."</string>
+<string name="settings_playing">"இயக்கும்போது"</string>
+<string name="settings_poster_badges">"போஸ்டர்களில் பேட்ஜ்கள்"</string>
+<string name="settings_posters">"போஸ்டர்கள்"</string>
+<string name="settings_profile_no_pin">"PIN இல்லை"</string>
+<string name="settings_profile_this">"இந்தச் சுயவிவரம்"</string>
+<string name="settings_random_button_body">"முகப்பு மற்றும் நூலகத்தில்."</string>
+<string name="settings_read">"படி"</string>
+<string name="settings_remove">"அகற்று"</string>
+<string name="settings_repo_unreachable" formatted="true">"அணுக முடியவில்லை. இந்தப் பட்டியல் %s முன்பு உள்ளது."</string>
+<string name="settings_repositories">"களஞ்சியங்கள்"</string>
+<string name="settings_reset_app">"CloudStream ஐ மீட்டமை"</string>
+<string name="settings_reset_app_body">"இந்த Mac இல் உள்ள அமைப்புகள், சுயவிவரங்கள் மற்றும் நூலகத்தை அழிக்கும்."</string>
+<string name="settings_reset_app_phone_body">"அமைப்புகள், சுயவிவரங்கள் மற்றும் நூலகத்தை அழிக்கும்."</string>
+<string name="settings_reset_confirm_title">"CloudStream ஐ மீட்டமைக்கவா?"</string>
+<string name="settings_reset_erases_mac">"இது இந்த Mac இலிருந்து அழிக்கும்:"</string>
+<string name="settings_reset_erases_phone">"இது இந்தத் தொலைபேசியிலிருந்து அழிக்கும்:"</string>
+<string name="settings_reset_item_library">"நூலகம், பார்த்த முன்னேற்றம் மற்றும் வரலாறு"</string>
+<string name="settings_reset_item_search">"தேடல் வரலாறு"</string>
+<string name="settings_reset_item_settings">"அமைப்புகள்"</string>
+<string name="settings_reset_item_signins">"ஒத்திசைவு மற்றும் வசனச் சேவைகளுக்கான உள்நுழைவுகள்"</string>
+<string name="settings_reset_kept">"வைத்திருக்கப்படும்: நீட்டிப்புகள், பதிவிறக்கிய கோப்புகள் மற்றும் காப்புப்பிரதிகள்."</string>
+<string name="settings_restore">"மீட்டெடு"</string>
+<string name="settings_restore_failed">"மீட்டெடுக்க முடியவில்லை"</string>
+<string name="settings_restore_failed_body">"அந்தக் கோப்பு CloudStream காப்புப்பிரதி அல்ல. எதுவும் மாற்றப்படவில்லை."</string>
+<string name="settings_restoring" formatted="true">"%s மீட்டெடுக்கப்படுகிறது"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %3$d இல் %2$d"</string>
+<string name="settings_run_test">"சோதனையை இயக்கு"</string>
+<string name="settings_search_hint">"அமைப்புகளில் தேடு"</string>
+<string name="settings_search_no_results" formatted="true">"“%s” க்கு முடிவுகள் இல்லை"</string>
+<string name="settings_search_no_results_body">"வேறு சொல்லை முயலவும்."</string>
+<string name="settings_seek_amount">"தாவும் அளவு"</string>
+<string name="settings_setup_again">"அமைவை மீண்டும் இயக்கு"</string>
+<string name="settings_setup_again_body">"மொழி, நீட்டிப்புகள் மற்றும் தளவமைப்பு, தொடக்கத்திலிருந்து."</string>
+<string name="settings_setup_run">"அமைவை இயக்கு"</string>
+<string name="settings_sign_in">"உள்நுழை"</string>
+<string name="settings_skip_intro">"அறிமுகத்தைத் தவிர் வசதியை வழங்கு"</string>
+<string name="settings_skip_intro_body">"மூலம் தொடக்கத்தையோ கிரெடிட்களையோ குறிக்கும் இடங்களில்."</string>
+<string name="settings_skip_profile_choice">"சுயவிவரத் தேர்வைத் தவிர்"</string>
+<string name="settings_skip_profile_choice_body">"கடைசியாகப் பயன்படுத்திய சுயவிவரத்தைத் திறக்கும்."</string>
+<string name="settings_source_order">"மூல வரிசை"</string>
+<string name="settings_source_order_body">"பிளேயர் முதலில் முயலும் மூலங்கள்."</string>
+<string name="settings_speed">"வேகம்"</string>
+<string name="settings_subtitle_background">"பின்னணி"</string>
+<string name="settings_subtitle_edge">"விளிம்பு"</string>
+<string name="settings_subtitle_font_system">"சிஸ்டம்"</string>
+<string name="settings_subtitle_language">"விருப்ப மொழி"</string>
+<string name="settings_subtitle_language_body">"தலைப்பில் இருக்கும்போது தானாகத் தேர்வுசெய்யப்படும்."</string>
+<string name="settings_subtitle_preview">"முன்னோட்டம்"</string>
+<string name="settings_subtitle_services">"வசனச் சேவைகள்"</string>
+<string name="settings_subtitle_size">"அளவு"</string>
+<string name="settings_subtitle_size_large">"பெரியது"</string>
+<string name="settings_subtitle_size_medium">"நடுத்தரம்"</string>
+<string name="settings_subtitle_size_small">"சிறியது"</string>
+<string name="settings_subtitle_text_color">"உரை நிறம்"</string>
+<string name="settings_suggestions_while_typing">"தட்டச்சு செய்யும்போது பரிந்துரைகள்"</string>
+<string name="settings_sync_for" formatted="true">"%s க்கான ஒத்திசைவு"</string>
+<string name="settings_sync_per_profile">"ஒவ்வொரு சுயவிவரமும் தனியாக உள்நுழையும்."</string>
+<string name="settings_test_all_extensions">"எல்லா நீட்டிப்புகளையும் சோதி"</string>
+<string name="settings_test_all_extensions_body">"இயக்கப்பட்ட ஒவ்வொரு நீட்டிப்புடனும் தேடும். டெவலப்பர்களுக்கு."</string>
+<string name="settings_title_pages">"தலைப்புப் பக்கங்கள்"</string>
+<string name="settings_title_under_poster">"போஸ்டரின் கீழ் தலைப்பு"</string>
+<string name="settings_trailers">"டிரெய்லர்கள்"</string>
+<string name="settings_updates">"புதுப்பிப்புகள்"</string>
+<string name="settings_updates_at_launch">"தொடங்கும்போது புதுப்பிப்புகளைச் சரிபார்"</string>
+<string name="settings_updates_at_launch_body">"CloudStream திறக்கும்போது புதிய பதிப்பைத் தேடும்."</string>
+<string name="settings_updates_check_now">"இப்போது சரிபார்"</string>
+<string name="settings_updates_current" formatted="true">"புதுப்பித்த நிலையில் · %s சரிபார்க்கப்பட்டது"</string>
+<string name="settings_watch_progress_body">"நீங்கள் நிறுத்திய இடத்தை, தொடர்ந்து பார்ப்பதற்காகச் சேமிக்கும்."</string>
 <string name="setup_done">"முடிந்தது"</string>
 <string name="setup_extensions_subtext">"நீங்கள் பயன்படுத்த விரும்பும் தளங்களின் பட்டியலைப் பதிவிறக்கவும்"</string>
 <string name="show">"காட்டு"</string>

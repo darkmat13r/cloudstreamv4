@@ -16,6 +16,10 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Търсене в %d източник"</item><item quantity="other">"Търсене във всички %d източника"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това в %d източник."</item><item quantity="other">"Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това във всички %d източника."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ИЗТОЧНИК"</item><item quantity="other">"%d ИЗТОЧНИКА"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d предупреждение от сканиране"</item><item quantity="other">"%d предупреждения от сканиране"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"%d разширение"</item><item quantity="other">"Всички %d разширения"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d разширение · обновено %2$s"</item><item quantity="other">"%1$d разширения · обновено %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d профил и неговият ПИН"</item><item quantity="other">"%d профила и техните ПИН кодове"</item></plurals>
 <string name="account">"Акаунт"</string>
 <string name="account_add_profile">"Добави профил"</string>
 <string name="account_manage_profiles">"Управление на профили"</string>
@@ -698,7 +702,130 @@
 <string name="select_an_account">"Избери профил"</string>
 <string name="select_library">"Избиране на библиотека"</string>
 <string name="set_default">"Задаване по подразбиране"</string>
+<string name="settings_adult_content">"Съдържание за възрастни"</string>
+<string name="settings_adult_content_body">"Само където разширението го поддържа. След рестартиране."</string>
+<string name="settings_anime_audio">"Аудио за аниме"</string>
+<string name="settings_anime_audio_both">"Дублаж и субтитри"</string>
+<string name="settings_at_launch">"При стартиране"</string>
+<string name="settings_back_up">"Архивиране"</string>
+<string name="settings_back_up_now">"Архивирай сега"</string>
+<string name="settings_backup_automatically">"Автоматично"</string>
+<string name="settings_backup_folder">"Папка за архиви"</string>
+<string name="settings_change">"Промяна"</string>
+<string name="settings_choose">"Избор"</string>
+<string name="settings_choose_another">"Избери друга"</string>
+<string name="settings_clear">"Изчистване"</string>
+<string name="settings_clear_cache">"Изчистване на кеша"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Видео %1$s · изображения %2$s"</string>
+<string name="settings_color_white">"Бяло"</string>
+<string name="settings_color_yellow">"Жълто"</string>
+<string name="settings_connections_per_download">"Връзки на изтегляне"</string>
+<string name="settings_connections_per_download_body">"Повече може да е по-бързо, ако източникът го позволява."</string>
+<string name="settings_diagnostics">"Диагностика"</string>
+<string name="settings_disk_cache">"Дисков кеш"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"За разширения, изображения и субтитри. Видео потоците използват DNS на вашия Mac."</string>
+<string name="settings_download_folder">"Папка за изтегляния"</string>
+<string name="settings_downloads_at_once">"Едновременни изтегляния"</string>
+<string name="settings_downloads_at_once_body">"Колко заглавия се изтеглят заедно."</string>
+<string name="settings_downloads_wait">"Новите изтегляния чакат, докато папката се върне или бъде избрана друга."</string>
+<string name="settings_extension_languages">"Езици"</string>
+<string name="settings_extension_review">"Преглед"</string>
+<string name="settings_extensions_auto_install">"Инсталиране на нови от моите хранилища"</string>
+<string name="settings_extensions_auto_install_body">"Всяко пак се сканира, преди да се стартира."</string>
+<string name="settings_extensions_auto_update">"Автоматично обновяване на разширенията"</string>
+<string name="settings_extensions_auto_update_body">"Всяко обновяване се сканира, преди да се стартира."</string>
+<string name="settings_extensions_installed" formatted="true">"Инсталирани · %d"</string>
+<string name="settings_filler_episodes">"Филър епизоди"</string>
+<string name="settings_filler_episodes_body">"За аниме, където източникът ги отбелязва."</string>
+<string name="settings_folder">"Папка"</string>
+<string name="settings_folder_missing" formatted="true">"%s липсва. Дискът може да не е свързан."</string>
+<string name="settings_help_community">"Помощ и общност"</string>
+<string name="settings_help_community_body">"GitHub, Discord и уикито са в менюто Помощ."</string>
+<string name="settings_hide_search_quality">"Скриване на качеството в резултатите от търсенето"</string>
+<string name="settings_home_search">"Начало и Търсене"</string>
 <string name="settings_info">"Информация"</string>
+<string name="settings_last_backup" formatted="true">"Последно архивиране: %s"</string>
+<string name="settings_logs">"Журнали"</string>
+<string name="settings_logs_mac_body">"Пазят се на този Mac 7 дни. Никога не се изпращат никъде."</string>
+<string name="settings_logs_phone_body">"Пазят се на този телефон 7 дни. Никога не се изпращат никъде."</string>
+<string name="settings_network_buffer">"Мрежов буфер"</string>
+<string name="settings_offline_repos" formatted="true">"Хранилищата не могат да бъдат проверени. Тези списъци са от %s."</string>
+<string name="settings_pane_accounts_privacy">"Акаунти и поверителност"</string>
+<string name="settings_pane_advanced">"Разширени"</string>
+<string name="settings_pane_appearance">"Външен вид"</string>
+<string name="settings_pane_network">"Мрежа"</string>
+<string name="settings_pane_playback">"Възпроизвеждане"</string>
+<string name="settings_play_next">"Пускане на следващия епизод"</string>
+<string name="settings_play_next_body">"Отброява 10 с в края на епизода."</string>
+<string name="settings_playing">"По време на възпроизвеждане"</string>
+<string name="settings_poster_badges">"Значки върху плакатите"</string>
+<string name="settings_posters">"Плакати"</string>
+<string name="settings_profile_no_pin">"Без ПИН"</string>
+<string name="settings_profile_this">"Този профил"</string>
+<string name="settings_random_button_body">"В Начало и Библиотека."</string>
+<string name="settings_read">"Прочитане"</string>
+<string name="settings_remove">"Премахване"</string>
+<string name="settings_repo_unreachable" formatted="true">"Не може да се достигне. Този списък е отпреди %s."</string>
+<string name="settings_repositories">"Хранилища"</string>
+<string name="settings_reset_app">"Нулиране на CloudStream"</string>
+<string name="settings_reset_app_body">"Изтрива настройките, профилите и библиотеката на този Mac."</string>
+<string name="settings_reset_app_phone_body">"Изтрива настройките, профилите и библиотеката."</string>
+<string name="settings_reset_confirm_title">"Нулиране на CloudStream?"</string>
+<string name="settings_reset_erases_mac">"Това изтрива от този Mac:"</string>
+<string name="settings_reset_erases_phone">"Това изтрива от този телефон:"</string>
+<string name="settings_reset_item_library">"Библиотека, напредък на гледане и история"</string>
+<string name="settings_reset_item_search">"История на търсенето"</string>
+<string name="settings_reset_item_settings">"Настройки"</string>
+<string name="settings_reset_item_signins">"Вписвания в услуги за синхронизация и субтитри"</string>
+<string name="settings_reset_kept">"Запазват се: разширения, изтеглени файлове и архиви."</string>
+<string name="settings_restore">"Възстановяване"</string>
+<string name="settings_restore_failed">"Неуспешно възстановяване"</string>
+<string name="settings_restore_failed_body">"Този файл не е архив на CloudStream. Нищо не е променено."</string>
+<string name="settings_restoring" formatted="true">"Възстановяване на %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d от %3$d"</string>
+<string name="settings_run_test">"Стартиране на тест"</string>
+<string name="settings_search_hint">"Търсене в настройките"</string>
+<string name="settings_search_no_results" formatted="true">"Няма резултати за “%s”"</string>
+<string name="settings_search_no_results_body">"Опитайте с друга дума."</string>
+<string name="settings_seek_amount">"Стъпка на превъртане"</string>
+<string name="settings_setup_again">"Повторно първоначално настройване"</string>
+<string name="settings_setup_again_body">"Език, разширения и оформление, отначало."</string>
+<string name="settings_setup_run">"Първоначално настройване"</string>
+<string name="settings_sign_in">"Вписване"</string>
+<string name="settings_skip_intro">"Предлагане на Пропусни интрото"</string>
+<string name="settings_skip_intro_body">"Където източникът отбелязва началото или надписите."</string>
+<string name="settings_skip_profile_choice">"Пропускане на избора на профил"</string>
+<string name="settings_skip_profile_choice_body">"Отваря последно използвания профил."</string>
+<string name="settings_source_order">"Ред на източниците"</string>
+<string name="settings_source_order_body">"Кои източници плеърът опитва първо."</string>
+<string name="settings_speed">"Скорост"</string>
+<string name="settings_subtitle_background">"Фон"</string>
+<string name="settings_subtitle_edge">"Ръб"</string>
+<string name="settings_subtitle_font_system">"Системен"</string>
+<string name="settings_subtitle_language">"Предпочитан език"</string>
+<string name="settings_subtitle_language_body">"Избира се автоматично, когато заглавието го има."</string>
+<string name="settings_subtitle_preview">"Визуализация"</string>
+<string name="settings_subtitle_services">"Услуги за субтитри"</string>
+<string name="settings_subtitle_size">"Размер"</string>
+<string name="settings_subtitle_size_large">"Голям"</string>
+<string name="settings_subtitle_size_medium">"Среден"</string>
+<string name="settings_subtitle_size_small">"Малък"</string>
+<string name="settings_subtitle_text_color">"Цвят на текста"</string>
+<string name="settings_suggestions_while_typing">"Предложения при писане"</string>
+<string name="settings_sync_for" formatted="true">"Синхронизация за %s"</string>
+<string name="settings_sync_per_profile">"Всеки профил се вписва отделно."</string>
+<string name="settings_test_all_extensions">"Тестване на всички разширения"</string>
+<string name="settings_test_all_extensions_body">"Търси с всяко включено разширение. За разработчици."</string>
+<string name="settings_title_pages">"Страници на заглавията"</string>
+<string name="settings_title_under_poster">"Заглавие под плаката"</string>
+<string name="settings_trailers">"Трейлъри"</string>
+<string name="settings_updates">"Актуализации"</string>
+<string name="settings_updates_at_launch">"Проверка за актуализации при стартиране"</string>
+<string name="settings_updates_at_launch_body">"Търси нова версия, когато CloudStream се отвори."</string>
+<string name="settings_updates_check_now">"Провери сега"</string>
+<string name="settings_updates_current" formatted="true">"Актуална версия · проверено %s"</string>
+<string name="settings_watch_progress_body">"Запазва докъде сте стигнали, за Продължете гледането."</string>
 <string name="setup_done">"Край"</string>
 <string name="setup_extensions_subtext">"Изтеглете списъка със сайтове, които искате да използвате"</string>
 <string name="show">"Покажи"</string>

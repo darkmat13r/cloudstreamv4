@@ -14,6 +14,10 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"aaoog %d ooh uugg"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"uuh aagg oooh aaahh uug %d ooogg aah."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d OOGAH"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="other">"%d aahh aaahhhoo"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">"oog %d oooggguh"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="other">"%1$d aaahhhoo · aaaghhh %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="other">"%d oooggguh aah uuuhh PINs"</item></plurals>
 <string name="account">"aaaaggg"</string>
 <string name="account_add_profile">"aah ooooggk"</string>
 <string name="account_manage_profiles">"aaaagg ooooggk"</string>
@@ -637,7 +641,130 @@
 <string name="select_an_account">"uuuugg oh oooohhh"</string>
 <string name="select_library">"uuuugg uuuuggg"</string>
 <string name="set_default">"ooh ooooggg"</string>
+<string name="settings_adult_content">"uuuhh oooohhh"</string>
+<string name="settings_adult_content_body">"oooh aaahh uh oooh-aah oooggguh ah. uuuhh a ooh-aah."</string>
+<string name="settings_anime_audio">"aaahh aaahh"</string>
+<string name="settings_anime_audio_both">"uuh aah oog"</string>
+<string name="settings_at_launch">"ah uuuugg"</string>
+<string name="settings_back_up">"oooh uh"</string>
+<string name="settings_back_up_now">"aahh oh oog"</string>
+<string name="settings_backup_automatically">"oooggguh"</string>
+<string name="settings_backup_folder">"uuuugg uuuugg"</string>
+<string name="settings_change">"oooogg"</string>
+<string name="settings_choose">"ooohhh"</string>
+<string name="settings_choose_another">"aaaggg ooh-aah"</string>
+<string name="settings_clear">"ahooo"</string>
+<string name="settings_clear_cache">"uuuhh uuuhh"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"oooog %1$s · oooogg %2$s"</string>
+<string name="settings_color_white">"oooog"</string>
+<string name="settings_color_yellow">"aaaggg"</string>
+<string name="settings_connections_per_download">"oooggguh uuh oooggguh"</string>
+<string name="settings_connections_per_download_body">"aagg uuh ah ooohhh, oooog oog uuuugg aaaggg uh."</string>
+<string name="settings_diagnostics">"oooh-aah"</string>
+<string name="settings_disk_cache">"oooh oooog"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"ooh oooggguh, aaaaggg oog aaahhhoo. aaahh aaaaggg aah aagg Mac's DNS."</string>
+<string name="settings_download_folder">"uuuhhhaa uuuugg"</string>
+<string name="settings_downloads_at_once">"oooggguh ah aagg"</string>
+<string name="settings_downloads_at_once_body">"aah aahh oooogg oooh-aah oooggguh."</string>
+<string name="settings_downloads_wait">"uuh aaahhhoo uugg ahooo aah oooogg uh aahh oh oooohhh uh ooohhh."</string>
+<string name="settings_extension_languages">"oooggguh"</string>
+<string name="settings_extension_review">"oooogg"</string>
+<string name="settings_extensions_auto_install">"aaaaggg oog uugg oooh oh aaahhhoo"</string>
+<string name="settings_extensions_auto_install_body">"uugg oh ahooo aaaaggg oooogg uh uugg."</string>
+<string name="settings_extensions_auto_update">"ooohhh oooggguh oooggguh"</string>
+<string name="settings_extensions_auto_update_body">"aagg oooogg oh ooh-aah aaaggg ah aagg."</string>
+<string name="settings_extensions_installed" formatted="true">"oooggguh · %d"</string>
+<string name="settings_filler_episodes">"ooohhh oooh-aah"</string>
+<string name="settings_filler_episodes_body">"oog oooog, oooog aah uuuugg uuuhh aagg."</string>
+<string name="settings_folder">"ooohhh"</string>
+<string name="settings_folder_missing" formatted="true">"%s uh oooohhh. ooh aagg uuh ooh oh oooggguh."</string>
+<string name="settings_help_community">"aahh ooh oooh-aah"</string>
+<string name="settings_help_community_body">"GitHub, Discord ooh ooh aagg uuh oh ooh aahh uugg."</string>
+<string name="settings_hide_search_quality">"aahh oooohhh ah oooogg ooh-aah"</string>
+<string name="settings_home_search">"aahh aah ooohhh"</string>
 <string name="settings_info">"aauugghh ah"</string>
+<string name="settings_last_backup" formatted="true">"aahh ooohhh: %s"</string>
+<string name="settings_logs">"aagg"</string>
+<string name="settings_logs_mac_body">"oooh uh oooh Mac aah 7 uugg. oooog aagg oooh-aah."</string>
+<string name="settings_logs_phone_body">"uugg oh aagg aaahh uuh 7 oooh. uuuhh oooh oooggguh."</string>
+<string name="settings_network_buffer">"aaaaggg oooogg"</string>
+<string name="settings_offline_repos" formatted="true">"uuuhhhaa uuuhh oh aaaaggg. oooog ahooo aah oooh %s."</string>
+<string name="settings_pane_accounts_privacy">"oooggguh oog aaaaggg"</string>
+<string name="settings_pane_advanced">"oooggguh"</string>
+<string name="settings_pane_appearance">"aaahhhoo"</string>
+<string name="settings_pane_network">"oooohhh"</string>
+<string name="settings_pane_playback">"oooggguh"</string>
+<string name="settings_play_next">"oooh aah aagg ooh-aah"</string>
+<string name="settings_play_next_body">"aaaggg aahh 10 a uh oog aah uh oh aaaghhh."</string>
+<string name="settings_playing">"oooohhh"</string>
+<string name="settings_poster_badges">"ooohhh oh ooh-aah"</string>
+<string name="settings_posters">"oooohhh"</string>
+<string name="settings_profile_no_pin">"ah PIN"</string>
+<string name="settings_profile_this">"uugg aaaaggg"</string>
+<string name="settings_random_button_body">"oh aahh aah oooohhh."</string>
+<string name="settings_read">"oooh"</string>
+<string name="settings_remove">"ooohhh"</string>
+<string name="settings_repo_unreachable" formatted="true">"uuuhhhaa uuuhh oh. aahh aahh uh oooh %s oog."</string>
+<string name="settings_repositories">"oooggguh"</string>
+<string name="settings_reset_app">"uuuhh CloudStream"</string>
+<string name="settings_reset_app_body">"uuuugg oooggguh, oooh-aah uuh aaaaggg uh aagg Mac."</string>
+<string name="settings_reset_app_phone_body">"aaaggg uuuhhhaa, aaahhhoo uuh aaaaggg."</string>
+<string name="settings_reset_confirm_title">"ahooo CloudStream?"</string>
+<string name="settings_reset_erases_mac">"oooh oooogg, uugg aagg Mac:"</string>
+<string name="settings_reset_erases_phone">"uugg oooogg, aagg aagg uuuhh:"</string>
+<string name="settings_reset_item_library">"aaaghhh, oooog uuuhhhaa aah aaaghhh"</string>
+<string name="settings_reset_item_search">"oooogg aaaghhh"</string>
+<string name="settings_reset_item_settings">"oooggguh"</string>
+<string name="settings_reset_item_signins">"oooh-aah ah oooh ooh oooh-aah oooh-aah"</string>
+<string name="settings_reset_kept">"oooh: uuuhhhaa, oooh-aah aaahh oog oooohhh."</string>
+<string name="settings_restore">"ooh-aah"</string>
+<string name="settings_restore_failed">"oooggguh aaaghhh"</string>
+<string name="settings_restore_failed_body">"oooh aahh ahooo u CloudStream uuuugg. aaaghhh oog aaaaggg."</string>
+<string name="settings_restoring" formatted="true">"aaahhhoo %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d ah %3$d"</string>
+<string name="settings_run_test">"uuh aagg"</string>
+<string name="settings_search_hint">"uuuugg uuuhhhaa"</string>
+<string name="settings_search_no_results" formatted="true">"uh aaaghhh uuh “%s”"</string>
+<string name="settings_search_no_results_body">"ooh a uuuhhhaa aagg."</string>
+<string name="settings_seek_amount">"aagg uuuugg"</string>
+<string name="settings_setup_again">"oog ahooo uuuhh"</string>
+<string name="settings_setup_again_body">"oooh-aah, oooggguh aah uuuugg, uugg ooh aaahh."</string>
+<string name="settings_setup_run">"oog oooog"</string>
+<string name="settings_sign_in">"uugg ah"</string>
+<string name="settings_skip_intro">"uuuhh aagg uuuhh"</string>
+<string name="settings_skip_intro_body">"aaahh o ooohhh oooog uuh aaaaggg ah ooh-aah."</string>
+<string name="settings_skip_profile_choice">"aagg aaahhhoo a oooohhh"</string>
+<string name="settings_skip_profile_choice_body">"uuuhh ooh oooh aaaaggg aagg."</string>
+<string name="settings_source_order">"oooogg uuuhh"</string>
+<string name="settings_source_order_body">"oooog ooh-aah oog ooohhh oooog ahooo."</string>
+<string name="settings_speed">"ahooo"</string>
+<string name="settings_subtitle_background">"aaahhhoo"</string>
+<string name="settings_subtitle_edge">"oooh"</string>
+<string name="settings_subtitle_font_system">"oooogg"</string>
+<string name="settings_subtitle_language">"uuuhhhaa oooggguh"</string>
+<string name="settings_subtitle_language_body">"uuuugg oooh-aah aagg u oooog oog ah."</string>
+<string name="settings_subtitle_preview">"oooohhh"</string>
+<string name="settings_subtitle_services">"aaahhhoo uuuhhhaa"</string>
+<string name="settings_subtitle_size">"uugg"</string>
+<string name="settings_subtitle_size_large">"aaahh"</string>
+<string name="settings_subtitle_size_medium">"ooohhh"</string>
+<string name="settings_subtitle_size_small">"oooog"</string>
+<string name="settings_subtitle_text_color">"aahh oooog"</string>
+<string name="settings_suggestions_while_typing">"oooh-aah aaahh aaaggg"</string>
+<string name="settings_sync_for" formatted="true">"aahh uuh %s"</string>
+<string name="settings_sync_per_profile">"uugg aaaghhh ahooo ah oh aah uuh."</string>
+<string name="settings_test_all_extensions">"uugg ooh oooh-aah"</string>
+<string name="settings_test_all_extensions_body">"aaahhhoo uugg uuuhh aaaaggg oooggguh. ooh oooggguh."</string>
+<string name="settings_title_pages">"aaahh aaahh"</string>
+<string name="settings_title_under_poster">"aaahh aaahh uuh oooogg"</string>
+<string name="settings_trailers">"uuuhhhaa"</string>
+<string name="settings_updates">"aaaghhh"</string>
+<string name="settings_updates_at_launch">"oooog ooh aaaaggg oh aaaggg"</string>
+<string name="settings_updates_at_launch_body">"uuuhh uuh o ooh oooohhh uugg CloudStream oooog."</string>
+<string name="settings_updates_check_now">"oooog uuh"</string>
+<string name="settings_updates_current" formatted="true">"ah uh aahh · oooohhh %s"</string>
+<string name="settings_watch_progress_body">"oooog ahooo ooh ooh-aah, ooh aaahhhoo oooggguh."</string>
 <string name="setup_done">"eeek"</string>
 <string name="setup_extensions_subtext">"aaaagggh oog uuuk ug ooohh aak aahh ag aag"</string>
 <string name="show">"Boo"</string>

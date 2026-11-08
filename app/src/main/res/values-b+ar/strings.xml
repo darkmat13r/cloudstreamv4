@@ -16,6 +16,10 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="zero">"ابحث في %d مصدر"</item><item quantity="one">"ابحث في %d مصدر"</item><item quantity="two">"ابحث في جميع المصادر الـ%d"</item><item quantity="few">"ابحث في جميع المصادر الـ%d"</item><item quantity="many">"ابحث في جميع المصادر الـ%d"</item><item quantity="other">"ابحث في جميع المصادر الـ%d"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="zero">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال."</item><item quantity="one">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال."</item><item quantity="two">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item><item quantity="few">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item><item quantity="many">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item><item quantity="other">"اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="zero">"%d مصدر"</item><item quantity="one">"%d مصدر"</item><item quantity="two">"%d مصدران"</item><item quantity="few">"%d مصادر"</item><item quantity="many">"%d مصدرًا"</item><item quantity="other">"%d مصدر"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="zero">"%d تحذير فحص"</item><item quantity="one">"%d تحذير فحص"</item><item quantity="two">"%d تحذير فحص"</item><item quantity="few">"%d تحذيرات فحص"</item><item quantity="many">"%d تحذيرًا للفحص"</item><item quantity="other">"%d تحذير فحص"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="zero">"كل الإضافات (%d)"</item><item quantity="one">"%d إضافة"</item><item quantity="two">"كل الإضافات (%d)"</item><item quantity="few">"كل الإضافات (%d)"</item><item quantity="many">"كل الإضافات (%d)"</item><item quantity="other">"كل الإضافات (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="zero">"%1$d إضافة · حُدّث %2$s"</item><item quantity="one">"%1$d إضافة · حُدّث %2$s"</item><item quantity="two">"%1$d إضافة · حُدّث %2$s"</item><item quantity="few">"%1$d إضافات · حُدّث %2$s"</item><item quantity="many">"%1$d إضافةً · حُدّث %2$s"</item><item quantity="other">"%1$d إضافة · حُدّث %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="zero">"%d ملف شخصي ورموز PIN الخاصة بها"</item><item quantity="one">"%d ملف شخصي ورمز PIN الخاص به"</item><item quantity="two">"%d ملف شخصي ورموز PIN الخاصة بهما"</item><item quantity="few">"%d ملفات شخصية ورموز PIN الخاصة بها"</item><item quantity="many">"%d ملفًا شخصيًا ورموز PIN الخاصة بها"</item><item quantity="other">"%d ملف شخصي ورموز PIN الخاصة بها"</item></plurals>
 <string name="account">"حساب"</string>
 <string name="account_add_profile">"إضافة ملف شخصي"</string>
 <string name="account_manage_profiles">"إدارة الملفات الشخصية"</string>
@@ -708,7 +712,130 @@
 <string name="select_an_account">"اختار حساب"</string>
 <string name="select_library">"اختر المكتبة"</string>
 <string name="set_default">"تعيين الافتراضي"</string>
+<string name="settings_adult_content">"محتوى للبالغين"</string>
+<string name="settings_adult_content_body">"فقط حيث تدعمه الإضافة. بعد إعادة التشغيل."</string>
+<string name="settings_anime_audio">"صوت الأنمي"</string>
+<string name="settings_anime_audio_both">"مدبلج ومترجم"</string>
+<string name="settings_at_launch">"عند التشغيل"</string>
+<string name="settings_back_up">"نسخ احتياطي"</string>
+<string name="settings_back_up_now">"نسخ احتياطي الآن"</string>
+<string name="settings_backup_automatically">"تلقائيًا"</string>
+<string name="settings_backup_folder">"مجلد النسخ الاحتياطي"</string>
+<string name="settings_change">"تغيير"</string>
+<string name="settings_choose">"اختيار"</string>
+<string name="settings_choose_another">"اختيار مجلد آخر"</string>
+<string name="settings_clear">"مسح"</string>
+<string name="settings_clear_cache">"مسح ذاكرة التخزين المؤقت"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"الفيديو %1$s · الصور %2$s"</string>
+<string name="settings_color_white">"أبيض"</string>
+<string name="settings_color_yellow">"أصفر"</string>
+<string name="settings_connections_per_download">"الاتصالات لكل تنزيل"</string>
+<string name="settings_connections_per_download_body">"قد يكون العدد الأكبر أسرع، حيث يسمح المصدر بذلك."</string>
+<string name="settings_diagnostics">"التشخيص"</string>
+<string name="settings_disk_cache">"ذاكرة التخزين المؤقت على القرص"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"للإضافات والصور والترجمات. تستخدم بثوث الفيديو DNS جهاز Mac."</string>
+<string name="settings_download_folder">"مجلد التنزيلات"</string>
+<string name="settings_downloads_at_once">"التنزيلات المتزامنة"</string>
+<string name="settings_downloads_at_once_body">"عدد العناوين التي تُنزَّل معًا."</string>
+<string name="settings_downloads_wait">"تنتظر التنزيلات الجديدة حتى يعود المجلد أو يُختار مجلد آخر."</string>
+<string name="settings_extension_languages">"اللغات"</string>
+<string name="settings_extension_review">"مراجعة"</string>
+<string name="settings_extensions_auto_install">"تثبيت الإضافات الجديدة من مستودعاتي"</string>
+<string name="settings_extensions_auto_install_body">"يُفحص كلٌّ منها مع ذلك قبل تشغيله."</string>
+<string name="settings_extensions_auto_update">"تحديث الإضافات تلقائيًا"</string>
+<string name="settings_extensions_auto_update_body">"يُفحص كل تحديث قبل تشغيله."</string>
+<string name="settings_extensions_installed" formatted="true">"المثبّتة · %d"</string>
+<string name="settings_filler_episodes">"حلقات الحشو"</string>
+<string name="settings_filler_episodes_body">"للأنمي، حيث يحددها المصدر."</string>
+<string name="settings_folder">"المجلد"</string>
+<string name="settings_folder_missing" formatted="true">"%s مفقود. ربما قرصه غير متصل."</string>
+<string name="settings_help_community">"المساعدة والمجتمع"</string>
+<string name="settings_help_community_body">"GitHub وDiscord والويكي موجودة في قائمة المساعدة."</string>
+<string name="settings_hide_search_quality">"إخفاء الجودة في نتائج البحث"</string>
+<string name="settings_home_search">"الرئيسية والبحث"</string>
 <string name="settings_info">"معلومات"</string>
+<string name="settings_last_backup" formatted="true">"آخر نسخة احتياطية: %s"</string>
+<string name="settings_logs">"السجلات"</string>
+<string name="settings_logs_mac_body">"تُحفظ على جهاز Mac هذا لمدة 7 أيام. لا تُرسل إلى أي مكان."</string>
+<string name="settings_logs_phone_body">"تُحفظ على هذا الهاتف لمدة 7 أيام. لا تُرسل إلى أي مكان."</string>
+<string name="settings_network_buffer">"المخزن المؤقت للشبكة"</string>
+<string name="settings_offline_repos" formatted="true">"تعذّر التحقق من المستودعات. هذه القوائم من %s."</string>
+<string name="settings_pane_accounts_privacy">"الحسابات والخصوصية"</string>
+<string name="settings_pane_advanced">"متقدم"</string>
+<string name="settings_pane_appearance">"المظهر"</string>
+<string name="settings_pane_network">"الشبكة"</string>
+<string name="settings_pane_playback">"التشغيل"</string>
+<string name="settings_play_next">"تشغيل الحلقة التالية"</string>
+<string name="settings_play_next_body">"عدّ تنازلي 10 ث في نهاية الحلقة."</string>
+<string name="settings_playing">"التشغيل"</string>
+<string name="settings_poster_badges">"الشارات على الملصقات"</string>
+<string name="settings_posters">"الملصقات"</string>
+<string name="settings_profile_no_pin">"بلا PIN"</string>
+<string name="settings_profile_this">"هذا الملف الشخصي"</string>
+<string name="settings_random_button_body">"في الرئيسية والمكتبة."</string>
+<string name="settings_read">"قراءة"</string>
+<string name="settings_remove">"إزالة"</string>
+<string name="settings_repo_unreachable" formatted="true">"تعذّر الوصول إليه. هذه القائمة من قبل %s."</string>
+<string name="settings_repositories">"المستودعات"</string>
+<string name="settings_reset_app">"إعادة تعيين CloudStream"</string>
+<string name="settings_reset_app_body">"يمحو الإعدادات والملفات الشخصية والمكتبة على جهاز Mac هذا."</string>
+<string name="settings_reset_app_phone_body">"يمحو الإعدادات والملفات الشخصية والمكتبة."</string>
+<string name="settings_reset_confirm_title">"إعادة تعيين CloudStream؟"</string>
+<string name="settings_reset_erases_mac">"سيُمحى من جهاز Mac هذا:"</string>
+<string name="settings_reset_erases_phone">"سيُمحى من هذا الهاتف:"</string>
+<string name="settings_reset_item_library">"المكتبة وتقدّم المشاهدة والسجل"</string>
+<string name="settings_reset_item_search">"سجل البحث"</string>
+<string name="settings_reset_item_settings">"الإعدادات"</string>
+<string name="settings_reset_item_signins">"تسجيلات الدخول إلى خدمات المزامنة والترجمة"</string>
+<string name="settings_reset_kept">"يُحتفظ بـ: الإضافات والملفات المنزّلة والنسخ الاحتياطية."</string>
+<string name="settings_restore">"استعادة"</string>
+<string name="settings_restore_failed">"تعذّرت الاستعادة"</string>
+<string name="settings_restore_failed_body">"هذا الملف ليس نسخة احتياطية من CloudStream. لم يتغير شيء."</string>
+<string name="settings_restoring" formatted="true">"جارٍ استعادة %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d من %3$d"</string>
+<string name="settings_run_test">"تشغيل الاختبار"</string>
+<string name="settings_search_hint">"البحث في الإعدادات"</string>
+<string name="settings_search_no_results" formatted="true">"لا نتائج لـ “%s”"</string>
+<string name="settings_search_no_results_body">"جرّب كلمة أخرى."</string>
+<string name="settings_seek_amount">"مقدار التقديم"</string>
+<string name="settings_setup_again">"تشغيل الإعداد مرة أخرى"</string>
+<string name="settings_setup_again_body">"اللغة والإضافات والتخطيط، من البداية."</string>
+<string name="settings_setup_run">"تشغيل الإعداد"</string>
+<string name="settings_sign_in">"تسجيل الدخول"</string>
+<string name="settings_skip_intro">"عرض «تخطي المقدمة»"</string>
+<string name="settings_skip_intro_body">"حيث يحدد المصدر المقدمة أو شارة النهاية."</string>
+<string name="settings_skip_profile_choice">"تخطي اختيار الملف الشخصي"</string>
+<string name="settings_skip_profile_choice_body">"يفتح آخر ملف شخصي مستخدم."</string>
+<string name="settings_source_order">"ترتيب المصادر"</string>
+<string name="settings_source_order_body">"المصادر التي يجربها المشغل أولًا."</string>
+<string name="settings_speed">"السرعة"</string>
+<string name="settings_subtitle_background">"الخلفية"</string>
+<string name="settings_subtitle_edge">"الحافة"</string>
+<string name="settings_subtitle_font_system">"النظام"</string>
+<string name="settings_subtitle_language">"اللغة المفضلة"</string>
+<string name="settings_subtitle_language_body">"تُختار تلقائيًا عندما يتوفر عليها العنوان."</string>
+<string name="settings_subtitle_preview">"معاينة"</string>
+<string name="settings_subtitle_services">"خدمات الترجمة"</string>
+<string name="settings_subtitle_size">"الحجم"</string>
+<string name="settings_subtitle_size_large">"كبير"</string>
+<string name="settings_subtitle_size_medium">"متوسط"</string>
+<string name="settings_subtitle_size_small">"صغير"</string>
+<string name="settings_subtitle_text_color">"لون النص"</string>
+<string name="settings_suggestions_while_typing">"اقتراحات أثناء الكتابة"</string>
+<string name="settings_sync_for" formatted="true">"المزامنة لـ %s"</string>
+<string name="settings_sync_per_profile">"يسجّل كل ملف شخصي الدخول بمفرده."</string>
+<string name="settings_test_all_extensions">"اختبار كل الإضافات"</string>
+<string name="settings_test_all_extensions_body">"يبحث بكل إضافة مفعّلة. للمطورين."</string>
+<string name="settings_title_pages">"صفحات العناوين"</string>
+<string name="settings_title_under_poster">"العنوان أسفل الملصق"</string>
+<string name="settings_trailers">"المقاطع الدعائية"</string>
+<string name="settings_updates">"التحديثات"</string>
+<string name="settings_updates_at_launch">"التحقق من التحديثات عند التشغيل"</string>
+<string name="settings_updates_at_launch_body">"يبحث عن إصدار جديد عند فتح CloudStream."</string>
+<string name="settings_updates_check_now">"التحقق الآن"</string>
+<string name="settings_updates_current" formatted="true">"محدّث · آخر تحقق %s"</string>
+<string name="settings_watch_progress_body">"يحفظ موضع توقفك لميزة «متابعة المشاهدة»."</string>
 <string name="setup_done">"تم"</string>
 <string name="setup_extensions_subtext">"تحميل قائمة المواقع التي تريد استخدامها"</string>
 <string name="show">"أظهِر"</string>

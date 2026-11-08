@@ -14,6 +14,10 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d स्रोतमा खोज्नुहोस्"</item><item quantity="other">"सबै %d स्रोतहरूमा खोज्नुहोस्"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"जे भए पनि %d स्रोतमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।"</item><item quantity="other">"जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d स्रोत"</item><item quantity="other">"%d स्रोतहरू"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d स्क्यान चेतावनी"</item><item quantity="other">"%d स्क्यान चेतावनी"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"%d एक्सटेन्सन"</item><item quantity="other">"सबै %d एक्सटेन्सनहरू"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d एक्सटेन्सन · %2$s अपडेट गरियो"</item><item quantity="other">"%1$d एक्सटेन्सन · %2$s अपडेट गरियो"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d प्रोफाइल र यसको पिन"</item><item quantity="other">"%d प्रोफाइल र तिनका पिनहरू"</item></plurals>
 <string name="account_add_profile">"प्रोफाइल थप्नुहोस्"</string>
 <string name="account_manage_profiles">"प्रोफाइलहरू व्यवस्थापन गर्नुहोस्"</string>
 <string name="account_pair_code">"तपाईंको कोड"</string>
@@ -260,6 +264,129 @@
 <string name="season_specials">"विशेष"</string>
 <string name="seek_back_10_seconds">"10 सेकेन्ड पछाडि जानुहोस्"</string>
 <string name="seek_forward_10_seconds">"10 सेकेन्ड अगाडि जानुहोस्"</string>
+<string name="settings_adult_content">"वयस्क सामग्री"</string>
+<string name="settings_adult_content_body">"एक्सटेन्सनले समर्थन गर्ने ठाउँमा मात्र। पुनः सुरु गरेपछि।"</string>
+<string name="settings_anime_audio">"एनिमे अडियो"</string>
+<string name="settings_anime_audio_both">"डब र सब"</string>
+<string name="settings_at_launch">"सुरु हुँदा"</string>
+<string name="settings_back_up">"ब्याकअप लिनुहोस्"</string>
+<string name="settings_back_up_now">"अहिले ब्याकअप लिनुहोस्"</string>
+<string name="settings_backup_automatically">"स्वचालित रूपमा"</string>
+<string name="settings_backup_folder">"ब्याकअप फोल्डर"</string>
+<string name="settings_change">"परिवर्तन गर्नुहोस्"</string>
+<string name="settings_choose">"छान्नुहोस्"</string>
+<string name="settings_choose_another">"अर्को छान्नुहोस्"</string>
+<string name="settings_clear">"खाली गर्नुहोस्"</string>
+<string name="settings_clear_cache">"क्यास खाली गर्नुहोस्"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"भिडियो %1$s · तस्बिर %2$s"</string>
+<string name="settings_color_white">"सेतो"</string>
+<string name="settings_color_yellow">"पहेंलो"</string>
+<string name="settings_connections_per_download">"प्रति डाउनलोड जडानहरू"</string>
+<string name="settings_connections_per_download_body">"स्रोतले अनुमति दिए धेरै जडानले छिटो हुन सक्छ।"</string>
+<string name="settings_diagnostics">"निदान"</string>
+<string name="settings_disk_cache">"डिस्क क्यास"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"एक्सटेन्सन, कलाकृति र उपशीर्षकका लागि। भिडियो स्ट्रिमले तपाईंको Mac को DNS प्रयोग गर्छ।"</string>
+<string name="settings_download_folder">"डाउनलोड फोल्डर"</string>
+<string name="settings_downloads_at_once">"एकैपटक डाउनलोड"</string>
+<string name="settings_downloads_at_once_body">"कति शीर्षक सँगै डाउनलोड हुन्छन्।"</string>
+<string name="settings_downloads_wait">"फोल्डर फर्किएसम्म वा अर्को छानिएसम्म नयाँ डाउनलोड पर्खन्छन्।"</string>
+<string name="settings_extension_languages">"भाषाहरू"</string>
+<string name="settings_extension_review">"समीक्षा गर्नुहोस्"</string>
+<string name="settings_extensions_auto_install">"मेरा रिपोजिटरीबाट नयाँहरू स्थापना गर्नुहोस्"</string>
+<string name="settings_extensions_auto_install_body">"प्रत्येक चल्नुअघि अझै स्क्यान गरिन्छ।"</string>
+<string name="settings_extensions_auto_update">"एक्सटेन्सनहरू स्वचालित रूपमा अपडेट गर्नुहोस्"</string>
+<string name="settings_extensions_auto_update_body">"प्रत्येक अपडेट चल्नुअघि स्क्यान गरिन्छ।"</string>
+<string name="settings_extensions_installed" formatted="true">"स्थापित · %d"</string>
+<string name="settings_filler_episodes">"फिलर एपिसोडहरू"</string>
+<string name="settings_filler_episodes_body">"एनिमेका लागि, स्रोतले चिन्ह लगाएको ठाउँमा।"</string>
+<string name="settings_folder">"फोल्डर"</string>
+<string name="settings_folder_missing" formatted="true">"%s भेटिएन। यसको डिस्क जडान नभएको हुन सक्छ।"</string>
+<string name="settings_help_community">"सहायता र समुदाय"</string>
+<string name="settings_help_community_body">"GitHub, Discord र विकि सहायता मेनुमा छन्।"</string>
+<string name="settings_hide_search_quality">"खोज परिणाममा गुणस्तर लुकाउनुहोस्"</string>
+<string name="settings_home_search">"गृह र खोज"</string>
+<string name="settings_last_backup" formatted="true">"अन्तिम ब्याकअप: %s"</string>
+<string name="settings_logs">"लगहरू"</string>
+<string name="settings_logs_mac_body">"यो Mac मा 7 दिन राखिन्छ। कतै पठाइँदैन।"</string>
+<string name="settings_logs_phone_body">"यो फोनमा 7 दिन राखिन्छ। कतै पठाइँदैन।"</string>
+<string name="settings_network_buffer">"नेटवर्क बफर"</string>
+<string name="settings_offline_repos" formatted="true">"रिपोजिटरीहरू जाँच गर्न सकिँदैन। यी सूचीहरू %s का हुन्।"</string>
+<string name="settings_pane_accounts_privacy">"खाता र गोपनीयता"</string>
+<string name="settings_pane_advanced">"उन्नत"</string>
+<string name="settings_pane_appearance">"रूपरङ"</string>
+<string name="settings_pane_network">"नेटवर्क"</string>
+<string name="settings_pane_playback">"प्लेब्याक"</string>
+<string name="settings_play_next">"अर्को एपिसोड प्ले गर्नुहोस्"</string>
+<string name="settings_play_next_body">"एपिसोडको अन्त्यमा 10 सेकेन्ड गन्छ।"</string>
+<string name="settings_playing">"प्ले हुँदा"</string>
+<string name="settings_poster_badges">"पोस्टरमा ब्याज"</string>
+<string name="settings_posters">"पोस्टरहरू"</string>
+<string name="settings_profile_no_pin">"पिन छैन"</string>
+<string name="settings_profile_this">"यो प्रोफाइल"</string>
+<string name="settings_random_button_body">"गृह र पुस्तकालयमा।"</string>
+<string name="settings_read">"पढ्नुहोस्"</string>
+<string name="settings_remove">"हटाउनुहोस्"</string>
+<string name="settings_repo_unreachable" formatted="true">"पुग्न सकिएन। यो सूची %s अघिको हो।"</string>
+<string name="settings_repositories">"रिपोजिटरीहरू"</string>
+<string name="settings_reset_app">"CloudStream रिसेट गर्नुहोस्"</string>
+<string name="settings_reset_app_body">"यो Mac मा सेटिङ, प्रोफाइल र पुस्तकालय मेटाउँछ।"</string>
+<string name="settings_reset_app_phone_body">"सेटिङ, प्रोफाइल र पुस्तकालय मेटाउँछ।"</string>
+<string name="settings_reset_confirm_title">"CloudStream रिसेट गर्ने?"</string>
+<string name="settings_reset_erases_mac">"यसले यो Mac बाट मेटाउँछ:"</string>
+<string name="settings_reset_erases_phone">"यसले यो फोनबाट मेटाउँछ:"</string>
+<string name="settings_reset_item_library">"पुस्तकालय, हेराइ प्रगति र इतिहास"</string>
+<string name="settings_reset_item_search">"खोज इतिहास"</string>
+<string name="settings_reset_item_settings">"सेटिङहरू"</string>
+<string name="settings_reset_item_signins">"सिंक र उपशीर्षक सेवाहरूमा साइन इन"</string>
+<string name="settings_reset_kept">"राखिन्छ: एक्सटेन्सन, डाउनलोड गरिएका फाइल र ब्याकअप।"</string>
+<string name="settings_restore">"पुनर्स्थापना गर्नुहोस्"</string>
+<string name="settings_restore_failed">"पुनर्स्थापना गर्न सकिएन"</string>
+<string name="settings_restore_failed_body">"त्यो फाइल CloudStream ब्याकअप होइन। केही परिवर्तन गरिएन।"</string>
+<string name="settings_restoring" formatted="true">"%s पुनर्स्थापना हुँदै"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %3$d मध्ये %2$d"</string>
+<string name="settings_run_test">"परीक्षण चलाउनुहोस्"</string>
+<string name="settings_search_hint">"सेटिङ खोज्नुहोस्"</string>
+<string name="settings_search_no_results" formatted="true">"“%s” का लागि कुनै परिणाम छैन"</string>
+<string name="settings_search_no_results_body">"अर्को शब्द प्रयास गर्नुहोस्।"</string>
+<string name="settings_seek_amount">"अगाडि-पछाडि सार्ने समय"</string>
+<string name="settings_setup_again">"सेटअप फेरि चलाउनुहोस्"</string>
+<string name="settings_setup_again_body">"भाषा, एक्सटेन्सन र लेआउट, सुरुदेखि।"</string>
+<string name="settings_setup_run">"सेटअप चलाउनुहोस्"</string>
+<string name="settings_sign_in">"साइन इन गर्नुहोस्"</string>
+<string name="settings_skip_intro">"इन्ट्रो छोड्ने विकल्प दिनुहोस्"</string>
+<string name="settings_skip_intro_body">"स्रोतले सुरुवात वा क्रेडिट चिन्ह लगाएको ठाउँमा।"</string>
+<string name="settings_skip_profile_choice">"प्रोफाइल छनोट छोड्नुहोस्"</string>
+<string name="settings_skip_profile_choice_body">"अन्तिम पटक प्रयोग गरिएको प्रोफाइल खोल्छ।"</string>
+<string name="settings_source_order">"स्रोतको क्रम"</string>
+<string name="settings_source_order_body">"प्लेयरले पहिले कुन स्रोत प्रयास गर्छ।"</string>
+<string name="settings_speed">"गति"</string>
+<string name="settings_subtitle_background">"पृष्ठभूमि"</string>
+<string name="settings_subtitle_edge">"किनारा"</string>
+<string name="settings_subtitle_font_system">"प्रणाली"</string>
+<string name="settings_subtitle_language">"रुचाइएको भाषा"</string>
+<string name="settings_subtitle_language_body">"शीर्षकमा उपलब्ध भए स्वचालित रूपमा छानिन्छ।"</string>
+<string name="settings_subtitle_preview">"पूर्वावलोकन"</string>
+<string name="settings_subtitle_services">"उपशीर्षक सेवाहरू"</string>
+<string name="settings_subtitle_size">"आकार"</string>
+<string name="settings_subtitle_size_large">"ठूलो"</string>
+<string name="settings_subtitle_size_medium">"मध्यम"</string>
+<string name="settings_subtitle_size_small">"सानो"</string>
+<string name="settings_subtitle_text_color">"पाठको रङ"</string>
+<string name="settings_suggestions_while_typing">"टाइप गर्दा सुझावहरू"</string>
+<string name="settings_sync_for" formatted="true">"%s का लागि सिंक"</string>
+<string name="settings_sync_per_profile">"प्रत्येक प्रोफाइल आफैं साइन इन गर्छ।"</string>
+<string name="settings_test_all_extensions">"सबै एक्सटेन्सन परीक्षण गर्नुहोस्"</string>
+<string name="settings_test_all_extensions_body">"प्रत्येक सक्षम एक्सटेन्सनसँग खोज्छ। विकासकर्ताका लागि।"</string>
+<string name="settings_title_pages">"शीर्षक पृष्ठहरू"</string>
+<string name="settings_title_under_poster">"पोस्टरमुनि शीर्षक"</string>
+<string name="settings_trailers">"ट्रेलरहरू"</string>
+<string name="settings_updates">"अपडेटहरू"</string>
+<string name="settings_updates_at_launch">"सुरु हुँदा अपडेट जाँच गर्नुहोस्"</string>
+<string name="settings_updates_at_launch_body">"CloudStream खुल्दा नयाँ संस्करण खोज्छ।"</string>
+<string name="settings_updates_check_now">"अहिले जाँच गर्नुहोस्"</string>
+<string name="settings_updates_current" formatted="true">"अद्यावधिक · %s जाँचियो"</string>
+<string name="settings_watch_progress_body">"हेर्न जारी राख्नका लागि तपाईं रोकिएको ठाउँ सुरक्षित गर्छ।"</string>
 <string name="show_log_cat">"Logcat देखाउनुहोस"</string>
 <string name="skip_loading">"लोड गर्न छोड्नुहोस्"</string>
 <string name="sort_apply">"लागू गर्नुहोस्"</string>

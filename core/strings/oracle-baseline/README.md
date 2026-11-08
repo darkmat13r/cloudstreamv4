@@ -120,6 +120,28 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Move for `I18N-20`, 2026-11-08 — 127 new keys for `DS-24`'s Settings boards
+
+Branched from master's twenty-third move (Train 7); a train that lands others first renumbers this and regenerates once.
+New keys are approved in general (`I18N-09`). Additive, every key authored in all 62 directories: 123 strings and 4 plurals
+(`settings_repo_summary`, `settings_extension_scan_warnings`, `settings_extensions_all`, `settings_reset_item_profiles`), all
+named `settings_*`. The one `settings_*` key already on master, `settings_info`, is untouched.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 44,778 | 53,004 | 8,226 | 0 | 0 |
+| `emitted.tsv` | 47,071 | 55,559 | 8,488 | 0 | 0 |
+| `lookup.tsv` | 86,089 | 97,574 | 11,485 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines
+lost in any file, every line that was in a file before is in it after in the same order, and every added line names exactly
+one of the 127 keys. A string key adds 62, 64 and 87 lines; a plural adds one line per quantity, so its counts vary by locale.
+`report.txt` moved only in its counts: `OWN` 43,408 -> 51,282 (127 x 62), visible keys 964 -> 1,091, plurals 22 -> 26, and 127
+more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.**
+`expectedOwn` 43,408 -> 51,282.
+
 ## Twenty-third move, 2026-11-08 — Train 7 (`#213`, `#216`, `#219`, `#217`), one move: `I18N-16`'s 18 new keys for TV account select (board 8d)
 
 One combined baseline move for the train that merges `#213` (`BUG-49`), `#216` (`BUG-41`), `#219` (`BUG-45`) and `#217` (`I18N-16`)

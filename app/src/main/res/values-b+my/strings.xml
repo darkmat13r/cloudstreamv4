@@ -14,6 +14,10 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d ရင်းမြစ်"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="other">"စကင် သတိပေးချက် %d ခု"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">"အဆက်အားလုံး %d ခု"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="other">"အဆက် %1$d ခု · %2$s တွင် အပ်ဒိတ်"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="other">"ပရိုဖိုင် %d ခုနှင့် ၎င်းတို့၏ PIN"</item></plurals>
 <string name="account">"အကောင့်"</string>
 <string name="account_add_profile">"ပရိုဖိုင် ထည့်ရန်"</string>
 <string name="account_manage_profiles">"ပရိုဖိုင်များ စီမံရန်"</string>
@@ -549,7 +553,130 @@
 <string name="seek_forward_10_seconds">"10 စက္ကန့် ရှေ့သို့ကျော်ရန်"</string>
 <string name="select_library">"လိုက်ဘရီရွေးချယ်ရန်"</string>
 <string name="set_default">"ပုံသေထားရန်"</string>
+<string name="settings_adult_content">"အရွယ်ရောက်သူ အကြောင်းအရာ"</string>
+<string name="settings_adult_content_body">"အဆက်က ပံ့ပိုးသည့်နေရာတွင်သာ။ ပြန်စပြီးနောက်။"</string>
+<string name="settings_anime_audio">"အန်နီမေး အသံ"</string>
+<string name="settings_anime_audio_both">"အသံထပ်နှင့် စာတန်းထိုး"</string>
+<string name="settings_at_launch">"ဖွင့်ချိန်တွင်"</string>
+<string name="settings_back_up">"အရန်သိမ်းရန်"</string>
+<string name="settings_back_up_now">"ယခု အရန်သိမ်းရန်"</string>
+<string name="settings_backup_automatically">"အလိုအလျောက်"</string>
+<string name="settings_backup_folder">"အရန်သိမ်း ဖိုင်တွဲ"</string>
+<string name="settings_change">"ပြောင်းရန်"</string>
+<string name="settings_choose">"ရွေးရန်"</string>
+<string name="settings_choose_another">"နောက်တစ်ခု ရွေးရန်"</string>
+<string name="settings_clear">"ရှင်းရန်"</string>
+<string name="settings_clear_cache">"ကက်ရှ် ရှင်းရန်"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"ဗီဒီယို %1$s · ပုံများ %2$s"</string>
+<string name="settings_color_white">"အဖြူ"</string>
+<string name="settings_color_yellow">"အဝါ"</string>
+<string name="settings_connections_per_download">"ဒေါင်းလုဒ်တစ်ခုချင်းစီ၏ ချိတ်ဆက်မှုများ"</string>
+<string name="settings_connections_per_download_body">"ရင်းမြစ်က ခွင့်ပြုလျှင် ပိုများခြင်းက ပိုမြန်နိုင်သည်။"</string>
+<string name="settings_diagnostics">"စစ်ဆေးချက်များ"</string>
+<string name="settings_disk_cache">"ဒစ်ခ် ကက်ရှ်"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"အဆက်များ၊ ပုံများနှင့် စာတန်းထိုးများအတွက်။ ဗီဒီယိုစီးကြောင်းများသည် သင့် Mac ၏ DNS ကို သုံးသည်။"</string>
+<string name="settings_download_folder">"ဒေါင်းလုဒ် ဖိုင်တွဲ"</string>
+<string name="settings_downloads_at_once">"တစ်ပြိုင်နက် ဒေါင်းလုဒ်များ"</string>
+<string name="settings_downloads_at_once_body">"ခေါင်းစဉ် မည်မျှ အတူတကွ ဒေါင်းလုဒ်လုပ်မည်။"</string>
+<string name="settings_downloads_wait">"ဖိုင်တွဲ ပြန်ရောက်လာသည် သို့မဟုတ် နောက်တစ်ခု ရွေးသည်အထိ ဒေါင်းလုဒ်အသစ်များ စောင့်မည်။"</string>
+<string name="settings_extension_languages">"ဘာသာစကားများ"</string>
+<string name="settings_extension_review">"ပြန်စစ်ရန်"</string>
+<string name="settings_extensions_auto_install">"ကျွန်ုပ်၏ ရီပိုစစ်ထရီများမှ အသစ်များကို ထည့်သွင်းရန်"</string>
+<string name="settings_extensions_auto_install_body">"တစ်ခုချင်းစီကို မလည်ပတ်မီ စကင်ဖတ်ဆဲ။"</string>
+<string name="settings_extensions_auto_update">"အဆက်များကို အလိုအလျောက် အပ်ဒိတ်လုပ်ရန်"</string>
+<string name="settings_extensions_auto_update_body">"အပ်ဒိတ်တစ်ခုချင်းစီကို မလည်ပတ်မီ စကင်ဖတ်သည်။"</string>
+<string name="settings_extensions_installed" formatted="true">"ထည့်သွင်းထား · %d"</string>
+<string name="settings_filler_episodes">"ဖြည့်စွက် အပိုင်းများ"</string>
+<string name="settings_filler_episodes_body">"အန်နီမေးအတွက်၊ ရင်းမြစ်က အမှတ်အသားပြုသည့်နေရာတွင်။"</string>
+<string name="settings_folder">"ဖိုင်တွဲ"</string>
+<string name="settings_folder_missing" formatted="true">"%s မရှိပါ။ ၎င်း၏ ဒစ်ခ်ကို ချိတ်ဆက်ထားခြင်း မရှိနိုင်ပါ။"</string>
+<string name="settings_help_community">"အကူအညီနှင့် အသိုင်းအဝိုင်း"</string>
+<string name="settings_help_community_body">"GitHub၊ Discord နှင့် wiki တို့သည် အကူအညီ မီနူးတွင် ရှိသည်။"</string>
+<string name="settings_hide_search_quality">"ရှာဖွေမှုရလဒ်များတွင် အရည်အသွေးကို ဖျောက်ရန်"</string>
+<string name="settings_home_search">"ပင်မနှင့် ရှာဖွေမှု"</string>
 <string name="settings_info">"အချက်အလက်"</string>
+<string name="settings_last_backup" formatted="true">"နောက်ဆုံး အရန်သိမ်းမှု: %s"</string>
+<string name="settings_logs">"မှတ်တမ်းများ"</string>
+<string name="settings_logs_mac_body">"ဤ Mac တွင် ၇ ရက် သိမ်းထားသည်။ မည်သည့်နေရာသို့မျှ မပို့ပါ။"</string>
+<string name="settings_logs_phone_body">"ဤဖုန်းတွင် ၇ ရက် သိမ်းထားသည်။ မည်သည့်နေရာသို့မျှ မပို့ပါ။"</string>
+<string name="settings_network_buffer">"ကွန်ရက် ဘာဖာ"</string>
+<string name="settings_offline_repos" formatted="true">"ရီပိုစစ်ထရီများကို စစ်၍မရပါ။ ဤစာရင်းများသည် %s မှ ဖြစ်သည်။"</string>
+<string name="settings_pane_accounts_privacy">"အကောင့်များနှင့် ကိုယ်ရေးလုံခြုံမှု"</string>
+<string name="settings_pane_advanced">"အဆင့်မြင့်"</string>
+<string name="settings_pane_appearance">"အသွင်အပြင်"</string>
+<string name="settings_pane_network">"ကွန်ရက်"</string>
+<string name="settings_pane_playback">"ဖွင့်ခြင်း"</string>
+<string name="settings_play_next">"နောက်အပိုင်းကို ဖွင့်ရန်"</string>
+<string name="settings_play_next_body">"အပိုင်းအဆုံးတွင် 10 s နောက်ပြန်ရေတွက်သည်။"</string>
+<string name="settings_playing">"ဖွင့်ခြင်း"</string>
+<string name="settings_poster_badges">"ပိုစတာများပေါ်ရှိ တံဆိပ်များ"</string>
+<string name="settings_posters">"ပိုစတာများ"</string>
+<string name="settings_profile_no_pin">"PIN မရှိ"</string>
+<string name="settings_profile_this">"ဤပရိုဖိုင်"</string>
+<string name="settings_random_button_body">"ပင်မနှင့် စာကြည့်တိုက်တွင်။"</string>
+<string name="settings_read">"ဖတ်ရန်"</string>
+<string name="settings_remove">"ဖယ်ရှားရန်"</string>
+<string name="settings_repo_unreachable" formatted="true">"ချိတ်ဆက်၍ မရပါ။ ဤစာရင်းသည် လွန်ခဲ့သော %s က ဖြစ်သည်။"</string>
+<string name="settings_repositories">"ရီပိုစစ်ထရီများ"</string>
+<string name="settings_reset_app">"CloudStream ကို ပြန်လည်သတ်မှတ်ရန်"</string>
+<string name="settings_reset_app_body">"ဤ Mac ပေါ်ရှိ ပြင်ဆင်ချက်များ၊ ပရိုဖိုင်များနှင့် စာကြည့်တိုက်ကို ဖျက်သည်။"</string>
+<string name="settings_reset_app_phone_body">"ပြင်ဆင်ချက်များ၊ ပရိုဖိုင်များနှင့် စာကြည့်တိုက်ကို ဖျက်သည်။"</string>
+<string name="settings_reset_confirm_title">"CloudStream ကို ပြန်လည်သတ်မှတ်မလား?"</string>
+<string name="settings_reset_erases_mac">"ဤ Mac မှ ဖျက်မည့်အရာများ:"</string>
+<string name="settings_reset_erases_phone">"ဤဖုန်းမှ ဖျက်မည့်အရာများ:"</string>
+<string name="settings_reset_item_library">"စာကြည့်တိုက်၊ ကြည့်ရှုမှုတိုးတက်မှုနှင့် မှတ်တမ်း"</string>
+<string name="settings_reset_item_search">"ရှာဖွေမှု မှတ်တမ်း"</string>
+<string name="settings_reset_item_settings">"ပြင်ဆင်ချက်များ"</string>
+<string name="settings_reset_item_signins">"စင့်ခ်နှင့် စာတန်းထိုး ဝန်ဆောင်မှုများသို့ ဝင်ရောက်မှုများ"</string>
+<string name="settings_reset_kept">"ထားရှိမည်: အဆက်များ၊ ဒေါင်းလုဒ်ဖိုင်များနှင့် အရန်သိမ်းမှုများ။"</string>
+<string name="settings_restore">"ပြန်ယူရန်"</string>
+<string name="settings_restore_failed">"ပြန်ယူ၍ မရပါ"</string>
+<string name="settings_restore_failed_body">"ထိုဖိုင်သည် CloudStream အရန်သိမ်းမှု မဟုတ်ပါ။ ဘာမျှ မပြောင်းလဲပါ။"</string>
+<string name="settings_restoring" formatted="true">"%s ကို ပြန်ယူနေသည်"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %3$d ခုအနက် %2$d"</string>
+<string name="settings_run_test">"စမ်းသပ်မှု လုပ်ရန်"</string>
+<string name="settings_search_hint">"ပြင်ဆင်ချက်များ ရှာရန်"</string>
+<string name="settings_search_no_results" formatted="true">"“%s” အတွက် ရလဒ် မရှိပါ"</string>
+<string name="settings_search_no_results_body">"အခြားစကားလုံးဖြင့် စမ်းကြည့်ပါ။"</string>
+<string name="settings_seek_amount">"ကျော်မည့် ပမာဏ"</string>
+<string name="settings_setup_again">"စနစ်ထည့်သွင်းမှုကို ထပ်လုပ်ရန်"</string>
+<string name="settings_setup_again_body">"ဘာသာစကား၊ အဆက်များနှင့် အပြင်အဆင်၊ အစမှ။"</string>
+<string name="settings_setup_run">"စနစ်ထည့်သွင်းမှု လုပ်ရန်"</string>
+<string name="settings_sign_in">"ဝင်ရန်"</string>
+<string name="settings_skip_intro">"နိဒါန်းကျော်ရန် ကို ပြရန်"</string>
+<string name="settings_skip_intro_body">"ရင်းမြစ်က အဖွင့် သို့မဟုတ် ခရက်ဒစ်ကို အမှတ်အသားပြုသည့်နေရာတွင်။"</string>
+<string name="settings_skip_profile_choice">"ပရိုဖိုင်ရွေးခြင်းကို ကျော်ရန်"</string>
+<string name="settings_skip_profile_choice_body">"နောက်ဆုံးသုံးခဲ့သော ပရိုဖိုင်ကို ဖွင့်သည်။"</string>
+<string name="settings_source_order">"ရင်းမြစ် အစီအစဉ်"</string>
+<string name="settings_source_order_body">"ပလေယာက ဦးစွာ စမ်းမည့် ရင်းမြစ်များ။"</string>
+<string name="settings_speed">"အမြန်နှုန်း"</string>
+<string name="settings_subtitle_background">"နောက်ခံ"</string>
+<string name="settings_subtitle_edge">"အနား"</string>
+<string name="settings_subtitle_font_system">"စနစ်"</string>
+<string name="settings_subtitle_language">"နှစ်သက်သော ဘာသာစကား"</string>
+<string name="settings_subtitle_language_body">"ခေါင်းစဉ်တွင် ရှိပါက အလိုအလျောက် ရွေးသည်။"</string>
+<string name="settings_subtitle_preview">"အစမ်းကြည့်ရန်"</string>
+<string name="settings_subtitle_services">"စာတန်းထိုး ဝန်ဆောင်မှုများ"</string>
+<string name="settings_subtitle_size">"အရွယ်အစား"</string>
+<string name="settings_subtitle_size_large">"ကြီး"</string>
+<string name="settings_subtitle_size_medium">"အလယ်အလတ်"</string>
+<string name="settings_subtitle_size_small">"သေး"</string>
+<string name="settings_subtitle_text_color">"စာသား အရောင်"</string>
+<string name="settings_suggestions_while_typing">"ရိုက်နေစဉ် အကြံပြုချက်များ"</string>
+<string name="settings_sync_for" formatted="true">"%s အတွက် စင့်ခ်"</string>
+<string name="settings_sync_per_profile">"ပရိုဖိုင်တစ်ခုချင်းစီ သီးခြား ဝင်ရောက်သည်။"</string>
+<string name="settings_test_all_extensions">"အဆက်အားလုံးကို စမ်းသပ်ရန်"</string>
+<string name="settings_test_all_extensions_body">"ဖွင့်ထားသော အဆက်တိုင်းဖြင့် ရှာသည်။ ဆော့ဖ်ဝဲရေးသူများအတွက်။"</string>
+<string name="settings_title_pages">"ခေါင်းစဉ် စာမျက်နှာများ"</string>
+<string name="settings_title_under_poster">"ပိုစတာအောက်တွင် ခေါင်းစဉ်"</string>
+<string name="settings_trailers">"ကြော်ငြာကလစ်များ"</string>
+<string name="settings_updates">"အပ်ဒိတ်များ"</string>
+<string name="settings_updates_at_launch">"ဖွင့်ချိန်တွင် အပ်ဒိတ် စစ်ရန်"</string>
+<string name="settings_updates_at_launch_body">"CloudStream ဖွင့်သောအခါ ဗားရှင်းအသစ် ရှာသည်။"</string>
+<string name="settings_updates_check_now">"ယခု စစ်ရန်"</string>
+<string name="settings_updates_current" formatted="true">"နောက်ဆုံးဗားရှင်း · %s တွင် စစ်ခဲ့"</string>
+<string name="settings_watch_progress_body">"ဆက်လက်ကြည့်ရှုမည် အတွက် သင်ရပ်ခဲ့သည့်နေရာကို သိမ်းသည်။"</string>
 <string name="setup_done">"ပြီးပြီ"</string>
 <string name="setup_extensions_subtext">"သင်အသုံးပြုလိုသောဆိုက်များစာရင်းကို ဒေါင်းလုဒ်လုပ်ပါ"</string>
 <string name="show_dub">"နောက်ခံအသံ အမှတ်အသား"</string>

@@ -16,6 +16,10 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Шукаць у %d крыніцы"</item><item quantity="few">"Шукаць ва ўсіх %d крыніцах"</item><item quantity="many">"Шукаць ва ўсіх %d крыніцах"</item><item quantity="other">"Шукаць ва ўсіх %d крыніцах"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць у %d крыніцы."</item><item quantity="few">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item><item quantity="many">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item><item quantity="other">"Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d КРЫНІЦА"</item><item quantity="few">"%d КРЫНІЦЫ"</item><item quantity="many">"%d КРЫНІЦ"</item><item quantity="other">"%d КРЫНІЦЫ"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d папярэджанне сканавання"</item><item quantity="few">"%d папярэджанні сканавання"</item><item quantity="many">"%d папярэджанняў сканавання"</item><item quantity="other">"%d папярэджання сканавання"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"%d пашырэнне"</item><item quantity="few">"Усе %d пашырэнні"</item><item quantity="many">"Усе %d пашырэнняў"</item><item quantity="other">"Усе %d пашырэння"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d пашырэнне · абноўлена %2$s"</item><item quantity="few">"%1$d пашырэнні · абноўлена %2$s"</item><item quantity="many">"%1$d пашырэнняў · абноўлена %2$s"</item><item quantity="other">"%1$d пашырэння · абноўлена %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d профіль і яго PIN-код"</item><item quantity="few">"%d профілі і іх PIN-коды"</item><item quantity="many">"%d профіляў і іх PIN-коды"</item><item quantity="other">"%d профілю і іх PIN-коды"</item></plurals>
 <string name="account">"уліковы запіс"</string>
 <string name="account_add_profile">"Дадаць профіль"</string>
 <string name="account_manage_profiles">"Кіраваць профілямі"</string>
@@ -705,7 +709,130 @@
 <string name="select_an_account">"Выберыце ўліковы запіс"</string>
 <string name="select_library">"Выбраць бібліятэку"</string>
 <string name="set_default">"Выбраць як прадвызначаны"</string>
+<string name="settings_adult_content">"Кантэнт для дарослых"</string>
+<string name="settings_adult_content_body">"Толькі там, дзе пашырэнне гэта падтрымлівае. Пасля перазапуску."</string>
+<string name="settings_anime_audio">"Гук анімэ"</string>
+<string name="settings_anime_audio_both">"Агучка і субцітры"</string>
+<string name="settings_at_launch">"Пры запуску"</string>
+<string name="settings_back_up">"Зрабіць копію"</string>
+<string name="settings_back_up_now">"Зрабіць копію зараз"</string>
+<string name="settings_backup_automatically">"Аўтаматычна"</string>
+<string name="settings_backup_folder">"Папка рэзервовых копій"</string>
+<string name="settings_change">"Змяніць"</string>
+<string name="settings_choose">"Выбраць"</string>
+<string name="settings_choose_another">"Выбраць іншую"</string>
+<string name="settings_clear">"Ачысціць"</string>
+<string name="settings_clear_cache">"Ачысціць кэш"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Відэа %1$s · выявы %2$s"</string>
+<string name="settings_color_white">"Белы"</string>
+<string name="settings_color_yellow">"Жоўты"</string>
+<string name="settings_connections_per_download">"Злучэнні на спампоўку"</string>
+<string name="settings_connections_per_download_body">"Больш можа быць хутчэй, калі крыніца гэта дазваляе."</string>
+<string name="settings_diagnostics">"Дыягностыка"</string>
+<string name="settings_disk_cache">"Дыскавы кэш"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Для пашырэнняў, вокладак і субцітраў. Відэаплыні выкарыстоўваюць DNS вашага Mac."</string>
+<string name="settings_download_folder">"Папка спамповак"</string>
+<string name="settings_downloads_at_once">"Спамповак адначасова"</string>
+<string name="settings_downloads_at_once_body">"Колькі назваў спампоўваецца разам."</string>
+<string name="settings_downloads_wait">"Новыя спампоўкі чакаюць, пакуль папка не вернецца або не будзе выбрана іншая."</string>
+<string name="settings_extension_languages">"Мовы"</string>
+<string name="settings_extension_review">"Праверыць"</string>
+<string name="settings_extensions_auto_install">"Усталёўваць новыя з маіх рэпазіторыяў"</string>
+<string name="settings_extensions_auto_install_body">"Кожнае ўсё роўна правяраецца перад запускам."</string>
+<string name="settings_extensions_auto_update">"Аўтаматычна абнаўляць пашырэнні"</string>
+<string name="settings_extensions_auto_update_body">"Кожнае абнаўленне правяраецца перад запускам."</string>
+<string name="settings_extensions_installed" formatted="true">"Усталявана · %d"</string>
+<string name="settings_filler_episodes">"Філерныя серыі"</string>
+<string name="settings_filler_episodes_body">"Для анімэ, дзе крыніца іх пазначае."</string>
+<string name="settings_folder">"Папка"</string>
+<string name="settings_folder_missing" formatted="true">"%s не знойдзена. Магчыма, яе дыск не падключаны."</string>
+<string name="settings_help_community">"Даведка і супольнасць"</string>
+<string name="settings_help_community_body">"GitHub, Discord і вікі — у меню «Даведка»."</string>
+<string name="settings_hide_search_quality">"Хаваць якасць у выніках пошуку"</string>
+<string name="settings_home_search">"Галоўная і пошук"</string>
 <string name="settings_info">"Звесткі"</string>
+<string name="settings_last_backup" formatted="true">"Апошняя копія: %s"</string>
+<string name="settings_logs">"Журналы"</string>
+<string name="settings_logs_mac_body">"Захоўваюцца на гэтым Mac 7 дзён. Нікуды не адпраўляюцца."</string>
+<string name="settings_logs_phone_body">"Захоўваюцца на гэтым тэлефоне 7 дзён. Нікуды не адпраўляюцца."</string>
+<string name="settings_network_buffer">"Сеткавы буфер"</string>
+<string name="settings_offline_repos" formatted="true">"Немагчыма праверыць рэпазіторыі. Гэтыя спісы ад %s."</string>
+<string name="settings_pane_accounts_privacy">"Уліковыя запісы і прыватнасць"</string>
+<string name="settings_pane_advanced">"Пашыраныя"</string>
+<string name="settings_pane_appearance">"Знешні выгляд"</string>
+<string name="settings_pane_network">"Сетка"</string>
+<string name="settings_pane_playback">"Прайграванне"</string>
+<string name="settings_play_next">"Прайграваць наступную серыю"</string>
+<string name="settings_play_next_body">"Адлічвае 10 с у канцы серыі."</string>
+<string name="settings_playing">"Падчас прайгравання"</string>
+<string name="settings_poster_badges">"Значкі на вокладках"</string>
+<string name="settings_posters">"Вокладкі"</string>
+<string name="settings_profile_no_pin">"Без PIN-кода"</string>
+<string name="settings_profile_this">"Гэты профіль"</string>
+<string name="settings_random_button_body">"На галоўнай і ў бібліятэцы."</string>
+<string name="settings_read">"Чытаць"</string>
+<string name="settings_remove">"Выдаліць"</string>
+<string name="settings_repo_unreachable" formatted="true">"Не ўдалося звязацца. Спіс атрыманы %s таму."</string>
+<string name="settings_repositories">"Рэпазіторыі"</string>
+<string name="settings_reset_app">"Скінуць CloudStream"</string>
+<string name="settings_reset_app_body">"Сцірае налады, профілі і бібліятэку на гэтым Mac."</string>
+<string name="settings_reset_app_phone_body">"Сцірае налады, профілі і бібліятэку."</string>
+<string name="settings_reset_confirm_title">"Скінуць CloudStream?"</string>
+<string name="settings_reset_erases_mac">"З гэтага Mac будзе сцёрта:"</string>
+<string name="settings_reset_erases_phone">"З гэтага тэлефона будзе сцёрта:"</string>
+<string name="settings_reset_item_library">"Бібліятэка, прагрэс прагляду і гісторыя"</string>
+<string name="settings_reset_item_search">"Гісторыя пошуку"</string>
+<string name="settings_reset_item_settings">"Налады"</string>
+<string name="settings_reset_item_signins">"Уваходы ў сэрвісы сінхранізацыі і субцітраў"</string>
+<string name="settings_reset_kept">"Захоўваюцца: пашырэнні, спампаваныя файлы і рэзервовыя копіі."</string>
+<string name="settings_restore">"Аднавіць"</string>
+<string name="settings_restore_failed">"Не ўдалося аднавіць"</string>
+<string name="settings_restore_failed_body">"Гэты файл не з’яўляецца рэзервовай копіяй CloudStream. Нічога не зменена."</string>
+<string name="settings_restoring" formatted="true">"Аднаўленне %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d з %3$d"</string>
+<string name="settings_run_test">"Запусціць тэст"</string>
+<string name="settings_search_hint">"Пошук у наладах"</string>
+<string name="settings_search_no_results" formatted="true">"Няма вынікаў для «%s»"</string>
+<string name="settings_search_no_results_body">"Паспрабуйце іншае слова."</string>
+<string name="settings_seek_amount">"Крок перамоткі"</string>
+<string name="settings_setup_again">"Запусціць наладжванне зноў"</string>
+<string name="settings_setup_again_body">"Мова, пашырэнні і макет — з пачатку."</string>
+<string name="settings_setup_run">"Запусціць наладжванне"</string>
+<string name="settings_sign_in">"Увайсці"</string>
+<string name="settings_skip_intro">"Прапаноўваць «Прапусціць уступ»"</string>
+<string name="settings_skip_intro_body">"Там, дзе крыніца пазначае пачатак або тытры."</string>
+<string name="settings_skip_profile_choice">"Не выбіраць профіль"</string>
+<string name="settings_skip_profile_choice_body">"Адкрывае апошні выкарыстаны профіль."</string>
+<string name="settings_source_order">"Парадак крыніц"</string>
+<string name="settings_source_order_body">"Якія крыніцы плэер спрабуе першымі."</string>
+<string name="settings_speed">"Хуткасць"</string>
+<string name="settings_subtitle_background">"Фон"</string>
+<string name="settings_subtitle_edge">"Край"</string>
+<string name="settings_subtitle_font_system">"Сістэмны"</string>
+<string name="settings_subtitle_language">"Пераважная мова"</string>
+<string name="settings_subtitle_language_body">"Выбіраецца аўтаматычна, калі назва яе мае."</string>
+<string name="settings_subtitle_preview">"Перадпрагляд"</string>
+<string name="settings_subtitle_services">"Сэрвісы субцітраў"</string>
+<string name="settings_subtitle_size">"Памер"</string>
+<string name="settings_subtitle_size_large">"Вялікі"</string>
+<string name="settings_subtitle_size_medium">"Сярэдні"</string>
+<string name="settings_subtitle_size_small">"Малы"</string>
+<string name="settings_subtitle_text_color">"Колер тэксту"</string>
+<string name="settings_suggestions_while_typing">"Падказкі падчас уводу"</string>
+<string name="settings_sync_for" formatted="true">"Сінхранізацыя для %s"</string>
+<string name="settings_sync_per_profile">"Кожны профіль уваходзіць асобна."</string>
+<string name="settings_test_all_extensions">"Праверыць усе пашырэнні"</string>
+<string name="settings_test_all_extensions_body">"Шукае праз кожнае ўключанае пашырэнне. Для распрацоўшчыкаў."</string>
+<string name="settings_title_pages">"Старонкі назваў"</string>
+<string name="settings_title_under_poster">"Назва пад вокладкай"</string>
+<string name="settings_trailers">"Трэйлеры"</string>
+<string name="settings_updates">"Абнаўленні"</string>
+<string name="settings_updates_at_launch">"Правяраць абнаўленні пры запуску"</string>
+<string name="settings_updates_at_launch_body">"Шукае новую версію, калі CloudStream адкрываецца."</string>
+<string name="settings_updates_check_now">"Праверыць зараз"</string>
+<string name="settings_updates_current" formatted="true">"Актуальная версія · праверана %s"</string>
+<string name="settings_watch_progress_body">"Захоўвае, дзе вы спыніліся, для «Працягнуць прагляд»."</string>
 <string name="setup_done">"Гатова"</string>
 <string name="setup_extensions_subtext">"Спампуйце спіс вэб-сайтаў, якімі вы хочаце карыстацца"</string>
 <string name="show">"Паказваць"</string>
