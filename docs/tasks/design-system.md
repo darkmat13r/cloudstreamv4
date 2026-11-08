@@ -1211,6 +1211,8 @@ The board files were not on the drawing Mac, so every number comes from the code
   group. The build confirms this on a real Mac rather than trusting the documentation. **The build tests or asserts
   both attributes:** it reads each stored item back and checks its accessibility and that it is not synchronizable. A
   write path that cannot set them fails rather than falling back to a syncing item.
+  An unsigned development build cannot use the data protection keychain, so the PR that builds this says how sign-in
+  was tested: on a signed local build.
 - **Touch ID needs a native bridge** (LocalAuthentication), under the same dependency rule as the Keychain.
 - **Touch ID's glyph is not in `ui-components.md`'s table yet.** A3t draws Tabler's `Fingerprint`. A new meaning is
   added to the table before it gets a glyph, so a Touch ID row (`Fingerprint`) goes into `ui-components.md` before the
