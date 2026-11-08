@@ -2474,7 +2474,7 @@ Every property a test depends on is kept:
 - The control-character variant still breaks a word with `\n` and puts `\u0007` before the space, and it still cleans to
   the same name the default link has.
 - The title still ends in `...?`, which `toHudState` must keep.
-- The long Up next title is the same length, 38 characters.
+- The long Up-next name keeps its length, 38 characters. No test reads the other names' lengths.
 
 **Screenshots.** Five of `PlayerHudTvDeviceTest`'s six references changed. All five draw the title or the source:
 - `shown`, `buffering`, `failed` and `offline` differed in 8,036 pixels each;
