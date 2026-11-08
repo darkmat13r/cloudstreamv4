@@ -3950,11 +3950,48 @@ pixels apart; the old 784dp overhung by 46.
   DS-17 lands.
 - **Season, Episodes and Full synopsis still trail the row as text buttons.** They are on no board here and
   stay until their replacements exist. The row's order is the board's **as a prefix**, so nothing is
-  reordered when they go.
-- **Queued, in order:** board 7i, the inline episode list with season chips (Season and Episodes leave the
-  row); boards 7j and 7k, the collapsed synopsis opening the panel (Synopsis leaves); then Download and
-  Mark watched for films, wired to real `DetailAction`s with tests — `DetailAction` has neither today,
-  which is why 7g's two cells are not drawn. **More** has no board yet.
+  reordered when they go. As of PR 2b the Season button resolves `season_format` rather than
+  concatenating, so it and the chips read the same key; it still scrolls to the list rather than
+  choosing a season, and **removing it is not 2b's** — it is the one part of 7i still open, below.
+- **Queued, in order:** boards 7j and 7k, the collapsed synopsis opening the panel (Synopsis leaves);
+  then Download and Mark watched for films, wired to real `DetailAction`s with tests — `DetailAction`
+  has neither today, which is why 7g's two cells are not drawn. **More** has no board yet.
+
+### Board 7i is drawn, less its two text buttons (PR 2a `#181`, PR 2b)
+
+PR 2a drew the rows; PR 2b adds the season chips, so 7i's list is complete as far as the contract
+reaches (`KMP-63` holds the two readouts it cannot supply).
+
+**What the chips are keyed on, and why it is not `TitleDetail.seasons`.** The groups are derived from
+`DetailEpisode.season`, not from the `seasons` list the action row's button reads. `toSeasons()` is
+`mapNotNull { it.season }.groupingBy { it }.eachCount()`, so it **drops every null-season episode** —
+chips built from it would hide exactly the episodes the Other chip exists to show. The owner's ruling
+is that no episode is ever hidden, which rules the `seasons` list out as the source.
+
+**Which chip a page opens on** (#244's review). The chosen chip is a **nullable** index: null until
+the viewer picks one. While it is null, the page opens on the group holding the episode the primary
+action plays, so Resume at S3E5 opens Season 3 with that row marked; otherwise it opens on the first
+group. `shownSeasonIndex` resolves and clamps it on the screen, which keeps the empty-list guard.
+- `aResumeInSeasonTwoOpensOnSeasonTwoWithItsRowMarked` holds it on the device. It fails on #244's earlier
+  head `9a837e7fe`, which opened on Season 1.
+- One consequence for a series with no resume: the primary plays the provider's first episode, so the
+  page opens on that episode's group. When a provider lists specials first, that group is Specials.
+  `SeasonGroups` now declares season 1's episode first, so its tests and `detail-season-chips` still
+  open on Season 1. That reference changed only by the marked "One One" row.
+
+**Still open on 7i:** Season and Episodes leave the action row. Both still do the one thing the chips
+do not — each calls `onScrollToEpisodes` — so removing them is a focus-order and reference change of
+its own, not a line in the chip PR.
+
+They are **almost** mutually exclusive with the chips, and the gap is worth knowing before anyone
+removes them. `namedSeason()` is `seasons.singleOrNull()` (`DetailCopy.kt:281`), so the two buttons
+appear only when the title has exactly **one** season, and chips appear only at **two or more**
+groups. The overlap is a title whose episodes carry one season number *and* some with no season at
+all: `toSeasons()` drops the nulls and yields a single season, so both buttons draw, while the groups
+are `[1, Other]`, so the chips draw too. On that title the Episodes button counts season 1 while the
+header counts the chosen group, so picking Other puts two different counts on one screen. Measured
+from the two functions, not seen on a device — no fixture here produces it, because `SeasonGroups`
+sets `seasons = emptyList()`.
 - **Board 6a's chip gap is wrong**, not the code's: 6a draws range chips at 12dp where `ChipRow` spaces at
   `ChipRowSpacing` 24dp. Board 7i is drawn at the token. Raised as an owner correction.
 

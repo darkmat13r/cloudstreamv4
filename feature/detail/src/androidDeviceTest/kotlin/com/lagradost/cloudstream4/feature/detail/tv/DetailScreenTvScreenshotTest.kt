@@ -54,6 +54,7 @@ import org.junit.runner.RunWith
  * | `detail-scrolled-recommendations` | the rails below the fold, which only exist once the page has scrolled |
  * | `detail-synopsis-panel-open` | the side panel over the page, the only state where two surfaces overlap |
  * | `detail-episodes-selected-row` | board 7i's episode rows: the pill on the row the primary would play, and the runtime line |
+ * | `detail-season-chips` | board 7i's chip row: which chip is chosen against which chip has focus |
  *
  * Not drawn here and deliberately: the forty-episode list, one episode, no episodes and the long-text
  * case. Those are **assertions about layout** — a fixed box, an ellipsis, a plural — which
@@ -303,6 +304,38 @@ class DetailScreenTvScreenshotTest {
         rule.assertScreenshot("detail-episodes-selected-row")
     }
 
+    /**
+     * Board 7i's season chips, with the chosen chip and the focused chip being **different chips**.
+     *
+     * That is the whole reason this is an image. `Chip` carries `selected` in its semantics, so the
+     * behaviour suite can assert which chip is chosen — but chosen and focused are drawn with colour
+     * and fill, and at three metres they are the only thing telling a viewer which season they are
+     * looking at against which one they are about to pick. Focus moves right to season 2 while
+     * season 1 stays chosen, so one frame carries both.
+     */
+    @Test
+    fun screenshotSeasonChipsChosenAgainstFocused() {
+        show(DetailFixtures.SeasonGroups)
+        awaitText(DetailFixtures.SeasonGroups.title)
+        awaitFocus(PLAY_EPISODE)
+        // Which chip DOWN lands on is geometry, not a choice: focus search picks the candidate
+        // nearest the centre of what it came from, and a measured run landed on season 2. So this
+        // takes whichever chip it reaches and then walks to the one the reference wants.
+        val (landed, trail) = pressUntilOneOf(listOf(SEASON_ONE, SEASON_TWO))
+        assertTrue(
+            "the chip row never took focus. DOWN went: ${trail.joinToString(" -> ")}",
+            landed?.contains(SEASON_ONE) == true || landed?.contains(SEASON_TWO) == true,
+        )
+        // Season 1 stays **chosen** — nothing is pressed on it — while season 2 takes the ring, so
+        // one frame carries chosen against focused.
+        if (rule.focusedLabel() != SEASON_TWO) {
+            repeat(MAX_PRESSES) { if (rule.focusedLabel() != SEASON_TWO) dpad.press(Dpad.Right) }
+        }
+        rule.waitUntil(WAIT_MS) { rule.focusedLabel() == SEASON_TWO }
+        rule.waitForIdle()
+        rule.assertScreenshot("detail-season-chips")
+    }
+
     private companion object {
         const val WAIT_MS = 10_000L
         const val MAX_PRESSES = 12
@@ -314,6 +347,9 @@ class DetailScreenTvScreenshotTest {
         const val SYNOPSIS = "Synopsis"
         const val WATCH_STATUS = "Set watch status"
         const val GO_BACK = "Go Back"
+        const val PLAY_EPISODE = "Play Episode"
+        const val SEASON_ONE = "Season 1"
+        const val SEASON_TWO = "Season 2"
 
         /** The action row's control and the open panel's header, which is how many "Synopsis" there are. */
         const val PANEL_AND_BUTTON = 2

@@ -29,6 +29,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.play_episode
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_movie_button
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
 import com.lagradost.cloudstream4.core.strings.generated.resources.season
+import com.lagradost.cloudstream4.core.strings.generated.resources.season_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.synopsis
 import com.lagradost.cloudstream4.core.strings.generated.resources.trailer
 import com.lagradost.cloudstream4.core.strings.resolve
@@ -156,7 +157,12 @@ internal fun DetailActionRowTv(
         val season = detail.namedSeason()
         if (season != null && detail.episodes.isNotEmpty()) {
             GhostTextButton(
-                label = "${stringResource(Res.string.season)} ${season.number}",
+                // Through `season_format`, not concatenated: a language may put the number
+                // first, and the season chips (`seasonChipLabel`) resolve the same key.
+                label = UiString.Resource(
+                    Res.string.season_format,
+                    listOf(stringResource(Res.string.season), season.number, ""),
+                ).resolve(),
                 onClick = onScrollToEpisodes,
             )
             GhostTextButton(

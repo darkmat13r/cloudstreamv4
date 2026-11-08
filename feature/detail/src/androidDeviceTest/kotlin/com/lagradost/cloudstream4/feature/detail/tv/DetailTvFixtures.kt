@@ -94,6 +94,9 @@ internal object DetailFixtures {
 
     /** Board 7i's own runtime, the one it writes as `24 min`. */
     const val EPISODE_MINUTES = 24
+
+    /** Mirrors `DetailSeasonGroups.SPECIALS_SEASON`, which is internal to the feature module. */
+    const val SPECIALS_SEASON_FIXTURE = 0
     private const val PLOT_REPEATS = 4
 
     /** Opaque to this module; the fake never reads it. */
@@ -225,6 +228,51 @@ internal object DetailFixtures {
             durationMs = 2_620_000L,
             episode = episodes(3)[1],
         ),
+    )
+
+    /**
+     * Board 7i's chip row with all four kinds of group at once: two numbered seasons, a specials
+     * season, and episodes the provider never gave a season.
+     *
+     * Named per group so a filtered list is identifiable by text alone, and deliberately **not** in
+     * chip order — Specials is declared before season 2, and the unnumbered episode before both — so
+     * the ordering the chips draw is the code's doing and not the fixture's.
+     *
+     * **Season 1's episode is declared first**, because with no resume the primary plays the first
+     * episode and the page opens on the season holding it (`shownSeasonIndex`, #244's review). So this
+     * page opens on Season 1 with "One One" marked, as every chip test here expects.
+     */
+    val SeasonGroups = Show.copy(
+        episodes = listOf(
+            DetailEpisode("One One", "s1e0", 1, 1, EPISODE_MINUTES),
+            DetailEpisode("Unnumbered One", "x0", null, null, EPISODE_MINUTES),
+            DetailEpisode("Specials One", "sp0", SPECIALS_SEASON_FIXTURE, 1, EPISODE_MINUTES),
+            DetailEpisode("Two One", "s2e0", 2, 1, EPISODE_MINUTES),
+            DetailEpisode("Two Two", "s2e1", 2, 2, EPISODE_MINUTES),
+        ),
+        seasons = emptyList(),
+        resume = null,
+        playData = null,
+    )
+
+    /**
+     * [SeasonGroups] with a resume partway through season 2's second episode. Nothing has been chosen, so
+     * the page must open on Season 2 with "Two Two" marked, not on the first chip (#244's review).
+     */
+    val ResumeInSeasonTwo = SeasonGroups.copy(
+        resume = DetailResume(
+            "s2e1",
+            positionMs = 1_000_000L,
+            durationMs = 2_620_000L,
+            episode = SeasonGroups.episodes.single { it.data == "s2e1" },
+        ),
+    )
+
+    /** One season only, so 7i draws no chip row at all: a lone chip filters nothing. */
+    val OneSeasonOnly = Show.copy(
+        episodes = episodes(3, runTimeMinutes = EPISODE_MINUTES),
+        resume = null,
+        playData = null,
     )
 
     /** Forty, so the list has to scroll and the last row still has to be reachable. */
