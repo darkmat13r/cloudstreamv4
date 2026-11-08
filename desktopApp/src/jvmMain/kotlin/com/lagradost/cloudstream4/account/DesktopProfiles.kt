@@ -17,6 +17,16 @@ import java.nio.file.attribute.PosixFilePermissions
 @Serializable
 internal data class StoredProfile(val id: Int, val name: String? = null)
 
+/**
+ * The same file as [StoredProfiles], read with no defaults and no unknown keys, for the one use that must not guess:
+ * deciding which libraries are no longer anyone's. A key missing or extra, or a field of another type, fails it.
+ */
+@Serializable
+private data class StrictProfiles(val version: Int, val current: Int, val profiles: List<StrictProfile>)
+
+@Serializable
+private data class StrictProfile(val id: Int, val name: String?)
+
 /** Every profile, and which one is watching. Profile [FIRST] is always there. */
 @Serializable
 internal data class StoredProfiles(
@@ -55,16 +65,33 @@ internal class DesktopProfileFile(
 ) {
     fun load(): StoredProfiles = read() ?: StoredProfiles()
 
-    /**
-     * The file's profiles, cleaned, or null when there is no file this app wrote: missing, unreadable, too large or not
-     * this shape. Null is what tells [DesktopProfiles] not to trust the list, so it removes no library files.
-     */
+    /** The file's profiles, read leniently and cleaned, or null when it is missing, unreadable, too large or not JSON. */
     fun read(): StoredProfiles? {
         val bytes = runCatching {
             if (!file.isFile) null else file.inputStream().use { it.readNBytes(MAX_FILE_BYTES.toInt() + 1) }
         }.getOrNull() ?: return null
         if (bytes.size > MAX_FILE_BYTES) return null
         return runCatching { json.decodeFromString(StoredProfiles.serializer(), bytes.decodeToString()) }.getOrNull()?.cleaned()
+    }
+
+    /**
+     * The file's profile ids, only when it is exactly a list this version wrote: every key present and none unknown,
+     * [StoredProfiles.VERSION], and nothing [cleaned] would change about the ids (no repeat, none out of range, no more
+     * than [MAX_PROFILES], the first profile there). Otherwise null. **This, not [read], is what may remove a library**
+     * (the reviewer of #281): `{}`, `{"version":1}`, a later version's list or a damaged one all decode leniently to the
+     * first profile alone, and a sweep over that would remove every other profile's library.
+     */
+    fun strictIds(): Set<Int>? {
+        val bytes = runCatching {
+            if (!file.isFile) null else file.inputStream().use { it.readNBytes(MAX_FILE_BYTES.toInt() + 1) }
+        }.getOrNull() ?: return null
+        if (bytes.size > MAX_FILE_BYTES) return null
+        val raw = runCatching { strictJson.decodeFromString(StrictProfiles.serializer(), bytes.decodeToString()) }.getOrNull()
+            ?: return null
+        if (raw.version != StoredProfiles.VERSION) return null
+        val ids = raw.profiles.map { it.id }
+        val cleaned = StoredProfiles(raw.version, raw.current, raw.profiles.map { StoredProfile(it.id, it.name) }).cleaned()
+        return if (cleaned.profiles.map { it.id } == ids) ids.toSet() else null
     }
 
     fun save(profiles: StoredProfiles) {
@@ -104,6 +131,7 @@ internal class DesktopProfileFile(
         private const val OWNER_ONLY = "rw-------"
         private const val OWNER_DIR = "rwx------"
         private val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
+        private val strictJson = Json { ignoreUnknownKeys = false; explicitNulls = true }
 
         fun StoredProfiles.cleaned(): StoredProfiles {
             val seen = HashSet<Int>()
@@ -146,12 +174,11 @@ internal class DesktopProfiles(
         private set
 
     init {
-        val read = file.read()
-        stored = read ?: StoredProfiles()
+        stored = file.load()
         // A deleted profile's history should not sit on disk until its id is taken again (the reviewer of #281). Only
-        // over a list read from the file: one that could not be read is only the first profile, and trusting it would
-        // remove every other profile's library.
-        if (read != null) clearLibrariesNotIn(read)
+        // over a strict read: anything else reads leniently as the first profile alone, and trusting that would remove
+        // every other profile's library.
+        file.strictIds()?.let(::clearLibrariesNotIn)
     }
 
     /** The launch picker shows only with two profiles or more, the default counted (`KMP-73`, A1). */
@@ -236,9 +263,8 @@ internal class DesktopProfiles(
         return runCatching { file.save(next) }.onFailure(onSaveFailed).isSuccess
     }
 
-    /** Removes `library-n.tsv` and `watch-positions-n.tsv` for every `n` that [profiles] does not list. */
-    private fun clearLibrariesNotIn(profiles: StoredProfiles) {
-        val kept = profiles.profiles.map { it.id }.toSet()
+    /** Removes `library-n.tsv` and `watch-positions-n.tsv` for every `n` not in [kept]. */
+    private fun clearLibrariesNotIn(kept: Set<Int>) {
         libraryDirectory.listFiles().orEmpty().forEach { file ->
             val id = LIBRARY_FILE.matchEntire(file.name)?.groupValues?.get(2)?.toIntOrNull() ?: return@forEach
             if (id != StoredProfiles.FIRST && id !in kept) runCatching { Files.deleteIfExists(file.toPath()) }.onFailure(onSaveFailed)
@@ -257,7 +283,7 @@ internal class DesktopProfiles(
 
     private companion object {
         /** A profile's own library file: `library-3.tsv`, `watch-positions-3.tsv`. */
-        val LIBRARY_FILE = Regex("""(library|watch-positions)-(\d{1,9})\.tsv""")
+        val LIBRARY_FILE = Regex("""(library|watch-positions)-(0|[1-9]\d{0,3})\.tsv""")
     }
 
     /** [id]'s library. The first profile's is the files the Mac had before profiles. */

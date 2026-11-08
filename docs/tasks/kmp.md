@@ -7326,9 +7326,13 @@ only a click deletes. Cancel goes back to the editor.
   `#281`). A delete that cannot be written still holds until the app quits, and the profile comes back at the next
   launch with its library, never without it.
 - **At launch, a library under an id `profiles.json` no longer lists is removed**, so a deleted profile's history does
-  not sit on disk until its id is taken again. This happens only over a list read from the file. One that is missing,
-  unreadable or not this shape reads as the first profile alone, and trusting that would remove every other
-  profile's library.
+  not sit on disk until its id is taken again. **Only over a strict read** (the reviewer of `#281`): every key present
+  and none unknown, version 1, and nothing that cleaning would change about the ids (no repeat, none out of range, no
+  more than 32, the first profile there). Loading stays lenient. A file that is missing, unreadable, `{}`, another
+  version's list or a damaged one reads as the first profile alone, and a sweep over that would remove every other
+  profile's library, so none runs.
+- Only `library-n.tsv` and `watch-positions-n.tsv` with `n` written as this app writes it (`0`, or 1 to 4 digits with
+  no leading zero) are a profile's. `library-007.tsv` is not read as 7.
 - Ids are below 10,000. A larger id in the file is dropped, so a hostile `Int.MAX_VALUE` cannot make the next id wrap
   negative, and Add stops at the cap.
 - `add` clears any files under the id it takes, so a new profile never starts with what a deleted one left behind.
@@ -7353,11 +7357,12 @@ The PIN row is `KMP-95c`, along with A6c's "can't be locked" line.
 - The sheets are on `surface`, as the downloads sheet is, so the secondary buttons read as buttons.
 
 **Tests** (desktopApp jvmTest):
-- `DesktopProfilesTest`, 19 cases. Add covers the next id, cleaning, a blank name and the cap. Rename covers a blank
+- `DesktopProfilesTest`, 21 cases. Add covers the next id, cleaning, a blank name and the cap. Rename covers a blank
   name and the first profile's default. Delete covers that the first is never deleted, that the library goes, and that
   the first profile watches if the deleted one was watching. A new id never inherits a deleted one's files. A delete
-  whose save fails keeps the library. The launch sweep removes only unlisted ids' files, and nothing when the file
-  cannot be read. Ids are capped.
+  whose save fails keeps the library. The launch sweep removes only unlisted ids' files, and nothing over a file it
+  cannot read strictly (nine cases, from `{}` to a 33rd profile). Only a profile's own file name is read as an id. Ids
+  are capped.
 - `ManageProfilesTest`, 6 cases through real pointer and key events, with names typed through the field's own
   `SetText`:
   - Manage from the sidebar with one profile, adding a second, and Done back to the window;

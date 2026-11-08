@@ -232,6 +232,42 @@ class DesktopProfilesTest {
         assertTrue(File(directory, "library-1.tsv").exists(), "nor with no file at all")
     }
 
+    /**
+     * The reviewer of `#281`: a file that decodes but is not exactly this version's list reads leniently as the first
+     * profile alone, and a sweep over that would remove every other library. Each of these must remove nothing.
+     */
+    @Test
+    fun `a file that is not exactly this version's list removes no library`() {
+        val notOurs = listOf(
+            "{}",
+            "{\"version\":1}",
+            "{\"version\":2,\"current\":0,\"profiles\":[{\"id\":0,\"name\":null}]}",
+            "{\"version\":1,\"current\":0,\"profiles\":[{\"id\":0,\"name\":null}],\"pins\":{}}",
+            "{\"version\":1,\"current\":0,\"profiles\":[{\"id\":0}]}",
+            "{\"version\":1,\"current\":0,\"profiles\":[{\"id\":0,\"name\":null},{\"id\":0,\"name\":\"Again\"}]}",
+            "{\"version\":1,\"current\":0,\"profiles\":[{\"id\":0,\"name\":null},{\"id\":10000,\"name\":\"Over\"}]}",
+            "{\"version\":1,\"current\":0,\"profiles\":[{\"id\":3,\"name\":\"No first\"}]}",
+            "{\"version\":1,\"current\":0,\"profiles\":[" + (0..32).joinToString(",") { "{\"id\":$it,\"name\":null}" } + "]}",
+        )
+        notOurs.forEach { text ->
+            file.writeText(text)
+            File(directory, "library-5.tsv").writeText("x")
+            profiles()
+            assertTrue(File(directory, "library-5.tsv").exists(), "nothing removed over: $text")
+        }
+    }
+
+    @Test
+    fun `only a profile's own file name is read as an id`() {
+        DesktopProfileFile(file).save(StoredProfiles(profiles = listOf(StoredProfile(0))))
+        val kept = listOf("library-007.tsv", "library-99999.tsv", "library--1.tsv", "library-7.tsv.bak")
+        kept.forEach { File(directory, it).writeText("x") }
+        File(directory, "library-7.tsv").writeText("x")
+        profiles()
+        assertFalse(File(directory, "library-7.tsv").exists(), "profile 7's file is no one's")
+        kept.forEach { assertTrue(File(directory, it).exists(), "$it is not a profile's file, so it is left") }
+    }
+
     @Test
     fun `ids are capped, so a hostile one cannot make the next wrap`() {
         val cleaned = StoredProfiles(profiles = listOf(StoredProfile(0), StoredProfile(Int.MAX_VALUE, "Huge"), StoredProfile(DesktopProfileFile.MAX_ID, "Edge"))).cleaned()
