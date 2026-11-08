@@ -2452,7 +2452,7 @@ unchanged: ten steps lower than what launched it. Nothing outside the test chang
 
 ## BUG-67 — `DesktopDownloadsTest`'s retry wait missed the bytes on a fast machine · **low, test only**
 
-**Status:** fixed in this PR · found 2026-11-08 on the second Mac, by `:desktopApp:jvmTest`
+**Status:** fixed in pr #258 · found 2026-11-08 on the second Mac, by `:desktopApp:jvmTest`
 
 `a retry asks the extension again, a resume of a pause does not` waits, after `retry`, for a snapshot showing the
 episode Running with some bytes done, so that it can pause mid-download. Snapshots come from `DesktopDownloads.throttled`,
