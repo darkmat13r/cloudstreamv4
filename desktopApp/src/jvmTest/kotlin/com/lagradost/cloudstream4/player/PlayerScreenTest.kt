@@ -25,6 +25,9 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.input.pointer.PointerIcon
+import androidx.compose.ui.semantics.SemanticsNode
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.getOrNull
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -36,6 +39,7 @@ import com.lagradost.cloudstream4.media.subtitle.SubtitleParseResult
 import com.lagradost.cloudstream4.media.subtitle.SubtitleTimeline
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.player.HudSkip
+import com.lagradost.cloudstream4.feature.settings.SettingsValues
 import java.io.File
 import java.nio.file.Files
 import kotlin.test.Test
@@ -106,6 +110,7 @@ class PlayerScreenTest {
         meta: String? = null,
         skip: HudSkip? = null,
         val idle: ManualIdle = ManualIdle(),
+        seekMillis: Long = PlayerScreenDefaults.SkipMillis,
     ) {
         val calls = Calls()
         var skips = 0
@@ -140,6 +145,7 @@ class PlayerScreenTest {
                             skip = skip,
                             onSkip = { skips++ },
                             hudIdle = idle,
+                            seekMillis = seekMillis,
                         )
                     }
                 }
@@ -192,6 +198,16 @@ class PlayerScreenTest {
         /** Transport row, at its right end: the volume rule ends here. */
         val ruleRight: Float get() = rowRight - 16f
         val transportY: Float get() = height - 24f - 8f - 40f - 8f - 18f
+
+        /** The centre of what a screen reader names [label]. */
+        fun named(label: String): Offset {
+            settle()
+            fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
+            val node = scene.semanticsOwners.flatMap { it.rootSemanticsNode.all() }.lastOrNull { node ->
+                node.config.getOrNull(SemanticsProperties.ContentDescription).orEmpty().any { it == label }
+            }
+            return checkNotNull(node) { "nothing is named \"$label\"" }.boundsInRoot.center
+        }
 
         fun pixels(): PixelMap = settle().toComposeImageBitmap().toPixelMap()
 
@@ -338,6 +354,28 @@ class PlayerScreenTest {
         screen.press(Key.DirectionRight)
         screen.press(Key.Spacebar)
         assertEquals(listOf("by 10000", "toggle"), screen.calls.log)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `the arrows and the skip buttons move by the Seek amount, and the buttons name no number`() {
+        val screen = Screen(seekMillis = 30_000L)
+        screen.settle()
+        screen.press(Key.DirectionRight)
+        screen.press(Key.DirectionLeft)
+        screen.click(screen.named("Seek forward"))
+        screen.click(screen.named("Seek back"))
+        assertEquals(listOf("by 30000", "by -30000", "by 30000", "by -30000"), screen.calls.log)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `with no Seek amount passed the step is Settings' default, 10 seconds`() {
+        assertEquals(SettingsValues.DEFAULT_SEEK_SECONDS * 1_000L, PlayerScreenDefaults.SkipMillis)
+        val screen = Screen()
+        screen.settle()
+        screen.click(screen.named("Seek forward"))
+        assertEquals(listOf("by 10000"), screen.calls.log)
         screen.scene.close()
     }
 

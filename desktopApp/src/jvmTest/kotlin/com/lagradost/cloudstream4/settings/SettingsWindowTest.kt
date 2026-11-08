@@ -126,6 +126,27 @@ class SettingsWindowTest {
     }
 
     @Test
+    fun `Seek amount writes the chosen step and reads it back`() {
+        val storage = SettingsStorage.InMemory()
+        val settings = SettingsRepository(storage)
+        window(settings, SettingsWindowState(pane = SettingsPane.Playback)).use { scene ->
+            scene.save("playback")
+            scene.click(scene.bounds("Seek amount, 10 seconds").center)
+            scene.save("playback-menu")
+            listOf("5 seconds", "10 seconds", "15 seconds", "30 seconds").forEach {
+                assertNotNull(scene.find(it, text = true), "the pop-up offers $it")
+            }
+            scene.click(scene.bounds("30 seconds", text = true).center)
+            assertEquals(30, settings.seekSeconds.value)
+            assertEquals("30", storage.stored["seek_amount_desktop_key"])
+            assertNotNull(scene.find("Seek amount, 30 seconds"), "the button reads the new step")
+        }
+        window(SettingsRepository(storage), SettingsWindowState(pane = SettingsPane.Playback)).use { scene ->
+            assertNotNull(scene.find("Seek amount, 30 seconds"), "a new window over what was stored shows it")
+        }
+    }
+
+    @Test
     fun `the folder shows its name only, and Show in Finder only while it exists`() {
         val settings = SettingsRepository(SettingsStorage.InMemory())
         window(settings, SettingsWindowState(pane = SettingsPane.Downloads)).use { scene ->
@@ -147,7 +168,7 @@ class SettingsWindowTest {
         val settings = SettingsRepository(SettingsStorage.InMemory())
         val state = SettingsWindowState()
         window(settings, state).use { scene ->
-            assertEquals(listOf("Appearance", "Downloads"), scene.panes())
+            assertEquals(listOf("Appearance", "Playback", "Downloads"), scene.panes())
 
             state.query = "at once"
             scene.settle()
@@ -157,6 +178,9 @@ class SettingsWindowTest {
             state.query = "random"
             scene.settle()
             assertEquals(listOf("Appearance"), scene.panes())
+            state.query = "seek"
+            scene.settle()
+            assertEquals(listOf("Playback"), scene.panes())
 
             state.query = "episode"
             scene.settle()
@@ -172,7 +196,7 @@ class SettingsWindowTest {
             scene.sendKeyEvent(KeyEvent(Key.Escape, KeyEventType.KeyDown))
             scene.settle()
             assertEquals("", state.query)
-            assertEquals(listOf("Appearance", "Downloads"), scene.panes())
+            assertEquals(listOf("Appearance", "Playback", "Downloads"), scene.panes())
         }
     }
 
@@ -183,7 +207,7 @@ class SettingsWindowTest {
         SettingsPane.entries.forEach { pane ->
             window(settings, SettingsWindowState(pane = pane), height = min).use { scene ->
                 scene.save("minimum-${pane.name.lowercase()}")
-                assertEquals(listOf("Appearance", "Downloads"), scene.panes())
+                assertEquals(listOf("Appearance", "Playback", "Downloads"), scene.panes())
                 scene.nodes().forEach { node ->
                     val box = node.boundsInRoot
                     assertTrue(box.left >= 0f && box.right <= WIDTH, "nothing runs off the side: $box")

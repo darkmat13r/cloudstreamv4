@@ -6892,7 +6892,8 @@ only: a token or a password never goes in that file. Those go to the Keychain, w
 | `KMP-90f` | Appearance: trailers, cast, filler episodes | The Mac title page drawing them; it draws none today |
 | `KMP-90g` | Appearance: Random button | Built (below) |
 | `KMP-90g` | Appearance: suggestions while typing | A suggestion source: the Mac passes none (`SearchScreenDesktop`'s `SearchContent.Suggestions` branch) |
-| `KMP-90h` | Playback: Offer Skip intro, seek amount, update watch progress | The Mac player reading them |
+| `KMP-90h` | Playback: Offer Skip intro, update watch progress | The Mac player reading them |
+| `KMP-96` | Playback: seek amount | Built (below), the first slice of `KMP-90h` |
 | `KMP-90i` | Playback: source order (Edit) | A source-order editor |
 | `KMP-90j` | Playback: network buffer, disk cache, clear cache | libVLC's options from the host, and a cache to clear (hash-keyed, never by URL) |
 | `KMP-90k` | Downloads: connections per download, Choose folder | The engine taking a per-download connection count, and a chosen root |
@@ -6971,3 +6972,34 @@ only: a token or a password never goes in that file. Those go to the Keychain, w
   `posterSize` is Medium's count. Search: 5/4/3 and 8/7/5. Library: 4/3/2 and 7/5/4.
 - `HomeScreenTest`: `columns` per size at both widths, 16:9 rows unchanged at every size, and a row on screen holding
   what its size allows.
+
+## KMP-96 — Settings' Playback pane, its first row: Seek amount · **in review (#277)**
+
+**Status:** #277, stacked on `KMP-90e`'s #274 (which carries #273), the PM's order so the Settings files meet once.
+The first slice of `KMP-90h`, claimed by the PM on 2026-11-08, with the key, the amounts and the buttons' names the
+PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play the next episode to the same pane.
+
+- **The row.** Playback enters the sidebar between Appearance and Downloads, as `DS-24` orders them. One group,
+  Playing (`settings_playing`), holds Seek amount (`settings_seek_amount`) as a pop-up of 5, 10, 15 and 30 seconds,
+  each named by `player_seek_seconds` (`I18N-19`'s plural). No new string.
+- **The setting.** The Mac's own key, `seek_amount_desktop_key`, in whole seconds; anything not offered reads as 10.
+  Not Android's seek keys: those are the TV's and the phone's double tap, in another range and with another meaning.
+  Read through `PlaybackSettings.seekSeconds`.
+- **The reader.** `PlayerScreen(seekMillis)`, defaulting to `PlayerScreenDefaults.SkipMillis` (10 s, the step until
+  now), so every other caller is unchanged. The left and right arrows and both skip buttons move by it.
+  `DesktopApp(playback)` collects the flow while the player is up, so a change applies to the next press.
+- **The buttons' names.** "Seek back" and "Seek forward" (`player_hud_seek_back` and `_forward`, which the TV HUD
+  uses), not "Skip back 10 seconds": a name with a number would be untrue at every other amount, and joining two strings
+  is not translatable. `seek_back_10_seconds` and `seek_forward_10_seconds` stay in the catalogue, unused on the Mac:
+  removing them would remove `R` fields, which is the owner's call.
+
+**Tests.**
+- `SettingsValuesTest`: default 10; every amount round-trips under `seek_amount_desktop_key`; anything else reads as
+  10, and Android's seek keys are not read.
+- `SettingsSearchTest`: "seek" finds Playback and marks Seek amount.
+- `SettingsRepositoryTest`: written, read back by a new repository, seen through `PlaybackSettings`; 20 is refused.
+- `SettingsWindowTest`: the pop-up opens on 10 seconds and offers the four; choosing 30 writes `30`; a new window shows
+  it. The sidebar lists Appearance, Playback, Downloads.
+- `PlayerScreenTest`: at 30 s, both arrows and both buttons move 30 000 ms; with nothing passed, the step is
+  Settings' default.
+- `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.

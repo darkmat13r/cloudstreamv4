@@ -51,6 +51,7 @@ import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.LibraryViewModel
 import com.lagradost.cloudstream4.feature.settings.AppearanceSettings
+import com.lagradost.cloudstream4.feature.settings.PlaybackSettings
 import com.lagradost.cloudstream4.feature.settings.SettingsRepository
 import com.lagradost.cloudstream4.home.FileHomeSourceMemory
 import com.lagradost.cloudstream4.downloads.DesktopDownloads
@@ -224,6 +225,7 @@ fun main(args: Array<String>) {
                             shortcuts = shortcuts,
                             downloads = downloads,
                             appearance = settings,
+                            playback = settings,
                         )
                     }
                 }
@@ -286,6 +288,7 @@ private sealed interface Screen {
  * @param shortcuts what the menu bar's Go menu and its keys do; this sets it for the screen on top (`KMP-53`).
  * @param downloads the download service. Null by default, so a test cannot read or write a real downloads file, and the
  *   page is then empty; the app passes the real one.
+ * @param playback what the player reads from Settings. Every default by default, so a test never reads a real file.
  */
 @Composable
 internal fun DesktopApp(
@@ -302,6 +305,7 @@ internal fun DesktopApp(
     shortcuts: DesktopShortcuts = remember { DesktopShortcuts() },
     downloads: DesktopDownloads? = null,
     appearance: AppearanceSettings = AppearanceSettings.Default,
+    playback: PlaybackSettings = PlaybackSettings.Default,
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
@@ -466,6 +470,8 @@ internal fun DesktopApp(
                 val recorder = remember(screen) {
                     WatchRecorder(library, screen.kept, screen.episodeData, scope)
                 }
+                // Read while playing, so a change in the Settings window applies to the next press.
+                val seekSeconds by playback.seekSeconds.collectAsState()
                 if (player == null) {
                     PlayerUnavailable(onBack = { back(screen) })
                 } else {
@@ -482,6 +488,7 @@ internal fun DesktopApp(
                         fullscreen = remember(screen, window) { window?.let(::PlayerFullscreen) },
                         links = remember(screen) { DesktopDetailViewModels.links(screen.kept.id.value) },
                         openPlayer = VlcPlayer::createOrNull,
+                        seekMillis = seekSeconds * MILLIS_PER_SECOND,
                     )
                 }
                 DisposableEffect(screen) {
@@ -678,3 +685,4 @@ private val WINDOW_WIDTH = 1280.dp
 private val WINDOW_HEIGHT = 800.dp
 private const val MIN_WINDOW_WIDTH = 800
 private const val MIN_WINDOW_HEIGHT = 520
+private const val MILLIS_PER_SECOND = 1_000L

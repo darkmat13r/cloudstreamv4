@@ -14,9 +14,11 @@ data class SettingsValues(
     val downloadsAtOnce: Int = DEFAULT_DOWNLOADS_AT_ONCE,
     val showRandom: Boolean = DEFAULT_SHOW_RANDOM,
     val posterSize: PosterSize = DEFAULT_POSTER_SIZE,
+    val seekSeconds: Int = DEFAULT_SEEK_SECONDS,
 ) {
     init {
         require(downloadsAtOnce in DOWNLOADS_AT_ONCE) { "downloadsAtOnce out of range" }
+        require(seekSeconds in SEEK_SECONDS) { "seekSeconds out of range" }
     }
 
     /** The stored form: text values under Android's keys. */
@@ -25,6 +27,7 @@ data class SettingsValues(
         KEY_DOWNLOADS_AT_ONCE to downloadsAtOnce.toString(),
         KEY_SHOW_RANDOM to showRandom.toString(),
         KEY_POSTER_SIZE to posterSize.name.lowercase(),
+        KEY_SEEK_SECONDS to seekSeconds.toString(),
     )
 
     companion object {
@@ -43,6 +46,12 @@ data class SettingsValues(
          */
         const val KEY_POSTER_SIZE = "poster_size_desktop_key"
 
+        /**
+         * The Mac's own key, in whole seconds (`KMP-96`). Not one of Android's: its seek keys are the TV's, in another
+         * range and with another meaning.
+         */
+        const val KEY_SEEK_SECONDS = "seek_amount_desktop_key"
+
         const val DEFAULT_AUTOPLAY_NEXT = true
 
         /**
@@ -60,6 +69,12 @@ data class SettingsValues(
         /** The choices the window offers. More than five at once only splits one connection's speed further. */
         val DOWNLOADS_AT_ONCE: IntRange = 1..5
 
+        /** The Mac player's step until now, so a window that never opens Settings seeks as it did. */
+        const val DEFAULT_SEEK_SECONDS = 10
+
+        /** What the arrow keys and the skip buttons can move by, in seconds: the choices the window offers. */
+        val SEEK_SECONDS: List<Int> = listOf(5, 10, 15, 30)
+
         /** Reads a stored map. Unknown keys are ignored; a bad value reads as that setting's default. */
         fun fromStored(stored: Map<String, String>): SettingsValues = SettingsValues(
             autoplayNext = stored.flag(KEY_AUTOPLAY_NEXT, DEFAULT_AUTOPLAY_NEXT),
@@ -70,6 +85,9 @@ data class SettingsValues(
             posterSize = stored[KEY_POSTER_SIZE]?.trim()
                 ?.let { value -> PosterSize.entries.firstOrNull { it.name.lowercase() == value } }
                 ?: DEFAULT_POSTER_SIZE,
+            seekSeconds = stored[KEY_SEEK_SECONDS]?.trim()?.toIntOrNull()
+                ?.takeIf { it in SEEK_SECONDS }
+                ?: DEFAULT_SEEK_SECONDS,
         )
 
         /** `true` or `false` exactly, around spaces; anything else is [default]. */

@@ -45,12 +45,14 @@ class SettingsRepository(
     private val atOnce = MutableStateFlow(state.value.downloadsAtOnce)
     private val random = MutableStateFlow(state.value.showRandom)
     private val posters = MutableStateFlow(state.value.posterSize)
+    private val seek = MutableStateFlow(state.value.seekSeconds)
 
     val values: StateFlow<SettingsValues> = state.asStateFlow()
     override val autoplayNext: StateFlow<Boolean> = autoplay.asStateFlow()
     override val downloadsAtOnce: StateFlow<Int> = atOnce.asStateFlow()
     override val showRandom: StateFlow<Boolean> = random.asStateFlow()
     override val posterSize: StateFlow<PosterSize> = posters.asStateFlow()
+    override val seekSeconds: StateFlow<Int> = seek.asStateFlow()
 
     override fun setAutoplayNext(on: Boolean) = update { it.copy(autoplayNext = on) }
 
@@ -62,6 +64,11 @@ class SettingsRepository(
     fun setShowRandom(on: Boolean) = update { it.copy(showRandom = on) }
 
     fun setPosterSize(size: PosterSize) = update { it.copy(posterSize = size) }
+
+    fun setSeekSeconds(seconds: Int) {
+        require(seconds in SettingsValues.SEEK_SECONDS) { "seekSeconds out of range" }
+        update { it.copy(seekSeconds = seconds) }
+    }
 
     /**
      * Applies [change] atomically, so two changes at once never lose one. The views and the file then take whatever is
@@ -77,6 +84,7 @@ class SettingsRepository(
             atOnce.value = now.downloadsAtOnce
             random.value = now.showRandom
             posters.value = now.posterSize
+            seek.value = now.seekSeconds
             try {
                 storage.save(now.toStored())
             } catch (e: Exception) {

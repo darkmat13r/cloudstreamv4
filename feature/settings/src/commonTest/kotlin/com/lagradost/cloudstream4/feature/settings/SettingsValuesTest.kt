@@ -12,6 +12,7 @@ class SettingsValuesTest {
         assertEquals(true, values.autoplayNext)
         assertEquals(3, values.downloadsAtOnce)
         assertEquals(true, values.showRandom, "on, where Android's is off: the Mac has always shown it")
+        assertEquals(10, values.seekSeconds)
     }
 
     @Test
@@ -24,9 +25,31 @@ class SettingsValuesTest {
                 "download_parallel_key" to "5",
                 "poster_size_desktop_key" to "medium",
                 "random_button_key" to "true",
+                "seek_amount_desktop_key" to "10",
             ),
             values.toStored(),
         )
+    }
+
+    @Test
+    fun everySeekAmountRoundTripsUnderTheMacsKey() {
+        assertEquals(listOf(5, 10, 15, 30), SettingsValues.SEEK_SECONDS)
+        SettingsValues.SEEK_SECONDS.forEach { seconds ->
+            val stored = SettingsValues(seekSeconds = seconds).toStored()
+            assertEquals(seconds.toString(), stored["seek_amount_desktop_key"])
+            assertEquals(seconds, SettingsValues.fromStored(stored).seekSeconds)
+        }
+    }
+
+    @Test
+    fun aSeekAmountTheWindowDoesNotOfferReadsAsTenAndAndroidsKeysAreNotRead() {
+        listOf("7", "0", "-5", "300", "ten", "", "10.5").forEach { bad ->
+            assertEquals(10, SettingsValues.fromStored(mapOf("seek_amount_desktop_key" to bad)).seekSeconds, bad)
+        }
+        assertEquals(30, SettingsValues.fromStored(mapOf("seek_amount_desktop_key" to " 30 ")).seekSeconds)
+        val android = mapOf("android_tv_interface_off_seek_key" to "30", "double_tap_seek_time_key2" to "30")
+        assertEquals(10, SettingsValues.fromStored(android).seekSeconds)
+        assertFailsWith<IllegalArgumentException> { SettingsValues(seekSeconds = 20) }
     }
 
     @Test
@@ -78,5 +101,6 @@ class SettingsValuesTest {
     @Test
     fun theDefaultPlaybackSettingsPlayTheNextEpisode() {
         assertEquals(true, PlaybackSettings.Default.autoplayNext.value)
+        assertEquals(10, PlaybackSettings.Default.seekSeconds.value)
     }
 }

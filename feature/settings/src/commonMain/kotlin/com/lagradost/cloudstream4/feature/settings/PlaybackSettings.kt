@@ -16,11 +16,16 @@ interface PlaybackSettings {
      */
     val autoplayNext: StateFlow<Boolean>
 
+    /** "Seek amount": how far the arrow keys and the skip buttons move, always one of [SettingsValues.SEEK_SECONDS]. */
+    val seekSeconds: StateFlow<Int>
+
     companion object {
         /** Every value at its default, never stored. What a test or a host without storage reads. */
         val Default: PlaybackSettings = object : PlaybackSettings {
             override val autoplayNext: StateFlow<Boolean> =
                 MutableStateFlow(SettingsValues.DEFAULT_AUTOPLAY_NEXT).asStateFlow()
+            override val seekSeconds: StateFlow<Int> =
+                MutableStateFlow(SettingsValues.DEFAULT_SEEK_SECONDS).asStateFlow()
         }
     }
 }
