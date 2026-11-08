@@ -6168,6 +6168,8 @@ a reason in the code's own words, never the value, and many dropped tags make on
   - `Int.MAX_VALUE` minutes.
   The page loads with each bounded or dropped, and the host lives on.
 - `TitleFactsTest` (2), the mapping onto `TitleDetail`.
+- **Not here: the facts on E1's screen.** Master's Mac title page does not draw the run of facts yet; `#226` (`KMP-58`)
+  does. Asserting them there is `KMP-82`, a one-line follow-up once both have landed.
 - **Red without the app's checks.** With `RemoteFacts.cleaned` switched off, 5 of these fail, the lying-host case among
   them.
 
