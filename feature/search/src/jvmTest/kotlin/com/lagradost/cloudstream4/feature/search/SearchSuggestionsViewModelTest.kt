@@ -12,21 +12,23 @@ import com.lagradost.cloudstream4.core.connectivity.UnknownConnectivityFlow
 import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.stateIn
+import kotlinx.coroutines.test.TestScope
 import kotlinx.coroutines.test.UnconfinedTestDispatcher
+import kotlinx.coroutines.test.advanceTimeBy
+import kotlinx.coroutines.test.runCurrent
 import kotlinx.coroutines.test.resetMain
 import kotlinx.coroutines.test.runTest
 import kotlinx.coroutines.test.setMain
-import kotlinx.coroutines.withContext
 
 /**
- * Artboards 8a and 8b in the ViewModel. Waits on real time for the same reason as `SearchViewModelTest`: the debounce
- * runs on a real dispatcher against the real clock.
+ * Artboards 8a and 8b in the ViewModel. Everything, the debounce included, runs on [dispatcher], so time is the test's
+ * virtual clock and nothing waits on a real one (`BUG-71`: the debounce used to run on `Dispatchers.Default` against
+ * the real clock, the test slept 600 ms for real, and under load that was not always enough).
  */
 @OptIn(ExperimentalCoroutinesApi::class)
 class SearchSuggestionsViewModelTest {
@@ -39,7 +41,11 @@ class SearchSuggestionsViewModelTest {
     @AfterTest
     fun tearDown() = Dispatchers.resetMain()
 
-    private suspend fun settle() = withContext(Dispatchers.Default) { delay(600) }
+    /** Past the debounce's 200 ms window and whatever it started, on the virtual clock. */
+    private fun TestScope.settle() {
+        advanceTimeBy(SETTLE_MS)
+        runCurrent()
+    }
 
     private fun item(title: String, provider: String) =
         SearchResultItem(id = SearchResultId("$provider/$title"), title = title, providerName = provider)
@@ -85,7 +91,14 @@ class SearchSuggestionsViewModelTest {
         suggestions: SearchSuggestionSource?,
         history: SearchHistoryStore = FakeHistory(),
         connectivity: ConnectivityFlow = UnknownConnectivityFlow,
-    ) = SearchViewModel(source, history, dispatcher, suggestions = suggestions, connectivity = connectivity)
+    ) = SearchViewModel(
+        source,
+        history,
+        dispatcher,
+        suggestions = suggestions,
+        connectivity = connectivity,
+        debounceDispatcher = dispatcher,
+    )
 
     private fun network(now: Connectivity) = object : ConnectivityFlow {
         override val status: StateFlow<Connectivity> = MutableStateFlow(now)
@@ -266,5 +279,10 @@ class SearchSuggestionsViewModelTest {
         settle()
 
         assertIs<SearchContent.Results>(assertIs<SearchStatus.Showing>(vm.state.value.status).content)
+    }
+
+    private companion object {
+        /** Three of the debounce's 200 ms windows: the window, and room for what it starts. */
+        const val SETTLE_MS = 600L
     }
 }

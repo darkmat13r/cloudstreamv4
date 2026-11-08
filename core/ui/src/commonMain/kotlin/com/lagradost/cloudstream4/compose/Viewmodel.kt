@@ -129,17 +129,21 @@ data class SingleActiveQuery(
  *
  * Every settled value is delivered, including one equal to the last. Dropping those left a screen that had gone back
  * to loading waiting for an answer nobody had asked for (`BUG-23`).
+ *
+ * @param dispatcher where the debounce's 200 ms window runs, [Dispatchers.Default] unless a test hands in its own: on a
+ *   test dispatcher the window passes on the test's virtual clock, so a test waits for nothing real (`BUG-71`).
  */
 data class DebounceQuery(
     private val pipe: MutableSharedFlow<String> = MutableSharedFlow(
         extraBufferCapacity = 64,
         replay = 64
-    )
+    ),
+    private val dispatcher: CoroutineDispatcher = Dispatchers.Default,
 ) {
     @OptIn(FlowPreview::class)
     suspend fun launch(collector: FlowCollector<String>) {
         pipe.debounce(200L.milliseconds)
-            .flowOn(Dispatchers.Default)
+            .flowOn(dispatcher)
             .collect(collector)
     }
 
