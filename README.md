@@ -1,4 +1,4 @@
-# CloudStream
+# CloudStream — TV-first redesign (unofficial fork)
 
 **⚠️ Warning: By default, this app doesn't provide any video sources; you have to install extensions to add functionality to the app.**
 
@@ -75,12 +75,14 @@ Extensions are third-party code, so this fork treats what they do and return as 
 
 - **Sandboxed extensions on the Mac.** Each extension is hashed and scanned before it loads, then runs in its own
   macOS sandbox process, never inside the app. Video decoding runs in its own sandboxed process too, one per stream.
-  Where no sandbox is available, nothing loads.
-- **No secrets in logs.** Stream links, request headers, cookies, tokens, repository URLs and file paths are removed
-  from log lines, crash files and error messages (`BUG-43`, `BUG-44` in [docs/tasks/defects.md](docs/tasks/defects.md)).
-- **Sign-ins stay out of backups.** Account tokens are excluded from backup files, as in CloudStream, and stored
-  download links are now kept out as well (`KMP-62` in [docs/tasks/kmp.md](docs/tasks/kmp.md)). A deleted
-  profile's sign-ins no longer pass to the next profile (`BUG-48`).
+  Where no sandbox is available, nothing loads. On Android, extensions still run inside the app process, as in
+  upstream; only the desktop sandboxes them.
+- **No secrets in logs.** The app's own log lines, crash files and error messages no longer carry stream links,
+  request headers, cookies, tokens, repository URLs or file paths (`BUG-43`, `BUG-44` in [docs/tasks/defects.md](docs/tasks/defects.md)).
+- **Sign-ins stay out of backups.** CloudStream's own export file already left account tokens out; this fork also
+  keeps sign-ins out of Android's cloud backup and device-to-device transfer (`BUG-50`). A deleted profile's
+  sign-ins no longer pass to the next profile (`BUG-48`). The Android downloader no longer stores stream links
+  (`KMP-62` in [docs/tasks/kmp.md](docs/tasks/kmp.md)).
 - **TLS stays on.** Playback no longer turns off certificate checks for the whole app (`BUG-10`).
 
 <a id="screenshots"></a>
@@ -94,10 +96,8 @@ placeholder artwork.
 |---|---|
 | ![Android TV Home: a featured title above a Continue Watching row, with the second card focused](feature/home/src/androidDeviceTest/resources/screenshots/home-continue-focus-card.png) | ![Android TV title page for a series: title, details and synopsis, a focused Resume button, and the cast](feature/detail/src/androidDeviceTest/resources/screenshots/detail-show-focus-primary.png) |
 | **Home** | **Title page** |
-| ![Android TV Search: the search field, type filters and a list of recent searches](feature/search/src/androidDeviceTest/resources/screenshots/search-history-filled.png) | ![Android TV Library: list tabs with counts above a grid of bookmarked titles with watch progress](feature/library/src/androidDeviceTest/resources/screenshots/library-grid-focus-tab.png) |
-| **Search** | **Library** |
-| ![Android TV Downloads: storage used, and a list of downloaded titles with one running at 61% and one failed with Retry](feature/downloads/src/androidDeviceTest/resources/screenshots/downloads-titles-focus-running-row.png) | |
-| **Downloads** | |
+| ![Android TV Home with the source panel open from the right, the current source focused](feature/home/src/androidDeviceTest/resources/screenshots/home-source-panel-focus-current.png) | ![Android TV Library: list tabs with counts and a focused tab above a grid of bookmarked titles with watch progress](feature/library/src/androidDeviceTest/resources/screenshots/library-grid-focus-tab.png) |
+| **Choosing a source** | **Library** |
 
 Mac screenshots are coming.
 
@@ -106,7 +106,7 @@ Mac screenshots are coming.
 
 ## About CloudStream: 
 
-[![Discord](https://invidget.switchblade.xyz/5Hus6fM)](https://discord.gg/5Hus6fM)
+Upstream CloudStream's Discord: [![Discord](https://invidget.switchblade.xyz/5Hus6fM)](https://discord.gg/5Hus6fM)
 
 **CloudStream is a media center that prioritizes and emphasizes complete freedom and flexibility for users and developers.** 
 
@@ -197,7 +197,7 @@ As well as providing clear install steps, our [website](https://dweb.link/ipns/c
 
 ### Supported languages:
 
-Even if you can't contribute to the code or documentation, we always look for those who can contribute to translation and language support. Your contribution is exceptionally appreciated; you can check our translation from the figure below. 
+Translations are managed by upstream CloudStream on Weblate. Even if you can't contribute to the code or documentation, we always look for those who can contribute to translation and language support. Your contribution is exceptionally appreciated; you can check our translation from the figure below. 
 
 <a href="https://hosted.weblate.org/engage/cloudstream/">
   <img src="https://hosted.weblate.org/widgets/cloudstream/-/app/multi-auto.svg" alt="Translation status" />
