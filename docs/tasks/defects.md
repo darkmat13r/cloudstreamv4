@@ -2568,3 +2568,42 @@ The train's own paired runs failed `aRailEntered…KeepsFocus` 3 of 3 ("the hero
 emulator the Home pair passed on the train head too, so these runs show the rule is safe for Home, **not** that it is
 the cause there. The train also saw `TvHomeNavigationTest` fail once alone; that is not touch mode and is not
 claimed here.
+
+## BUG-69 — At launch, the window's own focus grant read as a person's choice, so the hero lost focus · **medium, TV focus**
+
+**Status:** fixed in this PR · found 2026-11-08, `TvHomeNavigationTest` flaking on master and on train 9
+
+`aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept` sometimes failed with "the hero of Fake One holds
+focus, was Watching". A real person sees the same thing. On a cold start with bookmarks or Continue watching on screen,
+focus can open on a chip or a card instead of the hero.
+
+**Cause, from logging** (a local change, not committed):
+```
+onResume owed=true hasFocus=false windowFocus=false
+request=false
+globalFocus old=null new=AndroidComposeView inPage=true
+screenFocus has=true requested=false fromHost=false
+landing owed=true inView=true local=true fromHost=false free=false
+```
+When `HomeTvFragment` resumes, the window often isn't focused yet, so the host's own focus request finds nothing. The
+window then gives focus to the first stop it finds. That is a bookmark chip or a Continue watching card when those
+local rails draw before the rows. Home's landing rule (`BUG-41`) read that arrival as a person's choice
+(`fromHost=false`), so it didn't move focus to the hero.
+
+**Fix.** A person's arrival always comes from somewhere: a key on the page, or the nav rail. `HomeTvFragment` listens
+for global focus changes. When focus enters the page from *nothing focused* while a landing is owed, it calls
+`HomeHostFocus.grantedFromNothing`, which marks that arrival as the host's own, the same as one its own request causes.
+Android reports the global change before the page's own focus change, so the landing sees it in time. Entering from
+the nav rail (`old` is the rail) is unchanged, and `aRailEnteredFromTheNavRailBeforeTheRowsLandKeepsFocus` still
+covers it.
+
+**Proof.** All results are local, `Television_720p`:
+- Red: the train's XMLs failed 2 runs in 3. With the logging above, master failed 5 runs in 5. Master without the
+  logging passed 3 in 3 in the proof run, so this is a race and the timing decides it.
+- After, alone on master: 10 runs in 10 green, 18 tests and 0 failures each.
+- Paired after `RestorePinGateTest` on train 9 with `BUG-59`'s touch-mode reset: 1 of 3 green with the fix and 1 of 3
+  without it. Every red, with or without the fix, is a different test,
+  `aRailEnteredFromTheNavRailBeforeTheRowsLandKeepsFocus` ("the hero's title is asked for": after the held pages are
+  released, the provider is never asked within 15 s). It isn't this fix's failure. It's `BUG-72`, tracked
+  separately, and it's the paired failure that remains.
+  `aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept` passed in all six pairs.
