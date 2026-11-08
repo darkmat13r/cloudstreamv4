@@ -3090,7 +3090,9 @@ close that upstream. What they leave is below, and all of it is closed here.
 - **Test:** `LogErrorRedactionTest`, two new cases: the message is its own first line, and a forged frame (a tokened
   URL, a `/Users/` path or a `file:` URI) leaves nothing on the line, through both `getStackTracePretty` and the NPE
   branch. Both failed before the fix.
-- **Published API:** `getStackTracePretty`'s signature is unchanged; only its body changed.
+- **Published API:** `getStackTracePretty`'s signature is unchanged; only its body changed. **Its output is not:** an
+  extension that calls it now gets a line break between the message and the frames, and redacted frame locations.
+  Noted for the owner (review on #263).
 
 ### Measured (local, on `BUG-64`'s head `a82062f90`)
 

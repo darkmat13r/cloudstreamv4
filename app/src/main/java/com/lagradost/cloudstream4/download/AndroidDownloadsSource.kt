@@ -51,7 +51,10 @@ internal class AndroidDownloadsSource(
 
     private val appContext = context.applicationContext
 
-    /** How long the page's failure line may be: search's and detail's limit. A field, so no file class is published. */
+    /**
+     * How long the page's failure line may be: search's and detail's limit. A field rather than a top-level const,
+     * so `classes.jar` gains a synthetic accessor instead of a file class.
+     */
     private val maxReasonChars = 60
 
     /** Episodes per title id, as last read. Written by [contents]; read by [resume], on a key press. */
