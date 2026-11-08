@@ -922,3 +922,61 @@ Renders: in the shared local review folder (not published).
   - each list's empty words ("Nothing on hold", "Titles you pause land here.", "Go to %s");
   - "Move to another list" and "%d titles".
 
+
+## DS-23 — Boards: the player on the Mac, the phone and the tablet
+
+**Status:** drawn, PR open · boards only, no Kotlin · `DEC-19` · the owner's priority, through the PM, 2026-11-08
+
+Drawn from TV Detail 7d (the HUD) and 7e (the Source, Subtitles and Audio panels), and the Mac's built `PlayerScreen`,
+with the desktop direction in `docs/plans/desktop-design.md`.
+
+- `Desktop Player.dc.html` (a board file in the owner's Claude Design project), M1 to M15, at 1280×800 unless said:
+  - M1: playing, with the HUD the pointer brought: Back and the title at the top, one glass surface at the foot with
+    the transport over the selectors, as the built `Hud` has them, at most 720 wide.
+  - M2: the HUD hidden after three seconds still, with a subtitle.
+  - M3: hovering the timeline shows the time under the pointer; Skip Intro waits above the controls.
+  - M4 to M7: the Source, Subtitles, Audio tracks and Picture size panels, from the right, 360 wide, no scrim. The
+    controls recentre in the room left.
+  - M8 loading, M9 buffering, M10 a source failed and the next is trying, M11 every source failed.
+  - M12: offline, playing a downloaded file.
+  - M13: Up next at the credits.
+  - M14: full screen, with the Playback menu listing every key.
+  - M15: the 800×520 minimum window.
+- `Phone Player.dc.html` (a board file in the owner's Claude Design project):
+  - LP1 to LP6, a phone held sideways (916×412): playing, a double tap seeking 10 s, Source as a bottom sheet, a
+    failed source with the next trying, Skip Intro, Up next.
+  - T1 and T2, the tablet (1280×800): playing, and the sheet at 600 wide.
+
+**Security.** No board draws an address, a header or a host. A source row is its name and its quality, as the built
+`SourcePicker`'s are, and a failure is its code. Checked: the only addresses in either file are the Tabler glyph CDN and
+Google Fonts.
+
+**Measured** in Chromium with `getBoundingClientRect`, on every artboard:
+- Desktop (436 boxes) and phone and tablet (120 boxes): off the 4 dp step only in the playhead, whose x is the
+  position, and the drawn system pointer. Both are values, not layout.
+- All 30 glyph URLs answer 200, checked with curl.
+
+Renders: in the shared local review folder (not published).
+
+**Decisions taken here** (reported to the PM):
+- **Panels from the right without a scrim**, as the brief asks. The built pickers are popovers over their selector; the
+  boards replace them. The picture keeps playing beside a panel, so it does not dim.
+- **The hover preview is the time only.** A frame would need libVLC to decode the file a second time.
+- **No Speed selector on the Mac.** TV 7d draws one, but the shared player contract has no rate yet. It belongs with
+  the contract change, not the board.
+- **Up next has no countdown.** Playing on by itself is a product call the contract does not make; the card offers
+  Next episode and a close.
+- **Full screen is F**, as built, in the Playback menu. macOS's own ⌃⌘F can be added beside it.
+- **The phone player is drawn sideways only.** Portrait play is a separate question for the owner.
+
+**Strings each board needs.** Most exist (`video_source`, `player_subtitles_settings`, `audio_tracks`,
+`player_fit_*`, `loading`, `player_hud_buffering`, `source_error`, `pick_source`, `player_source_*`,
+`player_load_subtitles*`, `subtitle_offset_title`, `no_subtitles`, `player_hud_offline_copy`, `player_hud_up_next`,
+`next_episode`, `skip_type_format` with `skip_type_intro`, `pause`, `resume`, `seek_*_10_seconds`, `player_mute`,
+`player_*_fullscreen`, `go_back`). New, for an `I18N` task before the build:
+- the Playback menu's title, and Volume up and Volume down (M14);
+- M11's line that every source failed;
+- the Source panel's count line, and each panel's second lines (decoded size, the kept position, stereo);
+- the double tap's "10 seconds" (LP2); the old player's `go_back_30` is a bare "-30".
+
+**Not drawn:** casting, picture in picture, the subtitle style settings, and the phone held upright.
