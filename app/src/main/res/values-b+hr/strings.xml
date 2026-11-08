@@ -25,23 +25,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil i njegov PIN"</item><item quantity="few">"%d profila i njihovi PIN-ovi"</item><item quantity="other">"%d profila i njihovi PIN-ovi"</item></plurals>
 <string name="account">"račun"</string>
 <string name="account_add_profile">"Dodaj profil"</string>
+<string name="account_browser_body" formatted="true">"Preglednik je otvorio %s. Prijavite se ondje i dopustite pristup aplikaciji CloudStream. Ovaj prozor nastavlja sam."</string>
+<string name="account_browser_body_phone" formatted="true">"Dovršite prijavu na stranici %s. Ovaj zaslon nastavlja sam."</string>
+<string name="account_browser_open_again">"Otvori ponovno"</string>
+<string name="account_browser_title" formatted="true">"Prijava na %s"</string>
+<string name="account_browser_waiting">"Čeka se preglednik…"</string>
+<string name="account_code_expired">"Ovaj je kôd istekao. Dohvatite novi i pokušajte ponovno."</string>
+<string name="account_code_expires" formatted="true">"Istječe za %s"</string>
+<string name="account_code_instructions" formatted="true">"Otvorite %s u bilo kojem pregledniku i unesite kôd."</string>
+<string name="account_code_open" formatted="true">"Otvori %s"</string>
+<string name="account_delete_body" formatted="true">"Povijest gledanja, oznake i prijave za sinkronizaciju profila %s brišu se s ovog uređaja."</string>
+<string name="account_delete_profile">"Izbriši profil"</string>
+<string name="account_delete_title" formatted="true">"Izbrisati %s?"</string>
+<string name="account_edit_profile">"Uredi profil"</string>
+<string name="account_email">"E-pošta"</string>
+<string name="account_image_address">"Koristi adresu slike"</string>
+<string name="account_manage_note">"Odaberite profil da biste ga uredili"</string>
 <string name="account_manage_profiles">"Upravljaj profilima"</string>
 <string name="account_pair_code">"Vaš kôd"</string>
 <string name="account_pair_instructions">"Otvorite ovo na telefonu i unesite kôd u nastavku."</string>
 <string name="account_pair_new_code">"Dohvati novi kôd"</string>
 <string name="account_pair_title" formatted="true">"Upari %s"</string>
+<string name="account_password">"Lozinka"</string>
+<string name="account_password_mismatch">"E-pošta i lozinka ne podudaraju se. Provjerite ih i pokušajte ponovno."</string>
+<string name="account_password_note" formatted="true">"%s nema prijavu putem preglednika pa se podaci upisuju ovdje. Čuvaju se samo na ovom uređaju i nikad se ne sigurnosno kopiraju."</string>
+<string name="account_picture">"Slika"</string>
+<string name="account_pin_change">"Promijeni PIN"</string>
+<string name="account_pin_confirm">"Upišite ga ponovno za potvrdu."</string>
+<string name="account_pin_current">"Upišite PIN koji se sada koristi."</string>
+<string name="account_pin_first_profile">"Prvi profil ne može se zaključati"</string>
+<string name="account_pin_new">"Upišite četveroznamenkasti PIN."</string>
+<string name="account_pin_off">"Isključeno · svatko može otvoriti ovaj profil"</string>
+<string name="account_pin_on">"Uključeno · traži se pri otvaranju"</string>
+<string name="account_pin_prompt">"Upišite četveroznamenkasti PIN."</string>
+<string name="account_pin_remove">"Ukloni PIN"</string>
+<string name="account_pin_set">"Postavi PIN"</string>
+<string name="account_pin_set_title">"Postavite PIN"</string>
 <string name="account_profile_current">"Trenutni"</string>
 <string name="account_profile_locked">"Zaključano · PIN"</string>
 <string name="account_profile_no_sync">"Bez sinkronizacije"</string>
 <string name="account_select_note">"Zasebna povijest gledanja · nisu prijave"</string>
 <string name="account_select_title">"Tko gleda?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s nije potvrdio prijavu. Ništa nije spremljeno."</string>
+<string name="account_signin_failed_title" formatted="true">"Prijava na %s nije uspjela"</string>
+<string name="account_signin_offline_body" formatted="true">"Za prijavu na %s potrebna je veza. Pokušajte ponovno kad ovaj uređaj ponovno bude na mreži."</string>
 <string name="account_sync_connected">"Povezano · prijavljeno na ovom uređaju"</string>
 <string name="account_sync_needs_browser">"Prijava zahtijeva web-preglednik. Ovaj uređaj ga nema."</string>
 <string name="account_sync_note">"Neobavezno. Sinkronizira napredak gledanja s računom koji već imate."</string>
 <string name="account_sync_pair">"Upari kodom"</string>
 <string name="account_sync_remove">"Ukloni s ovog uređaja"</string>
+<string name="account_sync_remove_body" formatted="true">"Prijava za %2$s profila %1$s briše se s ovog uređaja. Vaš račun %2$s i njegovi popisi ostaju kakvi jesu."</string>
+<string name="account_sync_remove_title" formatted="true">"Ukloniti %s s ovog uređaja?"</string>
 <string name="account_sync_title">"Usluge sinkronizacije"</string>
 <string name="account_sync_unavailable">"Ovdje nije dostupno"</string>
+<string name="account_touch_id_hint">"Dodirnite senzor da biste otvorili ovaj profil."</string>
+<string name="account_touch_id_reason" formatted="true">"otvoriti profil %s"</string>
+<string name="account_touch_id_title" formatted="true">"Upotrijebite Touch ID da biste otvorili %s"</string>
+<string name="account_undo_warning">"Ovo se ne može poništiti."</string>
+<string name="account_use_pin">"Koristi PIN"</string>
 <string name="action_add_to_bookmarks">"Postavi status gledanja"</string>
 <string name="action_add_to_favorites">"Dodaj u favorite"</string>
 <string name="action_default">"Zadano"</string>

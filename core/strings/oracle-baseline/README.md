@@ -120,6 +120,27 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Twenty-fifth move, 2026-11-08 — `I18N-21`, 41 new keys for the account boards (`DS-25`)
+
+New keys are approved in general (`I18N-09`), and the owner approved the boards' wording. Additive: 41 `account_*`
+strings, no plurals, each authored in all 62 directories (`OWN` grows by 41 x 62 = 2,542). The Android res came out
+with 2,542 lines added and 0 removed. `report.txt` is the generator's.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 53,950 | 56,492 | 2,542 | 0 | 0 |
+| `emitted.tsv` | 56,533 | 59,157 | 2,624 | 0 | 0 |
+| `lookup.tsv` | 98,858 | 102,425 | 3,567 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines
+lost in any file, every line that was in a file before is in it after in the same order, and every added line names exactly
+one of the 41 keys: 62 lines each in `decoded`, 64 in `emitted` (the `values-b+he` and `values-b+id` copies), 87 in
+`lookup`. `report.txt` moved only in its counts: `OWN` 51,964 -> 54,506, visible keys 1,102 -> 1,143, plurals unchanged at
+29, and 41 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at
+173.** `expectedOwn` 51,964 -> 54,506.
+
 ## Twenty-fourth move, 2026-11-08 — Train 11 (`#249`, `#256`), one move: 138 new keys for the player and Settings
 
 One combined baseline move for Train 11, which merges `#249` (`I18N-19`) and `#256` (`I18N-20`) with nine PRs that add no

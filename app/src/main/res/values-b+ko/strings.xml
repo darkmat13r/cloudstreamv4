@@ -25,23 +25,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="other">"프로필 %d개 및 PIN"</item></plurals>
 <string name="account">"계정"</string>
 <string name="account_add_profile">"프로필 추가"</string>
+<string name="account_browser_body" formatted="true">"브라우저에서 %s을(를) 열었습니다. 그곳에서 로그인하고 CloudStream을 허용하세요. 이 창은 자동으로 진행됩니다."</string>
+<string name="account_browser_body_phone" formatted="true">"%s 페이지에서 로그인을 완료하세요. 이 화면은 자동으로 진행됩니다."</string>
+<string name="account_browser_open_again">"다시 열기"</string>
+<string name="account_browser_title" formatted="true">"%s에 로그인"</string>
+<string name="account_browser_waiting">"브라우저를 기다리는 중…"</string>
+<string name="account_code_expired">"이 코드는 만료되었습니다. 새 코드를 받아 다시 시도하세요."</string>
+<string name="account_code_expires" formatted="true">"%s 후 만료"</string>
+<string name="account_code_instructions" formatted="true">"아무 브라우저에서 %s(으)로 이동해 코드를 입력하세요."</string>
+<string name="account_code_open" formatted="true">"%s 열기"</string>
+<string name="account_delete_body" formatted="true">"%s 프로필의 시청 기록, 북마크, 동기화 로그인이 이 기기에서 삭제됩니다."</string>
+<string name="account_delete_profile">"프로필 삭제"</string>
+<string name="account_delete_title" formatted="true">"%s을(를) 삭제할까요?"</string>
+<string name="account_edit_profile">"프로필 편집"</string>
+<string name="account_email">"이메일"</string>
+<string name="account_image_address">"이미지 주소 사용"</string>
+<string name="account_manage_note">"편집할 프로필을 선택하세요"</string>
 <string name="account_manage_profiles">"프로필 관리"</string>
 <string name="account_pair_code">"내 코드"</string>
 <string name="account_pair_instructions">"휴대폰에서 이 주소를 열고 아래 코드를 입력하세요."</string>
 <string name="account_pair_new_code">"새 코드 받기"</string>
 <string name="account_pair_title" formatted="true">"%s 연결"</string>
+<string name="account_password">"비밀번호"</string>
+<string name="account_password_mismatch">"이메일과 비밀번호가 일치하지 않습니다. 확인 후 다시 시도하세요."</string>
+<string name="account_password_note" formatted="true">"%s은(는) 브라우저 로그인을 지원하지 않아 여기에 입력합니다. 이 기기에만 저장되며 백업되지 않습니다."</string>
+<string name="account_picture">"사진"</string>
+<string name="account_pin_change">"PIN 변경"</string>
+<string name="account_pin_confirm">"확인을 위해 한 번 더 입력하세요."</string>
+<string name="account_pin_current">"현재 사용 중인 PIN을 입력하세요."</string>
+<string name="account_pin_first_profile">"첫 번째 프로필은 잠글 수 없습니다"</string>
+<string name="account_pin_new">"4자리 PIN을 입력하세요."</string>
+<string name="account_pin_off">"끔 · 누구나 이 프로필을 열 수 있음"</string>
+<string name="account_pin_on">"켬 · 열 때 PIN 요청"</string>
+<string name="account_pin_prompt">"4자리 PIN을 입력하세요."</string>
+<string name="account_pin_remove">"PIN 제거"</string>
+<string name="account_pin_set">"PIN 설정"</string>
+<string name="account_pin_set_title">"PIN 설정"</string>
 <string name="account_profile_current">"현재"</string>
 <string name="account_profile_locked">"잠김 · PIN"</string>
 <string name="account_profile_no_sync">"동기화 없음"</string>
 <string name="account_select_note">"시청 기록은 따로 · 로그인이 아님"</string>
 <string name="account_select_title">"누가 보고 있나요?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s에서 로그인을 확인하지 않았습니다. 저장된 내용이 없습니다."</string>
+<string name="account_signin_failed_title" formatted="true">"%s에 로그인할 수 없음"</string>
+<string name="account_signin_offline_body" formatted="true">"%s에 로그인하려면 인터넷 연결이 필요합니다. 이 기기가 다시 온라인 상태가 되면 시도하세요."</string>
 <string name="account_sync_connected">"연결됨 · 이 기기에서 로그인됨"</string>
 <string name="account_sync_needs_browser">"로그인하려면 웹 브라우저가 필요합니다. 이 기기에는 없습니다."</string>
 <string name="account_sync_note">"선택 사항입니다. 이미 있는 계정과 시청 진행 상황을 동기화합니다."</string>
 <string name="account_sync_pair">"코드로 연결"</string>
 <string name="account_sync_remove">"이 기기에서 제거"</string>
+<string name="account_sync_remove_body" formatted="true">"%1$s 프로필의 %2$s 로그인이 이 기기에서 삭제됩니다. %2$s 계정과 목록은 그대로 유지됩니다."</string>
+<string name="account_sync_remove_title" formatted="true">"이 기기에서 %s을(를) 제거할까요?"</string>
 <string name="account_sync_title">"동기화 서비스"</string>
 <string name="account_sync_unavailable">"여기서는 사용할 수 없음"</string>
+<string name="account_touch_id_hint">"이 프로필을 열려면 센서를 터치하세요."</string>
+<string name="account_touch_id_reason" formatted="true">"%s 프로필 열기"</string>
+<string name="account_touch_id_title" formatted="true">"Touch ID로 %s 열기"</string>
+<string name="account_undo_warning">"이 작업은 되돌릴 수 없습니다."</string>
+<string name="account_use_pin">"대신 PIN 사용"</string>
 <string name="action_add_to_bookmarks">"시청 상태 설정"</string>
 <string name="action_add_to_favorites">"즐겨찾기에 추가"</string>
 <string name="action_default">"기본"</string>

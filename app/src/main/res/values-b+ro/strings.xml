@@ -23,23 +23,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil și PIN-ul său"</item><item quantity="few">"%d profiluri și PIN-urile lor"</item><item quantity="other">"%d de profiluri și PIN-urile lor"</item></plurals>
 <string name="account">"Cont"</string>
 <string name="account_add_profile">"Adaugă profil"</string>
+<string name="account_browser_body" formatted="true">"Browserul a deschis %s. Conectează-te acolo și permite accesul pentru CloudStream. Această fereastră continuă singură."</string>
+<string name="account_browser_body_phone" formatted="true">"Termină conectarea pe pagina %s. Acest ecran continuă singur."</string>
+<string name="account_browser_open_again">"Deschide din nou"</string>
+<string name="account_browser_title" formatted="true">"Conectează-te la %s"</string>
+<string name="account_browser_waiting">"Se așteaptă browserul…"</string>
+<string name="account_code_expired">"Acest cod a expirat. Obține unul nou ca să încerci din nou."</string>
+<string name="account_code_expires" formatted="true">"Expiră în %s"</string>
+<string name="account_code_instructions" formatted="true">"Accesează %s în orice browser și introdu codul."</string>
+<string name="account_code_open" formatted="true">"Deschide %s"</string>
+<string name="account_delete_body" formatted="true">"Istoricul vizionărilor, marcajele și conectările de sincronizare ale profilului %s sunt șterse de pe acest dispozitiv."</string>
+<string name="account_delete_profile">"Șterge profilul"</string>
+<string name="account_delete_title" formatted="true">"Ștergi %s?"</string>
+<string name="account_edit_profile">"Editează profilul"</string>
+<string name="account_email">"E-mail"</string>
+<string name="account_image_address">"Folosește adresa unei imagini"</string>
+<string name="account_manage_note">"Alege un profil ca să-l editezi"</string>
 <string name="account_manage_profiles">"Gestionează profilurile"</string>
 <string name="account_pair_code">"Codul tău"</string>
 <string name="account_pair_instructions">"Deschide asta pe telefon și introdu codul de mai jos."</string>
 <string name="account_pair_new_code">"Obține un cod nou"</string>
 <string name="account_pair_title" formatted="true">"Asociază %s"</string>
+<string name="account_password">"Parolă"</string>
+<string name="account_password_mismatch">"E-mailul și parola nu se potrivesc. Verifică-le și încearcă din nou."</string>
+<string name="account_password_note" formatted="true">"%s nu are conectare prin browser, așa că se introduce aici. Este păstrată doar pe acest dispozitiv și nu se face niciodată backup."</string>
+<string name="account_picture">"Imagine"</string>
+<string name="account_pin_change">"Schimbă PIN-ul"</string>
+<string name="account_pin_confirm">"Introdu-l din nou pentru confirmare."</string>
+<string name="account_pin_current">"Introdu PIN-ul folosit acum."</string>
+<string name="account_pin_first_profile">"Primul profil nu poate fi blocat"</string>
+<string name="account_pin_new">"Introdu un PIN din 4 cifre."</string>
+<string name="account_pin_off">"Dezactivat · oricine poate deschide acest profil"</string>
+<string name="account_pin_on">"Activat · se cere la deschidere"</string>
+<string name="account_pin_prompt">"Introdu PIN-ul din 4 cifre."</string>
+<string name="account_pin_remove">"Elimină PIN-ul"</string>
+<string name="account_pin_set">"Setează PIN-ul"</string>
+<string name="account_pin_set_title">"Setează un PIN"</string>
 <string name="account_profile_current">"Curent"</string>
 <string name="account_profile_locked">"Blocat · PIN"</string>
 <string name="account_profile_no_sync">"Fără sincronizare"</string>
 <string name="account_select_note">"Istoric de vizionare separat · nu sunt conectări"</string>
 <string name="account_select_title">"Cine se uită?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s nu a confirmat conectarea. Nu s-a salvat nimic."</string>
+<string name="account_signin_failed_title" formatted="true">"Nu te-ai putut conecta la %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Conectarea la %s necesită o conexiune la internet. Încearcă din nou când acest dispozitiv este din nou online."</string>
 <string name="account_sync_connected">"Conectat · pe acest dispozitiv"</string>
 <string name="account_sync_needs_browser">"Conectarea necesită un browser web. Acest dispozitiv nu are."</string>
 <string name="account_sync_note">"Opțional. Sincronizează progresul cu un cont pe care îl ai deja."</string>
 <string name="account_sync_pair">"Asociază cu un cod"</string>
 <string name="account_sync_remove">"Elimină de pe acest dispozitiv"</string>
+<string name="account_sync_remove_body" formatted="true">"Conectarea la %2$s a profilului %1$s este ștearsă de pe acest dispozitiv. Contul tău %2$s și listele lui rămân neschimbate."</string>
+<string name="account_sync_remove_title" formatted="true">"Elimini %s de pe acest dispozitiv?"</string>
 <string name="account_sync_title">"Servicii de sincronizare"</string>
 <string name="account_sync_unavailable">"Indisponibil aici"</string>
+<string name="account_touch_id_hint">"Atinge senzorul ca să deschizi acest profil."</string>
+<string name="account_touch_id_reason" formatted="true">"deschidă profilul %s"</string>
+<string name="account_touch_id_title" formatted="true">"Folosește Touch ID ca să deschizi %s"</string>
+<string name="account_undo_warning">"Această acțiune nu poate fi anulată."</string>
+<string name="account_use_pin">"Folosește PIN-ul"</string>
 <string name="action_add_to_bookmarks">"Adaugă"</string>
 <string name="action_add_to_favorites">"Adaugă la favoriți/te"</string>
 <string name="action_default">"Implicit"</string>

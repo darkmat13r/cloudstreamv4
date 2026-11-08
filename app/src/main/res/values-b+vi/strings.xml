@@ -26,23 +26,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="other">"%d hồ sơ và PIN của chúng"</item></plurals>
 <string name="account">"tài khoản"</string>
 <string name="account_add_profile">"Thêm hồ sơ"</string>
+<string name="account_browser_body" formatted="true">"Trình duyệt của bạn đã mở %s. Hãy đăng nhập ở đó và cho phép CloudStream. Cửa sổ này sẽ tự tiếp tục."</string>
+<string name="account_browser_body_phone" formatted="true">"Hoàn tất đăng nhập trên trang %s. Màn hình này sẽ tự tiếp tục."</string>
+<string name="account_browser_open_again">"Mở lại"</string>
+<string name="account_browser_title" formatted="true">"Đăng nhập vào %s"</string>
+<string name="account_browser_waiting">"Đang chờ trình duyệt của bạn…"</string>
+<string name="account_code_expired">"Mã này đã hết hạn. Hãy lấy mã mới để thử lại."</string>
+<string name="account_code_expires" formatted="true">"Hết hạn sau %s"</string>
+<string name="account_code_instructions" formatted="true">"Truy cập %s trên trình duyệt bất kỳ và nhập mã."</string>
+<string name="account_code_open" formatted="true">"Mở %s"</string>
+<string name="account_delete_body" formatted="true">"Lịch sử xem, dấu trang và các phiên đăng nhập đồng bộ của hồ sơ %s sẽ bị xóa khỏi thiết bị này."</string>
+<string name="account_delete_profile">"Xóa hồ sơ"</string>
+<string name="account_delete_title" formatted="true">"Xóa %s?"</string>
+<string name="account_edit_profile">"Điều chỉnh hồ sơ"</string>
+<string name="account_email">"Email"</string>
+<string name="account_image_address">"Dùng địa chỉ hình ảnh"</string>
+<string name="account_manage_note">"Chọn một hồ sơ để điều chỉnh"</string>
 <string name="account_manage_profiles">"Quản lý hồ sơ"</string>
 <string name="account_pair_code">"Mã của bạn"</string>
 <string name="account_pair_instructions">"Mở mục này trên điện thoại và nhập mã bên dưới."</string>
 <string name="account_pair_new_code">"Lấy mã mới"</string>
 <string name="account_pair_title" formatted="true">"Ghép nối %s"</string>
+<string name="account_password">"Mật khẩu"</string>
+<string name="account_password_mismatch">"Email và mật khẩu không khớp. Hãy kiểm tra và thử lại."</string>
+<string name="account_password_note" formatted="true">"%s không hỗ trợ đăng nhập qua trình duyệt nên cần nhập tại đây. Thông tin chỉ được lưu trên thiết bị này và không bao giờ được sao lưu."</string>
+<string name="account_picture">"Ảnh"</string>
+<string name="account_pin_change">"Đổi mã PIN"</string>
+<string name="account_pin_confirm">"Nhập lại để xác nhận."</string>
+<string name="account_pin_current">"Nhập mã PIN đang dùng."</string>
+<string name="account_pin_first_profile">"Không thể khóa hồ sơ đầu tiên"</string>
+<string name="account_pin_new">"Nhập mã PIN gồm 4 chữ số."</string>
+<string name="account_pin_off">"Tắt · ai cũng có thể mở hồ sơ này"</string>
+<string name="account_pin_on">"Bật · cần nhập khi mở"</string>
+<string name="account_pin_prompt">"Nhập mã PIN gồm 4 chữ số."</string>
+<string name="account_pin_remove">"Xóa mã PIN"</string>
+<string name="account_pin_set">"Đặt mã PIN"</string>
+<string name="account_pin_set_title">"Đặt mã PIN"</string>
 <string name="account_profile_current">"Hiện tại"</string>
 <string name="account_profile_locked">"Đã khóa · PIN"</string>
 <string name="account_profile_no_sync">"Không đồng bộ"</string>
 <string name="account_select_note">"Lịch sử xem riêng · không phải đăng nhập"</string>
 <string name="account_select_title">"Ai đang xem?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s không xác nhận đăng nhập. Chưa có gì được lưu."</string>
+<string name="account_signin_failed_title" formatted="true">"Không thể đăng nhập vào %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Cần có kết nối để đăng nhập vào %s. Hãy thử lại khi thiết bị này có mạng trở lại."</string>
 <string name="account_sync_connected">"Đã kết nối · đã đăng nhập trên thiết bị này"</string>
 <string name="account_sync_needs_browser">"Đăng nhập cần trình duyệt web. Thiết bị này không có."</string>
 <string name="account_sync_note">"Tùy chọn. Đồng bộ tiến độ xem với tài khoản bạn đã có."</string>
 <string name="account_sync_pair">"Ghép nối bằng mã"</string>
 <string name="account_sync_remove">"Xóa khỏi thiết bị này"</string>
+<string name="account_sync_remove_body" formatted="true">"Phiên đăng nhập %2$s của hồ sơ %1$s sẽ bị xóa khỏi thiết bị này. Tài khoản %2$s của bạn và các danh sách trong đó vẫn giữ nguyên."</string>
+<string name="account_sync_remove_title" formatted="true">"Xóa %s khỏi thiết bị này?"</string>
 <string name="account_sync_title">"Dịch vụ đồng bộ"</string>
 <string name="account_sync_unavailable">"Không có ở đây"</string>
+<string name="account_touch_id_hint">"Chạm vào cảm biến để mở hồ sơ này."</string>
+<string name="account_touch_id_reason" formatted="true">"mở hồ sơ %s"</string>
+<string name="account_touch_id_title" formatted="true">"Dùng Touch ID để mở %s"</string>
+<string name="account_undo_warning">"Không thể hoàn tác thao tác này."</string>
+<string name="account_use_pin">"Dùng mã PIN"</string>
 <string name="action_add_to_bookmarks">"Đặt trạng thái xem"</string>
 <string name="action_add_to_favorites">"Thêm vào mục yêu thích"</string>
 <string name="action_default">"Mặc định"</string>

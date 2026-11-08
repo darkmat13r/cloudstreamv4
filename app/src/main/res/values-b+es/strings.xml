@@ -26,23 +26,64 @@
 <plurals name="settings_reset_item_profiles"><item quantity="one">"%d perfil y su PIN"</item><item quantity="many">"%d perfiles y sus PIN"</item><item quantity="other">"%d perfiles y sus PIN"</item></plurals>
 <string name="account">"Cuenta"</string>
 <string name="account_add_profile">"Añadir perfil"</string>
+<string name="account_browser_body" formatted="true">"Tu navegador ha abierto %s. Inicia sesión allí y da permiso a CloudStream. Esta ventana continuará sola."</string>
+<string name="account_browser_body_phone" formatted="true">"Termina de iniciar sesión en la página de %s. Esta pantalla continuará sola."</string>
+<string name="account_browser_open_again">"Abrir de nuevo"</string>
+<string name="account_browser_title" formatted="true">"Iniciar sesión en %s"</string>
+<string name="account_browser_waiting">"Esperando a tu navegador…"</string>
+<string name="account_code_expired">"Este código ha caducado. Obtén uno nuevo para volver a intentarlo."</string>
+<string name="account_code_expires" formatted="true">"Caduca en %s"</string>
+<string name="account_code_instructions" formatted="true">"Ve a %s en cualquier navegador e introduce el código."</string>
+<string name="account_code_open" formatted="true">"Abrir %s"</string>
+<string name="account_delete_body" formatted="true">"El historial de visualización, los marcadores y las sesiones de sincronización del perfil %s se borran de este dispositivo."</string>
+<string name="account_delete_profile">"Borrar perfil"</string>
+<string name="account_delete_title" formatted="true">"¿Borrar %s?"</string>
+<string name="account_edit_profile">"Editar perfil"</string>
+<string name="account_email">"Correo electrónico"</string>
+<string name="account_image_address">"Usar una dirección de imagen"</string>
+<string name="account_manage_note">"Elige un perfil para editarlo"</string>
 <string name="account_manage_profiles">"Gestionar perfiles"</string>
 <string name="account_pair_code">"Tu código"</string>
 <string name="account_pair_instructions">"Abre esto en tu teléfono e introduce el código de abajo."</string>
 <string name="account_pair_new_code">"Obtener un código nuevo"</string>
 <string name="account_pair_title" formatted="true">"Vincular %s"</string>
+<string name="account_password">"Contraseña"</string>
+<string name="account_password_mismatch">"El correo electrónico y la contraseña no coinciden. Revísalos y vuelve a intentarlo."</string>
+<string name="account_password_note" formatted="true">"%s no admite inicio de sesión en el navegador, así que se escribe aquí. Solo se guarda en este dispositivo y nunca se incluye en copias de seguridad."</string>
+<string name="account_picture">"Imagen"</string>
+<string name="account_pin_change">"Cambiar PIN"</string>
+<string name="account_pin_confirm">"Vuelve a escribirlo para confirmarlo."</string>
+<string name="account_pin_current">"Escribe el PIN que usas ahora."</string>
+<string name="account_pin_first_profile">"El primer perfil no se puede bloquear"</string>
+<string name="account_pin_new">"Escribe un PIN de 4 dígitos."</string>
+<string name="account_pin_off">"Desactivado · cualquiera puede abrir este perfil"</string>
+<string name="account_pin_on">"Activado · se pide para abrirlo"</string>
+<string name="account_pin_prompt">"Escribe el PIN de 4 dígitos."</string>
+<string name="account_pin_remove">"Quitar PIN"</string>
+<string name="account_pin_set">"Establecer PIN"</string>
+<string name="account_pin_set_title">"Establece un PIN"</string>
 <string name="account_profile_current">"Actual"</string>
 <string name="account_profile_locked">"Bloqueado · PIN"</string>
 <string name="account_profile_no_sync">"Sin sincronización"</string>
 <string name="account_select_note">"Historial de visualización aparte · no son inicios de sesión"</string>
 <string name="account_select_title">"¿Quién está viendo?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s no confirmó el inicio de sesión. No se ha guardado nada."</string>
+<string name="account_signin_failed_title" formatted="true">"No se pudo iniciar sesión en %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Para iniciar sesión en %s hace falta conexión. Vuelve a intentarlo cuando este dispositivo tenga conexión."</string>
 <string name="account_sync_connected">"Conectado · sesión iniciada en este dispositivo"</string>
 <string name="account_sync_needs_browser">"Iniciar sesión requiere un navegador web. Este dispositivo no tiene."</string>
 <string name="account_sync_note">"Opcional. Sincroniza el progreso con una cuenta que ya tienes."</string>
 <string name="account_sync_pair">"Vincular con un código"</string>
 <string name="account_sync_remove">"Quitar de este dispositivo"</string>
+<string name="account_sync_remove_body" formatted="true">"La sesión de %2$s del perfil %1$s se borra de este dispositivo. Tu cuenta de %2$s y sus listas se quedan como están."</string>
+<string name="account_sync_remove_title" formatted="true">"¿Quitar %s de este dispositivo?"</string>
 <string name="account_sync_title">"Servicios de sincronización"</string>
 <string name="account_sync_unavailable">"No disponible aquí"</string>
+<string name="account_touch_id_hint">"Toca el sensor para abrir este perfil."</string>
+<string name="account_touch_id_reason" formatted="true">"abrir el perfil %s"</string>
+<string name="account_touch_id_title" formatted="true">"Usar Touch ID para abrir %s"</string>
+<string name="account_undo_warning">"Esto no se puede deshacer."</string>
+<string name="account_use_pin">"Usar PIN"</string>
 <string name="action_add_to_bookmarks">"Seleccionar estado de visualización"</string>
 <string name="action_add_to_favorites">"Añadido a favoritos"</string>
 <string name="action_default">"Predeterminado"</string>
