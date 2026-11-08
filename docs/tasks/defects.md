@@ -3261,3 +3261,88 @@ path, query or fragment (`a@2x.jpg`) is kept, and so is `%40`.
   in both classes passed in that run (49 tests, 3 failed).
 - With the fix, `:desktopApp:jvmTest` passed 543 of 543, and `:feature:settings:jvmTest` 17 of 17.
 - The four gates each exited 0, and `check-test-results.py` read 242 files with 0 failures.
+
+## BUG-62 — The longest translations overflow four TV surfaces · **medium** · measured 2026-11-08
+
+**Status:** measured; the four approved fixes are `BUG-68`.
+
+The sweep measured 219 key/style pairs in all 61 locales plus English on `Television_720p`, with the theme's own text
+styles and `TextStyle.localeList` set per locale so the fallback fonts match what a screen draws. What it found, in dp
+over the space the surface allows (worst locale):
+
+| Surface | Allows | Worst measured | Keys |
+|---|---|---|---|
+| Card badge | 72dp inside an 80dp poster | 162dp (`ca`) | `quality_sdr`, `asian_drama_singular`, `app_dubbed_text`, `documentaries_singular` |
+| Two badges on one card edge | the same 72dp | 256dp (`ca`) | a quality and `app_dubbed_text` together |
+| Player `Skip` | 108dp of label in a 140dp button | 262dp (`ta`) | all nine `skip_type_*` |
+| Account `Manage profiles` | 144dp in a 176dp button | 173dp (`ml`) | `account_manage_profiles` |
+| A sync row's verb | 200dp | 229dp (`ml`) | `account_sync_remove` |
+| Side-panel row title | about 232dp on one line | 310dp (`ta`) | 8 of 21, all `sort_*` |
+| Home's bookmarks header | 832dp of content | 908dp (`ta`) | `error_bookmarks_text` plus five `type_*` chips |
+
+English is already over on the badges: `DOCUMENTARY` 90dp, `ASIAN DRAMA` 84dp, `LIVE` 76dp, `AUDIO BOOK` 73dp.
+
+**These fit, and were checked:** Detail's Resume and Play (`ml` 147/164dp), the nav rail, the player's selectors,
+Detail's action row (`qt` 826 of 832dp), the Downloads rows and every placeholder.
+
+## BUG-68 — The four approved fixes for `BUG-62`'s overflows · **medium**
+
+**Status:** in pr · owner-approved 2026-11-08 · `BUG-62` holds the measurements
+
+Every size comes from a token or from an existing `XxxDefaults` literal; nothing new is off the 4dp step.
+
+- **(a) Card badges ellipsise, and a pair that cannot share an edge stacks.** `Badge` draws
+  `TextOverflow.Ellipsis` instead of being cut by the card's clip. `MediaCard`'s two badge slots became **one row
+  across the card's top** with the leading badge weighted, so the card's width caps each badge and a long leading badge
+  can no longer run under the trailing one. `BadgeGroup` is new: the badges on one edge, side by side while they fit
+  and stacked when they do not, which is what keeps a second badge from being measured at zero width. `TV Search`'s
+  result card uses it.
+- **(b) Three fixed-width controls grow to their label, with the old width as the minimum.** The player's `Skip`
+  (`widthIn(min = SkipWidth)`), the account screen's `Manage profiles` and a sync row's verb. A label that still does
+  not fit ellipsises, as it always did.
+- **(c) A side-panel row title may take a second line.** The title reports how many lines it took, and the row is
+  `ListRowHeight` plus one `ListRowDefaults.HeightStep` (16dp) per line after the first; the title's own box grows by
+  one `StackTitleLineBox` to match. **A one-line row is `height(48.dp)`, the modifier it has always had, and renders
+  the same pixels**; a two-line row is 64dp, with or without a subtitle. The subtitle is still one line.
+
+  The title's text is measured with its height unbounded, or the second line could never be found: a title laid out
+  inside a 48dp row's content box reports one line, because Compose does not lay out a line it has no room for. The
+  box around it keeps its exact height, so nothing about a one-line row moves.
+
+  **Two mechanisms were tried and measured before this one**, both of which looked right and were not:
+  - *Round the measured content up to the next step.* On a density where a dp is not a whole number of pixels (this
+    emulator is 1.33) a row with a trailing readout measures 65px against a 64px row — its 8dp padding rounds to 11px
+    a side and its 32dp content box to 43px — so rounding noise read as "needs another step" and every downloads and
+    suggestion row became 64dp. Four device tests in two other modules failed and a list moved 12dp.
+  - *Keep the row on the step but let the title's box grow.* It sized the stack to the text rather than to the box,
+    which moved text by a pixel in rows across the app.
+
+  The line count has neither failure mode: it is 1 or 2, it comes from text that was actually laid out, and the dp it
+  maps to is written down.
+
+  **Only inside a `SidePanel`**, which is the one surface that provides the local. The first version let any row wrap
+  when its title did not fit, which is not what the owner approved and is measurably worse: on the device it broke
+  five existing cases — `aLongNameIsEllipsizedOnOneLine` (a downloads file name took two lines),
+  `focusOnARowThatFitsDoesNotMoveTheList` (expected 147.98dp, got 135.96dp), two
+  `DownloadSeriesScreenTvDeviceTest` cases that timed out waiting for a row, and
+  `typingShowsTheBoardsSixRowsInOneColumnWithTheirCounts`, whose column composed one row fewer because the rows above
+  it were taller — and it moved 15 committed screenshots. A list 640dp or wider wants the ellipsis; a 280dp panel is
+  the only place that does not.
+- **(d) Home's bookmarks chip row scrolls**, with its start gap and end inset inside the viewport so a focused chip's
+  ring is not cut by the scroll's clip. This is `LibraryTabRow`'s three modifiers in the same order; the rail title
+  stays outside the scroll. What the overflow looked like, measured rather than assumed: a `Row` takes it out of
+  whatever is left at its last child, so in Tamil the fifth chip was a sliver against the screen's edge with its word
+  ellipsised away — reachable with a key, and unreadable.
+
+**Tests.** One device test per pattern, each in the worst real translation and each failing before the fix:
+`MediaCardBadgeDeviceTest` (3 cases), `PlayerSkipLongLabelDeviceTest` (2), `AccountLongLabelDeviceTest` (3, the screen
+drawn in `ml`), `ListRowSecondLineDeviceTest` (3) and `HomeBookmarksChipScrollDeviceTest` (3, drawn in `ta`). The two
+that need a real translation on screen force the default locale, which is what compose-resources resolves through, and
+each guards itself with a case that fails if the locale ever stops reaching the resources.
+
+Eleven screenshots are recorded, and **every one of the 92 references already in those eight modules re-records
+byte-identically**, which is the evidence that nothing else on these screens moved. `:core:screenshot` gains a
+`long labels` case, which stays red with the rest of that suite.
+
+**Not in this task.** `quality_profile_help` measures 1247dp, but it is help text in a dialog rather than a badge, and
+the sweep lists it only because it shares the `quality_*` prefix.

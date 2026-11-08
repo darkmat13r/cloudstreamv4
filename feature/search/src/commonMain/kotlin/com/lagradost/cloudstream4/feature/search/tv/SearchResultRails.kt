@@ -5,7 +5,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
@@ -33,6 +32,7 @@ import com.lagradost.cloudstream4.core.designsystem.card.PosterCard
 import com.lagradost.cloudstream4.core.designsystem.card.PosterRung
 import com.lagradost.cloudstream4.core.designsystem.card.SeeAllCard
 import com.lagradost.cloudstream4.core.designsystem.primitive.Badge
+import com.lagradost.cloudstream4.core.designsystem.primitive.BadgeGroup
 import com.lagradost.cloudstream4.core.designsystem.rows.RailHeader
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.load_more
@@ -197,6 +197,11 @@ private const val MORE_KEY = "search-rail-more"
  * `remember` because its own KDoc says an instance built in a composition body allocates on every
  * recomposition and defeats skipping.
  *
+ * The two badges go in a `BadgeGroup` rather than a `Row`: the card caps the slot's width, and a
+ * `Row` gives the whole of it to the first badge, so `SDR` at 154dp in Catalan took the box and
+ * `DUB` was measured at zero (`BUG-62`). The group lays them side by side while they fit and
+ * stacks them when they do not.
+ *
  * Focus is observed with `onFocusChanged` and activation handled by a `clickable` with no
  * indication — the same pair `ListRow` uses, rather than a hand-rolled key handler. `clickable`
  * already makes the card a focus stop and already treats D-pad centre and Enter as a click; the
@@ -215,11 +220,7 @@ private fun ResultCard(
     val slots = remember(item.qualityLabel, item.dubLabel) {
         val labels = listOfNotNull(item.qualityLabel, item.dubLabel)
         if (labels.isEmpty()) MediaCardSlots.None else MediaCardSlots(
-            leadingBadge = {
-                Row(horizontalArrangement = Arrangement.spacedBy(SearchScreenTvDefaults.BadgeGap)) {
-                    labels.forEach { Badge(text = it) }
-                }
-            },
+            leadingBadge = { BadgeGroup { labels.forEach { Badge(text = it) } } },
         )
     }
 

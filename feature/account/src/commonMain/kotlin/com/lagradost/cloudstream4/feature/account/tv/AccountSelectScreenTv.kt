@@ -14,6 +14,7 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.widthIn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -182,7 +183,7 @@ private fun Header(managing: Boolean, onAction: (AccountAction) -> Unit) {
             GhostTextButton(
                 label = stringResource(if (managing) Res.string.setup_done else Res.string.account_manage_profiles),
                 onClick = { onAction(AccountAction.ToggleManage) },
-                modifier = Modifier.width(AccountSelectDefaults.ManageWidth),
+                modifier = Modifier.widthIn(min = AccountSelectDefaults.ManageWidth),
             )
         }
     }
@@ -289,7 +290,7 @@ private fun SyncRowTv(service: SyncService, onPress: () -> Unit, modifier: Modif
         onClick = onPress,
         modifier = modifier.width(AccountSelectDefaults.RowWidth),
         trailing = {
-            Box(Modifier.width(AccountSelectDefaults.ActionWidth), contentAlignment = Alignment.CenterEnd) {
+            Box(Modifier.widthIn(min = AccountSelectDefaults.ActionWidth), contentAlignment = Alignment.CenterEnd) {
                 Text(
                     action,
                     style = CloudStreamTheme.typography.label,
@@ -323,7 +324,14 @@ internal object AccountSelectDefaults {
     /** The header note sits at y88 against the title's y56. */
     val NoteTop: Dp = 16.dp
 
-    /** The Manage button, 352 px. */
+    /**
+     * The Manage button, 352 px — a **minimum**, not the width (`BUG-62`).
+     *
+     * 176dp holds 144dp of label, and `account_manage_profiles` measures 173dp in Malayalam, 147dp
+     * in Tamil and 142dp in Filipino against 80dp in English. The button grows to its label above
+     * the board's width, and the header row it sits in is laid out left to right, so growing it
+     * takes room from nothing: the title and its note are already bounded.
+     */
     val ManageWidth: Dp = 176.dp
 
     /** The header cell ends at y152; the cards start at y184. */
@@ -376,6 +384,13 @@ internal object AccountSelectDefaults {
     /** The 120 px pitch less the 96 px row. */
     val RowGap: Dp = 12.dp
 
-    /** `.actw400`. */
+    /**
+     * `.actw400` — a **minimum**, not the width (`BUG-62`).
+     *
+     * `account_sync_remove` measures 229dp in Malayalam against 125dp in English, so the verb that
+     * says what pressing a row does was cut at 200dp. The slot grows to its text and the row's
+     * text stack, which is weighted, gives up the difference; the verb is still one line and still
+     * ellipsises if it outgrows the whole row.
+     */
     val ActionWidth: Dp = 200.dp
 }

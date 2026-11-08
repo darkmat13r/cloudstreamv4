@@ -3,6 +3,7 @@ package com.lagradost.cloudstream4.core.designsystem.card
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Stable
+import com.lagradost.cloudstream4.core.designsystem.primitive.BadgeGroup
 
 /**
  * Everything a media card renders that is *data* rather than a slot.
@@ -56,6 +57,11 @@ data class MediaCardState(
  * step.
  *
  * A badge that means "playback state" is the one place `colors.live` is allowed on a card.
+ *
+ * **Two badges on one edge go in a [BadgeGroup], not a `Row`.** The card gives each slot a width
+ * capped by its own, and a `Row` spends all of it on its first child: in Catalan or Tamil the
+ * second badge of a pair is measured at zero and vanishes. The group stacks the pair instead. See
+ * `BUG-62`.
  *
  * **Hoist instances with `remember`.** Constructing a `MediaCardSlots` in a composition body
  * allocates on every recomposition and defeats skipping; build it once per rail, or use [None].

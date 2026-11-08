@@ -5,6 +5,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.focusGroup
 import androidx.compose.foundation.gestures.LocalBringIntoViewSpec
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -18,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -150,6 +152,17 @@ internal fun HomeBookmarksTv(
 /**
  * 3e's `.chiprow`: the title on the chips' 48dp row rather than a header of its own, which costs 20dp and not a whole chip
  * band. A chip only for a status that holds a title.
+ *
+ * **The chips scroll, as Library's tabs do** (`BUG-62`). The title plus five status chips measure 592dp of the row's
+ * 832dp in English and 908dp in Tamil. A `Row` takes that overflow out of whatever is left when it reaches the last
+ * child, so in Tamil the fifth chip was drawn as a sliver against the screen's edge, past the content's end, with its
+ * word ellipsised away: still a focus stop, and unreadable. The scroll is applied from outside `ChipRow`, which says
+ * to raise an overflow rather than clip one itself, and the row's start gap and end inset go **inside** the viewport
+ * so a focused chip's ring has room at both ends instead of being cut by the scroll's own clip. `LibraryTabRow` is
+ * the same three modifiers in the same order.
+ *
+ * The title is not inside the scroll: it is the row's heading, it stays where 3e draws it, and scrolling it away would
+ * leave the chips captioned by nothing.
  */
 @Composable
 private fun BookmarksHeader(
@@ -162,8 +175,10 @@ private fun BookmarksHeader(
     val colors = CloudStreamTheme.colors
     val style = CloudStreamTheme.typography.railTitle
     Row(
-        modifier = Modifier.contentPadding().fillMaxWidth().height(CloudStreamDimens.ChipFocusCell),
-        horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ChipRowSpacing),
+        modifier = Modifier
+            .padding(start = HomeScreenTvDefaults.ContentInsetStart)
+            .fillMaxWidth()
+            .height(CloudStreamDimens.ChipFocusCell),
         verticalAlignment = Alignment.CenterVertically,
     ) {
         BasicText(
@@ -172,7 +187,16 @@ private fun BookmarksHeader(
             maxLines = 1,
             modifier = Modifier.semantics { heading() },
         )
-        ChipRow(modifier = wall.focusGroup()) {
+        ChipRow(
+            modifier = wall
+                .focusGroup()
+                .weight(WEIGHT_REMAINING)
+                .horizontalScroll(rememberScrollState())
+                .padding(
+                    start = CloudStreamDimens.ChipRowSpacing,
+                    end = HomeScreenTvDefaults.ContentInsetEnd,
+                ),
+        ) {
             bookmarks.statuses.forEach { status ->
                 Chip(
                     label = stringResource(status.words),
@@ -236,3 +260,6 @@ private val HomeWatchStatus.words: StringResource
  */
 internal val BookmarksRailHeight: Dp =
     CloudStreamDimens.ChipFocusCell + CloudStreamDimens.LiftedRowClearance + HomeScreenTvDefaults.BookmarksCardHeight
+
+/** The chips take what the title leaves, and scroll inside it. */
+private const val WEIGHT_REMAINING = 1f

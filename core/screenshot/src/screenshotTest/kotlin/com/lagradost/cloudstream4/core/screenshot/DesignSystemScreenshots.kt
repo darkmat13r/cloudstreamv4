@@ -2,10 +2,12 @@ package com.lagradost.cloudstream4.core.screenshot
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -15,7 +17,9 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.primitive.Badge
+import com.lagradost.cloudstream4.core.designsystem.primitive.BadgeGroup
 import com.lagradost.cloudstream4.core.designsystem.primitive.BadgeTone
+import com.lagradost.cloudstream4.core.designsystem.panel.SidePanel
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
@@ -142,6 +146,61 @@ fun Badges() {
         Badge(text = "LIVE", tone = BadgeTone.Live)
     }
 }
+
+
+/**
+ * `BUG-62`: what the design system does when a translation is far longer than the English it was drawn for.
+ *
+ * Two states, both of which were a silent cut before: a pair of badges that cannot share a card's edge, and a side
+ * panel's row title that cannot fit one line. Each is in the real worst translation the sweep found, on the surface
+ * that caps it — a 72dp badge box (a `PortraitMedium` card less its inset), and a real `SidePanel`, which is what
+ * tells a row it may take a second line at all.
+ *
+ * This is the kind of state the rule asks for: the geometry is easy to break silently, and the thing being held is
+ * that **nothing is cut without saying so** — the badges stack, the title takes a second line and its row grows one
+ * whole 16dp step.
+ */
+@Preview(name = "long labels", widthDp = 360, heightDp = 540)
+@Composable
+fun LongLabels() {
+    Surface {
+        Box(Modifier.width(BADGE_BOX_DP.dp)) {
+            BadgeGroup {
+                Badge(text = SDR_CA)
+                Badge(text = DUB_TA)
+            }
+        }
+        SidePanel(header = { Badge(text = SORT_BY_EN) }) {
+            ListRow(state = ListRowState(title = RELEASE_TA, selected = true), onClick = {})
+            ListRow(
+                state = ListRowState(title = UPDATED_TA, subtitle = NOT_KEPT_TA, enabled = false),
+                onClick = {},
+            )
+            ListRow(state = ListRowState(title = "Rating"), onClick = {})
+        }
+    }
+}
+
+/** `CloudStreamCardSizes.PortraitMedium` (80dp) less `MediaCardDefaults.ContentPadding` on both sides. */
+private const val BADGE_BOX_DP = 72
+
+/** The panel's own header, which is a `RailHeader` on a real screen; this case is about its rows. */
+private const val SORT_BY_EN = "SORT BY"
+
+/** `quality_sdr` in `ca`, upper-cased as a badge draws it: 154.0dp against English's 21.0dp. */
+private const val SDR_CA = "RANG DINAMIC SIMPLE (SDR)"
+
+/** `app_dubbed_text` in `ta`: 141.2dp against English's 21.8dp. */
+private const val DUB_TA = "மொழிபெயர்க்கப்பட்டது"
+
+/** `sort_release_date_old` in `ta`, in a single-line row's `body`: 309.5dp against English's 157.0dp. */
+private const val RELEASE_TA = "வெளியீட்டு தேதி (பழையதிலிருந்து புதியது)"
+
+/** `sort_updated_new` in `ta`, in a two-line row's `label`: 216.3dp against English's 107.4dp. */
+private const val UPDATED_TA = "புதுப்பிக்கப்பட்டது (பழையது புதியது)"
+
+/** `library_sort_not_kept` in `ta`, the reason `TV Library` 5d puts under a criterion it cannot sort by. */
+private const val NOT_KEPT_TA = "Simkl இதை வைத்திருக்காது"
 
 /**
  * A full-surface state with its single required action.

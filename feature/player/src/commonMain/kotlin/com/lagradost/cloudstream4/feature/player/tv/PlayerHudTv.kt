@@ -184,7 +184,9 @@ private fun Hud(
                 GhostTextButton(
                     label = skip.label,
                     onClick = { onAction(PlayerHudAction.Skip) },
-                    modifier = Modifier.width(PlayerHudDefaults.SkipWidth).focusProperties { down = seekCell },
+                    modifier = Modifier
+                        .widthIn(min = PlayerHudDefaults.SkipWidth)
+                        .focusProperties { down = seekCell },
                 )
             }
         }
@@ -555,8 +557,24 @@ internal object PlayerHudDefaults {
     val BannerPadding: Dp = 16.dp
     val BannerGap: Dp = 12.dp
 
-    /** `Skip intro` at y528, 280px wide, right-aligned on the content's end. */
+    /** `Skip intro` at y528, right-aligned on the content's end. */
     val SkipTop: Dp = 264.dp
+
+    /**
+     * The board's 280px, halved — and a **minimum**, not the width (`BUG-62`).
+     *
+     * 140dp holds 108dp of label after `TextButtonDefaults.HorizontalPadding` on both sides, and
+     * **none** of the nine skip labels fits that in every language: `skip_type_recap` measures
+     * 262dp in Tamil, 165dp in German, 144dp in Greek against 56dp in English (measured on
+     * `Television_720p` in all 61 locales). A fixed 140dp ellipsised `Skip recap` down to
+     * something that no longer said what pressing it skips, on the one control the board allows
+     * on screen while the HUD is hidden.
+     *
+     * So the button keeps 140dp as its floor — short labels still draw the board's width, and a
+     * row of them does not ragged — and grows to its label above it. It is right-aligned, so it
+     * grows leftwards into the frame rather than past the content's end, and the label still
+     * ellipsises if a translation outgrows the screen.
+     */
     val SkipWidth: Dp = 140.dp
 
     /** The elapsed time's box, 200px, and the total's, 160px. */
