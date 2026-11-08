@@ -73,7 +73,7 @@ internal class PlayerSources(
 /** A later answer can carry the same stream under a new list of subtitles, so the whole link is not the test. */
 internal fun StreamLink.isSameStream(other: StreamLink) = url == other.url && audioUrl == other.audioUrl
 
-/** `VidSrc Pro · 1080p`, which is how artboard 7d reads out a source and which of its rows says what. */
+/** `Source One · 1080p`, which is how artboard 7d reads out a source and which of its rows says what. */
 internal fun StreamLink.sourceName(): String = listOfNotNull(label, qualityLabel).joinToString(" · ")
 
 /**
