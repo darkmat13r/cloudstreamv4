@@ -2,10 +2,13 @@ package com.lagradost.cloudstream4.feature.extensions.sandbox
 
 import com.lagradost.cloudstream3.HomePageList
 import com.lagradost.cloudstream3.HomePageResponse
+import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.MainPageData
 import com.lagradost.cloudstream3.MainPageRequest
+import com.lagradost.cloudstream3.Score
 import com.lagradost.cloudstream3.SearchResponseList
+import com.lagradost.cloudstream3.ShowStatus
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.TvType
 import com.lagradost.cloudstream3.mainPageOf
@@ -13,6 +16,7 @@ import com.lagradost.cloudstream3.newHomePageResponse
 import com.lagradost.cloudstream3.newMovieSearchResponse
 import com.lagradost.cloudstream3.newSearchResponseList
 import com.lagradost.cloudstream3.newSubtitleFile
+import com.lagradost.cloudstream3.newTvSeriesLoadResponse
 import com.lagradost.cloudstream3.plugins.BasePlugin
 import com.lagradost.cloudstream3.plugins.CloudstreamPlugin
 import com.lagradost.cloudstream3.utils.ExtractorLink
@@ -149,6 +153,26 @@ class HostileApi : MainAPI() {
         return true
     }
 
+    /**
+     * A title whose facts are what a malicious plugin would send through the real API (`KMP-76`). The URL is the
+     * certification it claims, so one title per rating can be tried.
+     */
+    override suspend fun load(url: String): LoadResponse {
+        val title = newTvSeriesLoadResponse("Hostile title", url, TvType.TvSeries, emptyList())
+        title.score = Score.from10(HOSTILE_SCORE)
+        title.tags = listOf(
+            "x".repeat(ONE_MEBIBYTE),
+            "evil\u001B[2J\nforged",
+            "\u202Eright to left",
+            "zero\u200Dwidth\u200Bjoin",
+            "   ",
+        ) + List(HUGE_TAGS) { "tag $it" }
+        title.contentRating = url
+        title.duration = Int.MAX_VALUE
+        title.showStatus = ShowStatus.Ongoing
+        return title
+    }
+
     override suspend fun search(query: String, page: Int): SearchResponseList {
         val verb = query.substringBefore(':')
         val argument = query.substringAfter(':', "")
@@ -204,6 +228,9 @@ class HostileApi : MainAPI() {
         /** Together past the bytes one call may send, and each past what one frame may hold if there are enough. */
         const val OVERSIZED_LINKS = 3
         const val OVERSIZED_LINK_CHARS = 4 * 1024 * 1024
+        const val HOSTILE_SCORE = 8.4
+        const val ONE_MEBIBYTE = 1024 * 1024
+        const val HUGE_TAGS = 100_000
     }
 }
 
