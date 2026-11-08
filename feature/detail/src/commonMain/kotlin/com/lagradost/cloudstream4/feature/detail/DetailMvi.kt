@@ -15,6 +15,9 @@ import androidx.compose.runtime.Immutable
 @Immutable
 data class DetailReturn(val target: DetailFocus, val ready: Boolean = false)
 
+/** The first of board 7i's season chips, which is what a page opens on. */
+internal const val FIRST_SEASON_GROUP = 0
+
 /** The stops the page can send focus back to. Entry focus is always [Primary]: boards 7a and 7b. */
 enum class DetailFocus {
     Primary,
@@ -38,6 +41,12 @@ enum class DetailFocus {
  *   character. The only press action a cast item has, because no provider gives an actor an id to
  *   open a person page with.
  * @param returnTo set when the page opens something above it, and cleared once focus is back.
+ * @param selectedSeason which of board 7i's season chips is chosen, as an **index** into
+ *   `seasonGroups()`. An index rather than a season number because the chips include one group whose
+ *   season is `null` — the episodes a provider gave no season — so a nullable number could not tell
+ *   "Other is chosen" from "nothing is chosen". The groups are derived from one title's own episode
+ *   list and this state belongs to one title, so the index is stable for as long as it is read; the
+ *   screen still clamps it, because a re-read after `Reappeared` can return a shorter list.
  */
 @Immutable
 data class DetailState(
@@ -48,6 +57,7 @@ data class DetailState(
     val watchStatusPicking: Boolean = false,
     val swappedRoles: Set<Int> = emptySet(),
     val returnTo: DetailReturn? = null,
+    val selectedSeason: Int = FIRST_SEASON_GROUP,
 ) {
     /** The title, where one is loaded. */
     val detail: TitleDetail? get() = (content as? DetailLoad.Loaded)?.value
@@ -97,6 +107,9 @@ sealed interface DetailAction {
     data object ReturnHandled : DetailAction
 
     data class WatchStatusPicked(val status: DetailWatchStatus) : DetailAction
+
+    /** A season chip was chosen, by its index in `seasonGroups()`. See [DetailState.selectedSeason]. */
+    data class SeasonSelected(val index: Int) : DetailAction
     data object FavouriteToggled : DetailAction
     data object SynopsisToggled : DetailAction
 

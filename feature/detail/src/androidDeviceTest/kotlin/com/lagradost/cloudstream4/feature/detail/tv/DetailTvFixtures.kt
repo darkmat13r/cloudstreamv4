@@ -94,6 +94,9 @@ internal object DetailFixtures {
 
     /** Board 7i's own runtime, the one it writes as `24 min`. */
     const val EPISODE_MINUTES = 24
+
+    /** Mirrors `DetailSeasonGroups.SPECIALS_SEASON`, which is internal to the feature module. */
+    const val SPECIALS_SEASON_FIXTURE = 0
     private const val PLOT_REPEATS = 4
 
     /** Opaque to this module; the fake never reads it. */
@@ -225,6 +228,34 @@ internal object DetailFixtures {
             durationMs = 2_620_000L,
             episode = episodes(3)[1],
         ),
+    )
+
+    /**
+     * Board 7i's chip row with all four kinds of group at once: two numbered seasons, a specials
+     * season, and episodes the provider never gave a season.
+     *
+     * Named per group so a filtered list is identifiable by text alone, and deliberately **not** in
+     * chip order — season 2 is declared before season 1 and Specials before both — so the ordering
+     * the chips draw is the code's doing and not the fixture's.
+     */
+    val SeasonGroups = Show.copy(
+        episodes = listOf(
+            DetailEpisode("Specials One", "sp0", SPECIALS_SEASON_FIXTURE, 1, EPISODE_MINUTES),
+            DetailEpisode("Two One", "s2e0", 2, 1, EPISODE_MINUTES),
+            DetailEpisode("Two Two", "s2e1", 2, 2, EPISODE_MINUTES),
+            DetailEpisode("One One", "s1e0", 1, 1, EPISODE_MINUTES),
+            DetailEpisode("Unnumbered One", "x0", null, null, EPISODE_MINUTES),
+        ),
+        seasons = emptyList(),
+        resume = null,
+        playData = null,
+    )
+
+    /** One season only, so 7i draws no chip row at all: a lone chip filters nothing. */
+    val OneSeasonOnly = Show.copy(
+        episodes = episodes(3, runTimeMinutes = EPISODE_MINUTES),
+        resume = null,
+        playData = null,
     )
 
     /** Forty, so the list has to scroll and the last row still has to be reachable. */

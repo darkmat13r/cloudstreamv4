@@ -123,6 +123,11 @@ class DetailViewModel(
 
             DetailAction.SynopsisToggled -> updateState { copy(synopsisOpen = !synopsisOpen) }
 
+            // Not clamped here: the screen derives the groups and clamps when it reads this, because
+            // a re-read after `Reappeared` can hand back a title with fewer seasons than the chip the
+            // viewer last chose. Storing a clamped value would need this to know the episode list.
+            is DetailAction.SeasonSelected -> updateState { copy(selectedSeason = action.index) }
+
             is DetailAction.CastMemberActivated -> updateState {
                 copy(
                     swappedRoles = if (action.index in swappedRoles) swappedRoles - action.index
