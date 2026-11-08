@@ -192,6 +192,9 @@ fun main(args: Array<String>) {
 
 /** Where the window is. There are few enough screens that a value and a `when` is the whole router. */
 private sealed interface Screen {
+    /** The sidebar is beside it: every top-level screen, and a title's page (`KMP-77`). Not the player or the review. */
+    val hasSidebar: Boolean get() = this == Home || this == Search || this == Library || this is Detail
+
     data object Home : Screen
     data object Search : Screen
     data object Library : Screen
@@ -266,6 +269,12 @@ internal fun DesktopApp(
     }
     // A swap and not a push: no top-level screen is under another, so Back never goes between them.
     val top: (Screen) -> Unit = { next -> if (stack.size == 1) stack[0] = next }
+    // From anywhere the sidebar is: what was pushed goes, with its title's view model, and [next] is all there is.
+    val root: (Screen) -> Unit = { next ->
+        stack.drop(1).forEach { if (it is Screen.Detail) DesktopDetailViewModels.forget(it.id) }
+        stack.clear()
+        stack += next
+    }
     // A double click reaches here twice, and must not take two presses of Back to undo.
     val open: (String) -> Unit = { id -> if (stack.last() !is Screen.Detail) stack += Screen.Detail(id) }
     // Resume is the same page, told which episode to ask for and where that episode was left.
@@ -284,9 +293,10 @@ internal fun DesktopApp(
     val screen = stack.last()
     SideEffect { onScreen(screen.toString()) }
     saved.SaveableStateProvider(screen.toString()) {
-        // One place decides what a tab press does, so a new tab cannot be wired up two ways.
+        // One place decides what a tab press does, so a new tab cannot be wired up two ways. `KMP-77`: the sidebar is on a
+        // title's page too, so a press there leaves what was pushed for that tab, as a sidebar does in Finder or Music.
         val toTab: (TopLevelDestination) -> Unit = { destination ->
-            top(
+            root(
                 when (destination) {
                     TopLevelDestination.Home -> Screen.Home
                     TopLevelDestination.Search -> Screen.Search
@@ -294,9 +304,15 @@ internal fun DesktopApp(
                 },
             )
         }
-        // ⌘1 to ⌘3 work only at the top level, as the sidebar is only there; ⌘[ wherever there is something under.
+        // The tab the pushed screens came from, which the sidebar shows as chosen under them.
+        val origin = when (stack.first()) {
+            Screen.Search -> TopLevelDestination.Search
+            Screen.Library -> TopLevelDestination.Library
+            else -> TopLevelDestination.Home
+        }
+        // ⌘1 to ⌘3 work wherever the sidebar is (`KMP-77`); ⌘[ wherever there is something under.
         SideEffect {
-            shortcuts.onDestination = if (stack.size == 1) toTab else null
+            shortcuts.onDestination = if (screen.hasSidebar) toTab else null
             shortcuts.onBack = if (stack.size > 1) ({ back(screen) }) else null
         }
         when (screen) {
@@ -328,16 +344,19 @@ internal fun DesktopApp(
                 }
             }
             is Screen.Detail -> key(screen.id) {
-                DetailHost(
-                    id = screen.id,
-                    scope = scope,
-                    escape = escape,
-                    resume = screen.resume,
-                    onBack = { back(screen) },
-                    onPlay = { kept, episodeData, title, link ->
-                        stack += Screen.Player(kept, episodeData, title, link, screen.resume?.positionMillis ?: 0L)
-                    },
-                )
+                // `DS-21` E1: a title's page keeps the sidebar, with the tab it was opened from chosen.
+                TopLevelScreen(origin, toTab, trailing = notice) {
+                    DetailHost(
+                        id = screen.id,
+                        scope = scope,
+                        escape = escape,
+                        resume = screen.resume,
+                        onBack = { back(screen) },
+                        onPlay = { kept, episodeData, title, link ->
+                            stack += Screen.Player(kept, episodeData, title, link, screen.resume?.positionMillis ?: 0L)
+                        },
+                    )
+                }
             }
             is Screen.Player -> key(screen.link) {
                 SideEffect { escape.onEscape = { back(screen) } }

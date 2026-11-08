@@ -400,6 +400,52 @@ class HomeScreenTest {
     }
 
     /** The whole window: where it opens, opening a title, and Back and Escape from there. */
+    /**
+     * `KMP-77` (`DS-21` E1): a title's page keeps the sidebar, with the tab it came from chosen, and a row there or its
+     * key leaves the title for that tab, with nothing left under it.
+     */
+    @Test
+    fun `a title's page keeps the sidebar, and a row or its key leaves the title for that tab`() {
+        val escape = EscapeHandler()
+        val shortcuts = DesktopShortcuts()
+        var at = ""
+        val scene = scene { DesktopApp(escape, FakeHome(), library = InMemoryLibraryStore(), onScreen = { at = it }, shortcuts = shortcuts) }
+        fun waitForCards() = repeat(WAIT_ROUNDS) {
+            scene.settle()
+            Thread.sleep(WAIT_MILLIS)
+        }
+        fun openTitle() {
+            val card = Offset(CARD_X + SIDEBAR_WIDTH, CARD_Y)
+            scene.sendPointerEvent(PointerEventType.Move, card)
+            scene.sendPointerEvent(PointerEventType.Press, card)
+            scene.sendPointerEvent(PointerEventType.Release, card)
+            waitForCards()
+            assertTrue(at.startsWith("Detail"), at)
+        }
+        waitForCards()
+        openTitle()
+        scene.save("24-window-title-with-sidebar")
+        // Home, where the title was opened from, is the chosen row: its fill is not the unchosen Search row's.
+        val bitmap = Bitmap.makeFromImage(scene.render(SETTLE_FRAMES * FRAME_NANOS))
+        assertTrue(
+            bitmap.getColor(ROW_FILL_X, HOME_ITEM_Y.toInt() - ROW_FILL_ABOVE) != bitmap.getColor(ROW_FILL_X, SEARCH_ITEM_Y.toInt() - ROW_FILL_ABOVE),
+            "Home is chosen under the title",
+        )
+
+        scene.click(Offset(SIDEBAR_ITEM_X, SEARCH_ITEM_Y))
+        assertEquals("Search", at, "the sidebar's row leaves the title")
+        assertFalse(escape.handle(), "and nothing is left under Search")
+
+        scene.click(Offset(SIDEBAR_ITEM_X, HOME_ITEM_Y))
+        waitForCards()
+        openTitle()
+        shortcuts.go(TopLevelDestination.Library)
+        scene.settle()
+        assertEquals("Library", at, "command 3 leaves a title too")
+        assertFalse(escape.handle(), "and nothing is left under Library")
+        scene.close()
+    }
+
     @Test
     fun `home and search are the top level, and a title returns to where it was opened from`() {
         val escape = EscapeHandler()
@@ -478,5 +524,8 @@ class HomeScreenTest {
         const val SIDEBAR_ITEM_X = 100f
         const val HOME_ITEM_Y = 40f
         const val SEARCH_ITEM_Y = 76f
+        /** Inside a sidebar row's fill, left of its glyph, and above its label's line: from `24-window-title-with-sidebar`. */
+        const val ROW_FILL_X = 16
+        const val ROW_FILL_ABOVE = 12
     }
 }

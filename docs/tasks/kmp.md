@@ -6101,6 +6101,26 @@ Tests:
 - **The bookmark filter is kept while the window is open.** There is no desktop preference store yet.
 - **H4's kept rows and their age** wait on `KMP-68`. Until then, a failed reload draws as 3m, under the device's rails.
 
+## KMP-77 — The Mac's sidebar stays beside a title's page
+
+**Status:** in review · `:desktopApp` only · `DS-21` E1
+
+`DS-21`'s Detail boards (E1 to E6) keep the sidebar beside a title's page, with the tab it was opened from chosen. The
+built window dropped it for anything pushed. Now:
+- **A title's page is inside the shell** (`TopLevelScreen`), with the tab at the bottom of the stack chosen: Home,
+  Search or Library, whichever the title was opened from.
+- **A row there, or ⌘1 to ⌘3, leaves the title for that tab**, as a sidebar does in Finder or Music: what was pushed
+  goes, and each title's view model goes with it (`DesktopDetailViewModels.forget`), as Back does.
+- **The player and the extension review keep the whole window.** The keys are off there, as the sidebar is.
+
+**Not here:** a series' downloads page (`KMP-75`, `#229`). It is pushed the same way and takes the sidebar the same
+way once `#229` is on master; a two-line change.
+
+**Tests** (`HomeScreenTest`, through `DesktopApp`): a title opened from Home keeps the sidebar with Home chosen (its
+row's fill, sampled from the render); Search's row leaves the title for Search with nothing under it; ⌘3 leaves a title
+for Library the same way. With the title's page outside the shell again, the test fails at the chosen-row check
+("Home is chosen under the title"): there is no sidebar to sample.
+
 ## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
 
 `#200` made Home's failure detail safe. A thrown failure is now its type, such as `IllegalStateException`, never its message,
