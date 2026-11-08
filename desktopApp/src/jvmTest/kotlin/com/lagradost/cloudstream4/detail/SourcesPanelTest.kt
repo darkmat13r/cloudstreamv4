@@ -205,7 +205,7 @@ class SourcesPanelTest {
 
     /** The longest title of any locale beside the longest word for loading, which is Albanian. */
     @Test
-    fun `the longest words give way, and Close keeps its place`() {
+    fun `the longest words give way, and Cancel keeps its place`() {
         val previous = Locale.getDefault()
         try {
             for (language in listOf("fil", "sq", "ar")) {
@@ -225,8 +225,8 @@ class SourcesPanelTest {
         const val SETTLE_FRAMES = 30
         const val FRAME_NANOS = 50_000_000L
         const val PANEL_WIDTH = 360
-        const val HEADER_BOTTOM = 64
-        const val FIRST_ROW_Y = 88f
+        const val HEADER_BOTTOM = 80
+        const val FIRST_ROW_Y = 104f
         const val ROW_HEIGHT = 49
         const val MAX_TABS = 12
         const val SCROLL_NOTCHES = 8f

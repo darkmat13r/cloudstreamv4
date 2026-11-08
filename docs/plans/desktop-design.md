@@ -98,6 +98,19 @@ five seconds, not over an open list, while the transport says `Loading…` and t
 | L7's three cards at 164 | Two, at the built 200 minimum | The board's own notes keep that minimum |
 | Sort, filter and chevron glyphs | Words only | The pack has none of the three |
 
+## A title's page
+
+`DS-21`'s E1 to E6 (`KMP-58`), with these departures:
+
+| E | Here | Why |
+|---|---|---|
+| The sidebar | Not on a pushed screen yet | `KMP-77`, the shell's |
+| Score, tags, certification, status, runtime, Trailer | The year, the kind and the provider | The plugin sandbox does not carry the rest yet (`KMP-76`) |
+| Watched and time left on each episode | The episode's code and runtime | No per-episode watch state in the contract (`KMP-63`) |
+| E2's three verbs with a tooltip | Play alone | Download and Mark watched have no action yet |
+| Thumbnails, Share, More | None | No episode image, no share action, nothing for More to hold |
+| "More" after the synopsis | The block itself opens and closes | There is no such key |
+
 ## Motion
 
 `DesktopMotion`: a critically damped spring with a 0.3 s response, so no overshoot. A spring starts from the

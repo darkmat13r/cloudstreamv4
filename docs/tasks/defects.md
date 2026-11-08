@@ -2375,3 +2375,77 @@ read-only PIN test passes there too: that head already kept the lock and retried
 
 **Published API:** additions only, `classes-jar.api` +3 / −0 (`PIN_FOLDER`, `pins`, `replacePins`). `accounts` keeps
 its getter and setter; only its private backing property changed.
+
+## BUG-53 — Two Mac download tests read the live disk, so they were flaky under load · **low** · measured 2026-11-08
+
+Two tests in `DesktopDownloadsTest` (from `KMP-52`, #177) failed when other processes were writing to the disk. They
+turned `:desktopApp:jvmTest` and the gates red on master `42bf120c6`. With the two run alone 10 times beside a loop that
+writes and deletes 64 MiB files, each failed 2 times out of 10. The download code itself was not at fault.
+- **`no link text ever reaches the downloads file or the engine's state`.** Its scan listed the files, then read each one.
+  The engine renames its state file into place while it runs, so a listed file could be gone by the time it was read,
+  giving `FileNotFoundException`.
+  - *Fix:* a pass that finds a vanished file is thrown away, and the scan starts again. It passes only after a pass that
+    read every file it listed, and fails after 20 passes without one. No file is skipped.
+  - *Why not stop the download first:* the scans while it runs are the only check that the engine's mid-run state file
+    holds no link.
+- **`a series page reports the same free bytes as the titles page`.** Each page read the real volume's free space, one
+  after the other, so a write by anything else between the two reads moved the figure. On master the two came out 3 to
+  6 MB apart.
+  - *Fix:* `DesktopDownloads` takes the volume's size and free space from a `VolumeSpace` source. Production reads the
+    real volume, as before, once per figure. The test passes in a fixed volume (1,000 GiB, 400 GiB usable) and checks that
+    both pages give exactly 400 GiB. Nothing is allowed for rounding or drift.
+- **Measured** with the same disk-writing loop:
+  - before, on master: in 10 runs of the two, the scan failed in 2 (`FileNotFoundException`) and the free bytes in 2
+    (3–6 MB apart);
+  - after: these two and `BUG-56`'s test, 20 runs in a row, 0 failures;
+  - the full `:desktopApp:jvmTest`: 441/0, and the six gates pass (all local, none CI).
+
+## BUG-56 — A Mac download test could read the previous run's stored failure as the new one · **low** · measured 2026-11-08
+
+`DesktopDownloadsTest.after a restart a resolver with no VIDEO link fails the episode and keeps its parts` (from `KMP-52`,
+#177) failed now and then on branches that do not touch downloads: "expected SourceFailed, was NoUsableLink". Reported by
+worker-2 on `KMP-58`'s branch and by desktop-session-1, and fixed together with `BUG-53`.
+- **Cause.** Each step of the test starts a new host, and that host loads the previous step's stored failure, Failed with
+  `NoUsableLink`. `resumeNow` calls `pump()`, which starts the run, before `publish()`. So the resolver can be asked, and can
+  answer, while the published view still shows the stored state. The test waited for "asked", then for Failed, and could
+  match the stored Failed. In the first two steps the expected reason equals the stored one, so they could pass without
+  having checked anything.
+- **Fix, test only.** Each step's resolver waits on a gate. The test waits until the episode shows Running, which only a
+  publish after the resume shows, opens the gate, and only then waits for Failed. All three steps now check this step's
+  answer. There are no sleeps and no tolerance.
+- **Not changed here.** In production, too, the run starts before the publish. So after Retry the screen can show the old
+  Failed for a moment, which reads as the retry failing at once. That fix is its own follow-up, `BUG-57`.
+- **Measured** under the `BUG-53` disk load: before, 1 failure in 20 runs on master, with exactly the reported
+  message; after, 20 in a row with none (see `BUG-53`).
+
+## BUG-57 — After Retry, the Mac downloads list could show the old failure again · **low** · measured 2026-11-08
+
+Found while fixing `BUG-56`. `DesktopDownloads.resumeNow` (and every other path through `pump()`) started an episode's
+run before publishing. Its own `publish()` came only after `persist()` had written the downloads file. While that happened,
+the run could already be asking the extension, and anything that read the downloads list saw the episode as it was
+before: Failed, with the old reason. On a screen that reads as the retry failing at once.
+- **Fix.** `start()` publishes once the episode is Running, before it starts the run. Every caller of `pump()` has finished
+  changing its items by then, so the extra publish never shows a half-made change. The later `publish()` is unchanged.
+- **Test.** `a retry is published as running before its run asks the extension`: a film fails with a 404, then is retried.
+  The resolver reads the published episode as it is called, and that must be Running with no failure.
+  - Before, on master: failed 5 runs in 5 ("what a reader saw while the retry asked: Failed").
+  - After: 20 runs in a row under the `BUG-53` disk load, none failed.
+
+## BUG-58 — `HostLimitsTest` asserted the plugin host's niceness as an absolute 10 · **low, test only**
+
+**Status:** fixed in this PR · found 2026-11-08 by the gates on `KMP-76` (`#242`)
+
+The launcher starts a plugin host with `/usr/bin/nice -n 10`, which is relative to the process that starts it. The test
+read the host's niceness and asserted exactly 10, which is true only when the test JVM runs at 0. On `KMP-76`'s gates
+the test JVM ran at nice 5, and the host was at 15: the promise kept, the assertion failed. The other worktrees' runs of
+the same test logged 10 every time (44 results), all from a JVM at 0.
+
+**Fix:** the test reads this process's own niceness and asserts the host is exactly 10 above it. It refuses to pass when
+this process is above 10, where macOS's ceiling of 20 would clamp the step and hide it (Linux's ceiling is 19). The promise is
+unchanged: ten steps lower than what launched it. Nothing outside the test changed.
+
+**Measured** (`HostLimitsTest`, 10 cases each run):
+- At parent 0: host 10, pass.
+- At parent 5 (Gradle run under `nice -n 5`, no daemon): host 15, pass. This is the gates' failure, which the old
+  assertion failed on with `expected:<10> but was:<15>`.
+- **Red:** with `nice -n 10` taken out of the launcher, `expected:<10> but was:<0>`. Restored afterwards.
