@@ -7,6 +7,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -15,6 +16,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
@@ -27,6 +29,7 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onAllNodesWithText
 import androidx.compose.ui.test.onNodeWithContentDescription
+import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.performSemanticsAction
@@ -44,6 +47,8 @@ import com.lagradost.cloudstream4.core.devicetest.DpadDriver
 import com.lagradost.cloudstream4.core.devicetest.assertScreenshot
 import com.lagradost.cloudstream4.core.devicetest.focusedLabel
 import com.lagradost.cloudstream4.core.devicetest.solidPoster
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.panel.sidePanelOutsideDim
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
@@ -1798,6 +1803,197 @@ class HomeScreenTvDeviceTest {
         rule.assertScreenshot("home-chrome-focus-random")
     }
 
+    /** `BUG-60`: 3j at rest, focus on the hero's button: the four chrome cells side by side, one tile and one glyph. */
+    @Test
+    fun screenshotChromeAtRest() {
+        shot3c()
+        showForScreenshot()
+        awaitFocus("$MORE_INFO · ${ShotTitles[0]}")
+        rule.assertScreenshot("home-chrome-rest")
+    }
+
+    /** `BUG-60`: the account cell focused, ringed and named under its cell like the three before it. */
+    @Test
+    fun screenshotChromeFocusOnTheAccount() {
+        shot3c()
+        showForScreenshot()
+        awaitFocus("$MORE_INFO · ${ShotTitles[0]}")
+        upToTheSourceControl()
+        pressUntil(Dpad.Right, ACCOUNTS, presses = 4)
+        rule.assertScreenshot("home-chrome-focus-account")
+    }
+
+    /**
+     * `BUG-60`, measured in pixels at rest: Reload, Random, Search and the account draw the same tile, their glyphs in
+     * the same colour, and each glyph as big as that glyph drawn on its own at the icon-only size. A strip of the four
+     * glyphs at `CloudStreamIconSize.Small` is drawn in the corner as the reference for the last.
+     */
+    /**
+     * 3c's page on the plain ground, with no artwork, so a pixel that differs from black is something the chrome drew,
+     * and a strip of the chrome's four glyphs at `CloudStreamIconSize.Small` in the corner as a reference.
+     */
+    private fun showChromeOnPlainGround() {
+        rule.setContent {
+            val state by viewModel.state.collectAsState()
+            CloudStreamTheme {
+                Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                    Row(Modifier.fillMaxSize()) {
+                        NavRail(ShotRail, selectedIndex = HOME_INDEX, onSelect = {})
+                        HomeScreenTv(state = state, onAction = viewModel::onAction, modifier = Modifier.weight(1f))
+                    }
+                    Row(Modifier.align(androidx.compose.ui.Alignment.BottomStart).background(CloudStreamTheme.colors.bg)) {
+                        ChromeGlyphs.forEachIndexed { index, icon ->
+                            Box(
+                                Modifier.size(CloudStreamDimens.IconTargetCell).testTag("$GLYPH_REFERENCE$index"),
+                                contentAlignment = androidx.compose.ui.Alignment.Center,
+                            ) {
+                                CloudStreamIcon(icon, contentDescription = null, size = CloudStreamIconSize.Small)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        rule.runOnIdle { viewModel.onAction(HomeAction.Reappeared) }
+        awaitFocus("$MORE_INFO · ${ShotTitles[0]}")
+        rule.waitForIdle()
+    }
+
+    @Test
+    fun theFourChromeCellsDrawOneTileAndOneGlyphSize() {
+        shot3c()
+        showChromeOnPlainGround()
+
+        val cells = listOf(RELOAD, RANDOM, SEARCH, ACCOUNTS).map { label ->
+            label to measureCell(chromeCell(label).captureToImage().asAndroidBitmap())
+        }
+        val (firstLabel, first) = cells.first()
+        cells.forEach { (label, cell) ->
+            assertEquals("$label's tile against $firstLabel's, in px", first.tile, cell.tile)
+            val close = listOf(16, 8, 0).all { abs((first.glyphColour shr it and 0xFF) - (cell.glyphColour shr it and 0xFF)) <= COLOUR_SLACK }
+            assertTrue(
+                "$label's glyph is ${Integer.toHexString(cell.glyphColour)}, $firstLabel's ${Integer.toHexString(first.glyphColour)}",
+                close,
+            )
+        }
+        cells.forEachIndexed { index, (label, cell) ->
+            val reference = inkBox(rule.onNodeWithTag("$GLYPH_REFERENCE$index").captureToImage().asAndroidBitmap())
+            assertTrue(
+                "$label's glyph is ${cell.glyph} px, the same glyph at the icon-only size ${reference} px",
+                abs(cell.glyph.first - reference.first) <= 1 && abs(cell.glyph.second - reference.second) <= 1,
+            )
+        }
+    }
+
+    /**
+     * `BUG-60`: the chrome's icon cells touch (`ChromeCellGap`, the owner's exception to `MinFocusGap`), so each focused
+     * cell's ring is measured: inside its own 48dp cell on every side, so it never reaches a neighbour's, and no two cells
+     * overlap. A tile grown past 40dp rings past its cell and fails here. The ring is what turns bright when the cell
+     * takes focus, against a capture at rest, so the neighbours' glyphs are not counted.
+     */
+    @Test
+    fun theChromeCellsTouchAndEachRingStaysInsideItsOwnCell() {
+        shot3c()
+        showChromeOnPlainGround()
+        val density = InstrumentationRegistry.getInstrumentation().targetContext.resources.displayMetrics.density
+        val labels = listOf(RELOAD, RANDOM, SEARCH, ACCOUNTS)
+        val cells = labels.map { chromeCell(it).getUnclippedBoundsInRoot() }
+        // Focus is on the hero's button: no chrome cell is ringed, so whatever turns bright later is a ring or a name.
+        val atRest = rule.onRoot().captureToImage().asAndroidBitmap()
+        val bright = { p: Int -> listOf(16, 8, 0).all { (p shr it and 0xFF) >= RING_INK } }
+        cells.forEachIndexed { i, cell ->
+            assertEquals("${labels[i]}'s cell width", CloudStreamDimens.IconTargetCell.value, (cell.right - cell.left).value, GEOMETRY_SLACK)
+            if (i > 0) {
+                val gap = (cell.left - cells[i - 1].right).value
+                assertEquals("from ${labels[i - 1]}'s cell to ${labels[i]}'s", HomeScreenTvDefaults.ChromeCellGap.value, gap, GEOMETRY_SLACK)
+            }
+        }
+        labels.forEachIndexed { i, label ->
+            chromeCell(label).performSemanticsAction(SemanticsActions.RequestFocus)
+            awaitFocus(label)
+            rule.waitForIdle()
+            val image = rule.onRoot().captureToImage().asAndroidBitmap()
+            val cell = cells[i]
+            val px = { dp: Float -> (dp * density).toInt() }
+            // Around the cell by its neighbours' widths, but not below it, where the name is drawn: the ring's sides
+            // and top, and a 2dp band under the cell's foot for its bottom.
+            val left = px(cell.left.value - CloudStreamDimens.IconTargetCell.value).coerceAtLeast(0)
+            val right = px(cell.right.value + CloudStreamDimens.IconTargetCell.value).coerceAtMost(image.width - 1)
+            val top = px(cell.top.value - CloudStreamDimens.MinFocusGap.value).coerceAtLeast(0)
+            val bottom = px(cell.bottom.value + 2f).coerceAtMost(image.height - 1)
+            var ringLeft = Int.MAX_VALUE; var ringRight = -1; var ringTop = Int.MAX_VALUE; var ringBottom = -1
+            for (y in top..bottom) for (x in left..right) {
+                if (bright(image.getPixel(x, y)) && !bright(atRest.getPixel(x, y))) {
+                    ringLeft = minOf(ringLeft, x); ringRight = maxOf(ringRight, x)
+                    ringTop = minOf(ringTop, y); ringBottom = maxOf(ringBottom, y)
+                }
+            }
+            assertTrue("no ring drawn around $label", ringRight >= 0)
+            val ring = "$label's ring x $ringLeft..$ringRight y $ringTop..$ringBottom px"
+            val cellPx = "its cell x ${px(cell.left.value)}..${px(cell.right.value)} y ${px(cell.top.value)}..${px(cell.bottom.value)}"
+            assertTrue("$ring passes $cellPx on the left", ringLeft >= px(cell.left.value))
+            assertTrue("$ring passes $cellPx on the right", ringRight < px(cell.right.value))
+            assertTrue("$ring passes $cellPx at the top", ringTop >= px(cell.top.value))
+            assertTrue("$ring passes $cellPx at the foot", ringBottom < px(cell.bottom.value))
+        }
+    }
+
+    /**
+     * The chrome's own cell named [label]: the one in the page's top band and a whole 48dp wide. A name can also be the
+     * nav rail's ("Search"), so a bare lookup by description is not enough.
+     */
+    private fun chromeCell(label: String): androidx.compose.ui.test.SemanticsNodeInteraction {
+        val all = rule.onAllNodesWithContentDescription(label)
+        val nodes = all.fetchSemanticsNodes()
+        val density = InstrumentationRegistry.getInstrumentation().targetContext.resources.displayMetrics.density
+        val index = nodes.indexOfFirst {
+            val b = it.boundsInRoot
+            abs(b.width / density - CloudStreamDimens.IconTargetCell.value) <= GEOMETRY_SLACK &&
+                b.top / density < CloudStreamDimens.ChromeRowBottom.value
+        }
+        assertTrue("no chrome cell named $label among ${nodes.map { it.boundsInRoot }}", index >= 0)
+        return all[index]
+    }
+
+    /** A chrome cell's tile (width, height) and its glyph's ink (width, height) in px, and the glyph's brightest pixel. */
+    private data class ChromeCell(val tile: Pair<Int, Int>, val glyph: Pair<Int, Int>, val glyphColour: Int)
+
+    /**
+     * The tile is everything that differs from the cell's corner, which is the page behind it (hairline or fill); the
+     * glyph is what differs sharply from the tile's own inside, just within its left edge.
+     */
+    private fun measureCell(cell: android.graphics.Bitmap): ChromeCell {
+        val behind = cell.getPixel(0, 0)
+        val tile = bounds(cell) { distance(it, behind) > TILE_EDGE }
+        val inside = cell.getPixel(tile.left + 3, (tile.top + tile.bottom) / 2)
+        val glyph = bounds(cell) { distance(it, inside) > GLYPH_EDGE }
+        var brightest = inside
+        for (y in glyph.top..glyph.bottom) for (x in glyph.left..glyph.right) {
+            val p = cell.getPixel(x, y)
+            if (distance(p, inside) > distance(brightest, inside)) brightest = p
+        }
+        return ChromeCell(tile.width() + 1 to tile.height() + 1, glyph.width() + 1 to glyph.height() + 1, brightest)
+    }
+
+    private fun inkBox(image: android.graphics.Bitmap): Pair<Int, Int> {
+        val behind = image.getPixel(0, 0)
+        val box = bounds(image) { distance(it, behind) > GLYPH_EDGE }
+        return box.width() + 1 to box.height() + 1
+    }
+
+    private fun bounds(image: android.graphics.Bitmap, on: (Int) -> Boolean): android.graphics.Rect {
+        var left = Int.MAX_VALUE; var top = Int.MAX_VALUE; var right = -1; var bottom = -1
+        for (y in 0 until image.height) for (x in 0 until image.width) {
+            if (on(image.getPixel(x, y))) {
+                left = minOf(left, x); top = minOf(top, y); right = maxOf(right, x); bottom = maxOf(bottom, y)
+            }
+        }
+        assertTrue("nothing drawn in a ${image.width}x${image.height} capture", right >= 0)
+        return android.graphics.Rect(left, top, right, bottom)
+    }
+
+    private fun distance(a: Int, b: Int) = listOf(16, 8, 0).sumOf { abs((a shr it and 0xFF) - (b shr it and 0xFF)) }
+
     /** 3h: the panel with None first and focused, the current source marked. */
     @Test
     fun screenshotSourcePanelFocusOnNone() {
@@ -1923,6 +2119,9 @@ class HomeScreenTvDeviceTest {
         val TWO = HomeSourceOption(HomeSourceId("two"), "Source Two")
         val THREE = HomeSourceOption(HomeSourceId("three"), "Source Three", language = "en")
         const val HOME_INDEX = 0
+
+        /** The chrome's four glyphs in its order: Reload, Random, Search, the account. */
+        val ChromeGlyphs = listOf(CloudStreamIcons.Retry, CloudStreamIcons.Random, CloudStreamIcons.Search, CloudStreamIcons.Profile)
         val ShotRail = listOf(
             NavRailItem("Home", CloudStreamIcons.Home),
             NavRailItem("Search", CloudStreamIcons.Search),
@@ -1947,6 +2146,16 @@ class HomeScreenTvDeviceTest {
         const val RELOAD = "Reload Provider"
         const val RANDOM = "Random"
         const val SEARCH = "Search"
+        const val GLYPH_REFERENCE = "glyph-reference-"
+
+        /** A ring is `ink`; every channel at least this. The page here is black and a tile's hairline far darker. */
+        const val RING_INK = 200
+
+        /** Summed channel steps: above the page's gradient across a cell, below a hairline against it. */
+        const val TILE_EDGE = 24
+
+        /** Summed channel steps: a glyph's ink, `ink` or `muted`, against its tile; a hairline is far below it. */
+        const val GLYPH_EDGE = 150
         const val NONE = "None"
         const val NONE_SUBTITLE = "NO RAILS · YOUR ROWS STAY"
         const val SOURCE_NONE = "Source · None"

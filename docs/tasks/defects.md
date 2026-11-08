@@ -2245,3 +2245,61 @@ and saves the token in one call.
 
 **Published API:** `classes-jar.api` +13 / −5. The 5 removed lines are the compiler-generated anonymous timer class
 `SettingsAccount$Companion$showPin$2$1$2`, approved for removal by the owner on 2026-11-07.
+
+## BUG-60 — TV Home's chrome icons: unequal cells, and too far apart · **low, visual** · measured 2026-11-08
+
+**Status:** fixed in pr · raised by the owner from a screenshot of TV Home's top row · `HomeScreenTv.kt`
+
+The owner: *"the spacing is too much between icon button and the icons are not same size like the profile button icon"*.
+
+**Measured** on `Television_720p`, on the committed `home-chrome-focus-random` (1dp ≈ 1.33px):
+
+| | Visible tile | Glyph slot | Glyph drawn | Gap to the next tile |
+|---|---|---|---|---|
+| Reload, Random, Search (`IconOnlyButton`) | 32dp, outlined (45px with the hairline) | 16dp | about 17 × 16px, `ink` | 35px, about 28dp |
+| The account (`IconCell`) | 24dp, filled (32px) | 16dp | about 13 × 12px, `muted` | 41px from Search, about 32dp |
+
+The glyph slots were already equal: `IconCell` puts a 16dp box around the glyph, and `IconOnlyButton` draws it at
+`CloudStreamIconSize.Small`, also 16dp. What made the account look different was its smaller filled tile, its `muted`
+glyph at rest and the person glyph's own art. The 48dp cells sat `MinFocusGap` (12dp) apart, so two 32dp tiles were
+28dp apart.
+
+**The design** (`TV Home` 3c, `TV Home Extras` 3j): `.chrome { gap: 24px }` between 96px cells, which is 48dp cells
+`MinFocusGap` apart, as built, with a 24dp tile (`.ivis` 48px), so a 36dp visible gap. A tighter row is not in the
+design. 3c draws the account as a 32dp avatar.
+
+**Fix:**
+- The account is now an `IconOnlyButton` like the other three: the same 32dp outlined tile, the same 16dp glyph in
+  `ink`, the same ring, and "Switch account" drawn under it on focus, as Random's name is.
+- **The four icon cells touch** (`HomeScreenTvDefaults.ChromeCellGap`, 0dp), so two tiles are 16dp apart. The owner's
+  call on 2026-11-08, an approved exception to `MinFocusGap` for this row only. It is safe: a ring is the 32dp tile plus
+  2dp offset and 2dp stroke on each side, 40dp, inside its 48dp cell with 4dp spare on each side, so two rings never
+  overlap and every cell is still a whole 48dp target. The source control keeps `MinFocusGap` before the first cell.
+  `MinFocusGap` and every other row are unchanged.
+
+The Mac Home toolbar (`HomeScreenDesktop`) has no such mismatch: its only icon buttons are Reload and Random, both
+`DesktopIconButton`, and it has no search or account cell.
+
+### Behaviour changes
+
+| Before | Now |
+|---|---|
+| The account cell a smaller filled tile with a dim glyph | The same tile, glyph and ring as Reload, Random and Search |
+| The account cell's name only read aloud | Also drawn under it on focus, like the other three |
+| 28dp between the buttons' tiles, 32dp before the account | 16dp between all four |
+
+### Tests
+
+All on `Television_720p`, locally (CI is off).
+
+- `HomeScreenTvDeviceTest` (device, 87, all pass, 2026-11-08T05:20:21), four new:
+  - `theFourChromeCellsDrawOneTileAndOneGlyphSize`: in pixels at rest, the four tiles are one size, the glyphs one
+    colour, and each glyph as big as that glyph drawn on its own at `CloudStreamIconSize.Small`. **Fails on master:**
+    "Switch account's tile against Reload Provider's, in px expected:<(45, 45)> but was:<(32, 32)>".
+  - `theChromeCellsTouchAndEachRingStaysInsideItsOwnCell`: the four cells are 48dp and touch, and each focused cell's
+    ring stays inside its own cell on every side. **Fails on master:** "from Reload Provider's cell to Random's
+    expected:<0.0> but was:<12.018799>". **Fails with a 44dp tile** (a deliberate edit to `IconOnlyButtonDefaults`,
+    reverted): "Reload Provider's ring x 985..1052 y 35..103 px passes its cell x 986..1051 y 37..101 on the left".
+  - Screenshots `home-chrome-rest` and `home-chrome-focus-account`, new.
+- 16 recorded screenshots moved, each only in the chrome's band (y 42 to 116 px): the account cell, and the cells and
+  the source control where they now sit. Each was looked at.

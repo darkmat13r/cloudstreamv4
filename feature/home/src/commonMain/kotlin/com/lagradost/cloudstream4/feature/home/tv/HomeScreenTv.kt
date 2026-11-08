@@ -69,7 +69,6 @@ import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
-import com.lagradost.cloudstream4.core.designsystem.target.IconCell
 import com.lagradost.cloudstream4.core.designsystem.target.IconOnlyButton
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
@@ -674,25 +673,27 @@ private fun HomeChromeRow(
         val cell: @Composable (ImageVector, String, String, () -> Unit) -> Unit = { icon, label, name, onClick ->
             HomeChromeCell(icon, label, name, stops, focusTarget, onFocusTaken, onClick)
         }
-        if (hasRows) {
-            cell(CloudStreamIcons.Retry, stringResource(Res.string.reload_provider), RELOAD_CELL) {
-                onAction(HomeAction.ReloadRequested)
+        // `BUG-60`: the icon cells touch (`ChromeCellGap`); the source control keeps `MinFocusGap` before the first.
+        Row(horizontalArrangement = Arrangement.spacedBy(HomeScreenTvDefaults.ChromeCellGap)) {
+            if (hasRows) {
+                cell(CloudStreamIcons.Retry, stringResource(Res.string.reload_provider), RELOAD_CELL) {
+                    onAction(HomeAction.ReloadRequested)
+                }
+                cell(CloudStreamIcons.Random, stringResource(Res.string.home_random), RANDOM_CELL, onRandom)
             }
-            cell(CloudStreamIcons.Random, stringResource(Res.string.home_random), RANDOM_CELL, onRandom)
-        }
-        if (searchable) {
-            cell(CloudStreamIcons.Search, stringResource(Res.string.search), SEARCH_CELL) {
-                onAction(HomeAction.SourceSearchRequested)
+            if (searchable) {
+                cell(CloudStreamIcons.Search, stringResource(Res.string.search), SEARCH_CELL) {
+                    onAction(HomeAction.SourceSearchRequested)
+                }
             }
-        }
-        val accounts = stringResource(Res.string.switch_account)
-        val colors = CloudStreamTheme.colors
-        // 3c's `.gl2` is `muted` at rest; the glyph turns `ink` only when its cell is focused.
-        IconCell(onClick = { onAction(HomeAction.AccountsRequested) }, modifier = Modifier.homeStop(stops)) { focused ->
-            CloudStreamIcon(
-                CloudStreamIcons.Profile,
-                contentDescription = accounts,
-                tint = if (focused) colors.ink else colors.muted,
+            // `BUG-60`: the same cell as the three before it, so the four tiles and glyphs match. It was an `IconCell`, a 24dp
+            // filled tile with a `muted` glyph beside their 32dp outlined ones. 3c draws a 32dp avatar here; there is no
+            // picture to show on Home, so it is the glyph, named under the cell on focus like the others.
+            IconOnlyButton(
+                icon = CloudStreamIcons.Profile,
+                label = stringResource(Res.string.switch_account),
+                onClick = { onAction(HomeAction.AccountsRequested) },
+                modifier = Modifier.homeStop(stops),
             )
         }
     }
@@ -872,6 +873,19 @@ object HomeScreenTvDefaults {
 
     /** Mirrors `FocusBandInset`. */
     val ContentInsetEnd: Dp = CloudStreamDimens.FocusBandInset
+
+    /**
+     * Between two of the chrome's icon cells (Reload, Random, Search, the account): none, so their 48dp cells touch and
+     * the visible gap between two 32dp tiles is 16dp. **An owner-approved exception to `CloudStreamDimens.MinFocusGap`**
+     * (2026-11-08, `BUG-60`: "the spacing is too much between icon button"), for this row only. 3c and 3j draw the cells
+     * `MinFocusGap` apart, which with their 24dp tiles is a 36dp visible gap, wider still.
+     *
+     * Safe because each ring stays inside its own cell: `IconOnlyButton` rings its 32dp tile `FocusRingOffset` (2dp)
+     * clear with a `FocusRingStroke` (2dp) stroke, so the ring is 40dp across in a 48dp cell, 4dp clear of each edge.
+     * Two cells that touch therefore never draw overlapping rings, and every cell is still a whole 48dp focus target.
+     * `HomeScreenTvDeviceTest` measures both; a tile past 40dp would put its ring over the neighbour and fail it.
+     */
+    val ChromeCellGap: Dp = 0.dp
 
     /** 3d's `.row { gap: 24px }`, so nine cards fit where it draws them. Mirrors `MinFocusGap`. */
     val CardGap: Dp = CloudStreamDimens.MinFocusGap
