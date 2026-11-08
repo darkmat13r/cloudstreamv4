@@ -2517,3 +2517,36 @@ Also from #227's review: `restoreAfterPins` says why no context is still fail-sa
   wrong PINs, keep the right PIN out during it, store the count with no PIN, keep the wait after a restart, and take
   the right PIN once the wait is over.
 - `CredentialStoreBackupTest`: the backup rules exclude `cs_pin_attempts.xml` in all three places.
+
+## BUG-59 — A device test that taps left the whole device in touch mode, and the next test failed · **low, tests only** · measured 2026-11-08
+
+**Status:** fixed in pr · `core/devicetest/.../TouchModeReset.kt`, `SearchScreenTvDeviceTest.kt`
+
+A tap (`UiDevice.click`, `UiObject2.click`) puts the **whole device** in touch mode, not only the test's window. It
+stays on across tests, test classes and test APKs until a navigation key ends it. Back does not end it, so a test that
+closes the keyboard with Back leaves it on. A later test that reads the first focus before it presses a key then
+finds the wrong thing focused, for a reason that is not its own.
+
+**Measured** on `Television_720p` (API 36), one emulator boot, each step a separate Gradle run:
+- `dumpsys window` reads `mInTouchMode=false` at boot, `true` after
+  `SearchScreenTvDeviceTest.aTapOpensTheKeyboard` (`:feature:search`), and `false` again after one D-pad key.
+- **The failing pair.** That tap test, then `TvDetailNavigationTest` (`:app`), five times in a row on master:
+  **5 of 5 failed**, each on `withNoProviderThePageFailsAndItsRetryIsReachableAndBackLeaves` ("the failure rests focus
+  on its action expected:<[Try again]> but was:<[Go Back]>"). Run alone on the same boot, the class passes 3/3.
+- **With the fix**, the same five pairs: touch mode `false` after every tap test, **5 of 5 passed** (3/3 each).
+- Not affected after the tap: `TvHomeNavigationTest` 18/18 and `:core:designsystem`'s device tests 28/28. They press a
+  key before they read focus.
+
+**Fix, tests only:** `TouchModeReset`, a JUnit rule in `:core:devicetest`, calls
+`Instrumentation.setInTouchMode(false)` after each test. Every device test that taps uses it:
+
+| Test | Taps | Before |
+|---|---|---|
+| `SearchScreenTvDeviceTest.aTapOpensTheKeyboard` | `device.click` | No reset; now uses the rule |
+| `AccountSelectTvNavigationTest` (`KMP-73`) | `apply.click()` | Resets in its own `@After`; left as is |
+| `StateActionDeviceTest` | — | Calls `setInTouchMode(false)` itself; left as is |
+
+Every other device test on master drives the screen with keys or semantics actions, which do not enter touch mode.
+
+**Open PRs:** `RestorePinGateTest` (#227, and #230 which carries it) taps `cancelButton().click()` and does not reset.
+It needs the rule.

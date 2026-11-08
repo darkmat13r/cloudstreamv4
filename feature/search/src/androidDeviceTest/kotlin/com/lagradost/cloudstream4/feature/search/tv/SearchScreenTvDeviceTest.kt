@@ -37,6 +37,7 @@ import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
+import com.lagradost.cloudstream4.core.devicetest.TouchModeReset
 import com.lagradost.cloudstream4.core.devicetest.assertScreenshot
 import com.lagradost.cloudstream4.core.devicetest.captureScreenshot
 import com.lagradost.cloudstream4.core.devicetest.focusedLabel
@@ -74,6 +75,10 @@ class SearchScreenTvDeviceTest {
 
     @get:Rule
     val rule = createComposeRule()
+
+    /** [aTapOpensTheKeyboard] taps, and the next test anywhere on the device would start in touch mode (`BUG-59`). */
+    @get:Rule
+    val touchMode = TouchModeReset()
 
     private val dpad = DpadDriver(readFocus = { rule.focusedLabel() })
     private val source = FakeSource()
