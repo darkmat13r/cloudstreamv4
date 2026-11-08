@@ -1005,3 +1005,107 @@ the app's own providers.
 - Up next's "Next episode in %d s" and "Play now". Cancel is the existing `cancel`.
 
 **Not drawn:** casting, picture in picture, and the subtitle style settings.
+
+## DS-25 — Boards: account and profiles on the Mac, the phone and the tablet
+
+**Status:** drawn, PR open · boards only, no Kotlin · `DEC-19` · the PM's task, 2026-11-08
+
+Drawn from TV board 8d (`KMP-73`'s `AccountSelectScreenTv` and `PairingPanelTv`), the old account code
+(`AccountSelectActivity`, `AccountHelper`, `AccountViewModel`, `ProfileSignIns`) and `BUG-55`'s `PinAttempts`.
+The board files were not on the drawing Mac, so every number comes from the code instead:
+- `CloudStreamColors`, `CloudStreamTypography`, `CloudStreamShapes` and `DesktopDimens`;
+- the sidebar from `DesktopShellDefaults`.
+
+- `Desktop Account.dc.html` (a board file in the owner's Claude Design project), A1 to A16b, at 1280×800 unless said:
+  - Choosing a profile:
+    - A1, the launch picker: 8d's cards at a pointer's size. It shows from two profiles, the default counted (`KMP-73`).
+    - A2, a profile button at the foot of the sidebar (`KMP-77`, #247), opening a popover: the profiles, "Manage
+      profiles", "Sync services".
+    - A5, Manage mode.
+    - A15, the 800×520 minimum.
+  - The PIN:
+    - A3, a sheet with four masked cells; the fourth digit submits.
+    - A3b, a wrong PIN, with no count of tries left.
+    - A4, `BUG-55`'s wait ("Too many wrong PINs. Try again in 00:30"), with the cells off.
+    - A4b, the wait at its one-hour cap.
+  - Profiles:
+    - A6, the editor: picture, name, the PIN row, and Delete apart at the lead.
+    - A6b, adding a profile.
+    - A6c, the first profile, whose PIN row says it can't be locked. Android hides the toggle; the board keeps the row
+      because the first profile is the way back in when a PIN is forgotten.
+    - A6d, a locked profile.
+    - A7 to A7c, setting, confirming and changing a PIN. The current PIN comes first, under the same limit.
+    - A8, deleting a profile. Cancel is the primary (`DEC-19`), and the words say its sign-ins leave the Mac with it.
+  - Sync services, for the current profile only:
+    - A9, "Sync for <profile>": Connected or Not connected, read by presence. Never an account name or an id.
+    - A10, AniList and MyAnimeList through the browser, with no password field.
+    - A11, Simkl with a code and a QR. A11b, the code expired.
+    - A12, cancelled: nothing is shown as an error, and focus returns to the row.
+    - A13, failed. A13b, offline.
+    - A14, removing a sign-in from this device. Cancel is the primary.
+  - Subtitle services: A16, the OpenSubtitles and SubDL sign-in. A16b, its failure.
+- `Phone Account.dc.html` (a board file in the owner's Claude Design project), at 412×916:
+  - PA1, the picker, two cards a row.
+  - PA2, the PIN in a bottom sheet over the number keyboard. PA3, the wait.
+  - PA4, the editor, full screen.
+  - PA5, sync services.
+  - PA6, MyAnimeList through a Custom Tab.
+  - PA7, Simkl through the browser.
+  - TA1, the tablet picker at 1280×800. The tablet's other flows are the phone's sheets at 600 wide.
+
+**Rulings applied** (the owner, through the PM, 2026-11-08):
+- **The Mac signs in through the browser, and the app never sees a password.** Tokens are stored as Android's are:
+  never backed up, never logged. This replaces `desktop-design.md`'s "no service sign-in on desktop".
+- **Simkl pairs with a code on the Mac (A11).** The person approves it in any browser, and it needs no redirect.
+- **Cancel ends the wait at once (A12).** No poll keeps running, and a redirect that arrives late is ignored. `BUG-49`
+  is the precedent.
+- **Kitsu is not on the Mac.** It signs in only with an email and password, so it is shown nowhere, not even as a
+  disabled row. The phone keeps Android's four services (PA5), because the ruling is the Mac's.
+- **OpenSubtitles and SubDL are the one exception (A16).** They may sign in with an email and password inside the Mac
+  app, these two only:
+  - the password is masked, with Show;
+  - it is never prefilled;
+  - nothing is logged;
+  - it is kept with the sign-ins, out of every backup.
+- **Touch ID is not drawn here.** The PIN is the only unlock. `DS-24`'s Settings pane draws a Touch ID toggle as a
+  proposal for the owner.
+- **`DS-24` hands off to these boards.** Settings lists the services and profiles; its Sign in, Edit and Add
+  profile open A10, A11, A16, A6 and A6b. Edit on a locked profile goes through A3 first. The sheets are 440 wide,
+  under the window's title bar.
+
+**Before the build** (the boards do not wait on these):
+- **A10 needs the Mac to receive the redirect.** AniList's and MyAnimeList's sign-ins return to
+  `cloudstreamapp://anilistlogin` and `cloudstreamapp://mallogin` (`AccountManager.APP_STRING`). Nothing in
+  `:desktopApp` handles a URL scheme today; both are absent:
+  - the scheme in the Mac app bundle;
+  - an open-URI handler.
+- **The Mac has no profiles, PINs or sign-ins yet.** `PinAttempts` is Android code (uptime from `SystemClock`, a
+  preferences file). The Mac needs the same rule over its own clock and store.
+
+**Security.**
+- No board draws a token, a PIN, an account name or an id.
+- PIN cells show dots, never digits.
+- The Simkl code is the fixture `FAKE00` and the QR a checkerboard, as `KMP-73`'s screenshots have them.
+- A16 is the only password field.
+- All names are made up.
+
+**Measured** in headless Chrome with `getBoundingClientRect`, on every artboard:
+- 34 boards and 1,313 boxes: 0 off the 4 dp step, 0 overflowing text.
+- 0 elements escaping a sheet or popover. That check was added after it caught A11's footer running out of its sheet.
+- Exempt: macOS's own title bar, the drawn pointer, content centred inside a control, and text-sized widths, as
+  `dimension-scale.md` allows.
+- Hairlines are drawn, not laid out: the first pass had 25 boxes off the step because 1 px borders took room.
+- All 12 Tabler 1.119.0 glyph URLs answer 200, checked with curl.
+
+Renders: in the shared local review folder (not published).
+
+**Decisions taken here** (reported to the PM):
+- **Nothing sits raised on raised.** On a raised sheet or popover, an avatar or a secondary button steps up to `line`.
+- **The Mac's picker has no sync list.** 8d puts one under the cards. On the Mac it moves to "Sync services…" (A9) and
+  to Settings, so the launch screen is only about who is watching.
+- **One meaning, one key, on every platform** (the PM, for `DS-24` and `DS-25` together):
+  - "Remove from this device" and "Connected · signed in on this device" are `I18N-16`'s existing keys on the Mac too;
+  - no button string ends in an ellipsis ("Sign in", "Set PIN", "Manage profiles"), so the Mac reuses the keys TV and
+    Android have.
+
+**Strings:** `I18N-21`.
