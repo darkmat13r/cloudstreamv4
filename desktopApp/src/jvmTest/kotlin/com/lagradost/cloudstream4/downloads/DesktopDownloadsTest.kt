@@ -509,10 +509,15 @@ class DesktopDownloadsTest {
         assertEquals(DownloadFailure.ServerRefused(404), failed.failure)
         assertTrue(asked.isEmpty(), "the enqueued link was used first")
 
+        // BUG-67: on a fast machine the retried body finished inside one throttled snapshot, so no snapshot showed
+        // Running with bytes and the wait timed out. The server now holds the retried body after its first chunk until
+        // the pause has landed, so a snapshot with bytes done must appear.
+        val held = server.holdAfterFirstChunk("retry.bin")
         host.retry(DownloadEpisodeId(9))
         host.awaitEpisode(900, 9) { it.state == DownloadEpisodeState.Running && it.bytesDone > 0L }
         host.pause(DownloadEpisodeId(9))
         host.awaitEpisode(900, 9) { it.state == DownloadEpisodeState.Paused }
+        held.complete(Unit)
         host.resume(DownloadEpisodeId(9))
         host.awaitDone(900, 9)
         assertEquals(listOf(sourceOf(9)), asked, "asked once, by the retry; the resume reused the link in memory")
