@@ -29828,6 +29828,11 @@ public final class com/lagradost/cloudstream3/ui/result/LinkProgress : java/lang
 	public fun toString ()Ljava/lang/String;
 }
 
+public final class com/lagradost/cloudstream3/ui/result/OpeningSeasonKt : java/lang/Object {
+	public static final fun openingIndexer (Ljava/util/Collection;Ljava/util/Collection;Ljava/lang/Integer;Lcom/lagradost/cloudstream3/DubStatus;)Lcom/lagradost/cloudstream3/ui/result/ResultViewModel2$EpisodeIndexer;
+	public static final fun startSeason (Ljava/util/Collection;)I
+}
+
 public final class com/lagradost/cloudstream3/ui/result/ResultData : java/lang/Object {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/String;Ljava/util/List;Ljava/util/List;Lcom/lagradost/cloudstream3/utils/UiText;ZLjava/lang/String;Ljava/lang/String;Ljava/util/Map;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Lcom/lagradost/cloudstream3/utils/UiText;Ljava/util/Map;)V
