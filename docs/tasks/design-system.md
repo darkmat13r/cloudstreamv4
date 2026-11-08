@@ -969,11 +969,15 @@ Renders: in the shared local review folder (not published).
 - **Full screen is F**, as built, in the Playback menu. macOS's own ⌃⌘F can be added beside it.
 - **The phone player is drawn sideways only.** Portrait play is a separate question for the owner.
 
+**Made-up names only.** The title is "Quiet Harbor" and the sources are "Source One" to "Source Four", so the
+build's tests, screenshots and previews copy names that belong to no real title or site. The subtitle services named are
+the app's own providers.
+
 **Strings each board needs.** Most exist (`video_source`, `player_subtitles_settings`, `audio_tracks`,
 `player_fit_*`, `loading`, `player_hud_buffering`, `source_error`, `pick_source`, `player_source_*`,
 `player_load_subtitles*`, `subtitle_offset_title`, `no_subtitles`, `player_hud_offline_copy`, `player_hud_up_next`,
 `next_episode`, `skip_type_format` with `skip_type_intro`, `pause`, `resume`, `seek_*_10_seconds`, `player_mute`,
-`player_*_fullscreen`, `go_back`). New, for an `I18N` task before the build:
+`player_*_fullscreen`, `go_back`). New, as `I18N-19`, which the build waits for:
 - the Playback menu's title, and Volume up and Volume down (M14);
 - M11's line that every source failed;
 - the Source panel's count line, and each panel's second lines (decoded size, the kept position, stereo);
