@@ -6806,18 +6806,27 @@ On TV the chip follows on its own through `shownSeasonIndex`, and so does the ma
 opens on the season of the episode `primaryData` names when there is no resume (`DetailScreenDesktop`'s `TitlePage`),
 so its list and its Play agree. Continue Watching's fallback on the Mac, `PlayRequested(resume.episodeData ?:
 primaryData)` in `Main.kt`, follows too.
-- **Not the phone yet.** The phone and emulator layouts still open the legacy `ResultFragment`, whose
-  `ResultViewModel2` picks its own season and episode and never reads `primaryData`. The legacy page is
-  unchanged here.
+- **The phone** never reads `primaryData`; its follow-up is below.
 
-**Follow-up, its own small PR after this one** (the PM, 2026-11-08: the owner's ruling covers the phone too):
-the legacy phone page applies the same S1E1 rule, reusing `firstEpisodeToPlay()`, until the Compose phone page
-replaces it. It comes with a jvm test. Two things to settle in that PR:
-- `firstEpisodeToPlay()` is `internal` to `:feature:detail` and takes `DetailEpisode`, so `:app` needs it public
-  or a mapping from `ResultEpisode`. Either way, the rule must stay in one place.
-- `ResultViewModel2` also remembers the last season viewed, so the rule applies only with no resume and no
-  remembered season.
-  Measure what it does today before changing it.
+**The phone follow-up** (the PM, 2026-11-08: the owner's ruling covers the phone too). The phone and emulator
+layouts open the legacy `ResultFragment`, over `ResultViewModel2`. Measured before changing it:
+- **An unstarted series has no Play there.** The primary button is posted only for a film. A series shows Resume only
+  once something was watched (`getLastWatched`), and that resume is untouched. The rule can only decide which season
+  the page opens on.
+- **The page opened on the season nearest the remembered one, else nearest 1.** The remembered season is saved the
+  first time the page shows, so a remembered season always wins and stays. With none, it aimed for 1. That already
+  gave Season 1 when a show has one. **With no Season 1**, Specials (0) and Season 2 tie on distance, and
+  `minByOrNull` takes the first the provider listed. So a show whose specials come first opened on the specials, and
+  remembered them. This page also files episodes with no season under 0.
+- **The fix.** With no remembered season, the page aims for the season of `firstEpisodeToPlay()`. That function is now
+  public, so the phone and the Compose pages share one rule. The choice is moved verbatim into `openingIndexer`
+  (`OpeningSeason.kt`) so it can be tested. A remembered season and the dub preference work as before.
+- **Tests,** `OpeningSeasonTest`, 5 cases:
+  - no Season 1 with specials first opens Season 2; on the old target this fails, `expected:<2> but was:<0>`;
+  - with Season 1, it still opens Season 1;
+  - a remembered season wins, Specials included;
+  - only specials, or no seasons, opens the one group there is;
+  - `startSeason` agrees with `firstEpisodeToPlay`.
 
 **Tests.**
 - jvm (`DetailSeasonGroupsTest`):
