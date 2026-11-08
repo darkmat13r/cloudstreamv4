@@ -1071,9 +1071,9 @@ The board files were not on the drawing Mac, so every number comes from the code
   - nothing is logged;
   - it is kept with the sign-ins, out of every backup.
 - **Touch ID first, the PIN as the fallback** (the owner, 2026-11-08; A3t). `BUG-55`'s wait still applies to the PIN.
-  `DS-24`'s Settings pane holds the switch. Touch ID proves who is signed in to the Mac, not who owns the profile:
-  anyone whose finger is enrolled in that macOS account opens every locked profile. The owner should know that before
-  the build.
+  `DS-24`'s Settings pane holds the switch. **An accepted trade-off** (the owner, 2026-11-08): Touch ID proves who is
+  signed in to the Mac, not who owns the profile, so anyone whose finger is enrolled in that macOS account opens every
+  locked profile.
 - **`DS-24` hands off to these boards.** Settings lists the services and profiles; its Sign in, Edit and Add
   profile open A10, A11, A16, A6 and A6b. Edit on a locked profile goes through A3t (or A3) first. The sheets are 440 wide,
   under the window's title bar.
@@ -1087,8 +1087,8 @@ The board files were not on the drawing Mac, so every number comes from the code
 - **The redirect handler accepts only what this window asked for** (the reviewer and the owner). The build PR shows
   each of these with a test:
   - it acts only while a sign-in from this window is pending, and ignores any unsolicited `cloudstreamapp://` URL;
-  - it checks an OAuth `state` it generated. Android's MAL request sends `state=RequestID<n>`, a counter, so the Mac
-    needs a random one;
+  - it checks an OAuth `state` it generated, and the `state` is random. Android's MAL request sends `state=RequestID<n>`,
+    a counter, which the owner ruled not acceptable for the Mac (2026-11-08);
   - it uses PKCE where the provider supports it (MyAnimeList; Android sends the verifier as the challenge, the `plain`
     method);
   - it never logs or stores the incoming URL. Only the token taken from it reaches storage.
@@ -1101,11 +1101,12 @@ The board files were not on the drawing Mac, so every number comes from the code
     password.
   - **OpenSubtitles:** its token is a JWT that a code comment says lasts 24 hours (not measured), with no refresh token.
     Android re-logs in from the stored form, password included (`refreshToken` parses `token.payload`, which is
-    `form.toJson()`). Re-login truly needs the password, so the Mac keeps it in the Keychain beside the token. The other
-    choice is to ask for it again once a day.
+    `form.toJson()`). Re-login truly needs the password. **The owner's ruling (2026-11-08):** the Mac keeps it in the
+    Keychain beside the token and renews the token automatically.
 - **Touch ID needs a native bridge** (LocalAuthentication), under the same dependency rule as the Keychain.
 - **Touch ID's glyph is not in `ui-components.md`'s table yet.** A3t draws Tabler's `Fingerprint`. A new meaning is
-  added to the table before it gets a glyph, so the table needs that row before the build.
+  added to the table before it gets a glyph, so a Touch ID row (`Fingerprint`) goes into `ui-components.md` before the
+  build (the PM, 2026-11-08).
 - **The Mac has no profiles, PINs or sign-ins yet.** `PinAttempts` is Android code (uptime from `SystemClock`, a
   preferences file). The Mac needs the same rule over its own clock and store.
 
