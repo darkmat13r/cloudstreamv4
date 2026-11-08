@@ -100,6 +100,12 @@ class EngineTestServer(val source: SeededSource, private val etag: String = "\"v
     /** Body bytes per second per connection; 0 is unthrottled. */
     @Volatile var bytesPerSecond: Long = 0L
 
+    /** When set, every request is answered with this status and no body, the way an expired link is. */
+    @Volatile var refuseWith: Int? = null
+
+    /** Runs on the server's thread before each request is answered, so a test can hold the answer back. */
+    @Volatile var beforeAnswer: () -> Unit = {}
+
     init {
         Thread({
             while (!socket.isClosed) {
@@ -116,6 +122,11 @@ class EngineTestServer(val source: SeededSource, private val etag: String = "\"v
 
     /** Requests that carried a body range, not the probe. */
     fun bodyRequests(): List<Served> = log.filter { !it.isProbe && it.method == "GET" }
+
+    /** Closes every connection in flight; the server keeps accepting new ones. */
+    fun cutOpenConnections() {
+        open.forEach { runCatching { it.close() } }
+    }
 
     override fun close() {
         runCatching { socket.close() }
@@ -152,11 +163,18 @@ class EngineTestServer(val source: SeededSource, private val etag: String = "\"v
         val rangeHeader = headers["range"]?.takeIf { it.startsWith("bytes=") }?.removePrefix("bytes=")
         val requestedStart = rangeHeader?.substringBefore('-')?.trim()?.toLongOrNull()
         val requestedEnd = rangeHeader?.substringAfter('-')?.trim()?.toLongOrNull()
+        beforeAnswer()
         val served = Served(counter.incrementAndGet(), method, requestedStart, requestedEnd)
         log += served
+        val out = client.getOutputStream()
+        refuseWith?.let { status ->
+            served.status = status
+            out.write("HTTP/1.1 $status Refused\r\nContent-Length: 0\r\nConnection: close\r\n\r\n".toByteArray(Charsets.ISO_8859_1))
+            out.flush()
+            return
+        }
         val ifRange = headers["if-range"]
         val ranged = requestedStart != null && (ifRange == null || ifRange == etag)
-        val out = client.getOutputStream()
 
         val start = if (ranged) requestedStart!! else 0L
         val end = if (ranged) minOf(requestedEnd ?: (total - 1), total - 1) else total - 1
