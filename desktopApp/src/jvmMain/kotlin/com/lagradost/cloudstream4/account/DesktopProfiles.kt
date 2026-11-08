@@ -121,9 +121,11 @@ internal class DesktopProfileFile(
 }
 
 /**
- * The profiles while the window is open (`KMP-95a`): who is watching, and the library each one reads.
+ * The profiles while the window is open (`KMP-95a`, `95b`): who is watching, the library each one reads, and adding,
+ * renaming and deleting them.
  *
- * @param onSaveFailed told when a choice could not be written; the choice still holds until the app quits.
+ * @param onSaveFailed told when a change could not be written, or a deleted profile's library file could not be removed.
+ *   The change still holds until the app quits.
  */
 internal class DesktopProfiles(
     private val file: DesktopProfileFile = DesktopProfileFile(),
@@ -139,8 +141,76 @@ internal class DesktopProfiles(
     /** Makes [id] the profile watching, and remembers it for the next launch. An id that is not a profile is ignored. */
     fun choose(id: Int) {
         if (stored.profiles.none { it.id == id } || stored.current == id) return
-        stored = stored.copy(current = id)
-        runCatching { file.save(stored) }.onFailure(onSaveFailed)
+        update(stored.copy(current = id))
+    }
+
+    /** Whether another profile fits under [DesktopProfileFile.MAX_PROFILES]; Add is offered only while it does. */
+    val canAdd: Boolean get() = stored.profiles.size < DesktopProfileFile.MAX_PROFILES
+
+    /**
+     * Adds a profile named [name] and returns its id, or null when there is no room (`KMP-95b`, A6b). It does not
+     * become the one watching. A blank name becomes [fallback], so a profile always has words on its card.
+     *
+     * Its id is one above the highest there is. Any library files already under that id are deleted first, so a new
+     * profile never starts with what a deleted one left behind (a delete whose file removal failed).
+     */
+    fun add(name: String, fallback: String): Int? {
+        if (!canAdd) return null
+        val id = stored.profiles.maxOf { it.id } + 1
+        clearLibrary(id)
+        val cleaned = DesktopProfileFile.cleanName(name).ifEmpty { DesktopProfileFile.cleanName(fallback) }
+        update(stored.copy(profiles = stored.profiles + StoredProfile(id, cleaned.ifEmpty { null })))
+        return id
+    }
+
+    /**
+     * Renames [id] (A6). A blank name keeps the one it had, except on the first profile, where it goes back to the
+     * default name in the current language. An id that is not a profile is ignored.
+     */
+    fun rename(id: Int, name: String) {
+        if (stored.profiles.none { it.id == id }) return
+        val cleaned = DesktopProfileFile.cleanName(name)
+        val profiles = stored.profiles.map { profile ->
+            when {
+                profile.id != id -> profile
+                cleaned.isNotEmpty() -> profile.copy(name = cleaned)
+                id == StoredProfiles.FIRST -> profile.copy(name = null)
+                else -> profile
+            }
+        }
+        if (profiles != stored.profiles) update(stored.copy(profiles = profiles))
+    }
+
+    /**
+     * Deletes [id] and its library from this Mac (A8). The first profile is never deleted: it is the way back in. If
+     * [id] was watching, the first profile is. The profile leaves the file before its library files go, so a crash
+     * between the two leaves files that no profile reads, which the next [add] under that id clears.
+     *
+     * @return false when nothing was deleted: the first profile, or an id that is not a profile.
+     */
+    fun delete(id: Int): Boolean {
+        if (!canDelete(id)) return false
+        update(
+            stored.copy(
+                current = if (stored.current == id) StoredProfiles.FIRST else stored.current,
+                profiles = stored.profiles.filterNot { it.id == id },
+            ),
+        )
+        clearLibrary(id)
+        return true
+    }
+
+    /** Whether [delete] would delete [id]: every profile but the first. */
+    fun canDelete(id: Int): Boolean = id != StoredProfiles.FIRST && stored.profiles.any { it.id == id }
+
+    private fun clearLibrary(id: Int) {
+        if (id == StoredProfiles.FIRST) return
+        listOf(titlesFile(id), positionsFile(id)).forEach { runCatching { Files.deleteIfExists(it.toPath()) }.onFailure(onSaveFailed) }
+    }
+
+    private fun update(next: StoredProfiles) {
+        stored = next
+        runCatching { file.save(next) }.onFailure(onSaveFailed)
     }
 
     /** The cards the picker and the sidebar's list draw. Nothing is locked and nothing syncs until `KMP-95c` and `95d`. */

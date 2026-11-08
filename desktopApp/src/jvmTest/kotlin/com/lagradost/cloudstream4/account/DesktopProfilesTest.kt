@@ -131,6 +131,65 @@ class DesktopProfilesTest {
     }
 
     @Test
+    fun `Add takes the next id, keeps the name it was given, and a blank one becomes the fallback`() {
+        val profiles = profiles()
+        assertEquals(1, profiles.add("  Sam\u0007 ", fallback = "Profile 2"))
+        assertEquals(2, profiles.add("   ", fallback = "Profile 3"))
+        assertEquals(listOf(null, "Sam", "Profile 3"), profiles.stored.profiles.map { it.name })
+        assertEquals(0, profiles.stored.current, "adding does not switch")
+        assertEquals(listOf(null, "Sam", "Profile 3"), profiles().stored.profiles.map { it.name }, "written")
+    }
+
+    @Test
+    fun `Add stops at the cap`() {
+        DesktopProfileFile(file).save(StoredProfiles(profiles = (0 until DesktopProfileFile.MAX_PROFILES).map { StoredProfile(it, "P$it") }))
+        val profiles = profiles()
+        assertFalse(profiles.canAdd)
+        assertEquals(null, profiles.add("One more", fallback = "x"))
+        assertEquals(DesktopProfileFile.MAX_PROFILES, profiles.stored.profiles.size)
+    }
+
+    @Test
+    fun `a rename keeps the old name when blank, and the first profile's goes back to the default`() {
+        val profiles = profiles()
+        profiles.add("Sam", fallback = "x")
+        profiles.rename(1, "Samira")
+        profiles.rename(1, "  ")
+        profiles.rename(0, "Alex")
+        assertEquals(listOf("Alex", "Samira"), profiles.stored.profiles.map { it.name })
+        profiles.rename(0, "")
+        assertEquals(null, profiles.stored.profiles.first().name, "the first profile is the default name again")
+        profiles.rename(9, "Nobody")
+        assertEquals(2, profiles.stored.profiles.size)
+    }
+
+    @Test
+    fun `a delete takes the profile and its library, never the first, and the first watches if it was watching`() = runBlocking {
+        val profiles = profiles()
+        profiles.add("Sam", fallback = "x")
+        profiles.libraryFor(1).remember(LibraryTitle(LibraryTitleId("harbor"), "Harbor Lights", bucket = null, keptAt = 0L))
+        assertTrue(profiles.titlesFile(1).exists())
+        profiles.choose(1)
+        assertFalse(profiles.canDelete(0))
+        assertFalse(profiles.delete(0), "the first profile is the way back in")
+        assertTrue(profiles.delete(1))
+        assertEquals(listOf(0), profiles.stored.profiles.map { it.id })
+        assertEquals(0, profiles.stored.current)
+        assertFalse(profiles.titlesFile(1).exists(), "its library left with it")
+        assertEquals(listOf(0), profiles().stored.profiles.map { it.id }, "written")
+    }
+
+    @Test
+    fun `a new profile never starts with what a deleted one left behind`() = runBlocking {
+        val profiles = profiles()
+        // As if a delete's file removal had failed: a library under the id the next profile will take.
+        profiles.libraryFor(1).remember(LibraryTitle(LibraryTitleId("harbor"), "Harbor Lights", bucket = null, keptAt = 0L))
+        val id = profiles.add("Robin", fallback = "x")
+        assertEquals(1, id)
+        assertEquals(emptyList(), profiles.libraryFor(1).titles())
+    }
+
+    @Test
     fun `a title kept by one profile is not in another's library`() = runBlocking {
         val profiles = profiles()
         val title = LibraryTitle(LibraryTitleId("harbor"), "Harbor Lights", bucket = null, keptAt = 0L)

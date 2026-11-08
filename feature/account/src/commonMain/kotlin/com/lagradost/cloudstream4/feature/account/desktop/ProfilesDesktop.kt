@@ -34,7 +34,10 @@ import androidx.compose.ui.focus.focusProperties
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.PathEffect
+import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.key.key
@@ -57,6 +60,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Popup
 import androidx.compose.ui.window.PopupPositionProvider
 import androidx.compose.ui.window.PopupProperties
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
@@ -64,8 +68,13 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_add_profile
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_manage_note
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_manage_profiles
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_select_note
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_select_title
+import com.lagradost.cloudstream4.core.strings.generated.resources.edit
+import com.lagradost.cloudstream4.core.strings.generated.resources.setup_done
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.account.ProfileCard
@@ -74,15 +83,22 @@ import com.lagradost.cloudstream4.feature.account.profileLineText
 import org.jetbrains.compose.resources.stringResource
 
 /**
- * `DS-25` A1 and A15: "Who's watching?" at launch, 8d's card row at a pointer's size (`KMP-95`). The host shows it
- * only with two profiles or more, the default counted.
+ * `DS-25` A1, A5 and A15: "Who's watching?" at launch, 8d's card row at a pointer's size (`KMP-95`). The host shows
+ * it at launch only with two profiles or more, the default counted.
  *
  * The current profile's card is filled `raised` and ringed when the picker opens, so Return opens it; the arrow keys
  * move the ring, and a click opens the card under the pointer. The row is the one focus stop and draws the ring itself,
  * so the picker answers the keyboard from the first frame. Below [ProfilesDesktopDefaults.CompactBelow] the
  * heading moves up (A15), so four cards still fit in one row at the 800×520 minimum; a fifth wraps.
  *
- * Manage profiles and Add profile come with editing (`KMP-95b`); a locked profile's PIN with `KMP-95c`.
+ * **Manage mode** (A5, `KMP-95b`): the heading says Manage profiles, each card carries an Edit chip and opens its
+ * editor through [onChoose], and the button at the top right is Done. Without it that button is Manage profiles.
+ * [onAdd] adds the Add profile card after the others, which the ring reaches too.
+ *
+ * A locked profile's PIN comes with `KMP-95c`.
+ *
+ * @param onManage Manage profiles, or Done while [managing]; null draws no button.
+ * @param onAdd the Add profile card; null draws none, as when there is no room for another profile.
  */
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
@@ -90,6 +106,9 @@ fun ProfilePickerDesktop(
     profiles: List<ProfileCard>,
     onChoose: (id: Int) -> Unit,
     modifier: Modifier = Modifier,
+    managing: Boolean = false,
+    onManage: (() -> Unit)? = null,
+    onAdd: (() -> Unit)? = null,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -97,6 +116,8 @@ fun ProfilePickerDesktop(
     var rowFocused by remember { mutableStateOf(false) }
     // The card the ring is on. The row holds focus and moves the ring, so focus never depends on a card taking it.
     var ringed by remember(profiles.map { it.id }) { mutableIntStateOf(profiles.indexOfFirst { it.current }.coerceAtLeast(0)) }
+    // The ring's stops: every card, then Add when there is one.
+    val stops = profiles.size + if (onAdd != null) 1 else 0
     BoxWithConstraints(modifier.fillMaxSize()) {
         val top = if (maxHeight < ProfilesDesktopDefaults.CompactBelow) ProfilesDesktopDefaults.CompactTop
         else ProfilesDesktopDefaults.PickerTop
@@ -109,8 +130,10 @@ fun ProfilePickerDesktop(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
             ) {
-                BasicText(stringResource(Res.string.account_select_title), style = typography.h1.copy(color = colors.ink))
-                BasicText(stringResource(Res.string.account_select_note), style = typography.body.copy(color = colors.muted))
+                val title = if (managing) Res.string.account_manage_profiles else Res.string.account_select_title
+                val note = if (managing) Res.string.account_manage_note else Res.string.account_select_note
+                BasicText(stringResource(title), style = typography.h1.copy(color = colors.ink))
+                BasicText(stringResource(note), style = typography.body.copy(color = colors.muted))
             }
             FlowRow(
                 horizontalArrangement = Arrangement.spacedBy(ProfilesDesktopDefaults.CardGap, Alignment.CenterHorizontally),
@@ -119,11 +142,11 @@ fun ProfilePickerDesktop(
                     .focusRequester(rowFocus)
                     .onFocusChanged { rowFocused = it.hasFocus }
                     .onPreviewKeyEvent { event ->
-                        if (event.type != KeyEventType.KeyDown || profiles.isEmpty()) return@onPreviewKeyEvent false
+                        if (event.type != KeyEventType.KeyDown || stops == 0) return@onPreviewKeyEvent false
                         when (event.key) {
                             Key.DirectionLeft, Key.DirectionUp -> ringed = (ringed - 1).coerceAtLeast(0)
-                            Key.DirectionRight, Key.DirectionDown -> ringed = (ringed + 1).coerceAtMost(profiles.lastIndex)
-                            Key.Enter, Key.NumPadEnter -> profiles.getOrNull(ringed)?.let { onChoose(it.id) }
+                            Key.DirectionRight, Key.DirectionDown -> ringed = (ringed + 1).coerceAtMost(stops - 1)
+                            Key.Enter, Key.NumPadEnter -> profiles.getOrNull(ringed)?.let { onChoose(it.id) } ?: onAdd?.invoke()
                             else -> return@onPreviewKeyEvent false
                         }
                         true
@@ -131,18 +154,28 @@ fun ProfilePickerDesktop(
                     .focusable(),
             ) {
                 profiles.forEachIndexed { index, card ->
-                    PickerCard(card = card, ringed = rowFocused && index == ringed, onClick = { onChoose(card.id) })
+                    PickerCard(card = card, ringed = rowFocused && index == ringed, editing = managing, onClick = { onChoose(card.id) })
                 }
+                if (onAdd != null) AddCard(ringed = rowFocused && ringed == profiles.size, onClick = onAdd)
             }
             // Here and not beside BoxWithConstraints: its content is composed during layout, after an effect outside it
             // would already have run against a row that did not exist yet.
             LaunchedEffect(Unit) { runCatching { rowFocus.requestFocus() } }
         }
+        if (onManage != null) {
+            DesktopButton(
+                label = stringResource(if (managing) Res.string.setup_done else Res.string.account_manage_profiles),
+                onClick = onManage,
+                // `ui-components.md`: Manage profiles is `Profile`; Done is the check that says "this is on".
+                icon = if (managing) CloudStreamIcons.Done else CloudStreamIcons.Profile,
+                modifier = Modifier.align(Alignment.TopEnd).padding(DesktopDimens.WindowMargin),
+            )
+        }
     }
 }
 
 @Composable
-private fun PickerCard(card: ProfileCard, ringed: Boolean, onClick: () -> Unit) {
+private fun PickerCard(card: ProfileCard, ringed: Boolean, editing: Boolean, onClick: () -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     val source = remember { MutableInteractionSource() }
@@ -193,8 +226,76 @@ private fun PickerCard(card: ProfileCard, ringed: Boolean, onClick: () -> Unit) 
                 BasicText(line, style = typography.label.copy(color = colors.muted), maxLines = 1, overflow = TextOverflow.Ellipsis)
             }
         }
+        if (editing) EditChip()
     }
 }
+
+/**
+ * A5's `.edit`: says the card opens its editor. Decoration, since the whole card is the target. Words only: no glyph
+ * means Edit in `ui-components.md` yet, and one is not drawn ahead of its row there (`icons.md`).
+ */
+@Composable
+private fun EditChip() {
+    val colors = CloudStreamTheme.colors
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .heightIn(min = ProfilesDesktopDefaults.ChipHeight)
+            .background(colors.line, CloudStreamTheme.shapes.small)
+            .padding(horizontal = DesktopDimens.RelatedGap),
+    ) {
+        BasicText(stringResource(Res.string.edit), style = CloudStreamTheme.typography.label.copy(color = colors.ink2), maxLines = 1)
+    }
+}
+
+/** A1's and A5's last card: a dashed disc with the `Add` glyph, then the words. */
+@Composable
+private fun AddCard(ringed: Boolean, onClick: () -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val typography = CloudStreamTheme.typography
+    val source = remember { MutableInteractionSource() }
+    val hovered by source.collectIsHoveredAsState()
+    val shape = CloudStreamTheme.shapes.large
+    val label = stringResource(Res.string.account_add_profile)
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(ProfilesDesktopDefaults.DiscGap),
+        modifier = Modifier
+            .width(ProfilesDesktopDefaults.CardWidth)
+            .desktopFeedback(source, lift = false)
+            .tvFocusRing(focused = ringed, shape = shape)
+            .background(if (hovered) colors.line else Color.Transparent, shape)
+            .semantics(mergeDescendants = true) { contentDescription = label }
+            .focusProperties { canFocus = false }
+            .clickable(interactionSource = source, indication = null, role = Role.Button, onClick = onClick)
+            .padding(vertical = ProfilesDesktopDefaults.CardPadding),
+    ) {
+        Box(
+            contentAlignment = Alignment.Center,
+            modifier = Modifier.size(ProfilesDesktopDefaults.DiscSize).dashedCircle(colors.line),
+        ) {
+            CloudStreamIcon(CloudStreamIcons.Add, null, size = CloudStreamIconSize.Large, tint = colors.ink2)
+        }
+        Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(ProfilesDesktopDefaults.LineGap)) {
+            BasicText(label, style = typography.body.copy(color = colors.ink2), maxLines = 1)
+            // The second line's height, empty, so the words sit level with the cards beside it.
+            BasicText(" ", style = typography.label)
+        }
+    }
+}
+
+/** A dashed hairline round the box: a stroke, drawn and not laid out, so it takes no room. */
+private fun Modifier.dashedCircle(color: Color): Modifier = drawBehind {
+    val stroke = CloudStreamDimens.Hairline.toPx()
+    drawCircle(
+        color = color,
+        radius = size.minDimension / 2 - stroke / 2,
+        style = Stroke(width = stroke, pathEffect = PathEffect.dashPathEffect(floatArrayOf(DASH_PX, DASH_PX))),
+    )
+}
+
+/** The dash and the gap of [dashedCircle], in px: a stroke's pattern, not a dimension. */
+private const val DASH_PX = 4f
 
 /**
  * `DS-25` A2: the profile button at the foot of the sidebar, and the list it opens above itself (`KMP-95`).
@@ -203,7 +304,7 @@ private fun PickerCard(card: ProfileCard, ringed: Boolean, onClick: () -> Unit) 
  * [onChoose] and closes the list, and choosing the current one only closes it. A click outside or Escape closes it
  * with nothing chosen. [open] is the host's, so the window's own Escape can close it too.
  *
- * Manage profiles and Sync services join the list with `KMP-95b` and `KMP-95d`.
+ * [onManage] adds Manage profiles under a rule (`KMP-95b`); Sync services joins it with `KMP-95d`.
  */
 @Composable
 fun ProfileButtonDesktop(
@@ -212,6 +313,7 @@ fun ProfileButtonDesktop(
     onOpenChange: (Boolean) -> Unit,
     onChoose: (id: Int) -> Unit,
     modifier: Modifier = Modifier,
+    onManage: (() -> Unit)? = null,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -246,6 +348,7 @@ fun ProfileButtonDesktop(
         if (open) {
             ProfileMenu(
                 profiles = profiles,
+                onManage = onManage?.let { manage -> { onOpenChange(false); manage() } },
                 onDismiss = { onOpenChange(false) },
                 onChoose = { id ->
                     onOpenChange(false)
@@ -257,7 +360,7 @@ fun ProfileButtonDesktop(
 }
 
 @Composable
-private fun ProfileMenu(profiles: List<ProfileCard>, onDismiss: () -> Unit, onChoose: (Int) -> Unit) {
+private fun ProfileMenu(profiles: List<ProfileCard>, onManage: (() -> Unit)?, onDismiss: () -> Unit, onChoose: (Int) -> Unit) {
     val colors = CloudStreamTheme.colors
     val shape = CloudStreamTheme.shapes.large
     val gap = with(LocalDensity.current) { ProfilesDesktopDefaults.PopoverOffset.roundToPx() }
@@ -279,6 +382,10 @@ private fun ProfileMenu(profiles: List<ProfileCard>, onDismiss: () -> Unit, onCh
                 .focusable(),
         ) {
             profiles.forEach { card -> MenuRow(card, onClick = { onChoose(card.id) }) }
+            if (onManage != null) {
+                MenuRule()
+                MenuAction(stringResource(Res.string.account_manage_profiles), onManage)
+            }
         }
     }
 }
@@ -317,9 +424,45 @@ private fun MenuRow(card: ProfileCard, onClick: () -> Unit) {
     }
 }
 
+/** `.pop-rule`: a hairline across the list, in an 8 band. A stroke, drawn and not laid out. */
+@Composable
+private fun MenuRule() {
+    val color = CloudStreamTheme.colors.line
+    Box(
+        Modifier.fillMaxWidth().heightIn(min = DesktopDimens.RelatedGap).drawBehind {
+            val stroke = CloudStreamDimens.Hairline.toPx()
+            drawRect(color, topLeft = androidx.compose.ui.geometry.Offset(0f, (size.height - stroke) / 2),
+                size = androidx.compose.ui.geometry.Size(size.width, stroke))
+        },
+    )
+}
+
+/** `.pop-row.short`: a 32 row of words, such as Manage profiles. */
+@Composable
+private fun MenuAction(label: String, onClick: () -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val source = remember { MutableInteractionSource() }
+    val hovered by source.collectIsHoveredAsState()
+    val focused by source.collectIsFocusedAsState()
+    val shape = CloudStreamTheme.shapes.medium
+    Box(
+        contentAlignment = Alignment.CenterStart,
+        modifier = Modifier
+            .fillMaxWidth()
+            .heightIn(min = DesktopDimens.RowControlHeight)
+            .tvFocusRing(focused = focused, shape = shape)
+            .background(if (hovered) colors.line else Color.Transparent, shape)
+            .semantics(mergeDescendants = true) { contentDescription = label }
+            .clickable(interactionSource = source, indication = null, role = Role.Button, onClick = onClick)
+            .padding(horizontal = DesktopDimens.RowPadding),
+    ) {
+        BasicText(label, style = CloudStreamTheme.typography.label.copy(color = colors.ink2), maxLines = 1)
+    }
+}
+
 /** A profile with no picture: its initials in a disc. A disc is a shape the design system draws, not a glyph. */
 @Composable
-private fun ProfileDisc(name: String, size: Dp, fill: Color, style: TextStyle) {
+internal fun ProfileDisc(name: String, size: Dp, fill: Color, style: TextStyle) {
     Box(
         contentAlignment = Alignment.Center,
         modifier = Modifier.size(size).background(fill, CloudStreamTheme.shapes.pill),
@@ -372,6 +515,9 @@ object ProfilesDesktopDefaults {
      * title bar; this sits between them, where [PickerTop] would start pushing a second row of cards off the window.
      */
     val CompactBelow: Dp = 640.dp
+
+    /** `.edit`: the chip on a card in Manage mode (A5). */
+    val ChipHeight: Dp = 24.dp
 
     /** `.pop`: the profile list's width. */
     val PopoverWidth: Dp = 264.dp

@@ -7211,7 +7211,7 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
   Settings' default.
 - `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.
 
-## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278** · the PM's task, 2026-11-08
+## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr** · the PM's task, 2026-11-08
 
 `DS-25`'s boards, built in six PRs (the PM's plan, 2026-11-08):
 
@@ -7223,6 +7223,7 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
 | `KMP-95d` | Sign-ins over an in-memory store: Sync (A9), Simkl's code (A11, A11b), A12 to A14, OpenSubtitles and SubDL (A16, A16b) | 95a |
 | `KMP-95e` | The browser's redirect for AniList and MyAnimeList (A10): the scheme, the handler, `state` and PKCE | 95d |
 | `KMP-95f` | The Keychain through JNA 5.19.1, and Touch ID (A3t), measured on a signed build | The owner's Team ID and certificate |
+| `KMP-95g` | Pictures: the bundled ones, and "Use an image address" (A6) | The owner; see 95b |
 
 **Rulings** (the owner and the PM, 2026-11-08):
 - JNA 5.19.1 is approved for the Keychain: an exact pin, declared only in `:desktopApp`'s account code (95f).
@@ -7296,3 +7297,62 @@ the Mac had before. A file that parses is cleaned on the way in:
   - the list's Escape, the window's Escape and choosing the current profile all close it with nothing changed;
   - a title opened in one profile is let go on a switch, and opened in the next shows no resume and no list.
 - Renders with `-Pcloudstream.account.renders=<dir>`.
+
+### KMP-95b — Managing profiles
+
+**Manage profiles** (A5) fills the window from the picker's corner button or the sidebar list's new Manage profiles row,
+which sits under a rule. In Manage mode:
+- the heading says Manage profiles, and each card carries an Edit chip and opens its editor;
+- Add profile is the last card, which the ring reaches too;
+- Done goes back where Manage came from, the picker or the window.
+
+With one profile, the sidebar's list is the way to a second.
+
+**The editor** (A6, A6b, A6c) is a 440 sheet hung from the window's top edge over a dimmed window. It has a name field
+and Cancel, with Save as the one primary (Add when adding). Delete profile sits apart at the lead.
+- The name opens selected, so typing replaces it; Return in the field saves and Escape cancels.
+- Add starts with `Profile N`, N being one more than the profiles there are. The pattern is Android-style, so it is
+  filled through `UiString`, which `stringResource` would not do.
+- A blank name keeps the one the profile had. On the first profile it goes back to the default name in the current
+  language, and when adding it becomes `Profile N`.
+- The first profile's editor has no Delete: it is the way back in (A6c).
+- Adding does not switch to the new profile.
+
+**Delete** (A8) asks first. Cancel is the primary, and Return and Escape both land on it, as on the downloads sheet;
+only a click deletes. Cancel goes back to the editor.
+- The profile leaves `profiles.json` before its library files go, so a crash between the two leaves files no profile
+  reads.
+- `add` clears any files under the id it takes, so a new profile never starts with what a deleted one left behind.
+- Deleting the profile watching makes the first profile watch. The window's view models are dropped first, through
+  the same path as a switch.
+
+The window's Escape closes what is on top: a sheet, then the profile list, then Manage.
+
+**Initials only** (the PM, 2026-11-08). The boards' picture row and "Use an image address" are `KMP-95g`:
+- **Bundled pictures:** copying Android's profile drawables into `composeResources` is fine when it is done. They are
+  the app's own artwork, not new icons.
+- **"Use an image address":** fetching an arbitrary URL is a security surface: a network fetch, decoding an untrusted
+  image, and a cache. **It needs a security design and the owner's OK.** The PM's leaning is not to build it on the Mac
+  unless the owner asks.
+
+The PIN row is `KMP-95c`, along with A6c's "can't be locked" line.
+
+**Where the build differs from the boards:**
+- The Edit chip is words only. No glyph means Edit in `ui-components.md` yet, and `icons.md` says a glyph is not drawn
+  ahead of its row.
+- A6's lead Delete profile is the secondary button, not quiet: `DesktopButton` has no quiet tone.
+- The sheets are on `surface`, as the downloads sheet is, so the secondary buttons read as buttons.
+
+**Tests** (desktopApp jvmTest):
+- `DesktopProfilesTest`, 15 cases. Add covers the next id, cleaning, a blank name and the cap. Rename covers a blank
+  name and the first profile's default. Delete covers that the first is never deleted, that the library goes, and that
+  the first profile watches if the deleted one was watching. A new id never inherits a deleted one's files.
+- `ManageProfilesTest`, 6 cases through real pointer and key events, with names typed through the field's own
+  `SetText`:
+  - Manage from the sidebar with one profile, adding a second, and Done back to the window;
+  - Manage from the picker, a rename with Return, a blank name kept, and Done back to choosing;
+  - the first profile's editor has no Delete;
+  - Delete asks first, Return and Escape cancel, and a click deletes the profile and its library;
+  - deleting the profile watching makes the first watch;
+  - the window's Escape closes the sheet, then Manage.
+- Renders: A5, A6, A6b, A6c and A8, compared with the boards by eye.
