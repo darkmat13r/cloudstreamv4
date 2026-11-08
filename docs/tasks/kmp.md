@@ -6110,3 +6110,70 @@ though. To do:
 2. Give each reason a key with its plain, translated words (an `I18N` task first). A screen draws the words; the type
    stays only as the pasteable detail.
 3. Keep the rule that no message, address or path reaches the screen. Rerun the TV Home device suite.
+
+## KMP-76 — The plugin sandbox carries a title's facts to the Mac · **built 2026-11-08**, follow-up of `KMP-58`
+
+The design was approved by the owner on 2026-11-08, before any code. `RemoteDetails` now carries five facts from
+`LoadResponse`: the score, the tags, the content rating, the show status and the runtime. `DesktopDetailSource` maps them
+onto `TitleDetail`'s existing fields, which feed the shared run of facts under the title's name. Neither `feature/detail`
+nor Android changed.
+
+**The trust boundary is the app's reader.** The plugin runs inside the host process, so it can write any bytes the host
+could. The host's caps only help an honest plugin's page fit. Everything is checked again in the app, in three steps:
+1. **Shape**, in `readFacts`. Every length and count is checked against what is left before anything is allocated. The
+   section is read from its own slice of the frame, so nothing in it can reach past its stated length.
+2. **Bytes.** A tag over 256 bytes, or a certification over 64, is skipped without being decoded. So is a tag past
+   16 KiB of decoded tags, or past the 16th.
+3. **Meaning**, in `RemoteFacts.cleaned`:
+   - the score must be 0 to 100 tenths;
+   - the runtime must be 1 to 1440 minutes;
+   - the status must be code 1 or 2, never free text;
+   - a tag loses control and format characters (U+202E included), and is dropped if blank, repeated, or over 64
+     characters;
+   - a certification must be 1 to 16 letters, digits, spaces or `-+/`, or it is refused, not repaired.
+
+| Fact | Wire | Bound |
+|---|---|---|
+| score | `Int`, tenths of a point out of ten | `0..100` |
+| tags | count, then strings | 16, each ≤ 64 chars and ≤ 256 bytes, ≤ 16 KiB in all |
+| content rating | optional string | ≤ 16 chars, ≤ 64 bytes, letters, digits, space, `-+/` |
+| status | one byte | 0 none, 1 Ongoing, 2 Completed |
+| runtime | `Int`, minutes | `1..1440` |
+
+**A bad fact costs only itself.** The page opens with the rest. Only a length that lies past the frame or the section
+fails the call and ends the host, as it does everywhere else in this format. Each drop is logged as the fact's name and
+a reason in the code's own words, never the value, and many dropped tags make one line.
+
+**Compatibility.** The section follows the episodes as a version byte (`FACTS_V1`) and a length:
+- A reply that ends after the episodes (a host from before this) has no facts, and the page is as it was.
+- An app from before this ignores the trailing bytes.
+- A version this app does not know is skipped whole.
+- A later fact goes in a new version, never by redefining version 1.
+- `classes-jar.api` is untouched: the sandbox is not part of it.
+
+**Tests:**
+- `HostProtocolFactsTest` (15), hand-written frames:
+  - each bound, just inside and just past;
+  - an old reply and an unknown version;
+  - oversized bytes skipped with the reader still in step;
+  - a hundred thousand tags;
+  - lying lengths, in the section and inside it;
+  - no value reaches the log.
+- `PluginHostClientTest`, two lying-host cases through the real client:
+  - facts past every bound cost only themselves, and the host lives;
+  - a section lying about its length ends the host.
+- `SandboxEnforcementTest`, a malicious plugin in a real sandboxed host. Its score is valid, but it sends:
+  - a 1 MiB tag, 100,000 tags, and tags with terminal escapes, U+202E and zero-width joiners;
+  - `<script>` and a forged line as the rating;
+  - `Int.MAX_VALUE` minutes.
+  The page loads with each bounded or dropped, and the host lives on.
+- `TitleFactsTest` (2), the mapping onto `TitleDetail`.
+- **Red without the app's checks.** With `RemoteFacts.cleaned` switched off, 5 of these fail, the lying-host case among
+  them.
+
+**DECIDED** (approved with the design):
+- **No `hasTrailer`.** The Mac cannot play a trailer, so the flag would draw a button that does nothing. Playing one later
+  means a trailer URL crossing the sandbox, which needs link-style checks of its own. It belongs with trailer playback.
+- **The host shortens an honest plugin's tags to 64 characters** rather than losing them. The app does not shorten
+  anything: what arrives over a bound is dropped.
+- **Score on the wire is a whole number of tenths**, so no NaN or infinity can be sent. The page keeps it out of ten.
