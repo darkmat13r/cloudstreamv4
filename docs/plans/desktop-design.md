@@ -94,7 +94,7 @@ five seconds, not over an open list, while the transport says `Loading…` and t
 |---|---|---|
 | L1's list button under each card | None; a secondary click or the context-menu keys open the list picker | The board keeps one verb on a card, Remove, at the poster's top-right on hover or focus |
 | Six lists | Seven, with Favourites | Hiding a list hides what is kept in it |
-| L5's services | The local list only | There is no service sign-in on desktop; the panel and L2 draw services when there are some |
+| L5's services | The local list only, until the Mac signs in to services | The owner's ruling of 2026-11-08 lets the Mac sign in to AniList, MyAnimeList and Simkl through the browser (`DS-25`); none is built yet. The panel and L2 draw services once there are some |
 | L7's three cards at 164 | Two, at the built 200 minimum | The board's own notes keep that minimum |
 | Sort, filter and chevron glyphs | Words only | The pack has none of the three |
 

@@ -1097,3 +1097,138 @@ Renders: in the shared local review folder (not published).
 **Open:** ST10's button order against board `D3` in `design/Desktop Downloads.dc.html`.
 
 **Follow-up:** DNS over HTTPS does not reach playback on the Mac yet, so ST8 says so in words. That is `KMP-88`.
+
+## DS-25 — Boards: account and profiles on the Mac, the phone and the tablet
+
+**Status:** drawn, in pr #254 · boards only, no Kotlin · `DEC-19` · the PM's task, 2026-11-08
+
+Drawn from TV board 8d (`KMP-73`'s `AccountSelectScreenTv` and `PairingPanelTv`), the old account code
+(`AccountSelectActivity`, `AccountHelper`, `AccountViewModel`, `ProfileSignIns`) and `BUG-55`'s `PinAttempts`.
+The board files were not on the drawing Mac, so every number comes from the code instead:
+- `CloudStreamColors`, `CloudStreamTypography`, `CloudStreamShapes` and `DesktopDimens`;
+- the sidebar from `DesktopShellDefaults`.
+
+- `Desktop Account.dc.html` (a board file in the owner's Claude Design project), A1 to A16b, at 1280×800 unless said:
+  - Choosing a profile:
+    - A1, the launch picker: 8d's cards at a pointer's size. It shows from two profiles, the default counted (`KMP-73`).
+    - A2, a profile button at the foot of the sidebar (`KMP-77`, #247), opening a popover: the profiles, "Manage
+      profiles", "Sync services".
+    - A5, Manage mode.
+    - A15, the 800×520 minimum.
+  - Unlocking a locked profile:
+    - A3t, Touch ID first: "Use Touch ID to open <profile>", with Use PIN instead. macOS draws its own prompt over the
+      sheet.
+    - A3, the PIN: four masked cells, and the fourth digit submits. It is the fallback after Use PIN instead or a
+      failed Touch ID, and the first step on a Mac with no enrolled finger.
+    - A3b, a wrong PIN, with no count of tries left.
+    - A4, `BUG-55`'s wait ("Too many wrong PINs. Try again in 00:30"), with the cells off.
+    - A4b, the wait at its one-hour cap.
+  - Profiles:
+    - A6, the editor: picture, name, the PIN row, and Delete apart at the lead.
+    - A6b, adding a profile.
+    - A6c, the first profile, whose PIN row says it can't be locked. Android hides the toggle; the board keeps the row
+      because the first profile is the way back in when a PIN is forgotten.
+    - A6d, a locked profile.
+    - A7 to A7c, setting, confirming and changing a PIN. The current PIN comes first, under the same limit.
+    - A8, deleting a profile. Cancel is the primary (`DEC-19`), and the words say its sign-ins leave the Mac with it.
+  - Sync services, for the current profile only:
+    - A9, "Sync for <profile>": Connected or Not connected, read by presence. Never an account name or an id.
+    - A10, AniList and MyAnimeList through the browser, with no password field.
+    - A11, Simkl with a code and a QR. A11b, the code expired.
+    - A12, cancelled: nothing is shown as an error, and focus returns to the row.
+    - A13, failed. A13b, offline.
+    - A14, removing a sign-in from this device. Cancel is the primary.
+  - Subtitle services: A16, the OpenSubtitles and SubDL sign-in. A16b, its failure.
+- `Phone Account.dc.html` (a board file in the owner's Claude Design project), at 412×916:
+  - PA1, the picker, two cards a row.
+  - PA2, the PIN in a bottom sheet over the number keyboard. PA3, the wait.
+  - PA4, the editor, full screen.
+  - PA5, sync services.
+  - PA6, MyAnimeList through a Custom Tab.
+  - PA7, Simkl through the browser.
+  - TA1, the tablet picker at 1280×800. The tablet's other flows are the phone's sheets at 600 wide.
+
+**Rulings applied** (the owner, through the PM, 2026-11-08):
+- **The Mac signs in through the browser, and the app never sees a password.** Tokens are stored as Android's are:
+  never backed up, never logged. This replaces `desktop-design.md`'s "no service sign-in on desktop".
+- **Simkl pairs with a code on the Mac (A11).** The person approves it in any browser, and it needs no redirect.
+- **Cancel ends the wait at once (A12).** No poll keeps running, and a redirect that arrives late is ignored. `BUG-49`
+  is the precedent.
+- **Kitsu is not on the Mac.** It signs in only with an email and password, so it is shown nowhere, not even as a
+  disabled row. The phone keeps Android's four services (PA5), because the ruling is the Mac's.
+- **OpenSubtitles and SubDL are the one exception (A16).** They may sign in with an email and password inside the Mac
+  app, these two only:
+  - the password is masked, with Show;
+  - it is never prefilled;
+  - nothing is logged;
+  - it is kept with the sign-ins, out of every backup.
+- **Touch ID first, the PIN as the fallback** (the owner, 2026-11-08; A3t). `BUG-55`'s wait still applies to the PIN.
+  `DS-24`'s Settings pane holds the switch. **An accepted trade-off** (the owner, 2026-11-08): Touch ID proves who is
+  signed in to the Mac, not who owns the profile, so anyone whose finger is enrolled in that macOS account opens every
+  locked profile.
+- **`DS-24` hands off to these boards.** Settings lists the services and profiles; its Sign in, Edit and Add
+  profile open A10, A11, A16, A6 and A6b. Edit on a locked profile goes through A3t (or A3) first. The sheets are 440 wide,
+  under the window's title bar.
+
+**Before the build** (the boards do not wait on these):
+- **A10 needs the Mac to receive the redirect.** AniList's and MyAnimeList's sign-ins return to
+  `cloudstreamapp://anilistlogin` and `cloudstreamapp://mallogin` (`AccountManager.APP_STRING`). Nothing in
+  `:desktopApp` handles a URL scheme today; both are absent:
+  - the scheme in the Mac app bundle;
+  - an open-URI handler.
+- **The redirect handler accepts only what this window asked for** (the reviewer and the owner). The build PR shows
+  each of these with a test:
+  - it acts only while a sign-in from this window is pending, and ignores any unsolicited `cloudstreamapp://` URL;
+  - it checks an OAuth `state` it generated, and the `state` is random. Android's MAL request sends `state=RequestID<n>`,
+    a counter, which the owner ruled not acceptable for the Mac (2026-11-08);
+  - it uses PKCE where the provider supports it. MyAnimeList supports only the `plain` method, so the verifier is the
+    challenge and travels in the authorize URL. So the verifier must be freshly random for every sign-in, 43 to 128
+    characters from a secure RNG, and never reused. Android's `AuthAPI.generateCodeVerifier` was checked, not assumed:
+    96 bytes from `SecureRandom`, base64url without padding, 128 characters. The Mac may reuse it only after the same
+    check against the copy it ends up with;
+  - it never logs or stores the incoming URL. Only the token taken from it reaches storage.
+- **Tokens and the two subtitle credentials go in the macOS Keychain** (the owner, 2026-11-08). Reaching it from the
+  JVM probably needs a library such as JNA. That is a dependency decision, so the build brings the four-point case
+  (what, why, alternatives, size) before adding one. No secret is ever passed on a command line.
+- **What each subtitle service keeps** (read from the Android providers):
+  - **SubDL:** its login trades the password for a long-lived API key and keeps only that key and the email
+    (`Subdl.kt`, `AuthToken(accessToken = apiResponse.apiKey, payload = email)`). The Mac stores the key and never the
+    password.
+  - **OpenSubtitles:** its token is a JWT that a code comment says lasts 24 hours (not measured), with no refresh token.
+    Android re-logs in from the stored form, password included (`refreshToken` parses `token.payload`, which is
+    `form.toJson()`). Re-login truly needs the password. **The owner's ruling (2026-11-08):** the Mac keeps it in the
+    Keychain beside the token and renews the token automatically.
+- **Touch ID needs a native bridge** (LocalAuthentication), under the same dependency rule as the Keychain.
+- **Touch ID's glyph is not in `ui-components.md`'s table yet.** A3t draws Tabler's `Fingerprint`. A new meaning is
+  added to the table before it gets a glyph, so a Touch ID row (`Fingerprint`) goes into `ui-components.md` before the
+  build (the PM, 2026-11-08).
+- **The Mac has no profiles, PINs or sign-ins yet.** `PinAttempts` is Android code (uptime from `SystemClock`, a
+  preferences file). The Mac needs the same rule over its own clock and store.
+
+**Security.**
+- No board draws a token, a PIN, an account name or an id.
+- PIN cells show dots, never digits.
+- The Simkl code is the fixture `FAKE00` and the QR a checkerboard, as `KMP-73`'s screenshots have them.
+- A16 is the only password field.
+- All names are made up.
+
+**Measured** in headless Chrome with `getBoundingClientRect`, on every artboard:
+- 35 boards and 1,355 boxes: 0 off the 4 dp step, 0 overflowing text.
+- 0 elements escaping a sheet or popover. That check was added after it caught A11's footer running out of its sheet.
+- Exempt: macOS's own title bar, the drawn pointer, content centred inside a control, and text-sized widths, as
+  `dimension-scale.md` allows.
+- Hairlines are drawn, not laid out: the first pass had 25 boxes off the step because 1 px borders took room.
+- All 13 Tabler 1.119.0 glyph URLs answer 200, checked with curl.
+
+Renders: in the shared local review folder (not published).
+
+**Decisions taken here** (reported to the PM):
+- **Nothing sits raised on raised.** On a raised sheet or popover, an avatar or a secondary button steps up to `line`.
+- **The Mac's picker has no sync list.** 8d puts one under the cards. On the Mac it moves to "Sync services…" (A9) and
+  to Settings, so the launch screen is only about who is watching.
+- **One meaning, one key, on every platform** (the PM, for `DS-24` and `DS-25` together):
+  - "Remove from this device" and "Connected · signed in on this device" are `I18N-16`'s existing keys on the Mac too;
+  - no button string ends in an ellipsis ("Sign in", "Set PIN", "Manage profiles"), so the Mac reuses the keys TV and
+    Android have.
+
+**Strings:** `I18N-21`.
