@@ -33,6 +33,9 @@ internal object DesktopDetailViewModels {
             DetailViewModel(id, source, scope, playBestAfter = BEST_LINK_WAIT)
         }
 
+    /** Whether [id]'s view model is still kept. For tests: leaving a title by any way out must let it go. */
+    internal fun isLive(id: String): Boolean = id in live
+
     /**
      * How long after a title's first playable link the best one found is played, unless a 2160p one arrives first
      * (owner, 2026-11-05: "highest resolution first"). CineStream's CineTmdb, five titles in a copy of the owner's

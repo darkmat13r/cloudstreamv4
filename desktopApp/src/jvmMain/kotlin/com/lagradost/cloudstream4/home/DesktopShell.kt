@@ -147,8 +147,9 @@ private fun Modifier.rightRule(color: Color): Modifier = drawBehind {
  * work wherever focus is and each is listed in words; nothing else in the window reads them, which is what keeps a key
  * from firing twice (a doubled ⌘[ would pop two screens).
  *
- * The host sets what each does for the screen on top: [onDestination] only at the top level, where the sidebar is, and
- * [onBack] only where something is under. [atTop] and [canGoBack] are observable, so the menu greys what does nothing.
+ * The host sets what each does for the screen on top: [onDestination] wherever the sidebar is, the top level and a
+ * title's page (`KMP-77`), and [onBack] only where something is under. [atTop], which is true wherever [onDestination]
+ * is set, and [canGoBack] are observable, so the menu greys what does nothing.
  */
 internal class DesktopShortcuts {
     var onDestination: ((TopLevelDestination) -> Unit)? = null

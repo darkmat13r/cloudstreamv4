@@ -6156,6 +6156,38 @@ Tests:
   - the pill on `is Offline` again: the pill's pixel reads the background;
   - kept rows given Load more: the click there sends `RowMoreRequested`.
 
+## KMP-77 — The Mac's sidebar stays beside a title's page
+
+**Status:** in review · `:desktopApp` only · `DS-21` E1
+
+`DS-21`'s Detail boards (E1 to E6) keep the sidebar beside a title's page, with the tab it was opened from chosen. The
+built window dropped it for anything pushed. Now:
+- **A title's page is inside the shell** (`TopLevelScreen`), with the tab at the bottom of the stack chosen: Home,
+  Search or Library, whichever the title was opened from.
+- **A row there, or ⌘1 to ⌘3, leaves the title for that tab**, as a sidebar does in Finder or Music: what was pushed
+  goes, and each title's view model goes with it (`DesktopDetailViewModels.forget`), as Back does.
+- **The player and the extension review keep the whole window.** The keys are off there, as the sidebar is.
+
+**With `KMP-75` (`#229`, which this is stacked on):** Downloads and a series' downloads page are in the same scheme.
+Downloads is a sidebar row with ⌘4, and a series' page keeps the sidebar with Downloads chosen; ⌘1 to ⌘4 work wherever
+the sidebar is. A test (`LibraryScreenTest`) opens a title from Library and presses ⌘4: it lands on Downloads with
+nothing under it, and the title's view model is gone.
+
+**Tests** (`HomeScreenTest`, through `DesktopApp`): a title opened from Home keeps the sidebar with Home chosen (its
+row's fill, sampled from the render); Search's row leaves the title for Search with nothing under it; ⌘3 leaves a title
+for Library the same way. With the title's page outside the shell again, the test fails at the chosen-row check
+("Home is chosen under the title"): there is no sidebar to sample.
+After each way out, the title's view model is gone (`DesktopDetailViewModels.isLive`, internal, for this); with
+`root`'s `forget` removed, the test fails there.
+
+**Not verified:** that the keys are off over the player. `FakeHome`'s titles cannot be opened (no provider answers them),
+so the test cannot reach a player to check that `atTop` is false there and ⌘3 leaves the screen alone. The rule is one
+line (`Screen.hasSidebar`), read, not run.
+
+**Follow-up:** the window's `rememberSaveableStateHolder` keeps every key it has seen: nothing calls `removeState` for a
+screen that was popped, by `root` or by Back, so a title's scroll position outlives the title. Small, and the same for
+both ways out; it wants its own task.
+
 ## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
 
 `#200` made Home's failure detail safe. A thrown failure is now its type, such as `IllegalStateException`, never its message,
