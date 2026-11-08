@@ -1199,6 +1199,18 @@ The board files were not on the drawing Mac, so every number comes from the code
     Android re-logs in from the stored form, password included (`refreshToken` parses `token.payload`, which is
     `form.toJson()`). Re-login truly needs the password. **The owner's ruling (2026-11-08):** the Mac keeps it in the
     Keychain beside the token and renews the token automatically.
+- **Every Keychain item stays on this Mac** (the reviewer of `#268`, 2026-11-08). A16's note says the password is "kept
+  on this device only and never backed up" (`account_password_note`), and the sign-ins' tokens are held to the same
+  promise. Each item this feature writes therefore:
+  - uses a `ThisDeviceOnly` accessibility (`kSecAttrAccessibleWhenUnlockedThisDeviceOnly`, or the `AfterFirstUnlock`
+    variant if renewal must run while the screen is locked);
+  - sets `kSecAttrSynchronizable` to false, or iCloud Keychain syncs it to the user's other devices.
+
+  Per Apple's documentation, the file-based login keychain ignores `kSecAttrAccessible`. The items should therefore go
+  to the data protection keychain (`kSecUseDataProtectionKeychain`), which needs a signed app with a keychain access
+  group. The build confirms this on a real Mac rather than trusting the documentation. **The build tests or asserts
+  both attributes:** it reads each stored item back and checks its accessibility and that it is not synchronizable. A
+  write path that cannot set them fails rather than falling back to a syncing item.
 - **Touch ID needs a native bridge** (LocalAuthentication), under the same dependency rule as the Keychain.
 - **Touch ID's glyph is not in `ui-components.md`'s table yet.** A3t draws Tabler's `Fingerprint`. A new meaning is
   added to the table before it gets a glyph, so a Touch ID row (`Fingerprint`) goes into `ui-components.md` before the
