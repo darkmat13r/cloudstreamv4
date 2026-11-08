@@ -91,7 +91,7 @@ class HostProtocolFactsTest {
         val dropped = ArrayList<String>()
         val read = received(facts(version = 2) { writeInt(84); write(ByteArray(100) { 7 }) }, dropped)
         assertEquals(page, read)
-        assertEquals(listOf("facts: version 2"), dropped)
+        assertEquals(listOf("facts: a version this app does not read"), dropped)
     }
 
     @Test
@@ -117,7 +117,7 @@ class HostProtocolFactsTest {
         val dropped = ArrayList<String>()
         assertNull(received(section(status = 3, runtime = 90), dropped).facts.status)
         assertEquals(90, received(section(status = 255, runtime = 90)).facts.runtimeMinutes, "the reader stays in step")
-        assertEquals(listOf("status: code 3"), dropped)
+        assertEquals(listOf("status: not a code this app knows"), dropped)
     }
 
     @Test
@@ -183,28 +183,34 @@ class HostProtocolFactsTest {
     }
 
     @Test
-    fun `a lying length inside the section fails the call`() {
-        assertFailsWith<IOException> { received(facts { writeInt(84); writeInt(Int.MAX_VALUE) }) }
-        assertFailsWith<IOException> { received(facts { writeInt(84); writeInt(1); writeInt(Int.MAX_VALUE) }) }
-        assertFailsWith<IOException> {
-            received(facts { writeInt(84); writeInt(0); writeBoolean(true); writeInt(1_000_000) })
+    fun `a lying length inside the section costs the facts and keeps the page`() {
+        listOf<DataOutputStream.() -> Unit>(
+            { writeInt(84); writeInt(Int.MAX_VALUE) },
+            { writeInt(84); writeInt(1); writeInt(Int.MAX_VALUE) },
+            { writeInt(84); writeInt(0); writeBoolean(true); writeInt(1_000_000) },
+        ).forEach { body ->
+            val dropped = ArrayList<String>()
+            assertEquals(page, received(facts(body = body), dropped))
+            assertEquals(listOf("facts: a section that could not be read"), dropped)
         }
     }
 
     @Test
-    fun `a section cut short fails the call, and cannot read into what follows it`() {
-        assertFailsWith<IOException> { received(facts { writeInt(84) }) }
-        // Its length says 4, and the rest is outside it: a full section's worth of bytes after does not help.
-        assertFailsWith<IOException> {
-            received(
-                reply {
-                    writeByte(HostProtocol.FACTS_V1)
-                    writeInt(Int.SIZE_BYTES)
-                    writeInt(84)
-                    writeInt(0); writeBoolean(false); writeByte(0); writeInt(90)
-                },
-            )
-        }
+    fun `a section cut short costs the facts and keeps the page, and cannot read into what follows it`() {
+        assertEquals(page, received(facts { writeInt(84) }))
+        // Its length says 4, and a whole section's worth of bytes follows outside it. The reader does not reach them.
+        val dropped = ArrayList<String>()
+        val read = received(
+            reply {
+                writeByte(HostProtocol.FACTS_V1)
+                writeInt(Int.SIZE_BYTES)
+                writeInt(84)
+                writeInt(0); writeBoolean(false); writeByte(0); writeInt(90)
+            },
+            dropped,
+        )
+        assertEquals(page, read)
+        assertEquals(listOf("facts: a section that could not be read"), dropped)
     }
 
     @Test
@@ -216,6 +222,12 @@ class HostProtocolFactsTest {
         )
         assertTrue(dropped.isNotEmpty())
         dropped.forEach { assertTrue("secret" !in it && "token" !in it && "999" !in it, it) }
+        // A plugin's numbers are its values too.
+        val numbers = ArrayList<String>()
+        received(facts(version = 77) { }, numbers)
+        received(section(status = 201), numbers)
+        assertEquals(2, numbers.size)
+        numbers.forEach { assertTrue("77" !in it && "201" !in it, it) }
     }
 
     private companion object {

@@ -249,6 +249,15 @@ class PluginHostClientTest {
     }
 
     @Test
+    fun `a facts section cut short inside its length costs the facts, and keeps the page and the host`() = runTest {
+        val page = loaded { id -> loadReply(id) { writeByte(HostProtocol.FACTS_V1); writeInt(Int.SIZE_BYTES); writeInt(84) } }
+        assertEquals("Title", page.name)
+        assertEquals(RemoteFacts.NONE, page.facts)
+        fake.assertAlive()
+        assertEquals("still", answeredCall("still"))
+    }
+
+    @Test
     fun `a facts section lying about its length ends the host and fails the call`() = runTest {
         assertFailsWith<IOException> {
             loaded { id -> loadReply(id) { writeByte(HostProtocol.FACTS_V1); writeInt(Int.MAX_VALUE) } }

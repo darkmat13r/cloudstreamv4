@@ -6140,9 +6140,11 @@ could. The host's caps only help an honest plugin's page fit. Everything is chec
 | status | one byte | 0 none, 1 Ongoing, 2 Completed |
 | runtime | `Int`, minutes | `1..1440` |
 
-**A bad fact costs only itself.** The page opens with the rest. Only a length that lies past the frame or the section
-fails the call and ends the host, as it does everywhere else in this format. Each drop is logged as the fact's name and
-a reason in the code's own words, never the value, and many dropped tags make one line.
+**A bad fact costs only itself.** The page opens with the rest. A section that cannot be read inside its own length, cut
+short or with a lying length within it, costs all the facts and keeps the page: the outer reader has already stepped past
+it. Only a section length that lies past the frame fails the call and ends the host, as any lying length does elsewhere in
+this format. Each drop is logged as the fact's name and a reason in the code's own words, never the value, not even a
+plugin's number, and many dropped tags make one line.
 
 **Compatibility.** The section follows the episodes as a version byte (`FACTS_V1`) and a length:
 - A reply that ends after the episodes (a host from before this) has no facts, and the page is as it was.
@@ -6157,11 +6159,13 @@ a reason in the code's own words, never the value, and many dropped tags make on
   - an old reply and an unknown version;
   - oversized bytes skipped with the reader still in step;
   - a hundred thousand tags;
-  - lying lengths, in the section and inside it;
-  - no value reaches the log.
-- `PluginHostClientTest`, two lying-host cases through the real client:
+  - a section length lying past the frame, which fails the call;
+  - a section cut short, or lying inside its own length, which keeps the page;
+  - no value, and no plugin-chosen number, reaches the log.
+- `PluginHostClientTest`, three lying-host cases through the real client:
   - facts past every bound cost only themselves, and the host lives;
-  - a section lying about its length ends the host.
+  - a section cut short inside its length costs the facts, and the page and host live;
+  - a section lying about its length past the frame ends the host.
 - `SandboxEnforcementTest`, a malicious plugin in a real sandboxed host. Its score is valid, but it sends:
   - a 1 MiB tag, 100,000 tags, and tags with terminal escapes, U+202E and zero-width joiners;
   - `<script>` and a forged line as the rating;
@@ -6179,3 +6183,13 @@ a reason in the code's own words, never the value, and many dropped tags make on
 - **The host shortens an honest plugin's tags to 64 characters** rather than losing them. The app does not shorten
   anything: what arrives over a bound is dropped.
 - **Score on the wire is a whole number of tenths**, so no NaN or infinity can be sent. The page keeps it out of ten.
+- **A section unreadable inside its own length keeps the page** (the PM's call, after review). The reader of the reply
+  has already stepped past the slice, so it is still in step; only the facts are lost. This covers a lying length inside
+  the slice as well as a slice cut short, since both are contained by it.
+
+## KMP-82 — The Mac title page shows `KMP-76`'s facts, asserted on screen · **open**, follow-up of `KMP-76` and `KMP-58`
+
+`KMP-76` carries the score, tags, content rating, status and runtime into `TitleDetail`, and tests that mapping. The Mac
+title page on master does not draw the run of facts yet; `KMP-58` (`#226`) does. Once both are on master, add one case to
+`DetailScreenTest`: a title with all five facts shows them in E1's run under the name, in the shared order, and a title
+with none shows no empty separators. No production change is expected.

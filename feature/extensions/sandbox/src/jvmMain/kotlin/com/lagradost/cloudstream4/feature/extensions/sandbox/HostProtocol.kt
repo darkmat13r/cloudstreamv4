@@ -188,8 +188,9 @@ data class RemoteDetails(
  * A title's facts, as the app keeps them: every one in its bound, or absent.
  *
  * The plugin runs in the host, so it can write any bytes the host could, and these are read as hostile. A value the
- * reader cannot accept loses only itself: the page opens with the rest. Only a structure that lies about its own
- * length, which no reader can stay in step through, fails the call, as anywhere else in this format.
+ * reader cannot accept loses only itself: the page opens with the rest. A section that cannot be read loses the facts,
+ * and the page still opens. Only a section whose own length lies past the frame, which no reader can stay in step
+ * through, fails the call, as anywhere else in this format.
  *
  * @param scoreTenths out of ten, in tenths, `0..`[HostProtocol.MAX_SCORE_TENTHS].
  * @param tags at most [HostProtocol.MAX_TAGS], each non-blank and at most [HostProtocol.MAX_TAG_CHARS], no two alike.
@@ -396,7 +397,7 @@ private fun DataOutputStream.writeFacts(facts: RemoteFacts) {
  * The facts section, or none. Nothing left means a host from before it: no facts, and the page as it was.
  *
  * Read from its own slice of the frame, so nothing in it can reach past its stated length, and what follows it stays
- * in step whatever the section holds.
+ * in step whatever the section holds. So a section that cannot be read costs the facts and keeps the page.
  */
 private fun DataInputStream.readFacts(dropped: (String) -> Unit): RemoteFacts {
     if (available() == 0) return RemoteFacts.NONE
@@ -405,10 +406,18 @@ private fun DataInputStream.readFacts(dropped: (String) -> Unit): RemoteFacts {
     if (length !in 0..available()) throw IOException("facts length $length out of range")
     if (version != HostProtocol.FACTS_V1) {
         skipNBytes(length.toLong())
-        dropped("facts: version $version")
+        dropped("facts: a version this app does not read")
         return RemoteFacts.NONE
     }
-    return DataInputStream(ByteArrayInputStream(readNBytes(length))).use { it.readFactsV1(dropped) }
+    val section = readNBytes(length)
+    // Inside its slice, a section cut short or lying about a length cannot move this reader, which has already
+    // stepped past it: the facts are lost, the page is not. A lying length for the slice itself still fails, above.
+    return try {
+        DataInputStream(ByteArrayInputStream(section)).use { it.readFactsV1(dropped) }
+    } catch (unreadable: IOException) {
+        dropped("facts: a section that could not be read")
+        RemoteFacts.NONE
+    }
 }
 
 private fun DataInputStream.readFactsV1(dropped: (String) -> Unit): RemoteFacts {
@@ -445,11 +454,11 @@ private fun DataInputStream.readFactsV1(dropped: (String) -> Unit): RemoteFacts 
     } else {
         null
     }
-    val status = when (val code = readUnsignedByte()) {
+    val status = when (readUnsignedByte()) {
         HostProtocol.STATUS_NONE -> null
         HostProtocol.STATUS_ONGOING -> RemoteShowStatus.Ongoing
         HostProtocol.STATUS_COMPLETED -> RemoteShowStatus.Completed
-        else -> null.also { dropped("status: code $code") }
+        else -> null.also { dropped("status: not a code this app knows") }
     }
     val runtime = readNumber()
     return RemoteFacts(score, tags, rating, status, runtime)
