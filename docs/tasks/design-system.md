@@ -939,8 +939,7 @@ with the desktop direction in `docs/plans/desktop-design.md`.
     controls recentre in the room left.
   - M8 loading, M9 buffering, M10 a source failed and the next is trying, M11 every source failed.
   - M12: offline, playing a downloaded file.
-  - M13: Up next at the credits, counting down from 10 s, with Play now and Cancel. M16: the same card after Cancel,
-    which stops the count and keeps the card.
+  - M13: Up next at the credits, counting down from 10 s, with Play now and Cancel.
   - M14: full screen, with the Playback menu listing every key.
   - M15: the 800×520 minimum window.
   - M16: Up next, cancelled.
@@ -961,7 +960,8 @@ Google Fonts.
 **Measured** in Chromium with `getBoundingClientRect`, on every artboard:
 - Desktop (468 boxes) and phone and tablet (268 boxes): off the 4 dp step only in the playhead, whose x is the
   position, and the drawn system pointer. Both are values, not layout.
-- Upright, 412 has its middle at 206, off the step. The transport centres on 204, which no eye can tell from 206.
+- Upright, 412 has its middle at 206, off the step, so the board draws the transport at 204. The build centres it
+  (`Alignment.CenterHorizontally`); 204 is where the board landed, not a number to copy.
 - All 30 glyph URLs answer 200, checked with curl.
 
 Renders: in the shared local review folder (not published).
@@ -978,6 +978,11 @@ Renders: in the shared local review folder (not published).
   - The count holds while a panel is open or the pointer is on the card, and goes on when neither is.
   - Cancel, or Esc on the Mac, stops the count and keeps the card, with Play now and a close (M16). Play now does not wait.
   - A rule along the card's foot empties as it counts, with "Next episode in 8 s" in words.
+  - **The user's setting wins** (the PM's call): with Android's existing `autoplay_next_settings` off, Up next is the
+    card with no countdown, as M16 draws it, with Play now and a close; with it on, the 10 s countdown. The ruling
+    sets how auto-play looks, not whether to override someone who turned it off.
+  - **The Mac reads the same setting.** It has none yet: Android keeps it as `autoplay_next_key` (on unless turned off),
+    and nothing in `:desktopApp` reads it. A Mac preference for it is part of the build.
 - **Full screen is F**, as built, in the Playback menu. macOS's own ⌃⌘F can be added beside it.
 - **Phones also play upright** (the owner's ruling, which replaced a sideways-only call): P1 to P4.
 
