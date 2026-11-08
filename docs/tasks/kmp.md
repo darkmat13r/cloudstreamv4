@@ -6507,3 +6507,24 @@ plugin's number, and many dropped tags make one line.
 title page on master does not draw the run of facts yet; `KMP-58` (`#226`) does. Once both are on master, add one case to
 `DetailScreenTest`: a title with all five facts shows them in E1's run under the name, in the shared order, and a title
 with none shows no empty separators. No production change is expected.
+
+## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
+
+**Status:** open · found by reading the code for `DS-24`'s Network pane (ST8), not by a run
+
+`DS-24` gives the Mac one Network setting, DNS over HTTPS. The resolver can cover everything that resolves in the app's
+process:
+- A sandboxed plugin host reaches the network only through `OutboundGate`, which resolves names itself
+  (`OutboundGate.kt:93`, `InetAddress.getAllByName`). A DNS-over-HTTPS resolver there covers all extension traffic.
+- Posters (`PosterImage.kt:74`) and subtitles build their own OkHttp clients on `Dns.SYSTEM`, which an OkHttp `Dns` can
+  replace.
+- `DohProviders.kt` is already in `:core:network`'s `jvmCommonMain`.
+
+**What it does not cover.** libVLC runs in the `--media-host` child and resolves stream hosts with the system's DNS. So
+with the setting on, a stream's lookups still go to the system resolver, and ST8's line says "Video streams use your
+Mac's DNS."
+
+- [ ] Find whether the media host can resolve through the same resolver: libVLC's own options, or the app handing it
+      addresses it resolved, which has to keep TLS and the host header right.
+- [ ] If it can, the line under the setting goes, in the same PR.
+- [ ] If it cannot, record why here, and the line stays.
