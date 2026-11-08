@@ -6184,6 +6184,16 @@ though. To do:
   marker sign-in shows as "Current · Simkl" and its value never reaches the screen; an empty array reads "Current · No
   sync"; an edit opened from `MainActivity` switches to that profile and goes back (**fails without the fix**: "It did
   not go back to MainActivity").
+- **Leaves nothing behind** (train 8): run straight after this class, `TvDetailNavigationTest` failed 3 of 3 ("expected
+  Try again, was Go Back"); alone it passed. Measured cause: **touch mode.** The edit test taps Apply
+  (`apply.click()`), and touch mode is the whole device's until a key ends it, so the detail page's first focus
+  request didn't take and its first D-pad press landed on Go Back. Of the six tests paired one at a time with the
+  detail test, only the edit test failed it, and a key-names-only snapshot of every preferences file showed it leaves
+  nothing stored. Finishing the activities alone did not fix it (still 3 of 3 red). Now each test, afterwards, finishes
+  every activity it started and waits until each is destroyed (`MainActivity` is `singleTask`, so a leftover one would
+  be reused), turns touch mode off, and puts back the profiles, the selection, the skip setting, `hasLoggedIn` and the
+  cached sign-in IDs. The edit test paired with the detail test passes 1 of 1, and the whole pair (account, then detail)
+  passes 3 of 3, locally on `Television_720p`.
 
 ### Not verified
 
