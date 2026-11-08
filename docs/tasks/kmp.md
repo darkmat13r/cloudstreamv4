@@ -6112,6 +6112,46 @@ Tests:
   desktop-only. It wants its own task, with the action added to the shared model. Hover lift is in.
 - **The bookmark filter is kept while the window is open.** There is no desktop preference store yet.
 - **H4's kept rows and their age** wait on `KMP-68`. Until then, a failed reload draws as 3m, under the device's rails.
+  Built since in `KMP-84`.
+
+## KMP-84 — The Mac's H4: a failed reload keeps its rows, says how old they are, and Reload and Random act on them
+
+**Status:** in review · `:feature:home` and `:desktopApp` tests · over `KMP-68`'s `HomeStatus.Stale` · `DS-21` H4
+
+`KMP-68` kept a failed reload's rows in the view model, and the Mac still drew 3m. Now `HomeScreenDesktop` draws H4:
+- **A banner at the top of the page**, the board's: the Warning glyph, `home_reload_failed` with the source and the rows'
+  age, and Try again (Reload). The age is `4m`, `2h 5m` or `1d 2h 5m`, as `I18N-14` decided, counted from `loadedAt`
+  and read again each minute while the window is open.
+- **The kept rows under it**, after what the device keeps (Continue watching, Bookmarks). The hero goes with the
+  reload, as the view model already did.
+- **The offline pill** reads `status.shown`, so it shows for a reload that failed offline. A reload that failed some
+  other way has no pill.
+- **Reload and Random** show while there are kept rows. `HomeStatus.keptRows` (new, in `HomeMvi.kt`) is the rows on
+  screen or a `Stale`'s kept ones. Random now picks from it, so it is not a dead control on H4. TV does not change: its
+  Random is only beside rows, and a `Stale`'s `rows` is still empty.
+
+**DECIDED** (reported to the PM):
+- **A kept row has no Load more.** Its pages went with the reload, and `showMore` reads the rows on screen. A button
+  there would do nothing. Try again is the way on.
+- **The banner has no failure detail.** The board draws the sentence alone, and the pill already says when it is the
+  connection.
+- **The age formatter is a copy of the library's** (`LibrarySourcesTv.kt`), which is private to `:feature:library`.
+  Sharing it means a change there, which this PR does not make.
+
+**Tests:**
+- `HomeAgeTest` (new, 2): minutes, hours and minutes, days; a clock behind the record reads as now.
+- `HomeViewModelTest`: Random after a failed reload opens one of the kept titles.
+- `HomeScreenTest`:
+  - a failed reload's rows stay, and Try again, Reload, Random and a kept card each send their action, with nothing
+    where a Load more would be;
+  - the control for that: the same rows on screen do have their Load more at that point;
+  - the offline pill shows for `Stale(Offline)` and not for `Stale(Failed)`, sampled from the render;
+  - renders `24-stale-offline`, `25-stale-failed-nothing-kept-locally`, `26-stale-minimum-offline`, `27-stale-alone`.
+  Their coordinates were measured from those renders.
+- **Proved by mutation**, each failing only its own test:
+  - Random reading `rows` again: the Random test never gets its title (a one-minute timeout);
+  - the pill on `is Offline` again: the pill's pixel reads the background;
+  - kept rows given Load more: the click there sends `RowMoreRequested`.
 
 ## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
 
