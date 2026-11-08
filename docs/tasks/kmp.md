@@ -6120,6 +6120,16 @@ way once `#229` is on master; a two-line change.
 row's fill, sampled from the render); Search's row leaves the title for Search with nothing under it; ⌘3 leaves a title
 for Library the same way. With the title's page outside the shell again, the test fails at the chosen-row check
 ("Home is chosen under the title"): there is no sidebar to sample.
+After each way out, the title's view model is gone (`DesktopDetailViewModels.isLive`, internal, for this); with
+`root`'s `forget` removed, the test fails there.
+
+**Not verified:** that the keys are off over the player. `FakeHome`'s titles cannot be opened (no provider answers them),
+so the test cannot reach a player to check that `atTop` is false there and ⌘3 leaves the screen alone. The rule is one
+line (`Screen.hasSidebar`), read, not run.
+
+**Follow-up:** the window's `rememberSaveableStateHolder` keeps every key it has seen: nothing calls `removeState` for a
+screen that was popped, by `root` or by Back, so a title's scroll position outlives the title. Small, and the same for
+both ways out; it wants its own task.
 
 ## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
 
