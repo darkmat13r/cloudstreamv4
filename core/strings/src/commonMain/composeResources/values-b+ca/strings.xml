@@ -30,10 +30,17 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d FAVORIT</item><item quantity="many">%d DE FAVORITS</item><item quantity="other">%d FAVORITS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">No s'ha pogut carregar %d secció</item><item quantity="many">No s'han pogut carregar %d seccions</item><item quantity="other">No s'han pogut carregar %d seccions</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d títol</item><item quantity="many">%d títols</item><item quantity="other">%d títols</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d segon</item><item quantity="many">%d segons</item><item quantity="other">%d segons</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d font</item><item quantity="many">%d fonts</item><item quantity="other">%d fonts</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Episodi següent d'aquí a %d s</item><item quantity="many">Episodi següent d'aquí a %d s</item><item quantity="other">Episodi següent d'aquí a %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Cercar a %d font</item><item quantity="many">Cercar a totes les %d fonts</item><item quantity="other">Cercar a totes les %d fonts</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Prem la tecla de cerca del teclat per cercar igualment a %d font.</item><item quantity="many">Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.</item><item quantity="other">Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONT</item><item quantity="many">%d FONTS</item><item quantity="other">%d FONTS</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d secció</item><item quantity="many">%d seccions</item><item quantity="other">%d seccions</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">%d avís de l'anàlisi</item><item quantity="many">%d avisos de l'anàlisi</item><item quantity="other">%d avisos de l'anàlisi</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Totes les extensions (%d)</item><item quantity="many">Totes les extensions (%d)</item><item quantity="other">Totes les extensions (%d)</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">%1$d extensió · actualitzat %2$s</item><item quantity="many">%1$d extensions · actualitzat %2$s</item><item quantity="other">%1$d extensions · actualitzat %2$s</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">%d perfil i el seu PIN</item><item quantity="many">%d perfils i els seus PIN</item><item quantity="other">%d perfils i els seus PIN</item></plurals>
 <string name="account">compte</string>
 <string name="action_add_to_bookmarks">Defineix l'estat de visualització</string>
 <string name="action_add_to_favorites">Afegir als favorits</string>
@@ -399,6 +406,129 @@
 <string name="select_all">Seleccionar tot</string>
 <string name="select_an_account">Seleccioneu un compte</string>
 <string name="set_default">Estableix opció per defecte</string>
+<string name="settings_adult_content">Contingut per a adults</string>
+<string name="settings_adult_content_body">Només on una extensió ho admeti. Després de reiniciar.</string>
+<string name="settings_anime_audio">Àudio de l'anime</string>
+<string name="settings_anime_audio_both">Doblatge i subtítols</string>
+<string name="settings_at_launch">En iniciar</string>
+<string name="settings_back_up">Fes una còpia</string>
+<string name="settings_back_up_now">Fes una còpia ara</string>
+<string name="settings_backup_automatically">Automàticament</string>
+<string name="settings_backup_folder">Carpeta de còpies</string>
+<string name="settings_change">Canvia</string>
+<string name="settings_choose">Tria</string>
+<string name="settings_choose_another">Tria'n una altra</string>
+<string name="settings_clear">Esborra</string>
+<string name="settings_clear_cache">Esborra la memòria cau</string>
+<string name="settings_clear_cache_sizes">Vídeo %1$s · imatges %2$s</string>
+<string name="settings_color_white">Blanc</string>
+<string name="settings_color_yellow">Groc</string>
+<string name="settings_connections_per_download">Connexions per descàrrega</string>
+<string name="settings_connections_per_download_body">Més pot ser més ràpid, si la font ho permet.</string>
+<string name="settings_diagnostics">Diagnòstic</string>
+<string name="settings_disk_cache">Memòria cau de disc</string>
+<string name="settings_dns">DNS</string>
+<string name="settings_dns_mac_scope">Per a extensions, imatges i subtítols. Els fluxos de vídeo fan servir el DNS del Mac.</string>
+<string name="settings_download_folder">Carpeta de descàrregues</string>
+<string name="settings_downloads_at_once">Descàrregues simultànies</string>
+<string name="settings_downloads_at_once_body">Quants títols es descarreguen alhora.</string>
+<string name="settings_downloads_wait">Les descàrregues noves esperen fins que torni la carpeta o se'n triï una altra.</string>
+<string name="settings_extension_languages">Idiomes</string>
+<string name="settings_extension_review">Revisa</string>
+<string name="settings_extensions_auto_install">Instal·la les noves dels meus repositoris</string>
+<string name="settings_extensions_auto_install_body">Cadascuna s'analitza igualment abans d'executar-se.</string>
+<string name="settings_extensions_auto_update">Actualitza les extensions automàticament</string>
+<string name="settings_extensions_auto_update_body">Cada actualització s'analitza abans d'executar-se.</string>
+<string name="settings_extensions_installed">Instal·lades · %d</string>
+<string name="settings_filler_episodes">Episodis de farciment</string>
+<string name="settings_filler_episodes_body">Per a l'anime, on la font els marqui.</string>
+<string name="settings_folder">Carpeta</string>
+<string name="settings_folder_missing">Falta %s. Potser el disc no està connectat.</string>
+<string name="settings_help_community">Ajuda i comunitat</string>
+<string name="settings_help_community_body">GitHub, Discord i la wiki són al menú Ajuda.</string>
+<string name="settings_hide_search_quality">Amaga la qualitat als resultats de cerca</string>
+<string name="settings_home_search">Inici i Cercar</string>
+<string name="settings_last_backup">Darrera còpia: %s</string>
+<string name="settings_logs">Registres</string>
+<string name="settings_logs_mac_body">Es guarden en aquest Mac 7 dies. No s'envien enlloc.</string>
+<string name="settings_logs_phone_body">Es guarden en aquest telèfon 7 dies. No s'envien enlloc.</string>
+<string name="settings_network_buffer">Memòria intermèdia de xarxa</string>
+<string name="settings_offline_repos">No es poden comprovar els repositoris. Aquestes llistes són de %s.</string>
+<string name="settings_pane_accounts_privacy">Comptes i privadesa</string>
+<string name="settings_pane_advanced">Avançat</string>
+<string name="settings_pane_appearance">Aparença</string>
+<string name="settings_pane_network">Xarxa</string>
+<string name="settings_pane_playback">Reproducció</string>
+<string name="settings_play_next">Reprodueix l'episodi següent</string>
+<string name="settings_play_next_body">Compte enrere de 10 s al final d'un episodi.</string>
+<string name="settings_playing">En reproduir</string>
+<string name="settings_poster_badges">Insígnies als pòsters</string>
+<string name="settings_posters">Pòsters</string>
+<string name="settings_profile_no_pin">Sense PIN</string>
+<string name="settings_profile_this">Aquest perfil</string>
+<string name="settings_random_button_body">A Inici i Biblioteca.</string>
+<string name="settings_read">Llegeix</string>
+<string name="settings_remove">Elimina</string>
+<string name="settings_repo_unreachable">No s'hi ha pogut accedir. Aquesta llista és de fa %s.</string>
+<string name="settings_repositories">Repositoris</string>
+<string name="settings_reset_app">Restableix CloudStream</string>
+<string name="settings_reset_app_body">Esborra la configuració, els perfils i la biblioteca d'aquest Mac.</string>
+<string name="settings_reset_app_phone_body">Esborra la configuració, els perfils i la biblioteca.</string>
+<string name="settings_reset_confirm_title">Vols restablir CloudStream?</string>
+<string name="settings_reset_erases_mac">Això esborra d'aquest Mac:</string>
+<string name="settings_reset_erases_phone">Això esborra d'aquest telèfon:</string>
+<string name="settings_reset_item_library">Biblioteca, progrés i historial</string>
+<string name="settings_reset_item_search">Historial de cerca</string>
+<string name="settings_reset_item_settings">Configuració</string>
+<string name="settings_reset_item_signins">Sessions als serveis de sincronització i subtítols</string>
+<string name="settings_reset_kept">Es conserven: extensions, fitxers descarregats i còpies.</string>
+<string name="settings_restore">Restaura</string>
+<string name="settings_restore_failed">No s'ha pogut restaurar</string>
+<string name="settings_restore_failed_body">Aquest fitxer no és una còpia de CloudStream. No s'ha canviat res.</string>
+<string name="settings_restoring">Restaurant %s</string>
+<string name="settings_restoring_progress">%1$s · %2$d de %3$d</string>
+<string name="settings_run_test">Executa la prova</string>
+<string name="settings_search_hint">Cerca a la configuració</string>
+<string name="settings_search_no_results">Cap resultat per a «%s»</string>
+<string name="settings_search_no_results_body">Prova una altra paraula.</string>
+<string name="settings_seek_amount">Salt en avançar</string>
+<string name="settings_setup_again">Torna a fer la configuració inicial</string>
+<string name="settings_setup_again_body">Idioma, extensions i disseny, des del principi.</string>
+<string name="settings_setup_run">Fes la configuració inicial</string>
+<string name="settings_sign_in">Inicia la sessió</string>
+<string name="settings_skip_intro">Ofereix Salta la intro</string>
+<string name="settings_skip_intro_body">On una font marqui l'obertura o els crèdits.</string>
+<string name="settings_skip_profile_choice">Omet la tria de perfil</string>
+<string name="settings_skip_profile_choice_body">Obre l'últim perfil utilitzat.</string>
+<string name="settings_source_order">Ordre de les fonts</string>
+<string name="settings_source_order_body">Quines fonts prova primer el reproductor.</string>
+<string name="settings_speed">Velocitat</string>
+<string name="settings_subtitle_background">Fons</string>
+<string name="settings_subtitle_edge">Vora</string>
+<string name="settings_subtitle_font_system">Sistema</string>
+<string name="settings_subtitle_language">Idioma preferit</string>
+<string name="settings_subtitle_language_body">Es tria automàticament quan un títol el té.</string>
+<string name="settings_subtitle_preview">Previsualització</string>
+<string name="settings_subtitle_services">Serveis de subtítols</string>
+<string name="settings_subtitle_size">Mida</string>
+<string name="settings_subtitle_size_large">Gran</string>
+<string name="settings_subtitle_size_medium">Mitjana</string>
+<string name="settings_subtitle_size_small">Petita</string>
+<string name="settings_subtitle_text_color">Color del text</string>
+<string name="settings_suggestions_while_typing">Suggeriments mentre escrius</string>
+<string name="settings_sync_for">Sincronització per a %s</string>
+<string name="settings_sync_per_profile">Cada perfil inicia la sessió pel seu compte.</string>
+<string name="settings_test_all_extensions">Prova totes les extensions</string>
+<string name="settings_test_all_extensions_body">Cerca amb cada extensió activada. Per a desenvolupadors.</string>
+<string name="settings_title_pages">Pàgines dels títols</string>
+<string name="settings_title_under_poster">Títol sota el pòster</string>
+<string name="settings_trailers">Tràilers</string>
+<string name="settings_updates">Actualitzacions</string>
+<string name="settings_updates_at_launch">Cerca actualitzacions en iniciar</string>
+<string name="settings_updates_at_launch_body">Cerca una versió nova quan s'obre CloudStream.</string>
+<string name="settings_updates_check_now">Comprova-ho ara</string>
+<string name="settings_updates_current">Actualitzat · comprovat %s</string>
+<string name="settings_watch_progress_body">Desa on t'has aturat, per a Continua mirant.</string>
 <string name="setup_done">Fet</string>
 <string name="show_dub">Etiqueta de doblatge</string>
 <string name="show_hd">Etiqueta de qualitat</string>
@@ -505,5 +635,13 @@
 <string name="library_sync_retry">Torna a sincronitzar</string>
 <string name="library_sync_unreachable">Inaccessible · a la memòria cau fa %s</string>
 <string name="library_synced_format">Sincronitzat fa %s</string>
+<string name="player_audio_stereo">estèreo</string>
+<string name="player_menu_playback">Reproducció</string>
+<string name="player_play_now">Reprodueix ara</string>
+<string name="player_source_decoded">%s descodificat</string>
+<string name="player_sources_all_failed">Totes les fonts han respost amb un error.</string>
+<string name="player_sources_all_failed_detail">Tria una font a sota per tornar-la a provar.</string>
+<string name="player_volume_down">Abaixa el volum</string>
+<string name="player_volume_up">Apuja el volum</string>
 <string name="search_suggestions_return_hint">Retorn ho cerca tot</string>
 </resources>

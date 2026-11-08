@@ -11,9 +11,16 @@
 <plurals name="home_sections_failed"><item quantity="other">"%d bahagian gagal dimuatkan"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d bahagian"</item></plurals>
 <plurals name="library_title_count"><item quantity="other">"%d tajuk"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">"%d saat"</item></plurals>
+<plurals name="player_source_count"><item quantity="other">"%d sumber"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">"Episod seterusnya dalam %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"Cari dalam semua %d sumber"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d SUMBER"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="other">"%d amaran imbasan"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">"Semua tambahan (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="other">"%1$d tambahan · dikemas kini %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="other">"%d profil dan PIN masing-masing"</item></plurals>
 <string name="account">"akaun"</string>
 <string name="account_add_profile">"Tambah profil"</string>
 <string name="account_manage_profiles">"Urus profil"</string>
@@ -434,6 +441,7 @@
 <string name="play_torrent_button">"Strim Torrent"</string>
 <string name="play_trailer_button">"Main Pra-tonton"</string>
 <string name="play_with_app_name">"Pasang dengan CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Masuk ke skrin penuh"</string>
 <string name="player_exit_fullscreen">"Keluar dari skrin penuh"</string>
 <string name="player_fit_original">"Nisbah aspek asal"</string>
@@ -448,19 +456,26 @@
 <string name="player_hud_seek_forward">"Maju"</string>
 <string name="player_hud_speed">"Kelajuan"</string>
 <string name="player_hud_up_next" formatted="true">"Seterusnya · %s"</string>
+<string name="player_menu_playback">"Main balik"</string>
 <string name="player_mute">"Redam"</string>
+<string name="player_play_now">"Main sekarang"</string>
 <string name="player_settings_play_in_app">"Pemain dalaman"</string>
 <string name="player_size_settings">"Saiz butang pemain"</string>
 <string name="player_size_settings_des">"Buang sempadan hitam"</string>
+<string name="player_source_decoded" formatted="true">"%s dinyahkod"</string>
 <string name="player_source_playing">"Sedang dimainkan"</string>
 <string name="player_source_resumes_at" formatted="true">"Menukar mengekalkan kedudukan anda: sambung pada %1$s"</string>
 <string name="player_source_retry">"Cuba lagi"</string>
 <string name="player_source_switch">"Tukar"</string>
+<string name="player_sources_all_failed">"Setiap sumber menjawab dengan ralat."</string>
+<string name="player_sources_all_failed_detail">"Pilih sumber di bawah untuk mencubanya semula."</string>
 <string name="player_speed">"Kelajuan Pemain"</string>
 <string name="player_speed_text_format" formatted="true">"Kelajuan (%.2fx)"</string>
 <string name="player_subtitles_settings">"Sari kata"</string>
 <string name="player_subtitles_settings_des">"Tetapan sari kata pemain"</string>
 <string name="player_unmute">"Nyahredam"</string>
+<string name="player_volume_down">"Perlahankan bunyi"</string>
+<string name="player_volume_up">"Kuatkan bunyi"</string>
 <string name="plugin_load_fail" formatted="true">"Tidak dapat papar %s"</string>
 <string name="plugins_disabled" formatted="true">"Dilumpuhkan: %d"</string>
 <string name="plugins_downloaded" formatted="true">"Dimuat turun: %d"</string>
@@ -580,7 +595,130 @@
 <string name="select_all">"Pilih semua"</string>
 <string name="select_an_account">"Sila pilih Akaun"</string>
 <string name="select_library">"Pilih Perpustakaan"</string>
+<string name="settings_adult_content">"Kandungan dewasa"</string>
+<string name="settings_adult_content_body">"Hanya jika tambahan menyokongnya. Selepas dimulakan semula."</string>
+<string name="settings_anime_audio">"Audio anime"</string>
+<string name="settings_anime_audio_both">"Alih suara dan sari kata"</string>
+<string name="settings_at_launch">"Semasa dilancarkan"</string>
+<string name="settings_back_up">"Sandarkan"</string>
+<string name="settings_back_up_now">"Sandarkan sekarang"</string>
+<string name="settings_backup_automatically">"Secara automatik"</string>
+<string name="settings_backup_folder">"Folder sandaran"</string>
+<string name="settings_change">"Tukar"</string>
+<string name="settings_choose">"Pilih"</string>
+<string name="settings_choose_another">"Pilih yang lain"</string>
+<string name="settings_clear">"Kosongkan"</string>
+<string name="settings_clear_cache">"Kosongkan cache"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Video %1$s · imej %2$s"</string>
+<string name="settings_color_white">"Putih"</string>
+<string name="settings_color_yellow">"Kuning"</string>
+<string name="settings_connections_per_download">"Sambungan setiap muat turun"</string>
+<string name="settings_connections_per_download_body">"Lebih banyak boleh jadi lebih pantas, jika sumber membenarkannya."</string>
+<string name="settings_diagnostics">"Diagnostik"</string>
+<string name="settings_disk_cache">"Cache cakera"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Untuk tambahan, karya seni dan sari kata. Strim video menggunakan DNS Mac anda."</string>
+<string name="settings_download_folder">"Folder muat turun"</string>
+<string name="settings_downloads_at_once">"Muat turun serentak"</string>
+<string name="settings_downloads_at_once_body">"Berapa banyak tajuk dimuat turun bersama."</string>
+<string name="settings_downloads_wait">"Muat turun baharu menunggu sehingga folder kembali atau folder lain dipilih."</string>
+<string name="settings_extension_languages">"Bahasa"</string>
+<string name="settings_extension_review">"Semak"</string>
+<string name="settings_extensions_auto_install">"Pasang yang baharu dari repositori saya"</string>
+<string name="settings_extensions_auto_install_body">"Setiap satu masih diimbas sebelum dijalankan."</string>
+<string name="settings_extensions_auto_update">"Kemas kini tambahan secara automatik"</string>
+<string name="settings_extensions_auto_update_body">"Setiap kemas kini diimbas sebelum dijalankan."</string>
+<string name="settings_extensions_installed" formatted="true">"Dipasang · %d"</string>
+<string name="settings_filler_episodes">"Episod pengisi"</string>
+<string name="settings_filler_episodes_body">"Untuk anime, jika sumber menandakannya."</string>
+<string name="settings_folder">"Folder"</string>
+<string name="settings_folder_missing" formatted="true">"%s tiada. Cakeranya mungkin tidak disambungkan."</string>
+<string name="settings_help_community">"Bantuan dan komuniti"</string>
+<string name="settings_help_community_body">"GitHub, Discord dan wiki ada dalam menu Bantuan."</string>
+<string name="settings_hide_search_quality">"Sembunyikan kualiti dalam hasil carian"</string>
+<string name="settings_home_search">"Halaman Utama dan Carian"</string>
 <string name="settings_info">"Informasi"</string>
+<string name="settings_last_backup" formatted="true">"Sandaran terakhir: %s"</string>
+<string name="settings_logs">"Log"</string>
+<string name="settings_logs_mac_body">"Disimpan pada Mac ini selama 7 hari. Tidak dihantar ke mana-mana."</string>
+<string name="settings_logs_phone_body">"Disimpan pada telefon ini selama 7 hari. Tidak dihantar ke mana-mana."</string>
+<string name="settings_network_buffer">"Penimbal rangkaian"</string>
+<string name="settings_offline_repos" formatted="true">"Repositori tidak dapat disemak. Senarai ini dari %s."</string>
+<string name="settings_pane_accounts_privacy">"Akaun dan privasi"</string>
+<string name="settings_pane_advanced">"Lanjutan"</string>
+<string name="settings_pane_appearance">"Penampilan"</string>
+<string name="settings_pane_network">"Rangkaian"</string>
+<string name="settings_pane_playback">"Main balik"</string>
+<string name="settings_play_next">"Main episod seterusnya"</string>
+<string name="settings_play_next_body">"Mengira detik 10 s di hujung episod."</string>
+<string name="settings_playing">"Semasa dimainkan"</string>
+<string name="settings_poster_badges">"Lencana pada poster"</string>
+<string name="settings_posters">"Poster"</string>
+<string name="settings_profile_no_pin">"Tiada PIN"</string>
+<string name="settings_profile_this">"Profil ini"</string>
+<string name="settings_random_button_body">"Di Halaman Utama dan Perpustakaan."</string>
+<string name="settings_read">"Baca"</string>
+<string name="settings_remove">"Alih keluar"</string>
+<string name="settings_repo_unreachable" formatted="true">"Tidak dapat dicapai. Senarai ini dari %s yang lalu."</string>
+<string name="settings_repositories">"Repositori"</string>
+<string name="settings_reset_app">"Tetap semula CloudStream"</string>
+<string name="settings_reset_app_body">"Memadamkan tetapan, profil dan perpustakaan pada Mac ini."</string>
+<string name="settings_reset_app_phone_body">"Memadamkan tetapan, profil dan perpustakaan."</string>
+<string name="settings_reset_confirm_title">"Tetap semula CloudStream?"</string>
+<string name="settings_reset_erases_mac">"Ini memadamkan daripada Mac ini:"</string>
+<string name="settings_reset_erases_phone">"Ini memadamkan daripada telefon ini:"</string>
+<string name="settings_reset_item_library">"Perpustakaan, kemajuan tontonan dan sejarah"</string>
+<string name="settings_reset_item_search">"Sejarah carian"</string>
+<string name="settings_reset_item_settings">"Tetapan"</string>
+<string name="settings_reset_item_signins">"Log masuk ke perkhidmatan penyegerakan dan sari kata"</string>
+<string name="settings_reset_kept">"Dikekalkan: tambahan, fail yang dimuat turun dan sandaran."</string>
+<string name="settings_restore">"Pulihkan"</string>
+<string name="settings_restore_failed">"Tidak dapat memulihkan"</string>
+<string name="settings_restore_failed_body">"Fail itu bukan sandaran CloudStream. Tiada apa-apa yang diubah."</string>
+<string name="settings_restoring" formatted="true">"Memulihkan %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d daripada %3$d"</string>
+<string name="settings_run_test">"Jalankan ujian"</string>
+<string name="settings_search_hint">"Cari tetapan"</string>
+<string name="settings_search_no_results" formatted="true">"Tiada hasil untuk “%s”"</string>
+<string name="settings_search_no_results_body">"Cuba perkataan lain."</string>
+<string name="settings_seek_amount">"Jarak lompatan"</string>
+<string name="settings_setup_again">"Jalankan persediaan semula"</string>
+<string name="settings_setup_again_body">"Bahasa, tambahan dan susun atur, dari awal."</string>
+<string name="settings_setup_run">"Jalankan persediaan"</string>
+<string name="settings_sign_in">"Log masuk"</string>
+<string name="settings_skip_intro">"Tawarkan Langkau intro"</string>
+<string name="settings_skip_intro_body">"Jika sumber menandakan pembukaan atau kredit."</string>
+<string name="settings_skip_profile_choice">"Langkau pemilihan profil"</string>
+<string name="settings_skip_profile_choice_body">"Membuka profil terakhir yang digunakan."</string>
+<string name="settings_source_order">"Susunan sumber"</string>
+<string name="settings_source_order_body">"Sumber yang dicuba dahulu oleh pemain."</string>
+<string name="settings_speed">"Kelajuan"</string>
+<string name="settings_subtitle_background">"Latar belakang"</string>
+<string name="settings_subtitle_edge">"Tepi"</string>
+<string name="settings_subtitle_font_system">"Sistem"</string>
+<string name="settings_subtitle_language">"Bahasa pilihan"</string>
+<string name="settings_subtitle_language_body">"Dipilih secara automatik apabila tajuk mempunyainya."</string>
+<string name="settings_subtitle_preview">"Pratonton"</string>
+<string name="settings_subtitle_services">"Perkhidmatan sari kata"</string>
+<string name="settings_subtitle_size">"Saiz"</string>
+<string name="settings_subtitle_size_large">"Besar"</string>
+<string name="settings_subtitle_size_medium">"Sederhana"</string>
+<string name="settings_subtitle_size_small">"Kecil"</string>
+<string name="settings_subtitle_text_color">"Warna teks"</string>
+<string name="settings_suggestions_while_typing">"Cadangan semasa menaip"</string>
+<string name="settings_sync_for" formatted="true">"Penyegerakan untuk %s"</string>
+<string name="settings_sync_per_profile">"Setiap profil log masuk secara berasingan."</string>
+<string name="settings_test_all_extensions">"Uji semua tambahan"</string>
+<string name="settings_test_all_extensions_body">"Mencari dengan setiap tambahan yang didayakan. Untuk pembangun."</string>
+<string name="settings_title_pages">"Halaman tajuk"</string>
+<string name="settings_title_under_poster">"Tajuk di bawah poster"</string>
+<string name="settings_trailers">"Treler"</string>
+<string name="settings_updates">"Kemas kini"</string>
+<string name="settings_updates_at_launch">"Semak kemas kini semasa dilancarkan"</string>
+<string name="settings_updates_at_launch_body">"Mencari versi baharu apabila CloudStream dibuka."</string>
+<string name="settings_updates_check_now">"Semak sekarang"</string>
+<string name="settings_updates_current" formatted="true">"Terkini · disemak %s"</string>
+<string name="settings_watch_progress_body">"Menyimpan tempat anda berhenti, untuk Sambung tonton."</string>
 <string name="setup_done">"Tamat"</string>
 <string name="setup_extensions_subtext">"Muat turun senarai laman web yang anda ingin gunakan"</string>
 <string name="show_dub">"Label dub"</string>

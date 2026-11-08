@@ -49,12 +49,16 @@ import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.WatchPosition
 import com.lagradost.cloudstream4.feature.library.desktop.LibraryScreenDesktop
 import com.lagradost.cloudstream4.feature.library.desktop.LibraryScreenDesktopDefaults
+import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
+import com.lagradost.cloudstream4.home.DesktopShortcuts
+import com.lagradost.cloudstream4.home.TopLevelDestination
 import java.io.File
 import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
+import kotlin.test.assertFalse
 import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
 
@@ -504,6 +508,35 @@ class LibraryScreenTest {
     }
 
     // ---- In the window ----
+
+    /** `KMP-77` over `KMP-75`: ⌘4 works on a title's page too, and leaves it for Downloads, letting the title go. */
+    @Test
+    fun `command 4 from a title opened from the library lands on Downloads and lets the title go`() {
+        var at = ""
+        val store = InMemoryLibraryStore(
+            listOf(LibraryTitle(dune, "Quiet Harbor", LibraryBucket.Watching, keptAt = 1L, providerName = "Source One")),
+            // Resumable, so its card is on Continue watching, where the window opens the library, at the card's place.
+            listOf(WatchPosition(dune, "e1", 60_000L, 600_000L, 1L)),
+        )
+        val shortcuts = DesktopShortcuts()
+        val escape = EscapeHandler()
+        val scene = scene { DesktopApp(escape, EmptyHome, library = store, onScreen = { at = it }, shortcuts = shortcuts) }
+        scene.settle()
+        scene.click(Offset(SIDEBAR_ITEM_X, LIBRARY_ITEM_Y))
+        scene.wait()
+        assertEquals("Library", at)
+        scene.click(Offset(WINDOW_CARD_X, WINDOW_CARD_Y))
+        scene.wait()
+        assertTrue(at.startsWith("Detail"), at)
+        val id = checkNotNull(Regex("""Detail\(id=(.*), resume=""").find(at)).groupValues[1]
+        assertTrue(DesktopDetailViewModels.isLive(id), "the open title keeps its view model")
+        shortcuts.go(TopLevelDestination.Downloads)
+        scene.settle()
+        assertEquals("Downloads", at, "command 4 leaves the title for Downloads")
+        assertFalse(escape.handle(), "and nothing is left under Downloads")
+        assertFalse(DesktopDetailViewModels.isLive(id), "and the title's view model went with it")
+        scene.close()
+    }
 
     @Test
     fun `the window has a library tab, and it shows what the store holds`() {

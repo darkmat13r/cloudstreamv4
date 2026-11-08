@@ -11,9 +11,16 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d bölmə yüklənmədi"</item><item quantity="other">"%d bölmə yüklənmədi"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d bölmə"</item><item quantity="other">"%d bölmə"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d başlıq"</item><item quantity="other">"%d başlıq"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d saniyə"</item><item quantity="other">"%d saniyə"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d mənbə"</item><item quantity="other">"%d mənbə"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Növbəti seriya %d san sonra"</item><item quantity="other">"Növbəti seriya %d san sonra"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d mənbədə axtar"</item><item quantity="other">"Bütün %d mənbədə axtar"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Yenə də %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın."</item><item quantity="other">"Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d MƏNBƏ"</item><item quantity="other">"%d MƏNBƏ"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d yoxlama xəbərdarlığı"</item><item quantity="other">"%d yoxlama xəbərdarlığı"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Bütün uzantılar (%d)"</item><item quantity="other">"Bütün uzantılar (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d uzantı · yenilənib %2$s"</item><item quantity="other">"%1$d uzantı · yenilənib %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil və onun PIN-i"</item><item quantity="other">"%d profil və onların PIN-ləri"</item></plurals>
 <string name="account_add_profile">"Profil əlavə et"</string>
 <string name="account_manage_profiles">"Profilləri idarə et"</string>
 <string name="account_pair_code">"Kodunuz"</string>
@@ -224,6 +231,7 @@
 <string name="play_movie_button">"Filmi oynat"</string>
 <string name="play_trailer_button">"Fraqmanı Oynat"</string>
 <string name="play_with_app_name">"CloudStream ilə oynat"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Tam ekrana daxil olun"</string>
 <string name="player_exit_fullscreen">"Tam ekrandan çıxın"</string>
 <string name="player_fit_original">"Orijinal nisbət"</string>
@@ -238,17 +246,24 @@
 <string name="player_hud_seek_forward">"İrəli çək"</string>
 <string name="player_hud_speed">"Sürət"</string>
 <string name="player_hud_up_next" formatted="true">"Növbəti · %s"</string>
+<string name="player_menu_playback">"Oxutma"</string>
 <string name="player_mute">"Səssizə al"</string>
+<string name="player_play_now">"İndi oxut"</string>
 <string name="player_size_settings">"Pleyeri yenidən ölçüləndirmə düyməsini"</string>
 <string name="player_size_settings_des">"Qara sərhədləri, kənarları sil"</string>
+<string name="player_source_decoded" formatted="true">"%s deşifrə edilib"</string>
 <string name="player_source_playing">"Oynayır"</string>
 <string name="player_source_resumes_at" formatted="true">"Dəyişmək mövqeyinizi saxlayır: %1$s anından davam edir"</string>
 <string name="player_source_retry">"Yenidən cəhd et"</string>
 <string name="player_source_switch">"Dəyiş"</string>
+<string name="player_sources_all_failed">"Hər mənbə xəta ilə cavab verdi."</string>
+<string name="player_sources_all_failed_detail">"Yenidən sınamaq üçün aşağıdan mənbə seçin."</string>
 <string name="player_speed_text_format" formatted="true">"Sürət (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitrlər"</string>
 <string name="player_subtitles_settings_des">"Pleyerin subtitr parametrləri"</string>
 <string name="player_unmute">"Səsi aç"</string>
+<string name="player_volume_down">"Səsi azalt"</string>
+<string name="player_volume_up">"Səsi artır"</string>
 <string name="podcast_singular">"Podkast"</string>
 <string name="pref_filter_search_quality">"Seçilmiş video keyfiyyətini axtarış nəticələrində gizlət"</string>
 <string name="preview_background_img_des">"Arxaplana ilkin baxış keçir"</string>
@@ -290,7 +305,130 @@
 <string name="season_specials">"Xüsusi"</string>
 <string name="seek_back_10_seconds">"10 saniyə geri keç"</string>
 <string name="seek_forward_10_seconds">"10 saniyə irəli keç"</string>
+<string name="settings_adult_content">"Böyüklər üçün məzmun"</string>
+<string name="settings_adult_content_body">"Yalnız uzantı dəstəklədikdə. Yenidən başladıqdan sonra."</string>
+<string name="settings_anime_audio">"Anime səsi"</string>
+<string name="settings_anime_audio_both">"Dublyaj və subtitr"</string>
+<string name="settings_at_launch">"Açılışda"</string>
+<string name="settings_back_up">"Ehtiyat nüsxə çıxar"</string>
+<string name="settings_back_up_now">"İndi ehtiyat nüsxə çıxar"</string>
+<string name="settings_backup_automatically">"Avtomatik"</string>
+<string name="settings_backup_folder">"Ehtiyat nüsxə qovluğu"</string>
+<string name="settings_change">"Dəyiş"</string>
+<string name="settings_choose">"Seç"</string>
+<string name="settings_choose_another">"Başqasını seç"</string>
+<string name="settings_clear">"Təmizlə"</string>
+<string name="settings_clear_cache">"Keşi təmizlə"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Video %1$s · şəkillər %2$s"</string>
+<string name="settings_color_white">"Ağ"</string>
+<string name="settings_color_yellow">"Sarı"</string>
+<string name="settings_connections_per_download">"Hər yükləmə üçün bağlantılar"</string>
+<string name="settings_connections_per_download_body">"Mənbə icazə verdikdə, çox bağlantı daha sürətli ola bilər."</string>
+<string name="settings_diagnostics">"Diaqnostika"</string>
+<string name="settings_disk_cache">"Disk keşi"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Uzantılar, şəkillər və subtitrlər üçün. Video axınları Mac-in DNS-ini istifadə edir."</string>
+<string name="settings_download_folder">"Yükləmə qovluğu"</string>
+<string name="settings_downloads_at_once">"Eyni anda yükləmələr"</string>
+<string name="settings_downloads_at_once_body">"Neçə başlıq birlikdə yüklənir."</string>
+<string name="settings_downloads_wait">"Qovluq geri qayıdana və ya başqası seçilənə qədər yeni yükləmələr gözləyir."</string>
+<string name="settings_extension_languages">"Dillər"</string>
+<string name="settings_extension_review">"Nəzərdən keçir"</string>
+<string name="settings_extensions_auto_install">"Repozitorilərimdən yeniləri quraşdır"</string>
+<string name="settings_extensions_auto_install_body">"Hər biri işə düşməzdən əvvəl yenə yoxlanılır."</string>
+<string name="settings_extensions_auto_update">"Uzantıları avtomatik yenilə"</string>
+<string name="settings_extensions_auto_update_body">"Hər yeniləmə işə düşməzdən əvvəl yoxlanılır."</string>
+<string name="settings_extensions_installed" formatted="true">"Quraşdırılıb · %d"</string>
+<string name="settings_filler_episodes">"Doldurma epizodlar"</string>
+<string name="settings_filler_episodes_body">"Anime üçün, mənbə onları qeyd etdikdə."</string>
+<string name="settings_folder">"Qovluq"</string>
+<string name="settings_folder_missing" formatted="true">"%s tapılmır. Onun diski qoşulmaya bilər."</string>
+<string name="settings_help_community">"Yardım və icma"</string>
+<string name="settings_help_community_body">"GitHub, Discord və viki Yardım menyusundadır."</string>
+<string name="settings_hide_search_quality">"Axtarış nəticələrində keyfiyyəti gizlət"</string>
+<string name="settings_home_search">"Əsas səhifə və Axtarış"</string>
 <string name="settings_info">"Məlumat"</string>
+<string name="settings_last_backup" formatted="true">"Son ehtiyat nüsxə: %s"</string>
+<string name="settings_logs">"Jurnallar"</string>
+<string name="settings_logs_mac_body">"Bu Mac-də 7 gün saxlanılır. Heç yerə göndərilmir."</string>
+<string name="settings_logs_phone_body">"Bu telefonda 7 gün saxlanılır. Heç yerə göndərilmir."</string>
+<string name="settings_network_buffer">"Şəbəkə buferi"</string>
+<string name="settings_offline_repos" formatted="true">"Repozitorilər yoxlanıla bilmir. Bu siyahılar %s tarixindəndir."</string>
+<string name="settings_pane_accounts_privacy">"Hesablar və məxfilik"</string>
+<string name="settings_pane_advanced">"Əlavə"</string>
+<string name="settings_pane_appearance">"Görünüş"</string>
+<string name="settings_pane_network">"Şəbəkə"</string>
+<string name="settings_pane_playback">"Oxutma"</string>
+<string name="settings_play_next">"Növbəti epizodu oxut"</string>
+<string name="settings_play_next_body">"Epizodun sonunda 10 s geri sayır."</string>
+<string name="settings_playing">"Oxutma"</string>
+<string name="settings_poster_badges">"Posterlərdə nişanlar"</string>
+<string name="settings_posters">"Posterlər"</string>
+<string name="settings_profile_no_pin">"PIN yoxdur"</string>
+<string name="settings_profile_this">"Bu profil"</string>
+<string name="settings_random_button_body">"Əsas səhifədə və Kitabxanada."</string>
+<string name="settings_read">"Oxu"</string>
+<string name="settings_remove">"Sil"</string>
+<string name="settings_repo_unreachable" formatted="true">"Ona çatmaq olmadı. Bu siyahı %s əvvəlkidir."</string>
+<string name="settings_repositories">"Repozitorilər"</string>
+<string name="settings_reset_app">"CloudStream-i sıfırla"</string>
+<string name="settings_reset_app_body">"Bu Mac-də parametrləri, profilləri və kitabxananı silir."</string>
+<string name="settings_reset_app_phone_body">"Parametrləri, profilləri və kitabxananı silir."</string>
+<string name="settings_reset_confirm_title">"CloudStream sıfırlansın?"</string>
+<string name="settings_reset_erases_mac">"Bu Mac-dən silinəcək:"</string>
+<string name="settings_reset_erases_phone">"Bu telefondan silinəcək:"</string>
+<string name="settings_reset_item_library">"Kitabxana, baxış irəliləyişi və tarixçə"</string>
+<string name="settings_reset_item_search">"Axtarış tarixçəsi"</string>
+<string name="settings_reset_item_settings">"Parametrlər"</string>
+<string name="settings_reset_item_signins">"Sinxronizasiya və subtitr xidmətlərinə girişlər"</string>
+<string name="settings_reset_kept">"Saxlanılır: uzantılar, yüklənmiş fayllar və ehtiyat nüsxələr."</string>
+<string name="settings_restore">"Bərpa et"</string>
+<string name="settings_restore_failed">"Bərpa etmək olmadı"</string>
+<string name="settings_restore_failed_body">"O fayl CloudStream ehtiyat nüsxəsi deyil. Heç nə dəyişmədi."</string>
+<string name="settings_restoring" formatted="true">"%s bərpa olunur"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d / %3$d"</string>
+<string name="settings_run_test">"Testi işə sal"</string>
+<string name="settings_search_hint">"Parametrlərdə axtar"</string>
+<string name="settings_search_no_results" formatted="true">"“%s” üçün nəticə yoxdur"</string>
+<string name="settings_search_no_results_body">"Başqa söz yoxlayın."</string>
+<string name="settings_seek_amount">"Keçid addımı"</string>
+<string name="settings_setup_again">"Quraşdırmanı yenidən başlat"</string>
+<string name="settings_setup_again_body">"Dil, uzantılar və tərtibat, əvvəldən."</string>
+<string name="settings_setup_run">"Quraşdırmanı başlat"</string>
+<string name="settings_sign_in">"Daxil ol"</string>
+<string name="settings_skip_intro">"Girişi keç təklif et"</string>
+<string name="settings_skip_intro_body">"Mənbə açılışı və ya titrləri qeyd etdikdə."</string>
+<string name="settings_skip_profile_choice">"Profil seçimini keç"</string>
+<string name="settings_skip_profile_choice_body">"Son istifadə olunan profili açır."</string>
+<string name="settings_source_order">"Mənbə sırası"</string>
+<string name="settings_source_order_body">"Pleyerin ilk sınadığı mənbələr."</string>
+<string name="settings_speed">"Sürət"</string>
+<string name="settings_subtitle_background">"Fon"</string>
+<string name="settings_subtitle_edge">"Kənar"</string>
+<string name="settings_subtitle_font_system">"Sistem"</string>
+<string name="settings_subtitle_language">"Üstünlük verilən dil"</string>
+<string name="settings_subtitle_language_body">"Başlıqda olduqda avtomatik seçilir."</string>
+<string name="settings_subtitle_preview">"Önizləmə"</string>
+<string name="settings_subtitle_services">"Subtitr xidmətləri"</string>
+<string name="settings_subtitle_size">"Ölçü"</string>
+<string name="settings_subtitle_size_large">"Böyük"</string>
+<string name="settings_subtitle_size_medium">"Orta"</string>
+<string name="settings_subtitle_size_small">"Kiçik"</string>
+<string name="settings_subtitle_text_color">"Mətn rəngi"</string>
+<string name="settings_suggestions_while_typing">"Yazarkən təkliflər"</string>
+<string name="settings_sync_for" formatted="true">"%s üçün sinxronizasiya"</string>
+<string name="settings_sync_per_profile">"Hər profil ayrıca daxil olur."</string>
+<string name="settings_test_all_extensions">"Bütün uzantıları test et"</string>
+<string name="settings_test_all_extensions_body">"Hər aktiv uzantı ilə axtarır. Tərtibatçılar üçün."</string>
+<string name="settings_title_pages">"Başlıq səhifələri"</string>
+<string name="settings_title_under_poster">"Posterin altında başlıq"</string>
+<string name="settings_trailers">"Treylerlər"</string>
+<string name="settings_updates">"Yeniləmələr"</string>
+<string name="settings_updates_at_launch">"Açılışda yeniləmələri yoxla"</string>
+<string name="settings_updates_at_launch_body">"CloudStream açılanda yeni versiya axtarır."</string>
+<string name="settings_updates_check_now">"İndi yoxla"</string>
+<string name="settings_updates_current" formatted="true">"Ən son versiya · yoxlanılıb %s"</string>
+<string name="settings_watch_progress_body">"Dayandığınız yeri Baxmağa davam et üçün saxlayır."</string>
 <string name="show_trailers_settings">"Treylerləri göstər"</string>
 <string name="skip_loading">"Yükləməni keç"</string>
 <string name="source_error">"Mənbə xətası"</string>

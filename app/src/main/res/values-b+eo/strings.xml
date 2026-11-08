@@ -11,9 +11,16 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d sekcio ne ŝargiĝis"</item><item quantity="other">"%d sekcioj ne ŝargiĝis"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sekcio"</item><item quantity="other">"%d sekcioj"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d titolo"</item><item quantity="other">"%d titoloj"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d sekundo"</item><item quantity="other">"%d sekundoj"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d fonto"</item><item quantity="other">"%d fontoj"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Sekva epizodo post %d s"</item><item quantity="other">"Sekva epizodo post %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Serĉi en %d fonto"</item><item quantity="other">"Serĉi en ĉiuj %d fontoj"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Premu la serĉoklavon de la klavaro por tamen serĉi en %d fonto."</item><item quantity="other">"Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTO"</item><item quantity="other">"%d FONTOJ"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d skana averto"</item><item quantity="other">"%d skanaj avertoj"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Ĉiuj kromprogramoj (%d)"</item><item quantity="other">"Ĉiuj kromprogramoj (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d kromprogramo · ĝisdatigita %2$s"</item><item quantity="other">"%1$d kromprogramoj · ĝisdatigitaj %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d profilo kaj ĝia PIN"</item><item quantity="other">"%d profiloj kaj iliaj PIN-oj"</item></plurals>
 <string name="account">"konto"</string>
 <string name="account_add_profile">"Aldoni profilon"</string>
 <string name="account_manage_profiles">"Administri profilojn"</string>
@@ -237,6 +244,7 @@
 <string name="play_torrent_button">"Elsendflui Torenton"</string>
 <string name="play_trailer_button">"Ludi Antaŭfilmon"</string>
 <string name="play_with_app_name">"Ludi per CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Eniri plenekranan reĝimon"</string>
 <string name="player_exit_fullscreen">"Eliri el plenekrana reĝimo"</string>
 <string name="player_fit_original">"Originala proporcio"</string>
@@ -251,15 +259,22 @@
 <string name="player_hud_seek_forward">"Antaŭen"</string>
 <string name="player_hud_speed">"Rapido"</string>
 <string name="player_hud_up_next" formatted="true">"Sekva · %s"</string>
+<string name="player_menu_playback">"Ludado"</string>
 <string name="player_mute">"Silentigi"</string>
+<string name="player_play_now">"Ludi nun"</string>
 <string name="player_size_settings_des">"Forigi nigrajn borderaĵojn"</string>
+<string name="player_source_decoded" formatted="true">"%s malkodita"</string>
 <string name="player_source_playing">"Ludanta"</string>
 <string name="player_source_resumes_at" formatted="true">"Ŝanĝo konservas vian lokon: daŭrigas ĉe %1$s"</string>
 <string name="player_source_retry">"Reprovi"</string>
 <string name="player_source_switch">"Ŝanĝi"</string>
+<string name="player_sources_all_failed">"Ĉiu fonto respondis per eraro."</string>
+<string name="player_sources_all_failed_detail">"Elektu fonton sube por provi ĝin denove."</string>
 <string name="player_speed_text_format" formatted="true">"Rapido (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtekstoj"</string>
 <string name="player_unmute">"Malsilentigi"</string>
+<string name="player_volume_down">"Mallaŭtigi"</string>
+<string name="player_volume_up">"Plilaŭtigi"</string>
 <string name="popup_delete_file">"Forigi Dosieron"</string>
 <string name="popup_pause_download">"Paŭzigi Elŝuton"</string>
 <string name="popup_resume_download">"Daŭrigi Elŝuton"</string>
@@ -308,7 +323,130 @@
 <string name="seek_back_10_seconds">"Salti 10 sekundojn malantaŭen"</string>
 <string name="seek_forward_10_seconds">"Salti 10 sekundojn antaŭen"</string>
 <string name="select_all">"Selekti Ĉion"</string>
+<string name="settings_adult_content">"Plenkreskula enhavo"</string>
+<string name="settings_adult_content_body">"Nur kie kromprogramo subtenas ĝin. Post restarto."</string>
+<string name="settings_anime_audio">"Sono de animeoj"</string>
+<string name="settings_anime_audio_both">"Dublita kaj subtekstita"</string>
+<string name="settings_at_launch">"Ĉe lanĉo"</string>
+<string name="settings_back_up">"Savkopii"</string>
+<string name="settings_back_up_now">"Savkopii nun"</string>
+<string name="settings_backup_automatically">"Aŭtomate"</string>
+<string name="settings_backup_folder">"Dosierujo de savkopioj"</string>
+<string name="settings_change">"Ŝanĝi"</string>
+<string name="settings_choose">"Elekti"</string>
+<string name="settings_choose_another">"Elekti alian"</string>
+<string name="settings_clear">"Vakigi"</string>
+<string name="settings_clear_cache">"Vakigi kaŝmemoron"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Video %1$s · bildoj %2$s"</string>
+<string name="settings_color_white">"Blanka"</string>
+<string name="settings_color_yellow">"Flava"</string>
+<string name="settings_connections_per_download">"Konektoj por ĉiu elŝuto"</string>
+<string name="settings_connections_per_download_body">"Pli multaj povas esti pli rapidaj, se la fonto permesas."</string>
+<string name="settings_diagnostics">"Diagnozo"</string>
+<string name="settings_disk_cache">"Diska kaŝmemoro"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Por kromprogramoj, bildoj kaj subtekstoj. Videofluoj uzas la DNS de via Mac."</string>
+<string name="settings_download_folder">"Dosierujo de elŝutoj"</string>
+<string name="settings_downloads_at_once">"Samtempaj elŝutoj"</string>
+<string name="settings_downloads_at_once_body">"Kiom da titoloj elŝutiĝas samtempe."</string>
+<string name="settings_downloads_wait">"Novaj elŝutoj atendas, ĝis la dosierujo revenos aŭ alia estos elektita."</string>
+<string name="settings_extension_languages">"Lingvoj"</string>
+<string name="settings_extension_review">"Kontroli"</string>
+<string name="settings_extensions_auto_install">"Instali novajn el miaj deponejoj"</string>
+<string name="settings_extensions_auto_install_body">"Ĉiu tamen estas skanita antaŭ ol ĝi funkcias."</string>
+<string name="settings_extensions_auto_update">"Aŭtomate ĝisdatigi kromprogramojn"</string>
+<string name="settings_extensions_auto_update_body">"Ĉiu ĝisdatigo estas skanita antaŭ ol ĝi funkcias."</string>
+<string name="settings_extensions_installed" formatted="true">"Instalitaj · %d"</string>
+<string name="settings_filler_episodes">"Plenigaj epizodoj"</string>
+<string name="settings_filler_episodes_body">"Por animeoj, kie la fonto markas ilin."</string>
+<string name="settings_folder">"Dosierujo"</string>
+<string name="settings_folder_missing" formatted="true">"%s mankas. Ĝia disko eble ne estas konektita."</string>
+<string name="settings_help_community">"Helpo kaj komunumo"</string>
+<string name="settings_help_community_body">"GitHub, Discord kaj la vikio estas en la menuo Helpo."</string>
+<string name="settings_hide_search_quality">"Kaŝi kvaliton en serĉrezultoj"</string>
+<string name="settings_home_search">"Hejmo kaj serĉo"</string>
 <string name="settings_info">"Informoj"</string>
+<string name="settings_last_backup" formatted="true">"Lasta savkopio: %s"</string>
+<string name="settings_logs">"Protokoloj"</string>
+<string name="settings_logs_mac_body">"Konservataj en ĉi tiu Mac dum 7 tagoj. Neniam senditaj ien ajn."</string>
+<string name="settings_logs_phone_body">"Konservataj en ĉi tiu telefono dum 7 tagoj. Neniam senditaj ien ajn."</string>
+<string name="settings_network_buffer">"Reta bufro"</string>
+<string name="settings_offline_repos" formatted="true">"Deponejoj ne kontroleblas. Ĉi tiuj listoj estas de %s."</string>
+<string name="settings_pane_accounts_privacy">"Kontoj kaj privateco"</string>
+<string name="settings_pane_advanced">"Altnivelaj"</string>
+<string name="settings_pane_appearance">"Aspekto"</string>
+<string name="settings_pane_network">"Reto"</string>
+<string name="settings_pane_playback">"Ludado"</string>
+<string name="settings_play_next">"Ludi la sekvan epizodon"</string>
+<string name="settings_play_next_body">"Retronombras 10 s ĉe la fino de epizodo."</string>
+<string name="settings_playing">"Ludado"</string>
+<string name="settings_poster_badges">"Insignoj sur afiŝoj"</string>
+<string name="settings_posters">"Afiŝoj"</string>
+<string name="settings_profile_no_pin">"Sen PIN"</string>
+<string name="settings_profile_this">"Ĉi tiu profilo"</string>
+<string name="settings_random_button_body">"En Hejmo kaj Biblioteko."</string>
+<string name="settings_read">"Legi"</string>
+<string name="settings_remove">"Forigi"</string>
+<string name="settings_repo_unreachable" formatted="true">"Ne atingeblis. Ĉi tiu listo estas de antaŭ %s."</string>
+<string name="settings_repositories">"Deponejoj"</string>
+<string name="settings_reset_app">"Restarigi CloudStream"</string>
+<string name="settings_reset_app_body">"Forviŝas agordojn, profilojn kaj bibliotekon en ĉi tiu Mac."</string>
+<string name="settings_reset_app_phone_body">"Forviŝas agordojn, profilojn kaj bibliotekon."</string>
+<string name="settings_reset_confirm_title">"Ĉu restarigi CloudStream?"</string>
+<string name="settings_reset_erases_mac">"Ĉi tio forviŝas el ĉi tiu Mac:"</string>
+<string name="settings_reset_erases_phone">"Ĉi tio forviŝas el ĉi tiu telefono:"</string>
+<string name="settings_reset_item_library">"Biblioteko, spekta progreso kaj historio"</string>
+<string name="settings_reset_item_search">"Serĉhistorio"</string>
+<string name="settings_reset_item_settings">"Agordoj"</string>
+<string name="settings_reset_item_signins">"Ensalutoj al servoj de sinkronigo kaj subtekstoj"</string>
+<string name="settings_reset_kept">"Konservataj: kromprogramoj, elŝutitaj dosieroj kaj savkopioj."</string>
+<string name="settings_restore">"Restaŭri"</string>
+<string name="settings_restore_failed">"Ne eblis restaŭri"</string>
+<string name="settings_restore_failed_body">"Tiu dosiero ne estas savkopio de CloudStream. Nenio estis ŝanĝita."</string>
+<string name="settings_restoring" formatted="true">"Restaŭrante %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d el %3$d"</string>
+<string name="settings_run_test">"Ruli teston"</string>
+<string name="settings_search_hint">"Serĉi en agordoj"</string>
+<string name="settings_search_no_results" formatted="true">"Neniuj rezultoj por “%s”"</string>
+<string name="settings_search_no_results_body">"Provu alian vorton."</string>
+<string name="settings_seek_amount">"Salta paŝo"</string>
+<string name="settings_setup_again">"Ruli agordadon denove"</string>
+<string name="settings_setup_again_body">"Lingvo, kromprogramoj kaj aranĝo, de la komenco."</string>
+<string name="settings_setup_run">"Ruli agordadon"</string>
+<string name="settings_sign_in">"Ensaluti"</string>
+<string name="settings_skip_intro">"Proponi Preterlasi enkondukon"</string>
+<string name="settings_skip_intro_body">"Kie fonto markas la komencon aŭ la finan tekston."</string>
+<string name="settings_skip_profile_choice">"Preterlasi elekton de profilo"</string>
+<string name="settings_skip_profile_choice_body">"Malfermas la laste uzitan profilon."</string>
+<string name="settings_source_order">"Ordo de fontoj"</string>
+<string name="settings_source_order_body">"Kiujn fontojn la ludilo provas unue."</string>
+<string name="settings_speed">"Rapido"</string>
+<string name="settings_subtitle_background">"Fono"</string>
+<string name="settings_subtitle_edge">"Rando"</string>
+<string name="settings_subtitle_font_system">"Sistema"</string>
+<string name="settings_subtitle_language">"Preferata lingvo"</string>
+<string name="settings_subtitle_language_body">"Elektata aŭtomate, kiam titolo havas ĝin."</string>
+<string name="settings_subtitle_preview">"Antaŭrigardo"</string>
+<string name="settings_subtitle_services">"Subtekstaj servoj"</string>
+<string name="settings_subtitle_size">"Grando"</string>
+<string name="settings_subtitle_size_large">"Granda"</string>
+<string name="settings_subtitle_size_medium">"Meza"</string>
+<string name="settings_subtitle_size_small">"Malgranda"</string>
+<string name="settings_subtitle_text_color">"Tekstkoloro"</string>
+<string name="settings_suggestions_while_typing">"Sugestoj dum tajpado"</string>
+<string name="settings_sync_for" formatted="true">"Sinkronigo por %s"</string>
+<string name="settings_sync_per_profile">"Ĉiu profilo ensalutas aparte."</string>
+<string name="settings_test_all_extensions">"Testi ĉiujn kromprogramojn"</string>
+<string name="settings_test_all_extensions_body">"Serĉas per ĉiu ŝaltita kromprogramo. Por programistoj."</string>
+<string name="settings_title_pages">"Paĝoj de titoloj"</string>
+<string name="settings_title_under_poster">"Titolo sub la afiŝo"</string>
+<string name="settings_trailers">"Antaŭfilmoj"</string>
+<string name="settings_updates">"Ĝisdatigoj"</string>
+<string name="settings_updates_at_launch">"Kontroli ĝisdatigojn ĉe lanĉo"</string>
+<string name="settings_updates_at_launch_body">"Serĉas novan version, kiam CloudStream malfermiĝas."</string>
+<string name="settings_updates_check_now">"Kontroli nun"</string>
+<string name="settings_updates_current" formatted="true">"Ĝisdata · kontrolita %s"</string>
+<string name="settings_watch_progress_body">"Konservas, kie vi haltis, por Daŭrigi spekti."</string>
 <string name="show_title">"Titolo"</string>
 <string name="skip_loading">"Preterpasi la ŝarĝado"</string>
 <string name="sort_apply">"Efektivigi"</string>

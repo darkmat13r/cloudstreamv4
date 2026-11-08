@@ -3950,11 +3950,48 @@ pixels apart; the old 784dp overhung by 46.
   DS-17 lands.
 - **Season, Episodes and Full synopsis still trail the row as text buttons.** They are on no board here and
   stay until their replacements exist. The row's order is the board's **as a prefix**, so nothing is
-  reordered when they go.
-- **Queued, in order:** board 7i, the inline episode list with season chips (Season and Episodes leave the
-  row); boards 7j and 7k, the collapsed synopsis opening the panel (Synopsis leaves); then Download and
-  Mark watched for films, wired to real `DetailAction`s with tests — `DetailAction` has neither today,
-  which is why 7g's two cells are not drawn. **More** has no board yet.
+  reordered when they go. As of PR 2b the Season button resolves `season_format` rather than
+  concatenating, so it and the chips read the same key; it still scrolls to the list rather than
+  choosing a season, and **removing it is not 2b's** — it is the one part of 7i still open, below.
+- **Queued, in order:** boards 7j and 7k, the collapsed synopsis opening the panel (Synopsis leaves);
+  then Download and Mark watched for films, wired to real `DetailAction`s with tests — `DetailAction`
+  has neither today, which is why 7g's two cells are not drawn. **More** has no board yet.
+
+### Board 7i is drawn, less its two text buttons (PR 2a `#181`, PR 2b)
+
+PR 2a drew the rows; PR 2b adds the season chips, so 7i's list is complete as far as the contract
+reaches (`KMP-63` holds the two readouts it cannot supply).
+
+**What the chips are keyed on, and why it is not `TitleDetail.seasons`.** The groups are derived from
+`DetailEpisode.season`, not from the `seasons` list the action row's button reads. `toSeasons()` is
+`mapNotNull { it.season }.groupingBy { it }.eachCount()`, so it **drops every null-season episode** —
+chips built from it would hide exactly the episodes the Other chip exists to show. The owner's ruling
+is that no episode is ever hidden, which rules the `seasons` list out as the source.
+
+**Which chip a page opens on** (#244's review). The chosen chip is a **nullable** index: null until
+the viewer picks one. While it is null, the page opens on the group holding the episode the primary
+action plays, so Resume at S3E5 opens Season 3 with that row marked; otherwise it opens on the first
+group. `shownSeasonIndex` resolves and clamps it on the screen, which keeps the empty-list guard.
+- `aResumeInSeasonTwoOpensOnSeasonTwoWithItsRowMarked` holds it on the device. It fails on #244's earlier
+  head `9a837e7fe`, which opened on Season 1.
+- One consequence for a series with no resume: the primary plays the provider's first episode, so the
+  page opens on that episode's group. When a provider lists specials first, that group is Specials.
+  `SeasonGroups` now declares season 1's episode first, so its tests and `detail-season-chips` still
+  open on Season 1. That reference changed only by the marked "One One" row.
+
+**Still open on 7i:** Season and Episodes leave the action row. Both still do the one thing the chips
+do not — each calls `onScrollToEpisodes` — so removing them is a focus-order and reference change of
+its own, not a line in the chip PR.
+
+They are **almost** mutually exclusive with the chips, and the gap is worth knowing before anyone
+removes them. `namedSeason()` is `seasons.singleOrNull()` (`DetailCopy.kt:281`), so the two buttons
+appear only when the title has exactly **one** season, and chips appear only at **two or more**
+groups. The overlap is a title whose episodes carry one season number *and* some with no season at
+all: `toSeasons()` drops the nulls and yields a single season, so both buttons draw, while the groups
+are `[1, Other]`, so the chips draw too. On that title the Episodes button counts season 1 while the
+header counts the chosen group, so picking Other puts two different counts on one screen. Measured
+from the two functions, not seen on a device — no fixture here produces it, because `SeasonGroups`
+sets `seasons = emptyList()`.
 - **Board 6a's chip gap is wrong**, not the code's: 6a draws range chips at 12dp where `ChipRow` spaces at
   `ChipRowSpacing` 24dp. Board 7i is drawn at the token. Raised as an owner correction.
 
@@ -5613,6 +5650,9 @@ desktop component layer (`DS-19`) comes later. Strings are `I18N-11` (#178), whi
 - "4.24 GB / 5.10 GB" for "4.24 GB of 5.10 GB".
 - "Not enough storage · Needs 2.40 GB more" for D5's sentence.
 - "Free up space" for "Open Storage Settings".
+- **D1's Play from link and Download queue are not drawn on the Mac** (`KMP-75`, the PM's call: no dead controls). The Mac has
+  no page behind either. `DownloadsScreenDesktop`'s `canPlayFromLink` and `canOpenQueue` draw them once a host has one;
+  the toolbar band stays, so nothing below moves.
 - D5's empty copy is TV's.
 - The D3 sheet's body gives the size freed without the titles' names.
 
@@ -6153,6 +6193,98 @@ Tests:
   - the pill on `is Offline` again: the pill's pixel reads the background;
   - kept rows given Load more: the click there sends `RowMoreRequested`.
 
+## KMP-77 — The Mac's sidebar stays beside a title's page
+
+**Status:** in review · `:desktopApp` only · `DS-21` E1
+
+`DS-21`'s Detail boards (E1 to E6) keep the sidebar beside a title's page, with the tab it was opened from chosen. The
+built window dropped it for anything pushed. Now:
+- **A title's page is inside the shell** (`TopLevelScreen`), with the tab at the bottom of the stack chosen: Home,
+  Search or Library, whichever the title was opened from.
+- **A row there, or ⌘1 to ⌘3, leaves the title for that tab**, as a sidebar does in Finder or Music: what was pushed
+  goes, and each title's view model goes with it (`DesktopDetailViewModels.forget`), as Back does.
+- **The player and the extension review keep the whole window.** The keys are off there, as the sidebar is.
+
+**With `KMP-75` (`#229`, which this is stacked on):** Downloads and a series' downloads page are in the same scheme.
+Downloads is a sidebar row with ⌘4, and a series' page keeps the sidebar with Downloads chosen; ⌘1 to ⌘4 work wherever
+the sidebar is. A test (`LibraryScreenTest`) opens a title from Library and presses ⌘4: it lands on Downloads with
+nothing under it, and the title's view model is gone.
+
+**Tests** (`HomeScreenTest`, through `DesktopApp`): a title opened from Home keeps the sidebar with Home chosen (its
+row's fill, sampled from the render); Search's row leaves the title for Search with nothing under it; ⌘3 leaves a title
+for Library the same way. With the title's page outside the shell again, the test fails at the chosen-row check
+("Home is chosen under the title"): there is no sidebar to sample.
+After each way out, the title's view model is gone (`DesktopDetailViewModels.isLive`, internal, for this); with
+`root`'s `forget` removed, the test fails there.
+
+**Not verified:** that the keys are off over the player. `FakeHome`'s titles cannot be opened (no provider answers them),
+so the test cannot reach a player to check that `atTop` is false there and ⌘3 leaves the screen alone. The rule is one
+line (`Screen.hasSidebar`), read, not run.
+
+**Follow-up:** the window's `rememberSaveableStateHolder` keeps every key it has seen: nothing calls `removeState` for a
+screen that was popped, by `root` or by Back, so a title's scroll position outlives the title. Small, and the same for
+both ways out; it wants its own task.
+
+## KMP-87 — The Mac player's HUD, `DS-23` M1 to M3, and its keyboard map
+
+**Status:** in review · `:desktopApp` · `DS-23` (merged) · over the built `PlayerScreen`
+
+- **M1, the top band:** Back, the title, then the episode, quieter: `S1:E4 · The Lighthouse`, from the episode playing
+  (`episodeMeta`, the app's own `S1:E4` in the translated letters, then its name). `DetailHost` works it out from the
+  episode it asked for and the player carries it (`Screen.Player.meta`).
+  - The source and its quality left the band for the Source selector, which already says `Source One · 1080p`.
+  - Where there is no selector (a host that cannot switch), they join the band's line instead (`hudMeta`), so the band
+    never says less than it did.
+- **M2, showing and hiding:** the pointer goes with the HUD and comes back with it (`playerPointer`).
+  - Only a pointer that really moved counts. Compose re-sends hover when something moves under a still pointer, as Skip
+    does when the HUD leaves, and counting that brought the HUD straight back: a flicker, found by the test.
+  - A pointer coming into the window counts as well: it arrives as Enter, before any Move.
+  - The wait is injected (`HudIdle`), three seconds in the app, so a test says when it has passed instead of sleeping.
+- **M3:**
+  - Resting on the timeline shows the time under the pointer, above the rule, until it leaves (`hoverTime`).
+  - **Skip** draws from the shared `HudSkip` (`:feature:player`, now a dependency of `:desktopApp`), outside the HUD, so it
+    stays while the HUD is hidden. The Mac has no skip stamps yet (`KMP-86`), so the host passes none and nothing is drawn.
+- **The keyboard map** is the built one, unchanged: Space, ← →, ↑ ↓, M, C, A, R, S, F, and Escape closing a list, then
+  full screen, then the player.
+
+**DECIDED:**
+- The band's code is `S1:E4`, the app's own form everywhere else, not the board's `S1 E4`.
+- `:desktopApp` depends on `:feature:player` for `HudSkip`, so the Mac and TV share the type `KMP-86` will fill. Its
+  runtime classpath gains that one project and nothing else (the dependency report, against master): no Android artifact,
+  no new library.
+
+**Tests** (`PlayerScreenTest`, 68 in all, all run):
+- `episodeMeta` and `hudMeta`, every case.
+- M1: the band draws the line beside the title, and nothing there without one.
+- M2: the HUD leaves when the wait passes while playing, and a move brings it back and waits again; paused, there is
+  nothing to wait out. Driven by a hand-run `HudIdle`: no sleep, no tolerance.
+- M3: the time is drawn above the pointer and goes when it leaves, and resting seeks nothing; `hoverTime` at the middle,
+  past the end, and over an hour. Skip answers with the HUD up and hidden, and nothing answers where it would be without
+  one.
+- The keyboard map: every key in one window, each doing what the Playback menu says.
+- Proved by mutation: counting every hover event fails the Skip test (the HUD never goes); without Enter on the rule,
+  the hover test fails. **Not proved:** Skip's floor at the window's margin while the HUD's inset grows back from 0. The
+  press lands before that frame, so no test sees it; read, not run.
+- **Changed existing test code:** the harness takes `meta`, `skip` and the idle; the fixtures `VidSrc`, `VidSrc Pro` and
+  `Filemoon` are now `Source One` and `Source Two`. Each assertion is the same as before with the name swapped.
+
+## KMP-86 — Skip stamps for the Mac player · **open**, follow-up of `KMP-87`
+
+`DS-23` M3 draws Skip Intro while the stream has something to skip. The Mac player draws it from `HudSkip` (`KMP-87`),
+as TV does, but nothing on the Mac fills it: TV's stamps come from its host. Find where the stamps come from for a
+title, read them for the episode playing, and pass the current one to `PlayerContent.skip`, with `onSkip` seeking past it.
+
+## KMP-89 — Player KDoc examples use a made-up source
+
+**Status:** in review · comments only · from `KMP-87`'s review
+
+Two KDoc examples named a real site as a source's readout. Both now say `Source One · 1080p`, as the boards and the tests
+do: `SourcePicker.kt`'s `sourceName()` and `PlayerHudState.source`. No code changes.
+
+**Not here, for whoever owns them:** test fixtures that still use real site names, `app`'s `TvHudFactsTest` and
+`:feature:player`'s `PlayerHudTvDeviceTest` (a device suite this machine cannot run). `:library`'s extractors are real
+classes with real names and are not fixtures.
+
 ## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
 
 `#200` made Home's failure detail safe. A thrown failure is now its type, such as `IllegalStateException`, never its message,
@@ -6528,3 +6660,71 @@ Mac's DNS."
       addresses it resolved, which has to keep TLS and the host header right.
 - [ ] If it can, the line under the setting goes, in the same PR.
 - [ ] If it cannot, record why here, and the line stays.
+
+## KMP-75 — Downloads in the Mac's sidebar, over `KMP-52`'s service · **built 2026-11-08**
+
+What `KMP-54` left for wiring:
+- **The fourth sidebar row, with ⌘4** (Ctrl+4 elsewhere): `TopLevelDestination.Downloads`, with `CloudStreamIcons.Download`
+  and `title_downloads`. The Go menu lists it with its key.
+- **`DownloadsHost` and `DownloadSeriesHost`** (`desktopApp/.../downloads/DesktopDownloadsHost.kt`), over
+  `DesktopDownloads`:
+  - Delete goes through the page's own sheet. `ConfirmDelete` names exactly what is asked about. The sheet's Delete
+    calls `delete` (titles) or `deleteEpisodes` (D4); its Cancel and Escape remove nothing.
+  - Show in Finder is offered only for what `fileOf` finds on the disk, a finished file or a series' folder, and selects
+    it with `Desktop.browseFileDirectory`.
+  - Free space on D4 is the source's own `freeBytes`, from the same volume as the titles page.
+  - A file removed in Finder is noticed on arrival: `refresh()`, then `Reappeared`.
+- **`main()` makes the one `DesktopDownloads`** (`~/Downloads/CloudStream`, `~/.cloudstream4/downloads.json`) and closes
+  it in a shutdown hook, so a running download comes back Paused. `DesktopApp`'s `downloads` defaults to null, so no test
+  reads or writes the real downloads file; the page is then empty.
+- **Sizes** are formatted Finder's way: decimal units, two decimal places from GB up, with the locale's decimal mark.
+
+**Hidden:** D1's Play from link and Download queue, which have no Mac page behind them (the PM's call: no dead
+controls). See the reduction in `KMP-54`.
+
+**Fixed on the way: a press on a row's hover verb was also the row's.** `DesktopVerb` consumes its press now, and both
+row handlers skip a consumed one.
+- Before, a click on a title and then, within the double-click time, on its Delete verb read as a double-click. It opened
+  the title and asked nothing.
+- On D4, a click on an episode and then on its Delete verb played the episode.
+- Each has a test, proved by mutation. With the row's check removed:
+  - the titles test fails `expected:<[DownloadTitleId(value=2)]> but was:<null>`;
+  - the series test fails with `[Play(id=…1), ConfirmDelete(id=…1)]`.
+
+**Review fix: the view models' lifetimes.** Both were made with `remember` in their hosts, while their readers ran in
+`DesktopApp`'s window-long scope. Every visit to Downloads or a series page left another set of readers running, each
+rebuilding the page as the service ticked, and D1's state was made again with nothing in it.
+- **D1's view model is `DesktopApp`'s**, made once beside the library's, so the selection and `returnTo` outlast a series
+  page, another tab, or a visit to Home.
+- **D4's runs in a child of the window's scope**, cancelled when the page leaves. A delete its sheet confirmed runs in the
+  window's scope itself, so leaving does not cut it short.
+- Two tests, each failing with its fix undone:
+  - the selection survives Downloads → Home → Downloads, and a series opens and closes over the list (undone, the
+    row's fill reads as unselected);
+  - a series page's readers stop when it is left (undone, they are still running after 20 s).
+- **The Mac does not draw `returnTo`.** No desktop Downloads file reads it, so there is no return to the row's place
+  yet. It is kept in state for when one does: `KMP-83`, not built here.
+- **The same check on the other pages:** Library and Search are made once per window, as now Downloads is. Detail is
+  kept per title while the player is over it, and Back's `forget` stops its link search. Home is made again only when
+  what is installed changes; it holds no reader that outlives its loads.
+
+**Not here:**
+- **Playing a downloaded episode** (D4's Play) is `KMP-74`. The player takes a `StreamLink`, not a local file.
+
+**Tests** (`DownloadsHostTest`, against the real service and a loopback server in a temporary folder):
+- A film is downloaded; ⌘⌫ asks and Cancel keeps the file; the row's menu Delete, then the sheet's Delete, removes the
+  file and its record.
+- ⌘4 and the sidebar's fourth row open Downloads through `DesktopApp`.
+- The size format.
+- The list's view model outlives a visit elsewhere, and a series page's readers stop with it (the review fix above).
+
+**The PM asked whether a Return-cancel breaks the row's Delete verb in the same window.** It does not:
+- `after Return cancels the sheet, the row's Delete verb asks again` passes.
+- What looked like it in `DownloadsHostTest` was its presses all stamped time 0, which the row read as a double-click.
+  That is how the verb bug above was found.
+
+**Flaky on master when this was built, not touched here:** two `DesktopDownloadsTest` (`KMP-52`) tests, since fixed as
+`BUG-53` (`#231`, on master before this merged):
+- `a series page reports the same free bytes as the titles page` reads the live volume twice. It failed 3 of 5 lone runs
+  on this branch.
+- `after a restart a resolver with no VIDEO link…` failed once in a full gate run.

@@ -30,10 +30,17 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d סימנייה</item><item quantity="two">%d סימניות</item><item quantity="other">%d סימניות</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">טעינת %d קטע נכשלה</item><item quantity="two">טעינת %d קטעים נכשלה</item><item quantity="other">טעינת %d קטעים נכשלה</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d כותר</item><item quantity="two">%d כותרים</item><item quantity="other">%d כותרים</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">שנייה %d</item><item quantity="two">%d שניות</item><item quantity="other">%d שניות</item></plurals>
+<plurals name="player_source_count"><item quantity="one">מקור %d</item><item quantity="two">%d מקורות</item><item quantity="other">%d מקורות</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">הפרק הבא בעוד %d ש׳</item><item quantity="two">הפרק הבא בעוד %d ש׳</item><item quantity="other">הפרק הבא בעוד %d ש׳</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">חיפוש ב-%d מקור</item><item quantity="two">חיפוש בכל %d המקורות</item><item quantity="other">חיפוש בכל %d המקורות</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.</item><item quantity="two">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.</item><item quantity="other">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d מקור</item><item quantity="two">%d מקורות</item><item quantity="other">%d מקורות</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d קטע</item><item quantity="two">%d קטעים</item><item quantity="other">%d קטעים</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">%d אזהרת סריקה</item><item quantity="two">%d אזהרות סריקה</item><item quantity="other">%d אזהרות סריקה</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">כל ההרחבות (%d)</item><item quantity="two">כל ההרחבות (%d)</item><item quantity="other">כל ההרחבות (%d)</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">%1$d הרחבה · עודכן %2$s</item><item quantity="two">%1$d הרחבות · עודכן %2$s</item><item quantity="other">%1$d הרחבות · עודכן %2$s</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">%d פרופיל וה-PIN שלו</item><item quantity="two">%d פרופילים וקודי ה-PIN שלהם</item><item quantity="other">%d פרופילים וקודי ה-PIN שלהם</item></plurals>
 <string name="account">חשבון</string>
 <string name="action_add_to_bookmarks">הגדר מצב צפייה</string>
 <string name="action_default">ברירת מחדל</string>
@@ -404,6 +411,7 @@
 <string name="play_torrent_button">שדר טורנט</string>
 <string name="play_trailer_button">הפעל טריילר</string>
 <string name="play_with_app_name">נגן עם קלאודסטרים</string>
+<string name="player_audio_stereo">סטריאו</string>
 <string name="player_enter_fullscreen">כניסה למסך מלא</string>
 <string name="player_exit_fullscreen">יציאה ממסך מלא</string>
 <string name="player_fit_original">יחס גובה־רוחב מקורי</string>
@@ -421,20 +429,27 @@
 <string name="player_load_subtitles">טען מקובץ</string>
 <string name="player_load_subtitles_online">טען מהאינטרנט</string>
 <string name="player_loaded_subtitles">נטען %s</string>
+<string name="player_menu_playback">הפעלה</string>
 <string name="player_mute">השתקה</string>
+<string name="player_play_now">הפעלה עכשיו</string>
 <string name="player_pref">נגן וידאו מועדף</string>
 <string name="player_settings_play_in_app">נגן פנימי</string>
 <string name="player_size_settings">כפתור שינוי גודל הנגן</string>
 <string name="player_size_settings_des">הסר את הגבולות השחורים</string>
+<string name="player_source_decoded">%s מפוענח</string>
 <string name="player_source_playing">מתנגן</string>
 <string name="player_source_resumes_at">ההחלפה שומרת על המיקום שלך: ממשיך מ-%1$s</string>
 <string name="player_source_retry">ניסיון חוזר</string>
 <string name="player_source_switch">החלפה</string>
+<string name="player_sources_all_failed">כל המקורות השיבו בשגיאה.</string>
+<string name="player_sources_all_failed_detail">יש לבחור מקור למטה כדי לנסות אותו שוב.</string>
 <string name="player_speed">מהירות הנגן</string>
 <string name="player_speed_text_format">מהירות (%.2fx)</string>
 <string name="player_subtitles_settings">כתוביות</string>
 <string name="player_subtitles_settings_des">הגדרות כתוביות הנגן</string>
 <string name="player_unmute">ביטול השתקה</string>
+<string name="player_volume_down">הנמכת עוצמה</string>
+<string name="player_volume_up">הגברת עוצמה</string>
 <string name="plugin">תוספים</string>
 <string name="plugin_deleted">התוסף נמחק</string>
 <string name="plugin_downloaded">תוסף הורד</string>
@@ -567,7 +582,130 @@
 <string name="select_all">בחר הכל</string>
 <string name="select_library">בחר ספרייה</string>
 <string name="set_default">קביעה כברירת מחדל</string>
+<string name="settings_adult_content">תוכן למבוגרים</string>
+<string name="settings_adult_content_body">רק כשהרחבה תומכת בזה. לאחר הפעלה מחדש.</string>
+<string name="settings_anime_audio">שמע באנימה</string>
+<string name="settings_anime_audio_both">דיבוב וכתוביות</string>
+<string name="settings_at_launch">בהפעלה</string>
+<string name="settings_back_up">גיבוי</string>
+<string name="settings_back_up_now">גיבוי עכשיו</string>
+<string name="settings_backup_automatically">אוטומטית</string>
+<string name="settings_backup_folder">תיקיית גיבוי</string>
+<string name="settings_change">שינוי</string>
+<string name="settings_choose">בחירה</string>
+<string name="settings_choose_another">בחירה באחרת</string>
+<string name="settings_clear">ניקוי</string>
+<string name="settings_clear_cache">ניקוי המטמון</string>
+<string name="settings_clear_cache_sizes">וידאו %1$s · תמונות %2$s</string>
+<string name="settings_color_white">לבן</string>
+<string name="settings_color_yellow">צהוב</string>
+<string name="settings_connections_per_download">חיבורים לכל הורדה</string>
+<string name="settings_connections_per_download_body">יותר יכול להיות מהיר יותר, אם המקור מאפשר.</string>
+<string name="settings_diagnostics">אבחון</string>
+<string name="settings_disk_cache">מטמון בדיסק</string>
+<string name="settings_dns">DNS</string>
+<string name="settings_dns_mac_scope">להרחבות, לתמונות ולכתוביות. זרמי וידאו משתמשים ב-DNS של ה-Mac שלך.</string>
+<string name="settings_download_folder">תיקיית הורדות</string>
+<string name="settings_downloads_at_once">הורדות במקביל</string>
+<string name="settings_downloads_at_once_body">כמה כותרים יורדים יחד.</string>
+<string name="settings_downloads_wait">הורדות חדשות ימתינו עד שהתיקייה תחזור או שתיבחר אחרת.</string>
+<string name="settings_extension_languages">שפות</string>
+<string name="settings_extension_review">סקירה</string>
+<string name="settings_extensions_auto_install">התקנת חדשות מהמאגרים שלי</string>
+<string name="settings_extensions_auto_install_body">כל אחת עדיין נסרקת לפני שהיא רצה.</string>
+<string name="settings_extensions_auto_update">עדכון הרחבות אוטומטית</string>
+<string name="settings_extensions_auto_update_body">כל עדכון נסרק לפני שהוא רץ.</string>
+<string name="settings_extensions_installed">מותקנות · %d</string>
+<string name="settings_filler_episodes">פרקי פילר</string>
+<string name="settings_filler_episodes_body">לאנימה, כשהמקור מסמן אותם.</string>
+<string name="settings_folder">תיקייה</string>
+<string name="settings_folder_missing">%s חסרה. ייתכן שהדיסק שלה לא מחובר.</string>
+<string name="settings_help_community">עזרה וקהילה</string>
+<string name="settings_help_community_body">GitHub, Discord והוויקי נמצאים בתפריט עזרה.</string>
+<string name="settings_hide_search_quality">הסתרת האיכות בתוצאות החיפוש</string>
+<string name="settings_home_search">בית וחיפוש</string>
 <string name="settings_info">מידע</string>
+<string name="settings_last_backup">גיבוי אחרון: %s</string>
+<string name="settings_logs">יומנים</string>
+<string name="settings_logs_mac_body">נשמרים ב-Mac הזה למשך 7 ימים. אף פעם לא נשלחים לשום מקום.</string>
+<string name="settings_logs_phone_body">נשמרים בטלפון הזה למשך 7 ימים. אף פעם לא נשלחים לשום מקום.</string>
+<string name="settings_network_buffer">חוצץ רשת</string>
+<string name="settings_offline_repos">אי אפשר לבדוק את המאגרים. הרשימות האלה הן מ-%s.</string>
+<string name="settings_pane_accounts_privacy">חשבונות ופרטיות</string>
+<string name="settings_pane_advanced">מתקדם</string>
+<string name="settings_pane_appearance">מראה</string>
+<string name="settings_pane_network">רשת</string>
+<string name="settings_pane_playback">ניגון</string>
+<string name="settings_play_next">ניגון הפרק הבא</string>
+<string name="settings_play_next_body">ספירה לאחור של 10 שניות בסוף פרק.</string>
+<string name="settings_playing">בזמן ניגון</string>
+<string name="settings_poster_badges">תגים על הפוסטרים</string>
+<string name="settings_posters">פוסטרים</string>
+<string name="settings_profile_no_pin">ללא PIN</string>
+<string name="settings_profile_this">הפרופיל הזה</string>
+<string name="settings_random_button_body">בבית ובספריה.</string>
+<string name="settings_read">קריאה</string>
+<string name="settings_remove">הסרה</string>
+<string name="settings_repo_unreachable">לא ניתן להגיע אליו. הרשימה הזו היא מלפני %s.</string>
+<string name="settings_repositories">מאגרים</string>
+<string name="settings_reset_app">איפוס CloudStream</string>
+<string name="settings_reset_app_body">מוחק הגדרות, פרופילים וספריה ב-Mac הזה.</string>
+<string name="settings_reset_app_phone_body">מוחק הגדרות, פרופילים וספריה.</string>
+<string name="settings_reset_confirm_title">לאפס את CloudStream?</string>
+<string name="settings_reset_erases_mac">הפעולה מוחקת מה-Mac הזה:</string>
+<string name="settings_reset_erases_phone">הפעולה מוחקת מהטלפון הזה:</string>
+<string name="settings_reset_item_library">ספריה, התקדמות צפייה והיסטוריה</string>
+<string name="settings_reset_item_search">היסטוריית חיפוש</string>
+<string name="settings_reset_item_settings">הגדרות</string>
+<string name="settings_reset_item_signins">התחברויות לשירותי סנכרון וכתוביות</string>
+<string name="settings_reset_kept">נשמרים: הרחבות, קבצים שהורדו וגיבויים.</string>
+<string name="settings_restore">שחזור</string>
+<string name="settings_restore_failed">השחזור נכשל</string>
+<string name="settings_restore_failed_body">הקובץ הזה אינו גיבוי של CloudStream. שום דבר לא השתנה.</string>
+<string name="settings_restoring">משחזר את %s</string>
+<string name="settings_restoring_progress">%1$s · %2$d מתוך %3$d</string>
+<string name="settings_run_test">הרצת בדיקה</string>
+<string name="settings_search_hint">חיפוש בהגדרות</string>
+<string name="settings_search_no_results">אין תוצאות עבור “%s”</string>
+<string name="settings_search_no_results_body">נסו מילה אחרת.</string>
+<string name="settings_seek_amount">גודל דילוג</string>
+<string name="settings_setup_again">הרצת ההגדרה הראשונית שוב</string>
+<string name="settings_setup_again_body">שפה, הרחבות ופריסה, מההתחלה.</string>
+<string name="settings_setup_run">הרצת ההגדרה הראשונית</string>
+<string name="settings_sign_in">התחברות</string>
+<string name="settings_skip_intro">הצעת דילוג על הפתיח</string>
+<string name="settings_skip_intro_body">כשמקור מסמן את הפתיח או את הקרדיטים.</string>
+<string name="settings_skip_profile_choice">דילוג על בחירת פרופיל</string>
+<string name="settings_skip_profile_choice_body">פותח את הפרופיל האחרון שהיה בשימוש.</string>
+<string name="settings_source_order">סדר המקורות</string>
+<string name="settings_source_order_body">אילו מקורות הנגן מנסה קודם.</string>
+<string name="settings_speed">מהירות</string>
+<string name="settings_subtitle_background">רקע</string>
+<string name="settings_subtitle_edge">קצה</string>
+<string name="settings_subtitle_font_system">מערכת</string>
+<string name="settings_subtitle_language">שפה מועדפת</string>
+<string name="settings_subtitle_language_body">נבחרת אוטומטית כשהיא זמינה לכותר.</string>
+<string name="settings_subtitle_preview">תצוגה מקדימה</string>
+<string name="settings_subtitle_services">שירותי כתוביות</string>
+<string name="settings_subtitle_size">גודל</string>
+<string name="settings_subtitle_size_large">גדול</string>
+<string name="settings_subtitle_size_medium">בינוני</string>
+<string name="settings_subtitle_size_small">קטן</string>
+<string name="settings_subtitle_text_color">צבע טקסט</string>
+<string name="settings_suggestions_while_typing">הצעות בזמן הקלדה</string>
+<string name="settings_sync_for">סנכרון עבור %s</string>
+<string name="settings_sync_per_profile">כל פרופיל מתחבר בנפרד.</string>
+<string name="settings_test_all_extensions">בדיקת כל ההרחבות</string>
+<string name="settings_test_all_extensions_body">מחפש עם כל הרחבה מופעלת. למפתחים.</string>
+<string name="settings_title_pages">דפי כותרים</string>
+<string name="settings_title_under_poster">כותר מתחת לפוסטר</string>
+<string name="settings_trailers">טריילרים</string>
+<string name="settings_updates">עדכונים</string>
+<string name="settings_updates_at_launch">בדיקת עדכונים בהפעלה</string>
+<string name="settings_updates_at_launch_body">מחפש גרסה חדשה כש-CloudStream נפתח.</string>
+<string name="settings_updates_check_now">בדיקה עכשיו</string>
+<string name="settings_updates_current">מעודכן · נבדק %s</string>
+<string name="settings_watch_progress_body">שומר את המקום שבו עצרת, עבור המשך צפייה.</string>
 <string name="setup_done">סוים</string>
 <string name="setup_extensions_subtext">הורד את רשימת האתרים שבהם ברצונך להשתמש</string>
 <string name="show_dub">תווית דיבוב</string>

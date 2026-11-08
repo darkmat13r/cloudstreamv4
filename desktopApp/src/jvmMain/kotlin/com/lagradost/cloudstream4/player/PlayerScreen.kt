@@ -55,12 +55,17 @@ import androidx.compose.ui.input.key.type
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.onPointerEvent
 import androidx.compose.ui.input.pointer.pointerInput
+import androidx.compose.ui.input.pointer.pointerHoverIcon
+import androidx.compose.ui.input.pointer.PointerEvent
 import androidx.compose.ui.layout.onSizeChanged
+import androidx.compose.ui.layout.layout
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.Constraints
+import androidx.compose.ui.geometry.Offset
 import com.lagradost.cloudstream4.core.designsystem.primitive.ProgressRule
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
@@ -69,6 +74,7 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.audio_tracks
@@ -92,6 +98,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.media.model.SubtitleCue
 import com.lagradost.cloudstream4.media.model.SubtitleTrack
+import com.lagradost.cloudstream4.feature.player.HudSkip
 import kotlin.concurrent.thread
 import kotlin.math.roundToInt
 import kotlinx.coroutines.delay
@@ -141,6 +148,7 @@ internal fun PlayerScreen(
     link: StreamLink,
     onBack: () -> Unit,
     modifier: Modifier = Modifier,
+    meta: String? = null,
     setEscape: (() -> Unit) -> Unit = {},
     startAtMillis: Long = 0L,
     onProgress: (positionMillis: Long, durationMillis: Long) -> Unit = { _, _ -> },
@@ -215,7 +223,9 @@ internal fun PlayerScreen(
         frame = frame,
         pictureSize = pictureSize,
         status = status.copy(failed = failed),
-        caption = listOfNotNull(title, playback.link.qualityLabel, playback.link.label).joinToString(SEPARATOR),
+        // `DS-23` M1: the title and the episode. The source and its quality are the Source selector's value.
+        caption = title,
+        meta = hudMeta(meta, playback.link.sourceName(), hasSourceSelector = sources != null),
         controls = playback.player,
         subtitles = subtitles,
         clock = clock,
@@ -258,6 +268,10 @@ internal fun PlayerContent(
     sources: PlayerSources? = null,
     fellThrough: FallThrough? = null,
     onAudioChosen: (AudioTrack) -> Unit = {},
+    meta: String? = null,
+    skip: HudSkip? = null,
+    onSkip: () -> Unit = {},
+    hudIdle: HudIdle = HudIdle.Real,
 ) {
     LaunchedEffect(controls, volume.audible) { controls.setVolume(volume.audible) }
     val tracks by subtitles.tracks.collectAsState()
@@ -265,7 +279,18 @@ internal fun PlayerContent(
     val failures by subtitles.failures.collectAsState()
     val focus = remember { FocusRequester() }
     val focusManager = LocalFocusManager.current
-    var lastActivity by remember { mutableLongStateOf(System.currentTimeMillis()) }
+    // Counts pointer moves and keys: each one restarts the wait before the HUD leaves.
+    var lastActivity by remember { mutableLongStateOf(0L) }
+    // Where the pointer last really was. Compose re-sends hover when something moves under a still pointer, as Skip does
+    // when the HUD leaves; counting that as a move would bring the HUD straight back, so only a new position counts.
+    var pointerAt by remember { mutableStateOf<Offset?>(null) }
+    val pointerMoved: (PointerEvent) -> Unit = { event ->
+        val at = event.changes.first().position
+        if (at != pointerAt) {
+            pointerAt = at
+            lastActivity++
+        }
+    }
     var hudVisible by remember { mutableStateOf(true) }
     var pickerOpen by remember { mutableStateOf(false) }
     var fitOpen by remember { mutableStateOf(false) }
@@ -294,7 +319,7 @@ internal fun PlayerContent(
     LaunchedEffect(lastActivity, status.playing, listOpen) {
         hudVisible = true
         if (status.playing && !listOpen) {
-            delay(PlayerScreenDefaults.HudTimeoutMillis)
+            hudIdle.await()
             runCatching { focus.requestFocus() }
             hudVisible = false
         }
@@ -321,10 +346,14 @@ internal fun PlayerContent(
             .background(CloudStreamTheme.colors.bg)
             .focusRequester(focus)
             .focusable()
-            .onPointerEvent(PointerEventType.Move) { lastActivity = System.currentTimeMillis() }
+            // `DS-23` M2: the pointer goes with the HUD, and any move brings both back.
+            .pointerHoverIcon(playerPointer(hudShown))
+            // A pointer coming into the window counts too: it arrives as Enter, before any Move.
+            .onPointerEvent(PointerEventType.Enter) { pointerMoved(it) }
+            .onPointerEvent(PointerEventType.Move) { pointerMoved(it) }
             .onPreviewKeyEvent { event ->
                 if (event.type != KeyEventType.KeyDown) return@onPreviewKeyEvent false
-                lastActivity = System.currentTimeMillis()
+                lastActivity++
                 if (listOpen) {
                     // The list has the keys now. Space and Enter are its rows', the arrows move between them.
                     return@onPreviewKeyEvent when (event.key) {
@@ -407,6 +436,7 @@ internal fun PlayerContent(
         ) {
             Hud(
                 caption = caption,
+                meta = meta,
                 status = status,
                 onTogglePause = controls::togglePause,
                 onSeekTo = seekTo,
@@ -478,6 +508,18 @@ internal fun PlayerContent(
                         )
                     }
                 },
+            )
+        }
+        // `DS-23` M3: not part of the HUD, so it stays while the HUD is hidden; it is what the moment is for. Only while
+        // the stream says there is something to skip (`KMP-86` gives the Mac that data), so it is never a dead control.
+        if (skip != null && !listOpen) {
+            DesktopButton(
+                label = skip.label,
+                onClick = onSkip,
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    // Never below the window's margin, even while the HUD's inset is still growing back from 0.
+                    .padding(end = DesktopDimens.WindowMargin, bottom = maxOf(bottomInset, DesktopDimens.WindowMargin)),
             )
         }
         if (audioOpen) {
@@ -601,6 +643,7 @@ private fun BoxScope.SourceNotice(fellThrough: FallThrough?, bottomInset: Dp) {
 internal fun Hud(
     caption: String,
     status: PlayerStatus,
+    meta: String? = null,
     onTogglePause: () -> Unit,
     onSeekTo: (Float) -> Unit,
     onSeekBy: (Long) -> Unit,
@@ -620,12 +663,27 @@ internal fun Hud(
                 .padding(DesktopDimens.WindowMargin),
         ) {
             DesktopIconButton(CloudStreamIcons.Back, stringResource(Res.string.go_back), onBack)
-            BasicText(
-                text = caption,
-                style = CloudStreamTheme.typography.label.copy(color = colors.ink),
-                maxLines = 1,
-                overflow = TextOverflow.Ellipsis,
-            )
+            // `DS-23` M1: the title, then what is playing of it, quieter. The title keeps its room; the line gives way.
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+            ) {
+                BasicText(
+                    text = caption,
+                    style = CloudStreamTheme.typography.label.copy(color = colors.ink),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                meta?.let {
+                    BasicText(
+                        text = it,
+                        style = CloudStreamTheme.typography.body.copy(color = colors.ink2),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                        modifier = Modifier.weight(1f, fill = false),
+                    )
+                }
+            }
         }
         Column(
             verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
@@ -742,9 +800,13 @@ private fun VolumeControl(volume: PlayerVolume) {
  * and the time follow it 1:1 from the moment it goes down, wherever it wanders while held.
  */
 @Composable
+@OptIn(ExperimentalComposeUiApi::class) // onPointerEvent: the hover that shows the time under the pointer.
 internal fun SeekTrack(status: PlayerStatus, onSeekTo: (Float) -> Unit, modifier: Modifier = Modifier) {
     var width by remember { mutableStateOf(0) }
     var scrub by remember { mutableStateOf<Float?>(null) }
+    // `DS-23` M3: where the pointer rests on the rule, for the time it would seek to. Not while dragging: then the
+    // time at the start of the row already follows the pointer.
+    var hover by remember { mutableStateOf<Float?>(null) }
     val length = status.lengthMillis
     val progress = scrub ?: if (length > 0) status.positionMillis.toFloat() / length else 0f
     val shownPosition = scrub?.let { (it * length).toLong() } ?: status.positionMillis
@@ -761,6 +823,14 @@ internal fun SeekTrack(status: PlayerStatus, onSeekTo: (Float) -> Unit, modifier
                 .weight(1f)
                 .height(PlayerScreenDefaults.SeekTargetHeight)
                 .onSizeChanged { width = it.width }
+                // Enter as well as Move: a pointer that arrives on the rule and rests there has not moved over it yet.
+                .onPointerEvent(PointerEventType.Enter) { event ->
+                    hover = if (width > 0) (event.changes.first().position.x / width).coerceIn(0f, 1f) else null
+                }
+                .onPointerEvent(PointerEventType.Move) { event ->
+                    hover = if (width > 0) (event.changes.first().position.x / width).coerceIn(0f, 1f) else null
+                }
+                .onPointerEvent(PointerEventType.Exit) { hover = null }
                 .pointerInput(Unit) {
                     awaitEachGesture {
                         val down = awaitFirstDown()
@@ -779,6 +849,24 @@ internal fun SeekTrack(status: PlayerStatus, onSeekTo: (Float) -> Unit, modifier
                 },
         ) {
             ProgressRule(progress = progress, modifier = Modifier.fillMaxWidth())
+            val at = hover
+            if (at != null && scrub == null && length > 0) {
+                val gap = PlayerScreenDefaults.HoverTimeGap
+                BasicText(
+                    text = hoverTime(at, length),
+                    style = time,
+                    maxLines = 1,
+                    modifier = Modifier
+                        .align(Alignment.TopStart)
+                        // Takes no room in the row: placed centred over the pointer, above the rule's target.
+                        .layout { measurable, _ ->
+                            val tip = measurable.measure(Constraints())
+                            layout(0, 0) { tip.place((at * width).roundToInt() - tip.width / 2, -tip.height - gap.roundToPx()) }
+                        }
+                        .background(CloudStreamTheme.colors.raised, CloudStreamTheme.shapes.small)
+                        .padding(horizontal = DesktopDimens.RelatedGap, vertical = PlayerScreenDefaults.HoverTimePadding),
+                )
+            }
         }
         BasicText(text = clock(length), style = time, maxLines = 1)
     }
@@ -830,6 +918,10 @@ internal object PlayerScreenDefaults {
      */
     const val CueTickMillis = 40L
     const val NoticeMillis = 5_000L
+    /** Between the hover time and the top of the rule's target. */
+    val HoverTimeGap: Dp = DesktopDimens.RelatedGap
+    /** Above and below the hover time's line: 16 + 4 + 4 is a 24 tip. */
+    val HoverTimePadding: Dp = 4.dp
     /** Line height to font size, from the Manrope line boxes measured in `design/`. */
     const val CaptionLineRatio = 1.375f
     /** A caption is about this share of the picture's height: 32 on 1280 x 720, 20 on 800 x 450. */

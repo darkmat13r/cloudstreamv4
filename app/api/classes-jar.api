@@ -3205,6 +3205,9 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field home_source_sections I
 	public static field library_title_count I
 	public static field links_hidden I
+	public static field player_seek_seconds I
+	public static field player_source_count I
+	public static field player_up_next_in I
 	public static field search_state_no_results_body I
 	public static field search_state_no_suggestions_action I
 	public static field search_state_no_suggestions_body I
@@ -3213,6 +3216,10 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field search_tv_result_count I
 	public static field search_tv_sources_count I
 	public static field search_tv_suggestion_sources I
+	public static field settings_extension_scan_warnings I
+	public static field settings_extensions_all I
+	public static field settings_repo_summary I
+	public static field settings_reset_item_profiles I
 }
 
 public final static class com/lagradost/cloudstream3/R$string : java/lang/Object {
@@ -3787,6 +3794,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field play_trailer_button I
 	public static field play_with_app_name I
 	public static field playback_speed_enabled_key I
+	public static field player_audio_stereo I
 	public static field player_default_key I
 	public static field player_enter_fullscreen I
 	public static field player_exit_fullscreen I
@@ -3807,9 +3815,11 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field player_load_subtitles I
 	public static field player_load_subtitles_online I
 	public static field player_loaded_subtitles I
+	public static field player_menu_playback I
 	public static field player_mute I
 	public static field player_notification_channel_description I
 	public static field player_notification_channel_name I
+	public static field player_play_now I
 	public static field player_pref I
 	public static field player_resize_enabled_key I
 	public static field player_settings_always_ask I
@@ -3817,16 +3827,21 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field player_settings_select_cast_device I
 	public static field player_size_settings I
 	public static field player_size_settings_des I
+	public static field player_source_decoded I
 	public static field player_source_playing I
 	public static field player_source_priority_key I
 	public static field player_source_resumes_at I
 	public static field player_source_retry I
 	public static field player_source_switch I
+	public static field player_sources_all_failed I
+	public static field player_sources_all_failed_detail I
 	public static field player_speed I
 	public static field player_speed_text_format I
 	public static field player_subtitles_settings I
 	public static field player_subtitles_settings_des I
 	public static field player_unmute I
+	public static field player_volume_down I
+	public static field player_volume_up I
 	public static field plugin I
 	public static field plugin_deleted I
 	public static field plugin_downloaded I
@@ -4025,7 +4040,130 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field select_an_account I
 	public static field select_library I
 	public static field set_default I
+	public static field settings_adult_content I
+	public static field settings_adult_content_body I
+	public static field settings_anime_audio I
+	public static field settings_anime_audio_both I
+	public static field settings_at_launch I
+	public static field settings_back_up I
+	public static field settings_back_up_now I
+	public static field settings_backup_automatically I
+	public static field settings_backup_folder I
+	public static field settings_change I
+	public static field settings_choose I
+	public static field settings_choose_another I
+	public static field settings_clear I
+	public static field settings_clear_cache I
+	public static field settings_clear_cache_sizes I
+	public static field settings_color_white I
+	public static field settings_color_yellow I
+	public static field settings_connections_per_download I
+	public static field settings_connections_per_download_body I
+	public static field settings_diagnostics I
+	public static field settings_disk_cache I
+	public static field settings_dns I
+	public static field settings_dns_mac_scope I
+	public static field settings_download_folder I
+	public static field settings_downloads_at_once I
+	public static field settings_downloads_at_once_body I
+	public static field settings_downloads_wait I
+	public static field settings_extension_languages I
+	public static field settings_extension_review I
+	public static field settings_extensions_auto_install I
+	public static field settings_extensions_auto_install_body I
+	public static field settings_extensions_auto_update I
+	public static field settings_extensions_auto_update_body I
+	public static field settings_extensions_installed I
+	public static field settings_filler_episodes I
+	public static field settings_filler_episodes_body I
+	public static field settings_folder I
+	public static field settings_folder_missing I
+	public static field settings_help_community I
+	public static field settings_help_community_body I
+	public static field settings_hide_search_quality I
+	public static field settings_home_search I
 	public static field settings_info I
+	public static field settings_last_backup I
+	public static field settings_logs I
+	public static field settings_logs_mac_body I
+	public static field settings_logs_phone_body I
+	public static field settings_network_buffer I
+	public static field settings_offline_repos I
+	public static field settings_pane_accounts_privacy I
+	public static field settings_pane_advanced I
+	public static field settings_pane_appearance I
+	public static field settings_pane_network I
+	public static field settings_pane_playback I
+	public static field settings_play_next I
+	public static field settings_play_next_body I
+	public static field settings_playing I
+	public static field settings_poster_badges I
+	public static field settings_posters I
+	public static field settings_profile_no_pin I
+	public static field settings_profile_this I
+	public static field settings_random_button_body I
+	public static field settings_read I
+	public static field settings_remove I
+	public static field settings_repo_unreachable I
+	public static field settings_repositories I
+	public static field settings_reset_app I
+	public static field settings_reset_app_body I
+	public static field settings_reset_app_phone_body I
+	public static field settings_reset_confirm_title I
+	public static field settings_reset_erases_mac I
+	public static field settings_reset_erases_phone I
+	public static field settings_reset_item_library I
+	public static field settings_reset_item_search I
+	public static field settings_reset_item_settings I
+	public static field settings_reset_item_signins I
+	public static field settings_reset_kept I
+	public static field settings_restore I
+	public static field settings_restore_failed I
+	public static field settings_restore_failed_body I
+	public static field settings_restoring I
+	public static field settings_restoring_progress I
+	public static field settings_run_test I
+	public static field settings_search_hint I
+	public static field settings_search_no_results I
+	public static field settings_search_no_results_body I
+	public static field settings_seek_amount I
+	public static field settings_setup_again I
+	public static field settings_setup_again_body I
+	public static field settings_setup_run I
+	public static field settings_sign_in I
+	public static field settings_skip_intro I
+	public static field settings_skip_intro_body I
+	public static field settings_skip_profile_choice I
+	public static field settings_skip_profile_choice_body I
+	public static field settings_source_order I
+	public static field settings_source_order_body I
+	public static field settings_speed I
+	public static field settings_subtitle_background I
+	public static field settings_subtitle_edge I
+	public static field settings_subtitle_font_system I
+	public static field settings_subtitle_language I
+	public static field settings_subtitle_language_body I
+	public static field settings_subtitle_preview I
+	public static field settings_subtitle_services I
+	public static field settings_subtitle_size I
+	public static field settings_subtitle_size_large I
+	public static field settings_subtitle_size_medium I
+	public static field settings_subtitle_size_small I
+	public static field settings_subtitle_text_color I
+	public static field settings_suggestions_while_typing I
+	public static field settings_sync_for I
+	public static field settings_sync_per_profile I
+	public static field settings_test_all_extensions I
+	public static field settings_test_all_extensions_body I
+	public static field settings_title_pages I
+	public static field settings_title_under_poster I
+	public static field settings_trailers I
+	public static field settings_updates I
+	public static field settings_updates_at_launch I
+	public static field settings_updates_at_launch_body I
+	public static field settings_updates_check_now I
+	public static field settings_updates_current I
+	public static field settings_watch_progress_body I
 	public static field setup_done I
 	public static field setup_extensions_subtext I
 	public static field show I
@@ -37855,6 +37993,7 @@ public final class com/lagradost/cloudstream4/home/AndroidHomeSource : java/lang
 	public static final synthetic fun access$getSPACE$cp ()Lkotlin/text/Regex;
 	public static final synthetic fun access$getStillLoading$p (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;)Lkotlin/jvm/functions/Function0;
 	public static final synthetic fun access$getTAG$cp ()Lkotlin/text/Regex;
+	public static final synthetic fun access$getURL_IN_TEXT$cp ()Lkotlin/text/Regex;
 	public static final synthetic fun access$getYEARS$cp ()Lkotlin/ranges/IntRange;
 	public static final synthetic fun access$safeText (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;Ljava/lang/String;)Ljava/lang/String;
 	public static final synthetic fun access$toFeatured (Lcom/lagradost/cloudstream4/home/AndroidHomeSource;Lcom/lagradost/cloudstream3/LoadResponse;Ljava/lang/String;)Lcom/lagradost/cloudstream4/feature/home/HomeFeatured;
@@ -37867,6 +38006,7 @@ public final class com/lagradost/cloudstream4/home/AndroidHomeSource : java/lang
 
 public final class com/lagradost/cloudstream4/home/AndroidHomeSourceKt : java/lang/Object {
 	public static final field PLUGIN_WAIT_MS J
+	public static final synthetic fun access$withoutDefaultIgnorable (Ljava/lang/String;)Ljava/lang/String;
 	public static final fun androidHomeSource (Landroid/content/Context;J)Lcom/lagradost/cloudstream4/home/AndroidHomeSource;
 	public static final fun pluginsStillLoading (JJ)Z
 }

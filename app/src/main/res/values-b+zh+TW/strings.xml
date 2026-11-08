@@ -13,9 +13,16 @@
 <plurals name="home_sections_failed"><item quantity="other">"%d 個分區載入失敗"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d 個區塊"</item></plurals>
 <plurals name="library_title_count"><item quantity="other">"%d 部作品"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">"%d 秒"</item></plurals>
+<plurals name="player_source_count"><item quantity="other">"%d 個來源"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">"%d 秒後播放下一集"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"搜尋全部 %d 個來源"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d 來源"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="other">"%d 個掃描警告"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">"全部擴充功能 (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="other">"%1$d 個擴充功能 · 更新於 %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="other">"%d 個個人檔案及其 PIN"</item></plurals>
 <string name="account">"帳號"</string>
 <string name="account_add_profile">"新增個人檔案"</string>
 <string name="account_manage_profiles">"管理個人檔案"</string>
@@ -515,6 +522,7 @@
 <string name="play_torrent_button">"播放種子"</string>
 <string name="play_trailer_button">"播放預告片"</string>
 <string name="play_with_app_name">"使用 CloudStream 播放"</string>
+<string name="player_audio_stereo">"立體聲"</string>
 <string name="player_enter_fullscreen">"進入全螢幕模式"</string>
 <string name="player_exit_fullscreen">"結束全螢幕模式"</string>
 <string name="player_fit_original">"原始長寬比"</string>
@@ -534,24 +542,31 @@
 <string name="player_load_subtitles">"從檔案載入"</string>
 <string name="player_load_subtitles_online">"從網路載入"</string>
 <string name="player_loaded_subtitles" formatted="true">"已載入 %s"</string>
+<string name="player_menu_playback">"播放"</string>
 <string name="player_mute">"靜音"</string>
 <string name="player_notification_channel_description">"控制背景播放的通知"</string>
 <string name="player_notification_channel_name">"播放器通知"</string>
+<string name="player_play_now">"立即播放"</string>
 <string name="player_pref">"偏好影片播放器"</string>
 <string name="player_settings_always_ask">"總是詢問"</string>
 <string name="player_settings_play_in_app">"內部播放器"</string>
 <string name="player_settings_select_cast_device">"選擇投放裝置"</string>
 <string name="player_size_settings">"播放器調整大小按鈕"</string>
 <string name="player_size_settings_des">"移除黑色邊框"</string>
+<string name="player_source_decoded" formatted="true">"已解碼 %s"</string>
 <string name="player_source_playing">"播放中"</string>
 <string name="player_source_resumes_at" formatted="true">"切換會保留播放位置：從 %1$s 繼續"</string>
 <string name="player_source_retry">"重試"</string>
 <string name="player_source_switch">"切換"</string>
+<string name="player_sources_all_failed">"所有來源都傳回了錯誤。"</string>
+<string name="player_sources_all_failed_detail">"請在下方選擇一個來源再試一次。"</string>
 <string name="player_speed">"播放速度"</string>
 <string name="player_speed_text_format" formatted="true">"速度（%.2fx）"</string>
 <string name="player_subtitles_settings">"字幕"</string>
 <string name="player_subtitles_settings_des">"播放器字幕設定"</string>
 <string name="player_unmute">"取消靜音"</string>
+<string name="player_volume_down">"調低音量"</string>
+<string name="player_volume_up">"調高音量"</string>
 <string name="plugin">"外掛"</string>
 <string name="plugin_deleted">"外掛已刪除"</string>
 <string name="plugin_downloaded">"外掛程式已下載"</string>
@@ -705,7 +720,130 @@
 <string name="select_an_account">"選擇帳號"</string>
 <string name="select_library">"選擇媒體庫"</string>
 <string name="set_default">"設回預設"</string>
+<string name="settings_adult_content">"成人內容"</string>
+<string name="settings_adult_content_body">"僅限擴充功能支援時。重新啟動後生效。"</string>
+<string name="settings_anime_audio">"動畫音訊"</string>
+<string name="settings_anime_audio_both">"配音和字幕"</string>
+<string name="settings_at_launch">"啟動時"</string>
+<string name="settings_back_up">"備份"</string>
+<string name="settings_back_up_now">"立即備份"</string>
+<string name="settings_backup_automatically">"自動"</string>
+<string name="settings_backup_folder">"備份資料夾"</string>
+<string name="settings_change">"變更"</string>
+<string name="settings_choose">"選擇"</string>
+<string name="settings_choose_another">"選擇其他"</string>
+<string name="settings_clear">"清除"</string>
+<string name="settings_clear_cache">"清除快取"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"影片 %1$s · 圖片 %2$s"</string>
+<string name="settings_color_white">"白色"</string>
+<string name="settings_color_yellow">"黃色"</string>
+<string name="settings_connections_per_download">"每個下載的連線數"</string>
+<string name="settings_connections_per_download_body">"來源允許時，越多可能越快。"</string>
+<string name="settings_diagnostics">"診斷"</string>
+<string name="settings_disk_cache">"磁碟快取"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"用於擴充功能、圖片和字幕。影片串流使用你 Mac 的 DNS。"</string>
+<string name="settings_download_folder">"下載資料夾"</string>
+<string name="settings_downloads_at_once">"同時下載數"</string>
+<string name="settings_downloads_at_once_body">"同時下載幾部作品。"</string>
+<string name="settings_downloads_wait">"新的下載會等到資料夾恢復或選擇其他資料夾。"</string>
+<string name="settings_extension_languages">"語言"</string>
+<string name="settings_extension_review">"檢視"</string>
+<string name="settings_extensions_auto_install">"從我的資源庫安裝新的擴充功能"</string>
+<string name="settings_extensions_auto_install_body">"每個擴充功能在執行前仍會經過掃描。"</string>
+<string name="settings_extensions_auto_update">"自動更新擴充功能"</string>
+<string name="settings_extensions_auto_update_body">"每次更新在執行前都會經過掃描。"</string>
+<string name="settings_extensions_installed" formatted="true">"已安裝 · %d"</string>
+<string name="settings_filler_episodes">"填充集數"</string>
+<string name="settings_filler_episodes_body">"適用於動畫，需來源有標記。"</string>
+<string name="settings_folder">"資料夾"</string>
+<string name="settings_folder_missing" formatted="true">"找不到 %s。其磁碟可能未連接。"</string>
+<string name="settings_help_community">"說明與社群"</string>
+<string name="settings_help_community_body">"GitHub、Discord 和 wiki 都在「說明」選單中。"</string>
+<string name="settings_hide_search_quality">"在搜尋結果中隱藏畫質"</string>
+<string name="settings_home_search">"首頁和搜尋"</string>
 <string name="settings_info">"資訊"</string>
+<string name="settings_last_backup" formatted="true">"上次備份：%s"</string>
+<string name="settings_logs">"記錄"</string>
+<string name="settings_logs_mac_body">"在這台 Mac 上保留 7 天。絕不會傳送到任何地方。"</string>
+<string name="settings_logs_phone_body">"在這支手機上保留 7 天。絕不會傳送到任何地方。"</string>
+<string name="settings_network_buffer">"網路緩衝"</string>
+<string name="settings_offline_repos" formatted="true">"無法檢查資源庫。這些清單來自 %s。"</string>
+<string name="settings_pane_accounts_privacy">"帳號與隱私"</string>
+<string name="settings_pane_advanced">"進階"</string>
+<string name="settings_pane_appearance">"外觀"</string>
+<string name="settings_pane_network">"網路"</string>
+<string name="settings_pane_playback">"播放"</string>
+<string name="settings_play_next">"播放下一集"</string>
+<string name="settings_play_next_body">"在一集結束時倒數 10 秒。"</string>
+<string name="settings_playing">"播放"</string>
+<string name="settings_poster_badges">"海報上的標章"</string>
+<string name="settings_posters">"海報"</string>
+<string name="settings_profile_no_pin">"無 PIN"</string>
+<string name="settings_profile_this">"此個人檔案"</string>
+<string name="settings_random_button_body">"在首頁和媒體庫中。"</string>
+<string name="settings_read">"閱讀"</string>
+<string name="settings_remove">"移除"</string>
+<string name="settings_repo_unreachable" formatted="true">"無法連線。此清單是 %s 前的。"</string>
+<string name="settings_repositories">"資源庫"</string>
+<string name="settings_reset_app">"重置 CloudStream"</string>
+<string name="settings_reset_app_body">"清除這台 Mac 上的設定、個人檔案和媒體庫。"</string>
+<string name="settings_reset_app_phone_body">"清除設定、個人檔案和媒體庫。"</string>
+<string name="settings_reset_confirm_title">"要重置 CloudStream 嗎？"</string>
+<string name="settings_reset_erases_mac">"這會從這台 Mac 清除："</string>
+<string name="settings_reset_erases_phone">"這會從這支手機清除："</string>
+<string name="settings_reset_item_library">"媒體庫、觀看進度和歷史紀錄"</string>
+<string name="settings_reset_item_search">"搜尋紀錄"</string>
+<string name="settings_reset_item_settings">"設定"</string>
+<string name="settings_reset_item_signins">"同步和字幕服務的登入"</string>
+<string name="settings_reset_kept">"保留：擴充功能、已下載的檔案和備份。"</string>
+<string name="settings_restore">"還原"</string>
+<string name="settings_restore_failed">"無法還原"</string>
+<string name="settings_restore_failed_body">"該檔案不是 CloudStream 備份。未做任何變更。"</string>
+<string name="settings_restoring" formatted="true">"正在還原 %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d / %3$d"</string>
+<string name="settings_run_test">"執行測試"</string>
+<string name="settings_search_hint">"搜尋設定"</string>
+<string name="settings_search_no_results" formatted="true">"找不到「%s」的結果"</string>
+<string name="settings_search_no_results_body">"請試試其他字詞。"</string>
+<string name="settings_seek_amount">"快轉幅度"</string>
+<string name="settings_setup_again">"重新執行設定精靈"</string>
+<string name="settings_setup_again_body">"從頭設定語言、擴充功能和版面配置。"</string>
+<string name="settings_setup_run">"執行設定精靈"</string>
+<string name="settings_sign_in">"登入"</string>
+<string name="settings_skip_intro">"提供「略過片頭」"</string>
+<string name="settings_skip_intro_body">"需來源標記片頭或片尾。"</string>
+<string name="settings_skip_profile_choice">"略過選擇個人檔案"</string>
+<string name="settings_skip_profile_choice_body">"開啟上次使用的個人檔案。"</string>
+<string name="settings_source_order">"來源順序"</string>
+<string name="settings_source_order_body">"播放器優先嘗試哪些來源。"</string>
+<string name="settings_speed">"速度"</string>
+<string name="settings_subtitle_background">"背景"</string>
+<string name="settings_subtitle_edge">"邊緣"</string>
+<string name="settings_subtitle_font_system">"系統"</string>
+<string name="settings_subtitle_language">"偏好語言"</string>
+<string name="settings_subtitle_language_body">"作品有提供時自動選取。"</string>
+<string name="settings_subtitle_preview">"預覽"</string>
+<string name="settings_subtitle_services">"字幕服務"</string>
+<string name="settings_subtitle_size">"大小"</string>
+<string name="settings_subtitle_size_large">"大"</string>
+<string name="settings_subtitle_size_medium">"中"</string>
+<string name="settings_subtitle_size_small">"小"</string>
+<string name="settings_subtitle_text_color">"文字顏色"</string>
+<string name="settings_suggestions_while_typing">"輸入時顯示建議"</string>
+<string name="settings_sync_for" formatted="true">"%s 的同步"</string>
+<string name="settings_sync_per_profile">"每個個人檔案各自登入。"</string>
+<string name="settings_test_all_extensions">"測試所有擴充功能"</string>
+<string name="settings_test_all_extensions_body">"使用每個已啟用的擴充功能搜尋。供開發人員使用。"</string>
+<string name="settings_title_pages">"作品頁面"</string>
+<string name="settings_title_under_poster">"海報下方顯示標題"</string>
+<string name="settings_trailers">"預告片"</string>
+<string name="settings_updates">"更新"</string>
+<string name="settings_updates_at_launch">"啟動時檢查更新"</string>
+<string name="settings_updates_at_launch_body">"CloudStream 開啟時尋找新版本。"</string>
+<string name="settings_updates_check_now">"立即檢查"</string>
+<string name="settings_updates_current" formatted="true">"已是最新版本 · 檢查於 %s"</string>
+<string name="settings_watch_progress_body">"儲存你停下的位置，用於「繼續觀看」。"</string>
 <string name="setup_done">"完成"</string>
 <string name="setup_extensions_subtext">"下載你所需的片源"</string>
 <string name="show">"顯示"</string>

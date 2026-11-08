@@ -15,6 +15,9 @@ import androidx.compose.runtime.Immutable
 @Immutable
 data class DetailReturn(val target: DetailFocus, val ready: Boolean = false)
 
+/** The first of board 7i's season chips: what a page opens on when the primary action names no episode in a group. */
+internal const val FIRST_SEASON_GROUP = 0
+
 /** The stops the page can send focus back to. Entry focus is always [Primary]: boards 7a and 7b. */
 enum class DetailFocus {
     Primary,
@@ -38,6 +41,13 @@ enum class DetailFocus {
  *   character. The only press action a cast item has, because no provider gives an actor an id to
  *   open a person page with.
  * @param returnTo set when the page opens something above it, and cleared once focus is back.
+ * @param selectedSeason which of board 7i's season chips the viewer **chose**, as an **index** into
+ *   `seasonGroups()`, or null while they have chosen none. An index rather than a season number because
+ *   the chips include one group whose season is `null` — the episodes a provider gave no season — so a
+ *   nullable number could not tell "Other is chosen" from "nothing is chosen"; the nullable index can.
+ *   While it is null the screen opens on the group holding the episode the primary action plays, so
+ *   Resume at S3E5 opens Season 3 with that row marked (`shownSeasonIndex`). The screen resolves and
+ *   clamps it, because only it derives the groups and a re-read after `Reappeared` can return fewer.
  */
 @Immutable
 data class DetailState(
@@ -48,6 +58,7 @@ data class DetailState(
     val watchStatusPicking: Boolean = false,
     val swappedRoles: Set<Int> = emptySet(),
     val returnTo: DetailReturn? = null,
+    val selectedSeason: Int? = null,
 ) {
     /** The title, where one is loaded. */
     val detail: TitleDetail? get() = (content as? DetailLoad.Loaded)?.value
@@ -97,6 +108,9 @@ sealed interface DetailAction {
     data object ReturnHandled : DetailAction
 
     data class WatchStatusPicked(val status: DetailWatchStatus) : DetailAction
+
+    /** A season chip was chosen, by its index in `seasonGroups()`. See [DetailState.selectedSeason]. */
+    data class SeasonSelected(val index: Int) : DetailAction
     data object FavouriteToggled : DetailAction
     data object SynopsisToggled : DetailAction
 

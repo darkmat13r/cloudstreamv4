@@ -11,9 +11,16 @@
 <plurals name="home_sections_failed"><item quantity="one">"Αποτυχία φόρτωσης %d ενότητας"</item><item quantity="other">"Αποτυχία φόρτωσης %d ενοτήτων"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d ενότητα"</item><item quantity="other">"%d ενότητες"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d τίτλος"</item><item quantity="other">"%d τίτλοι"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d δευτερόλεπτο"</item><item quantity="other">"%d δευτερόλεπτα"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d πηγή"</item><item quantity="other">"%d πηγές"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Επόμενο επεισόδιο σε %d δ"</item><item quantity="other">"Επόμενο επεισόδιο σε %d δ"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Αναζήτηση σε %d πηγή"</item><item quantity="other">"Αναζήτηση σε όλες τις %d πηγές"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως."</item><item quantity="other">"Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ΠΗΓΗ"</item><item quantity="other">"%d ΠΗΓΕΣ"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d προειδοποίηση σάρωσης"</item><item quantity="other">"%d προειδοποιήσεις σάρωσης"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Όλες οι επεκτάσεις (%d)"</item><item quantity="other">"Όλες οι επεκτάσεις (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d επέκταση · ενημέρωση %2$s"</item><item quantity="other">"%1$d επεκτάσεις · ενημέρωση %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d προφίλ και το PIN του"</item><item quantity="other">"%d προφίλ και τα PIN τους"</item></plurals>
 <string name="account">"Λογαριασμός"</string>
 <string name="account_add_profile">"Προσθήκη προφίλ"</string>
 <string name="account_manage_profiles">"Διαχείριση προφίλ"</string>
@@ -473,6 +480,7 @@
 <string name="play_torrent_button">"Μετάδοση Torrent"</string>
 <string name="play_trailer_button">"Αναπαραγωγή τρέιλερ"</string>
 <string name="play_with_app_name">"Άνοιγμα με CloudStream"</string>
+<string name="player_audio_stereo">"στερεοφωνικό"</string>
 <string name="player_enter_fullscreen">"Πλήρης οθόνη"</string>
 <string name="player_exit_fullscreen">"Έξοδος από πλήρη οθόνη"</string>
 <string name="player_fit_original">"Αρχική αναλογία"</string>
@@ -491,23 +499,30 @@
 <string name="player_load_subtitles">"Φόρτωση από αρχείο"</string>
 <string name="player_load_subtitles_online">"Φόρτωση από το Ίντερνετ"</string>
 <string name="player_loaded_subtitles" formatted="true">"Φόρτωση %s"</string>
+<string name="player_menu_playback">"Αναπαραγωγή"</string>
 <string name="player_mute">"Σίγαση"</string>
 <string name="player_notification_channel_description">"Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο"</string>
 <string name="player_notification_channel_name">"Ειδοποίησεις αναπαραγωγής"</string>
+<string name="player_play_now">"Αναπαραγωγή τώρα"</string>
 <string name="player_pref">"Προτεινόμενο πρόγραμμα αναπαραγωγής"</string>
 <string name="player_settings_play_in_app">"Ενσωματωμένο πρόγραμμα αναπαραγωγής"</string>
 <string name="player_settings_select_cast_device">"Επιλογή συσκευής για αναμετάδοση"</string>
 <string name="player_size_settings">"Αλλαγή μεγέθους παραθύρου"</string>
 <string name="player_size_settings_des">"Αφαίρεση μαύρων περιγραμμάτων"</string>
+<string name="player_source_decoded" formatted="true">"%s αποκωδικοποιημένο"</string>
 <string name="player_source_playing">"Αναπαράγεται"</string>
 <string name="player_source_resumes_at" formatted="true">"Η αλλαγή διατηρεί τη θέση σας: συνέχεια από %1$s"</string>
 <string name="player_source_retry">"Επανάληψη"</string>
 <string name="player_source_switch">"Αλλαγή"</string>
+<string name="player_sources_all_failed">"Κάθε πηγή απάντησε με σφάλμα."</string>
+<string name="player_sources_all_failed_detail">"Επιλέξτε μια πηγή παρακάτω για να τη δοκιμάσετε ξανά."</string>
 <string name="player_speed">"Ταχύτητα αναπαραγωγής"</string>
 <string name="player_speed_text_format" formatted="true">"Ταχύτητα (%.2fx)"</string>
 <string name="player_subtitles_settings">"Υπότιτλοι"</string>
 <string name="player_subtitles_settings_des">"Ρυθμίσεις υποτίτλων του προγράμματος αναπαραγωγής"</string>
 <string name="player_unmute">"Κατάργηση σίγασης"</string>
+<string name="player_volume_down">"Μείωση έντασης"</string>
+<string name="player_volume_up">"Αύξηση έντασης"</string>
 <string name="plugin">"Πρόσθετα"</string>
 <string name="plugin_deleted">"Το πρόσθετο διαγράφηκε"</string>
 <string name="plugin_downloaded">"Το πρόσθετο κατέβει"</string>
@@ -652,7 +667,130 @@
 <string name="select_an_account">"Επιλογή λογαριασμού"</string>
 <string name="select_library">"Διάλεξε βιβλιοθήκη"</string>
 <string name="set_default">"Ορισμός προεπιλογής"</string>
+<string name="settings_adult_content">"Περιεχόμενο για ενηλίκους"</string>
+<string name="settings_adult_content_body">"Μόνο όπου το υποστηρίζει μια επέκταση. Μετά από επανεκκίνηση."</string>
+<string name="settings_anime_audio">"Ήχος άνιμε"</string>
+<string name="settings_anime_audio_both">"Μεταγλώττιση και υπότιτλοι"</string>
+<string name="settings_at_launch">"Κατά την εκκίνηση"</string>
+<string name="settings_back_up">"Δημιουργία αντιγράφου"</string>
+<string name="settings_back_up_now">"Δημιουργία αντιγράφου τώρα"</string>
+<string name="settings_backup_automatically">"Αυτόματα"</string>
+<string name="settings_backup_folder">"Φάκελος αντιγράφων ασφαλείας"</string>
+<string name="settings_change">"Αλλαγή"</string>
+<string name="settings_choose">"Επιλογή"</string>
+<string name="settings_choose_another">"Επιλογή άλλου"</string>
+<string name="settings_clear">"Εκκαθάριση"</string>
+<string name="settings_clear_cache">"Εκκαθάριση προσωρινής μνήμης"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Βίντεο %1$s · εικόνες %2$s"</string>
+<string name="settings_color_white">"Λευκό"</string>
+<string name="settings_color_yellow">"Κίτρινο"</string>
+<string name="settings_connections_per_download">"Συνδέσεις ανά λήψη"</string>
+<string name="settings_connections_per_download_body">"Περισσότερες μπορεί να είναι ταχύτερες, όπου το επιτρέπει η πηγή."</string>
+<string name="settings_diagnostics">"Διαγνωστικά"</string>
+<string name="settings_disk_cache">"Προσωρινή μνήμη δίσκου"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Για επεκτάσεις, εικόνες και υπότιτλους. Οι ροές βίντεο χρησιμοποιούν το DNS του Mac σας."</string>
+<string name="settings_download_folder">"Φάκελος λήψεων"</string>
+<string name="settings_downloads_at_once">"Ταυτόχρονες λήψεις"</string>
+<string name="settings_downloads_at_once_body">"Πόσοι τίτλοι κατεβαίνουν μαζί."</string>
+<string name="settings_downloads_wait">"Οι νέες λήψεις περιμένουν μέχρι να επιστρέψει ο φάκελος ή να επιλεγεί άλλος."</string>
+<string name="settings_extension_languages">"Γλώσσες"</string>
+<string name="settings_extension_review">"Έλεγχος"</string>
+<string name="settings_extensions_auto_install">"Εγκατάσταση νέων από τα αποθετήριά μου"</string>
+<string name="settings_extensions_auto_install_body">"Η καθεμία σαρώνεται πριν εκτελεστεί."</string>
+<string name="settings_extensions_auto_update">"Αυτόματη ενημέρωση επεκτάσεων"</string>
+<string name="settings_extensions_auto_update_body">"Κάθε ενημέρωση σαρώνεται πριν εκτελεστεί."</string>
+<string name="settings_extensions_installed" formatted="true">"Εγκατεστημένες · %d"</string>
+<string name="settings_filler_episodes">"Επεισόδια filler"</string>
+<string name="settings_filler_episodes_body">"Για άνιμε, όπου τα επισημαίνει η πηγή."</string>
+<string name="settings_folder">"Φάκελος"</string>
+<string name="settings_folder_missing" formatted="true">"Το %s λείπει. Ο δίσκος του ίσως δεν είναι συνδεδεμένος."</string>
+<string name="settings_help_community">"Βοήθεια και κοινότητα"</string>
+<string name="settings_help_community_body">"Τα GitHub, Discord και το wiki βρίσκονται στο μενού Βοήθεια."</string>
+<string name="settings_hide_search_quality">"Απόκρυψη ποιότητας στα αποτελέσματα αναζήτησης"</string>
+<string name="settings_home_search">"Αρχική και Αναζήτηση"</string>
 <string name="settings_info">"Πληροφορίες"</string>
+<string name="settings_last_backup" formatted="true">"Τελευταίο αντίγραφο: %s"</string>
+<string name="settings_logs">"Αρχεία καταγραφής"</string>
+<string name="settings_logs_mac_body">"Διατηρούνται σε αυτό το Mac για 7 ημέρες. Δεν αποστέλλονται πουθενά."</string>
+<string name="settings_logs_phone_body">"Διατηρούνται σε αυτό το τηλέφωνο για 7 ημέρες. Δεν αποστέλλονται πουθενά."</string>
+<string name="settings_network_buffer">"Buffer δικτύου"</string>
+<string name="settings_offline_repos" formatted="true">"Δεν είναι δυνατός ο έλεγχος των αποθετηρίων. Αυτές οι λίστες είναι από %s."</string>
+<string name="settings_pane_accounts_privacy">"Λογαριασμοί και απόρρητο"</string>
+<string name="settings_pane_advanced">"Για προχωρημένους"</string>
+<string name="settings_pane_appearance">"Εμφάνιση"</string>
+<string name="settings_pane_network">"Δίκτυο"</string>
+<string name="settings_pane_playback">"Αναπαραγωγή"</string>
+<string name="settings_play_next">"Αναπαραγωγή του επόμενου επεισοδίου"</string>
+<string name="settings_play_next_body">"Αντίστροφη μέτρηση 10 δ στο τέλος ενός επεισοδίου."</string>
+<string name="settings_playing">"Κατά την αναπαραγωγή"</string>
+<string name="settings_poster_badges">"Σήματα στις αφίσες"</string>
+<string name="settings_posters">"Αφίσες"</string>
+<string name="settings_profile_no_pin">"Χωρίς PIN"</string>
+<string name="settings_profile_this">"Αυτό το προφίλ"</string>
+<string name="settings_random_button_body">"Στην Αρχική και τη Βιβλιοθήκη."</string>
+<string name="settings_read">"Ανάγνωση"</string>
+<string name="settings_remove">"Αφαίρεση"</string>
+<string name="settings_repo_unreachable" formatted="true">"Δεν ήταν δυνατή η πρόσβαση. Αυτή η λίστα είναι από πριν από %s."</string>
+<string name="settings_repositories">"Αποθετήρια"</string>
+<string name="settings_reset_app">"Επαναφορά του CloudStream"</string>
+<string name="settings_reset_app_body">"Διαγράφει ρυθμίσεις, προφίλ και βιβλιοθήκη σε αυτό το Mac."</string>
+<string name="settings_reset_app_phone_body">"Διαγράφει ρυθμίσεις, προφίλ και βιβλιοθήκη."</string>
+<string name="settings_reset_confirm_title">"Επαναφορά του CloudStream;"</string>
+<string name="settings_reset_erases_mac">"Διαγράφονται από αυτό το Mac:"</string>
+<string name="settings_reset_erases_phone">"Διαγράφονται από αυτό το τηλέφωνο:"</string>
+<string name="settings_reset_item_library">"Βιβλιοθήκη, πρόοδος προβολής και ιστορικό"</string>
+<string name="settings_reset_item_search">"Ιστορικό αναζήτησης"</string>
+<string name="settings_reset_item_settings">"Ρυθμίσεις"</string>
+<string name="settings_reset_item_signins">"Συνδέσεις σε υπηρεσίες συγχρονισμού και υποτίτλων"</string>
+<string name="settings_reset_kept">"Διατηρούνται: επεκτάσεις, ληφθέντα αρχεία και αντίγραφα ασφαλείας."</string>
+<string name="settings_restore">"Ανάκτηση"</string>
+<string name="settings_restore_failed">"Αποτυχία ανάκτησης"</string>
+<string name="settings_restore_failed_body">"Αυτό το αρχείο δεν είναι αντίγραφο ασφαλείας του CloudStream. Δεν άλλαξε τίποτα."</string>
+<string name="settings_restoring" formatted="true">"Ανάκτηση %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d από %3$d"</string>
+<string name="settings_run_test">"Εκτέλεση δοκιμής"</string>
+<string name="settings_search_hint">"Αναζήτηση ρυθμίσεων"</string>
+<string name="settings_search_no_results" formatted="true">"Κανένα αποτέλεσμα για “%s”"</string>
+<string name="settings_search_no_results_body">"Δοκιμάστε μια άλλη λέξη."</string>
+<string name="settings_seek_amount">"Βήμα μετακίνησης"</string>
+<string name="settings_setup_again">"Επανάληψη αρχικής ρύθμισης"</string>
+<string name="settings_setup_again_body">"Γλώσσα, επεκτάσεις και διάταξη, από την αρχή."</string>
+<string name="settings_setup_run">"Αρχική ρύθμιση"</string>
+<string name="settings_sign_in">"Σύνδεση"</string>
+<string name="settings_skip_intro">"Προσφορά Παράλειψης εισαγωγής"</string>
+<string name="settings_skip_intro_body">"Όπου μια πηγή επισημαίνει την εισαγωγή ή τους τίτλους τέλους."</string>
+<string name="settings_skip_profile_choice">"Παράλειψη επιλογής προφίλ"</string>
+<string name="settings_skip_profile_choice_body">"Ανοίγει το τελευταίο προφίλ που χρησιμοποιήθηκε."</string>
+<string name="settings_source_order">"Σειρά πηγών"</string>
+<string name="settings_source_order_body">"Ποιες πηγές δοκιμάζει πρώτα το πρόγραμμα αναπαραγωγής."</string>
+<string name="settings_speed">"Ταχύτητα"</string>
+<string name="settings_subtitle_background">"Φόντο"</string>
+<string name="settings_subtitle_edge">"Άκρη"</string>
+<string name="settings_subtitle_font_system">"Συστήματος"</string>
+<string name="settings_subtitle_language">"Προτιμώμενη γλώσσα"</string>
+<string name="settings_subtitle_language_body">"Επιλέγεται αυτόματα όταν ένας τίτλος τη διαθέτει."</string>
+<string name="settings_subtitle_preview">"Προεπισκόπηση"</string>
+<string name="settings_subtitle_services">"Υπηρεσίες υποτίτλων"</string>
+<string name="settings_subtitle_size">"Μέγεθος"</string>
+<string name="settings_subtitle_size_large">"Μεγάλο"</string>
+<string name="settings_subtitle_size_medium">"Μεσαίο"</string>
+<string name="settings_subtitle_size_small">"Μικρό"</string>
+<string name="settings_subtitle_text_color">"Χρώμα κειμένου"</string>
+<string name="settings_suggestions_while_typing">"Προτάσεις κατά την πληκτρολόγηση"</string>
+<string name="settings_sync_for" formatted="true">"Συγχρονισμός για %s"</string>
+<string name="settings_sync_per_profile">"Κάθε προφίλ συνδέεται ξεχωριστά."</string>
+<string name="settings_test_all_extensions">"Δοκιμή όλων των επεκτάσεων"</string>
+<string name="settings_test_all_extensions_body">"Αναζητά με κάθε ενεργή επέκταση. Για προγραμματιστές."</string>
+<string name="settings_title_pages">"Σελίδες τίτλων"</string>
+<string name="settings_title_under_poster">"Τίτλος κάτω από την αφίσα"</string>
+<string name="settings_trailers">"Τρέιλερ"</string>
+<string name="settings_updates">"Ενημερώσεις"</string>
+<string name="settings_updates_at_launch">"Έλεγχος για ενημερώσεις κατά την εκκίνηση"</string>
+<string name="settings_updates_at_launch_body">"Αναζητά νέα έκδοση όταν ανοίγει το CloudStream."</string>
+<string name="settings_updates_check_now">"Έλεγχος τώρα"</string>
+<string name="settings_updates_current" formatted="true">"Ενημερωμένο · έλεγχος %s"</string>
+<string name="settings_watch_progress_body">"Αποθηκεύει πού σταματήσατε, για τη Συνέχεια παρακολούθησης."</string>
 <string name="setup_done">"Έγινε"</string>
 <string name="setup_extensions_subtext">"Κατεβάστε την λίστα των ιστότοπων που θέλετε να χρησιμοποιήσετε"</string>
 <string name="show">"Εμφάνισε"</string>

@@ -11,9 +11,16 @@
 <plurals name="home_sections_failed"><item quantity="one">"Ma setgħetx tiġi mgħobbija %d taqsima"</item><item quantity="two">"Ma setgħux jiġu mgħobbija %d taqsimat"</item><item quantity="few">"Ma setgħux jiġu mgħobbija %d taqsimat"</item><item quantity="many">"Ma setgħux jiġu mgħobbija %d taqsima"</item><item quantity="other">"Ma setgħux jiġu mgħobbija %d taqsima"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d taqsima"</item><item quantity="two">"%d taqsimiet"</item><item quantity="few">"%d taqsimiet"</item><item quantity="many">"%d-il taqsima"</item><item quantity="other">"%d taqsima"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d titlu"</item><item quantity="two">"%d titli"</item><item quantity="few">"%d titli"</item><item quantity="many">"%d-il titlu"</item><item quantity="other">"%d titlu"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d sekonda"</item><item quantity="two">"%d sekondi"</item><item quantity="few">"%d sekondi"</item><item quantity="many">"%d-il sekonda"</item><item quantity="other">"%d sekonda"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d sors"</item><item quantity="two">"%d sorsi"</item><item quantity="few">"%d sorsi"</item><item quantity="many">"%d-il sors"</item><item quantity="other">"%d sors"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"L-episodju li jmiss f'%d s"</item><item quantity="two">"L-episodju li jmiss f'%d s"</item><item quantity="few">"L-episodju li jmiss f'%d s"</item><item quantity="many">"L-episodju li jmiss f'%d s"</item><item quantity="other">"L-episodju li jmiss f'%d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Fittex f'%d sors"</item><item quantity="two">"Fittex fil-%d sorsi kollha"</item><item quantity="few">"Fittex fil-%d sorsi kollha"</item><item quantity="many">"Fittex fil-%d sors kollha"</item><item quantity="other">"Fittex fil-%d sors kollha"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta f'%d sors."</item><item quantity="two">"Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha."</item><item quantity="few">"Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha."</item><item quantity="many">"Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha."</item><item quantity="other">"Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d SORS"</item><item quantity="two">"%d SORSI"</item><item quantity="few">"%d SORSI"</item><item quantity="many">"%d SORS"</item><item quantity="other">"%d SORS"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d twissija tal-iskan"</item><item quantity="two">"%d twissijiet tal-iskan"</item><item quantity="few">"%d twissijiet tal-iskan"</item><item quantity="many">"%d twissija tal-iskan"</item><item quantity="other">"%d twissija tal-iskan"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"L-estensjonijiet kollha (%d)"</item><item quantity="two">"L-estensjonijiet kollha (%d)"</item><item quantity="few">"L-estensjonijiet kollha (%d)"</item><item quantity="many">"L-estensjonijiet kollha (%d)"</item><item quantity="other">"L-estensjonijiet kollha (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d estensjoni · aġġornat %2$s"</item><item quantity="two">"%1$d estensjonijiet · aġġornat %2$s"</item><item quantity="few">"%1$d estensjonijiet · aġġornat %2$s"</item><item quantity="many">"%1$d estensjoni · aġġornat %2$s"</item><item quantity="other">"%1$d estensjoni · aġġornat %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil u l-PIN tiegħu"</item><item quantity="two">"%d profili u l-PINs tagħhom"</item><item quantity="few">"%d profili u l-PINs tagħhom"</item><item quantity="many">"%d profil u l-PINs tagħhom"</item><item quantity="other">"%d profil u l-PINs tagħhom"</item></plurals>
 <string name="account_add_profile">"Żid profil"</string>
 <string name="account_manage_profiles">"Immaniġġja l-profili"</string>
 <string name="account_pair_code">"Il-kodiċi tiegħek"</string>
@@ -191,6 +198,7 @@
 <string name="play_torrent_button">"Stream Torrent"</string>
 <string name="play_trailer_button">"Ibda t-trejler"</string>
 <string name="play_with_app_name">"Ara bil-CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Idħol fi skrin sħiħ"</string>
 <string name="player_exit_fullscreen">"Oħroġ minn skrin sħiħ"</string>
 <string name="player_fit_original">"Proporzjon oriġinali"</string>
@@ -205,14 +213,21 @@
 <string name="player_hud_seek_forward">"Il-quddiem"</string>
 <string name="player_hud_speed">"Veloċità"</string>
 <string name="player_hud_up_next" formatted="true">"Li jmiss · %s"</string>
+<string name="player_menu_playback">"Playback"</string>
 <string name="player_mute">"Itfi l-ħoss"</string>
+<string name="player_play_now">"Ħaddem issa"</string>
+<string name="player_source_decoded" formatted="true">"%s dekodifikat"</string>
 <string name="player_source_playing">"Qed jindaqq"</string>
 <string name="player_source_resumes_at" formatted="true">"Il-bidla żżomm il-post tiegħek: ikompli minn %1$s"</string>
 <string name="player_source_retry">"Erġa' pprova"</string>
 <string name="player_source_switch">"Biddel"</string>
+<string name="player_sources_all_failed">"Kull sors wieġeb bi żball."</string>
+<string name="player_sources_all_failed_detail">"Agħżel sors hawn taħt biex terġa' tipprova."</string>
 <string name="player_speed">"Veloċità tal-Plejer"</string>
 <string name="player_speed_text_format" formatted="true">"veloċità (%.2fx)"</string>
 <string name="player_unmute">"Ixgħel il-ħoss"</string>
+<string name="player_volume_down">"Baxxi l-volum"</string>
+<string name="player_volume_up">"Għolli l-volum"</string>
 <string name="popup_delete_file">"Hassar il-fajl"</string>
 <string name="popup_pause_download">"Ieqaf Nizzel"</string>
 <string name="popup_play_file">"Ibda l-fajl"</string>
@@ -255,6 +270,129 @@
 <string name="season_specials">"Speċjali"</string>
 <string name="seek_back_10_seconds">"Mur lura 10 sekondi"</string>
 <string name="seek_forward_10_seconds">"Mur 'il quddiem 10 sekondi"</string>
+<string name="settings_adult_content">"Kontenut għall-adulti"</string>
+<string name="settings_adult_content_body">"Biss fejn estensjoni tappoġġjah. Wara li terġa' tibda."</string>
+<string name="settings_anime_audio">"Awdjo tal-anime"</string>
+<string name="settings_anime_audio_both">"Dabbjat u sottotitlat"</string>
+<string name="settings_at_launch">"Mal-ftuħ"</string>
+<string name="settings_back_up">"Agħmel backup"</string>
+<string name="settings_back_up_now">"Agħmel backup issa"</string>
+<string name="settings_backup_automatically">"Awtomatikament"</string>
+<string name="settings_backup_folder">"Folder tal-backup"</string>
+<string name="settings_change">"Biddel"</string>
+<string name="settings_choose">"Agħżel"</string>
+<string name="settings_choose_another">"Agħżel ieħor"</string>
+<string name="settings_clear">"Ħassar"</string>
+<string name="settings_clear_cache">"Ħassar il-cache"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Vidjo %1$s · stampi %2$s"</string>
+<string name="settings_color_white">"Abjad"</string>
+<string name="settings_color_yellow">"Isfar"</string>
+<string name="settings_connections_per_download">"Konnessjonijiet għal kull tniżżil"</string>
+<string name="settings_connections_per_download_body">"Aktar jista' jkun aktar mgħaġġel, fejn is-sors jippermetti."</string>
+<string name="settings_diagnostics">"Dijanjostika"</string>
+<string name="settings_disk_cache">"Cache fuq id-diska"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Għall-estensjonijiet, l-artwork u s-sottotitli. Il-flussi tal-vidjo jużaw id-DNS tal-Mac tiegħek."</string>
+<string name="settings_download_folder">"Folder tat-tniżżil"</string>
+<string name="settings_downloads_at_once">"Tniżżiliet f'daqqa"</string>
+<string name="settings_downloads_at_once_body">"Kemm titli jitniżżlu flimkien."</string>
+<string name="settings_downloads_wait">"It-tniżżiliet ġodda jistennew sakemm il-folder jerġa' lura jew jintgħażel ieħor."</string>
+<string name="settings_extension_languages">"Lingwi"</string>
+<string name="settings_extension_review">"Irrevedi"</string>
+<string name="settings_extensions_auto_install">"Installa dawk ġodda mir-repożitorji tiegħi"</string>
+<string name="settings_extensions_auto_install_body">"Kull waħda xorta tiġi skanjata qabel ma taħdem."</string>
+<string name="settings_extensions_auto_update">"Aġġorna l-estensjonijiet awtomatikament"</string>
+<string name="settings_extensions_auto_update_body">"Kull aġġornament jiġi skanjat qabel ma jaħdem."</string>
+<string name="settings_extensions_installed" formatted="true">"Installati · %d"</string>
+<string name="settings_filler_episodes">"Episodji filler"</string>
+<string name="settings_filler_episodes_body">"Għall-anime, fejn is-sors jimmarkahom."</string>
+<string name="settings_folder">"Folder"</string>
+<string name="settings_folder_missing" formatted="true">"%s mhux qed jinstab. Forsi d-diska tiegħu mhix imqabbda."</string>
+<string name="settings_help_community">"Għajnuna u komunità"</string>
+<string name="settings_help_community_body">"GitHub, Discord u l-wiki jinsabu fil-menu tal-Għajnuna."</string>
+<string name="settings_hide_search_quality">"Aħbi l-kwalità fir-riżultati tat-tiftix"</string>
+<string name="settings_home_search">"Dar u Tiftix"</string>
+<string name="settings_last_backup" formatted="true">"L-aħħar backup: %s"</string>
+<string name="settings_logs">"Reġistri"</string>
+<string name="settings_logs_mac_body">"Jinżammu fuq dan il-Mac għal 7 ijiem. Qatt ma jintbagħtu mkien."</string>
+<string name="settings_logs_phone_body">"Jinżammu fuq dan it-telefon għal 7 ijiem. Qatt ma jintbagħtu mkien."</string>
+<string name="settings_network_buffer">"Buffer tan-netwerk"</string>
+<string name="settings_offline_repos" formatted="true">"Ir-repożitorji ma jistgħux jiġu ċċekkjati. Dawn il-listi huma minn %s."</string>
+<string name="settings_pane_accounts_privacy">"Kontijiet u Privatezza"</string>
+<string name="settings_pane_advanced">"Avvanzat"</string>
+<string name="settings_pane_appearance">"Dehra"</string>
+<string name="settings_pane_network">"Netwerk"</string>
+<string name="settings_pane_playback">"Riproduzzjoni"</string>
+<string name="settings_play_next">"Ibda l-episodju li jmiss"</string>
+<string name="settings_play_next_body">"Jgħodd 10 s lura fl-aħħar ta' episodju."</string>
+<string name="settings_playing">"Waqt il-wiri"</string>
+<string name="settings_poster_badges">"Badges fuq il-posters"</string>
+<string name="settings_posters">"Posters"</string>
+<string name="settings_profile_no_pin">"L-ebda PIN"</string>
+<string name="settings_profile_this">"Dan il-profil"</string>
+<string name="settings_random_button_body">"Fid-Dar u fil-Librerija."</string>
+<string name="settings_read">"Aqra"</string>
+<string name="settings_remove">"Neħħi"</string>
+<string name="settings_repo_unreachable" formatted="true">"Ma setax jintlaħaq. Din il-lista hija minn %s ilu."</string>
+<string name="settings_repositories">"Repożitorji"</string>
+<string name="settings_reset_app">"Irrisettja CloudStream"</string>
+<string name="settings_reset_app_body">"Iħassar il-preferenzi, il-profili u l-librerija fuq dan il-Mac."</string>
+<string name="settings_reset_app_phone_body">"Iħassar il-preferenzi, il-profili u l-librerija."</string>
+<string name="settings_reset_confirm_title">"Tirrisettja CloudStream?"</string>
+<string name="settings_reset_erases_mac">"Dan iħassar minn dan il-Mac:"</string>
+<string name="settings_reset_erases_phone">"Dan iħassar minn dan it-telefon:"</string>
+<string name="settings_reset_item_library">"Librerija, progress tal-wiri u storja"</string>
+<string name="settings_reset_item_search">"Storja tat-tiftix"</string>
+<string name="settings_reset_item_settings">"Preferenzi"</string>
+<string name="settings_reset_item_signins">"Dħul fis-servizzi ta' sinkronizzazzjoni u sottotitli"</string>
+<string name="settings_reset_kept">"Jinżammu: estensjonijiet, fajls imniżżla u backups."</string>
+<string name="settings_restore">"Irrestawra"</string>
+<string name="settings_restore_failed">"Ma setax jiġi rrestawrat"</string>
+<string name="settings_restore_failed_body">"Dak il-fajl mhuwiex backup ta' CloudStream. Ma nbidel xejn."</string>
+<string name="settings_restoring" formatted="true">"Qed jiġi rrestawrat %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d minn %3$d"</string>
+<string name="settings_run_test">"Ħaddem test"</string>
+<string name="settings_search_hint">"Fittex fil-preferenzi"</string>
+<string name="settings_search_no_results" formatted="true">"L-ebda riżultat għal “%s”"</string>
+<string name="settings_search_no_results_body">"Ipprova kelma oħra."</string>
+<string name="settings_seek_amount">"Ammont tal-qbiż"</string>
+<string name="settings_setup_again">"Erġa' ħaddem is-setup"</string>
+<string name="settings_setup_again_body">"Lingwa, estensjonijiet u tqassim, mill-bidu."</string>
+<string name="settings_setup_run">"Ħaddem is-setup"</string>
+<string name="settings_sign_in">"Idħol"</string>
+<string name="settings_skip_intro">"Offri Aqbeż l-intro"</string>
+<string name="settings_skip_intro_body">"Fejn sors jimmarka l-ftuħ jew il-krediti."</string>
+<string name="settings_skip_profile_choice">"Aqbeż l-għażla tal-profil"</string>
+<string name="settings_skip_profile_choice_body">"Jiftaħ l-aħħar profil li ntuża."</string>
+<string name="settings_source_order">"Ordni tas-sorsi"</string>
+<string name="settings_source_order_body">"Liema sorsi jipprova l-ewwel il-plejer."</string>
+<string name="settings_speed">"Veloċità"</string>
+<string name="settings_subtitle_background">"Sfond"</string>
+<string name="settings_subtitle_edge">"Tarf"</string>
+<string name="settings_subtitle_font_system">"Sistema"</string>
+<string name="settings_subtitle_language">"Lingwa preferuta"</string>
+<string name="settings_subtitle_language_body">"Tintgħażel awtomatikament meta titlu jkollu din."</string>
+<string name="settings_subtitle_preview">"Dehra minn qabel"</string>
+<string name="settings_subtitle_services">"Servizzi tas-sottotitli"</string>
+<string name="settings_subtitle_size">"Daqs"</string>
+<string name="settings_subtitle_size_large">"Kbir"</string>
+<string name="settings_subtitle_size_medium">"Medju"</string>
+<string name="settings_subtitle_size_small">"Żgħir"</string>
+<string name="settings_subtitle_text_color">"Kulur tat-test"</string>
+<string name="settings_suggestions_while_typing">"Suġġerimenti waqt it-tajpjar"</string>
+<string name="settings_sync_for" formatted="true">"Sinkronizzazzjoni għal %s"</string>
+<string name="settings_sync_per_profile">"Kull profil jidħol għalih."</string>
+<string name="settings_test_all_extensions">"Ittestja l-estensjonijiet kollha"</string>
+<string name="settings_test_all_extensions_body">"Ifittex b'kull estensjoni attivata. Għall-iżviluppaturi."</string>
+<string name="settings_title_pages">"Paġni tat-titli"</string>
+<string name="settings_title_under_poster">"Titlu taħt il-poster"</string>
+<string name="settings_trailers">"Trailers"</string>
+<string name="settings_updates">"Aġġornamenti"</string>
+<string name="settings_updates_at_launch">"Iċċekkja għal aġġornamenti mal-ftuħ"</string>
+<string name="settings_updates_at_launch_body">"Ifittex verżjoni ġdida meta CloudStream jiftaħ."</string>
+<string name="settings_updates_check_now">"Iċċekkja issa"</string>
+<string name="settings_updates_current" formatted="true">"Aġġornat · iċċekkjat %s"</string>
+<string name="settings_watch_progress_body">"Jissejvja fejn waqaft, għal Kompli ara."</string>
 <string name="show_log_cat">"Uri Logcat 🐈"</string>
 <string name="skip_loading">"Aqbez it-tagħbija"</string>
 <string name="sort_apply">"Applika"</string>

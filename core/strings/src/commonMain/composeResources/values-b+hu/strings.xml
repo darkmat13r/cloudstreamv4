@@ -30,10 +30,17 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d KÖNYVJELZŐ</item><item quantity="other">%d KÖNYVJELZŐ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d szakasz betöltése sikertelen</item><item quantity="other">%d szakasz betöltése sikertelen</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d cím</item><item quantity="other">%d cím</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d másodperc</item><item quantity="other">%d másodperc</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d forrás</item><item quantity="other">%d forrás</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Következő rész %d mp múlva</item><item quantity="other">Következő rész %d mp múlva</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Keresés %d forrásban</item><item quantity="other">Keresés mind a(z) %d forrásban</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen %d forrásban.</item><item quantity="other">Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FORRÁS</item><item quantity="other">%d FORRÁS</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d szakasz</item><item quantity="other">%d szakasz</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">%d vizsgálati figyelmeztetés</item><item quantity="other">%d vizsgálati figyelmeztetés</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Az összes bővítmény (%d)</item><item quantity="other">Az összes bővítmény (%d)</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">%1$d bővítmény · frissítve: %2$s</item><item quantity="other">%1$d bővítmény · frissítve: %2$s</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">%d profil és a PIN-je</item><item quantity="other">%d profil és a PIN-jeik</item></plurals>
 <string name="account">Fiók</string>
 <string name="action_add_to_bookmarks">Megtekintés állapotának beállítása</string>
 <string name="action_add_to_favorites">Hozzáadás a kedvencekhez</string>
@@ -465,6 +472,7 @@
 <string name="play_torrent_button">Torrent streamelése</string>
 <string name="play_trailer_button">Előzetes lejátszása</string>
 <string name="play_with_app_name">Lejátszás CloudStreamel</string>
+<string name="player_audio_stereo">sztereó</string>
 <string name="player_enter_fullscreen">Teljes képernyő</string>
 <string name="player_exit_fullscreen">Kilépés a teljes képernyős módból</string>
 <string name="player_fit_original">Eredeti képarány</string>
@@ -483,22 +491,29 @@
 <string name="player_load_subtitles">Betöltés fájlból</string>
 <string name="player_load_subtitles_online">Betöltés az internetről</string>
 <string name="player_loaded_subtitles">%s betöltve</string>
+<string name="player_menu_playback">Lejátszás</string>
 <string name="player_mute">Némítás</string>
+<string name="player_play_now">Lejátszás most</string>
 <string name="player_pref">Előnyben részesített videolejátszó</string>
 <string name="player_settings_always_ask">Mindig kérdezzen</string>
 <string name="player_settings_play_in_app">Belső lejátszó</string>
 <string name="player_settings_select_cast_device">Válassza ki a lejátszó eszközt</string>
 <string name="player_size_settings">Lejátszó átméretezése gomb</string>
 <string name="player_size_settings_des">Fekete szegélyek eltávolítása</string>
+<string name="player_source_decoded">%s dekódolva</string>
 <string name="player_source_playing">Lejátszás</string>
 <string name="player_source_resumes_at">A váltás megőrzi a pozíciót: folytatás innen: %1$s</string>
 <string name="player_source_retry">Újra</string>
 <string name="player_source_switch">Váltás</string>
+<string name="player_sources_all_failed">Minden forrás hibával válaszolt.</string>
+<string name="player_sources_all_failed_detail">Válasszon alább egy forrást az újrapróbáláshoz.</string>
 <string name="player_speed">Lejátszás sebessége</string>
 <string name="player_speed_text_format">Sebesség (%.2fx)</string>
 <string name="player_subtitles_settings">Feliratok</string>
 <string name="player_subtitles_settings_des">Lejátszó feliratok beállításai</string>
 <string name="player_unmute">Némítás feloldása</string>
+<string name="player_volume_down">Hangerő le</string>
+<string name="player_volume_up">Hangerő fel</string>
 <string name="plugin">bővítmények</string>
 <string name="plugin_deleted">Bővítmény törölve</string>
 <string name="plugin_downloaded">Bővítmény letöltve</string>
@@ -645,7 +660,130 @@
 <string name="select_an_account">Válasszon egy fiókot</string>
 <string name="select_library">Könyvtár kiválasztása</string>
 <string name="set_default">Alapbeállítás</string>
+<string name="settings_adult_content">Felnőtt tartalom</string>
+<string name="settings_adult_content_body">Csak ha a bővítmény támogatja. Újraindítás után.</string>
+<string name="settings_anime_audio">Anime hang</string>
+<string name="settings_anime_audio_both">Szinkron és felirat</string>
+<string name="settings_at_launch">Indításkor</string>
+<string name="settings_back_up">Mentés</string>
+<string name="settings_back_up_now">Mentés most</string>
+<string name="settings_backup_automatically">Automatikusan</string>
+<string name="settings_backup_folder">Mentési mappa</string>
+<string name="settings_change">Módosítás</string>
+<string name="settings_choose">Kiválasztás</string>
+<string name="settings_choose_another">Másik választása</string>
+<string name="settings_clear">Törlés</string>
+<string name="settings_clear_cache">Gyorsítótár törlése</string>
+<string name="settings_clear_cache_sizes">Videó %1$s · képek %2$s</string>
+<string name="settings_color_white">Fehér</string>
+<string name="settings_color_yellow">Sárga</string>
+<string name="settings_connections_per_download">Kapcsolatok letöltésenként</string>
+<string name="settings_connections_per_download_body">Több kapcsolat gyorsabb lehet, ha a forrás engedi.</string>
+<string name="settings_diagnostics">Diagnosztika</string>
+<string name="settings_disk_cache">Lemezgyorsítótár</string>
+<string name="settings_dns">DNS</string>
+<string name="settings_dns_mac_scope">Bővítményekhez, borítóképekhez és feliratokhoz. A videostreamek a Mac DNS-ét használják.</string>
+<string name="settings_download_folder">Letöltési mappa</string>
+<string name="settings_downloads_at_once">Egyidejű letöltések</string>
+<string name="settings_downloads_at_once_body">Hány cím töltődjön le egyszerre.</string>
+<string name="settings_downloads_wait">Az új letöltések várnak, amíg a mappa ismét elérhető lesz, vagy másikat választasz.</string>
+<string name="settings_extension_languages">Nyelvek</string>
+<string name="settings_extension_review">Áttekintés</string>
+<string name="settings_extensions_auto_install">Újak telepítése a tárolóimból</string>
+<string name="settings_extensions_auto_install_body">Futtatás előtt mindegyik át lesz vizsgálva.</string>
+<string name="settings_extensions_auto_update">Bővítmények automatikus frissítése</string>
+<string name="settings_extensions_auto_update_body">Minden frissítés futtatás előtt át lesz vizsgálva.</string>
+<string name="settings_extensions_installed">Telepítve · %d</string>
+<string name="settings_filler_episodes">Töltelékepizódok</string>
+<string name="settings_filler_episodes_body">Animéknél, ha a forrás jelöli őket.</string>
+<string name="settings_folder">Mappa</string>
+<string name="settings_folder_missing">%s nem található. Lehet, hogy a lemeze nincs csatlakoztatva.</string>
+<string name="settings_help_community">Súgó és közösség</string>
+<string name="settings_help_community_body">A GitHub, a Discord és a wiki a Súgó menüben található.</string>
+<string name="settings_hide_search_quality">Minőség elrejtése a keresési találatokban</string>
+<string name="settings_home_search">Kezdőlap és keresés</string>
 <string name="settings_info">Információ</string>
+<string name="settings_last_backup">Utolsó mentés: %s</string>
+<string name="settings_logs">Naplók</string>
+<string name="settings_logs_mac_body">7 napig ezen a Macen marad. Sehová nem lesz elküldve.</string>
+<string name="settings_logs_phone_body">7 napig ezen a telefonon marad. Sehová nem lesz elküldve.</string>
+<string name="settings_network_buffer">Hálózati puffer</string>
+<string name="settings_offline_repos">A tárolók nem ellenőrizhetők. A listák állapota: %s.</string>
+<string name="settings_pane_accounts_privacy">Fiókok és adatvédelem</string>
+<string name="settings_pane_advanced">Speciális</string>
+<string name="settings_pane_appearance">Megjelenés</string>
+<string name="settings_pane_network">Hálózat</string>
+<string name="settings_pane_playback">Lejátszás</string>
+<string name="settings_play_next">Következő epizód lejátszása</string>
+<string name="settings_play_next_body">Az epizód végén 10 mp-es visszaszámlálás.</string>
+<string name="settings_playing">Lejátszás közben</string>
+<string name="settings_poster_badges">Jelvények a posztereken</string>
+<string name="settings_posters">Poszterek</string>
+<string name="settings_profile_no_pin">Nincs PIN</string>
+<string name="settings_profile_this">Ez a profil</string>
+<string name="settings_random_button_body">A Kezdőlapon és a Könyvtárban.</string>
+<string name="settings_read">Megtekintés</string>
+<string name="settings_remove">Eltávolítás</string>
+<string name="settings_repo_unreachable">Nem érhető el. A lista ennyi ideje frissült: %s.</string>
+<string name="settings_repositories">Tárolók</string>
+<string name="settings_reset_app">CloudStream visszaállítása</string>
+<string name="settings_reset_app_body">Törli a beállításokat, a profilokat és a könyvtárat ezen a Macen.</string>
+<string name="settings_reset_app_phone_body">Törli a beállításokat, a profilokat és a könyvtárat.</string>
+<string name="settings_reset_confirm_title">Visszaállítod a CloudStreamet?</string>
+<string name="settings_reset_erases_mac">Ez a következőket törli erről a Macről:</string>
+<string name="settings_reset_erases_phone">Ez a következőket törli erről a telefonról:</string>
+<string name="settings_reset_item_library">Könyvtár, megtekintési előrehaladás és előzmények</string>
+<string name="settings_reset_item_search">Keresési előzmények</string>
+<string name="settings_reset_item_settings">Beállítások</string>
+<string name="settings_reset_item_signins">Bejelentkezések a szinkronizálási és feliratszolgáltatásokba</string>
+<string name="settings_reset_kept">Megmarad: bővítmények, letöltött fájlok és mentések.</string>
+<string name="settings_restore">Visszaállítás</string>
+<string name="settings_restore_failed">Nem sikerült visszaállítani</string>
+<string name="settings_restore_failed_body">Ez a fájl nem CloudStream-mentés. Semmi sem változott.</string>
+<string name="settings_restoring">%s visszaállítása</string>
+<string name="settings_restoring_progress">%1$s · %2$d / %3$d</string>
+<string name="settings_run_test">Teszt futtatása</string>
+<string name="settings_search_hint">Keresés a beállításokban</string>
+<string name="settings_search_no_results">Nincs találat erre: „%s”</string>
+<string name="settings_search_no_results_body">Próbálj egy másik szót.</string>
+<string name="settings_seek_amount">Ugrás mértéke</string>
+<string name="settings_setup_again">Beállítás újrafuttatása</string>
+<string name="settings_setup_again_body">Nyelv, bővítmények és elrendezés, az elejéről.</string>
+<string name="settings_setup_run">Beállítás futtatása</string>
+<string name="settings_sign_in">Bejelentkezés</string>
+<string name="settings_skip_intro">Bevezető kihagyásának felajánlása</string>
+<string name="settings_skip_intro_body">Ha a forrás jelöli a főcímet vagy a stáblistát.</string>
+<string name="settings_skip_profile_choice">Profilválasztás kihagyása</string>
+<string name="settings_skip_profile_choice_body">A legutóbb használt profilt nyitja meg.</string>
+<string name="settings_source_order">Források sorrendje</string>
+<string name="settings_source_order_body">Mely forrásokat próbálja először a lejátszó.</string>
+<string name="settings_speed">Sebesség</string>
+<string name="settings_subtitle_background">Háttér</string>
+<string name="settings_subtitle_edge">Szegély</string>
+<string name="settings_subtitle_font_system">Rendszer</string>
+<string name="settings_subtitle_language">Előnyben részesített nyelv</string>
+<string name="settings_subtitle_language_body">Automatikusan kiválasztva, ha a cím rendelkezik vele.</string>
+<string name="settings_subtitle_preview">Előnézet</string>
+<string name="settings_subtitle_services">Feliratszolgáltatások</string>
+<string name="settings_subtitle_size">Méret</string>
+<string name="settings_subtitle_size_large">Nagy</string>
+<string name="settings_subtitle_size_medium">Közepes</string>
+<string name="settings_subtitle_size_small">Kicsi</string>
+<string name="settings_subtitle_text_color">Szövegszín</string>
+<string name="settings_suggestions_while_typing">Javaslatok gépelés közben</string>
+<string name="settings_sync_for">Szinkronizálás: %s</string>
+<string name="settings_sync_per_profile">Minden profil külön jelentkezik be.</string>
+<string name="settings_test_all_extensions">Összes bővítmény tesztelése</string>
+<string name="settings_test_all_extensions_body">Keresés minden engedélyezett bővítménnyel. Fejlesztőknek.</string>
+<string name="settings_title_pages">Címoldalak</string>
+<string name="settings_title_under_poster">Cím a poszter alatt</string>
+<string name="settings_trailers">Előzetesek</string>
+<string name="settings_updates">Frissítések</string>
+<string name="settings_updates_at_launch">Frissítések keresése indításkor</string>
+<string name="settings_updates_at_launch_body">Új verziót keres, amikor a CloudStream megnyílik.</string>
+<string name="settings_updates_check_now">Ellenőrzés most</string>
+<string name="settings_updates_current">Naprakész · ellenőrizve: %s</string>
+<string name="settings_watch_progress_body">Elmenti, hol hagytad abba, a folytatáshoz.</string>
 <string name="setup_done">Kész</string>
 <string name="setup_extensions_subtext">Töltse le a használni kívánt webhelyek listáját</string>
 <string name="show_cast_in_details">Szereplők panel megjelenítése</string>

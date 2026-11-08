@@ -14,9 +14,16 @@
 <plurals name="home_source_sections"><item quantity="one">"%d sekce"</item><item quantity="few">"%d sekce"</item><item quantity="many">"%d sekce"</item><item quantity="other">"%d sekcí"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d titul"</item><item quantity="few">"%d tituly"</item><item quantity="many">"%d titulu"</item><item quantity="other">"%d titulů"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d skrytý odkaz"</item><item quantity="few">"%d skryté odkazy"</item><item quantity="many">"%d skrytých odkazů"</item><item quantity="other">"%d skrytých odkazů"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d sekunda"</item><item quantity="few">"%d sekundy"</item><item quantity="many">"%d sekundy"</item><item quantity="other">"%d sekund"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d zdroj"</item><item quantity="few">"%d zdroje"</item><item quantity="many">"%d zdroje"</item><item quantity="other">"%d zdrojů"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Další díl za %d s"</item><item quantity="few">"Další díl za %d s"</item><item quantity="many">"Další díl za %d s"</item><item quantity="other">"Další díl za %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Hledat v %d zdroji"</item><item quantity="few">"Hledat ve všech %d zdrojích"</item><item quantity="many">"Hledat ve všech %d zdrojích"</item><item quantity="other">"Hledat ve všech %d zdrojích"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte %d zdroj."</item><item quantity="few">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všechny %d zdroje."</item><item quantity="many">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdroje."</item><item quantity="other">"Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ZDROJ"</item><item quantity="few">"%d ZDROJE"</item><item quantity="many">"%d ZDROJE"</item><item quantity="other">"%d ZDROJŮ"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d varování kontroly"</item><item quantity="few">"%d varování kontroly"</item><item quantity="many">"%d varování kontroly"</item><item quantity="other">"%d varování kontroly"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Všechna rozšíření (%d)"</item><item quantity="few">"Všechna rozšíření (%d)"</item><item quantity="many">"Všechna rozšíření (%d)"</item><item quantity="other">"Všechna rozšíření (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d rozšíření · aktualizováno %2$s"</item><item quantity="few">"%1$d rozšíření · aktualizováno %2$s"</item><item quantity="many">"%1$d rozšíření · aktualizováno %2$s"</item><item quantity="other">"%1$d rozšíření · aktualizováno %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil a jeho PIN"</item><item quantity="few">"%d profily a jejich PINy"</item><item quantity="many">"%d profilu a jejich PINy"</item><item quantity="other">"%d profilů a jejich PINy"</item></plurals>
 <string name="account">"účet"</string>
 <string name="account_add_profile">"Přidat profil"</string>
 <string name="account_manage_profiles">"Spravovat profily"</string>
@@ -516,6 +523,7 @@
 <string name="play_torrent_button">"Streamovat torrent"</string>
 <string name="play_trailer_button">"Přehrát trailer"</string>
 <string name="play_with_app_name">"Přehrát s CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Přejít do režimu celé obrazovky"</string>
 <string name="player_exit_fullscreen">"Ukončit režim celé obrazovky"</string>
 <string name="player_fit_original">"Původní poměr stran"</string>
@@ -535,24 +543,31 @@
 <string name="player_load_subtitles">"Načíst ze souboru"</string>
 <string name="player_load_subtitles_online">"Načíst z internetu"</string>
 <string name="player_loaded_subtitles" formatted="true">"Načteno %s"</string>
+<string name="player_menu_playback">"Přehrávání"</string>
 <string name="player_mute">"Vypnout zvuk"</string>
 <string name="player_notification_channel_description">"Oznámení přehrávače pro ovládání přehrávání na pozadí"</string>
 <string name="player_notification_channel_name">"Oznámení přehrávače"</string>
+<string name="player_play_now">"Přehrát hned"</string>
 <string name="player_pref">"Preferovaný přehrávač videí"</string>
 <string name="player_settings_always_ask">"Vždy se zeptat"</string>
 <string name="player_settings_play_in_app">"Interní přehrávač"</string>
 <string name="player_settings_select_cast_device">"Vyberte zařízení k vysílání"</string>
 <string name="player_size_settings">"Tlačítko pro změnu velikosti přehrávače"</string>
 <string name="player_size_settings_des">"Odebrat černá ohraničení"</string>
+<string name="player_source_decoded" formatted="true">"%s dekódováno"</string>
 <string name="player_source_playing">"Přehrává se"</string>
 <string name="player_source_resumes_at" formatted="true">"Přepnutí zachová pozici: pokračuje od %1$s"</string>
 <string name="player_source_retry">"Zkusit znovu"</string>
 <string name="player_source_switch">"Přepnout"</string>
+<string name="player_sources_all_failed">"Každý zdroj odpověděl chybou."</string>
+<string name="player_sources_all_failed_detail">"Vyberte zdroj níže a zkuste ho znovu."</string>
 <string name="player_speed">"Rychlost přehrávání"</string>
 <string name="player_speed_text_format" formatted="true">"Rychlost (%.2fx)"</string>
 <string name="player_subtitles_settings">"Titulky"</string>
 <string name="player_subtitles_settings_des">"Nastavení titulků přehrávače"</string>
 <string name="player_unmute">"Zapnout zvuk"</string>
+<string name="player_volume_down">"Zeslabit"</string>
+<string name="player_volume_up">"Zesílit"</string>
 <string name="plugin">"doplňků"</string>
 <string name="plugin_deleted">"Doplněk odstraněn"</string>
 <string name="plugin_downloaded">"Doplněk stažen"</string>
@@ -709,7 +724,130 @@
 <string name="select_an_account">"Vyberte účet"</string>
 <string name="select_library">"Vybrat knihovnu"</string>
 <string name="set_default">"Nastavit jako výchozí"</string>
+<string name="settings_adult_content">"Obsah pro dospělé"</string>
+<string name="settings_adult_content_body">"Jen tam, kde to rozšíření podporuje. Po restartu."</string>
+<string name="settings_anime_audio">"Zvuk anime"</string>
+<string name="settings_anime_audio_both">"Dabing i titulky"</string>
+<string name="settings_at_launch">"Při spuštění"</string>
+<string name="settings_back_up">"Zálohovat"</string>
+<string name="settings_back_up_now">"Zálohovat nyní"</string>
+<string name="settings_backup_automatically">"Automaticky"</string>
+<string name="settings_backup_folder">"Složka záloh"</string>
+<string name="settings_change">"Změnit"</string>
+<string name="settings_choose">"Vybrat"</string>
+<string name="settings_choose_another">"Vybrat jinou"</string>
+<string name="settings_clear">"Vymazat"</string>
+<string name="settings_clear_cache">"Vymazat mezipaměť"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Video %1$s · obrázky %2$s"</string>
+<string name="settings_color_white">"Bílá"</string>
+<string name="settings_color_yellow">"Žlutá"</string>
+<string name="settings_connections_per_download">"Připojení na stahování"</string>
+<string name="settings_connections_per_download_body">"Víc může být rychlejší, pokud to zdroj dovolí."</string>
+<string name="settings_diagnostics">"Diagnostika"</string>
+<string name="settings_disk_cache">"Mezipaměť na disku"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Pro rozšíření, obrázky a titulky. Video streamy používají DNS vašeho Macu."</string>
+<string name="settings_download_folder">"Složka stahování"</string>
+<string name="settings_downloads_at_once">"Souběžná stahování"</string>
+<string name="settings_downloads_at_once_body">"Kolik titulů se stahuje najednou."</string>
+<string name="settings_downloads_wait">"Nová stahování čekají, dokud se složka nevrátí nebo nevyberete jinou."</string>
+<string name="settings_extension_languages">"Jazyky"</string>
+<string name="settings_extension_review">"Zkontrolovat"</string>
+<string name="settings_extensions_auto_install">"Instalovat nová z mých repozitářů"</string>
+<string name="settings_extensions_auto_install_body">"Každé se před spuštěním stále zkontroluje."</string>
+<string name="settings_extensions_auto_update">"Aktualizovat rozšíření automaticky"</string>
+<string name="settings_extensions_auto_update_body">"Každá aktualizace se před spuštěním zkontroluje."</string>
+<string name="settings_extensions_installed" formatted="true">"Nainstalováno · %d"</string>
+<string name="settings_filler_episodes">"Výplňové epizody"</string>
+<string name="settings_filler_episodes_body">"U anime, kde je zdroj označuje."</string>
+<string name="settings_folder">"Složka"</string>
+<string name="settings_folder_missing" formatted="true">"%s chybí. Jeho disk možná není připojen."</string>
+<string name="settings_help_community">"Nápověda a komunita"</string>
+<string name="settings_help_community_body">"GitHub, Discord a wiki najdete v nabídce Nápověda."</string>
+<string name="settings_hide_search_quality">"Skrýt kvalitu ve výsledcích hledání"</string>
+<string name="settings_home_search">"Domů a Hledání"</string>
 <string name="settings_info">"Informace"</string>
+<string name="settings_last_backup" formatted="true">"Poslední záloha: %s"</string>
+<string name="settings_logs">"Protokoly"</string>
+<string name="settings_logs_mac_body">"Uchovávají se na tomto Macu 7 dní. Nikam se neodesílají."</string>
+<string name="settings_logs_phone_body">"Uchovávají se v tomto telefonu 7 dní. Nikam se neodesílají."</string>
+<string name="settings_network_buffer">"Síťová vyrovnávací paměť"</string>
+<string name="settings_offline_repos" formatted="true">"Repozitáře nelze zkontrolovat. Tyto seznamy jsou z %s."</string>
+<string name="settings_pane_accounts_privacy">"Účty a soukromí"</string>
+<string name="settings_pane_advanced">"Pokročilé"</string>
+<string name="settings_pane_appearance">"Vzhled"</string>
+<string name="settings_pane_network">"Síť"</string>
+<string name="settings_pane_playback">"Přehrávání"</string>
+<string name="settings_play_next">"Přehrát další epizodu"</string>
+<string name="settings_play_next_body">"Na konci epizody odpočítá 10 s."</string>
+<string name="settings_playing">"Přehrávání"</string>
+<string name="settings_poster_badges">"Odznaky na plakátech"</string>
+<string name="settings_posters">"Plakáty"</string>
+<string name="settings_profile_no_pin">"Bez PINu"</string>
+<string name="settings_profile_this">"Tento profil"</string>
+<string name="settings_random_button_body">"Na Domů a v Knihovně."</string>
+<string name="settings_read">"Číst"</string>
+<string name="settings_remove">"Odebrat"</string>
+<string name="settings_repo_unreachable" formatted="true">"Nepodařilo se ho zastihnout. Tento seznam je z doby před %s."</string>
+<string name="settings_repositories">"Repozitáře"</string>
+<string name="settings_reset_app">"Resetovat CloudStream"</string>
+<string name="settings_reset_app_body">"Vymaže nastavení, profily a knihovnu na tomto Macu."</string>
+<string name="settings_reset_app_phone_body">"Vymaže nastavení, profily a knihovnu."</string>
+<string name="settings_reset_confirm_title">"Resetovat CloudStream?"</string>
+<string name="settings_reset_erases_mac">"Z tohoto Macu se vymaže:"</string>
+<string name="settings_reset_erases_phone">"Z tohoto telefonu se vymaže:"</string>
+<string name="settings_reset_item_library">"Knihovna, průběh sledování a historie"</string>
+<string name="settings_reset_item_search">"Historie hledání"</string>
+<string name="settings_reset_item_settings">"Nastavení"</string>
+<string name="settings_reset_item_signins">"Přihlášení ke službám synchronizace a titulků"</string>
+<string name="settings_reset_kept">"Zůstane: rozšíření, stažené soubory a zálohy."</string>
+<string name="settings_restore">"Obnovit"</string>
+<string name="settings_restore_failed">"Obnovení se nezdařilo"</string>
+<string name="settings_restore_failed_body">"Tento soubor není záloha CloudStreamu. Nic se nezměnilo."</string>
+<string name="settings_restoring" formatted="true">"Obnovování %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d z %3$d"</string>
+<string name="settings_run_test">"Spustit test"</string>
+<string name="settings_search_hint">"Hledat v nastavení"</string>
+<string name="settings_search_no_results" formatted="true">"Žádné výsledky pro „%s“"</string>
+<string name="settings_search_no_results_body">"Zkuste jiné slovo."</string>
+<string name="settings_seek_amount">"Délka přeskočení"</string>
+<string name="settings_setup_again">"Spustit nastavení znovu"</string>
+<string name="settings_setup_again_body">"Jazyk, rozšíření a rozvržení, od začátku."</string>
+<string name="settings_setup_run">"Spustit nastavení"</string>
+<string name="settings_sign_in">"Přihlásit se"</string>
+<string name="settings_skip_intro">"Nabízet Přeskočit úvod"</string>
+<string name="settings_skip_intro_body">"Kde zdroj označuje úvod nebo titulky."</string>
+<string name="settings_skip_profile_choice">"Přeskočit výběr profilu"</string>
+<string name="settings_skip_profile_choice_body">"Otevře naposledy použitý profil."</string>
+<string name="settings_source_order">"Pořadí zdrojů"</string>
+<string name="settings_source_order_body">"Které zdroje přehrávač zkouší jako první."</string>
+<string name="settings_speed">"Rychlost"</string>
+<string name="settings_subtitle_background">"Pozadí"</string>
+<string name="settings_subtitle_edge">"Okraj"</string>
+<string name="settings_subtitle_font_system">"Systémové"</string>
+<string name="settings_subtitle_language">"Preferovaný jazyk"</string>
+<string name="settings_subtitle_language_body">"Vybere se automaticky, když ho titul má."</string>
+<string name="settings_subtitle_preview">"Náhled"</string>
+<string name="settings_subtitle_services">"Služby titulků"</string>
+<string name="settings_subtitle_size">"Velikost"</string>
+<string name="settings_subtitle_size_large">"Velké"</string>
+<string name="settings_subtitle_size_medium">"Střední"</string>
+<string name="settings_subtitle_size_small">"Malé"</string>
+<string name="settings_subtitle_text_color">"Barva textu"</string>
+<string name="settings_suggestions_while_typing">"Návrhy při psaní"</string>
+<string name="settings_sync_for" formatted="true">"Synchronizace pro %s"</string>
+<string name="settings_sync_per_profile">"Každý profil se přihlašuje sám."</string>
+<string name="settings_test_all_extensions">"Otestovat všechna rozšíření"</string>
+<string name="settings_test_all_extensions_body">"Hledá pomocí všech zapnutých rozšíření. Pro vývojáře."</string>
+<string name="settings_title_pages">"Stránky titulů"</string>
+<string name="settings_title_under_poster">"Název pod plakátem"</string>
+<string name="settings_trailers">"Trailery"</string>
+<string name="settings_updates">"Aktualizace"</string>
+<string name="settings_updates_at_launch">"Kontrolovat aktualizace při spuštění"</string>
+<string name="settings_updates_at_launch_body">"Při otevření CloudStreamu hledá novou verzi."</string>
+<string name="settings_updates_check_now">"Zkontrolovat nyní"</string>
+<string name="settings_updates_current" formatted="true">"Aktuální · zkontrolováno %s"</string>
+<string name="settings_watch_progress_body">"Ukládá, kde jste skončili, pro Pokračovat ve sledování."</string>
 <string name="setup_done">"Hotovo"</string>
 <string name="setup_extensions_subtext">"Stáhněte si seznam webů, které chcete používat"</string>
 <string name="show">"Zobrazit"</string>

@@ -30,10 +30,17 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOEKMERK</item><item quantity="other">%d BOEKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d afdeling kon nie laai nie</item><item quantity="other">%d afdelings kon nie laai nie</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titel</item><item quantity="other">%d titels</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">%d sekonde</item><item quantity="other">%d sekondes</item></plurals>
+<plurals name="player_source_count"><item quantity="one">%d bron</item><item quantity="other">%d bronne</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">Volgende episode oor %d s</item><item quantity="other">Volgende episode oor %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Soek %d bron</item><item quantity="other">Soek al %d bronne</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Druk die sleutelbord se soeksleutel om tog %d bron te deursoek.</item><item quantity="other">Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek.</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BRON</item><item quantity="other">%d BRONNE</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d afdeling</item><item quantity="other">%d afdelings</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">%d skanderingwaarskuwing</item><item quantity="other">%d skanderingwaarskuwings</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">Alle uitbreidings (%d)</item><item quantity="other">Alle uitbreidings (%d)</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">%1$d uitbreiding · bygewerk %2$s</item><item quantity="other">%1$d uitbreidings · bygewerk %2$s</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">%d profiel en sy PIN</item><item quantity="other">%d profiele en hul PIN's</item></plurals>
 <string name="action_add_to_bookmarks">Stel kykstatus</string>
 <string name="action_remove_from_bookmarks">Verwyder</string>
 <string name="action_remove_watching">Verwyder</string>
@@ -244,7 +251,130 @@
 <string name="seek_back_10_seconds">Spring 10 sekondes terug</string>
 <string name="seek_forward_10_seconds">Spring 10 sekondes vorentoe</string>
 <string name="select_all">Kies Alles</string>
+<string name="settings_adult_content">Volwasse inhoud</string>
+<string name="settings_adult_content_body">Slegs waar 'n uitbreiding dit ondersteun. Ná 'n herbegin.</string>
+<string name="settings_anime_audio">Anime-klank</string>
+<string name="settings_anime_audio_both">Oorgeklank en onderskrif</string>
+<string name="settings_at_launch">By begin</string>
+<string name="settings_back_up">Rugsteun</string>
+<string name="settings_back_up_now">Rugsteun nou</string>
+<string name="settings_backup_automatically">Outomaties</string>
+<string name="settings_backup_folder">Rugsteunvouer</string>
+<string name="settings_change">Verander</string>
+<string name="settings_choose">Kies</string>
+<string name="settings_choose_another">Kies 'n ander</string>
+<string name="settings_clear">Vee uit</string>
+<string name="settings_clear_cache">Vee kas uit</string>
+<string name="settings_clear_cache_sizes">Video %1$s · prente %2$s</string>
+<string name="settings_color_white">Wit</string>
+<string name="settings_color_yellow">Geel</string>
+<string name="settings_connections_per_download">Verbindings per aflaai</string>
+<string name="settings_connections_per_download_body">Meer kan vinniger wees, waar die bron dit toelaat.</string>
+<string name="settings_diagnostics">Diagnostiek</string>
+<string name="settings_disk_cache">Skyfkas</string>
+<string name="settings_dns">DNS</string>
+<string name="settings_dns_mac_scope">Vir uitbreidings, kunswerk en onderskrifte. Videostrome gebruik jou Mac se DNS.</string>
+<string name="settings_download_folder">Aflaaivouer</string>
+<string name="settings_downloads_at_once">Gelyktydige aflaaie</string>
+<string name="settings_downloads_at_once_body">Hoeveel titels saam aflaai.</string>
+<string name="settings_downloads_wait">Nuwe aflaaie wag totdat die vouer terug is of 'n ander gekies word.</string>
+<string name="settings_extension_languages">Tale</string>
+<string name="settings_extension_review">Hersien</string>
+<string name="settings_extensions_auto_install">Installeer nuwes uit my bewaarplekke</string>
+<string name="settings_extensions_auto_install_body">Elkeen word steeds geskandeer voordat dit loop.</string>
+<string name="settings_extensions_auto_update">Werk uitbreidings outomaties by</string>
+<string name="settings_extensions_auto_update_body">Elke bywerking word geskandeer voordat dit loop.</string>
+<string name="settings_extensions_installed">Geïnstalleer · %d</string>
+<string name="settings_filler_episodes">Vullerepisodes</string>
+<string name="settings_filler_episodes_body">Vir anime, waar die bron hulle merk.</string>
+<string name="settings_folder">Vouer</string>
+<string name="settings_folder_missing">%s ontbreek. Sy skyf is dalk nie gekoppel nie.</string>
+<string name="settings_help_community">Hulp en gemeenskap</string>
+<string name="settings_help_community_body">GitHub, Discord en die wiki is in die Hulp-kieslys.</string>
+<string name="settings_hide_search_quality">Versteek kwaliteit in soekresultate</string>
+<string name="settings_home_search">Tuis en Soek</string>
 <string name="settings_info">Inligting</string>
+<string name="settings_last_backup">Laaste rugsteun: %s</string>
+<string name="settings_logs">Logboeke</string>
+<string name="settings_logs_mac_body">Word 7 dae op hierdie Mac gehou. Word nooit êrens heen gestuur nie.</string>
+<string name="settings_logs_phone_body">Word 7 dae op hierdie foon gehou. Word nooit êrens heen gestuur nie.</string>
+<string name="settings_network_buffer">Netwerkbuffer</string>
+<string name="settings_offline_repos">Bewaarplekke kan nie nagegaan word nie. Hierdie lyste is van %s.</string>
+<string name="settings_pane_accounts_privacy">Rekeninge en privaatheid</string>
+<string name="settings_pane_advanced">Gevorderd</string>
+<string name="settings_pane_appearance">Voorkoms</string>
+<string name="settings_pane_network">Netwerk</string>
+<string name="settings_pane_playback">Afspeel</string>
+<string name="settings_play_next">Speel die volgende episode</string>
+<string name="settings_play_next_body">Tel 10 s af aan die einde van 'n episode.</string>
+<string name="settings_playing">Speel</string>
+<string name="settings_poster_badges">Kentekens op plakkate</string>
+<string name="settings_posters">Plakkate</string>
+<string name="settings_profile_no_pin">Geen PIN</string>
+<string name="settings_profile_this">Hierdie profiel</string>
+<string name="settings_random_button_body">Op Tuis en Biblioteek.</string>
+<string name="settings_read">Lees</string>
+<string name="settings_remove">Verwyder</string>
+<string name="settings_repo_unreachable">Kon dit nie bereik nie. Hierdie lys is van %s gelede.</string>
+<string name="settings_repositories">Bewaarplekke</string>
+<string name="settings_reset_app">Stel CloudStream terug</string>
+<string name="settings_reset_app_body">Vee instellings, profiele en biblioteek op hierdie Mac uit.</string>
+<string name="settings_reset_app_phone_body">Vee instellings, profiele en biblioteek uit.</string>
+<string name="settings_reset_confirm_title">Stel CloudStream terug?</string>
+<string name="settings_reset_erases_mac">Dit vee van hierdie Mac uit:</string>
+<string name="settings_reset_erases_phone">Dit vee van hierdie foon uit:</string>
+<string name="settings_reset_item_library">Biblioteek, kykvordering en geskiedenis</string>
+<string name="settings_reset_item_search">Soekgeskiedenis</string>
+<string name="settings_reset_item_settings">Instellings</string>
+<string name="settings_reset_item_signins">Aanmeldings by sinkronisasie- en onderskrifdienste</string>
+<string name="settings_reset_kept">Behou: uitbreidings, afgelaaide lêers en rugsteune.</string>
+<string name="settings_restore">Herstel</string>
+<string name="settings_restore_failed">Kon nie herstel nie</string>
+<string name="settings_restore_failed_body">Daardie lêer is nie 'n CloudStream-rugsteun nie. Niks is verander nie.</string>
+<string name="settings_restoring">Herstel tans %s</string>
+<string name="settings_restoring_progress">%1$s · %2$d van %3$d</string>
+<string name="settings_run_test">Voer toets uit</string>
+<string name="settings_search_hint">Soek instellings</string>
+<string name="settings_search_no_results">Geen resultate vir “%s” nie</string>
+<string name="settings_search_no_results_body">Probeer 'n ander woord.</string>
+<string name="settings_seek_amount">Spoelafstand</string>
+<string name="settings_setup_again">Voer opstelling weer uit</string>
+<string name="settings_setup_again_body">Taal, uitbreidings en uitleg, van voor af.</string>
+<string name="settings_setup_run">Voer opstelling uit</string>
+<string name="settings_sign_in">Meld aan</string>
+<string name="settings_skip_intro">Bied Slaan inleiding oor aan</string>
+<string name="settings_skip_intro_body">Waar 'n bron die opening of aftiteling merk.</string>
+<string name="settings_skip_profile_choice">Slaan profielkeuse oor</string>
+<string name="settings_skip_profile_choice_body">Maak die laaste gebruikte profiel oop.</string>
+<string name="settings_source_order">Bronvolgorde</string>
+<string name="settings_source_order_body">Watter bronne die speler eerste probeer.</string>
+<string name="settings_speed">Spoed</string>
+<string name="settings_subtitle_background">Agtergrond</string>
+<string name="settings_subtitle_edge">Rand</string>
+<string name="settings_subtitle_font_system">Stelsel</string>
+<string name="settings_subtitle_language">Voorkeurtaal</string>
+<string name="settings_subtitle_language_body">Word outomaties gekies wanneer 'n titel dit het.</string>
+<string name="settings_subtitle_preview">Voorskou</string>
+<string name="settings_subtitle_services">Onderskrifdienste</string>
+<string name="settings_subtitle_size">Grootte</string>
+<string name="settings_subtitle_size_large">Groot</string>
+<string name="settings_subtitle_size_medium">Medium</string>
+<string name="settings_subtitle_size_small">Klein</string>
+<string name="settings_subtitle_text_color">Tekskleur</string>
+<string name="settings_suggestions_while_typing">Voorstelle terwyl jy tik</string>
+<string name="settings_sync_for">Sinkronisasie vir %s</string>
+<string name="settings_sync_per_profile">Elke profiel meld self aan.</string>
+<string name="settings_test_all_extensions">Toets alle uitbreidings</string>
+<string name="settings_test_all_extensions_body">Soek met elke geaktiveerde uitbreiding. Vir ontwikkelaars.</string>
+<string name="settings_title_pages">Titelbladsye</string>
+<string name="settings_title_under_poster">Titel onder die plakkaat</string>
+<string name="settings_trailers">Lokprente</string>
+<string name="settings_updates">Bywerkings</string>
+<string name="settings_updates_at_launch">Soek na bywerkings by begin</string>
+<string name="settings_updates_at_launch_body">Soek na 'n nuwe weergawe wanneer CloudStream oopmaak.</string>
+<string name="settings_updates_check_now">Gaan nou na</string>
+<string name="settings_updates_current">Op datum · nagegaan %s</string>
+<string name="settings_watch_progress_body">Stoor waar jy gestop het, vir Kyk verder.</string>
 <string name="skip_loading">Slaan Laai Oor</string>
 <string name="sort_apply">Pas toe</string>
 <string name="sort_clear">Maak leeg</string>
@@ -295,5 +425,13 @@
 <string name="library_sync_retry">Probeer weer sinkroniseer</string>
 <string name="library_sync_unreachable">Onbereikbaar · %s gelede gekas</string>
 <string name="library_synced_format">%s gelede gesinkroniseer</string>
+<string name="player_audio_stereo">stereo</string>
+<string name="player_menu_playback">Afspeel</string>
+<string name="player_play_now">Speel nou</string>
+<string name="player_source_decoded">%s gedekodeer</string>
+<string name="player_sources_all_failed">Elke bron het met 'n fout geantwoord.</string>
+<string name="player_sources_all_failed_detail">Kies 'n bron hieronder om dit weer te probeer.</string>
+<string name="player_volume_down">Volume af</string>
+<string name="player_volume_up">Volume op</string>
 <string name="search_suggestions_return_hint">Return soek alles</string>
 </resources>

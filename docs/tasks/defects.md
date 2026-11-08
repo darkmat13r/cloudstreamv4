@@ -2251,7 +2251,7 @@ and saves the token in one call.
 
 ## BUG-50 — Android backup carried every sign-in token, and the app's export carried profile PINs · **high, security** · measured 2026-11-07
 
-**Status:** fixed in pr, stacked on `BUG-48` (#209) · found 2026-11-07 while measuring `Q16` · the owner ruled on the
+**Status:** done · #215, merged in train 8 (`fc898c19b`) · found 2026-11-07 while measuring `Q16` · the owner ruled on the
 fix the same day · `app/src/main/res/xml/backup_descriptor.xml`, `data_extraction_rules.xml`; `BackupUtils.kt`
 
 Two leaks of the same kind:
@@ -2313,7 +2313,7 @@ named after it (a first name, `read`, renamed three of them). And `getBackup` st
 
 ## BUG-51 — Android backup still carried profile PINs; a failed sign-in move was marked done · **high, security** · measured 2026-11-08
 
-**Status:** fixed in pr, stacked on `BUG-50` (#215) · the owner ruled 2026-11-07 that PINs stay off Android's backup
+**Status:** done · #222, merged in train 8 (`1fdfe8f81`) · the owner ruled 2026-11-07 that PINs stay off Android's backup
 too; the second half is #215's review · `DataStoreHelper.kt`, `CredentialStore.kt`
 
 - **PINs.** `BUG-50` took PINs out of the app's export, but each profile's `lockPin` still sat inside the profile list
@@ -2449,3 +2449,190 @@ unchanged: ten steps lower than what launched it. Nothing outside the test chang
 - At parent 5 (Gradle run under `nice -n 5`, no daemon): host 15, pass. This is the gates' failure, which the old
   assertion failed on with `expected:<10> but was:<15>`.
 - **Red:** with `nice -n 10` taken out of the launcher, `expected:<10> but was:<0>`. Restored afterwards.
+
+## BUG-67 — `DesktopDownloadsTest`'s retry wait missed the bytes on a fast machine · **low, test only**
+
+**Status:** fixed in pr #258 · found 2026-11-08 on the second Mac, by `:desktopApp:jvmTest`
+
+`a retry asks the extension again, a resume of a pause does not` waits, after `retry`, for a snapshot showing the
+episode Running with some bytes done, so that it can pause mid-download. Snapshots come from `DesktopDownloads.throttled`,
+at most one every `EMIT_INTERVAL_MILLIS` (250 ms). On the second Mac the retried 1 MiB body finished inside one window,
+so no snapshot ever matched, and the wait timed out at 30 s. The behaviour under test was right all along: the extension
+was asked exactly once.
+
+**Measured** on the second Mac, Temurin 17.0.21:
+- Red on master: 3 runs in 3 at `518c9b74f` (with `BUG-53`/`BUG-56`'s rework), and earlier 3 in 3 at `bb06dacb3` and 3
+  in 3 on `#232`'s head. The main Mac passed the class, so speed decides it.
+- A collector on the title's snapshots, from just before the retry (a local debug change, not committed):
+  ```
+       0 ms  Failed   bytes=0        failure=ServerRefused(404)
+     306 ms  Running  bytes=0        failure=null
+     561 ms  Running  bytes=0        failure=null
+     814 ms  Done     bytes=1048576  failure=null
+  ```
+
+**Fix, in the test only.** `RangeServer.holdAfterFirstChunk(name)` returns a gate. The next body of that file stops
+after its first 16 KiB and waits until the gate opens, so the engine holds bytes and no more, and a snapshot with
+bytes done must come. The test arms the gate before `retry`, pauses once it sees Running with bytes, and opens the gate
+after the pause has landed. The probe's single byte never waits. The gate is one-shot, so the resume is served normally.
+This follows `BUG-56`'s resolver gate. No timing changed: same file, same chunk delay. "Asked exactly once" is kept.
+
+**Proof** on the second Mac, Temurin 17.0.21, `:desktopApp:jvmTest --tests '*DesktopDownloadsTest*' --rerun`:
+- Before, on master `d061b20c2`: exit 1, 25 tests, 1 failed (this test, the same timeout).
+- After: 10 runs in a row, each exit 0, 25 tests, 0 failures, every XML timestamped by its own run.
+
+## BUG-70 — Two HUD tests named a real streaming site and real titles · **low, test only**
+
+**Status:** fixed in this PR · the PM's call, 2026-11-08
+
+`TvHudFactsTest` (`:app`) and `PlayerHudTvDeviceTest` (`:feature:player`) used a real site's name ("VidSrc Pro", source id
+`vidsrc`), and the titles of real shows and films ("Arcane" with episodes "Powder" and "The Base Violence Necessary for
+Change", "What If...?", "Dune: Part Two"). Tests, screenshots and previews get copied, so they use names that belong to
+no real title or site, as `DS-23` set.
+
+**Fix, test code only:**
+
+| Was | Now |
+|---|---|
+| "VidSrc Pro", `vidsrc` | "Source One", `sourceone` |
+| "Vid\nSrc\u0007 Pro" | "Sou\nrce\u0007 One" |
+| "Arcane", "Powder" | "Quiet Harbor", "Low Tide" |
+| "The Base Violence Necessary for Change" | "The Night the Lighthouse Keeper Stayed" |
+| "What If...?" | "Harbor Lights...?" |
+| "Dune: Part Two" | "Northern Reach" |
+
+Every property a test depends on is kept:
+- The control-character variant still breaks a word with `\n` and puts `\u0007` before the space, and it still cleans to
+  the same name the default link has.
+- The title still ends in `...?`, which `toHudState` must keep.
+- The long Up-next name keeps its length, 38 characters. No test reads the other names' lengths.
+
+**Screenshots.** Five of `PlayerHudTvDeviceTest`'s six references changed. All five draw the title or the source:
+- `shown`, `buffering`, `failed` and `offline` differed in 8,036 pixels each;
+- `nothing-known` differed in 2,233;
+- `hidden-scrub` stayed the same.
+
+The diff was read before recording. Every changed pixel lies inside the four lines whose words changed (the title, the
+episode line, Up next and the source cell), and nothing else moved. After the re-record, a compare run on
+`Television_720p` passed 14 of 14 device tests, with all six screenshots identical (0 pixels). `TvHudFactsTest`: 8 of 8.
+
+## BUG-60 — TV Home's chrome icons: unequal cells, and too far apart · **low, visual** · measured 2026-11-08
+
+**Status:** fixed in pr · raised by the owner from a screenshot of TV Home's top row · `HomeScreenTv.kt`
+
+The owner: *"the spacing is too much between icon button and the icons are not same size like the profile button icon"*.
+
+**Measured** on `Television_720p`, on the committed `home-chrome-focus-random` (1dp ≈ 1.33px):
+
+| | Visible tile | Glyph slot | Glyph drawn | Gap to the next tile |
+|---|---|---|---|---|
+| Reload, Random, Search (`IconOnlyButton`) | 32dp, outlined (45px with the hairline) | 16dp | about 17 × 16px, `ink` | 35px, about 28dp |
+| The account (`IconCell`) | 24dp, filled (32px) | 16dp | about 13 × 12px, `muted` | 41px from Search, about 32dp |
+
+The glyph slots were already equal: `IconCell` puts a 16dp box around the glyph, and `IconOnlyButton` draws it at
+`CloudStreamIconSize.Small`, also 16dp. What made the account look different was its smaller filled tile, its `muted`
+glyph at rest and the person glyph's own art. The 48dp cells sat `MinFocusGap` (12dp) apart, so two 32dp tiles were
+28dp apart.
+
+**The design** (`TV Home` 3c, `TV Home Extras` 3j): `.chrome { gap: 24px }` between 96px cells, which is 48dp cells
+`MinFocusGap` apart, as built, with a 24dp tile (`.ivis` 48px), so a 36dp visible gap. A tighter row is not in the
+design. 3c draws the account as a 32dp avatar.
+
+**Fix:**
+- The account is now an `IconOnlyButton` like the other three: the same 32dp outlined tile, the same 16dp glyph in
+  `ink`, the same ring, and "Switch account" drawn under it on focus, as Random's name is.
+- **The four icon cells touch** (`HomeScreenTvDefaults.ChromeCellGap`, 0dp), so two tiles are 16dp apart. The owner's
+  call on 2026-11-08, an approved exception to `MinFocusGap` for this row only. It is safe: a ring is the 32dp tile plus
+  2dp offset and 2dp stroke on each side, 40dp, inside its 48dp cell with 4dp spare on each side, so two rings never
+  overlap and every cell is still a whole 48dp target. The source control keeps `MinFocusGap` before the first cell.
+  `MinFocusGap` and every other row are unchanged.
+
+- **A focused cell's name stays on screen** (review). `IconOnlyButton` drew its name centred under the cell whatever
+  was there, so under the last chrome cell a long translation ran off the right edge. The longest `switch_account` is
+  Macedonian's, 25 letters ("Промени корисничка сметка"), against English's 14. The name now moves inward just enough
+  to stay inside the root; one that fits centred does not move, so no recorded screenshot changed.
+
+The Mac Home toolbar (`HomeScreenDesktop`) has no such mismatch: its only icon buttons are Reload and Random, both
+`DesktopIconButton`, and it has no search or account cell.
+
+### Behaviour changes
+
+| Before | Now |
+|---|---|
+| The account cell a smaller filled tile with a dim glyph | The same tile, glyph and ring as Reload, Random and Search |
+| The account cell's name only read aloud | Also drawn under it on focus, like the other three |
+| 28dp between the buttons' tiles, 32dp before the account | 16dp between all four |
+| An icon-only button's name, at a screen edge, could run off screen | It moves inward to stay on screen |
+
+### Tests
+
+All on `Television_720p`, locally (CI is off).
+
+- `HomeScreenTvDeviceTest` (device, 87, all pass, 2026-11-08T05:20:21), four new:
+  - `theFourChromeCellsDrawOneTileAndOneGlyphSize`: in pixels at rest, the four tiles are one size, the glyphs one
+    colour, and each glyph as big as that glyph drawn on its own at `CloudStreamIconSize.Small`. **Fails on master:**
+    "Switch account's tile against Reload Provider's, in px expected:<(45, 45)> but was:<(32, 32)>".
+  - `theChromeCellsTouchAndEachRingStaysInsideItsOwnCell`: the four cells are 48dp and touch, and each focused cell's
+    ring stays inside its own cell on every side. **Fails on master:** "from Reload Provider's cell to Random's
+    expected:<0.0> but was:<12.018799>". **Fails with a 44dp tile** (a deliberate edit to `IconOnlyButtonDefaults`,
+    reverted): "Reload Provider's ring x 985..1052 y 35..103 px passes its cell x 986..1051 y 37..101 on the left".
+  - Screenshot `home-chrome-focus-account`, new. (A case at rest was dropped in review: it was byte for byte
+    `home-hero-focus-button`, which already shows the chrome at rest.)
+- 16 recorded screenshots moved, each only in the chrome's band (y 42 to 116 px): the account cell, and the cells and
+  the source control where they now sit. Each was looked at.
+
+## BUG-61 — Android Home could show a provider's URL and token in its failure line · **medium, security** · measured 2026-11-08
+
+**Status:** fixed in pr · `app/.../cloudstream4/home/AndroidHomeSource.kt`, `toReply`
+
+Home's failure line is the first line of `Resource.Failure.errorString`. Android's `toReply` cleaned that line (control
+and format characters out) and relied on `:library` to have redacted it. Desktop's copy redacts again after removing
+invisible characters (`#221` review); Android's did not. Every path into `toReply` on master:
+
+| Failure | First line | On screen? | Redacted before this fix? |
+|---|---|---|---|
+| `ErrorLoadingException`, timeouts, `UnknownHostException`, `SSLHandshakeException` | message or fixed text | No: `isNetworkError`, so Home shows Offline | — |
+| `NoSuchMethodError` and the rest of "outdated" | fixed text; the message is line 2 | Fixed text only | — |
+| `NotImplementedError` | fixed text | Yes | Nothing to redact |
+| Any other throwable (`safeFail`) | the message | Yes | Yes, upstream, **unless an invisible character hides the URL or path** |
+| `NullPointerException` with a `provider.kt` frame | `NullPointerException at <frame file>:<line>` | Yes | **No**: the frame's file name is not a message, and an extension can set it |
+
+- **The hole.** The upstream redaction looks for `://` and for `/Users/`, `/storage/` and the like. A zero-width space
+  or a NUL inside (`https:<ZWSP>//…`, `https:/<NUL>/…`, `/Us<ZWSP>ers/…`) hides the URL or path from it. Then
+  `toReply`'s own cleaning removes the invisible character and puts the URL back together, token included.
+- **Measured on master:** `AndroidHomeSourceTest.aFailureShowsNoAddressTokenOrUserPathHoweverItIsHidden` failed with
+  `Refused https://cdn.example/v/1.m3u8?token=SECRET1…` on the failure line.
+- **Fix:** `toReply` removes invisible characters first, then redacts with `redactedText` (`LogRedaction`, the `:app`
+  copy), then cleans, the same order as desktop. Home no longer depends on what `:library` did.
+- **Review, wider "invisible":** control and format characters were not enough. U+034F (combining grapheme joiner)
+  and VS16 (U+FE0F) are category Mn, and U+3164 is Lo; each, inside the scheme, `://` or `/Users/`, still leaked.
+  `toReply` now also removes Unicode's Default_Ignorable_Code_Point set, read a code point at a time. The list is
+  `BUG-64`'s, the same text in every copy.
+- **Review, a visible wedge:** a braille blank (U+2800) is drawn, so it is not ignorable, but `https:<U+2800>//…`
+  reads as a URL and the old pattern does not find it. After `redactedText`, a second pass uses `BUG-64`'s link
+  pattern (the same text as every redaction copy): up to two drawn characters, with spaces around them, may sit
+  between `scheme:` and `//`, and up to two that are not letters or digits between the slashes. The URL becomes
+  `scheme://host/<…>`, as everywhere. On text `redactedText` already cut, the pass changes nothing; once `BUG-64`
+  lands, `redactedText` does it itself. **DECIDED** (PM), the pattern agreed with `BUG-64` so there is one text.
+- **Logs:** `logError` redacts the message and the trace with the same patterns. `BUG-52` (#224) closes the
+  invisible-character hole there and in `ErrorLoadingException`'s text.
+
+**Test** (`:app` JVM), seventeen hostile failures through `page()`: a plain URL with a token; a ZWSP, a NUL and a BEL
+in or after `://`; a user path split by a ZWSP; a `file:` URI split by one; a `NullPointerException` with a forged
+frame whose file name is a URL with a token; and, from review, a CGJ in `://`, a VS16 in the scheme and between the
+slashes, a CGJ and a U+3164 in `/Users/`, and a braille blank or U+1D159 before, between and around the slashes.
+None leaves a token, a user path or a URL's path on the line, and none leaves an invisible character. The reason and
+the host stay, and five lines that only look like links (`Ratio 16:9 // wide`, `Note: a/b/c`, `1:2/3/4` and two
+more) come through unchanged. The test names every case that leaks, not only the first.
+
+**Published API:** additions only, `classes-jar.api` +2 / −0: the synthetic accessors
+`AndroidHomeSource.access$getURL_IN_TEXT$cp` and `AndroidHomeSourceKt.access$withoutDefaultIgnorable`, which the
+compiler adds because the class reads the private pattern and the shared private function.
+
+**Found and left:**
+- `getStackTracePretty` (`:library`) glues the first frame onto the message with no line break, so Home's reason ends in
+  a file name and line (`…SECRET1AndroidHomeSourceTest.kt 287`). With no message, the first line is that frame, with `:`
+  turned into a space, so a forged `https://` file name reads `https//` and no pattern can find it. Both are `:library`'s.
+  The second needs a forged stack frame.
+- Search (`ApiRepositorySearchSource.detailOf`), detail (`AndroidDetailSource`) and downloads
+  (`AndroidDownloadsSource`) also read `errorString`, with no redaction of their own.

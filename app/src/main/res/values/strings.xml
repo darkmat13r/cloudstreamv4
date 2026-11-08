@@ -15,6 +15,9 @@
 <plurals name="home_source_sections"><item quantity="one">"%d section"</item><item quantity="other">"%d sections"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d title"</item><item quantity="other">"%d titles"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d hidden link"</item><item quantity="other">"%d hidden links"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d second"</item><item quantity="other">"%d seconds"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d source"</item><item quantity="other">"%d sources"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Next episode in %d s"</item><item quantity="other">"Next episode in %d s"</item></plurals>
 <plurals name="search_state_no_results_body"><item quantity="one">"%d selected source answered and it does not carry it."</item><item quantity="other">"All %d selected sources answered and none of them carry it."</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Search %d source"</item><item quantity="other">"Search all %d sources"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Press the keyboard’s search key to search %d source anyway."</item><item quantity="other">"Press the keyboard’s search key to search all %d sources anyway."</item></plurals>
@@ -23,6 +26,10 @@
 <plurals name="search_tv_result_count"><item quantity="one">"%d RESULT"</item><item quantity="other">"%d RESULTS"</item></plurals>
 <plurals name="search_tv_sources_count"><item quantity="one">"%1$d / %2$d"</item><item quantity="other">"%1$d / %2$d"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d SOURCE"</item><item quantity="other">"%d SOURCES"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d scan warning"</item><item quantity="other">"%d scan warnings"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"All %d extension"</item><item quantity="other">"All %d extensions"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d extension · updated %2$s"</item><item quantity="other">"%1$d extensions · updated %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d profile and its PIN"</item><item quantity="other">"%d profiles and their PINs"</item></plurals>
 <string name="account">"account"</string>
 <string name="account_add_profile">"Add profile"</string>
 <string name="account_manage_profiles">"Manage profiles"</string>
@@ -542,6 +549,7 @@
 <string name="play_torrent_button">"Stream Torrent"</string>
 <string name="play_trailer_button">"Play Trailer"</string>
 <string name="play_with_app_name">"Play with CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Enter full screen"</string>
 <string name="player_exit_fullscreen">"Exit full screen"</string>
 <string name="player_fit_original">"Original aspect ratio"</string>
@@ -561,24 +569,31 @@
 <string name="player_load_subtitles">"Load from file"</string>
 <string name="player_load_subtitles_online">"Load from Internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"Loaded %s"</string>
+<string name="player_menu_playback">"Playback"</string>
 <string name="player_mute">"Mute"</string>
 <string name="player_notification_channel_description">"The player notification for controlling the playback from the background"</string>
 <string name="player_notification_channel_name">"Player notifications"</string>
+<string name="player_play_now">"Play now"</string>
 <string name="player_pref">"Preferred video player"</string>
 <string name="player_settings_always_ask">"Always ask"</string>
 <string name="player_settings_play_in_app">"Internal player"</string>
 <string name="player_settings_select_cast_device">"Select cast device"</string>
 <string name="player_size_settings">"Player resize button"</string>
 <string name="player_size_settings_des">"Remove the black borders"</string>
+<string name="player_source_decoded" formatted="true">"%s decoded"</string>
 <string name="player_source_playing">"Playing"</string>
 <string name="player_source_resumes_at" formatted="true">"Switching keeps your position: resumes at %1$s"</string>
 <string name="player_source_retry">"Retry"</string>
 <string name="player_source_switch">"Switch"</string>
+<string name="player_sources_all_failed">"Every source answered with an error."</string>
+<string name="player_sources_all_failed_detail">"Choose a source below to try it again."</string>
 <string name="player_speed">"Player Speed"</string>
 <string name="player_speed_text_format" formatted="true">"Speed (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitles"</string>
 <string name="player_subtitles_settings_des">"Player subtitles settings"</string>
 <string name="player_unmute">"Unmute"</string>
+<string name="player_volume_down">"Volume down"</string>
+<string name="player_volume_up">"Volume up"</string>
 <string name="plugin">"plugins"</string>
 <string name="plugin_deleted">"Plugin Deleted"</string>
 <string name="plugin_downloaded">"Plugin Downloaded"</string>
@@ -756,7 +771,130 @@
 <string name="select_an_account">"Select an Account"</string>
 <string name="select_library">"Select Library"</string>
 <string name="set_default">"Set default"</string>
+<string name="settings_adult_content">"Adult content"</string>
+<string name="settings_adult_content_body">"Only where an extension supports it. After a restart."</string>
+<string name="settings_anime_audio">"Anime audio"</string>
+<string name="settings_anime_audio_both">"Dub and sub"</string>
+<string name="settings_at_launch">"At launch"</string>
+<string name="settings_back_up">"Back up"</string>
+<string name="settings_back_up_now">"Back up now"</string>
+<string name="settings_backup_automatically">"Automatically"</string>
+<string name="settings_backup_folder">"Backup folder"</string>
+<string name="settings_change">"Change"</string>
+<string name="settings_choose">"Choose"</string>
+<string name="settings_choose_another">"Choose another"</string>
+<string name="settings_clear">"Clear"</string>
+<string name="settings_clear_cache">"Clear cache"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Video %1$s · images %2$s"</string>
+<string name="settings_color_white">"White"</string>
+<string name="settings_color_yellow">"Yellow"</string>
+<string name="settings_connections_per_download">"Connections per download"</string>
+<string name="settings_connections_per_download_body">"More can be faster, where the source allows it."</string>
+<string name="settings_diagnostics">"Diagnostics"</string>
+<string name="settings_disk_cache">"Disk cache"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"For extensions, artwork and subtitles. Video streams use your Mac's DNS."</string>
+<string name="settings_download_folder">"Download folder"</string>
+<string name="settings_downloads_at_once">"Downloads at once"</string>
+<string name="settings_downloads_at_once_body">"How many titles download together."</string>
+<string name="settings_downloads_wait">"New downloads wait until the folder is back or another is chosen."</string>
+<string name="settings_extension_languages">"Languages"</string>
+<string name="settings_extension_review">"Review"</string>
+<string name="settings_extensions_auto_install">"Install new ones from my repositories"</string>
+<string name="settings_extensions_auto_install_body">"Each is still scanned before it runs."</string>
+<string name="settings_extensions_auto_update">"Update extensions automatically"</string>
+<string name="settings_extensions_auto_update_body">"Each update is scanned before it runs."</string>
+<string name="settings_extensions_installed" formatted="true">"Installed · %d"</string>
+<string name="settings_filler_episodes">"Filler episodes"</string>
+<string name="settings_filler_episodes_body">"For anime, where the source marks them."</string>
+<string name="settings_folder">"Folder"</string>
+<string name="settings_folder_missing" formatted="true">"%s is missing. Its disk may not be connected."</string>
+<string name="settings_help_community">"Help and community"</string>
+<string name="settings_help_community_body">"GitHub, Discord and the wiki are in the Help menu."</string>
+<string name="settings_hide_search_quality">"Hide quality in search results"</string>
+<string name="settings_home_search">"Home and Search"</string>
 <string name="settings_info">"Info"</string>
+<string name="settings_last_backup" formatted="true">"Last backup: %s"</string>
+<string name="settings_logs">"Logs"</string>
+<string name="settings_logs_mac_body">"Kept on this Mac for 7 days. Never sent anywhere."</string>
+<string name="settings_logs_phone_body">"Kept on this phone for 7 days. Never sent anywhere."</string>
+<string name="settings_network_buffer">"Network buffer"</string>
+<string name="settings_offline_repos" formatted="true">"Repositories can't be checked. These lists are from %s."</string>
+<string name="settings_pane_accounts_privacy">"Accounts and Privacy"</string>
+<string name="settings_pane_advanced">"Advanced"</string>
+<string name="settings_pane_appearance">"Appearance"</string>
+<string name="settings_pane_network">"Network"</string>
+<string name="settings_pane_playback">"Playback"</string>
+<string name="settings_play_next">"Play the next episode"</string>
+<string name="settings_play_next_body">"Counts down 10 s at the end of an episode."</string>
+<string name="settings_playing">"Playing"</string>
+<string name="settings_poster_badges">"Badges on posters"</string>
+<string name="settings_posters">"Posters"</string>
+<string name="settings_profile_no_pin">"No PIN"</string>
+<string name="settings_profile_this">"This profile"</string>
+<string name="settings_random_button_body">"On Home and Library."</string>
+<string name="settings_read">"Read"</string>
+<string name="settings_remove">"Remove"</string>
+<string name="settings_repo_unreachable" formatted="true">"Couldn't reach it. This list is from %s ago."</string>
+<string name="settings_repositories">"Repositories"</string>
+<string name="settings_reset_app">"Reset CloudStream"</string>
+<string name="settings_reset_app_body">"Erases settings, profiles and library on this Mac."</string>
+<string name="settings_reset_app_phone_body">"Erases settings, profiles and library."</string>
+<string name="settings_reset_confirm_title">"Reset CloudStream?"</string>
+<string name="settings_reset_erases_mac">"This erases, from this Mac:"</string>
+<string name="settings_reset_erases_phone">"This erases, from this phone:"</string>
+<string name="settings_reset_item_library">"Library, watch progress and history"</string>
+<string name="settings_reset_item_search">"Search history"</string>
+<string name="settings_reset_item_settings">"Settings"</string>
+<string name="settings_reset_item_signins">"Sign-ins to sync and subtitle services"</string>
+<string name="settings_reset_kept">"Kept: extensions, downloaded files and backups."</string>
+<string name="settings_restore">"Restore"</string>
+<string name="settings_restore_failed">"Couldn't restore"</string>
+<string name="settings_restore_failed_body">"That file isn't a CloudStream backup. Nothing was changed."</string>
+<string name="settings_restoring" formatted="true">"Restoring %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d of %3$d"</string>
+<string name="settings_run_test">"Run test"</string>
+<string name="settings_search_hint">"Search settings"</string>
+<string name="settings_search_no_results" formatted="true">"No results for “%s”"</string>
+<string name="settings_search_no_results_body">"Try a different word."</string>
+<string name="settings_seek_amount">"Seek amount"</string>
+<string name="settings_setup_again">"Run setup again"</string>
+<string name="settings_setup_again_body">"Language, extensions and layout, from the start."</string>
+<string name="settings_setup_run">"Run setup"</string>
+<string name="settings_sign_in">"Sign in"</string>
+<string name="settings_skip_intro">"Offer Skip intro"</string>
+<string name="settings_skip_intro_body">"Where a source marks the opening or credits."</string>
+<string name="settings_skip_profile_choice">"Skip choosing a profile"</string>
+<string name="settings_skip_profile_choice_body">"Opens the last profile used."</string>
+<string name="settings_source_order">"Source order"</string>
+<string name="settings_source_order_body">"Which sources the player tries first."</string>
+<string name="settings_speed">"Speed"</string>
+<string name="settings_subtitle_background">"Background"</string>
+<string name="settings_subtitle_edge">"Edge"</string>
+<string name="settings_subtitle_font_system">"System"</string>
+<string name="settings_subtitle_language">"Preferred language"</string>
+<string name="settings_subtitle_language_body">"Chosen automatically when a title has it."</string>
+<string name="settings_subtitle_preview">"Preview"</string>
+<string name="settings_subtitle_services">"Subtitle services"</string>
+<string name="settings_subtitle_size">"Size"</string>
+<string name="settings_subtitle_size_large">"Large"</string>
+<string name="settings_subtitle_size_medium">"Medium"</string>
+<string name="settings_subtitle_size_small">"Small"</string>
+<string name="settings_subtitle_text_color">"Text color"</string>
+<string name="settings_suggestions_while_typing">"Suggestions while typing"</string>
+<string name="settings_sync_for" formatted="true">"Sync for %s"</string>
+<string name="settings_sync_per_profile">"Each profile signs in on its own."</string>
+<string name="settings_test_all_extensions">"Test all extensions"</string>
+<string name="settings_test_all_extensions_body">"Searches with every enabled extension. For developers."</string>
+<string name="settings_title_pages">"Title pages"</string>
+<string name="settings_title_under_poster">"Title under the poster"</string>
+<string name="settings_trailers">"Trailers"</string>
+<string name="settings_updates">"Updates"</string>
+<string name="settings_updates_at_launch">"Check for updates at launch"</string>
+<string name="settings_updates_at_launch_body">"Looks for a new version when CloudStream opens."</string>
+<string name="settings_updates_check_now">"Check now"</string>
+<string name="settings_updates_current" formatted="true">"Up to date · checked %s"</string>
+<string name="settings_watch_progress_body">"Saves where you stopped, for Continue watching."</string>
 <string name="setup_done">"Done"</string>
 <string name="setup_extensions_subtext">"Download the list of sites you want to use"</string>
 <string name="show">"Show"</string>

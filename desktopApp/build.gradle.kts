@@ -29,6 +29,8 @@ kotlin {
             // than a Context — see DesktopSearchCopy's KDoc for why that distinction matters.
             implementation(project(":feature:search"))
             implementation(project(":feature:detail"))
+            // The shared HUD model (`HudSkip`): the Mac draws Skip from the same type TV does (`KMP-87`).
+            implementation(project(":feature:player"))
             implementation(project(":feature:home"))
             // KMP-26: bookmarks, watch progress and resume. The store is this module's, under ~/.cloudstream4.
             implementation(project(":feature:library"))

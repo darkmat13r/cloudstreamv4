@@ -11,9 +11,16 @@
 <plurals name="home_sections_failed"><item quantity="one">"Non se puido cargar %d sección"</item><item quantity="other">"Non se puideron cargar %d seccións"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sección"</item><item quantity="other">"%d seccións"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d título"</item><item quantity="other">"%d títulos"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d segundo"</item><item quantity="other">"%d segundos"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d fonte"</item><item quantity="other">"%d fontes"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Seguinte episodio en %d s"</item><item quantity="other">"Seguinte episodio en %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Procurar en %d fonte"</item><item quantity="other">"Procurar en todas as %d fontes"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Preme a tecla de busca do teclado para procurar igualmente en %d fonte."</item><item quantity="other">"Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTE"</item><item quantity="other">"%d FONTES"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d aviso da análise"</item><item quantity="other">"%d avisos da análise"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Todas as extensións (%d)"</item><item quantity="other">"Todas as extensións (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d extensión · actualizado %2$s"</item><item quantity="other">"%1$d extensións · actualizado %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d perfil e o seu PIN"</item><item quantity="other">"%d perfís e os seus PIN"</item></plurals>
 <string name="account_add_profile">"Engadir perfil"</string>
 <string name="account_manage_profiles">"Xestionar perfís"</string>
 <string name="account_pair_code">"O teu código"</string>
@@ -296,6 +303,7 @@
 <string name="play_torrent_button">"Transmitir Torrent"</string>
 <string name="play_trailer_button">"Reproducir Trailer"</string>
 <string name="play_with_app_name">"Reproducir con CloudStream"</string>
+<string name="player_audio_stereo">"estéreo"</string>
 <string name="player_enter_fullscreen">"Acceder a pantalla completa"</string>
 <string name="player_exit_fullscreen">"Saír de pantalla completa"</string>
 <string name="player_fit_original">"Proporción orixinal"</string>
@@ -310,18 +318,25 @@
 <string name="player_hud_seek_forward">"Avanzar"</string>
 <string name="player_hud_speed">"Velocidade"</string>
 <string name="player_hud_up_next" formatted="true">"Seguinte · %s"</string>
+<string name="player_menu_playback">"Reprodución"</string>
 <string name="player_mute">"Silenciar"</string>
+<string name="player_play_now">"Reproducir agora"</string>
 <string name="player_size_settings">"Botón de cambio de tamaño do reprodutor"</string>
 <string name="player_size_settings_des">"Eliminar bordes negros"</string>
+<string name="player_source_decoded" formatted="true">"%s descodificado"</string>
 <string name="player_source_playing">"Reproducindo"</string>
 <string name="player_source_resumes_at" formatted="true">"Cambiar mantén a túa posición: continúa en %1$s"</string>
 <string name="player_source_retry">"Tentar de novo"</string>
 <string name="player_source_switch">"Cambiar"</string>
+<string name="player_sources_all_failed">"Todas as fontes responderon cun erro."</string>
+<string name="player_sources_all_failed_detail">"Escolle unha fonte abaixo para tentalo de novo."</string>
 <string name="player_speed">"Velocidade do reproductor"</string>
 <string name="player_speed_text_format" formatted="true">"Velocidade (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtítulos"</string>
 <string name="player_subtitles_settings_des">"Configuración de subtítulos do reprodutor"</string>
 <string name="player_unmute">"Activar o son"</string>
+<string name="player_volume_down">"Baixar volume"</string>
+<string name="player_volume_up">"Subir volume"</string>
 <string name="popup_delete_file">"Borrar Arquivo"</string>
 <string name="popup_pause_download">"Pausar Descarga"</string>
 <string name="popup_play_file">"Reproducir Arquivo"</string>
@@ -382,7 +397,130 @@
 <string name="seek_back_10_seconds">"Retroceder 10 segundos"</string>
 <string name="seek_forward_10_seconds">"Avanzar 10 segundos"</string>
 <string name="select_all">"Seleccionar todo"</string>
+<string name="settings_adult_content">"Contido para adultos"</string>
+<string name="settings_adult_content_body">"Só onde unha extensión o admita. Tras reiniciar."</string>
+<string name="settings_anime_audio">"Audio do anime"</string>
+<string name="settings_anime_audio_both">"Dobrado e subtitulado"</string>
+<string name="settings_at_launch">"Ao iniciar"</string>
+<string name="settings_back_up">"Facer copia"</string>
+<string name="settings_back_up_now">"Facer copia agora"</string>
+<string name="settings_backup_automatically">"Automaticamente"</string>
+<string name="settings_backup_folder">"Cartafol das copias de seguridade"</string>
+<string name="settings_change">"Cambiar"</string>
+<string name="settings_choose">"Escoller"</string>
+<string name="settings_choose_another">"Escoller outro"</string>
+<string name="settings_clear">"Borrar"</string>
+<string name="settings_clear_cache">"Borrar a caché"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Vídeo %1$s · imaxes %2$s"</string>
+<string name="settings_color_white">"Branco"</string>
+<string name="settings_color_yellow">"Amarelo"</string>
+<string name="settings_connections_per_download">"Conexións por descarga"</string>
+<string name="settings_connections_per_download_body">"Máis pode ser máis rápido, se a fonte o permite."</string>
+<string name="settings_diagnostics">"Diagnóstico"</string>
+<string name="settings_disk_cache">"Caché en disco"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Para extensións, imaxes e subtítulos. As emisións de vídeo usan o DNS do seu Mac."</string>
+<string name="settings_download_folder">"Cartafol de descargas"</string>
+<string name="settings_downloads_at_once">"Descargas simultáneas"</string>
+<string name="settings_downloads_at_once_body">"Cantos títulos se descargan á vez."</string>
+<string name="settings_downloads_wait">"As novas descargas agardan ata que volva o cartafol ou se escolla outro."</string>
+<string name="settings_extension_languages">"Idiomas"</string>
+<string name="settings_extension_review">"Revisar"</string>
+<string name="settings_extensions_auto_install">"Instalar as novas dos meus repositorios"</string>
+<string name="settings_extensions_auto_install_body">"Cada unha analízase igualmente antes de executarse."</string>
+<string name="settings_extensions_auto_update">"Actualizar as extensións automaticamente"</string>
+<string name="settings_extensions_auto_update_body">"Cada actualización analízase antes de executarse."</string>
+<string name="settings_extensions_installed" formatted="true">"Instaladas · %d"</string>
+<string name="settings_filler_episodes">"Episodios de recheo"</string>
+<string name="settings_filler_episodes_body">"Para anime, onde a fonte os marque."</string>
+<string name="settings_folder">"Cartafol"</string>
+<string name="settings_folder_missing" formatted="true">"Falta %s. Pode que o seu disco non estea conectado."</string>
+<string name="settings_help_community">"Axuda e comunidade"</string>
+<string name="settings_help_community_body">"GitHub, Discord e a wiki están no menú Axuda."</string>
+<string name="settings_hide_search_quality">"Ocultar a calidade nos resultados de busca"</string>
+<string name="settings_home_search">"Inicio e Procurar"</string>
 <string name="settings_info">"Info"</string>
+<string name="settings_last_backup" formatted="true">"Última copia: %s"</string>
+<string name="settings_logs">"Rexistros"</string>
+<string name="settings_logs_mac_body">"Gárdanse neste Mac durante 7 días. Nunca se envían a ningures."</string>
+<string name="settings_logs_phone_body">"Gárdanse neste teléfono durante 7 días. Nunca se envían a ningures."</string>
+<string name="settings_network_buffer">"Búfer de rede"</string>
+<string name="settings_offline_repos" formatted="true">"Non se poden comprobar os repositorios. Estas listas son de %s."</string>
+<string name="settings_pane_accounts_privacy">"Contas e privacidade"</string>
+<string name="settings_pane_advanced">"Avanzado"</string>
+<string name="settings_pane_appearance">"Aparencia"</string>
+<string name="settings_pane_network">"Rede"</string>
+<string name="settings_pane_playback">"Reprodución"</string>
+<string name="settings_play_next">"Reproducir o seguinte episodio"</string>
+<string name="settings_play_next_body">"Conta atrás 10 s ao final dun episodio."</string>
+<string name="settings_playing">"Durante a reprodución"</string>
+<string name="settings_poster_badges">"Distintivos nos pósteres"</string>
+<string name="settings_posters">"Pósteres"</string>
+<string name="settings_profile_no_pin">"Sen PIN"</string>
+<string name="settings_profile_this">"Este perfil"</string>
+<string name="settings_random_button_body">"En Inicio e Biblioteca."</string>
+<string name="settings_read">"Ler"</string>
+<string name="settings_remove">"Quitar"</string>
+<string name="settings_repo_unreachable" formatted="true">"Non se puido acceder. Esta lista é de hai %s."</string>
+<string name="settings_repositories">"Repositorios"</string>
+<string name="settings_reset_app">"Restablecer CloudStream"</string>
+<string name="settings_reset_app_body">"Borra a configuración, os perfís e a biblioteca deste Mac."</string>
+<string name="settings_reset_app_phone_body">"Borra a configuración, os perfís e a biblioteca."</string>
+<string name="settings_reset_confirm_title">"Restablecer CloudStream?"</string>
+<string name="settings_reset_erases_mac">"Isto borra deste Mac:"</string>
+<string name="settings_reset_erases_phone">"Isto borra deste teléfono:"</string>
+<string name="settings_reset_item_library">"Biblioteca, progreso e historial"</string>
+<string name="settings_reset_item_search">"Historial de busca"</string>
+<string name="settings_reset_item_settings">"Configuración"</string>
+<string name="settings_reset_item_signins">"Sesións en servizos de sincronización e de subtítulos"</string>
+<string name="settings_reset_kept">"Mantéñense: extensións, ficheiros descargados e copias de seguridade."</string>
+<string name="settings_restore">"Restaurar"</string>
+<string name="settings_restore_failed">"Non se puido restaurar"</string>
+<string name="settings_restore_failed_body">"Ese ficheiro non é unha copia de seguridade de CloudStream. Non se cambiou nada."</string>
+<string name="settings_restoring" formatted="true">"Restaurando %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d de %3$d"</string>
+<string name="settings_run_test">"Executar proba"</string>
+<string name="settings_search_hint">"Procurar na configuración"</string>
+<string name="settings_search_no_results" formatted="true">"Sen resultados para “%s”"</string>
+<string name="settings_search_no_results_body">"Probe cunha palabra diferente."</string>
+<string name="settings_seek_amount">"Salto ao avanzar"</string>
+<string name="settings_setup_again">"Repetir a configuración inicial"</string>
+<string name="settings_setup_again_body">"Idioma, extensións e deseño, desde o principio."</string>
+<string name="settings_setup_run">"Iniciar a configuración inicial"</string>
+<string name="settings_sign_in">"Iniciar sesión"</string>
+<string name="settings_skip_intro">"Ofrecer Saltar intro"</string>
+<string name="settings_skip_intro_body">"Onde unha fonte marque a apertura ou os créditos."</string>
+<string name="settings_skip_profile_choice">"Saltar a escolla de perfil"</string>
+<string name="settings_skip_profile_choice_body">"Abre o último perfil usado."</string>
+<string name="settings_source_order">"Orde das fontes"</string>
+<string name="settings_source_order_body">"Que fontes proba primeiro o reprodutor."</string>
+<string name="settings_speed">"Velocidade"</string>
+<string name="settings_subtitle_background">"Fondo"</string>
+<string name="settings_subtitle_edge">"Bordo"</string>
+<string name="settings_subtitle_font_system">"Sistema"</string>
+<string name="settings_subtitle_language">"Idioma preferido"</string>
+<string name="settings_subtitle_language_body">"Escóllese automaticamente cando un título o ten."</string>
+<string name="settings_subtitle_preview">"Vista previa"</string>
+<string name="settings_subtitle_services">"Servizos de subtítulos"</string>
+<string name="settings_subtitle_size">"Tamaño"</string>
+<string name="settings_subtitle_size_large">"Grande"</string>
+<string name="settings_subtitle_size_medium">"Mediano"</string>
+<string name="settings_subtitle_size_small">"Pequeno"</string>
+<string name="settings_subtitle_text_color">"Cor do texto"</string>
+<string name="settings_suggestions_while_typing">"Suxestións ao escribir"</string>
+<string name="settings_sync_for" formatted="true">"Sincronización para %s"</string>
+<string name="settings_sync_per_profile">"Cada perfil inicia sesión por separado."</string>
+<string name="settings_test_all_extensions">"Probar todas as extensións"</string>
+<string name="settings_test_all_extensions_body">"Busca con todas as extensións activadas. Para desenvolvedores."</string>
+<string name="settings_title_pages">"Páxinas de títulos"</string>
+<string name="settings_title_under_poster">"Título baixo o póster"</string>
+<string name="settings_trailers">"Tráileres"</string>
+<string name="settings_updates">"Actualizacións"</string>
+<string name="settings_updates_at_launch">"Buscar actualizacións ao iniciar"</string>
+<string name="settings_updates_at_launch_body">"Busca unha nova versión cando se abre CloudStream."</string>
+<string name="settings_updates_check_now">"Comprobar agora"</string>
+<string name="settings_updates_current" formatted="true">"Actualizado · comprobado %s"</string>
+<string name="settings_watch_progress_body">"Garda onde parou, para Continuar vendo."</string>
 <string name="show_dub">"Etiqueta de doblaxe"</string>
 <string name="show_fillers_settings">"Mostrar episodio de recheo para Anime"</string>
 <string name="show_hd">"Etiqueta de calidade"</string>

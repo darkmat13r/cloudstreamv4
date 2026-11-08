@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
@@ -27,9 +28,13 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.rememberWindowState
+import com.lagradost.cloudstream4.core.connectivity.UnknownConnectivityFlow
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
+import com.lagradost.cloudstream4.core.strings.generated.resources.season_short
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
 import com.lagradost.cloudstream4.extensions.ExtensionApprovals
 import com.lagradost.cloudstream4.extensions.ExtensionReviewScreen
@@ -46,6 +51,11 @@ import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.LibraryViewModel
 import com.lagradost.cloudstream4.home.FileHomeSourceMemory
+import com.lagradost.cloudstream4.downloads.DesktopDownloads
+import com.lagradost.cloudstream4.downloads.DownloadSeriesHost
+import com.lagradost.cloudstream4.downloads.DownloadsHost
+import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
+import com.lagradost.cloudstream4.feature.downloads.DownloadsViewModel
 import com.lagradost.cloudstream4.home.TopLevelDestination
 import com.lagradost.cloudstream4.library.DesktopLibrarySources
 import com.lagradost.cloudstream4.library.DesktopLibraryStore
@@ -80,6 +90,7 @@ import com.lagradost.cloudstream4.player.PlayerUnavailable
 import com.lagradost.cloudstream4.player.VlcPlayer
 import com.lagradost.cloudstream4.player.runPlaybackCheck
 import com.lagradost.cloudstream4.player.runSubtitleRenderCheck
+import com.lagradost.cloudstream4.player.episodeMeta
 import com.lagradost.cloudstream4.search.DesktopSearchHistory
 import com.lagradost.cloudstream4.search.DesktopSearchSource
 import com.lagradost.cloudstream4.search.PosterImage
@@ -89,6 +100,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.jetbrains.compose.resources.stringResource
 import kotlin.system.exitProcess
 
 /**
@@ -163,6 +175,10 @@ fun main(args: Array<String>) {
     report.lines().forEach(::println)
     Runtime.getRuntime().addShutdownHook(Thread { extensions.close() })
     val approvals = ExtensionApprovals(extensions, report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
+    // `KMP-52`'s service: ~/Downloads/CloudStream and ~/.cloudstream4/downloads.json. Closed on the way out, so a running
+    // download stops cleanly and comes back Paused.
+    val downloads = DesktopDownloads()
+    Runtime.getRuntime().addShutdownHook(Thread { runBlocking { downloads.close() } })
 
     application {
         val escape = remember { EscapeHandler() }
@@ -194,6 +210,7 @@ fun main(args: Array<String>) {
                             librarySort = librarySort,
                             homeMemory = homeMemory,
                             shortcuts = shortcuts,
+                            downloads = downloads,
                         )
                     }
                 }
@@ -204,9 +221,20 @@ fun main(args: Array<String>) {
 
 /** Where the window is. There are few enough screens that a value and a `when` is the whole router. */
 private sealed interface Screen {
+    /**
+     * The sidebar is beside it: every top-level screen, a title's page and a series' downloads (`KMP-77`). Not the player
+     * or the review.
+     */
+    val hasSidebar: Boolean
+        get() = this == Home || this == Search || this == Library || this == Downloads || this is Detail || this is DownloadSeries
+
     data object Home : Screen
     data object Search : Screen
     data object Library : Screen
+    data object Downloads : Screen
+
+    /** Board D4: one series' episodes, over the list. */
+    data class DownloadSeries(val id: DownloadTitleId) : Screen
     data object Extensions : Screen
 
     /** @param resume non-null when the library asked to come back to where this title was left. */
@@ -223,6 +251,8 @@ private sealed interface Screen {
         val title: String,
         val link: StreamLink,
         val startAtMillis: Long = 0L,
+        /** `S1:E4 · Its name`, beside the title in the player's top band (`DS-23` M1). Null for a film. */
+        val meta: String? = null,
     ) : Screen
 }
 
@@ -241,6 +271,8 @@ private sealed interface Screen {
  * @param window what the player puts in full screen. Null where there is no window, as in a test.
  * @param homeMemory the home source chosen last. Keeps nothing by default, so a test cannot write to a real home.
  * @param shortcuts what the menu bar's Go menu and its keys do; this sets it for the screen on top (`KMP-53`).
+ * @param downloads the download service. Null by default, so a test cannot read or write a real downloads file, and the
+ *   page is then empty; the app passes the real one.
  */
 @Composable
 internal fun DesktopApp(
@@ -255,6 +287,7 @@ internal fun DesktopApp(
     librarySort: LibrarySortMemory = LibrarySortMemory.None,
     homeMemory: HomeSourceMemory = HomeSourceMemory.None,
     shortcuts: DesktopShortcuts = remember { DesktopShortcuts() },
+    downloads: DesktopDownloads? = null,
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
@@ -273,6 +306,11 @@ internal fun DesktopApp(
     val libraryViewModel = remember {
         LibraryViewModel(library, scope, sources = DesktopLibrarySources(library, librarySort))
     }
+    // The same for Downloads: it reads the service for the window's life, and keeps the selection and the row to return
+    // to while a series is open over it. Made in the host, it would be made again, with its collectors, on every visit.
+    val downloadsViewModel = remember(downloads) {
+        downloads?.let { DownloadsViewModel(it.source(), UnknownConnectivityFlow, scope) }
+    }
     val notice: @Composable () -> Unit = {
         if (review != null) {
             ExtensionsNotice(review, onOpen = { stack += Screen.Extensions }) { label, onClick ->
@@ -282,6 +320,12 @@ internal fun DesktopApp(
     }
     // A swap and not a push: no top-level screen is under another, so Back never goes between them.
     val top: (Screen) -> Unit = { next -> if (stack.size == 1) stack[0] = next }
+    // From anywhere the sidebar is: what was pushed goes, with its title's view model, and [next] is all there is.
+    val root: (Screen) -> Unit = { next ->
+        stack.drop(1).forEach { if (it is Screen.Detail) DesktopDetailViewModels.forget(it.id) }
+        stack.clear()
+        stack += next
+    }
     // A double click reaches here twice, and must not take two presses of Back to undo.
     val open: (String) -> Unit = { id -> if (stack.last() !is Screen.Detail) stack += Screen.Detail(id) }
     // Resume is the same page, told which episode to ask for and where that episode was left.
@@ -300,19 +344,29 @@ internal fun DesktopApp(
     val screen = stack.last()
     SideEffect { onScreen(screen.toString()) }
     saved.SaveableStateProvider(screen.toString()) {
-        // One place decides what a tab press does, so a new tab cannot be wired up two ways.
+        // One place decides what a tab press does, so a new tab cannot be wired up two ways. `KMP-77`: the sidebar is on a
+        // title's page too, so a press there leaves what was pushed for that tab, as a sidebar does in Finder or Music.
         val toTab: (TopLevelDestination) -> Unit = { destination ->
-            top(
+            root(
                 when (destination) {
                     TopLevelDestination.Home -> Screen.Home
                     TopLevelDestination.Search -> Screen.Search
                     TopLevelDestination.Library -> Screen.Library
+                    TopLevelDestination.Downloads -> Screen.Downloads
                 },
             )
         }
-        // ⌘1 to ⌘3 work only at the top level, as the sidebar is only there; ⌘[ wherever there is something under.
+        // The tab the pushed screens came from, which the sidebar shows as chosen under them.
+        val origin = when (stack.first()) {
+            Screen.Search -> TopLevelDestination.Search
+            Screen.Library -> TopLevelDestination.Library
+            Screen.Downloads -> TopLevelDestination.Downloads
+            else -> TopLevelDestination.Home
+        }
+        // ⌘1 to ⌘4 work wherever the sidebar is (`KMP-77`), the top level and the pages pushed over it; ⌘[ wherever
+        // there is something under.
         SideEffect {
-            shortcuts.onDestination = if (stack.size == 1) toTab else null
+            shortcuts.onDestination = if (screen.hasSidebar) toTab else null
             shortcuts.onBack = if (stack.size > 1) ({ back(screen) }) else null
         }
         when (screen) {
@@ -337,6 +391,29 @@ internal fun DesktopApp(
                     onSearch = { top(Screen.Search) },
                 )
             }
+            Screen.Downloads -> TopLevelScreen(TopLevelDestination.Downloads, toTab, trailing = notice) {
+                if (downloads != null && downloadsViewModel != null) {
+                    DownloadsHost(
+                        downloads,
+                        downloadsViewModel,
+                        scope,
+                        setEscape = { escape.onEscape = it },
+                        onOpenTitle = { id -> if (stack.last() !is Screen.DownloadSeries) stack += Screen.DownloadSeries(id) },
+                        onLibrary = { top(Screen.Library) },
+                    )
+                } else {
+                    // No service, so no page to own Escape: the page this came from must not keep it.
+                    SideEffect { escape.onEscape = null }
+                }
+            }
+            is Screen.DownloadSeries -> key(screen.id) {
+                // As a title's page: the sidebar stays, with Downloads chosen.
+                TopLevelScreen(origin, toTab, trailing = notice) {
+                    if (downloads != null) {
+                        DownloadSeriesHost(downloads, screen.id, scope, setEscape = { escape.onEscape = it }, onClose = { back(screen) })
+                    }
+                }
+            }
             Screen.Extensions -> {
                 SideEffect { escape.onEscape = { back(screen) } }
                 if (approvals != null && review != null) {
@@ -344,18 +421,21 @@ internal fun DesktopApp(
                 }
             }
             is Screen.Detail -> key(screen.id) {
-                DetailHost(
-                    id = screen.id,
-                    scope = scope,
-                    escape = escape,
-                    resume = screen.resume,
-                    library = library,
-                    origin = stack.first().originLabel(),
-                    onBack = { back(screen) },
-                    onPlay = { kept, episodeData, title, link, startAt ->
-                        stack += Screen.Player(kept, episodeData, title, link, startAt)
-                    },
-                )
+                // `DS-21` E1: a title's page keeps the sidebar, with the tab it was opened from chosen.
+                TopLevelScreen(origin, toTab, trailing = notice) {
+                    DetailHost(
+                        id = screen.id,
+                        scope = scope,
+                        escape = escape,
+                        resume = screen.resume,
+                        library = library,
+                        origin = stack.first().originLabel(),
+                        onBack = { back(screen) },
+                        onPlay = { kept, episodeData, title, meta, link, startAt ->
+                            stack += Screen.Player(kept, episodeData, title, link, startAt, meta)
+                        },
+                    )
+                }
             }
             is Screen.Player -> key(screen.link) {
                 SideEffect { escape.onEscape = { back(screen) } }
@@ -372,6 +452,7 @@ internal fun DesktopApp(
                         screen.title,
                         screen.link,
                         onBack = { back(screen) },
+                        meta = screen.meta,
                         setEscape = { escape.onEscape = it },
                         startAtMillis = screen.startAtMillis,
                         onProgress = recorder::onProgress,
@@ -463,9 +544,11 @@ private fun DetailHost(
     library: LibraryStore,
     origin: String?,
     onBack: () -> Unit,
-    onPlay: (LibraryTitle, String?, String, StreamLink, Long) -> Unit,
+    onPlay: (kept: LibraryTitle, episodeData: String?, title: String, meta: String?, link: StreamLink, startAt: Long) -> Unit,
 ) {
     val viewModel = remember(id) { DesktopDetailViewModels.get(id, scope, library) }
+    // Read in the composition, for the effect below that is not in one: the player's `S1:E4` in the translated letters.
+    val letters by rememberUpdatedState(stringResource(Res.string.season_short) to stringResource(Res.string.episode_short))
     val state by viewModel.state.collectAsState()
     var playing by remember(id) { mutableStateOf<String?>(null) }
     // Where the player starts: the library's position when it asked to come back here, else what the page asked for.
@@ -516,7 +599,10 @@ private fun DetailHost(
                 providerName = detail?.providerName,
             )
             when (effect) {
-                is DetailEffect.Play -> onPlay(kept, playing, effect.title, effect.link, startAt)
+                is DetailEffect.Play -> {
+                    val episode = detail?.episodes?.firstOrNull { it.data == playing }
+                    onPlay(kept, playing, effect.title, episode?.let { episodeMeta(it, letters.first, letters.second) }, effect.link, startAt)
+                }
                 // The three Android effects. None of the actions that produce them reach the ViewModel from
                 // here: the page's `PlaybackRequested` is turned into `PlayRequested` above, and it draws no
                 // trailer button and no recommendations rail. They are named rather than swept up by an `else` so that a
@@ -550,6 +636,7 @@ private fun Screen.originLabel(): String? = when (this) {
     Screen.Home -> TopLevelDestination.Home.label()
     Screen.Search -> TopLevelDestination.Search.label()
     Screen.Library -> TopLevelDestination.Library.label()
+    Screen.Downloads -> TopLevelDestination.Downloads.label()
     else -> null
 }
 

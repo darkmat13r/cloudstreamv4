@@ -996,8 +996,9 @@ the app's own providers.
 `next_episode`, `skip_type_format` with `skip_type_intro`, `pause`, `resume`, `seek_*_10_seconds`, `player_mute`,
 `player_*_fullscreen`, `go_back`). New, as `I18N-19`, which the build waits for:
 - the Playback menu's title, and Volume up and Volume down (M14);
-- M11's first sentence, "Every source answered with an error." The second is the existing `player_hud_failed_detail`
-  ("Choose another source below."): on the Mac the Choose source button sits under it, so "below" holds;
+- M11's two sentences, "Every source answered with an error." and "Choose a source below to try it again."
+  (`player_sources_all_failed_detail`). Not `player_hud_failed_detail` ("Choose another source below."): with every
+  source failed there is no other one, and "another" would contradict the line above it (the PM's call);
 - the Source panel's count line, and each panel's second lines (decoded size, stereo). Not the kept position: the
   panel's header already says it with `player_source_resumes_at`, so the build drops the row's "keeps 42:13", which
   repeats TV 7e's row copy;

@@ -11,9 +11,16 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ"</item><item quantity="other">"%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d ವಿಭಾಗ"</item><item quantity="other">"%d ವಿಭಾಗಗಳು"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d ಶೀರ್ಷಿಕೆ"</item><item quantity="other">"%d ಶೀರ್ಷಿಕೆಗಳು"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d ಸೆಕೆಂಡ್"</item><item quantity="other">"%d ಸೆಕೆಂಡುಗಳು"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d ಮೂಲ"</item><item quantity="other">"%d ಮೂಲಗಳು"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"%d ಸೆ. ನಲ್ಲಿ ಮುಂದಿನ ಸಂಚಿಕೆ"</item><item quantity="other">"%d ಸೆ. ನಲ್ಲಿ ಮುಂದಿನ ಸಂಚಿಕೆ"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ಮೂಲದಲ್ಲಿ ಹುಡುಕಿ"</item><item quantity="other">"ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಿ"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"ಹಾಗಿದ್ದರೂ %d ಮೂಲದಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ."</item><item quantity="other">"ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ಮೂಲ"</item><item quantity="other">"%d ಮೂಲಗಳು"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d ಸ್ಕ್ಯಾನ್ ಎಚ್ಚರಿಕೆ"</item><item quantity="other">"%d ಸ್ಕ್ಯಾನ್ ಎಚ್ಚರಿಕೆಗಳು"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"ಎಲ್ಲಾ ವಿಸ್ತರಣೆಗಳು (%d)"</item><item quantity="other">"ಎಲ್ಲಾ ವಿಸ್ತರಣೆಗಳು (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d ವಿಸ್ತರಣೆ · %2$s ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ"</item><item quantity="other">"%1$d ವಿಸ್ತರಣೆಗಳು · %2$s ಅಪ್‌ಡೇಟ್ ಆಗಿದೆ"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d ಪ್ರೊಫೈಲ್ ಮತ್ತು ಅದರ PIN"</item><item quantity="other">"%d ಪ್ರೊಫೈಲ್‌ಗಳು ಮತ್ತು ಅವುಗಳ PIN ಗಳು"</item></plurals>
 <string name="account_add_profile">"ಪ್ರೊಫೈಲ್ ಸೇರಿಸಿ"</string>
 <string name="account_manage_profiles">"ಪ್ರೊಫೈಲ್‌ಗಳನ್ನು ನಿರ್ವಹಿಸಿ"</string>
 <string name="account_pair_code">"ನಿಮ್ಮ ಕೋಡ್"</string>
@@ -195,6 +202,7 @@
 <string name="play_torrent_button">"ಸ್ಟ್ರೀಮ್ ಟೊರೆಂಟ್"</string>
 <string name="play_trailer_button">"ಟ್ರೈಲರ್ ಪ್ಲೇ ಮಾಡಿ"</string>
 <string name="play_with_app_name">"ಕ್ಲೌಡ್ ಸ್ಟ್ರೀಮ್ ಇದರೊಂದಿಗೆ ಪ್ಲೇ ಮಾಡಿ"</string>
+<string name="player_audio_stereo">"ಸ್ಟೀರಿಯೋ"</string>
 <string name="player_enter_fullscreen">"ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ಗೆ ಪ್ರವೇಶಿಸಿ"</string>
 <string name="player_exit_fullscreen">"ಫುಲ್‌ಸ್ಕ್ರೀನ್‌ನಿಂದ ನಿರ್ಗಮಿಸಿ"</string>
 <string name="player_fit_original">"ಮೂಲ ಅನುಪಾತ"</string>
@@ -209,18 +217,25 @@
 <string name="player_hud_seek_forward">"ಮುಂದಕ್ಕೆ"</string>
 <string name="player_hud_speed">"ವೇಗ"</string>
 <string name="player_hud_up_next" formatted="true">"ಮುಂದಿನದು · %s"</string>
+<string name="player_menu_playback">"ಪ್ಲೇಬ್ಯಾಕ್"</string>
 <string name="player_mute">"ಮ್ಯೂಟ್ ಮಾಡಿ"</string>
+<string name="player_play_now">"ಈಗ ಪ್ಲೇ ಮಾಡಿ"</string>
 <string name="player_size_settings">"ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್"</string>
 <string name="player_size_settings_des">"ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ"</string>
+<string name="player_source_decoded" formatted="true">"%s ಡಿಕೋಡ್ ಮಾಡಲಾಗಿದೆ"</string>
 <string name="player_source_playing">"ಪ್ಲೇ ಆಗುತ್ತಿದೆ"</string>
 <string name="player_source_resumes_at" formatted="true">"ಬದಲಿಸಿದರೂ ಸ್ಥಾನ ಉಳಿಯುತ್ತದೆ: %1$s ರಿಂದ ಮುಂದುವರಿಯುತ್ತದೆ"</string>
 <string name="player_source_retry">"ಮರುಪ್ರಯತ್ನಿಸಿ"</string>
 <string name="player_source_switch">"ಬದಲಿಸಿ"</string>
+<string name="player_sources_all_failed">"ಪ್ರತಿಯೊಂದು ಮೂಲವೂ ದೋಷದೊಂದಿಗೆ ಉತ್ತರಿಸಿತು."</string>
+<string name="player_sources_all_failed_detail">"ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಲು ಕೆಳಗಿನ ಒಂದು ಮೂಲವನ್ನು ಆಯ್ಕೆಮಾಡಿ."</string>
 <string name="player_speed">"ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್"</string>
 <string name="player_speed_text_format" formatted="true">"ಸ್ಪೀಡ್(%.2fx)"</string>
 <string name="player_subtitles_settings">"ಸಬ್ ಟೈಟಲ್ಸ್"</string>
 <string name="player_subtitles_settings_des">"ಪ್ಲೇಯರ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್‌ಗಳು"</string>
 <string name="player_unmute">"ಅನ್‌ಮ್ಯೂಟ್ ಮಾಡಿ"</string>
+<string name="player_volume_down">"ವಾಲ್ಯೂಮ್ ಕಡಿಮೆ ಮಾಡಿ"</string>
+<string name="player_volume_up">"ವಾಲ್ಯೂಮ್ ಹೆಚ್ಚಿಸಿ"</string>
 <string name="popup_delete_file">"ಫೈಲ್ ಅಳಿಸಿ"</string>
 <string name="popup_pause_download">"ಡೌನ್‌ಲೋಡ್ ವಿರಾಮಗೊಳಿಸಿ"</string>
 <string name="popup_play_file">"ಫೈಲ್ ಪ್ಲೇ"</string>
@@ -260,6 +275,129 @@
 <string name="season_specials">"ವಿಶೇಷ"</string>
 <string name="seek_back_10_seconds">"10 ಸೆಕೆಂಡುಗಳು ಹಿಂದೆ ಹೋಗು"</string>
 <string name="seek_forward_10_seconds">"10 ಸೆಕೆಂಡುಗಳು ಮುಂದೆ ಹೋಗು"</string>
+<string name="settings_adult_content">"ವಯಸ್ಕರ ವಿಷಯ"</string>
+<string name="settings_adult_content_body">"ವಿಸ್ತರಣೆ ಬೆಂಬಲಿಸುವಲ್ಲಿ ಮಾತ್ರ. ಮರುಪ್ರಾರಂಭದ ನಂತರ."</string>
+<string name="settings_anime_audio">"ಅನಿಮೆ ಆಡಿಯೋ"</string>
+<string name="settings_anime_audio_both">"ಡಬ್ ಮತ್ತು ಸಬ್"</string>
+<string name="settings_at_launch">"ಪ್ರಾರಂಭದಲ್ಲಿ"</string>
+<string name="settings_back_up">"ಬ್ಯಾಕಪ್ ಮಾಡಿ"</string>
+<string name="settings_back_up_now">"ಈಗ ಬ್ಯಾಕಪ್ ಮಾಡಿ"</string>
+<string name="settings_backup_automatically">"ಸ್ವಯಂಚಾಲಿತವಾಗಿ"</string>
+<string name="settings_backup_folder">"ಬ್ಯಾಕಪ್ ಫೋಲ್ಡರ್"</string>
+<string name="settings_change">"ಬದಲಾಯಿಸಿ"</string>
+<string name="settings_choose">"ಆಯ್ಕೆಮಾಡಿ"</string>
+<string name="settings_choose_another">"ಬೇರೊಂದನ್ನು ಆಯ್ಕೆಮಾಡಿ"</string>
+<string name="settings_clear">"ತೆರವುಗೊಳಿಸಿ"</string>
+<string name="settings_clear_cache">"ಕ್ಯಾಶ್ ತೆರವುಗೊಳಿಸಿ"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"ವೀಡಿಯೊ %1$s · ಚಿತ್ರಗಳು %2$s"</string>
+<string name="settings_color_white">"ಬಿಳಿ"</string>
+<string name="settings_color_yellow">"ಹಳದಿ"</string>
+<string name="settings_connections_per_download">"ಪ್ರತಿ ಡೌನ್‌ಲೋಡ್‌ಗೆ ಸಂಪರ್ಕಗಳು"</string>
+<string name="settings_connections_per_download_body">"ಮೂಲ ಅನುಮತಿಸಿದರೆ, ಹೆಚ್ಚು ಸಂಪರ್ಕಗಳು ವೇಗವಾಗಿರಬಹುದು."</string>
+<string name="settings_diagnostics">"ಡಯಾಗ್ನೋಸ್ಟಿಕ್ಸ್"</string>
+<string name="settings_disk_cache">"ಡಿಸ್ಕ್ ಕ್ಯಾಶ್"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"ವಿಸ್ತರಣೆಗಳು, ಕಲಾಕೃತಿ ಮತ್ತು ಸಬ್‌ಟೈಟಲ್‌ಗಳಿಗೆ. ವೀಡಿಯೊ ಸ್ಟ್ರೀಮ್‌ಗಳು ನಿಮ್ಮ Mac ನ DNS ಬಳಸುತ್ತವೆ."</string>
+<string name="settings_download_folder">"ಡೌನ್‌ಲೋಡ್ ಫೋಲ್ಡರ್"</string>
+<string name="settings_downloads_at_once">"ಏಕಕಾಲದ ಡೌನ್‌ಲೋಡ್‌ಗಳು"</string>
+<string name="settings_downloads_at_once_body">"ಎಷ್ಟು ಶೀರ್ಷಿಕೆಗಳು ಒಟ್ಟಿಗೆ ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತವೆ."</string>
+<string name="settings_downloads_wait">"ಫೋಲ್ಡರ್ ಮರಳುವವರೆಗೆ ಅಥವಾ ಬೇರೊಂದನ್ನು ಆಯ್ಕೆಮಾಡುವವರೆಗೆ ಹೊಸ ಡೌನ್‌ಲೋಡ್‌ಗಳು ಕಾಯುತ್ತವೆ."</string>
+<string name="settings_extension_languages">"ಭಾಷೆಗಳು"</string>
+<string name="settings_extension_review">"ಪರಿಶೀಲಿಸಿ"</string>
+<string name="settings_extensions_auto_install">"ನನ್ನ ರೆಪೊಸಿಟರಿಗಳಿಂದ ಹೊಸದನ್ನು ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ"</string>
+<string name="settings_extensions_auto_install_body">"ಪ್ರತಿಯೊಂದನ್ನೂ ಚಾಲನೆಗೊಳ್ಳುವ ಮೊದಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾಗುತ್ತದೆ."</string>
+<string name="settings_extensions_auto_update">"ವಿಸ್ತರಣೆಗಳನ್ನು ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಅಪ್‌ಡೇಟ್ ಮಾಡಿ"</string>
+<string name="settings_extensions_auto_update_body">"ಪ್ರತಿ ಅಪ್‌ಡೇಟ್ ಅನ್ನು ಚಾಲನೆಗೊಳ್ಳುವ ಮೊದಲು ಸ್ಕ್ಯಾನ್ ಮಾಡಲಾಗುತ್ತದೆ."</string>
+<string name="settings_extensions_installed" formatted="true">"ಇನ್‌ಸ್ಟಾಲ್ ಆಗಿವೆ · %d"</string>
+<string name="settings_filler_episodes">"ಫಿಲ್ಲರ್ ಸಂಚಿಕೆಗಳು"</string>
+<string name="settings_filler_episodes_body">"ಅನಿಮೆಗಾಗಿ, ಮೂಲ ಅವುಗಳನ್ನು ಗುರುತಿಸಿದಲ್ಲಿ."</string>
+<string name="settings_folder">"ಫೋಲ್ಡರ್"</string>
+<string name="settings_folder_missing" formatted="true">"%s ಕಾಣೆಯಾಗಿದೆ. ಅದರ ಡಿಸ್ಕ್ ಸಂಪರ್ಕಗೊಂಡಿಲ್ಲದಿರಬಹುದು."</string>
+<string name="settings_help_community">"ಸಹಾಯ ಮತ್ತು ಸಮುದಾಯ"</string>
+<string name="settings_help_community_body">"GitHub, Discord ಮತ್ತು ವಿಕಿ ಸಹಾಯ ಮೆನುವಿನಲ್ಲಿವೆ."</string>
+<string name="settings_hide_search_quality">"ಹುಡುಕಾಟ ಫಲಿತಾಂಶಗಳಲ್ಲಿ ಗುಣಮಟ್ಟ ಮರೆಮಾಡಿ"</string>
+<string name="settings_home_search">"ಹೋಂ ಮತ್ತು ಹುಡುಕು"</string>
+<string name="settings_last_backup" formatted="true">"ಕೊನೆಯ ಬ್ಯಾಕಪ್: %s"</string>
+<string name="settings_logs">"ಲಾಗ್‌ಗಳು"</string>
+<string name="settings_logs_mac_body">"ಈ Mac ನಲ್ಲಿ 7 ದಿನಗಳ ಕಾಲ ಇರಿಸಲಾಗುತ್ತದೆ. ಎಲ್ಲಿಗೂ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ."</string>
+<string name="settings_logs_phone_body">"ಈ ಫೋನ್‌ನಲ್ಲಿ 7 ದಿನಗಳ ಕಾಲ ಇರಿಸಲಾಗುತ್ತದೆ. ಎಲ್ಲಿಗೂ ಕಳುಹಿಸಲಾಗುವುದಿಲ್ಲ."</string>
+<string name="settings_network_buffer">"ನೆಟ್‌ವರ್ಕ್ ಬಫರ್"</string>
+<string name="settings_offline_repos" formatted="true">"ರೆಪೊಸಿಟರಿಗಳನ್ನು ಪರಿಶೀಲಿಸಲು ಸಾಧ್ಯವಿಲ್ಲ. ಈ ಪಟ್ಟಿಗಳು %s ರದ್ದು."</string>
+<string name="settings_pane_accounts_privacy">"ಖಾತೆಗಳು ಮತ್ತು ಗೌಪ್ಯತೆ"</string>
+<string name="settings_pane_advanced">"ಸುಧಾರಿತ"</string>
+<string name="settings_pane_appearance">"ಗೋಚರತೆ"</string>
+<string name="settings_pane_network">"ನೆಟ್‌ವರ್ಕ್"</string>
+<string name="settings_pane_playback">"ಪ್ಲೇಬ್ಯಾಕ್"</string>
+<string name="settings_play_next">"ಮುಂದಿನ ಸಂಚಿಕೆ ಪ್ಲೇ ಮಾಡಿ"</string>
+<string name="settings_play_next_body">"ಸಂಚಿಕೆಯ ಕೊನೆಯಲ್ಲಿ 10 s ಕೌಂಟ್‌ಡೌನ್."</string>
+<string name="settings_playing">"ಪ್ಲೇ ಆಗುತ್ತಿರುವಾಗ"</string>
+<string name="settings_poster_badges">"ಪೋಸ್ಟರ್‌ಗಳ ಮೇಲೆ ಬ್ಯಾಡ್ಜ್‌ಗಳು"</string>
+<string name="settings_posters">"ಪೋಸ್ಟರ್‌ಗಳು"</string>
+<string name="settings_profile_no_pin">"PIN ಇಲ್ಲ"</string>
+<string name="settings_profile_this">"ಈ ಪ್ರೊಫೈಲ್"</string>
+<string name="settings_random_button_body">"ಹೋಂ ಮತ್ತು ಲೈಬ್ರರಿಯಲ್ಲಿ."</string>
+<string name="settings_read">"ಓದಿ"</string>
+<string name="settings_remove">"ತೆಗೆದುಹಾಕಿ"</string>
+<string name="settings_repo_unreachable" formatted="true">"ತಲುಪಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ. ಈ ಪಟ್ಟಿ %s ಹಿಂದಿನದು."</string>
+<string name="settings_repositories">"ರೆಪೊಸಿಟರಿಗಳು"</string>
+<string name="settings_reset_app">"CloudStream ರೀಸೆಟ್ ಮಾಡಿ"</string>
+<string name="settings_reset_app_body">"ಈ Mac ನಲ್ಲಿನ ಸೆಟ್ಟಿಂಗ್ಸ್, ಪ್ರೊಫೈಲ್‌ಗಳು ಮತ್ತು ಲೈಬ್ರರಿಯನ್ನು ಅಳಿಸುತ್ತದೆ."</string>
+<string name="settings_reset_app_phone_body">"ಸೆಟ್ಟಿಂಗ್ಸ್, ಪ್ರೊಫೈಲ್‌ಗಳು ಮತ್ತು ಲೈಬ್ರರಿಯನ್ನು ಅಳಿಸುತ್ತದೆ."</string>
+<string name="settings_reset_confirm_title">"CloudStream ರೀಸೆಟ್ ಮಾಡಬೇಕೇ?"</string>
+<string name="settings_reset_erases_mac">"ಇದು ಈ Mac ನಿಂದ ಅಳಿಸುತ್ತದೆ:"</string>
+<string name="settings_reset_erases_phone">"ಇದು ಈ ಫೋನ್‌ನಿಂದ ಅಳಿಸುತ್ತದೆ:"</string>
+<string name="settings_reset_item_library">"ಲೈಬ್ರರಿ, ವೀಕ್ಷಣೆ ಪ್ರಗತಿ ಮತ್ತು ಇತಿಹಾಸ"</string>
+<string name="settings_reset_item_search">"ಹುಡುಕಾಟ ಇತಿಹಾಸ"</string>
+<string name="settings_reset_item_settings">"ಸೆಟ್ಟಿಂಗ್ಸ್"</string>
+<string name="settings_reset_item_signins">"ಸಿಂಕ್ ಮತ್ತು ಸಬ್‌ಟೈಟಲ್ ಸೇವೆಗಳ ಸೈನ್ ಇನ್‌ಗಳು"</string>
+<string name="settings_reset_kept">"ಉಳಿಯುವವು: ವಿಸ್ತರಣೆಗಳು, ಡೌನ್‌ಲೋಡ್ ಮಾಡಿದ ಫೈಲ್‌ಗಳು ಮತ್ತು ಬ್ಯಾಕಪ್‌ಗಳು."</string>
+<string name="settings_restore">"ಮರುಸ್ಥಾಪಿಸಿ"</string>
+<string name="settings_restore_failed">"ಮರುಸ್ಥಾಪಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"</string>
+<string name="settings_restore_failed_body">"ಆ ಫೈಲ್ CloudStream ಬ್ಯಾಕಪ್ ಅಲ್ಲ. ಏನನ್ನೂ ಬದಲಾಯಿಸಲಾಗಿಲ್ಲ."</string>
+<string name="settings_restoring" formatted="true">"%s ಮರುಸ್ಥಾಪಿಸಲಾಗುತ್ತಿದೆ"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %3$d ರಲ್ಲಿ %2$d"</string>
+<string name="settings_run_test">"ಪರೀಕ್ಷೆ ನಡೆಸಿ"</string>
+<string name="settings_search_hint">"ಸೆಟ್ಟಿಂಗ್ಸ್ ಹುಡುಕಿ"</string>
+<string name="settings_search_no_results" formatted="true">"“%s” ಗೆ ಯಾವುದೇ ಫಲಿತಾಂಶಗಳಿಲ್ಲ"</string>
+<string name="settings_search_no_results_body">"ಬೇರೆ ಪದ ಪ್ರಯತ್ನಿಸಿ."</string>
+<string name="settings_seek_amount">"ಸೀಕ್ ಪ್ರಮಾಣ"</string>
+<string name="settings_setup_again">"ಸೆಟಪ್ ಮತ್ತೆ ನಡೆಸಿ"</string>
+<string name="settings_setup_again_body">"ಭಾಷೆ, ವಿಸ್ತರಣೆಗಳು ಮತ್ತು ಲೇಔಟ್, ಮೊದಲಿನಿಂದ."</string>
+<string name="settings_setup_run">"ಸೆಟಪ್ ನಡೆಸಿ"</string>
+<string name="settings_sign_in">"ಸೈನ್ ಇನ್"</string>
+<string name="settings_skip_intro">"ಇಂಟ್ರೋ ಸ್ಕಿಪ್ ಆಯ್ಕೆ ನೀಡಿ"</string>
+<string name="settings_skip_intro_body">"ಮೂಲವು ಆರಂಭ ಅಥವಾ ಕ್ರೆಡಿಟ್‌ಗಳನ್ನು ಗುರುತಿಸಿದಲ್ಲಿ."</string>
+<string name="settings_skip_profile_choice">"ಪ್ರೊಫೈಲ್ ಆಯ್ಕೆ ಬಿಟ್ಟುಬಿಡಿ"</string>
+<string name="settings_skip_profile_choice_body">"ಕೊನೆಯದಾಗಿ ಬಳಸಿದ ಪ್ರೊಫೈಲ್ ತೆರೆಯುತ್ತದೆ."</string>
+<string name="settings_source_order">"ಮೂಲಗಳ ಕ್ರಮ"</string>
+<string name="settings_source_order_body">"ಪ್ಲೇಯರ್ ಮೊದಲು ಯಾವ ಮೂಲಗಳನ್ನು ಪ್ರಯತ್ನಿಸುತ್ತದೆ."</string>
+<string name="settings_speed">"ವೇಗ"</string>
+<string name="settings_subtitle_background">"ಹಿನ್ನೆಲೆ"</string>
+<string name="settings_subtitle_edge">"ಅಂಚು"</string>
+<string name="settings_subtitle_font_system">"ಸಿಸ್ಟಂ"</string>
+<string name="settings_subtitle_language">"ಆದ್ಯತೆಯ ಭಾಷೆ"</string>
+<string name="settings_subtitle_language_body">"ಶೀರ್ಷಿಕೆಯಲ್ಲಿ ಲಭ್ಯವಿದ್ದಾಗ ಸ್ವಯಂಚಾಲಿತವಾಗಿ ಆಯ್ಕೆಯಾಗುತ್ತದೆ."</string>
+<string name="settings_subtitle_preview">"ಪೂರ್ವವೀಕ್ಷಣೆ"</string>
+<string name="settings_subtitle_services">"ಸಬ್‌ಟೈಟಲ್ ಸೇವೆಗಳು"</string>
+<string name="settings_subtitle_size">"ಗಾತ್ರ"</string>
+<string name="settings_subtitle_size_large">"ದೊಡ್ಡದು"</string>
+<string name="settings_subtitle_size_medium">"ಮಧ್ಯಮ"</string>
+<string name="settings_subtitle_size_small">"ಸಣ್ಣದು"</string>
+<string name="settings_subtitle_text_color">"ಪಠ್ಯದ ಬಣ್ಣ"</string>
+<string name="settings_suggestions_while_typing">"ಟೈಪ್ ಮಾಡುವಾಗ ಸಲಹೆಗಳು"</string>
+<string name="settings_sync_for" formatted="true">"%s ಗಾಗಿ ಸಿಂಕ್"</string>
+<string name="settings_sync_per_profile">"ಪ್ರತಿ ಪ್ರೊಫೈಲ್ ಪ್ರತ್ಯೇಕವಾಗಿ ಸೈನ್ ಇನ್ ಆಗುತ್ತದೆ."</string>
+<string name="settings_test_all_extensions">"ಎಲ್ಲಾ ವಿಸ್ತರಣೆಗಳನ್ನು ಪರೀಕ್ಷಿಸಿ"</string>
+<string name="settings_test_all_extensions_body">"ಸಕ್ರಿಯಗೊಳಿಸಿದ ಪ್ರತಿ ವಿಸ್ತರಣೆಯೊಂದಿಗೆ ಹುಡುಕುತ್ತದೆ. ಡೆವಲಪರ್‌ಗಳಿಗಾಗಿ."</string>
+<string name="settings_title_pages">"ಶೀರ್ಷಿಕೆ ಪುಟಗಳು"</string>
+<string name="settings_title_under_poster">"ಪೋಸ್ಟರ್ ಕೆಳಗೆ ಶೀರ್ಷಿಕೆ"</string>
+<string name="settings_trailers">"ಟ್ರೇಲರ್‌ಗಳು"</string>
+<string name="settings_updates">"ಅಪ್‌ಡೇಟ್‌ಗಳು"</string>
+<string name="settings_updates_at_launch">"ಪ್ರಾರಂಭದಲ್ಲಿ ಅಪ್‌ಡೇಟ್‌ಗಳಿಗಾಗಿ ಪರಿಶೀಲಿಸಿ"</string>
+<string name="settings_updates_at_launch_body">"CloudStream ತೆರೆದಾಗ ಹೊಸ ಆವೃತ್ತಿಗಾಗಿ ಹುಡುಕುತ್ತದೆ."</string>
+<string name="settings_updates_check_now">"ಈಗ ಪರಿಶೀಲಿಸಿ"</string>
+<string name="settings_updates_current" formatted="true">"ಇತ್ತೀಚಿನದು · %s ಪರಿಶೀಲಿಸಲಾಗಿದೆ"</string>
+<string name="settings_watch_progress_body">"ನೀವು ನಿಲ್ಲಿಸಿದ ಸ್ಥಳವನ್ನು ಕಂಟಿನ್ಯೂ ವಾಟಚಿಂಗ್‌ಗಾಗಿ ಉಳಿಸುತ್ತದೆ."</string>
 <string name="show_log_cat">"ಲಾಗ್‌ಕ್ಯಾಟ್ 🐈 ತೋರಿಸಿ"</string>
 <string name="skip_loading">"ಸ್ಕಿಪ್ ಲೋಡಿಂಗ್"</string>
 <string name="sort_apply">"ಅನ್ವಯಿಸು"</string>

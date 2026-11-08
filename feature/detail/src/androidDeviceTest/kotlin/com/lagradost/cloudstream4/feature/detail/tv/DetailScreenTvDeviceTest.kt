@@ -227,6 +227,22 @@ class DetailScreenTvDeviceTest {
     }
 
     /**
+     * DOWN until focus is anywhere in board 7i's chip row, then LEFT to its first chip.
+     *
+     * **Which** chip DOWN lands on is geometry, not a choice this test may make — the same rule
+     * `enterTheCastRow` documents for the cast rail. A measured run landed on `Season 2`, because
+     * focus search picks the candidate nearest the centre of what it came from. So this arrives
+     * wherever the geometry says and then walks LEFT, which is what a viewer would do.
+     */
+    private fun enterTheChipRow(): String {
+        val chips = setOf("$SEASON 1", "$SEASON 2", SPECIALS, OTHER)
+        val landed = generateSequence { dpad.press(Dpad.Down) }.take(MAX_PRESSES)
+            .firstOrNull { it in chips }
+            ?: error("DOWN never reached the chip row, stopped on ${rule.focusedLabel()}")
+        return if (landed == "$SEASON 1") landed else pressUntil(Dpad.Left, "$SEASON 1")
+    }
+
+    /**
      * DOWN until focus is anywhere in the cast rail.
      *
      * **Which** item it lands on is geometry, not a choice this test may make: §2.5's DOWN target is
@@ -604,6 +620,131 @@ class DetailScreenTvDeviceTest {
     }
 
     /**
+     * Board 7i's chip row: a chip per group, in the owner's order — numbered seasons ascending,
+     * then Specials, then Other.
+     *
+     * The fixture declares its episodes out of that order on purpose, so what is asserted here is
+     * the code's ordering and not the fixture's.
+     */
+    @Test
+    fun theSeasonChipsAreDrawnInTheOwnersOrder() {
+        show(DetailFixtures.SeasonGroups)
+        awaitFocus(PLAY_EPISODE)
+
+        assertEquals("$SEASON 1", enterTheChipRow())
+        val order = listOf("$SEASON 1", "$SEASON 2", SPECIALS, OTHER)
+        order.forEach { rule.onNodeWithText(it).assertExists() }
+        // Left to right, by each chip's own x: the row is one ChipRow, so position is the order.
+        val xs = order.map { rule.onNodeWithText(it).fetchSemanticsNode().positionInRoot.x }
+        assertEquals("the chips are not in the owner's order: $xs", xs.sorted(), xs)
+    }
+
+    /** Choosing a chip shows that season's episodes, and only those. */
+    @Test
+    fun aSeasonChipFiltersTheListToItsOwnEpisodes() {
+        show(DetailFixtures.SeasonGroups)
+        awaitFocus(PLAY_EPISODE)
+        assertEquals("$SEASON 1", enterTheChipRow())
+
+        // Season 1 is the opening chip, so its one episode is what the list shows.
+        rule.onNodeWithText("One One").assertExists()
+        assertNoText("Two One")
+        assertNoText("Specials One")
+        assertNoText("Unnumbered One")
+
+        assertEquals("$SEASON 2", pressUntil(Dpad.Right, "$SEASON 2"))
+        dpad.center()
+        rule.waitUntil(WAIT_MS) { rule.onAllNodesWithText("Two One").fetchSemanticsNodes().isNotEmpty() }
+        rule.onNodeWithText("Two Two").assertExists()
+        assertNoText("One One")
+    }
+
+    /**
+     * The Other chip shows the episodes a provider never gave a season, which is the whole reason
+     * the owner asked for it: no episode is hidden.
+     */
+    @Test
+    fun theOtherChipShowsTheEpisodesWithNoSeason() {
+        show(DetailFixtures.SeasonGroups)
+        awaitFocus(PLAY_EPISODE)
+        assertEquals("$SEASON 1", enterTheChipRow())
+
+        assertEquals(OTHER, pressUntil(Dpad.Right, OTHER))
+        dpad.center()
+        rule.waitUntil(WAIT_MS) {
+            rule.onAllNodesWithText("Unnumbered One").fetchSemanticsNodes().isNotEmpty()
+        }
+        assertNoText("One One")
+    }
+
+    /**
+     * With nothing chosen, the page opens on the season holding what the primary plays: Resume in
+     * season 2 opens Season 2 with that episode's row marked, not the first chip (#244's review).
+     * Focus only walks DOWN to the list, because a lazy list composes no row it has not scrolled to;
+     * nothing is pressed on a chip, so what is asserted is the page's opening state, not a choice.
+     */
+    @Test
+    fun aResumeInSeasonTwoOpensOnSeasonTwoWithItsRowMarked() {
+        show(DetailFixtures.ResumeInSeasonTwo)
+        awaitFocus(RESUME)
+
+        // The first row of the season shown. With the old opening chip this is "One One", so the walk
+        // itself fails there: DOWN never reaches "Two One".
+        assertEquals("Two One", pressUntil(Dpad.Down, "Two One"))
+        rule.waitUntil(WAIT_MS) { rule.onAllNodesWithText("Two Two").fetchSemanticsNodes().isNotEmpty() }
+        rule.onNodeWithText("Two One").assertExists()
+        assertNoText("One One")
+        assertNoText("Specials One")
+        assertNoText("Unnumbered One")
+        rule.onNodeWithText("Two Two").assertIsSelected()
+        rule.onNodeWithText("Two One").assertIsNotSelected()
+        rule.onNodeWithText("$SEASON 2").assertIsSelected()
+        rule.onNodeWithText("$SEASON 1").assertIsNotSelected()
+    }
+
+    /**
+     * One season draws no chip row. A lone chip filters nothing and would be a focus stop that does
+     * nothing; 7i sends UP from the chips to the action row, so with no chips UP from the first
+     * episode lands on exactly the same place.
+     */
+    @Test
+    fun oneSeasonDrawsNoChipRow() {
+        show(DetailFixtures.OneSeasonOnly)
+        awaitFocus(PLAY_EPISODE)
+        assertEquals(DetailFixtures.episodeName(0), pressUntil(Dpad.Down, DetailFixtures.episodeName(0)))
+
+        assertNoText("$SEASON 1")
+        assertNoText(SPECIALS)
+        assertNoText(OTHER)
+        // All three episodes are shown, unfiltered.
+        (0..2).forEach { rule.onNodeWithText(DetailFixtures.episodeName(it)).assertExists() }
+    }
+
+    /**
+     * The header counts the season on screen, not the title.
+     *
+     * `DetailCopy.namedSeason` already states the rule the board works by: a season and a count are
+     * a pair, and a count drawn from a different season than the one beside it contradicts itself.
+     */
+    @Test
+    fun theEpisodesHeaderCountsTheSeasonOnScreen() {
+        show(DetailFixtures.SeasonGroups)
+        awaitFocus(PLAY_EPISODE)
+        assertEquals("$SEASON 1", enterTheChipRow())
+
+        // Season 1 holds one episode of the fixture's five.
+        rule.onNodeWithText("1 $SEPARATOR ${DetailFixtures.SeasonGroups.providerName}").assertExists()
+        assertNoText("5 $SEPARATOR ${DetailFixtures.SeasonGroups.providerName}")
+
+        assertEquals("$SEASON 2", pressUntil(Dpad.Right, "$SEASON 2"))
+        dpad.center()
+        rule.waitUntil(WAIT_MS) {
+            rule.onAllNodesWithText("2 $SEPARATOR ${DetailFixtures.SeasonGroups.providerName}")
+                .fetchSemanticsNodes().isNotEmpty()
+        }
+    }
+
+    /**
      * A stored position of zero is not a resume.
      *
      * `DetailResume.fraction` returns null for a zero or negative position, which is the guard
@@ -897,6 +1038,9 @@ class DetailScreenTvDeviceTest {
         const val SEASON_SHORT = "S"
         const val EPISODE_SHORT = "E"
         const val SEPARATOR = "\u00b7"
+        // `SEASON` is already declared below, beside the walk's own labels.
+        const val SPECIALS = "Specials"
+        const val OTHER = "Other"
         const val WALK_STOPS = 16
         const val VOICED = 2
         const val CHANNELS = 3f
