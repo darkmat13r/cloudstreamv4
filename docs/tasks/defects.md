@@ -2255,8 +2255,8 @@ read the host's niceness and asserted exactly 10, which is true only when the te
 the test JVM ran at nice 5, and the host was at 15: the promise kept, the assertion failed. The other worktrees' runs of
 the same test logged 10 every time (44 results), all from a JVM at 0.
 
-**Fix:** the test reads this process's own niceness and asserts the host is 10 above it, capped at macOS's ceiling of 20.
-It refuses to pass when this process is already at 20, where a host without `nice` would look the same. The promise is
+**Fix:** the test reads this process's own niceness and asserts the host is exactly 10 above it. It refuses to pass when
+this process is above 10, where macOS's ceiling of 20 would clamp the step and hide it (Linux's ceiling is 19). The promise is
 unchanged: ten steps lower than what launched it. Nothing outside the test changed.
 
 **Measured** (`HostLimitsTest`, 10 cases each run):

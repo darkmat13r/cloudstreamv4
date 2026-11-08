@@ -133,12 +133,16 @@ class HostLimitsTest {
             try {
                 providers.getOrThrow()
                 // `nice -n 10` is relative to whoever starts the host, and Gradle's test JVM is not always at 0
-                // (`BUG-58`), so the promise is ten steps below this process, as far as the ceiling of 20 allows.
+                // (`BUG-58`), so the promise is exactly ten steps below this process. Near the ceiling `nice` would
+                // clamp and the step could not be seen, so that is refused rather than measured.
                 val parent = niceOf(ProcessHandle.current().pid())
                 val nice = niceOf(client.pid)
                 println("LIMIT nice: $nice, parent $parent")
-                assertTrue(parent < MAX_NICE, "at the ceiling already, so a host without nice would pass: parent $parent")
-                assertEquals(minOf(parent + HOST_NICE_STEP, MAX_NICE), nice)
+                assertTrue(
+                    parent + HOST_NICE_STEP <= MAX_NICE,
+                    "too near the ceiling to see the whole step: parent $parent",
+                )
+                assertEquals(parent + HOST_NICE_STEP, nice)
             } finally {
                 client.close()
             }
@@ -179,7 +183,10 @@ class HostLimitsTest {
         /** The launcher's `nice -n 10`. */
         const val HOST_NICE_STEP = 10
 
-        /** The lowest priority macOS has: `nice` stops there. */
+        /**
+         * The lowest priority macOS has: `nice` stops there. Linux stops at 19, so this would need to change with the
+         * host if a sandbox for Linux is ever added; today the test skips without `sandbox-exec`.
+         */
         const val MAX_NICE = 20
     }
 }
