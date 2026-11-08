@@ -16,6 +16,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.rememberSaveableStateHolder
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
@@ -31,6 +32,9 @@ import com.lagradost.cloudstream4.core.connectivity.UnknownConnectivityFlow
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
+import com.lagradost.cloudstream4.core.strings.generated.resources.season_short
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
 import com.lagradost.cloudstream4.extensions.ExtensionApprovals
 import com.lagradost.cloudstream4.extensions.ExtensionReviewScreen
@@ -86,6 +90,7 @@ import com.lagradost.cloudstream4.player.PlayerUnavailable
 import com.lagradost.cloudstream4.player.VlcPlayer
 import com.lagradost.cloudstream4.player.runPlaybackCheck
 import com.lagradost.cloudstream4.player.runSubtitleRenderCheck
+import com.lagradost.cloudstream4.player.episodeMeta
 import com.lagradost.cloudstream4.search.DesktopSearchHistory
 import com.lagradost.cloudstream4.search.DesktopSearchSource
 import com.lagradost.cloudstream4.search.PosterImage
@@ -95,6 +100,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import org.jetbrains.compose.resources.stringResource
 import kotlin.system.exitProcess
 
 /**
@@ -245,6 +251,8 @@ private sealed interface Screen {
         val title: String,
         val link: StreamLink,
         val startAtMillis: Long = 0L,
+        /** `S1:E4 · Its name`, beside the title in the player's top band (`DS-23` M1). Null for a film. */
+        val meta: String? = null,
     ) : Screen
 }
 
@@ -423,8 +431,8 @@ internal fun DesktopApp(
                         library = library,
                         origin = stack.first().originLabel(),
                         onBack = { back(screen) },
-                        onPlay = { kept, episodeData, title, link, startAt ->
-                            stack += Screen.Player(kept, episodeData, title, link, startAt)
+                        onPlay = { kept, episodeData, title, meta, link, startAt ->
+                            stack += Screen.Player(kept, episodeData, title, link, startAt, meta)
                         },
                     )
                 }
@@ -444,6 +452,7 @@ internal fun DesktopApp(
                         screen.title,
                         screen.link,
                         onBack = { back(screen) },
+                        meta = screen.meta,
                         setEscape = { escape.onEscape = it },
                         startAtMillis = screen.startAtMillis,
                         onProgress = recorder::onProgress,
@@ -535,9 +544,11 @@ private fun DetailHost(
     library: LibraryStore,
     origin: String?,
     onBack: () -> Unit,
-    onPlay: (LibraryTitle, String?, String, StreamLink, Long) -> Unit,
+    onPlay: (kept: LibraryTitle, episodeData: String?, title: String, meta: String?, link: StreamLink, startAt: Long) -> Unit,
 ) {
     val viewModel = remember(id) { DesktopDetailViewModels.get(id, scope, library) }
+    // Read in the composition, for the effect below that is not in one: the player's `S1:E4` in the translated letters.
+    val letters by rememberUpdatedState(stringResource(Res.string.season_short) to stringResource(Res.string.episode_short))
     val state by viewModel.state.collectAsState()
     var playing by remember(id) { mutableStateOf<String?>(null) }
     // Where the player starts: the library's position when it asked to come back here, else what the page asked for.
@@ -588,7 +599,10 @@ private fun DetailHost(
                 providerName = detail?.providerName,
             )
             when (effect) {
-                is DetailEffect.Play -> onPlay(kept, playing, effect.title, effect.link, startAt)
+                is DetailEffect.Play -> {
+                    val episode = detail?.episodes?.firstOrNull { it.data == playing }
+                    onPlay(kept, playing, effect.title, episode?.let { episodeMeta(it, letters.first, letters.second) }, effect.link, startAt)
+                }
                 // The three Android effects. None of the actions that produce them reach the ViewModel from
                 // here: the page's `PlaybackRequested` is turned into `PlayRequested` above, and it draws no
                 // trailer button and no recommendations rail. They are named rather than swept up by an `else` so that a

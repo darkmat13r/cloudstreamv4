@@ -24,6 +24,7 @@ import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.IntSize
+import androidx.compose.ui.input.pointer.PointerIcon
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -33,13 +34,17 @@ import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import com.lagradost.cloudstream4.media.subtitle.SubtitleParseResult
 import com.lagradost.cloudstream4.media.subtitle.SubtitleTimeline
+import com.lagradost.cloudstream4.feature.detail.DetailEpisode
+import com.lagradost.cloudstream4.feature.player.HudSkip
 import java.io.File
 import java.nio.file.Files
 import kotlin.test.Test
 import kotlin.test.assertEquals
+import kotlin.test.assertFalse
 import kotlin.test.assertIs
 import kotlin.test.assertNotEquals
 import kotlin.test.assertTrue
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -98,8 +103,12 @@ class PlayerScreenTest {
         val fit: PictureFitChoice = PictureFitChoice(),
         sources: PlayerSources? = null,
         fellThrough: FallThrough? = null,
+        meta: String? = null,
+        skip: HudSkip? = null,
+        val idle: ManualIdle = ManualIdle(),
     ) {
         val calls = Calls()
+        var skips = 0
         val audioChosen = mutableListOf<AudioTrack>()
         val clock = PlaybackClock().also { it.onStatus(status) }
         val session = SubtitleSession(tracks, { load(it) }, CoroutineScope(SupervisorJob() + Dispatchers.Unconfined))
@@ -127,6 +136,10 @@ class PlayerScreenTest {
                             sources = sources,
                             fellThrough = fellThrough,
                             onAudioChosen = { audioChosen += it },
+                            meta = meta,
+                            skip = skip,
+                            onSkip = { skips++ },
+                            hudIdle = idle,
                         )
                     }
                 }
@@ -188,6 +201,27 @@ class PlayerScreenTest {
     }
 
     private fun PixelMap.isWhite(x: Int, y: Int) = this[x, y] == Color.White
+
+    /** The HUD's wait, run by hand (`KMP-87`): [elapse] is the three seconds passing, with no sleep. */
+    private class ManualIdle : HudIdle {
+        private val waiting = mutableListOf<CompletableDeferred<Unit>>()
+        val pending: Int get() = waiting.count { !it.isCompleted }
+
+        override suspend fun await() {
+            val gate = CompletableDeferred<Unit>()
+            waiting += gate
+            try {
+                gate.await()
+            } finally {
+                // A wait that was cancelled, by a move or a key, is not waiting any more.
+                waiting -= gate
+            }
+        }
+
+        fun elapse() {
+            waiting.toList().forEach { it.complete(Unit) }
+        }
+    }
 
     private fun whiteFrame(width: Int, height: Int): ImageBitmap {
         val bitmap = Bitmap()
@@ -545,6 +579,149 @@ class PlayerScreenTest {
         screen.scene.close()
     }
 
+    // ---------------------------------------------------------------- KMP-87: DS-23 M1 to M3 and the keyboard map
+
+    @Test
+    fun `the band's line is the episode's code and name, and a film has none`() {
+        val episode = DetailEpisode(name = "The Lighthouse", data = "e4", season = 1, episode = 4)
+        assertEquals("S1:E4 · The Lighthouse", episodeMeta(episode, "S", "E"))
+        assertEquals("S1:E4", episodeMeta(episode.copy(name = "  "), "S", "E"))
+        assertEquals("The Lighthouse", episodeMeta(episode.copy(season = null, episode = null), "S", "E"))
+        assertEquals(null, episodeMeta(episode.copy(name = null, season = null, episode = null), "S", "E"))
+    }
+
+    @Test
+    fun `the source moves to its selector, and joins the band's line only where there is no selector`() {
+        assertEquals("S1:E4", hudMeta("S1:E4", "Source One · 1080p", hasSourceSelector = true))
+        assertEquals("S1:E4 · Source One · 1080p", hudMeta("S1:E4", "Source One · 1080p", hasSourceSelector = false))
+        assertEquals("Source One · 1080p", hudMeta(null, "Source One · 1080p", hasSourceSelector = false))
+        assertEquals(null, hudMeta(null, "Source One · 1080p", hasSourceSelector = true))
+    }
+
+    @Test
+    fun `M1 the top band draws the episode beside the title`() {
+        fun litInBand(meta: String?): Int {
+            val screen = Screen(meta = meta)
+            val pixels = screen.pixels()
+            if (meta != null) screen.save("m1-band")
+            screen.scene.close()
+            return (BAND_LINE_FROM until BAND_LINE_TO).count { pixels[it, BAND_Y].red > LIT }
+        }
+        assertEquals(0, litInBand(null), "nothing right of the title without a line")
+        assertTrue(litInBand("S1:E4 · The Lighthouse") > 0, "the line is drawn beside the title")
+    }
+
+    @Test
+    fun `M2 the HUD and the pointer leave after the timeout while playing, and a move brings them back`() {
+        val playing = PlayerStatus(playing = true, buffering = false, positionMillis = 1_000, lengthMillis = 60_000)
+        val screen = Screen(status = playing)
+        val glass = Offset(screen.width / 2f - CONTROLS_INSET, screen.transportY - TRANSPORT_ABOVE)
+        fun glassLit() = screen.pixels()[glass.x.toInt(), glass.y.toInt()] != Color.Black
+        assertTrue(glassLit(), "the HUD is up at first")
+        assertEquals(1, screen.idle.pending, "and waiting out the timeout")
+        screen.idle.elapse()
+        assertFalse(glassLit(), "the HUD left when the timeout passed")
+        screen.scene.sendPointerEvent(PointerEventType.Move, Offset(screen.width / 2f, screen.height / 3f))
+        assertTrue(glassLit(), "a move brought it back")
+        assertEquals(1, screen.idle.pending, "and started the wait again")
+        screen.scene.close()
+        assertEquals(HiddenPointer, playerPointer(hudShown = false), "no pointer over a hidden HUD")
+        assertEquals(PointerIcon.Default, playerPointer(hudShown = true))
+    }
+
+    @Test
+    fun `M2 a paused player keeps its HUD, and waits for nothing`() {
+        val screen = Screen()
+        val glass = Offset(screen.width / 2f - CONTROLS_INSET, screen.transportY - TRANSPORT_ABOVE)
+        screen.settle()
+        assertEquals(0, screen.idle.pending, "nothing to wait out while paused")
+        screen.idle.elapse()
+        assertTrue(screen.pixels()[glass.x.toInt(), glass.y.toInt()] != Color.Black)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M3 resting on the timeline shows the time under the pointer, and leaving it hides the time`() {
+        assertEquals("0:30", hoverTime(0.5f, 60_000))
+        assertEquals("1:00", hoverTime(2f, 60_000), "past the end reads as the end")
+        assertEquals("1:02:03", hoverTime(1f, 3_723_000))
+        val screen = Screen()
+        val onRule = Offset(screen.width / 2f, screen.transportY)
+        val tip = Offset(onRule.x, onRule.y - TIP_ABOVE)
+        val before = screen.pixels()[tip.x.toInt(), tip.y.toInt()]
+        screen.scene.sendPointerEvent(PointerEventType.Move, onRule)
+        val over = screen.pixels()[tip.x.toInt(), tip.y.toInt()]
+        screen.save("m3-hover-time")
+        assertTrue(over != before, "a time is drawn above the pointer")
+        screen.scene.sendPointerEvent(PointerEventType.Move, Offset(onRule.x, screen.height / 3f))
+        assertEquals(before, screen.pixels()[tip.x.toInt(), tip.y.toInt()], "and it goes when the pointer leaves")
+        assertEquals(emptyList(), screen.calls.log, "resting seeks nothing")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M3 Skip is there while there is something to skip, HUD or not, and absent otherwise`() {
+        val playing = PlayerStatus(playing = true, buffering = false, positionMillis = 1_000, lengthMillis = 60_000)
+        val screen = Screen(status = playing, skip = HudSkip("Skip Intro"))
+        screen.settle()
+        screen.save("m3-skip")
+        screen.click(Offset(screen.width - SKIP_FROM_RIGHT, screen.height - PlayerScreenDefaults.HudBottomInset.value - SKIP_ABOVE))
+        assertEquals(1, screen.skips)
+        assertEquals(1, screen.idle.pending, "the click's move started the wait again")
+        screen.idle.elapse()
+        screen.save("m3-skip-hud-hidden")
+        val glass = Offset(screen.width / 2f - CONTROLS_INSET, screen.transportY - TRANSPORT_ABOVE)
+        assertEquals(Color.Black, screen.pixels()[glass.x.toInt(), glass.y.toInt()], "the HUD has gone")
+        // Where it sits with the HUD hidden: the window's margin. The click's move brings the HUD back, after the press.
+        screen.click(Offset(screen.width - SKIP_FROM_RIGHT, screen.height - 24f - SKIP_ABOVE))
+        assertEquals(2, screen.skips, "it stays while the HUD is hidden")
+        screen.scene.close()
+
+        val none = Screen(status = playing)
+        none.click(Offset(none.width - SKIP_FROM_RIGHT, none.height - PlayerScreenDefaults.HudBottomInset.value - SKIP_ABOVE))
+        assertEquals(0, none.skips)
+        assertEquals(emptyList(), none.calls.log, "nothing else answers there either")
+        none.scene.close()
+    }
+
+    @Test
+    fun `the keyboard map, every key in one window, as the Playback menu lists it`() {
+        val window = WindowState()
+        val one = stream("Source One")
+        val screen = Screen(
+            fullscreen = PlayerFullscreen(window),
+            volume = PlayerVolume(50),
+            audio = threeTracks,
+            sources = PlayerSources(listOf(one), one, emptyList(), 0L) {},
+        )
+        screen.settle()
+        screen.press(Key.Spacebar)
+        screen.press(Key.DirectionLeft)
+        screen.press(Key.DirectionRight)
+        assertEquals(listOf("toggle", "by -10000", "by 10000"), screen.calls.log, "Space, then 10 s back and on")
+        screen.press(Key.DirectionUp)
+        screen.press(Key.DirectionDown)
+        screen.press(Key.M)
+        assertEquals(listOf(50, 55, 50, 0), screen.calls.volumes, "up, down, then mute")
+        screen.press(Key.M)
+        for (key in listOf(Key.C, Key.A, Key.R, Key.S)) {
+            screen.press(key)
+            screen.press(Key.DirectionRight)
+            assertEquals(listOf("toggle", "by -10000", "by 10000"), screen.calls.log, "$key opened a list, which has the arrows")
+            screen.escape()
+            screen.settle()
+            assertEquals(0, screen.backs, "Escape closed $key's list, and did not leave")
+        }
+        screen.press(Key.F)
+        assertEquals(WindowPlacement.Fullscreen, window.placement)
+        screen.escape()
+        screen.settle()
+        assertEquals(WindowPlacement.Floating, window.placement, "Escape leaves full screen before the player")
+        screen.escape()
+        assertEquals(1, screen.backs, "and then the player")
+        screen.scene.close()
+    }
+
     private fun stream(name: String, quality: String? = "1080p") =
         StreamLink(label = name, qualityLabel = quality, url = "https://a/$name", referer = null, userAgent = null, audioUrl = null, subtitles = emptyList())
 
@@ -568,8 +745,8 @@ class PlayerScreenTest {
 
     @Test
     fun `moving on from a failed source says so, names it, and leaves the controls alone`() {
-        val uhd = ranked("VidSrc", 2160)
-        val fhd = ranked("Filemoon", 1080)
+        val uhd = ranked("Source One", 2160)
+        val fhd = ranked("Source Two", 1080)
         val loading = PlayerStatus(buffering = true)
         val sources = PlayerSources(listOf(uhd, fhd), fhd, listOf(uhd)) {}
         val before = Screen(status = loading, sources = sources)
@@ -592,8 +769,8 @@ class PlayerScreenTest {
     @Test
     fun `S lists the sources, and pressing a row commits it`() {
         val chosen = mutableListOf<StreamLink>()
-        val one = stream("VidSrc Pro")
-        val two = stream("Filemoon", "720p")
+        val one = stream("Source One")
+        val two = stream("Source Two", "720p")
         val screen = Screen(sources = PlayerSources(listOf(one, two), one, emptyList(), 2_533_000L) { chosen += it })
         screen.settle()
         screen.save("source-selector")
@@ -702,8 +879,8 @@ class PlayerScreenTest {
 
     @Test
     fun `the selector reads out what is playing`() {
-        assertEquals("VidSrc Pro · 1080p", stream("VidSrc Pro").sourceName())
-        assertEquals("VidSrc Pro", stream("VidSrc Pro", null).sourceName())
+        assertEquals("Source One · 1080p", stream("Source One").sourceName())
+        assertEquals("Source One", stream("Source One", null).sourceName())
     }
 
     @Test
@@ -1087,6 +1264,18 @@ class PlayerScreenTest {
     }
 
     private companion object {
+        /** M1's band: right of "Title" (76 + its width), on the title's line, from `m1-band`. */
+        const val BAND_LINE_FROM = 140
+        const val BAND_LINE_TO = 400
+        const val BAND_Y = 42
+        /** On the controls' glass, left of centre and above the transport's buttons. */
+        const val CONTROLS_INSET = 300f
+        const val TRANSPORT_ABOVE = 22f
+        /** Above the rule's 32 target, inside the 24 hover time: 16 + 8 + 12. */
+        const val TIP_ABOVE = 36f
+        /** Inside the Skip button: the window's margin plus half its height, and in from the right. */
+        const val SKIP_FROM_RIGHT = 60f
+        const val SKIP_ABOVE = 18f
         const val WHITE = -1
         const val BLACK = -16777216
         const val LIT = 0.1f
