@@ -16,6 +16,11 @@ class HomeHostFocusTest {
         val host = HomeHostFocus()
         host.grantedFromNothing(landingOwed = false)
         assertFalse(host.requested, "after a press, an arrival from nothing is not the host's")
+
+        // It leaves a mark it didn't make alone, so a `requested = landingOwed` would fail here.
+        host.requested = true
+        host.grantedFromNothing(landingOwed = false)
+        assertTrue(host.requested, "the host's own request is still the host's")
     }
 
     @Test
