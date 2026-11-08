@@ -3319,3 +3319,6 @@ All on `Television_720p`, locally (CI is off).
 - 30 screenshots recorded again across Home, Library, Search and Downloads. A pixel diff of each against its old version
   shows changes only in its chip row's band, after the row's first pill, which stays put; each was looked at. Measured
   after: 15 to 16px (12dp) between pills, and a focused ring ending 9px (about 7dp) short of the next pill.
+- On master `2a3f16b6a`, Detail's season chips use the same row, so `detail-season-chips` was recorded again too.
+  Its pixel diff is 7,974 px, all in x 135..472, y 629..672: the chip row after Season 1, which stays put. No other
+  Detail case changed, and every other module's references still pass.
