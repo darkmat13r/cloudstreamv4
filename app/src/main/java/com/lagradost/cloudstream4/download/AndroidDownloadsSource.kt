@@ -14,6 +14,7 @@ import com.lagradost.cloudstream3.utils.DOWNLOAD_EPISODE_CACHE
 import com.lagradost.cloudstream3.utils.DataStore.getKey
 import com.lagradost.cloudstream3.utils.DataStore.getKeys
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
+import com.lagradost.cloudstream3.utils.redactedReason
 import com.lagradost.cloudstream4.download.EngineVideoDownload.Companion.getDownloadListInfo
 import com.lagradost.cloudstream4.feature.downloads.DownloadShelf
 import com.lagradost.cloudstream4.feature.downloads.DownloadStorage
@@ -50,6 +51,9 @@ internal class AndroidDownloadsSource(
 
     private val appContext = context.applicationContext
 
+    /** How long the page's failure line may be: search's and detail's limit. A field, so no file class is published. */
+    private val maxReasonChars = 60
+
     /** Episodes per title id, as last read. Written by [contents]; read by [resume], on a key press. */
     @Volatile
     private var episodes: Map<Int, List<Episode>> = emptyMap()
@@ -63,7 +67,10 @@ internal class AndroidDownloadsSource(
                 when (cards) {
                     is Resource.Success -> cards.value to readEpisodes().also { episodes = it }
                     is Resource.Loading -> null
-                    is Resource.Failure -> throw IOException(cards.errorString)
+                    // Shown as the page's failure line: one line, redacted, as search and detail do (`BUG-63`).
+                    is Resource.Failure -> throw IOException(
+                        redactedReason(cards.errorString.trim().lineSequence().first(), maxReasonChars),
+                    )
                 }
             }
             .filterNotNull()

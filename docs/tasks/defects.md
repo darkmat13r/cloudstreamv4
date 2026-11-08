@@ -3038,3 +3038,71 @@ NFKC normalisation before redacting would cover the fullwidth forms, but it cann
 ## BUG-66 — Look-alike slashes and colons still hide a url from the redaction · **medium, security** · open
 
 **Status:** open, a follow-up to `BUG-64`. A fullwidth slash (U+FF0F), a fullwidth colon (U+FF1A), and other compatibility forms read as `https://` on screen but do not match the url pattern. NFKC normalisation before redacting would fold them. It cannot run in `:library`'s `commonMain`, where one of the four synced copies lives, so a fix has to keep the shared case table whole: an expect/actual, or a small folding table shared like `BUG-64`'s list. The division and fraction slashes (U+2215, U+2044) are not folded by NFKC, so they need a rule of their own.
+
+## BUG-63 — Search, detail and downloads showed a provider's failure without their own redaction, and a forged stack frame went through unredacted · **high, security** · measured 2026-11-08
+
+**Status:** fixed in pr, stacked on `BUG-64` (#253) · found 2026-11-08 while auditing `BUG-61` (#251)
+
+Each of these screens shows a line of `Resource.Failure.errorString`, a provider's own words. Before this fix none of
+them redacted it on its own side. On master, the detail page showed an `ErrorLoadingException`'s message as thrown, so a
+tokened URL went on screen whole (measured: every hostile case below leaked there). `BUG-52` (#224) and `BUG-64` (#253)
+close that upstream. What they leave is below, and all of it is closed here.
+
+### Search's shortfall line (`ApiRepositorySearchSource`)
+
+- **Before:** `detailOf` showed each provider's first line, trimmed and capped. On `BUG-64`'s branch, a
+  `NullPointerException` with a forged frame named `https://cdn.example/k?token=… provider.kt` still put its token on
+  the line.
+- **Fix:** the line is built by `shortfallLine`, which runs each reason through `redactedReason`: `redactedText`, then
+  control and format characters out, then the cap. `detailOf` calls it. It moved out of the class so it can be tested
+  off a device.
+- **Test:** `SearchShortfallLineTest`. Every hostile text from the shared table (`HostileFailures`: a tokened URL; an
+  invisible, ignorable or drawn character in `://` or `/Users/`; a split `file:` URI) is thrown both as an
+  `IOException` and as an `ErrorLoadingException`, plus a forged NPE frame, and turned into a `Resource` by
+  `throwAbleToResource`, as `safeApiCall` does it. Before the fix, the forged frame leaked; now none does, and the
+  provider and the host stay.
+
+### The detail page's failure (`AndroidDetailSource`)
+
+- **Before:** `firstLine` trimmed and capped. On master, every `ErrorLoadingException` case leaked; on `BUG-64`'s
+  branch, the forged NPE frame still did.
+- **Fix:** `firstLine` runs through `redactedReason`.
+- **Test:** `AndroidDetailSourceFailureTest`, through the real `details()`, `APIRepository.load` and `safeApiCall`,
+  with a registered provider that throws each case (35: 17 texts two ways, and the forged frame). Before: the forged
+  frame leaked (and on master, every `ErrorLoadingException` case). After: none.
+
+### The downloads page's failure (`AndroidDownloadsSource`)
+
+- **Before:** the whole `errorString`, stack trace included, became the page's failure text.
+- **Fix:** its first line, through `redactedReason`, capped at 60 like search and detail.
+- **No test of its own, and why:** the branch cannot run today. `DownloadViewModel.headerCards` is written in one
+  place and only ever holds `Loading` or `Success`, and the class has no seam to give it a `Failure`. The line is
+  `redactedReason`'s, which `FailureReasonTest` covers with the same table.
+
+### `getStackTracePretty` (`:library`)
+
+- **The glue.** The message and the first frame were joined with no line break, so the line Home, search and detail
+  show ended in a file name and a line number (`HTTP 503` followed straight by `LogErrorRedactionTest.kt`). The frames now start on their own line.
+- **Frame names.** A frame's file name is whatever a plugin's class says, or whatever `setStackTrace` set. With no
+  message, the first line shown is a frame, with `:` turned into a space, so a forged `https://…?token=…` read
+  `https //…` and no pattern could find it. Each frame's location is redacted before the `:` goes. So is the
+  `NullPointerException` branch's `at <frame>` line.
+- **Test:** `LogErrorRedactionTest`, two new cases: the message is its own first line, and a forged frame (a tokened
+  URL, a `/Users/` path or a `file:` URI) leaves nothing on the line, through both `getStackTracePretty` and the NPE
+  branch. Both failed before the fix.
+- **Published API:** `getStackTracePretty`'s signature is unchanged; only its body changed.
+
+### Measured (local, on `BUG-64`'s head `a82062f90`)
+
+The new tests against the old behaviour (search's and detail's old expressions patched back, `ArchComponentExt.kt` from
+the base) failed: `AndroidDetailSourceFailureTest` 1/1, `SearchShortfallLineTest` 1/2, `LogErrorRedactionTest` 2/6.
+With the fix, three times in a row: `AndroidDetailSourceFailureTest` 1/1, `SearchShortfallLineTest` 2/2,
+`FailureReasonTest` 4/4, `AndroidDetailSourceTest` 21/21, `StackTraceRedactionTest` 2/2, `LogErrorRedactionTest` 6/6,
+`ArchComponentExtTest` 1/1.
+
+### For `BUG-61` (#251), Home's copy
+
+- [ ] When `BUG-64` (#253) is on master, delete Home's copy of the default-ignorable block and its second pass with
+  the link pattern from `AndroidHomeSource.toReply`, and keep only `redactedText`, as `redactedReason` does here. Then
+  there is no fifth copy to drift. (Review on #251. `BUG-61`'s entry lives in #251; it gets the same line when this
+  lands.)

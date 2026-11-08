@@ -33727,6 +33727,10 @@ public final static synthetic class com/lagradost/cloudstream3/utils/ExtractorLi
 	public static final synthetic field $EnumSwitchMapping$0 [I
 }
 
+public final class com/lagradost/cloudstream3/utils/FailureReasonKt : java/lang/Object {
+	public static final fun redactedReason (Ljava/lang/String;I)Ljava/lang/String;
+}
+
 public final class com/lagradost/cloudstream3/utils/FillerEpisodeCheck : java/lang/Object {
 	public static final field $stable I
 	public static final field INSTANCE Lcom/lagradost/cloudstream3/utils/FillerEpisodeCheck;
@@ -37696,6 +37700,7 @@ public final class com/lagradost/cloudstream4/download/AndroidDownloadsSource : 
 	public fun <init> (Landroid/content/Context;Lcom/lagradost/cloudstream3/ui/download/DownloadViewModel;Lkotlinx/coroutines/flow/Flow;)V
 	public synthetic fun <init> (Landroid/content/Context;Lcom/lagradost/cloudstream3/ui/download/DownloadViewModel;Lkotlinx/coroutines/flow/Flow;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public static final synthetic fun access$getAppContext$p (Lcom/lagradost/cloudstream4/download/AndroidDownloadsSource;)Landroid/content/Context;
+	public static final synthetic fun access$getMaxReasonChars$p (Lcom/lagradost/cloudstream4/download/AndroidDownloadsSource;)I
 	public static final synthetic fun access$readEpisodes (Lcom/lagradost/cloudstream4/download/AndroidDownloadsSource;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 	public static final synthetic fun access$setEpisodes$p (Lcom/lagradost/cloudstream4/download/AndroidDownloadsSource;Ljava/util/Map;)V
 	public fun getContents ()Lkotlinx/coroutines/flow/Flow;
@@ -38768,6 +38773,7 @@ public final class com/lagradost/cloudstream4/search/ApiRepositorySearchSourceKt
 	public static final fun providersUnderTypes (Ljava/util/List;Ljava/util/List;)Ljava/util/List;
 	public static final fun selectSearchProviders (Ljava/util/List;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;)Ljava/util/List;
 	public static final fun selectSearchProviders (Ljava/util/List;Ljava/util/Set;Ljava/util/Set;Ljava/util/Set;Ljava/util/List;)Ljava/util/List;
+	public static final fun shortfallLine (Ljava/util/List;II)Ljava/lang/String;
 	public static final fun tvTypes (Lcom/lagradost/cloudstream4/feature/search/SearchTypeFilter;)Ljava/util/List;
 }
 
