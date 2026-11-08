@@ -111,6 +111,26 @@ class SettingsWindowTest {
     }
 
     @Test
+    fun `Play the next episode writes its setting and reads it back`() {
+        val storage = SettingsStorage.InMemory()
+        val settings = SettingsRepository(storage)
+        window(settings, SettingsWindowState(pane = SettingsPane.Playback)).use { scene ->
+            scene.save("playback")
+            scene.click(scene.bounds("Play the next episode").center)
+            assertEquals(false, settings.autoplayNext.value)
+            assertEquals("false", storage.stored["autoplay_next_key"])
+            scene.save("playback-off")
+            scene.click(scene.bounds("Play the next episode").center)
+            assertEquals(true, settings.autoplayNext.value)
+        }
+        // A new window over what was stored shows it: off, after a restart.
+        val stored = SettingsStorage.InMemory(mapOf("autoplay_next_key" to "false"))
+        window(SettingsRepository(stored), SettingsWindowState(pane = SettingsPane.Playback)).use { scene ->
+            assertEquals(false, scene.toggleState("Play the next episode"))
+        }
+    }
+
+    @Test
     fun `Downloads at once writes the chosen count and reads it back`() {
         val storage = SettingsStorage.InMemory()
         val settings = SettingsRepository(storage)
@@ -184,7 +204,7 @@ class SettingsWindowTest {
 
             state.query = "episode"
             scene.settle()
-            assertEquals(emptyList(), scene.panes(), "Play the next episode is not a row until Up next reads it")
+            assertEquals(listOf("Playback"), scene.panes(), "Play the next episode is a row, now that Up next reads it")
 
             state.query = "cast"
             scene.settle()

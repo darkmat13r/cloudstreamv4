@@ -6308,6 +6308,53 @@ M5's Load from file, Load from Internet and Subtitle delay rows are not features
   Before, it clicked the foot, which was English while the list was held. Now a click where German's row would be
   chooses nothing while held, and German is there when the list opens again.
 
+## KMP-94 — The Mac player's Up next, `DS-23` M13 and M16
+
+**Status:** in review · `:desktopApp`, `:feature:settings` · after `KMP-90` (#266) and `KMP-91` (#267)
+
+At the end of an episode with one after it, a card offers the next one (`UpNextCard`), above the controls at the right:
+its line (`S1:E5 · Low Tide`), the title's poster (an episode has no still of its own), and what happens next.
+- **It counts down 10 s, then plays** (the owner's ruling, `DS-23`): a line, `Next episode in 8 s`
+  (`player_up_next_in`), and a rule along the card's foot that empties. Play now and Cancel are under it.
+- **The count holds** while a panel is open or the pointer is on the card, and goes on from the same second.
+- **Cancel, or Esc, keeps the card** with no count (M16): Play now and × are left. × puts it away for the rest of the
+  credits; the end of the stream then goes back, as it always did. Once nothing counts, Esc goes back as before.
+- **Play now plays at once**, and only once: the card says `Loading…` while the next episode's sources are found.
+- **"Play the next episode" off** (`PlaybackSettings.autoplayNext`): the card comes with no count. A change in the
+  Settings window while the card is up starts or stops the count; it does not undo a Cancel.
+- An episode that ends with the card unanswered stays on it; with no episode after it, the end goes back as before.
+- Skip gives way to the card. The card gives way to an open panel, and its count holds meanwhile.
+
+**Where the next episode comes from.** The title's page is under the player, so its view model is live: the next
+episode is the one after this one in the page's list (`nextEpisode`), and playing it asks the page for its sources as
+its Play does, playing the best found (`requestPlay`, `KMP-39`). It takes this player's place, and full screen stays as
+it was (`PlayerHandover`). With nothing to play, the player goes back to the page, whose source list says why.
+
+**Settings.** The Playback pane and its Play the next episode row are back (`SettingsRow.PlayNextEpisode`,
+`SettingsAction.SetAutoplayNext`), as `KMP-90` had them before #266's review took them out until this reader landed.
+
+**DECIDED (small calls, reported to the PM).**
+- **When the card comes:** the last 30 s, or the end of the stream. The Mac has no credit stamps (`KMP-86`); with
+  them, the card would come at the credits.
+- **No "Up next" heading:** the boards' small heading would be a new key in 62 locales. The line under the title says
+  `Next episode` when nothing counts, and the count when something does; both strings exist.
+- **The art is the title's poster**, because an episode carries no still.
+
+**Tests** (all run):
+- `PlayerScreenTest`, 11 new:
+  - the count from ten, once;
+  - no card before the credits or after the last episode;
+  - seeking out and back starts a fresh ten;
+  - holds for a panel and for the pointer;
+  - Cancel, Esc, Play now;
+  - the setting off, and the setting changing;
+  - × and the end of the stream;
+  - an ended stream waiting on the card.
+- `UpNextCountdownTest`: the count, when the card is due, and the handover keeping full screen.
+- `NextEpisodeTest`: the next episode across seasons and at the ends, and asking the page to play it, with a search
+  that ends with nothing or fails.
+- `SettingsWindowTest` and `SettingsSearchTest`: the row's write-and-read-back test and the Playback pane are back.
+
 ## KMP-93 — The Mac player panels' rows, `DS-23` M4 to M7
 
 **Status:** open · `:desktopApp` · after `KMP-91`
@@ -6849,7 +6896,7 @@ with what it waits for.
   the window is not reachable there yet.
 - **The sidebar** lists Downloads, the one pane with a working row. A search keeps the panes whose name or a row's words
   match, and marks the matching rows. With none, it says so ("No results for “%s”", ST7). Escape empties it.
-- **Playback: Play the next episode is not a row yet** (review of #266). Nothing on the Mac reads it until
+- **Playback: Play the next episode is not a row yet** (review of #266; **added back by `KMP-94`**, with its reader). Nothing on the Mac reads it until
   desktop-session-1's Up next (`DS-23`) lands, so a switch for it would do nothing, and Playback stays out of the
   sidebar. The setting is kept: `autoplay_next_key`, on by default, `SettingsRepository.setAutoplayNext`, and
   `PlaybackSettings.autoplayNext`, the `StateFlow` in `:feature:settings` commonMain that Up next takes as a parameter

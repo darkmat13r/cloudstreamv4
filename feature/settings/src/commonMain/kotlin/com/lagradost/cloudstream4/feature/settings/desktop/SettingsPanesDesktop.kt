@@ -41,6 +41,8 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.settings_down
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder_missing
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_home_search
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_playing
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_posters
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_seek_amount
@@ -99,7 +101,10 @@ private fun posterSizeName(size: PosterSize): String = when (size) {
     PosterSize.Large -> stringResource(Res.string.settings_subtitle_size_large)
 }
 
-/** `DS-24`'s Playback pane, its first row (`KMP-96`): how far the arrow keys and the skip buttons move. */
+/**
+ * `DS-24`'s Playback pane, its rows the player reads: Play the next episode (`KMP-94`'s Up next) and Seek amount
+ * (`KMP-96`), how far the arrow keys and the skip buttons move.
+ */
 @Composable
 internal fun ColumnScope.PlaybackPane(
     values: SettingsValues,
@@ -108,6 +113,19 @@ internal fun ColumnScope.PlaybackPane(
 ) {
     GroupHeader(stringResource(Res.string.settings_playing))
     Group {
+        // First, as `DS-24` lists them: Play the next episode, which Up next reads (`KMP-94`).
+        val playNext = stringResource(Res.string.settings_play_next)
+        SettingRow(
+            title = playNext,
+            line = stringResource(Res.string.settings_play_next_body),
+            marked = SettingsRow.PlayNextEpisode in marked,
+        ) {
+            DesktopSwitch(
+                checked = values.autoplayNext,
+                onCheckedChange = { onAction(SettingsAction.SetAutoplayNext(it)) },
+                label = playNext,
+            )
+        }
         val title = stringResource(Res.string.settings_seek_amount)
         SettingRow(title = title, line = null, marked = SettingsRow.SeekAmount in marked) {
             DesktopPopupButton(

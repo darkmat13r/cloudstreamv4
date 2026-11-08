@@ -10,6 +10,7 @@ class SettingsSearchTest {
         when (row) {
             SettingsRow.PosterSize -> listOf("Poster size")
             SettingsRow.RandomButton -> listOf("Random Button")
+            SettingsRow.PlayNextEpisode -> listOf("Play the next episode", "Counts down 10 s at the end of an episode.")
             SettingsRow.SeekAmount -> listOf("Seek amount")
             SettingsRow.DownloadFolder -> listOf("Download folder", "Harbor Films")
             SettingsRow.DownloadsAtOnce -> listOf("Downloads at once", "How many titles download together.")
@@ -36,6 +37,7 @@ class SettingsSearchTest {
 
     @Test
     fun aQueryKeepsOnlyThePanesHoldingAMatchingRowIgnoringCase() {
+        assertEquals(listOf(SettingsPane.Playback), panes("EPISODE"))
         assertEquals(listOf(SettingsPane.Downloads), panes("AT ONCE"))
         assertEquals(listOf(SettingsPane.Downloads), panes("download"))
         assertEquals(listOf(SettingsPane.Appearance), panes("random"))
@@ -64,10 +66,8 @@ class SettingsSearchTest {
 
     @Test
     fun aQueryForARowThatIsNotBuiltFindsNothing() {
-        // Casting is not a Mac setting, and the title pages and Play the next episode have no row yet: search only
-        // finds what exists (KMP-90).
+        // Casting is not a Mac setting, and the title pages have no row yet: search only finds what exists (KMP-90).
         assertTrue(panes("cast").isEmpty())
         assertTrue(panes("trailer").isEmpty())
-        assertTrue(panes("episode").isEmpty())
     }
 }
