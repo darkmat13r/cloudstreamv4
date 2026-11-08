@@ -1008,7 +1008,7 @@ the app's own providers.
 
 ## DS-25 — Boards: account and profiles on the Mac, the phone and the tablet
 
-**Status:** drawn, PR open · boards only, no Kotlin · `DEC-19` · the PM's task, 2026-11-08
+**Status:** drawn, in pr #254 · boards only, no Kotlin · `DEC-19` · the PM's task, 2026-11-08
 
 Drawn from TV board 8d (`KMP-73`'s `AccountSelectScreenTv` and `PairingPanelTv`), the old account code
 (`AccountSelectActivity`, `AccountHelper`, `AccountViewModel`, `ProfileSignIns`) and `BUG-55`'s `PinAttempts`.
