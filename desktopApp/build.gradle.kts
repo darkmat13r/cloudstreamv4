@@ -29,11 +29,15 @@ kotlin {
             // than a Context — see DesktopSearchCopy's KDoc for why that distinction matters.
             implementation(project(":feature:search"))
             implementation(project(":feature:detail"))
+            // The shared HUD model (`HudSkip`): the Mac draws Skip from the same type TV does (`KMP-87`).
+            implementation(project(":feature:player"))
             implementation(project(":feature:home"))
             // KMP-26: bookmarks, watch progress and resume. The store is this module's, under ~/.cloudstream4.
             implementation(project(":feature:library"))
             // KMP-54: the Mac downloads page. Its source is KMP-52's, under com.lagradost.cloudstream4.downloads.
             implementation(project(":feature:downloads"))
+            // KMP-90: the Settings window, and the preferences the player and the downloads engine read.
+            implementation(project(":feature:settings"))
             // KMP-13: `JvmExtensionRuntime` and `ExtensionHash`, from this module's `jvmMain`. It is
             // the only extension runtime that works off Android — a `.cs3` is dex-only, so the
             // cross-platform `.jar` is what desktop loads. No catalogue entry is added for it; the
@@ -61,12 +65,14 @@ kotlin {
     }
 }
 
-// Where HomeScreenTest, DownloadsScreenTest, SearchScreenTest and LibraryScreenTest write their PNGs, when asked with -Pcloudstream.<screen>.renders=<directory>.
+// Where HomeScreenTest, DownloadsScreenTest, SearchScreenTest, LibraryScreenTest, DetailScreenTest and SettingsWindowTest write their PNGs, when asked with -Pcloudstream.<screen>.renders=<directory>.
 tasks.withType<Test> {
     providers.gradleProperty("cloudstream.home.renders").orNull?.let { systemProperty("cloudstream.home.renders", it) }
     providers.gradleProperty("cloudstream.downloads.renders").orNull?.let { systemProperty("cloudstream.downloads.renders", it) }
     providers.gradleProperty("cloudstream.search.renders").orNull?.let { systemProperty("cloudstream.search.renders", it) }
     providers.gradleProperty("cloudstream.library.renders").orNull?.let { systemProperty("cloudstream.library.renders", it) }
+    providers.gradleProperty("cloudstream.detail.renders").orNull?.let { systemProperty("cloudstream.detail.renders", it) }
+    providers.gradleProperty("cloudstream.settings.renders").orNull?.let { systemProperty("cloudstream.settings.renders", it) }
 }
 
 // java.lang.System::load has been called by org.jetbrains.skiko.LibraryLoader in an unnamed module

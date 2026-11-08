@@ -17,8 +17,8 @@ import org.junit.Test
 class TvHudFactsTest {
 
     @Suppress("DEPRECATION")
-    private fun link(name: String = "VidSrc Pro") = ExtractorLink(
-        source = "vidsrc",
+    private fun link(name: String = "Source One") = ExtractorLink(
+        source = "sourceone",
         name = name,
         url = "https://stream.example.invalid/$SECRET_PATH/master.m3u8?token=$SECRET_TOKEN",
         referer = "https://referer.example.invalid/$SECRET_REFERER",
@@ -28,7 +28,7 @@ class TvHudFactsTest {
     )
 
     private fun facts(
-        title: String = "Arcane",
+        title: String = "Quiet Harbor",
         link: ExtractorLink? = link(),
         downloaded: Boolean = false,
         subtitle: String? = "English (SRT)",
@@ -38,7 +38,7 @@ class TvHudFactsTest {
         title = title,
         season = 1,
         episode = 4,
-        episodeName = "Powder",
+        episodeName = "Low Tide",
         videoHeight = 1080,
         videoCodec = "AVC",
         audioLanguage = "English",
@@ -60,7 +60,7 @@ class TvHudFactsTest {
         hasNext = true,
         nextSeason = 1,
         nextEpisode = 5,
-        nextName = "The Base Violence Necessary for Change",
+        nextName = "The Night the Lighthouse Keeper Stayed",
         failed = failed,
         offline = offline,
     )
@@ -68,12 +68,12 @@ class TvHudFactsTest {
     @Test
     fun theBoardsLinesComeOutOfTheBoardsFacts() {
         val state = facts().toHudState()
-        assertEquals("Arcane", state.title)
-        assertEquals("S1:E4 · Powder · 1080p · AVC · English 5.1", state.meta)
-        assertEquals("VidSrc Pro · 1080p", state.source)
+        assertEquals("Quiet Harbor", state.title)
+        assertEquals("S1:E4 · Low Tide · 1080p · AVC · English 5.1", state.meta)
+        assertEquals("Source One · 1080p", state.source)
         assertEquals("English · 5.1 · EAC3", state.audio)
         assertEquals("English (SRT)", state.subtitles)
-        assertEquals("S1:E5 The Base Violence Necessary for Change", state.upNext)
+        assertEquals("S1:E5 The Night the Lighthouse Keeper Stayed", state.upNext)
         assertEquals("Skip opening", state.skip?.label)
         assertEquals(listOf(1_200_000L, 3_200_000L), state.marks)
     }
@@ -127,6 +127,8 @@ class TvHudFactsTest {
     /** Titles keep their punctuation and dotted words (review of `KMP-64`): only an address is dropped from them. */
     @Test
     fun aTitleWithAQuestionMarkStays() {
+        val state = facts(title = "Harbor Lights...?").toHudState()
+        assertEquals("Harbor Lights...?", state.title)
         for (title in listOf("Harbor Lights...?", "Dr.Harbor", "Mr.Lantern", "Vol.II")) {
             assertEquals(title, facts(title = title).toHudState().title)
         }
@@ -136,8 +138,8 @@ class TvHudFactsTest {
 
     @Test
     fun providerTextLosesControlCharacters() {
-        val state = facts(link = link(name = "Vid\nSrc\u0007 Pro")).toHudState()
-        assertEquals("VidSrc Pro · 1080p", state.source)
+        val state = facts(link = link(name = "Sou\nrce\u0007 One")).toHudState()
+        assertEquals("Source One · 1080p", state.source)
     }
 
     @Test

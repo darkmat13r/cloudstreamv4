@@ -14,28 +14,76 @@
 <plurals name="home_source_sections"><item quantity="one">"%d розділ"</item><item quantity="few">"%d розділи"</item><item quantity="many">"%d розділів"</item><item quantity="other">"%d розділу"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d назва"</item><item quantity="few">"%d назви"</item><item quantity="many">"%d назв"</item><item quantity="other">"%d назви"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d приховане посилання"</item><item quantity="few">"%d приховані посилання"</item><item quantity="many">"%d прихованих посилань"</item><item quantity="other">"%d прихованих посилань"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d секунда"</item><item quantity="few">"%d секунди"</item><item quantity="many">"%d секунд"</item><item quantity="other">"%d секунди"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d джерело"</item><item quantity="few">"%d джерела"</item><item quantity="many">"%d джерел"</item><item quantity="other">"%d джерела"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Наступна серія через %d с"</item><item quantity="few">"Наступна серія через %d с"</item><item quantity="many">"Наступна серія через %d с"</item><item quantity="other">"Наступна серія через %d с"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Шукати в %d джерелі"</item><item quantity="few">"Шукати в усіх %d джерелах"</item><item quantity="many">"Шукати в усіх %d джерелах"</item><item quantity="other">"Шукати в усіх %d джерелах"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в %d джерелі."</item><item quantity="few">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах."</item><item quantity="many">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах."</item><item quantity="other">"Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ДЖЕРЕЛО"</item><item quantity="few">"%d ДЖЕРЕЛА"</item><item quantity="many">"%d ДЖЕРЕЛ"</item><item quantity="other">"%d ДЖЕРЕЛА"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d попередження сканування"</item><item quantity="few">"%d попередження сканування"</item><item quantity="many">"%d попереджень сканування"</item><item quantity="other">"%d попередження сканування"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Усі розширення (%d)"</item><item quantity="few">"Усі розширення (%d)"</item><item quantity="many">"Усі розширення (%d)"</item><item quantity="other">"Усі розширення (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d розширення · оновлено %2$s"</item><item quantity="few">"%1$d розширення · оновлено %2$s"</item><item quantity="many">"%1$d розширень · оновлено %2$s"</item><item quantity="other">"%1$d розширення · оновлено %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d профіль і його PIN"</item><item quantity="few">"%d профілі та їхні PIN"</item><item quantity="many">"%d профілів та їхні PIN"</item><item quantity="other">"%d профілю та їхні PIN"</item></plurals>
 <string name="account">"обліковий запис"</string>
 <string name="account_add_profile">"Додати профіль"</string>
+<string name="account_browser_body" formatted="true">"Ваш браузер відкрив %s. Увійдіть там і дозвольте доступ CloudStream. Це вікно продовжить саме."</string>
+<string name="account_browser_body_phone" formatted="true">"Завершіть вхід на сторінці %s. Цей екран продовжить сам."</string>
+<string name="account_browser_open_again">"Відкрити знову"</string>
+<string name="account_browser_title" formatted="true">"Вхід у %s"</string>
+<string name="account_browser_waiting">"Очікування браузера…"</string>
+<string name="account_code_expired">"Термін дії цього коду минув. Отримайте новий, щоб спробувати ще раз."</string>
+<string name="account_code_expires" formatted="true">"Спливає через %s"</string>
+<string name="account_code_instructions" formatted="true">"Перейдіть на %s у будь-якому браузері та введіть код."</string>
+<string name="account_code_open" formatted="true">"Відкрити %s"</string>
+<string name="account_delete_body" formatted="true">"Історію переглядів, закладки та входи в сервіси синхронізації профілю %s буде видалено з цього пристрою."</string>
+<string name="account_delete_profile">"Видалити профіль"</string>
+<string name="account_delete_title" formatted="true">"Видалити %s?"</string>
+<string name="account_edit_profile">"Редагувати профіль"</string>
+<string name="account_email">"Електронна пошта"</string>
+<string name="account_image_address">"Використати адресу зображення"</string>
+<string name="account_manage_note">"Виберіть профіль, щоб редагувати його"</string>
 <string name="account_manage_profiles">"Керувати профілями"</string>
 <string name="account_pair_code">"Ваш код"</string>
 <string name="account_pair_instructions">"Відкрийте це на телефоні та введіть код нижче."</string>
 <string name="account_pair_new_code">"Отримати новий код"</string>
 <string name="account_pair_title" formatted="true">"Зв'язати %s"</string>
+<string name="account_password">"Пароль"</string>
+<string name="account_password_mismatch">"Електронна пошта й пароль не збігаються. Перевірте їх і спробуйте ще раз."</string>
+<string name="account_password_note" formatted="true">"%s не підтримує вхід через браузер, тому пароль вводиться тут. Він зберігається лише на цьому пристрої й ніколи не потрапляє до резервних копій."</string>
+<string name="account_picture">"Зображення"</string>
+<string name="account_pin_change">"Змінити PIN-код"</string>
+<string name="account_pin_confirm">"Уведіть його ще раз для підтвердження."</string>
+<string name="account_pin_current">"Уведіть чинний PIN-код."</string>
+<string name="account_pin_first_profile">"Перший профіль не можна заблокувати"</string>
+<string name="account_pin_new">"Уведіть 4-значний PIN-код."</string>
+<string name="account_pin_off">"Вимкнено · будь-хто може відкрити цей профіль"</string>
+<string name="account_pin_on">"Увімкнено · запитується для відкриття"</string>
+<string name="account_pin_prompt">"Уведіть 4-значний PIN-код."</string>
+<string name="account_pin_remove">"Видалити PIN-код"</string>
+<string name="account_pin_set">"Установити PIN-код"</string>
+<string name="account_pin_set_title">"Установлення PIN-коду"</string>
 <string name="account_profile_current">"Поточний"</string>
 <string name="account_profile_locked">"Заблоковано · PIN"</string>
 <string name="account_profile_no_sync">"Без синхронізації"</string>
 <string name="account_select_note">"Окрема історія перегляду · не входи в акаунт"</string>
 <string name="account_select_title">"Хто дивиться?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s не підтвердив вхід. Нічого не збережено."</string>
+<string name="account_signin_failed_title" formatted="true">"Не вдалося увійти в %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Для входу в %s потрібне з'єднання. Спробуйте ще раз, коли пристрій знову буде онлайн."</string>
 <string name="account_sync_connected">"Підключено · вхід виконано на цьому пристрої"</string>
 <string name="account_sync_needs_browser">"Для входу потрібен веб-браузер. На цьому пристрої його немає."</string>
 <string name="account_sync_note">"Необов'язково. Синхронізує прогрес перегляду з акаунтом, який у вас уже є."</string>
 <string name="account_sync_pair">"Зв'язати за кодом"</string>
 <string name="account_sync_remove">"Видалити з цього пристрою"</string>
+<string name="account_sync_remove_body" formatted="true">"Вхід у %2$s профілю %1$s буде видалено з цього пристрою. Ваш обліковий запис %2$s і його списки залишаться без змін."</string>
+<string name="account_sync_remove_title" formatted="true">"Видалити %s з цього пристрою?"</string>
 <string name="account_sync_title">"Сервіси синхронізації"</string>
 <string name="account_sync_unavailable">"Тут недоступно"</string>
+<string name="account_touch_id_hint">"Торкніться датчика, щоб відкрити цей профіль."</string>
+<string name="account_touch_id_reason" formatted="true">"відкрити профіль %s"</string>
+<string name="account_touch_id_title" formatted="true">"Відкрити %s за допомогою Touch ID"</string>
+<string name="account_undo_warning">"Цю дію не можна скасувати."</string>
+<string name="account_use_pin">"Використати PIN-код"</string>
 <string name="action_add_to_bookmarks">"Змінити стан перегляду"</string>
 <string name="action_add_to_favorites">"Додати до обраного"</string>
 <string name="action_default">"Типово"</string>
@@ -518,6 +566,7 @@
 <string name="play_torrent_button">"Транслювати торрент"</string>
 <string name="play_trailer_button">"Відтворити трейлер"</string>
 <string name="play_with_app_name">"Відтворити в CloudStream"</string>
+<string name="player_audio_stereo">"стерео"</string>
 <string name="player_enter_fullscreen">"Перейти в повноекранний режим"</string>
 <string name="player_exit_fullscreen">"Вийти з повноекранного режиму"</string>
 <string name="player_fit_original">"Початкові пропорції"</string>
@@ -537,6 +586,7 @@
 <string name="player_load_subtitles">"Завантажити з файлу"</string>
 <string name="player_load_subtitles_online">"Завантажити з інтернету"</string>
 <string name="player_loaded_subtitles" formatted="true">"Завантажено %s"</string>
+<string name="player_menu_playback">"Відтворення"</string>
 <string name="player_mute">"Вимкнути звук"</string>
 <string name="player_notification_channel_description">"Сповіщення програвача для керування відтворенням у фоновому режимі"</string>
 <string name="player_notification_channel_name">"Сповіщення програвача"</string>
@@ -550,21 +600,27 @@
 <string name="player_panel_retry_all">"Повторити всі джерела"</string>
 <string name="player_panel_style">"Стиль субтитрів"</string>
 <string name="player_panel_use">"Використати"</string>
+<string name="player_play_now">"Дивитися зараз"</string>
 <string name="player_pref">"Бажаний відеопрогравач"</string>
 <string name="player_settings_always_ask">"Завжди запитувати"</string>
 <string name="player_settings_play_in_app">"Вбудований програвач"</string>
 <string name="player_settings_select_cast_device">"Оберіть пристрій для трансляції"</string>
 <string name="player_size_settings">"Кнопка зміни розміру програвача"</string>
 <string name="player_size_settings_des">"Прибрати чорні смуги"</string>
+<string name="player_source_decoded" formatted="true">"%s декодовано"</string>
 <string name="player_source_playing">"Відтворюється"</string>
 <string name="player_source_resumes_at" formatted="true">"Перемикання зберігає позицію: продовження з %1$s"</string>
 <string name="player_source_retry">"Повторити"</string>
 <string name="player_source_switch">"Перемкнути"</string>
+<string name="player_sources_all_failed">"Кожне джерело відповіло помилкою."</string>
+<string name="player_sources_all_failed_detail">"Виберіть джерело нижче, щоб спробувати знову."</string>
 <string name="player_speed">"Швидкість програвача"</string>
 <string name="player_speed_text_format" formatted="true">"Швидкість (%.2fx)"</string>
 <string name="player_subtitles_settings">"Субтитри"</string>
 <string name="player_subtitles_settings_des">"Налаштування субтитрів програвача"</string>
 <string name="player_unmute">"Увімкнути звук"</string>
+<string name="player_volume_down">"Тихіше"</string>
+<string name="player_volume_up">"Гучніше"</string>
 <string name="plugin">"розширення"</string>
 <string name="plugin_deleted">"Розширення видалено"</string>
 <string name="plugin_downloaded">"Розширення завантажено"</string>
@@ -721,7 +777,130 @@
 <string name="select_an_account">"Оберіть обліковий запис"</string>
 <string name="select_library">"Оберіть бібліотеку"</string>
 <string name="set_default">"Встановити типові"</string>
+<string name="settings_adult_content">"Вміст для дорослих"</string>
+<string name="settings_adult_content_body">"Лише там, де розширення це підтримує. Після перезапуску."</string>
+<string name="settings_anime_audio">"Аудіо для аніме"</string>
+<string name="settings_anime_audio_both">"Дубляж і субтитри"</string>
+<string name="settings_at_launch">"Під час запуску"</string>
+<string name="settings_back_up">"Створити резервну копію"</string>
+<string name="settings_back_up_now">"Створити копію зараз"</string>
+<string name="settings_backup_automatically">"Автоматично"</string>
+<string name="settings_backup_folder">"Тека резервних копій"</string>
+<string name="settings_change">"Змінити"</string>
+<string name="settings_choose">"Вибрати"</string>
+<string name="settings_choose_another">"Вибрати іншу"</string>
+<string name="settings_clear">"Очистити"</string>
+<string name="settings_clear_cache">"Очистити кеш"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Відео %1$s · зображення %2$s"</string>
+<string name="settings_color_white">"Білий"</string>
+<string name="settings_color_yellow">"Жовтий"</string>
+<string name="settings_connections_per_download">"З'єднань на завантаження"</string>
+<string name="settings_connections_per_download_body">"Більше може бути швидше, якщо джерело це дозволяє."</string>
+<string name="settings_diagnostics">"Діагностика"</string>
+<string name="settings_disk_cache">"Дисковий кеш"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Для розширень, обкладинок і субтитрів. Відеопотоки використовують DNS вашого Mac."</string>
+<string name="settings_download_folder">"Тека завантажень"</string>
+<string name="settings_downloads_at_once">"Одночасні завантаження"</string>
+<string name="settings_downloads_at_once_body">"Скільки назв завантажується разом."</string>
+<string name="settings_downloads_wait">"Нові завантаження чекатимуть, доки тека не повернеться або не буде вибрано іншу."</string>
+<string name="settings_extension_languages">"Мови"</string>
+<string name="settings_extension_review">"Переглянути"</string>
+<string name="settings_extensions_auto_install">"Встановлювати нові з моїх репозиторіїв"</string>
+<string name="settings_extensions_auto_install_body">"Кожне все одно перевіряється перед запуском."</string>
+<string name="settings_extensions_auto_update">"Оновлювати розширення автоматично"</string>
+<string name="settings_extensions_auto_update_body">"Кожне оновлення перевіряється перед запуском."</string>
+<string name="settings_extensions_installed" formatted="true">"Встановлено · %d"</string>
+<string name="settings_filler_episodes">"Філерні епізоди"</string>
+<string name="settings_filler_episodes_body">"Для аніме, де джерело їх позначає."</string>
+<string name="settings_folder">"Тека"</string>
+<string name="settings_folder_missing" formatted="true">"%s відсутня. Можливо, її диск не підключено."</string>
+<string name="settings_help_community">"Довідка і спільнота"</string>
+<string name="settings_help_community_body">"GitHub, Discord і вікі — у меню Довідка."</string>
+<string name="settings_hide_search_quality">"Приховувати якість у результатах пошуку"</string>
+<string name="settings_home_search">"Головна і Пошук"</string>
 <string name="settings_info">"Подробиці"</string>
+<string name="settings_last_backup" formatted="true">"Остання резервна копія: %s"</string>
+<string name="settings_logs">"Журнали"</string>
+<string name="settings_logs_mac_body">"Зберігаються на цьому Mac 7 днів. Нікуди не надсилаються."</string>
+<string name="settings_logs_phone_body">"Зберігаються на цьому телефоні 7 днів. Нікуди не надсилаються."</string>
+<string name="settings_network_buffer">"Мережевий буфер"</string>
+<string name="settings_offline_repos" formatted="true">"Не вдається перевірити репозиторії. Ці списки від %s."</string>
+<string name="settings_pane_accounts_privacy">"Акаунти і приватність"</string>
+<string name="settings_pane_advanced">"Додатково"</string>
+<string name="settings_pane_appearance">"Вигляд"</string>
+<string name="settings_pane_network">"Мережа"</string>
+<string name="settings_pane_playback">"Відтворення"</string>
+<string name="settings_play_next">"Відтворювати наступний епізод"</string>
+<string name="settings_play_next_body">"Відлічує 10 с наприкінці епізоду."</string>
+<string name="settings_playing">"Під час відтворення"</string>
+<string name="settings_poster_badges">"Значки на постерах"</string>
+<string name="settings_posters">"Постери"</string>
+<string name="settings_profile_no_pin">"Без PIN"</string>
+<string name="settings_profile_this">"Цей профіль"</string>
+<string name="settings_random_button_body">"На Головній і в Бібліотеці."</string>
+<string name="settings_read">"Читати"</string>
+<string name="settings_remove">"Видалити"</string>
+<string name="settings_repo_unreachable" formatted="true">"Не вдалося зв'язатися. Цей список отримано %s тому."</string>
+<string name="settings_repositories">"Репозиторії"</string>
+<string name="settings_reset_app">"Скинути CloudStream"</string>
+<string name="settings_reset_app_body">"Стирає налаштування, профілі та бібліотеку на цьому Mac."</string>
+<string name="settings_reset_app_phone_body">"Стирає налаштування, профілі та бібліотеку."</string>
+<string name="settings_reset_confirm_title">"Скинути CloudStream?"</string>
+<string name="settings_reset_erases_mac">"Буде стерто з цього Mac:"</string>
+<string name="settings_reset_erases_phone">"Буде стерто з цього телефона:"</string>
+<string name="settings_reset_item_library">"Бібліотека, прогрес перегляду та історія"</string>
+<string name="settings_reset_item_search">"Історія пошуку"</string>
+<string name="settings_reset_item_settings">"Налаштування"</string>
+<string name="settings_reset_item_signins">"Входи в сервіси синхронізації та субтитрів"</string>
+<string name="settings_reset_kept">"Залишаться: розширення, завантажені файли й резервні копії."</string>
+<string name="settings_restore">"Відновити"</string>
+<string name="settings_restore_failed">"Не вдалося відновити"</string>
+<string name="settings_restore_failed_body">"Цей файл не є резервною копією CloudStream. Нічого не змінено."</string>
+<string name="settings_restoring" formatted="true">"Відновлення %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d з %3$d"</string>
+<string name="settings_run_test">"Запустити тест"</string>
+<string name="settings_search_hint">"Пошук у налаштуваннях"</string>
+<string name="settings_search_no_results" formatted="true">"Немає результатів для “%s”"</string>
+<string name="settings_search_no_results_body">"Спробуйте інше слово."</string>
+<string name="settings_seek_amount">"Крок перемотування"</string>
+<string name="settings_setup_again">"Пройти налаштування знову"</string>
+<string name="settings_setup_again_body">"Мова, розширення й макет — з початку."</string>
+<string name="settings_setup_run">"Пройти налаштування"</string>
+<string name="settings_sign_in">"Увійти"</string>
+<string name="settings_skip_intro">"Пропонувати Пропустити вступ"</string>
+<string name="settings_skip_intro_body">"Де джерело позначає початок або титри."</string>
+<string name="settings_skip_profile_choice">"Пропускати вибір профілю"</string>
+<string name="settings_skip_profile_choice_body">"Відкриває останній використаний профіль."</string>
+<string name="settings_source_order">"Порядок джерел"</string>
+<string name="settings_source_order_body">"Які джерела програвач пробує першими."</string>
+<string name="settings_speed">"Швидкість"</string>
+<string name="settings_subtitle_background">"Фон"</string>
+<string name="settings_subtitle_edge">"Край"</string>
+<string name="settings_subtitle_font_system">"Системний"</string>
+<string name="settings_subtitle_language">"Бажана мова"</string>
+<string name="settings_subtitle_language_body">"Вибирається автоматично, коли вона є для назви."</string>
+<string name="settings_subtitle_preview">"Попередній перегляд"</string>
+<string name="settings_subtitle_services">"Сервіси субтитрів"</string>
+<string name="settings_subtitle_size">"Розмір"</string>
+<string name="settings_subtitle_size_large">"Великий"</string>
+<string name="settings_subtitle_size_medium">"Середній"</string>
+<string name="settings_subtitle_size_small">"Малий"</string>
+<string name="settings_subtitle_text_color">"Колір тексту"</string>
+<string name="settings_suggestions_while_typing">"Підказки під час введення"</string>
+<string name="settings_sync_for" formatted="true">"Синхронізація для %s"</string>
+<string name="settings_sync_per_profile">"Кожен профіль входить окремо."</string>
+<string name="settings_test_all_extensions">"Перевірити всі розширення"</string>
+<string name="settings_test_all_extensions_body">"Шукає кожним увімкненим розширенням. Для розробників."</string>
+<string name="settings_title_pages">"Сторінки назв"</string>
+<string name="settings_title_under_poster">"Назва під постером"</string>
+<string name="settings_trailers">"Трейлери"</string>
+<string name="settings_updates">"Оновлення"</string>
+<string name="settings_updates_at_launch">"Перевіряти оновлення під час запуску"</string>
+<string name="settings_updates_at_launch_body">"Шукає нову версію, коли відкривається CloudStream."</string>
+<string name="settings_updates_check_now">"Перевірити зараз"</string>
+<string name="settings_updates_current" formatted="true">"Актуально · перевірено %s"</string>
+<string name="settings_watch_progress_body">"Запам'ятовує, де ви зупинилися, для Продовжити перегляд."</string>
 <string name="setup_done">"Готово"</string>
 <string name="setup_extensions_subtext">"Завантажте список сайтів, які ви хочете використовувати"</string>
 <string name="show">"Показати"</string>

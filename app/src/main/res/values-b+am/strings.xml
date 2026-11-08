@@ -11,27 +11,75 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d ክፍል መጫን አልተቻለም"</item><item quantity="other">"%d ክፍል መጫን አልተቻለም"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d ክፍል"</item><item quantity="other">"%d ክፍሎች"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d ርዕስ"</item><item quantity="other">"%d ርዕሶች"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d ሰከንዶች"</item><item quantity="other">"%d ሰከንዶች"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d ምንጮች"</item><item quantity="other">"%d ምንጮች"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"ቀጣዩ ክፍል በ%d ሰ ውስጥ"</item><item quantity="other">"ቀጣዩ ክፍል በ%d ሰ ውስጥ"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ምንጭ ፈልግ"</item><item quantity="other">"ሁሉንም %d ምንጮች ፈልግ"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"ለማንኛውም %d ምንጭ ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።"</item><item quantity="other">"ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ምንጭ"</item><item quantity="other">"%d ምንጮች"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d የቅኝት ማስጠንቀቂያ"</item><item quantity="other">"%d የቅኝት ማስጠንቀቂያዎች"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"ሁሉም ቅጥያዎች (%d)"</item><item quantity="other">"ሁሉም ቅጥያዎች (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d ቅጥያ · %2$s ተዘምኗል"</item><item quantity="other">"%1$d ቅጥያዎች · %2$s ተዘምኗል"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d መገለጫ እና ፒኑ"</item><item quantity="other">"%d መገለጫዎች እና ፒኖቻቸው"</item></plurals>
 <string name="account_add_profile">"መገለጫ አክል"</string>
+<string name="account_browser_body" formatted="true">"አሳሽዎ %sን ከፍቷል። እዚያ ይግቡና CloudStreamን ይፍቀዱ። ይህ መስኮት በራሱ ይቀጥላል።"</string>
+<string name="account_browser_body_phone" formatted="true">"በ%s ገጽ ላይ መግባትዎን ያጠናቅቁ። ይህ ማያ ገጽ በራሱ ይቀጥላል።"</string>
+<string name="account_browser_open_again">"እንደገና ክፈት"</string>
+<string name="account_browser_title" formatted="true">"ወደ %s ግባ"</string>
+<string name="account_browser_waiting">"አሳሽዎን በመጠበቅ ላይ…"</string>
+<string name="account_code_expired">"ይህ ኮድ ጊዜው አልፏል። እንደገና ለመሞከር አዲስ ያግኙ።"</string>
+<string name="account_code_expires" formatted="true">"በ%s ውስጥ ጊዜው ያልፋል"</string>
+<string name="account_code_instructions" formatted="true">"በማንኛውም አሳሽ ወደ %s ይሂዱና ኮዱን ያስገቡ።"</string>
+<string name="account_code_open" formatted="true">"%s ክፈት"</string>
+<string name="account_delete_body" formatted="true">"የ%s የእይታ ታሪክ፣ ዕልባቶች እና የማመሳሰል መግቢያዎች ከዚህ መሣሪያ ይሰረዛሉ።"</string>
+<string name="account_delete_profile">"መገለጫ ሰርዝ"</string>
+<string name="account_delete_title" formatted="true">"%s ይሰረዝ?"</string>
+<string name="account_edit_profile">"መገለጫ አርትዕ"</string>
+<string name="account_email">"ኢሜይል"</string>
+<string name="account_image_address">"የምስል አድራሻ ተጠቀም"</string>
+<string name="account_manage_note">"ለማርትዕ መገለጫ ይምረጡ"</string>
 <string name="account_manage_profiles">"መገለጫዎችን አስተዳድር"</string>
 <string name="account_pair_code">"የእርስዎ ኮድ"</string>
 <string name="account_pair_instructions">"ይህን በስልክዎ ላይ ይክፈቱ እና ከታች ያለውን ኮድ ያስገቡ።"</string>
 <string name="account_pair_new_code">"አዲስ ኮድ ያግኙ"</string>
 <string name="account_pair_title" formatted="true">"%s አጣምር"</string>
+<string name="account_password">"የይለፍ ቃል"</string>
+<string name="account_password_mismatch">"ያ ኢሜይል እና የይለፍ ቃል አልተዛመዱም። ያረጋግጡና እንደገና ይሞክሩ።"</string>
+<string name="account_password_note" formatted="true">"%s የአሳሽ መግቢያ የለውም፣ ስለዚህ የይለፍ ቃሉ እዚህ ይተየባል። በዚህ መሣሪያ ላይ ብቻ ይቀመጣል፣ በምትኬም በፍጹም አይቀመጥም።"</string>
+<string name="account_picture">"ሥዕል"</string>
+<string name="account_pin_change">"ፒን ቀይር"</string>
+<string name="account_pin_confirm">"ለማረጋገጥ እንደገና ይተይቡት።"</string>
+<string name="account_pin_current">"አሁን በጥቅም ላይ ያለውን ፒን ይተይቡ።"</string>
+<string name="account_pin_first_profile">"የመጀመሪያው መገለጫ ሊቆለፍ አይችልም"</string>
+<string name="account_pin_new">"ባለ 4 አሃዝ ፒን ይተይቡ።"</string>
+<string name="account_pin_off">"ጠፍቷል · ማንም ይህን መገለጫ መክፈት ይችላል"</string>
+<string name="account_pin_on">"በርቷል · ለመክፈት ይጠየቃል"</string>
+<string name="account_pin_prompt">"ባለ 4 አሃዙን ፒን ይተይቡ።"</string>
+<string name="account_pin_remove">"ፒን አስወግድ"</string>
+<string name="account_pin_set">"ፒን አዘጋጅ"</string>
+<string name="account_pin_set_title">"ፒን ያዘጋጁ"</string>
 <string name="account_profile_current">"የአሁኑ"</string>
 <string name="account_profile_locked">"ተቆልፏል · ፒን"</string>
 <string name="account_profile_no_sync">"ማመሳሰል የለም"</string>
 <string name="account_select_note">"የተለየ የእይታ ታሪክ · መግቢያዎች አይደሉም"</string>
 <string name="account_select_title">"ማን እየተመለከተ ነው?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s መግባቱን አላረጋገጠም። ምንም አልተቀመጠም።"</string>
+<string name="account_signin_failed_title" formatted="true">"ወደ %s መግባት አልተቻለም"</string>
+<string name="account_signin_offline_body" formatted="true">"ወደ %s ለመግባት ግንኙነት ያስፈልጋል። ይህ መሣሪያ ተመልሶ መስመር ላይ ሲሆን እንደገና ይሞክሩ።"</string>
 <string name="account_sync_connected">"ተገናኝቷል · በዚህ መሣሪያ ላይ ገብቷል"</string>
 <string name="account_sync_needs_browser">"መግባት የድር አሳሽ ይፈልጋል። ይህ መሣሪያ የለውም።"</string>
 <string name="account_sync_note">"አማራጭ። የእይታ ሂደትን ቀድሞ ካለዎት መለያ ጋር ያመሳስላል።"</string>
 <string name="account_sync_pair">"በኮድ አጣምር"</string>
 <string name="account_sync_remove">"ከዚህ መሣሪያ አስወግድ"</string>
+<string name="account_sync_remove_body" formatted="true">"የ%1$s የ%2$s መግቢያ ከዚህ መሣሪያ ይሰረዛል። የ%2$s መለያዎ እና ዝርዝሮቹ እንዳሉ ይቆያሉ።"</string>
+<string name="account_sync_remove_title" formatted="true">"%s ከዚህ መሣሪያ ይወገድ?"</string>
 <string name="account_sync_title">"የማመሳሰል አገልግሎቶች"</string>
 <string name="account_sync_unavailable">"እዚህ አይገኝም"</string>
+<string name="account_touch_id_hint">"ይህን መገለጫ ለመክፈት ዳሳሹን ይንኩ።"</string>
+<string name="account_touch_id_reason" formatted="true">"የ%s መገለጫን ለመክፈት"</string>
+<string name="account_touch_id_title" formatted="true">"%sን ለመክፈት Touch ID ይጠቀሙ"</string>
+<string name="account_undo_warning">"ይህ መቀልበስ አይቻልም።"</string>
+<string name="account_use_pin">"በምትኩ ፒን ተጠቀም"</string>
 <string name="action_add_to_bookmarks">"የምልከታ ሁኔታን ያቀናብሩ"</string>
 <string name="action_open_watching">"ተጨማሪ መረጃ"</string>
 <string name="action_remove_from_bookmarks">"ያስወግዱ"</string>
@@ -188,6 +236,7 @@
 <string name="play_torrent_button">"Torrent አጫውት"</string>
 <string name="play_trailer_button">"የፊልም ማስታወቂያ አጫውት"</string>
 <string name="play_with_app_name">"በCloudStream አጫውት"</string>
+<string name="player_audio_stereo">"ስቴሪዮ"</string>
 <string name="player_enter_fullscreen">"ወደ ሙሉ ማያ ገፅ ግባ"</string>
 <string name="player_exit_fullscreen">"ከሙሉ ማያገጽ ውጣ"</string>
 <string name="player_fit_original">"የመጀመሪያ ምጥጥነ ገጽታ"</string>
@@ -202,6 +251,7 @@
 <string name="player_hud_seek_forward">"ወደፊት ዝለል"</string>
 <string name="player_hud_speed">"ፍጥነት"</string>
 <string name="player_hud_up_next" formatted="true">"ቀጣይ · %s"</string>
+<string name="player_menu_playback">"መልሶ ማጫወት"</string>
 <string name="player_mute">"ድምፅ አጥፋ"</string>
 <string name="player_panel_failed">"አልተሳካም"</string>
 <string name="player_panel_keeps" formatted="true">"%s ይቆያል"</string>
@@ -213,13 +263,19 @@
 <string name="player_panel_retry_all">"ሁሉንም ምንጮች እንደገና ሞክር"</string>
 <string name="player_panel_style">"የንዑስ ርዕስ ዘይቤ"</string>
 <string name="player_panel_use">"ተጠቀም"</string>
+<string name="player_play_now">"አሁን አጫውት"</string>
+<string name="player_source_decoded" formatted="true">"%s ተፈትቷል"</string>
 <string name="player_source_playing">"በመጫወት ላይ"</string>
 <string name="player_source_resumes_at" formatted="true">"መቀየር ቦታዎን ይጠብቃል፦ ከ%1$s ይቀጥላል"</string>
 <string name="player_source_retry">"እንደገና ሞክር"</string>
 <string name="player_source_switch">"ቀይር"</string>
+<string name="player_sources_all_failed">"እያንዳንዱ ምንጭ በስህተት መለሰ።"</string>
+<string name="player_sources_all_failed_detail">"እንደገና ለመሞከር ከታች ምንጭ ይምረጡ።"</string>
 <string name="player_speed">"የአጫዋች ፍጥነት"</string>
 <string name="player_speed_text_format" formatted="true">"ፍጥነት(%.2fx)"</string>
 <string name="player_unmute">"ድምፅ አብራ"</string>
+<string name="player_volume_down">"ድምፅ ቀንስ"</string>
+<string name="player_volume_up">"ድምፅ ጨምር"</string>
 <string name="popup_delete_file">"ፋይል አጥፋ"</string>
 <string name="popup_pause_download">"ማውረድ ለአፍታ አቁም"</string>
 <string name="popup_play_file">"ፋይል አጫውት"</string>
@@ -259,6 +315,129 @@
 <string name="season_specials">"ልዩ"</string>
 <string name="seek_back_10_seconds">"10 ሰከንድ ወደ ኋላ"</string>
 <string name="seek_forward_10_seconds">"10 ሰከንድ ወደ ፊት"</string>
+<string name="settings_adult_content">"የአዋቂዎች ይዘት"</string>
+<string name="settings_adult_content_body">"ቅጥያው በሚደግፈው ቦታ ብቻ። ዳግም ከተጀመረ በኋላ።"</string>
+<string name="settings_anime_audio">"የአኒሜ ድምፅ"</string>
+<string name="settings_anime_audio_both">"ዱብ እና የትርጉም ጽሑፍ"</string>
+<string name="settings_at_launch">"ሲከፈት"</string>
+<string name="settings_back_up">"ምትኬ አስቀምጥ"</string>
+<string name="settings_back_up_now">"አሁን ምትኬ አስቀምጥ"</string>
+<string name="settings_backup_automatically">"በራስ-ሰር"</string>
+<string name="settings_backup_folder">"የምትኬ አቃፊ"</string>
+<string name="settings_change">"ቀይር"</string>
+<string name="settings_choose">"ምረጥ"</string>
+<string name="settings_choose_another">"ሌላ ምረጥ"</string>
+<string name="settings_clear">"አጽዳ"</string>
+<string name="settings_clear_cache">"መሸጎጫ አጽዳ"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"ቪዲዮ %1$s · ምስሎች %2$s"</string>
+<string name="settings_color_white">"ነጭ"</string>
+<string name="settings_color_yellow">"ቢጫ"</string>
+<string name="settings_connections_per_download">"ግንኙነቶች በአንድ ውርድ"</string>
+<string name="settings_connections_per_download_body">"ምንጩ ከፈቀደ ብዙ ግንኙነቶች ፈጣን ሊሆኑ ይችላሉ።"</string>
+<string name="settings_diagnostics">"ምርመራ"</string>
+<string name="settings_disk_cache">"የዲስክ መሸጎጫ"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"ለቅጥያዎች፣ ለምስሎች እና ለትርጉም ጽሑፎች። የቪዲዮ ዥረቶች የዚህን Mac DNS ይጠቀማሉ።"</string>
+<string name="settings_download_folder">"የማውረጃ አቃፊ"</string>
+<string name="settings_downloads_at_once">"በአንድ ጊዜ የሚወርዱ"</string>
+<string name="settings_downloads_at_once_body">"ስንት ርዕሶች አብረው እንደሚወርዱ።"</string>
+<string name="settings_downloads_wait">"አዲስ ውርዶች አቃፊው እስኪመለስ ወይም ሌላ እስኪመረጥ ይጠብቃሉ።"</string>
+<string name="settings_extension_languages">"ቋንቋዎች"</string>
+<string name="settings_extension_review">"ገምግም"</string>
+<string name="settings_extensions_auto_install">"ከማከማቻዎቼ አዳዲሶቹን ጫን"</string>
+<string name="settings_extensions_auto_install_body">"እያንዳንዱ ከመሥራቱ በፊት አሁንም ይቃኛል።"</string>
+<string name="settings_extensions_auto_update">"ቅጥያዎችን በራስ-ሰር አዘምን"</string>
+<string name="settings_extensions_auto_update_body">"እያንዳንዱ ዝማኔ ከመሥራቱ በፊት ይቃኛል።"</string>
+<string name="settings_extensions_installed" formatted="true">"የተጫኑ · %d"</string>
+<string name="settings_filler_episodes">"ተጨማሪ (ፊለር) ክፍሎች"</string>
+<string name="settings_filler_episodes_body">"ለአኒሜ፣ ምንጩ ምልክት ባደረገበት።"</string>
+<string name="settings_folder">"አቃፊ"</string>
+<string name="settings_folder_missing" formatted="true">"%s አልተገኘም። ዲስኩ ላይገናኝ ይችላል።"</string>
+<string name="settings_help_community">"እገዛ እና ማህበረሰብ"</string>
+<string name="settings_help_community_body">"GitHub፣ Discord እና ዊኪው በእገዛ ምናሌ ውስጥ ናቸው።"</string>
+<string name="settings_hide_search_quality">"በፍለጋ ውጤቶች ውስጥ ጥራትን ደብቅ"</string>
+<string name="settings_home_search">"መነሻ እና ፍለጋ"</string>
+<string name="settings_last_backup" formatted="true">"የመጨረሻ ምትኬ: %s"</string>
+<string name="settings_logs">"ምዝግብ ማስታወሻዎች"</string>
+<string name="settings_logs_mac_body">"በዚህ Mac ላይ ለ7 ቀናት ይቀመጣሉ። ወደየትም አይላኩም።"</string>
+<string name="settings_logs_phone_body">"በዚህ ስልክ ላይ ለ7 ቀናት ይቀመጣሉ። ወደየትም አይላኩም።"</string>
+<string name="settings_network_buffer">"የአውታረ መረብ ቋት"</string>
+<string name="settings_offline_repos" formatted="true">"ማከማቻዎችን መፈተሽ አልተቻለም። እነዚህ ዝርዝሮች ከ%s ናቸው።"</string>
+<string name="settings_pane_accounts_privacy">"መለያዎች እና ግላዊነት"</string>
+<string name="settings_pane_advanced">"የላቀ"</string>
+<string name="settings_pane_appearance">"መልክ"</string>
+<string name="settings_pane_network">"አውታረ መረብ"</string>
+<string name="settings_pane_playback">"መልሶ ማጫወት"</string>
+<string name="settings_play_next">"ቀጣዩን ክፍል አጫውት"</string>
+<string name="settings_play_next_body">"በክፍሉ መጨረሻ 10 ሰከንድ ይቆጥራል።"</string>
+<string name="settings_playing">"በማጫወት ላይ"</string>
+<string name="settings_poster_badges">"በፖስተሮች ላይ ባጆች"</string>
+<string name="settings_posters">"ፖስተሮች"</string>
+<string name="settings_profile_no_pin">"ፒን የለም"</string>
+<string name="settings_profile_this">"ይህ መገለጫ"</string>
+<string name="settings_random_button_body">"በመነሻ እና በቤተ-መጽሐፍት ላይ።"</string>
+<string name="settings_read">"አንብብ"</string>
+<string name="settings_remove">"አስወግድ"</string>
+<string name="settings_repo_unreachable" formatted="true">"ሊደረስበት አልተቻለም። ይህ ዝርዝር ከ%s በፊት የተገኘ ነው።"</string>
+<string name="settings_repositories">"ማከማቻዎች"</string>
+<string name="settings_reset_app">"CloudStreamን ዳግም አስጀምር"</string>
+<string name="settings_reset_app_body">"በዚህ Mac ላይ ቅንብሮችን፣ መገለጫዎችን እና ቤተ-መጽሐፍትን ያጠፋል።"</string>
+<string name="settings_reset_app_phone_body">"ቅንብሮችን፣ መገለጫዎችን እና ቤተ-መጽሐፍትን ያጠፋል።"</string>
+<string name="settings_reset_confirm_title">"CloudStream ዳግም ይጀመር?"</string>
+<string name="settings_reset_erases_mac">"ይህ ከዚህ Mac ያጠፋል:"</string>
+<string name="settings_reset_erases_phone">"ይህ ከዚህ ስልክ ያጠፋል:"</string>
+<string name="settings_reset_item_library">"ቤተ-መጽሐፍት፣ የእይታ ሂደት እና ታሪክ"</string>
+<string name="settings_reset_item_search">"የፍለጋ ታሪክ"</string>
+<string name="settings_reset_item_settings">"ቅንብሮች"</string>
+<string name="settings_reset_item_signins">"ወደ ማመሳሰል እና የትርጉም ጽሑፍ አገልግሎቶች መግቢያዎች"</string>
+<string name="settings_reset_kept">"የሚቆዩ: ቅጥያዎች፣ የወረዱ ፋይሎች እና ምትኬዎች።"</string>
+<string name="settings_restore">"ወደነበረበት መልስ"</string>
+<string name="settings_restore_failed">"መመለስ አልተቻለም"</string>
+<string name="settings_restore_failed_body">"ያ ፋይል የCloudStream ምትኬ አይደለም። ምንም አልተቀየረም።"</string>
+<string name="settings_restoring" formatted="true">"%s በመመለስ ላይ"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d ከ%3$d"</string>
+<string name="settings_run_test">"ሙከራ አሂድ"</string>
+<string name="settings_search_hint">"ቅንብሮችን ፈልግ"</string>
+<string name="settings_search_no_results" formatted="true">"ለ“%s” ምንም ውጤት የለም"</string>
+<string name="settings_search_no_results_body">"ሌላ ቃል ሞክር።"</string>
+<string name="settings_seek_amount">"የመዝለያ መጠን"</string>
+<string name="settings_setup_again">"ማዋቀርን እንደገና አሂድ"</string>
+<string name="settings_setup_again_body">"ቋንቋ፣ ቅጥያዎች እና አቀማመጥ፣ ከመጀመሪያው።"</string>
+<string name="settings_setup_run">"ማዋቀር አሂድ"</string>
+<string name="settings_sign_in">"ግባ"</string>
+<string name="settings_skip_intro">"«መግቢያ ዝለል»ን አቅርብ"</string>
+<string name="settings_skip_intro_body">"ምንጩ መክፈቻውን ወይም ምስጋናዎቹን ምልክት ባደረገበት።"</string>
+<string name="settings_skip_profile_choice">"መገለጫ መምረጥን ዝለል"</string>
+<string name="settings_skip_profile_choice_body">"መጨረሻ ጥቅም ላይ የዋለውን መገለጫ ይከፍታል።"</string>
+<string name="settings_source_order">"የምንጮች ቅደም ተከተል"</string>
+<string name="settings_source_order_body">"አጫዋቹ መጀመሪያ የሚሞክራቸው ምንጮች።"</string>
+<string name="settings_speed">"ፍጥነት"</string>
+<string name="settings_subtitle_background">"ዳራ"</string>
+<string name="settings_subtitle_edge">"ጠርዝ"</string>
+<string name="settings_subtitle_font_system">"ሥርዓት"</string>
+<string name="settings_subtitle_language">"ተመራጭ ቋንቋ"</string>
+<string name="settings_subtitle_language_body">"ርዕሱ ሲኖረው በራስ-ሰር ይመረጣል።"</string>
+<string name="settings_subtitle_preview">"ቅድመ እይታ"</string>
+<string name="settings_subtitle_services">"የትርጉም ጽሑፍ አገልግሎቶች"</string>
+<string name="settings_subtitle_size">"መጠን"</string>
+<string name="settings_subtitle_size_large">"ትልቅ"</string>
+<string name="settings_subtitle_size_medium">"መካከለኛ"</string>
+<string name="settings_subtitle_size_small">"ትንሽ"</string>
+<string name="settings_subtitle_text_color">"የጽሑፍ ቀለም"</string>
+<string name="settings_suggestions_while_typing">"በመተየብ ላይ ሳሉ ጥቆማዎች"</string>
+<string name="settings_sync_for" formatted="true">"ማመሳሰል ለ%s"</string>
+<string name="settings_sync_per_profile">"እያንዳንዱ መገለጫ በራሱ ይገባል።"</string>
+<string name="settings_test_all_extensions">"ሁሉንም ቅጥያዎች ሞክር"</string>
+<string name="settings_test_all_extensions_body">"በእያንዳንዱ የነቃ ቅጥያ ይፈልጋል። ለገንቢዎች።"</string>
+<string name="settings_title_pages">"የርዕስ ገጾች"</string>
+<string name="settings_title_under_poster">"ከፖስተሩ በታች ርዕስ"</string>
+<string name="settings_trailers">"ትሬለሮች"</string>
+<string name="settings_updates">"ዝማኔዎች"</string>
+<string name="settings_updates_at_launch">"ሲከፈት ዝማኔዎችን ፈትሽ"</string>
+<string name="settings_updates_at_launch_body">"CloudStream ሲከፈት አዲስ ስሪት ይፈልጋል።"</string>
+<string name="settings_updates_check_now">"አሁን ፈትሽ"</string>
+<string name="settings_updates_current" formatted="true">"የተዘመነ · %s ተፈትሿል"</string>
+<string name="settings_watch_progress_body">"ለ«መመልከት ቀጥል» ያቆምክበትን ቦታ ያስቀምጣል።"</string>
 <string name="skip_loading">"መጫንን ዝለል"</string>
 <string name="sort_apply">"አጽድቅ"</string>
 <string name="sort_clear">"አጽዳ"</string>

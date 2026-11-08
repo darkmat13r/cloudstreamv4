@@ -39,7 +39,10 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.player_source
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_source_retry
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_source_switch
 import com.lagradost.cloudstream4.core.strings.generated.resources.source_error
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_source_count
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.core.strings.UiString
+import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.bestFirst
 import org.jetbrains.compose.resources.stringResource
@@ -73,7 +76,7 @@ internal class PlayerSources(
 /** A later answer can carry the same stream under a new list of subtitles, so the whole link is not the test. */
 internal fun StreamLink.isSameStream(other: StreamLink) = url == other.url && audioUrl == other.audioUrl
 
-/** `VidSrc Pro · 1080p`, which is how artboard 7d reads out a source and which of its rows says what. */
+/** `Source One · 1080p`, which is how artboard 7d reads out a source and which of its rows says what. */
 internal fun StreamLink.sourceName(): String = listOfNotNull(label, qualityLabel).joinToString(" · ")
 
 /**
@@ -88,7 +91,9 @@ internal fun SourcePicker(
     onDismiss: () -> Unit,
 ) {
     val colors = CloudStreamTheme.colors
-    PlayerListPanel(stringResource(Res.string.pick_source), onDismiss) {
+    // `DS-23` M4: the panel says how many there are to choose from under its title.
+    val count = UiString.Plural(Res.plurals.player_source_count, links.size).resolve()
+    PlayerListPanel(stringResource(Res.string.pick_source), onDismiss, subtitle = count) {
         if (sources.resumeAtMillis > 0L) {
             BasicText(
                 text = stringResource(Res.string.player_source_resumes_at, clock(sources.resumeAtMillis)),

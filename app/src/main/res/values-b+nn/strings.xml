@@ -11,27 +11,75 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d del kunne ikkje lastast"</item><item quantity="other">"%d delar kunne ikkje lastast"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d seksjon"</item><item quantity="other">"%d seksjonar"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d tittel"</item><item quantity="other">"%d titlar"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d sekund"</item><item quantity="other">"%d sekund"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d kjelde"</item><item quantity="other">"%d kjelder"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Neste episode om %d s"</item><item quantity="other">"Neste episode om %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Søk i %d kjelde"</item><item quantity="other">"Søk i alle %d kjeldene"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel."</item><item quantity="other">"Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KJELDE"</item><item quantity="other">"%d KJELDER"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d skanningsåtvaring"</item><item quantity="other">"%d skanningsåtvaringar"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Alle utvidingar (%d)"</item><item quantity="other">"Alle utvidingar (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d utviding · oppdatert %2$s"</item><item quantity="other">"%1$d utvidingar · oppdatert %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil og PIN-en hennar"</item><item quantity="other">"%d profilar og PIN-ane deira"</item></plurals>
 <string name="account_add_profile">"Legg til profil"</string>
+<string name="account_browser_body" formatted="true">"Nettlesaren din opna %s. Logg inn der og gje CloudStream løyve. Dette vindauget held fram av seg sjølv."</string>
+<string name="account_browser_body_phone" formatted="true">"Fullfør innlogginga på sida til %s. Denne skjermen held fram av seg sjølv."</string>
+<string name="account_browser_open_again">"Opne på nytt"</string>
+<string name="account_browser_title" formatted="true">"Logg inn på %s"</string>
+<string name="account_browser_waiting">"Ventar på nettlesaren…"</string>
+<string name="account_code_expired">"Denne koden har gått ut. Hent ein ny for å prøve igjen."</string>
+<string name="account_code_expires" formatted="true">"Går ut om %s"</string>
+<string name="account_code_instructions" formatted="true">"Gå til %s i ein nettlesar og skriv inn koden."</string>
+<string name="account_code_open" formatted="true">"Opne %s"</string>
+<string name="account_delete_body" formatted="true">"Sjåhistorikken, bokmerka og synkroniseringsinnloggingane til %s blir sletta frå denne eininga."</string>
+<string name="account_delete_profile">"Slett profil"</string>
+<string name="account_delete_title" formatted="true">"Slette %s?"</string>
+<string name="account_edit_profile">"Rediger profil"</string>
+<string name="account_email">"E-post"</string>
+<string name="account_image_address">"Bruk ei biletadresse"</string>
+<string name="account_manage_note">"Vel ein profil for å redigere han"</string>
 <string name="account_manage_profiles">"Handter profilar"</string>
 <string name="account_pair_code">"Koden din"</string>
 <string name="account_pair_instructions">"Opne dette på telefonen og skriv inn koden nedanfor."</string>
 <string name="account_pair_new_code">"Få ein ny kode"</string>
 <string name="account_pair_title" formatted="true">"Kople til %s"</string>
+<string name="account_password">"Passord"</string>
+<string name="account_password_mismatch">"E-postadressa og passordet passa ikkje saman. Sjekk dei og prøv igjen."</string>
+<string name="account_password_note" formatted="true">"%s har inga innlogging via nettlesar, så det blir skrive inn her. Det blir berre lagra på denne eininga og aldri sikkerheitskopiert."</string>
+<string name="account_picture">"Bilete"</string>
+<string name="account_pin_change">"Endre PIN"</string>
+<string name="account_pin_confirm">"Skriv han inn igjen for å stadfeste."</string>
+<string name="account_pin_current">"Skriv inn PIN-koden som er i bruk no."</string>
+<string name="account_pin_first_profile">"Den første profilen kan ikkje låsast"</string>
+<string name="account_pin_new">"Skriv inn ein firesifra PIN."</string>
+<string name="account_pin_off">"Av · alle kan opne denne profilen"</string>
+<string name="account_pin_on">"På · blir spurd om ved opning"</string>
+<string name="account_pin_prompt">"Skriv inn den firesifra PIN-koden."</string>
+<string name="account_pin_remove">"Fjern PIN"</string>
+<string name="account_pin_set">"Vel PIN"</string>
+<string name="account_pin_set_title">"Vel ein PIN"</string>
 <string name="account_profile_current">"Gjeldande"</string>
 <string name="account_profile_locked">"Låst · PIN"</string>
 <string name="account_profile_no_sync">"Inga synkronisering"</string>
 <string name="account_select_note">"Eiga sjåhistorikk · ikkje innloggingar"</string>
 <string name="account_select_title">"Kven ser på?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s stadfesta ikkje innlogginga. Ingenting vart lagra."</string>
+<string name="account_signin_failed_title" formatted="true">"Kunne ikkje logge inn på %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Innlogging på %s krev tilkopling. Prøv igjen når denne eininga er tilkopla att."</string>
 <string name="account_sync_connected">"Tilkopla · logga inn på denne eininga"</string>
 <string name="account_sync_needs_browser">"Innlogging krev ein nettlesar. Denne eininga har ingen."</string>
 <string name="account_sync_note">"Valfritt. Synkroniserer framdrifta med ein konto du alt har."</string>
 <string name="account_sync_pair">"Kople til med ein kode"</string>
 <string name="account_sync_remove">"Fjern frå denne eininga"</string>
+<string name="account_sync_remove_body" formatted="true">"%2$s-innlogginga til %1$s blir sletta frå denne eininga. %2$s-kontoen din og listene der blir verande som dei er."</string>
+<string name="account_sync_remove_title" formatted="true">"Fjerne %s frå denne eininga?"</string>
 <string name="account_sync_title">"Synkroniseringstenester"</string>
 <string name="account_sync_unavailable">"Ikkje tilgjengeleg her"</string>
+<string name="account_touch_id_hint">"Rør ved sensoren for å opne denne profilen."</string>
+<string name="account_touch_id_reason" formatted="true">"opne profilen %s"</string>
+<string name="account_touch_id_title" formatted="true">"Bruk Touch ID for å opne %s"</string>
+<string name="account_undo_warning">"Dette kan ikkje angrast."</string>
+<string name="account_use_pin">"Bruk PIN i staden"</string>
 <string name="action_add_to_bookmarks">"Sett visingstatus"</string>
 <string name="action_default">"Standard"</string>
 <string name="action_open_watching">"Meir informasjon"</string>
@@ -242,6 +290,7 @@
 <string name="play_torrent_button">"Strøm Torrent"</string>
 <string name="play_trailer_button">"Spel av trailer"</string>
 <string name="play_with_app_name">"Spel av med CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Vis i fullskjerm"</string>
 <string name="player_exit_fullscreen">"Avslutt fullskjerm"</string>
 <string name="player_fit_original">"Opphavleg sideforhold"</string>
@@ -256,6 +305,7 @@
 <string name="player_hud_seek_forward">"Spol fram"</string>
 <string name="player_hud_speed">"Fart"</string>
 <string name="player_hud_up_next" formatted="true">"Neste · %s"</string>
+<string name="player_menu_playback">"Avspeling"</string>
 <string name="player_mute">"Slå av lyd"</string>
 <string name="player_panel_failed">"feila"</string>
 <string name="player_panel_keeps" formatted="true">"held på %s"</string>
@@ -267,16 +317,22 @@
 <string name="player_panel_retry_all">"Prøv alle kjeldene på nytt"</string>
 <string name="player_panel_style">"Stil for undertekstar"</string>
 <string name="player_panel_use">"Bruk"</string>
+<string name="player_play_now">"Spel no"</string>
 <string name="player_size_settings_des">"Fjern dei svarte kantane"</string>
+<string name="player_source_decoded" formatted="true">"%s dekoda"</string>
 <string name="player_source_playing">"Spelar"</string>
 <string name="player_source_resumes_at" formatted="true">"Bytet held på plassen din: held fram frå %1$s"</string>
 <string name="player_source_retry">"Prøv igjen"</string>
 <string name="player_source_switch">"Byt"</string>
+<string name="player_sources_all_failed">"Kvar kjelde svarte med ein feil."</string>
+<string name="player_sources_all_failed_detail">"Vel ei kjelde nedanfor for å prøve igjen."</string>
 <string name="player_speed">"Avspelinghastigheit"</string>
 <string name="player_speed_text_format" formatted="true">"Avspelinghastigheit (%.2fx)"</string>
 <string name="player_subtitles_settings">"Undertekstar"</string>
 <string name="player_subtitles_settings_des">"Innstillinger for avspilling av undertekster"</string>
 <string name="player_unmute">"Slå på lyd"</string>
+<string name="player_volume_down">"Lågare volum"</string>
+<string name="player_volume_up">"Høgare volum"</string>
 <string name="popup_delete_file">"Slett fil"</string>
 <string name="popup_pause_download">"Sett nedlasting på vent"</string>
 <string name="popup_play_file">"Spel av fil"</string>
@@ -326,7 +382,130 @@
 <string name="season_specials">"Spesialar"</string>
 <string name="seek_back_10_seconds">"Hopp 10 sekund bakover"</string>
 <string name="seek_forward_10_seconds">"Hopp 10 sekund framover"</string>
+<string name="settings_adult_content">"Vaksent innhald"</string>
+<string name="settings_adult_content_body">"Berre der ei utviding støttar det. Etter omstart."</string>
+<string name="settings_anime_audio">"Lyd for anime"</string>
+<string name="settings_anime_audio_both">"Dubba og teksta"</string>
+<string name="settings_at_launch">"Ved oppstart"</string>
+<string name="settings_back_up">"Ta sikkerheitskopi"</string>
+<string name="settings_back_up_now">"Ta sikkerheitskopi no"</string>
+<string name="settings_backup_automatically">"Automatisk"</string>
+<string name="settings_backup_folder">"Mappe for sikkerheitskopiar"</string>
+<string name="settings_change">"Endre"</string>
+<string name="settings_choose">"Vel"</string>
+<string name="settings_choose_another">"Vel ei anna"</string>
+<string name="settings_clear">"Tøm"</string>
+<string name="settings_clear_cache">"Tøm hurtigbuffer"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Video %1$s · bilete %2$s"</string>
+<string name="settings_color_white">"Kvit"</string>
+<string name="settings_color_yellow">"Gul"</string>
+<string name="settings_connections_per_download">"Tilkoplingar per nedlasting"</string>
+<string name="settings_connections_per_download_body">"Fleire kan gå raskare, der kjelda tillèt det."</string>
+<string name="settings_diagnostics">"Diagnostikk"</string>
+<string name="settings_disk_cache">"Diskbuffer"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"For utvidingar, omslag og undertekstar. Videostraumar brukar DNS-en til Macen din."</string>
+<string name="settings_download_folder">"Nedlastingsmappe"</string>
+<string name="settings_downloads_at_once">"Nedlastingar samstundes"</string>
+<string name="settings_downloads_at_once_body">"Kor mange titlar som blir lasta ned saman."</string>
+<string name="settings_downloads_wait">"Nye nedlastingar ventar til mappa er tilbake eller ei anna er vald."</string>
+<string name="settings_extension_languages">"Språk"</string>
+<string name="settings_extension_review">"Gå gjennom"</string>
+<string name="settings_extensions_auto_install">"Installer nye frå mine pakkebrønnar"</string>
+<string name="settings_extensions_auto_install_body">"Kvar av dei blir likevel skanna før ho køyrer."</string>
+<string name="settings_extensions_auto_update">"Oppdater utvidingar automatisk"</string>
+<string name="settings_extensions_auto_update_body">"Kvar oppdatering blir skanna før ho køyrer."</string>
+<string name="settings_extensions_installed" formatted="true">"Installerte · %d"</string>
+<string name="settings_filler_episodes">"Fyllepisodar"</string>
+<string name="settings_filler_episodes_body">"For anime, der kjelda merkjer dei."</string>
+<string name="settings_folder">"Mappe"</string>
+<string name="settings_folder_missing" formatted="true">"%s manglar. Disken er kanskje ikkje tilkopla."</string>
+<string name="settings_help_community">"Hjelp og fellesskap"</string>
+<string name="settings_help_community_body">"GitHub, Discord og wikien finst i Hjelp-menyen."</string>
+<string name="settings_hide_search_quality">"Skjul kvalitet i søkjeresultat"</string>
+<string name="settings_home_search">"Heim og søk"</string>
 <string name="settings_info">"Informasjon"</string>
+<string name="settings_last_backup" formatted="true">"Siste sikkerheitskopi: %s"</string>
+<string name="settings_logs">"Loggar"</string>
+<string name="settings_logs_mac_body">"Blir lagra på denne Macen i 7 dagar. Blir aldri sendt nokon stad."</string>
+<string name="settings_logs_phone_body">"Blir lagra på denne telefonen i 7 dagar. Blir aldri sendt nokon stad."</string>
+<string name="settings_network_buffer">"Nettverksbuffer"</string>
+<string name="settings_offline_repos" formatted="true">"Pakkebrønnane kan ikkje sjekkast. Listene er frå %s."</string>
+<string name="settings_pane_accounts_privacy">"Kontoar og personvern"</string>
+<string name="settings_pane_advanced">"Avansert"</string>
+<string name="settings_pane_appearance">"Utsjånad"</string>
+<string name="settings_pane_network">"Nettverk"</string>
+<string name="settings_pane_playback">"Avspeling"</string>
+<string name="settings_play_next">"Spel av neste episode"</string>
+<string name="settings_play_next_body">"Tel ned 10 s på slutten av ein episode."</string>
+<string name="settings_playing">"Avspeling"</string>
+<string name="settings_poster_badges">"Merke på plakatar"</string>
+<string name="settings_posters">"Plakatar"</string>
+<string name="settings_profile_no_pin">"Ingen PIN"</string>
+<string name="settings_profile_this">"Denne profilen"</string>
+<string name="settings_random_button_body">"På Heim og Bibliotek."</string>
+<string name="settings_read">"Les"</string>
+<string name="settings_remove">"Fjern"</string>
+<string name="settings_repo_unreachable" formatted="true">"Fekk ikkje kontakt. Lista er frå %s sidan."</string>
+<string name="settings_repositories">"Pakkebrønnar"</string>
+<string name="settings_reset_app">"Tilbakestill CloudStream"</string>
+<string name="settings_reset_app_body">"Slettar innstillingar, profilar og bibliotek på denne Macen."</string>
+<string name="settings_reset_app_phone_body">"Slettar innstillingar, profilar og bibliotek."</string>
+<string name="settings_reset_confirm_title">"Tilbakestille CloudStream?"</string>
+<string name="settings_reset_erases_mac">"Dette blir sletta frå denne Macen:"</string>
+<string name="settings_reset_erases_phone">"Dette blir sletta frå denne telefonen:"</string>
+<string name="settings_reset_item_library">"Bibliotek, sjåframdrift og historikk"</string>
+<string name="settings_reset_item_search">"Søkjehistorikk"</string>
+<string name="settings_reset_item_settings">"Innstillingar"</string>
+<string name="settings_reset_item_signins">"Innloggingar til synkroniserings- og underteksttenester"</string>
+<string name="settings_reset_kept">"Blir verande: utvidingar, nedlasta filer og sikkerheitskopiar."</string>
+<string name="settings_restore">"Gjenopprett"</string>
+<string name="settings_restore_failed">"Kunne ikkje gjenopprette"</string>
+<string name="settings_restore_failed_body">"Fila er ikkje ein sikkerheitskopi frå CloudStream. Ingenting vart endra."</string>
+<string name="settings_restoring" formatted="true">"Gjenopprettar %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d av %3$d"</string>
+<string name="settings_run_test">"Køyr test"</string>
+<string name="settings_search_hint">"Søk i innstillingar"</string>
+<string name="settings_search_no_results" formatted="true">"Ingen resultat for «%s»"</string>
+<string name="settings_search_no_results_body">"Prøv eit anna ord."</string>
+<string name="settings_seek_amount">"Spolesteg"</string>
+<string name="settings_setup_again">"Køyr oppsettet på nytt"</string>
+<string name="settings_setup_again_body">"Språk, utvidingar og oppsett, frå starten."</string>
+<string name="settings_setup_run">"Køyr oppsett"</string>
+<string name="settings_sign_in">"Logg inn"</string>
+<string name="settings_skip_intro">"Tilby Hopp over intro"</string>
+<string name="settings_skip_intro_body">"Der ei kjelde merkjer opninga eller rulleteksten."</string>
+<string name="settings_skip_profile_choice">"Hopp over profilval"</string>
+<string name="settings_skip_profile_choice_body">"Opnar den sist brukte profilen."</string>
+<string name="settings_source_order">"Kjelderekkjefølgje"</string>
+<string name="settings_source_order_body">"Kva kjelder avspelaren prøver først."</string>
+<string name="settings_speed">"Fart"</string>
+<string name="settings_subtitle_background">"Bakgrunn"</string>
+<string name="settings_subtitle_edge">"Kant"</string>
+<string name="settings_subtitle_font_system">"System"</string>
+<string name="settings_subtitle_language">"Føretrekt språk"</string>
+<string name="settings_subtitle_language_body">"Blir vald automatisk når ein tittel har det."</string>
+<string name="settings_subtitle_preview">"Førehandsvising"</string>
+<string name="settings_subtitle_services">"Underteksttenester"</string>
+<string name="settings_subtitle_size">"Storleik"</string>
+<string name="settings_subtitle_size_large">"Stor"</string>
+<string name="settings_subtitle_size_medium">"Middels"</string>
+<string name="settings_subtitle_size_small">"Liten"</string>
+<string name="settings_subtitle_text_color">"Tekstfarge"</string>
+<string name="settings_suggestions_while_typing">"Forslag medan du skriv"</string>
+<string name="settings_sync_for" formatted="true">"Synkronisering for %s"</string>
+<string name="settings_sync_per_profile">"Kvar profil loggar inn for seg."</string>
+<string name="settings_test_all_extensions">"Test alle utvidingar"</string>
+<string name="settings_test_all_extensions_body">"Søkjer med alle aktiverte utvidingar. For utviklarar."</string>
+<string name="settings_title_pages">"Tittelsider"</string>
+<string name="settings_title_under_poster">"Tittel under plakaten"</string>
+<string name="settings_trailers">"Trailerar"</string>
+<string name="settings_updates">"Oppdateringar"</string>
+<string name="settings_updates_at_launch">"Sjå etter oppdateringar ved oppstart"</string>
+<string name="settings_updates_at_launch_body">"Ser etter ein ny versjon når CloudStream opnar."</string>
+<string name="settings_updates_check_now">"Sjekk no"</string>
+<string name="settings_updates_current" formatted="true">"Oppdatert · sjekka %s"</string>
+<string name="settings_watch_progress_body">"Lagrar kvar du stoppa, for Hald fram å sjå."</string>
 <string name="show_trailers_settings">"Vis trailerar"</string>
 <string name="site">"Nettstad"</string>
 <string name="skip_loading">"Hopp over buffering"</string>

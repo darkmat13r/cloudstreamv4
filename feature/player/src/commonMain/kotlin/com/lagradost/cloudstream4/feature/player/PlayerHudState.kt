@@ -18,7 +18,7 @@ import androidx.compose.runtime.Immutable
  * @property marks where the skip stamps start, drawn as ticks on the track. The player has no chapters of its own.
  * @property skip the one control that may show while the HUD is hidden, 7d's `Skip intro`.
  * @property upNext the next episode's words for `Up next · …`, or `null` when there is none.
- * @property source what plays, `VidSrc Pro · 1080p`: the SOURCE selector's value.
+ * @property source what plays, `Source One · 1080p`: the SOURCE selector's value.
  * @property subtitles the subtitle track's label, or `null` for none.
  * @property audio the audio track, `English · 5.1 · EAC3`, or `null` when the player has not said.
  * @property speed the playback speed, for the SPEED selector.

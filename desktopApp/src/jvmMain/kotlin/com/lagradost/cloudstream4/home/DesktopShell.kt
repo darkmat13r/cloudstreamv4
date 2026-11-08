@@ -133,6 +133,7 @@ private fun TopLevelDestination.icon(): ImageVector = when (this) {
     TopLevelDestination.Home -> CloudStreamIcons.Home
     TopLevelDestination.Search -> CloudStreamIcons.Search
     TopLevelDestination.Library -> CloudStreamIcons.Library
+    TopLevelDestination.Downloads -> CloudStreamIcons.Download
 }
 
 /** A hairline down the right edge, where the sidebar meets the page. A stroke, so it is exempt from the 4 dp step. */
@@ -146,8 +147,9 @@ private fun Modifier.rightRule(color: Color): Modifier = drawBehind {
  * work wherever focus is and each is listed in words; nothing else in the window reads them, which is what keeps a key
  * from firing twice (a doubled ⌘[ would pop two screens).
  *
- * The host sets what each does for the screen on top: [onDestination] only at the top level, where the sidebar is, and
- * [onBack] only where something is under. [atTop] and [canGoBack] are observable, so the menu greys what does nothing.
+ * The host sets what each does for the screen on top: [onDestination] wherever the sidebar is, the top level and a
+ * title's page (`KMP-77`), and [onBack] only where something is under. [atTop], which is true wherever [onDestination]
+ * is set, and [canGoBack] are observable, so the menu greys what does nothing.
  */
 internal class DesktopShortcuts {
     var onDestination: ((TopLevelDestination) -> Unit)? = null
@@ -178,12 +180,13 @@ internal class DesktopShortcuts {
         /** The Mac's keys on a Mac, and the platform's own elsewhere. */
         val onMac: Boolean = System.getProperty("os.name").orEmpty().startsWith("Mac")
 
-        /** ⌘1 to ⌘3 on a Mac, Ctrl+1 to Ctrl+3 elsewhere, in the sidebar's order. */
+        /** ⌘1 to ⌘4 on a Mac, Ctrl+1 to Ctrl+4 elsewhere, in the sidebar's order. */
         fun keyFor(destination: TopLevelDestination, mac: Boolean = onMac): KeyShortcut {
             val key = when (destination) {
                 TopLevelDestination.Home -> Key.One
                 TopLevelDestination.Search -> Key.Two
                 TopLevelDestination.Library -> Key.Three
+                TopLevelDestination.Downloads -> Key.Four
             }
             return KeyShortcut(key, meta = mac, ctrl = !mac)
         }

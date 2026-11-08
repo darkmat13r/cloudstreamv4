@@ -16,6 +16,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.LayoutCoordinates
+import androidx.compose.ui.layout.findRootCoordinates
+import androidx.compose.ui.layout.positionInRoot
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -23,6 +26,7 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import kotlin.math.roundToInt
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
@@ -48,7 +52,8 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * ## The label
  *
  * While focused, [label] is drawn centred under the cell, one line in `typography.label` and `ink`,
- * starting at the cell's bottom edge: 8dp below the tile, clear of the ring. It is **drawn, not laid
+ * starting at the cell's bottom edge: 8dp below the tile, clear of the ring. Near the screen's edge it
+ * moves inward just enough to stay on screen. It is **drawn, not laid
  * out**: the button measures as its 48dp cell whether focused or not, so focusing it moves nothing.
  * The caller leaves [IconOnlyButtonDefaults.LabelReserve] (16dp, one label line box) unclipped below
  * the cell, the way every focusable leaves room for its ring. The visible label is hidden from
@@ -174,8 +179,28 @@ private fun IconOnlyChassis(
         val text = measurables.getOrNull(1)?.measure(Constraints())
         layout(cell.width, cell.height) {
             cell.place(0, 0)
-            text?.place((cell.width - text.width) / 2, cell.height)
+            text?.let {
+                val centred = (cell.width - it.width) / 2
+                it.place(centred + onScreenShift(coordinates, centred, it.width), cell.height)
+            }
         }
+    }
+}
+
+/**
+ * How far to move a label centred under its cell so it stays inside the root: a cell at the screen's edge with a long
+ * name (`BUG-60`: "Switch account" in Macedonian is 25 letters, under the TV Home chrome's last cell) would otherwise
+ * draw part of it off screen. 0 when the centred label fits, so a label is only moved when it would be cut. A label
+ * wider than the root starts at its left edge.
+ */
+private fun onScreenShift(coordinates: LayoutCoordinates?, left: Int, width: Int): Int {
+    val placed = coordinates ?: return 0
+    val rootWidth = placed.findRootCoordinates().size.width
+    val start = placed.positionInRoot().x.roundToInt() + left
+    return when {
+        start < 0 || width >= rootWidth -> -start
+        start + width > rootWidth -> rootWidth - (start + width)
+        else -> 0
     }
 }
 

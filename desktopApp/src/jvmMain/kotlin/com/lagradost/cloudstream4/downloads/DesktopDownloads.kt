@@ -135,6 +135,13 @@ class DesktopDownloads internal constructor(
     private val resolveTimeoutMillis: Long,
     private val log: (String) -> Unit,
     private val ownsClient: Boolean,
+    /** The size and free space of the volume holding a directory. The real volume in production; fixed in a test. */
+    private val volumeSpace: (File) -> VolumeSpace = VolumeSpace::of,
+    /**
+     * How many may run at once, read at every start: Settings' Downloads at once (`KMP-90`). [maxRunning] when absent.
+     * A lower value stops nothing already running; it holds the next start back until enough have finished.
+     */
+    private val runningLimit: (() -> Int)? = null,
 ) {
     /**
      * @param downloadRoot where titles' folders go. Defaults to `~/Downloads/CloudStream`.
@@ -143,6 +150,7 @@ class DesktopDownloads internal constructor(
     constructor(
         downloadRoot: File = defaultDownloadRoot(),
         stateFile: File = DesktopDownloadStore.defaultFile(),
+        runningLimit: () -> Int = { MAX_RUNNING },
     ) : this(
         downloadRoot = downloadRoot,
         stateFile = stateFile,
@@ -153,6 +161,7 @@ class DesktopDownloads internal constructor(
         resolveTimeoutMillis = RESOLVE_TIMEOUT_MILLIS,
         log = ::defaultLog,
         ownsClient = true,
+        runningLimit = runningLimit,
     )
 
     private val root: File = downloadRoot.absoluteFile
@@ -264,6 +273,11 @@ class DesktopDownloads internal constructor(
         commands.trySend(Command.Refresh)
     }
 
+    /** The running limit changed: starts what a raised limit now allows. A lowered one takes effect as runs finish. */
+    fun limitChanged() {
+        commands.trySend(Command.LimitChanged)
+    }
+
     fun source(): DesktopDownloadsSource = DesktopDownloadsSource(this)
 
     fun series(id: DownloadTitleId): DesktopDownloadSeriesSource = DesktopDownloadSeriesSource(this, id)
@@ -370,8 +384,9 @@ class DesktopDownloads internal constructor(
     private fun storageNow(episodes: List<EpisodeView>): DownloadStorage {
         var directory: File? = root
         while (directory != null && !directory.exists()) directory = directory.parentFile
-        val total = directory?.totalSpace ?: 0L
-        val usable = directory?.usableSpace ?: 0L
+        val space = directory?.let(volumeSpace)
+        val total = space?.totalBytes ?: 0L
+        val usable = space?.usableBytes ?: 0L
         val ours = episodes.sumOf { episode ->
             if (episode.phase == Phase.Running) live[episode.episodeId]?.bytesDone ?: episode.bytesOnDisk else episode.bytesOnDisk
         }
@@ -419,6 +434,7 @@ class DesktopDownloads internal constructor(
         class Cancel(val id: Int) : Command
         class Finished(val id: Int, val token: Any) : Command
         data object Refresh : Command
+        data object LimitChanged : Command
     }
 
     /**
@@ -520,6 +536,7 @@ class DesktopDownloads internal constructor(
                 finish(item, run.outcome ?: Outcome(null))
             }
             Command.Refresh -> refreshNow()
+            Command.LimitChanged -> pump()
         }
     }
 
@@ -584,7 +601,7 @@ class DesktopDownloads internal constructor(
         return Item(
             episodeId = stored.episodeId,
             titleId = stored.titleId,
-            titleName = DownloadPaths.displayText(stored.titleName).orEmpty(),
+            titleName = DownloadPaths.titleText(stored.titleName),
             kind = kind,
             season = stored.season,
             episode = stored.episode,
@@ -622,7 +639,7 @@ class DesktopDownloads internal constructor(
             return EnqueueResult.Queued
         }
 
-        val titleName = DownloadPaths.displayText(request.titleName).orEmpty()
+        val titleName = DownloadPaths.titleText(request.titleName)
         val folderName = items.values.firstOrNull { it.titleId == request.titleId }?.folderName
             ?: DownloadPaths.segment(titleName)
         val folder = File(root, folderName)
@@ -744,7 +761,8 @@ class DesktopDownloads internal constructor(
 
     /** Starts the oldest in line while a slot is free. */
     private fun pump() {
-        while (items.values.count { it.phase == Phase.Running } < maxRunning) {
+        val limit = (runningLimit?.invoke() ?: maxRunning).coerceAtLeast(1)
+        while (items.values.count { it.phase == Phase.Running } < limit) {
             val next = items.values.filter { it.phase == Phase.Queued }.minByOrNull { it.queueSeq } ?: return
             start(next)
         }
@@ -798,6 +816,9 @@ class DesktopDownloads internal constructor(
         item.phase = Phase.Running
         item.failure = null
         item.startedSeq = nextSeq++
+        // Readers see Running before the run can ask the extension or fail: otherwise a retry shows its old failure
+        // until the caller's own publish, and reads as failing at once (BUG-57).
+        publish()
         run.job.start()
     }
 
@@ -988,5 +1009,12 @@ class DesktopDownloads internal constructor(
             if (uri.host.isNullOrEmpty() || uri.rawUserInfo != null) return null
             return encoded
         }
+    }
+}
+
+/** A volume's size and the bytes still usable on it, read once. */
+internal class VolumeSpace(val totalBytes: Long, val usableBytes: Long) {
+    companion object {
+        fun of(directory: File): VolumeSpace = VolumeSpace(directory.totalSpace, directory.usableSpace)
     }
 }

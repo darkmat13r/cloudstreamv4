@@ -69,9 +69,9 @@ class PlayerHudTvDeviceTest {
     fun theBoardsReadoutsAreAllThere() {
         show()
         for (text in listOf(
-            "Arcane", "S1:E4 · Powder · 1080p · AVC · English 5.1", "DOWNLOADED", "21:47",
-            "42:13", "-19:31", "1:01:44", "Up next · S1:E5 The Base Violence Necessary for Change",
-            "VidSrc Pro · 1080p", "SOURCE", "English (SRT)", "SUBTITLES", "English · 5.1 · EAC3", "AUDIO", "1.0×", "SPEED",
+            "Quiet Harbor", "S1:E4 · Low Tide · 1080p · AVC · English 5.1", "DOWNLOADED", "21:47",
+            "42:13", "-19:31", "1:01:44", "Up next · S1:E5 The Night the Lighthouse Keeper Stayed",
+            "Source One · 1080p", "SOURCE", "English (SRT)", "SUBTITLES", "English · 5.1 · EAC3", "AUDIO", "1.0×", "SPEED",
             "Skip opening",
         )) rule.onNodeWithText(text).assertExists()
     }
@@ -92,7 +92,7 @@ class PlayerHudTvDeviceTest {
         repeat(4) { dpad.press(Dpad.Left) }
         assertEquals(PAUSE, dpad.focused())
         val below = dpad.press(Dpad.Down).orEmpty()
-        assertEquals("Down from play/pause is SOURCE, was $below", true, below.startsWith("VidSrc Pro · 1080p"))
+        assertEquals("Down from play/pause is SOURCE, was $below", true, below.startsWith("Source One · 1080p"))
     }
 
     @Test
@@ -154,7 +154,7 @@ class PlayerHudTvDeviceTest {
         show(shown = false, readout = ScrubReadout(deltaMs = 30_000, targetMs = 2_563_000))
         rule.onNodeWithText("+00:30 → 42:43").assertExists()
         rule.onNodeWithText("Skip opening").assertExists()
-        rule.onAllNodesWithText("Arcane").assertCountEquals(0)
+        rule.onAllNodesWithText("Quiet Harbor").assertCountEquals(0)
         rule.onAllNodesWithText("SOURCE").assertCountEquals(0)
     }
 
@@ -199,7 +199,7 @@ class PlayerHudTvDeviceTest {
     /** A film, not a series, with nothing known yet: no length, no tracks, no next. Nothing invented. */
     @Test
     fun screenshotNothingKnownYet() {
-        show(PlayerHudState(title = "Dune: Part Two", playing = false))
+        show(PlayerHudState(title = "Northern Reach", playing = false))
         rule.assertScreenshot("player-hud-nothing-known")
     }
 
@@ -215,8 +215,8 @@ class PlayerHudTvDeviceTest {
 
         /** 7d's data. */
         val Board = PlayerHudState(
-            title = "Arcane",
-            meta = "S1:E4 · Powder · 1080p · AVC · English 5.1",
+            title = "Quiet Harbor",
+            meta = "S1:E4 · Low Tide · 1080p · AVC · English 5.1",
             downloaded = true,
             playing = true,
             positionMs = 2_533_000,
@@ -226,8 +226,8 @@ class PlayerHudTvDeviceTest {
             skip = HudSkip("Skip opening"),
             hasPrevious = true,
             hasNext = true,
-            upNext = "S1:E5 The Base Violence Necessary for Change",
-            source = "VidSrc Pro · 1080p",
+            upNext = "S1:E5 The Night the Lighthouse Keeper Stayed",
+            source = "Source One · 1080p",
             subtitles = "English (SRT)",
             audio = "English · 5.1 · EAC3",
             speed = 1f,

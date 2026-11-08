@@ -14,28 +14,76 @@
 <plurals name="home_source_sections"><item quantity="other">"%d セクション"</item></plurals>
 <plurals name="library_title_count"><item quantity="other">"%d 作品"</item></plurals>
 <plurals name="links_hidden"><item quantity="other">"%d件の非表示リンク"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="other">"%d 秒"</item></plurals>
+<plurals name="player_source_count"><item quantity="other">"%d 件のソース"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="other">"%d 秒後に次のエピソード"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"全 %d ソースを検索"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"それでも全 %d ソースを検索するには、キーボードの検索キーを押してください。"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d ソース"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="other">"スキャン警告 %d 件"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">"すべての拡張機能 (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="other">"拡張機能 %1$d 個 · %2$s に更新"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="other">"%d 個のプロフィールとその PIN"</item></plurals>
 <string name="account">"アカウント"</string>
 <string name="account_add_profile">"プロフィールを追加"</string>
+<string name="account_browser_body" formatted="true">"ブラウザで %s が開きました。そこでサインインして CloudStream を許可してください。このウィンドウは自動的に進みます。"</string>
+<string name="account_browser_body_phone" formatted="true">"%s のページでサインインを完了してください。この画面は自動的に進みます。"</string>
+<string name="account_browser_open_again">"もう一度開く"</string>
+<string name="account_browser_title" formatted="true">"%s にサインイン"</string>
+<string name="account_browser_waiting">"ブラウザを待っています…"</string>
+<string name="account_code_expired">"このコードは期限切れです。新しいコードを取得してもう一度お試しください。"</string>
+<string name="account_code_expires" formatted="true">"%s 後に期限切れ"</string>
+<string name="account_code_instructions" formatted="true">"任意のブラウザで %s にアクセスし、コードを入力してください。"</string>
+<string name="account_code_open" formatted="true">"%s を開く"</string>
+<string name="account_delete_body" formatted="true">"%s の視聴履歴、ブックマーク、同期のサインイン情報がこのデバイスから削除されます。"</string>
+<string name="account_delete_profile">"プロフィールを削除"</string>
+<string name="account_delete_title" formatted="true">"%s を削除しますか?"</string>
+<string name="account_edit_profile">"プロフィールを編集"</string>
+<string name="account_email">"メールアドレス"</string>
+<string name="account_image_address">"画像のアドレスを使用"</string>
+<string name="account_manage_note">"編集するプロフィールを選択"</string>
 <string name="account_manage_profiles">"プロフィールを管理"</string>
 <string name="account_pair_code">"あなたのコード"</string>
 <string name="account_pair_instructions">"スマートフォンでこれを開き、下のコードを入力してください。"</string>
 <string name="account_pair_new_code">"新しいコードを取得"</string>
 <string name="account_pair_title" formatted="true">"%s とペアリング"</string>
+<string name="account_password">"パスワード"</string>
+<string name="account_password_mismatch">"メールアドレスとパスワードが一致しませんでした。確認してもう一度お試しください。"</string>
+<string name="account_password_note" formatted="true">"%s にはブラウザでのサインインがないため、ここで入力します。このデバイスにのみ保存され、バックアップされることはありません。"</string>
+<string name="account_picture">"画像"</string>
+<string name="account_pin_change">"PINを変更"</string>
+<string name="account_pin_confirm">"確認のためもう一度入力してください。"</string>
+<string name="account_pin_current">"現在使用中のPINを入力してください。"</string>
+<string name="account_pin_first_profile">"最初のプロフィールはロックできません"</string>
+<string name="account_pin_new">"4桁のPINを入力してください。"</string>
+<string name="account_pin_off">"オフ · 誰でもこのプロフィールを開けます"</string>
+<string name="account_pin_on">"オン · 開くときに入力を求めます"</string>
+<string name="account_pin_prompt">"4桁のPINを入力"</string>
+<string name="account_pin_remove">"PINを削除"</string>
+<string name="account_pin_set">"PINを設定"</string>
+<string name="account_pin_set_title">"PINの設定"</string>
 <string name="account_profile_current">"現在"</string>
 <string name="account_profile_locked">"ロック中 · PIN"</string>
 <string name="account_profile_no_sync">"同期なし"</string>
 <string name="account_select_note">"視聴履歴は別々 · ログインではありません"</string>
 <string name="account_select_title">"誰が見ていますか?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s でサインインが確認されませんでした。何も保存されていません。"</string>
+<string name="account_signin_failed_title" formatted="true">"%s にサインインできませんでした"</string>
+<string name="account_signin_offline_body" formatted="true">"%s へのサインインにはインターネット接続が必要です。このデバイスがオンラインに戻ったらもう一度お試しください。"</string>
 <string name="account_sync_connected">"接続済み · このデバイスでサインイン中"</string>
 <string name="account_sync_needs_browser">"サインインにはウェブブラウザが必要です。このデバイスにはありません。"</string>
 <string name="account_sync_note">"任意。視聴の進行状況を既にお持ちのアカウントと同期します。"</string>
 <string name="account_sync_pair">"コードでペアリング"</string>
 <string name="account_sync_remove">"このデバイスから削除"</string>
+<string name="account_sync_remove_body" formatted="true">"%1$s の %2$s サインイン情報がこのデバイスから削除されます。%2$s のアカウントとそのリストはそのまま残ります。"</string>
+<string name="account_sync_remove_title" formatted="true">"%s をこのデバイスから削除しますか?"</string>
 <string name="account_sync_title">"同期サービス"</string>
 <string name="account_sync_unavailable">"ここでは利用できません"</string>
+<string name="account_touch_id_hint">"センサーにタッチしてこのプロフィールを開きます。"</string>
+<string name="account_touch_id_reason" formatted="true">"プロフィール「%s」を開く"</string>
+<string name="account_touch_id_title" formatted="true">"Touch ID で %s を開く"</string>
+<string name="account_undo_warning">"この操作は取り消せません。"</string>
+<string name="account_use_pin">"代わりにPINを使用"</string>
 <string name="action_add_to_bookmarks">"視聴状態を設定"</string>
 <string name="action_add_to_favorites">"お気に入りに追加"</string>
 <string name="action_default">"デフォルト"</string>
@@ -518,6 +566,7 @@
 <string name="play_torrent_button">"ストリームトレント"</string>
 <string name="play_trailer_button">"予告編を再生"</string>
 <string name="play_with_app_name">"CloudStreamで再生"</string>
+<string name="player_audio_stereo">"ステレオ"</string>
 <string name="player_enter_fullscreen">"全画面表示に変更"</string>
 <string name="player_exit_fullscreen">"全画面表示を終了"</string>
 <string name="player_fit_original">"元のアスペクト比"</string>
@@ -537,6 +586,7 @@
 <string name="player_load_subtitles">"ファイルから読み込む"</string>
 <string name="player_load_subtitles_online">"インターネットから読み込む"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s を読み込みました"</string>
+<string name="player_menu_playback">"再生"</string>
 <string name="player_mute">"ミュート"</string>
 <string name="player_notification_channel_description">"バックグラウンドから再生を制御するためのプレーヤー通知"</string>
 <string name="player_notification_channel_name">"プレーヤー通知"</string>
@@ -550,21 +600,27 @@
 <string name="player_panel_retry_all">"すべてのソースを再試行"</string>
 <string name="player_panel_style">"字幕スタイル"</string>
 <string name="player_panel_use">"使用"</string>
+<string name="player_play_now">"今すぐ再生"</string>
 <string name="player_pref">"優先ビデオプレーヤー"</string>
 <string name="player_settings_always_ask">"常に尋ねること"</string>
 <string name="player_settings_play_in_app">"内部プレーヤー"</string>
 <string name="player_settings_select_cast_device">"キャストデバイスを選択"</string>
 <string name="player_size_settings">"プレーヤーのサイズ変更ボタン"</string>
 <string name="player_size_settings_des">"黒い境界線を削除します"</string>
+<string name="player_source_decoded" formatted="true">"%s でデコード済み"</string>
 <string name="player_source_playing">"再生中"</string>
 <string name="player_source_resumes_at" formatted="true">"切り替えても位置は保たれます: %1$s から再開"</string>
 <string name="player_source_retry">"再試行"</string>
 <string name="player_source_switch">"切り替え"</string>
+<string name="player_sources_all_failed">"すべてのソースがエラーを返しました。"</string>
+<string name="player_sources_all_failed_detail">"下のソースを選んでもう一度お試しください。"</string>
 <string name="player_speed">"プレーヤーの速度"</string>
 <string name="player_speed_text_format" formatted="true">"再生速度 (%.2fx)"</string>
 <string name="player_subtitles_settings">"字幕"</string>
 <string name="player_subtitles_settings_des">"プレーヤーの字幕設定"</string>
 <string name="player_unmute">"ミュート解除"</string>
+<string name="player_volume_down">"音量を下げる"</string>
+<string name="player_volume_up">"音量を上げる"</string>
 <string name="plugin">"プラグイン"</string>
 <string name="plugin_deleted">"プラグインが消されました"</string>
 <string name="plugin_downloaded">"プラグインがダウンロードされました"</string>
@@ -721,7 +777,130 @@
 <string name="select_an_account">"アカウントを選択"</string>
 <string name="select_library">"ライブラリを選択"</string>
 <string name="set_default">"デフォルトに設定"</string>
+<string name="settings_adult_content">"成人向けコンテンツ"</string>
+<string name="settings_adult_content_body">"拡張機能が対応している場合のみ。再起動後に反映されます。"</string>
+<string name="settings_anime_audio">"アニメの音声"</string>
+<string name="settings_anime_audio_both">"吹き替えと字幕"</string>
+<string name="settings_at_launch">"起動時"</string>
+<string name="settings_back_up">"バックアップ"</string>
+<string name="settings_back_up_now">"今すぐバックアップ"</string>
+<string name="settings_backup_automatically">"自動"</string>
+<string name="settings_backup_folder">"バックアップフォルダ"</string>
+<string name="settings_change">"変更"</string>
+<string name="settings_choose">"選択"</string>
+<string name="settings_choose_another">"別のファイルを選択"</string>
+<string name="settings_clear">"消去"</string>
+<string name="settings_clear_cache">"キャッシュを消去"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"動画 %1$s · 画像 %2$s"</string>
+<string name="settings_color_white">"白"</string>
+<string name="settings_color_yellow">"黄"</string>
+<string name="settings_connections_per_download">"ダウンロードごとの接続数"</string>
+<string name="settings_connections_per_download_body">"ソースが許可していれば、多いほど速くなることがあります。"</string>
+<string name="settings_diagnostics">"診断"</string>
+<string name="settings_disk_cache">"ディスクキャッシュ"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"拡張機能、アートワーク、字幕に使用します。動画ストリームは Mac の DNS を使用します。"</string>
+<string name="settings_download_folder">"ダウンロードフォルダ"</string>
+<string name="settings_downloads_at_once">"同時ダウンロード数"</string>
+<string name="settings_downloads_at_once_body">"同時にダウンロードするタイトルの数です。"</string>
+<string name="settings_downloads_wait">"フォルダが戻るか別のフォルダを選ぶまで、新しいダウンロードは待機します。"</string>
+<string name="settings_extension_languages">"言語"</string>
+<string name="settings_extension_review">"確認"</string>
+<string name="settings_extensions_auto_install">"リポジトリの新しい拡張機能をインストール"</string>
+<string name="settings_extensions_auto_install_body">"実行前にそれぞれスキャンされます。"</string>
+<string name="settings_extensions_auto_update">"拡張機能を自動的に更新"</string>
+<string name="settings_extensions_auto_update_body">"更新は実行前にそれぞれスキャンされます。"</string>
+<string name="settings_extensions_installed" formatted="true">"インストール済み · %d"</string>
+<string name="settings_filler_episodes">"フィラーエピソード"</string>
+<string name="settings_filler_episodes_body">"アニメで、ソースが印を付けている場合。"</string>
+<string name="settings_folder">"フォルダ"</string>
+<string name="settings_folder_missing" formatted="true">"%s が見つかりません。ディスクが接続されていない可能性があります。"</string>
+<string name="settings_help_community">"ヘルプとコミュニティ"</string>
+<string name="settings_help_community_body">"GitHub、Discord、Wiki はヘルプメニューにあります。"</string>
+<string name="settings_hide_search_quality">"検索結果で画質を非表示"</string>
+<string name="settings_home_search">"ホームと検索"</string>
 <string name="settings_info">"情報"</string>
+<string name="settings_last_backup" formatted="true">"前回のバックアップ: %s"</string>
+<string name="settings_logs">"ログ"</string>
+<string name="settings_logs_mac_body">"この Mac に 7 日間保存されます。外部に送信されることはありません。"</string>
+<string name="settings_logs_phone_body">"このスマートフォンに 7 日間保存されます。外部に送信されることはありません。"</string>
+<string name="settings_network_buffer">"ネットワークバッファ"</string>
+<string name="settings_offline_repos" formatted="true">"リポジトリを確認できません。これらのリストは %s 時点のものです。"</string>
+<string name="settings_pane_accounts_privacy">"アカウントとプライバシー"</string>
+<string name="settings_pane_advanced">"詳細"</string>
+<string name="settings_pane_appearance">"外観"</string>
+<string name="settings_pane_network">"ネットワーク"</string>
+<string name="settings_pane_playback">"再生"</string>
+<string name="settings_play_next">"次のエピソードを再生"</string>
+<string name="settings_play_next_body">"エピソードの終わりに 10 秒のカウントダウンを表示します。"</string>
+<string name="settings_playing">"再生"</string>
+<string name="settings_poster_badges">"ポスターのバッジ"</string>
+<string name="settings_posters">"ポスター"</string>
+<string name="settings_profile_no_pin">"PIN なし"</string>
+<string name="settings_profile_this">"このプロフィール"</string>
+<string name="settings_random_button_body">"ホームとライブラリに表示します。"</string>
+<string name="settings_read">"表示"</string>
+<string name="settings_remove">"削除"</string>
+<string name="settings_repo_unreachable" formatted="true">"接続できませんでした。このリストは %s 前のものです。"</string>
+<string name="settings_repositories">"リポジトリ"</string>
+<string name="settings_reset_app">"CloudStream をリセット"</string>
+<string name="settings_reset_app_body">"この Mac の設定、プロフィール、ライブラリを消去します。"</string>
+<string name="settings_reset_app_phone_body">"設定、プロフィール、ライブラリを消去します。"</string>
+<string name="settings_reset_confirm_title">"CloudStream をリセットしますか？"</string>
+<string name="settings_reset_erases_mac">"この Mac から次のものを消去します:"</string>
+<string name="settings_reset_erases_phone">"このスマートフォンから次のものを消去します:"</string>
+<string name="settings_reset_item_library">"ライブラリ、視聴状況、履歴"</string>
+<string name="settings_reset_item_search">"検索履歴"</string>
+<string name="settings_reset_item_settings">"設定"</string>
+<string name="settings_reset_item_signins">"同期サービスと字幕サービスへのサインイン"</string>
+<string name="settings_reset_kept">"保持されるもの: 拡張機能、ダウンロード済みファイル、バックアップ。"</string>
+<string name="settings_restore">"復元"</string>
+<string name="settings_restore_failed">"復元できませんでした"</string>
+<string name="settings_restore_failed_body">"このファイルは CloudStream のバックアップではありません。何も変更されていません。"</string>
+<string name="settings_restoring" formatted="true">"%s を復元中"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d / %3$d"</string>
+<string name="settings_run_test">"テストを実行"</string>
+<string name="settings_search_hint">"設定を検索"</string>
+<string name="settings_search_no_results" formatted="true">"「%s」の結果はありません"</string>
+<string name="settings_search_no_results_body">"別の言葉で試してください。"</string>
+<string name="settings_seek_amount">"シーク量"</string>
+<string name="settings_setup_again">"セットアップをもう一度実行"</string>
+<string name="settings_setup_again_body">"言語、拡張機能、レイアウトを最初から設定します。"</string>
+<string name="settings_setup_run">"セットアップを実行"</string>
+<string name="settings_sign_in">"サインイン"</string>
+<string name="settings_skip_intro">"「イントロをスキップ」を表示"</string>
+<string name="settings_skip_intro_body">"ソースがオープニングやクレジットに印を付けている場合。"</string>
+<string name="settings_skip_profile_choice">"プロフィールの選択をスキップ"</string>
+<string name="settings_skip_profile_choice_body">"最後に使ったプロフィールを開きます。"</string>
+<string name="settings_source_order">"ソースの順序"</string>
+<string name="settings_source_order_body">"プレーヤーが最初に試すソース。"</string>
+<string name="settings_speed">"速度"</string>
+<string name="settings_subtitle_background">"背景"</string>
+<string name="settings_subtitle_edge">"縁取り"</string>
+<string name="settings_subtitle_font_system">"システム"</string>
+<string name="settings_subtitle_language">"優先する言語"</string>
+<string name="settings_subtitle_language_body">"タイトルにある場合は自動的に選択されます。"</string>
+<string name="settings_subtitle_preview">"プレビュー"</string>
+<string name="settings_subtitle_services">"字幕サービス"</string>
+<string name="settings_subtitle_size">"サイズ"</string>
+<string name="settings_subtitle_size_large">"大"</string>
+<string name="settings_subtitle_size_medium">"中"</string>
+<string name="settings_subtitle_size_small">"小"</string>
+<string name="settings_subtitle_text_color">"文字の色"</string>
+<string name="settings_suggestions_while_typing">"入力中に候補を表示"</string>
+<string name="settings_sync_for" formatted="true">"%s の同期"</string>
+<string name="settings_sync_per_profile">"プロフィールごとに個別にサインインします。"</string>
+<string name="settings_test_all_extensions">"すべての拡張機能をテスト"</string>
+<string name="settings_test_all_extensions_body">"有効なすべての拡張機能で検索します。開発者向け。"</string>
+<string name="settings_title_pages">"タイトルページ"</string>
+<string name="settings_title_under_poster">"ポスターの下にタイトル"</string>
+<string name="settings_trailers">"予告編"</string>
+<string name="settings_updates">"アップデート"</string>
+<string name="settings_updates_at_launch">"起動時にアップデートを確認"</string>
+<string name="settings_updates_at_launch_body">"CloudStream を開いたときに新しいバージョンを探します。"</string>
+<string name="settings_updates_check_now">"今すぐ確認"</string>
+<string name="settings_updates_current" formatted="true">"最新です · %s に確認"</string>
+<string name="settings_watch_progress_body">"「続きを見る」のために、停止した位置を保存します。"</string>
 <string name="setup_done">"完了"</string>
 <string name="setup_extensions_subtext">"使用したいサイトのリストをダウンロード"</string>
 <string name="show">"表示"</string>

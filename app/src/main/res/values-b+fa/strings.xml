@@ -11,27 +11,75 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d بخش بارگیری نشد"</item><item quantity="other">"%d بخش بارگیری نشد"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d بخش"</item><item quantity="other">"%d بخش"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d عنوان"</item><item quantity="other">"%d عنوان"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d ثانیه"</item><item quantity="other">"%d ثانیه"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d منبع"</item><item quantity="other">"%d منبع"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"قسمت بعد تا %d ث دیگر"</item><item quantity="other">"قسمت بعد تا %d ث دیگر"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"جست‌وجو در %d منبع"</item><item quantity="other">"جست‌وجو در همهٔ %d منبع"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"برای جست‌وجو در %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید."</item><item quantity="other">"برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d منبع"</item><item quantity="other">"%d منبع"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d هشدار اسکن"</item><item quantity="other">"%d هشدار اسکن"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"همهٔ افزونه‌ها (%d)"</item><item quantity="other">"همهٔ افزونه‌ها (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d افزونه · به‌روزشده %2$s"</item><item quantity="other">"%1$d افزونه · به‌روزشده %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d نمایه و PIN آن"</item><item quantity="other">"%d نمایه و PINهای آن‌ها"</item></plurals>
 <string name="account_add_profile">"افزودن نمایه"</string>
+<string name="account_browser_body" formatted="true">"مرورگر شما %s را باز کرد. آنجا وارد شوید و به CloudStream اجازه دهید. این پنجره خودش ادامه می‌دهد."</string>
+<string name="account_browser_body_phone" formatted="true">"ورود را در صفحهٔ %s تمام کنید. این صفحه خودش ادامه می‌دهد."</string>
+<string name="account_browser_open_again">"باز کردن دوباره"</string>
+<string name="account_browser_title" formatted="true">"ورود به %s"</string>
+<string name="account_browser_waiting">"در انتظار مرورگر…"</string>
+<string name="account_code_expired">"این کد منقضی شده است. برای تلاش دوباره یک کد جدید دریافت کنید."</string>
+<string name="account_code_expires" formatted="true">"انقضا تا %s دیگر"</string>
+<string name="account_code_instructions" formatted="true">"در هر مرورگری به %s بروید و کد را وارد کنید."</string>
+<string name="account_code_open" formatted="true">"باز کردن %s"</string>
+<string name="account_delete_body" formatted="true">"سابقهٔ تماشا، نشانک‌ها و ورودهای همگام‌سازی نمایهٔ %s از این دستگاه حذف می‌شوند."</string>
+<string name="account_delete_profile">"حذف نمایه"</string>
+<string name="account_delete_title" formatted="true">"%s حذف شود؟"</string>
+<string name="account_edit_profile">"ویرایش نمایه"</string>
+<string name="account_email">"ایمیل"</string>
+<string name="account_image_address">"استفاده از نشانی تصویر"</string>
+<string name="account_manage_note">"برای ویرایش، یک نمایه انتخاب کنید"</string>
 <string name="account_manage_profiles">"مدیریت نمایه‌ها"</string>
 <string name="account_pair_code">"کد شما"</string>
 <string name="account_pair_instructions">"این را در تلفن خود باز کنید و کد زیر را وارد کنید."</string>
 <string name="account_pair_new_code">"دریافت کد جدید"</string>
 <string name="account_pair_title" formatted="true">"جفت‌سازی %s"</string>
+<string name="account_password">"گذرواژه"</string>
+<string name="account_password_mismatch">"ایمیل و گذرواژه با هم مطابقت ندارند. آن‌ها را بررسی کنید و دوباره تلاش کنید."</string>
+<string name="account_password_note" formatted="true">"%s ورود از طریق مرورگر ندارد، پس گذرواژه اینجا وارد می‌شود. فقط در این دستگاه نگه داشته می‌شود و هرگز پشتیبان‌گیری نمی‌شود."</string>
+<string name="account_picture">"تصویر"</string>
+<string name="account_pin_change">"تغییر PIN"</string>
+<string name="account_pin_confirm">"برای تأیید، دوباره آن را وارد کنید."</string>
+<string name="account_pin_current">"PIN فعلی را وارد کنید."</string>
+<string name="account_pin_first_profile">"نمایهٔ اول را نمی‌توان قفل کرد"</string>
+<string name="account_pin_new">"یک PIN چهاررقمی وارد کنید."</string>
+<string name="account_pin_off">"خاموش · هر کسی می‌تواند این نمایه را باز کند"</string>
+<string name="account_pin_on">"روشن · هنگام باز کردن پرسیده می‌شود"</string>
+<string name="account_pin_prompt">"PIN چهاررقمی را وارد کنید."</string>
+<string name="account_pin_remove">"حذف PIN"</string>
+<string name="account_pin_set">"تنظیم PIN"</string>
+<string name="account_pin_set_title">"تنظیم PIN"</string>
 <string name="account_profile_current">"فعلی"</string>
 <string name="account_profile_locked">"قفل‌شده · PIN"</string>
 <string name="account_profile_no_sync">"بدون همگام‌سازی"</string>
 <string name="account_select_note">"تاریخچهٔ تماشای جدا · ورود به حساب نیست"</string>
 <string name="account_select_title">"چه کسی تماشا می‌کند؟"</string>
+<string name="account_signin_failed_body" formatted="true">"%s ورود را تأیید نکرد. چیزی ذخیره نشد."</string>
+<string name="account_signin_failed_title" formatted="true">"ورود به %s ممکن نشد"</string>
+<string name="account_signin_offline_body" formatted="true">"ورود به %s به اتصال اینترنت نیاز دارد. وقتی این دستگاه دوباره آنلاین شد، دوباره تلاش کنید."</string>
 <string name="account_sync_connected">"متصل · واردشده در این دستگاه"</string>
 <string name="account_sync_needs_browser">"ورود به مرورگر وب نیاز دارد. این دستگاه مرورگر ندارد."</string>
 <string name="account_sync_note">"اختیاری. پیشرفت تماشا را با حسابی که از قبل دارید همگام می‌کند."</string>
 <string name="account_sync_pair">"جفت‌سازی با کد"</string>
 <string name="account_sync_remove">"حذف از این دستگاه"</string>
+<string name="account_sync_remove_body" formatted="true">"ورود %2$s نمایهٔ %1$s از این دستگاه حذف می‌شود. حساب %2$s شما و فهرست‌هایش دست‌نخورده می‌مانند."</string>
+<string name="account_sync_remove_title" formatted="true">"%s از این دستگاه حذف شود؟"</string>
 <string name="account_sync_title">"سرویس‌های همگام‌سازی"</string>
 <string name="account_sync_unavailable">"اینجا در دسترس نیست"</string>
+<string name="account_touch_id_hint">"برای باز کردن این نمایه، حسگر را لمس کنید."</string>
+<string name="account_touch_id_reason" formatted="true">"نمایهٔ %s را باز کند"</string>
+<string name="account_touch_id_title" formatted="true">"استفاده از Touch ID برای باز کردن %s"</string>
+<string name="account_undo_warning">"این کار قابل بازگشت نیست."</string>
+<string name="account_use_pin">"استفاده از PIN به‌جای آن"</string>
 <string name="action_add_to_bookmarks">"تنظیم وضعیت تماشا"</string>
 <string name="action_default">"پیش‌فرض"</string>
 <string name="action_open_play">@string/home_play</string>
@@ -322,6 +370,7 @@
 <string name="play_torrent_button">"استریم تورنت"</string>
 <string name="play_trailer_button">"پخش تریلر"</string>
 <string name="play_with_app_name">"پخش با CloudStream"</string>
+<string name="player_audio_stereo">"استریو"</string>
 <string name="player_enter_fullscreen">"ورود به حالت تمام‌صفحه"</string>
 <string name="player_exit_fullscreen">"خروج از حالت تمام‌صفحه"</string>
 <string name="player_fit_original">"نسبت تصویر اصلی"</string>
@@ -336,6 +385,7 @@
 <string name="player_hud_seek_forward">"جلو"</string>
 <string name="player_hud_speed">"سرعت"</string>
 <string name="player_hud_up_next" formatted="true">"بعدی · %s"</string>
+<string name="player_menu_playback">"پخش"</string>
 <string name="player_mute">"بی‌صدا"</string>
 <string name="player_panel_failed">"ناموفق"</string>
 <string name="player_panel_keeps" formatted="true">"%s را نگه می‌دارد"</string>
@@ -347,18 +397,24 @@
 <string name="player_panel_retry_all">"تلاش دوباره برای همه منابع"</string>
 <string name="player_panel_style">"سبک زیرنویس"</string>
 <string name="player_panel_use">"استفاده"</string>
+<string name="player_play_now">"اکنون پخش کن"</string>
 <string name="player_pref">"پخش‌کننده ویدئو برگزیده"</string>
 <string name="player_size_settings">"دکمه تغییر‌اندازه پخش‌کننده"</string>
 <string name="player_size_settings_des">"حذف حاشیه سیاه"</string>
+<string name="player_source_decoded" formatted="true">"%s رمزگشایی‌شده"</string>
 <string name="player_source_playing">"در حال پخش"</string>
 <string name="player_source_resumes_at" formatted="true">"تعویض موقعیت شما را حفظ می‌کند: ادامه از %1$s"</string>
 <string name="player_source_retry">"تلاش دوباره"</string>
 <string name="player_source_switch">"تعویض"</string>
+<string name="player_sources_all_failed">"همه منابع با خطا پاسخ دادند."</string>
+<string name="player_sources_all_failed_detail">"یک منبع را در پایین انتخاب کنید تا دوباره امتحانش کنید."</string>
 <string name="player_speed">"سرعت پخش‌کننده"</string>
 <string name="player_speed_text_format" formatted="true">"سرعت (%.2f برابر)"</string>
 <string name="player_subtitles_settings">"زیرنویس‌ها"</string>
 <string name="player_subtitles_settings_des">"تنظیمات زیرنویس‌های پخش‌کننده"</string>
 <string name="player_unmute">"صدادار"</string>
+<string name="player_volume_down">"کاهش صدا"</string>
+<string name="player_volume_up">"افزایش صدا"</string>
 <string name="plugin_deleted">"افزونه حذف شد"</string>
 <string name="podcast_singular">"پادکست"</string>
 <string name="popup_delete_file">"حذف فایل"</string>
@@ -446,7 +502,130 @@
 <string name="seek_back_10_seconds">"۱۰ ثانیه به عقب"</string>
 <string name="seek_forward_10_seconds">"۱۰ ثانیه به جلو"</string>
 <string name="select_all">"انتخاب همه"</string>
+<string name="settings_adult_content">"محتوای بزرگسالان"</string>
+<string name="settings_adult_content_body">"فقط وقتی افزونه از آن پشتیبانی کند. پس از راه‌اندازی دوباره."</string>
+<string name="settings_anime_audio">"صدای انیمه"</string>
+<string name="settings_anime_audio_both">"دوبله و زیرنویس"</string>
+<string name="settings_at_launch">"هنگام اجرا"</string>
+<string name="settings_back_up">"پشتیبان‌گیری"</string>
+<string name="settings_back_up_now">"پشتیبان‌گیری اکنون"</string>
+<string name="settings_backup_automatically">"خودکار"</string>
+<string name="settings_backup_folder">"پوشهٔ پشتیبان"</string>
+<string name="settings_change">"تغییر"</string>
+<string name="settings_choose">"انتخاب"</string>
+<string name="settings_choose_another">"انتخاب فایل دیگر"</string>
+<string name="settings_clear">"پاک کردن"</string>
+<string name="settings_clear_cache">"پاک کردن حافظهٔ پنهان"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"ویدیو %1$s · تصاویر %2$s"</string>
+<string name="settings_color_white">"سفید"</string>
+<string name="settings_color_yellow">"زرد"</string>
+<string name="settings_connections_per_download">"اتصال‌ها برای هر بارگیری"</string>
+<string name="settings_connections_per_download_body">"اگر منبع اجازه دهد، تعداد بیشتر می‌تواند سریع‌تر باشد."</string>
+<string name="settings_diagnostics">"عیب‌یابی"</string>
+<string name="settings_disk_cache">"حافظهٔ پنهان دیسک"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"برای افزونه‌ها، تصاویر و زیرنویس‌ها. جریان‌های ویدیو از DNS دستگاه Mac شما استفاده می‌کنند."</string>
+<string name="settings_download_folder">"پوشهٔ بارگیری"</string>
+<string name="settings_downloads_at_once">"بارگیری‌های هم‌زمان"</string>
+<string name="settings_downloads_at_once_body">"چند عنوان با هم بارگیری شوند."</string>
+<string name="settings_downloads_wait">"بارگیری‌های جدید منتظر می‌مانند تا پوشه برگردد یا پوشهٔ دیگری انتخاب شود."</string>
+<string name="settings_extension_languages">"زبان‌ها"</string>
+<string name="settings_extension_review">"بررسی"</string>
+<string name="settings_extensions_auto_install">"نصب افزونه‌های جدید از مخزن‌های من"</string>
+<string name="settings_extensions_auto_install_body">"هر کدام همچنان پیش از اجرا اسکن می‌شود."</string>
+<string name="settings_extensions_auto_update">"به‌روزرسانی خودکار افزونه‌ها"</string>
+<string name="settings_extensions_auto_update_body">"هر به‌روزرسانی پیش از اجرا اسکن می‌شود."</string>
+<string name="settings_extensions_installed" formatted="true">"نصب‌شده · %d"</string>
+<string name="settings_filler_episodes">"قسمت‌های فیلر"</string>
+<string name="settings_filler_episodes_body">"برای انیمه، وقتی منبع آن‌ها را علامت زده باشد."</string>
+<string name="settings_folder">"پوشه"</string>
+<string name="settings_folder_missing" formatted="true">"%s پیدا نمی‌شود. شاید دیسک آن وصل نباشد."</string>
+<string name="settings_help_community">"راهنما و انجمن"</string>
+<string name="settings_help_community_body">"GitHub، Discord و ویکی در منوی راهنما هستند."</string>
+<string name="settings_hide_search_quality">"پنهان کردن کیفیت در نتایج جست‌وجو"</string>
+<string name="settings_home_search">"خانه و جست‌وجو"</string>
 <string name="settings_info">"درباره"</string>
+<string name="settings_last_backup" formatted="true">"آخرین پشتیبان: %s"</string>
+<string name="settings_logs">"گزارش‌ها"</string>
+<string name="settings_logs_mac_body">"۷ روز روی این Mac نگه داشته می‌شود. هرگز به جایی فرستاده نمی‌شود."</string>
+<string name="settings_logs_phone_body">"۷ روز روی این تلفن نگه داشته می‌شود. هرگز به جایی فرستاده نمی‌شود."</string>
+<string name="settings_network_buffer">"بافر شبکه"</string>
+<string name="settings_offline_repos" formatted="true">"مخزن‌ها قابل بررسی نیستند. این فهرست‌ها مربوط به %s هستند."</string>
+<string name="settings_pane_accounts_privacy">"حساب‌ها و حریم خصوصی"</string>
+<string name="settings_pane_advanced">"پیشرفته"</string>
+<string name="settings_pane_appearance">"ظاهر"</string>
+<string name="settings_pane_network">"شبکه"</string>
+<string name="settings_pane_playback">"پخش"</string>
+<string name="settings_play_next">"پخش قسمت بعدی"</string>
+<string name="settings_play_next_body">"در پایان هر قسمت ۱۰ ثانیه شمارش معکوس می‌کند."</string>
+<string name="settings_playing">"هنگام پخش"</string>
+<string name="settings_poster_badges">"نشان‌ها روی پوسترها"</string>
+<string name="settings_posters">"پوسترها"</string>
+<string name="settings_profile_no_pin">"بدون PIN"</string>
+<string name="settings_profile_this">"این نمایه"</string>
+<string name="settings_random_button_body">"در خانه و کتابخانه."</string>
+<string name="settings_read">"مشاهده"</string>
+<string name="settings_remove">"حذف"</string>
+<string name="settings_repo_unreachable" formatted="true">"دسترسی ممکن نشد. این فهرست مربوط به %s پیش است."</string>
+<string name="settings_repositories">"مخزن‌ها"</string>
+<string name="settings_reset_app">"بازنشانی CloudStream"</string>
+<string name="settings_reset_app_body">"تنظیمات، نمایه‌ها و کتابخانه را در این Mac پاک می‌کند."</string>
+<string name="settings_reset_app_phone_body">"تنظیمات، نمایه‌ها و کتابخانه را پاک می‌کند."</string>
+<string name="settings_reset_confirm_title">"CloudStream بازنشانی شود؟"</string>
+<string name="settings_reset_erases_mac">"این موارد از این Mac پاک می‌شوند:"</string>
+<string name="settings_reset_erases_phone">"این موارد از این تلفن پاک می‌شوند:"</string>
+<string name="settings_reset_item_library">"کتابخانه، پیشرفت تماشا و تاریخچه"</string>
+<string name="settings_reset_item_search">"تاریخچهٔ جست‌وجو"</string>
+<string name="settings_reset_item_settings">"تنظیمات"</string>
+<string name="settings_reset_item_signins">"ورود به سرویس‌های همگام‌سازی و زیرنویس"</string>
+<string name="settings_reset_kept">"حفظ می‌شود: افزونه‌ها، فایل‌های بارگیری‌شده و پشتیبان‌ها."</string>
+<string name="settings_restore">"بازیابی"</string>
+<string name="settings_restore_failed">"بازیابی ممکن نشد"</string>
+<string name="settings_restore_failed_body">"این فایل پشتیبان CloudStream نیست. چیزی تغییر نکرد."</string>
+<string name="settings_restoring" formatted="true">"در حال بازیابی %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d از %3$d"</string>
+<string name="settings_run_test">"اجرای آزمایش"</string>
+<string name="settings_search_hint">"جست‌وجو در تنظیمات"</string>
+<string name="settings_search_no_results" formatted="true">"نتیجه‌ای برای «%s» نیست"</string>
+<string name="settings_search_no_results_body">"واژهٔ دیگری را امتحان کنید."</string>
+<string name="settings_seek_amount">"میزان جابه‌جایی"</string>
+<string name="settings_setup_again">"اجرای دوبارهٔ راه‌اندازی"</string>
+<string name="settings_setup_again_body">"زبان، افزونه‌ها و چیدمان، از ابتدا."</string>
+<string name="settings_setup_run">"اجرای راه‌اندازی"</string>
+<string name="settings_sign_in">"ورود"</string>
+<string name="settings_skip_intro">"پیشنهاد «رد کردن تیتراژ»"</string>
+<string name="settings_skip_intro_body">"وقتی منبع تیتراژ آغازین یا پایانی را علامت زده باشد."</string>
+<string name="settings_skip_profile_choice">"رد کردن انتخاب نمایه"</string>
+<string name="settings_skip_profile_choice_body">"آخرین نمایهٔ استفاده‌شده را باز می‌کند."</string>
+<string name="settings_source_order">"ترتیب منابع"</string>
+<string name="settings_source_order_body">"پخش‌کننده اول کدام منابع را امتحان کند."</string>
+<string name="settings_speed">"سرعت"</string>
+<string name="settings_subtitle_background">"پس‌زمینه"</string>
+<string name="settings_subtitle_edge">"لبه"</string>
+<string name="settings_subtitle_font_system">"سیستم"</string>
+<string name="settings_subtitle_language">"زبان ترجیحی"</string>
+<string name="settings_subtitle_language_body">"وقتی عنوان آن را داشته باشد، خودکار انتخاب می‌شود."</string>
+<string name="settings_subtitle_preview">"پیش‌نمایش"</string>
+<string name="settings_subtitle_services">"سرویس‌های زیرنویس"</string>
+<string name="settings_subtitle_size">"اندازه"</string>
+<string name="settings_subtitle_size_large">"بزرگ"</string>
+<string name="settings_subtitle_size_medium">"متوسط"</string>
+<string name="settings_subtitle_size_small">"کوچک"</string>
+<string name="settings_subtitle_text_color">"رنگ متن"</string>
+<string name="settings_suggestions_while_typing">"پیشنهادها هنگام تایپ"</string>
+<string name="settings_sync_for" formatted="true">"همگام‌سازی برای %s"</string>
+<string name="settings_sync_per_profile">"هر نمایه جداگانه وارد می‌شود."</string>
+<string name="settings_test_all_extensions">"آزمایش همهٔ افزونه‌ها"</string>
+<string name="settings_test_all_extensions_body">"با همهٔ افزونه‌های فعال جست‌وجو می‌کند. برای توسعه‌دهندگان."</string>
+<string name="settings_title_pages">"صفحه‌های عنوان"</string>
+<string name="settings_title_under_poster">"عنوان زیر پوستر"</string>
+<string name="settings_trailers">"تریلرها"</string>
+<string name="settings_updates">"به‌روزرسانی‌ها"</string>
+<string name="settings_updates_at_launch">"بررسی به‌روزرسانی هنگام اجرا"</string>
+<string name="settings_updates_at_launch_body">"وقتی CloudStream باز می‌شود، دنبال نسخهٔ جدید می‌گردد."</string>
+<string name="settings_updates_check_now">"بررسی اکنون"</string>
+<string name="settings_updates_current" formatted="true">"به‌روز · بررسی‌شده %s"</string>
+<string name="settings_watch_progress_body">"جایی را که متوقف شدید برای «ادامهٔ تماشا» ذخیره می‌کند."</string>
 <string name="show_fillers_settings">"نمایش فیلتر قسمت برای انیمه"</string>
 <string name="show_log_cat">"نمایش Logcat 🐈"</string>
 <string name="show_title">"عنوان منبع"</string>

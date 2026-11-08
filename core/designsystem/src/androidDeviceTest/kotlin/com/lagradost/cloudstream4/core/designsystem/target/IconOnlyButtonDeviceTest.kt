@@ -21,6 +21,8 @@ import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onRoot
+import androidx.compose.ui.test.performSemanticsAction
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.devicetest.Dpad
@@ -181,7 +183,52 @@ class IconOnlyButtonDeviceTest {
         rule.assertScreenshot("icon-only-toggle-on-off", rule.onNodeWithTag(ROW))
     }
 
+    /**
+     * `BUG-60`: the longest `switch_account` in the 62 locales, Macedonian's 25 letters, under a cell flush with the
+     * screen's right edge, as the TV Home chrome's last cell nearly is. Its label is as wide there as under a cell in the
+     * middle of the screen, so none of it is cut, and it ends on screen.
+     */
+    @Test
+    fun aLongLabelAtTheScreensEdgeStaysOnScreen() {
+        rule.setContent {
+            CloudStreamTheme {
+                Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                    IconOnlyButton(CloudStreamIcons.Profile, LONGEST, onClick = {}, modifier = Modifier.align(Alignment.Center).testTag(MIDDLE))
+                    IconOnlyButton(CloudStreamIcons.Profile, LONGEST, onClick = {}, modifier = Modifier.align(Alignment.TopEnd).testTag(EDGE))
+                }
+            }
+        }
+        val middle = labelExtent(MIDDLE)
+        val edge = labelExtent(EDGE)
+        val width = rule.onRoot().fetchSemanticsNode().size.width
+        assertTrue("the label under the edge cell ends at ${edge.last}, past the screen's $width px", edge.last < width)
+        assertEquals(
+            "the label under the edge cell is ${edge.last - edge.first + 1} px wide, under the middle one " +
+                "${middle.last - middle.first + 1} px: it was cut",
+            (middle.last - middle.first).toFloat(),
+            (edge.last - edge.first).toFloat(),
+            1f,
+        )
+    }
+
+    /** Focuses the cell tagged [tag] and returns the columns its label's ink covers, in the line box under the cell. */
+    private fun labelExtent(tag: String): IntRange {
+        rule.onNodeWithTag(tag).performSemanticsAction(SemanticsActions.RequestFocus)
+        rule.waitForIdle()
+        val cell = rule.onNodeWithTag(tag).fetchSemanticsNode().boundsInRoot
+        val frame = rule.onRoot().captureToImage().toPixelMap()
+        val reserve = with(rule.density) { IconOnlyButtonDefaults.LabelReserve.toPx() }.toInt()
+        val bg = cloudStreamDarkColors().bg
+        val rows = cell.bottom.toInt() until minOf(cell.bottom.toInt() + reserve, frame.height)
+        val inked = (0 until frame.width).filter { x -> rows.any { y -> frame[x, y] != bg } }
+        assertTrue("no label drawn under $tag", inked.isNotEmpty())
+        return inked.first()..inked.last()
+    }
+
     private companion object {
+        const val LONGEST = "Промени корисничка сметка"
+        const val MIDDLE = "middle"
+        const val EDGE = "edge"
         const val ROW = "row"
         const val TRAILER = "Trailer"
         const val WATCHLIST = "Watchlist"

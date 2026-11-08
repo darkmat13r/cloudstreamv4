@@ -11,27 +11,75 @@
 <plurals name="home_sections_failed"><item quantity="one">"Hindi na-load ang %d seksyon"</item><item quantity="other">"Hindi na-load ang %d seksyon"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d seksyon"</item><item quantity="other">"%d na seksyon"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d pamagat"</item><item quantity="other">"%d na pamagat"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d segundo"</item><item quantity="other">"%d na segundo"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d source"</item><item quantity="other">"%d na source"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Susunod na episode sa loob ng %d s"</item><item quantity="other">"Susunod na episode sa loob ng %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Maghanap sa %d mapagkukunan"</item><item quantity="other">"Maghanap sa lahat ng %d mapagkukunan"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Pindutin ang search key ng keyboard para maghanap pa rin sa %d mapagkukunan."</item><item quantity="other">"Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d MAPAGKUKUNAN"</item><item quantity="other">"%d MAPAGKUKUNAN"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d babala ng scan"</item><item quantity="other">"%d na babala ng scan"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Lahat ng extension (%d)"</item><item quantity="other">"Lahat ng extension (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d extension · na-update %2$s"</item><item quantity="other">"%1$d na extension · na-update %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d profile at ang PIN nito"</item><item quantity="other">"%d na profile at ang mga PIN nila"</item></plurals>
 <string name="account_add_profile">"Magdagdag ng profile"</string>
+<string name="account_browser_body" formatted="true">"Binuksan ng browser mo ang %s. Mag-sign in doon at payagan ang CloudStream. Kusang magpapatuloy ang window na ito."</string>
+<string name="account_browser_body_phone" formatted="true">"Tapusin ang pag-sign in sa page ng %s. Kusang magpapatuloy ang screen na ito."</string>
+<string name="account_browser_open_again">"Buksan muli"</string>
+<string name="account_browser_title" formatted="true">"Mag-sign in sa %s"</string>
+<string name="account_browser_waiting">"Hinihintay ang browser mo…"</string>
+<string name="account_code_expired">"Nag-expire na ang code na ito. Kumuha ng bago para subukang muli."</string>
+<string name="account_code_expires" formatted="true">"Mag-e-expire sa loob ng %s"</string>
+<string name="account_code_instructions" formatted="true">"Pumunta sa %s sa kahit anong browser at ilagay ang code."</string>
+<string name="account_code_open" formatted="true">"Buksan ang %s"</string>
+<string name="account_delete_body" formatted="true">"Tatanggalin sa device na ito ang watch history, mga bookmark at mga sync sign-in ng %s."</string>
+<string name="account_delete_profile">"Tanggalin ang profile"</string>
+<string name="account_delete_title" formatted="true">"Tanggalin ang %s?"</string>
+<string name="account_edit_profile">"I-edit ang profile"</string>
+<string name="account_email">"Email"</string>
+<string name="account_image_address">"Gumamit ng address ng larawan"</string>
+<string name="account_manage_note">"Pumili ng profile para i-edit ito"</string>
 <string name="account_manage_profiles">"Pamahalaan ang mga profile"</string>
 <string name="account_pair_code">"Ang iyong code"</string>
 <string name="account_pair_instructions">"Buksan ito sa iyong phone at ilagay ang code sa ibaba."</string>
 <string name="account_pair_new_code">"Kumuha ng bagong code"</string>
 <string name="account_pair_title" formatted="true">"Ipares ang %s"</string>
+<string name="account_password">"Password"</string>
+<string name="account_password_mismatch">"Hindi magkatugma ang email at password na iyon. Suriin ang mga ito at subukang muli."</string>
+<string name="account_password_note" formatted="true">"Walang browser sign-in ang %s, kaya dito ito tina-type. Sa device na ito lang ito itinatago at hindi kailanman bina-back up."</string>
+<string name="account_picture">"Larawan"</string>
+<string name="account_pin_change">"Palitan ang PIN"</string>
+<string name="account_pin_confirm">"I-type itong muli para kumpirmahin."</string>
+<string name="account_pin_current">"I-type ang PIN na ginagamit ngayon."</string>
+<string name="account_pin_first_profile">"Hindi maaaring i-lock ang unang profile"</string>
+<string name="account_pin_new">"Mag-type ng 4-digit na PIN."</string>
+<string name="account_pin_off">"Naka-off · kahit sino ay puwedeng magbukas ng profile na ito"</string>
+<string name="account_pin_on">"Naka-on · hinihingi para buksan ito"</string>
+<string name="account_pin_prompt">"I-type ang 4-digit na PIN."</string>
+<string name="account_pin_remove">"Alisin ang PIN"</string>
+<string name="account_pin_set">"Itakda ang PIN"</string>
+<string name="account_pin_set_title">"Magtakda ng PIN"</string>
 <string name="account_profile_current">"Kasalukuyan"</string>
 <string name="account_profile_locked">"Naka-lock · PIN"</string>
 <string name="account_profile_no_sync">"Walang sync"</string>
 <string name="account_select_note">"Hiwalay na history ng panonood · hindi mga login"</string>
 <string name="account_select_title">"Sino ang nanonood?"</string>
+<string name="account_signin_failed_body" formatted="true">"Hindi kinumpirma ng %s ang pag-sign in. Walang na-save."</string>
+<string name="account_signin_failed_title" formatted="true">"Hindi makapag-sign in sa %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito."</string>
 <string name="account_sync_connected">"Nakakonekta · naka-sign in sa device na ito"</string>
 <string name="account_sync_needs_browser">"Kailangan ng web browser para mag-sign in. Wala nito ang device na ito."</string>
 <string name="account_sync_note">"Opsyonal. Sini-sync ang progreso ng panonood sa account na mayroon ka na."</string>
 <string name="account_sync_pair">"Ipares gamit ang code"</string>
 <string name="account_sync_remove">"Alisin sa device na ito"</string>
+<string name="account_sync_remove_body" formatted="true">"Tatanggalin sa device na ito ang %2$s sign-in ng %1$s. Mananatiling gaya ng dati ang iyong %2$s account at ang mga listahan nito."</string>
+<string name="account_sync_remove_title" formatted="true">"Alisin ang %s sa device na ito?"</string>
 <string name="account_sync_title">"Mga serbisyo ng sync"</string>
 <string name="account_sync_unavailable">"Hindi available dito"</string>
+<string name="account_touch_id_hint">"Hawakan ang sensor para buksan ang profile na ito."</string>
+<string name="account_touch_id_reason" formatted="true">"buksan ang profile na %s"</string>
+<string name="account_touch_id_title" formatted="true">"Gamitin ang Touch ID para buksan ang %s"</string>
+<string name="account_undo_warning">"Hindi na ito maaaring bawiin."</string>
+<string name="account_use_pin">"Gamitin na lang ang PIN"</string>
 <string name="action_add_to_bookmarks">"Itakda ang kapalaran ng panonood"</string>
 <string name="action_add_to_favorites">"Idagdag sa mga paborito &lt;3"</string>
 <string name="action_remove_from_bookmarks">"Alisin"</string>
@@ -223,6 +271,7 @@
 <string name="play_torrent_button">"I-stream ang Torrent"</string>
 <string name="play_trailer_button">"Ipatugtog ang Trailer"</string>
 <string name="play_with_app_name">"Ipatugtog sa CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Mag-fullscreen"</string>
 <string name="player_exit_fullscreen">"Lumabas sa fullscreen"</string>
 <string name="player_fit_original">"Orihinal na aspect ratio"</string>
@@ -237,6 +286,7 @@
 <string name="player_hud_seek_forward">"I-forward"</string>
 <string name="player_hud_speed">"Bilis"</string>
 <string name="player_hud_up_next" formatted="true">"Susunod · %s"</string>
+<string name="player_menu_playback">"Playback"</string>
 <string name="player_mute">"I-mute"</string>
 <string name="player_notification_channel_description">"Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background"</string>
 <string name="player_panel_failed">"nabigo"</string>
@@ -249,13 +299,19 @@
 <string name="player_panel_retry_all">"Subukang muli ang lahat ng source"</string>
 <string name="player_panel_style">"Estilo ng subtitle"</string>
 <string name="player_panel_use">"Gamitin"</string>
+<string name="player_play_now">"I-play ngayon"</string>
+<string name="player_source_decoded" formatted="true">"%s na-decode"</string>
 <string name="player_source_playing">"Nagpe-play"</string>
 <string name="player_source_resumes_at" formatted="true">"Mananatili ang posisyon mo sa paglipat: magpapatuloy sa %1$s"</string>
 <string name="player_source_retry">"Subukang muli"</string>
 <string name="player_source_switch">"Lumipat"</string>
+<string name="player_sources_all_failed">"Nagbalik ng error ang bawat source."</string>
+<string name="player_sources_all_failed_detail">"Pumili ng source sa ibaba para subukan itong muli."</string>
 <string name="player_speed">"Bilis ng Manlalaro"</string>
 <string name="player_speed_text_format" formatted="true">"Bilis (%.2fx)"</string>
 <string name="player_unmute">"I-unmute"</string>
+<string name="player_volume_down">"Hinaan ang volume"</string>
+<string name="player_volume_up">"Lakasan ang volume"</string>
 <string name="plugins_updated_manually" formatted="true">"Matagumpay na na-update ang %d plugin!"</string>
 <string name="popup_delete_file">"Burahin ang File"</string>
 <string name="popup_pause_download">"Ihinto ang pag-download"</string>
@@ -302,6 +358,129 @@
 <string name="seek_back_10_seconds">"Bumalik ng 10 segundo"</string>
 <string name="seek_forward_10_seconds">"Umabante ng 10 segundo"</string>
 <string name="select_all">"Piliin Lahat"</string>
+<string name="settings_adult_content">"Pang-adult na content"</string>
+<string name="settings_adult_content_body">"Kung sinusuportahan lang ng extension. Pagkatapos mag-restart."</string>
+<string name="settings_anime_audio">"Audio ng anime"</string>
+<string name="settings_anime_audio_both">"Dub at sub"</string>
+<string name="settings_at_launch">"Sa pagbukas"</string>
+<string name="settings_back_up">"I-back up"</string>
+<string name="settings_back_up_now">"I-back up ngayon"</string>
+<string name="settings_backup_automatically">"Awtomatiko"</string>
+<string name="settings_backup_folder">"Folder ng backup"</string>
+<string name="settings_change">"Baguhin"</string>
+<string name="settings_choose">"Pumili"</string>
+<string name="settings_choose_another">"Pumili ng iba"</string>
+<string name="settings_clear">"I-clear"</string>
+<string name="settings_clear_cache">"I-clear ang cache"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Video %1$s · mga larawan %2$s"</string>
+<string name="settings_color_white">"Puti"</string>
+<string name="settings_color_yellow">"Dilaw"</string>
+<string name="settings_connections_per_download">"Mga koneksyon bawat download"</string>
+<string name="settings_connections_per_download_body">"Mas marami ay maaaring mas mabilis, kung papayagan ng source."</string>
+<string name="settings_diagnostics">"Diagnostics"</string>
+<string name="settings_disk_cache">"Disk cache"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Para sa mga extension, artwork at subtitle. Ginagamit ng mga video stream ang DNS ng iyong Mac."</string>
+<string name="settings_download_folder">"Folder ng download"</string>
+<string name="settings_downloads_at_once">"Sabay-sabay na download"</string>
+<string name="settings_downloads_at_once_body">"Ilang title ang sabay na nada-download."</string>
+<string name="settings_downloads_wait">"Maghihintay ang mga bagong download hanggang bumalik ang folder o pumili ng iba."</string>
+<string name="settings_extension_languages">"Mga wika"</string>
+<string name="settings_extension_review">"Suriin"</string>
+<string name="settings_extensions_auto_install">"I-install ang mga bago mula sa aking mga repository"</string>
+<string name="settings_extensions_auto_install_body">"Ini-scan pa rin ang bawat isa bago ito tumakbo."</string>
+<string name="settings_extensions_auto_update">"Awtomatikong i-update ang mga extension"</string>
+<string name="settings_extensions_auto_update_body">"Ini-scan ang bawat update bago ito tumakbo."</string>
+<string name="settings_extensions_installed" formatted="true">"Naka-install · %d"</string>
+<string name="settings_filler_episodes">"Mga filler episode"</string>
+<string name="settings_filler_episodes_body">"Para sa anime, kung minamarkahan ito ng source."</string>
+<string name="settings_folder">"Folder"</string>
+<string name="settings_folder_missing" formatted="true">"Nawawala ang %s. Maaaring hindi nakakonekta ang disk nito."</string>
+<string name="settings_help_community">"Tulong at komunidad"</string>
+<string name="settings_help_community_body">"Nasa Help menu ang GitHub, Discord at ang wiki."</string>
+<string name="settings_hide_search_quality">"Itago ang kalidad sa mga resulta ng paghahanap"</string>
+<string name="settings_home_search">"Home at Paghahanap"</string>
+<string name="settings_last_backup" formatted="true">"Huling backup: %s"</string>
+<string name="settings_logs">"Mga log"</string>
+<string name="settings_logs_mac_body">"Itinatago sa Mac na ito nang 7 araw. Hindi kailanman ipinapadala."</string>
+<string name="settings_logs_phone_body">"Itinatago sa phone na ito nang 7 araw. Hindi kailanman ipinapadala."</string>
+<string name="settings_network_buffer">"Network buffer"</string>
+<string name="settings_offline_repos" formatted="true">"Hindi ma-check ang mga repository. Mula %s ang mga listahang ito."</string>
+<string name="settings_pane_accounts_privacy">"Mga account at privacy"</string>
+<string name="settings_pane_advanced">"Advanced"</string>
+<string name="settings_pane_appearance">"Hitsura"</string>
+<string name="settings_pane_network">"Network"</string>
+<string name="settings_pane_playback">"Playback"</string>
+<string name="settings_play_next">"I-play ang susunod na episode"</string>
+<string name="settings_play_next_body">"Nagbibilang pababa ng 10 s sa dulo ng episode."</string>
+<string name="settings_playing">"Pag-play"</string>
+<string name="settings_poster_badges">"Mga badge sa poster"</string>
+<string name="settings_posters">"Mga poster"</string>
+<string name="settings_profile_no_pin">"Walang PIN"</string>
+<string name="settings_profile_this">"Ang profile na ito"</string>
+<string name="settings_random_button_body">"Sa Home at Library."</string>
+<string name="settings_read">"Basahin"</string>
+<string name="settings_remove">"Alisin"</string>
+<string name="settings_repo_unreachable" formatted="true">"Hindi ito maabot. Mula %s na ang nakalipas ang listahang ito."</string>
+<string name="settings_repositories">"Mga repository"</string>
+<string name="settings_reset_app">"I-reset ang CloudStream"</string>
+<string name="settings_reset_app_body">"Binubura ang settings, mga profile at library sa Mac na ito."</string>
+<string name="settings_reset_app_phone_body">"Binubura ang settings, mga profile at library."</string>
+<string name="settings_reset_confirm_title">"I-reset ang CloudStream?"</string>
+<string name="settings_reset_erases_mac">"Buburahin nito mula sa Mac na ito:"</string>
+<string name="settings_reset_erases_phone">"Buburahin nito mula sa phone na ito:"</string>
+<string name="settings_reset_item_library">"Library, progreso ng panonood at history"</string>
+<string name="settings_reset_item_search">"History ng paghahanap"</string>
+<string name="settings_reset_item_settings">"Settings"</string>
+<string name="settings_reset_item_signins">"Mga sign-in sa mga serbisyo ng sync at subtitle"</string>
+<string name="settings_reset_kept">"Mananatili: mga extension, na-download na file at mga backup."</string>
+<string name="settings_restore">"I-restore"</string>
+<string name="settings_restore_failed">"Hindi ma-restore"</string>
+<string name="settings_restore_failed_body">"Hindi backup ng CloudStream ang file na iyon. Walang nabago."</string>
+<string name="settings_restoring" formatted="true">"Nire-restore ang %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d sa %3$d"</string>
+<string name="settings_run_test">"Patakbuhin ang test"</string>
+<string name="settings_search_hint">"Hanapin sa settings"</string>
+<string name="settings_search_no_results" formatted="true">"Walang resulta para sa “%s”"</string>
+<string name="settings_search_no_results_body">"Sumubok ng ibang salita."</string>
+<string name="settings_seek_amount">"Haba ng pag-seek"</string>
+<string name="settings_setup_again">"Patakbuhin ulit ang setup"</string>
+<string name="settings_setup_again_body">"Wika, mga extension at layout, mula sa simula."</string>
+<string name="settings_setup_run">"Patakbuhin ang setup"</string>
+<string name="settings_sign_in">"Mag-sign in"</string>
+<string name="settings_skip_intro">"Ialok ang Laktawan ang intro"</string>
+<string name="settings_skip_intro_body">"Kung minamarkahan ng source ang opening o credits."</string>
+<string name="settings_skip_profile_choice">"Laktawan ang pagpili ng profile"</string>
+<string name="settings_skip_profile_choice_body">"Binubuksan ang huling ginamit na profile."</string>
+<string name="settings_source_order">"Pagkakasunod-sunod ng source"</string>
+<string name="settings_source_order_body">"Aling mga source ang unang susubukan ng player."</string>
+<string name="settings_speed">"Bilis"</string>
+<string name="settings_subtitle_background">"Background"</string>
+<string name="settings_subtitle_edge">"Gilid"</string>
+<string name="settings_subtitle_font_system">"System"</string>
+<string name="settings_subtitle_language">"Gustong wika"</string>
+<string name="settings_subtitle_language_body">"Awtomatikong pinipili kapag mayroon nito ang title."</string>
+<string name="settings_subtitle_preview">"Preview"</string>
+<string name="settings_subtitle_services">"Mga serbisyo ng subtitle"</string>
+<string name="settings_subtitle_size">"Laki"</string>
+<string name="settings_subtitle_size_large">"Malaki"</string>
+<string name="settings_subtitle_size_medium">"Katamtaman"</string>
+<string name="settings_subtitle_size_small">"Maliit"</string>
+<string name="settings_subtitle_text_color">"Kulay ng text"</string>
+<string name="settings_suggestions_while_typing">"Mga mungkahi habang nagta-type"</string>
+<string name="settings_sync_for" formatted="true">"Sync para sa %s"</string>
+<string name="settings_sync_per_profile">"Hiwalay na nagsa-sign in ang bawat profile."</string>
+<string name="settings_test_all_extensions">"I-test ang lahat ng extension"</string>
+<string name="settings_test_all_extensions_body">"Naghahanap gamit ang bawat naka-enable na extension. Para sa mga developer."</string>
+<string name="settings_title_pages">"Mga page ng title"</string>
+<string name="settings_title_under_poster">"Title sa ilalim ng poster"</string>
+<string name="settings_trailers">"Mga trailer"</string>
+<string name="settings_updates">"Mga update"</string>
+<string name="settings_updates_at_launch">"Tingnan ang mga update sa pagbukas"</string>
+<string name="settings_updates_at_launch_body">"Naghahanap ng bagong bersyon kapag nagbukas ang CloudStream."</string>
+<string name="settings_updates_check_now">"Tingnan ngayon"</string>
+<string name="settings_updates_current" formatted="true">"Updated · tiningnan %s"</string>
+<string name="settings_watch_progress_body">"Sine-save kung saan ka huminto, para sa Ipagpatuloy ang pinapanood."</string>
 <string name="skip_loading">"Laktawan ang paglo-load"</string>
 <string name="skip_startup_account_select_pref">"Laktawan ang pagpili ng account sa pagsisimula"</string>
 <string name="slide_up_again_to_exceed_100" formatted="true">"Muling mag-slide pataas upang lumampas sa 100%"</string>

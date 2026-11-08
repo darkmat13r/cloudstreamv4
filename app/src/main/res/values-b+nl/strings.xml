@@ -11,28 +11,76 @@
 <plurals name="home_sections_failed"><item quantity="one">"%d sectie kon niet worden geladen"</item><item quantity="other">"%d secties konden niet worden geladen"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sectie"</item><item quantity="other">"%d secties"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d titel"</item><item quantity="other">"%d titels"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d seconde"</item><item quantity="other">"%d seconden"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d bron"</item><item quantity="other">"%d bronnen"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Volgende aflevering over %d s"</item><item quantity="other">"Volgende aflevering over %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Zoek in %d bron"</item><item quantity="other">"Zoek in alle %d bronnen"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Druk op de zoektoets van het toetsenbord om toch in %d bron te zoeken."</item><item quantity="other">"Druk op de zoektoets van het toetsenbord om toch in alle %d bronnen te zoeken."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d BRON"</item><item quantity="other">"%d BRONNEN"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d scanwaarschuwing"</item><item quantity="other">"%d scanwaarschuwingen"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Alle uitbreidingen (%d)"</item><item quantity="other">"Alle uitbreidingen (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d uitbreiding · bijgewerkt %2$s"</item><item quantity="other">"%1$d uitbreidingen · bijgewerkt %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d profiel en de pincode"</item><item quantity="other">"%d profielen en hun pincodes"</item></plurals>
 <string name="account">"account"</string>
 <string name="account_add_profile">"Profiel toevoegen"</string>
+<string name="account_browser_body" formatted="true">"Je browser heeft %s geopend. Meld je daar aan en geef CloudStream toestemming. Dit venster gaat vanzelf verder."</string>
+<string name="account_browser_body_phone" formatted="true">"Rond het aanmelden af op de pagina van %s. Dit scherm gaat vanzelf verder."</string>
+<string name="account_browser_open_again">"Opnieuw openen"</string>
+<string name="account_browser_title" formatted="true">"Aanmelden bij %s"</string>
+<string name="account_browser_waiting">"Wachten op je browser…"</string>
+<string name="account_code_expired">"Deze code is verlopen. Vraag een nieuwe aan om het opnieuw te proberen."</string>
+<string name="account_code_expires" formatted="true">"Verloopt over %s"</string>
+<string name="account_code_instructions" formatted="true">"Ga in een willekeurige browser naar %s en voer de code in."</string>
+<string name="account_code_open" formatted="true">"%s openen"</string>
+<string name="account_delete_body" formatted="true">"De kijkgeschiedenis, bladwijzers en synchronisatie-aanmeldingen van %s worden van dit apparaat verwijderd."</string>
+<string name="account_delete_profile">"Profiel verwijderen"</string>
+<string name="account_delete_title" formatted="true">"%s verwijderen?"</string>
+<string name="account_edit_profile">"Profiel bewerken"</string>
+<string name="account_email">"E-mail"</string>
+<string name="account_image_address">"Afbeeldingsadres gebruiken"</string>
+<string name="account_manage_note">"Kies een profiel om het te bewerken"</string>
 <string name="account_manage_profiles">"Profielen beheren"</string>
 <string name="account_pair_code">"Je code"</string>
 <string name="account_pair_instructions">"Open dit op je telefoon en voer de code hieronder in."</string>
 <string name="account_pair_new_code">"Nieuwe code ophalen"</string>
 <string name="account_pair_title" formatted="true">"%s koppelen"</string>
+<string name="account_password">"Wachtwoord"</string>
+<string name="account_password_mismatch">"Dat e-mailadres en wachtwoord komen niet overeen. Controleer ze en probeer het opnieuw."</string>
+<string name="account_password_note" formatted="true">"%s heeft geen aanmelding via de browser, dus je typt je wachtwoord hier. Het wordt alleen op dit apparaat bewaard en nooit in een back-up opgenomen."</string>
+<string name="account_picture">"Afbeelding"</string>
+<string name="account_pin_change">"PIN wijzigen"</string>
+<string name="account_pin_confirm">"Typ hem nogmaals ter bevestiging."</string>
+<string name="account_pin_current">"Typ de huidige PIN."</string>
+<string name="account_pin_first_profile">"Het eerste profiel kan niet worden vergrendeld"</string>
+<string name="account_pin_new">"Typ een PIN van 4 cijfers."</string>
+<string name="account_pin_off">"Uit · iedereen kan dit profiel openen"</string>
+<string name="account_pin_on">"Aan · gevraagd bij openen"</string>
+<string name="account_pin_prompt">"Typ de PIN van 4 cijfers."</string>
+<string name="account_pin_remove">"PIN verwijderen"</string>
+<string name="account_pin_set">"PIN instellen"</string>
+<string name="account_pin_set_title">"PIN instellen"</string>
 <string name="account_profile_current">"Huidig"</string>
 <string name="account_profile_locked">"Vergrendeld · pincode"</string>
 <string name="account_profile_no_sync">"Geen synchronisatie"</string>
 <string name="account_select_note">"Aparte kijkgeschiedenis · geen aanmeldingen"</string>
 <string name="account_select_title">"Wie kijkt er?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen."</string>
+<string name="account_signin_failed_title" formatted="true">"Kan niet aanmelden bij %s"</string>
+<string name="account_signin_offline_body" formatted="true">"Aanmelden bij %s vereist een verbinding. Probeer het opnieuw als dit apparaat weer online is."</string>
 <string name="account_sync_connected">"Verbonden · aangemeld op dit apparaat"</string>
 <string name="account_sync_needs_browser">"Aanmelden vereist een webbrowser. Dit apparaat heeft er geen."</string>
 <string name="account_sync_note">"Optioneel. Synchroniseert je kijkvoortgang met een account dat je al hebt."</string>
 <string name="account_sync_pair">"Koppelen met een code"</string>
 <string name="account_sync_remove">"Verwijderen van dit apparaat"</string>
+<string name="account_sync_remove_body" formatted="true">"De %2$s-aanmelding van %1$s wordt van dit apparaat verwijderd. Je %2$s-account en de lijsten daarin blijven zoals ze zijn."</string>
+<string name="account_sync_remove_title" formatted="true">"%s van dit apparaat verwijderen?"</string>
 <string name="account_sync_title">"Synchronisatiediensten"</string>
 <string name="account_sync_unavailable">"Hier niet beschikbaar"</string>
+<string name="account_touch_id_hint">"Raak de sensor aan om dit profiel te openen."</string>
+<string name="account_touch_id_reason" formatted="true">"het profiel %s te openen"</string>
+<string name="account_touch_id_title" formatted="true">"Touch ID gebruiken om %s te openen"</string>
+<string name="account_undo_warning">"Dit kan niet ongedaan worden gemaakt."</string>
+<string name="account_use_pin">"PIN gebruiken"</string>
 <string name="action_add_to_bookmarks">"Zet kijkstatus"</string>
 <string name="action_add_to_favorites">"Voeg toe aan favorieten"</string>
 <string name="action_default">"Standaard"</string>
@@ -485,6 +533,7 @@
 <string name="play_torrent_button">"Stream Torrent"</string>
 <string name="play_trailer_button">"Speel Trailer"</string>
 <string name="play_with_app_name">"Afspelen met CloudStream"</string>
+<string name="player_audio_stereo">"stereo"</string>
 <string name="player_enter_fullscreen">"Volledig scherm openen"</string>
 <string name="player_exit_fullscreen">"Volledig scherm sluiten"</string>
 <string name="player_fit_original">"Originele beeldverhouding"</string>
@@ -503,6 +552,7 @@
 <string name="player_load_subtitles">"Laden uit bestand"</string>
 <string name="player_load_subtitles_online">"Laden vanaf internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"Geladen %s"</string>
+<string name="player_menu_playback">"Afspelen"</string>
 <string name="player_mute">"Dempen"</string>
 <string name="player_notification_channel_description">"De speler melding om de kijkervaring van de achtergrond de besturen"</string>
 <string name="player_notification_channel_name">"Speler meldingen"</string>
@@ -516,21 +566,27 @@
 <string name="player_panel_retry_all">"Alle bronnen opnieuw proberen"</string>
 <string name="player_panel_style">"Ondertitelstijl"</string>
 <string name="player_panel_use">"Gebruiken"</string>
+<string name="player_play_now">"Nu afspelen"</string>
 <string name="player_pref">"Gewenste videospeler"</string>
 <string name="player_settings_always_ask">"Vraag altijd"</string>
 <string name="player_settings_play_in_app">"Interne speler"</string>
 <string name="player_settings_select_cast_device">"Cast apparaat selecteren"</string>
 <string name="player_size_settings">"Afspeel knop wijzig"</string>
 <string name="player_size_settings_des">"Verwijder de zwarte randen"</string>
+<string name="player_source_decoded" formatted="true">"%s gedecodeerd"</string>
 <string name="player_source_playing">"Speelt af"</string>
 <string name="player_source_resumes_at" formatted="true">"Wisselen behoudt je positie: gaat verder op %1$s"</string>
 <string name="player_source_retry">"Opnieuw"</string>
 <string name="player_source_switch">"Wisselen"</string>
+<string name="player_sources_all_failed">"Elke bron antwoordde met een fout."</string>
+<string name="player_sources_all_failed_detail">"Kies hieronder een bron om het opnieuw te proberen."</string>
 <string name="player_speed">"Afspelen Snelheid"</string>
 <string name="player_speed_text_format" formatted="true">"Snelheid (%.2fx)"</string>
 <string name="player_subtitles_settings">"Ondertitels"</string>
 <string name="player_subtitles_settings_des">"Speler Ondertiteling instellingen"</string>
 <string name="player_unmute">"Dempen opheffen"</string>
+<string name="player_volume_down">"Volume omlaag"</string>
+<string name="player_volume_up">"Volume omhoog"</string>
 <string name="plugin">"plugins"</string>
 <string name="plugin_deleted">"Plugin Verwijderd"</string>
 <string name="plugin_downloaded">"Plugin Gedownload"</string>
@@ -679,7 +735,130 @@
 <string name="select_an_account">"Selecteer een Account"</string>
 <string name="select_library">"Kies Bibliotheek"</string>
 <string name="set_default">"Maak standaard"</string>
+<string name="settings_adult_content">"Inhoud voor volwassenen"</string>
+<string name="settings_adult_content_body">"Alleen waar een uitbreiding het ondersteunt. Na een herstart."</string>
+<string name="settings_anime_audio">"Anime-audio"</string>
+<string name="settings_anime_audio_both">"Dub en sub"</string>
+<string name="settings_at_launch">"Bij het opstarten"</string>
+<string name="settings_back_up">"Back-up maken"</string>
+<string name="settings_back_up_now">"Nu back-up maken"</string>
+<string name="settings_backup_automatically">"Automatisch"</string>
+<string name="settings_backup_folder">"Back-upmap"</string>
+<string name="settings_change">"Wijzigen"</string>
+<string name="settings_choose">"Kiezen"</string>
+<string name="settings_choose_another">"Andere kiezen"</string>
+<string name="settings_clear">"Wissen"</string>
+<string name="settings_clear_cache">"Cache wissen"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Video %1$s · afbeeldingen %2$s"</string>
+<string name="settings_color_white">"Wit"</string>
+<string name="settings_color_yellow">"Geel"</string>
+<string name="settings_connections_per_download">"Verbindingen per download"</string>
+<string name="settings_connections_per_download_body">"Meer kan sneller zijn, als de bron het toestaat."</string>
+<string name="settings_diagnostics">"Diagnose"</string>
+<string name="settings_disk_cache">"Schijfcache"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Voor uitbreidingen, artwork en ondertitels. Videostreams gebruiken de DNS van je Mac."</string>
+<string name="settings_download_folder">"Downloadmap"</string>
+<string name="settings_downloads_at_once">"Gelijktijdige downloads"</string>
+<string name="settings_downloads_at_once_body">"Hoeveel titels tegelijk downloaden."</string>
+<string name="settings_downloads_wait">"Nieuwe downloads wachten tot de map terug is of er een andere is gekozen."</string>
+<string name="settings_extension_languages">"Talen"</string>
+<string name="settings_extension_review">"Beoordelen"</string>
+<string name="settings_extensions_auto_install">"Nieuwe installeren uit mijn repository's"</string>
+<string name="settings_extensions_auto_install_body">"Elke uitbreiding wordt nog steeds gescand voordat ze draait."</string>
+<string name="settings_extensions_auto_update">"Uitbreidingen automatisch bijwerken"</string>
+<string name="settings_extensions_auto_update_body">"Elke update wordt gescand voordat die draait."</string>
+<string name="settings_extensions_installed" formatted="true">"Geïnstalleerd · %d"</string>
+<string name="settings_filler_episodes">"Filler-afleveringen"</string>
+<string name="settings_filler_episodes_body">"Voor anime, waar de bron ze markeert."</string>
+<string name="settings_folder">"Map"</string>
+<string name="settings_folder_missing" formatted="true">"%s ontbreekt. De schijf is misschien niet verbonden."</string>
+<string name="settings_help_community">"Help en community"</string>
+<string name="settings_help_community_body">"GitHub, Discord en de wiki staan in het Help-menu."</string>
+<string name="settings_hide_search_quality">"Kwaliteit verbergen in zoekresultaten"</string>
+<string name="settings_home_search">"Home en Zoeken"</string>
 <string name="settings_info">"Info"</string>
+<string name="settings_last_backup" formatted="true">"Laatste back-up: %s"</string>
+<string name="settings_logs">"Logboeken"</string>
+<string name="settings_logs_mac_body">"7 dagen bewaard op deze Mac. Nooit ergens heen gestuurd."</string>
+<string name="settings_logs_phone_body">"7 dagen bewaard op deze telefoon. Nooit ergens heen gestuurd."</string>
+<string name="settings_network_buffer">"Netwerkbuffer"</string>
+<string name="settings_offline_repos" formatted="true">"Repository's kunnen niet worden gecontroleerd. Deze lijsten zijn van %s."</string>
+<string name="settings_pane_accounts_privacy">"Accounts en privacy"</string>
+<string name="settings_pane_advanced">"Geavanceerd"</string>
+<string name="settings_pane_appearance">"Weergave"</string>
+<string name="settings_pane_network">"Netwerk"</string>
+<string name="settings_pane_playback">"Afspelen"</string>
+<string name="settings_play_next">"Volgende aflevering afspelen"</string>
+<string name="settings_play_next_body">"Telt 10 s af aan het einde van een aflevering."</string>
+<string name="settings_playing">"Tijdens het afspelen"</string>
+<string name="settings_poster_badges">"Badges op posters"</string>
+<string name="settings_posters">"Posters"</string>
+<string name="settings_profile_no_pin">"Geen pincode"</string>
+<string name="settings_profile_this">"Dit profiel"</string>
+<string name="settings_random_button_body">"Op Home en in Bibliotheek."</string>
+<string name="settings_read">"Lezen"</string>
+<string name="settings_remove">"Verwijderen"</string>
+<string name="settings_repo_unreachable" formatted="true">"Niet bereikbaar. Deze lijst is van %s geleden."</string>
+<string name="settings_repositories">"Repository's"</string>
+<string name="settings_reset_app">"CloudStream resetten"</string>
+<string name="settings_reset_app_body">"Wist instellingen, profielen en bibliotheek op deze Mac."</string>
+<string name="settings_reset_app_phone_body">"Wist instellingen, profielen en bibliotheek."</string>
+<string name="settings_reset_confirm_title">"CloudStream resetten?"</string>
+<string name="settings_reset_erases_mac">"Dit wist van deze Mac:"</string>
+<string name="settings_reset_erases_phone">"Dit wist van deze telefoon:"</string>
+<string name="settings_reset_item_library">"Bibliotheek, kijkvoortgang en geschiedenis"</string>
+<string name="settings_reset_item_search">"Zoekgeschiedenis"</string>
+<string name="settings_reset_item_settings">"Instellingen"</string>
+<string name="settings_reset_item_signins">"Aanmeldingen bij synchronisatie- en ondertiteldiensten"</string>
+<string name="settings_reset_kept">"Blijft bewaard: uitbreidingen, gedownloade bestanden en back-ups."</string>
+<string name="settings_restore">"Herstellen"</string>
+<string name="settings_restore_failed">"Kan niet herstellen"</string>
+<string name="settings_restore_failed_body">"Dat bestand is geen CloudStream-back-up. Er is niets gewijzigd."</string>
+<string name="settings_restoring" formatted="true">"%s herstellen"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d van %3$d"</string>
+<string name="settings_run_test">"Test uitvoeren"</string>
+<string name="settings_search_hint">"Instellingen doorzoeken"</string>
+<string name="settings_search_no_results" formatted="true">"Geen resultaten voor “%s”"</string>
+<string name="settings_search_no_results_body">"Probeer een ander woord."</string>
+<string name="settings_seek_amount">"Spoelafstand"</string>
+<string name="settings_setup_again">"Installatiehulp opnieuw starten"</string>
+<string name="settings_setup_again_body">"Taal, uitbreidingen en indeling, vanaf het begin."</string>
+<string name="settings_setup_run">"Installatiehulp starten"</string>
+<string name="settings_sign_in">"Aanmelden"</string>
+<string name="settings_skip_intro">"Intro overslaan aanbieden"</string>
+<string name="settings_skip_intro_body">"Waar een bron de opening of aftiteling markeert."</string>
+<string name="settings_skip_profile_choice">"Profielkeuze overslaan"</string>
+<string name="settings_skip_profile_choice_body">"Opent het laatst gebruikte profiel."</string>
+<string name="settings_source_order">"Bronvolgorde"</string>
+<string name="settings_source_order_body">"Welke bronnen de speler eerst probeert."</string>
+<string name="settings_speed">"Snelheid"</string>
+<string name="settings_subtitle_background">"Achtergrond"</string>
+<string name="settings_subtitle_edge">"Rand"</string>
+<string name="settings_subtitle_font_system">"Systeem"</string>
+<string name="settings_subtitle_language">"Voorkeurstaal"</string>
+<string name="settings_subtitle_language_body">"Automatisch gekozen als een titel die heeft."</string>
+<string name="settings_subtitle_preview">"Voorbeeld"</string>
+<string name="settings_subtitle_services">"Ondertiteldiensten"</string>
+<string name="settings_subtitle_size">"Grootte"</string>
+<string name="settings_subtitle_size_large">"Groot"</string>
+<string name="settings_subtitle_size_medium">"Gemiddeld"</string>
+<string name="settings_subtitle_size_small">"Klein"</string>
+<string name="settings_subtitle_text_color">"Tekstkleur"</string>
+<string name="settings_suggestions_while_typing">"Suggesties tijdens het typen"</string>
+<string name="settings_sync_for" formatted="true">"Synchronisatie voor %s"</string>
+<string name="settings_sync_per_profile">"Elk profiel meldt zich apart aan."</string>
+<string name="settings_test_all_extensions">"Alle uitbreidingen testen"</string>
+<string name="settings_test_all_extensions_body">"Zoekt met elke ingeschakelde uitbreiding. Voor ontwikkelaars."</string>
+<string name="settings_title_pages">"Titelpagina's"</string>
+<string name="settings_title_under_poster">"Titel onder de poster"</string>
+<string name="settings_trailers">"Trailers"</string>
+<string name="settings_updates">"Updates"</string>
+<string name="settings_updates_at_launch">"Bij opstarten op updates controleren"</string>
+<string name="settings_updates_at_launch_body">"Zoekt naar een nieuwe versie als CloudStream opent."</string>
+<string name="settings_updates_check_now">"Nu controleren"</string>
+<string name="settings_updates_current" formatted="true">"Up-to-date · gecontroleerd %s"</string>
+<string name="settings_watch_progress_body">"Onthoudt waar je stopte, voor Verder kijken."</string>
 <string name="setup_done">"Klaar"</string>
 <string name="setup_extensions_subtext">"Download de lijst met sites die je wilt gebruiken"</string>
 <string name="show">"Tonen"</string>

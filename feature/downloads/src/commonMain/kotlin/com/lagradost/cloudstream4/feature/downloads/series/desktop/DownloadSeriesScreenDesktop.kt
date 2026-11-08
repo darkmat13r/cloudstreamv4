@@ -478,6 +478,8 @@ private fun EpisodeRow(
                         val event = awaitPointerEvent(PointerEventPass.Main)
                         if (event.type != PointerEventType.Press || !event.buttons.isPrimaryPressed) continue
                         val change = event.changes.firstOrNull() ?: continue
+                        // A verb's own press (`DesktopVerb` consumes it): two quick ones on Delete must not play (`KMP-75`).
+                        if (change.isConsumed) continue
                         val double = change.uptimeMillis - last <= viewConfiguration.doubleTapTimeoutMillis
                         last = if (double) Long.MIN_VALUE / 2 else change.uptimeMillis
                         if (double && episode.isPlayable) play()

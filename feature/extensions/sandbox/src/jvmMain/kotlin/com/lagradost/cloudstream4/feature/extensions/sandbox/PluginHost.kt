@@ -3,12 +3,14 @@ package com.lagradost.cloudstream4.feature.extensions.sandbox
 import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream3.AnimeLoadResponse
 import com.lagradost.cloudstream3.Episode
+import com.lagradost.cloudstream3.EpisodeResponse
 import com.lagradost.cloudstream3.LiveStreamLoadResponse
 import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.MainPageRequest
 import com.lagradost.cloudstream3.MovieLoadResponse
+import com.lagradost.cloudstream3.ShowStatus
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.TvSeriesLoadResponse
 import com.lagradost.cloudstream3.newSearchResponseList
@@ -376,8 +378,31 @@ object PluginHost {
             year = year,
             dataUrl = dataUrl,
             episodes = episodes.map { RemoteEpisode(it.name, it.data, it.season, it.episode) },
+            facts = facts(),
         )
     }
+
+    /**
+     * Cut to the app's bounds here too (`KMP-76`), so an honest provider with too many tags is shortened rather than
+     * refused. This is courtesy, not the check: the plugin shares this process and can send what it likes, so the app
+     * reads every fact as hostile whatever this does.
+     */
+    private fun LoadResponse.facts() = RemoteFacts(
+        scoreTenths = score?.toInt(HostProtocol.MAX_SCORE_TENTHS)?.takeIf { it in 0..HostProtocol.MAX_SCORE_TENTHS },
+        tags = tags.orEmpty().asSequence()
+            .map { it.trim().take(HostProtocol.MAX_TAG_CHARS) }
+            .filter { it.isNotEmpty() }
+            .distinct()
+            .take(HostProtocol.MAX_TAGS)
+            .toList(),
+        contentRating = contentRating?.trim()?.takeIf { it.length in 1..HostProtocol.MAX_CONTENT_RATING_CHARS },
+        status = when ((this as? EpisodeResponse)?.showStatus) {
+            ShowStatus.Ongoing -> RemoteShowStatus.Ongoing
+            ShowStatus.Completed -> RemoteShowStatus.Completed
+            null -> null
+        },
+        runtimeMinutes = duration?.takeIf { it in 1..HostProtocol.MAX_RUNTIME_MINUTES },
+    )
 
     private class Writer(private val out: OutputStream) {
         fun send(id: Int, body: java.io.DataOutputStream.() -> Unit) = write(

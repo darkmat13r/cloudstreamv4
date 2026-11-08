@@ -11,6 +11,7 @@ import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeState
 import com.lagradost.cloudstream4.media.download.DownloadOptions
 import com.lagradost.cloudstream4.media.model.DownloadFailure
+import kotlinx.coroutines.CompletableDeferred
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancelAndJoin
@@ -26,6 +27,7 @@ import java.io.PrintStream
 import java.nio.file.Files
 import java.nio.file.attribute.PosixFilePermissions
 import java.util.concurrent.CopyOnWriteArrayList
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertContentEquals
@@ -34,6 +36,7 @@ import kotlin.test.assertFalse
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
+import kotlin.test.fail
 
 /** Real downloads from a loopback server into a temporary folder, compared byte for byte. */
 class DesktopDownloadsTest {
@@ -58,6 +61,8 @@ class DesktopDownloadsTest {
         log: (String) -> Unit = {},
         resolver: LinkResolver = LinkResolver { error("no test here expects to be asked") },
         resolveTimeoutMillis: Long = DesktopDownloads.RESOLVE_TIMEOUT_MILLIS,
+        volumeSpace: (File) -> VolumeSpace = VolumeSpace::of,
+        runningLimit: (() -> Int)? = null,
     ) = DesktopDownloads(
         downloadRoot = root,
         stateFile = stateFile,
@@ -68,6 +73,8 @@ class DesktopDownloadsTest {
         resolveTimeoutMillis = resolveTimeoutMillis,
         log = log,
         ownsClient = true,
+        volumeSpace = volumeSpace,
+        runningLimit = runningLimit,
     ).also { hosts += it }
 
     private fun film(id: Int, name: String, url: String, headers: Map<String, String> = emptyMap(), referer: String? = null) =
@@ -155,6 +162,38 @@ class DesktopDownloadsTest {
         (1..4).forEach { assertContentEquals(bodies[it - 1], host.fileOf(DownloadEpisodeId(it))!!.readBytes()) }
     }
 
+    /**
+     * `KMP-90`: Settings' Downloads at once is read at every start. Raised, the next in line starts at once, without
+     * waiting for a finish. Lowered, nothing running stops, and the next in line waits.
+     */
+    @Test
+    fun `a changed Downloads at once applies to the next start`() = runBlocking {
+        val bodies = (1..3).map { server.add("limit$it.bin", 4 * 1024 * 1024) }
+        server.chunkDelayMillis.set(10)
+        val limit = AtomicInteger(1)
+        val host = host(runningLimit = limit::get)
+        host.enqueue(film(1, "Film 1", server.url("limit1.bin")))
+        host.awaitEpisode(100, 1) { it.state == DownloadEpisodeState.Running }
+        host.enqueue(film(2, "Film 2", server.url("limit2.bin")))
+        host.awaitEpisode(200, 2) { it.state == DownloadEpisodeState.Queued }
+
+        limit.set(2)
+        host.limitChanged()
+        host.awaitEpisode(200, 2) { it.state == DownloadEpisodeState.Running }
+        assertEquals(DownloadEpisodeState.Running, host.awaitEpisode(100, 1) { true }.state, "it started beside the first")
+
+        limit.set(1)
+        host.limitChanged()
+        host.enqueue(film(3, "Film 3", server.url("limit3.bin")))
+        host.awaitEpisode(300, 3) { it.state == DownloadEpisodeState.Queued }
+        val both = host.awaitContents { it.titles.size == 3 }
+        assertEquals(2, both.queue.running, "a lower limit stops nothing already running")
+        assertEquals(DownloadEpisodeState.Queued, host.awaitEpisode(300, 3) { true }.state)
+
+        (1..3).forEach { host.awaitDone(it * 100, it) }
+        (1..3).forEach { assertContentEquals(bodies[it - 1], host.fileOf(DownloadEpisodeId(it))!!.readBytes()) }
+    }
+
     @Test
     fun `a paused download resumes from what is on disk`() = runBlocking {
         val body = server.add("pause.bin", 2 * 1024 * 1024)
@@ -187,10 +226,6 @@ class DesktopDownloadsTest {
         hosts.remove(first)
         return partFiles().sumOf { it.length() }
     }
-
-    /** Until a resolver has been asked once. */
-    private suspend fun awaitAsked(asked: java.util.concurrent.atomic.AtomicInteger) =
-        withTimeout(TIMEOUT) { while (asked.get() < 1) delay(10) }
 
     /** The engine's part files under the download root. */
     private fun partFiles(): List<File> =
@@ -243,42 +278,35 @@ class DesktopDownloadsTest {
         val held = interruptedPartWay(film(8, "No Link", server.url("nolink.bin")))
         assertTrue(held > 0L)
 
-        // A failure is stored, so each new host below starts with the previous step's: Failed, NoUsableLink. Waiting
-        // for "Failed" alone could match that loaded state before the resume is processed. So each step first waits
-        // for its resolver to be asked (the queue publishes Queued and Running before that), then reads the episode
-        // through a new collector, whose first emission is built after the resume. A collector started earlier may see
-        // nothing at all: an episode that ends as it was loaded is not a change, and the flow drops repeats.
-        val emptyAsked = java.util.concurrent.atomic.AtomicInteger()
-        val empty = host(resolver = { emptyAsked.incrementAndGet(); emptyList() })
-        assertEquals(DownloadEpisodeState.Paused, empty.awaitEpisode(800, 8) { true }.state)
-        empty.resume(DownloadEpisodeId(8))
-        awaitAsked(emptyAsked)
-        val none = empty.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Failed }
+        // A failure is stored, so each new host below loads the previous step's (Failed, NoUsableLink). A reader
+        // started too early could see that stored state and take it for the new answer (BUG-56). Before BUG-57 the
+        // resume started the run before it published Running, so "the resolver was asked" alone was not enough. It now
+        // publishes Running first, but the test does not rely on that order. So each step gates its resolver: it waits
+        // until the episode shows Running, which only a publish after the resume shows, and only then lets the
+        // resolver answer. A Failed after that can only be this step's.
+        suspend fun step(resolve: () -> List<DesktopDownloadLink>): DownloadEpisode {
+            val gate = CompletableDeferred<Unit>()
+            val stepHost = host(resolver = { gate.await(); resolve() })
+            val loaded = stepHost.awaitEpisode(800, 8) { true }
+            assertTrue(loaded.state == DownloadEpisodeState.Paused || loaded.state == DownloadEpisodeState.Failed)
+            stepHost.resume(DownloadEpisodeId(8))
+            stepHost.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Running }
+            gate.complete(Unit)
+            val failed = stepHost.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Failed }
+            stepHost.close()
+            hosts.remove(stepHost)
+            return failed
+        }
+
+        val none = step { emptyList() }
         assertEquals(DownloadFailure.NoUsableLink, none.failure)
         assertEquals(held, partFiles().sumOf { it.length() }, "the parts are untouched")
         assertTrue(none.bytesDone > 0L)
-        empty.close()
-        hosts.remove(empty)
 
-        val hlsAsked = java.util.concurrent.atomic.AtomicInteger()
-        val hlsOnly = host(resolver = {
-            hlsAsked.incrementAndGet()
-            listOf(DesktopDownloadLink(server.url("x.m3u8"), type = ExtractorLinkType.M3U8))
-        })
-        assertEquals(DownloadFailure.NoUsableLink, hlsOnly.awaitEpisode(800, 8) { true }.failure, "the stored reason")
-        hlsOnly.resume(DownloadEpisodeId(8))
-        awaitAsked(hlsAsked)
-        val hls = hlsOnly.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Failed }
+        val hls = step { listOf(DesktopDownloadLink(server.url("x.m3u8"), type = ExtractorLinkType.M3U8)) }
         assertEquals(DownloadFailure.NoUsableLink, hls.failure)
-        hlsOnly.close()
-        hosts.remove(hlsOnly)
 
-        val throwAsked = java.util.concurrent.atomic.AtomicInteger()
-        val throwing = host(resolver = { throwAsked.incrementAndGet(); throw java.io.IOException("the extension is not loaded") })
-        assertEquals(DownloadFailure.NoUsableLink, throwing.awaitEpisode(800, 8) { true }.failure, "the stored reason")
-        throwing.resume(DownloadEpisodeId(8))
-        awaitAsked(throwAsked)
-        val threw = throwing.awaitEpisode(800, 8) { it.state == DownloadEpisodeState.Failed }
+        val threw = step { throw java.io.IOException("the extension is not loaded") }
         assertEquals(DownloadFailure.SourceFailed, threw.failure)
         assertEquals(held, partFiles().sumOf { it.length() }, "the parts are untouched")
         assertEquals(1, partFiles().size)
@@ -481,6 +509,30 @@ class DesktopDownloadsTest {
         assertEquals(DownloadFailure.Unknown, StoredFailure.decode("ServerRefused", listOf(-1L)))
     }
 
+    /**
+     * BUG-57: a retry is published as Running before its run starts. Otherwise a reader opened while the run asks the
+     * extension sees the old failure, and the screen reads as the retry failing at once. The resolver itself reads
+     * the published state, so the check runs exactly while the run is going.
+     */
+    @Test
+    fun `a retry is published as running before its run asks the extension`() = runBlocking {
+        server.add("retried.bin", 64 * 1024)
+        lateinit var host: DesktopDownloads
+        val seen = CopyOnWriteArrayList<DownloadEpisode>()
+        host = host(resolver = {
+            seen += host.series(DownloadTitleId(1600)).contents.first().episodes.single()
+            listOf(DesktopDownloadLink(server.url("retried.bin")))
+        })
+        host.enqueue(film(16, "Retried", server.url("retried-missing.bin")))
+        assertEquals(DownloadFailure.ServerRefused(404), host.awaitEpisode(1600, 16) { it.state == DownloadEpisodeState.Failed }.failure)
+
+        host.retry(DownloadEpisodeId(16))
+        host.awaitDone(1600, 16)
+        val atAsk = seen.single()
+        assertEquals(DownloadEpisodeState.Running, atAsk.state, "what a reader saw while the retry asked: ${atAsk.state}")
+        assertNull(atAsk.failure, "the old failure is gone")
+    }
+
     @Test
     fun `a retry asks the extension again, a resume of a pause does not`() = runBlocking {
         val body = server.add("retry.bin", 1024 * 1024)
@@ -492,10 +544,15 @@ class DesktopDownloadsTest {
         assertEquals(DownloadFailure.ServerRefused(404), failed.failure)
         assertTrue(asked.isEmpty(), "the enqueued link was used first")
 
+        // BUG-67: on a fast machine the retried body finished inside one throttled snapshot, so no snapshot showed
+        // Running with bytes and the wait timed out. The server now holds the retried body after its first chunk until
+        // the pause has landed, so a snapshot with bytes done must appear.
+        val held = server.holdAfterFirstChunk("retry.bin")
         host.retry(DownloadEpisodeId(9))
         host.awaitEpisode(900, 9) { it.state == DownloadEpisodeState.Running && it.bytesDone > 0L }
         host.pause(DownloadEpisodeId(9))
         host.awaitEpisode(900, 9) { it.state == DownloadEpisodeState.Paused }
+        held.complete(Unit)
         host.resume(DownloadEpisodeId(9))
         host.awaitDone(900, 9)
         assertEquals(listOf(sourceOf(9)), asked, "asked once, by the retry; the resume reused the link in memory")
@@ -511,14 +568,29 @@ class DesktopDownloadsTest {
         server.chunkDelayMillis.set(10)
         val dataDir = stateFile.parentFile
 
+        // A pass reads every file listed when it began. The engine renames its state file into place while it runs,
+        // so a listed file can be gone by the time it is read (BUG-53). That pass is then thrown away and the whole
+        // scan starts again. No file is skipped: the scan only passes once it has read every file it listed.
         fun scan(stage: String, state: String) {
             val written = stateFile.readBytes().toString(Charsets.ISO_8859_1)
             assertTrue("\"state\":\"$state\"" in written, "$stage: the file was written with $state")
-            val files = dataDir.listFiles()!!.filter { it.isFile } + root.walkTopDown().filter { it.isFile }
-            files.forEach { file ->
-                val text = file.readBytes().toString(Charsets.ISO_8859_1)
-                markers.forEach { marker -> assertFalse(marker in text, "$stage: $marker is in ${file.name}") }
+            repeat(SCAN_ATTEMPTS) {
+                val files = dataDir.listFiles()!!.filter { it.isFile } + root.walkTopDown().filter { it.isFile }
+                val texts = files.map { file ->
+                    try {
+                        file.name to file.readBytes().toString(Charsets.ISO_8859_1)
+                    } catch (_: java.io.FileNotFoundException) {
+                        null
+                    }
+                }
+                if (null !in texts) {
+                    texts.filterNotNull().forEach { (name, text) ->
+                        markers.forEach { marker -> assertFalse(marker in text, "$stage: $marker is in $name") }
+                    }
+                    return
+                }
             }
+            fail("$stage: files kept vanishing mid-scan in $SCAN_ATTEMPTS passes")
         }
 
         fun marked(id: Int, path: String) = film(
@@ -554,6 +626,44 @@ class DesktopDownloadsTest {
         val kept = stateFile.readText()
         assertTrue("episode-data-3" in kept, "a failed episode keeps the source to ask again")
         assertFalse("episode-data-2" in kept, "a finished one keeps none")
+    }
+
+    /** `KMP-71`: a title or episode name that is a link with a token never reaches the file, a folder or a file name. */
+    @Test
+    fun `a title or episode name that is an address names nothing and is not stored`() = runBlocking {
+        val secrets = listOf(DownloadPathsTest.SECRET_PATH, DownloadPathsTest.SECRET_TOKEN)
+        val body = server.add("named.bin", 64 * 1024)
+        val address = "cdn.host.to/v/${DownloadPathsTest.SECRET_PATH}?token=${DownloadPathsTest.SECRET_TOKEN}"
+        val request = DesktopDownloadRequest(
+            episodeId = 15, titleId = 1500, titleName = "https://cdn.example.invalid/${DownloadPathsTest.SECRET_PATH}",
+            kind = DownloadTitleKind.Series, season = 1, episode = 5, episodeName = address,
+            source = sourceOf(15), link = DesktopDownloadLink(server.url("named.bin")),
+        )
+        val host = host()
+        assertEquals(EnqueueResult.Queued, host.enqueue(request))
+        host.awaitDone(1500, 15)
+
+        assertEquals(File(File(root, "Download"), "S01E05.mp4"), host.fileOf(DownloadEpisodeId(15)))
+        assertContentEquals(body, host.fileOf(DownloadEpisodeId(15))!!.readBytes())
+        assertEquals("Download", host.awaitContents { true }.titles.single().name)
+        assertNull(host.awaitEpisode(1500, 15) { true }.name, "listed by its code")
+        fun scan(stage: String) {
+            val files = stateFile.parentFile.listFiles()!!.filter { it.isFile } + root.walkTopDown().filter { it.isFile }
+            files.forEach { file ->
+                val text = file.readBytes().toString(Charsets.ISO_8859_1)
+                secrets.forEach { assertFalse(it in text, "$stage: $it is in ${file.name}") }
+            }
+            root.walkTopDown().forEach { path ->
+                secrets.forEach { assertFalse(it in path.name, "$stage: $it names ${path.name}") }
+            }
+        }
+        scan("done")
+        host.close()
+        hosts.remove(host)
+
+        val again = host()
+        assertEquals("Download", again.awaitContents { it.titles.size == 1 }.titles.single().name)
+        scan("after a restart")
     }
 
     @Test
@@ -658,14 +768,17 @@ class DesktopDownloadsTest {
     @Test
     fun `a series page reports the same free bytes as the titles page`() = runBlocking {
         server.add("s1e1.bin", 64 * 1024)
-        val host = host()
+        // A fixed volume, so other processes writing to the real disk cannot move the figure between reads (BUG-53).
+        val volume = VolumeSpace(totalBytes = 1_000L * GIB, usableBytes = 400L * GIB)
+        val host = host(volumeSpace = { volume })
         host.enqueue(episode(21, 70, 1, 1, server.url("s1e1.bin")))
         host.awaitDone(70, 21)
 
         val storage = assertNotNull(host.source().contents.first().storage)
         val series = host.series(DownloadTitleId(70)).contents.first()
+        assertEquals(1_000L * GIB, storage.totalBytes)
         assertEquals(storage.totalBytes - storage.usedBytes, series.freeBytes)
-        assertTrue((series.freeBytes ?: 0L) > 0L, "a real volume has room left")
+        assertEquals(400L * GIB, series.freeBytes, "both pages read the injected volume")
     }
 
     @Test
@@ -792,5 +905,7 @@ class DesktopDownloadsTest {
 
     companion object {
         private const val TIMEOUT = 30_000L
+        private const val SCAN_ATTEMPTS = 20
+        private const val GIB = 1024L * 1024 * 1024
     }
 }

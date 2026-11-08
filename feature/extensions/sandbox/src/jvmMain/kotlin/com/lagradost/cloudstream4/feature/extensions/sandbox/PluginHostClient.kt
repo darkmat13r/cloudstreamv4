@@ -299,10 +299,13 @@ class PluginHostClient internal constructor(
         }
 
     suspend fun load(api: String, url: String): RemoteDetails =
-        call(HostProtocol.OP_LOAD, { it.readDetails().cleaned() }) {
+        call(HostProtocol.OP_LOAD, { it.readDetails(::factDropped).cleaned(::factDropped) }) {
             writeText(api)
             writeText(url)
         }
+
+    /** Which fact and why, in this code's own words: the value is the plugin's, and can carry an address or a token. */
+    private fun factDropped(what: String) = System.err.println("$label: a title's $what was left out")
 
     /** Everything [linksAsTheyArrive] got, once it is over. */
     suspend fun loadLinks(api: String, data: String): RemoteLinks = linksAsTheyArrive(api, data).last()
@@ -593,7 +596,7 @@ private fun RemoteSearchPage.cleaned() = copy(
     },
 )
 
-private fun RemoteDetails.cleaned() = copy(
+internal fun RemoteDetails.cleaned(dropped: (String) -> Unit = {}) = copy(
     name = name.sanitized(),
     url = url.sanitized(),
     type = type.sanitized(MAX_PROVIDER_FIELD_CHARS),
@@ -601,7 +604,35 @@ private fun RemoteDetails.cleaned() = copy(
     posterUrl = posterUrl.httpUrlOrNull(),
     dataUrl = dataUrl?.sanitized(),
     episodes = episodes.take(MAX_ITEMS).map { it.copy(name = it.name?.sanitized(), data = it.data.sanitized()) },
+    facts = facts.cleaned(dropped),
 )
+
+/**
+ * The facts the page may show, each checked for what it means once the reader has checked its shape (`KMP-76`).
+ *
+ * A fact that fails is left out and the others kept. Words lose controls and format characters, as a subtitle's label
+ * does, because they are drawn beside the title: U+202E would reverse the line they sit on. A certification is refused
+ * rather than repaired, because one that needs repair is not one.
+ */
+internal fun RemoteFacts.cleaned(dropped: (String) -> Unit = {}): RemoteFacts {
+    val score = scoreTenths?.takeIf { it in 0..HostProtocol.MAX_SCORE_TENTHS }
+    if (scoreTenths != null && score == null) dropped("score: out of range")
+    val words = tags.map { tag -> tag.filterNot(::isInvisibleInLabel).trim() }
+    val kept = words.filter { it.isNotEmpty() && it.length <= HostProtocol.MAX_TAG_CHARS }
+        .distinct()
+        .take(HostProtocol.MAX_TAGS)
+    if (kept.size < tags.size) dropped("tags: ${tags.size - kept.size} blank, too long, repeated or past the count")
+    val rating = contentRating?.trim()?.takeIf { it.isCertification() }
+    if (contentRating != null && rating == null) dropped("contentRating: not a certification")
+    val runtime = runtimeMinutes?.takeIf { it in 1..HostProtocol.MAX_RUNTIME_MINUTES }
+    if (runtimeMinutes != null && runtime == null) dropped("runtime: out of range")
+    return RemoteFacts(score, kept, rating, status, runtime)
+}
+
+private fun String.isCertification() =
+    length in 1..HostProtocol.MAX_CONTENT_RATING_CHARS && all { it.isLetterOrDigit() || it in CERTIFICATION_MARKS }
+
+private const val CERTIFICATION_MARKS = " -+/"
 
 /**
  * What one links call has received, and what keeps it from being a flood.

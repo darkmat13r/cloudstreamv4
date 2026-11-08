@@ -33,6 +33,7 @@ import androidx.compose.foundation.lazy.LazyListScope
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.produceState
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -54,6 +55,7 @@ import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.primitive.insetOutline
 import com.lagradost.cloudstream4.core.designsystem.state.FailureBanner
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
@@ -62,6 +64,7 @@ import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
 import com.lagradost.cloudstream4.core.strings.UiString
+import com.lagradost.cloudstream4.core.strings.elapsedAge
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.continue_watching
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_joined
@@ -75,6 +78,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.home_more_inf
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_none_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_none_headline
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_random
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_reload_failed
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_source
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_source_none_line
 import com.lagradost.cloudstream4.core.strings.generated.resources.home_source_picker_body
@@ -109,8 +113,12 @@ import com.lagradost.cloudstream4.feature.home.HomeSourceOption
 import com.lagradost.cloudstream4.feature.home.HomeState
 import com.lagradost.cloudstream4.feature.home.HomeStatus
 import com.lagradost.cloudstream4.feature.home.HomeWatchStatus
+import com.lagradost.cloudstream4.feature.home.keptRows
 import com.lagradost.cloudstream4.feature.home.rows
+import com.lagradost.cloudstream4.feature.home.shown
 import com.lagradost.cloudstream4.feature.home.toUiState
+import kotlin.time.Clock
+import kotlinx.coroutines.delay
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
 
@@ -130,6 +138,7 @@ import org.jetbrains.compose.resources.stringResource
  * @param artwork draws a title's poster. Image loading is the host's.
  * @param picture draws the art at an address: a Continue watching poster or the hero's backdrop. Image loading is the
  *   host's, and an address it will not load draws nothing.
+ * @param now the time in epoch milliseconds, for how old H4's kept rows are. A test passes its own.
  */
 @Composable
 fun HomeScreenDesktop(
@@ -138,14 +147,16 @@ fun HomeScreenDesktop(
     modifier: Modifier = Modifier,
     artwork: @Composable (HomeItem) -> Unit = {},
     picture: @Composable (url: String?) -> Unit = {},
+    now: () -> Long = { Clock.System.now().toEpochMilliseconds() },
 ) {
     val status = state.status.toUiState(state.selectedOption?.name, onAction)
     val local = state.hero is HomeHero.Shown || state.history.resume.isNotEmpty() || state.bookmarks.all.isNotEmpty()
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
             Toolbar(state, onAction)
-            if (local) {
-                Page(state, status, onAction, artwork, picture)
+            // H4: a failed reload keeps the rows, so it is the page with them, whatever the device keeps above.
+            if (local || state.status is HomeStatus.Stale) {
+                Page(state, status, onAction, artwork, picture, now)
                 return@Column
             }
             status.failureNotice?.let { notice ->
@@ -187,10 +198,10 @@ private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit) {
         )
         DesktopButton(label = name, onClick = { onAction(HomeAction.PickerOpened) })
         // H4: offline costs no height. It sits beside the source, which is what it is about.
-        if (state.status is HomeStatus.Offline) OfflinePill()
+        if (state.status.shown is HomeStatus.Offline) OfflinePill()
         Spacer(Modifier.weight(1f))
-        // 3j: named in the bar. Each has something to act on only while the source's rows are on screen.
-        if (state.status.rows.isNotEmpty() && !state.unsourced) {
+        // 3j: named in the bar. Each has something to act on only while the source's rows are on screen, kept ones included (H4).
+        if (state.status.keptRows.isNotEmpty() && !state.unsourced) {
             DesktopIconButton(
                 icon = CloudStreamIcons.Retry,
                 contentDescription = stringResource(Res.string.reload_provider),
@@ -251,7 +262,9 @@ private fun Page(
     onAction: (HomeAction) -> Unit,
     artwork: @Composable (HomeItem) -> Unit,
     picture: @Composable (String?) -> Unit,
+    now: () -> Long,
 ) {
+    val stale = state.status as? HomeStatus.Stale
     BoxWithConstraints(Modifier.fillMaxSize()) {
         val width = maxWidth - DesktopDimens.WindowMargin * 2
         LazyColumn(
@@ -263,6 +276,11 @@ private fun Page(
             ),
             verticalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
         ) {
+            stale?.let {
+                item(key = "stale") {
+                    StaleBanner(state.selectedOption?.name.orEmpty(), it.loadedAt, now) { onAction(HomeAction.ReloadRequested) }
+                }
+            }
             (state.hero as? HomeHero.Shown)?.let { hero ->
                 item(key = "hero") { HeroCard(hero.featured, width, onAction, picture) }
             }
@@ -276,6 +294,12 @@ private fun Page(
                 bookmarkLines(state.bookmarks, width, onAction, artwork)
             }
             status.failureNotice?.let { notice -> item(key = "notice") { FailureBanner(notice = notice) } }
+            if (stale != null) {
+                // Under the banner alone, the first row takes the first row's gap, as the board draws it.
+                val alone = state.hero !is HomeHero.Shown && state.history.resume.isEmpty() && state.bookmarks.all.isEmpty()
+                rowItems(stale.kept, width, onAction, artwork, first = alone, kept = true)
+                return@LazyColumn
+            }
             when (status) {
                 is UiState.Content -> rowItems(status.value, width, onAction, artwork, first = false)
                 is UiState.Partial -> rowItems(status.value, width, onAction, artwork, first = false)
@@ -296,6 +320,41 @@ private fun HomeState.topGap(section: String): Dp {
         else -> hero is HomeHero.Shown || history.resume.isNotEmpty()
     }
     return if (above) DesktopDimens.SectionGap else 0.dp
+}
+
+/**
+ * H4: a reload failed and the rows from before stay, under this line saying so and how old they are. The age counts on
+ * while the window is open, a minute at a time, as the line counts in minutes.
+ */
+@Composable
+private fun StaleBanner(source: String, loadedAt: Long, now: () -> Long, onReload: () -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val shape = CloudStreamTheme.shapes.medium
+    val at by produceState(now(), loadedAt) {
+        while (true) {
+            delay(HomeScreenDesktopDefaults.AGE_TICK_MILLIS)
+            value = now()
+        }
+    }
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RowPadding),
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(colors.raised, shape)
+            .insetOutline(colors.line, shape)
+            .padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
+    ) {
+        CloudStreamIcon(CloudStreamIcons.Warning, null, size = CloudStreamIconSize.Small, tint = colors.ink)
+        BasicText(
+            text = stringResource(Res.string.home_reload_failed, source, elapsedAge(at - loadedAt).resolve()),
+            style = CloudStreamTheme.typography.body.copy(color = colors.ink),
+            maxLines = 2,
+            overflow = TextOverflow.Ellipsis,
+            modifier = Modifier.weight(1f),
+        )
+        DesktopButton(label = stringResource(Res.string.search_state_retry), onClick = onReload, icon = CloudStreamIcons.Retry)
+    }
 }
 
 /** A state where the source's rows would be, under what the device keeps (H5, 3g, 3m). */
@@ -339,6 +398,7 @@ private fun LazyListScope.rowItems(
     onAction: (HomeAction) -> Unit,
     artwork: @Composable (HomeItem) -> Unit,
     first: Boolean,
+    kept: Boolean = false,
 ) {
             rows.forEachIndexed { index, row ->
                 val columns = HomeScreenDesktopDefaults.columns(width, row.landscape)
@@ -348,7 +408,8 @@ private fun LazyListScope.rowItems(
                         row = row,
                         hasHidden = shown.size < row.items.size,
                         topGap = if (index == 0 && first) 0.dp else DesktopDimens.SectionGap,
-                        onMore = { onAction(HomeAction.RowMoreRequested(row.key, columns)) },
+                        // H4: a kept row's pages went with the reload, so it has no Load more; Try again is the way on.
+                        onMore = if (kept) null else { { onAction(HomeAction.RowMoreRequested(row.key, columns)) } },
                         modifier = Modifier.animateItem(
                             fadeInSpec = null,
                             placementSpec = DesktopMotion.spec(),
@@ -379,7 +440,7 @@ private fun RowHeader(
     row: HomeRow,
     hasHidden: Boolean,
     topGap: Dp,
-    onMore: () -> Unit,
+    onMore: (() -> Unit)?,
     modifier: Modifier = Modifier,
 ) {
     val colors = CloudStreamTheme.colors
@@ -397,6 +458,7 @@ private fun RowHeader(
             overflow = TextOverflow.Ellipsis,
             modifier = Modifier.weight(1f),
         )
+        if (onMore == null) return@Row
         when (val more = row.more) {
             HomeMore.Loading -> BasicText(
                 text = stringResource(Res.string.loading),
@@ -861,6 +923,8 @@ object HomeScreenDesktopDefaults {
     /** A failed page's reason stops here, so a long one cannot take the row's title with it. */
     val RowFailureMaxWidth: Dp = 400.dp
     const val ScrimAlpha = 0.6f
+    /** How often H4's age is read again: it counts in minutes. */
+    const val AGE_TICK_MILLIS = 60_000L
     /** H4's offline pill. Mirrors `dimens.ChipVisualHeight`. */
     val PillHeight: Dp = 24.dp
     /** A bookmark status chip, 3f at desktop size. */

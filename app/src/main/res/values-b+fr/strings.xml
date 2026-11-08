@@ -14,28 +14,76 @@
 <plurals name="home_source_sections"><item quantity="one">"%d section"</item><item quantity="many">"%d sections"</item><item quantity="other">"%d sections"</item></plurals>
 <plurals name="library_title_count"><item quantity="one">"%d titre"</item><item quantity="many">"%d titres"</item><item quantity="other">"%d titres"</item></plurals>
 <plurals name="links_hidden"><item quantity="one">"%d lien caché"</item><item quantity="many">"%d liens cachés"</item><item quantity="other">"%d liens cachés"</item></plurals>
+<plurals name="player_seek_seconds"><item quantity="one">"%d seconde"</item><item quantity="many">"%d secondes"</item><item quantity="other">"%d secondes"</item></plurals>
+<plurals name="player_source_count"><item quantity="one">"%d source"</item><item quantity="many">"%d sources"</item><item quantity="other">"%d sources"</item></plurals>
+<plurals name="player_up_next_in"><item quantity="one">"Épisode suivant dans %d s"</item><item quantity="many">"Épisode suivant dans %d s"</item><item quantity="other">"Épisode suivant dans %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Rechercher dans %d source"</item><item quantity="many">"Rechercher dans les %d sources"</item><item quantity="other">"Rechercher dans les %d sources"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans %d source."</item><item quantity="many">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources."</item><item quantity="other">"Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d SOURCE"</item><item quantity="many">"%d SOURCES"</item><item quantity="other">"%d SOURCES"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d avertissement d’analyse"</item><item quantity="many">"%d avertissements d’analyse"</item><item quantity="other">"%d avertissements d’analyse"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"Toutes les extensions (%d)"</item><item quantity="many">"Toutes les extensions (%d)"</item><item quantity="other">"Toutes les extensions (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d extension · mis à jour %2$s"</item><item quantity="many">"%1$d extensions · mis à jour %2$s"</item><item quantity="other">"%1$d extensions · mis à jour %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d profil et son PIN"</item><item quantity="many">"%d profils et leurs PIN"</item><item quantity="other">"%d profils et leurs PIN"</item></plurals>
 <string name="account">"compte"</string>
 <string name="account_add_profile">"Ajouter un profil"</string>
+<string name="account_browser_body" formatted="true">"Votre navigateur a ouvert %s. Connectez-vous sur cette page et autorisez CloudStream. Cette fenêtre continuera automatiquement."</string>
+<string name="account_browser_body_phone" formatted="true">"Terminez la connexion sur la page %s. Cet écran continuera automatiquement."</string>
+<string name="account_browser_open_again">"Rouvrir"</string>
+<string name="account_browser_title" formatted="true">"Se connecter à %s"</string>
+<string name="account_browser_waiting">"En attente de votre navigateur…"</string>
+<string name="account_code_expired">"Ce code a expiré. Obtenez-en un nouveau pour réessayer."</string>
+<string name="account_code_expires" formatted="true">"Expire dans %s"</string>
+<string name="account_code_instructions" formatted="true">"Accédez à %s dans n'importe quel navigateur et saisissez le code."</string>
+<string name="account_code_open" formatted="true">"Ouvrir %s"</string>
+<string name="account_delete_body" formatted="true">"L'historique de visionnage, les favoris et les connexions de synchronisation de %s sont supprimés de cet appareil."</string>
+<string name="account_delete_profile">"Supprimer le profil"</string>
+<string name="account_delete_title" formatted="true">"Supprimer %s ?"</string>
+<string name="account_edit_profile">"Modifier le profil"</string>
+<string name="account_email">"E-mail"</string>
+<string name="account_image_address">"Utiliser une adresse d'image"</string>
+<string name="account_manage_note">"Choisissez un profil pour le modifier"</string>
 <string name="account_manage_profiles">"Gérer les profils"</string>
 <string name="account_pair_code">"Votre code"</string>
 <string name="account_pair_instructions">"Ouvrez ceci sur votre téléphone et saisissez le code ci-dessous."</string>
 <string name="account_pair_new_code">"Obtenir un nouveau code"</string>
 <string name="account_pair_title" formatted="true">"Associer %s"</string>
+<string name="account_password">"Mot de passe"</string>
+<string name="account_password_mismatch">"Cet e-mail et ce mot de passe ne correspondent pas. Vérifiez-les et réessayez."</string>
+<string name="account_password_note" formatted="true">"%s ne propose pas de connexion par navigateur, le mot de passe se saisit donc ici. Il reste uniquement sur cet appareil et n'est jamais sauvegardé."</string>
+<string name="account_picture">"Image"</string>
+<string name="account_pin_change">"Modifier le PIN"</string>
+<string name="account_pin_confirm">"Saisissez-le à nouveau pour confirmer."</string>
+<string name="account_pin_current">"Saisissez le PIN actuel."</string>
+<string name="account_pin_first_profile">"Le premier profil ne peut pas être verrouillé"</string>
+<string name="account_pin_new">"Saisissez un PIN à 4 chiffres."</string>
+<string name="account_pin_off">"Désactivé · tout le monde peut ouvrir ce profil"</string>
+<string name="account_pin_on">"Activé · demandé à l'ouverture"</string>
+<string name="account_pin_prompt">"Saisissez le PIN à 4 chiffres."</string>
+<string name="account_pin_remove">"Supprimer le PIN"</string>
+<string name="account_pin_set">"Définir le PIN"</string>
+<string name="account_pin_set_title">"Définir un PIN"</string>
 <string name="account_profile_current">"Actuel"</string>
 <string name="account_profile_locked">"Verrouillé · PIN"</string>
 <string name="account_profile_no_sync">"Pas de synchronisation"</string>
 <string name="account_select_note">"Historique de visionnage séparé · pas des connexions"</string>
 <string name="account_select_title">"Qui regarde ?"</string>
+<string name="account_signin_failed_body" formatted="true">"%s n'a pas confirmé la connexion. Rien n'a été enregistré."</string>
+<string name="account_signin_failed_title" formatted="true">"Impossible de se connecter à %s"</string>
+<string name="account_signin_offline_body" formatted="true">"La connexion à %s nécessite un accès réseau. Réessayez lorsque cet appareil sera de nouveau en ligne."</string>
 <string name="account_sync_connected">"Connecté · sur cet appareil"</string>
 <string name="account_sync_needs_browser">"La connexion nécessite un navigateur web. Cet appareil n'en a pas."</string>
 <string name="account_sync_note">"Facultatif. Synchronise votre progression avec un compte que vous avez déjà."</string>
 <string name="account_sync_pair">"Associer avec un code"</string>
 <string name="account_sync_remove">"Retirer de cet appareil"</string>
+<string name="account_sync_remove_body" formatted="true">"La connexion %2$s de %1$s est supprimée de cet appareil. Votre compte %2$s et ses listes restent inchangés."</string>
+<string name="account_sync_remove_title" formatted="true">"Retirer %s de cet appareil ?"</string>
 <string name="account_sync_title">"Services de synchronisation"</string>
 <string name="account_sync_unavailable">"Indisponible ici"</string>
+<string name="account_touch_id_hint">"Touchez le capteur pour ouvrir ce profil."</string>
+<string name="account_touch_id_reason" formatted="true">"ouvrir le profil %s"</string>
+<string name="account_touch_id_title" formatted="true">"Utiliser Touch ID pour ouvrir %s"</string>
+<string name="account_undo_warning">"Cette action est irréversible."</string>
+<string name="account_use_pin">"Utiliser plutôt le PIN"</string>
 <string name="action_add_to_bookmarks">"Définir le statut de visionage"</string>
 <string name="action_add_to_favorites">"Ajouter aux favoris"</string>
 <string name="action_default">"Défault"</string>
@@ -518,6 +566,7 @@
 <string name="play_torrent_button">"Streamer le Torrent"</string>
 <string name="play_trailer_button">"Lire la bande-annonce"</string>
 <string name="play_with_app_name">"Lire avec CloudStream"</string>
+<string name="player_audio_stereo">"stéréo"</string>
 <string name="player_enter_fullscreen">"Activer le mode plein écran"</string>
 <string name="player_exit_fullscreen">"Quitter le mode plein écran"</string>
 <string name="player_fit_original">"Proportions originales"</string>
@@ -537,6 +586,7 @@
 <string name="player_load_subtitles">"Charger depuis le fichier"</string>
 <string name="player_load_subtitles_online">"Charger depuis internet"</string>
 <string name="player_loaded_subtitles" formatted="true">"%s chargé"</string>
+<string name="player_menu_playback">"Lecture"</string>
 <string name="player_mute">"Couper le son"</string>
 <string name="player_notification_channel_description">"La notification du lecteur pour contrôler la lecture en arrière-plan"</string>
 <string name="player_notification_channel_name">"Notifications du lecteur"</string>
@@ -550,21 +600,27 @@
 <string name="player_panel_retry_all">"Réessayer toutes les sources"</string>
 <string name="player_panel_style">"Style des sous-titres"</string>
 <string name="player_panel_use">"Utiliser"</string>
+<string name="player_play_now">"Lire maintenant"</string>
 <string name="player_pref">"Lecteur vidéo préféré"</string>
 <string name="player_settings_always_ask">"Demandez toujours"</string>
 <string name="player_settings_play_in_app">"Lecteur interne"</string>
 <string name="player_settings_select_cast_device">"Sélectionnez un appareil de diffusion"</string>
 <string name="player_size_settings">"Bouton de redimensionnement du lecteur"</string>
 <string name="player_size_settings_des">"Supprimer les bordures noires"</string>
+<string name="player_source_decoded" formatted="true">"%s décodé"</string>
 <string name="player_source_playing">"En lecture"</string>
 <string name="player_source_resumes_at" formatted="true">"Changer conserve votre position : reprise à %1$s"</string>
 <string name="player_source_retry">"Réessayer"</string>
 <string name="player_source_switch">"Changer"</string>
+<string name="player_sources_all_failed">"Chaque source a répondu par une erreur."</string>
+<string name="player_sources_all_failed_detail">"Choisissez une source ci-dessous pour réessayer."</string>
 <string name="player_speed">"Vitesse de lecture"</string>
 <string name="player_speed_text_format" formatted="true">"Vitesse (%.2fx)"</string>
 <string name="player_subtitles_settings">"Sous-titres"</string>
 <string name="player_subtitles_settings_des">"Paramètres des sous-titres du lecteur"</string>
 <string name="player_unmute">"Réactiver le son"</string>
+<string name="player_volume_down">"Baisser le volume"</string>
+<string name="player_volume_up">"Augmenter le volume"</string>
 <string name="plugin">"plugins"</string>
 <string name="plugin_deleted">"Plugin Supprimé"</string>
 <string name="plugin_downloaded">"Plugin Téléchargé"</string>
@@ -721,7 +777,130 @@
 <string name="select_an_account">"Sélectionnez un compte"</string>
 <string name="select_library">"Sélectionnez la bibliothèque"</string>
 <string name="set_default">"Définir par défaut"</string>
+<string name="settings_adult_content">"Contenu pour adultes"</string>
+<string name="settings_adult_content_body">"Uniquement si une extension le prend en charge. Après un redémarrage."</string>
+<string name="settings_anime_audio">"Audio des animes"</string>
+<string name="settings_anime_audio_both">"Doublé et sous-titré"</string>
+<string name="settings_at_launch">"Au lancement"</string>
+<string name="settings_back_up">"Sauvegarder"</string>
+<string name="settings_back_up_now">"Sauvegarder maintenant"</string>
+<string name="settings_backup_automatically">"Automatiquement"</string>
+<string name="settings_backup_folder">"Dossier de sauvegarde"</string>
+<string name="settings_change">"Modifier"</string>
+<string name="settings_choose">"Choisir"</string>
+<string name="settings_choose_another">"Choisir un autre"</string>
+<string name="settings_clear">"Effacer"</string>
+<string name="settings_clear_cache">"Vider le cache"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Vidéo %1$s · images %2$s"</string>
+<string name="settings_color_white">"Blanc"</string>
+<string name="settings_color_yellow">"Jaune"</string>
+<string name="settings_connections_per_download">"Connexions par téléchargement"</string>
+<string name="settings_connections_per_download_body">"Davantage peut être plus rapide, si la source le permet."</string>
+<string name="settings_diagnostics">"Diagnostic"</string>
+<string name="settings_disk_cache">"Cache disque"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Pour les extensions, les illustrations et les sous-titres. Les flux vidéo utilisent le DNS de votre Mac."</string>
+<string name="settings_download_folder">"Dossier de téléchargement"</string>
+<string name="settings_downloads_at_once">"Téléchargements simultanés"</string>
+<string name="settings_downloads_at_once_body">"Nombre de titres téléchargés en même temps."</string>
+<string name="settings_downloads_wait">"Les nouveaux téléchargements attendent le retour du dossier ou le choix d’un autre."</string>
+<string name="settings_extension_languages">"Langues"</string>
+<string name="settings_extension_review">"Examiner"</string>
+<string name="settings_extensions_auto_install">"Installer les nouvelles depuis mes dépôts"</string>
+<string name="settings_extensions_auto_install_body">"Chacune est quand même analysée avant de s’exécuter."</string>
+<string name="settings_extensions_auto_update">"Mettre à jour les extensions automatiquement"</string>
+<string name="settings_extensions_auto_update_body">"Chaque mise à jour est analysée avant de s’exécuter."</string>
+<string name="settings_extensions_installed" formatted="true">"Installées · %d"</string>
+<string name="settings_filler_episodes">"Épisodes de remplissage"</string>
+<string name="settings_filler_episodes_body">"Pour les animes, si la source les signale."</string>
+<string name="settings_folder">"Dossier"</string>
+<string name="settings_folder_missing" formatted="true">"%s est introuvable. Son disque n’est peut-être pas connecté."</string>
+<string name="settings_help_community">"Aide et communauté"</string>
+<string name="settings_help_community_body">"GitHub, Discord et le wiki sont dans le menu Aide."</string>
+<string name="settings_hide_search_quality">"Masquer la qualité dans les résultats de recherche"</string>
+<string name="settings_home_search">"Accueil et recherche"</string>
 <string name="settings_info">"Info"</string>
+<string name="settings_last_backup" formatted="true">"Dernière sauvegarde : %s"</string>
+<string name="settings_logs">"Journaux"</string>
+<string name="settings_logs_mac_body">"Conservés 7 jours sur ce Mac. Jamais envoyés."</string>
+<string name="settings_logs_phone_body">"Conservés 7 jours sur ce téléphone. Jamais envoyés."</string>
+<string name="settings_network_buffer">"Tampon réseau"</string>
+<string name="settings_offline_repos" formatted="true">"Impossible de vérifier les dépôts. Ces listes datent de %s."</string>
+<string name="settings_pane_accounts_privacy">"Comptes et confidentialité"</string>
+<string name="settings_pane_advanced">"Avancé"</string>
+<string name="settings_pane_appearance">"Apparence"</string>
+<string name="settings_pane_network">"Réseau"</string>
+<string name="settings_pane_playback">"Lecture"</string>
+<string name="settings_play_next">"Lire l’épisode suivant"</string>
+<string name="settings_play_next_body">"Compte à rebours de 10 s à la fin d’un épisode."</string>
+<string name="settings_playing">"En lecture"</string>
+<string name="settings_poster_badges">"Badges sur les affiches"</string>
+<string name="settings_posters">"Affiches"</string>
+<string name="settings_profile_no_pin">"Aucun PIN"</string>
+<string name="settings_profile_this">"Ce profil"</string>
+<string name="settings_random_button_body">"Dans Accueil et Bibliothèque."</string>
+<string name="settings_read">"Lire"</string>
+<string name="settings_remove">"Retirer"</string>
+<string name="settings_repo_unreachable" formatted="true">"Injoignable. Cette liste date d’il y a %s."</string>
+<string name="settings_repositories">"Dépôts"</string>
+<string name="settings_reset_app">"Réinitialiser CloudStream"</string>
+<string name="settings_reset_app_body">"Efface les paramètres, les profils et la bibliothèque de ce Mac."</string>
+<string name="settings_reset_app_phone_body">"Efface les paramètres, les profils et la bibliothèque."</string>
+<string name="settings_reset_confirm_title">"Réinitialiser CloudStream ?"</string>
+<string name="settings_reset_erases_mac">"Ceci efface de ce Mac :"</string>
+<string name="settings_reset_erases_phone">"Ceci efface de ce téléphone :"</string>
+<string name="settings_reset_item_library">"Bibliothèque, progression et historique"</string>
+<string name="settings_reset_item_search">"Historique de recherche"</string>
+<string name="settings_reset_item_settings">"Paramètres"</string>
+<string name="settings_reset_item_signins">"Connexions aux services de synchronisation et de sous-titres"</string>
+<string name="settings_reset_kept">"Conservés : extensions, fichiers téléchargés et sauvegardes."</string>
+<string name="settings_restore">"Restaurer"</string>
+<string name="settings_restore_failed">"Restauration impossible"</string>
+<string name="settings_restore_failed_body">"Ce fichier n’est pas une sauvegarde CloudStream. Rien n’a été modifié."</string>
+<string name="settings_restoring" formatted="true">"Restauration de %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d sur %3$d"</string>
+<string name="settings_run_test">"Lancer le test"</string>
+<string name="settings_search_hint">"Rechercher dans les paramètres"</string>
+<string name="settings_search_no_results" formatted="true">"Aucun résultat pour « %s »"</string>
+<string name="settings_search_no_results_body">"Essayez un autre mot."</string>
+<string name="settings_seek_amount">"Durée du saut"</string>
+<string name="settings_setup_again">"Relancer la configuration"</string>
+<string name="settings_setup_again_body">"Langue, extensions et disposition, depuis le début."</string>
+<string name="settings_setup_run">"Lancer la configuration"</string>
+<string name="settings_sign_in">"Se connecter"</string>
+<string name="settings_skip_intro">"Proposer Passer l’intro"</string>
+<string name="settings_skip_intro_body">"Si une source signale le générique de début ou de fin."</string>
+<string name="settings_skip_profile_choice">"Passer le choix du profil"</string>
+<string name="settings_skip_profile_choice_body">"Ouvre le dernier profil utilisé."</string>
+<string name="settings_source_order">"Ordre des sources"</string>
+<string name="settings_source_order_body">"Les sources que le lecteur essaie en premier."</string>
+<string name="settings_speed">"Vitesse"</string>
+<string name="settings_subtitle_background">"Arrière-plan"</string>
+<string name="settings_subtitle_edge">"Bordure"</string>
+<string name="settings_subtitle_font_system">"Système"</string>
+<string name="settings_subtitle_language">"Langue préférée"</string>
+<string name="settings_subtitle_language_body">"Choisie automatiquement quand un titre la propose."</string>
+<string name="settings_subtitle_preview">"Aperçu"</string>
+<string name="settings_subtitle_services">"Services de sous-titres"</string>
+<string name="settings_subtitle_size">"Taille"</string>
+<string name="settings_subtitle_size_large">"Grande"</string>
+<string name="settings_subtitle_size_medium">"Moyenne"</string>
+<string name="settings_subtitle_size_small">"Petite"</string>
+<string name="settings_subtitle_text_color">"Couleur du texte"</string>
+<string name="settings_suggestions_while_typing">"Suggestions pendant la saisie"</string>
+<string name="settings_sync_for" formatted="true">"Synchronisation pour %s"</string>
+<string name="settings_sync_per_profile">"Chaque profil se connecte séparément."</string>
+<string name="settings_test_all_extensions">"Tester toutes les extensions"</string>
+<string name="settings_test_all_extensions_body">"Recherche avec chaque extension activée. Pour les développeurs."</string>
+<string name="settings_title_pages">"Pages des titres"</string>
+<string name="settings_title_under_poster">"Titre sous l’affiche"</string>
+<string name="settings_trailers">"Bandes-annonces"</string>
+<string name="settings_updates">"Mises à jour"</string>
+<string name="settings_updates_at_launch">"Rechercher les mises à jour au lancement"</string>
+<string name="settings_updates_at_launch_body">"Cherche une nouvelle version à l’ouverture de CloudStream."</string>
+<string name="settings_updates_check_now">"Vérifier maintenant"</string>
+<string name="settings_updates_current" formatted="true">"À jour · vérifié %s"</string>
+<string name="settings_watch_progress_body">"Enregistre où vous vous êtes arrêté, pour Reprendre la lecture."</string>
 <string name="setup_done">"Finir"</string>
 <string name="setup_extensions_subtext">"Télécharger la liste de sites que vous voulez utiliser"</string>
 <string name="show">"Afficher"</string>

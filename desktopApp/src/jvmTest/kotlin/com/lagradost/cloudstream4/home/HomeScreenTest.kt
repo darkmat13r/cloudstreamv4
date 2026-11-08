@@ -19,6 +19,7 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.DesktopApp
+import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
 import com.lagradost.cloudstream4.EscapeHandler
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -95,8 +96,10 @@ class HomeScreenTest {
         settle()
     }
 
-    private fun screen(state: HomeState, onAction: (HomeAction) -> Unit = {}) =
-        scene { HomeScreenDesktop(state, onAction, artwork = { Box(Modifier.fillMaxSize().background(Color.DarkGray)) }) }
+    private fun screen(state: HomeState, onAction: (HomeAction) -> Unit = {}, width: Int = WIDTH, height: Int = HEIGHT) =
+        scene(width, height) {
+            HomeScreenDesktop(state, onAction, artwork = { Box(Modifier.fillMaxSize().background(Color.DarkGray)) }, now = { NOW })
+        }
 
     private fun ImageComposeScene.save(name: String) {
         val directory = System.getProperty("cloudstream.home.renders") ?: return
@@ -257,6 +260,57 @@ class HomeScreenTest {
         scene.close()
     }
 
+    /** H4 (`KMP-55` over `KMP-68`): what a failed reload kept is on screen, and everything on it acts on that. */
+    @Test
+    fun `a failed reload's rows stay, with Try again, Reload and Random acting on them and no Load more`() {
+        val actions = mutableListOf<HomeAction>()
+        val kept = listOf(row("Popular"), row("Clips", section = 1))
+        val scene = screen(state(HomeStatus.Stale(HomeStatus.Failed("IOException"), kept, NOW - 12 * MINUTE)), { actions += it })
+        scene.settle()
+        scene.save("27-stale-alone")
+        scene.click(Offset(TRY_AGAIN_X, BANNER_Y))
+        scene.click(Offset(RELOAD_X, TOOLBAR_Y))
+        scene.click(Offset(RANDOM_X, TOOLBAR_Y))
+        scene.click(Offset(CARD_X, STALE_CARD_Y))
+        // Where the row's Load more is with the same rows on screen: a kept row's pages went with the reload.
+        scene.click(Offset(WIDTH - LOAD_MORE_INSET, STALE_ROW_HEADER_Y))
+        assertEquals(
+            listOf(HomeAction.ReloadRequested, HomeAction.ReloadRequested, HomeAction.RandomRequested(), HomeAction.TitleActivated("Popular0")),
+            actions,
+        )
+        scene.close()
+    }
+
+    /** The control for the test above: the same rows, on screen, have their Load more where it clicks. */
+    @Test
+    fun `the same rows on screen have their Load more at that point`() {
+        val actions = mutableListOf<HomeAction>()
+        val rows = listOf(row("Popular"), row("Clips", section = 1))
+        val scene = screen(state(HomeStatus.Showing(rows)), { actions += it })
+        scene.settle()
+        scene.click(Offset(WIDTH - LOAD_MORE_INSET, ROW_HEADER_Y))
+        assertEquals(1, actions.filterIsInstance<HomeAction.RowMoreRequested>().size, "$actions")
+        scene.close()
+    }
+
+    /** H4's pill is about the connection: a reload that failed offline has it, one that failed otherwise does not. */
+    @Test
+    fun `the offline pill shows for a reload that failed offline, and not for one that failed otherwise`() {
+        fun pill(status: HomeStatus): Int {
+            val scene = screen(state(status))
+            scene.settle()
+            val bitmap = Bitmap.makeFromImage(scene.render(SETTLE_FRAMES * FRAME_NANOS))
+            scene.close()
+            return bitmap.getColor(PILL_X, PILL_FILL_Y)
+        }
+        val rows = listOf(row("Popular"))
+        val offline = pill(HomeStatus.Offline)
+        val nothing = pill(HomeStatus.Showing(rows))
+        assertTrue(offline != nothing, "the sample point is not on the pill")
+        assertEquals(offline, pill(HomeStatus.Stale(HomeStatus.Offline, rows, NOW)))
+        assertEquals(nothing, pill(HomeStatus.Stale(HomeStatus.Failed("IOException"), rows, NOW)))
+    }
+
     @Test
     fun `renders`() {
         val rows = listOf(
@@ -316,6 +370,21 @@ class HomeScreenTest {
             scene.save(name)
             scene.close()
         }
+
+        // H4: a reload that failed keeps the rows, 12 minutes old here. The hero goes with the reload, as the view model does.
+        val staleOffline = HomeStatus.Stale(HomeStatus.Offline, rows, NOW - 12 * MINUTE)
+        val staleFailed = HomeStatus.Stale(HomeStatus.Failed("IOException"), rows, NOW - (2 * 60 + 5) * MINUTE)
+        mapOf(
+            "24-stale-offline" to kept.copy(status = staleOffline, hero = HomeHero.None),
+            "25-stale-failed-nothing-kept-locally" to state(staleFailed),
+        ).forEach { (name, value) ->
+            val scene = screen(value)
+            scene.save(name)
+            scene.close()
+        }
+        val staleSmall = screen(kept.copy(status = staleOffline, hero = HomeHero.None), width = 800, height = 520)
+        staleSmall.save("26-stale-minimum-offline")
+        staleSmall.close()
     }
 
     /** A hero, two to resume and bookmarks in three statuses, Watching chosen. */
@@ -400,6 +469,58 @@ class HomeScreenTest {
     }
 
     /** The whole window: where it opens, opening a title, and Back and Escape from there. */
+    /**
+     * `KMP-77` (`DS-21` E1): a title's page keeps the sidebar, with the tab it came from chosen, and a row there or its
+     * key leaves the title for that tab, with nothing left under it.
+     */
+    @Test
+    fun `a title's page keeps the sidebar, and a row or its key leaves the title for that tab`() {
+        val escape = EscapeHandler()
+        val shortcuts = DesktopShortcuts()
+        var at = ""
+        val scene = scene { DesktopApp(escape, FakeHome(), library = InMemoryLibraryStore(), onScreen = { at = it }, shortcuts = shortcuts) }
+        fun waitForCards() = repeat(WAIT_ROUNDS) {
+            scene.settle()
+            Thread.sleep(WAIT_MILLIS)
+        }
+        // The opened title's id, read back from the screen's name, so its view model can be looked for.
+        fun openTitle(): String {
+            val card = Offset(CARD_X + SIDEBAR_WIDTH, CARD_Y)
+            scene.sendPointerEvent(PointerEventType.Move, card)
+            scene.sendPointerEvent(PointerEventType.Press, card)
+            scene.sendPointerEvent(PointerEventType.Release, card)
+            waitForCards()
+            assertTrue(at.startsWith("Detail"), at)
+            val id = checkNotNull(Regex("""Detail\(id=(.*), resume=""").find(at)).groupValues[1]
+            assertTrue(DesktopDetailViewModels.isLive(id), "the open title keeps its view model")
+            return id
+        }
+        waitForCards()
+        val first = openTitle()
+        scene.save("24-window-title-with-sidebar")
+        // Home, where the title was opened from, is the chosen row: its fill is not the unchosen Search row's.
+        val bitmap = Bitmap.makeFromImage(scene.render(SETTLE_FRAMES * FRAME_NANOS))
+        assertTrue(
+            bitmap.getColor(ROW_FILL_X, HOME_ITEM_Y.toInt() - ROW_FILL_ABOVE) != bitmap.getColor(ROW_FILL_X, SEARCH_ITEM_Y.toInt() - ROW_FILL_ABOVE),
+            "Home is chosen under the title",
+        )
+
+        scene.click(Offset(SIDEBAR_ITEM_X, SEARCH_ITEM_Y))
+        assertEquals("Search", at, "the sidebar's row leaves the title")
+        assertFalse(escape.handle(), "and nothing is left under Search")
+        assertFalse(DesktopDetailViewModels.isLive(first), "and the title's view model went with it")
+
+        scene.click(Offset(SIDEBAR_ITEM_X, HOME_ITEM_Y))
+        waitForCards()
+        val second = openTitle()
+        shortcuts.go(TopLevelDestination.Library)
+        scene.settle()
+        assertEquals("Library", at, "command 3 leaves a title too")
+        assertFalse(escape.handle(), "and nothing is left under Library")
+        assertFalse(DesktopDetailViewModels.isLive(second), "and the title's view model went with it")
+        scene.close()
+    }
+
     @Test
     fun `home and search are the top level, and a title returns to where it was opened from`() {
         val escape = EscapeHandler()
@@ -451,6 +572,21 @@ class HomeScreenTest {
     }
 
     private companion object {
+        /** H4's clock: any time will do, as long as the kept rows' age is read from it. */
+        const val NOW = 1_800_000_000_000L
+        const val MINUTE = 60_000L
+        /** H4, measured from `27-stale-alone`: the banner's Try again, the bar's Reload and Random, the first kept row. */
+        const val BANNER_Y = 94f
+        const val TRY_AGAIN_X = 1180f
+        const val RELOAD_X = 1194f
+        const val RANDOM_X = 1238f
+        const val STALE_ROW_HEADER_Y = 154f
+        const val STALE_CARD_Y = 260f
+        /** Inside a row's Load more, from the window's right edge. */
+        const val LOAD_MORE_INSET = 60f
+        /** Inside the offline pill's fill, clear of its glyph and words, from `24-stale-offline`. */
+        const val PILL_X = 280
+        const val PILL_FILL_Y = 25
         const val WIDTH = 1280
         const val HEIGHT = 800
         const val SETTLE_FRAMES = 30
@@ -478,5 +614,8 @@ class HomeScreenTest {
         const val SIDEBAR_ITEM_X = 100f
         const val HOME_ITEM_Y = 40f
         const val SEARCH_ITEM_Y = 76f
+        /** Inside a sidebar row's fill, left of its glyph, and above its label's line: from `24-window-title-with-sidebar`. */
+        const val ROW_FILL_X = 16
+        const val ROW_FILL_ABOVE = 12
     }
 }

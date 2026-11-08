@@ -49,13 +49,21 @@ import com.lagradost.cloudstream4.core.designsystem.rows.ListRow
 import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
 import com.lagradost.cloudstream4.core.designsystem.rows.RailHeader
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
+import com.lagradost.cloudstream4.core.designsystem.target.Chip
+import com.lagradost.cloudstream4.core.designsystem.target.ChipRow
 import com.lagradost.cloudstream4.core.designsystem.target.IconCell
+import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
 import com.lagradost.cloudstream4.core.strings.generated.resources.favorite
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_episodes_found
 import com.lagradost.cloudstream4.core.strings.generated.resources.pick_source
+import com.lagradost.cloudstream4.core.strings.generated.resources.season
+import com.lagradost.cloudstream4.core.strings.generated.resources.season_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.season_other
+import com.lagradost.cloudstream4.core.strings.generated.resources.season_specials
+import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamColors
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTypography
@@ -64,14 +72,19 @@ import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailFocus
 import com.lagradost.cloudstream4.feature.detail.DetailLoad
+import com.lagradost.cloudstream4.feature.detail.DetailSeasonGroup
 import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
+import com.lagradost.cloudstream4.feature.detail.SPECIALS_SEASON
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
+import com.lagradost.cloudstream4.feature.detail.chipsVisible
 import com.lagradost.cloudstream4.feature.detail.code
 import com.lagradost.cloudstream4.feature.detail.episodeSubtitle
 import com.lagradost.cloudstream4.feature.detail.metaRun
 import com.lagradost.cloudstream4.feature.detail.resumeCaption
+import com.lagradost.cloudstream4.feature.detail.seasonGroups
+import com.lagradost.cloudstream4.feature.detail.shownSeasonIndex
 import com.lagradost.cloudstream4.feature.detail.toLinksUiState
 import com.lagradost.cloudstream4.feature.detail.toPageUiState
 import com.lagradost.cloudstream4.feature.detail.typeLabel
@@ -221,7 +234,16 @@ private fun TitlePage(
     val scope = rememberCoroutineScope()
     val returnTo = state.returnTo
     val episodesIndex = episodesHeaderIndex(detail)
-    val selectedEpisode = selectedEpisodeIndex(detail)
+    // Board 7i's chips, and the one season the list is showing. Clamped here rather than in the
+    // ViewModel: a re-read after `Reappeared` can return a title with fewer seasons than the chip
+    // the viewer last chose, and only this side knows the groups.
+    val seasons = remember(detail.episodes) { detail.episodes.seasonGroups() }
+    val seasonChips = seasons.chipsVisible()
+    // The chip the viewer chose, else the season holding what the primary plays, else the first; clamped,
+    // and safe on a film's empty list. See `shownSeasonIndex`.
+    val shownSeason = seasons.shownSeasonIndex(state.selectedSeason, detail.primaryData)
+    val shownEpisodes = seasons.getOrNull(shownSeason)?.episodes ?: detail.episodes
+    val selectedEpisode = selectedEpisodeIndex(shownEpisodes, detail.primaryData)
     // Set once the jump has landed, and cleared when the first episode row has taken focus. Hoisted
     // here because the button that starts the jump is in item 0, which the jump itself disposes.
     var jumpedToEpisodes by remember { mutableStateOf(false) }
@@ -316,16 +338,30 @@ private fun TitlePage(
                         title = stringResource(Res.string.episodes),
                         // 7i writes "24 · HDREZKA": the count, then the provider, in the separator
                         // the related rail already uses. Count first is 7a-ii's order — the leading
-                        // element must not change when a provider name is missing.
-                        count = listOfNotNull(detail.episodes.size.toString(), detail.providerName)
+                        // element must not change when a provider name is missing. The count is the
+                        // **shown** season's, which is the pair `DetailCopy.namedSeason` describes:
+                        // a season beside a count from a different one contradicts itself.
+                        count = listOfNotNull(shownEpisodes.size.toString(), detail.providerName)
                             .joinToString(META_SEPARATOR),
                     )
+                    if (seasonChips) {
+                        Spacer(Modifier.height(CloudStreamDimens.LiftedRowClearance))
+                        ChipRow {
+                            seasons.forEachIndexed { index, group ->
+                                Chip(
+                                    label = seasonChipLabel(group),
+                                    selected = index == shownSeason,
+                                    onClick = { onAction(DetailAction.SeasonSelected(index)) },
+                                )
+                            }
+                        }
+                    }
                 }
             }
             // The index is in the key because provider data can repeat, and a duplicate key crashes.
-            items(detail.episodes.size, key = { index -> "$index:${detail.episodes[index].data}" }) { index ->
+            items(shownEpisodes.size, key = { index -> "$index:${shownEpisodes[index].data}" }) { index ->
                 EpisodeRow(
-                    episode = detail.episodes[index],
+                    episode = shownEpisodes[index],
                     index = index,
                     selected = index == selectedEpisode,
                     onAction = onAction,
@@ -715,8 +751,9 @@ private fun episodesHeaderIndex(detail: TitleDetail): Int =
 /**
  * Which episode row carries board 7i's pill: the one the primary button would act on.
  *
- * [TitleDetail.primaryData] is the resume target, else the title's own play data, else the first
- * episode, so the mark lands on the row Resume or Play Episode would play.
+ * [TitleDetail.primaryData] is the resume target, else the title's own play data, else the episode an unstarted
+ * show starts on (S1E1, `KMP-92`'s `firstEpisodeToPlay`), so the mark lands on the row Resume or Play Episode would
+ * play.
  *
  * **Board 7i does not agree, and this is deliberate.** 7i marks episode 1 while drawing `WATCHED` on
  * it and `24 MIN LEFT` on episode 2 — so the board's pill sits on a *finished* episode while the next
@@ -729,9 +766,28 @@ private fun episodesHeaderIndex(detail: TitleDetail): Int =
  * keys carry the index too, and two rows both marked selected would be worse than none. Returns
  * [NO_SELECTED_ROW] when nothing is playable, so no row is marked.
  */
-private fun selectedEpisodeIndex(detail: TitleDetail): Int {
-    val data = detail.primaryData ?: return NO_SELECTED_ROW
-    return detail.episodes.indexOfFirst { it.data == data }
+private fun selectedEpisodeIndex(episodes: List<DetailEpisode>, primaryData: String?): Int {
+    val data = primaryData ?: return NO_SELECTED_ROW
+    return episodes.indexOfFirst { it.data == data }
+}
+
+/**
+ * A season chip's words: `Season 3`, or the two the owner named for the groups that have no number
+ * of their own — **Specials** for season 0 and **Other** for episodes the provider gave no season.
+ *
+ * `Season 3` goes through `season_format` (`%1$s %2$d%3$s`) rather than being concatenated, because
+ * a language is free to put the number first and a concatenation cannot. That key is already used
+ * this way by `DownloadSeriesScreenDesktop` and `SeriesRows`, and the action row's own Season button
+ * now uses it too, so the three cannot drift apart. `I18N-12` added the other two keys.
+ */
+@Composable
+private fun seasonChipLabel(group: DetailSeasonGroup): String = when (group.season) {
+    null -> stringResource(Res.string.season_other)
+    SPECIALS_SEASON -> stringResource(Res.string.season_specials)
+    else -> UiString.Resource(
+        Res.string.season_format,
+        listOf(stringResource(Res.string.season), group.season, ""),
+    ).resolve()
 }
 
 /**
