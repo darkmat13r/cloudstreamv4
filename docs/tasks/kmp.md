@@ -6736,13 +6736,15 @@ Play start a special, and since `#244` the page also opened on the Specials chip
 
 **The owner's rule.** An unstarted show starts S1E1: the lowest season above 0, and its first episode. With no
 numbered season at all (only specials, or only unnumbered episodes, as some anime have), it is the provider's
-first episode.
+first episode that is not a special, and with only specials, the first of them.
 
-**Where.** `primaryData` is the one place TV, the Mac and the phone ask what Play plays. It now ends in
+**Where.** `primaryData` is the one place TV and the Mac ask what Play plays. It now ends in
 `firstEpisodeToPlay()` (`DetailSeasonGroups.kt`). "First" means the lowest episode number in that season, with
 unnumbered episodes after and list order between equals. A resume, then a film's `playData`, still come first.
-The chip follows on its own through `shownSeasonIndex`, and so do the marked row and the Mac's `PlayRequested`
-from Continue Watching's fallback (`Main.kt`).
+On TV the chip follows on its own through `shownSeasonIndex`, and so does the marked row. The Mac's episode list
+opens on the season of the episode `primaryData` names when there is no resume (`DetailScreenDesktop`'s `TitlePage`),
+so its list and its Play agree. Continue Watching's fallback on the Mac, `PlayRequested(resume.episodeData ?:
+primaryData)` in `Main.kt`, follows too.
 - **Not the phone yet.** The phone and emulator layouts still open the legacy `ResultFragment`, whose
   `ResultViewModel2` picks its own season and episode and never reads `primaryData`. The legacy page is
   unchanged here.
@@ -6762,6 +6764,10 @@ replaces it. It comes with a jvm test. Two things to settle in that PR:
   - a lower season and episode win over list order;
   - only specials, the first special;
   - no seasons, the provider's first episode, and an empty list gives null;
+  - no numbered season with a special listed first, the first unnumbered episode;
+  - within a season, a numbered episode before an unnumbered one listed first;
   - a resume and a film's data still win.
+- Mac (`DetailScreenTest`): an unstarted show with a special listed first opens its list on Season 1, and Play Episode
+  plays S1E1.
 - Device: `SeasonGroups` is back to listing a special first, and `anUnstartedShowOpensOnSeasonOneNotTheSpecialListedFirst`
   asserts Season 1 opens with "One One" marked.

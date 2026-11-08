@@ -85,10 +85,12 @@ internal fun List<DetailSeasonGroup>.shownSeasonIndex(chosen: Int?, primaryData:
  * not a special a provider happened to list first (the owner, 2026-11-08, `KMP-92`). "First" is the lowest episode
  * number in that season, with unnumbered ones after, and the list's own order between equals.
  *
- * With no numbered season at all — only specials, or only episodes the provider gave no season, as some anime do —
- * it is the provider's first episode, which is all there is to go on. Null for an empty list.
+ * With no numbered season at all, it is the provider's first episode that is not a special, so an anime with only
+ * unnumbered episodes and a special listed first still starts on its first episode. With only specials, it is the
+ * first of them. Null for an empty list.
  */
 internal fun List<DetailEpisode>.firstEpisodeToPlay(): DetailEpisode? {
-    val season = mapNotNull { it.season }.filter { it > SPECIALS_SEASON }.minOrNull() ?: return firstOrNull()
+    val season = mapNotNull { it.season }.filter { it > SPECIALS_SEASON }.minOrNull()
+        ?: return firstOrNull { it.season != SPECIALS_SEASON } ?: firstOrNull()
     return filter { it.season == season }.sortedWith(compareBy(nullsLast()) { it.episode }).first()
 }

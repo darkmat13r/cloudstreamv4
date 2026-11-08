@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 /** Board 7i's season chips, as [seasonGroups] derives them. Pure, so none of this needs a device. */
 class DetailSeasonGroupsTest {
 
-    private fun episode(season: Int?, number: Int) =
+    private fun episode(season: Int?, number: Int?) =
         DetailEpisode(name = "E$number", data = "s$season-e$number", season = season, episode = number)
 
     @Test
@@ -167,6 +167,18 @@ class DetailSeasonGroupsTest {
         val episodes = listOf(episode(null, 3), episode(null, 1))
         assertEquals("snull-e3", episodes.firstEpisodeToPlay()?.data)
         assertEquals(null, emptyList<DetailEpisode>().firstEpisodeToPlay())
+    }
+
+    @Test
+    fun `no numbered season and a special listed first, it is the first episode that is not a special`() {
+        val episodes = listOf(episode(SPECIALS_SEASON, 1), episode(null, 1), episode(null, 2))
+        assertEquals("snull-e1", episodes.firstEpisodeToPlay()?.data)
+    }
+
+    @Test
+    fun `within a season, a numbered episode comes before an unnumbered one listed first`() {
+        val episodes = listOf(episode(1, null), episode(1, 2))
+        assertEquals("s1-e2", episodes.firstEpisodeToPlay()?.data)
     }
 
     @Test
