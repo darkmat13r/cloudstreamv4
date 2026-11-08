@@ -24,7 +24,6 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPopupButton
-import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopSwitch
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
@@ -36,9 +35,6 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.settings_down
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder_missing
-import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next
-import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next_body
-import com.lagradost.cloudstream4.core.strings.generated.resources.settings_playing
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_speed
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
@@ -46,26 +42,6 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.settings.SettingsRow
 import com.lagradost.cloudstream4.feature.settings.SettingsValues
 import org.jetbrains.compose.resources.stringResource
-
-/** `DS-24` ST9's Playback pane, part 1: the one row the player reads today. */
-@Composable
-internal fun ColumnScope.PlaybackPane(values: SettingsValues, marked: Set<SettingsRow>, onAction: (SettingsAction) -> Unit) {
-    GroupHeader(stringResource(Res.string.settings_playing))
-    Group {
-        val title = stringResource(Res.string.settings_play_next)
-        SettingRow(
-            title = title,
-            line = stringResource(Res.string.settings_play_next_body),
-            marked = SettingsRow.PlayNextEpisode in marked,
-        ) {
-            DesktopSwitch(
-                checked = values.autoplayNext,
-                onCheckedChange = { onAction(SettingsAction.SetAutoplayNext(it)) },
-                label = title,
-            )
-        }
-    }
-}
 
 /** `DS-24` ST6's Downloads pane, part 1: the folder by its name, and how many download at once. */
 @Composable

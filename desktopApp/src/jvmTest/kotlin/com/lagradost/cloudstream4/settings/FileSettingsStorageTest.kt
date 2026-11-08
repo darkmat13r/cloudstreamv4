@@ -30,6 +30,18 @@ class FileSettingsStorageTest {
     }
 
     @Test
+    fun aDirectoryItCreatesIsOwnerOnlyAndOneThatExistsIsLeftAsItIs() {
+        val made = File(File(directory, "made"), FileSettingsStorage.FILE_NAME)
+        FileSettingsStorage(made).save(mapOf("autoplay_next_key" to "true"))
+        val mode = PosixFilePermissions.toString(Files.getPosixFilePermissions(made.parentFile.toPath()))
+        assertEquals("rwx------", mode)
+
+        val before = Files.getPosixFilePermissions(directory.toPath())
+        FileSettingsStorage(file).save(mapOf("autoplay_next_key" to "true"))
+        assertEquals(before, Files.getPosixFilePermissions(directory.toPath()))
+    }
+
+    @Test
     fun aMissingFileReadsAsEveryDefault() {
         assertEquals(emptyMap(), FileSettingsStorage(file).load())
     }
@@ -38,6 +50,18 @@ class FileSettingsStorageTest {
     fun aFileTooLargeToBeOursReadsAsEmpty() {
         file.writeText("autoplay_next_key=false\n" + "x".repeat(FileSettingsStorage.MAX_FILE_BYTES.toInt()))
         assertEquals(emptyMap(), FileSettingsStorage(file).load())
+    }
+
+    @Test
+    fun aFileAtExactlyTheCapIsReadAndBytesThatAreNotTextSpoilOnlyTheirLine() {
+        val notText = byteArrayOf(0xC3.toByte(), 0x28, 0xFF.toByte(), '\n'.code.toByte())
+        val head = "autoplay_next_key=false\n".toByteArray() + notText
+        val tail = "download_parallel_key=2\n".toByteArray()
+        val pad = ByteArray(FileSettingsStorage.MAX_FILE_BYTES.toInt() - head.size - tail.size) { '\n'.code.toByte() }
+        file.writeBytes(head + pad + tail)
+        assertEquals(FileSettingsStorage.MAX_FILE_BYTES, file.length())
+        val read = FileSettingsStorage(file).load()
+        assertEquals(mapOf("autoplay_next_key" to "false", "download_parallel_key" to "2"), read)
     }
 
     @Test

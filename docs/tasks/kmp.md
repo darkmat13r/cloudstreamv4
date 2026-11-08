@@ -6743,11 +6743,15 @@ with what it waits for.
   window, 760 wide at every height, 600 tall by default, and never under 480 (ST9). Its title bar is transparent over the
   content, so the sidebar runs the full height with the traffic lights in it. Off a Mac there is no such menu item, so
   the window is not reachable there yet.
-- **The sidebar** lists Playback and Downloads, the two panes with a working row. A search keeps the panes holding a
-  match and marks the matching rows. With none, it says so ("No results for “%s”", ST7). Escape empties it.
-- **Playback: Play the next episode**, under Android's `autoplay_next_key`, on by default. The player reads it through
-  `PlaybackSettings.autoplayNext`, a `StateFlow` in `:feature:settings` commonMain, which desktop-session-1's Up next
-  (`DS-23`) takes as a parameter defaulting to `PlaybackSettings.Default`. Agreed with that session through the PM.
+- **The sidebar** lists Downloads, the one pane with a working row. A search keeps the panes whose name or a row's words
+  match, and marks the matching rows. With none, it says so ("No results for “%s”", ST7). Escape empties it.
+- **Playback: Play the next episode is not a row yet** (review of #266). Nothing on the Mac reads it until
+  desktop-session-1's Up next (`DS-23`) lands, so a switch for it would do nothing, and Playback stays out of the
+  sidebar. The setting is kept: `autoplay_next_key`, on by default, `SettingsRepository.setAutoplayNext`, and
+  `PlaybackSettings.autoplayNext`, the `StateFlow` in `:feature:settings` commonMain that Up next takes as a parameter
+  defaulting to `PlaybackSettings.Default` (agreed with that session through the PM). **The Up next PR adds the row back,
+  with the Playback pane, in the same PR as its reader**, along with `SettingsRow.PlayNextEpisode` and
+  `SettingsAction.SetAutoplayNext`.
 - **Downloads: the folder** by its name only (ST6), with Show in Finder while it exists. Missing, the line says so and
   the button is not offered.
 - **Downloads: Downloads at once**, under Android's `download_parallel_key`, 1 to 5, 3 by default. The engine reads it at
@@ -6758,14 +6762,18 @@ with what it waits for.
 `DownloadSettings`), in commonMain, under the iOS canary. It is not `:core:settings`. That module is Android's
 `AppSettings` over Mihon's `PreferenceStore`, with `:library` in its commonMain, so it is canary-exempt; screens go in
 `:feature:*` and storage in the host. The Mac stores the values in `~/.cloudstream4/settings.properties`: owner-only,
-written temp-then-move, capped at 16 KiB, with anything malformed or out of range reading as its default. Preferences
+written temp-then-move, capped at 16 KiB (read as at most 16 KiB + 1 byte), with anything malformed or out of range
+reading as its default. `~/.cloudstream4` is created owner-only (0700) if this is the first to create it; one that
+exists is left as it is. A change goes through `MutableStateFlow.update`, so two at once never lose one, and the views
+and the file always end on the latest. Preferences
 only: a token or a password never goes in that file. Those go to the Keychain, when there is one.
 
 **New in the design system.**
 - `DesktopDimens.RowControlHeight` (32), the compact control in a row (the PM's call on `DS-24`).
-- `DesktopSwitch` and `DesktopPopupButton`, with their geometry in `DesktopControlDefaults`.
+- `DesktopSwitch` and `DesktopPopupButton`, with their geometry in `DesktopControlDefaults`. Nothing draws the switch
+  in part 1; Play the next episode is its first row, with Up next.
 - `CloudStreamIcons.Selector` (Tabler `Selector`), the pop-up button's mark. Its row in `ui-components.md`'s icon table
-  ("A pop-up button's choices | `Selector` | `Selector`") is for the owner to add: that file is a project rule.
+  is in #259, the PM's rules PR.
 
 **Deferred rows, each with what it waits for:**
 
@@ -6784,12 +6792,14 @@ only: a token or a password never goes in that file. Those go to the Keychain, w
 | — | Subtitles, Extensions, Accounts and Privacy, Network, Backup, Advanced | Part 2; Accounts and Backup wait on the Keychain decision |
 
 **Tests.**
-- `:feature:settings` commonTest: parsing, the defaults, out-of-range values, and search, including that a word for a
-  row that is not built finds nothing.
+- `:feature:settings` commonTest: parsing, the defaults, out-of-range values, and search. A pane's name finds its pane
+  and marks no row, and a word for a row that is not built, such as "episode", finds nothing.
 - `:feature:settings` jvmTest: the repository writes every change at once and a new one reads it back; an unchanged
-  value is not rewritten; a failed write keeps the value and reports only the exception's class.
-- desktopApp: `FileSettingsStorageTest`, covering owner-only, no temporary file left, too large, malformed lines, and a
-  value that would break the file.
+  value is not rewritten; a failed write keeps the value and reports only the exception's class; two changes on two
+  threads at once are both kept in memory, in the views and in the stored map, over 500 rounds.
+- desktopApp: `FileSettingsStorageTest`, covering owner-only file and created directory, an existing directory left
+  alone, no temporary file left, too large, exactly at the cap, bytes that are not UTF-8, malformed lines, and a value
+  that would break the file.
 - desktopApp: `SettingsWindowTest`, through real pointer and key events. Each control writes and reads its setting; the
   folder shows its name, never a path, and no Show in Finder while missing; search finds and empties; the 760×480
   window fits every pane.

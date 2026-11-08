@@ -1,5 +1,7 @@
 package com.lagradost.cloudstream4.feature.settings
 
+import java.util.concurrent.CyclicBarrier
+import kotlin.concurrent.thread
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -51,7 +53,7 @@ class SettingsRepositoryTest {
         val failures = mutableListOf<String>()
         val storage = object : SettingsStorage {
             override fun load(): Map<String, String> = emptyMap()
-            override fun save(values: Map<String, String>) = throw java.io.IOException("/Users/someone/.cloudstream4")
+            override fun save(values: Map<String, String>) = throw java.io.IOException("path-marker")
         }
         val settings = SettingsRepository(storage) { failures += it }
         settings.setDownloadsAtOnce(2)
@@ -59,10 +61,33 @@ class SettingsRepositoryTest {
         assertEquals(listOf("IOException"), failures)
     }
 
+    /** Two changes to different settings at the same moment: neither is lost, in memory, the views or the file. */
+    @Test
+    fun twoChangesAtOnceAreBothKept() {
+        repeat(ROUNDS) {
+            val storage = SettingsStorage.InMemory()
+            val settings = SettingsRepository(storage)
+            val start = CyclicBarrier(2)
+            listOf(
+                thread { start.await(); settings.setAutoplayNext(false) },
+                thread { start.await(); settings.setDownloadsAtOnce(5) },
+            ).forEach { it.join() }
+            assertEquals(SettingsValues(autoplayNext = false, downloadsAtOnce = 5), settings.values.value)
+            assertEquals(false, settings.autoplayNext.value)
+            assertEquals(5, settings.downloadsAtOnce.value)
+            val both = mapOf("autoplay_next_key" to "false", "download_parallel_key" to "5")
+            assertEquals(both, storage.stored, "the file ends on both")
+        }
+    }
+
     @Test
     fun aCountTheWindowDoesNotOfferIsRefused() {
         val settings = SettingsRepository(SettingsStorage.InMemory())
         assertFailsWith<IllegalArgumentException> { settings.setDownloadsAtOnce(6) }
         assertEquals(3, settings.downloadsAtOnce.value)
+    }
+
+    private companion object {
+        const val ROUNDS = 500
     }
 }

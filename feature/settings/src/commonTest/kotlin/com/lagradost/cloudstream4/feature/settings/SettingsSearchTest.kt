@@ -8,25 +8,34 @@ class SettingsSearchTest {
     /** The English words, as the window resolves them, plus a made-up folder name. */
     private val words: (SettingsRow) -> List<String> = { row ->
         when (row) {
-            SettingsRow.PlayNextEpisode -> listOf("Play the next episode", "Counts down 10 s at the end of an episode.")
             SettingsRow.DownloadFolder -> listOf("Download folder", "Harbor Films")
             SettingsRow.DownloadsAtOnce -> listOf("Downloads at once", "How many titles download together.")
         }
     }
 
+    /** A made-up pane name that no row's words contain, so a match on it can only be the name. */
+    private val title: (SettingsPane) -> String = { "Saved Titles" }
+
+    private fun panes(query: String) = SettingsSearch.panes(query, words, title)
+
     @Test
     fun anEmptyQueryKeepsEveryPane() {
-        assertEquals(SettingsPane.entries, SettingsSearch.panes("", words))
-        assertEquals(SettingsPane.entries, SettingsSearch.panes("   ", words))
+        assertEquals(SettingsPane.entries, panes(""))
+        assertEquals(SettingsPane.entries, panes("   "))
         assertTrue(SettingsSearch.rows(SettingsPane.Downloads, "", words).isEmpty())
     }
 
     @Test
     fun aQueryKeepsOnlyThePanesHoldingAMatchingRowIgnoringCase() {
-        assertEquals(listOf(SettingsPane.Playback), SettingsSearch.panes("EPISODE", words))
-        assertEquals(listOf(SettingsPane.Downloads), SettingsSearch.panes("at once", words))
-        assertEquals(listOf(SettingsPane.Downloads), SettingsSearch.panes("download", words))
-        assertEquals(SettingsPane.entries, SettingsSearch.panes("o", words))
+        assertEquals(listOf(SettingsPane.Downloads), panes("AT ONCE"))
+        assertEquals(listOf(SettingsPane.Downloads), panes("download"))
+        assertEquals(SettingsPane.entries, panes("o"))
+    }
+
+    @Test
+    fun aPaneNameKeepsItsPaneAndMarksNoRow() {
+        assertEquals(listOf(SettingsPane.Downloads), panes("saved TITLES"))
+        assertTrue(SettingsSearch.rows(SettingsPane.Downloads, "saved titles", words).isEmpty())
     }
 
     @Test
@@ -37,8 +46,10 @@ class SettingsSearchTest {
 
     @Test
     fun aQueryForARowThatIsNotBuiltFindsNothing() {
-        // Casting is not a Mac setting, and Appearance has no row yet: search only finds what exists (KMP-90).
-        assertTrue(SettingsSearch.panes("cast", words).isEmpty())
-        assertTrue(SettingsSearch.panes("poster", words).isEmpty())
+        // Casting is not a Mac setting, and Appearance and Playback have no row yet: search only finds what exists
+        // (KMP-90).
+        assertTrue(panes("cast").isEmpty())
+        assertTrue(panes("poster").isEmpty())
+        assertTrue(panes("episode").isEmpty())
     }
 }

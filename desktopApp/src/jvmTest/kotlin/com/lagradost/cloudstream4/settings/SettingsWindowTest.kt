@@ -73,26 +73,6 @@ class SettingsWindowTest {
     ) = scene(height) { SettingsContent(settings, root, state) }
 
     @Test
-    fun `Play the next episode writes its setting and reads it back`() {
-        val storage = SettingsStorage.InMemory()
-        val settings = SettingsRepository(storage)
-        window(settings).use { scene ->
-            scene.save("playback")
-            scene.click(scene.bounds("Play the next episode").center)
-            assertEquals(false, settings.autoplayNext.value)
-            assertEquals("false", storage.stored["autoplay_next_key"])
-            scene.save("playback-off")
-            scene.click(scene.bounds("Play the next episode").center)
-            assertEquals(true, settings.autoplayNext.value)
-        }
-        // A new window over what was stored shows it: off, after a restart.
-        val stored = SettingsStorage.InMemory(mapOf("autoplay_next_key" to "false"))
-        window(SettingsRepository(stored)).use { scene ->
-            assertEquals(false, scene.toggleState("Play the next episode"))
-        }
-    }
-
-    @Test
     fun `Downloads at once writes the chosen count and reads it back`() {
         val storage = SettingsStorage.InMemory()
         val settings = SettingsRepository(storage)
@@ -129,12 +109,16 @@ class SettingsWindowTest {
         val settings = SettingsRepository(SettingsStorage.InMemory())
         val state = SettingsWindowState()
         window(settings, state).use { scene ->
-            assertEquals(listOf("Playback", "Downloads"), scene.panes())
+            assertEquals(listOf("Downloads"), scene.panes())
 
             state.query = "at once"
             scene.settle()
             assertEquals(listOf("Downloads"), scene.panes())
             scene.save("search-found")
+
+            state.query = "episode"
+            scene.settle()
+            assertEquals(emptyList(), scene.panes(), "Play the next episode is not a row until Up next reads it")
 
             state.query = "cast"
             scene.settle()
@@ -146,7 +130,7 @@ class SettingsWindowTest {
             scene.sendKeyEvent(KeyEvent(Key.Escape, KeyEventType.KeyDown))
             scene.settle()
             assertEquals("", state.query)
-            assertEquals(listOf("Playback", "Downloads"), scene.panes())
+            assertEquals(listOf("Downloads"), scene.panes())
         }
     }
 
@@ -157,7 +141,7 @@ class SettingsWindowTest {
         SettingsPane.entries.forEach { pane ->
             window(settings, SettingsWindowState(pane = pane), height = min).use { scene ->
                 scene.save("minimum-${pane.name.lowercase()}")
-                assertEquals(listOf("Playback", "Downloads"), scene.panes())
+                assertEquals(listOf("Downloads"), scene.panes())
                 scene.nodes().forEach { node ->
                     val box = node.boundsInRoot
                     assertTrue(box.left >= 0f && box.right <= WIDTH, "nothing runs off the side: $box")
@@ -194,9 +178,6 @@ class SettingsWindowTest {
 
     private fun ImageComposeScene.bounds(label: String, text: Boolean = false): Rect =
         checkNotNull(find(label, text)) { "nothing is named \"$label\"" }.boundsInRoot
-
-    private fun ImageComposeScene.toggleState(label: String): Boolean? =
-        find(label)?.config?.getOrNull(SemanticsProperties.ToggleableState)?.let { it == androidx.compose.ui.state.ToggleableState.On }
 
     private fun ImageComposeScene.allText(): List<String> =
         nodes().flatMap { node -> node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text } }

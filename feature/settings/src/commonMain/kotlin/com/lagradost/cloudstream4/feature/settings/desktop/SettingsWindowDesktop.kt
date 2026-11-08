@@ -50,9 +50,6 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.search
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_download_folder
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once_body
-import com.lagradost.cloudstream4.core.strings.generated.resources.settings_pane_playback
-import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next
-import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_downloads
@@ -81,7 +78,8 @@ fun SettingsWindowDesktop(
 ) {
     val colors = CloudStreamTheme.colors
     val words = rowWords(folder)
-    val panes = SettingsSearch.panes(state.query) { words.getValue(it) }
+    val titles = SettingsPane.entries.associateWith { paneName(it) }
+    val panes = SettingsSearch.panes(state.query, { words.getValue(it) }, { titles.getValue(it) })
     Row(modifier.fillMaxSize().background(colors.bg)) {
         Sidebar(
             query = state.query,
@@ -112,7 +110,6 @@ class SettingsWindowState(pane: SettingsPane = SettingsPane.entries.first(), que
 
 /** What the window asks its host to do. Each setting change is written at once; there is no Apply. */
 sealed interface SettingsAction {
-    data class SetAutoplayNext(val on: Boolean) : SettingsAction
     data class SetDownloadsAtOnce(val count: Int) : SettingsAction
 
     /** Opens the download folder in Finder. Offered only while the folder exists. */
@@ -297,7 +294,6 @@ private fun PaneColumn(
                 .padding(start = DesktopDimens.WindowMargin, end = DesktopDimens.WindowMargin, bottom = DesktopDimens.WindowMargin),
         ) {
             when (pane) {
-                SettingsPane.Playback -> PlaybackPane(values, marked, onAction)
                 SettingsPane.Downloads -> DownloadsPane(values, folder, marked, onAction)
             }
         }
@@ -306,17 +302,12 @@ private fun PaneColumn(
 
 @Composable
 private fun paneName(pane: SettingsPane): String = when (pane) {
-    SettingsPane.Playback -> stringResource(Res.string.settings_pane_playback)
     SettingsPane.Downloads -> stringResource(Res.string.title_downloads)
 }
 
 /** Each row's words as search reads them: what the row shows, in the current language. */
 @Composable
 private fun rowWords(folder: DownloadFolder): Map<SettingsRow, List<String>> = mapOf(
-    SettingsRow.PlayNextEpisode to listOf(
-        stringResource(Res.string.settings_play_next),
-        stringResource(Res.string.settings_play_next_body),
-    ),
     SettingsRow.DownloadFolder to listOf(stringResource(Res.string.settings_download_folder), folder.name),
     SettingsRow.DownloadsAtOnce to listOf(
         stringResource(Res.string.settings_downloads_at_once),

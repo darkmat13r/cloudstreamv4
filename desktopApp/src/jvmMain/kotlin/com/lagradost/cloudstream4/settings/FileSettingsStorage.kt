@@ -12,9 +12,12 @@ import java.nio.file.attribute.PosixFilePermissions
  *
  * Only preferences live here. A token or a password never does: those go to the Keychain, when there is one.
  *
- * Read once at launch. A file that is missing, too large or not text reads as empty, which is every default, and the
- * next change replaces it. A write goes to a temporary file in the same directory and is moved over the old one, so a
- * crash mid-write leaves the previous settings, never half of them.
+ * Read once at launch, at most [MAX_FILE_BYTES] + 1 bytes of it. A file that is missing, unreadable or larger than
+ * that reads as empty, which is every default, and the next change replaces it. Within that, a line that is not a
+ * setting is skipped, and a byte that is not UTF-8 decodes as U+FFFD, so it can only make its own line one.
+ *
+ * A write goes to a temporary file in the same directory and is moved over the old one, so a crash mid-write leaves the
+ * previous settings, never half of them. A directory this creates is owner-only, as the file is.
  */
 internal class FileSettingsStorage(
     private val file: File = File(File(System.getProperty("user.home"), ".cloudstream4"), FILE_NAME),
@@ -22,9 +25,11 @@ internal class FileSettingsStorage(
     private val lock = Any()
 
     override fun load(): Map<String, String> {
-        val text = runCatching { if (!file.isFile || file.length() > MAX_FILE_BYTES) null else file.readText() }
-            .getOrNull() ?: return emptyMap()
-        return parse(text)
+        val bytes = runCatching {
+            if (!file.isFile) null else file.inputStream().use { it.readNBytes(MAX_FILE_BYTES.toInt() + 1) }
+        }.getOrNull() ?: return emptyMap()
+        if (bytes.size > MAX_FILE_BYTES) return emptyMap()
+        return parse(bytes.decodeToString())
     }
 
     override fun save(values: Map<String, String>) {
@@ -33,7 +38,14 @@ internal class FileSettingsStorage(
 
     private fun write(values: Map<String, String>) {
         val directory = checkNotNull(file.parentFile).toPath()
-        Files.createDirectories(directory)
+        if (!Files.isDirectory(directory)) {
+            val ownerOnly = PosixFilePermissions.asFileAttribute(PosixFilePermissions.fromString(OWNER_DIR))
+            try {
+                Files.createDirectories(directory, ownerOnly)
+            } catch (e: UnsupportedOperationException) {
+                Files.createDirectories(directory) // a volume with no POSIX permissions
+            }
+        }
         val next = Files.createTempFile(directory, file.name, ".tmp")
         try {
             runCatching { Files.setPosixFilePermissions(next, PosixFilePermissions.fromString(OWNER_ONLY)) }
@@ -50,6 +62,7 @@ internal class FileSettingsStorage(
         /** Far more than every setting the window will ever hold; anything larger was not written by this app. */
         const val MAX_FILE_BYTES = 16L * 1024
         private const val OWNER_ONLY = "rw-------"
+        private const val OWNER_DIR = "rwx------"
         private const val MAX_KEY_CHARS = 64
         private const val MAX_VALUE_CHARS = 256
 

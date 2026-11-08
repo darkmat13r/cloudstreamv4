@@ -3,6 +3,7 @@ package com.lagradost.cloudstream4.feature.settings
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.update
 
 /**
  * Where a host keeps the stored map. The Mac keeps it in one owner-only file; a test keeps it in memory.
@@ -53,16 +54,24 @@ class SettingsRepository(
         update { it.copy(downloadsAtOnce = count) }
     }
 
+    /**
+     * Applies [change] atomically, so two changes at once never lose one. The views and the file then take whatever is
+     * current, and again if it moved meanwhile: whichever change lands last, the views and the file end on it.
+     */
     private fun update(change: (SettingsValues) -> SettingsValues) {
-        val next = change(state.value)
-        if (next == state.value) return
-        state.value = next
-        autoplay.value = next.autoplayNext
-        atOnce.value = next.downloadsAtOnce
-        try {
-            storage.save(next.toStored())
-        } catch (e: Exception) {
-            onSaveFailed(e::class.simpleName ?: "Exception")
-        }
+        var changed = false
+        state.update { current -> change(current).also { changed = it != current } }
+        if (!changed) return
+        do {
+            val now = state.value
+            autoplay.value = now.autoplayNext
+            atOnce.value = now.downloadsAtOnce
+            try {
+                storage.save(now.toStored())
+            } catch (e: Exception) {
+                onSaveFailed(e::class.simpleName ?: "Exception")
+                return
+            }
+        } while (state.value != now)
     }
 }
