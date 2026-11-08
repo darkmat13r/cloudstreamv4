@@ -1,15 +1,13 @@
 package com.lagradost.cloudstream4.feature.detail.desktop
 
-import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.FiniteAnimationSpec
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInHorizontally
-import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.horizontalScroll
+import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.collectIsFocusedAsState
+import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
@@ -17,15 +15,16 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -35,50 +34,72 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.selected
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
-import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
-import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
-import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRowsSkeleton
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
+import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
+import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.primitive.ProgressRule
+import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
-import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
-import com.lagradost.cloudstream4.core.designsystem.state.valueOrNull
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.action_add_to_bookmarks
+import com.lagradost.cloudstream4.core.strings.generated.resources.detail_start_over
 import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
-import com.lagradost.cloudstream4.core.strings.generated.resources.loading
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_episodes_found
-import com.lagradost.cloudstream4.core.strings.generated.resources.pick_source
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_episode
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_movie_button
-import com.lagradost.cloudstream4.core.strings.generated.resources.sort_close
+import com.lagradost.cloudstream4.core.strings.generated.resources.resume
+import com.lagradost.cloudstream4.core.strings.generated.resources.season
+import com.lagradost.cloudstream4.core.strings.generated.resources.season_other
+import com.lagradost.cloudstream4.core.strings.generated.resources.season_specials
+import com.lagradost.cloudstream4.core.strings.generated.resources.synopsis
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailState
-import com.lagradost.cloudstream4.feature.detail.StreamLink
+import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
+import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.code
-import com.lagradost.cloudstream4.feature.detail.toLinksUiState
+import com.lagradost.cloudstream4.feature.detail.episodeSubtitle
+import com.lagradost.cloudstream4.feature.detail.label
+import com.lagradost.cloudstream4.feature.detail.metaRun
+import com.lagradost.cloudstream4.feature.detail.resumeCaption
 import com.lagradost.cloudstream4.feature.detail.toPageUiState
 import com.lagradost.cloudstream4.feature.detail.typeLabel
 import org.jetbrains.compose.resources.stringResource
 
 /**
- * A title, for a resizable window. `docs/plans/desktop-design.md`.
+ * A title, for a resizable window: `DS-21`'s boards E1 to E6, and `docs/plans/desktop-design.md`.
  *
- * Unlike TV, the source list does not replace the page. It slides in from the right over a dimmed page
- * and leaves the same way, so where it came from stays visible and a click outside dismisses it. The
- * episode list is on the page: a window has room, and a separate screen would be one more step.
+ * A bar with Back and where the page was opened from, then the title's header: poster, name, its run of facts and a
+ * synopsis that opens where it is (E1). Under that the actions: Resume or Play with how far through and how long is
+ * left, Start over, and the watch list. The episodes are on the page under a button per season, because a window has
+ * the room and a separate screen would be one more step. A row's verb shows while the pointer or focus is on it (E2).
  *
+ * The source list does not replace the page, as it does on TV. It slides in from the right over a dimmed page (E3), and
+ * a click outside dismisses it.
+ *
+ * **Every action that plays sends [DetailAction.PlaybackRequested]**, saying whether from the start. The host turns it
+ * into its own way of playing (desktop asks for the sources first, Android opens its player), so this screen never
+ * decides that.
+ *
+ * @param origin the name of the screen the page was opened from, for the bar. Null draws Back alone.
  * @param artwork draws the poster; the host owns image loading.
  */
 @Composable
@@ -88,109 +109,224 @@ fun DetailScreenDesktop(
     onBack: () -> Unit,
     artwork: @Composable (String?) -> Unit,
     modifier: Modifier = Modifier,
+    origin: String? = null,
 ) {
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
-            Box(Modifier.padding(DesktopDimens.WindowMargin)) {
-                DesktopIconButton(CloudStreamIcons.Back, stringResource(Res.string.go_back), onBack)
-            }
-            UiStateHost(state = state.content.toPageUiState(onAction), modifier = Modifier.fillMaxSize()) { detail ->
-                TitlePage(detail, onAction, artwork)
+            TopBar(origin, state.detail?.title, onBack)
+            Box(Modifier.fillMaxWidth().height(CloudStreamDimens.Hairline).background(CloudStreamTheme.colors.line))
+            when (val page = state.content.toPageUiState(onAction)) {
+                is UiState.Content -> TitlePage(page.value, state.synopsisOpen, onAction, artwork)
+                is UiState.Empty -> Failure(page.prompt, onBack)
+                is UiState.Error -> Failure(page.prompt, onBack)
+                is UiState.Offline -> Failure(page.prompt, onBack)
+                // A page has no partial state: it is the title or it is not.
+                else -> Skeleton()
             }
         }
-        SourcesPanel(state.links?.toLinksUiState(onAction), state.linksArriving, onAction)
+        DetailPanelsDesktop(state, onAction)
+    }
+}
+
+/** Back, and where it goes back to, then this title. The way back is also the name of where it leads. */
+@Composable
+private fun TopBar(origin: String?, title: String?, onBack: () -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val typography = CloudStreamTheme.typography
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(horizontal = DesktopDimens.WindowMargin - DesktopDimens.RelatedGap, vertical = DesktopDimens.RelatedGap),
+    ) {
+        DesktopIconButton(
+            CloudStreamIcons.Back,
+            stringResource(Res.string.go_back),
+            onBack,
+            tone = DesktopButtonTone.Quiet,
+        )
+        if (origin != null) {
+            Crumb(origin, onBack)
+            CloudStreamIcon(CloudStreamIcons.Disclosure, null, size = CloudStreamIconSize.Small, tint = colors.muted)
+        }
+        if (title != null) {
+            BasicText(
+                text = title,
+                style = typography.label.copy(color = colors.ink),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis,
+                modifier = Modifier.weight(1f, fill = false),
+            )
+        }
+    }
+}
+
+/** Where the page was opened from, muted until the pointer is on it: pressing it goes back there. */
+@Composable
+private fun Crumb(label: String, onClick: () -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val source = remember { MutableInteractionSource() }
+    val hovered by source.collectIsHoveredAsState()
+    val focused by source.collectIsFocusedAsState()
+    val shape = CloudStreamTheme.shapes.medium
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .tvFocusRing(focused = focused, shape = shape)
+            .clickable(interactionSource = source, indication = null, role = Role.Button, onClick = onClick)
+            .heightIn(min = DesktopDimens.ButtonHeight)
+            .padding(horizontal = DesktopDimens.RelatedGap),
+    ) {
+        BasicText(
+            text = label,
+            style = CloudStreamTheme.typography.label.copy(color = if (hovered) colors.ink else colors.muted),
+            maxLines = 1,
+        )
     }
 }
 
 @Composable
 private fun TitlePage(
     detail: TitleDetail,
+    synopsisOpen: Boolean,
     onAction: (DetailAction) -> Unit,
     artwork: @Composable (String?) -> Unit,
 ) {
+    val seasons = remember(detail.episodes) { seasonGroups(detail.episodes) }
+    // The season Resume is in, so the row it will play is on screen; else the first.
+    var chosen by remember(detail.episodes) {
+        mutableStateOf(detail.resume?.episode?.let(::groupOf) ?: seasons.firstOrNull())
+    }
+    val shown = remember(detail.episodes, chosen) {
+        if (seasons.size <= 1) detail.episodes.withIndex().toList()
+        else detail.episodes.withIndex().filter { groupOf(it.value) == chosen }
+    }
     BoxWithConstraints(Modifier.fillMaxSize()) {
-        val posterWidth = if (maxWidth < DetailScreenDesktopDefaults.CompactBelow) {
-            DetailScreenDesktopDefaults.PosterWidthCompact
-        } else {
-            DetailScreenDesktopDefaults.PosterWidth
-        }
+        val compact = maxWidth < DetailScreenDesktopDefaults.CompactBelow
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
                 start = DesktopDimens.WindowMargin - DesktopDimens.RowPadding,
                 end = DesktopDimens.WindowMargin - DesktopDimens.RowPadding,
+                top = DesktopDimens.SectionGap,
                 bottom = DesktopDimens.SectionGap,
             ),
         ) {
-            item {
-                Box(Modifier.padding(horizontal = DesktopDimens.RowPadding)) {
-                    Header(detail, onAction, artwork, posterWidth)
+            item(key = "header") {
+                Column(Modifier.padding(horizontal = DesktopDimens.RowPadding)) {
+                    Header(detail, compact, synopsisOpen, onAction, artwork)
+                    Spacer(Modifier.height(DesktopDimens.WindowMargin))
+                    Actions(detail, onAction)
                 }
             }
             if (detail.episodes.isNotEmpty()) {
-                item { EpisodesHeader(detail.episodes.size) }
-                items(detail.episodes.size, key = { "$it:${detail.episodes[it].data}" }) { index ->
-                    EpisodeRow(detail.episodes, index, onAction)
+                item(key = "episodes") {
+                    EpisodesHeader(seasons, chosen) { chosen = it }
+                }
+                items(shown.size, key = { "${shown[it].index}:${shown[it].value.data}" }) { position ->
+                    val (index, episode) = shown[position]
+                    EpisodeRow(episode, index, onAction)
                 }
             }
         }
     }
 }
 
+/** E1's header: the poster, then the name, its facts and the synopsis beside it. */
 @Composable
 private fun Header(
     detail: TitleDetail,
+    compact: Boolean,
+    synopsisOpen: Boolean,
     onAction: (DetailAction) -> Unit,
     artwork: @Composable (String?) -> Unit,
-    posterWidth: Dp,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     val shape = CloudStreamTheme.shapes.large
-    Row(horizontalArrangement = Arrangement.spacedBy(DesktopDimens.SectionGap)) {
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.WindowMargin),
+    ) {
         Box(
             Modifier
-                .size(posterWidth, posterWidth * DetailScreenDesktopDefaults.PosterHeightOverWidth)
+                .size(DetailScreenDesktopDefaults.PosterWidth, DetailScreenDesktopDefaults.PosterHeight)
                 .clip(shape)
                 .background(colors.surface),
         ) {
             artwork(detail.posterUrl)
         }
-        Column(Modifier.weight(1f)) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+            // Not filled: a weight fixes the width, and prose stops at the reading width however wide the window is.
+            modifier = Modifier.weight(1f, fill = false).widthIn(max = DesktopDimens.ReadingWidth),
+        ) {
             BasicText(
                 text = detail.title,
-                style = typography.h1.copy(color = colors.ink),
+                // E6: a size down in the smallest window, so a long name still leaves room for its facts.
+                style = (if (compact) typography.h1 else typography.display).copy(color = colors.ink),
                 maxLines = DetailScreenDesktopDefaults.TitleLines,
                 overflow = TextOverflow.Ellipsis,
             )
-            Spacer(Modifier.height(DesktopDimens.RelatedGap))
-            BasicText(
-                text = listOfNotNull(
-                    detail.providerName,
-                    detail.typeName?.let { typeLabel(it) },
-                    detail.year?.toString(),
-                ).joinToString(" · "),
-                style = typography.caption.copy(color = colors.muted),
-                maxLines = 1,
-            )
-            Spacer(Modifier.height(DesktopDimens.GroupGap))
-            PlayAction(detail, onAction)
-            detail.plot?.takeIf { it.isNotBlank() }?.let { plot ->
-                Spacer(Modifier.height(DesktopDimens.WindowMargin))
+            val facts = facts(detail)
+            if (facts.isNotEmpty()) {
                 BasicText(
-                    text = plot,
+                    text = facts,
                     style = typography.body.copy(color = colors.ink2),
-                    maxLines = DetailScreenDesktopDefaults.PlotLines,
+                    maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
-                    modifier = Modifier.widthIn(max = DesktopDimens.ReadingWidth),
                 )
             }
+            detail.plot?.takeIf { it.isNotBlank() }?.let { plot -> Synopsis(plot, synopsisOpen, onAction) }
         }
     }
 }
 
+/**
+ * The run of facts under the name: the shared run (score, tags, year, certification, runtime or status), then the
+ * kind of title and where it came from. Each only where it is known, so a provider that sends little says little.
+ */
 @Composable
-private fun PlayAction(detail: TitleDetail, onAction: (DetailAction) -> Unit) {
+private fun facts(detail: TitleDetail): String = listOfNotNull(
+    metaRun(detail).takeIf { it.isNotBlank() },
+    detail.typeName?.let { typeLabel(it) },
+    detail.providerName.takeIf { it.isNotBlank() },
+).joinToString(META_SEPARATOR)
+
+/**
+ * Two lines, and the whole block opens and closes in place on a press. No "More" word is drawn after the cut: there
+ * is no such key, and the block itself is the target, named for a screen reader by `synopsis`.
+ */
+@Composable
+private fun Synopsis(plot: String, open: Boolean, onAction: (DetailAction) -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val source = remember { MutableInteractionSource() }
+    val focused by source.collectIsFocusedAsState()
+    val shape = CloudStreamTheme.shapes.small
+    BasicText(
+        text = plot,
+        style = CloudStreamTheme.typography.body.copy(color = colors.muted),
+        maxLines = if (open) Int.MAX_VALUE else DetailScreenDesktopDefaults.SynopsisLines,
+        overflow = TextOverflow.Ellipsis,
+        modifier = Modifier
+            .tvFocusRing(focused = focused, shape = shape)
+            .clickable(
+                interactionSource = source,
+                indication = null,
+                onClickLabel = stringResource(Res.string.synopsis),
+                role = Role.Button,
+                onClick = { onAction(DetailAction.SynopsisToggled) },
+            ),
+    )
+}
+
+/**
+ * E1's actions. Resume where there is somewhere to come back to, else Play, with its rule and what is left under it;
+ * Start over beside a Resume; then the watch list, as one glyph whose shape says whether the title is on one.
+ */
+@Composable
+private fun Actions(detail: TitleDetail, onAction: (DetailAction) -> Unit) {
     val primary = detail.primaryData
     if (primary == null) {
         BasicText(
@@ -199,167 +335,312 @@ private fun PlayAction(detail: TitleDetail, onAction: (DetailAction) -> Unit) {
         )
         return
     }
-    DesktopButton(
-        label = if (detail.playData != null) stringResource(Res.string.play_movie_button) else stringResource(Res.string.play_episode),
-        onClick = { onAction(DetailAction.PlayRequested(primary)) },
-        primary = true,
-        icon = CloudStreamIcons.Play,
-    )
+    val resume = detail.resume
+    val progress = resume?.fraction
+    Row(horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap)) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+            modifier = Modifier.width(DetailScreenDesktopDefaults.PrimaryWidth),
+        ) {
+            DesktopButton(
+                label = primaryLabel(detail),
+                onClick = { onAction(DetailAction.PlaybackRequested(primary, fromStart = false)) },
+                primary = true,
+                icon = CloudStreamIcons.Play,
+                modifier = Modifier.fillMaxWidth(),
+            )
+            if (progress != null) {
+                // On the page, not on a poster: the track is the line colour, so how much is left reads too.
+                ProgressRule(
+                    progress = progress,
+                    modifier = Modifier.fillMaxWidth(),
+                    trackColor = CloudStreamTheme.colors.line,
+                )
+                // `resume_time_left` is two lines on TV's caption. One line here: the rule already says where.
+                resumeCaption(resume)?.let { left ->
+                    BasicText(
+                        text = left.replace('\n', ' '),
+                        style = CloudStreamTheme.typography.caption.copy(color = CloudStreamTheme.colors.muted),
+                        maxLines = 1,
+                    )
+                }
+            }
+        }
+        // The same episode, or the same film, from its beginning: what was being resumed, not the first episode.
+        if (resume != null && progress != null) {
+            DesktopButton(
+                label = stringResource(Res.string.detail_start_over),
+                onClick = { onAction(DetailAction.PlaybackRequested(resume.data, fromStart = true)) },
+                icon = CloudStreamIcons.StartOver,
+            )
+        }
+        val status = detail.watchStatus
+        if (status != null) {
+            // The glyph's shape says whether the title is on a list. A screen reader is told which one, or None, on the
+            // button's own node: "Set watch status, Watching".
+            val state = status.label()
+            DesktopIconButton(
+                icon = if (status != DetailWatchStatus.None) CloudStreamIcons.Done else CloudStreamIcons.Add,
+                contentDescription = stringResource(Res.string.action_add_to_bookmarks),
+                onClick = { onAction(DetailAction.WatchStatusPickerOpened) },
+                modifier = Modifier.semantics { stateDescription = state },
+            )
+        }
+    }
+}
+
+/** `Resume S1:E3` where the episode is known, `Resume` where it is not, and Play with nothing to come back to. */
+@Composable
+private fun primaryLabel(detail: TitleDetail): String {
+    val resume = detail.resume
+    if (resume?.fraction == null) {
+        return stringResource(if (detail.playData != null) Res.string.play_movie_button else Res.string.play_episode)
+    }
+    val word = stringResource(Res.string.resume)
+    val episode = resume.episode ?: return word
+    return "$word ${episode.code(detail.episodes.indexOf(episode))}"
+}
+
+/** A season the episodes name, or the ones they do not. */
+internal sealed interface SeasonGroup {
+    data class Numbered(val number: Int) : SeasonGroup
+
+    /** Episodes the provider gave no season, placed last so no episode is ever hidden (`I18N-12`). */
+    data object Other : SeasonGroup
+}
+
+internal fun groupOf(episode: DetailEpisode): SeasonGroup =
+    episode.season?.let { SeasonGroup.Numbered(it) } ?: SeasonGroup.Other
+
+/** In the order the numbers go, with Other last. */
+internal fun seasonGroups(episodes: List<DetailEpisode>): List<SeasonGroup> {
+    val numbered = episodes.mapNotNull { it.season }.distinct().sorted().map { SeasonGroup.Numbered(it) }
+    val other = if (episodes.any { it.season == null }) listOf(SeasonGroup.Other) else emptyList()
+    return numbered + other
 }
 
 @Composable
-private fun EpisodesHeader(count: Int) {
+private fun SeasonGroup.label(): String = when (this) {
+    SeasonGroup.Other -> stringResource(Res.string.season_other)
+    is SeasonGroup.Numbered ->
+        if (number == 0) stringResource(Res.string.season_specials) else "${stringResource(Res.string.season)} $number"
+}
+
+/** "Episodes", then a button per season where there is more than one. The one shown has an outline. */
+@Composable
+private fun EpisodesHeader(seasons: List<SeasonGroup>, chosen: SeasonGroup?, onChoose: (SeasonGroup) -> Unit) {
     val colors = CloudStreamTheme.colors
-    val typography = CloudStreamTheme.typography
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-        modifier = Modifier.padding(
-            start = DesktopDimens.RowPadding,
-            top = DesktopDimens.SectionGap,
-            bottom = DesktopDimens.RelatedGap,
-        ),
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(start = DesktopDimens.RowPadding, top = DesktopDimens.SectionGap, bottom = DesktopDimens.GroupGap),
     ) {
-        BasicText(text = stringResource(Res.string.episodes), style = typography.railTitle.copy(color = colors.ink))
-        BasicText(text = count.toString(), style = typography.captionMono.copy(color = colors.muted))
-    }
-}
-
-@Composable
-private fun EpisodeRow(
-    episodes: List<DetailEpisode>,
-    index: Int,
-    onAction: (DetailAction) -> Unit,
-) {
-    val episode = episodes[index]
-    val code = episode.code(index)
-    DesktopRow(
-        title = episode.name ?: code,
-        subtitle = code.takeIf { episode.name != null },
-        onClick = { onAction(DetailAction.PlayRequested(episode.data)) },
-    )
-}
-
-/**
- * Kept composed while it leaves, showing what it last showed, so it does not go blank on the way out.
- *
- * The list can grow while someone is reading it, so a new link only ever joins the end, the words saying more
- * are on the way take no height, and nothing asks for focus. The row under the pointer stays the row under the
- * pointer, and the header keeps saying so however far down the list has been scrolled.
- *
- * @param arriving more links may still join [links].
- */
-@Composable
-private fun SourcesPanel(
-    links: UiState<List<StreamLink>>?,
-    arriving: Boolean,
-    onAction: (DetailAction) -> Unit,
-) {
-    var shown by remember { mutableStateOf(links) }
-    if (links != null) shown = links
-    val colors = CloudStreamTheme.colors
-    val dismiss = { onAction(DetailAction.LinksDismissed) }
-
-    AnimatedVisibility(visible = links != null, enter = fadeIn(), exit = fadeOut()) {
-        Box(
-            Modifier
-                .fillMaxSize()
-                .background(colors.bg.copy(alpha = DetailScreenDesktopDefaults.ScrimAlpha))
-                .clickable(
-                    interactionSource = remember { MutableInteractionSource() },
-                    indication = null,
-                    onClick = dismiss,
-                ),
+        BasicText(
+            text = stringResource(Res.string.episodes),
+            style = CloudStreamTheme.typography.railTitle.copy(color = colors.ink),
+            maxLines = 1,
         )
-    }
-    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.CenterEnd) {
-        val spec: FiniteAnimationSpec<IntOffset> = DesktopMotion.spec()
-        AnimatedVisibility(
-            visible = links != null,
-            enter = slideInHorizontally(spec) { it },
-            exit = slideOutHorizontally(spec) { it },
-        ) {
-            Column(
-                Modifier
-                    .width(DesktopDimens.SidePanelWidth)
-                    .fillMaxHeight()
-                    .background(colors.surface)
-                    .border(CloudStreamDimens.Hairline, colors.line)
-                    .padding(DesktopDimens.RowPadding),
+        if (seasons.size > 1) {
+            Spacer(Modifier.width(DesktopDimens.GroupGap))
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+                modifier = Modifier.weight(1f).horizontalScroll(rememberScrollState()),
             ) {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(start = DesktopDimens.RowPadding, bottom = DesktopDimens.GroupGap),
-                ) {
-                    Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(1f)) {
-                        BasicText(
-                            text = stringResource(Res.string.pick_source),
-                            style = CloudStreamTheme.typography.railTitle.copy(color = colors.ink),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier.weight(1f, fill = false),
-                        )
-                        shown?.valueOrNull?.let { list ->
-                            Spacer(Modifier.width(DesktopDimens.RelatedGap))
-                            BasicText(
-                                text = list.size.toString(),
-                                style = CloudStreamTheme.typography.captionMono.copy(color = colors.muted),
-                                maxLines = 1,
-                            )
-                        }
-                    }
-                    if (arriving) {
-                        BasicText(
-                            text = stringResource(Res.string.loading),
-                            style = CloudStreamTheme.typography.caption.copy(color = colors.muted),
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis,
-                            modifier = Modifier
-                                .padding(horizontal = DesktopDimens.RelatedGap)
-                                .widthIn(max = DetailScreenDesktopDefaults.ArrivingLabelMaxWidth),
-                        )
-                    }
-                    DesktopIconButton(
-                        icon = CloudStreamIcons.Close,
-                        contentDescription = stringResource(Res.string.sort_close),
-                        onClick = dismiss,
-                        tone = DesktopButtonTone.Quiet,
-                    )
-                }
-                shown?.let { current ->
-                    UiStateHost(
-                        state = current,
-                        modifier = Modifier.fillMaxSize(),
-                        skeleton = { DesktopRowsSkeleton(it) },
-                    ) { list ->
-                        LazyColumn(Modifier.fillMaxSize()) {
-                            items(list.size, key = { "$it:${list[it].url}" }) { index ->
-                                val link = list[index]
-                                DesktopRow(
-                                    title = link.label,
-                                    subtitle = link.qualityLabel,
-                                    onClick = { onAction(DetailAction.LinkActivated(link)) },
-                                )
-                            }
-                        }
-                    }
-                }
+                seasons.forEach { group -> SeasonButton(group.label(), group == chosen) { onChoose(group) } }
             }
         }
     }
 }
 
+/** A season: quiet until chosen, then outlined, and said as selected. */
+@Composable
+private fun SeasonButton(label: String, chosen: Boolean, onClick: () -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val source = remember { MutableInteractionSource() }
+    val hovered by source.collectIsHoveredAsState()
+    val focused by source.collectIsFocusedAsState()
+    val shape = CloudStreamTheme.shapes.medium
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .semantics { selected = chosen }
+            .desktopFeedback(source, lift = false)
+            .tvFocusRing(focused = focused, shape = shape)
+            .background(if (chosen || hovered) colors.raised else colors.bg, shape)
+            .border(CloudStreamDimens.Hairline, if (chosen) colors.muted else colors.bg, shape)
+            .clickable(interactionSource = source, indication = null, role = Role.Tab, onClick = onClick)
+            .heightIn(min = DesktopDimens.ButtonHeight)
+            .padding(horizontal = DesktopDimens.ButtonPadding),
+    ) {
+        BasicText(text = label, style = CloudStreamTheme.typography.label.copy(color = colors.ink), maxLines = 1)
+    }
+}
+
+/**
+ * One episode: its number, its name and its second line. The row plays it; while the pointer or focus is on the row,
+ * Play shows at its end too (E2), so a row says what pressing it does.
+ */
+@Composable
+private fun EpisodeRow(episode: DetailEpisode, index: Int, onAction: (DetailAction) -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val typography = CloudStreamTheme.typography
+    val hover = remember { MutableInteractionSource() }
+    val hovered by hover.collectIsHoveredAsState()
+    val source = remember { MutableInteractionSource() }
+    val focused by source.collectIsFocusedAsState()
+    val shape = CloudStreamTheme.shapes.medium
+    val code = episode.code(index)
+    val play = { onAction(DetailAction.PlaybackRequested(episode.data, fromStart = false)) }
+    Box(
+        contentAlignment = Alignment.CenterEnd,
+        modifier = Modifier.hoverable(hover),
+    ) {
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
+            modifier = Modifier
+                .fillMaxWidth()
+                .tvFocusRing(focused = focused, shape = shape)
+                .background(if (hovered) colors.raised else colors.bg, shape)
+                .border(CloudStreamDimens.Hairline, if (hovered) colors.line else colors.bg, shape)
+                .clickable(interactionSource = source, indication = null, onClick = play)
+                .heightIn(min = DetailScreenDesktopDefaults.EpisodeRowHeight)
+                .padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
+        ) {
+            BasicText(
+                text = (episode.episode ?: (index + 1)).toString(),
+                style = typography.captionMono.copy(color = colors.muted, textAlign = TextAlign.End),
+                maxLines = 1,
+                modifier = Modifier.width(DetailScreenDesktopDefaults.EpisodeNumberWidth),
+            )
+            Column(Modifier.weight(1f)) {
+                BasicText(
+                    text = episode.name ?: code,
+                    style = typography.label.copy(color = colors.ink),
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis,
+                )
+                episodeSubtitle(episode, code, codeInTitle = episode.name == null)?.let { line ->
+                    BasicText(
+                        text = line,
+                        style = typography.caption.copy(color = colors.muted),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis,
+                    )
+                }
+            }
+            // Holds the verb's width whether or not it shows, so the words never move under the pointer.
+            Spacer(Modifier.width(DesktopDimens.ButtonHeight))
+        }
+        if (hovered || focused) {
+            DesktopIconButton(
+                icon = CloudStreamIcons.Play,
+                contentDescription = stringResource(Res.string.play_episode),
+                onClick = play,
+                tone = DesktopButtonTone.Quiet,
+                modifier = Modifier.padding(end = DesktopDimens.RowPadding),
+            )
+        }
+    }
+}
+
+/**
+ * E5: the title could not be opened. What happened is not drawn (`BUG-21`): the host logs it, without an address.
+ * Try again, and Go back, which the bar also offers, here where the eye already is.
+ */
+@Composable
+private fun Failure(prompt: StatePrompt, onBack: () -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val typography = CloudStreamTheme.typography
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
+        Column(
+            horizontalAlignment = Alignment.CenterHorizontally,
+            verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+            modifier = Modifier.widthIn(max = DesktopDimens.ReadingWidth).padding(DesktopDimens.WindowMargin),
+        ) {
+            BasicText(
+                text = prompt.headline,
+                style = typography.railTitle.copy(color = colors.ink, textAlign = TextAlign.Center),
+            )
+            BasicText(
+                text = prompt.body,
+                style = typography.body.copy(color = colors.muted, textAlign = TextAlign.Center),
+            )
+            Spacer(Modifier.height(DesktopDimens.RelatedGap))
+            Row(horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap)) {
+                DesktopButton(label = prompt.action.label, onClick = prompt.action.onActivate, icon = prompt.action.icon)
+                DesktopButton(label = stringResource(Res.string.go_back), onClick = onBack, icon = CloudStreamIcons.Back)
+            }
+        }
+    }
+}
+
+/** E4: where each part of the page will land, so nothing moves when it does. */
+@Composable
+private fun Skeleton() {
+    val colors = CloudStreamTheme.colors
+    val block = CloudStreamTheme.shapes.small
+    Column(
+        verticalArrangement = Arrangement.spacedBy(DesktopDimens.WindowMargin),
+        modifier = Modifier.fillMaxSize().padding(horizontal = DesktopDimens.WindowMargin, vertical = DesktopDimens.SectionGap),
+    ) {
+        Row(horizontalArrangement = Arrangement.spacedBy(DesktopDimens.WindowMargin)) {
+            Box(
+                Modifier
+                    .size(DetailScreenDesktopDefaults.PosterWidth, DetailScreenDesktopDefaults.PosterHeight)
+                    .clip(CloudStreamTheme.shapes.large)
+                    .background(colors.surface),
+            )
+            Column(
+                verticalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
+                modifier = Modifier.padding(top = DesktopDimens.SectionGap),
+            ) {
+                Bar(DetailScreenDesktopDefaults.SkeletonTitleWidth, DetailScreenDesktopDefaults.SkeletonTitleHeight, block)
+                DetailScreenDesktopDefaults.SkeletonLineWidths.forEach { Bar(it, DesktopDimens.GroupGap, block) }
+            }
+        }
+        Bar(DetailScreenDesktopDefaults.PrimaryWidth, DesktopDimens.ButtonHeight, CloudStreamTheme.shapes.medium)
+        repeat(DetailScreenDesktopDefaults.SkeletonRows) {
+            Bar(DetailScreenDesktopDefaults.SkeletonRowWidth, DesktopDimens.GroupGap, block)
+        }
+    }
+}
+
+@Composable
+private fun Bar(width: Dp, height: Dp, shape: androidx.compose.ui.graphics.Shape) {
+    Box(Modifier.size(width, height).clip(shape).background(CloudStreamTheme.colors.surface))
+}
+
 object DetailScreenDesktopDefaults {
-    val PosterWidth: Dp = 240.dp
-    val PosterWidthCompact: Dp = 160.dp
-    const val PosterHeightOverWidth = 3f / 2f
-    /** Includes the 800dp minimum window, where a large poster would push the episodes off screen. */
-    val CompactBelow: Dp = 960.dp
-    const val TitleLines = 3
-    const val PlotLines = 6
+    /** E1's poster, 144 by 216: 2:3 on the step. */
+    val PosterWidth: Dp = 144.dp
+    val PosterHeight: Dp = 216.dp
+
+    /** E6: below this the name is a size down. Home's compact hero turns at the same width. */
+    val CompactBelow: Dp = 720.dp
+
+    const val TitleLines = 2
+    const val SynopsisLines = 2
+
+    /** E1's Resume, wide enough for `Resume S1:E3` in the board's language, and its rule under it. */
+    val PrimaryWidth: Dp = 176.dp
+
+    /** An episode row with its two lines and the room the board gives it. */
+    val EpisodeRowHeight: Dp = 56.dp
+
+    /** Three digits of episode number, in the mono face. */
+    val EpisodeNumberWidth: Dp = 24.dp
+
     const val ScrimAlpha = 0.6f
-    /** Past this a translation gives way, so the panel's title and Close keep their places. */
-    val ArrivingLabelMaxWidth: Dp = 120.dp
+
+    /** Past this a translation gives way, so the panel's title and Cancel keep their places. */
+    val ArrivingLabelMaxWidth: Dp = 160.dp
+
+    val SkeletonTitleWidth: Dp = 480.dp
+    val SkeletonTitleHeight: Dp = 40.dp
+    val SkeletonLineWidths: List<Dp> = listOf(360.dp, 560.dp, 520.dp)
+    val SkeletonRowWidth: Dp = 320.dp
+    const val SkeletonRows = 4
 }
