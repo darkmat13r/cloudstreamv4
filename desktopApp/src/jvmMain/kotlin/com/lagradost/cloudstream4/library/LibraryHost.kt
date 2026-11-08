@@ -22,8 +22,8 @@ import com.lagradost.cloudstream4.search.PosterImage
  * since the last time: the ViewModel outlives the tab so that changing tab is instant, which means it
  * cannot notice on its own.
  *
- * @param setEscape told what Escape should do now, as `HomeHost` is. The list picker is the only thing
- *   on this screen with a way out.
+ * @param setEscape told what Escape should do now, as `HomeHost` is: close the panel that is open (the list
+ *   picker, Sort or the source), or nothing.
  * @param onOpen opens a title's page.
  * @param onResume opens a title's page and asks for the sources of the episode it was left on.
  */
@@ -38,7 +38,14 @@ internal fun LibraryHost(
     val state by viewModel.state.collectAsState()
     LaunchedEffect(viewModel) { viewModel.onAction(LibraryAction.Refresh) }
     SideEffect {
-        setEscape(if (state.picking != null) ({ viewModel.onAction(LibraryAction.PickerDismissed) }) else null)
+        // Whichever panel is open, the one on top first: the list picker can only be opened with the others shut.
+        val closes = when {
+            state.picking != null -> LibraryAction.PickerDismissed
+            state.sortOpen -> LibraryAction.SortDismissed
+            state.sourcesOpen -> LibraryAction.SourcesDismissed
+            else -> null
+        }
+        setEscape(closes?.let { action -> { viewModel.onAction(action) } })
     }
     LaunchedEffect(viewModel) {
         viewModel.effect.collect { effect ->
@@ -52,6 +59,7 @@ internal fun LibraryHost(
     LibraryScreenDesktop(
         state = state,
         onAction = viewModel::onAction,
+        now = System::currentTimeMillis,
         // Only public http(s) addresses were stored, and the store checks again on the way out.
         artwork = { card -> PosterImage(url = card.posterUrl, modifier = Modifier.fillMaxSize()) },
     )

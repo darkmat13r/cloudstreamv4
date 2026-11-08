@@ -157,7 +157,8 @@ class DesktopHomeSourceTest {
         val api = Fake { _, _ -> throw IOException("HTTP 403 for https://cdn.example.com/x?token=s3cret reading $home/.cloudstream4/a") }
         val failed = assertIs<HomePageReply.Failed>(source(api).page(HomeSourceId("Fake"), 0, 1))
         assertTrue("HTTP 403" in failed.detail, failed.detail)
-        assertTrue("example.com" !in failed.detail && "s3cret" !in failed.detail, failed.detail)
+        // The host stays, as in every copy of the rules (`KMP-56`); the path and the token never do.
+        assertTrue("/x" !in failed.detail && "s3cret" !in failed.detail, failed.detail)
         assertTrue(home !in failed.detail, failed.detail)
     }
 

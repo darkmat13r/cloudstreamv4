@@ -6110,3 +6110,209 @@ though. To do:
 2. Give each reason a key with its plain, translated words (an `I18N` task first). A screen draws the words; the type
    stays only as the pasteable detail.
 3. Keep the rule that no message, address or path reaches the screen. Rerun the TV Home device suite.
+
+
+## KMP-73 — TV account select, artboard 8d (queue `Q16`) · **measured 2026-11-07**
+
+**Status:** in pr, stacked on `BUG-50` (#215), with `BUG-49` (#213), `I18N-16` (#217) and `BUG-36` (#212) merged in. Board
+8d of `TV Onboarding Extensions.dc.html` (a board file in the owner's Claude Design project), on `Television_720p`, API 36.
+
+### What it adds
+
+- **`:feature:account`**, a new module: `AccountSelectScreenTv` and `PairingPanelTv` over a plain state
+  (`AccountSelectState`), so it needs no `:app`.
+- **`AccountSelectActivity` draws 8d on TV**, behind `TvAccountSwitch`, over the same `AccountViewModel` the old grid used:
+  selecting, the PIN check and the hand-off to `MainActivity` are unchanged.
+- **Profiles are a card row.** Focus starts on the current profile, which rests filled; a focused card lifts and takes a
+  ring with no offset. A locked profile says only "Locked · PIN" (what it syncs with is its own business until the PIN);
+  the others say whether they are current and which services they use.
+- **Sync services are a list with their true state**: Simkl pairs with a code; MyAnimeList and AniList offer a browser
+  sign-in where the device has a browser and say "Not available here" where it does not; Kitsu signs in with its form; a
+  connected service offers "Remove from this device", behind a confirmation.
+- **Pairing is a side panel** with the code, a QR code of the address and the countdown. It reuses `BUG-49`'s
+  `DevicePinPoll`, so every way out ends the pairing, and focus goes back to the row that opened it (`BUG-36`'s `opener`).
+- What 8d does not draw stays the old dialogs: the profile editor, the PIN prompt, Kitsu's form, the remove confirmation.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| **One added profile plus the default skipped the picker** (the stored list, which omits the default, had one entry) | The picker shows; a single profile still skips it | The audit's finding; counted as `getAccounts`, the default included |
+| The same count decided `MainActivity`'s biometric prompt | It uses the same count | Otherwise a phone with one added profile would be asked twice |
+| A browser-only service offered a sign-in that silently failed on a TV with no browser | It says "Not available here" | 8d |
+| Signing out of a service on TV said "Log out" | "Remove from this device", after a confirmation | No provider revokes a token; the words say what happens (owner's ruling) |
+| Editing a profile opened from `MainActivity` switched to it and went back | Unchanged on the new screen | The review: match the old grid (PM's call) |
+
+### Security
+
+- **Sign-in state is read by presence** through `CredentialStore` (`BUG-50`): a token is never parsed for this screen. A
+  sign-out leaves its key holding an empty array, so an empty array counts as signed out; the value is compared, never
+  parsed or logged.
+- **The pairing code** is shown because the person has to read it, and is never logged; the screenshots use a fixture
+  (`FAKE00`) and a checkerboard in place of the QR. `Pairing.toString` leaves the code out, so a state logged by accident
+  cannot carry it.
+- **`hasBrowser`** asks the package manager for an `https` `VIEW` handler; the manifest's `<queries>` now names that
+  intent, which Android 11+ (Google TV 14 included) needs for the answer to be accurate.
+
+### Measured on the way
+
+- **BACK on the pairing panel closed the whole screen.** API 36 sends BACK to the back dispatcher, not to
+  `SidePanelHost`'s key handler, as its KDoc warns; the host adds an `OnBackPressedCallback` while pairing.
+- **Closing the panel put focus on the first card**, not the row that opened it (measured: "Focus is on Main, not
+  Simkl"): `BUG-36`. Fixed with its `opener`, latched so it survives the exit.
+- **The cards drew no ring**: focus was read through an interaction source shared by two focus targets. One target now,
+  read with `onFocusChanged`.
+- **The panel title read "Pair %s"**: Compose's `stringResource(res, args)` does not fill a bare `%s`. `UiString` does.
+
+### Reduced from the board
+
+- **No "last sync" age**: none is recorded (owner's ruling).
+- **No service logos** in the rows' disc.
+- **A profile picture from an address shows initials**; the bundled pictures show.
+- **The add card's glyph is the 24 dp `Add` icon** centred in 8d's 32 dp cell; the pack has no 32.
+- **Kitsu's sign-in and the profile editor are the old dialogs**: 8d does not draw them.
+
+### Tests
+
+- `ProfileLineTest` (common, 2): what a card's line says.
+- `PairingTest` (common, 2): the fixture code is in neither `Pairing`'s nor the screen state's `toString`.
+- `AccountSelectScreenTvDeviceTest` (device, 6): focus starts on the current profile; Manage, then cards, then rows; a card
+  press selects; pairing takes focus to *Get a new code*, BACK cancels and focus returns to the Simkl row; screenshots
+  `account-select` and `account-select-pairing`, each looked at.
+- `AccountSelectTvNavigationTest` (`:app`, the real path, 6): one added profile shows the picker (**fails with the old
+  count**: "8d did not show with two profiles"); one profile still skips; choosing a profile hands over as that profile; a
+  marker sign-in shows as "Current · Simkl" and its value never reaches the screen; an empty array reads "Current · No
+  sync"; an edit opened from `MainActivity` switches to that profile and goes back (**fails without the fix**: "It did
+  not go back to MainActivity").
+- **Leaves nothing behind** (train 8): run straight after this class, `TvDetailNavigationTest` failed 3 of 3 ("expected
+  Try again, was Go Back"); alone it passed. Measured cause: **touch mode.** The edit test taps Apply
+  (`apply.click()`), and touch mode is the whole device's until a key ends it, so the detail page's first focus
+  request didn't take and its first D-pad press landed on Go Back. Of the six tests paired one at a time with the
+  detail test, only the edit test failed it, and a key-names-only snapshot of every preferences file showed it leaves
+  nothing stored. Finishing the activities alone did not fix it (still 3 of 3 red). Now each test, afterwards, finishes
+  every activity it started and waits until each is destroyed (`MainActivity` is `singleTask`, so a leftover one would
+  be reused), turns touch mode off, and puts back the profiles, the selection, the skip setting, `hasLoggedIn` and the
+  cached sign-in IDs. The edit test paired with the detail test passes 1 of 1, and the whole pair (account, then detail)
+  passes 3 of 3, locally on `Television_720p`.
+
+### Not verified
+
+**The production BACK callback** (`closesPairing`, removed and re-added in `AccountSelectTv.attach`) is not covered: the
+real panel needs Simkl's live code endpoint, and the feature test builds its own callback, so it covers the same BACK
+handling, not this code. Also: a real browser sign-in, Kitsu's form, `TalkBack`, a real remote.
+
+## KMP-56 — The Mac's Search, built from `DS-22` S1 to S7 · **built 2026-11-07**
+
+The boards are `Desktop Search.dc.html` S1 to S7, a board file in the owner's Claude Design project (`DS-22`).
+
+- **S1:**
+  - The type chips: the types some installed provider serves, lit by their outline, as Home's status chips are.
+  - Sources is a button, `Sources 12 / 48`, that opens the panel. It used to be a read-out.
+- **S2:** results grouped by source, each group with its count, as built before.
+- **S3:** a partial search keeps its results under the failure banner, with "Retry failed". The exact sentence on the
+  board ("%d sources didn't answer. %s timed out after %d s.") has no key, and a `SearchOutcome` carries no timeout,
+  so the banner keeps `search_state_partial_headline`.
+- **S4:** the sources panel from the right edge, over a scrim:
+  - A row toggles a draft; Done commits it; the scrim and Escape discard it (`DEC-17`).
+  - Escape is caught at the screen's root, so it closes the panel even while the field holds focus, and never empties
+    the field instead.
+  - A row is checked when on, and shows a warning glyph when its provider's last answer failed.
+- **S6:** no results names the lit chips, through the existing `narrowedBy`.
+- **S7:** renders at 580×520, the page's share of an 800×520 window beside the 220 sidebar.
+- **S5** (suggestions as a popover) is `KMP-72`.
+
+`DesktopSearchSource` now implements `choices`, `selectSources`, `typeFilters`, `selectTypes` and `clearFilters`:
+- Desktop has no language preference, so every installed provider is eligible.
+- Picks and chips follow Android's rules: a pick that matches nothing installed falls back to every provider; chips
+  that nobody serves narrow nothing; a row the chips hid keeps its state through Done.
+- The `SearchTypeFilter` → `TvType` mapping is a copy of `:app`'s, which desktop cannot reach. Keep the two the same.
+
+**Decided** (reported to the PM):
+- Picks and chips last as long as the app runs. There is no desktop preference store yet, as with Home's bookmark
+  filter (`KMP-55`).
+- A failure's detail goes through `withoutUrls()`. Before this, the first line of a plugin's `errorString` reached the screen
+  unredacted.
+- **After review (`#221`):**
+  - `:desktopApp`'s `withoutUrls` is now the fourth synced copy of the BUG-43/44/47 rules, with the same case table
+    (`DesktopRedactionTest`). The sandbox's copy is `internal` to its module. So Home's, Search's and a title's lines now
+    keep a url's host, and lose its path, query, userinfo and fragment, plus `file:` URIs and the home, volume, storage and
+    Windows user paths. The old rule wrote `<url>` for the whole url. The home-directory-to-`~` rule is gone; `<path>`
+    covers it.
+  - Invisible characters are stripped **before** redacting, on Search and Home: one inside `://` hid the url from the
+    pattern, and stripping afterwards put it back together. Proved by mutation: with the old order,
+    `a url split by an invisible character does not reach the detail` fails with the whole token on screen.
+  - The failed-provider glyph is described with the existing `error` key.
+
+**Tests:**
+- `SearchScreenTest`: the Sources button and a chip; the panel's row, Done and scrim; and Escape closing the panel
+  rather than clearing the query. That last one was proved by mutation: with the root handler off, it fails
+  `expected:<[SourcePanelDismissed]> but was:<[Cleared]>`.
+- `DesktopSearchSelectionTest`: picks, chips, a hidden row, Search everything, the fallback, health and redaction.
+- Two `DesktopInteractionTest` cases rested on the old premise that only the field takes focus. They now assert that
+  Tab lands on Sources, not on the clear button.
+
+## KMP-72 — The Mac's suggestions as a popover over the results, `DS-22` S5 · **open**, follow-up of `KMP-56`
+
+- The shared `SearchViewModel` replaces the results with TV's 8a column when it has a suggestion source. S5 keeps the
+  results under a popover instead, which is a change to the shared view model and needs a TV device run.
+- The only suggestion source today is Android's `SearchSuggestionApi`, which sends every keystroke to a third-party
+  service. On the Mac, start recent-only, from local history. **A service is the owner's call** (security first, the
+  PM's ruling of 2026-11-07); raise it when this task starts.
+- Words: `search_suggestions_return_hint` (`I18N-15`). The rest reuse `search_tv_suggestion_*` and
+  `search_quick_meta_answered`.
+
+## KMP-57 — The Mac's Library, built from `DS-22` (L1 to L7)
+
+**Status:** in review · took over from desktop-session-1, the PM's call of 2026-11-07, to run beside `KMP-56`
+
+`LibraryScreenDesktop` now draws the `DS-22` boards on the shared `LibraryViewModel` (`KMP-49` to `KMP-51`):
+- **L1:** the bar holds the source, its line (`library_on_device`, or the account and `library_synced_format`), the
+  filter (`filter_bookmarks`; Escape empties it) and Sort (`library_sort_current`). Under it, the lists as buttons,
+  each with its count in the mono face, and the cards in a grid, four to a line at 1280.
+  - A card's line is its kind, the user's rating with the pack's star, and its episode count, where each is known.
+  - **Remove** shows at the poster's top-right while the pointer or focus is on the card (DS-22's decision).
+- **L2:** over a held read, the bar's line says why (`library_sync_unreachable`, `library_sync_offline`). A banner says
+  `library_sync_failed` with the age and offers `library_sync_retry`. The cards stay, dimmed to half.
+- **L3:** an empty list says `library_list_empty_headline` and `library_list_empty_body` with the list's name, and offers
+  `library_go_to_list` for the first list with titles. With nothing kept anywhere, it offers Search. A filter that
+  hides a list's titles offers Clear.
+- **L4:** Sort lists all four criteria, with `library_sort_supported`. One the source does not keep stays in the list,
+  greyed, with `library_sort_not_kept`, and takes no press.
+- **L5:** the source panel, with a check on the source shown. One that is not connected says so and cannot be chosen.
+- **L6:** the list picker, each list with `library_title_count`, a check on the card's own, and Remove below a rule.
+- **L7:** under a 720 content width the sync line and the filter give way. The filter stays while it holds words, so a
+  list is never narrowed by something unseen.
+
+`DesktopLibrarySources` gives the window one source, the local list. It sorts by Updated and Title only, because
+`DesktopLibraryStore` keeps no rating and no year. The sort is kept in `~/.cloudstream4/library-sort`: one line, written
+atomically, owner-only, and read back only as a criterion's exact name and a direction. `DesktopApp`'s default keeps
+nothing, so no test writes to the real home directory. Escape closes whichever panel is open.
+
+**Tests** (`:desktopApp:jvmTest` with real pointer and key events):
+- `LibraryScreenTest`: 23 cases, 12 of them existing.
+  - New: L2, L3 (both actions), L4, L5, L7's filter, Remove on hover, the secondary click, the context-menu keys,
+    Escape in the filter, and Sort reordering a list in the whole window.
+  - Every coordinate is measured off the renders.
+- `LibrarySortMemoryTest`: 6 cases, covering the source, read back, owner-only, rejected text, too large, and `None`.
+- `:desktopApp` 458 and `:feature:library` 84, with 0 failures.
+
+**DECIDED** (reported to the PM):
+- **The desktop has the local list as its only source.** There is no tracking-service sign-in on desktop.
+  - Options: (A) local only; (B) also list the services as Not connected; (C) no sources at all.
+  - Chose A. B is a dead end, and C would offer sorts with no data behind them.
+  - L2 and L5 are built and tested with services in the state, so they work when sign-in arrives.
+- **The local source is named `Local`**, the name Android's `LocalList` gives it. No key in `:core:strings` means "local".
+  - The name reaches the panel and Sort's lines untranslated, as it already does on Android TV.
+  - A key for it is an `I18N` follow-up.
+- **L6 opens from a secondary click and the context-menu keys** (Menu, Shift+F10), because L1 dropped the built list
+  button.
+  - Options: (A) that; (B) a second hover verb, Move, which needs a new key and is a second verb DS-22 did not draw;
+    (C) keep the list button under the card.
+  - Chose A, because it is how a Mac opens a thing's menu.
+- **Cards keep the built 200 minimum.** That gives L1's four at 1280 and two at 800×520. L7 draws three at 164,
+  under the board's own stated minimum.
+- **Favourites keeps its list button**, seven in all where the board drew six. Hiding it would hide what is kept there.
+- **No sort, filter or chevron glyph.** `CloudStreamIcons` has none of them, and adding one is an icon decision. The bar
+  uses words, as Home's source button does.
+- **Sort's rows have no explanatory lines**, and the bar reads the full label (`Updated (New to Old)`), as `I18N-15`
+  decided by reusing the `sort_*` keys. It fits the minimum window.

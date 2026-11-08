@@ -315,6 +315,7 @@ dependencies {
     implementation(project(":feature:home"))
     implementation(project(":feature:library"))
     implementation(project(":feature:downloads"))
+    implementation(project(":feature:account"))
     // KMP-64: the TV player HUD (7d), hosted over FullScreenPlayer.
     implementation(project(":feature:player"))
     implementation(project(":core:designsystem"))
