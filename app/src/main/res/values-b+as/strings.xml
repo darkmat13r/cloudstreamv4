@@ -17,6 +17,10 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%dটা উৎস সন্ধান কৰক"</item><item quantity="other">"আটাইকেইটা %dটা উৎস সন্ধান কৰক"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"তথাপি %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।"</item><item quantity="other">"তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d উৎস"</item><item quantity="other">"%d উৎস"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="one">"%d টা স্কেন সতৰ্কবাণী"</item><item quantity="other">"%d টা স্কেন সতৰ্কবাণী"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="one">"সকলো এক্সটেনশ্যন (%d)"</item><item quantity="other">"সকলো এক্সটেনশ্যন (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="one">"%1$d টা এক্সটেনশ্যন · আপডেট %2$s"</item><item quantity="other">"%1$d টা এক্সটেনশ্যন · আপডেট %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="one">"%d টা প্ৰফাইল আৰু ইয়াৰ PIN"</item><item quantity="other">"%d টা প্ৰফাইল আৰু সেইবোৰৰ PIN"</item></plurals>
 <string name="account">"একাউন্ট"</string>
 <string name="account_add_profile">"প্ৰফাইল যোগ কৰক"</string>
 <string name="account_manage_profiles">"প্ৰফাইল পৰিচালনা কৰক"</string>
@@ -655,7 +659,130 @@
 <string name="select_an_account">"এটা একাউণ্ট বাচনি কৰক"</string>
 <string name="select_library">"পুথিভঁৰালী বাছক"</string>
 <string name="set_default">"ডিফল্ট হিচাপে সজোৱা"</string>
+<string name="settings_adult_content">"প্ৰাপ্তবয়স্কৰ সমল"</string>
+<string name="settings_adult_content_body">"কেৱল য'ত এক্সটেনশ্যনে সমৰ্থন কৰে। পুনৰাৰম্ভৰ পিছত।"</string>
+<string name="settings_anime_audio">"এনিমেৰ অডিঅ'"</string>
+<string name="settings_anime_audio_both">"ডাব আৰু চাবটাইটল"</string>
+<string name="settings_at_launch">"আৰম্ভ হওঁতে"</string>
+<string name="settings_back_up">"ব্যাকআপ লওক"</string>
+<string name="settings_back_up_now">"এতিয়াই ব্যাকআপ লওক"</string>
+<string name="settings_backup_automatically">"স্বয়ংক্ৰিয়ভাৱে"</string>
+<string name="settings_backup_folder">"ব্যাকআপ ফ'ল্ডাৰ"</string>
+<string name="settings_change">"সলনি কৰক"</string>
+<string name="settings_choose">"বাছক"</string>
+<string name="settings_choose_another">"আন এটা বাছক"</string>
+<string name="settings_clear">"পৰিষ্কাৰ কৰক"</string>
+<string name="settings_clear_cache">"কেশ্ব পৰিষ্কাৰ কৰক"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"ভিডিঅ' %1$s · ছবি %2$s"</string>
+<string name="settings_color_white">"বগা"</string>
+<string name="settings_color_yellow">"হালধীয়া"</string>
+<string name="settings_connections_per_download">"প্ৰতিটো ডাউনলোডৰ সংযোগ"</string>
+<string name="settings_connections_per_download_body">"উৎসই অনুমতি দিলে বেছি সংযোগে দ্ৰুত কৰিব পাৰে।"</string>
+<string name="settings_diagnostics">"ডায়েগন'ষ্টিক্স"</string>
+<string name="settings_disk_cache">"ডিস্ক কেশ্ব"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"এক্সটেনশ্যন, ছবি আৰু চাবটাইটলৰ বাবে। ভিডিঅ' ষ্ট্ৰীমে আপোনাৰ Macৰ DNS ব্যৱহাৰ কৰে।"</string>
+<string name="settings_download_folder">"ডাউনলোড ফ'ল্ডাৰ"</string>
+<string name="settings_downloads_at_once">"একেলগে ডাউনলোড"</string>
+<string name="settings_downloads_at_once_body">"কিমানটা শিৰোনাম একেলগে ডাউনলোড হ'ব।"</string>
+<string name="settings_downloads_wait">"ফ'ল্ডাৰটো উভতি নহালৈকে বা আন এটা বাছি নোলোৱালৈকে নতুন ডাউনলোডবোৰ অপেক্ষা কৰিব।"</string>
+<string name="settings_extension_languages">"ভাষাসমূহ"</string>
+<string name="settings_extension_review">"পৰ্যালোচনা"</string>
+<string name="settings_extensions_auto_install">"মোৰ ৰিপ'জিট'ৰিৰ পৰা নতুনবোৰ ইনষ্টল কৰক"</string>
+<string name="settings_extensions_auto_install_body">"চলোৱাৰ আগতে প্ৰতিটো তথাপি স্কেন কৰা হয়।"</string>
+<string name="settings_extensions_auto_update">"এক্সটেনশ্যন স্বয়ংক্ৰিয়ভাৱে আপডেট কৰক"</string>
+<string name="settings_extensions_auto_update_body">"চলোৱাৰ আগতে প্ৰতিটো আপডেট স্কেন কৰা হয়।"</string>
+<string name="settings_extensions_installed" formatted="true">"ইনষ্টল কৰা · %d"</string>
+<string name="settings_filler_episodes">"ফিলাৰ এপিচ'ড"</string>
+<string name="settings_filler_episodes_body">"এনিমেৰ বাবে, য'ত উৎসই সেইবোৰ চিহ্নিত কৰে।"</string>
+<string name="settings_folder">"ফ'ল্ডাৰ"</string>
+<string name="settings_folder_missing" formatted="true">"%s পোৱা নাই। ইয়াৰ ডিস্ক সংযুক্ত নহ'বও পাৰে।"</string>
+<string name="settings_help_community">"সহায় আৰু সম্প্ৰদায়"</string>
+<string name="settings_help_community_body">"GitHub, Discord আৰু ৱিকি সহায় মেনুত আছে।"</string>
+<string name="settings_hide_search_quality">"সন্ধানৰ ফলাফলত গুণগত মান লুকুৱাওক"</string>
+<string name="settings_home_search">"ঘৰ আৰু সন্ধান"</string>
 <string name="settings_info">"তথ্য"</string>
+<string name="settings_last_backup" formatted="true">"শেষ ব্যাকআপ: %s"</string>
+<string name="settings_logs">"লগ"</string>
+<string name="settings_logs_mac_body">"এই Macত 7 দিনলৈ ৰখা হয়। কেতিয়াও ক'লৈকো পঠিওৱা নহয়।"</string>
+<string name="settings_logs_phone_body">"এই ফোনত 7 দিনলৈ ৰখা হয়। কেতিয়াও ক'লৈকো পঠিওৱা নহয়।"</string>
+<string name="settings_network_buffer">"নেটৱৰ্ক বাফাৰ"</string>
+<string name="settings_offline_repos" formatted="true">"ৰিপ'জিট'ৰিবোৰ পৰীক্ষা কৰিব পৰা নাই। এই তালিকাবোৰ %sৰ।"</string>
+<string name="settings_pane_accounts_privacy">"একাউন্ট আৰু গোপনীয়তা"</string>
+<string name="settings_pane_advanced">"উন্নত"</string>
+<string name="settings_pane_appearance">"ৰূপ"</string>
+<string name="settings_pane_network">"নেটৱৰ্ক"</string>
+<string name="settings_pane_playback">"প্লেবেক"</string>
+<string name="settings_play_next">"পৰৱৰ্তী এপিচ'ড প্লে কৰক"</string>
+<string name="settings_play_next_body">"এপিচ'ডৰ শেষত 10 ছেকেণ্ড গণনা কৰে।"</string>
+<string name="settings_playing">"প্লে হওঁতে"</string>
+<string name="settings_poster_badges">"প'ষ্টাৰত বেজ"</string>
+<string name="settings_posters">"প'ষ্টাৰ"</string>
+<string name="settings_profile_no_pin">"PIN নাই"</string>
+<string name="settings_profile_this">"এই প্ৰফাইল"</string>
+<string name="settings_random_button_body">"ঘৰ আৰু পুথিভঁৰালত।"</string>
+<string name="settings_read">"পঢ়ক"</string>
+<string name="settings_remove">"আঁতৰাওক"</string>
+<string name="settings_repo_unreachable" formatted="true">"সংযোগ কৰিব পৰা নগ'ল। এই তালিকাখন %s আগৰ।"</string>
+<string name="settings_repositories">"ৰিপ'জিট'ৰি"</string>
+<string name="settings_reset_app">"CloudStream ৰিচেট কৰক"</string>
+<string name="settings_reset_app_body">"এই Macত থকা ছেটিংছ, প্ৰফাইল আৰু পুথিভঁৰাল মচি পেলায়।"</string>
+<string name="settings_reset_app_phone_body">"ছেটিংছ, প্ৰফাইল আৰু পুথিভঁৰাল মচি পেলায়।"</string>
+<string name="settings_reset_confirm_title">"CloudStream ৰিচেট কৰিবনে?"</string>
+<string name="settings_reset_erases_mac">"ই এই Macৰ পৰা মচি পেলায়:"</string>
+<string name="settings_reset_erases_phone">"ই এই ফোনৰ পৰা মচি পেলায়:"</string>
+<string name="settings_reset_item_library">"পুথিভঁৰাল, চোৱাৰ অগ্ৰগতি আৰু ইতিহাস"</string>
+<string name="settings_reset_item_search">"সন্ধানৰ ইতিহাস"</string>
+<string name="settings_reset_item_settings">"ছেটিংছ"</string>
+<string name="settings_reset_item_signins">"ছিংক আৰু চাবটাইটল সেৱাৰ ছাইন ইন"</string>
+<string name="settings_reset_kept">"ৰখা হয়: এক্সটেনশ্যন, ডাউনলোড কৰা ফাইল আৰু ব্যাকআপ।"</string>
+<string name="settings_restore">"পুনৰুদ্ধাৰ কৰক"</string>
+<string name="settings_restore_failed">"পুনৰুদ্ধাৰ কৰিব পৰা নগ'ল"</string>
+<string name="settings_restore_failed_body">"সেই ফাইলটো CloudStream ব্যাকআপ নহয়। একো সলনি কৰা হোৱা নাই।"</string>
+<string name="settings_restoring" formatted="true">"%s পুনৰুদ্ধাৰ কৰি থকা হৈছে"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %3$dৰ %2$d"</string>
+<string name="settings_run_test">"পৰীক্ষা চলাওক"</string>
+<string name="settings_search_hint">"ছেটিংছ সন্ধান কৰক"</string>
+<string name="settings_search_no_results" formatted="true">"“%s”ৰ বাবে কোনো ফলাফল নাই"</string>
+<string name="settings_search_no_results_body">"অন্য এটা শব্দ চেষ্টা কৰক।"</string>
+<string name="settings_seek_amount">"আগ-পিছ কৰাৰ পৰিমাণ"</string>
+<string name="settings_setup_again">"ছেটআপ পুনৰ চলাওক"</string>
+<string name="settings_setup_again_body">"ভাষা, এক্সটেনশ্যন আৰু লেআউট, আৰম্ভণিৰ পৰা।"</string>
+<string name="settings_setup_run">"ছেটআপ চলাওক"</string>
+<string name="settings_sign_in">"ছাইন ইন কৰক"</string>
+<string name="settings_skip_intro">"ইন্ট্ৰ' এৰক বিকল্প দেখুৱাওক"</string>
+<string name="settings_skip_intro_body">"য'ত উৎসই আৰম্ভণি বা ক্ৰেডিট চিহ্নিত কৰে।"</string>
+<string name="settings_skip_profile_choice">"প্ৰফাইল বাছনি এৰি দিয়ক"</string>
+<string name="settings_skip_profile_choice_body">"শেষত ব্যৱহাৰ কৰা প্ৰফাইলটো খোলে।"</string>
+<string name="settings_source_order">"উৎসৰ ক্ৰম"</string>
+<string name="settings_source_order_body">"প্লেয়াৰে প্ৰথমে কোনবোৰ উৎস চেষ্টা কৰে।"</string>
+<string name="settings_speed">"গতি"</string>
+<string name="settings_subtitle_background">"পটভূমি"</string>
+<string name="settings_subtitle_edge">"কাষ"</string>
+<string name="settings_subtitle_font_system">"ছিষ্টেম"</string>
+<string name="settings_subtitle_language">"পছন্দৰ ভাষা"</string>
+<string name="settings_subtitle_language_body">"শিৰোনামত থাকিলে স্বয়ংক্ৰিয়ভাৱে বাছনি কৰা হয়।"</string>
+<string name="settings_subtitle_preview">"পূৰ্বদৰ্শন"</string>
+<string name="settings_subtitle_services">"চাবটাইটল সেৱা"</string>
+<string name="settings_subtitle_size">"আকাৰ"</string>
+<string name="settings_subtitle_size_large">"ডাঙৰ"</string>
+<string name="settings_subtitle_size_medium">"মধ্যম"</string>
+<string name="settings_subtitle_size_small">"সৰু"</string>
+<string name="settings_subtitle_text_color">"লিখনিৰ ৰং"</string>
+<string name="settings_suggestions_while_typing">"টাইপ কৰোঁতে পৰামৰ্শ"</string>
+<string name="settings_sync_for" formatted="true">"%sৰ বাবে ছিংক"</string>
+<string name="settings_sync_per_profile">"প্ৰতিটো প্ৰফাইলে নিজে ছাইন ইন কৰে।"</string>
+<string name="settings_test_all_extensions">"সকলো এক্সটেনশ্যন পৰীক্ষা কৰক"</string>
+<string name="settings_test_all_extensions_body">"প্ৰতিটো সক্ৰিয় এক্সটেনশ্যনেৰে সন্ধান কৰে। ডেভেলপাৰৰ বাবে।"</string>
+<string name="settings_title_pages">"শিৰোনামৰ পৃষ্ঠা"</string>
+<string name="settings_title_under_poster">"প'ষ্টাৰৰ তলত শিৰোনাম"</string>
+<string name="settings_trailers">"ট্ৰেইলাৰ"</string>
+<string name="settings_updates">"আপডেট"</string>
+<string name="settings_updates_at_launch">"আৰম্ভ হওঁতে আপডেট পৰীক্ষা কৰক"</string>
+<string name="settings_updates_at_launch_body">"CloudStream খোলোঁতে নতুন সংস্কৰণ বিচাৰে।"</string>
+<string name="settings_updates_check_now">"এতিয়াই পৰীক্ষা কৰক"</string>
+<string name="settings_updates_current" formatted="true">"শেহতীয়া · %s পৰীক্ষা কৰা হৈছে"</string>
+<string name="settings_watch_progress_body">"চাই থকা অব্যাহত ৰাখিবলৈ আপুনি ক'ত ৰৈছিল সেয়া সংৰক্ষণ কৰে।"</string>
 <string name="setup_done">"সম্পূৰ্ণ"</string>
 <string name="setup_extensions_subtext">"আপুনি ব্যৱহাৰ কৰিব বিচৰা চাইটবোৰৰ তালিকা ডাউনলোড কৰক"</string>
 <string name="show">"দেখুৱাওক"</string>

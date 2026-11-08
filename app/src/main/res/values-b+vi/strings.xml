@@ -20,6 +20,10 @@
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"Tìm kiếm trên cả %d nguồn"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn."</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d NGUỒN"</item></plurals>
+<plurals name="settings_extension_scan_warnings"><item quantity="other">"%d cảnh báo khi quét"</item></plurals>
+<plurals name="settings_extensions_all"><item quantity="other">"Tất cả tiện ích mở rộng (%d)"</item></plurals>
+<plurals name="settings_repo_summary"><item quantity="other">"%1$d tiện ích mở rộng · cập nhật %2$s"</item></plurals>
+<plurals name="settings_reset_item_profiles"><item quantity="other">"%d hồ sơ và PIN của chúng"</item></plurals>
 <string name="account">"tài khoản"</string>
 <string name="account_add_profile">"Thêm hồ sơ"</string>
 <string name="account_manage_profiles">"Quản lý hồ sơ"</string>
@@ -720,7 +724,130 @@
 <string name="select_an_account">"Chọn hồ sơ của bạn"</string>
 <string name="select_library">"Chọn Thư viện"</string>
 <string name="set_default">"Đặt mặc định"</string>
+<string name="settings_adult_content">"Nội dung người lớn"</string>
+<string name="settings_adult_content_body">"Chỉ khi tiện ích mở rộng hỗ trợ. Sau khi khởi động lại."</string>
+<string name="settings_anime_audio">"Âm thanh anime"</string>
+<string name="settings_anime_audio_both">"Lồng tiếng và phụ đề"</string>
+<string name="settings_at_launch">"Khi khởi động"</string>
+<string name="settings_back_up">"Sao lưu"</string>
+<string name="settings_back_up_now">"Sao lưu ngay"</string>
+<string name="settings_backup_automatically">"Tự động"</string>
+<string name="settings_backup_folder">"Thư mục sao lưu"</string>
+<string name="settings_change">"Thay đổi"</string>
+<string name="settings_choose">"Chọn"</string>
+<string name="settings_choose_another">"Chọn tệp khác"</string>
+<string name="settings_clear">"Xóa"</string>
+<string name="settings_clear_cache">"Xóa bộ nhớ đệm"</string>
+<string name="settings_clear_cache_sizes" formatted="true">"Video %1$s · hình ảnh %2$s"</string>
+<string name="settings_color_white">"Trắng"</string>
+<string name="settings_color_yellow">"Vàng"</string>
+<string name="settings_connections_per_download">"Số kết nối mỗi lượt tải"</string>
+<string name="settings_connections_per_download_body">"Nhiều hơn có thể nhanh hơn, nếu nguồn cho phép."</string>
+<string name="settings_diagnostics">"Chẩn đoán"</string>
+<string name="settings_disk_cache">"Bộ nhớ đệm trên đĩa"</string>
+<string name="settings_dns">"DNS"</string>
+<string name="settings_dns_mac_scope">"Cho tiện ích mở rộng, ảnh bìa và phụ đề. Luồng video dùng DNS của máy Mac."</string>
+<string name="settings_download_folder">"Thư mục tải xuống"</string>
+<string name="settings_downloads_at_once">"Số lượt tải cùng lúc"</string>
+<string name="settings_downloads_at_once_body">"Số tựa được tải xuống cùng lúc."</string>
+<string name="settings_downloads_wait">"Lượt tải mới sẽ chờ đến khi thư mục trở lại hoặc một thư mục khác được chọn."</string>
+<string name="settings_extension_languages">"Ngôn ngữ"</string>
+<string name="settings_extension_review">"Xem lại"</string>
+<string name="settings_extensions_auto_install">"Cài tiện ích mới từ kho nguồn phim của tôi"</string>
+<string name="settings_extensions_auto_install_body">"Mỗi tiện ích vẫn được quét trước khi chạy."</string>
+<string name="settings_extensions_auto_update">"Tự động cập nhật tiện ích mở rộng"</string>
+<string name="settings_extensions_auto_update_body">"Mỗi bản cập nhật được quét trước khi chạy."</string>
+<string name="settings_extensions_installed" formatted="true">"Đã cài · %d"</string>
+<string name="settings_filler_episodes">"Tập độn"</string>
+<string name="settings_filler_episodes_body">"Cho anime, khi nguồn có đánh dấu."</string>
+<string name="settings_folder">"Thư mục"</string>
+<string name="settings_folder_missing" formatted="true">"Không tìm thấy %s. Có thể ổ đĩa chưa được kết nối."</string>
+<string name="settings_help_community">"Trợ giúp và cộng đồng"</string>
+<string name="settings_help_community_body">"GitHub, Discord và wiki nằm trong menu Trợ giúp."</string>
+<string name="settings_hide_search_quality">"Ẩn chất lượng trong kết quả tìm kiếm"</string>
+<string name="settings_home_search">"Trang chủ và Tìm kiếm"</string>
 <string name="settings_info">"Thông tin"</string>
+<string name="settings_last_backup" formatted="true">"Lần sao lưu cuối: %s"</string>
+<string name="settings_logs">"Nhật ký"</string>
+<string name="settings_logs_mac_body">"Lưu trên máy Mac này trong 7 ngày. Không bao giờ gửi đi đâu."</string>
+<string name="settings_logs_phone_body">"Lưu trên điện thoại này trong 7 ngày. Không bao giờ gửi đi đâu."</string>
+<string name="settings_network_buffer">"Bộ đệm mạng"</string>
+<string name="settings_offline_repos" formatted="true">"Không thể kiểm tra kho nguồn phim. Các danh sách này từ %s."</string>
+<string name="settings_pane_accounts_privacy">"Tài khoản và quyền riêng tư"</string>
+<string name="settings_pane_advanced">"Nâng cao"</string>
+<string name="settings_pane_appearance">"Giao diện"</string>
+<string name="settings_pane_network">"Mạng"</string>
+<string name="settings_pane_playback">"Phát lại"</string>
+<string name="settings_play_next">"Phát tập tiếp theo"</string>
+<string name="settings_play_next_body">"Đếm ngược 10 s ở cuối tập."</string>
+<string name="settings_playing">"Khi đang phát"</string>
+<string name="settings_poster_badges">"Huy hiệu trên poster"</string>
+<string name="settings_posters">"Poster"</string>
+<string name="settings_profile_no_pin">"Không có PIN"</string>
+<string name="settings_profile_this">"Hồ sơ này"</string>
+<string name="settings_random_button_body">"Trên Trang chủ và Thư viện."</string>
+<string name="settings_read">"Đọc"</string>
+<string name="settings_remove">"Xóa"</string>
+<string name="settings_repo_unreachable" formatted="true">"Không thể kết nối. Danh sách này từ %s trước."</string>
+<string name="settings_repositories">"Kho nguồn phim"</string>
+<string name="settings_reset_app">"Đặt lại CloudStream"</string>
+<string name="settings_reset_app_body">"Xóa cài đặt, hồ sơ và thư viện trên máy Mac này."</string>
+<string name="settings_reset_app_phone_body">"Xóa cài đặt, hồ sơ và thư viện."</string>
+<string name="settings_reset_confirm_title">"Đặt lại CloudStream?"</string>
+<string name="settings_reset_erases_mac">"Thao tác này xóa khỏi máy Mac này:"</string>
+<string name="settings_reset_erases_phone">"Thao tác này xóa khỏi điện thoại này:"</string>
+<string name="settings_reset_item_library">"Thư viện, tiến độ xem và lịch sử"</string>
+<string name="settings_reset_item_search">"Lịch sử tìm kiếm"</string>
+<string name="settings_reset_item_settings">"Cài đặt"</string>
+<string name="settings_reset_item_signins">"Đăng nhập vào dịch vụ đồng bộ và phụ đề"</string>
+<string name="settings_reset_kept">"Giữ lại: tiện ích mở rộng, tệp đã tải và bản sao lưu."</string>
+<string name="settings_restore">"Khôi phục"</string>
+<string name="settings_restore_failed">"Không thể khôi phục"</string>
+<string name="settings_restore_failed_body">"Tệp đó không phải bản sao lưu CloudStream. Không có gì thay đổi."</string>
+<string name="settings_restoring" formatted="true">"Đang khôi phục %s"</string>
+<string name="settings_restoring_progress" formatted="true">"%1$s · %2$d/%3$d"</string>
+<string name="settings_run_test">"Chạy kiểm tra"</string>
+<string name="settings_search_hint">"Tìm trong cài đặt"</string>
+<string name="settings_search_no_results" formatted="true">"Không có kết quả cho “%s”"</string>
+<string name="settings_search_no_results_body">"Hãy thử từ khác."</string>
+<string name="settings_seek_amount">"Bước tua"</string>
+<string name="settings_setup_again">"Chạy lại thiết lập"</string>
+<string name="settings_setup_again_body">"Ngôn ngữ, tiện ích mở rộng và bố cục, từ đầu."</string>
+<string name="settings_setup_run">"Chạy thiết lập"</string>
+<string name="settings_sign_in">"Đăng nhập"</string>
+<string name="settings_skip_intro">"Hiện nút Bỏ qua phần mở đầu"</string>
+<string name="settings_skip_intro_body">"Khi nguồn đánh dấu phần mở đầu hoặc phần kết."</string>
+<string name="settings_skip_profile_choice">"Bỏ qua chọn hồ sơ"</string>
+<string name="settings_skip_profile_choice_body">"Mở hồ sơ dùng gần nhất."</string>
+<string name="settings_source_order">"Thứ tự nguồn"</string>
+<string name="settings_source_order_body">"Nguồn mà trình phát thử trước."</string>
+<string name="settings_speed">"Tốc độ"</string>
+<string name="settings_subtitle_background">"Nền"</string>
+<string name="settings_subtitle_edge">"Viền"</string>
+<string name="settings_subtitle_font_system">"Hệ thống"</string>
+<string name="settings_subtitle_language">"Ngôn ngữ ưu tiên"</string>
+<string name="settings_subtitle_language_body">"Tự động chọn khi tựa có ngôn ngữ đó."</string>
+<string name="settings_subtitle_preview">"Xem trước"</string>
+<string name="settings_subtitle_services">"Dịch vụ phụ đề"</string>
+<string name="settings_subtitle_size">"Kích thước"</string>
+<string name="settings_subtitle_size_large">"Lớn"</string>
+<string name="settings_subtitle_size_medium">"Vừa"</string>
+<string name="settings_subtitle_size_small">"Nhỏ"</string>
+<string name="settings_subtitle_text_color">"Màu chữ"</string>
+<string name="settings_suggestions_while_typing">"Gợi ý khi nhập"</string>
+<string name="settings_sync_for" formatted="true">"Đồng bộ cho %s"</string>
+<string name="settings_sync_per_profile">"Mỗi hồ sơ đăng nhập riêng."</string>
+<string name="settings_test_all_extensions">"Kiểm tra mọi tiện ích mở rộng"</string>
+<string name="settings_test_all_extensions_body">"Tìm kiếm bằng mọi tiện ích mở rộng đang bật. Dành cho nhà phát triển."</string>
+<string name="settings_title_pages">"Trang tựa"</string>
+<string name="settings_title_under_poster">"Tên tựa dưới poster"</string>
+<string name="settings_trailers">"Trailer"</string>
+<string name="settings_updates">"Cập nhật"</string>
+<string name="settings_updates_at_launch">"Kiểm tra cập nhật khi khởi động"</string>
+<string name="settings_updates_at_launch_body">"Tìm phiên bản mới khi mở CloudStream."</string>
+<string name="settings_updates_check_now">"Kiểm tra ngay"</string>
+<string name="settings_updates_current" formatted="true">"Đã cập nhật · kiểm tra %s"</string>
+<string name="settings_watch_progress_body">"Lưu chỗ bạn dừng, cho mục Tiếp tục xem."</string>
 <string name="setup_done">"Hoàn tất"</string>
 <string name="setup_extensions_subtext">"Tải xuống danh sách các trang web bạn muốn sử dụng"</string>
 <string name="show">"Hiển thị"</string>
