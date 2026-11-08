@@ -41,6 +41,7 @@ import compose.icons.tablericons.Plus
 import compose.icons.tablericons.Refresh
 import compose.icons.tablericons.Rotate
 import compose.icons.tablericons.Search
+import compose.icons.tablericons.Selector
 import compose.icons.tablericons.Server
 import compose.icons.tablericons.Settings
 import compose.icons.tablericons.Share
@@ -107,6 +108,8 @@ object CloudStreamIcons {
     val Info: ImageVector get() = TablerIcons.InfoCircle
     /** A title's episode list. */
     val Episodes: ImageVector get() = TablerIcons.List
+    /** A pop-up button's mark: pressing it lists the choices (`DS-24`, the Mac's Settings window). */
+    val Selector: ImageVector get() = TablerIcons.Selector
     /** Leaves the app for a browser. */
     val OpenExternal: ImageVector get() = TablerIcons.ExternalLink
     /** Something reached by its URL, such as playing from a link. */

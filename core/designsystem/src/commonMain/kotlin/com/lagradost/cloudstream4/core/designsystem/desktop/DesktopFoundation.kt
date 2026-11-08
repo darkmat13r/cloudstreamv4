@@ -58,6 +58,11 @@ object DesktopDimens {
     val FieldActionSize: Dp = 24.dp
     val RowMinHeight: Dp = 48.dp
     /**
+     * A control inside a row: a switch's cell, a pop-up button, a row's own button. A compact [ButtonHeight], so it
+     * centres on the step in a [RowMinHeight] row and in a 64 row with a second line (`DS-24`, the PM's call 2026-11-08).
+     */
+    val RowControlHeight: Dp = 32.dp
+    /**
      * A row's inset. A list sits this much further out than the column it belongs to, so a row's text
      * lines up with its header and only the hover fill reaches past it.
      */

@@ -6728,3 +6728,71 @@ rebuilding the page as the service ticked, and D1's state was made again with no
 - `a series page reports the same free bytes as the titles page` reads the live volume twice. It failed 3 of 5 lone runs
   on this branch.
 - `after a restart a resolver with no VIDEO link…` failed once in a full gate run.
+
+## KMP-90 — The Mac's Settings window, part 1, from `DS-24` · **in pr #266**
+
+**Status:** in pr #266, on master after train 11, which carried #256 (`I18N-20`'s keys) and #229 (`KMP-75`, the Mac's
+downloads engine in the window).
+
+**What part 1 is** (the PM's calls, 2026-11-08): the window, its sidebar and its search, and only the rows that take
+effect. No control in the window does nothing. A pane is in the sidebar only once it has a row that works, and search
+finds only rows that exist. The `DS-24` boards stay the target; every row they draw that is not here is listed below,
+with what it waits for.
+
+- **The window.** Settings… in the Mac's app menu on ⌘,, through `Desktop.setPreferencesHandler`. It is a second
+  window, 760 wide at every height, 600 tall by default, and never under 480 (ST9). Its title bar is transparent over the
+  content, so the sidebar runs the full height with the traffic lights in it. Off a Mac there is no such menu item, so
+  the window is not reachable there yet.
+- **The sidebar** lists Playback and Downloads, the two panes with a working row. A search keeps the panes holding a
+  match and marks the matching rows. With none, it says so ("No results for “%s”", ST7). Escape empties it.
+- **Playback: Play the next episode**, under Android's `autoplay_next_key`, on by default. The player reads it through
+  `PlaybackSettings.autoplayNext`, a `StateFlow` in `:feature:settings` commonMain, which desktop-session-1's Up next
+  (`DS-23`) takes as a parameter defaulting to `PlaybackSettings.Default`. Agreed with that session through the PM.
+- **Downloads: the folder** by its name only (ST6), with Show in Finder while it exists. Missing, the line says so and
+  the button is not offered.
+- **Downloads: Downloads at once**, under Android's `download_parallel_key`, 1 to 5, 3 by default. The engine reads it at
+  every start, and `limitChanged()` starts what a raised limit now allows. `Main.kt` builds the settings before the
+  engine, passes `runningLimit = { settings.downloadsAtOnce.value }`, and calls `limitChanged()` on every new value.
+
+**Where things live.** `:feature:settings` holds the screens and the read interfaces (`PlaybackSettings`,
+`DownloadSettings`), in commonMain, under the iOS canary. It is not `:core:settings`. That module is Android's
+`AppSettings` over Mihon's `PreferenceStore`, with `:library` in its commonMain, so it is canary-exempt; screens go in
+`:feature:*` and storage in the host. The Mac stores the values in `~/.cloudstream4/settings.properties`: owner-only,
+written temp-then-move, capped at 16 KiB, with anything malformed or out of range reading as its default. Preferences
+only: a token or a password never goes in that file. Those go to the Keychain, when there is one.
+
+**New in the design system.**
+- `DesktopDimens.RowControlHeight` (32), the compact control in a row (the PM's call on `DS-24`).
+- `DesktopSwitch` and `DesktopPopupButton`, with their geometry in `DesktopControlDefaults`.
+- `CloudStreamIcons.Selector` (Tabler `Selector`), the pop-up button's mark. Its row in `ui-components.md`'s icon table
+  ("A pop-up button's choices | `Selector` | `Selector`") is for the owner to add: that file is a project rule.
+
+**Deferred rows, each with what it waits for:**
+
+| ID | Rows (`DS-24`) | Waits for |
+|---|---|---|
+| `KMP-90b` | General: app language | An in-app locale switch on the Mac; today the app follows the system |
+| `KMP-90c` | General: check for updates at launch, Check now | A Mac updater (`DEC-03`, distribution) |
+| `KMP-90d` | General: Run setup again; Help and community; Disclaimer | A Mac setup flow; the Help menu; a disclaimer page |
+| `KMP-90e` | Appearance: poster size, title under poster, badges, hide quality in search | Home, Search and Library reading them |
+| `KMP-90f` | Appearance: trailers, cast, filler episodes | The Mac title page reading them |
+| `KMP-90g` | Appearance: Random button, suggestions while typing | Home's Random and Search's suggestions on the Mac |
+| `KMP-90h` | Playback: Offer Skip intro, seek amount, update watch progress | The Mac player reading them |
+| `KMP-90i` | Playback: source order (Edit) | A source-order editor |
+| `KMP-90j` | Playback: network buffer, disk cache, clear cache | libVLC's options from the host, and a cache to clear (hash-keyed, never by URL) |
+| `KMP-90k` | Downloads: connections per download, Choose folder | The engine taking a per-download connection count, and a chosen root |
+| — | Subtitles, Extensions, Accounts and Privacy, Network, Backup, Advanced | Part 2; Accounts and Backup wait on the Keychain decision |
+
+**Tests.**
+- `:feature:settings` commonTest: parsing, the defaults, out-of-range values, and search, including that a word for a
+  row that is not built finds nothing.
+- `:feature:settings` jvmTest: the repository writes every change at once and a new one reads it back; an unchanged
+  value is not rewritten; a failed write keeps the value and reports only the exception's class.
+- desktopApp: `FileSettingsStorageTest`, covering owner-only, no temporary file left, too large, malformed lines, and a
+  value that would break the file.
+- desktopApp: `SettingsWindowTest`, through real pointer and key events. Each control writes and reads its setting; the
+  folder shows its name, never a path, and no Show in Finder while missing; search finds and empties; the 760×480
+  window fits every pane.
+- desktopApp: `DesktopDownloadsTest`, `a changed Downloads at once applies to the next start`. Raised from 1 to 2, the
+  waiting film starts beside the running one. Lowered back to 1, both keep running and a third waits.
+- Renders with `-Pcloudstream.settings.renders=<dir>`.

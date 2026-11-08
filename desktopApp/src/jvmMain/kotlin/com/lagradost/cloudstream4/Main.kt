@@ -50,6 +50,7 @@ import com.lagradost.cloudstream4.feature.library.LibraryStore
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.LibraryViewModel
+import com.lagradost.cloudstream4.feature.settings.SettingsRepository
 import com.lagradost.cloudstream4.home.FileHomeSourceMemory
 import com.lagradost.cloudstream4.downloads.DesktopDownloads
 import com.lagradost.cloudstream4.downloads.DownloadSeriesHost
@@ -94,6 +95,9 @@ import com.lagradost.cloudstream4.player.episodeMeta
 import com.lagradost.cloudstream4.search.DesktopSearchHistory
 import com.lagradost.cloudstream4.search.DesktopSearchSource
 import com.lagradost.cloudstream4.search.PosterImage
+import com.lagradost.cloudstream4.settings.FileSettingsStorage
+import com.lagradost.cloudstream4.settings.SettingsWindow
+import com.lagradost.cloudstream4.settings.installSettingsOpener
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -177,7 +181,9 @@ fun main(args: Array<String>) {
     val approvals = ExtensionApprovals(extensions, report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
     // `KMP-52`'s service: ~/Downloads/CloudStream and ~/.cloudstream4/downloads.json. Closed on the way out, so a running
     // download stops cleanly and comes back Paused.
-    val downloads = DesktopDownloads()
+    // KMP-90: the one store of the Mac's Settings. The player and the downloads engine read it from here.
+    val settings = SettingsRepository(FileSettingsStorage()) { println("settings not saved: $it") }
+    val downloads = DesktopDownloads(runningLimit = { settings.downloadsAtOnce.value })
     Runtime.getRuntime().addShutdownHook(Thread { runBlocking { downloads.close() } })
 
     application {
@@ -186,6 +192,11 @@ fun main(args: Array<String>) {
         val windowState = rememberWindowState(size = DpSize(WINDOW_WIDTH, WINDOW_HEIGHT))
         val homeMemory = remember { FileHomeSourceMemory() }
         val librarySort = remember { FileLibrarySortMemory() }
+        // A new Downloads at once applies to the next start, not only to the next download queued.
+        LaunchedEffect(Unit) { settings.downloadsAtOnce.collect { downloads.limitChanged() } }
+        var settingsOpen by remember { mutableStateOf(false) }
+        LaunchedEffect(Unit) { installSettingsOpener { settingsOpen = true } }
+        if (settingsOpen) SettingsWindow(settings, onClose = { settingsOpen = false })
         Window(
             onCloseRequest = ::exitApplication,
             title = WINDOW_TITLE,
