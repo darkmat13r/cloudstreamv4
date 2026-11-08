@@ -11,6 +11,7 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -444,7 +445,7 @@ internal fun PlayerContent(
                 onSeekTo = seekTo,
                 onSeekBy = seekBy,
                 onBack = onBack,
-                volumeControl = { VolumeControl(volume) },
+                volumeControl = { withRule -> VolumeControl(volume, withRule) },
                 selectors = {
                     // First, and there through loading and failure: it is what artboard 7d's error banner points at.
                     if (sources != null) {
@@ -650,13 +651,17 @@ internal fun Hud(
     onSeekTo: (Float) -> Unit,
     onSeekBy: (Long) -> Unit,
     onBack: () -> Unit,
-    volumeControl: @Composable () -> Unit = {},
+    volumeControl: @Composable (withRule: Boolean) -> Unit = {},
     selectors: @Composable RowScope.() -> Unit = {},
     fullscreenControl: @Composable () -> Unit = {},
     endInset: Dp = 0.dp,
 ) {
     val colors = CloudStreamTheme.colors
-    Box(Modifier.fillMaxSize().padding(end = endInset)) {
+    BoxWithConstraints(Modifier.fillMaxSize().padding(end = endInset)) {
+        // `KMP-91`: beside a panel at the smallest window the controls are 392 wide, and a fixed volume rule would
+        // leave the seek rule none. Below this the rule gives way; the speaker still mutes and the arrow keys still set it.
+        val controlsWidth = minOf(maxWidth - DesktopDimens.WindowMargin * 2, PlayerScreenDefaults.ControlsMaxWidth)
+        val volumeRule = controlsWidth >= PlayerScreenDefaults.VolumeRuleMinControlsWidth
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
@@ -735,7 +740,7 @@ internal fun Hud(
                             tone = DesktopButtonTone.Quiet,
                         )
                         SeekTrack(status, onSeekTo, Modifier.weight(1f))
-                        volumeControl()
+                        volumeControl(volumeRule)
                     }
                 }
             }
@@ -753,7 +758,7 @@ internal fun Hud(
 
 /** The speaker mutes and the rule beside it sets the level, following the pointer 1:1 because nothing here waits on a network. */
 @Composable
-private fun VolumeControl(volume: PlayerVolume) {
+private fun VolumeControl(volume: PlayerVolume, withRule: Boolean = true) {
     var width by remember { mutableStateOf(0) }
     val silent = volume.audible == 0
     Row(
@@ -766,7 +771,7 @@ private fun VolumeControl(volume: PlayerVolume) {
             onClick = volume::toggleMute,
             tone = DesktopButtonTone.Quiet,
         )
-        Box(
+        if (withRule) Box(
             contentAlignment = Alignment.Center,
             modifier = Modifier
                 .width(PlayerScreenDefaults.VolumeTrackWidth)
@@ -896,6 +901,8 @@ internal object PlayerScreenDefaults {
     /** Far taller than the rule it holds, so a pointer does not have to aim at 4dp. */
     val SeekTargetHeight: Dp = 32.dp
     val VolumeTrackWidth: Dp = 80.dp
+    /** Narrower controls than this drop the volume rule, so the seek rule keeps at least 88 (`KMP-91`). */
+    val VolumeRuleMinControlsWidth: Dp = 480.dp
     /** `seek_back_10_seconds` and `seek_forward_10_seconds` say this number: change them together. */
     const val SkipMillis = 10_000L
     const val HudTimeoutMillis = 3_000L
@@ -906,8 +913,6 @@ internal object PlayerScreenDefaults {
     val TransportHeight: Dp = 36.dp
     /** Two lines, on the 4dp step. */
     val SelectorHeight: Dp = 40.dp
-    val PickerWidth: Dp = 280.dp
-    val PickerMaxHeight: Dp = 400.dp
     val PickerMarkSize: Dp = 16.dp
     /** Artboard 7e's 8 x 48 marker, halved. A marker's width is a stroke on its own axis, as `ProgressRule`'s is. */
     val SourceMarkerWidth: Dp = 4.dp

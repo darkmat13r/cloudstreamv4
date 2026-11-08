@@ -745,6 +745,39 @@ class PlayerScreenTest {
     }
 
     @Test
+    fun `M4 at the smallest window the controls end a margin short of the panel, with every selector`() {
+        val one = stream("Source One")
+        val screen = Screen(
+            width = 800,
+            height = 450,
+            fullscreen = PlayerFullscreen(WindowState()),
+            audio = threeTracks,
+            sources = PlayerSources(listOf(one), one, emptyList(), 0L) {},
+        )
+        screen.settle()
+        screen.press(Key.S)
+        val open = screen.pixels()
+        screen.save("m4-panel-minimum-window")
+        // The panel starts at 800 - 360 = 440; the controls keep the 24 margin before it, so 416 to 439 is picture.
+        val panelLeft = screen.width - PANEL_WIDTH
+        val glassTop = screen.height - CONTROLS_FROM_BOTTOM
+        val glassBottom = screen.height - CONTROLS_MARGIN - 1
+        for (y in glassTop..glassBottom) {
+            for (x in panelLeft - CONTROLS_MARGIN until panelLeft) {
+                assertEquals(Color.Black, open[x, y], "nothing of the controls at ($x, $y), in the margin before the panel")
+            }
+        }
+        assertTrue(open[panelLeft - CONTROLS_MARGIN - 1, screen.transportY.toInt()] != Color.Black, "the controls reach the margin")
+        // And the seek rule keeps its room: the volume rule gave way, so the rule runs unbroken where, with it, the
+        // end time and the speaker would be. On the rule's line, every pixel differs from the glass just above it.
+        val ruleY = screen.transportY.toInt()
+        for (x in SEEK_RULE_FROM..SEEK_RULE_TO) {
+            assertNotEquals(open[x, ruleY - RULE_CLEARANCE], open[x, ruleY], "the seek rule at x $x")
+        }
+        screen.scene.close()
+    }
+
+    @Test
     fun `M4 the controls move into the room the panel leaves, and back`() {
         val screen = Screen()
         screen.settle()
@@ -1307,6 +1340,14 @@ class PlayerScreenTest {
     private companion object {
         /** KMP-91: the panel's middle, and its rows: under the 24 margin, the 32 heading and an 8 gap, 48 apart. */
         const val PANEL_HALF_WIDTH = 180f
+        /** `DesktopDimens.SidePanelWidth`; the controls' window margin; their glass's top, from the window's foot. */
+        const val PANEL_WIDTH = 360
+        const val CONTROLS_MARGIN = 24
+        const val CONTROLS_FROM_BOTTOM = 124
+        /** At 800 beside a panel: inside the seek rule once the volume rule gives way; its end time and speaker otherwise. */
+        const val SEEK_RULE_FROM = 244
+        const val SEEK_RULE_TO = 300
+        const val RULE_CLEARANCE = 8
         const val PANEL_FIRST_ROW_Y = 88f
         const val PANEL_ROW_STEP = 48f
         /** Inside the panel, clear of its rows and words. */

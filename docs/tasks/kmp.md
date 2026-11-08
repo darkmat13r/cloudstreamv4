@@ -6284,6 +6284,9 @@ from the right (`PlayerListPanel`):
 - Its title is a heading; an optional line under it; the rows; then Done. Source's line is `2 sources`
   (`player_source_count`).
 - The HUD's controls centre in the room left of it while it is open, and move back when it closes.
+- At the smallest window (800) beside a panel the controls are 392 wide. A fixed 80 volume rule there left the seek
+  rule none, so below 480 the volume rule gives way: the speaker still mutes, and the arrow keys still set the level.
+  The seek rule keeps about 80. The selectors shorten their words with an ellipsis, as they already did when narrow.
 - Done, Escape, the same key, or a click on the picture closes it, as before.
 - Picture size had its own pop-up; it uses the same panel now.
 
@@ -6296,9 +6299,11 @@ tall with a mono second line (`1920×1080 decoded`, `3 variants`), a verb at the
 and one line. The words exist (`I18N-19`); the second lines need data the player does not have for every row yet.
 M5's Load from file, Load from Internet and Subtitle delay rows are not features yet, so they are not drawn.
 
-**Tests** (`PlayerScreenTest`, 70, all run):
+**Tests** (`PlayerScreenTest`, 71, all run):
 - New: the panel is at the right and the window's height, and Done closes it and chooses nothing; the controls move
   into the room it leaves and back.
+- New: at the smallest window with every selector and full screen, nothing of the controls is in the 24 before the
+  panel, and the seek rule runs unbroken where the end time and the speaker would sit with a volume rule.
 - **Changed existing tests:** six clicked rows counted up from the old pop-up's foot. They now count down from the
   panel's heading (`panelRow`). Each asserts what it did, except the held-list test, which keeps its point another way.
   Before, it clicked the foot, which was English while the list was held. Now a click where German's row would be
