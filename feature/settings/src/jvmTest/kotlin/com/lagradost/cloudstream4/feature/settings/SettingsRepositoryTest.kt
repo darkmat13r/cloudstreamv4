@@ -80,6 +80,25 @@ class SettingsRepositoryTest {
         }
     }
 
+    /** A save that fails while another change lands: the views still end on the latest value. */
+    @Test
+    fun twoChangesAtOnceWithEveryWriteFailingStillEndTheViewsOnBoth() {
+        repeat(ROUNDS) {
+            val storage = object : SettingsStorage {
+                override fun load(): Map<String, String> = emptyMap()
+                override fun save(values: Map<String, String>) = throw java.io.IOException("path-marker")
+            }
+            val settings = SettingsRepository(storage)
+            val start = CyclicBarrier(2)
+            listOf(
+                thread { start.await(); settings.setAutoplayNext(false) },
+                thread { start.await(); settings.setDownloadsAtOnce(5) },
+            ).forEach { it.join() }
+            assertEquals(false, settings.autoplayNext.value)
+            assertEquals(5, settings.downloadsAtOnce.value)
+        }
+    }
+
     @Test
     fun aCountTheWindowDoesNotOfferIsRefused() {
         val settings = SettingsRepository(SettingsStorage.InMemory())

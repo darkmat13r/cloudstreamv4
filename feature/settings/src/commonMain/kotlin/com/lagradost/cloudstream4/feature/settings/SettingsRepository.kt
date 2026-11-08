@@ -69,8 +69,8 @@ class SettingsRepository(
             try {
                 storage.save(now.toStored())
             } catch (e: Exception) {
+                // No return: a failed save still re-checks, so the views never stay on a value that moved meanwhile.
                 onSaveFailed(e::class.simpleName ?: "Exception")
-                return
             }
         } while (state.value != now)
     }
