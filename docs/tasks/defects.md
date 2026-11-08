@@ -2375,3 +2375,42 @@ read-only PIN test passes there too: that head already kept the lock and retried
 
 **Published API:** additions only, `classes-jar.api` +3 / −0 (`PIN_FOLDER`, `pins`, `replacePins`). `accounts` keeps
 its getter and setter; only its private backing property changed.
+
+## BUG-61 — Android Home could show a provider's URL and token in its failure line · **medium, security** · measured 2026-11-08
+
+**Status:** fixed in pr · `app/.../cloudstream4/home/AndroidHomeSource.kt`, `toReply`
+
+Home's failure line is the first line of `Resource.Failure.errorString`. Android's `toReply` cleaned that line (control
+and format characters out) and relied on `:library` to have redacted it. Desktop's copy redacts again after removing
+invisible characters (`#221` review); Android's did not. Every path into `toReply` on master:
+
+| Failure | First line | On screen? | Redacted before this fix? |
+|---|---|---|---|
+| `ErrorLoadingException`, timeouts, `UnknownHostException`, `SSLHandshakeException` | message or fixed text | No: `isNetworkError`, so Home shows Offline | — |
+| `NoSuchMethodError` and the rest of "outdated" | fixed text; the message is line 2 | Fixed text only | — |
+| `NotImplementedError` | fixed text | Yes | Nothing to redact |
+| Any other throwable (`safeFail`) | the message | Yes | Yes, upstream, **unless an invisible character hides the URL or path** |
+| `NullPointerException` with a `provider.kt` frame | `NullPointerException at <frame file>:<line>` | Yes | **No**: the frame's file name is not a message, and an extension can set it |
+
+- **The hole.** The upstream redaction looks for `://` and for `/Users/`, `/storage/` and the like. A zero-width space
+  or a NUL inside (`https:<ZWSP>//…`, `https:/<NUL>/…`, `/Us<ZWSP>ers/…`) hides the URL or path from it. Then
+  `toReply`'s own cleaning removes the invisible character and puts the URL back together, token included.
+- **Measured on master:** `AndroidHomeSourceTest.aFailureShowsNoAddressTokenOrUserPathHoweverItIsHidden` failed with
+  `Refused https://cdn.example/v/1.m3u8?token=SECRET1…` on the failure line.
+- **Fix:** `toReply` removes invisible characters first, then redacts with `redactedText` (`LogRedaction`, the `:app`
+  copy), then cleans, the same order as desktop. Home no longer depends on what `:library` did.
+- **Logs:** `logError` redacts the message and the trace with the same patterns. `BUG-52` (#224) closes the
+  invisible-character hole there and in `ErrorLoadingException`'s text.
+
+**Test** (`:app` JVM), seven hostile failures through `page()`: a plain URL with a token; a ZWSP, a NUL and a BEL in
+or after `://`; a user path split by a ZWSP; a `file:` URI split by one; and a `NullPointerException` with a forged
+frame whose file name is a URL with a token. None leaves a token, a user path or a URL's path on the line, and none
+leaves an invisible character. The reason and the host stay.
+
+**Found and left:**
+- `getStackTracePretty` (`:library`) glues the first frame onto the message with no line break, so Home's reason ends in
+  a file name and line (`…SECRET1AndroidHomeSourceTest.kt 287`). With no message, the first line is that frame, with `:`
+  turned into a space, so a forged `https://` file name reads `https//` and no pattern can find it. Both are `:library`'s.
+  The second needs a forged stack frame.
+- Search (`ApiRepositorySearchSource.detailOf`), detail (`AndroidDetailSource`) and downloads
+  (`AndroidDownloadsSource`) also read `errorString`, with no redaction of their own.

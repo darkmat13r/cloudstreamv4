@@ -16,6 +16,7 @@ import com.lagradost.cloudstream3.ui.APIRepository
 import com.lagradost.cloudstream3.ui.settings.SettingsUIScreen
 import com.lagradost.cloudstream3.utils.AppContextUtils.filterHomePageListByFilmQuality
 import com.lagradost.cloudstream3.utils.AppContextUtils.filterProviderByPreferredMedia
+import com.lagradost.cloudstream3.utils.redactedText
 import com.lagradost.cloudstream4.feature.home.HomeFeatured
 import com.lagradost.cloudstream4.feature.home.HomeItem
 import com.lagradost.cloudstream4.feature.home.HomePageReply
@@ -148,7 +149,10 @@ internal class AndroidHomeSource(
 
     private fun Resource.Failure.toReply(): HomePageReply {
         // The first line: the rest of errorString is a stack trace, which is not for this screen.
-        val reason = errorString.trim().lineSequence().first().safeText().ifEmpty { UNKNOWN_ERROR }
+        // A provider's words reach the screen, so no address and no user path (`BUG-61`). Invisible characters go first:
+        // one inside `://` or a path hides it from the redaction, and cleaning after it would put it back together.
+        val reason = redactedText(errorString.trim().lineSequence().first().withoutInvisible()).safeText()
+            .ifEmpty { UNKNOWN_ERROR }
         return if (isNetworkError) HomePageReply.Offline else HomePageReply.Failed(reason)
     }
 
@@ -188,8 +192,9 @@ internal class AndroidHomeSource(
             .associate { (name, value) -> name to value }
             .ifEmpty { null }
 
-    private fun String.safeText(): String =
-        filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(MAX_TEXT_CHARS)
+    private fun String.withoutInvisible(): String = filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }
+
+    private fun String.safeText(): String = withoutInvisible().trim().take(MAX_TEXT_CHARS)
 
     /** [safeText] with room for a synopsis. */
     private fun String.safeSynopsis(): String =

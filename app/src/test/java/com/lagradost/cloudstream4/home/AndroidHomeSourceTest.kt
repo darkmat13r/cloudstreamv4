@@ -272,6 +272,38 @@ class AndroidHomeSourceTest {
         assertFalse(failed.detail, "Trace" in failed.detail)
     }
 
+    /**
+     * `BUG-61`: what a provider's failure says reaches the screen, so no address and no user path, however it is
+     * disguised. An invisible character inside `://` or a path hides it from the redaction, and cleaning the text after
+     * it would put it back together; a forged stack frame is not a message at all, so nothing upstream redacts it.
+     */
+    @Test
+    fun aFailureShowsNoAddressTokenOrUserPathHoweverItIsHidden() = runBlocking {
+        val forgedFrame = NullPointerException().apply {
+            stackTrace = arrayOf(StackTraceElement("a.B", "c", "https://cdn.example/k?token=SECRET4 provider.kt", 7))
+        }
+        val hostile = listOf(
+            IOException("Refused https://cdn.example/v/1.m3u8?token=SECRET0"),
+            IOException("Refused https:​//cdn.example/v/1.m3u8?token=SECRET1"),
+            IOException("Refused https:/\u0000/cdn.example/v/1.m3u8?token=SECRET2"),
+            IOException("Refused https://cdn.example/v/1.m3u8\u0007?token=SECRET3"),
+            IOException("Cannot open /Us​ers/someone/Movies/film.mkv: denied"),
+            IOException("Cannot open fi​le:///storage/emulated/0/someone/film.mkv"),
+            forgedFrame,
+        )
+        for (thrown in hostile) {
+            val api = Fake { _, _ -> throw thrown }
+            val failed = source(api).page(HomeSourceId("Fake"), 0, 1) as HomePageReply.Failed
+            assertFalse(failed.detail, "SECRET" in failed.detail)
+            assertFalse(failed.detail, "someone" in failed.detail)
+            assertFalse(failed.detail, "/v/1.m3u8" in failed.detail)
+            assertTrue(failed.detail, failed.detail.none { it.isISOControl() || it.category == CharCategory.FORMAT })
+        }
+        val kept = source(Fake { _, _ -> throw IOException("Refused https:​//cdn.example/a?token=SECRET") })
+            .page(HomeSourceId("Fake"), 0, 1) as HomePageReply.Failed
+        assertTrue("The reason and the host stay: ${kept.detail}", kept.detail.startsWith("Refused https://cdn.example"))
+    }
+
     @Test
     fun aLostConnectionIsOffline() = runBlocking {
         val api = Fake { _, _ -> throw UnknownHostException("example.com") }
