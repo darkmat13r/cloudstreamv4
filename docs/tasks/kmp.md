@@ -6789,7 +6789,7 @@ rebuilding the page as the service ticked, and D1's state was made again with no
   on this branch.
 - `after a restart a resolver with no VIDEO link…` failed once in a full gate run.
 
-## KMP-92 — An unstarted show's Play starts S1E1, not a special · **in pr #265** · the owner's ruling, 2026-11-08
+## KMP-92 — An unstarted show's Play starts S1E1, not a special · **TV and the Mac in #265; the phone in pr #272** · the owner's ruling, 2026-11-08
 
 Found while fixing `#244`'s review. With no resume and no title-level `playData`, `TitleDetail.primaryData` was
 `episodes.firstOrNull()`: whatever the provider listed first. A provider that lists specials first therefore made
