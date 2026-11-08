@@ -81,12 +81,6 @@ class TvHomeNavigationTest {
     private val one = FakeProvider(ONE)
     private val two = FakeProvider(TWO)
     private val sources = context.getString(R.string.pick_source)
-    /** The device's animator scale before a case turned animations off, to put back. */
-    private var animationScaleBefore: String? = null
-
-    private fun shell(command: String): String =
-        android.os.ParcelFileDescriptor.AutoCloseInputStream(instrumentation.uiAutomation.executeShellCommand(command))
-            .bufferedReader().use { it.readText().trim() }
 
     @Before
     fun aPersonWhoHasSetUp() {
@@ -98,10 +92,6 @@ class TvHomeNavigationTest {
 
     @After
     fun restore() {
-        animationScaleBefore?.let { before ->
-            shell(if (before == "null" || before.isEmpty()) "settings delete global $ANIMATOR_SCALE" else "settings put global $ANIMATOR_SCALE $before")
-            animationScaleBefore = null
-        }
         listOf(one, two).forEach { it.gate?.complete(Unit) }
         forgetPlaying()
         forgetBookmarks()
@@ -615,10 +605,10 @@ class TvHomeNavigationTest {
         val pages = CompletableDeferred<Unit>()
         one.gate = pages
         // While the pages are held the loading skeleton pulses for ever, so the main thread is never idle, and
-        // `ActivityScenario`, which waits for idle, sat until the held page timed out (measured: 480 s, then no rows). With
-        // animations off for this case the skeleton does not pulse. Restored in `restore`.
-        animationScaleBefore = shell("settings get global $ANIMATOR_SCALE")
-        shell("settings put global $ANIMATOR_SCALE 0")
+        // `ActivityScenario`, which waits for idle, sat until the held page timed out (measured: 480 s, then no rows).
+        // `:app`'s device tests run with animations off from the start (`testOptions.animationsDisabled`, `BUG-72`), so
+        // the skeleton does not pulse. Turning them off here, per case, was not enough: Compose keeps the scale it read
+        // first for the whole process, and a window an earlier class opened had read 1.
         launch {
             waitForHome()
             val watching = context.getString(R.string.type_watching)
@@ -733,7 +723,6 @@ class TvHomeNavigationTest {
         const val SCREEN_WAIT_MS = 15_000L
         const val POLL_MS = 200L
         const val SETTLE_MS = 1_500L
-        const val ANIMATOR_SCALE = "animator_duration_scale"
         const val TIMER_MARGIN_MS = 2_000L
         const val PLUGIN_STAGES_MS = 4_000L
         const val MAX_PRESSES = 6
