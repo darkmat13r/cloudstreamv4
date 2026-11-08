@@ -40,12 +40,14 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.poster_size_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.random_button_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.search
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_download_folder
@@ -113,6 +115,7 @@ class SettingsWindowState(pane: SettingsPane = SettingsPane.entries.first(), que
 /** What the window asks its host to do. Each setting change is written at once; there is no Apply. */
 sealed interface SettingsAction {
     data class SetShowRandom(val on: Boolean) : SettingsAction
+    data class SetPosterSize(val size: PosterSize) : SettingsAction
     data class SetDownloadsAtOnce(val count: Int) : SettingsAction
 
     /** Opens the download folder in Finder. Offered only while the folder exists. */
@@ -314,6 +317,7 @@ private fun paneName(pane: SettingsPane): String = when (pane) {
 @Composable
 private fun rowWords(folder: DownloadFolder): Map<SettingsRow, List<String>> = mapOf(
     // No line under it: the board's "On Home and Library." is untrue on the Mac, whose Library has no Random.
+    SettingsRow.PosterSize to listOf(stringResource(Res.string.poster_size_settings)),
     SettingsRow.RandomButton to listOf(stringResource(Res.string.random_button_settings)),
     SettingsRow.DownloadFolder to listOf(stringResource(Res.string.settings_download_folder), folder.name),
     SettingsRow.DownloadsAtOnce to listOf(

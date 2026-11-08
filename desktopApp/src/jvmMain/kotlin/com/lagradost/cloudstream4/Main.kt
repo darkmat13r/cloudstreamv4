@@ -395,7 +395,13 @@ internal fun DesktopApp(
             }
             Screen.Search -> TopLevelScreen(TopLevelDestination.Search, toTab, trailing = notice) {
                 SideEffect { escape.onEscape = null }
-                SearchHost(scope, providerChanges, onOpen = open, onBrowseHome = { top(Screen.Home) })
+                SearchHost(
+                    scope,
+                    providerChanges,
+                    onOpen = open,
+                    onBrowseHome = { top(Screen.Home) },
+                    appearance = appearance,
+                )
             }
             Screen.Library -> TopLevelScreen(TopLevelDestination.Library, toTab, trailing = notice) {
                 LibraryHost(
@@ -404,6 +410,7 @@ internal fun DesktopApp(
                     onOpen = { id -> open(id.value) },
                     onResume = resume,
                     onSearch = { top(Screen.Search) },
+                    appearance = appearance,
                 )
             }
             Screen.Downloads -> TopLevelScreen(TopLevelDestination.Downloads, toTab, trailing = notice) {
@@ -503,8 +510,10 @@ private fun SearchHost(
     providerChanges: Int,
     onOpen: (String) -> Unit,
     onBrowseHome: () -> Unit,
+    appearance: AppearanceSettings,
 ) {
     val history = remember { DesktopSearchHistory() }
+    val posterSize by appearance.posterSize.collectAsState()
     val viewModel = remember {
         DesktopSearchViewModels.live
             ?: SearchViewModel(source = DesktopSearchSource(), history = history, scope = scope)
@@ -537,6 +546,7 @@ private fun SearchHost(
             // Only public http(s) addresses get this far. See `posterHttpClient`.
             PosterImage(url = item.posterUrl, modifier = Modifier.fillMaxSize())
         },
+        posterSize = posterSize,
     )
 }
 

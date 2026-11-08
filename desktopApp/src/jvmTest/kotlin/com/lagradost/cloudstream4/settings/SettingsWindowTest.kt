@@ -21,6 +21,7 @@ import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -88,6 +89,24 @@ class SettingsWindowTest {
         }
         window(SettingsRepository(SettingsStorage.InMemory(storage.stored))).use { scene ->
             assertEquals(false, scene.toggleState("Random Button"))
+        }
+    }
+
+    /** `KMP-90e`: Poster size, Medium by default. Search, Home and Library read the same flow; their tests count columns. */
+    @Test
+    fun `Poster size writes the chosen size and reads it back after a restart`() {
+        val storage = SettingsStorage.InMemory()
+        val settings = SettingsRepository(storage)
+        window(settings, SettingsWindowState(pane = SettingsPane.Appearance)).use { scene ->
+            scene.click(scene.bounds("Poster size, Medium").center)
+            scene.save("appearance-poster-menu")
+            scene.click(scene.bounds("Large", text = true).center)
+            assertEquals(PosterSize.Large, settings.posterSize.value)
+            assertEquals("large", storage.stored["poster_size_desktop_key"])
+            assertNotNull(scene.find("Poster size, Large"), "the button reads the new size")
+        }
+        window(SettingsRepository(SettingsStorage.InMemory(storage.stored))).use { scene ->
+            assertNotNull(scene.find("Poster size, Large"))
         }
     }
 

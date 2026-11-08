@@ -57,6 +57,7 @@ internal fun HomeHost(
 ) {
     val state by viewModel.state.collectAsState()
     val showRandom by appearance.showRandom.collectAsState()
+    val posterSize by appearance.posterSize.collectAsState()
     SideEffect {
         setEscape(if (state.pickerOpen) ({ viewModel.onAction(HomeAction.PickerDismissed) }) else null)
     }
@@ -77,6 +78,7 @@ internal fun HomeHost(
         artwork = { item -> PosterImage(url = item.posterUrl, modifier = Modifier.fillMaxSize()) },
         picture = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
         showRandom = showRandom,
+        posterSize = posterSize,
     )
 }
 

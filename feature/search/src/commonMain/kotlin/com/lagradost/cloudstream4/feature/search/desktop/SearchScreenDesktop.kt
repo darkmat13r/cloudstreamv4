@@ -64,6 +64,7 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
@@ -110,6 +111,7 @@ import org.jetbrains.compose.resources.stringResource
  * scrolls one way. Titles stay visible, because there is no D-pad focus to reveal them.
  *
  * @param artwork draws a result's poster. Image loading is the host's.
+ * @param posterSize Settings' Poster size (`KMP-90e`): how wide a result's card is at least.
  */
 @Composable
 fun SearchScreenDesktop(
@@ -117,6 +119,7 @@ fun SearchScreenDesktop(
     onAction: (SearchAction) -> Unit,
     modifier: Modifier = Modifier,
     artwork: @Composable (SearchResultItem) -> Unit = {},
+    posterSize: PosterSize = PosterSize.Medium,
 ) {
     val status = state.status.toUiState(
         onAction,
@@ -134,7 +137,7 @@ fun SearchScreenDesktop(
                 closes
             },
     ) {
-        Page(state, status, onAction, artwork)
+        Page(state, status, onAction, artwork, posterSize)
         SourcePanel(state.sourcePanel, onAction)
     }
 }
@@ -145,6 +148,7 @@ private fun Page(
     status: UiState<SearchContent>,
     onAction: (SearchAction) -> Unit,
     artwork: @Composable (SearchResultItem) -> Unit,
+    posterSize: PosterSize,
 ) {
     Column(Modifier.fillMaxSize()) {
         Toolbar(state, onAction)
@@ -168,11 +172,11 @@ private fun Page(
             else -> UiStateHost(
                 state = content,
                 modifier = Modifier.fillMaxSize(),
-                skeleton = { SkeletonGrid() },
+                skeleton = { SkeletonGrid(posterSize) },
             ) { loaded ->
                 when (loaded) {
                     is SearchContent.Recent -> Recent(loaded.entries, onAction)
-                    is SearchContent.Results -> Results(loaded.groups, onAction, artwork)
+                    is SearchContent.Results -> Results(loaded.groups, onAction, artwork, posterSize)
                     // Only with a suggestion source, and desktop passes none.
                     is SearchContent.Suggestions -> Unit
                 }
@@ -465,9 +469,10 @@ private fun Results(
     groups: List<SearchResultGroup>,
     onAction: (SearchAction) -> Unit,
     artwork: @Composable (SearchResultItem) -> Unit,
+    posterSize: PosterSize,
 ) {
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(SearchScreenDesktopDefaults.CardMinWidth),
+        columns = GridCells.Adaptive(SearchScreenDesktopDefaults.cardMinWidth(posterSize)),
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(
             start = DesktopDimens.WindowMargin,
@@ -557,11 +562,11 @@ private fun ResultCard(
 
 /** The shape of what lands, so results replacing it do not move anything. */
 @Composable
-private fun SkeletonGrid() {
+private fun SkeletonGrid(posterSize: PosterSize) {
     val colors = CloudStreamTheme.colors
     val shape = CloudStreamTheme.shapes.large
     LazyVerticalGrid(
-        columns = GridCells.Adaptive(SearchScreenDesktopDefaults.CardMinWidth),
+        columns = GridCells.Adaptive(SearchScreenDesktopDefaults.cardMinWidth(posterSize)),
         modifier = Modifier.fillMaxSize(),
         contentPadding = PaddingValues(horizontal = DesktopDimens.WindowMargin),
         horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
@@ -582,6 +587,15 @@ private fun SkeletonGrid() {
 
 object SearchScreenDesktopDefaults {
     val CardMinWidth: Dp = 160.dp
+    val SmallCardMinWidth: Dp = 128.dp
+    val LargeCardMinWidth: Dp = 200.dp
+
+    /** The smallest result card at each Poster size (`KMP-90e`). [PosterSize.Medium] is [CardMinWidth], as before. */
+    fun cardMinWidth(size: PosterSize): Dp = when (size) {
+        PosterSize.Small -> SmallCardMinWidth
+        PosterSize.Medium -> CardMinWidth
+        PosterSize.Large -> LargeCardMinWidth
+    }
     /** S1's type chips. Mirrors Home's `ChipHeight` (`DS-21`). */
     val ChipHeight: Dp = 32.dp
     /** Over the page while the sources panel is open. Mirrors Home's. */

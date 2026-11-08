@@ -13,6 +13,7 @@ import com.lagradost.cloudstream4.feature.library.LibraryResume
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.LibraryViewModel
 import com.lagradost.cloudstream4.feature.library.desktop.LibraryScreenDesktop
+import com.lagradost.cloudstream4.feature.settings.AppearanceSettings
 import com.lagradost.cloudstream4.search.PosterImage
 
 /**
@@ -34,8 +35,10 @@ internal fun LibraryHost(
     onOpen: (LibraryTitleId) -> Unit,
     onResume: (LibraryTitleId, LibraryResume) -> Unit,
     onSearch: () -> Unit,
+    appearance: AppearanceSettings = AppearanceSettings.Default,
 ) {
     val state by viewModel.state.collectAsState()
+    val posterSize by appearance.posterSize.collectAsState()
     LaunchedEffect(viewModel) { viewModel.onAction(LibraryAction.Refresh) }
     SideEffect {
         // Whichever panel is open, the one on top first: the list picker can only be opened with the others shut.
@@ -62,5 +65,6 @@ internal fun LibraryHost(
         now = System::currentTimeMillis,
         // Only public http(s) addresses were stored, and the store checks again on the way out.
         artwork = { card -> PosterImage(url = card.posterUrl, modifier = Modifier.fillMaxSize()) },
+        posterSize = posterSize,
     )
 }

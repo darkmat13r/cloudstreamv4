@@ -6886,7 +6886,7 @@ only: a token or a password never goes in that file. Those go to the Keychain, w
 | `KMP-90b` | General: app language | An in-app locale switch on the Mac; today the app follows the system |
 | `KMP-90c` | General: check for updates at launch, Check now | A Mac updater (`DEC-03`, distribution) |
 | `KMP-90d` | General: Run setup again; Help and community; Disclaimer | A Mac setup flow; the Help menu; a disclaimer page |
-| `KMP-90e` | Appearance: poster size | Approved, in its own PR after `KMP-90g` (below) |
+| `KMP-90e` | Appearance: poster size | Built (below) |
 | `KMP-90e` | Appearance: title under the poster | The Mac always draws the title under. Off means the title on the art (Android's `bottom_title_key` false), which needs an overlay and scrim design |
 | `KMP-90e` | Appearance: badges, hide quality in search | Labels to show: `DesktopSearchSource` sets `qualityLabel` and `dubLabel` to null. First draw them, resolving `SearchQuality` and `DubStatus` through the `quality_*` strings; then each row is a switch |
 | `KMP-90f` | Appearance: trailers, cast, filler episodes | The Mac title page drawing them; it draws none today |
@@ -6937,3 +6937,37 @@ only: a token or a password never goes in that file. Those go to the Keychain, w
 - `SettingsWindowTest`: on by default, no "On Home and Library." line, a click writes `false`, and a new window over
   what was stored shows it off.
 - `HomeScreenTest`: off, nothing is named Random and Reload still acts; turned on, Random is back and acts.
+
+## KMP-90e — Settings' Appearance pane: Poster size · **in review (#274)**
+
+**Status:** #274, stacked on `KMP-90g`'s #273, which merges first. The PM approved the widths and the key on
+2026-11-08.
+
+- **The row.** Appearance's first group, Posters (`settings_posters`), holds Poster size (`poster_size_settings`, reused)
+  as a pop-up of Small, Medium and Large, with Medium as the default. The size words are Subtitles' size keys
+  (`settings_subtitle_size_*`, `I18N-20`), which the PM approved on 2026-11-08 and `i18n.md` records under I18N-20's reuse
+  list. Both are the size of a thing, and the locales checked agree with Poster size's noun (de, fr, es, it, pt, ru,
+  pl, ar). No new string.
+- **The setting.** The Mac's own key, `poster_size_desktop_key` = `small` | `medium` | `large`; anything else reads as
+  `medium`. Not Android's `poster_size_key`: that is a 0 to 15 slider, 10% a step from its default of 0, so it has
+  nothing smaller than the default. `PosterSize` is in `:core:designsystem` (`desktop`), because Home, Search and
+  Library read it and none of them depends on `:feature:settings`. `AppearanceSettings.posterSize` reads it.
+- **The readers**, each a smallest card width in its `Defaults`, so a bigger size means fewer, wider columns:
+  - Search's grid: 128, 160, 200 (`SearchScreenDesktopDefaults.cardMinWidth`).
+  - Home's poster rows, bookmarks line and skeleton: 128, 160, 200 (`HomeScreenDesktopDefaults.portraitCardMinWidth`,
+    through `columns`). 16:9 rows keep 280, because the setting is about posters.
+  - Library's grid: 160, 200, 240 (`LibraryScreenDesktopDefaults.cardMinWidth`), a step wider, as Library already was.
+
+  Medium is every screen's width before the setting, so a default window draws as it did. Each screen takes
+  `posterSize`, defaulting to Medium, and each host collects the flow.
+
+**Tests.**
+- `SettingsValuesTest`: every size round-trips under `poster_size_desktop_key`; a bad value reads as Medium; Android's
+  `poster_size_key` is not read.
+- `SettingsSearchTest`: "poster" finds Appearance and marks Poster size.
+- `SettingsRepositoryTest`: written and read back by a new repository.
+- `SettingsWindowTest`: the pop-up opens on Medium, choosing Large writes `large`, and a new window shows Large.
+- `SearchScreenTest` and `LibraryScreenTest`: the cards on the first line at 760 and 1280 wide, for each size, and no
+  `posterSize` is Medium's count. Search: 5/4/3 and 8/7/5. Library: 4/3/2 and 7/5/4.
+- `HomeScreenTest`: `columns` per size at both widths, 16:9 rows unchanged at every size, and a row on screen holding
+  what its size allows.
