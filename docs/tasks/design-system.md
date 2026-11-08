@@ -970,8 +970,8 @@ Renders: in the shared local review folder (not published).
 - **Panels from the right without a scrim**, as the brief asks. The built pickers are popovers over their selector; the
   boards replace them. The picture keeps playing beside a panel, so it does not dim.
 - **The hover preview is the time only.** A frame would need libVLC to decode the file a second time.
-- **No Speed selector on the Mac.** TV 7d draws one, but the shared player contract has no rate yet. It belongs with
-  the contract change, not the board.
+- **No Speed selector on the Mac yet.** The shared `PlayerHudState` already has `speed` and `OpenSpeed`, and TV draws
+  the selector. What the Mac lacks is a rate setter in its libVLC host. The selector joins the row when that exists.
 - **Up next counts down, then plays** (the owner's ruling, which replaced a no-countdown call):
   - **10 s.** The card has a two-line title and art to read, and a pointer or a thumb has to reach Cancel. Five is gone
     before the title is read; much longer is credits nobody chose.
@@ -991,8 +991,11 @@ the app's own providers.
 `next_episode`, `skip_type_format` with `skip_type_intro`, `pause`, `resume`, `seek_*_10_seconds`, `player_mute`,
 `player_*_fullscreen`, `go_back`). New, as `I18N-19`, which the build waits for:
 - the Playback menu's title, and Volume up and Volume down (M14);
-- M11's line that every source failed;
-- the Source panel's count line, and each panel's second lines (decoded size, the kept position, stereo);
+- M11's first sentence, "Every source answered with an error." The second is the existing `player_hud_failed_detail`
+  ("Choose another source below."): on the Mac the Choose source button sits under it, so "below" holds;
+- the Source panel's count line, and each panel's second lines (decoded size, stereo). Not the kept position: the
+  panel's header already says it with `player_source_resumes_at`, so the build drops the row's "keeps 42:13", which
+  repeats TV 7e's row copy;
 - the double tap's "10 seconds" (LP2); the old player's `go_back_30` is a bare "-30";
 - Up next's "Next episode in %d s" and "Play now". Cancel is the existing `cancel`.
 
