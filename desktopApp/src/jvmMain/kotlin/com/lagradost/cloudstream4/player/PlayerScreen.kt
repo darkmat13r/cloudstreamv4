@@ -918,8 +918,8 @@ internal object PlayerScreenDefaults {
      */
     const val CueTickMillis = 40L
     const val NoticeMillis = 5_000L
-    /** Between the hover time and the top of the rule's target. Mirrors `DesktopDimens.RelatedGap`. */
-    val HoverTimeGap: Dp = 8.dp
+    /** Between the hover time and the top of the rule's target. */
+    val HoverTimeGap: Dp = DesktopDimens.RelatedGap
     /** Above and below the hover time's line: 16 + 4 + 4 is a 24 tip. */
     val HoverTimePadding: Dp = 4.dp
     /** Line height to font size, from the Manrope line boxes measured in `design/`. */
