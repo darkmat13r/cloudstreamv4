@@ -1024,14 +1024,14 @@ The ten panes, in order:
 | Pane | Holds | Dropped on the Mac, and why |
 |---|---|---|
 | General | App language, updates, run setup again, disclaimer | The four links move to the Help menu |
-| Appearance | Poster size, title under poster, badges, hide quality; trailers, cast, filler episodes; the Random button, suggestions | Primary colour (`DEC-13`), theme (`DS-01`), layout, overscan, the clock, Kitsu posters, advanced search (the Mac always groups by source) |
-| Playback | Play the next episode, Skip intro prompts, seek amount, watch progress, source order; libVLC's network buffer, the disk cache, clearing it | Preferred player, PiP, rotation ×2, gestures ×5, brightness, software decoding, the two TV seek amounts |
+| Appearance | Poster size, title under poster, badges, hide quality; trailers, cast, filler episodes; the Random button, suggestions | Primary colour (`DEC-13`). Theme (`DS-01`). Layout: the Mac has one, the window. Overscan: a TV's. The clock: macOS shows one in the menu bar. Kitsu posters: Kitsu is off the Mac (see Accounts). Advanced search: the Mac always groups by source |
+| Playback | Play the next episode, Skip intro prompts, seek amount, watch progress, source order; libVLC's network buffer, the disk cache, clearing it. The disk cache's file names and index are keyed by a hash, never by a stream URL: a URL reaching disk is a blocker | Preferred player (libVLC is the player), PiP (nothing builds it yet), rotation ×2, gestures ×5 and brightness (a phone's), the two TV seek amounts. Software decoding: the Mac leaves the hardware or software choice to libVLC's automatic default |
 | Subtitles | The `CaptionStyle` editor with a live preview, the preferred language (the Mac's existing `SubtitlePreference`), OpenSubtitles and SubDL | Chromecast subtitles |
-| Extensions | Repositories, what is installed with each one's scan state (`KMP-24`), languages, preferred media, dub and sub, adult content, auto-update, auto-install | Test all moves to Advanced |
+| Extensions | Repositories, what is installed with each one's scan state (`KMP-24`), languages, preferred media, dub and sub, adult content, auto-update, auto-install. Both automatic options are **off by default on the Mac**, and whatever they bring in passes `KMP-24`'s scan and review before it runs | Test all moves to Advanced |
 | Downloads | The folder, by its name only; downloads at once; connections per download | Battery optimisation |
-| Accounts and Privacy | Profiles, which open `DS-25`'s A6 (via A3/A4 when locked); Sync for the current profile: AniList, MyAnimeList, Simkl; skip choosing a profile; Lock with Touch ID, **a proposal for the owner** | Kitsu, which is off the Mac entirely |
+| Accounts and Privacy | Profiles, which open `DS-25`'s A6 (via A3/A4 when locked); Sync for the current profile: AniList, MyAnimeList, Simkl; skip choosing a profile; Lock with Touch ID, **a proposal for the owner** | Kitsu: it signs in with a password, and the Mac has no password sign-in for sync services (the owner's ruling, 2026-11-08; see `DS-25`) |
 | Network | DNS over HTTPS, with no address drawn | Clone site and GitHub proxy, which send traffic through a third party (the PM's call) |
-| Backup | Back up now, how often, the folder, restore | |
+| Backup | Back up now, how often, the folder, restore. A Mac backup carries no sign-in tokens and no PINs, the rule `BUG-50` and `BUG-51` set for Android | |
 | Advanced | Logs (Show in Finder only, never their contents), test all extensions, reset | |
 
 Also dropped on the Mac: the APK installer and pre-release installs (distribution is `DEC-03`), confirm before exit
@@ -1039,16 +1039,17 @@ Also dropped on the Mac: the APK installer and pre-release installs (distributio
 
 - `Desktop Settings.dc.html` (a board file in the owner's Claude Design project), at 1280×800:
   - ST1 General at rest.
-  - ST2 Extensions: one repository unreachable with Retry, and one extension held by its scan with Review….
+  - ST2 Extensions: one repository unreachable with Retry, and one extension held by its scan with Review.
   - ST3a Subtitles: the style editor and its preview. ST3b, scrolled: preferred language and the subtitle services.
   - ST4 Accounts and Privacy.
   - ST5a a backup restore in progress. ST5b the restore failed, saying that nothing changed.
-  - ST6 Downloads with the folder missing: Show in Finder disabled, Choose… offered.
+  - ST6 Downloads with the folder missing: Show in Finder disabled, Choose offered.
   - ST7 searching Settings with no results.
   - ST8 Network, with the DNS over HTTPS menu open.
   - ST9 Playback at the 760×480 minimum.
-  - ST10 Advanced: the Reset sheet names what it erases and what it keeps. Cancel is the primary and comes first
-    (`ui-components.md` rule 1, as in `DS-18`).
+  - ST10 Advanced: the Reset sheet names what it erases and what it keeps. It erases settings, profiles and their PINs,
+    the library and history, search history, and every sign-in in the credential store. Cancel is the primary and comes
+    first (`ui-components.md` rule 1, as in `DS-18`).
   - ST11 Appearance.
 - `Phone Settings.dc.html` (a board file in the owner's Claude Design project):
   - PS1 the Settings list: the same ten panes, each with what it holds, and search.
@@ -1060,9 +1061,10 @@ Also dropped on the Mac: the APK installer and pre-release installs (distributio
 
 Drawn at 1 px = 1 dp, with Tabler 1.119.0 glyphs as masks, never drawn by hand.
 
-**Sign-ins are `DS-25`'s.** A service row is its name, presence only (Connected or Not connected, never an account
-name or id, as `KMP-73` keeps it), and one button: Sign in… or Remove from this Mac…. Nothing after the press is drawn
-here. AniList and MyAnimeList sign in through the browser and Simkl with a code. OpenSubtitles and SubDL sign in with
+**Sign-ins are `DS-25`'s.** A service row is its name, presence only (never an account name or id, as `KMP-73` keeps
+it), and one button. The words reuse `I18N-16`'s keys: `account_sync_connected` ("Connected · signed in on this
+device"), `library_not_connected`, and `account_sync_remove` ("Remove from this device"); Sign in is new. Nothing after
+the press is drawn here. AniList and MyAnimeList sign in through the browser and Simkl with a code. OpenSubtitles and SubDL sign in with
 an email and password inside the app. That is the owner's exception, 2026-11-08, and `DS-25`'s A16 draws it.
 
 **Measured** in headless Chrome with `getBoundingClientRect`, on every artboard:
@@ -1086,11 +1088,9 @@ Renders: in the shared local review folder (not published).
 - **The pop-up button's glyph is Tabler `selector`**, a new `CloudStreamIcons` meaning. The build adds it to
   `ui-components.md`'s table.
 - **The panes are words only.** A glyph per pane would be ten new meanings, and the main window's tabs are words too.
-- **Re-check ST10 against `D3`** in `design/Desktop Downloads.dc.html` once the design folder is on this machine.
+- **No trailing ellipsis on buttons**, so the keys these boards reuse (`add_repository`, `account_add_profile`, `edit`,
+  `reset_btn`) read the same as the new ones beside them.
 
-**Follow-up: DNS over HTTPS does not reach playback.** On the Mac the resolver can cover everything that resolves in
-the app's process. A sandboxed plugin host reaches the network only through `OutboundGate`, which resolves names itself
-(`OutboundGate.kt:93`). Posters and subtitles build their own OkHttp clients on `Dns.SYSTEM`. `DohProviders.kt` is
-already in `:core:network`'s `jvmCommonMain`. libVLC runs in the `--media-host` child and resolves stream hosts with the
-system's DNS, so ST8's line says so: "Video streams use your Mac's DNS." Worth looking at: whether the media host can
-resolve through the same resolver, so streams stop asking the system. The evidence is a reading of the code, not a run.
+**Open:** ST10's button order against board `D3` in `design/Desktop Downloads.dc.html`.
+
+**Follow-up:** DNS over HTTPS does not reach playback on the Mac yet, so ST8 says so in words. That is `KMP-88`.
