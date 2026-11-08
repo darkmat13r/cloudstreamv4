@@ -235,20 +235,19 @@ internal object DetailFixtures {
      * season, and episodes the provider never gave a season.
      *
      * Named per group so a filtered list is identifiable by text alone, and deliberately **not** in
-     * chip order — Specials is declared before season 2, and the unnumbered episode before both — so
-     * the ordering the chips draw is the code's doing and not the fixture's.
+     * chip order — season 2 is declared before season 1 and Specials before both — so the ordering
+     * the chips draw is the code's doing and not the fixture's.
      *
-     * **Season 1's episode is declared first**, because with no resume the primary plays the first
-     * episode and the page opens on the season holding it (`shownSeasonIndex`, #244's review). So this
-     * page opens on Season 1 with "One One" marked, as every chip test here expects.
+     * With no resume this is an **unstarted show whose provider lists a special first**. Play still
+     * starts S1E1 (`firstEpisodeToPlay`, `KMP-92`), so the page opens on Season 1 with "One One" marked.
      */
     val SeasonGroups = Show.copy(
         episodes = listOf(
-            DetailEpisode("One One", "s1e0", 1, 1, EPISODE_MINUTES),
-            DetailEpisode("Unnumbered One", "x0", null, null, EPISODE_MINUTES),
             DetailEpisode("Specials One", "sp0", SPECIALS_SEASON_FIXTURE, 1, EPISODE_MINUTES),
             DetailEpisode("Two One", "s2e0", 2, 1, EPISODE_MINUTES),
             DetailEpisode("Two Two", "s2e1", 2, 2, EPISODE_MINUTES),
+            DetailEpisode("One One", "s1e0", 1, 1, EPISODE_MINUTES),
+            DetailEpisode("Unnumbered One", "x0", null, null, EPISODE_MINUTES),
         ),
         seasons = emptyList(),
         resume = null,
