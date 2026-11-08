@@ -1,10 +1,13 @@
 package com.lagradost.cloudstream4.core.designsystem.card
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.runtime.Composable
@@ -13,8 +16,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusLift
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
+import com.lagradost.cloudstream4.core.designsystem.primitive.BadgeDefaults
 import com.lagradost.cloudstream4.core.theme.CardSize
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
@@ -115,17 +121,53 @@ private fun MediaCardSurface(
  * Badges live in the top corners, inset by [MediaCardDefaults.ContentPadding]. They are inside the
  * clipped box, so a badge that is too big for its rung is cropped rather than allowed to overlap
  * the focus ring.
+ *
+ * ## The card is what caps a badge's width (`BUG-62`)
+ *
+ * The two slots are **one row across the card's top**, not two independently aligned corners, and
+ * that is what gives each badge a width it can ellipsise against. The leading badge is weighted
+ * with `fill = false`, so `Row` measures the trailing badge at the card's full box first, hands
+ * the leading badge what is left, and the leading badge takes its own intrinsic width inside
+ * that. The two therefore cannot overlap however long a translation is: `asian_drama_singular` is
+ * `ASIAN DRAMA` in English and `DARAAMADA EESHIYAANKA` — 147dp — in Somali, on a 96dp card whose
+ * badge box is 88dp.
+ *
+ * Aligned corners cannot express that. Each corner box was measured against the whole card, so a
+ * long leading badge ran under the trailing one and both were cut by the card's clip with nothing
+ * to say they had been. `Arrangement.SpaceBetween` keeps the trailing badge on the trailing edge,
+ * which is where `.tr` draws it in `TV Library`, and [BadgeDefaults.Gap] after the leading badge
+ * keeps the two apart when the leading one fills what it was given.
+ *
+ * Nothing about this is measured by the card: the row is a child of the card's own clipped box, so
+ * like every other overlay it cannot change what a rail measures.
  */
 @Composable
 private fun BoxScope.MediaCardBadges(slots: MediaCardSlots) {
-    val inset = MediaCardDefaults.ContentPadding
-    slots.leadingBadge?.let { badge ->
-        Box(Modifier.align(Alignment.TopStart).padding(inset)) { badge() }
-    }
-    slots.trailingBadge?.let { badge ->
-        Box(Modifier.align(Alignment.TopEnd).padding(inset)) { badge() }
+    val leading = slots.leadingBadge
+    val trailing = slots.trailingBadge
+    if (leading == null && trailing == null) return
+    Row(
+        modifier = Modifier
+            .align(Alignment.TopStart)
+            .fillMaxWidth()
+            .padding(MediaCardDefaults.ContentPadding),
+        horizontalArrangement = Arrangement.SpaceBetween,
+    ) {
+        Box(
+            modifier = Modifier
+                .weight(WEIGHT_REMAINING, fill = false)
+                .padding(end = if (trailing == null) NO_GAP else BadgeDefaults.Gap),
+            content = { leading?.invoke() },
+        )
+        trailing?.invoke()
     }
 }
+
+/** The leading badge takes what the trailing one leaves, and no more. */
+private const val WEIGHT_REMAINING = 1f
+
+/** A card with one badge has nothing to keep it apart from. */
+private val NO_GAP: Dp = 0.dp
 
 /**
  * Inset for the revealed text stack inside its scrim block. The top is the scrim's lead above the

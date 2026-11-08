@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.RowScope
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
@@ -17,6 +18,7 @@ import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -26,6 +28,7 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.semantics.disabled
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.preview.PreviewSurface
 import com.lagradost.cloudstream4.core.designsystem.primitive.SelectionMarker
@@ -56,6 +59,30 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  *
  * The text stack fills the 32dp content box exactly, which is rule 5 of the design — see
  * `ListRowTextStack.kt` for why its gap is 4dp and not 2dp.
+ *
+ * ## 48dp is a floor and a step, not a fixed height (`BUG-62`)
+ *
+ * **A row whose title fits one line is 48dp, exactly as it always was**, and in a list wide
+ * enough for one line that is every row: a long title is ellipsised there, as it always was. Only
+ * inside a `SidePanel`, where [LocalListRowTitleLines] allows a second line, does a title that
+ * does not fit — a `sort_*` label in Tamil, Greek or Albanian — take one, and the row is then
+ * **64dp**: its height is its content rounded up to a whole [ListRowDefaults.HeightStep] (16dp),
+ * floored at [CloudStreamDimens.ListRowHeight].
+ *
+ * The step is what keeps the text centred on the 4dp grid. A row that simply wrapped its content
+ * would be 56dp, and its stack would sit 4dp off where every other row's does; rule 5 is the same
+ * statement about the stack, and this is its other half. See [ListRowDefaults.HeightStep], and
+ * `rowHeight` below for why the **line count** and not the measured content decides which it is.
+ *
+ * A grown row costs its column exactly 16dp: a panel lays its rows out at a pitch of 48dp plus
+ * [CloudStreamDimens.MinFocusGap], so a 64dp row moves the rows after it 16dp down. The titles
+ * this actually grows are a side panel's `sort_*` labels, and the panel that lists them scrolls
+ * already. A panel whose rows are a plain `Column` that fills the region has 16dp less slack than
+ * it did — which is the case `SidePanel`'s own KDoc already asks a caller to add a scroll modifier
+ * for.
+ *
+ * A row in a list that allows one line is `height(48.dp)`, exactly the modifier it has always
+ * had.
  *
  * ## Focus
  *
@@ -135,7 +162,7 @@ fun ListRow(
         return
     }
     Row(
-        modifier = modifier.height(CloudStreamDimens.ListRowHeight),
+        modifier = modifier.heightIn(min = CloudStreamDimens.ListRowHeight),
         horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap),
         verticalAlignment = Alignment.CenterVertically,
     ) {
@@ -159,10 +186,12 @@ private fun RowBody(
     trailing: (@Composable () -> Unit)?,
 ) {
     var focused by remember { mutableStateOf(false) }
+    var measuredTitleLines by remember { mutableIntStateOf(ListRowDefaults.TITLE_LINES) }
+    val titleLines = measuredTitleLines.coerceIn(ListRowDefaults.TITLE_LINES, LocalListRowTitleLines.current)
     val interactionSource = remember { MutableInteractionSource() }
     Row(
         modifier = modifier
-            .height(CloudStreamDimens.ListRowHeight)
+            .height(rowHeight(titleLines))
             .onFocusChanged { focused = it.isFocused }
             .rowBehaviour(state, interactionSource, onClick)
             .tvFocusRing(focused = focused, shape = CloudStreamTheme.shapes.medium)
@@ -178,10 +207,43 @@ private fun RowBody(
             subtitle = state.subtitle,
             enabled = state.enabled,
             modifier = Modifier.weight(WEIGHT_REMAINING),
+            titleLines = titleLines,
+            onTitleLines = { measuredTitleLines = it },
         )
         if (trailing != null) TrailingCell(trailing)
     }
 }
+
+/**
+ * How tall a row whose title took [titleLines] lines is: [CloudStreamDimens.ListRowHeight], plus
+ * one [ListRowDefaults.HeightStep] per line after the first.
+ *
+ * ## The line count decides, not the measured content
+ *
+ * This looks like something a layout could work out for itself — measure the content, round up to
+ * the next step — and that version was written, run on the device, and thrown away. Two things it
+ * could not do, both of which only appear where a dp is not a whole number of pixels (here, 1.33):
+ *
+ * - **A row with a trailing readout measured 65px against a 64px row**, because the row's 8dp
+ *   padding rounds to 11px a side and the trailing box's 32dp to 43px. Rounding noise read as
+ *   "needs another step", and every downloads and suggestion row became 64dp: four device tests in
+ *   two other modules failed, and a list moved 12dp.
+ * - **Even with that fixed, it moved text by a pixel in every row in the app.** A fixed height
+ *   measures the content at exactly 48dp less its padding, which is what squeezes that 43px box
+ *   back to 42; measuring the content first and sizing to it does not, so the whole stack sat half
+ *   a pixel off. Fifteen committed screenshots changed, none of them with anything to show for it.
+ *
+ * A line count has none of that: it is 1 or 2, it comes from the text that was actually laid out,
+ * and the height it maps to is written in dp. A one-line row is `height(48.dp)`, which is what the
+ * row has always been, so its pixels are untouched.
+ *
+ * The cost is one extra layout pass on the frame where a title first turns out to need a second
+ * line, which happens only in a side panel. It cannot oscillate: a title's line count depends on
+ * the row's width, and nothing here changes that.
+ */
+private fun rowHeight(titleLines: Int): Dp =
+    CloudStreamDimens.ListRowHeight +
+        ListRowDefaults.HeightStep * (titleLines - ListRowDefaults.TITLE_LINES).coerceAtLeast(0)
 
 /**
  * A selected row's `raised` fill, at the row's own corners: `.lrow.sel { background: var(--raised) }`

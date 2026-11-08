@@ -13,11 +13,14 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Dp
 import com.lagradost.cloudstream4.core.designsystem.primitive.HairlineSide
 import com.lagradost.cloudstream4.core.designsystem.primitive.hairline
+import com.lagradost.cloudstream4.core.designsystem.rows.ListRowDefaults
+import com.lagradost.cloudstream4.core.designsystem.rows.LocalListRowTitleLines
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
@@ -158,6 +161,11 @@ object SidePanelDefaults {
  *   Apply and Cancel — see `DEC-17` above.
  * @param rows the panel's rows, normally `ListRow`s. Laid out in a [ColumnScope] at the design's
  *   pitch; add a scroll modifier here if the list can outgrow the region.
+ *
+ *   **A row here may give its title a second line** ([LocalListRowTitleLines]), because 232dp of
+ *   title is not enough for every language's `sort_*` label (`BUG-62`), and a row that does is
+ *   64dp instead of 48dp. The [commit] row is deliberately left out of that: it holds one short
+ *   verb, and a 64dp row there would eat 16dp of the bottom focus band.
  */
 @Composable
 fun SidePanel(
@@ -183,11 +191,15 @@ fun SidePanel(
             contentAlignment = Alignment.TopStart,
             content = { header() },
         )
-        Column(
-            modifier = Modifier.fillMaxWidth().weight(WEIGHT_REMAINING),
-            verticalArrangement = Arrangement.spacedBy(SidePanelDefaults.RowGap),
-            content = rows,
-        )
+        CompositionLocalProvider(
+            LocalListRowTitleLines provides ListRowDefaults.TITLE_LINES_IN_PANEL,
+        ) {
+            Column(
+                modifier = Modifier.fillMaxWidth().weight(WEIGHT_REMAINING),
+                verticalArrangement = Arrangement.spacedBy(SidePanelDefaults.RowGap),
+                content = rows,
+            )
+        }
         if (commit == null) {
             Spacer(Modifier.height(SidePanelDefaults.BandOnlyHeight))
         } else {

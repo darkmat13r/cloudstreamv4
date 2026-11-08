@@ -12,6 +12,7 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -51,6 +52,15 @@ enum class BadgeTone {
  * **The width is intrinsic and that is correct.** Rule 6: a badge's width comes from its string.
  * The step governs the height, which is written here; it does not govern text measurement.
  *
+ * **Intrinsic is not unbounded.** A badge is drawn over artwork no wider than a card, and the
+ * longest translation of a type or a quality is far wider than one: `quality_sdr` is `SDR` in
+ * English and `RANG DINAMIC SIMPLE (SDR)` — 154dp — in Catalan, inside an 80dp poster whose badge
+ * box is 72dp (`BUG-62`). So the label **ellipsises at whatever width the caller allows**, and the
+ * caller is the one that knows the cap: `MediaCard` gives its badges the card's width less
+ * [BadgeDefaults.HorizontalPadding]'s inset on both sides, and [BadgeGroup] gives a pair of badges
+ * on one edge that same cap between them. A clipped `RANG DINAMIC SIMPL` ends mid-word with
+ * nothing to say it was cut; `RANG DINAM…` says so.
+ *
  * **The height is a floor, not a fixed size** — `heightIn(min = …)` rather than `height(…)`. At
  * the design's font scale the two are identical and the badge is exactly 16dp, on the step. Above
  * it, a fixed height would clip the label rather than grow, and a clipped `CACHED` is worse than
@@ -66,8 +76,8 @@ enum class BadgeTone {
  * The text is **not** upper-cased here. Every badge string the design shows is already upper
  * case, and silently transforming a caller's string is a policy the artboards never stated.
  *
- * @param text the badge string. Kept to one line and never wrapped; a long string is clipped by
- *   the caller's constraints rather than reflowing the badge.
+ * @param text the badge string. Kept to one line and never wrapped; a string too long for the
+ *   width the caller allows is ellipsised rather than reflowing or being cut mid-glyph.
  * @param modifier applied before the badge's own sizing and ground.
  * @param tone see [BadgeTone].
  */
@@ -94,7 +104,13 @@ fun Badge(
             .padding(horizontal = BadgeDefaults.HorizontalPadding),
         contentAlignment = Alignment.Center,
     ) {
-        BasicText(text = text, style = style, softWrap = false, maxLines = BADGE_MAX_LINES)
+        BasicText(
+            text = text,
+            style = style,
+            overflow = TextOverflow.Ellipsis,
+            softWrap = false,
+            maxLines = BADGE_MAX_LINES,
+        )
     }
 }
 
@@ -126,6 +142,16 @@ object BadgeDefaults {
      * `TV Home` and `TV Library`. No `:core:theme` token states an alpha for it.
      */
     const val GroundAlpha: Float = 0.78f
+
+    /**
+     * The gap between two badges on one edge of a card, in whichever axis [BadgeGroup] lays them
+     * out: `.badges { gap: 8px }` in `TV Search` 4a, halved.
+     *
+     * Mirrors [CloudStreamDimens.StackGap] (4dp) numerically, and equals
+     * [HorizontalPadding] — a badge's own inset and the gap to the next one are the same 8
+     * artboard px. **Should become `CloudStreamDimens.BadgeGap`.**
+     */
+    val Gap: Dp = 4.dp
 }
 
 private const val BADGE_MAX_LINES = 1
