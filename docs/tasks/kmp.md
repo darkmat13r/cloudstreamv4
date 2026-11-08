@@ -6284,6 +6284,24 @@ do: `SourcePicker.kt`'s `sourceName()` and `PlayerHudState.source`. No code chan
 `:feature:player`'s `PlayerHudTvDeviceTest` (a device suite this machine cannot run). `:library`'s extractors are real
 classes with real names and are not fixtures.
 
+## KMP-85 — One age formatter, in `:core:strings` · **built 2026-11-08**, follow-up of `KMP-84` (`#240`)
+
+The review of `#240` found two copies of the code that says how old something is (`4m`, `2h 5m`, `1d 2h 5m`):
+- the library's private `elapsed`, in `LibrarySourcesTv.kt`, for the sync line;
+- Home's `homeAge`, which `#240` copied from it for H4's kept rows.
+
+Both are now `elapsedAge(elapsedMillis): UiString`, in `:core:strings`. Each caller still wraps it in its own sentence, so
+the age sits where each language puts it. Neither screen changes what it shows: the same keys, the same arguments, and a
+clock behind the record still reads as now.
+
+**On master,** after `#240`, which brought Home's copy.
+
+**Tests:** `HomeAgeTest` moved to `:core:strings` as `ElapsedAgeTest`, its two cases unchanged, plus one that resolves
+the three forms in English. `:feature:home`, `:feature:library` and the Mac's Home and Library screen tests still pass.
+
+**Overlap with `#223` (`KMP-57`):** `#223` (on master) made it internal; this repoints LibraryScreenDesktop's caller to
+`elapsedAge(…).resolve()`.
+
 ## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
 
 `#200` made Home's failure detail safe. A thrown failure is now its type, such as `IllegalStateException`, never its message,

@@ -41,9 +41,9 @@ import com.lagradost.cloudstream4.core.designsystem.rows.ListRowState
 import com.lagradost.cloudstream4.core.designsystem.rows.RailHeader
 import com.lagradost.cloudstream4.core.designsystem.target.ChromeButtonDefaults
 import com.lagradost.cloudstream4.core.strings.UiString
+import com.lagradost.cloudstream4.core.strings.elapsedAge
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_joined
-import com.lagradost.cloudstream4.core.strings.generated.resources.duration_hours_minutes_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
 import com.lagradost.cloudstream4.core.strings.generated.resources.library_episodes_progress
@@ -54,8 +54,6 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.library_sourc
 import com.lagradost.cloudstream4.core.strings.generated.resources.library_sync_offline
 import com.lagradost.cloudstream4.core.strings.generated.resources.library_sync_unreachable
 import com.lagradost.cloudstream4.core.strings.generated.resources.library_synced_format
-import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_day_format
-import com.lagradost.cloudstream4.core.strings.generated.resources.next_episode_time_min_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.setup_done
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
@@ -272,7 +270,7 @@ internal fun LibrarySource.line(shownTotal: Int?, now: (() -> Long)?): String? {
  */
 @Composable
 internal fun LibrarySource.staleLine(stale: LibraryStale, now: (() -> Long)?): String? {
-    val age = syncedAt?.let { at -> now?.let { elapsed(it() - at) } } ?: return null
+    val age = syncedAt?.let { at -> now?.let { elapsedAge(it() - at).resolve() } } ?: return null
     val format = when (stale) {
         LibraryStale.Unreachable -> Res.string.library_sync_unreachable
         LibraryStale.Offline -> Res.string.library_sync_offline
@@ -283,23 +281,7 @@ internal fun LibrarySource.staleLine(stale: LibraryStale, now: (() -> Long)?): S
 /** `Synced 4m ago`. */
 @Composable
 private fun syncedAgo(elapsedMillis: Long): String =
-    UiString.Resource(Res.string.library_synced_format, listOf(elapsed(elapsedMillis))).resolve()
-
-/** `4m`, `2h 5m`, `1d 2h 5m`: the formats the app already counts time in. A clock behind the record reads as now. */
-@Composable
-internal fun elapsed(elapsedMillis: Long): String {
-    val minutes = (elapsedMillis.coerceAtLeast(0L) / MILLIS_PER_MINUTE).toInt()
-    val hours = minutes / MINUTES_PER_HOUR
-    val days = hours / HOURS_PER_DAY
-    return when {
-        hours == 0 -> UiString.Resource(Res.string.next_episode_time_min_format, listOf(minutes))
-        days == 0 -> UiString.Resource(Res.string.duration_hours_minutes_format, listOf(hours, minutes % MINUTES_PER_HOUR))
-        else -> UiString.Resource(
-            Res.string.next_episode_time_day_format,
-            listOf(days, hours % HOURS_PER_DAY, minutes % MINUTES_PER_HOUR),
-        )
-    }.resolve()
-}
+    UiString.Resource(Res.string.library_synced_format, listOf(elapsedAge(elapsedMillis).resolve())).resolve()
 
 /**
  * A card's line under its title: a tracking service's count, `12 / 28 Episodes`, where it has one, else the
@@ -327,6 +309,3 @@ private fun joined(first: String, second: String): String =
     UiString.Resource(Res.string.downloads_joined, listOf(first, second)).resolve()
 
 private const val SINGLE_LINE = 1
-private const val MILLIS_PER_MINUTE = 60_000L
-private const val MINUTES_PER_HOUR = 60
-private const val HOURS_PER_DAY = 24
