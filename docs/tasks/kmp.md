@@ -6144,6 +6144,23 @@ row handlers skip a consumed one.
   - the titles test fails `expected:<[DownloadTitleId(value=2)]> but was:<null>`;
   - the series test fails with `[Play(id=…1), ConfirmDelete(id=…1)]`.
 
+**Review fix: the view models' lifetimes.** Both were made with `remember` in their hosts, while their readers ran in
+`DesktopApp`'s window-long scope. Every visit to Downloads or a series page left another set of readers running, each
+rebuilding the page as the service ticked, and D1's state was made again with nothing in it.
+- **D1's view model is `DesktopApp`'s**, made once beside the library's, so the selection and `returnTo` outlast a series
+  page, another tab, or a visit to Home.
+- **D4's runs in a child of the window's scope**, cancelled when the page leaves. A delete its sheet confirmed runs in the
+  window's scope itself, so leaving does not cut it short.
+- Two tests, each failing with its fix undone:
+  - the selection survives Downloads → Home → Downloads, and a series opens and closes over the list (undone, the
+    row's fill reads as unselected);
+  - a series page's readers stop when it is left (undone, they are still running after 20 s).
+- **The Mac does not draw `returnTo`.** No desktop Downloads file reads it, so there is no return to the row's place
+  yet. It is kept in state for when one does; a follow-up, not built here.
+- **The same check on the other pages:** Library and Search are made once per window, as now Downloads is. Detail is
+  kept per title while the player is over it, and Back's `forget` stops its link search. Home is made again only when
+  what is installed changes; it holds no reader that outlives its loads.
+
 **Not here:**
 - **Playing a downloaded episode** (D4's Play) is `KMP-74`. The player takes a `StreamLink`, not a local file.
 
@@ -6152,6 +6169,7 @@ row handlers skip a consumed one.
   file and its record.
 - ⌘4 and the sidebar's fourth row open Downloads through `DesktopApp`.
 - The size format.
+- The list's view model outlives a visit elsewhere, and a series page's readers stop with it (the review fix above).
 
 **The PM asked whether a Return-cancel breaks the row's Delete verb in the same window.** It does not:
 - `after Return cancels the sheet, the row's Delete verb asks again` passes.

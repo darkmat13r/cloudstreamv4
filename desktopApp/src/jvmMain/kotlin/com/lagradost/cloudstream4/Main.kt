@@ -27,6 +27,7 @@ import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.rememberWindowState
+import com.lagradost.cloudstream4.core.connectivity.UnknownConnectivityFlow
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -50,6 +51,7 @@ import com.lagradost.cloudstream4.downloads.DesktopDownloads
 import com.lagradost.cloudstream4.downloads.DownloadSeriesHost
 import com.lagradost.cloudstream4.downloads.DownloadsHost
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
+import com.lagradost.cloudstream4.feature.downloads.DownloadsViewModel
 import com.lagradost.cloudstream4.home.TopLevelDestination
 import com.lagradost.cloudstream4.library.DesktopLibraryStore
 import com.lagradost.cloudstream4.library.LibraryHost
@@ -279,6 +281,11 @@ internal fun DesktopApp(
     // Outlives the tab so that changing list is instant; `LibraryHost` refreshes it on arrival. It
     // reads no providers, so it does not need resetting when what is installed changes.
     val libraryViewModel = remember { LibraryViewModel(library, scope) }
+    // The same for Downloads: it reads the service for the window's life, and keeps the selection and the row to return
+    // to while a series is open over it. Made in the host, it would be made again, with its collectors, on every visit.
+    val downloadsViewModel = remember(downloads) {
+        downloads?.let { DownloadsViewModel(it.source(), UnknownConnectivityFlow, scope) }
+    }
     val notice: @Composable () -> Unit = {
         if (review != null) {
             ExtensionsNotice(review, onOpen = { stack += Screen.Extensions }) { label, onClick ->
@@ -345,9 +352,10 @@ internal fun DesktopApp(
                 )
             }
             Screen.Downloads -> TopLevelScreen(TopLevelDestination.Downloads, toTab, trailing = notice) {
-                if (downloads != null) {
+                if (downloads != null && downloadsViewModel != null) {
                     DownloadsHost(
                         downloads,
+                        downloadsViewModel,
                         scope,
                         setEscape = { escape.onEscape = it },
                         onOpenTitle = { id -> if (stack.last() !is Screen.DownloadSeries) stack += Screen.DownloadSeries(id) },

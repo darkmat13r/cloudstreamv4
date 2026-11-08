@@ -33,6 +33,14 @@ import com.lagradost.cloudstream4.core.http.HttpClientFactory
 import java.io.File
 import java.nio.file.Files
 import java.util.Locale
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.getValue
+import kotlinx.coroutines.Job
+import org.jetbrains.skia.Bitmap
+import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
+import com.lagradost.cloudstream4.core.connectivity.UnknownConnectivityFlow
+import com.lagradost.cloudstream4.feature.downloads.DownloadsViewModel
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -102,6 +110,34 @@ class DownloadsHostTest {
         assertNotNull(fileOf(DownloadEpisodeId(1)))
     }
 
+    /** Two episodes of one series, downloaded to the end. */
+    private fun DesktopDownloads.downloadSeries(): Unit = runBlocking {
+        listOf(1, 2).forEach { number ->
+            server.add("e$number.bin", 16 * 1024)
+            enqueue(
+                DesktopDownloadRequest(
+                    episodeId = 300 + number,
+                    titleId = SERIES,
+                    titleName = "A Series",
+                    kind = DownloadTitleKind.Series,
+                    season = 1,
+                    episode = number,
+                    episodeName = null,
+                    source = DownloadSourceRef("Test Provider", "episode-data-$number"),
+                    link = DesktopDownloadLink(server.url("e$number.bin")),
+                ),
+            )
+        }
+        withTimeout(TIMEOUT_MILLIS) {
+            while (fileOf(DownloadEpisodeId(301)) == null || fileOf(DownloadEpisodeId(302)) == null) kotlinx.coroutines.delay(20)
+        }
+    }
+
+    private fun ImageComposeScene.pixel(x: Int, y: Int): Int {
+        settle()
+        return Bitmap.makeFromImage(render(clock)).getColor(x, y)
+    }
+
     private suspend fun DesktopDownloads.awaitContents(what: (DownloadsContents) -> Boolean) =
         withTimeout(TIMEOUT_MILLIS) { source().contents.first(what) }
 
@@ -161,7 +197,8 @@ class DownloadsHostTest {
     fun `delete asks first, Cancel keeps the file, and the sheet's Delete removes it from the disk`() {
         val downloads = host()
         val file = downloads.downloadFilm()
-        val scene = scene { DownloadsHost(downloads, scope, setEscape = {}, onOpenTitle = {}, onLibrary = {}) }
+        val viewModel = DownloadsViewModel(downloads.source(), UnknownConnectivityFlow, scope)
+        val scene = scene { DownloadsHost(downloads, viewModel, scope, setEscape = {}, onOpenTitle = {}, onLibrary = {}) }
         scene.until { runBlocking { downloads.source().contents.first() }.titles.isNotEmpty() }
         scene.settle()
         scene.save("host-D1-one-film")
@@ -209,6 +246,78 @@ class DownloadsHostTest {
         scene.close()
     }
 
+    /**
+     * The list's view model is the window's (`#229` review), as the library's is: leaving Downloads for a series page or
+     * another tab and coming back finds the same one, with its readers and its state. Made in the host, it was made again
+     * on every visit, with new readers in the window's scope and the old ones left running. What its state keeps that the
+     * Mac draws is the selection, so that is what is checked across a visit to Home.
+     */
+    @Test
+    fun `the list is the same one after a visit elsewhere, with its selection, and a series page opens and closes over it`() {
+        val downloads = host()
+        downloads.downloadSeries()
+        val escape = EscapeHandler()
+        val shortcuts = DesktopShortcuts()
+        val screens = mutableListOf<String>()
+        val scene = scene {
+            DesktopApp(escape, library = InMemoryLibraryStore(), onScreen = { screens += it }, shortcuts = shortcuts, downloads = downloads)
+        }
+        scene.settle()
+        shortcuts.go(TopLevelDestination.Downloads)
+        scene.until { screens.last() == "Downloads" && runBlocking { downloads.source().contents.first() }.titles.isNotEmpty() }
+        scene.sendPointerEvent(PointerEventType.Move, Offset(AWAY_X, AWAY_Y))
+        val unselected = scene.pixel(ROW_FILL_X, WINDOW_FIRST_ROW_Y.toInt())
+        scene.save("host-window-D1")
+
+        scene.press(Offset(WINDOW_NAME_X, WINDOW_FIRST_ROW_Y))
+        scene.sendPointerEvent(PointerEventType.Move, Offset(AWAY_X, AWAY_Y))
+        val selected = scene.pixel(ROW_FILL_X, WINDOW_FIRST_ROW_Y.toInt())
+        scene.save("host-window-D1-selected")
+        assertTrue(selected != unselected, "the sample point is not on the row's fill")
+
+        shortcuts.go(TopLevelDestination.Home)
+        scene.settle()
+        assertEquals("Home", screens.last())
+        shortcuts.go(TopLevelDestination.Downloads)
+        scene.settle()
+        assertEquals("Downloads", screens.last())
+        assertEquals(selected, scene.pixel(ROW_FILL_X, WINDOW_FIRST_ROW_Y.toInt()), "the row is still selected")
+        scene.save("host-window-D1-again")
+
+        // A double-click opens the series (which ends choosing, as on Android), and Escape is D4's Back.
+        val at = Offset(WINDOW_NAME_X, WINDOW_FIRST_ROW_Y)
+        val time = clock / NANOS_PER_MILLI
+        repeat(2) {
+            scene.sendPointerEvent(PointerEventType.Press, at, buttons = PointerButtons(isPrimaryPressed = true), button = PointerButton.Primary, timeMillis = time)
+            scene.sendPointerEvent(PointerEventType.Release, at, buttons = PointerButtons(), button = PointerButton.Primary, timeMillis = time)
+        }
+        scene.settle()
+        assertTrue(screens.last().startsWith("DownloadSeries"), screens.last())
+        scene.save("host-window-D4")
+        assertTrue(escape.handle(), "D4 has Back on Escape")
+        scene.settle()
+        assertEquals("Downloads", screens.last())
+        scene.close()
+    }
+
+    /** A series page reads the service only while it is open: its readers are cancelled with it (`#229` review). */
+    @Test
+    fun `a series page's readers stop when the page is left`() {
+        val downloads = host()
+        downloads.downloadSeries()
+        val window = CoroutineScope(SupervisorJob() + Dispatchers.Default)
+        val running = { checkNotNull(window.coroutineContext[Job]).children.sumOf { 1 + it.children.count() } }
+        var open by mutableStateOf(true)
+        val scene = scene {
+            if (open) DownloadSeriesHost(downloads, DownloadTitleId(SERIES), window, setEscape = {}, onClose = {})
+        }
+        scene.until { running() > 1 }
+        open = false
+        scene.until { running() == 0 }
+        scene.close()
+        window.cancel()
+    }
+
     @Test
     fun `sizes read as Finder writes them`() {
         assertEquals("0 B", formatBytes(0, Locale.ROOT))
@@ -232,6 +341,15 @@ class DownloadsHostTest {
         /** The row's Delete verb, the trailing one of its hover verbs, measured from `host-D2-verbs.png`. */
         const val DELETE_VERB_X = 1024f
         const val NANOS_PER_MILLI = 1_000_000L
+        const val SERIES = 300
+        /** The first row in the whole window, past the 220 sidebar, from `host-window-D1`. */
+        const val WINDOW_FIRST_ROW_Y = 214f
+        const val WINDOW_NAME_X = 340f
+        /** On the row's fill, clear of its words, from `host-window-D1-selected`. */
+        const val ROW_FILL_X = 700
+        /** Off every row: the pointer waits here, so hover is not what the sample sees. */
+        const val AWAY_X = 100f
+        const val AWAY_Y = 700f
         /** `HomeScreenTest`'s sidebar: 24 down, then rows 36 apart; the fourth is Downloads. */
         const val SIDEBAR_X = 100f
         const val SIDEBAR_DOWNLOADS_Y = 148f

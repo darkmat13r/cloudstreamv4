@@ -23,6 +23,9 @@ import java.awt.Desktop
 import java.io.File
 import java.util.Locale
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 
 /**
@@ -35,18 +38,21 @@ import kotlinx.coroutines.launch
  * - **Show in Finder**, only for what [DesktopDownloads.fileOf] has on the disk: a finished file, or a series' folder.
  * - **Free space.** Already on the series page's contents (`freeBytes`), from the same volume as the titles page.
  *
+ * @param viewModel the window's, made once beside the library's, so the selection and the row to return to outlast a
+ *   series page over this one.
+ * @param scope the window's: a delete the sheet confirmed finishes even if the page is left.
  * @param onOpenTitle a series was opened from the list: the host pushes its page.
  * @param onLibrary D1's empty state's way to the library.
  */
 @Composable
 internal fun DownloadsHost(
     downloads: DesktopDownloads,
+    viewModel: DownloadsViewModel,
     scope: CoroutineScope,
     setEscape: ((() -> Unit)?) -> Unit,
     onOpenTitle: (DownloadTitleId) -> Unit,
     onLibrary: () -> Unit,
 ) {
-    val viewModel = remember(downloads) { DownloadsViewModel(downloads.source(), UnknownConnectivityFlow, scope) }
     var confirming by remember { mutableStateOf<Set<DownloadTitleId>?>(null) }
     LaunchedEffect(viewModel) {
         // A file removed in Finder while another page was open is noticed on the way back, as Android's resume is.
@@ -85,7 +91,12 @@ internal fun DownloadsHost(
     )
 }
 
-/** D4: one series' episodes. [onClose] when it is empty, or Back. */
+/**
+ * D4: one series' episodes. [onClose] when it is empty, or Back.
+ *
+ * Its view model lives in a child of [scope], cancelled when the page leaves, so its readers stop with it. A delete the
+ * sheet confirmed runs in [scope] itself and finishes either way.
+ */
 @Composable
 internal fun DownloadSeriesHost(
     downloads: DesktopDownloads,
@@ -94,7 +105,9 @@ internal fun DownloadSeriesHost(
     setEscape: ((() -> Unit)?) -> Unit,
     onClose: () -> Unit,
 ) {
-    val viewModel = remember(downloads, id) { DownloadSeriesViewModel(downloads.series(id), UnknownConnectivityFlow, scope) }
+    val page = remember(downloads, id) { CoroutineScope(scope.coroutineContext + SupervisorJob(scope.coroutineContext[Job])) }
+    DisposableEffect(page) { onDispose { page.cancel() } }
+    val viewModel = remember(page) { DownloadSeriesViewModel(downloads.series(id), UnknownConnectivityFlow, page) }
     var confirming by remember { mutableStateOf<List<DownloadEpisodeId>?>(null) }
     LaunchedEffect(viewModel) {
         downloads.refresh()
