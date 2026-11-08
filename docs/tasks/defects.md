@@ -2663,7 +2663,7 @@ tests, 0 failures.
 `SearchViewModelTest` still waits on real time on purpose, as its own KDoc says. Moving it the same way would be a
 separate change.
 
-## BUG-73 — Two copies of JNA in the Mac app, and which one ran depended on how it was started · **low** · **in pr**
+## BUG-73 — Two copies of JNA in the Mac app, and which one ran depended on how it was started · **low** · **in pr #280**
 
 **Status:** fixed in this PR · found 2026-11-08 while preparing `KMP-95`'s dependency case for the Keychain
 
