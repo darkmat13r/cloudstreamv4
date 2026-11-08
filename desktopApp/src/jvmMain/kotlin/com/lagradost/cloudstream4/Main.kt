@@ -53,8 +53,6 @@ import com.lagradost.cloudstream4.feature.library.LibraryStore
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.LibraryViewModel
-import com.lagradost.cloudstream4.feature.settings.PlaybackSettings
-
 import com.lagradost.cloudstream4.feature.settings.AppearanceSettings
 import com.lagradost.cloudstream4.feature.settings.PlaybackSettings
 import com.lagradost.cloudstream4.feature.settings.SettingsRepository
@@ -231,8 +229,6 @@ fun main(args: Array<String>) {
                             homeMemory = homeMemory,
                             shortcuts = shortcuts,
                             downloads = downloads,
-                            playback = settings,
-
                             appearance = settings,
                             playback = settings,
                         )

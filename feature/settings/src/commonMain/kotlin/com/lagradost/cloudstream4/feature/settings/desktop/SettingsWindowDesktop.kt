@@ -58,7 +58,6 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next_body
 
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_pane_appearance
-import com.lagradost.cloudstream4.core.strings.generated.resources.settings_pane_playback
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_seek_amount
@@ -315,7 +314,6 @@ private fun PaneColumn(
                 SettingsPane.Playback -> PlaybackPane(values, marked, onAction)
 
                 SettingsPane.Appearance -> AppearancePane(values, marked, onAction)
-                SettingsPane.Playback -> PlaybackPane(values, marked, onAction)
                 SettingsPane.Downloads -> DownloadsPane(values, folder, marked, onAction)
             }
         }
@@ -327,7 +325,6 @@ private fun paneName(pane: SettingsPane): String = when (pane) {
     SettingsPane.Playback -> stringResource(Res.string.settings_pane_playback)
 
     SettingsPane.Appearance -> stringResource(Res.string.settings_pane_appearance)
-    SettingsPane.Playback -> stringResource(Res.string.settings_pane_playback)
     SettingsPane.Downloads -> stringResource(Res.string.title_downloads)
 }
 
