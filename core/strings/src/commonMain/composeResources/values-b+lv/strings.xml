@@ -366,6 +366,7 @@
 <string name="library_sort_supported">%1$s atbalsta %2$d no %3$d</string>
 <string name="library_sort_not_kept">%s to neglabā</string>
 <string name="library_source">Bibliotēkas avots</string>
+<string name="library_source_local">Vietējais</string>
 <string name="library_source_note">Pa vienam · pārslēgšana pārlādē</string>
 <string name="library_sync_cached">No kešatmiņas</string>
 <string name="library_sync_failed">Neizdevās sinhronizēt %1$s. Šie dati ir no pirms %2$s.</string>

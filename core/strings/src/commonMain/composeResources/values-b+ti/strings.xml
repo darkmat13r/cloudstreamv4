@@ -182,6 +182,7 @@
 <string name="library_sort_supported">%1$s ካብ %3$d %2$d ይድግፍ</string>
 <string name="library_sort_not_kept">%s ኣይሕዞን</string>
 <string name="library_source">ምንጪ ቤተ-መጻሕፍቲ</string>
+<string name="library_source_local">ኣካባቢያዊ</string>
 <string name="library_source_note">ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን</string>
 <string name="library_sync_cached">ዝተዓቀበ</string>
 <string name="library_sync_failed">%1$s ክሰማማዕ ኣይከኣለን። እዚኦም ቅድሚ %2$s ዝነበሩ እዮም።</string>

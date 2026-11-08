@@ -423,6 +423,7 @@
 <string name="library_sort_not_kept" formatted="true">"لا يحفظه %s"</string>
 <string name="library_sort_supported" formatted="true">"يدعم %1$s %2$d من %3$d"</string>
 <string name="library_source">"مصدر المكتبة"</string>
+<string name="library_source_local">"محلي"</string>
 <string name="library_source_note">"مصدر واحد في كل مرة · التبديل يعيد التحميل"</string>
 <string name="library_sync_cached">"مخزّن"</string>
 <string name="library_sync_failed" formatted="true">"تعذّرت مزامنة %1$s. هذه من قبل %2$s."</string>

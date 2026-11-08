@@ -449,6 +449,7 @@
 <string name="library_sort_not_kept" formatted="true">"Not kept by %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s supports %2$d of %3$d"</string>
 <string name="library_source">"Library source"</string>
+<string name="library_source_local">"Local"</string>
 <string name="library_source_note">"One at a time · switching reloads"</string>
 <string name="library_sync_cached">"Cached"</string>
 <string name="library_sync_failed" formatted="true">"Couldn't sync %1$s. These are from %2$s ago."</string>

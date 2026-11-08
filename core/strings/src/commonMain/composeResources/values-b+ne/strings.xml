@@ -305,6 +305,7 @@
 <string name="library_sort_supported">%1$s ले %3$d मध्ये %2$d समर्थन गर्छ</string>
 <string name="library_sort_not_kept">%s ले यो राख्दैन</string>
 <string name="library_source">लाइब्रेरी स्रोत</string>
+<string name="library_source_local">स्थानीय</string>
 <string name="library_source_note">एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ</string>
 <string name="library_sync_cached">क्यास गरिएको</string>
 <string name="library_sync_failed">%1$s सिंक गर्न सकिएन। यी %2$s अघिका हुन्।</string>

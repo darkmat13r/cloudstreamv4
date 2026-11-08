@@ -335,6 +335,7 @@
 <string name="library_sort_supported">%1$s תומך ב-%2$d מתוך %3$d</string>
 <string name="library_sort_not_kept">%s לא שומר את זה</string>
 <string name="library_source">מקור הספריה</string>
+<string name="library_source_local">מקומי</string>
 <string name="library_source_note">אחד בכל פעם · החלפה טוענת מחדש</string>
 <string name="library_sync_cached">מהמטמון</string>
 <string name="library_sync_failed">לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.</string>

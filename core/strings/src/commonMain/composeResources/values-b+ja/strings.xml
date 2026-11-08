@@ -425,6 +425,7 @@
 <string name="library_sort_supported">%1$s は %3$d 項目中 %2$d 項目に対応</string>
 <string name="library_sort_not_kept">%sには保存されません</string>
 <string name="library_source">ライブラリのソース</string>
+<string name="library_source_local">ローカル</string>
 <string name="library_source_note">一度に1つ · 切り替えると再読み込み</string>
 <string name="library_sync_cached">キャッシュ</string>
 <string name="library_sync_failed">%1$s を同期できませんでした。%2$s 前のデータです。</string>

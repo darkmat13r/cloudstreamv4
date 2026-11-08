@@ -323,6 +323,7 @@
 <string name="library_sort_supported">%1$s støtter %2$d av %3$d</string>
 <string name="library_sort_not_kept">Ikke lagret av %s</string>
 <string name="library_source">Bibliotekkilde</string>
+<string name="library_source_local">Lokal</string>
 <string name="library_source_note">Én om gangen · bytte laster inn på nytt</string>
 <string name="library_sync_cached">Mellomlagret</string>
 <string name="library_sync_failed">Kunne ikke synkronisere %1$s. Disse er fra for %2$s siden.</string>

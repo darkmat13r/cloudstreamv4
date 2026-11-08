@@ -392,6 +392,7 @@
 <string name="library_sort_supported">Το %1$s υποστηρίζει %2$d από %3$d</string>
 <string name="library_sort_not_kept">Δεν το κρατά το %s</string>
 <string name="library_source">Πηγή βιβλιοθήκης</string>
+<string name="library_source_local">Τοπικό</string>
 <string name="library_source_note">Μία κάθε φορά · η εναλλαγή επαναφορτώνει</string>
 <string name="library_sync_cached">Από προσωρινή μνήμη</string>
 <string name="library_sync_failed">Δεν ήταν δυνατός ο συγχρονισμός του %1$s. Αυτά είναι από πριν από %2$s.</string>

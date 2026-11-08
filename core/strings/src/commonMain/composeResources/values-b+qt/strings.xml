@@ -383,6 +383,7 @@
 <string name="library_sort_supported">%1$s ooh %2$d uuh %3$d</string>
 <string name="library_sort_not_kept">ooo uuh %s</string>
 <string name="library_source">aaaghh ooo-ahah</string>
+<string name="library_source_local">uuhh</string>
 <string name="library_source_note">ooo aagg · uuhh-ahah</string>
 <string name="library_sync_cached">Uuh</string>
 <string name="library_sync_failed">Ooh %1$s uuh. Ahh %2$s.</string>

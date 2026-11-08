@@ -424,6 +424,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s no lo guarda"</string>
 <string name="library_sort_supported" formatted="true">"%1$s admite %2$d de %3$d"</string>
 <string name="library_source">"Origen de la biblioteca"</string>
+<string name="library_source_local">"Local"</string>
 <string name="library_source_note">"Uno a la vez · cambiar recarga"</string>
 <string name="library_sync_cached">"En caché"</string>
 <string name="library_sync_failed" formatted="true">"No se pudo sincronizar %1$s. Son de hace %2$s."</string>

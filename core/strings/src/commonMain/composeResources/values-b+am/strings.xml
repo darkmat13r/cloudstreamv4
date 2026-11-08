@@ -286,6 +286,7 @@
 <string name="library_sort_supported">%1$s ከ%3$d %2$d ይደግፋል</string>
 <string name="library_sort_not_kept">በ%s አይያዝም</string>
 <string name="library_source">የቤተ-መጽሐፍት ምንጭ</string>
+<string name="library_source_local">አካባቢያዊ</string>
 <string name="library_source_note">አንድ በአንድ · መቀየር እንደገና ይጭናል</string>
 <string name="library_sync_cached">የተቀመጠ</string>
 <string name="library_sync_failed">%1$sን ማመሳሰል አልተቻለም። እነዚህ ከ%2$s በፊት የነበሩ ናቸው።</string>

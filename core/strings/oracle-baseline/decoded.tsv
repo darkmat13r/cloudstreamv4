@@ -179,6 +179,7 @@ values-b+af/strings.xml	string	library_sort_current	-	STR	Sorteer: %s
 values-b+af/strings.xml	string	library_sort_not_kept	-	STR	Nie deur %s gehou nie	
 values-b+af/strings.xml	string	library_sort_supported	-	STR	%1$s ondersteun %2$d van %3$d	
 values-b+af/strings.xml	string	library_source	-	STR	Biblioteekbron	
+values-b+af/strings.xml	string	library_source_local	-	STR	Plaaslik	
 values-b+af/strings.xml	string	library_source_note	-	STR	Een op 'n slag · oorskakel herlaai	
 values-b+af/strings.xml	string	library_sync_cached	-	STR	Gekas	
 values-b+af/strings.xml	string	library_sync_failed	-	STR	Kon %1$s nie sinkroniseer nie. Hierdie is van %2$s gelede.	
@@ -490,6 +491,7 @@ values-b+am/strings.xml	string	library_sort_current	-	STR	ደርድር፦ %s
 values-b+am/strings.xml	string	library_sort_not_kept	-	STR	በ%s አይያዝም	
 values-b+am/strings.xml	string	library_sort_supported	-	STR	%1$s ከ%3$d %2$d ይደግፋል	
 values-b+am/strings.xml	string	library_source	-	STR	የቤተ-መጽሐፍት ምንጭ	
+values-b+am/strings.xml	string	library_source_local	-	STR	አካባቢያዊ	
 values-b+am/strings.xml	string	library_source_note	-	STR	አንድ በአንድ · መቀየር እንደገና ይጭናል	
 values-b+am/strings.xml	string	library_sync_cached	-	STR	የተቀመጠ	
 values-b+am/strings.xml	string	library_sync_failed	-	STR	%1$sን ማመሳሰል አልተቻለም። እነዚህ ከ%2$s በፊት የነበሩ ናቸው።	
@@ -1060,6 +1062,7 @@ values-b+apc/strings.xml	string	library_sort_current	-	STR	الترتيب: %s
 values-b+apc/strings.xml	string	library_sort_not_kept	-	STR	%s ما بيحفظه	
 values-b+apc/strings.xml	string	library_sort_supported	-	STR	%1$s بيدعم %2$d من %3$d	
 values-b+apc/strings.xml	string	library_source	-	STR	مصدر الرفّ	
+values-b+apc/strings.xml	string	library_source_local	-	STR	محلي	
 values-b+apc/strings.xml	string	library_source_note	-	STR	وحدة بكل مرة · التبديل بيعيد التحميل	
 values-b+apc/strings.xml	string	library_sync_cached	-	STR	محفوظ	
 values-b+apc/strings.xml	string	library_sync_failed	-	STR	ما قدرنا نزامن %1$s. هدول من قبل %2$s.	
@@ -2051,6 +2054,7 @@ values-b+ar/strings.xml	string	library_sort_current	-	STR	الترتيب: %s
 values-b+ar/strings.xml	string	library_sort_not_kept	-	STR	لا يحفظه %s	
 values-b+ar/strings.xml	string	library_sort_supported	-	STR	يدعم %1$s %2$d من %3$d	
 values-b+ar/strings.xml	string	library_source	-	STR	مصدر المكتبة	
+values-b+ar/strings.xml	string	library_source_local	-	STR	محلي	
 values-b+ar/strings.xml	string	library_source_note	-	STR	مصدر واحد في كل مرة · التبديل يعيد التحميل	
 values-b+ar/strings.xml	string	library_sync_cached	-	STR	مخزّن	
 values-b+ar/strings.xml	string	library_sync_failed	-	STR	تعذّرت مزامنة %1$s. هذه من قبل %2$s.	
@@ -2872,6 +2876,7 @@ values-b+ars/strings.xml	string	library_sort_current	-	STR	الترتيب: %s
 values-b+ars/strings.xml	string	library_sort_not_kept	-	STR	لا يحفظه %s	
 values-b+ars/strings.xml	string	library_sort_supported	-	STR	يدعم %1$s %2$d من %3$d	
 values-b+ars/strings.xml	string	library_source	-	STR	مصدر المكتبة	
+values-b+ars/strings.xml	string	library_source_local	-	STR	محلي	
 values-b+ars/strings.xml	string	library_source_note	-	STR	مصدر واحد في كل مرة · التبديل يعيد التحميل	
 values-b+ars/strings.xml	string	library_sync_cached	-	STR	مخزّن	
 values-b+ars/strings.xml	string	library_sync_failed	-	STR	تعذّرت مزامنة %1$s. هذه من قبل %2$s.	
@@ -3534,6 +3539,7 @@ values-b+as/strings.xml	string	library_sort_current	-	STR	সজোৱা: %s
 values-b+as/strings.xml	string	library_sort_not_kept	-	STR	%s-এ ৰখা নহয়	
 values-b+as/strings.xml	string	library_sort_supported	-	STR	%1$s-এ %3$d টাৰ %2$d টা সমৰ্থন কৰে	
 values-b+as/strings.xml	string	library_source	-	STR	পুথিভঁৰালৰ উৎস	
+values-b+as/strings.xml	string	library_source_local	-	STR	স্থানীয়	
 values-b+as/strings.xml	string	library_source_note	-	STR	এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়	
 values-b+as/strings.xml	string	library_sync_cached	-	STR	কেশ্ব কৰা	
 values-b+as/strings.xml	string	library_sync_failed	-	STR	%1$s ছিংক কৰিব পৰা নগ'ল। এইবোৰ %2$s আগৰ।	
@@ -4167,6 +4173,7 @@ values-b+az/strings.xml	string	library_sort_current	-	STR	Sırala: %s
 values-b+az/strings.xml	string	library_sort_not_kept	-	STR	%s bunu saxlamır	
 values-b+az/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d meyardan %2$d-ni dəstəkləyir	
 values-b+az/strings.xml	string	library_source	-	STR	Kitabxana mənbəyi	
+values-b+az/strings.xml	string	library_source_local	-	STR	Yerli	
 values-b+az/strings.xml	string	library_source_note	-	STR	Eyni anda bir · dəyişmək yenidən yükləyir	
 values-b+az/strings.xml	string	library_sync_cached	-	STR	Keşlənib	
 values-b+az/strings.xml	string	library_sync_failed	-	STR	%1$s sinxronlaşdırılmadı. Bunlar %2$s əvvəlkidir.	
@@ -4780,6 +4787,7 @@ values-b+be/strings.xml	string	library_sort_current	-	STR	Парадак: %s
 values-b+be/strings.xml	string	library_sort_not_kept	-	STR	%s гэтага не захоўвае	
 values-b+be/strings.xml	string	library_sort_supported	-	STR	%1$s падтрымлівае %2$d з %3$d	
 values-b+be/strings.xml	string	library_source	-	STR	Крыніца бібліятэкі	
+values-b+be/strings.xml	string	library_source_local	-	STR	Лакальны	
 values-b+be/strings.xml	string	library_source_note	-	STR	Па адной · пераключэнне перазагружае	
 values-b+be/strings.xml	string	library_sync_cached	-	STR	З кэша	
 values-b+be/strings.xml	string	library_sync_failed	-	STR	Не ўдалося сінхранізаваць %1$s. Гэта даныя %2$s таму.	
@@ -5705,6 +5713,7 @@ values-b+bg/strings.xml	string	library_sort_current	-	STR	Подреждане: 
 values-b+bg/strings.xml	string	library_sort_not_kept	-	STR	%s не го пази	
 values-b+bg/strings.xml	string	library_sort_supported	-	STR	%1$s поддържа %2$d от %3$d	
 values-b+bg/strings.xml	string	library_source	-	STR	Източник на библиотеката	
+values-b+bg/strings.xml	string	library_source_local	-	STR	Местен	
 values-b+bg/strings.xml	string	library_source_note	-	STR	Един по един · превключването презарежда	
 values-b+bg/strings.xml	string	library_sync_cached	-	STR	Кеширано	
 values-b+bg/strings.xml	string	library_sync_failed	-	STR	%1$s не можа да се синхронизира. Това е отпреди %2$s.	
@@ -6500,6 +6509,7 @@ values-b+bn/strings.xml	string	library_sort_current	-	STR	সাজান: %s
 values-b+bn/strings.xml	string	library_sort_not_kept	-	STR	%s এটি রাখে না	
 values-b+bn/strings.xml	string	library_sort_supported	-	STR	%1$s %3$dটির মধ্যে %2$dটি সমর্থন করে	
 values-b+bn/strings.xml	string	library_source	-	STR	লাইব্রেরির উৎস	
+values-b+bn/strings.xml	string	library_source_local	-	STR	লোকাল	
 values-b+bn/strings.xml	string	library_source_note	-	STR	একবারে একটি · পরিবর্তন করলে আবার লোড হয়	
 values-b+bn/strings.xml	string	library_sync_cached	-	STR	ক্যাশ করা	
 values-b+bn/strings.xml	string	library_sync_failed	-	STR	%1$s সিঙ্ক করা যায়নি। এগুলি %2$s আগের।	
@@ -7068,6 +7078,7 @@ values-b+ca/strings.xml	string	library_sort_current	-	STR	Ordre: %s
 values-b+ca/strings.xml	string	library_sort_not_kept	-	STR	%s no ho desa	
 values-b+ca/strings.xml	string	library_sort_supported	-	STR	%1$s admet %2$d de %3$d	
 values-b+ca/strings.xml	string	library_source	-	STR	Font de la biblioteca	
+values-b+ca/strings.xml	string	library_source_local	-	STR	Local	
 values-b+ca/strings.xml	string	library_source_note	-	STR	Una alhora · canviar torna a carregar	
 values-b+ca/strings.xml	string	library_sync_cached	-	STR	A la memòria cau	
 values-b+ca/strings.xml	string	library_sync_failed	-	STR	No s'ha pogut sincronitzar %1$s. Són de fa %2$s.	
@@ -7511,6 +7522,7 @@ values-b+ckb/strings.xml	string	library_sort_current	-	STR	ڕیزکردن: %s
 values-b+ckb/strings.xml	string	library_sort_not_kept	-	STR	%s ئەمە هەڵناگرێت	
 values-b+ckb/strings.xml	string	library_sort_supported	-	STR	%1$s پشتگیری %2$d لە %3$d دەکات	
 values-b+ckb/strings.xml	string	library_source	-	STR	سەرچاوەی کتێبخانە	
+values-b+ckb/strings.xml	string	library_source_local	-	STR	ناوخۆیی	
 values-b+ckb/strings.xml	string	library_source_note	-	STR	یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە	
 values-b+ckb/strings.xml	string	library_sync_cached	-	STR	هەڵگیراوە	
 values-b+ckb/strings.xml	string	library_sync_failed	-	STR	نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن.	
@@ -8091,6 +8103,7 @@ values-b+cs/strings.xml	string	library_sort_current	-	STR	Řazení: %s
 values-b+cs/strings.xml	string	library_sort_not_kept	-	STR	%s toto neuchovává	
 values-b+cs/strings.xml	string	library_sort_supported	-	STR	%1$s podporuje %2$d z %3$d	
 values-b+cs/strings.xml	string	library_source	-	STR	Zdroj knihovny	
+values-b+cs/strings.xml	string	library_source_local	-	STR	Místní	
 values-b+cs/strings.xml	string	library_source_note	-	STR	Jeden po druhém · přepnutí znovu načte	
 values-b+cs/strings.xml	string	library_sync_cached	-	STR	Z mezipaměti	
 values-b+cs/strings.xml	string	library_sync_failed	-	STR	%1$s se nepodařilo synchronizovat. Tato data jsou z doby před %2$s.	
@@ -9029,6 +9042,7 @@ values-b+de/strings.xml	string	library_sort_current	-	STR	Sortierung: %s
 values-b+de/strings.xml	string	library_sort_not_kept	-	STR	Von %s nicht gespeichert	
 values-b+de/strings.xml	string	library_sort_supported	-	STR	%1$s unterstützt %2$d von %3$d	
 values-b+de/strings.xml	string	library_source	-	STR	Bibliotheksquelle	
+values-b+de/strings.xml	string	library_source_local	-	STR	Lokal	
 values-b+de/strings.xml	string	library_source_note	-	STR	Jeweils eine · Wechsel lädt neu	
 values-b+de/strings.xml	string	library_sync_cached	-	STR	Zwischengespeichert	
 values-b+de/strings.xml	string	library_sync_failed	-	STR	%1$s konnte nicht synchronisiert werden. Das ist der Stand von vor %2$s.	
@@ -9931,6 +9945,7 @@ values-b+el/strings.xml	string	library_sort_current	-	STR	Ταξινόμηση: 
 values-b+el/strings.xml	string	library_sort_not_kept	-	STR	Δεν το κρατά το %s	
 values-b+el/strings.xml	string	library_sort_supported	-	STR	Το %1$s υποστηρίζει %2$d από %3$d	
 values-b+el/strings.xml	string	library_source	-	STR	Πηγή βιβλιοθήκης	
+values-b+el/strings.xml	string	library_source_local	-	STR	Τοπικό	
 values-b+el/strings.xml	string	library_source_note	-	STR	Μία κάθε φορά · η εναλλαγή επαναφορτώνει	
 values-b+el/strings.xml	string	library_sync_cached	-	STR	Από προσωρινή μνήμη	
 values-b+el/strings.xml	string	library_sync_failed	-	STR	Δεν ήταν δυνατός ο συγχρονισμός του %1$s. Αυτά είναι από πριν από %2$s.	
@@ -10597,6 +10612,7 @@ values-b+eo/strings.xml	string	library_sort_current	-	STR	Ordigo: %s
 values-b+eo/strings.xml	string	library_sort_not_kept	-	STR	%s ne konservas tion	
 values-b+eo/strings.xml	string	library_sort_supported	-	STR	%1$s subtenas %2$d el %3$d	
 values-b+eo/strings.xml	string	library_source	-	STR	Fonto de biblioteko	
+values-b+eo/strings.xml	string	library_source_local	-	STR	Loka	
 values-b+eo/strings.xml	string	library_source_note	-	STR	Po unu · ŝanĝo reŝargas	
 values-b+eo/strings.xml	string	library_sync_cached	-	STR	Kaŝmemorita	
 values-b+eo/strings.xml	string	library_sync_failed	-	STR	Ne eblis sinkronigi %1$s. Ĉi tiuj estas de antaŭ %2$s.	
@@ -11224,6 +11240,7 @@ values-b+es/strings.xml	string	library_sort_current	-	STR	Orden: %s
 values-b+es/strings.xml	string	library_sort_not_kept	-	STR	%s no lo guarda	
 values-b+es/strings.xml	string	library_sort_supported	-	STR	%1$s admite %2$d de %3$d	
 values-b+es/strings.xml	string	library_source	-	STR	Origen de la biblioteca	
+values-b+es/strings.xml	string	library_source_local	-	STR	Local	
 values-b+es/strings.xml	string	library_source_note	-	STR	Uno a la vez · cambiar recarga	
 values-b+es/strings.xml	string	library_sync_cached	-	STR	En caché	
 values-b+es/strings.xml	string	library_sync_failed	-	STR	No se pudo sincronizar %1$s. Son de hace %2$s.	
@@ -11992,6 +12009,7 @@ values-b+fa/strings.xml	string	library_sort_current	-	STR	ترتیب: %s
 values-b+fa/strings.xml	string	library_sort_not_kept	-	STR	%s این را نگه نمی‌دارد	
 values-b+fa/strings.xml	string	library_sort_supported	-	STR	%1$s از %3$d مورد %2$d را پشتیبانی می‌کند	
 values-b+fa/strings.xml	string	library_source	-	STR	منبع کتابخانه	
+values-b+fa/strings.xml	string	library_source_local	-	STR	محلی	
 values-b+fa/strings.xml	string	library_source_note	-	STR	هر بار یکی · تغییر، دوباره بارگذاری می‌کند	
 values-b+fa/strings.xml	string	library_sync_cached	-	STR	ذخیره‌شده	
 values-b+fa/strings.xml	string	library_sync_failed	-	STR	همگام‌سازی %1$s ممکن نشد. این‌ها مال %2$s پیش هستند.	
@@ -12466,6 +12484,7 @@ values-b+fil/strings.xml	string	library_sort_current	-	STR	Pagkakasunod: %s
 values-b+fil/strings.xml	string	library_sort_not_kept	-	STR	Hindi itinatabi ng %s	
 values-b+fil/strings.xml	string	library_sort_supported	-	STR	Sinusuportahan ng %1$s ang %2$d sa %3$d	
 values-b+fil/strings.xml	string	library_source	-	STR	Pinagmulan ng library	
+values-b+fil/strings.xml	string	library_source_local	-	STR	Local	
 values-b+fil/strings.xml	string	library_source_note	-	STR	Isa-isa · nagre-reload kapag nagpalit	
 values-b+fil/strings.xml	string	library_sync_cached	-	STR	Naka-cache	
 values-b+fil/strings.xml	string	library_sync_failed	-	STR	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.	
@@ -13080,6 +13099,7 @@ values-b+fr/strings.xml	string	library_sort_current	-	STR	Tri : %s
 values-b+fr/strings.xml	string	library_sort_not_kept	-	STR	Non conservé par %s	
 values-b+fr/strings.xml	string	library_sort_supported	-	STR	%1$s prend en charge %2$d sur %3$d	
 values-b+fr/strings.xml	string	library_source	-	STR	Source de la bibliothèque	
+values-b+fr/strings.xml	string	library_source_local	-	STR	Local	
 values-b+fr/strings.xml	string	library_source_note	-	STR	Une à la fois · changer recharge	
 values-b+fr/strings.xml	string	library_sync_cached	-	STR	En cache	
 values-b+fr/strings.xml	string	library_sync_failed	-	STR	Impossible de synchroniser %1$s. Ces données datent d'il y a %2$s.	
@@ -13834,6 +13854,7 @@ values-b+gl/strings.xml	string	library_sort_current	-	STR	Orde: %s
 values-b+gl/strings.xml	string	library_sort_not_kept	-	STR	%s non o garda	
 values-b+gl/strings.xml	string	library_sort_supported	-	STR	%1$s admite %2$d de %3$d	
 values-b+gl/strings.xml	string	library_source	-	STR	Orixe da biblioteca	
+values-b+gl/strings.xml	string	library_source_local	-	STR	Local	
 values-b+gl/strings.xml	string	library_source_note	-	STR	Unha de cada vez · cambiar recarga	
 values-b+gl/strings.xml	string	library_sync_cached	-	STR	Na caché	
 values-b+gl/strings.xml	string	library_sync_failed	-	STR	Non se puido sincronizar %1$s. Son de hai %2$s.	
@@ -14382,6 +14403,7 @@ values-b+hi/strings.xml	string	library_sort_current	-	STR	क्रम: %s
 values-b+hi/strings.xml	string	library_sort_not_kept	-	STR	%s इसे नहीं रखता	
 values-b+hi/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d में से %2$d का समर्थन करता है	
 values-b+hi/strings.xml	string	library_source	-	STR	लाइब्रेरी स्रोत	
+values-b+hi/strings.xml	string	library_source_local	-	STR	स्थानीय	
 values-b+hi/strings.xml	string	library_source_note	-	STR	एक समय में एक · बदलने पर फिर से लोड होता है	
 values-b+hi/strings.xml	string	library_sync_cached	-	STR	कैश किया	
 values-b+hi/strings.xml	string	library_sync_failed	-	STR	%1$s सिंक नहीं हो सका। ये %2$s पहले के हैं।	
@@ -15129,6 +15151,7 @@ values-b+hr/strings.xml	string	library_sort_current	-	STR	Poredak: %s
 values-b+hr/strings.xml	string	library_sort_not_kept	-	STR	%s to ne čuva	
 values-b+hr/strings.xml	string	library_sort_supported	-	STR	%1$s podržava %2$d od %3$d	
 values-b+hr/strings.xml	string	library_source	-	STR	Izvor biblioteke	
+values-b+hr/strings.xml	string	library_source_local	-	STR	Lokalno	
 values-b+hr/strings.xml	string	library_source_note	-	STR	Jedan po jedan · promjena ponovno učitava	
 values-b+hr/strings.xml	string	library_sync_cached	-	STR	Iz predmemorije	
 values-b+hr/strings.xml	string	library_sync_failed	-	STR	Nije moguće sinkronizirati %1$s. Ovo je od prije %2$s.	
@@ -16020,6 +16043,7 @@ values-b+hu/strings.xml	string	library_sort_current	-	STR	Rendezés: %s
 values-b+hu/strings.xml	string	library_sort_not_kept	-	STR	A(z) %s nem tárolja	
 values-b+hu/strings.xml	string	library_sort_supported	-	STR	A(z) %1$s %3$d szempontból %2$d-t támogat	
 values-b+hu/strings.xml	string	library_source	-	STR	Könyvtár forrása	
+values-b+hu/strings.xml	string	library_source_local	-	STR	Helyi	
 values-b+hu/strings.xml	string	library_source_note	-	STR	Egyszerre egy · váltáskor újratölt	
 values-b+hu/strings.xml	string	library_sync_cached	-	STR	Gyorsítótárból	
 values-b+hu/strings.xml	string	library_sync_failed	-	STR	A(z) %1$s nem szinkronizálható. Ezek %2$s előttiek.	
@@ -16880,6 +16904,7 @@ values-b+in/strings.xml	string	library_sort_current	-	STR	Urutan: %s
 values-b+in/strings.xml	string	library_sort_not_kept	-	STR	Tidak disimpan oleh %s	
 values-b+in/strings.xml	string	library_sort_supported	-	STR	%1$s mendukung %2$d dari %3$d	
 values-b+in/strings.xml	string	library_source	-	STR	Sumber pustaka	
+values-b+in/strings.xml	string	library_source_local	-	STR	Lokal	
 values-b+in/strings.xml	string	library_source_note	-	STR	Satu per satu · beralih memuat ulang	
 values-b+in/strings.xml	string	library_sync_cached	-	STR	Tersimpan	
 values-b+in/strings.xml	string	library_sync_failed	-	STR	Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.	
@@ -17834,6 +17859,7 @@ values-b+it/strings.xml	string	library_sort_current	-	STR	Ordine: %s
 values-b+it/strings.xml	string	library_sort_not_kept	-	STR	Non conservato da %s	
 values-b+it/strings.xml	string	library_sort_supported	-	STR	%1$s supporta %2$d di %3$d	
 values-b+it/strings.xml	string	library_source	-	STR	Origine della libreria	
+values-b+it/strings.xml	string	library_source_local	-	STR	Locale	
 values-b+it/strings.xml	string	library_source_note	-	STR	Una alla volta · cambiare ricarica	
 values-b+it/strings.xml	string	library_sync_cached	-	STR	In cache	
 values-b+it/strings.xml	string	library_sync_failed	-	STR	Impossibile sincronizzare %1$s. Sono di %2$s fa.	
@@ -18692,6 +18718,7 @@ values-b+iw/strings.xml	string	library_sort_current	-	STR	מיון: %s
 values-b+iw/strings.xml	string	library_sort_not_kept	-	STR	%s לא שומר את זה	
 values-b+iw/strings.xml	string	library_sort_supported	-	STR	%1$s תומך ב-%2$d מתוך %3$d	
 values-b+iw/strings.xml	string	library_source	-	STR	מקור הספריה	
+values-b+iw/strings.xml	string	library_source_local	-	STR	מקומי	
 values-b+iw/strings.xml	string	library_source_note	-	STR	אחד בכל פעם · החלפה טוענת מחדש	
 values-b+iw/strings.xml	string	library_sync_cached	-	STR	מהמטמון	
 values-b+iw/strings.xml	string	library_sync_failed	-	STR	לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.	
@@ -19513,6 +19540,7 @@ values-b+ja/strings.xml	string	library_sort_current	-	STR	並べ替え：%s
 values-b+ja/strings.xml	string	library_sort_not_kept	-	STR	%sには保存されません	
 values-b+ja/strings.xml	string	library_sort_supported	-	STR	%1$s は %3$d 項目中 %2$d 項目に対応	
 values-b+ja/strings.xml	string	library_source	-	STR	ライブラリのソース	
+values-b+ja/strings.xml	string	library_source_local	-	STR	ローカル	
 values-b+ja/strings.xml	string	library_source_note	-	STR	一度に1つ · 切り替えると再読み込み	
 values-b+ja/strings.xml	string	library_sync_cached	-	STR	キャッシュ	
 values-b+ja/strings.xml	string	library_sync_failed	-	STR	%1$s を同期できませんでした。%2$s 前のデータです。	
@@ -20191,6 +20219,7 @@ values-b+kn/strings.xml	string	library_sort_current	-	STR	ವಿಂಗಡಣೆ:
 values-b+kn/strings.xml	string	library_sort_not_kept	-	STR	%s ಇದನ್ನು ಇರಿಸುವುದಿಲ್ಲ	
 values-b+kn/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d ರಲ್ಲಿ %2$d ಬೆಂಬಲಿಸುತ್ತದೆ	
 values-b+kn/strings.xml	string	library_source	-	STR	ಲೈಬ್ರರಿ ಮೂಲ	
+values-b+kn/strings.xml	string	library_source_local	-	STR	ಸ್ಥಳೀಯ	
 values-b+kn/strings.xml	string	library_source_note	-	STR	ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ	
 values-b+kn/strings.xml	string	library_sync_cached	-	STR	ಕ್ಯಾಶ್	
 values-b+kn/strings.xml	string	library_sync_failed	-	STR	%1$s ಸಿಂಕ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ಇವು %2$s ಹಿಂದಿನವು.	
@@ -20761,6 +20790,7 @@ values-b+ko/strings.xml	string	library_sort_current	-	STR	정렬: %s
 values-b+ko/strings.xml	string	library_sort_not_kept	-	STR	%s에는 저장되지 않음	
 values-b+ko/strings.xml	string	library_sort_supported	-	STR	%1$s은(는) %3$d개 중 %2$d개 지원	
 values-b+ko/strings.xml	string	library_source	-	STR	라이브러리 소스	
+values-b+ko/strings.xml	string	library_source_local	-	STR	로컬	
 values-b+ko/strings.xml	string	library_source_note	-	STR	한 번에 하나 · 전환하면 다시 불러옴	
 values-b+ko/strings.xml	string	library_sync_cached	-	STR	캐시됨	
 values-b+ko/strings.xml	string	library_sync_failed	-	STR	%1$s을(를) 동기화하지 못했습니다. %2$s 전 데이터입니다.	
@@ -21530,6 +21560,7 @@ values-b+lt/strings.xml	string	library_sort_current	-	STR	Rikiavimas: %s
 values-b+lt/strings.xml	string	library_sort_not_kept	-	STR	%s to nesaugo	
 values-b+lt/strings.xml	string	library_sort_supported	-	STR	%1$s palaiko %2$d iš %3$d	
 values-b+lt/strings.xml	string	library_source	-	STR	Bibliotekos šaltinis	
+values-b+lt/strings.xml	string	library_source_local	-	STR	Vietinis	
 values-b+lt/strings.xml	string	library_source_note	-	STR	Po vieną · perjungus įkeliama iš naujo	
 values-b+lt/strings.xml	string	library_sync_cached	-	STR	Iš podėlio	
 values-b+lt/strings.xml	string	library_sync_failed	-	STR	Nepavyko sinchronizuoti %1$s. Tai duomenys prieš %2$s.	
@@ -22167,6 +22198,7 @@ values-b+lv/strings.xml	string	library_sort_current	-	STR	Kārtošana: %s
 values-b+lv/strings.xml	string	library_sort_not_kept	-	STR	%s to neglabā	
 values-b+lv/strings.xml	string	library_sort_supported	-	STR	%1$s atbalsta %2$d no %3$d	
 values-b+lv/strings.xml	string	library_source	-	STR	Bibliotēkas avots	
+values-b+lv/strings.xml	string	library_source_local	-	STR	Vietējais	
 values-b+lv/strings.xml	string	library_source_note	-	STR	Pa vienam · pārslēgšana pārlādē	
 values-b+lv/strings.xml	string	library_sync_cached	-	STR	No kešatmiņas	
 values-b+lv/strings.xml	string	library_sync_failed	-	STR	Neizdevās sinhronizēt %1$s. Šie dati ir no pirms %2$s.	
@@ -23037,6 +23069,7 @@ values-b+mk/strings.xml	string	library_sort_current	-	STR	Подредување
 values-b+mk/strings.xml	string	library_sort_not_kept	-	STR	%s не го чува	
 values-b+mk/strings.xml	string	library_sort_supported	-	STR	%1$s поддржува %2$d од %3$d	
 values-b+mk/strings.xml	string	library_source	-	STR	Извор на библиотеката	
+values-b+mk/strings.xml	string	library_source_local	-	STR	Локално	
 values-b+mk/strings.xml	string	library_source_note	-	STR	Еден по еден · менувањето превчитува	
 values-b+mk/strings.xml	string	library_sync_cached	-	STR	Кеширано	
 values-b+mk/strings.xml	string	library_sync_failed	-	STR	%1$s не може да се синхронизира. Ова е од пред %2$s.	
@@ -23776,6 +23809,7 @@ values-b+ml/strings.xml	string	library_sort_current	-	STR	ക്രമം: %s
 values-b+ml/strings.xml	string	library_sort_not_kept	-	STR	%s ഇത് സൂക്ഷിക്കുന്നില്ല	
 values-b+ml/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d-ൽ %2$d പിന്തുണയ്ക്കുന്നു	
 values-b+ml/strings.xml	string	library_source	-	STR	ലൈബ്രറി ഉറവിടം	
+values-b+ml/strings.xml	string	library_source_local	-	STR	ലോക്കൽ	
 values-b+ml/strings.xml	string	library_source_note	-	STR	ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും	
 values-b+ml/strings.xml	string	library_sync_cached	-	STR	കാഷെ ചെയ്തത്	
 values-b+ml/strings.xml	string	library_sync_failed	-	STR	%1$s സമന്വയിപ്പിക്കാനായില്ല. ഇവ %2$s മുമ്പുള്ളതാണ്.	
@@ -24371,6 +24405,7 @@ values-b+ms/strings.xml	string	library_sort_current	-	STR	Isih: %s
 values-b+ms/strings.xml	string	library_sort_not_kept	-	STR	Tidak disimpan oleh %s	
 values-b+ms/strings.xml	string	library_sort_supported	-	STR	%1$s menyokong %2$d daripada %3$d	
 values-b+ms/strings.xml	string	library_source	-	STR	Sumber perpustakaan	
+values-b+ms/strings.xml	string	library_source_local	-	STR	Tempatan	
 values-b+ms/strings.xml	string	library_source_note	-	STR	Satu demi satu · menukar memuat semula	
 values-b+ms/strings.xml	string	library_sync_cached	-	STR	Dicache	
 values-b+ms/strings.xml	string	library_sync_failed	-	STR	Tidak dapat menyegerakkan %1$s. Ini dari %2$s yang lalu.	
@@ -24949,6 +24984,7 @@ values-b+mt/strings.xml	string	library_sort_current	-	STR	Ordni: %s
 values-b+mt/strings.xml	string	library_sort_not_kept	-	STR	Mhux miżmum minn %s	
 values-b+mt/strings.xml	string	library_sort_supported	-	STR	%1$s jappoġġja %2$d minn %3$d	
 values-b+mt/strings.xml	string	library_source	-	STR	Sors tal-librerija	
+values-b+mt/strings.xml	string	library_source_local	-	STR	Lokali	
 values-b+mt/strings.xml	string	library_source_note	-	STR	Wieħed kull darba · il-bidla tgħabbi mill-ġdid	
 values-b+mt/strings.xml	string	library_sync_cached	-	STR	Fil-cache	
 values-b+mt/strings.xml	string	library_sync_failed	-	STR	Ma setax jiġi sinkronizzat %1$s. Dawn huma minn %2$s ilu.	
@@ -25419,6 +25455,7 @@ values-b+my/strings.xml	string	library_sort_current	-	STR	စီရန်: %s
 values-b+my/strings.xml	string	library_sort_not_kept	-	STR	%s က ဒါကို မသိမ်းထားပါ	
 values-b+my/strings.xml	string	library_sort_supported	-	STR	%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်	
 values-b+my/strings.xml	string	library_source	-	STR	လိုက်ဘရီ ရင်းမြစ်	
+values-b+my/strings.xml	string	library_source_local	-	STR	စက်တွင်း	
 values-b+my/strings.xml	string	library_source_note	-	STR	တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်	
 values-b+my/strings.xml	string	library_sync_cached	-	STR	သိမ်းထားသည်	
 values-b+my/strings.xml	string	library_sync_failed	-	STR	%1$s ကို ချိန်ကိုက်၍မရပါ။ ဤအရာများသည် လွန်ခဲ့သော %2$s ကဖြစ်သည်။	
@@ -25977,6 +26014,7 @@ values-b+ne/strings.xml	string	library_sort_current	-	STR	क्रम: %s
 values-b+ne/strings.xml	string	library_sort_not_kept	-	STR	%s ले यो राख्दैन	
 values-b+ne/strings.xml	string	library_sort_supported	-	STR	%1$s ले %3$d मध्ये %2$d समर्थन गर्छ	
 values-b+ne/strings.xml	string	library_source	-	STR	लाइब्रेरी स्रोत	
+values-b+ne/strings.xml	string	library_source_local	-	STR	स्थानीय	
 values-b+ne/strings.xml	string	library_source_note	-	STR	एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ	
 values-b+ne/strings.xml	string	library_sync_cached	-	STR	क्यास गरिएको	
 values-b+ne/strings.xml	string	library_sync_failed	-	STR	%1$s सिंक गर्न सकिएन। यी %2$s अघिका हुन्।	
@@ -26538,6 +26576,7 @@ values-b+nl/strings.xml	string	library_sort_current	-	STR	Sorteren: %s
 values-b+nl/strings.xml	string	library_sort_not_kept	-	STR	Niet bewaard door %s	
 values-b+nl/strings.xml	string	library_sort_supported	-	STR	%1$s ondersteunt %2$d van %3$d	
 values-b+nl/strings.xml	string	library_source	-	STR	Bibliotheekbron	
+values-b+nl/strings.xml	string	library_source_local	-	STR	Lokaal	
 values-b+nl/strings.xml	string	library_source_note	-	STR	Eén tegelijk · wisselen laadt opnieuw	
 values-b+nl/strings.xml	string	library_sync_cached	-	STR	Uit cache	
 values-b+nl/strings.xml	string	library_sync_failed	-	STR	%1$s kon niet worden gesynchroniseerd. Dit is van %2$s geleden.	
@@ -27217,6 +27256,7 @@ values-b+nn/strings.xml	string	library_sort_current	-	STR	Sortering: %s
 values-b+nn/strings.xml	string	library_sort_not_kept	-	STR	Ikkje lagra av %s	
 values-b+nn/strings.xml	string	library_sort_supported	-	STR	%1$s støttar %2$d av %3$d	
 values-b+nn/strings.xml	string	library_source	-	STR	Bibliotekskjelde	
+values-b+nn/strings.xml	string	library_source_local	-	STR	Lokal	
 values-b+nn/strings.xml	string	library_source_note	-	STR	Éin om gongen · byte lastar på nytt	
 values-b+nn/strings.xml	string	library_sync_cached	-	STR	Mellomlagra	
 values-b+nn/strings.xml	string	library_sync_failed	-	STR	Kunne ikkje synkronisera %1$s. Desse er frå for %2$s sidan.	
@@ -27740,6 +27780,7 @@ values-b+no/strings.xml	string	library_sort_current	-	STR	Sortering: %s
 values-b+no/strings.xml	string	library_sort_not_kept	-	STR	Ikke lagret av %s	
 values-b+no/strings.xml	string	library_sort_supported	-	STR	%1$s støtter %2$d av %3$d	
 values-b+no/strings.xml	string	library_source	-	STR	Bibliotekkilde	
+values-b+no/strings.xml	string	library_source_local	-	STR	Lokal	
 values-b+no/strings.xml	string	library_source_note	-	STR	Én om gangen · bytte laster inn på nytt	
 values-b+no/strings.xml	string	library_sync_cached	-	STR	Mellomlagret	
 values-b+no/strings.xml	string	library_sync_failed	-	STR	Kunne ikke synkronisere %1$s. Disse er fra for %2$s siden.	
@@ -28315,6 +28356,7 @@ values-b+or/strings.xml	string	library_sort_current	-	STR	କ୍ରମ: %s
 values-b+or/strings.xml	string	library_sort_not_kept	-	STR	%s ଏହା ରଖେ ନାହିଁ	
 values-b+or/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d ମଧ୍ୟରୁ %2$d ସମର୍ଥନ କରେ	
 values-b+or/strings.xml	string	library_source	-	STR	ଲାଇବ୍ରେରୀ ଉତ୍ସ	
+values-b+or/strings.xml	string	library_source_local	-	STR	ସ୍ଥାନୀୟ	
 values-b+or/strings.xml	string	library_source_note	-	STR	ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ	
 values-b+or/strings.xml	string	library_sync_cached	-	STR	କ୍ୟାଶ୍	
 values-b+or/strings.xml	string	library_sync_failed	-	STR	%1$s ସିଙ୍କ୍ ହୋଇପାରିଲା ନାହିଁ। ଏଗୁଡ଼ିକ %2$s ପୂର୍ବର।	
@@ -28944,6 +28986,7 @@ values-b+pl/strings.xml	string	library_sort_current	-	STR	Sortowanie: %s
 values-b+pl/strings.xml	string	library_sort_not_kept	-	STR	%s tego nie przechowuje	
 values-b+pl/strings.xml	string	library_sort_supported	-	STR	%1$s obsługuje %2$d z %3$d	
 values-b+pl/strings.xml	string	library_source	-	STR	Źródło biblioteki	
+values-b+pl/strings.xml	string	library_source_local	-	STR	Lokalna	
 values-b+pl/strings.xml	string	library_source_note	-	STR	Jedno naraz · przełączenie wczytuje ponownie	
 values-b+pl/strings.xml	string	library_sync_cached	-	STR	Z pamięci podręcznej	
 values-b+pl/strings.xml	string	library_sync_failed	-	STR	Nie udało się zsynchronizować %1$s. To dane sprzed %2$s.	
@@ -29898,6 +29941,7 @@ values-b+pt+BR/strings.xml	string	library_sort_current	-	STR	Ordenar: %s
 values-b+pt+BR/strings.xml	string	library_sort_not_kept	-	STR	Não salvo por %s	
 values-b+pt+BR/strings.xml	string	library_sort_supported	-	STR	%1$s suporta %2$d de %3$d	
 values-b+pt+BR/strings.xml	string	library_source	-	STR	Fonte da biblioteca	
+values-b+pt+BR/strings.xml	string	library_source_local	-	STR	Local	
 values-b+pt+BR/strings.xml	string	library_source_note	-	STR	Uma por vez · trocar recarrega	
 values-b+pt+BR/strings.xml	string	library_sync_cached	-	STR	Em cache	
 values-b+pt+BR/strings.xml	string	library_sync_failed	-	STR	Não foi possível sincronizar %1$s. Estes são de %2$s atrás.	
@@ -30849,6 +30893,7 @@ values-b+pt/strings.xml	string	library_sort_current	-	STR	Ordenar: %s
 values-b+pt/strings.xml	string	library_sort_not_kept	-	STR	Não guardado por %s	
 values-b+pt/strings.xml	string	library_sort_supported	-	STR	%1$s suporta %2$d de %3$d	
 values-b+pt/strings.xml	string	library_source	-	STR	Origem da biblioteca	
+values-b+pt/strings.xml	string	library_source_local	-	STR	Local	
 values-b+pt/strings.xml	string	library_source_note	-	STR	Uma de cada vez · mudar recarrega	
 values-b+pt/strings.xml	string	library_sync_cached	-	STR	Em cache	
 values-b+pt/strings.xml	string	library_sync_failed	-	STR	Não foi possível sincronizar %1$s. São de há %2$s.	
@@ -31724,6 +31769,7 @@ values-b+qt/strings.xml	string	library_sort_current	-	STR	Oouh: %s
 values-b+qt/strings.xml	string	library_sort_not_kept	-	STR	ooo uuh %s	
 values-b+qt/strings.xml	string	library_sort_supported	-	STR	%1$s ooh %2$d uuh %3$d	
 values-b+qt/strings.xml	string	library_source	-	STR	aaaghh ooo-ahah	
+values-b+qt/strings.xml	string	library_source_local	-	STR	uuhh	
 values-b+qt/strings.xml	string	library_source_note	-	STR	ooo aagg · uuhh-ahah	
 values-b+qt/strings.xml	string	library_sync_cached	-	STR	Uuh	
 values-b+qt/strings.xml	string	library_sync_failed	-	STR	Ooh %1$s uuh. Ahh %2$s.	
@@ -32559,6 +32605,7 @@ values-b+ro/strings.xml	string	library_sort_current	-	STR	Sortare: %s
 values-b+ro/strings.xml	string	library_sort_not_kept	-	STR	Nu este păstrat de %s	
 values-b+ro/strings.xml	string	library_sort_supported	-	STR	%1$s acceptă %2$d din %3$d	
 values-b+ro/strings.xml	string	library_source	-	STR	Sursa bibliotecii	
+values-b+ro/strings.xml	string	library_source_local	-	STR	Local	
 values-b+ro/strings.xml	string	library_source_note	-	STR	Câte una · schimbarea reîncarcă	
 values-b+ro/strings.xml	string	library_sync_cached	-	STR	Din cache	
 values-b+ro/strings.xml	string	library_sync_failed	-	STR	%1$s nu a putut fi sincronizat. Sunt de acum %2$s.	
@@ -33458,6 +33505,7 @@ values-b+ru/strings.xml	string	library_sort_current	-	STR	Сортировка: 
 values-b+ru/strings.xml	string	library_sort_not_kept	-	STR	%s этого не хранит	
 values-b+ru/strings.xml	string	library_sort_supported	-	STR	%1$s поддерживает %2$d из %3$d	
 values-b+ru/strings.xml	string	library_source	-	STR	Источник библиотеки	
+values-b+ru/strings.xml	string	library_source_local	-	STR	Локальный	
 values-b+ru/strings.xml	string	library_source_note	-	STR	По одному · переключение перезагружает	
 values-b+ru/strings.xml	string	library_sync_cached	-	STR	Из кеша	
 values-b+ru/strings.xml	string	library_sync_failed	-	STR	Не удалось синхронизировать %1$s. Это данные %2$s назад.	
@@ -34310,6 +34358,7 @@ values-b+sk/strings.xml	string	library_sort_current	-	STR	Zoradenie: %s
 values-b+sk/strings.xml	string	library_sort_not_kept	-	STR	%s toto neuchováva	
 values-b+sk/strings.xml	string	library_sort_supported	-	STR	%1$s podporuje %2$d z %3$d	
 values-b+sk/strings.xml	string	library_source	-	STR	Zdroj knižnice	
+values-b+sk/strings.xml	string	library_source_local	-	STR	Lokálne	
 values-b+sk/strings.xml	string	library_source_note	-	STR	Jeden naraz · prepnutie znova načíta	
 values-b+sk/strings.xml	string	library_sync_cached	-	STR	Z vyrovnávacej pamäte	
 values-b+sk/strings.xml	string	library_sync_failed	-	STR	%1$s sa nepodarilo synchronizovať. Sú to údaje spred %2$s.	
@@ -34992,6 +35041,7 @@ values-b+so/strings.xml	string	library_sort_current	-	STR	Kala soocid: %s
 values-b+so/strings.xml	string	library_sort_not_kept	-	STR	%s ma kaydiyo	
 values-b+so/strings.xml	string	library_sort_supported	-	STR	%1$s wuxuu taageeraa %2$d ka mid ah %3$d	
 values-b+so/strings.xml	string	library_source	-	STR	Isha kaydka	
+values-b+so/strings.xml	string	library_source_local	-	STR	Maxalli	
 values-b+so/strings.xml	string	library_source_note	-	STR	Mid mid · beddelku wuu dib u soo raraa	
 values-b+so/strings.xml	string	library_sync_cached	-	STR	La kaydiyay	
 values-b+so/strings.xml	string	library_sync_failed	-	STR	Lama isku waafajin karin %1$s. Kuwani waa kuwii %2$s ka hor.	
@@ -35798,6 +35848,7 @@ values-b+sq/strings.xml	string	library_sort_current	-	STR	Renditja: %s
 values-b+sq/strings.xml	string	library_sort_not_kept	-	STR	Nuk ruhet nga %s	
 values-b+sq/strings.xml	string	library_sort_supported	-	STR	%1$s mbështet %2$d nga %3$d	
 values-b+sq/strings.xml	string	library_source	-	STR	Burimi i bibliotekës	
+values-b+sq/strings.xml	string	library_source_local	-	STR	Lokale	
 values-b+sq/strings.xml	string	library_source_note	-	STR	Një në një kohë · ndërrimi ringarkon	
 values-b+sq/strings.xml	string	library_sync_cached	-	STR	Nga memoria	
 values-b+sq/strings.xml	string	library_sync_failed	-	STR	%1$s nuk u sinkronizua dot. Këto janë para %2$s.	
@@ -36736,6 +36787,7 @@ values-b+sv/strings.xml	string	library_sort_current	-	STR	Sortering: %s
 values-b+sv/strings.xml	string	library_sort_not_kept	-	STR	Sparas inte av %s	
 values-b+sv/strings.xml	string	library_sort_supported	-	STR	%1$s stöder %2$d av %3$d	
 values-b+sv/strings.xml	string	library_source	-	STR	Bibliotekskälla	
+values-b+sv/strings.xml	string	library_source_local	-	STR	Lokal	
 values-b+sv/strings.xml	string	library_source_note	-	STR	En i taget · byte laddar om	
 values-b+sv/strings.xml	string	library_sync_cached	-	STR	Cachad	
 values-b+sv/strings.xml	string	library_sync_failed	-	STR	Det gick inte att synkronisera %1$s. Detta är från för %2$s sedan.	
@@ -37674,6 +37726,7 @@ values-b+ta/strings.xml	string	library_sort_current	-	STR	வரிசை: %s
 values-b+ta/strings.xml	string	library_sort_not_kept	-	STR	%s இதை வைத்திருக்காது	
 values-b+ta/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d இல் %2$d ஐ ஆதரிக்கிறது	
 values-b+ta/strings.xml	string	library_source	-	STR	நூலக மூலம்	
+values-b+ta/strings.xml	string	library_source_local	-	STR	உள்ளகம்	
 values-b+ta/strings.xml	string	library_source_note	-	STR	ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்	
 values-b+ta/strings.xml	string	library_sync_cached	-	STR	தேக்கியது	
 values-b+ta/strings.xml	string	library_sync_failed	-	STR	%1$s ஐ ஒத்திசைக்க முடியவில்லை. இவை %2$s முன்பு உள்ளவை.	
@@ -38310,6 +38363,7 @@ values-b+ti/strings.xml	string	library_sort_current	-	STR	ስርዓት፦ %s
 values-b+ti/strings.xml	string	library_sort_not_kept	-	STR	%s ኣይሕዞን	
 values-b+ti/strings.xml	string	library_sort_supported	-	STR	%1$s ካብ %3$d %2$d ይድግፍ	
 values-b+ti/strings.xml	string	library_source	-	STR	ምንጪ ቤተ-መጻሕፍቲ	
+values-b+ti/strings.xml	string	library_source_local	-	STR	ኣካባቢያዊ	
 values-b+ti/strings.xml	string	library_source_note	-	STR	ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን	
 values-b+ti/strings.xml	string	library_sync_cached	-	STR	ዝተዓቀበ	
 values-b+ti/strings.xml	string	library_sync_failed	-	STR	%1$s ክሰማማዕ ኣይከኣለን። እዚኦም ቅድሚ %2$s ዝነበሩ እዮም።	
@@ -38615,6 +38669,7 @@ values-b+tl/strings.xml	string	library_sort_current	-	STR	Pagkakasunod: %s
 values-b+tl/strings.xml	string	library_sort_not_kept	-	STR	Hindi itinatabi ng %s	
 values-b+tl/strings.xml	string	library_sort_supported	-	STR	Sinusuportahan ng %1$s ang %2$d sa %3$d	
 values-b+tl/strings.xml	string	library_source	-	STR	Pinagmulan ng library	
+values-b+tl/strings.xml	string	library_source_local	-	STR	Local	
 values-b+tl/strings.xml	string	library_source_note	-	STR	Isa-isa · nagre-reload kapag nagpalit	
 values-b+tl/strings.xml	string	library_sync_cached	-	STR	Naka-cache	
 values-b+tl/strings.xml	string	library_sync_failed	-	STR	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.	
@@ -39263,6 +39318,7 @@ values-b+tr/strings.xml	string	library_sort_current	-	STR	Sıralama: %s
 values-b+tr/strings.xml	string	library_sort_not_kept	-	STR	%s bunu tutmuyor	
 values-b+tr/strings.xml	string	library_sort_supported	-	STR	%1$s, %3$d ölçütten %2$d tanesini destekler	
 values-b+tr/strings.xml	string	library_source	-	STR	Kütüphane kaynağı	
+values-b+tr/strings.xml	string	library_source_local	-	STR	Yerel	
 values-b+tr/strings.xml	string	library_source_note	-	STR	Aynı anda bir tane · değiştirmek yeniden yükler	
 values-b+tr/strings.xml	string	library_sync_cached	-	STR	Önbellekten	
 values-b+tr/strings.xml	string	library_sync_failed	-	STR	%1$s eşitlenemedi. Bunlar %2$s öncesine ait.	
@@ -40233,6 +40289,7 @@ values-b+uk/strings.xml	string	library_sort_current	-	STR	Сортування: 
 values-b+uk/strings.xml	string	library_sort_not_kept	-	STR	%s цього не зберігає	
 values-b+uk/strings.xml	string	library_sort_supported	-	STR	%1$s підтримує %2$d з %3$d	
 values-b+uk/strings.xml	string	library_source	-	STR	Джерело бібліотеки	
+values-b+uk/strings.xml	string	library_source_local	-	STR	Локальний	
 values-b+uk/strings.xml	string	library_source_note	-	STR	По одному · перемикання перезавантажує	
 values-b+uk/strings.xml	string	library_sync_cached	-	STR	З кешу	
 values-b+uk/strings.xml	string	library_sync_failed	-	STR	Не вдалося синхронізувати %1$s. Це дані %2$s тому.	
@@ -41112,6 +41169,7 @@ values-b+ur/strings.xml	string	library_sort_current	-	STR	ترتیب: %s
 values-b+ur/strings.xml	string	library_sort_not_kept	-	STR	%s اسے نہیں رکھتا	
 values-b+ur/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d میں سے %2$d کی معاونت کرتا ہے	
 values-b+ur/strings.xml	string	library_source	-	STR	لائبریری کا ذریعہ	
+values-b+ur/strings.xml	string	library_source_local	-	STR	لوکل	
 values-b+ur/strings.xml	string	library_source_note	-	STR	ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے	
 values-b+ur/strings.xml	string	library_sync_cached	-	STR	کیش شدہ	
 values-b+ur/strings.xml	string	library_sync_failed	-	STR	%1$s کو ہم آہنگ نہیں کیا جا سکا۔ یہ %2$s پہلے کے ہیں۔	
@@ -41954,6 +42012,7 @@ values-b+vi/strings.xml	string	library_sort_current	-	STR	Sắp xếp: %s
 values-b+vi/strings.xml	string	library_sort_not_kept	-	STR	%s không lưu mục này	
 values-b+vi/strings.xml	string	library_sort_supported	-	STR	%1$s hỗ trợ %2$d/%3$d	
 values-b+vi/strings.xml	string	library_source	-	STR	Nguồn thư viện	
+values-b+vi/strings.xml	string	library_source_local	-	STR	Cục bộ	
 values-b+vi/strings.xml	string	library_source_note	-	STR	Mỗi lần một nguồn · chuyển sẽ tải lại	
 values-b+vi/strings.xml	string	library_sync_cached	-	STR	Đã lưu đệm	
 values-b+vi/strings.xml	string	library_sync_failed	-	STR	Không thể đồng bộ %1$s. Đây là dữ liệu từ %2$s trước.	
@@ -42875,6 +42934,7 @@ values-b+zh+TW/strings.xml	string	library_sort_current	-	STR	排序：%s
 values-b+zh+TW/strings.xml	string	library_sort_not_kept	-	STR	%s 不保存此項	
 values-b+zh+TW/strings.xml	string	library_sort_supported	-	STR	%1$s 支援 %3$d 項中的 %2$d 項	
 values-b+zh+TW/strings.xml	string	library_source	-	STR	媒體庫來源	
+values-b+zh+TW/strings.xml	string	library_source_local	-	STR	本機	
 values-b+zh+TW/strings.xml	string	library_source_note	-	STR	一次一個 · 切換會重新載入	
 values-b+zh+TW/strings.xml	string	library_sync_cached	-	STR	已快取	
 values-b+zh+TW/strings.xml	string	library_sync_failed	-	STR	無法同步 %1$s。這些是 %2$s 前的內容。	
@@ -43792,6 +43852,7 @@ values-b+zh/strings.xml	string	library_sort_current	-	STR	排序：%s
 values-b+zh/strings.xml	string	library_sort_not_kept	-	STR	%s 不保存此项	
 values-b+zh/strings.xml	string	library_sort_supported	-	STR	%1$s 支持 %3$d 项中的 %2$d 项	
 values-b+zh/strings.xml	string	library_source	-	STR	媒体库来源	
+values-b+zh/strings.xml	string	library_source_local	-	STR	本地	
 values-b+zh/strings.xml	string	library_source_note	-	STR	一次一个 · 切换会重新加载	
 values-b+zh/strings.xml	string	library_sync_cached	-	STR	已缓存	
 values-b+zh/strings.xml	string	library_sync_failed	-	STR	无法同步 %1$s。这些是 %2$s 前的内容。	
@@ -44871,6 +44932,7 @@ values/strings.xml	string	library_sort_current	-	STR	Sort: %s
 values/strings.xml	string	library_sort_not_kept	-	STR	Not kept by %s	
 values/strings.xml	string	library_sort_supported	-	STR	%1$s supports %2$d of %3$d	
 values/strings.xml	string	library_source	-	STR	Library source	
+values/strings.xml	string	library_source_local	-	STR	Local	
 values/strings.xml	string	library_source_note	-	STR	One at a time · switching reloads	
 values/strings.xml	string	library_sync_cached	-	STR	Cached	
 values/strings.xml	string	library_sync_failed	-	STR	Couldn't sync %1$s. These are from %2$s ago.	

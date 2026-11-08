@@ -4,6 +4,7 @@ import android.content.Context
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.TvType
+import com.lagradost.cloudstream3.R
 import com.lagradost.cloudstream3.syncproviders.AccountManager
 import com.lagradost.cloudstream3.syncproviders.SyncAPI
 import com.lagradost.cloudstream3.syncproviders.SyncIdName
@@ -13,6 +14,7 @@ import com.lagradost.cloudstream3.ui.library.LAST_SYNC_API_KEY
 import com.lagradost.cloudstream3.ui.library.ListSorting
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.DataStoreHelper.currentAccount
+import com.lagradost.cloudstream3.utils.txt
 import com.lagradost.cloudstream3.utils.UiText
 import com.lagradost.cloudstream4.feature.library.LibrarySort
 import com.lagradost.cloudstream4.feature.library.LibrarySortCriterion
@@ -142,10 +144,14 @@ internal class AndroidLibrarySources(
 
     override suspend fun sources(): List<LibrarySource> = withContext(io) {
         val count = runCatching { localCount() }.getOrNull()
+        // I18N-17: the local list's name, in the app's language, through the same resolver as a service's list names.
+        val localName = labels()(txt(R.string.library_source_local))
         listed(all()).map { source ->
             LibrarySource(
                 id = source.id,
-                name = source.repo.name,
+                // I18N-17: the local list's name in the app's language. Only the name drawn: its id, and the key the
+                // chosen source is remembered by, stay `LocalList`'s own name, so changing language forgets nothing.
+                name = if (source.local) localName else source.repo.name,
                 local = source.local,
                 connected = source.local || source.connected(),
                 account = if (source.local) null else source.account()?.sourceText()?.ifEmpty { null },

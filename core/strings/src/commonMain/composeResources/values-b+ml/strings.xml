@@ -465,6 +465,7 @@
 <string name="library_sort_supported">%1$s %3$d-ൽ %2$d പിന്തുണയ്ക്കുന്നു</string>
 <string name="library_sort_not_kept">%s ഇത് സൂക്ഷിക്കുന്നില്ല</string>
 <string name="library_source">ലൈബ്രറി ഉറവിടം</string>
+<string name="library_source_local">ലോക്കൽ</string>
 <string name="library_source_note">ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും</string>
 <string name="library_sync_cached">കാഷെ ചെയ്തത്</string>
 <string name="library_sync_failed">%1$s സമന്വയിപ്പിക്കാനായില്ല. ഇവ %2$s മുമ്പുള്ളതാണ്.</string>

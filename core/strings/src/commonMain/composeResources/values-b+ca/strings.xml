@@ -508,6 +508,7 @@
 <string name="library_sort_supported">%1$s admet %2$d de %3$d</string>
 <string name="library_sort_not_kept">%s no ho desa</string>
 <string name="library_source">Font de la biblioteca</string>
+<string name="library_source_local">Local</string>
 <string name="library_source_note">Una alhora · canviar torna a carregar</string>
 <string name="library_sync_cached">A la memòria cau</string>
 <string name="library_sync_failed">No s'ha pogut sincronitzar %1$s. Són de fa %2$s.</string>

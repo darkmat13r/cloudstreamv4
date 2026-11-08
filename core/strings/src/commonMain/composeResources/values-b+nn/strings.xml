@@ -377,6 +377,7 @@
 <string name="library_sort_supported">%1$s støttar %2$d av %3$d</string>
 <string name="library_sort_not_kept">Ikkje lagra av %s</string>
 <string name="library_source">Bibliotekskjelde</string>
+<string name="library_source_local">Lokal</string>
 <string name="library_source_note">Éin om gongen · byte lastar på nytt</string>
 <string name="library_sync_cached">Mellomlagra</string>
 <string name="library_sync_failed">Kunne ikkje synkronisera %1$s. Desse er frå for %2$s sidan.</string>

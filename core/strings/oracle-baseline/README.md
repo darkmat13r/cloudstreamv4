@@ -120,6 +120,24 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Move for `I18N-17`, 2026-11-08 — 1 new key, the local library's name
+
+Branched from master's twenty-third move (Train 7); a train that lands others first renumbers this and regenerates once.
+New keys are approved in general (`I18N-09`). Additive, authored in all 62 directories, not a plural: `library_source_local`.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 44,778 | 44,840 | 62 | 0 | 0 |
+| `emitted.tsv` | 47,071 | 47,135 | 64 | 0 | 0 |
+| `lookup.tsv` | 86,089 | 86,176 | 87 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines
+lost, and every added line names `library_source_local`. `report.txt` moved only in its counts: visible keys 964 -> 965, one
+more value in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.**
+`expectedOwn` 43,408 -> 43,470.
+
 ## Twenty-third move, 2026-11-08 — `KMP-66`, 10 new keys for the TV playback panels
 
 New keys are approved in general (`I18N-09`, above). Additive, all ten authored in all 62 directories, none a plural

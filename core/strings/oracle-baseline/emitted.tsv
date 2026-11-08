@@ -469,6 +469,7 @@ values	string	library_sort_current	-	Sort: %s
 values	string	library_sort_not_kept	-	Not kept by %s
 values	string	library_sort_supported	-	%1$s supports %2$d of %3$d
 values	string	library_source	-	Library source
+values	string	library_source_local	-	Local
 values	string	library_source_note	-	One at a time · switching reloads
 values	string	library_sync_cached	-	Cached
 values	string	library_sync_failed	-	Couldn't sync %1$s. These are from %2$s ago.
@@ -1179,6 +1180,7 @@ values-b+af	string	library_sort_current	-	Sorteer: %s
 values-b+af	string	library_sort_not_kept	-	Nie deur %s gehou nie
 values-b+af	string	library_sort_supported	-	%1$s ondersteun %2$d van %3$d
 values-b+af	string	library_source	-	Biblioteekbron
+values-b+af	string	library_source_local	-	Plaaslik
 values-b+af	string	library_source_note	-	Een op 'n slag · oorskakel herlaai
 values-b+af	string	library_sync_cached	-	Gekas
 values-b+af	string	library_sync_failed	-	Kon %1$s nie sinkroniseer nie. Hierdie is van %2$s gelede.
@@ -1494,6 +1496,7 @@ values-b+am	string	library_sort_current	-	ደርድር፦ %s
 values-b+am	string	library_sort_not_kept	-	በ%s አይያዝም
 values-b+am	string	library_sort_supported	-	%1$s ከ%3$d %2$d ይደግፋል
 values-b+am	string	library_source	-	የቤተ-መጽሐፍት ምንጭ
+values-b+am	string	library_source_local	-	አካባቢያዊ
 values-b+am	string	library_source_note	-	አንድ በአንድ · መቀየር እንደገና ይጭናል
 values-b+am	string	library_sync_cached	-	የተቀመጠ
 values-b+am	string	library_sync_failed	-	%1$sን ማመሳሰል አልተቻለም። እነዚህ ከ%2$s በፊት የነበሩ ናቸው።
@@ -2071,6 +2074,7 @@ values-b+apc	string	library_sort_current	-	الترتيب: %s
 values-b+apc	string	library_sort_not_kept	-	%s ما بيحفظه
 values-b+apc	string	library_sort_supported	-	%1$s بيدعم %2$d من %3$d
 values-b+apc	string	library_source	-	مصدر الرفّ
+values-b+apc	string	library_source_local	-	محلي
 values-b+apc	string	library_source_note	-	وحدة بكل مرة · التبديل بيعيد التحميل
 values-b+apc	string	library_sync_cached	-	محفوظ
 values-b+apc	string	library_sync_failed	-	ما قدرنا نزامن %1$s. هدول من قبل %2$s.
@@ -3073,6 +3077,7 @@ values-b+ar	string	library_sort_current	-	الترتيب: %s
 values-b+ar	string	library_sort_not_kept	-	لا يحفظه %s
 values-b+ar	string	library_sort_supported	-	يدعم %1$s %2$d من %3$d
 values-b+ar	string	library_source	-	مصدر المكتبة
+values-b+ar	string	library_source_local	-	محلي
 values-b+ar	string	library_source_note	-	مصدر واحد في كل مرة · التبديل يعيد التحميل
 values-b+ar	string	library_sync_cached	-	مخزّن
 values-b+ar	string	library_sync_failed	-	تعذّرت مزامنة %1$s. هذه من قبل %2$s.
@@ -3906,6 +3911,7 @@ values-b+ars	string	library_sort_current	-	الترتيب: %s
 values-b+ars	string	library_sort_not_kept	-	لا يحفظه %s
 values-b+ars	string	library_sort_supported	-	يدعم %1$s %2$d من %3$d
 values-b+ars	string	library_source	-	مصدر المكتبة
+values-b+ars	string	library_source_local	-	محلي
 values-b+ars	string	library_source_note	-	مصدر واحد في كل مرة · التبديل يعيد التحميل
 values-b+ars	string	library_sync_cached	-	مخزّن
 values-b+ars	string	library_sync_failed	-	تعذّرت مزامنة %1$s. هذه من قبل %2$s.
@@ -4577,6 +4583,7 @@ values-b+as	string	library_sort_current	-	সজোৱা: %s
 values-b+as	string	library_sort_not_kept	-	%s-এ ৰখা নহয়
 values-b+as	string	library_sort_supported	-	%1$s-এ %3$d টাৰ %2$d টা সমৰ্থন কৰে
 values-b+as	string	library_source	-	পুথিভঁৰালৰ উৎস
+values-b+as	string	library_source_local	-	স্থানীয়
 values-b+as	string	library_source_note	-	এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়
 values-b+as	string	library_sync_cached	-	কেশ্ব কৰা
 values-b+as	string	library_sync_failed	-	%1$s ছিংক কৰিব পৰা নগ'ল। এইবোৰ %2$s আগৰ।
@@ -5217,6 +5224,7 @@ values-b+az	string	library_sort_current	-	Sırala: %s
 values-b+az	string	library_sort_not_kept	-	%s bunu saxlamır
 values-b+az	string	library_sort_supported	-	%1$s %3$d meyardan %2$d-ni dəstəkləyir
 values-b+az	string	library_source	-	Kitabxana mənbəyi
+values-b+az	string	library_source_local	-	Yerli
 values-b+az	string	library_source_note	-	Eyni anda bir · dəyişmək yenidən yükləyir
 values-b+az	string	library_sync_cached	-	Keşlənib
 values-b+az	string	library_sync_failed	-	%1$s sinxronlaşdırılmadı. Bunlar %2$s əvvəlkidir.
@@ -5838,6 +5846,7 @@ values-b+be	string	library_sort_current	-	Парадак: %s
 values-b+be	string	library_sort_not_kept	-	%s гэтага не захоўвае
 values-b+be	string	library_sort_supported	-	%1$s падтрымлівае %2$d з %3$d
 values-b+be	string	library_source	-	Крыніца бібліятэкі
+values-b+be	string	library_source_local	-	Лакальны
 values-b+be	string	library_source_note	-	Па адной · пераключэнне перазагружае
 values-b+be	string	library_sync_cached	-	З кэша
 values-b+be	string	library_sync_failed	-	Не ўдалося сінхранізаваць %1$s. Гэта даныя %2$s таму.
@@ -6774,6 +6783,7 @@ values-b+bg	string	library_sort_current	-	Подреждане: %s
 values-b+bg	string	library_sort_not_kept	-	%s не го пази
 values-b+bg	string	library_sort_supported	-	%1$s поддържа %2$d от %3$d
 values-b+bg	string	library_source	-	Източник на библиотеката
+values-b+bg	string	library_source_local	-	Местен
 values-b+bg	string	library_source_note	-	Един по един · превключването презарежда
 values-b+bg	string	library_sync_cached	-	Кеширано
 values-b+bg	string	library_sync_failed	-	%1$s не можа да се синхронизира. Това е отпреди %2$s.
@@ -7580,6 +7590,7 @@ values-b+bn	string	library_sort_current	-	সাজান: %s
 values-b+bn	string	library_sort_not_kept	-	%s এটি রাখে না
 values-b+bn	string	library_sort_supported	-	%1$s %3$dটির মধ্যে %2$dটি সমর্থন করে
 values-b+bn	string	library_source	-	লাইব্রেরির উৎস
+values-b+bn	string	library_source_local	-	লোকাল
 values-b+bn	string	library_source_note	-	একবারে একটি · পরিবর্তন করলে আবার লোড হয়
 values-b+bn	string	library_sync_cached	-	ক্যাশ করা
 values-b+bn	string	library_sync_failed	-	%1$s সিঙ্ক করা যায়নি। এগুলি %2$s আগের।
@@ -8152,6 +8163,7 @@ values-b+ca	string	library_sort_current	-	Ordre: %s
 values-b+ca	string	library_sort_not_kept	-	%s no ho desa
 values-b+ca	string	library_sort_supported	-	%1$s admet %2$d de %3$d
 values-b+ca	string	library_source	-	Font de la biblioteca
+values-b+ca	string	library_source_local	-	Local
 values-b+ca	string	library_source_note	-	Una alhora · canviar torna a carregar
 values-b+ca	string	library_sync_cached	-	A la memòria cau
 values-b+ca	string	library_sync_failed	-	No s'ha pogut sincronitzar %1$s. Són de fa %2$s.
@@ -8598,6 +8610,7 @@ values-b+ckb	string	library_sort_current	-	ڕیزکردن: %s
 values-b+ckb	string	library_sort_not_kept	-	%s ئەمە هەڵناگرێت
 values-b+ckb	string	library_sort_supported	-	%1$s پشتگیری %2$d لە %3$d دەکات
 values-b+ckb	string	library_source	-	سەرچاوەی کتێبخانە
+values-b+ckb	string	library_source_local	-	ناوخۆیی
 values-b+ckb	string	library_source_note	-	یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە
 values-b+ckb	string	library_sync_cached	-	هەڵگیراوە
 values-b+ckb	string	library_sync_failed	-	نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن.
@@ -9185,6 +9198,7 @@ values-b+cs	string	library_sort_current	-	Řazení: %s
 values-b+cs	string	library_sort_not_kept	-	%s toto neuchovává
 values-b+cs	string	library_sort_supported	-	%1$s podporuje %2$d z %3$d
 values-b+cs	string	library_source	-	Zdroj knihovny
+values-b+cs	string	library_source_local	-	Místní
 values-b+cs	string	library_source_note	-	Jeden po druhém · přepnutí znovu načte
 values-b+cs	string	library_sync_cached	-	Z mezipaměti
 values-b+cs	string	library_sync_failed	-	%1$s se nepodařilo synchronizovat. Tato data jsou z doby před %2$s.
@@ -10134,6 +10148,7 @@ values-b+de	string	library_sort_current	-	Sortierung: %s
 values-b+de	string	library_sort_not_kept	-	Von %s nicht gespeichert
 values-b+de	string	library_sort_supported	-	%1$s unterstützt %2$d von %3$d
 values-b+de	string	library_source	-	Bibliotheksquelle
+values-b+de	string	library_source_local	-	Lokal
 values-b+de	string	library_source_note	-	Jeweils eine · Wechsel lädt neu
 values-b+de	string	library_sync_cached	-	Zwischengespeichert
 values-b+de	string	library_sync_failed	-	%1$s konnte nicht synchronisiert werden. Das ist der Stand von vor %2$s.
@@ -11047,6 +11062,7 @@ values-b+el	string	library_sort_current	-	Ταξινόμηση: %s
 values-b+el	string	library_sort_not_kept	-	Δεν το κρατά το %s
 values-b+el	string	library_sort_supported	-	Το %1$s υποστηρίζει %2$d από %3$d
 values-b+el	string	library_source	-	Πηγή βιβλιοθήκης
+values-b+el	string	library_source_local	-	Τοπικό
 values-b+el	string	library_source_note	-	Μία κάθε φορά · η εναλλαγή επαναφορτώνει
 values-b+el	string	library_sync_cached	-	Από προσωρινή μνήμη
 values-b+el	string	library_sync_failed	-	Δεν ήταν δυνατός ο συγχρονισμός του %1$s. Αυτά είναι από πριν από %2$s.
@@ -11722,6 +11738,7 @@ values-b+eo	string	library_sort_current	-	Ordigo: %s
 values-b+eo	string	library_sort_not_kept	-	%s ne konservas tion
 values-b+eo	string	library_sort_supported	-	%1$s subtenas %2$d el %3$d
 values-b+eo	string	library_source	-	Fonto de biblioteko
+values-b+eo	string	library_source_local	-	Loka
 values-b+eo	string	library_source_note	-	Po unu · ŝanĝo reŝargas
 values-b+eo	string	library_sync_cached	-	Kaŝmemorita
 values-b+eo	string	library_sync_failed	-	Ne eblis sinkronigi %1$s. Ĉi tiuj estas de antaŭ %2$s.
@@ -12360,6 +12377,7 @@ values-b+es	string	library_sort_current	-	Orden: %s
 values-b+es	string	library_sort_not_kept	-	%s no lo guarda
 values-b+es	string	library_sort_supported	-	%1$s admite %2$d de %3$d
 values-b+es	string	library_source	-	Origen de la biblioteca
+values-b+es	string	library_source_local	-	Local
 values-b+es	string	library_source_note	-	Uno a la vez · cambiar recarga
 values-b+es	string	library_sync_cached	-	En caché
 values-b+es	string	library_sync_failed	-	No se pudo sincronizar %1$s. Son de hace %2$s.
@@ -13139,6 +13157,7 @@ values-b+fa	string	library_sort_current	-	ترتیب: %s
 values-b+fa	string	library_sort_not_kept	-	%s این را نگه نمی‌دارد
 values-b+fa	string	library_sort_supported	-	%1$s از %3$d مورد %2$d را پشتیبانی می‌کند
 values-b+fa	string	library_source	-	منبع کتابخانه
+values-b+fa	string	library_source_local	-	محلی
 values-b+fa	string	library_source_note	-	هر بار یکی · تغییر، دوباره بارگذاری می‌کند
 values-b+fa	string	library_sync_cached	-	ذخیره‌شده
 values-b+fa	string	library_sync_failed	-	همگام‌سازی %1$s ممکن نشد. این‌ها مال %2$s پیش هستند.
@@ -13673,6 +13692,7 @@ values-b+fil	string	library_sort_current	-	Pagkakasunod: %s
 values-b+fil	string	library_sort_not_kept	-	Hindi itinatabi ng %s
 values-b+fil	string	library_sort_supported	-	Sinusuportahan ng %1$s ang %2$d sa %3$d
 values-b+fil	string	library_source	-	Pinagmulan ng library
+values-b+fil	string	library_source_local	-	Local
 values-b+fil	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
 values-b+fil	string	library_sync_cached	-	Naka-cache
 values-b+fil	string	library_sync_failed	-	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.
@@ -14354,6 +14374,7 @@ values-b+fr	string	library_sort_current	-	Tri : %s
 values-b+fr	string	library_sort_not_kept	-	Non conservé par %s
 values-b+fr	string	library_sort_supported	-	%1$s prend en charge %2$d sur %3$d
 values-b+fr	string	library_source	-	Source de la bibliothèque
+values-b+fr	string	library_source_local	-	Local
 values-b+fr	string	library_source_note	-	Une à la fois · changer recharge
 values-b+fr	string	library_sync_cached	-	En cache
 values-b+fr	string	library_sync_failed	-	Impossible de synchroniser %1$s. Ces données datent d'il y a %2$s.
@@ -15118,6 +15139,7 @@ values-b+gl	string	library_sort_current	-	Orde: %s
 values-b+gl	string	library_sort_not_kept	-	%s non o garda
 values-b+gl	string	library_sort_supported	-	%1$s admite %2$d de %3$d
 values-b+gl	string	library_source	-	Orixe da biblioteca
+values-b+gl	string	library_source_local	-	Local
 values-b+gl	string	library_source_note	-	Unha de cada vez · cambiar recarga
 values-b+gl	string	library_sync_cached	-	Na caché
 values-b+gl	string	library_sync_failed	-	Non se puido sincronizar %1$s. Son de hai %2$s.
@@ -15717,6 +15739,7 @@ values-b+he	string	library_sort_current	-	מיון: %s
 values-b+he	string	library_sort_not_kept	-	%s לא שומר את זה
 values-b+he	string	library_sort_supported	-	%1$s תומך ב-%2$d מתוך %3$d
 values-b+he	string	library_source	-	מקור הספריה
+values-b+he	string	library_source_local	-	מקומי
 values-b+he	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
 values-b+he	string	library_sync_cached	-	מהמטמון
 values-b+he	string	library_sync_failed	-	לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.
@@ -16443,6 +16466,7 @@ values-b+hi	string	library_sort_current	-	क्रम: %s
 values-b+hi	string	library_sort_not_kept	-	%s इसे नहीं रखता
 values-b+hi	string	library_sort_supported	-	%1$s %3$d में से %2$d का समर्थन करता है
 values-b+hi	string	library_source	-	लाइब्रेरी स्रोत
+values-b+hi	string	library_source_local	-	स्थानीय
 values-b+hi	string	library_source_note	-	एक समय में एक · बदलने पर फिर से लोड होता है
 values-b+hi	string	library_sync_cached	-	कैश किया
 values-b+hi	string	library_sync_failed	-	%1$s सिंक नहीं हो सका। ये %2$s पहले के हैं।
@@ -17199,6 +17223,7 @@ values-b+hr	string	library_sort_current	-	Poredak: %s
 values-b+hr	string	library_sort_not_kept	-	%s to ne čuva
 values-b+hr	string	library_sort_supported	-	%1$s podržava %2$d od %3$d
 values-b+hr	string	library_source	-	Izvor biblioteke
+values-b+hr	string	library_source_local	-	Lokalno
 values-b+hr	string	library_source_note	-	Jedan po jedan · promjena ponovno učitava
 values-b+hr	string	library_sync_cached	-	Iz predmemorije
 values-b+hr	string	library_sync_failed	-	Nije moguće sinkronizirati %1$s. Ovo je od prije %2$s.
@@ -18101,6 +18126,7 @@ values-b+hu	string	library_sort_current	-	Rendezés: %s
 values-b+hu	string	library_sort_not_kept	-	A(z) %s nem tárolja
 values-b+hu	string	library_sort_supported	-	A(z) %1$s %3$d szempontból %2$d-t támogat
 values-b+hu	string	library_source	-	Könyvtár forrása
+values-b+hu	string	library_source_local	-	Helyi
 values-b+hu	string	library_source_note	-	Egyszerre egy · váltáskor újratölt
 values-b+hu	string	library_sync_cached	-	Gyorsítótárból
 values-b+hu	string	library_sync_failed	-	A(z) %1$s nem szinkronizálható. Ezek %2$s előttiek.
@@ -18970,6 +18996,7 @@ values-b+id	string	library_sort_current	-	Urutan: %s
 values-b+id	string	library_sort_not_kept	-	Tidak disimpan oleh %s
 values-b+id	string	library_sort_supported	-	%1$s mendukung %2$d dari %3$d
 values-b+id	string	library_source	-	Sumber pustaka
+values-b+id	string	library_source_local	-	Lokal
 values-b+id	string	library_source_note	-	Satu per satu · beralih memuat ulang
 values-b+id	string	library_sync_cached	-	Tersimpan
 values-b+id	string	library_sync_failed	-	Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.
@@ -19901,6 +19928,7 @@ values-b+in	string	library_sort_current	-	Urutan: %s
 values-b+in	string	library_sort_not_kept	-	Tidak disimpan oleh %s
 values-b+in	string	library_sort_supported	-	%1$s mendukung %2$d dari %3$d
 values-b+in	string	library_source	-	Sumber pustaka
+values-b+in	string	library_source_local	-	Lokal
 values-b+in	string	library_source_note	-	Satu per satu · beralih memuat ulang
 values-b+in	string	library_sync_cached	-	Tersimpan
 values-b+in	string	library_sync_failed	-	Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.
@@ -20864,6 +20892,7 @@ values-b+it	string	library_sort_current	-	Ordine: %s
 values-b+it	string	library_sort_not_kept	-	Non conservato da %s
 values-b+it	string	library_sort_supported	-	%1$s supporta %2$d di %3$d
 values-b+it	string	library_source	-	Origine della libreria
+values-b+it	string	library_source_local	-	Locale
 values-b+it	string	library_source_note	-	Una alla volta · cambiare ricarica
 values-b+it	string	library_sync_cached	-	In cache
 values-b+it	string	library_sync_failed	-	Impossibile sincronizzare %1$s. Sono di %2$s fa.
@@ -21733,6 +21762,7 @@ values-b+iw	string	library_sort_current	-	מיון: %s
 values-b+iw	string	library_sort_not_kept	-	%s לא שומר את זה
 values-b+iw	string	library_sort_supported	-	%1$s תומך ב-%2$d מתוך %3$d
 values-b+iw	string	library_source	-	מקור הספריה
+values-b+iw	string	library_source_local	-	מקומי
 values-b+iw	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
 values-b+iw	string	library_sync_cached	-	מהמטמון
 values-b+iw	string	library_sync_failed	-	לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.
@@ -22565,6 +22595,7 @@ values-b+ja	string	library_sort_current	-	並べ替え：%s
 values-b+ja	string	library_sort_not_kept	-	%sには保存されません
 values-b+ja	string	library_sort_supported	-	%1$s は %3$d 項目中 %2$d 項目に対応
 values-b+ja	string	library_source	-	ライブラリのソース
+values-b+ja	string	library_source_local	-	ローカル
 values-b+ja	string	library_source_note	-	一度に1つ · 切り替えると再読み込み
 values-b+ja	string	library_sync_cached	-	キャッシュ
 values-b+ja	string	library_sync_failed	-	%1$s を同期できませんでした。%2$s 前のデータです。
@@ -23249,6 +23280,7 @@ values-b+kn	string	library_sort_current	-	ವಿಂಗಡಣೆ: %s
 values-b+kn	string	library_sort_not_kept	-	%s ಇದನ್ನು ಇರಿಸುವುದಿಲ್ಲ
 values-b+kn	string	library_sort_supported	-	%1$s %3$d ರಲ್ಲಿ %2$d ಬೆಂಬಲಿಸುತ್ತದೆ
 values-b+kn	string	library_source	-	ಲೈಬ್ರರಿ ಮೂಲ
+values-b+kn	string	library_source_local	-	ಸ್ಥಳೀಯ
 values-b+kn	string	library_source_note	-	ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ
 values-b+kn	string	library_sync_cached	-	ಕ್ಯಾಶ್
 values-b+kn	string	library_sync_failed	-	%1$s ಸಿಂಕ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ಇವು %2$s ಹಿಂದಿನವು.
@@ -23826,6 +23858,7 @@ values-b+ko	string	library_sort_current	-	정렬: %s
 values-b+ko	string	library_sort_not_kept	-	%s에는 저장되지 않음
 values-b+ko	string	library_sort_supported	-	%1$s은(는) %3$d개 중 %2$d개 지원
 values-b+ko	string	library_source	-	라이브러리 소스
+values-b+ko	string	library_source_local	-	로컬
 values-b+ko	string	library_source_note	-	한 번에 하나 · 전환하면 다시 불러옴
 values-b+ko	string	library_sync_cached	-	캐시됨
 values-b+ko	string	library_sync_failed	-	%1$s을(를) 동기화하지 못했습니다. %2$s 전 데이터입니다.
@@ -24605,6 +24638,7 @@ values-b+lt	string	library_sort_current	-	Rikiavimas: %s
 values-b+lt	string	library_sort_not_kept	-	%s to nesaugo
 values-b+lt	string	library_sort_supported	-	%1$s palaiko %2$d iš %3$d
 values-b+lt	string	library_source	-	Bibliotekos šaltinis
+values-b+lt	string	library_source_local	-	Vietinis
 values-b+lt	string	library_source_note	-	Po vieną · perjungus įkeliama iš naujo
 values-b+lt	string	library_sync_cached	-	Iš podėlio
 values-b+lt	string	library_sync_failed	-	Nepavyko sinchronizuoti %1$s. Tai duomenys prieš %2$s.
@@ -25250,6 +25284,7 @@ values-b+lv	string	library_sort_current	-	Kārtošana: %s
 values-b+lv	string	library_sort_not_kept	-	%s to neglabā
 values-b+lv	string	library_sort_supported	-	%1$s atbalsta %2$d no %3$d
 values-b+lv	string	library_source	-	Bibliotēkas avots
+values-b+lv	string	library_source_local	-	Vietējais
 values-b+lv	string	library_source_note	-	Pa vienam · pārslēgšana pārlādē
 values-b+lv	string	library_sync_cached	-	No kešatmiņas
 values-b+lv	string	library_sync_failed	-	Neizdevās sinhronizēt %1$s. Šie dati ir no pirms %2$s.
@@ -26131,6 +26166,7 @@ values-b+mk	string	library_sort_current	-	Подредување: %s
 values-b+mk	string	library_sort_not_kept	-	%s не го чува
 values-b+mk	string	library_sort_supported	-	%1$s поддржува %2$d од %3$d
 values-b+mk	string	library_source	-	Извор на библиотеката
+values-b+mk	string	library_source_local	-	Локално
 values-b+mk	string	library_source_note	-	Еден по еден · менувањето превчитува
 values-b+mk	string	library_sync_cached	-	Кеширано
 values-b+mk	string	library_sync_failed	-	%1$s не може да се синхронизира. Ова е од пред %2$s.
@@ -26879,6 +26915,7 @@ values-b+ml	string	library_sort_current	-	ക്രമം: %s
 values-b+ml	string	library_sort_not_kept	-	%s ഇത് സൂക്ഷിക്കുന്നില്ല
 values-b+ml	string	library_sort_supported	-	%1$s %3$d-ൽ %2$d പിന്തുണയ്ക്കുന്നു
 values-b+ml	string	library_source	-	ലൈബ്രറി ഉറവിടം
+values-b+ml	string	library_source_local	-	ലോക്കൽ
 values-b+ml	string	library_source_note	-	ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും
 values-b+ml	string	library_sync_cached	-	കാഷെ ചെയ്തത്
 values-b+ml	string	library_sync_failed	-	%1$s സമന്വയിപ്പിക്കാനായില്ല. ഇവ %2$s മുമ്പുള്ളതാണ്.
@@ -27481,6 +27518,7 @@ values-b+ms	string	library_sort_current	-	Isih: %s
 values-b+ms	string	library_sort_not_kept	-	Tidak disimpan oleh %s
 values-b+ms	string	library_sort_supported	-	%1$s menyokong %2$d daripada %3$d
 values-b+ms	string	library_source	-	Sumber perpustakaan
+values-b+ms	string	library_source_local	-	Tempatan
 values-b+ms	string	library_source_note	-	Satu demi satu · menukar memuat semula
 values-b+ms	string	library_sync_cached	-	Dicache
 values-b+ms	string	library_sync_failed	-	Tidak dapat menyegerakkan %1$s. Ini dari %2$s yang lalu.
@@ -28065,6 +28103,7 @@ values-b+mt	string	library_sort_current	-	Ordni: %s
 values-b+mt	string	library_sort_not_kept	-	Mhux miżmum minn %s
 values-b+mt	string	library_sort_supported	-	%1$s jappoġġja %2$d minn %3$d
 values-b+mt	string	library_source	-	Sors tal-librerija
+values-b+mt	string	library_source_local	-	Lokali
 values-b+mt	string	library_source_note	-	Wieħed kull darba · il-bidla tgħabbi mill-ġdid
 values-b+mt	string	library_sync_cached	-	Fil-cache
 values-b+mt	string	library_sync_failed	-	Ma setax jiġi sinkronizzat %1$s. Dawn huma minn %2$s ilu.
@@ -28542,6 +28581,7 @@ values-b+my	string	library_sort_current	-	စီရန်: %s
 values-b+my	string	library_sort_not_kept	-	%s က ဒါကို မသိမ်းထားပါ
 values-b+my	string	library_sort_supported	-	%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်
 values-b+my	string	library_source	-	လိုက်ဘရီ ရင်းမြစ်
+values-b+my	string	library_source_local	-	စက်တွင်း
 values-b+my	string	library_source_note	-	တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်
 values-b+my	string	library_sync_cached	-	သိမ်းထားသည်
 values-b+my	string	library_sync_failed	-	%1$s ကို ချိန်ကိုက်၍မရပါ။ ဤအရာများသည် လွန်ခဲ့သော %2$s ကဖြစ်သည်။
@@ -29107,6 +29147,7 @@ values-b+ne	string	library_sort_current	-	क्रम: %s
 values-b+ne	string	library_sort_not_kept	-	%s ले यो राख्दैन
 values-b+ne	string	library_sort_supported	-	%1$s ले %3$d मध्ये %2$d समर्थन गर्छ
 values-b+ne	string	library_source	-	लाइब्रेरी स्रोत
+values-b+ne	string	library_source_local	-	स्थानीय
 values-b+ne	string	library_source_note	-	एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ
 values-b+ne	string	library_sync_cached	-	क्यास गरिएको
 values-b+ne	string	library_sync_failed	-	%1$s सिंक गर्न सकिएन। यी %2$s अघिका हुन्।
@@ -29675,6 +29716,7 @@ values-b+nl	string	library_sort_current	-	Sorteren: %s
 values-b+nl	string	library_sort_not_kept	-	Niet bewaard door %s
 values-b+nl	string	library_sort_supported	-	%1$s ondersteunt %2$d van %3$d
 values-b+nl	string	library_source	-	Bibliotheekbron
+values-b+nl	string	library_source_local	-	Lokaal
 values-b+nl	string	library_source_note	-	Eén tegelijk · wisselen laadt opnieuw
 values-b+nl	string	library_sync_cached	-	Uit cache
 values-b+nl	string	library_sync_failed	-	%1$s kon niet worden gesynchroniseerd. Dit is van %2$s geleden.
@@ -30366,6 +30408,7 @@ values-b+nn	string	library_sort_current	-	Sortering: %s
 values-b+nn	string	library_sort_not_kept	-	Ikkje lagra av %s
 values-b+nn	string	library_sort_supported	-	%1$s støttar %2$d av %3$d
 values-b+nn	string	library_source	-	Bibliotekskjelde
+values-b+nn	string	library_source_local	-	Lokal
 values-b+nn	string	library_source_note	-	Éin om gongen · byte lastar på nytt
 values-b+nn	string	library_sync_cached	-	Mellomlagra
 values-b+nn	string	library_sync_failed	-	Kunne ikkje synkronisera %1$s. Desse er frå for %2$s sidan.
@@ -30898,6 +30941,7 @@ values-b+no	string	library_sort_current	-	Sortering: %s
 values-b+no	string	library_sort_not_kept	-	Ikke lagret av %s
 values-b+no	string	library_sort_supported	-	%1$s støtter %2$d av %3$d
 values-b+no	string	library_source	-	Bibliotekkilde
+values-b+no	string	library_source_local	-	Lokal
 values-b+no	string	library_source_note	-	Én om gangen · bytte laster inn på nytt
 values-b+no	string	library_sync_cached	-	Mellomlagret
 values-b+no	string	library_sync_failed	-	Kunne ikke synkronisere %1$s. Disse er fra for %2$s siden.
@@ -31484,6 +31528,7 @@ values-b+or	string	library_sort_current	-	କ୍ରମ: %s
 values-b+or	string	library_sort_not_kept	-	%s ଏହା ରଖେ ନାହିଁ
 values-b+or	string	library_sort_supported	-	%1$s %3$d ମଧ୍ୟରୁ %2$d ସମର୍ଥନ କରେ
 values-b+or	string	library_source	-	ଲାଇବ୍ରେରୀ ଉତ୍ସ
+values-b+or	string	library_source_local	-	ସ୍ଥାନୀୟ
 values-b+or	string	library_source_note	-	ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ
 values-b+or	string	library_sync_cached	-	କ୍ୟାଶ୍
 values-b+or	string	library_sync_failed	-	%1$s ସିଙ୍କ୍ ହୋଇପାରିଲା ନାହିଁ। ଏଗୁଡ଼ିକ %2$s ପୂର୍ବର।
@@ -32120,6 +32165,7 @@ values-b+pl	string	library_sort_current	-	Sortowanie: %s
 values-b+pl	string	library_sort_not_kept	-	%s tego nie przechowuje
 values-b+pl	string	library_sort_supported	-	%1$s obsługuje %2$d z %3$d
 values-b+pl	string	library_source	-	Źródło biblioteki
+values-b+pl	string	library_source_local	-	Lokalna
 values-b+pl	string	library_source_note	-	Jedno naraz · przełączenie wczytuje ponownie
 values-b+pl	string	library_sync_cached	-	Z pamięci podręcznej
 values-b+pl	string	library_sync_failed	-	Nie udało się zsynchronizować %1$s. To dane sprzed %2$s.
@@ -33085,6 +33131,7 @@ values-b+pt	string	library_sort_current	-	Ordenar: %s
 values-b+pt	string	library_sort_not_kept	-	Não guardado por %s
 values-b+pt	string	library_sort_supported	-	%1$s suporta %2$d de %3$d
 values-b+pt	string	library_source	-	Origem da biblioteca
+values-b+pt	string	library_source_local	-	Local
 values-b+pt	string	library_source_note	-	Uma de cada vez · mudar recarrega
 values-b+pt	string	library_sync_cached	-	Em cache
 values-b+pt	string	library_sync_failed	-	Não foi possível sincronizar %1$s. São de há %2$s.
@@ -34044,6 +34091,7 @@ values-b+pt+BR	string	library_sort_current	-	Ordenar: %s
 values-b+pt+BR	string	library_sort_not_kept	-	Não salvo por %s
 values-b+pt+BR	string	library_sort_supported	-	%1$s suporta %2$d de %3$d
 values-b+pt+BR	string	library_source	-	Fonte da biblioteca
+values-b+pt+BR	string	library_source_local	-	Local
 values-b+pt+BR	string	library_source_note	-	Uma por vez · trocar recarrega
 values-b+pt+BR	string	library_sync_cached	-	Em cache
 values-b+pt+BR	string	library_sync_failed	-	Não foi possível sincronizar %1$s. Estes são de %2$s atrás.
@@ -34933,6 +34981,7 @@ values-b+qt	string	library_sort_current	-	Oouh: %s
 values-b+qt	string	library_sort_not_kept	-	ooo uuh %s
 values-b+qt	string	library_sort_supported	-	%1$s ooh %2$d uuh %3$d
 values-b+qt	string	library_source	-	aaaghh ooo-ahah
+values-b+qt	string	library_source_local	-	uuhh
 values-b+qt	string	library_source_note	-	ooo aagg · uuhh-ahah
 values-b+qt	string	library_sync_cached	-	Uuh
 values-b+qt	string	library_sync_failed	-	Ooh %1$s uuh. Ahh %2$s.
@@ -35779,6 +35828,7 @@ values-b+ro	string	library_sort_current	-	Sortare: %s
 values-b+ro	string	library_sort_not_kept	-	Nu este păstrat de %s
 values-b+ro	string	library_sort_supported	-	%1$s acceptă %2$d din %3$d
 values-b+ro	string	library_source	-	Sursa bibliotecii
+values-b+ro	string	library_source_local	-	Local
 values-b+ro	string	library_source_note	-	Câte una · schimbarea reîncarcă
 values-b+ro	string	library_sync_cached	-	Din cache
 values-b+ro	string	library_sync_failed	-	%1$s nu a putut fi sincronizat. Sunt de acum %2$s.
@@ -36689,6 +36739,7 @@ values-b+ru	string	library_sort_current	-	Сортировка: %s
 values-b+ru	string	library_sort_not_kept	-	%s этого не хранит
 values-b+ru	string	library_sort_supported	-	%1$s поддерживает %2$d из %3$d
 values-b+ru	string	library_source	-	Источник библиотеки
+values-b+ru	string	library_source_local	-	Локальный
 values-b+ru	string	library_source_note	-	По одному · переключение перезагружает
 values-b+ru	string	library_sync_cached	-	Из кеша
 values-b+ru	string	library_sync_failed	-	Не удалось синхронизировать %1$s. Это данные %2$s назад.
@@ -37552,6 +37603,7 @@ values-b+sk	string	library_sort_current	-	Zoradenie: %s
 values-b+sk	string	library_sort_not_kept	-	%s toto neuchováva
 values-b+sk	string	library_sort_supported	-	%1$s podporuje %2$d z %3$d
 values-b+sk	string	library_source	-	Zdroj knižnice
+values-b+sk	string	library_source_local	-	Lokálne
 values-b+sk	string	library_source_note	-	Jeden naraz · prepnutie znova načíta
 values-b+sk	string	library_sync_cached	-	Z vyrovnávacej pamäte
 values-b+sk	string	library_sync_failed	-	%1$s sa nepodarilo synchronizovať. Sú to údaje spred %2$s.
@@ -38245,6 +38297,7 @@ values-b+so	string	library_sort_current	-	Kala soocid: %s
 values-b+so	string	library_sort_not_kept	-	%s ma kaydiyo
 values-b+so	string	library_sort_supported	-	%1$s wuxuu taageeraa %2$d ka mid ah %3$d
 values-b+so	string	library_source	-	Isha kaydka
+values-b+so	string	library_source_local	-	Maxalli
 values-b+so	string	library_source_note	-	Mid mid · beddelku wuu dib u soo raraa
 values-b+so	string	library_sync_cached	-	La kaydiyay
 values-b+so	string	library_sync_failed	-	Lama isku waafajin karin %1$s. Kuwani waa kuwii %2$s ka hor.
@@ -39062,6 +39115,7 @@ values-b+sq	string	library_sort_current	-	Renditja: %s
 values-b+sq	string	library_sort_not_kept	-	Nuk ruhet nga %s
 values-b+sq	string	library_sort_supported	-	%1$s mbështet %2$d nga %3$d
 values-b+sq	string	library_source	-	Burimi i bibliotekës
+values-b+sq	string	library_source_local	-	Lokale
 values-b+sq	string	library_source_note	-	Një në një kohë · ndërrimi ringarkon
 values-b+sq	string	library_sync_cached	-	Nga memoria
 values-b+sq	string	library_sync_failed	-	%1$s nuk u sinkronizua dot. Këto janë para %2$s.
@@ -40011,6 +40065,7 @@ values-b+sv	string	library_sort_current	-	Sortering: %s
 values-b+sv	string	library_sort_not_kept	-	Sparas inte av %s
 values-b+sv	string	library_sort_supported	-	%1$s stöder %2$d av %3$d
 values-b+sv	string	library_source	-	Bibliotekskälla
+values-b+sv	string	library_source_local	-	Lokal
 values-b+sv	string	library_source_note	-	En i taget · byte laddar om
 values-b+sv	string	library_sync_cached	-	Cachad
 values-b+sv	string	library_sync_failed	-	Det gick inte att synkronisera %1$s. Detta är från för %2$s sedan.
@@ -40960,6 +41015,7 @@ values-b+ta	string	library_sort_current	-	வரிசை: %s
 values-b+ta	string	library_sort_not_kept	-	%s இதை வைத்திருக்காது
 values-b+ta	string	library_sort_supported	-	%1$s %3$d இல் %2$d ஐ ஆதரிக்கிறது
 values-b+ta	string	library_source	-	நூலக மூலம்
+values-b+ta	string	library_source_local	-	உள்ளகம்
 values-b+ta	string	library_source_note	-	ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்
 values-b+ta	string	library_sync_cached	-	தேக்கியது
 values-b+ta	string	library_sync_failed	-	%1$s ஐ ஒத்திசைக்க முடியவில்லை. இவை %2$s முன்பு உள்ளவை.
@@ -41600,6 +41656,7 @@ values-b+ti	string	library_sort_current	-	ስርዓት፦ %s
 values-b+ti	string	library_sort_not_kept	-	%s ኣይሕዞን
 values-b+ti	string	library_sort_supported	-	%1$s ካብ %3$d %2$d ይድግፍ
 values-b+ti	string	library_source	-	ምንጪ ቤተ-መጻሕፍቲ
+values-b+ti	string	library_source_local	-	ኣካባቢያዊ
 values-b+ti	string	library_source_note	-	ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን
 values-b+ti	string	library_sync_cached	-	ዝተዓቀበ
 values-b+ti	string	library_sync_failed	-	%1$s ክሰማማዕ ኣይከኣለን። እዚኦም ቅድሚ %2$s ዝነበሩ እዮም።
@@ -41934,6 +41991,7 @@ values-b+tl	string	library_sort_current	-	Pagkakasunod: %s
 values-b+tl	string	library_sort_not_kept	-	Hindi itinatabi ng %s
 values-b+tl	string	library_sort_supported	-	Sinusuportahan ng %1$s ang %2$d sa %3$d
 values-b+tl	string	library_source	-	Pinagmulan ng library
+values-b+tl	string	library_source_local	-	Local
 values-b+tl	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
 values-b+tl	string	library_sync_cached	-	Naka-cache
 values-b+tl	string	library_sync_failed	-	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.
@@ -42621,6 +42679,7 @@ values-b+tr	string	library_sort_current	-	Sıralama: %s
 values-b+tr	string	library_sort_not_kept	-	%s bunu tutmuyor
 values-b+tr	string	library_sort_supported	-	%1$s, %3$d ölçütten %2$d tanesini destekler
 values-b+tr	string	library_source	-	Kütüphane kaynağı
+values-b+tr	string	library_source_local	-	Yerel
 values-b+tr	string	library_source_note	-	Aynı anda bir tane · değiştirmek yeniden yükler
 values-b+tr	string	library_sync_cached	-	Önbellekten
 values-b+tr	string	library_sync_failed	-	%1$s eşitlenemedi. Bunlar %2$s öncesine ait.
@@ -43602,6 +43661,7 @@ values-b+uk	string	library_sort_current	-	Сортування: %s
 values-b+uk	string	library_sort_not_kept	-	%s цього не зберігає
 values-b+uk	string	library_sort_supported	-	%1$s підтримує %2$d з %3$d
 values-b+uk	string	library_source	-	Джерело бібліотеки
+values-b+uk	string	library_source_local	-	Локальний
 values-b+uk	string	library_source_note	-	По одному · перемикання перезавантажує
 values-b+uk	string	library_sync_cached	-	З кешу
 values-b+uk	string	library_sync_failed	-	Не вдалося синхронізувати %1$s. Це дані %2$s тому.
@@ -44492,6 +44552,7 @@ values-b+ur	string	library_sort_current	-	ترتیب: %s
 values-b+ur	string	library_sort_not_kept	-	%s اسے نہیں رکھتا
 values-b+ur	string	library_sort_supported	-	%1$s %3$d میں سے %2$d کی معاونت کرتا ہے
 values-b+ur	string	library_source	-	لائبریری کا ذریعہ
+values-b+ur	string	library_source_local	-	لوکل
 values-b+ur	string	library_source_note	-	ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے
 values-b+ur	string	library_sync_cached	-	کیش شدہ
 values-b+ur	string	library_sync_failed	-	%1$s کو ہم آہنگ نہیں کیا جا سکا۔ یہ %2$s پہلے کے ہیں۔
@@ -45345,6 +45406,7 @@ values-b+vi	string	library_sort_current	-	Sắp xếp: %s
 values-b+vi	string	library_sort_not_kept	-	%s không lưu mục này
 values-b+vi	string	library_sort_supported	-	%1$s hỗ trợ %2$d/%3$d
 values-b+vi	string	library_source	-	Nguồn thư viện
+values-b+vi	string	library_source_local	-	Cục bộ
 values-b+vi	string	library_source_note	-	Mỗi lần một nguồn · chuyển sẽ tải lại
 values-b+vi	string	library_sync_cached	-	Đã lưu đệm
 values-b+vi	string	library_sync_failed	-	Không thể đồng bộ %1$s. Đây là dữ liệu từ %2$s trước.
@@ -46278,6 +46340,7 @@ values-b+zh	string	library_sort_current	-	排序：%s
 values-b+zh	string	library_sort_not_kept	-	%s 不保存此项
 values-b+zh	string	library_sort_supported	-	%1$s 支持 %3$d 项中的 %2$d 项
 values-b+zh	string	library_source	-	媒体库来源
+values-b+zh	string	library_source_local	-	本地
 values-b+zh	string	library_source_note	-	一次一个 · 切换会重新加载
 values-b+zh	string	library_sync_cached	-	已缓存
 values-b+zh	string	library_sync_failed	-	无法同步 %1$s。这些是 %2$s 前的内容。
@@ -47208,6 +47271,7 @@ values-b+zh+TW	string	library_sort_current	-	排序：%s
 values-b+zh+TW	string	library_sort_not_kept	-	%s 不保存此項
 values-b+zh+TW	string	library_sort_supported	-	%1$s 支援 %3$d 項中的 %2$d 項
 values-b+zh+TW	string	library_source	-	媒體庫來源
+values-b+zh+TW	string	library_source_local	-	本機
 values-b+zh+TW	string	library_source_note	-	一次一個 · 切換會重新載入
 values-b+zh+TW	string	library_sync_cached	-	已快取
 values-b+zh+TW	string	library_sync_failed	-	無法同步 %1$s。這些是 %2$s 前的內容。
