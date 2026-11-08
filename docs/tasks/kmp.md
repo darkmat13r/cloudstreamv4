@@ -6153,6 +6153,17 @@ Tests:
   - the pill on `is Offline` again: the pill's pixel reads the background;
   - kept rows given Load more: the click there sends `RowMoreRequested`.
 
+## KMP-89 — Player KDoc examples use a made-up source
+
+**Status:** in review · comments only · from `KMP-87`'s review
+
+Two KDoc examples named a real site as a source's readout. Both now say `Source One · 1080p`, as the boards and the tests
+do: `SourcePicker.kt`'s `sourceName()` and `PlayerHudState.source`. No code changes.
+
+**Not here, for whoever owns them:** test fixtures that still use real site names, `app`'s `TvHudFactsTest` and
+`:feature:player`'s `PlayerHudTvDeviceTest` (a device suite this machine cannot run). `:library`'s extractors are real
+classes with real names and are not fixtures.
+
 ## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
 
 `#200` made Home's failure detail safe. A thrown failure is now its type, such as `IllegalStateException`, never its message,
