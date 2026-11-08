@@ -1023,8 +1023,11 @@ The board files were not on the drawing Mac, so every number comes from the code
       profiles", "Sync services".
     - A5, Manage mode.
     - A15, the 800×520 minimum.
-  - The PIN:
-    - A3, a sheet with four masked cells; the fourth digit submits.
+  - Unlocking a locked profile:
+    - A3t, Touch ID first: "Use Touch ID to open <profile>", with Use PIN instead. macOS draws its own prompt over the
+      sheet.
+    - A3, the PIN: four masked cells, and the fourth digit submits. It is the fallback after Use PIN instead or a
+      failed Touch ID, and the first step on a Mac with no enrolled finger.
     - A3b, a wrong PIN, with no count of tries left.
     - A4, `BUG-55`'s wait ("Too many wrong PINs. Try again in 00:30"), with the cells off.
     - A4b, the wait at its one-hour cap.
@@ -1067,10 +1070,12 @@ The board files were not on the drawing Mac, so every number comes from the code
   - it is never prefilled;
   - nothing is logged;
   - it is kept with the sign-ins, out of every backup.
-- **Touch ID is not drawn here.** The PIN is the only unlock. `DS-24`'s Settings pane draws a Touch ID toggle as a
-  proposal for the owner.
+- **Touch ID first, the PIN as the fallback** (the owner, 2026-11-08; A3t). `BUG-55`'s wait still applies to the PIN.
+  `DS-24`'s Settings pane holds the switch. Touch ID proves who is signed in to the Mac, not who owns the profile:
+  anyone whose finger is enrolled in that macOS account opens every locked profile. The owner should know that before
+  the build.
 - **`DS-24` hands off to these boards.** Settings lists the services and profiles; its Sign in, Edit and Add
-  profile open A10, A11, A16, A6 and A6b. Edit on a locked profile goes through A3 first. The sheets are 440 wide,
+  profile open A10, A11, A16, A6 and A6b. Edit on a locked profile goes through A3t (or A3) first. The sheets are 440 wide,
   under the window's title bar.
 
 **Before the build** (the boards do not wait on these):
@@ -1079,6 +1084,28 @@ The board files were not on the drawing Mac, so every number comes from the code
   `:desktopApp` handles a URL scheme today; both are absent:
   - the scheme in the Mac app bundle;
   - an open-URI handler.
+- **The redirect handler accepts only what this window asked for** (the reviewer and the owner). The build PR shows
+  each of these with a test:
+  - it acts only while a sign-in from this window is pending, and ignores any unsolicited `cloudstreamapp://` URL;
+  - it checks an OAuth `state` it generated. Android's MAL request sends `state=RequestID<n>`, a counter, so the Mac
+    needs a random one;
+  - it uses PKCE where the provider supports it (MyAnimeList; Android sends the verifier as the challenge, the `plain`
+    method);
+  - it never logs or stores the incoming URL. Only the token taken from it reaches storage.
+- **Tokens and the two subtitle credentials go in the macOS Keychain** (the owner, 2026-11-08). Reaching it from the
+  JVM probably needs a library such as JNA. That is a dependency decision, so the build brings the four-point case
+  (what, why, alternatives, size) before adding one. No secret is ever passed on a command line.
+- **What each subtitle service keeps** (read from the Android providers):
+  - **SubDL:** its login trades the password for a long-lived API key and keeps only that key and the email
+    (`Subdl.kt`, `AuthToken(accessToken = apiResponse.apiKey, payload = email)`). The Mac stores the key and never the
+    password.
+  - **OpenSubtitles:** its token is a JWT that a code comment says lasts 24 hours (not measured), with no refresh token.
+    Android re-logs in from the stored form, password included (`refreshToken` parses `token.payload`, which is
+    `form.toJson()`). Re-login truly needs the password, so the Mac keeps it in the Keychain beside the token. The other
+    choice is to ask for it again once a day.
+- **Touch ID needs a native bridge** (LocalAuthentication), under the same dependency rule as the Keychain.
+- **Touch ID's glyph is not in `ui-components.md`'s table yet.** A3t draws Tabler's `Fingerprint`. A new meaning is
+  added to the table before it gets a glyph, so the table needs that row before the build.
 - **The Mac has no profiles, PINs or sign-ins yet.** `PinAttempts` is Android code (uptime from `SystemClock`, a
   preferences file). The Mac needs the same rule over its own clock and store.
 
@@ -1090,12 +1117,12 @@ The board files were not on the drawing Mac, so every number comes from the code
 - All names are made up.
 
 **Measured** in headless Chrome with `getBoundingClientRect`, on every artboard:
-- 34 boards and 1,313 boxes: 0 off the 4 dp step, 0 overflowing text.
+- 35 boards and 1,355 boxes: 0 off the 4 dp step, 0 overflowing text.
 - 0 elements escaping a sheet or popover. That check was added after it caught A11's footer running out of its sheet.
 - Exempt: macOS's own title bar, the drawn pointer, content centred inside a control, and text-sized widths, as
   `dimension-scale.md` allows.
 - Hairlines are drawn, not laid out: the first pass had 25 boxes off the step because 1 px borders took room.
-- All 12 Tabler 1.119.0 glyph URLs answer 200, checked with curl.
+- All 13 Tabler 1.119.0 glyph URLs answer 200, checked with curl.
 
 Renders: in the shared local review folder (not published).
 
