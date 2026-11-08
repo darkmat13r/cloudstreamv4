@@ -43,9 +43,6 @@ import com.lagradost.cloudstream4.core.designsystem.target.GhostTextButton
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_add_profile
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_manage_profiles
-import com.lagradost.cloudstream4.core.strings.generated.resources.account_profile_current
-import com.lagradost.cloudstream4.core.strings.generated.resources.account_profile_locked
-import com.lagradost.cloudstream4.core.strings.generated.resources.account_profile_no_sync
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_select_note
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_select_title
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_sync_connected
@@ -63,10 +60,10 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.account.AccountAction
 import com.lagradost.cloudstream4.feature.account.AccountSelectState
 import com.lagradost.cloudstream4.feature.account.ProfileCard
-import com.lagradost.cloudstream4.feature.account.ProfileLine
+import com.lagradost.cloudstream4.feature.account.profileInitials
+import com.lagradost.cloudstream4.feature.account.profileLineText
 import com.lagradost.cloudstream4.feature.account.SignIn
 import com.lagradost.cloudstream4.feature.account.SyncService
-import com.lagradost.cloudstream4.feature.account.line
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -202,9 +199,9 @@ private fun ProfileCardTv(
     CardFrame(resting = card.current, onPress = onPress, modifier = modifier) {
         // The words first: they are the card's label for a screen reader and for focus, not the disc's initials.
         CardText(card.name, AccountSelectDefaults.NameY, primary = true)
-        CardText(lineText(card), AccountSelectDefaults.LineY, primary = false)
+        CardText(profileLineText(card), AccountSelectDefaults.LineY, primary = false)
         Avatar(
-            initials = initials(card.name),
+            initials = profileInitials(card.name),
             modifier = Modifier.offset(x = AccountSelectDefaults.DiscX, y = AccountSelectDefaults.DiscY),
             image = avatar?.let { draw -> { draw(card) } },
         )
@@ -273,16 +270,6 @@ private fun CardText(text: String, y: Dp, primary: Boolean) {
     )
 }
 
-@Composable
-private fun lineText(card: ProfileCard): String = when (val line = card.line()) {
-    ProfileLine.Locked -> stringResource(Res.string.account_profile_locked)
-    is ProfileLine.Status -> {
-        val services = if (line.services.isEmpty()) stringResource(Res.string.account_profile_no_sync)
-        else line.services.joinToString(", ")
-        if (line.current) "${stringResource(Res.string.account_profile_current)} · $services" else services
-    }
-}
-
 /** A service row: its true state underneath, and what can be done here on the right (`.actw400`). */
 @Composable
 private fun SyncRowTv(service: SyncService, onPress: () -> Unit, modifier: Modifier = Modifier) {
@@ -315,9 +302,6 @@ private fun SyncRowTv(service: SyncService, onPress: () -> Unit, modifier: Modif
         },
     )
 }
-
-private fun initials(name: String): String =
-    name.trim().split(Regex("\\s+")).filter { it.isNotEmpty() }.take(2).joinToString("") { it.take(1).uppercase() }
 
 /** Literals 8d owns. Artboard px / 2 = dp. */
 internal object AccountSelectDefaults {

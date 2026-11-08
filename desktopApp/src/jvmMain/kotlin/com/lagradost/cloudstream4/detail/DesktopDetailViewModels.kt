@@ -59,6 +59,11 @@ internal object DesktopDetailViewModels {
     fun forget(id: String) {
         live.remove(id)?.onAction(DetailAction.LinksDismissed)
     }
+
+    /** Every title's, when the window that made them goes, as on a profile switch (`KMP-95`). */
+    fun forgetAll() {
+        live.keys.toList().forEach(::forget)
+    }
 }
 
 /** A provider's subtitles belong to the title, so every link of an answer carries the same list. */

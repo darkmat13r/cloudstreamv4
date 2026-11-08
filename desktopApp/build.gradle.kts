@@ -38,6 +38,8 @@ kotlin {
             implementation(project(":feature:downloads"))
             // KMP-90: the Settings window, and the preferences the player and the downloads engine read.
             implementation(project(":feature:settings"))
+            // KMP-95: who is watching (DS-25). The picker and the sidebar's profile button are this module's.
+            implementation(project(":feature:account"))
             // KMP-13: `JvmExtensionRuntime` and `ExtensionHash`, from this module's `jvmMain`. It is
             // the only extension runtime that works off Android — a `.cs3` is dex-only, so the
             // cross-platform `.jar` is what desktop loads. No catalogue entry is added for it; the
@@ -81,6 +83,7 @@ tasks.withType<Test> {
     providers.gradleProperty("cloudstream.library.renders").orNull?.let { systemProperty("cloudstream.library.renders", it) }
     providers.gradleProperty("cloudstream.detail.renders").orNull?.let { systemProperty("cloudstream.detail.renders", it) }
     providers.gradleProperty("cloudstream.settings.renders").orNull?.let { systemProperty("cloudstream.settings.renders", it) }
+    providers.gradleProperty("cloudstream.account.renders").orNull?.let { systemProperty("cloudstream.account.renders", it) }
 }
 
 // java.lang.System::load has been called by org.jetbrains.skiko.LibraryLoader in an unnamed module

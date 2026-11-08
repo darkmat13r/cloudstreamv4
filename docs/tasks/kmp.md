@@ -7210,3 +7210,85 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
 - `PlayerScreenTest`: at 30 s, both arrows and both buttons move 30 000 ms; with nothing passed, the step is
   Settings' default.
 - `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.
+
+## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr** · the PM's task, 2026-11-08
+
+`DS-25`'s boards, built in six PRs (the PM's plan, 2026-11-08):
+
+| Part | What | Waits for |
+|---|---|---|
+| `KMP-95a` | Profiles: the file, a library each, the launch picker (A1, A15), the sidebar's button and list (A2) | — |
+| `KMP-95b` | Managing: Manage (A5), the editor and Add (A6, A6b, A6c), Delete (A8) | 95a |
+| `KMP-95c` | The PIN (A3, A3b, A4, A4b, A6d, A7 to A7c), `BUG-55`'s limit over a boot-relative clock | 95b |
+| `KMP-95d` | Sign-ins over an in-memory store: Sync (A9), Simkl's code (A11, A11b), A12 to A14, OpenSubtitles and SubDL (A16, A16b) | 95a |
+| `KMP-95e` | The browser's redirect for AniList and MyAnimeList (A10): the scheme, the handler, `state` and PKCE | 95d |
+| `KMP-95f` | The Keychain through JNA 5.19.1, and Touch ID (A3t), measured on a signed build | The owner's Team ID and certificate |
+
+**Rulings** (the owner and the PM, 2026-11-08):
+- JNA 5.19.1 is approved for the Keychain: an exact pin, declared only in `:desktopApp`'s account code (95f).
+- Touch ID tries the Keychain's biometry access control first. A Swift shim goes back to the owner only if that cannot
+  show our reason text.
+- **What a profile separates: the library only** (bookmarks, watch positions, resume), as Android's accounts do.
+  Settings, downloads, extensions, the home source, the volume and the picture fit are the Mac's.
+- **The PIN before 95f** is kept in the profiles file, owner-only, written temp-then-move, never logged or shown. It is
+  not hashed: a hash of a 4-digit PIN is reversed at once, so it would only look safer (as `d081`, 2026-11-07). It
+  moves to the Keychain in 95f.
+- **Sign-ins before 95f** are kept in memory only and lost on quit, and the window says so. None is ever on disk in
+  plain text.
+
+### KMP-95a — Profiles
+
+**The file.** `~/.cloudstream4/profiles.json`, owner-only (`DesktopProfileFile`): the profiles' ids and names, and the
+one watching. Profile 0 is always there; its name is empty in the file and drawn as `default_account` in the current
+language. A file that is missing, too large (64 KB), not JSON or not this shape reads as profile 0 alone, which is what
+the Mac had before. A file that parses is cleaned on the way in:
+- a negative or repeated id is dropped;
+- a name loses control and format characters and is cut to 64;
+- the list is cut to 32;
+- profile 0 is put back if missing, and a `current` that is not a profile becomes 0.
+
+**A library each, with no migration.** Profile 0 reads and writes the files the Mac already had (`library.tsv`,
+`watch-positions.tsv`), so nothing moves for someone who never adds a profile. Profile `n` has `library-n.tsv` and
+`watch-positions-n.tsv` beside them.
+
+**The window** (`ProfilesHost`):
+- With two profiles or more it opens on the picker (A1). The current profile's card is ringed, so Return opens it; the
+  arrow keys move the ring and a click opens the card under the pointer. The card row is the one focus stop and draws
+  the ring itself. Measured: a card's own `clickable` did not take a focus request in the test scene, and a request
+  made beside `BoxWithConstraints` ran before its content existed and failed silently.
+- Below a 640 content height the heading moves up (A15), so four cards fit in one row at 800×520, and a fifth wraps.
+- The sidebar's foot has the profile button (A2), and its list opens above it, the current profile checked. Choosing
+  another makes the window again over that profile's library, under its key. The stack goes back to Home, and the
+  title pages' and search's view models are dropped with the window that made them (`DesktopApp`'s dispose), so
+  nothing of the last profile shows. A click outside, the list's Escape and the window's Escape all close it.
+  `EscapeHandler.overlay` lets the list take the window's Escape before the screen under it.
+- The choice is remembered for the next launch. If it cannot be written it still holds until the app quits, and the
+  console says the class of the failure, never a path.
+
+**Not yet:**
+- Manage profiles and Add profile: on A1 and in A2's list, they come with 95b. Until then a second profile exists only
+  in a file written by hand or by a test.
+- A locked profile: 95c.
+- Sync services in A2's list: 95d.
+
+**Read from the boards, and where the build differs:**
+- Every number is the boards' (`ProfilesDesktopDefaults`, each with the token it mirrors).
+- The type roles are the boards' names, but the sizes are the Mac's (`forDesktop`): the boards restated the base
+  `CloudStreamTypography`, which the window does not use.
+- Manage profiles (95b) will draw `Profile` (`User`), the glyph `ui-components.md` gives it; the board drew a pencil.
+- TV's profile line and initials (`AccountSelectScreenTv`) moved, unchanged, to `ProfileText.kt`, so the Mac and TV
+  read one copy.
+
+**Tests** (desktopApp jvmTest):
+- `DesktopProfilesTest`: no file; owner-only write, read back, no temporary file; an unknown or current choice writes
+  nothing; a failed write is reported and still holds; cleaning; the cap; too large and not this format; profile 0's
+  files are the old ones; a title kept by one profile is not in another's library.
+- `ProfilesScreenTest`, through real pointer and key events:
+  - the picker opens with two profiles, and Return opens the current one;
+  - the arrows move and Return opens the focused card;
+  - a click opens a card, and the choice is remembered;
+  - one profile shows no picker;
+  - at the minimum window the heading moves up and four cards fit in one row;
+  - the sidebar's list opens above its button, and a choice opens Home over the other profile's library;
+  - the list's Escape, the window's Escape and choosing the current profile all close it with nothing changed.
+- Renders with `-Pcloudstream.account.renders=<dir>`.
