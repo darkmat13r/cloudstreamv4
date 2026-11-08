@@ -678,6 +678,31 @@ class DetailScreenTvDeviceTest {
     }
 
     /**
+     * With nothing chosen, the page opens on the season holding what the primary plays: Resume in
+     * season 2 opens Season 2 with that episode's row marked, not the first chip (#244's review).
+     * Focus only walks DOWN to the list, because a lazy list composes no row it has not scrolled to;
+     * nothing is pressed on a chip, so what is asserted is the page's opening state, not a choice.
+     */
+    @Test
+    fun aResumeInSeasonTwoOpensOnSeasonTwoWithItsRowMarked() {
+        show(DetailFixtures.ResumeInSeasonTwo)
+        awaitFocus(RESUME)
+
+        // The first row of the season shown. With the old opening chip this is "One One", so the walk
+        // itself fails there: DOWN never reaches "Two One".
+        assertEquals("Two One", pressUntil(Dpad.Down, "Two One"))
+        rule.waitUntil(WAIT_MS) { rule.onAllNodesWithText("Two Two").fetchSemanticsNodes().isNotEmpty() }
+        rule.onNodeWithText("Two One").assertExists()
+        assertNoText("One One")
+        assertNoText("Specials One")
+        assertNoText("Unnumbered One")
+        rule.onNodeWithText("Two Two").assertIsSelected()
+        rule.onNodeWithText("Two One").assertIsNotSelected()
+        rule.onNodeWithText("$SEASON 2").assertIsSelected()
+        rule.onNodeWithText("$SEASON 1").assertIsNotSelected()
+    }
+
+    /**
      * One season draws no chip row. A lone chip filters nothing and would be a focus stop that does
      * nothing; 7i sends UP from the chips to the action row, so with no chips UP from the first
      * episode lands on exactly the same place.

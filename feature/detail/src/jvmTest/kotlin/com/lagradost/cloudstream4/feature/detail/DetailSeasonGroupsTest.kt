@@ -79,6 +79,9 @@ class DetailSeasonGroupsTest {
         assertEquals(emptyList(), groups)
         assertEquals(-1, groups.lastIndex)
         assertFalse(groups.chipsVisible())
+        // The guard now lives in `shownSeasonIndex`, so it is pinned by calling it, chosen or not.
+        assertEquals(FIRST_SEASON_GROUP, groups.shownSeasonIndex(chosen = null, primaryData = "movie"))
+        assertEquals(FIRST_SEASON_GROUP, groups.shownSeasonIndex(chosen = 3, primaryData = null))
     }
 
     @Test
@@ -96,5 +99,39 @@ class DetailSeasonGroupsTest {
         val groups = episodes.seasonGroups()
         assertEquals(2, groups.size)
         assertEquals(1, groups.count { it.season != null })
+    }
+
+    // ---- which chip a page shows: the reviewer's should-fix on #244 ----
+
+    private val threeSeasons = listOf(episode(1, 1), episode(2, 1), episode(2, 2), episode(3, 5)).seasonGroups()
+
+    @Test
+    fun `with nothing chosen, the page opens on the season holding what the primary plays`() {
+        // Resume at S3E5 opens Season 3, not Season 1.
+        assertEquals(2, threeSeasons.shownSeasonIndex(chosen = null, primaryData = "s3-e5"))
+        assertEquals(1, threeSeasons.shownSeasonIndex(chosen = null, primaryData = "s2-e2"))
+    }
+
+    @Test
+    fun `with nothing chosen and nothing in the list to play, the page opens on the first season`() {
+        assertEquals(FIRST_SEASON_GROUP, threeSeasons.shownSeasonIndex(chosen = null, primaryData = null))
+        assertEquals(FIRST_SEASON_GROUP, threeSeasons.shownSeasonIndex(chosen = null, primaryData = "trailer"))
+    }
+
+    @Test
+    fun `a chosen chip wins over the primary's season`() {
+        assertEquals(0, threeSeasons.shownSeasonIndex(chosen = 0, primaryData = "s3-e5"))
+    }
+
+    @Test
+    fun `a chosen chip past the groups there are is clamped to the last`() {
+        // A re-read after `Reappeared` can return fewer groups than the chip last chosen.
+        assertEquals(2, threeSeasons.shownSeasonIndex(chosen = 7, primaryData = null))
+    }
+
+    @Test
+    fun `the primary can open the Other group, which is what a null-season episode needs`() {
+        val groups = listOf(episode(1, 1), episode(null, 1)).seasonGroups()
+        assertEquals(1, groups.shownSeasonIndex(chosen = null, primaryData = "snull-e1"))
     }
 }

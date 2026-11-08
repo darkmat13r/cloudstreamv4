@@ -58,3 +58,24 @@ internal fun List<DetailEpisode>.seasonGroups(): List<DetailSeasonGroup> {
 internal fun List<DetailSeasonGroup>.chipsVisible(): Boolean = size >= MIN_GROUPS_FOR_CHIPS
 
 private const val MIN_GROUPS_FOR_CHIPS = 2
+
+/**
+ * The index of the chip a page shows.
+ *
+ * - The one the viewer [chosen], when they have chosen one.
+ * - Otherwise the group holding the episode the primary action plays, [primaryData], so the page opens where Resume
+ *   or Play points: Resume at S3E5 opens Season 3, and that row is the one marked.
+ * - Otherwise, when the primary plays nothing in the list, the first group.
+ *
+ * Always clamped to the groups there are, because a re-read after `Reappeared` can return fewer than the chip last
+ * chosen. With no groups at all — a film, or a series whose provider returned no episodes — it is
+ * [FIRST_SEASON_GROUP] without clamping, because `coerceIn(0, -1)` throws on the empty range, which once crashed
+ * every film's page.
+ */
+internal fun List<DetailSeasonGroup>.shownSeasonIndex(chosen: Int?, primaryData: String?): Int {
+    if (isEmpty()) return FIRST_SEASON_GROUP
+    val opening = primaryData
+        ?.let { data -> indexOfFirst { group -> group.episodes.any { it.data == data } } }
+        ?.takeIf { it >= FIRST_SEASON_GROUP }
+    return (chosen ?: opening ?: FIRST_SEASON_GROUP).coerceIn(FIRST_SEASON_GROUP, lastIndex)
+}

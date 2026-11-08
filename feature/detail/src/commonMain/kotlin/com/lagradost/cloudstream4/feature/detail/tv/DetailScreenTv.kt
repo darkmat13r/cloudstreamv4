@@ -74,7 +74,6 @@ import com.lagradost.cloudstream4.feature.detail.DetailFocus
 import com.lagradost.cloudstream4.feature.detail.DetailLoad
 import com.lagradost.cloudstream4.feature.detail.DetailSeasonGroup
 import com.lagradost.cloudstream4.feature.detail.DetailState
-import com.lagradost.cloudstream4.feature.detail.FIRST_SEASON_GROUP
 import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
 import com.lagradost.cloudstream4.feature.detail.SPECIALS_SEASON
 import com.lagradost.cloudstream4.feature.detail.StreamLink
@@ -85,6 +84,7 @@ import com.lagradost.cloudstream4.feature.detail.episodeSubtitle
 import com.lagradost.cloudstream4.feature.detail.metaRun
 import com.lagradost.cloudstream4.feature.detail.resumeCaption
 import com.lagradost.cloudstream4.feature.detail.seasonGroups
+import com.lagradost.cloudstream4.feature.detail.shownSeasonIndex
 import com.lagradost.cloudstream4.feature.detail.toLinksUiState
 import com.lagradost.cloudstream4.feature.detail.toPageUiState
 import com.lagradost.cloudstream4.feature.detail.typeLabel
@@ -239,11 +239,9 @@ private fun TitlePage(
     // the viewer last chose, and only this side knows the groups.
     val seasons = remember(detail.episodes) { detail.episodes.seasonGroups() }
     val seasonChips = seasons.chipsVisible()
-    // `seasons` is empty for a film and for a series whose provider returned no episodes, and
-    // `coerceIn(0, -1)` throws on an empty range — which crashed every film's page until a device
-    // run caught it. There is no chip to choose when there is no group.
-    val shownSeason = if (seasons.isEmpty()) FIRST_SEASON_GROUP
-    else state.selectedSeason.coerceIn(FIRST_SEASON_GROUP, seasons.lastIndex)
+    // The chip the viewer chose, else the season holding what the primary plays, else the first; clamped,
+    // and safe on a film's empty list. See `shownSeasonIndex`.
+    val shownSeason = seasons.shownSeasonIndex(state.selectedSeason, detail.primaryData)
     val shownEpisodes = seasons.getOrNull(shownSeason)?.episodes ?: detail.episodes
     val selectedEpisode = selectedEpisodeIndex(shownEpisodes, detail.primaryData)
     // Set once the jump has landed, and cleared when the first episode row has taken focus. Hoisted
