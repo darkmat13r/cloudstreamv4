@@ -437,6 +437,8 @@ internal fun PlayerContent(
             Hud(
                 caption = caption,
                 meta = meta,
+                // `DS-23` M4: a panel takes the right of the window, and the controls centre in the room left of it.
+                endInset = if (listOpen) DesktopDimens.SidePanelWidth else 0.dp,
                 status = status,
                 onTogglePause = controls::togglePause,
                 onSeekTo = seekTo,
@@ -651,9 +653,10 @@ internal fun Hud(
     volumeControl: @Composable () -> Unit = {},
     selectors: @Composable RowScope.() -> Unit = {},
     fullscreenControl: @Composable () -> Unit = {},
+    endInset: Dp = 0.dp,
 ) {
     val colors = CloudStreamTheme.colors
-    Box(Modifier.fillMaxSize()) {
+    Box(Modifier.fillMaxSize().padding(end = endInset)) {
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),

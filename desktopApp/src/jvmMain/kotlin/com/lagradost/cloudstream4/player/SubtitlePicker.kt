@@ -9,7 +9,6 @@ import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.interaction.collectIsHoveredAsState
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
@@ -19,7 +18,8 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -37,8 +37,11 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.draw.drawBehind
+import androidx.compose.ui.geometry.Size
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
@@ -50,7 +53,9 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.player_subtit
 import com.lagradost.cloudstream4.core.strings.generated.resources.subtitles_file_empty
 import com.lagradost.cloudstream4.core.strings.generated.resources.subtitles_format_unsupported
 import com.lagradost.cloudstream4.core.strings.generated.resources.subtitles_load_failed
+import com.lagradost.cloudstream4.core.strings.generated.resources.setup_done
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import org.jetbrains.compose.resources.StringResource
 import org.jetbrains.compose.resources.stringResource
@@ -85,9 +90,18 @@ internal fun SubtitlePicker(
     }
 }
 
-/** A titled list floating above the player's controls, in their column. Closes on a click anywhere else. */
+/**
+ * `DS-23` M4 to M7: a panel from the right, the window's height and 360 wide (`DesktopDimens.SidePanelWidth`), with no
+ * scrim: the picture keeps playing beside it, and the controls move into the room it leaves. Its title is a heading,
+ * an optional line under it, then the rows, then Done. A click on the picture closes it, as Done and Escape do.
+ */
 @Composable
-internal fun PlayerListPanel(title: String, onDismiss: () -> Unit, content: @Composable () -> Unit) {
+internal fun PlayerListPanel(
+    title: String,
+    onDismiss: () -> Unit,
+    subtitle: String? = null,
+    content: @Composable ColumnScope.() -> Unit,
+) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Box(
@@ -100,33 +114,33 @@ internal fun PlayerListPanel(title: String, onDismiss: () -> Unit, content: @Com
                 }
             },
     )
-    BoxWithConstraints(Modifier.fillMaxSize(), contentAlignment = Alignment.BottomCenter) {
-        val spare = maxHeight - PlayerScreenDefaults.HudTopInset - PlayerScreenDefaults.HudBottomInset
-        Box(
-            contentAlignment = Alignment.BottomEnd,
+    Box(Modifier.fillMaxSize(), contentAlignment = Alignment.TopEnd) {
+        Column(
+            verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
             modifier = Modifier
-                .padding(start = DesktopDimens.WindowMargin, end = DesktopDimens.WindowMargin, bottom = PlayerScreenDefaults.HudBottomInset)
-                .widthIn(max = PlayerScreenDefaults.ControlsMaxWidth)
-                .fillMaxWidth(),
+                .width(DesktopDimens.SidePanelWidth)
+                .fillMaxHeight()
+                .background(colors.surface.copy(alpha = PlayerScreenDefaults.PickerAlpha))
+                .leftRule(colors.line)
+                // A click on the panel but between its rows is not a click outside it.
+                .pointerInput(Unit) { awaitEachGesture { awaitFirstDown().consume() } }
+                .padding(DesktopDimens.WindowMargin),
         ) {
-            Column(
-                modifier = Modifier
-                    .width(PlayerScreenDefaults.PickerWidth)
-                    .heightIn(max = minOf(spare, PlayerScreenDefaults.PickerMaxHeight))
-                    .background(colors.surface.copy(alpha = PlayerScreenDefaults.PickerAlpha), CloudStreamTheme.shapes.large)
-                    // A click on the panel but between its rows is not a click outside it.
-                    .pointerInput(Unit) { awaitEachGesture { awaitFirstDown().consume() } }
-                    .padding(DesktopDimens.RelatedGap),
-            ) {
-                BasicText(
-                    text = title,
-                    style = typography.caption.copy(color = colors.muted),
-                    modifier = Modifier.padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
-                )
-                content()
+            BasicText(text = title, style = typography.railTitle.copy(color = colors.ink), maxLines = 1)
+            if (subtitle != null) {
+                BasicText(text = subtitle, style = typography.caption.copy(color = colors.muted))
+            }
+            Column(Modifier.weight(1f).fillMaxWidth()) { content() }
+            Box(Modifier.fillMaxWidth(), contentAlignment = Alignment.CenterEnd) {
+                DesktopButton(label = stringResource(Res.string.setup_done), onClick = onDismiss, primary = true)
             }
         }
     }
+}
+
+/** A hairline down the panel's left edge, where it meets the picture. A stroke, so it is exempt from the 4 dp step. */
+private fun Modifier.leftRule(color: Color): Modifier = drawBehind {
+    drawRect(color, size = Size(CloudStreamDimens.Hairline.toPx(), size.height))
 }
 
 @Composable

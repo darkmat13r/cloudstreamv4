@@ -6274,6 +6274,44 @@ both ways out; it wants its own task.
 as TV does, but nothing on the Mac fills it: TV's stamps come from its host. Find where the stamps come from for a
 title, read them for the episode playing, and pass the current one to `PlayerContent.skip`, with `onSkip` seeking past it.
 
+## KMP-91 — The Mac player's panels from the right, `DS-23` M4 to M7
+
+**Status:** in review · `:desktopApp` · after `KMP-87` (#257) and `I18N-19` (#249)
+
+The four lists (Source, Subtitles, Audio tracks, Picture size) were pop-ups over the controls. They are now one panel
+from the right (`PlayerListPanel`):
+- 360 wide (`DesktopDimens.SidePanelWidth`) and the window's height, with no scrim: the picture plays on beside it.
+- Its title is a heading; an optional line under it; the rows; then Done. Source's line is `2 sources`
+  (`player_source_count`).
+- The HUD's controls centre in the room left of it while it is open, and move back when it closes.
+- Done, Escape, the same key, or a click on the picture closes it, as before.
+- Picture size had its own pop-up; it uses the same panel now.
+
+Every behaviour the lists' tests pinned is unchanged: the keys, a list held while open, failed rows, an outside click
+choosing nothing.
+
+**Not here — the rows (`KMP-93`):** the panel's frame matches the boards, its rows do not yet. The boards' rows are 56
+tall with a mono second line (`1920×1080 decoded`, `3 variants`), a verb at the right (Use, On, Switch, Retry) and the
+4×24 marker on the chosen row; here, Source has the verbs and the marker, and the other lists keep a check at the left
+and one line. The words exist (`I18N-19`); the second lines need data the player does not have for every row yet.
+M5's Load from file, Load from Internet and Subtitle delay rows are not features yet, so they are not drawn.
+
+**Tests** (`PlayerScreenTest`, 70, all run):
+- New: the panel is at the right and the window's height, and Done closes it and chooses nothing; the controls move
+  into the room it leaves and back.
+- **Changed existing tests:** six clicked rows counted up from the old pop-up's foot. They now count down from the
+  panel's heading (`panelRow`). Each asserts what it did, except the held-list test, which keeps its point another way.
+  Before, it clicked the foot, which was English while the list was held. Now a click where German's row would be
+  chooses nothing while held, and German is there when the list opens again.
+
+## KMP-93 — The Mac player panels' rows, `DS-23` M4 to M7
+
+**Status:** open · `:desktopApp` · after `KMP-91`
+
+`KMP-91` built the panel; this makes its rows the boards' rows: 56 tall, a name and a mono second line, a verb at the
+right (Use, On, Switch, Retry, Open), the 4×24 marker on the chosen row. A second line is drawn only from data the player
+has; a row without one stays one line. Only the rows that are features get drawn.
+
 ## KMP-89 — Player KDoc examples use a made-up source
 
 **Status:** in review · comments only · from `KMP-87`'s review
