@@ -171,13 +171,15 @@ class DesktopInteractionTest {
             SearchScreenDesktop(SearchState(query = query, status = SearchStatus.NoResults(1)), { actions += it })
         }
         scene.settle()
-        // From the right edge in, because the readout beside the field is as wide as its string.
+        // From the right edge in, because the Sources button beside the field is as wide as its string. Its own
+        // press (`KMP-56`) is passed over: the first control that clears is the field's.
         val x = generateSequence(WIDTH - 1f) { it - 4f }.takeWhile { it > 0f }.first { candidate ->
+            actions.remove(SearchAction.SourcePanelOpened)
             scene.sendPointerEvent(PointerEventType.Move, Offset(candidate, FIELD_CENTRE_Y))
             scene.sendPointerEvent(PointerEventType.Press, Offset(candidate, FIELD_CENTRE_Y))
             scene.sendPointerEvent(PointerEventType.Release, Offset(candidate, FIELD_CENTRE_Y))
             scene.render(0)
-            actions.isNotEmpty()
+            SearchAction.Cleared in actions
         }
         assertEquals(listOf<SearchAction>(SearchAction.Cleared), actions, "at x=$x")
         query = ""
@@ -191,7 +193,10 @@ class DesktopInteractionTest {
         scene.close()
     }
 
-    /** Nothing else on this screen takes focus, so Tab either wraps to the field or lands on the button. */
+    /**
+     * The clear button sits between the field and the Sources button (`KMP-56`), so Tab from the field lands on one
+     * of the two: pressing what it landed on says which.
+     */
     @Test
     fun `tab does not land on the clear button`() {
         val actions = mutableListOf<SearchAction>()
@@ -202,8 +207,10 @@ class DesktopInteractionTest {
         scene.sendKeyEvent(KeyEvent(Key.Tab, KeyEventType.KeyDown))
         scene.sendKeyEvent(KeyEvent(Key.Tab, KeyEventType.KeyUp))
         scene.settle()
-        assertTrue(scene.sendKeyEvent(escape()), "focus is still in the field")
-        assertEquals(listOf<SearchAction>(SearchAction.Cleared), actions)
+        scene.sendKeyEvent(KeyEvent(Key.Enter, KeyEventType.KeyDown))
+        scene.sendKeyEvent(KeyEvent(Key.Enter, KeyEventType.KeyUp))
+        scene.settle()
+        assertEquals(listOf<SearchAction>(SearchAction.SourcePanelOpened), actions)
         scene.close()
     }
 

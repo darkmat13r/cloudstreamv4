@@ -44,6 +44,11 @@
             <action android:name="android.intent.action.VIEW" />
             <data android:scheme="magnet" />
         </intent>
+        <!-- KMP-73: whether a browser can finish a sync service's sign-in (AccountSelectTv.hasBrowser) -->
+        <intent>
+            <action android:name="android.intent.action.VIEW" />
+            <data android:scheme="https" />
+        </intent>
 
         <!-- Common players supported in actions/temp -->
         <package android:name="org.videolan.vlc" />

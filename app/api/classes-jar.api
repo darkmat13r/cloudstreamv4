@@ -17020,6 +17020,25 @@ public abstract class com/lagradost/cloudstream3/syncproviders/BackupAPI : com/l
 	public fun uploadFile (Lcom/lagradost/cloudstream3/syncproviders/AuthData;Ljava/lang/String;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
 }
 
+public final class com/lagradost/cloudstream3/syncproviders/CredentialStore : java/lang/Object {
+	public static final field $stable I
+	public static final field FILE Ljava/lang/String;
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/syncproviders/CredentialStore;
+	public static final field PIN_FOLDER Ljava/lang/String;
+	public final synthetic fun getKey (Ljava/lang/String;)Ljava/lang/Object;
+	public final fun keys (Ljava/lang/String;)Ljava/util/List;
+	public final fun migrate (Landroid/content/Context;)I
+	public final fun pins ()Ljava/util/Map;
+	public final fun readRaw (Ljava/lang/String;)Ljava/lang/String;
+	public final fun remove (Ljava/lang/String;)V
+	public final fun replacePins (Ljava/util/Map;)Z
+	public final fun write (Ljava/lang/String;Ljava/lang/Object;)V
+}
+
+public final static class com/lagradost/cloudstream3/syncproviders/CredentialStore$getKey$lambda$0$0$$inlined$parseJson$1 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
+}
+
 public final class com/lagradost/cloudstream3/syncproviders/DevicePinPoll : java/lang/Object {
 	public static final field $stable I
 	public fun <init> (Lcom/lagradost/cloudstream3/syncproviders/AuthPinData;Lkotlin/jvm/functions/Function3;J)V
@@ -25540,6 +25559,7 @@ public final class com/lagradost/cloudstream3/ui/account/AccountSelectActivity :
 	public static final field Companion Lcom/lagradost/cloudstream3/ui/account/AccountSelectActivity$Companion;
 	public fun <init> ()V
 	public static final synthetic fun access$getHasLoggedIn$cp ()Z
+	public static final synthetic fun access$navigateToMainActivity (Lcom/lagradost/cloudstream3/ui/account/AccountSelectActivity;)V
 	public static final synthetic fun access$setHasLoggedIn$cp (Z)V
 	public final fun getAccountViewModel ()Lcom/lagradost/cloudstream3/ui/account/AccountViewModel;
 	public fun onAuthenticationError ()V
@@ -32314,6 +32334,7 @@ public final class com/lagradost/cloudstream3/utils/BackupUtils : java/lang/Obje
 	public static final field INSTANCE Lcom/lagradost/cloudstream3/utils/BackupUtils;
 	public static final synthetic fun access$getBackup (Lcom/lagradost/cloudstream3/utils/BackupUtils;Landroid/content/Context;)Lcom/lagradost/cloudstream3/utils/BackupUtils$BackupFile;
 	public final fun backup (Landroid/content/Context;)Lkotlinx/coroutines/Job;
+	public final fun exportForTest$app (Landroid/content/Context;)Lcom/lagradost/cloudstream3/utils/BackupUtils$BackupFile;
 	public final fun getCurrentBackupDir (Landroid/content/Context;)Lkotlin/Pair;
 	public final fun getDefaultBackupDir (Landroid/content/Context;)Lcom/lagradost/safefile/SafeFile;
 	public final fun restore (Landroid/content/Context;Lcom/lagradost/cloudstream3/utils/BackupUtils$BackupFile;ZZ)V
@@ -32404,6 +32425,10 @@ public final static synthetic class com/lagradost/cloudstream3/utils/BackupUtils
 public final static class com/lagradost/cloudstream3/utils/BackupUtils$BackupVars$Companion : java/lang/Object {
 	public synthetic fun <init> (Lkotlin/jvm/internal/DefaultConstructorMarker;)V
 	public final fun serializer ()Lkotlinx/serialization/KSerializer;
+}
+
+public final static class com/lagradost/cloudstream3/utils/BackupUtils$profilesWithoutPins$lambda$0$$inlined$parseJson$1 : com/fasterxml/jackson/core/type/TypeReference {
+	public fun <init> ()V
 }
 
 public final static class com/lagradost/cloudstream3/utils/BackupUtils$setUpBackup$1$1$invokeSuspend$$inlined$parseJson$1 : com/fasterxml/jackson/core/type/TypeReference {
@@ -37157,6 +37182,55 @@ public final class com/lagradost/cloudstream3/widget/LinearRecycleViewLayoutMana
 }
 
 public final class com/lagradost/cloudstream4/R : java/lang/Object {
+}
+
+public final class com/lagradost/cloudstream4/account/AccountSelectTv : java/lang/Object {
+	public static final field $stable I
+	public static final field Companion Lcom/lagradost/cloudstream4/account/AccountSelectTv$Companion;
+	public fun <init> (Landroidx/fragment/app/FragmentActivity;Lcom/lagradost/cloudstream3/ui/account/AccountViewModel;Lkotlin/jvm/functions/Function0;)V
+	public synthetic fun <init> (Landroidx/fragment/app/FragmentActivity;Lcom/lagradost/cloudstream3/ui/account/AccountViewModel;Lkotlin/jvm/functions/Function0;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final synthetic fun access$endPairing (Lcom/lagradost/cloudstream4/account/AccountSelectTv;)V
+	public static final synthetic fun access$getActivity$p (Lcom/lagradost/cloudstream4/account/AccountSelectTv;)Landroidx/fragment/app/FragmentActivity;
+	public static final synthetic fun access$getState$p (Lcom/lagradost/cloudstream4/account/AccountSelectTv;)Lkotlinx/coroutines/flow/MutableStateFlow;
+	public static final synthetic fun access$onAction (Lcom/lagradost/cloudstream4/account/AccountSelectTv;Lcom/lagradost/cloudstream4/feature/account/AccountAction;)V
+	public static final synthetic fun access$refresh (Lcom/lagradost/cloudstream4/account/AccountSelectTv;)V
+	public static final synthetic fun access$setPoll$p (Lcom/lagradost/cloudstream4/account/AccountSelectTv;Lcom/lagradost/cloudstream3/syncproviders/DevicePinPoll;)V
+	public final fun attach ()V
+}
+
+public final static class com/lagradost/cloudstream4/account/AccountSelectTv$Companion : java/lang/Object {
+	public synthetic fun <init> (Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun isSignedIn$app (Lcom/lagradost/cloudstream3/syncproviders/AuthRepo;I)Z
+}
+
+public final static class com/lagradost/cloudstream4/account/AccountSelectTv$attach$3$invokeSuspend$$inlined$map$1 : java/lang/Object, kotlinx/coroutines/flow/Flow {
+	public fun <init> (Lkotlinx/coroutines/flow/Flow;)V
+	public fun collect (Lkotlinx/coroutines/flow/FlowCollector;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/account/AccountSelectTv$attach$3$invokeSuspend$$inlined$map$1$1 : kotlin/coroutines/jvm/internal/ContinuationImpl {
+	public fun <init> (Lcom/lagradost/cloudstream4/account/AccountSelectTv$attach$3$invokeSuspend$$inlined$map$1;Lkotlin/coroutines/Continuation;)V
+	public final fun invokeSuspend (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/account/AccountSelectTv$attach$3$invokeSuspend$$inlined$map$1$2 : java/lang/Object, kotlinx/coroutines/flow/FlowCollector {
+	public fun <init> (Lkotlinx/coroutines/flow/FlowCollector;)V
+	public final fun emit (Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/account/AccountSelectTv$attach$3$invokeSuspend$$inlined$map$1$2$1 : kotlin/coroutines/jvm/internal/ContinuationImpl {
+	public fun <init> (Lcom/lagradost/cloudstream4/account/AccountSelectTv$attach$3$invokeSuspend$$inlined$map$1$2;Lkotlin/coroutines/Continuation;)V
+	public final fun invokeSuspend (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/account/AccountSelectTv$attach$closesPairing$1 : androidx/activity/OnBackPressedCallback {
+	public fun handleOnBackPressed ()V
+}
+
+public final class com/lagradost/cloudstream4/account/TvAccountSwitch : java/lang/Object {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/account/TvAccountSwitch;
+	public static field useComposeAccountSelect Z
 }
 
 public final class com/lagradost/cloudstream4/core/strings/R : java/lang/Object {

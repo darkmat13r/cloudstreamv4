@@ -1,7 +1,5 @@
 package com.lagradost.cloudstream3.syncproviders
 
-import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKey
-import com.lagradost.cloudstream3.CloudStreamApp.Companion.setKey
 import com.lagradost.cloudstream3.LoadResponse
 import com.lagradost.cloudstream3.syncproviders.providers.Addic7ed
 import com.lagradost.cloudstream3.syncproviders.providers.AniListApi
@@ -39,15 +37,14 @@ abstract class AccountManager {
 
         fun accounts(prefix: String): Array<AuthData> {
             require(prefix != "NONE")
-            return getKey<Array<AuthData>>(
-                ACCOUNT_TOKEN,
-                "${prefix}/${DataStoreHelper.currentAccount}"
+            return CredentialStore.getKey<Array<AuthData>>(
+                "$ACCOUNT_TOKEN/${prefix}/${DataStoreHelper.currentAccount}"
             ) ?: arrayOf()
         }
 
         fun updateAccounts(prefix: String, array: Array<AuthData>) {
             require(prefix != "NONE")
-            setKey(ACCOUNT_TOKEN, "${prefix}/${DataStoreHelper.currentAccount}", array)
+            CredentialStore.write("$ACCOUNT_TOKEN/${prefix}/${DataStoreHelper.currentAccount}", array)
             synchronized(cachedAccounts) {
                 cachedAccounts[prefix] = array
             }
@@ -55,7 +52,7 @@ abstract class AccountManager {
 
         fun updateAccountsId(prefix: String, id: Int) {
             require(prefix != "NONE")
-            setKey(ACCOUNT_IDS, "${prefix}/${DataStoreHelper.currentAccount}", id)
+            CredentialStore.write("$ACCOUNT_IDS/${prefix}/${DataStoreHelper.currentAccount}", id)
             synchronized(cachedAccountIds) {
                 cachedAccountIds[prefix] = id
             }
@@ -79,10 +76,8 @@ abstract class AccountManager {
             for (api in allApis) {
                 ids.put(
                     api.idPrefix,
-                    getKey<Int>(
-                        ACCOUNT_IDS,
-                        "${api.idPrefix}/${DataStoreHelper.currentAccount}",
-                        NONE_ID
+                    CredentialStore.getKey<Int>(
+                        "$ACCOUNT_IDS/${api.idPrefix}/${DataStoreHelper.currentAccount}"
                     ) ?: NONE_ID
                 )
             }
@@ -98,10 +93,8 @@ abstract class AccountManager {
                 data.put(api.idPrefix, accounts(api.idPrefix))
                 ids.put(
                     api.idPrefix,
-                    getKey<Int>(
-                        ACCOUNT_IDS,
-                        "${api.idPrefix}/${DataStoreHelper.currentAccount}",
-                        NONE_ID
+                    CredentialStore.getKey<Int>(
+                        "$ACCOUNT_IDS/${api.idPrefix}/${DataStoreHelper.currentAccount}"
                     ) ?: NONE_ID
                 )
             }

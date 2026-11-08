@@ -47,8 +47,11 @@ import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.LibraryViewModel
 import com.lagradost.cloudstream4.home.FileHomeSourceMemory
 import com.lagradost.cloudstream4.home.TopLevelDestination
+import com.lagradost.cloudstream4.library.DesktopLibrarySources
 import com.lagradost.cloudstream4.library.DesktopLibraryStore
+import com.lagradost.cloudstream4.library.FileLibrarySortMemory
 import com.lagradost.cloudstream4.library.LibraryHost
+import com.lagradost.cloudstream4.library.LibrarySortMemory
 import com.lagradost.cloudstream4.library.WatchRecorder
 import com.lagradost.cloudstream4.feature.detail.DetailEffect
 import com.lagradost.cloudstream4.feature.detail.StreamLink
@@ -165,6 +168,7 @@ fun main(args: Array<String>) {
         val shortcuts = remember { DesktopShortcuts() }
         val windowState = rememberWindowState(size = DpSize(WINDOW_WIDTH, WINDOW_HEIGHT))
         val homeMemory = remember { FileHomeSourceMemory() }
+        val librarySort = remember { FileLibrarySortMemory() }
         Window(
             onCloseRequest = ::exitApplication,
             title = WINDOW_TITLE,
@@ -182,7 +186,14 @@ fun main(args: Array<String>) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                        DesktopApp(escape, approvals = approvals, window = windowState, homeMemory = homeMemory, shortcuts = shortcuts)
+                        DesktopApp(
+                            escape,
+                            approvals = approvals,
+                            window = windowState,
+                            librarySort = librarySort,
+                            homeMemory = homeMemory,
+                            shortcuts = shortcuts,
+                        )
                     }
                 }
             }
@@ -242,6 +253,8 @@ internal fun DesktopApp(
     library: LibraryStore = remember { DesktopLibraryStore() },
     onScreen: (String) -> Unit = {},
     window: WindowState? = null,
+    // `None` by default, as `homeMemory`: a window made in a test never writes to the real home directory.
+    librarySort: LibrarySortMemory = LibrarySortMemory.None,
     homeMemory: HomeSourceMemory = HomeSourceMemory.None,
     shortcuts: DesktopShortcuts = remember { DesktopShortcuts() },
 ) {
@@ -259,7 +272,9 @@ internal fun DesktopApp(
     }
     // Outlives the tab so that changing list is instant; `LibraryHost` refreshes it on arrival. It
     // reads no providers, so it does not need resetting when what is installed changes.
-    val libraryViewModel = remember { LibraryViewModel(library, scope) }
+    val libraryViewModel = remember {
+        LibraryViewModel(library, scope, sources = DesktopLibrarySources(library, librarySort))
+    }
     val notice: @Composable () -> Unit = {
         if (review != null) {
             ExtensionsNotice(review, onOpen = { stack += Screen.Extensions }) { label, onClick ->

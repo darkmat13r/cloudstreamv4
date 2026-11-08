@@ -86,6 +86,18 @@ Since `KMP-39` the rows are best first, the order the player tries them in, and 
 without asking. Moving on is said the way a subtitle failure is: `Source error · VidSrc · 2160p` above the controls for
 five seconds, not over an open list, while the transport says `Loading…` and the selector names the one now trying.
 
+## Library
+
+`DS-22`'s L1 to L7 (`KMP-57`), with these departures:
+
+| L | Here | Why |
+|---|---|---|
+| L1's list button under each card | None; a secondary click or the context-menu keys open the list picker | The board keeps one verb on a card, Remove, at the poster's top-right on hover or focus |
+| Six lists | Seven, with Favourites | Hiding a list hides what is kept in it |
+| L5's services | The local list only | There is no service sign-in on desktop; the panel and L2 draw services when there are some |
+| L7's three cards at 164 | Two, at the built 200 minimum | The board's own notes keep that minimum |
+| Sort, filter and chevron glyphs | Words only | The pack has none of the three |
+
 ## Motion
 
 `DesktopMotion`: a critically damped spring with a 0.3 s response, so no overshoot. A spring starts from the

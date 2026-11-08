@@ -88,10 +88,48 @@ class DesktopDetailSource : DetailSource {
     }
 }
 
-/** Text for a log line with every URL taken out: a plugin's message may repeat a request it made. */
-internal fun String.withoutUrls(): String = replace(URL_IN_TEXT, "<url>")
+// BUG-44/47: the fourth of four identical copies of the redaction rules, which must stay in sync: `:app`
+// `utils/LogRedaction.kt`, `:library` `mvvm/ArchComponentExt.kt`, `:feature:extensions:sandbox` `PluginHost.kt`, and this one
+// (`KMP-56`). The sandbox's is `internal` to its module, so `:desktopApp` cannot call it. `DesktopRedactionTest` runs the same table.
 
-private val URL_IN_TEXT = Regex("(?i)\\b[a-z][a-z0-9+.-]*://\\S+")
+/** `file:/…`, with any number of slashes, up to the next whitespace. */
+private val FILE_URI = Regex("(?i)\\bfile:/\\S+")
+
+/** `scheme://[userinfo@]host[:port]`, then whatever follows up to the next whitespace. */
+private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*)://(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
+
+/**
+ * An absolute path under a storage, home or volume root, up to a newline, a quote, `": "` or the end. A path may hold
+ * spaces, so it is not cut at whitespace: what follows a path on its line is lost with it, which is the safe way round.
+ */
+private val USER_PATH = Regex(
+    "(?<![\\w.:/-])/(?:storage|sdcard|data/user|mnt|Users|home|Volumes)(?:/[^\\r\\n\"'<>]*?)?(?=: |[\\r\\n\"'<>]|\\z)"
+)
+
+/** BUG-47: a Windows home path, `C:\Users\…` (any drive letter, either case, either slash), with the same ends as [USER_PATH]. */
+private val WINDOWS_USER_PATH = Regex(
+    "(?<![\\w.:/\\\\-])(?i:[a-z]):[\\\\/](?i:users)(?:[\\\\/][^\\r\\n\"'<>]*?)?(?=: |[\\r\\n\"'<>]|\\z)"
+)
+
+/**
+ * Text with a `file:` uri, a path under `/storage`, `/sdcard`, `/data/user`, `/mnt`, `/Users`, `/home` or `/Volumes`, or a
+ * Windows `C:\Users\…` path replaced by `<path>`, and every other url cut to `scheme://host[:port]/<…>`. The host is kept
+ * because it helps triage and is not a secret; the userinfo, path, query and fragment are not.
+ *
+ * Strip invisible characters **before** this: a format character inside `://` (`https:<ZWSP>//`) hides the url from
+ * the pattern, and stripping it afterwards would put the whole url back together on screen.
+ */
+internal fun String.withoutUrls(): String = this
+    .replace(FILE_URI, "<path>")
+    .replace(URL_IN_TEXT) { match ->
+        val (scheme, host, rest) = match.destructured
+        "$scheme://$host" + if (rest.isEmpty()) "" else "/<…>"
+    }
+    .replace(USER_PATH, "<path>")
+    .replace(WINDOWS_USER_PATH, "<path>")
+
+/** Control and format characters out, so nothing invisible can split a url or a path from [withoutUrls]'s patterns. */
+internal fun String.withoutInvisible(): String = filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }
 
 /**
  * What a plugin has offered so far, as streams, emitting whenever there is one more or a new subtitle for those.

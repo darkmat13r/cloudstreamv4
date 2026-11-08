@@ -113,8 +113,9 @@ class DetailPageFailureTest {
 
     @Test
     fun `a url in a plugin's message is not logged`() {
+        // The host stays, as in the other three copies of the rules (`KMP-56`); the path and the query never do.
         assertEquals(
-            "refused <url> then <url>",
+            "refused https://x.example/<…> then http://10.0.0.1:8080/<…>",
             "refused https://x.example/a?token=abc then http://10.0.0.1:8080/b".withoutUrls(),
         )
         assertEquals("provider returned nothing", "provider returned nothing".withoutUrls())
