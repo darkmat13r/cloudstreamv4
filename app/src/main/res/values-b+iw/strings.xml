@@ -438,6 +438,7 @@
 <string name="player_source_retry">"ניסיון חוזר"</string>
 <string name="player_source_switch">"החלפה"</string>
 <string name="player_sources_all_failed">"כל המקורות השיבו בשגיאה."</string>
+<string name="player_sources_all_failed_detail">"יש לבחור מקור למטה כדי לנסות אותו שוב."</string>
 <string name="player_speed">"מהירות הנגן"</string>
 <string name="player_speed_text_format" formatted="true">"מהירות (%.2fx)"</string>
 <string name="player_subtitles_settings">"כתוביות"</string>

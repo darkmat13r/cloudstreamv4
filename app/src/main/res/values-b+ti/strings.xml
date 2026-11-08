@@ -162,6 +162,7 @@
 <string name="player_source_retry">"እንደገና ፈትን"</string>
 <string name="player_source_switch">"ቀይር"</string>
 <string name="player_sources_all_failed">"ነፍሲ ወከፍ ምንጪ ብጌጋ መለሰ።"</string>
+<string name="player_sources_all_failed_detail">"ደጊምካ ንምፍታን ካብ ታሕቲ ምንጪ ምረጽ።"</string>
 <string name="player_unmute">"ድምጺ ወልዕ"</string>
 <string name="player_volume_down">"ድምጺ ኣንኪ"</string>
 <string name="player_volume_up">"ድምጺ ኣልዕል"</string>

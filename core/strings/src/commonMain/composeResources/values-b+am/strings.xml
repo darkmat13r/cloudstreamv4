@@ -291,6 +291,7 @@
 <string name="player_play_now">አሁን አጫውት</string>
 <string name="player_source_decoded">%s ተፈትቷል</string>
 <string name="player_sources_all_failed">እያንዳንዱ ምንጭ በስህተት መለሰ።</string>
+<string name="player_sources_all_failed_detail">እንደገና ለመሞከር ከታች ምንጭ ይምረጡ።</string>
 <string name="player_volume_down">ድምፅ ቀንስ</string>
 <string name="player_volume_up">ድምፅ ጨምር</string>
 <string name="search_suggestions_return_hint">Return ሁሉንም ይፈልጋል</string>

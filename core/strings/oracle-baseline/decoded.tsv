@@ -236,6 +236,7 @@ values-b+af/strings.xml	string	player_source_resumes_at	-	STR	Wissel behou jou p
 values-b+af/strings.xml	string	player_source_retry	-	STR	Probeer weer	
 values-b+af/strings.xml	string	player_source_switch	-	STR	Wissel	
 values-b+af/strings.xml	string	player_sources_all_failed	-	STR	Elke bron het met 'n fout geantwoord.	
+values-b+af/strings.xml	string	player_sources_all_failed_detail	-	STR	Kies 'n bron hieronder om dit weer te probeer.	
 values-b+af/strings.xml	string	player_speed	-	STR	Spelerspoed	
 values-b+af/strings.xml	string	player_speed_text_format	-	STR	Spoed (%.2fx)	
 values-b+af/strings.xml	string	player_unmute	-	STR	Ontdemp	
@@ -548,6 +549,7 @@ values-b+am/strings.xml	string	player_source_resumes_at	-	STR	መቀየር ቦ�
 values-b+am/strings.xml	string	player_source_retry	-	STR	እንደገና ሞክር	
 values-b+am/strings.xml	string	player_source_switch	-	STR	ቀይር	
 values-b+am/strings.xml	string	player_sources_all_failed	-	STR	እያንዳንዱ ምንጭ በስህተት መለሰ።	
+values-b+am/strings.xml	string	player_sources_all_failed_detail	-	STR	እንደገና ለመሞከር ከታች ምንጭ ይምረጡ።	
 values-b+am/strings.xml	string	player_speed	-	STR	የአጫዋች ፍጥነት	
 values-b+am/strings.xml	string	player_speed_text_format	-	STR	ፍጥነት(%.2fx)	
 values-b+am/strings.xml	string	player_unmute	-	STR	ድምፅ አብራ	
@@ -1201,6 +1203,7 @@ values-b+apc/strings.xml	string	player_source_resumes_at	-	STR	التبديل ب
 values-b+apc/strings.xml	string	player_source_retry	-	STR	جرّب كمان مرة	
 values-b+apc/strings.xml	string	player_source_switch	-	STR	بدّل	
 values-b+apc/strings.xml	string	player_sources_all_failed	-	STR	كل المصادر رجّعت غلط.	
+values-b+apc/strings.xml	string	player_sources_all_failed_detail	-	STR	اختار مصدر من تحت لتجرّبه مرة تانية.	
 values-b+apc/strings.xml	string	player_speed	-	STR	سرعة الڤيديو	
 values-b+apc/strings.xml	string	player_speed_text_format	-	STR	السرعة (%.2fx)	
 values-b+apc/strings.xml	string	player_subtitles_settings	-	STR	الترجمة	
@@ -2207,6 +2210,7 @@ values-b+ar/strings.xml	string	player_source_resumes_at	-	STR	التبديل ي�
 values-b+ar/strings.xml	string	player_source_retry	-	STR	إعادة المحاولة	
 values-b+ar/strings.xml	string	player_source_switch	-	STR	تبديل	
 values-b+ar/strings.xml	string	player_sources_all_failed	-	STR	أعادت كل المصادر خطأً.	
+values-b+ar/strings.xml	string	player_sources_all_failed_detail	-	STR	اختر مصدرًا أدناه لتجربته مرة أخرى.	
 values-b+ar/strings.xml	string	player_speed	-	STR	سرعة المُشغل	
 values-b+ar/strings.xml	string	player_speed_text_format	-	STR	سرعة (%.2fx)	
 values-b+ar/strings.xml	string	player_subtitles_settings	-	STR	الترجمة	
@@ -2992,6 +2996,7 @@ values-b+ars/strings.xml	string	player_source_resumes_at	-	STR	التبديل ي
 values-b+ars/strings.xml	string	player_source_retry	-	STR	إعادة المحاولة	
 values-b+ars/strings.xml	string	player_source_switch	-	STR	تبديل	
 values-b+ars/strings.xml	string	player_sources_all_failed	-	STR	أعادت كل المصادر خطأً.	
+values-b+ars/strings.xml	string	player_sources_all_failed_detail	-	STR	اختر مصدرًا أدناه لتجربته مرة أخرى.	
 values-b+ars/strings.xml	string	player_speed	-	STR	سرعة اللاعب	
 values-b+ars/strings.xml	string	player_speed_text_format	-	STR	سرعة(%.2fx)	
 values-b+ars/strings.xml	string	player_subtitles_settings	-	STR	ترجمات	
@@ -3693,6 +3698,7 @@ values-b+as/strings.xml	string	player_source_resumes_at	-	STR	সলনি ক�
 values-b+as/strings.xml	string	player_source_retry	-	STR	পুনৰ চেষ্টা কৰক	
 values-b+as/strings.xml	string	player_source_switch	-	STR	সলনি কৰক	
 values-b+as/strings.xml	string	player_sources_all_failed	-	STR	প্ৰতিটো উৎসই এটা ত্ৰুটিৰে উত্তৰ দিলে।	
+values-b+as/strings.xml	string	player_sources_all_failed_detail	-	STR	পুনৰ চেষ্টা কৰিবলৈ তলৰ পৰা এটা উৎস বাছক।	
 values-b+as/strings.xml	string	player_speed	-	STR	প্লেয়াৰ গতি	
 values-b+as/strings.xml	string	player_speed_text_format	-	STR	গতি (%.2fx)	
 values-b+as/strings.xml	string	player_subtitles_settings	-	STR	সাবটাইটেল	
@@ -4280,6 +4286,7 @@ values-b+az/strings.xml	string	player_source_resumes_at	-	STR	Dəyişmək mövqe
 values-b+az/strings.xml	string	player_source_retry	-	STR	Yenidən cəhd et	
 values-b+az/strings.xml	string	player_source_switch	-	STR	Dəyiş	
 values-b+az/strings.xml	string	player_sources_all_failed	-	STR	Hər mənbə xəta ilə cavab verdi.	
+values-b+az/strings.xml	string	player_sources_all_failed_detail	-	STR	Yenidən sınamaq üçün aşağıdan mənbə seçin.	
 values-b+az/strings.xml	string	player_speed_text_format	-	STR	Sürət (%.2fx)	
 values-b+az/strings.xml	string	player_subtitles_settings	-	STR	Subtitrlər	
 values-b+az/strings.xml	string	player_subtitles_settings_des	-	STR	Pleyerin subtitr parametrləri	
@@ -4966,6 +4973,7 @@ values-b+be/strings.xml	string	player_source_resumes_at	-	STR	Пераключэ
 values-b+be/strings.xml	string	player_source_retry	-	STR	Паўтарыць	
 values-b+be/strings.xml	string	player_source_switch	-	STR	Пераключыць	
 values-b+be/strings.xml	string	player_sources_all_failed	-	STR	Кожная крыніца адказала памылкай.	
+values-b+be/strings.xml	string	player_sources_all_failed_detail	-	STR	Выберыце крыніцу ніжэй, каб паспрабаваць яе зноў.	
 values-b+be/strings.xml	string	player_speed	-	STR	Хуткасць прайгравальніка	
 values-b+be/strings.xml	string	player_speed_text_format	-	STR	Хуткасць (%.2fx)	
 values-b+be/strings.xml	string	player_subtitles_settings	-	STR	Субцітры	
@@ -5893,6 +5901,7 @@ values-b+bg/strings.xml	string	player_source_resumes_at	-	STR	Смяната з�
 values-b+bg/strings.xml	string	player_source_retry	-	STR	Нов опит	
 values-b+bg/strings.xml	string	player_source_switch	-	STR	Смяна	
 values-b+bg/strings.xml	string	player_sources_all_failed	-	STR	Всеки източник отговори с грешка.	
+values-b+bg/strings.xml	string	player_sources_all_failed_detail	-	STR	Изберете източник по-долу, за да опитате отново.	
 values-b+bg/strings.xml	string	player_speed	-	STR	Скорост на възпроизвеждане	
 values-b+bg/strings.xml	string	player_speed_text_format	-	STR	Скорост (%.2fx)	
 values-b+bg/strings.xml	string	player_subtitles_settings	-	STR	Субтитри	
@@ -6650,6 +6659,7 @@ values-b+bn/strings.xml	string	player_source_resumes_at	-	STR	পাল্টা
 values-b+bn/strings.xml	string	player_source_retry	-	STR	আবার চেষ্টা করুন	
 values-b+bn/strings.xml	string	player_source_switch	-	STR	পাল্টান	
 values-b+bn/strings.xml	string	player_sources_all_failed	-	STR	প্রতিটি উৎস একটি ত্রুটি দিয়ে উত্তর দিয়েছে।	
+values-b+bn/strings.xml	string	player_sources_all_failed_detail	-	STR	আবার চেষ্টা করতে নিচ থেকে একটি উৎস বেছে নিন।	
 values-b+bn/strings.xml	string	player_speed	-	STR	ভিডিও এর গতি	
 values-b+bn/strings.xml	string	player_speed_text_format	-	STR	গতি (%.2f গুণ)	
 values-b+bn/strings.xml	string	player_subtitles_settings	-	STR	সাবটাইটেল	
@@ -7219,6 +7229,7 @@ values-b+ca/strings.xml	string	player_source_resumes_at	-	STR	Canviar conserva l
 values-b+ca/strings.xml	string	player_source_retry	-	STR	Torna-ho a provar	
 values-b+ca/strings.xml	string	player_source_switch	-	STR	Canvia	
 values-b+ca/strings.xml	string	player_sources_all_failed	-	STR	Totes les fonts han respost amb un error.	
+values-b+ca/strings.xml	string	player_sources_all_failed_detail	-	STR	Tria una font a sota per tornar-la a provar.	
 values-b+ca/strings.xml	string	player_speed	-	STR	Velocitat de reproducció	
 values-b+ca/strings.xml	string	player_speed_text_format	-	STR	Velocitat (%.2fx)	
 values-b+ca/strings.xml	string	player_unmute	-	STR	Deixa de silenciar	
@@ -7630,6 +7641,7 @@ values-b+ckb/strings.xml	string	player_source_resumes_at	-	STR	گۆڕین شوێ
 values-b+ckb/strings.xml	string	player_source_retry	-	STR	دووبارە هەوڵبدەرەوە	
 values-b+ckb/strings.xml	string	player_source_switch	-	STR	گۆڕین	
 values-b+ckb/strings.xml	string	player_sources_all_failed	-	STR	هەموو سەرچاوەکان بە هەڵەیەک وەڵامیان دایەوە.	
+values-b+ckb/strings.xml	string	player_sources_all_failed_detail	-	STR	سەرچاوەیەک لە خوارەوە هەڵبژێرە بۆ ئەوەی دووبارە تاقی بکەیتەوە.	
 values-b+ckb/strings.xml	string	player_speed_text_format	-	STR	خێرای(x%.2f)	
 values-b+ckb/strings.xml	string	player_unmute	-	STR	لابردنی بێدەنگی	
 values-b+ckb/strings.xml	string	player_volume_down	-	STR	دەنگ نزمکردنەوە	
@@ -8301,6 +8313,7 @@ values-b+cs/strings.xml	string	player_source_resumes_at	-	STR	Přepnutí zachov�
 values-b+cs/strings.xml	string	player_source_retry	-	STR	Zkusit znovu	
 values-b+cs/strings.xml	string	player_source_switch	-	STR	Přepnout	
 values-b+cs/strings.xml	string	player_sources_all_failed	-	STR	Každý zdroj odpověděl chybou.	
+values-b+cs/strings.xml	string	player_sources_all_failed_detail	-	STR	Vyberte zdroj níže a zkuste ho znovu.	
 values-b+cs/strings.xml	string	player_speed	-	STR	Rychlost přehrávání	
 values-b+cs/strings.xml	string	player_speed_text_format	-	STR	Rychlost (%.2fx)	
 values-b+cs/strings.xml	string	player_subtitles_settings	-	STR	Titulky	
@@ -9242,6 +9255,7 @@ values-b+de/strings.xml	string	player_source_resumes_at	-	STR	Beim Wechsel bleib
 values-b+de/strings.xml	string	player_source_retry	-	STR	Wiederholen	
 values-b+de/strings.xml	string	player_source_switch	-	STR	Wechseln	
 values-b+de/strings.xml	string	player_sources_all_failed	-	STR	Jede Quelle hat mit einem Fehler geantwortet.	
+values-b+de/strings.xml	string	player_sources_all_failed_detail	-	STR	Wähle unten eine Quelle, um es erneut zu versuchen.	
 values-b+de/strings.xml	string	player_speed	-	STR	Player-Geschwindigkeit	
 values-b+de/strings.xml	string	player_speed_text_format	-	STR	Geschwindigkeit (%.2fx)	
 values-b+de/strings.xml	string	player_subtitles_settings	-	STR	Untertitel	
@@ -10135,6 +10149,7 @@ values-b+el/strings.xml	string	player_source_resumes_at	-	STR	Η αλλαγή δ
 values-b+el/strings.xml	string	player_source_retry	-	STR	Επανάληψη	
 values-b+el/strings.xml	string	player_source_switch	-	STR	Αλλαγή	
 values-b+el/strings.xml	string	player_sources_all_failed	-	STR	Κάθε πηγή απάντησε με σφάλμα.	
+values-b+el/strings.xml	string	player_sources_all_failed_detail	-	STR	Επιλέξτε μια πηγή παρακάτω για να τη δοκιμάσετε ξανά.	
 values-b+el/strings.xml	string	player_speed	-	STR	Ταχύτητα αναπαραγωγής	
 values-b+el/strings.xml	string	player_speed_text_format	-	STR	Ταχύτητα (%.2fx)	
 values-b+el/strings.xml	string	player_subtitles_settings	-	STR	Υπότιτλοι	
@@ -10752,6 +10767,7 @@ values-b+eo/strings.xml	string	player_source_resumes_at	-	STR	Ŝanĝo konservas 
 values-b+eo/strings.xml	string	player_source_retry	-	STR	Reprovi	
 values-b+eo/strings.xml	string	player_source_switch	-	STR	Ŝanĝi	
 values-b+eo/strings.xml	string	player_sources_all_failed	-	STR	Ĉiu fonto respondis per eraro.	
+values-b+eo/strings.xml	string	player_sources_all_failed_detail	-	STR	Elektu fonton sube por provi ĝin denove.	
 values-b+eo/strings.xml	string	player_speed_text_format	-	STR	Rapido (%.2fx)	
 values-b+eo/strings.xml	string	player_subtitles_settings	-	STR	Subtekstoj	
 values-b+eo/strings.xml	string	player_unmute	-	STR	Malsilentigi	
@@ -11449,6 +11465,7 @@ values-b+es/strings.xml	string	player_source_resumes_at	-	STR	Cambiar mantiene t
 values-b+es/strings.xml	string	player_source_retry	-	STR	Reintentar	
 values-b+es/strings.xml	string	player_source_switch	-	STR	Cambiar	
 values-b+es/strings.xml	string	player_sources_all_failed	-	STR	Todas las fuentes respondieron con un error.	
+values-b+es/strings.xml	string	player_sources_all_failed_detail	-	STR	Elige una fuente abajo para volver a intentarlo.	
 values-b+es/strings.xml	string	player_speed	-	STR	Velocidad del reproductor	
 values-b+es/strings.xml	string	player_speed_text_format	-	STR	Velocidad (%.2f×)	
 values-b+es/strings.xml	string	player_subtitles_settings	-	STR	Subtítulos	
@@ -12181,6 +12198,7 @@ values-b+fa/strings.xml	string	player_source_resumes_at	-	STR	تعویض موق�
 values-b+fa/strings.xml	string	player_source_retry	-	STR	تلاش دوباره	
 values-b+fa/strings.xml	string	player_source_switch	-	STR	تعویض	
 values-b+fa/strings.xml	string	player_sources_all_failed	-	STR	همه منابع با خطا پاسخ دادند.	
+values-b+fa/strings.xml	string	player_sources_all_failed_detail	-	STR	یک منبع را در پایین انتخاب کنید تا دوباره امتحانش کنید.	
 values-b+fa/strings.xml	string	player_speed	-	STR	سرعت پخش‌کننده	
 values-b+fa/strings.xml	string	player_speed_text_format	-	STR	سرعت (%.2f برابر)	
 values-b+fa/strings.xml	string	player_subtitles_settings	-	STR	زیرنویس‌ها	
@@ -12629,6 +12647,7 @@ values-b+fil/strings.xml	string	player_source_resumes_at	-	STR	Mananatili ang po
 values-b+fil/strings.xml	string	player_source_retry	-	STR	Subukang muli	
 values-b+fil/strings.xml	string	player_source_switch	-	STR	Lumipat	
 values-b+fil/strings.xml	string	player_sources_all_failed	-	STR	Nagbalik ng error ang bawat source.	
+values-b+fil/strings.xml	string	player_sources_all_failed_detail	-	STR	Pumili ng source sa ibaba para subukan itong muli.	
 values-b+fil/strings.xml	string	player_speed	-	STR	Bilis ng Manlalaro	
 values-b+fil/strings.xml	string	player_speed_text_format	-	STR	Bilis (%.2fx)	
 values-b+fil/strings.xml	string	player_unmute	-	STR	I-unmute	
@@ -13317,6 +13336,7 @@ values-b+fr/strings.xml	string	player_source_resumes_at	-	STR	Changer conserve v
 values-b+fr/strings.xml	string	player_source_retry	-	STR	Réessayer	
 values-b+fr/strings.xml	string	player_source_switch	-	STR	Changer	
 values-b+fr/strings.xml	string	player_sources_all_failed	-	STR	Chaque source a répondu par une erreur.	
+values-b+fr/strings.xml	string	player_sources_all_failed_detail	-	STR	Choisissez une source ci-dessous pour réessayer.	
 values-b+fr/strings.xml	string	player_speed	-	STR	Vitesse de lecture	
 values-b+fr/strings.xml	string	player_speed_text_format	-	STR	Vitesse (%.2fx)	
 values-b+fr/strings.xml	string	player_subtitles_settings	-	STR	Sous-titres	
@@ -14024,6 +14044,7 @@ values-b+gl/strings.xml	string	player_source_resumes_at	-	STR	Cambiar mantén a 
 values-b+gl/strings.xml	string	player_source_retry	-	STR	Tentar de novo	
 values-b+gl/strings.xml	string	player_source_switch	-	STR	Cambiar	
 values-b+gl/strings.xml	string	player_sources_all_failed	-	STR	Todas as fontes responderon cun erro.	
+values-b+gl/strings.xml	string	player_sources_all_failed_detail	-	STR	Escolle unha fonte abaixo para tentalo de novo.	
 values-b+gl/strings.xml	string	player_speed	-	STR	Velocidade do reproductor	
 values-b+gl/strings.xml	string	player_speed_text_format	-	STR	Velocidade (%.2fx)	
 values-b+gl/strings.xml	string	player_subtitles_settings	-	STR	Subtítulos	
@@ -14587,6 +14608,7 @@ values-b+hi/strings.xml	string	player_source_resumes_at	-	STR	बदलने �
 values-b+hi/strings.xml	string	player_source_retry	-	STR	फिर कोशिश करें	
 values-b+hi/strings.xml	string	player_source_switch	-	STR	बदलें	
 values-b+hi/strings.xml	string	player_sources_all_failed	-	STR	हर स्रोत ने त्रुटि के साथ जवाब दिया।	
+values-b+hi/strings.xml	string	player_sources_all_failed_detail	-	STR	फिर से आज़माने के लिए नीचे कोई स्रोत चुनें।	
 values-b+hi/strings.xml	string	player_speed	-	STR	प्लेयर स्पीड	
 values-b+hi/strings.xml	string	player_speed_text_format	-	STR	स्पीड (%.2fx)	
 values-b+hi/strings.xml	string	player_subtitles_settings	-	STR	उपशीर्षक	
@@ -15378,6 +15400,7 @@ values-b+hr/strings.xml	string	player_source_resumes_at	-	STR	Promjena zadržava
 values-b+hr/strings.xml	string	player_source_retry	-	STR	Pokušaj ponovno	
 values-b+hr/strings.xml	string	player_source_switch	-	STR	Promijeni	
 values-b+hr/strings.xml	string	player_sources_all_failed	-	STR	Svaki je izvor odgovorio pogreškom.	
+values-b+hr/strings.xml	string	player_sources_all_failed_detail	-	STR	Odaberite izvor ispod da biste ga ponovno pokušali.	
 values-b+hr/strings.xml	string	player_speed	-	STR	Brzina playera	
 values-b+hr/strings.xml	string	player_speed_text_format	-	STR	Brzina (%.2f×)	
 values-b+hr/strings.xml	string	player_subtitles_settings	-	STR	Titlovi	
@@ -16257,6 +16280,7 @@ values-b+hu/strings.xml	string	player_source_resumes_at	-	STR	A váltás megőrz
 values-b+hu/strings.xml	string	player_source_retry	-	STR	Újra	
 values-b+hu/strings.xml	string	player_source_switch	-	STR	Váltás	
 values-b+hu/strings.xml	string	player_sources_all_failed	-	STR	Minden forrás hibával válaszolt.	
+values-b+hu/strings.xml	string	player_sources_all_failed_detail	-	STR	Válasszon alább egy forrást az újrapróbáláshoz.	
 values-b+hu/strings.xml	string	player_speed	-	STR	Lejátszás sebessége	
 values-b+hu/strings.xml	string	player_speed_text_format	-	STR	Sebesség (%.2fx)	
 values-b+hu/strings.xml	string	player_subtitles_settings	-	STR	Feliratok	
@@ -17132,6 +17156,7 @@ values-b+in/strings.xml	string	player_source_resumes_at	-	STR	Mengganti tetap me
 values-b+in/strings.xml	string	player_source_retry	-	STR	Coba lagi	
 values-b+in/strings.xml	string	player_source_switch	-	STR	Ganti	
 values-b+in/strings.xml	string	player_sources_all_failed	-	STR	Setiap sumber menjawab dengan galat.	
+values-b+in/strings.xml	string	player_sources_all_failed_detail	-	STR	Pilih sumber di bawah untuk mencobanya lagi.	
 values-b+in/strings.xml	string	player_speed	-	STR	Kecepatan Pemutar	
 values-b+in/strings.xml	string	player_speed_text_format	-	STR	Kecepatan (%.2fx)	
 values-b+in/strings.xml	string	player_subtitles_settings	-	STR	Subtitel	
@@ -18092,6 +18117,7 @@ values-b+it/strings.xml	string	player_source_resumes_at	-	STR	Cambiare mantiene 
 values-b+it/strings.xml	string	player_source_retry	-	STR	Riprova	
 values-b+it/strings.xml	string	player_source_switch	-	STR	Cambia	
 values-b+it/strings.xml	string	player_sources_all_failed	-	STR	Ogni fonte ha risposto con un errore.	
+values-b+it/strings.xml	string	player_sources_all_failed_detail	-	STR	Scegli una fonte qui sotto per riprovarla.	
 values-b+it/strings.xml	string	player_speed	-	STR	Velocità lettore	
 values-b+it/strings.xml	string	player_speed_text_format	-	STR	Velocità (%.2fx)	
 values-b+it/strings.xml	string	player_subtitles_settings	-	STR	Sottotitoli	
@@ -18928,6 +18954,7 @@ values-b+iw/strings.xml	string	player_source_resumes_at	-	STR	ההחלפה שו�
 values-b+iw/strings.xml	string	player_source_retry	-	STR	ניסיון חוזר	
 values-b+iw/strings.xml	string	player_source_switch	-	STR	החלפה	
 values-b+iw/strings.xml	string	player_sources_all_failed	-	STR	כל המקורות השיבו בשגיאה.	
+values-b+iw/strings.xml	string	player_sources_all_failed_detail	-	STR	יש לבחור מקור למטה כדי לנסות אותו שוב.	
 values-b+iw/strings.xml	string	player_speed	-	STR	מהירות הנגן	
 values-b+iw/strings.xml	string	player_speed_text_format	-	STR	מהירות (%.2fx)	
 values-b+iw/strings.xml	string	player_subtitles_settings	-	STR	כתוביות	
@@ -19777,6 +19804,7 @@ values-b+ja/strings.xml	string	player_source_resumes_at	-	STR	切り替えても
 values-b+ja/strings.xml	string	player_source_retry	-	STR	再試行	
 values-b+ja/strings.xml	string	player_source_switch	-	STR	切り替え	
 values-b+ja/strings.xml	string	player_sources_all_failed	-	STR	すべてのソースがエラーを返しました。	
+values-b+ja/strings.xml	string	player_sources_all_failed_detail	-	STR	下のソースを選んでもう一度お試しください。	
 values-b+ja/strings.xml	string	player_speed	-	STR	プレーヤーの速度	
 values-b+ja/strings.xml	string	player_speed_text_format	-	STR	再生速度 (%.2fx)	
 values-b+ja/strings.xml	string	player_subtitles_settings	-	STR	字幕	
@@ -20383,6 +20411,7 @@ values-b+kn/strings.xml	string	player_source_resumes_at	-	STR	ಬದಲಿಸಿ
 values-b+kn/strings.xml	string	player_source_retry	-	STR	ಮರುಪ್ರಯತ್ನಿಸಿ	
 values-b+kn/strings.xml	string	player_source_switch	-	STR	ಬದಲಿಸಿ	
 values-b+kn/strings.xml	string	player_sources_all_failed	-	STR	ಪ್ರತಿಯೊಂದು ಮೂಲವೂ ದೋಷದೊಂದಿಗೆ ಉತ್ತರಿಸಿತು.	
+values-b+kn/strings.xml	string	player_sources_all_failed_detail	-	STR	ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಲು ಕೆಳಗಿನ ಒಂದು ಮೂಲವನ್ನು ಆಯ್ಕೆಮಾಡಿ.	
 values-b+kn/strings.xml	string	player_speed	-	STR	ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್	
 values-b+kn/strings.xml	string	player_speed_text_format	-	STR	ಸ್ಪೀಡ್(%.2fx)	
 values-b+kn/strings.xml	string	player_subtitles_settings	-	STR	ಸಬ್ ಟೈಟಲ್ಸ್	
@@ -21028,6 +21057,7 @@ values-b+ko/strings.xml	string	player_source_resumes_at	-	STR	전환해도 위�
 values-b+ko/strings.xml	string	player_source_retry	-	STR	다시 시도	
 values-b+ko/strings.xml	string	player_source_switch	-	STR	전환	
 values-b+ko/strings.xml	string	player_sources_all_failed	-	STR	모든 소스가 오류로 응답했습니다.	
+values-b+ko/strings.xml	string	player_sources_all_failed_detail	-	STR	아래에서 소스를 선택해 다시 시도하세요.	
 values-b+ko/strings.xml	string	player_speed	-	STR	재생 속도	
 values-b+ko/strings.xml	string	player_speed_text_format	-	STR	속도 (%.2fx)	
 values-b+ko/strings.xml	string	player_subtitles_settings	-	STR	자막	
@@ -21750,6 +21780,7 @@ values-b+lt/strings.xml	string	player_source_resumes_at	-	STR	Perjungus padėtis
 values-b+lt/strings.xml	string	player_source_retry	-	STR	Bandyti dar kartą	
 values-b+lt/strings.xml	string	player_source_switch	-	STR	Perjungti	
 values-b+lt/strings.xml	string	player_sources_all_failed	-	STR	Visi šaltiniai atsakė klaida.	
+values-b+lt/strings.xml	string	player_sources_all_failed_detail	-	STR	Pasirinkite šaltinį žemiau ir bandykite dar kartą.	
 values-b+lt/strings.xml	string	player_speed	-	STR	Grotuvo greitis	
 values-b+lt/strings.xml	string	player_speed_text_format	-	STR	Greitis (%.2fx)	
 values-b+lt/strings.xml	string	player_subtitles_settings	-	STR	Subtitrai	
@@ -22435,6 +22466,7 @@ values-b+lv/strings.xml	string	player_source_resumes_at	-	STR	Pārslēdzot pozī
 values-b+lv/strings.xml	string	player_source_retry	-	STR	Mēģināt vēlreiz	
 values-b+lv/strings.xml	string	player_source_switch	-	STR	Pārslēgt	
 values-b+lv/strings.xml	string	player_sources_all_failed	-	STR	Katrs avots atbildēja ar kļūdu.	
+values-b+lv/strings.xml	string	player_sources_all_failed_detail	-	STR	Izvēlieties avotu zemāk, lai mēģinātu vēlreiz.	
 values-b+lv/strings.xml	string	player_speed	-	STR	Atskaņošanas ātrums	
 values-b+lv/strings.xml	string	player_speed_text_format	-	STR	Ātrums (%.2fx)	
 values-b+lv/strings.xml	string	player_subtitles_settings	-	STR	Subtitri	
@@ -23322,6 +23354,7 @@ values-b+mk/strings.xml	string	player_source_resumes_at	-	STR	Промената
 values-b+mk/strings.xml	string	player_source_retry	-	STR	Обиди се повторно	
 values-b+mk/strings.xml	string	player_source_switch	-	STR	Промени	
 values-b+mk/strings.xml	string	player_sources_all_failed	-	STR	Секој извор одговори со грешка.	
+values-b+mk/strings.xml	string	player_sources_all_failed_detail	-	STR	Изберете извор подолу за да го пробате повторно.	
 values-b+mk/strings.xml	string	player_speed	-	STR	Брзина на плеер	
 values-b+mk/strings.xml	string	player_speed_text_format	-	STR	Брзина (%.2fx)	
 values-b+mk/strings.xml	string	player_subtitles_settings	-	STR	Преводи	
@@ -24014,6 +24047,7 @@ values-b+ml/strings.xml	string	player_source_resumes_at	-	STR	മാറ്റി
 values-b+ml/strings.xml	string	player_source_retry	-	STR	വീണ്ടും ശ്രമിക്കുക	
 values-b+ml/strings.xml	string	player_source_switch	-	STR	മാറ്റുക	
 values-b+ml/strings.xml	string	player_sources_all_failed	-	STR	എല്ലാ ഉറവിടവും ഒരു പിശകോടെ മറുപടി നൽകി.	
+values-b+ml/strings.xml	string	player_sources_all_failed_detail	-	STR	വീണ്ടും ശ്രമിക്കാൻ താഴെ ഒരു ഉറവിടം തിരഞ്ഞെടുക്കുക.	
 values-b+ml/strings.xml	string	player_speed	-	STR	പ്ലേയർ വേഗത	
 values-b+ml/strings.xml	string	player_speed_text_format	-	STR	വേഗം (%.2fx)	
 values-b+ml/strings.xml	string	player_subtitles_settings	-	STR	സബ്ടൈട്ടിൽസ്	
@@ -24635,6 +24669,7 @@ values-b+ms/strings.xml	string	player_source_resumes_at	-	STR	Menukar mengekalka
 values-b+ms/strings.xml	string	player_source_retry	-	STR	Cuba lagi	
 values-b+ms/strings.xml	string	player_source_switch	-	STR	Tukar	
 values-b+ms/strings.xml	string	player_sources_all_failed	-	STR	Setiap sumber menjawab dengan ralat.	
+values-b+ms/strings.xml	string	player_sources_all_failed_detail	-	STR	Pilih sumber di bawah untuk mencubanya semula.	
 values-b+ms/strings.xml	string	player_speed	-	STR	Kelajuan Pemain	
 values-b+ms/strings.xml	string	player_speed_text_format	-	STR	Kelajuan (%.2fx)	
 values-b+ms/strings.xml	string	player_subtitles_settings	-	STR	Sari kata	
@@ -25173,6 +25208,7 @@ values-b+mt/strings.xml	string	player_source_resumes_at	-	STR	Il-bidla żżomm i
 values-b+mt/strings.xml	string	player_source_retry	-	STR	Erġa' pprova	
 values-b+mt/strings.xml	string	player_source_switch	-	STR	Biddel	
 values-b+mt/strings.xml	string	player_sources_all_failed	-	STR	Kull sors wieġeb bi żball.	
+values-b+mt/strings.xml	string	player_sources_all_failed_detail	-	STR	Agħżel sors hawn taħt biex terġa' tipprova.	
 values-b+mt/strings.xml	string	player_speed	-	STR	Veloċità tal-Plejer	
 values-b+mt/strings.xml	string	player_speed_text_format	-	STR	veloċità (%.2fx)	
 values-b+mt/strings.xml	string	player_unmute	-	STR	Ixgħel il-ħoss	
@@ -25686,6 +25722,7 @@ values-b+my/strings.xml	string	player_source_resumes_at	-	STR	ပြောင်
 values-b+my/strings.xml	string	player_source_retry	-	STR	ထပ်ကြိုးစားရန်	
 values-b+my/strings.xml	string	player_source_switch	-	STR	ပြောင်းရန်	
 values-b+my/strings.xml	string	player_sources_all_failed	-	STR	ရင်းမြစ်တိုင်းက အမှားဖြင့် ပြန်ဖြေသည်။	
+values-b+my/strings.xml	string	player_sources_all_failed_detail	-	STR	ထပ်စမ်းရန် အောက်ပါ ရင်းမြစ်တစ်ခုကို ရွေးပါ။	
 values-b+my/strings.xml	string	player_speed	-	STR	ကြည့်ရှုမှုအရှိန်	
 values-b+my/strings.xml	string	player_speed_text_format	-	STR	အရှိန် (%.2fx)	
 values-b+my/strings.xml	string	player_subtitles_settings	-	STR	စာတန်းထိုးများ	
@@ -26207,6 +26244,7 @@ values-b+ne/strings.xml	string	player_source_resumes_at	-	STR	बदल्दा
 values-b+ne/strings.xml	string	player_source_retry	-	STR	फेरि प्रयास गर्नुहोस्	
 values-b+ne/strings.xml	string	player_source_switch	-	STR	बदल्नुहोस्	
 values-b+ne/strings.xml	string	player_sources_all_failed	-	STR	हरेक स्रोतले त्रुटिसहित जवाफ दियो।	
+values-b+ne/strings.xml	string	player_sources_all_failed_detail	-	STR	फेरि प्रयास गर्न तलको एउटा स्रोत छान्नुहोस्।	
 values-b+ne/strings.xml	string	player_speed	-	STR	प्लेयर स्पीड	
 values-b+ne/strings.xml	string	player_speed_text_format	-	STR	गति (%.2fx)	
 values-b+ne/strings.xml	string	player_subtitles_settings	-	STR	उपशीर्षक	
@@ -26836,6 +26874,7 @@ values-b+nl/strings.xml	string	player_source_resumes_at	-	STR	Wisselen behoudt j
 values-b+nl/strings.xml	string	player_source_retry	-	STR	Opnieuw	
 values-b+nl/strings.xml	string	player_source_switch	-	STR	Wisselen	
 values-b+nl/strings.xml	string	player_sources_all_failed	-	STR	Elke bron antwoordde met een fout.	
+values-b+nl/strings.xml	string	player_sources_all_failed_detail	-	STR	Kies hieronder een bron om het opnieuw te proberen.	
 values-b+nl/strings.xml	string	player_speed	-	STR	Afspelen Snelheid	
 values-b+nl/strings.xml	string	player_speed_text_format	-	STR	Snelheid (%.2fx)	
 values-b+nl/strings.xml	string	player_subtitles_settings	-	STR	Ondertitels	
@@ -27466,6 +27505,7 @@ values-b+nn/strings.xml	string	player_source_resumes_at	-	STR	Bytet held på pla
 values-b+nn/strings.xml	string	player_source_retry	-	STR	Prøv igjen	
 values-b+nn/strings.xml	string	player_source_switch	-	STR	Byt	
 values-b+nn/strings.xml	string	player_sources_all_failed	-	STR	Kvar kjelde svarte med ein feil.	
+values-b+nn/strings.xml	string	player_sources_all_failed_detail	-	STR	Vel ei kjelde nedanfor for å prøve igjen.	
 values-b+nn/strings.xml	string	player_speed	-	STR	Avspelinghastigheit	
 values-b+nn/strings.xml	string	player_speed_text_format	-	STR	Avspelinghastigheit (%.2fx)	
 values-b+nn/strings.xml	string	player_subtitles_settings	-	STR	Undertekstar	
@@ -28017,6 +28057,7 @@ values-b+no/strings.xml	string	player_source_resumes_at	-	STR	Bytte beholder pos
 values-b+no/strings.xml	string	player_source_retry	-	STR	Prøv igjen	
 values-b+no/strings.xml	string	player_source_switch	-	STR	Bytt	
 values-b+no/strings.xml	string	player_sources_all_failed	-	STR	Hver kilde svarte med en feil.	
+values-b+no/strings.xml	string	player_sources_all_failed_detail	-	STR	Velg en kilde nedenfor for å prøve igjen.	
 values-b+no/strings.xml	string	player_speed	-	STR	Spillerhastighet	
 values-b+no/strings.xml	string	player_speed_text_format	-	STR	Avspillingshastighet (%.2fx)	
 values-b+no/strings.xml	string	player_subtitles_settings	-	STR	Undertekster	
@@ -28556,6 +28597,7 @@ values-b+or/strings.xml	string	player_source_resumes_at	-	STR	ବଦଳାଇଲ
 values-b+or/strings.xml	string	player_source_retry	-	STR	ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ	
 values-b+or/strings.xml	string	player_source_switch	-	STR	ବଦଳାନ୍ତୁ	
 values-b+or/strings.xml	string	player_sources_all_failed	-	STR	ପ୍ରତ୍ୟେକ ଉତ୍ସ ଏକ ତ୍ରୁଟି ସହ ଉତ୍ତର ଦେଲା।	
+values-b+or/strings.xml	string	player_sources_all_failed_detail	-	STR	ପୁଣି ଚେଷ୍ଟା କରିବାକୁ ତଳୁ ଏକ ଉତ୍ସ ବାଛନ୍ତୁ।	
 values-b+or/strings.xml	string	player_speed_text_format	-	STR	ଵେଗ (%.2fଗୁଣ)	
 values-b+or/strings.xml	string	player_subtitles_settings	-	STR	ଉପଶୀର୍ଷକ	
 values-b+or/strings.xml	string	player_unmute	-	STR	ଅନମ୍ୟୁଟ କରନ୍ତୁ	
@@ -29268,6 +29310,7 @@ values-b+pl/strings.xml	string	player_source_resumes_at	-	STR	Przełączenie zac
 values-b+pl/strings.xml	string	player_source_retry	-	STR	Ponów	
 values-b+pl/strings.xml	string	player_source_switch	-	STR	Przełącz	
 values-b+pl/strings.xml	string	player_sources_all_failed	-	STR	Każde źródło odpowiedziało błędem.	
+values-b+pl/strings.xml	string	player_sources_all_failed_detail	-	STR	Wybierz źródło poniżej, aby spróbować ponownie.	
 values-b+pl/strings.xml	string	player_speed	-	STR	Prędkość odtwarzania	
 values-b+pl/strings.xml	string	player_speed_text_format	-	STR	Prędkość (%.2fx)	
 values-b+pl/strings.xml	string	player_subtitles_settings	-	STR	Napisy	
@@ -30228,6 +30271,7 @@ values-b+pt+BR/strings.xml	string	player_source_resumes_at	-	STR	Trocar mantém 
 values-b+pt+BR/strings.xml	string	player_source_retry	-	STR	Tentar novamente	
 values-b+pt+BR/strings.xml	string	player_source_switch	-	STR	Trocar	
 values-b+pt+BR/strings.xml	string	player_sources_all_failed	-	STR	Todas as fontes responderam com um erro.	
+values-b+pt+BR/strings.xml	string	player_sources_all_failed_detail	-	STR	Escolha uma fonte abaixo para tentar de novo.	
 values-b+pt+BR/strings.xml	string	player_speed	-	STR	Velocidade de reprodução	
 values-b+pt+BR/strings.xml	string	player_speed_text_format	-	STR	Velocidade (%.2fx)	
 values-b+pt+BR/strings.xml	string	player_subtitles_settings	-	STR	Modificar legendas	
@@ -31185,6 +31229,7 @@ values-b+pt/strings.xml	string	player_source_resumes_at	-	STR	Mudar mantém a su
 values-b+pt/strings.xml	string	player_source_retry	-	STR	Repetir	
 values-b+pt/strings.xml	string	player_source_switch	-	STR	Mudar	
 values-b+pt/strings.xml	string	player_sources_all_failed	-	STR	Todas as fontes responderam com um erro.	
+values-b+pt/strings.xml	string	player_sources_all_failed_detail	-	STR	Escolha uma fonte abaixo para tentar de novo.	
 values-b+pt/strings.xml	string	player_speed	-	STR	Velocidade de Reprodução	
 values-b+pt/strings.xml	string	player_speed_text_format	-	STR	Velocidade (%.2fx)	
 values-b+pt/strings.xml	string	player_subtitles_settings	-	STR	Legendas	
@@ -32044,6 +32089,7 @@ values-b+qt/strings.xml	string	player_source_resumes_at	-	STR	ooh haa oh aaaaa: 
 values-b+qt/strings.xml	string	player_source_retry	-	STR	oouuh ooh	
 values-b+qt/strings.xml	string	player_source_switch	-	STR	ooh haa	
 values-b+qt/strings.xml	string	player_sources_all_failed	-	STR	Ooh ahh uuh oouh.	
+values-b+qt/strings.xml	string	player_sources_all_failed_detail	-	STR	Oouh ahh ooh uuh ahh.	
 values-b+qt/strings.xml	string	player_speed	-	STR	oouuh aauuh oha	
 values-b+qt/strings.xml	string	player_speed_text_format	-	STR	aaaaaaaaaaaaahh (%.2foouo)	
 values-b+qt/strings.xml	string	player_subtitles_settings	-	STR	ahhhaauugghh	
@@ -32885,6 +32931,7 @@ values-b+ro/strings.xml	string	player_source_resumes_at	-	STR	Schimbarea păstre
 values-b+ro/strings.xml	string	player_source_retry	-	STR	Reîncearcă	
 values-b+ro/strings.xml	string	player_source_switch	-	STR	Schimbă	
 values-b+ro/strings.xml	string	player_sources_all_failed	-	STR	Fiecare sursă a răspuns cu o eroare.	
+values-b+ro/strings.xml	string	player_sources_all_failed_detail	-	STR	Alegeți o sursă de mai jos pentru a încerca din nou.	
 values-b+ro/strings.xml	string	player_speed	-	STR	Viteză video	
 values-b+ro/strings.xml	string	player_speed_text_format	-	STR	Viteză (%.2fx)	
 values-b+ro/strings.xml	string	player_subtitles_settings	-	STR	Subtitrare	
@@ -33809,6 +33856,7 @@ values-b+ru/strings.xml	string	player_source_resumes_at	-	STR	Переключе
 values-b+ru/strings.xml	string	player_source_retry	-	STR	Повторить	
 values-b+ru/strings.xml	string	player_source_switch	-	STR	Переключить	
 values-b+ru/strings.xml	string	player_sources_all_failed	-	STR	Каждый источник ответил ошибкой.	
+values-b+ru/strings.xml	string	player_sources_all_failed_detail	-	STR	Выберите источник ниже, чтобы попробовать снова.	
 values-b+ru/strings.xml	string	player_speed	-	STR	Скорость проигрывателя	
 values-b+ru/strings.xml	string	player_speed_text_format	-	STR	Скорость (%.2fx)	
 values-b+ru/strings.xml	string	player_subtitles_settings	-	STR	Субтитры	
@@ -34639,6 +34687,7 @@ values-b+sk/strings.xml	string	player_source_resumes_at	-	STR	Prepnutie zachová
 values-b+sk/strings.xml	string	player_source_retry	-	STR	Skúsiť znova	
 values-b+sk/strings.xml	string	player_source_switch	-	STR	Prepnúť	
 values-b+sk/strings.xml	string	player_sources_all_failed	-	STR	Každý zdroj odpovedal chybou.	
+values-b+sk/strings.xml	string	player_sources_all_failed_detail	-	STR	Vyberte zdroj nižšie a skúste ho znova.	
 values-b+sk/strings.xml	string	player_speed	-	STR	Rýchlosť prehrávania	
 values-b+sk/strings.xml	string	player_speed_text_format	-	STR	Rýchlosť (%.2fx)	
 values-b+sk/strings.xml	string	player_subtitles_settings	-	STR	Titulky	
@@ -35323,6 +35372,7 @@ values-b+so/strings.xml	string	player_source_resumes_at	-	STR	Beddelku wuxuu ila
 values-b+so/strings.xml	string	player_source_retry	-	STR	Isku day mar kale	
 values-b+so/strings.xml	string	player_source_switch	-	STR	Beddel	
 values-b+so/strings.xml	string	player_sources_all_failed	-	STR	Il kasta wuxuu ku jawaabay qalad.	
+values-b+so/strings.xml	string	player_sources_all_failed_detail	-	STR	Dooro il hoose si aad mar kale isku daydo.	
 values-b+so/strings.xml	string	player_speed	-	STR	Xawaaraha daaraha	
 values-b+so/strings.xml	string	player_speed_text_format	-	STR	Xawaaraha (%.2fx)	
 values-b+so/strings.xml	string	player_subtitles_settings	-	STR	Qoraal-hoosaadka	
@@ -36164,6 +36214,7 @@ values-b+sq/strings.xml	string	player_source_resumes_at	-	STR	Ndërrimi e ruan p
 values-b+sq/strings.xml	string	player_source_retry	-	STR	Provo përsëri	
 values-b+sq/strings.xml	string	player_source_switch	-	STR	Ndërro	
 values-b+sq/strings.xml	string	player_sources_all_failed	-	STR	Çdo burim u përgjigj me një gabim.	
+values-b+sq/strings.xml	string	player_sources_all_failed_detail	-	STR	Zgjidh një burim më poshtë për ta provuar sërish.	
 values-b+sq/strings.xml	string	player_speed	-	STR	Shpejtësia e luajtësit	
 values-b+sq/strings.xml	string	player_speed_text_format	-	STR	Shpejtësia (%.2fx)	
 values-b+sq/strings.xml	string	player_subtitles_settings	-	STR	Titrat	
@@ -37105,6 +37156,7 @@ values-b+sv/strings.xml	string	player_source_resumes_at	-	STR	Att byta behåller
 values-b+sv/strings.xml	string	player_source_retry	-	STR	Försök igen	
 values-b+sv/strings.xml	string	player_source_switch	-	STR	Byt	
 values-b+sv/strings.xml	string	player_sources_all_failed	-	STR	Varje källa svarade med ett fel.	
+values-b+sv/strings.xml	string	player_sources_all_failed_detail	-	STR	Välj en källa nedan för att försöka igen.	
 values-b+sv/strings.xml	string	player_speed	-	STR	Spelarhastighet	
 values-b+sv/strings.xml	string	player_speed_text_format	-	STR	Hastighet (%.2fx)	
 values-b+sv/strings.xml	string	player_subtitles_settings	-	STR	Undertexter	
@@ -38046,6 +38098,7 @@ values-b+ta/strings.xml	string	player_source_resumes_at	-	STR	மாற்றி
 values-b+ta/strings.xml	string	player_source_retry	-	STR	மீண்டும் முயல்க	
 values-b+ta/strings.xml	string	player_source_switch	-	STR	மாற்று	
 values-b+ta/strings.xml	string	player_sources_all_failed	-	STR	ஒவ்வொரு மூலமும் பிழையுடன் பதிலளித்தது.	
+values-b+ta/strings.xml	string	player_sources_all_failed_detail	-	STR	மீண்டும் முயல கீழே உள்ள ஒரு மூலத்தைத் தேர்ந்தெடுக்கவும்.	
 values-b+ta/strings.xml	string	player_speed	-	STR	பிளேயர் விரைவு	
 values-b+ta/strings.xml	string	player_speed_text_format	-	STR	விரைவு (%.2fx)	
 values-b+ta/strings.xml	string	player_subtitles_settings	-	STR	வசன வரிகள்	
@@ -38590,6 +38643,7 @@ values-b+ti/strings.xml	string	player_source_resumes_at	-	STR	ምቕያር ቦ�
 values-b+ti/strings.xml	string	player_source_retry	-	STR	እንደገና ፈትን	
 values-b+ti/strings.xml	string	player_source_switch	-	STR	ቀይር	
 values-b+ti/strings.xml	string	player_sources_all_failed	-	STR	ነፍሲ ወከፍ ምንጪ ብጌጋ መለሰ።	
+values-b+ti/strings.xml	string	player_sources_all_failed_detail	-	STR	ደጊምካ ንምፍታን ካብ ታሕቲ ምንጪ ምረጽ።	
 values-b+ti/strings.xml	string	player_unmute	-	STR	ድምጺ ወልዕ	
 values-b+ti/strings.xml	string	player_volume_down	-	STR	ድምጺ ኣንኪ	
 values-b+ti/strings.xml	string	player_volume_up	-	STR	ድምጺ ኣልዕል	
@@ -38931,6 +38985,7 @@ values-b+tl/strings.xml	string	player_source_resumes_at	-	STR	Mananatili ang pos
 values-b+tl/strings.xml	string	player_source_retry	-	STR	Subukang muli	
 values-b+tl/strings.xml	string	player_source_switch	-	STR	Lumipat	
 values-b+tl/strings.xml	string	player_sources_all_failed	-	STR	Nagbalik ng error ang bawat source.	
+values-b+tl/strings.xml	string	player_sources_all_failed_detail	-	STR	Pumili ng source sa ibaba para subukan itong muli.	
 values-b+tl/strings.xml	string	player_speed	-	STR	Bilis ng Playback	
 values-b+tl/strings.xml	string	player_speed_text_format	-	STR	Bilis (%.2fx)	
 values-b+tl/strings.xml	string	player_subtitles_settings	-	STR	Subtitles	
@@ -39644,6 +39699,7 @@ values-b+tr/strings.xml	string	player_source_resumes_at	-	STR	Değiştirmek konu
 values-b+tr/strings.xml	string	player_source_retry	-	STR	Yeniden dene	
 values-b+tr/strings.xml	string	player_source_switch	-	STR	Değiştir	
 values-b+tr/strings.xml	string	player_sources_all_failed	-	STR	Her kaynak bir hatayla yanıt verdi.	
+values-b+tr/strings.xml	string	player_sources_all_failed_detail	-	STR	Yeniden denemek için aşağıdan bir kaynak seçin.	
 values-b+tr/strings.xml	string	player_speed	-	STR	Oynatıcı Hızı	
 values-b+tr/strings.xml	string	player_speed_text_format	-	STR	Hız (%.2fx)	
 values-b+tr/strings.xml	string	player_subtitles_settings	-	STR	Altyazılar	
@@ -40623,6 +40679,7 @@ values-b+uk/strings.xml	string	player_source_resumes_at	-	STR	Перемикан
 values-b+uk/strings.xml	string	player_source_retry	-	STR	Повторити	
 values-b+uk/strings.xml	string	player_source_switch	-	STR	Перемкнути	
 values-b+uk/strings.xml	string	player_sources_all_failed	-	STR	Кожне джерело відповіло помилкою.	
+values-b+uk/strings.xml	string	player_sources_all_failed_detail	-	STR	Виберіть джерело нижче, щоб спробувати знову.	
 values-b+uk/strings.xml	string	player_speed	-	STR	Швидкість програвача	
 values-b+uk/strings.xml	string	player_speed_text_format	-	STR	Швидкість (%.2fx)	
 values-b+uk/strings.xml	string	player_subtitles_settings	-	STR	Субтитри	
@@ -41486,6 +41543,7 @@ values-b+ur/strings.xml	string	player_source_resumes_at	-	STR	بدلنے سے آ
 values-b+ur/strings.xml	string	player_source_retry	-	STR	دوبارہ کوشش کریں	
 values-b+ur/strings.xml	string	player_source_switch	-	STR	بدلیں	
 values-b+ur/strings.xml	string	player_sources_all_failed	-	STR	ہر ماخذ نے ایک خرابی کے ساتھ جواب دیا۔	
+values-b+ur/strings.xml	string	player_sources_all_failed_detail	-	STR	دوبارہ آزمانے کے لیے نیچے سے کوئی ماخذ منتخب کریں۔	
 values-b+ur/strings.xml	string	player_speed	-	STR	چلانے کی رفتار	
 values-b+ur/strings.xml	string	player_speed_text_format	-	STR	رفتار (%.2fx)	
 values-b+ur/strings.xml	string	player_subtitles_settings	-	STR	سنٹیٹلز	
@@ -42347,6 +42405,7 @@ values-b+vi/strings.xml	string	player_source_resumes_at	-	STR	Chuyển vẫn gi�
 values-b+vi/strings.xml	string	player_source_retry	-	STR	Thử lại	
 values-b+vi/strings.xml	string	player_source_switch	-	STR	Chuyển	
 values-b+vi/strings.xml	string	player_sources_all_failed	-	STR	Mọi nguồn đều trả về lỗi.	
+values-b+vi/strings.xml	string	player_sources_all_failed_detail	-	STR	Chọn một nguồn bên dưới để thử lại.	
 values-b+vi/strings.xml	string	player_speed	-	STR	Tốc độ phát	
 values-b+vi/strings.xml	string	player_speed_text_format	-	STR	Tốc độ (%.2fx)	
 values-b+vi/strings.xml	string	player_subtitles_settings	-	STR	Phụ đề	
@@ -43268,6 +43327,7 @@ values-b+zh+TW/strings.xml	string	player_source_resumes_at	-	STR	切換會保留
 values-b+zh+TW/strings.xml	string	player_source_retry	-	STR	重試	
 values-b+zh+TW/strings.xml	string	player_source_switch	-	STR	切換	
 values-b+zh+TW/strings.xml	string	player_sources_all_failed	-	STR	所有來源都傳回了錯誤。	
+values-b+zh+TW/strings.xml	string	player_sources_all_failed_detail	-	STR	請在下方選擇一個來源再試一次。	
 values-b+zh+TW/strings.xml	string	player_speed	-	STR	播放速度	
 values-b+zh+TW/strings.xml	string	player_speed_text_format	-	STR	速度（%.2fx）	
 values-b+zh+TW/strings.xml	string	player_subtitles_settings	-	STR	字幕	
@@ -44185,6 +44245,7 @@ values-b+zh/strings.xml	string	player_source_resumes_at	-	STR	切换会保留播
 values-b+zh/strings.xml	string	player_source_retry	-	STR	重试	
 values-b+zh/strings.xml	string	player_source_switch	-	STR	切换	
 values-b+zh/strings.xml	string	player_sources_all_failed	-	STR	所有来源都返回了错误。	
+values-b+zh/strings.xml	string	player_sources_all_failed_detail	-	STR	请在下方选择一个来源再试一次。	
 values-b+zh/strings.xml	string	player_speed	-	STR	播放速度	
 values-b+zh/strings.xml	string	player_speed_text_format	-	STR	速度（%.2fx）	
 values-b+zh/strings.xml	string	player_subtitles_settings	-	STR	字幕	
@@ -45268,6 +45329,7 @@ values/strings.xml	string	player_source_resumes_at	-	STR	Switching keeps your po
 values/strings.xml	string	player_source_retry	-	STR	Retry	
 values/strings.xml	string	player_source_switch	-	STR	Switch	
 values/strings.xml	string	player_sources_all_failed	-	STR	Every source answered with an error.	
+values/strings.xml	string	player_sources_all_failed_detail	-	STR	Choose a source below to try it again.	
 values/strings.xml	string	player_speed	-	STR	Player Speed	
 values/strings.xml	string	player_speed_text_format	-	STR	Speed (%.2fx)	
 values/strings.xml	string	player_subtitles_settings	-	STR	Subtitles	

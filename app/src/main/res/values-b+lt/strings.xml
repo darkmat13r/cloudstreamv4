@@ -313,6 +313,7 @@
 <string name="player_source_retry">"Bandyti dar kartą"</string>
 <string name="player_source_switch">"Perjungti"</string>
 <string name="player_sources_all_failed">"Visi šaltiniai atsakė klaida."</string>
+<string name="player_sources_all_failed_detail">"Pasirinkite šaltinį žemiau ir bandykite dar kartą."</string>
 <string name="player_speed">"Grotuvo greitis"</string>
 <string name="player_speed_text_format" formatted="true">"Greitis (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitrai"</string>

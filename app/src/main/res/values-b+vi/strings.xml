@@ -556,6 +556,7 @@
 <string name="player_source_retry">"Thử lại"</string>
 <string name="player_source_switch">"Chuyển"</string>
 <string name="player_sources_all_failed">"Mọi nguồn đều trả về lỗi."</string>
+<string name="player_sources_all_failed_detail">"Chọn một nguồn bên dưới để thử lại."</string>
 <string name="player_speed">"Tốc độ phát"</string>
 <string name="player_speed_text_format" formatted="true">"Tốc độ (%.2fx)"</string>
 <string name="player_subtitles_settings">"Phụ đề"</string>

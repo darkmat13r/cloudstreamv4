@@ -213,6 +213,7 @@
 <string name="player_source_retry">"እንደገና ሞክር"</string>
 <string name="player_source_switch">"ቀይር"</string>
 <string name="player_sources_all_failed">"እያንዳንዱ ምንጭ በስህተት መለሰ።"</string>
+<string name="player_sources_all_failed_detail">"እንደገና ለመሞከር ከታች ምንጭ ይምረጡ።"</string>
 <string name="player_speed">"የአጫዋች ፍጥነት"</string>
 <string name="player_speed_text_format" formatted="true">"ፍጥነት(%.2fx)"</string>
 <string name="player_unmute">"ድምፅ አብራ"</string>

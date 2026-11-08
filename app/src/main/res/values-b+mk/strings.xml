@@ -555,6 +555,7 @@
 <string name="player_source_retry">"Обиди се повторно"</string>
 <string name="player_source_switch">"Промени"</string>
 <string name="player_sources_all_failed">"Секој извор одговори со грешка."</string>
+<string name="player_sources_all_failed_detail">"Изберете извор подолу за да го пробате повторно."</string>
 <string name="player_speed">"Брзина на плеер"</string>
 <string name="player_speed_text_format" formatted="true">"Брзина (%.2fx)"</string>
 <string name="player_subtitles_settings">"Преводи"</string>

@@ -555,6 +555,7 @@
 <string name="player_source_retry">"جرّب كمان مرة"</string>
 <string name="player_source_switch">"بدّل"</string>
 <string name="player_sources_all_failed">"كل المصادر رجّعت غلط."</string>
+<string name="player_sources_all_failed_detail">"اختار مصدر من تحت لتجرّبه مرة تانية."</string>
 <string name="player_speed">"سرعة الڤيديو"</string>
 <string name="player_speed_text_format" formatted="true">"السرعة (%.2fx)"</string>
 <string name="player_subtitles_settings">"الترجمة"</string>

@@ -350,6 +350,7 @@
 <string name="player_source_retry">تلاش دوباره</string>
 <string name="player_source_switch">تعویض</string>
 <string name="player_sources_all_failed">همه منابع با خطا پاسخ دادند.</string>
+<string name="player_sources_all_failed_detail">یک منبع را در پایین انتخاب کنید تا دوباره امتحانش کنید.</string>
 <string name="player_speed">سرعت پخش‌کننده</string>
 <string name="player_speed_text_format">سرعت (%.2f برابر)</string>
 <string name="player_subtitles_settings">زیرنویس‌ها</string>

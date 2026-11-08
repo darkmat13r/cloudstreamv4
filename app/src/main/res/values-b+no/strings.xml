@@ -419,6 +419,7 @@
 <string name="player_source_retry">"Prøv igjen"</string>
 <string name="player_source_switch">"Bytt"</string>
 <string name="player_sources_all_failed">"Hver kilde svarte med en feil."</string>
+<string name="player_sources_all_failed_detail">"Velg en kilde nedenfor for å prøve igjen."</string>
 <string name="player_speed">"Spillerhastighet"</string>
 <string name="player_speed_text_format" formatted="true">"Avspillingshastighet (%.2fx)"</string>
 <string name="player_subtitles_settings">"Undertekster"</string>

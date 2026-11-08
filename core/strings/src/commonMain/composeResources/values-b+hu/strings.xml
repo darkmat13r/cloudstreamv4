@@ -502,6 +502,7 @@
 <string name="player_source_retry">Újra</string>
 <string name="player_source_switch">Váltás</string>
 <string name="player_sources_all_failed">Minden forrás hibával válaszolt.</string>
+<string name="player_sources_all_failed_detail">Válasszon alább egy forrást az újrapróbáláshoz.</string>
 <string name="player_speed">Lejátszás sebessége</string>
 <string name="player_speed_text_format">Sebesség (%.2fx)</string>
 <string name="player_subtitles_settings">Feliratok</string>

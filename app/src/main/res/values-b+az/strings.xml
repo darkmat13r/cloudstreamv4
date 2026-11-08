@@ -253,6 +253,7 @@
 <string name="player_source_retry">"Yenidən cəhd et"</string>
 <string name="player_source_switch">"Dəyiş"</string>
 <string name="player_sources_all_failed">"Hər mənbə xəta ilə cavab verdi."</string>
+<string name="player_sources_all_failed_detail">"Yenidən sınamaq üçün aşağıdan mənbə seçin."</string>
 <string name="player_speed_text_format" formatted="true">"Sürət (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitrlər"</string>
 <string name="player_subtitles_settings_des">"Pleyerin subtitr parametrləri"</string>

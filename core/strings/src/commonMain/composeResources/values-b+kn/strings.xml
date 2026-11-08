@@ -312,6 +312,7 @@
 <string name="player_play_now">ಈಗ ಪ್ಲೇ ಮಾಡಿ</string>
 <string name="player_source_decoded">%s ಡಿಕೋಡ್ ಮಾಡಲಾಗಿದೆ</string>
 <string name="player_sources_all_failed">ಪ್ರತಿಯೊಂದು ಮೂಲವೂ ದೋಷದೊಂದಿಗೆ ಉತ್ತರಿಸಿತು.</string>
+<string name="player_sources_all_failed_detail">ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಲು ಕೆಳಗಿನ ಒಂದು ಮೂಲವನ್ನು ಆಯ್ಕೆಮಾಡಿ.</string>
 <string name="player_volume_down">ವಾಲ್ಯೂಮ್ ಕಡಿಮೆ ಮಾಡಿ</string>
 <string name="player_volume_up">ವಾಲ್ಯೂಮ್ ಹೆಚ್ಚಿಸಿ</string>
 <string name="search_suggestions_return_hint">Return ಎಲ್ಲವನ್ನೂ ಹುಡುಕುತ್ತದೆ</string>

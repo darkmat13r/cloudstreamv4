@@ -555,6 +555,7 @@
 <string name="player_source_retry">Паўтарыць</string>
 <string name="player_source_switch">Пераключыць</string>
 <string name="player_sources_all_failed">Кожная крыніца адказала памылкай.</string>
+<string name="player_sources_all_failed_detail">Выберыце крыніцу ніжэй, каб паспрабаваць яе зноў.</string>
 <string name="player_speed">Хуткасць прайгравальніка</string>
 <string name="player_speed_text_format">Хуткасць (%.2fx)</string>
 <string name="player_subtitles_settings">Субцітры</string>

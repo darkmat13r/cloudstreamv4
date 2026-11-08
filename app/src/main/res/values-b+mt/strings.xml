@@ -218,6 +218,7 @@
 <string name="player_source_retry">"Erġa' pprova"</string>
 <string name="player_source_switch">"Biddel"</string>
 <string name="player_sources_all_failed">"Kull sors wieġeb bi żball."</string>
+<string name="player_sources_all_failed_detail">"Agħżel sors hawn taħt biex terġa' tipprova."</string>
 <string name="player_speed">"Veloċità tal-Plejer"</string>
 <string name="player_speed_text_format" formatted="true">"veloċità (%.2fx)"</string>
 <string name="player_unmute">"Ixgħel il-ħoss"</string>

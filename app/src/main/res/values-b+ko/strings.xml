@@ -555,6 +555,7 @@
 <string name="player_source_retry">"다시 시도"</string>
 <string name="player_source_switch">"전환"</string>
 <string name="player_sources_all_failed">"모든 소스가 오류로 응답했습니다."</string>
+<string name="player_sources_all_failed_detail">"아래에서 소스를 선택해 다시 시도하세요."</string>
 <string name="player_speed">"재생 속도"</string>
 <string name="player_speed_text_format" formatted="true">"속도 (%.2fx)"</string>
 <string name="player_subtitles_settings">"자막"</string>

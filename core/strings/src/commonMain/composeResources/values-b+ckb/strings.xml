@@ -268,6 +268,7 @@
 <string name="player_play_now">ئێستا لێبدە</string>
 <string name="player_source_decoded">%s دیکۆدکراو</string>
 <string name="player_sources_all_failed">هەموو سەرچاوەکان بە هەڵەیەک وەڵامیان دایەوە.</string>
+<string name="player_sources_all_failed_detail">سەرچاوەیەک لە خوارەوە هەڵبژێرە بۆ ئەوەی دووبارە تاقی بکەیتەوە.</string>
 <string name="player_volume_down">دەنگ نزمکردنەوە</string>
 <string name="player_volume_up">دەنگ بەرزکردنەوە</string>
 <string name="search_suggestions_return_hint">Return لە هەمووی دەگەڕێت</string>

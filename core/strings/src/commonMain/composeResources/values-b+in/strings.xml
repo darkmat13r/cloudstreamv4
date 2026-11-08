@@ -556,6 +556,7 @@
 <string name="player_source_retry">Coba lagi</string>
 <string name="player_source_switch">Ganti</string>
 <string name="player_sources_all_failed">Setiap sumber menjawab dengan galat.</string>
+<string name="player_sources_all_failed_detail">Pilih sumber di bawah untuk mencobanya lagi.</string>
 <string name="player_speed">Kecepatan Pemutar</string>
 <string name="player_speed_text_format">Kecepatan (%.2fx)</string>
 <string name="player_subtitles_settings">Subtitel</string>

@@ -556,6 +556,7 @@
 <string name="player_source_retry">"Tentar novamente"</string>
 <string name="player_source_switch">"Trocar"</string>
 <string name="player_sources_all_failed">"Todas as fontes responderam com um erro."</string>
+<string name="player_sources_all_failed_detail">"Escolha uma fonte abaixo para tentar de novo."</string>
 <string name="player_speed">"Velocidade de reprodução"</string>
 <string name="player_speed_text_format" formatted="true">"Velocidade (%.2fx)"</string>
 <string name="player_subtitles_settings">"Modificar legendas"</string>

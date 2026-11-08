@@ -556,6 +556,7 @@
 <string name="player_source_retry">"Yeniden dene"</string>
 <string name="player_source_switch">"Değiştir"</string>
 <string name="player_sources_all_failed">"Her kaynak bir hatayla yanıt verdi."</string>
+<string name="player_sources_all_failed_detail">"Yeniden denemek için aşağıdan bir kaynak seçin."</string>
 <string name="player_speed">"Oynatıcı Hızı"</string>
 <string name="player_speed_text_format" formatted="true">"Hız (%.2fx)"</string>
 <string name="player_subtitles_settings">"Altyazılar"</string>

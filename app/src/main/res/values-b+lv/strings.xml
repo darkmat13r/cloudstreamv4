@@ -483,6 +483,7 @@
 <string name="player_source_retry">"Mēģināt vēlreiz"</string>
 <string name="player_source_switch">"Pārslēgt"</string>
 <string name="player_sources_all_failed">"Katrs avots atbildēja ar kļūdu."</string>
+<string name="player_sources_all_failed_detail">"Izvēlieties avotu zemāk, lai mēģinātu vēlreiz."</string>
 <string name="player_speed">"Atskaņošanas ātrums"</string>
 <string name="player_speed_text_format" formatted="true">"Ātrums (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitri"</string>

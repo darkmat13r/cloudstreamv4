@@ -224,6 +224,7 @@
 <string name="player_source_retry">"ಮರುಪ್ರಯತ್ನಿಸಿ"</string>
 <string name="player_source_switch">"ಬದಲಿಸಿ"</string>
 <string name="player_sources_all_failed">"ಪ್ರತಿಯೊಂದು ಮೂಲವೂ ದೋಷದೊಂದಿಗೆ ಉತ್ತರಿಸಿತು."</string>
+<string name="player_sources_all_failed_detail">"ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಲು ಕೆಳಗಿನ ಒಂದು ಮೂಲವನ್ನು ಆಯ್ಕೆಮಾಡಿ."</string>
 <string name="player_speed">"ಪ್ಲೇಯರ್ ಸ್ಪೀಡ್"</string>
 <string name="player_speed_text_format" formatted="true">"ಸ್ಪೀಡ್(%.2fx)"</string>
 <string name="player_subtitles_settings">"ಸಬ್ ಟೈಟಲ್ಸ್"</string>

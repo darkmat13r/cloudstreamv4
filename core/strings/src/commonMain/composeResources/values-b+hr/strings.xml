@@ -555,6 +555,7 @@
 <string name="player_source_retry">Pokušaj ponovno</string>
 <string name="player_source_switch">Promijeni</string>
 <string name="player_sources_all_failed">Svaki je izvor odgovorio pogreškom.</string>
+<string name="player_sources_all_failed_detail">Odaberite izvor ispod da biste ga ponovno pokušali.</string>
 <string name="player_speed">Brzina playera</string>
 <string name="player_speed_text_format">Brzina (%.2f×)</string>
 <string name="player_subtitles_settings">Titlovi</string>

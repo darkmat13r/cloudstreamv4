@@ -511,6 +511,7 @@
 <string name="player_source_retry">"Επανάληψη"</string>
 <string name="player_source_switch">"Αλλαγή"</string>
 <string name="player_sources_all_failed">"Κάθε πηγή απάντησε με σφάλμα."</string>
+<string name="player_sources_all_failed_detail">"Επιλέξτε μια πηγή παρακάτω για να τη δοκιμάσετε ξανά."</string>
 <string name="player_speed">"Ταχύτητα αναπαραγωγής"</string>
 <string name="player_speed_text_format" formatted="true">"Ταχύτητα (%.2fx)"</string>
 <string name="player_subtitles_settings">"Υπότιτλοι"</string>

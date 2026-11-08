@@ -556,6 +556,7 @@
 <string name="player_source_retry">Provo përsëri</string>
 <string name="player_source_switch">Ndërro</string>
 <string name="player_sources_all_failed">Çdo burim u përgjigj me një gabim.</string>
+<string name="player_sources_all_failed_detail">Zgjidh një burim më poshtë për ta provuar sërish.</string>
 <string name="player_speed">Shpejtësia e luajtësit</string>
 <string name="player_speed_text_format">Shpejtësia (%.2fx)</string>
 <string name="player_subtitles_settings">Titrat</string>

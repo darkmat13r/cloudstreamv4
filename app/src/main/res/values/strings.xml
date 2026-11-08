@@ -582,6 +582,7 @@
 <string name="player_source_retry">"Retry"</string>
 <string name="player_source_switch">"Switch"</string>
 <string name="player_sources_all_failed">"Every source answered with an error."</string>
+<string name="player_sources_all_failed_detail">"Choose a source below to try it again."</string>
 <string name="player_speed">"Player Speed"</string>
 <string name="player_speed_text_format" formatted="true">"Speed (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitles"</string>

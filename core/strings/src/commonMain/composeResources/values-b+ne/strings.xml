@@ -310,6 +310,7 @@
 <string name="player_play_now">अहिले चलाउनुहोस्</string>
 <string name="player_source_decoded">%s डिकोड गरिएको</string>
 <string name="player_sources_all_failed">हरेक स्रोतले त्रुटिसहित जवाफ दियो।</string>
+<string name="player_sources_all_failed_detail">फेरि प्रयास गर्न तलको एउटा स्रोत छान्नुहोस्।</string>
 <string name="player_volume_down">आवाज घटाउनुहोस्</string>
 <string name="player_volume_up">आवाज बढाउनुहोस्</string>
 <string name="search_suggestions_return_hint">Return ले सबैतिर खोज्छ</string>

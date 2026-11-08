@@ -212,6 +212,7 @@
 <string name="player_source_retry">"دووبارە هەوڵبدەرەوە"</string>
 <string name="player_source_switch">"گۆڕین"</string>
 <string name="player_sources_all_failed">"هەموو سەرچاوەکان بە هەڵەیەک وەڵامیان دایەوە."</string>
+<string name="player_sources_all_failed_detail">"سەرچاوەیەک لە خوارەوە هەڵبژێرە بۆ ئەوەی دووبارە تاقی بکەیتەوە."</string>
 <string name="player_speed_text_format" formatted="true">"خێرای(x%.2f)"</string>
 <string name="player_unmute">"لابردنی بێدەنگی"</string>
 <string name="player_volume_down">"دەنگ نزمکردنەوە"</string>

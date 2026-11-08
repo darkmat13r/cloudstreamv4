@@ -498,6 +498,7 @@
 <string name="player_source_retry">oouuh ooh</string>
 <string name="player_source_switch">ooh haa</string>
 <string name="player_sources_all_failed">Ooh ahh uuh oouh.</string>
+<string name="player_sources_all_failed_detail">Oouh ahh ooh uuh ahh.</string>
 <string name="player_speed">oouuh aauuh oha</string>
 <string name="player_speed_text_format">aaaaaaaaaaaaahh (%.2foouo)</string>
 <string name="player_subtitles_settings">ahhhaauugghh</string>

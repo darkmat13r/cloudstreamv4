@@ -366,6 +366,7 @@
 <string name="player_play_now">Ludi nun</string>
 <string name="player_source_decoded">%s malkodita</string>
 <string name="player_sources_all_failed">Ĉiu fonto respondis per eraro.</string>
+<string name="player_sources_all_failed_detail">Elektu fonton sube por provi ĝin denove.</string>
 <string name="player_volume_down">Mallaŭtigi</string>
 <string name="player_volume_up">Plilaŭtigi</string>
 <string name="search_suggestions_return_hint">Enigo serĉas ĉie</string>

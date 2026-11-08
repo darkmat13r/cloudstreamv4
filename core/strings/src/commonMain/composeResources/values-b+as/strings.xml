@@ -504,6 +504,7 @@
 <string name="player_source_retry">পুনৰ চেষ্টা কৰক</string>
 <string name="player_source_switch">সলনি কৰক</string>
 <string name="player_sources_all_failed">প্ৰতিটো উৎসই এটা ত্ৰুটিৰে উত্তৰ দিলে।</string>
+<string name="player_sources_all_failed_detail">পুনৰ চেষ্টা কৰিবলৈ তলৰ পৰা এটা উৎস বাছক।</string>
 <string name="player_speed">প্লেয়াৰ গতি</string>
 <string name="player_speed_text_format">গতি (%.2fx)</string>
 <string name="player_subtitles_settings">সাবটাইটেল</string>

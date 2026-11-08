@@ -382,6 +382,7 @@
 <string name="player_play_now">Spel no</string>
 <string name="player_source_decoded">%s dekoda</string>
 <string name="player_sources_all_failed">Kvar kjelde svarte med ein feil.</string>
+<string name="player_sources_all_failed_detail">Vel ei kjelde nedanfor for å prøve igjen.</string>
 <string name="player_volume_down">Lågare volum</string>
 <string name="player_volume_up">Høgare volum</string>
 <string name="search_suggestions_return_hint">Return søkjer overalt</string>

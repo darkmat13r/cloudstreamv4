@@ -556,6 +556,7 @@
 <string name="player_source_retry">"மீண்டும் முயல்க"</string>
 <string name="player_source_switch">"மாற்று"</string>
 <string name="player_sources_all_failed">"ஒவ்வொரு மூலமும் பிழையுடன் பதிலளித்தது."</string>
+<string name="player_sources_all_failed_detail">"மீண்டும் முயல கீழே உள்ள ஒரு மூலத்தைத் தேர்ந்தெடுக்கவும்."</string>
 <string name="player_speed">"பிளேயர் விரைவு"</string>
 <string name="player_speed_text_format" formatted="true">"விரைவு (%.2fx)"</string>
 <string name="player_subtitles_settings">"வசன வரிகள்"</string>

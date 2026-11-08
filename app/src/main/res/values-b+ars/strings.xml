@@ -339,6 +339,7 @@
 <string name="player_source_retry">"إعادة المحاولة"</string>
 <string name="player_source_switch">"تبديل"</string>
 <string name="player_sources_all_failed">"أعادت كل المصادر خطأً."</string>
+<string name="player_sources_all_failed_detail">"اختر مصدرًا أدناه لتجربته مرة أخرى."</string>
 <string name="player_speed">"سرعة اللاعب"</string>
 <string name="player_speed_text_format" formatted="true">"سرعة(%.2fx)"</string>
 <string name="player_subtitles_settings">"ترجمات"</string>

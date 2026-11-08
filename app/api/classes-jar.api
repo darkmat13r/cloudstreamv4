@@ -3830,6 +3830,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field player_source_retry I
 	public static field player_source_switch I
 	public static field player_sources_all_failed I
+	public static field player_sources_all_failed_detail I
 	public static field player_speed I
 	public static field player_speed_text_format I
 	public static field player_subtitles_settings I

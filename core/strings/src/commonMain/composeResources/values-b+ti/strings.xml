@@ -187,6 +187,7 @@
 <string name="player_play_now">ሕጂ ኣጻውት</string>
 <string name="player_source_decoded">%s ተፈቲሑ</string>
 <string name="player_sources_all_failed">ነፍሲ ወከፍ ምንጪ ብጌጋ መለሰ።</string>
+<string name="player_sources_all_failed_detail">ደጊምካ ንምፍታን ካብ ታሕቲ ምንጪ ምረጽ።</string>
 <string name="player_volume_down">ድምጺ ኣንኪ</string>
 <string name="player_volume_up">ድምጺ ኣልዕል</string>
 <string name="search_suggestions_return_hint">Return ኣብ ኩሉ ይደሊ</string>

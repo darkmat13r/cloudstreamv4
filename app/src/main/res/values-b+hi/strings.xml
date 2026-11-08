@@ -399,6 +399,7 @@
 <string name="player_source_retry">"फिर कोशिश करें"</string>
 <string name="player_source_switch">"बदलें"</string>
 <string name="player_sources_all_failed">"हर स्रोत ने त्रुटि के साथ जवाब दिया।"</string>
+<string name="player_sources_all_failed_detail">"फिर से आज़माने के लिए नीचे कोई स्रोत चुनें।"</string>
 <string name="player_speed">"प्लेयर स्पीड"</string>
 <string name="player_speed_text_format" formatted="true">"स्पीड (%.2fx)"</string>
 <string name="player_subtitles_settings">"उपशीर्षक"</string>

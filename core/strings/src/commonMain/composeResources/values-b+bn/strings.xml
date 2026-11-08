@@ -383,6 +383,7 @@
 <string name="player_source_retry">আবার চেষ্টা করুন</string>
 <string name="player_source_switch">পাল্টান</string>
 <string name="player_sources_all_failed">প্রতিটি উৎস একটি ত্রুটি দিয়ে উত্তর দিয়েছে।</string>
+<string name="player_sources_all_failed_detail">আবার চেষ্টা করতে নিচ থেকে একটি উৎস বেছে নিন।</string>
 <string name="player_speed">ভিডিও এর গতি</string>
 <string name="player_speed_text_format">গতি (%.2f গুণ)</string>
 <string name="player_subtitles_settings">সাবটাইটেল</string>

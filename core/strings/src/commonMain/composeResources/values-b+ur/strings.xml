@@ -481,6 +481,7 @@
 <string name="player_source_retry">دوبارہ کوشش کریں</string>
 <string name="player_source_switch">بدلیں</string>
 <string name="player_sources_all_failed">ہر ماخذ نے ایک خرابی کے ساتھ جواب دیا۔</string>
+<string name="player_sources_all_failed_detail">دوبارہ آزمانے کے لیے نیچے سے کوئی ماخذ منتخب کریں۔</string>
 <string name="player_speed">چلانے کی رفتار</string>
 <string name="player_speed_text_format">رفتار (%.2fx)</string>
 <string name="player_subtitles_settings">سنٹیٹلز</string>

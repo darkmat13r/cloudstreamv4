@@ -305,6 +305,7 @@
 <string name="player_play_now">Ħaddem issa</string>
 <string name="player_source_decoded">%s dekodifikat</string>
 <string name="player_sources_all_failed">Kull sors wieġeb bi żball.</string>
+<string name="player_sources_all_failed_detail">Agħżel sors hawn taħt biex terġa' tipprova.</string>
 <string name="player_volume_down">Baxxi l-volum</string>
 <string name="player_volume_up">Għolli l-volum</string>
 <string name="search_suggestions_return_hint">Return ifittex kollox</string>

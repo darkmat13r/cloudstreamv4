@@ -513,6 +513,7 @@
 <string name="player_play_now">Reprodueix ara</string>
 <string name="player_source_decoded">%s descodificat</string>
 <string name="player_sources_all_failed">Totes les fonts han respost amb un error.</string>
+<string name="player_sources_all_failed_detail">Tria una font a sota per tornar-la a provar.</string>
 <string name="player_volume_down">Abaixa el volum</string>
 <string name="player_volume_up">Apuja el volum</string>
 <string name="search_suggestions_return_hint">Retorn ho cerca tot</string>

@@ -556,6 +556,7 @@
 <string name="player_source_retry">Ponów</string>
 <string name="player_source_switch">Przełącz</string>
 <string name="player_sources_all_failed">Każde źródło odpowiedziało błędem.</string>
+<string name="player_sources_all_failed_detail">Wybierz źródło poniżej, aby spróbować ponownie.</string>
 <string name="player_speed">Prędkość odtwarzania</string>
 <string name="player_speed_text_format">Prędkość (%.2fx)</string>
 <string name="player_subtitles_settings">Napisy</string>

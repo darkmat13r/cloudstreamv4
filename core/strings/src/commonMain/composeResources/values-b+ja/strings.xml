@@ -556,6 +556,7 @@
 <string name="player_source_retry">再試行</string>
 <string name="player_source_switch">切り替え</string>
 <string name="player_sources_all_failed">すべてのソースがエラーを返しました。</string>
+<string name="player_sources_all_failed_detail">下のソースを選んでもう一度お試しください。</string>
 <string name="player_speed">プレーヤーの速度</string>
 <string name="player_speed_text_format">再生速度 (%.2fx)</string>
 <string name="player_subtitles_settings">字幕</string>

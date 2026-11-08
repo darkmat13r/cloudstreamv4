@@ -434,6 +434,7 @@
 <string name="player_play_now">I-play ngayon</string>
 <string name="player_source_decoded">%s na-decode</string>
 <string name="player_sources_all_failed">Nagbalik ng error ang bawat source.</string>
+<string name="player_sources_all_failed_detail">Pumili ng source sa ibaba para subukan itong muli.</string>
 <string name="player_volume_down">Hinaan ang volume</string>
 <string name="player_volume_up">Lakasan ang volume</string>
 <string name="search_suggestions_return_hint">Hinahanap ng Return ang lahat</string>

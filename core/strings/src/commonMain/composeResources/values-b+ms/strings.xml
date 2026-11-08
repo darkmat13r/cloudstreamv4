@@ -464,6 +464,7 @@
 <string name="player_source_retry">Cuba lagi</string>
 <string name="player_source_switch">Tukar</string>
 <string name="player_sources_all_failed">Setiap sumber menjawab dengan ralat.</string>
+<string name="player_sources_all_failed_detail">Pilih sumber di bawah untuk mencubanya semula.</string>
 <string name="player_speed">Kelajuan Pemain</string>
 <string name="player_speed_text_format">Kelajuan (%.2fx)</string>
 <string name="player_subtitles_settings">Sari kata</string>

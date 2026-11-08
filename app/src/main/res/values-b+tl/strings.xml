@@ -298,6 +298,7 @@
 <string name="player_source_retry">"Subukang muli"</string>
 <string name="player_source_switch">"Lumipat"</string>
 <string name="player_sources_all_failed">"Nagbalik ng error ang bawat source."</string>
+<string name="player_sources_all_failed_detail">"Pumili ng source sa ibaba para subukan itong muli."</string>
 <string name="player_speed">"Bilis ng Playback"</string>
 <string name="player_speed_text_format" formatted="true">"Bilis (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitles"</string>

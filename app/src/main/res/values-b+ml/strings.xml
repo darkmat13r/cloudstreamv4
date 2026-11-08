@@ -315,6 +315,7 @@
 <string name="player_source_retry">"വീണ്ടും ശ്രമിക്കുക"</string>
 <string name="player_source_switch">"മാറ്റുക"</string>
 <string name="player_sources_all_failed">"എല്ലാ ഉറവിടവും ഒരു പിശകോടെ മറുപടി നൽകി."</string>
+<string name="player_sources_all_failed_detail">"വീണ്ടും ശ്രമിക്കാൻ താഴെ ഒരു ഉറവിടം തിരഞ്ഞെടുക്കുക."</string>
 <string name="player_speed">"പ്ലേയർ വേഗത"</string>
 <string name="player_speed_text_format" formatted="true">"വേഗം (%.2fx)"</string>
 <string name="player_subtitles_settings">"സബ്ടൈട്ടിൽസ്"</string>

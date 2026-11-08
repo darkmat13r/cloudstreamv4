@@ -556,6 +556,7 @@
 <string name="player_source_retry">Försök igen</string>
 <string name="player_source_switch">Byt</string>
 <string name="player_sources_all_failed">Varje källa svarade med ett fel.</string>
+<string name="player_sources_all_failed_detail">Välj en källa nedan för att försöka igen.</string>
 <string name="player_speed">Spelarhastighet</string>
 <string name="player_speed_text_format">Hastighet (%.2fx)</string>
 <string name="player_subtitles_settings">Undertexter</string>

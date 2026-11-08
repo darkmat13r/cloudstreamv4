@@ -416,6 +416,7 @@
 <string name="player_source_retry">"Skúsiť znova"</string>
 <string name="player_source_switch">"Prepnúť"</string>
 <string name="player_sources_all_failed">"Každý zdroj odpovedal chybou."</string>
+<string name="player_sources_all_failed_detail">"Vyberte zdroj nižšie a skúste ho znova."</string>
 <string name="player_speed">"Rýchlosť prehrávania"</string>
 <string name="player_speed_text_format" formatted="true">"Rýchlosť (%.2fx)"</string>
 <string name="player_subtitles_settings">"Titulky"</string>

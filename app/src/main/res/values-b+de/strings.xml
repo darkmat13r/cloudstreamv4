@@ -556,6 +556,7 @@
 <string name="player_source_retry">"Wiederholen"</string>
 <string name="player_source_switch">"Wechseln"</string>
 <string name="player_sources_all_failed">"Jede Quelle hat mit einem Fehler geantwortet."</string>
+<string name="player_sources_all_failed_detail">"Wähle unten eine Quelle, um es erneut zu versuchen."</string>
 <string name="player_speed">"Player-Geschwindigkeit"</string>
 <string name="player_speed_text_format" formatted="true">"Geschwindigkeit (%.2fx)"</string>
 <string name="player_subtitles_settings">"Untertitel"</string>

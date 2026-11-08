@@ -499,6 +499,7 @@
 <string name="player_source_retry">"Reîncearcă"</string>
 <string name="player_source_switch">"Schimbă"</string>
 <string name="player_sources_all_failed">"Fiecare sursă a răspuns cu o eroare."</string>
+<string name="player_sources_all_failed_detail">"Alegeți o sursă de mai jos pentru a încerca din nou."</string>
 <string name="player_speed">"Viteză video"</string>
 <string name="player_speed_text_format" formatted="true">"Viteză (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtitrare"</string>

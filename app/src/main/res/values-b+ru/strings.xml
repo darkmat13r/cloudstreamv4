@@ -556,6 +556,7 @@
 <string name="player_source_retry">"Повторить"</string>
 <string name="player_source_switch">"Переключить"</string>
 <string name="player_sources_all_failed">"Каждый источник ответил ошибкой."</string>
+<string name="player_sources_all_failed_detail">"Выберите источник ниже, чтобы попробовать снова."</string>
 <string name="player_speed">"Скорость проигрывателя"</string>
 <string name="player_speed_text_format" formatted="true">"Скорость (%.2fx)"</string>
 <string name="player_subtitles_settings">"Субтитры"</string>

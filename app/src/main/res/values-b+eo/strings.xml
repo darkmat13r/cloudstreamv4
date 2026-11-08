@@ -265,6 +265,7 @@
 <string name="player_source_retry">"Reprovi"</string>
 <string name="player_source_switch">"Ŝanĝi"</string>
 <string name="player_sources_all_failed">"Ĉiu fonto respondis per eraro."</string>
+<string name="player_sources_all_failed_detail">"Elektu fonton sube por provi ĝin denove."</string>
 <string name="player_speed_text_format" formatted="true">"Rapido (%.2fx)"</string>
 <string name="player_subtitles_settings">"Subtekstoj"</string>
 <string name="player_unmute">"Malsilentigi"</string>

@@ -221,6 +221,7 @@
 <string name="player_source_retry">"फेरि प्रयास गर्नुहोस्"</string>
 <string name="player_source_switch">"बदल्नुहोस्"</string>
 <string name="player_sources_all_failed">"हरेक स्रोतले त्रुटिसहित जवाफ दियो।"</string>
+<string name="player_sources_all_failed_detail">"फेरि प्रयास गर्न तलको एउटा स्रोत छान्नुहोस्।"</string>
 <string name="player_speed">"प्लेयर स्पीड"</string>
 <string name="player_speed_text_format" formatted="true">"गति (%.2fx)"</string>
 <string name="player_subtitles_settings">"उपशीर्षक"</string>

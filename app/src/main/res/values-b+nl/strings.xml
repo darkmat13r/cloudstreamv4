@@ -522,6 +522,7 @@
 <string name="player_source_retry">"Opnieuw"</string>
 <string name="player_source_switch">"Wisselen"</string>
 <string name="player_sources_all_failed">"Elke bron antwoordde met een fout."</string>
+<string name="player_sources_all_failed_detail">"Kies hieronder een bron om het opnieuw te proberen."</string>
 <string name="player_speed">"Afspelen Snelheid"</string>
 <string name="player_speed_text_format" formatted="true">"Snelheid (%.2fx)"</string>
 <string name="player_subtitles_settings">"Ondertitels"</string>

@@ -555,6 +555,7 @@
 <string name="player_source_retry">重試</string>
 <string name="player_source_switch">切換</string>
 <string name="player_sources_all_failed">所有來源都傳回了錯誤。</string>
+<string name="player_sources_all_failed_detail">請在下方選擇一個來源再試一次。</string>
 <string name="player_speed">播放速度</string>
 <string name="player_speed_text_format">速度（%.2fx）</string>
 <string name="player_subtitles_settings">字幕</string>

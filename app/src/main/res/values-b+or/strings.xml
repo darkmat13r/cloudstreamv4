@@ -245,6 +245,7 @@
 <string name="player_source_retry">"ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ"</string>
 <string name="player_source_switch">"ବଦଳାନ୍ତୁ"</string>
 <string name="player_sources_all_failed">"ପ୍ରତ୍ୟେକ ଉତ୍ସ ଏକ ତ୍ରୁଟି ସହ ଉତ୍ତର ଦେଲା।"</string>
+<string name="player_sources_all_failed_detail">"ପୁଣି ଚେଷ୍ଟା କରିବାକୁ ତଳୁ ଏକ ଉତ୍ସ ବାଛନ୍ତୁ।"</string>
 <string name="player_speed_text_format" formatted="true">"ଵେଗ (%.2fଗୁଣ)"</string>
 <string name="player_subtitles_settings">"ଉପଶୀର୍ଷକ"</string>
 <string name="player_unmute">"ଅନମ୍ୟୁଟ କରନ୍ତୁ"</string>

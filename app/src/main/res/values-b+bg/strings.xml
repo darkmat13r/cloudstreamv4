@@ -548,6 +548,7 @@
 <string name="player_source_retry">"Нов опит"</string>
 <string name="player_source_switch">"Смяна"</string>
 <string name="player_sources_all_failed">"Всеки източник отговори с грешка."</string>
+<string name="player_sources_all_failed_detail">"Изберете източник по-долу, за да опитате отново."</string>
 <string name="player_speed">"Скорост на възпроизвеждане"</string>
 <string name="player_speed_text_format" formatted="true">"Скорост (%.2fx)"</string>
 <string name="player_subtitles_settings">"Субтитри"</string>

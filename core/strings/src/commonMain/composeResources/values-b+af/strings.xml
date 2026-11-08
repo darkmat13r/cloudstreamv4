@@ -303,6 +303,7 @@
 <string name="player_play_now">Speel nou</string>
 <string name="player_source_decoded">%s gedekodeer</string>
 <string name="player_sources_all_failed">Elke bron het met 'n fout geantwoord.</string>
+<string name="player_sources_all_failed_detail">Kies 'n bron hieronder om dit weer te probeer.</string>
 <string name="player_volume_down">Volume af</string>
 <string name="player_volume_up">Volume op</string>
 <string name="search_suggestions_return_hint">Return soek alles</string>

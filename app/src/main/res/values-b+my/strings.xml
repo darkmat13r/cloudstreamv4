@@ -424,6 +424,7 @@
 <string name="player_source_retry">"ထပ်ကြိုးစားရန်"</string>
 <string name="player_source_switch">"ပြောင်းရန်"</string>
 <string name="player_sources_all_failed">"ရင်းမြစ်တိုင်းက အမှားဖြင့် ပြန်ဖြေသည်။"</string>
+<string name="player_sources_all_failed_detail">"ထပ်စမ်းရန် အောက်ပါ ရင်းမြစ်တစ်ခုကို ရွေးပါ။"</string>
 <string name="player_speed">"ကြည့်ရှုမှုအရှိန်"</string>
 <string name="player_speed_text_format" formatted="true">"အရှိန် (%.2fx)"</string>
 <string name="player_subtitles_settings">"စာတန်းထိုးများ"</string>

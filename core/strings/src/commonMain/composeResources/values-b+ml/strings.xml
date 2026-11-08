@@ -470,6 +470,7 @@
 <string name="player_play_now">ഇപ്പോൾ പ്ലേ ചെയ്യുക</string>
 <string name="player_source_decoded">%s ഡീകോഡ് ചെയ്‌തു</string>
 <string name="player_sources_all_failed">എല്ലാ ഉറവിടവും ഒരു പിശകോടെ മറുപടി നൽകി.</string>
+<string name="player_sources_all_failed_detail">വീണ്ടും ശ്രമിക്കാൻ താഴെ ഒരു ഉറവിടം തിരഞ്ഞെടുക്കുക.</string>
 <string name="player_volume_down">ശബ്‌ദം കുറയ്‌ക്കുക</string>
 <string name="player_volume_up">ശബ്‌ദം കൂട്ടുക</string>
 <string name="search_suggestions_return_hint">Return എല്ലായിടത്തും തിരയുന്നു</string>
