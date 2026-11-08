@@ -5968,21 +5968,6 @@ Why: headers can be credentials; the owner's rule is no URLs, headers or paths i
 
 Additions only. `app/api/classes-jar.api` +70 / −0: 8 `R$string` fields, `CS3IPlayer.getBufferedPosition`, `FullScreenPlayer`'s `playerError` override and failure flag, `GeneratorPlayer`'s facts override, and the HUD host classes.
 
-## KMP-62 — The old downloader keeps whole links in `KEY_RESUME_PACKAGES` · **approved 2026-11-06**, scheduled after `KMP-52`
-
-It was found while checking `KMP-59` against the no-link ruling for `KMP-52`.
-- **What is stored.** `DownloadManager.kt:1923-1927` writes `DownloadResumePackage(item, index)` to `KEY_RESUME_PACKAGES` before every
-  attempt. `DownloadItem.links` is `List<ExtractorLink>`, serialised with `url`, `referer` and `headers`
-  (`library/.../ExtractorApi.kt:700-708`). It is written to SharedPreferences.
-- **When.** With `KMP-59`'s switch on or off. The engine path adds no link of its own: its marker holds a size and a name, and its state
-  file holds the size, ETag, Last-Modified and the ranges.
-- **The owner's ruling (2026-11-06): the same no-link rule as `KMP-52`.** Keep `ep`, the provider and the episode's `loadLinks` data, and
-  run `loadLinks` again on resume, including the start-up re-queue in `DownloadQueueManager.init`.
-- **Notes for the build:**
-  - A resume package saved before the update keeps its old data until it finishes or is removed.
-  - After a successful migration, the stored `ExtractorLink`s are deleted from SharedPreferences.
-  - Behaviour change: a source that no longer answers fails that resume.
-
 ## KMP-52 — The Mac download service and its data · **measured 2026-11-06**
 
 `:media:download` runs on the JVM in `:desktopApp`, in package `com.lagradost.cloudstream4.downloads`, with a queue, persistence and the two
@@ -6008,7 +5993,8 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
 - Enqueuing a paused or failed episode again takes the new link, because signed URLs expire. A blank source is `EnqueueRefusal.NoSource`.
 - The engine writes straight into `~/Downloads/CloudStream/<title>/`. On the JVM its atomic move works, so there is no staging (unlike `KMP-59`).
 - File names are `S01E02 Name.mp4`, or the title for a film, with ` (2)` on a clash. `DownloadPaths` restates the engine's internal name
-  rules more strictly, so the result is always one safe path segment.
+  rules more strictly, so the result is always one safe path segment. A title or episode name that reads as an address is dropped
+  before it is stored or names anything (`KMP-71`).
 - The HTTP client is `HttpClientFactory(posterHttpClient())`. It verifies TLS and checks the resolved and connected addresses, which also
   closes the engine's DNS-rebinding gap on the Mac.
 - Delete removes only empty folders, and refuses a folder whose real path is not directly inside the download root.
@@ -6079,6 +6065,32 @@ download sources. There is no UI: that is `KMP-54`, which wires `source()` and `
 - An unreadable downloads file, where `contents` throws and `enqueue` returns `StoreUnreadable`.
 - A process kill, as opposed to `close()`.
 
+## KMP-71 — Mac downloads: a title or episode name that is an address never reaches disk · **built 2026-11-08**, waits on review
+
+A follow-up to `KMP-52`. A plugin's `titleName` and `episodeName` became the folder and file names and were written to
+`downloads.json`. A plugin can put a signed link there, so it could end up on disk as a file name.
+
+- **The rule** is the TV HUD's title rule as `KMP-66` tightens it, restated in `DownloadPaths.looksLikeAddress`:
+  - a scheme anywhere, or a path, `content:` or `file:` at the start;
+  - a host at the start followed by a port, path, query or fragment.
+  A dotted title on its own (`Dr.Stone`, `Mr.Robot`, `Vol.II`) stays. Only a source's name gets the HUD's stricter rule (a bare host,
+  `sig=`, a backslash path), and a title never does.
+- **Where it applies.** It goes in `DownloadPaths.displayText`, which every title and episode name already passes through:
+  - on enqueue, before the name is stored or names a folder or file;
+  - on reading `downloads.json` back, so a hand-edited file is checked too (not tested with an edited file).
+- **Fallbacks:**
+  - A title that is an address becomes `Download`, both as the row's name and as the folder. A blank title stays blank, as before.
+  - An episode name that is an address is dropped, so the file is `S01E05.mp4` and the list shows the episode's code.
+- **Not handled:** a record written before this change keeps its folder and file names. No caller enqueues anything yet (that is
+  `KMP-54`), so no such record exists.
+
+**Tests** (local, none CI). Counted from the XML:
+- `DownloadPathsTest`, new, 4/4. The address samples are copied from `TvHudFactsTest` (`KMP-64`); the dotted titles are `KMP-66`'s.
+- `DesktopDownloadsTest`, 24/24. The new test enqueues a series episode whose title is a link and whose name is a link carrying a
+  token, and runs it to Done. The file is `Download/S01E05.mp4`. Neither marker appears in `downloads.json`, in any other file in its
+  folder, or in any file's bytes or any path name under the download root, either then or after a restart.
+- With `looksLikeAddress` forced to false, 3 of these fail: 2 in `DownloadPathsTest` and the new one in `DesktopDownloadsTest`.
+
 ## KMP-55 — The Mac's Home, built from `DS-21`
 
 **Status:** in review · stacked on `#191` (`I18N-14`) · H4 waits on `KMP-68` (`#197`)
@@ -6126,6 +6138,46 @@ Tests:
   desktop-only. It wants its own task, with the action added to the shared model. Hover lift is in.
 - **The bookmark filter is kept while the window is open.** There is no desktop preference store yet.
 - **H4's kept rows and their age** wait on `KMP-68`. Until then, a failed reload draws as 3m, under the device's rails.
+  Built since in `KMP-84`.
+
+## KMP-84 — The Mac's H4: a failed reload keeps its rows, says how old they are, and Reload and Random act on them
+
+**Status:** in review · `:feature:home` and `:desktopApp` tests · over `KMP-68`'s `HomeStatus.Stale` · `DS-21` H4
+
+`KMP-68` kept a failed reload's rows in the view model, and the Mac still drew 3m. Now `HomeScreenDesktop` draws H4:
+- **A banner at the top of the page**, the board's: the Warning glyph, `home_reload_failed` with the source and the rows'
+  age, and Try again (Reload). The age is `4m`, `2h 5m` or `1d 2h 5m`, as `I18N-14` decided, counted from `loadedAt`
+  and read again each minute while the window is open.
+- **The kept rows under it**, after what the device keeps (Continue watching, Bookmarks). The hero goes with the
+  reload, as the view model already did.
+- **The offline pill** reads `status.shown`, so it shows for a reload that failed offline. A reload that failed some
+  other way has no pill.
+- **Reload and Random** show while there are kept rows. `HomeStatus.keptRows` (new, in `HomeMvi.kt`) is the rows on
+  screen or a `Stale`'s kept ones. Random now picks from it, so it is not a dead control on H4. TV does not change: its
+  Random is only beside rows, and a `Stale`'s `rows` is still empty.
+
+**DECIDED** (reported to the PM):
+- **A kept row has no Load more.** Its pages went with the reload, and `showMore` reads the rows on screen. A button
+  there would do nothing. Try again is the way on.
+- **The banner has no failure detail.** The board draws the sentence alone, and the pill already says when it is the
+  connection.
+- **The age formatter is a copy of the library's** (`LibrarySourcesTv.kt`), which is private to `:feature:library`.
+  Sharing it means a change there, which this PR does not make.
+
+**Tests:**
+- `HomeAgeTest` (new, 2): minutes, hours and minutes, days; a clock behind the record reads as now.
+- `HomeViewModelTest`: Random after a failed reload opens one of the kept titles.
+- `HomeScreenTest`:
+  - a failed reload's rows stay, and Try again, Reload, Random and a kept card each send their action, with nothing
+    where a Load more would be;
+  - the control for that: the same rows on screen do have their Load more at that point;
+  - the offline pill shows for `Stale(Offline)` and not for `Stale(Failed)`, sampled from the render;
+  - renders `24-stale-offline`, `25-stale-failed-nothing-kept-locally`, `26-stale-minimum-offline`, `27-stale-alone`.
+  Their coordinates were measured from those renders.
+- **Proved by mutation**, each failing only its own test:
+  - Random reading `rows` again: the Random test never gets its title (a one-minute timeout);
+  - the pill on `is Offline` again: the pill's pixel reads the background;
+  - kept rows given Load more: the click there sends `RowMoreRequested`.
 
 ## KMP-70 — A failing source's reason in plain, translated words · **open**, follow-up of `KMP-55`
 
@@ -6136,3 +6188,369 @@ though. To do:
 2. Give each reason a key with its plain, translated words (an `I18N` task first). A screen draws the words; the type
    stays only as the pasteable detail.
 3. Keep the rule that no message, address or path reaches the screen. Rerun the TV Home device suite.
+
+
+## KMP-73 — TV account select, artboard 8d (queue `Q16`) · **measured 2026-11-07**
+
+**Status:** in pr, stacked on `BUG-50` (#215), with `BUG-49` (#213), `I18N-16` (#217) and `BUG-36` (#212) merged in. Board
+8d of `TV Onboarding Extensions.dc.html` (a board file in the owner's Claude Design project), on `Television_720p`, API 36.
+
+### What it adds
+
+- **`:feature:account`**, a new module: `AccountSelectScreenTv` and `PairingPanelTv` over a plain state
+  (`AccountSelectState`), so it needs no `:app`.
+- **`AccountSelectActivity` draws 8d on TV**, behind `TvAccountSwitch`, over the same `AccountViewModel` the old grid used:
+  selecting, the PIN check and the hand-off to `MainActivity` are unchanged.
+- **Profiles are a card row.** Focus starts on the current profile, which rests filled; a focused card lifts and takes a
+  ring with no offset. A locked profile says only "Locked · PIN" (what it syncs with is its own business until the PIN);
+  the others say whether they are current and which services they use.
+- **Sync services are a list with their true state**: Simkl pairs with a code; MyAnimeList and AniList offer a browser
+  sign-in where the device has a browser and say "Not available here" where it does not; Kitsu signs in with its form; a
+  connected service offers "Remove from this device", behind a confirmation.
+- **Pairing is a side panel** with the code, a QR code of the address and the countdown. It reuses `BUG-49`'s
+  `DevicePinPoll`, so every way out ends the pairing, and focus goes back to the row that opened it (`BUG-36`'s `opener`).
+- What 8d does not draw stays the old dialogs: the profile editor, the PIN prompt, Kitsu's form, the remove confirmation.
+
+### Behaviour changes
+
+| Before | Now | Why |
+|---|---|---|
+| **One added profile plus the default skipped the picker** (the stored list, which omits the default, had one entry) | The picker shows; a single profile still skips it | The audit's finding; counted as `getAccounts`, the default included |
+| The same count decided `MainActivity`'s biometric prompt | It uses the same count | Otherwise a phone with one added profile would be asked twice |
+| A browser-only service offered a sign-in that silently failed on a TV with no browser | It says "Not available here" | 8d |
+| Signing out of a service on TV said "Log out" | "Remove from this device", after a confirmation | No provider revokes a token; the words say what happens (owner's ruling) |
+| Editing a profile opened from `MainActivity` switched to it and went back | Unchanged on the new screen | The review: match the old grid (PM's call) |
+
+### Security
+
+- **Sign-in state is read by presence** through `CredentialStore` (`BUG-50`): a token is never parsed for this screen. A
+  sign-out leaves its key holding an empty array, so an empty array counts as signed out; the value is compared, never
+  parsed or logged.
+- **The pairing code** is shown because the person has to read it, and is never logged; the screenshots use a fixture
+  (`FAKE00`) and a checkerboard in place of the QR. `Pairing.toString` leaves the code out, so a state logged by accident
+  cannot carry it.
+- **`hasBrowser`** asks the package manager for an `https` `VIEW` handler; the manifest's `<queries>` now names that
+  intent, which Android 11+ (Google TV 14 included) needs for the answer to be accurate.
+
+### Measured on the way
+
+- **BACK on the pairing panel closed the whole screen.** API 36 sends BACK to the back dispatcher, not to
+  `SidePanelHost`'s key handler, as its KDoc warns; the host adds an `OnBackPressedCallback` while pairing.
+- **Closing the panel put focus on the first card**, not the row that opened it (measured: "Focus is on Main, not
+  Simkl"): `BUG-36`. Fixed with its `opener`, latched so it survives the exit.
+- **The cards drew no ring**: focus was read through an interaction source shared by two focus targets. One target now,
+  read with `onFocusChanged`.
+- **The panel title read "Pair %s"**: Compose's `stringResource(res, args)` does not fill a bare `%s`. `UiString` does.
+
+### Reduced from the board
+
+- **No "last sync" age**: none is recorded (owner's ruling).
+- **No service logos** in the rows' disc.
+- **A profile picture from an address shows initials**; the bundled pictures show.
+- **The add card's glyph is the 24 dp `Add` icon** centred in 8d's 32 dp cell; the pack has no 32.
+- **Kitsu's sign-in and the profile editor are the old dialogs**: 8d does not draw them.
+
+### Tests
+
+- `ProfileLineTest` (common, 2): what a card's line says.
+- `PairingTest` (common, 2): the fixture code is in neither `Pairing`'s nor the screen state's `toString`.
+- `AccountSelectScreenTvDeviceTest` (device, 6): focus starts on the current profile; Manage, then cards, then rows; a card
+  press selects; pairing takes focus to *Get a new code*, BACK cancels and focus returns to the Simkl row; screenshots
+  `account-select` and `account-select-pairing`, each looked at.
+- `AccountSelectTvNavigationTest` (`:app`, the real path, 6): one added profile shows the picker (**fails with the old
+  count**: "8d did not show with two profiles"); one profile still skips; choosing a profile hands over as that profile; a
+  marker sign-in shows as "Current · Simkl" and its value never reaches the screen; an empty array reads "Current · No
+  sync"; an edit opened from `MainActivity` switches to that profile and goes back (**fails without the fix**: "It did
+  not go back to MainActivity").
+- **Leaves nothing behind** (train 8): run straight after this class, `TvDetailNavigationTest` failed 3 of 3 ("expected
+  Try again, was Go Back"); alone it passed. Measured cause: **touch mode.** The edit test taps Apply
+  (`apply.click()`), and touch mode is the whole device's until a key ends it, so the detail page's first focus
+  request didn't take and its first D-pad press landed on Go Back. Of the six tests paired one at a time with the
+  detail test, only the edit test failed it, and a key-names-only snapshot of every preferences file showed it leaves
+  nothing stored. Finishing the activities alone did not fix it (still 3 of 3 red). Now each test, afterwards, finishes
+  every activity it started and waits until each is destroyed (`MainActivity` is `singleTask`, so a leftover one would
+  be reused), turns touch mode off, and puts back the profiles, the selection, the skip setting, `hasLoggedIn` and the
+  cached sign-in IDs. The edit test paired with the detail test passes 1 of 1, and the whole pair (account, then detail)
+  passes 3 of 3, locally on `Television_720p`.
+
+### Not verified
+
+**The production BACK callback** (`closesPairing`, removed and re-added in `AccountSelectTv.attach`) is not covered: the
+real panel needs Simkl's live code endpoint, and the feature test builds its own callback, so it covers the same BACK
+handling, not this code. Also: a real browser sign-in, Kitsu's form, `TalkBack`, a real remote.
+
+## KMP-56 — The Mac's Search, built from `DS-22` S1 to S7 · **built 2026-11-07**
+
+The boards are `Desktop Search.dc.html` S1 to S7, a board file in the owner's Claude Design project (`DS-22`).
+
+- **S1:**
+  - The type chips: the types some installed provider serves, lit by their outline, as Home's status chips are.
+  - Sources is a button, `Sources 12 / 48`, that opens the panel. It used to be a read-out.
+- **S2:** results grouped by source, each group with its count, as built before.
+- **S3:** a partial search keeps its results under the failure banner, with "Retry failed". The exact sentence on the
+  board ("%d sources didn't answer. %s timed out after %d s.") has no key, and a `SearchOutcome` carries no timeout,
+  so the banner keeps `search_state_partial_headline`.
+- **S4:** the sources panel from the right edge, over a scrim:
+  - A row toggles a draft; Done commits it; the scrim and Escape discard it (`DEC-17`).
+  - Escape is caught at the screen's root, so it closes the panel even while the field holds focus, and never empties
+    the field instead.
+  - A row is checked when on, and shows a warning glyph when its provider's last answer failed.
+- **S6:** no results names the lit chips, through the existing `narrowedBy`.
+- **S7:** renders at 580×520, the page's share of an 800×520 window beside the 220 sidebar.
+- **S5** (suggestions as a popover) is `KMP-72`.
+
+`DesktopSearchSource` now implements `choices`, `selectSources`, `typeFilters`, `selectTypes` and `clearFilters`:
+- Desktop has no language preference, so every installed provider is eligible.
+- Picks and chips follow Android's rules: a pick that matches nothing installed falls back to every provider; chips
+  that nobody serves narrow nothing; a row the chips hid keeps its state through Done.
+- The `SearchTypeFilter` → `TvType` mapping is a copy of `:app`'s, which desktop cannot reach. Keep the two the same.
+
+**Decided** (reported to the PM):
+- Picks and chips last as long as the app runs. There is no desktop preference store yet, as with Home's bookmark
+  filter (`KMP-55`).
+- A failure's detail goes through `withoutUrls()`. Before this, the first line of a plugin's `errorString` reached the screen
+  unredacted.
+- **After review (`#221`):**
+  - `:desktopApp`'s `withoutUrls` is now the fourth synced copy of the BUG-43/44/47 rules, with the same case table
+    (`DesktopRedactionTest`). The sandbox's copy is `internal` to its module. So Home's, Search's and a title's lines now
+    keep a url's host, and lose its path, query, userinfo and fragment, plus `file:` URIs and the home, volume, storage and
+    Windows user paths. The old rule wrote `<url>` for the whole url. The home-directory-to-`~` rule is gone; `<path>`
+    covers it.
+  - Invisible characters are stripped **before** redacting, on Search and Home: one inside `://` hid the url from the
+    pattern, and stripping afterwards put it back together. Proved by mutation: with the old order,
+    `a url split by an invisible character does not reach the detail` fails with the whole token on screen.
+  - The failed-provider glyph is described with the existing `error` key.
+
+**Tests:**
+- `SearchScreenTest`: the Sources button and a chip; the panel's row, Done and scrim; and Escape closing the panel
+  rather than clearing the query. That last one was proved by mutation: with the root handler off, it fails
+  `expected:<[SourcePanelDismissed]> but was:<[Cleared]>`.
+- `DesktopSearchSelectionTest`: picks, chips, a hidden row, Search everything, the fallback, health and redaction.
+- Two `DesktopInteractionTest` cases rested on the old premise that only the field takes focus. They now assert that
+  Tab lands on Sources, not on the clear button.
+
+## KMP-72 — The Mac's suggestions as a popover over the results, `DS-22` S5 · **open**, follow-up of `KMP-56`
+
+- The shared `SearchViewModel` replaces the results with TV's 8a column when it has a suggestion source. S5 keeps the
+  results under a popover instead, which is a change to the shared view model and needs a TV device run.
+- The only suggestion source today is Android's `SearchSuggestionApi`, which sends every keystroke to a third-party
+  service. On the Mac, start recent-only, from local history. **A service is the owner's call** (security first, the
+  PM's ruling of 2026-11-07); raise it when this task starts.
+- Words: `search_suggestions_return_hint` (`I18N-15`). The rest reuse `search_tv_suggestion_*` and
+  `search_quick_meta_answered`.
+
+## KMP-57 — The Mac's Library, built from `DS-22` (L1 to L7)
+
+**Status:** in review · took over from desktop-session-1, the PM's call of 2026-11-07, to run beside `KMP-56`
+
+`LibraryScreenDesktop` now draws the `DS-22` boards on the shared `LibraryViewModel` (`KMP-49` to `KMP-51`):
+- **L1:** the bar holds the source, its line (`library_on_device`, or the account and `library_synced_format`), the
+  filter (`filter_bookmarks`; Escape empties it) and Sort (`library_sort_current`). Under it, the lists as buttons,
+  each with its count in the mono face, and the cards in a grid, four to a line at 1280.
+  - A card's line is its kind, the user's rating with the pack's star, and its episode count, where each is known.
+  - **Remove** shows at the poster's top-right while the pointer or focus is on the card (DS-22's decision).
+- **L2:** over a held read, the bar's line says why (`library_sync_unreachable`, `library_sync_offline`). A banner says
+  `library_sync_failed` with the age and offers `library_sync_retry`. The cards stay, dimmed to half.
+- **L3:** an empty list says `library_list_empty_headline` and `library_list_empty_body` with the list's name, and offers
+  `library_go_to_list` for the first list with titles. With nothing kept anywhere, it offers Search. A filter that
+  hides a list's titles offers Clear.
+- **L4:** Sort lists all four criteria, with `library_sort_supported`. One the source does not keep stays in the list,
+  greyed, with `library_sort_not_kept`, and takes no press.
+- **L5:** the source panel, with a check on the source shown. One that is not connected says so and cannot be chosen.
+- **L6:** the list picker, each list with `library_title_count`, a check on the card's own, and Remove below a rule.
+- **L7:** under a 720 content width the sync line and the filter give way. The filter stays while it holds words, so a
+  list is never narrowed by something unseen.
+
+`DesktopLibrarySources` gives the window one source, the local list. It sorts by Updated and Title only, because
+`DesktopLibraryStore` keeps no rating and no year. The sort is kept in `~/.cloudstream4/library-sort`: one line, written
+atomically, owner-only, and read back only as a criterion's exact name and a direction. `DesktopApp`'s default keeps
+nothing, so no test writes to the real home directory. Escape closes whichever panel is open.
+
+**Tests** (`:desktopApp:jvmTest` with real pointer and key events):
+- `LibraryScreenTest`: 23 cases, 12 of them existing.
+  - New: L2, L3 (both actions), L4, L5, L7's filter, Remove on hover, the secondary click, the context-menu keys,
+    Escape in the filter, and Sort reordering a list in the whole window.
+  - Every coordinate is measured off the renders.
+- `LibrarySortMemoryTest`: 6 cases, covering the source, read back, owner-only, rejected text, too large, and `None`.
+- `:desktopApp` 458 and `:feature:library` 84, with 0 failures.
+
+**DECIDED** (reported to the PM):
+- **The desktop has the local list as its only source.** There is no tracking-service sign-in on desktop.
+  - Options: (A) local only; (B) also list the services as Not connected; (C) no sources at all.
+  - Chose A. B is a dead end, and C would offer sorts with no data behind them.
+  - L2 and L5 are built and tested with services in the state, so they work when sign-in arrives.
+- **The local source is named `Local`**, the name Android's `LocalList` gives it. No key in `:core:strings` means "local".
+  - The name reaches the panel and Sort's lines untranslated, as it already does on Android TV.
+  - A key for it is an `I18N` follow-up.
+- **L6 opens from a secondary click and the context-menu keys** (Menu, Shift+F10), because L1 dropped the built list
+  button.
+  - Options: (A) that; (B) a second hover verb, Move, which needs a new key and is a second verb DS-22 did not draw;
+    (C) keep the list button under the card.
+  - Chose A, because it is how a Mac opens a thing's menu.
+- **Cards keep the built 200 minimum.** That gives L1's four at 1280 and two at 800×520. L7 draws three at 164,
+  under the board's own stated minimum.
+- **Favourites keeps its list button**, seven in all where the board drew six. Hiding it would hide what is kept there.
+- **No sort, filter or chevron glyph.** `CloudStreamIcons` has none of them, and adding one is an icon decision. The bar
+  uses words, as Home's source button does.
+- **Sort's rows have no explanatory lines**, and the bar reads the full label (`Updated (New to Old)`), as `I18N-15`
+  decided by reusing the `sort_*` keys. It fits the minimum window.
+
+## KMP-58 — The Mac's title page, built from `DS-21` (E1 to E6)
+
+**Status:** in review · took over from desktop-session-1, the PM's call of 2026-11-08 · scope approved by the PM before
+building
+
+`DetailScreenDesktop` now draws the `DS-21` boards on the shared `DetailViewModel`:
+- **The bar:** Back, then where the page was opened from (Home, Search or Library), which goes back too, then the title.
+- **E1:**
+  - the poster beside the name;
+  - the shared run of facts, then the kind of title and its provider;
+  - a two-line synopsis that opens in place (`SynopsisToggled`).
+- **E1's actions:**
+  - Resume `S1:E3` with its rule and what is left under it (`resume_time_left` on one line), else Play;
+  - Start over (`detail_start_over`), the same episode or film from its beginning;
+  - the watch list, `Add` or `Done` by whether the title is on one, which opens the watch-status panel.
+- **Episodes** are on the page under a button per season, opening on Resume's season. Season 0 is `season_specials`.
+  Episodes with no season are `season_other`, last (`I18N-12`).
+- **E2:** a row's Play shows while the pointer or focus is on it, and its words never move for it.
+- **E3:** the sources panel, with Cancel. The loading words have a line of their own, so finishing moves no row (`BUG-19`).
+- **E4** is the skeleton. **E5** has Try again and Go back, and shows nothing of the failure (`BUG-21`).
+- **E6:** in the 800×520 window the name is a size down, and everything still answers.
+
+Every action that plays sends `PlaybackRequested`. The desktop host turns it into its source list with the right start:
+the stored position for a Resume, the beginning for Start over or another episode (`startPosition`, tested). Escape
+closes the source list, then the watch-status panel, then the page.
+
+`LibraryDetailSource` adds what this computer remembers about the title, from the same store the library reads:
+- **Resume:** the newest resumable position, only on an episode the provider still lists.
+- **Seasons**, counted from the episodes.
+- **The watch list** and `setWatchStatus`. A title put on a list for the first time keeps its name, poster and provider.
+  None does not take a title out of Favourites, which the page cannot show.
+
+A library that cannot be read costs only these, and the page still opens.
+
+**Tests** (`:desktopApp:jvmTest`, real pointer and key events):
+- `DetailScreenTest` (14): each control is found by what a screen reader is told, then pressed at its middle.
+  - E1's actions, the watch list, the synopsis, the bar's way back.
+  - Seasons: the selected one in semantics, Specials and Other in order.
+  - E2's hover verb, E3's panel, the watch-status panel's selection, E4, E5 (no failure text), E6, Tab to Resume.
+  - The start position.
+- `LibraryDetailSourceTest` (7).
+- `SourcesPanelTest`: the header is a reserved line taller, so `HEADER_BOTTOM` is 64 → 80 and `FIRST_ROW_Y` is 88 → 104,
+  measured off its renders. One case is renamed: Cancel, not Close, keeps its place.
+
+**DECIDED** (approved by the PM before building):
+- **Score, tags, certification, status, runtime and the trailer do not reach the Mac yet.** The plugin sandbox's
+  `RemoteDetails` does not carry them, and changing that format is a security-boundary change. It is `KMP-76`.
+- **Per-episode Watched and time left, and their rules,** wait on `KMP-63`. The contract has no per-episode watch state.
+- **E2's Download and Mark watched** need `DetailAction`s that do not exist, and the Mac's downloads are `KMP-75`. The
+  row's verb is Play alone, with no tooltip: one verb that is the row's own says nothing a tooltip would add.
+- **No episode thumbnails, Share or More.** `DetailEpisode` has no image, there is no share action on desktop, and nothing
+  More would hold works here yet.
+- **The synopsis has no "More" word.** There is no such key. The block itself is the target, named `synopsis` for a
+  screen reader.
+- **The sidebar on E1 is `KMP-77` (shell)**, desktop-session-1's, for every pushed screen.
+
+## KMP-76 — The plugin sandbox carries a title's facts to the Mac · **built 2026-11-08**, follow-up of `KMP-58`
+
+The design was approved by the owner on 2026-11-08, before any code. `RemoteDetails` now carries five facts from
+`LoadResponse`: the score, the tags, the content rating, the show status and the runtime. `DesktopDetailSource` maps them
+onto `TitleDetail`'s existing fields, which feed the shared run of facts under the title's name. Neither `feature/detail`
+nor Android changed.
+
+**The trust boundary is the app's reader.** The plugin runs inside the host process, so it can write any bytes the host
+could. The host's caps only help an honest plugin's page fit. Everything is checked again in the app, in three steps:
+1. **Shape**, in `readFacts`. Every length and count is checked against what is left before anything is allocated. The
+   section is read from its own slice of the frame, so nothing in it can reach past its stated length.
+2. **Bytes.** A tag over 256 bytes, or a certification over 64, is skipped without being decoded. So is a tag past
+   16 KiB of decoded tags, or past the 16th.
+3. **Meaning**, in `RemoteFacts.cleaned`:
+   - the score must be 0 to 100 tenths;
+   - the runtime must be 1 to 1440 minutes;
+   - the status must be code 1 or 2, never free text;
+   - a tag loses control and format characters (U+202E included), and is dropped if blank, repeated, or over 64
+     characters;
+   - a certification must be 1 to 16 letters, digits, spaces or `-+/`, or it is refused, not repaired.
+
+| Fact | Wire | Bound |
+|---|---|---|
+| score | `Int`, tenths of a point out of ten | `0..100` |
+| tags | count, then strings | 16, each ≤ 64 chars and ≤ 256 bytes, ≤ 16 KiB in all |
+| content rating | optional string | ≤ 16 chars, ≤ 64 bytes, letters, digits, space, `-+/` |
+| status | one byte | 0 none, 1 Ongoing, 2 Completed |
+| runtime | `Int`, minutes | `1..1440` |
+
+**A bad fact costs only itself.** The page opens with the rest. A section that cannot be read inside its own length, cut
+short or with a lying length within it, costs all the facts and keeps the page: the outer reader has already stepped past
+it. Only a section length that lies past the frame fails the call and ends the host, as any lying length does elsewhere in
+this format. Each drop is logged as the fact's name and a reason in the code's own words, never the value, not even a
+plugin's number, and many dropped tags make one line.
+
+**Compatibility.** The section follows the episodes as a version byte (`FACTS_V1`) and a length:
+- A reply that ends after the episodes (a host from before this) has no facts, and the page is as it was.
+- An app from before this ignores the trailing bytes.
+- A version this app does not know is skipped whole.
+- A later fact goes in a new version, never by redefining version 1.
+- `classes-jar.api` is untouched: the sandbox is not part of it.
+
+**Tests:**
+- `HostProtocolFactsTest` (15), hand-written frames:
+  - each bound, just inside and just past;
+  - an old reply and an unknown version;
+  - oversized bytes skipped with the reader still in step;
+  - a hundred thousand tags;
+  - a section length lying past the frame, which fails the call;
+  - a section cut short, or lying inside its own length, which keeps the page;
+  - no value, and no plugin-chosen number, reaches the log.
+- `PluginHostClientTest`, three lying-host cases through the real client:
+  - facts past every bound cost only themselves, and the host lives;
+  - a section cut short inside its length costs the facts, and the page and host live;
+  - a section lying about its length past the frame ends the host.
+- `SandboxEnforcementTest`, a malicious plugin in a real sandboxed host. Its score is valid, but it sends:
+  - a 1 MiB tag, 100,000 tags, and tags with terminal escapes, U+202E and zero-width joiners;
+  - `<script>` and a forged line as the rating;
+  - `Int.MAX_VALUE` minutes.
+  The page loads with each bounded or dropped, and the host lives on.
+- `TitleFactsTest` (2), the mapping onto `TitleDetail`.
+- **Not here: the facts on E1's screen.** Master's Mac title page does not draw the run of facts yet; `#226` (`KMP-58`)
+  does. Asserting them there is `KMP-82`, a one-line follow-up once both have landed.
+- **Red without the app's checks.** With `RemoteFacts.cleaned` switched off, 5 of these fail, the lying-host case among
+  them.
+
+**DECIDED** (approved with the design):
+- **No `hasTrailer`.** The Mac cannot play a trailer, so the flag would draw a button that does nothing. Playing one later
+  means a trailer URL crossing the sandbox, which needs link-style checks of its own. It belongs with trailer playback.
+- **The host shortens an honest plugin's tags to 64 characters** rather than losing them. The app does not shorten
+  anything: what arrives over a bound is dropped.
+- **Score on the wire is a whole number of tenths**, so no NaN or infinity can be sent. The page keeps it out of ten.
+- **A section unreadable inside its own length keeps the page** (the PM's call, after review). The reader of the reply
+  has already stepped past the slice, so it is still in step; only the facts are lost. This covers a lying length inside
+  the slice as well as a slice cut short, since both are contained by it.
+
+## KMP-82 — The Mac title page shows `KMP-76`'s facts, asserted on screen · **open**, follow-up of `KMP-76` and `KMP-58`
+
+`KMP-76` carries the score, tags, content rating, status and runtime into `TitleDetail`, and tests that mapping. The Mac
+title page on master does not draw the run of facts yet; `KMP-58` (`#226`) does. Once both are on master, add one case to
+`DetailScreenTest`: a title with all five facts shows them in E1's run under the name, in the shared order, and a title
+with none shows no empty separators. No production change is expected.
+
+## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
+
+**Status:** open · found by reading the code for `DS-24`'s Network pane (ST8), not by a run
+
+`DS-24` gives the Mac one Network setting, DNS over HTTPS. The resolver can cover everything that resolves in the app's
+process:
+- A sandboxed plugin host reaches the network only through `OutboundGate`, which resolves names itself
+  (`OutboundGate.kt:93`, `InetAddress.getAllByName`). A DNS-over-HTTPS resolver there covers all extension traffic.
+- Posters (`PosterImage.kt:74`) and subtitles build their own OkHttp clients on `Dns.SYSTEM`, which an OkHttp `Dns` can
+  replace.
+- `DohProviders.kt` is already in `:core:network`'s `jvmCommonMain`.
+
+**What it does not cover.** libVLC runs in the `--media-host` child and resolves stream hosts with the system's DNS. So
+with the setting on, a stream's lookups still go to the system resolver, and ST8's line says "Video streams use your
+Mac's DNS."
+
+- [ ] Find whether the media host can resolve through the same resolver: libVLC's own options, or the app handing it
+      addresses it resolved, which has to keep TLS and the host header right.
+- [ ] If it can, the line under the setting goes, in the same PR.
+- [ ] If it cannot, record why here, and the line stays.

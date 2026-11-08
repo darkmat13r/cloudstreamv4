@@ -5,6 +5,7 @@ import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
+import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteDetails
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLink
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLinks
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteSubtitle
@@ -54,16 +55,7 @@ class DesktopDetailSource : DetailSource {
             System.err.println("detail: ${provider.name} could not open a title: ${failure.message.orEmpty().withoutUrls()}")
             throw failure
         }
-        return TitleDetail(
-            title = details.name,
-            providerName = provider.name,
-            typeName = details.type,
-            year = details.year,
-            plot = details.plot?.withoutMarkup(),
-            posterUrl = details.posterUrl,
-            playData = details.dataUrl,
-            episodes = details.episodes.map { DetailEpisode(it.name, it.data, it.season, it.episode) },
-        )
+        return details.toTitleDetail(provider.name)
     }
 
     // Conflated: each value is the whole list so far, so a screen that cannot keep up misses nothing.
@@ -72,26 +64,86 @@ class DesktopDetailSource : DetailSource {
         emitAll(provider.linksAsTheyArrive(data).toStreamLinks())
     }.conflate().flowOn(Dispatchers.IO)
 
-    /**
-     * The plot as plain text. Providers send HTML (`<br>` in a YouTube description) and nothing here
-     * renders it, so tags are dropped and never interpreted.
-     */
-    private fun String.withoutMarkup(): String =
-        replace(BREAK_TAG, " ").replace(ANY_TAG, "").replace(RUN_OF_SPACES, " ").trim()
-
     private companion object {
         const val DETAIL_BAD_ID = "BAD_ID"
         const val DETAIL_NOT_LOADED = "NOT_LOADED"
-        val BREAK_TAG = Regex("(?i)<br\\s*/?>")
-        val ANY_TAG = Regex("<[^>]*>")
-        val RUN_OF_SPACES = Regex("\\s+")
     }
 }
 
-/** Text for a log line with every URL taken out: a plugin's message may repeat a request it made. */
-internal fun String.withoutUrls(): String = replace(URL_IN_TEXT, "<url>")
+/**
+ * The page's title as the sandbox delivered it. Every fact has already passed the app's reader and its checks
+ * (`KMP-76`), so this only changes units: the page keeps a score out of ten, the wire sends tenths.
+ */
+internal fun RemoteDetails.toTitleDetail(providerName: String) = TitleDetail(
+    title = name,
+    providerName = providerName,
+    typeName = type,
+    year = year,
+    plot = plot?.withoutMarkup(),
+    posterUrl = posterUrl,
+    playData = dataUrl,
+    episodes = episodes.map { DetailEpisode(it.name, it.data, it.season, it.episode) },
+    score = facts.scoreTenths?.let { it / TENTHS },
+    tags = facts.tags,
+    contentRating = facts.contentRating,
+    statusName = facts.status?.name,
+    durationMinutes = facts.runtimeMinutes,
+)
 
-private val URL_IN_TEXT = Regex("(?i)\\b[a-z][a-z0-9+.-]*://\\S+")
+/**
+ * The plot as plain text. Providers send HTML (`<br>` in a YouTube description) and nothing here
+ * renders it, so tags are dropped and never interpreted.
+ */
+private fun String.withoutMarkup(): String =
+    replace(BREAK_TAG, " ").replace(ANY_TAG, "").replace(RUN_OF_SPACES, " ").trim()
+
+private const val TENTHS = 10f
+private val BREAK_TAG = Regex("(?i)<br\\s*/?>")
+private val ANY_TAG = Regex("<[^>]*>")
+private val RUN_OF_SPACES = Regex("\\s+")
+
+// BUG-44/47: the fourth of four identical copies of the redaction rules, which must stay in sync: `:app`
+// `utils/LogRedaction.kt`, `:library` `mvvm/ArchComponentExt.kt`, `:feature:extensions:sandbox` `PluginHost.kt`, and this one
+// (`KMP-56`). The sandbox's is `internal` to its module, so `:desktopApp` cannot call it. `DesktopRedactionTest` runs the same table.
+
+/** `file:/…`, with any number of slashes, up to the next whitespace. */
+private val FILE_URI = Regex("(?i)\\bfile:/\\S+")
+
+/** `scheme://[userinfo@]host[:port]`, then whatever follows up to the next whitespace. */
+private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*)://(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
+
+/**
+ * An absolute path under a storage, home or volume root, up to a newline, a quote, `": "` or the end. A path may hold
+ * spaces, so it is not cut at whitespace: what follows a path on its line is lost with it, which is the safe way round.
+ */
+private val USER_PATH = Regex(
+    "(?<![\\w.:/-])/(?:storage|sdcard|data/user|mnt|Users|home|Volumes)(?:/[^\\r\\n\"'<>]*?)?(?=: |[\\r\\n\"'<>]|\\z)"
+)
+
+/** BUG-47: a Windows home path, `C:\Users\…` (any drive letter, either case, either slash), with the same ends as [USER_PATH]. */
+private val WINDOWS_USER_PATH = Regex(
+    "(?<![\\w.:/\\\\-])(?i:[a-z]):[\\\\/](?i:users)(?:[\\\\/][^\\r\\n\"'<>]*?)?(?=: |[\\r\\n\"'<>]|\\z)"
+)
+
+/**
+ * Text with a `file:` uri, a path under `/storage`, `/sdcard`, `/data/user`, `/mnt`, `/Users`, `/home` or `/Volumes`, or a
+ * Windows `C:\Users\…` path replaced by `<path>`, and every other url cut to `scheme://host[:port]/<…>`. The host is kept
+ * because it helps triage and is not a secret; the userinfo, path, query and fragment are not.
+ *
+ * Strip invisible characters **before** this: a format character inside `://` (`https:<ZWSP>//`) hides the url from
+ * the pattern, and stripping it afterwards would put the whole url back together on screen.
+ */
+internal fun String.withoutUrls(): String = this
+    .replace(FILE_URI, "<path>")
+    .replace(URL_IN_TEXT) { match ->
+        val (scheme, host, rest) = match.destructured
+        "$scheme://$host" + if (rest.isEmpty()) "" else "/<…>"
+    }
+    .replace(USER_PATH, "<path>")
+    .replace(WINDOWS_USER_PATH, "<path>")
+
+/** Control and format characters out, so nothing invisible can split a url or a path from [withoutUrls]'s patterns. */
+internal fun String.withoutInvisible(): String = filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }
 
 /**
  * What a plugin has offered so far, as streams, emitting whenever there is one more or a new subtitle for those.

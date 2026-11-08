@@ -887,6 +887,22 @@ class HomeViewModelTest {
         assertNull(none.state.value.returnTo)
     }
 
+    /** The Mac's H4 shows a failed reload's kept rows with Random beside them, so Random picks from those. */
+    @Test
+    fun `random after a failed reload opens one of the kept titles`() = runTest {
+        var reply: HomePageReply = page("A", "k1", "k2")
+        val vm = HomeViewModel(
+            Fake(listOf(option(a))) { _, _, _ -> reply },
+            TestScope(UnconfinedTestDispatcher(testScheduler)),
+            random = kotlin.random.Random(7),
+        )
+        reply = HomePageReply.Offline
+        vm.onAction(HomeAction.ReloadRequested)
+        assertIs<HomeStatus.Stale>(vm.state.value.status)
+        val effect = assertIs<HomeEffect.OpenTitle>(effectAfter(vm, HomeAction.RandomRequested()))
+        assertTrue(effect.id in setOf("k1", "k2"), effect.id)
+    }
+
     @Test
     fun `search from the chrome is of the chosen source alone`() = runTest {
         val vm = model(Fake(listOf(option(a), option(b))) { id, _, _ -> page(id.value, "1") })

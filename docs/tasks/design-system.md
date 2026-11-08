@@ -922,3 +922,313 @@ Renders: in the shared local review folder (not published).
   - each list's empty words ("Nothing on hold", "Titles you pause land here.", "Go to %s");
   - "Move to another list" and "%d titles".
 
+
+## DS-23 — Boards: the player on the Mac, the phone and the tablet
+
+**Status:** drawn, PR open · boards only, no Kotlin · `DEC-19` · the owner's priority, through the PM, 2026-11-08
+
+Drawn from TV Detail 7d (the HUD) and 7e (the Source, Subtitles and Audio panels), and the Mac's built `PlayerScreen`,
+with the desktop direction in `docs/plans/desktop-design.md`.
+
+- `Desktop Player.dc.html` (a board file in the owner's Claude Design project), M1 to M15, at 1280×800 unless said:
+  - M1: playing, with the HUD the pointer brought: Back and the title at the top, one glass surface at the foot with
+    the transport over the selectors, as the built `Hud` has them, at most 720 wide.
+  - M2: the HUD hidden after three seconds still, with a subtitle.
+  - M3: hovering the timeline shows the time under the pointer; Skip Intro waits above the controls.
+  - M4 to M7: the Source, Subtitles, Audio tracks and Picture size panels, from the right, 360 wide, no scrim. The
+    controls recentre in the room left.
+  - M8 loading, M9 buffering, M10 a source failed and the next is trying, M11 every source failed.
+  - M12: offline, playing a downloaded file.
+  - M13: Up next at the credits, counting down from 10 s, with Play now and Cancel.
+  - M14: full screen, with the Playback menu listing every key.
+  - M15: the 800×520 minimum window.
+  - M16: Up next, cancelled.
+- `Phone Player.dc.html` (a board file in the owner's Claude Design project):
+  - LP1 to LP6, a phone held sideways (916×412): playing, a double tap seeking 10 s, Source as a bottom sheet, a
+    failed source with the next trying, Skip Intro, Up next counting down.
+  - P1 to P4, a phone held upright (412×916): the picture at the top in 16:9 under the status bar, then the title, the
+    selectors as a row of chips that scrolls sideways, and the season's episodes with the one playing marked.
+    - P1 the controls shown over the picture, P2 hidden, P3 Source as a full-width sheet, P4 Up next counting down in
+      the title's place.
+    - Turning the phone sideways is LP1; turning it back returns here.
+  - T1 and T2, the tablet (1280×800): playing, and the sheet at 600 wide.
+
+**Security.** No board draws an address, a header or a host. A source row is its name and its quality, as the built
+`SourcePicker`'s are, and a failure is its code. Checked: the only addresses in either file are the Tabler glyph CDN and
+Google Fonts.
+
+**Measured** in Chromium with `getBoundingClientRect`, on every artboard:
+- Desktop (468 boxes) and phone and tablet (268 boxes): off the 4 dp step only in the playhead, whose x is the
+  position, and the drawn system pointer. Both are values, not layout.
+- Upright, 412 has its middle at 206, off the step, so the board draws the transport at 204. The build centres it
+  (`Alignment.CenterHorizontally`); 204 is where the board landed, not a number to copy.
+- All 30 glyph URLs answer 200, checked with curl.
+
+Renders: in the shared local review folder (not published).
+
+**Decisions taken here** (reported to the PM):
+- **Panels from the right without a scrim**, as the brief asks. The built pickers are popovers over their selector; the
+  boards replace them. The picture keeps playing beside a panel, so it does not dim.
+- **The hover preview is the time only.** A frame would need libVLC to decode the file a second time.
+- **No Speed selector on the Mac yet.** The shared `PlayerHudState` already has `speed` and `OpenSpeed`, and TV draws
+  the selector. What the Mac lacks is a rate setter in its libVLC host. The selector joins the row when that exists.
+- **Up next counts down, then plays** (the owner's ruling, which replaced a no-countdown call):
+  - **10 s.** The card has a two-line title and art to read, and a pointer or a thumb has to reach Cancel. Five is gone
+    before the title is read; much longer is credits nobody chose.
+  - The count holds while a panel is open or the pointer is on the card, and goes on when neither is.
+  - Cancel, or Esc on the Mac, stops the count and keeps the card, with Play now and a close (M16). Play now does not wait.
+  - A rule along the card's foot empties as it counts, with "Next episode in 8 s" in words.
+  - **The user's setting wins** (the PM's call): with Android's existing `autoplay_next_settings` off, Up next is the
+    card with no countdown, as M16 draws it, with Play now and a close; with it on, the 10 s countdown. The ruling
+    sets how auto-play looks, not whether to override someone who turned it off.
+  - **The Mac reads the same setting.** It has none yet: Android keeps it as `autoplay_next_key` (on unless turned off),
+    and nothing in `:desktopApp` reads it. A Mac preference for it is part of the build.
+- **Full screen is F**, as built, in the Playback menu. macOS's own ⌃⌘F can be added beside it.
+- **Phones also play upright** (the owner's ruling, which replaced a sideways-only call): P1 to P4.
+
+**Made-up names only.** The title is "Quiet Harbor" and the sources are "Source One" to "Source Four", so the
+build's tests, screenshots and previews copy names that belong to no real title or site. The subtitle services named are
+the app's own providers.
+
+**Strings each board needs.** Most exist (`video_source`, `player_subtitles_settings`, `audio_tracks`,
+`player_fit_*`, `loading`, `player_hud_buffering`, `source_error`, `pick_source`, `player_source_*`,
+`player_load_subtitles*`, `subtitle_offset_title`, `no_subtitles`, `player_hud_offline_copy`, `player_hud_up_next`,
+`next_episode`, `skip_type_format` with `skip_type_intro`, `pause`, `resume`, `seek_*_10_seconds`, `player_mute`,
+`player_*_fullscreen`, `go_back`). New, as `I18N-19`, which the build waits for:
+- the Playback menu's title, and Volume up and Volume down (M14);
+- M11's first sentence, "Every source answered with an error." The second is the existing `player_hud_failed_detail`
+  ("Choose another source below."): on the Mac the Choose source button sits under it, so "below" holds;
+- the Source panel's count line, and each panel's second lines (decoded size, stereo). Not the kept position: the
+  panel's header already says it with `player_source_resumes_at`, so the build drops the row's "keeps 42:13", which
+  repeats TV 7e's row copy;
+- the double tap's "10 seconds" (LP2); the old player's `go_back_30` is a bare "-30";
+- Up next's "Next episode in %d s" and "Play now". Cancel is the existing `cancel`.
+
+**Not drawn:** casting, picture in picture, and the subtitle style settings.
+
+## DS-24 — Boards: Settings on the Mac, the phone and the tablet
+
+**Status:** drawn, in pr #252 · boards only, no Kotlin · `DEC-19` · the PM's call, 2026-11-08 · strings are `I18N-20`
+
+The Mac has no settings yet. The boards regroup Android's seven Settings entries (six XML screens and Extensions, about
+95 rows) into ten panes that every platform shares. The Mac drops what it cannot do, and the phone keeps what only a
+phone has.
+
+**The Mac** opens a Settings window with ⌘,, not a fourth tab in the main bar. It is 760 wide at all times: a 216
+sidebar and a 544 pane. It is 600 tall by default and can shrink to 480, in height only. The sidebar runs the full
+height with the traffic lights in it and a search field at the top. The pane's name is the window's title, in a 52 bar.
+Sheets attach under that bar, 440 wide and centred. `DS-25` draws its account sheets to this geometry.
+
+The ten panes, in order:
+
+| Pane | Holds | Dropped on the Mac, and why |
+|---|---|---|
+| General | App language, updates, run setup again, disclaimer | The four links move to the Help menu |
+| Appearance | Poster size, title under poster, badges, hide quality; trailers, cast, filler episodes; the Random button, suggestions | Primary colour (`DEC-13`). Theme (`DS-01`). Layout: the Mac has one, the window. Overscan: a TV's. The clock: macOS shows one in the menu bar. Kitsu posters: Kitsu is off the Mac (see Accounts). Advanced search: the Mac always groups by source |
+| Playback | Play the next episode, Skip intro prompts, seek amount, watch progress, source order; libVLC's network buffer, the disk cache, clearing it. The disk cache's file names and index are keyed by a hash, never by a stream URL: a URL reaching disk is a blocker | Preferred player (libVLC is the player), PiP (nothing builds it yet), rotation ×2, gestures ×5 and brightness (a phone's), the two TV seek amounts. Software decoding: the Mac leaves the hardware or software choice to libVLC's automatic default |
+| Subtitles | The `CaptionStyle` editor with a live preview, the preferred language (the Mac's existing `SubtitlePreference`), OpenSubtitles and SubDL | Chromecast subtitles |
+| Extensions | Repositories, what is installed with each one's scan state (`KMP-24`), languages, preferred media, dub and sub, adult content, auto-update, auto-install. Both automatic options are **off by default on the Mac**, and whatever they bring in passes `KMP-24`'s scan and review before it runs | Test all moves to Advanced |
+| Downloads | The folder, by its name only; downloads at once; connections per download | Battery optimisation |
+| Accounts and Privacy | Profiles, which open `DS-25`'s A6 (via A3/A4 when locked); Sync for the current profile: AniList, MyAnimeList, Simkl; skip choosing a profile; Lock with Touch ID, **approved by the owner (2026-11-08)**, with the profile's PIN as the fallback | Kitsu: it signs in with a password, and the Mac has no password sign-in for sync services (the owner's ruling, 2026-11-08; see `DS-25`) |
+| Network | DNS over HTTPS, with no address drawn | Clone site and GitHub proxy, which send traffic through a third party (the PM's call) |
+| Backup | Back up now, how often, the folder, restore. A Mac backup carries no sign-in tokens and no PINs, the rule `BUG-50` and `BUG-51` set for Android | |
+| Advanced | Logs (Show in Finder only, never their contents), test all extensions, reset | |
+
+Also dropped on the Mac: the APK installer and pre-release installs (distribution is `DEC-03`), confirm before exit
+(⌘Q is the convention), and benene.
+
+- `Desktop Settings.dc.html` (a board file in the owner's Claude Design project), at 1280×800:
+  - ST1 General at rest.
+  - ST2 Extensions: one repository unreachable with Retry, and one extension held by its scan with Review.
+  - ST3a Subtitles: the style editor and its preview. ST3b, scrolled: preferred language and the subtitle services.
+  - ST4 Accounts and Privacy.
+  - ST5a a backup restore in progress. ST5b the restore failed, saying that nothing changed.
+  - ST6 Downloads with the folder missing: Show in Finder disabled, Choose offered.
+  - ST7 searching Settings with no results.
+  - ST8 Network, with the DNS over HTTPS menu open.
+  - ST9 Playback at the 760×480 minimum.
+  - ST10 Advanced: the Reset sheet names what it erases and what it keeps. It erases settings, profiles and their PINs,
+    the library and history, search history, and every sign-in in the credential store. Cancel is the primary and comes
+    first (`ui-components.md` rule 1, as in `DS-18`).
+  - ST11 Appearance.
+- `Phone Settings.dc.html` (a board file in the owner's Claude Design project):
+  - PS1 the Settings list: the same ten panes, each with what it holds, and search.
+  - PS2 Playback on a phone, keeping gestures, PiP and rotation in the new panes.
+  - PS3 Extensions offline, as a banner over lists that still work.
+  - PS4 search with no results.
+  - PS5 Reset as a bottom sheet, with ST10's words. On a phone, logs are shared as a file.
+  - TS1 the tablet: the list (360) and the pane side by side.
+
+Drawn at 1 px = 1 dp, with Tabler 1.119.0 glyphs as masks, never drawn by hand.
+
+**Sign-ins are `DS-25`'s.** A service row is its name, presence only (never an account name or id, as `KMP-73` keeps
+it), and one button. The words reuse `I18N-16`'s keys: `account_sync_connected` ("Connected · signed in on this
+device"), `library_not_connected`, and `account_sync_remove` ("Remove from this device"); Sign in is new. Nothing after
+the press is drawn here. AniList and MyAnimeList sign in through the browser and Simkl with a code. OpenSubtitles and SubDL sign in with
+an email and password inside the app. That is the owner's exception, 2026-11-08, and `DS-25`'s A16 draws it.
+
+**Measured** in headless Chrome with `getBoundingClientRect`, on every artboard:
+- Mac: 796 boxes. Phone and tablet: 305 boxes. Both have 0 off the 4 dp step and 0 text overflowing its box.
+- x and width are checked on structure only. A button's or a menu's width comes from its words, and so does the x of
+  what follows it in a row (`dimension-scale.md`, "What the grid does not govern").
+- Words centred in a 36-tall `DesktopButton` sit at 6, which is the button's own geometry.
+- All 16 glyph URLs answer 200, checked with curl.
+
+**Security.** No board draws an address, a path, a token or an account name. A repository, a backup and a download
+folder are their names. Checked: the only addresses in either file are the Tabler glyph CDN and Google Fonts.
+
+**Made-up names only:** the profiles Alex and Sam, "Example Repository", "Harbor Mirror", "Source One" and "Source Five".
+
+Renders: in the shared local review folder (not published).
+
+**Decisions taken here** (the PM's calls, 2026-11-08):
+- **Row controls are 32 tall**, a compact `DesktopButton`, so that they centre in 48 and 64 rows. The build adds it to
+  `DesktopDimens` with a KDoc that says why. On a phone and a tablet the 32 control keeps a 48 touch cell, as a chip's
+  24 visual sits in its 48 cell.
+- **The pop-up button's glyph is Tabler `selector`**, a new `CloudStreamIcons` meaning. The build adds it to
+  `ui-components.md`'s table.
+- **The panes are words only.** A glyph per pane would be ten new meanings, and the main window's tabs are words too.
+- **No trailing ellipsis on buttons**, so the keys these boards reuse (`add_repository`, `account_add_profile`, `edit`,
+  `reset_btn`) read the same as the new ones beside them.
+
+- **"Each update is scanned before it runs" is a promise to the user** (ST2). The build must confirm that `KMP-24`'s
+  scan runs on an automatic update, not only on first install, and add a test for it. If it does not, the line changes.
+
+**Open:** ST10's button order against board `D3` in `design/Desktop Downloads.dc.html`.
+
+**Follow-up:** DNS over HTTPS does not reach playback on the Mac yet, so ST8 says so in words. That is `KMP-88`.
+
+## DS-25 — Boards: account and profiles on the Mac, the phone and the tablet
+
+**Status:** drawn, in pr #254 · boards only, no Kotlin · `DEC-19` · the PM's task, 2026-11-08
+
+Drawn from TV board 8d (`KMP-73`'s `AccountSelectScreenTv` and `PairingPanelTv`), the old account code
+(`AccountSelectActivity`, `AccountHelper`, `AccountViewModel`, `ProfileSignIns`) and `BUG-55`'s `PinAttempts`.
+The board files were not on the drawing Mac, so every number comes from the code instead:
+- `CloudStreamColors`, `CloudStreamTypography`, `CloudStreamShapes` and `DesktopDimens`;
+- the sidebar from `DesktopShellDefaults`.
+
+- `Desktop Account.dc.html` (a board file in the owner's Claude Design project), A1 to A16b, at 1280×800 unless said:
+  - Choosing a profile:
+    - A1, the launch picker: 8d's cards at a pointer's size. It shows from two profiles, the default counted (`KMP-73`).
+    - A2, a profile button at the foot of the sidebar (`KMP-77`, #247), opening a popover: the profiles, "Manage
+      profiles", "Sync services".
+    - A5, Manage mode.
+    - A15, the 800×520 minimum.
+  - Unlocking a locked profile:
+    - A3t, Touch ID first: "Use Touch ID to open <profile>", with Use PIN instead. macOS draws its own prompt over the
+      sheet.
+    - A3, the PIN: four masked cells, and the fourth digit submits. It is the fallback after Use PIN instead or a
+      failed Touch ID, and the first step on a Mac with no enrolled finger.
+    - A3b, a wrong PIN, with no count of tries left.
+    - A4, `BUG-55`'s wait ("Too many wrong PINs. Try again in 00:30"), with the cells off.
+    - A4b, the wait at its one-hour cap.
+  - Profiles:
+    - A6, the editor: picture, name, the PIN row, and Delete apart at the lead.
+    - A6b, adding a profile.
+    - A6c, the first profile, whose PIN row says it can't be locked. Android hides the toggle; the board keeps the row
+      because the first profile is the way back in when a PIN is forgotten.
+    - A6d, a locked profile.
+    - A7 to A7c, setting, confirming and changing a PIN. The current PIN comes first, under the same limit.
+    - A8, deleting a profile. Cancel is the primary (`DEC-19`), and the words say its sign-ins leave the Mac with it.
+  - Sync services, for the current profile only:
+    - A9, "Sync for <profile>": Connected or Not connected, read by presence. Never an account name or an id.
+    - A10, AniList and MyAnimeList through the browser, with no password field.
+    - A11, Simkl with a code and a QR. A11b, the code expired.
+    - A12, cancelled: nothing is shown as an error, and focus returns to the row.
+    - A13, failed. A13b, offline.
+    - A14, removing a sign-in from this device. Cancel is the primary.
+  - Subtitle services: A16, the OpenSubtitles and SubDL sign-in. A16b, its failure.
+- `Phone Account.dc.html` (a board file in the owner's Claude Design project), at 412×916:
+  - PA1, the picker, two cards a row.
+  - PA2, the PIN in a bottom sheet over the number keyboard. PA3, the wait.
+  - PA4, the editor, full screen.
+  - PA5, sync services.
+  - PA6, MyAnimeList through a Custom Tab.
+  - PA7, Simkl through the browser.
+  - TA1, the tablet picker at 1280×800. The tablet's other flows are the phone's sheets at 600 wide.
+
+**Rulings applied** (the owner, through the PM, 2026-11-08):
+- **The Mac signs in through the browser, and the app never sees a password.** Tokens are stored as Android's are:
+  never backed up, never logged. This replaces `desktop-design.md`'s "no service sign-in on desktop".
+- **Simkl pairs with a code on the Mac (A11).** The person approves it in any browser, and it needs no redirect.
+- **Cancel ends the wait at once (A12).** No poll keeps running, and a redirect that arrives late is ignored. `BUG-49`
+  is the precedent.
+- **Kitsu is not on the Mac.** It signs in only with an email and password, so it is shown nowhere, not even as a
+  disabled row. The phone keeps Android's four services (PA5), because the ruling is the Mac's.
+- **OpenSubtitles and SubDL are the one exception (A16).** They may sign in with an email and password inside the Mac
+  app, these two only:
+  - the password is masked, with Show;
+  - it is never prefilled;
+  - nothing is logged;
+  - it is kept with the sign-ins, out of every backup.
+- **Touch ID first, the PIN as the fallback** (the owner, 2026-11-08; A3t). `BUG-55`'s wait still applies to the PIN.
+  `DS-24`'s Settings pane holds the switch. **An accepted trade-off** (the owner, 2026-11-08): Touch ID proves who is
+  signed in to the Mac, not who owns the profile, so anyone whose finger is enrolled in that macOS account opens every
+  locked profile.
+- **`DS-24` hands off to these boards.** Settings lists the services and profiles; its Sign in, Edit and Add
+  profile open A10, A11, A16, A6 and A6b. Edit on a locked profile goes through A3t (or A3) first. The sheets are 440 wide,
+  under the window's title bar.
+
+**Before the build** (the boards do not wait on these):
+- **A10 needs the Mac to receive the redirect.** AniList's and MyAnimeList's sign-ins return to
+  `cloudstreamapp://anilistlogin` and `cloudstreamapp://mallogin` (`AccountManager.APP_STRING`). Nothing in
+  `:desktopApp` handles a URL scheme today; both are absent:
+  - the scheme in the Mac app bundle;
+  - an open-URI handler.
+- **The redirect handler accepts only what this window asked for** (the reviewer and the owner). The build PR shows
+  each of these with a test:
+  - it acts only while a sign-in from this window is pending, and ignores any unsolicited `cloudstreamapp://` URL;
+  - it checks an OAuth `state` it generated, and the `state` is random. Android's MAL request sends `state=RequestID<n>`,
+    a counter, which the owner ruled not acceptable for the Mac (2026-11-08);
+  - it uses PKCE where the provider supports it. MyAnimeList supports only the `plain` method, so the verifier is the
+    challenge and travels in the authorize URL. So the verifier must be freshly random for every sign-in, 43 to 128
+    characters from a secure RNG, and never reused. Android's `AuthAPI.generateCodeVerifier` was checked, not assumed:
+    96 bytes from `SecureRandom`, base64url without padding, 128 characters. The Mac may reuse it only after the same
+    check against the copy it ends up with;
+  - it never logs or stores the incoming URL. Only the token taken from it reaches storage.
+- **Tokens and the two subtitle credentials go in the macOS Keychain** (the owner, 2026-11-08). Reaching it from the
+  JVM probably needs a library such as JNA. That is a dependency decision, so the build brings the four-point case
+  (what, why, alternatives, size) before adding one. No secret is ever passed on a command line.
+- **What each subtitle service keeps** (read from the Android providers):
+  - **SubDL:** its login trades the password for a long-lived API key and keeps only that key and the email
+    (`Subdl.kt`, `AuthToken(accessToken = apiResponse.apiKey, payload = email)`). The Mac stores the key and never the
+    password.
+  - **OpenSubtitles:** its token is a JWT that a code comment says lasts 24 hours (not measured), with no refresh token.
+    Android re-logs in from the stored form, password included (`refreshToken` parses `token.payload`, which is
+    `form.toJson()`). Re-login truly needs the password. **The owner's ruling (2026-11-08):** the Mac keeps it in the
+    Keychain beside the token and renews the token automatically.
+- **Touch ID needs a native bridge** (LocalAuthentication), under the same dependency rule as the Keychain.
+- **Touch ID's glyph is not in `ui-components.md`'s table yet.** A3t draws Tabler's `Fingerprint`. A new meaning is
+  added to the table before it gets a glyph, so a Touch ID row (`Fingerprint`) goes into `ui-components.md` before the
+  build (the PM, 2026-11-08).
+- **The Mac has no profiles, PINs or sign-ins yet.** `PinAttempts` is Android code (uptime from `SystemClock`, a
+  preferences file). The Mac needs the same rule over its own clock and store.
+
+**Security.**
+- No board draws a token, a PIN, an account name or an id.
+- PIN cells show dots, never digits.
+- The Simkl code is the fixture `FAKE00` and the QR a checkerboard, as `KMP-73`'s screenshots have them.
+- A16 is the only password field.
+- All names are made up.
+
+**Measured** in headless Chrome with `getBoundingClientRect`, on every artboard:
+- 35 boards and 1,355 boxes: 0 off the 4 dp step, 0 overflowing text.
+- 0 elements escaping a sheet or popover. That check was added after it caught A11's footer running out of its sheet.
+- Exempt: macOS's own title bar, the drawn pointer, content centred inside a control, and text-sized widths, as
+  `dimension-scale.md` allows.
+- Hairlines are drawn, not laid out: the first pass had 25 boxes off the step because 1 px borders took room.
+- All 13 Tabler 1.119.0 glyph URLs answer 200, checked with curl.
+
+Renders: in the shared local review folder (not published).
+
+**Decisions taken here** (reported to the PM):
+- **Nothing sits raised on raised.** On a raised sheet or popover, an avatar or a secondary button steps up to `line`.
+- **The Mac's picker has no sync list.** 8d puts one under the cards. On the Mac it moves to "Sync services…" (A9) and
+  to Settings, so the launch screen is only about who is watching.
+- **One meaning, one key, on every platform** (the PM, for `DS-24` and `DS-25` together):
+  - "Remove from this device" and "Connected · signed in on this device" are `I18N-16`'s existing keys on the Mac too;
+  - no button string ends in an ellipsis ("Sign in", "Set PIN", "Manage profiles"), so the Mac reuses the keys TV and
+    Android have.
+
+**Strings:** `I18N-21`.

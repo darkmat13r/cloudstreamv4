@@ -48,8 +48,10 @@ object AndroidStorage {
      * A secret store over [jsonRecords], scoped to [prefix].
      *
      * **It is plaintext** — it reports [SecretProtection.PLAINTEXT], because that is what the file
-     * is. For OAuth tokens, `prefix` is `AccountManager.ACCOUNT_TOKEN` (`"auth_tokens"`), which is
-     * where `:app` already writes them, so this reads existing installs' tokens with no migration.
+     * is. **Not for sign-ins:** since `BUG-50`, `:app` keeps `auth_tokens/…` and `auth_ids/…` in their
+     * own file (`CredentialStore`, excluded from Android backup) and moves them out of
+     * `rebuild_preference` on first use, so a store over [jsonRecords] scoped to `"auth_tokens"` finds
+     * nothing there. A caller for sign-ins needs that file instead.
      * See [SecretStore] for what an encrypted implementation would change.
      */
     fun secrets(context: Context, prefix: String): SecretStore =

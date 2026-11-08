@@ -324,6 +324,29 @@ class SandboxEnforcementTest {
         assertNull(item.posterUrl, "a file: poster must not reach the image loader")
     }
 
+    @Test
+    fun `a malicious plugin's facts reach the app bounded, and the page still loads`() = running { host ->
+        val page = host.load("Hostile", "<script>")
+        val facts = page.facts
+
+        assertEquals("Hostile title", page.name, "a bad fact costs only itself, never the page")
+        assertEquals(84, facts.scoreTenths)
+        assertEquals(RemoteShowStatus.Ongoing, facts.status)
+        assertNull(facts.runtimeMinutes, "Int.MAX_VALUE minutes is not a runtime")
+        assertNull(facts.contentRating, "markup is not a certification")
+        assertEquals(HostProtocol.MAX_TAGS, facts.tags.size, "100,000 tags are cut to the bound")
+        assertEquals("x".repeat(HostProtocol.MAX_TAG_CHARS), facts.tags[0], "a 1 MiB tag is cut to the bound")
+        assertEquals(listOf("evil[2Jforged", "right to left", "zerowidthjoin"), facts.tags.subList(1, 4))
+        assertTrue(facts.tags.none { it.isBlank() }, "a blank tag is no tag")
+        facts.tags.forEach { tag ->
+            assertTrue(tag.none { it.isISOControl() || it.category == CharCategory.FORMAT }, "invisible text in a tag")
+        }
+
+        assertNull(host.load("Hostile", "PG\n13").facts.contentRating, "a forged line is not a certification")
+        assertEquals("FSK 16", host.load("Hostile", "FSK 16").facts.contentRating, "a real one passes")
+        assertEquals("allowed", host.attempt("read:${File(data, "x").apply { writeText("") }.path}"), "the host lives on")
+    }
+
     private suspend fun started(): Pair<PluginHostClient, RemoteProvider>? {
         val launcher = HostLauncher.forThisProcess() ?: return null
         val (client, providers) = PluginHostClient.start(launcher, jar, data, "hostile")

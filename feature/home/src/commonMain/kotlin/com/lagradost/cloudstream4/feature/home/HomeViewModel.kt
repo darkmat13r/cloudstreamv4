@@ -318,9 +318,12 @@ class HomeViewModel(
         }
     }
 
-    /** 3j's Random: one title from everything loaded, as the old button chose (`HomeFragment.kt:855-868` in `:app`). */
+    /**
+     * 3j's Random: one title from everything loaded, as the old button chose (`HomeFragment.kt:855-868` in `:app`). A stale
+     * screen's kept rows count: the Mac shows them, and its Random is beside them (H4).
+     */
     private fun openRandom(from: HomeReturn?) {
-        val title = state.value.status.rows.asSequence().flatMap { it.items.asSequence() }.distinctBy { it.id }.toList()
+        val title = state.value.status.keptRows.asSequence().flatMap { it.items.asSequence() }.distinctBy { it.id }.toList()
             .randomOrNull(random) ?: return
         from?.let { updateState { copy(returnTo = it) } }
         scope.launch { postEffect { HomeEffect.OpenTitle(title.id) } }
