@@ -2430,3 +2430,22 @@ before: Failed, with the old reason. On a screen that reads as the retry failing
   The resolver reads the published episode as it is called, and that must be Running with no failure.
   - Before, on master: failed 5 runs in 5 ("what a reader saw while the retry asked: Failed").
   - After: 20 runs in a row under the `BUG-53` disk load, none failed.
+
+## BUG-58 — `HostLimitsTest` asserted the plugin host's niceness as an absolute 10 · **low, test only**
+
+**Status:** fixed in this PR · found 2026-11-08 by the gates on `KMP-76` (`#242`)
+
+The launcher starts a plugin host with `/usr/bin/nice -n 10`, which is relative to the process that starts it. The test
+read the host's niceness and asserted exactly 10, which is true only when the test JVM runs at 0. On `KMP-76`'s gates
+the test JVM ran at nice 5, and the host was at 15: the promise kept, the assertion failed. The other worktrees' runs of
+the same test logged 10 every time (44 results), all from a JVM at 0.
+
+**Fix:** the test reads this process's own niceness and asserts the host is exactly 10 above it. It refuses to pass when
+this process is above 10, where macOS's ceiling of 20 would clamp the step and hide it (Linux's ceiling is 19). The promise is
+unchanged: ten steps lower than what launched it. Nothing outside the test changed.
+
+**Measured** (`HostLimitsTest`, 10 cases each run):
+- At parent 0: host 10, pass.
+- At parent 5 (Gradle run under `nice -n 5`, no daemon): host 15, pass. This is the gates' failure, which the old
+  assertion failed on with `expected:<10> but was:<15>`.
+- **Red:** with `nice -n 10` taken out of the launcher, `expected:<10> but was:<0>`. Restored afterwards.
