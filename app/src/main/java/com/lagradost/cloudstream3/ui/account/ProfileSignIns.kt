@@ -1,9 +1,8 @@
 package com.lagradost.cloudstream3.ui.account
 
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.context
-import com.lagradost.cloudstream3.CloudStreamApp.Companion.getKeys
-import com.lagradost.cloudstream3.CloudStreamApp.Companion.removeKey
 import com.lagradost.cloudstream3.syncproviders.AccountManager
+import com.lagradost.cloudstream3.syncproviders.CredentialStore
 import com.lagradost.cloudstream3.utils.DataStore.containsKey
 import com.lagradost.cloudstream3.utils.DataStore.getKey
 import com.lagradost.cloudstream3.utils.DataStoreHelper
@@ -35,13 +34,14 @@ internal object ProfileSignIns {
     /** `DataStoreHelper.accounts`'s key, read here directly to tell "absent" from "unreadable". */
     private const val ACCOUNTS_KEY = "${DataStoreHelper.TAG}/account"
 
-    private fun signInKeys(): List<String> = folders.flatMap { getKeys(it).orEmpty() }
+    /** Sign-ins live in `CredentialStore`'s own file since `BUG-50`. */
+    private fun signInKeys(): List<String> = folders.flatMap { CredentialStore.keys(it) }
 
     private fun indexOf(key: String): Int? = key.substringAfterLast('/').toIntOrNull()
 
     /** Removes every sign-in of the profile at [keyIndex], the default (0) included when the user deletes it. */
     fun removeFor(keyIndex: Int) {
-        signInKeys().filter { indexOf(it) == keyIndex }.forEach { removeKey(it) }
+        signInKeys().filter { indexOf(it) == keyIndex }.forEach { CredentialStore.remove(it) }
     }
 
     /** One past the highest index any profile or any sign-in uses, so a new profile never inherits a sign-in. */
@@ -70,7 +70,7 @@ internal object ProfileSignIns {
         val stored = storedIndices() ?: return 0
         val reachable = stored + DEFAULT_INDEX + DataStoreHelper.selectedKeyIndex
         val orphans = signInKeys().filter { key -> indexOf(key)?.let { it !in reachable } ?: false }
-        orphans.forEach { removeKey(it) }
+        orphans.forEach { CredentialStore.remove(it) }
         return orphans.size
     }
 }

@@ -287,7 +287,7 @@ private fun syncedAgo(elapsedMillis: Long): String =
 
 /** `4m`, `2h 5m`, `1d 2h 5m`: the formats the app already counts time in. A clock behind the record reads as now. */
 @Composable
-private fun elapsed(elapsedMillis: Long): String {
+internal fun elapsed(elapsedMillis: Long): String {
     val minutes = (elapsedMillis.coerceAtLeast(0L) / MILLIS_PER_MINUTE).toInt()
     val hours = minutes / MINUTES_PER_HOUR
     val days = hours / HOURS_PER_DAY
