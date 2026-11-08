@@ -253,7 +253,7 @@ private fun ColumnScope.ResultRows(items: List<SearchResultItem>, onAction: (Qui
     LaunchedEffect(hasRows) { if (hasRows) first.requestFocus() }
 }
 
-/** `VIDSRC · MOVIE · 4K`: what the board's mono line says that the item carries. Provider text is cleaned at the edge. */
+/** `SOURCE A · MOVIE · 4K`: what the board's mono line says that the item carries. Provider text is cleaned at the edge. */
 private fun SearchResultItem.detailLine(): String =
     listOfNotNull(providerName, typeLabel, qualityLabel).filter { it.isNotBlank() }.joinToString(" · ").uppercase()
 

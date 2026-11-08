@@ -36,13 +36,13 @@ class QuickSearchViewModelTest {
         }
     }
 
-    private val item = SearchResultItem(id = SearchResultId("Vidsrc/Dune"), title = "Dune", providerName = "Vidsrc")
+    private val item = SearchResultItem(id = SearchResultId("Source A/Tide"), title = "Tide", providerName = "Source A")
 
     @Test
     fun theQueryIsSearchedOnceTrimmedAndEachAnswerReplacesTheLast() = runTest(dispatcher) {
         val source = StepSource()
-        val viewModel = QuickSearchViewModel(query = "  dune ", source = source)
-        assertEquals(listOf("dune"), source.asked)
+        val viewModel = QuickSearchViewModel(query = "  tide ", source = source)
+        assertEquals(listOf("tide"), source.asked)
         assertNull(viewModel.state.value.progress)
 
         val first = QuickSearchProgress(listOf(item), answered = 1, failed = 0, total = 12)
@@ -64,11 +64,11 @@ class QuickSearchViewModelTest {
     @Test
     fun retryAsksAgainFromNothing() = runTest(dispatcher) {
         val source = StepSource()
-        val viewModel = QuickSearchViewModel(query = "dune", source = source)
+        val viewModel = QuickSearchViewModel(query = "tide", source = source)
         source.answers.emit(QuickSearchProgress(emptyList(), answered = 0, failed = 12, total = 12))
 
         viewModel.onAction(QuickSearchAction.Retry)
-        assertEquals(listOf("dune", "dune"), source.asked)
+        assertEquals(listOf("tide", "tide"), source.asked)
         assertNull(viewModel.state.value.progress)
     }
 

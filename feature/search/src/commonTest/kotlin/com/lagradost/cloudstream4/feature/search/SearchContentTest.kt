@@ -29,18 +29,18 @@ class SearchContentTest {
     @Test
     fun `one group per provider in the order the providers first appear`() {
         val groups = listOf(
-            item("Dune", "Vidplay"),
-            item("Dune", "Filmxy"),
-            item("Dune Part Two", "Vidplay"),
+            item("Tide", "Source B"),
+            item("Tide", "Source A"),
+            item("Tide Part Two", "Source B"),
         ).groupByProvider()
 
-        assertEquals(listOf("Vidplay", "Filmxy"), groups.map { it.providerName })
+        assertEquals(listOf("Source B", "Source A"), groups.map { it.providerName })
         assertEquals(listOf(2, 1), groups.map { it.items.size })
     }
 
     @Test
     fun `the header count cannot disagree with the rail because it is the group's own size`() {
-        val items = List(21) { item("Hit $it", "Filmxy") }
+        val items = List(21) { item("Hit $it", "Source A") }
         val groups = items.groupByProvider()
 
         assertEquals(1, groups.size)

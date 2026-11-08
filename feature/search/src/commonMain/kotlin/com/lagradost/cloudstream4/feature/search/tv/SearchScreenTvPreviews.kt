@@ -48,22 +48,22 @@ private fun previewItem(title: String, provider: String, quality: String? = null
 
 private val PreviewGroups = listOf(
     SearchResultGroup(
-        providerName = "Filmxy",
+        providerName = "Source A",
         items = listOf(
-            previewItem("Blade Runner", "Filmxy", "4K"),
-            previewItem("Blade Runner 2049", "Filmxy", "1080P"),
-            previewItem("Blade Runner: Black Out", "Filmxy"),
+            previewItem("Salt Road", "Source A", "4K"),
+            previewItem("Salt Road II", "Source A", "1080P"),
+            previewItem("Salt Road: Dusk", "Source A"),
         ),
     ),
     SearchResultGroup(
-        providerName = "Vidplay",
-        items = listOf(previewItem("Blade Runner", "Vidplay", "720P")),
+        providerName = "Source B",
+        items = listOf(previewItem("Salt Road", "Source B", "720P")),
     ),
 )
 
 private val PreviewRecent = listOf(
-    SearchHistoryEntry("blade runner", "2 days ago"),
-    SearchHistoryEntry("dune", "last week"),
+    SearchHistoryEntry("salt road", "2 days ago"),
+    SearchHistoryEntry("tide", "last week"),
 )
 
 @Composable
@@ -74,7 +74,7 @@ private fun PreviewGround(content: @Composable () -> Unit) {
 }
 
 @Composable
-private fun PreviewScreen(status: SearchStatus, query: String = "blade runner") {
+private fun PreviewScreen(status: SearchStatus, query: String = "salt road") {
     PreviewGround {
         SearchScreenTv(
             state = SearchState(query = query, sources = PreviewSources, status = status),

@@ -104,11 +104,11 @@ class SearchViewModelTest {
     fun `with history, a blank query shows it — artboard 4c, not an empty prompt`() =
         runTest(dispatcher) {
             withMain {
-                val vm = viewModel(FakeSource(), FakeHistory("dune", "blade runner"))
+                val vm = viewModel(FakeSource(), FakeHistory("tide", "salt road"))
                 val content = vm.state.value.status
                 assertIs<SearchStatus.Showing>(content)
                 val recent = assertIs<SearchContent.Recent>(content.content)
-                assertEquals(listOf("dune", "blade runner"), recent.entries.map { it.query })
+                assertEquals(listOf("tide", "salt road"), recent.entries.map { it.query })
             }
         }
 
@@ -125,8 +125,8 @@ class SearchViewModelTest {
     fun `the query echoes into state immediately`() = runTest(dispatcher) {
         withMain {
             val vm = viewModel(FakeSource())
-            vm.onAction(SearchAction.QueryChanged("dune"))
-            assertEquals("dune", vm.state.value.query)
+            vm.onAction(SearchAction.QueryChanged("tide"))
+            assertEquals("tide", vm.state.value.query)
         }
     }
 
@@ -134,12 +134,12 @@ class SearchViewModelTest {
     fun `typing is debounced to one quick search, not one per keystroke`() = runTest(dispatcher) {
         Dispatchers.setMain(dispatcher)
         try {
-            val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
+            val source = FakeSource(SearchOutcome.Complete(listOf(item("Tide"))))
             val vm = viewModel(source)
-            for (q in listOf("d", "du", "dun", "dune")) vm.onAction(SearchAction.QueryChanged(q))
+            for (q in listOf("d", "du", "dun", "tide")) vm.onAction(SearchAction.QueryChanged(q))
             settle()
 
-            assertEquals(listOf("dune"), source.quickSearched, "only the settled query is searched")
+            assertEquals(listOf("tide"), source.quickSearched, "only the settled query is searched")
             assertTrue(source.searched.isEmpty(), "typing must not run the full search")
         } finally {
             Dispatchers.resetMain()
@@ -202,12 +202,12 @@ class SearchViewModelTest {
     @Test
     fun `submit runs the full search without waiting for the debounce`() = runTest(dispatcher) {
         withMain {
-            val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
+            val source = FakeSource(SearchOutcome.Complete(listOf(item("Tide"))))
             val vm = viewModel(source)
-            vm.onAction(SearchAction.QueryChanged("dune"))
+            vm.onAction(SearchAction.QueryChanged("tide"))
             vm.onAction(SearchAction.Submit)
 
-            assertEquals(listOf("dune"), source.searched)
+            assertEquals(listOf("tide"), source.searched)
             assertIs<SearchStatus.Showing>(vm.state.value.status)
         }
     }
@@ -216,18 +216,18 @@ class SearchViewModelTest {
     fun `results arrive grouped one rail per provider — artboard 4a`() = runTest(dispatcher) {
         withMain {
             val hits = listOf(
-                item("Dune", "Filmxy"),
-                item("Dune Part Two", "Filmxy"),
-                item("Dune", "Vidplay"),
+                item("Tide", "Source A"),
+                item("Tide Part Two", "Source A"),
+                item("Tide", "Source B"),
             )
             val source = FakeSource(SearchOutcome.Complete(hits))
             val vm = viewModel(source)
-            vm.onAction(SearchAction.QueryChanged("dune"))
+            vm.onAction(SearchAction.QueryChanged("tide"))
             vm.onAction(SearchAction.Submit)
 
             val content = assertIs<SearchStatus.Showing>(vm.state.value.status)
             val results = assertIs<SearchContent.Results>(content.content)
-            assertEquals(listOf("Filmxy", "Vidplay"), results.groups.map { it.providerName })
+            assertEquals(listOf("Source A", "Source B"), results.groups.map { it.providerName })
             assertEquals(listOf(2, 1), results.groups.map { it.items.size })
         }
     }
@@ -237,9 +237,9 @@ class SearchViewModelTest {
         withMain {
             val source = FakeSource()
             val vm = viewModel(source)
-            vm.onAction(SearchAction.QueryChanged("dune"))
+            vm.onAction(SearchAction.QueryChanged("tide"))
 
-            source.outcome = SearchOutcome.Complete(listOf(item("Dune")))
+            source.outcome = SearchOutcome.Complete(listOf(item("Tide")))
             vm.onAction(SearchAction.Submit)
             assertIs<SearchStatus.Showing>(vm.state.value.status)
 
@@ -250,7 +250,7 @@ class SearchViewModelTest {
             assertEquals(SearchStatus.NoResults(queried = 9), vm.state.value.status)
 
             // Partial keeps the content and reports the shortfall; it must not become Error.
-            source.outcome = SearchOutcome.Partial(listOf(item("Dune")), 9, 12, "host down")
+            source.outcome = SearchOutcome.Partial(listOf(item("Tide")), 9, 12, "host down")
             vm.onAction(SearchAction.Submit)
             val partial = assertIs<SearchStatus.Partial>(vm.state.value.status)
             val partialResults = assertIs<SearchContent.Results>(partial.content)
@@ -273,9 +273,9 @@ class SearchViewModelTest {
     fun `clearing the field returns to the history and does not search`() = runTest(dispatcher) {
         Dispatchers.setMain(dispatcher)
         try {
-            val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
-            val vm = viewModel(source, FakeHistory("dune"))
-            vm.onAction(SearchAction.QueryChanged("dune"))
+            val source = FakeSource(SearchOutcome.Complete(listOf(item("Tide"))))
+            val vm = viewModel(source, FakeHistory("tide"))
+            vm.onAction(SearchAction.QueryChanged("tide"))
             settle()
             vm.onAction(SearchAction.Cleared)
             settle()
@@ -292,32 +292,32 @@ class SearchViewModelTest {
     @Test
     fun `activating a recent search runs the full search for it`() = runTest(dispatcher) {
         withMain {
-            val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
-            val vm = viewModel(source, FakeHistory("dune"))
-            vm.onAction(SearchAction.RecentActivated("dune"))
+            val source = FakeSource(SearchOutcome.Complete(listOf(item("Tide"))))
+            val vm = viewModel(source, FakeHistory("tide"))
+            vm.onAction(SearchAction.RecentActivated("tide"))
 
-            assertEquals("dune", vm.state.value.query)
-            assertEquals(listOf("dune"), source.searched)
+            assertEquals("tide", vm.state.value.query)
+            assertEquals(listOf("tide"), source.searched)
         }
     }
 
     @Test
     fun `removing one recent entry re-reads the list`() = runTest(dispatcher) {
         withMain {
-            val history = FakeHistory("dune", "blade runner")
+            val history = FakeHistory("tide", "salt road")
             val vm = viewModel(FakeSource(), history)
-            vm.onAction(SearchAction.RecentRemoved("dune"))
+            vm.onAction(SearchAction.RecentRemoved("tide"))
 
             val content = assertIs<SearchStatus.Showing>(vm.state.value.status)
             val recent = assertIs<SearchContent.Recent>(content.content)
-            assertEquals(listOf("blade runner"), recent.entries.map { it.query })
+            assertEquals(listOf("salt road"), recent.entries.map { it.query })
         }
     }
 
     @Test
     fun `clearing all history falls back to the idle prompt`() = runTest(dispatcher) {
         withMain {
-            val history = FakeHistory("dune")
+            val history = FakeHistory("tide")
             val vm = viewModel(FakeSource(), history)
             vm.onAction(SearchAction.RecentCleared)
 
@@ -365,21 +365,21 @@ class SearchViewModelTest {
             Dispatchers.setMain(dispatcher)
             try {
                 val source = FakeSource(
-                    SearchOutcome.Complete(listOf(item("Dune"))),
+                    SearchOutcome.Complete(listOf(item("Tide"))),
                     SearchSources(selected = 9, total = 48, quickSearchable = false),
                 )
-                val vm = viewModel(source, FakeHistory("blade runner"))
+                val vm = viewModel(source, FakeHistory("salt road"))
                 val before = vm.state.value.status
-                vm.onAction(SearchAction.QueryChanged("dune"))
+                vm.onAction(SearchAction.QueryChanged("tide"))
                 settle()
 
-                assertEquals("dune", vm.state.value.query, "the field still echoes")
+                assertEquals("tide", vm.state.value.query, "the field still echoes")
                 assertEquals(before, vm.state.value.status, "no skeleton, and above all no failure")
                 assertTrue(source.quickSearched.isEmpty())
 
                 vm.onAction(SearchAction.Submit)
                 settle()
-                assertEquals(listOf("dune"), source.searched)
+                assertEquals(listOf("tide"), source.searched)
                 assertIs<SearchStatus.Showing>(vm.state.value.status)
             } finally {
                 Dispatchers.resetMain()
@@ -391,13 +391,13 @@ class SearchViewModelTest {
         runTest(dispatcher) {
             Dispatchers.setMain(dispatcher)
             try {
-                val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
+                val source = FakeSource(SearchOutcome.Complete(listOf(item("Tide"))))
                 val vm = viewModel(source)
-                vm.onAction(SearchAction.QueryChanged("dune"))
+                vm.onAction(SearchAction.QueryChanged("tide"))
                 vm.onAction(SearchAction.Submit)
                 settle()
 
-                assertEquals(listOf("dune"), source.searched)
+                assertEquals(listOf("tide"), source.searched)
                 assertTrue(source.quickSearched.isEmpty(), "quick ran after the submit: ${source.quickSearched}")
             } finally {
                 Dispatchers.resetMain()
@@ -409,9 +409,9 @@ class SearchViewModelTest {
         runTest(dispatcher) {
             Dispatchers.setMain(dispatcher)
             try {
-                val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune"))))
+                val source = FakeSource(SearchOutcome.Complete(listOf(item("Tide"))))
                 val vm = viewModel(source)
-                vm.onAction(SearchAction.QueryChanged("dune"))
+                vm.onAction(SearchAction.QueryChanged("tide"))
                 vm.onAction(SearchAction.Cleared)
                 settle()
 
@@ -509,7 +509,7 @@ class SearchViewModelTest {
 
     @Test
     fun `done writes before it searches and the count follows`() = filterTest { source, vm ->
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         vm.onAction(SearchAction.SourcePanelOpened)
         settle()
         vm.onAction(SearchAction.SourceToggled("a"))
@@ -522,7 +522,7 @@ class SearchViewModelTest {
 
     @Test
     fun `done with nothing changed writes nothing and does not search`() = filterTest { source, vm ->
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         vm.onAction(SearchAction.SourcePanelOpened)
         settle()
         vm.onAction(SearchAction.SourceToggled("a"))
@@ -545,7 +545,7 @@ class SearchViewModelTest {
     @Test
     fun `a chip lights at once, writes, and searches again`() = filterTest { source, vm ->
         settle()
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         vm.onAction(SearchAction.TypeFilterToggled(SearchTypeFilter.Anime))
         assertEquals(setOf(SearchTypeFilter.Movies, SearchTypeFilter.Anime), vm.state.value.typeFilters.selected)
         settle()
@@ -559,7 +559,7 @@ class SearchViewModelTest {
     @Test
     fun `search everything clears both filters and then searches`() = filterTest { source, vm ->
         settle()
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         vm.onAction(SearchAction.SearchEverything)
         settle()
         assertEquals(listOf("clear", "search:3"), source.calls)
@@ -570,7 +570,7 @@ class SearchViewModelTest {
     @Test
     fun `no results quotes the count after the filters were cleared`() = filterTest { _, vm ->
         settle()
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         vm.onAction(SearchAction.SearchEverything)
         settle()
         assertEquals(SearchStatus.NoResults(3), vm.state.value.status)
@@ -599,7 +599,7 @@ class SearchViewModelTest {
         runTest(dispatcher) {
             val source = PagedSource()
             val vm = viewModel(source)
-            vm.onAction(SearchAction.RecentActivated("dune"))
+            vm.onAction(SearchAction.RecentActivated("tide"))
             settle()
             assertEquals(true, railGroup(vm).hasMore)
 
@@ -627,7 +627,7 @@ class SearchViewModelTest {
         runTest(dispatcher) {
             val source = PagedSource()
             val vm = viewModel(source)
-            vm.onAction(SearchAction.RecentActivated("dune"))
+            vm.onAction(SearchAction.RecentActivated("tide"))
             settle()
             source.next = SearchOutcome.Failed("HTTP 503")
             vm.onAction(SearchAction.RailMoreRequested("p"))
