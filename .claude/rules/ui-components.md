@@ -145,6 +145,8 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | The detail row's watchlist toggle: off, then on (rule 4, colour says focus, shape says state) | `Add`, then `Done` | `Plus`, then `Check` |
 | Favourite (icon-only toggle) | `Favorite` | `Heart` |
 | More (icon-only overflow) | `More` | `Dots` |
+| A pop-up button's mark: pressing it lists the choices (the Mac's Settings, `DS-24`; first used by `KMP-90`) | `Selector` | `Selector` |
+| Use Touch ID: the 48 dp illustration in the Mac's Touch ID sheet (`DS-25` A3t); never on "Use PIN instead", which stays text-only | `TouchId` | `Fingerprint` |
 | More info (opens a title's page from Home's hero, which does not play: rule 1's Play or Resume when it can, `KMP-41`) | `Info` | `InfoCircle` |
 
 **Text-only, and why:** *Skip for now* and *Go to Watching* (navigation with no object a glyph
