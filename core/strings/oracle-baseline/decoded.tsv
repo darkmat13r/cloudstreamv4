@@ -29,6 +29,8 @@ values-b+af/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Soek 
 values-b+af/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Soek al %d bronne	
 values-b+af/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Druk die sleutelbord se soeksleutel om tog %d bron te deursoek.	
 values-b+af/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek.	
+values-b+af/strings.xml	plurals	search_state_retry_sources	one	STR	Probeer %d bron weer	
+values-b+af/strings.xml	plurals	search_state_retry_sources	other	STR	Probeer %d bronne weer	
 values-b+af/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d BRON	
 values-b+af/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d BRONNE	
 values-b+af/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d skanderingwaarskuwing	
@@ -539,6 +541,8 @@ values-b+am/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d �
 values-b+am/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ሁሉንም %d ምንጮች ፈልግ	
 values-b+am/strings.xml	plurals	search_state_no_suggestions_body	one	STR	ለማንኛውም %d ምንጭ ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።	
 values-b+am/strings.xml	plurals	search_state_no_suggestions_body	other	STR	ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።	
+values-b+am/strings.xml	plurals	search_state_retry_sources	one	STR	%d ምንጭ እንደገና ሞክር	
+values-b+am/strings.xml	plurals	search_state_retry_sources	other	STR	%d ምንጮችን እንደገና ሞክር	
 values-b+am/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ምንጭ	
 values-b+am/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ምንጮች	
 values-b+am/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d የቅኝት ማስጠንቀቂያ	
@@ -1041,6 +1045,8 @@ values-b+apc/strings.xml	plurals	search_state_no_suggestions_action	one	STR	نب
 values-b+apc/strings.xml	plurals	search_state_no_suggestions_action	other	STR	نبّش بكل المصادر الـ%d	
 values-b+apc/strings.xml	plurals	search_state_no_suggestions_body	one	STR	اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال.	
 values-b+apc/strings.xml	plurals	search_state_no_suggestions_body	other	STR	اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال.	
+values-b+apc/strings.xml	plurals	search_state_retry_sources	one	STR	جرّب %d مصدر كمان مرة	
+values-b+apc/strings.xml	plurals	search_state_retry_sources	other	STR	جرّب %d مصادر كمان مرة	
 values-b+apc/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d مصدر	
 values-b+apc/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d مصادر	
 values-b+apc/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d تحذير من الفحص	
@@ -2232,6 +2238,12 @@ values-b+ar/strings.xml	plurals	search_state_no_suggestions_body	two	STR	اضغ�
 values-b+ar/strings.xml	plurals	search_state_no_suggestions_body	few	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
 values-b+ar/strings.xml	plurals	search_state_no_suggestions_body	many	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
 values-b+ar/strings.xml	plurals	search_state_no_suggestions_body	other	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
+values-b+ar/strings.xml	plurals	search_state_retry_sources	zero	STR	إعادة محاولة %d مصدر	
+values-b+ar/strings.xml	plurals	search_state_retry_sources	one	STR	إعادة محاولة %d مصدر	
+values-b+ar/strings.xml	plurals	search_state_retry_sources	two	STR	إعادة محاولة %d مصدرين	
+values-b+ar/strings.xml	plurals	search_state_retry_sources	few	STR	إعادة محاولة %d مصادر	
+values-b+ar/strings.xml	plurals	search_state_retry_sources	many	STR	إعادة محاولة %d مصدرًا	
+values-b+ar/strings.xml	plurals	search_state_retry_sources	other	STR	إعادة محاولة %d مصدر	
 values-b+ar/strings.xml	plurals	search_tv_suggestion_sources	zero	STR	%d مصدر	
 values-b+ar/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d مصدر	
 values-b+ar/strings.xml	plurals	search_tv_suggestion_sources	two	STR	%d مصدران	
@@ -3436,6 +3448,12 @@ values-b+ars/strings.xml	plurals	search_state_no_suggestions_body	two	STR	اضغ
 values-b+ars/strings.xml	plurals	search_state_no_suggestions_body	few	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
 values-b+ars/strings.xml	plurals	search_state_no_suggestions_body	many	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
 values-b+ars/strings.xml	plurals	search_state_no_suggestions_body	other	STR	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.	
+values-b+ars/strings.xml	plurals	search_state_retry_sources	zero	STR	جرّب %d مصدر مرة ثانية	
+values-b+ars/strings.xml	plurals	search_state_retry_sources	one	STR	جرّب %d مصدر مرة ثانية	
+values-b+ars/strings.xml	plurals	search_state_retry_sources	two	STR	جرّب %d مصدرين مرة ثانية	
+values-b+ars/strings.xml	plurals	search_state_retry_sources	few	STR	جرّب %d مصادر مرة ثانية	
+values-b+ars/strings.xml	plurals	search_state_retry_sources	many	STR	جرّب %d مصدرًا مرة ثانية	
+values-b+ars/strings.xml	plurals	search_state_retry_sources	other	STR	جرّب %d مصدر مرة ثانية	
 values-b+ars/strings.xml	plurals	search_tv_suggestion_sources	zero	STR	%d مصدر	
 values-b+ars/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d مصدر	
 values-b+ars/strings.xml	plurals	search_tv_suggestion_sources	two	STR	%d مصدران	
@@ -4181,6 +4199,8 @@ values-b+as/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%dট
 values-b+as/strings.xml	plurals	search_state_no_suggestions_action	other	STR	আটাইকেইটা %dটা উৎস সন্ধান কৰক	
 values-b+as/strings.xml	plurals	search_state_no_suggestions_body	one	STR	তথাপি %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।	
 values-b+as/strings.xml	plurals	search_state_no_suggestions_body	other	STR	তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।	
+values-b+as/strings.xml	plurals	search_state_retry_sources	one	STR	%d টা উৎস পুনৰ চেষ্টা কৰক	
+values-b+as/strings.xml	plurals	search_state_retry_sources	other	STR	%d টা উৎস পুনৰ চেষ্টা কৰক	
 values-b+as/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d উৎস	
 values-b+as/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d উৎস	
 values-b+as/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d টা স্কেন সতৰ্কবাণী	
@@ -5208,6 +5228,8 @@ values-b+az/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d m�
 values-b+az/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Bütün %d mənbədə axtar	
 values-b+az/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Yenə də %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.	
 values-b+az/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.	
+values-b+az/strings.xml	plurals	search_state_retry_sources	one	STR	%d mənbəni yenidən sına	
+values-b+az/strings.xml	plurals	search_state_retry_sources	other	STR	%d mənbəni yenidən sına	
 values-b+az/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d MƏNBƏ	
 values-b+az/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d MƏNBƏ	
 values-b+az/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d yoxlama xəbərdarlığı	
@@ -5781,6 +5803,10 @@ values-b+be/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Нац�
 values-b+be/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.	
 values-b+be/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.	
 values-b+be/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.	
+values-b+be/strings.xml	plurals	search_state_retry_sources	one	STR	Паўтарыць %d крыніцу	
+values-b+be/strings.xml	plurals	search_state_retry_sources	few	STR	Паўтарыць %d крыніцы	
+values-b+be/strings.xml	plurals	search_state_retry_sources	many	STR	Паўтарыць %d крыніц	
+values-b+be/strings.xml	plurals	search_state_retry_sources	other	STR	Паўтарыць %d крыніцы	
 values-b+be/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d КРЫНІЦА	
 values-b+be/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d КРЫНІЦЫ	
 values-b+be/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d КРЫНІЦ	
@@ -6914,6 +6940,8 @@ values-b+bg/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Тъ�
 values-b+bg/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Търсене във всички %d източника	
 values-b+bg/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това в %d източник.	
 values-b+bg/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това във всички %d източника.	
+values-b+bg/strings.xml	plurals	search_state_retry_sources	one	STR	Опитай %d източник отново	
+values-b+bg/strings.xml	plurals	search_state_retry_sources	other	STR	Опитай %d източника отново	
 values-b+bg/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ИЗТОЧНИК	
 values-b+bg/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ИЗТОЧНИКА	
 values-b+bg/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d предупреждение от сканиране	
@@ -8023,6 +8051,8 @@ values-b+bn/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%dট
 values-b+bn/strings.xml	plurals	search_state_no_suggestions_action	other	STR	সব %dটি উৎসে খুঁজুন	
 values-b+bn/strings.xml	plurals	search_state_no_suggestions_body	one	STR	তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।	
 values-b+bn/strings.xml	plurals	search_state_no_suggestions_body	other	STR	তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।	
+values-b+bn/strings.xml	plurals	search_state_retry_sources	one	STR	%dটি উৎস আবার চেষ্টা করুন	
+values-b+bn/strings.xml	plurals	search_state_retry_sources	other	STR	%dটি উৎস আবার চেষ্টা করুন	
 values-b+bn/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d উৎস	
 values-b+bn/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d উৎস	
 values-b+bn/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%dটি স্ক্যান সতর্কতা	
@@ -8831,6 +8861,9 @@ values-b+ca/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Cer
 values-b+ca/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Prem la tecla de cerca del teclat per cercar igualment a %d font.	
 values-b+ca/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.	
 values-b+ca/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.	
+values-b+ca/strings.xml	plurals	search_state_retry_sources	one	STR	Torna a provar %d font	
+values-b+ca/strings.xml	plurals	search_state_retry_sources	many	STR	Torna a provar %d fonts	
+values-b+ca/strings.xml	plurals	search_state_retry_sources	other	STR	Torna a provar %d fonts	
 values-b+ca/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONT	
 values-b+ca/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d FONTS	
 values-b+ca/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTS	
@@ -9556,6 +9589,8 @@ values-b+ckb/strings.xml	plurals	search_state_no_suggestions_action	one	STR	گە
 values-b+ckb/strings.xml	plurals	search_state_no_suggestions_action	other	STR	گەڕان لە هەموو %d سەرچاوەکە	
 values-b+ckb/strings.xml	plurals	search_state_no_suggestions_body	one	STR	کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە %d سەرچاوە بگەڕێیت.	
 values-b+ckb/strings.xml	plurals	search_state_no_suggestions_body	other	STR	کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت.	
+values-b+ckb/strings.xml	plurals	search_state_retry_sources	one	STR	%d سەرچاوە دووبارە تاقی بکەرەوە	
+values-b+ckb/strings.xml	plurals	search_state_retry_sources	other	STR	%d سەرچاوە دووبارە تاقی بکەرەوە	
 values-b+ckb/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d سەرچاوە	
 values-b+ckb/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d سەرچاوە	
 values-b+ckb/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d ئاگاداری پشکنین	
@@ -10073,6 +10108,10 @@ values-b+cs/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Stiskn�
 values-b+cs/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všechny %d zdroje.	
 values-b+cs/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdroje.	
 values-b+cs/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů.	
+values-b+cs/strings.xml	plurals	search_state_retry_sources	one	STR	Zkusit znovu %d zdroj	
+values-b+cs/strings.xml	plurals	search_state_retry_sources	few	STR	Zkusit znovu %d zdroje	
+values-b+cs/strings.xml	plurals	search_state_retry_sources	many	STR	Zkusit znovu %d zdroje	
+values-b+cs/strings.xml	plurals	search_state_retry_sources	other	STR	Zkusit znovu %d zdrojů	
 values-b+cs/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ZDROJ	
 values-b+cs/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ZDROJE	
 values-b+cs/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ZDROJE	
@@ -11213,6 +11252,8 @@ values-b+de/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d Qu
 values-b+de/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Alle %d Quellen durchsuchen	
 values-b+de/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Drücke die Suchtaste der Tastatur, um trotzdem %d Quelle zu durchsuchen.	
 values-b+de/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Drücke die Suchtaste der Tastatur, um trotzdem alle %d Quellen zu durchsuchen.	
+values-b+de/strings.xml	plurals	search_state_retry_sources	one	STR	%d Quelle erneut versuchen	
+values-b+de/strings.xml	plurals	search_state_retry_sources	other	STR	%d Quellen erneut versuchen	
 values-b+de/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d QUELLE	
 values-b+de/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d QUELLEN	
 values-b+de/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d Prüfwarnung	
@@ -12337,6 +12378,8 @@ values-b+el/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Αν�
 values-b+el/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Αναζήτηση σε όλες τις %d πηγές	
 values-b+el/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως.	
 values-b+el/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως.	
+values-b+el/strings.xml	plurals	search_state_retry_sources	one	STR	Επανάληψη %d πηγής	
+values-b+el/strings.xml	plurals	search_state_retry_sources	other	STR	Επανάληψη %d πηγών	
 values-b+el/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ΠΗΓΗ	
 values-b+el/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ΠΗΓΕΣ	
 values-b+el/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d προειδοποίηση σάρωσης	
@@ -13389,6 +13432,8 @@ values-b+eo/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Serĉ
 values-b+eo/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Serĉi en ĉiuj %d fontoj	
 values-b+eo/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Premu la serĉoklavon de la klavaro por tamen serĉi en %d fonto.	
 values-b+eo/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj.	
+values-b+eo/strings.xml	plurals	search_state_retry_sources	one	STR	Reprovi %d fonton	
+values-b+eo/strings.xml	plurals	search_state_retry_sources	other	STR	Reprovi %d fontojn	
 values-b+eo/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTO	
 values-b+eo/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTOJ	
 values-b+eo/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d skana averto	
@@ -13986,6 +14031,9 @@ values-b+es/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Bus
 values-b+es/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Pulsa la tecla de búsqueda del teclado para buscar igualmente en %d fuente.	
 values-b+es/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.	
 values-b+es/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.	
+values-b+es/strings.xml	plurals	search_state_retry_sources	one	STR	Reintentar %d fuente	
+values-b+es/strings.xml	plurals	search_state_retry_sources	many	STR	Reintentar %d fuentes	
+values-b+es/strings.xml	plurals	search_state_retry_sources	other	STR	Reintentar %d fuentes	
 values-b+es/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FUENTE	
 values-b+es/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d FUENTES	
 values-b+es/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FUENTES	
@@ -15115,6 +15163,8 @@ values-b+fa/strings.xml	plurals	search_state_no_suggestions_action	one	STR	جس�
 values-b+fa/strings.xml	plurals	search_state_no_suggestions_action	other	STR	جست‌وجو در همهٔ %d منبع	
 values-b+fa/strings.xml	plurals	search_state_no_suggestions_body	one	STR	برای جست‌وجو در %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.	
 values-b+fa/strings.xml	plurals	search_state_no_suggestions_body	other	STR	برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.	
+values-b+fa/strings.xml	plurals	search_state_retry_sources	one	STR	تلاش دوباره برای %d منبع	
+values-b+fa/strings.xml	plurals	search_state_retry_sources	other	STR	تلاش دوباره برای %d منبع	
 values-b+fa/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d منبع	
 values-b+fa/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d منبع	
 values-b+fa/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d هشدار اسکن	
@@ -15853,6 +15903,8 @@ values-b+fil/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Magh
 values-b+fil/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Maghanap sa lahat ng %d mapagkukunan	
 values-b+fil/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Pindutin ang search key ng keyboard para maghanap pa rin sa %d mapagkukunan.	
 values-b+fil/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.	
+values-b+fil/strings.xml	plurals	search_state_retry_sources	one	STR	Subukang muli ang %d source	
+values-b+fil/strings.xml	plurals	search_state_retry_sources	other	STR	Subukang muli ang %d na source	
 values-b+fil/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d MAPAGKUKUNAN	
 values-b+fil/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d MAPAGKUKUNAN	
 values-b+fil/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d babala ng scan	
@@ -16425,6 +16477,9 @@ values-b+fr/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Rec
 values-b+fr/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans %d source.	
 values-b+fr/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.	
 values-b+fr/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.	
+values-b+fr/strings.xml	plurals	search_state_retry_sources	one	STR	Réessayer %d source	
+values-b+fr/strings.xml	plurals	search_state_retry_sources	many	STR	Réessayer %d sources	
+values-b+fr/strings.xml	plurals	search_state_retry_sources	other	STR	Réessayer %d sources	
 values-b+fr/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d SOURCE	
 values-b+fr/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d SOURCES	
 values-b+fr/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SOURCES	
@@ -17554,6 +17609,8 @@ values-b+gl/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Procu
 values-b+gl/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Procurar en todas as %d fontes	
 values-b+gl/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Preme a tecla de busca do teclado para procurar igualmente en %d fonte.	
 values-b+gl/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes.	
+values-b+gl/strings.xml	plurals	search_state_retry_sources	one	STR	Tentar de novo %d fonte	
+values-b+gl/strings.xml	plurals	search_state_retry_sources	other	STR	Tentar de novo %d fontes	
 values-b+gl/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTE	
 values-b+gl/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTES	
 values-b+gl/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d aviso da análise	
@@ -18232,6 +18289,8 @@ values-b+hi/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d �
 values-b+hi/strings.xml	plurals	search_state_no_suggestions_action	other	STR	सभी %d स्रोतों में खोजें	
 values-b+hi/strings.xml	plurals	search_state_no_suggestions_body	one	STR	फिर भी %d स्रोत में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।	
 values-b+hi/strings.xml	plurals	search_state_no_suggestions_body	other	STR	फिर भी सभी %d स्रोतों में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।	
+values-b+hi/strings.xml	plurals	search_state_retry_sources	one	STR	%d स्रोत फिर से आज़माएँ	
+values-b+hi/strings.xml	plurals	search_state_retry_sources	other	STR	%d स्रोत फिर से आज़माएँ	
 values-b+hi/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d स्रोत	
 values-b+hi/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d स्रोत	
 values-b+hi/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d स्कैन चेतावनी	
@@ -19057,6 +19116,9 @@ values-b+hr/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Pre
 values-b+hr/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili %d izvor.	
 values-b+hr/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili sva %d izvora.	
 values-b+hr/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora.	
+values-b+hr/strings.xml	plurals	search_state_retry_sources	one	STR	Ponovi %d izvor	
+values-b+hr/strings.xml	plurals	search_state_retry_sources	few	STR	Ponovi %d izvora	
+values-b+hr/strings.xml	plurals	search_state_retry_sources	other	STR	Ponovi %d izvora	
 values-b+hr/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d IZVOR	
 values-b+hr/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d IZVORA	
 values-b+hr/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d IZVORA	
@@ -20181,6 +20243,8 @@ values-b+hu/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Keres
 values-b+hu/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Keresés mind a(z) %d forrásban	
 values-b+hu/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen %d forrásban.	
 values-b+hu/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban.	
+values-b+hu/strings.xml	plurals	search_state_retry_sources	one	STR	%d forrás újrapróbálása	
+values-b+hu/strings.xml	plurals	search_state_retry_sources	other	STR	%d forrás újrapróbálása	
 values-b+hu/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FORRÁS	
 values-b+hu/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FORRÁS	
 values-b+hu/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d vizsgálati figyelmeztetés	
@@ -21195,6 +21259,7 @@ values-b+in/strings.xml	plurals	player_source_count	other	STR	%d sumber
 values-b+in/strings.xml	plurals	player_up_next_in	other	STR	Episode berikutnya dalam %d dtk	
 values-b+in/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Cari di semua %d sumber	
 values-b+in/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.	
+values-b+in/strings.xml	plurals	search_state_retry_sources	other	STR	Coba lagi %d sumber	
 values-b+in/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SUMBER	
 values-b+in/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d peringatan pemindaian	
 values-b+in/strings.xml	plurals	settings_extensions_all	other	STR	Semua ekstensi (%d)	
@@ -22338,6 +22403,9 @@ values-b+it/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Cer
 values-b+it/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Premi il tasto di ricerca della tastiera per cercare comunque in %d fonte.	
 values-b+it/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.	
 values-b+it/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.	
+values-b+it/strings.xml	plurals	search_state_retry_sources	one	STR	Riprova %d fonte	
+values-b+it/strings.xml	plurals	search_state_retry_sources	many	STR	Riprova %d fonti	
+values-b+it/strings.xml	plurals	search_state_retry_sources	other	STR	Riprova %d fonti	
 values-b+it/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTE	
 values-b+it/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d FONTI	
 values-b+it/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTI	
@@ -23482,6 +23550,9 @@ values-b+iw/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ח�
 values-b+iw/strings.xml	plurals	search_state_no_suggestions_body	one	STR	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.	
 values-b+iw/strings.xml	plurals	search_state_no_suggestions_body	two	STR	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.	
 values-b+iw/strings.xml	plurals	search_state_no_suggestions_body	other	STR	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.	
+values-b+iw/strings.xml	plurals	search_state_retry_sources	one	STR	לנסות שוב %d מקור	
+values-b+iw/strings.xml	plurals	search_state_retry_sources	two	STR	לנסות שוב %d מקורות	
+values-b+iw/strings.xml	plurals	search_state_retry_sources	other	STR	לנסות שוב %d מקורות	
 values-b+iw/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d מקור	
 values-b+iw/strings.xml	plurals	search_tv_suggestion_sources	two	STR	%d מקורות	
 values-b+iw/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d מקורות	
@@ -24411,6 +24482,7 @@ values-b+ja/strings.xml	plurals	player_source_count	other	STR	%d 件のソース
 values-b+ja/strings.xml	plurals	player_up_next_in	other	STR	%d 秒後に次のエピソード	
 values-b+ja/strings.xml	plurals	search_state_no_suggestions_action	other	STR	全 %d ソースを検索	
 values-b+ja/strings.xml	plurals	search_state_no_suggestions_body	other	STR	それでも全 %d ソースを検索するには、キーボードの検索キーを押してください。	
+values-b+ja/strings.xml	plurals	search_state_retry_sources	other	STR	%d 件のソースを再試行	
 values-b+ja/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ソース	
 values-b+ja/strings.xml	plurals	settings_extension_scan_warnings	other	STR	スキャン警告 %d 件	
 values-b+ja/strings.xml	plurals	settings_extensions_all	other	STR	すべての拡張機能 (%d)	
@@ -25530,6 +25602,8 @@ values-b+kn/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d �
 values-b+kn/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಿ	
 values-b+kn/strings.xml	plurals	search_state_no_suggestions_body	one	STR	ಹಾಗಿದ್ದರೂ %d ಮೂಲದಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.	
 values-b+kn/strings.xml	plurals	search_state_no_suggestions_body	other	STR	ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.	
+values-b+kn/strings.xml	plurals	search_state_retry_sources	one	STR	%d ಮೂಲವನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ	
+values-b+kn/strings.xml	plurals	search_state_retry_sources	other	STR	%d ಮೂಲಗಳನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ	
 values-b+kn/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ಮೂಲ	
 values-b+kn/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ಮೂಲಗಳು	
 values-b+kn/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d ಸ್ಕ್ಯಾನ್ ಎಚ್ಚರಿಕೆ	
@@ -26036,6 +26110,7 @@ values-b+ko/strings.xml	plurals	player_source_count	other	STR	소스 %d개
 values-b+ko/strings.xml	plurals	player_up_next_in	other	STR	%d초 후 다음 에피소드	
 values-b+ko/strings.xml	plurals	search_state_no_suggestions_action	other	STR	소스 %d개 모두 검색	
 values-b+ko/strings.xml	plurals	search_state_no_suggestions_body	other	STR	그래도 소스 %d개를 모두 검색하려면 키보드의 검색 키를 누르세요.	
+values-b+ko/strings.xml	plurals	search_state_retry_sources	other	STR	소스 %d개 다시 시도	
 values-b+ko/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d 소스	
 values-b+ko/strings.xml	plurals	settings_extension_scan_warnings	other	STR	검사 경고 %d개	
 values-b+ko/strings.xml	plurals	settings_extensions_all	other	STR	모든 확장 기능 (%d)	
@@ -27180,6 +27255,10 @@ values-b+lt/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Paspaus
 values-b+lt/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).	
 values-b+lt/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).	
 values-b+lt/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).	
+values-b+lt/strings.xml	plurals	search_state_retry_sources	one	STR	Bandyti %d šaltinį iš naujo	
+values-b+lt/strings.xml	plurals	search_state_retry_sources	few	STR	Bandyti %d šaltinius iš naujo	
+values-b+lt/strings.xml	plurals	search_state_retry_sources	many	STR	Bandyti %d šaltinio iš naujo	
+values-b+lt/strings.xml	plurals	search_state_retry_sources	other	STR	Bandyti %d šaltinių iš naujo	
 values-b+lt/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ŠALTINIS	
 values-b+lt/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ŠALTINIAI	
 values-b+lt/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ŠALTINIO	
@@ -27894,6 +27973,9 @@ values-b+lv/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Mek
 values-b+lv/strings.xml	plurals	search_state_no_suggestions_body	zero	STR	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.	
 values-b+lv/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā.	
 values-b+lv/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.	
+values-b+lv/strings.xml	plurals	search_state_retry_sources	zero	STR	Mēģināt vēlreiz %d avotus	
+values-b+lv/strings.xml	plurals	search_state_retry_sources	one	STR	Mēģināt vēlreiz %d avotu	
+values-b+lv/strings.xml	plurals	search_state_retry_sources	other	STR	Mēģināt vēlreiz %d avotus	
 values-b+lv/strings.xml	plurals	search_tv_suggestion_sources	zero	STR	%d DEVĒJU	
 values-b+lv/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d DEVĒJS	
 values-b+lv/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d DEVĒJI	
@@ -28904,6 +28986,8 @@ values-b+mk/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Ба�
 values-b+mk/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Барај во сите %d извори	
 values-b+mk/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во %d извор.	
 values-b+mk/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во сите %d извори.	
+values-b+mk/strings.xml	plurals	search_state_retry_sources	one	STR	Обиди го повторно %d извор	
+values-b+mk/strings.xml	plurals	search_state_retry_sources	other	STR	Обиди ги повторно %d извори	
 values-b+mk/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ИЗВОР	
 values-b+mk/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ИЗВОРИ	
 values-b+mk/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d предупредување од скенирање	
@@ -30023,6 +30107,8 @@ values-b+ml/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d �
 values-b+ml/strings.xml	plurals	search_state_no_suggestions_action	other	STR	എല്ലാ %d ഉറവിടങ്ങളിലും തിരയുക	
 values-b+ml/strings.xml	plurals	search_state_no_suggestions_body	one	STR	എന്നിട്ടും %d ഉറവിടത്തിൽ തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.	
 values-b+ml/strings.xml	plurals	search_state_no_suggestions_body	other	STR	എന്നിട്ടും എല്ലാ %d ഉറവിടങ്ങളിലും തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.	
+values-b+ml/strings.xml	plurals	search_state_retry_sources	one	STR	%d ഉറവിടം വീണ്ടും ശ്രമിക്കുക	
+values-b+ml/strings.xml	plurals	search_state_retry_sources	other	STR	%d ഉറവിടങ്ങൾ വീണ്ടും ശ്രമിക്കുക	
 values-b+ml/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ഉറവിടം	
 values-b+ml/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ഉറവിടങ്ങൾ	
 values-b+ml/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d സ്കാൻ മുന്നറിയിപ്പ്	
@@ -30685,6 +30771,7 @@ values-b+ms/strings.xml	plurals	player_source_count	other	STR	%d sumber
 values-b+ms/strings.xml	plurals	player_up_next_in	other	STR	Episod seterusnya dalam %d s	
 values-b+ms/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Cari dalam semua %d sumber	
 values-b+ms/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.	
+values-b+ms/strings.xml	plurals	search_state_retry_sources	other	STR	Cuba semula %d sumber	
 values-b+ms/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SUMBER	
 values-b+ms/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d amaran imbasan	
 values-b+ms/strings.xml	plurals	settings_extensions_all	other	STR	Semua tambahan (%d)	
@@ -31650,6 +31737,11 @@ values-b+mt/strings.xml	plurals	search_state_no_suggestions_body	two	STR	Agħfas
 values-b+mt/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.	
 values-b+mt/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.	
 values-b+mt/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.	
+values-b+mt/strings.xml	plurals	search_state_retry_sources	one	STR	Erġa' pprova %d sors	
+values-b+mt/strings.xml	plurals	search_state_retry_sources	two	STR	Erġa' pprova %d sorsi	
+values-b+mt/strings.xml	plurals	search_state_retry_sources	few	STR	Erġa' pprova %d sorsi	
+values-b+mt/strings.xml	plurals	search_state_retry_sources	many	STR	Erġa' pprova %d-il sors	
+values-b+mt/strings.xml	plurals	search_state_retry_sources	other	STR	Erġa' pprova %d sors	
 values-b+mt/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d SORS	
 values-b+mt/strings.xml	plurals	search_tv_suggestion_sources	two	STR	%d SORSI	
 values-b+mt/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d SORSI	
@@ -32162,6 +32254,7 @@ values-b+my/strings.xml	plurals	player_source_count	other	STR	ရင်းမြ
 values-b+my/strings.xml	plurals	player_up_next_in	other	STR	နောက်အပိုင်း %d စက္ကန့်အတွင်း	
 values-b+my/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်	
 values-b+my/strings.xml	plurals	search_state_no_suggestions_body	other	STR	မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။	
+values-b+my/strings.xml	plurals	search_state_retry_sources	other	STR	ရင်းမြစ် %d ခု ထပ်စမ်းရန်	
 values-b+my/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ရင်းမြစ်	
 values-b+my/strings.xml	plurals	settings_extension_scan_warnings	other	STR	စကင် သတိပေးချက် %d ခု	
 values-b+my/strings.xml	plurals	settings_extensions_all	other	STR	အဆက်အားလုံး (%d)	
@@ -33070,6 +33163,8 @@ values-b+ne/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d �
 values-b+ne/strings.xml	plurals	search_state_no_suggestions_action	other	STR	सबै %d स्रोतहरूमा खोज्नुहोस्	
 values-b+ne/strings.xml	plurals	search_state_no_suggestions_body	one	STR	जे भए पनि %d स्रोतमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।	
 values-b+ne/strings.xml	plurals	search_state_no_suggestions_body	other	STR	जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।	
+values-b+ne/strings.xml	plurals	search_state_retry_sources	one	STR	%d स्रोत फेरि प्रयास गर्नुहोस्	
+values-b+ne/strings.xml	plurals	search_state_retry_sources	other	STR	%d स्रोतहरू फेरि प्रयास गर्नुहोस्	
 values-b+ne/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d स्रोत	
 values-b+ne/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d स्रोतहरू	
 values-b+ne/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d स्क्यान चेतावनी	
@@ -33587,6 +33682,8 @@ values-b+nl/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Zoek 
 values-b+nl/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Zoek in alle %d bronnen	
 values-b+nl/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Druk op de zoektoets van het toetsenbord om toch in %d bron te zoeken.	
 values-b+nl/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Druk op de zoektoets van het toetsenbord om toch in alle %d bronnen te zoeken.	
+values-b+nl/strings.xml	plurals	search_state_retry_sources	one	STR	%d bron opnieuw proberen	
+values-b+nl/strings.xml	plurals	search_state_retry_sources	other	STR	%d bronnen opnieuw proberen	
 values-b+nl/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d BRON	
 values-b+nl/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d BRONNEN	
 values-b+nl/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d scanwaarschuwing	
@@ -34660,6 +34757,8 @@ values-b+nn/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Søk 
 values-b+nn/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Søk i alle %d kjeldene	
 values-b+nn/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel.	
 values-b+nn/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel.	
+values-b+nn/strings.xml	plurals	search_state_retry_sources	one	STR	Prøv %d kjelde på nytt	
+values-b+nn/strings.xml	plurals	search_state_retry_sources	other	STR	Prøv %d kjelder på nytt	
 values-b+nn/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KJELDE	
 values-b+nn/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KJELDER	
 values-b+nn/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d skanningsåtvaring	
@@ -35249,6 +35348,8 @@ values-b+no/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Søk 
 values-b+no/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Søk i alle %d kilder	
 values-b+no/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Trykk på søketasten på tastaturet for å søke i %d kilde likevel.	
 values-b+no/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel.	
+values-b+no/strings.xml	plurals	search_state_retry_sources	one	STR	Prøv %d kilde på nytt	
+values-b+no/strings.xml	plurals	search_state_retry_sources	other	STR	Prøv %d kilder på nytt	
 values-b+no/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KILDE	
 values-b+no/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KILDER	
 values-b+no/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d skanneadvarsel	
@@ -36151,6 +36252,8 @@ values-b+or/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d �
 values-b+or/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ	
 values-b+or/strings.xml	plurals	search_state_no_suggestions_body	one	STR	ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।	
 values-b+or/strings.xml	plurals	search_state_no_suggestions_body	other	STR	ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।	
+values-b+or/strings.xml	plurals	search_state_retry_sources	one	STR	%d ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ	
+values-b+or/strings.xml	plurals	search_state_retry_sources	other	STR	%d ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ	
 values-b+or/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ଉତ୍ସ	
 values-b+or/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ଉତ୍ସ	
 values-b+or/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d ସ୍କାନ୍ ଚେତାବନୀ	
@@ -36742,6 +36845,10 @@ values-b+pl/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Naciśn
 values-b+pl/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.	
 values-b+pl/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródeł.	
 values-b+pl/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.	
+values-b+pl/strings.xml	plurals	search_state_retry_sources	one	STR	Ponów %d źródło	
+values-b+pl/strings.xml	plurals	search_state_retry_sources	few	STR	Ponów %d źródła	
+values-b+pl/strings.xml	plurals	search_state_retry_sources	many	STR	Ponów %d źródeł	
+values-b+pl/strings.xml	plurals	search_state_retry_sources	other	STR	Ponów %d źródła	
 values-b+pl/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ŹRÓDŁO	
 values-b+pl/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ŹRÓDŁA	
 values-b+pl/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ŹRÓDEŁ	
@@ -37900,6 +38007,9 @@ values-b+pt+BR/strings.xml	plurals	search_state_no_suggestions_action	other	STR	
 values-b+pt+BR/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.	
 values-b+pt+BR/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.	
 values-b+pt+BR/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.	
+values-b+pt+BR/strings.xml	plurals	search_state_retry_sources	one	STR	Tentar %d fonte de novo	
+values-b+pt+BR/strings.xml	plurals	search_state_retry_sources	many	STR	Tentar %d fontes de novo	
+values-b+pt+BR/strings.xml	plurals	search_state_retry_sources	other	STR	Tentar %d fontes de novo	
 values-b+pt+BR/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTE	
 values-b+pt+BR/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d FONTES	
 values-b+pt+BR/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTES	
@@ -39050,6 +39160,9 @@ values-b+pt/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Pes
 values-b+pt/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.	
 values-b+pt/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.	
 values-b+pt/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.	
+values-b+pt/strings.xml	plurals	search_state_retry_sources	one	STR	Tentar novamente %d fonte	
+values-b+pt/strings.xml	plurals	search_state_retry_sources	many	STR	Tentar novamente %d fontes	
+values-b+pt/strings.xml	plurals	search_state_retry_sources	other	STR	Tentar novamente %d fontes	
 values-b+pt/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d FONTE	
 values-b+pt/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d FONTES	
 values-b+pt/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d FONTES	
@@ -40159,6 +40272,7 @@ values-b+qt/strings.xml	plurals	player_source_count	other	STR	%d ooh
 values-b+qt/strings.xml	plurals	player_up_next_in	other	STR	Ooh uuh %d ahh	
 values-b+qt/strings.xml	plurals	search_state_no_suggestions_action	other	STR	aaoog %d ooh uugg	
 values-b+qt/strings.xml	plurals	search_state_no_suggestions_body	other	STR	uuh aagg oooh aaahh uug %d ooogg aah.	
+values-b+qt/strings.xml	plurals	search_state_retry_sources	other	STR	oouuh %d ooh	
 values-b+qt/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d OOGAH	
 values-b+qt/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d aahh aaahhhoo	
 values-b+qt/strings.xml	plurals	settings_extensions_all	other	STR	oog oooggguh (%d)	
@@ -41182,6 +41296,9 @@ values-b+ro/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Cau
 values-b+ro/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în %d sursă.	
 values-b+ro/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d surse.	
 values-b+ro/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d de surse.	
+values-b+ro/strings.xml	plurals	search_state_retry_sources	one	STR	Reîncearcă %d sursă	
+values-b+ro/strings.xml	plurals	search_state_retry_sources	few	STR	Reîncearcă %d surse	
+values-b+ro/strings.xml	plurals	search_state_retry_sources	other	STR	Reîncearcă %d de surse	
 values-b+ro/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d SURSĂ	
 values-b+ro/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d SURSE	
 values-b+ro/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d DE SURSE	
@@ -42244,6 +42361,10 @@ values-b+ru/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Наж�
 values-b+ru/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.	
 values-b+ru/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.	
 values-b+ru/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.	
+values-b+ru/strings.xml	plurals	search_state_retry_sources	one	STR	Повторить %d источник	
+values-b+ru/strings.xml	plurals	search_state_retry_sources	few	STR	Повторить %d источника	
+values-b+ru/strings.xml	plurals	search_state_retry_sources	many	STR	Повторить %d источников	
+values-b+ru/strings.xml	plurals	search_state_retry_sources	other	STR	Повторить %d источника	
 values-b+ru/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ИСТОЧНИК	
 values-b+ru/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ИСТОЧНИКА	
 values-b+ru/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ИСТОЧНИКОВ	
@@ -43408,6 +43529,10 @@ values-b+sk/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Stlačt
 values-b+sk/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetky %d zdroje.	
 values-b+sk/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.	
 values-b+sk/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.	
+values-b+sk/strings.xml	plurals	search_state_retry_sources	one	STR	Skúsiť znova %d zdroj	
+values-b+sk/strings.xml	plurals	search_state_retry_sources	few	STR	Skúsiť znova %d zdroje	
+values-b+sk/strings.xml	plurals	search_state_retry_sources	many	STR	Skúsiť znova %d zdroja	
+values-b+sk/strings.xml	plurals	search_state_retry_sources	other	STR	Skúsiť znova %d zdrojov	
 values-b+sk/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ZDROJ	
 values-b+sk/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ZDROJE	
 values-b+sk/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ZDROJA	
@@ -44282,6 +44407,8 @@ values-b+so/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Ka ra
 values-b+so/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Ka raadi dhammaan %d ilood	
 values-b+so/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Riix furaha raadinta ee kiiboodhka si aad u raadiso %d il si kastaba ha ahaatee.	
 values-b+so/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee.	
+values-b+so/strings.xml	plurals	search_state_retry_sources	one	STR	Isku day mar kale %d il	
+values-b+so/strings.xml	plurals	search_state_retry_sources	other	STR	Isku day mar kale %d ilo	
 values-b+so/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d IL	
 values-b+so/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ILOOD	
 values-b+so/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d digniin baaritaan	
@@ -45184,6 +45311,8 @@ values-b+sq/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Kërk
 values-b+sq/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Kërko në të gjitha %d burimet	
 values-b+sq/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në %d burim.	
 values-b+sq/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet.	
+values-b+sq/strings.xml	plurals	search_state_retry_sources	one	STR	Riprovo %d burim	
+values-b+sq/strings.xml	plurals	search_state_retry_sources	other	STR	Riprovo %d burime	
 values-b+sq/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d BURIM	
 values-b+sq/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d BURIME	
 values-b+sq/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d paralajmërim skanimi	
@@ -46314,6 +46443,8 @@ values-b+sv/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Sök 
 values-b+sv/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Sök i alla %d källor	
 values-b+sv/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Tryck på tangentbordets söktangent för att söka i %d källa ändå.	
 values-b+sv/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Tryck på tangentbordets söktangent för att söka i alla %d källor ändå.	
+values-b+sv/strings.xml	plurals	search_state_retry_sources	one	STR	Försök med %d källa igen	
+values-b+sv/strings.xml	plurals	search_state_retry_sources	other	STR	Försök med %d källor igen	
 values-b+sv/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KÄLLA	
 values-b+sv/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KÄLLOR	
 values-b+sv/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d skanningsvarning	
@@ -47444,6 +47575,8 @@ values-b+ta/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d �
 values-b+ta/strings.xml	plurals	search_state_no_suggestions_action	other	STR	அனைத்து %d மூலங்களிலும் தேடு	
 values-b+ta/strings.xml	plurals	search_state_no_suggestions_body	one	STR	இருந்தாலும் %d மூலத்தில் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.	
 values-b+ta/strings.xml	plurals	search_state_no_suggestions_body	other	STR	இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.	
+values-b+ta/strings.xml	plurals	search_state_retry_sources	one	STR	%d மூலத்தை மீண்டும் முயலவும்	
+values-b+ta/strings.xml	plurals	search_state_retry_sources	other	STR	%d மூலங்களை மீண்டும் முயலவும்	
 values-b+ta/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d மூலம்	
 values-b+ta/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d மூலங்கள்	
 values-b+ta/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d ஸ்கேன் எச்சரிக்கை	
@@ -48568,6 +48701,8 @@ values-b+ti/strings.xml	plurals	search_state_no_suggestions_action	one	STR	ኣ�
 values-b+ti/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ኣብ ኩሎም %d ምንጭታት ድለ	
 values-b+ti/strings.xml	plurals	search_state_no_suggestions_body	one	STR	ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።	
 values-b+ti/strings.xml	plurals	search_state_no_suggestions_body	other	STR	ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።	
+values-b+ti/strings.xml	plurals	search_state_retry_sources	one	STR	%d ምንጪ ደጊምካ ፈትን	
+values-b+ti/strings.xml	plurals	search_state_retry_sources	other	STR	%d ምንጭታት ደጊምካ ፈትን	
 values-b+ti/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ምንጪ	
 values-b+ti/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ምንጭታት	
 values-b+ti/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d መጠንቀቕታ ምርመራ	
@@ -48962,6 +49097,8 @@ values-b+tl/strings.xml	plurals	search_state_no_suggestions_action	one	STR	Magha
 values-b+tl/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Maghanap sa lahat ng %d source	
 values-b+tl/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Pindutin ang search key ng keyboard para maghanap pa rin sa %d source.	
 values-b+tl/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d source.	
+values-b+tl/strings.xml	plurals	search_state_retry_sources	one	STR	Subukang muli ang %d source	
+values-b+tl/strings.xml	plurals	search_state_retry_sources	other	STR	Subukang muli ang %d na source	
 values-b+tl/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d SOURCE	
 values-b+tl/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d SOURCES	
 values-b+tl/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d babala ng pag-scan	
@@ -49609,6 +49746,8 @@ values-b+tr/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d ka
 values-b+tr/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Tüm %d kaynakta ara	
 values-b+tr/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Yine de %d kaynakta aramak için klavyenin arama tuşuna basın.	
 values-b+tr/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın.	
+values-b+tr/strings.xml	plurals	search_state_retry_sources	one	STR	%d kaynağı yeniden dene	
+values-b+tr/strings.xml	plurals	search_state_retry_sources	other	STR	%d kaynağı yeniden dene	
 values-b+tr/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d KAYNAK	
 values-b+tr/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d KAYNAK	
 values-b+tr/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d tarama uyarısı	
@@ -50775,6 +50914,10 @@ values-b+uk/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Нат�
 values-b+uk/strings.xml	plurals	search_state_no_suggestions_body	few	STR	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.	
 values-b+uk/strings.xml	plurals	search_state_no_suggestions_body	many	STR	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.	
 values-b+uk/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.	
+values-b+uk/strings.xml	plurals	search_state_retry_sources	one	STR	Повторити %d джерело	
+values-b+uk/strings.xml	plurals	search_state_retry_sources	few	STR	Повторити %d джерела	
+values-b+uk/strings.xml	plurals	search_state_retry_sources	many	STR	Повторити %d джерел	
+values-b+uk/strings.xml	plurals	search_state_retry_sources	other	STR	Повторити %d джерела	
 values-b+uk/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ДЖЕРЕЛО	
 values-b+uk/strings.xml	plurals	search_tv_suggestion_sources	few	STR	%d ДЖЕРЕЛА	
 values-b+uk/strings.xml	plurals	search_tv_suggestion_sources	many	STR	%d ДЖЕРЕЛ	
@@ -51909,6 +52052,8 @@ values-b+ur/strings.xml	plurals	search_state_no_suggestions_action	one	STR	%d ذ
 values-b+ur/strings.xml	plurals	search_state_no_suggestions_action	other	STR	تمام %d ذرائع میں تلاش کریں	
 values-b+ur/strings.xml	plurals	search_state_no_suggestions_body	one	STR	پھر بھی %d ذریعے میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔	
 values-b+ur/strings.xml	plurals	search_state_no_suggestions_body	other	STR	پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔	
+values-b+ur/strings.xml	plurals	search_state_retry_sources	one	STR	%d ماخذ دوبارہ آزمائیں	
+values-b+ur/strings.xml	plurals	search_state_retry_sources	other	STR	%d ماخذ دوبارہ آزمائیں	
 values-b+ur/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d ذریعہ	
 values-b+ur/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d ذرائع	
 values-b+ur/strings.xml	plurals	settings_extension_scan_warnings	one	STR	%d اسکین انتباہ	
@@ -52888,6 +53033,7 @@ values-b+vi/strings.xml	plurals	player_source_count	other	STR	%d nguồn
 values-b+vi/strings.xml	plurals	player_up_next_in	other	STR	Tập tiếp theo sau %d giây	
 values-b+vi/strings.xml	plurals	search_state_no_suggestions_action	other	STR	Tìm kiếm trên cả %d nguồn	
 values-b+vi/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.	
+values-b+vi/strings.xml	plurals	search_state_retry_sources	other	STR	Thử lại %d nguồn	
 values-b+vi/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d NGUỒN	
 values-b+vi/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d cảnh báo khi quét	
 values-b+vi/strings.xml	plurals	settings_extensions_all	other	STR	Tất cả tiện ích mở rộng (%d)	
@@ -53994,6 +54140,7 @@ values-b+zh+TW/strings.xml	plurals	player_source_count	other	STR	%d 個來源
 values-b+zh+TW/strings.xml	plurals	player_up_next_in	other	STR	%d 秒後播放下一集	
 values-b+zh+TW/strings.xml	plurals	search_state_no_suggestions_action	other	STR	搜尋全部 %d 個來源	
 values-b+zh+TW/strings.xml	plurals	search_state_no_suggestions_body	other	STR	按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。	
+values-b+zh+TW/strings.xml	plurals	search_state_retry_sources	other	STR	重試 %d 個來源	
 values-b+zh+TW/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d 來源	
 values-b+zh+TW/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d 個掃描警告	
 values-b+zh+TW/strings.xml	plurals	settings_extensions_all	other	STR	全部擴充功能 (%d)	
@@ -55096,6 +55243,7 @@ values-b+zh/strings.xml	plurals	player_source_count	other	STR	%d 个来源
 values-b+zh/strings.xml	plurals	player_up_next_in	other	STR	%d 秒后播放下一集	
 values-b+zh/strings.xml	plurals	search_state_no_suggestions_action	other	STR	搜索全部 %d 个来源	
 values-b+zh/strings.xml	plurals	search_state_no_suggestions_body	other	STR	按键盘上的搜索键，仍然搜索全部 %d 个来源。	
+values-b+zh/strings.xml	plurals	search_state_retry_sources	other	STR	重试 %d 个来源	
 values-b+zh/strings.xml	plurals	search_tv_suggestion_sources	other	STR	%d 来源	
 values-b+zh/strings.xml	plurals	settings_extension_scan_warnings	other	STR	%d 个扫描警告	
 values-b+zh/strings.xml	plurals	settings_extensions_all	other	STR	全部扩展 (%d)	
@@ -56337,6 +56485,8 @@ values/strings.xml	plurals	search_state_no_suggestions_body	one	STR	Press the ke
 values/strings.xml	plurals	search_state_no_suggestions_body	other	STR	Press the keyboard’s search key to search all %d sources anyway.	
 values/strings.xml	plurals	search_state_partial_headline	one	STR	%d source failed	
 values/strings.xml	plurals	search_state_partial_headline	other	STR	%d sources failed	
+values/strings.xml	plurals	search_state_retry_sources	one	STR	Retry %d source	
+values/strings.xml	plurals	search_state_retry_sources	other	STR	Retry %d sources	
 values/strings.xml	plurals	search_tv_recent_count	one	STR	%d SAVED	
 values/strings.xml	plurals	search_tv_recent_count	other	STR	%d SAVED	
 values/strings.xml	plurals	search_tv_result_count	one	STR	%d RESULT	

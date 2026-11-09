@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"Sekva epizodo post %d s"</item><item quantity="other">"Sekva epizodo post %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Serĉi en %d fonto"</item><item quantity="other">"Serĉi en ĉiuj %d fontoj"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Premu la serĉoklavon de la klavaro por tamen serĉi en %d fonto."</item><item quantity="other">"Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"Reprovi %d fonton"</item><item quantity="other">"Reprovi %d fontojn"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTO"</item><item quantity="other">"%d FONTOJ"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d skana averto"</item><item quantity="other">"%d skanaj avertoj"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"Ĉiuj kromprogramoj (%d)"</item><item quantity="other">"Ĉiuj kromprogramoj (%d)"</item></plurals>

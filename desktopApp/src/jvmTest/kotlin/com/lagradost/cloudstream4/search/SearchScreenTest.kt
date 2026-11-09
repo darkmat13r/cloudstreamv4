@@ -19,8 +19,16 @@ import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.allNodes
+import com.lagradost.cloudstream4.assertOutlined
 import com.lagradost.cloudstream4.assertPageBar
+import com.lagradost.cloudstream4.buttonLabelled
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopFailureBannerDefaults
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
+import com.lagradost.cloudstream4.tagged
+import com.lagradost.cloudstream4.textNode
+import com.lagradost.cloudstream4.texts
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -73,6 +81,20 @@ class SearchScreenTest {
         SearchResultGroup(name, List(count) { SearchResultItem(SearchResultId("$name$it"), "$name title $it", providerName = name) })
 
     private val results = SearchContent.Results(listOf(group("Vidsrc", 6), group("Gogoanime", 4)))
+
+    /** S2's second line: a type and a quality, a type alone, and neither. */
+    private val labelled = SearchContent.Results(
+        listOf(
+            SearchResultGroup(
+                "Source One",
+                listOf(
+                    SearchResultItem(SearchResultId("a"), "Quiet Harbor", providerName = "Source One", typeLabel = "Movie", qualityLabel = "4K"),
+                    SearchResultItem(SearchResultId("b"), "Low Tide", providerName = "Source One", typeLabel = "Series"),
+                    SearchResultItem(SearchResultId("c"), "Bare title", providerName = "Source One"),
+                ),
+            ),
+        ),
+    )
 
     private val choices = listOf(
         SearchSourceChoice("Gogoanime", "Gogoanime", selected = true, health = SearchSourceHealth.Ok),
@@ -162,12 +184,73 @@ class SearchScreenTest {
     }
 
     @Test
+    fun `a partial failure is one band across the page, with an outlined retry that counts the sources (KMP-101, S3)`() {
+        val actions = mutableListOf<SearchAction>()
+        val partial = SearchStatus.Partial(labelled, answered = 9, total = 12, detail = "TIMEOUT · HTTP 503")
+        val scene = screen(state(partial, query = "harbor"), onAction = { actions += it })
+        scene.settle()
+        val band = scene.tagged(DesktopFailureBannerDefaults.TestTag).single().boundsInRoot
+        val margin = DesktopDimens.WindowMargin.value
+        assertEquals(margin, band.left, "from the page's margin")
+        assertEquals(WIDTH - 2 * margin, band.width, "to the other margin: the width of the page")
+        assertEquals(DesktopFailureBannerDefaults.MinHeight.value, band.height)
+        assertTrue(band.top > CHIP_Y, "under the type chips")
+        scene.textNode("3 sources failed")
+        scene.textNode("TIMEOUT · HTTP 503")
+
+        val retry = scene.buttonLabelled("Retry 3 sources").boundsInRoot
+        assertEquals(band.right - DesktopDimens.RelatedGap.value, retry.right, "at the band's far end")
+        // It sits on the band, so the band's fill is what shows through: read in the band's padding, before the glyph.
+        val onBand = (band.left + BAND_PROBE).toInt() to band.center.y.toInt()
+        scene.assertOutlined(retry, SETTLE_FRAMES * FRAME_NANOS, page = onBand)
+        scene.click(retry.center)
+        assertEquals(listOf<SearchAction>(SearchAction.Retry), actions)
+        scene.close()
+    }
+
+    @Test
+    fun `one failed source says so in the singular`() {
+        val scene = screen(state(SearchStatus.Partial(labelled, answered = 11, total = 12, detail = "HTTP 503"), query = "harbor"))
+        scene.settle()
+        scene.buttonLabelled("Retry 1 source")
+        scene.close()
+    }
+
+    @Test
+    fun `a card's second line is its type and quality, and nothing when it has neither (KMP-101, S2)`() {
+        val scene = screen(state(SearchStatus.Showing(labelled), query = "harbor"))
+        scene.settle()
+        scene.textNode("Movie · 4K")
+        scene.textNode("Series")
+        scene.textNode("Bare title")
+        assertTrue(scene.allNodes().none { "" in it.texts() }, "a card with neither draws no empty second line")
+        scene.close()
+    }
+
+    @Test
+    fun `an empty or failed search offers its way on with an outlined button, not a filled one (KMP-101, S6)`() {
+        listOf(
+            state(SearchStatus.NoResults(12), query = "kingfisher") to "Search everything",
+            state(SearchStatus.Offline, query = "kingfisher") to "Try again",
+            state(SearchStatus.Failed("HTTP 503"), query = "kingfisher") to "Try again",
+        ).forEach { (state, label) ->
+            val scene = screen(state)
+            scene.settle()
+            val button = scene.buttonLabelled(label).boundsInRoot
+            scene.assertOutlined(button, SETTLE_FRAMES * FRAME_NANOS, page = SCRIM_X.toInt() to SCRIM_Y.toInt())
+            scene.close()
+        }
+    }
+
+    @Test
     fun `renders`() {
         if (System.getProperty("cloudstream.search.renders") == null) return
         val partial = SearchStatus.Partial(results, answered = 9, total = 12, detail = "TIMEOUT · HTTP 503")
         listOf(
             "S1-recent" to state(SearchStatus.Showing(recent)),
             "S2-results" to state(SearchStatus.Showing(results), query = "blade runner"),
+            "S2-card-lines" to state(SearchStatus.Showing(labelled), query = "harbor"),
+            "S5-offline" to state(SearchStatus.Offline, query = "kingfisher"),
             "S3-partial" to state(partial, query = "blade runner"),
             "S4-sources" to state(SearchStatus.Showing(results), query = "blade runner", panel = openPanel),
             "S6-no-results" to state(SearchStatus.NoResults(12), query = "kingfisher"),
@@ -227,6 +310,8 @@ class SearchScreenTest {
         const val MIN_WIDTH = 580
         const val MIN_HEIGHT = 520
         const val SETTLE_FRAMES = 30
+        /** Inside the band's leading padding, which is 12. */
+        const val BAND_PROBE = 4f
         const val FRAME_NANOS = 50_000_000L
         /** The middle of the 52 page bar (`KMP-98`). */
         const val TOOLBAR_Y = 26f

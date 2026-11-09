@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"Επόμενο επεισόδιο σε %d δ"</item><item quantity="other">"Επόμενο επεισόδιο σε %d δ"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Αναζήτηση σε %d πηγή"</item><item quantity="other">"Αναζήτηση σε όλες τις %d πηγές"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως."</item><item quantity="other">"Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"Επανάληψη %d πηγής"</item><item quantity="other">"Επανάληψη %d πηγών"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ΠΗΓΗ"</item><item quantity="other">"%d ΠΗΓΕΣ"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d προειδοποίηση σάρωσης"</item><item quantity="other">"%d προειδοποιήσεις σάρωσης"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"Όλες οι επεκτάσεις (%d)"</item><item quantity="other">"Όλες οι επεκτάσεις (%d)"</item></plurals>

@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">Volgende episode oor %d s</item><item quantity="other">Volgende episode oor %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Soek %d bron</item><item quantity="other">Soek al %d bronne</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Druk die sleutelbord se soeksleutel om tog %d bron te deursoek.</item><item quantity="other">Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">Probeer %d bron weer</item><item quantity="other">Probeer %d bronne weer</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BRON</item><item quantity="other">%d BRONNE</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d afdeling</item><item quantity="other">%d afdelings</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d skanderingwaarskuwing</item><item quantity="other">%d skanderingwaarskuwings</item></plurals>

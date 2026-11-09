@@ -6350,6 +6350,28 @@ both ways out; it wants its own task.
 as TV does, but nothing on the Mac fills it: TV's stamps come from its host. Find where the stamps come from for a
 title, read them for the episode playing, and pass the current one to `PlayerContent.skip`, with `onSkip` seeking past it.
 
+## KMP-101 — Mac Search and Downloads polish: S3's banner, S2's second line, D5's pill, outlined state actions · **in review**
+
+**Status:** in review · `:desktopApp`, `:core:designsystem`, `:feature:{search,downloads,home}`, `:core:strings` · a design
+audit against boards S3, S2, D5, D4 and S6 · stacked on `KMP-98`, which changes both pages' bars · its key is `I18N-22`
+
+- **S3, a partial failure, is one band across the page** (`DesktopFailureBanner`): a warning glyph, what failed, the
+  mono detail, and an outlined **Retry N sources** at the far end, which counts the sources it asks again. The TV's
+  `FailureBanner` pill stays as it is: it is sized to ride a chip row, because a TV's vertical budget decides whether a
+  rail reaches the focus band.
+- **S2, the card's second line.** `DesktopSearchSource` filled `typeLabel` and `qualityLabel` with null, because a
+  Compose resource has no synchronous accessor. It now resolves them with the suspend `getString`, once for each distinct
+  value in a search, from the keys Android's search uses (`DesktopResultLabels`). A card shows `Movie · 4K`, a type
+  alone, or no second line.
+- **D5, offline on Downloads and a series' downloads, is Home's pill**: the wifi-off glyph and the same words, where it
+  drew a failed status dot. Home's private `OfflinePill` moved to `:core:designsystem` as `DesktopOfflinePill`, so the
+  three pages draw one component. Home's pixels do not change.
+- **D4 and S6, an empty or failed page's action is outlined**: a hairline and no fill, `raised` under the pointer.
+  `DesktopButtonTone.Outlined` is new, and `DesktopStateView` is `StateView` with that button. `StateView` gained an
+  `actionButton` slot whose default is the TV's button, so TV and Android draw what they drew.
+
+The string is `search_state_retry_sources`, a plural, in all 62 directories (`I18N-22`).
+
 ## KMP-98 — The Mac window's chrome: the title bar, Settings in the sidebar, one page bar · **in review**
 
 **Status:** in review · `:desktopApp`, `:core:designsystem`, `:feature:{home,search,library,detail,downloads}` · a

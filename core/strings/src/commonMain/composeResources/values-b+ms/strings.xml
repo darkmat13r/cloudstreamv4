@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="other">Episod seterusnya dalam %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">Cari dalam semua %d sumber</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="other">Cuba semula %d sumber</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d SUMBER</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">%d bahagian</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">%d amaran imbasan</item></plurals>

@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">Episodi següent d'aquí a %d s</item><item quantity="many">Episodi següent d'aquí a %d s</item><item quantity="other">Episodi següent d'aquí a %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Cercar a %d font</item><item quantity="many">Cercar a totes les %d fonts</item><item quantity="other">Cercar a totes les %d fonts</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Prem la tecla de cerca del teclat per cercar igualment a %d font.</item><item quantity="many">Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.</item><item quantity="other">Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">Torna a provar %d font</item><item quantity="many">Torna a provar %d fonts</item><item quantity="other">Torna a provar %d fonts</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d FONT</item><item quantity="many">%d FONTS</item><item quantity="other">%d FONTS</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d secció</item><item quantity="many">%d seccions</item><item quantity="other">%d seccions</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d avís de l'anàlisi</item><item quantity="many">%d avisos de l'anàlisi</item><item quantity="other">%d avisos de l'anàlisi</item></plurals>

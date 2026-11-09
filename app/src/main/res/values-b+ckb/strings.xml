@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"ئەڵقەی داهاتوو لە %d چ دا"</item><item quantity="other">"ئەڵقەی داهاتوو لە %d چ دا"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"گەڕان لە %d سەرچاوە"</item><item quantity="other">"گەڕان لە هەموو %d سەرچاوەکە"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە %d سەرچاوە بگەڕێیت."</item><item quantity="other">"کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"%d سەرچاوە دووبارە تاقی بکەرەوە"</item><item quantity="other">"%d سەرچاوە دووبارە تاقی بکەرەوە"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d سەرچاوە"</item><item quantity="other">"%d سەرچاوە"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d ئاگاداری پشکنین"</item><item quantity="other">"%d ئاگاداری پشکنین"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"هەموو زیادکراوەکان (%d)"</item><item quantity="other">"هەموو زیادکراوەکان (%d)"</item></plurals>

@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"%d ছে.-ত পৰৱৰ্তী পৰ্ব"</item><item quantity="other">"%d ছে.-ত পৰৱৰ্তী পৰ্ব"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%dটা উৎস সন্ধান কৰক"</item><item quantity="other">"আটাইকেইটা %dটা উৎস সন্ধান কৰক"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"তথাপি %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।"</item><item quantity="other">"তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।"</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"%d টা উৎস পুনৰ চেষ্টা কৰক"</item><item quantity="other">"%d টা উৎস পুনৰ চেষ্টা কৰক"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d উৎস"</item><item quantity="other">"%d উৎস"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d টা স্কেন সতৰ্কবাণী"</item><item quantity="other">"%d টা স্কেন সতৰ্কবাণী"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"সকলো এক্সটেনশ্যন (%d)"</item><item quantity="other">"সকলো এক্সটেনশ্যন (%d)"</item></plurals>

@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">Neste episode om %d s</item><item quantity="other">Neste episode om %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Søk i %d kjelde</item><item quantity="other">Søk i alle %d kjeldene</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel.</item><item quantity="other">Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">Prøv %d kjelde på nytt</item><item quantity="other">Prøv %d kjelder på nytt</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KJELDE</item><item quantity="other">%d KJELDER</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d seksjon</item><item quantity="other">%d seksjonar</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d skanningsåtvaring</item><item quantity="other">%d skanningsåtvaringar</item></plurals>

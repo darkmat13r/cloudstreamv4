@@ -85,6 +85,7 @@
 <plurals name="player_up_next_in"><item quantity="other">%d 秒后播放下一集</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">搜索全部 %d 个来源</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">按键盘上的搜索键，仍然搜索全部 %d 个来源。</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="other">重试 %d 个来源</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d 来源</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">%d 个扫描警告</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="other">全部扩展 (%d)</item></plurals>

@@ -83,6 +83,7 @@
 <plurals name="player_up_next_in"><item quantity="one">Следващ епизод след %d с</item><item quantity="other">Следващ епизод след %d с</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Търсене в %d източник</item><item quantity="other">Търсене във всички %d източника</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това в %d източник.</item><item quantity="other">Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това във всички %d източника.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">Опитай %d източник отново</item><item quantity="other">Опитай %d източника отново</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ИЗТОЧНИК</item><item quantity="other">%d ИЗТОЧНИКА</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d раздел</item><item quantity="other">%d раздела</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d предупреждение от сканиране</item><item quantity="other">%d предупреждения от сканиране</item></plurals>

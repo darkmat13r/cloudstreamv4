@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">ቀጣዩ ክፍል በ%d ሰ ውስጥ</item><item quantity="other">ቀጣዩ ክፍል በ%d ሰ ውስጥ</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ምንጭ ፈልግ</item><item quantity="other">ሁሉንም %d ምንጮች ፈልግ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ለማንኛውም %d ምንጭ ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።</item><item quantity="other">ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">%d ምንጭ እንደገና ሞክር</item><item quantity="other">%d ምንጮችን እንደገና ሞክር</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ምንጭ</item><item quantity="other">%d ምንጮች</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d ክፍል</item><item quantity="other">%d ክፍሎች</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d የቅኝት ማስጠንቀቂያ</item><item quantity="other">%d የቅኝት ማስጠንቀቂያዎች</item></plurals>

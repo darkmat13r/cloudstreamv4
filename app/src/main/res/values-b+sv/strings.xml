@@ -19,6 +19,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"Nästa avsnitt om %d s"</item><item quantity="other">"Nästa avsnitt om %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Sök i %d källa"</item><item quantity="other">"Sök i alla %d källor"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Tryck på tangentbordets söktangent för att söka i %d källa ändå."</item><item quantity="other">"Tryck på tangentbordets söktangent för att söka i alla %d källor ändå."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"Försök med %d källa igen"</item><item quantity="other">"Försök med %d källor igen"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KÄLLA"</item><item quantity="other">"%d KÄLLOR"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d skanningsvarning"</item><item quantity="other">"%d skanningsvarningar"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"Alla tillägg (%d)"</item><item quantity="other">"Alla tillägg (%d)"</item></plurals>

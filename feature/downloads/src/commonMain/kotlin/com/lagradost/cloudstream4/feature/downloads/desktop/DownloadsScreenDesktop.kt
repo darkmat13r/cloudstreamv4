@@ -46,19 +46,18 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopOfflinePill
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBarDefaults
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRowsSkeleton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopStateView
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
-import com.lagradost.cloudstream4.core.designsystem.primitive.StatusPill
-import com.lagradost.cloudstream4.core.designsystem.primitive.StatusPillState
 import com.lagradost.cloudstream4.core.designsystem.primitive.StorageMeter
 import com.lagradost.cloudstream4.core.designsystem.primitive.StorageUsage
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
-import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.download_queue
@@ -232,7 +231,7 @@ private fun Header(state: DownloadsState, formatBytes: (Long) -> String) {
                 style = CloudStreamTheme.typography.h1.copy(color = colors.ink),
                 maxLines = 1,
             )
-            if (state.offline) StatusPill(StatusPillState.Failed, stringResource(Res.string.downloads_offline_pill))
+            if (state.offline) DesktopOfflinePill(stringResource(Res.string.downloads_offline_pill))
         }
         DiskMeter(state.storage, formatBytes)
     }
@@ -312,7 +311,7 @@ private fun Body(
     when (val status = state.status) {
         DownloadsStatus.Loading -> DesktopRowsSkeleton(modifier.padding(horizontal = DesktopDimens.WindowMargin - DesktopDimens.RowPadding))
         // Never takes focus, as in the other desktop screens: a window opening on a failure has not asked for it.
-        is DownloadsStatus.Failed -> StateView(
+        is DownloadsStatus.Failed -> DesktopStateView(
             prompt = StatePrompt(
                 headline = stringResource(Res.string.downloads_load_failed_headline),
                 body = stringResource(Res.string.downloads_load_failed_body),
@@ -325,7 +324,7 @@ private fun Body(
             requestInitialFocus = false,
         )
 
-        DownloadsStatus.Empty -> StateView(
+        DownloadsStatus.Empty -> DesktopStateView(
             prompt = StatePrompt(
                 headline = stringResource(Res.string.downloads_empty_headline),
                 body = stringResource(Res.string.downloads_empty_body),

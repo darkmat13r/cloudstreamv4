@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">%d ସେ. ପରେ ପରବର୍ତ୍ତୀ ଏପିସୋଡ୍</item><item quantity="other">%d ସେ. ପରେ ପରବର୍ତ୍ତୀ ଏପିସୋଡ୍</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item><item quantity="other">ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item><item quantity="other">ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">%d ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ</item><item quantity="other">%d ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ଉତ୍ସ</item><item quantity="other">%d ଉତ୍ସ</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d ବିଭାଗ</item><item quantity="other">%d ବିଭାଗ</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d ସ୍କାନ୍ ଚେତାବନୀ</item><item quantity="other">%d ସ୍କାନ୍ ଚେତାବନୀ</item></plurals>

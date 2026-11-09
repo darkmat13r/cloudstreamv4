@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"Következő rész %d mp múlva"</item><item quantity="other">"Következő rész %d mp múlva"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Keresés %d forrásban"</item><item quantity="other">"Keresés mind a(z) %d forrásban"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen %d forrásban."</item><item quantity="other">"Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"%d forrás újrapróbálása"</item><item quantity="other">"%d forrás újrapróbálása"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FORRÁS"</item><item quantity="other">"%d FORRÁS"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d vizsgálati figyelmeztetés"</item><item quantity="other">"%d vizsgálati figyelmeztetés"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"Az összes bővítmény (%d)"</item><item quantity="other">"Az összes bővítmény (%d)"</item></plurals>

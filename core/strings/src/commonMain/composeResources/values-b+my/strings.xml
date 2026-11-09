@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="other">နောက်အပိုင်း %d စက္ကန့်အတွင်း</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="other">ရင်းမြစ် %d ခု ထပ်စမ်းရန်</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">%d ရင်းမြစ်</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">ကဏ္ဍ %d ခု</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">စကင် သတိပေးချက် %d ခု</item></plurals>

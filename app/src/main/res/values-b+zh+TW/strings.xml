@@ -18,6 +18,7 @@
 <plurals name="player_up_next_in"><item quantity="other">"%d 秒後播放下一集"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"搜尋全部 %d 個來源"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。"</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="other">"重試 %d 個來源"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d 來源"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">"%d 個掃描警告"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="other">"全部擴充功能 (%d)"</item></plurals>

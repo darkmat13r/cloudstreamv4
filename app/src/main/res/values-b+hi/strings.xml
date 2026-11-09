@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"अगला एपिसोड %d से. में"</item><item quantity="other">"अगला एपिसोड %d से. में"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d स्रोत में खोजें"</item><item quantity="other">"सभी %d स्रोतों में खोजें"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"फिर भी %d स्रोत में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।"</item><item quantity="other">"फिर भी सभी %d स्रोतों में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।"</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"%d स्रोत फिर से आज़माएँ"</item><item quantity="other">"%d स्रोत फिर से आज़माएँ"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d स्रोत"</item><item quantity="other">"%d स्रोत"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d स्कैन चेतावनी"</item><item quantity="other">"%d स्कैन चेतावनियाँ"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"सभी एक्सटेंशन (%d)"</item><item quantity="other">"सभी एक्सटेंशन (%d)"</item></plurals>
