@@ -6995,7 +6995,7 @@ rebuilding the page as the service ticked, and D1's state was made again with no
   what is installed changes; it holds no reader that outlives its loads.
 
 **Not here:**
-- **Playing a downloaded episode** (D4's Play) is `KMP-74`. The player takes a `StreamLink`, not a local file.
+- **Playing a downloaded episode** (D4's Play) is `KMP-74`, built: the app hands the media host one open descriptor.
 
 **Tests** (`DownloadsHostTest`, against the real service and a loopback server in a temporary folder):
 - A film is downloaded; ⌘⌫ asks and Cancel keeps the file; the row's menu Delete, then the sheet's Delete, removes the
@@ -7791,3 +7791,95 @@ an app that cannot keep a secret, with no PKCE and no `state` shown, and Android
   - A13 on `error=`, and A13b on an exchange offline.
 - Red-checked: without the state comparison, 3 of these fail; without ending the wait on leaving the step, the late
   redirect is taken and the Cancel test fails; without the bare-form check or the RFC 3986 decoding, their tests fail.
+---
+
+## KMP-74 — The Mac plays a downloaded episode: the app opens the file, and the media host gets only its descriptor · **built 2026-11-09**
+
+**Status:** in the PR that adds this entry · taken over from desktop-session-1, at the PM's word
+
+**The owner's ruling (2026-11-09):** "hand it just the one file". The app opens the chosen file itself and passes only
+that open descriptor to the media host. The host's sandbox rules don't widen, and it never sees a folder or a path.
+`BUG-76` measured why this is needed: the host may read nothing outside its own directory, so a download played by
+path gets `frames=0`.
+
+**How the descriptor crosses.** Java starts a process with nothing open above stderr, and the host's three are taken:
+commands come in on stdin, frames go out on stdout, and stderr is drained. So nothing can be inherited. And a socket
+the host connects to would need a new `network-outbound` rule, which is a wider sandbox. Instead:
+1. The app makes a socket pair (JNA). One end becomes the host's stdin: `ProcessBuilder.Redirect.from(/dev/fd/N)`
+   opens a duplicate, and the app closes its own copy.
+2. The app opens the file and sends it with `sendmsg(SCM_RIGHTS)` and one marker byte. It closes its copy of the file
+   at once, sent or not.
+3. The host is told only that a descriptor is coming (`-Dcloudstream.mediahost.file=true`, never a path). It takes
+   it with one `recvmsg` before anything reads stdin with buffering, because a plain read of that byte would drop it.
+   A host given none exits.
+4. Commands follow on the same socket, in the same form as ever, written through `FileOutputStream(/dev/fd/<app end>)`.
+   The app's end closing is still the host's sign to exit.
+5. `OP_PLAY_FILE` (7) carries no text. The host builds `fd://<n>` itself, so the app has no say in what libVLC opens.
+
+**What the app opens (`LocalMedia`).** Only a regular file inside the download folder, reached without a link at any
+step below it. The path is checked first: its real path must equal the folder's real path plus the same steps. Then
+the descriptor is checked: it is opened with `O_RDONLY | O_NOFOLLOW | O_NONBLOCK | O_CLOEXEC`, `fstat` must say a
+regular file, and `F_GETPATH` must give the same path still inside the folder. So a link or a folder swapped in
+between the two checks is refused too.
+
+**Accepted residual (owner, 2026-11-09):** the host can ask the kernel for the path of a descriptor it holds
+(`F_GETPATH`; measured, it answers). So a compromised decoder could learn the download's folder and file name. It
+still cannot open anything by that path, and its home is already named after the account. No descriptor design hides
+this on macOS. The only alternative, the app streaming bytes to a libVLC callback stream, was not chosen. The host's
+own KDoc says so.
+
+**JNA** is declared in `:desktopApp` at 5.19.1, pinned. The owner approved it 2026-11-09, at the version `BUG-73`
+settles on.
+
+**Where Play goes.** `DownloadSeriesHost` turns `SeriesEffect.Play` into `DesktopDownloads.playable(id)`: the episode's
+file, the download folder, and its name and numbers. The app pushes `Screen.DownloadPlayer` over the series page. Its
+name in a screen's text is `PlayableDownload(id=…)`, with no path. The player is the stream player, given a `start`
+that plays the descriptor, no address and no source selector. The top band reads `S1:E2 · name · Downloads`. A file
+gone since the page was drawn plays nothing, and the page reads the disk again.
+
+**Measured end to end, through the real sandboxed host** (`--check-download-playback <file> [seconds]`, the packaged
+build, a scratch `user.home`). Two 20 s 640×360 clips in a folder the host may not read, one with no audio and one
+with a silent track:
+
+| | No audio | Silent track |
+|---|---|---|
+| Played 4 s | frames=25, playing | frames=35, playing |
+| Seek to 0.75, then 2 s | position 16575 of 20000, 51 more frames, playing | position 16571 of 20000, 51 more frames, playing |
+| Failed | false | false |
+
+- **Control:** the same file by path through `--check-playback`, without the hand-off, gets frames=0 and fails. The
+  host's sandbox still refuses the folder.
+- **Refusals:** a link to the clip and a folder named like one are both refused before any host starts (exit 4).
+- **`lsof` during playback:**
+  - The app holds no descriptor on the clip.
+  - The host holds it read-only, twice: the one it received and libVLC's duplicate. Its stdin is the Unix socket.
+- **Before the code (scratch, the rendered media-host profile):**
+  - VLC 3.0.24 played `fd://3` and seeked (`mp4 demux: seeking`); by path, "Operation not permitted".
+  - Its log never named the path with `fd://`; by path it did, 14 times.
+  - A sandboxed receiver read the whole clip through an `SCM_RIGHTS` descriptor. The descriptor was `O_RDONLY`, and a
+    `write` failed.
+
+**Tests:**
+- `LocalMediaTest` (8, run against the real kernel, because the structure layouts are written by hand):
+  - A file inside opens read-only; writing through it fails; it closes once.
+  - Refused: outside the folder, through `..`, the folder itself, a missing file, a link at any step below the folder
+    (to outside, to inside, a linked folder), a folder.
+  - A folder named through a link, as `/tmp` is, still works.
+  - `O_NOFOLLOW`, and `fstat` on a folder.
+  - A descriptor sent across a socket pair reads the same bytes; a byte sent with no descriptor is not taken for one.
+- `DownloadsHostTest` (+2, over the real service and a loopback server):
+  - Double-clicking an episode hands over its file, the folder, its name and its numbers, and the name has no path.
+  - An episode whose file went since plays nothing and leaves the list.
+  - In the window, Play opens `DownloadPlayer` for that episode, opened once, and Escape returns to the series page.
+- **Mutations, run:**
+  - Dropping the regular-file check fails "a folder is refused".
+  - Dropping both link checks fails "a linked folder on the way".
+  - Unwiring Play fails both host tests.
+  - Exactly those four failed, and nothing else.
+
+**Not here:**
+- Resume and watch progress for a download. There is no library record to write to; the stream player's
+  `WatchRecorder` needs one.
+- Playing a film from the D1 list. D1 has no Play on the Mac board.
+- `OP_PLAY_FILE`'s "no text" has no unit test of its own. `VlcPlayer`'s constructor is private, so the end-to-end
+  check above is its evidence.

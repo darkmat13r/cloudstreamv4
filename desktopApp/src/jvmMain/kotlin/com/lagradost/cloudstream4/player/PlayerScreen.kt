@@ -133,6 +133,8 @@ import org.jetbrains.compose.resources.stringResource
  * @param openPlayer a new player for a source someone chose. Null where sources cannot be switched, and then there
  *   is no selector for it, and nothing moves on by itself either.
  * @param seekMillis how far the arrow keys and the skip buttons move: Settings' Seek amount (`KMP-96`).
+ * @param start how a player starts its stream: [VlcPlayer.play] with the link's address, or, for a downloaded file,
+ *   [VlcPlayer.playFile], which has no address to send (`KMP-74`).
  *
  * ## When a stream fails
  *
@@ -167,6 +169,7 @@ internal fun PlayerScreen(
     onPlayNext: () -> Unit = {},
     artwork: @Composable (String) -> Unit = {},
     keepFullscreen: () -> Boolean = { false },
+    start: (VlcPlayer, StreamLink) -> Boolean = ::playLink,
 ) {
     var playback by remember(player, link) { mutableStateOf(Playback(player, link, startAtMillis)) }
     val audioChoice = remember(player, link) { AudioChoice() }
@@ -182,7 +185,7 @@ internal fun PlayerScreen(
     LaunchedEffect(playback, frame != null) { if (frame != null) framed = true }
     DisposableEffect(playback) {
         val current = playback
-        started = current.player.play(current.link.url, current.link.referer, current.link.userAgent, current.link.audioUrl)
+        started = start(current.player, current.link)
         // Off the UI thread: stopping libVLC blocks, and can take seconds on a stalled stream.
         onDispose { thread(isDaemon = true, name = "vlc-release") { current.player.release() } }
     }
@@ -263,6 +266,10 @@ private class Playback(val player: VlcPlayer, val link: StreamLink, startAtMilli
 }
 
 /** The screen itself, over whatever supplies frames and status, so a test can press its keys. */
+/** A stream's start: its address, and what the provider said to send with it. */
+internal fun playLink(player: VlcPlayer, link: StreamLink): Boolean =
+    player.play(link.url, link.referer, link.userAgent, link.audioUrl)
+
 @OptIn(ExperimentalComposeUiApi::class) // onPointerEvent: the only way to see a mouse move, for the HUD.
 @Composable
 internal fun PlayerContent(

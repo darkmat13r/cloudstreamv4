@@ -47,6 +47,7 @@ class HostLauncher internal constructor(
         jvmOptions: String = JVM_OPTIONS,
         gate: OutboundGate? = null,
         lowered: Boolean = false,
+        input: ProcessBuilder.Redirect? = null,
     ): Process {
         val profile = SeatbeltProfile.render(executable, readable, readOnlyInputs, writable, network, extraRules, gate?.port)
         val sandboxed = listOf(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, executable.path) + prefixArguments + arguments
@@ -60,6 +61,7 @@ class HostLauncher internal constructor(
         val proxy = gate?.let { " -DsocksProxyHost=$LOOPBACK -DsocksProxyPort=${it.port} -DsocksNonProxyHosts=" }.orEmpty()
         builder.environment()["JAVA_TOOL_OPTIONS"] = "$jvmOptions -Duser.home=${writable.path}$proxy"
         builder.directory(writable)
+        input?.let(builder::redirectInput)
         return builder.start()
     }
 
@@ -69,8 +71,15 @@ class HostLauncher internal constructor(
      * @param vlcApp the VLC bundle. It is read, never written.
      * @param writable the host's own directory, empty and not shared with anything.
      * @param silent no audio output: libVLC is told so, and the sandbox refuses it the audio devices anyway.
+     * @param input the host's stdin in place of a pipe: one end of a socket pair, which a downloaded file's descriptor
+     *   arrives over (`KMP-74`). The host is told only that one is coming, never where from, and its policy is the same.
      */
-    fun startMediaHost(vlcApp: File, writable: File, silent: Boolean = false): Process {
+    fun startMediaHost(
+        vlcApp: File,
+        writable: File,
+        silent: Boolean = false,
+        input: ProcessBuilder.Redirect? = null,
+    ): Process {
         val app = vlcApp.canonicalFile
         return start(
             arguments = emptyList(),
@@ -79,13 +88,18 @@ class HostLauncher internal constructor(
             network = true,
             extraRules = SeatbeltProfile.mediaHostRules(app, writable, audio = !silent),
             jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} " +
-                "-Djna.tmpdir=${writable.path}" + if (silent) " -D$SILENT_PROPERTY=true" else "",
+                "-Djna.tmpdir=${writable.path}" + (if (silent) " -D$SILENT_PROPERTY=true" else "") +
+                if (input != null) " -D$FILE_PROPERTY=true" else "",
+            input = input,
         )
     }
 
     companion object {
         /** How [startMediaHost] tells the host, whose command line is the same either way. */
         const val SILENT_PROPERTY = "cloudstream.mediahost.silent"
+
+        /** How [startMediaHost] tells the host a file's descriptor is the first thing on its stdin. Never a path. */
+        const val FILE_PROPERTY = "cloudstream.mediahost.file"
         /** Stands in for the person's account name, which a host has no use for. */
         private const val HOST_USER = "cloudstream"
         private const val JVM_OPTIONS =

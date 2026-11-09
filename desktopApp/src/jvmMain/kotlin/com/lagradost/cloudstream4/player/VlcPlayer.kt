@@ -7,7 +7,9 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
 import com.lagradost.cloudstream4.player.MediaProtocol.writeText
 import java.io.DataOutputStream
 import java.io.File
+import java.io.FileOutputStream
 import java.io.IOException
+import java.io.OutputStream
 import java.nio.ByteBuffer
 import java.nio.file.FileVisitResult
 import java.nio.file.Files
@@ -64,8 +66,11 @@ data class PlayerStatus(
 class VlcPlayer private constructor(
     private val process: Process,
     private val directory: File,
+    commandStream: OutputStream = process.outputStream,
+    /** Whether this host was handed a file at its start, and so plays [playFile] rather than [play]. */
+    private val local: Boolean = false,
 ) : PlayerControls {
-    private val commands = DataOutputStream(process.outputStream.buffered())
+    private val commands = DataOutputStream(commandStream.buffered())
     private val _frame = MutableStateFlow<ImageBitmap?>(null)
     private val _pictureSize = MutableStateFlow<IntSize?>(null)
     private val _status = MutableStateFlow(PlayerStatus())
@@ -156,6 +161,12 @@ class VlcPlayer private constructor(
         }
     }
 
+    /**
+     * Plays the file this host was handed when it started (`KMP-74`). Sends no text: the host names it by its
+     * descriptor. False for a host made for a stream, or one that has already gone.
+     */
+    fun playFile(): Boolean = local && send { writeByte(MediaProtocol.OP_PLAY_FILE.toInt()) }
+
     override fun togglePause() {
         send { writeByte(MediaProtocol.OP_TOGGLE_PAUSE.toInt()) }
     }
@@ -224,6 +235,53 @@ class VlcPlayer private constructor(
                 .onFailure { deleteHostDirectory(directory.toPath()) }
                 .getOrNull()
         }
+
+        /**
+         * A host for one downloaded file, which it gets as [media]'s descriptor and never by name (`KMP-74`). [media]
+         * is closed here, whatever happens: the app keeps no copy once it is sent. Then [playFile] plays it.
+         *
+         * The host's stdin is one end of a socket pair rather than a pipe, because only a socket carries a
+         * descriptor, and Java starts a process with nothing open above stderr. The descriptor goes first, with one
+         * byte; the commands follow on the same socket, in the same form as ever. Its policy is the stream host's.
+         */
+        internal fun createOrNull(media: LocalMedia): VlcPlayer? = media.use {
+            val launcher = HostLauncher.forMediaHost(MediaHost.ARGUMENT, MEDIA_HOST_MAIN) ?: return null
+            if (!File(VLC_APP, "Contents/MacOS/lib/libvlc.dylib").isFile) return null
+            val base = File(System.getProperty("user.home"), ".cloudstream4/.media-host").apply { mkdirs() }
+            val directory = newHostDirectory(base)
+            val (app, host) = UnixFds.socketPair() ?: return null.also { deleteHostDirectory(directory.toPath()) }
+            var appEnd: Int? = app
+            var hostEnd: Int? = host
+            var process: Process? = null
+            val player = try {
+                if (UnixFds.send(app, media.fd)) {
+                    media.close()
+                    // Opening /dev/fd/N duplicates descriptor N: Java gives the child its own copy as stdin.
+                    val started = launcher.startMediaHost(VLC_APP, directory, input = ProcessBuilder.Redirect.from(descriptor(host)))
+                    process = started
+                    UnixFds.close(host)
+                    hostEnd = null
+                    val commands = FileOutputStream(descriptor(app))
+                    UnixFds.close(app)
+                    appEnd = null
+                    VlcPlayer(started, directory, commands, local = true)
+                } else {
+                    null
+                }
+            } catch (_: IOException) {
+                null
+            } finally {
+                hostEnd?.let(UnixFds::close)
+                appEnd?.let(UnixFds::close)
+            }
+            if (player == null) {
+                process?.destroyForcibly()
+                deleteHostDirectory(directory.toPath())
+            }
+            player
+        }
+
+        private fun descriptor(fd: Int) = File("/dev/fd/$fd")
 
         private const val MEDIA_HOST_MAIN = "com.lagradost.cloudstream4.player.MediaHostMainKt"
     }

@@ -56,6 +56,23 @@ import kotlinx.coroutines.withTimeoutOrNull
 /** Where one episode stands. [Done] and [Failed] read back as themselves after a restart; the rest as [Paused]. */
 internal enum class Phase { Queued, Running, Paused, Failed, Done }
 
+/**
+ * What the player needs to play one downloaded episode. [file] is opened by the app, never sent anywhere (`KMP-74`), and
+ * [root] is where it must still be when it is opened.
+ */
+internal class PlayableDownload(
+    val id: DownloadEpisodeId,
+    val file: File,
+    val root: File,
+    val title: String,
+    val season: Int?,
+    val episode: Int?,
+    val episodeName: String?,
+) {
+    /** No path: a screen's name can reach a test's log, and the path holds the person's account name. */
+    override fun toString(): String = "PlayableDownload(id=${id.value})"
+}
+
 /** One episode as readers outside the queue see it: an immutable copy, replaced whenever anything changes. */
 internal class EpisodeView(
     val episodeId: Int,
@@ -269,6 +286,16 @@ class DesktopDownloads internal constructor(
     /** The episode's file once it is done and on disk; null before then. */
     fun fileOf(id: DownloadEpisodeId): File? =
         view.firstOrNull { it.episodeId == id.value }?.takeIf { it.phase == Phase.Done }?.file?.takeIf { it.isFile }
+
+    /**
+     * A finished episode as the player needs it (`KMP-74`): its file, the folder it must be inside, and what the player's
+     * top band says. Null before it is done and on disk, and for an id that is not here.
+     */
+    internal fun playable(id: DownloadEpisodeId): PlayableDownload? {
+        val episode = view.firstOrNull { it.episodeId == id.value }?.takeIf { it.phase == Phase.Done && it.file.isFile }
+            ?: return null
+        return PlayableDownload(id, episode.file, root, episode.titleName, episode.season, episode.episode, episode.episodeName)
+    }
 
     /** Reads the disk again: a finished file deleted outside the app drops its episode, and parts are re-measured. */
     fun refresh() {

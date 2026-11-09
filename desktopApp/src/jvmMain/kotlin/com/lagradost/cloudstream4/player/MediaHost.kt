@@ -54,6 +54,12 @@ internal object MediaHost {
         // not become a frame.
         val stdout = FileOutputStream(FileDescriptor.out)
         System.setOut(PrintStream(FileOutputStream(FileDescriptor.err), true))
+        // Before anything reads stdin: the descriptor rides on its first byte, and a buffered read would drop it.
+        val file = if (System.getProperty(HostLauncher.FILE_PROPERTY) == "true") {
+            UnixFds.receive(STDIN) ?: exitProcess(EXIT_NO_FILE)
+        } else {
+            null
+        }
         val input = DataInputStream(System.`in`.buffered())
         if (!NativeDiscovery().discover()) exitProcess(EXIT_NO_VLC)
 
@@ -70,11 +76,22 @@ internal object MediaHost {
 
         // End of stdin is the app going away. Halt rather than release: stopping libVLC can block for
         // seconds on a stalled stream, and there is nothing here to clean up.
-        runCatching { commands(input, player, volume, audioTrack) }
+        runCatching { commands(input, player, volume, audioTrack, file) }
         Runtime.getRuntime().halt(0)
     }
 
-    private fun commands(input: DataInputStream, player: MediaPlayer, volume: AtomicInteger, audioTrack: AtomicInteger) {
+    /**
+     * @param file the descriptor the app handed over at the start, for [MediaProtocol.OP_PLAY_FILE]; null for a stream.
+     *   Named by number here, so libVLC is never given a path. The kernel will still tell this process the path of a
+     *   descriptor it holds (`F_GETPATH`, measured): the owner accepted that (2026-11-09). It can open nothing by it.
+     */
+    private fun commands(
+        input: DataInputStream,
+        player: MediaPlayer,
+        volume: AtomicInteger,
+        audioTrack: AtomicInteger,
+        file: Int?,
+    ) {
         while (true) {
             when (input.readByte()) {
                 MediaProtocol.OP_PLAY -> {
@@ -86,6 +103,8 @@ internal object MediaHost {
                     }
                     player.media().play(url, *options.toTypedArray())
                 }
+                // Built here, not sent: the app has no say in what libVLC opens.
+                MediaProtocol.OP_PLAY_FILE -> file?.let { player.media().play("$FD_SCHEME$it") }
                 MediaProtocol.OP_TOGGLE_PAUSE -> player.controls().pause()
                 MediaProtocol.OP_SEEK_BY -> player.controls().skipTime(input.readLong())
                 MediaProtocol.OP_SEEK_TO -> player.controls().setPosition(input.readFloat().coerceIn(0f, 1f))
@@ -183,6 +202,9 @@ internal object MediaHost {
     )
 
     private const val EXIT_NO_VLC = 3
+    private const val EXIT_NO_FILE = 4
+    private const val STDIN = 0
+    private const val FD_SCHEME = "fd://"
     private const val VOLUME_CHECK_MILLIS = 20L
     private const val AUDIO_TRACK_CHECK_MILLIS = 250L
     private const val NO_AUDIO = "--no-audio"
