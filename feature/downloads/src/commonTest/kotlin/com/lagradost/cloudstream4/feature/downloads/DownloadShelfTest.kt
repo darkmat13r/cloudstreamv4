@@ -29,6 +29,15 @@ class DownloadShelfTest {
 
     /** `BaseFetchButton.getStatus`'s margin: a file within 1 KiB of its total is finished. */
     @Test
+    fun theRowCarriesThePosterItWasGiven() {
+        val title = DownloadShelf.title(
+            DownloadTitleId(1), "Show", DownloadTitleKind.Series, listOf(whole), emptyMap(), posterUrl = "https://img.example/a.jpg",
+        )
+        assertEquals("https://img.example/a.jpg", title.posterUrl)
+        assertNull(series(whole).posterUrl, "none by default")
+    }
+
+    @Test
     fun aFileWithinTheOldMarginOfItsTotalIsDone() {
         assertEquals(DownloadTitleState.Done, series(EpisodeOnDisk(10, 2_000_000, 2_000_500)).state)
         assertEquals(DownloadTitleState.Paused, series(EpisodeOnDisk(10, 2_000_000, 2_002_000)).state)

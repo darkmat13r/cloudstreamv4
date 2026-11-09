@@ -32,6 +32,9 @@
 <string name="account_pin_current">Gib die aktuelle PIN ein.</string>
 <string name="account_pin_first_profile">Das erste Profil kann nicht gesperrt werden</string>
 <string name="account_pin_new">Gib eine 4-stellige PIN ein.</string>
+<string name="account_pin_not_saved">Die PIN-Änderung konnte nicht gespeichert werden. Es wurde nichts geändert.</string>
+<string name="account_pin_unreadable">Die PINs auf diesem Computer konnten nicht gelesen werden, daher bleibt dieses Profil gesperrt.</string>
+<string name="account_profile_not_added">Ein Profil kann nicht hinzugefügt werden, solange die PINs auf diesem Computer nicht gelesen werden können. Es wurde nichts geändert.</string>
 <string name="account_pin_off">Aus · jeder kann dieses Profil öffnen</string>
 <string name="account_pin_on">An · wird beim Öffnen abgefragt</string>
 <string name="account_pin_prompt">Gib die 4-stellige PIN ein.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s hat die Anmeldung nicht bestätigt. Es wurde nichts gespeichert.</string>
 <string name="account_signin_failed_title">Anmeldung bei %s fehlgeschlagen</string>
 <string name="account_signin_offline_body">Für die Anmeldung bei %s ist eine Verbindung nötig. Versuche es erneut, wenn dieses Gerät wieder online ist.</string>
+<string name="account_signins_until_quit">Anmeldungen gelten, bis du CloudStream beendest.</string>
 <string name="account_sync_connected">Verbunden · auf diesem Gerät angemeldet</string>
 <string name="account_sync_needs_browser">Die Anmeldung braucht einen Webbrowser. Dieses Gerät hat keinen.</string>
 <string name="account_sync_note">Optional. Synchronisiert den Fortschritt mit einem Konto, das du schon hast.</string>

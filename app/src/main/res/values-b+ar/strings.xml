@@ -55,20 +55,24 @@
 <string name="account_pin_current">"اكتب رمز PIN المستخدم حاليًا."</string>
 <string name="account_pin_first_profile">"لا يمكن قفل الملف الشخصي الأول"</string>
 <string name="account_pin_new">"اكتب رمز PIN من 4 أرقام."</string>
+<string name="account_pin_not_saved">"تعذّر حفظ تغيير رقم PIN. لم يتغيّر شيء."</string>
 <string name="account_pin_off">"متوقف · يمكن لأي شخص فتح هذا الملف الشخصي"</string>
 <string name="account_pin_on">"مفعّل · يُطلب لفتحه"</string>
 <string name="account_pin_prompt">"اكتب رمز PIN المكوّن من 4 أرقام."</string>
 <string name="account_pin_remove">"إزالة رمز PIN"</string>
 <string name="account_pin_set">"تعيين رمز PIN"</string>
 <string name="account_pin_set_title">"تعيين رمز PIN"</string>
+<string name="account_pin_unreadable">"تعذّرت قراءة أرقام PIN على هذا الكمبيوتر، لذا يبقى هذا الملف الشخصي مقفلاً."</string>
 <string name="account_profile_current">"الحالي"</string>
 <string name="account_profile_locked">"مقفل · رمز PIN"</string>
 <string name="account_profile_no_sync">"بلا مزامنة"</string>
+<string name="account_profile_not_added">"تعذّرت إضافة ملف شخصي لأنه لا يمكن قراءة أرقام PIN على هذا الكمبيوتر. لم يتغيّر شيء."</string>
 <string name="account_select_note">"سجل مشاهدة منفصل · ليس تسجيلات دخول"</string>
 <string name="account_select_title">"من يشاهد؟"</string>
 <string name="account_signin_failed_body" formatted="true">"لم يؤكد %s تسجيل الدخول. لم يُحفظ أي شيء."</string>
 <string name="account_signin_failed_title" formatted="true">"تعذّر تسجيل الدخول إلى %s"</string>
 <string name="account_signin_offline_body" formatted="true">"يتطلب تسجيل الدخول إلى %s اتصالاً بالإنترنت. حاول مرة أخرى عند عودة هذا الجهاز إلى الاتصال."</string>
+<string name="account_signins_until_quit">"تبقى عمليات تسجيل الدخول حتى تُنهي CloudStream."</string>
 <string name="account_sync_connected">"متصل · تم تسجيل الدخول على هذا الجهاز"</string>
 <string name="account_sync_needs_browser">"يتطلب تسجيل الدخول متصفح ويب. لا يوجد متصفح على هذا الجهاز."</string>
 <string name="account_sync_note">"اختياري. يزامن تقدّم المشاهدة مع حساب لديك بالفعل."</string>

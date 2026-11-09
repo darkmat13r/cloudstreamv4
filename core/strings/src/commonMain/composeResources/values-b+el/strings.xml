@@ -32,6 +32,9 @@
 <string name="account_pin_current">Πληκτρολογήστε το τρέχον PIN.</string>
 <string name="account_pin_first_profile">Το πρώτο προφίλ δεν μπορεί να κλειδωθεί</string>
 <string name="account_pin_new">Πληκτρολογήστε ένα 4ψήφιο PIN.</string>
+<string name="account_pin_not_saved">Δεν ήταν δυνατή η αποθήκευση της αλλαγής PIN. Δεν άλλαξε τίποτα.</string>
+<string name="account_pin_unreadable">Δεν ήταν δυνατή η ανάγνωση των PIN σε αυτόν τον υπολογιστή, οπότε αυτό το προφίλ παραμένει κλειδωμένο.</string>
+<string name="account_profile_not_added">Δεν ήταν δυνατή η προσθήκη προφίλ όσο δεν διαβάζονται τα PIN σε αυτόν τον υπολογιστή. Δεν άλλαξε τίποτα.</string>
 <string name="account_pin_off">Ανενεργό · οποιοσδήποτε μπορεί να ανοίξει αυτό το προφίλ</string>
 <string name="account_pin_on">Ενεργό · ζητείται για το άνοιγμα</string>
 <string name="account_pin_prompt">Πληκτρολογήστε το 4ψήφιο PIN.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">Το %s δεν επιβεβαίωσε τη σύνδεση. Δεν αποθηκεύτηκε τίποτα.</string>
 <string name="account_signin_failed_title">Δεν ήταν δυνατή η σύνδεση στο %s</string>
 <string name="account_signin_offline_body">Η σύνδεση στο %s απαιτεί πρόσβαση στο διαδίκτυο. Δοκιμάστε ξανά όταν η συσκευή είναι ξανά online.</string>
+<string name="account_signins_until_quit">Οι συνδέσεις διαρκούν μέχρι να κλείσετε το CloudStream.</string>
 <string name="account_sync_connected">Συνδεδεμένο · σε αυτή τη συσκευή</string>
 <string name="account_sync_needs_browser">Η σύνδεση χρειάζεται πρόγραμμα περιήγησης. Αυτή η συσκευή δεν έχει.</string>
 <string name="account_sync_note">Προαιρετικό. Συγχρονίζει την πρόοδο προβολής με έναν λογαριασμό που ήδη έχετε.</string>

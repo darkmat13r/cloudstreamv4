@@ -219,7 +219,7 @@ A second project in the owner's Claude Design account, *Project file storage*, h
 
 `:core:strings:checkAndroidStrings` runs in `check` and fails if the two disagree.
 
-Three mechanisms are easy to trip over:
+Four mechanisms are easy to trip over:
 
 - **`core/strings/authored-aliases.tsv`** — 67 places where the res holds an `@string/…` reference
   rather than literal text. Android re-resolves each **in the requesting locale**, so
@@ -233,6 +233,11 @@ Three mechanisms are easy to trip over:
 - **`core/strings/oracle-baseline/`** is a frozen six-file oracle. `lookup.tsv` is the user-visible
   one; if a change moves it, that is a real behaviour change and wants explaining, not a blind
   baseline update.
+- **Android-style patterns need `UiString`, not `stringResource` or `pluralStringResource`.** Compose's
+  formatting fills only `%1$s` and `%1$d`, so a key written `%s`, `%d` or `%.1f` draws its raw pattern
+  ("Profile %d", "Delete %s?"). Format those with `UiString.Resource(…).resolve()` (or
+  `UiString.Plural`), as `DesktopDeleteSheet` and `KMP-95`'s profile sheets do. This hit twice in
+  `KMP-95`; a screen test caught it, because the test looks for the filled words.
 
 **The number symbols differ per platform, and that is not a defect** (`I18N-06`, measured on a
 device 2026-10-15). Of 12 pinned locales, 9 agree between Temurin 17 and Android API 36 and 3 do

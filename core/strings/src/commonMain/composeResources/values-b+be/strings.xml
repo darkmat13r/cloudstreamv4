@@ -32,6 +32,9 @@
 <string name="account_pin_current">Увядзіце бягучы PIN-код.</string>
 <string name="account_pin_first_profile">Першы профіль нельга заблакіраваць</string>
 <string name="account_pin_new">Увядзіце 4-значны PIN-код.</string>
+<string name="account_pin_not_saved">Не ўдалося захаваць змену PIN-кода. Нічога не змянілася.</string>
+<string name="account_pin_unreadable">Не ўдалося прачытаць PIN-коды на гэтым камп'ютары, таму гэты профіль застаецца заблакаваным.</string>
+<string name="account_profile_not_added">Не ўдалося дадаць профіль, пакуль PIN-коды на гэтым камп'ютары нельга прачытаць. Нічога не змянілася.</string>
 <string name="account_pin_off">Выключана · любы можа адкрыць гэты профіль</string>
 <string name="account_pin_on">Уключана · запытваецца пры адкрыцці</string>
 <string name="account_pin_prompt">Увядзіце 4-значны PIN-код.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s не пацвердзіў уваход. Нічога не захавана.</string>
 <string name="account_signin_failed_title">Не ўдалося ўвайсці ў %s</string>
 <string name="account_signin_offline_body">Для ўваходу ў %s патрэбна злучэнне. Паспрабуйце зноў, калі гэта прылада зноў будзе ў сетцы.</string>
+<string name="account_signins_until_quit">Уваходы захоўваюцца, пакуль вы не выйдзеце з CloudStream.</string>
 <string name="account_sync_connected">Падключана · уваход на гэтай прыладзе</string>
 <string name="account_sync_needs_browser">Для ўваходу патрэбны вэб-браўзер. На гэтай прыладзе яго няма.</string>
 <string name="account_sync_note">Неабавязкова. Сінхранізуе прагрэс прагляду з уліковым запісам, які ў вас ужо ёсць.</string>

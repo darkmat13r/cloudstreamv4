@@ -21,6 +21,7 @@ import com.lagradost.cloudstream4.media.model.DownloadFailure
 import com.lagradost.cloudstream4.media.model.DownloadProgress
 import com.lagradost.cloudstream4.media.model.DownloadState
 import com.lagradost.cloudstream4.media.model.QueuePosition
+import com.lagradost.cloudstream4.search.hasPosterUserInfo
 import com.lagradost.cloudstream4.search.posterHttpClient
 import io.github.vinceglb.filekit.PlatformFile
 import io.ktor.client.HttpClient
@@ -73,6 +74,7 @@ internal class EpisodeView(
     val addedSeq: Long,
     val queueSeq: Long,
     val startedSeq: Long,
+    val posterUrl: String? = null,
 ) {
     override fun toString(): String = "EpisodeView(episodeId=$episodeId, phase=$phase)"
 }
@@ -317,6 +319,8 @@ class DesktopDownloads internal constructor(
                     kind = group.first().kind,
                     episodes = group.map { EpisodeOnDisk(it.episodeId, it.bytesOnDisk, it.bytesTotal ?: 0L) },
                     facts = facts,
+                    // The newest episode's: a title downloaded again later carries the page's poster as it is now.
+                    posterUrl = group.sortedByDescending { it.addedSeq }.firstNotNullOfOrNull { it.posterUrl },
                 )
             }
         return DownloadsContents(
@@ -348,6 +352,7 @@ class DesktopDownloads internal constructor(
                 },
             ),
             freeBytes = freeBytesOf(storageNow(episodes)),
+            posterUrl = mine.sortedByDescending { it.addedSeq }.firstNotNullOfOrNull { it.posterUrl },
         )
     }
 
@@ -481,6 +486,7 @@ class DesktopDownloads internal constructor(
         var startedSeq: Long = 0L,
         var failure: DownloadFailure? = null,
         var run: Run? = null,
+        val posterUrl: String? = null,
     ) {
         val folder: File get() = File(root, folderName)
         val file: File get() = File(folder, fileName)
@@ -490,7 +496,7 @@ class DesktopDownloads internal constructor(
 
         fun view() = EpisodeView(
             episodeId, titleId, titleName, kind, season, episode, episodeName, folder, file, phase, failure,
-            bytesOnDisk, bytesTotal, addedSeq, queueSeq, startedSeq,
+            bytesOnDisk, bytesTotal, addedSeq, queueSeq, startedSeq, posterUrl,
         )
 
         fun stored() = StoredEpisode(
@@ -512,6 +518,7 @@ class DesktopDownloads internal constructor(
             queueSeq = queueSeq,
             provider = source?.takeIf { phase != Phase.Done }?.providerName,
             episodeData = source?.takeIf { phase != Phase.Done }?.episodeData,
+            posterUrl = posterUrl,
         )
     }
 
@@ -616,6 +623,7 @@ class DesktopDownloads internal constructor(
             addedSeq = stored.addedSeq,
             queueSeq = stored.queueSeq,
             failure = if (phase == Phase.Failed) StoredFailure.decode(stored.failure, stored.failureNumbers) else null,
+            posterUrl = posterOf(stored.posterUrl),
         )
     }
 
@@ -671,6 +679,7 @@ class DesktopDownloads internal constructor(
             bytesTotal = null,
             addedSeq = seq,
             queueSeq = seq,
+            posterUrl = posterOf(request.posterUrl),
         )
         pump()
         persist()
@@ -978,6 +987,21 @@ class DesktopDownloads internal constructor(
 
         private const val MAX_PROVIDER_CHARS = 200
         private const val MAX_EPISODE_DATA_CHARS = 64 * 1024
+
+        /**
+         * A poster address worth keeping (`KMP-99`): plain `http` or `https`, with no space or control character, no
+         * userinfo (`BUG-78`), and not absurdly long. The library's rule; `PosterImage` checks the host again when it
+         * loads.
+         */
+        internal fun posterOf(url: String?): String? = url?.takeIf { candidate ->
+            candidate.length <= MAX_POSTER_CHARS &&
+                POSTER_SCHEMES.any { candidate.startsWith(it, ignoreCase = true) } &&
+                candidate.none { it.isWhitespace() || it.isISOControl() } &&
+                !hasPosterUserInfo(candidate)
+        }
+
+        private const val MAX_POSTER_CHARS = 2048
+        private val POSTER_SCHEMES = listOf("http://", "https://")
 
         /** At most four emissions a second while anything runs. */
         internal const val EMIT_INTERVAL_MILLIS = 250L

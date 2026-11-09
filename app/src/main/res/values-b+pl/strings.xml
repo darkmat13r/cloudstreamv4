@@ -56,20 +56,24 @@
 <string name="account_pin_current">"Wpisz obecnie używany PIN."</string>
 <string name="account_pin_first_profile">"Pierwszego profilu nie można zablokować"</string>
 <string name="account_pin_new">"Wpisz 4-cyfrowy PIN."</string>
+<string name="account_pin_not_saved">"Nie udało się zapisać zmiany PIN-u. Nic nie zostało zmienione."</string>
 <string name="account_pin_off">"Wyłączony · każdy może otworzyć ten profil"</string>
 <string name="account_pin_on">"Włączony · wymagany przy otwieraniu"</string>
 <string name="account_pin_prompt">"Wpisz 4-cyfrowy PIN."</string>
 <string name="account_pin_remove">"Usuń PIN"</string>
 <string name="account_pin_set">"Ustaw PIN"</string>
 <string name="account_pin_set_title">"Ustaw PIN"</string>
+<string name="account_pin_unreadable">"Nie udało się odczytać kodów PIN na tym komputerze, więc ten profil pozostaje zablokowany."</string>
 <string name="account_profile_current">"Bieżący"</string>
 <string name="account_profile_locked">"Zablokowany · PIN"</string>
 <string name="account_profile_no_sync">"Bez synchronizacji"</string>
+<string name="account_profile_not_added">"Nie można dodać profilu, dopóki nie da się odczytać kodów PIN na tym komputerze. Nic nie zostało zmienione."</string>
 <string name="account_select_note">"Osobna historia oglądania · to nie logowania"</string>
 <string name="account_select_title">"Kto ogląda?"</string>
 <string name="account_signin_failed_body" formatted="true">"Usługa %s nie potwierdziła logowania. Niczego nie zapisano."</string>
 <string name="account_signin_failed_title" formatted="true">"Nie udało się zalogować do %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Logowanie do %s wymaga połączenia. Spróbuj ponownie, gdy to urządzenie znów będzie online."</string>
+<string name="account_signins_until_quit">"Logowania trwają do zamknięcia CloudStream."</string>
 <string name="account_sync_connected">"Połączono · zalogowano na tym urządzeniu"</string>
 <string name="account_sync_needs_browser">"Logowanie wymaga przeglądarki. To urządzenie jej nie ma."</string>
 <string name="account_sync_note">"Opcjonalne. Synchronizuje postęp oglądania z kontem, które już masz."</string>

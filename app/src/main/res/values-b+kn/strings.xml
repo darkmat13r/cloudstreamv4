@@ -52,20 +52,24 @@
 <string name="account_pin_current">"ಈಗ ಬಳಕೆಯಲ್ಲಿರುವ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ."</string>
 <string name="account_pin_first_profile">"ಮೊದಲ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಲಾಕ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ"</string>
 <string name="account_pin_new">"4 ಅಂಕಿಯ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ."</string>
+<string name="account_pin_not_saved">"PIN ಬದಲಾವಣೆಯನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ. ಏನೂ ಬದಲಾಗಿಲ್ಲ."</string>
 <string name="account_pin_off">"ಆಫ್ · ಯಾರಾದರೂ ಈ ಪ್ರೊಫೈಲ್ ತೆರೆಯಬಹುದು"</string>
 <string name="account_pin_on">"ಆನ್ · ತೆರೆಯಲು ಕೇಳಲಾಗುತ್ತದೆ"</string>
 <string name="account_pin_prompt">"4 ಅಂಕಿಯ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ."</string>
 <string name="account_pin_remove">"ಪಿನ್ ತೆಗೆದುಹಾಕಿ"</string>
 <string name="account_pin_set">"ಪಿನ್ ಹೊಂದಿಸಿ"</string>
 <string name="account_pin_set_title">"ಪಿನ್ ಹೊಂದಿಸಿ"</string>
+<string name="account_pin_unreadable">"ಈ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿನ PIN ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಈ ಪ್ರೊಫೈಲ್ ಲಾಕ್ ಆಗಿಯೇ ಇರುತ್ತದೆ."</string>
 <string name="account_profile_current">"ಪ್ರಸ್ತುತ"</string>
 <string name="account_profile_locked">"ಲಾಕ್ ಆಗಿದೆ · ಪಿನ್"</string>
 <string name="account_profile_no_sync">"ಸಿಂಕ್ ಇಲ್ಲ"</string>
+<string name="account_profile_not_added">"ಈ ಕಂಪ್ಯೂಟರ್‌ನ PIN ಗಳನ್ನು ಓದಲಾಗದ ಕಾರಣ ಪ್ರೊಫೈಲ್ ಸೇರಿಸಲಾಗಲಿಲ್ಲ. ಏನೂ ಬದಲಾಗಿಲ್ಲ."</string>
 <string name="account_select_note">"ಪ್ರತ್ಯೇಕ ವೀಕ್ಷಣಾ ಇತಿಹಾಸ · ಲಾಗಿನ್‌ಗಳಲ್ಲ"</string>
 <string name="account_select_title">"ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ."</string>
 <string name="account_signin_failed_title" formatted="true">"%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"</string>
 <string name="account_signin_offline_body" formatted="true">"%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಂಪರ್ಕ ಬೇಕು. ಈ ಸಾಧನ ಮತ್ತೆ ಆನ್‌ಲೈನ್ ಆದಾಗ ಪ್ರಯತ್ನಿಸಿ."</string>
+<string name="account_signins_until_quit">"CloudStream ಅನ್ನು ಮುಚ್ಚುವವರೆಗೆ ಸೈನ್-ಇನ್‌ಗಳು ಇರುತ್ತವೆ."</string>
 <string name="account_sync_connected">"ಸಂಪರ್ಕಗೊಂಡಿದೆ · ಈ ಸಾಧನದಲ್ಲಿ ಸೈನ್ ಇನ್"</string>
 <string name="account_sync_needs_browser">"ಸೈನ್ ಇನ್‌ಗೆ ವೆಬ್ ಬ್ರೌಸರ್ ಬೇಕು. ಈ ಸಾಧನದಲ್ಲಿ ಇಲ್ಲ."</string>
 <string name="account_sync_note">"ಐಚ್ಛಿಕ. ವೀಕ್ಷಣಾ ಪ್ರಗತಿಯನ್ನು ನಿಮ್ಮ ಈಗಿರುವ ಖಾತೆಗೆ ಸಿಂಕ್ ಮಾಡುತ್ತದೆ."</string>

@@ -52,20 +52,24 @@
 <string name="account_pin_current">"Hazırda istifadə olunan PIN-i yazın."</string>
 <string name="account_pin_first_profile">"Birinci profil kilidlənə bilməz"</string>
 <string name="account_pin_new">"4 rəqəmli PIN yazın."</string>
+<string name="account_pin_not_saved">"PIN dəyişikliyi saxlanılmadı. Heç nə dəyişmədi."</string>
 <string name="account_pin_off">"Deaktiv · bu profili hər kəs aça bilər"</string>
 <string name="account_pin_on">"Aktiv · açarkən soruşulur"</string>
 <string name="account_pin_prompt">"4 rəqəmli PIN-i yazın."</string>
 <string name="account_pin_remove">"PIN-i sil"</string>
 <string name="account_pin_set">"PIN təyin et"</string>
 <string name="account_pin_set_title">"PIN təyin edin"</string>
+<string name="account_pin_unreadable">"Bu kompüterdəki PIN-lər oxuna bilmədi, ona görə bu profil kilidli qalır."</string>
 <string name="account_profile_current">"Cari"</string>
 <string name="account_profile_locked">"Kilidli · PIN"</string>
 <string name="account_profile_no_sync">"Sinxronizasiya yoxdur"</string>
+<string name="account_profile_not_added">"Bu kompüterdəki PIN-lər oxuna bilmədiyi üçün profil əlavə edilmədi. Heç nə dəyişmədi."</string>
 <string name="account_select_note">"Ayrı baxış tarixçəsi · giriş deyil"</string>
 <string name="account_select_title">"Kim baxır?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s girişi təsdiqləmədi. Heç nə saxlanılmadı."</string>
 <string name="account_signin_failed_title" formatted="true">"%s hesabına daxil olmaq alınmadı"</string>
 <string name="account_signin_offline_body" formatted="true">"%s hesabına daxil olmaq üçün internet bağlantısı lazımdır. Bu cihaz yenidən onlayn olanda yenidən cəhd edin."</string>
+<string name="account_signins_until_quit">"Girişlər CloudStream-dən çıxana qədər qalır."</string>
 <string name="account_sync_connected">"Qoşulub · bu cihazda daxil olunub"</string>
 <string name="account_sync_needs_browser">"Giriş üçün veb brauzer lazımdır. Bu cihazda yoxdur."</string>
 <string name="account_sync_note">"İstəyə bağlı. Baxış irəliləyişini artıq olan hesabınızla sinxronlaşdırır."</string>

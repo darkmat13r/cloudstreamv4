@@ -52,20 +52,24 @@
 <string name="account_pin_current">"ഇപ്പോൾ ഉപയോഗത്തിലുള്ള പിൻ ടൈപ്പ് ചെയ്യുക."</string>
 <string name="account_pin_first_profile">"ആദ്യ പ്രൊഫൈൽ ലോക്ക് ചെയ്യാനാകില്ല"</string>
 <string name="account_pin_new">"4 അക്ക പിൻ ടൈപ്പ് ചെയ്യുക."</string>
+<string name="account_pin_not_saved">"PIN മാറ്റം സേവ് ചെയ്യാനായില്ല. ഒന്നും മാറിയിട്ടില്ല."</string>
 <string name="account_pin_off">"ഓഫ് · ആർക്കും ഈ പ്രൊഫൈൽ തുറക്കാം"</string>
 <string name="account_pin_on">"ഓൺ · തുറക്കാൻ പിൻ ചോദിക്കും"</string>
 <string name="account_pin_prompt">"4 അക്ക പിൻ നൽകുക."</string>
 <string name="account_pin_remove">"പിൻ നീക്കം ചെയ്യുക"</string>
 <string name="account_pin_set">"പിൻ സജ്ജീകരിക്കുക"</string>
 <string name="account_pin_set_title">"ഒരു പിൻ സജ്ജീകരിക്കുക"</string>
+<string name="account_pin_unreadable">"ഈ കമ്പ്യൂട്ടറിലെ PIN-കൾ വായിക്കാനായില്ല, അതിനാൽ ഈ പ്രൊഫൈൽ ലോക്ക് ചെയ്‌ത നിലയിൽ തുടരും."</string>
 <string name="account_profile_current">"നിലവിലുള്ളത്"</string>
 <string name="account_profile_locked">"ലോക്ക് ചെയ്തു · പിൻ"</string>
 <string name="account_profile_no_sync">"സമന്വയമില്ല"</string>
+<string name="account_profile_not_added">"ഈ കമ്പ്യൂട്ടറിലെ PIN-കൾ വായിക്കാനാകാത്തതിനാൽ പ്രൊഫൈൽ ചേർക്കാനായില്ല. ഒന്നും മാറിയിട്ടില്ല."</string>
 <string name="account_select_note">"പ്രത്യേക കാഴ്ച ചരിത്രം · ലോഗിനുകളല്ല"</string>
 <string name="account_select_title">"ആരാണ് കാണുന്നത്?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s സൈൻ-ഇൻ സ്ഥിരീകരിച്ചില്ല. ഒന്നും സംരക്ഷിച്ചില്ല."</string>
 <string name="account_signin_failed_title" formatted="true">"%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാനായില്ല"</string>
 <string name="account_signin_offline_body" formatted="true">"%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാൻ കണക്ഷൻ ആവശ്യമാണ്. ഈ ഉപകരണം വീണ്ടും ഓൺലൈനാകുമ്പോൾ ശ്രമിക്കുക."</string>
+<string name="account_signins_until_quit">"CloudStream അടയ്ക്കുന്നതുവരെ സൈൻ-ഇനുകൾ നിലനിൽക്കും."</string>
 <string name="account_sync_connected">"കണക്റ്റ് ചെയ്തു · ഈ ഉപകരണത്തിൽ സൈൻ ഇൻ ചെയ്തു"</string>
 <string name="account_sync_needs_browser">"സൈൻ ഇൻ ചെയ്യാൻ വെബ് ബ്രൗസർ വേണം. ഈ ഉപകരണത്തിൽ ഇല്ല."</string>
 <string name="account_sync_note">"ഓപ്ഷണൽ. കാഴ്ചയുടെ പുരോഗതി നിങ്ങൾക്ക് ഇതിനകമുള്ള അക്കൗണ്ടുമായി സമന്വയിപ്പിക്കുന്നു."</string>

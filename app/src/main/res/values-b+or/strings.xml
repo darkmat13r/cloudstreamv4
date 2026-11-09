@@ -52,20 +52,24 @@
 <string name="account_pin_current">"ବର୍ତ୍ତମାନ ବ୍ୟବହୃତ PIN ଟାଇପ୍ କରନ୍ତୁ।"</string>
 <string name="account_pin_first_profile">"ପ୍ରଥମ ପ୍ରୋଫାଇଲ୍ ଲକ୍ କରାଯାଇପାରିବ ନାହିଁ"</string>
 <string name="account_pin_new">"ଏକ 4-ଅଙ୍କ ବିଶିଷ୍ଟ PIN ଟାଇପ୍ କରନ୍ତୁ।"</string>
+<string name="account_pin_not_saved">"PIN ପରିବର୍ତ୍ତନ ସେଭ୍ କରିହେଲା ନାହିଁ। କିଛି ବଦଳିନାହିଁ।"</string>
 <string name="account_pin_off">"ବନ୍ଦ · ଯେକେହି ଏହି ପ୍ରୋଫାଇଲ୍ ଖୋଲିପାରିବେ"</string>
 <string name="account_pin_on">"ଚାଲୁ · ଖୋଲିବା ପାଇଁ ପଚରାଯାଏ"</string>
 <string name="account_pin_prompt">"4-ଅଙ୍କ ବିଶିଷ୍ଟ PIN ଟାଇପ୍ କରନ୍ତୁ।"</string>
 <string name="account_pin_remove">"PIN ହଟାନ୍ତୁ"</string>
 <string name="account_pin_set">"PIN ସେଟ୍ କରନ୍ତୁ"</string>
 <string name="account_pin_set_title">"ଏକ PIN ସେଟ୍ କରନ୍ତୁ"</string>
+<string name="account_pin_unreadable">"ଏହି କମ୍ପ୍ୟୁଟରରେ PIN ପଢ଼ିହେଲା ନାହିଁ, ତେଣୁ ଏହି ପ୍ରୋଫାଇଲ୍ ଲକ୍ ହୋଇ ରହିବ।"</string>
 <string name="account_profile_current">"ବର୍ତ୍ତମାନର"</string>
 <string name="account_profile_locked">"ଲକ୍ ହୋଇଛି · PIN"</string>
 <string name="account_profile_no_sync">"ସିଙ୍କ୍ ନାହିଁ"</string>
+<string name="account_profile_not_added">"ଏହି କମ୍ପ୍ୟୁଟରର PIN ପଢ଼ିହେଉ ନଥିବାରୁ ପ୍ରୋଫାଇଲ୍ ଯୋଗ କରିହେଲା ନାହିଁ। କିଛି ବଦଳିନାହିଁ।"</string>
 <string name="account_select_note">"ଅଲଗା ଦେଖିବା ଇତିହାସ · ଲଗଇନ୍ ନୁହେଁ"</string>
 <string name="account_select_title">"କିଏ ଦେଖୁଛନ୍ତି?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ସାଇନ୍-ଇନ୍ ନିଶ୍ଚିତ କଲା ନାହିଁ। କିଛି ସେଭ୍ ହୋଇନାହିଁ।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s ରେ ସାଇନ୍ ଇନ୍ କରିହେଲା ନାହିଁ"</string>
 <string name="account_signin_offline_body" formatted="true">"%s ରେ ସାଇନ୍ ଇନ୍ କରିବାକୁ ସଂଯୋଗ ଆବଶ୍ୟକ। ଏହି ଡିଭାଇସ୍ ପୁଣି ଅନଲାଇନ୍ ହେଲେ ଆଉଥରେ ଚେଷ୍ଟା କରନ୍ତୁ।"</string>
+<string name="account_signins_until_quit">"CloudStream ବନ୍ଦ ନକରିବା ପର୍ଯ୍ୟନ୍ତ ସାଇନ-ଇନ୍ ରହେ।"</string>
 <string name="account_sync_connected">"ସଂଯୁକ୍ତ · ଏହି ଡିଭାଇସରେ ସାଇନ୍ ଇନ୍"</string>
 <string name="account_sync_needs_browser">"ସାଇନ୍ ଇନ୍ ପାଇଁ ୱେବ୍ ବ୍ରାଉଜର୍ ଦରକାର। ଏହି ଡିଭାଇସରେ ନାହିଁ।"</string>
 <string name="account_sync_note">"ବୈକଳ୍ପିକ। ଦେଖିବା ପ୍ରଗତିକୁ ଆପଣଙ୍କ ପାଖରେ ଥିବା ଆକାଉଣ୍ଟ ସହ ସିଙ୍କ୍ କରେ।"</string>

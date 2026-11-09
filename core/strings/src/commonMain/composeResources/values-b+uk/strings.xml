@@ -32,6 +32,9 @@
 <string name="account_pin_current">Уведіть чинний PIN-код.</string>
 <string name="account_pin_first_profile">Перший профіль не можна заблокувати</string>
 <string name="account_pin_new">Уведіть 4-значний PIN-код.</string>
+<string name="account_pin_not_saved">Не вдалося зберегти зміну PIN-коду. Нічого не змінилося.</string>
+<string name="account_pin_unreadable">Не вдалося прочитати PIN-коди на цьому комп'ютері, тому цей профіль залишається заблокованим.</string>
+<string name="account_profile_not_added">Не можна додати профіль, доки PIN-коди на цьому комп'ютері не читаються. Нічого не змінилося.</string>
 <string name="account_pin_off">Вимкнено · будь-хто може відкрити цей профіль</string>
 <string name="account_pin_on">Увімкнено · запитується для відкриття</string>
 <string name="account_pin_prompt">Уведіть 4-значний PIN-код.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s не підтвердив вхід. Нічого не збережено.</string>
 <string name="account_signin_failed_title">Не вдалося увійти в %s</string>
 <string name="account_signin_offline_body">Для входу в %s потрібне з'єднання. Спробуйте ще раз, коли пристрій знову буде онлайн.</string>
+<string name="account_signins_until_quit">Входи діють, доки ви не закриєте CloudStream.</string>
 <string name="account_sync_connected">Підключено · вхід виконано на цьому пристрої</string>
 <string name="account_sync_needs_browser">Для входу потрібен веб-браузер. На цьому пристрої його немає.</string>
 <string name="account_sync_note">Необов'язково. Синхронізує прогрес перегляду з акаунтом, який у вас уже є.</string>

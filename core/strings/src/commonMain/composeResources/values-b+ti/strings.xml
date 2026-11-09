@@ -32,6 +32,9 @@
 <string name="account_pin_current">ሕጂ ኣብ ጥቕሚ ዘሎ PIN ጽሓፍ።</string>
 <string name="account_pin_first_profile">እቲ ቀዳማይ መግለጺ ክዕጾ ኣይክእልን</string>
 <string name="account_pin_new">4 ኣሃዝ ዘለዎ PIN ጽሓፍ።</string>
+<string name="account_pin_not_saved">ለውጢ PIN ክዕቀብ ኣይተኻእለን። ዝተቐየረ የለን።</string>
+<string name="account_pin_unreadable">ኣብዚ ኮምፒዩተር ዘለዉ PIN ክንበቡ ኣይተኻእለን፣ ስለዚ እዚ ፕሮፋይል ተዓጽዩ ይጸንሕ።</string>
+<string name="account_profile_not_added">ኣብዚ ኮምፒዩተር ዘለዉ PIN ክንበቡ ስለዘይከኣሉ ፕሮፋይል ክውሰኽ ኣይተኻእለን። ዝተቐየረ የለን።</string>
 <string name="account_pin_off">ጠፊኡ · ዝኾነ ሰብ ነዚ መግለጺ ክኸፍቶ ይኽእል</string>
 <string name="account_pin_on">በሪሁ · ንምኽፋት ይሕተት</string>
 <string name="account_pin_prompt">እቲ 4 ኣሃዝ ዘለዎ PIN ጽሓፍ።</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።</string>
 <string name="account_signin_failed_title">ናብ %s ምእታው ኣይተኻእለን</string>
 <string name="account_signin_offline_body">ናብ %s ንምእታው ምትእስሳር የድሊ። እዚ መሳርሒ ናብ መስመር ምስ ተመልሰ እንደገና ፈትን።</string>
+<string name="account_signins_until_quit">ምእታዋት ክሳብ CloudStream ትዓጽዉ ይጸንሑ።</string>
 <string name="account_sync_connected">ተራኺቡ · ኣብዚ መሳርሒ ኣቲዩ</string>
 <string name="account_sync_needs_browser">ምእታው መርበብ ሓበሬታ ይደሊ። እዚ መሳርሒ የብሉን።</string>
 <string name="account_sync_note">ኣማራጺ። ምዕባለ ምርኣይ ምስ ዘለካ ሕሳብ የተኣሳስር።</string>

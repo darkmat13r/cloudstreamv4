@@ -32,6 +32,9 @@
 <string name="account_pin_current">Şu anda kullanılan PIN'i yazın.</string>
 <string name="account_pin_first_profile">İlk profil kilitlenemez</string>
 <string name="account_pin_new">4 haneli bir PIN yazın.</string>
+<string name="account_pin_not_saved">PIN değişikliği kaydedilemedi. Hiçbir şey değişmedi.</string>
+<string name="account_pin_unreadable">Bu bilgisayardaki PIN'ler okunamadı, bu yüzden bu profil kilitli kalıyor.</string>
+<string name="account_profile_not_added">Bu bilgisayardaki PIN'ler okunamadığı sürece profil eklenemez. Hiçbir şey değişmedi.</string>
 <string name="account_pin_off">Kapalı · bu profili herkes açabilir</string>
 <string name="account_pin_on">Açık · açarken sorulur</string>
 <string name="account_pin_prompt">4 haneli PIN'i yazın.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s oturum açmayı onaylamadı. Hiçbir şey kaydedilmedi.</string>
 <string name="account_signin_failed_title">%s hesabında oturum açılamadı</string>
 <string name="account_signin_offline_body">%s hesabında oturum açmak için bağlantı gerekir. Bu cihaz yeniden çevrimiçi olduğunda tekrar deneyin.</string>
+<string name="account_signins_until_quit">Oturum açmalar CloudStream'den çıkana kadar sürer.</string>
 <string name="account_sync_connected">Bağlı · bu cihazda oturum açık</string>
 <string name="account_sync_needs_browser">Oturum açmak için web tarayıcısı gerekir. Bu cihazda yok.</string>
 <string name="account_sync_note">İsteğe bağlı. İzleme ilerlemesini zaten sahip olduğun bir hesapla senkronize eder.</string>

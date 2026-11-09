@@ -32,6 +32,9 @@
 <string name="account_pin_current">Įveskite dabar naudojamą PIN.</string>
 <string name="account_pin_first_profile">Pirmojo profilio užrakinti negalima</string>
 <string name="account_pin_new">Įveskite 4 skaitmenų PIN.</string>
+<string name="account_pin_not_saved">PIN pakeitimo išsaugoti nepavyko. Niekas nepakeista.</string>
+<string name="account_pin_unreadable">Nepavyko nuskaityti šio kompiuterio PIN kodų, todėl šis profilis lieka užrakintas.</string>
+<string name="account_profile_not_added">Negalima pridėti profilio, kol neįmanoma nuskaityti šio kompiuterio PIN kodų. Niekas nepakeista.</string>
 <string name="account_pin_off">Išjungta · šį profilį gali atidaryti bet kas</string>
 <string name="account_pin_on">Įjungta · prašoma atidarant</string>
 <string name="account_pin_prompt">Įveskite 4 skaitmenų PIN.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s nepatvirtino prisijungimo. Niekas neišsaugota.</string>
 <string name="account_signin_failed_title">Nepavyko prisijungti prie %s</string>
 <string name="account_signin_offline_body">Norint prisijungti prie %s, reikia ryšio. Bandykite dar kartą, kai šis įrenginys vėl bus prisijungęs prie interneto.</string>
+<string name="account_signins_until_quit">Prisijungimai galioja, kol išeisite iš CloudStream.</string>
 <string name="account_sync_connected">Prijungta · prisijungta šiame įrenginyje</string>
 <string name="account_sync_needs_browser">Prisijungti reikia žiniatinklio naršyklės. Šiame įrenginyje jos nėra.</string>
 <string name="account_sync_note">Neprivaloma. Sinchronizuoja žiūrėjimo eigą su jau turima paskyra.</string>

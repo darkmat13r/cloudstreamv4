@@ -32,6 +32,9 @@
 <string name="account_pin_current">လက်ရှိသုံးနေသော PIN ကို ရိုက်ထည့်ပါ။</string>
 <string name="account_pin_first_profile">ပထမပရိုဖိုင်ကို လော့ခ်ချ၍ မရပါ</string>
 <string name="account_pin_new">ဂဏန်း ၄ လုံးပါ PIN တစ်ခု ရိုက်ထည့်ပါ။</string>
+<string name="account_pin_not_saved">PIN ပြောင်းလဲမှုကို သိမ်းဆည်း၍ မရပါ။ ဘာမျှ မပြောင်းလဲပါ။</string>
+<string name="account_pin_unreadable">ဤကွန်ပျူတာရှိ PIN များကို ဖတ်၍မရပါ၊ ထို့ကြောင့် ဤပရိုဖိုင်သည် လော့ခ်ချထားဆဲဖြစ်သည်။</string>
+<string name="account_profile_not_added">ဤကွန်ပျူတာရှိ PIN များကို ဖတ်၍မရသောကြောင့် ပရိုဖိုင် ထည့်၍မရပါ။ ဘာမျှ မပြောင်းလဲပါ။</string>
 <string name="account_pin_off">ပိတ်ထား · မည်သူမဆို ဤပရိုဖိုင်ကို ဖွင့်နိုင်သည်</string>
 <string name="account_pin_on">ဖွင့်ထား · ဖွင့်ရန် တောင်းမည်</string>
 <string name="account_pin_prompt">ဂဏန်း ၄ လုံးပါ PIN ကို ရိုက်ထည့်ပါ။</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s က ဝင်ရောက်မှုကို အတည်မပြုခဲ့ပါ။ ဘာမျှ သိမ်းဆည်းမထားပါ။</string>
 <string name="account_signin_failed_title">%s သို့ ဝင်၍ မရပါ</string>
 <string name="account_signin_offline_body">%s သို့ ဝင်ရန် ချိတ်ဆက်မှု လိုအပ်သည်။ ဤစက် အွန်လိုင်း ပြန်ဖြစ်သောအခါ ထပ်စမ်းကြည့်ပါ။</string>
+<string name="account_signins_until_quit">CloudStream ကို ပိတ်သည်အထိ အကောင့်ဝင်မှုများ ရှိနေမည်။</string>
 <string name="account_sync_connected">ချိတ်ဆက်ထား · ဤစက်တွင် ဝင်ထား</string>
 <string name="account_sync_needs_browser">ဝင်ရောက်ရန် ဝဘ်ဘရောက်ဆာ လိုအပ်သည်။ ဤစက်တွင် မရှိပါ။</string>
 <string name="account_sync_note">ရွေးချယ်နိုင်သည်။ ကြည့်ရှုမှုတိုးတက်မှုကို သင့်တွင်ရှိပြီးသားအကောင့်နှင့် စင့်ခ်လုပ်သည်။</string>

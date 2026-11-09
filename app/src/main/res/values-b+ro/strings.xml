@@ -53,20 +53,24 @@
 <string name="account_pin_current">"Introdu PIN-ul folosit acum."</string>
 <string name="account_pin_first_profile">"Primul profil nu poate fi blocat"</string>
 <string name="account_pin_new">"Introdu un PIN din 4 cifre."</string>
+<string name="account_pin_not_saved">"Modificarea PIN-ului nu a putut fi salvată. Nu s-a schimbat nimic."</string>
 <string name="account_pin_off">"Dezactivat · oricine poate deschide acest profil"</string>
 <string name="account_pin_on">"Activat · se cere la deschidere"</string>
 <string name="account_pin_prompt">"Introdu PIN-ul din 4 cifre."</string>
 <string name="account_pin_remove">"Elimină PIN-ul"</string>
 <string name="account_pin_set">"Setează PIN-ul"</string>
 <string name="account_pin_set_title">"Setează un PIN"</string>
+<string name="account_pin_unreadable">"PIN-urile de pe acest computer nu au putut fi citite, așa că acest profil rămâne blocat."</string>
 <string name="account_profile_current">"Curent"</string>
 <string name="account_profile_locked">"Blocat · PIN"</string>
 <string name="account_profile_no_sync">"Fără sincronizare"</string>
+<string name="account_profile_not_added">"Nu se poate adăuga un profil cât timp PIN-urile de pe acest computer nu pot fi citite. Nu s-a schimbat nimic."</string>
 <string name="account_select_note">"Istoric de vizionare separat · nu sunt conectări"</string>
 <string name="account_select_title">"Cine se uită?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s nu a confirmat conectarea. Nu s-a salvat nimic."</string>
 <string name="account_signin_failed_title" formatted="true">"Nu te-ai putut conecta la %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Conectarea la %s necesită o conexiune la internet. Încearcă din nou când acest dispozitiv este din nou online."</string>
+<string name="account_signins_until_quit">"Conectările durează până când închizi CloudStream."</string>
 <string name="account_sync_connected">"Conectat · pe acest dispozitiv"</string>
 <string name="account_sync_needs_browser">"Conectarea necesită un browser web. Acest dispozitiv nu are."</string>
 <string name="account_sync_note">"Opțional. Sincronizează progresul cu un cont pe care îl ai deja."</string>

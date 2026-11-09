@@ -89,20 +89,24 @@ values	string	account_pin_confirm	-	Type it again to confirm.
 values	string	account_pin_current	-	Type the PIN in use now.
 values	string	account_pin_first_profile	-	The first profile can't be locked
 values	string	account_pin_new	-	Type a 4-digit PIN.
+values	string	account_pin_not_saved	-	Couldn't save the PIN change. Nothing was changed.
 values	string	account_pin_off	-	Off · anyone can open this profile
 values	string	account_pin_on	-	On · asked to open it
 values	string	account_pin_prompt	-	Type the 4-digit PIN.
 values	string	account_pin_remove	-	Remove PIN
 values	string	account_pin_set	-	Set PIN
 values	string	account_pin_set_title	-	Set a PIN
+values	string	account_pin_unreadable	-	Couldn't read the PINs on this computer, so this profile stays locked.
 values	string	account_profile_current	-	Current
 values	string	account_profile_locked	-	Locked · PIN
 values	string	account_profile_no_sync	-	No sync
+values	string	account_profile_not_added	-	Couldn't add a profile while the PINs on this computer can't be read. Nothing was changed.
 values	string	account_select_note	-	Separate watch history · not logins
 values	string	account_select_title	-	Who's watching?
 values	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
 values	string	account_signin_failed_title	-	Couldn't sign in to %s
 values	string	account_signin_offline_body	-	Signing in to %s needs a connection. Try again when this device is back online.
+values	string	account_signins_until_quit	-	Sign-ins last until you quit CloudStream.
 values	string	account_sync_connected	-	Connected · signed in on this device
 values	string	account_sync_needs_browser	-	Sign-in needs a web browser. This device has none.
 values	string	account_sync_note	-	Optional. Syncs watch progress to an account you already have.
@@ -1254,20 +1258,24 @@ values-b+af	string	account_pin_confirm	-	Tik dit weer om te bevestig.
 values-b+af	string	account_pin_current	-	Tik die PIN wat nou gebruik word.
 values-b+af	string	account_pin_first_profile	-	Die eerste profiel kan nie gesluit word nie
 values-b+af	string	account_pin_new	-	Tik 'n 4-syfer-PIN.
+values-b+af	string	account_pin_not_saved	-	Kon nie die PIN-verandering stoor nie. Niks is verander nie.
 values-b+af	string	account_pin_off	-	Af · enigiemand kan hierdie profiel oopmaak
 values-b+af	string	account_pin_on	-	Aan · gevra om dit oop te maak
 values-b+af	string	account_pin_prompt	-	Tik die 4-syfer-PIN.
 values-b+af	string	account_pin_remove	-	Verwyder PIN
 values-b+af	string	account_pin_set	-	Stel PIN
 values-b+af	string	account_pin_set_title	-	Stel 'n PIN
+values-b+af	string	account_pin_unreadable	-	Kon nie die PIN's op hierdie rekenaar lees nie, so hierdie profiel bly gesluit.
 values-b+af	string	account_profile_current	-	Huidig
 values-b+af	string	account_profile_locked	-	Gesluit · PIN
 values-b+af	string	account_profile_no_sync	-	Geen sinkronisasie
+values-b+af	string	account_profile_not_added	-	Kon nie 'n profiel byvoeg terwyl die PIN's op hierdie rekenaar nie gelees kan word nie. Niks is verander nie.
 values-b+af	string	account_select_note	-	Aparte kykgeskiedenis · nie aanmeldings nie
 values-b+af	string	account_select_title	-	Wie kyk?
 values-b+af	string	account_signin_failed_body	-	%s het nie die aanmelding bevestig nie. Niks is gestoor nie.
 values-b+af	string	account_signin_failed_title	-	Kon nie by %s aanmeld nie
 values-b+af	string	account_signin_offline_body	-	Om by %s aan te meld, is 'n verbinding nodig. Probeer weer wanneer hierdie toestel weer aanlyn is.
+values-b+af	string	account_signins_until_quit	-	Aanmeldings hou tot jy CloudStream afsluit.
 values-b+af	string	account_sync_connected	-	Gekoppel · aangemeld op hierdie toestel
 values-b+af	string	account_sync_needs_browser	-	Aanmelding het 'n webblaaier nodig. Hierdie toestel het nie een nie.
 values-b+af	string	account_sync_note	-	Opsioneel. Sinkroniseer kykvordering met 'n rekening wat jy reeds het.
@@ -1765,20 +1773,24 @@ values-b+am	string	account_pin_confirm	-	ለማረጋገጥ እንደገና ይ�
 values-b+am	string	account_pin_current	-	አሁን በጥቅም ላይ ያለውን ፒን ይተይቡ።
 values-b+am	string	account_pin_first_profile	-	የመጀመሪያው መገለጫ ሊቆለፍ አይችልም
 values-b+am	string	account_pin_new	-	ባለ 4 አሃዝ ፒን ይተይቡ።
+values-b+am	string	account_pin_not_saved	-	የፒን ለውጡን ማስቀመጥ አልተቻለም። ምንም አልተቀየረም።
 values-b+am	string	account_pin_off	-	ጠፍቷል · ማንም ይህን መገለጫ መክፈት ይችላል
 values-b+am	string	account_pin_on	-	በርቷል · ለመክፈት ይጠየቃል
 values-b+am	string	account_pin_prompt	-	ባለ 4 አሃዙን ፒን ይተይቡ።
 values-b+am	string	account_pin_remove	-	ፒን አስወግድ
 values-b+am	string	account_pin_set	-	ፒን አዘጋጅ
 values-b+am	string	account_pin_set_title	-	ፒን ያዘጋጁ
+values-b+am	string	account_pin_unreadable	-	በዚህ ኮምፒውተር ላይ ያሉትን ፒኖች ማንበብ አልተቻለም፣ ስለዚህ ይህ መገለጫ እንደተቆለፈ ይቆያል።
 values-b+am	string	account_profile_current	-	የአሁኑ
 values-b+am	string	account_profile_locked	-	ተቆልፏል · ፒን
 values-b+am	string	account_profile_no_sync	-	ማመሳሰል የለም
+values-b+am	string	account_profile_not_added	-	በዚህ ኮምፒውተር ላይ ያሉት ፒኖች ሊነበቡ ባለመቻላቸው መገለጫ ማከል አልተቻለም። ምንም አልተቀየረም።
 values-b+am	string	account_select_note	-	የተለየ የእይታ ታሪክ · መግቢያዎች አይደሉም
 values-b+am	string	account_select_title	-	ማን እየተመለከተ ነው?
 values-b+am	string	account_signin_failed_body	-	%s መግባቱን አላረጋገጠም። ምንም አልተቀመጠም።
 values-b+am	string	account_signin_failed_title	-	ወደ %s መግባት አልተቻለም
 values-b+am	string	account_signin_offline_body	-	ወደ %s ለመግባት ግንኙነት ያስፈልጋል። ይህ መሣሪያ ተመልሶ መስመር ላይ ሲሆን እንደገና ይሞክሩ።
+values-b+am	string	account_signins_until_quit	-	መግቢያዎች CloudStreamን እስኪያቋርጡ ድረስ ይቆያሉ።
 values-b+am	string	account_sync_connected	-	ተገናኝቷል · በዚህ መሣሪያ ላይ ገብቷል
 values-b+am	string	account_sync_needs_browser	-	መግባት የድር አሳሽ ይፈልጋል። ይህ መሣሪያ የለውም።
 values-b+am	string	account_sync_note	-	አማራጭ። የእይታ ሂደትን ቀድሞ ካለዎት መለያ ጋር ያመሳስላል።
@@ -2269,20 +2281,24 @@ values-b+apc	string	account_pin_confirm	-	اكتبو مرة تانية لتأك�
 values-b+apc	string	account_pin_current	-	اكتب الـPIN المستعمل هلق.
 values-b+apc	string	account_pin_first_profile	-	ما فيك تقفل البروفايل الأول
 values-b+apc	string	account_pin_new	-	اكتب PIN من 4 أرقام.
+values-b+apc	string	account_pin_not_saved	-	ما قدرنا نحفظ تغيير الـPIN. ما تغيّر شي.
 values-b+apc	string	account_pin_off	-	مطفي · أي حدا فيه يفتح هالبروفايل
 values-b+apc	string	account_pin_on	-	شغّال · بينطلب لتفتحو
 values-b+apc	string	account_pin_prompt	-	اكتب الـPIN من 4 أرقام.
 values-b+apc	string	account_pin_remove	-	شيل الـPIN
 values-b+apc	string	account_pin_set	-	حط PIN
 values-b+apc	string	account_pin_set_title	-	حط PIN
+values-b+apc	string	account_pin_unreadable	-	ما قدرنا نقرأ أرقام الـPIN على هالكمبيوتر، فهالملف الشخصي بيضل مقفول.
 values-b+apc	string	account_profile_current	-	الحالي
 values-b+apc	string	account_profile_locked	-	مقفول · PIN
 values-b+apc	string	account_profile_no_sync	-	ما في مزامنة
+values-b+apc	string	account_profile_not_added	-	ما قدرنا نضيف ملف شخصي لأنه ما فينا نقرأ أرقام الـPIN على هالكمبيوتر. ما تغيّر شي.
 values-b+apc	string	account_select_note	-	سجل مشاهدة منفصل · مش تسجيل دخول
 values-b+apc	string	account_select_title	-	مين عم يحضر؟
 values-b+apc	string	account_signin_failed_body	-	%s ما أكّد تسجيل الدخول. ما انحفظ شي.
 values-b+apc	string	account_signin_failed_title	-	ما قدرنا نسجّل دخول على %s
 values-b+apc	string	account_signin_offline_body	-	تسجيل الدخول على %s بدو اتصال. جرب مرة تانية لما يرجع هالجهاز أونلاين.
+values-b+apc	string	account_signins_until_quit	-	تسجيلات الدخول بتضل لحتى تسكّر CloudStream.
 values-b+apc	string	account_sync_connected	-	متصل · مسجّل دخول على هالجهاز
 values-b+apc	string	account_sync_needs_browser	-	تسجيل الدخول بدو متصفح ويب. هالجهاز ما فيه.
 values-b+apc	string	account_sync_note	-	اختياري. بيزامن تقدّم المشاهدة مع حساب عندك أصلاً.
@@ -3487,20 +3503,24 @@ values-b+ar	string	account_pin_confirm	-	اكتبه مرة أخرى للتأكي
 values-b+ar	string	account_pin_current	-	اكتب رمز PIN المستخدم حاليًا.
 values-b+ar	string	account_pin_first_profile	-	لا يمكن قفل الملف الشخصي الأول
 values-b+ar	string	account_pin_new	-	اكتب رمز PIN من 4 أرقام.
+values-b+ar	string	account_pin_not_saved	-	تعذّر حفظ تغيير رقم PIN. لم يتغيّر شيء.
 values-b+ar	string	account_pin_off	-	متوقف · يمكن لأي شخص فتح هذا الملف الشخصي
 values-b+ar	string	account_pin_on	-	مفعّل · يُطلب لفتحه
 values-b+ar	string	account_pin_prompt	-	اكتب رمز PIN المكوّن من 4 أرقام.
 values-b+ar	string	account_pin_remove	-	إزالة رمز PIN
 values-b+ar	string	account_pin_set	-	تعيين رمز PIN
 values-b+ar	string	account_pin_set_title	-	تعيين رمز PIN
+values-b+ar	string	account_pin_unreadable	-	تعذّرت قراءة أرقام PIN على هذا الكمبيوتر، لذا يبقى هذا الملف الشخصي مقفلاً.
 values-b+ar	string	account_profile_current	-	الحالي
 values-b+ar	string	account_profile_locked	-	مقفل · رمز PIN
 values-b+ar	string	account_profile_no_sync	-	بلا مزامنة
+values-b+ar	string	account_profile_not_added	-	تعذّرت إضافة ملف شخصي لأنه لا يمكن قراءة أرقام PIN على هذا الكمبيوتر. لم يتغيّر شيء.
 values-b+ar	string	account_select_note	-	سجل مشاهدة منفصل · ليس تسجيلات دخول
 values-b+ar	string	account_select_title	-	من يشاهد؟
 values-b+ar	string	account_signin_failed_body	-	لم يؤكد %s تسجيل الدخول. لم يُحفظ أي شيء.
 values-b+ar	string	account_signin_failed_title	-	تعذّر تسجيل الدخول إلى %s
 values-b+ar	string	account_signin_offline_body	-	يتطلب تسجيل الدخول إلى %s اتصالاً بالإنترنت. حاول مرة أخرى عند عودة هذا الجهاز إلى الاتصال.
+values-b+ar	string	account_signins_until_quit	-	تبقى عمليات تسجيل الدخول حتى تُنهي CloudStream.
 values-b+ar	string	account_sync_connected	-	متصل · تم تسجيل الدخول على هذا الجهاز
 values-b+ar	string	account_sync_needs_browser	-	يتطلب تسجيل الدخول متصفح ويب. لا يوجد متصفح على هذا الجهاز.
 values-b+ar	string	account_sync_note	-	اختياري. يزامن تقدّم المشاهدة مع حساب لديك بالفعل.
@@ -4697,20 +4717,24 @@ values-b+ars	string	account_pin_confirm	-	اكتبه مرة ثانية للتأ�
 values-b+ars	string	account_pin_current	-	اكتب الـ PIN المستخدم الحين.
 values-b+ars	string	account_pin_first_profile	-	الملف الشخصي الأول ما ينقفل
 values-b+ars	string	account_pin_new	-	اكتب PIN من 4 أرقام.
+values-b+ars	string	account_pin_not_saved	-	ما قدرنا نحفظ تغيير الـPIN. ما تغيّر شي.
 values-b+ars	string	account_pin_off	-	مطفي · أي أحد يقدر يفتح هالملف الشخصي
 values-b+ars	string	account_pin_on	-	شغّال · ينطلب عند الفتح
 values-b+ars	string	account_pin_prompt	-	اكتب الـ PIN المكوّن من 4 أرقام.
 values-b+ars	string	account_pin_remove	-	شيل PIN
 values-b+ars	string	account_pin_set	-	حط PIN
 values-b+ars	string	account_pin_set_title	-	حط PIN
+values-b+ars	string	account_pin_unreadable	-	ما قدرنا نقرأ أرقام PIN على هالكمبيوتر، عشان كذا هالملف الشخصي يظل مقفل.
 values-b+ars	string	account_profile_current	-	الحالي
 values-b+ars	string	account_profile_locked	-	مقفل · PIN
 values-b+ars	string	account_profile_no_sync	-	بدون مزامنة
+values-b+ars	string	account_profile_not_added	-	ما قدرنا نضيف ملف شخصي لأن أرقام PIN على هالكمبيوتر ما تنقرأ. ما تغيّر شي.
 values-b+ars	string	account_select_note	-	سجل مشاهدة منفصل · مو تسجيل دخول
 values-b+ars	string	account_select_title	-	مين يشاهد؟
 values-b+ars	string	account_signin_failed_body	-	%s ما أكّد تسجيل الدخول. ما انحفظ شي.
 values-b+ars	string	account_signin_failed_title	-	ما قدرنا نسجّل دخول في %s
 values-b+ars	string	account_signin_offline_body	-	تسجيل الدخول في %s يبي اتصال. حاول مرة ثانية لما يرجع هالجهاز متصل.
+values-b+ars	string	account_signins_until_quit	-	تسجيلات الدخول تبقى لين تقفل CloudStream.
 values-b+ars	string	account_sync_connected	-	متصل · مسجّل دخول على هالجهاز
 values-b+ars	string	account_sync_needs_browser	-	تسجيل الدخول يحتاج متصفح ويب. هالجهاز ما فيه.
 values-b+ars	string	account_sync_note	-	اختياري. يزامن تقدّم المشاهدة مع حساب عندك من قبل.
@@ -5429,20 +5453,24 @@ values-b+as	string	account_pin_confirm	-	নিশ্চিত কৰিবল�
 values-b+as	string	account_pin_current	-	এতিয়া ব্যৱহাৰ হৈ থকা পিনটো টাইপ কৰক।
 values-b+as	string	account_pin_first_profile	-	প্ৰথম প্ৰফাইলটো লক কৰিব নোৱাৰি
 values-b+as	string	account_pin_new	-	এটা ৪-অংকৰ পিন টাইপ কৰক।
+values-b+as	string	account_pin_not_saved	-	PIN সলনি ছেভ কৰিব পৰা নগ'ল। একো সলনি হোৱা নাই।
 values-b+as	string	account_pin_off	-	অফ · যিকোনোৱে এই প্ৰফাইলটো খুলিব পাৰে
 values-b+as	string	account_pin_on	-	অন · খুলিবলৈ সোধা হয়
 values-b+as	string	account_pin_prompt	-	৪-অংকৰ পিনটো টাইপ কৰক।
 values-b+as	string	account_pin_remove	-	পিন আঁতৰাওক
 values-b+as	string	account_pin_set	-	পিন ছেট কৰক
 values-b+as	string	account_pin_set_title	-	এটা পিন ছেট কৰক
+values-b+as	string	account_pin_unreadable	-	এই কম্পিউটাৰত PIN পঢ়িব পৰা নগ'ল, গতিকে এই প্ৰফাইলটো লক হৈয়েই থাকিব।
 values-b+as	string	account_profile_current	-	বৰ্তমান
 values-b+as	string	account_profile_locked	-	লক কৰা · PIN
 values-b+as	string	account_profile_no_sync	-	ছিংক নাই
+values-b+as	string	account_profile_not_added	-	এই কম্পিউটাৰৰ PIN পঢ়িব নোৱাৰাৰ বাবে প্ৰফাইল যোগ কৰিব পৰা নগ'ল। একো সলনি হোৱা নাই।
 values-b+as	string	account_select_note	-	পৃথক চোৱাৰ ইতিহাস · লগইন নহয়
 values-b+as	string	account_select_title	-	কোনে চাই আছে?
 values-b+as	string	account_signin_failed_body	-	%s এ ছাইন-ইন নিশ্চিত নকৰিলে। একো ছেভ কৰা হোৱা নাই।
 values-b+as	string	account_signin_failed_title	-	%s ত ছাইন ইন কৰিব পৰা নগ'ল
 values-b+as	string	account_signin_offline_body	-	%s ত ছাইন ইন কৰিবলৈ সংযোগৰ প্ৰয়োজন। এই ডিভাইচটো পুনৰ অনলাইন হ'লে আকৌ চেষ্টা কৰক।
+values-b+as	string	account_signins_until_quit	-	CloudStream বন্ধ নকৰালৈকে ছাইন-ইন থাকে।
 values-b+as	string	account_sync_connected	-	সংযুক্ত · এই ডিভাইচত ছাইন ইন কৰা
 values-b+as	string	account_sync_needs_browser	-	ছাইন-ইনৰ বাবে ৱেব ব্ৰাউজাৰ লাগে। এই ডিভাইচত নাই।
 values-b+as	string	account_sync_note	-	বৈকল্পিক। আপোনাৰ আগৰে পৰা থকা একাউণ্টলৈ চোৱাৰ অগ্ৰগতি ছিংক কৰে।
@@ -6460,20 +6488,24 @@ values-b+az	string	account_pin_confirm	-	Təsdiqləmək üçün yenidən yazın.
 values-b+az	string	account_pin_current	-	Hazırda istifadə olunan PIN-i yazın.
 values-b+az	string	account_pin_first_profile	-	Birinci profil kilidlənə bilməz
 values-b+az	string	account_pin_new	-	4 rəqəmli PIN yazın.
+values-b+az	string	account_pin_not_saved	-	PIN dəyişikliyi saxlanılmadı. Heç nə dəyişmədi.
 values-b+az	string	account_pin_off	-	Deaktiv · bu profili hər kəs aça bilər
 values-b+az	string	account_pin_on	-	Aktiv · açarkən soruşulur
 values-b+az	string	account_pin_prompt	-	4 rəqəmli PIN-i yazın.
 values-b+az	string	account_pin_remove	-	PIN-i sil
 values-b+az	string	account_pin_set	-	PIN təyin et
 values-b+az	string	account_pin_set_title	-	PIN təyin edin
+values-b+az	string	account_pin_unreadable	-	Bu kompüterdəki PIN-lər oxuna bilmədi, ona görə bu profil kilidli qalır.
 values-b+az	string	account_profile_current	-	Cari
 values-b+az	string	account_profile_locked	-	Kilidli · PIN
 values-b+az	string	account_profile_no_sync	-	Sinxronizasiya yoxdur
+values-b+az	string	account_profile_not_added	-	Bu kompüterdəki PIN-lər oxuna bilmədiyi üçün profil əlavə edilmədi. Heç nə dəyişmədi.
 values-b+az	string	account_select_note	-	Ayrı baxış tarixçəsi · giriş deyil
 values-b+az	string	account_select_title	-	Kim baxır?
 values-b+az	string	account_signin_failed_body	-	%s girişi təsdiqləmədi. Heç nə saxlanılmadı.
 values-b+az	string	account_signin_failed_title	-	%s hesabına daxil olmaq alınmadı
 values-b+az	string	account_signin_offline_body	-	%s hesabına daxil olmaq üçün internet bağlantısı lazımdır. Bu cihaz yenidən onlayn olanda yenidən cəhd edin.
+values-b+az	string	account_signins_until_quit	-	Girişlər CloudStream-dən çıxana qədər qalır.
 values-b+az	string	account_sync_connected	-	Qoşulub · bu cihazda daxil olunub
 values-b+az	string	account_sync_needs_browser	-	Giriş üçün veb brauzer lazımdır. Bu cihazda yoxdur.
 values-b+az	string	account_sync_note	-	İstəyə bağlı. Baxış irəliləyişini artıq olan hesabınızla sinxronlaşdırır.
@@ -7046,20 +7078,24 @@ values-b+be	string	account_pin_confirm	-	Увядзіце яго яшчэ раз
 values-b+be	string	account_pin_current	-	Увядзіце бягучы PIN-код.
 values-b+be	string	account_pin_first_profile	-	Першы профіль нельга заблакіраваць
 values-b+be	string	account_pin_new	-	Увядзіце 4-значны PIN-код.
+values-b+be	string	account_pin_not_saved	-	Не ўдалося захаваць змену PIN-кода. Нічога не змянілася.
 values-b+be	string	account_pin_off	-	Выключана · любы можа адкрыць гэты профіль
 values-b+be	string	account_pin_on	-	Уключана · запытваецца пры адкрыцці
 values-b+be	string	account_pin_prompt	-	Увядзіце 4-значны PIN-код.
 values-b+be	string	account_pin_remove	-	Выдаліць PIN-код
 values-b+be	string	account_pin_set	-	Задаць PIN-код
 values-b+be	string	account_pin_set_title	-	Задаць PIN-код
+values-b+be	string	account_pin_unreadable	-	Не ўдалося прачытаць PIN-коды на гэтым камп'ютары, таму гэты профіль застаецца заблакаваным.
 values-b+be	string	account_profile_current	-	Бягучы
 values-b+be	string	account_profile_locked	-	Заблакіраваны · PIN
 values-b+be	string	account_profile_no_sync	-	Без сінхранізацыі
+values-b+be	string	account_profile_not_added	-	Не ўдалося дадаць профіль, пакуль PIN-коды на гэтым камп'ютары нельга прачытаць. Нічога не змянілася.
 values-b+be	string	account_select_note	-	Асобная гісторыя прагляду · не ўваходы
 values-b+be	string	account_select_title	-	Хто глядзіць?
 values-b+be	string	account_signin_failed_body	-	%s не пацвердзіў уваход. Нічога не захавана.
 values-b+be	string	account_signin_failed_title	-	Не ўдалося ўвайсці ў %s
 values-b+be	string	account_signin_offline_body	-	Для ўваходу ў %s патрэбна злучэнне. Паспрабуйце зноў, калі гэта прылада зноў будзе ў сетцы.
+values-b+be	string	account_signins_until_quit	-	Уваходы захоўваюцца, пакуль вы не выйдзеце з CloudStream.
 values-b+be	string	account_sync_connected	-	Падключана · уваход на гэтай прыладзе
 values-b+be	string	account_sync_needs_browser	-	Для ўваходу патрэбны вэб-браўзер. На гэтай прыладзе яго няма.
 values-b+be	string	account_sync_note	-	Неабавязкова. Сінхранізуе прагрэс прагляду з уліковым запісам, які ў вас ужо ёсць.
@@ -8176,20 +8212,24 @@ values-b+bg	string	account_pin_confirm	-	Въведи го отново за п�
 values-b+bg	string	account_pin_current	-	Въведи текущия ПИН.
 values-b+bg	string	account_pin_first_profile	-	Първият профил не може да бъде заключен
 values-b+bg	string	account_pin_new	-	Въведи 4-цифрен ПИН.
+values-b+bg	string	account_pin_not_saved	-	Промяната на ПИН кода не можа да се запази. Нищо не е променено.
 values-b+bg	string	account_pin_off	-	Изключен · всеки може да отвори този профил
 values-b+bg	string	account_pin_on	-	Включен · иска се при отваряне
 values-b+bg	string	account_pin_prompt	-	Въведи 4-цифрения ПИН.
 values-b+bg	string	account_pin_remove	-	Премахни ПИН
 values-b+bg	string	account_pin_set	-	Задай ПИН
 values-b+bg	string	account_pin_set_title	-	Задаване на ПИН
+values-b+bg	string	account_pin_unreadable	-	ПИН кодовете на този компютър не могат да бъдат прочетени, затова този профил остава заключен.
 values-b+bg	string	account_profile_current	-	Текущ
 values-b+bg	string	account_profile_locked	-	Заключен · ПИН
 values-b+bg	string	account_profile_no_sync	-	Без синхронизация
+values-b+bg	string	account_profile_not_added	-	Не може да се добави профил, докато ПИН кодовете на този компютър не могат да бъдат прочетени. Нищо не е променено.
 values-b+bg	string	account_select_note	-	Отделна история на гледане · не са профили за вход
 values-b+bg	string	account_select_title	-	Кой гледа?
 values-b+bg	string	account_signin_failed_body	-	%s не потвърди вписването. Нищо не е запазено.
 values-b+bg	string	account_signin_failed_title	-	Неуспешно вписване в %s
 values-b+bg	string	account_signin_offline_body	-	Вписването в %s изисква връзка. Опитай отново, когато устройството е отново онлайн.
+values-b+bg	string	account_signins_until_quit	-	Влизанията остават, докато не излезете от CloudStream.
 values-b+bg	string	account_sync_connected	-	Свързан · вписан на това устройство
 values-b+bg	string	account_sync_needs_browser	-	Влизането изисква уеб браузър. Това устройство няма такъв.
 values-b+bg	string	account_sync_note	-	По избор. Синхронизира напредъка на гледане с акаунт, който вече имате.
@@ -9292,20 +9332,24 @@ values-b+bn	string	account_pin_confirm	-	নিশ্চিত করতে আ�
 values-b+bn	string	account_pin_current	-	এখন ব্যবহৃত পিনটি লিখুন।
 values-b+bn	string	account_pin_first_profile	-	প্রথম প্রোফাইলটি লক করা যাবে না
 values-b+bn	string	account_pin_new	-	৪ অঙ্কের একটি পিন লিখুন।
+values-b+bn	string	account_pin_not_saved	-	PIN পরিবর্তন সংরক্ষণ করা যায়নি। কিছুই বদলায়নি।
 values-b+bn	string	account_pin_off	-	বন্ধ · যে কেউ এই প্রোফাইল খুলতে পারে
 values-b+bn	string	account_pin_on	-	চালু · খুলতে পিন চাওয়া হয়
 values-b+bn	string	account_pin_prompt	-	৪ অঙ্কের পিনটি লিখুন।
 values-b+bn	string	account_pin_remove	-	পিন সরান
 values-b+bn	string	account_pin_set	-	পিন সেট করুন
 values-b+bn	string	account_pin_set_title	-	একটি পিন সেট করুন
+values-b+bn	string	account_pin_unreadable	-	এই কম্পিউটারে PIN পড়া যায়নি, তাই এই প্রোফাইল লক থাকবে।
 values-b+bn	string	account_profile_current	-	বর্তমান
 values-b+bn	string	account_profile_locked	-	লক করা · পিন
 values-b+bn	string	account_profile_no_sync	-	সিঙ্ক নেই
+values-b+bn	string	account_profile_not_added	-	এই কম্পিউটারের PIN পড়া না যাওয়া পর্যন্ত প্রোফাইল যোগ করা যায়নি। কিছুই বদলায়নি।
 values-b+bn	string	account_select_note	-	আলাদা দেখার ইতিহাস · লগইন নয়
 values-b+bn	string	account_select_title	-	কে দেখছে?
 values-b+bn	string	account_signin_failed_body	-	%s সাইন-ইন নিশ্চিত করেনি। কিছুই সংরক্ষণ করা হয়নি।
 values-b+bn	string	account_signin_failed_title	-	%s-এ সাইন ইন করা যায়নি
 values-b+bn	string	account_signin_offline_body	-	%s-এ সাইন ইন করতে সংযোগ প্রয়োজন। এই ডিভাইসটি আবার অনলাইনে এলে চেষ্টা করুন।
+values-b+bn	string	account_signins_until_quit	-	CloudStream বন্ধ না করা পর্যন্ত সাইন-ইন থাকে।
 values-b+bn	string	account_sync_connected	-	সংযুক্ত · এই ডিভাইসে সাইন ইন করা
 values-b+bn	string	account_sync_needs_browser	-	সাইন-ইনের জন্য ওয়েব ব্রাউজার লাগে। এই ডিভাইসে নেই।
 values-b+bn	string	account_sync_note	-	ঐচ্ছিক। আপনার আগে থেকে থাকা অ্যাকাউন্টে দেখার অগ্রগতি সিঙ্ক করে।
@@ -10108,20 +10152,24 @@ values-b+ca	string	account_pin_confirm	-	Torna'l a escriure per confirmar-lo.
 values-b+ca	string	account_pin_current	-	Escriu el PIN que fas servir ara.
 values-b+ca	string	account_pin_first_profile	-	El primer perfil no es pot bloquejar
 values-b+ca	string	account_pin_new	-	Escriu un PIN de 4 xifres.
+values-b+ca	string	account_pin_not_saved	-	No s'ha pogut desar el canvi del PIN. No s'ha canviat res.
 values-b+ca	string	account_pin_off	-	Desactivat · qualsevol pot obrir aquest perfil
 values-b+ca	string	account_pin_on	-	Activat · es demana per obrir-lo
 values-b+ca	string	account_pin_prompt	-	Escriu el PIN de 4 xifres.
 values-b+ca	string	account_pin_remove	-	Elimina el PIN
 values-b+ca	string	account_pin_set	-	Defineix el PIN
 values-b+ca	string	account_pin_set_title	-	Defineix un PIN
+values-b+ca	string	account_pin_unreadable	-	No s'han pogut llegir els PIN d'aquest ordinador, així que aquest perfil continua bloquejat.
 values-b+ca	string	account_profile_current	-	Actual
 values-b+ca	string	account_profile_locked	-	Bloquejat · PIN
 values-b+ca	string	account_profile_no_sync	-	Sense sincronització
+values-b+ca	string	account_profile_not_added	-	No s'ha pogut afegir un perfil mentre no es puguin llegir els PIN d'aquest ordinador. No s'ha canviat res.
 values-b+ca	string	account_select_note	-	Historial de visualització separat · no són inicis de sessió
 values-b+ca	string	account_select_title	-	Qui mira?
 values-b+ca	string	account_signin_failed_body	-	%s no ha confirmat l'inici de sessió. No s'ha desat res.
 values-b+ca	string	account_signin_failed_title	-	No s'ha pogut iniciar la sessió a %s
 values-b+ca	string	account_signin_offline_body	-	Per iniciar la sessió a %s cal connexió. Torna-ho a provar quan aquest dispositiu torni a estar en línia.
+values-b+ca	string	account_signins_until_quit	-	Els inicis de sessió duren fins que surts de CloudStream.
 values-b+ca	string	account_sync_connected	-	Connectat · sessió iniciada en aquest dispositiu
 values-b+ca	string	account_sync_needs_browser	-	Per iniciar la sessió cal un navegador web. Aquest dispositiu no en té.
 values-b+ca	string	account_sync_note	-	Opcional. Sincronitza el progrés de visualització amb un compte que ja tens.
@@ -10827,20 +10875,24 @@ values-b+ckb	string	account_pin_confirm	-	بۆ دڵنیابوونەوە دووب
 values-b+ckb	string	account_pin_current	-	ئەو PINـەی ئێستا بەکاردێت بنووسە.
 values-b+ckb	string	account_pin_first_profile	-	پرۆفایلی یەکەم ناتوانرێت دابخرێت
 values-b+ckb	string	account_pin_new	-	PINێکی ٤ ژمارەیی بنووسە.
+values-b+ckb	string	account_pin_not_saved	-	گۆڕینی PIN پاشەکەوت نەکرا. هیچ نەگۆڕا.
 values-b+ckb	string	account_pin_off	-	کوژاوە · هەر کەسێک دەتوانێت ئەم پرۆفایلە بکاتەوە
 values-b+ckb	string	account_pin_on	-	هەڵکراو · بۆ کردنەوە داوای دەکرێت
 values-b+ckb	string	account_pin_prompt	-	PINـە ٤ ژمارەییەکە بنووسە.
 values-b+ckb	string	account_pin_remove	-	لابردنی PIN
 values-b+ckb	string	account_pin_set	-	دانانی PIN
 values-b+ckb	string	account_pin_set_title	-	دانانی PIN
+values-b+ckb	string	account_pin_unreadable	-	نەتوانرا PINەکانی ئەم کۆمپیوتەرە بخوێنرێتەوە، بۆیە ئەم پرۆفایلە داخراو دەمێنێتەوە.
 values-b+ckb	string	account_profile_current	-	ئێستا
 values-b+ckb	string	account_profile_locked	-	داخراو · PIN
 values-b+ckb	string	account_profile_no_sync	-	هاوکاتکردن نییە
+values-b+ckb	string	account_profile_not_added	-	نەتوانرا پرۆفایلێک زیاد بکرێت چونکە PINەکانی ئەم کۆمپیوتەرە ناخوێنرێنەوە. هیچ نەگۆڕا.
 values-b+ckb	string	account_select_note	-	مێژووی سەیرکردنی جیا · چوونەژوورەوە نییە
 values-b+ckb	string	account_select_title	-	کێ سەیر دەکات؟
 values-b+ckb	string	account_signin_failed_body	-	%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا.
 values-b+ckb	string	account_signin_failed_title	-	نەتوانرا بچیتە ژوورەوەی %s
 values-b+ckb	string	account_signin_offline_body	-	چوونەژوورەوە بۆ %s پەیوەندی پێویستە. کاتێک ئەم ئامێرە دووبارە سەرهێڵ بوو هەوڵ بدەرەوە.
+values-b+ckb	string	account_signins_until_quit	-	چوونەژوورەوەکان دەمێننەوە تا CloudStream دادەخەیت.
 values-b+ckb	string	account_sync_connected	-	پەیوەستە · لەسەر ئەم ئامێرە چووەتە ژوورەوە
 values-b+ckb	string	account_sync_needs_browser	-	چوونەژوورەوە وێبگەڕێکی پێویستە. ئەم ئامێرە نییەتی.
 values-b+ckb	string	account_sync_note	-	ئارەزوومەندانە. پێشکەوتنی سەیرکردن لەگەڵ هەژمارێک کە پێشتر هەتە هاوکات دەکات.
@@ -11354,20 +11406,24 @@ values-b+cs	string	account_pin_confirm	-	Pro potvrzení jej zadejte znovu.
 values-b+cs	string	account_pin_current	-	Zadejte aktuálně používaný PIN.
 values-b+cs	string	account_pin_first_profile	-	První profil nelze zamknout
 values-b+cs	string	account_pin_new	-	Zadejte čtyřmístný PIN.
+values-b+cs	string	account_pin_not_saved	-	Změnu PIN se nepodařilo uložit. Nic se nezměnilo.
 values-b+cs	string	account_pin_off	-	Vypnuto · tento profil může otevřít kdokoli
 values-b+cs	string	account_pin_on	-	Zapnuto · vyžaduje se při otevření
 values-b+cs	string	account_pin_prompt	-	Zadejte čtyřmístný PIN.
 values-b+cs	string	account_pin_remove	-	Odebrat PIN
 values-b+cs	string	account_pin_set	-	Nastavit PIN
 values-b+cs	string	account_pin_set_title	-	Nastavit PIN
+values-b+cs	string	account_pin_unreadable	-	PIN kódy na tomto počítači nelze přečíst, takže tento profil zůstává zamčený.
 values-b+cs	string	account_profile_current	-	Aktuální
 values-b+cs	string	account_profile_locked	-	Zamčeno · PIN
 values-b+cs	string	account_profile_no_sync	-	Bez synchronizace
+values-b+cs	string	account_profile_not_added	-	Profil nelze přidat, dokud nelze přečíst PIN kódy na tomto počítači. Nic se nezměnilo.
 values-b+cs	string	account_select_note	-	Samostatná historie sledování · nejde o přihlášení
 values-b+cs	string	account_select_title	-	Kdo se dívá?
 values-b+cs	string	account_signin_failed_body	-	Služba %s přihlášení nepotvrdila. Nic nebylo uloženo.
 values-b+cs	string	account_signin_failed_title	-	Nelze se přihlásit k %s
 values-b+cs	string	account_signin_offline_body	-	Přihlášení k %s vyžaduje připojení. Zkuste to znovu, až bude toto zařízení opět online.
+values-b+cs	string	account_signins_until_quit	-	Přihlášení platí, dokud CloudStream neukončíte.
 values-b+cs	string	account_sync_connected	-	Připojeno · přihlášeno na tomto zařízení
 values-b+cs	string	account_sync_needs_browser	-	Přihlášení vyžaduje webový prohlížeč. Toto zařízení žádný nemá.
 values-b+cs	string	account_sync_note	-	Volitelné. Synchronizuje postup sledování s účtem, který už máte.
@@ -12491,20 +12547,24 @@ values-b+de	string	account_pin_confirm	-	Gib sie zur Bestätigung erneut ein.
 values-b+de	string	account_pin_current	-	Gib die aktuelle PIN ein.
 values-b+de	string	account_pin_first_profile	-	Das erste Profil kann nicht gesperrt werden
 values-b+de	string	account_pin_new	-	Gib eine 4-stellige PIN ein.
+values-b+de	string	account_pin_not_saved	-	Die PIN-Änderung konnte nicht gespeichert werden. Es wurde nichts geändert.
 values-b+de	string	account_pin_off	-	Aus · jeder kann dieses Profil öffnen
 values-b+de	string	account_pin_on	-	An · wird beim Öffnen abgefragt
 values-b+de	string	account_pin_prompt	-	Gib die 4-stellige PIN ein.
 values-b+de	string	account_pin_remove	-	PIN entfernen
 values-b+de	string	account_pin_set	-	PIN festlegen
 values-b+de	string	account_pin_set_title	-	Eine PIN festlegen
+values-b+de	string	account_pin_unreadable	-	Die PINs auf diesem Computer konnten nicht gelesen werden, daher bleibt dieses Profil gesperrt.
 values-b+de	string	account_profile_current	-	Aktuell
 values-b+de	string	account_profile_locked	-	Gesperrt · PIN
 values-b+de	string	account_profile_no_sync	-	Keine Synchronisierung
+values-b+de	string	account_profile_not_added	-	Ein Profil kann nicht hinzugefügt werden, solange die PINs auf diesem Computer nicht gelesen werden können. Es wurde nichts geändert.
 values-b+de	string	account_select_note	-	Eigener Wiedergabeverlauf · keine Anmeldungen
 values-b+de	string	account_select_title	-	Wer schaut?
 values-b+de	string	account_signin_failed_body	-	%s hat die Anmeldung nicht bestätigt. Es wurde nichts gespeichert.
 values-b+de	string	account_signin_failed_title	-	Anmeldung bei %s fehlgeschlagen
 values-b+de	string	account_signin_offline_body	-	Für die Anmeldung bei %s ist eine Verbindung nötig. Versuche es erneut, wenn dieses Gerät wieder online ist.
+values-b+de	string	account_signins_until_quit	-	Anmeldungen gelten, bis du CloudStream beendest.
 values-b+de	string	account_sync_connected	-	Verbunden · auf diesem Gerät angemeldet
 values-b+de	string	account_sync_needs_browser	-	Die Anmeldung braucht einen Webbrowser. Dieses Gerät hat keinen.
 values-b+de	string	account_sync_note	-	Optional. Synchronisiert den Fortschritt mit einem Konto, das du schon hast.
@@ -13622,20 +13682,24 @@ values-b+el	string	account_pin_confirm	-	Πληκτρολογήστε το ξα�
 values-b+el	string	account_pin_current	-	Πληκτρολογήστε το τρέχον PIN.
 values-b+el	string	account_pin_first_profile	-	Το πρώτο προφίλ δεν μπορεί να κλειδωθεί
 values-b+el	string	account_pin_new	-	Πληκτρολογήστε ένα 4ψήφιο PIN.
+values-b+el	string	account_pin_not_saved	-	Δεν ήταν δυνατή η αποθήκευση της αλλαγής PIN. Δεν άλλαξε τίποτα.
 values-b+el	string	account_pin_off	-	Ανενεργό · οποιοσδήποτε μπορεί να ανοίξει αυτό το προφίλ
 values-b+el	string	account_pin_on	-	Ενεργό · ζητείται για το άνοιγμα
 values-b+el	string	account_pin_prompt	-	Πληκτρολογήστε το 4ψήφιο PIN.
 values-b+el	string	account_pin_remove	-	Κατάργηση PIN
 values-b+el	string	account_pin_set	-	Ορισμός PIN
 values-b+el	string	account_pin_set_title	-	Ορισμός PIN
+values-b+el	string	account_pin_unreadable	-	Δεν ήταν δυνατή η ανάγνωση των PIN σε αυτόν τον υπολογιστή, οπότε αυτό το προφίλ παραμένει κλειδωμένο.
 values-b+el	string	account_profile_current	-	Τρέχον
 values-b+el	string	account_profile_locked	-	Κλειδωμένο · PIN
 values-b+el	string	account_profile_no_sync	-	Χωρίς συγχρονισμό
+values-b+el	string	account_profile_not_added	-	Δεν ήταν δυνατή η προσθήκη προφίλ όσο δεν διαβάζονται τα PIN σε αυτόν τον υπολογιστή. Δεν άλλαξε τίποτα.
 values-b+el	string	account_select_note	-	Ξεχωριστό ιστορικό προβολής · όχι συνδέσεις
 values-b+el	string	account_select_title	-	Ποιος βλέπει;
 values-b+el	string	account_signin_failed_body	-	Το %s δεν επιβεβαίωσε τη σύνδεση. Δεν αποθηκεύτηκε τίποτα.
 values-b+el	string	account_signin_failed_title	-	Δεν ήταν δυνατή η σύνδεση στο %s
 values-b+el	string	account_signin_offline_body	-	Η σύνδεση στο %s απαιτεί πρόσβαση στο διαδίκτυο. Δοκιμάστε ξανά όταν η συσκευή είναι ξανά online.
+values-b+el	string	account_signins_until_quit	-	Οι συνδέσεις διαρκούν μέχρι να κλείσετε το CloudStream.
 values-b+el	string	account_sync_connected	-	Συνδεδεμένο · σε αυτή τη συσκευή
 values-b+el	string	account_sync_needs_browser	-	Η σύνδεση χρειάζεται πρόγραμμα περιήγησης. Αυτή η συσκευή δεν έχει.
 values-b+el	string	account_sync_note	-	Προαιρετικό. Συγχρονίζει την πρόοδο προβολής με έναν λογαριασμό που ήδη έχετε.
@@ -14681,20 +14745,24 @@ values-b+eo	string	account_pin_confirm	-	Tajpu ĝin denove por konfirmi.
 values-b+eo	string	account_pin_current	-	Tajpu la nune uzatan PIN.
 values-b+eo	string	account_pin_first_profile	-	La unua profilo ne povas esti ŝlosita
 values-b+eo	string	account_pin_new	-	Tajpu 4-ciferan PIN.
+values-b+eo	string	account_pin_not_saved	-	Ne eblis konservi la ŝanĝon de PIN. Nenio ŝanĝiĝis.
 values-b+eo	string	account_pin_off	-	Malŝaltita · iu ajn povas malfermi ĉi tiun profilon
 values-b+eo	string	account_pin_on	-	Ŝaltita · petata por malfermi ĝin
 values-b+eo	string	account_pin_prompt	-	Tajpu la 4-ciferan PIN.
 values-b+eo	string	account_pin_remove	-	Forigi PIN
 values-b+eo	string	account_pin_set	-	Agordi PIN
 values-b+eo	string	account_pin_set_title	-	Agordi PIN
+values-b+eo	string	account_pin_unreadable	-	Ne eblis legi la PIN-ojn en ĉi tiu komputilo, do ĉi tiu profilo restas ŝlosita.
 values-b+eo	string	account_profile_current	-	Nuna
 values-b+eo	string	account_profile_locked	-	Ŝlosita · PIN
 values-b+eo	string	account_profile_no_sync	-	Sen sinkronigo
+values-b+eo	string	account_profile_not_added	-	Ne eblis aldoni profilon dum la PIN-oj en ĉi tiu komputilo ne legeblas. Nenio ŝanĝiĝis.
 values-b+eo	string	account_select_note	-	Aparta spekta historio · ne ensalutoj
 values-b+eo	string	account_select_title	-	Kiu spektas?
 values-b+eo	string	account_signin_failed_body	-	%s ne konfirmis la ensaluton. Nenio estis konservita.
 values-b+eo	string	account_signin_failed_title	-	Ne eblis ensaluti al %s
 values-b+eo	string	account_signin_offline_body	-	Ensaluti al %s bezonas konekton. Reprovu kiam ĉi tiu aparato denove estos enreta.
+values-b+eo	string	account_signins_until_quit	-	Ensalutoj daŭras ĝis vi fermas CloudStream.
 values-b+eo	string	account_sync_connected	-	Konektita · ensalutinta en ĉi tiu aparato
 values-b+eo	string	account_sync_needs_browser	-	Ensaluto bezonas retumilon. Ĉi tiu aparato ne havas.
 values-b+eo	string	account_sync_note	-	Laŭvola. Sinkronigas spektan progreson kun konto, kiun vi jam havas.
@@ -15288,20 +15356,24 @@ values-b+es	string	account_pin_confirm	-	Vuelve a escribirlo para confirmarlo.
 values-b+es	string	account_pin_current	-	Escribe el PIN que usas ahora.
 values-b+es	string	account_pin_first_profile	-	El primer perfil no se puede bloquear
 values-b+es	string	account_pin_new	-	Escribe un PIN de 4 dígitos.
+values-b+es	string	account_pin_not_saved	-	No se pudo guardar el cambio de PIN. No se cambió nada.
 values-b+es	string	account_pin_off	-	Desactivado · cualquiera puede abrir este perfil
 values-b+es	string	account_pin_on	-	Activado · se pide para abrirlo
 values-b+es	string	account_pin_prompt	-	Escribe el PIN de 4 dígitos.
 values-b+es	string	account_pin_remove	-	Quitar PIN
 values-b+es	string	account_pin_set	-	Establecer PIN
 values-b+es	string	account_pin_set_title	-	Establece un PIN
+values-b+es	string	account_pin_unreadable	-	No se pudieron leer los PIN de este ordenador, así que este perfil sigue bloqueado.
 values-b+es	string	account_profile_current	-	Actual
 values-b+es	string	account_profile_locked	-	Bloqueado · PIN
 values-b+es	string	account_profile_no_sync	-	Sin sincronización
+values-b+es	string	account_profile_not_added	-	No se pudo añadir un perfil mientras no se puedan leer los PIN de este ordenador. No se cambió nada.
 values-b+es	string	account_select_note	-	Historial de visualización aparte · no son inicios de sesión
 values-b+es	string	account_select_title	-	¿Quién está viendo?
 values-b+es	string	account_signin_failed_body	-	%s no confirmó el inicio de sesión. No se ha guardado nada.
 values-b+es	string	account_signin_failed_title	-	No se pudo iniciar sesión en %s
 values-b+es	string	account_signin_offline_body	-	Para iniciar sesión en %s hace falta conexión. Vuelve a intentarlo cuando este dispositivo tenga conexión.
+values-b+es	string	account_signins_until_quit	-	Los inicios de sesión duran hasta que cierres CloudStream.
 values-b+es	string	account_sync_connected	-	Conectado · sesión iniciada en este dispositivo
 values-b+es	string	account_sync_needs_browser	-	Iniciar sesión requiere un navegador web. Este dispositivo no tiene.
 values-b+es	string	account_sync_note	-	Opcional. Sincroniza el progreso con una cuenta que ya tienes.
@@ -16418,20 +16490,24 @@ values-b+fa	string	account_pin_confirm	-	برای تأیید، دوباره آن
 values-b+fa	string	account_pin_current	-	PIN فعلی را وارد کنید.
 values-b+fa	string	account_pin_first_profile	-	نمایهٔ اول را نمی‌توان قفل کرد
 values-b+fa	string	account_pin_new	-	یک PIN چهاررقمی وارد کنید.
+values-b+fa	string	account_pin_not_saved	-	تغییر PIN ذخیره نشد. چیزی تغییر نکرد.
 values-b+fa	string	account_pin_off	-	خاموش · هر کسی می‌تواند این نمایه را باز کند
 values-b+fa	string	account_pin_on	-	روشن · هنگام باز کردن پرسیده می‌شود
 values-b+fa	string	account_pin_prompt	-	PIN چهاررقمی را وارد کنید.
 values-b+fa	string	account_pin_remove	-	حذف PIN
 values-b+fa	string	account_pin_set	-	تنظیم PIN
 values-b+fa	string	account_pin_set_title	-	تنظیم PIN
+values-b+fa	string	account_pin_unreadable	-	PINهای این رایانه خوانده نشد، پس این نمایه قفل می‌ماند.
 values-b+fa	string	account_profile_current	-	فعلی
 values-b+fa	string	account_profile_locked	-	قفل‌شده · PIN
 values-b+fa	string	account_profile_no_sync	-	بدون همگام‌سازی
+values-b+fa	string	account_profile_not_added	-	تا وقتی PINهای این رایانه خوانده نشوند، افزودن نمایه ممکن نیست. چیزی تغییر نکرد.
 values-b+fa	string	account_select_note	-	تاریخچهٔ تماشای جدا · ورود به حساب نیست
 values-b+fa	string	account_select_title	-	چه کسی تماشا می‌کند؟
 values-b+fa	string	account_signin_failed_body	-	%s ورود را تأیید نکرد. چیزی ذخیره نشد.
 values-b+fa	string	account_signin_failed_title	-	ورود به %s ممکن نشد
 values-b+fa	string	account_signin_offline_body	-	ورود به %s به اتصال اینترنت نیاز دارد. وقتی این دستگاه دوباره آنلاین شد، دوباره تلاش کنید.
+values-b+fa	string	account_signins_until_quit	-	ورودها تا وقتی از CloudStream خارج شوید باقی می‌مانند.
 values-b+fa	string	account_sync_connected	-	متصل · واردشده در این دستگاه
 values-b+fa	string	account_sync_needs_browser	-	ورود به مرورگر وب نیاز دارد. این دستگاه مرورگر ندارد.
 values-b+fa	string	account_sync_note	-	اختیاری. پیشرفت تماشا را با حسابی که از قبل دارید همگام می‌کند.
@@ -17160,20 +17236,24 @@ values-b+fil	string	account_pin_confirm	-	I-type itong muli para kumpirmahin.
 values-b+fil	string	account_pin_current	-	I-type ang PIN na ginagamit ngayon.
 values-b+fil	string	account_pin_first_profile	-	Hindi maaaring i-lock ang unang profile
 values-b+fil	string	account_pin_new	-	Mag-type ng 4-digit na PIN.
+values-b+fil	string	account_pin_not_saved	-	Hindi ma-save ang pagbabago sa PIN. Walang nabago.
 values-b+fil	string	account_pin_off	-	Naka-off · kahit sino ay puwedeng magbukas ng profile na ito
 values-b+fil	string	account_pin_on	-	Naka-on · hinihingi para buksan ito
 values-b+fil	string	account_pin_prompt	-	I-type ang 4-digit na PIN.
 values-b+fil	string	account_pin_remove	-	Alisin ang PIN
 values-b+fil	string	account_pin_set	-	Itakda ang PIN
 values-b+fil	string	account_pin_set_title	-	Magtakda ng PIN
+values-b+fil	string	account_pin_unreadable	-	Hindi mabasa ang mga PIN sa computer na ito, kaya mananatiling naka-lock ang profile na ito.
 values-b+fil	string	account_profile_current	-	Kasalukuyan
 values-b+fil	string	account_profile_locked	-	Naka-lock · PIN
 values-b+fil	string	account_profile_no_sync	-	Walang sync
+values-b+fil	string	account_profile_not_added	-	Hindi makapagdagdag ng profile habang hindi mabasa ang mga PIN sa computer na ito. Walang nabago.
 values-b+fil	string	account_select_note	-	Hiwalay na history ng panonood · hindi mga login
 values-b+fil	string	account_select_title	-	Sino ang nanonood?
 values-b+fil	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
 values-b+fil	string	account_signin_failed_title	-	Hindi makapag-sign in sa %s
 values-b+fil	string	account_signin_offline_body	-	Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito.
+values-b+fil	string	account_signins_until_quit	-	Tatagal ang mga sign-in hanggang isara mo ang CloudStream.
 values-b+fil	string	account_sync_connected	-	Nakakonekta · naka-sign in sa device na ito
 values-b+fil	string	account_sync_needs_browser	-	Kailangan ng web browser para mag-sign in. Wala nito ang device na ito.
 values-b+fil	string	account_sync_note	-	Opsyonal. Sini-sync ang progreso ng panonood sa account na mayroon ka na.
@@ -17853,20 +17933,24 @@ values-b+fr	string	account_pin_confirm	-	Saisissez-le à nouveau pour confirmer.
 values-b+fr	string	account_pin_current	-	Saisissez le PIN actuel.
 values-b+fr	string	account_pin_first_profile	-	Le premier profil ne peut pas être verrouillé
 values-b+fr	string	account_pin_new	-	Saisissez un PIN à 4 chiffres.
+values-b+fr	string	account_pin_not_saved	-	Impossible d'enregistrer la modification du code PIN. Rien n'a changé.
 values-b+fr	string	account_pin_off	-	Désactivé · tout le monde peut ouvrir ce profil
 values-b+fr	string	account_pin_on	-	Activé · demandé à l'ouverture
 values-b+fr	string	account_pin_prompt	-	Saisissez le PIN à 4 chiffres.
 values-b+fr	string	account_pin_remove	-	Supprimer le PIN
 values-b+fr	string	account_pin_set	-	Définir le PIN
 values-b+fr	string	account_pin_set_title	-	Définir un PIN
+values-b+fr	string	account_pin_unreadable	-	Impossible de lire les codes PIN de cet ordinateur, ce profil reste donc verrouillé.
 values-b+fr	string	account_profile_current	-	Actuel
 values-b+fr	string	account_profile_locked	-	Verrouillé · PIN
 values-b+fr	string	account_profile_no_sync	-	Pas de synchronisation
+values-b+fr	string	account_profile_not_added	-	Impossible d'ajouter un profil tant que les codes PIN de cet ordinateur ne peuvent pas être lus. Rien n'a changé.
 values-b+fr	string	account_select_note	-	Historique de visionnage séparé · pas des connexions
 values-b+fr	string	account_select_title	-	Qui regarde ?
 values-b+fr	string	account_signin_failed_body	-	%s n'a pas confirmé la connexion. Rien n'a été enregistré.
 values-b+fr	string	account_signin_failed_title	-	Impossible de se connecter à %s
 values-b+fr	string	account_signin_offline_body	-	La connexion à %s nécessite un accès réseau. Réessayez lorsque cet appareil sera de nouveau en ligne.
+values-b+fr	string	account_signins_until_quit	-	Les connexions durent jusqu'à ce que vous quittiez CloudStream.
 values-b+fr	string	account_sync_connected	-	Connecté · sur cet appareil
 values-b+fr	string	account_sync_needs_browser	-	La connexion nécessite un navigateur web. Cet appareil n'en a pas.
 values-b+fr	string	account_sync_note	-	Facultatif. Synchronise votre progression avec un compte que vous avez déjà.
@@ -18982,20 +19066,24 @@ values-b+gl	string	account_pin_confirm	-	Escríbeo de novo para confirmar.
 values-b+gl	string	account_pin_current	-	Escribe o PIN actual.
 values-b+gl	string	account_pin_first_profile	-	O primeiro perfil non se pode bloquear
 values-b+gl	string	account_pin_new	-	Escribe un PIN de 4 díxitos.
+values-b+gl	string	account_pin_not_saved	-	Non se puido gardar o cambio do PIN. Non se cambiou nada.
 values-b+gl	string	account_pin_off	-	Desactivado · calquera pode abrir este perfil
 values-b+gl	string	account_pin_on	-	Activado · pídese para abrilo
 values-b+gl	string	account_pin_prompt	-	Escribe o PIN de 4 díxitos.
 values-b+gl	string	account_pin_remove	-	Quitar PIN
 values-b+gl	string	account_pin_set	-	Definir PIN
 values-b+gl	string	account_pin_set_title	-	Definir un PIN
+values-b+gl	string	account_pin_unreadable	-	Non se puideron ler os PIN deste ordenador, así que este perfil segue bloqueado.
 values-b+gl	string	account_profile_current	-	Actual
 values-b+gl	string	account_profile_locked	-	Bloqueado · PIN
 values-b+gl	string	account_profile_no_sync	-	Sen sincronización
+values-b+gl	string	account_profile_not_added	-	Non se puido engadir un perfil mentres non se poidan ler os PIN deste ordenador. Non se cambiou nada.
 values-b+gl	string	account_select_note	-	Historial de visualización separado · non son inicios de sesión
 values-b+gl	string	account_select_title	-	Quen está a ver?
 values-b+gl	string	account_signin_failed_body	-	%s non confirmou o inicio de sesión. Non se gardou nada.
 values-b+gl	string	account_signin_failed_title	-	Non se puido iniciar sesión en %s
 values-b+gl	string	account_signin_offline_body	-	Para iniciar sesión en %s fai falta conexión. Téntao de novo cando este dispositivo volva estar en liña.
+values-b+gl	string	account_signins_until_quit	-	Os inicios de sesión duran ata que saias de CloudStream.
 values-b+gl	string	account_sync_connected	-	Conectado · sesión iniciada neste dispositivo
 values-b+gl	string	account_sync_needs_browser	-	Iniciar sesión precisa dun navegador web. Este dispositivo non ten.
 values-b+gl	string	account_sync_note	-	Opcional. Sincroniza o progreso cunha conta que xa tes.
@@ -19686,20 +19774,24 @@ values-b+he	string	account_pin_confirm	-	יש להקליד שוב לאישור.
 values-b+he	string	account_pin_current	-	יש להקליד את ה-PIN הנוכחי.
 values-b+he	string	account_pin_first_profile	-	אי אפשר לנעול את הפרופיל הראשון
 values-b+he	string	account_pin_new	-	יש להקליד PIN בן 4 ספרות.
+values-b+he	string	account_pin_not_saved	-	לא ניתן היה לשמור את שינוי ה-PIN. שום דבר לא השתנה.
 values-b+he	string	account_pin_off	-	כבוי · כל אחד יכול לפתוח את הפרופיל הזה
 values-b+he	string	account_pin_on	-	פועל · נדרש לפתיחה
 values-b+he	string	account_pin_prompt	-	יש להקליד את ה-PIN בן 4 הספרות.
 values-b+he	string	account_pin_remove	-	הסרת PIN
 values-b+he	string	account_pin_set	-	הגדרת PIN
 values-b+he	string	account_pin_set_title	-	הגדרת PIN
+values-b+he	string	account_pin_unreadable	-	לא ניתן היה לקרוא את קודי ה-PIN במחשב הזה, ולכן הפרופיל הזה נשאר נעול.
 values-b+he	string	account_profile_current	-	נוכחי
 values-b+he	string	account_profile_locked	-	נעול · PIN
 values-b+he	string	account_profile_no_sync	-	ללא סנכרון
+values-b+he	string	account_profile_not_added	-	לא ניתן להוסיף פרופיל כל עוד אי אפשר לקרוא את קודי ה-PIN במחשב הזה. שום דבר לא השתנה.
 values-b+he	string	account_select_note	-	היסטוריית צפייה נפרדת · לא התחברויות
 values-b+he	string	account_select_title	-	מי צופה?
 values-b+he	string	account_signin_failed_body	-	%s לא אישר את ההתחברות. שום דבר לא נשמר.
 values-b+he	string	account_signin_failed_title	-	לא ניתן להתחבר אל %s
 values-b+he	string	account_signin_offline_body	-	ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר.
+values-b+he	string	account_signins_until_quit	-	ההתחברויות נשמרות עד שתצא מ-CloudStream.
 values-b+he	string	account_sync_connected	-	מחובר · מחובר במכשיר הזה
 values-b+he	string	account_sync_needs_browser	-	ההתחברות דורשת דפדפן אינטרנט. אין במכשיר הזה.
 values-b+he	string	account_sync_note	-	אופציונלי. מסנכרן את התקדמות הצפייה עם חשבון שכבר יש לך.
@@ -20629,20 +20721,24 @@ values-b+hi	string	account_pin_confirm	-	पुष्टि के लिए इ
 values-b+hi	string	account_pin_current	-	अभी इस्तेमाल हो रहा पिन टाइप करें।
 values-b+hi	string	account_pin_first_profile	-	पहली प्रोफ़ाइल लॉक नहीं की जा सकती
 values-b+hi	string	account_pin_new	-	4 अंकों का एक पिन टाइप करें।
+values-b+hi	string	account_pin_not_saved	-	PIN में बदलाव सहेजा नहीं जा सका। कुछ नहीं बदला।
 values-b+hi	string	account_pin_off	-	बंद · कोई भी इस प्रोफ़ाइल को खोल सकता है
 values-b+hi	string	account_pin_on	-	चालू · खोलने के लिए पूछा जाता है
 values-b+hi	string	account_pin_prompt	-	4 अंकों वाला पिन टाइप करें।
 values-b+hi	string	account_pin_remove	-	पिन हटाएँ
 values-b+hi	string	account_pin_set	-	पिन सेट करें
 values-b+hi	string	account_pin_set_title	-	पिन सेट करें
+values-b+hi	string	account_pin_unreadable	-	इस कंप्यूटर पर PIN पढ़े नहीं जा सके, इसलिए यह प्रोफ़ाइल लॉक रहेगी।
 values-b+hi	string	account_profile_current	-	मौजूदा
 values-b+hi	string	account_profile_locked	-	लॉक · पिन
 values-b+hi	string	account_profile_no_sync	-	कोई सिंक नहीं
+values-b+hi	string	account_profile_not_added	-	जब तक इस कंप्यूटर के PIN पढ़े नहीं जा सकते, प्रोफ़ाइल जोड़ी नहीं जा सकी। कुछ नहीं बदला।
 values-b+hi	string	account_select_note	-	अलग देखने का इतिहास · लॉगिन नहीं
 values-b+hi	string	account_select_title	-	कौन देख रहा है?
 values-b+hi	string	account_signin_failed_body	-	%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।
 values-b+hi	string	account_signin_failed_title	-	%s में साइन इन नहीं हो सका
 values-b+hi	string	account_signin_offline_body	-	%s में साइन इन करने के लिए कनेक्शन चाहिए। यह डिवाइस फिर से ऑनलाइन होने पर कोशिश करें।
+values-b+hi	string	account_signins_until_quit	-	साइन-इन तब तक रहते हैं जब तक आप CloudStream बंद नहीं करते।
 values-b+hi	string	account_sync_connected	-	कनेक्टेड · इस डिवाइस पर साइन इन
 values-b+hi	string	account_sync_needs_browser	-	साइन इन के लिए वेब ब्राउज़र चाहिए। इस डिवाइस में नहीं है।
 values-b+hi	string	account_sync_note	-	वैकल्पिक। देखने की प्रगति को आपके पहले से मौजूद खाते से सिंक करता है।
@@ -21464,20 +21560,24 @@ values-b+hr	string	account_pin_confirm	-	Upišite ga ponovno za potvrdu.
 values-b+hr	string	account_pin_current	-	Upišite PIN koji se sada koristi.
 values-b+hr	string	account_pin_first_profile	-	Prvi profil ne može se zaključati
 values-b+hr	string	account_pin_new	-	Upišite četveroznamenkasti PIN.
+values-b+hr	string	account_pin_not_saved	-	Promjena PIN-a nije spremljena. Ništa nije promijenjeno.
 values-b+hr	string	account_pin_off	-	Isključeno · svatko može otvoriti ovaj profil
 values-b+hr	string	account_pin_on	-	Uključeno · traži se pri otvaranju
 values-b+hr	string	account_pin_prompt	-	Upišite četveroznamenkasti PIN.
 values-b+hr	string	account_pin_remove	-	Ukloni PIN
 values-b+hr	string	account_pin_set	-	Postavi PIN
 values-b+hr	string	account_pin_set_title	-	Postavite PIN
+values-b+hr	string	account_pin_unreadable	-	PIN-ovi na ovom računalu ne mogu se pročitati, pa ovaj profil ostaje zaključan.
 values-b+hr	string	account_profile_current	-	Trenutni
 values-b+hr	string	account_profile_locked	-	Zaključano · PIN
 values-b+hr	string	account_profile_no_sync	-	Bez sinkronizacije
+values-b+hr	string	account_profile_not_added	-	Profil se ne može dodati dok se PIN-ovi na ovom računalu ne mogu pročitati. Ništa nije promijenjeno.
 values-b+hr	string	account_select_note	-	Zasebna povijest gledanja · nisu prijave
 values-b+hr	string	account_select_title	-	Tko gleda?
 values-b+hr	string	account_signin_failed_body	-	%s nije potvrdio prijavu. Ništa nije spremljeno.
 values-b+hr	string	account_signin_failed_title	-	Prijava na %s nije uspjela
 values-b+hr	string	account_signin_offline_body	-	Za prijavu na %s potrebna je veza. Pokušajte ponovno kad ovaj uređaj ponovno bude na mreži.
+values-b+hr	string	account_signins_until_quit	-	Prijave traju dok ne zatvorite CloudStream.
 values-b+hr	string	account_sync_connected	-	Povezano · prijavljeno na ovom uređaju
 values-b+hr	string	account_sync_needs_browser	-	Prijava zahtijeva web-preglednik. Ovaj uređaj ga nema.
 values-b+hr	string	account_sync_note	-	Neobavezno. Sinkronizira napredak gledanja s računom koji već imate.
@@ -22590,20 +22690,24 @@ values-b+hu	string	account_pin_confirm	-	Írja be újra a megerősítéshez.
 values-b+hu	string	account_pin_current	-	Írja be a jelenleg használt PIN-t.
 values-b+hu	string	account_pin_first_profile	-	Az első profil nem zárolható
 values-b+hu	string	account_pin_new	-	Írjon be egy 4 jegyű PIN-t.
+values-b+hu	string	account_pin_not_saved	-	A PIN-módosítást nem sikerült menteni. Semmi sem változott.
 values-b+hu	string	account_pin_off	-	Ki · bárki megnyithatja ezt a profilt
 values-b+hu	string	account_pin_on	-	Be · megnyitáskor kéri
 values-b+hu	string	account_pin_prompt	-	Írja be a 4 jegyű PIN-t.
 values-b+hu	string	account_pin_remove	-	PIN eltávolítása
 values-b+hu	string	account_pin_set	-	PIN beállítása
 values-b+hu	string	account_pin_set_title	-	PIN beállítása
+values-b+hu	string	account_pin_unreadable	-	Nem sikerült beolvasni a számítógépen tárolt PIN-kódokat, ezért ez a profil zárolva marad.
 values-b+hu	string	account_profile_current	-	Jelenlegi
 values-b+hu	string	account_profile_locked	-	Zárolva · PIN
 values-b+hu	string	account_profile_no_sync	-	Nincs szinkronizálás
+values-b+hu	string	account_profile_not_added	-	Nem lehet profilt hozzáadni, amíg a számítógépen tárolt PIN-kódok nem olvashatók. Semmi sem változott.
 values-b+hu	string	account_select_note	-	Külön megtekintési előzmények · nem bejelentkezések
 values-b+hu	string	account_select_title	-	Ki néz?
 values-b+hu	string	account_signin_failed_body	-	A(z) %s nem erősítette meg a bejelentkezést. Semmi sem lett mentve.
 values-b+hu	string	account_signin_failed_title	-	Nem sikerült bejelentkezni: %s
 values-b+hu	string	account_signin_offline_body	-	A bejelentkezéshez (%s) internetkapcsolat szükséges. Próbálja újra, amikor az eszköz ismét online.
+values-b+hu	string	account_signins_until_quit	-	A bejelentkezések addig tartanak, amíg ki nem lépsz a CloudStreamből.
 values-b+hu	string	account_sync_connected	-	Csatlakoztatva · bejelentkezve ezen az eszközön
 values-b+hu	string	account_sync_needs_browser	-	A bejelentkezéshez webböngésző kell. Ezen az eszközön nincs.
 values-b+hu	string	account_sync_note	-	Nem kötelező. A megtekintési előrehaladást egy meglévő fiókkal szinkronizálja.
@@ -23606,20 +23710,24 @@ values-b+id	string	account_pin_confirm	-	Ketik lagi untuk mengonfirmasi.
 values-b+id	string	account_pin_current	-	Ketik PIN yang sedang digunakan.
 values-b+id	string	account_pin_first_profile	-	Profil pertama tidak dapat dikunci
 values-b+id	string	account_pin_new	-	Ketik PIN 4 digit.
+values-b+id	string	account_pin_not_saved	-	Perubahan PIN tidak dapat disimpan. Tidak ada yang berubah.
 values-b+id	string	account_pin_off	-	Nonaktif · siapa saja dapat membuka profil ini
 values-b+id	string	account_pin_on	-	Aktif · diminta saat membuka
 values-b+id	string	account_pin_prompt	-	Ketik PIN 4 digit.
 values-b+id	string	account_pin_remove	-	Hapus PIN
 values-b+id	string	account_pin_set	-	Atur PIN
 values-b+id	string	account_pin_set_title	-	Atur PIN
+values-b+id	string	account_pin_unreadable	-	Tidak dapat membaca PIN di komputer ini, jadi profil ini tetap terkunci.
 values-b+id	string	account_profile_current	-	Saat ini
 values-b+id	string	account_profile_locked	-	Terkunci · PIN
 values-b+id	string	account_profile_no_sync	-	Tanpa sinkronisasi
+values-b+id	string	account_profile_not_added	-	Tidak dapat menambahkan profil selama PIN di komputer ini tidak dapat dibaca. Tidak ada yang berubah.
 values-b+id	string	account_select_note	-	Riwayat tontonan terpisah · bukan login
 values-b+id	string	account_select_title	-	Siapa yang menonton?
 values-b+id	string	account_signin_failed_body	-	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.
 values-b+id	string	account_signin_failed_title	-	Tidak dapat masuk ke %s
 values-b+id	string	account_signin_offline_body	-	Masuk ke %s memerlukan koneksi. Coba lagi saat perangkat ini kembali online.
+values-b+id	string	account_signins_until_quit	-	Info masuk bertahan sampai Anda keluar dari CloudStream.
 values-b+id	string	account_sync_connected	-	Terhubung · masuk di perangkat ini
 values-b+id	string	account_sync_needs_browser	-	Masuk memerlukan browser web. Perangkat ini tidak memilikinya.
 values-b+id	string	account_sync_note	-	Opsional. Menyinkronkan progres tontonan ke akun yang sudah Anda miliki.
@@ -24718,20 +24826,24 @@ values-b+in	string	account_pin_confirm	-	Ketik lagi untuk mengonfirmasi.
 values-b+in	string	account_pin_current	-	Ketik PIN yang sedang digunakan.
 values-b+in	string	account_pin_first_profile	-	Profil pertama tidak dapat dikunci
 values-b+in	string	account_pin_new	-	Ketik PIN 4 digit.
+values-b+in	string	account_pin_not_saved	-	Perubahan PIN tidak dapat disimpan. Tidak ada yang berubah.
 values-b+in	string	account_pin_off	-	Nonaktif · siapa saja dapat membuka profil ini
 values-b+in	string	account_pin_on	-	Aktif · diminta saat membuka
 values-b+in	string	account_pin_prompt	-	Ketik PIN 4 digit.
 values-b+in	string	account_pin_remove	-	Hapus PIN
 values-b+in	string	account_pin_set	-	Atur PIN
 values-b+in	string	account_pin_set_title	-	Atur PIN
+values-b+in	string	account_pin_unreadable	-	Tidak dapat membaca PIN di komputer ini, jadi profil ini tetap terkunci.
 values-b+in	string	account_profile_current	-	Saat ini
 values-b+in	string	account_profile_locked	-	Terkunci · PIN
 values-b+in	string	account_profile_no_sync	-	Tanpa sinkronisasi
+values-b+in	string	account_profile_not_added	-	Tidak dapat menambahkan profil selama PIN di komputer ini tidak dapat dibaca. Tidak ada yang berubah.
 values-b+in	string	account_select_note	-	Riwayat tontonan terpisah · bukan login
 values-b+in	string	account_select_title	-	Siapa yang menonton?
 values-b+in	string	account_signin_failed_body	-	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.
 values-b+in	string	account_signin_failed_title	-	Tidak dapat masuk ke %s
 values-b+in	string	account_signin_offline_body	-	Masuk ke %s memerlukan koneksi. Coba lagi saat perangkat ini kembali online.
+values-b+in	string	account_signins_until_quit	-	Info masuk bertahan sampai Anda keluar dari CloudStream.
 values-b+in	string	account_sync_connected	-	Terhubung · masuk di perangkat ini
 values-b+in	string	account_sync_needs_browser	-	Masuk memerlukan browser web. Perangkat ini tidak memilikinya.
 values-b+in	string	account_sync_note	-	Opsional. Menyinkronkan progres tontonan ke akun yang sudah Anda miliki.
@@ -25876,20 +25988,24 @@ values-b+it	string	account_pin_confirm	-	Digitalo di nuovo per confermare.
 values-b+it	string	account_pin_current	-	Digita il PIN attuale.
 values-b+it	string	account_pin_first_profile	-	Il primo profilo non può essere bloccato
 values-b+it	string	account_pin_new	-	Digita un PIN di 4 cifre.
+values-b+it	string	account_pin_not_saved	-	Impossibile salvare la modifica del PIN. Non è cambiato nulla.
 values-b+it	string	account_pin_off	-	Disattivato · chiunque può aprire questo profilo
 values-b+it	string	account_pin_on	-	Attivato · richiesto all'apertura
 values-b+it	string	account_pin_prompt	-	Digita il PIN di 4 cifre.
 values-b+it	string	account_pin_remove	-	Rimuovi PIN
 values-b+it	string	account_pin_set	-	Imposta PIN
 values-b+it	string	account_pin_set_title	-	Imposta un PIN
+values-b+it	string	account_pin_unreadable	-	Impossibile leggere i PIN su questo computer, quindi questo profilo resta bloccato.
 values-b+it	string	account_profile_current	-	Attuale
 values-b+it	string	account_profile_locked	-	Bloccato · PIN
 values-b+it	string	account_profile_no_sync	-	Nessuna sincronizzazione
+values-b+it	string	account_profile_not_added	-	Impossibile aggiungere un profilo finché i PIN su questo computer non possono essere letti. Non è cambiato nulla.
 values-b+it	string	account_select_note	-	Cronologia di visione separata · non sono accessi
 values-b+it	string	account_select_title	-	Chi sta guardando?
 values-b+it	string	account_signin_failed_body	-	%s non ha confermato l'accesso. Non è stato salvato nulla.
 values-b+it	string	account_signin_failed_title	-	Impossibile accedere a %s
 values-b+it	string	account_signin_offline_body	-	Per accedere a %s serve una connessione. Riprova quando questo dispositivo sarà di nuovo online.
+values-b+it	string	account_signins_until_quit	-	Gli accessi durano finché non chiudi CloudStream.
 values-b+it	string	account_sync_connected	-	Connesso · accesso eseguito su questo dispositivo
 values-b+it	string	account_sync_needs_browser	-	L'accesso richiede un browser web. Questo dispositivo non ne ha.
 values-b+it	string	account_sync_note	-	Facoltativo. Sincronizza i progressi con un account che hai già.
@@ -27025,20 +27141,24 @@ values-b+iw	string	account_pin_confirm	-	יש להקליד שוב לאישור.
 values-b+iw	string	account_pin_current	-	יש להקליד את ה-PIN הנוכחי.
 values-b+iw	string	account_pin_first_profile	-	אי אפשר לנעול את הפרופיל הראשון
 values-b+iw	string	account_pin_new	-	יש להקליד PIN בן 4 ספרות.
+values-b+iw	string	account_pin_not_saved	-	לא ניתן היה לשמור את שינוי ה-PIN. שום דבר לא השתנה.
 values-b+iw	string	account_pin_off	-	כבוי · כל אחד יכול לפתוח את הפרופיל הזה
 values-b+iw	string	account_pin_on	-	פועל · נדרש לפתיחה
 values-b+iw	string	account_pin_prompt	-	יש להקליד את ה-PIN בן 4 הספרות.
 values-b+iw	string	account_pin_remove	-	הסרת PIN
 values-b+iw	string	account_pin_set	-	הגדרת PIN
 values-b+iw	string	account_pin_set_title	-	הגדרת PIN
+values-b+iw	string	account_pin_unreadable	-	לא ניתן היה לקרוא את קודי ה-PIN במחשב הזה, ולכן הפרופיל הזה נשאר נעול.
 values-b+iw	string	account_profile_current	-	נוכחי
 values-b+iw	string	account_profile_locked	-	נעול · PIN
 values-b+iw	string	account_profile_no_sync	-	ללא סנכרון
+values-b+iw	string	account_profile_not_added	-	לא ניתן להוסיף פרופיל כל עוד אי אפשר לקרוא את קודי ה-PIN במחשב הזה. שום דבר לא השתנה.
 values-b+iw	string	account_select_note	-	היסטוריית צפייה נפרדת · לא התחברויות
 values-b+iw	string	account_select_title	-	מי צופה?
 values-b+iw	string	account_signin_failed_body	-	%s לא אישר את ההתחברות. שום דבר לא נשמר.
 values-b+iw	string	account_signin_failed_title	-	לא ניתן להתחבר אל %s
 values-b+iw	string	account_signin_offline_body	-	ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר.
+values-b+iw	string	account_signins_until_quit	-	ההתחברויות נשמרות עד שתצא מ-CloudStream.
 values-b+iw	string	account_sync_connected	-	מחובר · מחובר במכשיר הזה
 values-b+iw	string	account_sync_needs_browser	-	ההתחברות דורשת דפדפן אינטרנט. אין במכשיר הזה.
 values-b+iw	string	account_sync_note	-	אופציונלי. מסנכרן את התקדמות הצפייה עם חשבון שכבר יש לך.
@@ -27951,20 +28071,24 @@ values-b+ja	string	account_pin_confirm	-	確認のためもう一度入力して
 values-b+ja	string	account_pin_current	-	現在使用中のPINを入力してください。
 values-b+ja	string	account_pin_first_profile	-	最初のプロフィールはロックできません
 values-b+ja	string	account_pin_new	-	4桁のPINを入力してください。
+values-b+ja	string	account_pin_not_saved	-	PIN の変更を保存できませんでした。何も変更されていません。
 values-b+ja	string	account_pin_off	-	オフ · 誰でもこのプロフィールを開けます
 values-b+ja	string	account_pin_on	-	オン · 開くときに入力を求めます
 values-b+ja	string	account_pin_prompt	-	4桁のPINを入力
 values-b+ja	string	account_pin_remove	-	PINを削除
 values-b+ja	string	account_pin_set	-	PINを設定
 values-b+ja	string	account_pin_set_title	-	PINの設定
+values-b+ja	string	account_pin_unreadable	-	このコンピュータの PIN を読み取れなかったため、このプロフィールはロックされたままです。
 values-b+ja	string	account_profile_current	-	現在
 values-b+ja	string	account_profile_locked	-	ロック中 · PIN
 values-b+ja	string	account_profile_no_sync	-	同期なし
+values-b+ja	string	account_profile_not_added	-	このコンピュータの PIN を読み取れないため、プロフィールを追加できませんでした。何も変更されていません。
 values-b+ja	string	account_select_note	-	視聴履歴は別々 · ログインではありません
 values-b+ja	string	account_select_title	-	誰が見ていますか?
 values-b+ja	string	account_signin_failed_body	-	%s でサインインが確認されませんでした。何も保存されていません。
 values-b+ja	string	account_signin_failed_title	-	%s にサインインできませんでした
 values-b+ja	string	account_signin_offline_body	-	%s へのサインインにはインターネット接続が必要です。このデバイスがオンラインに戻ったらもう一度お試しください。
+values-b+ja	string	account_signins_until_quit	-	サインインは CloudStream を終了するまで有効です。
 values-b+ja	string	account_sync_connected	-	接続済み · このデバイスでサインイン中
 values-b+ja	string	account_sync_needs_browser	-	サインインにはウェブブラウザが必要です。このデバイスにはありません。
 values-b+ja	string	account_sync_note	-	任意。視聴の進行状況を既にお持ちのアカウントと同期します。
@@ -29079,20 +29203,24 @@ values-b+kn	string	account_pin_confirm	-	ಖಚಿತಪಡಿಸಲು ಮತ�
 values-b+kn	string	account_pin_current	-	ಈಗ ಬಳಕೆಯಲ್ಲಿರುವ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ.
 values-b+kn	string	account_pin_first_profile	-	ಮೊದಲ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಲಾಕ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ
 values-b+kn	string	account_pin_new	-	4 ಅಂಕಿಯ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ.
+values-b+kn	string	account_pin_not_saved	-	PIN ಬದಲಾವಣೆಯನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ. ಏನೂ ಬದಲಾಗಿಲ್ಲ.
 values-b+kn	string	account_pin_off	-	ಆಫ್ · ಯಾರಾದರೂ ಈ ಪ್ರೊಫೈಲ್ ತೆರೆಯಬಹುದು
 values-b+kn	string	account_pin_on	-	ಆನ್ · ತೆರೆಯಲು ಕೇಳಲಾಗುತ್ತದೆ
 values-b+kn	string	account_pin_prompt	-	4 ಅಂಕಿಯ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ.
 values-b+kn	string	account_pin_remove	-	ಪಿನ್ ತೆಗೆದುಹಾಕಿ
 values-b+kn	string	account_pin_set	-	ಪಿನ್ ಹೊಂದಿಸಿ
 values-b+kn	string	account_pin_set_title	-	ಪಿನ್ ಹೊಂದಿಸಿ
+values-b+kn	string	account_pin_unreadable	-	ಈ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿನ PIN ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಈ ಪ್ರೊಫೈಲ್ ಲಾಕ್ ಆಗಿಯೇ ಇರುತ್ತದೆ.
 values-b+kn	string	account_profile_current	-	ಪ್ರಸ್ತುತ
 values-b+kn	string	account_profile_locked	-	ಲಾಕ್ ಆಗಿದೆ · ಪಿನ್
 values-b+kn	string	account_profile_no_sync	-	ಸಿಂಕ್ ಇಲ್ಲ
+values-b+kn	string	account_profile_not_added	-	ಈ ಕಂಪ್ಯೂಟರ್‌ನ PIN ಗಳನ್ನು ಓದಲಾಗದ ಕಾರಣ ಪ್ರೊಫೈಲ್ ಸೇರಿಸಲಾಗಲಿಲ್ಲ. ಏನೂ ಬದಲಾಗಿಲ್ಲ.
 values-b+kn	string	account_select_note	-	ಪ್ರತ್ಯೇಕ ವೀಕ್ಷಣಾ ಇತಿಹಾಸ · ಲಾಗಿನ್‌ಗಳಲ್ಲ
 values-b+kn	string	account_select_title	-	ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?
 values-b+kn	string	account_signin_failed_body	-	%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ.
 values-b+kn	string	account_signin_failed_title	-	%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ
 values-b+kn	string	account_signin_offline_body	-	%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಂಪರ್ಕ ಬೇಕು. ಈ ಸಾಧನ ಮತ್ತೆ ಆನ್‌ಲೈನ್ ಆದಾಗ ಪ್ರಯತ್ನಿಸಿ.
+values-b+kn	string	account_signins_until_quit	-	CloudStream ಅನ್ನು ಮುಚ್ಚುವವರೆಗೆ ಸೈನ್-ಇನ್‌ಗಳು ಇರುತ್ತವೆ.
 values-b+kn	string	account_sync_connected	-	ಸಂಪರ್ಕಗೊಂಡಿದೆ · ಈ ಸಾಧನದಲ್ಲಿ ಸೈನ್ ಇನ್
 values-b+kn	string	account_sync_needs_browser	-	ಸೈನ್ ಇನ್‌ಗೆ ವೆಬ್ ಬ್ರೌಸರ್ ಬೇಕು. ಈ ಸಾಧನದಲ್ಲಿ ಇಲ್ಲ.
 values-b+kn	string	account_sync_note	-	ಐಚ್ಛಿಕ. ವೀಕ್ಷಣಾ ಪ್ರಗತಿಯನ್ನು ನಿಮ್ಮ ಈಗಿರುವ ಖಾತೆಗೆ ಸಿಂಕ್ ಮಾಡುತ್ತದೆ.
@@ -29581,20 +29709,24 @@ values-b+ko	string	account_pin_confirm	-	확인을 위해 한 번 더 입력하�
 values-b+ko	string	account_pin_current	-	현재 사용 중인 PIN을 입력하세요.
 values-b+ko	string	account_pin_first_profile	-	첫 번째 프로필은 잠글 수 없습니다
 values-b+ko	string	account_pin_new	-	4자리 PIN을 입력하세요.
+values-b+ko	string	account_pin_not_saved	-	PIN 변경 사항을 저장하지 못했습니다. 아무것도 바뀌지 않았습니다.
 values-b+ko	string	account_pin_off	-	끔 · 누구나 이 프로필을 열 수 있음
 values-b+ko	string	account_pin_on	-	켬 · 열 때 PIN 요청
 values-b+ko	string	account_pin_prompt	-	4자리 PIN을 입력하세요.
 values-b+ko	string	account_pin_remove	-	PIN 제거
 values-b+ko	string	account_pin_set	-	PIN 설정
 values-b+ko	string	account_pin_set_title	-	PIN 설정
+values-b+ko	string	account_pin_unreadable	-	이 컴퓨터의 PIN을 읽을 수 없어 이 프로필은 잠긴 상태로 유지됩니다.
 values-b+ko	string	account_profile_current	-	현재
 values-b+ko	string	account_profile_locked	-	잠김 · PIN
 values-b+ko	string	account_profile_no_sync	-	동기화 없음
+values-b+ko	string	account_profile_not_added	-	이 컴퓨터의 PIN을 읽을 수 없어 프로필을 추가하지 못했습니다. 아무것도 바뀌지 않았습니다.
 values-b+ko	string	account_select_note	-	시청 기록은 따로 · 로그인이 아님
 values-b+ko	string	account_select_title	-	누가 보고 있나요?
 values-b+ko	string	account_signin_failed_body	-	%s에서 로그인을 확인하지 않았습니다. 저장된 내용이 없습니다.
 values-b+ko	string	account_signin_failed_title	-	%s에 로그인할 수 없음
 values-b+ko	string	account_signin_offline_body	-	%s에 로그인하려면 인터넷 연결이 필요합니다. 이 기기가 다시 온라인 상태가 되면 시도하세요.
+values-b+ko	string	account_signins_until_quit	-	로그인은 CloudStream을 종료할 때까지 유지됩니다.
 values-b+ko	string	account_sync_connected	-	연결됨 · 이 기기에서 로그인됨
 values-b+ko	string	account_sync_needs_browser	-	로그인하려면 웹 브라우저가 필요합니다. 이 기기에는 없습니다.
 values-b+ko	string	account_sync_note	-	선택 사항입니다. 이미 있는 계정과 시청 진행 상황을 동기화합니다.
@@ -30746,20 +30878,24 @@ values-b+lt	string	account_pin_confirm	-	Įveskite dar kartą, kad patvirtintum�
 values-b+lt	string	account_pin_current	-	Įveskite dabar naudojamą PIN.
 values-b+lt	string	account_pin_first_profile	-	Pirmojo profilio užrakinti negalima
 values-b+lt	string	account_pin_new	-	Įveskite 4 skaitmenų PIN.
+values-b+lt	string	account_pin_not_saved	-	PIN pakeitimo išsaugoti nepavyko. Niekas nepakeista.
 values-b+lt	string	account_pin_off	-	Išjungta · šį profilį gali atidaryti bet kas
 values-b+lt	string	account_pin_on	-	Įjungta · prašoma atidarant
 values-b+lt	string	account_pin_prompt	-	Įveskite 4 skaitmenų PIN.
 values-b+lt	string	account_pin_remove	-	Pašalinti PIN
 values-b+lt	string	account_pin_set	-	Nustatyti PIN
 values-b+lt	string	account_pin_set_title	-	PIN nustatymas
+values-b+lt	string	account_pin_unreadable	-	Nepavyko nuskaityti šio kompiuterio PIN kodų, todėl šis profilis lieka užrakintas.
 values-b+lt	string	account_profile_current	-	Dabartinis
 values-b+lt	string	account_profile_locked	-	Užrakinta · PIN
 values-b+lt	string	account_profile_no_sync	-	Be sinchronizavimo
+values-b+lt	string	account_profile_not_added	-	Negalima pridėti profilio, kol neįmanoma nuskaityti šio kompiuterio PIN kodų. Niekas nepakeista.
 values-b+lt	string	account_select_note	-	Atskira žiūrėjimo istorija · ne prisijungimai
 values-b+lt	string	account_select_title	-	Kas žiūri?
 values-b+lt	string	account_signin_failed_body	-	%s nepatvirtino prisijungimo. Niekas neišsaugota.
 values-b+lt	string	account_signin_failed_title	-	Nepavyko prisijungti prie %s
 values-b+lt	string	account_signin_offline_body	-	Norint prisijungti prie %s, reikia ryšio. Bandykite dar kartą, kai šis įrenginys vėl bus prisijungęs prie interneto.
+values-b+lt	string	account_signins_until_quit	-	Prisijungimai galioja, kol išeisite iš CloudStream.
 values-b+lt	string	account_sync_connected	-	Prijungta · prisijungta šiame įrenginyje
 values-b+lt	string	account_sync_needs_browser	-	Prisijungti reikia žiniatinklio naršyklės. Šiame įrenginyje jos nėra.
 values-b+lt	string	account_sync_note	-	Neprivaloma. Sinchronizuoja žiūrėjimo eigą su jau turima paskyra.
@@ -31459,20 +31595,24 @@ values-b+lv	string	account_pin_confirm	-	Ievadiet to vēlreiz, lai apstiprinātu
 values-b+lv	string	account_pin_current	-	Ievadiet pašlaik izmantoto PIN kodu.
 values-b+lv	string	account_pin_first_profile	-	Pirmo profilu nevar bloķēt
 values-b+lv	string	account_pin_new	-	Ievadiet 4 ciparu PIN kodu.
+values-b+lv	string	account_pin_not_saved	-	PIN maiņu neizdevās saglabāt. Nekas netika mainīts.
 values-b+lv	string	account_pin_off	-	Izslēgts · ikviens var atvērt šo profilu
 values-b+lv	string	account_pin_on	-	Ieslēgts · tiek prasīts, lai to atvērtu
 values-b+lv	string	account_pin_prompt	-	Ievadiet četrciparu PIN kodu.
 values-b+lv	string	account_pin_remove	-	Noņemt PIN kodu
 values-b+lv	string	account_pin_set	-	Iestatīt PIN kodu
 values-b+lv	string	account_pin_set_title	-	PIN koda iestatīšana
+values-b+lv	string	account_pin_unreadable	-	Neizdevās nolasīt šī datora PIN kodus, tāpēc šis profils paliek bloķēts.
 values-b+lv	string	account_profile_current	-	Pašreizējais
 values-b+lv	string	account_profile_locked	-	Bloķēts · PIN
 values-b+lv	string	account_profile_no_sync	-	Bez sinhronizācijas
+values-b+lv	string	account_profile_not_added	-	Nevar pievienot profilu, kamēr šī datora PIN kodus nevar nolasīt. Nekas netika mainīts.
 values-b+lv	string	account_select_note	-	Atsevišķa skatīšanās vēsture · nav pieteikšanās
 values-b+lv	string	account_select_title	-	Kas skatās?
 values-b+lv	string	account_signin_failed_body	-	%s neapstiprināja pieteikšanos. Nekas netika saglabāts.
 values-b+lv	string	account_signin_failed_title	-	Neizdevās pieteikties pakalpojumā %s
 values-b+lv	string	account_signin_offline_body	-	Lai pieteiktos pakalpojumā %s, nepieciešams savienojums. Mēģiniet vēlreiz, kad šī ierīce atkal būs tiešsaistē.
+values-b+lv	string	account_signins_until_quit	-	Pierakstīšanās ir spēkā, līdz aizverat CloudStream.
 values-b+lv	string	account_sync_connected	-	Savienots · pieteicies šajā ierīcē
 values-b+lv	string	account_sync_needs_browser	-	Pieteikšanās prasa tīmekļa pārlūku. Šajā ierīcē tāda nav.
 values-b+lv	string	account_sync_note	-	Neobligāti. Sinhronizē skatīšanās progresu ar kontu, kas jums jau ir.
@@ -32471,20 +32611,24 @@ values-b+mk	string	account_pin_confirm	-	Внеси го повторно за �
 values-b+mk	string	account_pin_current	-	Внеси го PIN-от што се користи сега.
 values-b+mk	string	account_pin_first_profile	-	Првиот профил не може да се заклучи
 values-b+mk	string	account_pin_new	-	Внеси PIN со 4 цифри.
+values-b+mk	string	account_pin_not_saved	-	Промената на PIN не можеше да се зачува. Ништо не е променето.
 values-b+mk	string	account_pin_off	-	Исклучено · секој може да го отвори овој профил
 values-b+mk	string	account_pin_on	-	Вклучено · се бара при отворање
 values-b+mk	string	account_pin_prompt	-	Внеси го PIN-от со 4 цифри.
 values-b+mk	string	account_pin_remove	-	Отстрани PIN
 values-b+mk	string	account_pin_set	-	Постави PIN
 values-b+mk	string	account_pin_set_title	-	Постави PIN
+values-b+mk	string	account_pin_unreadable	-	PIN-овите на овој компјутер не можат да се прочитаат, па овој профил останува заклучен.
 values-b+mk	string	account_profile_current	-	Тековен
 values-b+mk	string	account_profile_locked	-	Заклучен · PIN
 values-b+mk	string	account_profile_no_sync	-	Без синхронизација
+values-b+mk	string	account_profile_not_added	-	Не може да се додаде профил додека PIN-овите на овој компјутер не можат да се прочитаат. Ништо не е променето.
 values-b+mk	string	account_select_note	-	Посебна историја на гледање · не се најавувања
 values-b+mk	string	account_select_title	-	Кој гледа?
 values-b+mk	string	account_signin_failed_body	-	%s не ја потврди најавата. Ништо не е зачувано.
 values-b+mk	string	account_signin_failed_title	-	Не може да се најавиш на %s
 values-b+mk	string	account_signin_offline_body	-	За најава на %s е потребна врска. Обиди се повторно кога уредот ќе биде пак на интернет.
+values-b+mk	string	account_signins_until_quit	-	Најавите траат додека не излезете од CloudStream.
 values-b+mk	string	account_sync_connected	-	Поврзано · најавено на овој уред
 values-b+mk	string	account_sync_needs_browser	-	За најава е потребен веб-прелистувач. Овој уред нема.
 values-b+mk	string	account_sync_note	-	Опционално. Го синхронизира напредокот со сметка што веќе ја имате.
@@ -33596,20 +33740,24 @@ values-b+ml	string	account_pin_confirm	-	സ്ഥിരീകരിക്കാ
 values-b+ml	string	account_pin_current	-	ഇപ്പോൾ ഉപയോഗത്തിലുള്ള പിൻ ടൈപ്പ് ചെയ്യുക.
 values-b+ml	string	account_pin_first_profile	-	ആദ്യ പ്രൊഫൈൽ ലോക്ക് ചെയ്യാനാകില്ല
 values-b+ml	string	account_pin_new	-	4 അക്ക പിൻ ടൈപ്പ് ചെയ്യുക.
+values-b+ml	string	account_pin_not_saved	-	PIN മാറ്റം സേവ് ചെയ്യാനായില്ല. ഒന്നും മാറിയിട്ടില്ല.
 values-b+ml	string	account_pin_off	-	ഓഫ് · ആർക്കും ഈ പ്രൊഫൈൽ തുറക്കാം
 values-b+ml	string	account_pin_on	-	ഓൺ · തുറക്കാൻ പിൻ ചോദിക്കും
 values-b+ml	string	account_pin_prompt	-	4 അക്ക പിൻ നൽകുക.
 values-b+ml	string	account_pin_remove	-	പിൻ നീക്കം ചെയ്യുക
 values-b+ml	string	account_pin_set	-	പിൻ സജ്ജീകരിക്കുക
 values-b+ml	string	account_pin_set_title	-	ഒരു പിൻ സജ്ജീകരിക്കുക
+values-b+ml	string	account_pin_unreadable	-	ഈ കമ്പ്യൂട്ടറിലെ PIN-കൾ വായിക്കാനായില്ല, അതിനാൽ ഈ പ്രൊഫൈൽ ലോക്ക് ചെയ്‌ത നിലയിൽ തുടരും.
 values-b+ml	string	account_profile_current	-	നിലവിലുള്ളത്
 values-b+ml	string	account_profile_locked	-	ലോക്ക് ചെയ്തു · പിൻ
 values-b+ml	string	account_profile_no_sync	-	സമന്വയമില്ല
+values-b+ml	string	account_profile_not_added	-	ഈ കമ്പ്യൂട്ടറിലെ PIN-കൾ വായിക്കാനാകാത്തതിനാൽ പ്രൊഫൈൽ ചേർക്കാനായില്ല. ഒന്നും മാറിയിട്ടില്ല.
 values-b+ml	string	account_select_note	-	പ്രത്യേക കാഴ്ച ചരിത്രം · ലോഗിനുകളല്ല
 values-b+ml	string	account_select_title	-	ആരാണ് കാണുന്നത്?
 values-b+ml	string	account_signin_failed_body	-	%s സൈൻ-ഇൻ സ്ഥിരീകരിച്ചില്ല. ഒന്നും സംരക്ഷിച്ചില്ല.
 values-b+ml	string	account_signin_failed_title	-	%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാനായില്ല
 values-b+ml	string	account_signin_offline_body	-	%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാൻ കണക്ഷൻ ആവശ്യമാണ്. ഈ ഉപകരണം വീണ്ടും ഓൺലൈനാകുമ്പോൾ ശ്രമിക്കുക.
+values-b+ml	string	account_signins_until_quit	-	CloudStream അടയ്ക്കുന്നതുവരെ സൈൻ-ഇനുകൾ നിലനിൽക്കും.
 values-b+ml	string	account_sync_connected	-	കണക്റ്റ് ചെയ്തു · ഈ ഉപകരണത്തിൽ സൈൻ ഇൻ ചെയ്തു
 values-b+ml	string	account_sync_needs_browser	-	സൈൻ ഇൻ ചെയ്യാൻ വെബ് ബ്രൗസർ വേണം. ഈ ഉപകരണത്തിൽ ഇല്ല.
 values-b+ml	string	account_sync_note	-	ഓപ്ഷണൽ. കാഴ്ചയുടെ പുരോഗതി നിങ്ങൾക്ക് ഇതിനകമുള്ള അക്കൗണ്ടുമായി സമന്വയിപ്പിക്കുന്നു.
@@ -34257,20 +34405,24 @@ values-b+ms	string	account_pin_confirm	-	Taip sekali lagi untuk mengesahkan.
 values-b+ms	string	account_pin_current	-	Taip PIN yang sedang digunakan.
 values-b+ms	string	account_pin_first_profile	-	Profil pertama tidak boleh dikunci
 values-b+ms	string	account_pin_new	-	Taip PIN 4 digit.
+values-b+ms	string	account_pin_not_saved	-	Perubahan PIN tidak dapat disimpan. Tiada apa-apa yang berubah.
 values-b+ms	string	account_pin_off	-	Mati · sesiapa sahaja boleh membuka profil ini
 values-b+ms	string	account_pin_on	-	Hidup · diminta untuk membukanya
 values-b+ms	string	account_pin_prompt	-	Taip PIN 4 digit.
 values-b+ms	string	account_pin_remove	-	Alih keluar PIN
 values-b+ms	string	account_pin_set	-	Tetapkan PIN
 values-b+ms	string	account_pin_set_title	-	Tetapkan PIN
+values-b+ms	string	account_pin_unreadable	-	PIN pada komputer ini tidak dapat dibaca, jadi profil ini kekal dikunci.
 values-b+ms	string	account_profile_current	-	Semasa
 values-b+ms	string	account_profile_locked	-	Dikunci · PIN
 values-b+ms	string	account_profile_no_sync	-	Tiada penyegerakan
+values-b+ms	string	account_profile_not_added	-	Profil tidak dapat ditambah selagi PIN pada komputer ini tidak dapat dibaca. Tiada apa-apa yang berubah.
 values-b+ms	string	account_select_note	-	Sejarah tontonan berasingan · bukan log masuk
 values-b+ms	string	account_select_title	-	Siapa yang menonton?
 values-b+ms	string	account_signin_failed_body	-	%s tidak mengesahkan log masuk. Tiada apa-apa yang disimpan.
 values-b+ms	string	account_signin_failed_title	-	Tidak dapat log masuk ke %s
 values-b+ms	string	account_signin_offline_body	-	Log masuk ke %s memerlukan sambungan. Cuba lagi apabila peranti ini kembali dalam talian.
+values-b+ms	string	account_signins_until_quit	-	Log masuk kekal sehingga anda keluar dari CloudStream.
 values-b+ms	string	account_sync_connected	-	Bersambung · log masuk pada peranti ini
 values-b+ms	string	account_sync_needs_browser	-	Log masuk memerlukan pelayar web. Peranti ini tiada.
 values-b+ms	string	account_sync_note	-	Pilihan. Menyegerakkan kemajuan tontonan dengan akaun yang anda sudah ada.
@@ -35244,20 +35396,24 @@ values-b+mt	string	account_pin_confirm	-	Erġa' ittajpjah biex tikkonferma.
 values-b+mt	string	account_pin_current	-	Ittajpja l-PIN li qed jintuża issa.
 values-b+mt	string	account_pin_first_profile	-	L-ewwel profil ma jistax jissakkar
 values-b+mt	string	account_pin_new	-	Ittajpja PIN ta' 4 ċifri.
+values-b+mt	string	account_pin_not_saved	-	Il-bidla tal-PIN ma setgħetx tiġi ssejvjata. Xejn ma nbidel.
 values-b+mt	string	account_pin_off	-	Mitfi · kulħadd jista' jiftaħ dan il-profil
 values-b+mt	string	account_pin_on	-	Mixgħul · jintalab biex jinfetaħ
 values-b+mt	string	account_pin_prompt	-	Ittajpja l-PIN ta' 4 ċifri.
 values-b+mt	string	account_pin_remove	-	Neħħi l-PIN
 values-b+mt	string	account_pin_set	-	Issettja l-PIN
 values-b+mt	string	account_pin_set_title	-	Issettja PIN
+values-b+mt	string	account_pin_unreadable	-	Ma setax jinqraw il-PINs fuq dan il-kompjuter, għalhekk dan il-profil jibqa' msakkar.
 values-b+mt	string	account_profile_current	-	Attwali
 values-b+mt	string	account_profile_locked	-	Imsakkar · PIN
 values-b+mt	string	account_profile_no_sync	-	L-ebda sinkronizzazzjoni
+values-b+mt	string	account_profile_not_added	-	Ma setax jiżdied profil sakemm il-PINs fuq dan il-kompjuter ma jistgħux jinqraw. Xejn ma nbidel.
 values-b+mt	string	account_select_note	-	Storja tal-wiri separata · mhux logins
 values-b+mt	string	account_select_title	-	Min qed jara?
 values-b+mt	string	account_signin_failed_body	-	%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn.
 values-b+mt	string	account_signin_failed_title	-	Ma setgħetx issir id-dħul f'%s
 values-b+mt	string	account_signin_offline_body	-	Biex tidħol f'%s trid konnessjoni. Erġa' pprova meta dan l-apparat jerġa' jkun online.
+values-b+mt	string	account_signins_until_quit	-	Id-dħul idum sakemm toħroġ minn CloudStream.
 values-b+mt	string	account_sync_connected	-	Imqabbad · dħalt fuq dan l-apparat
 values-b+mt	string	account_sync_needs_browser	-	Id-dħul jeħtieġ browser tal-web. Dan l-apparat m'għandux.
 values-b+mt	string	account_sync_note	-	Fakultattiv. Jissinkronizza l-progress mal-kont li diġà għandek.
@@ -35737,20 +35893,24 @@ values-b+my	string	account_pin_confirm	-	အတည်ပြုရန် ထပ�
 values-b+my	string	account_pin_current	-	လက်ရှိသုံးနေသော PIN ကို ရိုက်ထည့်ပါ။
 values-b+my	string	account_pin_first_profile	-	ပထမပရိုဖိုင်ကို လော့ခ်ချ၍ မရပါ
 values-b+my	string	account_pin_new	-	ဂဏန်း ၄ လုံးပါ PIN တစ်ခု ရိုက်ထည့်ပါ။
+values-b+my	string	account_pin_not_saved	-	PIN ပြောင်းလဲမှုကို သိမ်းဆည်း၍ မရပါ။ ဘာမျှ မပြောင်းလဲပါ။
 values-b+my	string	account_pin_off	-	ပိတ်ထား · မည်သူမဆို ဤပရိုဖိုင်ကို ဖွင့်နိုင်သည်
 values-b+my	string	account_pin_on	-	ဖွင့်ထား · ဖွင့်ရန် တောင်းမည်
 values-b+my	string	account_pin_prompt	-	ဂဏန်း ၄ လုံးပါ PIN ကို ရိုက်ထည့်ပါ။
 values-b+my	string	account_pin_remove	-	PIN ဖယ်ရှားရန်
 values-b+my	string	account_pin_set	-	PIN သတ်မှတ်ရန်
 values-b+my	string	account_pin_set_title	-	PIN သတ်မှတ်ခြင်း
+values-b+my	string	account_pin_unreadable	-	ဤကွန်ပျူတာရှိ PIN များကို ဖတ်၍မရပါ၊ ထို့ကြောင့် ဤပရိုဖိုင်သည် လော့ခ်ချထားဆဲဖြစ်သည်။
 values-b+my	string	account_profile_current	-	လက်ရှိ
 values-b+my	string	account_profile_locked	-	လော့ခ်ချထား · PIN
 values-b+my	string	account_profile_no_sync	-	စင့်ခ်မရှိ
+values-b+my	string	account_profile_not_added	-	ဤကွန်ပျူတာရှိ PIN များကို ဖတ်၍မရသောကြောင့် ပရိုဖိုင် ထည့်၍မရပါ။ ဘာမျှ မပြောင်းလဲပါ။
 values-b+my	string	account_select_note	-	သီးခြားကြည့်ရှုမှုမှတ်တမ်း · ဝင်ရောက်မှုမဟုတ်
 values-b+my	string	account_select_title	-	ဘယ်သူကြည့်နေလဲ?
 values-b+my	string	account_signin_failed_body	-	%s က ဝင်ရောက်မှုကို အတည်မပြုခဲ့ပါ။ ဘာမျှ သိမ်းဆည်းမထားပါ။
 values-b+my	string	account_signin_failed_title	-	%s သို့ ဝင်၍ မရပါ
 values-b+my	string	account_signin_offline_body	-	%s သို့ ဝင်ရန် ချိတ်ဆက်မှု လိုအပ်သည်။ ဤစက် အွန်လိုင်း ပြန်ဖြစ်သောအခါ ထပ်စမ်းကြည့်ပါ။
+values-b+my	string	account_signins_until_quit	-	CloudStream ကို ပိတ်သည်အထိ အကောင့်ဝင်မှုများ ရှိနေမည်။
 values-b+my	string	account_sync_connected	-	ချိတ်ဆက်ထား · ဤစက်တွင် ဝင်ထား
 values-b+my	string	account_sync_needs_browser	-	ဝင်ရောက်ရန် ဝဘ်ဘရောက်ဆာ လိုအပ်သည်။ ဤစက်တွင် မရှိပါ။
 values-b+my	string	account_sync_note	-	ရွေးချယ်နိုင်သည်။ ကြည့်ရှုမှုတိုးတက်မှုကို သင့်တွင်ရှိပြီးသားအကောင့်နှင့် စင့်ခ်လုပ်သည်။
@@ -36654,20 +36814,24 @@ values-b+ne	string	account_pin_confirm	-	पुष्टि गर्न फे�
 values-b+ne	string	account_pin_current	-	अहिले प्रयोगमा रहेको पिन टाइप गर्नुहोस्।
 values-b+ne	string	account_pin_first_profile	-	पहिलो प्रोफाइल लक गर्न सकिँदैन
 values-b+ne	string	account_pin_new	-	४ अङ्कको पिन टाइप गर्नुहोस्।
+values-b+ne	string	account_pin_not_saved	-	PIN परिवर्तन सुरक्षित गर्न सकिएन। केही परिवर्तन भएन।
 values-b+ne	string	account_pin_off	-	निष्क्रिय · जो कोहीले यो प्रोफाइल खोल्न सक्छ
 values-b+ne	string	account_pin_on	-	सक्रिय · खोल्दा सोधिन्छ
 values-b+ne	string	account_pin_prompt	-	४ अङ्कको पिन टाइप गर्नुहोस्।
 values-b+ne	string	account_pin_remove	-	पिन हटाउनुहोस्
 values-b+ne	string	account_pin_set	-	पिन सेट गर्नुहोस्
 values-b+ne	string	account_pin_set_title	-	पिन सेट गर्नुहोस्
+values-b+ne	string	account_pin_unreadable	-	यस कम्प्युटरका PIN पढ्न सकिएन, त्यसैले यो प्रोफाइल लक नै रहन्छ।
 values-b+ne	string	account_profile_current	-	हालको
 values-b+ne	string	account_profile_locked	-	लक गरिएको · पिन
 values-b+ne	string	account_profile_no_sync	-	सिंक छैन
+values-b+ne	string	account_profile_not_added	-	यस कम्प्युटरका PIN पढ्न नसकिँदासम्म प्रोफाइल थप्न सकिएन। केही परिवर्तन भएन।
 values-b+ne	string	account_select_note	-	छुट्टै हेराइ इतिहास · लगइन होइन
 values-b+ne	string	account_select_title	-	को हेर्दै हुनुहुन्छ?
 values-b+ne	string	account_signin_failed_body	-	%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।
 values-b+ne	string	account_signin_failed_title	-	%s मा साइन इन गर्न सकिएन
 values-b+ne	string	account_signin_offline_body	-	%s मा साइन इन गर्न इन्टरनेट जडान चाहिन्छ। यो उपकरण फेरि अनलाइन भएपछि पुनः प्रयास गर्नुहोस्।
+values-b+ne	string	account_signins_until_quit	-	CloudStream बन्द नगरेसम्म साइन-इन रहन्छ।
 values-b+ne	string	account_sync_connected	-	जडान भयो · यो उपकरणमा साइन इन
 values-b+ne	string	account_sync_needs_browser	-	साइन इन गर्न वेब ब्राउजर चाहिन्छ। यो उपकरणमा छैन।
 values-b+ne	string	account_sync_note	-	वैकल्पिक। हेराइको प्रगति तपाईंसँग पहिल्यै भएको खातासँग सिंक गर्छ।
@@ -37173,20 +37337,24 @@ values-b+nl	string	account_pin_confirm	-	Typ hem nogmaals ter bevestiging.
 values-b+nl	string	account_pin_current	-	Typ de huidige PIN.
 values-b+nl	string	account_pin_first_profile	-	Het eerste profiel kan niet worden vergrendeld
 values-b+nl	string	account_pin_new	-	Typ een PIN van 4 cijfers.
+values-b+nl	string	account_pin_not_saved	-	De pincodewijziging kon niet worden opgeslagen. Er is niets gewijzigd.
 values-b+nl	string	account_pin_off	-	Uit · iedereen kan dit profiel openen
 values-b+nl	string	account_pin_on	-	Aan · gevraagd bij openen
 values-b+nl	string	account_pin_prompt	-	Typ de PIN van 4 cijfers.
 values-b+nl	string	account_pin_remove	-	PIN verwijderen
 values-b+nl	string	account_pin_set	-	PIN instellen
 values-b+nl	string	account_pin_set_title	-	PIN instellen
+values-b+nl	string	account_pin_unreadable	-	De pincodes op deze computer konden niet worden gelezen, dus dit profiel blijft vergrendeld.
 values-b+nl	string	account_profile_current	-	Huidig
 values-b+nl	string	account_profile_locked	-	Vergrendeld · pincode
 values-b+nl	string	account_profile_no_sync	-	Geen synchronisatie
+values-b+nl	string	account_profile_not_added	-	Er kan geen profiel worden toegevoegd zolang de pincodes op deze computer niet kunnen worden gelezen. Er is niets gewijzigd.
 values-b+nl	string	account_select_note	-	Aparte kijkgeschiedenis · geen aanmeldingen
 values-b+nl	string	account_select_title	-	Wie kijkt er?
 values-b+nl	string	account_signin_failed_body	-	%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen.
 values-b+nl	string	account_signin_failed_title	-	Kan niet aanmelden bij %s
 values-b+nl	string	account_signin_offline_body	-	Aanmelden bij %s vereist een verbinding. Probeer het opnieuw als dit apparaat weer online is.
+values-b+nl	string	account_signins_until_quit	-	Aanmeldingen blijven tot je CloudStream afsluit.
 values-b+nl	string	account_sync_connected	-	Verbonden · aangemeld op dit apparaat
 values-b+nl	string	account_sync_needs_browser	-	Aanmelden vereist een webbrowser. Dit apparaat heeft er geen.
 values-b+nl	string	account_sync_note	-	Optioneel. Synchroniseert je kijkvoortgang met een account dat je al hebt.
@@ -38252,20 +38420,24 @@ values-b+nn	string	account_pin_confirm	-	Skriv han inn igjen for å stadfeste.
 values-b+nn	string	account_pin_current	-	Skriv inn PIN-koden som er i bruk no.
 values-b+nn	string	account_pin_first_profile	-	Den første profilen kan ikkje låsast
 values-b+nn	string	account_pin_new	-	Skriv inn ein firesifra PIN.
+values-b+nn	string	account_pin_not_saved	-	Kunne ikkje lagre PIN-endringa. Ingenting vart endra.
 values-b+nn	string	account_pin_off	-	Av · alle kan opne denne profilen
 values-b+nn	string	account_pin_on	-	På · blir spurd om ved opning
 values-b+nn	string	account_pin_prompt	-	Skriv inn den firesifra PIN-koden.
 values-b+nn	string	account_pin_remove	-	Fjern PIN
 values-b+nn	string	account_pin_set	-	Vel PIN
 values-b+nn	string	account_pin_set_title	-	Vel ein PIN
+values-b+nn	string	account_pin_unreadable	-	Kunne ikkje lese PIN-kodane på denne datamaskina, så denne profilen held fram med å vere låst.
 values-b+nn	string	account_profile_current	-	Gjeldande
 values-b+nn	string	account_profile_locked	-	Låst · PIN
 values-b+nn	string	account_profile_no_sync	-	Inga synkronisering
+values-b+nn	string	account_profile_not_added	-	Kunne ikkje leggje til ein profil medan PIN-kodane på denne datamaskina ikkje kan lesast. Ingenting vart endra.
 values-b+nn	string	account_select_note	-	Eiga sjåhistorikk · ikkje innloggingar
 values-b+nn	string	account_select_title	-	Kven ser på?
 values-b+nn	string	account_signin_failed_body	-	%s stadfesta ikkje innlogginga. Ingenting vart lagra.
 values-b+nn	string	account_signin_failed_title	-	Kunne ikkje logge inn på %s
 values-b+nn	string	account_signin_offline_body	-	Innlogging på %s krev tilkopling. Prøv igjen når denne eininga er tilkopla att.
+values-b+nn	string	account_signins_until_quit	-	Innloggingar varer til du avsluttar CloudStream.
 values-b+nn	string	account_sync_connected	-	Tilkopla · logga inn på denne eininga
 values-b+nn	string	account_sync_needs_browser	-	Innlogging krev ein nettlesar. Denne eininga har ingen.
 values-b+nn	string	account_sync_note	-	Valfritt. Synkroniserer framdrifta med ein konto du alt har.
@@ -38848,20 +39020,24 @@ values-b+no	string	account_pin_confirm	-	Skriv den inn igjen for å bekrefte.
 values-b+no	string	account_pin_current	-	Skriv inn PIN-koden som brukes nå.
 values-b+no	string	account_pin_first_profile	-	Den første profilen kan ikke låses
 values-b+no	string	account_pin_new	-	Skriv inn en firesifret PIN.
+values-b+no	string	account_pin_not_saved	-	Kunne ikke lagre PIN-endringen. Ingenting ble endret.
 values-b+no	string	account_pin_off	-	Av · alle kan åpne denne profilen
 values-b+no	string	account_pin_on	-	På · kreves for å åpne den
 values-b+no	string	account_pin_prompt	-	Skriv inn den firesifrede PIN-koden.
 values-b+no	string	account_pin_remove	-	Fjern PIN
 values-b+no	string	account_pin_set	-	Angi PIN
 values-b+no	string	account_pin_set_title	-	Angi en PIN
+values-b+no	string	account_pin_unreadable	-	Kunne ikke lese PIN-kodene på denne datamaskinen, så denne profilen forblir låst.
 values-b+no	string	account_profile_current	-	Gjeldende
 values-b+no	string	account_profile_locked	-	Låst · PIN
 values-b+no	string	account_profile_no_sync	-	Ingen synkronisering
+values-b+no	string	account_profile_not_added	-	Kunne ikke legge til en profil mens PIN-kodene på denne datamaskinen ikke kan leses. Ingenting ble endret.
 values-b+no	string	account_select_note	-	Egen seerhistorikk · ikke innlogginger
 values-b+no	string	account_select_title	-	Hvem ser på?
 values-b+no	string	account_signin_failed_body	-	%s bekreftet ikke innloggingen. Ingenting ble lagret.
 values-b+no	string	account_signin_failed_title	-	Kunne ikke logge inn på %s
 values-b+no	string	account_signin_offline_body	-	Innlogging på %s krever tilkobling. Prøv igjen når denne enheten er på nett igjen.
+values-b+no	string	account_signins_until_quit	-	Innlogginger varer til du avslutter CloudStream.
 values-b+no	string	account_sync_connected	-	Tilkoblet · logget inn på denne enheten
 values-b+no	string	account_sync_needs_browser	-	Innlogging krever en nettleser. Denne enheten har ingen.
 values-b+no	string	account_sync_note	-	Valgfritt. Synkroniserer fremdriften med en konto du allerede har.
@@ -39756,20 +39932,24 @@ values-b+or	string	account_pin_confirm	-	ନିଶ୍ଚିତ କରିବା�
 values-b+or	string	account_pin_current	-	ବର୍ତ୍ତମାନ ବ୍ୟବହୃତ PIN ଟାଇପ୍ କରନ୍ତୁ।
 values-b+or	string	account_pin_first_profile	-	ପ୍ରଥମ ପ୍ରୋଫାଇଲ୍ ଲକ୍ କରାଯାଇପାରିବ ନାହିଁ
 values-b+or	string	account_pin_new	-	ଏକ 4-ଅଙ୍କ ବିଶିଷ୍ଟ PIN ଟାଇପ୍ କରନ୍ତୁ।
+values-b+or	string	account_pin_not_saved	-	PIN ପରିବର୍ତ୍ତନ ସେଭ୍ କରିହେଲା ନାହିଁ। କିଛି ବଦଳିନାହିଁ।
 values-b+or	string	account_pin_off	-	ବନ୍ଦ · ଯେକେହି ଏହି ପ୍ରୋଫାଇଲ୍ ଖୋଲିପାରିବେ
 values-b+or	string	account_pin_on	-	ଚାଲୁ · ଖୋଲିବା ପାଇଁ ପଚରାଯାଏ
 values-b+or	string	account_pin_prompt	-	4-ଅଙ୍କ ବିଶିଷ୍ଟ PIN ଟାଇପ୍ କରନ୍ତୁ।
 values-b+or	string	account_pin_remove	-	PIN ହଟାନ୍ତୁ
 values-b+or	string	account_pin_set	-	PIN ସେଟ୍ କରନ୍ତୁ
 values-b+or	string	account_pin_set_title	-	ଏକ PIN ସେଟ୍ କରନ୍ତୁ
+values-b+or	string	account_pin_unreadable	-	ଏହି କମ୍ପ୍ୟୁଟରରେ PIN ପଢ଼ିହେଲା ନାହିଁ, ତେଣୁ ଏହି ପ୍ରୋଫାଇଲ୍ ଲକ୍ ହୋଇ ରହିବ।
 values-b+or	string	account_profile_current	-	ବର୍ତ୍ତମାନର
 values-b+or	string	account_profile_locked	-	ଲକ୍ ହୋଇଛି · PIN
 values-b+or	string	account_profile_no_sync	-	ସିଙ୍କ୍ ନାହିଁ
+values-b+or	string	account_profile_not_added	-	ଏହି କମ୍ପ୍ୟୁଟରର PIN ପଢ଼ିହେଉ ନଥିବାରୁ ପ୍ରୋଫାଇଲ୍ ଯୋଗ କରିହେଲା ନାହିଁ। କିଛି ବଦଳିନାହିଁ।
 values-b+or	string	account_select_note	-	ଅଲଗା ଦେଖିବା ଇତିହାସ · ଲଗଇନ୍ ନୁହେଁ
 values-b+or	string	account_select_title	-	କିଏ ଦେଖୁଛନ୍ତି?
 values-b+or	string	account_signin_failed_body	-	%s ସାଇନ୍-ଇନ୍ ନିଶ୍ଚିତ କଲା ନାହିଁ। କିଛି ସେଭ୍ ହୋଇନାହିଁ।
 values-b+or	string	account_signin_failed_title	-	%s ରେ ସାଇନ୍ ଇନ୍ କରିହେଲା ନାହିଁ
 values-b+or	string	account_signin_offline_body	-	%s ରେ ସାଇନ୍ ଇନ୍ କରିବାକୁ ସଂଯୋଗ ଆବଶ୍ୟକ। ଏହି ଡିଭାଇସ୍ ପୁଣି ଅନଲାଇନ୍ ହେଲେ ଆଉଥରେ ଚେଷ୍ଟା କରନ୍ତୁ।
+values-b+or	string	account_signins_until_quit	-	CloudStream ବନ୍ଦ ନକରିବା ପର୍ଯ୍ୟନ୍ତ ସାଇନ-ଇନ୍ ରହେ।
 values-b+or	string	account_sync_connected	-	ସଂଯୁକ୍ତ · ଏହି ଡିଭାଇସରେ ସାଇନ୍ ଇନ୍
 values-b+or	string	account_sync_needs_browser	-	ସାଇନ୍ ଇନ୍ ପାଇଁ ୱେବ୍ ବ୍ରାଉଜର୍ ଦରକାର। ଏହି ଡିଭାଇସରେ ନାହିଁ।
 values-b+or	string	account_sync_note	-	ବୈକଳ୍ପିକ। ଦେଖିବା ପ୍ରଗତିକୁ ଆପଣଙ୍କ ପାଖରେ ଥିବା ଆକାଉଣ୍ଟ ସହ ସିଙ୍କ୍ କରେ।
@@ -40361,20 +40541,24 @@ values-b+pl	string	account_pin_confirm	-	Wpisz go ponownie, aby potwierdzić.
 values-b+pl	string	account_pin_current	-	Wpisz obecnie używany PIN.
 values-b+pl	string	account_pin_first_profile	-	Pierwszego profilu nie można zablokować
 values-b+pl	string	account_pin_new	-	Wpisz 4-cyfrowy PIN.
+values-b+pl	string	account_pin_not_saved	-	Nie udało się zapisać zmiany PIN-u. Nic nie zostało zmienione.
 values-b+pl	string	account_pin_off	-	Wyłączony · każdy może otworzyć ten profil
 values-b+pl	string	account_pin_on	-	Włączony · wymagany przy otwieraniu
 values-b+pl	string	account_pin_prompt	-	Wpisz 4-cyfrowy PIN.
 values-b+pl	string	account_pin_remove	-	Usuń PIN
 values-b+pl	string	account_pin_set	-	Ustaw PIN
 values-b+pl	string	account_pin_set_title	-	Ustaw PIN
+values-b+pl	string	account_pin_unreadable	-	Nie udało się odczytać kodów PIN na tym komputerze, więc ten profil pozostaje zablokowany.
 values-b+pl	string	account_profile_current	-	Bieżący
 values-b+pl	string	account_profile_locked	-	Zablokowany · PIN
 values-b+pl	string	account_profile_no_sync	-	Bez synchronizacji
+values-b+pl	string	account_profile_not_added	-	Nie można dodać profilu, dopóki nie da się odczytać kodów PIN na tym komputerze. Nic nie zostało zmienione.
 values-b+pl	string	account_select_note	-	Osobna historia oglądania · to nie logowania
 values-b+pl	string	account_select_title	-	Kto ogląda?
 values-b+pl	string	account_signin_failed_body	-	Usługa %s nie potwierdziła logowania. Niczego nie zapisano.
 values-b+pl	string	account_signin_failed_title	-	Nie udało się zalogować do %s
 values-b+pl	string	account_signin_offline_body	-	Logowanie do %s wymaga połączenia. Spróbuj ponownie, gdy to urządzenie znów będzie online.
+values-b+pl	string	account_signins_until_quit	-	Logowania trwają do zamknięcia CloudStream.
 values-b+pl	string	account_sync_connected	-	Połączono · zalogowano na tym urządzeniu
 values-b+pl	string	account_sync_needs_browser	-	Logowanie wymaga przeglądarki. To urządzenie jej nie ma.
 values-b+pl	string	account_sync_note	-	Opcjonalne. Synchronizuje postęp oglądania z kontem, które już masz.
@@ -41521,20 +41705,24 @@ values-b+pt	string	account_pin_confirm	-	Introduza-o novamente para confirmar.
 values-b+pt	string	account_pin_current	-	Introduza o PIN atual.
 values-b+pt	string	account_pin_first_profile	-	O primeiro perfil não pode ser bloqueado
 values-b+pt	string	account_pin_new	-	Introduza um PIN de 4 dígitos.
+values-b+pt	string	account_pin_not_saved	-	Não foi possível guardar a alteração do PIN. Nada foi alterado.
 values-b+pt	string	account_pin_off	-	Desativado · qualquer pessoa pode abrir este perfil
 values-b+pt	string	account_pin_on	-	Ativado · pedido ao abrir
 values-b+pt	string	account_pin_prompt	-	Introduza o PIN de 4 dígitos.
 values-b+pt	string	account_pin_remove	-	Remover PIN
 values-b+pt	string	account_pin_set	-	Definir PIN
 values-b+pt	string	account_pin_set_title	-	Definir um PIN
+values-b+pt	string	account_pin_unreadable	-	Não foi possível ler os PIN deste computador, por isso este perfil continua bloqueado.
 values-b+pt	string	account_profile_current	-	Atual
 values-b+pt	string	account_profile_locked	-	Bloqueado · PIN
 values-b+pt	string	account_profile_no_sync	-	Sem sincronização
+values-b+pt	string	account_profile_not_added	-	Não é possível adicionar um perfil enquanto os PIN deste computador não puderem ser lidos. Nada foi alterado.
 values-b+pt	string	account_select_note	-	Histórico de visualização separado · não são inícios de sessão
 values-b+pt	string	account_select_title	-	Quem está a ver?
 values-b+pt	string	account_signin_failed_body	-	%s não confirmou o início de sessão. Nada foi guardado.
 values-b+pt	string	account_signin_failed_title	-	Não foi possível iniciar sessão em %s
 values-b+pt	string	account_signin_offline_body	-	Iniciar sessão em %s requer uma ligação. Tente novamente quando este dispositivo voltar a estar online.
+values-b+pt	string	account_signins_until_quit	-	As sessões iniciadas duram até sair do CloudStream.
 values-b+pt	string	account_sync_connected	-	Ligado · sessão iniciada neste dispositivo
 values-b+pt	string	account_sync_needs_browser	-	Iniciar sessão requer um navegador web. Este dispositivo não tem.
 values-b+pt	string	account_sync_note	-	Opcional. Sincroniza o progresso com uma conta que já tem.
@@ -42679,20 +42867,24 @@ values-b+pt+BR	string	account_pin_confirm	-	Digite de novo para confirmar.
 values-b+pt+BR	string	account_pin_current	-	Digite o PIN atual.
 values-b+pt+BR	string	account_pin_first_profile	-	O primeiro perfil não pode ser bloqueado
 values-b+pt+BR	string	account_pin_new	-	Digite um PIN de 4 dígitos.
+values-b+pt+BR	string	account_pin_not_saved	-	Não foi possível salvar a alteração do PIN. Nada foi alterado.
 values-b+pt+BR	string	account_pin_off	-	Desativado · qualquer pessoa pode abrir este perfil
 values-b+pt+BR	string	account_pin_on	-	Ativado · pedido para abrir
 values-b+pt+BR	string	account_pin_prompt	-	Digite o PIN de 4 dígitos.
 values-b+pt+BR	string	account_pin_remove	-	Remover PIN
 values-b+pt+BR	string	account_pin_set	-	Definir PIN
 values-b+pt+BR	string	account_pin_set_title	-	Definir um PIN
+values-b+pt+BR	string	account_pin_unreadable	-	Não foi possível ler os PINs deste computador, então este perfil continua bloqueado.
 values-b+pt+BR	string	account_profile_current	-	Atual
 values-b+pt+BR	string	account_profile_locked	-	Bloqueado · PIN
 values-b+pt+BR	string	account_profile_no_sync	-	Sem sincronização
+values-b+pt+BR	string	account_profile_not_added	-	Não é possível adicionar um perfil enquanto os PINs deste computador não puderem ser lidos. Nada foi alterado.
 values-b+pt+BR	string	account_select_note	-	Histórico separado · não são logins
 values-b+pt+BR	string	account_select_title	-	Quem está assistindo?
 values-b+pt+BR	string	account_signin_failed_body	-	%s não confirmou o login. Nada foi salvo.
 values-b+pt+BR	string	account_signin_failed_title	-	Não foi possível entrar no %s
 values-b+pt+BR	string	account_signin_offline_body	-	Para entrar no %s é preciso ter conexão. Tente de novo quando este dispositivo estiver on-line.
+values-b+pt+BR	string	account_signins_until_quit	-	Os logins duram até você fechar o CloudStream.
 values-b+pt+BR	string	account_sync_connected	-	Conectado · logado neste dispositivo
 values-b+pt+BR	string	account_sync_needs_browser	-	O login precisa de um navegador. Este dispositivo não tem.
 values-b+pt+BR	string	account_sync_note	-	Opcional. Sincroniza o progresso com uma conta que você já tem.
@@ -43784,20 +43976,24 @@ values-b+qt	string	account_pin_confirm	-	uuuhh aah ooh.
 values-b+qt	string	account_pin_current	-	uuuhh oog aah ooh.
 values-b+qt	string	account_pin_first_profile	-	aah ooooggk oooohh oooh-aah
 values-b+qt	string	account_pin_new	-	uuuhh oog aah.
+values-b+qt	string	account_pin_not_saved	-	aagg ooh PIN. ooh-aah.
 values-b+qt	string	account_pin_off	-	oooohh · uuh ooh aahh ooooggk
 values-b+qt	string	account_pin_on	-	aah · ooh aahh
 values-b+qt	string	account_pin_prompt	-	uuuhh oog aah.
 values-b+qt	string	account_pin_remove	-	oooooah oog
 values-b+qt	string	account_pin_set	-	aah oog
 values-b+qt	string	account_pin_set_title	-	aah ooh oog
+values-b+qt	string	account_pin_unreadable	-	aagg ooh PIN. ooh-aah oouh.
 values-b+qt	string	account_profile_current	-	oooh
 values-b+qt	string	account_profile_locked	-	oooh-aah · ooh
 values-b+qt	string	account_profile_no_sync	-	aah oooh
+values-b+qt	string	account_profile_not_added	-	aagg ooh-ooh PIN. ooh-aah.
 values-b+qt	string	account_select_note	-	oooh-aah aagg · ooh aah
 values-b+qt	string	account_select_title	-	ooh oooh aah?
 values-b+qt	string	account_signin_failed_body	-	%s oooohh uugg ah. oooohh aagg.
 values-b+qt	string	account_signin_failed_title	-	oooohh uugg ah %s
 values-b+qt	string	account_signin_offline_body	-	uugg ah %s ooh aagg. uuh eeeek oooh aah aagg.
+values-b+qt	string	account_signins_until_quit	-	ooh-aah aagg ooh CloudStream.
 values-b+qt	string	account_sync_connected	-	oooh-aah · ooh aagg
 values-b+qt	string	account_sync_needs_browser	-	oooh aaagg aah. ooh oooh aah.
 values-b+qt	string	account_sync_note	-	ooh. oooh-aah aagg ooh aaaagg aah.
@@ -44824,20 +45020,24 @@ values-b+ro	string	account_pin_confirm	-	Introdu-l din nou pentru confirmare.
 values-b+ro	string	account_pin_current	-	Introdu PIN-ul folosit acum.
 values-b+ro	string	account_pin_first_profile	-	Primul profil nu poate fi blocat
 values-b+ro	string	account_pin_new	-	Introdu un PIN din 4 cifre.
+values-b+ro	string	account_pin_not_saved	-	Modificarea PIN-ului nu a putut fi salvată. Nu s-a schimbat nimic.
 values-b+ro	string	account_pin_off	-	Dezactivat · oricine poate deschide acest profil
 values-b+ro	string	account_pin_on	-	Activat · se cere la deschidere
 values-b+ro	string	account_pin_prompt	-	Introdu PIN-ul din 4 cifre.
 values-b+ro	string	account_pin_remove	-	Elimină PIN-ul
 values-b+ro	string	account_pin_set	-	Setează PIN-ul
 values-b+ro	string	account_pin_set_title	-	Setează un PIN
+values-b+ro	string	account_pin_unreadable	-	PIN-urile de pe acest computer nu au putut fi citite, așa că acest profil rămâne blocat.
 values-b+ro	string	account_profile_current	-	Curent
 values-b+ro	string	account_profile_locked	-	Blocat · PIN
 values-b+ro	string	account_profile_no_sync	-	Fără sincronizare
+values-b+ro	string	account_profile_not_added	-	Nu se poate adăuga un profil cât timp PIN-urile de pe acest computer nu pot fi citite. Nu s-a schimbat nimic.
 values-b+ro	string	account_select_note	-	Istoric de vizionare separat · nu sunt conectări
 values-b+ro	string	account_select_title	-	Cine se uită?
 values-b+ro	string	account_signin_failed_body	-	%s nu a confirmat conectarea. Nu s-a salvat nimic.
 values-b+ro	string	account_signin_failed_title	-	Nu te-ai putut conecta la %s
 values-b+ro	string	account_signin_offline_body	-	Conectarea la %s necesită o conexiune la internet. Încearcă din nou când acest dispozitiv este din nou online.
+values-b+ro	string	account_signins_until_quit	-	Conectările durează până când închizi CloudStream.
 values-b+ro	string	account_sync_connected	-	Conectat · pe acest dispozitiv
 values-b+ro	string	account_sync_needs_browser	-	Conectarea necesită un browser web. Acest dispozitiv nu are.
 values-b+ro	string	account_sync_note	-	Opțional. Sincronizează progresul cu un cont pe care îl ai deja.
@@ -45898,20 +46098,24 @@ values-b+ru	string	account_pin_confirm	-	Введите его ещё раз д�
 values-b+ru	string	account_pin_current	-	Введите текущий ПИН-код.
 values-b+ru	string	account_pin_first_profile	-	Первый профиль нельзя заблокировать
 values-b+ru	string	account_pin_new	-	Введите 4-значный ПИН-код.
+values-b+ru	string	account_pin_not_saved	-	Не удалось сохранить изменение PIN-кода. Ничего не изменилось.
 values-b+ru	string	account_pin_off	-	Выкл. · этот профиль может открыть любой
 values-b+ru	string	account_pin_on	-	Вкл. · запрашивается при открытии
 values-b+ru	string	account_pin_prompt	-	Введите 4-значный ПИН-код.
 values-b+ru	string	account_pin_remove	-	Удалить ПИН-код
 values-b+ru	string	account_pin_set	-	Задать ПИН-код
 values-b+ru	string	account_pin_set_title	-	Задайте ПИН-код
+values-b+ru	string	account_pin_unreadable	-	Не удалось прочитать PIN-коды на этом компьютере, поэтому профиль остаётся заблокированным.
 values-b+ru	string	account_profile_current	-	Текущий
 values-b+ru	string	account_profile_locked	-	Заблокирован · PIN
 values-b+ru	string	account_profile_no_sync	-	Без синхронизации
+values-b+ru	string	account_profile_not_added	-	Нельзя добавить профиль, пока PIN-коды на этом компьютере не читаются. Ничего не изменилось.
 values-b+ru	string	account_select_note	-	Отдельная история просмотра · не входы в аккаунт
 values-b+ru	string	account_select_title	-	Кто смотрит?
 values-b+ru	string	account_signin_failed_body	-	%s не подтвердил вход. Ничего не сохранено.
 values-b+ru	string	account_signin_failed_title	-	Не удалось войти в %s
 values-b+ru	string	account_signin_offline_body	-	Для входа в %s нужно подключение. Попробуйте снова, когда это устройство будет в сети.
+values-b+ru	string	account_signins_until_quit	-	Входы сохраняются, пока вы не закроете CloudStream.
 values-b+ru	string	account_sync_connected	-	Подключено · вход выполнен на этом устройстве
 values-b+ru	string	account_sync_needs_browser	-	Для входа нужен веб-браузер. На этом устройстве его нет.
 values-b+ru	string	account_sync_note	-	Необязательно. Синхронизирует прогресс просмотра с уже имеющимся аккаунтом.
@@ -47069,20 +47273,24 @@ values-b+sk	string	account_pin_confirm	-	Na potvrdenie ho zadajte znova.
 values-b+sk	string	account_pin_current	-	Zadajte aktuálne používaný PIN.
 values-b+sk	string	account_pin_first_profile	-	Prvý profil nemožno zamknúť
 values-b+sk	string	account_pin_new	-	Zadajte štvormiestny PIN.
+values-b+sk	string	account_pin_not_saved	-	Zmenu PIN sa nepodarilo uložiť. Nič sa nezmenilo.
 values-b+sk	string	account_pin_off	-	Vypnuté · tento profil môže otvoriť ktokoľvek
 values-b+sk	string	account_pin_on	-	Zapnuté · vyžaduje sa pri otvorení
 values-b+sk	string	account_pin_prompt	-	Zadajte štvormiestny PIN.
 values-b+sk	string	account_pin_remove	-	Odstrániť PIN
 values-b+sk	string	account_pin_set	-	Nastaviť PIN
 values-b+sk	string	account_pin_set_title	-	Nastavenie PIN
+values-b+sk	string	account_pin_unreadable	-	PIN kódy na tomto počítači sa nepodarilo prečítať, takže tento profil zostáva zamknutý.
 values-b+sk	string	account_profile_current	-	Aktuálny
 values-b+sk	string	account_profile_locked	-	Zamknuté · PIN
 values-b+sk	string	account_profile_no_sync	-	Bez synchronizácie
+values-b+sk	string	account_profile_not_added	-	Profil nemožno pridať, kým sa PIN kódy na tomto počítači nedajú prečítať. Nič sa nezmenilo.
 values-b+sk	string	account_select_note	-	Samostatná história pozerania · nie sú to prihlásenia
 values-b+sk	string	account_select_title	-	Kto sa pozerá?
 values-b+sk	string	account_signin_failed_body	-	Služba %s prihlásenie nepotvrdila. Nič sa neuložilo.
 values-b+sk	string	account_signin_failed_title	-	Nepodarilo sa prihlásiť do %s
 values-b+sk	string	account_signin_offline_body	-	Prihlásenie do %s vyžaduje pripojenie. Skúste to znova, keď bude toto zariadenie opäť online.
+values-b+sk	string	account_signins_until_quit	-	Prihlásenia platia, kým CloudStream neukončíte.
 values-b+sk	string	account_sync_connected	-	Pripojené · prihlásené na tomto zariadení
 values-b+sk	string	account_sync_needs_browser	-	Prihlásenie vyžaduje webový prehliadač. Toto zariadenie ho nemá.
 values-b+sk	string	account_sync_note	-	Voliteľné. Synchronizuje postup pozerania s účtom, ktorý už máte.
@@ -47940,20 +48148,24 @@ values-b+so	string	account_pin_confirm	-	Mar kale qor si aad u xaqiijiso.
 values-b+so	string	account_pin_current	-	Qor PIN-ka hadda la isticmaalo.
 values-b+so	string	account_pin_first_profile	-	Astaanta koowaad lama xiri karo
 values-b+so	string	account_pin_new	-	Qor PIN ka kooban 4 lambar.
+values-b+so	string	account_pin_not_saved	-	Isbeddelka PIN-ka lama keydin karo. Waxba isma beddelin.
 values-b+so	string	account_pin_off	-	Dansan · qof kastaa wuu furi karaa astaantan
 values-b+so	string	account_pin_on	-	Shidan · waa la weydiiyaa si loo furo
 values-b+so	string	account_pin_prompt	-	Qor PIN-ka 4 lambar ah.
 values-b+so	string	account_pin_remove	-	Ka saar PIN
 values-b+so	string	account_pin_set	-	Deji PIN
 values-b+so	string	account_pin_set_title	-	Deji PIN
+values-b+so	string	account_pin_unreadable	-	Lama akhrin karin PIN-ka kombuyuutarkan, sidaa darteed astaantani way xidhnaanaysaa.
 values-b+so	string	account_profile_current	-	Hadda
 values-b+so	string	account_profile_locked	-	La xiray · PIN
 values-b+so	string	account_profile_no_sync	-	Isku-dhafid ma jirto
+values-b+so	string	account_profile_not_added	-	Lama dari karin astaan inta aan PIN-ka kombuyuutarkan la akhrin karin. Waxba isma beddelin.
 values-b+so	string	account_select_note	-	Taariikh daawasho gooni ah · ma aha gelitaan
 values-b+so	string	account_select_title	-	Yaa daawanaya?
 values-b+so	string	account_signin_failed_body	-	%s ma xaqiijin galitaanka. Waxba lama kaydin.
 values-b+so	string	account_signin_failed_title	-	Lama geli karo %s
 values-b+so	string	account_signin_offline_body	-	Gelitaanka %s wuxuu u baahan yahay xiriir. Mar kale isku day marka qalabkani dib ugu soo laabto khadka.
+values-b+so	string	account_signins_until_quit	-	Gelitaanku way sii jiraan ilaa aad ka baxdo CloudStream.
 values-b+so	string	account_sync_connected	-	Waa ku xiran yahay · lagu galay qalabkan
 values-b+so	string	account_sync_needs_browser	-	Gelitaanku wuxuu u baahan yahay biraawsar. Qalabkan ma laha.
 values-b+so	string	account_sync_note	-	Ikhtiyaari. Waxay isku dhafaysaa horumarka daawashada iyo akoon aad horey u leedahay.
@@ -48849,20 +49061,24 @@ values-b+sq	string	account_pin_confirm	-	Shkruaje përsëri për ta konfirmuar.
 values-b+sq	string	account_pin_current	-	Shkruaj PIN-in aktual.
 values-b+sq	string	account_pin_first_profile	-	Profili i parë nuk mund të kyçet
 values-b+sq	string	account_pin_new	-	Shkruaj një PIN me 4 shifra.
+values-b+sq	string	account_pin_not_saved	-	Ndryshimi i PIN-it nuk u ruajt. Asgjë nuk ndryshoi.
 values-b+sq	string	account_pin_off	-	Joaktiv · kushdo mund ta hapë këtë profil
 values-b+sq	string	account_pin_on	-	Aktiv · kërkohet për ta hapur
 values-b+sq	string	account_pin_prompt	-	Shkruaj PIN-in me 4 shifra.
 values-b+sq	string	account_pin_remove	-	Hiq PIN-in
 values-b+sq	string	account_pin_set	-	Vendos PIN
 values-b+sq	string	account_pin_set_title	-	Vendos një PIN
+values-b+sq	string	account_pin_unreadable	-	PIN-et në këtë kompjuter nuk u lexuan, ndaj ky profil mbetet i kyçur.
 values-b+sq	string	account_profile_current	-	Aktual
 values-b+sq	string	account_profile_locked	-	I kyçur · PIN
 values-b+sq	string	account_profile_no_sync	-	Pa sinkronizim
+values-b+sq	string	account_profile_not_added	-	Nuk mund të shtohet profil derisa PIN-et në këtë kompjuter nuk lexohen. Asgjë nuk ndryshoi.
 values-b+sq	string	account_select_note	-	Historik shikimi më vete · jo hyrje
 values-b+sq	string	account_select_title	-	Kush po shikon?
 values-b+sq	string	account_signin_failed_body	-	%s nuk e konfirmoi identifikimin. Nuk u ruajt asgjë.
 values-b+sq	string	account_signin_failed_title	-	Identifikimi në %s dështoi
 values-b+sq	string	account_signin_offline_body	-	Identifikimi në %s kërkon lidhje. Provo përsëri kur kjo pajisje të jetë sërish në linjë.
+values-b+sq	string	account_signins_until_quit	-	Hyrjet zgjasin derisa të mbyllësh CloudStream.
 values-b+sq	string	account_sync_connected	-	E lidhur · e identifikuar në këtë pajisje
 values-b+sq	string	account_sync_needs_browser	-	Hyrja kërkon një shfletues uebi. Kjo pajisje nuk ka.
 values-b+sq	string	account_sync_note	-	Opsionale. Sinkronizon progresin me një llogari që e ke tashmë.
@@ -49986,20 +50202,24 @@ values-b+sv	string	account_pin_confirm	-	Skriv den igen för att bekräfta.
 values-b+sv	string	account_pin_current	-	Ange PIN-koden som används nu.
 values-b+sv	string	account_pin_first_profile	-	Den första profilen kan inte låsas
 values-b+sv	string	account_pin_new	-	Ange en fyrsiffrig PIN-kod.
+values-b+sv	string	account_pin_not_saved	-	Det gick inte att spara PIN-ändringen. Inget ändrades.
 values-b+sv	string	account_pin_off	-	Av · vem som helst kan öppna den här profilen
 values-b+sv	string	account_pin_on	-	På · krävs för att öppna den
 values-b+sv	string	account_pin_prompt	-	Ange den fyrsiffriga PIN-koden.
 values-b+sv	string	account_pin_remove	-	Ta bort PIN-kod
 values-b+sv	string	account_pin_set	-	Välj PIN-kod
 values-b+sv	string	account_pin_set_title	-	Välj en PIN-kod
+values-b+sv	string	account_pin_unreadable	-	Det gick inte att läsa PIN-koderna på den här datorn, så den här profilen förblir låst.
 values-b+sv	string	account_profile_current	-	Aktuell
 values-b+sv	string	account_profile_locked	-	Låst · PIN
 values-b+sv	string	account_profile_no_sync	-	Ingen synkronisering
+values-b+sv	string	account_profile_not_added	-	Det går inte att lägga till en profil medan PIN-koderna på den här datorn inte kan läsas. Inget ändrades.
 values-b+sv	string	account_select_note	-	Egen visningshistorik · inte inloggningar
 values-b+sv	string	account_select_title	-	Vem tittar?
 values-b+sv	string	account_signin_failed_body	-	%s bekräftade inte inloggningen. Inget sparades.
 values-b+sv	string	account_signin_failed_title	-	Det gick inte att logga in på %s
 values-b+sv	string	account_signin_offline_body	-	Inloggning på %s kräver en anslutning. Försök igen när enheten är online igen.
+values-b+sv	string	account_signins_until_quit	-	Inloggningar gäller tills du avslutar CloudStream.
 values-b+sv	string	account_sync_connected	-	Ansluten · inloggad på den här enheten
 values-b+sv	string	account_sync_needs_browser	-	Inloggning kräver en webbläsare. Den här enheten har ingen.
 values-b+sv	string	account_sync_note	-	Valfritt. Synkroniserar framstegen med ett konto du redan har.
@@ -51123,20 +51343,24 @@ values-b+ta	string	account_pin_confirm	-	உறுதிப்படுத்த
 values-b+ta	string	account_pin_current	-	இப்போது பயன்பாட்டில் உள்ள முள்ளைத் தட்டச்சு செய்யவும்.
 values-b+ta	string	account_pin_first_profile	-	முதல் சுயவிவரத்தைப் பூட்ட முடியாது
 values-b+ta	string	account_pin_new	-	4 இலக்க முள்ளைத் தட்டச்சு செய்யவும்.
+values-b+ta	string	account_pin_not_saved	-	PIN மாற்றத்தைச் சேமிக்க முடியவில்லை. எதுவும் மாறவில்லை.
 values-b+ta	string	account_pin_off	-	முடக்கம் · யார் வேண்டுமானாலும் இந்தச் சுயவிவரத்தைத் திறக்கலாம்
 values-b+ta	string	account_pin_on	-	இயக்கம் · திறக்கும்போது கேட்கப்படும்
 values-b+ta	string	account_pin_prompt	-	4 இலக்க முள்ளைத் தட்டச்சு செய்யவும்.
 values-b+ta	string	account_pin_remove	-	முள்ளை அகற்று
 values-b+ta	string	account_pin_set	-	முள் அமை
 values-b+ta	string	account_pin_set_title	-	ஒரு முள் அமைக்கவும்
+values-b+ta	string	account_pin_unreadable	-	இந்தக் கணினியில் உள்ள PIN-களைப் படிக்க முடியவில்லை, எனவே இந்தச் சுயவிவரம் பூட்டப்பட்டே இருக்கும்.
 values-b+ta	string	account_profile_current	-	தற்போதைய
 values-b+ta	string	account_profile_locked	-	பூட்டப்பட்டது · PIN
 values-b+ta	string	account_profile_no_sync	-	ஒத்திசைவு இல்லை
+values-b+ta	string	account_profile_not_added	-	இந்தக் கணினியின் PIN-களைப் படிக்க முடியாததால் சுயவிவரத்தைச் சேர்க்க முடியவில்லை. எதுவும் மாறவில்லை.
 values-b+ta	string	account_select_note	-	தனி பார்வை வரலாறு · உள்நுழைவுகள் அல்ல
 values-b+ta	string	account_select_title	-	யார் பார்க்கிறார்கள்?
 values-b+ta	string	account_signin_failed_body	-	%s உள்நுழைவை உறுதிப்படுத்தவில்லை. எதுவும் சேமிக்கப்படவில்லை.
 values-b+ta	string	account_signin_failed_title	-	%s இல் உள்நுழைய முடியவில்லை
 values-b+ta	string	account_signin_offline_body	-	%s இல் உள்நுழைய இணைப்பு தேவை. இந்தச் சாதனம் மீண்டும் ஆன்லைனுக்கு வந்ததும் முயலவும்.
+values-b+ta	string	account_signins_until_quit	-	CloudStream-ஐ மூடும் வரை உள்நுழைவுகள் இருக்கும்.
 values-b+ta	string	account_sync_connected	-	இணைக்கப்பட்டது · இந்தச் சாதனத்தில் உள்நுழைந்துள்ளது
 values-b+ta	string	account_sync_needs_browser	-	உள்நுழைய இணைய உலாவி தேவை. இந்தச் சாதனத்தில் இல்லை.
 values-b+ta	string	account_sync_note	-	விருப்பத்தேர்வு. பார்வை முன்னேற்றத்தை உங்களிடம் ஏற்கெனவே உள்ள கணக்குடன் ஒத்திசைக்கிறது.
@@ -52251,20 +52475,24 @@ values-b+ti	string	account_pin_confirm	-	ንምርግጋጽ እንደገና ጽ�
 values-b+ti	string	account_pin_current	-	ሕጂ ኣብ ጥቕሚ ዘሎ PIN ጽሓፍ።
 values-b+ti	string	account_pin_first_profile	-	እቲ ቀዳማይ መግለጺ ክዕጾ ኣይክእልን
 values-b+ti	string	account_pin_new	-	4 ኣሃዝ ዘለዎ PIN ጽሓፍ።
+values-b+ti	string	account_pin_not_saved	-	ለውጢ PIN ክዕቀብ ኣይተኻእለን። ዝተቐየረ የለን።
 values-b+ti	string	account_pin_off	-	ጠፊኡ · ዝኾነ ሰብ ነዚ መግለጺ ክኸፍቶ ይኽእል
 values-b+ti	string	account_pin_on	-	በሪሁ · ንምኽፋት ይሕተት
 values-b+ti	string	account_pin_prompt	-	እቲ 4 ኣሃዝ ዘለዎ PIN ጽሓፍ።
 values-b+ti	string	account_pin_remove	-	PIN ኣልግስ
 values-b+ti	string	account_pin_set	-	PIN ኣቐምጥ
 values-b+ti	string	account_pin_set_title	-	PIN ኣቐምጥ
+values-b+ti	string	account_pin_unreadable	-	ኣብዚ ኮምፒዩተር ዘለዉ PIN ክንበቡ ኣይተኻእለን፣ ስለዚ እዚ ፕሮፋይል ተዓጽዩ ይጸንሕ።
 values-b+ti	string	account_profile_current	-	ናይ ሕጂ
 values-b+ti	string	account_profile_locked	-	ተዓጽዩ · PIN
 values-b+ti	string	account_profile_no_sync	-	ምትእስሳር የለን
+values-b+ti	string	account_profile_not_added	-	ኣብዚ ኮምፒዩተር ዘለዉ PIN ክንበቡ ስለዘይከኣሉ ፕሮፋይል ክውሰኽ ኣይተኻእለን። ዝተቐየረ የለን።
 values-b+ti	string	account_select_note	-	ፍሉይ ታሪኽ ምርኣይ · መእተዊታት ኣይኮኑን
 values-b+ti	string	account_select_title	-	መን እዩ ዝርኢ ዘሎ?
 values-b+ti	string	account_signin_failed_body	-	%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።
 values-b+ti	string	account_signin_failed_title	-	ናብ %s ምእታው ኣይተኻእለን
 values-b+ti	string	account_signin_offline_body	-	ናብ %s ንምእታው ምትእስሳር የድሊ። እዚ መሳርሒ ናብ መስመር ምስ ተመልሰ እንደገና ፈትን።
+values-b+ti	string	account_signins_until_quit	-	ምእታዋት ክሳብ CloudStream ትዓጽዉ ይጸንሑ።
 values-b+ti	string	account_sync_connected	-	ተራኺቡ · ኣብዚ መሳርሒ ኣቲዩ
 values-b+ti	string	account_sync_needs_browser	-	ምእታው መርበብ ሓበሬታ ይደሊ። እዚ መሳርሒ የብሉን።
 values-b+ti	string	account_sync_note	-	ኣማራጺ። ምዕባለ ምርኣይ ምስ ዘለካ ሕሳብ የተኣሳስር።
@@ -52641,20 +52869,24 @@ values-b+tl	string	account_pin_confirm	-	I-type itong muli para kumpirmahin.
 values-b+tl	string	account_pin_current	-	I-type ang PIN na ginagamit ngayon.
 values-b+tl	string	account_pin_first_profile	-	Hindi maaaring i-lock ang unang profile
 values-b+tl	string	account_pin_new	-	Mag-type ng 4-digit na PIN.
+values-b+tl	string	account_pin_not_saved	-	Hindi ma-save ang pagbabago sa PIN. Walang nabago.
 values-b+tl	string	account_pin_off	-	Naka-off · kahit sino ay puwedeng magbukas ng profile na ito
 values-b+tl	string	account_pin_on	-	Naka-on · hinihingi para buksan ito
 values-b+tl	string	account_pin_prompt	-	I-type ang 4-digit na PIN.
 values-b+tl	string	account_pin_remove	-	Alisin ang PIN
 values-b+tl	string	account_pin_set	-	Itakda ang PIN
 values-b+tl	string	account_pin_set_title	-	Magtakda ng PIN
+values-b+tl	string	account_pin_unreadable	-	Hindi mabasa ang mga PIN sa computer na ito, kaya mananatiling naka-lock ang profile na ito.
 values-b+tl	string	account_profile_current	-	Kasalukuyan
 values-b+tl	string	account_profile_locked	-	Naka-lock · PIN
 values-b+tl	string	account_profile_no_sync	-	Walang sync
+values-b+tl	string	account_profile_not_added	-	Hindi makapagdagdag ng profile habang hindi mabasa ang mga PIN sa computer na ito. Walang nabago.
 values-b+tl	string	account_select_note	-	Hiwalay na kasaysayan ng panonood · hindi mga login
 values-b+tl	string	account_select_title	-	Sino ang nanonood?
 values-b+tl	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
 values-b+tl	string	account_signin_failed_title	-	Hindi makapag-sign in sa %s
 values-b+tl	string	account_signin_offline_body	-	Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito.
+values-b+tl	string	account_signins_until_quit	-	Tatagal ang mga sign-in hanggang isara mo ang CloudStream.
 values-b+tl	string	account_sync_connected	-	Nakakonekta · naka-sign in sa device na ito
 values-b+tl	string	account_sync_needs_browser	-	Kailangan ng web browser para mag-sign in. Wala nito ang device na ito.
 values-b+tl	string	account_sync_note	-	Opsyonal. Sini-sync ang progreso ng panonood sa account na mayroon ka na.
@@ -53348,20 +53580,24 @@ values-b+tr	string	account_pin_confirm	-	Onaylamak için tekrar yazın.
 values-b+tr	string	account_pin_current	-	Şu anda kullanılan PIN'i yazın.
 values-b+tr	string	account_pin_first_profile	-	İlk profil kilitlenemez
 values-b+tr	string	account_pin_new	-	4 haneli bir PIN yazın.
+values-b+tr	string	account_pin_not_saved	-	PIN değişikliği kaydedilemedi. Hiçbir şey değişmedi.
 values-b+tr	string	account_pin_off	-	Kapalı · bu profili herkes açabilir
 values-b+tr	string	account_pin_on	-	Açık · açarken sorulur
 values-b+tr	string	account_pin_prompt	-	4 haneli PIN'i yazın.
 values-b+tr	string	account_pin_remove	-	PIN'i kaldır
 values-b+tr	string	account_pin_set	-	PIN belirle
 values-b+tr	string	account_pin_set_title	-	Bir PIN belirleyin
+values-b+tr	string	account_pin_unreadable	-	Bu bilgisayardaki PIN'ler okunamadı, bu yüzden bu profil kilitli kalıyor.
 values-b+tr	string	account_profile_current	-	Geçerli
 values-b+tr	string	account_profile_locked	-	Kilitli · PIN
 values-b+tr	string	account_profile_no_sync	-	Senkronizasyon yok
+values-b+tr	string	account_profile_not_added	-	Bu bilgisayardaki PIN'ler okunamadığı sürece profil eklenemez. Hiçbir şey değişmedi.
 values-b+tr	string	account_select_note	-	Ayrı izleme geçmişi · oturum açma değil
 values-b+tr	string	account_select_title	-	Kim izliyor?
 values-b+tr	string	account_signin_failed_body	-	%s oturum açmayı onaylamadı. Hiçbir şey kaydedilmedi.
 values-b+tr	string	account_signin_failed_title	-	%s hesabında oturum açılamadı
 values-b+tr	string	account_signin_offline_body	-	%s hesabında oturum açmak için bağlantı gerekir. Bu cihaz yeniden çevrimiçi olduğunda tekrar deneyin.
+values-b+tr	string	account_signins_until_quit	-	Oturum açmalar CloudStream'den çıkana kadar sürer.
 values-b+tr	string	account_sync_connected	-	Bağlı · bu cihazda oturum açık
 values-b+tr	string	account_sync_needs_browser	-	Oturum açmak için web tarayıcısı gerekir. Bu cihazda yok.
 values-b+tr	string	account_sync_note	-	İsteğe bağlı. İzleme ilerlemesini zaten sahip olduğun bir hesapla senkronize eder.
@@ -54531,20 +54767,24 @@ values-b+uk	string	account_pin_confirm	-	Уведіть його ще раз д�
 values-b+uk	string	account_pin_current	-	Уведіть чинний PIN-код.
 values-b+uk	string	account_pin_first_profile	-	Перший профіль не можна заблокувати
 values-b+uk	string	account_pin_new	-	Уведіть 4-значний PIN-код.
+values-b+uk	string	account_pin_not_saved	-	Не вдалося зберегти зміну PIN-коду. Нічого не змінилося.
 values-b+uk	string	account_pin_off	-	Вимкнено · будь-хто може відкрити цей профіль
 values-b+uk	string	account_pin_on	-	Увімкнено · запитується для відкриття
 values-b+uk	string	account_pin_prompt	-	Уведіть 4-значний PIN-код.
 values-b+uk	string	account_pin_remove	-	Видалити PIN-код
 values-b+uk	string	account_pin_set	-	Установити PIN-код
 values-b+uk	string	account_pin_set_title	-	Установлення PIN-коду
+values-b+uk	string	account_pin_unreadable	-	Не вдалося прочитати PIN-коди на цьому комп'ютері, тому цей профіль залишається заблокованим.
 values-b+uk	string	account_profile_current	-	Поточний
 values-b+uk	string	account_profile_locked	-	Заблоковано · PIN
 values-b+uk	string	account_profile_no_sync	-	Без синхронізації
+values-b+uk	string	account_profile_not_added	-	Не можна додати профіль, доки PIN-коди на цьому комп'ютері не читаються. Нічого не змінилося.
 values-b+uk	string	account_select_note	-	Окрема історія перегляду · не входи в акаунт
 values-b+uk	string	account_select_title	-	Хто дивиться?
 values-b+uk	string	account_signin_failed_body	-	%s не підтвердив вхід. Нічого не збережено.
 values-b+uk	string	account_signin_failed_title	-	Не вдалося увійти в %s
 values-b+uk	string	account_signin_offline_body	-	Для входу в %s потрібне з'єднання. Спробуйте ще раз, коли пристрій знову буде онлайн.
+values-b+uk	string	account_signins_until_quit	-	Входи діють, доки ви не закриєте CloudStream.
 values-b+uk	string	account_sync_connected	-	Підключено · вхід виконано на цьому пристрої
 values-b+uk	string	account_sync_needs_browser	-	Для входу потрібен веб-браузер. На цьому пристрої його немає.
 values-b+uk	string	account_sync_note	-	Необов'язково. Синхронізує прогрес перегляду з акаунтом, який у вас уже є.
@@ -55662,20 +55902,24 @@ values-b+ur	string	account_pin_confirm	-	تصدیق کے لیے اسے دوبا�
 values-b+ur	string	account_pin_current	-	ابھی استعمال ہونے والا PIN ٹائپ کریں۔
 values-b+ur	string	account_pin_first_profile	-	پہلی پروفائل کو مقفل نہیں کیا جا سکتا
 values-b+ur	string	account_pin_new	-	4 ہندسوں کا PIN ٹائپ کریں۔
+values-b+ur	string	account_pin_not_saved	-	PIN کی تبدیلی محفوظ نہیں ہو سکی۔ کچھ تبدیل نہیں ہوا۔
 values-b+ur	string	account_pin_off	-	بند · کوئی بھی اس پروفائل کو کھول سکتا ہے
 values-b+ur	string	account_pin_on	-	آن · کھولنے کے لیے پوچھا جاتا ہے
 values-b+ur	string	account_pin_prompt	-	4 ہندسوں والا PIN ٹائپ کریں۔
 values-b+ur	string	account_pin_remove	-	PIN ہٹائیں
 values-b+ur	string	account_pin_set	-	PIN سیٹ کریں
 values-b+ur	string	account_pin_set_title	-	ایک PIN سیٹ کریں
+values-b+ur	string	account_pin_unreadable	-	اس کمپیوٹر پر PIN پڑھے نہیں جا سکے، اس لیے یہ پروفائل مقفل رہے گی۔
 values-b+ur	string	account_profile_current	-	موجودہ
 values-b+ur	string	account_profile_locked	-	مقفل · PIN
 values-b+ur	string	account_profile_no_sync	-	کوئی ہم آہنگی نہیں
+values-b+ur	string	account_profile_not_added	-	جب تک اس کمپیوٹر کے PIN پڑھے نہیں جا سکتے، پروفائل شامل نہیں ہو سکی۔ کچھ تبدیل نہیں ہوا۔
 values-b+ur	string	account_select_note	-	الگ دیکھنے کی سرگزشت · لاگ ان نہیں
 values-b+ur	string	account_select_title	-	کون دیکھ رہا ہے؟
 values-b+ur	string	account_signin_failed_body	-	%s نے سائن ان کی تصدیق نہیں کی۔ کچھ بھی محفوظ نہیں ہوا۔
 values-b+ur	string	account_signin_failed_title	-	%s میں سائن ان نہیں ہو سکا
 values-b+ur	string	account_signin_offline_body	-	%s میں سائن ان کرنے کے لیے کنکشن درکار ہے۔ یہ آلہ دوبارہ آن لائن ہونے پر کوشش کریں۔
+values-b+ur	string	account_signins_until_quit	-	سائن اِن تب تک رہتے ہیں جب تک آپ CloudStream بند نہیں کرتے۔
 values-b+ur	string	account_sync_connected	-	منسلک · اس آلے پر سائن ان
 values-b+ur	string	account_sync_needs_browser	-	سائن ان کے لیے ویب براؤزر درکار ہے۔ اس آلے میں نہیں ہے۔
 values-b+ur	string	account_sync_note	-	اختیاری۔ دیکھنے کی پیش رفت کو آپ کے پہلے سے موجود اکاؤنٹ سے ہم آہنگ کرتا ہے۔
@@ -56643,20 +56887,24 @@ values-b+vi	string	account_pin_confirm	-	Nhập lại để xác nhận.
 values-b+vi	string	account_pin_current	-	Nhập mã PIN đang dùng.
 values-b+vi	string	account_pin_first_profile	-	Không thể khóa hồ sơ đầu tiên
 values-b+vi	string	account_pin_new	-	Nhập mã PIN gồm 4 chữ số.
+values-b+vi	string	account_pin_not_saved	-	Không thể lưu thay đổi mã PIN. Không có gì thay đổi.
 values-b+vi	string	account_pin_off	-	Tắt · ai cũng có thể mở hồ sơ này
 values-b+vi	string	account_pin_on	-	Bật · cần nhập khi mở
 values-b+vi	string	account_pin_prompt	-	Nhập mã PIN gồm 4 chữ số.
 values-b+vi	string	account_pin_remove	-	Xóa mã PIN
 values-b+vi	string	account_pin_set	-	Đặt mã PIN
 values-b+vi	string	account_pin_set_title	-	Đặt mã PIN
+values-b+vi	string	account_pin_unreadable	-	Không thể đọc mã PIN trên máy tính này, nên hồ sơ này vẫn bị khóa.
 values-b+vi	string	account_profile_current	-	Hiện tại
 values-b+vi	string	account_profile_locked	-	Đã khóa · PIN
 values-b+vi	string	account_profile_no_sync	-	Không đồng bộ
+values-b+vi	string	account_profile_not_added	-	Không thể thêm hồ sơ khi chưa đọc được mã PIN trên máy tính này. Không có gì thay đổi.
 values-b+vi	string	account_select_note	-	Lịch sử xem riêng · không phải đăng nhập
 values-b+vi	string	account_select_title	-	Ai đang xem?
 values-b+vi	string	account_signin_failed_body	-	%s không xác nhận đăng nhập. Chưa có gì được lưu.
 values-b+vi	string	account_signin_failed_title	-	Không thể đăng nhập vào %s
 values-b+vi	string	account_signin_offline_body	-	Cần có kết nối để đăng nhập vào %s. Hãy thử lại khi thiết bị này có mạng trở lại.
+values-b+vi	string	account_signins_until_quit	-	Đăng nhập được giữ cho đến khi bạn thoát CloudStream.
 values-b+vi	string	account_sync_connected	-	Đã kết nối · đã đăng nhập trên thiết bị này
 values-b+vi	string	account_sync_needs_browser	-	Đăng nhập cần trình duyệt web. Thiết bị này không có.
 values-b+vi	string	account_sync_note	-	Tùy chọn. Đồng bộ tiến độ xem với tài khoản bạn đã có.
@@ -57757,20 +58005,24 @@ values-b+zh	string	account_pin_confirm	-	请再输入一次以确认。
 values-b+zh	string	account_pin_current	-	请输入当前使用的 PIN。
 values-b+zh	string	account_pin_first_profile	-	第一个个人资料无法锁定
 values-b+zh	string	account_pin_new	-	请输入 4 位 PIN。
+values-b+zh	string	account_pin_not_saved	-	无法保存 PIN 更改。没有任何更改。
 values-b+zh	string	account_pin_off	-	关闭 · 任何人都可打开此个人资料
 values-b+zh	string	account_pin_on	-	开启 · 打开时需要输入
 values-b+zh	string	account_pin_prompt	-	请输入 4 位 PIN。
 values-b+zh	string	account_pin_remove	-	移除 PIN
 values-b+zh	string	account_pin_set	-	设置 PIN
 values-b+zh	string	account_pin_set_title	-	设置 PIN
+values-b+zh	string	account_pin_unreadable	-	无法读取此电脑上的 PIN，因此此个人资料仍保持锁定。
 values-b+zh	string	account_profile_current	-	当前
 values-b+zh	string	account_profile_locked	-	已锁定 · PIN
 values-b+zh	string	account_profile_no_sync	-	不同步
+values-b+zh	string	account_profile_not_added	-	无法读取此电脑上的 PIN 时无法添加个人资料。没有任何更改。
 values-b+zh	string	account_select_note	-	独立的观看记录 · 不是登录账号
 values-b+zh	string	account_select_title	-	谁在观看？
 values-b+zh	string	account_signin_failed_body	-	%s 未确认登录。未保存任何内容。
 values-b+zh	string	account_signin_failed_title	-	无法登录 %s
 values-b+zh	string	account_signin_offline_body	-	登录 %s 需要网络连接。请在此设备恢复联网后重试。
+values-b+zh	string	account_signins_until_quit	-	登录状态会保留到你退出 CloudStream 为止。
 values-b+zh	string	account_sync_connected	-	已连接 · 已在此设备登录
 values-b+zh	string	account_sync_needs_browser	-	登录需要网页浏览器。此设备没有。
 values-b+zh	string	account_sync_note	-	可选。将观看进度同步到你已有的账号。
@@ -58870,20 +59122,24 @@ values-b+zh+TW	string	account_pin_confirm	-	請再輸入一次以確認。
 values-b+zh+TW	string	account_pin_current	-	請輸入目前使用的 PIN 碼。
 values-b+zh+TW	string	account_pin_first_profile	-	第一個個人檔案無法鎖定
 values-b+zh+TW	string	account_pin_new	-	請輸入 4 位數 PIN 碼。
+values-b+zh+TW	string	account_pin_not_saved	-	無法儲存 PIN 變更。沒有任何變更。
 values-b+zh+TW	string	account_pin_off	-	關閉 · 任何人都能開啟此個人檔案
 values-b+zh+TW	string	account_pin_on	-	開啟 · 開啟時需輸入
 values-b+zh+TW	string	account_pin_prompt	-	請輸入 4 位數 PIN 碼。
 values-b+zh+TW	string	account_pin_remove	-	移除 PIN 碼
 values-b+zh+TW	string	account_pin_set	-	設定 PIN 碼
 values-b+zh+TW	string	account_pin_set_title	-	設定 PIN 碼
+values-b+zh+TW	string	account_pin_unreadable	-	無法讀取這台電腦上的 PIN，因此這個設定檔仍保持鎖定。
 values-b+zh+TW	string	account_profile_current	-	目前
 values-b+zh+TW	string	account_profile_locked	-	已鎖定 · PIN
 values-b+zh+TW	string	account_profile_no_sync	-	不同步
+values-b+zh+TW	string	account_profile_not_added	-	無法讀取這台電腦上的 PIN 時無法新增設定檔。沒有任何變更。
 values-b+zh+TW	string	account_select_note	-	獨立的觀看紀錄 · 不是登入帳號
 values-b+zh+TW	string	account_select_title	-	誰在觀看？
 values-b+zh+TW	string	account_signin_failed_body	-	%s 未確認登入。未儲存任何內容。
 values-b+zh+TW	string	account_signin_failed_title	-	無法登入 %s
 values-b+zh+TW	string	account_signin_offline_body	-	登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。
+values-b+zh+TW	string	account_signins_until_quit	-	登入狀態會保留到你結束 CloudStream 為止。
 values-b+zh+TW	string	account_sync_connected	-	已連線 · 已在此裝置登入
 values-b+zh+TW	string	account_sync_needs_browser	-	登入需要網頁瀏覽器。此裝置沒有。
 values-b+zh+TW	string	account_sync_note	-	選用。將觀看進度同步到你已有的帳號。

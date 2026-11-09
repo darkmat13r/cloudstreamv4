@@ -158,7 +158,7 @@ class SearchFiltersDeviceTest {
         show()
         rule.waitUntil(WAIT_MS) { viewModel.state.value.sources.total > 0 }
         openPanel()
-        assertEquals("Filmxy", dpad.focused())
+        assertEquals("Source A", dpad.focused())
         rule.onNodeWithText("2 OF 3 ENABLED · CHANGES APPLY ON DONE").assertExists()
     }
 
@@ -168,21 +168,21 @@ class SearchFiltersDeviceTest {
         show()
         rule.waitUntil(WAIT_MS) { viewModel.state.value.sources.total > 0 }
         searchFor()
-        awaitText("Vidplay")
+        awaitText("Source B")
 
         openPanel()
-        pressDownUntil("Vidplay")
+        pressDownUntil("Source B")
         dpad.center()
         rule.onNodeWithText("1 OF 3 ENABLED · CHANGES APPLY ON DONE").assertExists()
-        assertEquals("Nothing is written before Done", setOf("Filmxy", "Vidplay"), source.selected)
+        assertEquals("Nothing is written before Done", setOf("Source A", "Source B"), source.selected)
 
         pressDownUntil(DONE)
         dpad.center()
         awaitGone(DONE)
 
-        rule.waitUntil(WAIT_MS) { rule.onAllNodesWithText("Vidplay").fetchSemanticsNodes().isEmpty() }
-        rule.onNodeWithText("Filmxy").assertExists()
-        assertEquals(setOf("Filmxy"), source.selected)
+        rule.waitUntil(WAIT_MS) { rule.onAllNodesWithText("Source B").fetchSemanticsNodes().isEmpty() }
+        rule.onNodeWithText("Source A").assertExists()
+        assertEquals(setOf("Source A"), source.selected)
         rule.onNodeWithText("1 / 3").assertExists()
         assertEquals("Focus returns to what opened it", SOURCES, dpad.focused())
     }
@@ -194,16 +194,16 @@ class SearchFiltersDeviceTest {
         viewModel.onAction(SearchAction.SourcesChanged) // The ViewModel read the count before this test set it.
         rule.waitUntil(WAIT_MS) { viewModel.state.value.sources.selected == 2 }
         searchFor()
-        awaitText("Vidplay")
+        awaitText("Source B")
         val searches = source.searched.size
 
         openPanel()
-        dpad.center() // Filmxy, off in the draft.
+        dpad.center() // Source A, off in the draft.
         rule.onNodeWithText("1 OF 3 ENABLED · CHANGES APPLY ON DONE").assertExists()
         device.pressBack()
         awaitGone(DONE)
 
-        assertEquals(setOf("Filmxy", "Vidplay"), source.selected)
+        assertEquals(setOf("Source A", "Source B"), source.selected)
         assertEquals(searches, source.searched.size)
         rule.onNodeWithText("2 / 3").assertExists()
         assertEquals(SOURCES, dpad.focused())
@@ -215,7 +215,7 @@ class SearchFiltersDeviceTest {
         showWithRail()
         rule.waitUntil(WAIT_MS) { viewModel.state.value.sources.total > 0 }
         searchFor()
-        awaitText("Filmxy")
+        awaitText("Source A")
         onTheField()
         dpad.press(Dpad.Down) // The chips.
         val card = dpad.press(Dpad.Down)
@@ -234,13 +234,13 @@ class SearchFiltersDeviceTest {
         show()
         rule.waitUntil(WAIT_MS) { viewModel.state.value.sources.total > 0 }
         openPanel()
-        assertEquals("Filmxy", dpad.press(Dpad.Left))
-        assertEquals("Filmxy", dpad.press(Dpad.Right))
-        assertEquals("Vidplay", dpad.press(Dpad.Down))
+        assertEquals("Source A", dpad.press(Dpad.Left))
+        assertEquals("Source A", dpad.press(Dpad.Right))
+        assertEquals("Source B", dpad.press(Dpad.Down))
         pressDownUntil(DONE)
         assertEquals("Down at the foot stays", DONE, dpad.press(Dpad.Down))
-        val back = generateSequence { dpad.press(Dpad.Up) }.take(PANEL_PRESSES).first { it == "Filmxy" }
-        assertEquals("Filmxy", back)
+        val back = generateSequence { dpad.press(Dpad.Up) }.take(PANEL_PRESSES).first { it == "Source A" }
+        assertEquals("Source A", back)
     }
 
     // ---- The chips ----
@@ -250,8 +250,8 @@ class SearchFiltersDeviceTest {
         show()
         rule.waitUntil(WAIT_MS) { viewModel.state.value.typeFilters.available.isNotEmpty() }
         searchFor()
-        awaitText("Filmxy") // Movies is lit and only Filmxy serves it.
-        awaitGone("Vidplay")
+        awaitText("Source A") // Movies is lit and only Source A serves it.
+        awaitGone("Source B")
         rule.onNodeWithText("Movies").assertIsSelected()
         rule.onNodeWithText("Anime").assertIsNotSelected()
 
@@ -259,15 +259,15 @@ class SearchFiltersDeviceTest {
         dpad.center() // Movies off: nothing lit, so nothing narrows.
         rule.waitUntil(WAIT_MS) { SearchTypeFilter.Movies !in source.types }
         rule.onNodeWithText("Movies").assertIsNotSelected()
-        awaitText("Vidplay")
-        awaitText("Filmxy")
+        awaitText("Source B")
+        awaitText("Source A")
 
         assertEquals("Anime", dpad.press(Dpad.Right))
-        dpad.center() // Anime on: only Vidplay.
+        dpad.center() // Anime on: only Source B.
         rule.waitUntil(WAIT_MS) { SearchTypeFilter.Anime in source.types }
         rule.onNodeWithText("Anime").assertIsSelected()
-        awaitGone("Filmxy")
-        awaitText("Vidplay")
+        awaitGone("Source A")
+        awaitText("Source B")
 
         assertEquals("Livestreams", dpad.press(Dpad.Right))
         dpad.center()
@@ -298,9 +298,9 @@ class SearchFiltersDeviceTest {
         dpad.center()
 
         rule.waitUntil(WAIT_MS) { source.searched.size > before }
-        assertEquals(setOf("Filmxy", "Vidplay", "Zoro"), source.selected)
+        assertEquals(setOf("Source A", "Source B", "Source C"), source.selected)
         assertEquals(emptySet<SearchTypeFilter>(), source.types)
-        awaitText("Zoro")
+        awaitText("Source C")
         rule.onNodeWithText("Movies").assertIsNotSelected()
     }
 
@@ -311,7 +311,7 @@ class SearchFiltersDeviceTest {
         show()
         rule.waitUntil(WAIT_MS) { viewModel.state.value.typeFilters.available.isNotEmpty() }
         searchFor()
-        awaitText("Filmxy")
+        awaitText("Source A")
         onTheField()
         assertEquals("Movies", dpad.press(Dpad.Down))
         assertEquals(FIRST_CARD, dpad.press(Dpad.Down))
@@ -322,7 +322,7 @@ class SearchFiltersDeviceTest {
         show()
         rule.waitUntil(WAIT_MS) { viewModel.state.value.typeFilters.available.isNotEmpty() }
         searchFor()
-        awaitText("Filmxy")
+        awaitText("Source A")
         rule.onNodeWithText("Livestreams").requestFocus()
         assertEquals(FIRST_CARD, dpad.press(Dpad.Down))
     }
@@ -332,7 +332,7 @@ class SearchFiltersDeviceTest {
         val bare = SearchViewModel(BareSource, NoHistory)
         show(bare)
         bare.onAction(SearchAction.RecentActivated(QUERY))
-        awaitText("Filmxy")
+        awaitText("Source A")
         onTheField()
         assertEquals(FIRST_CARD, dpad.press(Dpad.Down))
     }
@@ -342,10 +342,10 @@ class SearchFiltersDeviceTest {
         val bare = SearchViewModel(BareSource, NoHistory)
         show(bare)
         bare.onAction(SearchAction.RecentActivated(QUERY))
-        awaitText("Filmxy")
+        awaitText("Source A")
         onTheField()
         dpad.press(Dpad.Down)
-        val last = BareSource.items.last { it.providerName == "Filmxy" }.title
+        val last = BareSource.items.last { it.providerName == "Source A" }.title
         val reached = generateSequence { dpad.press(Dpad.Right) }.take(PANEL_PRESSES).first { it == last }
         assertEquals(last, reached)
         assertEquals("Right past the rail's last card moved focus", last, dpad.press(Dpad.Right))
@@ -376,7 +376,7 @@ class SearchFiltersDeviceTest {
         show()
         rule.waitUntil(WAIT_MS) { viewModel.state.value.typeFilters.available.isNotEmpty() }
         searchFor()
-        awaitText("Filmxy")
+        awaitText("Source A")
         onTheField()
         val graph = dpad.walk()
         assertEquals(graph.toString(), emptyList<String>(), graph.unreachable(listOf(SOURCES, "Movies", "Anime", FIRST_CARD)))
@@ -391,7 +391,7 @@ class SearchFiltersDeviceTest {
         val paged = SearchViewModel(PagedSource, NoHistory)
         show(paged)
         paged.onAction(SearchAction.RecentActivated(QUERY))
-        awaitText("Filmxy")
+        awaitText("Source A")
         onTheField()
         assertEquals(FIRST_CARD, dpad.press(Dpad.Down))
         assertEquals("Load more", dpad.press(Dpad.Right))
@@ -444,9 +444,9 @@ class SearchFiltersDeviceTest {
                 }
             }
         }
-        awaitText("blade runner")
+        awaitText("salt road")
         rule.onNode(Field).requestFocus()
-        generateSequence { dpad.press(Dpad.Down) }.take(4).first { it == "blade runner" }
+        generateSequence { dpad.press(Dpad.Down) }.take(4).first { it == "salt road" }
         rule.waitForIdle()
         rule.assertScreenshot("search-history-filled")
     }
@@ -475,7 +475,7 @@ class SearchFiltersDeviceTest {
         val full = SearchViewModel(FullPagedSource, NoHistory)
         show(full)
         full.onAction(SearchAction.RecentActivated(QUERY))
-        awaitText("Filmxy")
+        awaitText("Source A")
         onTheField()
         assertEquals(FullPagedSource.titles.first(), dpad.press(Dpad.Down))
         val reached = generateSequence { dpad.press(Dpad.Right) }.take(FullPagedSource.titles.size + 1).firstOrNull { it == "Load more" }
@@ -499,7 +499,7 @@ class SearchFiltersDeviceTest {
         showWithRail()
         shotReady()
         searchFor()
-        awaitText("Filmxy")
+        awaitText("Source A")
         rule.onNodeWithText("Anime").requestFocus()
         rule.waitForIdle()
         rule.assertScreenshot("search-type-chips-focus-chip")
@@ -555,12 +555,12 @@ class SearchFiltersDeviceTest {
         const val PIXEL_DP = 1f
         const val PANEL_PRESSES = 8
         const val PANEL_SETTLE_MS = 500L
-        const val QUERY = "blade"
+        const val QUERY = "salt"
         const val SOURCES = "Sources"
         const val DONE = "Done"
         const val EVERYTHING = "Search everything"
         const val RETRY_FAILED = "Retry failed"
-        const val FIRST_CARD = "Blade Runner"
+        const val FIRST_CARD = "Salt Road"
         val Field = SemanticsMatcher.keyIsDefined(SemanticsProperties.EditableText)
         val Sources = hasText(SOURCES)
         val Rail = listOf(
@@ -575,20 +575,20 @@ class SearchFiltersDeviceTest {
             SearchResultItem(id = SearchResultId("$provider/$title"), title = title, providerName = provider)
 
         val Serves = mapOf(
-            "Filmxy" to setOf(SearchTypeFilter.Movies),
-            "Vidplay" to setOf(SearchTypeFilter.Anime, SearchTypeFilter.Live),
-            "Zoro" to setOf(SearchTypeFilter.Anime),
+            "Source A" to setOf(SearchTypeFilter.Movies),
+            "Source B" to setOf(SearchTypeFilter.Anime, SearchTypeFilter.Live),
+            "Source C" to setOf(SearchTypeFilter.Anime),
         )
         val Corpus = mapOf(
-            "Filmxy" to listOf(hit("Blade Runner", "Filmxy"), hit("Blade Runner 2049", "Filmxy")),
-            "Vidplay" to listOf(hit("Blade", "Vidplay"), hit("Blade II", "Vidplay")),
-            "Zoro" to listOf(hit("Vampire Hunter", "Zoro")),
+            "Source A" to listOf(hit("Salt Road", "Source A"), hit("Salt Road II", "Source A")),
+            "Source B" to listOf(hit("Salt Flat", "Source B"), hit("Salt Flat II", "Source B")),
+            "Source C" to listOf(hit("Night Ferry", "Source C")),
         )
     }
 
     /** Picks, then chips, each dropped when it would leave nobody, as `selectSearchProviders` does. */
     private class FilterSource : SearchSource {
-        @Volatile var selected = setOf("Filmxy", "Vidplay")
+        @Volatile var selected = setOf("Source A", "Source B")
         @Volatile var types = setOf(SearchTypeFilter.Movies)
         @Volatile var corpus = Corpus
         @Volatile var partial: SearchOutcome? = null
@@ -608,7 +608,7 @@ class SearchFiltersDeviceTest {
                 name = provider,
                 detail = "EN · " + Serves.getValue(provider).joinToString(", ") { it.name.uppercase() },
                 selected = provider in selected,
-                health = if (provider == "Zoro") SearchSourceHealth.Failed else SearchSourceHealth.Ok,
+                health = if (provider == "Source C") SearchSourceHealth.Failed else SearchSourceHealth.Ok,
             )
         }
 
@@ -639,12 +639,12 @@ class SearchFiltersDeviceTest {
     /** A source with no filters of its own, as desktop's is: no chips are drawn. */
     private object BareSource : SearchSource {
         val items = listOf(
-            hit("Blade Runner", "Filmxy"),
-            hit("Blade Runner 2049", "Filmxy"),
-            hit("Black Out", "Filmxy"),
-            hit("Final Cut", "Filmxy"),
-            hit("Blade", "Vidplay"),
-            hit("Blade II", "Vidplay"),
+            hit("Salt Road", "Source A"),
+            hit("Salt Road II", "Source A"),
+            hit("Dusk", "Source A"),
+            hit("Last Light", "Source A"),
+            hit("Salt Flat", "Source B"),
+            hit("Salt Flat II", "Source B"),
         )
 
         override suspend fun sources() = SearchSources(2, 2, quickSearchable = false)
@@ -656,10 +656,10 @@ class SearchFiltersDeviceTest {
     private object PagedSource : SearchSource {
         override suspend fun sources() = SearchSources(1, 1, quickSearchable = false)
         override suspend fun search(query: String): SearchOutcome =
-            SearchOutcome.Complete(listOf(hit(FIRST_CARD, "Filmxy")), setOf("Filmxy"))
+            SearchOutcome.Complete(listOf(hit(FIRST_CARD, "Source A")), setOf("Source A"))
         override suspend fun quickSearch(query: String) = search(query)
         override suspend fun searchMore(query: String, providerName: String, page: Int): SearchOutcome =
-            SearchOutcome.Complete(listOf(hit("Second page", "Filmxy")))
+            SearchOutcome.Complete(listOf(hit("Second page", "Source A")))
     }
 
     /** One rail longer than the screen, with another page behind its `See all`. */
@@ -667,16 +667,16 @@ class SearchFiltersDeviceTest {
         val titles = (1..10).map { "Result $it" }
         override suspend fun sources() = SearchSources(1, 1, quickSearchable = false)
         override suspend fun search(query: String): SearchOutcome =
-            SearchOutcome.Complete(titles.map { hit(it, "Filmxy") }, setOf("Filmxy"))
+            SearchOutcome.Complete(titles.map { hit(it, "Source A") }, setOf("Source A"))
         override suspend fun quickSearch(query: String) = search(query)
         override suspend fun searchMore(query: String, providerName: String, page: Int): SearchOutcome =
-            SearchOutcome.Complete(listOf(hit("Second page", "Filmxy")))
+            SearchOutcome.Complete(listOf(hit("Second page", "Source A")))
     }
 
     private class FilledHistory : SearchHistoryStore {
         val entries = listOf(
-            "blade runner" to "2 minutes ago", "severance" to "today", "the long dark" to "yesterday",
-            "frieren" to "yesterday", "quiet harbor" to "2 days ago", "ashen field" to "3 days ago",
+            "salt road" to "2 minutes ago", "still water" to "today", "the long dark" to "yesterday",
+            "fernwood" to "yesterday", "quiet harbor" to "2 days ago", "ashen field" to "3 days ago",
             "nine lives" to "last week", "kingfisher" to "last week",
         ).map { (query, whenLabel) -> SearchHistoryEntry(query, whenLabel) }.toMutableList()
 

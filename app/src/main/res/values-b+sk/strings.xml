@@ -53,20 +53,24 @@
 <string name="account_pin_current">"Zadajte aktuálne používaný PIN."</string>
 <string name="account_pin_first_profile">"Prvý profil nemožno zamknúť"</string>
 <string name="account_pin_new">"Zadajte štvormiestny PIN."</string>
+<string name="account_pin_not_saved">"Zmenu PIN sa nepodarilo uložiť. Nič sa nezmenilo."</string>
 <string name="account_pin_off">"Vypnuté · tento profil môže otvoriť ktokoľvek"</string>
 <string name="account_pin_on">"Zapnuté · vyžaduje sa pri otvorení"</string>
 <string name="account_pin_prompt">"Zadajte štvormiestny PIN."</string>
 <string name="account_pin_remove">"Odstrániť PIN"</string>
 <string name="account_pin_set">"Nastaviť PIN"</string>
 <string name="account_pin_set_title">"Nastavenie PIN"</string>
+<string name="account_pin_unreadable">"PIN kódy na tomto počítači sa nepodarilo prečítať, takže tento profil zostáva zamknutý."</string>
 <string name="account_profile_current">"Aktuálny"</string>
 <string name="account_profile_locked">"Zamknuté · PIN"</string>
 <string name="account_profile_no_sync">"Bez synchronizácie"</string>
+<string name="account_profile_not_added">"Profil nemožno pridať, kým sa PIN kódy na tomto počítači nedajú prečítať. Nič sa nezmenilo."</string>
 <string name="account_select_note">"Samostatná história pozerania · nie sú to prihlásenia"</string>
 <string name="account_select_title">"Kto sa pozerá?"</string>
 <string name="account_signin_failed_body" formatted="true">"Služba %s prihlásenie nepotvrdila. Nič sa neuložilo."</string>
 <string name="account_signin_failed_title" formatted="true">"Nepodarilo sa prihlásiť do %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Prihlásenie do %s vyžaduje pripojenie. Skúste to znova, keď bude toto zariadenie opäť online."</string>
+<string name="account_signins_until_quit">"Prihlásenia platia, kým CloudStream neukončíte."</string>
 <string name="account_sync_connected">"Pripojené · prihlásené na tomto zariadení"</string>
 <string name="account_sync_needs_browser">"Prihlásenie vyžaduje webový prehliadač. Toto zariadenie ho nemá."</string>
 <string name="account_sync_note">"Voliteľné. Synchronizuje postup pozerania s účtom, ktorý už máte."</string>

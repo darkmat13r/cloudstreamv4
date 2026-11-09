@@ -32,6 +32,9 @@
 <string name="account_pin_current">Skriv inn PIN-koden som er i bruk no.</string>
 <string name="account_pin_first_profile">Den første profilen kan ikkje låsast</string>
 <string name="account_pin_new">Skriv inn ein firesifra PIN.</string>
+<string name="account_pin_not_saved">Kunne ikkje lagre PIN-endringa. Ingenting vart endra.</string>
+<string name="account_pin_unreadable">Kunne ikkje lese PIN-kodane på denne datamaskina, så denne profilen held fram med å vere låst.</string>
+<string name="account_profile_not_added">Kunne ikkje leggje til ein profil medan PIN-kodane på denne datamaskina ikkje kan lesast. Ingenting vart endra.</string>
 <string name="account_pin_off">Av · alle kan opne denne profilen</string>
 <string name="account_pin_on">På · blir spurd om ved opning</string>
 <string name="account_pin_prompt">Skriv inn den firesifra PIN-koden.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s stadfesta ikkje innlogginga. Ingenting vart lagra.</string>
 <string name="account_signin_failed_title">Kunne ikkje logge inn på %s</string>
 <string name="account_signin_offline_body">Innlogging på %s krev tilkopling. Prøv igjen når denne eininga er tilkopla att.</string>
+<string name="account_signins_until_quit">Innloggingar varer til du avsluttar CloudStream.</string>
 <string name="account_sync_connected">Tilkopla · logga inn på denne eininga</string>
 <string name="account_sync_needs_browser">Innlogging krev ein nettlesar. Denne eininga har ingen.</string>
 <string name="account_sync_note">Valfritt. Synkroniserer framdrifta med ein konto du alt har.</string>

@@ -52,20 +52,24 @@
 <string name="account_pin_current">"Escribe o PIN actual."</string>
 <string name="account_pin_first_profile">"O primeiro perfil non se pode bloquear"</string>
 <string name="account_pin_new">"Escribe un PIN de 4 díxitos."</string>
+<string name="account_pin_not_saved">"Non se puido gardar o cambio do PIN. Non se cambiou nada."</string>
 <string name="account_pin_off">"Desactivado · calquera pode abrir este perfil"</string>
 <string name="account_pin_on">"Activado · pídese para abrilo"</string>
 <string name="account_pin_prompt">"Escribe o PIN de 4 díxitos."</string>
 <string name="account_pin_remove">"Quitar PIN"</string>
 <string name="account_pin_set">"Definir PIN"</string>
 <string name="account_pin_set_title">"Definir un PIN"</string>
+<string name="account_pin_unreadable">"Non se puideron ler os PIN deste ordenador, así que este perfil segue bloqueado."</string>
 <string name="account_profile_current">"Actual"</string>
 <string name="account_profile_locked">"Bloqueado · PIN"</string>
 <string name="account_profile_no_sync">"Sen sincronización"</string>
+<string name="account_profile_not_added">"Non se puido engadir un perfil mentres non se poidan ler os PIN deste ordenador. Non se cambiou nada."</string>
 <string name="account_select_note">"Historial de visualización separado · non son inicios de sesión"</string>
 <string name="account_select_title">"Quen está a ver?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s non confirmou o inicio de sesión. Non se gardou nada."</string>
 <string name="account_signin_failed_title" formatted="true">"Non se puido iniciar sesión en %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Para iniciar sesión en %s fai falta conexión. Téntao de novo cando este dispositivo volva estar en liña."</string>
+<string name="account_signins_until_quit">"Os inicios de sesión duran ata que saias de CloudStream."</string>
 <string name="account_sync_connected">"Conectado · sesión iniciada neste dispositivo"</string>
 <string name="account_sync_needs_browser">"Iniciar sesión precisa dun navegador web. Este dispositivo non ten."</string>
 <string name="account_sync_note">"Opcional. Sincroniza o progreso cunha conta que xa tes."</string>

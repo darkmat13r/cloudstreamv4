@@ -32,6 +32,9 @@
 <string name="account_pin_current">Qor PIN-ka hadda la isticmaalo.</string>
 <string name="account_pin_first_profile">Astaanta koowaad lama xiri karo</string>
 <string name="account_pin_new">Qor PIN ka kooban 4 lambar.</string>
+<string name="account_pin_not_saved">Isbeddelka PIN-ka lama keydin karo. Waxba isma beddelin.</string>
+<string name="account_pin_unreadable">Lama akhrin karin PIN-ka kombuyuutarkan, sidaa darteed astaantani way xidhnaanaysaa.</string>
+<string name="account_profile_not_added">Lama dari karin astaan inta aan PIN-ka kombuyuutarkan la akhrin karin. Waxba isma beddelin.</string>
 <string name="account_pin_off">Dansan · qof kastaa wuu furi karaa astaantan</string>
 <string name="account_pin_on">Shidan · waa la weydiiyaa si loo furo</string>
 <string name="account_pin_prompt">Qor PIN-ka 4 lambar ah.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s ma xaqiijin galitaanka. Waxba lama kaydin.</string>
 <string name="account_signin_failed_title">Lama geli karo %s</string>
 <string name="account_signin_offline_body">Gelitaanka %s wuxuu u baahan yahay xiriir. Mar kale isku day marka qalabkani dib ugu soo laabto khadka.</string>
+<string name="account_signins_until_quit">Gelitaanku way sii jiraan ilaa aad ka baxdo CloudStream.</string>
 <string name="account_sync_connected">Waa ku xiran yahay · lagu galay qalabkan</string>
 <string name="account_sync_needs_browser">Gelitaanku wuxuu u baahan yahay biraawsar. Qalabkan ma laha.</string>
 <string name="account_sync_note">Ikhtiyaari. Waxay isku dhafaysaa horumarka daawashada iyo akoon aad horey u leedahay.</string>

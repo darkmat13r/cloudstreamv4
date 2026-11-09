@@ -32,6 +32,9 @@
 <string name="account_pin_current">Ketik PIN yang sedang digunakan.</string>
 <string name="account_pin_first_profile">Profil pertama tidak dapat dikunci</string>
 <string name="account_pin_new">Ketik PIN 4 digit.</string>
+<string name="account_pin_not_saved">Perubahan PIN tidak dapat disimpan. Tidak ada yang berubah.</string>
+<string name="account_pin_unreadable">Tidak dapat membaca PIN di komputer ini, jadi profil ini tetap terkunci.</string>
+<string name="account_profile_not_added">Tidak dapat menambahkan profil selama PIN di komputer ini tidak dapat dibaca. Tidak ada yang berubah.</string>
 <string name="account_pin_off">Nonaktif · siapa saja dapat membuka profil ini</string>
 <string name="account_pin_on">Aktif · diminta saat membuka</string>
 <string name="account_pin_prompt">Ketik PIN 4 digit.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.</string>
 <string name="account_signin_failed_title">Tidak dapat masuk ke %s</string>
 <string name="account_signin_offline_body">Masuk ke %s memerlukan koneksi. Coba lagi saat perangkat ini kembali online.</string>
+<string name="account_signins_until_quit">Info masuk bertahan sampai Anda keluar dari CloudStream.</string>
 <string name="account_sync_connected">Terhubung · masuk di perangkat ini</string>
 <string name="account_sync_needs_browser">Masuk memerlukan browser web. Perangkat ini tidak memilikinya.</string>
 <string name="account_sync_note">Opsional. Menyinkronkan progres tontonan ke akun yang sudah Anda miliki.</string>

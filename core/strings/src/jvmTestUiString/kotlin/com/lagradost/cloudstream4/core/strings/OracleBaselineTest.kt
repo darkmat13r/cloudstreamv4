@@ -30,9 +30,9 @@ class OracleBaselineTest {
 
     /** Every row count the baseline `README.md` quotes, so the prose cannot drift from the bytes either. */
     private val expectedDataRows = mapOf(
-        "decoded.tsv" to 57_236,
-        "emitted.tsv" to 59_925,
-        "lookup.tsv" to 103_469,
+        "decoded.tsv" to 57_484,
+        "emitted.tsv" to 60_181,
+        "lookup.tsv" to 103_817,
         "requests.tsv" to 87,
         "findings.tsv" to 0,
         "report.txt" to 12,

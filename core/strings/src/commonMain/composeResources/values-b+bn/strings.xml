@@ -32,6 +32,9 @@
 <string name="account_pin_current">এখন ব্যবহৃত পিনটি লিখুন।</string>
 <string name="account_pin_first_profile">প্রথম প্রোফাইলটি লক করা যাবে না</string>
 <string name="account_pin_new">৪ অঙ্কের একটি পিন লিখুন।</string>
+<string name="account_pin_not_saved">PIN পরিবর্তন সংরক্ষণ করা যায়নি। কিছুই বদলায়নি।</string>
+<string name="account_pin_unreadable">এই কম্পিউটারে PIN পড়া যায়নি, তাই এই প্রোফাইল লক থাকবে।</string>
+<string name="account_profile_not_added">এই কম্পিউটারের PIN পড়া না যাওয়া পর্যন্ত প্রোফাইল যোগ করা যায়নি। কিছুই বদলায়নি।</string>
 <string name="account_pin_off">বন্ধ · যে কেউ এই প্রোফাইল খুলতে পারে</string>
 <string name="account_pin_on">চালু · খুলতে পিন চাওয়া হয়</string>
 <string name="account_pin_prompt">৪ অঙ্কের পিনটি লিখুন।</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s সাইন-ইন নিশ্চিত করেনি। কিছুই সংরক্ষণ করা হয়নি।</string>
 <string name="account_signin_failed_title">%s-এ সাইন ইন করা যায়নি</string>
 <string name="account_signin_offline_body">%s-এ সাইন ইন করতে সংযোগ প্রয়োজন। এই ডিভাইসটি আবার অনলাইনে এলে চেষ্টা করুন।</string>
+<string name="account_signins_until_quit">CloudStream বন্ধ না করা পর্যন্ত সাইন-ইন থাকে।</string>
 <string name="account_sync_connected">সংযুক্ত · এই ডিভাইসে সাইন ইন করা</string>
 <string name="account_sync_needs_browser">সাইন-ইনের জন্য ওয়েব ব্রাউজার লাগে। এই ডিভাইসে নেই।</string>
 <string name="account_sync_note">ঐচ্ছিক। আপনার আগে থেকে থাকা অ্যাকাউন্টে দেখার অগ্রগতি সিঙ্ক করে।</string>

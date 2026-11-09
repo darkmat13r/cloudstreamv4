@@ -52,20 +52,24 @@
 <string name="account_pin_current">"अहिले प्रयोगमा रहेको पिन टाइप गर्नुहोस्।"</string>
 <string name="account_pin_first_profile">"पहिलो प्रोफाइल लक गर्न सकिँदैन"</string>
 <string name="account_pin_new">"४ अङ्कको पिन टाइप गर्नुहोस्।"</string>
+<string name="account_pin_not_saved">"PIN परिवर्तन सुरक्षित गर्न सकिएन। केही परिवर्तन भएन।"</string>
 <string name="account_pin_off">"निष्क्रिय · जो कोहीले यो प्रोफाइल खोल्न सक्छ"</string>
 <string name="account_pin_on">"सक्रिय · खोल्दा सोधिन्छ"</string>
 <string name="account_pin_prompt">"४ अङ्कको पिन टाइप गर्नुहोस्।"</string>
 <string name="account_pin_remove">"पिन हटाउनुहोस्"</string>
 <string name="account_pin_set">"पिन सेट गर्नुहोस्"</string>
 <string name="account_pin_set_title">"पिन सेट गर्नुहोस्"</string>
+<string name="account_pin_unreadable">"यस कम्प्युटरका PIN पढ्न सकिएन, त्यसैले यो प्रोफाइल लक नै रहन्छ।"</string>
 <string name="account_profile_current">"हालको"</string>
 <string name="account_profile_locked">"लक गरिएको · पिन"</string>
 <string name="account_profile_no_sync">"सिंक छैन"</string>
+<string name="account_profile_not_added">"यस कम्प्युटरका PIN पढ्न नसकिँदासम्म प्रोफाइल थप्न सकिएन। केही परिवर्तन भएन।"</string>
 <string name="account_select_note">"छुट्टै हेराइ इतिहास · लगइन होइन"</string>
 <string name="account_select_title">"को हेर्दै हुनुहुन्छ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s मा साइन इन गर्न सकिएन"</string>
 <string name="account_signin_offline_body" formatted="true">"%s मा साइन इन गर्न इन्टरनेट जडान चाहिन्छ। यो उपकरण फेरि अनलाइन भएपछि पुनः प्रयास गर्नुहोस्।"</string>
+<string name="account_signins_until_quit">"CloudStream बन्द नगरेसम्म साइन-इन रहन्छ।"</string>
 <string name="account_sync_connected">"जडान भयो · यो उपकरणमा साइन इन"</string>
 <string name="account_sync_needs_browser">"साइन इन गर्न वेब ब्राउजर चाहिन्छ। यो उपकरणमा छैन।"</string>
 <string name="account_sync_note">"वैकल्पिक। हेराइको प्रगति तपाईंसँग पहिल्यै भएको खातासँग सिंक गर्छ।"</string>

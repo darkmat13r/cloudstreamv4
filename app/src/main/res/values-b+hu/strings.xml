@@ -53,20 +53,24 @@
 <string name="account_pin_current">"Írja be a jelenleg használt PIN-t."</string>
 <string name="account_pin_first_profile">"Az első profil nem zárolható"</string>
 <string name="account_pin_new">"Írjon be egy 4 jegyű PIN-t."</string>
+<string name="account_pin_not_saved">"A PIN-módosítást nem sikerült menteni. Semmi sem változott."</string>
 <string name="account_pin_off">"Ki · bárki megnyithatja ezt a profilt"</string>
 <string name="account_pin_on">"Be · megnyitáskor kéri"</string>
 <string name="account_pin_prompt">"Írja be a 4 jegyű PIN-t."</string>
 <string name="account_pin_remove">"PIN eltávolítása"</string>
 <string name="account_pin_set">"PIN beállítása"</string>
 <string name="account_pin_set_title">"PIN beállítása"</string>
+<string name="account_pin_unreadable">"Nem sikerült beolvasni a számítógépen tárolt PIN-kódokat, ezért ez a profil zárolva marad."</string>
 <string name="account_profile_current">"Jelenlegi"</string>
 <string name="account_profile_locked">"Zárolva · PIN"</string>
 <string name="account_profile_no_sync">"Nincs szinkronizálás"</string>
+<string name="account_profile_not_added">"Nem lehet profilt hozzáadni, amíg a számítógépen tárolt PIN-kódok nem olvashatók. Semmi sem változott."</string>
 <string name="account_select_note">"Külön megtekintési előzmények · nem bejelentkezések"</string>
 <string name="account_select_title">"Ki néz?"</string>
 <string name="account_signin_failed_body" formatted="true">"A(z) %s nem erősítette meg a bejelentkezést. Semmi sem lett mentve."</string>
 <string name="account_signin_failed_title" formatted="true">"Nem sikerült bejelentkezni: %s"</string>
 <string name="account_signin_offline_body" formatted="true">"A bejelentkezéshez (%s) internetkapcsolat szükséges. Próbálja újra, amikor az eszköz ismét online."</string>
+<string name="account_signins_until_quit">"A bejelentkezések addig tartanak, amíg ki nem lépsz a CloudStreamből."</string>
 <string name="account_sync_connected">"Csatlakoztatva · bejelentkezve ezen az eszközön"</string>
 <string name="account_sync_needs_browser">"A bejelentkezéshez webböngésző kell. Ezen az eszközön nincs."</string>
 <string name="account_sync_note">"Nem kötelező. A megtekintési előrehaladást egy meglévő fiókkal szinkronizálja."</string>

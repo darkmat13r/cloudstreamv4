@@ -52,20 +52,24 @@
 <string name="account_pin_current">"PIN فعلی را وارد کنید."</string>
 <string name="account_pin_first_profile">"نمایهٔ اول را نمی‌توان قفل کرد"</string>
 <string name="account_pin_new">"یک PIN چهاررقمی وارد کنید."</string>
+<string name="account_pin_not_saved">"تغییر PIN ذخیره نشد. چیزی تغییر نکرد."</string>
 <string name="account_pin_off">"خاموش · هر کسی می‌تواند این نمایه را باز کند"</string>
 <string name="account_pin_on">"روشن · هنگام باز کردن پرسیده می‌شود"</string>
 <string name="account_pin_prompt">"PIN چهاررقمی را وارد کنید."</string>
 <string name="account_pin_remove">"حذف PIN"</string>
 <string name="account_pin_set">"تنظیم PIN"</string>
 <string name="account_pin_set_title">"تنظیم PIN"</string>
+<string name="account_pin_unreadable">"PINهای این رایانه خوانده نشد، پس این نمایه قفل می‌ماند."</string>
 <string name="account_profile_current">"فعلی"</string>
 <string name="account_profile_locked">"قفل‌شده · PIN"</string>
 <string name="account_profile_no_sync">"بدون همگام‌سازی"</string>
+<string name="account_profile_not_added">"تا وقتی PINهای این رایانه خوانده نشوند، افزودن نمایه ممکن نیست. چیزی تغییر نکرد."</string>
 <string name="account_select_note">"تاریخچهٔ تماشای جدا · ورود به حساب نیست"</string>
 <string name="account_select_title">"چه کسی تماشا می‌کند؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ورود را تأیید نکرد. چیزی ذخیره نشد."</string>
 <string name="account_signin_failed_title" formatted="true">"ورود به %s ممکن نشد"</string>
 <string name="account_signin_offline_body" formatted="true">"ورود به %s به اتصال اینترنت نیاز دارد. وقتی این دستگاه دوباره آنلاین شد، دوباره تلاش کنید."</string>
+<string name="account_signins_until_quit">"ورودها تا وقتی از CloudStream خارج شوید باقی می‌مانند."</string>
 <string name="account_sync_connected">"متصل · واردشده در این دستگاه"</string>
 <string name="account_sync_needs_browser">"ورود به مرورگر وب نیاز دارد. این دستگاه مرورگر ندارد."</string>
 <string name="account_sync_note">"اختیاری. پیشرفت تماشا را با حسابی که از قبل دارید همگام می‌کند."</string>

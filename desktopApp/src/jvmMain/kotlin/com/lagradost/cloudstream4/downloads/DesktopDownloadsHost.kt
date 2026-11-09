@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.downloads
 
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
@@ -8,6 +9,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Modifier
 import com.lagradost.cloudstream4.core.connectivity.UnknownConnectivityFlow
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
@@ -19,6 +21,7 @@ import com.lagradost.cloudstream4.feature.downloads.series.DownloadSeriesViewMod
 import com.lagradost.cloudstream4.feature.downloads.series.SeriesAction
 import com.lagradost.cloudstream4.feature.downloads.series.SeriesEffect
 import com.lagradost.cloudstream4.feature.downloads.series.desktop.DownloadSeriesScreenDesktop
+import com.lagradost.cloudstream4.search.PosterImage
 import java.awt.Desktop
 import java.io.File
 import java.util.Locale
@@ -88,6 +91,8 @@ internal fun DownloadsHost(
         onCancelDelete = { confirming = null },
         canReveal = { title -> downloads.fileOf(title.id) != null },
         onReveal = { id -> downloads.fileOf(id)?.let(::showInFinder) },
+        // KMP-99: the poster kept with the download. Only public http(s) addresses get this far; see `posterHttpClient`.
+        artwork = { title -> PosterImage(url = title.posterUrl, modifier = Modifier.fillMaxSize()) },
     )
 }
 
@@ -140,6 +145,8 @@ internal fun DownloadSeriesHost(
         onCancelDelete = { confirming = null },
         canReveal = { episode -> downloads.fileOf(episode.id) != null },
         onReveal = { episodeId -> downloads.fileOf(episodeId)?.let(::showInFinder) },
+        // KMP-99: D4's header, from the same kept poster as the row.
+        artwork = { PosterImage(url = state.posterUrl, modifier = Modifier.fillMaxSize()) },
     )
 }
 

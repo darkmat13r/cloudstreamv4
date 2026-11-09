@@ -56,20 +56,24 @@
 <string name="account_pin_current">"Digita il PIN attuale."</string>
 <string name="account_pin_first_profile">"Il primo profilo non può essere bloccato"</string>
 <string name="account_pin_new">"Digita un PIN di 4 cifre."</string>
+<string name="account_pin_not_saved">"Impossibile salvare la modifica del PIN. Non è cambiato nulla."</string>
 <string name="account_pin_off">"Disattivato · chiunque può aprire questo profilo"</string>
 <string name="account_pin_on">"Attivato · richiesto all'apertura"</string>
 <string name="account_pin_prompt">"Digita il PIN di 4 cifre."</string>
 <string name="account_pin_remove">"Rimuovi PIN"</string>
 <string name="account_pin_set">"Imposta PIN"</string>
 <string name="account_pin_set_title">"Imposta un PIN"</string>
+<string name="account_pin_unreadable">"Impossibile leggere i PIN su questo computer, quindi questo profilo resta bloccato."</string>
 <string name="account_profile_current">"Attuale"</string>
 <string name="account_profile_locked">"Bloccato · PIN"</string>
 <string name="account_profile_no_sync">"Nessuna sincronizzazione"</string>
+<string name="account_profile_not_added">"Impossibile aggiungere un profilo finché i PIN su questo computer non possono essere letti. Non è cambiato nulla."</string>
 <string name="account_select_note">"Cronologia di visione separata · non sono accessi"</string>
 <string name="account_select_title">"Chi sta guardando?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s non ha confermato l'accesso. Non è stato salvato nulla."</string>
 <string name="account_signin_failed_title" formatted="true">"Impossibile accedere a %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Per accedere a %s serve una connessione. Riprova quando questo dispositivo sarà di nuovo online."</string>
+<string name="account_signins_until_quit">"Gli accessi durano finché non chiudi CloudStream."</string>
 <string name="account_sync_connected">"Connesso · accesso eseguito su questo dispositivo"</string>
 <string name="account_sync_needs_browser">"L'accesso richiede un browser web. Questo dispositivo non ne ha."</string>
 <string name="account_sync_note">"Facoltativo. Sincronizza i progressi con un account che hai già."</string>

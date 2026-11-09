@@ -52,20 +52,24 @@
 <string name="account_pin_current">"I-type ang PIN na ginagamit ngayon."</string>
 <string name="account_pin_first_profile">"Hindi maaaring i-lock ang unang profile"</string>
 <string name="account_pin_new">"Mag-type ng 4-digit na PIN."</string>
+<string name="account_pin_not_saved">"Hindi ma-save ang pagbabago sa PIN. Walang nabago."</string>
 <string name="account_pin_off">"Naka-off · kahit sino ay puwedeng magbukas ng profile na ito"</string>
 <string name="account_pin_on">"Naka-on · hinihingi para buksan ito"</string>
 <string name="account_pin_prompt">"I-type ang 4-digit na PIN."</string>
 <string name="account_pin_remove">"Alisin ang PIN"</string>
 <string name="account_pin_set">"Itakda ang PIN"</string>
 <string name="account_pin_set_title">"Magtakda ng PIN"</string>
+<string name="account_pin_unreadable">"Hindi mabasa ang mga PIN sa computer na ito, kaya mananatiling naka-lock ang profile na ito."</string>
 <string name="account_profile_current">"Kasalukuyan"</string>
 <string name="account_profile_locked">"Naka-lock · PIN"</string>
 <string name="account_profile_no_sync">"Walang sync"</string>
+<string name="account_profile_not_added">"Hindi makapagdagdag ng profile habang hindi mabasa ang mga PIN sa computer na ito. Walang nabago."</string>
 <string name="account_select_note">"Hiwalay na history ng panonood · hindi mga login"</string>
 <string name="account_select_title">"Sino ang nanonood?"</string>
 <string name="account_signin_failed_body" formatted="true">"Hindi kinumpirma ng %s ang pag-sign in. Walang na-save."</string>
 <string name="account_signin_failed_title" formatted="true">"Hindi makapag-sign in sa %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito."</string>
+<string name="account_signins_until_quit">"Tatagal ang mga sign-in hanggang isara mo ang CloudStream."</string>
 <string name="account_sync_connected">"Nakakonekta · naka-sign in sa device na ito"</string>
 <string name="account_sync_needs_browser">"Kailangan ng web browser para mag-sign in. Wala nito ang device na ito."</string>
 <string name="account_sync_note">"Opsyonal. Sini-sync ang progreso ng panonood sa account na mayroon ka na."</string>

@@ -32,6 +32,9 @@
 <string name="account_pin_current">Type the PIN in use now.</string>
 <string name="account_pin_first_profile">The first profile can't be locked</string>
 <string name="account_pin_new">Type a 4-digit PIN.</string>
+<string name="account_pin_not_saved">Couldn't save the PIN change. Nothing was changed.</string>
+<string name="account_pin_unreadable">Couldn't read the PINs on this computer, so this profile stays locked.</string>
+<string name="account_profile_not_added">Couldn't add a profile while the PINs on this computer can't be read. Nothing was changed.</string>
 <string name="account_pin_off">Off · anyone can open this profile</string>
 <string name="account_pin_on">On · asked to open it</string>
 <string name="account_pin_prompt">Type the 4-digit PIN.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s didn't confirm the sign-in. Nothing was saved.</string>
 <string name="account_signin_failed_title">Couldn't sign in to %s</string>
 <string name="account_signin_offline_body">Signing in to %s needs a connection. Try again when this device is back online.</string>
+<string name="account_signins_until_quit">Sign-ins last until you quit CloudStream.</string>
 <string name="account_sync_connected">Connected · signed in on this device</string>
 <string name="account_sync_needs_browser">Sign-in needs a web browser. This device has none.</string>
 <string name="account_sync_note">Optional. Syncs watch progress to an account you already have.</string>

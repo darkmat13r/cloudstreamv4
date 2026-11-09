@@ -56,20 +56,24 @@
 <string name="account_pin_current">"Digite o PIN atual."</string>
 <string name="account_pin_first_profile">"O primeiro perfil não pode ser bloqueado"</string>
 <string name="account_pin_new">"Digite um PIN de 4 dígitos."</string>
+<string name="account_pin_not_saved">"Não foi possível salvar a alteração do PIN. Nada foi alterado."</string>
 <string name="account_pin_off">"Desativado · qualquer pessoa pode abrir este perfil"</string>
 <string name="account_pin_on">"Ativado · pedido para abrir"</string>
 <string name="account_pin_prompt">"Digite o PIN de 4 dígitos."</string>
 <string name="account_pin_remove">"Remover PIN"</string>
 <string name="account_pin_set">"Definir PIN"</string>
 <string name="account_pin_set_title">"Definir um PIN"</string>
+<string name="account_pin_unreadable">"Não foi possível ler os PINs deste computador, então este perfil continua bloqueado."</string>
 <string name="account_profile_current">"Atual"</string>
 <string name="account_profile_locked">"Bloqueado · PIN"</string>
 <string name="account_profile_no_sync">"Sem sincronização"</string>
+<string name="account_profile_not_added">"Não é possível adicionar um perfil enquanto os PINs deste computador não puderem ser lidos. Nada foi alterado."</string>
 <string name="account_select_note">"Histórico separado · não são logins"</string>
 <string name="account_select_title">"Quem está assistindo?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s não confirmou o login. Nada foi salvo."</string>
 <string name="account_signin_failed_title" formatted="true">"Não foi possível entrar no %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Para entrar no %s é preciso ter conexão. Tente de novo quando este dispositivo estiver on-line."</string>
+<string name="account_signins_until_quit">"Os logins duram até você fechar o CloudStream."</string>
 <string name="account_sync_connected">"Conectado · logado neste dispositivo"</string>
 <string name="account_sync_needs_browser">"O login precisa de um navegador. Este dispositivo não tem."</string>
 <string name="account_sync_note">"Opcional. Sincroniza o progresso com uma conta que você já tem."</string>

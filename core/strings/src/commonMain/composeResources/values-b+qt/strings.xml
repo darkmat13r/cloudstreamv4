@@ -32,6 +32,9 @@
 <string name="account_pin_current">uuuhh oog aah ooh.</string>
 <string name="account_pin_first_profile">aah ooooggk oooohh oooh-aah</string>
 <string name="account_pin_new">uuuhh oog aah.</string>
+<string name="account_pin_not_saved">aagg ooh PIN. ooh-aah.</string>
+<string name="account_pin_unreadable">aagg ooh PIN. ooh-aah oouh.</string>
+<string name="account_profile_not_added">aagg ooh-ooh PIN. ooh-aah.</string>
 <string name="account_pin_off">oooohh · uuh ooh aahh ooooggk</string>
 <string name="account_pin_on">aah · ooh aahh</string>
 <string name="account_pin_prompt">uuuhh oog aah.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s oooohh uugg ah. oooohh aagg.</string>
 <string name="account_signin_failed_title">oooohh uugg ah %s</string>
 <string name="account_signin_offline_body">uugg ah %s ooh aagg. uuh eeeek oooh aah aagg.</string>
+<string name="account_signins_until_quit">ooh-aah aagg ooh CloudStream.</string>
 <string name="account_sync_connected">oooh-aah · ooh aagg</string>
 <string name="account_sync_needs_browser">oooh aaagg aah. ooh oooh aah.</string>
 <string name="account_sync_note">ooh. oooh-aah aagg ooh aaaagg aah.</string>

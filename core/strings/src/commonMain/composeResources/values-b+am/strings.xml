@@ -32,6 +32,9 @@
 <string name="account_pin_current">አሁን በጥቅም ላይ ያለውን ፒን ይተይቡ።</string>
 <string name="account_pin_first_profile">የመጀመሪያው መገለጫ ሊቆለፍ አይችልም</string>
 <string name="account_pin_new">ባለ 4 አሃዝ ፒን ይተይቡ።</string>
+<string name="account_pin_not_saved">የፒን ለውጡን ማስቀመጥ አልተቻለም። ምንም አልተቀየረም።</string>
+<string name="account_pin_unreadable">በዚህ ኮምፒውተር ላይ ያሉትን ፒኖች ማንበብ አልተቻለም፣ ስለዚህ ይህ መገለጫ እንደተቆለፈ ይቆያል።</string>
+<string name="account_profile_not_added">በዚህ ኮምፒውተር ላይ ያሉት ፒኖች ሊነበቡ ባለመቻላቸው መገለጫ ማከል አልተቻለም። ምንም አልተቀየረም።</string>
 <string name="account_pin_off">ጠፍቷል · ማንም ይህን መገለጫ መክፈት ይችላል</string>
 <string name="account_pin_on">በርቷል · ለመክፈት ይጠየቃል</string>
 <string name="account_pin_prompt">ባለ 4 አሃዙን ፒን ይተይቡ።</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s መግባቱን አላረጋገጠም። ምንም አልተቀመጠም።</string>
 <string name="account_signin_failed_title">ወደ %s መግባት አልተቻለም</string>
 <string name="account_signin_offline_body">ወደ %s ለመግባት ግንኙነት ያስፈልጋል። ይህ መሣሪያ ተመልሶ መስመር ላይ ሲሆን እንደገና ይሞክሩ።</string>
+<string name="account_signins_until_quit">መግቢያዎች CloudStreamን እስኪያቋርጡ ድረስ ይቆያሉ።</string>
 <string name="account_sync_connected">ተገናኝቷል · በዚህ መሣሪያ ላይ ገብቷል</string>
 <string name="account_sync_needs_browser">መግባት የድር አሳሽ ይፈልጋል። ይህ መሣሪያ የለውም።</string>
 <string name="account_sync_note">አማራጭ። የእይታ ሂደትን ቀድሞ ካለዎት መለያ ጋር ያመሳስላል።</string>

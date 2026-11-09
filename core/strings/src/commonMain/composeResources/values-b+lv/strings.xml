@@ -32,6 +32,9 @@
 <string name="account_pin_current">Ievadiet pašlaik izmantoto PIN kodu.</string>
 <string name="account_pin_first_profile">Pirmo profilu nevar bloķēt</string>
 <string name="account_pin_new">Ievadiet 4 ciparu PIN kodu.</string>
+<string name="account_pin_not_saved">PIN maiņu neizdevās saglabāt. Nekas netika mainīts.</string>
+<string name="account_pin_unreadable">Neizdevās nolasīt šī datora PIN kodus, tāpēc šis profils paliek bloķēts.</string>
+<string name="account_profile_not_added">Nevar pievienot profilu, kamēr šī datora PIN kodus nevar nolasīt. Nekas netika mainīts.</string>
 <string name="account_pin_off">Izslēgts · ikviens var atvērt šo profilu</string>
 <string name="account_pin_on">Ieslēgts · tiek prasīts, lai to atvērtu</string>
 <string name="account_pin_prompt">Ievadiet četrciparu PIN kodu.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s neapstiprināja pieteikšanos. Nekas netika saglabāts.</string>
 <string name="account_signin_failed_title">Neizdevās pieteikties pakalpojumā %s</string>
 <string name="account_signin_offline_body">Lai pieteiktos pakalpojumā %s, nepieciešams savienojums. Mēģiniet vēlreiz, kad šī ierīce atkal būs tiešsaistē.</string>
+<string name="account_signins_until_quit">Pierakstīšanās ir spēkā, līdz aizverat CloudStream.</string>
 <string name="account_sync_connected">Savienots · pieteicies šajā ierīcē</string>
 <string name="account_sync_needs_browser">Pieteikšanās prasa tīmekļa pārlūku. Šajā ierīcē tāda nav.</string>
 <string name="account_sync_note">Neobligāti. Sinhronizē skatīšanās progresu ar kontu, kas jums jau ir.</string>

@@ -32,6 +32,9 @@
 <string name="account_pin_current">Tik die PIN wat nou gebruik word.</string>
 <string name="account_pin_first_profile">Die eerste profiel kan nie gesluit word nie</string>
 <string name="account_pin_new">Tik 'n 4-syfer-PIN.</string>
+<string name="account_pin_not_saved">Kon nie die PIN-verandering stoor nie. Niks is verander nie.</string>
+<string name="account_pin_unreadable">Kon nie die PIN's op hierdie rekenaar lees nie, so hierdie profiel bly gesluit.</string>
+<string name="account_profile_not_added">Kon nie 'n profiel byvoeg terwyl die PIN's op hierdie rekenaar nie gelees kan word nie. Niks is verander nie.</string>
 <string name="account_pin_off">Af · enigiemand kan hierdie profiel oopmaak</string>
 <string name="account_pin_on">Aan · gevra om dit oop te maak</string>
 <string name="account_pin_prompt">Tik die 4-syfer-PIN.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s het nie die aanmelding bevestig nie. Niks is gestoor nie.</string>
 <string name="account_signin_failed_title">Kon nie by %s aanmeld nie</string>
 <string name="account_signin_offline_body">Om by %s aan te meld, is 'n verbinding nodig. Probeer weer wanneer hierdie toestel weer aanlyn is.</string>
+<string name="account_signins_until_quit">Aanmeldings hou tot jy CloudStream afsluit.</string>
 <string name="account_sync_connected">Gekoppel · aangemeld op hierdie toestel</string>
 <string name="account_sync_needs_browser">Aanmelding het 'n webblaaier nodig. Hierdie toestel het nie een nie.</string>
 <string name="account_sync_note">Opsioneel. Sinkroniseer kykvordering met 'n rekening wat jy reeds het.</string>

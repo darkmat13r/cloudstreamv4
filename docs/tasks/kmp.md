@@ -6926,6 +6926,33 @@ rebuilding the page as the service ticked, and D1's state was made again with no
 
 ## KMP-92 — An unstarted show's Play starts S1E1, not a special · **TV and the Mac in #265; the phone in pr #272** · the owner's ruling, 2026-11-08
 
+## KMP-99 — The Mac downloads' artwork: every row's poster, and D4's header · **in review**
+
+**Status:** in review · `:feature:downloads`, `:desktopApp` · from the design audit: `DownloadTitle` had no poster and
+neither host passed `artwork`, so every row's art and D4's header were empty in the real app.
+
+- `DownloadTitle.posterUrl`, `DownloadSeriesContents.posterUrl` and `SeriesState.posterUrl`, all defaulting to null, so
+  Android's source is unchanged. `DownloadShelf.title` takes it.
+- `DesktopDownloadRequest.posterUrl` goes into `StoredEpisode.posterUrl`. Kept once `Done`, as the title's name is:
+  it is what the row shows, not how to fetch anything. `KMP-52`'s ruling is about the media link (URL, headers,
+  referer), and the library already keeps its titles' posters the same way. A file written before the field reads
+  as null; the format stays 3.
+- Only plain `http(s)`, with no space or control character and at most 2048 characters, is kept (`posterOf`), on the
+  way in and again on reading. `PosterImage` checks the host when it loads, as for every other poster.
+- A title's poster is its newest episode's. Both hosts pass `artwork` through `PosterImage`.
+- **Not yet fed:** nothing in the app enqueues a download yet; tests are the only callers. The caller that does
+  (a Download button on the title page) passes the page's `posterUrl`.
+
+### Tests
+
+- `DesktopDownloadsTest`: a film's and a series' posters are their rows', the series' is D4's, the film's is in the
+  file once `Done`, and both read back after a restart; `posterOf` keeps http(s) and refuses `file:`,
+  `javascript:`, `data:`, scheme-relative, a space, a newline and an over-long address.
+- `DownloadShelfTest`: the row carries the poster it was given, none by default.
+- `DownloadSeriesViewModelTest`: the poster comes with the contents, and a read without one clears it.
+
+## KMP-92 — An unstarted show's Play starts S1E1, not a special · **in pr #265** · the owner's ruling, 2026-11-08
+
 Found while fixing `#244`'s review. With no resume and no title-level `playData`, `TitleDetail.primaryData` was
 `episodes.firstOrNull()`: whatever the provider listed first. A provider that lists specials first therefore made
 Play start a special, and since `#244` the page also opened on the Specials chip.
@@ -7210,3 +7237,466 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
 - `PlayerScreenTest`: at 30 s, both arrows and both buttons move 30 000 ms; with nothing passed, the step is
   Settings' default.
 - `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.
+
+## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr #290, 95e in pr #296 (AniList in pr #300)** · the PM's task, 2026-11-08
+
+`DS-25`'s boards, built in six PRs (the PM's plan, 2026-11-08):
+
+| Part | What | Waits for |
+|---|---|---|
+| `KMP-95a` | Profiles: the file, a library each, the launch picker (A1, A15), the sidebar's button and list (A2) | — |
+| `KMP-95b` | Managing: Manage (A5), the editor and Add (A6, A6b, A6c), Delete (A8) | 95a |
+| `KMP-95c` | The PIN (A3, A3b, A4, A4b, A6d, A7 to A7c), `BUG-55`'s limit over a boot-relative clock | 95b |
+| `KMP-95d` | Sign-ins over an in-memory store: Sync (A9), Simkl's code (A11, A11b), A12 to A14, OpenSubtitles and SubDL (A16, A16b) | 95a |
+| `KMP-95e` | The browser's redirect for AniList and MyAnimeList (A10): the scheme, the handler, `state` and PKCE | 95d |
+| `KMP-95f` | The Keychain through JNA 5.19.1, and Touch ID (A3t), measured on a signed build | The owner's Team ID and certificate |
+| `KMP-95g` | Pictures: the bundled ones, and "Use an image address" (A6) | The owner; see 95b |
+| `KMP-95h` | Renewing MyAnimeList's token with its refresh token before it expires (about 31 days) | 95e, 95f |
+
+**Rulings** (the owner and the PM, 2026-11-08):
+- JNA 5.19.1 is approved for the Keychain: an exact pin, declared only in `:desktopApp`'s account code (95f).
+- Touch ID tries the Keychain's biometry access control first. A Swift shim goes back to the owner only if that cannot
+  show our reason text.
+- **What a profile separates: the library only** (bookmarks, watch positions, resume), as Android's accounts do.
+  Settings, downloads, extensions, the home source, the volume and the picture fit are the Mac's.
+- **The PIN before 95f** is kept in its own owner-only file, never in `profiles.json` (the reviewer of `#278`): written
+  temp-then-move, never logged, shown or in anything shared. It is not hashed: a hash of a 4-digit PIN is reversed at once, so it would only look safer (as `d081`, 2026-11-07). It
+  moves to the Keychain in 95f.
+- **Sign-ins before 95f** are kept in memory only and lost on quit, and the window says so. None is ever on disk in
+  plain text.
+
+### KMP-95a — Profiles
+
+**The file.** `~/.cloudstream4/profiles.json`, owner-only (`DesktopProfileFile`): the profiles' ids and names, and the
+one watching. Profile 0 is always there; its name is empty in the file and drawn as `default_account` in the current
+language. A file that is missing, too large (64 KB), not JSON or not this shape reads as profile 0 alone, which is what
+the Mac had before. A file that parses is cleaned on the way in:
+- a negative or repeated id is dropped;
+- a name loses control and format characters and is cut to 64 code points, never through a surrogate pair;
+- the list is cut to 32;
+- profile 0 is put back if missing, and a `current` that is not a profile becomes 0.
+
+**A library each, with no migration.** Profile 0 reads and writes the files the Mac already had (`library.tsv`,
+`watch-positions.tsv`), so nothing moves for someone who never adds a profile. Profile `n` has `library-n.tsv` and
+`watch-positions-n.tsv` beside them.
+
+**The window** (`ProfilesHost`):
+- With two profiles or more it opens on the picker (A1). The current profile's card is ringed, so Return opens it; the
+  arrow keys move the ring and a click opens the card under the pointer. The card row is the one focus stop and draws
+  the ring itself. Measured: a card's own `clickable` did not take a focus request in the test scene, and a request
+  made beside `BoxWithConstraints` ran before its content existed and failed silently.
+- Below a 640 content height the heading moves up (A15), so four cards fit in one row at 800×520, and a fifth wraps.
+- The sidebar's foot has the profile button (A2), and its list opens above it, the current profile checked. Choosing
+  another makes the window again over that profile's library, under its key, and the stack goes back to Home.
+- **Nothing of one profile reaches the next** (the reviewer of `#278`). `DesktopDetailViewModels.get` keeps the first
+  view model made for a title, whatever library it is handed later. So a switch drops every title's view model, and
+  search's, **before** the profile changes (`forgetWindowViewModels`), and the window's dispose drops them again. A
+  test opens a title in one profile, switches, checks it was let go, and opens it in the next: no resume, no list. A click outside, the list's Escape and the window's Escape all close it.
+  `EscapeHandler.overlay` lets the list take the window's Escape before the screen under it.
+- The choice is remembered for the next launch. If it cannot be written it still holds until the app quits, and the
+  console says the class of the failure, never a path.
+
+**Not yet:**
+- Manage profiles and Add profile: on A1 and in A2's list, they come with 95b. Until then a second profile exists only
+  in a file written by hand or by a test.
+- A locked profile: 95c.
+- Sync services in A2's list: 95d.
+
+**Read from the boards, and where the build differs:**
+- Every number is the boards' (`ProfilesDesktopDefaults`, each with the token it mirrors).
+- The type roles are the boards' names, but the sizes are the Mac's (`forDesktop`): the boards restated the base
+  `CloudStreamTypography`, which the window does not use.
+- Manage profiles (95b) will draw `Profile` (`User`), the glyph `ui-components.md` gives it; the board drew a pencil.
+- TV's profile line and initials (`AccountSelectScreenTv`) moved, unchanged, to `ProfileText.kt`, so the Mac and TV
+  read one copy.
+
+**Tests** (desktopApp jvmTest):
+- `DesktopProfilesTest`: no file; owner-only write, read back, no temporary file; an unknown or current choice writes
+  nothing; a failed write is reported and still holds; cleaning; a name cut by code points; the cap; too large and not
+  this format; profile 0's files are the old ones; a title kept by one profile is not in another's library.
+- `ProfileTextTest` (`:feature:account` commonTest): initials, one outside the BMP kept whole.
+- `ProfilesScreenTest`, through real pointer and key events:
+  - the picker opens with two profiles, and Return opens the current one;
+  - the arrows move and Return opens the focused card;
+  - a click opens a card, and the choice is remembered;
+  - one profile shows no picker;
+  - at the minimum window the heading moves up and four cards fit in one row;
+  - the sidebar's list opens above its button, and a choice opens Home over the other profile's library;
+  - the list's Escape, the window's Escape and choosing the current profile all close it with nothing changed;
+  - a title opened in one profile is let go on a switch, and opened in the next shows no resume and no list.
+- Renders with `-Pcloudstream.account.renders=<dir>`.
+
+### KMP-95b — Managing profiles
+
+**Manage profiles** (A5) fills the window from the picker's corner button or the sidebar list's new Manage profiles row,
+which sits under a rule. In Manage mode:
+- the heading says Manage profiles, and each card carries an Edit chip and opens its editor;
+- Add profile is the last card, which the ring reaches too;
+- Done goes back where Manage came from, the picker or the window. **From the window, Done lands on Home in a fresh
+  window:** Manage replaces the window rather than covering it, so a search, an open title and a scroll position are
+  gone.
+
+With one profile, the sidebar's list is the way to a second.
+
+**The editor** (A6, A6b, A6c) is a 440 sheet hung from the window's top edge over a dimmed window. It has a name field
+and Cancel, with Save as the one primary (Add when adding). Delete profile sits apart at the lead.
+- The name opens selected, so typing replaces it; Return in the field saves and Escape cancels.
+- Add starts with `Profile N`, N being one more than the profiles there are. The pattern is Android-style, so it is
+  filled through `UiString`, which `stringResource` would not do.
+- A blank name keeps the one the profile had. On the first profile it goes back to the default name in the current
+  language, and when adding it becomes `Profile N`.
+- The first profile's editor has no Delete: it is the way back in (A6c).
+- Adding does not switch to the new profile.
+
+**Delete** (A8) asks first. Cancel is the primary, and Return and Escape both land on it, as on the downloads sheet;
+only a click deletes. Cancel goes back to the editor.
+- The profile leaves `profiles.json` before its library files go, and **only if that write succeeded** (the reviewer of
+  `#281`). A delete that cannot be written still holds until the app quits, and the profile comes back at the next
+  launch with its library, never without it.
+- **At launch, a library under an id `profiles.json` no longer lists is removed**, so a deleted profile's history does
+  not sit on disk until its id is taken again. **Only over a strict read** (the reviewer of `#281`): every key present
+  and none unknown, version 1, and nothing that cleaning would change about the ids (no repeat, none out of range, no
+  more than 32, the first profile there). Loading stays lenient. A file that is missing, unreadable, `{}`, another
+  version's list or a damaged one reads as the first profile alone, and a sweep over that would remove every other
+  profile's library, so none runs.
+- Only `library-n.tsv` and `watch-positions-n.tsv` with `n` written as this app writes it (`0`, or 1 to 4 digits with
+  no leading zero) are a profile's. `library-007.tsv` is not read as 7.
+- Ids are below 10,000. A larger id in the file is dropped, so a hostile `Int.MAX_VALUE` cannot make the next id wrap
+  negative, and Add stops at the cap.
+- `add` clears any files under the id it takes, so a new profile never starts with what a deleted one left behind.
+- Deleting the profile watching makes the first profile watch. The window's view models are dropped first, through
+  the same path as a switch.
+
+The window's Escape closes what is on top: a sheet, then the profile list, then Manage.
+
+**Initials only** (the PM, 2026-11-08). The boards' picture row and "Use an image address" are `KMP-95g`:
+- **Bundled pictures:** copying Android's profile drawables into `composeResources` is fine when it is done. They are
+  the app's own artwork, not new icons.
+- **"Use an image address":** fetching an arbitrary URL is a security surface: a network fetch, decoding an untrusted
+  image, and a cache. **It needs a security design and the owner's OK.** The PM's leaning is not to build it on the Mac
+  unless the owner asks.
+
+The PIN row is `KMP-95c`, along with A6c's "can't be locked" line.
+
+**Where the build differs from the boards:**
+- The Edit chip is words only. No glyph means Edit in `ui-components.md` yet, and `icons.md` says a glyph is not drawn
+  ahead of its row.
+- A6's lead Delete profile is the secondary button, not quiet: `DesktopButton` has no quiet tone.
+- The sheets are on `surface`, as the downloads sheet is, so the secondary buttons read as buttons.
+
+**Tests** (desktopApp jvmTest):
+- `DesktopProfilesTest`, 21 cases. Add covers the next id, cleaning, a blank name and the cap. Rename covers a blank
+  name and the first profile's default. Delete covers that the first is never deleted, that the library goes, and that
+  the first profile watches if the deleted one was watching. A new id never inherits a deleted one's files. A delete
+  whose save fails keeps the library. The launch sweep removes only unlisted ids' files, and nothing over a file it
+  cannot read strictly (nine cases, from `{}` to a 33rd profile). Only a profile's own file name is read as an id. Ids
+  are capped.
+- `ManageProfilesTest`, 6 cases through real pointer and key events, with names typed through the field's own
+  `SetText`:
+  - Manage from the sidebar with one profile, adding a second, and Done back to the window;
+  - Manage from the picker, a rename with Return, a blank name kept, and Done back to choosing;
+  - the first profile's editor has no Delete;
+  - Delete asks first, Return and Escape cancel, and a click deletes the profile and its library;
+  - deleting the profile watching makes the first watch;
+  - the window's Escape closes the sheet, then Manage.
+- Renders: A5, A6, A6b, A6c and A8, compared with the boards by eye.
+
+### KMP-95c — The PIN
+
+**The rule** is `BUG-55`'s, as its own `PinLimit` in `:feature:account` (`:app`'s `PinAttempts` is untouched):
+- four wrong PINs are free;
+- the fifth starts a 30 s wait, each one after doubles it, and the 12th reaches the one-hour cap, where it stays;
+- a right PIN clears the count;
+- during a wait nothing is compared, the right PIN included;
+- the count is per profile and kept across restarts;
+- only counts and waits are kept, never a PIN.
+
+**The clock**, measured on the Mac: `System.nanoTime()` counts from boot. Two separate JVMs read the same 2,044,795 s,
+which matches `CLOCK_UPTIME_RAW`. So:
+- a change to the wall clock does not move it, and a restart of the app does not reset it;
+- it does not advance while the Mac sleeps, so a wait can only grow, never shrink;
+- a reboot resets it, and then the full wait runs again from boot, as in `BUG-55`.
+
+No JNA is needed for any of this.
+
+**Where it is kept** (D1, and the reviewer of `#278`): two owner-only files beside the profiles, written temp-then-move.
+- `pins.json` holds each profile's PIN. It is never in `profiles.json`, and never logged, shown or in anything shared.
+  It is not hashed: a hash of four digits is reversed at once. It moves to the Keychain in `95f`.
+- `pin-attempts.json` holds counts and waits only.
+- A deleted `pins.json` is no PINs (D1). A PIN is a household lock against someone at the window, not against someone
+  who can read this account's files.
+- **"Couldn't read" is never "no file" once running** (the reviewer of `#286`, who found the fail-open). The read has
+  three outcomes: absent, read, failed. On failed (permissions, too large, not JSON, a folder in its place), a locked
+  profile's check refuses without comparing or counting a wrong PIN, and it stays locked. The prompt says "Couldn't read
+  the PINs on this computer, so this profile stays locked." Set, Remove, forget and the launch sweep write nothing and
+  return false, so a read failure never rewrites `pins.json` with one profile's PIN alone, wiping the others'.
+  `account_pin_unreadable` is a new key in all 62 locales: the strings baseline's twenty-eighth move.
+- **The same at launch** (the PM, 2026-11-09): a `pins.json` that cannot be read then leaves which profiles have a PIN
+  unknown, so every profile but the first is locked, with the same reason, until the file reads. Nobody is locked out:
+  the first profile never has a PIN. That closes "break the file, then restart".
+- **Add adds nothing while a PIN left under the new id cannot be forgotten** (the reviewer of `#286`): otherwise a reused
+  id could inherit a deleted profile's PIN once the file reads again. `add` forgets the PIN first, and on false returns
+  null before touching anything; the sheet stays open with "Couldn't add a profile while the PINs on this computer
+  can't be read. Nothing was changed." `account_profile_not_added` is a new key in all 62 locales: the strings
+  baseline's twenty-ninth move.
+- An attempts record out of range reads as the strictest wait, never a free one.
+- Deleting a profile removes its PIN and count. At launch, the PINs and counts of profiles no longer listed are
+  removed, over the same strict read as the libraries' sweep and never over a lenient one.
+- **A new profile on a reused id starts with no PIN or count** (the reviewer of `#286`): `add` forgets them beside the
+  library, so a profile 2 deleted before never locks the next profile 2.
+- **No PIN is held in memory** (the reviewer's nit): only which profiles have one. A check reads `pins.json` for that
+  one comparison.
+- **A PIN change that cannot be written changes nothing** (the reviewer of `#286`): Set and Remove return to the editor
+  with the PIN row as it was and the line "Couldn't save the PIN change. Nothing was changed." So a profile never looks
+  locked and then opens after a restart, or the other way round. `account_pin_not_saved` is a new key in all 62
+  locales: the strings baseline's twenty-seventh move.
+- The first profile can never be locked.
+
+**The prompts:**
+- **A locked profile asks its PIN** before it opens, from the picker or the sidebar's list.
+- **In Manage, a locked profile asks its PIN** before its editor opens (A5).
+- **A3 and A3b:** four cells, each a dot and never a digit. The fourth digit submits, and Backspace takes the last one
+  back. A wrong PIN clears the cells and says "Incorrect PIN. Please try again.", with no count of tries left.
+- **A4 and A4b:** while a wait runs the cells are off and nothing typed reaches them. The line counts down each frame
+  from the boot clock, as `mm:ss` rounded up, so it never reads 00:00 while it runs. Cancel stays live, and so does
+  every other profile. The wait outlives closing the prompt and a restart.
+- **The editor's PIN row:**
+  - **A6:** Off, with Set PIN.
+  - **A6d:** On, with Change PIN and Remove PIN.
+  - **A6c:** the first profile can't be locked, and there are no buttons.
+  - Its line is the caption size: at the Mac's label size, A6d's wrapped beside two buttons.
+- **Setting a PIN (A7, A7b):** the PIN twice; a mismatch starts over. A new PIN is not under the limit, since there is
+  nothing to guess yet.
+- **Changing or removing a PIN (A7c):** the PIN in use first, under the same limit.
+- Escape on a PIN step goes back to the editor.
+
+The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once train 9 was on master. The one new key is
+`account_pin_not_saved`, from the review.
+
+**Not here:**
+- **Touch ID (A3t):** `95f`, on a signed build.
+- **The PIN row while adding (A6b):** a PIN is set once the profile exists, from its editor.
+- **A name typed in the editor is not kept across a PIN step:** the editor opens again with the saved name. Save the
+  name first.
+- **A "PINs didn't match" line in A7b** (a follow-up, the PM, 2026-11-09): a mismatch starts over silently today,
+  because no key says so. The line wants its own `I18N` key in every locale, as its own task.
+
+**Tests:**
+- `PinLimitTest` (`:feature:account` commonTest), 6 cases: the numbers, running down, per profile, a restart, a
+  reboot, and a store that cannot write.
+- `DesktopPinsTest`, 16 cases (6 from the review: a set or remove that cannot be written, a check against the file,
+  a reused id, a `pins.json` that cannot be read once running, by `chmod 000` and by a folder in its place, and an Add
+  refused while it cannot be read). Each `chmod 000` case assumes the file then really is unreadable, so a run as root
+  skips rather than passing for the wrong reason:
+  - right, wrong and the count;
+  - nothing compared during a wait;
+  - the first profile and what counts as a PIN;
+  - kept across a restart, in owner-only files, with no PIN in the attempts file;
+  - never in `profiles.json`;
+  - an unreadable `pins.json` at launch: every profile but the first locked, nothing counted or written, and only the
+    file's own PINs once it reads again;
+  - an unreadable one once running: a locked profile refused with the right PIN and the wrong, nothing counted, set,
+    remove, forget and the sweep refused, and the file unchanged;
+  - a folder in its place: unreadable, not empty, and not written over;
+  - Add over an unreadable file: nothing added or deleted, then added clean once it reads;
+  - an attempts record out of range;
+  - delete and the launch sweep, and none over a file that is not strictly this version's;
+  - the `mm:ss` clock.
+- `PinFlowTest`, 13 cases (4 from the review: Set and Remove that cannot be written; a `pins.json` that cannot be
+  read keeping Sam shut with the reason shown, then opening once readable; a launch over one, with Robin, who has
+  no PIN, locked too and Alex open; and Add refused with the reason shown) through real key and pointer events on a fake boot clock:
+  - A3 and A3b, with no digit drawn;
+  - the wait counting down and nothing getting past it;
+  - the wait outliving Cancel and a restart;
+  - Backspace;
+  - Manage asking the PIN before the editor;
+  - Set PIN with a mismatch;
+  - Change and Remove behind the current PIN;
+  - the first profile;
+  - Escape back to the editor.
+- Red-checked: with a failed read taken as no file again, the three unreadable tests fail; with launch leaving
+  profiles open over a failed read, the two launch tests fail; with `add` ignoring `forget`'s false, the two Add tests
+  fail.
+- Renders: A3, A3b, A4, A6d, A7, A7b and A7c, compared with the boards by eye.
+
+### KMP-95d — Sign-ins, kept in memory until you quit
+
+**What it adds** (`DS-25` A9, A11, A11b, A12, A13, A13b, A14, A16, A16b; the PM's answers, 2026-11-09):
+- **Sync services** in the sidebar's profile list opens **Sync for <profile>** (A9), the current profile's sign-ins. Each
+  row reads Connected or Not connected and never shows an account name or an id.
+- **Simkl pairs with a code** (A11):
+  - the code, a QR of the page to approve it on, the page's address, a countdown, and Open, which opens the page in the
+    browser;
+  - polling at Simkl's own interval until the code is approved;
+  - an expired code is struck through and its QR dimmed, and nothing polls (A11b);
+  - Get a new code asks for another.
+- **OpenSubtitles and SubDL** sign in with an email and password (A16), the owner's exception:
+  - the password is masked, with Show, and never prefilled;
+  - a refusal keeps the email, clears the password and says so (A16b).
+- **Failure** (A13) and **offline** (A13b) use our own words, with no detail from the service. Try again starts afresh.
+- **Removing a sign-in** asks first (A14). Cancel is the primary, and Return lands on it.
+- **Every way out ends a sign-in at once** (A12, `BUG-49`):
+  - leaving a step cancels its poll or the request in flight;
+  - an answer that arrives after is never stored;
+  - Cancel goes back to A9, focused on the row that opened it.
+- A profile card's line names the sync services it is signed in to. Deleting a profile drops its sign-ins.
+
+**Where sign-ins are kept: memory only, until the Keychain arrives in `95f`** (D3).
+- `InMemorySignInStore` holds one credential per profile and service. Nothing goes to a file, a preference or a log, and
+  quitting forgets them all.
+- **The screen says so:** "Sign-ins last until you quit CloudStream." (`account_signins_until_quit`) is on A9, A11 and A16.
+  It is a new key in all 62 locales: the strings baseline's thirtieth move, and one `R` field in
+  `classes-jar.api`.
+- On A16 the password note ("kept on this device only and never backed up") stays, with that line under it (the PM, Q2).
+- What each service keeps, as `DS-25` read it from Android:
+  - Simkl: its token.
+  - SubDL: the API key its login trades the password for, and the email. Never the password.
+  - OpenSubtitles: its token, which lasts about 24 hours with no refresh, with the email and password kept beside it to
+    renew it (the owner's ruling). Nothing renews it yet: nothing on the Mac uses the token.
+- `Credential`, `PairCode`, the password step and the store all print as `<hidden>`.
+
+**The network** (`HttpSignInClient`): the same exchanges as `SimklApi`, `OpenSubtitlesApi` and `Subdl`, over the OkHttp
+the Mac already has. There is no new dependency.
+- HTTPS to each service's own host. No redirect is followed. Answers are capped at 64 KiB.
+- No interceptor, and nothing about a request or an answer is printed. A failure is only its kind: offline, refused,
+  failed or pending.
+- Cancelling the coroutine cancels the call.
+- Simkl's answer is untrusted:
+  - only a code of 4 to 16 plain letters and digits is shown;
+  - only an https page on simkl.com is shown or opened, and anything else falls back to `https://simkl.com/pin`.
+- **Simkl's client id** comes from the `SIMKL_CLIENT_ID` env var, or `simkl.id` in the untracked `local.properties`, as
+  `:app` reads it (the PM, Q3). `generateDesktopSecrets` writes it into a generated source under `build/`, and only
+  plain letters and digits get there. Without it, Simkl reads "Not available here" and has no button. Nothing is in the
+  repo.
+- OpenSubtitles' app key and user agent are `OpenSubtitlesApi`'s own, already public in the Android source.
+- **A token is checked before it is kept or put in a header** (the reviewer of `#290`): the characters of a bearer token,
+  `[A-Za-z0-9._~+/=-]`, 1 to 4,096 of them. A SubDL token with a CR, LF or non-ASCII would have made OkHttp throw
+  outside the request's error handling and could crash the window. Now it is a failure. Simkl's, OpenSubtitles' and
+  SubDL's key are held to the same check.
+- **A11's QR** is `qrcode-kotlin` 4.5.0, the catalog's version that `:app` uses for TV. The owner approved it for
+  `:desktopApp` (2026-11-09). It encodes the page's address only, never the code.
+
+**Not here:**
+- AniList and MyAnimeList are hidden until `95e` adds the browser's redirect (the PM, Q4). Kitsu is never on the Mac.
+- **Nothing uses a sign-in yet.** Syncing progress, and subtitle search through the services, come later.
+- The Keychain, so sign-ins outlive a quit, is `95f`.
+
+**Different from the board:**
+- **A9 has a "Subtitle services" group** (the existing `settings_subtitle_services`) with OpenSubtitles and SubDL. The Mac's
+  Settings has no subtitle services yet (`DS-24` ST3b is unbuilt), so A16 had no way in.
+- Show is a toggle that keeps its word. No "Hide" key exists, and none was added.
+- The field label says Email for OpenSubtitles as the board does, but OpenSubtitles' login takes a username. Whether it
+  also takes an email was not measured.
+
+**Tests:**
+- `SyncFlowTest`, 10 cases through real key and pointer events, over a fake client and a fake clock:
+  - A9 by presence, AniList, MyAnimeList and Kitsu absent, the until-quit line, and Done;
+  - Simkl's code, QR, countdown and polling interval, Open, and approval connecting this profile only;
+  - Cancel ends the wait: no poll after it, and an approval after it stores nothing;
+  - expiry stops polling, and Get a new code;
+  - no client id means "Not available here";
+  - A16 and A16b: masked, never prefilled, the email kept, the password cleared, Show, and SubDL keeping no password;
+  - A13 and A13b, and Try again;
+  - A14, with Return as Cancel;
+  - deleting a profile drops its sign-ins, and a restart has none;
+  - **the PM's test:** the three sign-ins write no file under the profiles' directory or a sandboxed `user.home`, and no
+    output or log line carries the email, password, token or code. Red-checked both ways: a token printed from the store,
+    and a file written to `user.home`, each fail it.
+- `PairQrTest`: the QR is square, of dark and light cells, the same for the same address and different for another.
+- `HttpSignInClientTest`, 8 cases against a loopback server:
+  - Simkl's code and the page check;
+  - a code with markup refused;
+  - no client id sends nothing;
+  - a poll pending, then answered with a token;
+  - OpenSubtitles: the key sent, the password kept, a 401 refused;
+  - SubDL: the login traded for the key, and no password kept;
+  - a redirect not followed, a huge or unreadable answer failing, and a closed port reading as offline;
+  - a SubDL token with CR and LF failing with nothing sent, and Simkl tokens with LF or non-ASCII failing. Red-checked:
+    without the check, OkHttp's `IllegalArgumentException` escapes.
+- Renders of A9, A11, A11b, A12, A13, A13b, A14, A16 and A16b were compared with the boards by eye.
+
+### KMP-95e — MyAnimeList through the browser, back through `cloudstreamapp://`
+
+**What it adds** (`DS-25` A10, A12, A13, A13b; the PM's plan, 2026-11-09):
+- **MyAnimeList on A9**, first, as the board orders it. Sign in opens the browser on MyAnimeList's own page, and A10
+  waits: "Waiting for your browser…", Open again (the same page), and Cancel. There is no password field: the app
+  never sees one.
+- **The redirect comes back to the app.** The `cloudstreamapp` scheme is in the Mac bundle's Info.plist
+  (`CFBundleURLTypes`, through Compose's `infoPlist`), and `main` hands macOS's open-URL events to `BrowserRedirects`
+  before the window opens. Only a packaged app has the scheme.
+- On success A9 reads Connected, and the card's line names MyAnimeList. A refusal (`error=…`, or no code) is A13. An
+  exchange that cannot reach MyAnimeList is A13b.
+
+**What a redirect must carry to be taken** (`BrowserRedirects`; the reviewer's and the owner's rules in `DS-25`):
+- **A sign-in from this window must be waiting.** An unsolicited `cloudstreamapp://` URL does nothing.
+- **That sign-in's path** (`mallogin`) and **the `cloudstreamapp` scheme**, in the bare form only (the reviewer of `#296`):
+  a user part (`x@mallogin`), a port (`mallogin:99`) or a path (`mallogin/other`) is refused.
+- **The very `state` it sent**, compared in constant time: 32 bytes from `SecureRandom`, base64url, fresh for every
+  sign-in. This replaces Android's `RequestID<n>` counter, which the owner ruled out for the Mac. A wrong or missing
+  state does nothing, and the sign-in keeps waiting.
+- **Once.** The first redirect taken ends the wait. A query that names a parameter twice is not read.
+- **Decoded as RFC 3986 reads a query** (the reviewer of `#296`): `%XX` only, so a `+` in a code stays a `+`.
+  `URLDecoder` alone is HTML form decoding, and would turn it into a space.
+- **Cancel, Escape or a switch ends the wait at once**, so a redirect that arrives later does nothing (A12).
+- **Never logged or stored.** Only the code reaches the exchange, and only the token it trades for reaches the store.
+
+**PKCE:** MyAnimeList allows only `plain`, so the verifier is the challenge and travels in the page's address. It is
+fresh for every sign-in and never reused: 96 bytes from `SecureRandom`, base64url without padding, 128 characters.
+That is the same construction as `AuthAPI.generateCodeVerifier`, checked again here. `code_challenge_method=plain` is
+sent explicitly. The exchange is `MALApi.login`'s form POST, and its access and refresh tokens are checked as `95d`'s are.
+
+**MyAnimeList's client id** comes from `MAL_KEY`, or `mal.key` in the untracked `local.properties`, as `:app` reads it,
+into the same generated `DesktopSecrets`. Without it, MyAnimeList reads "Not available here".
+
+**MyAnimeList's tokens expire after about 31 days, and nothing renews them yet.** The refresh token is checked and
+held, but unused: until `KMP-95h` (refresh-token renewal) lands, an expired sign-in needs a new one. The store holds
+sign-ins only until the app quits (`95d`), so a Mac session never outlives a token today; this matters once `95f`
+keeps them in the Keychain.
+
+**AniList** (`#300`, the follow-up to `#296`; the owner's ruling (a), 2026-11-09): its docs describe only the implicit grant for
+an app that cannot keep a secret, with no PKCE and no `state` shown, and Android sends none.
+- The Mac sends a random `state` and **requires it back**. AniList's redirect puts the token in the URL's fragment, so
+  `BrowserRedirects` reads the fragment as well as the query, and refuses a name that appears in both.
+- **If AniList does not echo the state**, a redirect with none on `anilistlogin` ends the sign-in as A13 ("AniList didn't
+  confirm the sign-in. Nothing was saved."), and its token is dropped. It is said plainly, rather than waiting for ever.
+  A state that is present but wrong is still ignored, as for MyAnimeList.
+- The token is checked as every token is, and kept alone. It lasts a year, and AniList has no refresh token.
+- **Its client id** comes from `ANILIST_KEY`, or `anilist.key` in the untracked `local.properties`, as `:app` reads it.
+  Without it, AniList reads "Not available here".
+- **Not measured: whether AniList echoes the state.** The owner will run one real sign-in. If it does not echo it,
+  AniList is to be marked unavailable on the Mac.
+- Tests:
+  - `BrowserRedirectsTest`, 2 more: the fragment token with its state and a name in both halves refused; a redirect with
+    no state ending an AniList sign-in, while MyAnimeList's keeps waiting.
+  - `HttpSignInClientTest`, 1 more: AniList's page.
+  - `SyncFlowTest`, 2 more: AniList signing in through the fragment with its own state only; and with no state, A13 and
+    nothing kept.
+  - Red-checked: without ending on a stateless redirect, the no-state test fails.
+
+**Measured on a packaged build** (`createDistributable`, Temurin 17, this Mac):
+- The bundle's Info.plist carries `CFBundleURLTypes` with `cloudstreamapp`, read back with `PlistBuddy`.
+- After `lsregister -f`, LaunchServices lists this bundle as the only one claiming `cloudstreamapp:`. The bundle is
+  ad-hoc signed, not developer-signed, so **an unsigned build registers the scheme**.
+- With the app running, `open 'cloudstreamapp://mallogin?code=…&state=…'` (made-up values) reached its handler. A
+  temporary probe, reverted and never committed, wrote only that an event arrived. The handler did not take it, because
+  no sign-in was waiting.
+- Not measured: a real MyAnimeList sign-in, which needs the app's MAL client id and an account.
+
+**Tests:**
+- `BrowserRedirectsTest`, 5 cases:
+  - nothing is taken with no sign-in waiting;
+  - only the path, the scheme and the very state are taken, and only once, with twelve wrong URLs refused (a user
+    part, a port and a path among them, from the review);
+  - a cancelled wait takes nothing, and a new sign-in ends the one before;
+  - a state and a verifier are fresh, url-safe and the right length;
+  - a repeated or overlong query is not read, and a `+` survives decoding.
+- `HttpSignInClientTest`, 2 more:
+  - MyAnimeList's page: the client, the state, and the plain challenge;
+  - the exchange: its form, a 400 as a refusal, and a code with CR/LF sending nothing.
+- `SyncFlowTest`, 3 more:
+  - A10 end to end: wrong, missing and other-path redirects ignored, Open again with the same state, and the right one
+    connecting with its own verifier, once;
+  - Cancel ending the wait, with a late redirect doing nothing, and a new sign-in getting a new state and verifier;
+  - A13 on `error=`, and A13b on an exchange offline.
+- Red-checked: without the state comparison, 3 of these fail; without ending the wait on leaving the step, the late
+  redirect is taken and the Cancel test fails; without the bare-form check or the RFC 3986 decoding, their tests fail.

@@ -32,6 +32,9 @@
 <string name="account_pin_current">ئەو PINـەی ئێستا بەکاردێت بنووسە.</string>
 <string name="account_pin_first_profile">پرۆفایلی یەکەم ناتوانرێت دابخرێت</string>
 <string name="account_pin_new">PINێکی ٤ ژمارەیی بنووسە.</string>
+<string name="account_pin_not_saved">گۆڕینی PIN پاشەکەوت نەکرا. هیچ نەگۆڕا.</string>
+<string name="account_pin_unreadable">نەتوانرا PINەکانی ئەم کۆمپیوتەرە بخوێنرێتەوە، بۆیە ئەم پرۆفایلە داخراو دەمێنێتەوە.</string>
+<string name="account_profile_not_added">نەتوانرا پرۆفایلێک زیاد بکرێت چونکە PINەکانی ئەم کۆمپیوتەرە ناخوێنرێنەوە. هیچ نەگۆڕا.</string>
 <string name="account_pin_off">کوژاوە · هەر کەسێک دەتوانێت ئەم پرۆفایلە بکاتەوە</string>
 <string name="account_pin_on">هەڵکراو · بۆ کردنەوە داوای دەکرێت</string>
 <string name="account_pin_prompt">PINـە ٤ ژمارەییەکە بنووسە.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا.</string>
 <string name="account_signin_failed_title">نەتوانرا بچیتە ژوورەوەی %s</string>
 <string name="account_signin_offline_body">چوونەژوورەوە بۆ %s پەیوەندی پێویستە. کاتێک ئەم ئامێرە دووبارە سەرهێڵ بوو هەوڵ بدەرەوە.</string>
+<string name="account_signins_until_quit">چوونەژوورەوەکان دەمێننەوە تا CloudStream دادەخەیت.</string>
 <string name="account_sync_connected">پەیوەستە · لەسەر ئەم ئامێرە چووەتە ژوورەوە</string>
 <string name="account_sync_needs_browser">چوونەژوورەوە وێبگەڕێکی پێویستە. ئەم ئامێرە نییەتی.</string>
 <string name="account_sync_note">ئارەزوومەندانە. پێشکەوتنی سەیرکردن لەگەڵ هەژمارێک کە پێشتر هەتە هاوکات دەکات.</string>

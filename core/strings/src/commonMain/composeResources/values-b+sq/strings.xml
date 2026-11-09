@@ -32,6 +32,9 @@
 <string name="account_pin_current">Shkruaj PIN-in aktual.</string>
 <string name="account_pin_first_profile">Profili i parë nuk mund të kyçet</string>
 <string name="account_pin_new">Shkruaj një PIN me 4 shifra.</string>
+<string name="account_pin_not_saved">Ndryshimi i PIN-it nuk u ruajt. Asgjë nuk ndryshoi.</string>
+<string name="account_pin_unreadable">PIN-et në këtë kompjuter nuk u lexuan, ndaj ky profil mbetet i kyçur.</string>
+<string name="account_profile_not_added">Nuk mund të shtohet profil derisa PIN-et në këtë kompjuter nuk lexohen. Asgjë nuk ndryshoi.</string>
 <string name="account_pin_off">Joaktiv · kushdo mund ta hapë këtë profil</string>
 <string name="account_pin_on">Aktiv · kërkohet për ta hapur</string>
 <string name="account_pin_prompt">Shkruaj PIN-in me 4 shifra.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s nuk e konfirmoi identifikimin. Nuk u ruajt asgjë.</string>
 <string name="account_signin_failed_title">Identifikimi në %s dështoi</string>
 <string name="account_signin_offline_body">Identifikimi në %s kërkon lidhje. Provo përsëri kur kjo pajisje të jetë sërish në linjë.</string>
+<string name="account_signins_until_quit">Hyrjet zgjasin derisa të mbyllësh CloudStream.</string>
 <string name="account_sync_connected">E lidhur · e identifikuar në këtë pajisje</string>
 <string name="account_sync_needs_browser">Hyrja kërkon një shfletues uebi. Kjo pajisje nuk ka.</string>
 <string name="account_sync_note">Opsionale. Sinkronizon progresin me një llogari që e ke tashmë.</string>

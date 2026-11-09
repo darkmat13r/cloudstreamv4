@@ -32,6 +32,9 @@
 <string name="account_pin_current">Внеси го PIN-от што се користи сега.</string>
 <string name="account_pin_first_profile">Првиот профил не може да се заклучи</string>
 <string name="account_pin_new">Внеси PIN со 4 цифри.</string>
+<string name="account_pin_not_saved">Промената на PIN не можеше да се зачува. Ништо не е променето.</string>
+<string name="account_pin_unreadable">PIN-овите на овој компјутер не можат да се прочитаат, па овој профил останува заклучен.</string>
+<string name="account_profile_not_added">Не може да се додаде профил додека PIN-овите на овој компјутер не можат да се прочитаат. Ништо не е променето.</string>
 <string name="account_pin_off">Исклучено · секој може да го отвори овој профил</string>
 <string name="account_pin_on">Вклучено · се бара при отворање</string>
 <string name="account_pin_prompt">Внеси го PIN-от со 4 цифри.</string>
@@ -46,6 +49,7 @@
 <string name="account_signin_failed_body">%s не ја потврди најавата. Ништо не е зачувано.</string>
 <string name="account_signin_failed_title">Не може да се најавиш на %s</string>
 <string name="account_signin_offline_body">За најава на %s е потребна врска. Обиди се повторно кога уредот ќе биде пак на интернет.</string>
+<string name="account_signins_until_quit">Најавите траат додека не излезете од CloudStream.</string>
 <string name="account_sync_connected">Поврзано · најавено на овој уред</string>
 <string name="account_sync_needs_browser">За најава е потребен веб-прелистувач. Овој уред нема.</string>
 <string name="account_sync_note">Опционално. Го синхронизира напредокот со сметка што веќе ја имате.</string>

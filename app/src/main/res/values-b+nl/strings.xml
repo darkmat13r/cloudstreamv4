@@ -53,20 +53,24 @@
 <string name="account_pin_current">"Typ de huidige PIN."</string>
 <string name="account_pin_first_profile">"Het eerste profiel kan niet worden vergrendeld"</string>
 <string name="account_pin_new">"Typ een PIN van 4 cijfers."</string>
+<string name="account_pin_not_saved">"De pincodewijziging kon niet worden opgeslagen. Er is niets gewijzigd."</string>
 <string name="account_pin_off">"Uit · iedereen kan dit profiel openen"</string>
 <string name="account_pin_on">"Aan · gevraagd bij openen"</string>
 <string name="account_pin_prompt">"Typ de PIN van 4 cijfers."</string>
 <string name="account_pin_remove">"PIN verwijderen"</string>
 <string name="account_pin_set">"PIN instellen"</string>
 <string name="account_pin_set_title">"PIN instellen"</string>
+<string name="account_pin_unreadable">"De pincodes op deze computer konden niet worden gelezen, dus dit profiel blijft vergrendeld."</string>
 <string name="account_profile_current">"Huidig"</string>
 <string name="account_profile_locked">"Vergrendeld · pincode"</string>
 <string name="account_profile_no_sync">"Geen synchronisatie"</string>
+<string name="account_profile_not_added">"Er kan geen profiel worden toegevoegd zolang de pincodes op deze computer niet kunnen worden gelezen. Er is niets gewijzigd."</string>
 <string name="account_select_note">"Aparte kijkgeschiedenis · geen aanmeldingen"</string>
 <string name="account_select_title">"Wie kijkt er?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen."</string>
 <string name="account_signin_failed_title" formatted="true">"Kan niet aanmelden bij %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Aanmelden bij %s vereist een verbinding. Probeer het opnieuw als dit apparaat weer online is."</string>
+<string name="account_signins_until_quit">"Aanmeldingen blijven tot je CloudStream afsluit."</string>
 <string name="account_sync_connected">"Verbonden · aangemeld op dit apparaat"</string>
 <string name="account_sync_needs_browser">"Aanmelden vereist een webbrowser. Dit apparaat heeft er geen."</string>
 <string name="account_sync_note">"Optioneel. Synchroniseert je kijkvoortgang met een account dat je al hebt."</string>
