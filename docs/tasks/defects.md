@@ -3242,7 +3242,8 @@ Tests: the same 58 in 5 classes, 117 assertion calls before and after, all passi
 |---|---|---|
 | `dune`, `Dune`, `DUNE` (ids `Prov\u0000/dune`, the filter `/DUNE`) | `tide`, `Tide`, `TIDE` | the lowercase title still sorts after `Brazil` ignoring case; the filter's case |
 | `Frieren` (id `AniList\u0000/frieren`, the filter `frie`) | `Fernwood` (`fernwood`, the filter `fern`) | a prefix filter that matches it alone |
-| `Severance` (id `AniList\u0000/severance`) | `Quiet Harbor` (`quiet-harbor`) | rating and kept-at order are its numbers, not its name |
+| `Severance` (id `AniList\u0000/severance`) | `Still Water` (`still-water`); downloads' fixtures have `Quiet Harbor`, so the two stay apart | rating and kept-at order are its numbers, not its name |
+| the account `lagradost` (the upstream project's name, three view-model tests) | `tidewatch` | |
 | `Filmxy` (a preview) | `Source A` | |
 
 `Alien`, `Arrival`, `Brazil` and `Cube` stay: single common words with nothing else tying them to one work.

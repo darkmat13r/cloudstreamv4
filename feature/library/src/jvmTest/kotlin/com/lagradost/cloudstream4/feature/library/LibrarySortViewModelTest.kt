@@ -31,7 +31,7 @@ class LibrarySortViewModelTest {
         val kept = mutableListOf<LibrarySort>()
 
         override suspend fun sources() = listOf(
-            LibrarySource(aniList, "AniList", account = "lagradost"),
+            LibrarySource(aniList, "AniList", account = "tidewatch"),
             LibrarySource(local, "Local", local = true, sorts = localSorts),
         )
 
@@ -54,7 +54,7 @@ class LibrarySortViewModelTest {
     )
 
     private val localTitles = listOf(title("Brazil", 1), title("Alien", 3), title("Cube", 2))
-    private val serviceTitles = listOf(title("Fernwood", 1, rating = 91), title("Quiet Harbor", 2, rating = 88))
+    private val serviceTitles = listOf(title("Fernwood", 1, rating = 91), title("Still Water", 2, rating = 88))
 
     private fun TestScope.model(host: LibrarySources?) = LibraryViewModel(
         Store(localTitles),
@@ -117,7 +117,7 @@ class LibrarySortViewModelTest {
         val host = Sources(current = aniList, saved = rating)
         val vm = model(host)
         assertEquals(rating, vm.state.value.appliedSort)
-        assertEquals(listOf("Fernwood", "Quiet Harbor"), vm.titles())
+        assertEquals(listOf("Fernwood", "Still Water"), vm.titles())
 
         vm.onAction(LibraryAction.SourceChosen(local))
         assertEquals(LibrarySort.Default, vm.state.value.appliedSort, "Local keeps no rating")

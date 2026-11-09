@@ -45,7 +45,7 @@ class LibraryOfflineViewModelTest {
         var fail: Exception? = null
 
         override suspend fun sources() = listOf(
-            LibrarySource(aniList, "AniList", account = "lagradost", syncedAt = 1_000L),
+            LibrarySource(aniList, "AniList", account = "tidewatch", syncedAt = 1_000L),
             LibrarySource(local, "Local", local = true),
         )
 

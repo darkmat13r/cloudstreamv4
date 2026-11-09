@@ -22,7 +22,7 @@ class LibrarySourcesViewModelTest {
 
     private val tide = LibraryTitleId("Prov\u0000/tide")
     private val fernwood = LibraryTitleId("AniList\u0000/fernwood")
-    private val harbor = LibraryTitleId("AniList\u0000/quiet-harbor")
+    private val stillWater = LibraryTitleId("AniList\u0000/still-water")
 
     private class Store(var titles: List<LibraryTitle> = emptyList()) : LibraryStore {
         override suspend fun titles() = titles
@@ -67,7 +67,7 @@ class LibrarySourcesViewModelTest {
 
     private fun sources(current: LibrarySourceId = local) = Sources(
         all = listOf(
-            LibrarySource(aniList, "AniList", account = "lagradost"),
+            LibrarySource(aniList, "AniList", account = "tidewatch"),
             LibrarySource(local, "Local", local = true, titleCount = 1),
             LibrarySource(mal, "MyAnimeList", connected = false),
         ),
@@ -79,7 +79,7 @@ class LibrarySourcesViewModelTest {
                     "Watching",
                     listOf(
                         synced(fernwood, "Fernwood", keptAt = 2, watched = 12, total = 28, rating = "9.1"),
-                        synced(harbor, "Quiet Harbor", keptAt = 5, watched = 9, total = 10),
+                        synced(stillWater, "Still Water", keptAt = 5, watched = 9, total = 10),
                     ),
                 ),
                 SyncedList("rewatching", "Rewatching", listOf(synced(fernwood, "Fernwood", keptAt = 2))),
@@ -131,7 +131,7 @@ class LibrarySourcesViewModelTest {
         // Fernwood is in two lists and is one title.
         assertEquals(2, state.totalTitles)
         val cards = assertIs<LibraryStatus.Showing>(state.status).cards
-        assertEquals(listOf(harbor, fernwood), cards.map { it.id }, "newest kept first")
+        assertEquals(listOf(stillWater, fernwood), cards.map { it.id }, "newest kept first")
         assertEquals(listOf(aniList), host.read)
     }
 
