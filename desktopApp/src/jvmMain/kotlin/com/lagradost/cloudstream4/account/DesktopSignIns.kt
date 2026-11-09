@@ -15,11 +15,11 @@ internal enum class SignInKind {
 }
 
 /**
- * The services the Mac signs in to, in A9's order. MyAnimeList signs in through the browser (`KMP-95e`); AniList waits
- * on the owner's answer about its `state` (the PM, 2026-11-09). Kitsu is never on the Mac: it signs in only with a
- * password.
+ * The services the Mac signs in to, in A9's order. AniList and MyAnimeList sign in through the browser (`KMP-95e`).
+ * Kitsu is never on the Mac: it signs in only with a password.
  */
 internal enum class DesktopService(val displayName: String, val kind: SignInKind, val subtitles: Boolean) {
+    AniList("AniList", SignInKind.Browser, subtitles = false),
     MyAnimeList("MyAnimeList", SignInKind.Browser, subtitles = false),
     Simkl("Simkl", SignInKind.Code, subtitles = false),
     OpenSubtitles("OpenSubtitles", SignInKind.Password, subtitles = true),
@@ -35,6 +35,7 @@ internal enum class DesktopService(val displayName: String, val kind: SignInKind
  * - OpenSubtitles: [token] is a JWT said to last 24 hours, with no refresh token, so [email] and [password] are kept
  *   beside it to sign in again (the owner's ruling, 2026-11-08).
  * - MyAnimeList: [token] and the [refreshToken] it is renewed with, as Android keeps them.
+ * - AniList: [token] only. It lasts a year, and AniList has no refresh token.
  */
 internal class Credential(
     val token: String,
@@ -143,4 +144,10 @@ internal interface SignInClient {
 
     /** The code the redirect brought, traded for the token with the same [verifier]. */
     suspend fun malExchange(code: String, verifier: String): SignInResult<Credential>
+
+    /** AniList's client id is in this build. */
+    val aniListAvailable: Boolean
+
+    /** A10: AniList's page to sign in on (its implicit grant), carrying [state], which must come back with the token. */
+    fun aniListSignInPage(state: String): String?
 }

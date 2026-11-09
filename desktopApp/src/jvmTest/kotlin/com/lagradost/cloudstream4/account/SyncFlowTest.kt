@@ -82,7 +82,15 @@ class SyncFlowTest {
     private class FakeClient(
         override var simklAvailable: Boolean = true,
         override var malAvailable: Boolean = false,
+        override var aniListAvailable: Boolean = false,
     ) : SignInClient {
+        val aniListStates = mutableListOf<String>()
+
+        override fun aniListSignInPage(state: String): String {
+            aniListStates += state
+            return "https://anilist.co/api/v2/oauth/authorize?state=$state"
+        }
+
         var malAnswer: SignInResult<Credential> = SignInResult.Done(Credential(TOKEN, refreshToken = "refresh-fixture"))
         val malExchanges = mutableListOf<kotlin.Pair<String, String>>()
         val pages = mutableListOf<kotlin.Pair<String, String>>()
@@ -168,8 +176,9 @@ class SyncFlowTest {
             assertNotNull(scene.find("Sync for Alex", text = true), "A9")
             assertNotNull(scene.find("Sign-ins last until you quit CloudStream.", text = true), "D3, said on the screen")
             listOf("MyAnimeList", "Simkl", "OpenSubtitles", "SubDL").forEach { assertNotNull(scene.find(it, text = true), it) }
-            listOf("AniList", "Kitsu").forEach { assertNull(scene.find(it, text = true), "$it is not on the Mac") }
-            assertNotNull(scene.find("Not available here", text = true), "MyAnimeList, with no key in this build")
+            assertNull(scene.find("Kitsu", text = true), "Kitsu is not on the Mac")
+            assertNotNull(scene.find("Not available here", text = true), "AniList and MyAnimeList, with no key in this build")
+            assertNotNull(scene.find("AniList", text = true))
             assertEquals(3, scene.allText().count { it == "Not connected" })
             scene.save("A9-sync")
             scene.click(scene.bounds("Done", text = true).center)
@@ -419,6 +428,41 @@ class SyncFlowTest {
             assertTrue(redirects.deliver("cloudstreamapp://mallogin?code=c&state=${client.pages.last().first}"))
             scene.settle()
             assertNotNull(scene.find("You are offline", text = true), "A13b")
+        }
+    }
+
+    @Test
+    fun `AniList signs in with its token in the fragment, only with the state it sent`() {
+        val profiles = household()
+        val client = FakeClient(aniListAvailable = true)
+        window(profiles, client).use { scene ->
+            scene.openSync()
+            scene.click(scene.signIn(0))
+            assertNotNull(scene.find("Sign in to AniList", text = true), "A10")
+            val state = client.aniListStates.single()
+            assertFalse(redirects.deliver("cloudstreamapp://anilistlogin#access_token=$TOKEN&state=not-$state"))
+            scene.settle()
+            assertNotNull(scene.find("Waiting for your browser…", text = true), "a wrong state is ignored")
+            assertTrue(redirects.deliver("cloudstreamapp://anilistlogin#access_token=$TOKEN&token_type=Bearer&expires_in=31536000&state=$state"))
+            scene.settle()
+            assertNotNull(scene.find("Sync for Alex", text = true))
+            assertEquals(TOKEN, profiles.signIns.get(0, DesktopService.AniList)?.token)
+            assertEquals(listOf("AniList"), profiles.cards("Default").first { it.id == 0 }.syncedWith)
+        }
+    }
+
+    @Test
+    fun `if AniList does not echo the state, the sign-in says so plainly and keeps nothing`() {
+        val profiles = household()
+        val client = FakeClient(aniListAvailable = true)
+        window(profiles, client).use { scene ->
+            scene.openSync()
+            scene.click(scene.signIn(0))
+            assertTrue(redirects.deliver("cloudstreamapp://anilistlogin#access_token=$TOKEN&token_type=Bearer&expires_in=31536000"))
+            scene.settle()
+            assertNotNull(scene.find("Couldn't sign in to AniList", text = true), "A13, not a wait for ever")
+            assertNotNull(scene.find("AniList didn't confirm the sign-in. Nothing was saved.", text = true))
+            assertNull(profiles.signIns.get(0, DesktopService.AniList), "the token is dropped")
         }
     }
 
