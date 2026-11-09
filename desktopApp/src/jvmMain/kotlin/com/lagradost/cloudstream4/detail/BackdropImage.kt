@@ -47,13 +47,15 @@ import org.jetbrains.skia.Data
  * A title page's backdrop (`KMP-100`), as wide as the header and cropped to it. Nothing is drawn until it arrives, and
  * nothing if it fails: the header keeps its plain ground.
  *
- * The URL has passed the sandbox's checks (`httpsUrlOrNull`). This loader adds what a poster's does not have yet:
+ * The URL has passed the sandbox's checks (`httpsUrlOrNull`). Posters share this loader (`KMP-102`). Past the poster
+ * client's address checks, it adds:
  * - **https on every hop.** A redirect from https to http is not followed, and a network interceptor refuses any hop
  *   that is not https, so the URL's scheme cannot be stepped down after the check.
  * - **A bounded decode.** The image is asked for at the size it is drawn, so the bitmap kept is no larger than the
  *   header. Before that, [BoundedDecoder] reads the size the image claims from its header, without decoding a pixel,
  *   and refuses one past [BACKDROP_MAX_PIXELS] or [BACKDROP_MAX_BYTES]: Coil's desktop decoder draws the whole image
  *   before scaling it, so a small file claiming 20000 by 20000 would otherwise cost 1.6 GB on the way.
+ * - **A byte cap**, [BACKDROP_MAX_BYTES], on the wire and once decompressed: see [boundedImageClient].
  */
 @Composable
 internal fun BackdropImage(url: String, modifier: Modifier = Modifier) {
@@ -69,7 +71,7 @@ internal fun BackdropImage(url: String, modifier: Modifier = Modifier) {
 }
 
 /** [url] decoded to cover [width] by [height] pixels, or null when it cannot be had within the bounds. */
-internal suspend fun loadBackdrop(url: String, width: Int, height: Int, loader: ImageLoader = backdropLoader): ImageBitmap? =
+internal suspend fun loadBackdrop(url: String, width: Int, height: Int, loader: ImageLoader = extensionImageLoader): ImageBitmap? =
     (loader.execute(backdropRequest(url, width, height)) as? SuccessResult)?.image?.toBitmap()?.asComposeImageBitmap()
 
 /** The request [loadBackdrop] makes: [url], drawn [width] by [height]. */
@@ -216,7 +218,11 @@ internal fun backdropImageLoader(
     .apply { if (diskCache != null) diskCache(diskCache) }
     .build()
 
-private val backdropLoader: ImageLoader by lazy { backdropImageLoader(backdropHttpClient()) }
+/**
+ * The one loader for every image an extension names, backdrops and posters (`KMP-102`): https only, the byte cap on the
+ * wire and once decompressed, and [BoundedDecoder].
+ */
+internal val extensionImageLoader: ImageLoader by lazy { backdropImageLoader(backdropHttpClient()) }
 
 /**
  * Refuses an image whose file is past [maxBytes] or whose header claims more than [maxPixels], then hands the same

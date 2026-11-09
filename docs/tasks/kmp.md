@@ -7024,11 +7024,31 @@ short facts slice. They now meet the reader of the sections after the facts, as 
 then one claiming 90 bytes the frame does not hold, so the call now fails on that lying length, as any does; the test
 asserts that failure. Had the facts reader taken those bytes, they would have read as facts and nothing would fail.
 
-## KMP-102 — The same hardening for posters · **open**, follow-up of `KMP-100`
+## KMP-102 — The same hardening for posters · **built 2026-11-09**, stacked on `KMP-100` (`#299`)
 
-Posters go through `httpUrlOrNull()` and `posterHttpClient`, so they accept http, follow https-to-http redirects, and are
-decoded whole whatever size they claim. Give them `KMP-100`'s https-only check and client, its `BoundedDecoder`, and its
-byte cap at both levels (`boundedImageClient`), with a 60 s bound on every network test.
+Posters went through `httpUrlOrNull()` and `posterHttpClient`, so they accepted http, followed https-to-http redirects,
+were read whole whatever their size, and were decoded whole whatever size they claimed. Now:
+- **The check:** `cleaned()` keeps a home, search or title-page poster only through `httpsUrlOrNull()`, as the backdrop:
+  public, https, and no user info.
+- **The loader:** posters load through the backdrop's own loader, `extensionImageLoader`, one for every image an
+  extension names: https on every hop, the byte cap at both levels (`boundedImageClient`), and `BoundedDecoder`.
+- **`posterHttpClient` is unchanged.** Downloads and subtitles build on it, and their bodies are neither images nor
+  under 8 MB; only the image loader is bounded.
+
+What a poster from an extension that serves http now does: the sandbox drops its URL, and the card shows its own
+placeholder, as for any poster that fails. Posters reaching the page by other roads (the Mac's stored library, home
+rows built outside the sandbox) keep their own URL checks, which allow http; the loader refuses those at the first hop.
+
+**Tests:**
+- `PosterUrlTest`, 2: a public https poster is kept on the home page, in search and on the title page; http, `file:`,
+  `data:`, `localhost`, private and link-local addresses, empty, and user info are dropped on all three.
+- `PosterLoaderTest`: posters load through the same loader object as backdrops, so `BackdropImageTest`'s eight cases
+  are the posters' too.
+- Proved by mutation: with `httpUrlOrNull` back in `cleaned()`, http posters are kept; with the old poster loader, the
+  loaders differ.
+
+**Not here:** a poster is asked for at its file's size, not the card's, so one up to 4096 by 4096 is kept whole (64 MB).
+Asking at the drawn size, as the backdrop does, changes `PosterImage`'s layout and is its own change.
 
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 

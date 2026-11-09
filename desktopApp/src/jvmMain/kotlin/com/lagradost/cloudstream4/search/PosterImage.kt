@@ -10,7 +10,6 @@ import androidx.compose.ui.graphics.asComposeImageBitmap
 import androidx.compose.ui.layout.ContentScale
 import coil3.PlatformContext
 import coil3.ImageLoader
-import coil3.network.okhttp.OkHttpNetworkFetcherFactory
 import coil3.request.ImageRequest
 import coil3.request.SuccessResult
 import coil3.toBitmap
@@ -19,6 +18,7 @@ import java.io.IOException
 import java.net.InetAddress
 import java.net.InetSocketAddress
 import kotlinx.coroutines.withContext
+import com.lagradost.cloudstream4.detail.extensionImageLoader
 import okhttp3.Dns
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
@@ -48,12 +48,13 @@ internal fun PosterImage(url: String?, modifier: Modifier = Modifier) {
     }
 }
 
-private val posterLoader: ImageLoader by lazy {
-    val client = posterHttpClient()
-    ImageLoader.Builder(PlatformContext.INSTANCE)
-        .components { add(OkHttpNetworkFetcherFactory(callFactory = { client })) }
-        .build()
-}
+/**
+ * The backdrop's loader (`KMP-102`): a poster is fetched and decoded in this process as a backdrop is, so it meets the
+ * same bounds: https on every hop; no more than 8 MB and one read taken of a body, on the wire or once decompressed; no
+ * image past 4096 by 4096 decoded. [posterHttpClient] stays as it is: downloads and subtitles use it, and their bodies
+ * are not images.
+ */
+internal val posterLoader: ImageLoader get() = extensionImageLoader
 
 /**
  * The client that fetches plugin-supplied poster URLs, from this process and so outside the sandbox.
