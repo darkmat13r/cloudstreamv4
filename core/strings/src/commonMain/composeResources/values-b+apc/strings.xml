@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s ما أكّد تسجيل الدخول. ما انحفظ شي.</string>
 <string name="account_signin_failed_title">ما قدرنا نسجّل دخول على %s</string>
 <string name="account_signin_offline_body">تسجيل الدخول على %s بدو اتصال. جرب مرة تانية لما يرجع هالجهاز أونلاين.</string>
+<string name="account_signins_until_quit">تسجيلات الدخول بتضل لحتى تسكّر CloudStream.</string>
 <string name="account_sync_connected">متصل · مسجّل دخول على هالجهاز</string>
 <string name="account_sync_needs_browser">تسجيل الدخول بدو متصفح ويب. هالجهاز ما فيه.</string>
 <string name="account_sync_note">اختياري. بيزامن تقدّم المشاهدة مع حساب عندك أصلاً.</string>

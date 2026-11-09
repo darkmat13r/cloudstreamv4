@@ -73,6 +73,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s உள்நுழைவை உறுதிப்படுத்தவில்லை. எதுவும் சேமிக்கப்படவில்லை."</string>
 <string name="account_signin_failed_title" formatted="true">"%s இல் உள்நுழைய முடியவில்லை"</string>
 <string name="account_signin_offline_body" formatted="true">"%s இல் உள்நுழைய இணைப்பு தேவை. இந்தச் சாதனம் மீண்டும் ஆன்லைனுக்கு வந்ததும் முயலவும்."</string>
+<string name="account_signins_until_quit">"CloudStream-ஐ மூடும் வரை உள்நுழைவுகள் இருக்கும்."</string>
 <string name="account_sync_connected">"இணைக்கப்பட்டது · இந்தச் சாதனத்தில் உள்நுழைந்துள்ளது"</string>
 <string name="account_sync_needs_browser">"உள்நுழைய இணைய உலாவி தேவை. இந்தச் சாதனத்தில் இல்லை."</string>
 <string name="account_sync_note">"விருப்பத்தேர்வு. பார்வை முன்னேற்றத்தை உங்களிடம் ஏற்கெனவே உள்ள கணக்குடன் ஒத்திசைக்கிறது."</string>

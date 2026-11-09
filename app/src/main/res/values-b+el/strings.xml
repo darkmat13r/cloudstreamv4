@@ -70,6 +70,7 @@
 <string name="account_signin_failed_body" formatted="true">"Το %s δεν επιβεβαίωσε τη σύνδεση. Δεν αποθηκεύτηκε τίποτα."</string>
 <string name="account_signin_failed_title" formatted="true">"Δεν ήταν δυνατή η σύνδεση στο %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Η σύνδεση στο %s απαιτεί πρόσβαση στο διαδίκτυο. Δοκιμάστε ξανά όταν η συσκευή είναι ξανά online."</string>
+<string name="account_signins_until_quit">"Οι συνδέσεις διαρκούν μέχρι να κλείσετε το CloudStream."</string>
 <string name="account_sync_connected">"Συνδεδεμένο · σε αυτή τη συσκευή"</string>
 <string name="account_sync_needs_browser">"Η σύνδεση χρειάζεται πρόγραμμα περιήγησης. Αυτή η συσκευή δεν έχει."</string>
 <string name="account_sync_note">"Προαιρετικό. Συγχρονίζει την πρόοδο προβολής με έναν λογαριασμό που ήδη έχετε."</string>

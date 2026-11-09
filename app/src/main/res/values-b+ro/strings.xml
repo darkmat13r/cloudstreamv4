@@ -70,6 +70,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s nu a confirmat conectarea. Nu s-a salvat nimic."</string>
 <string name="account_signin_failed_title" formatted="true">"Nu te-ai putut conecta la %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Conectarea la %s necesită o conexiune la internet. Încearcă din nou când acest dispozitiv este din nou online."</string>
+<string name="account_signins_until_quit">"Conectările durează până când închizi CloudStream."</string>
 <string name="account_sync_connected">"Conectat · pe acest dispozitiv"</string>
 <string name="account_sync_needs_browser">"Conectarea necesită un browser web. Acest dispozitiv nu are."</string>
 <string name="account_sync_note">"Opțional. Sincronizează progresul cu un cont pe care îl ai deja."</string>

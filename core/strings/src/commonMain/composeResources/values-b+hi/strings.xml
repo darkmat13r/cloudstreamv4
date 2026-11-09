@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।</string>
 <string name="account_signin_failed_title">%s में साइन इन नहीं हो सका</string>
 <string name="account_signin_offline_body">%s में साइन इन करने के लिए कनेक्शन चाहिए। यह डिवाइस फिर से ऑनलाइन होने पर कोशिश करें।</string>
+<string name="account_signins_until_quit">साइन-इन तब तक रहते हैं जब तक आप CloudStream बंद नहीं करते।</string>
 <string name="account_sync_connected">कनेक्टेड · इस डिवाइस पर साइन इन</string>
 <string name="account_sync_needs_browser">साइन इन के लिए वेब ब्राउज़र चाहिए। इस डिवाइस में नहीं है।</string>
 <string name="account_sync_note">वैकल्पिक। देखने की प्रगति को आपके पहले से मौजूद खाते से सिंक करता है।</string>

@@ -366,7 +366,7 @@ fun DeleteProfileSheet(name: String, onDelete: () -> Unit, onCancel: () -> Unit)
  * on raised.
  */
 @Composable
-private fun SheetFrame(onEscape: () -> Unit, modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
+internal fun SheetFrame(onEscape: () -> Unit, modifier: Modifier = Modifier, content: @Composable ColumnScope.() -> Unit) {
     val colors = CloudStreamTheme.colors
     val large = CloudStreamTheme.shapes.large
     val shape = (large as? CornerBasedShape)?.copy(topStart = CornerSize(0.dp), topEnd = CornerSize(0.dp)) ?: large

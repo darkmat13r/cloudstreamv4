@@ -73,6 +73,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s não confirmou o login. Nada foi salvo."</string>
 <string name="account_signin_failed_title" formatted="true">"Não foi possível entrar no %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Para entrar no %s é preciso ter conexão. Tente de novo quando este dispositivo estiver on-line."</string>
+<string name="account_signins_until_quit">"Os logins duram até você fechar o CloudStream."</string>
 <string name="account_sync_connected">"Conectado · logado neste dispositivo"</string>
 <string name="account_sync_needs_browser">"O login precisa de um navegador. Este dispositivo não tem."</string>
 <string name="account_sync_note">"Opcional. Sincroniza o progresso com uma conta que você já tem."</string>

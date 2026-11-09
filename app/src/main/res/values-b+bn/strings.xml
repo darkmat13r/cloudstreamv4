@@ -70,6 +70,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s সাইন-ইন নিশ্চিত করেনি। কিছুই সংরক্ষণ করা হয়নি।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s-এ সাইন ইন করা যায়নি"</string>
 <string name="account_signin_offline_body" formatted="true">"%s-এ সাইন ইন করতে সংযোগ প্রয়োজন। এই ডিভাইসটি আবার অনলাইনে এলে চেষ্টা করুন।"</string>
+<string name="account_signins_until_quit">"CloudStream বন্ধ না করা পর্যন্ত সাইন-ইন থাকে।"</string>
 <string name="account_sync_connected">"সংযুক্ত · এই ডিভাইসে সাইন ইন করা"</string>
 <string name="account_sync_needs_browser">"সাইন-ইনের জন্য ওয়েব ব্রাউজার লাগে। এই ডিভাইসে নেই।"</string>
 <string name="account_sync_note">"ঐচ্ছিক। আপনার আগে থেকে থাকা অ্যাকাউন্টে দেখার অগ্রগতি সিঙ্ক করে।"</string>

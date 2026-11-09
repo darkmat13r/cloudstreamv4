@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s не пацвердзіў уваход. Нічога не захавана.</string>
 <string name="account_signin_failed_title">Не ўдалося ўвайсці ў %s</string>
 <string name="account_signin_offline_body">Для ўваходу ў %s патрэбна злучэнне. Паспрабуйце зноў, калі гэта прылада зноў будзе ў сетцы.</string>
+<string name="account_signins_until_quit">Уваходы захоўваюцца, пакуль вы не выйдзеце з CloudStream.</string>
 <string name="account_sync_connected">Падключана · уваход на гэтай прыладзе</string>
 <string name="account_sync_needs_browser">Для ўваходу патрэбны вэб-браўзер. На гэтай прыладзе яго няма.</string>
 <string name="account_sync_note">Неабавязкова. Сінхранізуе прагрэс прагляду з уліковым запісам, які ў вас ужо ёсць.</string>

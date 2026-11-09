@@ -70,6 +70,7 @@
 <string name="account_signin_failed_body" formatted="true">"Služba %s prihlásenie nepotvrdila. Nič sa neuložilo."</string>
 <string name="account_signin_failed_title" formatted="true">"Nepodarilo sa prihlásiť do %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Prihlásenie do %s vyžaduje pripojenie. Skúste to znova, keď bude toto zariadenie opäť online."</string>
+<string name="account_signins_until_quit">"Prihlásenia platia, kým CloudStream neukončíte."</string>
 <string name="account_sync_connected">"Pripojené · prihlásené na tomto zariadení"</string>
 <string name="account_sync_needs_browser">"Prihlásenie vyžaduje webový prehliadač. Toto zariadenie ho nemá."</string>
 <string name="account_sync_note">"Voliteľné. Synchronizuje postup pozerania s účtom, ktorý už máte."</string>

@@ -73,6 +73,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s oturum açmayı onaylamadı. Hiçbir şey kaydedilmedi."</string>
 <string name="account_signin_failed_title" formatted="true">"%s hesabında oturum açılamadı"</string>
 <string name="account_signin_offline_body" formatted="true">"%s hesabında oturum açmak için bağlantı gerekir. Bu cihaz yeniden çevrimiçi olduğunda tekrar deneyin."</string>
+<string name="account_signins_until_quit">"Oturum açmalar CloudStream'den çıkana kadar sürer."</string>
 <string name="account_sync_connected">"Bağlı · bu cihazda oturum açık"</string>
 <string name="account_sync_needs_browser">"Oturum açmak için web tarayıcısı gerekir. Bu cihazda yok."</string>
 <string name="account_sync_note">"İsteğe bağlı. İzleme ilerlemesini zaten sahip olduğun bir hesapla senkronize eder."</string>

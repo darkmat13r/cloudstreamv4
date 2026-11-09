@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s tidak mengesahkan log masuk. Tiada apa-apa yang disimpan.</string>
 <string name="account_signin_failed_title">Tidak dapat log masuk ke %s</string>
 <string name="account_signin_offline_body">Log masuk ke %s memerlukan sambungan. Cuba lagi apabila peranti ini kembali dalam talian.</string>
+<string name="account_signins_until_quit">Log masuk kekal sehingga anda keluar dari CloudStream.</string>
 <string name="account_sync_connected">Bersambung · log masuk pada peranti ini</string>
 <string name="account_sync_needs_browser">Log masuk memerlukan pelayar web. Peranti ini tiada.</string>
 <string name="account_sync_note">Pilihan. Menyegerakkan kemajuan tontonan dengan akaun yang anda sudah ada.</string>

@@ -69,6 +69,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s സൈൻ-ഇൻ സ്ഥിരീകരിച്ചില്ല. ഒന്നും സംരക്ഷിച്ചില്ല."</string>
 <string name="account_signin_failed_title" formatted="true">"%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാനായില്ല"</string>
 <string name="account_signin_offline_body" formatted="true">"%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാൻ കണക്ഷൻ ആവശ്യമാണ്. ഈ ഉപകരണം വീണ്ടും ഓൺലൈനാകുമ്പോൾ ശ്രമിക്കുക."</string>
+<string name="account_signins_until_quit">"CloudStream അടയ്ക്കുന്നതുവരെ സൈൻ-ഇനുകൾ നിലനിൽക്കും."</string>
 <string name="account_sync_connected">"കണക്റ്റ് ചെയ്തു · ഈ ഉപകരണത്തിൽ സൈൻ ഇൻ ചെയ്തു"</string>
 <string name="account_sync_needs_browser">"സൈൻ ഇൻ ചെയ്യാൻ വെബ് ബ്രൗസർ വേണം. ഈ ഉപകരണത്തിൽ ഇല്ല."</string>
 <string name="account_sync_note">"ഓപ്ഷണൽ. കാഴ്ചയുടെ പുരോഗതി നിങ്ങൾക്ക് ഇതിനകമുള്ള അക്കൗണ്ടുമായി സമന്വയിപ്പിക്കുന്നു."</string>

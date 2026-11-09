@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا.</string>
 <string name="account_signin_failed_title">نەتوانرا بچیتە ژوورەوەی %s</string>
 <string name="account_signin_offline_body">چوونەژوورەوە بۆ %s پەیوەندی پێویستە. کاتێک ئەم ئامێرە دووبارە سەرهێڵ بوو هەوڵ بدەرەوە.</string>
+<string name="account_signins_until_quit">چوونەژوورەوەکان دەمێننەوە تا CloudStream دادەخەیت.</string>
 <string name="account_sync_connected">پەیوەستە · لەسەر ئەم ئامێرە چووەتە ژوورەوە</string>
 <string name="account_sync_needs_browser">چوونەژوورەوە وێبگەڕێکی پێویستە. ئەم ئامێرە نییەتی.</string>
 <string name="account_sync_note">ئارەزوومەندانە. پێشکەوتنی سەیرکردن لەگەڵ هەژمارێک کە پێشتر هەتە هاوکات دەکات.</string>

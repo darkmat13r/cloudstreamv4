@@ -70,6 +70,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s এ ছাইন-ইন নিশ্চিত নকৰিলে। একো ছেভ কৰা হোৱা নাই।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s ত ছাইন ইন কৰিব পৰা নগ'ল"</string>
 <string name="account_signin_offline_body" formatted="true">"%s ত ছাইন ইন কৰিবলৈ সংযোগৰ প্ৰয়োজন। এই ডিভাইচটো পুনৰ অনলাইন হ'লে আকৌ চেষ্টা কৰক।"</string>
+<string name="account_signins_until_quit">"CloudStream বন্ধ নকৰালৈকে ছাইন-ইন থাকে।"</string>
 <string name="account_sync_connected">"সংযুক্ত · এই ডিভাইচত ছাইন ইন কৰা"</string>
 <string name="account_sync_needs_browser">"ছাইন-ইনৰ বাবে ৱেব ব্ৰাউজাৰ লাগে। এই ডিভাইচত নাই।"</string>
 <string name="account_sync_note">"বৈকল্পিক। আপোনাৰ আগৰে পৰা থকা একাউণ্টলৈ চোৱাৰ অগ্ৰগতি ছিংক কৰে।"</string>

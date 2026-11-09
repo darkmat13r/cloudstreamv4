@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s oooohh uugg ah. oooohh aagg.</string>
 <string name="account_signin_failed_title">oooohh uugg ah %s</string>
 <string name="account_signin_offline_body">uugg ah %s ooh aagg. uuh eeeek oooh aah aagg.</string>
+<string name="account_signins_until_quit">ooh-aah aagg ooh CloudStream.</string>
 <string name="account_sync_connected">oooh-aah · ooh aagg</string>
 <string name="account_sync_needs_browser">oooh aaagg aah. ooh oooh aah.</string>
 <string name="account_sync_note">ooh. oooh-aah aagg ooh aaaagg aah.</string>

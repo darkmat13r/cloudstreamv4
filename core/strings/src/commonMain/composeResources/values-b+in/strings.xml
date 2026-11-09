@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.</string>
 <string name="account_signin_failed_title">Tidak dapat masuk ke %s</string>
 <string name="account_signin_offline_body">Masuk ke %s memerlukan koneksi. Coba lagi saat perangkat ini kembali online.</string>
+<string name="account_signins_until_quit">Info masuk bertahan sampai Anda keluar dari CloudStream.</string>
 <string name="account_sync_connected">Terhubung · masuk di perangkat ini</string>
 <string name="account_sync_needs_browser">Masuk memerlukan browser web. Perangkat ini tidak memilikinya.</string>
 <string name="account_sync_note">Opsional. Menyinkronkan progres tontonan ke akun yang sudah Anda miliki.</string>

@@ -72,6 +72,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s 未確認登入。未儲存任何內容。"</string>
 <string name="account_signin_failed_title" formatted="true">"無法登入 %s"</string>
 <string name="account_signin_offline_body" formatted="true">"登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。"</string>
+<string name="account_signins_until_quit">"登入狀態會保留到你結束 CloudStream 為止。"</string>
 <string name="account_sync_connected">"已連線 · 已在此裝置登入"</string>
 <string name="account_sync_needs_browser">"登入需要網頁瀏覽器。此裝置沒有。"</string>
 <string name="account_sync_note">"選用。將觀看進度同步到你已有的帳號。"</string>

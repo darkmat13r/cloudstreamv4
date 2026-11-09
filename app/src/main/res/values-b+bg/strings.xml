@@ -72,6 +72,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s не потвърди вписването. Нищо не е запазено."</string>
 <string name="account_signin_failed_title" formatted="true">"Неуспешно вписване в %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Вписването в %s изисква връзка. Опитай отново, когато устройството е отново онлайн."</string>
+<string name="account_signins_until_quit">"Влизанията остават, докато не излезете от CloudStream."</string>
 <string name="account_sync_connected">"Свързан · вписан на това устройство"</string>
 <string name="account_sync_needs_browser">"Влизането изисква уеб браузър. Това устройство няма такъв."</string>
 <string name="account_sync_note">"По избор. Синхронизира напредъка на гледане с акаунт, който вече имате."</string>

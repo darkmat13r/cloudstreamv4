@@ -73,6 +73,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s hat die Anmeldung nicht bestätigt. Es wurde nichts gespeichert."</string>
 <string name="account_signin_failed_title" formatted="true">"Anmeldung bei %s fehlgeschlagen"</string>
 <string name="account_signin_offline_body" formatted="true">"Für die Anmeldung bei %s ist eine Verbindung nötig. Versuche es erneut, wenn dieses Gerät wieder online ist."</string>
+<string name="account_signins_until_quit">"Anmeldungen gelten, bis du CloudStream beendest."</string>
 <string name="account_sync_connected">"Verbunden · auf diesem Gerät angemeldet"</string>
 <string name="account_sync_needs_browser">"Die Anmeldung braucht einen Webbrowser. Dieses Gerät hat keinen."</string>
 <string name="account_sync_note">"Optional. Synchronisiert den Fortschritt mit einem Konto, das du schon hast."</string>

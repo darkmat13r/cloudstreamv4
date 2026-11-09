@@ -87,6 +87,7 @@ values-b+af/strings.xml	string	account_select_title	-	STR	Wie kyk?
 values-b+af/strings.xml	string	account_signin_failed_body	-	STR	%s het nie die aanmelding bevestig nie. Niks is gestoor nie.	
 values-b+af/strings.xml	string	account_signin_failed_title	-	STR	Kon nie by %s aanmeld nie	
 values-b+af/strings.xml	string	account_signin_offline_body	-	STR	Om by %s aan te meld, is 'n verbinding nodig. Probeer weer wanneer hierdie toestel weer aanlyn is.	
+values-b+af/strings.xml	string	account_signins_until_quit	-	STR	Aanmeldings hou tot jy CloudStream afsluit.	
 values-b+af/strings.xml	string	account_sync_connected	-	STR	Gekoppel · aangemeld op hierdie toestel	
 values-b+af/strings.xml	string	account_sync_needs_browser	-	STR	Aanmelding het 'n webblaaier nodig. Hierdie toestel het nie een nie.	
 values-b+af/strings.xml	string	account_sync_note	-	STR	Opsioneel. Sinkroniseer kykvordering met 'n rekening wat jy reeds het.	
@@ -596,6 +597,7 @@ values-b+am/strings.xml	string	account_select_title	-	STR	ማን እየተመለ
 values-b+am/strings.xml	string	account_signin_failed_body	-	STR	%s መግባቱን አላረጋገጠም። ምንም አልተቀመጠም።	
 values-b+am/strings.xml	string	account_signin_failed_title	-	STR	ወደ %s መግባት አልተቻለም	
 values-b+am/strings.xml	string	account_signin_offline_body	-	STR	ወደ %s ለመግባት ግንኙነት ያስፈልጋል። ይህ መሣሪያ ተመልሶ መስመር ላይ ሲሆን እንደገና ይሞክሩ።	
+values-b+am/strings.xml	string	account_signins_until_quit	-	STR	መግቢያዎች CloudStreamን እስኪያቋርጡ ድረስ ይቆያሉ።	
 values-b+am/strings.xml	string	account_sync_connected	-	STR	ተገናኝቷል · በዚህ መሣሪያ ላይ ገብቷል	
 values-b+am/strings.xml	string	account_sync_needs_browser	-	STR	መግባት የድር አሳሽ ይፈልጋል። ይህ መሣሪያ የለውም።	
 values-b+am/strings.xml	string	account_sync_note	-	STR	አማራጭ። የእይታ ሂደትን ቀድሞ ካለዎት መለያ ጋር ያመሳስላል።	
@@ -1098,6 +1100,7 @@ values-b+apc/strings.xml	string	account_select_title	-	STR	مين عم يحضر�
 values-b+apc/strings.xml	string	account_signin_failed_body	-	STR	%s ما أكّد تسجيل الدخول. ما انحفظ شي.	
 values-b+apc/strings.xml	string	account_signin_failed_title	-	STR	ما قدرنا نسجّل دخول على %s	
 values-b+apc/strings.xml	string	account_signin_offline_body	-	STR	تسجيل الدخول على %s بدو اتصال. جرب مرة تانية لما يرجع هالجهاز أونلاين.	
+values-b+apc/strings.xml	string	account_signins_until_quit	-	STR	تسجيلات الدخول بتضل لحتى تسكّر CloudStream.	
 values-b+apc/strings.xml	string	account_sync_connected	-	STR	متصل · مسجّل دخول على هالجهاز	
 values-b+apc/strings.xml	string	account_sync_needs_browser	-	STR	تسجيل الدخول بدو متصفح ويب. هالجهاز ما فيه.	
 values-b+apc/strings.xml	string	account_sync_note	-	STR	اختياري. بيزامن تقدّم المشاهدة مع حساب عندك أصلاً.	
@@ -2308,6 +2311,7 @@ values-b+ar/strings.xml	string	account_select_title	-	STR	من يشاهد؟
 values-b+ar/strings.xml	string	account_signin_failed_body	-	STR	لم يؤكد %s تسجيل الدخول. لم يُحفظ أي شيء.	
 values-b+ar/strings.xml	string	account_signin_failed_title	-	STR	تعذّر تسجيل الدخول إلى %s	
 values-b+ar/strings.xml	string	account_signin_offline_body	-	STR	يتطلب تسجيل الدخول إلى %s اتصالاً بالإنترنت. حاول مرة أخرى عند عودة هذا الجهاز إلى الاتصال.	
+values-b+ar/strings.xml	string	account_signins_until_quit	-	STR	تبقى عمليات تسجيل الدخول حتى تُنهي CloudStream.	
 values-b+ar/strings.xml	string	account_sync_connected	-	STR	متصل · تم تسجيل الدخول على هذا الجهاز	
 values-b+ar/strings.xml	string	account_sync_needs_browser	-	STR	يتطلب تسجيل الدخول متصفح ويب. لا يوجد متصفح على هذا الجهاز.	
 values-b+ar/strings.xml	string	account_sync_note	-	STR	اختياري. يزامن تقدّم المشاهدة مع حساب لديك بالفعل.	
@@ -3510,6 +3514,7 @@ values-b+ars/strings.xml	string	account_select_title	-	STR	مين يشاهد؟
 values-b+ars/strings.xml	string	account_signin_failed_body	-	STR	%s ما أكّد تسجيل الدخول. ما انحفظ شي.	
 values-b+ars/strings.xml	string	account_signin_failed_title	-	STR	ما قدرنا نسجّل دخول في %s	
 values-b+ars/strings.xml	string	account_signin_offline_body	-	STR	تسجيل الدخول في %s يبي اتصال. حاول مرة ثانية لما يرجع هالجهاز متصل.	
+values-b+ars/strings.xml	string	account_signins_until_quit	-	STR	تسجيلات الدخول تبقى لين تقفل CloudStream.	
 values-b+ars/strings.xml	string	account_sync_connected	-	STR	متصل · مسجّل دخول على هالجهاز	
 values-b+ars/strings.xml	string	account_sync_needs_browser	-	STR	تسجيل الدخول يحتاج متصفح ويب. هالجهاز ما فيه.	
 values-b+ars/strings.xml	string	account_sync_note	-	STR	اختياري. يزامن تقدّم المشاهدة مع حساب عندك من قبل.	
@@ -4235,6 +4240,7 @@ values-b+as/strings.xml	string	account_select_title	-	STR	কোনে চাই
 values-b+as/strings.xml	string	account_signin_failed_body	-	STR	%s এ ছাইন-ইন নিশ্চিত নকৰিলে। একো ছেভ কৰা হোৱা নাই।	
 values-b+as/strings.xml	string	account_signin_failed_title	-	STR	%s ত ছাইন ইন কৰিব পৰা নগ'ল	
 values-b+as/strings.xml	string	account_signin_offline_body	-	STR	%s ত ছাইন ইন কৰিবলৈ সংযোগৰ প্ৰয়োজন। এই ডিভাইচটো পুনৰ অনলাইন হ'লে আকৌ চেষ্টা কৰক।	
+values-b+as/strings.xml	string	account_signins_until_quit	-	STR	CloudStream বন্ধ নকৰালৈকে ছাইন-ইন থাকে।	
 values-b+as/strings.xml	string	account_sync_connected	-	STR	সংযুক্ত · এই ডিভাইচত ছাইন ইন কৰা	
 values-b+as/strings.xml	string	account_sync_needs_browser	-	STR	ছাইন-ইনৰ বাবে ৱেব ব্ৰাউজাৰ লাগে। এই ডিভাইচত নাই।	
 values-b+as/strings.xml	string	account_sync_note	-	STR	বৈকল্পিক। আপোনাৰ আগৰে পৰা থকা একাউণ্টলৈ চোৱাৰ অগ্ৰগতি ছিংক কৰে।	
@@ -5260,6 +5266,7 @@ values-b+az/strings.xml	string	account_select_title	-	STR	Kim baxır?
 values-b+az/strings.xml	string	account_signin_failed_body	-	STR	%s girişi təsdiqləmədi. Heç nə saxlanılmadı.	
 values-b+az/strings.xml	string	account_signin_failed_title	-	STR	%s hesabına daxil olmaq alınmadı	
 values-b+az/strings.xml	string	account_signin_offline_body	-	STR	%s hesabına daxil olmaq üçün internet bağlantısı lazımdır. Bu cihaz yenidən onlayn olanda yenidən cəhd edin.	
+values-b+az/strings.xml	string	account_signins_until_quit	-	STR	Girişlər CloudStream-dən çıxana qədər qalır.	
 values-b+az/strings.xml	string	account_sync_connected	-	STR	Qoşulub · bu cihazda daxil olunub	
 values-b+az/strings.xml	string	account_sync_needs_browser	-	STR	Giriş üçün veb brauzer lazımdır. Bu cihazda yoxdur.	
 values-b+az/strings.xml	string	account_sync_note	-	STR	İstəyə bağlı. Baxış irəliləyişini artıq olan hesabınızla sinxronlaşdırır.	
@@ -5843,6 +5850,7 @@ values-b+be/strings.xml	string	account_select_title	-	STR	Хто глядзіц�
 values-b+be/strings.xml	string	account_signin_failed_body	-	STR	%s не пацвердзіў уваход. Нічога не захавана.	
 values-b+be/strings.xml	string	account_signin_failed_title	-	STR	Не ўдалося ўвайсці ў %s	
 values-b+be/strings.xml	string	account_signin_offline_body	-	STR	Для ўваходу ў %s патрэбна злучэнне. Паспрабуйце зноў, калі гэта прылада зноў будзе ў сетцы.	
+values-b+be/strings.xml	string	account_signins_until_quit	-	STR	Уваходы захоўваюцца, пакуль вы не выйдзеце з CloudStream.	
 values-b+be/strings.xml	string	account_sync_connected	-	STR	Падключана · уваход на гэтай прыладзе	
 values-b+be/strings.xml	string	account_sync_needs_browser	-	STR	Для ўваходу патрэбны вэб-браўзер. На гэтай прыладзе яго няма.	
 values-b+be/strings.xml	string	account_sync_note	-	STR	Неабавязкова. Сінхранізуе прагрэс прагляду з уліковым запісам, які ў вас ужо ёсць.	
@@ -6965,6 +6973,7 @@ values-b+bg/strings.xml	string	account_select_title	-	STR	Кой гледа?
 values-b+bg/strings.xml	string	account_signin_failed_body	-	STR	%s не потвърди вписването. Нищо не е запазено.	
 values-b+bg/strings.xml	string	account_signin_failed_title	-	STR	Неуспешно вписване в %s	
 values-b+bg/strings.xml	string	account_signin_offline_body	-	STR	Вписването в %s изисква връзка. Опитай отново, когато устройството е отново онлайн.	
+values-b+bg/strings.xml	string	account_signins_until_quit	-	STR	Влизанията остават, докато не излезете от CloudStream.	
 values-b+bg/strings.xml	string	account_sync_connected	-	STR	Свързан · вписан на това устройство	
 values-b+bg/strings.xml	string	account_sync_needs_browser	-	STR	Влизането изисква уеб браузър. Това устройство няма такъв.	
 values-b+bg/strings.xml	string	account_sync_note	-	STR	По избор. Синхронизира напредъка на гледане с акаунт, който вече имате.	
@@ -8073,6 +8082,7 @@ values-b+bn/strings.xml	string	account_select_title	-	STR	কে দেখছে
 values-b+bn/strings.xml	string	account_signin_failed_body	-	STR	%s সাইন-ইন নিশ্চিত করেনি। কিছুই সংরক্ষণ করা হয়নি।	
 values-b+bn/strings.xml	string	account_signin_failed_title	-	STR	%s-এ সাইন ইন করা যায়নি	
 values-b+bn/strings.xml	string	account_signin_offline_body	-	STR	%s-এ সাইন ইন করতে সংযোগ প্রয়োজন। এই ডিভাইসটি আবার অনলাইনে এলে চেষ্টা করুন।	
+values-b+bn/strings.xml	string	account_signins_until_quit	-	STR	CloudStream বন্ধ না করা পর্যন্ত সাইন-ইন থাকে।	
 values-b+bn/strings.xml	string	account_sync_connected	-	STR	সংযুক্ত · এই ডিভাইসে সাইন ইন করা	
 values-b+bn/strings.xml	string	account_sync_needs_browser	-	STR	সাইন-ইনের জন্য ওয়েব ব্রাউজার লাগে। এই ডিভাইসে নেই।	
 values-b+bn/strings.xml	string	account_sync_note	-	STR	ঐচ্ছিক। আপনার আগে থেকে থাকা অ্যাকাউন্টে দেখার অগ্রগতি সিঙ্ক করে।	
@@ -8885,6 +8895,7 @@ values-b+ca/strings.xml	string	account_select_title	-	STR	Qui mira?
 values-b+ca/strings.xml	string	account_signin_failed_body	-	STR	%s no ha confirmat l'inici de sessió. No s'ha desat res.	
 values-b+ca/strings.xml	string	account_signin_failed_title	-	STR	No s'ha pogut iniciar la sessió a %s	
 values-b+ca/strings.xml	string	account_signin_offline_body	-	STR	Per iniciar la sessió a %s cal connexió. Torna-ho a provar quan aquest dispositiu torni a estar en línia.	
+values-b+ca/strings.xml	string	account_signins_until_quit	-	STR	Els inicis de sessió duren fins que surts de CloudStream.	
 values-b+ca/strings.xml	string	account_sync_connected	-	STR	Connectat · sessió iniciada en aquest dispositiu	
 values-b+ca/strings.xml	string	account_sync_needs_browser	-	STR	Per iniciar la sessió cal un navegador web. Aquest dispositiu no en té.	
 values-b+ca/strings.xml	string	account_sync_note	-	STR	Opcional. Sincronitza el progrés de visualització amb un compte que ja tens.	
@@ -9603,6 +9614,7 @@ values-b+ckb/strings.xml	string	account_select_title	-	STR	کێ سەیر دەک�
 values-b+ckb/strings.xml	string	account_signin_failed_body	-	STR	%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا.	
 values-b+ckb/strings.xml	string	account_signin_failed_title	-	STR	نەتوانرا بچیتە ژوورەوەی %s	
 values-b+ckb/strings.xml	string	account_signin_offline_body	-	STR	چوونەژوورەوە بۆ %s پەیوەندی پێویستە. کاتێک ئەم ئامێرە دووبارە سەرهێڵ بوو هەوڵ بدەرەوە.	
+values-b+ckb/strings.xml	string	account_signins_until_quit	-	STR	چوونەژوورەوەکان دەمێننەوە تا CloudStream دادەخەیت.	
 values-b+ckb/strings.xml	string	account_sync_connected	-	STR	پەیوەستە · لەسەر ئەم ئامێرە چووەتە ژوورەوە	
 values-b+ckb/strings.xml	string	account_sync_needs_browser	-	STR	چوونەژوورەوە وێبگەڕێکی پێویستە. ئەم ئامێرە نییەتی.	
 values-b+ckb/strings.xml	string	account_sync_note	-	STR	ئارەزوومەندانە. پێشکەوتنی سەیرکردن لەگەڵ هەژمارێک کە پێشتر هەتە هاوکات دەکات.	
@@ -10130,6 +10142,7 @@ values-b+cs/strings.xml	string	account_select_title	-	STR	Kdo se dívá?
 values-b+cs/strings.xml	string	account_signin_failed_body	-	STR	Služba %s přihlášení nepotvrdila. Nic nebylo uloženo.	
 values-b+cs/strings.xml	string	account_signin_failed_title	-	STR	Nelze se přihlásit k %s	
 values-b+cs/strings.xml	string	account_signin_offline_body	-	STR	Přihlášení k %s vyžaduje připojení. Zkuste to znovu, až bude toto zařízení opět online.	
+values-b+cs/strings.xml	string	account_signins_until_quit	-	STR	Přihlášení platí, dokud CloudStream neukončíte.	
 values-b+cs/strings.xml	string	account_sync_connected	-	STR	Připojeno · přihlášeno na tomto zařízení	
 values-b+cs/strings.xml	string	account_sync_needs_browser	-	STR	Přihlášení vyžaduje webový prohlížeč. Toto zařízení žádný nemá.	
 values-b+cs/strings.xml	string	account_sync_note	-	STR	Volitelné. Synchronizuje postup sledování s účtem, který už máte.	
@@ -11259,6 +11272,7 @@ values-b+de/strings.xml	string	account_select_title	-	STR	Wer schaut?
 values-b+de/strings.xml	string	account_signin_failed_body	-	STR	%s hat die Anmeldung nicht bestätigt. Es wurde nichts gespeichert.	
 values-b+de/strings.xml	string	account_signin_failed_title	-	STR	Anmeldung bei %s fehlgeschlagen	
 values-b+de/strings.xml	string	account_signin_offline_body	-	STR	Für die Anmeldung bei %s ist eine Verbindung nötig. Versuche es erneut, wenn dieses Gerät wieder online ist.	
+values-b+de/strings.xml	string	account_signins_until_quit	-	STR	Anmeldungen gelten, bis du CloudStream beendest.	
 values-b+de/strings.xml	string	account_sync_connected	-	STR	Verbunden · auf diesem Gerät angemeldet	
 values-b+de/strings.xml	string	account_sync_needs_browser	-	STR	Die Anmeldung braucht einen Webbrowser. Dieses Gerät hat keinen.	
 values-b+de/strings.xml	string	account_sync_note	-	STR	Optional. Synchronisiert den Fortschritt mit einem Konto, das du schon hast.	
@@ -12382,6 +12396,7 @@ values-b+el/strings.xml	string	account_select_title	-	STR	Ποιος βλέπε�
 values-b+el/strings.xml	string	account_signin_failed_body	-	STR	Το %s δεν επιβεβαίωσε τη σύνδεση. Δεν αποθηκεύτηκε τίποτα.	
 values-b+el/strings.xml	string	account_signin_failed_title	-	STR	Δεν ήταν δυνατή η σύνδεση στο %s	
 values-b+el/strings.xml	string	account_signin_offline_body	-	STR	Η σύνδεση στο %s απαιτεί πρόσβαση στο διαδίκτυο. Δοκιμάστε ξανά όταν η συσκευή είναι ξανά online.	
+values-b+el/strings.xml	string	account_signins_until_quit	-	STR	Οι συνδέσεις διαρκούν μέχρι να κλείσετε το CloudStream.	
 values-b+el/strings.xml	string	account_sync_connected	-	STR	Συνδεδεμένο · σε αυτή τη συσκευή	
 values-b+el/strings.xml	string	account_sync_needs_browser	-	STR	Η σύνδεση χρειάζεται πρόγραμμα περιήγησης. Αυτή η συσκευή δεν έχει.	
 values-b+el/strings.xml	string	account_sync_note	-	STR	Προαιρετικό. Συγχρονίζει την πρόοδο προβολής με έναν λογαριασμό που ήδη έχετε.	
@@ -13433,6 +13448,7 @@ values-b+eo/strings.xml	string	account_select_title	-	STR	Kiu spektas?
 values-b+eo/strings.xml	string	account_signin_failed_body	-	STR	%s ne konfirmis la ensaluton. Nenio estis konservita.	
 values-b+eo/strings.xml	string	account_signin_failed_title	-	STR	Ne eblis ensaluti al %s	
 values-b+eo/strings.xml	string	account_signin_offline_body	-	STR	Ensaluti al %s bezonas konekton. Reprovu kiam ĉi tiu aparato denove estos enreta.	
+values-b+eo/strings.xml	string	account_signins_until_quit	-	STR	Ensalutoj daŭras ĝis vi fermas CloudStream.	
 values-b+eo/strings.xml	string	account_sync_connected	-	STR	Konektita · ensalutinta en ĉi tiu aparato	
 values-b+eo/strings.xml	string	account_sync_needs_browser	-	STR	Ensaluto bezonas retumilon. Ĉi tiu aparato ne havas.	
 values-b+eo/strings.xml	string	account_sync_note	-	STR	Laŭvola. Sinkronigas spektan progreson kun konto, kiun vi jam havas.	
@@ -14034,6 +14050,7 @@ values-b+es/strings.xml	string	account_select_title	-	STR	¿Quién está viendo?
 values-b+es/strings.xml	string	account_signin_failed_body	-	STR	%s no confirmó el inicio de sesión. No se ha guardado nada.	
 values-b+es/strings.xml	string	account_signin_failed_title	-	STR	No se pudo iniciar sesión en %s	
 values-b+es/strings.xml	string	account_signin_offline_body	-	STR	Para iniciar sesión en %s hace falta conexión. Vuelve a intentarlo cuando este dispositivo tenga conexión.	
+values-b+es/strings.xml	string	account_signins_until_quit	-	STR	Los inicios de sesión duran hasta que cierres CloudStream.	
 values-b+es/strings.xml	string	account_sync_connected	-	STR	Conectado · sesión iniciada en este dispositivo	
 values-b+es/strings.xml	string	account_sync_needs_browser	-	STR	Iniciar sesión requiere un navegador web. Este dispositivo no tiene.	
 values-b+es/strings.xml	string	account_sync_note	-	STR	Opcional. Sincroniza el progreso con una cuenta que ya tienes.	
@@ -15156,6 +15173,7 @@ values-b+fa/strings.xml	string	account_select_title	-	STR	چه کسی تماشا
 values-b+fa/strings.xml	string	account_signin_failed_body	-	STR	%s ورود را تأیید نکرد. چیزی ذخیره نشد.	
 values-b+fa/strings.xml	string	account_signin_failed_title	-	STR	ورود به %s ممکن نشد	
 values-b+fa/strings.xml	string	account_signin_offline_body	-	STR	ورود به %s به اتصال اینترنت نیاز دارد. وقتی این دستگاه دوباره آنلاین شد، دوباره تلاش کنید.	
+values-b+fa/strings.xml	string	account_signins_until_quit	-	STR	ورودها تا وقتی از CloudStream خارج شوید باقی می‌مانند.	
 values-b+fa/strings.xml	string	account_sync_connected	-	STR	متصل · واردشده در این دستگاه	
 values-b+fa/strings.xml	string	account_sync_needs_browser	-	STR	ورود به مرورگر وب نیاز دارد. این دستگاه مرورگر ندارد.	
 values-b+fa/strings.xml	string	account_sync_note	-	STR	اختیاری. پیشرفت تماشا را با حسابی که از قبل دارید همگام می‌کند.	
@@ -15893,6 +15911,7 @@ values-b+fil/strings.xml	string	account_select_title	-	STR	Sino ang nanonood?
 values-b+fil/strings.xml	string	account_signin_failed_body	-	STR	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.	
 values-b+fil/strings.xml	string	account_signin_failed_title	-	STR	Hindi makapag-sign in sa %s	
 values-b+fil/strings.xml	string	account_signin_offline_body	-	STR	Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito.	
+values-b+fil/strings.xml	string	account_signins_until_quit	-	STR	Tatagal ang mga sign-in hanggang isara mo ang CloudStream.	
 values-b+fil/strings.xml	string	account_sync_connected	-	STR	Nakakonekta · naka-sign in sa device na ito	
 values-b+fil/strings.xml	string	account_sync_needs_browser	-	STR	Kailangan ng web browser para mag-sign in. Wala nito ang device na ito.	
 values-b+fil/strings.xml	string	account_sync_note	-	STR	Opsyonal. Sini-sync ang progreso ng panonood sa account na mayroon ka na.	
@@ -16470,6 +16489,7 @@ values-b+fr/strings.xml	string	account_select_title	-	STR	Qui regarde ?
 values-b+fr/strings.xml	string	account_signin_failed_body	-	STR	%s n'a pas confirmé la connexion. Rien n'a été enregistré.	
 values-b+fr/strings.xml	string	account_signin_failed_title	-	STR	Impossible de se connecter à %s	
 values-b+fr/strings.xml	string	account_signin_offline_body	-	STR	La connexion à %s nécessite un accès réseau. Réessayez lorsque cet appareil sera de nouveau en ligne.	
+values-b+fr/strings.xml	string	account_signins_until_quit	-	STR	Les connexions durent jusqu'à ce que vous quittiez CloudStream.	
 values-b+fr/strings.xml	string	account_sync_connected	-	STR	Connecté · sur cet appareil	
 values-b+fr/strings.xml	string	account_sync_needs_browser	-	STR	La connexion nécessite un navigateur web. Cet appareil n'en a pas.	
 values-b+fr/strings.xml	string	account_sync_note	-	STR	Facultatif. Synchronise votre progression avec un compte que vous avez déjà.	
@@ -17592,6 +17612,7 @@ values-b+gl/strings.xml	string	account_select_title	-	STR	Quen está a ver?
 values-b+gl/strings.xml	string	account_signin_failed_body	-	STR	%s non confirmou o inicio de sesión. Non se gardou nada.	
 values-b+gl/strings.xml	string	account_signin_failed_title	-	STR	Non se puido iniciar sesión en %s	
 values-b+gl/strings.xml	string	account_signin_offline_body	-	STR	Para iniciar sesión en %s fai falta conexión. Téntao de novo cando este dispositivo volva estar en liña.	
+values-b+gl/strings.xml	string	account_signins_until_quit	-	STR	Os inicios de sesión duran ata que saias de CloudStream.	
 values-b+gl/strings.xml	string	account_sync_connected	-	STR	Conectado · sesión iniciada neste dispositivo	
 values-b+gl/strings.xml	string	account_sync_needs_browser	-	STR	Iniciar sesión precisa dun navegador web. Este dispositivo non ten.	
 values-b+gl/strings.xml	string	account_sync_note	-	STR	Opcional. Sincroniza o progreso cunha conta que xa tes.	
@@ -18270,6 +18291,7 @@ values-b+hi/strings.xml	string	account_select_title	-	STR	कौन देख �
 values-b+hi/strings.xml	string	account_signin_failed_body	-	STR	%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।	
 values-b+hi/strings.xml	string	account_signin_failed_title	-	STR	%s में साइन इन नहीं हो सका	
 values-b+hi/strings.xml	string	account_signin_offline_body	-	STR	%s में साइन इन करने के लिए कनेक्शन चाहिए। यह डिवाइस फिर से ऑनलाइन होने पर कोशिश करें।	
+values-b+hi/strings.xml	string	account_signins_until_quit	-	STR	साइन-इन तब तक रहते हैं जब तक आप CloudStream बंद नहीं करते।	
 values-b+hi/strings.xml	string	account_sync_connected	-	STR	कनेक्टेड · इस डिवाइस पर साइन इन	
 values-b+hi/strings.xml	string	account_sync_needs_browser	-	STR	साइन इन के लिए वेब ब्राउज़र चाहिए। इस डिवाइस में नहीं है।	
 values-b+hi/strings.xml	string	account_sync_note	-	STR	वैकल्पिक। देखने की प्रगति को आपके पहले से मौजूद खाते से सिंक करता है।	
@@ -19099,6 +19121,7 @@ values-b+hr/strings.xml	string	account_select_title	-	STR	Tko gleda?
 values-b+hr/strings.xml	string	account_signin_failed_body	-	STR	%s nije potvrdio prijavu. Ništa nije spremljeno.	
 values-b+hr/strings.xml	string	account_signin_failed_title	-	STR	Prijava na %s nije uspjela	
 values-b+hr/strings.xml	string	account_signin_offline_body	-	STR	Za prijavu na %s potrebna je veza. Pokušajte ponovno kad ovaj uređaj ponovno bude na mreži.	
+values-b+hr/strings.xml	string	account_signins_until_quit	-	STR	Prijave traju dok ne zatvorite CloudStream.	
 values-b+hr/strings.xml	string	account_sync_connected	-	STR	Povezano · prijavljeno na ovom uređaju	
 values-b+hr/strings.xml	string	account_sync_needs_browser	-	STR	Prijava zahtijeva web-preglednik. Ovaj uređaj ga nema.	
 values-b+hr/strings.xml	string	account_sync_note	-	STR	Neobavezno. Sinkronizira napredak gledanja s računom koji već imate.	
@@ -20217,6 +20240,7 @@ values-b+hu/strings.xml	string	account_select_title	-	STR	Ki néz?
 values-b+hu/strings.xml	string	account_signin_failed_body	-	STR	A(z) %s nem erősítette meg a bejelentkezést. Semmi sem lett mentve.	
 values-b+hu/strings.xml	string	account_signin_failed_title	-	STR	Nem sikerült bejelentkezni: %s	
 values-b+hu/strings.xml	string	account_signin_offline_body	-	STR	A bejelentkezéshez (%s) internetkapcsolat szükséges. Próbálja újra, amikor az eszköz ismét online.	
+values-b+hu/strings.xml	string	account_signins_until_quit	-	STR	A bejelentkezések addig tartanak, amíg ki nem lépsz a CloudStreamből.	
 values-b+hu/strings.xml	string	account_sync_connected	-	STR	Csatlakoztatva · bejelentkezve ezen az eszközön	
 values-b+hu/strings.xml	string	account_sync_needs_browser	-	STR	A bejelentkezéshez webböngésző kell. Ezen az eszközön nincs.	
 values-b+hu/strings.xml	string	account_sync_note	-	STR	Nem kötelező. A megtekintési előrehaladást egy meglévő fiókkal szinkronizálja.	
@@ -21225,6 +21249,7 @@ values-b+in/strings.xml	string	account_select_title	-	STR	Siapa yang menonton?
 values-b+in/strings.xml	string	account_signin_failed_body	-	STR	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.	
 values-b+in/strings.xml	string	account_signin_failed_title	-	STR	Tidak dapat masuk ke %s	
 values-b+in/strings.xml	string	account_signin_offline_body	-	STR	Masuk ke %s memerlukan koneksi. Coba lagi saat perangkat ini kembali online.	
+values-b+in/strings.xml	string	account_signins_until_quit	-	STR	Info masuk bertahan sampai Anda keluar dari CloudStream.	
 values-b+in/strings.xml	string	account_sync_connected	-	STR	Terhubung · masuk di perangkat ini	
 values-b+in/strings.xml	string	account_sync_needs_browser	-	STR	Masuk memerlukan browser web. Perangkat ini tidak memilikinya.	
 values-b+in/strings.xml	string	account_sync_note	-	STR	Opsional. Menyinkronkan progres tontonan ke akun yang sudah Anda miliki.	
@@ -22377,6 +22402,7 @@ values-b+it/strings.xml	string	account_select_title	-	STR	Chi sta guardando?
 values-b+it/strings.xml	string	account_signin_failed_body	-	STR	%s non ha confermato l'accesso. Non è stato salvato nulla.	
 values-b+it/strings.xml	string	account_signin_failed_title	-	STR	Impossibile accedere a %s	
 values-b+it/strings.xml	string	account_signin_offline_body	-	STR	Per accedere a %s serve una connessione. Riprova quando questo dispositivo sarà di nuovo online.	
+values-b+it/strings.xml	string	account_signins_until_quit	-	STR	Gli accessi durano finché non chiudi CloudStream.	
 values-b+it/strings.xml	string	account_sync_connected	-	STR	Connesso · accesso eseguito su questo dispositivo	
 values-b+it/strings.xml	string	account_sync_needs_browser	-	STR	L'accesso richiede un browser web. Questo dispositivo non ne ha.	
 values-b+it/strings.xml	string	account_sync_note	-	STR	Facoltativo. Sincronizza i progressi con un account che hai già.	
@@ -23520,6 +23546,7 @@ values-b+iw/strings.xml	string	account_select_title	-	STR	מי צופה?
 values-b+iw/strings.xml	string	account_signin_failed_body	-	STR	%s לא אישר את ההתחברות. שום דבר לא נשמר.	
 values-b+iw/strings.xml	string	account_signin_failed_title	-	STR	לא ניתן להתחבר אל %s	
 values-b+iw/strings.xml	string	account_signin_offline_body	-	STR	ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר.	
+values-b+iw/strings.xml	string	account_signins_until_quit	-	STR	ההתחברויות נשמרות עד שתצא מ-CloudStream.	
 values-b+iw/strings.xml	string	account_sync_connected	-	STR	מחובר · מחובר במכשיר הזה	
 values-b+iw/strings.xml	string	account_sync_needs_browser	-	STR	ההתחברות דורשת דפדפן אינטרנט. אין במכשיר הזה.	
 values-b+iw/strings.xml	string	account_sync_note	-	STR	אופציונלי. מסנכרן את התקדמות הצפייה עם חשבון שכבר יש לך.	
@@ -24438,6 +24465,7 @@ values-b+ja/strings.xml	string	account_select_title	-	STR	誰が見ています�
 values-b+ja/strings.xml	string	account_signin_failed_body	-	STR	%s でサインインが確認されませんでした。何も保存されていません。	
 values-b+ja/strings.xml	string	account_signin_failed_title	-	STR	%s にサインインできませんでした	
 values-b+ja/strings.xml	string	account_signin_offline_body	-	STR	%s へのサインインにはインターネット接続が必要です。このデバイスがオンラインに戻ったらもう一度お試しください。	
+values-b+ja/strings.xml	string	account_signins_until_quit	-	STR	サインインは CloudStream を終了するまで有効です。	
 values-b+ja/strings.xml	string	account_sync_connected	-	STR	接続済み · このデバイスでサインイン中	
 values-b+ja/strings.xml	string	account_sync_needs_browser	-	STR	サインインにはウェブブラウザが必要です。このデバイスにはありません。	
 values-b+ja/strings.xml	string	account_sync_note	-	STR	任意。視聴の進行状況を既にお持ちのアカウントと同期します。	
@@ -25560,6 +25588,7 @@ values-b+kn/strings.xml	string	account_select_title	-	STR	ಯಾರು ನೋಡ
 values-b+kn/strings.xml	string	account_signin_failed_body	-	STR	%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ.	
 values-b+kn/strings.xml	string	account_signin_failed_title	-	STR	%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ	
 values-b+kn/strings.xml	string	account_signin_offline_body	-	STR	%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಂಪರ್ಕ ಬೇಕು. ಈ ಸಾಧನ ಮತ್ತೆ ಆನ್‌ಲೈನ್ ಆದಾಗ ಪ್ರಯತ್ನಿಸಿ.	
+values-b+kn/strings.xml	string	account_signins_until_quit	-	STR	CloudStream ಅನ್ನು ಮುಚ್ಚುವವರೆಗೆ ಸೈನ್-ಇನ್‌ಗಳು ಇರುತ್ತವೆ.	
 values-b+kn/strings.xml	string	account_sync_connected	-	STR	ಸಂಪರ್ಕಗೊಂಡಿದೆ · ಈ ಸಾಧನದಲ್ಲಿ ಸೈನ್ ಇನ್	
 values-b+kn/strings.xml	string	account_sync_needs_browser	-	STR	ಸೈನ್ ಇನ್‌ಗೆ ವೆಬ್ ಬ್ರೌಸರ್ ಬೇಕು. ಈ ಸಾಧನದಲ್ಲಿ ಇಲ್ಲ.	
 values-b+kn/strings.xml	string	account_sync_note	-	STR	ಐಚ್ಛಿಕ. ವೀಕ್ಷಣಾ ಪ್ರಗತಿಯನ್ನು ನಿಮ್ಮ ಈಗಿರುವ ಖಾತೆಗೆ ಸಿಂಕ್ ಮಾಡುತ್ತದೆ.	
@@ -26061,6 +26090,7 @@ values-b+ko/strings.xml	string	account_select_title	-	STR	누가 보고 있나�
 values-b+ko/strings.xml	string	account_signin_failed_body	-	STR	%s에서 로그인을 확인하지 않았습니다. 저장된 내용이 없습니다.	
 values-b+ko/strings.xml	string	account_signin_failed_title	-	STR	%s에 로그인할 수 없음	
 values-b+ko/strings.xml	string	account_signin_offline_body	-	STR	%s에 로그인하려면 인터넷 연결이 필요합니다. 이 기기가 다시 온라인 상태가 되면 시도하세요.	
+values-b+ko/strings.xml	string	account_signins_until_quit	-	STR	로그인은 CloudStream을 종료할 때까지 유지됩니다.	
 values-b+ko/strings.xml	string	account_sync_connected	-	STR	연결됨 · 이 기기에서 로그인됨	
 values-b+ko/strings.xml	string	account_sync_needs_browser	-	STR	로그인하려면 웹 브라우저가 필요합니다. 이 기기에는 없습니다.	
 values-b+ko/strings.xml	string	account_sync_note	-	STR	선택 사항입니다. 이미 있는 계정과 시청 진행 상황을 동기화합니다.	
@@ -27218,6 +27248,7 @@ values-b+lt/strings.xml	string	account_select_title	-	STR	Kas žiūri?
 values-b+lt/strings.xml	string	account_signin_failed_body	-	STR	%s nepatvirtino prisijungimo. Niekas neišsaugota.	
 values-b+lt/strings.xml	string	account_signin_failed_title	-	STR	Nepavyko prisijungti prie %s	
 values-b+lt/strings.xml	string	account_signin_offline_body	-	STR	Norint prisijungti prie %s, reikia ryšio. Bandykite dar kartą, kai šis įrenginys vėl bus prisijungęs prie interneto.	
+values-b+lt/strings.xml	string	account_signins_until_quit	-	STR	Prisijungimai galioja, kol išeisite iš CloudStream.	
 values-b+lt/strings.xml	string	account_sync_connected	-	STR	Prijungta · prisijungta šiame įrenginyje	
 values-b+lt/strings.xml	string	account_sync_needs_browser	-	STR	Prisijungti reikia žiniatinklio naršyklės. Šiame įrenginyje jos nėra.	
 values-b+lt/strings.xml	string	account_sync_note	-	STR	Neprivaloma. Sinchronizuoja žiūrėjimo eigą su jau turima paskyra.	
@@ -27927,6 +27958,7 @@ values-b+lv/strings.xml	string	account_select_title	-	STR	Kas skatās?
 values-b+lv/strings.xml	string	account_signin_failed_body	-	STR	%s neapstiprināja pieteikšanos. Nekas netika saglabāts.	
 values-b+lv/strings.xml	string	account_signin_failed_title	-	STR	Neizdevās pieteikties pakalpojumā %s	
 values-b+lv/strings.xml	string	account_signin_offline_body	-	STR	Lai pieteiktos pakalpojumā %s, nepieciešams savienojums. Mēģiniet vēlreiz, kad šī ierīce atkal būs tiešsaistē.	
+values-b+lv/strings.xml	string	account_signins_until_quit	-	STR	Pierakstīšanās ir spēkā, līdz aizverat CloudStream.	
 values-b+lv/strings.xml	string	account_sync_connected	-	STR	Savienots · pieteicies šajā ierīcē	
 values-b+lv/strings.xml	string	account_sync_needs_browser	-	STR	Pieteikšanās prasa tīmekļa pārlūku. Šajā ierīcē tāda nav.	
 values-b+lv/strings.xml	string	account_sync_note	-	STR	Neobligāti. Sinhronizē skatīšanās progresu ar kontu, kas jums jau ir.	
@@ -28931,6 +28963,7 @@ values-b+mk/strings.xml	string	account_select_title	-	STR	Кој гледа?
 values-b+mk/strings.xml	string	account_signin_failed_body	-	STR	%s не ја потврди најавата. Ништо не е зачувано.	
 values-b+mk/strings.xml	string	account_signin_failed_title	-	STR	Не може да се најавиш на %s	
 values-b+mk/strings.xml	string	account_signin_offline_body	-	STR	За најава на %s е потребна врска. Обиди се повторно кога уредот ќе биде пак на интернет.	
+values-b+mk/strings.xml	string	account_signins_until_quit	-	STR	Најавите траат додека не излезете од CloudStream.	
 values-b+mk/strings.xml	string	account_sync_connected	-	STR	Поврзано · најавено на овој уред	
 values-b+mk/strings.xml	string	account_sync_needs_browser	-	STR	За најава е потребен веб-прелистувач. Овој уред нема.	
 values-b+mk/strings.xml	string	account_sync_note	-	STR	Опционално. Го синхронизира напредокот со сметка што веќе ја имате.	
@@ -30048,6 +30081,7 @@ values-b+ml/strings.xml	string	account_select_title	-	STR	ആരാണ് കാ
 values-b+ml/strings.xml	string	account_signin_failed_body	-	STR	%s സൈൻ-ഇൻ സ്ഥിരീകരിച്ചില്ല. ഒന്നും സംരക്ഷിച്ചില്ല.	
 values-b+ml/strings.xml	string	account_signin_failed_title	-	STR	%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാനായില്ല	
 values-b+ml/strings.xml	string	account_signin_offline_body	-	STR	%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാൻ കണക്ഷൻ ആവശ്യമാണ്. ഈ ഉപകരണം വീണ്ടും ഓൺലൈനാകുമ്പോൾ ശ്രമിക്കുക.	
+values-b+ml/strings.xml	string	account_signins_until_quit	-	STR	CloudStream അടയ്ക്കുന്നതുവരെ സൈൻ-ഇനുകൾ നിലനിൽക്കും.	
 values-b+ml/strings.xml	string	account_sync_connected	-	STR	കണക്റ്റ് ചെയ്തു · ഈ ഉപകരണത്തിൽ സൈൻ ഇൻ ചെയ്തു	
 values-b+ml/strings.xml	string	account_sync_needs_browser	-	STR	സൈൻ ഇൻ ചെയ്യാൻ വെബ് ബ്രൗസർ വേണം. ഈ ഉപകരണത്തിൽ ഇല്ല.	
 values-b+ml/strings.xml	string	account_sync_note	-	STR	ഓപ്ഷണൽ. കാഴ്ചയുടെ പുരോഗതി നിങ്ങൾക്ക് ഇതിനകമുള്ള അക്കൗണ്ടുമായി സമന്വയിപ്പിക്കുന്നു.	
@@ -30705,6 +30739,7 @@ values-b+ms/strings.xml	string	account_select_title	-	STR	Siapa yang menonton?
 values-b+ms/strings.xml	string	account_signin_failed_body	-	STR	%s tidak mengesahkan log masuk. Tiada apa-apa yang disimpan.	
 values-b+ms/strings.xml	string	account_signin_failed_title	-	STR	Tidak dapat log masuk ke %s	
 values-b+ms/strings.xml	string	account_signin_offline_body	-	STR	Log masuk ke %s memerlukan sambungan. Cuba lagi apabila peranti ini kembali dalam talian.	
+values-b+ms/strings.xml	string	account_signins_until_quit	-	STR	Log masuk kekal sehingga anda keluar dari CloudStream.	
 values-b+ms/strings.xml	string	account_sync_connected	-	STR	Bersambung · log masuk pada peranti ini	
 values-b+ms/strings.xml	string	account_sync_needs_browser	-	STR	Log masuk memerlukan pelayar web. Peranti ini tiada.	
 values-b+ms/strings.xml	string	account_sync_note	-	STR	Pilihan. Menyegerakkan kemajuan tontonan dengan akaun yang anda sudah ada.	
@@ -31688,6 +31723,7 @@ values-b+mt/strings.xml	string	account_select_title	-	STR	Min qed jara?
 values-b+mt/strings.xml	string	account_signin_failed_body	-	STR	%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn.	
 values-b+mt/strings.xml	string	account_signin_failed_title	-	STR	Ma setgħetx issir id-dħul f'%s	
 values-b+mt/strings.xml	string	account_signin_offline_body	-	STR	Biex tidħol f'%s trid konnessjoni. Erġa' pprova meta dan l-apparat jerġa' jkun online.	
+values-b+mt/strings.xml	string	account_signins_until_quit	-	STR	Id-dħul idum sakemm toħroġ minn CloudStream.	
 values-b+mt/strings.xml	string	account_sync_connected	-	STR	Imqabbad · dħalt fuq dan l-apparat	
 values-b+mt/strings.xml	string	account_sync_needs_browser	-	STR	Id-dħul jeħtieġ browser tal-web. Dan l-apparat m'għandux.	
 values-b+mt/strings.xml	string	account_sync_note	-	STR	Fakultattiv. Jissinkronizza l-progress mal-kont li diġà għandek.	
@@ -32180,6 +32216,7 @@ values-b+my/strings.xml	string	account_select_title	-	STR	ဘယ်သူကြ�
 values-b+my/strings.xml	string	account_signin_failed_body	-	STR	%s က ဝင်ရောက်မှုကို အတည်မပြုခဲ့ပါ။ ဘာမျှ သိမ်းဆည်းမထားပါ။	
 values-b+my/strings.xml	string	account_signin_failed_title	-	STR	%s သို့ ဝင်၍ မရပါ	
 values-b+my/strings.xml	string	account_signin_offline_body	-	STR	%s သို့ ဝင်ရန် ချိတ်ဆက်မှု လိုအပ်သည်။ ဤစက် အွန်လိုင်း ပြန်ဖြစ်သောအခါ ထပ်စမ်းကြည့်ပါ။	
+values-b+my/strings.xml	string	account_signins_until_quit	-	STR	CloudStream ကို ပိတ်သည်အထိ အကောင့်ဝင်မှုများ ရှိနေမည်။	
 values-b+my/strings.xml	string	account_sync_connected	-	STR	ချိတ်ဆက်ထား · ဤစက်တွင် ဝင်ထား	
 values-b+my/strings.xml	string	account_sync_needs_browser	-	STR	ဝင်ရောက်ရန် ဝဘ်ဘရောက်ဆာ လိုအပ်သည်။ ဤစက်တွင် မရှိပါ။	
 values-b+my/strings.xml	string	account_sync_note	-	STR	ရွေးချယ်နိုင်သည်။ ကြည့်ရှုမှုတိုးတက်မှုကို သင့်တွင်ရှိပြီးသားအကောင့်နှင့် စင့်ခ်လုပ်သည်။	
@@ -33091,6 +33128,7 @@ values-b+ne/strings.xml	string	account_select_title	-	STR	को हेर्द
 values-b+ne/strings.xml	string	account_signin_failed_body	-	STR	%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।	
 values-b+ne/strings.xml	string	account_signin_failed_title	-	STR	%s मा साइन इन गर्न सकिएन	
 values-b+ne/strings.xml	string	account_signin_offline_body	-	STR	%s मा साइन इन गर्न इन्टरनेट जडान चाहिन्छ। यो उपकरण फेरि अनलाइन भएपछि पुनः प्रयास गर्नुहोस्।	
+values-b+ne/strings.xml	string	account_signins_until_quit	-	STR	CloudStream बन्द नगरेसम्म साइन-इन रहन्छ।	
 values-b+ne/strings.xml	string	account_sync_connected	-	STR	जडान भयो · यो उपकरणमा साइन इन	
 values-b+ne/strings.xml	string	account_sync_needs_browser	-	STR	साइन इन गर्न वेब ब्राउजर चाहिन्छ। यो उपकरणमा छैन।	
 values-b+ne/strings.xml	string	account_sync_note	-	STR	वैकल्पिक। हेराइको प्रगति तपाईंसँग पहिल्यै भएको खातासँग सिंक गर्छ।	
@@ -33608,6 +33646,7 @@ values-b+nl/strings.xml	string	account_select_title	-	STR	Wie kijkt er?
 values-b+nl/strings.xml	string	account_signin_failed_body	-	STR	%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen.	
 values-b+nl/strings.xml	string	account_signin_failed_title	-	STR	Kan niet aanmelden bij %s	
 values-b+nl/strings.xml	string	account_signin_offline_body	-	STR	Aanmelden bij %s vereist een verbinding. Probeer het opnieuw als dit apparaat weer online is.	
+values-b+nl/strings.xml	string	account_signins_until_quit	-	STR	Aanmeldingen blijven tot je CloudStream afsluit.	
 values-b+nl/strings.xml	string	account_sync_connected	-	STR	Verbonden · aangemeld op dit apparaat	
 values-b+nl/strings.xml	string	account_sync_needs_browser	-	STR	Aanmelden vereist een webbrowser. Dit apparaat heeft er geen.	
 values-b+nl/strings.xml	string	account_sync_note	-	STR	Optioneel. Synchroniseert je kijkvoortgang met een account dat je al hebt.	
@@ -34679,6 +34718,7 @@ values-b+nn/strings.xml	string	account_select_title	-	STR	Kven ser på?
 values-b+nn/strings.xml	string	account_signin_failed_body	-	STR	%s stadfesta ikkje innlogginga. Ingenting vart lagra.	
 values-b+nn/strings.xml	string	account_signin_failed_title	-	STR	Kunne ikkje logge inn på %s	
 values-b+nn/strings.xml	string	account_signin_offline_body	-	STR	Innlogging på %s krev tilkopling. Prøv igjen når denne eininga er tilkopla att.	
+values-b+nn/strings.xml	string	account_signins_until_quit	-	STR	Innloggingar varer til du avsluttar CloudStream.	
 values-b+nn/strings.xml	string	account_sync_connected	-	STR	Tilkopla · logga inn på denne eininga	
 values-b+nn/strings.xml	string	account_sync_needs_browser	-	STR	Innlogging krev ein nettlesar. Denne eininga har ingen.	
 values-b+nn/strings.xml	string	account_sync_note	-	STR	Valfritt. Synkroniserer framdrifta med ein konto du alt har.	
@@ -35268,6 +35308,7 @@ values-b+no/strings.xml	string	account_select_title	-	STR	Hvem ser på?
 values-b+no/strings.xml	string	account_signin_failed_body	-	STR	%s bekreftet ikke innloggingen. Ingenting ble lagret.	
 values-b+no/strings.xml	string	account_signin_failed_title	-	STR	Kunne ikke logge inn på %s	
 values-b+no/strings.xml	string	account_signin_offline_body	-	STR	Innlogging på %s krever tilkobling. Prøv igjen når denne enheten er på nett igjen.	
+values-b+no/strings.xml	string	account_signins_until_quit	-	STR	Innlogginger varer til du avslutter CloudStream.	
 values-b+no/strings.xml	string	account_sync_connected	-	STR	Tilkoblet · logget inn på denne enheten	
 values-b+no/strings.xml	string	account_sync_needs_browser	-	STR	Innlogging krever en nettleser. Denne enheten har ingen.	
 values-b+no/strings.xml	string	account_sync_note	-	STR	Valgfritt. Synkroniserer fremdriften med en konto du allerede har.	
@@ -36168,6 +36209,7 @@ values-b+or/strings.xml	string	account_select_title	-	STR	କିଏ ଦେଖୁ
 values-b+or/strings.xml	string	account_signin_failed_body	-	STR	%s ସାଇନ୍-ଇନ୍ ନିଶ୍ଚିତ କଲା ନାହିଁ। କିଛି ସେଭ୍ ହୋଇନାହିଁ।	
 values-b+or/strings.xml	string	account_signin_failed_title	-	STR	%s ରେ ସାଇନ୍ ଇନ୍ କରିହେଲା ନାହିଁ	
 values-b+or/strings.xml	string	account_signin_offline_body	-	STR	%s ରେ ସାଇନ୍ ଇନ୍ କରିବାକୁ ସଂଯୋଗ ଆବଶ୍ୟକ। ଏହି ଡିଭାଇସ୍ ପୁଣି ଅନଲାଇନ୍ ହେଲେ ଆଉଥରେ ଚେଷ୍ଟା କରନ୍ତୁ।	
+values-b+or/strings.xml	string	account_signins_until_quit	-	STR	CloudStream ବନ୍ଦ ନକରିବା ପର୍ଯ୍ୟନ୍ତ ସାଇନ-ଇନ୍ ରହେ।	
 values-b+or/strings.xml	string	account_sync_connected	-	STR	ସଂଯୁକ୍ତ · ଏହି ଡିଭାଇସରେ ସାଇନ୍ ଇନ୍	
 values-b+or/strings.xml	string	account_sync_needs_browser	-	STR	ସାଇନ୍ ଇନ୍ ପାଇଁ ୱେବ୍ ବ୍ରାଉଜର୍ ଦରକାର। ଏହି ଡିଭାଇସରେ ନାହିଁ।	
 values-b+or/strings.xml	string	account_sync_note	-	STR	ବୈକଳ୍ପିକ। ଦେଖିବା ପ୍ରଗତିକୁ ଆପଣଙ୍କ ପାଖରେ ଥିବା ଆକାଉଣ୍ଟ ସହ ସିଙ୍କ୍ କରେ।	
@@ -36769,6 +36811,7 @@ values-b+pl/strings.xml	string	account_select_title	-	STR	Kto ogląda?
 values-b+pl/strings.xml	string	account_signin_failed_body	-	STR	Usługa %s nie potwierdziła logowania. Niczego nie zapisano.	
 values-b+pl/strings.xml	string	account_signin_failed_title	-	STR	Nie udało się zalogować do %s	
 values-b+pl/strings.xml	string	account_signin_offline_body	-	STR	Logowanie do %s wymaga połączenia. Spróbuj ponownie, gdy to urządzenie znów będzie online.	
+values-b+pl/strings.xml	string	account_signins_until_quit	-	STR	Logowania trwają do zamknięcia CloudStream.	
 values-b+pl/strings.xml	string	account_sync_connected	-	STR	Połączono · zalogowano na tym urządzeniu	
 values-b+pl/strings.xml	string	account_sync_needs_browser	-	STR	Logowanie wymaga przeglądarki. To urządzenie jej nie ma.	
 values-b+pl/strings.xml	string	account_sync_note	-	STR	Opcjonalne. Synchronizuje postęp oglądania z kontem, które już masz.	
@@ -37921,6 +37964,7 @@ values-b+pt+BR/strings.xml	string	account_select_title	-	STR	Quem está assistin
 values-b+pt+BR/strings.xml	string	account_signin_failed_body	-	STR	%s não confirmou o login. Nada foi salvo.	
 values-b+pt+BR/strings.xml	string	account_signin_failed_title	-	STR	Não foi possível entrar no %s	
 values-b+pt+BR/strings.xml	string	account_signin_offline_body	-	STR	Para entrar no %s é preciso ter conexão. Tente de novo quando este dispositivo estiver on-line.	
+values-b+pt+BR/strings.xml	string	account_signins_until_quit	-	STR	Os logins duram até você fechar o CloudStream.	
 values-b+pt+BR/strings.xml	string	account_sync_connected	-	STR	Conectado · logado neste dispositivo	
 values-b+pt+BR/strings.xml	string	account_sync_needs_browser	-	STR	O login precisa de um navegador. Este dispositivo não tem.	
 values-b+pt+BR/strings.xml	string	account_sync_note	-	STR	Opcional. Sincroniza o progresso com uma conta que você já tem.	
@@ -39070,6 +39114,7 @@ values-b+pt/strings.xml	string	account_select_title	-	STR	Quem está a ver?
 values-b+pt/strings.xml	string	account_signin_failed_body	-	STR	%s não confirmou o início de sessão. Nada foi guardado.	
 values-b+pt/strings.xml	string	account_signin_failed_title	-	STR	Não foi possível iniciar sessão em %s	
 values-b+pt/strings.xml	string	account_signin_offline_body	-	STR	Iniciar sessão em %s requer uma ligação. Tente novamente quando este dispositivo voltar a estar online.	
+values-b+pt/strings.xml	string	account_signins_until_quit	-	STR	As sessões iniciadas duram até sair do CloudStream.	
 values-b+pt/strings.xml	string	account_sync_connected	-	STR	Ligado · sessão iniciada neste dispositivo	
 values-b+pt/strings.xml	string	account_sync_needs_browser	-	STR	Iniciar sessão requer um navegador web. Este dispositivo não tem.	
 values-b+pt/strings.xml	string	account_sync_note	-	STR	Opcional. Sincroniza o progresso com uma conta que já tem.	
@@ -40168,6 +40213,7 @@ values-b+qt/strings.xml	string	account_select_title	-	STR	ooh oooh aah?
 values-b+qt/strings.xml	string	account_signin_failed_body	-	STR	%s oooohh uugg ah. oooohh aagg.	
 values-b+qt/strings.xml	string	account_signin_failed_title	-	STR	oooohh uugg ah %s	
 values-b+qt/strings.xml	string	account_signin_offline_body	-	STR	uugg ah %s ooh aagg. uuh eeeek oooh aah aagg.	
+values-b+qt/strings.xml	string	account_signins_until_quit	-	STR	ooh-aah aagg ooh CloudStream.	
 values-b+qt/strings.xml	string	account_sync_connected	-	STR	oooh-aah · ooh aagg	
 values-b+qt/strings.xml	string	account_sync_needs_browser	-	STR	oooh aaagg aah. ooh oooh aah.	
 values-b+qt/strings.xml	string	account_sync_note	-	STR	ooh. oooh-aah aagg ooh aaaagg aah.	
@@ -41200,6 +41246,7 @@ values-b+ro/strings.xml	string	account_select_title	-	STR	Cine se uită?
 values-b+ro/strings.xml	string	account_signin_failed_body	-	STR	%s nu a confirmat conectarea. Nu s-a salvat nimic.	
 values-b+ro/strings.xml	string	account_signin_failed_title	-	STR	Nu te-ai putut conecta la %s	
 values-b+ro/strings.xml	string	account_signin_offline_body	-	STR	Conectarea la %s necesită o conexiune la internet. Încearcă din nou când acest dispozitiv este din nou online.	
+values-b+ro/strings.xml	string	account_signins_until_quit	-	STR	Conectările durează până când închizi CloudStream.	
 values-b+ro/strings.xml	string	account_sync_connected	-	STR	Conectat · pe acest dispozitiv	
 values-b+ro/strings.xml	string	account_sync_needs_browser	-	STR	Conectarea necesită un browser web. Acest dispozitiv nu are.	
 values-b+ro/strings.xml	string	account_sync_note	-	STR	Opțional. Sincronizează progresul cu un cont pe care îl ai deja.	
@@ -42266,6 +42313,7 @@ values-b+ru/strings.xml	string	account_select_title	-	STR	Кто смотрит?
 values-b+ru/strings.xml	string	account_signin_failed_body	-	STR	%s не подтвердил вход. Ничего не сохранено.	
 values-b+ru/strings.xml	string	account_signin_failed_title	-	STR	Не удалось войти в %s	
 values-b+ru/strings.xml	string	account_signin_offline_body	-	STR	Для входа в %s нужно подключение. Попробуйте снова, когда это устройство будет в сети.	
+values-b+ru/strings.xml	string	account_signins_until_quit	-	STR	Входы сохраняются, пока вы не закроете CloudStream.	
 values-b+ru/strings.xml	string	account_sync_connected	-	STR	Подключено · вход выполнен на этом устройстве	
 values-b+ru/strings.xml	string	account_sync_needs_browser	-	STR	Для входа нужен веб-браузер. На этом устройстве его нет.	
 values-b+ru/strings.xml	string	account_sync_note	-	STR	Необязательно. Синхронизирует прогресс просмотра с уже имеющимся аккаунтом.	
@@ -43429,6 +43477,7 @@ values-b+sk/strings.xml	string	account_select_title	-	STR	Kto sa pozerá?
 values-b+sk/strings.xml	string	account_signin_failed_body	-	STR	Služba %s prihlásenie nepotvrdila. Nič sa neuložilo.	
 values-b+sk/strings.xml	string	account_signin_failed_title	-	STR	Nepodarilo sa prihlásiť do %s	
 values-b+sk/strings.xml	string	account_signin_offline_body	-	STR	Prihlásenie do %s vyžaduje pripojenie. Skúste to znova, keď bude toto zariadenie opäť online.	
+values-b+sk/strings.xml	string	account_signins_until_quit	-	STR	Prihlásenia platia, kým CloudStream neukončíte.	
 values-b+sk/strings.xml	string	account_sync_connected	-	STR	Pripojené · prihlásené na tomto zariadení	
 values-b+sk/strings.xml	string	account_sync_needs_browser	-	STR	Prihlásenie vyžaduje webový prehliadač. Toto zariadenie ho nemá.	
 values-b+sk/strings.xml	string	account_sync_note	-	STR	Voliteľné. Synchronizuje postup pozerania s účtom, ktorý už máte.	
@@ -44292,6 +44341,7 @@ values-b+so/strings.xml	string	account_select_title	-	STR	Yaa daawanaya?
 values-b+so/strings.xml	string	account_signin_failed_body	-	STR	%s ma xaqiijin galitaanka. Waxba lama kaydin.	
 values-b+so/strings.xml	string	account_signin_failed_title	-	STR	Lama geli karo %s	
 values-b+so/strings.xml	string	account_signin_offline_body	-	STR	Gelitaanka %s wuxuu u baahan yahay xiriir. Mar kale isku day marka qalabkani dib ugu soo laabto khadka.	
+values-b+so/strings.xml	string	account_signins_until_quit	-	STR	Gelitaanku way sii jiraan ilaa aad ka baxdo CloudStream.	
 values-b+so/strings.xml	string	account_sync_connected	-	STR	Waa ku xiran yahay · lagu galay qalabkan	
 values-b+so/strings.xml	string	account_sync_needs_browser	-	STR	Gelitaanku wuxuu u baahan yahay biraawsar. Qalabkan ma laha.	
 values-b+so/strings.xml	string	account_sync_note	-	STR	Ikhtiyaari. Waxay isku dhafaysaa horumarka daawashada iyo akoon aad horey u leedahay.	
@@ -45193,6 +45243,7 @@ values-b+sq/strings.xml	string	account_select_title	-	STR	Kush po shikon?
 values-b+sq/strings.xml	string	account_signin_failed_body	-	STR	%s nuk e konfirmoi identifikimin. Nuk u ruajt asgjë.	
 values-b+sq/strings.xml	string	account_signin_failed_title	-	STR	Identifikimi në %s dështoi	
 values-b+sq/strings.xml	string	account_signin_offline_body	-	STR	Identifikimi në %s kërkon lidhje. Provo përsëri kur kjo pajisje të jetë sërish në linjë.	
+values-b+sq/strings.xml	string	account_signins_until_quit	-	STR	Hyrjet zgjasin derisa të mbyllësh CloudStream.	
 values-b+sq/strings.xml	string	account_sync_connected	-	STR	E lidhur · e identifikuar në këtë pajisje	
 values-b+sq/strings.xml	string	account_sync_needs_browser	-	STR	Hyrja kërkon një shfletues uebi. Kjo pajisje nuk ka.	
 values-b+sq/strings.xml	string	account_sync_note	-	STR	Opsionale. Sinkronizon progresin me një llogari që e ke tashmë.	
@@ -46322,6 +46373,7 @@ values-b+sv/strings.xml	string	account_select_title	-	STR	Vem tittar?
 values-b+sv/strings.xml	string	account_signin_failed_body	-	STR	%s bekräftade inte inloggningen. Inget sparades.	
 values-b+sv/strings.xml	string	account_signin_failed_title	-	STR	Det gick inte att logga in på %s	
 values-b+sv/strings.xml	string	account_signin_offline_body	-	STR	Inloggning på %s kräver en anslutning. Försök igen när enheten är online igen.	
+values-b+sv/strings.xml	string	account_signins_until_quit	-	STR	Inloggningar gäller tills du avslutar CloudStream.	
 values-b+sv/strings.xml	string	account_sync_connected	-	STR	Ansluten · inloggad på den här enheten	
 values-b+sv/strings.xml	string	account_sync_needs_browser	-	STR	Inloggning kräver en webbläsare. Den här enheten har ingen.	
 values-b+sv/strings.xml	string	account_sync_note	-	STR	Valfritt. Synkroniserar framstegen med ett konto du redan har.	
@@ -47451,6 +47503,7 @@ values-b+ta/strings.xml	string	account_select_title	-	STR	யார் பார
 values-b+ta/strings.xml	string	account_signin_failed_body	-	STR	%s உள்நுழைவை உறுதிப்படுத்தவில்லை. எதுவும் சேமிக்கப்படவில்லை.	
 values-b+ta/strings.xml	string	account_signin_failed_title	-	STR	%s இல் உள்நுழைய முடியவில்லை	
 values-b+ta/strings.xml	string	account_signin_offline_body	-	STR	%s இல் உள்நுழைய இணைப்பு தேவை. இந்தச் சாதனம் மீண்டும் ஆன்லைனுக்கு வந்ததும் முயலவும்.	
+values-b+ta/strings.xml	string	account_signins_until_quit	-	STR	CloudStream-ஐ மூடும் வரை உள்நுழைவுகள் இருக்கும்.	
 values-b+ta/strings.xml	string	account_sync_connected	-	STR	இணைக்கப்பட்டது · இந்தச் சாதனத்தில் உள்நுழைந்துள்ளது	
 values-b+ta/strings.xml	string	account_sync_needs_browser	-	STR	உள்நுழைய இணைய உலாவி தேவை. இந்தச் சாதனத்தில் இல்லை.	
 values-b+ta/strings.xml	string	account_sync_note	-	STR	விருப்பத்தேர்வு. பார்வை முன்னேற்றத்தை உங்களிடம் ஏற்கெனவே உள்ள கணக்குடன் ஒத்திசைக்கிறது.	
@@ -48573,6 +48626,7 @@ values-b+ti/strings.xml	string	account_select_title	-	STR	መን እዩ ዝር�
 values-b+ti/strings.xml	string	account_signin_failed_body	-	STR	%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።	
 values-b+ti/strings.xml	string	account_signin_failed_title	-	STR	ናብ %s ምእታው ኣይተኻእለን	
 values-b+ti/strings.xml	string	account_signin_offline_body	-	STR	ናብ %s ንምእታው ምትእስሳር የድሊ። እዚ መሳርሒ ናብ መስመር ምስ ተመልሰ እንደገና ፈትን።	
+values-b+ti/strings.xml	string	account_signins_until_quit	-	STR	ምእታዋት ክሳብ CloudStream ትዓጽዉ ይጸንሑ።	
 values-b+ti/strings.xml	string	account_sync_connected	-	STR	ተራኺቡ · ኣብዚ መሳርሒ ኣቲዩ	
 values-b+ti/strings.xml	string	account_sync_needs_browser	-	STR	ምእታው መርበብ ሓበሬታ ይደሊ። እዚ መሳርሒ የብሉን።	
 values-b+ti/strings.xml	string	account_sync_note	-	STR	ኣማራጺ። ምዕባለ ምርኣይ ምስ ዘለካ ሕሳብ የተኣሳስር።	
@@ -48966,6 +49020,7 @@ values-b+tl/strings.xml	string	account_select_title	-	STR	Sino ang nanonood?
 values-b+tl/strings.xml	string	account_signin_failed_body	-	STR	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.	
 values-b+tl/strings.xml	string	account_signin_failed_title	-	STR	Hindi makapag-sign in sa %s	
 values-b+tl/strings.xml	string	account_signin_offline_body	-	STR	Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito.	
+values-b+tl/strings.xml	string	account_signins_until_quit	-	STR	Tatagal ang mga sign-in hanggang isara mo ang CloudStream.	
 values-b+tl/strings.xml	string	account_sync_connected	-	STR	Nakakonekta · naka-sign in sa device na ito	
 values-b+tl/strings.xml	string	account_sync_needs_browser	-	STR	Kailangan ng web browser para mag-sign in. Wala nito ang device na ito.	
 values-b+tl/strings.xml	string	account_sync_note	-	STR	Opsyonal. Sini-sync ang progreso ng panonood sa account na mayroon ka na.	
@@ -49613,6 +49668,7 @@ values-b+tr/strings.xml	string	account_select_title	-	STR	Kim izliyor?
 values-b+tr/strings.xml	string	account_signin_failed_body	-	STR	%s oturum açmayı onaylamadı. Hiçbir şey kaydedilmedi.	
 values-b+tr/strings.xml	string	account_signin_failed_title	-	STR	%s hesabında oturum açılamadı	
 values-b+tr/strings.xml	string	account_signin_offline_body	-	STR	%s hesabında oturum açmak için bağlantı gerekir. Bu cihaz yeniden çevrimiçi olduğunda tekrar deneyin.	
+values-b+tr/strings.xml	string	account_signins_until_quit	-	STR	Oturum açmalar CloudStream'den çıkana kadar sürer.	
 values-b+tr/strings.xml	string	account_sync_connected	-	STR	Bağlı · bu cihazda oturum açık	
 values-b+tr/strings.xml	string	account_sync_needs_browser	-	STR	Oturum açmak için web tarayıcısı gerekir. Bu cihazda yok.	
 values-b+tr/strings.xml	string	account_sync_note	-	STR	İsteğe bağlı. İzleme ilerlemesini zaten sahip olduğun bir hesapla senkronize eder.	
@@ -50788,6 +50844,7 @@ values-b+uk/strings.xml	string	account_select_title	-	STR	Хто дивитьс�
 values-b+uk/strings.xml	string	account_signin_failed_body	-	STR	%s не підтвердив вхід. Нічого не збережено.	
 values-b+uk/strings.xml	string	account_signin_failed_title	-	STR	Не вдалося увійти в %s	
 values-b+uk/strings.xml	string	account_signin_offline_body	-	STR	Для входу в %s потрібне з'єднання. Спробуйте ще раз, коли пристрій знову буде онлайн.	
+values-b+uk/strings.xml	string	account_signins_until_quit	-	STR	Входи діють, доки ви не закриєте CloudStream.	
 values-b+uk/strings.xml	string	account_sync_connected	-	STR	Підключено · вхід виконано на цьому пристрої	
 values-b+uk/strings.xml	string	account_sync_needs_browser	-	STR	Для входу потрібен веб-браузер. На цьому пристрої його немає.	
 values-b+uk/strings.xml	string	account_sync_note	-	STR	Необов'язково. Синхронізує прогрес перегляду з акаунтом, який у вас уже є.	
@@ -51911,6 +51968,7 @@ values-b+ur/strings.xml	string	account_select_title	-	STR	کون دیکھ رہا
 values-b+ur/strings.xml	string	account_signin_failed_body	-	STR	%s نے سائن ان کی تصدیق نہیں کی۔ کچھ بھی محفوظ نہیں ہوا۔	
 values-b+ur/strings.xml	string	account_signin_failed_title	-	STR	%s میں سائن ان نہیں ہو سکا	
 values-b+ur/strings.xml	string	account_signin_offline_body	-	STR	%s میں سائن ان کرنے کے لیے کنکشن درکار ہے۔ یہ آلہ دوبارہ آن لائن ہونے پر کوشش کریں۔	
+values-b+ur/strings.xml	string	account_signins_until_quit	-	STR	سائن اِن تب تک رہتے ہیں جب تک آپ CloudStream بند نہیں کرتے۔	
 values-b+ur/strings.xml	string	account_sync_connected	-	STR	منسلک · اس آلے پر سائن ان	
 values-b+ur/strings.xml	string	account_sync_needs_browser	-	STR	سائن ان کے لیے ویب براؤزر درکار ہے۔ اس آلے میں نہیں ہے۔	
 values-b+ur/strings.xml	string	account_sync_note	-	STR	اختیاری۔ دیکھنے کی پیش رفت کو آپ کے پہلے سے موجود اکاؤنٹ سے ہم آہنگ کرتا ہے۔	
@@ -52884,6 +52942,7 @@ values-b+vi/strings.xml	string	account_select_title	-	STR	Ai đang xem?
 values-b+vi/strings.xml	string	account_signin_failed_body	-	STR	%s không xác nhận đăng nhập. Chưa có gì được lưu.	
 values-b+vi/strings.xml	string	account_signin_failed_title	-	STR	Không thể đăng nhập vào %s	
 values-b+vi/strings.xml	string	account_signin_offline_body	-	STR	Cần có kết nối để đăng nhập vào %s. Hãy thử lại khi thiết bị này có mạng trở lại.	
+values-b+vi/strings.xml	string	account_signins_until_quit	-	STR	Đăng nhập được giữ cho đến khi bạn thoát CloudStream.	
 values-b+vi/strings.xml	string	account_sync_connected	-	STR	Đã kết nối · đã đăng nhập trên thiết bị này	
 values-b+vi/strings.xml	string	account_sync_needs_browser	-	STR	Đăng nhập cần trình duyệt web. Thiết bị này không có.	
 values-b+vi/strings.xml	string	account_sync_note	-	STR	Tùy chọn. Đồng bộ tiến độ xem với tài khoản bạn đã có.	
@@ -53989,6 +54048,7 @@ values-b+zh+TW/strings.xml	string	account_select_title	-	STR	誰在觀看？
 values-b+zh+TW/strings.xml	string	account_signin_failed_body	-	STR	%s 未確認登入。未儲存任何內容。	
 values-b+zh+TW/strings.xml	string	account_signin_failed_title	-	STR	無法登入 %s	
 values-b+zh+TW/strings.xml	string	account_signin_offline_body	-	STR	登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。	
+values-b+zh+TW/strings.xml	string	account_signins_until_quit	-	STR	登入狀態會保留到你結束 CloudStream 為止。	
 values-b+zh+TW/strings.xml	string	account_sync_connected	-	STR	已連線 · 已在此裝置登入	
 values-b+zh+TW/strings.xml	string	account_sync_needs_browser	-	STR	登入需要網頁瀏覽器。此裝置沒有。	
 values-b+zh+TW/strings.xml	string	account_sync_note	-	STR	選用。將觀看進度同步到你已有的帳號。	
@@ -55090,6 +55150,7 @@ values-b+zh/strings.xml	string	account_select_title	-	STR	谁在观看？
 values-b+zh/strings.xml	string	account_signin_failed_body	-	STR	%s 未确认登录。未保存任何内容。	
 values-b+zh/strings.xml	string	account_signin_failed_title	-	STR	无法登录 %s	
 values-b+zh/strings.xml	string	account_signin_offline_body	-	STR	登录 %s 需要网络连接。请在此设备恢复联网后重试。	
+values-b+zh/strings.xml	string	account_signins_until_quit	-	STR	登录状态会保留到你退出 CloudStream 为止。	
 values-b+zh/strings.xml	string	account_sync_connected	-	STR	已连接 · 已在此设备登录	
 values-b+zh/strings.xml	string	account_sync_needs_browser	-	STR	登录需要网页浏览器。此设备没有。	
 values-b+zh/strings.xml	string	account_sync_note	-	STR	可选。将观看进度同步到你已有的账号。	
@@ -56341,6 +56402,7 @@ values/strings.xml	string	account_select_title	-	STR	Who's watching?
 values/strings.xml	string	account_signin_failed_body	-	STR	%s didn't confirm the sign-in. Nothing was saved.	
 values/strings.xml	string	account_signin_failed_title	-	STR	Couldn't sign in to %s	
 values/strings.xml	string	account_signin_offline_body	-	STR	Signing in to %s needs a connection. Try again when this device is back online.	
+values/strings.xml	string	account_signins_until_quit	-	STR	Sign-ins last until you quit CloudStream.	
 values/strings.xml	string	account_sync_connected	-	STR	Connected · signed in on this device	
 values/strings.xml	string	account_sync_needs_browser	-	STR	Sign-in needs a web browser. This device has none.	
 values/strings.xml	string	account_sync_note	-	STR	Optional. Syncs watch progress to an account you already have.	

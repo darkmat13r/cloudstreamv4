@@ -69,6 +69,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s nepatvirtino prisijungimo. Niekas neišsaugota."</string>
 <string name="account_signin_failed_title" formatted="true">"Nepavyko prisijungti prie %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Norint prisijungti prie %s, reikia ryšio. Bandykite dar kartą, kai šis įrenginys vėl bus prisijungęs prie interneto."</string>
+<string name="account_signins_until_quit">"Prisijungimai galioja, kol išeisite iš CloudStream."</string>
 <string name="account_sync_connected">"Prijungta · prisijungta šiame įrenginyje"</string>
 <string name="account_sync_needs_browser">"Prisijungti reikia žiniatinklio naršyklės. Šiame įrenginyje jos nėra."</string>
 <string name="account_sync_note">"Neprivaloma. Sinchronizuoja žiūrėjimo eigą su jau turima paskyra."</string>

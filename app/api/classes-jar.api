@@ -3272,6 +3272,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field account_signin_failed_body I
 	public static field account_signin_failed_title I
 	public static field account_signin_offline_body I
+	public static field account_signins_until_quit I
 	public static field account_sync_connected I
 	public static field account_sync_needs_browser I
 	public static field account_sync_note I

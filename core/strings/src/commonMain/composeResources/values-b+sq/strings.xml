@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s nuk e konfirmoi identifikimin. Nuk u ruajt asgjë.</string>
 <string name="account_signin_failed_title">Identifikimi në %s dështoi</string>
 <string name="account_signin_offline_body">Identifikimi në %s kërkon lidhje. Provo përsëri kur kjo pajisje të jetë sërish në linjë.</string>
+<string name="account_signins_until_quit">Hyrjet zgjasin derisa të mbyllësh CloudStream.</string>
 <string name="account_sync_connected">E lidhur · e identifikuar në këtë pajisje</string>
 <string name="account_sync_needs_browser">Hyrja kërkon një shfletues uebi. Kjo pajisje nuk ka.</string>
 <string name="account_sync_note">Opsionale. Sinkronizon progresin me një llogari që e ke tashmë.</string>

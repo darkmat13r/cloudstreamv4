@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ.</string>
 <string name="account_signin_failed_title">%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
 <string name="account_signin_offline_body">%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಂಪರ್ಕ ಬೇಕು. ಈ ಸಾಧನ ಮತ್ತೆ ಆನ್‌ಲೈನ್ ಆದಾಗ ಪ್ರಯತ್ನಿಸಿ.</string>
+<string name="account_signins_until_quit">CloudStream ಅನ್ನು ಮುಚ್ಚುವವರೆಗೆ ಸೈನ್-ಇನ್‌ಗಳು ಇರುತ್ತವೆ.</string>
 <string name="account_sync_connected">ಸಂಪರ್ಕಗೊಂಡಿದೆ · ಈ ಸಾಧನದಲ್ಲಿ ಸೈನ್ ಇನ್</string>
 <string name="account_sync_needs_browser">ಸೈನ್ ಇನ್‌ಗೆ ವೆಬ್ ಬ್ರೌಸರ್ ಬೇಕು. ಈ ಸಾಧನದಲ್ಲಿ ಇಲ್ಲ.</string>
 <string name="account_sync_note">ಐಚ್ಛಿಕ. ವೀಕ್ಷಣಾ ಪ್ರಗತಿಯನ್ನು ನಿಮ್ಮ ಈಗಿರುವ ಖಾತೆಗೆ ಸಿಂಕ್ ಮಾಡುತ್ತದೆ.</string>

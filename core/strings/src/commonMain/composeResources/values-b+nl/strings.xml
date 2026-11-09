@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen.</string>
 <string name="account_signin_failed_title">Kan niet aanmelden bij %s</string>
 <string name="account_signin_offline_body">Aanmelden bij %s vereist een verbinding. Probeer het opnieuw als dit apparaat weer online is.</string>
+<string name="account_signins_until_quit">Aanmeldingen blijven tot je CloudStream afsluit.</string>
 <string name="account_sync_connected">Verbonden · aangemeld op dit apparaat</string>
 <string name="account_sync_needs_browser">Aanmelden vereist een webbrowser. Dit apparaat heeft er geen.</string>
 <string name="account_sync_note">Optioneel. Synchroniseert je kijkvoortgang met een account dat je al hebt.</string>

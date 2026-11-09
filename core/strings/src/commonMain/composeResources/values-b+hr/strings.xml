@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s nije potvrdio prijavu. Ništa nije spremljeno.</string>
 <string name="account_signin_failed_title">Prijava na %s nije uspjela</string>
 <string name="account_signin_offline_body">Za prijavu na %s potrebna je veza. Pokušajte ponovno kad ovaj uređaj ponovno bude na mreži.</string>
+<string name="account_signins_until_quit">Prijave traju dok ne zatvorite CloudStream.</string>
 <string name="account_sync_connected">Povezano · prijavljeno na ovom uređaju</string>
 <string name="account_sync_needs_browser">Prijava zahtijeva web-preglednik. Ovaj uređaj ga nema.</string>
 <string name="account_sync_note">Neobavezno. Sinkronizira napredak gledanja s računom koji već imate.</string>

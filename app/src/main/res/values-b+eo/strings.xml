@@ -70,6 +70,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s ne konfirmis la ensaluton. Nenio estis konservita."</string>
 <string name="account_signin_failed_title" formatted="true">"Ne eblis ensaluti al %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Ensaluti al %s bezonas konekton. Reprovu kiam ĉi tiu aparato denove estos enreta."</string>
+<string name="account_signins_until_quit">"Ensalutoj daŭras ĝis vi fermas CloudStream."</string>
 <string name="account_sync_connected">"Konektita · ensalutinta en ĉi tiu aparato"</string>
 <string name="account_sync_needs_browser">"Ensaluto bezonas retumilon. Ĉi tiu aparato ne havas."</string>
 <string name="account_sync_note">"Laŭvola. Sinkronigas spektan progreson kun konto, kiun vi jam havas."</string>

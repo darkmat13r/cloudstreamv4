@@ -75,6 +75,9 @@ private sealed interface ProfilesSheet {
         /** Never the PIN: a state logged by accident must not carry it. */
         override fun toString(): String = "SetPin(id=$id, confirming=${first != null})"
     }
+
+    /** `KMP-95d`: the current profile's sync sheets, at [step]. */
+    data class Sync(val step: SyncStep) : ProfilesSheet
 }
 
 private enum class AfterUnlock { Open, Edit }
@@ -95,14 +98,21 @@ private enum class AfterCurrent { Change, Remove }
  * - **A locked profile** (`KMP-95c`) asks its PIN before it opens, from the picker or the sidebar's list, and before
  *   its editor opens from Manage (A5). Its editor's PIN row sets a PIN twice over (A7, A7b), and changes or removes
  *   one only after the PIN in use (A7c). Every prompt for a profile's own PIN is under `BUG-55`'s limit ([LimitedPin]).
+ * - **Sync services** (`KMP-95d`), from the sidebar's list, opens the current profile's sign-ins ([SyncSheets]). They
+ *   are kept in [DesktopProfiles.signIns], in memory only until `KMP-95f`, and the sheets say they last until you quit.
  * - The window's Escape is Cancel on what is on top: a sheet, then the profile list, then Manage.
  *
  * @param app the window, given the profile's library and the sidebar's foot.
+ * @param signInClient the services' network half; a test passes a fake.
+ * @param syncTick and [openUrl] are [SyncSheets]'s, for a test.
  */
 @Composable
 internal fun ProfilesHost(
     profiles: DesktopProfiles,
     escape: EscapeHandler,
+    signInClient: SignInClient = remember { HttpSignInClient() },
+    syncTick: suspend (Long) -> Unit = { kotlinx.coroutines.delay(it) },
+    openUrl: ((String) -> Unit)? = null,
     app: @Composable (library: LibraryStore, foot: @Composable () -> Unit) -> Unit,
 ) {
     var screen by remember { mutableStateOf(if (profiles.picksAtLaunch) ProfilesScreen.Picking else ProfilesScreen.App) }
@@ -129,6 +139,7 @@ internal fun ProfilesHost(
             is ProfilesSheet.SetPin -> ProfilesSheet.Edit(now.id)
             is ProfilesSheet.CurrentPin -> ProfilesSheet.Edit(now.id)
             is ProfilesSheet.Delete -> ProfilesSheet.Edit(now.id)
+            is ProfilesSheet.Sync -> now.step.back()?.let { ProfilesSheet.Sync(it) }
             else -> null
         }
     }
@@ -181,6 +192,7 @@ internal fun ProfilesHost(
                         onOpenChange = { listOpen = it },
                         onChoose = { id -> if (locked(id)) sheet = ProfilesSheet.Unlock(id, AfterUnlock.Open) else switchTo(id) },
                         onManage = { manageFrom(ProfilesScreen.App) },
+                        onSync = { sheet = ProfilesSheet.Sync(SyncStep.List()) },
                     )
                 }
             }
@@ -188,6 +200,22 @@ internal fun ProfilesHost(
 
         when (openSheet) {
             null -> Unit
+            is ProfilesSheet.Sync -> {
+                val card = cards.firstOrNull { it.current }
+                if (card == null) {
+                    SideEffect { sheet = null }
+                } else {
+                    // Keyed by the profile: a switch can never carry a sign-in in progress to another profile.
+                    key(card.id) {
+                        val onStep: (SyncStep?) -> Unit = { next -> sheet = next?.let { ProfilesSheet.Sync(it) } }
+                        if (openUrl != null) {
+                            SyncSheets(openSheet.step, onStep, card.id, card.name, profiles.signIns, signInClient, syncTick, openUrl)
+                        } else {
+                            SyncSheets(openSheet.step, onStep, card.id, card.name, profiles.signIns, signInClient, syncTick)
+                        }
+                    }
+                }
+            }
             is ProfilesSheet.Add -> ProfileEditorSheet(
                 name = numbered,
                 adding = true,
