@@ -52,15 +52,18 @@
 <string name="account_pin_current">"ሕጂ ኣብ ጥቕሚ ዘሎ PIN ጽሓፍ።"</string>
 <string name="account_pin_first_profile">"እቲ ቀዳማይ መግለጺ ክዕጾ ኣይክእልን"</string>
 <string name="account_pin_new">"4 ኣሃዝ ዘለዎ PIN ጽሓፍ።"</string>
+<string name="account_pin_not_saved">"ለውጢ PIN ክዕቀብ ኣይተኻእለን። ዝተቐየረ የለን።"</string>
 <string name="account_pin_off">"ጠፊኡ · ዝኾነ ሰብ ነዚ መግለጺ ክኸፍቶ ይኽእል"</string>
 <string name="account_pin_on">"በሪሁ · ንምኽፋት ይሕተት"</string>
 <string name="account_pin_prompt">"እቲ 4 ኣሃዝ ዘለዎ PIN ጽሓፍ።"</string>
 <string name="account_pin_remove">"PIN ኣልግስ"</string>
 <string name="account_pin_set">"PIN ኣቐምጥ"</string>
 <string name="account_pin_set_title">"PIN ኣቐምጥ"</string>
+<string name="account_pin_unreadable">"ኣብዚ ኮምፒዩተር ዘለዉ PIN ክንበቡ ኣይተኻእለን፣ ስለዚ እዚ ፕሮፋይል ተዓጽዩ ይጸንሕ።"</string>
 <string name="account_profile_current">"ናይ ሕጂ"</string>
 <string name="account_profile_locked">"ተዓጽዩ · PIN"</string>
 <string name="account_profile_no_sync">"ምትእስሳር የለን"</string>
+<string name="account_profile_not_added">"ኣብዚ ኮምፒዩተር ዘለዉ PIN ክንበቡ ስለዘይከኣሉ ፕሮፋይል ክውሰኽ ኣይተኻእለን። ዝተቐየረ የለን።"</string>
 <string name="account_select_note">"ፍሉይ ታሪኽ ምርኣይ · መእተዊታት ኣይኮኑን"</string>
 <string name="account_select_title">"መን እዩ ዝርኢ ዘሎ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።"</string>

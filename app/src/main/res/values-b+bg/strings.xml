@@ -55,15 +55,18 @@
 <string name="account_pin_current">"Въведи текущия ПИН."</string>
 <string name="account_pin_first_profile">"Първият профил не може да бъде заключен"</string>
 <string name="account_pin_new">"Въведи 4-цифрен ПИН."</string>
+<string name="account_pin_not_saved">"Промяната на ПИН кода не можа да се запази. Нищо не е променено."</string>
 <string name="account_pin_off">"Изключен · всеки може да отвори този профил"</string>
 <string name="account_pin_on">"Включен · иска се при отваряне"</string>
 <string name="account_pin_prompt">"Въведи 4-цифрения ПИН."</string>
 <string name="account_pin_remove">"Премахни ПИН"</string>
 <string name="account_pin_set">"Задай ПИН"</string>
 <string name="account_pin_set_title">"Задаване на ПИН"</string>
+<string name="account_pin_unreadable">"ПИН кодовете на този компютър не могат да бъдат прочетени, затова този профил остава заключен."</string>
 <string name="account_profile_current">"Текущ"</string>
 <string name="account_profile_locked">"Заключен · ПИН"</string>
 <string name="account_profile_no_sync">"Без синхронизация"</string>
+<string name="account_profile_not_added">"Не може да се добави профил, докато ПИН кодовете на този компютър не могат да бъдат прочетени. Нищо не е променено."</string>
 <string name="account_select_note">"Отделна история на гледане · не са профили за вход"</string>
 <string name="account_select_title">"Кой гледа?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не потвърди вписването. Нищо не е запазено."</string>

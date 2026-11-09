@@ -54,15 +54,18 @@
 <string name="account_pin_current">"Ievadiet pašlaik izmantoto PIN kodu."</string>
 <string name="account_pin_first_profile">"Pirmo profilu nevar bloķēt"</string>
 <string name="account_pin_new">"Ievadiet 4 ciparu PIN kodu."</string>
+<string name="account_pin_not_saved">"PIN maiņu neizdevās saglabāt. Nekas netika mainīts."</string>
 <string name="account_pin_off">"Izslēgts · ikviens var atvērt šo profilu"</string>
 <string name="account_pin_on">"Ieslēgts · tiek prasīts, lai to atvērtu"</string>
 <string name="account_pin_prompt">"Ievadiet četrciparu PIN kodu."</string>
 <string name="account_pin_remove">"Noņemt PIN kodu"</string>
 <string name="account_pin_set">"Iestatīt PIN kodu"</string>
 <string name="account_pin_set_title">"PIN koda iestatīšana"</string>
+<string name="account_pin_unreadable">"Neizdevās nolasīt šī datora PIN kodus, tāpēc šis profils paliek bloķēts."</string>
 <string name="account_profile_current">"Pašreizējais"</string>
 <string name="account_profile_locked">"Bloķēts · PIN"</string>
 <string name="account_profile_no_sync">"Bez sinhronizācijas"</string>
+<string name="account_profile_not_added">"Nevar pievienot profilu, kamēr šī datora PIN kodus nevar nolasīt. Nekas netika mainīts."</string>
 <string name="account_select_note">"Atsevišķa skatīšanās vēsture · nav pieteikšanās"</string>
 <string name="account_select_title">"Kas skatās?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s neapstiprināja pieteikšanos. Nekas netika saglabāts."</string>

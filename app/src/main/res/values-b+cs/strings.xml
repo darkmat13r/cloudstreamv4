@@ -56,15 +56,18 @@
 <string name="account_pin_current">"Zadejte aktuálně používaný PIN."</string>
 <string name="account_pin_first_profile">"První profil nelze zamknout"</string>
 <string name="account_pin_new">"Zadejte čtyřmístný PIN."</string>
+<string name="account_pin_not_saved">"Změnu PIN se nepodařilo uložit. Nic se nezměnilo."</string>
 <string name="account_pin_off">"Vypnuto · tento profil může otevřít kdokoli"</string>
 <string name="account_pin_on">"Zapnuto · vyžaduje se při otevření"</string>
 <string name="account_pin_prompt">"Zadejte čtyřmístný PIN."</string>
 <string name="account_pin_remove">"Odebrat PIN"</string>
 <string name="account_pin_set">"Nastavit PIN"</string>
 <string name="account_pin_set_title">"Nastavit PIN"</string>
+<string name="account_pin_unreadable">"PIN kódy na tomto počítači nelze přečíst, takže tento profil zůstává zamčený."</string>
 <string name="account_profile_current">"Aktuální"</string>
 <string name="account_profile_locked">"Zamčeno · PIN"</string>
 <string name="account_profile_no_sync">"Bez synchronizace"</string>
+<string name="account_profile_not_added">"Profil nelze přidat, dokud nelze přečíst PIN kódy na tomto počítači. Nic se nezměnilo."</string>
 <string name="account_select_note">"Samostatná historie sledování · nejde o přihlášení"</string>
 <string name="account_select_title">"Kdo se dívá?"</string>
 <string name="account_signin_failed_body" formatted="true">"Služba %s přihlášení nepotvrdila. Nic nebylo uloženo."</string>

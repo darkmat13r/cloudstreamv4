@@ -52,15 +52,18 @@
 <string name="account_pin_current">"ئەو PINـەی ئێستا بەکاردێت بنووسە."</string>
 <string name="account_pin_first_profile">"پرۆفایلی یەکەم ناتوانرێت دابخرێت"</string>
 <string name="account_pin_new">"PINێکی ٤ ژمارەیی بنووسە."</string>
+<string name="account_pin_not_saved">"گۆڕینی PIN پاشەکەوت نەکرا. هیچ نەگۆڕا."</string>
 <string name="account_pin_off">"کوژاوە · هەر کەسێک دەتوانێت ئەم پرۆفایلە بکاتەوە"</string>
 <string name="account_pin_on">"هەڵکراو · بۆ کردنەوە داوای دەکرێت"</string>
 <string name="account_pin_prompt">"PINـە ٤ ژمارەییەکە بنووسە."</string>
 <string name="account_pin_remove">"لابردنی PIN"</string>
 <string name="account_pin_set">"دانانی PIN"</string>
 <string name="account_pin_set_title">"دانانی PIN"</string>
+<string name="account_pin_unreadable">"نەتوانرا PINەکانی ئەم کۆمپیوتەرە بخوێنرێتەوە، بۆیە ئەم پرۆفایلە داخراو دەمێنێتەوە."</string>
 <string name="account_profile_current">"ئێستا"</string>
 <string name="account_profile_locked">"داخراو · PIN"</string>
 <string name="account_profile_no_sync">"هاوکاتکردن نییە"</string>
+<string name="account_profile_not_added">"نەتوانرا پرۆفایلێک زیاد بکرێت چونکە PINەکانی ئەم کۆمپیوتەرە ناخوێنرێنەوە. هیچ نەگۆڕا."</string>
 <string name="account_select_note">"مێژووی سەیرکردنی جیا · چوونەژوورەوە نییە"</string>
 <string name="account_select_title">"کێ سەیر دەکات؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا."</string>

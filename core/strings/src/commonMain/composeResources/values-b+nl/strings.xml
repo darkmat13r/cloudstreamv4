@@ -32,6 +32,9 @@
 <string name="account_pin_current">Typ de huidige PIN.</string>
 <string name="account_pin_first_profile">Het eerste profiel kan niet worden vergrendeld</string>
 <string name="account_pin_new">Typ een PIN van 4 cijfers.</string>
+<string name="account_pin_not_saved">De pincodewijziging kon niet worden opgeslagen. Er is niets gewijzigd.</string>
+<string name="account_pin_unreadable">De pincodes op deze computer konden niet worden gelezen, dus dit profiel blijft vergrendeld.</string>
+<string name="account_profile_not_added">Er kan geen profiel worden toegevoegd zolang de pincodes op deze computer niet kunnen worden gelezen. Er is niets gewijzigd.</string>
 <string name="account_pin_off">Uit · iedereen kan dit profiel openen</string>
 <string name="account_pin_on">Aan · gevraagd bij openen</string>
 <string name="account_pin_prompt">Typ de PIN van 4 cijfers.</string>

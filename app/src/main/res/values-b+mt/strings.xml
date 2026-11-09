@@ -52,15 +52,18 @@
 <string name="account_pin_current">"Ittajpja l-PIN li qed jintuża issa."</string>
 <string name="account_pin_first_profile">"L-ewwel profil ma jistax jissakkar"</string>
 <string name="account_pin_new">"Ittajpja PIN ta' 4 ċifri."</string>
+<string name="account_pin_not_saved">"Il-bidla tal-PIN ma setgħetx tiġi ssejvjata. Xejn ma nbidel."</string>
 <string name="account_pin_off">"Mitfi · kulħadd jista' jiftaħ dan il-profil"</string>
 <string name="account_pin_on">"Mixgħul · jintalab biex jinfetaħ"</string>
 <string name="account_pin_prompt">"Ittajpja l-PIN ta' 4 ċifri."</string>
 <string name="account_pin_remove">"Neħħi l-PIN"</string>
 <string name="account_pin_set">"Issettja l-PIN"</string>
 <string name="account_pin_set_title">"Issettja PIN"</string>
+<string name="account_pin_unreadable">"Ma setax jinqraw il-PINs fuq dan il-kompjuter, għalhekk dan il-profil jibqa' msakkar."</string>
 <string name="account_profile_current">"Attwali"</string>
 <string name="account_profile_locked">"Imsakkar · PIN"</string>
 <string name="account_profile_no_sync">"L-ebda sinkronizzazzjoni"</string>
+<string name="account_profile_not_added">"Ma setax jiżdied profil sakemm il-PINs fuq dan il-kompjuter ma jistgħux jinqraw. Xejn ma nbidel."</string>
 <string name="account_select_note">"Storja tal-wiri separata · mhux logins"</string>
 <string name="account_select_title">"Min qed jara?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn."</string>

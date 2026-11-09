@@ -53,15 +53,18 @@
 <string name="account_pin_current">"ابھی استعمال ہونے والا PIN ٹائپ کریں۔"</string>
 <string name="account_pin_first_profile">"پہلی پروفائل کو مقفل نہیں کیا جا سکتا"</string>
 <string name="account_pin_new">"4 ہندسوں کا PIN ٹائپ کریں۔"</string>
+<string name="account_pin_not_saved">"PIN کی تبدیلی محفوظ نہیں ہو سکی۔ کچھ تبدیل نہیں ہوا۔"</string>
 <string name="account_pin_off">"بند · کوئی بھی اس پروفائل کو کھول سکتا ہے"</string>
 <string name="account_pin_on">"آن · کھولنے کے لیے پوچھا جاتا ہے"</string>
 <string name="account_pin_prompt">"4 ہندسوں والا PIN ٹائپ کریں۔"</string>
 <string name="account_pin_remove">"PIN ہٹائیں"</string>
 <string name="account_pin_set">"PIN سیٹ کریں"</string>
 <string name="account_pin_set_title">"ایک PIN سیٹ کریں"</string>
+<string name="account_pin_unreadable">"اس کمپیوٹر پر PIN پڑھے نہیں جا سکے، اس لیے یہ پروفائل مقفل رہے گی۔"</string>
 <string name="account_profile_current">"موجودہ"</string>
 <string name="account_profile_locked">"مقفل · PIN"</string>
 <string name="account_profile_no_sync">"کوئی ہم آہنگی نہیں"</string>
+<string name="account_profile_not_added">"جب تک اس کمپیوٹر کے PIN پڑھے نہیں جا سکتے، پروفائل شامل نہیں ہو سکی۔ کچھ تبدیل نہیں ہوا۔"</string>
 <string name="account_select_note">"الگ دیکھنے کی سرگزشت · لاگ ان نہیں"</string>
 <string name="account_select_title">"کون دیکھ رہا ہے؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s نے سائن ان کی تصدیق نہیں کی۔ کچھ بھی محفوظ نہیں ہوا۔"</string>

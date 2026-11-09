@@ -53,15 +53,18 @@
 <string name="account_pin_current">"Escriu el PIN que fas servir ara."</string>
 <string name="account_pin_first_profile">"El primer perfil no es pot bloquejar"</string>
 <string name="account_pin_new">"Escriu un PIN de 4 xifres."</string>
+<string name="account_pin_not_saved">"No s'ha pogut desar el canvi del PIN. No s'ha canviat res."</string>
 <string name="account_pin_off">"Desactivat · qualsevol pot obrir aquest perfil"</string>
 <string name="account_pin_on">"Activat · es demana per obrir-lo"</string>
 <string name="account_pin_prompt">"Escriu el PIN de 4 xifres."</string>
 <string name="account_pin_remove">"Elimina el PIN"</string>
 <string name="account_pin_set">"Defineix el PIN"</string>
 <string name="account_pin_set_title">"Defineix un PIN"</string>
+<string name="account_pin_unreadable">"No s'han pogut llegir els PIN d'aquest ordinador, així que aquest perfil continua bloquejat."</string>
 <string name="account_profile_current">"Actual"</string>
 <string name="account_profile_locked">"Bloquejat · PIN"</string>
 <string name="account_profile_no_sync">"Sense sincronització"</string>
+<string name="account_profile_not_added">"No s'ha pogut afegir un perfil mentre no es puguin llegir els PIN d'aquest ordinador. No s'ha canviat res."</string>
 <string name="account_select_note">"Historial de visualització separat · no són inicis de sessió"</string>
 <string name="account_select_title">"Qui mira?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s no ha confirmat l'inici de sessió. No s'ha desat res."</string>

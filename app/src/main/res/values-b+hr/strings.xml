@@ -55,15 +55,18 @@
 <string name="account_pin_current">"Upišite PIN koji se sada koristi."</string>
 <string name="account_pin_first_profile">"Prvi profil ne može se zaključati"</string>
 <string name="account_pin_new">"Upišite četveroznamenkasti PIN."</string>
+<string name="account_pin_not_saved">"Promjena PIN-a nije spremljena. Ništa nije promijenjeno."</string>
 <string name="account_pin_off">"Isključeno · svatko može otvoriti ovaj profil"</string>
 <string name="account_pin_on">"Uključeno · traži se pri otvaranju"</string>
 <string name="account_pin_prompt">"Upišite četveroznamenkasti PIN."</string>
 <string name="account_pin_remove">"Ukloni PIN"</string>
 <string name="account_pin_set">"Postavi PIN"</string>
 <string name="account_pin_set_title">"Postavite PIN"</string>
+<string name="account_pin_unreadable">"PIN-ovi na ovom računalu ne mogu se pročitati, pa ovaj profil ostaje zaključan."</string>
 <string name="account_profile_current">"Trenutni"</string>
 <string name="account_profile_locked">"Zaključano · PIN"</string>
 <string name="account_profile_no_sync">"Bez sinkronizacije"</string>
+<string name="account_profile_not_added">"Profil se ne može dodati dok se PIN-ovi na ovom računalu ne mogu pročitati. Ništa nije promijenjeno."</string>
 <string name="account_select_note">"Zasebna povijest gledanja · nisu prijave"</string>
 <string name="account_select_title">"Tko gleda?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s nije potvrdio prijavu. Ništa nije spremljeno."</string>

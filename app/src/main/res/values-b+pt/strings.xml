@@ -55,15 +55,18 @@
 <string name="account_pin_current">"Introduza o PIN atual."</string>
 <string name="account_pin_first_profile">"O primeiro perfil não pode ser bloqueado"</string>
 <string name="account_pin_new">"Introduza um PIN de 4 dígitos."</string>
+<string name="account_pin_not_saved">"Não foi possível guardar a alteração do PIN. Nada foi alterado."</string>
 <string name="account_pin_off">"Desativado · qualquer pessoa pode abrir este perfil"</string>
 <string name="account_pin_on">"Ativado · pedido ao abrir"</string>
 <string name="account_pin_prompt">"Introduza o PIN de 4 dígitos."</string>
 <string name="account_pin_remove">"Remover PIN"</string>
 <string name="account_pin_set">"Definir PIN"</string>
 <string name="account_pin_set_title">"Definir um PIN"</string>
+<string name="account_pin_unreadable">"Não foi possível ler os PIN deste computador, por isso este perfil continua bloqueado."</string>
 <string name="account_profile_current">"Atual"</string>
 <string name="account_profile_locked">"Bloqueado · PIN"</string>
 <string name="account_profile_no_sync">"Sem sincronização"</string>
+<string name="account_profile_not_added">"Não é possível adicionar um perfil enquanto os PIN deste computador não puderem ser lidos. Nada foi alterado."</string>
 <string name="account_select_note">"Histórico de visualização separado · não são inícios de sessão"</string>
 <string name="account_select_title">"Quem está a ver?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s não confirmou o início de sessão. Nada foi guardado."</string>

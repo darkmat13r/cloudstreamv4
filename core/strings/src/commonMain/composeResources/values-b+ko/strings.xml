@@ -32,6 +32,9 @@
 <string name="account_pin_current">현재 사용 중인 PIN을 입력하세요.</string>
 <string name="account_pin_first_profile">첫 번째 프로필은 잠글 수 없습니다</string>
 <string name="account_pin_new">4자리 PIN을 입력하세요.</string>
+<string name="account_pin_not_saved">PIN 변경 사항을 저장하지 못했습니다. 아무것도 바뀌지 않았습니다.</string>
+<string name="account_pin_unreadable">이 컴퓨터의 PIN을 읽을 수 없어 이 프로필은 잠긴 상태로 유지됩니다.</string>
+<string name="account_profile_not_added">이 컴퓨터의 PIN을 읽을 수 없어 프로필을 추가하지 못했습니다. 아무것도 바뀌지 않았습니다.</string>
 <string name="account_pin_off">끔 · 누구나 이 프로필을 열 수 있음</string>
 <string name="account_pin_on">켬 · 열 때 PIN 요청</string>
 <string name="account_pin_prompt">4자리 PIN을 입력하세요.</string>

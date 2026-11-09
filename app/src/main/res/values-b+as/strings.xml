@@ -53,15 +53,18 @@
 <string name="account_pin_current">"এতিয়া ব্যৱহাৰ হৈ থকা পিনটো টাইপ কৰক।"</string>
 <string name="account_pin_first_profile">"প্ৰথম প্ৰফাইলটো লক কৰিব নোৱাৰি"</string>
 <string name="account_pin_new">"এটা ৪-অংকৰ পিন টাইপ কৰক।"</string>
+<string name="account_pin_not_saved">"PIN সলনি ছেভ কৰিব পৰা নগ'ল। একো সলনি হোৱা নাই।"</string>
 <string name="account_pin_off">"অফ · যিকোনোৱে এই প্ৰফাইলটো খুলিব পাৰে"</string>
 <string name="account_pin_on">"অন · খুলিবলৈ সোধা হয়"</string>
 <string name="account_pin_prompt">"৪-অংকৰ পিনটো টাইপ কৰক।"</string>
 <string name="account_pin_remove">"পিন আঁতৰাওক"</string>
 <string name="account_pin_set">"পিন ছেট কৰক"</string>
 <string name="account_pin_set_title">"এটা পিন ছেট কৰক"</string>
+<string name="account_pin_unreadable">"এই কম্পিউটাৰত PIN পঢ়িব পৰা নগ'ল, গতিকে এই প্ৰফাইলটো লক হৈয়েই থাকিব।"</string>
 <string name="account_profile_current">"বৰ্তমান"</string>
 <string name="account_profile_locked">"লক কৰা · PIN"</string>
 <string name="account_profile_no_sync">"ছিংক নাই"</string>
+<string name="account_profile_not_added">"এই কম্পিউটাৰৰ PIN পঢ়িব নোৱাৰাৰ বাবে প্ৰফাইল যোগ কৰিব পৰা নগ'ল। একো সলনি হোৱা নাই।"</string>
 <string name="account_select_note">"পৃথক চোৱাৰ ইতিহাস · লগইন নহয়"</string>
 <string name="account_select_title">"কোনে চাই আছে?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s এ ছাইন-ইন নিশ্চিত নকৰিলে। একো ছেভ কৰা হোৱা নাই।"</string>

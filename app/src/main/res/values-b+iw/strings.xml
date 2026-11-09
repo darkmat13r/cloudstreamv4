@@ -53,15 +53,18 @@
 <string name="account_pin_current">"יש להקליד את ה-PIN הנוכחי."</string>
 <string name="account_pin_first_profile">"אי אפשר לנעול את הפרופיל הראשון"</string>
 <string name="account_pin_new">"יש להקליד PIN בן 4 ספרות."</string>
+<string name="account_pin_not_saved">"לא ניתן היה לשמור את שינוי ה-PIN. שום דבר לא השתנה."</string>
 <string name="account_pin_off">"כבוי · כל אחד יכול לפתוח את הפרופיל הזה"</string>
 <string name="account_pin_on">"פועל · נדרש לפתיחה"</string>
 <string name="account_pin_prompt">"יש להקליד את ה-PIN בן 4 הספרות."</string>
 <string name="account_pin_remove">"הסרת PIN"</string>
 <string name="account_pin_set">"הגדרת PIN"</string>
 <string name="account_pin_set_title">"הגדרת PIN"</string>
+<string name="account_pin_unreadable">"לא ניתן היה לקרוא את קודי ה-PIN במחשב הזה, ולכן הפרופיל הזה נשאר נעול."</string>
 <string name="account_profile_current">"נוכחי"</string>
 <string name="account_profile_locked">"נעול · PIN"</string>
 <string name="account_profile_no_sync">"ללא סנכרון"</string>
+<string name="account_profile_not_added">"לא ניתן להוסיף פרופיל כל עוד אי אפשר לקרוא את קודי ה-PIN במחשב הזה. שום דבר לא השתנה."</string>
 <string name="account_select_note">"היסטוריית צפייה נפרדת · לא התחברויות"</string>
 <string name="account_select_title">"מי צופה?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s לא אישר את ההתחברות. שום דבר לא נשמר."</string>

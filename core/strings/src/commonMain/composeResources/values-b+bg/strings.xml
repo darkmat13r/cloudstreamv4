@@ -32,6 +32,9 @@
 <string name="account_pin_current">Въведи текущия ПИН.</string>
 <string name="account_pin_first_profile">Първият профил не може да бъде заключен</string>
 <string name="account_pin_new">Въведи 4-цифрен ПИН.</string>
+<string name="account_pin_not_saved">Промяната на ПИН кода не можа да се запази. Нищо не е променено.</string>
+<string name="account_pin_unreadable">ПИН кодовете на този компютър не могат да бъдат прочетени, затова този профил остава заключен.</string>
+<string name="account_profile_not_added">Не може да се добави профил, докато ПИН кодовете на този компютър не могат да бъдат прочетени. Нищо не е променено.</string>
 <string name="account_pin_off">Изключен · всеки може да отвори този профил</string>
 <string name="account_pin_on">Включен · иска се при отваряне</string>
 <string name="account_pin_prompt">Въведи 4-цифрения ПИН.</string>

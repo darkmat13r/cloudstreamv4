@@ -53,15 +53,18 @@
 <string name="account_pin_current">"এখন ব্যবহৃত পিনটি লিখুন।"</string>
 <string name="account_pin_first_profile">"প্রথম প্রোফাইলটি লক করা যাবে না"</string>
 <string name="account_pin_new">"৪ অঙ্কের একটি পিন লিখুন।"</string>
+<string name="account_pin_not_saved">"PIN পরিবর্তন সংরক্ষণ করা যায়নি। কিছুই বদলায়নি।"</string>
 <string name="account_pin_off">"বন্ধ · যে কেউ এই প্রোফাইল খুলতে পারে"</string>
 <string name="account_pin_on">"চালু · খুলতে পিন চাওয়া হয়"</string>
 <string name="account_pin_prompt">"৪ অঙ্কের পিনটি লিখুন।"</string>
 <string name="account_pin_remove">"পিন সরান"</string>
 <string name="account_pin_set">"পিন সেট করুন"</string>
 <string name="account_pin_set_title">"একটি পিন সেট করুন"</string>
+<string name="account_pin_unreadable">"এই কম্পিউটারে PIN পড়া যায়নি, তাই এই প্রোফাইল লক থাকবে।"</string>
 <string name="account_profile_current">"বর্তমান"</string>
 <string name="account_profile_locked">"লক করা · পিন"</string>
 <string name="account_profile_no_sync">"সিঙ্ক নেই"</string>
+<string name="account_profile_not_added">"এই কম্পিউটারের PIN পড়া না যাওয়া পর্যন্ত প্রোফাইল যোগ করা যায়নি। কিছুই বদলায়নি।"</string>
 <string name="account_select_note">"আলাদা দেখার ইতিহাস · লগইন নয়"</string>
 <string name="account_select_title">"কে দেখছে?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s সাইন-ইন নিশ্চিত করেনি। কিছুই সংরক্ষণ করা হয়নি।"</string>

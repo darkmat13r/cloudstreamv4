@@ -32,6 +32,9 @@
 <string name="account_pin_current">יש להקליד את ה-PIN הנוכחי.</string>
 <string name="account_pin_first_profile">אי אפשר לנעול את הפרופיל הראשון</string>
 <string name="account_pin_new">יש להקליד PIN בן 4 ספרות.</string>
+<string name="account_pin_not_saved">לא ניתן היה לשמור את שינוי ה-PIN. שום דבר לא השתנה.</string>
+<string name="account_pin_unreadable">לא ניתן היה לקרוא את קודי ה-PIN במחשב הזה, ולכן הפרופיל הזה נשאר נעול.</string>
+<string name="account_profile_not_added">לא ניתן להוסיף פרופיל כל עוד אי אפשר לקרוא את קודי ה-PIN במחשב הזה. שום דבר לא השתנה.</string>
 <string name="account_pin_off">כבוי · כל אחד יכול לפתוח את הפרופיל הזה</string>
 <string name="account_pin_on">פועל · נדרש לפתיחה</string>
 <string name="account_pin_prompt">יש להקליד את ה-PIN בן 4 הספרות.</string>

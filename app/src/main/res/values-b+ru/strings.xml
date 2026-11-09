@@ -56,15 +56,18 @@
 <string name="account_pin_current">"Введите текущий ПИН-код."</string>
 <string name="account_pin_first_profile">"Первый профиль нельзя заблокировать"</string>
 <string name="account_pin_new">"Введите 4-значный ПИН-код."</string>
+<string name="account_pin_not_saved">"Не удалось сохранить изменение PIN-кода. Ничего не изменилось."</string>
 <string name="account_pin_off">"Выкл. · этот профиль может открыть любой"</string>
 <string name="account_pin_on">"Вкл. · запрашивается при открытии"</string>
 <string name="account_pin_prompt">"Введите 4-значный ПИН-код."</string>
 <string name="account_pin_remove">"Удалить ПИН-код"</string>
 <string name="account_pin_set">"Задать ПИН-код"</string>
 <string name="account_pin_set_title">"Задайте ПИН-код"</string>
+<string name="account_pin_unreadable">"Не удалось прочитать PIN-коды на этом компьютере, поэтому профиль остаётся заблокированным."</string>
 <string name="account_profile_current">"Текущий"</string>
 <string name="account_profile_locked">"Заблокирован · PIN"</string>
 <string name="account_profile_no_sync">"Без синхронизации"</string>
+<string name="account_profile_not_added">"Нельзя добавить профиль, пока PIN-коды на этом компьютере не читаются. Ничего не изменилось."</string>
 <string name="account_select_note">"Отдельная история просмотра · не входы в аккаунт"</string>
 <string name="account_select_title">"Кто смотрит?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не подтвердил вход. Ничего не сохранено."</string>

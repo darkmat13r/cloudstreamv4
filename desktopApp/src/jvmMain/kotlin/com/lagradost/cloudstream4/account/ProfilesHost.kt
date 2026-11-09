@@ -6,7 +6,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.withFrameMillis
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
@@ -14,9 +18,25 @@ import com.lagradost.cloudstream4.EscapeHandler
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_confirm
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_current
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_new
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_not_saved
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_unreadable
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_prompt
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_set_title
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_profile_locked
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_profile_not_added
 import com.lagradost.cloudstream4.core.strings.generated.resources.default_account
+import com.lagradost.cloudstream4.core.strings.generated.resources.enter_current_pin
+import com.lagradost.cloudstream4.core.strings.generated.resources.enter_pin_with_name
+import com.lagradost.cloudstream4.core.strings.generated.resources.pin_error_incorrect
+import com.lagradost.cloudstream4.core.strings.generated.resources.pin_error_wait
 import com.lagradost.cloudstream4.core.strings.generated.resources.profile_number
+import com.lagradost.cloudstream4.feature.account.ProfileCard
 import com.lagradost.cloudstream4.feature.account.desktop.DeleteProfileSheet
+import com.lagradost.cloudstream4.feature.account.desktop.PinRow
+import com.lagradost.cloudstream4.feature.account.desktop.PinSheet
 import com.lagradost.cloudstream4.feature.account.desktop.ProfileButtonDesktop
 import com.lagradost.cloudstream4.feature.account.desktop.ProfileEditorSheet
 import com.lagradost.cloudstream4.feature.account.desktop.ProfilePickerDesktop
@@ -38,10 +58,28 @@ private sealed interface ProfilesScreen {
 
 /** What is open over it. */
 private sealed interface ProfilesSheet {
-    data class Edit(val id: Int) : ProfilesSheet
-    data object Add : ProfilesSheet
+    /** [pinNotSaved]: a PIN change just failed to be written, and nothing changed (the reviewer of `#286`). */
+    data class Edit(val id: Int, val pinNotSaved: Boolean = false) : ProfilesSheet
+    /** [notAdded]: an Add just failed, as the PINs file could not be read, and nothing changed (the reviewer of `#286`). */
+    data class Add(val notAdded: Boolean = false) : ProfilesSheet
     data class Delete(val id: Int) : ProfilesSheet
+
+    /** A3 to A4b: [id]'s PIN, under `BUG-55`'s limit, before [then]. */
+    data class Unlock(val id: Int, val then: AfterUnlock) : ProfilesSheet
+
+    /** A7c: the PIN in use, under the same limit, before [then]. */
+    data class CurrentPin(val id: Int, val then: AfterCurrent) : ProfilesSheet
+
+    /** A7, then A7b with [first] typed. A mismatch starts again from A7. */
+    data class SetPin(val id: Int, val first: String? = null) : ProfilesSheet {
+        /** Never the PIN: a state logged by accident must not carry it. */
+        override fun toString(): String = "SetPin(id=$id, confirming=${first != null})"
+    }
 }
+
+private enum class AfterUnlock { Open, Edit }
+
+private enum class AfterCurrent { Change, Remove }
 
 /**
  * Who is watching, around the window (`KMP-95a`, `95b`; `DS-25` A1, A2, A5, A6, A6b, A8).
@@ -54,7 +92,10 @@ private sealed interface ProfilesSheet {
  * - Manage profiles, from the picker or the sidebar's list, fills the window with A5; Done goes back where it came
  *   from. A card there opens its editor, and Add profile the same sheet for a new one. Delete in the editor asks first
  *   (A8). Deleting the profile watching makes the first profile the one watching, through the same switch.
- * - The window's Escape closes what is on top first: a sheet, then the profile list, then Manage.
+ * - **A locked profile** (`KMP-95c`) asks its PIN before it opens, from the picker or the sidebar's list, and before
+ *   its editor opens from Manage (A5). Its editor's PIN row sets a PIN twice over (A7, A7b), and changes or removes
+ *   one only after the PIN in use (A7c). Every prompt for a profile's own PIN is under `BUG-55`'s limit ([LimitedPin]).
+ * - The window's Escape is Cancel on what is on top: a sheet, then the profile list, then Manage.
  *
  * @param app the window, given the profile's library and the sidebar's foot.
  */
@@ -82,9 +123,19 @@ internal fun ProfilesHost(
     val openSheet = sheet
     val open = listOpen
     val current = screen
+    // Cancel on a sheet: the PIN steps of an editor go back to it, everything else closes.
+    val cancelSheet: () -> Unit = {
+        sheet = when (val now = sheet) {
+            is ProfilesSheet.SetPin -> ProfilesSheet.Edit(now.id)
+            is ProfilesSheet.CurrentPin -> ProfilesSheet.Edit(now.id)
+            is ProfilesSheet.Delete -> ProfilesSheet.Edit(now.id)
+            else -> null
+        }
+    }
+    val locked: (Int) -> Boolean = { id -> cards.firstOrNull { it.id == id }?.locked == true }
     SideEffect {
         escape.overlay = when {
-            openSheet != null -> ({ sheet = null })
+            openSheet != null -> cancelSheet
             open -> ({ listOpen = false })
             current is ProfilesScreen.Managing -> ({ screen = current.returnTo })
             else -> null
@@ -98,21 +149,26 @@ internal fun ProfilesHost(
                 ProfilePickerDesktop(
                     cards,
                     onChoose = { id ->
-                        switchTo(id)
-                        screen = ProfilesScreen.App
+                        if (locked(id)) {
+                            sheet = ProfilesSheet.Unlock(id, AfterUnlock.Open)
+                        } else {
+                            switchTo(id)
+                            screen = ProfilesScreen.App
+                        }
                     },
                     onManage = { manageFrom(ProfilesScreen.Picking) },
-                    onAdd = if (profiles.canAdd) ({ sheet = ProfilesSheet.Add }) else null,
+                    onAdd = if (profiles.canAdd) ({ sheet = ProfilesSheet.Add() }) else null,
                 )
             }
             is ProfilesScreen.Managing -> {
                 SideEffect { escape.onEscape = null }
                 ProfilePickerDesktop(
                     cards,
-                    onChoose = { id -> sheet = ProfilesSheet.Edit(id) },
+                    // A5: a locked profile's PIN before its editor.
+                    onChoose = { id -> sheet = if (locked(id)) ProfilesSheet.Unlock(id, AfterUnlock.Edit) else ProfilesSheet.Edit(id) },
                     managing = true,
                     onManage = { screen = current.returnTo },
-                    onAdd = if (profiles.canAdd) ({ sheet = ProfilesSheet.Add }) else null,
+                    onAdd = if (profiles.canAdd) ({ sheet = ProfilesSheet.Add() }) else null,
                 )
             }
             ProfilesScreen.App -> key(profiles.stored.current) {
@@ -123,7 +179,7 @@ internal fun ProfilesHost(
                         cards,
                         open = listOpen,
                         onOpenChange = { listOpen = it },
-                        onChoose = switchTo,
+                        onChoose = { id -> if (locked(id)) sheet = ProfilesSheet.Unlock(id, AfterUnlock.Open) else switchTo(id) },
                         onManage = { manageFrom(ProfilesScreen.App) },
                     )
                 }
@@ -132,15 +188,16 @@ internal fun ProfilesHost(
 
         when (openSheet) {
             null -> Unit
-            ProfilesSheet.Add -> ProfileEditorSheet(
+            is ProfilesSheet.Add -> ProfileEditorSheet(
                 name = numbered,
                 adding = true,
                 onSave = { name ->
-                    profiles.add(name, fallback = numbered)
-                    sheet = null
+                    // Add is offered only while there is room, so null here is a PIN that could not be forgotten.
+                    sheet = if (profiles.add(name, fallback = numbered) == null) ProfilesSheet.Add(notAdded = true) else null
                 },
                 onCancel = { sheet = null },
                 onDelete = null,
+                pinMessage = if (openSheet.notAdded) stringResource(Res.string.account_profile_not_added) else null,
             )
             is ProfilesSheet.Edit -> {
                 val card = cards.firstOrNull { it.id == openSheet.id }
@@ -157,6 +214,15 @@ internal fun ProfilesHost(
                         onCancel = { sheet = null },
                         // The first profile is never deleted (A6c): it is the way back in.
                         onDelete = if (profiles.canDelete(card.id)) ({ sheet = ProfilesSheet.Delete(card.id) }) else null,
+                        pinMessage = if (openSheet.pinNotSaved) stringResource(Res.string.account_pin_not_saved) else null,
+                        pin = when {
+                            card.id == StoredProfiles.FIRST -> PinRow.FirstProfile
+                            card.locked -> PinRow.On(
+                                onChange = { sheet = ProfilesSheet.CurrentPin(card.id, AfterCurrent.Change) },
+                                onRemove = { sheet = ProfilesSheet.CurrentPin(card.id, AfterCurrent.Remove) },
+                            )
+                            else -> PinRow.Off(onSet = { sheet = ProfilesSheet.SetPin(card.id) })
+                        },
                     )
                 }
             }
@@ -176,6 +242,156 @@ internal fun ProfilesHost(
                     )
                 }
             }
+            is ProfilesSheet.Unlock -> {
+                val card = cards.firstOrNull { it.id == openSheet.id }
+                if (card == null) {
+                    SideEffect { sheet = null }
+                } else {
+                    LimitedPin(
+                        profiles = profiles,
+                        card = card,
+                        title = UiString.Resource(Res.string.enter_pin_with_name, listOf(card.name)).resolve(),
+                        subtitle = stringResource(Res.string.account_profile_locked),
+                        prompt = stringResource(Res.string.account_pin_prompt),
+                        onRight = {
+                            when (openSheet.then) {
+                                AfterUnlock.Open -> {
+                                    sheet = null
+                                    switchTo(card.id)
+                                    screen = ProfilesScreen.App
+                                }
+                                AfterUnlock.Edit -> sheet = ProfilesSheet.Edit(card.id)
+                            }
+                        },
+                        onCancel = cancelSheet,
+                    )
+                }
+            }
+            is ProfilesSheet.CurrentPin -> {
+                val card = cards.firstOrNull { it.id == openSheet.id }
+                if (card == null) {
+                    SideEffect { sheet = null }
+                } else {
+                    LimitedPin(
+                        profiles = profiles,
+                        card = card,
+                        title = stringResource(Res.string.enter_current_pin),
+                        subtitle = card.name,
+                        prompt = stringResource(Res.string.account_pin_current),
+                        onRight = {
+                            sheet = when (openSheet.then) {
+                                AfterCurrent.Change -> ProfilesSheet.SetPin(card.id)
+                                AfterCurrent.Remove -> ProfilesSheet.Edit(card.id, pinNotSaved = !profiles.removePin(card.id))
+                            }
+                        },
+                        onCancel = cancelSheet,
+                    )
+                }
+            }
+            is ProfilesSheet.SetPin -> {
+                val card = cards.firstOrNull { it.id == openSheet.id }
+                if (card == null) {
+                    SideEffect { sheet = null }
+                } else {
+                    // A new PIN is not under the limit: there is nothing to guess yet.
+                    PinSheet(
+                        name = card.name,
+                        title = stringResource(Res.string.account_pin_set_title),
+                        subtitle = card.name,
+                        prompt = stringResource(if (openSheet.first == null) Res.string.account_pin_new else Res.string.account_pin_confirm),
+                        message = null,
+                        enabled = true,
+                        attempt = if (openSheet.first == null) 0 else 1,
+                        onComplete = { pin ->
+                            val first = openSheet.first
+                            sheet = when {
+                                first == null -> ProfilesSheet.SetPin(card.id, pin)
+                                first == pin -> ProfilesSheet.Edit(card.id, pinNotSaved = !profiles.setPin(card.id, pin))
+                                // A7: a mismatch clears both and starts over.
+                                else -> ProfilesSheet.SetPin(card.id)
+                            }
+                        },
+                        onCancel = cancelSheet,
+                    )
+                }
+            }
         }
     }
 }
+
+/**
+ * A prompt for [card]'s own PIN under `BUG-55`'s limit (A3, A3b, A4, A4b, A7c). A wrong PIN clears the cells and says
+ * so, with no count of tries left (A3b). While a wait runs the cells are off, nothing typed reaches them, and the line
+ * counts down each frame from the boot clock; Cancel stays live (A4, A4b).
+ */
+@Composable
+private fun LimitedPin(
+    profiles: DesktopProfiles,
+    card: ProfileCard,
+    title: String,
+    subtitle: String,
+    prompt: String,
+    onRight: () -> Unit,
+    onCancel: () -> Unit,
+) {
+    var attempt by remember(card.id) { mutableIntStateOf(0) }
+    var wrong by remember(card.id) { mutableStateOf(false) }
+    var unreadable by remember(card.id) { mutableStateOf(false) }
+    var waitMs by remember(card.id) { mutableLongStateOf(profiles.pins.waitMs(card.id)) }
+    if (waitMs > 0L) {
+        LaunchedEffect(card.id) {
+            while (waitMs > 0L) {
+                withFrameMillis { }
+                waitMs = profiles.pins.waitMs(card.id)
+            }
+        }
+    }
+    val message = when {
+        waitMs > 0L -> stringResource(Res.string.pin_error_wait, waitClock(waitMs))
+        unreadable -> stringResource(Res.string.account_pin_unreadable)
+        wrong -> stringResource(Res.string.pin_error_incorrect)
+        else -> null
+    }
+    PinSheet(
+        name = card.name,
+        title = title,
+        subtitle = subtitle,
+        prompt = prompt,
+        message = message,
+        enabled = waitMs == 0L,
+        attempt = attempt,
+        onComplete = { pin ->
+            when (val result = profiles.pins.check(card.id, pin)) {
+                PinCheck.Right -> onRight()
+                is PinCheck.Wrong -> {
+                    unreadable = false
+                    wrong = true
+                    waitMs = result.waitMs
+                    attempt++
+                }
+                is PinCheck.Waiting -> {
+                    waitMs = result.waitMs
+                    attempt++
+                }
+                // Nothing compared and nothing counted: the profile stays locked, and the person is told why.
+                PinCheck.Unreadable -> {
+                    unreadable = true
+                    wrong = false
+                    attempt++
+                }
+            }
+        },
+        onCancel = onCancel,
+    )
+}
+
+/** A wait as A4 shows it, `00:30` or `59:12`: whole seconds, rounded up, so it never reads 00:00 while it runs. */
+internal fun waitClock(waitMs: Long): String {
+    val seconds = (waitMs + MILLIS_PER_SECOND - 1) / MILLIS_PER_SECOND
+    val minutes = seconds / SECONDS_PER_MINUTE
+    val rest = seconds % SECONDS_PER_MINUTE
+    return "${minutes.toString().padStart(2, '0')}:${rest.toString().padStart(2, '0')}"
+}
+
+private const val MILLIS_PER_SECOND = 1_000L
+private const val SECONDS_PER_MINUTE = 60L

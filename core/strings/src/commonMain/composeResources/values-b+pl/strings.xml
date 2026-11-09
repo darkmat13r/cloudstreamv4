@@ -32,6 +32,9 @@
 <string name="account_pin_current">Wpisz obecnie używany PIN.</string>
 <string name="account_pin_first_profile">Pierwszego profilu nie można zablokować</string>
 <string name="account_pin_new">Wpisz 4-cyfrowy PIN.</string>
+<string name="account_pin_not_saved">Nie udało się zapisać zmiany PIN-u. Nic nie zostało zmienione.</string>
+<string name="account_pin_unreadable">Nie udało się odczytać kodów PIN na tym komputerze, więc ten profil pozostaje zablokowany.</string>
+<string name="account_profile_not_added">Nie można dodać profilu, dopóki nie da się odczytać kodów PIN na tym komputerze. Nic nie zostało zmienione.</string>
 <string name="account_pin_off">Wyłączony · każdy może otworzyć ten profil</string>
 <string name="account_pin_on">Włączony · wymagany przy otwieraniu</string>
 <string name="account_pin_prompt">Wpisz 4-cyfrowy PIN.</string>

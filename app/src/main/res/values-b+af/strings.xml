@@ -52,15 +52,18 @@
 <string name="account_pin_current">"Tik die PIN wat nou gebruik word."</string>
 <string name="account_pin_first_profile">"Die eerste profiel kan nie gesluit word nie"</string>
 <string name="account_pin_new">"Tik 'n 4-syfer-PIN."</string>
+<string name="account_pin_not_saved">"Kon nie die PIN-verandering stoor nie. Niks is verander nie."</string>
 <string name="account_pin_off">"Af · enigiemand kan hierdie profiel oopmaak"</string>
 <string name="account_pin_on">"Aan · gevra om dit oop te maak"</string>
 <string name="account_pin_prompt">"Tik die 4-syfer-PIN."</string>
 <string name="account_pin_remove">"Verwyder PIN"</string>
 <string name="account_pin_set">"Stel PIN"</string>
 <string name="account_pin_set_title">"Stel 'n PIN"</string>
+<string name="account_pin_unreadable">"Kon nie die PIN's op hierdie rekenaar lees nie, so hierdie profiel bly gesluit."</string>
 <string name="account_profile_current">"Huidig"</string>
 <string name="account_profile_locked">"Gesluit · PIN"</string>
 <string name="account_profile_no_sync">"Geen sinkronisasie"</string>
+<string name="account_profile_not_added">"Kon nie 'n profiel byvoeg terwyl die PIN's op hierdie rekenaar nie gelees kan word nie. Niks is verander nie."</string>
 <string name="account_select_note">"Aparte kykgeskiedenis · nie aanmeldings nie"</string>
 <string name="account_select_title">"Wie kyk?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s het nie die aanmelding bevestig nie. Niks is gestoor nie."</string>

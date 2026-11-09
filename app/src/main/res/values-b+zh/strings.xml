@@ -56,15 +56,18 @@
 <string name="account_pin_current">"请输入当前使用的 PIN。"</string>
 <string name="account_pin_first_profile">"第一个个人资料无法锁定"</string>
 <string name="account_pin_new">"请输入 4 位 PIN。"</string>
+<string name="account_pin_not_saved">"无法保存 PIN 更改。没有任何更改。"</string>
 <string name="account_pin_off">"关闭 · 任何人都可打开此个人资料"</string>
 <string name="account_pin_on">"开启 · 打开时需要输入"</string>
 <string name="account_pin_prompt">"请输入 4 位 PIN。"</string>
 <string name="account_pin_remove">"移除 PIN"</string>
 <string name="account_pin_set">"设置 PIN"</string>
 <string name="account_pin_set_title">"设置 PIN"</string>
+<string name="account_pin_unreadable">"无法读取此电脑上的 PIN，因此此个人资料仍保持锁定。"</string>
 <string name="account_profile_current">"当前"</string>
 <string name="account_profile_locked">"已锁定 · PIN"</string>
 <string name="account_profile_no_sync">"不同步"</string>
+<string name="account_profile_not_added">"无法读取此电脑上的 PIN 时无法添加个人资料。没有任何更改。"</string>
 <string name="account_select_note">"独立的观看记录 · 不是登录账号"</string>
 <string name="account_select_title">"谁在观看？"</string>
 <string name="account_signin_failed_body" formatted="true">"%s 未确认登录。未保存任何内容。"</string>

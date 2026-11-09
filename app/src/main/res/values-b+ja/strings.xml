@@ -56,15 +56,18 @@
 <string name="account_pin_current">"現在使用中のPINを入力してください。"</string>
 <string name="account_pin_first_profile">"最初のプロフィールはロックできません"</string>
 <string name="account_pin_new">"4桁のPINを入力してください。"</string>
+<string name="account_pin_not_saved">"PIN の変更を保存できませんでした。何も変更されていません。"</string>
 <string name="account_pin_off">"オフ · 誰でもこのプロフィールを開けます"</string>
 <string name="account_pin_on">"オン · 開くときに入力を求めます"</string>
 <string name="account_pin_prompt">"4桁のPINを入力"</string>
 <string name="account_pin_remove">"PINを削除"</string>
 <string name="account_pin_set">"PINを設定"</string>
 <string name="account_pin_set_title">"PINの設定"</string>
+<string name="account_pin_unreadable">"このコンピュータの PIN を読み取れなかったため、このプロフィールはロックされたままです。"</string>
 <string name="account_profile_current">"現在"</string>
 <string name="account_profile_locked">"ロック中 · PIN"</string>
 <string name="account_profile_no_sync">"同期なし"</string>
+<string name="account_profile_not_added">"このコンピュータの PIN を読み取れないため、プロフィールを追加できませんでした。何も変更されていません。"</string>
 <string name="account_select_note">"視聴履歴は別々 · ログインではありません"</string>
 <string name="account_select_title">"誰が見ていますか?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s でサインインが確認されませんでした。何も保存されていません。"</string>
