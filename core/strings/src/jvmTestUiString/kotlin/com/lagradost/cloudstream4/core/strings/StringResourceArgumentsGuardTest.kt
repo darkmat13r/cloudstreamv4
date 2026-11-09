@@ -148,6 +148,24 @@ class StringResourceArgumentsGuardTest {
     }
 
     @Test
+    fun aFullyQualifiedCallBrokenAcrossLinesCounts() {
+        val found = StringCallScanner.violations(
+            "planted.kt",
+            """
+            import org.jetbrains.compose.resources.getString
+            suspend fun a() = org.jetbrains.compose.resources
+                .getString(Res.string.skip_title, name)
+            suspend fun b() = org
+                .jetbrains . compose.resources.getString(Res.string.skip_title, name)
+            fun c(prefs: Prefs) = prefs
+                ?.getString(key, defaultValue)
+            fun d(): String { return org.jetbrains.compose.resources.stringResource(Res.string.skip_title, name) }
+            """.trimIndent(),
+        )
+        assertEquals(listOf(3, 5, 8), found.map { it.substringAfter(':').substringBefore(' ').toInt() })
+    }
+
+    @Test
     fun aPreferenceStoreGetStringIsNotComposes() {
         val found = StringCallScanner.violations(
             "planted.kt",
@@ -185,7 +203,7 @@ class StringResourceArgumentsGuardTest {
                 override fun preVisitDirectory(dir: Path, attrs: BasicFileAttributes): FileVisitResult {
                     val rel = start.relativize(dir).toString().replace(File.separatorChar, '/')
                     val name = dir.fileName?.toString().orEmpty()
-                    return if (rel == "app" || rel == "core/strings" || rel == "build-logic" ||
+                    return if (rel == "app" || rel == "build-logic" ||
                         name == "build" || name.startsWith(".")
                     ) {
                         FileVisitResult.SKIP_SUBTREE
@@ -296,14 +314,30 @@ internal object StringCallScanner {
         return out
     }
 
-    /** The dotted qualifier in front of a call (`org.jetbrains.compose.resources`, `prefs`), or null for none. */
+    /**
+     * The dotted qualifier in front of a call (`org.jetbrains.compose.resources`, `prefs`), or null for none.
+     * Whitespace either side of a `.` is skipped, so a qualified call broken across lines reads as one name;
+     * a receiver that is an expression (`f().getString`, `a[0].getString`) is `<expression>`.
+     */
     private fun qualifierBefore(text: String, start: Int): String? {
         var i = start - 1
         while (i >= 0 && text[i].isWhitespace()) i--
         if (i < 0 || text[i] != '.') return null
-        var j = i - 1
-        while (j >= 0 && (text[j].isLetterOrDigit() || text[j] in "_.?)]")) j--
-        return text.substring(j + 1, i).trimEnd('?')
+        val segments = ArrayDeque<String>()
+        while (true) {
+            // `i` is on a `.`: step over it, a `?` of a safe call, and any whitespace before them.
+            i--
+            if (i >= 0 && text[i] == '?') i--
+            while (i >= 0 && text[i].isWhitespace()) i--
+            if (i < 0 || !(text[i].isLetterOrDigit() || text[i] == '_')) return "<expression>"
+            val end = i + 1
+            while (i >= 0 && (text[i].isLetterOrDigit() || text[i] == '_')) i--
+            segments.addFirst(text.substring(i + 1, end))
+            var k = i
+            while (k >= 0 && text[k].isWhitespace()) k--
+            if (k < 0 || text[k] != '.') return segments.joinToString(".")
+            i = k
+        }
     }
 
     /** The source ranges of each top-level argument of the call whose `(` ends just before [from]; empty for `()`. */
