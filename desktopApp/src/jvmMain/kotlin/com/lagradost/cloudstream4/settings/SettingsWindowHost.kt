@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.DpSize
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.rememberWindowState
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_settings
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -68,7 +68,7 @@ internal fun SettingsWindow(
             window.rootPane.putClientProperty("apple.awt.windowTitleVisible", false)
         }
         CloudStreamTheme {
-            CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+            CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
                     SettingsContent(settings, downloadRoot)
                 }

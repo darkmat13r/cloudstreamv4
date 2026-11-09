@@ -19,7 +19,7 @@ import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.detail.DetailAction
@@ -57,7 +57,7 @@ class SourcesPanelTest {
 
     private fun scene(content: @Composable () -> Unit) = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
         CloudStreamTheme {
-            CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+            CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
             }
         }

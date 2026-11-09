@@ -29,7 +29,7 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.tagged
 import com.lagradost.cloudstream4.textNode
 import com.lagradost.cloudstream4.texts
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.search.SearchAction
@@ -110,7 +110,7 @@ class SearchScreenTest {
     private fun scene(width: Int = WIDTH, height: Int = HEIGHT, content: @Composable () -> Unit) =
         ImageComposeScene(width, height, Density(1f)) {
             CloudStreamTheme {
-                CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+                CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
                 }
             }

@@ -6414,6 +6414,63 @@ design audit against boards D1 (chrome and sidebar), S1, H1 and D1 (the bar).
 - Moved coordinates in the existing tests: sidebar rows +28, the Search field and Home's bar at the bar's middle, the
   chips at 84.
 
+## KMP-97 — The boards' fonts, bundled: the Mac first · **in pr** · the owner approved bundling Manrope and JetBrains Mono
+
+A design audit found that the Mac never loaded the boards' fonts. `cloudStreamTypography(sans, mono)` takes the
+families, but every caller passed none, so both the Mac and TV drew the platform face. The ramp also set no weights,
+so everything drew at 400. Those two gaps together made every page unlike its board.
+
+**PR 1, the Mac (this one).** TV's pixels do not move.
+- **The files:** Manrope 4.505 at 400, 500, 600, 700 and 800 (`googlefonts/manrope`, commit `468c0dbe`), and JetBrains
+  Mono 2.304 at 400, 500 and 700 (the official release). These are exactly the faces `Design System v2` loads. They are
+  static TTFs, upstream's bytes renamed only, in `:core:designsystem`'s `composeResources/font/`. Their OFL texts are in
+  `files/licences/`. `NOTICE` records each file's source and SHA-256.
+- **Why static:** minSdk is 24, and Android applies a font's variation only from API 26. Below that, a variable Manrope
+  draws its default instance, which is ExtraLight.
+- **The code:** `CloudStreamFonts` builds the two families, and `cloudStreamAppTypography()` puts them on the ramp. The
+  Mac draws with `desktopTypography()`, which is that plus `forDesktop()`. Main, the Settings window, the subtitle
+  render check and the desktop test hosts use it. `DesktopInteractionTest` and `:core:designsystem`'s `SceneHarness` had
+  no desktop ramp, so they take the families alone.
+- **The weights are the boards':** the weight of each role in `Design System v2`'s line-box samples, and the one most of
+  the boards use at that role's size:
+
+  | Role | Weight |
+  |---|---|
+  | display | 800 |
+  | h1 | 700 |
+  | railTitle | 700 |
+  | body | 400 |
+  | label | 600 |
+  | caption | 700 |
+  | labelMono | 500 |
+  | captionMono | 500 |
+
+  They live in `forDesktop()` until PR 2 moves them into the shared ramp.
+
+**Proof,** all local (CI is off):
+- `CloudStreamFontsTest` measures text against the files' own advance widths, read from their `hmtx` tables. At 100 px,
+  ten `H` are 684.5 px in Manrope Regular and 734.0 px in ExtraBold, and ten JetBrains Mono glyphs are 600.0 px. The
+  test also checks that the Mac's ramp reaches ExtraBold for display and Regular for body. Its control checks that the
+  platform's faces measure otherwise, so a family that fails to load and falls back without an error fails the test.
+- An early version measured the paragraph's width, which is rounded up to a whole pixel, and read 735.0 for 734.0. The
+  test now reads the line's width.
+- Moved assertions: none. Every one of `:core:designsystem`'s 128 JVM tests and `:desktopApp`'s 538 still passes with
+  the real faces. They assert positions relative to each other and to the line boxes, and the line boxes did not change.
+- Gates: abi, check, xml, extapi, canary and dist all 0. `classes-jar.api` is unchanged.
+
+**Size.** The Mac app's `designsystem` jar gains 716,128 bytes compressed (1,558,658 raw): the eight fonts and the two
+licences. The APK gains nothing yet, because `:core:designsystem` has no `androidResources`, so its `composeResources`
+do not reach an APK (CMP-9547).
+
+**PR 2, TV:**
+- [ ] Move the weights from `forDesktop()` into the ramp in `:core:theme`.
+- [ ] Give the sans caption `Design System v2`'s 16sp box (Manrope at 20 px inks 26 px, which a 24 px box clips).
+  captionMono keeps 12sp. Name every reflow; the 10sp-vs-12sp floor stays open.
+- [ ] Enable `androidResources` on `:core:designsystem`. The extension-API build notes that such a module's `R` classes
+  are compiled into the published jar, so read `classes-jar.api` before and after.
+- [ ] Pass `cloudStreamAppTypography()` at the ten TV roots.
+- [ ] Switch the device-test hosts, then re-record the 99 references with every diff read.
+
 ## KMP-91 — The Mac player's panels from the right, `DS-23` M4 to M7
 
 **Status:** in review · `:desktopApp` · after `KMP-87` (#257) and `I18N-19` (#249)
