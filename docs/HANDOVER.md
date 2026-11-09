@@ -350,6 +350,14 @@ the slot, and the serial does not tell you it is yours. A `logcat` or `screencap
 the other agent's emulator: on 2026-11-04 `KMP-34`'s diagnostic logcat read another agent's whole run and none of its
 own. Start it from a script run under `with-gradle-lock.sh`, in the same slot as the Gradle run it is watching.
 
+**`:app`'s device tests need animations off, and Gradle turns them off** (`BUG-72`). `testOptions.animationsDisabled`
+runs them with every animation scale at 0. Compose keeps the animator scale it first read for the whole process, so
+a test can't turn it off for itself once a window has read it. With animations on, Home's loading skeleton pulses for ever,
+`ActivityScenario` never sees the app idle, and the rows never arrive (seen after `RestorePinGateTest`). A run outside
+Gradle doesn't get the setting from `build.gradle.kts`. Before a raw `am instrument`, set `animator_duration_scale`,
+`transition_animation_scale` and `window_animation_scale` to 0, and put them back after. Android Studio's own runner
+wasn't measured. If a Home case there hangs on the skeleton, this is why.
+
 **This AVD is not the artboard.** 1280x720 at 213 dpi is about 961.5x540.8 dp, not 960x540. Do not assert
 full-screen geometry against 960x540 or hard-code a screen size: assert component bounds, spacing and focus, and
 read the real size from the device where a test needs it.
