@@ -7228,7 +7228,7 @@ short facts slice. They now meet the reader of the sections after the facts, as 
 then one claiming 90 bytes the frame does not hold, so the call now fails on that lying length, as any does; the test
 asserts that failure. Had the facts reader taken those bytes, they would have read as facts and nothing would fail.
 
-## KMP-103 — The plugin sandbox carries a title's cast and recommendations to the Mac · **design passed with conditions (the reviewer, 2026-11-09); building** · sys-desktop-2, the PM's call of 2026-11-09
+## KMP-103 — The plugin sandbox carries a title's cast and recommendations to the Mac · **built 2026-11-09**, design passed with conditions (the reviewer, 2026-11-09) · sys-desktop-2, the PM's call of 2026-11-09
 
 `TitleDetail.cast` and `.recommendations` already exist (`DetailCastMember`, `DetailRecommendation`). Android fills
 them; the sandbox does not carry them, so the Mac has neither. The data comes from `LoadResponse.actors` and
@@ -7277,7 +7277,7 @@ What each kind of reader does:
   in `KMP-76`.
 - **Words** are cleaned as tags are: control, format and separator characters are removed (U+202E and zero-width
   joiners among them), then the text is trimmed. Blank text, or text over its character cap, is dropped. The app never
-  shortens anything. `isInvisibleInLabel`, then `withoutDefaultIgnorable()`, as subtitle labels are.
+  shortens anything. `isInvisibleInLabel`, as tags and subtitle labels are.
 - **A bad field costs only itself.** A bad image leaves the person without a headshot, decided per person as on Android
   (`toCast`). A bad role leaves the person without that line.
 - **Repeats:** the same name with the same role is kept once.
@@ -7294,7 +7294,7 @@ What each kind of reader does:
 | type | one byte | 0 none, 1 to 18 as in the table in `HostProtocol` (`Movie` 1 … `Video` 18; the protocol's own table, which happens to match `TvType`'s values). Any other code loses the type only |
 | year | `Int` | `NO_NUMBER`, or 1870 to 2100; anything else loses the year only |
 | poster | optional text | an https image URL (rules below), ≤ 2048 bytes |
-| key | text | what opens it (below): 1 to 2048 chars, no control characters, ≤ 2048 bytes. Required |
+| key | text | what opens it (below): 1 to 2048 chars, no control characters, ≤ 8192 bytes (2048 characters of any script). Required |
 
 - **At most 20 titles,** read as the cast is: stop after the 20th. **The section is at most 64 KiB** (twenty honest
   titles need at most about 93,000 bytes at the caps, real ones far fewer); past that it is stepped over.
@@ -7393,8 +7393,8 @@ not). There is at most one line per field kind per section, so ten thousand bad 
 ### The reviewer's conditions (passed with them, 2026-11-09)
 
 1. **The id codec round-trips any key.** `encodeId`/`decodeId` must give back exactly the provider and key for a key
-   holding the codec's own separator (NUL), non-ASCII text, and 2048 characters. A key that cannot round-trip is
-   dropped in `cleaned()`, never stored. A test covers each case, so no key can decode to another provider.
+   holding the codec's own separator (NUL), non-ASCII text, and 2048 characters. `decodeId` splits at the first separator, so it does; a key that still did not would be dropped where the page's
+   id is made (`toTitleDetail`), never stored. A test covers each case, so no key can decode to another provider.
 2. **Where a key goes.** A key reaches disk only when the person opens or bookmarks the title, as a search result's id
    does: in Library, history, or Back's stack. It is never in a log line or an error message, including every `OP_LOAD`
    failure path (`DesktopDetailSource.details`, `PluginHostClient`'s call failure, the host's reply). Those paths are
@@ -7410,13 +7410,13 @@ not). There is at most one line per field kind per section, so ten thousand bad 
 4. **The host keeps each section under 64 KiB.** The honest maxima, about 67,000 bytes for cast and 93,000 for
    recommendations, are past the cap. So the host drops trailing entries until the section fits, and never sends one
    the app would step over.
-5. **Images of these kinds get their own caps,** tighter than the backdrop's:
+5. **Images of these kinds get their own caps,** tighter than the backdrop's. This is `KMP-104`'s, which fetches and draws them:
    - decoded at the drawn size (`Precision.INEXACT`);
    - a lower decode cap: 1024×1024 for headshots and posters;
    - a smaller byte cap: 2 MB, against the backdrop's 8 MB;
    - loaded only when on screen.
    `KMP-104` reports a measured peak heap for a page with 24 headshots and 20 posters.
-6. **Privacy and cache.** Up to 44 hosts the plugin chose (24 photos and 20 posters) learn this Mac's IP when the page is
+6. **Privacy and cache** (`KMP-104`'s too). Up to 44 hosts the plugin chose (24 photos and 20 posters) learn this Mac's IP when the page is
    drawn, as on Android, so images load lazily and only when on screen. They use `KMP-100`'s disk-cache decision, not
    Coil's default.
 7. **Normalisation before comparing.** "The same person" and "the page's own key" are compared after `cleaned()`
@@ -7426,12 +7426,44 @@ not). There is at most one line per field kind per section, so ten thousand bad 
 8. **The PR body says the Mac blocks cross-provider recommendations,** which Android allows. **Not requiring https for
    the key** is the PM's call, on the decision board.
 
+### Built
+
+- **Wire:** `HostProtocol.CAST_V1` (`0x41`) and `RECOMMENDATIONS_V1` (`0x51`), written after the art in every reply,
+  each read on its own slice by `readSectionsAfterFacts`. Field lengths are checked against the slice before anything is
+  skipped or read (`skipNBytes`), text is decoded with `CodingErrorAction.REPORT`, and a negative count, a lying length
+  inside the slice or a slice cut short costs only that section.
+- **The app's checks:** `cleanedCast` and `cleanedRecommendations` in `PluginHostClient.kt`; photos and posters through
+  `imageUrlOrNull()` (exactly as sent, at most 2048 characters, `httpsUrlOrNull`, no userinfo).
+- **The host:** `toRemoteCast` and `toRemoteRecommendations` in `PluginHost.kt` cut honest words, keep only its own
+  provider's recommendations, never cut a key, and drop trailing entries until each section fits 64 KiB.
+- **The Mac:** `toTitleDetail` binds each recommendation to the provider called; `decodeId` now splits at the first
+  separator, so any key round-trips. A failure's log line goes through `detailFailureLine`, which takes out the key
+  before `withoutUrls()`. `DetailRecommendation` gains a defaulted `typeName`.
+- **Tests:** `HostProtocolCastTest` (16), `HostProtocolRecommendationsTest` (13), four lying-host cases in
+  `PluginHostClientTest`, one malicious-plugin case in `SandboxEnforcementTest` (`HostilePlugin` now sends 100,000
+  people and recommendations, another provider's title, itself, a NUL key, a metadata-address photo and userinfo), and
+  `TitleCastTest` (5) on the Mac.
+- **Red-checked**, each failing what it should, then restored:
+  - `cleaned()` off for both sections: 12 tests fail;
+  - userinfo allowed: 4;
+  - UTF-8 replaced, not refused: 1;
+  - no 64 KiB section cap: 1;
+  - another provider's recommendations kept by the host: 1;
+  - the old codec, split on every separator: 2;
+  - the key left in the failure's log line: 1.
+- **Changed existing test code:** `HostProtocolArtTest` used `0x41` as its stand-in for a tag no app reads. `0x41` is
+  the cast now, so the stand-in is `0x71`.
+
 ### Base
 
 - Stacked on `#299` (`KMP-100`, `63aa03c53`) for now, whose tagged framing, `httpsUrlOrNull` and loader this uses. It
   moves onto `KMP-86`'s branch once that is pushed.
 - `KMP-104` draws Cast and More like this. `DS-21` has no board for either on the Mac (E1 to E6 stop at the episodes),
   so `KMP-104` needs one drawn first. That board is `DS-26`.
+- **For `KMP-104`** (the PM, 2026-11-09): voice actors are a second line under the role, "Voiced by %s", a new key and
+  an `I18N` item (DS-26 C3b). Manrope's natural line at 10sp is about 13.75, taller than caption's 12 line box, so a
+  Compose render, not Chrome, with Manrope loaded (`#295`), must show the descenders of "Voiced by Pippa Quigley-Jory"
+  (g, j, p, q and y) whole (`KMP-97`'s fixed line box).
 
 ## KMP-102 — The same hardening for posters · **built 2026-11-09**, stacked on `KMP-100` (`#299`)
 

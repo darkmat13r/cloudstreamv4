@@ -265,6 +265,88 @@ class PluginHostClientTest {
         fake.assertEnded()
     }
 
+    // ---- KMP-103: a title's cast and recommendations from a host that lies
+
+    private fun java.io.DataOutputStream.emptyFactsSection() = with(TitleSectionFrames) { emptyFacts() }
+
+    @Test
+    fun `cast and recommendations past every bound from a lying host cost only themselves, and keep the host`() = runTest {
+        val page = loaded { id ->
+            loadReply(id) {
+                emptyFactsSection()
+                with(TitleSectionFrames) {
+                    section(HostProtocol.CAST_V1) {
+                        writeInt(30)
+                        person("x".repeat(HostProtocol.MAX_PERSON_BYTES + 1))
+                        person("\u202EIn\u200Des", kind = 7, role = "\u001B\u200B", image = "https://169.254.169.254/latest/meta-data")
+                        repeat(28) { person("Person $it", image = "https://u:p@img.example/$it.jpg") }
+                    }
+                    section(HostProtocol.RECOMMENDATIONS_V1) {
+                        writeInt(1_000)
+                        suggestion("Itself", "u")
+                        suggestion("Saltwind", "k\u0000ey")
+                        repeat(998) { suggestion("T$it", "k$it", type = 200, year = Int.MAX_VALUE, poster = "file:///etc/passwd") }
+                    }
+                }
+            }
+        }
+        assertEquals("Title", page.name)
+        assertEquals(HostProtocol.MAX_CAST - 1, page.cast.size, "a name past its bytes is skipped unread; the rest of 30 is past the count")
+        assertEquals(RemoteCastMember("Ines"), page.cast.first())
+        assertTrue(page.cast.all { it.imageUrl == null })
+        assertEquals(HostProtocol.MAX_RECOMMENDATIONS - 2, page.recommendations.size, "itself and the bad key were among the 20 read")
+        assertTrue(page.recommendations.all { it.type == null && it.year == null && it.posterUrl == null })
+        fake.assertAlive()
+        assertEquals("still", answeredCall("still"))
+    }
+
+    @Test
+    fun `a cast section past 64 KiB from a lying host costs the cast, and keeps the page and the host`() = runTest {
+        val page = loaded { id ->
+            loadReply(id) {
+                emptyFactsSection()
+                with(TitleSectionFrames) {
+                    section(HostProtocol.CAST_V1) { writeInt(1); person("x".repeat(1024 * 1024)) }
+                    section(HostProtocol.RECOMMENDATIONS_V1) { writeInt(1); suggestion("Saltwind", "s") }
+                }
+            }
+        }
+        assertEquals(emptyList(), page.cast)
+        assertEquals(listOf("Saltwind"), page.recommendations.map { it.title })
+        fake.assertAlive()
+        assertEquals("still", answeredCall("still"))
+    }
+
+    @Test
+    fun `a cast section cut short inside its length costs the cast, and keeps the page and the host`() = runTest {
+        val page = loaded { id ->
+            loadReply(id) {
+                emptyFactsSection()
+                writeByte(HostProtocol.CAST_V1)
+                writeInt(Int.SIZE_BYTES)
+                writeInt(5)
+            }
+        }
+        assertEquals("Title", page.name)
+        assertEquals(emptyList(), page.cast)
+        fake.assertAlive()
+        assertEquals("still", answeredCall("still"))
+    }
+
+    @Test
+    fun `a recommendations section lying about its length ends the host and fails the call`() = runTest {
+        assertFailsWith<IOException> {
+            loaded { id ->
+                loadReply(id) {
+                    emptyFactsSection()
+                    writeByte(HostProtocol.RECOMMENDATIONS_V1)
+                    writeInt(Int.MAX_VALUE)
+                }
+            }
+        }
+        fake.assertEnded()
+    }
+
     // ---- BUG-19: links as they arrive
 
     private fun link(name: String) = RemoteLink("s", name, "https://a.invalid/$name", 720, "VIDEO", null, null, null)

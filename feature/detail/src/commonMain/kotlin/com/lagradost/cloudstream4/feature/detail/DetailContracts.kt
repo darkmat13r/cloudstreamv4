@@ -83,6 +83,8 @@ data class DetailRecommendation(
     val title: String,
     val posterUrl: String?,
     val year: Int?,
+    /** The provider's type name, such as `TvSeries` (`KMP-103`). An identifier: the copy turns it into words. */
+    val typeName: String? = null,
 )
 
 /**
