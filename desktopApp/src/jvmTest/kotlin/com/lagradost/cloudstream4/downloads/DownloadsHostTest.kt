@@ -56,6 +56,14 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import okhttp3.OkHttpClient
 import org.jetbrains.skia.EncodedImageFormat
+import com.lagradost.cloudstream4.feature.settings.PlaybackSettings
+import com.lagradost.cloudstream4.player.MediaProtocol
+import com.lagradost.cloudstream4.player.VlcPlayer
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.DataInputStream
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 /**
  * The sidebar's fourth row over the real service (`KMP-54` over `KMP-52`): a film downloaded from a loopback server into a
@@ -403,6 +411,78 @@ class DownloadsHostTest {
         scene.close()
     }
 
+    /**
+     * `KMP-74`, new with the rebase onto `KMP-96`: the download player steps by Settings' Seek amount, as a stream's does,
+     * and starts with the one command that names no file.
+     */
+    @Test
+    fun `the download player plays its descriptor and steps by Settings' Seek amount`() {
+        val downloads = host()
+        downloads.downloadSeries()
+        val escape = EscapeHandler()
+        val shortcuts = DesktopShortcuts()
+        val screens = mutableListOf<String>()
+        val sent = ByteArrayOutputStream()
+        // Waits, writing nothing, so the player neither fails nor plays; it is ended when the player is released.
+        val process = ProcessBuilder("/bin/sleep", "60").start()
+        val player = VlcPlayer.forDownload(process, Files.createTempDirectory("download-player").toFile(), sent)
+        val thirtySeconds = object : PlaybackSettings {
+            override val autoplayNext: StateFlow<Boolean> = MutableStateFlow(true)
+            override val seekSeconds: StateFlow<Int> = MutableStateFlow(SEEK_SECONDS)
+        }
+        val scene = scene {
+            DesktopApp(
+                escape,
+                library = InMemoryLibraryStore(),
+                onScreen = { screens += it },
+                shortcuts = shortcuts,
+                downloads = downloads,
+                playback = thirtySeconds,
+                openDownload = { player },
+            )
+        }
+        scene.settle()
+        shortcuts.go(TopLevelDestination.Downloads)
+        scene.until { screens.last() == "Downloads" && runBlocking { downloads.source().contents.first() }.titles.isNotEmpty() }
+        scene.until {
+            if (!screens.last().startsWith("DownloadSeries")) scene.doubleClick(Offset(WINDOW_NAME_X, WINDOW_FIRST_ROW_Y))
+            screens.last().startsWith("DownloadSeries")
+        }
+        scene.until {
+            if (!screens.last().startsWith("DownloadPlayer")) scene.doubleClick(Offset(WINDOW_NAME_X, SERIES_FIRST_ROW_Y))
+            screens.last().startsWith("DownloadPlayer")
+        }
+        scene.until { "play file" in commands(sent) }
+        scene.key(Key.DirectionRight)
+        scene.key(Key.DirectionLeft)
+        val seen = commands(sent)
+        assertEquals("play file", seen.first(), "the first command plays the descriptor")
+        assertEquals(1, seen.count { it == "play file" })
+        assertEquals(listOf("by 30000", "by -30000"), seen.filter { it.startsWith("by ") })
+        assertTrue(escape.handle())
+        scene.settle()
+        scene.close()
+        process.destroyForcibly()
+    }
+
+    /** What the screen sent the host, decoded as `MediaHost` reads it. */
+    private fun commands(sent: ByteArrayOutputStream): List<String> {
+        val input = DataInputStream(ByteArrayInputStream(sent.toByteArray()))
+        val seen = mutableListOf<String>()
+        while (input.available() > 0) {
+            seen += when (input.readByte()) {
+                MediaProtocol.OP_PLAY_FILE -> "play file"
+                MediaProtocol.OP_TOGGLE_PAUSE -> "toggle"
+                MediaProtocol.OP_SEEK_BY -> "by ${input.readLong()}"
+                MediaProtocol.OP_SEEK_TO -> "to ${input.readFloat()}"
+                MediaProtocol.OP_SET_VOLUME -> "volume ${input.readInt()}"
+                MediaProtocol.OP_SET_AUDIO_TRACK -> "audio ${input.readInt()}"
+                else -> error("a command the download player should never send")
+            }
+        }
+        return seen
+    }
+
     @Test
     fun `sizes read as Finder writes them`() {
         assertEquals("0 B", formatBytes(0, Locale.ROOT))
@@ -441,5 +521,7 @@ class DownloadsHostTest {
         /** `HomeScreenTest`'s sidebar: under the 52 title band (`KMP-98`), then rows 36 apart; the fourth is Downloads. */
         const val SIDEBAR_X = 100f
         const val SIDEBAR_DOWNLOADS_Y = 176f
+        /** Not Settings' default of 10, so a step that ignored the setting would show. */
+        const val SEEK_SECONDS = 30
     }
 }

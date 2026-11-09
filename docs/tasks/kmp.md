@@ -7837,6 +7837,10 @@ settles on.
 - A host that never became a player is cleaned up on any failure, thrown or not: its process, its directory, and
   both socket ends.
 
+**New with the rebase onto `KMP-96` (#277):** the download player steps by Settings' Seek amount, as a stream's player
+does: `DesktopApp` passes it `seekMillis` from `PlaybackSettings.seekSeconds`, read while playing. Up next and Play
+the next episode do not apply, because a download has no next link.
+
 **Where Play goes.** `DownloadSeriesHost` turns `SeriesEffect.Play` into `DesktopDownloads.playable(id)`: the episode's
 file, the download folder, and its name and numbers. The app pushes `Screen.DownloadPlayer` over the series page. Its
 name in a screen's text is `PlayableDownload(id=…)`, with no path. The player is the stream player, given a `start`
@@ -7876,10 +7880,13 @@ with a silent track:
   - A FIFO is refused, without waiting for a writer (`O_NONBLOCK`).
   - Two descriptors in one message are refused, and both are closed: the process's open descriptors are counted
     before and after (review).
-- `DownloadsHostTest` (+2, over the real service and a loopback server):
+- `DownloadsHostTest` (+3, over the real service and a loopback server):
   - Double-clicking an episode hands over its file, the folder, its name and its numbers, and the name has no path.
   - An episode whose file went since plays nothing and leaves the list.
   - In the window, Play opens `DownloadPlayer` for that episode, opened once, and Escape returns to the series page.
+  - In the window, with Seek amount at 30 s, the download player's first command is `OP_PLAY_FILE`, alone and with
+    no text after it, and the arrows send 30 000 and -30 000. It reads the bytes the screen wrote, through
+    `VlcPlayer.forDownload`, a seam over a process that writes nothing.
 - **Mutations, run:**
   - Dropping the regular-file check fails "a folder is refused".
   - Dropping both link checks fails "a linked folder on the way".
@@ -7892,5 +7899,3 @@ with a silent track:
 - Resume and watch progress for a download. There is no library record to write to; the stream player's
   `WatchRecorder` needs one.
 - Playing a film from the D1 list. D1 has no Play on the Mac board.
-- `OP_PLAY_FILE`'s "no text" has no unit test of its own. `VlcPlayer`'s constructor is private, so the end-to-end
-  check above is its evidence.

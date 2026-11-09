@@ -240,6 +240,13 @@ class VlcPlayer private constructor(
         }
 
         /**
+         * A player for a downloaded file over [process], whose commands go to [commands]: what [createOrNull] makes,
+         * without a host. A seam, so a window test can read what the screen sends (`KMP-74`).
+         */
+        internal fun forDownload(process: Process, directory: File, commands: OutputStream): VlcPlayer =
+            VlcPlayer(process, directory, commands, local = true)
+
+        /**
          * A host for one downloaded file, which it gets as [media]'s descriptor and never by name (`KMP-74`). [media]
          * is closed here, whatever happens: the app keeps no copy once it is sent. Then [playFile] plays it.
          *
