@@ -25,7 +25,7 @@ private val PreviewCards = List(21) { index ->
     LibraryCard(
         id = LibraryTitleId("preview/$index"),
         title = "Title $index",
-        providerName = "Filmxy",
+        providerName = "Source A",
         typeLabel = "MOVIE",
         progress = if (index % 3 == 0) 0.4f else null,
     )

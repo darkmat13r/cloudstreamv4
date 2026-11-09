@@ -29,7 +29,7 @@ class LibraryOfflineViewModelTest {
         override suspend fun titles(): List<LibraryTitle> {
             fail?.let { throw it }
             return listOf(
-                LibraryTitle(LibraryTitleId("Prov\u0000/dune"), "Dune", LibraryBucket.Watching, keptAt = 1),
+                LibraryTitle(LibraryTitleId("Prov\u0000/tide"), "Tide", LibraryBucket.Watching, keptAt = 1),
             )
         }
 
@@ -61,7 +61,7 @@ class LibraryOfflineViewModelTest {
                 SyncedList(
                     "watching",
                     "Watching",
-                    listOf(LibraryTitle(LibraryTitleId("AniList\u0000/frieren"), "Frieren", null, keptAt = 2)),
+                    listOf(LibraryTitle(LibraryTitleId("AniList\u0000/fernwood"), "Fernwood", null, keptAt = 2)),
                 ),
             )
         }
@@ -85,12 +85,12 @@ class LibraryOfflineViewModelTest {
     fun `a service that fails after a good read shows that read, marked unreachable`() = runTest {
         val host = Sources()
         val vm = model(host, Network(Connectivity.ONLINE))
-        assertEquals(listOf("Frieren"), vm.titles())
+        assertEquals(listOf("Fernwood"), vm.titles())
         assertNull(vm.state.value.stale)
 
         host.fail = java.io.IOException("unreachable")
         vm.onAction(LibraryAction.Retry)
-        assertEquals(listOf("Frieren"), vm.titles())
+        assertEquals(listOf("Fernwood"), vm.titles())
         assertEquals(LibraryStale.Unreachable, vm.state.value.stale)
         assertEquals(listOf("Watching"), vm.state.value.syncedTabs?.map { it.label }, "its tabs stay")
 
@@ -123,7 +123,7 @@ class LibraryOfflineViewModelTest {
         network.status.value = Connectivity.OFFLINE
         runCurrent()
         vm.onAction(LibraryAction.Retry)
-        assertEquals(listOf("Frieren"), vm.titles())
+        assertEquals(listOf("Fernwood"), vm.titles())
         assertEquals(LibraryStale.Offline, vm.state.value.stale)
         assertEquals(1, host.reads)
     }
@@ -132,7 +132,7 @@ class LibraryOfflineViewModelTest {
     fun `unknown connectivity is never offline`() = runTest {
         val host = Sources()
         val vm = model(host, Network(Connectivity.UNKNOWN))
-        assertEquals(listOf("Frieren"), vm.titles())
+        assertEquals(listOf("Fernwood"), vm.titles())
         assertEquals(1, host.reads)
     }
 
@@ -151,7 +151,7 @@ class LibraryOfflineViewModelTest {
         advanceTimeBy(2)
         runCurrent()
         assertEquals(1, host.reads)
-        assertEquals(listOf("Frieren"), vm.titles())
+        assertEquals(listOf("Fernwood"), vm.titles())
         assertNull(vm.state.value.stale)
     }
 
@@ -192,7 +192,7 @@ class LibraryOfflineViewModelTest {
         val onLocal = Sources(current = local)
         val localNetwork = Network(Connectivity.OFFLINE)
         val vm = model(onLocal, localNetwork)
-        assertEquals(listOf("Dune"), vm.titles(), "the local list does not need a connection")
+        assertEquals(listOf("Tide"), vm.titles(), "the local list does not need a connection")
         localNetwork.status.value = Connectivity.ONLINE
         runCurrent()
         advanceTimeBy(RECONNECT_SETTLE_MS * 2)
