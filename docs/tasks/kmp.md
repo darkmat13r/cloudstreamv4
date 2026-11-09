@@ -7211,7 +7211,7 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
   Settings' default.
 - `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.
 
-## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286** · the PM's task, 2026-11-08
+## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr** · the PM's task, 2026-11-08
 
 `DS-25`'s boards, built in six PRs (the PM's plan, 2026-11-08):
 
@@ -7490,3 +7490,91 @@ The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once tr
   profiles open over a failed read, the two launch tests fail; with `add` ignoring `forget`'s false, the two Add tests
   fail.
 - Renders: A3, A3b, A4, A6d, A7, A7b and A7c, compared with the boards by eye.
+
+### KMP-95d — Sign-ins, kept in memory until you quit
+
+**What it adds** (`DS-25` A9, A11, A11b, A12, A13, A13b, A14, A16, A16b; the PM's answers, 2026-11-09):
+- **Sync services** in the sidebar's profile list opens **Sync for <profile>** (A9), the current profile's sign-ins. Each
+  row reads Connected or Not connected and never shows an account name or an id.
+- **Simkl pairs with a code** (A11):
+  - the code, the page to approve it on, a countdown, and Open, which opens the page in the browser;
+  - polling at Simkl's own interval until the code is approved;
+  - an expired code is struck through, and nothing polls (A11b);
+  - Get a new code asks for another.
+- **OpenSubtitles and SubDL** sign in with an email and password (A16), the owner's exception:
+  - the password is masked, with Show, and never prefilled;
+  - a refusal keeps the email, clears the password and says so (A16b).
+- **Failure** (A13) and **offline** (A13b) use our own words, with no detail from the service. Try again starts afresh.
+- **Removing a sign-in** asks first (A14). Cancel is the primary, and Return lands on it.
+- **Every way out ends a sign-in at once** (A12, `BUG-49`):
+  - leaving a step cancels its poll or the request in flight;
+  - an answer that arrives after is never stored;
+  - Cancel goes back to A9, focused on the row that opened it.
+- A profile card's line names the sync services it is signed in to. Deleting a profile drops its sign-ins.
+
+**Where sign-ins are kept: memory only, until the Keychain arrives in `95f`** (D3).
+- `InMemorySignInStore` holds one credential per profile and service. Nothing goes to a file, a preference or a log, and
+  quitting forgets them all.
+- **The screen says so:** "Sign-ins last until you quit CloudStream." (`account_signins_until_quit`) is on A9, A11 and A16.
+  It is a new key in all 62 locales: the strings baseline's twenty-seventh move, and one `R` field in
+  `classes-jar.api`.
+- On A16 the password note ("kept on this device only and never backed up") stays, with that line under it (the PM, Q2).
+- What each service keeps, as `DS-25` read it from Android:
+  - Simkl: its token.
+  - SubDL: the API key its login trades the password for, and the email. Never the password.
+  - OpenSubtitles: its token, which lasts about 24 hours with no refresh, with the email and password kept beside it to
+    renew it (the owner's ruling). Nothing renews it yet: nothing on the Mac uses the token.
+- `Credential`, `PairCode`, the password step and the store all print as `<hidden>`.
+
+**The network** (`HttpSignInClient`): the same exchanges as `SimklApi`, `OpenSubtitlesApi` and `Subdl`, over the OkHttp
+the Mac already has. There is no new dependency.
+- HTTPS to each service's own host. No redirect is followed. Answers are capped at 64 KiB.
+- No interceptor, and nothing about a request or an answer is printed. A failure is only its kind: offline, refused,
+  failed or pending.
+- Cancelling the coroutine cancels the call.
+- Simkl's answer is untrusted:
+  - only a code of 4 to 16 plain letters and digits is shown;
+  - only an https page on simkl.com is shown or opened, and anything else falls back to `https://simkl.com/pin`.
+- **Simkl's client id** comes from the `SIMKL_CLIENT_ID` env var, or `simkl.id` in the untracked `local.properties`, as
+  `:app` reads it (the PM, Q3). `generateDesktopSecrets` writes it into a generated source under `build/`, and only
+  plain letters and digits get there. Without it, Simkl reads "Not available here" and has no button. Nothing is in the
+  repo.
+- OpenSubtitles' app key and user agent are `OpenSubtitlesApi`'s own, already public in the Android source.
+
+**Not here:**
+- AniList and MyAnimeList are hidden until `95e` adds the browser's redirect (the PM, Q4). Kitsu is never on the Mac.
+- **The QR on A11 is not drawn.** The Mac has no QR encoder. `:app`'s `qrcode-kotlin` 4.5.0 is in the catalog, but using
+  it in `:desktopApp` is a dependency decision, asked separately. The page's address and Open are the way there.
+- **Nothing uses a sign-in yet.** Syncing progress, and subtitle search through the services, come later.
+- The Keychain, so sign-ins outlive a quit, is `95f`.
+
+**Different from the board:**
+- **A9 has a "Subtitle services" group** (the existing `settings_subtitle_services`) with OpenSubtitles and SubDL. The Mac's
+  Settings has no subtitle services yet (`DS-24` ST3b is unbuilt), so A16 had no way in.
+- Show is a toggle that keeps its word. No "Hide" key exists, and none was added.
+- The field label says Email for OpenSubtitles as the board does, but OpenSubtitles' login takes a username. Whether it
+  also takes an email was not measured.
+
+**Tests:**
+- `SyncFlowTest`, 10 cases through real key and pointer events, over a fake client and a fake clock:
+  - A9 by presence, AniList, MyAnimeList and Kitsu absent, the until-quit line, and Done;
+  - Simkl's code, countdown and polling interval, Open, and approval connecting this profile only;
+  - Cancel ends the wait: no poll after it, and an approval after it stores nothing;
+  - expiry stops polling, and Get a new code;
+  - no client id means "Not available here";
+  - A16 and A16b: masked, never prefilled, the email kept, the password cleared, Show, and SubDL keeping no password;
+  - A13 and A13b, and Try again;
+  - A14, with Return as Cancel;
+  - deleting a profile drops its sign-ins, and a restart has none;
+  - **the PM's test:** the three sign-ins write no file under the profiles' directory or a sandboxed `user.home`, and no
+    output or log line carries the email, password, token or code. Red-checked both ways: a token printed from the store,
+    and a file written to `user.home`, each fail it.
+- `HttpSignInClientTest`, 7 cases against a loopback server:
+  - Simkl's code and the page check;
+  - a code with markup refused;
+  - no client id sends nothing;
+  - a poll pending, then answered with a token;
+  - OpenSubtitles: the key sent, the password kept, a 401 refused;
+  - SubDL: the login traded for the key, and no password kept;
+  - a redirect not followed, a huge or unreadable answer failing, and a closed port reading as offline.
+- Renders of A9, A11, A11b, A12, A13, A13b, A14, A16 and A16b were compared with the boards by eye.

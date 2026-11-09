@@ -71,6 +71,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_add_profile
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_manage_note
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_manage_profiles
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_sync_title
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_select_note
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_select_title
 import com.lagradost.cloudstream4.core.strings.generated.resources.edit
@@ -304,7 +305,7 @@ private const val DASH_PX = 4f
  * [onChoose] and closes the list, and choosing the current one only closes it. A click outside or Escape closes it
  * with nothing chosen. [open] is the host's, so the window's own Escape can close it too.
  *
- * [onManage] adds Manage profiles under a rule (`KMP-95b`); Sync services joins it with `KMP-95d`.
+ * [onManage] adds Manage profiles under a rule (`KMP-95b`), and [onSync] Sync services under it (`KMP-95d`, A9).
  */
 @Composable
 fun ProfileButtonDesktop(
@@ -314,6 +315,7 @@ fun ProfileButtonDesktop(
     onChoose: (id: Int) -> Unit,
     modifier: Modifier = Modifier,
     onManage: (() -> Unit)? = null,
+    onSync: (() -> Unit)? = null,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -349,6 +351,7 @@ fun ProfileButtonDesktop(
             ProfileMenu(
                 profiles = profiles,
                 onManage = onManage?.let { manage -> { onOpenChange(false); manage() } },
+                onSync = onSync?.let { sync -> { onOpenChange(false); sync() } },
                 onDismiss = { onOpenChange(false) },
                 onChoose = { id ->
                     onOpenChange(false)
@@ -360,7 +363,13 @@ fun ProfileButtonDesktop(
 }
 
 @Composable
-private fun ProfileMenu(profiles: List<ProfileCard>, onManage: (() -> Unit)?, onDismiss: () -> Unit, onChoose: (Int) -> Unit) {
+private fun ProfileMenu(
+    profiles: List<ProfileCard>,
+    onManage: (() -> Unit)?,
+    onSync: (() -> Unit)?,
+    onDismiss: () -> Unit,
+    onChoose: (Int) -> Unit,
+) {
     val colors = CloudStreamTheme.colors
     val shape = CloudStreamTheme.shapes.large
     val gap = with(LocalDensity.current) { ProfilesDesktopDefaults.PopoverOffset.roundToPx() }
@@ -382,10 +391,9 @@ private fun ProfileMenu(profiles: List<ProfileCard>, onManage: (() -> Unit)?, on
                 .focusable(),
         ) {
             profiles.forEach { card -> MenuRow(card, onClick = { onChoose(card.id) }) }
-            if (onManage != null) {
-                MenuRule()
-                MenuAction(stringResource(Res.string.account_manage_profiles), onManage)
-            }
+            if (onManage != null || onSync != null) MenuRule()
+            if (onManage != null) MenuAction(stringResource(Res.string.account_manage_profiles), onManage)
+            if (onSync != null) MenuAction(stringResource(Res.string.account_sync_title), onSync)
         }
     }
 }

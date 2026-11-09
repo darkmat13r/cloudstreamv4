@@ -171,6 +171,8 @@ internal class DesktopProfiles(
     private val onSaveFailed: (Throwable) -> Unit = {},
     /** `KMP-95c`: each profile's PIN and its wrong-PIN count, in their own owner-only files beside the profiles. */
     val pins: DesktopPins = DesktopPins(libraryDirectory, onSaveFailed = onSaveFailed),
+    /** `KMP-95d`: each profile's sign-ins, in memory only until `KMP-95f` (D3). */
+    val signIns: SignInStore = InMemorySignInStore(),
 ) {
     var stored: StoredProfiles by mutableStateOf(StoredProfiles())
         private set
@@ -264,6 +266,8 @@ internal class DesktopProfiles(
             clearLibrary(id)
             pins.forget(id)
         }
+        // In memory only, so they go whether or not the file was written: A8 says the sign-ins leave with the profile.
+        signIns.forget(id)
         return true
     }
 
@@ -295,7 +299,10 @@ internal class DesktopProfiles(
     /** Removes [id]'s PIN, once its current one was given (A7c). False when it could not be written: still locked. */
     fun removePin(id: Int): Boolean = pins.remove(id).also { pinChanges++ }
 
-    /** The cards the picker and the sidebar's list draw. A profile with a PIN is locked; nothing syncs until `95d`. */
+    /**
+     * The cards the picker and the sidebar's list draw. A profile with a PIN is locked. Its line names the sync services
+     * it is signed in to (`KMP-95d`), read by presence; the subtitle services are not sync, so they are not named.
+     */
     fun cards(defaultName: String): List<ProfileCard> {
         // Read, so a composition drawing the cards follows a PIN being set or removed.
         @Suppress("UNUSED_VARIABLE") val changes = pinChanges
@@ -305,6 +312,7 @@ internal class DesktopProfiles(
                 name = profile.name ?: defaultName,
                 current = profile.id == stored.current,
                 locked = pins.hasPin(profile.id),
+                syncedWith = DesktopService.entries.filter { !it.subtitles && signIns.get(profile.id, it) != null }.map { it.displayName },
             )
         }
     }
