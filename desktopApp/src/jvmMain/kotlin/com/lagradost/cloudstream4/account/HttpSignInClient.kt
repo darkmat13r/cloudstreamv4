@@ -39,6 +39,7 @@ import kotlin.coroutines.resume
 internal class HttpSignInClient(
     private val simklClientId: String? = DesktopSecrets.simklClientId,
     private val malClientId: String? = DesktopSecrets.malClientId,
+    private val aniListClientId: String? = DesktopSecrets.aniListClientId,
     private val malSite: HttpUrl = MAL_SITE.toHttpUrl(),
     private val http: OkHttpClient = defaultClient(),
     private val simklApi: HttpUrl = SIMKL_API.toHttpUrl(),
@@ -49,6 +50,22 @@ internal class HttpSignInClient(
     override val simklAvailable: Boolean get() = simklClientId != null
 
     override val malAvailable: Boolean get() = malClientId != null
+
+    override val aniListAvailable: Boolean get() = aniListClientId != null
+
+    /**
+     * `AniListApi.loginRequest`'s page, the implicit grant (no secret, no PKCE: AniList offers neither to an app that
+     * cannot keep one), with a random [state] Android does not send (the owner, 2026-11-09).
+     */
+    override fun aniListSignInPage(state: String): String? {
+        val id = aniListClientId ?: return null
+        return ANILIST_AUTHORIZE.toHttpUrl().newBuilder()
+            .addQueryParameter("client_id", id)
+            .addQueryParameter("response_type", "token")
+            .addQueryParameter("state", state)
+            .build()
+            .toString()
+    }
 
     /** `MALApi.loginRequest`'s page, with a random [state] in place of its counter (the owner, 2026-11-08). */
     override fun malSignInPage(state: String, verifier: String): String? {
@@ -132,7 +149,7 @@ internal class HttpSignInClient(
         when (service) {
             DesktopService.OpenSubtitles -> openSubtitles(email, password)
             DesktopService.SubDl -> subDl(email, password)
-            DesktopService.Simkl, DesktopService.MyAnimeList -> SignInResult.Failed
+            DesktopService.Simkl, DesktopService.MyAnimeList, DesktopService.AniList -> SignInResult.Failed
         }
 
     private suspend fun openSubtitles(username: String, password: String): SignInResult<Credential> {
@@ -249,6 +266,7 @@ internal class HttpSignInClient(
         const val OPEN_SUBTITLES_API = "https://api.opensubtitles.com/api/v1/"
         const val SUBDL_API = "https://api.subdl.com/"
         const val MAL_SITE = "https://myanimelist.net/"
+        const val ANILIST_AUTHORIZE = "https://anilist.co/api/v2/oauth/authorize"
 
         /** Where a person approves a Simkl code, when Simkl's own answer names none we trust. */
         const val SIMKL_PIN_PAGE = "https://simkl.com/pin"

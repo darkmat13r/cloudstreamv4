@@ -22,6 +22,7 @@ fun clientId(env: String, key: String): Provider<String> = providers.environment
 val clientIds: Map<String, Provider<String>> = mapOf(
     "simklClientId" to clientId("SIMKL_CLIENT_ID", "simkl.id"),
     "malClientId" to clientId("MAL_KEY", "mal.key"),
+    "aniListClientId" to clientId("ANILIST_KEY", "anilist.key"),
 )
 val generateDesktopSecrets = tasks.register("generateDesktopSecrets") {
     val out = layout.buildDirectory.dir("generated/desktopSecrets/kotlin")
@@ -155,7 +156,7 @@ compose.desktop {
             val iconsRoot = project.file("desktop-icons")
             macOS {
                 // iconFile.set(iconsRoot.resolve("icon-mac.icns"))
-                // KMP-95e: the browser's sign-ins come back as cloudstreamapp://mallogin (`AccountManager.APP_STRING`).
+                // KMP-95e: the browser's sign-ins come back as cloudstreamapp://mallogin and anilistlogin (`AccountManager.APP_STRING`).
                 // Only a packaged app has this; `BrowserRedirects` accepts only what a waiting sign-in asked for.
                 infoPlist {
                     extraKeysRawXml = """

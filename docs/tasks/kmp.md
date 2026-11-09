@@ -7211,7 +7211,7 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
   Settings' default.
 - `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.
 
-## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr #290, 95e in pr #296** · the PM's task, 2026-11-08
+## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr #290, 95e in pr #296 (AniList in pr #300)** · the PM's task, 2026-11-08
 
 `DS-25`'s boards, built in six PRs (the PM's plan, 2026-11-08):
 
@@ -7626,9 +7626,25 @@ held, but unused: until `KMP-95h` (refresh-token renewal) lands, an expired sign
 sign-ins only until the app quits (`95d`), so a Mac session never outlives a token today; this matters once `95f`
 keeps them in the Keychain.
 
-**AniList waits on the owner** (asked, 2026-11-09). Its docs describe only the implicit grant for an app that cannot keep
-a secret, with no PKCE and no `state` shown, and Android sends none. Whether AniList echoes a `state` was not measured:
-that takes a real sign-in under the app's client. So AniList is not on A9 in this PR.
+**AniList** (`#300`, the follow-up to `#296`; the owner's ruling (a), 2026-11-09): its docs describe only the implicit grant for
+an app that cannot keep a secret, with no PKCE and no `state` shown, and Android sends none.
+- The Mac sends a random `state` and **requires it back**. AniList's redirect puts the token in the URL's fragment, so
+  `BrowserRedirects` reads the fragment as well as the query, and refuses a name that appears in both.
+- **If AniList does not echo the state**, a redirect with none on `anilistlogin` ends the sign-in as A13 ("AniList didn't
+  confirm the sign-in. Nothing was saved."), and its token is dropped. It is said plainly, rather than waiting for ever.
+  A state that is present but wrong is still ignored, as for MyAnimeList.
+- The token is checked as every token is, and kept alone. It lasts a year, and AniList has no refresh token.
+- **Its client id** comes from `ANILIST_KEY`, or `anilist.key` in the untracked `local.properties`, as `:app` reads it.
+  Without it, AniList reads "Not available here".
+- **Not measured: whether AniList echoes the state.** The owner will run one real sign-in. If it does not echo it,
+  AniList is to be marked unavailable on the Mac.
+- Tests:
+  - `BrowserRedirectsTest`, 2 more: the fragment token with its state and a name in both halves refused; a redirect with
+    no state ending an AniList sign-in, while MyAnimeList's keeps waiting.
+  - `HttpSignInClientTest`, 1 more: AniList's page.
+  - `SyncFlowTest`, 2 more: AniList signing in through the fragment with its own state only; and with no state, A13 and
+    nothing kept.
+  - Red-checked: without ending on a stateless redirect, the no-state test fails.
 
 **Measured on a packaged build** (`createDistributable`, Temurin 17, this Mac):
 - The bundle's Info.plist carries `CFBundleURLTypes` with `cloudstreamapp`, read back with `PlistBuddy`.

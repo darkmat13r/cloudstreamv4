@@ -41,9 +41,10 @@ class HttpSignInClientTest {
         if (bytes.isNotEmpty()) responseBody.use { it.write(bytes) } else close()
     }
 
-    private fun client(simkl: String? = "id0fixture", mal: String? = "mal0fixture") = HttpSignInClient(
+    private fun client(simkl: String? = "id0fixture", mal: String? = "mal0fixture", aniList: String? = "1234") = HttpSignInClient(
         simklClientId = simkl,
         malClientId = mal,
+        aniListClientId = aniList,
         malSite = "${base}mal/".toHttpUrl(),
         simklApi = base.toHttpUrl(),
         openSubtitlesApi = "${base}os/".toHttpUrl(),
@@ -156,6 +157,17 @@ class HttpSignInClientTest {
         assertEquals("v".repeat(128), page.queryParameter("code_challenge"))
         assertEquals("plain", page.queryParameter("code_challenge_method"))
         assertNull(client(mal = null).malSignInPage("s", "v"))
+    }
+
+    @Test
+    fun `AniList's page is its implicit grant, with the state, and none without a key`() {
+        val page = assertNotNull(client().aniListSignInPage(state = "st4te")).toHttpUrl()
+        assertEquals("anilist.co", page.host)
+        assertEquals("/api/v2/oauth/authorize", page.encodedPath)
+        assertEquals("1234", page.queryParameter("client_id"))
+        assertEquals("token", page.queryParameter("response_type"))
+        assertEquals("st4te", page.queryParameter("state"))
+        assertNull(client(aniList = null).aniListSignInPage("s"))
     }
 
     @Test

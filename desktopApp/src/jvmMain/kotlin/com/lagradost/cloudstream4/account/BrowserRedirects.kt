@@ -18,15 +18,19 @@ import java.util.Base64
  *   (`mallogin:99`) or a path (`mallogin/other`) is refused, so nothing dressed up as the path gets through.
  * - **Once**: the first accepted redirect ends the wait, and any after it does nothing.
  * - **Cancel ends the wait at once**, so a redirect that arrives late does nothing.
- * - **The URL is never logged or stored**. Only its query's values reach the sign-in, which keeps nothing but the
- *   token it trades them for.
+ * - **The URL is never logged or stored**. Only its values, from the query or the fragment (AniList's implicit grant puts
+ *   its token there), reach the sign-in, which keeps nothing but the token.
+ * - **A redirect with no state at all**, on the path of a sign-in that asked for it ([expect]'s `endWithoutState`), ends
+ *   that sign-in with nothing signed in, and its values are dropped. That is AniList (the owner's ruling, 2026-11-09):
+ *   a state is sent and required back, and if AniList does not echo it, the sign-in says so plainly instead of waiting
+ *   for ever. A state that is present but wrong is still ignored.
  *
  * Thread-safe: macOS hands a URL over on the AWT thread, and a sign-in waits from the window's coroutines.
  */
 internal class BrowserRedirects {
 
     /** A sign-in waiting for its redirect. [await] gives the redirect's query, without the state. */
-    inner class Waiting internal constructor(val path: String, private val state: String) {
+    inner class Waiting internal constructor(val path: String, private val state: String, internal val endWithoutState: Boolean) {
         internal val result = CompletableDeferred<Map<String, String>>()
 
         internal fun matches(candidate: String?): Boolean =
@@ -47,8 +51,8 @@ internal class BrowserRedirects {
     private var waiting: Waiting? = null
 
     /** Starts waiting for [path]'s redirect carrying [state]. A sign-in already waiting is ended: one at a time. */
-    fun expect(path: String, state: String): Waiting {
-        val next = Waiting(path, state)
+    fun expect(path: String, state: String, endWithoutState: Boolean = false): Waiting {
+        val next = Waiting(path, state, endWithoutState)
         val previous = synchronized(lock) { waiting.also { waiting = next } }
         previous?.result?.cancel()
         return next
@@ -63,23 +67,34 @@ internal class BrowserRedirects {
         if (!uri.scheme.equals(SCHEME, ignoreCase = true)) return false
         if (uri.rawUserInfo != null || uri.port != -1 || !uri.rawPath.isNullOrEmpty()) return false
         val query = parameters(uri.rawQuery) ?: return false
+        val fragment = parameters(uri.rawFragment) ?: return false
+        // A name in both is someone guessing which one a parser keeps.
+        if (query.keys.any { it in fragment }) return false
+        val values = query + fragment
+        var stateless = false
         val accepted = synchronized(lock) {
             val current = waiting ?: return false
-            if (uri.host != current.path || !current.matches(query[STATE])) return false
+            if (uri.host != current.path) return false
+            stateless = values[STATE] == null && current.endWithoutState
+            if (!stateless && !current.matches(values[STATE])) return false
             waiting = null
             current
         }
-        return accepted.result.complete(query - STATE)
+        return accepted.result.complete(if (stateless) mapOf(NO_STATE to "") else values - STATE)
     }
 
     companion object {
         const val SCHEME = "cloudstreamapp"
         const val STATE = "state"
 
+        /** What a sign-in gets in place of the values when its redirect came back with no state: nothing to use. */
+        const val NO_STATE = "no-state"
+
         /**
-         * The query's values, each at most once; null for a query that repeats a name or cannot be read. Decoded as
-         * RFC 3986 says a URI's query is (the reviewer of `#296`): `%XX` only, so a `+` stays a `+`. `URLDecoder` alone
-         * is HTML form decoding, which would turn it into a space and spoil a code or a token carrying one.
+         * A query's or a fragment's values, each at most once; null for one that repeats a name or cannot be read.
+         * Decoded as RFC 3986 says a URI's query is (the reviewer of `#296`): `%XX` only, so a `+` stays a `+`.
+         * `URLDecoder` alone is HTML form decoding, which would turn it into a space and spoil a code or a token
+         * carrying one.
          */
         internal fun parameters(raw: String?): Map<String, String>? {
             if (raw.isNullOrEmpty()) return emptyMap()

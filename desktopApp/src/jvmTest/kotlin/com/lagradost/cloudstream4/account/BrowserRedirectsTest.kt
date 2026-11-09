@@ -60,6 +60,26 @@ class BrowserRedirectsTest {
     }
 
     @Test
+    fun `AniList's token in the fragment is read with its state, and a name in both halves is refused`() = runBlocking {
+        val waiting = redirects.expect("anilistlogin", "s1", endWithoutState = true)
+        assertFalse(redirects.deliver("cloudstreamapp://anilistlogin?state=s1#state=s1&access_token=t"), "state twice")
+        assertFalse(redirects.deliver("cloudstreamapp://anilistlogin#access_token=t&state=wrong"), "a wrong state is still ignored")
+        val answer = async { waiting.await() }
+        assertTrue(redirects.deliver("cloudstreamapp://anilistlogin#access_token=t&token_type=Bearer&expires_in=31536000&state=s1"))
+        assertEquals("t", answer.await()["access_token"])
+    }
+
+    @Test
+    fun `with no state at all, a sign-in that asked for that ends with nothing to use, and one that did not keeps waiting`() = runBlocking {
+        val aniList = redirects.expect("anilistlogin", "s1", endWithoutState = true)
+        assertTrue(redirects.deliver("cloudstreamapp://anilistlogin#access_token=t&token_type=Bearer"))
+        assertEquals(mapOf(BrowserRedirects.NO_STATE to ""), aniList.await(), "the token is dropped")
+
+        redirects.expect("mallogin", "s2")
+        assertFalse(redirects.deliver("cloudstreamapp://mallogin?code=c"), "MyAnimeList keeps waiting")
+    }
+
+    @Test
     fun `a state and a verifier are fresh, url-safe and long enough`() {
         val states = List(50) { BrowserRedirects.newState() }
         val verifiers = List(50) { BrowserRedirects.newVerifier() }

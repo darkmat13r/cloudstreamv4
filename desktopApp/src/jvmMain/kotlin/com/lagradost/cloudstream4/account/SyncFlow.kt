@@ -91,6 +91,7 @@ internal fun SyncSheets(
                     store.get(profile, service) != null -> SyncStatus.Connected
                     service == DesktopService.Simkl && !client.simklAvailable -> SyncStatus.Unavailable
                     service == DesktopService.MyAnimeList && !client.malAvailable -> SyncStatus.Unavailable
+                    service == DesktopService.AniList && !client.aniListAvailable -> SyncStatus.Unavailable
                     else -> SyncStatus.NotConnected
                 }
                 SyncRowState(
@@ -139,9 +140,13 @@ private fun start(service: DesktopService): SyncStep = when (service.kind) {
 }
 
 /**
- * A10 (`KMP-95e`): MyAnimeList in the browser. A fresh `state` and PKCE verifier for every sign-in, never reused; the
- * page opens on its own, and the sheet waits for the one redirect that carries the state. Leaving the step, by Cancel,
- * Escape or a switch, ends the wait at once, so a redirect after it is ignored.
+ * A10 (`KMP-95e`): AniList or MyAnimeList in the browser. A fresh `state` for every sign-in, and for MyAnimeList a fresh
+ * PKCE verifier, never reused; the page opens on its own, and the sheet waits for the one redirect that carries the
+ * state. Leaving the step, by Cancel, Escape or a switch, ends the wait at once, so a redirect after it is ignored.
+ *
+ * - MyAnimeList's redirect brings a code, traded for the token with the verifier.
+ * - AniList's brings the token itself (its implicit grant), checked as every token is. **If it comes back with no
+ *   state**, AniList did not echo it, and the sign-in ends as A13 with the token dropped (the owner, 2026-11-09).
  */
 @Composable
 private fun BrowserStep(
@@ -156,17 +161,25 @@ private fun BrowserStep(
     // Made once per step: Open again opens the same page, with the same state, for the same wait.
     val state = remember(step) { BrowserRedirects.newState() }
     val verifier = remember(step) { BrowserRedirects.newVerifier() }
-    val page = remember(step) { client.malSignInPage(state, verifier) }
+    val aniList = step.service == DesktopService.AniList
+    val page = remember(step) { if (aniList) client.aniListSignInPage(state) else client.malSignInPage(state, verifier) }
     LaunchedEffect(step) {
-        if (page == null) return@LaunchedEffect onStep(SyncStep.Failed(step.service, offline = false))
-        val waiting = redirects.expect(MAL_PATH, state)
+        val failed = SyncStep.Failed(step.service, offline = false)
+        if (page == null) return@LaunchedEffect onStep(failed)
+        val waiting = redirects.expect(if (aniList) ANILIST_PATH else MAL_PATH, state, endWithoutState = aniList)
         try {
             openUrl(page)
             val answer = waiting.await()
-            // MyAnimeList says no with an `error`, and with no code: either way nothing was signed in.
-            val code = answer["code"]
-            if (code == null || answer.containsKey("error")) return@LaunchedEffect onStep(SyncStep.Failed(step.service, offline = false))
-            val next = when (val result = client.malExchange(code, verifier)) {
+            // A refusal comes back as an `error`; AniList with no state is BrowserRedirects.NO_STATE. Nothing signs in.
+            if (answer.containsKey("error") || answer.containsKey(BrowserRedirects.NO_STATE)) return@LaunchedEffect onStep(failed)
+            val result = if (aniList) {
+                answer["access_token"]?.takeIf(HttpSignInClient::isToken)?.let { SignInResult.Done(Credential(token = it)) }
+                    ?: SignInResult.Failed
+            } else {
+                val code = answer["code"] ?: return@LaunchedEffect onStep(failed)
+                client.malExchange(code, verifier)
+            }
+            val next = when (result) {
                 is SignInResult.Done -> {
                     currentCoroutineContext().ensureActive()
                     store.put(profile, step.service, result.value)
@@ -189,6 +202,9 @@ private fun BrowserStep(
 
 /** MyAnimeList's redirect: `cloudstreamapp://mallogin`, `MALApi.redirectUrlIdentifier`. */
 private const val MAL_PATH = "mallogin"
+
+/** AniList's: `cloudstreamapp://anilistlogin`, `AniListApi.redirectUrlIdentifier`. */
+private const val ANILIST_PATH = "anilistlogin"
 
 private sealed interface PairState {
     data object Asking : PairState
