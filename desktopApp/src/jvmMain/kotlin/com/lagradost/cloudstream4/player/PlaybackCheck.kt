@@ -10,6 +10,8 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.runBlocking
+import java.io.File
+import java.net.URI
 
 /**
  * `--check-playback <url> [seconds]`, or `--check-playback plugin:<provider>:<query> [seconds]`, which
@@ -19,10 +21,15 @@ import kotlinx.coroutines.runBlocking
  * thing that shows the host's policy still lets libVLC work. Prints counts and status, never a URL:
  * a plugin's stream links can carry tokens.
  *
+ * A local file, by path or `file://` URL, is copied into the host's own directory first ([VlcPlayer.stage]), as
+ * `--check-subtitle-render` does: the sandboxed host can read nothing outside it, so the file as named would never
+ * play (`BUG-76`). Only a target typed on the command line is: a plugin's link is never staged, whatever it names
+ * ([pluginStream]), so nothing a provider returns can reach [VlcPlayer.stage].
+ *
  * @return 0 when frames arrived and the stream did not fail.
  */
 internal fun runPlaybackCheck(target: String, seconds: Int): Int {
-    if (!target.startsWith(PLUGIN_PREFIX)) return play(target, null, null, null, seconds)
+    if (!target.startsWith(PLUGIN_PREFIX)) return play(directStream(target), seconds)
     val (provider, query) = target.removePrefix(PLUGIN_PREFIX).split(':', limit = 2)
     return runBlocking {
         val extensions = SandboxedExtensions()
@@ -30,7 +37,7 @@ internal fun runPlaybackCheck(target: String, seconds: Int): Int {
             extensions.loadInstalled()
             val link = firstLink(extensions, provider, query) ?: return@runBlocking NO_LINK
             println("playback: ${link.name} ${link.quality}p separateAudio=${link.audioUrl != null}")
-            play(link.url, link.referer, link.userAgent, link.audioUrl, seconds)
+            play(pluginStream(link), seconds)
         } finally {
             extensions.close()
         }
@@ -47,7 +54,22 @@ private suspend fun firstLink(extensions: SandboxedExtensions, name: String, que
     }
 }
 
-private fun play(url: String, referer: String?, userAgent: String?, audioUrl: String?, seconds: Int): Int {
+/** What a check plays: a local file to copy into the host's directory first, or a URL passed on as it is. */
+internal sealed interface CheckStream {
+    data class Staged(val file: File) : CheckStream
+
+    data class AsIs(val url: String, val referer: String?, val userAgent: String?, val audioUrl: String?) : CheckStream
+}
+
+/** A target typed on the command line: the one place a local file is staged. */
+internal fun directStream(target: String): CheckStream =
+    localPlaybackFile(target)?.let(CheckStream::Staged) ?: CheckStream.AsIs(target, null, null, null)
+
+/** A provider's link, always as it is, even when it names a local file. */
+internal fun pluginStream(link: RemoteLink): CheckStream =
+    CheckStream.AsIs(link.url, link.referer, link.userAgent, link.audioUrl)
+
+private fun play(stream: CheckStream, seconds: Int): Int {
     val player = VlcPlayer.createOrNull() ?: run {
         println("playback: no sandboxed player here (VLC missing, or no sandbox-exec)")
         return NO_PLAYER
@@ -61,7 +83,10 @@ private fun play(url: String, referer: String?, userAgent: String?, audioUrl: St
             size = "${image.width}x${image.height}"
         }
     }.launchIn(scope)
-    val started = player.play(url, referer, userAgent, audioUrl)
+    val started = when (stream) {
+        is CheckStream.Staged -> player.play(player.stage(stream.file), null, null, null)
+        is CheckStream.AsIs -> player.play(stream.url, stream.referer, stream.userAgent, stream.audioUrl)
+    }
     repeat(seconds) { Thread.sleep(MILLIS_PER_SECOND) }
     val status = player.status.value
     println(
@@ -73,6 +98,20 @@ private fun play(url: String, referer: String?, userAgent: String?, audioUrl: St
     return if (started && frames > 0 && !status.failed) 0 else 1
 }
 
+/**
+ * The file [target] names when it is a local one, by path or `file://` URL, and exists; null for anything else, a
+ * stream's URL included, which goes to the host as it is.
+ */
+internal fun localPlaybackFile(target: String): File? {
+    val file = when {
+        target.startsWith(FILE_SCHEME, ignoreCase = true) -> runCatching { File(URI(target)) }.getOrNull()
+        target.contains("://") -> null
+        else -> File(target)
+    }
+    return file?.takeIf { it.isFile }
+}
+
+private const val FILE_SCHEME = "file:"
 private const val PLUGIN_PREFIX = "plugin:"
 private const val MILLIS_PER_SECOND = 1000L
 private const val NO_LINK = 3

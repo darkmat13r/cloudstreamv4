@@ -3118,3 +3118,41 @@ With the fix, three times in a row: `AndroidDetailSourceFailureTest` 1/1, `Searc
   the link pattern from `AndroidHomeSource.toReply`, and keep only `redactedText`, as `redactedReason` does here. Then
   there is no fifth copy to drift. (Review on #251. `BUG-61`'s entry lives in #251; it gets the same line when this
   lands.)
+
+---
+
+## BUG-76 — `--check-playback` on a local file never played: the sandbox cannot read it · **low, check only**
+
+**Status:** fixed in this PR · found 2026-11-08 by sys-desktop-2 (frames=0 on master, before `BUG-73` too)
+
+**Measured, on master (2a3f16b6a), a scratch `user.home`, nothing audible.** Two 20 s, 640×360 clips: `testsrc2` with
+no audio, and the same with a silent `anullsrc` track. Each was run by path and by `file://` URL, for 6 s:
+
+| Clip | Master | This PR |
+|---|---|---|
+| no audio, path | frames=0, failed=true | frames=68, 640x360, playing, failed=false |
+| no audio, `file://` | frames=0, failed=true | frames=82, playing, failed=false |
+| with audio, path | frames=0, failed=true | frames=84, playing, failed=false |
+| with audio, `file://` | frames=0, failed=true | frames=83, playing, failed=false |
+
+**So it was not the clip.** The media host runs under a sandbox that lets it read only its own directory, libVLC and
+a few system paths (`SeatbeltProfile.mediaHostRules`). `--check-playback` handed it the file where it was, which the
+host may not open. `--check-subtitle-render` already copies its clip in first (`VlcPlayer.stage`).
+
+**Fix.** `--check-playback` does the same for a local target. `localPlaybackFile` recognises a path or a `file://`
+URL to a file that exists, and that file is staged; anything else, a stream's URL included, goes to the host as before.
+Only a target typed on the command line is staged: the `plugin:` branch passes its link on as it is even when it names a
+local file, so nothing a provider returns can reach the staging, whatever filter a later caller forgets (review,
+defence in depth). Nothing the app plays changed.
+
+**Does real local playback work?** Nothing in the Mac app plays a local file today: the series page's Play is not wired
+(`DesktopDownloadsHost`: `SeriesEffect.Play -> Unit`), and every player the app opens plays a provider's stream.
+So no user meets this. But the same wall is there for whoever wires Play for a download: the host cannot read
+`~/Downloads/CloudStream`. Letting it read the download folder, or staging or serving the file, is a sandbox decision,
+reported to the PM rather than made here.
+
+**Tests.** `PlaybackCheckTest` (4, run): a path, a `file://` URL with its space encoded, and the scheme in any case
+are staged; a stream URL, a missing file, a folder and a malformed `file://` URL are passed on as they are; a
+command-line target is staged and a stream is not; a plugin's link naming a local file, by path or `file://` URL, is
+passed on as it is, never staged. The
+playback itself needs VLC and the sandbox, so it is the measurement above, not a unit test.
