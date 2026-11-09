@@ -6971,7 +6971,8 @@ and re-checks the address really connected to, plus:
     hop is HTTP/1, and nothing more: an HTTP/2 stream is reset by OkHttp's own close, which does not drain, and its
     socket carries other streams. A body read to its stated length counts as ended: OkHttp hands the connection back to
     its pool on the read that takes the last byte, before any end is read, and the socket may already be another
-    call's.
+    call's. A body of no bytes (a redirect is often `Content-Length: 0`) has ended before it is read: OkHttp pools its
+    connection as soon as it is opened.
 - **The cache.** Backdrops use Coil's own disk cache, the one posters share: under the temporary directory, files named
   by a SHA-256 of the URL, readable by this user's other processes (0644), each body stored with its response headers.
 
@@ -6987,7 +6988,7 @@ top, 0.6 at 52 %, to the whole ground at its foot (`linear-gradient(0deg, #000 0
   empty, and user info in five forms, all refused); 2 KiB read and one byte more skipped with the page kept; lying
   lengths inside the slice cost the backdrop only; a slice past the frame fails the call; nothing the URL held reaches
   the log.
-- `BackdropImageTest`, 9, against a server on this machine, with the client built by the app's own `boundedImageClient`
+- `BackdropImageTest`, 10, against a server on this machine, with the client built by the app's own `boundedImageClient`
   (https off, as a test can only serve http) and one temporary disk cache per test: an image inside its bounds loads,
   kept no larger than twice the drawn size; a 175-byte file claiming 20000 by 20000, and one claiming 4097 by 4096, never
   reach the decoder (counted); a file one byte past its cap is refused; the client sends no plain-http request and
@@ -6996,7 +6997,8 @@ top, 0.6 at 52 %, to the whole ground at its foot (`linear-gradient(0deg, #000 0
   (with a length: measured 8192 bytes) or the cap and one read (chunked: the cap and 8283); a gzipped body of the cap and
   1 MiB of zeros, under 16 KiB on the wire (asserted), ends as `ErrorResult` past the cap; an image behind a 302 with a body loads; a body
   closed unread never cancels its call, and closes its hop's socket over HTTP/1.0 and 1.1 and not over HTTP/2; a body
-  read to its stated length, in pieces, leaves its socket open, and one byte short closes it (a chain
+  read to its stated length, in pieces, leaves its socket open, and one byte short closes it; a body of no bytes closed
+  unread leaves its socket open (a chain
   made by hand: a test server for HTTP/2 would be a new dependency, and OkHttp's own HTTP/2 classes differ between the
   version this compiles against, 4.12.0, and the one it runs with, measured as a `NoSuchMethodError`). The byte count is
   the client's socket, not the server's: loopback's socket buffers take 384 to 530 KiB past a reader that has stopped
@@ -7011,7 +7013,8 @@ top, 0.6 at 52 %, to the whole ground at its foot (`linear-gradient(0deg, #000 0
   application-level cap, the gzipped body is read whole; with the cap's lines taken out of `boundedImageClient`, the
   over-cap test fails; with a close that cancels, the redirect times out and the closed-unread test fails; with every
   protocol's socket closed, the HTTP/2 case fails; with an unknown tag read as art, the tag tests fail; without the
-  user-info check, `https://user:pass@…` is kept; with a body ended only at its end, the pooled socket is closed.
+  user-info check, `https://user:pass@…` is kept; with a body ended only at its end, the pooled socket is closed; with a body of no bytes not counted as
+  ended, its socket is closed.
 
 **Changed existing test code:** `HostProtocolFactsTest`'s "cannot read into what follows it" case writes bytes past a
 short facts slice. They now meet the reader of the sections after the facts, as an empty section of an unknown tag and

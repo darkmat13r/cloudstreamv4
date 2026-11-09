@@ -158,7 +158,8 @@ private class CappedBody(
     private val stop: () -> Unit,
     private val abandon: () -> Unit,
 ) : ResponseBody() {
-    private var ended = false
+    /** A body of no bytes has ended before it is read: OkHttp pools its connection as soon as it is opened. */
+    private var ended = body.contentLength() == 0L
 
     private fun refuse(): Nothing {
         stop()

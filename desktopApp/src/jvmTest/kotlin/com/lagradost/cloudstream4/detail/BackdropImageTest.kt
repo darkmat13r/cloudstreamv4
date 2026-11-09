@@ -302,13 +302,18 @@ class BackdropImageTest {
     }
 
     /**
-     * One hop through the cap, with a body of 100 bytes that states its length, [read] as given and then closed: over
-     * [protocol], on a connection whose socket is [socket]. Returns whether the call was cancelled.
+     * One hop through the cap, with [body] (by default 100 bytes that state their length), [read] as given and then
+     * closed: over [protocol], on a connection whose socket is [socket]. Returns whether the call was cancelled.
      *
      * The chain is made by hand: a test server for HTTP/2 would be a new dependency, and OkHttp's own HTTP/2 classes
      * differ between the version this compiles against and the one it runs with (measured: `NoSuchMethodError`).
      */
-    private fun throughCap(protocol: Protocol, socket: Socket, read: (okio.BufferedSource) -> Unit = {}): Boolean {
+    private fun throughCap(
+        protocol: Protocol,
+        socket: Socket,
+        body: okhttp3.ResponseBody = hundredBytes(),
+        read: (okio.BufferedSource) -> Unit = {},
+    ): Boolean {
         var cancelled = false
         fun <T> fake(type: Class<T>, answer: (String, Array<out Any?>) -> Any?): T = type.cast(
             java.lang.reflect.Proxy.newProxyInstance(type.classLoader, arrayOf(type)) { _, method, args ->
@@ -334,7 +339,7 @@ class BackdropImageTest {
                 "call" -> call
                 "connection" -> connection
                 "proceed" -> okhttp3.Response.Builder().request(args[0] as okhttp3.Request).protocol(protocol).code(302)
-                    .message("Found").body(hundredBytes()).build()
+                    .message("Found").body(body).build()
                 else -> error("not asked of the chain: $name")
             }
         }
@@ -377,6 +382,16 @@ class BackdropImageTest {
         Socket().use { socket ->
             throughCap(Protocol.HTTP_1_1, socket) { source -> source.require(99) }
             assertTrue(socket.isClosed, "one byte short is a body left before its end")
+        }
+    }
+
+    @Test
+    fun `a body of no bytes closed unread leaves its socket open, as OkHttp pooled it when it was opened`() {
+        // A redirect is often `Content-Length: 0`. OkHttp hands its connection back as soon as such a body is opened.
+        Socket().use { socket ->
+            val empty = okio.Buffer().asResponseBody(contentType = null, contentLength = 0)
+            assertFalse(throughCap(Protocol.HTTP_1_1, socket, empty))
+            assertFalse(socket.isClosed, "the socket of an empty body was closed")
         }
     }
 
