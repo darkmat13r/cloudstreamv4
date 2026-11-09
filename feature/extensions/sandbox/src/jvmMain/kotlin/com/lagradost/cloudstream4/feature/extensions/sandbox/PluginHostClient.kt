@@ -550,6 +550,13 @@ internal fun String?.httpUrlOrNull(): String? {
 
 internal val HTTP_SCHEMES = setOf("http", "https")
 
+/**
+ * A backdrop URL the app may fetch (`KMP-100`), or null: [httpUrlOrNull]'s checks, and https only. The backdrop's
+ * client also refuses any hop that is not https, so a redirect cannot step it down.
+ */
+internal fun String?.httpsUrlOrNull(): String? =
+    httpUrlOrNull()?.takeIf { url -> runCatching { URI(url).scheme }.getOrNull().equals("https", ignoreCase = true) }
+
 /** The host as written: a lowercased name or IP literal with no brackets or trailing dot. */
 internal fun isPrivateHostName(host: String): Boolean =
     host == "localhost" || host.endsWith(".localhost") || host.endsWith(".local") || PRIVATE_ADDRESS.matches(host)
@@ -605,6 +612,7 @@ internal fun RemoteDetails.cleaned(dropped: (String) -> Unit = {}) = copy(
     dataUrl = dataUrl?.sanitized(),
     episodes = episodes.take(MAX_ITEMS).map { it.copy(name = it.name?.sanitized(), data = it.data.sanitized()) },
     facts = facts.cleaned(dropped),
+    backdropUrl = backdropUrl.httpsUrlOrNull(),
 )
 
 /**

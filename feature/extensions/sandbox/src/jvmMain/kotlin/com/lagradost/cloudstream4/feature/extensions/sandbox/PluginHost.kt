@@ -384,6 +384,8 @@ object PluginHost {
             dataUrl = dataUrl,
             episodes = episodes.map { RemoteEpisode(it.name, it.data, it.season, it.episode) },
             facts = facts(),
+            // Courtesy, as the facts' cuts are: one too long to be read is not sent. The app checks what arrives.
+            backdropUrl = backgroundPosterUrl?.takeIf { it.toByteArray().size <= HostProtocol.MAX_IMAGE_URL_BYTES },
         )
     }
 

@@ -40,6 +40,7 @@ import com.lagradost.cloudstream4.account.BrowserRedirects
 import com.lagradost.cloudstream4.account.DesktopProfiles
 import com.lagradost.cloudstream4.account.ProfilesHost
 import com.lagradost.cloudstream4.account.installRedirectHandler
+import com.lagradost.cloudstream4.detail.BackdropImage
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
 import com.lagradost.cloudstream4.detail.nextEpisode
 import com.lagradost.cloudstream4.detail.requestPlay
@@ -737,6 +738,7 @@ private fun DetailHost(
         onBack = onBack,
         artwork = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
         origin = origin,
+        backdrop = { url -> BackdropImage(url = url, modifier = Modifier.fillMaxSize()) },
     )
 }
 

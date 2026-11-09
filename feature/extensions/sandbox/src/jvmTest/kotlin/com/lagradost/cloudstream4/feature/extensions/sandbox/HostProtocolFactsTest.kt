@@ -210,7 +210,9 @@ class HostProtocolFactsTest {
             dropped,
         )
         assertEquals(page, read)
-        assertEquals(listOf("facts: a section that could not be read"), dropped)
+        // The bytes past the slice now meet the art section's reader (KMP-100), which steps over them as a version it
+        // does not know. The facts reader still never reached them.
+        assertEquals(listOf("facts: a section that could not be read", "art: a version this app does not read"), dropped)
     }
 
     @Test

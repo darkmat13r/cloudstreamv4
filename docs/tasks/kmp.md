@@ -6926,6 +6926,60 @@ Proved against master's page code: the first and third fail ("the score, with it
 passes there, as master draws nothing for nothing, and fails (8 → 35 px) when the genres line is drawn without genres.
 The two wrap cases fail when a separator is put back before the fact that starts a line (the fact lands 14 px in).
 
+## KMP-100 — The Mac title page's backdrop, E1 and E3's wash · **built 2026-11-09**, stacked on `KMP-82` (`#298`)
+
+`TitleDetail.backdropUrl` existed, but the sandbox did not carry it and the Mac page never drew it. An image URL from an
+extension is a security boundary: the app fetches and decodes it in its own process.
+
+**The wire.** The host sends `LoadResponse.backgroundPosterUrl` (an existing API field; `:library` is unchanged) in a
+section after the facts, `ART_V1`, framed as the facts are: a version byte, a length, a slice read on its own. A version
+this app does not know is stepped over whole; a slice that cannot be read costs the backdrop, not the page; only a slice
+whose own length lies past the frame fails the call. The URL is at most 2 KiB (`MAX_IMAGE_URL_BYTES`), skipped unread
+past that. A frame from before has no section and opens with no backdrop.
+
+**The check** (`cleaned()`, in the app): `httpsUrlOrNull()`, the poster's `httpUrlOrNull()` (controls out; no
+`localhost`, `.local`, loopback, private, link-local or unspecified address as written) and https only.
+
+**The fetch** (`BackdropImage`, `:desktopApp`): the poster's client, which allows only public addresses on every hop
+and re-checks the address really connected to, plus:
+- **https on every hop:** `followSslRedirects(false)`, and a network interceptor refusing any hop that is not https.
+- **A bounded decode.** Measured by reading Coil 3.3.0's bytecode: its desktop decoder makes a Skia image from the
+  encoded bytes and draws it into a bitmap of the requested size. The requested size (the header's pixels) bounds the
+  bitmap kept, but not the decode: Skia decodes the whole image first. So `BoundedDecoder` reads the size the image claims
+  from its header with Skia's codec, which decodes no pixels for it, and refuses a file past 8 MB or an image past
+  4096 by 4096 (Coil's own bitmap ceiling, 64 MB) before Coil's own Skia decoder sees the bytes. No new decode path.
+  Measured: without the check, a 175-byte PNG claiming 20000 by 20000 was decoded, and that one call took about four
+  minutes.
+
+**The page.** A defaulted `backdrop` slot on `DetailScreenDesktop`, filled in `Main.kt` (one line, cleared with its
+owner). The boards' wash: the art across the page under the bar, 296 tall, under a scrim from the ground at 0.3 at the
+top, 0.6 at 52 %, to the whole ground at its foot (`linear-gradient(0deg, #000 0%, rgba(0,0,0,0.6) 48%, rgba(0,0,0,0.3)
+100%)`, read top-down). It scrolls away with the header. Without a backdrop nothing is drawn: no poster in its place.
+
+**Tests:**
+- `HostProtocolArtTest`, 8: the round trip; a frame from before; an unknown version skipped; only public https kept
+  (http, `file:`, `data:`, `localhost`, `.local`, `127.0.0.1`, `10.`, `192.168.`, `169.254.169.254`, `[::1]`, no scheme
+  and empty all refused); 2 KiB read and one byte more skipped with the page kept; lying lengths inside the slice cost the
+  backdrop only; a slice past the frame fails the call; nothing the URL held reaches the log.
+- `BackdropImageTest`, 4, against a server on this machine: an image inside its bounds loads, kept no larger than twice
+  the drawn size; a 175-byte file claiming 20000 by 20000, and one claiming 4097 by 4096, never reach the decoder (counted);
+  a file one byte past its cap is refused; the client sends no plain-http request and follows no https-to-http redirect.
+- `DetailScreenTest`: a title with a backdrop asks the slot for its URL and draws it under the bar, with the ground at
+  the scrim's foot; one without asks nothing and draws plain ground. `TitleFactsTest`: the URL is carried, and none is
+  none, not the poster.
+- Proved by mutation: without the pixel check, the claiming file decodes; with `httpUrlOrNull` in place of the https
+  check, `http://` is kept; without the interceptor, a plain-http request is sent; without the wash, the slot is never
+  asked.
+
+**Changed existing test code:** `HostProtocolFactsTest`'s "cannot read into what follows it" case writes bytes past a
+short facts slice. They now meet the art reader, which steps over them as an unknown version, so its expected log gains
+`art: a version this app does not read`. The facts reader still never reaches them.
+
+## KMP-102 — The same hardening for posters · **open**, follow-up of `KMP-100`
+
+Posters go through `httpUrlOrNull()` and `posterHttpClient`, so they accept http, follow https-to-http redirects, and are
+decoded whole whatever size they claim. Give them `KMP-100`'s https-only check and client and its `BoundedDecoder`.
+
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 
 **Status:** open · found by reading the code for `DS-24`'s Network pane (ST8), not by a run

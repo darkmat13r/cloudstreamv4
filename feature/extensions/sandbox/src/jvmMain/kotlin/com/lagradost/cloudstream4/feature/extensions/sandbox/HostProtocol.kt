@@ -60,6 +60,15 @@ internal object HostProtocol {
      */
     const val FACTS_V1 = 1
 
+    /**
+     * The art section's version (`KMP-100`), after the facts: a title's backdrop. Framed as the facts are, so a reader
+     * that does not know a version steps over it whole, and a frame from before has none.
+     */
+    const val ART_V1 = 1
+
+    /** A backdrop URL's bytes. Past this it is skipped unread and the page opens without one. */
+    const val MAX_IMAGE_URL_BYTES = 2048
+
     /** A score out of ten, in tenths: 8.4 is 84. A whole number on the wire, so there is no NaN to send. */
     const val MAX_SCORE_TENTHS = 100
     const val MAX_TAGS = 16
@@ -182,6 +191,8 @@ data class RemoteDetails(
     val episodes: List<RemoteEpisode>,
     /** What a page says about the title beside its name (`KMP-76`). None from a host that sent no facts. */
     val facts: RemoteFacts = RemoteFacts.NONE,
+    /** The wide art behind the title page's header (`KMP-100`), as the plugin wrote it until the app checks it. */
+    val backdropUrl: String? = null,
 )
 
 /**
@@ -351,6 +362,7 @@ internal fun DataOutputStream.writeDetails(details: RemoteDetails) {
         writeInt(episode.episode ?: NO_NUMBER)
     }
     writeFacts(details.facts)
+    writeArt(details.backdropUrl)
 }
 
 /**
@@ -369,6 +381,7 @@ internal fun DataInputStream.readDetails(dropped: (String) -> Unit = {}): Remote
         RemoteEpisode(readOptional(), readText(), readNumber(), readNumber())
     },
     facts = readFacts(dropped),
+    backdropUrl = readArt(dropped),
 )
 
 /** After the episodes, so a reader from before `KMP-76` stops where it always did and never sees it. */
@@ -418,6 +431,50 @@ private fun DataInputStream.readFacts(dropped: (String) -> Unit): RemoteFacts {
         dropped("facts: a section that could not be read")
         RemoteFacts.NONE
     }
+}
+
+/** After the facts, so a reader from before `KMP-100` stops where it did and never sees it. */
+private fun DataOutputStream.writeArt(backdropUrl: String?) {
+    val section = ByteArrayOutputStream()
+    DataOutputStream(section).use { it.writeOptional(backdropUrl) }
+    writeByte(HostProtocol.ART_V1)
+    writeInt(section.size())
+    section.writeTo(this)
+}
+
+/**
+ * The art section, read as the facts section is: a version this app does not know is stepped over whole, and a slice
+ * that cannot be read costs the backdrop, not the page. Only a slice whose own length lies past the frame fails the call.
+ */
+private fun DataInputStream.readArt(dropped: (String) -> Unit): String? {
+    if (available() == 0) return null
+    val version = readUnsignedByte()
+    val length = readInt()
+    if (length !in 0..available()) throw IOException("art length $length out of range")
+    if (version != HostProtocol.ART_V1) {
+        skipNBytes(length.toLong())
+        dropped("art: a version this app does not read")
+        return null
+    }
+    val section = readNBytes(length)
+    return try {
+        DataInputStream(ByteArrayInputStream(section)).use { it.readArtV1(dropped) }
+    } catch (unreadable: IOException) {
+        dropped("art: a section that could not be read")
+        null
+    }
+}
+
+private fun DataInputStream.readArtV1(dropped: (String) -> Unit): String? {
+    if (!readBoolean()) return null
+    val length = readInt()
+    if (length !in 0..available()) throw IOException("backdrop length $length out of range")
+    if (length > HostProtocol.MAX_IMAGE_URL_BYTES) {
+        skipNBytes(length.toLong())
+        dropped("backdropUrl: past its bytes")
+        return null
+    }
+    return String(readNBytes(length), Charsets.UTF_8)
 }
 
 private fun DataInputStream.readFactsV1(dropped: (String) -> Unit): RemoteFacts {
