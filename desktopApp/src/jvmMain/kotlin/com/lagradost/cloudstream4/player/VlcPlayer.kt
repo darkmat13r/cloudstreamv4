@@ -211,6 +211,9 @@ class VlcPlayer private constructor(
         released = true
         process.destroyForcibly()
         process.waitFor(EXIT_WAIT_SECONDS, TimeUnit.SECONDS)
+        // Now, not at collection: for a downloaded file this is the app's end of the host's socket (`KMP-74`). The host
+        // has gone, so what is still buffered cannot be sent, and that failure is the expected one.
+        runCatching { synchronized(commands) { commands.close() } }
         deleteHostDirectory(directory.toPath())
     }
 
@@ -253,8 +256,9 @@ class VlcPlayer private constructor(
             var appEnd: Int? = app
             var hostEnd: Int? = host
             var process: Process? = null
-            val player = try {
-                if (UnixFds.send(app, media.fd)) {
+            var player: VlcPlayer? = null
+            try {
+                player = if (UnixFds.send(app, media.fd)) {
                     media.close()
                     // Opening /dev/fd/N duplicates descriptor N: Java gives the child its own copy as stdin.
                     val started = launcher.startMediaHost(VLC_APP, directory, input = ProcessBuilder.Redirect.from(descriptor(host)))
@@ -269,14 +273,15 @@ class VlcPlayer private constructor(
                     null
                 }
             } catch (_: IOException) {
-                null
+                // A host that could not start, or a socket end that could not be opened: no player, as with no VLC.
             } finally {
+                // Whatever went wrong, thrown or not: nothing of a host that never became a player is left behind.
                 hostEnd?.let(UnixFds::close)
                 appEnd?.let(UnixFds::close)
-            }
-            if (player == null) {
-                process?.destroyForcibly()
-                deleteHostDirectory(directory.toPath())
+                if (player == null) {
+                    process?.destroyForcibly()
+                    deleteHostDirectory(directory.toPath())
+                }
             }
             player
         }

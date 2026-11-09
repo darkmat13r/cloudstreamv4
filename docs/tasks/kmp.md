@@ -7831,6 +7831,12 @@ own KDoc says so.
 **JNA** is declared in `:desktopApp` at 5.19.1, pinned. The owner approved it 2026-11-09, at the version `BUG-73`
 settles on.
 
+**Review (#293):**
+- `release()` closes the app's end of the socket at once, rather than at collection.
+- `receive` has room for four descriptors, so extras arrive whole and are closed, and only exactly one is taken.
+- A host that never became a player is cleaned up on any failure, thrown or not: its process, its directory, and
+  both socket ends.
+
 **Where Play goes.** `DownloadSeriesHost` turns `SeriesEffect.Play` into `DesktopDownloads.playable(id)`: the episode's
 file, the download folder, and its name and numbers. The app pushes `Screen.DownloadPlayer` over the series page. Its
 name in a screen's text is `PlayableDownload(id=…)`, with no path. The player is the stream player, given a `start`
@@ -7860,13 +7866,16 @@ with a silent track:
     `write` failed.
 
 **Tests:**
-- `LocalMediaTest` (8, run against the real kernel, because the structure layouts are written by hand):
+- `LocalMediaTest` (10, run against the real kernel, because the structure layouts are written by hand):
   - A file inside opens read-only; writing through it fails; it closes once.
   - Refused: outside the folder, through `..`, the folder itself, a missing file, a link at any step below the folder
     (to outside, to inside, a linked folder), a folder.
   - A folder named through a link, as `/tmp` is, still works.
   - `O_NOFOLLOW`, and `fstat` on a folder.
   - A descriptor sent across a socket pair reads the same bytes; a byte sent with no descriptor is not taken for one.
+  - A FIFO is refused, without waiting for a writer (`O_NONBLOCK`).
+  - Two descriptors in one message are refused, and both are closed: the process's open descriptors are counted
+    before and after (review).
 - `DownloadsHostTest` (+2, over the real service and a loopback server):
   - Double-clicking an episode hands over its file, the folder, its name and its numbers, and the name has no path.
   - An episode whose file went since plays nothing and leaves the list.
@@ -7876,6 +7885,8 @@ with a silent track:
   - Dropping both link checks fails "a linked folder on the way".
   - Unwiring Play fails both host tests.
   - Exactly those four failed, and nothing else.
+  - Review round: dropping the regular-file check also fails the FIFO case. Leaving refused descriptors open fails
+    the two-descriptor case (206 open before, 208 after).
 
 **Not here:**
 - Resume and watch progress for a download. There is no library record to write to; the stream player's

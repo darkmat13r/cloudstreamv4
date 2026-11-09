@@ -62,12 +62,17 @@ internal object UnixFds {
     }
 
     /** Sends [passed] across [socket] with one marker byte. The kernel holds its own reference until it is received. */
-    fun send(socket: Int, passed: Int): Boolean {
+    fun send(socket: Int, passed: Int): Boolean = send(socket, intArrayOf(passed))
+
+    /** As [send], with several descriptors in one message. The app sends one; this is how a test sends more. */
+    internal fun send(socket: Int, passed: IntArray): Boolean {
+        require(passed.size in 1..MAX_RECEIVED) { "1 to $MAX_RECEIVED descriptors" }
         val message = Message()
-        message.control.setInt(CMSG_LEN_OFFSET, CMSG_LENGTH)
+        message.control.setInt(CMSG_LEN_OFFSET, CMSG_HEADER + passed.size * FD_BYTES)
         message.control.setInt(CMSG_LEVEL_OFFSET, SOL_SOCKET)
         message.control.setInt(CMSG_TYPE_OFFSET, SCM_RIGHTS)
-        message.control.setInt(CMSG_DATA_OFFSET, passed)
+        passed.forEachIndexed { index, fd -> message.control.setInt(CMSG_DATA_OFFSET + index * FD_BYTES, fd) }
+        message.header.setInt(MSG_CONTROLLEN_OFFSET, align(CMSG_HEADER + passed.size * FD_BYTES))
         return c.sendmsg(socket, message.header, 0) == 1L
     }
 
@@ -78,14 +83,19 @@ internal object UnixFds {
     fun receive(socket: Int): Int? {
         val message = Message()
         if (c.recvmsg(socket, message.header, 0) != 1L) return null
-        if (message.header.getInt(MSG_FLAGS_OFFSET) and MSG_CTRUNC != 0) return null
-        val length = message.header.getInt(MSG_CONTROLLEN_OFFSET)
-        if (length < CMSG_LENGTH) return null
+        if (message.header.getInt(MSG_CONTROLLEN_OFFSET) < CMSG_HEADER) return null
         if (message.control.getInt(CMSG_LEVEL_OFFSET) != SOL_SOCKET) return null
         if (message.control.getInt(CMSG_TYPE_OFFSET) != SCM_RIGHTS) return null
-        // One descriptor and no more: a second would be a descriptor nothing here closes.
-        if (message.control.getInt(CMSG_LEN_OFFSET) != CMSG_LENGTH) return null
-        return message.control.getInt(CMSG_DATA_OFFSET).takeIf { it >= 0 }
+        val count = ((message.control.getInt(CMSG_LEN_OFFSET) - CMSG_HEADER) / FD_BYTES).coerceIn(0, MAX_RECEIVED)
+        val received = IntArray(count) { message.control.getInt(CMSG_DATA_OFFSET + it * FD_BYTES) }
+        // Exactly one, whole. Anything else is refused, and every descriptor that did arrive is closed: each is
+        // already open in this process, and nothing else would ever close it.
+        val truncated = message.header.getInt(MSG_FLAGS_OFFSET) and MSG_CTRUNC != 0
+        if (truncated || count != 1 || received[0] < 0) {
+            received.filter { it >= 0 }.forEach(::close)
+            return null
+        }
+        return received[0]
     }
 
     /** A `msghdr` with one byte of data and room for one `cmsghdr` carrying one descriptor. */
@@ -95,13 +105,13 @@ internal object UnixFds {
             setPointer(0, data)
             setLong(Native.POINTER_SIZE.toLong(), 1)
         }
-        val control = Memory(CMSG_SPACE).apply { clear() }
+        val control = Memory(CONTROL_BYTES).apply { clear() }
         val header = Memory(MSGHDR_SIZE).apply {
             clear()
             setPointer(MSG_IOV_OFFSET, vector)
             setInt(MSG_IOVLEN_OFFSET, 1)
             setPointer(MSG_CONTROL_OFFSET, control)
-            setInt(MSG_CONTROLLEN_OFFSET, CMSG_SPACE.toInt())
+            setInt(MSG_CONTROLLEN_OFFSET, CONTROL_BYTES.toInt())
         }
     }
 
@@ -138,6 +148,15 @@ internal object UnixFds {
     private const val CMSG_LEVEL_OFFSET = 4L
     private const val CMSG_TYPE_OFFSET = 8L
     private const val CMSG_DATA_OFFSET = 12L
-    private const val CMSG_LENGTH = 16
-    private const val CMSG_SPACE = 16L
+    private const val CMSG_HEADER = 12
+    private const val FD_BYTES = 4
+
+    /**
+     * Room for more than the one expected, so a message with extra descriptors arrives whole and each can be closed.
+     * Truncated, the kernel would install the ones that fit and say only `MSG_CTRUNC`.
+     */
+    private const val MAX_RECEIVED = 4
+    private const val CONTROL_BYTES = 32L
+
+    private fun align(length: Int) = (length + FD_BYTES - 1) / FD_BYTES * FD_BYTES
 }

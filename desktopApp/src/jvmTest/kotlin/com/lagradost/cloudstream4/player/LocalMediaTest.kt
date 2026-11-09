@@ -77,6 +77,15 @@ class LocalMediaTest {
     }
 
     @Test
+    fun aFifoIsRefusedWithoutWaitingForAWriter() {
+        val fifo = File(series, "S01E06.mp4")
+        val made = ProcessBuilder("/usr/bin/mkfifo", fifo.path).start()
+        assertEquals(0, made.waitFor())
+        // O_NONBLOCK: a plain open of a FIFO with no writer would wait here for ever.
+        assertNull(open(fifo))
+    }
+
+    @Test
     fun aRootReachedThroughALinkStillWorks() {
         // As `/tmp` is a link to `/private/tmp`: the root may be named through one; below it, nothing may be.
         val alias = File(base, "Alias")
@@ -116,6 +125,25 @@ class LocalMediaTest {
             UnixFds.close(host)
         }
     }
+
+    @Test
+    fun twoDescriptorsInOneMessageAreRefusedAndBothClosed() {
+        val first = assertNotNull(open(episode))
+        val second = assertNotNull(open(episode))
+        val (app, host) = assertNotNull(UnixFds.socketPair())
+        try {
+            assertTrue(UnixFds.send(app, intArrayOf(first.fd, second.fd)))
+            val before = openDescriptors()
+            assertNull(UnixFds.receive(host))
+            // Both arrived as new descriptors in this process; neither may be left open.
+            assertEquals(before, openDescriptors(), "every descriptor received was closed")
+        } finally {
+            UnixFds.close(app)
+            UnixFds.close(host)
+        }
+    }
+
+    private fun openDescriptors(): Int = checkNotNull(File("/dev/fd").list()).size
 
     @Test
     fun aByteWithNoDescriptorIsNotTakenForOne() {
