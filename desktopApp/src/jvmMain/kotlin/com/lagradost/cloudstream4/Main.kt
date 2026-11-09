@@ -36,6 +36,8 @@ import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
 import com.lagradost.cloudstream4.core.strings.generated.resources.season_short
+import com.lagradost.cloudstream4.account.DesktopProfiles
+import com.lagradost.cloudstream4.account.ProfilesHost
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
 import com.lagradost.cloudstream4.detail.nextEpisode
 import com.lagradost.cloudstream4.detail.requestPlay
@@ -192,6 +194,8 @@ fun main(args: Array<String>) {
     val settings = SettingsRepository(FileSettingsStorage()) { println("settings not saved: $it") }
     val downloads = DesktopDownloads(runningLimit = { settings.downloadsAtOnce.value })
     Runtime.getRuntime().addShutdownHook(Thread { runBlocking { downloads.close() } })
+    // KMP-95: who is watching. Only the library is a profile's own; everything above is the Mac's.
+    val profiles = DesktopProfiles(onSaveFailed = { println("profiles not saved: ${it::class.simpleName}") })
 
     application {
         val escape = remember { EscapeHandler() }
@@ -221,17 +225,21 @@ fun main(args: Array<String>) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                        DesktopApp(
-                            escape,
-                            approvals = approvals,
-                            window = windowState,
-                            librarySort = librarySort,
-                            homeMemory = homeMemory,
-                            shortcuts = shortcuts,
-                            downloads = downloads,
-                            appearance = settings,
-                            playback = settings,
-                        )
+                        ProfilesHost(profiles, escape) { library, foot ->
+                            DesktopApp(
+                                escape,
+                                approvals = approvals,
+                                library = library,
+                                window = windowState,
+                                librarySort = librarySort,
+                                homeMemory = homeMemory,
+                                shortcuts = shortcuts,
+                                downloads = downloads,
+                                appearance = settings,
+                                playback = settings,
+                                profileFoot = foot,
+                            )
+                        }
                     }
                 }
             }
@@ -294,6 +302,7 @@ private sealed interface Screen {
  * @param downloads the download service. Null by default, so a test cannot read or write a real downloads file, and the
  *   page is then empty; the app passes the real one.
  * @param playback what the player reads from Settings. Every default by default, so a test never reads a real file.
+ * @param profileFoot the profile button at the sidebar's foot (`KMP-95`, `DS-25` A2). Nothing by default.
  */
 @Composable
 internal fun DesktopApp(
@@ -311,9 +320,15 @@ internal fun DesktopApp(
     downloads: DesktopDownloads? = null,
     appearance: AppearanceSettings = AppearanceSettings.Default,
     playback: PlaybackSettings = PlaybackSettings.Default,
+    profileFoot: @Composable () -> Unit = {},
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
-    DisposableEffect(scope) { onDispose { scope.cancel() } }
+    DisposableEffect(scope) {
+        onDispose {
+            scope.cancel()
+            forgetWindowViewModels()
+        }
+    }
     val stack = remember { mutableStateListOf<Screen>(Screen.Home) }
     val handover = remember { PlayerHandover() }
     val review = approvals?.state?.collectAsState()?.value
@@ -341,6 +356,7 @@ internal fun DesktopApp(
                 TopLevelTab(label, selected = false, onClick)
             }
         }
+        profileFoot()
     }
     // A swap and not a push: no top-level screen is under another, so Back never goes between them.
     val top: (Screen) -> Unit = { next -> if (stack.size == 1) stack[0] = next }
@@ -544,7 +560,21 @@ internal fun DesktopApp(
 internal class EscapeHandler {
     var onEscape: (() -> Unit)? = null
 
-    fun handle(): Boolean = onEscape?.let { it(); true } ?: false
+    /** Something open over the screen, such as the profile list (`KMP-95`). Escape closes it before the screen hears. */
+    var overlay: (() -> Unit)? = null
+
+    fun handle(): Boolean = (overlay ?: onEscape)?.let { it(); true } ?: false
+}
+
+/**
+ * Drops every view model a window keeps beyond its screens: each title's, and search's. They run in the window's scope
+ * and a title's reads the library it was made with, and `DesktopDetailViewModels.get` keeps the first one made for an
+ * id, so one left over would show the last profile's resume and lists in the next. A profile switch calls this before
+ * the profile changes (`KMP-95`, the reviewer of `#278`), and the window's dispose calls it again.
+ */
+internal fun forgetWindowViewModels() {
+    DesktopDetailViewModels.forgetAll()
+    DesktopSearchViewModels.live = null
 }
 
 /** The ViewModel outlives this composable's branch, so going back returns to the results. */

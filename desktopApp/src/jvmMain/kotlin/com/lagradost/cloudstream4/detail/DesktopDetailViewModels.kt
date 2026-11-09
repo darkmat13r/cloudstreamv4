@@ -21,7 +21,8 @@ import kotlin.time.Duration.Companion.seconds
  */
 internal object DesktopDetailViewModels {
     private val live = mutableMapOf<String, DetailViewModel>()
-    private val plugins: DetailSource = DesktopDetailSource()
+    /** The installed plugins' answers. A test sets its own, to open a title with no plugin installed. */
+    internal var plugins: DetailSource = DesktopDetailSource()
 
     /**
      * @param library what this computer remembers about the title (`KMP-58`): where it was left and which list it is
@@ -58,6 +59,11 @@ internal object DesktopDetailViewModels {
     /** Whatever it was still asking a plugin for stops here, because the scope it runs in outlives it. */
     fun forget(id: String) {
         live.remove(id)?.onAction(DetailAction.LinksDismissed)
+    }
+
+    /** Every title's, when the window that made them goes, as on a profile switch (`KMP-95`). */
+    fun forgetAll() {
+        live.keys.toList().forEach(::forget)
     }
 }
 
