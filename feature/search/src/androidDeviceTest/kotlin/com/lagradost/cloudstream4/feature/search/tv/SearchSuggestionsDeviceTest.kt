@@ -63,7 +63,7 @@ class SearchSuggestionsDeviceTest {
     private val viewModel = SearchViewModel(
         source = source,
         history = BoardHistory,
-        suggestions = SearchSuggestionSource { query -> if (query.startsWith("dune", ignoreCase = true)) Suggested else emptyList() },
+        suggestions = SearchSuggestionSource { query -> if (query.startsWith("tide", ignoreCase = true)) Suggested else emptyList() },
     )
 
     private fun show() {
@@ -100,12 +100,12 @@ class SearchSuggestionsDeviceTest {
     @Test
     fun typingShowsTheBoardsSixRowsInOneColumnWithTheirCounts() {
         show()
-        type("dune")
+        type("tide")
         awaitRows()
         rule.waitForIdle()
 
         val rows = (viewModel.state.value.status.contentOrNull() as SearchContent.Suggestions).rows
-        assertEquals(listOf("dune", "Dune: Part Two", "Dune: Prophecy", "Dune (1984)", "Duna", "dune messiah"), rows.map { it.query })
+        assertEquals(listOf("tide", "Tide: Part Two", "Tide: Prophecy", "Tide (1991)", "Tida", "tide warden"), rows.map { it.query })
         assertEquals(listOf(7, 9, 6, 4, 2, 0), rows.map { it.sources })
         rule.onNodeWithText("RECENT · ALSO SUGGESTED").assertExists()
         rule.onNodeWithText("RECENT · 2 days ago").assertExists()
@@ -115,32 +115,32 @@ class SearchSuggestionsDeviceTest {
     @Test
     fun downFromTheFieldWalksTheRowsAndRightStaysOnARow() {
         show()
-        type("dune")
+        type("tide")
         awaitRows()
         rule.waitForIdle()
 
         assertEquals("Movies", dpad.press(Dpad.Down))
-        assertEquals("dune", dpad.press(Dpad.Down))
-        assertEquals("Dune: Part Two", dpad.press(Dpad.Down))
-        assertEquals("Dune: Part Two", dpad.press(Dpad.Right))
-        assertEquals("dune", dpad.press(Dpad.Up))
+        assertEquals("tide", dpad.press(Dpad.Down))
+        assertEquals("Tide: Part Two", dpad.press(Dpad.Down))
+        assertEquals("Tide: Part Two", dpad.press(Dpad.Right))
+        assertEquals("tide", dpad.press(Dpad.Up))
     }
 
     @Test
     fun okOnARowSearchesItsWordsAndShowsTheirRails() {
         show()
-        type("dune")
+        type("tide")
         awaitRows()
         rule.waitForIdle()
         assertEquals("Movies", dpad.press(Dpad.Down))
-        assertEquals("dune", dpad.press(Dpad.Down))
-        assertEquals("Dune: Part Two", dpad.press(Dpad.Down))
+        assertEquals("tide", dpad.press(Dpad.Down))
+        assertEquals("Tide: Part Two", dpad.press(Dpad.Down))
 
         dpad.center()
         rule.waitUntil(WAIT_MS) { viewModel.state.value.status.contentOrNull() is SearchContent.Results }
 
-        assertEquals(listOf("Dune: Part Two"), source.searched.toList())
-        assertEquals("Dune: Part Two", viewModel.state.value.query)
+        assertEquals(listOf("Tide: Part Two"), source.searched.toList())
+        assertEquals("Tide: Part Two", viewModel.state.value.query)
     }
 
     // ---- 8b ----
@@ -148,12 +148,12 @@ class SearchSuggestionsDeviceTest {
     @Test
     fun nothingMatchesKeepsTheQueryAndPutsItsActionOnTheChipRow() {
         show()
-        type("dunnne")
+        type("tiddde")
         rule.waitUntil(WAIT_MS) { viewModel.state.value.status is SearchStatus.NoSuggestions }
         awaitText(SEARCH_ALL)
         rule.waitForIdle()
 
-        rule.onNodeWithText("Nothing matches “dunnne”").assertExists()
+        rule.onNodeWithText("Nothing matches “tiddde”").assertExists()
         rule.onNodeWithText("Press the keyboard’s search key to search all 12 sources anyway.").assertExists()
         rule.onNodeWithText("0 SUGGESTIONS · 0 RECENT MATCHES").assertExists()
         rule.onNode(Field).assertIsFocused()
@@ -163,7 +163,7 @@ class SearchSuggestionsDeviceTest {
         assertEquals(SEARCH_ALL, generateSequence { dpad.press(Dpad.Right) }.take(CHIP_PRESSES).first { it == SEARCH_ALL })
         dpad.center()
         rule.waitUntil(WAIT_MS) { source.searched.isNotEmpty() }
-        assertEquals(listOf("dunnne"), source.searched.toList())
+        assertEquals(listOf("tiddde"), source.searched.toList())
     }
 
     // ---- Screenshots ----
@@ -172,10 +172,10 @@ class SearchSuggestionsDeviceTest {
     @Test
     fun screenshotSuggestionsCountedFocusOnTheFirstRow() {
         show()
-        type("dune")
+        type("tide")
         awaitRows()
         dpad.press(Dpad.Down)
-        assertEquals("dune", dpad.press(Dpad.Down))
+        assertEquals("tide", dpad.press(Dpad.Down))
         rule.waitForIdle()
         rule.assertScreenshot("search-suggestions-counted")
     }
@@ -185,7 +185,7 @@ class SearchSuggestionsDeviceTest {
     fun screenshotSuggestionsBeforeTheCounts() {
         source.gate = CompletableDeferred()
         show()
-        type("dune")
+        type("tide")
         awaitRows(counted = false)
         rule.waitForIdle()
         rule.assertScreenshot("search-suggestions-counting")
@@ -197,7 +197,7 @@ class SearchSuggestionsDeviceTest {
     fun screenshotSuggestionsPartialFailure() {
         source.failed = 3
         show()
-        type("dune")
+        type("tide")
         awaitRows()
         awaitText(RETRY_FAILED)
         rule.waitForIdle()
@@ -208,7 +208,7 @@ class SearchSuggestionsDeviceTest {
     @Test
     fun screenshotNothingMatchesFocusOnTheField() {
         show()
-        type("dunnne")
+        type("tiddde")
         awaitText(SEARCH_ALL)
         rule.waitForIdle()
         rule.assertScreenshot("search-suggestions-nothing-matches")
@@ -250,7 +250,7 @@ class SearchSuggestionsDeviceTest {
     }
 
     private object BoardHistory : SearchHistoryStore {
-        override suspend fun recent() = listOf(SearchHistoryEntry("dune", "today"), SearchHistoryEntry("dune messiah", "2 days ago"))
+        override suspend fun recent() = listOf(SearchHistoryEntry("tide", "today"), SearchHistoryEntry("tide warden", "2 days ago"))
         override suspend fun remove(query: String) = Unit
         override suspend fun clear() = Unit
     }
@@ -268,10 +268,10 @@ class SearchSuggestionsDeviceTest {
             NavRailItem("Downloads", CloudStreamIcons.Download),
             NavRailItem("Settings", CloudStreamIcons.Settings),
         )
-        val Suggested = listOf("Dune", "Dune: Part Two", "Dune: Prophecy", "Dune (1984)", "Duna")
+        val Suggested = listOf("Tide", "Tide: Part Two", "Tide: Prophecy", "Tide (1991)", "Tida")
 
-        /** 8a's `raw`: the counts the board gives each title. `dune messiah` is carried by nobody. */
-        val Counts = listOf("Dune" to 7, "Dune: Part Two" to 9, "Dune: Prophecy" to 6, "Dune (1984)" to 4, "Duna" to 2)
+        /** 8a's `raw`: the counts the board gives each title. `tide warden` is carried by nobody. */
+        val Counts = listOf("Tide" to 7, "Tide: Part Two" to 9, "Tide: Prophecy" to 6, "Tide (1991)" to 4, "Tida" to 2)
 
         fun hit(title: String, provider: String) =
             SearchResultItem(id = SearchResultId("$provider/$title"), title = title, providerName = provider)
