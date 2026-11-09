@@ -112,7 +112,7 @@ class HostProtocolArtTest {
     }
 
     @Test
-    fun `only a public https URL is kept`() {
+    fun `only a public https URL with no user info is kept`() {
         assertEquals("https://img.example/b.jpg", backdropOf(backdrop("https://img.example/b.jpg")))
         assertEquals("HTTPS://img.example/b.jpg", backdropOf(backdrop("HTTPS://img.example/b.jpg")))
         listOf(
@@ -128,6 +128,11 @@ class HostProtocolArtTest {
             "data:image/png;base64,AAAA",
             "img.example/b.jpg",
             "",
+            "https://user:pass@img.example/b.jpg",
+            "https://user@img.example/b.jpg",
+            "https://@img.example/b.jpg",
+            "https://img.example@other.example/b.jpg",
+            "https://user%40x:p@img.example/b.jpg",
         ).forEach { url -> assertNull(backdropOf(backdrop(url)), url) }
     }
 

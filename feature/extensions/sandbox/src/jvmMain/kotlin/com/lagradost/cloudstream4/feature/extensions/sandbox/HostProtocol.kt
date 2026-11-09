@@ -463,9 +463,9 @@ private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): S
         val tag = readUnsignedByte()
         val length = readInt()
         if (length !in 0..available()) throw IOException("section length $length out of range")
-        val section = readNBytes(length)
         if (tag == HostProtocol.ART_V1 && !artRead) {
             artRead = true
+            val section = readNBytes(length)
             backdrop = try {
                 DataInputStream(ByteArrayInputStream(section)).use { it.readArtV1(dropped) }
             } catch (unreadable: IOException) {
@@ -473,6 +473,7 @@ private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): S
                 null
             }
         } else {
+            skipNBytes(length.toLong())
             unknown = true
         }
     }

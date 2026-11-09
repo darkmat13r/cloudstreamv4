@@ -551,11 +551,17 @@ internal fun String?.httpUrlOrNull(): String? {
 internal val HTTP_SCHEMES = setOf("http", "https")
 
 /**
- * A backdrop URL the app may fetch (`KMP-100`), or null: [httpUrlOrNull]'s checks, and https only. The backdrop's
- * client also refuses any hop that is not https, so a redirect cannot step it down.
+ * A backdrop URL the app may fetch (`KMP-100`), or null: [httpUrlOrNull]'s checks, https only, and no user info. The
+ * backdrop's client also refuses any hop that is not https, so a redirect cannot step it down.
+ *
+ * User info (`https://user:pass@host/`) is refused: an image needs no credentials, and a plugin could use them to have
+ * the app send a name and password of the plugin's choosing, or to dress one host up as another
+ * (`https://trusted.example@other.example/`).
  */
-internal fun String?.httpsUrlOrNull(): String? =
-    httpUrlOrNull()?.takeIf { url -> runCatching { URI(url).scheme }.getOrNull().equals("https", ignoreCase = true) }
+internal fun String?.httpsUrlOrNull(): String? = httpUrlOrNull()?.takeIf { url ->
+    val parsed = runCatching { URI(url) }.getOrNull() ?: return@takeIf false
+    parsed.scheme.equals("https", ignoreCase = true) && parsed.rawUserInfo == null
+}
 
 /** The host as written: a lowercased name or IP literal with no brackets or trailing dot. */
 internal fun isPrivateHostName(host: String): Boolean =

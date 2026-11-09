@@ -30,7 +30,8 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import okhttp3.Protocol
 import okhttp3.Request
-import okhttp3.ResponseBody.Companion.toResponseBody
+import okhttp3.ResponseBody.Companion.asResponseBody
+import okio.buffer
 import okio.Path.Companion.toOkioPath
 import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
@@ -301,13 +302,13 @@ class BackdropImageTest {
     }
 
     /**
-     * One hop through the cap, with a body of 100 bytes closed unread, as OkHttp closes a redirect's: over [protocol],
-     * on a connection whose socket is [socket]. Returns whether the call was cancelled.
+     * One hop through the cap, with a body of 100 bytes that states its length, [read] as given and then closed: over
+     * [protocol], on a connection whose socket is [socket]. Returns whether the call was cancelled.
      *
      * The chain is made by hand: a test server for HTTP/2 would be a new dependency, and OkHttp's own HTTP/2 classes
      * differ between the version this compiles against and the one it runs with (measured: `NoSuchMethodError`).
      */
-    private fun closedUnread(protocol: Protocol, socket: Socket): Boolean {
+    private fun throughCap(protocol: Protocol, socket: Socket, read: (okio.BufferedSource) -> Unit = {}): Boolean {
         var cancelled = false
         fun <T> fake(type: Class<T>, answer: (String, Array<out Any?>) -> Any?): T = type.cast(
             java.lang.reflect.Proxy.newProxyInstance(type.classLoader, arrayOf(type)) { _, method, args ->
@@ -333,12 +334,23 @@ class BackdropImageTest {
                 "call" -> call
                 "connection" -> connection
                 "proceed" -> okhttp3.Response.Builder().request(args[0] as okhttp3.Request).protocol(protocol).code(302)
-                    .message("Found").body(ByteArray(100).toResponseBody()).build()
+                    .message("Found").body(hundredBytes()).build()
                 else -> error("not asked of the chain: $name")
             }
         }
-        bodyCap(BACKDROP_MAX_BYTES).intercept(chain).close()
+        bodyCap(BACKDROP_MAX_BYTES).intercept(chain).use { response -> read(response.body!!.source()) }
         return cancelled
+    }
+
+    /** 100 bytes, stating their length, that come at most 99 at a time, as a network's do in pieces. */
+    private fun hundredBytes(): okhttp3.ResponseBody {
+        val bytes = okio.Buffer().write(ByteArray(100))
+        val source = object : okio.Source {
+            override fun read(sink: okio.Buffer, byteCount: Long) = bytes.read(sink, minOf(byteCount, 99L))
+            override fun timeout() = okio.Timeout.NONE
+            override fun close() = Unit
+        }
+        return source.buffer().asResponseBody(contentType = null, contentLength = 100)
     }
 
     @Test
@@ -347,10 +359,24 @@ class BackdropImageTest {
         // rest of the body; an HTTP/2 stream is reset by OkHttp's own close, and its socket carries other streams.
         listOf(Protocol.HTTP_1_1, Protocol.HTTP_1_0, Protocol.HTTP_2, Protocol.H2_PRIOR_KNOWLEDGE).forEach { protocol ->
             Socket().use { socket ->
-                assertFalse(closedUnread(protocol, socket), "$protocol: the call was cancelled")
+                assertFalse(throughCap(protocol, socket), "$protocol: the call was cancelled")
                 val http1 = protocol == Protocol.HTTP_1_1 || protocol == Protocol.HTTP_1_0
                 assertEquals(http1, socket.isClosed, "$protocol: socket closed")
             }
+        }
+    }
+
+    @Test
+    fun `a body read to its stated length leaves its socket open, as OkHttp has pooled it`() {
+        // OkHttp returns the connection to its pool on the read that takes the last byte, before any end is read; the
+        // socket may already be another call's.
+        Socket().use { socket ->
+            assertFalse(throughCap(Protocol.HTTP_1_1, socket) { source -> source.require(100) })
+            assertFalse(socket.isClosed, "the socket of a body read whole was closed")
+        }
+        Socket().use { socket ->
+            throughCap(Protocol.HTTP_1_1, socket) { source -> source.require(99) }
+            assertTrue(socket.isClosed, "one byte short is a body left before its end")
         }
     }
 

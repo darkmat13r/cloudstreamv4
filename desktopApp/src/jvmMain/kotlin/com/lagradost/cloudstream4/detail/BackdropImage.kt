@@ -176,6 +176,9 @@ private class CappedBody(
                 if (count > 0) {
                     read += count
                     if (read > maxBytes) refuse()
+                    // OkHttp hands the connection back to its pool on the read that takes a stated length's last byte,
+                    // not on the end after it. Closing the socket then would cut another call's connection.
+                    if (read == body.contentLength()) ended = true
                 }
                 return count
             }
