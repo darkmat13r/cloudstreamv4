@@ -49,6 +49,15 @@ class DownloadSeriesViewModelTest {
     }
 
     @Test
+    fun thePosterComesWithTheContentsForTheHeader() {
+        val poster = "https://img.example/show.jpg"
+        source.emit(DownloadSeriesContents("Show", listOf(episode(1, DownloadEpisodeState.Done)), posterUrl = poster))
+        assertEquals(poster, viewModel.state.value.posterUrl)
+        show(episode(1, DownloadEpisodeState.Done))
+        assertEquals(null, viewModel.state.value.posterUrl, "a read without one clears it")
+    }
+
+    @Test
     fun columnBDoesWhatTheRowStateSays() {
         show(
             episode(1, DownloadEpisodeState.Running), episode(2, DownloadEpisodeState.Paused),

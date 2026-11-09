@@ -29,6 +29,8 @@ enum class DownloadTitleState {
  *
  * @param episodes how many of a series' episodes are on the disk. A film is one.
  * @param progress how far through, in `0f..1f`, or null when nothing can be said or nothing is left to do.
+ * @param posterUrl the title's poster, as the page it was downloaded from had it, or null where none was kept
+ *   (`KMP-99`). Image loading is the host's, and only a public http(s) address is ever loaded.
  */
 @Immutable
 data class DownloadTitle(
@@ -40,6 +42,7 @@ data class DownloadTitle(
     val bytesTotal: Long,
     val state: DownloadTitleState = DownloadTitleState.Done,
     val progress: Float? = null,
+    val posterUrl: String? = null,
 )
 
 /** How the disk divides, in bytes. [downloadBytes] is part of [usedBytes]. */

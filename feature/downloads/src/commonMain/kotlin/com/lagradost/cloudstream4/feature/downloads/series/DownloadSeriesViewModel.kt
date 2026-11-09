@@ -124,6 +124,7 @@ class DownloadSeriesViewModel(
                 name = contents.name,
                 status = if (episodes.isEmpty()) SeriesStatus.Empty else SeriesStatus.Showing(episodes),
                 freeBytes = contents.freeBytes,
+                posterUrl = contents.posterUrl,
             )
         }
     }

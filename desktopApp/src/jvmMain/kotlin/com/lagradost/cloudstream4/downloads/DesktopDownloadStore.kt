@@ -51,6 +51,11 @@ internal class StoredEpisode(
     val provider: String? = null,
     /** What the player passes to `SandboxedProvider.links` for this episode. */
     val episodeData: String? = null,
+    /**
+     * The title's poster (`KMP-99`). Kept once `Done`, as the name is: it is what the row shows, not how to fetch
+     * anything. Re-checked on reading. Absent from a file written before it, which reads as null.
+     */
+    val posterUrl: String? = null,
 ) {
     override fun toString(): String = "StoredEpisode(episodeId=$episodeId, titleId=$titleId, state=$state)"
 }

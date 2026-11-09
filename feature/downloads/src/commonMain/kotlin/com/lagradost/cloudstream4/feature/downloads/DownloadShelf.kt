@@ -24,6 +24,7 @@ object DownloadShelf {
         kind: DownloadTitleKind,
         episodes: List<EpisodeOnDisk>,
         facts: Map<Int, DownloadProgress>,
+        posterUrl: String? = null,
     ): DownloadTitle {
         val states = episodes.map { episode -> episode.state(facts[episode.id]) }
         val state = DownloadTitleState.entries.firstOrNull { it in states } ?: DownloadTitleState.Done
@@ -44,6 +45,7 @@ object DownloadShelf {
                 total > 0L -> (done.toFloat() / total.toFloat()).coerceIn(0f, 1f)
                 else -> null
             },
+            posterUrl = posterUrl,
         )
     }
 
