@@ -30,7 +30,7 @@ import androidx.compose.ui.window.application
 import androidx.compose.ui.window.WindowState
 import androidx.compose.ui.window.rememberWindowState
 import com.lagradost.cloudstream4.core.connectivity.UnknownConnectivityFlow
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
@@ -230,7 +230,7 @@ fun main(args: Array<String>) {
                 window.minimumSize = java.awt.Dimension(MIN_WINDOW_WIDTH, MIN_WINDOW_HEIGHT)
             }
             CloudStreamTheme {
-                CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+                CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
                         ProfilesHost(profiles, escape, redirects = redirects) { library, foot ->
                             DesktopApp(

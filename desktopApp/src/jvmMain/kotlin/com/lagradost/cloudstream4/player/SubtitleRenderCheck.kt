@@ -11,7 +11,7 @@ import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.detail.DesktopDetailSource
@@ -181,7 +181,7 @@ private class Run(
     private val session = SubtitleSession(link.subtitles, loader, scope, preference)
     private val scene = ImageComposeScene(width, height, Density(1f)) {
         CloudStreamTheme {
-            CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+            CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 PlayerScreen(
                     player, "Check", link, onBack = {}, clock = clock, session = session, arrivingSubtitles = arriving,
                     links = links, openPlayer = openPlayer, switcher = switcher,

@@ -77,3 +77,69 @@ Mihon — Apache License 2.0
   above was made against Mihon's `main` branch as fetched on 2026-10-07; `main`
   moves, so those line counts are a snapshot, not a fixed fact. A reviewer wanting
   to re-diff should start from Mihon's history on or before 2026-09-08.
+
+================================================================================
+Manrope — SIL Open Font License 1.1
+================================================================================
+
+  Source:    https://github.com/googlefonts/manrope
+             commit 468c0dbe38efa331b80bfe9448256abe27be44c3, fonts/ttf/
+  Version:   4.505
+  Licence:   SIL Open Font License, Version 1.1
+             A verbatim copy, upstream's OFL.txt, is at
+             core/designsystem/src/commonMain/composeResources/files/licences/Manrope-OFL.txt
+             and is packaged with the app beside the fonts.
+
+  Copyright 2018 The Manrope Project Authors (https://github.com/googlefonts/manrope)
+
+  WHAT IS INCLUDED
+
+  Five static TrueType files, in core/designsystem/src/commonMain/composeResources/font/.
+  Each is upstream's file byte for byte; only the file name changed, to one a
+  Compose resource accepts. No font is modified or subset.
+
+    manrope_regular.ttf    (manrope-regular.ttf)
+      d23d6eedf51dd495138aa1a83588027d4a63549cdfcc2fa5e0d8e84e09cf4cb1
+    manrope_medium.ttf     (manrope-medium.ttf)
+      502ee33a6e140ad6ef10ef8b762a8e5cf01f33316f318800795725f4cfd539d9
+    manrope_semibold.ttf   (manrope-semibold.ttf)
+      f43edb46a08e1538413ea2383ef01ed93cdab191a2c57d2489d9590985858cf7
+    manrope_bold.ttf       (manrope-bold.ttf)
+      484d10f0683e9e9f588de978f70cd3ad17cb3522bc0ca6efc4491c83429d323c
+    manrope_extrabold.ttf  (manrope-extrabold.ttf)
+      c5c0faa3c3a1b1a184f6bb2e405931bdbf51d21c72d8162309118e91304988e0
+
+    Manrope-OFL.txt        (OFL.txt)
+      58172e0c0fac2cda8a37b348164bb55e44b0e69051e557e92b1d3f6910141f7b
+
+================================================================================
+JetBrains Mono — SIL Open Font License 1.1
+================================================================================
+
+  Source:    https://github.com/JetBrains/JetBrainsMono
+             release v2.304, asset JetBrainsMono-2.304.zip
+             (SHA-256 6f6376c6ed2960ea8a963cd7387ec9d76e3f629125bc33d1fdcd7eb7012f7bbf),
+             fonts/ttf/
+  Version:   2.304
+  Licence:   SIL Open Font License, Version 1.1
+             A verbatim copy, the release's OFL.txt, is at
+             core/designsystem/src/commonMain/composeResources/files/licences/JetBrainsMono-OFL.txt
+             and is packaged with the app beside the fonts.
+
+  Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
+
+  WHAT IS INCLUDED
+
+  Three static TrueType files, in core/designsystem/src/commonMain/composeResources/font/.
+  Each is upstream's file byte for byte; only the file name changed. No font is
+  modified or subset.
+
+    jetbrainsmono_regular.ttf  (JetBrainsMono-Regular.ttf)
+      a0bf60ef0f83c5ed4d7a75d45838548b1f6873372dfac88f71804491898d138f
+    jetbrainsmono_medium.ttf   (JetBrainsMono-Medium.ttf)
+      31c92d01a8a08528b718a43addf0ad3df0af2ca4b7b3290a452f70f358e14d3d
+    jetbrainsmono_bold.ttf     (JetBrainsMono-Bold.ttf)
+      5590990c82e097397517f275f430af4546e1c45cff408bde4255dad142479dcb
+
+    JetBrainsMono-OFL.txt      (OFL.txt)
+      30f0c136e3c88e422d0791acd97238870f9054a9729bc34cf2ff0d4ed8cac4ad

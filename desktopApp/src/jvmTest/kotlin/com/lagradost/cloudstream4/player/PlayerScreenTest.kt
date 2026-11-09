@@ -31,7 +31,7 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.input.pointer.PointerIcon
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.media.model.SubtitleCue
@@ -133,7 +133,7 @@ class PlayerScreenTest {
         private var time = 0L
         val scene = ImageComposeScene(width, height, Density(1f)) {
             CloudStreamTheme {
-                CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+                CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(Color.Black)) {
                         PlayerContent(
                             frame = frame,

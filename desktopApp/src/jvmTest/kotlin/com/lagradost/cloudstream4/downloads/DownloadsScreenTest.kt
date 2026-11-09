@@ -32,7 +32,7 @@ import com.lagradost.cloudstream4.tagged
 import com.lagradost.cloudstream4.textNode
 import com.lagradost.cloudstream4.core.connectivity.Connectivity
 import com.lagradost.cloudstream4.core.connectivity.ConnectivityFlow
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.downloads.DownloadQueue
@@ -163,7 +163,7 @@ class DownloadsScreenTest {
     private fun scene(harness: Harness, width: Int = WIDTH, height: Int = HEIGHT) =
         ImageComposeScene(width, height, Density(1f)) {
             CloudStreamTheme {
-                CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+                CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { harness.Content() }
                 }
             }

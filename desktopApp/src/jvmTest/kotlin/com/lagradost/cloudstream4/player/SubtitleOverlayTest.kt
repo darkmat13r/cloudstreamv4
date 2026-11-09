@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.IntOffset
 import androidx.compose.ui.unit.IntRect
 import androidx.compose.ui.unit.IntSize
 import androidx.compose.ui.unit.dp
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.media.model.CaptionStyle
@@ -50,7 +50,7 @@ class SubtitleOverlayTest {
     ): Image {
         val scene = ImageComposeScene(width, height, Density(1f)) {
             CloudStreamTheme {
-                CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+                CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(Color.Black)) {
                         SubtitleOverlay(cues, picture, top, bottom, style = style)
                     }

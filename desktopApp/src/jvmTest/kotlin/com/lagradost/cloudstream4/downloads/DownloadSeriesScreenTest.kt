@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.core.connectivity.Connectivity
 import com.lagradost.cloudstream4.core.connectivity.ConnectivityFlow
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisode
@@ -146,7 +146,7 @@ class DownloadSeriesScreenTest {
 
     private fun scene(harness: Harness) = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
         CloudStreamTheme {
-            CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+            CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { harness.Content() }
             }
         }

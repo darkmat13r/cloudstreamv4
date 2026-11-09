@@ -21,7 +21,7 @@ import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.assertPageBar
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.detail.DetailAction
@@ -96,7 +96,7 @@ class DetailScreenTest {
     private fun scene(width: Int = WIDTH, height: Int = HEIGHT, content: @Composable () -> Unit) =
         ImageComposeScene(width, height, Density(1f)) {
             CloudStreamTheme {
-                CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+                CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
                 }
             }

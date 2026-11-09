@@ -20,3 +20,10 @@ kotlin {
         }
     }
 }
+
+compose.resources {
+    // The bundled fonts (KMP-97). Not `auto`: it compares an exact components-resources coordinate and silently
+    // stops generating on a catalog change (same reasoning as :core:ui and cloudstream.kmp.strings). The package and
+    // the private Res class are the convention's.
+    generateResClass = always
+}

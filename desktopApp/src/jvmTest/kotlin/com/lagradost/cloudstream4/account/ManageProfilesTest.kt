@@ -25,7 +25,7 @@ import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.DesktopApp
 import com.lagradost.cloudstream4.EscapeHandler
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.home.HomePageReply
@@ -210,7 +210,7 @@ class ManageProfilesTest {
 
     private fun scene(content: @Composable () -> Unit) = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
         CloudStreamTheme {
-            CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+            CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
             }
         }
