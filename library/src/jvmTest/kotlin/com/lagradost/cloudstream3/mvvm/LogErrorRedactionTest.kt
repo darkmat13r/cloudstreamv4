@@ -56,6 +56,25 @@ class LogErrorRedactionTest {
         "nl https:\n//host/p?token=MARKER_QUERY" to "nl https://host/<…>",
         "https:\u00A0//host/p?token=MARKER_QUERY" to "https://host/<…>",
         "keeps\nlines\r\nand\ttabs" to "keeps\nlines\r\nand tabs",
+        // BUG-64: a code point Unicode calls default-ignorable, Cc and Cf or not, must not hide a url or a path either.
+        "cgj https:\u034F//cdn.example/x?token=MARKER_QUERY" to "cgj https://cdn.example/<…>",
+        "vs ht\uFE0Ftps://cdn.example/MARKER_PATH" to "vs https://cdn.example/<…>",
+        "filler https:\u3164//host/p?token=MARKER_QUERY" to "filler https://host/<…>",
+        "supplement https:\uDB40\uDD00//host/p?token=MARKER_QUERY" to "supplement https://host/<…>",
+        "tag https:\uDB40\uDC41//host/p?token=MARKER_QUERY" to "tag https://host/<…>",
+        "cache at /Us\u034Fers/MARKER_USER/MARKER_PATH" to "cache at <path>",
+        "keeps 한국어 and \uD83D\uDE00" to "keeps 한국어 and \uD83D\uDE00",
+        // BUG-64: up to two characters a screen draws blank, around or between the slashes, are a url too.
+        "braille https:\u2800//host/p?token=MARKER_QUERY" to "braille https://host/<…>",
+        "notehead https:\uD834\uDD59//host/p?token=MARKER_QUERY" to "notehead https://host/<…>",
+        "between https:/\u2800/cdn.example/x?token=MARKER_QUERY" to "between https://cdn.example/<…>",
+        "both https:\u2800/\u2800/host/p?token=MARKER_QUERY" to "both https://host/<…>",
+        "spaced https: \u2800 //host/p?token=MARKER_QUERY" to "spaced https://host/<…>",
+        "Ratio 16:9 // wide" to "Ratio 16:9 // wide",
+        "Note: a/b" to "Note: a/b",
+        "Note: a/b/c" to "Note: a/b/c",
+        "x:a/b" to "x:a/b",
+        "1:2/3/4" to "1:2/3/4",
     )
 
     private fun captured(block: () -> Unit): String {
