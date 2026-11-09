@@ -33,6 +33,7 @@ import kotlinx.coroutines.withContext
 import okhttp3.Interceptor
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
+import okhttp3.Protocol
 import okhttp3.Response
 import okhttp3.ResponseBody
 import okio.Buffer
@@ -79,51 +80,75 @@ internal fun backdropRequest(url: String, width: Int, height: Int): ImageRequest
     .precision(Precision.INEXACT)
     .build()
 
-/**
- * The poster's client (public addresses only, on every hop), with https required on every hop as well, and no body read
- * past [maxBytes].
- *
- * The byte cap is here, on the wire, because Coil fetches a whole body (to its disk cache, or to memory) before any
- * decoder runs: [BoundedDecoder]'s own byte check comes too late to stop a server sending 600 MiB. A declared length past
- * the cap is refused before a byte of the body is read; a body with no length, or one that lies, fails once it passes the
- * cap.
- */
+/** The poster's client (public addresses only, on every hop), bounded as [boundedImageClient] says. */
 internal fun backdropHttpClient(
     allow: (InetSocketAddress) -> Boolean = { SandboxPolicy.isPublicAddress(it.address) },
-    maxBytes: Long = BACKDROP_MAX_BYTES,
-): OkHttpClient = posterHttpClient(allow).newBuilder()
-    .followSslRedirects(false)
-    .addNetworkInterceptor(
-        Interceptor { chain ->
-            if (!chain.request().isHttps) throw IOException("backdrop refused: not https")
-            chain.proceed(chain.request())
-        }
-    )
-    .build()
-    .let { client -> withBodyCap(client, maxBytes) }
+): OkHttpClient = boundedImageClient(posterHttpClient(allow))
 
-/** [client], with every hop's body capped at [maxBytes]: [backdropHttpClient]'s cap, apart, so a test can serve http. */
-internal fun withBodyCap(client: OkHttpClient, maxBytes: Long): OkHttpClient = client.newBuilder()
-    .addNetworkInterceptor(Interceptor { chain ->
-        val call = chain.call()
-        chain.proceed(chain.request()).capped(maxBytes, stop = call::cancel)
-    })
+/**
+ * [base], with https required on every hop and no more than [maxBytes] and one read taken of any body, as it came over
+ * the wire or as it is once decompressed.
+ *
+ * The byte cap is here, in the client, because Coil fetches a whole body (to its disk cache, or to memory) before any
+ * decoder runs: [BoundedDecoder]'s own byte check comes too late to stop a server sending 600 MiB. It is at two levels:
+ * - **on the network,** every hop, redirects included: what comes over the socket;
+ * - **in the application,** the response Coil reads: OkHttp asks for gzip and decompresses above the network level, so
+ *   the network count is of compressed bytes, and 64 MiB of zeros comes as 65 KB.
+ *
+ * A declared length past the cap is refused before a byte of the body is read; a body with no length, or one that lies,
+ * fails once it passes the cap.
+ *
+ * @param requireHttps false only for a test, which can serve plain http on this machine and nothing else.
+ */
+internal fun boundedImageClient(
+    base: OkHttpClient,
+    maxBytes: Long = BACKDROP_MAX_BYTES,
+    requireHttps: Boolean = true,
+): OkHttpClient = base.newBuilder()
+    .apply {
+        if (requireHttps) {
+            followSslRedirects(false)
+            addNetworkInterceptor(
+                Interceptor { chain ->
+                    if (!chain.request().isHttps) throw IOException("backdrop refused: not https")
+                    chain.proceed(chain.request())
+                }
+            )
+        }
+    }
+    .addInterceptor(bodyCap(maxBytes))
+    .addNetworkInterceptor(bodyCap(maxBytes))
     .build()
+
+/**
+ * Each response's body, [capped] at [maxBytes]. A refusal cancels the call; a body left before its end closes its
+ * hop's socket, when the hop is HTTP/1 and so has one of its own (an HTTP/2 stream is reset on close, not drained).
+ */
+internal fun bodyCap(maxBytes: Long) = Interceptor { chain ->
+    val call = chain.call()
+    val socket = chain.connection()
+        ?.takeIf { it.protocol() == Protocol.HTTP_1_1 || it.protocol() == Protocol.HTTP_1_0 }
+        ?.socket()
+    chain.proceed(chain.request()).capped(maxBytes, refuse = call::cancel, abandon = { socket?.close() })
+}
 
 /**
  * This response, with a body that fails on its first read if it says it is longer than [maxBytes], and once more than
  * that is read from it if it does not.
  *
- * The refusal is made when the body is read, not here: Coil drops the failure of a call that was cancelled, so a call
- * cancelled and failed inside the chain leaves its image loading for ever (measured: the test hung for hours).
- *
- * A refusal, or a body closed before its end, calls [stop] first, which cancels the call and so closes its socket.
- * Closing the response alone is not enough: OkHttp reads what is left of a body it is asked to close, to keep the
+ * Closing a body is not enough to stop it: OkHttp reads what is left of a body it is asked to close, to keep the
  * connection, for up to 100 ms, and on a fast link that is tens of megabytes (measured: all 32 MiB of a test body).
+ * So a refusal calls [refuse] first, which cancels the call and so closes its socket. A body closed before its end
+ * calls [abandon], which closes the socket and leaves the call alone.
+ *
+ * Neither cancels inside the chain. Coil drops the failure of a call that was cancelled, so a call cancelled and failed
+ * inside the chain leaves its image loading for ever (measured: the test hung for hours). A refusal is made when the
+ * body is read, which is Coil's, after the call has answered; OkHttp itself closes a redirect's body inside the chain,
+ * unread, and that may close a socket but must not cancel.
  */
-internal fun Response.capped(maxBytes: Long, stop: () -> Unit): Response {
+internal fun Response.capped(maxBytes: Long, refuse: () -> Unit, abandon: () -> Unit): Response {
     val body: ResponseBody = body ?: return this
-    return newBuilder().body(CappedBody(body, maxBytes, stop)).build()
+    return newBuilder().body(CappedBody(body, maxBytes, refuse, abandon)).build()
 }
 
 /** [body], read through a count that fails past [maxBytes]: a chunked body states no length to refuse up front. */
@@ -131,6 +156,7 @@ private class CappedBody(
     private val body: ResponseBody,
     private val maxBytes: Long,
     private val stop: () -> Unit,
+    private val abandon: () -> Unit,
 ) : ResponseBody() {
     private var ended = false
 
@@ -163,7 +189,7 @@ private class CappedBody(
     override fun source(): BufferedSource = capped
 
     override fun close() {
-        if (!ended) stop()
+        if (!ended) abandon()
         body.close()
     }
 }

@@ -28,7 +28,9 @@ import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
+import okhttp3.Protocol
 import okhttp3.Request
+import okhttp3.ResponseBody.Companion.toResponseBody
 import okio.Path.Companion.toOkioPath
 import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
@@ -40,13 +42,14 @@ class BackdropImageTest {
     private companion object {
         const val CHUNK = 8 * 1024
         const val MIB = 1024L * 1024
+        const val MOVED = "<html>Moved</html>"
         /** A small cap, so the test is quick: the code under test is the same for 8 MB. */
         const val WIRE_CAP = 256L * 1024
 
     }
 
-    /** One thread answering every request with [body] as an image, counting the requests. */
-    private class Server(private val body: ByteArray) : AutoCloseable {
+    /** One thread answering every request with [body] as an image, [encoding] if one is given, counting the requests. */
+    private class Server(private val body: ByteArray, private val encoding: String? = null) : AutoCloseable {
         private val socket = ServerSocket(0, 8, InetAddress.getLoopbackAddress())
         val port: Int = socket.localPort
         val requests = AtomicInteger()
@@ -57,10 +60,18 @@ class BackdropImageTest {
                     while (true) {
                         socket.accept().use { client ->
                             val reader = client.getInputStream().bufferedReader()
-                            if (reader.readLine() == null) return@use
+                            val line = reader.readLine() ?: return@use
                             while (!reader.readLine().isNullOrEmpty()) Unit
                             requests.incrementAndGet()
+                            if (line.startsWith("GET /moved ")) {
+                                // A redirect with a body of its own, as servers write them, which OkHttp closes unread.
+                                val moved = "HTTP/1.1 302 Found\r\nLocation: /b.png\r\nContent-Length: ${MOVED.length}\r\n" +
+                                    "Connection: close\r\n\r\n$MOVED"
+                                client.getOutputStream().apply { write(moved.toByteArray()); flush() }
+                                return@use
+                            }
                             val head = "HTTP/1.1 200 OK\r\nContent-Type: image/png\r\nContent-Length: ${body.size}\r\n" +
+                                encoding.orEmpty().let { if (it.isEmpty()) "" else "Content-Encoding: $it\r\n" } +
                                 "Connection: close\r\n\r\n"
                             client.getOutputStream().apply { write(head.toByteArray()); write(body); flush() }
                         }
@@ -70,6 +81,9 @@ class BackdropImageTest {
         }
 
         val url get() = "http://127.0.0.1:$port/b.png"
+
+        /** Redirects to [url], with a body. */
+        val moved get() = "http://127.0.0.1:$port/moved"
 
         override fun close() = socket.close()
     }
@@ -159,10 +173,15 @@ class BackdropImageTest {
         SkiaImageDecoder.Factory().create(result, options, loader)
     }
 
-    /** Coil's disk cache for this test alone, so nothing it fetches lands in the one the app's loaders share. */
-    private val cacheDirectory = createTempDirectory("backdrop-cache").also { it.toFile().deleteOnExit() }
+    /**
+     * Coil's disk cache for this test alone, one for all its loaders, so nothing it fetches lands in the one the app's
+     * loaders share.
+     */
+    private val cacheDirectory = createTempDirectory("backdrop-cache")
 
-    private fun cache() = DiskCache.Builder().directory(cacheDirectory.toOkioPath()).maxSizeBytes(64L * 1024 * 1024).build()
+    private val cache: DiskCache by lazy {
+        DiskCache.Builder().directory(cacheDirectory.toOkioPath()).maxSizeBytes(64L * 1024 * 1024).build()
+    }
 
     @AfterTest
     fun removeCache() {
@@ -170,14 +189,18 @@ class BackdropImageTest {
     }
 
     /**
-     * The backdrop's loader over plain http to this machine, as a test can serve: its body cap and decoder are what is
-     * checked here, the https rule in its own test.
+     * The backdrop's loader, built by the function the app's is, over plain http to this machine, as a test can serve:
+     * its body cap and decoder are what is checked here, the https rule in its own test.
      */
     private fun localLoader(maxBytes: Long = BACKDROP_MAX_BYTES, wireCap: Long = BACKDROP_MAX_BYTES) =
         backdropImageLoader(
-            withBodyCap(posterHttpClient { true }.newBuilder().socketFactory(counting).build(), wireCap),
+            boundedImageClient(
+                posterHttpClient { true }.newBuilder().socketFactory(counting).build(),
+                maxBytes = wireCap,
+                requireHttps = false,
+            ),
             BoundedDecoder.Factory(maxBytes = maxBytes, then = watchedSkia),
-            diskCache = ::cache,
+            diskCache = { cache },
         )
 
     /**
@@ -264,6 +287,86 @@ class BackdropImageTest {
                 assertTrue(took <= most, "declared=$declared took $took, past $most")
                 assertEquals(0, decoded.get(), "nothing reached the decoder")
             }
+        }
+    }
+
+    @Test
+    fun `an image behind a redirect with a body loads`() = runBlocking<Unit> {
+        Server(png(64, 64)).use { server ->
+            // A redirect's body is closed unread inside the call: were that to cancel it, Coil would wait for ever.
+            val result = withTimeout(60_000) { localLoader().execute(backdropRequest(server.moved, 64, 64)) }
+            assertIs<coil3.request.SuccessResult>(result, "$result")
+            assertEquals(2, server.requests.get())
+        }
+    }
+
+    /**
+     * One hop through the cap, with a body of 100 bytes closed unread, as OkHttp closes a redirect's: over [protocol],
+     * on a connection whose socket is [socket]. Returns whether the call was cancelled.
+     *
+     * The chain is made by hand: a test server for HTTP/2 would be a new dependency, and OkHttp's own HTTP/2 classes
+     * differ between the version this compiles against and the one it runs with (measured: `NoSuchMethodError`).
+     */
+    private fun closedUnread(protocol: Protocol, socket: Socket): Boolean {
+        var cancelled = false
+        fun <T> fake(type: Class<T>, answer: (String, Array<out Any?>) -> Any?): T = type.cast(
+            java.lang.reflect.Proxy.newProxyInstance(type.classLoader, arrayOf(type)) { _, method, args ->
+                answer(method.name, args ?: emptyArray())
+            }
+        )
+        val request = Request.Builder().url("https://img.example/moved").build()
+        val call = fake(okhttp3.Call::class.java) { name, _ ->
+            check(name == "cancel") { "not asked of the call: $name" }
+            cancelled = true
+            null
+        }
+        val connection = fake(okhttp3.Connection::class.java) { name, _ ->
+            when (name) {
+                "protocol" -> protocol
+                "socket" -> socket
+                else -> error("not asked of the connection: $name")
+            }
+        }
+        val chain = fake(okhttp3.Interceptor.Chain::class.java) { name, args ->
+            when (name) {
+                "request" -> request
+                "call" -> call
+                "connection" -> connection
+                "proceed" -> okhttp3.Response.Builder().request(args[0] as okhttp3.Request).protocol(protocol).code(302)
+                    .message("Found").body(ByteArray(100).toResponseBody()).build()
+                else -> error("not asked of the chain: $name")
+            }
+        }
+        bodyCap(BACKDROP_MAX_BYTES).intercept(chain).close()
+        return cancelled
+    }
+
+    @Test
+    fun `a body closed unread never cancels its call, and closes only an HTTP 1 hop's socket`() {
+        // Cancelling would leave Coil waiting for ever. An HTTP/1 hop's socket is closed, so OkHttp does not drain the
+        // rest of the body; an HTTP/2 stream is reset by OkHttp's own close, and its socket carries other streams.
+        listOf(Protocol.HTTP_1_1, Protocol.HTTP_1_0, Protocol.HTTP_2, Protocol.H2_PRIOR_KNOWLEDGE).forEach { protocol ->
+            Socket().use { socket ->
+                assertFalse(closedUnread(protocol, socket), "$protocol: the call was cancelled")
+                val http1 = protocol == Protocol.HTTP_1_1 || protocol == Protocol.HTTP_1_0
+                assertEquals(http1, socket.isClosed, "$protocol: socket closed")
+            }
+        }
+    }
+
+    @Test
+    fun `a gzipped body is capped as it is once decompressed`() = runBlocking<Unit> {
+        val zeros = ByteArrayOutputStream().also { out ->
+            java.util.zip.GZIPOutputStream(out).use { it.write(ByteArray((WIRE_CAP + MIB).toInt())) }
+        }.toByteArray()
+        assertTrue(zeros.size < WIRE_CAP / 16, "${zeros.size} bytes on the wire")
+        Server(zeros, encoding = "gzip").use { server ->
+            val result = withTimeout(60_000) {
+                localLoader(wireCap = WIRE_CAP).execute(backdropRequest(server.url, 400, 200))
+            }
+            val error = assertIs<ErrorResult>(result).throwable
+            assertTrue("past $WIRE_CAP bytes" in error.message.orEmpty(), "$error")
+            assertEquals(0, decoded.get(), "nothing reached the decoder")
         }
     }
 

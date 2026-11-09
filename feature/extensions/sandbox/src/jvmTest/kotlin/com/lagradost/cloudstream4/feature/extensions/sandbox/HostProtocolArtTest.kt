@@ -53,14 +53,17 @@ class HostProtocolArtTest {
         rest()
     }
 
-    /** An art section of [version] holding [body], its length stated truthfully. */
-    private fun art(version: Int = HostProtocol.ART_V1, body: DataOutputStream.() -> Unit) = reply {
+    /** A section of [tag] holding [body], its length stated truthfully. */
+    private fun DataOutputStream.section(tag: Int, body: DataOutputStream.() -> Unit) {
         val section = ByteArrayOutputStream()
         DataOutputStream(section).use(body)
-        writeByte(version)
+        writeByte(tag)
         writeInt(section.size())
         section.writeTo(this)
     }
+
+    /** An art section, or one of [version] in its place, holding [body]. */
+    private fun art(version: Int = HostProtocol.ART_V1, body: DataOutputStream.() -> Unit) = reply { section(version, body) }
 
     private fun backdrop(url: String?) = art { writeOptional(url) }
 
@@ -82,11 +85,30 @@ class HostProtocolArtTest {
     }
 
     @Test
-    fun `a version this app does not know is skipped whole`() {
+    fun `a tag this app does not know is skipped whole`() {
+        listOf(HostProtocol.FACTS_V1, 2, 0x22, 0x31, 0xFF).forEach { tag ->
+            val dropped = ArrayList<String>()
+            val read = received(art(version = tag) { writeOptional("https://img.example/b.jpg"); write(ByteArray(50) { 7 }) }, dropped)
+            assertEquals(page, read, "tag $tag")
+            assertEquals(listOf("a section this app does not read"), dropped, "tag $tag")
+        }
+    }
+
+    @Test
+    fun `the art section has a tag of its own, read past sections it does not know and after a second of its own`() {
+        assertEquals(0x21, HostProtocol.ART_V1, "on the wire: a tag is never changed")
         val dropped = ArrayList<String>()
-        val read = received(art(version = 2) { writeOptional("https://img.example/b.jpg"); write(ByteArray(50) { 7 }) }, dropped)
-        assertEquals(page, read)
-        assertEquals(listOf("art: a version this app does not read"), dropped)
+        val read = received(
+            reply {
+                section(0x31) { writeOptional("https://img.example/not-art.jpg"); writeInt(7) }
+                section(HostProtocol.ART_V1) { writeOptional("https://img.example/b.jpg") }
+                section(HostProtocol.ART_V1) { writeOptional("https://img.example/second.jpg") }
+                section(0x41) { }
+            },
+            dropped,
+        )
+        assertEquals("https://img.example/b.jpg", read.backdropUrl)
+        assertEquals(listOf("a section this app does not read"), dropped, "said once, whatever the count")
     }
 
     @Test

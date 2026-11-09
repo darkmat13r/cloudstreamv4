@@ -198,21 +198,21 @@ class HostProtocolFactsTest {
     @Test
     fun `a section cut short costs the facts and keeps the page, and cannot read into what follows it`() {
         assertEquals(page, received(facts { writeInt(84) }))
-        // Its length says 4, and a whole section's worth of bytes follows outside it. The reader does not reach them.
-        val dropped = ArrayList<String>()
-        val read = received(
-            reply {
-                writeByte(HostProtocol.FACTS_V1)
-                writeInt(Int.SIZE_BYTES)
-                writeInt(84)
-                writeInt(0); writeBoolean(false); writeByte(0); writeInt(90)
-            },
-            dropped,
-        )
-        assertEquals(page, read)
-        // The bytes past the slice now meet the art section's reader (KMP-100), which steps over them as a version it
-        // does not know. The facts reader still never reached them.
-        assertEquals(listOf("facts: a section that could not be read", "art: a version this app does not read"), dropped)
+        // Its length says 4, and a whole section's worth of bytes follows outside it. The facts reader does not reach
+        // them: they meet the reader of the sections after the facts (KMP-100), as an empty section of a tag it does not
+        // know and then one claiming 90 bytes the frame does not hold, which fails the call as any lying length does.
+        // Had the facts reader taken them, they would have read as facts, and nothing would fail.
+        val failure = assertFailsWith<IOException> {
+            received(
+                reply {
+                    writeByte(HostProtocol.FACTS_V1)
+                    writeInt(Int.SIZE_BYTES)
+                    writeInt(84)
+                    writeInt(0); writeBoolean(false); writeByte(0); writeInt(90)
+                },
+            )
+        }
+        assertEquals("section length 90 out of range", failure.message)
     }
 
     @Test

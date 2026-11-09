@@ -57,14 +57,21 @@ internal object HostProtocol {
     /**
      * The one version of a title's facts this app reads (`KMP-76`). The section follows the episodes, as this byte and
      * its length, so a reader that does not know a version skips it whole and the page still opens.
+     *
+     * A title's sections, this and those after it, keep three rules, so a reader of any age stays in step with a writer
+     * of any age:
+     * - **append-only:** a new section takes a tag of its own and goes after the last one; a tag is never reused;
+     * - **always written,** each section in every reply, empty when it holds nothing;
+     * - **never reordered.**
+     *
+     * Each is a tag byte, a length, and a slice read on its own. The facts come first, as they always have; after them
+     * a reader takes each section by its tag and steps over one whose tag it does not know, rather than read it as the
+     * wrong section. Tags: facts `0x01`, art `0x21`; `0x31` is taken (`KMP-86`).
      */
     const val FACTS_V1 = 1
 
-    /**
-     * The art section's version (`KMP-100`), after the facts: a title's backdrop. Framed as the facts are, so a reader
-     * that does not know a version steps over it whole, and a frame from before has none.
-     */
-    const val ART_V1 = 1
+    /** The art section's tag (`KMP-100`), after the facts: a title's backdrop. A frame from before has none. */
+    const val ART_V1 = 0x21
 
     /** A backdrop URL's bytes. Past this it is skipped unread and the page opens without one. */
     const val MAX_IMAGE_URL_BYTES = 2048
@@ -381,7 +388,7 @@ internal fun DataInputStream.readDetails(dropped: (String) -> Unit = {}): Remote
         RemoteEpisode(readOptional(), readText(), readNumber(), readNumber())
     },
     facts = readFacts(dropped),
-    backdropUrl = readArt(dropped),
+    backdropUrl = readSectionsAfterFacts(dropped),
 )
 
 /** After the episodes, so a reader from before `KMP-76` stops where it always did and never sees it. */
@@ -443,26 +450,34 @@ private fun DataOutputStream.writeArt(backdropUrl: String?) {
 }
 
 /**
- * The art section, read as the facts section is: a version this app does not know is stepped over whole, and a slice
- * that cannot be read costs the backdrop, not the page. Only a slice whose own length lies past the frame fails the call.
+ * The sections after the facts, each by its tag (see [HostProtocol.FACTS_V1]): today the art, a title's backdrop. A
+ * section whose tag this app does not know, or a second of one it has read, is stepped over whole, and said once. A
+ * slice that cannot be read costs its section, not the page. Only a slice whose own length lies past the frame fails the
+ * call. Nothing left means a host from before: no backdrop.
  */
-private fun DataInputStream.readArt(dropped: (String) -> Unit): String? {
-    if (available() == 0) return null
-    val version = readUnsignedByte()
-    val length = readInt()
-    if (length !in 0..available()) throw IOException("art length $length out of range")
-    if (version != HostProtocol.ART_V1) {
-        skipNBytes(length.toLong())
-        dropped("art: a version this app does not read")
-        return null
+private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): String? {
+    var backdrop: String? = null
+    var artRead = false
+    var unknown = false
+    while (available() > 0) {
+        val tag = readUnsignedByte()
+        val length = readInt()
+        if (length !in 0..available()) throw IOException("section length $length out of range")
+        val section = readNBytes(length)
+        if (tag == HostProtocol.ART_V1 && !artRead) {
+            artRead = true
+            backdrop = try {
+                DataInputStream(ByteArrayInputStream(section)).use { it.readArtV1(dropped) }
+            } catch (unreadable: IOException) {
+                dropped("art: a section that could not be read")
+                null
+            }
+        } else {
+            unknown = true
+        }
     }
-    val section = readNBytes(length)
-    return try {
-        DataInputStream(ByteArrayInputStream(section)).use { it.readArtV1(dropped) }
-    } catch (unreadable: IOException) {
-        dropped("art: a section that could not be read")
-        null
-    }
+    if (unknown) dropped("a section this app does not read")
+    return backdrop
 }
 
 private fun DataInputStream.readArtV1(dropped: (String) -> Unit): String? {

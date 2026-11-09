@@ -6932,10 +6932,13 @@ The two wrap cases fail when a separator is put back before the fact that starts
 extension is a security boundary: the app fetches and decodes it in its own process.
 
 **The wire.** The host sends `LoadResponse.backgroundPosterUrl` (an existing API field; `:library` is unchanged) in a
-section after the facts, `ART_V1`, framed as the facts are: a version byte, a length, a slice read on its own. A version
-this app does not know is stepped over whole; a slice that cannot be read costs the backdrop, not the page; only a slice
-whose own length lies past the frame fails the call. The URL is at most 2 KiB (`MAX_IMAGE_URL_BYTES`), skipped unread
-past that. A frame from before has no section and opens with no backdrop.
+section after the facts, framed as the facts are: a tag byte, a length, a slice read on its own. The art has a tag of its
+own, `0x21` (`ART_V1`); the facts keep `0x01`, as on master, and `0x31` is taken by `KMP-86`. After the facts the reader
+takes each section by its tag, and steps over one whose tag it does not know (or a second art) rather than read it as the
+wrong section, saying so once. A slice that cannot be read costs its section, not the page; only a slice whose own
+length lies past the frame fails the call. The URL is at most 2 KiB (`MAX_IMAGE_URL_BYTES`), skipped unread past that. A
+frame from before has no section and opens with no backdrop. `HostProtocol` states the rule for every section after the
+episodes: append-only, always written, never reordered.
 
 **The check** (`cleaned()`, in the app): `httpsUrlOrNull()`, the poster's `httpUrlOrNull()` (controls out; no
 `localhost`, `.local`, loopback, private, link-local or unspecified address as written) and https only.
@@ -6950,15 +6953,21 @@ and re-checks the address really connected to, plus:
   4096 by 4096 (Coil's own bitmap ceiling, 64 MB) before Coil's own Skia decoder sees the bytes. No new decode path.
   Measured: without the check, a 175-byte PNG claiming 20000 by 20000 was decoded, and that one call took about four
   minutes.
-- **A byte cap on the wire,** 8 MB (`BACKDROP_MAX_BYTES`), because Coil fetches the whole body, to its disk cache or to
-  memory, before any decoder runs: the decoder's own byte check came too late to stop a server sending 600 MiB. A network
-  interceptor wraps every hop's body. One that declares a length past the cap fails on its first read, before a byte of
-  it is taken; one with no length fails once it passes the cap. Either way, and when a body is closed before its end, the
-  call is cancelled, so its socket closes: closing alone is not enough, because OkHttp reads what is left of a body it
-  closes, to keep the connection, for up to 100 ms (measured: all 32 MiB of a test body, read after a refusal).
-  The refusal is made when Coil reads the body, not inside the call. Measured by reading Coil 3.3.0's bytecode, its
-  callback drops the failure of a call that was cancelled, so a call cancelled and failed inside the chain left the load
-  waiting for ever (the first version did; its test hung until it was stopped).
+- **A byte cap,** 8 MB (`BACKDROP_MAX_BYTES`), because Coil fetches the whole body, to its disk cache or to memory,
+  before any decoder runs: the decoder's own byte check came too late to stop a server sending 600 MiB. It is in the
+  client, `boundedImageClient`, at two levels: as a network interceptor, on every hop, redirects included; and as an
+  application interceptor, on the body Coil reads. OkHttp asks for gzip and decompresses above the network level, so the
+  network count alone is of compressed bytes: 64 MiB of zeros comes as 65 KB (the reviewer's measurement). A body that
+  declares a length past the cap fails on its first read, before a byte of it is taken; one with no length fails once it
+  passes the cap.
+  - A refusal cancels the call, so its socket closes. Closing alone is not enough: OkHttp reads what is left of a body it
+    closes, to keep the connection, for up to 100 ms (measured: all 32 MiB of a test body, read after a refusal).
+  - Nothing cancels inside the chain. Measured by reading Coil 3.3.0's bytecode, its callback drops the failure of a call
+    that was cancelled, so a call cancelled inside the chain leaves the load waiting for ever (the first version did; its
+    test hung until it was stopped). A refusal is made when Coil reads the body, after the call has answered. A body
+    closed before its end, which is what OkHttp does with a redirect's inside the chain, closes its hop's socket if the
+    hop is HTTP/1, and nothing more: an HTTP/2 stream is reset by OkHttp's own close, which does not drain, and its
+    socket carries other streams.
 - **The cache.** Backdrops use Coil's own disk cache, the one posters share: under the temporary directory, files named
   by a SHA-256 of the URL, readable by this user's other processes (0644), each body stored with its response headers.
 
@@ -6968,35 +6977,45 @@ top, 0.6 at 52 %, to the whole ground at its foot (`linear-gradient(0deg, #000 0
 100%)`, read top-down). It scrolls away with the header. Without a backdrop nothing is drawn: no poster in its place.
 
 **Tests:**
-- `HostProtocolArtTest`, 8: the round trip; a frame from before; an unknown version skipped; only public https kept
+- `HostProtocolArtTest`, 9: the round trip; a frame from before; an unknown tag skipped (`0x01` again, `2`, `0x22`,
+  `0x31`, `0xFF`); art read past a section it does not know, and the first of two kept, the skip said once; only public https kept
   (http, `file:`, `data:`, `localhost`, `.local`, `127.0.0.1`, `10.`, `192.168.`, `169.254.169.254`, `[::1]`, no scheme
   and empty all refused); 2 KiB read and one byte more skipped with the page kept; lying lengths inside the slice cost the
   backdrop only; a slice past the frame fails the call; nothing the URL held reaches the log.
-- `BackdropImageTest`, 5, against a server on this machine, each with its own temporary disk cache: an image inside its
-  bounds loads, kept no larger than twice the drawn size; a 175-byte file claiming 20000 by 20000, and one claiming 4097
-  by 4096, never reach the decoder (counted); a file one byte past its cap is refused; the client sends no plain-http
-  request and follows no https-to-http redirect; a body of the cap and 1 MiB, with a length and chunked, ends as Coil's
-  `ErrorResult` within 60 s, the server stops short of it, and the client takes off its socket only the read that
-  brought the headers (with a length: measured 8192 bytes) or the cap and one read (chunked: the cap and 8283). The
-  count is the client's socket, not the server's: loopback's socket buffers take 384 to 530 KiB past a reader that has
-  stopped (measured), and asking for 64 KiB a side did not change that.
+- `BackdropImageTest`, 8, against a server on this machine, with the client built by the app's own `boundedImageClient`
+  (https off, as a test can only serve http) and one temporary disk cache per test: an image inside its bounds loads,
+  kept no larger than twice the drawn size; a 175-byte file claiming 20000 by 20000, and one claiming 4097 by 4096, never
+  reach the decoder (counted); a file one byte past its cap is refused; the client sends no plain-http request and
+  follows no https-to-http redirect; a body of the cap and 1 MiB, with a length and chunked, ends as Coil's `ErrorResult`
+  within 60 s, the server stops short of it, and the client takes off its socket only the read that brought the headers
+  (with a length: measured 8192 bytes) or the cap and one read (chunked: the cap and 8283); a gzipped body of the cap and
+  1 MiB of zeros, under 16 KiB on the wire (asserted), ends as `ErrorResult` past the cap; an image behind a 302 with a body loads; a body
+  closed unread never cancels its call, and closes its hop's socket over HTTP/1.0 and 1.1 and not over HTTP/2 (a chain
+  made by hand: a test server for HTTP/2 would be a new dependency, and OkHttp's own HTTP/2 classes differ between the
+  version this compiles against, 4.12.0, and the one it runs with, measured as a `NoSuchMethodError`). The byte count is
+  the client's socket, not the server's: loopback's socket buffers take 384 to 530 KiB past a reader that has stopped
+  (measured), and asking for 64 KiB a side did not change that.
 - `DetailScreenTest`: a title with a backdrop asks the slot for its URL and draws it under the bar, with the ground at
   the scrim's foot; one without asks nothing and draws plain ground. `TitleFactsTest`: the URL is carried, and none is
   none, not the poster.
 - Proved by mutation: without the pixel check, the claiming file decodes; with `httpUrlOrNull` in place of the https
   check, `http://` is kept; without the interceptor, a plain-http request is sent; without the wash, the slot is never
   asked; without the byte cap, the over-cap body is read; without the refusal of a declared length, the cap is read
-  before it fails; with the call cancelled and failed inside the chain, the load times out at 60 s.
+  before it fails; with the call cancelled and failed inside the chain, the load times out at 60 s; without the
+  application-level cap, the gzipped body is read whole; with the cap's lines taken out of `boundedImageClient`, the
+  over-cap test fails; with a close that cancels, the redirect times out and the closed-unread test fails; with every
+  protocol's socket closed, the HTTP/2 case fails; with an unknown tag read as art, the tag tests fail.
 
 **Changed existing test code:** `HostProtocolFactsTest`'s "cannot read into what follows it" case writes bytes past a
-short facts slice. They now meet the art reader, which steps over them as an unknown version, so its expected log gains
-`art: a version this app does not read`. The facts reader still never reaches them.
+short facts slice. They now meet the reader of the sections after the facts, as an empty section of an unknown tag and
+then one claiming 90 bytes the frame does not hold, so the call now fails on that lying length, as any does; the test
+asserts that failure. Had the facts reader taken those bytes, they would have read as facts and nothing would fail.
 
 ## KMP-102 — The same hardening for posters · **open**, follow-up of `KMP-100`
 
 Posters go through `httpUrlOrNull()` and `posterHttpClient`, so they accept http, follow https-to-http redirects, and are
 decoded whole whatever size they claim. Give them `KMP-100`'s https-only check and client, its `BoundedDecoder`, and its
-byte cap on the wire (`withBodyCap`), with a 60 s bound on every network test.
+byte cap at both levels (`boundedImageClient`), with a 60 s bound on every network test.
 
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 
