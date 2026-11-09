@@ -32,6 +32,7 @@
 <string name="account_pin_current">अहिले प्रयोगमा रहेको पिन टाइप गर्नुहोस्।</string>
 <string name="account_pin_first_profile">पहिलो प्रोफाइल लक गर्न सकिँदैन</string>
 <string name="account_pin_new">४ अङ्कको पिन टाइप गर्नुहोस्।</string>
+<string name="account_pin_not_saved">PIN परिवर्तन सुरक्षित गर्न सकिएन। केही परिवर्तन भएन।</string>
 <string name="account_pin_off">निष्क्रिय · जो कोहीले यो प्रोफाइल खोल्न सक्छ</string>
 <string name="account_pin_on">सक्रिय · खोल्दा सोधिन्छ</string>
 <string name="account_pin_prompt">४ अङ्कको पिन टाइप गर्नुहोस्।</string>

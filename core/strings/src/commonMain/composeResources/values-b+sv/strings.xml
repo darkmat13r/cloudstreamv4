@@ -32,6 +32,7 @@
 <string name="account_pin_current">Ange PIN-koden som används nu.</string>
 <string name="account_pin_first_profile">Den första profilen kan inte låsas</string>
 <string name="account_pin_new">Ange en fyrsiffrig PIN-kod.</string>
+<string name="account_pin_not_saved">Det gick inte att spara PIN-ändringen. Inget ändrades.</string>
 <string name="account_pin_off">Av · vem som helst kan öppna den här profilen</string>
 <string name="account_pin_on">På · krävs för att öppna den</string>
 <string name="account_pin_prompt">Ange den fyrsiffriga PIN-koden.</string>

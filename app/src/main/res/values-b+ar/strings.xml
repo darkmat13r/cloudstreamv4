@@ -55,6 +55,7 @@
 <string name="account_pin_current">"اكتب رمز PIN المستخدم حاليًا."</string>
 <string name="account_pin_first_profile">"لا يمكن قفل الملف الشخصي الأول"</string>
 <string name="account_pin_new">"اكتب رمز PIN من 4 أرقام."</string>
+<string name="account_pin_not_saved">"تعذّر حفظ تغيير رقم PIN. لم يتغيّر شيء."</string>
 <string name="account_pin_off">"متوقف · يمكن لأي شخص فتح هذا الملف الشخصي"</string>
 <string name="account_pin_on">"مفعّل · يُطلب لفتحه"</string>
 <string name="account_pin_prompt">"اكتب رمز PIN المكوّن من 4 أرقام."</string>

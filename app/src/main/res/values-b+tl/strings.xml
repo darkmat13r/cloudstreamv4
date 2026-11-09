@@ -52,6 +52,7 @@
 <string name="account_pin_current">"I-type ang PIN na ginagamit ngayon."</string>
 <string name="account_pin_first_profile">"Hindi maaaring i-lock ang unang profile"</string>
 <string name="account_pin_new">"Mag-type ng 4-digit na PIN."</string>
+<string name="account_pin_not_saved">"Hindi ma-save ang pagbabago sa PIN. Walang nabago."</string>
 <string name="account_pin_off">"Naka-off · kahit sino ay puwedeng magbukas ng profile na ito"</string>
 <string name="account_pin_on">"Naka-on · hinihingi para buksan ito"</string>
 <string name="account_pin_prompt">"I-type ang 4-digit na PIN."</string>

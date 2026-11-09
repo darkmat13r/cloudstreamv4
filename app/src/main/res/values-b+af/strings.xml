@@ -52,6 +52,7 @@
 <string name="account_pin_current">"Tik die PIN wat nou gebruik word."</string>
 <string name="account_pin_first_profile">"Die eerste profiel kan nie gesluit word nie"</string>
 <string name="account_pin_new">"Tik 'n 4-syfer-PIN."</string>
+<string name="account_pin_not_saved">"Kon nie die PIN-verandering stoor nie. Niks is verander nie."</string>
 <string name="account_pin_off">"Af · enigiemand kan hierdie profiel oopmaak"</string>
 <string name="account_pin_on">"Aan · gevra om dit oop te maak"</string>
 <string name="account_pin_prompt">"Tik die 4-syfer-PIN."</string>

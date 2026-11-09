@@ -32,6 +32,7 @@
 <string name="account_pin_current">Hazırda istifadə olunan PIN-i yazın.</string>
 <string name="account_pin_first_profile">Birinci profil kilidlənə bilməz</string>
 <string name="account_pin_new">4 rəqəmli PIN yazın.</string>
+<string name="account_pin_not_saved">PIN dəyişikliyi saxlanılmadı. Heç nə dəyişmədi.</string>
 <string name="account_pin_off">Deaktiv · bu profili hər kəs aça bilər</string>
 <string name="account_pin_on">Aktiv · açarkən soruşulur</string>
 <string name="account_pin_prompt">4 rəqəmli PIN-i yazın.</string>

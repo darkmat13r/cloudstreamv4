@@ -89,6 +89,7 @@ values-b+af	string	account_pin_confirm	-	Tik dit weer om te bevestig.
 values-b+af	string	account_pin_current	-	Tik die PIN wat nou gebruik word.
 values-b+af	string	account_pin_first_profile	-	Die eerste profiel kan nie gesluit word nie
 values-b+af	string	account_pin_new	-	Tik 'n 4-syfer-PIN.
+values-b+af	string	account_pin_not_saved	-	Kon nie die PIN-verandering stoor nie. Niks is verander nie.
 values-b+af	string	account_pin_off	-	Af · enigiemand kan hierdie profiel oopmaak
 values-b+af	string	account_pin_on	-	Aan · gevra om dit oop te maak
 values-b+af	string	account_pin_prompt	-	Tik die 4-syfer-PIN.
@@ -1273,6 +1274,7 @@ values-b+am	string	account_pin_confirm	-	ለማረጋገጥ እንደገና ይ�
 values-b+am	string	account_pin_current	-	አሁን በጥቅም ላይ ያለውን ፒን ይተይቡ።
 values-b+am	string	account_pin_first_profile	-	የመጀመሪያው መገለጫ ሊቆለፍ አይችልም
 values-b+am	string	account_pin_new	-	ባለ 4 አሃዝ ፒን ይተይቡ።
+values-b+am	string	account_pin_not_saved	-	የፒን ለውጡን ማስቀመጥ አልተቻለም። ምንም አልተቀየረም።
 values-b+am	string	account_pin_off	-	ጠፍቷል · ማንም ይህን መገለጫ መክፈት ይችላል
 values-b+am	string	account_pin_on	-	በርቷል · ለመክፈት ይጠየቃል
 values-b+am	string	account_pin_prompt	-	ባለ 4 አሃዙን ፒን ይተይቡ።
@@ -2457,6 +2459,7 @@ values-b+apc	string	account_pin_confirm	-	اكتبو مرة تانية لتأك�
 values-b+apc	string	account_pin_current	-	اكتب الـPIN المستعمل هلق.
 values-b+apc	string	account_pin_first_profile	-	ما فيك تقفل البروفايل الأول
 values-b+apc	string	account_pin_new	-	اكتب PIN من 4 أرقام.
+values-b+apc	string	account_pin_not_saved	-	ما قدرنا نحفظ تغيير الـPIN. ما تغيّر شي.
 values-b+apc	string	account_pin_off	-	مطفي · أي حدا فيه يفتح هالبروفايل
 values-b+apc	string	account_pin_on	-	شغّال · بينطلب لتفتحو
 values-b+apc	string	account_pin_prompt	-	اكتب الـPIN من 4 أرقام.
@@ -3729,6 +3732,7 @@ values-b+ar	string	account_pin_confirm	-	اكتبه مرة أخرى للتأكي
 values-b+ar	string	account_pin_current	-	اكتب رمز PIN المستخدم حاليًا.
 values-b+ar	string	account_pin_first_profile	-	لا يمكن قفل الملف الشخصي الأول
 values-b+ar	string	account_pin_new	-	اكتب رمز PIN من 4 أرقام.
+values-b+ar	string	account_pin_not_saved	-	تعذّر حفظ تغيير رقم PIN. لم يتغيّر شيء.
 values-b+ar	string	account_pin_off	-	متوقف · يمكن لأي شخص فتح هذا الملف الشخصي
 values-b+ar	string	account_pin_on	-	مفعّل · يُطلب لفتحه
 values-b+ar	string	account_pin_prompt	-	اكتب رمز PIN المكوّن من 4 أرقام.
@@ -4993,6 +4997,7 @@ values-b+ars	string	account_pin_confirm	-	اكتبه مرة ثانية للتأ�
 values-b+ars	string	account_pin_current	-	اكتب الـ PIN المستخدم الحين.
 values-b+ars	string	account_pin_first_profile	-	الملف الشخصي الأول ما ينقفل
 values-b+ars	string	account_pin_new	-	اكتب PIN من 4 أرقام.
+values-b+ars	string	account_pin_not_saved	-	ما قدرنا نحفظ تغيير الـPIN. ما تغيّر شي.
 values-b+ars	string	account_pin_off	-	مطفي · أي أحد يقدر يفتح هالملف الشخصي
 values-b+ars	string	account_pin_on	-	شغّال · ينطلب عند الفتح
 values-b+ars	string	account_pin_prompt	-	اكتب الـ PIN المكوّن من 4 أرقام.
@@ -6177,6 +6182,7 @@ values-b+as	string	account_pin_confirm	-	নিশ্চিত কৰিবল�
 values-b+as	string	account_pin_current	-	এতিয়া ব্যৱহাৰ হৈ থকা পিনটো টাইপ কৰক।
 values-b+as	string	account_pin_first_profile	-	প্ৰথম প্ৰফাইলটো লক কৰিব নোৱাৰি
 values-b+as	string	account_pin_new	-	এটা ৪-অংকৰ পিন টাইপ কৰক।
+values-b+as	string	account_pin_not_saved	-	PIN সলনি ছেভ কৰিব পৰা নগ'ল। একো সলনি হোৱা নাই।
 values-b+as	string	account_pin_off	-	অফ · যিকোনোৱে এই প্ৰফাইলটো খুলিব পাৰে
 values-b+as	string	account_pin_on	-	অন · খুলিবলৈ সোধা হয়
 values-b+as	string	account_pin_prompt	-	৪-অংকৰ পিনটো টাইপ কৰক।
@@ -7361,6 +7367,7 @@ values-b+az	string	account_pin_confirm	-	Təsdiqləmək üçün yenidən yazın.
 values-b+az	string	account_pin_current	-	Hazırda istifadə olunan PIN-i yazın.
 values-b+az	string	account_pin_first_profile	-	Birinci profil kilidlənə bilməz
 values-b+az	string	account_pin_new	-	4 rəqəmli PIN yazın.
+values-b+az	string	account_pin_not_saved	-	PIN dəyişikliyi saxlanılmadı. Heç nə dəyişmədi.
 values-b+az	string	account_pin_off	-	Deaktiv · bu profili hər kəs aça bilər
 values-b+az	string	account_pin_on	-	Aktiv · açarkən soruşulur
 values-b+az	string	account_pin_prompt	-	4 rəqəmli PIN-i yazın.
@@ -8589,6 +8596,7 @@ values-b+be	string	account_pin_confirm	-	Увядзіце яго яшчэ раз
 values-b+be	string	account_pin_current	-	Увядзіце бягучы PIN-код.
 values-b+be	string	account_pin_first_profile	-	Першы профіль нельга заблакіраваць
 values-b+be	string	account_pin_new	-	Увядзіце 4-значны PIN-код.
+values-b+be	string	account_pin_not_saved	-	Не ўдалося захаваць змену PIN-кода. Нічога не змянілася.
 values-b+be	string	account_pin_off	-	Выключана · любы можа адкрыць гэты профіль
 values-b+be	string	account_pin_on	-	Уключана · запытваецца пры адкрыцці
 values-b+be	string	account_pin_prompt	-	Увядзіце 4-значны PIN-код.
@@ -9773,6 +9781,7 @@ values-b+bg	string	account_pin_confirm	-	Въведи го отново за п�
 values-b+bg	string	account_pin_current	-	Въведи текущия ПИН.
 values-b+bg	string	account_pin_first_profile	-	Първият профил не може да бъде заключен
 values-b+bg	string	account_pin_new	-	Въведи 4-цифрен ПИН.
+values-b+bg	string	account_pin_not_saved	-	Промяната на ПИН кода не можа да се запази. Нищо не е променено.
 values-b+bg	string	account_pin_off	-	Изключен · всеки може да отвори този профил
 values-b+bg	string	account_pin_on	-	Включен · иска се при отваряне
 values-b+bg	string	account_pin_prompt	-	Въведи 4-цифрения ПИН.
@@ -10957,6 +10966,7 @@ values-b+bn	string	account_pin_confirm	-	নিশ্চিত করতে আ�
 values-b+bn	string	account_pin_current	-	এখন ব্যবহৃত পিনটি লিখুন।
 values-b+bn	string	account_pin_first_profile	-	প্রথম প্রোফাইলটি লক করা যাবে না
 values-b+bn	string	account_pin_new	-	৪ অঙ্কের একটি পিন লিখুন।
+values-b+bn	string	account_pin_not_saved	-	PIN পরিবর্তন সংরক্ষণ করা যায়নি। কিছুই বদলায়নি।
 values-b+bn	string	account_pin_off	-	বন্ধ · যে কেউ এই প্রোফাইল খুলতে পারে
 values-b+bn	string	account_pin_on	-	চালু · খুলতে পিন চাওয়া হয়
 values-b+bn	string	account_pin_prompt	-	৪ অঙ্কের পিনটি লিখুন।
@@ -12161,6 +12171,7 @@ values-b+ca	string	account_pin_confirm	-	Torna'l a escriure per confirmar-lo.
 values-b+ca	string	account_pin_current	-	Escriu el PIN que fas servir ara.
 values-b+ca	string	account_pin_first_profile	-	El primer perfil no es pot bloquejar
 values-b+ca	string	account_pin_new	-	Escriu un PIN de 4 xifres.
+values-b+ca	string	account_pin_not_saved	-	No s'ha pogut desar el canvi del PIN. No s'ha canviat res.
 values-b+ca	string	account_pin_off	-	Desactivat · qualsevol pot obrir aquest perfil
 values-b+ca	string	account_pin_on	-	Activat · es demana per obrir-lo
 values-b+ca	string	account_pin_prompt	-	Escriu el PIN de 4 xifres.
@@ -13345,6 +13356,7 @@ values-b+ckb	string	account_pin_confirm	-	بۆ دڵنیابوونەوە دووب
 values-b+ckb	string	account_pin_current	-	ئەو PINـەی ئێستا بەکاردێت بنووسە.
 values-b+ckb	string	account_pin_first_profile	-	پرۆفایلی یەکەم ناتوانرێت دابخرێت
 values-b+ckb	string	account_pin_new	-	PINێکی ٤ ژمارەیی بنووسە.
+values-b+ckb	string	account_pin_not_saved	-	گۆڕینی PIN پاشەکەوت نەکرا. هیچ نەگۆڕا.
 values-b+ckb	string	account_pin_off	-	کوژاوە · هەر کەسێک دەتوانێت ئەم پرۆفایلە بکاتەوە
 values-b+ckb	string	account_pin_on	-	هەڵکراو · بۆ کردنەوە داوای دەکرێت
 values-b+ckb	string	account_pin_prompt	-	PINـە ٤ ژمارەییەکە بنووسە.
@@ -14575,6 +14587,7 @@ values-b+cs	string	account_pin_confirm	-	Pro potvrzení jej zadejte znovu.
 values-b+cs	string	account_pin_current	-	Zadejte aktuálně používaný PIN.
 values-b+cs	string	account_pin_first_profile	-	První profil nelze zamknout
 values-b+cs	string	account_pin_new	-	Zadejte čtyřmístný PIN.
+values-b+cs	string	account_pin_not_saved	-	Změnu PIN se nepodařilo uložit. Nic se nezměnilo.
 values-b+cs	string	account_pin_off	-	Vypnuto · tento profil může otevřít kdokoli
 values-b+cs	string	account_pin_on	-	Zapnuto · vyžaduje se při otevření
 values-b+cs	string	account_pin_prompt	-	Zadejte čtyřmístný PIN.
@@ -15759,6 +15772,7 @@ values-b+de	string	account_pin_confirm	-	Gib sie zur Bestätigung erneut ein.
 values-b+de	string	account_pin_current	-	Gib die aktuelle PIN ein.
 values-b+de	string	account_pin_first_profile	-	Das erste Profil kann nicht gesperrt werden
 values-b+de	string	account_pin_new	-	Gib eine 4-stellige PIN ein.
+values-b+de	string	account_pin_not_saved	-	Die PIN-Änderung konnte nicht gespeichert werden. Es wurde nichts geändert.
 values-b+de	string	account_pin_off	-	Aus · jeder kann dieses Profil öffnen
 values-b+de	string	account_pin_on	-	An · wird beim Öffnen abgefragt
 values-b+de	string	account_pin_prompt	-	Gib die 4-stellige PIN ein.
@@ -16943,6 +16957,7 @@ values-b+el	string	account_pin_confirm	-	Πληκτρολογήστε το ξα�
 values-b+el	string	account_pin_current	-	Πληκτρολογήστε το τρέχον PIN.
 values-b+el	string	account_pin_first_profile	-	Το πρώτο προφίλ δεν μπορεί να κλειδωθεί
 values-b+el	string	account_pin_new	-	Πληκτρολογήστε ένα 4ψήφιο PIN.
+values-b+el	string	account_pin_not_saved	-	Δεν ήταν δυνατή η αποθήκευση της αλλαγής PIN. Δεν άλλαξε τίποτα.
 values-b+el	string	account_pin_off	-	Ανενεργό · οποιοσδήποτε μπορεί να ανοίξει αυτό το προφίλ
 values-b+el	string	account_pin_on	-	Ενεργό · ζητείται για το άνοιγμα
 values-b+el	string	account_pin_prompt	-	Πληκτρολογήστε το 4ψήφιο PIN.
@@ -18127,6 +18142,7 @@ values-b+eo	string	account_pin_confirm	-	Tajpu ĝin denove por konfirmi.
 values-b+eo	string	account_pin_current	-	Tajpu la nune uzatan PIN.
 values-b+eo	string	account_pin_first_profile	-	La unua profilo ne povas esti ŝlosita
 values-b+eo	string	account_pin_new	-	Tajpu 4-ciferan PIN.
+values-b+eo	string	account_pin_not_saved	-	Ne eblis konservi la ŝanĝon de PIN. Nenio ŝanĝiĝis.
 values-b+eo	string	account_pin_off	-	Malŝaltita · iu ajn povas malfermi ĉi tiun profilon
 values-b+eo	string	account_pin_on	-	Ŝaltita · petata por malfermi ĝin
 values-b+eo	string	account_pin_prompt	-	Tajpu la 4-ciferan PIN.
@@ -19334,6 +19350,7 @@ values-b+es	string	account_pin_confirm	-	Vuelve a escribirlo para confirmarlo.
 values-b+es	string	account_pin_current	-	Escribe el PIN que usas ahora.
 values-b+es	string	account_pin_first_profile	-	El primer perfil no se puede bloquear
 values-b+es	string	account_pin_new	-	Escribe un PIN de 4 dígitos.
+values-b+es	string	account_pin_not_saved	-	No se pudo guardar el cambio de PIN. No se cambió nada.
 values-b+es	string	account_pin_off	-	Desactivado · cualquiera puede abrir este perfil
 values-b+es	string	account_pin_on	-	Activado · se pide para abrirlo
 values-b+es	string	account_pin_prompt	-	Escribe el PIN de 4 dígitos.
@@ -20518,6 +20535,7 @@ values-b+fa	string	account_pin_confirm	-	برای تأیید، دوباره آن
 values-b+fa	string	account_pin_current	-	PIN فعلی را وارد کنید.
 values-b+fa	string	account_pin_first_profile	-	نمایهٔ اول را نمی‌توان قفل کرد
 values-b+fa	string	account_pin_new	-	یک PIN چهاررقمی وارد کنید.
+values-b+fa	string	account_pin_not_saved	-	تغییر PIN ذخیره نشد. چیزی تغییر نکرد.
 values-b+fa	string	account_pin_off	-	خاموش · هر کسی می‌تواند این نمایه را باز کند
 values-b+fa	string	account_pin_on	-	روشن · هنگام باز کردن پرسیده می‌شود
 values-b+fa	string	account_pin_prompt	-	PIN چهاررقمی را وارد کنید.
@@ -21702,6 +21720,7 @@ values-b+fil	string	account_pin_confirm	-	I-type itong muli para kumpirmahin.
 values-b+fil	string	account_pin_current	-	I-type ang PIN na ginagamit ngayon.
 values-b+fil	string	account_pin_first_profile	-	Hindi maaaring i-lock ang unang profile
 values-b+fil	string	account_pin_new	-	Mag-type ng 4-digit na PIN.
+values-b+fil	string	account_pin_not_saved	-	Hindi ma-save ang pagbabago sa PIN. Walang nabago.
 values-b+fil	string	account_pin_off	-	Naka-off · kahit sino ay puwedeng magbukas ng profile na ito
 values-b+fil	string	account_pin_on	-	Naka-on · hinihingi para buksan ito
 values-b+fil	string	account_pin_prompt	-	I-type ang 4-digit na PIN.
@@ -22909,6 +22928,7 @@ values-b+fr	string	account_pin_confirm	-	Saisissez-le à nouveau pour confirmer.
 values-b+fr	string	account_pin_current	-	Saisissez le PIN actuel.
 values-b+fr	string	account_pin_first_profile	-	Le premier profil ne peut pas être verrouillé
 values-b+fr	string	account_pin_new	-	Saisissez un PIN à 4 chiffres.
+values-b+fr	string	account_pin_not_saved	-	Impossible d'enregistrer la modification du code PIN. Rien n'a changé.
 values-b+fr	string	account_pin_off	-	Désactivé · tout le monde peut ouvrir ce profil
 values-b+fr	string	account_pin_on	-	Activé · demandé à l'ouverture
 values-b+fr	string	account_pin_prompt	-	Saisissez le PIN à 4 chiffres.
@@ -24093,6 +24113,7 @@ values-b+gl	string	account_pin_confirm	-	Escríbeo de novo para confirmar.
 values-b+gl	string	account_pin_current	-	Escribe o PIN actual.
 values-b+gl	string	account_pin_first_profile	-	O primeiro perfil non se pode bloquear
 values-b+gl	string	account_pin_new	-	Escribe un PIN de 4 díxitos.
+values-b+gl	string	account_pin_not_saved	-	Non se puido gardar o cambio do PIN. Non se cambiou nada.
 values-b+gl	string	account_pin_off	-	Desactivado · calquera pode abrir este perfil
 values-b+gl	string	account_pin_on	-	Activado · pídese para abrilo
 values-b+gl	string	account_pin_prompt	-	Escribe o PIN de 4 díxitos.
@@ -25277,6 +25298,7 @@ values-b+hi	string	account_pin_confirm	-	पुष्टि के लिए इ
 values-b+hi	string	account_pin_current	-	अभी इस्तेमाल हो रहा पिन टाइप करें।
 values-b+hi	string	account_pin_first_profile	-	पहली प्रोफ़ाइल लॉक नहीं की जा सकती
 values-b+hi	string	account_pin_new	-	4 अंकों का एक पिन टाइप करें।
+values-b+hi	string	account_pin_not_saved	-	PIN में बदलाव सहेजा नहीं जा सका। कुछ नहीं बदला।
 values-b+hi	string	account_pin_off	-	बंद · कोई भी इस प्रोफ़ाइल को खोल सकता है
 values-b+hi	string	account_pin_on	-	चालू · खोलने के लिए पूछा जाता है
 values-b+hi	string	account_pin_prompt	-	4 अंकों वाला पिन टाइप करें।
@@ -26483,6 +26505,7 @@ values-b+hr	string	account_pin_confirm	-	Upišite ga ponovno za potvrdu.
 values-b+hr	string	account_pin_current	-	Upišite PIN koji se sada koristi.
 values-b+hr	string	account_pin_first_profile	-	Prvi profil ne može se zaključati
 values-b+hr	string	account_pin_new	-	Upišite četveroznamenkasti PIN.
+values-b+hr	string	account_pin_not_saved	-	Promjena PIN-a nije spremljena. Ništa nije promijenjeno.
 values-b+hr	string	account_pin_off	-	Isključeno · svatko može otvoriti ovaj profil
 values-b+hr	string	account_pin_on	-	Uključeno · traži se pri otvaranju
 values-b+hr	string	account_pin_prompt	-	Upišite četveroznamenkasti PIN.
@@ -27667,6 +27690,7 @@ values-b+hu	string	account_pin_confirm	-	Írja be újra a megerősítéshez.
 values-b+hu	string	account_pin_current	-	Írja be a jelenleg használt PIN-t.
 values-b+hu	string	account_pin_first_profile	-	Az első profil nem zárolható
 values-b+hu	string	account_pin_new	-	Írjon be egy 4 jegyű PIN-t.
+values-b+hu	string	account_pin_not_saved	-	A PIN-módosítást nem sikerült menteni. Semmi sem változott.
 values-b+hu	string	account_pin_off	-	Ki · bárki megnyithatja ezt a profilt
 values-b+hu	string	account_pin_on	-	Be · megnyitáskor kéri
 values-b+hu	string	account_pin_prompt	-	Írja be a 4 jegyű PIN-t.
@@ -28828,6 +28852,7 @@ values-b+in	string	account_pin_confirm	-	Ketik lagi untuk mengonfirmasi.
 values-b+in	string	account_pin_current	-	Ketik PIN yang sedang digunakan.
 values-b+in	string	account_pin_first_profile	-	Profil pertama tidak dapat dikunci
 values-b+in	string	account_pin_new	-	Ketik PIN 4 digit.
+values-b+in	string	account_pin_not_saved	-	Perubahan PIN tidak dapat disimpan. Tidak ada yang berubah.
 values-b+in	string	account_pin_off	-	Nonaktif · siapa saja dapat membuka profil ini
 values-b+in	string	account_pin_on	-	Aktif · diminta saat membuka
 values-b+in	string	account_pin_prompt	-	Ketik PIN 4 digit.
@@ -30035,6 +30060,7 @@ values-b+it	string	account_pin_confirm	-	Digitalo di nuovo per confermare.
 values-b+it	string	account_pin_current	-	Digita il PIN attuale.
 values-b+it	string	account_pin_first_profile	-	Il primo profilo non può essere bloccato
 values-b+it	string	account_pin_new	-	Digita un PIN di 4 cifre.
+values-b+it	string	account_pin_not_saved	-	Impossibile salvare la modifica del PIN. Non è cambiato nulla.
 values-b+it	string	account_pin_off	-	Disattivato · chiunque può aprire questo profilo
 values-b+it	string	account_pin_on	-	Attivato · richiesto all'apertura
 values-b+it	string	account_pin_prompt	-	Digita il PIN di 4 cifre.
@@ -31239,6 +31265,7 @@ values-b+iw	string	account_pin_confirm	-	יש להקליד שוב לאישור.
 values-b+iw	string	account_pin_current	-	יש להקליד את ה-PIN הנוכחי.
 values-b+iw	string	account_pin_first_profile	-	אי אפשר לנעול את הפרופיל הראשון
 values-b+iw	string	account_pin_new	-	יש להקליד PIN בן 4 ספרות.
+values-b+iw	string	account_pin_not_saved	-	לא ניתן היה לשמור את שינוי ה-PIN. שום דבר לא השתנה.
 values-b+iw	string	account_pin_off	-	כבוי · כל אחד יכול לפתוח את הפרופיל הזה
 values-b+iw	string	account_pin_on	-	פועל · נדרש לפתיחה
 values-b+iw	string	account_pin_prompt	-	יש להקליד את ה-PIN בן 4 הספרות.
@@ -32400,6 +32427,7 @@ values-b+ja	string	account_pin_confirm	-	確認のためもう一度入力して
 values-b+ja	string	account_pin_current	-	現在使用中のPINを入力してください。
 values-b+ja	string	account_pin_first_profile	-	最初のプロフィールはロックできません
 values-b+ja	string	account_pin_new	-	4桁のPINを入力してください。
+values-b+ja	string	account_pin_not_saved	-	PIN の変更を保存できませんでした。何も変更されていません。
 values-b+ja	string	account_pin_off	-	オフ · 誰でもこのプロフィールを開けます
 values-b+ja	string	account_pin_on	-	オン · 開くときに入力を求めます
 values-b+ja	string	account_pin_prompt	-	4桁のPINを入力
@@ -33584,6 +33612,7 @@ values-b+kn	string	account_pin_confirm	-	ಖಚಿತಪಡಿಸಲು ಮತ�
 values-b+kn	string	account_pin_current	-	ಈಗ ಬಳಕೆಯಲ್ಲಿರುವ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ.
 values-b+kn	string	account_pin_first_profile	-	ಮೊದಲ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಲಾಕ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ
 values-b+kn	string	account_pin_new	-	4 ಅಂಕಿಯ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ.
+values-b+kn	string	account_pin_not_saved	-	PIN ಬದಲಾವಣೆಯನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ. ಏನೂ ಬದಲಾಗಿಲ್ಲ.
 values-b+kn	string	account_pin_off	-	ಆಫ್ · ಯಾರಾದರೂ ಈ ಪ್ರೊಫೈಲ್ ತೆರೆಯಬಹುದು
 values-b+kn	string	account_pin_on	-	ಆನ್ · ತೆರೆಯಲು ಕೇಳಲಾಗುತ್ತದೆ
 values-b+kn	string	account_pin_prompt	-	4 ಅಂಕಿಯ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ.
@@ -34746,6 +34775,7 @@ values-b+ko	string	account_pin_confirm	-	확인을 위해 한 번 더 입력하�
 values-b+ko	string	account_pin_current	-	현재 사용 중인 PIN을 입력하세요.
 values-b+ko	string	account_pin_first_profile	-	첫 번째 프로필은 잠글 수 없습니다
 values-b+ko	string	account_pin_new	-	4자리 PIN을 입력하세요.
+values-b+ko	string	account_pin_not_saved	-	PIN 변경 사항을 저장하지 못했습니다. 아무것도 바뀌지 않았습니다.
 values-b+ko	string	account_pin_off	-	끔 · 누구나 이 프로필을 열 수 있음
 values-b+ko	string	account_pin_on	-	켬 · 열 때 PIN 요청
 values-b+ko	string	account_pin_prompt	-	4자리 PIN을 입력하세요.
@@ -35970,6 +36000,7 @@ values-b+lt	string	account_pin_confirm	-	Įveskite dar kartą, kad patvirtintum�
 values-b+lt	string	account_pin_current	-	Įveskite dabar naudojamą PIN.
 values-b+lt	string	account_pin_first_profile	-	Pirmojo profilio užrakinti negalima
 values-b+lt	string	account_pin_new	-	Įveskite 4 skaitmenų PIN.
+values-b+lt	string	account_pin_not_saved	-	PIN pakeitimo išsaugoti nepavyko. Niekas nepakeista.
 values-b+lt	string	account_pin_off	-	Išjungta · šį profilį gali atidaryti bet kas
 values-b+lt	string	account_pin_on	-	Įjungta · prašoma atidarant
 values-b+lt	string	account_pin_prompt	-	Įveskite 4 skaitmenų PIN.
@@ -37175,6 +37206,7 @@ values-b+lv	string	account_pin_confirm	-	Ievadiet to vēlreiz, lai apstiprinātu
 values-b+lv	string	account_pin_current	-	Ievadiet pašlaik izmantoto PIN kodu.
 values-b+lv	string	account_pin_first_profile	-	Pirmo profilu nevar bloķēt
 values-b+lv	string	account_pin_new	-	Ievadiet 4 ciparu PIN kodu.
+values-b+lv	string	account_pin_not_saved	-	PIN maiņu neizdevās saglabāt. Nekas netika mainīts.
 values-b+lv	string	account_pin_off	-	Izslēgts · ikviens var atvērt šo profilu
 values-b+lv	string	account_pin_on	-	Ieslēgts · tiek prasīts, lai to atvērtu
 values-b+lv	string	account_pin_prompt	-	Ievadiet četrciparu PIN kodu.
@@ -38359,6 +38391,7 @@ values-b+mk	string	account_pin_confirm	-	Внеси го повторно за �
 values-b+mk	string	account_pin_current	-	Внеси го PIN-от што се користи сега.
 values-b+mk	string	account_pin_first_profile	-	Првиот профил не може да се заклучи
 values-b+mk	string	account_pin_new	-	Внеси PIN со 4 цифри.
+values-b+mk	string	account_pin_not_saved	-	Промената на PIN не можеше да се зачува. Ништо не е променето.
 values-b+mk	string	account_pin_off	-	Исклучено · секој може да го отвори овој профил
 values-b+mk	string	account_pin_on	-	Вклучено · се бара при отворање
 values-b+mk	string	account_pin_prompt	-	Внеси го PIN-от со 4 цифри.
@@ -39543,6 +39576,7 @@ values-b+ml	string	account_pin_confirm	-	സ്ഥിരീകരിക്കാ
 values-b+ml	string	account_pin_current	-	ഇപ്പോൾ ഉപയോഗത്തിലുള്ള പിൻ ടൈപ്പ് ചെയ്യുക.
 values-b+ml	string	account_pin_first_profile	-	ആദ്യ പ്രൊഫൈൽ ലോക്ക് ചെയ്യാനാകില്ല
 values-b+ml	string	account_pin_new	-	4 അക്ക പിൻ ടൈപ്പ് ചെയ്യുക.
+values-b+ml	string	account_pin_not_saved	-	PIN മാറ്റം സേവ് ചെയ്യാനായില്ല. ഒന്നും മാറിയിട്ടില്ല.
 values-b+ml	string	account_pin_off	-	ഓഫ് · ആർക്കും ഈ പ്രൊഫൈൽ തുറക്കാം
 values-b+ml	string	account_pin_on	-	ഓൺ · തുറക്കാൻ പിൻ ചോദിക്കും
 values-b+ml	string	account_pin_prompt	-	4 അക്ക പിൻ നൽകുക.
@@ -40707,6 +40741,7 @@ values-b+ms	string	account_pin_confirm	-	Taip sekali lagi untuk mengesahkan.
 values-b+ms	string	account_pin_current	-	Taip PIN yang sedang digunakan.
 values-b+ms	string	account_pin_first_profile	-	Profil pertama tidak boleh dikunci
 values-b+ms	string	account_pin_new	-	Taip PIN 4 digit.
+values-b+ms	string	account_pin_not_saved	-	Perubahan PIN tidak dapat disimpan. Tiada apa-apa yang berubah.
 values-b+ms	string	account_pin_off	-	Mati · sesiapa sahaja boleh membuka profil ini
 values-b+ms	string	account_pin_on	-	Hidup · diminta untuk membukanya
 values-b+ms	string	account_pin_prompt	-	Taip PIN 4 digit.
@@ -41951,6 +41986,7 @@ values-b+mt	string	account_pin_confirm	-	Erġa' ittajpjah biex tikkonferma.
 values-b+mt	string	account_pin_current	-	Ittajpja l-PIN li qed jintuża issa.
 values-b+mt	string	account_pin_first_profile	-	L-ewwel profil ma jistax jissakkar
 values-b+mt	string	account_pin_new	-	Ittajpja PIN ta' 4 ċifri.
+values-b+mt	string	account_pin_not_saved	-	Il-bidla tal-PIN ma setgħetx tiġi ssejvjata. Xejn ma nbidel.
 values-b+mt	string	account_pin_off	-	Mitfi · kulħadd jista' jiftaħ dan il-profil
 values-b+mt	string	account_pin_on	-	Mixgħul · jintalab biex jinfetaħ
 values-b+mt	string	account_pin_prompt	-	Ittajpja l-PIN ta' 4 ċifri.
@@ -43115,6 +43151,7 @@ values-b+my	string	account_pin_confirm	-	အတည်ပြုရန် ထပ�
 values-b+my	string	account_pin_current	-	လက်ရှိသုံးနေသော PIN ကို ရိုက်ထည့်ပါ။
 values-b+my	string	account_pin_first_profile	-	ပထမပရိုဖိုင်ကို လော့ခ်ချ၍ မရပါ
 values-b+my	string	account_pin_new	-	ဂဏန်း ၄ လုံးပါ PIN တစ်ခု ရိုက်ထည့်ပါ။
+values-b+my	string	account_pin_not_saved	-	PIN ပြောင်းလဲမှုကို သိမ်းဆည်း၍ မရပါ။ ဘာမျှ မပြောင်းလဲပါ။
 values-b+my	string	account_pin_off	-	ပိတ်ထား · မည်သူမဆို ဤပရိုဖိုင်ကို ဖွင့်နိုင်သည်
 values-b+my	string	account_pin_on	-	ဖွင့်ထား · ဖွင့်ရန် တောင်းမည်
 values-b+my	string	account_pin_prompt	-	ဂဏန်း ၄ လုံးပါ PIN ကို ရိုက်ထည့်ပါ။
@@ -44299,6 +44336,7 @@ values-b+ne	string	account_pin_confirm	-	पुष्टि गर्न फे�
 values-b+ne	string	account_pin_current	-	अहिले प्रयोगमा रहेको पिन टाइप गर्नुहोस्।
 values-b+ne	string	account_pin_first_profile	-	पहिलो प्रोफाइल लक गर्न सकिँदैन
 values-b+ne	string	account_pin_new	-	४ अङ्कको पिन टाइप गर्नुहोस्।
+values-b+ne	string	account_pin_not_saved	-	PIN परिवर्तन सुरक्षित गर्न सकिएन। केही परिवर्तन भएन।
 values-b+ne	string	account_pin_off	-	निष्क्रिय · जो कोहीले यो प्रोफाइल खोल्न सक्छ
 values-b+ne	string	account_pin_on	-	सक्रिय · खोल्दा सोधिन्छ
 values-b+ne	string	account_pin_prompt	-	४ अङ्कको पिन टाइप गर्नुहोस्।
@@ -45483,6 +45521,7 @@ values-b+nl	string	account_pin_confirm	-	Typ hem nogmaals ter bevestiging.
 values-b+nl	string	account_pin_current	-	Typ de huidige PIN.
 values-b+nl	string	account_pin_first_profile	-	Het eerste profiel kan niet worden vergrendeld
 values-b+nl	string	account_pin_new	-	Typ een PIN van 4 cijfers.
+values-b+nl	string	account_pin_not_saved	-	De pincodewijziging kon niet worden opgeslagen. Er is niets gewijzigd.
 values-b+nl	string	account_pin_off	-	Uit · iedereen kan dit profiel openen
 values-b+nl	string	account_pin_on	-	Aan · gevraagd bij openen
 values-b+nl	string	account_pin_prompt	-	Typ de PIN van 4 cijfers.
@@ -46667,6 +46706,7 @@ values-b+nn	string	account_pin_confirm	-	Skriv han inn igjen for å stadfeste.
 values-b+nn	string	account_pin_current	-	Skriv inn PIN-koden som er i bruk no.
 values-b+nn	string	account_pin_first_profile	-	Den første profilen kan ikkje låsast
 values-b+nn	string	account_pin_new	-	Skriv inn ein firesifra PIN.
+values-b+nn	string	account_pin_not_saved	-	Kunne ikkje lagre PIN-endringa. Ingenting vart endra.
 values-b+nn	string	account_pin_off	-	Av · alle kan opne denne profilen
 values-b+nn	string	account_pin_on	-	På · blir spurd om ved opning
 values-b+nn	string	account_pin_prompt	-	Skriv inn den firesifra PIN-koden.
@@ -47851,6 +47891,7 @@ values-b+no	string	account_pin_confirm	-	Skriv den inn igjen for å bekrefte.
 values-b+no	string	account_pin_current	-	Skriv inn PIN-koden som brukes nå.
 values-b+no	string	account_pin_first_profile	-	Den første profilen kan ikke låses
 values-b+no	string	account_pin_new	-	Skriv inn en firesifret PIN.
+values-b+no	string	account_pin_not_saved	-	Kunne ikke lagre PIN-endringen. Ingenting ble endret.
 values-b+no	string	account_pin_off	-	Av · alle kan åpne denne profilen
 values-b+no	string	account_pin_on	-	På · kreves for å åpne den
 values-b+no	string	account_pin_prompt	-	Skriv inn den firesifrede PIN-koden.
@@ -49035,6 +49076,7 @@ values-b+or	string	account_pin_confirm	-	ନିଶ୍ଚିତ କରିବା�
 values-b+or	string	account_pin_current	-	ବର୍ତ୍ତମାନ ବ୍ୟବହୃତ PIN ଟାଇପ୍ କରନ୍ତୁ।
 values-b+or	string	account_pin_first_profile	-	ପ୍ରଥମ ପ୍ରୋଫାଇଲ୍ ଲକ୍ କରାଯାଇପାରିବ ନାହିଁ
 values-b+or	string	account_pin_new	-	ଏକ 4-ଅଙ୍କ ବିଶିଷ୍ଟ PIN ଟାଇପ୍ କରନ୍ତୁ।
+values-b+or	string	account_pin_not_saved	-	PIN ପରିବର୍ତ୍ତନ ସେଭ୍ କରିହେଲା ନାହିଁ। କିଛି ବଦଳିନାହିଁ।
 values-b+or	string	account_pin_off	-	ବନ୍ଦ · ଯେକେହି ଏହି ପ୍ରୋଫାଇଲ୍ ଖୋଲିପାରିବେ
 values-b+or	string	account_pin_on	-	ଚାଲୁ · ଖୋଲିବା ପାଇଁ ପଚରାଯାଏ
 values-b+or	string	account_pin_prompt	-	4-ଅଙ୍କ ବିଶିଷ୍ଟ PIN ଟାଇପ୍ କରନ୍ତୁ।
@@ -50265,6 +50307,7 @@ values-b+pl	string	account_pin_confirm	-	Wpisz go ponownie, aby potwierdzić.
 values-b+pl	string	account_pin_current	-	Wpisz obecnie używany PIN.
 values-b+pl	string	account_pin_first_profile	-	Pierwszego profilu nie można zablokować
 values-b+pl	string	account_pin_new	-	Wpisz 4-cyfrowy PIN.
+values-b+pl	string	account_pin_not_saved	-	Nie udało się zapisać zmiany PIN-u. Nic nie zostało zmienione.
 values-b+pl	string	account_pin_off	-	Wyłączony · każdy może otworzyć ten profil
 values-b+pl	string	account_pin_on	-	Włączony · wymagany przy otwieraniu
 values-b+pl	string	account_pin_prompt	-	Wpisz 4-cyfrowy PIN.
@@ -51472,6 +51515,7 @@ values-b+pt	string	account_pin_confirm	-	Introduza-o novamente para confirmar.
 values-b+pt	string	account_pin_current	-	Introduza o PIN atual.
 values-b+pt	string	account_pin_first_profile	-	O primeiro perfil não pode ser bloqueado
 values-b+pt	string	account_pin_new	-	Introduza um PIN de 4 dígitos.
+values-b+pt	string	account_pin_not_saved	-	Não foi possível guardar a alteração do PIN. Nada foi alterado.
 values-b+pt	string	account_pin_off	-	Desativado · qualquer pessoa pode abrir este perfil
 values-b+pt	string	account_pin_on	-	Ativado · pedido ao abrir
 values-b+pt	string	account_pin_prompt	-	Introduza o PIN de 4 dígitos.
@@ -52679,6 +52723,7 @@ values-b+pt+BR	string	account_pin_confirm	-	Digite de novo para confirmar.
 values-b+pt+BR	string	account_pin_current	-	Digite o PIN atual.
 values-b+pt+BR	string	account_pin_first_profile	-	O primeiro perfil não pode ser bloqueado
 values-b+pt+BR	string	account_pin_new	-	Digite um PIN de 4 dígitos.
+values-b+pt+BR	string	account_pin_not_saved	-	Não foi possível salvar a alteração do PIN. Nada foi alterado.
 values-b+pt+BR	string	account_pin_off	-	Desativado · qualquer pessoa pode abrir este perfil
 values-b+pt+BR	string	account_pin_on	-	Ativado · pedido para abrir
 values-b+pt+BR	string	account_pin_prompt	-	Digite o PIN de 4 dígitos.
@@ -53843,6 +53888,7 @@ values-b+qt	string	account_pin_confirm	-	uuuhh aah ooh.
 values-b+qt	string	account_pin_current	-	uuuhh oog aah ooh.
 values-b+qt	string	account_pin_first_profile	-	aah ooooggk oooohh oooh-aah
 values-b+qt	string	account_pin_new	-	uuuhh oog aah.
+values-b+qt	string	account_pin_not_saved	-	aagg ooh PIN. ooh-aah.
 values-b+qt	string	account_pin_off	-	oooohh · uuh ooh aahh ooooggk
 values-b+qt	string	account_pin_on	-	aah · ooh aahh
 values-b+qt	string	account_pin_prompt	-	uuuhh oog aah.
@@ -55047,6 +55093,7 @@ values-b+ro	string	account_pin_confirm	-	Introdu-l din nou pentru confirmare.
 values-b+ro	string	account_pin_current	-	Introdu PIN-ul folosit acum.
 values-b+ro	string	account_pin_first_profile	-	Primul profil nu poate fi blocat
 values-b+ro	string	account_pin_new	-	Introdu un PIN din 4 cifre.
+values-b+ro	string	account_pin_not_saved	-	Modificarea PIN-ului nu a putut fi salvată. Nu s-a schimbat nimic.
 values-b+ro	string	account_pin_off	-	Dezactivat · oricine poate deschide acest profil
 values-b+ro	string	account_pin_on	-	Activat · se cere la deschidere
 values-b+ro	string	account_pin_prompt	-	Introdu PIN-ul din 4 cifre.
@@ -56277,6 +56324,7 @@ values-b+ru	string	account_pin_confirm	-	Введите его ещё раз д�
 values-b+ru	string	account_pin_current	-	Введите текущий ПИН-код.
 values-b+ru	string	account_pin_first_profile	-	Первый профиль нельзя заблокировать
 values-b+ru	string	account_pin_new	-	Введите 4-значный ПИН-код.
+values-b+ru	string	account_pin_not_saved	-	Не удалось сохранить изменение PIN-кода. Ничего не изменилось.
 values-b+ru	string	account_pin_off	-	Выкл. · этот профиль может открыть любой
 values-b+ru	string	account_pin_on	-	Вкл. · запрашивается при открытии
 values-b+ru	string	account_pin_prompt	-	Введите 4-значный ПИН-код.
@@ -57501,6 +57549,7 @@ values-b+sk	string	account_pin_confirm	-	Na potvrdenie ho zadajte znova.
 values-b+sk	string	account_pin_current	-	Zadajte aktuálne používaný PIN.
 values-b+sk	string	account_pin_first_profile	-	Prvý profil nemožno zamknúť
 values-b+sk	string	account_pin_new	-	Zadajte štvormiestny PIN.
+values-b+sk	string	account_pin_not_saved	-	Zmenu PIN sa nepodarilo uložiť. Nič sa nezmenilo.
 values-b+sk	string	account_pin_off	-	Vypnuté · tento profil môže otvoriť ktokoľvek
 values-b+sk	string	account_pin_on	-	Zapnuté · vyžaduje sa pri otvorení
 values-b+sk	string	account_pin_prompt	-	Zadajte štvormiestny PIN.
@@ -58685,6 +58734,7 @@ values-b+so	string	account_pin_confirm	-	Mar kale qor si aad u xaqiijiso.
 values-b+so	string	account_pin_current	-	Qor PIN-ka hadda la isticmaalo.
 values-b+so	string	account_pin_first_profile	-	Astaanta koowaad lama xiri karo
 values-b+so	string	account_pin_new	-	Qor PIN ka kooban 4 lambar.
+values-b+so	string	account_pin_not_saved	-	Isbeddelka PIN-ka lama keydin karo. Waxba isma beddelin.
 values-b+so	string	account_pin_off	-	Dansan · qof kastaa wuu furi karaa astaantan
 values-b+so	string	account_pin_on	-	Shidan · waa la weydiiyaa si loo furo
 values-b+so	string	account_pin_prompt	-	Qor PIN-ka 4 lambar ah.
@@ -59869,6 +59919,7 @@ values-b+sq	string	account_pin_confirm	-	Shkruaje përsëri për ta konfirmuar.
 values-b+sq	string	account_pin_current	-	Shkruaj PIN-in aktual.
 values-b+sq	string	account_pin_first_profile	-	Profili i parë nuk mund të kyçet
 values-b+sq	string	account_pin_new	-	Shkruaj një PIN me 4 shifra.
+values-b+sq	string	account_pin_not_saved	-	Ndryshimi i PIN-it nuk u ruajt. Asgjë nuk ndryshoi.
 values-b+sq	string	account_pin_off	-	Joaktiv · kushdo mund ta hapë këtë profil
 values-b+sq	string	account_pin_on	-	Aktiv · kërkohet për ta hapur
 values-b+sq	string	account_pin_prompt	-	Shkruaj PIN-in me 4 shifra.
@@ -61053,6 +61104,7 @@ values-b+sv	string	account_pin_confirm	-	Skriv den igen för att bekräfta.
 values-b+sv	string	account_pin_current	-	Ange PIN-koden som används nu.
 values-b+sv	string	account_pin_first_profile	-	Den första profilen kan inte låsas
 values-b+sv	string	account_pin_new	-	Ange en fyrsiffrig PIN-kod.
+values-b+sv	string	account_pin_not_saved	-	Det gick inte att spara PIN-ändringen. Inget ändrades.
 values-b+sv	string	account_pin_off	-	Av · vem som helst kan öppna den här profilen
 values-b+sv	string	account_pin_on	-	På · krävs för att öppna den
 values-b+sv	string	account_pin_prompt	-	Ange den fyrsiffriga PIN-koden.
@@ -62237,6 +62289,7 @@ values-b+ta	string	account_pin_confirm	-	உறுதிப்படுத்த
 values-b+ta	string	account_pin_current	-	இப்போது பயன்பாட்டில் உள்ள முள்ளைத் தட்டச்சு செய்யவும்.
 values-b+ta	string	account_pin_first_profile	-	முதல் சுயவிவரத்தைப் பூட்ட முடியாது
 values-b+ta	string	account_pin_new	-	4 இலக்க முள்ளைத் தட்டச்சு செய்யவும்.
+values-b+ta	string	account_pin_not_saved	-	PIN மாற்றத்தைச் சேமிக்க முடியவில்லை. எதுவும் மாறவில்லை.
 values-b+ta	string	account_pin_off	-	முடக்கம் · யார் வேண்டுமானாலும் இந்தச் சுயவிவரத்தைத் திறக்கலாம்
 values-b+ta	string	account_pin_on	-	இயக்கம் · திறக்கும்போது கேட்கப்படும்
 values-b+ta	string	account_pin_prompt	-	4 இலக்க முள்ளைத் தட்டச்சு செய்யவும்.
@@ -63421,6 +63474,7 @@ values-b+ti	string	account_pin_confirm	-	ንምርግጋጽ እንደገና ጽ�
 values-b+ti	string	account_pin_current	-	ሕጂ ኣብ ጥቕሚ ዘሎ PIN ጽሓፍ።
 values-b+ti	string	account_pin_first_profile	-	እቲ ቀዳማይ መግለጺ ክዕጾ ኣይክእልን
 values-b+ti	string	account_pin_new	-	4 ኣሃዝ ዘለዎ PIN ጽሓፍ።
+values-b+ti	string	account_pin_not_saved	-	ለውጢ PIN ክዕቀብ ኣይተኻእለን። ዝተቐየረ የለን።
 values-b+ti	string	account_pin_off	-	ጠፊኡ · ዝኾነ ሰብ ነዚ መግለጺ ክኸፍቶ ይኽእል
 values-b+ti	string	account_pin_on	-	በሪሁ · ንምኽፋት ይሕተት
 values-b+ti	string	account_pin_prompt	-	እቲ 4 ኣሃዝ ዘለዎ PIN ጽሓፍ።
@@ -64605,6 +64659,7 @@ values-b+tl	string	account_pin_confirm	-	I-type itong muli para kumpirmahin.
 values-b+tl	string	account_pin_current	-	I-type ang PIN na ginagamit ngayon.
 values-b+tl	string	account_pin_first_profile	-	Hindi maaaring i-lock ang unang profile
 values-b+tl	string	account_pin_new	-	Mag-type ng 4-digit na PIN.
+values-b+tl	string	account_pin_not_saved	-	Hindi ma-save ang pagbabago sa PIN. Walang nabago.
 values-b+tl	string	account_pin_off	-	Naka-off · kahit sino ay puwedeng magbukas ng profile na ito
 values-b+tl	string	account_pin_on	-	Naka-on · hinihingi para buksan ito
 values-b+tl	string	account_pin_prompt	-	I-type ang 4-digit na PIN.
@@ -65789,6 +65844,7 @@ values-b+tr	string	account_pin_confirm	-	Onaylamak için tekrar yazın.
 values-b+tr	string	account_pin_current	-	Şu anda kullanılan PIN'i yazın.
 values-b+tr	string	account_pin_first_profile	-	İlk profil kilitlenemez
 values-b+tr	string	account_pin_new	-	4 haneli bir PIN yazın.
+values-b+tr	string	account_pin_not_saved	-	PIN değişikliği kaydedilemedi. Hiçbir şey değişmedi.
 values-b+tr	string	account_pin_off	-	Kapalı · bu profili herkes açabilir
 values-b+tr	string	account_pin_on	-	Açık · açarken sorulur
 values-b+tr	string	account_pin_prompt	-	4 haneli PIN'i yazın.
@@ -67019,6 +67075,7 @@ values-b+uk	string	account_pin_confirm	-	Уведіть його ще раз д�
 values-b+uk	string	account_pin_current	-	Уведіть чинний PIN-код.
 values-b+uk	string	account_pin_first_profile	-	Перший профіль не можна заблокувати
 values-b+uk	string	account_pin_new	-	Уведіть 4-значний PIN-код.
+values-b+uk	string	account_pin_not_saved	-	Не вдалося зберегти зміну PIN-коду. Нічого не змінилося.
 values-b+uk	string	account_pin_off	-	Вимкнено · будь-хто може відкрити цей профіль
 values-b+uk	string	account_pin_on	-	Увімкнено · запитується для відкриття
 values-b+uk	string	account_pin_prompt	-	Уведіть 4-значний PIN-код.
@@ -68203,6 +68260,7 @@ values-b+ur	string	account_pin_confirm	-	تصدیق کے لیے اسے دوبا�
 values-b+ur	string	account_pin_current	-	ابھی استعمال ہونے والا PIN ٹائپ کریں۔
 values-b+ur	string	account_pin_first_profile	-	پہلی پروفائل کو مقفل نہیں کیا جا سکتا
 values-b+ur	string	account_pin_new	-	4 ہندسوں کا PIN ٹائپ کریں۔
+values-b+ur	string	account_pin_not_saved	-	PIN کی تبدیلی محفوظ نہیں ہو سکی۔ کچھ تبدیل نہیں ہوا۔
 values-b+ur	string	account_pin_off	-	بند · کوئی بھی اس پروفائل کو کھول سکتا ہے
 values-b+ur	string	account_pin_on	-	آن · کھولنے کے لیے پوچھا جاتا ہے
 values-b+ur	string	account_pin_prompt	-	4 ہندسوں والا PIN ٹائپ کریں۔
@@ -69364,6 +69422,7 @@ values-b+vi	string	account_pin_confirm	-	Nhập lại để xác nhận.
 values-b+vi	string	account_pin_current	-	Nhập mã PIN đang dùng.
 values-b+vi	string	account_pin_first_profile	-	Không thể khóa hồ sơ đầu tiên
 values-b+vi	string	account_pin_new	-	Nhập mã PIN gồm 4 chữ số.
+values-b+vi	string	account_pin_not_saved	-	Không thể lưu thay đổi mã PIN. Không có gì thay đổi.
 values-b+vi	string	account_pin_off	-	Tắt · ai cũng có thể mở hồ sơ này
 values-b+vi	string	account_pin_on	-	Bật · cần nhập khi mở
 values-b+vi	string	account_pin_prompt	-	Nhập mã PIN gồm 4 chữ số.
@@ -70525,6 +70584,7 @@ values-b+zh	string	account_pin_confirm	-	请再输入一次以确认。
 values-b+zh	string	account_pin_current	-	请输入当前使用的 PIN。
 values-b+zh	string	account_pin_first_profile	-	第一个个人资料无法锁定
 values-b+zh	string	account_pin_new	-	请输入 4 位 PIN。
+values-b+zh	string	account_pin_not_saved	-	无法保存 PIN 更改。没有任何更改。
 values-b+zh	string	account_pin_off	-	关闭 · 任何人都可打开此个人资料
 values-b+zh	string	account_pin_on	-	开启 · 打开时需要输入
 values-b+zh	string	account_pin_prompt	-	请输入 4 位 PIN。
@@ -71687,6 +71747,7 @@ values-b+zh+TW	string	account_pin_confirm	-	請再輸入一次以確認。
 values-b+zh+TW	string	account_pin_current	-	請輸入目前使用的 PIN 碼。
 values-b+zh+TW	string	account_pin_first_profile	-	第一個個人檔案無法鎖定
 values-b+zh+TW	string	account_pin_new	-	請輸入 4 位數 PIN 碼。
+values-b+zh+TW	string	account_pin_not_saved	-	無法儲存 PIN 變更。沒有任何變更。
 values-b+zh+TW	string	account_pin_off	-	關閉 · 任何人都能開啟此個人檔案
 values-b+zh+TW	string	account_pin_on	-	開啟 · 開啟時需輸入
 values-b+zh+TW	string	account_pin_prompt	-	請輸入 4 位數 PIN 碼。
@@ -72871,6 +72932,7 @@ en	string	account_pin_confirm	-	Type it again to confirm.
 en	string	account_pin_current	-	Type the PIN in use now.
 en	string	account_pin_first_profile	-	The first profile can't be locked
 en	string	account_pin_new	-	Type a 4-digit PIN.
+en	string	account_pin_not_saved	-	Couldn't save the PIN change. Nothing was changed.
 en	string	account_pin_off	-	Off · anyone can open this profile
 en	string	account_pin_on	-	On · asked to open it
 en	string	account_pin_prompt	-	Type the 4-digit PIN.
@@ -74055,6 +74117,7 @@ en-US	string	account_pin_confirm	-	Type it again to confirm.
 en-US	string	account_pin_current	-	Type the PIN in use now.
 en-US	string	account_pin_first_profile	-	The first profile can't be locked
 en-US	string	account_pin_new	-	Type a 4-digit PIN.
+en-US	string	account_pin_not_saved	-	Couldn't save the PIN change. Nothing was changed.
 en-US	string	account_pin_off	-	Off · anyone can open this profile
 en-US	string	account_pin_on	-	On · asked to open it
 en-US	string	account_pin_prompt	-	Type the 4-digit PIN.
@@ -75239,6 +75302,7 @@ en-GB	string	account_pin_confirm	-	Type it again to confirm.
 en-GB	string	account_pin_current	-	Type the PIN in use now.
 en-GB	string	account_pin_first_profile	-	The first profile can't be locked
 en-GB	string	account_pin_new	-	Type a 4-digit PIN.
+en-GB	string	account_pin_not_saved	-	Couldn't save the PIN change. Nothing was changed.
 en-GB	string	account_pin_off	-	Off · anyone can open this profile
 en-GB	string	account_pin_on	-	On · asked to open it
 en-GB	string	account_pin_prompt	-	Type the 4-digit PIN.
@@ -76446,6 +76510,7 @@ pt	string	account_pin_confirm	-	Introduza-o novamente para confirmar.
 pt	string	account_pin_current	-	Introduza o PIN atual.
 pt	string	account_pin_first_profile	-	O primeiro perfil não pode ser bloqueado
 pt	string	account_pin_new	-	Introduza um PIN de 4 dígitos.
+pt	string	account_pin_not_saved	-	Não foi possível guardar a alteração do PIN. Nada foi alterado.
 pt	string	account_pin_off	-	Desativado · qualquer pessoa pode abrir este perfil
 pt	string	account_pin_on	-	Ativado · pedido ao abrir
 pt	string	account_pin_prompt	-	Introduza o PIN de 4 dígitos.
@@ -77653,6 +77718,7 @@ pt-PT	string	account_pin_confirm	-	Introduza-o novamente para confirmar.
 pt-PT	string	account_pin_current	-	Introduza o PIN atual.
 pt-PT	string	account_pin_first_profile	-	O primeiro perfil não pode ser bloqueado
 pt-PT	string	account_pin_new	-	Introduza um PIN de 4 dígitos.
+pt-PT	string	account_pin_not_saved	-	Não foi possível guardar a alteração do PIN. Nada foi alterado.
 pt-PT	string	account_pin_off	-	Desativado · qualquer pessoa pode abrir este perfil
 pt-PT	string	account_pin_on	-	Ativado · pedido ao abrir
 pt-PT	string	account_pin_prompt	-	Introduza o PIN de 4 dígitos.
@@ -78860,6 +78926,7 @@ pt-BR	string	account_pin_confirm	-	Digite de novo para confirmar.
 pt-BR	string	account_pin_current	-	Digite o PIN atual.
 pt-BR	string	account_pin_first_profile	-	O primeiro perfil não pode ser bloqueado
 pt-BR	string	account_pin_new	-	Digite um PIN de 4 dígitos.
+pt-BR	string	account_pin_not_saved	-	Não foi possível salvar a alteração do PIN. Nada foi alterado.
 pt-BR	string	account_pin_off	-	Desativado · qualquer pessoa pode abrir este perfil
 pt-BR	string	account_pin_on	-	Ativado · pedido para abrir
 pt-BR	string	account_pin_prompt	-	Digite o PIN de 4 dígitos.
@@ -80044,6 +80111,7 @@ fil	string	account_pin_confirm	-	I-type itong muli para kumpirmahin.
 fil	string	account_pin_current	-	I-type ang PIN na ginagamit ngayon.
 fil	string	account_pin_first_profile	-	Hindi maaaring i-lock ang unang profile
 fil	string	account_pin_new	-	Mag-type ng 4-digit na PIN.
+fil	string	account_pin_not_saved	-	Hindi ma-save ang pagbabago sa PIN. Walang nabago.
 fil	string	account_pin_off	-	Naka-off · kahit sino ay puwedeng magbukas ng profile na ito
 fil	string	account_pin_on	-	Naka-on · hinihingi para buksan ito
 fil	string	account_pin_prompt	-	I-type ang 4-digit na PIN.
@@ -81228,6 +81296,7 @@ tl	string	account_pin_confirm	-	I-type itong muli para kumpirmahin.
 tl	string	account_pin_current	-	I-type ang PIN na ginagamit ngayon.
 tl	string	account_pin_first_profile	-	Hindi maaaring i-lock ang unang profile
 tl	string	account_pin_new	-	Mag-type ng 4-digit na PIN.
+tl	string	account_pin_not_saved	-	Hindi ma-save ang pagbabago sa PIN. Walang nabago.
 tl	string	account_pin_off	-	Naka-off · kahit sino ay puwedeng magbukas ng profile na ito
 tl	string	account_pin_on	-	Naka-on · hinihingi para buksan ito
 tl	string	account_pin_prompt	-	I-type ang 4-digit na PIN.
@@ -82412,6 +82481,7 @@ fil-PH	string	account_pin_confirm	-	I-type itong muli para kumpirmahin.
 fil-PH	string	account_pin_current	-	I-type ang PIN na ginagamit ngayon.
 fil-PH	string	account_pin_first_profile	-	Hindi maaaring i-lock ang unang profile
 fil-PH	string	account_pin_new	-	Mag-type ng 4-digit na PIN.
+fil-PH	string	account_pin_not_saved	-	Hindi ma-save ang pagbabago sa PIN. Walang nabago.
 fil-PH	string	account_pin_off	-	Naka-off · kahit sino ay puwedeng magbukas ng profile na ito
 fil-PH	string	account_pin_on	-	Naka-on · hinihingi para buksan ito
 fil-PH	string	account_pin_prompt	-	I-type ang 4-digit na PIN.
@@ -83573,6 +83643,7 @@ zh	string	account_pin_confirm	-	请再输入一次以确认。
 zh	string	account_pin_current	-	请输入当前使用的 PIN。
 zh	string	account_pin_first_profile	-	第一个个人资料无法锁定
 zh	string	account_pin_new	-	请输入 4 位 PIN。
+zh	string	account_pin_not_saved	-	无法保存 PIN 更改。没有任何更改。
 zh	string	account_pin_off	-	关闭 · 任何人都可打开此个人资料
 zh	string	account_pin_on	-	开启 · 打开时需要输入
 zh	string	account_pin_prompt	-	请输入 4 位 PIN。
@@ -84734,6 +84805,7 @@ zh-CN	string	account_pin_confirm	-	请再输入一次以确认。
 zh-CN	string	account_pin_current	-	请输入当前使用的 PIN。
 zh-CN	string	account_pin_first_profile	-	第一个个人资料无法锁定
 zh-CN	string	account_pin_new	-	请输入 4 位 PIN。
+zh-CN	string	account_pin_not_saved	-	无法保存 PIN 更改。没有任何更改。
 zh-CN	string	account_pin_off	-	关闭 · 任何人都可打开此个人资料
 zh-CN	string	account_pin_on	-	开启 · 打开时需要输入
 zh-CN	string	account_pin_prompt	-	请输入 4 位 PIN。
@@ -85895,6 +85967,7 @@ zh-Hans-CN	string	account_pin_confirm	-	请再输入一次以确认。
 zh-Hans-CN	string	account_pin_current	-	请输入当前使用的 PIN。
 zh-Hans-CN	string	account_pin_first_profile	-	第一个个人资料无法锁定
 zh-Hans-CN	string	account_pin_new	-	请输入 4 位 PIN。
+zh-Hans-CN	string	account_pin_not_saved	-	无法保存 PIN 更改。没有任何更改。
 zh-Hans-CN	string	account_pin_off	-	关闭 · 任何人都可打开此个人资料
 zh-Hans-CN	string	account_pin_on	-	开启 · 打开时需要输入
 zh-Hans-CN	string	account_pin_prompt	-	请输入 4 位 PIN。
@@ -87057,6 +87130,7 @@ zh-TW	string	account_pin_confirm	-	請再輸入一次以確認。
 zh-TW	string	account_pin_current	-	請輸入目前使用的 PIN 碼。
 zh-TW	string	account_pin_first_profile	-	第一個個人檔案無法鎖定
 zh-TW	string	account_pin_new	-	請輸入 4 位數 PIN 碼。
+zh-TW	string	account_pin_not_saved	-	無法儲存 PIN 變更。沒有任何變更。
 zh-TW	string	account_pin_off	-	關閉 · 任何人都能開啟此個人檔案
 zh-TW	string	account_pin_on	-	開啟 · 開啟時需輸入
 zh-TW	string	account_pin_prompt	-	請輸入 4 位數 PIN 碼。
@@ -88219,6 +88293,7 @@ zh-Hant-TW	string	account_pin_confirm	-	請再輸入一次以確認。
 zh-Hant-TW	string	account_pin_current	-	請輸入目前使用的 PIN 碼。
 zh-Hant-TW	string	account_pin_first_profile	-	第一個個人檔案無法鎖定
 zh-Hant-TW	string	account_pin_new	-	請輸入 4 位數 PIN 碼。
+zh-Hant-TW	string	account_pin_not_saved	-	無法儲存 PIN 變更。沒有任何變更。
 zh-Hant-TW	string	account_pin_off	-	關閉 · 任何人都能開啟此個人檔案
 zh-Hant-TW	string	account_pin_on	-	開啟 · 開啟時需輸入
 zh-Hant-TW	string	account_pin_prompt	-	請輸入 4 位數 PIN 碼。
@@ -89381,6 +89456,7 @@ zh-HK	string	account_pin_confirm	-	請再輸入一次以確認。
 zh-HK	string	account_pin_current	-	請輸入目前使用的 PIN 碼。
 zh-HK	string	account_pin_first_profile	-	第一個個人檔案無法鎖定
 zh-HK	string	account_pin_new	-	請輸入 4 位數 PIN 碼。
+zh-HK	string	account_pin_not_saved	-	無法儲存 PIN 變更。沒有任何變更。
 zh-HK	string	account_pin_off	-	關閉 · 任何人都能開啟此個人檔案
 zh-HK	string	account_pin_on	-	開啟 · 開啟時需輸入
 zh-HK	string	account_pin_prompt	-	請輸入 4 位數 PIN 碼。
@@ -90543,6 +90619,7 @@ zh-Hant-HK	string	account_pin_confirm	-	請再輸入一次以確認。
 zh-Hant-HK	string	account_pin_current	-	請輸入目前使用的 PIN 碼。
 zh-Hant-HK	string	account_pin_first_profile	-	第一個個人檔案無法鎖定
 zh-Hant-HK	string	account_pin_new	-	請輸入 4 位數 PIN 碼。
+zh-Hant-HK	string	account_pin_not_saved	-	無法儲存 PIN 變更。沒有任何變更。
 zh-Hant-HK	string	account_pin_off	-	關閉 · 任何人都能開啟此個人檔案
 zh-Hant-HK	string	account_pin_on	-	開啟 · 開啟時需輸入
 zh-Hant-HK	string	account_pin_prompt	-	請輸入 4 位數 PIN 碼。
@@ -91727,6 +91804,7 @@ no	string	account_pin_confirm	-	Skriv den inn igjen for å bekrefte.
 no	string	account_pin_current	-	Skriv inn PIN-koden som brukes nå.
 no	string	account_pin_first_profile	-	Den første profilen kan ikke låses
 no	string	account_pin_new	-	Skriv inn en firesifret PIN.
+no	string	account_pin_not_saved	-	Kunne ikke lagre PIN-endringen. Ingenting ble endret.
 no	string	account_pin_off	-	Av · alle kan åpne denne profilen
 no	string	account_pin_on	-	På · kreves for å åpne den
 no	string	account_pin_prompt	-	Skriv inn den firesifrede PIN-koden.
@@ -92911,6 +92989,7 @@ nb	string	account_pin_confirm	-	Type it again to confirm.
 nb	string	account_pin_current	-	Type the PIN in use now.
 nb	string	account_pin_first_profile	-	The first profile can't be locked
 nb	string	account_pin_new	-	Type a 4-digit PIN.
+nb	string	account_pin_not_saved	-	Couldn't save the PIN change. Nothing was changed.
 nb	string	account_pin_off	-	Off · anyone can open this profile
 nb	string	account_pin_on	-	On · asked to open it
 nb	string	account_pin_prompt	-	Type the 4-digit PIN.
@@ -94095,6 +94174,7 @@ nb-NO	string	account_pin_confirm	-	Type it again to confirm.
 nb-NO	string	account_pin_current	-	Type the PIN in use now.
 nb-NO	string	account_pin_first_profile	-	The first profile can't be locked
 nb-NO	string	account_pin_new	-	Type a 4-digit PIN.
+nb-NO	string	account_pin_not_saved	-	Couldn't save the PIN change. Nothing was changed.
 nb-NO	string	account_pin_off	-	Off · anyone can open this profile
 nb-NO	string	account_pin_on	-	On · asked to open it
 nb-NO	string	account_pin_prompt	-	Type the 4-digit PIN.
@@ -95299,6 +95379,7 @@ iw	string	account_pin_confirm	-	יש להקליד שוב לאישור.
 iw	string	account_pin_current	-	יש להקליד את ה-PIN הנוכחי.
 iw	string	account_pin_first_profile	-	אי אפשר לנעול את הפרופיל הראשון
 iw	string	account_pin_new	-	יש להקליד PIN בן 4 ספרות.
+iw	string	account_pin_not_saved	-	לא ניתן היה לשמור את שינוי ה-PIN. שום דבר לא השתנה.
 iw	string	account_pin_off	-	כבוי · כל אחד יכול לפתוח את הפרופיל הזה
 iw	string	account_pin_on	-	פועל · נדרש לפתיחה
 iw	string	account_pin_prompt	-	יש להקליד את ה-PIN בן 4 הספרות.
@@ -96503,6 +96584,7 @@ he	string	account_pin_confirm	-	יש להקליד שוב לאישור.
 he	string	account_pin_current	-	יש להקליד את ה-PIN הנוכחי.
 he	string	account_pin_first_profile	-	אי אפשר לנעול את הפרופיל הראשון
 he	string	account_pin_new	-	יש להקליד PIN בן 4 ספרות.
+he	string	account_pin_not_saved	-	לא ניתן היה לשמור את שינוי ה-PIN. שום דבר לא השתנה.
 he	string	account_pin_off	-	כבוי · כל אחד יכול לפתוח את הפרופיל הזה
 he	string	account_pin_on	-	פועל · נדרש לפתיחה
 he	string	account_pin_prompt	-	יש להקליד את ה-PIN בן 4 הספרות.
@@ -97707,6 +97789,7 @@ he-IL	string	account_pin_confirm	-	יש להקליד שוב לאישור.
 he-IL	string	account_pin_current	-	יש להקליד את ה-PIN הנוכחי.
 he-IL	string	account_pin_first_profile	-	אי אפשר לנעול את הפרופיל הראשון
 he-IL	string	account_pin_new	-	יש להקליד PIN בן 4 ספרות.
+he-IL	string	account_pin_not_saved	-	לא ניתן היה לשמור את שינוי ה-PIN. שום דבר לא השתנה.
 he-IL	string	account_pin_off	-	כבוי · כל אחד יכול לפתוח את הפרופיל הזה
 he-IL	string	account_pin_on	-	פועל · נדרש לפתיחה
 he-IL	string	account_pin_prompt	-	יש להקליד את ה-PIN בן 4 הספרות.
@@ -98868,6 +98951,7 @@ in	string	account_pin_confirm	-	Ketik lagi untuk mengonfirmasi.
 in	string	account_pin_current	-	Ketik PIN yang sedang digunakan.
 in	string	account_pin_first_profile	-	Profil pertama tidak dapat dikunci
 in	string	account_pin_new	-	Ketik PIN 4 digit.
+in	string	account_pin_not_saved	-	Perubahan PIN tidak dapat disimpan. Tidak ada yang berubah.
 in	string	account_pin_off	-	Nonaktif · siapa saja dapat membuka profil ini
 in	string	account_pin_on	-	Aktif · diminta saat membuka
 in	string	account_pin_prompt	-	Ketik PIN 4 digit.
@@ -100029,6 +100113,7 @@ id	string	account_pin_confirm	-	Ketik lagi untuk mengonfirmasi.
 id	string	account_pin_current	-	Ketik PIN yang sedang digunakan.
 id	string	account_pin_first_profile	-	Profil pertama tidak dapat dikunci
 id	string	account_pin_new	-	Ketik PIN 4 digit.
+id	string	account_pin_not_saved	-	Perubahan PIN tidak dapat disimpan. Tidak ada yang berubah.
 id	string	account_pin_off	-	Nonaktif · siapa saja dapat membuka profil ini
 id	string	account_pin_on	-	Aktif · diminta saat membuka
 id	string	account_pin_prompt	-	Ketik PIN 4 digit.
@@ -101190,6 +101275,7 @@ id-ID	string	account_pin_confirm	-	Ketik lagi untuk mengonfirmasi.
 id-ID	string	account_pin_current	-	Ketik PIN yang sedang digunakan.
 id-ID	string	account_pin_first_profile	-	Profil pertama tidak dapat dikunci
 id-ID	string	account_pin_new	-	Ketik PIN 4 digit.
+id-ID	string	account_pin_not_saved	-	Perubahan PIN tidak dapat disimpan. Tidak ada yang berubah.
 id-ID	string	account_pin_off	-	Nonaktif · siapa saja dapat membuka profil ini
 id-ID	string	account_pin_on	-	Aktif · diminta saat membuka
 id-ID	string	account_pin_prompt	-	Ketik PIN 4 digit.
@@ -102374,6 +102460,7 @@ arz	string	account_pin_confirm	-	Type it again to confirm.
 arz	string	account_pin_current	-	Type the PIN in use now.
 arz	string	account_pin_first_profile	-	The first profile can't be locked
 arz	string	account_pin_new	-	Type a 4-digit PIN.
+arz	string	account_pin_not_saved	-	Couldn't save the PIN change. Nothing was changed.
 arz	string	account_pin_off	-	Off · anyone can open this profile
 arz	string	account_pin_on	-	On · asked to open it
 arz	string	account_pin_prompt	-	Type the 4-digit PIN.

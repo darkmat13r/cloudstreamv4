@@ -32,6 +32,7 @@
 <string name="account_pin_current">አሁን በጥቅም ላይ ያለውን ፒን ይተይቡ።</string>
 <string name="account_pin_first_profile">የመጀመሪያው መገለጫ ሊቆለፍ አይችልም</string>
 <string name="account_pin_new">ባለ 4 አሃዝ ፒን ይተይቡ።</string>
+<string name="account_pin_not_saved">የፒን ለውጡን ማስቀመጥ አልተቻለም። ምንም አልተቀየረም።</string>
 <string name="account_pin_off">ጠፍቷል · ማንም ይህን መገለጫ መክፈት ይችላል</string>
 <string name="account_pin_on">በርቷል · ለመክፈት ይጠየቃል</string>
 <string name="account_pin_prompt">ባለ 4 አሃዙን ፒን ይተይቡ።</string>

@@ -32,6 +32,7 @@
 <string name="account_pin_current">Įveskite dabar naudojamą PIN.</string>
 <string name="account_pin_first_profile">Pirmojo profilio užrakinti negalima</string>
 <string name="account_pin_new">Įveskite 4 skaitmenų PIN.</string>
+<string name="account_pin_not_saved">PIN pakeitimo išsaugoti nepavyko. Niekas nepakeista.</string>
 <string name="account_pin_off">Išjungta · šį profilį gali atidaryti bet kas</string>
 <string name="account_pin_on">Įjungta · prašoma atidarant</string>
 <string name="account_pin_prompt">Įveskite 4 skaitmenų PIN.</string>

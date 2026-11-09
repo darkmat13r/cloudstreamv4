@@ -56,6 +56,7 @@
 <string name="account_pin_current">"Gib die aktuelle PIN ein."</string>
 <string name="account_pin_first_profile">"Das erste Profil kann nicht gesperrt werden"</string>
 <string name="account_pin_new">"Gib eine 4-stellige PIN ein."</string>
+<string name="account_pin_not_saved">"Die PIN-Änderung konnte nicht gespeichert werden. Es wurde nichts geändert."</string>
 <string name="account_pin_off">"Aus · jeder kann dieses Profil öffnen"</string>
 <string name="account_pin_on">"An · wird beim Öffnen abgefragt"</string>
 <string name="account_pin_prompt">"Gib die 4-stellige PIN ein."</string>

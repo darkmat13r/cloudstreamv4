@@ -32,6 +32,7 @@
 <string name="account_pin_current">Zadejte aktuálně používaný PIN.</string>
 <string name="account_pin_first_profile">První profil nelze zamknout</string>
 <string name="account_pin_new">Zadejte čtyřmístný PIN.</string>
+<string name="account_pin_not_saved">Změnu PIN se nepodařilo uložit. Nic se nezměnilo.</string>
 <string name="account_pin_off">Vypnuto · tento profil může otevřít kdokoli</string>
 <string name="account_pin_on">Zapnuto · vyžaduje se při otevření</string>
 <string name="account_pin_prompt">Zadejte čtyřmístný PIN.</string>

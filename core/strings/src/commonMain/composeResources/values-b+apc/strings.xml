@@ -32,6 +32,7 @@
 <string name="account_pin_current">اكتب الـPIN المستعمل هلق.</string>
 <string name="account_pin_first_profile">ما فيك تقفل البروفايل الأول</string>
 <string name="account_pin_new">اكتب PIN من 4 أرقام.</string>
+<string name="account_pin_not_saved">ما قدرنا نحفظ تغيير الـPIN. ما تغيّر شي.</string>
 <string name="account_pin_off">مطفي · أي حدا فيه يفتح هالبروفايل</string>
 <string name="account_pin_on">شغّال · بينطلب لتفتحو</string>
 <string name="account_pin_prompt">اكتب الـPIN من 4 أرقام.</string>

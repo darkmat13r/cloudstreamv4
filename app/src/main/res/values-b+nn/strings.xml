@@ -52,6 +52,7 @@
 <string name="account_pin_current">"Skriv inn PIN-koden som er i bruk no."</string>
 <string name="account_pin_first_profile">"Den første profilen kan ikkje låsast"</string>
 <string name="account_pin_new">"Skriv inn ein firesifra PIN."</string>
+<string name="account_pin_not_saved">"Kunne ikkje lagre PIN-endringa. Ingenting vart endra."</string>
 <string name="account_pin_off">"Av · alle kan opne denne profilen"</string>
 <string name="account_pin_on">"På · blir spurd om ved opning"</string>
 <string name="account_pin_prompt">"Skriv inn den firesifra PIN-koden."</string>

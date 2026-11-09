@@ -56,6 +56,7 @@
 <string name="account_pin_current">"请输入当前使用的 PIN。"</string>
 <string name="account_pin_first_profile">"第一个个人资料无法锁定"</string>
 <string name="account_pin_new">"请输入 4 位 PIN。"</string>
+<string name="account_pin_not_saved">"无法保存 PIN 更改。没有任何更改。"</string>
 <string name="account_pin_off">"关闭 · 任何人都可打开此个人资料"</string>
 <string name="account_pin_on">"开启 · 打开时需要输入"</string>
 <string name="account_pin_prompt">"请输入 4 位 PIN。"</string>

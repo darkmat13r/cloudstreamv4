@@ -56,6 +56,7 @@
 <string name="account_pin_current">"Şu anda kullanılan PIN'i yazın."</string>
 <string name="account_pin_first_profile">"İlk profil kilitlenemez"</string>
 <string name="account_pin_new">"4 haneli bir PIN yazın."</string>
+<string name="account_pin_not_saved">"PIN değişikliği kaydedilemedi. Hiçbir şey değişmedi."</string>
 <string name="account_pin_off">"Kapalı · bu profili herkes açabilir"</string>
 <string name="account_pin_on">"Açık · açarken sorulur"</string>
 <string name="account_pin_prompt">"4 haneli PIN'i yazın."</string>

@@ -32,6 +32,7 @@
 <string name="account_pin_current">Introdu PIN-ul folosit acum.</string>
 <string name="account_pin_first_profile">Primul profil nu poate fi blocat</string>
 <string name="account_pin_new">Introdu un PIN din 4 cifre.</string>
+<string name="account_pin_not_saved">Modificarea PIN-ului nu a putut fi salvată. Nu s-a schimbat nimic.</string>
 <string name="account_pin_off">Dezactivat · oricine poate deschide acest profil</string>
 <string name="account_pin_on">Activat · se cere la deschidere</string>
 <string name="account_pin_prompt">Introdu PIN-ul din 4 cifre.</string>

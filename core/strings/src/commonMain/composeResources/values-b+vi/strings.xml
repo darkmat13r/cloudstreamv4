@@ -32,6 +32,7 @@
 <string name="account_pin_current">Nhập mã PIN đang dùng.</string>
 <string name="account_pin_first_profile">Không thể khóa hồ sơ đầu tiên</string>
 <string name="account_pin_new">Nhập mã PIN gồm 4 chữ số.</string>
+<string name="account_pin_not_saved">Không thể lưu thay đổi mã PIN. Không có gì thay đổi.</string>
 <string name="account_pin_off">Tắt · ai cũng có thể mở hồ sơ này</string>
 <string name="account_pin_on">Bật · cần nhập khi mở</string>
 <string name="account_pin_prompt">Nhập mã PIN gồm 4 chữ số.</string>

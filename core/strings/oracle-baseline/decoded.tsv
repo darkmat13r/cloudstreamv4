@@ -70,6 +70,7 @@ values-b+af/strings.xml	string	account_pin_confirm	-	STR	Tik dit weer om te beve
 values-b+af/strings.xml	string	account_pin_current	-	STR	Tik die PIN wat nou gebruik word.	
 values-b+af/strings.xml	string	account_pin_first_profile	-	STR	Die eerste profiel kan nie gesluit word nie	
 values-b+af/strings.xml	string	account_pin_new	-	STR	Tik 'n 4-syfer-PIN.	
+values-b+af/strings.xml	string	account_pin_not_saved	-	STR	Kon nie die PIN-verandering stoor nie. Niks is verander nie.	
 values-b+af/strings.xml	string	account_pin_off	-	STR	Af · enigiemand kan hierdie profiel oopmaak	
 values-b+af/strings.xml	string	account_pin_on	-	STR	Aan · gevra om dit oop te maak	
 values-b+af/strings.xml	string	account_pin_prompt	-	STR	Tik die 4-syfer-PIN.	
@@ -576,6 +577,7 @@ values-b+am/strings.xml	string	account_pin_confirm	-	STR	ለማረጋገጥ እ�
 values-b+am/strings.xml	string	account_pin_current	-	STR	አሁን በጥቅም ላይ ያለውን ፒን ይተይቡ።	
 values-b+am/strings.xml	string	account_pin_first_profile	-	STR	የመጀመሪያው መገለጫ ሊቆለፍ አይችልም	
 values-b+am/strings.xml	string	account_pin_new	-	STR	ባለ 4 አሃዝ ፒን ይተይቡ።	
+values-b+am/strings.xml	string	account_pin_not_saved	-	STR	የፒን ለውጡን ማስቀመጥ አልተቻለም። ምንም አልተቀየረም።	
 values-b+am/strings.xml	string	account_pin_off	-	STR	ጠፍቷል · ማንም ይህን መገለጫ መክፈት ይችላል	
 values-b+am/strings.xml	string	account_pin_on	-	STR	በርቷል · ለመክፈት ይጠየቃል	
 values-b+am/strings.xml	string	account_pin_prompt	-	STR	ባለ 4 አሃዙን ፒን ይተይቡ።	
@@ -1075,6 +1077,7 @@ values-b+apc/strings.xml	string	account_pin_confirm	-	STR	اكتبو مرة تا
 values-b+apc/strings.xml	string	account_pin_current	-	STR	اكتب الـPIN المستعمل هلق.	
 values-b+apc/strings.xml	string	account_pin_first_profile	-	STR	ما فيك تقفل البروفايل الأول	
 values-b+apc/strings.xml	string	account_pin_new	-	STR	اكتب PIN من 4 أرقام.	
+values-b+apc/strings.xml	string	account_pin_not_saved	-	STR	ما قدرنا نحفظ تغيير الـPIN. ما تغيّر شي.	
 values-b+apc/strings.xml	string	account_pin_off	-	STR	مطفي · أي حدا فيه يفتح هالبروفايل	
 values-b+apc/strings.xml	string	account_pin_on	-	STR	شغّال · بينطلب لتفتحو	
 values-b+apc/strings.xml	string	account_pin_prompt	-	STR	اكتب الـPIN من 4 أرقام.	
@@ -2282,6 +2285,7 @@ values-b+ar/strings.xml	string	account_pin_confirm	-	STR	اكتبه مرة أخ�
 values-b+ar/strings.xml	string	account_pin_current	-	STR	اكتب رمز PIN المستخدم حاليًا.	
 values-b+ar/strings.xml	string	account_pin_first_profile	-	STR	لا يمكن قفل الملف الشخصي الأول	
 values-b+ar/strings.xml	string	account_pin_new	-	STR	اكتب رمز PIN من 4 أرقام.	
+values-b+ar/strings.xml	string	account_pin_not_saved	-	STR	تعذّر حفظ تغيير رقم PIN. لم يتغيّر شيء.	
 values-b+ar/strings.xml	string	account_pin_off	-	STR	متوقف · يمكن لأي شخص فتح هذا الملف الشخصي	
 values-b+ar/strings.xml	string	account_pin_on	-	STR	مفعّل · يُطلب لفتحه	
 values-b+ar/strings.xml	string	account_pin_prompt	-	STR	اكتب رمز PIN المكوّن من 4 أرقام.	
@@ -3481,6 +3485,7 @@ values-b+ars/strings.xml	string	account_pin_confirm	-	STR	اكتبه مرة ثا
 values-b+ars/strings.xml	string	account_pin_current	-	STR	اكتب الـ PIN المستخدم الحين.	
 values-b+ars/strings.xml	string	account_pin_first_profile	-	STR	الملف الشخصي الأول ما ينقفل	
 values-b+ars/strings.xml	string	account_pin_new	-	STR	اكتب PIN من 4 أرقام.	
+values-b+ars/strings.xml	string	account_pin_not_saved	-	STR	ما قدرنا نحفظ تغيير الـPIN. ما تغيّر شي.	
 values-b+ars/strings.xml	string	account_pin_off	-	STR	مطفي · أي أحد يقدر يفتح هالملف الشخصي	
 values-b+ars/strings.xml	string	account_pin_on	-	STR	شغّال · ينطلب عند الفتح	
 values-b+ars/strings.xml	string	account_pin_prompt	-	STR	اكتب الـ PIN المكوّن من 4 أرقام.	
@@ -4203,6 +4208,7 @@ values-b+as/strings.xml	string	account_pin_confirm	-	STR	নিশ্চিত �
 values-b+as/strings.xml	string	account_pin_current	-	STR	এতিয়া ব্যৱহাৰ হৈ থকা পিনটো টাইপ কৰক।	
 values-b+as/strings.xml	string	account_pin_first_profile	-	STR	প্ৰথম প্ৰফাইলটো লক কৰিব নোৱাৰি	
 values-b+as/strings.xml	string	account_pin_new	-	STR	এটা ৪-অংকৰ পিন টাইপ কৰক।	
+values-b+as/strings.xml	string	account_pin_not_saved	-	STR	PIN সলনি ছেভ কৰিব পৰা নগ'ল। একো সলনি হোৱা নাই।	
 values-b+as/strings.xml	string	account_pin_off	-	STR	অফ · যিকোনোৱে এই প্ৰফাইলটো খুলিব পাৰে	
 values-b+as/strings.xml	string	account_pin_on	-	STR	অন · খুলিবলৈ সোধা হয়	
 values-b+as/strings.xml	string	account_pin_prompt	-	STR	৪-অংকৰ পিনটো টাইপ কৰক।	
@@ -5225,6 +5231,7 @@ values-b+az/strings.xml	string	account_pin_confirm	-	STR	Təsdiqləmək üçün 
 values-b+az/strings.xml	string	account_pin_current	-	STR	Hazırda istifadə olunan PIN-i yazın.	
 values-b+az/strings.xml	string	account_pin_first_profile	-	STR	Birinci profil kilidlənə bilməz	
 values-b+az/strings.xml	string	account_pin_new	-	STR	4 rəqəmli PIN yazın.	
+values-b+az/strings.xml	string	account_pin_not_saved	-	STR	PIN dəyişikliyi saxlanılmadı. Heç nə dəyişmədi.	
 values-b+az/strings.xml	string	account_pin_off	-	STR	Deaktiv · bu profili hər kəs aça bilər	
 values-b+az/strings.xml	string	account_pin_on	-	STR	Aktiv · açarkən soruşulur	
 values-b+az/strings.xml	string	account_pin_prompt	-	STR	4 rəqəmli PIN-i yazın.	
@@ -5805,6 +5812,7 @@ values-b+be/strings.xml	string	account_pin_confirm	-	STR	Увядзіце яго
 values-b+be/strings.xml	string	account_pin_current	-	STR	Увядзіце бягучы PIN-код.	
 values-b+be/strings.xml	string	account_pin_first_profile	-	STR	Першы профіль нельга заблакіраваць	
 values-b+be/strings.xml	string	account_pin_new	-	STR	Увядзіце 4-значны PIN-код.	
+values-b+be/strings.xml	string	account_pin_not_saved	-	STR	Не ўдалося захаваць змену PIN-кода. Нічога не змянілася.	
 values-b+be/strings.xml	string	account_pin_off	-	STR	Выключана · любы можа адкрыць гэты профіль	
 values-b+be/strings.xml	string	account_pin_on	-	STR	Уключана · запытваецца пры адкрыцці	
 values-b+be/strings.xml	string	account_pin_prompt	-	STR	Увядзіце 4-значны PIN-код.	
@@ -6924,6 +6932,7 @@ values-b+bg/strings.xml	string	account_pin_confirm	-	STR	Въведи го от�
 values-b+bg/strings.xml	string	account_pin_current	-	STR	Въведи текущия ПИН.	
 values-b+bg/strings.xml	string	account_pin_first_profile	-	STR	Първият профил не може да бъде заключен	
 values-b+bg/strings.xml	string	account_pin_new	-	STR	Въведи 4-цифрен ПИН.	
+values-b+bg/strings.xml	string	account_pin_not_saved	-	STR	Промяната на ПИН кода не можа да се запази. Нищо не е променено.	
 values-b+bg/strings.xml	string	account_pin_off	-	STR	Изключен · всеки може да отвори този профил	
 values-b+bg/strings.xml	string	account_pin_on	-	STR	Включен · иска се при отваряне	
 values-b+bg/strings.xml	string	account_pin_prompt	-	STR	Въведи 4-цифрения ПИН.	
@@ -8029,6 +8038,7 @@ values-b+bn/strings.xml	string	account_pin_confirm	-	STR	নিশ্চিত �
 values-b+bn/strings.xml	string	account_pin_current	-	STR	এখন ব্যবহৃত পিনটি লিখুন।	
 values-b+bn/strings.xml	string	account_pin_first_profile	-	STR	প্রথম প্রোফাইলটি লক করা যাবে না	
 values-b+bn/strings.xml	string	account_pin_new	-	STR	৪ অঙ্কের একটি পিন লিখুন।	
+values-b+bn/strings.xml	string	account_pin_not_saved	-	STR	PIN পরিবর্তন সংরক্ষণ করা যায়নি। কিছুই বদলায়নি।	
 values-b+bn/strings.xml	string	account_pin_off	-	STR	বন্ধ · যে কেউ এই প্রোফাইল খুলতে পারে	
 values-b+bn/strings.xml	string	account_pin_on	-	STR	চালু · খুলতে পিন চাওয়া হয়	
 values-b+bn/strings.xml	string	account_pin_prompt	-	STR	৪ অঙ্কের পিনটি লিখুন।	
@@ -8838,6 +8848,7 @@ values-b+ca/strings.xml	string	account_pin_confirm	-	STR	Torna'l a escriure per 
 values-b+ca/strings.xml	string	account_pin_current	-	STR	Escriu el PIN que fas servir ara.	
 values-b+ca/strings.xml	string	account_pin_first_profile	-	STR	El primer perfil no es pot bloquejar	
 values-b+ca/strings.xml	string	account_pin_new	-	STR	Escriu un PIN de 4 xifres.	
+values-b+ca/strings.xml	string	account_pin_not_saved	-	STR	No s'ha pogut desar el canvi del PIN. No s'ha canviat res.	
 values-b+ca/strings.xml	string	account_pin_off	-	STR	Desactivat · qualsevol pot obrir aquest perfil	
 values-b+ca/strings.xml	string	account_pin_on	-	STR	Activat · es demana per obrir-lo	
 values-b+ca/strings.xml	string	account_pin_prompt	-	STR	Escriu el PIN de 4 xifres.	
@@ -9553,6 +9564,7 @@ values-b+ckb/strings.xml	string	account_pin_confirm	-	STR	بۆ دڵنیابوو�
 values-b+ckb/strings.xml	string	account_pin_current	-	STR	ئەو PINـەی ئێستا بەکاردێت بنووسە.	
 values-b+ckb/strings.xml	string	account_pin_first_profile	-	STR	پرۆفایلی یەکەم ناتوانرێت دابخرێت	
 values-b+ckb/strings.xml	string	account_pin_new	-	STR	PINێکی ٤ ژمارەیی بنووسە.	
+values-b+ckb/strings.xml	string	account_pin_not_saved	-	STR	گۆڕینی PIN پاشەکەوت نەکرا. هیچ نەگۆڕا.	
 values-b+ckb/strings.xml	string	account_pin_off	-	STR	کوژاوە · هەر کەسێک دەتوانێت ئەم پرۆفایلە بکاتەوە	
 values-b+ckb/strings.xml	string	account_pin_on	-	STR	هەڵکراو · بۆ کردنەوە داوای دەکرێت	
 values-b+ckb/strings.xml	string	account_pin_prompt	-	STR	PINـە ٤ ژمارەییەکە بنووسە.	
@@ -10077,6 +10089,7 @@ values-b+cs/strings.xml	string	account_pin_confirm	-	STR	Pro potvrzení jej zade
 values-b+cs/strings.xml	string	account_pin_current	-	STR	Zadejte aktuálně používaný PIN.	
 values-b+cs/strings.xml	string	account_pin_first_profile	-	STR	První profil nelze zamknout	
 values-b+cs/strings.xml	string	account_pin_new	-	STR	Zadejte čtyřmístný PIN.	
+values-b+cs/strings.xml	string	account_pin_not_saved	-	STR	Změnu PIN se nepodařilo uložit. Nic se nezměnilo.	
 values-b+cs/strings.xml	string	account_pin_off	-	STR	Vypnuto · tento profil může otevřít kdokoli	
 values-b+cs/strings.xml	string	account_pin_on	-	STR	Zapnuto · vyžaduje se při otevření	
 values-b+cs/strings.xml	string	account_pin_prompt	-	STR	Zadejte čtyřmístný PIN.	
@@ -11203,6 +11216,7 @@ values-b+de/strings.xml	string	account_pin_confirm	-	STR	Gib sie zur Bestätigun
 values-b+de/strings.xml	string	account_pin_current	-	STR	Gib die aktuelle PIN ein.	
 values-b+de/strings.xml	string	account_pin_first_profile	-	STR	Das erste Profil kann nicht gesperrt werden	
 values-b+de/strings.xml	string	account_pin_new	-	STR	Gib eine 4-stellige PIN ein.	
+values-b+de/strings.xml	string	account_pin_not_saved	-	STR	Die PIN-Änderung konnte nicht gespeichert werden. Es wurde nichts geändert.	
 values-b+de/strings.xml	string	account_pin_off	-	STR	Aus · jeder kann dieses Profil öffnen	
 values-b+de/strings.xml	string	account_pin_on	-	STR	An · wird beim Öffnen abgefragt	
 values-b+de/strings.xml	string	account_pin_prompt	-	STR	Gib die 4-stellige PIN ein.	
@@ -12323,6 +12337,7 @@ values-b+el/strings.xml	string	account_pin_confirm	-	STR	Πληκτρολογή�
 values-b+el/strings.xml	string	account_pin_current	-	STR	Πληκτρολογήστε το τρέχον PIN.	
 values-b+el/strings.xml	string	account_pin_first_profile	-	STR	Το πρώτο προφίλ δεν μπορεί να κλειδωθεί	
 values-b+el/strings.xml	string	account_pin_new	-	STR	Πληκτρολογήστε ένα 4ψήφιο PIN.	
+values-b+el/strings.xml	string	account_pin_not_saved	-	STR	Δεν ήταν δυνατή η αποθήκευση της αλλαγής PIN. Δεν άλλαξε τίποτα.	
 values-b+el/strings.xml	string	account_pin_off	-	STR	Ανενεργό · οποιοσδήποτε μπορεί να ανοίξει αυτό το προφίλ	
 values-b+el/strings.xml	string	account_pin_on	-	STR	Ενεργό · ζητείται για το άνοιγμα	
 values-b+el/strings.xml	string	account_pin_prompt	-	STR	Πληκτρολογήστε το 4ψήφιο PIN.	
@@ -13371,6 +13386,7 @@ values-b+eo/strings.xml	string	account_pin_confirm	-	STR	Tajpu ĝin denove por k
 values-b+eo/strings.xml	string	account_pin_current	-	STR	Tajpu la nune uzatan PIN.	
 values-b+eo/strings.xml	string	account_pin_first_profile	-	STR	La unua profilo ne povas esti ŝlosita	
 values-b+eo/strings.xml	string	account_pin_new	-	STR	Tajpu 4-ciferan PIN.	
+values-b+eo/strings.xml	string	account_pin_not_saved	-	STR	Ne eblis konservi la ŝanĝon de PIN. Nenio ŝanĝiĝis.	
 values-b+eo/strings.xml	string	account_pin_off	-	STR	Malŝaltita · iu ajn povas malfermi ĉi tiun profilon	
 values-b+eo/strings.xml	string	account_pin_on	-	STR	Ŝaltita · petata por malfermi ĝin	
 values-b+eo/strings.xml	string	account_pin_prompt	-	STR	Tajpu la 4-ciferan PIN.	
@@ -13969,6 +13985,7 @@ values-b+es/strings.xml	string	account_pin_confirm	-	STR	Vuelve a escribirlo par
 values-b+es/strings.xml	string	account_pin_current	-	STR	Escribe el PIN que usas ahora.	
 values-b+es/strings.xml	string	account_pin_first_profile	-	STR	El primer perfil no se puede bloquear	
 values-b+es/strings.xml	string	account_pin_new	-	STR	Escribe un PIN de 4 dígitos.	
+values-b+es/strings.xml	string	account_pin_not_saved	-	STR	No se pudo guardar el cambio de PIN. No se cambió nada.	
 values-b+es/strings.xml	string	account_pin_off	-	STR	Desactivado · cualquiera puede abrir este perfil	
 values-b+es/strings.xml	string	account_pin_on	-	STR	Activado · se pide para abrirlo	
 values-b+es/strings.xml	string	account_pin_prompt	-	STR	Escribe el PIN de 4 dígitos.	
@@ -15088,6 +15105,7 @@ values-b+fa/strings.xml	string	account_pin_confirm	-	STR	برای تأیید، �
 values-b+fa/strings.xml	string	account_pin_current	-	STR	PIN فعلی را وارد کنید.	
 values-b+fa/strings.xml	string	account_pin_first_profile	-	STR	نمایهٔ اول را نمی‌توان قفل کرد	
 values-b+fa/strings.xml	string	account_pin_new	-	STR	یک PIN چهاررقمی وارد کنید.	
+values-b+fa/strings.xml	string	account_pin_not_saved	-	STR	تغییر PIN ذخیره نشد. چیزی تغییر نکرد.	
 values-b+fa/strings.xml	string	account_pin_off	-	STR	خاموش · هر کسی می‌تواند این نمایه را باز کند	
 values-b+fa/strings.xml	string	account_pin_on	-	STR	روشن · هنگام باز کردن پرسیده می‌شود	
 values-b+fa/strings.xml	string	account_pin_prompt	-	STR	PIN چهاررقمی را وارد کنید.	
@@ -15822,6 +15840,7 @@ values-b+fil/strings.xml	string	account_pin_confirm	-	STR	I-type itong muli para
 values-b+fil/strings.xml	string	account_pin_current	-	STR	I-type ang PIN na ginagamit ngayon.	
 values-b+fil/strings.xml	string	account_pin_first_profile	-	STR	Hindi maaaring i-lock ang unang profile	
 values-b+fil/strings.xml	string	account_pin_new	-	STR	Mag-type ng 4-digit na PIN.	
+values-b+fil/strings.xml	string	account_pin_not_saved	-	STR	Hindi ma-save ang pagbabago sa PIN. Walang nabago.	
 values-b+fil/strings.xml	string	account_pin_off	-	STR	Naka-off · kahit sino ay puwedeng magbukas ng profile na ito	
 values-b+fil/strings.xml	string	account_pin_on	-	STR	Naka-on · hinihingi para buksan ito	
 values-b+fil/strings.xml	string	account_pin_prompt	-	STR	I-type ang 4-digit na PIN.	
@@ -16396,6 +16415,7 @@ values-b+fr/strings.xml	string	account_pin_confirm	-	STR	Saisissez-le à nouveau
 values-b+fr/strings.xml	string	account_pin_current	-	STR	Saisissez le PIN actuel.	
 values-b+fr/strings.xml	string	account_pin_first_profile	-	STR	Le premier profil ne peut pas être verrouillé	
 values-b+fr/strings.xml	string	account_pin_new	-	STR	Saisissez un PIN à 4 chiffres.	
+values-b+fr/strings.xml	string	account_pin_not_saved	-	STR	Impossible d'enregistrer la modification du code PIN. Rien n'a changé.	
 values-b+fr/strings.xml	string	account_pin_off	-	STR	Désactivé · tout le monde peut ouvrir ce profil	
 values-b+fr/strings.xml	string	account_pin_on	-	STR	Activé · demandé à l'ouverture	
 values-b+fr/strings.xml	string	account_pin_prompt	-	STR	Saisissez le PIN à 4 chiffres.	
@@ -17515,6 +17535,7 @@ values-b+gl/strings.xml	string	account_pin_confirm	-	STR	Escríbeo de novo para 
 values-b+gl/strings.xml	string	account_pin_current	-	STR	Escribe o PIN actual.	
 values-b+gl/strings.xml	string	account_pin_first_profile	-	STR	O primeiro perfil non se pode bloquear	
 values-b+gl/strings.xml	string	account_pin_new	-	STR	Escribe un PIN de 4 díxitos.	
+values-b+gl/strings.xml	string	account_pin_not_saved	-	STR	Non se puido gardar o cambio do PIN. Non se cambiou nada.	
 values-b+gl/strings.xml	string	account_pin_off	-	STR	Desactivado · calquera pode abrir este perfil	
 values-b+gl/strings.xml	string	account_pin_on	-	STR	Activado · pídese para abrilo	
 values-b+gl/strings.xml	string	account_pin_prompt	-	STR	Escribe o PIN de 4 díxitos.	
@@ -18190,6 +18211,7 @@ values-b+hi/strings.xml	string	account_pin_confirm	-	STR	पुष्टि क�
 values-b+hi/strings.xml	string	account_pin_current	-	STR	अभी इस्तेमाल हो रहा पिन टाइप करें।	
 values-b+hi/strings.xml	string	account_pin_first_profile	-	STR	पहली प्रोफ़ाइल लॉक नहीं की जा सकती	
 values-b+hi/strings.xml	string	account_pin_new	-	STR	4 अंकों का एक पिन टाइप करें।	
+values-b+hi/strings.xml	string	account_pin_not_saved	-	STR	PIN में बदलाव सहेजा नहीं जा सका। कुछ नहीं बदला।	
 values-b+hi/strings.xml	string	account_pin_off	-	STR	बंद · कोई भी इस प्रोफ़ाइल को खोल सकता है	
 values-b+hi/strings.xml	string	account_pin_on	-	STR	चालू · खोलने के लिए पूछा जाता है	
 values-b+hi/strings.xml	string	account_pin_prompt	-	STR	4 अंकों वाला पिन टाइप करें।	
@@ -19016,6 +19038,7 @@ values-b+hr/strings.xml	string	account_pin_confirm	-	STR	Upišite ga ponovno za 
 values-b+hr/strings.xml	string	account_pin_current	-	STR	Upišite PIN koji se sada koristi.	
 values-b+hr/strings.xml	string	account_pin_first_profile	-	STR	Prvi profil ne može se zaključati	
 values-b+hr/strings.xml	string	account_pin_new	-	STR	Upišite četveroznamenkasti PIN.	
+values-b+hr/strings.xml	string	account_pin_not_saved	-	STR	Promjena PIN-a nije spremljena. Ništa nije promijenjeno.	
 values-b+hr/strings.xml	string	account_pin_off	-	STR	Isključeno · svatko može otvoriti ovaj profil	
 values-b+hr/strings.xml	string	account_pin_on	-	STR	Uključeno · traži se pri otvaranju	
 values-b+hr/strings.xml	string	account_pin_prompt	-	STR	Upišite četveroznamenkasti PIN.	
@@ -20131,6 +20154,7 @@ values-b+hu/strings.xml	string	account_pin_confirm	-	STR	Írja be újra a meger�
 values-b+hu/strings.xml	string	account_pin_current	-	STR	Írja be a jelenleg használt PIN-t.	
 values-b+hu/strings.xml	string	account_pin_first_profile	-	STR	Az első profil nem zárolható	
 values-b+hu/strings.xml	string	account_pin_new	-	STR	Írjon be egy 4 jegyű PIN-t.	
+values-b+hu/strings.xml	string	account_pin_not_saved	-	STR	A PIN-módosítást nem sikerült menteni. Semmi sem változott.	
 values-b+hu/strings.xml	string	account_pin_off	-	STR	Ki · bárki megnyithatja ezt a profilt	
 values-b+hu/strings.xml	string	account_pin_on	-	STR	Be · megnyitáskor kéri	
 values-b+hu/strings.xml	string	account_pin_prompt	-	STR	Írja be a 4 jegyű PIN-t.	
@@ -21136,6 +21160,7 @@ values-b+in/strings.xml	string	account_pin_confirm	-	STR	Ketik lagi untuk mengon
 values-b+in/strings.xml	string	account_pin_current	-	STR	Ketik PIN yang sedang digunakan.	
 values-b+in/strings.xml	string	account_pin_first_profile	-	STR	Profil pertama tidak dapat dikunci	
 values-b+in/strings.xml	string	account_pin_new	-	STR	Ketik PIN 4 digit.	
+values-b+in/strings.xml	string	account_pin_not_saved	-	STR	Perubahan PIN tidak dapat disimpan. Tidak ada yang berubah.	
 values-b+in/strings.xml	string	account_pin_off	-	STR	Nonaktif · siapa saja dapat membuka profil ini	
 values-b+in/strings.xml	string	account_pin_on	-	STR	Aktif · diminta saat membuka	
 values-b+in/strings.xml	string	account_pin_prompt	-	STR	Ketik PIN 4 digit.	
@@ -22285,6 +22310,7 @@ values-b+it/strings.xml	string	account_pin_confirm	-	STR	Digitalo di nuovo per c
 values-b+it/strings.xml	string	account_pin_current	-	STR	Digita il PIN attuale.	
 values-b+it/strings.xml	string	account_pin_first_profile	-	STR	Il primo profilo non può essere bloccato	
 values-b+it/strings.xml	string	account_pin_new	-	STR	Digita un PIN di 4 cifre.	
+values-b+it/strings.xml	string	account_pin_not_saved	-	STR	Impossibile salvare la modifica del PIN. Non è cambiato nulla.	
 values-b+it/strings.xml	string	account_pin_off	-	STR	Disattivato · chiunque può aprire questo profilo	
 values-b+it/strings.xml	string	account_pin_on	-	STR	Attivato · richiesto all'apertura	
 values-b+it/strings.xml	string	account_pin_prompt	-	STR	Digita il PIN di 4 cifre.	
@@ -23425,6 +23451,7 @@ values-b+iw/strings.xml	string	account_pin_confirm	-	STR	יש להקליד שו�
 values-b+iw/strings.xml	string	account_pin_current	-	STR	יש להקליד את ה-PIN הנוכחי.	
 values-b+iw/strings.xml	string	account_pin_first_profile	-	STR	אי אפשר לנעול את הפרופיל הראשון	
 values-b+iw/strings.xml	string	account_pin_new	-	STR	יש להקליד PIN בן 4 ספרות.	
+values-b+iw/strings.xml	string	account_pin_not_saved	-	STR	לא ניתן היה לשמור את שינוי ה-PIN. שום דבר לא השתנה.	
 values-b+iw/strings.xml	string	account_pin_off	-	STR	כבוי · כל אחד יכול לפתוח את הפרופיל הזה	
 values-b+iw/strings.xml	string	account_pin_on	-	STR	פועל · נדרש לפתיחה	
 values-b+iw/strings.xml	string	account_pin_prompt	-	STR	יש להקליד את ה-PIN בן 4 הספרות.	
@@ -24340,6 +24367,7 @@ values-b+ja/strings.xml	string	account_pin_confirm	-	STR	確認のためもう�
 values-b+ja/strings.xml	string	account_pin_current	-	STR	現在使用中のPINを入力してください。	
 values-b+ja/strings.xml	string	account_pin_first_profile	-	STR	最初のプロフィールはロックできません	
 values-b+ja/strings.xml	string	account_pin_new	-	STR	4桁のPINを入力してください。	
+values-b+ja/strings.xml	string	account_pin_not_saved	-	STR	PIN の変更を保存できませんでした。何も変更されていません。	
 values-b+ja/strings.xml	string	account_pin_off	-	STR	オフ · 誰でもこのプロフィールを開けます	
 values-b+ja/strings.xml	string	account_pin_on	-	STR	オン · 開くときに入力を求めます	
 values-b+ja/strings.xml	string	account_pin_prompt	-	STR	4桁のPINを入力	
@@ -25459,6 +25487,7 @@ values-b+kn/strings.xml	string	account_pin_confirm	-	STR	ಖಚಿತಪಡಿ�
 values-b+kn/strings.xml	string	account_pin_current	-	STR	ಈಗ ಬಳಕೆಯಲ್ಲಿರುವ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ.	
 values-b+kn/strings.xml	string	account_pin_first_profile	-	STR	ಮೊದಲ ಪ್ರೊಫೈಲ್ ಅನ್ನು ಲಾಕ್ ಮಾಡಲಾಗುವುದಿಲ್ಲ	
 values-b+kn/strings.xml	string	account_pin_new	-	STR	4 ಅಂಕಿಯ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ.	
+values-b+kn/strings.xml	string	account_pin_not_saved	-	STR	PIN ಬದಲಾವಣೆಯನ್ನು ಉಳಿಸಲಾಗಲಿಲ್ಲ. ಏನೂ ಬದಲಾಗಿಲ್ಲ.	
 values-b+kn/strings.xml	string	account_pin_off	-	STR	ಆಫ್ · ಯಾರಾದರೂ ಈ ಪ್ರೊಫೈಲ್ ತೆರೆಯಬಹುದು	
 values-b+kn/strings.xml	string	account_pin_on	-	STR	ಆನ್ · ತೆರೆಯಲು ಕೇಳಲಾಗುತ್ತದೆ	
 values-b+kn/strings.xml	string	account_pin_prompt	-	STR	4 ಅಂಕಿಯ ಪಿನ್ ಟೈಪ್ ಮಾಡಿ.	
@@ -25957,6 +25986,7 @@ values-b+ko/strings.xml	string	account_pin_confirm	-	STR	확인을 위해 한 �
 values-b+ko/strings.xml	string	account_pin_current	-	STR	현재 사용 중인 PIN을 입력하세요.	
 values-b+ko/strings.xml	string	account_pin_first_profile	-	STR	첫 번째 프로필은 잠글 수 없습니다	
 values-b+ko/strings.xml	string	account_pin_new	-	STR	4자리 PIN을 입력하세요.	
+values-b+ko/strings.xml	string	account_pin_not_saved	-	STR	PIN 변경 사항을 저장하지 못했습니다. 아무것도 바뀌지 않았습니다.	
 values-b+ko/strings.xml	string	account_pin_off	-	STR	끔 · 누구나 이 프로필을 열 수 있음	
 values-b+ko/strings.xml	string	account_pin_on	-	STR	켬 · 열 때 PIN 요청	
 values-b+ko/strings.xml	string	account_pin_prompt	-	STR	4자리 PIN을 입력하세요.	
@@ -27111,6 +27141,7 @@ values-b+lt/strings.xml	string	account_pin_confirm	-	STR	Įveskite dar kartą, k
 values-b+lt/strings.xml	string	account_pin_current	-	STR	Įveskite dabar naudojamą PIN.	
 values-b+lt/strings.xml	string	account_pin_first_profile	-	STR	Pirmojo profilio užrakinti negalima	
 values-b+lt/strings.xml	string	account_pin_new	-	STR	Įveskite 4 skaitmenų PIN.	
+values-b+lt/strings.xml	string	account_pin_not_saved	-	STR	PIN pakeitimo išsaugoti nepavyko. Niekas nepakeista.	
 values-b+lt/strings.xml	string	account_pin_off	-	STR	Išjungta · šį profilį gali atidaryti bet kas	
 values-b+lt/strings.xml	string	account_pin_on	-	STR	Įjungta · prašoma atidarant	
 values-b+lt/strings.xml	string	account_pin_prompt	-	STR	Įveskite 4 skaitmenų PIN.	
@@ -27817,6 +27848,7 @@ values-b+lv/strings.xml	string	account_pin_confirm	-	STR	Ievadiet to vēlreiz, l
 values-b+lv/strings.xml	string	account_pin_current	-	STR	Ievadiet pašlaik izmantoto PIN kodu.	
 values-b+lv/strings.xml	string	account_pin_first_profile	-	STR	Pirmo profilu nevar bloķēt	
 values-b+lv/strings.xml	string	account_pin_new	-	STR	Ievadiet 4 ciparu PIN kodu.	
+values-b+lv/strings.xml	string	account_pin_not_saved	-	STR	PIN maiņu neizdevās saglabāt. Nekas netika mainīts.	
 values-b+lv/strings.xml	string	account_pin_off	-	STR	Izslēgts · ikviens var atvērt šo profilu	
 values-b+lv/strings.xml	string	account_pin_on	-	STR	Ieslēgts · tiek prasīts, lai to atvērtu	
 values-b+lv/strings.xml	string	account_pin_prompt	-	STR	Ievadiet četrciparu PIN kodu.	
@@ -28818,6 +28850,7 @@ values-b+mk/strings.xml	string	account_pin_confirm	-	STR	Внеси го пов�
 values-b+mk/strings.xml	string	account_pin_current	-	STR	Внеси го PIN-от што се користи сега.	
 values-b+mk/strings.xml	string	account_pin_first_profile	-	STR	Првиот профил не може да се заклучи	
 values-b+mk/strings.xml	string	account_pin_new	-	STR	Внеси PIN со 4 цифри.	
+values-b+mk/strings.xml	string	account_pin_not_saved	-	STR	Промената на PIN не можеше да се зачува. Ништо не е променето.	
 values-b+mk/strings.xml	string	account_pin_off	-	STR	Исклучено · секој може да го отвори овој профил	
 values-b+mk/strings.xml	string	account_pin_on	-	STR	Вклучено · се бара при отворање	
 values-b+mk/strings.xml	string	account_pin_prompt	-	STR	Внеси го PIN-от со 4 цифри.	
@@ -29932,6 +29965,7 @@ values-b+ml/strings.xml	string	account_pin_confirm	-	STR	സ്ഥിരീക�
 values-b+ml/strings.xml	string	account_pin_current	-	STR	ഇപ്പോൾ ഉപയോഗത്തിലുള്ള പിൻ ടൈപ്പ് ചെയ്യുക.	
 values-b+ml/strings.xml	string	account_pin_first_profile	-	STR	ആദ്യ പ്രൊഫൈൽ ലോക്ക് ചെയ്യാനാകില്ല	
 values-b+ml/strings.xml	string	account_pin_new	-	STR	4 അക്ക പിൻ ടൈപ്പ് ചെയ്യുക.	
+values-b+ml/strings.xml	string	account_pin_not_saved	-	STR	PIN മാറ്റം സേവ് ചെയ്യാനായില്ല. ഒന്നും മാറിയിട്ടില്ല.	
 values-b+ml/strings.xml	string	account_pin_off	-	STR	ഓഫ് · ആർക്കും ഈ പ്രൊഫൈൽ തുറക്കാം	
 values-b+ml/strings.xml	string	account_pin_on	-	STR	ഓൺ · തുറക്കാൻ പിൻ ചോദിക്കും	
 values-b+ml/strings.xml	string	account_pin_prompt	-	STR	4 അക്ക പിൻ നൽകുക.	
@@ -30586,6 +30620,7 @@ values-b+ms/strings.xml	string	account_pin_confirm	-	STR	Taip sekali lagi untuk 
 values-b+ms/strings.xml	string	account_pin_current	-	STR	Taip PIN yang sedang digunakan.	
 values-b+ms/strings.xml	string	account_pin_first_profile	-	STR	Profil pertama tidak boleh dikunci	
 values-b+ms/strings.xml	string	account_pin_new	-	STR	Taip PIN 4 digit.	
+values-b+ms/strings.xml	string	account_pin_not_saved	-	STR	Perubahan PIN tidak dapat disimpan. Tiada apa-apa yang berubah.	
 values-b+ms/strings.xml	string	account_pin_off	-	STR	Mati · sesiapa sahaja boleh membuka profil ini	
 values-b+ms/strings.xml	string	account_pin_on	-	STR	Hidup · diminta untuk membukanya	
 values-b+ms/strings.xml	string	account_pin_prompt	-	STR	Taip PIN 4 digit.	
@@ -31566,6 +31601,7 @@ values-b+mt/strings.xml	string	account_pin_confirm	-	STR	Erġa' ittajpjah biex t
 values-b+mt/strings.xml	string	account_pin_current	-	STR	Ittajpja l-PIN li qed jintuża issa.	
 values-b+mt/strings.xml	string	account_pin_first_profile	-	STR	L-ewwel profil ma jistax jissakkar	
 values-b+mt/strings.xml	string	account_pin_new	-	STR	Ittajpja PIN ta' 4 ċifri.	
+values-b+mt/strings.xml	string	account_pin_not_saved	-	STR	Il-bidla tal-PIN ma setgħetx tiġi ssejvjata. Xejn ma nbidel.	
 values-b+mt/strings.xml	string	account_pin_off	-	STR	Mitfi · kulħadd jista' jiftaħ dan il-profil	
 values-b+mt/strings.xml	string	account_pin_on	-	STR	Mixgħul · jintalab biex jinfetaħ	
 values-b+mt/strings.xml	string	account_pin_prompt	-	STR	Ittajpja l-PIN ta' 4 ċifri.	
@@ -32055,6 +32091,7 @@ values-b+my/strings.xml	string	account_pin_confirm	-	STR	အတည်ပြု�
 values-b+my/strings.xml	string	account_pin_current	-	STR	လက်ရှိသုံးနေသော PIN ကို ရိုက်ထည့်ပါ။	
 values-b+my/strings.xml	string	account_pin_first_profile	-	STR	ပထမပရိုဖိုင်ကို လော့ခ်ချ၍ မရပါ	
 values-b+my/strings.xml	string	account_pin_new	-	STR	ဂဏန်း ၄ လုံးပါ PIN တစ်ခု ရိုက်ထည့်ပါ။	
+values-b+my/strings.xml	string	account_pin_not_saved	-	STR	PIN ပြောင်းလဲမှုကို သိမ်းဆည်း၍ မရပါ။ ဘာမျှ မပြောင်းလဲပါ။	
 values-b+my/strings.xml	string	account_pin_off	-	STR	ပိတ်ထား · မည်သူမဆို ဤပရိုဖိုင်ကို ဖွင့်နိုင်သည်	
 values-b+my/strings.xml	string	account_pin_on	-	STR	ဖွင့်ထား · ဖွင့်ရန် တောင်းမည်	
 values-b+my/strings.xml	string	account_pin_prompt	-	STR	ဂဏန်း ၄ လုံးပါ PIN ကို ရိုက်ထည့်ပါ။	
@@ -32963,6 +33000,7 @@ values-b+ne/strings.xml	string	account_pin_confirm	-	STR	पुष्टि ग�
 values-b+ne/strings.xml	string	account_pin_current	-	STR	अहिले प्रयोगमा रहेको पिन टाइप गर्नुहोस्।	
 values-b+ne/strings.xml	string	account_pin_first_profile	-	STR	पहिलो प्रोफाइल लक गर्न सकिँदैन	
 values-b+ne/strings.xml	string	account_pin_new	-	STR	४ अङ्कको पिन टाइप गर्नुहोस्।	
+values-b+ne/strings.xml	string	account_pin_not_saved	-	STR	PIN परिवर्तन सुरक्षित गर्न सकिएन। केही परिवर्तन भएन।	
 values-b+ne/strings.xml	string	account_pin_off	-	STR	निष्क्रिय · जो कोहीले यो प्रोफाइल खोल्न सक्छ	
 values-b+ne/strings.xml	string	account_pin_on	-	STR	सक्रिय · खोल्दा सोधिन्छ	
 values-b+ne/strings.xml	string	account_pin_prompt	-	STR	४ अङ्कको पिन टाइप गर्नुहोस्।	
@@ -33477,6 +33515,7 @@ values-b+nl/strings.xml	string	account_pin_confirm	-	STR	Typ hem nogmaals ter be
 values-b+nl/strings.xml	string	account_pin_current	-	STR	Typ de huidige PIN.	
 values-b+nl/strings.xml	string	account_pin_first_profile	-	STR	Het eerste profiel kan niet worden vergrendeld	
 values-b+nl/strings.xml	string	account_pin_new	-	STR	Typ een PIN van 4 cijfers.	
+values-b+nl/strings.xml	string	account_pin_not_saved	-	STR	De pincodewijziging kon niet worden opgeslagen. Er is niets gewijzigd.	
 values-b+nl/strings.xml	string	account_pin_off	-	STR	Uit · iedereen kan dit profiel openen	
 values-b+nl/strings.xml	string	account_pin_on	-	STR	Aan · gevraagd bij openen	
 values-b+nl/strings.xml	string	account_pin_prompt	-	STR	Typ de PIN van 4 cijfers.	
@@ -34545,6 +34584,7 @@ values-b+nn/strings.xml	string	account_pin_confirm	-	STR	Skriv han inn igjen for
 values-b+nn/strings.xml	string	account_pin_current	-	STR	Skriv inn PIN-koden som er i bruk no.	
 values-b+nn/strings.xml	string	account_pin_first_profile	-	STR	Den første profilen kan ikkje låsast	
 values-b+nn/strings.xml	string	account_pin_new	-	STR	Skriv inn ein firesifra PIN.	
+values-b+nn/strings.xml	string	account_pin_not_saved	-	STR	Kunne ikkje lagre PIN-endringa. Ingenting vart endra.	
 values-b+nn/strings.xml	string	account_pin_off	-	STR	Av · alle kan opne denne profilen	
 values-b+nn/strings.xml	string	account_pin_on	-	STR	På · blir spurd om ved opning	
 values-b+nn/strings.xml	string	account_pin_prompt	-	STR	Skriv inn den firesifra PIN-koden.	
@@ -35131,6 +35171,7 @@ values-b+no/strings.xml	string	account_pin_confirm	-	STR	Skriv den inn igjen for
 values-b+no/strings.xml	string	account_pin_current	-	STR	Skriv inn PIN-koden som brukes nå.	
 values-b+no/strings.xml	string	account_pin_first_profile	-	STR	Den første profilen kan ikke låses	
 values-b+no/strings.xml	string	account_pin_new	-	STR	Skriv inn en firesifret PIN.	
+values-b+no/strings.xml	string	account_pin_not_saved	-	STR	Kunne ikke lagre PIN-endringen. Ingenting ble endret.	
 values-b+no/strings.xml	string	account_pin_off	-	STR	Av · alle kan åpne denne profilen	
 values-b+no/strings.xml	string	account_pin_on	-	STR	På · kreves for å åpne den	
 values-b+no/strings.xml	string	account_pin_prompt	-	STR	Skriv inn den firesifrede PIN-koden.	
@@ -36028,6 +36069,7 @@ values-b+or/strings.xml	string	account_pin_confirm	-	STR	ନିଶ୍ଚିତ �
 values-b+or/strings.xml	string	account_pin_current	-	STR	ବର୍ତ୍ତମାନ ବ୍ୟବହୃତ PIN ଟାଇପ୍ କରନ୍ତୁ।	
 values-b+or/strings.xml	string	account_pin_first_profile	-	STR	ପ୍ରଥମ ପ୍ରୋଫାଇଲ୍ ଲକ୍ କରାଯାଇପାରିବ ନାହିଁ	
 values-b+or/strings.xml	string	account_pin_new	-	STR	ଏକ 4-ଅଙ୍କ ବିଶିଷ୍ଟ PIN ଟାଇପ୍ କରନ୍ତୁ।	
+values-b+or/strings.xml	string	account_pin_not_saved	-	STR	PIN ପରିବର୍ତ୍ତନ ସେଭ୍ କରିହେଲା ନାହିଁ। କିଛି ବଦଳିନାହିଁ।	
 values-b+or/strings.xml	string	account_pin_off	-	STR	ବନ୍ଦ · ଯେକେହି ଏହି ପ୍ରୋଫାଇଲ୍ ଖୋଲିପାରିବେ	
 values-b+or/strings.xml	string	account_pin_on	-	STR	ଚାଲୁ · ଖୋଲିବା ପାଇଁ ପଚରାଯାଏ	
 values-b+or/strings.xml	string	account_pin_prompt	-	STR	4-ଅଙ୍କ ବିଶିଷ୍ଟ PIN ଟାଇପ୍ କରନ୍ତୁ।	
@@ -36626,6 +36668,7 @@ values-b+pl/strings.xml	string	account_pin_confirm	-	STR	Wpisz go ponownie, aby 
 values-b+pl/strings.xml	string	account_pin_current	-	STR	Wpisz obecnie używany PIN.	
 values-b+pl/strings.xml	string	account_pin_first_profile	-	STR	Pierwszego profilu nie można zablokować	
 values-b+pl/strings.xml	string	account_pin_new	-	STR	Wpisz 4-cyfrowy PIN.	
+values-b+pl/strings.xml	string	account_pin_not_saved	-	STR	Nie udało się zapisać zmiany PIN-u. Nic nie zostało zmienione.	
 values-b+pl/strings.xml	string	account_pin_off	-	STR	Wyłączony · każdy może otworzyć ten profil	
 values-b+pl/strings.xml	string	account_pin_on	-	STR	Włączony · wymagany przy otwieraniu	
 values-b+pl/strings.xml	string	account_pin_prompt	-	STR	Wpisz 4-cyfrowy PIN.	
@@ -37775,6 +37818,7 @@ values-b+pt+BR/strings.xml	string	account_pin_confirm	-	STR	Digite de novo para 
 values-b+pt+BR/strings.xml	string	account_pin_current	-	STR	Digite o PIN atual.	
 values-b+pt+BR/strings.xml	string	account_pin_first_profile	-	STR	O primeiro perfil não pode ser bloqueado	
 values-b+pt+BR/strings.xml	string	account_pin_new	-	STR	Digite um PIN de 4 dígitos.	
+values-b+pt+BR/strings.xml	string	account_pin_not_saved	-	STR	Não foi possível salvar a alteração do PIN. Nada foi alterado.	
 values-b+pt+BR/strings.xml	string	account_pin_off	-	STR	Desativado · qualquer pessoa pode abrir este perfil	
 values-b+pt+BR/strings.xml	string	account_pin_on	-	STR	Ativado · pedido para abrir	
 values-b+pt+BR/strings.xml	string	account_pin_prompt	-	STR	Digite o PIN de 4 dígitos.	
@@ -38921,6 +38965,7 @@ values-b+pt/strings.xml	string	account_pin_confirm	-	STR	Introduza-o novamente p
 values-b+pt/strings.xml	string	account_pin_current	-	STR	Introduza o PIN atual.	
 values-b+pt/strings.xml	string	account_pin_first_profile	-	STR	O primeiro perfil não pode ser bloqueado	
 values-b+pt/strings.xml	string	account_pin_new	-	STR	Introduza um PIN de 4 dígitos.	
+values-b+pt/strings.xml	string	account_pin_not_saved	-	STR	Não foi possível guardar a alteração do PIN. Nada foi alterado.	
 values-b+pt/strings.xml	string	account_pin_off	-	STR	Desativado · qualquer pessoa pode abrir este perfil	
 values-b+pt/strings.xml	string	account_pin_on	-	STR	Ativado · pedido ao abrir	
 values-b+pt/strings.xml	string	account_pin_prompt	-	STR	Introduza o PIN de 4 dígitos.	
@@ -40016,6 +40061,7 @@ values-b+qt/strings.xml	string	account_pin_confirm	-	STR	uuuhh aah ooh.
 values-b+qt/strings.xml	string	account_pin_current	-	STR	uuuhh oog aah ooh.	
 values-b+qt/strings.xml	string	account_pin_first_profile	-	STR	aah ooooggk oooohh oooh-aah	
 values-b+qt/strings.xml	string	account_pin_new	-	STR	uuuhh oog aah.	
+values-b+qt/strings.xml	string	account_pin_not_saved	-	STR	aagg ooh PIN. ooh-aah.	
 values-b+qt/strings.xml	string	account_pin_off	-	STR	oooohh · uuh ooh aahh ooooggk	
 values-b+qt/strings.xml	string	account_pin_on	-	STR	aah · ooh aahh	
 values-b+qt/strings.xml	string	account_pin_prompt	-	STR	uuuhh oog aah.	
@@ -41045,6 +41091,7 @@ values-b+ro/strings.xml	string	account_pin_confirm	-	STR	Introdu-l din nou pentr
 values-b+ro/strings.xml	string	account_pin_current	-	STR	Introdu PIN-ul folosit acum.	
 values-b+ro/strings.xml	string	account_pin_first_profile	-	STR	Primul profil nu poate fi blocat	
 values-b+ro/strings.xml	string	account_pin_new	-	STR	Introdu un PIN din 4 cifre.	
+values-b+ro/strings.xml	string	account_pin_not_saved	-	STR	Modificarea PIN-ului nu a putut fi salvată. Nu s-a schimbat nimic.	
 values-b+ro/strings.xml	string	account_pin_off	-	STR	Dezactivat · oricine poate deschide acest profil	
 values-b+ro/strings.xml	string	account_pin_on	-	STR	Activat · se cere la deschidere	
 values-b+ro/strings.xml	string	account_pin_prompt	-	STR	Introdu PIN-ul din 4 cifre.	
@@ -42108,6 +42155,7 @@ values-b+ru/strings.xml	string	account_pin_confirm	-	STR	Введите его �
 values-b+ru/strings.xml	string	account_pin_current	-	STR	Введите текущий ПИН-код.	
 values-b+ru/strings.xml	string	account_pin_first_profile	-	STR	Первый профиль нельзя заблокировать	
 values-b+ru/strings.xml	string	account_pin_new	-	STR	Введите 4-значный ПИН-код.	
+values-b+ru/strings.xml	string	account_pin_not_saved	-	STR	Не удалось сохранить изменение PIN-кода. Ничего не изменилось.	
 values-b+ru/strings.xml	string	account_pin_off	-	STR	Выкл. · этот профиль может открыть любой	
 values-b+ru/strings.xml	string	account_pin_on	-	STR	Вкл. · запрашивается при открытии	
 values-b+ru/strings.xml	string	account_pin_prompt	-	STR	Введите 4-значный ПИН-код.	
@@ -43268,6 +43316,7 @@ values-b+sk/strings.xml	string	account_pin_confirm	-	STR	Na potvrdenie ho zadajt
 values-b+sk/strings.xml	string	account_pin_current	-	STR	Zadajte aktuálne používaný PIN.	
 values-b+sk/strings.xml	string	account_pin_first_profile	-	STR	Prvý profil nemožno zamknúť	
 values-b+sk/strings.xml	string	account_pin_new	-	STR	Zadajte štvormiestny PIN.	
+values-b+sk/strings.xml	string	account_pin_not_saved	-	STR	Zmenu PIN sa nepodarilo uložiť. Nič sa nezmenilo.	
 values-b+sk/strings.xml	string	account_pin_off	-	STR	Vypnuté · tento profil môže otvoriť ktokoľvek	
 values-b+sk/strings.xml	string	account_pin_on	-	STR	Zapnuté · vyžaduje sa pri otvorení	
 values-b+sk/strings.xml	string	account_pin_prompt	-	STR	Zadajte štvormiestny PIN.	
@@ -44128,6 +44177,7 @@ values-b+so/strings.xml	string	account_pin_confirm	-	STR	Mar kale qor si aad u x
 values-b+so/strings.xml	string	account_pin_current	-	STR	Qor PIN-ka hadda la isticmaalo.	
 values-b+so/strings.xml	string	account_pin_first_profile	-	STR	Astaanta koowaad lama xiri karo	
 values-b+so/strings.xml	string	account_pin_new	-	STR	Qor PIN ka kooban 4 lambar.	
+values-b+so/strings.xml	string	account_pin_not_saved	-	STR	Isbeddelka PIN-ka lama keydin karo. Waxba isma beddelin.	
 values-b+so/strings.xml	string	account_pin_off	-	STR	Dansan · qof kastaa wuu furi karaa astaantan	
 values-b+so/strings.xml	string	account_pin_on	-	STR	Shidan · waa la weydiiyaa si loo furo	
 values-b+so/strings.xml	string	account_pin_prompt	-	STR	Qor PIN-ka 4 lambar ah.	
@@ -45026,6 +45076,7 @@ values-b+sq/strings.xml	string	account_pin_confirm	-	STR	Shkruaje përsëri për
 values-b+sq/strings.xml	string	account_pin_current	-	STR	Shkruaj PIN-in aktual.	
 values-b+sq/strings.xml	string	account_pin_first_profile	-	STR	Profili i parë nuk mund të kyçet	
 values-b+sq/strings.xml	string	account_pin_new	-	STR	Shkruaj një PIN me 4 shifra.	
+values-b+sq/strings.xml	string	account_pin_not_saved	-	STR	Ndryshimi i PIN-it nuk u ruajt. Asgjë nuk ndryshoi.	
 values-b+sq/strings.xml	string	account_pin_off	-	STR	Joaktiv · kushdo mund ta hapë këtë profil	
 values-b+sq/strings.xml	string	account_pin_on	-	STR	Aktiv · kërkohet për ta hapur	
 values-b+sq/strings.xml	string	account_pin_prompt	-	STR	Shkruaj PIN-in me 4 shifra.	
@@ -46152,6 +46203,7 @@ values-b+sv/strings.xml	string	account_pin_confirm	-	STR	Skriv den igen för att
 values-b+sv/strings.xml	string	account_pin_current	-	STR	Ange PIN-koden som används nu.	
 values-b+sv/strings.xml	string	account_pin_first_profile	-	STR	Den första profilen kan inte låsas	
 values-b+sv/strings.xml	string	account_pin_new	-	STR	Ange en fyrsiffrig PIN-kod.	
+values-b+sv/strings.xml	string	account_pin_not_saved	-	STR	Det gick inte att spara PIN-ändringen. Inget ändrades.	
 values-b+sv/strings.xml	string	account_pin_off	-	STR	Av · vem som helst kan öppna den här profilen	
 values-b+sv/strings.xml	string	account_pin_on	-	STR	På · krävs för att öppna den	
 values-b+sv/strings.xml	string	account_pin_prompt	-	STR	Ange den fyrsiffriga PIN-koden.	
@@ -47278,6 +47330,7 @@ values-b+ta/strings.xml	string	account_pin_confirm	-	STR	உறுதிப்�
 values-b+ta/strings.xml	string	account_pin_current	-	STR	இப்போது பயன்பாட்டில் உள்ள முள்ளைத் தட்டச்சு செய்யவும்.	
 values-b+ta/strings.xml	string	account_pin_first_profile	-	STR	முதல் சுயவிவரத்தைப் பூட்ட முடியாது	
 values-b+ta/strings.xml	string	account_pin_new	-	STR	4 இலக்க முள்ளைத் தட்டச்சு செய்யவும்.	
+values-b+ta/strings.xml	string	account_pin_not_saved	-	STR	PIN மாற்றத்தைச் சேமிக்க முடியவில்லை. எதுவும் மாறவில்லை.	
 values-b+ta/strings.xml	string	account_pin_off	-	STR	முடக்கம் · யார் வேண்டுமானாலும் இந்தச் சுயவிவரத்தைத் திறக்கலாம்	
 values-b+ta/strings.xml	string	account_pin_on	-	STR	இயக்கம் · திறக்கும்போது கேட்கப்படும்	
 values-b+ta/strings.xml	string	account_pin_prompt	-	STR	4 இலக்க முள்ளைத் தட்டச்சு செய்யவும்.	
@@ -48397,6 +48450,7 @@ values-b+ti/strings.xml	string	account_pin_confirm	-	STR	ንምርግጋጽ እ�
 values-b+ti/strings.xml	string	account_pin_current	-	STR	ሕጂ ኣብ ጥቕሚ ዘሎ PIN ጽሓፍ።	
 values-b+ti/strings.xml	string	account_pin_first_profile	-	STR	እቲ ቀዳማይ መግለጺ ክዕጾ ኣይክእልን	
 values-b+ti/strings.xml	string	account_pin_new	-	STR	4 ኣሃዝ ዘለዎ PIN ጽሓፍ።	
+values-b+ti/strings.xml	string	account_pin_not_saved	-	STR	ለውጢ PIN ክዕቀብ ኣይተኻእለን። ዝተቐየረ የለን።	
 values-b+ti/strings.xml	string	account_pin_off	-	STR	ጠፊኡ · ዝኾነ ሰብ ነዚ መግለጺ ክኸፍቶ ይኽእል	
 values-b+ti/strings.xml	string	account_pin_on	-	STR	በሪሁ · ንምኽፋት ይሕተት	
 values-b+ti/strings.xml	string	account_pin_prompt	-	STR	እቲ 4 ኣሃዝ ዘለዎ PIN ጽሓፍ።	
@@ -48787,6 +48841,7 @@ values-b+tl/strings.xml	string	account_pin_confirm	-	STR	I-type itong muli para 
 values-b+tl/strings.xml	string	account_pin_current	-	STR	I-type ang PIN na ginagamit ngayon.	
 values-b+tl/strings.xml	string	account_pin_first_profile	-	STR	Hindi maaaring i-lock ang unang profile	
 values-b+tl/strings.xml	string	account_pin_new	-	STR	Mag-type ng 4-digit na PIN.	
+values-b+tl/strings.xml	string	account_pin_not_saved	-	STR	Hindi ma-save ang pagbabago sa PIN. Walang nabago.	
 values-b+tl/strings.xml	string	account_pin_off	-	STR	Naka-off · kahit sino ay puwedeng magbukas ng profile na ito	
 values-b+tl/strings.xml	string	account_pin_on	-	STR	Naka-on · hinihingi para buksan ito	
 values-b+tl/strings.xml	string	account_pin_prompt	-	STR	I-type ang 4-digit na PIN.	
@@ -49431,6 +49486,7 @@ values-b+tr/strings.xml	string	account_pin_confirm	-	STR	Onaylamak için tekrar 
 values-b+tr/strings.xml	string	account_pin_current	-	STR	Şu anda kullanılan PIN'i yazın.	
 values-b+tr/strings.xml	string	account_pin_first_profile	-	STR	İlk profil kilitlenemez	
 values-b+tr/strings.xml	string	account_pin_new	-	STR	4 haneli bir PIN yazın.	
+values-b+tr/strings.xml	string	account_pin_not_saved	-	STR	PIN değişikliği kaydedilemedi. Hiçbir şey değişmedi.	
 values-b+tr/strings.xml	string	account_pin_off	-	STR	Kapalı · bu profili herkes açabilir	
 values-b+tr/strings.xml	string	account_pin_on	-	STR	Açık · açarken sorulur	
 values-b+tr/strings.xml	string	account_pin_prompt	-	STR	4 haneli PIN'i yazın.	
@@ -50603,6 +50659,7 @@ values-b+uk/strings.xml	string	account_pin_confirm	-	STR	Уведіть його
 values-b+uk/strings.xml	string	account_pin_current	-	STR	Уведіть чинний PIN-код.	
 values-b+uk/strings.xml	string	account_pin_first_profile	-	STR	Перший профіль не можна заблокувати	
 values-b+uk/strings.xml	string	account_pin_new	-	STR	Уведіть 4-значний PIN-код.	
+values-b+uk/strings.xml	string	account_pin_not_saved	-	STR	Не вдалося зберегти зміну PIN-коду. Нічого не змінилося.	
 values-b+uk/strings.xml	string	account_pin_off	-	STR	Вимкнено · будь-хто може відкрити цей профіль	
 values-b+uk/strings.xml	string	account_pin_on	-	STR	Увімкнено · запитується для відкриття	
 values-b+uk/strings.xml	string	account_pin_prompt	-	STR	Уведіть 4-значний PIN-код.	
@@ -51723,6 +51780,7 @@ values-b+ur/strings.xml	string	account_pin_confirm	-	STR	تصدیق کے لیے 
 values-b+ur/strings.xml	string	account_pin_current	-	STR	ابھی استعمال ہونے والا PIN ٹائپ کریں۔	
 values-b+ur/strings.xml	string	account_pin_first_profile	-	STR	پہلی پروفائل کو مقفل نہیں کیا جا سکتا	
 values-b+ur/strings.xml	string	account_pin_new	-	STR	4 ہندسوں کا PIN ٹائپ کریں۔	
+values-b+ur/strings.xml	string	account_pin_not_saved	-	STR	PIN کی تبدیلی محفوظ نہیں ہو سکی۔ کچھ تبدیل نہیں ہوا۔	
 values-b+ur/strings.xml	string	account_pin_off	-	STR	بند · کوئی بھی اس پروفائل کو کھول سکتا ہے	
 values-b+ur/strings.xml	string	account_pin_on	-	STR	آن · کھولنے کے لیے پوچھا جاتا ہے	
 values-b+ur/strings.xml	string	account_pin_prompt	-	STR	4 ہندسوں والا PIN ٹائپ کریں۔	
@@ -52693,6 +52751,7 @@ values-b+vi/strings.xml	string	account_pin_confirm	-	STR	Nhập lại để xác
 values-b+vi/strings.xml	string	account_pin_current	-	STR	Nhập mã PIN đang dùng.	
 values-b+vi/strings.xml	string	account_pin_first_profile	-	STR	Không thể khóa hồ sơ đầu tiên	
 values-b+vi/strings.xml	string	account_pin_new	-	STR	Nhập mã PIN gồm 4 chữ số.	
+values-b+vi/strings.xml	string	account_pin_not_saved	-	STR	Không thể lưu thay đổi mã PIN. Không có gì thay đổi.	
 values-b+vi/strings.xml	string	account_pin_off	-	STR	Tắt · ai cũng có thể mở hồ sơ này	
 values-b+vi/strings.xml	string	account_pin_on	-	STR	Bật · cần nhập khi mở	
 values-b+vi/strings.xml	string	account_pin_prompt	-	STR	Nhập mã PIN gồm 4 chữ số.	
@@ -53795,6 +53854,7 @@ values-b+zh+TW/strings.xml	string	account_pin_confirm	-	STR	請再輸入一次�
 values-b+zh+TW/strings.xml	string	account_pin_current	-	STR	請輸入目前使用的 PIN 碼。	
 values-b+zh+TW/strings.xml	string	account_pin_first_profile	-	STR	第一個個人檔案無法鎖定	
 values-b+zh+TW/strings.xml	string	account_pin_new	-	STR	請輸入 4 位數 PIN 碼。	
+values-b+zh+TW/strings.xml	string	account_pin_not_saved	-	STR	無法儲存 PIN 變更。沒有任何變更。	
 values-b+zh+TW/strings.xml	string	account_pin_off	-	STR	關閉 · 任何人都能開啟此個人檔案	
 values-b+zh+TW/strings.xml	string	account_pin_on	-	STR	開啟 · 開啟時需輸入	
 values-b+zh+TW/strings.xml	string	account_pin_prompt	-	STR	請輸入 4 位數 PIN 碼。	
@@ -54893,6 +54953,7 @@ values-b+zh/strings.xml	string	account_pin_confirm	-	STR	请再输入一次以�
 values-b+zh/strings.xml	string	account_pin_current	-	STR	请输入当前使用的 PIN。	
 values-b+zh/strings.xml	string	account_pin_first_profile	-	STR	第一个个人资料无法锁定	
 values-b+zh/strings.xml	string	account_pin_new	-	STR	请输入 4 位 PIN。	
+values-b+zh/strings.xml	string	account_pin_not_saved	-	STR	无法保存 PIN 更改。没有任何更改。	
 values-b+zh/strings.xml	string	account_pin_off	-	STR	关闭 · 任何人都可打开此个人资料	
 values-b+zh/strings.xml	string	account_pin_on	-	STR	开启 · 打开时需要输入	
 values-b+zh/strings.xml	string	account_pin_prompt	-	STR	请输入 4 位 PIN。	
@@ -56141,6 +56202,7 @@ values/strings.xml	string	account_pin_confirm	-	STR	Type it again to confirm.
 values/strings.xml	string	account_pin_current	-	STR	Type the PIN in use now.	
 values/strings.xml	string	account_pin_first_profile	-	STR	The first profile can't be locked	
 values/strings.xml	string	account_pin_new	-	STR	Type a 4-digit PIN.	
+values/strings.xml	string	account_pin_not_saved	-	STR	Couldn't save the PIN change. Nothing was changed.	
 values/strings.xml	string	account_pin_off	-	STR	Off · anyone can open this profile	
 values/strings.xml	string	account_pin_on	-	STR	On · asked to open it	
 values/strings.xml	string	account_pin_prompt	-	STR	Type the 4-digit PIN.	

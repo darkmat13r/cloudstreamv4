@@ -52,6 +52,7 @@
 <string name="account_pin_current">"ഇപ്പോൾ ഉപയോഗത്തിലുള്ള പിൻ ടൈപ്പ് ചെയ്യുക."</string>
 <string name="account_pin_first_profile">"ആദ്യ പ്രൊഫൈൽ ലോക്ക് ചെയ്യാനാകില്ല"</string>
 <string name="account_pin_new">"4 അക്ക പിൻ ടൈപ്പ് ചെയ്യുക."</string>
+<string name="account_pin_not_saved">"PIN മാറ്റം സേവ് ചെയ്യാനായില്ല. ഒന്നും മാറിയിട്ടില്ല."</string>
 <string name="account_pin_off">"ഓഫ് · ആർക്കും ഈ പ്രൊഫൈൽ തുറക്കാം"</string>
 <string name="account_pin_on">"ഓൺ · തുറക്കാൻ പിൻ ചോദിക്കും"</string>
 <string name="account_pin_prompt">"4 അക്ക പിൻ നൽകുക."</string>

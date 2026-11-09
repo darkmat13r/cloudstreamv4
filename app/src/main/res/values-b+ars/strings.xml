@@ -52,6 +52,7 @@
 <string name="account_pin_current">"اكتب الـ PIN المستخدم الحين."</string>
 <string name="account_pin_first_profile">"الملف الشخصي الأول ما ينقفل"</string>
 <string name="account_pin_new">"اكتب PIN من 4 أرقام."</string>
+<string name="account_pin_not_saved">"ما قدرنا نحفظ تغيير الـPIN. ما تغيّر شي."</string>
 <string name="account_pin_off">"مطفي · أي أحد يقدر يفتح هالملف الشخصي"</string>
 <string name="account_pin_on">"شغّال · ينطلب عند الفتح"</string>
 <string name="account_pin_prompt">"اكتب الـ PIN المكوّن من 4 أرقام."</string>

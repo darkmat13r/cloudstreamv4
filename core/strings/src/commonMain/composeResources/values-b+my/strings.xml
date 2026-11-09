@@ -32,6 +32,7 @@
 <string name="account_pin_current">လက်ရှိသုံးနေသော PIN ကို ရိုက်ထည့်ပါ။</string>
 <string name="account_pin_first_profile">ပထမပရိုဖိုင်ကို လော့ခ်ချ၍ မရပါ</string>
 <string name="account_pin_new">ဂဏန်း ၄ လုံးပါ PIN တစ်ခု ရိုက်ထည့်ပါ။</string>
+<string name="account_pin_not_saved">PIN ပြောင်းလဲမှုကို သိမ်းဆည်း၍ မရပါ။ ဘာမျှ မပြောင်းလဲပါ။</string>
 <string name="account_pin_off">ပိတ်ထား · မည်သူမဆို ဤပရိုဖိုင်ကို ဖွင့်နိုင်သည်</string>
 <string name="account_pin_on">ဖွင့်ထား · ဖွင့်ရန် တောင်းမည်</string>
 <string name="account_pin_prompt">ဂဏန်း ၄ လုံးပါ PIN ကို ရိုက်ထည့်ပါ။</string>

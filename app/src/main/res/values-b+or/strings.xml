@@ -52,6 +52,7 @@
 <string name="account_pin_current">"ବର୍ତ୍ତମାନ ବ୍ୟବହୃତ PIN ଟାଇପ୍ କରନ୍ତୁ।"</string>
 <string name="account_pin_first_profile">"ପ୍ରଥମ ପ୍ରୋଫାଇଲ୍ ଲକ୍ କରାଯାଇପାରିବ ନାହିଁ"</string>
 <string name="account_pin_new">"ଏକ 4-ଅଙ୍କ ବିଶିଷ୍ଟ PIN ଟାଇପ୍ କରନ୍ତୁ।"</string>
+<string name="account_pin_not_saved">"PIN ପରିବର୍ତ୍ତନ ସେଭ୍ କରିହେଲା ନାହିଁ। କିଛି ବଦଳିନାହିଁ।"</string>
 <string name="account_pin_off">"ବନ୍ଦ · ଯେକେହି ଏହି ପ୍ରୋଫାଇଲ୍ ଖୋଲିପାରିବେ"</string>
 <string name="account_pin_on">"ଚାଲୁ · ଖୋଲିବା ପାଇଁ ପଚରାଯାଏ"</string>
 <string name="account_pin_prompt">"4-ଅଙ୍କ ବିଶିଷ୍ଟ PIN ଟାଇପ୍ କରନ୍ତୁ।"</string>

@@ -56,6 +56,7 @@
 <string name="account_pin_current">"Shkruaj PIN-in aktual."</string>
 <string name="account_pin_first_profile">"Profili i parë nuk mund të kyçet"</string>
 <string name="account_pin_new">"Shkruaj një PIN me 4 shifra."</string>
+<string name="account_pin_not_saved">"Ndryshimi i PIN-it nuk u ruajt. Asgjë nuk ndryshoi."</string>
 <string name="account_pin_off">"Joaktiv · kushdo mund ta hapë këtë profil"</string>
 <string name="account_pin_on">"Aktiv · kërkohet për ta hapur"</string>
 <string name="account_pin_prompt">"Shkruaj PIN-in me 4 shifra."</string>

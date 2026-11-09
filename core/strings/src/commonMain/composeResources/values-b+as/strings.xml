@@ -32,6 +32,7 @@
 <string name="account_pin_current">এতিয়া ব্যৱহাৰ হৈ থকা পিনটো টাইপ কৰক।</string>
 <string name="account_pin_first_profile">প্ৰথম প্ৰফাইলটো লক কৰিব নোৱাৰি</string>
 <string name="account_pin_new">এটা ৪-অংকৰ পিন টাইপ কৰক।</string>
+<string name="account_pin_not_saved">PIN সলনি ছেভ কৰিব পৰা নগ'ল। একো সলনি হোৱা নাই।</string>
 <string name="account_pin_off">অফ · যিকোনোৱে এই প্ৰফাইলটো খুলিব পাৰে</string>
 <string name="account_pin_on">অন · খুলিবলৈ সোধা হয়</string>
 <string name="account_pin_prompt">৪-অংকৰ পিনটো টাইপ কৰক।</string>

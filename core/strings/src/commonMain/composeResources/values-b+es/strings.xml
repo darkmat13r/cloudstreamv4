@@ -32,6 +32,7 @@
 <string name="account_pin_current">Escribe el PIN que usas ahora.</string>
 <string name="account_pin_first_profile">El primer perfil no se puede bloquear</string>
 <string name="account_pin_new">Escribe un PIN de 4 dígitos.</string>
+<string name="account_pin_not_saved">No se pudo guardar el cambio de PIN. No se cambió nada.</string>
 <string name="account_pin_off">Desactivado · cualquiera puede abrir este perfil</string>
 <string name="account_pin_on">Activado · se pide para abrirlo</string>
 <string name="account_pin_prompt">Escribe el PIN de 4 dígitos.</string>

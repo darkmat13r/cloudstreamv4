@@ -32,6 +32,7 @@
 <string name="account_pin_current">Írja be a jelenleg használt PIN-t.</string>
 <string name="account_pin_first_profile">Az első profil nem zárolható</string>
 <string name="account_pin_new">Írjon be egy 4 jegyű PIN-t.</string>
+<string name="account_pin_not_saved">A PIN-módosítást nem sikerült menteni. Semmi sem változott.</string>
 <string name="account_pin_off">Ki · bárki megnyithatja ezt a profilt</string>
 <string name="account_pin_on">Be · megnyitáskor kéri</string>
 <string name="account_pin_prompt">Írja be a 4 jegyű PIN-t.</string>

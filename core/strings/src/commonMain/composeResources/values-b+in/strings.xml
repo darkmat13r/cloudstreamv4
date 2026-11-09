@@ -32,6 +32,7 @@
 <string name="account_pin_current">Ketik PIN yang sedang digunakan.</string>
 <string name="account_pin_first_profile">Profil pertama tidak dapat dikunci</string>
 <string name="account_pin_new">Ketik PIN 4 digit.</string>
+<string name="account_pin_not_saved">Perubahan PIN tidak dapat disimpan. Tidak ada yang berubah.</string>
 <string name="account_pin_off">Nonaktif · siapa saja dapat membuka profil ini</string>
 <string name="account_pin_on">Aktif · diminta saat membuka</string>
 <string name="account_pin_prompt">Ketik PIN 4 digit.</string>

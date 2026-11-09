@@ -32,6 +32,7 @@
 <string name="account_pin_current">Ittajpja l-PIN li qed jintuża issa.</string>
 <string name="account_pin_first_profile">L-ewwel profil ma jistax jissakkar</string>
 <string name="account_pin_new">Ittajpja PIN ta' 4 ċifri.</string>
+<string name="account_pin_not_saved">Il-bidla tal-PIN ma setgħetx tiġi ssejvjata. Xejn ma nbidel.</string>
 <string name="account_pin_off">Mitfi · kulħadd jista' jiftaħ dan il-profil</string>
 <string name="account_pin_on">Mixgħul · jintalab biex jinfetaħ</string>
 <string name="account_pin_prompt">Ittajpja l-PIN ta' 4 ċifri.</string>

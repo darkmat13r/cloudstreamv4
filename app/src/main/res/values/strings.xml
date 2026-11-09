@@ -62,6 +62,7 @@
 <string name="account_pin_current">"Type the PIN in use now."</string>
 <string name="account_pin_first_profile">"The first profile can't be locked"</string>
 <string name="account_pin_new">"Type a 4-digit PIN."</string>
+<string name="account_pin_not_saved">"Couldn't save the PIN change. Nothing was changed."</string>
 <string name="account_pin_off">"Off · anyone can open this profile"</string>
 <string name="account_pin_on">"On · asked to open it"</string>
 <string name="account_pin_prompt">"Type the 4-digit PIN."</string>

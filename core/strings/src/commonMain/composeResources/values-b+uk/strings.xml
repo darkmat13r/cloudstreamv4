@@ -32,6 +32,7 @@
 <string name="account_pin_current">Уведіть чинний PIN-код.</string>
 <string name="account_pin_first_profile">Перший профіль не можна заблокувати</string>
 <string name="account_pin_new">Уведіть 4-значний PIN-код.</string>
+<string name="account_pin_not_saved">Не вдалося зберегти зміну PIN-коду. Нічого не змінилося.</string>
 <string name="account_pin_off">Вимкнено · будь-хто може відкрити цей профіль</string>
 <string name="account_pin_on">Увімкнено · запитується для відкриття</string>
 <string name="account_pin_prompt">Уведіть 4-значний PIN-код.</string>

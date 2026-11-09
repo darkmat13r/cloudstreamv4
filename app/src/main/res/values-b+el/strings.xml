@@ -53,6 +53,7 @@
 <string name="account_pin_current">"Πληκτρολογήστε το τρέχον PIN."</string>
 <string name="account_pin_first_profile">"Το πρώτο προφίλ δεν μπορεί να κλειδωθεί"</string>
 <string name="account_pin_new">"Πληκτρολογήστε ένα 4ψήφιο PIN."</string>
+<string name="account_pin_not_saved">"Δεν ήταν δυνατή η αποθήκευση της αλλαγής PIN. Δεν άλλαξε τίποτα."</string>
 <string name="account_pin_off">"Ανενεργό · οποιοσδήποτε μπορεί να ανοίξει αυτό το προφίλ"</string>
 <string name="account_pin_on">"Ενεργό · ζητείται για το άνοιγμα"</string>
 <string name="account_pin_prompt">"Πληκτρολογήστε το 4ψήφιο PIN."</string>
