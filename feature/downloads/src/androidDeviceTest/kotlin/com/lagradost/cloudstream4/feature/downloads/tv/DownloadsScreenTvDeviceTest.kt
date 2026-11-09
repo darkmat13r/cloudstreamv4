@@ -160,7 +160,7 @@ class DownloadsScreenTvDeviceTest {
         source.contents(Board6c)
         showScreen()
 
-        awaitText("Arcane")
+        awaitText("Lantern")
         rule.onNodeWithText("18 Episodes · 11.2 GB").assertExists()
         rule.onNodeWithText("Movie · 4.2 GB").assertExists()
         rule.onNodeWithText("4 Episodes · 1.9 GB / 3.1 GB").assertExists()
@@ -174,10 +174,10 @@ class DownloadsScreenTvDeviceTest {
         source.contents(Board6c)
         showScreen()
 
-        focus(ARCANE)
+        focus(LANTERN)
         dpad.center()
         rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
-        assertEquals(DownloadsEffect.OpenTitle(DownloadTitleId(ARCANE_ID)), effects.single())
+        assertEquals(DownloadsEffect.OpenTitle(DownloadTitleId(LANTERN_ID)), effects.single())
     }
 
     @Test
@@ -200,11 +200,11 @@ class DownloadsScreenTvDeviceTest {
     fun focusOnARowThatFitsDoesNotMoveTheList() {
         source.contents(Board6c)
         showScreen()
-        awaitText(DUNE)
-        val before = rule.onNodeWithText(DUNE).getBoundsInRoot().top
-        focus(EXPANSE)
+        awaitText(TIDE)
+        val before = rule.onNodeWithText(TIDE).getBoundsInRoot().top
+        focus(OPEN_SOUND)
         rule.waitForIdle()
-        assertEquals(before, rule.onNodeWithText(DUNE).getBoundsInRoot().top)
+        assertEquals(before, rule.onNodeWithText(TIDE).getBoundsInRoot().top)
     }
 
     /** A failed row's way back in, by remote: Right from the row, OK, and focus does not fall off with the button. */
@@ -213,18 +213,18 @@ class DownloadsScreenTvDeviceTest {
         source.contents(Board6c)
         showScreen()
 
-        focus(BLUE_EYE)
+        focus(GREY_GULL)
         rule.onNodeWithText(FAILED).assertExists()
         assertEquals(RETRY, dpad.press(Dpad.Right))
         dpad.center()
         rule.waitUntil(WAIT_MS) { source.resumed.isNotEmpty() }
-        assertEquals(listOf(DownloadTitleId(BLUE_EYE_ID)), source.resumed.toList())
+        assertEquals(listOf(DownloadTitleId(GREY_GULL_ID)), source.resumed.toList())
 
         source.contents(Board6c.copy(titles = Board6c.titles.map {
-            if (it.id.value == BLUE_EYE_ID) it.copy(state = DownloadTitleState.Running) else it
+            if (it.id.value == GREY_GULL_ID) it.copy(state = DownloadTitleState.Running) else it
         }))
         awaitGone(RETRY)
-        awaitFocus(BLUE_EYE)
+        awaitFocus(GREY_GULL)
     }
 
     @Test
@@ -232,8 +232,8 @@ class DownloadsScreenTvDeviceTest {
         source.contents(Board6c)
         showScreen()
 
-        focus(ARCANE)
-        assertEquals(ARCANE, dpad.press(Dpad.Right))
+        focus(LANTERN)
+        assertEquals(LANTERN, dpad.press(Dpad.Right))
     }
 
     @Test
@@ -283,8 +283,8 @@ class DownloadsScreenTvDeviceTest {
         source.contents(Board6c)
         showScreen()
 
-        focus(DUNE)
-        assertWalkIsClean(listOf(QUEUE, PLAY_URL, SELECT, DUNE, ARCANE, BLUE_EYE, RETRY, EXPANSE))
+        focus(TIDE)
+        assertWalkIsClean(listOf(QUEUE, PLAY_URL, SELECT, TIDE, LANTERN, GREY_GULL, RETRY, OPEN_SOUND))
     }
 
     // ---- 6e --------------------------------------------------------------------------------------------------------
@@ -320,12 +320,12 @@ class DownloadsScreenTvDeviceTest {
         source.contents(Board6c)
         showScreen()
 
-        awaitText(ARCANE)
+        awaitText(LANTERN)
         rule.onNodeWithText(OFFLINE).assertDoesNotExist()
         network.value = Connectivity.OFFLINE
         awaitText(OFFLINE)
         // The list stays, because it is what still works.
-        rule.onNodeWithText(ARCANE).assertExists()
+        rule.onNodeWithText(LANTERN).assertExists()
 
         source.contents(DownloadsContents())
         awaitText(NO_DOWNLOADS)
@@ -349,7 +349,7 @@ class DownloadsScreenTvDeviceTest {
         dpad.center()
         awaitText(SELECT_ALL)
         // The button went with the banner, and focus is on what to choose instead of nowhere.
-        awaitFocus(DUNE)
+        awaitFocus(TIDE)
     }
 
     @Test
@@ -366,8 +366,8 @@ class DownloadsScreenTvDeviceTest {
         source.contents(Board6c.copy(storageFull = StorageShortfall(1_200_000_000)))
         showScreen()
 
-        focus(DUNE)
-        assertWalkIsClean(listOf(PLAY_URL, "$QUEUE (1/4)", FREE_UP, DUNE, ARCANE, BLUE_EYE, RETRY, EXPANSE))
+        focus(TIDE)
+        assertWalkIsClean(listOf(PLAY_URL, "$QUEUE (1/4)", FREE_UP, TIDE, LANTERN, GREY_GULL, RETRY, OPEN_SOUND))
     }
 
     /** `DEC-17`: pixels, because a token can be swapped without anything else noticing. */
@@ -397,7 +397,7 @@ class DownloadsScreenTvDeviceTest {
         source.failure = null
         source.contents(Board6c)
         dpad.center()
-        awaitText(ARCANE)
+        awaitText(LANTERN)
         // The button left with its state, so focus went somewhere rather than nowhere.
         awaitFocus(PLAY_URL)
     }
@@ -412,10 +412,10 @@ class DownloadsScreenTvDeviceTest {
         focus(SELECT)
         dpad.center()
         awaitText(SELECT_ALL)
-        awaitFocus(DUNE)
+        awaitFocus(TIDE)
         dpad.center()
         awaitText("Delete (1 · 4.2 GB)")
-        rule.onNodeWithText(DUNE).assertIsSelected()
+        rule.onNodeWithText(TIDE).assertIsSelected()
         assertEquals("OK while choosing opens nothing", emptyList<DownloadsEffect>(), effects.toList())
 
         // The nearest chip, whichever it is, and every one is a press away along the row.
@@ -424,7 +424,7 @@ class DownloadsScreenTvDeviceTest {
         assertEquals("Delete (1 · 4.2 GB)", if (chip == "Delete (1 · 4.2 GB)") chip else pressUntil(Dpad.Right, "Delete (1 · 4.2 GB)"))
         dpad.center()
         rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
-        assertEquals(DownloadsEffect.ConfirmDelete(setOf(DownloadTitleId(DUNE_ID))), effects.single())
+        assertEquals(DownloadsEffect.ConfirmDelete(setOf(DownloadTitleId(TIDE_ID))), effects.single())
     }
 
     @Test
@@ -449,8 +449,8 @@ class DownloadsScreenTvDeviceTest {
         awaitText(RETRY)
         viewModel.onAction(DownloadsAction.SelectionStarted)
         awaitGone(RETRY)
-        focus(BLUE_EYE)
-        assertEquals(BLUE_EYE, dpad.press(Dpad.Right))
+        focus(GREY_GULL)
+        assertEquals(GREY_GULL, dpad.press(Dpad.Right))
     }
 
     /** A delete arriving from elsewhere, or confirmed in the dialog, while a row holds focus. */
@@ -459,10 +459,10 @@ class DownloadsScreenTvDeviceTest {
         source.contents(Board6c)
         showScreen()
 
-        focus(ARCANE)
-        source.contents(Board6c.copy(titles = Board6c.titles.filterNot { it.id.value == ARCANE_ID }))
-        awaitGone(ARCANE)
-        awaitFocus(DUNE)
+        focus(LANTERN)
+        source.contents(Board6c.copy(titles = Board6c.titles.filterNot { it.id.value == LANTERN_ID }))
+        awaitGone(LANTERN)
+        awaitFocus(TIDE)
     }
 
     @Test
@@ -528,10 +528,10 @@ class DownloadsScreenTvDeviceTest {
         source.contents(Board6c)
         showScreen()
 
-        focus(ARCANE)
+        focus(LANTERN)
         dpad.center()
         rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
-        source.contents(Board6c.copy(titles = Board6c.titles.filterNot { it.id.value == ARCANE_ID }))
+        source.contents(Board6c.copy(titles = Board6c.titles.filterNot { it.id.value == LANTERN_ID }))
 
         leaveAndComeBack()
         // Its requester is not attached, so the fallback is the entry.
@@ -549,7 +549,7 @@ class DownloadsScreenTvDeviceTest {
     fun screenshotTitlesFocusOnTheRunningRow() {
         source.contents(Board6c)
         showForScreenshot()
-        holdFocusOn(EXPANSE)
+        holdFocusOn(OPEN_SOUND)
         rule.assertScreenshot("downloads-titles-focus-running-row")
     }
 
@@ -566,7 +566,7 @@ class DownloadsScreenTvDeviceTest {
         network.value = Connectivity.OFFLINE
         source.contents(Board6c)
         showForScreenshot()
-        holdFocusOn(ARCANE)
+        holdFocusOn(LANTERN)
         rule.assertScreenshot("downloads-offline-over-titles")
     }
 
@@ -603,7 +603,7 @@ class DownloadsScreenTvDeviceTest {
         holdFocusOn(SELECT)
         dpad.center()
         awaitText(SELECT_ALL)
-        awaitFocus(DUNE)
+        awaitFocus(TIDE)
         dpad.center()
         awaitText("Delete (1 · 4.2 GB)")
         rule.waitForIdle()
@@ -681,13 +681,13 @@ class DownloadsScreenTvDeviceTest {
         const val NOT_ENOUGH = "Not enough storage"
         const val FREE_UP = "Free up space"
 
-        const val DUNE_ID = 1
-        const val DUNE = "Dune: Part Two"
-        const val ARCANE_ID = 3
-        const val ARCANE = "Arcane"
-        const val BLUE_EYE_ID = 4
-        const val BLUE_EYE = "Blue Eye Samurai"
-        const val EXPANSE = "The Expanse"
+        const val TIDE_ID = 1
+        const val TIDE = "Tide: Part Two"
+        const val LANTERN_ID = 3
+        const val LANTERN = "Lantern"
+        const val GREY_GULL_ID = 4
+        const val GREY_GULL = "Grey Gull"
+        const val OPEN_SOUND = "The Open Sound"
         const val LONG_NAME = "The Extraordinarily Long Title Of A Series Whose Name Will Never Fit On A Row However " +
             "Wide The Television Is, Which Goes On And On Past The Point Where Anyone Would Still Be Reading It, And " +
             "Then Carries On A Good Deal Further Than That Just To Be Certain That It Runs Off The End"
@@ -715,12 +715,12 @@ class DownloadsScreenTvDeviceTest {
         /** The board's own rows, in the order the view model sorts them. */
         val Board6c = DownloadsContents(
             titles = listOf(
-                title(DUNE_ID, DUNE, done = gb(42), total = gb(42)),
-                title(2, "Everything Everywhere All at Once", done = gb(68), total = gb(68)),
-                title(ARCANE_ID, ARCANE, kind = DownloadTitleKind.Series, episodes = 18, done = gb(112), total = gb(112)),
+                title(TIDE_ID, TIDE, done = gb(42), total = gb(42)),
+                title(2, "Every Harbor at Once", done = gb(68), total = gb(68)),
+                title(LANTERN_ID, LANTERN, kind = DownloadTitleKind.Series, episodes = 18, done = gb(112), total = gb(112)),
                 title(
-                    BLUE_EYE_ID,
-                    BLUE_EYE,
+                    GREY_GULL_ID,
+                    GREY_GULL,
                     DownloadTitleState.Failed,
                     DownloadTitleKind.Series,
                     episodes = 7,
@@ -728,10 +728,10 @@ class DownloadsScreenTvDeviceTest {
                     total = gb(64),
                     progress = 54f / 64f,
                 ),
-                title(5, "Severance", kind = DownloadTitleKind.Series, episodes = 9, done = gb(76), total = gb(76)),
+                title(5, "Quiet Harbor", kind = DownloadTitleKind.Series, episodes = 9, done = gb(76), total = gb(76)),
                 title(
                     6,
-                    EXPANSE,
+                    OPEN_SOUND,
                     DownloadTitleState.Running,
                     DownloadTitleKind.Series,
                     episodes = 4,
@@ -739,7 +739,7 @@ class DownloadsScreenTvDeviceTest {
                     total = gb(31),
                     progress = 0.61f,
                 ),
-                title(7, "Yellowjackets", kind = DownloadTitleKind.Series, episodes = 10, done = gb(81), total = gb(81)),
+                title(7, "Driftwood", kind = DownloadTitleKind.Series, episodes = 10, done = gb(81), total = gb(81)),
             ),
             storage = DownloadStorage(usedBytes = 384 * GB, totalBytes = 512 * GB, downloadBytes = 128 * GB),
             queue = DownloadQueue(running = 1, total = 4),
