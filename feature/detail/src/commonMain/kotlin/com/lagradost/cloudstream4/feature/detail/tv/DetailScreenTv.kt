@@ -118,10 +118,9 @@ import org.jetbrains.compose.resources.stringResource
  *   both of which `TvRail` already owns. BACK still leaves the screen.
  * - **The episode list stays on this page**, below the two rails. The boards put episodes on their own
  *   panel (board 6a), which is a later task; removing the list without it would leave no way to pick
- *   an episode. `Season N` and `Episodes · N` therefore scroll to that list rather than opening the
- *   panel they are drawn for, and they are drawn **only for a title with exactly one season**: the
- *   board's pair is a season and that season's own count, and with no panel there is no selector to
- *   say which season a multi-season page is showing. See `TitleDetail.namedSeason`.
+ *   an episode. Board 7i's season chips sit above it and choose the season it shows. The action row
+ *   draws no `Season N` or `Episodes · N` (7f has neither), so D-pad down from the row reaches the
+ *   list through the rails above it: there is no one-press jump to it, which is the board's choice.
  * - **No cast header and no see-all cards.** `:core:strings` has no word for "Cast", "Full cast" or
  *   "See all", and `CardSize`'s constructor is `internal` to `:core:theme`, so a feature module cannot
  *   build the boards' 76x120 and 76x144 cards at all. The rails are the rows alone.
@@ -233,7 +232,6 @@ private fun TitlePage(
     val listState = rememberLazyListState()
     val scope = rememberCoroutineScope()
     val returnTo = state.returnTo
-    val episodesIndex = episodesHeaderIndex(detail)
     // Board 7i's chips, and the one season the list is showing. Clamped here rather than in the
     // ViewModel: a re-read after `Reappeared` can return a title with fewer seasons than the chip
     // the viewer last chose, and only this side knows the groups.
@@ -244,9 +242,6 @@ private fun TitlePage(
     val shownSeason = seasons.shownSeasonIndex(state.selectedSeason, detail.primaryData)
     val shownEpisodes = seasons.getOrNull(shownSeason)?.episodes ?: detail.episodes
     val selectedEpisode = selectedEpisodeIndex(shownEpisodes, detail.primaryData)
-    // Set once the jump has landed, and cleared when the first episode row has taken focus. Hoisted
-    // here because the button that starts the jump is in item 0, which the jump itself disposes.
-    var jumpedToEpisodes by remember { mutableStateOf(false) }
     // Entry focus is Resume on both boards. With nothing playable there is no Resume, and the back cell
     // takes it instead rather than leaving the screen with nothing focused at all.
     val entryOnPrimary = !entryFocusPlaced && detail.primaryData != null
@@ -291,17 +286,6 @@ private fun TitlePage(
                 },
                 takeBackFocus = !entryFocusPlaced && detail.primaryData == null,
                 onBackFocusTaken = onEntryFocusPlaced,
-                onScrollToEpisodes = {
-                    scope.launch {
-                        // Not animated, and not optional: the jump disposes item 0, which holds the
-                        // button that was just pressed, so between the two frames nothing owns focus.
-                        // An instant scroll closes that gap to one frame and the row below the header
-                        // then takes it — a TV screen with no focus owner is inert until some key
-                        // press happens to re-acquire it.
-                        listState.scrollToItem(episodesIndex)
-                        jumpedToEpisodes = true
-                    }
-                },
             )
         }
         if (detail.cast.isNotEmpty()) {
@@ -339,8 +323,8 @@ private fun TitlePage(
                         // 7i writes "24 · HDREZKA": the count, then the provider, in the separator
                         // the related rail already uses. Count first is 7a-ii's order — the leading
                         // element must not change when a provider name is missing. The count is the
-                        // **shown** season's, which is the pair `DetailCopy.namedSeason` describes:
-                        // a season beside a count from a different one contradicts itself.
+                        // **shown** season's, the only episode count on the page, so choosing a chip
+                        // can't leave two different counts on screen.
                         count = listOfNotNull(shownEpisodes.size.toString(), detail.providerName)
                             .joinToString(META_SEPARATOR),
                     )
@@ -365,14 +349,9 @@ private fun TitlePage(
                     index = index,
                     selected = index == selectedEpisode,
                     onAction = onAction,
-                    takeFocus = index == FIRST_ROW && (
-                        jumpedToEpisodes ||
-                            (returnTo?.ready == true && returnTo.target == DetailFocus.Episodes)
-                        ),
-                    onFocusTaken = {
-                        jumpedToEpisodes = false
-                        if (returnTo != null) handled()
-                    },
+                    takeFocus = index == FIRST_ROW &&
+                        returnTo?.ready == true && returnTo.target == DetailFocus.Episodes,
+                    onFocusTaken = { if (returnTo != null) handled() },
                 )
             }
         }
@@ -405,7 +384,6 @@ private fun HeadBlock(
     onPrimaryFocusTaken: () -> Unit,
     takeBackFocus: Boolean,
     onBackFocusTaken: () -> Unit,
-    onScrollToEpisodes: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     val colors = CloudStreamTheme.colors
@@ -434,7 +412,6 @@ private fun HeadBlock(
                 onPrimaryFocusTaken = onPrimaryFocusTaken,
                 takeBackFocus = takeBackFocus,
                 onBackFocusTaken = onBackFocusTaken,
-                onScrollToEpisodes = onScrollToEpisodes,
                 colors = colors,
                 typography = typography,
             )
@@ -460,7 +437,6 @@ private fun HeadColumn(
     onPrimaryFocusTaken: () -> Unit,
     takeBackFocus: Boolean,
     onBackFocusTaken: () -> Unit,
-    onScrollToEpisodes: () -> Unit,
     colors: CloudStreamColors,
     typography: CloudStreamTypography,
 ) {
@@ -507,7 +483,6 @@ private fun HeadColumn(
                 onAction = onAction,
                 takeFocus = takePrimaryFocus,
                 onFocusTaken = onPrimaryFocusTaken,
-                onScrollToEpisodes = onScrollToEpisodes,
                 onWatchStatusRequested = onWatchStatusRequested,
             )
         }
@@ -736,17 +711,6 @@ internal fun TextLine(text: String, style: TextStyle, color: Color, modifier: Mo
         modifier = modifier,
     )
 }
-
-/**
- * Which lazy item the episode header is, so `Season N` and `Episodes · N` can scroll to it.
- *
- * Derived from the same conditions the column is built from rather than tracked, so the two cannot
- * drift: item 0 is always the head block, and each rail that has content is one item after it.
- */
-private fun episodesHeaderIndex(detail: TitleDetail): Int =
-    HEAD_ITEMS +
-        (if (detail.cast.isNotEmpty()) ONE_ITEM else NO_ITEM) +
-        (if (detail.recommendations.isNotEmpty()) ONE_ITEM else NO_ITEM)
 
 /**
  * Which episode row carries board 7i's pill: the one the primary button would act on.

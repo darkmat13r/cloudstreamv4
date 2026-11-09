@@ -585,27 +585,6 @@ class DetailViewModelTest {
     }
 
     @Test
-    fun `the row names a season only when there is exactly one, and counts that one season`() {
-        assertNull(movie.namedSeason(), "no season named, no button")
-
-        val forty = List(40) { DetailEpisode("E$it", "e$it", 1, it + 1) }
-        val one = movie.copy(seasons = listOf(DetailSeason(number = 1, episodeCount = 40)), episodes = forty)
-        assertEquals(DetailSeason(1, 40), one.namedSeason())
-
-        // The count is the season's, not the title's whole list: on a single-season show the two agree,
-        // which is exactly why reading the wrong one survives review.
-        val short = movie.copy(seasons = listOf(DetailSeason(number = 2, episodeCount = 10)), episodes = forty)
-        assertEquals(10, short.namedSeason()?.episodeCount)
-        assertEquals(2, short.namedSeason()?.number)
-
-        val several = movie.copy(
-            seasons = listOf(DetailSeason(1, 10), DetailSeason(2, 30)),
-            episodes = forty,
-        )
-        assertNull(several.namedSeason(), "two seasons and no selector: the row names neither")
-    }
-
-    @Test
     fun `a cast position swaps its role line and swaps back, independently of its neighbours`() = runTest {
         val vm = model(FakeSource({ movie }))
         vm.onAction(DetailAction.CastMemberActivated(4))

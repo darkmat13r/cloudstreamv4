@@ -168,13 +168,15 @@ internal object DetailSkeletonDefaults {
     val LineGap: Dp = CloudStreamDimens.StackGap
 
     /**
-     * One bar standing for the action row, and **the shorter of the two rows the page can show**.
+     * One bar standing for the action row: a film's row while resuming, the longest the page draws.
      *
      * The skeleton cannot know the title's type before it resolves, so the bar either stops short of
      * the row it becomes or overhangs it. The board set takes the first: a bar that grows on arrival
-     * reads as the page filling in, where one that shrinks reads as a mistake. So this is the film
-     * row — primary, Start over, Trailer, the watchlist, Full synopsis — and a series' row, which
-     * adds Season and Episodes, grows past it.
+     * reads as the page filling in, where one that shrinks reads as a mistake. This was the film
+     * row — primary, Start over, Trailer, the watchlist, Full synopsis — while a series' row, which
+     * added Season and Episodes, grew past it. Since those two left the row for 7i's season chips, a
+     * series' row is 472 (no Start over), so this bar now overhangs it by 60, as it does a film opened
+     * fresh. Whether the bar should become 472 is open in `KMP-38`; the number is unchanged here.
      *
      * Re-derived for the icon-only row (`DEC-17`, boards 7f and 7g). The old 784 came from the
      * artboard's x200..x1768 and stood for a row of five text buttons; measured against what the page
