@@ -8064,14 +8064,17 @@ of 2026-11-08, and the version FileKit already brings, so `BUG-73`'s one JNA is 
 - **Nothing is logged**: not an item's name, its value or the status. A failure is only false or "couldn't read".
 
 **Signed or not is decided when it is built** (the PM, Q1 (a)). `generateDesktopSecrets` writes `DesktopSecrets.signedBuild`,
-true only when both untracked values are there: `CLOUDSTREAM_TEAM_ID` and `CLOUDSTREAM_SIGN_IDENTITY`. Each is read from an
-env var, then `~/.gradle/gradle.properties`, then `local.properties`. Nothing at runtime (an env var, a file, a flag) can make a
-signed build use the unsigned stores. `AccountStorage.forBuild` is the one place the stores are made:
+true only for a packaging run given `-Pcloudstream.sign=true` (the PM, 2026-11-09), with both untracked values there:
+`CLOUDSTREAM_TEAM_ID` and `CLOUDSTREAM_SIGN_IDENTITY`. Each is read from an env var, then `~/.gradle/gradle.properties`, then
+`local.properties`. Nothing at runtime (an env var, a file, a flag) can make a signed build use the unsigned stores.
+`AccountStorage.forBuild` is the one place the stores are made:
 - **Signed:** the Keychain for both. There is no path to the in-memory store, or to D1's file as a store.
 - **Unsigned** (`./gradlew run`, every test): `95d`'s in-memory sign-ins, with the until-quit line, and D1's owner-only PIN file.
   The Keychain is never made, so nothing weakens.
-- With the two values set, `run` builds a signed-mode app in an unsigned process. It fails closed: no sign-in keeps, and
-  locked profiles stay locked, as they would with a Keychain that refuses.
+- **`run` and every test stay unsigned**, even on a Mac that has the two values: without the flag they are not read.
+  The flag is refused on anything but packaging (`package*`, `createDistributable`, `createReleaseDistributable`,
+  `notarize*`), naming the task. A signed-mode app in an unsigned process would only fail closed, with no sign-in kept;
+  the flag keeps that from happening by accident.
 
 **It fails closed** (the PM's rule):
 - A sign-in the Keychain will not keep is not signed in. A13 says so: "Couldn't keep the sign-in to %s on this computer, so
@@ -8101,8 +8104,8 @@ the reviewer of `#286`.
 - Signed, `macOS.signing` gets the identity, and `entitlementsFile` gets `build/generated/macos/entitlements.plist`, which
   `generateMacEntitlements` writes from `desktopApp/macos/entitlements.plist` with the Team ID put in.
 - The committed file keeps the placeholder. Beside the access group it has Compose's three defaults for a JVM app.
-- One value without the other fails the build and names the missing one, and a Team ID that is not ten capitals and digits
-  fails too; neither message prints the value.
+- With the flag, a missing value fails the build and names it, and a Team ID that is not ten capitals and digits fails
+  too; neither message prints the value. Without the flag, the values are not read at all.
 - The Team ID is in no source and no generated Kotlin. Checked with a made-up ID: it reached the entitlements only.
 
 **Not measured yet.** No codesign has run, and nothing has touched the real Keychain: the PM's call while the owner
@@ -8128,9 +8131,10 @@ process is refused.
   - a later file is deleted unread;
   - an item not ours is unreadable;
   - nothing at all is no PINs.
-- `AccountStorageTest`, 3:
+- `AccountStorageTest`, 4:
   - signed is the Keychain only, and fails closed when it refuses;
   - unsigned never makes a Keychain;
+  - the test build is unsigned (`DesktopSecrets.signedBuild` false), whatever the Mac has set;
   - the launch sweep, a delete, and a reused id over the Keychain.
 - `SyncFlowTest`, 3 more:
   - a signed build has no until-quit line, and its sign-in outlives a restart;

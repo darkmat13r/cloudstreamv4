@@ -59,6 +59,12 @@ class AccountStorageTest {
     }
 
     @Test
+    fun `a test build is unsigned, even on a Mac with the signing values, so nothing reaches the Keychain through the app`() {
+        // Only `-Pcloudstream.sign=true` on a packaging run makes a signed build, and the build refuses it for a test.
+        assertFalse(DesktopSecrets.signedBuild)
+    }
+
+    @Test
     fun `a deleted profile's Keychain sign-ins go, a reused id starts clean, and the launch sweep drops the rest`() {
         val vault = FakeVault()
         val file = DesktopProfileFile(File(directory, DesktopProfileFile.FILE_NAME))

@@ -27,21 +27,35 @@ val clientIds: Map<String, Provider<String>> = mapOf(
 
 // KMP-95f: signing, from untracked values only: an env var, else `~/.gradle/gradle.properties`, else local.properties.
 // The Team ID is not secret, but this repo is public and it ties to the owner's account, so it is never committed,
-// printed, or written into a source: only into the build's entitlements. A build is signed only when both are there.
+// printed, or written into a source: only into the build's entitlements.
+//
+// A build is signed only when it is asked to be, with `-Pcloudstream.sign=true` on a packaging run, and both values are
+// there (the PM, 2026-11-09). So `run` and every test stay unsigned on a Mac that has the values: a signed-mode app in an
+// unsigned process would only fail closed. The flag is refused on anything but packaging, and is read here, at build
+// time, into a constant: nothing at runtime can change which stores a build has.
 fun signingValue(key: String): Provider<String> = providers.environmentVariable(key)
     .orElse(providers.gradleProperty(key))
     .orElse(localProperties.map { it.getProperty(key).orEmpty() })
     .orElse("")
     .map { it.trim() }
-val teamId: String = signingValue("CLOUDSTREAM_TEAM_ID").get()
-val signIdentity: String = signingValue("CLOUDSTREAM_SIGN_IDENTITY").get()
-val signedBuild: Boolean = teamId.isNotEmpty() && signIdentity.isNotEmpty()
-if (teamId.isNotEmpty() != signIdentity.isNotEmpty()) {
-    val missing = if (teamId.isEmpty()) "CLOUDSTREAM_TEAM_ID" else "CLOUDSTREAM_SIGN_IDENTITY"
-    throw GradleException("A signed build needs both CLOUDSTREAM_TEAM_ID and CLOUDSTREAM_SIGN_IDENTITY; $missing is missing.")
-}
-if (teamId.isNotEmpty() && !teamId.matches(Regex("[A-Z0-9]{10}"))) {
-    throw GradleException("CLOUDSTREAM_TEAM_ID is not a Team ID: ten capital letters and digits.")
+val signRequested: Boolean = providers.gradleProperty("cloudstream.sign").orNull == "true"
+val teamId: String = if (signRequested) signingValue("CLOUDSTREAM_TEAM_ID").get() else ""
+val signIdentity: String = if (signRequested) signingValue("CLOUDSTREAM_SIGN_IDENTITY").get() else ""
+val signedBuild: Boolean = signRequested
+if (signRequested) {
+    val missing = listOf("CLOUDSTREAM_TEAM_ID" to teamId, "CLOUDSTREAM_SIGN_IDENTITY" to signIdentity).filter { it.second.isEmpty() }
+    if (missing.isNotEmpty()) {
+        throw GradleException("-Pcloudstream.sign=true needs CLOUDSTREAM_TEAM_ID and CLOUDSTREAM_SIGN_IDENTITY; missing: ${missing.joinToString { it.first }}.")
+    }
+    if (!teamId.matches(Regex("[A-Z0-9]{10}"))) {
+        throw GradleException("CLOUDSTREAM_TEAM_ID is not a Team ID: ten capital letters and digits.")
+    }
+    // Only packaging may ask for a signed build: a signed `run` or test is the trap this flag exists to prevent.
+    val packaging = Regex("(.*:)?(package|createDistributable|createReleaseDistributable|notarize|generateMacEntitlements|generateDesktopSecrets)\\w*")
+    val others = gradle.startParameter.taskNames.filterNot { it.startsWith("-") || packaging.matches(it) }
+    if (others.isNotEmpty()) {
+        throw GradleException("-Pcloudstream.sign=true is only for packaging and notarising; not for: ${others.joinToString()}.")
+    }
 }
 
 val generateDesktopSecrets = tasks.register("generateDesktopSecrets") {
@@ -207,8 +221,9 @@ compose.desktop {
                 iconFile.set(iconsRoot.resolve("icon-macos.icns"))
                 // KMP-95f: the Keychain's items belong to this id's access group, and the items' service is the same id.
                 bundleID = "com.lagradost.cloudstream4"
-                // Signed only when both untracked values are there; codesign is then given the identity, and the
-                // entitlements with the Team ID in. Unsigned, nothing here runs and the app keeps 95c's and 95d's stores.
+                // Signed only for `-Pcloudstream.sign=true` on a packaging run, with both untracked values; codesign is then
+                // given the identity, and the entitlements with the Team ID in. Otherwise nothing here runs and the app keeps
+                // 95c's and 95d's stores.
                 if (signedBuild) {
                     signing {
                         sign.set(true)
