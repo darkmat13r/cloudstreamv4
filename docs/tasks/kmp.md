@@ -7580,7 +7580,7 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
   Settings' default.
 - `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.
 
-## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr #290, 95e in pr #296 (AniList in pr #300)** · the PM's task, 2026-11-08
+## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr #290, 95e in pr #296 (AniList in pr #300), 95f in pr** · the PM's task, 2026-11-08
 
 `DS-25`'s boards, built in six PRs (the PM's plan, 2026-11-08):
 
@@ -7591,9 +7591,10 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
 | `KMP-95c` | The PIN (A3, A3b, A4, A4b, A6d, A7 to A7c), `BUG-55`'s limit over a boot-relative clock | 95b |
 | `KMP-95d` | Sign-ins over an in-memory store: Sync (A9), Simkl's code (A11, A11b), A12 to A14, OpenSubtitles and SubDL (A16, A16b) | 95a |
 | `KMP-95e` | The browser's redirect for AniList and MyAnimeList (A10): the scheme, the handler, `state` and PKCE | 95d |
-| `KMP-95f` | The Keychain through JNA 5.19.1, and Touch ID (A3t), measured on a signed build | The owner's Team ID and certificate |
+| `KMP-95f` | The Keychain through JNA 5.19.1: the PINs and sign-ins on a signed build, and the signing wiring | 95e; measured with the owner's Team ID and certificate |
 | `KMP-95g` | Pictures: the bundled ones, and "Use an image address" (A6) | The owner; see 95b |
 | `KMP-95h` | Renewing MyAnimeList's token with its refresh token before it expires (about 31 days) | 95e, 95f |
+| `KMP-95i` | Touch ID (A3t): the Keychain's biometry access control, its strings, the `Fingerprint` row, `DS-24`'s switch | 95f; a signed build |
 
 **Rulings** (the owner and the PM, 2026-11-08):
 - JNA 5.19.1 is approved for the Keychain: an exact pin, declared only in `:desktopApp`'s account code (95f).
@@ -7606,6 +7607,8 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
   moves to the Keychain in 95f.
 - **Sign-ins before 95f** are kept in memory only and lost on quit, and the window says so. None is ever on disk in
   plain text.
+- **95f is the Keychain alone; Touch ID is 95i** (the PM, 2026-11-09). Mac secrets go in the Keychain, the OpenSubtitles
+  password with them, and the D1 PIN file stays until the Keychain lands (the owner, 2026-11-09).
 
 ### KMP-95a — Profiles
 
@@ -8042,6 +8045,103 @@ an app that cannot keep a secret, with no PKCE and no `state` shown, and Android
   - A13 on `error=`, and A13b on an exchange offline.
 - Red-checked: without the state comparison, 3 of these fail; without ending the wait on leaving the step, the late
   redirect is taken and the Cancel test fails; without the bare-form check or the RFC 3986 decoding, their tests fail.
+
+### KMP-95f — The Keychain: PINs and sign-ins on a signed build
+
+**What it keeps.** On a signed build, the PINs and every profile's sign-ins are two Keychain items, `pins` and `sign-ins`,
+read and written whole, as `pins.json` was. They outlive a quit, so the window no longer says sign-ins end at quit. The
+OpenSubtitles password is kept beside its token (the owner, 2026-11-09). The wrong-PIN counts stay in their file: counts and
+waits, never a PIN.
+
+**Where it reaches the Keychain.** `MacKeychain`, Security.framework through JNA 5.19.1 (`libs.jna`, the owner's approval
+of 2026-11-08, and the version FileKit already brings, so `BUG-73`'s one JNA is unchanged).
+- **Scoped to this app** (the PM's rule): the data-protection keychain (`kSecUseDataProtectionKeychain`). Its items belong
+  to the entitlements' one access group, `<Team ID>.com.lagradost.cloudstream4`, so another app cannot read them, and nor
+  can this one unsigned: it is refused with `errSecMissingEntitlement`.
+- **This Mac only, while unlocked** (`kSecAttrAccessibleWhenUnlockedThisDeviceOnly`): never in a backup or iCloud Keychain.
+- **Nothing is logged**: not an item's name, its value or the status. A failure is only false or "couldn't read".
+
+**Signed or not is decided when it is built** (the PM, Q1 (a)). `generateDesktopSecrets` writes `DesktopSecrets.signedBuild`,
+true only when both untracked values are there: `CLOUDSTREAM_TEAM_ID` and `CLOUDSTREAM_SIGN_IDENTITY`. Each is read from an
+env var, then `~/.gradle/gradle.properties`, then `local.properties`. Nothing at runtime (an env var, a file, a flag) can make a
+signed build use the unsigned stores. `AccountStorage.forBuild` is the one place the stores are made:
+- **Signed:** the Keychain for both. There is no path to the in-memory store, or to D1's file as a store.
+- **Unsigned** (`./gradlew run`, every test): `95d`'s in-memory sign-ins, with the until-quit line, and D1's owner-only PIN file.
+  The Keychain is never made, so nothing weakens.
+- With the two values set, `run` builds a signed-mode app in an unsigned process. It fails closed: no sign-in keeps, and
+  locked profiles stay locked, as they would with a Keychain that refuses.
+
+**It fails closed** (the PM's rule):
+- A sign-in the Keychain will not keep is not signed in. A13 says so: "Couldn't keep the sign-in to %s on this computer, so
+  you're not signed in." (`account_signin_not_kept`).
+- A removal it refuses stays on A14 with "Couldn't remove the sign-in to %s from this computer, so it's still signed in."
+  (`account_signin_not_removed`).
+- An item that cannot be read, or is not ours, is never "none":
+  - no sign-in shows, and every change is refused, so one profile's change never overwrites the others';
+  - for the PINs it is `95c`'s unreadable file again: every profile but the first is locked, and a check says why.
+- Two new keys in all 62 directories: the strings baseline's thirty-first move, and two `R` fields in `classes-jar.api`.
+  Neither string names the Keychain, which macOS calls by a different name in each language; "this computer" is what
+  the PIN lines say.
+
+**D1's file moves once** (the PM, Q2):
+- While the Keychain has no `pins` item, the file is read and written to the Keychain.
+- The file is deleted only when the Keychain gives back what was written.
+- A write that fails keeps the file. So does a read-back that differs, and that item is then removed, so the next launch
+  does not take it over the file. Either way, the PINs are read from the file, so nothing opens, and a change is refused.
+- Once the Keychain holds them, a `pins` file found later is deleted unread.
+
+**Sign-ins outlive a profile's delete no more than its PIN does:** the launch sweep drops those of a profile that is
+gone, and Add adds nothing while sign-ins left under the new id cannot be forgotten. That is the same rule as the PIN, from
+the reviewer of `#286`.
+
+**The build.**
+- `bundleID` is `com.lagradost.cloudstream4` (the PM, Q4).
+- Signed, `macOS.signing` gets the identity, and `entitlementsFile` gets `build/generated/macos/entitlements.plist`, which
+  `generateMacEntitlements` writes from `desktopApp/macos/entitlements.plist` with the Team ID put in.
+- The committed file keeps the placeholder. Beside the access group it has Compose's three defaults for a JVM app.
+- One value without the other fails the build and names the missing one, and a Team ID that is not ten capitals and digits
+  fails too; neither message prints the value.
+- The Team ID is in no source and no generated Kotlin. Checked with a made-up ID: it reached the entitlements only.
+
+**Not measured yet.** No codesign has run, and nothing has touched the real Keychain: the PM's call while the owner
+decides on signing (Q3). Every test is over `FakeVault`. Measuring on a signed build is the step before this merges:
+whether the access group needs a provisioning profile with an Apple Development certificate, and that an unsigned
+process is refused.
+
+**Tests:**
+- `KeychainSignInStoreTest`, 7:
+  - a restart keeps sign-ins, the OpenSubtitles password included;
+  - a refused write keeps nothing;
+  - an unreadable item refuses every change and recovers;
+  - an item not ours is not "none";
+  - a bad token read back is dropped;
+  - a refused remove or forget leaves it as it was;
+  - nothing is named in `toString`.
+- `KeychainPinsTest`, 8:
+  - set, check and remove through the Keychain, with no file;
+  - the move and its delete;
+  - a refused move keeps the file, keeps profiles locked and refuses changes;
+  - a read-back that differs keeps the file and removes the item;
+  - an unreadable Keychain locks all but the first and never reads the file;
+  - a later file is deleted unread;
+  - an item not ours is unreadable;
+  - nothing at all is no PINs.
+- `AccountStorageTest`, 3:
+  - signed is the Keychain only, and fails closed when it refuses;
+  - unsigned never makes a Keychain;
+  - the launch sweep, a delete, and a reused id over the Keychain.
+- `SyncFlowTest`, 3 more:
+  - a signed build has no until-quit line, and its sign-in outlives a restart;
+  - A13 when the Keychain will not keep one;
+  - A14 when it will not remove one.
+- Red-checked, each failing its tests:
+  - keeping a refused write in memory;
+  - `SyncFlow` ignoring `put`'s false;
+  - the move deleting without the read-back;
+  - an unreadable Keychain read from the file instead;
+  - Add ignoring the sign-ins' forget;
+  - a signed build given the in-memory store.
+
 ---
 
 ## KMP-74 — The Mac plays a downloaded episode: the app opens the file, and the media host gets only its descriptor · **built 2026-11-09**

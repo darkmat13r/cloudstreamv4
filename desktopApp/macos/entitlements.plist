@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  KMP-95f: the signed app's entitlements. The first three are Compose's defaults for a JVM app. The access group
+  scopes the Keychain's items to this app; generateMacEntitlements puts the Team ID in from the untracked
+  CLOUDSTREAM_TEAM_ID at build time. This file keeps the placeholder and is never edited with the real value.
+-->
+<plist version="1.0">
+    <dict>
+        <key>com.apple.security.cs.allow-jit</key>
+        <true/>
+        <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+        <true/>
+        <key>com.apple.security.cs.disable-library-validation</key>
+        <true/>
+        <key>keychain-access-groups</key>
+        <array>
+            <string>CLOUDSTREAM_TEAM_ID.com.lagradost.cloudstream4</string>
+        </array>
+    </dict>
+</plist>
