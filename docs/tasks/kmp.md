@@ -6350,6 +6350,48 @@ both ways out; it wants its own task.
 as TV does, but nothing on the Mac fills it: TV's stamps come from its host. Find where the stamps come from for a
 title, read them for the episode playing, and pass the current one to `PlayerContent.skip`, with `onSkip` seeking past it.
 
+## KMP-98 — The Mac window's chrome: the title bar, Settings in the sidebar, one page bar · **in review**
+
+**Status:** in review · `:desktopApp`, `:core:designsystem`, `:feature:{home,search,library,detail,downloads}` · a
+design audit against boards D1 (chrome and sidebar), S1, H1 and D1 (the bar).
+
+- **The title bar is transparent over the content** wherever the sidebar is, as the Settings window has it: the sidebar
+  runs the window's full height with the traffic lights in it, and its rows start under a 52 band. Over the player and
+  the extension review the title bar is plain, since neither has a column for the lights. `titleBarOverContent` sets
+  `apple.awt.fullWindowContent`, `transparentTitleBar` and `windowTitleVisible`; the host switches it per screen.
+- **Settings ⌘,** is the sidebar's last row, below whatever the foot holds (the extensions notice now, the profile
+  button after `KMP-95`). It opens the Settings window, as the app menu's Settings… does. The key is shown on a Mac only;
+  elsewhere nothing binds it.
+- **One page bar, `DesktopPageBar`** (`:core:designsystem`): 52 tall, the hairline along its bottom edge, on Home,
+  Search, Library, a title's page, Downloads and a series' downloads. Before, Home's bar was 68 with no hairline,
+  Search had a padded field and no bar, and both Downloads pages drew a box round theirs. Library's and the title
+  page's were already 52 with a hairline, which now sits inside the band, so the band stays on the 4 dp step.
+- Home's rows did not move: the 16 the old bar held below its controls is now the list's top padding. Search's chips
+  and results moved up 20 (the old bar had 24 round the field).
+
+### Measured on the way
+
+- **A control in the title band takes its click.** Asked AppKit, on Temurin 17 with JNA, which view a point
+  hit-tests to: with the three properties set, every point of the top 28 is the content's `AWTView`; without them the
+  band is `NSTitlebarView`. `AWTView` answers yes to `mouseDownCanMoveWindow`. Robot could not click here (no
+  Accessibility permission, and the control window got no clicks either), so a press and a drag in the real window
+  are still to be tried by hand.
+- **Switching it with the window open applies at once:** the frame's top inset went 28 to 0 and back, and the band's
+  hit-test followed.
+- **The lights sit in the standard 28 band**, not centred on the 52 bar. Centring them needs an `NSToolbar` or JBR's
+  custom title bar; the Settings window has the same placement.
+
+### Tests
+
+- Each page's test (`HomeScreenTest`, `SearchScreenTest`, `LibraryScreenTest`, `DetailScreenTest`,
+  `DownloadsScreenTest`, `DownloadSeriesScreenTest`): one page bar, 52 at the top, the page's width, a hairline along
+  the bottom and none along the top, read from the pixels (`PageBarAssertions`).
+- `DesktopShellTest`: the first sidebar row starts at 52 and the page bar beside it measures as above; Settings is the
+  last row, a button, `⌘,` on a Mac, and a click opens the window; no row without an opener; the window is told the
+  sidebar is shown on every top-level page; the three properties set and unset.
+- Moved coordinates in the existing tests: sidebar rows +28, the Search field and Home's bar at the bar's middle, the
+  chips at 84.
+
 ## KMP-91 — The Mac player's panels from the right, `DS-23` M4 to M7
 
 **Status:** in review · `:desktopApp` · after `KMP-87` (#257) and `I18N-19` (#249)

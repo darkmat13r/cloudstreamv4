@@ -20,6 +20,7 @@ import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -177,6 +178,15 @@ class DetailScreenTest {
     }
 
     // ---- E1: a series ----
+
+    @Test
+    fun `a title's page starts with the page bar, 52 tall with a hairline under it (KMP-98, E1)`() {
+        // Back and the path, in the one band every Mac page has.
+        val scene = page(loaded(series))
+        scene.settle()
+        scene.assertPageBar(WIDTH, atNanos = SETTLE_FRAMES * FRAME_NANOS)
+        scene.close()
+    }
 
     @Test
     fun `Resume plays where it was left, and Start over plays the same episode from its beginning (E1)`() {

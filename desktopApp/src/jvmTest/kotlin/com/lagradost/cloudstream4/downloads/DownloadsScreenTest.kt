@@ -24,6 +24,7 @@ import androidx.compose.ui.input.pointer.PointerButtons
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.PointerKeyboardModifiers
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.core.connectivity.Connectivity
 import com.lagradost.cloudstream4.core.connectivity.ConnectivityFlow
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
@@ -209,6 +210,15 @@ class DownloadsScreenTest {
 
     private val meta = PointerKeyboardModifiers(isMetaPressed = true)
     private val shift = PointerKeyboardModifiers(isShiftPressed = true)
+
+    @Test
+    fun `Downloads starts with the page bar, 52 tall with a hairline under it (KMP-98, D1)`() {
+        // Play from link and the queue, in the one band every Mac page has.
+        val scene = scene(Harness(contents()))
+        scene.settle()
+        scene.assertPageBar(WIDTH, atNanos = SETTLE_FRAMES * FRAME_NANOS)
+        scene.close()
+    }
 
     @Test
     fun `a click selects one row, command adds, shift extends, and Escape clears`() {

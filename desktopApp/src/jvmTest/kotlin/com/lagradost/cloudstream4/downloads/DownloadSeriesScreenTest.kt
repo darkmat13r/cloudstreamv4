@@ -23,6 +23,7 @@ import androidx.compose.ui.input.pointer.PointerButton
 import androidx.compose.ui.input.pointer.PointerButtons
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.core.connectivity.Connectivity
 import com.lagradost.cloudstream4.core.connectivity.ConnectivityFlow
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
@@ -180,6 +181,15 @@ class DownloadSeriesScreenTest {
         clock += FRAME_NANOS
         val pixel = Bitmap.makeFromImage(render(clock)).getColor(SHEET_PROBE_X, SHEET_PROBE_Y)
         return pixel != Color.Black.toArgb()
+    }
+
+    @Test
+    fun `a series' downloads starts with the page bar, 52 tall with a hairline under it (KMP-98, D4)`() {
+        // Back and the path, in the one band every Mac page has.
+        val scene = scene(Harness())
+        scene.settle()
+        scene.assertPageBar(WIDTH, atNanos = SETTLE_FRAMES * FRAME_NANOS)
+        scene.close()
     }
 
     @Test
