@@ -169,8 +169,14 @@ internal class DesktopProfiles(
     private val file: DesktopProfileFile = DesktopProfileFile(),
     private val libraryDirectory: File = DesktopLibraryStore.defaultTitlesFile().parentFile,
     private val onSaveFailed: (Throwable) -> Unit = {},
+    /** `KMP-95c`: each profile's PIN and its wrong-PIN count, in their own owner-only files beside the profiles. */
+    val pins: DesktopPins = DesktopPins(libraryDirectory, onSaveFailed = onSaveFailed),
 ) {
     var stored: StoredProfiles by mutableStateOf(StoredProfiles())
+        private set
+
+    /** Bumped when a PIN is set or removed, so the cards, which read [pins], are drawn again. */
+    var pinChanges: Int by mutableStateOf(0)
         private set
 
     init {
@@ -178,7 +184,11 @@ internal class DesktopProfiles(
         // A deleted profile's history should not sit on disk until its id is taken again (the reviewer of #281). Only
         // over a strict read: anything else reads leniently as the first profile alone, and trusting that would remove
         // every other profile's library.
-        file.strictIds()?.let(::clearLibrariesNotIn)
+        file.strictIds()?.let { kept ->
+            clearLibrariesNotIn(kept)
+            // The same rule for a deleted profile's PIN and count: only over a strict read.
+            pins.retainOnly(kept)
+        }
     }
 
     /** The launch picker shows only with two profiles or more, the default counted (`KMP-73`, A1). */
@@ -245,7 +255,10 @@ internal class DesktopProfiles(
         )
         // Only once the file no longer lists it: a profile whose delete could not be written comes back at the next
         // launch, and must come back with its library (the reviewer of #281).
-        if (saved) clearLibrary(id)
+        if (saved) {
+            clearLibrary(id)
+            pins.forget(id)
+        }
         return true
     }
 
@@ -271,14 +284,24 @@ internal class DesktopProfiles(
         }
     }
 
-    /** The cards the picker and the sidebar's list draw. Nothing is locked and nothing syncs until `KMP-95c` and `95d`. */
-    fun cards(defaultName: String): List<ProfileCard> = stored.profiles.map { profile ->
-        ProfileCard(
-            id = profile.id,
-            name = profile.name ?: defaultName,
-            current = profile.id == stored.current,
-            locked = false,
-        )
+    /** Sets [id]'s PIN (A7, A7b). The first profile is never locked. */
+    fun setPin(id: Int, pin: String): Boolean = pins.set(id, pin).also { pinChanges++ }
+
+    /** Removes [id]'s PIN, once its current one was given (A7c). */
+    fun removePin(id: Int): Boolean = pins.remove(id).also { pinChanges++ }
+
+    /** The cards the picker and the sidebar's list draw. A profile with a PIN is locked; nothing syncs until `95d`. */
+    fun cards(defaultName: String): List<ProfileCard> {
+        // Read, so a composition drawing the cards follows a PIN being set or removed.
+        @Suppress("UNUSED_VARIABLE") val changes = pinChanges
+        return stored.profiles.map { profile ->
+            ProfileCard(
+                id = profile.id,
+                name = profile.name ?: defaultName,
+                current = profile.id == stored.current,
+                locked = pins.hasPin(profile.id),
+            )
+        }
     }
 
     private companion object {

@@ -7211,7 +7211,7 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
   Settings' default.
 - `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.
 
-## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281** · the PM's task, 2026-11-08
+## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr** · the PM's task, 2026-11-08
 
 `DS-25`'s boards, built in six PRs (the PM's plan, 2026-11-08):
 
@@ -7372,3 +7372,87 @@ The PIN row is `KMP-95c`, along with A6c's "can't be locked" line.
   - deleting the profile watching makes the first watch;
   - the window's Escape closes the sheet, then Manage.
 - Renders: A5, A6, A6b, A6c and A8, compared with the boards by eye.
+
+### KMP-95c — The PIN
+
+**The rule** is `BUG-55`'s, as its own `PinLimit` in `:feature:account` (`:app`'s `PinAttempts` is untouched):
+- four wrong PINs are free;
+- the fifth starts a 30 s wait, each one after doubles it, and the 12th reaches the one-hour cap, where it stays;
+- a right PIN clears the count;
+- during a wait nothing is compared, the right PIN included;
+- the count is per profile and kept across restarts;
+- only counts and waits are kept, never a PIN.
+
+**The clock**, measured on the Mac: `System.nanoTime()` counts from boot. Two separate JVMs read the same 2,044,795 s,
+which matches `CLOCK_UPTIME_RAW`. So:
+- a change to the wall clock does not move it, and a restart of the app does not reset it;
+- it does not advance while the Mac sleeps, so a wait can only grow, never shrink;
+- a reboot resets it, and then the full wait runs again from boot, as in `BUG-55`.
+
+No JNA is needed for any of this.
+
+**Where it is kept** (D1, and the reviewer of `#278`): two owner-only files beside the profiles, written temp-then-move.
+- `pins.json` holds each profile's PIN. It is never in `profiles.json`, and never logged, shown or in anything shared.
+  It is not hashed: a hash of four digits is reversed at once. It moves to the Keychain in `95f`.
+- `pin-attempts.json` holds counts and waits only.
+- A `pins.json` that cannot be read reads as no PINs, as a deleted one would. A PIN is a household lock against someone
+  at the window, not against someone who can read this account's files. Failing closed would lock profiles behind PINs
+  nobody can enter.
+- An attempts record out of range reads as the strictest wait, never a free one.
+- Deleting a profile removes its PIN and count. At launch, the PINs and counts of profiles no longer listed are
+  removed, over the same strict read as the libraries' sweep and never over a lenient one.
+- The first profile can never be locked.
+
+**The prompts:**
+- **A locked profile asks its PIN** before it opens, from the picker or the sidebar's list.
+- **In Manage, a locked profile asks its PIN** before its editor opens (A5).
+- **A3 and A3b:** four cells, each a dot and never a digit. The fourth digit submits, and Backspace takes the last one
+  back. A wrong PIN clears the cells and says "Incorrect PIN. Please try again.", with no count of tries left.
+- **A4 and A4b:** while a wait runs the cells are off and nothing typed reaches them. The line counts down each frame
+  from the boot clock, as `mm:ss` rounded up, so it never reads 00:00 while it runs. Cancel stays live, and so does
+  every other profile. The wait outlives closing the prompt and a restart.
+- **The editor's PIN row:**
+  - **A6:** Off, with Set PIN.
+  - **A6d:** On, with Change PIN and Remove PIN.
+  - **A6c:** the first profile can't be locked, and there are no buttons.
+  - Its line is the caption size: at the Mac's label size, A6d's wrapped beside two buttons.
+- **Setting a PIN (A7, A7b):** the PIN twice; a mismatch starts over. A new PIN is not under the limit, since there is
+  nothing to guess yet.
+- **Changing or removing a PIN (A7c):** the PIN in use first, under the same limit.
+- Escape on a PIN step goes back to the editor.
+
+The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once train 9 was on master. There are no new
+keys.
+
+**Not here:**
+- **Touch ID (A3t):** `95f`, on a signed build.
+- **The PIN row while adding (A6b):** a PIN is set once the profile exists, from its editor.
+- **A name typed in the editor is not kept across a PIN step:** the editor opens again with the saved name. Save the
+  name first.
+- **A "PINs didn't match" line in A7b** (a follow-up, the PM, 2026-11-09): a mismatch starts over silently today,
+  because no key says so. The line wants its own `I18N` key in every locale, as its own task.
+
+**Tests:**
+- `PinLimitTest` (`:feature:account` commonTest), 6 cases: the numbers, running down, per profile, a restart, a
+  reboot, and a store that cannot write.
+- `DesktopPinsTest`, 10 cases:
+  - right, wrong and the count;
+  - nothing compared during a wait;
+  - the first profile and what counts as a PIN;
+  - kept across a restart, in owner-only files, with no PIN in the attempts file;
+  - never in `profiles.json`;
+  - an unreadable `pins.json`;
+  - an attempts record out of range;
+  - delete and the launch sweep, and none over a file that is not strictly this version's;
+  - the `mm:ss` clock.
+- `PinFlowTest`, 9 cases through real key and pointer events on a fake boot clock:
+  - A3 and A3b, with no digit drawn;
+  - the wait counting down and nothing getting past it;
+  - the wait outliving Cancel and a restart;
+  - Backspace;
+  - Manage asking the PIN before the editor;
+  - Set PIN with a mismatch;
+  - Change and Remove behind the current PIN;
+  - the first profile;
+  - Escape back to the editor.
+- Renders: A3, A3b, A4, A6d, A7, A7b and A7c, compared with the boards by eye.
