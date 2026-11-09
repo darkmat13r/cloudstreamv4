@@ -2590,7 +2590,7 @@ All on `Television_720p`, locally (CI is off).
 
 ## BUG-61 — Android Home could show a provider's URL and token in its failure line · **medium, security** · measured 2026-11-08
 
-**Status:** fixed in pr · `app/.../cloudstream4/home/AndroidHomeSource.kt`, `toReply`
+**Status:** done · #251, merged in train 11 (`07f329dd9`) · `app/.../cloudstream4/home/AndroidHomeSource.kt`, `toReply`
 
 Home's failure line is the first line of `Resource.Failure.errorString`. Android's `toReply` cleaned that line (control
 and format characters out) and relied on `:library` to have redacted it. Desktop's copy redacts again after removing
@@ -2643,6 +2643,12 @@ compiler adds because the class reads the private pattern and the shared private
   The second needs a forged stack frame.
 - Search (`ApiRepositorySearchSource.detailOf`), detail (`AndroidDetailSource`) and downloads
   (`AndroidDownloadsSource`) also read `errorString`, with no redaction of their own.
+
+  `BUG-63` (#263) closes both.
+
+**Follow-up:**
+- [ ] When `BUG-64` (#253) is on master, delete `toReply`'s copy of the default-ignorable block and its second pass
+  with the link pattern, and keep only `redactedText`. Tracked in `BUG-63`.
 
 ## BUG-71 — `SearchSuggestionsViewModelTest` waited on the real clock · **low, test only (hardening)**
 
