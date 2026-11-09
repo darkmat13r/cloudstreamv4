@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"முள்ளை அகற்று"</string>
 <string name="account_pin_set">"முள் அமை"</string>
 <string name="account_pin_set_title">"ஒரு முள் அமைக்கவும்"</string>
+<string name="account_pin_unreadable">"இந்தக் கணினியில் உள்ள PIN-களைப் படிக்க முடியவில்லை, எனவே இந்தச் சுயவிவரம் பூட்டப்பட்டே இருக்கும்."</string>
 <string name="account_profile_current">"தற்போதைய"</string>
 <string name="account_profile_locked">"பூட்டப்பட்டது · PIN"</string>
 <string name="account_profile_no_sync">"ஒத்திசைவு இல்லை"</string>

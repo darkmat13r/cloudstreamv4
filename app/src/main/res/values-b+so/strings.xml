@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"Ka saar PIN"</string>
 <string name="account_pin_set">"Deji PIN"</string>
 <string name="account_pin_set_title">"Deji PIN"</string>
+<string name="account_pin_unreadable">"Lama akhrin karin PIN-ka kombuyuutarkan, sidaa darteed astaantani way xidhnaanaysaa."</string>
 <string name="account_profile_current">"Hadda"</string>
 <string name="account_profile_locked">"La xiray · PIN"</string>
 <string name="account_profile_no_sync">"Isku-dhafid ma jirto"</string>

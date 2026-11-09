@@ -33,6 +33,7 @@
 <string name="account_pin_first_profile">Першы профіль нельга заблакіраваць</string>
 <string name="account_pin_new">Увядзіце 4-значны PIN-код.</string>
 <string name="account_pin_not_saved">Не ўдалося захаваць змену PIN-кода. Нічога не змянілася.</string>
+<string name="account_pin_unreadable">Не ўдалося прачытаць PIN-коды на гэтым камп'ютары, таму гэты профіль застаецца заблакаваным.</string>
 <string name="account_pin_off">Выключана · любы можа адкрыць гэты профіль</string>
 <string name="account_pin_on">Уключана · запытваецца пры адкрыцці</string>
 <string name="account_pin_prompt">Увядзіце 4-значны PIN-код.</string>

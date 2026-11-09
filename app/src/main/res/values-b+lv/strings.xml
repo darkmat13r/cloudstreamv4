@@ -61,6 +61,7 @@
 <string name="account_pin_remove">"Noņemt PIN kodu"</string>
 <string name="account_pin_set">"Iestatīt PIN kodu"</string>
 <string name="account_pin_set_title">"PIN koda iestatīšana"</string>
+<string name="account_pin_unreadable">"Neizdevās nolasīt šī datora PIN kodus, tāpēc šis profils paliek bloķēts."</string>
 <string name="account_profile_current">"Pašreizējais"</string>
 <string name="account_profile_locked">"Bloķēts · PIN"</string>
 <string name="account_profile_no_sync">"Bez sinhronizācijas"</string>

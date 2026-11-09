@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"הסרת PIN"</string>
 <string name="account_pin_set">"הגדרת PIN"</string>
 <string name="account_pin_set_title">"הגדרת PIN"</string>
+<string name="account_pin_unreadable">"לא ניתן היה לקרוא את קודי ה-PIN במחשב הזה, ולכן הפרופיל הזה נשאר נעול."</string>
 <string name="account_profile_current">"נוכחי"</string>
 <string name="account_profile_locked">"נעול · PIN"</string>
 <string name="account_profile_no_sync">"ללא סנכרון"</string>

@@ -96,6 +96,7 @@ values	string	account_pin_prompt	-	Type the 4-digit PIN.
 values	string	account_pin_remove	-	Remove PIN
 values	string	account_pin_set	-	Set PIN
 values	string	account_pin_set_title	-	Set a PIN
+values	string	account_pin_unreadable	-	Couldn't read the PINs on this computer, so this profile stays locked.
 values	string	account_profile_current	-	Current
 values	string	account_profile_locked	-	Locked · PIN
 values	string	account_profile_no_sync	-	No sync
@@ -1262,6 +1263,7 @@ values-b+af	string	account_pin_prompt	-	Tik die 4-syfer-PIN.
 values-b+af	string	account_pin_remove	-	Verwyder PIN
 values-b+af	string	account_pin_set	-	Stel PIN
 values-b+af	string	account_pin_set_title	-	Stel 'n PIN
+values-b+af	string	account_pin_unreadable	-	Kon nie die PIN's op hierdie rekenaar lees nie, so hierdie profiel bly gesluit.
 values-b+af	string	account_profile_current	-	Huidig
 values-b+af	string	account_profile_locked	-	Gesluit · PIN
 values-b+af	string	account_profile_no_sync	-	Geen sinkronisasie
@@ -1774,6 +1776,7 @@ values-b+am	string	account_pin_prompt	-	ባለ 4 አሃዙን ፒን ይተይ�
 values-b+am	string	account_pin_remove	-	ፒን አስወግድ
 values-b+am	string	account_pin_set	-	ፒን አዘጋጅ
 values-b+am	string	account_pin_set_title	-	ፒን ያዘጋጁ
+values-b+am	string	account_pin_unreadable	-	በዚህ ኮምፒውተር ላይ ያሉትን ፒኖች ማንበብ አልተቻለም፣ ስለዚህ ይህ መገለጫ እንደተቆለፈ ይቆያል።
 values-b+am	string	account_profile_current	-	የአሁኑ
 values-b+am	string	account_profile_locked	-	ተቆልፏል · ፒን
 values-b+am	string	account_profile_no_sync	-	ማመሳሰል የለም
@@ -2279,6 +2282,7 @@ values-b+apc	string	account_pin_prompt	-	اكتب الـPIN من 4 أرقام.
 values-b+apc	string	account_pin_remove	-	شيل الـPIN
 values-b+apc	string	account_pin_set	-	حط PIN
 values-b+apc	string	account_pin_set_title	-	حط PIN
+values-b+apc	string	account_pin_unreadable	-	ما قدرنا نقرأ أرقام الـPIN على هالكمبيوتر، فهالملف الشخصي بيضل مقفول.
 values-b+apc	string	account_profile_current	-	الحالي
 values-b+apc	string	account_profile_locked	-	مقفول · PIN
 values-b+apc	string	account_profile_no_sync	-	ما في مزامنة
@@ -3498,6 +3502,7 @@ values-b+ar	string	account_pin_prompt	-	اكتب رمز PIN المكوّن من 
 values-b+ar	string	account_pin_remove	-	إزالة رمز PIN
 values-b+ar	string	account_pin_set	-	تعيين رمز PIN
 values-b+ar	string	account_pin_set_title	-	تعيين رمز PIN
+values-b+ar	string	account_pin_unreadable	-	تعذّرت قراءة أرقام PIN على هذا الكمبيوتر، لذا يبقى هذا الملف الشخصي مقفلاً.
 values-b+ar	string	account_profile_current	-	الحالي
 values-b+ar	string	account_profile_locked	-	مقفل · رمز PIN
 values-b+ar	string	account_profile_no_sync	-	بلا مزامنة
@@ -4709,6 +4714,7 @@ values-b+ars	string	account_pin_prompt	-	اكتب الـ PIN المكوّن من
 values-b+ars	string	account_pin_remove	-	شيل PIN
 values-b+ars	string	account_pin_set	-	حط PIN
 values-b+ars	string	account_pin_set_title	-	حط PIN
+values-b+ars	string	account_pin_unreadable	-	ما قدرنا نقرأ أرقام PIN على هالكمبيوتر، عشان كذا هالملف الشخصي يظل مقفل.
 values-b+ars	string	account_profile_current	-	الحالي
 values-b+ars	string	account_profile_locked	-	مقفل · PIN
 values-b+ars	string	account_profile_no_sync	-	بدون مزامنة
@@ -5442,6 +5448,7 @@ values-b+as	string	account_pin_prompt	-	৪-অংকৰ পিনটো টা�
 values-b+as	string	account_pin_remove	-	পিন আঁতৰাওক
 values-b+as	string	account_pin_set	-	পিন ছেট কৰক
 values-b+as	string	account_pin_set_title	-	এটা পিন ছেট কৰক
+values-b+as	string	account_pin_unreadable	-	এই কম্পিউটাৰত PIN পঢ়িব পৰা নগ'ল, গতিকে এই প্ৰফাইলটো লক হৈয়েই থাকিব।
 values-b+as	string	account_profile_current	-	বৰ্তমান
 values-b+as	string	account_profile_locked	-	লক কৰা · PIN
 values-b+as	string	account_profile_no_sync	-	ছিংক নাই
@@ -6474,6 +6481,7 @@ values-b+az	string	account_pin_prompt	-	4 rəqəmli PIN-i yazın.
 values-b+az	string	account_pin_remove	-	PIN-i sil
 values-b+az	string	account_pin_set	-	PIN təyin et
 values-b+az	string	account_pin_set_title	-	PIN təyin edin
+values-b+az	string	account_pin_unreadable	-	Bu kompüterdəki PIN-lər oxuna bilmədi, ona görə bu profil kilidli qalır.
 values-b+az	string	account_profile_current	-	Cari
 values-b+az	string	account_profile_locked	-	Kilidli · PIN
 values-b+az	string	account_profile_no_sync	-	Sinxronizasiya yoxdur
@@ -7061,6 +7069,7 @@ values-b+be	string	account_pin_prompt	-	Увядзіце 4-значны PIN-ко
 values-b+be	string	account_pin_remove	-	Выдаліць PIN-код
 values-b+be	string	account_pin_set	-	Задаць PIN-код
 values-b+be	string	account_pin_set_title	-	Задаць PIN-код
+values-b+be	string	account_pin_unreadable	-	Не ўдалося прачытаць PIN-коды на гэтым камп'ютары, таму гэты профіль застаецца заблакаваным.
 values-b+be	string	account_profile_current	-	Бягучы
 values-b+be	string	account_profile_locked	-	Заблакіраваны · PIN
 values-b+be	string	account_profile_no_sync	-	Без сінхранізацыі
@@ -8192,6 +8201,7 @@ values-b+bg	string	account_pin_prompt	-	Въведи 4-цифрения ПИН.
 values-b+bg	string	account_pin_remove	-	Премахни ПИН
 values-b+bg	string	account_pin_set	-	Задай ПИН
 values-b+bg	string	account_pin_set_title	-	Задаване на ПИН
+values-b+bg	string	account_pin_unreadable	-	ПИН кодовете на този компютър не могат да бъдат прочетени, затова този профил остава заключен.
 values-b+bg	string	account_profile_current	-	Текущ
 values-b+bg	string	account_profile_locked	-	Заключен · ПИН
 values-b+bg	string	account_profile_no_sync	-	Без синхронизация
@@ -9309,6 +9319,7 @@ values-b+bn	string	account_pin_prompt	-	৪ অঙ্কের পিনটি �
 values-b+bn	string	account_pin_remove	-	পিন সরান
 values-b+bn	string	account_pin_set	-	পিন সেট করুন
 values-b+bn	string	account_pin_set_title	-	একটি পিন সেট করুন
+values-b+bn	string	account_pin_unreadable	-	এই কম্পিউটারে PIN পড়া যায়নি, তাই এই প্রোফাইল লক থাকবে।
 values-b+bn	string	account_profile_current	-	বর্তমান
 values-b+bn	string	account_profile_locked	-	লক করা · পিন
 values-b+bn	string	account_profile_no_sync	-	সিঙ্ক নেই
@@ -10126,6 +10137,7 @@ values-b+ca	string	account_pin_prompt	-	Escriu el PIN de 4 xifres.
 values-b+ca	string	account_pin_remove	-	Elimina el PIN
 values-b+ca	string	account_pin_set	-	Defineix el PIN
 values-b+ca	string	account_pin_set_title	-	Defineix un PIN
+values-b+ca	string	account_pin_unreadable	-	No s'han pogut llegir els PIN d'aquest ordinador, així que aquest perfil continua bloquejat.
 values-b+ca	string	account_profile_current	-	Actual
 values-b+ca	string	account_profile_locked	-	Bloquejat · PIN
 values-b+ca	string	account_profile_no_sync	-	Sense sincronització
@@ -10846,6 +10858,7 @@ values-b+ckb	string	account_pin_prompt	-	PINـە ٤ ژمارەییەکە بنو�
 values-b+ckb	string	account_pin_remove	-	لابردنی PIN
 values-b+ckb	string	account_pin_set	-	دانانی PIN
 values-b+ckb	string	account_pin_set_title	-	دانانی PIN
+values-b+ckb	string	account_pin_unreadable	-	نەتوانرا PINەکانی ئەم کۆمپیوتەرە بخوێنرێتەوە، بۆیە ئەم پرۆفایلە داخراو دەمێنێتەوە.
 values-b+ckb	string	account_profile_current	-	ئێستا
 values-b+ckb	string	account_profile_locked	-	داخراو · PIN
 values-b+ckb	string	account_profile_no_sync	-	هاوکاتکردن نییە
@@ -11374,6 +11387,7 @@ values-b+cs	string	account_pin_prompt	-	Zadejte čtyřmístný PIN.
 values-b+cs	string	account_pin_remove	-	Odebrat PIN
 values-b+cs	string	account_pin_set	-	Nastavit PIN
 values-b+cs	string	account_pin_set_title	-	Nastavit PIN
+values-b+cs	string	account_pin_unreadable	-	PIN kódy na tomto počítači nelze přečíst, takže tento profil zůstává zamčený.
 values-b+cs	string	account_profile_current	-	Aktuální
 values-b+cs	string	account_profile_locked	-	Zamčeno · PIN
 values-b+cs	string	account_profile_no_sync	-	Bez synchronizace
@@ -12512,6 +12526,7 @@ values-b+de	string	account_pin_prompt	-	Gib die 4-stellige PIN ein.
 values-b+de	string	account_pin_remove	-	PIN entfernen
 values-b+de	string	account_pin_set	-	PIN festlegen
 values-b+de	string	account_pin_set_title	-	Eine PIN festlegen
+values-b+de	string	account_pin_unreadable	-	Die PINs auf diesem Computer konnten nicht gelesen werden, daher bleibt dieses Profil gesperrt.
 values-b+de	string	account_profile_current	-	Aktuell
 values-b+de	string	account_profile_locked	-	Gesperrt · PIN
 values-b+de	string	account_profile_no_sync	-	Keine Synchronisierung
@@ -13644,6 +13659,7 @@ values-b+el	string	account_pin_prompt	-	Πληκτρολογήστε το 4ψή�
 values-b+el	string	account_pin_remove	-	Κατάργηση PIN
 values-b+el	string	account_pin_set	-	Ορισμός PIN
 values-b+el	string	account_pin_set_title	-	Ορισμός PIN
+values-b+el	string	account_pin_unreadable	-	Δεν ήταν δυνατή η ανάγνωση των PIN σε αυτόν τον υπολογιστή, οπότε αυτό το προφίλ παραμένει κλειδωμένο.
 values-b+el	string	account_profile_current	-	Τρέχον
 values-b+el	string	account_profile_locked	-	Κλειδωμένο · PIN
 values-b+el	string	account_profile_no_sync	-	Χωρίς συγχρονισμό
@@ -14704,6 +14720,7 @@ values-b+eo	string	account_pin_prompt	-	Tajpu la 4-ciferan PIN.
 values-b+eo	string	account_pin_remove	-	Forigi PIN
 values-b+eo	string	account_pin_set	-	Agordi PIN
 values-b+eo	string	account_pin_set_title	-	Agordi PIN
+values-b+eo	string	account_pin_unreadable	-	Ne eblis legi la PIN-ojn en ĉi tiu komputilo, do ĉi tiu profilo restas ŝlosita.
 values-b+eo	string	account_profile_current	-	Nuna
 values-b+eo	string	account_profile_locked	-	Ŝlosita · PIN
 values-b+eo	string	account_profile_no_sync	-	Sen sinkronigo
@@ -15312,6 +15329,7 @@ values-b+es	string	account_pin_prompt	-	Escribe el PIN de 4 dígitos.
 values-b+es	string	account_pin_remove	-	Quitar PIN
 values-b+es	string	account_pin_set	-	Establecer PIN
 values-b+es	string	account_pin_set_title	-	Establece un PIN
+values-b+es	string	account_pin_unreadable	-	No se pudieron leer los PIN de este ordenador, así que este perfil sigue bloqueado.
 values-b+es	string	account_profile_current	-	Actual
 values-b+es	string	account_profile_locked	-	Bloqueado · PIN
 values-b+es	string	account_profile_no_sync	-	Sin sincronización
@@ -16443,6 +16461,7 @@ values-b+fa	string	account_pin_prompt	-	PIN چهاررقمی را وارد کن�
 values-b+fa	string	account_pin_remove	-	حذف PIN
 values-b+fa	string	account_pin_set	-	تنظیم PIN
 values-b+fa	string	account_pin_set_title	-	تنظیم PIN
+values-b+fa	string	account_pin_unreadable	-	PINهای این رایانه خوانده نشد، پس این نمایه قفل می‌ماند.
 values-b+fa	string	account_profile_current	-	فعلی
 values-b+fa	string	account_profile_locked	-	قفل‌شده · PIN
 values-b+fa	string	account_profile_no_sync	-	بدون همگام‌سازی
@@ -17186,6 +17205,7 @@ values-b+fil	string	account_pin_prompt	-	I-type ang 4-digit na PIN.
 values-b+fil	string	account_pin_remove	-	Alisin ang PIN
 values-b+fil	string	account_pin_set	-	Itakda ang PIN
 values-b+fil	string	account_pin_set_title	-	Magtakda ng PIN
+values-b+fil	string	account_pin_unreadable	-	Hindi mabasa ang mga PIN sa computer na ito, kaya mananatiling naka-lock ang profile na ito.
 values-b+fil	string	account_profile_current	-	Kasalukuyan
 values-b+fil	string	account_profile_locked	-	Naka-lock · PIN
 values-b+fil	string	account_profile_no_sync	-	Walang sync
@@ -17880,6 +17900,7 @@ values-b+fr	string	account_pin_prompt	-	Saisissez le PIN à 4 chiffres.
 values-b+fr	string	account_pin_remove	-	Supprimer le PIN
 values-b+fr	string	account_pin_set	-	Définir le PIN
 values-b+fr	string	account_pin_set_title	-	Définir un PIN
+values-b+fr	string	account_pin_unreadable	-	Impossible de lire les codes PIN de cet ordinateur, ce profil reste donc verrouillé.
 values-b+fr	string	account_profile_current	-	Actuel
 values-b+fr	string	account_profile_locked	-	Verrouillé · PIN
 values-b+fr	string	account_profile_no_sync	-	Pas de synchronisation
@@ -19010,6 +19031,7 @@ values-b+gl	string	account_pin_prompt	-	Escribe o PIN de 4 díxitos.
 values-b+gl	string	account_pin_remove	-	Quitar PIN
 values-b+gl	string	account_pin_set	-	Definir PIN
 values-b+gl	string	account_pin_set_title	-	Definir un PIN
+values-b+gl	string	account_pin_unreadable	-	Non se puideron ler os PIN deste ordenador, así que este perfil segue bloqueado.
 values-b+gl	string	account_profile_current	-	Actual
 values-b+gl	string	account_profile_locked	-	Bloqueado · PIN
 values-b+gl	string	account_profile_no_sync	-	Sen sincronización
@@ -19715,6 +19737,7 @@ values-b+he	string	account_pin_prompt	-	יש להקליד את ה-PIN בן 4 ה�
 values-b+he	string	account_pin_remove	-	הסרת PIN
 values-b+he	string	account_pin_set	-	הגדרת PIN
 values-b+he	string	account_pin_set_title	-	הגדרת PIN
+values-b+he	string	account_pin_unreadable	-	לא ניתן היה לקרוא את קודי ה-PIN במחשב הזה, ולכן הפרופיל הזה נשאר נעול.
 values-b+he	string	account_profile_current	-	נוכחי
 values-b+he	string	account_profile_locked	-	נעול · PIN
 values-b+he	string	account_profile_no_sync	-	ללא סנכרון
@@ -20659,6 +20682,7 @@ values-b+hi	string	account_pin_prompt	-	4 अंकों वाला पिन
 values-b+hi	string	account_pin_remove	-	पिन हटाएँ
 values-b+hi	string	account_pin_set	-	पिन सेट करें
 values-b+hi	string	account_pin_set_title	-	पिन सेट करें
+values-b+hi	string	account_pin_unreadable	-	इस कंप्यूटर पर PIN पढ़े नहीं जा सके, इसलिए यह प्रोफ़ाइल लॉक रहेगी।
 values-b+hi	string	account_profile_current	-	मौजूदा
 values-b+hi	string	account_profile_locked	-	लॉक · पिन
 values-b+hi	string	account_profile_no_sync	-	कोई सिंक नहीं
@@ -21495,6 +21519,7 @@ values-b+hr	string	account_pin_prompt	-	Upišite četveroznamenkasti PIN.
 values-b+hr	string	account_pin_remove	-	Ukloni PIN
 values-b+hr	string	account_pin_set	-	Postavi PIN
 values-b+hr	string	account_pin_set_title	-	Postavite PIN
+values-b+hr	string	account_pin_unreadable	-	PIN-ovi na ovom računalu ne mogu se pročitati, pa ovaj profil ostaje zaključan.
 values-b+hr	string	account_profile_current	-	Trenutni
 values-b+hr	string	account_profile_locked	-	Zaključano · PIN
 values-b+hr	string	account_profile_no_sync	-	Bez sinkronizacije
@@ -22622,6 +22647,7 @@ values-b+hu	string	account_pin_prompt	-	Írja be a 4 jegyű PIN-t.
 values-b+hu	string	account_pin_remove	-	PIN eltávolítása
 values-b+hu	string	account_pin_set	-	PIN beállítása
 values-b+hu	string	account_pin_set_title	-	PIN beállítása
+values-b+hu	string	account_pin_unreadable	-	Nem sikerült beolvasni a számítógépen tárolt PIN-kódokat, ezért ez a profil zárolva marad.
 values-b+hu	string	account_profile_current	-	Jelenlegi
 values-b+hu	string	account_profile_locked	-	Zárolva · PIN
 values-b+hu	string	account_profile_no_sync	-	Nincs szinkronizálás
@@ -23639,6 +23665,7 @@ values-b+id	string	account_pin_prompt	-	Ketik PIN 4 digit.
 values-b+id	string	account_pin_remove	-	Hapus PIN
 values-b+id	string	account_pin_set	-	Atur PIN
 values-b+id	string	account_pin_set_title	-	Atur PIN
+values-b+id	string	account_pin_unreadable	-	Tidak dapat membaca PIN di komputer ini, jadi profil ini tetap terkunci.
 values-b+id	string	account_profile_current	-	Saat ini
 values-b+id	string	account_profile_locked	-	Terkunci · PIN
 values-b+id	string	account_profile_no_sync	-	Tanpa sinkronisasi
@@ -24752,6 +24779,7 @@ values-b+in	string	account_pin_prompt	-	Ketik PIN 4 digit.
 values-b+in	string	account_pin_remove	-	Hapus PIN
 values-b+in	string	account_pin_set	-	Atur PIN
 values-b+in	string	account_pin_set_title	-	Atur PIN
+values-b+in	string	account_pin_unreadable	-	Tidak dapat membaca PIN di komputer ini, jadi profil ini tetap terkunci.
 values-b+in	string	account_profile_current	-	Saat ini
 values-b+in	string	account_profile_locked	-	Terkunci · PIN
 values-b+in	string	account_profile_no_sync	-	Tanpa sinkronisasi
@@ -25911,6 +25939,7 @@ values-b+it	string	account_pin_prompt	-	Digita il PIN di 4 cifre.
 values-b+it	string	account_pin_remove	-	Rimuovi PIN
 values-b+it	string	account_pin_set	-	Imposta PIN
 values-b+it	string	account_pin_set_title	-	Imposta un PIN
+values-b+it	string	account_pin_unreadable	-	Impossibile leggere i PIN su questo computer, quindi questo profilo resta bloccato.
 values-b+it	string	account_profile_current	-	Attuale
 values-b+it	string	account_profile_locked	-	Bloccato · PIN
 values-b+it	string	account_profile_no_sync	-	Nessuna sincronizzazione
@@ -27061,6 +27090,7 @@ values-b+iw	string	account_pin_prompt	-	יש להקליד את ה-PIN בן 4 ה�
 values-b+iw	string	account_pin_remove	-	הסרת PIN
 values-b+iw	string	account_pin_set	-	הגדרת PIN
 values-b+iw	string	account_pin_set_title	-	הגדרת PIN
+values-b+iw	string	account_pin_unreadable	-	לא ניתן היה לקרוא את קודי ה-PIN במחשב הזה, ולכן הפרופיל הזה נשאר נעול.
 values-b+iw	string	account_profile_current	-	נוכחי
 values-b+iw	string	account_profile_locked	-	נעול · PIN
 values-b+iw	string	account_profile_no_sync	-	ללא סנכרון
@@ -27988,6 +28018,7 @@ values-b+ja	string	account_pin_prompt	-	4桁のPINを入力
 values-b+ja	string	account_pin_remove	-	PINを削除
 values-b+ja	string	account_pin_set	-	PINを設定
 values-b+ja	string	account_pin_set_title	-	PINの設定
+values-b+ja	string	account_pin_unreadable	-	このコンピュータの PIN を読み取れなかったため、このプロフィールはロックされたままです。
 values-b+ja	string	account_profile_current	-	現在
 values-b+ja	string	account_profile_locked	-	ロック中 · PIN
 values-b+ja	string	account_profile_no_sync	-	同期なし
@@ -29117,6 +29148,7 @@ values-b+kn	string	account_pin_prompt	-	4 ಅಂಕಿಯ ಪಿನ್ ಟೈಪ
 values-b+kn	string	account_pin_remove	-	ಪಿನ್ ತೆಗೆದುಹಾಕಿ
 values-b+kn	string	account_pin_set	-	ಪಿನ್ ಹೊಂದಿಸಿ
 values-b+kn	string	account_pin_set_title	-	ಪಿನ್ ಹೊಂದಿಸಿ
+values-b+kn	string	account_pin_unreadable	-	ಈ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿನ PIN ಗಳನ್ನು ಓದಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಈ ಪ್ರೊಫೈಲ್ ಲಾಕ್ ಆಗಿಯೇ ಇರುತ್ತದೆ.
 values-b+kn	string	account_profile_current	-	ಪ್ರಸ್ತುತ
 values-b+kn	string	account_profile_locked	-	ಲಾಕ್ ಆಗಿದೆ · ಪಿನ್
 values-b+kn	string	account_profile_no_sync	-	ಸಿಂಕ್ ಇಲ್ಲ
@@ -29620,6 +29652,7 @@ values-b+ko	string	account_pin_prompt	-	4자리 PIN을 입력하세요.
 values-b+ko	string	account_pin_remove	-	PIN 제거
 values-b+ko	string	account_pin_set	-	PIN 설정
 values-b+ko	string	account_pin_set_title	-	PIN 설정
+values-b+ko	string	account_pin_unreadable	-	이 컴퓨터의 PIN을 읽을 수 없어 이 프로필은 잠긴 상태로 유지됩니다.
 values-b+ko	string	account_profile_current	-	현재
 values-b+ko	string	account_profile_locked	-	잠김 · PIN
 values-b+ko	string	account_profile_no_sync	-	동기화 없음
@@ -30786,6 +30819,7 @@ values-b+lt	string	account_pin_prompt	-	Įveskite 4 skaitmenų PIN.
 values-b+lt	string	account_pin_remove	-	Pašalinti PIN
 values-b+lt	string	account_pin_set	-	Nustatyti PIN
 values-b+lt	string	account_pin_set_title	-	PIN nustatymas
+values-b+lt	string	account_pin_unreadable	-	Nepavyko nuskaityti šio kompiuterio PIN kodų, todėl šis profilis lieka užrakintas.
 values-b+lt	string	account_profile_current	-	Dabartinis
 values-b+lt	string	account_profile_locked	-	Užrakinta · PIN
 values-b+lt	string	account_profile_no_sync	-	Be sinchronizavimo
@@ -31500,6 +31534,7 @@ values-b+lv	string	account_pin_prompt	-	Ievadiet četrciparu PIN kodu.
 values-b+lv	string	account_pin_remove	-	Noņemt PIN kodu
 values-b+lv	string	account_pin_set	-	Iestatīt PIN kodu
 values-b+lv	string	account_pin_set_title	-	PIN koda iestatīšana
+values-b+lv	string	account_pin_unreadable	-	Neizdevās nolasīt šī datora PIN kodus, tāpēc šis profils paliek bloķēts.
 values-b+lv	string	account_profile_current	-	Pašreizējais
 values-b+lv	string	account_profile_locked	-	Bloķēts · PIN
 values-b+lv	string	account_profile_no_sync	-	Bez sinhronizācijas
@@ -32513,6 +32548,7 @@ values-b+mk	string	account_pin_prompt	-	Внеси го PIN-от со 4 цифр
 values-b+mk	string	account_pin_remove	-	Отстрани PIN
 values-b+mk	string	account_pin_set	-	Постави PIN
 values-b+mk	string	account_pin_set_title	-	Постави PIN
+values-b+mk	string	account_pin_unreadable	-	PIN-овите на овој компјутер не можат да се прочитаат, па овој профил останува заклучен.
 values-b+mk	string	account_profile_current	-	Тековен
 values-b+mk	string	account_profile_locked	-	Заклучен · PIN
 values-b+mk	string	account_profile_no_sync	-	Без синхронизација
@@ -33639,6 +33675,7 @@ values-b+ml	string	account_pin_prompt	-	4 അക്ക പിൻ നൽകുക
 values-b+ml	string	account_pin_remove	-	പിൻ നീക്കം ചെയ്യുക
 values-b+ml	string	account_pin_set	-	പിൻ സജ്ജീകരിക്കുക
 values-b+ml	string	account_pin_set_title	-	ഒരു പിൻ സജ്ജീകരിക്കുക
+values-b+ml	string	account_pin_unreadable	-	ഈ കമ്പ്യൂട്ടറിലെ PIN-കൾ വായിക്കാനായില്ല, അതിനാൽ ഈ പ്രൊഫൈൽ ലോക്ക് ചെയ്‌ത നിലയിൽ തുടരും.
 values-b+ml	string	account_profile_current	-	നിലവിലുള്ളത്
 values-b+ml	string	account_profile_locked	-	ലോക്ക് ചെയ്തു · പിൻ
 values-b+ml	string	account_profile_no_sync	-	സമന്വയമില്ല
@@ -34301,6 +34338,7 @@ values-b+ms	string	account_pin_prompt	-	Taip PIN 4 digit.
 values-b+ms	string	account_pin_remove	-	Alih keluar PIN
 values-b+ms	string	account_pin_set	-	Tetapkan PIN
 values-b+ms	string	account_pin_set_title	-	Tetapkan PIN
+values-b+ms	string	account_pin_unreadable	-	PIN pada komputer ini tidak dapat dibaca, jadi profil ini kekal dikunci.
 values-b+ms	string	account_profile_current	-	Semasa
 values-b+ms	string	account_profile_locked	-	Dikunci · PIN
 values-b+ms	string	account_profile_no_sync	-	Tiada penyegerakan
@@ -35289,6 +35327,7 @@ values-b+mt	string	account_pin_prompt	-	Ittajpja l-PIN ta' 4 ċifri.
 values-b+mt	string	account_pin_remove	-	Neħħi l-PIN
 values-b+mt	string	account_pin_set	-	Issettja l-PIN
 values-b+mt	string	account_pin_set_title	-	Issettja PIN
+values-b+mt	string	account_pin_unreadable	-	Ma setax jinqraw il-PINs fuq dan il-kompjuter, għalhekk dan il-profil jibqa' msakkar.
 values-b+mt	string	account_profile_current	-	Attwali
 values-b+mt	string	account_profile_locked	-	Imsakkar · PIN
 values-b+mt	string	account_profile_no_sync	-	L-ebda sinkronizzazzjoni
@@ -35783,6 +35822,7 @@ values-b+my	string	account_pin_prompt	-	ဂဏန်း ၄ လုံးပါ P
 values-b+my	string	account_pin_remove	-	PIN ဖယ်ရှားရန်
 values-b+my	string	account_pin_set	-	PIN သတ်မှတ်ရန်
 values-b+my	string	account_pin_set_title	-	PIN သတ်မှတ်ခြင်း
+values-b+my	string	account_pin_unreadable	-	ဤကွန်ပျူတာရှိ PIN များကို ဖတ်၍မရပါ၊ ထို့ကြောင့် ဤပရိုဖိုင်သည် လော့ခ်ချထားဆဲဖြစ်သည်။
 values-b+my	string	account_profile_current	-	လက်ရှိ
 values-b+my	string	account_profile_locked	-	လော့ခ်ချထား · PIN
 values-b+my	string	account_profile_no_sync	-	စင့်ခ်မရှိ
@@ -36701,6 +36741,7 @@ values-b+ne	string	account_pin_prompt	-	४ अङ्कको पिन टा�
 values-b+ne	string	account_pin_remove	-	पिन हटाउनुहोस्
 values-b+ne	string	account_pin_set	-	पिन सेट गर्नुहोस्
 values-b+ne	string	account_pin_set_title	-	पिन सेट गर्नुहोस्
+values-b+ne	string	account_pin_unreadable	-	यस कम्प्युटरका PIN पढ्न सकिएन, त्यसैले यो प्रोफाइल लक नै रहन्छ।
 values-b+ne	string	account_profile_current	-	हालको
 values-b+ne	string	account_profile_locked	-	लक गरिएको · पिन
 values-b+ne	string	account_profile_no_sync	-	सिंक छैन
@@ -37221,6 +37262,7 @@ values-b+nl	string	account_pin_prompt	-	Typ de PIN van 4 cijfers.
 values-b+nl	string	account_pin_remove	-	PIN verwijderen
 values-b+nl	string	account_pin_set	-	PIN instellen
 values-b+nl	string	account_pin_set_title	-	PIN instellen
+values-b+nl	string	account_pin_unreadable	-	De pincodes op deze computer konden niet worden gelezen, dus dit profiel blijft vergrendeld.
 values-b+nl	string	account_profile_current	-	Huidig
 values-b+nl	string	account_profile_locked	-	Vergrendeld · pincode
 values-b+nl	string	account_profile_no_sync	-	Geen synchronisatie
@@ -38301,6 +38343,7 @@ values-b+nn	string	account_pin_prompt	-	Skriv inn den firesifra PIN-koden.
 values-b+nn	string	account_pin_remove	-	Fjern PIN
 values-b+nn	string	account_pin_set	-	Vel PIN
 values-b+nn	string	account_pin_set_title	-	Vel ein PIN
+values-b+nn	string	account_pin_unreadable	-	Kunne ikkje lese PIN-kodane på denne datamaskina, så denne profilen held fram med å vere låst.
 values-b+nn	string	account_profile_current	-	Gjeldande
 values-b+nn	string	account_profile_locked	-	Låst · PIN
 values-b+nn	string	account_profile_no_sync	-	Inga synkronisering
@@ -38898,6 +38941,7 @@ values-b+no	string	account_pin_prompt	-	Skriv inn den firesifrede PIN-koden.
 values-b+no	string	account_pin_remove	-	Fjern PIN
 values-b+no	string	account_pin_set	-	Angi PIN
 values-b+no	string	account_pin_set_title	-	Angi en PIN
+values-b+no	string	account_pin_unreadable	-	Kunne ikke lese PIN-kodene på denne datamaskinen, så denne profilen forblir låst.
 values-b+no	string	account_profile_current	-	Gjeldende
 values-b+no	string	account_profile_locked	-	Låst · PIN
 values-b+no	string	account_profile_no_sync	-	Ingen synkronisering
@@ -39807,6 +39851,7 @@ values-b+or	string	account_pin_prompt	-	4-ଅଙ୍କ ବିଶିଷ୍ଟ PIN
 values-b+or	string	account_pin_remove	-	PIN ହଟାନ୍ତୁ
 values-b+or	string	account_pin_set	-	PIN ସେଟ୍ କରନ୍ତୁ
 values-b+or	string	account_pin_set_title	-	ଏକ PIN ସେଟ୍ କରନ୍ତୁ
+values-b+or	string	account_pin_unreadable	-	ଏହି କମ୍ପ୍ୟୁଟରରେ PIN ପଢ଼ିହେଲା ନାହିଁ, ତେଣୁ ଏହି ପ୍ରୋଫାଇଲ୍ ଲକ୍ ହୋଇ ରହିବ।
 values-b+or	string	account_profile_current	-	ବର୍ତ୍ତମାନର
 values-b+or	string	account_profile_locked	-	ଲକ୍ ହୋଇଛି · PIN
 values-b+or	string	account_profile_no_sync	-	ସିଙ୍କ୍ ନାହିଁ
@@ -40413,6 +40458,7 @@ values-b+pl	string	account_pin_prompt	-	Wpisz 4-cyfrowy PIN.
 values-b+pl	string	account_pin_remove	-	Usuń PIN
 values-b+pl	string	account_pin_set	-	Ustaw PIN
 values-b+pl	string	account_pin_set_title	-	Ustaw PIN
+values-b+pl	string	account_pin_unreadable	-	Nie udało się odczytać kodów PIN na tym komputerze, więc ten profil pozostaje zablokowany.
 values-b+pl	string	account_profile_current	-	Bieżący
 values-b+pl	string	account_profile_locked	-	Zablokowany · PIN
 values-b+pl	string	account_profile_no_sync	-	Bez synchronizacji
@@ -41574,6 +41620,7 @@ values-b+pt	string	account_pin_prompt	-	Introduza o PIN de 4 dígitos.
 values-b+pt	string	account_pin_remove	-	Remover PIN
 values-b+pt	string	account_pin_set	-	Definir PIN
 values-b+pt	string	account_pin_set_title	-	Definir um PIN
+values-b+pt	string	account_pin_unreadable	-	Não foi possível ler os PIN deste computador, por isso este perfil continua bloqueado.
 values-b+pt	string	account_profile_current	-	Atual
 values-b+pt	string	account_profile_locked	-	Bloqueado · PIN
 values-b+pt	string	account_profile_no_sync	-	Sem sincronização
@@ -42733,6 +42780,7 @@ values-b+pt+BR	string	account_pin_prompt	-	Digite o PIN de 4 dígitos.
 values-b+pt+BR	string	account_pin_remove	-	Remover PIN
 values-b+pt+BR	string	account_pin_set	-	Definir PIN
 values-b+pt+BR	string	account_pin_set_title	-	Definir um PIN
+values-b+pt+BR	string	account_pin_unreadable	-	Não foi possível ler os PINs deste computador, então este perfil continua bloqueado.
 values-b+pt+BR	string	account_profile_current	-	Atual
 values-b+pt+BR	string	account_profile_locked	-	Bloqueado · PIN
 values-b+pt+BR	string	account_profile_no_sync	-	Sem sincronização
@@ -43839,6 +43887,7 @@ values-b+qt	string	account_pin_prompt	-	uuuhh oog aah.
 values-b+qt	string	account_pin_remove	-	oooooah oog
 values-b+qt	string	account_pin_set	-	aah oog
 values-b+qt	string	account_pin_set_title	-	aah ooh oog
+values-b+qt	string	account_pin_unreadable	-	aagg ooh PIN. ooh-aah oouh.
 values-b+qt	string	account_profile_current	-	oooh
 values-b+qt	string	account_profile_locked	-	oooh-aah · ooh
 values-b+qt	string	account_profile_no_sync	-	aah oooh
@@ -44880,6 +44929,7 @@ values-b+ro	string	account_pin_prompt	-	Introdu PIN-ul din 4 cifre.
 values-b+ro	string	account_pin_remove	-	Elimină PIN-ul
 values-b+ro	string	account_pin_set	-	Setează PIN-ul
 values-b+ro	string	account_pin_set_title	-	Setează un PIN
+values-b+ro	string	account_pin_unreadable	-	PIN-urile de pe acest computer nu au putut fi citite, așa că acest profil rămâne blocat.
 values-b+ro	string	account_profile_current	-	Curent
 values-b+ro	string	account_profile_locked	-	Blocat · PIN
 values-b+ro	string	account_profile_no_sync	-	Fără sincronizare
@@ -45955,6 +46005,7 @@ values-b+ru	string	account_pin_prompt	-	Введите 4-значный ПИН-�
 values-b+ru	string	account_pin_remove	-	Удалить ПИН-код
 values-b+ru	string	account_pin_set	-	Задать ПИН-код
 values-b+ru	string	account_pin_set_title	-	Задайте ПИН-код
+values-b+ru	string	account_pin_unreadable	-	Не удалось прочитать PIN-коды на этом компьютере, поэтому профиль остаётся заблокированным.
 values-b+ru	string	account_profile_current	-	Текущий
 values-b+ru	string	account_profile_locked	-	Заблокирован · PIN
 values-b+ru	string	account_profile_no_sync	-	Без синхронизации
@@ -47127,6 +47178,7 @@ values-b+sk	string	account_pin_prompt	-	Zadajte štvormiestny PIN.
 values-b+sk	string	account_pin_remove	-	Odstrániť PIN
 values-b+sk	string	account_pin_set	-	Nastaviť PIN
 values-b+sk	string	account_pin_set_title	-	Nastavenie PIN
+values-b+sk	string	account_pin_unreadable	-	PIN kódy na tomto počítači sa nepodarilo prečítať, takže tento profil zostáva zamknutý.
 values-b+sk	string	account_profile_current	-	Aktuálny
 values-b+sk	string	account_profile_locked	-	Zamknuté · PIN
 values-b+sk	string	account_profile_no_sync	-	Bez synchronizácie
@@ -47999,6 +48051,7 @@ values-b+so	string	account_pin_prompt	-	Qor PIN-ka 4 lambar ah.
 values-b+so	string	account_pin_remove	-	Ka saar PIN
 values-b+so	string	account_pin_set	-	Deji PIN
 values-b+so	string	account_pin_set_title	-	Deji PIN
+values-b+so	string	account_pin_unreadable	-	Lama akhrin karin PIN-ka kombuyuutarkan, sidaa darteed astaantani way xidhnaanaysaa.
 values-b+so	string	account_profile_current	-	Hadda
 values-b+so	string	account_profile_locked	-	La xiray · PIN
 values-b+so	string	account_profile_no_sync	-	Isku-dhafid ma jirto
@@ -48909,6 +48962,7 @@ values-b+sq	string	account_pin_prompt	-	Shkruaj PIN-in me 4 shifra.
 values-b+sq	string	account_pin_remove	-	Hiq PIN-in
 values-b+sq	string	account_pin_set	-	Vendos PIN
 values-b+sq	string	account_pin_set_title	-	Vendos një PIN
+values-b+sq	string	account_pin_unreadable	-	PIN-et në këtë kompjuter nuk u lexuan, ndaj ky profil mbetet i kyçur.
 values-b+sq	string	account_profile_current	-	Aktual
 values-b+sq	string	account_profile_locked	-	I kyçur · PIN
 values-b+sq	string	account_profile_no_sync	-	Pa sinkronizim
@@ -50047,6 +50101,7 @@ values-b+sv	string	account_pin_prompt	-	Ange den fyrsiffriga PIN-koden.
 values-b+sv	string	account_pin_remove	-	Ta bort PIN-kod
 values-b+sv	string	account_pin_set	-	Välj PIN-kod
 values-b+sv	string	account_pin_set_title	-	Välj en PIN-kod
+values-b+sv	string	account_pin_unreadable	-	Det gick inte att läsa PIN-koderna på den här datorn, så den här profilen förblir låst.
 values-b+sv	string	account_profile_current	-	Aktuell
 values-b+sv	string	account_profile_locked	-	Låst · PIN
 values-b+sv	string	account_profile_no_sync	-	Ingen synkronisering
@@ -51185,6 +51240,7 @@ values-b+ta	string	account_pin_prompt	-	4 இலக்க முள்ளைத�
 values-b+ta	string	account_pin_remove	-	முள்ளை அகற்று
 values-b+ta	string	account_pin_set	-	முள் அமை
 values-b+ta	string	account_pin_set_title	-	ஒரு முள் அமைக்கவும்
+values-b+ta	string	account_pin_unreadable	-	இந்தக் கணினியில் உள்ள PIN-களைப் படிக்க முடியவில்லை, எனவே இந்தச் சுயவிவரம் பூட்டப்பட்டே இருக்கும்.
 values-b+ta	string	account_profile_current	-	தற்போதைய
 values-b+ta	string	account_profile_locked	-	பூட்டப்பட்டது · PIN
 values-b+ta	string	account_profile_no_sync	-	ஒத்திசைவு இல்லை
@@ -52314,6 +52370,7 @@ values-b+ti	string	account_pin_prompt	-	እቲ 4 ኣሃዝ ዘለዎ PIN ጽሓ�
 values-b+ti	string	account_pin_remove	-	PIN ኣልግስ
 values-b+ti	string	account_pin_set	-	PIN ኣቐምጥ
 values-b+ti	string	account_pin_set_title	-	PIN ኣቐምጥ
+values-b+ti	string	account_pin_unreadable	-	ኣብዚ ኮምፒዩተር ዘለዉ PIN ክንበቡ ኣይተኻእለን፣ ስለዚ እዚ ፕሮፋይል ተዓጽዩ ይጸንሕ።
 values-b+ti	string	account_profile_current	-	ናይ ሕጂ
 values-b+ti	string	account_profile_locked	-	ተዓጽዩ · PIN
 values-b+ti	string	account_profile_no_sync	-	ምትእስሳር የለን
@@ -52705,6 +52762,7 @@ values-b+tl	string	account_pin_prompt	-	I-type ang 4-digit na PIN.
 values-b+tl	string	account_pin_remove	-	Alisin ang PIN
 values-b+tl	string	account_pin_set	-	Itakda ang PIN
 values-b+tl	string	account_pin_set_title	-	Magtakda ng PIN
+values-b+tl	string	account_pin_unreadable	-	Hindi mabasa ang mga PIN sa computer na ito, kaya mananatiling naka-lock ang profile na ito.
 values-b+tl	string	account_profile_current	-	Kasalukuyan
 values-b+tl	string	account_profile_locked	-	Naka-lock · PIN
 values-b+tl	string	account_profile_no_sync	-	Walang sync
@@ -53413,6 +53471,7 @@ values-b+tr	string	account_pin_prompt	-	4 haneli PIN'i yazın.
 values-b+tr	string	account_pin_remove	-	PIN'i kaldır
 values-b+tr	string	account_pin_set	-	PIN belirle
 values-b+tr	string	account_pin_set_title	-	Bir PIN belirleyin
+values-b+tr	string	account_pin_unreadable	-	Bu bilgisayardaki PIN'ler okunamadı, bu yüzden bu profil kilitli kalıyor.
 values-b+tr	string	account_profile_current	-	Geçerli
 values-b+tr	string	account_profile_locked	-	Kilitli · PIN
 values-b+tr	string	account_profile_no_sync	-	Senkronizasyon yok
@@ -54597,6 +54656,7 @@ values-b+uk	string	account_pin_prompt	-	Уведіть 4-значний PIN-ко
 values-b+uk	string	account_pin_remove	-	Видалити PIN-код
 values-b+uk	string	account_pin_set	-	Установити PIN-код
 values-b+uk	string	account_pin_set_title	-	Установлення PIN-коду
+values-b+uk	string	account_pin_unreadable	-	Не вдалося прочитати PIN-коди на цьому комп'ютері, тому цей профіль залишається заблокованим.
 values-b+uk	string	account_profile_current	-	Поточний
 values-b+uk	string	account_profile_locked	-	Заблоковано · PIN
 values-b+uk	string	account_profile_no_sync	-	Без синхронізації
@@ -55729,6 +55789,7 @@ values-b+ur	string	account_pin_prompt	-	4 ہندسوں والا PIN ٹائپ ک�
 values-b+ur	string	account_pin_remove	-	PIN ہٹائیں
 values-b+ur	string	account_pin_set	-	PIN سیٹ کریں
 values-b+ur	string	account_pin_set_title	-	ایک PIN سیٹ کریں
+values-b+ur	string	account_pin_unreadable	-	اس کمپیوٹر پر PIN پڑھے نہیں جا سکے، اس لیے یہ پروفائل مقفل رہے گی۔
 values-b+ur	string	account_profile_current	-	موجودہ
 values-b+ur	string	account_profile_locked	-	مقفل · PIN
 values-b+ur	string	account_profile_no_sync	-	کوئی ہم آہنگی نہیں
@@ -56711,6 +56772,7 @@ values-b+vi	string	account_pin_prompt	-	Nhập mã PIN gồm 4 chữ số.
 values-b+vi	string	account_pin_remove	-	Xóa mã PIN
 values-b+vi	string	account_pin_set	-	Đặt mã PIN
 values-b+vi	string	account_pin_set_title	-	Đặt mã PIN
+values-b+vi	string	account_pin_unreadable	-	Không thể đọc mã PIN trên máy tính này, nên hồ sơ này vẫn bị khóa.
 values-b+vi	string	account_profile_current	-	Hiện tại
 values-b+vi	string	account_profile_locked	-	Đã khóa · PIN
 values-b+vi	string	account_profile_no_sync	-	Không đồng bộ
@@ -57826,6 +57888,7 @@ values-b+zh	string	account_pin_prompt	-	请输入 4 位 PIN。
 values-b+zh	string	account_pin_remove	-	移除 PIN
 values-b+zh	string	account_pin_set	-	设置 PIN
 values-b+zh	string	account_pin_set_title	-	设置 PIN
+values-b+zh	string	account_pin_unreadable	-	无法读取此电脑上的 PIN，因此此个人资料仍保持锁定。
 values-b+zh	string	account_profile_current	-	当前
 values-b+zh	string	account_profile_locked	-	已锁定 · PIN
 values-b+zh	string	account_profile_no_sync	-	不同步
@@ -58940,6 +59003,7 @@ values-b+zh+TW	string	account_pin_prompt	-	請輸入 4 位數 PIN 碼。
 values-b+zh+TW	string	account_pin_remove	-	移除 PIN 碼
 values-b+zh+TW	string	account_pin_set	-	設定 PIN 碼
 values-b+zh+TW	string	account_pin_set_title	-	設定 PIN 碼
+values-b+zh+TW	string	account_pin_unreadable	-	無法讀取這台電腦上的 PIN，因此這個設定檔仍保持鎖定。
 values-b+zh+TW	string	account_profile_current	-	目前
 values-b+zh+TW	string	account_profile_locked	-	已鎖定 · PIN
 values-b+zh+TW	string	account_profile_no_sync	-	不同步

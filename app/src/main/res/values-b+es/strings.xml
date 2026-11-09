@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"Quitar PIN"</string>
 <string name="account_pin_set">"Establecer PIN"</string>
 <string name="account_pin_set_title">"Establece un PIN"</string>
+<string name="account_pin_unreadable">"No se pudieron leer los PIN de este ordenador, así que este perfil sigue bloqueado."</string>
 <string name="account_profile_current">"Actual"</string>
 <string name="account_profile_locked">"Bloqueado · PIN"</string>
 <string name="account_profile_no_sync">"Sin sincronización"</string>

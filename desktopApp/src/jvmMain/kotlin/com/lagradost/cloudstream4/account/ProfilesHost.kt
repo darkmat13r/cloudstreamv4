@@ -22,6 +22,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_c
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_current
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_new
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_not_saved
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_unreadable
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_prompt
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_set_title
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_profile_locked
@@ -332,6 +333,7 @@ private fun LimitedPin(
 ) {
     var attempt by remember(card.id) { mutableIntStateOf(0) }
     var wrong by remember(card.id) { mutableStateOf(false) }
+    var unreadable by remember(card.id) { mutableStateOf(false) }
     var waitMs by remember(card.id) { mutableLongStateOf(profiles.pins.waitMs(card.id)) }
     if (waitMs > 0L) {
         LaunchedEffect(card.id) {
@@ -343,6 +345,7 @@ private fun LimitedPin(
     }
     val message = when {
         waitMs > 0L -> stringResource(Res.string.pin_error_wait, waitClock(waitMs))
+        unreadable -> stringResource(Res.string.account_pin_unreadable)
         wrong -> stringResource(Res.string.pin_error_incorrect)
         else -> null
     }
@@ -358,12 +361,19 @@ private fun LimitedPin(
             when (val result = profiles.pins.check(card.id, pin)) {
                 PinCheck.Right -> onRight()
                 is PinCheck.Wrong -> {
+                    unreadable = false
                     wrong = true
                     waitMs = result.waitMs
                     attempt++
                 }
                 is PinCheck.Waiting -> {
                     waitMs = result.waitMs
+                    attempt++
+                }
+                // Nothing compared and nothing counted: the profile stays locked, and the person is told why.
+                PinCheck.Unreadable -> {
+                    unreadable = true
+                    wrong = false
                     attempt++
                 }
             }

@@ -59,6 +59,7 @@
 <string name="account_pin_remove">"Fjern PIN"</string>
 <string name="account_pin_set">"Vel PIN"</string>
 <string name="account_pin_set_title">"Vel ein PIN"</string>
+<string name="account_pin_unreadable">"Kunne ikkje lese PIN-kodane på denne datamaskina, så denne profilen held fram med å vere låst."</string>
 <string name="account_profile_current">"Gjeldande"</string>
 <string name="account_profile_locked">"Låst · PIN"</string>
 <string name="account_profile_no_sync">"Inga synkronisering"</string>

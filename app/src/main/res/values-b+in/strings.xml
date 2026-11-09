@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"Hapus PIN"</string>
 <string name="account_pin_set">"Atur PIN"</string>
 <string name="account_pin_set_title">"Atur PIN"</string>
+<string name="account_pin_unreadable">"Tidak dapat membaca PIN di komputer ini, jadi profil ini tetap terkunci."</string>
 <string name="account_profile_current">"Saat ini"</string>
 <string name="account_profile_locked">"Terkunci · PIN"</string>
 <string name="account_profile_no_sync">"Tanpa sinkronisasi"</string>

@@ -33,6 +33,7 @@
 <string name="account_pin_first_profile">O primeiro perfil não pode ser bloqueado</string>
 <string name="account_pin_new">Digite um PIN de 4 dígitos.</string>
 <string name="account_pin_not_saved">Não foi possível salvar a alteração do PIN. Nada foi alterado.</string>
+<string name="account_pin_unreadable">Não foi possível ler os PINs deste computador, então este perfil continua bloqueado.</string>
 <string name="account_pin_off">Desativado · qualquer pessoa pode abrir este perfil</string>
 <string name="account_pin_on">Ativado · pedido para abrir</string>
 <string name="account_pin_prompt">Digite o PIN de 4 dígitos.</string>

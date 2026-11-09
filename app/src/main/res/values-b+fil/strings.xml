@@ -59,6 +59,7 @@
 <string name="account_pin_remove">"Alisin ang PIN"</string>
 <string name="account_pin_set">"Itakda ang PIN"</string>
 <string name="account_pin_set_title">"Magtakda ng PIN"</string>
+<string name="account_pin_unreadable">"Hindi mabasa ang mga PIN sa computer na ito, kaya mananatiling naka-lock ang profile na ito."</string>
 <string name="account_profile_current">"Kasalukuyan"</string>
 <string name="account_profile_locked">"Naka-lock · PIN"</string>
 <string name="account_profile_no_sync">"Walang sync"</string>

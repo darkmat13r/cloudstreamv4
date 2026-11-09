@@ -33,6 +33,7 @@
 <string name="account_pin_first_profile">پرۆفایلی یەکەم ناتوانرێت دابخرێت</string>
 <string name="account_pin_new">PINێکی ٤ ژمارەیی بنووسە.</string>
 <string name="account_pin_not_saved">گۆڕینی PIN پاشەکەوت نەکرا. هیچ نەگۆڕا.</string>
+<string name="account_pin_unreadable">نەتوانرا PINەکانی ئەم کۆمپیوتەرە بخوێنرێتەوە، بۆیە ئەم پرۆفایلە داخراو دەمێنێتەوە.</string>
 <string name="account_pin_off">کوژاوە · هەر کەسێک دەتوانێت ئەم پرۆفایلە بکاتەوە</string>
 <string name="account_pin_on">هەڵکراو · بۆ کردنەوە داوای دەکرێت</string>
 <string name="account_pin_prompt">PINـە ٤ ژمارەییەکە بنووسە.</string>

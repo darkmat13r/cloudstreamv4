@@ -80,7 +80,7 @@ class DesktopPinsTest {
     }
 
     @Test
-    fun `a pins file that cannot be read reads as no PINs, as a deleted one would`() {
+    fun `at launch a pins file that cannot be read locks no profile, as a deleted one would`() {
         File(directory, DesktopPins.PINS_FILE).writeText("not json")
         assertFalse(pins().hasPin(1))
         File(directory, DesktopPins.PINS_FILE).writeText("{\"pins\":{\"1\":\"12\",\"0\":\"1234\",\"x\":\"1234\",\"2\":\"5678\"}}")
@@ -142,6 +142,49 @@ class DesktopPinsTest {
         }
         assertEquals(before, File(directory, DesktopPins.PINS_FILE).readText())
         assertEquals(3, failures.size, "the set, the remove, and the wrong PIN's count, each reported")
+    }
+
+    @Test
+    fun `a pins file that cannot be read once running never opens a locked profile, counts nothing and writes nothing`() {
+        val failures = mutableListOf<Throwable>()
+        val pins = DesktopPins(directory, clock = { now }, onSaveFailed = { failures += it })
+        assertTrue(pins.set(1, "4821"))
+        assertTrue(pins.set(2, "1357"))
+        val pinsFile = File(directory, DesktopPins.PINS_FILE)
+        val before = pinsFile.readText()
+        Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("---------"))
+        try {
+            assertEquals(PinCheck.Unreadable, pins.check(1, "0000"))
+            assertEquals(PinCheck.Unreadable, pins.check(1, "4821"), "not even the right PIN: nothing is compared")
+            assertTrue(pins.hasPin(1), "still locked")
+            assertEquals(0L, pins.waitMs(1))
+            assertFalse(pins.set(3, "2468"), "a set would write Sam's PIN alone, wiping Robin's")
+            assertFalse(pins.hasPin(3))
+            assertFalse(pins.remove(2))
+            assertFalse(pins.forget(2))
+            assertFalse(pins.retainOnly(setOf(0, 1)))
+            assertTrue(pins.hasPin(2))
+        } finally {
+            Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("rw-------"))
+        }
+        assertEquals(before, pinsFile.readText(), "the file is as it was")
+        assertTrue(failures.isEmpty(), "nothing was written, so nothing failed to be")
+        repeat(4) { assertEquals(PinCheck.Wrong(0L), pins.check(1, "0000"), "no wrong PIN was counted while unreadable") }
+        assertEquals(PinCheck.Right, pins.check(1, "4821"))
+        assertEquals(PinCheck.Right, pins.check(2, "1357"))
+    }
+
+    @Test
+    fun `a folder in the pins file's place is unreadable, not empty`() {
+        val pins = pins()
+        assertTrue(pins.set(1, "4821"))
+        val pinsFile = File(directory, DesktopPins.PINS_FILE)
+        assertTrue(pinsFile.delete())
+        assertTrue(pinsFile.mkdir())
+        assertEquals(PinCheck.Unreadable, pins.check(1, "0000"))
+        assertTrue(pins.hasPin(1))
+        assertFalse(pins.set(2, "1357"))
+        assertTrue(pinsFile.isDirectory, "nothing was written over it")
     }
 
     @Test

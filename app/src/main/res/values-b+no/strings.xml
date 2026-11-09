@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"Fjern PIN"</string>
 <string name="account_pin_set">"Angi PIN"</string>
 <string name="account_pin_set_title">"Angi en PIN"</string>
+<string name="account_pin_unreadable">"Kunne ikke lese PIN-kodene på denne datamaskinen, så denne profilen forblir låst."</string>
 <string name="account_profile_current">"Gjeldende"</string>
 <string name="account_profile_locked">"Låst · PIN"</string>
 <string name="account_profile_no_sync">"Ingen synkronisering"</string>

@@ -33,6 +33,7 @@
 <string name="account_pin_first_profile">Првиот профил не може да се заклучи</string>
 <string name="account_pin_new">Внеси PIN со 4 цифри.</string>
 <string name="account_pin_not_saved">Промената на PIN не можеше да се зачува. Ништо не е променето.</string>
+<string name="account_pin_unreadable">PIN-овите на овој компјутер не можат да се прочитаат, па овој профил останува заклучен.</string>
 <string name="account_pin_off">Исклучено · секој може да го отвори овој профил</string>
 <string name="account_pin_on">Вклучено · се бара при отворање</string>
 <string name="account_pin_prompt">Внеси го PIN-от со 4 цифри.</string>

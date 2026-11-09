@@ -33,6 +33,7 @@
 <string name="account_pin_first_profile">Prvi profil ne može se zaključati</string>
 <string name="account_pin_new">Upišite četveroznamenkasti PIN.</string>
 <string name="account_pin_not_saved">Promjena PIN-a nije spremljena. Ništa nije promijenjeno.</string>
+<string name="account_pin_unreadable">PIN-ovi na ovom računalu ne mogu se pročitati, pa ovaj profil ostaje zaključan.</string>
 <string name="account_pin_off">Isključeno · svatko može otvoriti ovaj profil</string>
 <string name="account_pin_on">Uključeno · traži se pri otvaranju</string>
 <string name="account_pin_prompt">Upišite četveroznamenkasti PIN.</string>

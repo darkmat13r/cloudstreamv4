@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"Elimina el PIN"</string>
 <string name="account_pin_set">"Defineix el PIN"</string>
 <string name="account_pin_set_title">"Defineix un PIN"</string>
+<string name="account_pin_unreadable">"No s'han pogut llegir els PIN d'aquest ordinador, així que aquest perfil continua bloquejat."</string>
 <string name="account_profile_current">"Actual"</string>
 <string name="account_profile_locked">"Bloquejat · PIN"</string>
 <string name="account_profile_no_sync">"Sense sincronització"</string>

@@ -7395,9 +7395,15 @@ No JNA is needed for any of this.
 - `pins.json` holds each profile's PIN. It is never in `profiles.json`, and never logged, shown or in anything shared.
   It is not hashed: a hash of four digits is reversed at once. It moves to the Keychain in `95f`.
 - `pin-attempts.json` holds counts and waits only.
-- A `pins.json` that cannot be read reads as no PINs, as a deleted one would. A PIN is a household lock against someone
-  at the window, not against someone who can read this account's files. Failing closed would lock profiles behind PINs
-  nobody can enter.
+- At launch, a `pins.json` that cannot be read locks no profile, as a deleted one would. A PIN is a household lock
+  against someone at the window, not against someone who can read this account's files. Failing closed would lock
+  profiles behind PINs nobody can enter.
+- **"Couldn't read" is never "no file" once running** (the reviewer of `#286`, who found the fail-open). The read has
+  three outcomes: absent, read, failed. On failed (permissions, too large, not JSON, a folder in its place), a locked
+  profile's check refuses without comparing or counting a wrong PIN, and it stays locked. The prompt says "Couldn't read
+  the PINs on this computer, so this profile stays locked." Set, Remove, forget and the launch sweep write nothing and
+  return false, so a read failure never rewrites `pins.json` with one profile's PIN alone, wiping the others'.
+  `account_pin_unreadable` is a new key in all 62 locales: the strings baseline's twenty-eighth move.
 - An attempts record out of range reads as the strictest wait, never a free one.
 - Deleting a profile removes its PIN and count. At launch, the PINs and counts of profiles no longer listed are
   removed, over the same strict read as the libraries' sweep and never over a lenient one.
@@ -7443,18 +7449,22 @@ The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once tr
 **Tests:**
 - `PinLimitTest` (`:feature:account` commonTest), 6 cases: the numbers, running down, per profile, a restart, a
   reboot, and a store that cannot write.
-- `DesktopPinsTest`, 13 cases (3 from the review: a set or remove that cannot be written, a check against the file,
-  a reused id):
+- `DesktopPinsTest`, 15 cases (5 from the review: a set or remove that cannot be written, a check against the file,
+  a reused id, and a `pins.json` that cannot be read once running, by `chmod 000` and by a folder in its place):
   - right, wrong and the count;
   - nothing compared during a wait;
   - the first profile and what counts as a PIN;
   - kept across a restart, in owner-only files, with no PIN in the attempts file;
   - never in `profiles.json`;
-  - an unreadable `pins.json`;
+  - an unreadable `pins.json` at launch;
+  - an unreadable one once running: a locked profile refused with the right PIN and the wrong, nothing counted, set,
+    remove, forget and the sweep refused, and the file unchanged;
+  - a folder in its place: unreadable, not empty, and not written over;
   - an attempts record out of range;
   - delete and the launch sweep, and none over a file that is not strictly this version's;
   - the `mm:ss` clock.
-- `PinFlowTest`, 10 cases (1 from the review: Set and Remove that cannot be written) through real key and pointer events on a fake boot clock:
+- `PinFlowTest`, 11 cases (2 from the review: Set and Remove that cannot be written, and a `pins.json` that cannot be
+  read keeping Sam shut with the reason shown, then opening once readable) through real key and pointer events on a fake boot clock:
   - A3 and A3b, with no digit drawn;
   - the wait counting down and nothing getting past it;
   - the wait outliving Cancel and a restart;
@@ -7464,4 +7474,5 @@ The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once tr
   - Change and Remove behind the current PIN;
   - the first profile;
   - Escape back to the editor.
+- Red-checked: with a failed read taken as no file again, the three unreadable tests fail.
 - Renders: A3, A3b, A4, A6d, A7, A7b and A7c, compared with the boards by eye.

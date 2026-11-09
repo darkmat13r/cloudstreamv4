@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"Видалити PIN-код"</string>
 <string name="account_pin_set">"Установити PIN-код"</string>
 <string name="account_pin_set_title">"Установлення PIN-коду"</string>
+<string name="account_pin_unreadable">"Не вдалося прочитати PIN-коди на цьому комп'ютері, тому цей профіль залишається заблокованим."</string>
 <string name="account_profile_current">"Поточний"</string>
 <string name="account_profile_locked">"Заблоковано · PIN"</string>
 <string name="account_profile_no_sync">"Без синхронізації"</string>

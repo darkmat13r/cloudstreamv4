@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"Odebrat PIN"</string>
 <string name="account_pin_set">"Nastavit PIN"</string>
 <string name="account_pin_set_title">"Nastavit PIN"</string>
+<string name="account_pin_unreadable">"PIN kódy na tomto počítači nelze přečíst, takže tento profil zůstává zamčený."</string>
 <string name="account_profile_current">"Aktuální"</string>
 <string name="account_profile_locked">"Zamčeno · PIN"</string>
 <string name="account_profile_no_sync">"Bez synchronizace"</string>

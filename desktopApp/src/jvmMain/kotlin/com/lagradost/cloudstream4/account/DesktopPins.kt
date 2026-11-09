@@ -19,6 +19,22 @@ internal sealed interface PinCheck {
 
     /** A wait is running, so nothing was compared. */
     data class Waiting(val waitMs: Long) : PinCheck
+
+    /** The PINs file is there but could not be read, so nothing was compared and nothing counted: it stays locked. */
+    data object Unreadable : PinCheck
+}
+
+/** What reading the PINs file came to. "Couldn't read" is never "no file" (the reviewer of `#286`). */
+private sealed interface PinsRead {
+    /** No file: no profile has a PIN. */
+    data object Absent : PinsRead
+
+    data class Read(val pins: Map<Int, String>) : PinsRead {
+        override fun toString(): String = "Read(ids=${pins.keys})"
+    }
+
+    /** A file that could not be read: permissions, too large, not ours. Nothing may be decided or written from it. */
+    data object Failed : PinsRead
 }
 
 @Serializable
@@ -38,8 +54,13 @@ private data class StoredAttempt(val wrong: Int, val startedAt: Long, val waitMs
  * - **Not hashed** (the PM's ruling, D1, as `d081`): a hash of a 4-digit PIN is reversed at once, so it would only look
  *   safer. The file is owner-only and written temp-then-move, as `profiles.json` is.
  * - **What a PIN guards.** It is a household lock: it keeps a profile's history from someone at the window, not from
- *   someone who can read this Mac account's files, who could delete the file as easily. So a `pins` file that cannot
- *   be read reads as no PINs, as a deleted one would; failing closed would lock profiles behind PINs nobody can enter.
+ *   someone who can read this Mac account's files, who could delete the file as easily. So at launch a `pins` file that
+ *   cannot be read leaves no profile locked, as a deleted one would; failing closed would lock profiles behind PINs
+ *   nobody can enter.
+ * - **"Couldn't read" is never "no file"** (the reviewer of `#286`). Once the app is running, a `pins` file that cannot be
+ *   read refuses a locked profile's check without counting a wrong PIN ([PinCheck.Unreadable]), and [set], [remove],
+ *   [forget] and [retainOnly] write nothing and return false. So a read failure never opens a locked profile, and never
+ *   rewrites the file with only one profile's PIN, wiping the others'.
  * - **Attempts** are counts and waits only, never a PIN or anything taken from one, on [clock]: milliseconds from boot.
  *   The Mac's is `System.nanoTime()`, measured there to count from boot in every process, to ignore the wall clock, and
  *   not to advance in sleep, which can only lengthen a wait. A reboot is [PinLimit]'s case.
@@ -60,7 +81,7 @@ internal class DesktopPins(
     private val pinsFile = File(directory, PINS_FILE)
     private val attemptsFile = File(directory, ATTEMPTS_FILE)
     /** The profiles with a PIN. Never the PINs themselves. */
-    private val locked: MutableSet<Int> = readPins().keys.toMutableSet()
+    private val locked: MutableSet<Int> = (readPins() as? PinsRead.Read)?.pins?.keys.orEmpty().toMutableSet()
     private val attempts: MutableMap<Int, PinLimit.Record> = readAttempts().toMutableMap()
 
     private val limit = PinLimit(
@@ -84,8 +105,13 @@ internal class DesktopPins(
     fun check(id: Int, entry: String): PinCheck {
         val wait = limit.waitMs(id)
         if (wait > 0L) return PinCheck.Waiting(wait)
-        // Read for this comparison only. A PIN gone from the file reads as none, as a deleted file does.
-        val pin = readPins()[id] ?: return PinCheck.Right.also { locked.remove(id) }
+        // Read for this comparison only. A PIN gone from the file reads as none, as a deleted file does; a file that
+        // cannot be read refuses, and counts nothing.
+        val pin = when (val read = readPins()) {
+            PinsRead.Failed -> return PinCheck.Unreadable
+            PinsRead.Absent -> null
+            is PinsRead.Read -> read.pins[id]
+        } ?: return PinCheck.Right.also { locked.remove(id) }
         // Constant time: not that four digits need it, but nothing here should hint at how much of a guess was right.
         return if (MessageDigest.isEqual(pin.toByteArray(), entry.toByteArray())) {
             limit.right(id)
@@ -98,15 +124,16 @@ internal class DesktopPins(
     /** Sets [id]'s PIN to [pin], four ASCII digits. The first profile is never locked. */
     fun set(id: Int, pin: String): Boolean {
         if (id == StoredProfiles.FIRST || !isPin(pin)) return false
-        if (!writePins(readPins() + (id to pin))) return false
+        val stored = readPins().pinsOrNull() ?: return false
+        if (!writePins(stored + (id to pin))) return false
         locked += id
         limit.right(id)
         return true
     }
 
-    /** Removes [id]'s PIN. False when that could not be written: the profile stays locked. */
+    /** Removes [id]'s PIN. False when that could not be read or written: the profile stays locked. */
     fun remove(id: Int): Boolean {
-        val stored = readPins()
+        val stored = readPins().pinsOrNull() ?: return false
         if (id !in stored) return true.also { locked.remove(id) }
         if (!writePins(stored - id)) return false
         locked.remove(id)
@@ -115,29 +142,44 @@ internal class DesktopPins(
 
     /**
      * [id]'s profile is gone, or its id is about to be reused (`add`): its PIN and its count go with it. The file is
-     * written only when it holds a PIN for [id].
+     * written only when it holds a PIN for [id]. False, with nothing changed, when it could not be read or written.
      */
-    fun forget(id: Int) {
-        val stored = readPins()
-        if (id in stored) writePins(stored - id)
+    fun forget(id: Int): Boolean {
+        val stored = readPins().pinsOrNull() ?: return false
+        if (id in stored && !writePins(stored - id)) return false
         locked.remove(id)
         limit.forget(id)
+        return true
     }
 
-    /** Drops the PIN and count of every profile not in [ids], as the launch sweep does libraries. */
-    fun retainOnly(ids: Set<Int>) {
-        val stored = readPins()
-        if (!ids.containsAll(stored.keys)) writePins(stored.filterKeys { it in ids })
+    /**
+     * Drops the PIN and count of every profile not in [ids], as the launch sweep does libraries. False, with nothing
+     * changed, when the PINs could not be read or written.
+     */
+    fun retainOnly(ids: Set<Int>): Boolean {
+        val stored = readPins().pinsOrNull() ?: return false
+        if (!ids.containsAll(stored.keys) && !writePins(stored.filterKeys { it in ids })) return false
         locked.retainAll(ids)
         if (attempts.keys.retainAll(ids)) writeAttempts()
+        return true
     }
 
-    private fun readPins(): Map<Int, String> {
-        val stored = read(pinsFile) { json.decodeFromString(StoredPins.serializer(), it) } ?: return emptyMap()
-        return stored.pins.mapNotNull { (key, pin) ->
-            val id = key.toIntOrNull()?.takeIf { it in 1 until DesktopProfileFile.MAX_ID } ?: return@mapNotNull null
-            if (isPin(pin)) id to pin else null
-        }.toMap()
+    private fun PinsRead.pinsOrNull(): Map<Int, String>? = when (this) {
+        PinsRead.Absent -> emptyMap()
+        is PinsRead.Read -> pins
+        PinsRead.Failed -> null
+    }
+
+    private fun readPins(): PinsRead {
+        // Only a file known not to be there is "none": a directory that cannot be searched is not that.
+        if (Files.notExists(pinsFile.toPath())) return PinsRead.Absent
+        val stored = read(pinsFile) { json.decodeFromString(StoredPins.serializer(), it) } ?: return PinsRead.Failed
+        return PinsRead.Read(
+            stored.pins.mapNotNull { (key, pin) ->
+                val id = key.toIntOrNull()?.takeIf { it in 1 until DesktopProfileFile.MAX_ID } ?: return@mapNotNull null
+                if (isPin(pin)) id to pin else null
+            }.toMap(),
+        )
     }
 
     private fun readAttempts(): Map<Int, PinLimit.Record> {

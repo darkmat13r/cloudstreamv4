@@ -62,6 +62,7 @@
 <string name="account_pin_remove">"Отстрани PIN"</string>
 <string name="account_pin_set">"Постави PIN"</string>
 <string name="account_pin_set_title">"Постави PIN"</string>
+<string name="account_pin_unreadable">"PIN-овите на овој компјутер не можат да се прочитаат, па овој профил останува заклучен."</string>
 <string name="account_profile_current">"Тековен"</string>
 <string name="account_profile_locked">"Заклучен · PIN"</string>
 <string name="account_profile_no_sync">"Без синхронизација"</string>

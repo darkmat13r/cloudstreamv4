@@ -62,6 +62,7 @@
 <string name="account_pin_remove">"Премахни ПИН"</string>
 <string name="account_pin_set">"Задай ПИН"</string>
 <string name="account_pin_set_title">"Задаване на ПИН"</string>
+<string name="account_pin_unreadable">"ПИН кодовете на този компютър не могат да бъдат прочетени, затова този профил остава заключен."</string>
 <string name="account_profile_current">"Текущ"</string>
 <string name="account_profile_locked">"Заключен · ПИН"</string>
 <string name="account_profile_no_sync">"Без синхронизация"</string>

@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"Forigi PIN"</string>
 <string name="account_pin_set">"Agordi PIN"</string>
 <string name="account_pin_set_title">"Agordi PIN"</string>
+<string name="account_pin_unreadable">"Ne eblis legi la PIN-ojn en ĉi tiu komputilo, do ĉi tiu profilo restas ŝlosita."</string>
 <string name="account_profile_current">"Nuna"</string>
 <string name="account_profile_locked">"Ŝlosita · PIN"</string>
 <string name="account_profile_no_sync">"Sen sinkronigo"</string>

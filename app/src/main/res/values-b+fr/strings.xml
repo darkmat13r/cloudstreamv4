@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"Supprimer le PIN"</string>
 <string name="account_pin_set">"Définir le PIN"</string>
 <string name="account_pin_set_title">"Définir un PIN"</string>
+<string name="account_pin_unreadable">"Impossible de lire les codes PIN de cet ordinateur, ce profil reste donc verrouillé."</string>
 <string name="account_profile_current">"Actuel"</string>
 <string name="account_profile_locked">"Verrouillé · PIN"</string>
 <string name="account_profile_no_sync">"Pas de synchronisation"</string>

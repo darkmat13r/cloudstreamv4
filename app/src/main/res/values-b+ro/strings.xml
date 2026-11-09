@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"Elimină PIN-ul"</string>
 <string name="account_pin_set">"Setează PIN-ul"</string>
 <string name="account_pin_set_title">"Setează un PIN"</string>
+<string name="account_pin_unreadable">"PIN-urile de pe acest computer nu au putut fi citite, așa că acest profil rămâne blocat."</string>
 <string name="account_profile_current">"Curent"</string>
 <string name="account_profile_locked">"Blocat · PIN"</string>
 <string name="account_profile_no_sync">"Fără sincronizare"</string>

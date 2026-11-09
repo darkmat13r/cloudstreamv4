@@ -59,6 +59,7 @@
 <string name="account_pin_remove">"ፒን አስወግድ"</string>
 <string name="account_pin_set">"ፒን አዘጋጅ"</string>
 <string name="account_pin_set_title">"ፒን ያዘጋጁ"</string>
+<string name="account_pin_unreadable">"በዚህ ኮምፒውተር ላይ ያሉትን ፒኖች ማንበብ አልተቻለም፣ ስለዚህ ይህ መገለጫ እንደተቆለፈ ይቆያል።"</string>
 <string name="account_profile_current">"የአሁኑ"</string>
 <string name="account_profile_locked">"ተቆልፏል · ፒን"</string>
 <string name="account_profile_no_sync">"ማመሳሰል የለም"</string>

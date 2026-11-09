@@ -59,6 +59,7 @@
 <string name="account_pin_remove">"PIN-i sil"</string>
 <string name="account_pin_set">"PIN təyin et"</string>
 <string name="account_pin_set_title">"PIN təyin edin"</string>
+<string name="account_pin_unreadable">"Bu kompüterdəki PIN-lər oxuna bilmədi, ona görə bu profil kilidli qalır."</string>
 <string name="account_profile_current">"Cari"</string>
 <string name="account_profile_locked">"Kilidli · PIN"</string>
 <string name="account_profile_no_sync">"Sinxronizasiya yoxdur"</string>

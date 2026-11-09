@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"PIN eltávolítása"</string>
 <string name="account_pin_set">"PIN beállítása"</string>
 <string name="account_pin_set_title">"PIN beállítása"</string>
+<string name="account_pin_unreadable">"Nem sikerült beolvasni a számítógépen tárolt PIN-kódokat, ezért ez a profil zárolva marad."</string>
 <string name="account_profile_current">"Jelenlegi"</string>
 <string name="account_profile_locked">"Zárolva · PIN"</string>
 <string name="account_profile_no_sync">"Nincs szinkronizálás"</string>

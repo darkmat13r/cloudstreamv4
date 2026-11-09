@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"PIN verwijderen"</string>
 <string name="account_pin_set">"PIN instellen"</string>
 <string name="account_pin_set_title">"PIN instellen"</string>
+<string name="account_pin_unreadable">"De pincodes op deze computer konden niet worden gelezen, dus dit profiel blijft vergrendeld."</string>
 <string name="account_profile_current">"Huidig"</string>
 <string name="account_profile_locked">"Vergrendeld · pincode"</string>
 <string name="account_profile_no_sync">"Geen synchronisatie"</string>

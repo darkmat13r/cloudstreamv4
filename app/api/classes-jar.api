@@ -3262,6 +3262,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field account_pin_remove I
 	public static field account_pin_set I
 	public static field account_pin_set_title I
+	public static field account_pin_unreadable I
 	public static field account_profile_current I
 	public static field account_profile_locked I
 	public static field account_profile_no_sync I

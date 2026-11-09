@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"移除 PIN"</string>
 <string name="account_pin_set">"设置 PIN"</string>
 <string name="account_pin_set_title">"设置 PIN"</string>
+<string name="account_pin_unreadable">"无法读取此电脑上的 PIN，因此此个人资料仍保持锁定。"</string>
 <string name="account_profile_current">"当前"</string>
 <string name="account_profile_locked">"已锁定 · PIN"</string>
 <string name="account_profile_no_sync">"不同步"</string>

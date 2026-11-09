@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"PIN entfernen"</string>
 <string name="account_pin_set">"PIN festlegen"</string>
 <string name="account_pin_set_title">"Eine PIN festlegen"</string>
+<string name="account_pin_unreadable">"Die PINs auf diesem Computer konnten nicht gelesen werden, daher bleibt dieses Profil gesperrt."</string>
 <string name="account_profile_current">"Aktuell"</string>
 <string name="account_profile_locked">"Gesperrt · PIN"</string>
 <string name="account_profile_no_sync">"Keine Synchronisierung"</string>

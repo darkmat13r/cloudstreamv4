@@ -120,6 +120,27 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Twenty-eighth move, 2026-11-09 — `KMP-95c`, 1 new key: PINs that could not be read
+
+New keys are approved in general (`I18N-09`). The reviewer of `#286` found that a `pins` file that could not be read
+mid-session read as no file, which opened a locked profile; now the prompt refuses and says why. Additive:
+`account_pin_unreadable`, no plural, authored in all 62 directories (`OWN` grows by 62). The Android res came out with
+62 lines added and 0 removed. `report.txt` is the generator's.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 57,298 | 57,360 | 62 | 0 | 0 |
+| `emitted.tsv` | 59,989 | 60,053 | 64 | 0 | 0 |
+| `lookup.tsv` | 103,556 | 103,643 | 87 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against the twenty-seventh move's baseline twice over, a multiset in Python and `sort | comm`: 0 lines lost in
+any file, and every added line names the one key: 62 lines in `decoded`, 64 in `emitted` (the `values-b+he` and
+`values-b+id` copies), 87 in `lookup`. `report.txt` moved only in its counts: `OWN` 55,312 -> 55,374, visible keys
+1,156 -> 1,157, plurals unchanged at 29, and one more value in each of the two locale copies. **`REFERENCE_IN_LOCALE`
+stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 55,312 -> 55,374.
+
 ## Twenty-seventh move, 2026-11-09 — `KMP-95c`, 1 new key: a PIN change that could not be saved
 
 New keys are approved in general (`I18N-09`). The reviewer of `#286` asked that a PIN change that cannot be written

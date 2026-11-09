@@ -59,6 +59,7 @@
 <string name="account_pin_remove">"Neħħi l-PIN"</string>
 <string name="account_pin_set">"Issettja l-PIN"</string>
 <string name="account_pin_set_title">"Issettja PIN"</string>
+<string name="account_pin_unreadable">"Ma setax jinqraw il-PINs fuq dan il-kompjuter, għalhekk dan il-profil jibqa' msakkar."</string>
 <string name="account_profile_current">"Attwali"</string>
 <string name="account_profile_locked">"Imsakkar · PIN"</string>
 <string name="account_profile_no_sync">"L-ebda sinkronizzazzjoni"</string>

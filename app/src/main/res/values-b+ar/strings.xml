@@ -62,6 +62,7 @@
 <string name="account_pin_remove">"إزالة رمز PIN"</string>
 <string name="account_pin_set">"تعيين رمز PIN"</string>
 <string name="account_pin_set_title">"تعيين رمز PIN"</string>
+<string name="account_pin_unreadable">"تعذّرت قراءة أرقام PIN على هذا الكمبيوتر، لذا يبقى هذا الملف الشخصي مقفلاً."</string>
 <string name="account_profile_current">"الحالي"</string>
 <string name="account_profile_locked">"مقفل · رمز PIN"</string>
 <string name="account_profile_no_sync">"بلا مزامنة"</string>

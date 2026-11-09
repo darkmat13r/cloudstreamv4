@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"Alih keluar PIN"</string>
 <string name="account_pin_set">"Tetapkan PIN"</string>
 <string name="account_pin_set_title">"Tetapkan PIN"</string>
+<string name="account_pin_unreadable">"PIN pada komputer ini tidak dapat dibaca, jadi profil ini kekal dikunci."</string>
 <string name="account_profile_current">"Semasa"</string>
 <string name="account_profile_locked">"Dikunci · PIN"</string>
 <string name="account_profile_no_sync">"Tiada penyegerakan"</string>

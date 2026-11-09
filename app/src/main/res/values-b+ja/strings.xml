@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"PINを削除"</string>
 <string name="account_pin_set">"PINを設定"</string>
 <string name="account_pin_set_title">"PINの設定"</string>
+<string name="account_pin_unreadable">"このコンピュータの PIN を読み取れなかったため、このプロフィールはロックされたままです。"</string>
 <string name="account_profile_current">"現在"</string>
 <string name="account_profile_locked">"ロック中 · PIN"</string>
 <string name="account_profile_no_sync">"同期なし"</string>

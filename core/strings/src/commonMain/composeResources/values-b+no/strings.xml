@@ -33,6 +33,7 @@
 <string name="account_pin_first_profile">Den første profilen kan ikke låses</string>
 <string name="account_pin_new">Skriv inn en firesifret PIN.</string>
 <string name="account_pin_not_saved">Kunne ikke lagre PIN-endringen. Ingenting ble endret.</string>
+<string name="account_pin_unreadable">Kunne ikke lese PIN-kodene på denne datamaskinen, så denne profilen forblir låst.</string>
 <string name="account_pin_off">Av · alle kan åpne denne profilen</string>
 <string name="account_pin_on">På · kreves for å åpne den</string>
 <string name="account_pin_prompt">Skriv inn den firesifrede PIN-koden.</string>

@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"Ta bort PIN-kod"</string>
 <string name="account_pin_set">"Välj PIN-kod"</string>
 <string name="account_pin_set_title">"Välj en PIN-kod"</string>
+<string name="account_pin_unreadable">"Det gick inte att läsa PIN-koderna på den här datorn, så den här profilen förblir låst."</string>
 <string name="account_profile_current">"Aktuell"</string>
 <string name="account_profile_locked">"Låst · PIN"</string>
 <string name="account_profile_no_sync">"Ingen synkronisering"</string>

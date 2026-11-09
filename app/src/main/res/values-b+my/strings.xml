@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"PIN ဖယ်ရှားရန်"</string>
 <string name="account_pin_set">"PIN သတ်မှတ်ရန်"</string>
 <string name="account_pin_set_title">"PIN သတ်မှတ်ခြင်း"</string>
+<string name="account_pin_unreadable">"ဤကွန်ပျူတာရှိ PIN များကို ဖတ်၍မရပါ၊ ထို့ကြောင့် ဤပရိုဖိုင်သည် လော့ခ်ချထားဆဲဖြစ်သည်။"</string>
 <string name="account_profile_current">"လက်ရှိ"</string>
 <string name="account_profile_locked">"လော့ခ်ချထား · PIN"</string>
 <string name="account_profile_no_sync">"စင့်ခ်မရှိ"</string>

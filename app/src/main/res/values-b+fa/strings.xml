@@ -59,6 +59,7 @@
 <string name="account_pin_remove">"حذف PIN"</string>
 <string name="account_pin_set">"تنظیم PIN"</string>
 <string name="account_pin_set_title">"تنظیم PIN"</string>
+<string name="account_pin_unreadable">"PINهای این رایانه خوانده نشد، پس این نمایه قفل می‌ماند."</string>
 <string name="account_profile_current">"فعلی"</string>
 <string name="account_profile_locked">"قفل‌شده · PIN"</string>
 <string name="account_profile_no_sync">"بدون همگام‌سازی"</string>

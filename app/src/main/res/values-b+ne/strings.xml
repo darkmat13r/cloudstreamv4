@@ -59,6 +59,7 @@
 <string name="account_pin_remove">"पिन हटाउनुहोस्"</string>
 <string name="account_pin_set">"पिन सेट गर्नुहोस्"</string>
 <string name="account_pin_set_title">"पिन सेट गर्नुहोस्"</string>
+<string name="account_pin_unreadable">"यस कम्प्युटरका PIN पढ्न सकिएन, त्यसैले यो प्रोफाइल लक नै रहन्छ।"</string>
 <string name="account_profile_current">"हालको"</string>
 <string name="account_profile_locked">"लक गरिएको · पिन"</string>
 <string name="account_profile_no_sync">"सिंक छैन"</string>

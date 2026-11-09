@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"Hiq PIN-in"</string>
 <string name="account_pin_set">"Vendos PIN"</string>
 <string name="account_pin_set_title">"Vendos një PIN"</string>
+<string name="account_pin_unreadable">"PIN-et në këtë kompjuter nuk u lexuan, ndaj ky profil mbetet i kyçur."</string>
 <string name="account_profile_current">"Aktual"</string>
 <string name="account_profile_locked">"I kyçur · PIN"</string>
 <string name="account_profile_no_sync">"Pa sinkronizim"</string>

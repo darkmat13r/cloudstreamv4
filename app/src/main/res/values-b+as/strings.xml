@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"পিন আঁতৰাওক"</string>
 <string name="account_pin_set">"পিন ছেট কৰক"</string>
 <string name="account_pin_set_title">"এটা পিন ছেট কৰক"</string>
+<string name="account_pin_unreadable">"এই কম্পিউটাৰত PIN পঢ়িব পৰা নগ'ল, গতিকে এই প্ৰফাইলটো লক হৈয়েই থাকিব।"</string>
 <string name="account_profile_current">"বৰ্তমান"</string>
 <string name="account_profile_locked">"লক কৰা · PIN"</string>
 <string name="account_profile_no_sync">"ছিংক নাই"</string>

@@ -33,6 +33,7 @@ import com.lagradost.cloudstream4.feature.home.HomeSources
 import org.jetbrains.skia.EncodedImageFormat
 import java.io.File
 import java.nio.file.Files
+import java.nio.file.attribute.PosixFilePermissions
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -97,6 +98,28 @@ class PinFlowTest {
             assertEquals(1, profiles.stored.current)
             assertEquals("Home", at)
         }
+    }
+
+    @Test
+    fun `a pins file that cannot be read keeps a locked profile shut and says why, counting nothing`() {
+        val profiles = household()
+        val pinsFile = File(directory, DesktopPins.PINS_FILE)
+        window(profiles).use { scene ->
+            scene.click(scene.bounds("Sam, Locked · PIN").center)
+            Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("---------"))
+            try {
+                scene.type(SAM_PIN)
+                assertNotNull(scene.find("Couldn't read the PINs on this computer, so this profile stays locked.", text = true))
+                assertNull(scene.find("Incorrect PIN. Please try again.", text = true))
+                assertEquals(0, profiles.stored.current, "Sam did not open, not even with the right PIN")
+                scene.save("A3-pins-unreadable")
+            } finally {
+                Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("rw-------"))
+            }
+            scene.type(SAM_PIN)
+            assertEquals(1, profiles.stored.current, "readable again, the right PIN opens it")
+        }
+        assertEquals(0L, profiles.pins.waitMs(1))
     }
 
     @Test

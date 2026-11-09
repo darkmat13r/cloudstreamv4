@@ -33,6 +33,7 @@
 <string name="account_pin_first_profile">Profil pertama tidak boleh dikunci</string>
 <string name="account_pin_new">Taip PIN 4 digit.</string>
 <string name="account_pin_not_saved">Perubahan PIN tidak dapat disimpan. Tiada apa-apa yang berubah.</string>
+<string name="account_pin_unreadable">PIN pada komputer ini tidak dapat dibaca, jadi profil ini kekal dikunci.</string>
 <string name="account_pin_off">Mati · sesiapa sahaja boleh membuka profil ini</string>
 <string name="account_pin_on">Hidup · diminta untuk membukanya</string>
 <string name="account_pin_prompt">Taip PIN 4 digit.</string>

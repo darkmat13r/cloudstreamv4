@@ -63,6 +63,7 @@
 <string name="account_pin_remove">"Xóa mã PIN"</string>
 <string name="account_pin_set">"Đặt mã PIN"</string>
 <string name="account_pin_set_title">"Đặt mã PIN"</string>
+<string name="account_pin_unreadable">"Không thể đọc mã PIN trên máy tính này, nên hồ sơ này vẫn bị khóa."</string>
 <string name="account_profile_current">"Hiện tại"</string>
 <string name="account_profile_locked">"Đã khóa · PIN"</string>
 <string name="account_profile_no_sync">"Không đồng bộ"</string>

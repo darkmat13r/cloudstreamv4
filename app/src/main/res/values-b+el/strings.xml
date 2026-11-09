@@ -60,6 +60,7 @@
 <string name="account_pin_remove">"Κατάργηση PIN"</string>
 <string name="account_pin_set">"Ορισμός PIN"</string>
 <string name="account_pin_set_title">"Ορισμός PIN"</string>
+<string name="account_pin_unreadable">"Δεν ήταν δυνατή η ανάγνωση των PIN σε αυτόν τον υπολογιστή, οπότε αυτό το προφίλ παραμένει κλειδωμένο."</string>
 <string name="account_profile_current">"Τρέχον"</string>
 <string name="account_profile_locked">"Κλειδωμένο · PIN"</string>
 <string name="account_profile_no_sync">"Χωρίς συγχρονισμό"</string>

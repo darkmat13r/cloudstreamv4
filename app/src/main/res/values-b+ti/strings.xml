@@ -59,6 +59,7 @@
 <string name="account_pin_remove">"PIN ኣልግስ"</string>
 <string name="account_pin_set">"PIN ኣቐምጥ"</string>
 <string name="account_pin_set_title">"PIN ኣቐምጥ"</string>
+<string name="account_pin_unreadable">"ኣብዚ ኮምፒዩተር ዘለዉ PIN ክንበቡ ኣይተኻእለን፣ ስለዚ እዚ ፕሮፋይል ተዓጽዩ ይጸንሕ።"</string>
 <string name="account_profile_current">"ናይ ሕጂ"</string>
 <string name="account_profile_locked">"ተዓጽዩ · PIN"</string>
 <string name="account_profile_no_sync">"ምትእስሳር የለን"</string>

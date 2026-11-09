@@ -59,6 +59,7 @@
 <string name="account_pin_remove">"شيل PIN"</string>
 <string name="account_pin_set">"حط PIN"</string>
 <string name="account_pin_set_title">"حط PIN"</string>
+<string name="account_pin_unreadable">"ما قدرنا نقرأ أرقام PIN على هالكمبيوتر، عشان كذا هالملف الشخصي يظل مقفل."</string>
 <string name="account_profile_current">"الحالي"</string>
 <string name="account_profile_locked">"مقفل · PIN"</string>
 <string name="account_profile_no_sync">"بدون مزامنة"</string>
