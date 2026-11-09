@@ -2980,13 +2980,13 @@ for its own task.
 
 ## BUG-64 — A default-ignorable code point, or a blank-drawn character, inside `://` or `/Users/` still hid a url or a path from the redaction · **high, security** · measured 2026-11-08
 
-**Status:** fixed in the PR that adds this entry. It is built on #224 (`BUG-52`), and is rebased onto master once train 9 lands. The fix is made in every copy of the invisible-character check:
+**Status:** fixed in the PR that adds this entry. It was built on #224 (`BUG-52`) and is rebased onto master, which train 9 brought it to. The fix is made in every copy of the invisible-character check:
 
 - the four redaction copies listed under `BUG-44`: `:app` `utils/LogRedaction.kt`, `:library` `mvvm/ArchComponentExt.kt`, `:feature:extensions:sandbox` `PluginHost.kt` and `:desktopApp` `detail/DesktopDetailSource.kt`
 - `:desktopApp`'s `withoutInvisible()`, which Home and Search run before redacting
 - the sandbox's subtitle-label check (`PluginHostClient.kt`, `RemoteSubtitle.cleaned`)
 
-`#251` (`BUG-61`, Android Home's failure line) carries the same list and the same url pattern.
+`#251` (`BUG-61`, Android Home's failure line, on master) carries the same list and the same url pattern: at the rebase, the list block and the pattern line hash the same in all five copies.
 
 **The defects.**
 
