@@ -38,6 +38,8 @@ import kotlin.coroutines.resume
  */
 internal class HttpSignInClient(
     private val simklClientId: String? = DesktopSecrets.simklClientId,
+    private val malClientId: String? = DesktopSecrets.malClientId,
+    private val malSite: HttpUrl = MAL_SITE.toHttpUrl(),
     private val http: OkHttpClient = defaultClient(),
     private val simklApi: HttpUrl = SIMKL_API.toHttpUrl(),
     private val openSubtitlesApi: HttpUrl = OPEN_SUBTITLES_API.toHttpUrl(),
@@ -45,6 +47,48 @@ internal class HttpSignInClient(
 ) : SignInClient {
 
     override val simklAvailable: Boolean get() = simklClientId != null
+
+    override val malAvailable: Boolean get() = malClientId != null
+
+    /** `MALApi.loginRequest`'s page, with a random [state] in place of its counter (the owner, 2026-11-08). */
+    override fun malSignInPage(state: String, verifier: String): String? {
+        val id = malClientId ?: return null
+        return malSite.newBuilder().addPathSegments("v1/oauth2/authorize")
+            .addQueryParameter("response_type", "code")
+            .addQueryParameter("client_id", id)
+            .addQueryParameter("code_challenge", verifier)
+            .addQueryParameter("code_challenge_method", "plain")
+            .addQueryParameter("state", state)
+            .build()
+            .toString()
+    }
+
+    /** `MALApi.login`'s exchange. */
+    override suspend fun malExchange(code: String, verifier: String): SignInResult<Credential> {
+        val id = malClientId ?: return SignInResult.Failed
+        // The code came in a URL from outside: only a token's characters go on to MAL.
+        if (!isToken(code)) return SignInResult.Failed
+        val body = okhttp3.FormBody.Builder()
+            .add("client_id", id)
+            .add("code", code)
+            .add("code_verifier", verifier)
+            .add("grant_type", "authorization_code")
+            .build()
+        val request = Request.Builder().url(malSite.newBuilder().addPathSegments("v1/oauth2/token").build()).post(body).build()
+        return exchange(request) { status, text ->
+            when (status) {
+                in 200..299 -> {
+                    val answer = json.decodeFromString(MalToken.serializer(), text)
+                    val token = answer.accessToken
+                    val refresh = answer.refreshToken
+                    if (token == null || !isToken(token) || (refresh != null && !isToken(refresh))) SignInResult.Failed
+                    else SignInResult.Done(Credential(token = token, refreshToken = refresh))
+                }
+                400, 401, 403 -> SignInResult.Refused
+                else -> SignInResult.Failed
+            }
+        }
+    }
 
     override suspend fun simklCode(): SignInResult<PairCode> {
         val id = simklClientId ?: return SignInResult.Failed
@@ -88,7 +132,7 @@ internal class HttpSignInClient(
         when (service) {
             DesktopService.OpenSubtitles -> openSubtitles(email, password)
             DesktopService.SubDl -> subDl(email, password)
-            DesktopService.Simkl -> SignInResult.Failed
+            DesktopService.Simkl, DesktopService.MyAnimeList -> SignInResult.Failed
         }
 
     private suspend fun openSubtitles(username: String, password: String): SignInResult<Credential> {
@@ -183,6 +227,12 @@ internal class HttpSignInClient(
     )
 
     @Serializable
+    private data class MalToken(
+        @SerialName("access_token") val accessToken: String? = null,
+        @SerialName("refresh_token") val refreshToken: String? = null,
+    )
+
+    @Serializable
     private data class SimklExchange(@SerialName("access_token") val accessToken: String? = null)
 
     @Serializable
@@ -198,6 +248,7 @@ internal class HttpSignInClient(
         const val SIMKL_API = "https://api.simkl.com/"
         const val OPEN_SUBTITLES_API = "https://api.opensubtitles.com/api/v1/"
         const val SUBDL_API = "https://api.subdl.com/"
+        const val MAL_SITE = "https://myanimelist.net/"
 
         /** Where a person approves a Simkl code, when Simkl's own answer names none we trust. */
         const val SIMKL_PIN_PAGE = "https://simkl.com/pin"

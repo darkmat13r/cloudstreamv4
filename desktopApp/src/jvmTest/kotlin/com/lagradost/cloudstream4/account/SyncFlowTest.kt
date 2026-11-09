@@ -48,6 +48,7 @@ import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
@@ -78,7 +79,24 @@ class SyncFlowTest {
     }
 
     /** A service that answers as told, and counts what it was asked. */
-    private class FakeClient(override var simklAvailable: Boolean = true) : SignInClient {
+    private class FakeClient(
+        override var simklAvailable: Boolean = true,
+        override var malAvailable: Boolean = false,
+    ) : SignInClient {
+        var malAnswer: SignInResult<Credential> = SignInResult.Done(Credential(TOKEN, refreshToken = "refresh-fixture"))
+        val malExchanges = mutableListOf<kotlin.Pair<String, String>>()
+        val pages = mutableListOf<kotlin.Pair<String, String>>()
+
+        override fun malSignInPage(state: String, verifier: String): String {
+            pages += state to verifier
+            return "https://myanimelist.net/v1/oauth2/authorize?state=$state"
+        }
+
+        override suspend fun malExchange(code: String, verifier: String): SignInResult<Credential> {
+            malExchanges += code to verifier
+            return malAnswer
+        }
+
         var code: SignInResult<PairCode> = SignInResult.Done(PairCode(CODE, "https://simkl.com/pin", expiresInSeconds = 600, intervalSeconds = 5))
         var approved = false
         var password: (DesktopService, String, String) -> SignInResult<Credential> = { service, email, password ->
@@ -110,12 +128,15 @@ class SyncFlowTest {
         return DesktopProfiles(file, libraryDirectory = directory, onSaveFailed = { throw it })
     }
 
+    private val redirects = BrowserRedirects()
+
     private fun window(profiles: DesktopProfiles, client: SignInClient, escape: EscapeHandler = EscapeHandler()) =
         scene {
             ProfilesHost(
                 profiles,
                 escape,
                 signInClient = client,
+                redirects = redirects,
                 syncTick = { ms -> val target = clock.value + ms; clock.first { it >= target } },
                 openUrl = { opened += it },
             ) { library, foot ->
@@ -146,8 +167,9 @@ class SyncFlowTest {
             scene.openSync()
             assertNotNull(scene.find("Sync for Alex", text = true), "A9")
             assertNotNull(scene.find("Sign-ins last until you quit CloudStream.", text = true), "D3, said on the screen")
-            listOf("Simkl", "OpenSubtitles", "SubDL").forEach { assertNotNull(scene.find(it, text = true), it) }
-            listOf("AniList", "MyAnimeList", "Kitsu").forEach { assertNull(scene.find(it, text = true), "$it is not on the Mac in 95d") }
+            listOf("MyAnimeList", "Simkl", "OpenSubtitles", "SubDL").forEach { assertNotNull(scene.find(it, text = true), it) }
+            listOf("AniList", "Kitsu").forEach { assertNull(scene.find(it, text = true), "$it is not on the Mac") }
+            assertNotNull(scene.find("Not available here", text = true), "MyAnimeList, with no key in this build")
             assertEquals(3, scene.allText().count { it == "Not connected" })
             scene.save("A9-sync")
             scene.click(scene.bounds("Done", text = true).center)
@@ -318,6 +340,85 @@ class SyncFlowTest {
             scene.click(scene.bounds("Remove", text = true).center)
             assertNull(profiles.signIns.get(0, DesktopService.Simkl))
             assertEquals(3, scene.allText().count { it == "Not connected" })
+        }
+    }
+
+    @Test
+    fun `MyAnimeList signs in through the browser - only the redirect with its own state is taken, once`() {
+        val profiles = household()
+        val client = FakeClient(malAvailable = true)
+        window(profiles, client).use { scene ->
+            scene.openSync()
+            scene.click(scene.signIn(0))
+            assertNotNull(scene.find("Sign in to MyAnimeList", text = true), "A10")
+            assertNotNull(scene.find("Waiting for your browser…", text = true))
+            assertNotNull(scene.find("Sign-ins last until you quit CloudStream.", text = true))
+            scene.save("A10-browser")
+            val (state, verifier) = client.pages.single()
+            assertEquals(listOf("https://myanimelist.net/v1/oauth2/authorize?state=$state"), opened, "the page opened on its own")
+            assertEquals(128, verifier.length)
+
+            assertFalse(redirects.deliver("cloudstreamapp://mallogin?code=abc&state=not-$state"), "a wrong state")
+            assertFalse(redirects.deliver("cloudstreamapp://mallogin?code=abc"), "no state")
+            assertFalse(redirects.deliver("cloudstreamapp://anilistlogin?code=abc&state=$state"), "another path")
+            assertFalse(redirects.deliver("https://mallogin?code=abc&state=$state"), "another scheme")
+            scene.settle()
+            assertNotNull(scene.find("Waiting for your browser…", text = true), "still waiting")
+            assertTrue(client.malExchanges.isEmpty())
+
+            scene.click(scene.bounds("Open again", text = true).center)
+            assertEquals(2, opened.size)
+            assertEquals(1, client.pages.size, "the same page, the same state")
+
+            assertTrue(redirects.deliver("cloudstreamapp://mallogin?code=code-fixture&state=$state"))
+            scene.settle()
+            assertEquals(listOf("code-fixture" to verifier), client.malExchanges, "traded with its own verifier")
+            assertNotNull(scene.find("Sync for Alex", text = true))
+            val kept = checkNotNull(profiles.signIns.get(0, DesktopService.MyAnimeList))
+            assertEquals(TOKEN, kept.token)
+            assertEquals("refresh-fixture", kept.refreshToken)
+            assertFalse(redirects.deliver("cloudstreamapp://mallogin?code=code-fixture&state=$state"), "once")
+            assertEquals(listOf("MyAnimeList"), profiles.cards("Default").first { it.id == 0 }.syncedWith)
+        }
+    }
+
+    @Test
+    fun `Cancel ends the browser's wait at once, and a redirect after it does nothing`() {
+        val profiles = household()
+        val client = FakeClient(malAvailable = true)
+        window(profiles, client).use { scene ->
+            scene.openSync()
+            scene.click(scene.signIn(0))
+            val (state, _) = client.pages.single()
+            scene.press(Key.Escape)
+            assertNotNull(scene.find("Sync for Alex", text = true), "A12")
+            assertFalse(redirects.deliver("cloudstreamapp://mallogin?code=code-fixture&state=$state"), "late")
+            scene.settle()
+            assertTrue(client.malExchanges.isEmpty())
+            assertNull(profiles.signIns.get(0, DesktopService.MyAnimeList))
+
+            scene.click(scene.signIn(0))
+            assertNotEquals(state, client.pages.last().first, "a new sign-in, a new state")
+            assertNotEquals(client.pages.first().second, client.pages.last().second, "and a new verifier")
+        }
+    }
+
+    @Test
+    fun `a refusal from MyAnimeList is A13, and an exchange offline A13b`() {
+        val profiles = household()
+        val client = FakeClient(malAvailable = true)
+        window(profiles, client).use { scene ->
+            scene.openSync()
+            scene.click(scene.signIn(0))
+            assertTrue(redirects.deliver("cloudstreamapp://mallogin?error=access_denied&state=${client.pages.last().first}"))
+            scene.settle()
+            assertNotNull(scene.find("Couldn't sign in to MyAnimeList", text = true), "A13: no detail from the service")
+            scene.press(Key.Escape)
+            client.malAnswer = SignInResult.Offline
+            scene.click(scene.signIn(0))
+            assertTrue(redirects.deliver("cloudstreamapp://mallogin?code=c&state=${client.pages.last().first}"))
+            scene.settle()
+            assertNotNull(scene.find("You are offline", text = true), "A13b")
         }
     }
 

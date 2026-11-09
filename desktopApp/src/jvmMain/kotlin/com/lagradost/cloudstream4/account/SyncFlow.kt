@@ -7,6 +7,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import com.lagradost.cloudstream4.feature.account.desktop.BrowserSignInSheet
 import com.lagradost.cloudstream4.feature.account.desktop.PairCodeSheet
 import com.lagradost.cloudstream4.feature.account.desktop.PasswordSignInSheet
 import com.lagradost.cloudstream4.feature.account.desktop.RemoveSignInSheet
@@ -27,6 +28,9 @@ internal sealed interface SyncStep {
 
     /** A11, A11b: Simkl's code. A new [attempt] is a new code. */
     data class Pair(val attempt: Int = 0) : SyncStep
+
+    /** A10: [service] in the browser, waiting for its redirect (`KMP-95e`). */
+    data class Browser(val service: DesktopService) : SyncStep
 
     /** A16, A16b. [email] is kept after a refusal, the password never. */
     data class Password(
@@ -49,6 +53,7 @@ internal sealed interface SyncStep {
     fun back(): SyncStep? = when (this) {
         is List -> null
         is Pair -> List(DesktopService.Simkl)
+        is Browser -> List(service)
         is Password -> List(service)
         is Failed -> List(service)
         is Remove -> List(service)
@@ -75,6 +80,7 @@ internal fun SyncSheets(
     profileName: String,
     store: SignInStore,
     client: SignInClient,
+    redirects: BrowserRedirects,
     tick: suspend (Long) -> Unit = { delay(it) },
     openUrl: (String) -> Unit = ::browse,
 ) {
@@ -84,15 +90,14 @@ internal fun SyncSheets(
                 val status = when {
                     store.get(profile, service) != null -> SyncStatus.Connected
                     service == DesktopService.Simkl && !client.simklAvailable -> SyncStatus.Unavailable
+                    service == DesktopService.MyAnimeList && !client.malAvailable -> SyncStatus.Unavailable
                     else -> SyncStatus.NotConnected
                 }
                 SyncRowState(
                     id = service.name,
                     name = service.displayName,
                     status = status,
-                    onSignIn = {
-                        onStep(if (service.kind == SignInKind.Code) SyncStep.Pair() else SyncStep.Password(service))
-                    },
+                    onSignIn = { onStep(start(service)) },
                     onRemove = { onStep(SyncStep.Remove(service)) },
                 )
             }
@@ -105,14 +110,13 @@ internal fun SyncSheets(
             )
         }
         is SyncStep.Pair -> PairStep(step, onStep, profile, store, client, tick, openUrl)
+        is SyncStep.Browser -> BrowserStep(step, onStep, profile, store, client, redirects, openUrl)
         is SyncStep.Password -> PasswordStep(step, onStep, profile, store, client)
         is SyncStep.Failed -> SignInFailedSheet(
             serviceName = step.service.displayName,
             offline = step.offline,
             // A13: Try again starts the sign-in afresh.
-            onRetry = {
-                onStep(if (step.service.kind == SignInKind.Code) SyncStep.Pair() else SyncStep.Password(step.service))
-            },
+            onRetry = { onStep(start(step.service)) },
             onCancel = { onStep(step.back()) },
         )
         is SyncStep.Remove -> RemoveSignInSheet(
@@ -126,6 +130,65 @@ internal fun SyncSheets(
         )
     }
 }
+
+/** A sign-in's first step, by how its service signs in. */
+private fun start(service: DesktopService): SyncStep = when (service.kind) {
+    SignInKind.Code -> SyncStep.Pair()
+    SignInKind.Password -> SyncStep.Password(service)
+    SignInKind.Browser -> SyncStep.Browser(service)
+}
+
+/**
+ * A10 (`KMP-95e`): MyAnimeList in the browser. A fresh `state` and PKCE verifier for every sign-in, never reused; the
+ * page opens on its own, and the sheet waits for the one redirect that carries the state. Leaving the step, by Cancel,
+ * Escape or a switch, ends the wait at once, so a redirect after it is ignored.
+ */
+@Composable
+private fun BrowserStep(
+    step: SyncStep.Browser,
+    onStep: (SyncStep?) -> Unit,
+    profile: Int,
+    store: SignInStore,
+    client: SignInClient,
+    redirects: BrowserRedirects,
+    openUrl: (String) -> Unit,
+) {
+    // Made once per step: Open again opens the same page, with the same state, for the same wait.
+    val state = remember(step) { BrowserRedirects.newState() }
+    val verifier = remember(step) { BrowserRedirects.newVerifier() }
+    val page = remember(step) { client.malSignInPage(state, verifier) }
+    LaunchedEffect(step) {
+        if (page == null) return@LaunchedEffect onStep(SyncStep.Failed(step.service, offline = false))
+        val waiting = redirects.expect(MAL_PATH, state)
+        try {
+            openUrl(page)
+            val answer = waiting.await()
+            // MyAnimeList says no with an `error`, and with no code: either way nothing was signed in.
+            val code = answer["code"]
+            if (code == null || answer.containsKey("error")) return@LaunchedEffect onStep(SyncStep.Failed(step.service, offline = false))
+            val next = when (val result = client.malExchange(code, verifier)) {
+                is SignInResult.Done -> {
+                    currentCoroutineContext().ensureActive()
+                    store.put(profile, step.service, result.value)
+                    SyncStep.List(step.service)
+                }
+                SignInResult.Offline -> SyncStep.Failed(step.service, offline = true)
+                else -> SyncStep.Failed(step.service, offline = false)
+            }
+            onStep(next)
+        } finally {
+            waiting.cancel()
+        }
+    }
+    BrowserSignInSheet(
+        serviceName = step.service.displayName,
+        onOpenAgain = { page?.let(openUrl) },
+        onCancel = { onStep(step.back()) },
+    )
+}
+
+/** MyAnimeList's redirect: `cloudstreamapp://mallogin`, `MALApi.redirectUrlIdentifier`. */
+private const val MAL_PATH = "mallogin"
 
 private sealed interface PairState {
     data object Asking : PairState

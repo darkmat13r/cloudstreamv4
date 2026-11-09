@@ -36,8 +36,10 @@ import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
 import com.lagradost.cloudstream4.core.strings.generated.resources.season_short
+import com.lagradost.cloudstream4.account.BrowserRedirects
 import com.lagradost.cloudstream4.account.DesktopProfiles
 import com.lagradost.cloudstream4.account.ProfilesHost
+import com.lagradost.cloudstream4.account.installRedirectHandler
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
 import com.lagradost.cloudstream4.detail.nextEpisode
 import com.lagradost.cloudstream4.detail.requestPlay
@@ -196,6 +198,10 @@ fun main(args: Array<String>) {
     Runtime.getRuntime().addShutdownHook(Thread { runBlocking { downloads.close() } })
     // KMP-95: who is watching. Only the library is a profile's own; everything above is the Mac's.
     val profiles = DesktopProfiles(onSaveFailed = { println("profiles not saved: ${it::class.simpleName}") })
+    // KMP-95e: cloudstreamapp:// URLs from the browser. Set before the window, so macOS has a handler from the start;
+    // nothing is accepted unless a sign-in from this window is waiting, and no URL is ever printed.
+    val redirects = BrowserRedirects()
+    installRedirectHandler(redirects)
 
     application {
         val escape = remember { EscapeHandler() }
@@ -225,7 +231,7 @@ fun main(args: Array<String>) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                        ProfilesHost(profiles, escape) { library, foot ->
+                        ProfilesHost(profiles, escape, redirects = redirects) { library, foot ->
                             DesktopApp(
                                 escape,
                                 approvals = approvals,

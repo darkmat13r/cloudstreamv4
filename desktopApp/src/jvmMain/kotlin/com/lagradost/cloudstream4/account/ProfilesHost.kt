@@ -105,6 +105,7 @@ private enum class AfterCurrent { Change, Remove }
  * @param app the window, given the profile's library and the sidebar's foot.
  * @param signInClient the services' network half; a test passes a fake.
  * @param syncTick and [openUrl] are [SyncSheets]'s, for a test.
+ * @param redirects the browser's `cloudstreamapp://` redirects, which `main` hands over (`KMP-95e`).
  */
 @Composable
 internal fun ProfilesHost(
@@ -113,6 +114,7 @@ internal fun ProfilesHost(
     signInClient: SignInClient = remember { HttpSignInClient() },
     syncTick: suspend (Long) -> Unit = { kotlinx.coroutines.delay(it) },
     openUrl: ((String) -> Unit)? = null,
+    redirects: BrowserRedirects = remember { BrowserRedirects() },
     app: @Composable (library: LibraryStore, foot: @Composable () -> Unit) -> Unit,
 ) {
     var screen by remember { mutableStateOf(if (profiles.picksAtLaunch) ProfilesScreen.Picking else ProfilesScreen.App) }
@@ -209,9 +211,9 @@ internal fun ProfilesHost(
                     key(card.id) {
                         val onStep: (SyncStep?) -> Unit = { next -> sheet = next?.let { ProfilesSheet.Sync(it) } }
                         if (openUrl != null) {
-                            SyncSheets(openSheet.step, onStep, card.id, card.name, profiles.signIns, signInClient, syncTick, openUrl)
+                            SyncSheets(openSheet.step, onStep, card.id, card.name, profiles.signIns, signInClient, redirects, syncTick, openUrl)
                         } else {
-                            SyncSheets(openSheet.step, onStep, card.id, card.name, profiles.signIns, signInClient, syncTick)
+                            SyncSheets(openSheet.step, onStep, card.id, card.name, profiles.signIns, signInClient, redirects, syncTick)
                         }
                     }
                 }
