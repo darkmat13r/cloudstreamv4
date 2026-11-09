@@ -20,7 +20,8 @@ import kotlin.test.assertTrue
  * A family that fails to load falls back to the system face without an error, and every test that only reads a layout
  * keeps passing. So this measures text against the files' own advance widths, read from their `hmtx` tables: at 100 px,
  * ten `H` in Manrope Regular are 10 × 1369 / 2000 em, in Manrope ExtraBold 10 × 1468 / 2000 em, and every glyph of
- * JetBrains Mono is 600 / 1000 em. The platform's own faces measure otherwise, which the last test shows.
+ * JetBrains Mono is 600 / 1000 em, at every weight, so its weights cannot be told apart by width. The platform's own
+ * faces measure otherwise, which the last test shows.
  *
  * The line's own width, not the paragraph's: a paragraph rounds its width up to a whole pixel.
  */
@@ -41,10 +42,22 @@ class CloudStreamFontsTest {
         return measured
     }
 
+    /**
+     * Each weight reaches its own file: `H` is 1369, 1394, 1419, 1443 and 1468 units of 2000 from Regular to ExtraBold, so
+     * a weight mapped to its neighbour's file is 12 px or more off.
+     */
     @Test
     fun manropeDrawsTheWordsAtItsOwnWidths() {
-        assertEquals(684.5f, width(TEN_H, { it.body }), ROUNDING)
-        assertEquals(734.0f, width(TEN_H, { it.body.copy(fontWeight = FontWeight.ExtraBold) }), ROUNDING)
+        val expected = mapOf(
+            FontWeight.Normal to 684.5f,
+            FontWeight.Medium to 697.0f,
+            FontWeight.SemiBold to 709.5f,
+            FontWeight.Bold to 721.5f,
+            FontWeight.ExtraBold to 734.0f,
+        )
+        for ((weight, px) in expected) {
+            assertEquals(px, width(TEN_H, { it.body.copy(fontWeight = weight) }), ROUNDING, "Manrope at $weight")
+        }
     }
 
     @Test
