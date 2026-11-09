@@ -198,6 +198,7 @@
 <string name="cartoons_singular">"كرتون"</string>
 <string name="cast">"طاقم العمل"</string>
 <string name="cast_format" formatted="true">"طاقم العمل: %s"</string>
+<string name="cast_voiced_by" formatted="true">"بصوت %s"</string>
 <string name="category_account">"الحسابات والأمن"</string>
 <string name="category_general">"عام"</string>
 <string name="category_player">"المُشغل"</string>

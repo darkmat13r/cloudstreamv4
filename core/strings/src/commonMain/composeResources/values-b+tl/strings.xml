@@ -130,6 +130,7 @@
 <string name="cartoons">Cartoons</string>
 <string name="cast">I-Cast</string>
 <string name="cast_format">I-Cast: %s</string>
+<string name="cast_voiced_by">Boses ni %s</string>
 <string name="category_general">Pangkalahatan</string>
 <string name="check_for_update">Tingnan kung may bagong update</string>
 <string name="chromecast_subtitles_settings">Mga Subtitle ng Chromecast</string>

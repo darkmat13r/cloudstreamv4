@@ -199,6 +199,7 @@
 <string name="cartoons_singular">"Tecknade serier"</string>
 <string name="cast">"Skådespelare"</string>
 <string name="cast_format" formatted="true">"Skådespelare: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Röst: %s"</string>
 <string name="category_account">"Konton och säkerhet"</string>
 <string name="category_general">"Allmänna Inställningar"</string>
 <string name="category_player">"Videospelare"</string>

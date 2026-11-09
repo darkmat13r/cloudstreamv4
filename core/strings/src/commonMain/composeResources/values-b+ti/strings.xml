@@ -86,6 +86,7 @@
 <string name="app_dub_sub_episode_text_format">%1$s ክፋል %2$d</string>
 <string name="cast">ተዋሳእቲ</string>
 <string name="cast_format">ተዋሳእቲ፡ %s</string>
+<string name="cast_voiced_by">ድምጺ: %s</string>
 <string name="desktop_menu_go">ኪድ</string>
 <plurals name="home_source_sections"><item quantity="one">%d ክፋል</item><item quantity="other">%d ክፋላት</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d መጠንቀቕታ ምርመራ</item><item quantity="other">%d መጠንቀቕታታት ምርመራ</item></plurals>

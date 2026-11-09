@@ -201,6 +201,7 @@
 <string name="cartoons_singular">رسوم مُتَحَرِكة</string>
 <string name="cast">ممثلين</string>
 <string name="cast_format">ممثلين: %s</string>
+<string name="cast_voiced_by">بصوت %s</string>
 <string name="category_account">الحسابات وال أمان</string>
 <string name="category_general">عام</string>
 <string name="category_player">مشغل الڤيديو</string>

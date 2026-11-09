@@ -117,6 +117,7 @@
 <string name="cartoons">"കാർട്ടൂൺസ്"</string>
 <string name="cast">"കാസ്റ്റ്"</string>
 <string name="cast_format" formatted="true">"കാസ്റ്റ്:%s"</string>
+<string name="cast_voiced_by" formatted="true">"ശബ്ദം: %s"</string>
 <string name="category_updates">"അപ്ഡേറ്റുകളും ഒപ്പം ബാക്കപ്പും"</string>
 <string name="check_for_update">"അപ്ഡേറ്റിനായി തിരയുക"</string>
 <string name="chromecast_subtitles_settings">"ക്രോംകാസ്റ്റ് സബ്ടൈട്ടിൽസ്"</string>

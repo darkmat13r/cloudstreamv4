@@ -120,6 +120,7 @@
 <string name="cartoons_singular">"Filmukas"</string>
 <string name="cast">"Aktoriai"</string>
 <string name="cast_format" formatted="true">"Skleisti: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Įgarsino %s"</string>
 <string name="category_account">"Paskyros"</string>
 <string name="chromecast_subtitles_settings">"Chromecast subtitrai"</string>
 <string name="chromecast_subtitles_settings_des">"Chromecast subtitrų nustatymai"</string>

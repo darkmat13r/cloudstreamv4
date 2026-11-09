@@ -202,6 +202,7 @@
 <string name="cartoons_singular">Dessin animé</string>
 <string name="cast">Distribution</string>
 <string name="cast_format">Distribution : %s</string>
+<string name="cast_voiced_by">Voix de %s</string>
 <string name="category_account">Comptes et Sécurité</string>
 <string name="category_general">Général</string>
 <string name="category_player">Lecteur</string>

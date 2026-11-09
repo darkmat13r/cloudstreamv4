@@ -108,6 +108,7 @@
 <string name="browser">"Browser"</string>
 <string name="cast">"Tauhan"</string>
 <string name="cast_format" formatted="true">"Tauhan: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Boses ni %s"</string>
 <string name="confirm_before_exiting_desc">"Ipakita ang dialog bago lumabas sa app"</string>
 <string name="confirm_before_exiting_title">"Kumpirmahin bago lumabas"</string>
 <string name="deselect_all">"Alisin sa pagkakapili ang Lahat"</string>

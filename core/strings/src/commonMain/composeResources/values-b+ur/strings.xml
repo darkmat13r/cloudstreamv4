@@ -186,6 +186,7 @@
 <string name="cartoons_singular">کارٹون</string>
 <string name="cast">کاسٹ</string>
 <string name="cast_format">کاسٹ: %s</string>
+<string name="cast_voiced_by">آواز: %s</string>
 <string name="category_account">اکاؤنٹس اور سیکیورٹی</string>
 <string name="category_general">عمومی</string>
 <string name="category_player">پلیئر</string>

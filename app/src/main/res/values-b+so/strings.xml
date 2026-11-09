@@ -160,6 +160,7 @@
 <string name="cartoons_singular">"Kartoob"</string>
 <string name="cast">"Metalaya"</string>
 <string name="cast_format" formatted="true">"Metalaya: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Codka: %s"</string>
 <string name="category_account">"Akoonada iyo Amniga"</string>
 <string name="category_general">"Guud"</string>
 <string name="category_player">"Daaraha"</string>

@@ -198,6 +198,7 @@
 <string name="cartoons_singular">"Crtić"</string>
 <string name="cast">"Glumačka postava"</string>
 <string name="cast_format" formatted="true">"Glumačka postava: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Glas: %s"</string>
 <string name="category_account">"Računi i sigurnost"</string>
 <string name="category_general">"Općenito"</string>
 <string name="category_player">"Player"</string>

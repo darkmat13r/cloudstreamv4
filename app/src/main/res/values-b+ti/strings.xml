@@ -88,6 +88,7 @@
 <string name="app_dub_sub_episode_text_format" formatted="true">"%1$s ክፋል %2$d"</string>
 <string name="cast">"ተዋሳእቲ"</string>
 <string name="cast_format" formatted="true">"ተዋሳእቲ፡ %s"</string>
+<string name="cast_voiced_by" formatted="true">"ድምጺ: %s"</string>
 <string name="desktop_menu_go">"ኪድ"</string>
 <string name="detail_load_failed_body">"ምንጪ ኣይርከብ ይኸውን።"</string>
 <string name="detail_load_failed_headline">"እዚ ኣርእስቲ ክኽፈት ኣይከኣለን"</string>

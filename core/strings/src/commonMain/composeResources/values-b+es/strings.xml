@@ -202,6 +202,7 @@
 <string name="cartoons_singular">Dibujo animado</string>
 <string name="cast">Reparto</string>
 <string name="cast_format">Reparto: %s</string>
+<string name="cast_voiced_by">Voz de %s</string>
 <string name="category_account">Cuentas y seguridad</string>
 <string name="category_general">General</string>
 <string name="category_player">Reproductor</string>

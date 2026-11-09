@@ -202,6 +202,7 @@
 <string name="cartoons_singular">Kartun</string>
 <string name="cast">Pemeran</string>
 <string name="cast_format">Pemeran: %s</string>
+<string name="cast_voiced_by">Disuarakan oleh %s</string>
 <string name="category_account">Akun dan Keamanan</string>
 <string name="category_general">Umum</string>
 <string name="category_player">Pemutar</string>

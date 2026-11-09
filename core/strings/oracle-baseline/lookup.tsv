@@ -237,6 +237,7 @@ values-b+af	string	cartoons	-	Cartoons
 values-b+af	string	cartoons_singular	-	Cartoon
 values-b+af	string	cast	-	Rolverdeling
 values-b+af	string	cast_format	-	Rolverdeling: %s
+values-b+af	string	cast_voiced_by	-	Stem deur %s
 values-b+af	string	category_account	-	Accounts and Security
 values-b+af	string	category_general	-	General
 values-b+af	string	category_player	-	Player
@@ -1470,6 +1471,7 @@ values-b+am	string	cartoons	-	Cartoons
 values-b+am	string	cartoons_singular	-	Cartoon
 values-b+am	string	cast	-	ተዋናዮች
 values-b+am	string	cast_format	-	ተዋናዮች: %s
+values-b+am	string	cast_voiced_by	-	ድምፅ በ%s
 values-b+am	string	category_account	-	Accounts and Security
 values-b+am	string	category_general	-	General
 values-b+am	string	category_player	-	Player
@@ -2703,6 +2705,7 @@ values-b+apc	string	cartoons	-	رسوم مُتَحَرِكة
 values-b+apc	string	cartoons_singular	-	رسوم مُتَحَرِكة
 values-b+apc	string	cast	-	ممثلين
 values-b+apc	string	cast_format	-	ممثلين: %s
+values-b+apc	string	cast_voiced_by	-	بصوت %s
 values-b+apc	string	category_account	-	الحسابات وال أمان
 values-b+apc	string	category_general	-	عام
 values-b+apc	string	category_player	-	مشغل الڤيديو
@@ -4028,6 +4031,7 @@ values-b+ar	string	cartoons	-	رسوم متحركة
 values-b+ar	string	cartoons_singular	-	كرتون
 values-b+ar	string	cast	-	طاقم العمل
 values-b+ar	string	cast_format	-	طاقم العمل: %s
+values-b+ar	string	cast_voiced_by	-	بصوت %s
 values-b+ar	string	category_account	-	الحسابات والأمن
 values-b+ar	string	category_general	-	عام
 values-b+ar	string	category_player	-	المُشغل
@@ -5345,6 +5349,7 @@ values-b+ars	string	cartoons	-	الرسوم المتحركة
 values-b+ars	string	cartoons_singular	-	فلم كرتون
 values-b+ars	string	cast	-	طاقم العمل
 values-b+ars	string	cast_format	-	بث%s
+values-b+ars	string	cast_voiced_by	-	بصوت %s
 values-b+ars	string	category_account	-	حسابات
 values-b+ars	string	category_general	-	General
 values-b+ars	string	category_player	-	Player
@@ -6578,6 +6583,7 @@ values-b+as	string	cartoons	-	কাৰ্টুন
 values-b+as	string	cartoons_singular	-	কাৰ্টুন
 values-b+as	string	cast	-	Cast
 values-b+as	string	cast_format	-	Cast: %s
+values-b+as	string	cast_voiced_by	-	%sৰ কণ্ঠত
 values-b+as	string	category_account	-	একাউণ্ট আৰু সুৰক্ষা
 values-b+as	string	category_general	-	সাধাৰণ
 values-b+as	string	category_player	-	প্লেয়াৰ
@@ -7811,6 +7817,7 @@ values-b+az	string	cartoons	-	Cizgi filmləri
 values-b+az	string	cartoons_singular	-	Cizgi filmi
 values-b+az	string	cast	-	Oyunçu heyəti
 values-b+az	string	cast_format	-	Oyunçu heyəti: %s
+values-b+az	string	cast_voiced_by	-	Səsləndirən: %s
 values-b+az	string	category_account	-	Hesablar və Təhlükəsizlik
 values-b+az	string	category_general	-	General
 values-b+az	string	category_player	-	Player
@@ -9090,6 +9097,7 @@ values-b+be	string	cartoons	-	Мультфільмы
 values-b+be	string	cartoons_singular	-	Мультфільм
 values-b+be	string	cast	-	Склад
 values-b+be	string	cast_format	-	Склад: %s
+values-b+be	string	cast_voiced_by	-	Агучвае %s
 values-b+be	string	category_account	-	Уліковыя запісы і бяспека
 values-b+be	string	category_general	-	Агульныя
 values-b+be	string	category_player	-	Прайгравальнік
@@ -10323,6 +10331,7 @@ values-b+bg	string	cartoons	-	Анимационни филми
 values-b+bg	string	cartoons_singular	-	Анимационен филм
 values-b+bg	string	cast	-	Актьори
 values-b+bg	string	cast_format	-	Актьори: %s
+values-b+bg	string	cast_voiced_by	-	Озвучава %s
 values-b+bg	string	category_account	-	Акаунти и сигурност
 values-b+bg	string	category_general	-	Общ
 values-b+bg	string	category_player	-	Плеър
@@ -11556,6 +11565,7 @@ values-b+bn	string	cartoons	-	কার্টুন
 values-b+bn	string	cartoons_singular	-	কার্টুন
 values-b+bn	string	cast	-	অভিনয়ে
 values-b+bn	string	cast_format	-	অভিনয়ে: %s
+values-b+bn	string	cast_voiced_by	-	কণ্ঠ দিয়েছেন %s
 values-b+bn	string	category_account	-	অ্যাকাউন্টসমূহ এবং নিরাপত্তা
 values-b+bn	string	category_general	-	সাধারণ
 values-b+bn	string	category_player	-	Player
@@ -12810,6 +12820,7 @@ values-b+ca	string	cartoons	-	Cartoons
 values-b+ca	string	cartoons_singular	-	Cartoon
 values-b+ca	string	cast	-	Repartiment
 values-b+ca	string	cast_format	-	Repartiment:%s
+values-b+ca	string	cast_voiced_by	-	Veu de %s
 values-b+ca	string	category_account	-	Accounts and Security
 values-b+ca	string	category_general	-	General
 values-b+ca	string	category_player	-	Reproductor
@@ -14043,6 +14054,7 @@ values-b+ckb	string	cartoons	-	Cartoons
 values-b+ckb	string	cartoons_singular	-	Cartoon
 values-b+ckb	string	cast	-	تیم
 values-b+ckb	string	cast_format	-	تیم:%s
+values-b+ckb	string	cast_voiced_by	-	دەنگی %s
 values-b+ckb	string	category_account	-	Accounts and Security
 values-b+ckb	string	category_general	-	General
 values-b+ckb	string	category_player	-	Player
@@ -15324,6 +15336,7 @@ values-b+cs	string	cartoons	-	Animované
 values-b+cs	string	cartoons_singular	-	Animovaný
 values-b+cs	string	cast	-	Hrají
 values-b+cs	string	cast_format	-	Hrají: %s
+values-b+cs	string	cast_voiced_by	-	Hlas: %s
 values-b+cs	string	category_account	-	Účty a zabezpečení
 values-b+cs	string	category_general	-	Obecné
 values-b+cs	string	category_player	-	Přehrávač
@@ -16557,6 +16570,7 @@ values-b+de	string	cartoons	-	Trickfilme
 values-b+de	string	cartoons_singular	-	Trickfilm
 values-b+de	string	cast	-	Besetzung
 values-b+de	string	cast_format	-	Besetzung: %s
+values-b+de	string	cast_voiced_by	-	Gesprochen von %s
 values-b+de	string	category_account	-	Konten und Sicherheit
 values-b+de	string	category_general	-	Allgemein
 values-b+de	string	category_player	-	Player
@@ -17790,6 +17804,7 @@ values-b+el	string	cartoons	-	Κινούμενα σχέδια
 values-b+el	string	cartoons_singular	-	Κινούμενα Σχέδια
 values-b+el	string	cast	-	Ηθοποιοί
 values-b+el	string	cast_format	-	Ηθοποιοί: %s
+values-b+el	string	cast_voiced_by	-	Φωνή: %s
 values-b+el	string	category_account	-	Λογαριασμοί και Ασφάλεια
 values-b+el	string	category_general	-	Γενικά
 values-b+el	string	category_player	-	Πρόγραμμα αναπαραγωγής
@@ -19023,6 +19038,7 @@ values-b+eo	string	cartoons	-	Cartoons
 values-b+eo	string	cartoons_singular	-	Cartoon
 values-b+eo	string	cast	-	Rolantaro
 values-b+eo	string	cast_format	-	Rolantaro: %s
+values-b+eo	string	cast_voiced_by	-	Voĉo de %s
 values-b+eo	string	category_account	-	Kontoj kaj Sekureco
 values-b+eo	string	category_general	-	General
 values-b+eo	string	category_player	-	Player
@@ -20280,6 +20296,7 @@ values-b+es	string	cartoons	-	Dibujos animados
 values-b+es	string	cartoons_singular	-	Dibujo animado
 values-b+es	string	cast	-	Reparto
 values-b+es	string	cast_format	-	Reparto: %s
+values-b+es	string	cast_voiced_by	-	Voz de %s
 values-b+es	string	category_account	-	Cuentas y seguridad
 values-b+es	string	category_general	-	General
 values-b+es	string	category_player	-	Reproductor
@@ -21513,6 +21530,7 @@ values-b+fa	string	cartoons	-	کارتون‌ها
 values-b+fa	string	cartoons_singular	-	کارتون
 values-b+fa	string	cast	-	بازیگران
 values-b+fa	string	cast_format	-	بازیگران: %s
+values-b+fa	string	cast_voiced_by	-	با صدای %s
 values-b+fa	string	category_account	-	حساب‌ها و امنیت
 values-b+fa	string	category_general	-	کلی
 values-b+fa	string	category_player	-	Player
@@ -22746,6 +22764,7 @@ values-b+fil	string	cartoons	-	Cartoons
 values-b+fil	string	cartoons_singular	-	Cartoon
 values-b+fil	string	cast	-	Tauhan
 values-b+fil	string	cast_format	-	Tauhan: %s
+values-b+fil	string	cast_voiced_by	-	Boses ni %s
 values-b+fil	string	category_account	-	Accounts and Security
 values-b+fil	string	category_general	-	Pangkalahatan
 values-b+fil	string	category_player	-	Player
@@ -24003,6 +24022,7 @@ values-b+fr	string	cartoons	-	Dessins animés
 values-b+fr	string	cartoons_singular	-	Dessin animé
 values-b+fr	string	cast	-	Distribution
 values-b+fr	string	cast_format	-	Distribution : %s
+values-b+fr	string	cast_voiced_by	-	Voix de %s
 values-b+fr	string	category_account	-	Comptes et Sécurité
 values-b+fr	string	category_general	-	Général
 values-b+fr	string	category_player	-	Lecteur
@@ -25236,6 +25256,7 @@ values-b+gl	string	cartoons	-	Debuxos animados
 values-b+gl	string	cartoons_singular	-	Debuxo animado
 values-b+gl	string	cast	-	Elenco
 values-b+gl	string	cast_format	-	Elenco: %s
+values-b+gl	string	cast_voiced_by	-	Voz de %s
 values-b+gl	string	category_account	-	Contas e seguridade
 values-b+gl	string	category_general	-	General
 values-b+gl	string	category_player	-	Player
@@ -26469,6 +26490,7 @@ values-b+hi	string	cartoons	-	कार्टून
 values-b+hi	string	cartoons_singular	-	हास्यचित्र
 values-b+hi	string	cast	-	Cast
 values-b+hi	string	cast_format	-	Cast: %s
+values-b+hi	string	cast_voiced_by	-	आवाज़: %s
 values-b+hi	string	category_account	-	खाते और सुरक्षा
 values-b+hi	string	category_general	-	सामान्य
 values-b+hi	string	category_player	-	Player
@@ -27725,6 +27747,7 @@ values-b+hr	string	cartoons	-	Crtići
 values-b+hr	string	cartoons_singular	-	Crtić
 values-b+hr	string	cast	-	Glumačka postava
 values-b+hr	string	cast_format	-	Glumačka postava: %s
+values-b+hr	string	cast_voiced_by	-	Glas: %s
 values-b+hr	string	category_account	-	Računi i sigurnost
 values-b+hr	string	category_general	-	Općenito
 values-b+hr	string	category_player	-	Player
@@ -28958,6 +28981,7 @@ values-b+hu	string	cartoons	-	Rajzfilmek
 values-b+hu	string	cartoons_singular	-	Rajzfilm
 values-b+hu	string	cast	-	Stáblista
 values-b+hu	string	cast_format	-	Stáblista: %s
+values-b+hu	string	cast_voiced_by	-	Hangja: %s
 values-b+hu	string	category_account	-	Fiókok és Biztonság
 values-b+hu	string	category_general	-	Általános
 values-b+hu	string	category_player	-	Lejátszó
@@ -30167,6 +30191,7 @@ values-b+in	string	cartoons	-	Kartun
 values-b+in	string	cartoons_singular	-	Kartun
 values-b+in	string	cast	-	Pemeran
 values-b+in	string	cast_format	-	Pemeran: %s
+values-b+in	string	cast_voiced_by	-	Disuarakan oleh %s
 values-b+in	string	category_account	-	Akun dan Keamanan
 values-b+in	string	category_general	-	Umum
 values-b+in	string	category_player	-	Pemutar
@@ -31424,6 +31449,7 @@ values-b+it	string	cartoons	-	Cartone
 values-b+it	string	cartoons_singular	-	Cartoni
 values-b+it	string	cast	-	Cast
 values-b+it	string	cast_format	-	Cast: %s
+values-b+it	string	cast_voiced_by	-	Voce di %s
 values-b+it	string	category_account	-	Account e sicurezza
 values-b+it	string	category_general	-	Generale
 values-b+it	string	category_player	-	Lettore
@@ -32678,6 +32704,7 @@ values-b+iw	string	cartoons	-	סדרות/סרטים מצוירים
 values-b+iw	string	cartoons_singular	-	סדרה/סרט מצויר
 values-b+iw	string	cast	-	צוות שחקנים
 values-b+iw	string	cast_format	-	צוות שחקנים: %s
+values-b+iw	string	cast_voiced_by	-	בדיבוב של %s
 values-b+iw	string	category_account	-	חשבונות ובטיחות
 values-b+iw	string	category_general	-	כללי
 values-b+iw	string	category_player	-	נגן
@@ -33887,6 +33914,7 @@ values-b+ja	string	cartoons	-	カートゥーン
 values-b+ja	string	cartoons_singular	-	カートゥーン
 values-b+ja	string	cast	-	出演者
 values-b+ja	string	cast_format	-	出演者：%s
+values-b+ja	string	cast_voiced_by	-	声優: %s
 values-b+ja	string	category_account	-	ア﻿カ﻿ウ﻿ン﻿トとセキュリティ
 values-b+ja	string	category_general	-	全般
 values-b+ja	string	category_player	-	プレーヤー
@@ -35120,6 +35148,7 @@ values-b+kn	string	cartoons	-	Cartoons
 values-b+kn	string	cartoons_singular	-	Cartoon
 values-b+kn	string	cast	-	ಕ್ಯಾಸ್ಟ್
 values-b+kn	string	cast_format	-	ಕ್ಯಾಸ್ಟ್:%s
+values-b+kn	string	cast_voiced_by	-	ಧ್ವನಿ: %s
 values-b+kn	string	category_account	-	Accounts and Security
 values-b+kn	string	category_general	-	General
 values-b+kn	string	category_player	-	Player
@@ -36330,6 +36359,7 @@ values-b+ko	string	cartoons	-	카툰
 values-b+ko	string	cartoons_singular	-	카툰
 values-b+ko	string	cast	-	출연
 values-b+ko	string	cast_format	-	출연: %s
+values-b+ko	string	cast_voiced_by	-	성우: %s
 values-b+ko	string	category_account	-	계정 및 보안
 values-b+ko	string	category_general	-	일반
 values-b+ko	string	category_player	-	플레이어
@@ -37605,6 +37635,7 @@ values-b+lt	string	cartoons	-	Cartoons
 values-b+lt	string	cartoons_singular	-	Filmukas
 values-b+lt	string	cast	-	Aktoriai
 values-b+lt	string	cast_format	-	Skleisti: %s
+values-b+lt	string	cast_voiced_by	-	Įgarsino %s
 values-b+lt	string	category_account	-	Paskyros
 values-b+lt	string	category_general	-	General
 values-b+lt	string	category_player	-	Player
@@ -38860,6 +38891,7 @@ values-b+lv	string	cartoons	-	Animācija
 values-b+lv	string	cartoons_singular	-	Animācija
 values-b+lv	string	cast	-	Lomās
 values-b+lv	string	cast_format	-	Lomās: %s
+values-b+lv	string	cast_voiced_by	-	Ierunājis %s
 values-b+lv	string	category_account	-	Konti un drošība
 values-b+lv	string	category_general	-	Vispārīgie
 values-b+lv	string	category_player	-	Atskaņotājs
@@ -40093,6 +40125,7 @@ values-b+mk	string	cartoons	-	Цртани
 values-b+mk	string	cartoons_singular	-	Цртан филм
 values-b+mk	string	cast	-	Актери
 values-b+mk	string	cast_format	-	Актери: %s
+values-b+mk	string	cast_voiced_by	-	Глас: %s
 values-b+mk	string	category_account	-	Сметки и безбедност
 values-b+mk	string	category_general	-	Општи поставки
 values-b+mk	string	category_player	-	Плеер
@@ -41326,6 +41359,7 @@ values-b+ml	string	cartoons	-	കാർട്ടൂൺസ്
 values-b+ml	string	cartoons_singular	-	Cartoon
 values-b+ml	string	cast	-	കാസ്റ്റ്
 values-b+ml	string	cast_format	-	കാസ്റ്റ്:%s
+values-b+ml	string	cast_voiced_by	-	ശബ്ദം: %s
 values-b+ml	string	category_account	-	Accounts and Security
 values-b+ml	string	category_general	-	General
 values-b+ml	string	category_player	-	Player
@@ -42538,6 +42572,7 @@ values-b+ms	string	cartoons	-	Kartun
 values-b+ms	string	cartoons_singular	-	Kartun
 values-b+ms	string	cast	-	Pelakon
 values-b+ms	string	cast_format	-	Pelakon:%s
+values-b+ms	string	cast_voiced_by	-	Disuarakan oleh %s
 values-b+ms	string	category_account	-	Akaun dan Sekuriti
 values-b+ms	string	category_general	-	Umum
 values-b+ms	string	category_player	-	Pemain
@@ -43834,6 +43869,7 @@ values-b+mt	string	cartoons	-	Cartoons
 values-b+mt	string	cartoons_singular	-	Cartoon
 values-b+mt	string	cast	-	Atturi
 values-b+mt	string	cast_format	-	Atturi: %s
+values-b+mt	string	cast_voiced_by	-	Leħen ta' %s
 values-b+mt	string	category_account	-	Accounts and Security
 values-b+mt	string	category_general	-	General
 values-b+mt	string	category_player	-	Player
@@ -45046,6 +45082,7 @@ values-b+my	string	cartoons	-	ကာတွန်းများ
 values-b+my	string	cartoons_singular	-	ကာတွန်း
 values-b+my	string	cast	-	သရုပ်ဆောင်များ
 values-b+my	string	cast_format	-	သရုပ်ဆောင်များ: %s
+values-b+my	string	cast_voiced_by	-	အသံ - %s
 values-b+my	string	category_account	-	အကောင့်များ
 values-b+my	string	category_general	-	အထွေထွေ
 values-b+my	string	category_player	-	ကြည့်ရှုမှု
@@ -46279,6 +46316,7 @@ values-b+ne	string	cartoons	-	Cartoons
 values-b+ne	string	cartoons_singular	-	Cartoon
 values-b+ne	string	cast	-	अभिनेता
 values-b+ne	string	cast_format	-	अभिनेता:%s
+values-b+ne	string	cast_voiced_by	-	आवाज: %s
 values-b+ne	string	category_account	-	Accounts and Security
 values-b+ne	string	category_general	-	General
 values-b+ne	string	category_player	-	Player
@@ -47512,6 +47550,7 @@ values-b+nl	string	cartoons	-	tekenfilms
 values-b+nl	string	cartoons_singular	-	Tekenfilm
 values-b+nl	string	cast	-	Cast
 values-b+nl	string	cast_format	-	Cast: %s
+values-b+nl	string	cast_voiced_by	-	Stem van %s
 values-b+nl	string	category_account	-	Accounts en Beveiliging
 values-b+nl	string	category_general	-	Algemeen
 values-b+nl	string	category_player	-	Player
@@ -48745,6 +48784,7 @@ values-b+nn	string	cartoons	-	Teikneseriar
 values-b+nn	string	cartoons_singular	-	Teiknefilm
 values-b+nn	string	cast	-	Rollebesetning
 values-b+nn	string	cast_format	-	Rollebesetning: %s
+values-b+nn	string	cast_voiced_by	-	Stemme: %s
 values-b+nn	string	category_account	-	Kontoar
 values-b+nn	string	category_general	-	General
 values-b+nn	string	category_player	-	Player
@@ -49978,6 +50018,7 @@ values-b+no	string	cartoons	-	Tegneserier
 values-b+no	string	cartoons_singular	-	Tegnefilm
 values-b+no	string	cast	-	Besetning
 values-b+no	string	cast_format	-	Besetning: %s
+values-b+no	string	cast_voiced_by	-	Stemme: %s
 values-b+no	string	category_account	-	Kontoer
 values-b+no	string	category_general	-	Grunnleggende
 values-b+no	string	category_player	-	Avspiller
@@ -51211,6 +51252,7 @@ values-b+or	string	cartoons	-	Cartoons
 values-b+or	string	cartoons_singular	-	Cartoon
 values-b+or	string	cast	-	ପାତ୍ର
 values-b+or	string	cast_format	-	ପାତ୍ର: %s
+values-b+or	string	cast_voiced_by	-	ସ୍ୱର: %s
 values-b+or	string	category_account	-	Accounts and Security
 values-b+or	string	category_general	-	ସାଧାରଣ
 values-b+or	string	category_player	-	ଚାଳକ
@@ -52492,6 +52534,7 @@ values-b+pl	string	cartoons	-	Kreskówki
 values-b+pl	string	cartoons_singular	-	Kreskówka
 values-b+pl	string	cast	-	Obsada
 values-b+pl	string	cast_format	-	Obsada: %s
+values-b+pl	string	cast_voiced_by	-	Głos: %s
 values-b+pl	string	category_account	-	Konta i zabezpieczenia
 values-b+pl	string	category_general	-	Ogólne
 values-b+pl	string	category_player	-	Odtwarzacz
@@ -53749,6 +53792,7 @@ values-b+pt	string	cartoons	-	Desenhos Animados
 values-b+pt	string	cartoons_singular	-	Desenho Animado
 values-b+pt	string	cast	-	Elenco
 values-b+pt	string	cast_format	-	Elenco: %s
+values-b+pt	string	cast_voiced_by	-	Voz de %s
 values-b+pt	string	category_account	-	Contas e segurança
 values-b+pt	string	category_general	-	Geral
 values-b+pt	string	category_player	-	Player
@@ -55006,6 +55050,7 @@ values-b+pt+BR	string	cartoons	-	Desenhos animados
 values-b+pt+BR	string	cartoons_singular	-	Desenho Animado
 values-b+pt+BR	string	cast	-	Elenco
 values-b+pt+BR	string	cast_format	-	Elenco: %s
+values-b+pt+BR	string	cast_voiced_by	-	Voz de %s
 values-b+pt+BR	string	category_account	-	Contas e Segurança
 values-b+pt+BR	string	category_general	-	Geral
 values-b+pt+BR	string	category_player	-	Player
@@ -56218,6 +56263,7 @@ values-b+qt	string	cartoons	-	ahoooouuhhh
 values-b+qt	string	cartoons_singular	-	uuuuggg
 values-b+qt	string	cast	-	oouaaahh
 values-b+qt	string	cast_format	-	oouaaahh %s
+values-b+qt	string	cast_voiced_by	-	ooh aahh %s
 values-b+qt	string	category_account	-	oooogggg aah aaaaaakh
 values-b+qt	string	category_general	-	a ahu uoo uoahuo uo
 values-b+qt	string	category_player	-	ahaough aaouuuuh-h
@@ -57472,6 +57518,7 @@ values-b+ro	string	cartoons	-	Desene Animate
 values-b+ro	string	cartoons_singular	-	Desen Animat
 values-b+ro	string	cast	-	Distribuție
 values-b+ro	string	cast_format	-	Distribuție: %s
+values-b+ro	string	cast_voiced_by	-	Vocea: %s
 values-b+ro	string	category_account	-	Conturi și Securitate
 values-b+ro	string	category_general	-	General
 values-b+ro	string	category_player	-	Player
@@ -58753,6 +58800,7 @@ values-b+ru	string	cartoons	-	Мультфильмы
 values-b+ru	string	cartoons_singular	-	Мультфильм
 values-b+ru	string	cast	-	В ролях
 values-b+ru	string	cast_format	-	В ролях: %s
+values-b+ru	string	cast_voiced_by	-	Озвучивает %s
 values-b+ru	string	category_account	-	Учётные записи и Безопасность
 values-b+ru	string	category_general	-	Общие
 values-b+ru	string	category_player	-	Плеер
@@ -60028,6 +60076,7 @@ values-b+sk	string	cartoons	-	Kreslené
 values-b+sk	string	cartoons_singular	-	Kreslený
 values-b+sk	string	cast	-	Hrajú
 values-b+sk	string	cast_format	-	Hrajú: %s
+values-b+sk	string	cast_voiced_by	-	Hlas: %s
 values-b+sk	string	category_account	-	Účty a Zabezpečenie
 values-b+sk	string	category_general	-	Všeobecné
 values-b+sk	string	category_player	-	Prehrávač
@@ -61261,6 +61310,7 @@ values-b+so	string	cartoons	-	Kartoon
 values-b+so	string	cartoons_singular	-	Kartoob
 values-b+so	string	cast	-	Metalaya
 values-b+so	string	cast_format	-	Metalaya: %s
+values-b+so	string	cast_voiced_by	-	Codka: %s
 values-b+so	string	category_account	-	Akoonada iyo Amniga
 values-b+so	string	category_general	-	Guud
 values-b+so	string	category_player	-	Daaraha
@@ -62494,6 +62544,7 @@ values-b+sq	string	cartoons	-	Vizatimore
 values-b+sq	string	cartoons_singular	-	Vizatimorë
 values-b+sq	string	cast	-	Kasti
 values-b+sq	string	cast_format	-	Kasti: %s
+values-b+sq	string	cast_voiced_by	-	Zëri: %s
 values-b+sq	string	category_account	-	Llogaritë dhe Siguria
 values-b+sq	string	category_general	-	Të përgjithshme
 values-b+sq	string	category_player	-	Luajtësi
@@ -63727,6 +63778,7 @@ values-b+sv	string	cartoons	-	Cartoons
 values-b+sv	string	cartoons_singular	-	Tecknade serier
 values-b+sv	string	cast	-	Skådespelare
 values-b+sv	string	cast_format	-	Skådespelare: %s
+values-b+sv	string	cast_voiced_by	-	Röst: %s
 values-b+sv	string	category_account	-	Konton och säkerhet
 values-b+sv	string	category_general	-	Allmänna Inställningar
 values-b+sv	string	category_player	-	Videospelare
@@ -64960,6 +65012,7 @@ values-b+ta	string	cartoons	-	கார்ட்டூன்கள்
 values-b+ta	string	cartoons_singular	-	கார்ட்டூன்
 values-b+ta	string	cast	-	நடிகர்கள்
 values-b+ta	string	cast_format	-	நடிகர்கள்: %s
+values-b+ta	string	cast_voiced_by	-	குரல்: %s
 values-b+ta	string	category_account	-	கணக்குகள் மற்றும் பாதுகாப்பு
 values-b+ta	string	category_general	-	பொது
 values-b+ta	string	category_player	-	ஆட்டக்காரர்
@@ -66193,6 +66246,7 @@ values-b+ti	string	cartoons	-	Cartoons
 values-b+ti	string	cartoons_singular	-	Cartoon
 values-b+ti	string	cast	-	ተዋሳእቲ
 values-b+ti	string	cast_format	-	ተዋሳእቲ፡ %s
+values-b+ti	string	cast_voiced_by	-	ድምጺ: %s
 values-b+ti	string	category_account	-	Accounts and Security
 values-b+ti	string	category_general	-	General
 values-b+ti	string	category_player	-	Player
@@ -67426,6 +67480,7 @@ values-b+tl	string	cartoons	-	Cartoons
 values-b+tl	string	cartoons_singular	-	Cartoon
 values-b+tl	string	cast	-	I-Cast
 values-b+tl	string	cast_format	-	I-Cast: %s
+values-b+tl	string	cast_voiced_by	-	Boses ni %s
 values-b+tl	string	category_account	-	Accounts and Security
 values-b+tl	string	category_general	-	Pangkalahatan
 values-b+tl	string	category_player	-	Player
@@ -68659,6 +68714,7 @@ values-b+tr	string	cartoons	-	Çizgi filmler
 values-b+tr	string	cartoons_singular	-	Çizgi film
 values-b+tr	string	cast	-	Oyuncular
 values-b+tr	string	cast_format	-	Oyuncular: %s
+values-b+tr	string	cast_voiced_by	-	Seslendiren: %s
 values-b+tr	string	category_account	-	Hesaplar ve Güvenlik
 values-b+tr	string	category_general	-	Genel
 values-b+tr	string	category_player	-	Oynatıcı
@@ -69940,6 +69996,7 @@ values-b+uk	string	cartoons	-	Мультфільми
 values-b+uk	string	cartoons_singular	-	Мультфільм
 values-b+uk	string	cast	-	У ролях
 values-b+uk	string	cast_format	-	У ролях: %s
+values-b+uk	string	cast_voiced_by	-	Озвучує %s
 values-b+uk	string	category_account	-	Облікові записи та безпека
 values-b+uk	string	category_general	-	Загальні
 values-b+uk	string	category_player	-	Програвач
@@ -71173,6 +71230,7 @@ values-b+ur	string	cartoons	-	کارٹون
 values-b+ur	string	cartoons_singular	-	کارٹون
 values-b+ur	string	cast	-	کاسٹ
 values-b+ur	string	cast_format	-	کاسٹ: %s
+values-b+ur	string	cast_voiced_by	-	آواز: %s
 values-b+ur	string	category_account	-	اکاؤنٹس اور سیکیورٹی
 values-b+ur	string	category_general	-	عمومی
 values-b+ur	string	category_player	-	پلیئر
@@ -72382,6 +72440,7 @@ values-b+vi	string	cartoons	-	Hoạt Hình
 values-b+vi	string	cartoons_singular	-	Hoạt Hình
 values-b+vi	string	cast	-	Diễn viên
 values-b+vi	string	cast_format	-	Diễn viên: %s
+values-b+vi	string	cast_voiced_by	-	Lồng tiếng: %s
 values-b+vi	string	category_account	-	Tài khoản và Bảo mật
 values-b+vi	string	category_general	-	Tổng quan
 values-b+vi	string	category_player	-	Trình phát
@@ -73591,6 +73650,7 @@ values-b+zh	string	cartoons	-	卡通
 values-b+zh	string	cartoons_singular	-	卡通
 values-b+zh	string	cast	-	演员
 values-b+zh	string	cast_format	-	演员：%s
+values-b+zh	string	cast_voiced_by	-	配音：%s
 values-b+zh	string	category_account	-	账户和安全
 values-b+zh	string	category_general	-	通用
 values-b+zh	string	category_player	-	播放器
@@ -74801,6 +74861,7 @@ values-b+zh+TW	string	cartoons	-	卡通
 values-b+zh+TW	string	cartoons_singular	-	卡通
 values-b+zh+TW	string	cast	-	演員
 values-b+zh+TW	string	cast_format	-	演員：%s
+values-b+zh+TW	string	cast_voiced_by	-	配音：%s
 values-b+zh+TW	string	category_account	-	帳戶和安全
 values-b+zh+TW	string	category_general	-	通用
 values-b+zh+TW	string	category_player	-	播放器
@@ -76034,6 +76095,7 @@ en	string	cartoons	-	Cartoons
 en	string	cartoons_singular	-	Cartoon
 en	string	cast	-	Cast
 en	string	cast_format	-	Cast: %s
+en	string	cast_voiced_by	-	Voiced by %s
 en	string	category_account	-	Accounts and Security
 en	string	category_general	-	General
 en	string	category_player	-	Player
@@ -77267,6 +77329,7 @@ en-US	string	cartoons	-	Cartoons
 en-US	string	cartoons_singular	-	Cartoon
 en-US	string	cast	-	Cast
 en-US	string	cast_format	-	Cast: %s
+en-US	string	cast_voiced_by	-	Voiced by %s
 en-US	string	category_account	-	Accounts and Security
 en-US	string	category_general	-	General
 en-US	string	category_player	-	Player
@@ -78500,6 +78563,7 @@ en-GB	string	cartoons	-	Cartoons
 en-GB	string	cartoons_singular	-	Cartoon
 en-GB	string	cast	-	Cast
 en-GB	string	cast_format	-	Cast: %s
+en-GB	string	cast_voiced_by	-	Voiced by %s
 en-GB	string	category_account	-	Accounts and Security
 en-GB	string	category_general	-	General
 en-GB	string	category_player	-	Player
@@ -79757,6 +79821,7 @@ pt	string	cartoons	-	Desenhos Animados
 pt	string	cartoons_singular	-	Desenho Animado
 pt	string	cast	-	Elenco
 pt	string	cast_format	-	Elenco: %s
+pt	string	cast_voiced_by	-	Voz de %s
 pt	string	category_account	-	Contas e segurança
 pt	string	category_general	-	Geral
 pt	string	category_player	-	Player
@@ -81014,6 +81079,7 @@ pt-PT	string	cartoons	-	Desenhos Animados
 pt-PT	string	cartoons_singular	-	Desenho Animado
 pt-PT	string	cast	-	Elenco
 pt-PT	string	cast_format	-	Elenco: %s
+pt-PT	string	cast_voiced_by	-	Voz de %s
 pt-PT	string	category_account	-	Contas e segurança
 pt-PT	string	category_general	-	Geral
 pt-PT	string	category_player	-	Player
@@ -82271,6 +82337,7 @@ pt-BR	string	cartoons	-	Desenhos animados
 pt-BR	string	cartoons_singular	-	Desenho Animado
 pt-BR	string	cast	-	Elenco
 pt-BR	string	cast_format	-	Elenco: %s
+pt-BR	string	cast_voiced_by	-	Voz de %s
 pt-BR	string	category_account	-	Contas e Segurança
 pt-BR	string	category_general	-	Geral
 pt-BR	string	category_player	-	Player
@@ -83504,6 +83571,7 @@ fil	string	cartoons	-	Cartoons
 fil	string	cartoons_singular	-	Cartoon
 fil	string	cast	-	Tauhan
 fil	string	cast_format	-	Tauhan: %s
+fil	string	cast_voiced_by	-	Boses ni %s
 fil	string	category_account	-	Accounts and Security
 fil	string	category_general	-	Pangkalahatan
 fil	string	category_player	-	Player
@@ -84737,6 +84805,7 @@ tl	string	cartoons	-	Cartoons
 tl	string	cartoons_singular	-	Cartoon
 tl	string	cast	-	I-Cast
 tl	string	cast_format	-	I-Cast: %s
+tl	string	cast_voiced_by	-	Boses ni %s
 tl	string	category_account	-	Accounts and Security
 tl	string	category_general	-	Pangkalahatan
 tl	string	category_player	-	Player
@@ -85970,6 +86039,7 @@ fil-PH	string	cartoons	-	Cartoons
 fil-PH	string	cartoons_singular	-	Cartoon
 fil-PH	string	cast	-	Tauhan
 fil-PH	string	cast_format	-	Tauhan: %s
+fil-PH	string	cast_voiced_by	-	Boses ni %s
 fil-PH	string	category_account	-	Accounts and Security
 fil-PH	string	category_general	-	Pangkalahatan
 fil-PH	string	category_player	-	Player
@@ -87179,6 +87249,7 @@ zh	string	cartoons	-	卡通
 zh	string	cartoons_singular	-	卡通
 zh	string	cast	-	演员
 zh	string	cast_format	-	演员：%s
+zh	string	cast_voiced_by	-	配音：%s
 zh	string	category_account	-	账户和安全
 zh	string	category_general	-	通用
 zh	string	category_player	-	播放器
@@ -88388,6 +88459,7 @@ zh-CN	string	cartoons	-	卡通
 zh-CN	string	cartoons_singular	-	卡通
 zh-CN	string	cast	-	演员
 zh-CN	string	cast_format	-	演员：%s
+zh-CN	string	cast_voiced_by	-	配音：%s
 zh-CN	string	category_account	-	账户和安全
 zh-CN	string	category_general	-	通用
 zh-CN	string	category_player	-	播放器
@@ -89597,6 +89669,7 @@ zh-Hans-CN	string	cartoons	-	卡通
 zh-Hans-CN	string	cartoons_singular	-	卡通
 zh-Hans-CN	string	cast	-	演员
 zh-Hans-CN	string	cast_format	-	演员：%s
+zh-Hans-CN	string	cast_voiced_by	-	配音：%s
 zh-Hans-CN	string	category_account	-	账户和安全
 zh-Hans-CN	string	category_general	-	通用
 zh-Hans-CN	string	category_player	-	播放器
@@ -90807,6 +90880,7 @@ zh-TW	string	cartoons	-	卡通
 zh-TW	string	cartoons_singular	-	卡通
 zh-TW	string	cast	-	演員
 zh-TW	string	cast_format	-	演員：%s
+zh-TW	string	cast_voiced_by	-	配音：%s
 zh-TW	string	category_account	-	帳戶和安全
 zh-TW	string	category_general	-	通用
 zh-TW	string	category_player	-	播放器
@@ -92017,6 +92091,7 @@ zh-Hant-TW	string	cartoons	-	卡通
 zh-Hant-TW	string	cartoons_singular	-	卡通
 zh-Hant-TW	string	cast	-	演員
 zh-Hant-TW	string	cast_format	-	演員：%s
+zh-Hant-TW	string	cast_voiced_by	-	配音：%s
 zh-Hant-TW	string	category_account	-	帳戶和安全
 zh-Hant-TW	string	category_general	-	通用
 zh-Hant-TW	string	category_player	-	播放器
@@ -93227,6 +93302,7 @@ zh-HK	string	cartoons	-	卡通
 zh-HK	string	cartoons_singular	-	卡通
 zh-HK	string	cast	-	演員
 zh-HK	string	cast_format	-	演員：%s
+zh-HK	string	cast_voiced_by	-	配音：%s
 zh-HK	string	category_account	-	帳戶和安全
 zh-HK	string	category_general	-	通用
 zh-HK	string	category_player	-	播放器
@@ -94437,6 +94513,7 @@ zh-Hant-HK	string	cartoons	-	卡通
 zh-Hant-HK	string	cartoons_singular	-	卡通
 zh-Hant-HK	string	cast	-	演員
 zh-Hant-HK	string	cast_format	-	演員：%s
+zh-Hant-HK	string	cast_voiced_by	-	配音：%s
 zh-Hant-HK	string	category_account	-	帳戶和安全
 zh-Hant-HK	string	category_general	-	通用
 zh-Hant-HK	string	category_player	-	播放器
@@ -95670,6 +95747,7 @@ no	string	cartoons	-	Tegneserier
 no	string	cartoons_singular	-	Tegnefilm
 no	string	cast	-	Besetning
 no	string	cast_format	-	Besetning: %s
+no	string	cast_voiced_by	-	Stemme: %s
 no	string	category_account	-	Kontoer
 no	string	category_general	-	Grunnleggende
 no	string	category_player	-	Avspiller
@@ -96903,6 +96981,7 @@ nb	string	cartoons	-	Cartoons
 nb	string	cartoons_singular	-	Cartoon
 nb	string	cast	-	Cast
 nb	string	cast_format	-	Cast: %s
+nb	string	cast_voiced_by	-	Voiced by %s
 nb	string	category_account	-	Accounts and Security
 nb	string	category_general	-	General
 nb	string	category_player	-	Player
@@ -98136,6 +98215,7 @@ nb-NO	string	cartoons	-	Cartoons
 nb-NO	string	cartoons_singular	-	Cartoon
 nb-NO	string	cast	-	Cast
 nb-NO	string	cast_format	-	Cast: %s
+nb-NO	string	cast_voiced_by	-	Voiced by %s
 nb-NO	string	category_account	-	Accounts and Security
 nb-NO	string	category_general	-	General
 nb-NO	string	category_player	-	Player
@@ -99390,6 +99470,7 @@ iw	string	cartoons	-	סדרות/סרטים מצוירים
 iw	string	cartoons_singular	-	סדרה/סרט מצויר
 iw	string	cast	-	צוות שחקנים
 iw	string	cast_format	-	צוות שחקנים: %s
+iw	string	cast_voiced_by	-	בדיבוב של %s
 iw	string	category_account	-	חשבונות ובטיחות
 iw	string	category_general	-	כללי
 iw	string	category_player	-	נגן
@@ -100644,6 +100725,7 @@ he	string	cartoons	-	סדרות/סרטים מצוירים
 he	string	cartoons_singular	-	סדרה/סרט מצויר
 he	string	cast	-	צוות שחקנים
 he	string	cast_format	-	צוות שחקנים: %s
+he	string	cast_voiced_by	-	בדיבוב של %s
 he	string	category_account	-	חשבונות ובטיחות
 he	string	category_general	-	כללי
 he	string	category_player	-	נגן
@@ -101898,6 +101980,7 @@ he-IL	string	cartoons	-	סדרות/סרטים מצוירים
 he-IL	string	cartoons_singular	-	סדרה/סרט מצויר
 he-IL	string	cast	-	צוות שחקנים
 he-IL	string	cast_format	-	צוות שחקנים: %s
+he-IL	string	cast_voiced_by	-	בדיבוב של %s
 he-IL	string	category_account	-	חשבונות ובטיחות
 he-IL	string	category_general	-	כללי
 he-IL	string	category_player	-	נגן
@@ -103107,6 +103190,7 @@ in	string	cartoons	-	Kartun
 in	string	cartoons_singular	-	Kartun
 in	string	cast	-	Pemeran
 in	string	cast_format	-	Pemeran: %s
+in	string	cast_voiced_by	-	Disuarakan oleh %s
 in	string	category_account	-	Akun dan Keamanan
 in	string	category_general	-	Umum
 in	string	category_player	-	Pemutar
@@ -104316,6 +104400,7 @@ id	string	cartoons	-	Kartun
 id	string	cartoons_singular	-	Kartun
 id	string	cast	-	Pemeran
 id	string	cast_format	-	Pemeran: %s
+id	string	cast_voiced_by	-	Disuarakan oleh %s
 id	string	category_account	-	Akun dan Keamanan
 id	string	category_general	-	Umum
 id	string	category_player	-	Pemutar
@@ -105525,6 +105610,7 @@ id-ID	string	cartoons	-	Kartun
 id-ID	string	cartoons_singular	-	Kartun
 id-ID	string	cast	-	Pemeran
 id-ID	string	cast_format	-	Pemeran: %s
+id-ID	string	cast_voiced_by	-	Disuarakan oleh %s
 id-ID	string	category_account	-	Akun dan Keamanan
 id-ID	string	category_general	-	Umum
 id-ID	string	category_player	-	Pemutar
@@ -106758,6 +106844,7 @@ arz	string	cartoons	-	Cartoons
 arz	string	cartoons_singular	-	Cartoon
 arz	string	cast	-	Cast
 arz	string	cast_format	-	Cast: %s
+arz	string	cast_voiced_by	-	Voiced by %s
 arz	string	category_account	-	Accounts and Security
 arz	string	category_general	-	General
 arz	string	category_player	-	Player

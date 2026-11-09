@@ -199,6 +199,7 @@
 <string name="cartoons_singular">"Vizatimorë"</string>
 <string name="cast">"Kasti"</string>
 <string name="cast_format" formatted="true">"Kasti: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Zëri: %s"</string>
 <string name="category_account">"Llogaritë dhe Siguria"</string>
 <string name="category_general">"Të përgjithshme"</string>
 <string name="category_player">"Luajtësi"</string>

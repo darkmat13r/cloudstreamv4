@@ -199,6 +199,7 @@
 <string name="cartoons_singular">"Animovaný"</string>
 <string name="cast">"Hrají"</string>
 <string name="cast_format" formatted="true">"Hrají: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Hlas: %s"</string>
 <string name="category_account">"Účty a zabezpečení"</string>
 <string name="category_general">"Obecné"</string>
 <string name="category_player">"Přehrávač"</string>

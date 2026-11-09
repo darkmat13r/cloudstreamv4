@@ -202,6 +202,7 @@
 <string name="cartoons_singular">Мультфильм</string>
 <string name="cast">В ролях</string>
 <string name="cast_format">В ролях: %s</string>
+<string name="cast_voiced_by">Озвучивает %s</string>
 <string name="category_account">Учётные записи и Безопасность</string>
 <string name="category_general">Общие</string>
 <string name="category_player">Плеер</string>

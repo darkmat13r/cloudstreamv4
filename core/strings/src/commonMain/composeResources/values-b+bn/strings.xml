@@ -146,6 +146,7 @@
 <string name="cartoons_singular">কার্টুন</string>
 <string name="cast">অভিনয়ে</string>
 <string name="cast_format">অভিনয়ে: %s</string>
+<string name="cast_voiced_by">কণ্ঠ দিয়েছেন %s</string>
 <string name="category_account">অ্যাকাউন্টসমূহ এবং নিরাপত্তা</string>
 <string name="category_general">সাধারণ</string>
 <string name="category_provider_test">প্রদানকারী পরীক্ষা</string>

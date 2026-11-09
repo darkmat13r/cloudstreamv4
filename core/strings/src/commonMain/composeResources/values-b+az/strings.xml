@@ -108,6 +108,7 @@
 <string name="cartoons_singular">Cizgi filmi</string>
 <string name="cast">Oyunçu heyəti</string>
 <string name="cast_format">Oyunçu heyəti: %s</string>
+<string name="cast_voiced_by">Səsləndirən: %s</string>
 <string name="category_account">Hesablar və Təhlükəsizlik</string>
 <string name="category_updates">Yeniləmələr və Ehtiyat Nüsxələmə</string>
 <string name="chromecast_subtitles_settings">Chromecast Subtitrləri</string>

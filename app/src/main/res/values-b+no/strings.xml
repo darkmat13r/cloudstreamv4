@@ -161,6 +161,7 @@
 <string name="cartoons_singular">"Tegnefilm"</string>
 <string name="cast">"Besetning"</string>
 <string name="cast_format" formatted="true">"Besetning: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Stemme: %s"</string>
 <string name="category_account">"Kontoer"</string>
 <string name="category_general">"Grunnleggende"</string>
 <string name="category_player">"Avspiller"</string>

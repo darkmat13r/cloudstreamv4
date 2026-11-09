@@ -169,6 +169,7 @@
 <string name="cartoons_singular">"Kartun"</string>
 <string name="cast">"Pelakon"</string>
 <string name="cast_format" formatted="true">"Pelakon:%s"</string>
+<string name="cast_voiced_by" formatted="true">"Disuarakan oleh %s"</string>
 <string name="category_account">"Akaun dan Sekuriti"</string>
 <string name="category_general">"Umum"</string>
 <string name="category_player">"Pemain"</string>

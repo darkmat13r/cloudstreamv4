@@ -201,6 +201,7 @@
 <string name="cartoons_singular">Цртан филм</string>
 <string name="cast">Актери</string>
 <string name="cast_format">Актери: %s</string>
+<string name="cast_voiced_by">Глас: %s</string>
 <string name="category_account">Сметки и безбедност</string>
 <string name="category_general">Општи поставки</string>
 <string name="category_player">Плеер</string>

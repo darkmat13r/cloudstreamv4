@@ -199,6 +199,7 @@
 <string name="cartoons_singular">"Çizgi film"</string>
 <string name="cast">"Oyuncular"</string>
 <string name="cast_format" formatted="true">"Oyuncular: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Seslendiren: %s"</string>
 <string name="category_account">"Hesaplar ve Güvenlik"</string>
 <string name="category_general">"Genel"</string>
 <string name="category_player">"Oynatıcı"</string>

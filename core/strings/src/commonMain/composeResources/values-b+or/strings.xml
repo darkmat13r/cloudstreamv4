@@ -107,6 +107,7 @@
 <string name="backup_success">ତଥ୍ୟ ଗଚ୍ଛିତ ହୋଇଛି</string>
 <string name="cast">ପାତ୍ର</string>
 <string name="cast_format">ପାତ୍ର: %s</string>
+<string name="cast_voiced_by">ସ୍ୱର: %s</string>
 <string name="category_general">ସାଧାରଣ</string>
 <string name="category_player">ଚାଳକ</string>
 <string name="category_updates">ଅଦ୍ୟତନ ଏଵଂ ବ୍ୟାକଅପ୍</string>

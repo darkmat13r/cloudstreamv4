@@ -131,6 +131,7 @@
 <string name="cartoons_singular">Debuxo animado</string>
 <string name="cast">Elenco</string>
 <string name="cast_format">Elenco: %s</string>
+<string name="cast_voiced_by">Voz de %s</string>
 <string name="category_account">Contas e seguridade</string>
 <string name="category_updates">Actualizacións e copias de seguridade</string>
 <string name="check_for_update">Buscar actualizacións</string>

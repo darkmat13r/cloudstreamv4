@@ -187,6 +187,7 @@
 <string name="cartoons_singular">Desen Animat</string>
 <string name="cast">Distribuție</string>
 <string name="cast_format">Distribuție: %s</string>
+<string name="cast_voiced_by">Vocea: %s</string>
 <string name="category_account">Conturi și Securitate</string>
 <string name="category_general">General</string>
 <string name="category_player">Player</string>

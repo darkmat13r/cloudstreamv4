@@ -186,6 +186,7 @@
 <string name="cartoons_singular">Tekenfilm</string>
 <string name="cast">Cast</string>
 <string name="cast_format">Cast: %s</string>
+<string name="cast_voiced_by">Stem van %s</string>
 <string name="category_account">Accounts en Beveiliging</string>
 <string name="category_general">Algemeen</string>
 <string name="category_player">Player</string>

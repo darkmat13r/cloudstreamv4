@@ -191,6 +191,7 @@
 <string name="cartoons_singular">Κινούμενα Σχέδια</string>
 <string name="cast">Ηθοποιοί</string>
 <string name="cast_format">Ηθοποιοί: %s</string>
+<string name="cast_voiced_by">Φωνή: %s</string>
 <string name="category_account">Λογαριασμοί και Ασφάλεια</string>
 <string name="category_general">Γενικά</string>
 <string name="category_player">Πρόγραμμα αναπαραγωγής</string>

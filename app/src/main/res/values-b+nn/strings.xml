@@ -107,6 +107,7 @@
 <string name="cartoons_singular">"Teiknefilm"</string>
 <string name="cast">"Rollebesetning"</string>
 <string name="cast_format" formatted="true">"Rollebesetning: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Stemme: %s"</string>
 <string name="category_account">"Kontoar"</string>
 <string name="category_updates">"Oppdateringar og sikkerheitskopiering av data"</string>
 <string name="continue_watching">"Fortsett å sjå"</string>
