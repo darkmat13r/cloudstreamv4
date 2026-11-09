@@ -152,6 +152,10 @@ Python multiset that also checked order.
 `OracleBaselineTest`'s row counts to the three after-counts above. The Android
 res came out with 62 lines added and 0 removed, and `app/api/classes-jar.api` gains only the one `R` field.
 
+The review's fix changed one value in place: iw's `one` form, "לנסות שוב מקור %d" -> "לנסות שוב %d מקור", so it no longer
+reads as "source no. 1". One line changed in `decoded`, two in `emitted` (`b+iw` and its `values-b+he` copy) and four in
+`lookup`, all at the same rows. No row was added or lost, and `report.txt` is unchanged.
+
 ## Thirtieth move, 2026-11-09 — `KMP-95d`, 1 new key: sign-ins last until you quit
 
 New keys are approved in general (`I18N-09`), and the PM asked for this line (2026-11-09): until the Keychain (`KMP-95f`)

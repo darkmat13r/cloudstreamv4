@@ -31358,7 +31358,7 @@ values-b+iw	plurals	search_state_no_suggestions_body	other	יש ללחוץ על 
 values-b+iw	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 values-b+iw	plurals	search_state_partial_headline	one	%d source failed
 values-b+iw	plurals	search_state_partial_headline	other	%d sources failed
-values-b+iw	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+values-b+iw	plurals	search_state_retry_sources	one	לנסות שוב %d מקור
 values-b+iw	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
 values-b+iw	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 values-b+iw	plurals	search_tv_recent_count	one	%d SAVED
@@ -95748,7 +95748,7 @@ iw	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש ה
 iw	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 iw	plurals	search_state_partial_headline	one	%d source failed
 iw	plurals	search_state_partial_headline	other	%d sources failed
-iw	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+iw	plurals	search_state_retry_sources	one	לנסות שוב %d מקור
 iw	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
 iw	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 iw	plurals	search_tv_recent_count	one	%d SAVED
@@ -96959,7 +96959,7 @@ he	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש ה
 he	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 he	plurals	search_state_partial_headline	one	%d source failed
 he	plurals	search_state_partial_headline	other	%d sources failed
-he	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+he	plurals	search_state_retry_sources	one	לנסות שוב %d מקור
 he	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
 he	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 he	plurals	search_tv_recent_count	one	%d SAVED
@@ -98170,7 +98170,7 @@ he-IL	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש
 he-IL	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 he-IL	plurals	search_state_partial_headline	one	%d source failed
 he-IL	plurals	search_state_partial_headline	other	%d sources failed
-he-IL	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+he-IL	plurals	search_state_retry_sources	one	לנסות שוב %d מקור
 he-IL	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
 he-IL	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 he-IL	plurals	search_tv_recent_count	one	%d SAVED

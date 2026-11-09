@@ -23550,7 +23550,7 @@ values-b+iw/strings.xml	plurals	search_state_no_suggestions_action	other	STR	ח�
 values-b+iw/strings.xml	plurals	search_state_no_suggestions_body	one	STR	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.	
 values-b+iw/strings.xml	plurals	search_state_no_suggestions_body	two	STR	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.	
 values-b+iw/strings.xml	plurals	search_state_no_suggestions_body	other	STR	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.	
-values-b+iw/strings.xml	plurals	search_state_retry_sources	one	STR	לנסות שוב מקור %d	
+values-b+iw/strings.xml	plurals	search_state_retry_sources	one	STR	לנסות שוב %d מקור	
 values-b+iw/strings.xml	plurals	search_state_retry_sources	two	STR	לנסות שוב %d מקורות	
 values-b+iw/strings.xml	plurals	search_state_retry_sources	other	STR	לנסות שוב %d מקורות	
 values-b+iw/strings.xml	plurals	search_tv_suggestion_sources	one	STR	%d מקור	

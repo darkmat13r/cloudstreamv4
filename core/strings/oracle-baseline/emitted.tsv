@@ -19786,7 +19786,7 @@ values-b+he	plurals	search_state_no_suggestions_action	two	חיפוש בכל %d 
 values-b+he	plurals	search_state_no_suggestions_body	one	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.
 values-b+he	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 values-b+he	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
-values-b+he	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+values-b+he	plurals	search_state_retry_sources	one	לנסות שוב %d מקור
 values-b+he	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
 values-b+he	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 values-b+he	plurals	search_tv_suggestion_sources	one	%d מקור
@@ -27168,7 +27168,7 @@ values-b+iw	plurals	search_state_no_suggestions_action	two	חיפוש בכל %d 
 values-b+iw	plurals	search_state_no_suggestions_body	one	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.
 values-b+iw	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 values-b+iw	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
-values-b+iw	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+values-b+iw	plurals	search_state_retry_sources	one	לנסות שוב %d מקור
 values-b+iw	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
 values-b+iw	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 values-b+iw	plurals	search_tv_suggestion_sources	one	%d מקור
