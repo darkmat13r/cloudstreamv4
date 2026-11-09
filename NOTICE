@@ -149,8 +149,8 @@ JetBrains Mono — SIL Open Font License 1.1
 Subtitle and legacy UI fonts (BUG-77, DEC-02)
 ================================================================================
 
-  The fonts below replace proprietary fonts the repository used to ship, under the
-  same resource names, so no R field changes (app/api/classes-jar.api is unchanged).
+  The fonts below replace eleven faces the repository used to ship, ten of them
+  proprietary, under the same resource names, so no R.font field changes.
   Each is upstream's file byte for byte, only renamed to the resource name it
   replaces, except Google Sans, which is derived (see its entry). The licence texts are packaged
   with the app, in app/src/main/assets/licences/ (and core/ui/src/commonMain/composeResources/files/licences/ for :core:ui).
@@ -442,3 +442,73 @@ STIX Two Text — SIL Open Font License 1.1
 
     app/src/main/assets/licences/STIXTwoText-OFL.txt
       (OFL.txt) 0c8825913b60d858aacdb33c4ca6660a7d64b0d6464702efbb19313f5765861a
+
+================================================================================
+Fonts kept from before BUG-77 (BUG-87)
+================================================================================
+
+  These three were already free, so BUG-77 left them as they were. They came
+  with upstream CloudStream; where each file was taken from is not recorded. None
+  is byte-identical to any version of the same file in github.com/google/fonts'
+  history (every commit touching the path was checked by git blob hash). The
+  licence each file states in its own name table is the one below, and its text
+  is packaged in app/src/main/assets/licences/.
+
+================================================================================
+Open Sans — Apache License, Version 2.0
+================================================================================
+
+  Version:   1.10 (name table: "1.10;1ASC;OpenSans-Regular")
+  Licence:   Apache License, Version 2.0
+
+  Digitized data copyright (c) 2010-2011, Google Corporation.
+  Open Sans is a trademark of Google and may be registered in certain jurisdictions.
+
+  WHAT IS INCLUDED
+
+    open_sans.ttf
+      037236ed4bf58a85f67074c165d308260fd6be01c86d7df4e79ea16eb273f8c5
+
+    app/src/main/assets/licences/OpenSans-LICENSE.txt
+      (LICENSE.txt, github.com/google/fonts commit
+      90abd17b4f97671435798b6147b698aa9087612f, apache/opensans/, CRLF line endings)
+      3ddf9be5c28fe27dad143a5dc76eea25222ad1dd68934a047064e56ed2fa40c5
+
+================================================================================
+Poppins — SIL Open Font License 1.1
+================================================================================
+
+  Version:   4.004 (name table: "ITFO; Poppins Regular; 4.004b8")
+  Licence:   SIL Open Font License 1.1
+
+  Copyright 2020 The Poppins Project Authors (https://github.com/itfoundry/Poppins)
+
+  WHAT IS INCLUDED
+
+    poppins_regular.ttf
+      78f127277756ae464f4eb665ce214cb6315746f6f4193e95b31f18f4b3e97527
+
+    app/src/main/assets/licences/Poppins-OFL.txt
+      (OFL.txt, github.com/google/fonts commit
+      d4eb04601981780781306966afb88e876652bab4, ofl/poppins/)
+      6be04893d770899a015649c7aa3b582f871b272f8747a92b78b17c3e5c8b2573
+
+================================================================================
+Ubuntu — Ubuntu Font Licence, Version 1.0
+================================================================================
+
+  Version:   0.83 (name table: "0.83;DAMA;Ubuntu-Regular")
+  Licence:   Ubuntu Font Licence 1.0. The licence must be distributed with the font.
+
+  Copyright 2011 Canonical Ltd.
+  Ubuntu and Canonical are registered trademarks of Canonical Ltd.
+
+  WHAT IS INCLUDED
+
+    ubuntu_regular.ttf
+      bac6461feb3488e5d330e7e9434fc8e0c513aa3c1e7b57598eab1654e1055a14
+
+    app/src/main/assets/licences/Ubuntu-UFL.txt
+      (UFL.txt, github.com/google/fonts commit
+      d4eb04601981780781306966afb88e876652bab4, ufl/ubuntu/)
+      2f0015108d68627bd788d313f529c21ff4da2c2c42a5e1f3883acc83480f9002

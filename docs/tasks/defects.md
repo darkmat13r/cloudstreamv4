@@ -3303,8 +3303,10 @@ locale's text for their keys holds only `%1$s` and `%2$s`. A later translation c
 
 **Status:** fixed in this PR · the owner's call through the PM, 2026-11-09 · closes `DEC-02`
 
-The subtitle picker offered nine proprietary fonts, and Product Sans (Google's corporate typeface, 24 files, two
-byte-identical sets of 12) was also the legacy UI's font: `google_sans.xml` in `:app`'s layouts and `AppFont` in
+Eleven faces are replaced, ten of them proprietary. The subtitle picker offered nine proprietary fonts, measured from each
+file's name table (Microsoft's Comic Sans MS, Consolas, Trebuchet MS and Verdana, Monotype's Times New Roman, Bitstream's
+Futura, Hoefler's Gotham, Bigelow & Holmes's Lucida Grande, and Netflix Sans). The tenth, Product Sans (Google's corporate
+typeface, 24 files, two byte-identical sets of 12), was also the legacy UI's font: `google_sans.xml` in `:app`'s layouts and `AppFont` in
 `:core:ui`. `DEC-02` has the measurement. Each is now a free face, under the **same resource name**. No resource was
 added, removed or renamed, so `R` is unchanged: the whole `R.txt` is byte-identical between master and this branch (28
 font entries). An id a user saved before the change is the same id after it.
@@ -3323,7 +3325,8 @@ font entries). An id a user saved before the change is the same id after it.
 | `consola` | Consolas | JetBrains Mono 2.304 Regular (`KMP-97`'s file, the same SHA-256) | OFL |
 | `stix_general` | STIXGeneral 1.1 (STIX licence) | STIX Two Text 2.13 | OFL |
 
-`open_sans`, `poppins_regular` and `ubuntu_regular` were already free and are unchanged. Every file but Google Sans is
+The eleventh, STIXGeneral 1.1, was free under the STIX Font License, not OFL. `open_sans`, `poppins_regular` and
+`ubuntu_regular` were already free and are unchanged; their licence texts and `NOTICE` entries are `BUG-87`. Every file but Google Sans is
 upstream's, byte for byte, from a pinned tag or commit. `NOTICE` records each source, version and SHA-256. The licence
 texts are packaged in `app/src/main/assets/licences/`, and Google Sans's also in `:core:ui`'s `files/licences/`.
 
@@ -3374,3 +3377,36 @@ screenshot references renders through it: the TV screens use `:core:theme`'s typ
   `DownloadSeriesTvNavigationTest.deleteAllGoesThroughTheRealDialogAndThePageClosesWhenNothingIsLeft`, timing out on
   "No downloads yet". That is `BUG-80`, a known flake on master (1 in 7 on train 13) on a screen this change does not
   reach. Run alone 3 times on this branch, it failed once more and passed twice.
+
+## BUG-87 — Three kept fonts shipped without their licence texts · **medium, licensing** · follows `BUG-77`
+
+**Status:** fixed in this PR · raised in `BUG-77`'s review, 2026-11-10
+
+`BUG-77` packaged a licence text and a `NOTICE` entry for every face it replaced, and left `open_sans`,
+`poppins_regular` and `ubuntu_regular` alone because they were already free. They still shipped with no licence text
+and no attribution, as before `BUG-77`. Closing `DEC-02` must not read as covering them. Two of the three require it:
+Apache 2.0 asks for a copy of the licence with any redistribution, and the Ubuntu Font Licence must be distributed with
+the font.
+
+**Fix:** each licence text in `app/src/main/assets/licences/` (`OpenSans-LICENSE.txt`, `Poppins-OFL.txt`,
+`Ubuntu-UFL.txt`), and a `NOTICE` entry for each with its version, copyright and trademark lines from the file's own
+name table, and the SHA-256 of the font and of its licence text. The fonts are unchanged.
+
+**Where they came from is not recorded.** They arrived with upstream CloudStream. None is byte-identical to any version
+of the same file in google/fonts' history: every commit that touched `apache/opensans/OpenSans-Regular.ttf`,
+`ofl/poppins/Poppins-Regular.ttf` and `ufl/ubuntu/Ubuntu-Regular.ttf` was checked by git blob hash. So `NOTICE` names
+the licence the file states, and pins where the licence *text* came from: google/fonts `90abd17b` (`apache/opensans/`,
+the commit with Open Sans 1.10) and `d4eb0460` (`ofl/poppins/`, `ufl/ubuntu/`, the commit `BUG-77` used). The Apache
+text keeps its upstream CRLF line endings, so its bytes match the hash.
+
+**One count everywhere.** `BUG-77`'s prose disagreed with itself: `DEC-02` said "eight other proprietary fonts",
+`BUG-77` "nine", and its commit message "nine others" over a list of ten. Measured from each replaced file's name table on
+master: **eleven faces were replaced, ten of them proprietary.** The ten are Product Sans and nine subtitle fonts:
+Microsoft's Comic Sans MS, Consolas, Trebuchet MS and Verdana, Monotype's Times New Roman, Bitstream's Futura, Hoefler's
+Gotham, Bigelow & Holmes's Lucida Grande, and Netflix Sans. `DEC-02`'s measurement missed Trebuchet MS. The eleventh,
+STIXGeneral 1.1, was free under the STIX Font License, not OFL. `decisions.md`, `BUG-77` above and `NOTICE`'s header now
+say this. `NOTICE`'s header also said `classes-jar.api` was unchanged, which `BUG-77`'s new string made untrue; it now
+says no `R.font` field changed.
+
+**Proof:** a script hashes every font and licence file in `:app` and `:core:ui` (54) and finds each SHA-256 in `NOTICE`.
+Before this change the three fonts' hashes were missing from it.
