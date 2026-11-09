@@ -2981,3 +2981,29 @@ title, the episode line and the SOURCE cell, and in `source` also the four sourc
 or sites, nearly all already on master: "Dune" (307), "Witcher" (105), "Vidsrc" (28), "Arcane" (26), "Severance",
 "Nine Lives", "Gogoanime", "Naruto", "Internet Archive". `BUG-70` fixes the HUD tests' share on master. The rest is
 for its own task.
+
+## BUG-78 — A stored poster address could carry userinfo, on the Mac's library and downloads · **low, security**
+
+**Status:** fixed in this PR · found in review of `KMP-99` · stacked on `KMP-99`, whose `posterOf` it changes
+
+The library's stored poster (`DesktopLibraryStore`) checked only the scheme, on reading. Downloads' `posterOf`
+(`KMP-99`) checked the scheme, spaces, control characters and length. Neither refused userinfo, so
+`https://user:secret@host/p.jpg` was written to `~/.cloudstream4` as it came and read back the same way. A poster never
+needs a credential, and userinfo is where URL parsers disagree about the host. That is why `SandboxPolicy` already
+refuses it for anything that plays.
+
+**Fix.** `hasPosterUserInfo` (`search/PosterUserInfo.kt`), read the widest way, as WHATWG's parser does for http(s):
+skip every `/` and `\` after the scheme, then take the authority up to the first `/`, `\`, `?` or `#`. Any `@` in that
+refuses the address. So `http:///user@host/` is refused, although `java.net.URI` reads it as a path. An `@` in the
+path, query or fragment (`a@2x.jpg`) is kept, and so is `%40`.
+
+- The library refuses the address on write as well as read, so it never reaches the file. On write it is the existing
+  scheme check plus userinfo; nothing else about the library's rule changes.
+- Downloads' `posterOf` already runs on the request and on reading the file; it now refuses userinfo too.
+
+**Proof,** all local (CI is off):
+- The three new tests (`DesktopDownloadsTest` twice and `DesktopLibraryStoreTest` once) fail against the old
+  `posterOf` and `isPublicHttp`. Each is an assertion failure: the credential was kept and written. Every other test
+  in both classes passed in that run (49 tests, 3 failed).
+- With the fix, `:desktopApp:jvmTest` passed 543 of 543, and `:feature:settings:jvmTest` 17 of 17.
+- The four gates each exited 0, and `check-test-results.py` read 242 files with 0 failures.

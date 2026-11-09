@@ -21,6 +21,7 @@ import com.lagradost.cloudstream4.media.model.DownloadFailure
 import com.lagradost.cloudstream4.media.model.DownloadProgress
 import com.lagradost.cloudstream4.media.model.DownloadState
 import com.lagradost.cloudstream4.media.model.QueuePosition
+import com.lagradost.cloudstream4.search.hasPosterUserInfo
 import com.lagradost.cloudstream4.search.posterHttpClient
 import io.github.vinceglb.filekit.PlatformFile
 import io.ktor.client.HttpClient
@@ -988,13 +989,15 @@ class DesktopDownloads internal constructor(
         private const val MAX_EPISODE_DATA_CHARS = 64 * 1024
 
         /**
-         * A poster address worth keeping (`KMP-99`): plain `http` or `https`, with no space or control character, and
-         * not absurdly long. The library's rule; `PosterImage` checks the host again when it loads.
+         * A poster address worth keeping (`KMP-99`): plain `http` or `https`, with no space or control character, no
+         * userinfo (`BUG-78`), and not absurdly long. The library's rule; `PosterImage` checks the host again when it
+         * loads.
          */
         internal fun posterOf(url: String?): String? = url?.takeIf { candidate ->
             candidate.length <= MAX_POSTER_CHARS &&
                 POSTER_SCHEMES.any { candidate.startsWith(it, ignoreCase = true) } &&
-                candidate.none { it.isWhitespace() || it.isISOControl() }
+                candidate.none { it.isWhitespace() || it.isISOControl() } &&
+                !hasPosterUserInfo(candidate)
         }
 
         private const val MAX_POSTER_CHARS = 2048
