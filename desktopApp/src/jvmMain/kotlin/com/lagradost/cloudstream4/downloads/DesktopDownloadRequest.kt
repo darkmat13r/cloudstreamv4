@@ -73,6 +73,8 @@ fun interface LinkResolver {
  * @param source how to ask for the links again. Written to the downloads file.
  * @param link the link to start with, when the caller already has one. Kept in memory only, never written; without
  *   one, the first run asks [source].
+ * @param posterUrl the title's poster, for the row and D4's header (`KMP-99`). Written to the downloads file, as the
+ *   library keeps its titles' posters: a picture's address, not a link to the media. Only plain http(s) is kept.
  */
 class DesktopDownloadRequest(
     val episodeId: Int,
@@ -84,6 +86,7 @@ class DesktopDownloadRequest(
     val episodeName: String?,
     val source: DownloadSourceRef,
     val link: DesktopDownloadLink? = null,
+    val posterUrl: String? = null,
 ) {
     override fun toString(): String =
         "DesktopDownloadRequest(episodeId=$episodeId, titleId=$titleId, kind=$kind, season=$season, episode=$episode)"

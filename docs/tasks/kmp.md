@@ -6926,6 +6926,33 @@ rebuilding the page as the service ticked, and D1's state was made again with no
 
 ## KMP-92 — An unstarted show's Play starts S1E1, not a special · **TV and the Mac in #265; the phone in pr #272** · the owner's ruling, 2026-11-08
 
+## KMP-99 — The Mac downloads' artwork: every row's poster, and D4's header · **in review**
+
+**Status:** in review · `:feature:downloads`, `:desktopApp` · from the design audit: `DownloadTitle` had no poster and
+neither host passed `artwork`, so every row's art and D4's header were empty in the real app.
+
+- `DownloadTitle.posterUrl`, `DownloadSeriesContents.posterUrl` and `SeriesState.posterUrl`, all defaulting to null, so
+  Android's source is unchanged. `DownloadShelf.title` takes it.
+- `DesktopDownloadRequest.posterUrl` goes into `StoredEpisode.posterUrl`. Kept once `Done`, as the title's name is:
+  it is what the row shows, not how to fetch anything. `KMP-52`'s ruling is about the media link (URL, headers,
+  referer), and the library already keeps its titles' posters the same way. A file written before the field reads
+  as null; the format stays 3.
+- Only plain `http(s)`, with no space or control character and at most 2048 characters, is kept (`posterOf`), on the
+  way in and again on reading. `PosterImage` checks the host when it loads, as for every other poster.
+- A title's poster is its newest episode's. Both hosts pass `artwork` through `PosterImage`.
+- **Not yet fed:** nothing in the app enqueues a download yet; tests are the only callers. The caller that does
+  (a Download button on the title page) passes the page's `posterUrl`.
+
+### Tests
+
+- `DesktopDownloadsTest`: a film's and a series' posters are their rows', the series' is D4's, the film's is in the
+  file once `Done`, and both read back after a restart; `posterOf` keeps http(s) and refuses `file:`,
+  `javascript:`, `data:`, scheme-relative, a space, a newline and an over-long address.
+- `DownloadShelfTest`: the row carries the poster it was given, none by default.
+- `DownloadSeriesViewModelTest`: the poster comes with the contents, and a read without one clears it.
+
+## KMP-92 — An unstarted show's Play starts S1E1, not a special · **in pr #265** · the owner's ruling, 2026-11-08
+
 Found while fixing `#244`'s review. With no resume and no title-level `playData`, `TitleDetail.primaryData` was
 `episodes.firstOrNull()`: whatever the provider listed first. A provider that lists specials first therefore made
 Play start a special, and since `#244` the page also opened on the Specials chip.

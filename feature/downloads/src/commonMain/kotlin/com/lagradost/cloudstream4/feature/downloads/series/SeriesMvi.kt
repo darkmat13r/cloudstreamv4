@@ -41,6 +41,8 @@ data class SeriesState(
     val returnTo: SeriesReturn? = null,
     /** From [DownloadSeriesContents.freeBytes]. */
     val freeBytes: Long? = null,
+    /** From [DownloadSeriesContents.posterUrl]. */
+    val posterUrl: String? = null,
 ) {
     val episodes: List<DownloadEpisode>
         get() = (status as? SeriesStatus.Showing)?.episodes.orEmpty()

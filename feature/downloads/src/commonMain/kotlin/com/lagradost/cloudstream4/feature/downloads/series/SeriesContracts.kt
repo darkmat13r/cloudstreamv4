@@ -52,6 +52,8 @@ data class DownloadSeriesContents(
     val episodes: List<DownloadEpisode>,
     /** What is left on the volume the downloads are on, or null where the host does not say. The Mac's D4 shows it. */
     val freeBytes: Long? = null,
+    /** The series' poster, for D4's header (`KMP-99`), or null where none was kept. */
+    val posterUrl: String? = null,
 )
 
 /** Where the series page gets what it shows, and where its verbs go. Android's lives in `:app`. */
