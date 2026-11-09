@@ -510,6 +510,7 @@ class DesktopDownloadsTest {
             "https://user:pass@img.example#f",
             "http:///user:pass@img.example/a.jpg",
             "http://\\user:pass@img.example/a.jpg",
+            "https://u@[2001:db8::1]/a.jpg",
         ).forEach { refused -> assertNull(DesktopDownloads.posterOf(refused), "kept: $refused") }
         listOf(
             "https://img.example/a@2x.jpg",
@@ -517,6 +518,7 @@ class DesktopDownloadsTest {
             "https://img.example/a.jpg#me@x",
             "https://img.example\\a@b.jpg",
             "https://user%40x.img.example/a.jpg",
+            "https://[2001:db8::1]/a@b.jpg",
         ).forEach { kept -> assertEquals(kept, DesktopDownloads.posterOf(kept)) }
     }
 
