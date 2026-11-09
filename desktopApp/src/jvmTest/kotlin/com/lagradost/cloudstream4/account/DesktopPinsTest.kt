@@ -80,9 +80,25 @@ class DesktopPinsTest {
     }
 
     @Test
-    fun `at launch a pins file that cannot be read locks no profile, as a deleted one would`() {
+    fun `at launch a pins file that cannot be read locks every profile but the first, until it can be read`() {
         File(directory, DesktopPins.PINS_FILE).writeText("not json")
-        assertFalse(pins().hasPin(1))
+        val broken = pins()
+        assertTrue(broken.hasPin(1), "which profiles have a PIN is not known, so all are locked")
+        assertTrue(broken.hasPin(5))
+        assertFalse(broken.hasPin(StoredProfiles.FIRST), "the first profile always opens")
+        assertEquals(PinCheck.Unreadable, broken.check(1, "1234"))
+        assertEquals(0L, broken.waitMs(1), "nothing counted")
+        assertFalse(broken.set(1, "1234"), "nothing written over it")
+        assertEquals("not json", File(directory, DesktopPins.PINS_FILE).readText())
+        // Readable again: what the file says, and only that, is locked.
+        File(directory, DesktopPins.PINS_FILE).writeText("{\"pins\":{\"2\":\"5678\"}}")
+        assertEquals(PinCheck.Right, broken.check(1, "0000"), "1 has no PIN in the file")
+        assertFalse(broken.hasPin(1))
+        assertTrue(broken.hasPin(2))
+        assertFalse(broken.hasPin(5))
+        // A deleted file is no PINs (D1).
+        File(directory, DesktopPins.PINS_FILE).delete()
+        assertFalse(pins().hasPin(2))
         File(directory, DesktopPins.PINS_FILE).writeText("{\"pins\":{\"1\":\"12\",\"0\":\"1234\",\"x\":\"1234\",\"2\":\"5678\"}}")
         val pins = pins()
         assertFalse(pins.hasPin(1), "not four digits")

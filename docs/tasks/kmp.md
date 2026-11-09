@@ -7395,15 +7395,17 @@ No JNA is needed for any of this.
 - `pins.json` holds each profile's PIN. It is never in `profiles.json`, and never logged, shown or in anything shared.
   It is not hashed: a hash of four digits is reversed at once. It moves to the Keychain in `95f`.
 - `pin-attempts.json` holds counts and waits only.
-- At launch, a `pins.json` that cannot be read locks no profile, as a deleted one would. A PIN is a household lock
-  against someone at the window, not against someone who can read this account's files. Failing closed would lock
-  profiles behind PINs nobody can enter.
+- A deleted `pins.json` is no PINs (D1). A PIN is a household lock against someone at the window, not against someone
+  who can read this account's files.
 - **"Couldn't read" is never "no file" once running** (the reviewer of `#286`, who found the fail-open). The read has
   three outcomes: absent, read, failed. On failed (permissions, too large, not JSON, a folder in its place), a locked
   profile's check refuses without comparing or counting a wrong PIN, and it stays locked. The prompt says "Couldn't read
   the PINs on this computer, so this profile stays locked." Set, Remove, forget and the launch sweep write nothing and
   return false, so a read failure never rewrites `pins.json` with one profile's PIN alone, wiping the others'.
   `account_pin_unreadable` is a new key in all 62 locales: the strings baseline's twenty-eighth move.
+- **The same at launch** (the PM, 2026-11-09): a `pins.json` that cannot be read then leaves which profiles have a PIN
+  unknown, so every profile but the first is locked, with the same reason, until the file reads. Nobody is locked out:
+  the first profile never has a PIN. That closes "break the file, then restart".
 - An attempts record out of range reads as the strictest wait, never a free one.
 - Deleting a profile removes its PIN and count. At launch, the PINs and counts of profiles no longer listed are
   removed, over the same strict read as the libraries' sweep and never over a lenient one.
@@ -7456,15 +7458,17 @@ The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once tr
   - the first profile and what counts as a PIN;
   - kept across a restart, in owner-only files, with no PIN in the attempts file;
   - never in `profiles.json`;
-  - an unreadable `pins.json` at launch;
+  - an unreadable `pins.json` at launch: every profile but the first locked, nothing counted or written, and only the
+    file's own PINs once it reads again;
   - an unreadable one once running: a locked profile refused with the right PIN and the wrong, nothing counted, set,
     remove, forget and the sweep refused, and the file unchanged;
   - a folder in its place: unreadable, not empty, and not written over;
   - an attempts record out of range;
   - delete and the launch sweep, and none over a file that is not strictly this version's;
   - the `mm:ss` clock.
-- `PinFlowTest`, 11 cases (2 from the review: Set and Remove that cannot be written, and a `pins.json` that cannot be
-  read keeping Sam shut with the reason shown, then opening once readable) through real key and pointer events on a fake boot clock:
+- `PinFlowTest`, 12 cases (3 from the review: Set and Remove that cannot be written; a `pins.json` that cannot be
+  read keeping Sam shut with the reason shown, then opening once readable; and a launch over one, with Robin, who has
+  no PIN, locked too and Alex open) through real key and pointer events on a fake boot clock:
   - A3 and A3b, with no digit drawn;
   - the wait counting down and nothing getting past it;
   - the wait outliving Cancel and a restart;
@@ -7474,5 +7478,6 @@ The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once tr
   - Change and Remove behind the current PIN;
   - the first profile;
   - Escape back to the editor.
-- Red-checked: with a failed read taken as no file again, the three unreadable tests fail.
+- Red-checked: with a failed read taken as no file again, the three unreadable tests fail; with launch leaving
+  profiles open over a failed read, the two launch tests fail.
 - Renders: A3, A3b, A4, A6d, A7, A7b and A7c, compared with the boards by eye.

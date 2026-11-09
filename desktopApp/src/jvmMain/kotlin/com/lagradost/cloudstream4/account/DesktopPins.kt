@@ -54,13 +54,14 @@ private data class StoredAttempt(val wrong: Int, val startedAt: Long, val waitMs
  * - **Not hashed** (the PM's ruling, D1, as `d081`): a hash of a 4-digit PIN is reversed at once, so it would only look
  *   safer. The file is owner-only and written temp-then-move, as `profiles.json` is.
  * - **What a PIN guards.** It is a household lock: it keeps a profile's history from someone at the window, not from
- *   someone who can read this Mac account's files, who could delete the file as easily. So at launch a `pins` file that
- *   cannot be read leaves no profile locked, as a deleted one would; failing closed would lock profiles behind PINs
- *   nobody can enter.
- * - **"Couldn't read" is never "no file"** (the reviewer of `#286`). Once the app is running, a `pins` file that cannot be
- *   read refuses a locked profile's check without counting a wrong PIN ([PinCheck.Unreadable]), and [set], [remove],
- *   [forget] and [retainOnly] write nothing and return false. So a read failure never opens a locked profile, and never
- *   rewrites the file with only one profile's PIN, wiping the others'.
+ *   someone who can read this Mac account's files. A deleted `pins` file is no PINs (D1).
+ * - **"Couldn't read" is never "no file"** (the reviewer of `#286`). A `pins` file that cannot be read refuses a locked
+ *   profile's check without comparing or counting ([PinCheck.Unreadable]), and [set], [remove], [forget] and
+ *   [retainOnly] write nothing and return false. So a read failure never opens a locked profile, and never rewrites
+ *   the file with only one profile's PIN, wiping the others'.
+ * - **The same at launch** (the PM, 2026-11-09): when the file cannot be read then, which profiles have a PIN is not
+ *   known, so every profile but the first is locked until it can be read, and its check says why. Nobody is locked
+ *   out: the first profile never has a PIN. Otherwise "break the file, then restart" would open them all.
  * - **Attempts** are counts and waits only, never a PIN or anything taken from one, on [clock]: milliseconds from boot.
  *   The Mac's is `System.nanoTime()`, measured there to count from boot in every process, to ignore the wall clock, and
  *   not to advance in sleep, which can only lengthen a wait. A reboot is [PinLimit]'s case.
@@ -81,8 +82,19 @@ internal class DesktopPins(
     private val pinsFile = File(directory, PINS_FILE)
     private val attemptsFile = File(directory, ATTEMPTS_FILE)
     /** The profiles with a PIN. Never the PINs themselves. */
-    private val locked: MutableSet<Int> = (readPins() as? PinsRead.Read)?.pins?.keys.orEmpty().toMutableSet()
+    private val locked: MutableSet<Int> = mutableSetOf()
+
+    /**
+     * True until `pins` is read: at launch, and on after a launch that could not read it. While it is, every
+     * profile but the first is locked.
+     */
+    private var unknown = true
     private val attempts: MutableMap<Int, PinLimit.Record> = readAttempts().toMutableMap()
+
+    init {
+        // Fills [locked] and ends [unknown], unless the file cannot be read.
+        readPins()
+    }
 
     private val limit = PinLimit(
         store = object : PinLimit.Store {
@@ -96,7 +108,7 @@ internal class DesktopPins(
         clock = clock,
     )
 
-    fun hasPin(id: Int): Boolean = id in locked
+    fun hasPin(id: Int): Boolean = id != StoredProfiles.FIRST && (unknown || id in locked)
 
     /** How long [id]'s prompt must still wait, in ms; 0 when it may compare now. */
     fun waitMs(id: Int): Long = limit.waitMs(id)
@@ -170,7 +182,21 @@ internal class DesktopPins(
         PinsRead.Failed -> null
     }
 
-    private fun readPins(): PinsRead {
+    /** Reads `pins`. Any read that comes back is also what [locked] now holds, ending a launch's [unknown]. */
+    private fun readPins(): PinsRead = readPinsFile().also { read ->
+        val ids = when (read) {
+            PinsRead.Failed -> return@also
+            PinsRead.Absent -> emptySet()
+            is PinsRead.Read -> read.pins.keys
+        }
+        if (unknown) {
+            locked.clear()
+            locked += ids
+            unknown = false
+        }
+    }
+
+    private fun readPinsFile(): PinsRead {
         // Only a file known not to be there is "none": a directory that cannot be searched is not that.
         if (Files.notExists(pinsFile.toPath())) return PinsRead.Absent
         val stored = read(pinsFile) { json.decodeFromString(StoredPins.serializer(), it) } ?: return PinsRead.Failed

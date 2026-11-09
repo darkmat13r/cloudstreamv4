@@ -123,6 +123,32 @@ class PinFlowTest {
     }
 
     @Test
+    fun `after a launch that cannot read the pins file, every profile but the first is locked and says why`() {
+        household()
+        val pinsFile = File(directory, DesktopPins.PINS_FILE)
+        Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("---------"))
+        try {
+            // A restart with the file broken: Robin has no PIN, but nothing can say so.
+            val profiles = DesktopProfiles(file, libraryDirectory = directory, onSaveFailed = { throw it }, pins = DesktopPins(directory, clock = { now }))
+            window(profiles).use { scene ->
+                assertNotNull(scene.find("Sam, Locked · PIN"))
+                assertNotNull(scene.find("Robin, Locked · PIN"))
+                scene.click(scene.bounds("Robin, Locked · PIN").center)
+                scene.type("1357")
+                assertNotNull(scene.find("Couldn't read the PINs on this computer, so this profile stays locked.", text = true))
+                assertEquals(0, profiles.stored.current, "Robin did not open")
+                scene.click(scene.bounds("Cancel", text = true).center)
+                assertNotNull(scene.find("Alex, Current · No sync"), "the first profile is never locked")
+                assertFalse(profiles.pins.hasPin(0))
+            }
+            assertEquals(0L, profiles.pins.waitMs(1))
+            assertEquals(0L, profiles.pins.waitMs(2))
+        } finally {
+            Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("rw-------"))
+        }
+    }
+
+    @Test
     fun `the fifth wrong PIN starts a wait that nothing typed gets past, and it runs down on the boot clock`() {
         val profiles = household()
         window(profiles).use { scene ->
