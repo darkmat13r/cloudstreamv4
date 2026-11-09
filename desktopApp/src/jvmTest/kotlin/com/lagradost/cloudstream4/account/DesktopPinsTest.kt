@@ -125,6 +125,54 @@ class DesktopPinsTest {
     }
 
     @Test
+    fun `a set or remove that cannot be written changes nothing, in memory or on disk`() {
+        val failures = mutableListOf<Throwable>()
+        val pins = DesktopPins(directory, clock = { now }, onSaveFailed = { failures += it })
+        assertTrue(pins.set(1, "4821"))
+        val before = File(directory, DesktopPins.PINS_FILE).readText()
+        directory.setWritable(false)
+        try {
+            assertFalse(pins.set(2, "1357"))
+            assertFalse(pins.hasPin(2), "not locked when it would open after a restart")
+            assertFalse(pins.remove(1))
+            assertTrue(pins.hasPin(1), "still locked, as it will be after a restart")
+            assertEquals(PinCheck.Wrong(0L), pins.check(1, "0000"))
+        } finally {
+            directory.setWritable(true)
+        }
+        assertEquals(before, File(directory, DesktopPins.PINS_FILE).readText())
+        assertEquals(3, failures.size, "the set, the remove, and the wrong PIN's count, each reported")
+    }
+
+    @Test
+    fun `a check compares with the file, not a copy held since launch`() {
+        val pins = pins()
+        pins.set(1, "4821")
+        pins().set(1, "2468") // as another window of the app would
+        assertEquals(PinCheck.Right, pins.check(1, "2468"))
+        File(directory, DesktopPins.PINS_FILE).delete()
+        assertEquals(PinCheck.Right, pins.check(1, "0000"), "a deleted file is no PIN")
+        assertFalse(pins.hasPin(1))
+    }
+
+    @Test
+    fun `a new profile on a reused id never inherits a deleted profile's PIN or count`() {
+        val file = DesktopProfileFile(File(directory, DesktopProfileFile.FILE_NAME))
+        // A key this version does not know: the file loads, but the launch sweep removes nothing over it (#281).
+        File(directory, DesktopProfileFile.FILE_NAME).writeText(
+            """{"version":1,"current":0,"profiles":[{"id":0},{"id":1,"name":"Sam"}],"from":"a later version"}""",
+        )
+        // Left by a profile 2 whose delete was written but whose PIN was not removed.
+        pins().set(2, "1357")
+        repeat(5) { pins().check(2, "0000") }
+        val profiles = DesktopProfiles(file, libraryDirectory = directory, pins = pins())
+        assertEquals(2, profiles.add("Robin", fallback = "Profile 3"))
+        assertFalse(profiles.pins.hasPin(2), "Robin is not locked by the PIN of the profile before")
+        assertEquals(0L, profiles.pins.waitMs(2))
+        assertFalse(profiles.cards("Default").first { it.id == 2 }.locked)
+    }
+
+    @Test
     fun `a wait reads as A4 shows it, rounded up to the second`() {
         assertEquals("00:30", waitClock(30_000L))
         assertEquals("00:30", waitClock(29_001L))

@@ -44,6 +44,10 @@ private data class StoredAttempt(val wrong: Int, val startedAt: Long, val waitMs
  *   The Mac's is `System.nanoTime()`, measured there to count from boot in every process, to ignore the wall clock, and
  *   not to advance in sleep, which can only lengthen a wait. A reboot is [PinLimit]'s case.
  * - The first profile is never locked: it is the way back in when a PIN is forgotten (A6c).
+ * - **No PIN is held in memory** (the reviewer of `#286`): only which profiles have one. A check reads `pins` for that
+ *   one comparison, and a change reads, changes and writes it.
+ * - **A change that cannot be written changes nothing** (the reviewer of `#286`): [set] and [remove] return false and
+ *   the profile stays as it was, so it never looks locked now and opens after a restart, or the other way round.
  *
  * @param directory where both files live: `~/.cloudstream4` in the app, a temporary directory in a test.
  * @param onSaveFailed told the class of a failure to write either file, never its path or contents.
@@ -55,7 +59,8 @@ internal class DesktopPins(
 ) {
     private val pinsFile = File(directory, PINS_FILE)
     private val attemptsFile = File(directory, ATTEMPTS_FILE)
-    private val pins: MutableMap<Int, String> = readPins().toMutableMap()
+    /** The profiles with a PIN. Never the PINs themselves. */
+    private val locked: MutableSet<Int> = readPins().keys.toMutableSet()
     private val attempts: MutableMap<Int, PinLimit.Record> = readAttempts().toMutableMap()
 
     private val limit = PinLimit(
@@ -70,7 +75,7 @@ internal class DesktopPins(
         clock = clock,
     )
 
-    fun hasPin(id: Int): Boolean = id in pins
+    fun hasPin(id: Int): Boolean = id in locked
 
     /** How long [id]'s prompt must still wait, in ms; 0 when it may compare now. */
     fun waitMs(id: Int): Long = limit.waitMs(id)
@@ -79,7 +84,8 @@ internal class DesktopPins(
     fun check(id: Int, entry: String): PinCheck {
         val wait = limit.waitMs(id)
         if (wait > 0L) return PinCheck.Waiting(wait)
-        val pin = pins[id] ?: return PinCheck.Right
+        // Read for this comparison only. A PIN gone from the file reads as none, as a deleted file does.
+        val pin = readPins()[id] ?: return PinCheck.Right.also { locked.remove(id) }
         // Constant time: not that four digits need it, but nothing here should hint at how much of a guess was right.
         return if (MessageDigest.isEqual(pin.toByteArray(), entry.toByteArray())) {
             limit.right(id)
@@ -92,25 +98,37 @@ internal class DesktopPins(
     /** Sets [id]'s PIN to [pin], four ASCII digits. The first profile is never locked. */
     fun set(id: Int, pin: String): Boolean {
         if (id == StoredProfiles.FIRST || !isPin(pin)) return false
-        pins[id] = pin
+        if (!writePins(readPins() + (id to pin))) return false
+        locked += id
         limit.right(id)
-        return writePins()
+        return true
     }
 
+    /** Removes [id]'s PIN. False when that could not be written: the profile stays locked. */
     fun remove(id: Int): Boolean {
-        if (pins.remove(id) == null) return true
-        return writePins()
+        val stored = readPins()
+        if (id !in stored) return true.also { locked.remove(id) }
+        if (!writePins(stored - id)) return false
+        locked.remove(id)
+        return true
     }
 
-    /** [id]'s profile was deleted: its PIN and its count go with it. */
+    /**
+     * [id]'s profile is gone, or its id is about to be reused (`add`): its PIN and its count go with it. The file is
+     * written only when it holds a PIN for [id].
+     */
     fun forget(id: Int) {
-        if (pins.remove(id) != null) writePins()
+        val stored = readPins()
+        if (id in stored) writePins(stored - id)
+        locked.remove(id)
         limit.forget(id)
     }
 
     /** Drops the PIN and count of every profile not in [ids], as the launch sweep does libraries. */
     fun retainOnly(ids: Set<Int>) {
-        if (pins.keys.retainAll(ids)) writePins()
+        val stored = readPins()
+        if (!ids.containsAll(stored.keys)) writePins(stored.filterKeys { it in ids })
+        locked.retainAll(ids)
         if (attempts.keys.retainAll(ids)) writeAttempts()
     }
 
@@ -136,7 +154,7 @@ internal class DesktopPins(
         }.toMap()
     }
 
-    private fun writePins(): Boolean = write(
+    private fun writePins(pins: Map<Int, String>): Boolean = write(
         pinsFile,
         json.encodeToString(StoredPins.serializer(), StoredPins(pins.mapKeys { it.key.toString() })),
     )

@@ -7401,6 +7401,14 @@ No JNA is needed for any of this.
 - An attempts record out of range reads as the strictest wait, never a free one.
 - Deleting a profile removes its PIN and count. At launch, the PINs and counts of profiles no longer listed are
   removed, over the same strict read as the libraries' sweep and never over a lenient one.
+- **A new profile on a reused id starts with no PIN or count** (the reviewer of `#286`): `add` forgets them beside the
+  library, so a profile 2 deleted before never locks the next profile 2.
+- **No PIN is held in memory** (the reviewer's nit): only which profiles have one. A check reads `pins.json` for that
+  one comparison.
+- **A PIN change that cannot be written changes nothing** (the reviewer of `#286`): Set and Remove return to the editor
+  with the PIN row as it was and the line "Couldn't save the PIN change. Nothing was changed." So a profile never looks
+  locked and then opens after a restart, or the other way round. `account_pin_not_saved` is a new key in all 62
+  locales: the strings baseline's twenty-seventh move.
 - The first profile can never be locked.
 
 **The prompts:**
@@ -7421,8 +7429,8 @@ No JNA is needed for any of this.
 - **Changing or removing a PIN (A7c):** the PIN in use first, under the same limit.
 - Escape on a PIN step goes back to the editor.
 
-The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once train 9 was on master. There are no new
-keys.
+The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once train 9 was on master. The one new key is
+`account_pin_not_saved`, from the review.
 
 **Not here:**
 - **Touch ID (A3t):** `95f`, on a signed build.
@@ -7435,7 +7443,8 @@ keys.
 **Tests:**
 - `PinLimitTest` (`:feature:account` commonTest), 6 cases: the numbers, running down, per profile, a restart, a
   reboot, and a store that cannot write.
-- `DesktopPinsTest`, 10 cases:
+- `DesktopPinsTest`, 13 cases (3 from the review: a set or remove that cannot be written, a check against the file,
+  a reused id):
   - right, wrong and the count;
   - nothing compared during a wait;
   - the first profile and what counts as a PIN;
@@ -7445,7 +7454,7 @@ keys.
   - an attempts record out of range;
   - delete and the launch sweep, and none over a file that is not strictly this version's;
   - the `mm:ss` clock.
-- `PinFlowTest`, 9 cases through real key and pointer events on a fake boot clock:
+- `PinFlowTest`, 10 cases (1 from the review: Set and Remove that cannot be written) through real key and pointer events on a fake boot clock:
   - A3 and A3b, with no digit drawn;
   - the wait counting down and nothing getting past it;
   - the wait outliving Cancel and a restart;

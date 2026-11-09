@@ -214,7 +214,9 @@ internal class DesktopProfiles(
         if (!canAdd) return null
         val id = stored.profiles.maxOf { it.id } + 1
         if (id >= DesktopProfileFile.MAX_ID) return null
+        // A reused id starts clean: no library, PIN or wrong-PIN count of a profile deleted before (the reviewer of #286).
         clearLibrary(id)
+        pins.forget(id)
         val cleaned = DesktopProfileFile.cleanName(name).ifEmpty { DesktopProfileFile.cleanName(fallback) }
         update(stored.copy(profiles = stored.profiles + StoredProfile(id, cleaned.ifEmpty { null })))
         return id
@@ -284,10 +286,10 @@ internal class DesktopProfiles(
         }
     }
 
-    /** Sets [id]'s PIN (A7, A7b). The first profile is never locked. */
+    /** Sets [id]'s PIN (A7, A7b). The first profile is never locked. False when it could not be written: nothing changed. */
     fun setPin(id: Int, pin: String): Boolean = pins.set(id, pin).also { pinChanges++ }
 
-    /** Removes [id]'s PIN, once its current one was given (A7c). */
+    /** Removes [id]'s PIN, once its current one was given (A7c). False when it could not be written: still locked. */
     fun removePin(id: Int): Boolean = pins.remove(id).also { pinChanges++ }
 
     /** The cards the picker and the sidebar's list draw. A profile with a PIN is locked; nothing syncs until `95d`. */

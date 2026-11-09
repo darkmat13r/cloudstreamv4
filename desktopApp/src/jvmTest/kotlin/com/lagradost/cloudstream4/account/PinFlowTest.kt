@@ -210,6 +210,48 @@ class PinFlowTest {
     }
 
     @Test
+    fun `a PIN change that cannot be written changes nothing and says so, for Set and for Remove`() {
+        file.save(StoredProfiles(profiles = listOf(StoredProfile(0, "Alex"), StoredProfile(1, "Sam"), StoredProfile(2, "Robin"))))
+        val pinDirectory = File(directory, "pins").apply { mkdirs() }
+        val failures = mutableListOf<Throwable>()
+        val pins = DesktopPins(pinDirectory, clock = { now }, onSaveFailed = { failures += it })
+        val profiles = DesktopProfiles(file, libraryDirectory = directory, onSaveFailed = { throw it }, pins = pins)
+        assertTrue(profiles.setPin(1, SAM_PIN))
+        val pinsFile = File(pinDirectory, DesktopPins.PINS_FILE)
+        val written = pinsFile.readText()
+        window(profiles).use { scene ->
+            scene.click(scene.bounds("Manage profiles", text = true).center)
+            pinDirectory.setWritable(false)
+            try {
+                scene.click(scene.bounds("Robin, No sync").center)
+                scene.click(scene.bounds("Set PIN", text = true).center)
+                scene.type("1357")
+                scene.type("1357")
+                assertNotNull(scene.find("Couldn't save the PIN change. Nothing was changed.", text = true), "it says so")
+                assertNotNull(scene.find("Off · anyone can open this profile", text = true), "Robin is not locked")
+                assertFalse(profiles.pins.hasPin(2))
+                scene.save("A6-pin-not-saved")
+                scene.press(Key.Escape)
+
+                scene.click(scene.bounds("Sam, Locked · PIN").center)
+                scene.type(SAM_PIN)
+                scene.click(scene.bounds("Remove PIN", text = true).center)
+                scene.type(SAM_PIN)
+                assertNotNull(scene.find("Couldn't save the PIN change. Nothing was changed.", text = true))
+                assertNotNull(scene.find("On · asked to open it", text = true), "Sam stays locked")
+                assertTrue(profiles.pins.hasPin(1))
+            } finally {
+                pinDirectory.setWritable(true)
+            }
+        }
+        assertEquals(written, pinsFile.readText(), "the file is as it was")
+        assertTrue(failures.isNotEmpty(), "the failures were reported")
+        val restarted = DesktopPins(pinDirectory, clock = { now })
+        assertTrue(restarted.hasPin(1), "after a restart, as on screen: Sam locked")
+        assertFalse(restarted.hasPin(2), "and Robin open")
+    }
+
+    @Test
     fun `the first profile's editor says it can't be locked, and offers no PIN`() {
         val profiles = household()
         window(profiles).use { scene ->

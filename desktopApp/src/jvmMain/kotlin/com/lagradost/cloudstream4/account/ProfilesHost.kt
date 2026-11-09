@@ -21,6 +21,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_confirm
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_current
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_new
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_not_saved
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_prompt
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_set_title
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_profile_locked
@@ -55,7 +56,8 @@ private sealed interface ProfilesScreen {
 
 /** What is open over it. */
 private sealed interface ProfilesSheet {
-    data class Edit(val id: Int) : ProfilesSheet
+    /** [pinNotSaved]: a PIN change just failed to be written, and nothing changed (the reviewer of `#286`). */
+    data class Edit(val id: Int, val pinNotSaved: Boolean = false) : ProfilesSheet
     data object Add : ProfilesSheet
     data class Delete(val id: Int) : ProfilesSheet
 
@@ -208,6 +210,7 @@ internal fun ProfilesHost(
                         onCancel = { sheet = null },
                         // The first profile is never deleted (A6c): it is the way back in.
                         onDelete = if (profiles.canDelete(card.id)) ({ sheet = ProfilesSheet.Delete(card.id) }) else null,
+                        pinMessage = if (openSheet.pinNotSaved) stringResource(Res.string.account_pin_not_saved) else null,
                         pin = when {
                             card.id == StoredProfiles.FIRST -> PinRow.FirstProfile
                             card.locked -> PinRow.On(
@@ -274,10 +277,7 @@ internal fun ProfilesHost(
                         onRight = {
                             sheet = when (openSheet.then) {
                                 AfterCurrent.Change -> ProfilesSheet.SetPin(card.id)
-                                AfterCurrent.Remove -> {
-                                    profiles.removePin(card.id)
-                                    ProfilesSheet.Edit(card.id)
-                                }
+                                AfterCurrent.Remove -> ProfilesSheet.Edit(card.id, pinNotSaved = !profiles.removePin(card.id))
                             }
                         },
                         onCancel = cancelSheet,
@@ -302,10 +302,7 @@ internal fun ProfilesHost(
                             val first = openSheet.first
                             sheet = when {
                                 first == null -> ProfilesSheet.SetPin(card.id, pin)
-                                first == pin -> {
-                                    profiles.setPin(card.id, pin)
-                                    ProfilesSheet.Edit(card.id)
-                                }
+                                first == pin -> ProfilesSheet.Edit(card.id, pinNotSaved = !profiles.setPin(card.id, pin))
                                 // A7: a mismatch clears both and starts over.
                                 else -> ProfilesSheet.SetPin(card.id)
                             }
