@@ -2938,6 +2938,10 @@ reaches into Compose internals.
 - The full `:app` device suite: 173 tests, 0 failures, 1 skipped. The skip is `TvHomeRealPluginProof`, which is skipped
   unless a plugin has been pushed to the device. No test relied on animations running.
 
+**Follow-up** (after train 9): `docs/HANDOVER.md` has a device-gate trap for running `:app`'s device tests outside
+Gradle, where `animationsDisabled` doesn't apply. The reason in `scripts/device-tests.sh`'s comment on its scale reset
+is corrected, because no case turns the scale off for itself any more. The reset itself is kept.
+
 ## BUG-74 — Train 9's player panels named real sites and titles · **low, test only**
 
 **Status:** fixed in this PR · the PM's call, 2026-11-08 · the rule `BUG-70` applied to `#205`

@@ -79,8 +79,10 @@ fi
 # DELETE_FAILED_INTERNAL_ERROR on two cores.
 sleep 20
 
-# Every run starts with animations at their normal speed, whatever a case or an earlier run left: a case may turn
-# the animator scale off for itself (`BUG-41`), and no run should depend on whether it put it back.
+# Every run starts with every animation scale at 1, whatever an earlier run or a person left on the device, so the
+# modules' device tests don't depend on it. `:app`'s tests run with every scale at 0 whatever this sets
+# (`testOptions.animationsDisabled`, `BUG-72`), but a run that was killed, or one made outside Gradle, may leave a
+# scale changed behind it.
 for scale in animator_duration_scale transition_animation_scale window_animation_scale; do
     "$adb" -s $ANDROID_SERIAL shell settings put global $scale 1
 done
