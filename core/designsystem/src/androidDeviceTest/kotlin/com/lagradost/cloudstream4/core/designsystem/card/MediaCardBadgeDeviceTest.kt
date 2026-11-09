@@ -28,6 +28,7 @@ import com.lagradost.cloudstream4.core.devicetest.assertScreenshot
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Rule
 import org.junit.Test
@@ -189,6 +190,56 @@ class MediaCardBadgeDeviceTest {
         assertEquals("both badges are on the card's own top band", type.top, rating.top, TOLERANCE)
     }
 
+    /**
+     * The mirror of the case above, which is the one the review found missing: the **trailing** badge is the long
+     * one. `TV Library` 5b draws a sync status in `.tr`, and `library_sync_cached` is `CACHED` in English and
+     * `Z VYROVNÁVACEJ PAMÄTE` — 151dp — in Slovak, beside a quality badge that is two characters.
+     *
+     * Before the fix this was the same starvation `BUG-62` is about, with the edges swapped: `Row` measured the
+     * unweighted trailing badge first, it took the whole box, and the weighted leading badge was measured at zero
+     * and never drawn. The quality a card shows at a glance simply vanished in Slovak.
+     */
+    @Test
+    fun aLongTrailingBadgeStillLeavesTheLeadingOneItsWidth() {
+        show(
+            LARGE,
+            MediaCardSlots(
+                leadingBadge = { Badge(text = QUALITY_HD) },
+                trailingBadge = { Badge(text = CACHED_SK) },
+            ),
+        )
+        rule.waitForIdle()
+        rule.assertScreenshot("badge-long-trailing-keeps-leading", rule.onNodeWithTag(SHOT))
+
+        val quality = bounds(QUALITY_HD)
+        val cached = bounds(CACHED_SK)
+        val card = cardBounds()
+        assertTrue(
+            "the leading badge is still drawn: it is ${quality.width}px wide, and a trailing badge that takes the " +
+                "whole box leaves it 0",
+            quality.width > 0f,
+        )
+        assertFalse(
+            "the short leading badge keeps its own width, so it is not ellipsised",
+            rule.onNodeWithText(QUALITY_HD).layout().isLineEllipsized(FIRST_LINE),
+        )
+        assertTrue(
+            "the long trailing badge is the one that ellipsises",
+            rule.onNodeWithText(CACHED_SK).layout().isLineEllipsized(FIRST_LINE),
+        )
+        assertTrue(
+            "the trailing badge starts a gap after the leading one: quality ${quality.right}, cached ${cached.left}",
+            quality.right + BADGE_GAP.px() <= cached.left + TOLERANCE,
+        )
+        assertEquals(
+            "the trailing badge is still flush with the card's trailing inset",
+            card.right - (MediaCardDefaults.ContentPadding + BadgeDefaults.HorizontalPadding).px(),
+            cached.right,
+            ROUNDING,
+        )
+        assertEquals("both badges are on the card's own top band", quality.top, cached.top, TOLERANCE)
+    }
+
     private companion object {
         const val SHOT = "shot"
         const val CARD = "card"
@@ -224,5 +275,14 @@ class MediaCardBadgeDeviceTest {
 
         /** What `TV Library` 5b puts on the trailing edge. */
         const val RATING = "8.4"
+
+        /**
+         * `library_sync_cached` in `sk`, upper-cased as a badge draws it: 151dp against English's `CACHED`. The status
+         * `TV Library` 5b draws in `.tr` beside a quality badge.
+         */
+        const val CACHED_SK = "Z VYROVNÁVACEJ PAMÄTE"
+
+        /** A quality badge at its shortest, which is what makes the case above a starvation rather than a squeeze. */
+        const val QUALITY_HD = "HD"
     }
 }

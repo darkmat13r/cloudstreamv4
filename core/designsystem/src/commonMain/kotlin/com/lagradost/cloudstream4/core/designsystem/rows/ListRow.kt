@@ -186,7 +186,9 @@ private fun RowBody(
     trailing: (@Composable () -> Unit)?,
 ) {
     var focused by remember { mutableStateOf(false) }
-    var measuredTitleLines by remember { mutableIntStateOf(ListRowDefaults.TITLE_LINES) }
+    // Keyed on the title: a row reused for a different string must measure it, not inherit the
+    // line count of the one before it.
+    var measuredTitleLines by remember(state.title) { mutableIntStateOf(ListRowDefaults.TITLE_LINES) }
     val titleLines = measuredTitleLines.coerceIn(ListRowDefaults.TITLE_LINES, LocalListRowTitleLines.current)
     val interactionSource = remember { MutableInteractionSource() }
     Row(
