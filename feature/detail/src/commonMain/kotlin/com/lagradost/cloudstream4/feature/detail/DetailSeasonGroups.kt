@@ -48,6 +48,14 @@ internal fun List<DetailEpisode>.seasonGroups(): List<DetailSeasonGroup> {
 }
 
 /**
+ * Every episode in the order a viewer goes through them (`KMP-94`'s Up next): the seasons in [seasonGroups]' order,
+ * numbered ones ascending, then Specials, then Other, and each season by its episode number, an unnumbered one last,
+ * as [firstEpisodeToPlay] reads them. Ties keep the provider's order, so two episodes with one number stay as listed.
+ */
+fun List<DetailEpisode>.playOrder(): List<DetailEpisode> =
+    seasonGroups().flatMap { group -> group.episodes.sortedWith(compareBy(nullsLast()) { it.episode }) }
+
+/**
  * Whether board 7i's chip row is drawn at all.
  *
  * One group is not a selector, it is a label: a lone chip filters nothing and would add a focus stop that

@@ -162,6 +162,11 @@ internal fun PlayerScreen(
     openPlayer: (() -> VlcPlayer?)? = null,
     switcher: SourceSwitcher = remember(player, link) { SourceSwitcher(link) },
     seekMillis: Long = PlayerScreenDefaults.SkipMillis,
+    upNext: UpNext? = null,
+    autoplayNext: Boolean = true,
+    onPlayNext: () -> Unit = {},
+    artwork: @Composable (String) -> Unit = {},
+    keepFullscreen: () -> Boolean = { false },
 ) {
     var playback by remember(player, link) { mutableStateOf(Playback(player, link, startAtMillis)) }
     val audioChoice = remember(player, link) { AudioChoice() }
@@ -182,8 +187,10 @@ internal fun PlayerScreen(
         onDispose { thread(isDaemon = true, name = "vlc-release") { current.player.release() } }
     }
     KeepDisplayAwake(status.playing)
-    DisposableEffect(fullscreen) { onDispose { fullscreen?.leave() } }
-    LaunchedEffect(status.finished, framed) { if (status.finished && framed) onBack() }
+    // Kept when the next episode takes this one's place (`KMP-94`): the window stays as the viewer had it.
+    DisposableEffect(fullscreen) { onDispose { if (!keepFullscreen()) fullscreen?.leave() } }
+    // With an episode after this one, its card decides what the end does (`KMP-94`).
+    LaunchedEffect(status.finished, framed) { if (status.finished && framed && upNext == null) onBack() }
     LaunchedEffect(playback, clock) { playback.player.status.collect(clock::onStatus) }
     val progress by rememberUpdatedState(onProgress)
     LaunchedEffect(playback) {
@@ -243,6 +250,10 @@ internal fun PlayerScreen(
         fellThrough = switcher.fellThrough,
         onAudioChosen = audioChoice::chosen,
         seekMillis = seekMillis,
+        upNext = upNext,
+        autoplayNext = autoplayNext,
+        onPlayNext = onPlayNext,
+        artwork = artwork,
     )
 }
 
@@ -277,6 +288,11 @@ internal fun PlayerContent(
     onSkip: () -> Unit = {},
     hudIdle: HudIdle = HudIdle.Real,
     seekMillis: Long = PlayerScreenDefaults.SkipMillis,
+    upNext: UpNext? = null,
+    autoplayNext: Boolean = true,
+    onPlayNext: () -> Unit = {},
+    upNextTick: UpNextTick = UpNextTick.Real,
+    artwork: @Composable (String) -> Unit = {},
 ) {
     LaunchedEffect(controls, volume.audible) { controls.setVolume(volume.audible) }
     val tracks by subtitles.tracks.collectAsState()
@@ -305,6 +321,25 @@ internal fun PlayerContent(
     val listOpen = pickerOpen || fitOpen || audioOpen || sourcesOpen
     val failed = status.failed
     val fullscreenOn = fullscreen?.on == true
+    // `KMP-94`, `DS-23` M13 and M16: one count per time the card comes, so seeking back out of the credits starts it over.
+    val cardDue = upNext != null && !failed && upNextDue(status)
+    val countdown = remember(upNext, cardDue) { if (cardDue) UpNextCountdown(autoplayNext) else null }
+    LaunchedEffect(countdown, autoplayNext) { countdown?.autoplayChanged(autoplayNext) }
+    var pointerOnCard by remember(countdown) { mutableStateOf(false) }
+    val counting = upNextCounts(status)
+    val playNext by rememberUpdatedState(onPlayNext)
+    // A second at a time, only in the episode's last ten (`upNextCounts`), and only while nothing holds it: a panel open,
+    // or the pointer on the card. A hold cancels the second under way, so the count goes on from the same number.
+    LaunchedEffect(countdown, countdown?.left, counting, listOpen, pointerOnCard) {
+        val count = countdown ?: return@LaunchedEffect
+        if (!counting || count.left == null || count.starting || listOpen || pointerOnCard) return@LaunchedEffect
+        upNextTick.second()
+        if (count.tick()) playNext()
+    }
+    // × puts the card away; at the end of the stream that leaves nothing to stay for.
+    LaunchedEffect(countdown?.dismissed, status.finished) {
+        if (countdown?.dismissed == true && status.finished) onBack()
+    }
     SideEffect {
         setEscape {
             when {
@@ -312,6 +347,8 @@ internal fun PlayerContent(
                 fitOpen -> fitOpen = false
                 audioOpen -> audioWanted = false
                 sourcesOpen -> sourcesOpen = false
+                // As Cancel: the card stays, without counting.
+                countdown?.left != null && countdown.starting.not() -> countdown.cancel()
                 fullscreenOn -> fullscreen?.toggle()
                 else -> onBack()
             }
@@ -520,7 +557,25 @@ internal fun PlayerContent(
         }
         // `DS-23` M3: not part of the HUD, so it stays while the HUD is hidden; it is what the moment is for. Only while
         // the stream says there is something to skip (`KMP-86` gives the Mac that data), so it is never a dead control.
-        if (skip != null && !listOpen) {
+        val showCard = countdown != null && upNext != null && !countdown.dismissed && !listOpen
+        if (showCard && countdown != null && upNext != null) {
+            UpNextCard(
+                upNext = upNext,
+                countdown = countdown,
+                counting = counting,
+                onPlayNow = { if (countdown.playNow()) playNext() },
+                onPointerOnCard = { pointerOnCard = it },
+                artwork = artwork,
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(
+                        end = DesktopDimens.WindowMargin,
+                        bottom = maxOf(bottomInset + DesktopDimens.RelatedGap, DesktopDimens.WindowMargin),
+                    ),
+            )
+        }
+        // The card is the credits' one control; Skip has nothing to skip past it.
+        if (skip != null && !listOpen && !showCard) {
             DesktopButton(
                 label = skip.label,
                 onClick = onSkip,
