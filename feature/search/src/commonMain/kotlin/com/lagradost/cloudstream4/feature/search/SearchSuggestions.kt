@@ -21,7 +21,7 @@ fun interface SearchSuggestionSource {
  * One row of 8a's ranked column.
  *
  * A recent search and a suggestion with the same words, ignoring case, are **one** row with both origins. That is the
- * board's first finding: the two-column draft drew `dune` at rank 1 with no count and `Dune` at rank 5 with seven.
+ * board's first finding: the two-column draft drew `tide` at rank 1 with no count and `Tide` at rank 5 with seven.
  *
  * @property query what activating the row searches for, as it was written by whichever origin came first.
  * @property recentWhen when it was searched, already resolved for display, or `null` if it is not a recent search.

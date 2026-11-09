@@ -3204,3 +3204,34 @@ between runs, as it does between any two runs. **`--check-playback` tells nothin
 before the change too, so it is reported, not counted as a pass.
 
 **Gates:** see the PR.
+
+## BUG-75 — Real titles and sites in tests, previews and KDoc, master-wide · **low, test only** · in progress
+
+`BUG-70`'s rule, across master: tests, previews, screenshots and KDoc name made-up titles and sources, never a real
+work or site, because they get copied. A generic phrase that happens to match a real work stays when nothing else ties
+it to one (`Nine Lives`); a name that is clearly one work or one site goes.
+
+**Scan of master** (whole words): `Dune` 397 lines, `Vidsrc` 31, `Arcane` 28, `Severance` 16, `Naruto` 7, `Powder` 4,
+`Dr.Stone` and `Mr.Robot` 3 each. A scan for `Witcher` matched only `SourceSwitcher`. Found while doing it: `Blade
+Runner` 39 lines, and the sites `Filmxy` 87, `Vidplay` 37 and `Zoro` 11.
+
+**Staying:** `Gogoanime` in `:app`'s legacy code (`SyncUtil` and `ResultViewModel2` match the real site's keys, and
+`classes-jar.api` carries `getGogoanime`); `tools:text` in legacy layouts; `Internet Archive`, a real official plugin
+and a `:library` class; and past records in `docs/tasks/`, which say what was measured.
+
+**One PR per module.** JVM tests first; the device tests and their screenshots after train 9, which carries those
+files, each screenshot diff read before it is re-recorded.
+
+### `:feature:search` (JVM tests, previews, KDoc)
+
+| Was | Now | Kept |
+|---|---|---|
+| `dune`, `Dune`, `DUNE` | `tide`, `Tide`, `TIDE` | four letters, so `d`, `du`, `dun` typing steps become `t`, `ti`, `tid`; case |
+| `Duna`, `Dunnne` | `Tida`, `Tiddde` | the near miss shares the typed prefix; the typo matches nothing |
+| `Dune: Part Two`, `Dune Part Two`, `Dune: Prophecy`, `Dune (1984)`, `Dune: Part Two (4K)` | `Tide: Part Two`, `Tide Part Two`, `Tide: Prophecy`, `Tide (1991)`, `Tide: Part Two (4K)` | colon, no colon, parenthesised year, suffix |
+| `dune messiah`, `DUNE messiah` | `tide warden`, `TIDE warden` | starts with the typed word; case |
+| `blade runner`, `Blade Runner` (and its sequels in previews) | `salt road`, `Salt Road` (`Salt Road II`, `Salt Road: Dusk`) | sorts before the other title, as it did |
+| `Filmxy`, `Vidplay`, `Zoro` | `Source A`, `Source B`, `Source C` | alphabetical order |
+| `Vidsrc`, `VIDSRC` | `Source A`, `SOURCE A` | |
+
+Tests: the same 58 in 5 classes, 117 assertion calls before and after, all passing.
