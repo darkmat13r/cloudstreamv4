@@ -7580,7 +7580,7 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
   Settings' default.
 - `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.
 
-## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr #290, 95e in pr #296 (AniList in pr #300), 95f in pr** · the PM's task, 2026-11-08
+## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr #290, 95e in pr #296 (AniList in pr #300), 95f in pr #308** · the PM's task, 2026-11-08
 
 `DS-25`'s boards, built in six PRs (the PM's plan, 2026-11-08):
 
@@ -8047,6 +8047,8 @@ an app that cannot keep a secret, with no PKCE and no `state` shown, and Android
   redirect is taken and the Cancel test fails; without the bare-form check or the RFC 3986 decoding, their tests fail.
 
 ### KMP-95f — The Keychain: PINs and sign-ins on a signed build
+
+**Status:** #308, stacked on #300. Measured on a signed build before it merges (below).
 
 **What it keeps.** On a signed build, the PINs and every profile's sign-ins are two Keychain items, `pins` and `sign-ins`,
 read and written whole, as `pins.json` was. They outlive a quit, so the window no longer says sign-ins end at quit. The
