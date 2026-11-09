@@ -528,6 +528,7 @@
 <string name="subs_window_color">"Fenestra koloro"</string>
 <string name="subscribe_tooltip">"Sciigo de novo epizodo"</string>
 <string name="subtitles_file_empty">"Ĉi tiu subteksta dosiero estas malplena"</string>
+<string name="subtitles_font_app">"Tiparo de la aplikaĵo"</string>
 <string name="subtitles_format_unsupported">"Ĉi tiu subteksta formato ne estas subtenata"</string>
 <string name="subtitles_load_failed">"Ne eblis ŝargi ĉi tiujn subtekstojn"</string>
 <string name="subtitles_settings">"Subtekstaj Agordoj"</string>

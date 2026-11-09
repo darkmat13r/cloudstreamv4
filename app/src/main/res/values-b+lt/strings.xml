@@ -618,6 +618,7 @@
 <string name="subscribe_tooltip">"Naujos serijos pranešimas"</string>
 <string name="subscription_episode_released" formatted="true">"Serija %d išleista!"</string>
 <string name="subtitles_file_empty">"Šis subtitrų failas tuščias"</string>
+<string name="subtitles_font_app">"Programos šriftas"</string>
 <string name="subtitles_format_unsupported">"Šis subtitrų formatas nepalaikomas"</string>
 <string name="subtitles_load_failed">"Nepavyko įkelti šių subtitrų"</string>
 <string name="subtitles_settings">"Subtitrų nustatymai"</string>

@@ -714,6 +714,7 @@
 <string name="subscribe_tooltip">নতুন এপিসোডের নোটিফিকেশন</string>
 <string name="subtitles_encoding">সাবটাইটেল এনকোডিং</string>
 <string name="subtitles_file_empty">এই সাবটাইটেল ফাইলটি খালি</string>
+<string name="subtitles_font_app">অ্যাপের ফন্ট</string>
 <string name="subtitles_format_unsupported">এই সাবটাইটেল ফরম্যাট সমর্থিত নয়</string>
 <string name="subtitles_load_failed">এই সাবটাইটেলগুলো লোড করা যায়নি</string>
 <string name="subtitles_settings">সাবটাইটেল সেটিংস</string>

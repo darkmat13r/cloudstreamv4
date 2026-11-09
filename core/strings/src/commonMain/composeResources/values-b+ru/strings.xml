@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">Съешь ещё этих мягких французских булок, да выпей же чаю</string>
 <string name="subtitles_file_empty">Этот файл субтитров пуст</string>
 <string name="subtitles_filter_lang">Фильтровать по предпочитаемому языку медиа</string>
+<string name="subtitles_font_app">Шрифт приложения</string>
 <string name="subtitles_format_unsupported">Этот формат субтитров не поддерживается</string>
 <string name="subtitles_from_embedded">Встроенный</string>
 <string name="subtitles_from_online">Из сети</string>

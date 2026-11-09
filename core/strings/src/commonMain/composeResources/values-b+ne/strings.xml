@@ -456,6 +456,7 @@
 <string name="subs_window_color">विन्डोको रंग</string>
 <string name="subscribe_tooltip">नयाँ प्रसङ्ग को सूचना</string>
 <string name="subtitles_file_empty">यो उपशीर्षक फाइल खाली छ</string>
+<string name="subtitles_font_app">एपको फन्ट</string>
 <string name="subtitles_format_unsupported">यो उपशीर्षक ढाँचा समर्थित छैन</string>
 <string name="subtitles_load_failed">यी उपशीर्षकहरू लोड गर्न सकिएन</string>
 <string name="subtitles_settings">उपशीर्षकको सेटिङ</string>

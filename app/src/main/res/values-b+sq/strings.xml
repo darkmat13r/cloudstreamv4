@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">"Dhelpra e shpejtë ngjyra kafe kërcen mbi qenin dembel"</string>
 <string name="subtitles_file_empty">"Ky skedar titrash është bosh"</string>
 <string name="subtitles_filter_lang">"Filtro sipas gjuhës së preferuar të medias"</string>
+<string name="subtitles_font_app">"Fonti i aplikacionit"</string>
 <string name="subtitles_format_unsupported">"Ky format titrash nuk mbështetet"</string>
 <string name="subtitles_from_embedded">"I integruar"</string>
 <string name="subtitles_from_online">"Online"</string>

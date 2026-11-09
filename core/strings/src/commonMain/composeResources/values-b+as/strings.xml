@@ -923,6 +923,7 @@
 <string name="subtitles_example_text">এজন চালাক পোহা কুকুৰাই অলপ তেজী মেজাজৰ কুকুৰাৰ ওপৰেদি জাপ দিলে</string>
 <string name="subtitles_file_empty">এই সাবটাইটেল ফাইলটো খালী</string>
 <string name="subtitles_filter_lang">পছন্দৰ মিডিয়া ভাষাৰ দ্বাৰা ফিল্টাৰ কৰক</string>
+<string name="subtitles_font_app">এপৰ ফণ্ট</string>
 <string name="subtitles_format_unsupported">এই সাবটাইটেল ফৰ্মেট সমৰ্থিত নহয়</string>
 <string name="subtitles_load_failed">এই সাবটাইটেলসমূহ লোড কৰিব পৰা নগ'ল</string>
 <string name="subtitles_outline">আউটলাইন</string>

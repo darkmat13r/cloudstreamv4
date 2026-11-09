@@ -842,6 +842,7 @@
 <string name="subtitle_offset_title">"Kelewatan sari kata"</string>
 <string name="subtitles_file_empty">"Fail sari kata ini kosong"</string>
 <string name="subtitles_filter_lang">"Tapis bahasa media mengikut pilihan"</string>
+<string name="subtitles_font_app">"Fon apl"</string>
 <string name="subtitles_format_unsupported">"Format sari kata ini tidak disokong"</string>
 <string name="subtitles_load_failed">"Sari kata ini tidak dapat dimuatkan"</string>
 <string name="subtitles_outline">"Rangka"</string>

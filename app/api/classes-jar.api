@@ -4353,6 +4353,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field subtitles_example_text I
 	public static field subtitles_file_empty I
 	public static field subtitles_filter_lang I
+	public static field subtitles_font_app I
 	public static field subtitles_format_unsupported I
 	public static field subtitles_from_embedded I
 	public static field subtitles_from_online I

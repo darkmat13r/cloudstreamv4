@@ -669,6 +669,7 @@
 <string name="subtitles_encoding">"رمزگذاری زیرنویس"</string>
 <string name="subtitles_file_empty">"این فایل زیرنویس خالی است"</string>
 <string name="subtitles_filter_lang">"فیلتر توسط زبان محتوا برگزیده"</string>
+<string name="subtitles_font_app">"قلم برنامه"</string>
 <string name="subtitles_format_unsupported">"این قالب زیرنویس پشتیبانی نمی‌شود"</string>
 <string name="subtitles_load_failed">"بارگذاری این زیرنویس‌ها ممکن نشد"</string>
 <string name="subtitles_settings">"تنظیمات زیرنویس"</string>

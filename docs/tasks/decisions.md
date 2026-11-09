@@ -85,9 +85,17 @@ independent check that anything works on a machine other than this one.
 
 ---
 
-## DEC-02 — Product Sans provenance · **blocking `DS-05`**
+## DEC-02 — Product Sans provenance · **decided 2026-11-09**
 
-**Status:** open · **provenance now measured, 2026-10-07** — the decision is still yours
+**Status:** decided by the owner, 2026-11-09 · done in `BUG-77` · no longer blocks `DS-05`
+
+**Decision:** replace them. Product Sans and the eight other proprietary fonts are free faces now, under the same resource
+names, so `R` and `classes.jar` are unchanged. Product Sans became Google Sans (OFL, no Reserved Font Name), as static
+instances subset to Latin, Greek, Cyrillic and Vietnamese. The subtitle picker's labels are the real face names, and
+the Google Sans entry is "App font". `BUG-77` in `defects.md` has the mapping, the coverage measured old against new,
+and the losses the owner accepted. `NOTICE` has every source, command and SHA-256.
+
+The measurement below is kept as the record of what was replaced.
 
 ### What the files actually are
 

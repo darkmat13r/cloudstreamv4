@@ -499,6 +499,7 @@
 <string name="subs_subtitle_languages">ଉପଶୀର୍ଷକ ଭାଷା</string>
 <string name="subscription_episode_released">ଅଧ୍ୟାୟ %d ମୁକ୍ତିଲାଭ କଲା!</string>
 <string name="subtitles_file_empty">ଏହି ଉପଶୀର୍ଷକ ଫାଇଲ୍ ଖାଲି ଅଛି</string>
+<string name="subtitles_font_app">ଆପ୍ ଫଣ୍ଟ</string>
 <string name="subtitles_format_unsupported">ଏହି ଉପଶୀର୍ଷକ ଫର୍ମାଟ୍ ସମର୍ଥିତ ନୁହେଁ</string>
 <string name="subtitles_load_failed">ଏହି ଉପଶୀର୍ଷକଗୁଡ଼ିକ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</string>
 <string name="sync_total_episodes_none">/??</string>

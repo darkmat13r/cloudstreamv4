@@ -539,6 +539,7 @@
 <string name="subs_text_color">"Tekstfarge"</string>
 <string name="subs_window_color">"Vindaugefarge"</string>
 <string name="subtitles_file_empty">"Denne undertekstfila er tom"</string>
+<string name="subtitles_font_app">"Skrifttypen i appen"</string>
 <string name="subtitles_format_unsupported">"Dette undertekstformatet er ikkje støtta"</string>
 <string name="subtitles_load_failed">"Kunne ikkje laste desse undertekstane"</string>
 <string name="subtitles_settings">"Innstillingar for undertekstar"</string>

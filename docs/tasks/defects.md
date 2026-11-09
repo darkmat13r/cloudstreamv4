@@ -3298,3 +3298,79 @@ locale's text for their keys holds only `%1$s` and `%2$s`. A later translation c
   comments, string text and a template. `:core:strings:jvmTest` 53 of 53.
 - The five gates each exited 0. `check-test-results.py` read 265 files with 0 failures, `:app:checkExtensionApi`
   exited 0, and `classes-jar.api` has no diff.
+
+## BUG-77 — The repository shipped proprietary fonts · **high, licensing** · `DEC-02`
+
+**Status:** fixed in this PR · the owner's call through the PM, 2026-11-09 · closes `DEC-02`
+
+The subtitle picker offered nine proprietary fonts, and Product Sans (Google's corporate typeface, 24 files, two
+byte-identical sets of 12) was also the legacy UI's font: `google_sans.xml` in `:app`'s layouts and `AppFont` in
+`:core:ui`. `DEC-02` has the measurement. Each is now a free face, under the **same resource name**. No resource was
+added, removed or renamed, so `R` is unchanged: the whole `R.txt` is byte-identical between master and this branch (28
+font entries). An id a user saved before the change is the same id after it.
+
+| Resource | Was | Now | Licence |
+|---|---|---|---|
+| `productsans_*` (12, in `:app` and `:core:ui`) | Product Sans | Google Sans 14.000, static instances, subset (below) | OFL, no RFN |
+| `netflix_sans` | Netflix Sans | Inter 4.1 Regular | OFL |
+| `gotham` | Gotham Medium | Montserrat 7.222 Medium | OFL |
+| `futura` | Futura Book | Jost 3.5 Book | OFL |
+| `times_new_roman` | Times New Roman | Liberation Serif 2.1.5 | OFL |
+| `verdana` | Verdana | DejaVu Sans 2.37 | Bitstream Vera licence (owner-approved) |
+| `trebuchet_ms` | Trebuchet MS | Fira Sans 4.301 | OFL |
+| `comic_sans` | Comic Sans MS | Comic Neue 2.51 | OFL |
+| `lucida_grande` | Lucida Grande | Source Sans 3 3.052 | OFL |
+| `consola` | Consolas | JetBrains Mono 2.304 Regular (`KMP-97`'s file, the same SHA-256) | OFL |
+| `stix_general` | STIXGeneral 1.1 (STIX licence) | STIX Two Text 2.13 | OFL |
+
+`open_sans`, `poppins_regular` and `ubuntu_regular` were already free and are unchanged. Every file but Google Sans is
+upstream's, byte for byte, from a pinned tag or commit. `NOTICE` records each source, version and SHA-256. The licence
+texts are packaged in `app/src/main/assets/licences/`, and Google Sans's also in `:core:ui`'s `files/licences/`.
+
+**Google Sans is derived, not upstream.** Upstream ships only variable fonts, and the app's minSdk is 24, below the API
+26 that varies a font's weight. The 12 files are static instances, made with fontTools 4.67.0 (a dev tool, approved by
+the owner, not shipped). The source is google/fonts `d4eb0460`, `ofl/googlesans/`. Each instance is `opsz=18 GRAD=0`,
+subset to Latin, Latin Extended, Vietnamese, Greek, Cyrillic, punctuation and common symbols (`NOTICE` has the exact
+commands and ranges). The build is reproducible: `SOURCE_DATE_EPOCH` is pinned, and two builds from scratch were
+byte-identical.
+- Google Sans has weights 400 to 700 only. Thin and Light are the 400 instance and Black the 700 one. No layout or
+  Compose code asks for 100, 300 or 900, so nothing on screen uses those weights.
+- Google Sans Flex, which has every weight, was measured first and rejected: it has no Cyrillic and one Greek letter.
+- Size: about 350 KB a file, 4.0 MB per module against Product Sans's 1.1 MB. The full instances were 2.4 MB each.
+- "Google Sans" is Google's trademark (`TRADEMARKS.md`, packaged). It stays only in the font's own name table. The
+  picker calls the entry "App font" (`subtitles_font_app`, `I18N-23`).
+
+**The picker's labels are the real face names**, in the same order, so a person is not told they have Verdana when they
+have DejaVu Sans. The stored value is the `R.font` id (`SaveCaptionStyle.typeface`), never the label, so relabelling
+moves no one's choice.
+
+**Coverage, measured old -> new from each file's `cmap`** (glyphs, of Latin-1 96, Greek 56, Cyrillic 64, Vietnamese
+90, Hebrew 27, Arabic 42). Android draws a missing glyph from the system font, so a letter still shows, in another
+face.
+- Gains: Product Sans -> Google Sans adds Vietnamese (2 -> 90) and one Greek letter. Gotham -> Montserrat adds Cyrillic
+  (0 -> 64), Vietnamese and the rest of Latin-1. Times New Roman -> Liberation Serif adds Latin-1, Greek, Vietnamese
+  and Hebrew. Verdana -> DejaVu Sans adds Vietnamese, Hebrew and Arabic. Trebuchet MS, Consolas and STIX add
+  Vietnamese.
+- **Losses, accepted by the owner:**
+  - Futura -> Jost: Greek 56 -> 4.
+  - Lucida Grande -> Source Sans 3: Hebrew 27 -> 0.
+  - Comic Sans -> Comic Neue: Greek 4 -> 0.
+  - Netflix Sans -> Inter: Latin-1 96 -> 95.
+
+**The legacy UI's font changes from Product Sans to Google Sans.** It reaches only `:app`'s XML layouts and `:core:ui`'s
+old Material theme (`AppFont`, used by the `:core:mihon` settings widgets and `ComposeFragment`). None of the committed
+screenshot references renders through it: the TV screens use `:core:theme`'s type.
+
+**Proof,** all local on `Television_720p` (CI is off):
+- `SubtitleFontsTest` (new, `:app`): a style saved with `R.font.netflix_sans` reads back with that id and loads Inter.
+  Every picker font's own name table names its label's face. All 12 `productsans_*` are Google Sans, at the expected
+  `OS/2` weight and italic bit.
+- A before/after render of every picker entry, master's file beside this branch's, was looked at. It is not committed.
+- `SubtitleFontsTest`: 3 runs of 3 green.
+- Device suites, all green: `:core:designsystem` 29, `:feature:account` 6, `:feature:detail` 38, `:feature:downloads`
+  61, `:feature:home` 87, `:feature:library` 34, `:feature:player` 24, `:feature:search` 62. No screenshot reference
+  changed: the TV screens do not use these fonts.
+- The whole `:app` suite: 177 tests (with the temporary render), 1 failure. It was
+  `DownloadSeriesTvNavigationTest.deleteAllGoesThroughTheRealDialogAndThePageClosesWhenNothingIsLeft`, timing out on
+  "No downloads yet". That is `BUG-80`, a known flake on master (1 in 7 on train 13) on a screen this change does not
+  reach. Run alone 3 times on this branch, it failed once more and passed twice.

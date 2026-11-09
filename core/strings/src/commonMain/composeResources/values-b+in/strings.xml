@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">The quick brown fox jumps over the lazy dog</string>
 <string name="subtitles_file_empty">File subtitel ini kosong</string>
 <string name="subtitles_filter_lang">Filter berdasarkan bahasa media pilihan</string>
+<string name="subtitles_font_app">Font aplikasi</string>
 <string name="subtitles_format_unsupported">Format subtitel ini tidak didukung</string>
 <string name="subtitles_from_embedded">Tertanam</string>
 <string name="subtitles_from_online">Daring</string>

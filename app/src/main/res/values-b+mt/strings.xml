@@ -474,6 +474,7 @@
 <string name="subs_window_color">"Kulur tat-Tieqa"</string>
 <string name="subscribe_tooltip">"Notifika ta' episodju ġdid"</string>
 <string name="subtitles_file_empty">"Dan il-fajl tas-sottotitli huwa vojt"</string>
+<string name="subtitles_font_app">"Font tal-app"</string>
 <string name="subtitles_format_unsupported">"Dan il-format tas-sottotitli mhuwiex appoġġat"</string>
 <string name="subtitles_load_failed">"Dawn is-sottotitli ma setgħux jitgħabbew"</string>
 <string name="subtitles_settings">"Preferenzi tas-sottotitli"</string>
