@@ -131,6 +131,164 @@ class DesktopProfilesTest {
     }
 
     @Test
+    fun `Add takes the next id, keeps the name it was given, and a blank one becomes the fallback`() {
+        val profiles = profiles()
+        assertEquals(1, profiles.add("  Sam\u0007 ", fallback = "Profile 2"))
+        assertEquals(2, profiles.add("   ", fallback = "Profile 3"))
+        assertEquals(listOf(null, "Sam", "Profile 3"), profiles.stored.profiles.map { it.name })
+        assertEquals(0, profiles.stored.current, "adding does not switch")
+        assertEquals(listOf(null, "Sam", "Profile 3"), profiles().stored.profiles.map { it.name }, "written")
+    }
+
+    @Test
+    fun `Add stops at the cap`() {
+        DesktopProfileFile(file).save(StoredProfiles(profiles = (0 until DesktopProfileFile.MAX_PROFILES).map { StoredProfile(it, "P$it") }))
+        val profiles = profiles()
+        assertFalse(profiles.canAdd)
+        assertEquals(null, profiles.add("One more", fallback = "x"))
+        assertEquals(DesktopProfileFile.MAX_PROFILES, profiles.stored.profiles.size)
+    }
+
+    @Test
+    fun `a rename keeps the old name when blank, and the first profile's goes back to the default`() {
+        val profiles = profiles()
+        profiles.add("Sam", fallback = "x")
+        profiles.rename(1, "Samira")
+        profiles.rename(1, "  ")
+        profiles.rename(0, "Alex")
+        assertEquals(listOf("Alex", "Samira"), profiles.stored.profiles.map { it.name })
+        profiles.rename(0, "")
+        assertEquals(null, profiles.stored.profiles.first().name, "the first profile is the default name again")
+        profiles.rename(9, "Nobody")
+        assertEquals(2, profiles.stored.profiles.size)
+    }
+
+    @Test
+    fun `a delete takes the profile and its library, never the first, and the first watches if it was watching`() = runBlocking {
+        val profiles = profiles()
+        profiles.add("Sam", fallback = "x")
+        profiles.libraryFor(1).remember(LibraryTitle(LibraryTitleId("harbor"), "Harbor Lights", bucket = null, keptAt = 0L))
+        assertTrue(profiles.titlesFile(1).exists())
+        profiles.choose(1)
+        assertFalse(profiles.canDelete(0))
+        assertFalse(profiles.delete(0), "the first profile is the way back in")
+        assertTrue(profiles.delete(1))
+        assertEquals(listOf(0), profiles.stored.profiles.map { it.id })
+        assertEquals(0, profiles.stored.current)
+        assertFalse(profiles.titlesFile(1).exists(), "its library left with it")
+        assertEquals(listOf(0), profiles().stored.profiles.map { it.id }, "written")
+    }
+
+    /**
+     * The reviewer of `#281`: a delete that could not be written must not take the library, or the profile comes back at
+     * the next launch with nothing. The profiles file is in its own read-only directory; the libraries' stays writable,
+     * so only the save can fail.
+     */
+    @Test
+    fun `a delete that cannot be written keeps the profile's library`() = runBlocking {
+        val locked = File(directory, "locked").apply { mkdirs() }
+        val lockedFile = DesktopProfileFile(File(locked, DesktopProfileFile.FILE_NAME))
+        lockedFile.save(StoredProfiles(profiles = listOf(StoredProfile(0), StoredProfile(1, "Sam"))))
+        var failed: Throwable? = null
+        val profiles = DesktopProfiles(lockedFile, libraryDirectory = directory, onSaveFailed = { failed = it })
+        profiles.libraryFor(1).remember(LibraryTitle(LibraryTitleId("harbor"), "Harbor Lights", bucket = null, keptAt = 0L))
+        Files.setPosixFilePermissions(locked.toPath(), PosixFilePermissions.fromString("r-x------"))
+        try {
+            assertTrue(profiles.delete(1))
+        } finally {
+            Files.setPosixFilePermissions(locked.toPath(), PosixFilePermissions.fromString("rwx------"))
+        }
+        assertTrue(failed != null, "the failed save is reported")
+        assertTrue(profiles.titlesFile(1).exists(), "Sam's library is still there")
+        val next = DesktopProfiles(lockedFile, libraryDirectory = directory)
+        assertEquals(listOf(0, 1), next.stored.profiles.map { it.id }, "Sam comes back at the next launch")
+        assertEquals(listOf("Harbor Lights"), next.libraryFor(1).titles().map { it.title }, "with Sam's library")
+    }
+
+    @Test
+    fun `at launch the libraries of profiles no longer listed are removed, and only those`() {
+        DesktopProfileFile(file).save(StoredProfiles(profiles = listOf(StoredProfile(0), StoredProfile(1, "Sam"))))
+        val names = listOf("library.tsv", "watch-positions.tsv", "library-1.tsv", "watch-positions-1.tsv", "library-7.tsv", "watch-positions-7.tsv", "library-notes.tsv")
+        names.forEach { File(directory, it).writeText("x") }
+        profiles()
+        assertEquals(
+            listOf("library-1.tsv", "library-notes.tsv", "library.tsv", "watch-positions-1.tsv", "watch-positions.tsv"),
+            directory.listFiles().orEmpty().map { it.name }.filter { it.endsWith(".tsv") }.sorted(),
+            "profile 7's files go; the first's, Sam's and a file that is not a profile's stay",
+        )
+    }
+
+    @Test
+    fun `a profiles file that cannot be read removes no library`() {
+        file.writeText("not json")
+        File(directory, "library-1.tsv").writeText("x")
+        File(directory, "watch-positions-1.tsv").writeText("x")
+        val profiles = profiles()
+        assertEquals(listOf(0), profiles.stored.profiles.map { it.id }, "read as the first profile alone")
+        assertTrue(File(directory, "library-1.tsv").exists(), "but nothing is removed over a list it could not read")
+        assertTrue(File(directory, "watch-positions-1.tsv").exists())
+        file.delete()
+        profiles()
+        assertTrue(File(directory, "library-1.tsv").exists(), "nor with no file at all")
+    }
+
+    /**
+     * The reviewer of `#281`: a file that decodes but is not exactly this version's list reads leniently as the first
+     * profile alone, and a sweep over that would remove every other library. Each of these must remove nothing.
+     */
+    @Test
+    fun `a file that is not exactly this version's list removes no library`() {
+        val notOurs = listOf(
+            "{}",
+            "{\"version\":1}",
+            "{\"version\":2,\"current\":0,\"profiles\":[{\"id\":0,\"name\":null}]}",
+            "{\"version\":1,\"current\":0,\"profiles\":[{\"id\":0,\"name\":null}],\"pins\":{}}",
+            "{\"version\":1,\"current\":0,\"profiles\":[{\"id\":0}]}",
+            "{\"version\":1,\"current\":0,\"profiles\":[{\"id\":0,\"name\":null},{\"id\":0,\"name\":\"Again\"}]}",
+            "{\"version\":1,\"current\":0,\"profiles\":[{\"id\":0,\"name\":null},{\"id\":10000,\"name\":\"Over\"}]}",
+            "{\"version\":1,\"current\":0,\"profiles\":[{\"id\":3,\"name\":\"No first\"}]}",
+            "{\"version\":1,\"current\":0,\"profiles\":[" + (0..32).joinToString(",") { "{\"id\":$it,\"name\":null}" } + "]}",
+        )
+        notOurs.forEach { text ->
+            file.writeText(text)
+            File(directory, "library-5.tsv").writeText("x")
+            profiles()
+            assertTrue(File(directory, "library-5.tsv").exists(), "nothing removed over: $text")
+        }
+    }
+
+    @Test
+    fun `only a profile's own file name is read as an id`() {
+        DesktopProfileFile(file).save(StoredProfiles(profiles = listOf(StoredProfile(0))))
+        val kept = listOf("library-007.tsv", "library-99999.tsv", "library--1.tsv", "library-7.tsv.bak")
+        kept.forEach { File(directory, it).writeText("x") }
+        File(directory, "library-7.tsv").writeText("x")
+        profiles()
+        assertFalse(File(directory, "library-7.tsv").exists(), "profile 7's file is no one's")
+        kept.forEach { assertTrue(File(directory, it).exists(), "$it is not a profile's file, so it is left") }
+    }
+
+    @Test
+    fun `ids are capped, so a hostile one cannot make the next wrap`() {
+        val cleaned = StoredProfiles(profiles = listOf(StoredProfile(0), StoredProfile(Int.MAX_VALUE, "Huge"), StoredProfile(DesktopProfileFile.MAX_ID, "Edge"))).cleaned()
+        assertEquals(listOf(0), cleaned.profiles.map { it.id })
+        DesktopProfileFile(file).save(StoredProfiles(profiles = listOf(StoredProfile(0), StoredProfile(DesktopProfileFile.MAX_ID - 1, "Last"))))
+        val profiles = profiles()
+        assertEquals(null, profiles.add("One more", fallback = "x"), "no id is left below the cap")
+        assertTrue(profiles.stored.profiles.all { it.id >= 0 })
+    }
+
+    @Test
+    fun `a new profile never starts with what a deleted one left behind`() = runBlocking {
+        val profiles = profiles()
+        // As if a delete's file removal had failed: a library under the id the next profile will take.
+        profiles.libraryFor(1).remember(LibraryTitle(LibraryTitleId("harbor"), "Harbor Lights", bucket = null, keptAt = 0L))
+        val id = profiles.add("Robin", fallback = "x")
+        assertEquals(1, id)
+        assertEquals(emptyList(), profiles.libraryFor(1).titles())
+    }
+
+    @Test
     fun `a title kept by one profile is not in another's library`() = runBlocking {
         val profiles = profiles()
         val title = LibraryTitle(LibraryTitleId("harbor"), "Harbor Lights", bucket = null, keptAt = 0L)

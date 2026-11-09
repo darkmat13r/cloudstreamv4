@@ -17,6 +17,16 @@ import java.nio.file.attribute.PosixFilePermissions
 @Serializable
 internal data class StoredProfile(val id: Int, val name: String? = null)
 
+/**
+ * The same file as [StoredProfiles], read with no defaults and no unknown keys, for the one use that must not guess:
+ * deciding which libraries are no longer anyone's. A key missing or extra, or a field of another type, fails it.
+ */
+@Serializable
+private data class StrictProfiles(val version: Int, val current: Int, val profiles: List<StrictProfile>)
+
+@Serializable
+private data class StrictProfile(val id: Int, val name: String?)
+
 /** Every profile, and which one is watching. Profile [FIRST] is always there. */
 @Serializable
 internal data class StoredProfiles(
@@ -53,14 +63,35 @@ internal data class StoredProfiles(
 internal class DesktopProfileFile(
     private val file: File = File(DesktopLibraryStore.defaultTitlesFile().parentFile, FILE_NAME),
 ) {
-    fun load(): StoredProfiles {
+    fun load(): StoredProfiles = read() ?: StoredProfiles()
+
+    /** The file's profiles, read leniently and cleaned, or null when it is missing, unreadable, too large or not JSON. */
+    fun read(): StoredProfiles? {
         val bytes = runCatching {
             if (!file.isFile) null else file.inputStream().use { it.readNBytes(MAX_FILE_BYTES.toInt() + 1) }
-        }.getOrNull() ?: return StoredProfiles()
-        if (bytes.size > MAX_FILE_BYTES) return StoredProfiles()
-        val read = runCatching { json.decodeFromString(StoredProfiles.serializer(), bytes.decodeToString()) }.getOrNull()
-            ?: return StoredProfiles()
-        return read.cleaned()
+        }.getOrNull() ?: return null
+        if (bytes.size > MAX_FILE_BYTES) return null
+        return runCatching { json.decodeFromString(StoredProfiles.serializer(), bytes.decodeToString()) }.getOrNull()?.cleaned()
+    }
+
+    /**
+     * The file's profile ids, only when it is exactly a list this version wrote: every key present and none unknown,
+     * [StoredProfiles.VERSION], and nothing [cleaned] would change about the ids (no repeat, none out of range, no more
+     * than [MAX_PROFILES], the first profile there). Otherwise null. **This, not [read], is what may remove a library**
+     * (the reviewer of #281): `{}`, `{"version":1}`, a later version's list or a damaged one all decode leniently to the
+     * first profile alone, and a sweep over that would remove every other profile's library.
+     */
+    fun strictIds(): Set<Int>? {
+        val bytes = runCatching {
+            if (!file.isFile) null else file.inputStream().use { it.readNBytes(MAX_FILE_BYTES.toInt() + 1) }
+        }.getOrNull() ?: return null
+        if (bytes.size > MAX_FILE_BYTES) return null
+        val raw = runCatching { strictJson.decodeFromString(StrictProfiles.serializer(), bytes.decodeToString()) }.getOrNull()
+            ?: return null
+        if (raw.version != StoredProfiles.VERSION) return null
+        val ids = raw.profiles.map { it.id }
+        val cleaned = StoredProfiles(raw.version, raw.current, raw.profiles.map { StoredProfile(it.id, it.name) }).cleaned()
+        return if (cleaned.profiles.map { it.id } == ids) ids.toSet() else null
     }
 
     fun save(profiles: StoredProfiles) {
@@ -91,14 +122,21 @@ internal class DesktopProfileFile(
 
         /** Far more than a household; a file with more was not written by this app. */
         const val MAX_PROFILES = 32
+
+        /**
+         * Ids are below this. A file with a larger one was not written by this app, and a hostile `Int.MAX_VALUE` would
+         * otherwise make the next id wrap negative.
+         */
+        const val MAX_ID = 10_000
         private const val OWNER_ONLY = "rw-------"
         private const val OWNER_DIR = "rwx------"
         private val json = Json { ignoreUnknownKeys = true; encodeDefaults = true }
+        private val strictJson = Json { ignoreUnknownKeys = false; explicitNulls = true }
 
         fun StoredProfiles.cleaned(): StoredProfiles {
             val seen = HashSet<Int>()
             val kept = profiles
-                .filter { it.id >= 0 && seen.add(it.id) }
+                .filter { it.id in 0 until MAX_ID && seen.add(it.id) }
                 .map { it.copy(name = it.name?.let(::cleanName)?.ifEmpty { null }) }
                 .take(MAX_PROFILES)
             val withFirst = if (kept.any { it.id == StoredProfiles.FIRST }) kept else listOf(StoredProfile(StoredProfiles.FIRST)) + kept
@@ -121,17 +159,27 @@ internal class DesktopProfileFile(
 }
 
 /**
- * The profiles while the window is open (`KMP-95a`): who is watching, and the library each one reads.
+ * The profiles while the window is open (`KMP-95a`, `95b`): who is watching, the library each one reads, and adding,
+ * renaming and deleting them.
  *
- * @param onSaveFailed told when a choice could not be written; the choice still holds until the app quits.
+ * @param onSaveFailed told when a change could not be written, or a deleted profile's library file could not be removed.
+ *   The change still holds until the app quits.
  */
 internal class DesktopProfiles(
     private val file: DesktopProfileFile = DesktopProfileFile(),
     private val libraryDirectory: File = DesktopLibraryStore.defaultTitlesFile().parentFile,
     private val onSaveFailed: (Throwable) -> Unit = {},
 ) {
-    var stored: StoredProfiles by mutableStateOf(file.load())
+    var stored: StoredProfiles by mutableStateOf(StoredProfiles())
         private set
+
+    init {
+        stored = file.load()
+        // A deleted profile's history should not sit on disk until its id is taken again (the reviewer of #281). Only
+        // over a strict read: anything else reads leniently as the first profile alone, and trusting that would remove
+        // every other profile's library.
+        file.strictIds()?.let(::clearLibrariesNotIn)
+    }
 
     /** The launch picker shows only with two profiles or more, the default counted (`KMP-73`, A1). */
     val picksAtLaunch: Boolean get() = stored.profiles.size >= 2
@@ -139,8 +187,88 @@ internal class DesktopProfiles(
     /** Makes [id] the profile watching, and remembers it for the next launch. An id that is not a profile is ignored. */
     fun choose(id: Int) {
         if (stored.profiles.none { it.id == id } || stored.current == id) return
-        stored = stored.copy(current = id)
-        runCatching { file.save(stored) }.onFailure(onSaveFailed)
+        update(stored.copy(current = id))
+    }
+
+    /** Whether another profile fits under [DesktopProfileFile.MAX_PROFILES]; Add is offered only while it does. */
+    val canAdd: Boolean get() = stored.profiles.size < DesktopProfileFile.MAX_PROFILES
+
+    /**
+     * Adds a profile named [name] and returns its id, or null when there is no room (`KMP-95b`, A6b). It does not
+     * become the one watching. A blank name becomes [fallback], so a profile always has words on its card.
+     *
+     * Its id is one above the highest there is. Any library files already under that id are deleted first, so a new
+     * profile never starts with what a deleted one left behind (a delete whose file removal failed).
+     */
+    fun add(name: String, fallback: String): Int? {
+        if (!canAdd) return null
+        val id = stored.profiles.maxOf { it.id } + 1
+        if (id >= DesktopProfileFile.MAX_ID) return null
+        clearLibrary(id)
+        val cleaned = DesktopProfileFile.cleanName(name).ifEmpty { DesktopProfileFile.cleanName(fallback) }
+        update(stored.copy(profiles = stored.profiles + StoredProfile(id, cleaned.ifEmpty { null })))
+        return id
+    }
+
+    /**
+     * Renames [id] (A6). A blank name keeps the one it had, except on the first profile, where it goes back to the
+     * default name in the current language. An id that is not a profile is ignored.
+     */
+    fun rename(id: Int, name: String) {
+        if (stored.profiles.none { it.id == id }) return
+        val cleaned = DesktopProfileFile.cleanName(name)
+        val profiles = stored.profiles.map { profile ->
+            when {
+                profile.id != id -> profile
+                cleaned.isNotEmpty() -> profile.copy(name = cleaned)
+                id == StoredProfiles.FIRST -> profile.copy(name = null)
+                else -> profile
+            }
+        }
+        if (profiles != stored.profiles) update(stored.copy(profiles = profiles))
+    }
+
+    /**
+     * Deletes [id] and its library from this Mac (A8). The first profile is never deleted: it is the way back in. If
+     * [id] was watching, the first profile is. The profile leaves the file before its library files go, so a crash
+     * between the two leaves files that no profile reads, which the next [add] under that id clears.
+     *
+     * @return false when nothing was deleted: the first profile, or an id that is not a profile.
+     */
+    fun delete(id: Int): Boolean {
+        if (!canDelete(id)) return false
+        val saved = update(
+            stored.copy(
+                current = if (stored.current == id) StoredProfiles.FIRST else stored.current,
+                profiles = stored.profiles.filterNot { it.id == id },
+            ),
+        )
+        // Only once the file no longer lists it: a profile whose delete could not be written comes back at the next
+        // launch, and must come back with its library (the reviewer of #281).
+        if (saved) clearLibrary(id)
+        return true
+    }
+
+    /** Whether [delete] would delete [id]: every profile but the first. */
+    fun canDelete(id: Int): Boolean = id != StoredProfiles.FIRST && stored.profiles.any { it.id == id }
+
+    private fun clearLibrary(id: Int) {
+        if (id == StoredProfiles.FIRST) return
+        listOf(titlesFile(id), positionsFile(id)).forEach { runCatching { Files.deleteIfExists(it.toPath()) }.onFailure(onSaveFailed) }
+    }
+
+    /** Holds [next] until the app quits, and returns whether it was also written. A failure is reported. */
+    private fun update(next: StoredProfiles): Boolean {
+        stored = next
+        return runCatching { file.save(next) }.onFailure(onSaveFailed).isSuccess
+    }
+
+    /** Removes `library-n.tsv` and `watch-positions-n.tsv` for every `n` not in [kept]. */
+    private fun clearLibrariesNotIn(kept: Set<Int>) {
+        libraryDirectory.listFiles().orEmpty().forEach { file ->
+            val id = LIBRARY_FILE.matchEntire(file.name)?.groupValues?.get(2)?.toIntOrNull() ?: return@forEach
+            if (id != StoredProfiles.FIRST && id !in kept) runCatching { Files.deleteIfExists(file.toPath()) }.onFailure(onSaveFailed)
+        }
     }
 
     /** The cards the picker and the sidebar's list draw. Nothing is locked and nothing syncs until `KMP-95c` and `95d`. */
@@ -151,6 +279,11 @@ internal class DesktopProfiles(
             current = profile.id == stored.current,
             locked = false,
         )
+    }
+
+    private companion object {
+        /** A profile's own library file: `library-3.tsv`, `watch-positions-3.tsv`. */
+        val LIBRARY_FILE = Regex("""(library|watch-positions)-(0|[1-9]\d{0,3})\.tsv""")
     }
 
     /** [id]'s library. The first profile's is the files the Mac had before profiles. */
