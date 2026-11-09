@@ -423,46 +423,52 @@ class DownloadsHostTest {
         val shortcuts = DesktopShortcuts()
         val screens = mutableListOf<String>()
         val sent = ByteArrayOutputStream()
-        // Waits, writing nothing, so the player neither fails nor plays; it is ended when the player is released.
+        // Waits, writing nothing, so the player neither fails nor plays; it is ended when the player is released, and
+        // here whatever happens.
         val process = ProcessBuilder("/bin/sleep", "60").start()
-        val player = VlcPlayer.forDownload(process, Files.createTempDirectory("download-player").toFile(), sent)
-        val thirtySeconds = object : PlaybackSettings {
-            override val autoplayNext: StateFlow<Boolean> = MutableStateFlow(true)
-            override val seekSeconds: StateFlow<Int> = MutableStateFlow(SEEK_SECONDS)
+        val directory = Files.createTempDirectory("download-player").toFile()
+        try {
+            val player = VlcPlayer.forDownload(process, directory, sent)
+            val thirtySeconds = object : PlaybackSettings {
+                override val autoplayNext: StateFlow<Boolean> = MutableStateFlow(true)
+                override val seekSeconds: StateFlow<Int> = MutableStateFlow(SEEK_SECONDS)
+            }
+            val scene = scene {
+                DesktopApp(
+                    escape,
+                    library = InMemoryLibraryStore(),
+                    onScreen = { screens += it },
+                    shortcuts = shortcuts,
+                    downloads = downloads,
+                    playback = thirtySeconds,
+                    openDownload = { player },
+                )
+            }
+            scene.settle()
+            shortcuts.go(TopLevelDestination.Downloads)
+            scene.until { screens.last() == "Downloads" && runBlocking { downloads.source().contents.first() }.titles.isNotEmpty() }
+            scene.until {
+                if (!screens.last().startsWith("DownloadSeries")) scene.doubleClick(Offset(WINDOW_NAME_X, WINDOW_FIRST_ROW_Y))
+                screens.last().startsWith("DownloadSeries")
+            }
+            scene.until {
+                if (!screens.last().startsWith("DownloadPlayer")) scene.doubleClick(Offset(WINDOW_NAME_X, SERIES_FIRST_ROW_Y))
+                screens.last().startsWith("DownloadPlayer")
+            }
+            scene.until { "play file" in commands(sent) }
+            scene.key(Key.DirectionRight)
+            scene.key(Key.DirectionLeft)
+            val seen = commands(sent)
+            assertEquals("play file", seen.first(), "the first command plays the descriptor")
+            assertEquals(1, seen.count { it == "play file" })
+            assertEquals(listOf("by 30000", "by -30000"), seen.filter { it.startsWith("by ") })
+            assertTrue(escape.handle())
+            scene.settle()
+            scene.close()
+        } finally {
+            process.destroyForcibly()
+            directory.deleteRecursively()
         }
-        val scene = scene {
-            DesktopApp(
-                escape,
-                library = InMemoryLibraryStore(),
-                onScreen = { screens += it },
-                shortcuts = shortcuts,
-                downloads = downloads,
-                playback = thirtySeconds,
-                openDownload = { player },
-            )
-        }
-        scene.settle()
-        shortcuts.go(TopLevelDestination.Downloads)
-        scene.until { screens.last() == "Downloads" && runBlocking { downloads.source().contents.first() }.titles.isNotEmpty() }
-        scene.until {
-            if (!screens.last().startsWith("DownloadSeries")) scene.doubleClick(Offset(WINDOW_NAME_X, WINDOW_FIRST_ROW_Y))
-            screens.last().startsWith("DownloadSeries")
-        }
-        scene.until {
-            if (!screens.last().startsWith("DownloadPlayer")) scene.doubleClick(Offset(WINDOW_NAME_X, SERIES_FIRST_ROW_Y))
-            screens.last().startsWith("DownloadPlayer")
-        }
-        scene.until { "play file" in commands(sent) }
-        scene.key(Key.DirectionRight)
-        scene.key(Key.DirectionLeft)
-        val seen = commands(sent)
-        assertEquals("play file", seen.first(), "the first command plays the descriptor")
-        assertEquals(1, seen.count { it == "play file" })
-        assertEquals(listOf("by 30000", "by -30000"), seen.filter { it.startsWith("by ") })
-        assertTrue(escape.handle())
-        scene.settle()
-        scene.close()
-        process.destroyForcibly()
     }
 
     /** What the screen sent the host, decoded as `MediaHost` reads it. */

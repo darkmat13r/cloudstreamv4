@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.player
 
+import com.sun.jna.Memory
 import java.io.File
 import java.io.FileInputStream
 import java.io.FileOutputStream
@@ -141,6 +142,58 @@ class LocalMediaTest {
             UnixFds.close(app)
             UnixFds.close(host)
         }
+    }
+
+    @Test
+    fun theKernelRefusesTwoControlMessagesInOneSend() {
+        val first = assertNotNull(open(episode))
+        val second = assertNotNull(open(episode))
+        val (app, host) = assertNotNull(UnixFds.socketPair())
+        try {
+            // Measured on macOS: `sendmsg` takes one `SCM_RIGHTS` message per call, and refuses two (`EINVAL`).
+            assertFalse(UnixFds.send(app, listOf(intArrayOf(first.fd), intArrayOf(second.fd))))
+        } finally {
+            UnixFds.close(app)
+            UnixFds.close(host)
+        }
+    }
+
+    /**
+     * What `receive` keeps, over control buffers as the kernel would leave them. So the check holds even where a
+     * kernel delivers what this one refuses to send.
+     */
+    @Test
+    fun onlyOneWholeMessageOfOneDescriptorIsTakenAndEverythingElseIsListedToClose() {
+        fun control(vararg messages: IntArray) = Memory(32).apply {
+            clear()
+            var offset = 0L
+            for (fds in messages) {
+                setInt(offset, 12 + fds.size * 4)
+                setInt(offset + 4, 0xFFFF)
+                setInt(offset + 8, 1)
+                fds.forEachIndexed { index, fd -> setInt(offset + 12 + index * 4, fd) }
+                offset += 12 + fds.size * 4
+            }
+        }
+        val one = UnixFds.choose(control(intArrayOf(41)), 16, truncated = false)
+        assertEquals(41, one.taken)
+        assertEquals(emptyList(), one.refused)
+
+        val two = UnixFds.choose(control(intArrayOf(41), intArrayOf(42)), 32, truncated = false)
+        assertNull(two.taken, "a second SCM_RIGHTS message")
+        assertEquals(listOf(41, 42), two.refused)
+
+        val longer = UnixFds.choose(control(intArrayOf(41)), 32, truncated = false)
+        assertNull(longer.taken, "control length past the first message")
+        assertEquals(listOf(41), longer.refused)
+
+        val cut = UnixFds.choose(control(intArrayOf(41)), 16, truncated = true)
+        assertNull(cut.taken, "MSG_CTRUNC")
+        assertEquals(listOf(41), cut.refused)
+
+        val pair = UnixFds.choose(control(intArrayOf(41, 42)), 20, truncated = false)
+        assertNull(pair.taken, "two descriptors in one message")
+        assertEquals(listOf(41, 42), pair.refused)
     }
 
     private fun openDescriptors(): Int = checkNotNull(File("/dev/fd").list()).size

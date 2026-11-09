@@ -7837,6 +7837,14 @@ settles on.
 - A host that never became a player is cleaned up on any failure, thrown or not: its process, its directory, and
   both socket ends.
 
+**Second review (#293, at 859284c12):**
+- `receive` reads every control message the kernel left, not only the first. It takes a descriptor only from exactly
+  one `SCM_RIGHTS` message carrying exactly one, whose aligned length is the whole control length. Anything else is
+  refused, and every descriptor in every message is closed, so a second message cannot install descriptors unclosed.
+  Measured: macOS refuses a `sendmsg` with two `SCM_RIGHTS` messages (`EINVAL`), so this guards a kernel that would
+  deliver one, and is tested over hand-built control buffers.
+- The Seek amount window test ends its `/bin/sleep` process and deletes its directory in a `finally`.
+
 **New with the rebase onto `KMP-96` (#277):** the download player steps by Settings' Seek amount, as a stream's player
 does: `DesktopApp` passes it `seekMillis` from `PlaybackSettings.seekSeconds`, read while playing. Up next and Play
 the next episode do not apply, because a download has no next link.
@@ -7870,7 +7878,7 @@ with a silent track:
     `write` failed.
 
 **Tests:**
-- `LocalMediaTest` (10, run against the real kernel, because the structure layouts are written by hand):
+- `LocalMediaTest` (12, run against the real kernel, because the structure layouts are written by hand):
   - A file inside opens read-only; writing through it fails; it closes once.
   - Refused: outside the folder, through `..`, the folder itself, a missing file, a link at any step below the folder
     (to outside, to inside, a linked folder), a folder.
@@ -7880,6 +7888,10 @@ with a silent track:
   - A FIFO is refused, without waiting for a writer (`O_NONBLOCK`).
   - Two descriptors in one message are refused, and both are closed: the process's open descriptors are counted
     before and after (review).
+  - Two `SCM_RIGHTS` messages in one `sendmsg` are refused by the kernel (second review).
+  - Over hand-built control buffers: one message of one descriptor is taken; two messages, a control length past the
+    first message, `MSG_CTRUNC`, and two descriptors in one message are each refused, with every descriptor listed to
+    close (second review).
 - `DownloadsHostTest` (+3, over the real service and a loopback server):
   - Double-clicking an episode hands over its file, the folder, its name and its numbers, and the name has no path.
   - An episode whose file went since plays nothing and leaves the list.

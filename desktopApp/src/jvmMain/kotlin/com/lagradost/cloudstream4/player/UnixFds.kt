@@ -65,14 +65,26 @@ internal object UnixFds {
     fun send(socket: Int, passed: Int): Boolean = send(socket, intArrayOf(passed))
 
     /** As [send], with several descriptors in one message. The app sends one; this is how a test sends more. */
-    internal fun send(socket: Int, passed: IntArray): Boolean {
-        require(passed.size in 1..MAX_RECEIVED) { "1 to $MAX_RECEIVED descriptors" }
+    internal fun send(socket: Int, passed: IntArray): Boolean = send(socket, listOf(passed))
+
+    /**
+     * As [send], with one `SCM_RIGHTS` control message for each of [groups]. The app never sends more than one; this is
+     * how a test asks the kernel to deliver two.
+     */
+    internal fun send(socket: Int, groups: List<IntArray>): Boolean {
+        val total = groups.sumOf { align(CMSG_HEADER + it.size * FD_BYTES) }
+        require(groups.isNotEmpty() && groups.all { it.isNotEmpty() } && total <= CONTROL_BYTES) { "too many descriptors" }
         val message = Message()
-        message.control.setInt(CMSG_LEN_OFFSET, CMSG_HEADER + passed.size * FD_BYTES)
-        message.control.setInt(CMSG_LEVEL_OFFSET, SOL_SOCKET)
-        message.control.setInt(CMSG_TYPE_OFFSET, SCM_RIGHTS)
-        passed.forEachIndexed { index, fd -> message.control.setInt(CMSG_DATA_OFFSET + index * FD_BYTES, fd) }
-        message.header.setInt(MSG_CONTROLLEN_OFFSET, align(CMSG_HEADER + passed.size * FD_BYTES))
+        var offset = 0L
+        for (group in groups) {
+            val length = CMSG_HEADER + group.size * FD_BYTES
+            message.control.setInt(offset + CMSG_LEN_OFFSET, length)
+            message.control.setInt(offset + CMSG_LEVEL_OFFSET, SOL_SOCKET)
+            message.control.setInt(offset + CMSG_TYPE_OFFSET, SCM_RIGHTS)
+            group.forEachIndexed { index, fd -> message.control.setInt(offset + CMSG_DATA_OFFSET + index * FD_BYTES, fd) }
+            offset += align(length)
+        }
+        message.header.setInt(MSG_CONTROLLEN_OFFSET, total)
         return c.sendmsg(socket, message.header, 0) == 1L
     }
 
@@ -82,23 +94,54 @@ internal object UnixFds {
      */
     fun receive(socket: Int): Int? {
         val message = Message()
-        if (c.recvmsg(socket, message.header, 0) != 1L) return null
-        if (message.header.getInt(MSG_CONTROLLEN_OFFSET) < CMSG_HEADER) return null
-        if (message.control.getInt(CMSG_LEVEL_OFFSET) != SOL_SOCKET) return null
-        if (message.control.getInt(CMSG_TYPE_OFFSET) != SCM_RIGHTS) return null
-        val count = ((message.control.getInt(CMSG_LEN_OFFSET) - CMSG_HEADER) / FD_BYTES).coerceIn(0, MAX_RECEIVED)
-        val received = IntArray(count) { message.control.getInt(CMSG_DATA_OFFSET + it * FD_BYTES) }
-        // Exactly one, whole. Anything else is refused, and every descriptor that did arrive is closed: each is
-        // already open in this process, and nothing else would ever close it.
-        val truncated = message.header.getInt(MSG_FLAGS_OFFSET) and MSG_CTRUNC != 0
-        if (truncated || count != 1 || received[0] < 0) {
-            received.filter { it >= 0 }.forEach(::close)
+        val read = c.recvmsg(socket, message.header, 0)
+        val choice = choose(
+            message.control,
+            message.header.getInt(MSG_CONTROLLEN_OFFSET),
+            truncated = message.header.getInt(MSG_FLAGS_OFFSET) and MSG_CTRUNC != 0,
+        )
+        // Every descriptor that arrived is already open in this process, and nothing else would ever close it.
+        choice.refused.forEach(::close)
+        if (read != 1L) {
+            choice.taken?.let(::close)
             return null
         }
-        return received[0]
+        return choice.taken
     }
 
-    /** A `msghdr` with one byte of data and room for one `cmsghdr` carrying one descriptor. */
+    /** What [receive] keeps, and what it must close. */
+    internal class Choice(val taken: Int?, val refused: List<Int>)
+
+    /**
+     * Reads every control message in the first [length] bytes of [control], as the kernel left them. Takes a
+     * descriptor only when there is exactly one message, `SCM_RIGHTS`, carrying exactly one, and that message is the
+     * whole of [length]: so a second message cannot bring descriptors past the check. Everything else is refused.
+     */
+    internal fun choose(control: Pointer, length: Int, truncated: Boolean): Choice {
+        val messages = mutableListOf<Pair<Int, List<Int>>>()
+        val end = length.coerceIn(0, CONTROL_BYTES.toInt())
+        var offset = 0
+        while (offset + CMSG_HEADER <= end) {
+            val size = control.getInt(offset + CMSG_LEN_OFFSET)
+            if (size < CMSG_HEADER || offset + size > end) break
+            val rights = control.getInt(offset + CMSG_LEVEL_OFFSET) == SOL_SOCKET &&
+                control.getInt(offset + CMSG_TYPE_OFFSET) == SCM_RIGHTS
+            val fds = if (rights) {
+                List((size - CMSG_HEADER) / FD_BYTES) { control.getInt(offset + CMSG_DATA_OFFSET + it * FD_BYTES) }
+            } else {
+                emptyList()
+            }
+            messages += size to fds.filter { it >= 0 }
+            offset += align(size)
+        }
+        val all = messages.flatMap { it.second }
+        val only = messages.singleOrNull()
+        val whole = only != null && length == align(only.first) && only.second.size == 1 &&
+            only.first == CMSG_HEADER + FD_BYTES
+        return if (!truncated && whole) Choice(all.single(), emptyList()) else Choice(null, all)
+    }
+
+    /** A `msghdr` with one byte of data and [CONTROL_BYTES] of room for control messages. */
     private class Message {
         val data = Memory(1).apply { setByte(0, MARKER) }
         val vector = Memory(IOVEC_SIZE).apply {
@@ -152,10 +195,9 @@ internal object UnixFds {
     private const val FD_BYTES = 4
 
     /**
-     * Room for more than the one expected, so a message with extra descriptors arrives whole and each can be closed.
-     * Truncated, the kernel would install the ones that fit and say only `MSG_CTRUNC`.
+     * Room for more than the one expected (four descriptors in one message, or two messages of one), so extras arrive
+     * whole and each can be closed. Truncated, the kernel would install the ones that fit and say only `MSG_CTRUNC`.
      */
-    private const val MAX_RECEIVED = 4
     private const val CONTROL_BYTES = 32L
 
     private fun align(length: Int) = (length + FD_BYTES - 1) / FD_BYTES * FD_BYTES
