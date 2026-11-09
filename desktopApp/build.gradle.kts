@@ -41,17 +41,27 @@ fun signingValue(key: String): Provider<String> = providers.environmentVariable(
 val signRequested: Boolean = providers.gradleProperty("cloudstream.sign").orNull == "true"
 val teamId: String = if (signRequested) signingValue("CLOUDSTREAM_TEAM_ID").get() else ""
 val signIdentity: String = if (signRequested) signingValue("CLOUDSTREAM_SIGN_IDENTITY").get() else ""
+// The restricted entitlements (the application identifier, the team, the access group) are authorised by a provisioning
+// profile (TN3137): an untracked path, embedded only when signing. Never committed, and its path is never printed.
+val provisioningProfilePath: String = if (signRequested) signingValue("CLOUDSTREAM_PROVISIONING_PROFILE").get() else ""
 val signedBuild: Boolean = signRequested
 if (signRequested) {
-    val missing = listOf("CLOUDSTREAM_TEAM_ID" to teamId, "CLOUDSTREAM_SIGN_IDENTITY" to signIdentity).filter { it.second.isEmpty() }
+    val missing = listOf(
+        "CLOUDSTREAM_TEAM_ID" to teamId,
+        "CLOUDSTREAM_SIGN_IDENTITY" to signIdentity,
+        "CLOUDSTREAM_PROVISIONING_PROFILE" to provisioningProfilePath,
+    ).filter { it.second.isEmpty() }
     if (missing.isNotEmpty()) {
-        throw GradleException("-Pcloudstream.sign=true needs CLOUDSTREAM_TEAM_ID and CLOUDSTREAM_SIGN_IDENTITY; missing: ${missing.joinToString { it.first }}.")
+        throw GradleException("-Pcloudstream.sign=true needs CLOUDSTREAM_TEAM_ID, CLOUDSTREAM_SIGN_IDENTITY and CLOUDSTREAM_PROVISIONING_PROFILE; missing: ${missing.joinToString { it.first }}.")
     }
     if (!teamId.matches(Regex("[A-Z0-9]{10}"))) {
         throw GradleException("CLOUDSTREAM_TEAM_ID is not a Team ID: ten capital letters and digits.")
     }
-    // Only packaging may ask for a signed build: a signed `run` or test is the trap this flag exists to prevent.
-    val packaging = Regex("(.*:)?(package|createDistributable|createReleaseDistributable|notarize|generateMacEntitlements|generateDesktopSecrets)\\w*")
+    if (!File(provisioningProfilePath).isFile) {
+        throw GradleException("CLOUDSTREAM_PROVISIONING_PROFILE does not name a file.")
+    }
+    // Only this module's packaging may ask for a signed build: a signed `run` or test is the trap this flag prevents.
+    val packaging = Regex("(:desktopApp:)?(package|createDistributable|createReleaseDistributable|notarize|generateMacEntitlements|generateDesktopSecrets|bundleJnaDispatch)\\w*")
     val others = gradle.startParameter.taskNames.filterNot { it.startsWith("-") || packaging.matches(it) }
     if (others.isNotEmpty()) {
         throw GradleException("-Pcloudstream.sign=true is only for packaging and notarising; not for: ${others.joinToString()}.")
@@ -99,9 +109,29 @@ val generateMacEntitlements = tasks.register("generateMacEntitlements") {
     doLast {
         if (!id.matches(Regex("[A-Z0-9]{10}"))) throw GradleException("CLOUDSTREAM_TEAM_ID is missing: a signed build needs it.")
         val text = template.asFile.readText()
-        check(text.contains("CLOUDSTREAM_TEAM_ID.")) { "macos/entitlements.plist has lost its placeholder." }
-        out.get().asFile.apply { parentFile.mkdirs() }.writeText(text.replace("CLOUDSTREAM_TEAM_ID.", "$id."))
+        // The application identifier, the team, and the access group.
+        check(Regex("__TEAM_ID__").findAll(text).count() == 3) { "macos/entitlements.plist has lost a placeholder." }
+        out.get().asFile.apply { parentFile.mkdirs() }.writeText(text.replace("__TEAM_ID__", id))
     }
+}
+
+// KMP-95f, the reviewer of #308: a signed app loads JNA's native part from inside its own signed bundle, never from
+// a cache a user can write to. JNA's `libjnidispatch` for each Mac arch is copied from the one JNA jar into the app's
+// resources (Compose puts `macos-arm64` or `macos-x64` in `Contents/app/resources`), and the app runs with
+// `jna.nounpack=true` and `jna.boot.library.path` there. Registered only for a signed build.
+val bundleJnaDispatch = if (!signedBuild) null else tasks.register<Sync>("bundleJnaDispatch") {
+    val jar = configurations.named("jvmRuntimeClasspath").map { classpath ->
+        classpath.filter { it.name == "jna-${libs.versions.jna.get()}.jar" }.singleFile
+    }
+    from(jar.map { zipTree(it) }) {
+        include("com/sun/jna/darwin-aarch64/libjnidispatch.jnilib", "com/sun/jna/darwin-x86-64/libjnidispatch.jnilib")
+        eachFile {
+            val arch = if (relativePath.segments.contains("darwin-aarch64")) "macos-arm64" else "macos-x64"
+            relativePath = RelativePath(true, arch, "libjnidispatch.dylib")
+        }
+        includeEmptyDirs = false
+    }
+    into(layout.buildDirectory.dir("generated/jnaDispatch"))
 }
 
 kotlin {
@@ -203,8 +233,13 @@ tasks.withType<JavaExec> {
 compose.desktop {
     application {
         mainClass = "com.lagradost.cloudstream4.MainKt"
+        if (bundleJnaDispatch != null) {
+            // `$APPDIR` is jpackage's `Contents/app`; the bundled `libjnidispatch` is in its `resources`.
+            jvmArgs("-Djna.nounpack=true", "-Djna.boot.library.path=\$APPDIR/resources")
+        }
         nativeDistributions {
             targetFormats(TargetFormat.Dmg, TargetFormat.Msi, TargetFormat.Deb)
+            bundleJnaDispatch?.let { task -> appResourcesRootDir.fileProvider(task.map { it.destinationDir }) }
             // jlink keeps only what is listed, and nothing fails until a user hits the gap at runtime.
             // jdk.zipfs: dex2jar writes its jar through it ("cant find zipfs support" without it).
             // jdk.crypto.ec: TLS to anything offering only EC ciphers. java.naming: JNDI DNS, which
@@ -230,6 +265,7 @@ compose.desktop {
                         identity.set(signIdentity)
                     }
                     entitlementsFile.fileProvider(generateMacEntitlements.map { it.outputs.files.singleFile })
+                    provisioningProfile.set(File(provisioningProfilePath))
                 }
                 // KMP-95e: the browser's sign-ins come back as cloudstreamapp://mallogin and anilistlogin (`AccountManager.APP_STRING`).
                 // Only a packaged app has this; `BrowserRedirects` accepts only what a waiting sign-in asked for.

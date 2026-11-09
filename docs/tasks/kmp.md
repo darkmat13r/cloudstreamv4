@@ -8088,12 +8088,24 @@ true only for a packaging run given `-Pcloudstream.sign=true` (the PM, 2026-11-0
   Neither string names the Keychain, which macOS calls by a different name in each language; "this computer" is what
   the PIN lines say.
 
-**D1's file moves once** (the PM, Q2):
-- While the Keychain has no `pins` item, the file is read and written to the Keychain.
-- The file is deleted only when the Keychain gives back what was written.
-- A write that fails keeps the file. So does a read-back that differs, and that item is then removed, so the next launch
-  does not take it over the file. Either way, the PINs are read from the file, so nothing opens, and a change is refused.
-- Once the Keychain holds them, a `pins` file found later is deleted unread.
+**D1's file moves once, and leaves a marker** (the PM, Q2; the reviewer of `#308`):
+- While the Keychain has no `pins` item, D1's file is read and written to the Keychain, then read back.
+- Only a match replaces `pins.json` with a marker, `{"keychain":true}`. The file is never just deleted: a missing item
+  (a re-signed app, an item deleted in Keychain Access) must not read as "no PINs".
+- **The marker is "couldn't read" without the item.** On a signed build, no item with the marker there is "couldn't
+  read"; an unsigned build reading the marker can't reach the Keychain at all. Either way every profile but the first
+  stays locked, and nothing is written.
+- **The marker is there whenever the Keychain holds a PIN.** A change writes it first and is refused if it can't. If the
+  Keychain then refuses a first PIN, the marker is taken back, so a failed set locks nothing. Removing the last PIN
+  removes it.
+- A write that fails keeps D1's file. So does a read-back that differs, and that item is removed. Either way the PINs
+  are read from the file, so nothing opens, and every change is refused until the move finishes: a change then could
+  only lose the file.
+- **An item beside D1's file** (a move whose marker or delete failed): the file becomes the marker only if it holds the
+  same PINs. If it differs, it is "couldn't read", and the item is removed so the next launch moves the file again. As D1
+  says, this is a household lock: it guards against a step that failed, not against someone who can write this Mac
+  account's files.
+- Sign-ins have no marker (the reviewer's call): a sign-in that goes missing is only signed out.
 
 **Sign-ins outlive a profile's delete no more than its PIN does:** the launch sweep drops those of a profile that is
 gone, and Add adds nothing while sign-ins left under the new id cannot be forgotten. That is the same rule as the PIN, from
@@ -8101,12 +8113,29 @@ the reviewer of `#286`.
 
 **The build.**
 - `bundleID` is `com.lagradost.cloudstream4` (the PM, Q4).
+- **The identity** (TN3137, the reviewer of `#308`): beside the access group, the entitlements name
+  `com.apple.application-identifier` (`<Team ID>.com.lagradost.cloudstream4`) and `com.apple.developer.team-identifier`.
+  These are restricted, so a signed build also needs `CLOUDSTREAM_PROVISIONING_PROFILE`, an untracked path to the profile
+  that authorises them. It is embedded (`macOS.provisioningProfile`) only when signing, and its path is never printed.
+- **JNA's native part comes from inside the signed app** (the reviewer of `#308`). A signed build copies
+  `libjnidispatch` for both Mac arches from the one JNA jar into the app's resources (`bundleJnaDispatch`, then Compose's
+  `appResourcesRootDir`, which puts the current arch's in `Contents/app/resources`). It runs with `jna.nounpack=true` and
+  `jna.boot.library.path=$APPDIR/resources`, so nothing loads from a cache a user can write to. If that library cannot
+  load, JNA fails, and the Keychain fails closed.
 - Signed, `macOS.signing` gets the identity, and `entitlementsFile` gets `build/generated/macos/entitlements.plist`, which
   `generateMacEntitlements` writes from `desktopApp/macos/entitlements.plist` with the Team ID put in.
 - The committed file keeps the placeholder. Beside the access group it has Compose's three defaults for a JVM app.
-- With the flag, a missing value fails the build and names it, and a Team ID that is not ten capitals and digits fails
-  too; neither message prints the value. Without the flag, the values are not read at all.
+- With the flag, a missing value fails the build and names it. So does a Team ID that is not ten capitals and digits,
+  and a profile path that names no file; no message prints a value. Without the flag, the values are not read at all.
+- The flag is refused for any task outside `:desktopApp`'s packaging, naming the task.
 - The Team ID is in no source and no generated Kotlin. Checked with a made-up ID: it reached the entitlements only.
+
+**A sign-ins item that is not ours has no way back in the app.** Every sign-in reads as signed out and every change is
+refused, so the item is never overwritten. The way out is Keychain Access: delete the `sign-ins` item under the
+`com.lagradost.cloudstream4` service. A later PR could offer it on A9.
+
+**Threads.** `DesktopPins` and `KeychainSignInStore` are called from the window's one UI thread. Each Keychain call is
+short, and blocks that thread briefly.
 
 **Not measured yet.** No codesign has run, and nothing has touched the real Keychain: the PM's call while the owner
 decides on signing (Q3). Every test is over `FakeVault`. Measuring on a signed build is the step before this merges:
@@ -8122,13 +8151,17 @@ process is refused.
   - a bad token read back is dropped;
   - a refused remove or forget leaves it as it was;
   - nothing is named in `toString`.
-- `KeychainPinsTest`, 8:
-  - set, check and remove through the Keychain, with no file;
-  - the move and its delete;
+- `KeychainPinsTest`, 12:
+  - set, check and remove through the Keychain, with only the marker on disk, which goes with the last PIN;
+  - the move, and the marker after it;
+  - after the move, an unsigned build is locked;
+  - a signed build whose item has gone, with the marker there, is locked;
   - a refused move keeps the file, keeps profiles locked and refuses changes;
   - a read-back that differs keeps the file and removes the item;
+  - a differing item whose delete was refused is locked, and the move runs again once it can be removed;
+  - an item beside a D1 file with the same PINs makes the marker;
+  - a refused first PIN takes its marker back;
   - an unreadable Keychain locks all but the first and never reads the file;
-  - a later file is deleted unread;
   - an item not ours is unreadable;
   - nothing at all is no PINs.
 - `AccountStorageTest`, 4:
@@ -8143,10 +8176,12 @@ process is refused.
 - Red-checked, each failing its tests:
   - keeping a refused write in memory;
   - `SyncFlow` ignoring `put`'s false;
-  - the move deleting without the read-back;
+  - the move making the marker without the read-back;
   - an unreadable Keychain read from the file instead;
   - Add ignoring the sign-ins' forget;
-  - a signed build given the in-memory store.
+  - a signed build given the in-memory store;
+  - from the review: an unsigned build reading the marker as no PINs; a signed build reading a missing item beside the
+    marker as no PINs; trusting an item beside a D1 file that differs; a change going ahead while D1's file is there.
 
 ---
 
