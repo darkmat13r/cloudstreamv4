@@ -30,7 +30,7 @@ class AccountStorageTest {
         assertTrue(storage.signIns.put(0, DesktopService.Simkl, Credential("token-fixture")))
         assertTrue(storage.pins.set(1, "4821"))
         assertEquals(setOf(KeychainSignInStore.ITEM, DesktopPins.PINS_ITEM), vault.items.keys)
-        assertFalse(File(directory, DesktopPins.PINS_FILE).exists())
+        assertEquals(DesktopPins.MARKER, File(directory, DesktopPins.PINS_FILE).readText(), "only the marker on disk")
 
         // The Keychain refuses everything: nothing signs in, nothing is locked open, and nothing falls back.
         val refusing = FakeVault().apply {
@@ -42,7 +42,7 @@ class AccountStorageTest {
         assertEquals(null, failing.signIns.get(0, DesktopService.Simkl))
         assertTrue(failing.pins.hasPin(1))
         assertEquals(PinCheck.Unreadable, failing.pins.check(1, "4821"))
-        assertFalse(File(directory, DesktopPins.PINS_FILE).exists(), "no file instead")
+        assertEquals(DesktopPins.MARKER, File(directory, DesktopPins.PINS_FILE).readText(), "no PIN in a file instead")
     }
 
     @Test
