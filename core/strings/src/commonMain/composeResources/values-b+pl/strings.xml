@@ -75,6 +75,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d sekcja</item><item quantity="few">%d sekcje</item><item quantity="many">%d sekcji</item><item quantity="other">%d sekcji</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d tytuł</item><item quantity="few">%d tytuły</item><item quantity="many">%d tytułów</item><item quantity="other">%d tytułów</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d ukryty odnośnik</item><item quantity="few">%d ukryte odnośniki</item><item quantity="many">%d ukrytych odnośników</item><item quantity="other">%d ukrytych odnośników</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d sekunda</item><item quantity="few">%d sekundy</item><item quantity="many">%d sekund</item><item quantity="other">%d sekundy</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d źródło</item><item quantity="few">%d źródła</item><item quantity="many">%d źródeł</item><item quantity="other">%d źródła</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Następny odcinek za %d s</item><item quantity="few">Następny odcinek za %d s</item><item quantity="many">Następny odcinek za %d s</item><item quantity="other">Następny odcinek za %d s</item></plurals>
@@ -472,6 +473,7 @@
 <string name="library_sort_supported">%1$s obsługuje %2$d z %3$d</string>
 <string name="library_sort_not_kept">%s tego nie przechowuje</string>
 <string name="library_source">Źródło biblioteki</string>
+<string name="library_source_local">Lokalna</string>
 <string name="library_source_note">Jedno naraz · przełączenie wczytuje ponownie</string>
 <string name="library_sync_cached">Z pamięci podręcznej</string>
 <string name="library_sync_failed">Nie udało się zsynchronizować %1$s. To dane sprzed %2$s.</string>
@@ -555,6 +557,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Nieprawidłowy PIN. Spróbuj ponownie.</string>
 <string name="pin_error_length">Kod PIN musi mieć 4 znaki</string>
+<string name="pin_error_wait">Zbyt wiele błędnych kodów PIN. Spróbuj ponownie za %1$s</string>
 <string name="play_episode">Odtwórz odcinek</string>
 <string name="play_episode_toast">Odtwórz odcinek</string>
 <string name="play_from_beginning_img_des">Odtwarzaj od początku</string>
@@ -588,6 +591,15 @@
 <string name="player_mute">Wycisz</string>
 <string name="player_notification_channel_description">Powiadomienie odtwarzacza umożliwiające sterowanie odtwarzaniem w tle</string>
 <string name="player_notification_channel_name">Powiadomienia odtwarzacza</string>
+<string name="player_panel_failed">błąd</string>
+<string name="player_panel_keeps">zachowuje %s</string>
+<string name="player_panel_on">Wł.</string>
+<string name="player_panel_open">Otwórz</string>
+<string name="player_panel_quality_profile">Profil jakości</string>
+<string name="player_panel_quality_unknown">nieznana jakość</string>
+<string name="player_panel_retry_all">Ponów wszystkie źródła</string>
+<string name="player_panel_style">Styl napisów</string>
+<string name="player_panel_use">Użyj</string>
 <string name="player_play_now">Odtwórz teraz</string>
 <string name="player_pref">Preferowany odtwarzacz wideo</string>
 <string name="player_settings_always_ask">Zawsze pytaj</string>

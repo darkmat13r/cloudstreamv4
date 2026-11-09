@@ -75,6 +75,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d Bereich</item><item quantity="other">%d Bereiche</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d Titel</item><item quantity="other">%d Titel</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d ausgeblendeter Link</item><item quantity="other">%d ausgeblendete Links</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d Sekunde</item><item quantity="other">%d Sekunden</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d Quelle</item><item quantity="other">%d Quellen</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Nächste Folge in %d s</item><item quantity="other">Nächste Folge in %d s</item></plurals>
@@ -472,6 +473,7 @@
 <string name="library_sort_supported">%1$s unterstützt %2$d von %3$d</string>
 <string name="library_sort_not_kept">Von %s nicht gespeichert</string>
 <string name="library_source">Bibliotheksquelle</string>
+<string name="library_source_local">Lokal</string>
 <string name="library_source_note">Jeweils eine · Wechsel lädt neu</string>
 <string name="library_sync_cached">Zwischengespeichert</string>
 <string name="library_sync_failed">%1$s konnte nicht synchronisiert werden. Das ist der Stand von vor %2$s.</string>
@@ -555,6 +557,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Falsche PIN. Bitte versuche es erneut.</string>
 <string name="pin_error_length">PIN muss 4 Zeichen sein</string>
+<string name="pin_error_wait">Zu viele falsche PINs. Erneut versuchen in %1$s</string>
 <string name="play_episode">Episode abspielen</string>
 <string name="play_episode_toast">Episode abspielen</string>
 <string name="play_from_beginning_img_des">Vom Beginn an spielen</string>
@@ -588,6 +591,15 @@
 <string name="player_mute">Stummschalten</string>
 <string name="player_notification_channel_description">Player-Benachrichtigung zur Steuerung der Hintergrundwiedergabe</string>
 <string name="player_notification_channel_name">Player-Benachrichtigung</string>
+<string name="player_panel_failed">fehlgeschlagen</string>
+<string name="player_panel_keeps">behält %s</string>
+<string name="player_panel_on">An</string>
+<string name="player_panel_open">Öffnen</string>
+<string name="player_panel_quality_profile">Qualitätsprofil</string>
+<string name="player_panel_quality_unknown">Qualität unbekannt</string>
+<string name="player_panel_retry_all">Alle Quellen erneut versuchen</string>
+<string name="player_panel_style">Untertitelstil</string>
+<string name="player_panel_use">Verwenden</string>
 <string name="player_play_now">Jetzt abspielen</string>
 <string name="player_pref">Bevorzugter Videoplayer</string>
 <string name="player_settings_always_ask">Immer fragen</string>

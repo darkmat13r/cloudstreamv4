@@ -497,6 +497,7 @@
 <string name="library_sort_not_kept" formatted="true">"Not kept by %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s supports %2$d of %3$d"</string>
 <string name="library_source">"Library source"</string>
+<string name="library_source_local">"Local"</string>
 <string name="library_source_note">"One at a time · switching reloads"</string>
 <string name="library_sync_cached">"Cached"</string>
 <string name="library_sync_failed" formatted="true">"Couldn't sync %1$s. These are from %2$s ago."</string>
@@ -581,6 +582,7 @@
 <string name="pin">"PIN"</string>
 <string name="pin_error_incorrect">"Incorrect PIN. Please try again."</string>
 <string name="pin_error_length">"PIN must be 4 characters"</string>
+<string name="pin_error_wait" formatted="true">"Too many wrong PINs. Try again in %1$s"</string>
 <string name="play_episode">"Play Episode"</string>
 <string name="play_episode_toast">"Play Episode"</string>
 <string name="play_from_beginning_img_des">"Play from the Beginning"</string>
@@ -614,6 +616,16 @@
 <string name="player_mute">"Mute"</string>
 <string name="player_notification_channel_description">"The player notification for controlling the playback from the background"</string>
 <string name="player_notification_channel_name">"Player notifications"</string>
+<string name="player_panel_failed">"failed"</string>
+<string name="player_panel_keeps" formatted="true">"keeps %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"On"</string>
+<string name="player_panel_open">"Open"</string>
+<string name="player_panel_quality_profile">"Quality profile"</string>
+<string name="player_panel_quality_unknown">"quality unknown"</string>
+<string name="player_panel_retry_all">"Retry all sources"</string>
+<string name="player_panel_style">"Subtitle style"</string>
+<string name="player_panel_use">"Use"</string>
 <string name="player_play_now">"Play now"</string>
 <string name="player_pref">"Preferred video player"</string>
 <string name="player_settings_always_ask">"Always ask"</string>

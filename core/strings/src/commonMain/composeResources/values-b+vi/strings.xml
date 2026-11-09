@@ -75,6 +75,7 @@
 <plurals name="home_source_sections"><item quantity="other">%d mục</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d tựa</item></plurals>
 <plurals name="links_hidden"><item quantity="other">%d liên kết bị ẩn</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="other">%d giây</item></plurals>
 <plurals name="player_source_count"><item quantity="other">%d nguồn</item></plurals>
 <plurals name="player_up_next_in"><item quantity="other">Tập tiếp theo sau %d giây</item></plurals>
@@ -472,6 +473,7 @@
 <string name="library_sort_supported">%1$s hỗ trợ %2$d/%3$d</string>
 <string name="library_sort_not_kept">%s không lưu mục này</string>
 <string name="library_source">Nguồn thư viện</string>
+<string name="library_source_local">Cục bộ</string>
 <string name="library_source_note">Mỗi lần một nguồn · chuyển sẽ tải lại</string>
 <string name="library_sync_cached">Đã lưu đệm</string>
 <string name="library_sync_failed">Không thể đồng bộ %1$s. Đây là dữ liệu từ %2$s trước.</string>
@@ -555,6 +557,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Mã PIN không đúng. Vui lòng thử lại.</string>
 <string name="pin_error_length">Mã PIN phải có 4 ký tự</string>
+<string name="pin_error_wait">Nhập sai PIN quá nhiều lần. Thử lại sau %1$s</string>
 <string name="play_episode">Phát Tập phim</string>
 <string name="play_episode_toast">Phát Tập phim</string>
 <string name="play_from_beginning_img_des">Phát từ đầu</string>
@@ -588,6 +591,15 @@
 <string name="player_mute">Tắt tiếng</string>
 <string name="player_notification_channel_description">Điều khiển phát lại trong nền bằng thông báo của trình phát</string>
 <string name="player_notification_channel_name">Thông báo trình phát</string>
+<string name="player_panel_failed">thất bại</string>
+<string name="player_panel_keeps">giữ %s</string>
+<string name="player_panel_on">Bật</string>
+<string name="player_panel_open">Mở</string>
+<string name="player_panel_quality_profile">Hồ sơ chất lượng</string>
+<string name="player_panel_quality_unknown">chất lượng không rõ</string>
+<string name="player_panel_retry_all">Thử lại mọi nguồn</string>
+<string name="player_panel_style">Kiểu phụ đề</string>
+<string name="player_panel_use">Dùng</string>
 <string name="player_play_now">Phát ngay</string>
 <string name="player_pref">Trình phát ưu tiên</string>
 <string name="player_settings_always_ask">Luôn hỏi</string>

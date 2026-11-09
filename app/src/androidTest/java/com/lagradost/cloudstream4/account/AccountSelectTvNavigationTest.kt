@@ -15,12 +15,14 @@ import com.lagradost.cloudstream3.syncproviders.AccountManager
 import com.lagradost.cloudstream3.syncproviders.CredentialStore
 import com.lagradost.cloudstream3.ui.account.AccountSelectActivity
 import com.lagradost.cloudstream3.utils.DataStoreHelper
+import com.lagradost.cloudstream4.core.devicetest.TouchModeReset
 import org.junit.After
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
+import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
 
@@ -41,6 +43,10 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class AccountSelectTvNavigationTest {
+
+    /** `BUG-59`: starts and ends out of touch mode, whatever ran before it. */
+    @get:Rule
+    val touchMode = TouchModeReset()
 
     private val instrumentation = InstrumentationRegistry.getInstrumentation()
     private val context = instrumentation.targetContext
@@ -69,9 +75,6 @@ class AccountSelectTvNavigationTest {
     @After
     fun restoreDevice() {
         finishWhatThisStarted()
-        // `apply.click()` is a touch, and touch mode is the whole device's until a key ends it. Left on, the next
-        // test's first focus request does not take, and its first D-pad press lands on the first stop instead.
-        instrumentation.setInTouchMode(false)
         instrumentation.runOnMainSync {
             CredentialStore.remove(signIn)
             DataStoreHelper.accounts = profilesBefore

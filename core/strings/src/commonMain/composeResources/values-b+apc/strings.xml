@@ -73,6 +73,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d إشارة مرجعية</item><item quantity="other">%d إشارات مرجعية</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">م قدرنا نفتح %d قسم</item><item quantity="other">م قدرنا نفتح %d أقسام</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عناوين</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d ثانية</item><item quantity="other">%d ثواني</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d مصدر</item><item quantity="other">%d مصادر</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">الحلقة الجاية بعد %d ث</item><item quantity="other">الحلقة الجاية بعد %d ث</item></plurals>
@@ -471,6 +472,7 @@
 <string name="library_sort_supported">%1$s بيدعم %2$d من %3$d</string>
 <string name="library_sort_not_kept">%s ما بيحفظه</string>
 <string name="library_source">مصدر الرفّ</string>
+<string name="library_source_local">محلي</string>
 <string name="library_source_note">وحدة بكل مرة · التبديل بيعيد التحميل</string>
 <string name="library_sync_cached">محفوظ</string>
 <string name="library_sync_failed">ما قدرنا نزامن %1$s. هدول من قبل %2$s.</string>
@@ -554,6 +556,7 @@
 <string name="pin">الأرقام السرية</string>
 <string name="pin_error_incorrect">الأرقام السرية يللي نحطت مش صحيحة. جرب مرة أخرى.</string>
 <string name="pin_error_length">لازم يكونو 4 أرقام</string>
+<string name="pin_error_wait">كتير PIN غلط. جرّب مرة تانية بعد %1$s</string>
 <string name="play_episode">مشّي الحلقة</string>
 <string name="play_episode_toast">مشّي الحلقة</string>
 <string name="play_from_beginning_img_des">بلشه من الأول</string>
@@ -587,6 +590,15 @@
 <string name="player_mute">كتّم الصوت</string>
 <string name="player_notification_channel_description">نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح</string>
 <string name="player_notification_channel_name">شغل الڤيديو عبر النوتيفيكايشنز</string>
+<string name="player_panel_failed">فشل</string>
+<string name="player_panel_keeps">بيحافظ على %s</string>
+<string name="player_panel_on">شغّال</string>
+<string name="player_panel_open">افتح</string>
+<string name="player_panel_quality_profile">ملف الجودة</string>
+<string name="player_panel_quality_unknown">الجودة مش معروفة</string>
+<string name="player_panel_retry_all">جرّب كل المصادر من جديد</string>
+<string name="player_panel_style">شكل الترجمة</string>
+<string name="player_panel_use">استخدم</string>
 <string name="player_play_now">شغّل هلق</string>
 <string name="player_pref">مشغل الڤيديو المفضل</string>
 <string name="player_settings_always_ask">دايمًا سئالوني</string>

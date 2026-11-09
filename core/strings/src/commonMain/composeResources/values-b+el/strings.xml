@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ</item><item quantity="other">%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Αποτυχία φόρτωσης %d ενότητας</item><item quantity="other">Αποτυχία φόρτωσης %d ενοτήτων</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d τίτλος</item><item quantity="other">%d τίτλοι</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d δευτερόλεπτο</item><item quantity="other">%d δευτερόλεπτα</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d πηγή</item><item quantity="other">%d πηγές</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Επόμενο επεισόδιο σε %d δ</item><item quantity="other">Επόμενο επεισόδιο σε %d δ</item></plurals>
@@ -439,6 +440,7 @@
 <string name="library_sort_supported">Το %1$s υποστηρίζει %2$d από %3$d</string>
 <string name="library_sort_not_kept">Δεν το κρατά το %s</string>
 <string name="library_source">Πηγή βιβλιοθήκης</string>
+<string name="library_source_local">Τοπικό</string>
 <string name="library_source_note">Μία κάθε φορά · η εναλλαγή επαναφορτώνει</string>
 <string name="library_sync_cached">Από προσωρινή μνήμη</string>
 <string name="library_sync_failed">Δεν ήταν δυνατός ο συγχρονισμός του %1$s. Αυτά είναι από πριν από %2$s.</string>
@@ -513,6 +515,7 @@
 <string name="pin">Κωδικός</string>
 <string name="pin_error_incorrect">Εσφαλμένος Κωδικός. Προσπαθήστε ξανά.</string>
 <string name="pin_error_length">Ο κωδικός να περιέχει 4 χαρακτήρες</string>
+<string name="pin_error_wait">Πάρα πολλά λάθος PIN. Δοκιμάστε ξανά σε %1$s</string>
 <string name="play_episode">Αναπαραγωγή επεισοδίου</string>
 <string name="play_episode_toast">Αναπαραγωγή επεισοδίου</string>
 <string name="play_from_beginning_img_des">Παίξε από την αρχή</string>
@@ -544,6 +547,15 @@
 <string name="player_mute">Σίγαση</string>
 <string name="player_notification_channel_description">Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο</string>
 <string name="player_notification_channel_name">Ειδοποίησεις αναπαραγωγής</string>
+<string name="player_panel_failed">απέτυχε</string>
+<string name="player_panel_keeps">κρατά %s</string>
+<string name="player_panel_on">Ενεργό</string>
+<string name="player_panel_open">Άνοιγμα</string>
+<string name="player_panel_quality_profile">Προφίλ ποιότητας</string>
+<string name="player_panel_quality_unknown">άγνωστη ποιότητα</string>
+<string name="player_panel_retry_all">Επανάληψη όλων των πηγών</string>
+<string name="player_panel_style">Στυλ υποτίτλων</string>
+<string name="player_panel_use">Χρήση</string>
 <string name="player_play_now">Αναπαραγωγή τώρα</string>
 <string name="player_pref">Προτεινόμενο πρόγραμμα αναπαραγωγής</string>
 <string name="player_settings_play_in_app">Ενσωματωμένο πρόγραμμα αναπαραγωγής</string>

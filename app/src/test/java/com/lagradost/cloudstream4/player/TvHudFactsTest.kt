@@ -124,11 +124,16 @@ class TvHudFactsTest {
         assertEquals("1080p", facts(link = link(name = "Server 1/2")).toHudState().source)
     }
 
-    /** Titles keep their punctuation: only an address is dropped from them, not a question mark. */
+    /** Titles keep their punctuation and dotted words (review of `KMP-64`): only an address is dropped from them. */
     @Test
     fun aTitleWithAQuestionMarkStays() {
         val state = facts(title = "Harbor Lights...?").toHudState()
         assertEquals("Harbor Lights...?", state.title)
+        for (title in listOf("Harbor Lights...?", "Dr.Harbor", "Mr.Lantern", "Vol.II")) {
+            assertEquals(title, facts(title = title).toHudState().title)
+        }
+        // A title that is an address still goes.
+        assertEquals("", facts(title = "cdn.host.to/v/$SECRET_PATH").toHudState().title)
     }
 
     @Test

@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d KÖNYVJELZŐ</item><item quantity="other">%d KÖNYVJELZŐ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d szakasz betöltése sikertelen</item><item quantity="other">%d szakasz betöltése sikertelen</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d cím</item><item quantity="other">%d cím</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d másodperc</item><item quantity="other">%d másodperc</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d forrás</item><item quantity="other">%d forrás</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Következő rész %d mp múlva</item><item quantity="other">Következő rész %d mp múlva</item></plurals>
@@ -433,6 +434,7 @@
 <string name="library_sort_supported">A(z) %1$s %3$d szempontból %2$d-t támogat</string>
 <string name="library_sort_not_kept">A(z) %s nem tárolja</string>
 <string name="library_source">Könyvtár forrása</string>
+<string name="library_source_local">Helyi</string>
 <string name="library_source_note">Egyszerre egy · váltáskor újratölt</string>
 <string name="library_sync_cached">Gyorsítótárból</string>
 <string name="library_sync_failed">A(z) %1$s nem szinkronizálható. Ezek %2$s előttiek.</string>
@@ -504,6 +506,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Hibás PIN. Próbálja újra.</string>
 <string name="pin_error_length">A PIN 4 karakter hosszú kell legyen</string>
+<string name="pin_error_wait">Túl sok hibás PIN. Próbáld újra %1$s múlva</string>
 <string name="play_episode">Epizód lejátszása</string>
 <string name="play_episode_toast">Epizód lejátszása</string>
 <string name="play_from_beginning_img_des">Lejátszás az elejétől</string>
@@ -534,6 +537,15 @@
 <string name="player_loaded_subtitles">%s betöltve</string>
 <string name="player_menu_playback">Lejátszás</string>
 <string name="player_mute">Némítás</string>
+<string name="player_panel_failed">sikertelen</string>
+<string name="player_panel_keeps">megtartja: %s</string>
+<string name="player_panel_on">Be</string>
+<string name="player_panel_open">Megnyitás</string>
+<string name="player_panel_quality_profile">Minőségi profil</string>
+<string name="player_panel_quality_unknown">ismeretlen minőség</string>
+<string name="player_panel_retry_all">Összes forrás újrapróbálása</string>
+<string name="player_panel_style">Feliratstílus</string>
+<string name="player_panel_use">Használat</string>
 <string name="player_play_now">Lejátszás most</string>
 <string name="player_pref">Előnyben részesített videolejátszó</string>
 <string name="player_settings_always_ask">Mindig kérdezzen</string>

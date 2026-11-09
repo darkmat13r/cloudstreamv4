@@ -98,6 +98,8 @@ class AndroidLibrarySourcesTest {
             is UiText.StringResource -> when (text.resId) {
                 R.string.type_watching -> "Watching"
                 R.string.type_re_watching -> "Rewatching"
+                // I18N-17: the local list's name comes from its key, here a word no source is called.
+                R.string.library_source_local -> "Lokal"
                 else -> "?"
             }
             is UiText.DynamicString -> text.value
@@ -130,7 +132,7 @@ class AndroidLibrarySourcesTest {
     @Test
     fun `signed-in sources are listed first, each group in the app's order`() = runBlocking {
         val listed = sources(mal, aniList, local).sources()
-        assertEquals(listOf("AniList", "Local", "MAL"), listed.map { it.name })
+        assertEquals(listOf("AniList", "Lokal", "MAL"), listed.map { it.name })
         val (ani, loc, m) = listed
         assertEquals("lagradost", ani.account)
         assertTrue(loc.local && loc.connected)

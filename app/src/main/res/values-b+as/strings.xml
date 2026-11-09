@@ -435,6 +435,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s-এ ৰখা নহয়"</string>
 <string name="library_sort_supported" formatted="true">"%1$s-এ %3$d টাৰ %2$d টা সমৰ্থন কৰে"</string>
 <string name="library_source">"পুথিভঁৰালৰ উৎস"</string>
+<string name="library_source_local">"স্থানীয়"</string>
 <string name="library_source_note">"এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়"</string>
 <string name="library_sync_cached">"কেশ্ব কৰা"</string>
 <string name="library_sync_failed" formatted="true">"%1$s ছিংক কৰিব পৰা নগ'ল। এইবোৰ %2$s আগৰ।"</string>
@@ -508,6 +509,7 @@
 <string name="pin">"পিন"</string>
 <string name="pin_error_incorrect">"ভুল পিন। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।"</string>
 <string name="pin_error_length">"পিন ৪ অক্ষৰৰ হ'ব লাগিব"</string>
+<string name="pin_error_wait" formatted="true">"বহুতো ভুল PIN। %1$s পিছত পুনৰ চেষ্টা কৰক"</string>
 <string name="play_episode">"এপিচ'ড প্লে কৰক"</string>
 <string name="play_episode_toast">"এপিচ’ড প্লে কৰক"</string>
 <string name="play_from_beginning_img_des">"আৰম্ভৰ পৰা প্লে কৰক"</string>
@@ -537,6 +539,16 @@
 <string name="player_loaded_subtitles" formatted="true">"%s ল'ড হৈছে"</string>
 <string name="player_menu_playback">"প্লেবেক"</string>
 <string name="player_mute">"মৌন কৰক"</string>
+<string name="player_panel_failed">"ব্যৰ্থ"</string>
+<string name="player_panel_keeps" formatted="true">"%s ৰাখে"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"অন"</string>
+<string name="player_panel_open">"খোলক"</string>
+<string name="player_panel_quality_profile">"গুণমান প্ৰফাইল"</string>
+<string name="player_panel_quality_unknown">"গুণমান অজ্ঞাত"</string>
+<string name="player_panel_retry_all">"সকলো উৎস পুনৰ চেষ্টা কৰক"</string>
+<string name="player_panel_style">"উপশিৰোনামৰ শৈলী"</string>
+<string name="player_panel_use">"ব্যৱহাৰ কৰক"</string>
 <string name="player_play_now">"এতিয়া চলাওক"</string>
 <string name="player_pref">"পছন্দৰ ভিডিঅ' প্লেয়াৰ"</string>
 <string name="player_settings_play_in_app">"আভ্যন্তৰীণ প্লেয়াৰ"</string>

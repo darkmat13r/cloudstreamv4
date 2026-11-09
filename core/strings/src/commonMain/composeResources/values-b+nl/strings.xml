@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BLADWIJZER</item><item quantity="other">%d BLADWIJZERS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d sectie kon niet worden geladen</item><item quantity="other">%d secties konden niet worden geladen</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titel</item><item quantity="other">%d titels</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d seconde</item><item quantity="other">%d seconden</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d bron</item><item quantity="other">%d bronnen</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Volgende aflevering over %d s</item><item quantity="other">Volgende aflevering over %d s</item></plurals>
@@ -446,6 +447,7 @@
 <string name="library_sort_supported">%1$s ondersteunt %2$d van %3$d</string>
 <string name="library_sort_not_kept">Niet bewaard door %s</string>
 <string name="library_source">Bibliotheekbron</string>
+<string name="library_source_local">Lokaal</string>
 <string name="library_source_note">Eén tegelijk · wisselen laadt opnieuw</string>
 <string name="library_sync_cached">Uit cache</string>
 <string name="library_sync_failed">%1$s kon niet worden gesynchroniseerd. Dit is van %2$s geleden.</string>
@@ -522,6 +524,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Onjuiste PIN. Probeer het opnieuw.</string>
 <string name="pin_error_length">PIN moet 4 teken bevatten</string>
+<string name="pin_error_wait">Te veel verkeerde pincodes. Probeer het over %1$s opnieuw</string>
 <string name="play_episode">Aflevering afspelen</string>
 <string name="play_episode_toast">Aflevering afspelen</string>
 <string name="play_from_beginning_img_des">Speel van het begin</string>
@@ -554,6 +557,15 @@
 <string name="player_mute">Dempen</string>
 <string name="player_notification_channel_description">De speler melding om de kijkervaring van de achtergrond de besturen</string>
 <string name="player_notification_channel_name">Speler meldingen</string>
+<string name="player_panel_failed">mislukt</string>
+<string name="player_panel_keeps">behoudt %s</string>
+<string name="player_panel_on">Aan</string>
+<string name="player_panel_open">Openen</string>
+<string name="player_panel_quality_profile">Kwaliteitsprofiel</string>
+<string name="player_panel_quality_unknown">kwaliteit onbekend</string>
+<string name="player_panel_retry_all">Alle bronnen opnieuw proberen</string>
+<string name="player_panel_style">Ondertitelstijl</string>
+<string name="player_panel_use">Gebruiken</string>
 <string name="player_play_now">Nu afspelen</string>
 <string name="player_pref">Gewenste videospeler</string>
 <string name="player_settings_always_ask">Vraag altijd</string>

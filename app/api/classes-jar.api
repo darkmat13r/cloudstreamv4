@@ -3732,6 +3732,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field library_sort_not_kept I
 	public static field library_sort_supported I
 	public static field library_source I
+	public static field library_source_local I
 	public static field library_source_note I
 	public static field library_sync_cached I
 	public static field library_sync_failed I
@@ -3824,6 +3825,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field pin I
 	public static field pin_error_incorrect I
 	public static field pin_error_length I
+	public static field pin_error_wait I
 	public static field pip_enabled_key I
 	public static field play_episode I
 	public static field play_episode_toast I
@@ -3860,6 +3862,16 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field player_mute I
 	public static field player_notification_channel_description I
 	public static field player_notification_channel_name I
+	public static field player_panel_failed I
+	public static field player_panel_keeps I
+	public static field player_panel_numbered I
+	public static field player_panel_on I
+	public static field player_panel_open I
+	public static field player_panel_quality_profile I
+	public static field player_panel_quality_unknown I
+	public static field player_panel_retry_all I
+	public static field player_panel_style I
+	public static field player_panel_use I
 	public static field player_play_now I
 	public static field player_pref I
 	public static field player_resize_enabled_key I
@@ -25705,9 +25717,12 @@ public final class com/lagradost/cloudstream3/ui/account/AccountHelper : java/la
 	public static final field $stable I
 	public static final field INSTANCE Lcom/lagradost/cloudstream3/ui/account/AccountHelper;
 	public static final synthetic fun access$showPinInputDialog$visibleWithText (Landroid/widget/TextView;I)V
+	public static final synthetic fun access$showPinInputDialog$visibleWithText$0 (Landroid/widget/TextView;Ljava/lang/String;)V
 	public final fun showAccountEditDialog (Landroid/content/Context;Lcom/lagradost/cloudstream3/utils/DataStoreHelper$Account;ZLkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function1;)V
 	public final fun showAccountSelectLinear (Landroid/app/Activity;)V
+	public final fun showPinInputDialog (Landroid/content/Context;Ljava/lang/String;ZZLjava/lang/String;Ljava/lang/String;Lkotlin/jvm/functions/Function1;)V
 	public final fun showPinInputDialog (Landroid/content/Context;Ljava/lang/String;ZZLjava/lang/String;Lkotlin/jvm/functions/Function1;)V
+	public final fun showPinInputDialog$app (Landroid/content/Context;Ljava/lang/String;ZZLjava/lang/String;Ljava/lang/String;ILkotlin/jvm/functions/Function1;)V
 	public static synthetic fun showPinInputDialog$default (Lcom/lagradost/cloudstream3/ui/account/AccountHelper;Landroid/content/Context;Ljava/lang/String;ZZLjava/lang/String;Lkotlin/jvm/functions/Function1;ILjava/lang/Object;)V
 }
 
@@ -25731,6 +25746,10 @@ public final static class com/lagradost/cloudstream3/ui/account/AccountHelper$sh
 	public fun afterTextChanged (Landroid/text/Editable;)V
 	public fun beforeTextChanged (Ljava/lang/CharSequence;III)V
 	public fun onTextChanged (Ljava/lang/CharSequence;III)V
+}
+
+public final static class com/lagradost/cloudstream3/ui/account/AccountHelper$showPinInputDialog$waitTick$1 : java/lang/Object, java/lang/Runnable {
+	public fun run ()V
 }
 
 public final class com/lagradost/cloudstream3/ui/account/AccountSelectActivity : androidx/fragment/app/FragmentActivity, com/lagradost/cloudstream3/utils/BiometricAuthenticator$BiometricCallback {
@@ -25789,6 +25808,47 @@ public final class com/lagradost/cloudstream3/ui/account/AccountViewModel : andr
 	public final fun isEditing ()Landroidx/lifecycle/LiveData;
 	public final fun setIsEditing (Z)V
 	public final fun toggleIsEditing ()V
+}
+
+public final class com/lagradost/cloudstream3/ui/account/PinAttempts : java/lang/Object {
+	public static final field $stable I
+	public static final field FILE Ljava/lang/String;
+	public static final field FIRST_WAIT_MS J
+	public static final field FREE_WRONG I
+	public static final field INSTANCE Lcom/lagradost/cloudstream3/ui/account/PinAttempts;
+	public static final field MAX_WAIT_MS J
+	public static final field UNKEYED I
+	public final fun forgetHeld ()V
+	public final fun getClock ()Lkotlin/jvm/functions/Function0;
+	public static synthetic fun getClock$annotations ()V
+	public final fun getStore ()Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Store;
+	public static synthetic fun getStore$annotations ()V
+	public final fun right (I)V
+	public final fun setClock (Lkotlin/jvm/functions/Function0;)V
+	public final fun setStore (Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Store;)V
+	public final fun waitMs (I)J
+	public final fun wrong (I)J
+}
+
+public final static class com/lagradost/cloudstream3/ui/account/PinAttempts$Record : java/lang/Object {
+	public static final field $stable I
+	public fun <init> (IJJ)V
+	public final fun component1 ()I
+	public final fun component2 ()J
+	public final fun component3 ()J
+	public final fun copy (IJJ)Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Record;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Record;IJJILjava/lang/Object;)Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Record;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getStartedAt ()J
+	public final fun getWaitMs ()J
+	public final fun getWrong ()I
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public static interface com/lagradost/cloudstream3/ui/account/PinAttempts$Store : java/lang/Object {
+	public abstract fun read (I)Lcom/lagradost/cloudstream3/ui/account/PinAttempts$Record;
+	public abstract fun write (ILcom/lagradost/cloudstream3/ui/account/PinAttempts$Record;)V
 }
 
 public final class com/lagradost/cloudstream3/ui/account/ProfileSignIns : java/lang/Object {
@@ -27556,7 +27616,9 @@ public open class com/lagradost/cloudstream3/ui/player/FullScreenPlayer : com/la
 	public fun onSingleTap ()V
 	public fun onStop ()V
 	public fun onTouchDown ()V
+	public fun onTvPanelRow$app (Lcom/lagradost/cloudstream4/feature/player/PanelKind;Ljava/lang/String;Ljava/lang/String;)Lcom/lagradost/cloudstream4/player/PanelStep;
 	public fun openOnlineSubPicker (Landroid/content/Context;Lcom/lagradost/cloudstream3/LoadResponse;Lkotlin/jvm/functions/Function0;)V
+	public final fun openSubtitleDelay$app ()V
 	public fun pickLayout ()Ljava/lang/Integer;
 	public fun playerDimensionsLoaded (II)V
 	public fun playerError (Ljava/lang/Throwable;)V
@@ -27585,6 +27647,7 @@ public open class com/lagradost/cloudstream3/ui/player/FullScreenPlayer : com/la
 	public fun showTracksDialogue ()V
 	public fun subtitlesChanged ()V
 	public fun tvHudFacts$app ()Lcom/lagradost/cloudstream4/player/TvHudFacts;
+	public fun tvPanel$app (Lcom/lagradost/cloudstream4/feature/player/PanelKind;Ljava/lang/String;)Lcom/lagradost/cloudstream4/feature/player/PlaybackPanelState;
 	protected final fun uiReset ()V
 	public final fun updateSpeedDialogBinding (Lcom/lagradost/cloudstream3/databinding/SpeedDialogBinding;)V
 }
@@ -27594,6 +27657,10 @@ public final static class com/lagradost/cloudstream3/ui/player/FullScreenPlayer$
 	public fun afterTextChanged (Landroid/text/Editable;)V
 	public fun beforeTextChanged (Ljava/lang/CharSequence;III)V
 	public fun onTextChanged (Ljava/lang/CharSequence;III)V
+}
+
+public final static class com/lagradost/cloudstream3/ui/player/FullScreenPlayer$startTvHud$closesPanel$1 : androidx/activity/OnBackPressedCallback {
+	public fun handleOnBackPressed ()V
 }
 
 public final class com/lagradost/cloudstream3/ui/player/FullScreenPlayerKt : java/lang/Object {
@@ -27632,6 +27699,7 @@ public final class com/lagradost/cloudstream3/ui/player/GeneratorPlayer : com/la
 	public fun onTimestamp (Lcom/lagradost/cloudstream3/utils/videoskip/VideoSkipStamp;)V
 	public fun onTimestampSkipped (Lcom/lagradost/cloudstream3/utils/videoskip/VideoSkipStamp;)V
 	public fun onTracksInfoChanged ()V
+	public fun onTvPanelRow$app (Lcom/lagradost/cloudstream4/feature/player/PanelKind;Ljava/lang/String;Ljava/lang/String;)Lcom/lagradost/cloudstream4/player/PanelStep;
 	public fun openOnlineSubPicker (Landroid/content/Context;Lcom/lagradost/cloudstream3/LoadResponse;Lkotlin/jvm/functions/Function0;)V
 	public fun pickLayout ()Ljava/lang/Integer;
 	public fun playerDimensionsLoaded (II)V
@@ -27651,6 +27719,7 @@ public final class com/lagradost/cloudstream3/ui/player/GeneratorPlayer : com/la
 	public fun showMirrorsDialogue ()V
 	public fun showTracksDialogue ()V
 	public fun tvHudFacts$app ()Lcom/lagradost/cloudstream4/player/TvHudFacts;
+	public fun tvPanel$app (Lcom/lagradost/cloudstream4/feature/player/PanelKind;Ljava/lang/String;)Lcom/lagradost/cloudstream4/feature/player/PlaybackPanelState;
 }
 
 public final static class com/lagradost/cloudstream3/ui/player/GeneratorPlayer$Companion : java/lang/Object {
@@ -27687,6 +27756,7 @@ public final static class com/lagradost/cloudstream3/ui/player/GeneratorPlayer$T
 
 public final static synthetic class com/lagradost/cloudstream3/ui/player/GeneratorPlayer$WhenMappings : java/lang/Object {
 	public static final synthetic field $EnumSwitchMapping$0 [I
+	public static final synthetic field $EnumSwitchMapping$1 [I
 }
 
 public final static class com/lagradost/cloudstream3/ui/player/GeneratorPlayer$displayTimeStamp$lambda$0$0$$inlined$addListener$default$1 : java/lang/Object, android/animation/Animator$AnimatorListener {
@@ -27735,6 +27805,11 @@ public final static class com/lagradost/cloudstream3/ui/player/GeneratorPlayer$s
 }
 
 public final static class com/lagradost/cloudstream3/ui/player/GeneratorPlayer$showTracksDialogue$lambda$0$$inlined$sortedBy$1 : java/lang/Object, java/util/Comparator {
+	public fun <init> ()V
+	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
+}
+
+public final static class com/lagradost/cloudstream3/ui/player/GeneratorPlayer$subtitlePanel$lambda$1$$inlined$sortedBy$1 : java/lang/Object, java/util/Comparator {
 	public fun <init> ()V
 	public final fun compare (Ljava/lang/Object;Ljava/lang/Object;)I
 }
@@ -32517,6 +32592,7 @@ public final class com/lagradost/cloudstream3/utils/BackupUtils : java/lang/Obje
 	public final fun getCurrentBackupDir (Landroid/content/Context;)Lkotlin/Pair;
 	public final fun getDefaultBackupDir (Landroid/content/Context;)Lcom/lagradost/safefile/SafeFile;
 	public final fun restore (Landroid/content/Context;Lcom/lagradost/cloudstream3/utils/BackupUtils$BackupFile;ZZ)V
+	public final fun restoreAfterPins$app (Landroidx/fragment/app/FragmentActivity;Lcom/lagradost/cloudstream3/utils/BackupUtils$BackupFile;Lkotlin/jvm/functions/Function0;)V
 	public final fun restorePrompt (Landroid/app/Activity;)V
 	public final fun setUpBackup (Landroidx/fragment/app/FragmentActivity;)V
 }
@@ -38524,6 +38600,37 @@ public final class com/lagradost/cloudstream4/library/SyncedTitle : java/lang/Ob
 	public fun toString ()Ljava/lang/String;
 }
 
+public interface com/lagradost/cloudstream4/player/PanelStep : java/lang/Object {
+}
+
+public final static class com/lagradost/cloudstream4/player/PanelStep$Close : java/lang/Object, com/lagradost/cloudstream4/player/PanelStep {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/player/PanelStep$Close;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final static class com/lagradost/cloudstream4/player/PanelStep$Level : java/lang/Object, com/lagradost/cloudstream4/player/PanelStep {
+	public static final field $stable I
+	public fun <init> (Ljava/lang/String;)V
+	public final fun component1 ()Ljava/lang/String;
+	public final fun copy (Ljava/lang/String;)Lcom/lagradost/cloudstream4/player/PanelStep$Level;
+	public static synthetic fun copy$default (Lcom/lagradost/cloudstream4/player/PanelStep$Level;Ljava/lang/String;ILjava/lang/Object;)Lcom/lagradost/cloudstream4/player/PanelStep$Level;
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getLevel ()Ljava/lang/String;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final static class com/lagradost/cloudstream4/player/PanelStep$Stay : java/lang/Object, com/lagradost/cloudstream4/player/PanelStep {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/player/PanelStep$Stay;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
 public final class com/lagradost/cloudstream4/player/TvHudFacts : java/lang/Object {
 	public static final field $stable I
 	public fun <init> (Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/Integer;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;Lcom/lagradost/cloudstream3/utils/ExtractorLink;ZLjava/lang/String;Ljava/lang/String;ZZJJJFLjava/util/List;Ljava/lang/String;ZZLjava/lang/Integer;Ljava/lang/Integer;Ljava/lang/String;ZZ)V
@@ -38563,15 +38670,51 @@ public final class com/lagradost/cloudstream4/player/TvHudFactsKt : java/lang/Ob
 	public static final fun toHudState (Lcom/lagradost/cloudstream4/player/TvHudFacts;)Lcom/lagradost/cloudstream4/feature/player/PlayerHudState;
 }
 
+public final class com/lagradost/cloudstream4/player/TvPanelRows : java/lang/Object {
+	public static final field $stable I
+	public static final field INSTANCE Lcom/lagradost/cloudstream4/player/TvPanelRows;
+	public final fun sourceQuality (Lcom/lagradost/cloudstream3/utils/ExtractorLink;)Ljava/lang/String;
+	public final fun sourceTitle (Lcom/lagradost/cloudstream3/utils/ExtractorLink;Lcom/lagradost/cloudstream3/ui/player/ExtractorUri;Ljava/lang/String;)Ljava/lang/String;
+	public final fun subtitleGroupTitle (Lcom/lagradost/cloudstream3/ui/player/SubtitleData;Ljava/lang/String;)Ljava/lang/String;
+	public final fun subtitleVariantTitle (Lcom/lagradost/cloudstream3/ui/player/SubtitleData;Ljava/lang/String;)Ljava/lang/String;
+}
+
 public final class com/lagradost/cloudstream4/player/TvPlayerHud : java/lang/Object {
 	public static final field $stable I
 	public static final field TICK_MS J
 	public fun <init> (Landroid/view/ViewGroup;Landroidx/lifecycle/LifecycleOwner;JJLkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;)V
+	public fun <init> (Landroid/view/ViewGroup;Landroidx/lifecycle/LifecycleOwner;JJLkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;)V
+	public fun <init> (Landroid/view/ViewGroup;Landroidx/lifecycle/LifecycleOwner;JJLkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function3;)V
+	public synthetic fun <init> (Landroid/view/ViewGroup;Landroidx/lifecycle/LifecycleOwner;JJLkotlin/jvm/functions/Function0;Lkotlin/jvm/functions/Function1;Lkotlin/jvm/functions/Function2;Lkotlin/jvm/functions/Function3;ILkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public static final synthetic fun access$handle (Lcom/lagradost/cloudstream4/player/TvPlayerHud;Lcom/lagradost/cloudstream4/feature/player/PlayerHudAction;)V
+	public final fun getPanelOpen ()Lkotlinx/coroutines/flow/StateFlow;
+	public final fun isPanelOpenNow ()Z
 	public final fun onKey (Landroid/view/KeyEvent;)Z
 	public final fun ownsNavigation (Landroid/view/KeyEvent;)Z
+	public final fun panelBack ()V
 	public final fun refresh ()V
 	public final fun release ()V
 	public final fun reveal ()V
+}
+
+public final static class com/lagradost/cloudstream4/player/TvPlayerHud$special$$inlined$map$1 : java/lang/Object, kotlinx/coroutines/flow/Flow {
+	public fun <init> (Lkotlinx/coroutines/flow/Flow;)V
+	public fun collect (Lkotlinx/coroutines/flow/FlowCollector;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/player/TvPlayerHud$special$$inlined$map$1$1 : kotlin/coroutines/jvm/internal/ContinuationImpl {
+	public fun <init> (Lcom/lagradost/cloudstream4/player/TvPlayerHud$special$$inlined$map$1;Lkotlin/coroutines/Continuation;)V
+	public final fun invokeSuspend (Ljava/lang/Object;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/player/TvPlayerHud$special$$inlined$map$1$2 : java/lang/Object, kotlinx/coroutines/flow/FlowCollector {
+	public fun <init> (Lkotlinx/coroutines/flow/FlowCollector;)V
+	public final fun emit (Ljava/lang/Object;Lkotlin/coroutines/Continuation;)Ljava/lang/Object;
+}
+
+public final static class com/lagradost/cloudstream4/player/TvPlayerHud$special$$inlined$map$1$2$1 : kotlin/coroutines/jvm/internal/ContinuationImpl {
+	public fun <init> (Lcom/lagradost/cloudstream4/player/TvPlayerHud$special$$inlined$map$1$2;Lkotlin/coroutines/Continuation;)V
+	public final fun invokeSuspend (Ljava/lang/Object;)Ljava/lang/Object;
 }
 
 public final class com/lagradost/cloudstream4/player/TvPlayerHudSwitch : java/lang/Object {

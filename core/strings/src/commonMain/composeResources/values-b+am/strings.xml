@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ዕልባት</item><item quantity="other">%d ዕልባቶች</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ክፍል መጫን አልተቻለም</item><item quantity="other">%d ክፍል መጫን አልተቻለም</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ርዕስ</item><item quantity="other">%d ርዕሶች</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d ሰከንዶች</item><item quantity="other">%d ሰከንዶች</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d ምንጮች</item><item quantity="other">%d ምንጮች</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">ቀጣዩ ክፍል በ%d ሰ ውስጥ</item><item quantity="other">ቀጣዩ ክፍል በ%d ሰ ውስጥ</item></plurals>
@@ -215,6 +216,7 @@
 <string name="no_data">ውሂብ የለም</string>
 <string name="pick_source">ምንጮች</string>
 <string name="pick_subtitle">የትርጉም ጽሑፎች</string>
+<string name="pin_error_wait">በጣም ብዙ የተሳሳቱ ፒኖች። ከ%1$s በኋላ እንደገና ይሞክሩ</string>
 <string name="play_episode">ክፍልን አጫውት</string>
 <string name="play_livestream_button">የቀጥታ ስርጭት አጫውት</string>
 <string name="play_movie_button">ሙቪ አጫውት</string>
@@ -236,6 +238,15 @@
 <string name="player_hud_speed">ፍጥነት</string>
 <string name="player_hud_up_next">ቀጣይ · %s</string>
 <string name="player_mute">ድምፅ አጥፋ</string>
+<string name="player_panel_failed">አልተሳካም</string>
+<string name="player_panel_keeps">%s ይቆያል</string>
+<string name="player_panel_on">በርቷል</string>
+<string name="player_panel_open">ክፈት</string>
+<string name="player_panel_quality_profile">የጥራት መገለጫ</string>
+<string name="player_panel_quality_unknown">ጥራት አይታወቅም</string>
+<string name="player_panel_retry_all">ሁሉንም ምንጮች እንደገና ሞክር</string>
+<string name="player_panel_style">የንዑስ ርዕስ ዘይቤ</string>
+<string name="player_panel_use">ተጠቀም</string>
 <string name="player_source_playing">በመጫወት ላይ</string>
 <string name="player_source_resumes_at">መቀየር ቦታዎን ይጠብቃል፦ ከ%1$s ይቀጥላል</string>
 <string name="player_source_retry">እንደገና ሞክር</string>
@@ -447,6 +458,7 @@
 <string name="library_sort_supported">%1$s ከ%3$d %2$d ይደግፋል</string>
 <string name="library_sort_not_kept">በ%s አይያዝም</string>
 <string name="library_source">የቤተ-መጽሐፍት ምንጭ</string>
+<string name="library_source_local">አካባቢያዊ</string>
 <string name="library_source_note">አንድ በአንድ · መቀየር እንደገና ይጭናል</string>
 <string name="library_sync_cached">የተቀመጠ</string>
 <string name="library_sync_failed">%1$sን ማመሳሰል አልተቻለም። እነዚህ ከ%2$s በፊት የነበሩ ናቸው።</string>

@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d अनुभाग लोड नहीं हो सका</item><item quantity="other">%d अनुभाग लोड नहीं हो सके</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d शीर्षक</item><item quantity="other">%d शीर्षक</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d सेकंड</item><item quantity="other">%d सेकंड</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d स्रोत</item><item quantity="other">%d स्रोत</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">अगला एपिसोड %d से. में</item><item quantity="other">अगला एपिसोड %d से. में</item></plurals>
@@ -353,6 +354,7 @@
 <string name="library_sort_supported">%1$s %3$d में से %2$d का समर्थन करता है</string>
 <string name="library_sort_not_kept">%s इसे नहीं रखता</string>
 <string name="library_source">लाइब्रेरी स्रोत</string>
+<string name="library_source_local">स्थानीय</string>
 <string name="library_source_note">एक समय में एक · बदलने पर फिर से लोड होता है</string>
 <string name="library_sync_cached">कैश किया</string>
 <string name="library_sync_failed">%1$s सिंक नहीं हो सका। ये %2$s पहले के हैं।</string>
@@ -409,6 +411,7 @@
 <string name="pin">पिन</string>
 <string name="pin_error_incorrect">ग़लत पिन. कृपया पुन: प्रयास करें।</string>
 <string name="pin_error_length">पिन 4 अक्षर का होना चाहिए</string>
+<string name="pin_error_wait">बहुत सारे गलत PIN। %1$s बाद फिर से कोशिश करें</string>
 <string name="play_episode">एपिसोड चलाएं</string>
 <string name="play_episode_toast">एपिसोड चलायें</string>
 <string name="play_from_beginning_img_des">आरम्भ से शुरू करें</string>
@@ -435,6 +438,15 @@
 <string name="player_hud_up_next">अगला · %s</string>
 <string name="player_menu_playback">प्लेबैक</string>
 <string name="player_mute">म्यूट करें</string>
+<string name="player_panel_failed">विफल</string>
+<string name="player_panel_keeps">%s बनाए रखता है</string>
+<string name="player_panel_on">चालू</string>
+<string name="player_panel_open">खोलें</string>
+<string name="player_panel_quality_profile">गुणवत्ता प्रोफ़ाइल</string>
+<string name="player_panel_quality_unknown">गुणवत्ता अज्ञात</string>
+<string name="player_panel_retry_all">सभी स्रोत फिर से आज़माएँ</string>
+<string name="player_panel_style">सबटाइटल शैली</string>
+<string name="player_panel_use">उपयोग करें</string>
 <string name="player_play_now">अभी चलाएँ</string>
 <string name="player_size_settings">प्लेयर आकार परिवर्तन बटन</string>
 <string name="player_size_settings_des">काले बॉर्डर हटाएँ</string>

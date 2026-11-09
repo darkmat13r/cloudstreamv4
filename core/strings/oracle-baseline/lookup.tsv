@@ -524,6 +524,7 @@ values-b+af	string	library_sort_current	-	Sorteer: %s
 values-b+af	string	library_sort_not_kept	-	Nie deur %s gehou nie
 values-b+af	string	library_sort_supported	-	%1$s ondersteun %2$d van %3$d
 values-b+af	string	library_source	-	Biblioteekbron
+values-b+af	string	library_source_local	-	Plaaslik
 values-b+af	string	library_source_note	-	Een op 'n slag · oorskakel herlaai
 values-b+af	string	library_sync_cached	-	Gekas
 values-b+af	string	library_sync_failed	-	Kon %1$s nie sinkroniseer nie. Hierdie is van %2$s gelede.
@@ -608,6 +609,7 @@ values-b+af	string	picture_in_picture_des	-	Continues playback in a miniature pl
 values-b+af	string	pin	-	PIN
 values-b+af	string	pin_error_incorrect	-	Verkeerde PIN. Probeer weer.
 values-b+af	string	pin_error_length	-	PIN moet 4 karakters bevat
+values-b+af	string	pin_error_wait	-	Te veel verkeerde PIN's. Probeer weer oor %1$s
 values-b+af	string	play_episode	-	Speel Episode
 values-b+af	string	play_episode_toast	-	Play Episode
 values-b+af	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -641,6 +643,16 @@ values-b+af	string	player_menu_playback	-	Afspeel
 values-b+af	string	player_mute	-	Demp
 values-b+af	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+af	string	player_notification_channel_name	-	Player notifications
+values-b+af	string	player_panel_failed	-	misluk
+values-b+af	string	player_panel_keeps	-	behou %s
+values-b+af	string	player_panel_numbered	-	%1$s %2$d
+values-b+af	string	player_panel_on	-	Aan
+values-b+af	string	player_panel_open	-	Maak oop
+values-b+af	string	player_panel_quality_profile	-	Kwaliteitsprofiel
+values-b+af	string	player_panel_quality_unknown	-	kwaliteit onbekend
+values-b+af	string	player_panel_retry_all	-	Probeer alle bronne weer
+values-b+af	string	player_panel_style	-	Onderskrifstyl
+values-b+af	string	player_panel_use	-	Gebruik
 values-b+af	string	player_play_now	-	Speel nou
 values-b+af	string	player_pref	-	Preferred video player
 values-b+af	string	player_settings_always_ask	-	Always ask
@@ -1696,6 +1708,7 @@ values-b+am	string	library_sort_current	-	ደርድር፦ %s
 values-b+am	string	library_sort_not_kept	-	በ%s አይያዝም
 values-b+am	string	library_sort_supported	-	%1$s ከ%3$d %2$d ይደግፋል
 values-b+am	string	library_source	-	የቤተ-መጽሐፍት ምንጭ
+values-b+am	string	library_source_local	-	አካባቢያዊ
 values-b+am	string	library_source_note	-	አንድ በአንድ · መቀየር እንደገና ይጭናል
 values-b+am	string	library_sync_cached	-	የተቀመጠ
 values-b+am	string	library_sync_failed	-	%1$sን ማመሳሰል አልተቻለም። እነዚህ ከ%2$s በፊት የነበሩ ናቸው።
@@ -1780,6 +1793,7 @@ values-b+am	string	picture_in_picture_des	-	Continues playback in a miniature pl
 values-b+am	string	pin	-	PIN
 values-b+am	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+am	string	pin_error_length	-	PIN must be 4 characters
+values-b+am	string	pin_error_wait	-	በጣም ብዙ የተሳሳቱ ፒኖች። ከ%1$s በኋላ እንደገና ይሞክሩ
 values-b+am	string	play_episode	-	ክፍልን አጫውት
 values-b+am	string	play_episode_toast	-	Play Episode
 values-b+am	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -1813,6 +1827,16 @@ values-b+am	string	player_menu_playback	-	መልሶ ማጫወት
 values-b+am	string	player_mute	-	ድምፅ አጥፋ
 values-b+am	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+am	string	player_notification_channel_name	-	Player notifications
+values-b+am	string	player_panel_failed	-	አልተሳካም
+values-b+am	string	player_panel_keeps	-	%s ይቆያል
+values-b+am	string	player_panel_numbered	-	%1$s %2$d
+values-b+am	string	player_panel_on	-	በርቷል
+values-b+am	string	player_panel_open	-	ክፈት
+values-b+am	string	player_panel_quality_profile	-	የጥራት መገለጫ
+values-b+am	string	player_panel_quality_unknown	-	ጥራት አይታወቅም
+values-b+am	string	player_panel_retry_all	-	ሁሉንም ምንጮች እንደገና ሞክር
+values-b+am	string	player_panel_style	-	የንዑስ ርዕስ ዘይቤ
+values-b+am	string	player_panel_use	-	ተጠቀም
 values-b+am	string	player_play_now	-	አሁን አጫውት
 values-b+am	string	player_pref	-	Preferred video player
 values-b+am	string	player_settings_always_ask	-	Always ask
@@ -2868,6 +2892,7 @@ values-b+apc	string	library_sort_current	-	الترتيب: %s
 values-b+apc	string	library_sort_not_kept	-	%s ما بيحفظه
 values-b+apc	string	library_sort_supported	-	%1$s بيدعم %2$d من %3$d
 values-b+apc	string	library_source	-	مصدر الرفّ
+values-b+apc	string	library_source_local	-	محلي
 values-b+apc	string	library_source_note	-	وحدة بكل مرة · التبديل بيعيد التحميل
 values-b+apc	string	library_sync_cached	-	محفوظ
 values-b+apc	string	library_sync_failed	-	ما قدرنا نزامن %1$s. هدول من قبل %2$s.
@@ -2952,6 +2977,7 @@ values-b+apc	string	picture_in_picture_des	-	بعد ما تسكر "كلود ست
 values-b+apc	string	pin	-	الأرقام السرية
 values-b+apc	string	pin_error_incorrect	-	الأرقام السرية يللي نحطت مش صحيحة. جرب مرة أخرى.
 values-b+apc	string	pin_error_length	-	لازم يكونو 4 أرقام
+values-b+apc	string	pin_error_wait	-	كتير PIN غلط. جرّب مرة تانية بعد %1$s
 values-b+apc	string	play_episode	-	مشّي الحلقة
 values-b+apc	string	play_episode_toast	-	مشّي الحلقة
 values-b+apc	string	play_from_beginning_img_des	-	بلشه من الأول
@@ -2985,6 +3011,16 @@ values-b+apc	string	player_menu_playback	-	التشغيل
 values-b+apc	string	player_mute	-	كتّم الصوت
 values-b+apc	string	player_notification_channel_description	-	نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح
 values-b+apc	string	player_notification_channel_name	-	شغل الڤيديو عبر النوتيفيكايشنز
+values-b+apc	string	player_panel_failed	-	فشل
+values-b+apc	string	player_panel_keeps	-	بيحافظ على %s
+values-b+apc	string	player_panel_numbered	-	%1$s %2$d
+values-b+apc	string	player_panel_on	-	شغّال
+values-b+apc	string	player_panel_open	-	افتح
+values-b+apc	string	player_panel_quality_profile	-	ملف الجودة
+values-b+apc	string	player_panel_quality_unknown	-	الجودة مش معروفة
+values-b+apc	string	player_panel_retry_all	-	جرّب كل المصادر من جديد
+values-b+apc	string	player_panel_style	-	شكل الترجمة
+values-b+apc	string	player_panel_use	-	استخدم
 values-b+apc	string	player_play_now	-	شغّل هلق
 values-b+apc	string	player_pref	-	مشغل الڤيديو المفضل
 values-b+apc	string	player_settings_always_ask	-	دايمًا سئالوني
@@ -4128,6 +4164,7 @@ values-b+ar	string	library_sort_current	-	الترتيب: %s
 values-b+ar	string	library_sort_not_kept	-	لا يحفظه %s
 values-b+ar	string	library_sort_supported	-	يدعم %1$s %2$d من %3$d
 values-b+ar	string	library_source	-	مصدر المكتبة
+values-b+ar	string	library_source_local	-	محلي
 values-b+ar	string	library_source_note	-	مصدر واحد في كل مرة · التبديل يعيد التحميل
 values-b+ar	string	library_sync_cached	-	مخزّن
 values-b+ar	string	library_sync_failed	-	تعذّرت مزامنة %1$s. هذه من قبل %2$s.
@@ -4212,6 +4249,7 @@ values-b+ar	string	picture_in_picture_des	-	يستمر في التشغيل في 
 values-b+ar	string	pin	-	PIN
 values-b+ar	string	pin_error_incorrect	-	رقم PIN غير صحيح. برجاء المحاولة مرة اخرى.
 values-b+ar	string	pin_error_length	-	رقم ال PIN يجب ان يكون 4 ارقام
+values-b+ar	string	pin_error_wait	-	محاولات PIN خاطئة كثيرة جدًا. حاول مرة أخرى بعد %1$s
 values-b+ar	string	play_episode	-	تشغيل الحلقة
 values-b+ar	string	play_episode_toast	-	تشغيل الحلقة
 values-b+ar	string	play_from_beginning_img_des	-	تشغيل من البداية
@@ -4245,6 +4283,16 @@ values-b+ar	string	player_menu_playback	-	التشغيل
 values-b+ar	string	player_mute	-	كتم الصوت
 values-b+ar	string	player_notification_channel_description	-	تنبيه المشغل المسؤول عن تشغيل الميديا في الخلفية
 values-b+ar	string	player_notification_channel_name	-	تنبيهات المشغل
+values-b+ar	string	player_panel_failed	-	فشل
+values-b+ar	string	player_panel_keeps	-	يحافظ على %s
+values-b+ar	string	player_panel_numbered	-	%1$s %2$d
+values-b+ar	string	player_panel_on	-	مُفعّل
+values-b+ar	string	player_panel_open	-	فتح
+values-b+ar	string	player_panel_quality_profile	-	ملف الجودة
+values-b+ar	string	player_panel_quality_unknown	-	الجودة غير معروفة
+values-b+ar	string	player_panel_retry_all	-	إعادة محاولة جميع المصادر
+values-b+ar	string	player_panel_style	-	نمط الترجمة
+values-b+ar	string	player_panel_use	-	استخدام
 values-b+ar	string	player_play_now	-	شغّل الآن
 values-b+ar	string	player_pref	-	مُشغل الفيديو المفضل
 values-b+ar	string	player_settings_always_ask	-	أسال دائما
@@ -5380,6 +5428,7 @@ values-b+ars	string	library_sort_current	-	الترتيب: %s
 values-b+ars	string	library_sort_not_kept	-	لا يحفظه %s
 values-b+ars	string	library_sort_supported	-	يدعم %1$s %2$d من %3$d
 values-b+ars	string	library_source	-	مصدر المكتبة
+values-b+ars	string	library_source_local	-	محلي
 values-b+ars	string	library_source_note	-	مصدر واحد في كل مرة · التبديل يعيد التحميل
 values-b+ars	string	library_sync_cached	-	مخزّن
 values-b+ars	string	library_sync_failed	-	تعذّرت مزامنة %1$s. هذه من قبل %2$s.
@@ -5464,6 +5513,7 @@ values-b+ars	string	picture_in_picture_des	-	يستمر التشغيل في مش
 values-b+ars	string	pin	-	PIN
 values-b+ars	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+ars	string	pin_error_length	-	PIN must be 4 characters
+values-b+ars	string	pin_error_wait	-	محاولات PIN غلط كثيرة. حاول مرة ثانية بعد %1$s
 values-b+ars	string	play_episode	-	تشغيل الحلقة
 values-b+ars	string	play_episode_toast	-	تشغيل الحلقة
 values-b+ars	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -5497,6 +5547,16 @@ values-b+ars	string	player_menu_playback	-	التشغيل
 values-b+ars	string	player_mute	-	كتم الصوت
 values-b+ars	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ars	string	player_notification_channel_name	-	Player notifications
+values-b+ars	string	player_panel_failed	-	فشل
+values-b+ars	string	player_panel_keeps	-	يحافظ على %s
+values-b+ars	string	player_panel_numbered	-	%1$s %2$d
+values-b+ars	string	player_panel_on	-	مفعّل
+values-b+ars	string	player_panel_open	-	افتح
+values-b+ars	string	player_panel_quality_profile	-	ملف الجودة
+values-b+ars	string	player_panel_quality_unknown	-	الجودة غير معروفة
+values-b+ars	string	player_panel_retry_all	-	جرّب كل المصادر مرة ثانية
+values-b+ars	string	player_panel_style	-	شكل الترجمة
+values-b+ars	string	player_panel_use	-	استخدم
 values-b+ars	string	player_play_now	-	شغّل الآن
 values-b+ars	string	player_pref	-	Preferred video player
 values-b+ars	string	player_settings_always_ask	-	Always ask
@@ -6552,6 +6612,7 @@ values-b+as	string	library_sort_current	-	সজোৱা: %s
 values-b+as	string	library_sort_not_kept	-	%s-এ ৰখা নহয়
 values-b+as	string	library_sort_supported	-	%1$s-এ %3$d টাৰ %2$d টা সমৰ্থন কৰে
 values-b+as	string	library_source	-	পুথিভঁৰালৰ উৎস
+values-b+as	string	library_source_local	-	স্থানীয়
 values-b+as	string	library_source_note	-	এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়
 values-b+as	string	library_sync_cached	-	কেশ্ব কৰা
 values-b+as	string	library_sync_failed	-	%1$s ছিংক কৰিব পৰা নগ'ল। এইবোৰ %2$s আগৰ।
@@ -6636,6 +6697,7 @@ values-b+as	string	picture_in_picture_des	-	অন্য এপ্‌সমূ�
 values-b+as	string	pin	-	পিন
 values-b+as	string	pin_error_incorrect	-	ভুল পিন। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।
 values-b+as	string	pin_error_length	-	পিন ৪ অক্ষৰৰ হ'ব লাগিব
+values-b+as	string	pin_error_wait	-	বহুতো ভুল PIN। %1$s পিছত পুনৰ চেষ্টা কৰক
 values-b+as	string	play_episode	-	এপিচ'ড প্লে কৰক
 values-b+as	string	play_episode_toast	-	এপিচ’ড প্লে কৰক
 values-b+as	string	play_from_beginning_img_des	-	আৰম্ভৰ পৰা প্লে কৰক
@@ -6669,6 +6731,16 @@ values-b+as	string	player_menu_playback	-	প্লেবেক
 values-b+as	string	player_mute	-	মৌন কৰক
 values-b+as	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+as	string	player_notification_channel_name	-	Player notifications
+values-b+as	string	player_panel_failed	-	ব্যৰ্থ
+values-b+as	string	player_panel_keeps	-	%s ৰাখে
+values-b+as	string	player_panel_numbered	-	%1$s %2$d
+values-b+as	string	player_panel_on	-	অন
+values-b+as	string	player_panel_open	-	খোলক
+values-b+as	string	player_panel_quality_profile	-	গুণমান প্ৰফাইল
+values-b+as	string	player_panel_quality_unknown	-	গুণমান অজ্ঞাত
+values-b+as	string	player_panel_retry_all	-	সকলো উৎস পুনৰ চেষ্টা কৰক
+values-b+as	string	player_panel_style	-	উপশিৰোনামৰ শৈলী
+values-b+as	string	player_panel_use	-	ব্যৱহাৰ কৰক
 values-b+as	string	player_play_now	-	এতিয়া চলাওক
 values-b+as	string	player_pref	-	পছন্দৰ ভিডিঅ' প্লেয়াৰ
 values-b+as	string	player_settings_always_ask	-	Always ask
@@ -7724,6 +7796,7 @@ values-b+az	string	library_sort_current	-	Sırala: %s
 values-b+az	string	library_sort_not_kept	-	%s bunu saxlamır
 values-b+az	string	library_sort_supported	-	%1$s %3$d meyardan %2$d-ni dəstəkləyir
 values-b+az	string	library_source	-	Kitabxana mənbəyi
+values-b+az	string	library_source_local	-	Yerli
 values-b+az	string	library_source_note	-	Eyni anda bir · dəyişmək yenidən yükləyir
 values-b+az	string	library_sync_cached	-	Keşlənib
 values-b+az	string	library_sync_failed	-	%1$s sinxronlaşdırılmadı. Bunlar %2$s əvvəlkidir.
@@ -7808,6 +7881,7 @@ values-b+az	string	picture_in_picture_des	-	Continues playback in a miniature pl
 values-b+az	string	pin	-	PIN
 values-b+az	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+az	string	pin_error_length	-	PIN must be 4 characters
+values-b+az	string	pin_error_wait	-	Həddindən çox səhv PIN. %1$s sonra yenidən cəhd edin
 values-b+az	string	play_episode	-	Bölümü oynat
 values-b+az	string	play_episode_toast	-	Play Episode
 values-b+az	string	play_from_beginning_img_des	-	Əvvəldən oynat
@@ -7841,6 +7915,16 @@ values-b+az	string	player_menu_playback	-	Oxutma
 values-b+az	string	player_mute	-	Səssizə al
 values-b+az	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+az	string	player_notification_channel_name	-	Player notifications
+values-b+az	string	player_panel_failed	-	uğursuz
+values-b+az	string	player_panel_keeps	-	%s saxlanılır
+values-b+az	string	player_panel_numbered	-	%1$s %2$d
+values-b+az	string	player_panel_on	-	Açıq
+values-b+az	string	player_panel_open	-	Aç
+values-b+az	string	player_panel_quality_profile	-	Keyfiyyət profili
+values-b+az	string	player_panel_quality_unknown	-	keyfiyyət bilinmir
+values-b+az	string	player_panel_retry_all	-	Bütün mənbələri yenidən sına
+values-b+az	string	player_panel_style	-	Altyazı üslubu
+values-b+az	string	player_panel_use	-	İstifadə et
 values-b+az	string	player_play_now	-	İndi oxut
 values-b+az	string	player_pref	-	Preferred video player
 values-b+az	string	player_settings_always_ask	-	Always ask
@@ -8940,6 +9024,7 @@ values-b+be	string	library_sort_current	-	Парадак: %s
 values-b+be	string	library_sort_not_kept	-	%s гэтага не захоўвае
 values-b+be	string	library_sort_supported	-	%1$s падтрымлівае %2$d з %3$d
 values-b+be	string	library_source	-	Крыніца бібліятэкі
+values-b+be	string	library_source_local	-	Лакальны
 values-b+be	string	library_source_note	-	Па адной · пераключэнне перазагружае
 values-b+be	string	library_sync_cached	-	З кэша
 values-b+be	string	library_sync_failed	-	Не ўдалося сінхранізаваць %1$s. Гэта даныя %2$s таму.
@@ -9024,6 +9109,7 @@ values-b+be	string	picture_in_picture_des	-	Працягвае прайграв�
 values-b+be	string	pin	-	PIN-код
 values-b+be	string	pin_error_incorrect	-	Няправільны PIN-код. Паспрабуйце яшчэ раз.
 values-b+be	string	pin_error_length	-	PIN-код павінны быць з 4 сімвалаў
+values-b+be	string	pin_error_wait	-	Занадта шмат няправільных PIN-кодаў. Паспрабуйце зноў праз %1$s
 values-b+be	string	play_episode	-	Прайграць серыю
 values-b+be	string	play_episode_toast	-	Прайграць серыю
 values-b+be	string	play_from_beginning_img_des	-	Прайграць з пачатку
@@ -9057,6 +9143,16 @@ values-b+be	string	player_menu_playback	-	Прайграванне
 values-b+be	string	player_mute	-	Выключыць гук
 values-b+be	string	player_notification_channel_description	-	Апавяшчэнне прайгравальніка для кіравання прайграваннем у фонавым рэжыме
 values-b+be	string	player_notification_channel_name	-	Апавяшчэнні прайгравальніка
+values-b+be	string	player_panel_failed	-	збой
+values-b+be	string	player_panel_keeps	-	захоўвае %s
+values-b+be	string	player_panel_numbered	-	%1$s %2$d
+values-b+be	string	player_panel_on	-	Укл.
+values-b+be	string	player_panel_open	-	Адкрыць
+values-b+be	string	player_panel_quality_profile	-	Профіль якасці
+values-b+be	string	player_panel_quality_unknown	-	якасць невядомая
+values-b+be	string	player_panel_retry_all	-	Паўтарыць усе крыніцы
+values-b+be	string	player_panel_style	-	Стыль субцітраў
+values-b+be	string	player_panel_use	-	Выкарыстаць
 values-b+be	string	player_play_now	-	Прайграць зараз
 values-b+be	string	player_pref	-	Прыярытэтны прайгравальнік
 values-b+be	string	player_settings_always_ask	-	Заўсёды пытацца
@@ -10112,6 +10208,7 @@ values-b+bg	string	library_sort_current	-	Подреждане: %s
 values-b+bg	string	library_sort_not_kept	-	%s не го пази
 values-b+bg	string	library_sort_supported	-	%1$s поддържа %2$d от %3$d
 values-b+bg	string	library_source	-	Източник на библиотеката
+values-b+bg	string	library_source_local	-	Местен
 values-b+bg	string	library_source_note	-	Един по един · превключването презарежда
 values-b+bg	string	library_sync_cached	-	Кеширано
 values-b+bg	string	library_sync_failed	-	%1$s не можа да се синхронизира. Това е отпреди %2$s.
@@ -10196,6 +10293,7 @@ values-b+bg	string	picture_in_picture_des	-	Продължава възпрои�
 values-b+bg	string	pin	-	ПИН
 values-b+bg	string	pin_error_incorrect	-	Неверен ПИН. Моля опитайте отново.
 values-b+bg	string	pin_error_length	-	ПИН трябва да е 4 символа
+values-b+bg	string	pin_error_wait	-	Твърде много грешни ПИН кодове. Опитайте отново след %1$s
 values-b+bg	string	play_episode	-	Пусни епизод
 values-b+bg	string	play_episode_toast	-	Пусни епизода
 values-b+bg	string	play_from_beginning_img_des	-	Пусни от самото начало
@@ -10229,6 +10327,16 @@ values-b+bg	string	player_menu_playback	-	Възпроизвеждане
 values-b+bg	string	player_mute	-	Без звук
 values-b+bg	string	player_notification_channel_description	-	Известие на плейъра за контролиране на възпроизвеждането от фона
 values-b+bg	string	player_notification_channel_name	-	Известия на плейъра
+values-b+bg	string	player_panel_failed	-	неуспешно
+values-b+bg	string	player_panel_keeps	-	запазва %s
+values-b+bg	string	player_panel_numbered	-	%1$s %2$d
+values-b+bg	string	player_panel_on	-	Вкл.
+values-b+bg	string	player_panel_open	-	Отвори
+values-b+bg	string	player_panel_quality_profile	-	Профил за качество
+values-b+bg	string	player_panel_quality_unknown	-	неизвестно качество
+values-b+bg	string	player_panel_retry_all	-	Опитай всички източници отново
+values-b+bg	string	player_panel_style	-	Стил на субтитрите
+values-b+bg	string	player_panel_use	-	Използвай
 values-b+bg	string	player_play_now	-	Пусни сега
 values-b+bg	string	player_pref	-	Предпочитан видео плеър
 values-b+bg	string	player_settings_always_ask	-	Винаги изпращай запитване
@@ -11284,6 +11392,7 @@ values-b+bn	string	library_sort_current	-	সাজান: %s
 values-b+bn	string	library_sort_not_kept	-	%s এটি রাখে না
 values-b+bn	string	library_sort_supported	-	%1$s %3$dটির মধ্যে %2$dটি সমর্থন করে
 values-b+bn	string	library_source	-	লাইব্রেরির উৎস
+values-b+bn	string	library_source_local	-	লোকাল
 values-b+bn	string	library_source_note	-	একবারে একটি · পরিবর্তন করলে আবার লোড হয়
 values-b+bn	string	library_sync_cached	-	ক্যাশ করা
 values-b+bn	string	library_sync_failed	-	%1$s সিঙ্ক করা যায়নি। এগুলি %2$s আগের।
@@ -11368,6 +11477,7 @@ values-b+bn	string	picture_in_picture_des	-	অন্য অ্যাপ এর 
 values-b+bn	string	pin	-	PIN
 values-b+bn	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+bn	string	pin_error_length	-	PIN must be 4 characters
+values-b+bn	string	pin_error_wait	-	অনেকবার ভুল PIN। %1$s পরে আবার চেষ্টা করুন
 values-b+bn	string	play_episode	-	পর্ব চালান
 values-b+bn	string	play_episode_toast	-	এপিসোড পরলে করুন
 values-b+bn	string	play_from_beginning_img_des	-	শুরু থেকে চালু করুন
@@ -11401,6 +11511,16 @@ values-b+bn	string	player_menu_playback	-	প্লেব্যাক
 values-b+bn	string	player_mute	-	মিউট করুন
 values-b+bn	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+bn	string	player_notification_channel_name	-	Player notifications
+values-b+bn	string	player_panel_failed	-	ব্যর্থ
+values-b+bn	string	player_panel_keeps	-	%s রাখে
+values-b+bn	string	player_panel_numbered	-	%1$s %2$d
+values-b+bn	string	player_panel_on	-	চালু
+values-b+bn	string	player_panel_open	-	খুলুন
+values-b+bn	string	player_panel_quality_profile	-	মানের প্রোফাইল
+values-b+bn	string	player_panel_quality_unknown	-	মান অজানা
+values-b+bn	string	player_panel_retry_all	-	সব উৎস আবার চেষ্টা করুন
+values-b+bn	string	player_panel_style	-	সাবটাইটেলের স্টাইল
+values-b+bn	string	player_panel_use	-	ব্যবহার করুন
 values-b+bn	string	player_play_now	-	এখনই চালান
 values-b+bn	string	player_pref	-	Preferred video player
 values-b+bn	string	player_settings_always_ask	-	Always ask
@@ -12476,6 +12596,7 @@ values-b+ca	string	library_sort_current	-	Ordre: %s
 values-b+ca	string	library_sort_not_kept	-	%s no ho desa
 values-b+ca	string	library_sort_supported	-	%1$s admet %2$d de %3$d
 values-b+ca	string	library_source	-	Font de la biblioteca
+values-b+ca	string	library_source_local	-	Local
 values-b+ca	string	library_source_note	-	Una alhora · canviar torna a carregar
 values-b+ca	string	library_sync_cached	-	A la memòria cau
 values-b+ca	string	library_sync_failed	-	No s'ha pogut sincronitzar %1$s. Són de fa %2$s.
@@ -12560,6 +12681,7 @@ values-b+ca	string	picture_in_picture_des	-	Continua la reproducció en una fine
 values-b+ca	string	pin	-	PIN
 values-b+ca	string	pin_error_incorrect	-	PIN incorrecte. Si us plau, torneu a intentar-ho.
 values-b+ca	string	pin_error_length	-	El PIN ha de tenir 4 caràcters
+values-b+ca	string	pin_error_wait	-	Massa PIN incorrectes. Torna-ho a provar en %1$s
 values-b+ca	string	play_episode	-	Reprodueix l'episodi
 values-b+ca	string	play_episode_toast	-	Play Episode
 values-b+ca	string	play_from_beginning_img_des	-	Reproduïr des del començament
@@ -12593,6 +12715,16 @@ values-b+ca	string	player_menu_playback	-	Reproducció
 values-b+ca	string	player_mute	-	Silencia
 values-b+ca	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ca	string	player_notification_channel_name	-	Player notifications
+values-b+ca	string	player_panel_failed	-	ha fallat
+values-b+ca	string	player_panel_keeps	-	manté %s
+values-b+ca	string	player_panel_numbered	-	%1$s %2$d
+values-b+ca	string	player_panel_on	-	Activat
+values-b+ca	string	player_panel_open	-	Obre
+values-b+ca	string	player_panel_quality_profile	-	Perfil de qualitat
+values-b+ca	string	player_panel_quality_unknown	-	qualitat desconeguda
+values-b+ca	string	player_panel_retry_all	-	Torna a provar totes les fonts
+values-b+ca	string	player_panel_style	-	Estil dels subtítols
+values-b+ca	string	player_panel_use	-	Fes servir
 values-b+ca	string	player_play_now	-	Reprodueix ara
 values-b+ca	string	player_pref	-	Preferred video player
 values-b+ca	string	player_settings_always_ask	-	Always ask
@@ -13648,6 +13780,7 @@ values-b+ckb	string	library_sort_current	-	ڕیزکردن: %s
 values-b+ckb	string	library_sort_not_kept	-	%s ئەمە هەڵناگرێت
 values-b+ckb	string	library_sort_supported	-	%1$s پشتگیری %2$d لە %3$d دەکات
 values-b+ckb	string	library_source	-	سەرچاوەی کتێبخانە
+values-b+ckb	string	library_source_local	-	ناوخۆیی
 values-b+ckb	string	library_source_note	-	یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە
 values-b+ckb	string	library_sync_cached	-	هەڵگیراوە
 values-b+ckb	string	library_sync_failed	-	نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن.
@@ -13732,6 +13865,7 @@ values-b+ckb	string	picture_in_picture_des	-	Continues playback in a miniature p
 values-b+ckb	string	pin	-	PIN
 values-b+ckb	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+ckb	string	pin_error_length	-	PIN must be 4 characters
+values-b+ckb	string	pin_error_wait	-	زۆر PINی هەڵە. دوای %1$s دووبارە هەوڵ بدەرەوە
 values-b+ckb	string	play_episode	-	Play Episode
 values-b+ckb	string	play_episode_toast	-	Play Episode
 values-b+ckb	string	play_from_beginning_img_des	-	لە سەرەتاوە دەست پێ بکە
@@ -13765,6 +13899,16 @@ values-b+ckb	string	player_menu_playback	-	لێدان
 values-b+ckb	string	player_mute	-	بێدەنگکردن
 values-b+ckb	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ckb	string	player_notification_channel_name	-	Player notifications
+values-b+ckb	string	player_panel_failed	-	شکستی هێنا
+values-b+ckb	string	player_panel_keeps	-	%s دەهێڵێتەوە
+values-b+ckb	string	player_panel_numbered	-	%1$s %2$d
+values-b+ckb	string	player_panel_on	-	چالاک
+values-b+ckb	string	player_panel_open	-	کردنەوە
+values-b+ckb	string	player_panel_quality_profile	-	پرۆفایلی کوالیتی
+values-b+ckb	string	player_panel_quality_unknown	-	کوالیتی نەزانراو
+values-b+ckb	string	player_panel_retry_all	-	هەموو سەرچاوەکان دووبارە تاقی بکەرەوە
+values-b+ckb	string	player_panel_style	-	شێوازی ژێرنووس
+values-b+ckb	string	player_panel_use	-	بەکارهێنان
 values-b+ckb	string	player_play_now	-	ئێستا لێبدە
 values-b+ckb	string	player_pref	-	Preferred video player
 values-b+ckb	string	player_settings_always_ask	-	Always ask
@@ -14866,6 +15010,7 @@ values-b+cs	string	library_sort_current	-	Řazení: %s
 values-b+cs	string	library_sort_not_kept	-	%s toto neuchovává
 values-b+cs	string	library_sort_supported	-	%1$s podporuje %2$d z %3$d
 values-b+cs	string	library_source	-	Zdroj knihovny
+values-b+cs	string	library_source_local	-	Místní
 values-b+cs	string	library_source_note	-	Jeden po druhém · přepnutí znovu načte
 values-b+cs	string	library_sync_cached	-	Z mezipaměti
 values-b+cs	string	library_sync_failed	-	%1$s se nepodařilo synchronizovat. Tato data jsou z doby před %2$s.
@@ -14950,6 +15095,7 @@ values-b+cs	string	picture_in_picture_des	-	Přehrávání bude pokračovat v mi
 values-b+cs	string	pin	-	PIN
 values-b+cs	string	pin_error_incorrect	-	Nesprávný PIN. Zkuste to prosím znovu.
 values-b+cs	string	pin_error_length	-	PIN musí obsahovat 4 znaky
+values-b+cs	string	pin_error_wait	-	Příliš mnoho chybných PINů. Zkuste to znovu za %1$s
 values-b+cs	string	play_episode	-	Přehrát epizodu
 values-b+cs	string	play_episode_toast	-	Přehrát epizodu
 values-b+cs	string	play_from_beginning_img_des	-	Přehrát od začátku
@@ -14983,6 +15129,16 @@ values-b+cs	string	player_menu_playback	-	Přehrávání
 values-b+cs	string	player_mute	-	Vypnout zvuk
 values-b+cs	string	player_notification_channel_description	-	Oznámení přehrávače pro ovládání přehrávání na pozadí
 values-b+cs	string	player_notification_channel_name	-	Oznámení přehrávače
+values-b+cs	string	player_panel_failed	-	selhalo
+values-b+cs	string	player_panel_keeps	-	zachová %s
+values-b+cs	string	player_panel_numbered	-	%1$s %2$d
+values-b+cs	string	player_panel_on	-	Zapnuto
+values-b+cs	string	player_panel_open	-	Otevřít
+values-b+cs	string	player_panel_quality_profile	-	Profil kvality
+values-b+cs	string	player_panel_quality_unknown	-	neznámá kvalita
+values-b+cs	string	player_panel_retry_all	-	Zkusit znovu všechny zdroje
+values-b+cs	string	player_panel_style	-	Styl titulků
+values-b+cs	string	player_panel_use	-	Použít
 values-b+cs	string	player_play_now	-	Přehrát hned
 values-b+cs	string	player_pref	-	Preferovaný přehrávač videí
 values-b+cs	string	player_settings_always_ask	-	Vždy se zeptat
@@ -16038,6 +16194,7 @@ values-b+de	string	library_sort_current	-	Sortierung: %s
 values-b+de	string	library_sort_not_kept	-	Von %s nicht gespeichert
 values-b+de	string	library_sort_supported	-	%1$s unterstützt %2$d von %3$d
 values-b+de	string	library_source	-	Bibliotheksquelle
+values-b+de	string	library_source_local	-	Lokal
 values-b+de	string	library_source_note	-	Jeweils eine · Wechsel lädt neu
 values-b+de	string	library_sync_cached	-	Zwischengespeichert
 values-b+de	string	library_sync_failed	-	%1$s konnte nicht synchronisiert werden. Das ist der Stand von vor %2$s.
@@ -16122,6 +16279,7 @@ values-b+de	string	picture_in_picture_des	-	Setzt die Wiedergabe in einem kleine
 values-b+de	string	pin	-	PIN
 values-b+de	string	pin_error_incorrect	-	Falsche PIN. Bitte versuche es erneut.
 values-b+de	string	pin_error_length	-	PIN muss 4 Zeichen sein
+values-b+de	string	pin_error_wait	-	Zu viele falsche PINs. Erneut versuchen in %1$s
 values-b+de	string	play_episode	-	Episode abspielen
 values-b+de	string	play_episode_toast	-	Episode abspielen
 values-b+de	string	play_from_beginning_img_des	-	Vom Beginn an spielen
@@ -16155,6 +16313,16 @@ values-b+de	string	player_menu_playback	-	Wiedergabe
 values-b+de	string	player_mute	-	Stummschalten
 values-b+de	string	player_notification_channel_description	-	Player-Benachrichtigung zur Steuerung der Hintergrundwiedergabe
 values-b+de	string	player_notification_channel_name	-	Player-Benachrichtigung
+values-b+de	string	player_panel_failed	-	fehlgeschlagen
+values-b+de	string	player_panel_keeps	-	behält %s
+values-b+de	string	player_panel_numbered	-	%1$s %2$d
+values-b+de	string	player_panel_on	-	An
+values-b+de	string	player_panel_open	-	Öffnen
+values-b+de	string	player_panel_quality_profile	-	Qualitätsprofil
+values-b+de	string	player_panel_quality_unknown	-	Qualität unbekannt
+values-b+de	string	player_panel_retry_all	-	Alle Quellen erneut versuchen
+values-b+de	string	player_panel_style	-	Untertitelstil
+values-b+de	string	player_panel_use	-	Verwenden
 values-b+de	string	player_play_now	-	Jetzt abspielen
 values-b+de	string	player_pref	-	Bevorzugter Videoplayer
 values-b+de	string	player_settings_always_ask	-	Immer fragen
@@ -17210,6 +17378,7 @@ values-b+el	string	library_sort_current	-	Ταξινόμηση: %s
 values-b+el	string	library_sort_not_kept	-	Δεν το κρατά το %s
 values-b+el	string	library_sort_supported	-	Το %1$s υποστηρίζει %2$d από %3$d
 values-b+el	string	library_source	-	Πηγή βιβλιοθήκης
+values-b+el	string	library_source_local	-	Τοπικό
 values-b+el	string	library_source_note	-	Μία κάθε φορά · η εναλλαγή επαναφορτώνει
 values-b+el	string	library_sync_cached	-	Από προσωρινή μνήμη
 values-b+el	string	library_sync_failed	-	Δεν ήταν δυνατός ο συγχρονισμός του %1$s. Αυτά είναι από πριν από %2$s.
@@ -17294,6 +17463,7 @@ values-b+el	string	picture_in_picture_des	-	Συνεχίζει την αναπα
 values-b+el	string	pin	-	Κωδικός
 values-b+el	string	pin_error_incorrect	-	Εσφαλμένος Κωδικός. Προσπαθήστε ξανά.
 values-b+el	string	pin_error_length	-	Ο κωδικός να περιέχει 4 χαρακτήρες
+values-b+el	string	pin_error_wait	-	Πάρα πολλά λάθος PIN. Δοκιμάστε ξανά σε %1$s
 values-b+el	string	play_episode	-	Αναπαραγωγή επεισοδίου
 values-b+el	string	play_episode_toast	-	Αναπαραγωγή επεισοδίου
 values-b+el	string	play_from_beginning_img_des	-	Παίξε από την αρχή
@@ -17327,6 +17497,16 @@ values-b+el	string	player_menu_playback	-	Αναπαραγωγή
 values-b+el	string	player_mute	-	Σίγαση
 values-b+el	string	player_notification_channel_description	-	Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο
 values-b+el	string	player_notification_channel_name	-	Ειδοποίησεις αναπαραγωγής
+values-b+el	string	player_panel_failed	-	απέτυχε
+values-b+el	string	player_panel_keeps	-	κρατά %s
+values-b+el	string	player_panel_numbered	-	%1$s %2$d
+values-b+el	string	player_panel_on	-	Ενεργό
+values-b+el	string	player_panel_open	-	Άνοιγμα
+values-b+el	string	player_panel_quality_profile	-	Προφίλ ποιότητας
+values-b+el	string	player_panel_quality_unknown	-	άγνωστη ποιότητα
+values-b+el	string	player_panel_retry_all	-	Επανάληψη όλων των πηγών
+values-b+el	string	player_panel_style	-	Στυλ υποτίτλων
+values-b+el	string	player_panel_use	-	Χρήση
 values-b+el	string	player_play_now	-	Αναπαραγωγή τώρα
 values-b+el	string	player_pref	-	Προτεινόμενο πρόγραμμα αναπαραγωγής
 values-b+el	string	player_settings_always_ask	-	Always ask
@@ -18382,6 +18562,7 @@ values-b+eo	string	library_sort_current	-	Ordigo: %s
 values-b+eo	string	library_sort_not_kept	-	%s ne konservas tion
 values-b+eo	string	library_sort_supported	-	%1$s subtenas %2$d el %3$d
 values-b+eo	string	library_source	-	Fonto de biblioteko
+values-b+eo	string	library_source_local	-	Loka
 values-b+eo	string	library_source_note	-	Po unu · ŝanĝo reŝargas
 values-b+eo	string	library_sync_cached	-	Kaŝmemorita
 values-b+eo	string	library_sync_failed	-	Ne eblis sinkronigi %1$s. Ĉi tiuj estas de antaŭ %2$s.
@@ -18466,6 +18647,7 @@ values-b+eo	string	picture_in_picture_des	-	Continues playback in a miniature pl
 values-b+eo	string	pin	-	PIN
 values-b+eo	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+eo	string	pin_error_length	-	PIN must be 4 characters
+values-b+eo	string	pin_error_wait	-	Tro da malĝustaj PIN-oj. Reprovu post %1$s
 values-b+eo	string	play_episode	-	Ludi Epizodon
 values-b+eo	string	play_episode_toast	-	Play Episode
 values-b+eo	string	play_from_beginning_img_des	-	Legi ekde la komenco
@@ -18499,6 +18681,16 @@ values-b+eo	string	player_menu_playback	-	Ludado
 values-b+eo	string	player_mute	-	Silentigi
 values-b+eo	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+eo	string	player_notification_channel_name	-	Player notifications
+values-b+eo	string	player_panel_failed	-	malsukcesis
+values-b+eo	string	player_panel_keeps	-	konservas %s
+values-b+eo	string	player_panel_numbered	-	%1$s %2$d
+values-b+eo	string	player_panel_on	-	Ŝaltita
+values-b+eo	string	player_panel_open	-	Malfermi
+values-b+eo	string	player_panel_quality_profile	-	Kvalita profilo
+values-b+eo	string	player_panel_quality_unknown	-	nekonata kvalito
+values-b+eo	string	player_panel_retry_all	-	Reprovi ĉiujn fontojn
+values-b+eo	string	player_panel_style	-	Stilo de subtekstoj
+values-b+eo	string	player_panel_use	-	Uzi
 values-b+eo	string	player_play_now	-	Ludi nun
 values-b+eo	string	player_pref	-	Preferred video player
 values-b+eo	string	player_settings_always_ask	-	Always ask
@@ -19577,6 +19769,7 @@ values-b+es	string	library_sort_current	-	Orden: %s
 values-b+es	string	library_sort_not_kept	-	%s no lo guarda
 values-b+es	string	library_sort_supported	-	%1$s admite %2$d de %3$d
 values-b+es	string	library_source	-	Origen de la biblioteca
+values-b+es	string	library_source_local	-	Local
 values-b+es	string	library_source_note	-	Uno a la vez · cambiar recarga
 values-b+es	string	library_sync_cached	-	En caché
 values-b+es	string	library_sync_failed	-	No se pudo sincronizar %1$s. Son de hace %2$s.
@@ -19661,6 +19854,7 @@ values-b+es	string	picture_in_picture_des	-	Continúa la reproducción en un rep
 values-b+es	string	pin	-	PIN
 values-b+es	string	pin_error_incorrect	-	PIN incorrecto. Por favor, inténtelo de nuevo.
 values-b+es	string	pin_error_length	-	El PIN debe tener 4 caracteres
+values-b+es	string	pin_error_wait	-	Demasiados PIN incorrectos. Inténtalo de nuevo en %1$s
 values-b+es	string	play_episode	-	Reproducir Episodio
 values-b+es	string	play_episode_toast	-	Reproducir Episodio
 values-b+es	string	play_from_beginning_img_des	-	Reproducir desde el principio
@@ -19694,6 +19888,16 @@ values-b+es	string	player_menu_playback	-	Reproducción
 values-b+es	string	player_mute	-	Silenciar
 values-b+es	string	player_notification_channel_description	-	La notificación del reproductor para controlar la reproducción en segundo plano
 values-b+es	string	player_notification_channel_name	-	Notificaciones del reproductor
+values-b+es	string	player_panel_failed	-	falló
+values-b+es	string	player_panel_keeps	-	mantiene %s
+values-b+es	string	player_panel_numbered	-	%1$s %2$d
+values-b+es	string	player_panel_on	-	Activado
+values-b+es	string	player_panel_open	-	Abrir
+values-b+es	string	player_panel_quality_profile	-	Perfil de calidad
+values-b+es	string	player_panel_quality_unknown	-	calidad desconocida
+values-b+es	string	player_panel_retry_all	-	Reintentar todas las fuentes
+values-b+es	string	player_panel_style	-	Estilo de subtítulos
+values-b+es	string	player_panel_use	-	Usar
 values-b+es	string	player_play_now	-	Reproducir ahora
 values-b+es	string	player_pref	-	Reproductor de video preferido
 values-b+es	string	player_settings_always_ask	-	Preguntar siempre
@@ -20749,6 +20953,7 @@ values-b+fa	string	library_sort_current	-	ترتیب: %s
 values-b+fa	string	library_sort_not_kept	-	%s این را نگه نمی‌دارد
 values-b+fa	string	library_sort_supported	-	%1$s از %3$d مورد %2$d را پشتیبانی می‌کند
 values-b+fa	string	library_source	-	منبع کتابخانه
+values-b+fa	string	library_source_local	-	محلی
 values-b+fa	string	library_source_note	-	هر بار یکی · تغییر، دوباره بارگذاری می‌کند
 values-b+fa	string	library_sync_cached	-	ذخیره‌شده
 values-b+fa	string	library_sync_failed	-	همگام‌سازی %1$s ممکن نشد. این‌ها مال %2$s پیش هستند.
@@ -20833,6 +21038,7 @@ values-b+fa	string	picture_in_picture_des	-	پخش را در یک پخش کنن�
 values-b+fa	string	pin	-	PIN
 values-b+fa	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+fa	string	pin_error_length	-	PIN must be 4 characters
+values-b+fa	string	pin_error_wait	-	PIN اشتباه بیش از حد. %1$s دیگر دوباره امتحان کنید
 values-b+fa	string	play_episode	-	پخش قسمت
 values-b+fa	string	play_episode_toast	-	پخش قسمت
 values-b+fa	string	play_from_beginning_img_des	-	پخش از ابتدا
@@ -20866,6 +21072,16 @@ values-b+fa	string	player_menu_playback	-	پخش
 values-b+fa	string	player_mute	-	بی‌صدا
 values-b+fa	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+fa	string	player_notification_channel_name	-	Player notifications
+values-b+fa	string	player_panel_failed	-	ناموفق
+values-b+fa	string	player_panel_keeps	-	%s را نگه می‌دارد
+values-b+fa	string	player_panel_numbered	-	%1$s %2$d
+values-b+fa	string	player_panel_on	-	روشن
+values-b+fa	string	player_panel_open	-	باز کردن
+values-b+fa	string	player_panel_quality_profile	-	نمایهٔ کیفیت
+values-b+fa	string	player_panel_quality_unknown	-	کیفیت نامشخص
+values-b+fa	string	player_panel_retry_all	-	تلاش دوباره برای همه منابع
+values-b+fa	string	player_panel_style	-	سبک زیرنویس
+values-b+fa	string	player_panel_use	-	استفاده
 values-b+fa	string	player_play_now	-	اکنون پخش کن
 values-b+fa	string	player_pref	-	پخش‌کننده ویدئو برگزیده
 values-b+fa	string	player_settings_always_ask	-	Always ask
@@ -21921,6 +22137,7 @@ values-b+fil	string	library_sort_current	-	Pagkakasunod: %s
 values-b+fil	string	library_sort_not_kept	-	Hindi itinatabi ng %s
 values-b+fil	string	library_sort_supported	-	Sinusuportahan ng %1$s ang %2$d sa %3$d
 values-b+fil	string	library_source	-	Pinagmulan ng library
+values-b+fil	string	library_source_local	-	Local
 values-b+fil	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
 values-b+fil	string	library_sync_cached	-	Naka-cache
 values-b+fil	string	library_sync_failed	-	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.
@@ -22005,6 +22222,7 @@ values-b+fil	string	picture_in_picture_des	-	Ipinagpapatuloy ang pag-playback sa
 values-b+fil	string	pin	-	PIN
 values-b+fil	string	pin_error_incorrect	-	Maling PIN. Pakisubukang muli.
 values-b+fil	string	pin_error_length	-	PIN must be 4 characters
+values-b+fil	string	pin_error_wait	-	Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s
 values-b+fil	string	play_episode	-	Ipatugtog ang Kabanata
 values-b+fil	string	play_episode_toast	-	Play Episode
 values-b+fil	string	play_from_beginning_img_des	-	Ipatugtog mula sa Simula
@@ -22038,6 +22256,16 @@ values-b+fil	string	player_menu_playback	-	Playback
 values-b+fil	string	player_mute	-	I-mute
 values-b+fil	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+fil	string	player_notification_channel_name	-	Player notifications
+values-b+fil	string	player_panel_failed	-	nabigo
+values-b+fil	string	player_panel_keeps	-	pinapanatili ang %s
+values-b+fil	string	player_panel_numbered	-	%1$s %2$d
+values-b+fil	string	player_panel_on	-	Naka-on
+values-b+fil	string	player_panel_open	-	Buksan
+values-b+fil	string	player_panel_quality_profile	-	Profile ng kalidad
+values-b+fil	string	player_panel_quality_unknown	-	hindi alam ang kalidad
+values-b+fil	string	player_panel_retry_all	-	Subukang muli ang lahat ng source
+values-b+fil	string	player_panel_style	-	Estilo ng subtitle
+values-b+fil	string	player_panel_use	-	Gamitin
 values-b+fil	string	player_play_now	-	I-play ngayon
 values-b+fil	string	player_pref	-	Preferred video player
 values-b+fil	string	player_settings_always_ask	-	Always ask
@@ -23116,6 +23344,7 @@ values-b+fr	string	library_sort_current	-	Tri : %s
 values-b+fr	string	library_sort_not_kept	-	Non conservé par %s
 values-b+fr	string	library_sort_supported	-	%1$s prend en charge %2$d sur %3$d
 values-b+fr	string	library_source	-	Source de la bibliothèque
+values-b+fr	string	library_source_local	-	Local
 values-b+fr	string	library_source_note	-	Une à la fois · changer recharge
 values-b+fr	string	library_sync_cached	-	En cache
 values-b+fr	string	library_sync_failed	-	Impossible de synchroniser %1$s. Ces données datent d'il y a %2$s.
@@ -23200,6 +23429,7 @@ values-b+fr	string	picture_in_picture_des	-	Poursuite de la lecture dans un lect
 values-b+fr	string	pin	-	PIN
 values-b+fr	string	pin_error_incorrect	-	PIN incorrect. Ressayez s'il vous plait.
 values-b+fr	string	pin_error_length	-	Le PIN doit être de 4 caractères
+values-b+fr	string	pin_error_wait	-	Trop de codes PIN erronés. Réessayez dans %1$s
 values-b+fr	string	play_episode	-	Lire l'Épisode
 values-b+fr	string	play_episode_toast	-	Lecture de l'episode
 values-b+fr	string	play_from_beginning_img_des	-	Regarder depuis le début
@@ -23233,6 +23463,16 @@ values-b+fr	string	player_menu_playback	-	Lecture
 values-b+fr	string	player_mute	-	Couper le son
 values-b+fr	string	player_notification_channel_description	-	La notification du lecteur pour contrôler la lecture en arrière-plan
 values-b+fr	string	player_notification_channel_name	-	Notifications du lecteur
+values-b+fr	string	player_panel_failed	-	échec
+values-b+fr	string	player_panel_keeps	-	garde %s
+values-b+fr	string	player_panel_numbered	-	%1$s %2$d
+values-b+fr	string	player_panel_on	-	Activé
+values-b+fr	string	player_panel_open	-	Ouvrir
+values-b+fr	string	player_panel_quality_profile	-	Profil de qualité
+values-b+fr	string	player_panel_quality_unknown	-	qualité inconnue
+values-b+fr	string	player_panel_retry_all	-	Réessayer toutes les sources
+values-b+fr	string	player_panel_style	-	Style des sous-titres
+values-b+fr	string	player_panel_use	-	Utiliser
 values-b+fr	string	player_play_now	-	Lire maintenant
 values-b+fr	string	player_pref	-	Lecteur vidéo préféré
 values-b+fr	string	player_settings_always_ask	-	Demandez toujours
@@ -24288,6 +24528,7 @@ values-b+gl	string	library_sort_current	-	Orde: %s
 values-b+gl	string	library_sort_not_kept	-	%s non o garda
 values-b+gl	string	library_sort_supported	-	%1$s admite %2$d de %3$d
 values-b+gl	string	library_source	-	Orixe da biblioteca
+values-b+gl	string	library_source_local	-	Local
 values-b+gl	string	library_source_note	-	Unha de cada vez · cambiar recarga
 values-b+gl	string	library_sync_cached	-	Na caché
 values-b+gl	string	library_sync_failed	-	Non se puido sincronizar %1$s. Son de hai %2$s.
@@ -24372,6 +24613,7 @@ values-b+gl	string	picture_in_picture_des	-	Continúa a reprodución nun reprodu
 values-b+gl	string	pin	-	PIN
 values-b+gl	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+gl	string	pin_error_length	-	PIN must be 4 characters
+values-b+gl	string	pin_error_wait	-	Demasiados PIN incorrectos. Téntao de novo en %1$s
 values-b+gl	string	play_episode	-	Reproducir Episodio
 values-b+gl	string	play_episode_toast	-	Reproducir capítulo
 values-b+gl	string	play_from_beginning_img_des	-	Reproducir dende o comezo
@@ -24405,6 +24647,16 @@ values-b+gl	string	player_menu_playback	-	Reprodución
 values-b+gl	string	player_mute	-	Silenciar
 values-b+gl	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+gl	string	player_notification_channel_name	-	Player notifications
+values-b+gl	string	player_panel_failed	-	fallou
+values-b+gl	string	player_panel_keeps	-	mantén %s
+values-b+gl	string	player_panel_numbered	-	%1$s %2$d
+values-b+gl	string	player_panel_on	-	Activado
+values-b+gl	string	player_panel_open	-	Abrir
+values-b+gl	string	player_panel_quality_profile	-	Perfil de calidade
+values-b+gl	string	player_panel_quality_unknown	-	calidade descoñecida
+values-b+gl	string	player_panel_retry_all	-	Tentar de novo todas as fontes
+values-b+gl	string	player_panel_style	-	Estilo dos subtítulos
+values-b+gl	string	player_panel_use	-	Usar
 values-b+gl	string	player_play_now	-	Reproducir agora
 values-b+gl	string	player_pref	-	Preferred video player
 values-b+gl	string	player_settings_always_ask	-	Always ask
@@ -25460,6 +25712,7 @@ values-b+hi	string	library_sort_current	-	क्रम: %s
 values-b+hi	string	library_sort_not_kept	-	%s इसे नहीं रखता
 values-b+hi	string	library_sort_supported	-	%1$s %3$d में से %2$d का समर्थन करता है
 values-b+hi	string	library_source	-	लाइब्रेरी स्रोत
+values-b+hi	string	library_source_local	-	स्थानीय
 values-b+hi	string	library_source_note	-	एक समय में एक · बदलने पर फिर से लोड होता है
 values-b+hi	string	library_sync_cached	-	कैश किया
 values-b+hi	string	library_sync_failed	-	%1$s सिंक नहीं हो सका। ये %2$s पहले के हैं।
@@ -25544,6 +25797,7 @@ values-b+hi	string	picture_in_picture_des	-	अन्य ऐप्स के ऊ
 values-b+hi	string	pin	-	पिन
 values-b+hi	string	pin_error_incorrect	-	ग़लत पिन. कृपया पुन: प्रयास करें।
 values-b+hi	string	pin_error_length	-	पिन 4 अक्षर का होना चाहिए
+values-b+hi	string	pin_error_wait	-	बहुत सारे गलत PIN। %1$s बाद फिर से कोशिश करें
 values-b+hi	string	play_episode	-	एपिसोड चलाएं
 values-b+hi	string	play_episode_toast	-	एपिसोड चलायें
 values-b+hi	string	play_from_beginning_img_des	-	आरम्भ से शुरू करें
@@ -25577,6 +25831,16 @@ values-b+hi	string	player_menu_playback	-	प्लेबैक
 values-b+hi	string	player_mute	-	म्यूट करें
 values-b+hi	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+hi	string	player_notification_channel_name	-	Player notifications
+values-b+hi	string	player_panel_failed	-	विफल
+values-b+hi	string	player_panel_keeps	-	%s बनाए रखता है
+values-b+hi	string	player_panel_numbered	-	%1$s %2$d
+values-b+hi	string	player_panel_on	-	चालू
+values-b+hi	string	player_panel_open	-	खोलें
+values-b+hi	string	player_panel_quality_profile	-	गुणवत्ता प्रोफ़ाइल
+values-b+hi	string	player_panel_quality_unknown	-	गुणवत्ता अज्ञात
+values-b+hi	string	player_panel_retry_all	-	सभी स्रोत फिर से आज़माएँ
+values-b+hi	string	player_panel_style	-	सबटाइटल शैली
+values-b+hi	string	player_panel_use	-	उपयोग करें
 values-b+hi	string	player_play_now	-	अभी चलाएँ
 values-b+hi	string	player_pref	-	Preferred video player
 values-b+hi	string	player_settings_always_ask	-	Always ask
@@ -26654,6 +26918,7 @@ values-b+hr	string	library_sort_current	-	Poredak: %s
 values-b+hr	string	library_sort_not_kept	-	%s to ne čuva
 values-b+hr	string	library_sort_supported	-	%1$s podržava %2$d od %3$d
 values-b+hr	string	library_source	-	Izvor biblioteke
+values-b+hr	string	library_source_local	-	Lokalno
 values-b+hr	string	library_source_note	-	Jedan po jedan · promjena ponovno učitava
 values-b+hr	string	library_sync_cached	-	Iz predmemorije
 values-b+hr	string	library_sync_failed	-	Nije moguće sinkronizirati %1$s. Ovo je od prije %2$s.
@@ -26738,6 +27003,7 @@ values-b+hr	string	picture_in_picture_des	-	Nastavlja reprodukciju u minijaturno
 values-b+hr	string	pin	-	PIN
 values-b+hr	string	pin_error_incorrect	-	Netočan PIN. Pokušajte ponovno.
 values-b+hr	string	pin_error_length	-	PIN mora imati 4 znaka
+values-b+hr	string	pin_error_wait	-	Previše pogrešnih PIN-ova. Pokušajte ponovno za %1$s
 values-b+hr	string	play_episode	-	Pokreni epizodu
 values-b+hr	string	play_episode_toast	-	Pokreni epizodu
 values-b+hr	string	play_from_beginning_img_des	-	Pokreni od početka
@@ -26771,6 +27037,16 @@ values-b+hr	string	player_menu_playback	-	Reprodukcija
 values-b+hr	string	player_mute	-	Isključi zvuk
 values-b+hr	string	player_notification_channel_description	-	Obavijest reproduktora za upravljanje reprodukcijom iz pozadine
 values-b+hr	string	player_notification_channel_name	-	Obavijesti reproduktora
+values-b+hr	string	player_panel_failed	-	neuspjelo
+values-b+hr	string	player_panel_keeps	-	zadržava %s
+values-b+hr	string	player_panel_numbered	-	%1$s %2$d
+values-b+hr	string	player_panel_on	-	Uključeno
+values-b+hr	string	player_panel_open	-	Otvori
+values-b+hr	string	player_panel_quality_profile	-	Profil kvalitete
+values-b+hr	string	player_panel_quality_unknown	-	nepoznata kvaliteta
+values-b+hr	string	player_panel_retry_all	-	Ponovi sve izvore
+values-b+hr	string	player_panel_style	-	Stil titlova
+values-b+hr	string	player_panel_use	-	Koristi
 values-b+hr	string	player_play_now	-	Reproduciraj sada
 values-b+hr	string	player_pref	-	Preferirani video player
 values-b+hr	string	player_settings_always_ask	-	Uvijek pitaj
@@ -27826,6 +28102,7 @@ values-b+hu	string	library_sort_current	-	Rendezés: %s
 values-b+hu	string	library_sort_not_kept	-	A(z) %s nem tárolja
 values-b+hu	string	library_sort_supported	-	A(z) %1$s %3$d szempontból %2$d-t támogat
 values-b+hu	string	library_source	-	Könyvtár forrása
+values-b+hu	string	library_source_local	-	Helyi
 values-b+hu	string	library_source_note	-	Egyszerre egy · váltáskor újratölt
 values-b+hu	string	library_sync_cached	-	Gyorsítótárból
 values-b+hu	string	library_sync_failed	-	A(z) %1$s nem szinkronizálható. Ezek %2$s előttiek.
@@ -27910,6 +28187,7 @@ values-b+hu	string	picture_in_picture_des	-	Folytatja a lejátszást egy miniat�
 values-b+hu	string	pin	-	PIN
 values-b+hu	string	pin_error_incorrect	-	Hibás PIN. Próbálja újra.
 values-b+hu	string	pin_error_length	-	A PIN 4 karakter hosszú kell legyen
+values-b+hu	string	pin_error_wait	-	Túl sok hibás PIN. Próbáld újra %1$s múlva
 values-b+hu	string	play_episode	-	Epizód lejátszása
 values-b+hu	string	play_episode_toast	-	Epizód lejátszása
 values-b+hu	string	play_from_beginning_img_des	-	Lejátszás az elejétől
@@ -27943,6 +28221,16 @@ values-b+hu	string	player_menu_playback	-	Lejátszás
 values-b+hu	string	player_mute	-	Némítás
 values-b+hu	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+hu	string	player_notification_channel_name	-	Player notifications
+values-b+hu	string	player_panel_failed	-	sikertelen
+values-b+hu	string	player_panel_keeps	-	megtartja: %s
+values-b+hu	string	player_panel_numbered	-	%1$s %2$d
+values-b+hu	string	player_panel_on	-	Be
+values-b+hu	string	player_panel_open	-	Megnyitás
+values-b+hu	string	player_panel_quality_profile	-	Minőségi profil
+values-b+hu	string	player_panel_quality_unknown	-	ismeretlen minőség
+values-b+hu	string	player_panel_retry_all	-	Összes forrás újrapróbálása
+values-b+hu	string	player_panel_style	-	Feliratstílus
+values-b+hu	string	player_panel_use	-	Használat
 values-b+hu	string	player_play_now	-	Lejátszás most
 values-b+hu	string	player_pref	-	Előnyben részesített videolejátszó
 values-b+hu	string	player_settings_always_ask	-	Mindig kérdezzen
@@ -28975,6 +29263,7 @@ values-b+in	string	library_sort_current	-	Urutan: %s
 values-b+in	string	library_sort_not_kept	-	Tidak disimpan oleh %s
 values-b+in	string	library_sort_supported	-	%1$s mendukung %2$d dari %3$d
 values-b+in	string	library_source	-	Sumber pustaka
+values-b+in	string	library_source_local	-	Lokal
 values-b+in	string	library_source_note	-	Satu per satu · beralih memuat ulang
 values-b+in	string	library_sync_cached	-	Tersimpan
 values-b+in	string	library_sync_failed	-	Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.
@@ -29059,6 +29348,7 @@ values-b+in	string	picture_in_picture_des	-	Lanjutkan pemutaran di pemutar mini 
 values-b+in	string	pin	-	PIN
 values-b+in	string	pin_error_incorrect	-	PIN Salah. Silahkan coba lagi.
 values-b+in	string	pin_error_length	-	PIN harus terdiri 4 karakter
+values-b+in	string	pin_error_wait	-	Terlalu banyak PIN yang salah. Coba lagi dalam %1$s
 values-b+in	string	play_episode	-	Putar Episode
 values-b+in	string	play_episode_toast	-	Putar Episode
 values-b+in	string	play_from_beginning_img_des	-	Putar dari awal
@@ -29092,6 +29382,16 @@ values-b+in	string	player_menu_playback	-	Pemutaran
 values-b+in	string	player_mute	-	Bisukan
 values-b+in	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 values-b+in	string	player_notification_channel_name	-	Notifikasi pemain
+values-b+in	string	player_panel_failed	-	gagal
+values-b+in	string	player_panel_keeps	-	mempertahankan %s
+values-b+in	string	player_panel_numbered	-	%1$s %2$d
+values-b+in	string	player_panel_on	-	Aktif
+values-b+in	string	player_panel_open	-	Buka
+values-b+in	string	player_panel_quality_profile	-	Profil kualitas
+values-b+in	string	player_panel_quality_unknown	-	kualitas tidak diketahui
+values-b+in	string	player_panel_retry_all	-	Coba lagi semua sumber
+values-b+in	string	player_panel_style	-	Gaya subtitel
+values-b+in	string	player_panel_use	-	Gunakan
 values-b+in	string	player_play_now	-	Putar sekarang
 values-b+in	string	player_pref	-	Pemutar video utama
 values-b+in	string	player_settings_always_ask	-	Selalu tanya
@@ -30170,6 +30470,7 @@ values-b+it	string	library_sort_current	-	Ordine: %s
 values-b+it	string	library_sort_not_kept	-	Non conservato da %s
 values-b+it	string	library_sort_supported	-	%1$s supporta %2$d di %3$d
 values-b+it	string	library_source	-	Origine della libreria
+values-b+it	string	library_source_local	-	Locale
 values-b+it	string	library_source_note	-	Una alla volta · cambiare ricarica
 values-b+it	string	library_sync_cached	-	In cache
 values-b+it	string	library_sync_failed	-	Impossibile sincronizzare %1$s. Sono di %2$s fa.
@@ -30254,6 +30555,7 @@ values-b+it	string	picture_in_picture_des	-	Continua la riproduzione in un letto
 values-b+it	string	pin	-	PIN
 values-b+it	string	pin_error_incorrect	-	PIN non corretto. Riprova.
 values-b+it	string	pin_error_length	-	Il PIN deve essere almeno di 4 caratteri
+values-b+it	string	pin_error_wait	-	Troppi PIN errati. Riprova tra %1$s
 values-b+it	string	play_episode	-	Riproduci episodio
 values-b+it	string	play_episode_toast	-	Riproduci episodio
 values-b+it	string	play_from_beginning_img_des	-	Riproduci dall'inizio
@@ -30287,6 +30589,16 @@ values-b+it	string	player_menu_playback	-	Riproduzione
 values-b+it	string	player_mute	-	Disattiva audio
 values-b+it	string	player_notification_channel_description	-	La notifica del lettore per controllare la riproduzione in background
 values-b+it	string	player_notification_channel_name	-	Notifiche lettore
+values-b+it	string	player_panel_failed	-	non riuscito
+values-b+it	string	player_panel_keeps	-	mantiene %s
+values-b+it	string	player_panel_numbered	-	%1$s %2$d
+values-b+it	string	player_panel_on	-	Attivo
+values-b+it	string	player_panel_open	-	Apri
+values-b+it	string	player_panel_quality_profile	-	Profilo qualità
+values-b+it	string	player_panel_quality_unknown	-	qualità sconosciuta
+values-b+it	string	player_panel_retry_all	-	Riprova tutte le fonti
+values-b+it	string	player_panel_style	-	Stile sottotitoli
+values-b+it	string	player_panel_use	-	Usa
 values-b+it	string	player_play_now	-	Riproduci ora
 values-b+it	string	player_pref	-	Video lettore preferito
 values-b+it	string	player_settings_always_ask	-	Chiedi sempre
@@ -31362,6 +31674,7 @@ values-b+iw	string	library_sort_current	-	מיון: %s
 values-b+iw	string	library_sort_not_kept	-	%s לא שומר את זה
 values-b+iw	string	library_sort_supported	-	%1$s תומך ב-%2$d מתוך %3$d
 values-b+iw	string	library_source	-	מקור הספריה
+values-b+iw	string	library_source_local	-	מקומי
 values-b+iw	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
 values-b+iw	string	library_sync_cached	-	מהמטמון
 values-b+iw	string	library_sync_failed	-	לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.
@@ -31446,6 +31759,7 @@ values-b+iw	string	picture_in_picture_des	-	ממשיך ניגון בנגן מי�
 values-b+iw	string	pin	-	PIN
 values-b+iw	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+iw	string	pin_error_length	-	PIN must be 4 characters
+values-b+iw	string	pin_error_wait	-	יותר מדי קודי PIN שגויים. נסו שוב בעוד %1$s
 values-b+iw	string	play_episode	-	נגן פרק
 values-b+iw	string	play_episode_toast	-	נגן את הפרק
 values-b+iw	string	play_from_beginning_img_des	-	נגן מההתחלה
@@ -31479,6 +31793,16 @@ values-b+iw	string	player_menu_playback	-	הפעלה
 values-b+iw	string	player_mute	-	השתקה
 values-b+iw	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+iw	string	player_notification_channel_name	-	Player notifications
+values-b+iw	string	player_panel_failed	-	נכשל
+values-b+iw	string	player_panel_keeps	-	שומר על %s
+values-b+iw	string	player_panel_numbered	-	%1$s %2$d
+values-b+iw	string	player_panel_on	-	פועל
+values-b+iw	string	player_panel_open	-	פתיחה
+values-b+iw	string	player_panel_quality_profile	-	פרופיל איכות
+values-b+iw	string	player_panel_quality_unknown	-	איכות לא ידועה
+values-b+iw	string	player_panel_retry_all	-	לנסות שוב את כל המקורות
+values-b+iw	string	player_panel_style	-	סגנון כתוביות
+values-b+iw	string	player_panel_use	-	שימוש
 values-b+iw	string	player_play_now	-	הפעלה עכשיו
 values-b+iw	string	player_pref	-	נגן וידאו מועדף
 values-b+iw	string	player_settings_always_ask	-	Always ask
@@ -32511,6 +32835,7 @@ values-b+ja	string	library_sort_current	-	並べ替え：%s
 values-b+ja	string	library_sort_not_kept	-	%sには保存されません
 values-b+ja	string	library_sort_supported	-	%1$s は %3$d 項目中 %2$d 項目に対応
 values-b+ja	string	library_source	-	ライブラリのソース
+values-b+ja	string	library_source_local	-	ローカル
 values-b+ja	string	library_source_note	-	一度に1つ · 切り替えると再読み込み
 values-b+ja	string	library_sync_cached	-	キャッシュ
 values-b+ja	string	library_sync_failed	-	%1$s を同期できませんでした。%2$s 前のデータです。
@@ -32595,6 +32920,7 @@ values-b+ja	string	picture_in_picture_des	-	他のアプリの上にミニプレ
 values-b+ja	string	pin	-	PIN
 values-b+ja	string	pin_error_incorrect	-	PINが違います。もう一度試してください。
 values-b+ja	string	pin_error_length	-	PINは4文字でなければなりません
+values-b+ja	string	pin_error_wait	-	PIN の入力ミスが多すぎます。%1$s 後にもう一度お試しください
 values-b+ja	string	play_episode	-	再生エピソード
 values-b+ja	string	play_episode_toast	-	再生エピソード
 values-b+ja	string	play_from_beginning_img_des	-	最初から再生する
@@ -32628,6 +32954,16 @@ values-b+ja	string	player_menu_playback	-	再生
 values-b+ja	string	player_mute	-	ミュート
 values-b+ja	string	player_notification_channel_description	-	バックグラウンドから再生を制御するためのプレーヤー通知
 values-b+ja	string	player_notification_channel_name	-	プレーヤー通知
+values-b+ja	string	player_panel_failed	-	失敗
+values-b+ja	string	player_panel_keeps	-	%s を維持
+values-b+ja	string	player_panel_numbered	-	%1$s %2$d
+values-b+ja	string	player_panel_on	-	オン
+values-b+ja	string	player_panel_open	-	開く
+values-b+ja	string	player_panel_quality_profile	-	画質プロファイル
+values-b+ja	string	player_panel_quality_unknown	-	画質不明
+values-b+ja	string	player_panel_retry_all	-	すべてのソースを再試行
+values-b+ja	string	player_panel_style	-	字幕スタイル
+values-b+ja	string	player_panel_use	-	使用
 values-b+ja	string	player_play_now	-	今すぐ再生
 values-b+ja	string	player_pref	-	優先ビデオプレーヤー
 values-b+ja	string	player_settings_always_ask	-	常に尋ねること
@@ -33683,6 +34019,7 @@ values-b+kn	string	library_sort_current	-	ವಿಂಗಡಣೆ: %s
 values-b+kn	string	library_sort_not_kept	-	%s ಇದನ್ನು ಇರಿಸುವುದಿಲ್ಲ
 values-b+kn	string	library_sort_supported	-	%1$s %3$d ರಲ್ಲಿ %2$d ಬೆಂಬಲಿಸುತ್ತದೆ
 values-b+kn	string	library_source	-	ಲೈಬ್ರರಿ ಮೂಲ
+values-b+kn	string	library_source_local	-	ಸ್ಥಳೀಯ
 values-b+kn	string	library_source_note	-	ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ
 values-b+kn	string	library_sync_cached	-	ಕ್ಯಾಶ್
 values-b+kn	string	library_sync_failed	-	%1$s ಸಿಂಕ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ಇವು %2$s ಹಿಂದಿನವು.
@@ -33767,6 +34104,7 @@ values-b+kn	string	picture_in_picture_des	-	ಇತರ ಅಪ್ಲಿಕೇಶ�
 values-b+kn	string	pin	-	PIN
 values-b+kn	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+kn	string	pin_error_length	-	PIN must be 4 characters
+values-b+kn	string	pin_error_wait	-	ತುಂಬಾ ತಪ್ಪು PIN ಗಳು. %1$s ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ
 values-b+kn	string	play_episode	-	ಸಂಚಿಕೆಯನ್ನು ಪ್ಲೇ ಮಾಡಿ
 values-b+kn	string	play_episode_toast	-	Play Episode
 values-b+kn	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -33800,6 +34138,16 @@ values-b+kn	string	player_menu_playback	-	ಪ್ಲೇಬ್ಯಾಕ್
 values-b+kn	string	player_mute	-	ಮ್ಯೂಟ್ ಮಾಡಿ
 values-b+kn	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+kn	string	player_notification_channel_name	-	Player notifications
+values-b+kn	string	player_panel_failed	-	ವಿಫಲ
+values-b+kn	string	player_panel_keeps	-	%s ಉಳಿಸುತ್ತದೆ
+values-b+kn	string	player_panel_numbered	-	%1$s %2$d
+values-b+kn	string	player_panel_on	-	ಆನ್
+values-b+kn	string	player_panel_open	-	ತೆರೆಯಿರಿ
+values-b+kn	string	player_panel_quality_profile	-	ಗುಣಮಟ್ಟದ ಪ್ರೊಫೈಲ್
+values-b+kn	string	player_panel_quality_unknown	-	ಗುಣಮಟ್ಟ ಅಜ್ಞಾತ
+values-b+kn	string	player_panel_retry_all	-	ಎಲ್ಲಾ ಮೂಲಗಳನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ
+values-b+kn	string	player_panel_style	-	ಉಪಶೀರ್ಷಿಕೆ ಶೈಲಿ
+values-b+kn	string	player_panel_use	-	ಬಳಸಿ
 values-b+kn	string	player_play_now	-	ಈಗ ಪ್ಲೇ ಮಾಡಿ
 values-b+kn	string	player_pref	-	Preferred video player
 values-b+kn	string	player_settings_always_ask	-	Always ask
@@ -34833,6 +35181,7 @@ values-b+ko	string	library_sort_current	-	정렬: %s
 values-b+ko	string	library_sort_not_kept	-	%s에는 저장되지 않음
 values-b+ko	string	library_sort_supported	-	%1$s은(는) %3$d개 중 %2$d개 지원
 values-b+ko	string	library_source	-	라이브러리 소스
+values-b+ko	string	library_source_local	-	로컬
 values-b+ko	string	library_source_note	-	한 번에 하나 · 전환하면 다시 불러옴
 values-b+ko	string	library_sync_cached	-	캐시됨
 values-b+ko	string	library_sync_failed	-	%1$s을(를) 동기화하지 못했습니다. %2$s 전 데이터입니다.
@@ -34917,6 +35266,7 @@ values-b+ko	string	picture_in_picture_des	-	미니플레이어를 통해 다른 
 values-b+ko	string	pin	-	PIN
 values-b+ko	string	pin_error_incorrect	-	잘못된 PIN입니다. 다시 시도하세요.
 values-b+ko	string	pin_error_length	-	PIN은 4자여야 합니다
+values-b+ko	string	pin_error_wait	-	잘못된 PIN을 너무 많이 입력했습니다. %1$s 후에 다시 시도하세요
 values-b+ko	string	play_episode	-	에피소드 재생
 values-b+ko	string	play_episode_toast	-	에피소드 재생
 values-b+ko	string	play_from_beginning_img_des	-	처음부터 재생
@@ -34950,6 +35300,16 @@ values-b+ko	string	player_menu_playback	-	재생
 values-b+ko	string	player_mute	-	음소거
 values-b+ko	string	player_notification_channel_description	-	백그라운드에서 재생을 제어하기 위한 플레이어 알림
 values-b+ko	string	player_notification_channel_name	-	플레이어 알림
+values-b+ko	string	player_panel_failed	-	실패
+values-b+ko	string	player_panel_keeps	-	%s 유지
+values-b+ko	string	player_panel_numbered	-	%1$s %2$d
+values-b+ko	string	player_panel_on	-	켜짐
+values-b+ko	string	player_panel_open	-	열기
+values-b+ko	string	player_panel_quality_profile	-	화질 프로필
+values-b+ko	string	player_panel_quality_unknown	-	화질 알 수 없음
+values-b+ko	string	player_panel_retry_all	-	모든 소스 다시 시도
+values-b+ko	string	player_panel_style	-	자막 스타일
+values-b+ko	string	player_panel_use	-	사용
 values-b+ko	string	player_play_now	-	지금 재생
 values-b+ko	string	player_pref	-	선호하는 동영상 플레이어
 values-b+ko	string	player_settings_always_ask	-	항상 묻기
@@ -36045,6 +36405,7 @@ values-b+lt	string	library_sort_current	-	Rikiavimas: %s
 values-b+lt	string	library_sort_not_kept	-	%s to nesaugo
 values-b+lt	string	library_sort_supported	-	%1$s palaiko %2$d iš %3$d
 values-b+lt	string	library_source	-	Bibliotekos šaltinis
+values-b+lt	string	library_source_local	-	Vietinis
 values-b+lt	string	library_source_note	-	Po vieną · perjungus įkeliama iš naujo
 values-b+lt	string	library_sync_cached	-	Iš podėlio
 values-b+lt	string	library_sync_failed	-	Nepavyko sinchronizuoti %1$s. Tai duomenys prieš %2$s.
@@ -36129,6 +36490,7 @@ values-b+lt	string	picture_in_picture_des	-	Tęsia atkūrimą mažame grotuve vi
 values-b+lt	string	pin	-	PIN
 values-b+lt	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+lt	string	pin_error_length	-	PIN must be 4 characters
+values-b+lt	string	pin_error_wait	-	Per daug neteisingų PIN kodų. Bandykite dar kartą po %1$s
 values-b+lt	string	play_episode	-	Paleisti seriją
 values-b+lt	string	play_episode_toast	-	Leisti seriją
 values-b+lt	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -36162,6 +36524,16 @@ values-b+lt	string	player_menu_playback	-	Atkūrimas
 values-b+lt	string	player_mute	-	Nutildyti
 values-b+lt	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+lt	string	player_notification_channel_name	-	Player notifications
+values-b+lt	string	player_panel_failed	-	nepavyko
+values-b+lt	string	player_panel_keeps	-	išlaiko %s
+values-b+lt	string	player_panel_numbered	-	%1$s %2$d
+values-b+lt	string	player_panel_on	-	Įjungta
+values-b+lt	string	player_panel_open	-	Atidaryti
+values-b+lt	string	player_panel_quality_profile	-	Kokybės profilis
+values-b+lt	string	player_panel_quality_unknown	-	kokybė nežinoma
+values-b+lt	string	player_panel_retry_all	-	Bandyti visus šaltinius iš naujo
+values-b+lt	string	player_panel_style	-	Subtitrų stilius
+values-b+lt	string	player_panel_use	-	Naudoti
 values-b+lt	string	player_play_now	-	Leisti dabar
 values-b+lt	string	player_pref	-	Preferred video player
 values-b+lt	string	player_settings_always_ask	-	Always ask
@@ -37238,6 +37610,7 @@ values-b+lv	string	library_sort_current	-	Kārtošana: %s
 values-b+lv	string	library_sort_not_kept	-	%s to neglabā
 values-b+lv	string	library_sort_supported	-	%1$s atbalsta %2$d no %3$d
 values-b+lv	string	library_source	-	Bibliotēkas avots
+values-b+lv	string	library_source_local	-	Vietējais
 values-b+lv	string	library_source_note	-	Pa vienam · pārslēgšana pārlādē
 values-b+lv	string	library_sync_cached	-	No kešatmiņas
 values-b+lv	string	library_sync_failed	-	Neizdevās sinhronizēt %1$s. Šie dati ir no pirms %2$s.
@@ -37322,6 +37695,7 @@ values-b+lv	string	picture_in_picture_des	-	Turpina atskaņošanu miniatūrā at
 values-b+lv	string	pin	-	PIN kods
 values-b+lv	string	pin_error_incorrect	-	Nepareizs PIN kods. Lūdzu, ievadiet to no jauna.
 values-b+lv	string	pin_error_length	-	PIN kods satur 4 rakstzīmes
+values-b+lv	string	pin_error_wait	-	Pārāk daudz nepareizu PIN. Mēģiniet vēlreiz pēc %1$s
 values-b+lv	string	play_episode	-	Palaist epizodi
 values-b+lv	string	play_episode_toast	-	Atskaņot epizodi
 values-b+lv	string	play_from_beginning_img_des	-	Atskaņot no sākuma
@@ -37355,6 +37729,16 @@ values-b+lv	string	player_menu_playback	-	Atskaņošana
 values-b+lv	string	player_mute	-	Izslēgt skaņu
 values-b+lv	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+lv	string	player_notification_channel_name	-	Player notifications
+values-b+lv	string	player_panel_failed	-	neizdevās
+values-b+lv	string	player_panel_keeps	-	saglabā %s
+values-b+lv	string	player_panel_numbered	-	%1$s %2$d
+values-b+lv	string	player_panel_on	-	Ieslēgts
+values-b+lv	string	player_panel_open	-	Atvērt
+values-b+lv	string	player_panel_quality_profile	-	Kvalitātes profils
+values-b+lv	string	player_panel_quality_unknown	-	kvalitāte nezināma
+values-b+lv	string	player_panel_retry_all	-	Mēģināt visus avotus vēlreiz
+values-b+lv	string	player_panel_style	-	Subtitru stils
+values-b+lv	string	player_panel_use	-	Izmantot
 values-b+lv	string	player_play_now	-	Atskaņot tagad
 values-b+lv	string	player_pref	-	Vēlamais video atskaņotājs
 values-b+lv	string	player_settings_always_ask	-	Always ask
@@ -38410,6 +38794,7 @@ values-b+mk	string	library_sort_current	-	Подредување: %s
 values-b+mk	string	library_sort_not_kept	-	%s не го чува
 values-b+mk	string	library_sort_supported	-	%1$s поддржува %2$d од %3$d
 values-b+mk	string	library_source	-	Извор на библиотеката
+values-b+mk	string	library_source_local	-	Локално
 values-b+mk	string	library_source_note	-	Еден по еден · менувањето превчитува
 values-b+mk	string	library_sync_cached	-	Кеширано
 values-b+mk	string	library_sync_failed	-	%1$s не може да се синхронизира. Ова е од пред %2$s.
@@ -38494,6 +38879,7 @@ values-b+mk	string	picture_in_picture_des	-	Продолжува со репро
 values-b+mk	string	pin	-	PIN
 values-b+mk	string	pin_error_incorrect	-	Неточен ПИН. Обиди се повторно.
 values-b+mk	string	pin_error_length	-	ПИН-кодот мора да има 4 знаци
+values-b+mk	string	pin_error_wait	-	Премногу погрешни PIN-кодови. Обидете се повторно за %1$s
 values-b+mk	string	play_episode	-	Вклучи епизода
 values-b+mk	string	play_episode_toast	-	Пушти ја епизодата
 values-b+mk	string	play_from_beginning_img_des	-	Пушти од почеток
@@ -38527,6 +38913,16 @@ values-b+mk	string	player_menu_playback	-	Репродукција
 values-b+mk	string	player_mute	-	Исклучи звук
 values-b+mk	string	player_notification_channel_description	-	Известување од плеерот за контрола на репродукцијата од позадина
 values-b+mk	string	player_notification_channel_name	-	Известувања од плеерот
+values-b+mk	string	player_panel_failed	-	неуспешно
+values-b+mk	string	player_panel_keeps	-	задржува %s
+values-b+mk	string	player_panel_numbered	-	%1$s %2$d
+values-b+mk	string	player_panel_on	-	Вклучено
+values-b+mk	string	player_panel_open	-	Отвори
+values-b+mk	string	player_panel_quality_profile	-	Профил за квалитет
+values-b+mk	string	player_panel_quality_unknown	-	непознат квалитет
+values-b+mk	string	player_panel_retry_all	-	Обиди ги сите извори повторно
+values-b+mk	string	player_panel_style	-	Стил на преводот
+values-b+mk	string	player_panel_use	-	Користи
 values-b+mk	string	player_play_now	-	Пушти сега
 values-b+mk	string	player_pref	-	Префериран видео плеер
 values-b+mk	string	player_settings_always_ask	-	Секогаш прашувај
@@ -39582,6 +39978,7 @@ values-b+ml	string	library_sort_current	-	ക്രമം: %s
 values-b+ml	string	library_sort_not_kept	-	%s ഇത് സൂക്ഷിക്കുന്നില്ല
 values-b+ml	string	library_sort_supported	-	%1$s %3$d-ൽ %2$d പിന്തുണയ്ക്കുന്നു
 values-b+ml	string	library_source	-	ലൈബ്രറി ഉറവിടം
+values-b+ml	string	library_source_local	-	ലോക്കൽ
 values-b+ml	string	library_source_note	-	ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും
 values-b+ml	string	library_sync_cached	-	കാഷെ ചെയ്തത്
 values-b+ml	string	library_sync_failed	-	%1$s സമന്വയിപ്പിക്കാനായില്ല. ഇവ %2$s മുമ്പുള്ളതാണ്.
@@ -39666,6 +40063,7 @@ values-b+ml	string	picture_in_picture_des	-	മറ്റ് ആപ്പുക�
 values-b+ml	string	pin	-	പിൻ
 values-b+ml	string	pin_error_incorrect	-	തെറ്റായ പിൻ. ദയവായി വീണ്ടും ശ്രമിക്കുക.
 values-b+ml	string	pin_error_length	-	പിൻ 4 പ്രതീകങ്ങൾ ആയിരിക്കണം
+values-b+ml	string	pin_error_wait	-	വളരെയധികം തെറ്റായ PIN-കൾ. %1$s കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക
 values-b+ml	string	play_episode	-	എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക
 values-b+ml	string	play_episode_toast	-	എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക
 values-b+ml	string	play_from_beginning_img_des	-	തുടക്കം മുതൽ പ്ലേ ചെയ്യുക
@@ -39699,6 +40097,16 @@ values-b+ml	string	player_menu_playback	-	പ്ലേബാക്ക്
 values-b+ml	string	player_mute	-	നിശബ്‌ദമാക്കുക
 values-b+ml	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ml	string	player_notification_channel_name	-	Player notifications
+values-b+ml	string	player_panel_failed	-	പരാജയപ്പെട്ടു
+values-b+ml	string	player_panel_keeps	-	%s നിലനിർത്തുന്നു
+values-b+ml	string	player_panel_numbered	-	%1$s %2$d
+values-b+ml	string	player_panel_on	-	ഓൺ
+values-b+ml	string	player_panel_open	-	തുറക്കുക
+values-b+ml	string	player_panel_quality_profile	-	ഗുണനിലവാര പ്രൊഫൈൽ
+values-b+ml	string	player_panel_quality_unknown	-	ഗുണനിലവാരം അറിയില്ല
+values-b+ml	string	player_panel_retry_all	-	എല്ലാ ഉറവിടങ്ങളും വീണ്ടും ശ്രമിക്കുക
+values-b+ml	string	player_panel_style	-	സബ്‌ടൈറ്റിൽ ശൈലി
+values-b+ml	string	player_panel_use	-	ഉപയോഗിക്കുക
 values-b+ml	string	player_play_now	-	ഇപ്പോൾ പ്ലേ ചെയ്യുക
 values-b+ml	string	player_pref	-	Preferred video player
 values-b+ml	string	player_settings_always_ask	-	Always ask
@@ -40734,6 +41142,7 @@ values-b+ms	string	library_sort_current	-	Isih: %s
 values-b+ms	string	library_sort_not_kept	-	Tidak disimpan oleh %s
 values-b+ms	string	library_sort_supported	-	%1$s menyokong %2$d daripada %3$d
 values-b+ms	string	library_source	-	Sumber perpustakaan
+values-b+ms	string	library_source_local	-	Tempatan
 values-b+ms	string	library_source_note	-	Satu demi satu · menukar memuat semula
 values-b+ms	string	library_sync_cached	-	Dicache
 values-b+ms	string	library_sync_failed	-	Tidak dapat menyegerakkan %1$s. Ini dari %2$s yang lalu.
@@ -40818,6 +41227,7 @@ values-b+ms	string	picture_in_picture_des	-	Sambung Rakaman didalam pemain mini 
 values-b+ms	string	pin	-	PIN
 values-b+ms	string	pin_error_incorrect	-	PIN salah. Sila cuba sekali lagi.
 values-b+ms	string	pin_error_length	-	PIN perlu mempunyai 4 aksara
+values-b+ms	string	pin_error_wait	-	Terlalu banyak PIN salah. Cuba lagi dalam %1$s
 values-b+ms	string	play_episode	-	Pasang Episod
 values-b+ms	string	play_episode_toast	-	Main episod
 values-b+ms	string	play_from_beginning_img_des	-	Main dari mula
@@ -40851,6 +41261,16 @@ values-b+ms	string	player_menu_playback	-	Main balik
 values-b+ms	string	player_mute	-	Redam
 values-b+ms	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ms	string	player_notification_channel_name	-	Player notifications
+values-b+ms	string	player_panel_failed	-	gagal
+values-b+ms	string	player_panel_keeps	-	kekalkan %s
+values-b+ms	string	player_panel_numbered	-	%1$s %2$d
+values-b+ms	string	player_panel_on	-	Hidup
+values-b+ms	string	player_panel_open	-	Buka
+values-b+ms	string	player_panel_quality_profile	-	Profil kualiti
+values-b+ms	string	player_panel_quality_unknown	-	kualiti tidak diketahui
+values-b+ms	string	player_panel_retry_all	-	Cuba semula semua sumber
+values-b+ms	string	player_panel_style	-	Gaya sari kata
+values-b+ms	string	player_panel_use	-	Guna
 values-b+ms	string	player_play_now	-	Main sekarang
 values-b+ms	string	player_pref	-	Preferred video player
 values-b+ms	string	player_settings_always_ask	-	Always ask
@@ -41966,6 +42386,7 @@ values-b+mt	string	library_sort_current	-	Ordni: %s
 values-b+mt	string	library_sort_not_kept	-	Mhux miżmum minn %s
 values-b+mt	string	library_sort_supported	-	%1$s jappoġġja %2$d minn %3$d
 values-b+mt	string	library_source	-	Sors tal-librerija
+values-b+mt	string	library_source_local	-	Lokali
 values-b+mt	string	library_source_note	-	Wieħed kull darba · il-bidla tgħabbi mill-ġdid
 values-b+mt	string	library_sync_cached	-	Fil-cache
 values-b+mt	string	library_sync_failed	-	Ma setax jiġi sinkronizzat %1$s. Dawn huma minn %2$s ilu.
@@ -42050,6 +42471,7 @@ values-b+mt	string	picture_in_picture_des	-	Ikompli d-daqq fi player minjatura f
 values-b+mt	string	pin	-	PIN
 values-b+mt	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+mt	string	pin_error_length	-	PIN must be 4 characters
+values-b+mt	string	pin_error_wait	-	Wisq PINs ħżiena. Ipprova mill-ġdid fi żmien %1$s
 values-b+mt	string	play_episode	-	Ibda l-episodju
 values-b+mt	string	play_episode_toast	-	Play Episode
 values-b+mt	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -42083,6 +42505,16 @@ values-b+mt	string	player_menu_playback	-	Playback
 values-b+mt	string	player_mute	-	Itfi l-ħoss
 values-b+mt	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+mt	string	player_notification_channel_name	-	Player notifications
+values-b+mt	string	player_panel_failed	-	falla
+values-b+mt	string	player_panel_keeps	-	iżomm %s
+values-b+mt	string	player_panel_numbered	-	%1$s %2$d
+values-b+mt	string	player_panel_on	-	Mixgħul
+values-b+mt	string	player_panel_open	-	Iftaħ
+values-b+mt	string	player_panel_quality_profile	-	Profil tal-kwalità
+values-b+mt	string	player_panel_quality_unknown	-	kwalità mhux magħrufa
+values-b+mt	string	player_panel_retry_all	-	Erġa' pprova s-sorsi kollha
+values-b+mt	string	player_panel_style	-	Stil tas-sottotitli
+values-b+mt	string	player_panel_use	-	Uża
 values-b+mt	string	player_play_now	-	Ħaddem issa
 values-b+mt	string	player_pref	-	Preferred video player
 values-b+mt	string	player_settings_always_ask	-	Always ask
@@ -43118,6 +43550,7 @@ values-b+my	string	library_sort_current	-	စီရန်: %s
 values-b+my	string	library_sort_not_kept	-	%s က ဒါကို မသိမ်းထားပါ
 values-b+my	string	library_sort_supported	-	%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်
 values-b+my	string	library_source	-	လိုက်ဘရီ ရင်းမြစ်
+values-b+my	string	library_source_local	-	စက်တွင်း
 values-b+my	string	library_source_note	-	တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်
 values-b+my	string	library_sync_cached	-	သိမ်းထားသည်
 values-b+my	string	library_sync_failed	-	%1$s ကို ချိန်ကိုက်၍မရပါ။ ဤအရာများသည် လွန်ခဲ့သော %2$s ကဖြစ်သည်။
@@ -43202,6 +43635,7 @@ values-b+my	string	picture_in_picture_des	-	ပြန်ကြည့်ခြင
 values-b+my	string	pin	-	PIN
 values-b+my	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+my	string	pin_error_length	-	PIN must be 4 characters
+values-b+my	string	pin_error_wait	-	PIN မှားယွင်းမှု များလွန်းသည်။ %1$s အကြာတွင် ထပ်စမ်းကြည့်ပါ
 values-b+my	string	play_episode	-	အပိုင်း ကြည့်မည်
 values-b+my	string	play_episode_toast	-	အပိုင်းကြည့်မည်
 values-b+my	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -43235,6 +43669,16 @@ values-b+my	string	player_menu_playback	-	ပြန်ဖွင့်ခြင�
 values-b+my	string	player_mute	-	အသံပိတ်ရန်
 values-b+my	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+my	string	player_notification_channel_name	-	Player notifications
+values-b+my	string	player_panel_failed	-	မအောင်မြင်ပါ
+values-b+my	string	player_panel_keeps	-	%s ကို ထိန်းထားသည်
+values-b+my	string	player_panel_numbered	-	%1$s %2$d
+values-b+my	string	player_panel_on	-	ဖွင့်
+values-b+my	string	player_panel_open	-	ဖွင့်ရန်
+values-b+my	string	player_panel_quality_profile	-	အရည်အသွေး ပရိုဖိုင်
+values-b+my	string	player_panel_quality_unknown	-	အရည်အသွေး မသိ
+values-b+my	string	player_panel_retry_all	-	ရင်းမြစ်အားလုံး ထပ်စမ်းရန်
+values-b+my	string	player_panel_style	-	စာတန်းထိုး ပုံစံ
+values-b+my	string	player_panel_use	-	သုံးရန်
 values-b+my	string	player_play_now	-	ယခုဖွင့်
 values-b+my	string	player_pref	-	ဦးစားပေး ဗီဒီယိုဖွင့်စက်
 values-b+my	string	player_settings_always_ask	-	Always ask
@@ -44290,6 +44734,7 @@ values-b+ne	string	library_sort_current	-	क्रम: %s
 values-b+ne	string	library_sort_not_kept	-	%s ले यो राख्दैन
 values-b+ne	string	library_sort_supported	-	%1$s ले %3$d मध्ये %2$d समर्थन गर्छ
 values-b+ne	string	library_source	-	लाइब्रेरी स्रोत
+values-b+ne	string	library_source_local	-	स्थानीय
 values-b+ne	string	library_source_note	-	एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ
 values-b+ne	string	library_sync_cached	-	क्यास गरिएको
 values-b+ne	string	library_sync_failed	-	%1$s सिंक गर्न सकिएन। यी %2$s अघिका हुन्।
@@ -44374,6 +44819,7 @@ values-b+ne	string	picture_in_picture_des	-	अरु एप माथी सा
 values-b+ne	string	pin	-	PIN
 values-b+ne	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+ne	string	pin_error_length	-	PIN must be 4 characters
+values-b+ne	string	pin_error_wait	-	धेरै पटक गलत PIN। %1$s पछि फेरि प्रयास गर्नुहोस्
 values-b+ne	string	play_episode	-	एपिसोड प्ले गर्नुहोस्
 values-b+ne	string	play_episode_toast	-	Play Episode
 values-b+ne	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -44407,6 +44853,16 @@ values-b+ne	string	player_menu_playback	-	प्लेब्याक
 values-b+ne	string	player_mute	-	म्यूट गर्नुहोस्
 values-b+ne	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ne	string	player_notification_channel_name	-	Player notifications
+values-b+ne	string	player_panel_failed	-	असफल
+values-b+ne	string	player_panel_keeps	-	%s राख्छ
+values-b+ne	string	player_panel_numbered	-	%1$s %2$d
+values-b+ne	string	player_panel_on	-	अन
+values-b+ne	string	player_panel_open	-	खोल्नुहोस्
+values-b+ne	string	player_panel_quality_profile	-	गुणस्तर प्रोफाइल
+values-b+ne	string	player_panel_quality_unknown	-	गुणस्तर अज्ञात
+values-b+ne	string	player_panel_retry_all	-	सबै स्रोत फेरि प्रयास गर्नुहोस्
+values-b+ne	string	player_panel_style	-	सबटाइटल शैली
+values-b+ne	string	player_panel_use	-	प्रयोग गर्नुहोस्
 values-b+ne	string	player_play_now	-	अहिले चलाउनुहोस्
 values-b+ne	string	player_pref	-	Preferred video player
 values-b+ne	string	player_settings_always_ask	-	Always ask
@@ -45462,6 +45918,7 @@ values-b+nl	string	library_sort_current	-	Sorteren: %s
 values-b+nl	string	library_sort_not_kept	-	Niet bewaard door %s
 values-b+nl	string	library_sort_supported	-	%1$s ondersteunt %2$d van %3$d
 values-b+nl	string	library_source	-	Bibliotheekbron
+values-b+nl	string	library_source_local	-	Lokaal
 values-b+nl	string	library_source_note	-	Eén tegelijk · wisselen laadt opnieuw
 values-b+nl	string	library_sync_cached	-	Uit cache
 values-b+nl	string	library_sync_failed	-	%1$s kon niet worden gesynchroniseerd. Dit is van %2$s geleden.
@@ -45546,6 +46003,7 @@ values-b+nl	string	picture_in_picture_des	-	Blijft afspelen in een miniatuurspel
 values-b+nl	string	pin	-	PIN
 values-b+nl	string	pin_error_incorrect	-	Onjuiste PIN. Probeer het opnieuw.
 values-b+nl	string	pin_error_length	-	PIN moet 4 teken bevatten
+values-b+nl	string	pin_error_wait	-	Te veel verkeerde pincodes. Probeer het over %1$s opnieuw
 values-b+nl	string	play_episode	-	Aflevering afspelen
 values-b+nl	string	play_episode_toast	-	Aflevering afspelen
 values-b+nl	string	play_from_beginning_img_des	-	Speel van het begin
@@ -45579,6 +46037,16 @@ values-b+nl	string	player_menu_playback	-	Afspelen
 values-b+nl	string	player_mute	-	Dempen
 values-b+nl	string	player_notification_channel_description	-	De speler melding om de kijkervaring van de achtergrond de besturen
 values-b+nl	string	player_notification_channel_name	-	Speler meldingen
+values-b+nl	string	player_panel_failed	-	mislukt
+values-b+nl	string	player_panel_keeps	-	behoudt %s
+values-b+nl	string	player_panel_numbered	-	%1$s %2$d
+values-b+nl	string	player_panel_on	-	Aan
+values-b+nl	string	player_panel_open	-	Openen
+values-b+nl	string	player_panel_quality_profile	-	Kwaliteitsprofiel
+values-b+nl	string	player_panel_quality_unknown	-	kwaliteit onbekend
+values-b+nl	string	player_panel_retry_all	-	Alle bronnen opnieuw proberen
+values-b+nl	string	player_panel_style	-	Ondertitelstijl
+values-b+nl	string	player_panel_use	-	Gebruiken
 values-b+nl	string	player_play_now	-	Nu afspelen
 values-b+nl	string	player_pref	-	Gewenste videospeler
 values-b+nl	string	player_settings_always_ask	-	Vraag altijd
@@ -46634,6 +47102,7 @@ values-b+nn	string	library_sort_current	-	Sortering: %s
 values-b+nn	string	library_sort_not_kept	-	Ikkje lagra av %s
 values-b+nn	string	library_sort_supported	-	%1$s støttar %2$d av %3$d
 values-b+nn	string	library_source	-	Bibliotekskjelde
+values-b+nn	string	library_source_local	-	Lokal
 values-b+nn	string	library_source_note	-	Éin om gongen · byte lastar på nytt
 values-b+nn	string	library_sync_cached	-	Mellomlagra
 values-b+nn	string	library_sync_failed	-	Kunne ikkje synkronisera %1$s. Desse er frå for %2$s sidan.
@@ -46718,6 +47187,7 @@ values-b+nn	string	picture_in_picture_des	-	Continues playback in a miniature pl
 values-b+nn	string	pin	-	PIN
 values-b+nn	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+nn	string	pin_error_length	-	PIN must be 4 characters
+values-b+nn	string	pin_error_wait	-	For mange feil PIN-kodar. Prøv igjen om %1$s
 values-b+nn	string	play_episode	-	Spel av episode
 values-b+nn	string	play_episode_toast	-	Spel av episode
 values-b+nn	string	play_from_beginning_img_des	-	Spel av frå start
@@ -46751,6 +47221,16 @@ values-b+nn	string	player_menu_playback	-	Avspeling
 values-b+nn	string	player_mute	-	Slå av lyd
 values-b+nn	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+nn	string	player_notification_channel_name	-	Player notifications
+values-b+nn	string	player_panel_failed	-	feila
+values-b+nn	string	player_panel_keeps	-	held på %s
+values-b+nn	string	player_panel_numbered	-	%1$s %2$d
+values-b+nn	string	player_panel_on	-	På
+values-b+nn	string	player_panel_open	-	Opne
+values-b+nn	string	player_panel_quality_profile	-	Kvalitetsprofil
+values-b+nn	string	player_panel_quality_unknown	-	ukjend kvalitet
+values-b+nn	string	player_panel_retry_all	-	Prøv alle kjeldene på nytt
+values-b+nn	string	player_panel_style	-	Stil for undertekstar
+values-b+nn	string	player_panel_use	-	Bruk
 values-b+nn	string	player_play_now	-	Spel no
 values-b+nn	string	player_pref	-	Preferred video player
 values-b+nn	string	player_settings_always_ask	-	Always ask
@@ -47806,6 +48286,7 @@ values-b+no	string	library_sort_current	-	Sortering: %s
 values-b+no	string	library_sort_not_kept	-	Ikke lagret av %s
 values-b+no	string	library_sort_supported	-	%1$s støtter %2$d av %3$d
 values-b+no	string	library_source	-	Bibliotekkilde
+values-b+no	string	library_source_local	-	Lokal
 values-b+no	string	library_source_note	-	Én om gangen · bytte laster inn på nytt
 values-b+no	string	library_sync_cached	-	Mellomlagret
 values-b+no	string	library_sync_failed	-	Kunne ikke synkronisere %1$s. Disse er fra for %2$s siden.
@@ -47890,6 +48371,7 @@ values-b+no	string	picture_in_picture_des	-	Fortsetter avspilling i en miniatyr 
 values-b+no	string	pin	-	PIN
 values-b+no	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+no	string	pin_error_length	-	PIN must be 4 characters
+values-b+no	string	pin_error_wait	-	For mange feil PIN-koder. Prøv igjen om %1$s
 values-b+no	string	play_episode	-	Spille Episode
 values-b+no	string	play_episode_toast	-	spille episode
 values-b+no	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -47923,6 +48405,16 @@ values-b+no	string	player_menu_playback	-	Avspilling
 values-b+no	string	player_mute	-	Slå av lyden
 values-b+no	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+no	string	player_notification_channel_name	-	Player notifications
+values-b+no	string	player_panel_failed	-	feilet
+values-b+no	string	player_panel_keeps	-	beholder %s
+values-b+no	string	player_panel_numbered	-	%1$s %2$d
+values-b+no	string	player_panel_on	-	På
+values-b+no	string	player_panel_open	-	Åpne
+values-b+no	string	player_panel_quality_profile	-	Kvalitetsprofil
+values-b+no	string	player_panel_quality_unknown	-	ukjent kvalitet
+values-b+no	string	player_panel_retry_all	-	Prøv alle kildene på nytt
+values-b+no	string	player_panel_style	-	Undertekststil
+values-b+no	string	player_panel_use	-	Bruk
 values-b+no	string	player_play_now	-	Spill nå
 values-b+no	string	player_pref	-	Foretrukket videospiller
 values-b+no	string	player_settings_always_ask	-	Always ask
@@ -48978,6 +49470,7 @@ values-b+or	string	library_sort_current	-	କ୍ରମ: %s
 values-b+or	string	library_sort_not_kept	-	%s ଏହା ରଖେ ନାହିଁ
 values-b+or	string	library_sort_supported	-	%1$s %3$d ମଧ୍ୟରୁ %2$d ସମର୍ଥନ କରେ
 values-b+or	string	library_source	-	ଲାଇବ୍ରେରୀ ଉତ୍ସ
+values-b+or	string	library_source_local	-	ସ୍ଥାନୀୟ
 values-b+or	string	library_source_note	-	ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ
 values-b+or	string	library_sync_cached	-	କ୍ୟାଶ୍
 values-b+or	string	library_sync_failed	-	%1$s ସିଙ୍କ୍ ହୋଇପାରିଲା ନାହିଁ। ଏଗୁଡ଼ିକ %2$s ପୂର୍ବର।
@@ -49062,6 +49555,7 @@ values-b+or	string	picture_in_picture_des	-	Continues playback in a miniature pl
 values-b+or	string	pin	-	PIN
 values-b+or	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+or	string	pin_error_length	-	PIN must be 4 characters
+values-b+or	string	pin_error_wait	-	ଅତ୍ୟଧିକ ଭୁଲ PIN। %1$s ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ
 values-b+or	string	play_episode	-	ଅଧ୍ୟାୟ ଚଲାଅ
 values-b+or	string	play_episode_toast	-	ଅଧ୍ୟାୟ ଚଲାଅ
 values-b+or	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -49095,6 +49589,16 @@ values-b+or	string	player_menu_playback	-	ପ୍ଲେବ୍ୟାକ୍
 values-b+or	string	player_mute	-	ମ୍ୟୁଟ କରନ୍ତୁ
 values-b+or	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+or	string	player_notification_channel_name	-	Player notifications
+values-b+or	string	player_panel_failed	-	ବିଫଳ
+values-b+or	string	player_panel_keeps	-	%s ରଖେ
+values-b+or	string	player_panel_numbered	-	%1$s %2$d
+values-b+or	string	player_panel_on	-	ଅନ୍
+values-b+or	string	player_panel_open	-	ଖୋଲନ୍ତୁ
+values-b+or	string	player_panel_quality_profile	-	ଗୁଣବତ୍ତା ପ୍ରୋଫାଇଲ୍
+values-b+or	string	player_panel_quality_unknown	-	ଗୁଣବତ୍ତା ଅଜଣା
+values-b+or	string	player_panel_retry_all	-	ସମସ୍ତ ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ
+values-b+or	string	player_panel_style	-	ସବଟାଇଟଲ୍ ଶୈଳୀ
+values-b+or	string	player_panel_use	-	ବ୍ୟବହାର କରନ୍ତୁ
 values-b+or	string	player_play_now	-	ବର୍ତ୍ତମାନ ଚଲାନ୍ତୁ
 values-b+or	string	player_pref	-	Preferred video player
 values-b+or	string	player_settings_always_ask	-	Always ask
@@ -50196,6 +50700,7 @@ values-b+pl	string	library_sort_current	-	Sortowanie: %s
 values-b+pl	string	library_sort_not_kept	-	%s tego nie przechowuje
 values-b+pl	string	library_sort_supported	-	%1$s obsługuje %2$d z %3$d
 values-b+pl	string	library_source	-	Źródło biblioteki
+values-b+pl	string	library_source_local	-	Lokalna
 values-b+pl	string	library_source_note	-	Jedno naraz · przełączenie wczytuje ponownie
 values-b+pl	string	library_sync_cached	-	Z pamięci podręcznej
 values-b+pl	string	library_sync_failed	-	Nie udało się zsynchronizować %1$s. To dane sprzed %2$s.
@@ -50280,6 +50785,7 @@ values-b+pl	string	picture_in_picture_des	-	Oglądaj w małym, pływającym okie
 values-b+pl	string	pin	-	PIN
 values-b+pl	string	pin_error_incorrect	-	Nieprawidłowy PIN. Spróbuj ponownie.
 values-b+pl	string	pin_error_length	-	Kod PIN musi mieć 4 znaki
+values-b+pl	string	pin_error_wait	-	Zbyt wiele błędnych kodów PIN. Spróbuj ponownie za %1$s
 values-b+pl	string	play_episode	-	Odtwórz odcinek
 values-b+pl	string	play_episode_toast	-	Odtwórz odcinek
 values-b+pl	string	play_from_beginning_img_des	-	Odtwarzaj od początku
@@ -50313,6 +50819,16 @@ values-b+pl	string	player_menu_playback	-	Odtwarzanie
 values-b+pl	string	player_mute	-	Wycisz
 values-b+pl	string	player_notification_channel_description	-	Powiadomienie odtwarzacza umożliwiające sterowanie odtwarzaniem w tle
 values-b+pl	string	player_notification_channel_name	-	Powiadomienia odtwarzacza
+values-b+pl	string	player_panel_failed	-	błąd
+values-b+pl	string	player_panel_keeps	-	zachowuje %s
+values-b+pl	string	player_panel_numbered	-	%1$s %2$d
+values-b+pl	string	player_panel_on	-	Wł.
+values-b+pl	string	player_panel_open	-	Otwórz
+values-b+pl	string	player_panel_quality_profile	-	Profil jakości
+values-b+pl	string	player_panel_quality_unknown	-	nieznana jakość
+values-b+pl	string	player_panel_retry_all	-	Ponów wszystkie źródła
+values-b+pl	string	player_panel_style	-	Styl napisów
+values-b+pl	string	player_panel_use	-	Użyj
 values-b+pl	string	player_play_now	-	Odtwórz teraz
 values-b+pl	string	player_pref	-	Preferowany odtwarzacz wideo
 values-b+pl	string	player_settings_always_ask	-	Zawsze pytaj
@@ -51391,6 +51907,7 @@ values-b+pt	string	library_sort_current	-	Ordenar: %s
 values-b+pt	string	library_sort_not_kept	-	Não guardado por %s
 values-b+pt	string	library_sort_supported	-	%1$s suporta %2$d de %3$d
 values-b+pt	string	library_source	-	Origem da biblioteca
+values-b+pt	string	library_source_local	-	Local
 values-b+pt	string	library_source_note	-	Uma de cada vez · mudar recarrega
 values-b+pt	string	library_sync_cached	-	Em cache
 values-b+pt	string	library_sync_failed	-	Não foi possível sincronizar %1$s. São de há %2$s.
@@ -51475,6 +51992,7 @@ values-b+pt	string	picture_in_picture_des	-	Continua a reprodução num player e
 values-b+pt	string	pin	-	PIN
 values-b+pt	string	pin_error_incorrect	-	PIN incorreto. Por favor, tente novamente.
 values-b+pt	string	pin_error_length	-	O PIN deve ter 4 caracteres
+values-b+pt	string	pin_error_wait	-	Demasiados PIN errados. Tente novamente dentro de %1$s
 values-b+pt	string	play_episode	-	Reproduzir episódio
 values-b+pt	string	play_episode_toast	-	Reproduzir episódio
 values-b+pt	string	play_from_beginning_img_des	-	Recomeçar
@@ -51508,6 +52026,16 @@ values-b+pt	string	player_menu_playback	-	Reprodução
 values-b+pt	string	player_mute	-	Desativar som
 values-b+pt	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 values-b+pt	string	player_notification_channel_name	-	Notificações de reprodução
+values-b+pt	string	player_panel_failed	-	falhou
+values-b+pt	string	player_panel_keeps	-	mantém %s
+values-b+pt	string	player_panel_numbered	-	%1$s %2$d
+values-b+pt	string	player_panel_on	-	Ativado
+values-b+pt	string	player_panel_open	-	Abrir
+values-b+pt	string	player_panel_quality_profile	-	Perfil de qualidade
+values-b+pt	string	player_panel_quality_unknown	-	qualidade desconhecida
+values-b+pt	string	player_panel_retry_all	-	Tentar novamente todas as fontes
+values-b+pt	string	player_panel_style	-	Estilo das legendas
+values-b+pt	string	player_panel_use	-	Usar
 values-b+pt	string	player_play_now	-	Reproduzir agora
 values-b+pt	string	player_pref	-	Player de vídeo preferido
 values-b+pt	string	player_settings_always_ask	-	Sempre perguntar
@@ -52586,6 +53114,7 @@ values-b+pt+BR	string	library_sort_current	-	Ordenar: %s
 values-b+pt+BR	string	library_sort_not_kept	-	Não salvo por %s
 values-b+pt+BR	string	library_sort_supported	-	%1$s suporta %2$d de %3$d
 values-b+pt+BR	string	library_source	-	Fonte da biblioteca
+values-b+pt+BR	string	library_source_local	-	Local
 values-b+pt+BR	string	library_source_note	-	Uma por vez · trocar recarrega
 values-b+pt+BR	string	library_sync_cached	-	Em cache
 values-b+pt+BR	string	library_sync_failed	-	Não foi possível sincronizar %1$s. Estes são de %2$s atrás.
@@ -52670,6 +53199,7 @@ values-b+pt+BR	string	picture_in_picture_des	-	Continua o vídeo em tamanho mini
 values-b+pt+BR	string	pin	-	PIN
 values-b+pt+BR	string	pin_error_incorrect	-	PIN incorreto. Por favor, tente novamente.
 values-b+pt+BR	string	pin_error_length	-	O PIN deve ter 4 caracteres
+values-b+pt+BR	string	pin_error_wait	-	Muitos PINs incorretos. Tente novamente em %1$s
 values-b+pt+BR	string	play_episode	-	Reproduzir episódio
 values-b+pt+BR	string	play_episode_toast	-	Assistir episódio
 values-b+pt+BR	string	play_from_beginning_img_des	-	Reproduzir do começo
@@ -52703,6 +53233,16 @@ values-b+pt+BR	string	player_menu_playback	-	Reprodução
 values-b+pt+BR	string	player_mute	-	Desativar som
 values-b+pt+BR	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 values-b+pt+BR	string	player_notification_channel_name	-	Notificações de reprodução
+values-b+pt+BR	string	player_panel_failed	-	falhou
+values-b+pt+BR	string	player_panel_keeps	-	mantém %s
+values-b+pt+BR	string	player_panel_numbered	-	%1$s %2$d
+values-b+pt+BR	string	player_panel_on	-	Ativado
+values-b+pt+BR	string	player_panel_open	-	Abrir
+values-b+pt+BR	string	player_panel_quality_profile	-	Perfil de qualidade
+values-b+pt+BR	string	player_panel_quality_unknown	-	qualidade desconhecida
+values-b+pt+BR	string	player_panel_retry_all	-	Tentar todas as fontes de novo
+values-b+pt+BR	string	player_panel_style	-	Estilo das legendas
+values-b+pt+BR	string	player_panel_use	-	Usar
 values-b+pt+BR	string	player_play_now	-	Assistir agora
 values-b+pt+BR	string	player_pref	-	Player de vídeo preferido
 values-b+pt+BR	string	player_settings_always_ask	-	Perguntar sempre
@@ -53738,6 +54278,7 @@ values-b+qt	string	library_sort_current	-	Oouh: %s
 values-b+qt	string	library_sort_not_kept	-	ooo uuh %s
 values-b+qt	string	library_sort_supported	-	%1$s ooh %2$d uuh %3$d
 values-b+qt	string	library_source	-	aaaghh ooo-ahah
+values-b+qt	string	library_source_local	-	uuhh
 values-b+qt	string	library_source_note	-	ooo aagg · uuhh-ahah
 values-b+qt	string	library_sync_cached	-	Uuh
 values-b+qt	string	library_sync_failed	-	Ooh %1$s uuh. Ahh %2$s.
@@ -53822,6 +54363,7 @@ values-b+qt	string	picture_in_picture_des	-	ooooooohhaa ouuhhh ouuhhhohahh oh ah
 values-b+qt	string	pin	-	oog
 values-b+qt	string	pin_error_incorrect	-	oooohhhag uug oooohh uuh eeeek
 values-b+qt	string	pin_error_length	-	ooh oogg uh 4 uuuuhhhooh
+values-b+qt	string	pin_error_wait	-	oooohhhag uug ooh %1$s eeek
 values-b+qt	string	play_episode	-	aaaaa oh ohaouuhhh
 values-b+qt	string	play_episode_toast	-	ouuhhhoouuh ouuhhh
 values-b+qt	string	play_from_beginning_img_des	-	aahh oohh uuh uuuuggguh
@@ -53855,6 +54397,16 @@ values-b+qt	string	player_menu_playback	-	Oouh
 values-b+qt	string	player_mute	-	ooh oh
 values-b+qt	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+qt	string	player_notification_channel_name	-	Player notifications
+values-b+qt	string	player_panel_failed	-	aagh
+values-b+qt	string	player_panel_keeps	-	ooh %s
+values-b+qt	string	player_panel_numbered	-	%1$s %2$d
+values-b+qt	string	player_panel_on	-	Ook
+values-b+qt	string	player_panel_open	-	Aah
+values-b+qt	string	player_panel_quality_profile	-	Oohh aagh
+values-b+qt	string	player_panel_quality_unknown	-	oohh uuk
+values-b+qt	string	player_panel_retry_all	-	Aagh oohh uuk
+values-b+qt	string	player_panel_style	-	Oohh aak
+values-b+qt	string	player_panel_use	-	Uuk
 values-b+qt	string	player_play_now	-	Ahh ooh
 values-b+qt	string	player_pref	-	aaaagggah uuugg uuuugg
 values-b+qt	string	player_settings_always_ask	-	Always ask
@@ -54930,6 +55482,7 @@ values-b+ro	string	library_sort_current	-	Sortare: %s
 values-b+ro	string	library_sort_not_kept	-	Nu este păstrat de %s
 values-b+ro	string	library_sort_supported	-	%1$s acceptă %2$d din %3$d
 values-b+ro	string	library_source	-	Sursa bibliotecii
+values-b+ro	string	library_source_local	-	Local
 values-b+ro	string	library_source_note	-	Câte una · schimbarea reîncarcă
 values-b+ro	string	library_sync_cached	-	Din cache
 values-b+ro	string	library_sync_failed	-	%1$s nu a putut fi sincronizat. Sunt de acum %2$s.
@@ -55014,6 +55567,7 @@ values-b+ro	string	picture_in_picture_des	-	Continuă redarea într-un mini-play
 values-b+ro	string	pin	-	PIN
 values-b+ro	string	pin_error_incorrect	-	PIN incorect. Te rog să încerci din nou.
 values-b+ro	string	pin_error_length	-	PIN-ul trebuie să fie format din 4 caractere
+values-b+ro	string	pin_error_wait	-	Prea multe PIN-uri greșite. Încercați din nou peste %1$s
 values-b+ro	string	play_episode	-	Redă episodul
 values-b+ro	string	play_episode_toast	-	Redare episod
 values-b+ro	string	play_from_beginning_img_des	-	Redă de la început
@@ -55047,6 +55601,16 @@ values-b+ro	string	player_menu_playback	-	Redare
 values-b+ro	string	player_mute	-	Dezactivează sunetul
 values-b+ro	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ro	string	player_notification_channel_name	-	Player notifications
+values-b+ro	string	player_panel_failed	-	eșuat
+values-b+ro	string	player_panel_keeps	-	păstrează %s
+values-b+ro	string	player_panel_numbered	-	%1$s %2$d
+values-b+ro	string	player_panel_on	-	Activat
+values-b+ro	string	player_panel_open	-	Deschide
+values-b+ro	string	player_panel_quality_profile	-	Profil de calitate
+values-b+ro	string	player_panel_quality_unknown	-	calitate necunoscută
+values-b+ro	string	player_panel_retry_all	-	Reîncearcă toate sursele
+values-b+ro	string	player_panel_style	-	Stilul subtitrărilor
+values-b+ro	string	player_panel_use	-	Folosește
 values-b+ro	string	player_play_now	-	Redă acum
 values-b+ro	string	player_pref	-	Player video preferat
 values-b+ro	string	player_settings_always_ask	-	Always ask
@@ -56148,6 +56712,7 @@ values-b+ru	string	library_sort_current	-	Сортировка: %s
 values-b+ru	string	library_sort_not_kept	-	%s этого не хранит
 values-b+ru	string	library_sort_supported	-	%1$s поддерживает %2$d из %3$d
 values-b+ru	string	library_source	-	Источник библиотеки
+values-b+ru	string	library_source_local	-	Локальный
 values-b+ru	string	library_source_note	-	По одному · переключение перезагружает
 values-b+ru	string	library_sync_cached	-	Из кеша
 values-b+ru	string	library_sync_failed	-	Не удалось синхронизировать %1$s. Это данные %2$s назад.
@@ -56232,6 +56797,7 @@ values-b+ru	string	picture_in_picture_des	-	Продолжение воспро�
 values-b+ru	string	pin	-	ПИН-код
 values-b+ru	string	pin_error_incorrect	-	Неверный ПИН-код. Пожалуйста, введите его заново.
 values-b+ru	string	pin_error_length	-	ПИН-код должен содержать 4 символа
+values-b+ru	string	pin_error_wait	-	Слишком много неверных PIN-кодов. Повторите попытку через %1$s
 values-b+ru	string	play_episode	-	Смотреть серию
 values-b+ru	string	play_episode_toast	-	Смотреть серию
 values-b+ru	string	play_from_beginning_img_des	-	Играть с самого начала
@@ -56265,6 +56831,16 @@ values-b+ru	string	player_menu_playback	-	Воспроизведение
 values-b+ru	string	player_mute	-	Выключить звук
 values-b+ru	string	player_notification_channel_description	-	Уведомление проигрывателя для управления воспроизведением в фоновом режиме
 values-b+ru	string	player_notification_channel_name	-	Уведомления плеера
+values-b+ru	string	player_panel_failed	-	сбой
+values-b+ru	string	player_panel_keeps	-	сохраняет %s
+values-b+ru	string	player_panel_numbered	-	%1$s %2$d
+values-b+ru	string	player_panel_on	-	Вкл.
+values-b+ru	string	player_panel_open	-	Открыть
+values-b+ru	string	player_panel_quality_profile	-	Профиль качества
+values-b+ru	string	player_panel_quality_unknown	-	качество неизвестно
+values-b+ru	string	player_panel_retry_all	-	Повторить все источники
+values-b+ru	string	player_panel_style	-	Стиль субтитров
+values-b+ru	string	player_panel_use	-	Использовать
 values-b+ru	string	player_play_now	-	Смотреть сейчас
 values-b+ru	string	player_pref	-	Предпочитаемый видеоплеер
 values-b+ru	string	player_settings_always_ask	-	Спрашивать всегда
@@ -57360,6 +57936,7 @@ values-b+sk	string	library_sort_current	-	Zoradenie: %s
 values-b+sk	string	library_sort_not_kept	-	%s toto neuchováva
 values-b+sk	string	library_sort_supported	-	%1$s podporuje %2$d z %3$d
 values-b+sk	string	library_source	-	Zdroj knižnice
+values-b+sk	string	library_source_local	-	Lokálne
 values-b+sk	string	library_source_note	-	Jeden naraz · prepnutie znova načíta
 values-b+sk	string	library_sync_cached	-	Z vyrovnávacej pamäte
 values-b+sk	string	library_sync_failed	-	%1$s sa nepodarilo synchronizovať. Sú to údaje spred %2$s.
@@ -57444,6 +58021,7 @@ values-b+sk	string	picture_in_picture_des	-	Pokračuje v prehrávaní v miniatú
 values-b+sk	string	pin	-	PIN
 values-b+sk	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+sk	string	pin_error_length	-	PIN must be 4 characters
+values-b+sk	string	pin_error_wait	-	Príliš veľa nesprávnych PIN kódov. Skúste to znova o %1$s
 values-b+sk	string	play_episode	-	Prehrať epizódu
 values-b+sk	string	play_episode_toast	-	Prehrať epizódu
 values-b+sk	string	play_from_beginning_img_des	-	Hrať od začiatku
@@ -57477,6 +58055,16 @@ values-b+sk	string	player_menu_playback	-	Prehrávanie
 values-b+sk	string	player_mute	-	Vypnúť zvuk
 values-b+sk	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+sk	string	player_notification_channel_name	-	Player notifications
+values-b+sk	string	player_panel_failed	-	zlyhalo
+values-b+sk	string	player_panel_keeps	-	zachová %s
+values-b+sk	string	player_panel_numbered	-	%1$s %2$d
+values-b+sk	string	player_panel_on	-	Zapnuté
+values-b+sk	string	player_panel_open	-	Otvoriť
+values-b+sk	string	player_panel_quality_profile	-	Profil kvality
+values-b+sk	string	player_panel_quality_unknown	-	neznáma kvalita
+values-b+sk	string	player_panel_retry_all	-	Skúsiť znova všetky zdroje
+values-b+sk	string	player_panel_style	-	Štýl titulkov
+values-b+sk	string	player_panel_use	-	Použiť
 values-b+sk	string	player_play_now	-	Prehrať teraz
 values-b+sk	string	player_pref	-	Preferred video player
 values-b+sk	string	player_settings_always_ask	-	Always ask
@@ -58532,6 +59120,7 @@ values-b+so	string	library_sort_current	-	Kala soocid: %s
 values-b+so	string	library_sort_not_kept	-	%s ma kaydiyo
 values-b+so	string	library_sort_supported	-	%1$s wuxuu taageeraa %2$d ka mid ah %3$d
 values-b+so	string	library_source	-	Isha kaydka
+values-b+so	string	library_source_local	-	Maxalli
 values-b+so	string	library_source_note	-	Mid mid · beddelku wuu dib u soo raraa
 values-b+so	string	library_sync_cached	-	La kaydiyay
 values-b+so	string	library_sync_failed	-	Lama isku waafajin karin %1$s. Kuwani waa kuwii %2$s ka hor.
@@ -58616,6 +59205,7 @@ values-b+so	string	picture_in_picture_des	-	Ka sii wado daawashada daaqad yar oo
 values-b+so	string	pin	-	PIN
 values-b+so	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+so	string	pin_error_length	-	PIN must be 4 characters
+values-b+so	string	pin_error_wait	-	PIN qaldan oo aad u badan. Isku day mar kale %1$s kadib
 values-b+so	string	play_episode	-	Xalqadda daaro
 values-b+so	string	play_episode_toast	-	Daari xalqaddan
 values-b+so	string	play_from_beginning_img_des	-	Ka bilow bilowga
@@ -58649,6 +59239,16 @@ values-b+so	string	player_menu_playback	-	Ciyaarid
 values-b+so	string	player_mute	-	Aamusi
 values-b+so	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+so	string	player_notification_channel_name	-	Player notifications
+values-b+so	string	player_panel_failed	-	fashilay
+values-b+so	string	player_panel_keeps	-	wuxuu hayaa %s
+values-b+so	string	player_panel_numbered	-	%1$s %2$d
+values-b+so	string	player_panel_on	-	Shidan
+values-b+so	string	player_panel_open	-	Fur
+values-b+so	string	player_panel_quality_profile	-	Astaanta tayada
+values-b+so	string	player_panel_quality_unknown	-	tayada lama yaqaan
+values-b+so	string	player_panel_retry_all	-	Isku day mar kale dhammaan ilaha
+values-b+so	string	player_panel_style	-	Qaabka qoraalka hoose
+values-b+so	string	player_panel_use	-	Isticmaal
 values-b+so	string	player_play_now	-	Hadda ciyaar
 values-b+so	string	player_pref	-	Muqaal daaraha aad doorbiddo
 values-b+so	string	player_settings_always_ask	-	Always ask
@@ -59704,6 +60304,7 @@ values-b+sq	string	library_sort_current	-	Renditja: %s
 values-b+sq	string	library_sort_not_kept	-	Nuk ruhet nga %s
 values-b+sq	string	library_sort_supported	-	%1$s mbështet %2$d nga %3$d
 values-b+sq	string	library_source	-	Burimi i bibliotekës
+values-b+sq	string	library_source_local	-	Lokale
 values-b+sq	string	library_source_note	-	Një në një kohë · ndërrimi ringarkon
 values-b+sq	string	library_sync_cached	-	Nga memoria
 values-b+sq	string	library_sync_failed	-	%1$s nuk u sinkronizua dot. Këto janë para %2$s.
@@ -59788,6 +60389,7 @@ values-b+sq	string	picture_in_picture_des	-	Vazhdo shikimin në një luajtës t�
 values-b+sq	string	pin	-	PIN
 values-b+sq	string	pin_error_incorrect	-	PIN-i i gabuar. Ju lutem provoni përsëri.
 values-b+sq	string	pin_error_length	-	PIN-i duhet të ketë 4 karaktere
+values-b+sq	string	pin_error_wait	-	Shumë PIN të gabuar. Provo përsëri pas %1$s
 values-b+sq	string	play_episode	-	Luaj Episodin
 values-b+sq	string	play_episode_toast	-	Luaj Episodin
 values-b+sq	string	play_from_beginning_img_des	-	Luaj nga fillimi
@@ -59821,6 +60423,16 @@ values-b+sq	string	player_menu_playback	-	Luajtja
 values-b+sq	string	player_mute	-	Hiq zërin
 values-b+sq	string	player_notification_channel_description	-	Njoftimi për kontrollin e luajtjes nga sfondi
 values-b+sq	string	player_notification_channel_name	-	Njoftimet e luajtësit
+values-b+sq	string	player_panel_failed	-	dështoi
+values-b+sq	string	player_panel_keeps	-	ruan %s
+values-b+sq	string	player_panel_numbered	-	%1$s %2$d
+values-b+sq	string	player_panel_on	-	Aktiv
+values-b+sq	string	player_panel_open	-	Hap
+values-b+sq	string	player_panel_quality_profile	-	Profili i cilësisë
+values-b+sq	string	player_panel_quality_unknown	-	cilësi e panjohur
+values-b+sq	string	player_panel_retry_all	-	Riprovo të gjitha burimet
+values-b+sq	string	player_panel_style	-	Stili i titrave
+values-b+sq	string	player_panel_use	-	Përdor
 values-b+sq	string	player_play_now	-	Luaj tani
 values-b+sq	string	player_pref	-	Luajtësi i preferuar i videove
 values-b+sq	string	player_settings_always_ask	-	Pyet gjithmonë
@@ -60876,6 +61488,7 @@ values-b+sv	string	library_sort_current	-	Sortering: %s
 values-b+sv	string	library_sort_not_kept	-	Sparas inte av %s
 values-b+sv	string	library_sort_supported	-	%1$s stöder %2$d av %3$d
 values-b+sv	string	library_source	-	Bibliotekskälla
+values-b+sv	string	library_source_local	-	Lokal
 values-b+sv	string	library_source_note	-	En i taget · byte laddar om
 values-b+sv	string	library_sync_cached	-	Cachad
 values-b+sv	string	library_sync_failed	-	Det gick inte att synkronisera %1$s. Detta är från för %2$s sedan.
@@ -60960,6 +61573,7 @@ values-b+sv	string	picture_in_picture_des	-	Fortsätter uppspelning i en miniaty
 values-b+sv	string	pin	-	PIN-kod
 values-b+sv	string	pin_error_incorrect	-	Felaktig PIN-kod. Försök igen.
 values-b+sv	string	pin_error_length	-	PIN-koden måste vara fyra tecken
+values-b+sv	string	pin_error_wait	-	För många felaktiga PIN-koder. Försök igen om %1$s
 values-b+sv	string	play_episode	-	Spela avsnitt
 values-b+sv	string	play_episode_toast	-	Spela upp avsnitt
 values-b+sv	string	play_from_beginning_img_des	-	Spela från början
@@ -60993,6 +61607,16 @@ values-b+sv	string	player_menu_playback	-	Uppspelning
 values-b+sv	string	player_mute	-	Stäng av ljudet
 values-b+sv	string	player_notification_channel_description	-	Spelarnotisen för att styra uppspelningen i bakgrunden
 values-b+sv	string	player_notification_channel_name	-	Spelarnotiser
+values-b+sv	string	player_panel_failed	-	misslyckades
+values-b+sv	string	player_panel_keeps	-	behåller %s
+values-b+sv	string	player_panel_numbered	-	%1$s %2$d
+values-b+sv	string	player_panel_on	-	På
+values-b+sv	string	player_panel_open	-	Öppna
+values-b+sv	string	player_panel_quality_profile	-	Kvalitetsprofil
+values-b+sv	string	player_panel_quality_unknown	-	okänd kvalitet
+values-b+sv	string	player_panel_retry_all	-	Försök med alla källor igen
+values-b+sv	string	player_panel_style	-	Undertextstil
+values-b+sv	string	player_panel_use	-	Använd
 values-b+sv	string	player_play_now	-	Spela nu
 values-b+sv	string	player_pref	-	Önskad videospelare
 values-b+sv	string	player_settings_always_ask	-	Fråga alltid
@@ -62048,6 +62672,7 @@ values-b+ta	string	library_sort_current	-	வரிசை: %s
 values-b+ta	string	library_sort_not_kept	-	%s இதை வைத்திருக்காது
 values-b+ta	string	library_sort_supported	-	%1$s %3$d இல் %2$d ஐ ஆதரிக்கிறது
 values-b+ta	string	library_source	-	நூலக மூலம்
+values-b+ta	string	library_source_local	-	உள்ளகம்
 values-b+ta	string	library_source_note	-	ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்
 values-b+ta	string	library_sync_cached	-	தேக்கியது
 values-b+ta	string	library_sync_failed	-	%1$s ஐ ஒத்திசைக்க முடியவில்லை. இவை %2$s முன்பு உள்ளவை.
@@ -62132,6 +62757,7 @@ values-b+ta	string	picture_in_picture_des	-	மற்ற பயன்பாட�
 values-b+ta	string	pin	-	முள்
 values-b+ta	string	pin_error_incorrect	-	தவறான முள். தயவு செய்து மீண்டும் முயற்சிக்கவும்.
 values-b+ta	string	pin_error_length	-	முள் 4 எழுத்துகளாக இருக்க வேண்டும்
+values-b+ta	string	pin_error_wait	-	பல தவறான PIN-கள். %1$s கழித்து மீண்டும் முயலவும்
 values-b+ta	string	play_episode	-	அத்தியாயத்தை இயக்கு
 values-b+ta	string	play_episode_toast	-	அத்தியாயம் விளையாடுங்கள்
 values-b+ta	string	play_from_beginning_img_des	-	முதலில் இருந்து ஆரம்பி
@@ -62165,6 +62791,16 @@ values-b+ta	string	player_menu_playback	-	இயக்குதல்
 values-b+ta	string	player_mute	-	ஒலியடக்கு
 values-b+ta	string	player_notification_channel_description	-	பின்னணியில் இருந்து பின்னணியைக் கட்டுப்படுத்துவதற்கான பிளேயர் அறிவிப்பு
 values-b+ta	string	player_notification_channel_name	-	பிளேயர் அறிவிப்புகள்
+values-b+ta	string	player_panel_failed	-	தோல்வி
+values-b+ta	string	player_panel_keeps	-	%s ஐத் தக்கவைக்கிறது
+values-b+ta	string	player_panel_numbered	-	%1$s %2$d
+values-b+ta	string	player_panel_on	-	இயக்கம்
+values-b+ta	string	player_panel_open	-	திற
+values-b+ta	string	player_panel_quality_profile	-	தர சுயவிவரம்
+values-b+ta	string	player_panel_quality_unknown	-	தரம் தெரியவில்லை
+values-b+ta	string	player_panel_retry_all	-	எல்லா மூலங்களையும் மீண்டும் முயலவும்
+values-b+ta	string	player_panel_style	-	வசன நடை
+values-b+ta	string	player_panel_use	-	பயன்படுத்து
 values-b+ta	string	player_play_now	-	இப்போது இயக்கு
 values-b+ta	string	player_pref	-	விருப்பமான வீடியோ பிளேயர்
 values-b+ta	string	player_settings_always_ask	-	எப்போதும் கேளுங்கள்
@@ -63220,6 +63856,7 @@ values-b+ti	string	library_sort_current	-	ስርዓት፦ %s
 values-b+ti	string	library_sort_not_kept	-	%s ኣይሕዞን
 values-b+ti	string	library_sort_supported	-	%1$s ካብ %3$d %2$d ይድግፍ
 values-b+ti	string	library_source	-	ምንጪ ቤተ-መጻሕፍቲ
+values-b+ti	string	library_source_local	-	ኣካባቢያዊ
 values-b+ti	string	library_source_note	-	ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን
 values-b+ti	string	library_sync_cached	-	ዝተዓቀበ
 values-b+ti	string	library_sync_failed	-	%1$s ክሰማማዕ ኣይከኣለን። እዚኦም ቅድሚ %2$s ዝነበሩ እዮም።
@@ -63304,6 +63941,7 @@ values-b+ti	string	picture_in_picture_des	-	Continues playback in a miniature pl
 values-b+ti	string	pin	-	PIN
 values-b+ti	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 values-b+ti	string	pin_error_length	-	PIN must be 4 characters
+values-b+ti	string	pin_error_wait	-	ብዙሕ ጌጋ PIN። ድሕሪ %1$s እንደገና ፈትኑ
 values-b+ti	string	play_episode	-	Play Episode
 values-b+ti	string	play_episode_toast	-	Play Episode
 values-b+ti	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -63337,6 +63975,16 @@ values-b+ti	string	player_menu_playback	-	ምጽዋት
 values-b+ti	string	player_mute	-	ድምጺ ኣጥፍእ
 values-b+ti	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ti	string	player_notification_channel_name	-	Player notifications
+values-b+ti	string	player_panel_failed	-	ፈሺሉ
+values-b+ti	string	player_panel_keeps	-	%s ይሕዝ
+values-b+ti	string	player_panel_numbered	-	%1$s %2$d
+values-b+ti	string	player_panel_on	-	ክፉት
+values-b+ti	string	player_panel_open	-	ክፈት
+values-b+ti	string	player_panel_quality_profile	-	ናይ ዓይነት መገለጺ
+values-b+ti	string	player_panel_quality_unknown	-	ዓይነት ኣይፍለጥን
+values-b+ti	string	player_panel_retry_all	-	ኩሎም ምንጭታት ደጊምካ ፈትን
+values-b+ti	string	player_panel_style	-	ቅዲ ንኡስ ጽሑፍ
+values-b+ti	string	player_panel_use	-	ተጠቐም
 values-b+ti	string	player_play_now	-	ሕጂ ኣጻውት
 values-b+ti	string	player_pref	-	Preferred video player
 values-b+ti	string	player_settings_always_ask	-	Always ask
@@ -64392,6 +65040,7 @@ values-b+tl	string	library_sort_current	-	Pagkakasunod: %s
 values-b+tl	string	library_sort_not_kept	-	Hindi itinatabi ng %s
 values-b+tl	string	library_sort_supported	-	Sinusuportahan ng %1$s ang %2$d sa %3$d
 values-b+tl	string	library_source	-	Pinagmulan ng library
+values-b+tl	string	library_source_local	-	Local
 values-b+tl	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
 values-b+tl	string	library_sync_cached	-	Naka-cache
 values-b+tl	string	library_sync_failed	-	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.
@@ -64476,6 +65125,7 @@ values-b+tl	string	picture_in_picture_des	-	Magpatuloy ang playback sa isang mal
 values-b+tl	string	pin	-	PIN
 values-b+tl	string	pin_error_incorrect	-	Maling PIN. Pakisubukang muli.
 values-b+tl	string	pin_error_length	-	PIN must be 4 characters
+values-b+tl	string	pin_error_wait	-	Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s
 values-b+tl	string	play_episode	-	I-play ang episode
 values-b+tl	string	play_episode_toast	-	Play Episode
 values-b+tl	string	play_from_beginning_img_des	-	Ipatugtog mula sa Simula
@@ -64509,6 +65159,16 @@ values-b+tl	string	player_menu_playback	-	Playback
 values-b+tl	string	player_mute	-	I-mute
 values-b+tl	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 values-b+tl	string	player_notification_channel_name	-	Player notifications
+values-b+tl	string	player_panel_failed	-	nabigo
+values-b+tl	string	player_panel_keeps	-	pinapanatili ang %s
+values-b+tl	string	player_panel_numbered	-	%1$s %2$d
+values-b+tl	string	player_panel_on	-	Naka-on
+values-b+tl	string	player_panel_open	-	Buksan
+values-b+tl	string	player_panel_quality_profile	-	Profile ng kalidad
+values-b+tl	string	player_panel_quality_unknown	-	hindi alam ang kalidad
+values-b+tl	string	player_panel_retry_all	-	Subukang muli ang lahat ng source
+values-b+tl	string	player_panel_style	-	Estilo ng subtitle
+values-b+tl	string	player_panel_use	-	Gamitin
 values-b+tl	string	player_play_now	-	I-play ngayon
 values-b+tl	string	player_pref	-	Preferred video player
 values-b+tl	string	player_settings_always_ask	-	Always ask
@@ -65564,6 +66224,7 @@ values-b+tr	string	library_sort_current	-	Sıralama: %s
 values-b+tr	string	library_sort_not_kept	-	%s bunu tutmuyor
 values-b+tr	string	library_sort_supported	-	%1$s, %3$d ölçütten %2$d tanesini destekler
 values-b+tr	string	library_source	-	Kütüphane kaynağı
+values-b+tr	string	library_source_local	-	Yerel
 values-b+tr	string	library_source_note	-	Aynı anda bir tane · değiştirmek yeniden yükler
 values-b+tr	string	library_sync_cached	-	Önbellekten
 values-b+tr	string	library_sync_failed	-	%1$s eşitlenemedi. Bunlar %2$s öncesine ait.
@@ -65648,6 +66309,7 @@ values-b+tr	string	picture_in_picture_des	-	İçerik diğer uygulamaların üzer
 values-b+tr	string	pin	-	PIN
 values-b+tr	string	pin_error_incorrect	-	Yanlış PIN. Lütfen tekrar deneyin.
 values-b+tr	string	pin_error_length	-	PIN 4 karakterden oluşmalı
+values-b+tr	string	pin_error_wait	-	Çok fazla hatalı PIN. %1$s sonra tekrar deneyin
 values-b+tr	string	play_episode	-	Bölümü Oynat
 values-b+tr	string	play_episode_toast	-	Bölümü oynat
 values-b+tr	string	play_from_beginning_img_des	-	Baştan Oynat
@@ -65681,6 +66343,16 @@ values-b+tr	string	player_menu_playback	-	Oynatma
 values-b+tr	string	player_mute	-	Sesi kapat
 values-b+tr	string	player_notification_channel_description	-	Oynatıcı bildirimi arka planda oynatmasını kontrol etmek içindir
 values-b+tr	string	player_notification_channel_name	-	Oynatıcı bildirimleri
+values-b+tr	string	player_panel_failed	-	başarısız
+values-b+tr	string	player_panel_keeps	-	%s korunur
+values-b+tr	string	player_panel_numbered	-	%1$s %2$d
+values-b+tr	string	player_panel_on	-	Açık
+values-b+tr	string	player_panel_open	-	Aç
+values-b+tr	string	player_panel_quality_profile	-	Kalite profili
+values-b+tr	string	player_panel_quality_unknown	-	kalite bilinmiyor
+values-b+tr	string	player_panel_retry_all	-	Tüm kaynakları yeniden dene
+values-b+tr	string	player_panel_style	-	Altyazı stili
+values-b+tr	string	player_panel_use	-	Kullan
 values-b+tr	string	player_play_now	-	Şimdi oynat
 values-b+tr	string	player_pref	-	Tercih edilen video oynatıcısı
 values-b+tr	string	player_settings_always_ask	-	Her zaman sor
@@ -66782,6 +67454,7 @@ values-b+uk	string	library_sort_current	-	Сортування: %s
 values-b+uk	string	library_sort_not_kept	-	%s цього не зберігає
 values-b+uk	string	library_sort_supported	-	%1$s підтримує %2$d з %3$d
 values-b+uk	string	library_source	-	Джерело бібліотеки
+values-b+uk	string	library_source_local	-	Локальний
 values-b+uk	string	library_source_note	-	По одному · перемикання перезавантажує
 values-b+uk	string	library_sync_cached	-	З кешу
 values-b+uk	string	library_sync_failed	-	Не вдалося синхронізувати %1$s. Це дані %2$s тому.
@@ -66866,6 +67539,7 @@ values-b+uk	string	picture_in_picture_des	-	Продовжувати відтв�
 values-b+uk	string	pin	-	PIN-код
 values-b+uk	string	pin_error_incorrect	-	Неправильний PIN-код. Спробуйте ще раз.
 values-b+uk	string	pin_error_length	-	PIN-код має складатися із 4 символів
+values-b+uk	string	pin_error_wait	-	Забагато неправильних PIN-кодів. Спробуйте ще раз через %1$s
 values-b+uk	string	play_episode	-	Відтворити епізод
 values-b+uk	string	play_episode_toast	-	Переглянути епізод
 values-b+uk	string	play_from_beginning_img_des	-	Відтворити з початку
@@ -66899,6 +67573,16 @@ values-b+uk	string	player_menu_playback	-	Відтворення
 values-b+uk	string	player_mute	-	Вимкнути звук
 values-b+uk	string	player_notification_channel_description	-	Сповіщення програвача для керування відтворенням у фоновому режимі
 values-b+uk	string	player_notification_channel_name	-	Сповіщення програвача
+values-b+uk	string	player_panel_failed	-	збій
+values-b+uk	string	player_panel_keeps	-	зберігає %s
+values-b+uk	string	player_panel_numbered	-	%1$s %2$d
+values-b+uk	string	player_panel_on	-	Увімк.
+values-b+uk	string	player_panel_open	-	Відкрити
+values-b+uk	string	player_panel_quality_profile	-	Профіль якості
+values-b+uk	string	player_panel_quality_unknown	-	якість невідома
+values-b+uk	string	player_panel_retry_all	-	Повторити всі джерела
+values-b+uk	string	player_panel_style	-	Стиль субтитрів
+values-b+uk	string	player_panel_use	-	Використати
 values-b+uk	string	player_play_now	-	Дивитися зараз
 values-b+uk	string	player_pref	-	Бажаний відеопрогравач
 values-b+uk	string	player_settings_always_ask	-	Завжди запитувати
@@ -67954,6 +68638,7 @@ values-b+ur	string	library_sort_current	-	ترتیب: %s
 values-b+ur	string	library_sort_not_kept	-	%s اسے نہیں رکھتا
 values-b+ur	string	library_sort_supported	-	%1$s %3$d میں سے %2$d کی معاونت کرتا ہے
 values-b+ur	string	library_source	-	لائبریری کا ذریعہ
+values-b+ur	string	library_source_local	-	لوکل
 values-b+ur	string	library_source_note	-	ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے
 values-b+ur	string	library_sync_cached	-	کیش شدہ
 values-b+ur	string	library_sync_failed	-	%1$s کو ہم آہنگ نہیں کیا جا سکا۔ یہ %2$s پہلے کے ہیں۔
@@ -68038,6 +68723,7 @@ values-b+ur	string	picture_in_picture_des	-	دوسری ایپس کے اوپر ا
 values-b+ur	string	pin	-	پن
 values-b+ur	string	pin_error_incorrect	-	غلط پن۔ دوبارہ کوشش کریں۔
 values-b+ur	string	pin_error_length	-	پن چار حروف کا ہونا چاہیے
+values-b+ur	string	pin_error_wait	-	بہت زیادہ غلط PIN۔ %1$s بعد دوبارہ کوشش کریں
 values-b+ur	string	play_episode	-	قسط چلائیں
 values-b+ur	string	play_episode_toast	-	قسط چلائیں
 values-b+ur	string	play_from_beginning_img_des	-	شروع سےپلے کریں
@@ -68071,6 +68757,16 @@ values-b+ur	string	player_menu_playback	-	پلے بیک
 values-b+ur	string	player_mute	-	خاموش کریں
 values-b+ur	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 values-b+ur	string	player_notification_channel_name	-	Player notifications
+values-b+ur	string	player_panel_failed	-	ناکام
+values-b+ur	string	player_panel_keeps	-	%s برقرار رکھتا ہے
+values-b+ur	string	player_panel_numbered	-	%1$s %2$d
+values-b+ur	string	player_panel_on	-	آن
+values-b+ur	string	player_panel_open	-	کھولیں
+values-b+ur	string	player_panel_quality_profile	-	معیار کی پروفائل
+values-b+ur	string	player_panel_quality_unknown	-	معیار نامعلوم
+values-b+ur	string	player_panel_retry_all	-	تمام ذرائع دوبارہ آزمائیں
+values-b+ur	string	player_panel_style	-	سب ٹائٹل کا انداز
+values-b+ur	string	player_panel_use	-	استعمال کریں
 values-b+ur	string	player_play_now	-	ابھی چلائیں
 values-b+ur	string	player_pref	-	ترجیحی ویڈیو پلیئر
 values-b+ur	string	player_settings_always_ask	-	Always ask
@@ -69103,6 +69799,7 @@ values-b+vi	string	library_sort_current	-	Sắp xếp: %s
 values-b+vi	string	library_sort_not_kept	-	%s không lưu mục này
 values-b+vi	string	library_sort_supported	-	%1$s hỗ trợ %2$d/%3$d
 values-b+vi	string	library_source	-	Nguồn thư viện
+values-b+vi	string	library_source_local	-	Cục bộ
 values-b+vi	string	library_source_note	-	Mỗi lần một nguồn · chuyển sẽ tải lại
 values-b+vi	string	library_sync_cached	-	Đã lưu đệm
 values-b+vi	string	library_sync_failed	-	Không thể đồng bộ %1$s. Đây là dữ liệu từ %2$s trước.
@@ -69187,6 +69884,7 @@ values-b+vi	string	picture_in_picture_des	-	Tiếp tục phát trong trình phá
 values-b+vi	string	pin	-	PIN
 values-b+vi	string	pin_error_incorrect	-	Mã PIN không đúng. Vui lòng thử lại.
 values-b+vi	string	pin_error_length	-	Mã PIN phải có 4 ký tự
+values-b+vi	string	pin_error_wait	-	Nhập sai PIN quá nhiều lần. Thử lại sau %1$s
 values-b+vi	string	play_episode	-	Phát Tập phim
 values-b+vi	string	play_episode_toast	-	Phát Tập phim
 values-b+vi	string	play_from_beginning_img_des	-	Phát từ đầu
@@ -69220,6 +69918,16 @@ values-b+vi	string	player_menu_playback	-	Phát
 values-b+vi	string	player_mute	-	Tắt tiếng
 values-b+vi	string	player_notification_channel_description	-	Điều khiển phát lại trong nền bằng thông báo của trình phát
 values-b+vi	string	player_notification_channel_name	-	Thông báo trình phát
+values-b+vi	string	player_panel_failed	-	thất bại
+values-b+vi	string	player_panel_keeps	-	giữ %s
+values-b+vi	string	player_panel_numbered	-	%1$s %2$d
+values-b+vi	string	player_panel_on	-	Bật
+values-b+vi	string	player_panel_open	-	Mở
+values-b+vi	string	player_panel_quality_profile	-	Hồ sơ chất lượng
+values-b+vi	string	player_panel_quality_unknown	-	chất lượng không rõ
+values-b+vi	string	player_panel_retry_all	-	Thử lại mọi nguồn
+values-b+vi	string	player_panel_style	-	Kiểu phụ đề
+values-b+vi	string	player_panel_use	-	Dùng
 values-b+vi	string	player_play_now	-	Phát ngay
 values-b+vi	string	player_pref	-	Trình phát ưu tiên
 values-b+vi	string	player_settings_always_ask	-	Luôn hỏi
@@ -70252,6 +70960,7 @@ values-b+zh	string	library_sort_current	-	排序：%s
 values-b+zh	string	library_sort_not_kept	-	%s 不保存此项
 values-b+zh	string	library_sort_supported	-	%1$s 支持 %3$d 项中的 %2$d 项
 values-b+zh	string	library_source	-	媒体库来源
+values-b+zh	string	library_source_local	-	本地
 values-b+zh	string	library_source_note	-	一次一个 · 切换会重新加载
 values-b+zh	string	library_sync_cached	-	已缓存
 values-b+zh	string	library_sync_failed	-	无法同步 %1$s。这些是 %2$s 前的内容。
@@ -70336,6 +71045,7 @@ values-b+zh	string	picture_in_picture_des	-	在其他应用上层的迷你播放
 values-b+zh	string	pin	-	PIN
 values-b+zh	string	pin_error_incorrect	-	PIN码不正确，请再试一次。
 values-b+zh	string	pin_error_length	-	PIN码必须为4个字符
+values-b+zh	string	pin_error_wait	-	PIN 错误次数过多。请在 %1$s 后重试
 values-b+zh	string	play_episode	-	播放剧集
 values-b+zh	string	play_episode_toast	-	播放剧集
 values-b+zh	string	play_from_beginning_img_des	-	从头播放
@@ -70369,6 +71079,16 @@ values-b+zh	string	player_menu_playback	-	播放
 values-b+zh	string	player_mute	-	静音
 values-b+zh	string	player_notification_channel_description	-	控制后台播放的播放器通知
 values-b+zh	string	player_notification_channel_name	-	播放器通知
+values-b+zh	string	player_panel_failed	-	失败
+values-b+zh	string	player_panel_keeps	-	保留 %s
+values-b+zh	string	player_panel_numbered	-	%1$s %2$d
+values-b+zh	string	player_panel_on	-	开
+values-b+zh	string	player_panel_open	-	打开
+values-b+zh	string	player_panel_quality_profile	-	画质配置
+values-b+zh	string	player_panel_quality_unknown	-	画质未知
+values-b+zh	string	player_panel_retry_all	-	重试所有来源
+values-b+zh	string	player_panel_style	-	字幕样式
+values-b+zh	string	player_panel_use	-	使用
 values-b+zh	string	player_play_now	-	立即播放
 values-b+zh	string	player_pref	-	首选视频播放器
 values-b+zh	string	player_settings_always_ask	-	始终询问
@@ -71402,6 +72122,7 @@ values-b+zh+TW	string	library_sort_current	-	排序：%s
 values-b+zh+TW	string	library_sort_not_kept	-	%s 不保存此項
 values-b+zh+TW	string	library_sort_supported	-	%1$s 支援 %3$d 項中的 %2$d 項
 values-b+zh+TW	string	library_source	-	媒體庫來源
+values-b+zh+TW	string	library_source_local	-	本機
 values-b+zh+TW	string	library_source_note	-	一次一個 · 切換會重新載入
 values-b+zh+TW	string	library_sync_cached	-	已快取
 values-b+zh+TW	string	library_sync_failed	-	無法同步 %1$s。這些是 %2$s 前的內容。
@@ -71486,6 +72207,7 @@ values-b+zh+TW	string	picture_in_picture_des	-	在其他應用程式上的子母
 values-b+zh+TW	string	pin	-	PIN 碼
 values-b+zh+TW	string	pin_error_incorrect	-	PIN 碼不符，請再試一次。
 values-b+zh+TW	string	pin_error_length	-	PIN 碼需為 4 個字元
+values-b+zh+TW	string	pin_error_wait	-	PIN 錯誤次數過多。請在 %1$s 後再試一次
 values-b+zh+TW	string	play_episode	-	播放劇集
 values-b+zh+TW	string	play_episode_toast	-	播放劇集
 values-b+zh+TW	string	play_from_beginning_img_des	-	從頭開始播放
@@ -71519,6 +72241,16 @@ values-b+zh+TW	string	player_menu_playback	-	播放
 values-b+zh+TW	string	player_mute	-	靜音
 values-b+zh+TW	string	player_notification_channel_description	-	控制背景播放的通知
 values-b+zh+TW	string	player_notification_channel_name	-	播放器通知
+values-b+zh+TW	string	player_panel_failed	-	失敗
+values-b+zh+TW	string	player_panel_keeps	-	保留 %s
+values-b+zh+TW	string	player_panel_numbered	-	%1$s %2$d
+values-b+zh+TW	string	player_panel_on	-	開
+values-b+zh+TW	string	player_panel_open	-	開啟
+values-b+zh+TW	string	player_panel_quality_profile	-	畫質設定檔
+values-b+zh+TW	string	player_panel_quality_unknown	-	畫質不明
+values-b+zh+TW	string	player_panel_retry_all	-	重試所有來源
+values-b+zh+TW	string	player_panel_style	-	字幕樣式
+values-b+zh+TW	string	player_panel_use	-	使用
 values-b+zh+TW	string	player_play_now	-	立即播放
 values-b+zh+TW	string	player_pref	-	偏好影片播放器
 values-b+zh+TW	string	player_settings_always_ask	-	總是詢問
@@ -72574,6 +73306,7 @@ en	string	library_sort_current	-	Sort: %s
 en	string	library_sort_not_kept	-	Not kept by %s
 en	string	library_sort_supported	-	%1$s supports %2$d of %3$d
 en	string	library_source	-	Library source
+en	string	library_source_local	-	Local
 en	string	library_source_note	-	One at a time · switching reloads
 en	string	library_sync_cached	-	Cached
 en	string	library_sync_failed	-	Couldn't sync %1$s. These are from %2$s ago.
@@ -72658,6 +73391,7 @@ en	string	picture_in_picture_des	-	Continues playback in a miniature player on t
 en	string	pin	-	PIN
 en	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 en	string	pin_error_length	-	PIN must be 4 characters
+en	string	pin_error_wait	-	Too many wrong PINs. Try again in %1$s
 en	string	play_episode	-	Play Episode
 en	string	play_episode_toast	-	Play Episode
 en	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -72691,6 +73425,16 @@ en	string	player_menu_playback	-	Playback
 en	string	player_mute	-	Mute
 en	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 en	string	player_notification_channel_name	-	Player notifications
+en	string	player_panel_failed	-	failed
+en	string	player_panel_keeps	-	keeps %s
+en	string	player_panel_numbered	-	%1$s %2$d
+en	string	player_panel_on	-	On
+en	string	player_panel_open	-	Open
+en	string	player_panel_quality_profile	-	Quality profile
+en	string	player_panel_quality_unknown	-	quality unknown
+en	string	player_panel_retry_all	-	Retry all sources
+en	string	player_panel_style	-	Subtitle style
+en	string	player_panel_use	-	Use
 en	string	player_play_now	-	Play now
 en	string	player_pref	-	Preferred video player
 en	string	player_settings_always_ask	-	Always ask
@@ -73746,6 +74490,7 @@ en-US	string	library_sort_current	-	Sort: %s
 en-US	string	library_sort_not_kept	-	Not kept by %s
 en-US	string	library_sort_supported	-	%1$s supports %2$d of %3$d
 en-US	string	library_source	-	Library source
+en-US	string	library_source_local	-	Local
 en-US	string	library_source_note	-	One at a time · switching reloads
 en-US	string	library_sync_cached	-	Cached
 en-US	string	library_sync_failed	-	Couldn't sync %1$s. These are from %2$s ago.
@@ -73830,6 +74575,7 @@ en-US	string	picture_in_picture_des	-	Continues playback in a miniature player o
 en-US	string	pin	-	PIN
 en-US	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 en-US	string	pin_error_length	-	PIN must be 4 characters
+en-US	string	pin_error_wait	-	Too many wrong PINs. Try again in %1$s
 en-US	string	play_episode	-	Play Episode
 en-US	string	play_episode_toast	-	Play Episode
 en-US	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -73863,6 +74609,16 @@ en-US	string	player_menu_playback	-	Playback
 en-US	string	player_mute	-	Mute
 en-US	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 en-US	string	player_notification_channel_name	-	Player notifications
+en-US	string	player_panel_failed	-	failed
+en-US	string	player_panel_keeps	-	keeps %s
+en-US	string	player_panel_numbered	-	%1$s %2$d
+en-US	string	player_panel_on	-	On
+en-US	string	player_panel_open	-	Open
+en-US	string	player_panel_quality_profile	-	Quality profile
+en-US	string	player_panel_quality_unknown	-	quality unknown
+en-US	string	player_panel_retry_all	-	Retry all sources
+en-US	string	player_panel_style	-	Subtitle style
+en-US	string	player_panel_use	-	Use
 en-US	string	player_play_now	-	Play now
 en-US	string	player_pref	-	Preferred video player
 en-US	string	player_settings_always_ask	-	Always ask
@@ -74918,6 +75674,7 @@ en-GB	string	library_sort_current	-	Sort: %s
 en-GB	string	library_sort_not_kept	-	Not kept by %s
 en-GB	string	library_sort_supported	-	%1$s supports %2$d of %3$d
 en-GB	string	library_source	-	Library source
+en-GB	string	library_source_local	-	Local
 en-GB	string	library_source_note	-	One at a time · switching reloads
 en-GB	string	library_sync_cached	-	Cached
 en-GB	string	library_sync_failed	-	Couldn't sync %1$s. These are from %2$s ago.
@@ -75002,6 +75759,7 @@ en-GB	string	picture_in_picture_des	-	Continues playback in a miniature player o
 en-GB	string	pin	-	PIN
 en-GB	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 en-GB	string	pin_error_length	-	PIN must be 4 characters
+en-GB	string	pin_error_wait	-	Too many wrong PINs. Try again in %1$s
 en-GB	string	play_episode	-	Play Episode
 en-GB	string	play_episode_toast	-	Play Episode
 en-GB	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -75035,6 +75793,16 @@ en-GB	string	player_menu_playback	-	Playback
 en-GB	string	player_mute	-	Mute
 en-GB	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 en-GB	string	player_notification_channel_name	-	Player notifications
+en-GB	string	player_panel_failed	-	failed
+en-GB	string	player_panel_keeps	-	keeps %s
+en-GB	string	player_panel_numbered	-	%1$s %2$d
+en-GB	string	player_panel_on	-	On
+en-GB	string	player_panel_open	-	Open
+en-GB	string	player_panel_quality_profile	-	Quality profile
+en-GB	string	player_panel_quality_unknown	-	quality unknown
+en-GB	string	player_panel_retry_all	-	Retry all sources
+en-GB	string	player_panel_style	-	Subtitle style
+en-GB	string	player_panel_use	-	Use
 en-GB	string	player_play_now	-	Play now
 en-GB	string	player_pref	-	Preferred video player
 en-GB	string	player_settings_always_ask	-	Always ask
@@ -76113,6 +76881,7 @@ pt	string	library_sort_current	-	Ordenar: %s
 pt	string	library_sort_not_kept	-	Não guardado por %s
 pt	string	library_sort_supported	-	%1$s suporta %2$d de %3$d
 pt	string	library_source	-	Origem da biblioteca
+pt	string	library_source_local	-	Local
 pt	string	library_source_note	-	Uma de cada vez · mudar recarrega
 pt	string	library_sync_cached	-	Em cache
 pt	string	library_sync_failed	-	Não foi possível sincronizar %1$s. São de há %2$s.
@@ -76197,6 +76966,7 @@ pt	string	picture_in_picture_des	-	Continua a reprodução num player em miniatu
 pt	string	pin	-	PIN
 pt	string	pin_error_incorrect	-	PIN incorreto. Por favor, tente novamente.
 pt	string	pin_error_length	-	O PIN deve ter 4 caracteres
+pt	string	pin_error_wait	-	Demasiados PIN errados. Tente novamente dentro de %1$s
 pt	string	play_episode	-	Reproduzir episódio
 pt	string	play_episode_toast	-	Reproduzir episódio
 pt	string	play_from_beginning_img_des	-	Recomeçar
@@ -76230,6 +77000,16 @@ pt	string	player_menu_playback	-	Reprodução
 pt	string	player_mute	-	Desativar som
 pt	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 pt	string	player_notification_channel_name	-	Notificações de reprodução
+pt	string	player_panel_failed	-	falhou
+pt	string	player_panel_keeps	-	mantém %s
+pt	string	player_panel_numbered	-	%1$s %2$d
+pt	string	player_panel_on	-	Ativado
+pt	string	player_panel_open	-	Abrir
+pt	string	player_panel_quality_profile	-	Perfil de qualidade
+pt	string	player_panel_quality_unknown	-	qualidade desconhecida
+pt	string	player_panel_retry_all	-	Tentar novamente todas as fontes
+pt	string	player_panel_style	-	Estilo das legendas
+pt	string	player_panel_use	-	Usar
 pt	string	player_play_now	-	Reproduzir agora
 pt	string	player_pref	-	Player de vídeo preferido
 pt	string	player_settings_always_ask	-	Sempre perguntar
@@ -77308,6 +78088,7 @@ pt-PT	string	library_sort_current	-	Ordenar: %s
 pt-PT	string	library_sort_not_kept	-	Não guardado por %s
 pt-PT	string	library_sort_supported	-	%1$s suporta %2$d de %3$d
 pt-PT	string	library_source	-	Origem da biblioteca
+pt-PT	string	library_source_local	-	Local
 pt-PT	string	library_source_note	-	Uma de cada vez · mudar recarrega
 pt-PT	string	library_sync_cached	-	Em cache
 pt-PT	string	library_sync_failed	-	Não foi possível sincronizar %1$s. São de há %2$s.
@@ -77392,6 +78173,7 @@ pt-PT	string	picture_in_picture_des	-	Continua a reprodução num player em mini
 pt-PT	string	pin	-	PIN
 pt-PT	string	pin_error_incorrect	-	PIN incorreto. Por favor, tente novamente.
 pt-PT	string	pin_error_length	-	O PIN deve ter 4 caracteres
+pt-PT	string	pin_error_wait	-	Demasiados PIN errados. Tente novamente dentro de %1$s
 pt-PT	string	play_episode	-	Reproduzir episódio
 pt-PT	string	play_episode_toast	-	Reproduzir episódio
 pt-PT	string	play_from_beginning_img_des	-	Recomeçar
@@ -77425,6 +78207,16 @@ pt-PT	string	player_menu_playback	-	Reprodução
 pt-PT	string	player_mute	-	Desativar som
 pt-PT	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 pt-PT	string	player_notification_channel_name	-	Notificações de reprodução
+pt-PT	string	player_panel_failed	-	falhou
+pt-PT	string	player_panel_keeps	-	mantém %s
+pt-PT	string	player_panel_numbered	-	%1$s %2$d
+pt-PT	string	player_panel_on	-	Ativado
+pt-PT	string	player_panel_open	-	Abrir
+pt-PT	string	player_panel_quality_profile	-	Perfil de qualidade
+pt-PT	string	player_panel_quality_unknown	-	qualidade desconhecida
+pt-PT	string	player_panel_retry_all	-	Tentar novamente todas as fontes
+pt-PT	string	player_panel_style	-	Estilo das legendas
+pt-PT	string	player_panel_use	-	Usar
 pt-PT	string	player_play_now	-	Reproduzir agora
 pt-PT	string	player_pref	-	Player de vídeo preferido
 pt-PT	string	player_settings_always_ask	-	Sempre perguntar
@@ -78503,6 +79295,7 @@ pt-BR	string	library_sort_current	-	Ordenar: %s
 pt-BR	string	library_sort_not_kept	-	Não salvo por %s
 pt-BR	string	library_sort_supported	-	%1$s suporta %2$d de %3$d
 pt-BR	string	library_source	-	Fonte da biblioteca
+pt-BR	string	library_source_local	-	Local
 pt-BR	string	library_source_note	-	Uma por vez · trocar recarrega
 pt-BR	string	library_sync_cached	-	Em cache
 pt-BR	string	library_sync_failed	-	Não foi possível sincronizar %1$s. Estes são de %2$s atrás.
@@ -78587,6 +79380,7 @@ pt-BR	string	picture_in_picture_des	-	Continua o vídeo em tamanho miniatura flu
 pt-BR	string	pin	-	PIN
 pt-BR	string	pin_error_incorrect	-	PIN incorreto. Por favor, tente novamente.
 pt-BR	string	pin_error_length	-	O PIN deve ter 4 caracteres
+pt-BR	string	pin_error_wait	-	Muitos PINs incorretos. Tente novamente em %1$s
 pt-BR	string	play_episode	-	Reproduzir episódio
 pt-BR	string	play_episode_toast	-	Assistir episódio
 pt-BR	string	play_from_beginning_img_des	-	Reproduzir do começo
@@ -78620,6 +79414,16 @@ pt-BR	string	player_menu_playback	-	Reprodução
 pt-BR	string	player_mute	-	Desativar som
 pt-BR	string	player_notification_channel_description	-	Notificação do player para controlar a reprodução em segundo plano
 pt-BR	string	player_notification_channel_name	-	Notificações de reprodução
+pt-BR	string	player_panel_failed	-	falhou
+pt-BR	string	player_panel_keeps	-	mantém %s
+pt-BR	string	player_panel_numbered	-	%1$s %2$d
+pt-BR	string	player_panel_on	-	Ativado
+pt-BR	string	player_panel_open	-	Abrir
+pt-BR	string	player_panel_quality_profile	-	Perfil de qualidade
+pt-BR	string	player_panel_quality_unknown	-	qualidade desconhecida
+pt-BR	string	player_panel_retry_all	-	Tentar todas as fontes de novo
+pt-BR	string	player_panel_style	-	Estilo das legendas
+pt-BR	string	player_panel_use	-	Usar
 pt-BR	string	player_play_now	-	Assistir agora
 pt-BR	string	player_pref	-	Player de vídeo preferido
 pt-BR	string	player_settings_always_ask	-	Perguntar sempre
@@ -79675,6 +80479,7 @@ fil	string	library_sort_current	-	Pagkakasunod: %s
 fil	string	library_sort_not_kept	-	Hindi itinatabi ng %s
 fil	string	library_sort_supported	-	Sinusuportahan ng %1$s ang %2$d sa %3$d
 fil	string	library_source	-	Pinagmulan ng library
+fil	string	library_source_local	-	Local
 fil	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
 fil	string	library_sync_cached	-	Naka-cache
 fil	string	library_sync_failed	-	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.
@@ -79759,6 +80564,7 @@ fil	string	picture_in_picture_des	-	Ipinagpapatuloy ang pag-playback sa isang mi
 fil	string	pin	-	PIN
 fil	string	pin_error_incorrect	-	Maling PIN. Pakisubukang muli.
 fil	string	pin_error_length	-	PIN must be 4 characters
+fil	string	pin_error_wait	-	Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s
 fil	string	play_episode	-	Ipatugtog ang Kabanata
 fil	string	play_episode_toast	-	Play Episode
 fil	string	play_from_beginning_img_des	-	Ipatugtog mula sa Simula
@@ -79792,6 +80598,16 @@ fil	string	player_menu_playback	-	Playback
 fil	string	player_mute	-	I-mute
 fil	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 fil	string	player_notification_channel_name	-	Player notifications
+fil	string	player_panel_failed	-	nabigo
+fil	string	player_panel_keeps	-	pinapanatili ang %s
+fil	string	player_panel_numbered	-	%1$s %2$d
+fil	string	player_panel_on	-	Naka-on
+fil	string	player_panel_open	-	Buksan
+fil	string	player_panel_quality_profile	-	Profile ng kalidad
+fil	string	player_panel_quality_unknown	-	hindi alam ang kalidad
+fil	string	player_panel_retry_all	-	Subukang muli ang lahat ng source
+fil	string	player_panel_style	-	Estilo ng subtitle
+fil	string	player_panel_use	-	Gamitin
 fil	string	player_play_now	-	I-play ngayon
 fil	string	player_pref	-	Preferred video player
 fil	string	player_settings_always_ask	-	Always ask
@@ -80847,6 +81663,7 @@ tl	string	library_sort_current	-	Pagkakasunod: %s
 tl	string	library_sort_not_kept	-	Hindi itinatabi ng %s
 tl	string	library_sort_supported	-	Sinusuportahan ng %1$s ang %2$d sa %3$d
 tl	string	library_source	-	Pinagmulan ng library
+tl	string	library_source_local	-	Local
 tl	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
 tl	string	library_sync_cached	-	Naka-cache
 tl	string	library_sync_failed	-	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.
@@ -80931,6 +81748,7 @@ tl	string	picture_in_picture_des	-	Magpatuloy ang playback sa isang maliit na pl
 tl	string	pin	-	PIN
 tl	string	pin_error_incorrect	-	Maling PIN. Pakisubukang muli.
 tl	string	pin_error_length	-	PIN must be 4 characters
+tl	string	pin_error_wait	-	Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s
 tl	string	play_episode	-	I-play ang episode
 tl	string	play_episode_toast	-	Play Episode
 tl	string	play_from_beginning_img_des	-	Ipatugtog mula sa Simula
@@ -80964,6 +81782,16 @@ tl	string	player_menu_playback	-	Playback
 tl	string	player_mute	-	I-mute
 tl	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 tl	string	player_notification_channel_name	-	Player notifications
+tl	string	player_panel_failed	-	nabigo
+tl	string	player_panel_keeps	-	pinapanatili ang %s
+tl	string	player_panel_numbered	-	%1$s %2$d
+tl	string	player_panel_on	-	Naka-on
+tl	string	player_panel_open	-	Buksan
+tl	string	player_panel_quality_profile	-	Profile ng kalidad
+tl	string	player_panel_quality_unknown	-	hindi alam ang kalidad
+tl	string	player_panel_retry_all	-	Subukang muli ang lahat ng source
+tl	string	player_panel_style	-	Estilo ng subtitle
+tl	string	player_panel_use	-	Gamitin
 tl	string	player_play_now	-	I-play ngayon
 tl	string	player_pref	-	Preferred video player
 tl	string	player_settings_always_ask	-	Always ask
@@ -82019,6 +82847,7 @@ fil-PH	string	library_sort_current	-	Pagkakasunod: %s
 fil-PH	string	library_sort_not_kept	-	Hindi itinatabi ng %s
 fil-PH	string	library_sort_supported	-	Sinusuportahan ng %1$s ang %2$d sa %3$d
 fil-PH	string	library_source	-	Pinagmulan ng library
+fil-PH	string	library_source_local	-	Local
 fil-PH	string	library_source_note	-	Isa-isa · nagre-reload kapag nagpalit
 fil-PH	string	library_sync_cached	-	Naka-cache
 fil-PH	string	library_sync_failed	-	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.
@@ -82103,6 +82932,7 @@ fil-PH	string	picture_in_picture_des	-	Ipinagpapatuloy ang pag-playback sa isang
 fil-PH	string	pin	-	PIN
 fil-PH	string	pin_error_incorrect	-	Maling PIN. Pakisubukang muli.
 fil-PH	string	pin_error_length	-	PIN must be 4 characters
+fil-PH	string	pin_error_wait	-	Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s
 fil-PH	string	play_episode	-	Ipatugtog ang Kabanata
 fil-PH	string	play_episode_toast	-	Play Episode
 fil-PH	string	play_from_beginning_img_des	-	Ipatugtog mula sa Simula
@@ -82136,6 +82966,16 @@ fil-PH	string	player_menu_playback	-	Playback
 fil-PH	string	player_mute	-	I-mute
 fil-PH	string	player_notification_channel_description	-	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background
 fil-PH	string	player_notification_channel_name	-	Player notifications
+fil-PH	string	player_panel_failed	-	nabigo
+fil-PH	string	player_panel_keeps	-	pinapanatili ang %s
+fil-PH	string	player_panel_numbered	-	%1$s %2$d
+fil-PH	string	player_panel_on	-	Naka-on
+fil-PH	string	player_panel_open	-	Buksan
+fil-PH	string	player_panel_quality_profile	-	Profile ng kalidad
+fil-PH	string	player_panel_quality_unknown	-	hindi alam ang kalidad
+fil-PH	string	player_panel_retry_all	-	Subukang muli ang lahat ng source
+fil-PH	string	player_panel_style	-	Estilo ng subtitle
+fil-PH	string	player_panel_use	-	Gamitin
 fil-PH	string	player_play_now	-	I-play ngayon
 fil-PH	string	player_pref	-	Preferred video player
 fil-PH	string	player_settings_always_ask	-	Always ask
@@ -83168,6 +84008,7 @@ zh	string	library_sort_current	-	排序：%s
 zh	string	library_sort_not_kept	-	%s 不保存此项
 zh	string	library_sort_supported	-	%1$s 支持 %3$d 项中的 %2$d 项
 zh	string	library_source	-	媒体库来源
+zh	string	library_source_local	-	本地
 zh	string	library_source_note	-	一次一个 · 切换会重新加载
 zh	string	library_sync_cached	-	已缓存
 zh	string	library_sync_failed	-	无法同步 %1$s。这些是 %2$s 前的内容。
@@ -83252,6 +84093,7 @@ zh	string	picture_in_picture_des	-	在其他应用上层的迷你播放器中继
 zh	string	pin	-	PIN
 zh	string	pin_error_incorrect	-	PIN码不正确，请再试一次。
 zh	string	pin_error_length	-	PIN码必须为4个字符
+zh	string	pin_error_wait	-	PIN 错误次数过多。请在 %1$s 后重试
 zh	string	play_episode	-	播放剧集
 zh	string	play_episode_toast	-	播放剧集
 zh	string	play_from_beginning_img_des	-	从头播放
@@ -83285,6 +84127,16 @@ zh	string	player_menu_playback	-	播放
 zh	string	player_mute	-	静音
 zh	string	player_notification_channel_description	-	控制后台播放的播放器通知
 zh	string	player_notification_channel_name	-	播放器通知
+zh	string	player_panel_failed	-	失败
+zh	string	player_panel_keeps	-	保留 %s
+zh	string	player_panel_numbered	-	%1$s %2$d
+zh	string	player_panel_on	-	开
+zh	string	player_panel_open	-	打开
+zh	string	player_panel_quality_profile	-	画质配置
+zh	string	player_panel_quality_unknown	-	画质未知
+zh	string	player_panel_retry_all	-	重试所有来源
+zh	string	player_panel_style	-	字幕样式
+zh	string	player_panel_use	-	使用
 zh	string	player_play_now	-	立即播放
 zh	string	player_pref	-	首选视频播放器
 zh	string	player_settings_always_ask	-	始终询问
@@ -84317,6 +85169,7 @@ zh-CN	string	library_sort_current	-	排序：%s
 zh-CN	string	library_sort_not_kept	-	%s 不保存此项
 zh-CN	string	library_sort_supported	-	%1$s 支持 %3$d 项中的 %2$d 项
 zh-CN	string	library_source	-	媒体库来源
+zh-CN	string	library_source_local	-	本地
 zh-CN	string	library_source_note	-	一次一个 · 切换会重新加载
 zh-CN	string	library_sync_cached	-	已缓存
 zh-CN	string	library_sync_failed	-	无法同步 %1$s。这些是 %2$s 前的内容。
@@ -84401,6 +85254,7 @@ zh-CN	string	picture_in_picture_des	-	在其他应用上层的迷你播放器中
 zh-CN	string	pin	-	PIN
 zh-CN	string	pin_error_incorrect	-	PIN码不正确，请再试一次。
 zh-CN	string	pin_error_length	-	PIN码必须为4个字符
+zh-CN	string	pin_error_wait	-	PIN 错误次数过多。请在 %1$s 后重试
 zh-CN	string	play_episode	-	播放剧集
 zh-CN	string	play_episode_toast	-	播放剧集
 zh-CN	string	play_from_beginning_img_des	-	从头播放
@@ -84434,6 +85288,16 @@ zh-CN	string	player_menu_playback	-	播放
 zh-CN	string	player_mute	-	静音
 zh-CN	string	player_notification_channel_description	-	控制后台播放的播放器通知
 zh-CN	string	player_notification_channel_name	-	播放器通知
+zh-CN	string	player_panel_failed	-	失败
+zh-CN	string	player_panel_keeps	-	保留 %s
+zh-CN	string	player_panel_numbered	-	%1$s %2$d
+zh-CN	string	player_panel_on	-	开
+zh-CN	string	player_panel_open	-	打开
+zh-CN	string	player_panel_quality_profile	-	画质配置
+zh-CN	string	player_panel_quality_unknown	-	画质未知
+zh-CN	string	player_panel_retry_all	-	重试所有来源
+zh-CN	string	player_panel_style	-	字幕样式
+zh-CN	string	player_panel_use	-	使用
 zh-CN	string	player_play_now	-	立即播放
 zh-CN	string	player_pref	-	首选视频播放器
 zh-CN	string	player_settings_always_ask	-	始终询问
@@ -85466,6 +86330,7 @@ zh-Hans-CN	string	library_sort_current	-	排序：%s
 zh-Hans-CN	string	library_sort_not_kept	-	%s 不保存此项
 zh-Hans-CN	string	library_sort_supported	-	%1$s 支持 %3$d 项中的 %2$d 项
 zh-Hans-CN	string	library_source	-	媒体库来源
+zh-Hans-CN	string	library_source_local	-	本地
 zh-Hans-CN	string	library_source_note	-	一次一个 · 切换会重新加载
 zh-Hans-CN	string	library_sync_cached	-	已缓存
 zh-Hans-CN	string	library_sync_failed	-	无法同步 %1$s。这些是 %2$s 前的内容。
@@ -85550,6 +86415,7 @@ zh-Hans-CN	string	picture_in_picture_des	-	在其他应用上层的迷你播放�
 zh-Hans-CN	string	pin	-	PIN
 zh-Hans-CN	string	pin_error_incorrect	-	PIN码不正确，请再试一次。
 zh-Hans-CN	string	pin_error_length	-	PIN码必须为4个字符
+zh-Hans-CN	string	pin_error_wait	-	PIN 错误次数过多。请在 %1$s 后重试
 zh-Hans-CN	string	play_episode	-	播放剧集
 zh-Hans-CN	string	play_episode_toast	-	播放剧集
 zh-Hans-CN	string	play_from_beginning_img_des	-	从头播放
@@ -85583,6 +86449,16 @@ zh-Hans-CN	string	player_menu_playback	-	播放
 zh-Hans-CN	string	player_mute	-	静音
 zh-Hans-CN	string	player_notification_channel_description	-	控制后台播放的播放器通知
 zh-Hans-CN	string	player_notification_channel_name	-	播放器通知
+zh-Hans-CN	string	player_panel_failed	-	失败
+zh-Hans-CN	string	player_panel_keeps	-	保留 %s
+zh-Hans-CN	string	player_panel_numbered	-	%1$s %2$d
+zh-Hans-CN	string	player_panel_on	-	开
+zh-Hans-CN	string	player_panel_open	-	打开
+zh-Hans-CN	string	player_panel_quality_profile	-	画质配置
+zh-Hans-CN	string	player_panel_quality_unknown	-	画质未知
+zh-Hans-CN	string	player_panel_retry_all	-	重试所有来源
+zh-Hans-CN	string	player_panel_style	-	字幕样式
+zh-Hans-CN	string	player_panel_use	-	使用
 zh-Hans-CN	string	player_play_now	-	立即播放
 zh-Hans-CN	string	player_pref	-	首选视频播放器
 zh-Hans-CN	string	player_settings_always_ask	-	始终询问
@@ -86616,6 +87492,7 @@ zh-TW	string	library_sort_current	-	排序：%s
 zh-TW	string	library_sort_not_kept	-	%s 不保存此項
 zh-TW	string	library_sort_supported	-	%1$s 支援 %3$d 項中的 %2$d 項
 zh-TW	string	library_source	-	媒體庫來源
+zh-TW	string	library_source_local	-	本機
 zh-TW	string	library_source_note	-	一次一個 · 切換會重新載入
 zh-TW	string	library_sync_cached	-	已快取
 zh-TW	string	library_sync_failed	-	無法同步 %1$s。這些是 %2$s 前的內容。
@@ -86700,6 +87577,7 @@ zh-TW	string	picture_in_picture_des	-	在其他應用程式上的子母畫面中
 zh-TW	string	pin	-	PIN 碼
 zh-TW	string	pin_error_incorrect	-	PIN 碼不符，請再試一次。
 zh-TW	string	pin_error_length	-	PIN 碼需為 4 個字元
+zh-TW	string	pin_error_wait	-	PIN 錯誤次數過多。請在 %1$s 後再試一次
 zh-TW	string	play_episode	-	播放劇集
 zh-TW	string	play_episode_toast	-	播放劇集
 zh-TW	string	play_from_beginning_img_des	-	從頭開始播放
@@ -86733,6 +87611,16 @@ zh-TW	string	player_menu_playback	-	播放
 zh-TW	string	player_mute	-	靜音
 zh-TW	string	player_notification_channel_description	-	控制背景播放的通知
 zh-TW	string	player_notification_channel_name	-	播放器通知
+zh-TW	string	player_panel_failed	-	失敗
+zh-TW	string	player_panel_keeps	-	保留 %s
+zh-TW	string	player_panel_numbered	-	%1$s %2$d
+zh-TW	string	player_panel_on	-	開
+zh-TW	string	player_panel_open	-	開啟
+zh-TW	string	player_panel_quality_profile	-	畫質設定檔
+zh-TW	string	player_panel_quality_unknown	-	畫質不明
+zh-TW	string	player_panel_retry_all	-	重試所有來源
+zh-TW	string	player_panel_style	-	字幕樣式
+zh-TW	string	player_panel_use	-	使用
 zh-TW	string	player_play_now	-	立即播放
 zh-TW	string	player_pref	-	偏好影片播放器
 zh-TW	string	player_settings_always_ask	-	總是詢問
@@ -87766,6 +88654,7 @@ zh-Hant-TW	string	library_sort_current	-	排序：%s
 zh-Hant-TW	string	library_sort_not_kept	-	%s 不保存此項
 zh-Hant-TW	string	library_sort_supported	-	%1$s 支援 %3$d 項中的 %2$d 項
 zh-Hant-TW	string	library_source	-	媒體庫來源
+zh-Hant-TW	string	library_source_local	-	本機
 zh-Hant-TW	string	library_source_note	-	一次一個 · 切換會重新載入
 zh-Hant-TW	string	library_sync_cached	-	已快取
 zh-Hant-TW	string	library_sync_failed	-	無法同步 %1$s。這些是 %2$s 前的內容。
@@ -87850,6 +88739,7 @@ zh-Hant-TW	string	picture_in_picture_des	-	在其他應用程式上的子母畫�
 zh-Hant-TW	string	pin	-	PIN 碼
 zh-Hant-TW	string	pin_error_incorrect	-	PIN 碼不符，請再試一次。
 zh-Hant-TW	string	pin_error_length	-	PIN 碼需為 4 個字元
+zh-Hant-TW	string	pin_error_wait	-	PIN 錯誤次數過多。請在 %1$s 後再試一次
 zh-Hant-TW	string	play_episode	-	播放劇集
 zh-Hant-TW	string	play_episode_toast	-	播放劇集
 zh-Hant-TW	string	play_from_beginning_img_des	-	從頭開始播放
@@ -87883,6 +88773,16 @@ zh-Hant-TW	string	player_menu_playback	-	播放
 zh-Hant-TW	string	player_mute	-	靜音
 zh-Hant-TW	string	player_notification_channel_description	-	控制背景播放的通知
 zh-Hant-TW	string	player_notification_channel_name	-	播放器通知
+zh-Hant-TW	string	player_panel_failed	-	失敗
+zh-Hant-TW	string	player_panel_keeps	-	保留 %s
+zh-Hant-TW	string	player_panel_numbered	-	%1$s %2$d
+zh-Hant-TW	string	player_panel_on	-	開
+zh-Hant-TW	string	player_panel_open	-	開啟
+zh-Hant-TW	string	player_panel_quality_profile	-	畫質設定檔
+zh-Hant-TW	string	player_panel_quality_unknown	-	畫質不明
+zh-Hant-TW	string	player_panel_retry_all	-	重試所有來源
+zh-Hant-TW	string	player_panel_style	-	字幕樣式
+zh-Hant-TW	string	player_panel_use	-	使用
 zh-Hant-TW	string	player_play_now	-	立即播放
 zh-Hant-TW	string	player_pref	-	偏好影片播放器
 zh-Hant-TW	string	player_settings_always_ask	-	總是詢問
@@ -88916,6 +89816,7 @@ zh-HK	string	library_sort_current	-	排序：%s
 zh-HK	string	library_sort_not_kept	-	%s 不保存此項
 zh-HK	string	library_sort_supported	-	%1$s 支援 %3$d 項中的 %2$d 項
 zh-HK	string	library_source	-	媒體庫來源
+zh-HK	string	library_source_local	-	本機
 zh-HK	string	library_source_note	-	一次一個 · 切換會重新載入
 zh-HK	string	library_sync_cached	-	已快取
 zh-HK	string	library_sync_failed	-	無法同步 %1$s。這些是 %2$s 前的內容。
@@ -89000,6 +89901,7 @@ zh-HK	string	picture_in_picture_des	-	在其他應用程式上的子母畫面中
 zh-HK	string	pin	-	PIN 碼
 zh-HK	string	pin_error_incorrect	-	PIN 碼不符，請再試一次。
 zh-HK	string	pin_error_length	-	PIN 碼需為 4 個字元
+zh-HK	string	pin_error_wait	-	PIN 錯誤次數過多。請在 %1$s 後再試一次
 zh-HK	string	play_episode	-	播放劇集
 zh-HK	string	play_episode_toast	-	播放劇集
 zh-HK	string	play_from_beginning_img_des	-	從頭開始播放
@@ -89033,6 +89935,16 @@ zh-HK	string	player_menu_playback	-	播放
 zh-HK	string	player_mute	-	靜音
 zh-HK	string	player_notification_channel_description	-	控制背景播放的通知
 zh-HK	string	player_notification_channel_name	-	播放器通知
+zh-HK	string	player_panel_failed	-	失敗
+zh-HK	string	player_panel_keeps	-	保留 %s
+zh-HK	string	player_panel_numbered	-	%1$s %2$d
+zh-HK	string	player_panel_on	-	開
+zh-HK	string	player_panel_open	-	開啟
+zh-HK	string	player_panel_quality_profile	-	畫質設定檔
+zh-HK	string	player_panel_quality_unknown	-	畫質不明
+zh-HK	string	player_panel_retry_all	-	重試所有來源
+zh-HK	string	player_panel_style	-	字幕樣式
+zh-HK	string	player_panel_use	-	使用
 zh-HK	string	player_play_now	-	立即播放
 zh-HK	string	player_pref	-	偏好影片播放器
 zh-HK	string	player_settings_always_ask	-	總是詢問
@@ -90066,6 +90978,7 @@ zh-Hant-HK	string	library_sort_current	-	排序：%s
 zh-Hant-HK	string	library_sort_not_kept	-	%s 不保存此項
 zh-Hant-HK	string	library_sort_supported	-	%1$s 支援 %3$d 項中的 %2$d 項
 zh-Hant-HK	string	library_source	-	媒體庫來源
+zh-Hant-HK	string	library_source_local	-	本機
 zh-Hant-HK	string	library_source_note	-	一次一個 · 切換會重新載入
 zh-Hant-HK	string	library_sync_cached	-	已快取
 zh-Hant-HK	string	library_sync_failed	-	無法同步 %1$s。這些是 %2$s 前的內容。
@@ -90150,6 +91063,7 @@ zh-Hant-HK	string	picture_in_picture_des	-	在其他應用程式上的子母畫�
 zh-Hant-HK	string	pin	-	PIN 碼
 zh-Hant-HK	string	pin_error_incorrect	-	PIN 碼不符，請再試一次。
 zh-Hant-HK	string	pin_error_length	-	PIN 碼需為 4 個字元
+zh-Hant-HK	string	pin_error_wait	-	PIN 錯誤次數過多。請在 %1$s 後再試一次
 zh-Hant-HK	string	play_episode	-	播放劇集
 zh-Hant-HK	string	play_episode_toast	-	播放劇集
 zh-Hant-HK	string	play_from_beginning_img_des	-	從頭開始播放
@@ -90183,6 +91097,16 @@ zh-Hant-HK	string	player_menu_playback	-	播放
 zh-Hant-HK	string	player_mute	-	靜音
 zh-Hant-HK	string	player_notification_channel_description	-	控制背景播放的通知
 zh-Hant-HK	string	player_notification_channel_name	-	播放器通知
+zh-Hant-HK	string	player_panel_failed	-	失敗
+zh-Hant-HK	string	player_panel_keeps	-	保留 %s
+zh-Hant-HK	string	player_panel_numbered	-	%1$s %2$d
+zh-Hant-HK	string	player_panel_on	-	開
+zh-Hant-HK	string	player_panel_open	-	開啟
+zh-Hant-HK	string	player_panel_quality_profile	-	畫質設定檔
+zh-Hant-HK	string	player_panel_quality_unknown	-	畫質不明
+zh-Hant-HK	string	player_panel_retry_all	-	重試所有來源
+zh-Hant-HK	string	player_panel_style	-	字幕樣式
+zh-Hant-HK	string	player_panel_use	-	使用
 zh-Hant-HK	string	player_play_now	-	立即播放
 zh-Hant-HK	string	player_pref	-	偏好影片播放器
 zh-Hant-HK	string	player_settings_always_ask	-	總是詢問
@@ -91238,6 +92162,7 @@ no	string	library_sort_current	-	Sortering: %s
 no	string	library_sort_not_kept	-	Ikke lagret av %s
 no	string	library_sort_supported	-	%1$s støtter %2$d av %3$d
 no	string	library_source	-	Bibliotekkilde
+no	string	library_source_local	-	Lokal
 no	string	library_source_note	-	Én om gangen · bytte laster inn på nytt
 no	string	library_sync_cached	-	Mellomlagret
 no	string	library_sync_failed	-	Kunne ikke synkronisere %1$s. Disse er fra for %2$s siden.
@@ -91322,6 +92247,7 @@ no	string	picture_in_picture_des	-	Fortsetter avspilling i en miniatyr spiller p
 no	string	pin	-	PIN
 no	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 no	string	pin_error_length	-	PIN must be 4 characters
+no	string	pin_error_wait	-	For mange feil PIN-koder. Prøv igjen om %1$s
 no	string	play_episode	-	Spille Episode
 no	string	play_episode_toast	-	spille episode
 no	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -91355,6 +92281,16 @@ no	string	player_menu_playback	-	Avspilling
 no	string	player_mute	-	Slå av lyden
 no	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 no	string	player_notification_channel_name	-	Player notifications
+no	string	player_panel_failed	-	feilet
+no	string	player_panel_keeps	-	beholder %s
+no	string	player_panel_numbered	-	%1$s %2$d
+no	string	player_panel_on	-	På
+no	string	player_panel_open	-	Åpne
+no	string	player_panel_quality_profile	-	Kvalitetsprofil
+no	string	player_panel_quality_unknown	-	ukjent kvalitet
+no	string	player_panel_retry_all	-	Prøv alle kildene på nytt
+no	string	player_panel_style	-	Undertekststil
+no	string	player_panel_use	-	Bruk
 no	string	player_play_now	-	Spill nå
 no	string	player_pref	-	Foretrukket videospiller
 no	string	player_settings_always_ask	-	Always ask
@@ -92410,6 +93346,7 @@ nb	string	library_sort_current	-	Sort: %s
 nb	string	library_sort_not_kept	-	Not kept by %s
 nb	string	library_sort_supported	-	%1$s supports %2$d of %3$d
 nb	string	library_source	-	Library source
+nb	string	library_source_local	-	Local
 nb	string	library_source_note	-	One at a time · switching reloads
 nb	string	library_sync_cached	-	Cached
 nb	string	library_sync_failed	-	Couldn't sync %1$s. These are from %2$s ago.
@@ -92494,6 +93431,7 @@ nb	string	picture_in_picture_des	-	Continues playback in a miniature player on t
 nb	string	pin	-	PIN
 nb	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 nb	string	pin_error_length	-	PIN must be 4 characters
+nb	string	pin_error_wait	-	Too many wrong PINs. Try again in %1$s
 nb	string	play_episode	-	Play Episode
 nb	string	play_episode_toast	-	Play Episode
 nb	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -92527,6 +93465,16 @@ nb	string	player_menu_playback	-	Playback
 nb	string	player_mute	-	Mute
 nb	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 nb	string	player_notification_channel_name	-	Player notifications
+nb	string	player_panel_failed	-	failed
+nb	string	player_panel_keeps	-	keeps %s
+nb	string	player_panel_numbered	-	%1$s %2$d
+nb	string	player_panel_on	-	On
+nb	string	player_panel_open	-	Open
+nb	string	player_panel_quality_profile	-	Quality profile
+nb	string	player_panel_quality_unknown	-	quality unknown
+nb	string	player_panel_retry_all	-	Retry all sources
+nb	string	player_panel_style	-	Subtitle style
+nb	string	player_panel_use	-	Use
 nb	string	player_play_now	-	Play now
 nb	string	player_pref	-	Preferred video player
 nb	string	player_settings_always_ask	-	Always ask
@@ -93582,6 +94530,7 @@ nb-NO	string	library_sort_current	-	Sort: %s
 nb-NO	string	library_sort_not_kept	-	Not kept by %s
 nb-NO	string	library_sort_supported	-	%1$s supports %2$d of %3$d
 nb-NO	string	library_source	-	Library source
+nb-NO	string	library_source_local	-	Local
 nb-NO	string	library_source_note	-	One at a time · switching reloads
 nb-NO	string	library_sync_cached	-	Cached
 nb-NO	string	library_sync_failed	-	Couldn't sync %1$s. These are from %2$s ago.
@@ -93666,6 +94615,7 @@ nb-NO	string	picture_in_picture_des	-	Continues playback in a miniature player o
 nb-NO	string	pin	-	PIN
 nb-NO	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 nb-NO	string	pin_error_length	-	PIN must be 4 characters
+nb-NO	string	pin_error_wait	-	Too many wrong PINs. Try again in %1$s
 nb-NO	string	play_episode	-	Play Episode
 nb-NO	string	play_episode_toast	-	Play Episode
 nb-NO	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -93699,6 +94649,16 @@ nb-NO	string	player_menu_playback	-	Playback
 nb-NO	string	player_mute	-	Mute
 nb-NO	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 nb-NO	string	player_notification_channel_name	-	Player notifications
+nb-NO	string	player_panel_failed	-	failed
+nb-NO	string	player_panel_keeps	-	keeps %s
+nb-NO	string	player_panel_numbered	-	%1$s %2$d
+nb-NO	string	player_panel_on	-	On
+nb-NO	string	player_panel_open	-	Open
+nb-NO	string	player_panel_quality_profile	-	Quality profile
+nb-NO	string	player_panel_quality_unknown	-	quality unknown
+nb-NO	string	player_panel_retry_all	-	Retry all sources
+nb-NO	string	player_panel_style	-	Subtitle style
+nb-NO	string	player_panel_use	-	Use
 nb-NO	string	player_play_now	-	Play now
 nb-NO	string	player_pref	-	Preferred video player
 nb-NO	string	player_settings_always_ask	-	Always ask
@@ -94774,6 +95734,7 @@ iw	string	library_sort_current	-	מיון: %s
 iw	string	library_sort_not_kept	-	%s לא שומר את זה
 iw	string	library_sort_supported	-	%1$s תומך ב-%2$d מתוך %3$d
 iw	string	library_source	-	מקור הספריה
+iw	string	library_source_local	-	מקומי
 iw	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
 iw	string	library_sync_cached	-	מהמטמון
 iw	string	library_sync_failed	-	לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.
@@ -94858,6 +95819,7 @@ iw	string	picture_in_picture_des	-	ממשיך ניגון בנגן מינימלי
 iw	string	pin	-	PIN
 iw	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 iw	string	pin_error_length	-	PIN must be 4 characters
+iw	string	pin_error_wait	-	יותר מדי קודי PIN שגויים. נסו שוב בעוד %1$s
 iw	string	play_episode	-	נגן פרק
 iw	string	play_episode_toast	-	נגן את הפרק
 iw	string	play_from_beginning_img_des	-	נגן מההתחלה
@@ -94891,6 +95853,16 @@ iw	string	player_menu_playback	-	הפעלה
 iw	string	player_mute	-	השתקה
 iw	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 iw	string	player_notification_channel_name	-	Player notifications
+iw	string	player_panel_failed	-	נכשל
+iw	string	player_panel_keeps	-	שומר על %s
+iw	string	player_panel_numbered	-	%1$s %2$d
+iw	string	player_panel_on	-	פועל
+iw	string	player_panel_open	-	פתיחה
+iw	string	player_panel_quality_profile	-	פרופיל איכות
+iw	string	player_panel_quality_unknown	-	איכות לא ידועה
+iw	string	player_panel_retry_all	-	לנסות שוב את כל המקורות
+iw	string	player_panel_style	-	סגנון כתוביות
+iw	string	player_panel_use	-	שימוש
 iw	string	player_play_now	-	הפעלה עכשיו
 iw	string	player_pref	-	נגן וידאו מועדף
 iw	string	player_settings_always_ask	-	Always ask
@@ -95966,6 +96938,7 @@ he	string	library_sort_current	-	מיון: %s
 he	string	library_sort_not_kept	-	%s לא שומר את זה
 he	string	library_sort_supported	-	%1$s תומך ב-%2$d מתוך %3$d
 he	string	library_source	-	מקור הספריה
+he	string	library_source_local	-	מקומי
 he	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
 he	string	library_sync_cached	-	מהמטמון
 he	string	library_sync_failed	-	לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.
@@ -96050,6 +97023,7 @@ he	string	picture_in_picture_des	-	ממשיך ניגון בנגן מינימלי
 he	string	pin	-	PIN
 he	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 he	string	pin_error_length	-	PIN must be 4 characters
+he	string	pin_error_wait	-	יותר מדי קודי PIN שגויים. נסו שוב בעוד %1$s
 he	string	play_episode	-	נגן פרק
 he	string	play_episode_toast	-	נגן את הפרק
 he	string	play_from_beginning_img_des	-	נגן מההתחלה
@@ -96083,6 +97057,16 @@ he	string	player_menu_playback	-	הפעלה
 he	string	player_mute	-	השתקה
 he	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 he	string	player_notification_channel_name	-	Player notifications
+he	string	player_panel_failed	-	נכשל
+he	string	player_panel_keeps	-	שומר על %s
+he	string	player_panel_numbered	-	%1$s %2$d
+he	string	player_panel_on	-	פועל
+he	string	player_panel_open	-	פתיחה
+he	string	player_panel_quality_profile	-	פרופיל איכות
+he	string	player_panel_quality_unknown	-	איכות לא ידועה
+he	string	player_panel_retry_all	-	לנסות שוב את כל המקורות
+he	string	player_panel_style	-	סגנון כתוביות
+he	string	player_panel_use	-	שימוש
 he	string	player_play_now	-	הפעלה עכשיו
 he	string	player_pref	-	נגן וידאו מועדף
 he	string	player_settings_always_ask	-	Always ask
@@ -97158,6 +98142,7 @@ he-IL	string	library_sort_current	-	מיון: %s
 he-IL	string	library_sort_not_kept	-	%s לא שומר את זה
 he-IL	string	library_sort_supported	-	%1$s תומך ב-%2$d מתוך %3$d
 he-IL	string	library_source	-	מקור הספריה
+he-IL	string	library_source_local	-	מקומי
 he-IL	string	library_source_note	-	אחד בכל פעם · החלפה טוענת מחדש
 he-IL	string	library_sync_cached	-	מהמטמון
 he-IL	string	library_sync_failed	-	לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.
@@ -97242,6 +98227,7 @@ he-IL	string	picture_in_picture_des	-	ממשיך ניגון בנגן מינימ�
 he-IL	string	pin	-	PIN
 he-IL	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 he-IL	string	pin_error_length	-	PIN must be 4 characters
+he-IL	string	pin_error_wait	-	יותר מדי קודי PIN שגויים. נסו שוב בעוד %1$s
 he-IL	string	play_episode	-	נגן פרק
 he-IL	string	play_episode_toast	-	נגן את הפרק
 he-IL	string	play_from_beginning_img_des	-	נגן מההתחלה
@@ -97275,6 +98261,16 @@ he-IL	string	player_menu_playback	-	הפעלה
 he-IL	string	player_mute	-	השתקה
 he-IL	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 he-IL	string	player_notification_channel_name	-	Player notifications
+he-IL	string	player_panel_failed	-	נכשל
+he-IL	string	player_panel_keeps	-	שומר על %s
+he-IL	string	player_panel_numbered	-	%1$s %2$d
+he-IL	string	player_panel_on	-	פועל
+he-IL	string	player_panel_open	-	פתיחה
+he-IL	string	player_panel_quality_profile	-	פרופיל איכות
+he-IL	string	player_panel_quality_unknown	-	איכות לא ידועה
+he-IL	string	player_panel_retry_all	-	לנסות שוב את כל המקורות
+he-IL	string	player_panel_style	-	סגנון כתוביות
+he-IL	string	player_panel_use	-	שימוש
 he-IL	string	player_play_now	-	הפעלה עכשיו
 he-IL	string	player_pref	-	נגן וידאו מועדף
 he-IL	string	player_settings_always_ask	-	Always ask
@@ -98307,6 +99303,7 @@ in	string	library_sort_current	-	Urutan: %s
 in	string	library_sort_not_kept	-	Tidak disimpan oleh %s
 in	string	library_sort_supported	-	%1$s mendukung %2$d dari %3$d
 in	string	library_source	-	Sumber pustaka
+in	string	library_source_local	-	Lokal
 in	string	library_source_note	-	Satu per satu · beralih memuat ulang
 in	string	library_sync_cached	-	Tersimpan
 in	string	library_sync_failed	-	Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.
@@ -98391,6 +99388,7 @@ in	string	picture_in_picture_des	-	Lanjutkan pemutaran di pemutar mini di atas a
 in	string	pin	-	PIN
 in	string	pin_error_incorrect	-	PIN Salah. Silahkan coba lagi.
 in	string	pin_error_length	-	PIN harus terdiri 4 karakter
+in	string	pin_error_wait	-	Terlalu banyak PIN yang salah. Coba lagi dalam %1$s
 in	string	play_episode	-	Putar Episode
 in	string	play_episode_toast	-	Putar Episode
 in	string	play_from_beginning_img_des	-	Putar dari awal
@@ -98424,6 +99422,16 @@ in	string	player_menu_playback	-	Pemutaran
 in	string	player_mute	-	Bisukan
 in	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 in	string	player_notification_channel_name	-	Notifikasi pemain
+in	string	player_panel_failed	-	gagal
+in	string	player_panel_keeps	-	mempertahankan %s
+in	string	player_panel_numbered	-	%1$s %2$d
+in	string	player_panel_on	-	Aktif
+in	string	player_panel_open	-	Buka
+in	string	player_panel_quality_profile	-	Profil kualitas
+in	string	player_panel_quality_unknown	-	kualitas tidak diketahui
+in	string	player_panel_retry_all	-	Coba lagi semua sumber
+in	string	player_panel_style	-	Gaya subtitel
+in	string	player_panel_use	-	Gunakan
 in	string	player_play_now	-	Putar sekarang
 in	string	player_pref	-	Pemutar video utama
 in	string	player_settings_always_ask	-	Selalu tanya
@@ -99456,6 +100464,7 @@ id	string	library_sort_current	-	Urutan: %s
 id	string	library_sort_not_kept	-	Tidak disimpan oleh %s
 id	string	library_sort_supported	-	%1$s mendukung %2$d dari %3$d
 id	string	library_source	-	Sumber pustaka
+id	string	library_source_local	-	Lokal
 id	string	library_source_note	-	Satu per satu · beralih memuat ulang
 id	string	library_sync_cached	-	Tersimpan
 id	string	library_sync_failed	-	Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.
@@ -99540,6 +100549,7 @@ id	string	picture_in_picture_des	-	Lanjutkan pemutaran di pemutar mini di atas a
 id	string	pin	-	PIN
 id	string	pin_error_incorrect	-	PIN Salah. Silahkan coba lagi.
 id	string	pin_error_length	-	PIN harus terdiri 4 karakter
+id	string	pin_error_wait	-	Terlalu banyak PIN yang salah. Coba lagi dalam %1$s
 id	string	play_episode	-	Putar Episode
 id	string	play_episode_toast	-	Putar Episode
 id	string	play_from_beginning_img_des	-	Putar dari awal
@@ -99573,6 +100583,16 @@ id	string	player_menu_playback	-	Pemutaran
 id	string	player_mute	-	Bisukan
 id	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 id	string	player_notification_channel_name	-	Notifikasi pemain
+id	string	player_panel_failed	-	gagal
+id	string	player_panel_keeps	-	mempertahankan %s
+id	string	player_panel_numbered	-	%1$s %2$d
+id	string	player_panel_on	-	Aktif
+id	string	player_panel_open	-	Buka
+id	string	player_panel_quality_profile	-	Profil kualitas
+id	string	player_panel_quality_unknown	-	kualitas tidak diketahui
+id	string	player_panel_retry_all	-	Coba lagi semua sumber
+id	string	player_panel_style	-	Gaya subtitel
+id	string	player_panel_use	-	Gunakan
 id	string	player_play_now	-	Putar sekarang
 id	string	player_pref	-	Pemutar video utama
 id	string	player_settings_always_ask	-	Selalu tanya
@@ -100605,6 +101625,7 @@ id-ID	string	library_sort_current	-	Urutan: %s
 id-ID	string	library_sort_not_kept	-	Tidak disimpan oleh %s
 id-ID	string	library_sort_supported	-	%1$s mendukung %2$d dari %3$d
 id-ID	string	library_source	-	Sumber pustaka
+id-ID	string	library_source_local	-	Lokal
 id-ID	string	library_source_note	-	Satu per satu · beralih memuat ulang
 id-ID	string	library_sync_cached	-	Tersimpan
 id-ID	string	library_sync_failed	-	Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.
@@ -100689,6 +101710,7 @@ id-ID	string	picture_in_picture_des	-	Lanjutkan pemutaran di pemutar mini di ata
 id-ID	string	pin	-	PIN
 id-ID	string	pin_error_incorrect	-	PIN Salah. Silahkan coba lagi.
 id-ID	string	pin_error_length	-	PIN harus terdiri 4 karakter
+id-ID	string	pin_error_wait	-	Terlalu banyak PIN yang salah. Coba lagi dalam %1$s
 id-ID	string	play_episode	-	Putar Episode
 id-ID	string	play_episode_toast	-	Putar Episode
 id-ID	string	play_from_beginning_img_des	-	Putar dari awal
@@ -100722,6 +101744,16 @@ id-ID	string	player_menu_playback	-	Pemutaran
 id-ID	string	player_mute	-	Bisukan
 id-ID	string	player_notification_channel_description	-	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang
 id-ID	string	player_notification_channel_name	-	Notifikasi pemain
+id-ID	string	player_panel_failed	-	gagal
+id-ID	string	player_panel_keeps	-	mempertahankan %s
+id-ID	string	player_panel_numbered	-	%1$s %2$d
+id-ID	string	player_panel_on	-	Aktif
+id-ID	string	player_panel_open	-	Buka
+id-ID	string	player_panel_quality_profile	-	Profil kualitas
+id-ID	string	player_panel_quality_unknown	-	kualitas tidak diketahui
+id-ID	string	player_panel_retry_all	-	Coba lagi semua sumber
+id-ID	string	player_panel_style	-	Gaya subtitel
+id-ID	string	player_panel_use	-	Gunakan
 id-ID	string	player_play_now	-	Putar sekarang
 id-ID	string	player_pref	-	Pemutar video utama
 id-ID	string	player_settings_always_ask	-	Selalu tanya
@@ -101777,6 +102809,7 @@ arz	string	library_sort_current	-	Sort: %s
 arz	string	library_sort_not_kept	-	Not kept by %s
 arz	string	library_sort_supported	-	%1$s supports %2$d of %3$d
 arz	string	library_source	-	Library source
+arz	string	library_source_local	-	Local
 arz	string	library_source_note	-	One at a time · switching reloads
 arz	string	library_sync_cached	-	Cached
 arz	string	library_sync_failed	-	Couldn't sync %1$s. These are from %2$s ago.
@@ -101861,6 +102894,7 @@ arz	string	picture_in_picture_des	-	Continues playback in a miniature player on 
 arz	string	pin	-	PIN
 arz	string	pin_error_incorrect	-	Incorrect PIN. Please try again.
 arz	string	pin_error_length	-	PIN must be 4 characters
+arz	string	pin_error_wait	-	Too many wrong PINs. Try again in %1$s
 arz	string	play_episode	-	Play Episode
 arz	string	play_episode_toast	-	Play Episode
 arz	string	play_from_beginning_img_des	-	Play from the Beginning
@@ -101894,6 +102928,16 @@ arz	string	player_menu_playback	-	Playback
 arz	string	player_mute	-	Mute
 arz	string	player_notification_channel_description	-	The player notification for controlling the playback from the background
 arz	string	player_notification_channel_name	-	Player notifications
+arz	string	player_panel_failed	-	failed
+arz	string	player_panel_keeps	-	keeps %s
+arz	string	player_panel_numbered	-	%1$s %2$d
+arz	string	player_panel_on	-	On
+arz	string	player_panel_open	-	Open
+arz	string	player_panel_quality_profile	-	Quality profile
+arz	string	player_panel_quality_unknown	-	quality unknown
+arz	string	player_panel_retry_all	-	Retry all sources
+arz	string	player_panel_style	-	Subtitle style
+arz	string	player_panel_use	-	Use
 arz	string	player_play_now	-	Play now
 arz	string	player_pref	-	Preferred video player
 arz	string	player_settings_always_ask	-	Always ask

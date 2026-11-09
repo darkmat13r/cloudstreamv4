@@ -72,6 +72,7 @@
 <plurals name="home_bookmarks_count"><item quantity="zero">%d GRĀMATZĪMJU</item><item quantity="one">%d GRĀMATZĪME</item><item quantity="other">%d GRĀMATZĪMES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">Neizdevās ielādēt %d sadaļu</item><item quantity="one">Neizdevās ielādēt %d sadaļu</item><item quantity="other">Neizdevās ielādēt %d sadaļas</item></plurals>
 <plurals name="library_title_count"><item quantity="zero">%d nosaukumu</item><item quantity="one">%d nosaukums</item><item quantity="other">%d nosaukumi</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="zero">%d sekunžu</item><item quantity="one">%d sekunde</item><item quantity="other">%d sekundes</item></plurals>
 <plurals name="player_source_count"><item quantity="zero">%d avotu</item><item quantity="one">%d avots</item><item quantity="other">%d avoti</item></plurals>
 <plurals name="player_up_next_in"><item quantity="zero">Nākamā sērija pēc %d s</item><item quantity="one">Nākamā sērija pēc %d s</item><item quantity="other">Nākamā sērija pēc %d s</item></plurals>
@@ -413,6 +414,7 @@
 <string name="library_sort_supported">%1$s atbalsta %2$d no %3$d</string>
 <string name="library_sort_not_kept">%s to neglabā</string>
 <string name="library_source">Bibliotēkas avots</string>
+<string name="library_source_local">Vietējais</string>
 <string name="library_source_note">Pa vienam · pārslēgšana pārlādē</string>
 <string name="library_sync_cached">No kešatmiņas</string>
 <string name="library_sync_failed">Neizdevās sinhronizēt %1$s. Šie dati ir no pirms %2$s.</string>
@@ -487,6 +489,7 @@
 <string name="pin">PIN kods</string>
 <string name="pin_error_incorrect">Nepareizs PIN kods. Lūdzu, ievadiet to no jauna.</string>
 <string name="pin_error_length">PIN kods satur 4 rakstzīmes</string>
+<string name="pin_error_wait">Pārāk daudz nepareizu PIN. Mēģiniet vēlreiz pēc %1$s</string>
 <string name="play_episode">Palaist epizodi</string>
 <string name="play_episode_toast">Atskaņot epizodi</string>
 <string name="play_from_beginning_img_des">Atskaņot no sākuma</string>
@@ -517,6 +520,15 @@
 <string name="player_loaded_subtitles">Ielādēti %s</string>
 <string name="player_menu_playback">Atskaņošana</string>
 <string name="player_mute">Izslēgt skaņu</string>
+<string name="player_panel_failed">neizdevās</string>
+<string name="player_panel_keeps">saglabā %s</string>
+<string name="player_panel_on">Ieslēgts</string>
+<string name="player_panel_open">Atvērt</string>
+<string name="player_panel_quality_profile">Kvalitātes profils</string>
+<string name="player_panel_quality_unknown">kvalitāte nezināma</string>
+<string name="player_panel_retry_all">Mēģināt visus avotus vēlreiz</string>
+<string name="player_panel_style">Subtitru stils</string>
+<string name="player_panel_use">Izmantot</string>
 <string name="player_play_now">Atskaņot tagad</string>
 <string name="player_pref">Vēlamais video atskaņotājs</string>
 <string name="player_settings_play_in_app">Iekšējais atskaņotājs</string>

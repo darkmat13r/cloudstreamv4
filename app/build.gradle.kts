@@ -67,6 +67,10 @@ android {
     @Suppress("UnstableApiUsage")
     testOptions {
         unitTests.isReturnDefaultValues = true
+        // `BUG-72`: device tests run with every animation scale at 0 from the start, for every window. Compose keeps the
+        // animator scale it first read for the whole process, so a test that turned animations off for itself still got
+        // the 1 an earlier class's window had read, and a skeleton that pulses for ever kept `ActivityScenario` from idling.
+        animationsDisabled = true
     }
 
     // Looks like google likes to add metadata only they can read https://gitlab.com/IzzyOnDroid/repo/-/work_items/491

@@ -2330,6 +2330,13 @@ too; the second half is #215's review · `DataStoreHelper.kt`, `CredentialStore.
 - **An app restore clears every PIN.** When `BackupUtils.restore` writes a profile list, it empties `lock_pin/*`, so
   restored profiles come back unlocked, as the owner ruled. A different profile restored at a locked index (say "Dad" at
   index 1, where "Kids" was locked) must not inherit that lock.
+- **Restore was already a way around the lock.** Before this, a hand-made backup file restored its profile list as written,
+  so it could unlock any profile or set any PIN; the profile PIN is a soft lock. `BUG-54` closes it for the restore path:
+  a restore that replaces the list asks for every locked profile's PIN first.
+- **Fail-safe, both ways.** If clearing the PINs on restore cannot be written, the old PINs stay (logged, fixed text
+  only), so a restored profile at a locked index stays locked rather than open. And if removing a profile's PIN cannot be
+  written to the credential file, the next read joins the old PIN back: a removed lock comes back, rather than a lock
+  silently disappearing.
 - **No inherited locks.** Writing the list makes the stored PINs exactly the list's: a removed profile's PIN goes with
   it, so a later profile on the same index is not locked by it.
 - **The review's case.** `CredentialStore` marked its sign-in move done even when the copy's `commit()` failed. Now it
@@ -2662,3 +2669,311 @@ tests, 0 failures.
 
 `SearchViewModelTest` still waits on real time on purpose, as its own KDoc says. Moving it the same way would be a
 separate change.
+
+---
+
+## BUG-52 — An invisible character, or a tab, inside `://` hid a url and its token from the redaction; an `ErrorLoadingException`'s message reached the screen unredacted · **high, security** · measured 2026-11-08
+
+**Status:** fixed in the PR that adds this entry, stacked on #221 (`KMP-56`), whose head makes `:desktopApp`'s rules the fourth synced copy. The fix is made in all four copies of the rules listed under `BUG-44`:
+
+- `:app` `utils/LogRedaction.kt`
+- `:library` `mvvm/ArchComponentExt.kt`
+- `:feature:extensions:sandbox` `PluginHost.kt`
+- `:desktopApp` `detail/DesktopDetailSource.kt`
+
+The review of the first version found the tab case and the `ErrorLoadingException` gap.
+
+**The defects.**
+
+1. **An invisible character inside `://`.** `withoutUrls` finds a url by `scheme://`. A control or format character between `https:` and `//`, such as `https:<ZWSP>//cdn.example/x?token=…`, stopped the pattern, so the url, its query and its token stayed in the text. Zero-width characters and bidi marks are invisible wherever the text is shown. A url in an exception's message is whatever a provider or server wrote, so it can carry one.
+2. **A tab or a line break inside `://`** stopped the pattern the same way, so `https:<tab>//host/p?token=…` stayed whole. Logs got the token as it was. A screen that strips ISO controls after redaction (Android's Home and Detail failure lines, the HUD) rejoins a tab into a working url, `https://host/p?token=…`. Home and Detail show only the first line, so a line break there cuts the url rather than rejoining it, but the log still has both halves.
+3. **`throwAbleToResource`'s `ErrorLoadingException` branch** (`:library`) passed `throwable.message` into `errorString` with no redaction, and Android's Home and Detail failure lines show its first line. That is the same class of bug, in a path `BUG-44` did not cover.
+
+**Measured before the fix.** Every case below was added to the shared table, and each copy's test was run against the unfixed rules. A table's loop stops at its first failing case, so the cases were ordered to fail on the url they test.
+
+- `"cdn https:\u200B//cdn.example/x?token=MARKER_QUERY"` failed in all four tests (`StackTraceRedactionTest`, `LogErrorRedactionTest` through `logError`, `PluginHostRedactionTest`, `DesktopRedactionTest`), with `?token=MARKER_QUERY` in the output.
+- `"https:\t//host/p?token=MARKER_QUERY"` failed in all four, with the output `https:\t//host/p?token=MARKER_QUERY`.
+- `LogErrorRedactionTest.anErrorLoadingExceptionsMessageReachesTheScreenRedacted` failed: `errorString` held `MARKER_USER@host.example/MARKER_PATH?t=MARKER_QUERY`.
+- `"https:\u00A0//host/p?token=MARKER_QUERY"` (a no-break space, review round 2) failed in all four once whitespace inside `://` was handled with `\s*`, which does not match NBSP. The output was the input, token and all.
+
+The `:app`, `:library` and sandbox copies were byte-identical to master `42bf120c6` when this was measured, so master leaks the same way.
+
+**The fix.**
+
+- Each copy's `withoutUrls` begins with `withoutHiddenCharacters()`, a private helper. It turns a tab into a space, then drops every other Unicode Cc and Cf character before any pattern runs: ZWSP, ZWJ, ZWNJ, BOM, LRM/RLM, the bidi embeddings and isolates, and the C0/C1 controls. It keeps `\n` and `\r`, because they shape a stack trace and the path rule ends at a line break. The tab becomes a space rather than staying, so a later control strip cannot rejoin it.
+- Each copy's url pattern accepts whitespace and Unicode spaces between `scheme:` and `//`: `[\s\p{Z}]*`, which covers spaces, the mapped tab, line breaks, NBSP and the other `\p{Z}` separators. The output is the usual `scheme://host[:port]/<…>`.
+- `throwAbleToResource`'s `ErrorLoadingException` branch now passes `throwable.message?.withoutUrls()`. A missing message still falls back to the same default text.
+- Every caller goes through `withoutUrls`, so all of them are covered: `redactedText`, `redactedStackTrace`, `logError`, `getStackTracePretty`, the `ErrorLoadingException` text, the plugin host's failure line and the desktop failure lines. `:desktopApp`'s separate `withoutInvisible()` is left as it is.
+
+**Three visible differences.**
+
+- A stack trace that goes through the rules now indents its frames with a space instead of a tab: logcat, `logError`'s stderr and the crash file.
+- A word directly followed by `: //` (`Note: //x/y`) now reads as a url, so it becomes `Note://x/<…>`. That over-redacts, which is the safe way round.
+- An extension's `ErrorLoadingException` message that contains a url now shows as `scheme://host/<…>` on Android's Home and Detail failure lines. This is published `:library` behaviour, so extension authors will see it in the app.
+
+**Tests.** Every copy's table gains these cases:
+
+- ZWSP inside `://`
+- a BOM inside the scheme
+- a tab inside `://`
+- a line break inside `://`
+- a no-break space (U+00A0) inside `://`
+- `keeps\nlines\r\nand\ttabs`, which must come out as `keeps\nlines\r\nand tabs`
+
+Every case is also checked after an `isISOControl` strip, the way Home, Detail and the HUD show text. `LogErrorRedactionTest` gains an `ErrorLoadingException` marker test, and the default text for a missing message is checked too.
+
+**Not covered.**
+
+- A protocol-relative `//host/p?token=…` with no scheme at all is not recognised as a url.
+- Other on-screen `Resource.Failure` texts still carry their message: `SSLHandshakeException`'s, and the "outdated" text for `NoSuchMethodError` and its kin. They are listed under `BUG-44`. Neither comes from a provider's url.
+
+## BUG-54 — Restoring a backup lifted every profile lock without asking · **medium, security** · measured 2026-11-08
+
+**Status:** fixed in pr, stacked on `BUG-51` (#222) · found by the automated security review of #222; the PM chose the
+fix (option b) the same day · `BackupUtils.kt`, `AccountHelper.kt`
+
+A restore writes the backup's profile list, and since `BUG-50`/`BUG-51` its profiles come back unlocked. Settings →
+Restore is open to whichever profile is in use, so anyone could lift every lock by restoring a file; before that, a
+hand-made file could do the same.
+
+**Fix:** `BackupUtils.restoreAfterPins`. A restore whose file replaces the profile list first asks for the PIN of every
+profile locked now, one prompt each, titled with the profile's name ("Enter PIN for Kids"), through the profile lock's
+own prompt. Nothing is written until every PIN is given.
+- **Cancel** on any prompt aborts the restore with nothing changed.
+- **A wrong PIN** is refused by the prompt as it always is ("incorrect", the field cleared), which asks again until the
+  right PIN or Cancel. DECIDED: the existing prompt's behaviour, rather than a second kind that aborts on the first miss.
+- **No locked profile**, or a file that does not replace the profile list: nothing is asked.
+- The device credential (the PM's option c) is out: most TVs have no lock screen.
+
+`showPinInputDialog` gains an overload with a `title`; the published signature stays as it was.
+
+Also from #222's review: a restore whose clearing of the PINs cannot be written logs it, fixed text only.
+
+### Behaviour changes
+
+| Before | Now |
+|---|---|
+| Restore wrote the file straight away | With a locked profile, it asks each locked profile's PIN first; Cancel writes nothing |
+
+## BUG-55 — A profile PIN could be guessed without limit · **medium, security** · measured 2026-11-08
+
+**Status:** fixed in pr, stacked on `BUG-54` (#227) · raised by the PM after #227's review · `PinAttempts.kt`,
+`AccountHelper.kt`, `AccountViewModel.kt`, `BackupUtils.kt`, the backup rules
+
+Every PIN prompt (switching profile, the startup prompt, editing a locked profile, changing its PIN, and since `BUG-54`
+a restore) compared each PIN typed with no limit. A PIN has 10,000 values, so any lock could be guessed.
+
+**Fix:** `PinAttempts`, used inside `showPinInputDialog`, so every prompt has the same rule. The PM's call:
+- Four wrong PINs cost nothing. The fifth starts a 30-second wait; each wrong PIN after it doubles the wait (60, 120,
+  240 s, …) up to **one hour**, reached on the 12th wrong PIN. A right PIN clears the profile's count. The cap is the
+  PM's call after #230's review: doubling without one let anyone at the remote lock the owner out for about a year,
+  with no way back. At one guess an hour, random guessing still takes about 200 days on average.
+- One countdown tick is queued at a time: each post removes the tick already queued first.
+- During a wait the field is off and counts down ("Too many wrong PINs. Try again in 00:30"). The limit is an
+  `InputFilter` in front of the field, so during a wait nothing typed reaches it, and no PIN is compared or counted.
+  The prompt's own comparison is left exactly as it was: its compiled watcher class is in `classes-jar.api`, and
+  changing what it captures changed that line, so the limit stays out of it.
+- Counted per profile, by its index. The published `showPinInputDialog`, which an extension could call, names no
+  profile, so its prompts share one count and are limited too.
+- **Kept across restarts.** The PM first chose memory only. Worked out against that: restarting the app gives five more
+  guesses, so the whole space falls in about 2,000 restarts, hours with a remote. So the count and the wait are stored
+  in `cs_pin_attempts`, a private file excluded from Android's backup and device transfer like `cs_credentials`. It
+  holds no PIN and nothing taken from one, only the count, the wait, and the uptime it started at.
+- **Clock:** uptime (`elapsedRealtime`), so setting the device's time forward ends nothing. A wait ends at its start
+  plus its length; if uptime is now below its start (a reboot), the whole wait runs again from boot. Either way, at
+  least the wait has truly passed, so a reboot never shortens one.
+- If the file cannot be written, the process's own copy still holds the limit.
+
+Clearing the app's data clears the counts, but it also clears the profiles and their PINs, so it opens nothing.
+
+Also from #227's review: `restoreAfterPins` says why no context is still fail-safe, and each of its prompts answers once
+(`answered`), so a second callback cannot ask the next profile twice or restore twice.
+
+### Behaviour changes
+
+| Before | Now |
+|---|---|
+| Any number of wrong PINs, each checked at once | After five wrong PINs on a profile, a wait that doubles with each further one, up to an hour; a right PIN resets it |
+
+### Tests
+
+- `PinAttemptsTest` (JVM, 11): four free then 30 s; doubling; the wait stops at an hour; the 20th wrong PIN waits
+  exactly an hour; 200 wrong PINs still wait an hour; a right PIN clears; per profile; the count and
+  wait survive a restart; a reboot never shortens a wait; a record holds no PIN; a failed write still limits.
+- `PinAttemptsPromptTest` (device, 2): the profile-switch prompt and the restore prompt each show the wait after five
+  wrong PINs, keep the right PIN out during it, store the count with no PIN, keep the wait after a restart, and take
+  the right PIN once the wait is over.
+- `CredentialStoreBackupTest`: the backup rules exclude `cs_pin_attempts.xml` in all three places.
+
+## BUG-59 — A device test that taps left the whole device in touch mode, and the next test failed · **low, tests only** · measured 2026-11-08
+
+**Status:** fixed in pr (#248, on train 9) · `core/devicetest/.../TouchModeReset.kt` and the device tests that tap or read focus
+
+A tap (`UiDevice.click`, `UiObject2.click`) puts the **whole device** in touch mode, not only the test's window. It
+stays on across tests, test classes and test APKs until a navigation key ends it. Back does not end it, so a test that
+closes the keyboard with Back leaves it on. A later test that reads the first focus before it presses a key then
+finds the wrong thing focused, for a reason that is not its own.
+
+**Measured** on `Television_720p` (API 36), one emulator boot, each step a separate Gradle run:
+- `dumpsys window` reads `mInTouchMode=false` at boot, `true` after
+  `SearchScreenTvDeviceTest.aTapOpensTheKeyboard` (`:feature:search`), and `false` again after one D-pad key.
+- **The failing pair.** That tap test, then `TvDetailNavigationTest` (`:app`), five times in a row on master:
+  **5 of 5 failed**, each on `withNoProviderThePageFailsAndItsRetryIsReachableAndBackLeaves` ("the failure rests focus
+  on its action expected:<[Try again]> but was:<[Go Back]>"). Run alone on the same boot, the class passes 3/3.
+- **With the fix**, the same five pairs: touch mode `false` after every tap test, **5 of 5 passed** (3/3 each).
+- Not affected after the tap: `TvHomeNavigationTest` 18/18 and `:core:designsystem`'s device tests 28/28. They press a
+  key before they read focus.
+
+**Fix, tests only:** `TouchModeReset`, a JUnit rule in `:core:devicetest`, calls
+`Instrumentation.setInTouchMode(false)` **before and after** each test. Both sides use it, so the protection does not
+depend on every test that taps remembering to (review on #248):
+
+- **Every test that taps:** `SearchScreenTvDeviceTest` (`device.click`), `RestorePinGateTest` (`cancelButton().click()`,
+  from #227), and `AccountSelectTvNavigationTest` (`apply.click()`, `KMP-73`), whose own `setInTouchMode(false)` in
+  `@After` is replaced by the rule. `PinAttemptsPromptTest` does not tap.
+- **Every test that reads focus:** each device-test class that asserts what has focus (`assertIsFocused`,
+  `isFocused`, `focusedText`, `focusedLabel`, or that drives a `DpadDriver`), 31 classes across `:app`,
+  `:core:designsystem` and the seven feature modules, `TvHomeNavigationTest`, `TvDetailNavigationTest` and
+  `TvPlaybackPanelsNavigationTest` among them. **DECIDED:** "asserts initial focus" can't be told from a grep, so the
+  options were (A) a hand-picked subset or (B) every class that asserts focus at all. B was chosen: a reset costs one
+  binder call per test, and a missed class is a flaky test later.
+- `StateActionDeviceTest` already calls `setInTouchMode(false)` itself and is left as it is.
+
+### Train 9 (measured 2026-11-08, `Television_720p` API 36)
+
+On train 9 (`ca95f7655`), `RestorePinGateTest` left touch mode on, and the train's paired runs failed
+`TvHomeNavigationTest.aRailEnteredFromTheNavRailBeforeTheRowsLandKeepsFocus` and `TvPlaybackPanelsNavigationTest`
+("No panel"); both pass alone. Measured here, one boot per head, each step a separate Gradle run:
+
+| Pair | Train head | With the rule |
+|---|---|---|
+| `RestorePinGateTest` → `TvPlaybackPanelsNavigationTest` | touch mode `true`; **1 of 5 failed**: `switchingWhilePlayingKeepsPlayingAtThePosition`, "No panel" at `openSourcePanel` | touch mode `false`; **5/5, three times in a row** |
+| `RestorePinGateTest` → `TvHomeNavigationTest#aRailEntered…KeepsFocus` (that test alone) | touch mode `true`; passed: **did not reproduce** | touch mode `false`; passed three times in a row |
+| `RestorePinGateTest` → the whole `TvHomeNavigationTest` | touch mode `true`; 18/18: **did not reproduce** here | touch mode `false`; 18/18, three times in a row |
+
+The train's own paired runs failed `aRailEntered…KeepsFocus` 3 of 3 ("the hero's title is asked for"); on this
+emulator the Home pair passed on the train head too, so these runs show the rule is safe for Home, **not** that it is
+the cause there. The train also saw `TvHomeNavigationTest` fail once alone; that is not touch mode and is not
+claimed here.
+
+## BUG-69 — At launch, the window's own focus grant read as a person's choice, so the hero lost focus · **medium, TV focus**
+
+**Status:** fixed in this PR · found 2026-11-08, `TvHomeNavigationTest` flaking on master and on train 9
+
+`aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept` sometimes failed with "the hero of Fake One holds
+focus, was Watching". A real person sees the same thing. On a cold start with bookmarks or Continue watching on screen,
+focus can open on a chip or a card instead of the hero.
+
+**Cause, from logging** (a local change, not committed):
+```
+onResume owed=true hasFocus=false windowFocus=false
+request=false
+globalFocus old=null new=AndroidComposeView inPage=true
+screenFocus has=true requested=false fromHost=false
+landing owed=true inView=true local=true fromHost=false free=false
+```
+When `HomeTvFragment` resumes, the window often isn't focused yet, so the host's own focus request finds nothing. The
+window then gives focus to the first stop it finds. That is a bookmark chip or a Continue watching card when those
+local rails draw before the rows. Home's landing rule (`BUG-41`) read that arrival as a person's choice
+(`fromHost=false`), so it didn't move focus to the hero.
+
+**Fix.** A person's arrival always comes from somewhere: a key on the page, or the nav rail. `HomeTvFragment` listens
+for global focus changes. When focus enters the page from *nothing focused* while a landing is owed, it calls
+`HomeHostFocus.grantedFromNothing`, which marks that arrival as the host's own, the same as one its own request causes.
+Android reports the global change before the page's own focus change, so the landing sees it in time. Entering from
+the nav rail (`old` is the rail) is unchanged, and `aRailEnteredFromTheNavRailBeforeTheRowsLandKeepsFocus` still
+covers it.
+
+**Proof.** All results are local, `Television_720p`:
+- Red: the train's XMLs failed 2 runs in 3. With the logging above, master failed 5 runs in 5. Master without the
+  logging passed 3 in 3 in the proof run, so this is a race and the timing decides it.
+- After, alone on master: 10 runs in 10 green, 18 tests and 0 failures each.
+- Paired after `RestorePinGateTest` on train 9 with `BUG-59`'s touch-mode reset: 1 of 3 green with the fix and 1 of 3
+  without it. Every red, with or without the fix, is a different test,
+  `aRailEnteredFromTheNavRailBeforeTheRowsLandKeepsFocus` ("the hero's title is asked for": after the held pages are
+  released, the provider is never asked within 15 s). It isn't this fix's failure. It's `BUG-72`, tracked
+  separately, and it's the paired failure that remains.
+  `aBookmarkIsOnItsRailOpensItsRealPageAndFocusComesBackAndAChipIsKept` passed in all six pairs.
+
+**Coverage.**
+- `HomeHostFocusTest` (common): a grant from nothing marks the arrival only while a landing is owed. With none owed,
+  it leaves a mark it didn't make, so `requested = landingOwed` would fail.
+- `HomeScreenTvDeviceTest.focusTheWindowGaveFromNothingBeforeTheHeroLandedGoesToTheHeroAndTheMarkIsCleared`: the hero
+  still takes focus, and the landing clears a mark no arrival took.
+- `HomeTvFragment`'s global focus listener, the wiring that calls `grantedFromNothing`, is covered by
+  `TvHomeNavigationTest` only, through the real window. No test of `:feature:home` reaches it.
+
+## BUG-72 — After `RestorePinGateTest`, TV Home's rows never arrived · **low, test harness**
+
+**Status:** fixed in this PR · found 2026-11-08, train 9's paired device runs
+
+Run after `RestorePinGateTest` (`#227`, train 9 only), `TvHomeNavigationTest.aRailEnteredFromTheNavRailBeforeTheRowsLandKeepsFocus`
+failed with "the hero's title is asked for". Alone, it passed. It isn't a fault in the app: a restore doesn't break
+Home's provider loading. The harness never let the screen settle.
+
+**Cause.** Compose (ui-android 1.12.1) keeps one animator scale per `Context` for the whole process
+(`WindowRecomposer_androidKt.animationScale`). It reads the setting once, when it first makes that state, and after that
+only a `ContentObserver` change updates it. Nothing re-reads it when a new window subscribes. `RestorePinGateTest`'s
+window read 1. The Home test then set `animator_duration_scale` to 0 for its own case, with no window up, so nothing
+saw the change. With the pages held, Home's loading skeleton pulsed for ever. `ActivityScenario.launch` waits for
+idle, so it sat until the held pages timed out (`safeApiCall`, 120 s). The first pages came back failed, with no rows,
+and the hero's title was never asked for.
+
+Measured on train 9 (`575a2d99b`), `Television_720p`, all local:
+- `RestorePinGateTest#withNoLockedProfileNothingIsAsked`, then the Home test: 3 of 3 red. With
+  `#aWrongPin…` first: 1 of 3 red.
+- With logging (not committed), 3 of 3 red: both pages asked for, none loaded, the first pages failed after 120 s.
+
+**Fix.** `:app`'s device tests run with `testOptions.animationsDisabled = true`, so every scale is 0 from the start of
+the run, for every window, and there's no cached 1 to go stale. The Home test's own setting flip is removed because
+it's now redundant. A fix that cleared Compose's cache by reflection also worked, but it was not taken, because it
+reaches into Compose internals.
+
+**Proof**, all local, `Television_720p`:
+- The 3-of-3 red pairing: 3 of 3 green.
+- The whole `RestorePinGateTest` with the whole `TvHomeNavigationTest`, on `575a2d99b`: 20/0, 20/0, then 20/1. The
+  one failure was `aBookmarkIsOnItsRail…` ("the hero of Fake One holds focus, was Watching"). That's `BUG-69`, which
+  `575a2d99b` doesn't have the fix for.
+- The same pair with `BUG-69`'s fix, which is train 9's real state: 20/0, three runs in three.
+- The full `:app` device suite: 173 tests, 0 failures, 1 skipped. The skip is `TvHomeRealPluginProof`, which is skipped
+  unless a plugin has been pushed to the device. No test relied on animations running.
+
+## BUG-74 — Train 9's player panels named real sites and titles · **low, test only**
+
+**Status:** fixed in this PR · the PM's call, 2026-11-08 · the rule `BUG-70` applied to `#205`
+
+`#205` (TV player panels) came with the names of real streaming sites ("Vidsrc", "Filemoon", "Streamwish", "Doodstream")
+and real titles ("Arcane", "Powder", "What If...?", "Dr.Stone", "Mr.Robot"), in tests, screenshots and two KDoc
+examples. Tests, screenshots and previews get copied, so they use names that belong to no real title or site, as
+`DS-23` set.
+
+**Fix.** Test code, two KDoc comments and one line in `kmp.md`. No code that runs changes:
+
+| Was | Now |
+|---|---|
+| "Vidsrc", source id `vidsrc` | "Source One", `sourceone` |
+| "Filemoon", "Streamwish", "Doodstream" | "Source Two", "Source Three", "Source Four" |
+| "Arcane", "Powder" | "Quiet Harbor", "Low Tide" (`BUG-70`'s) |
+| "What If...?" | "Harbor Lights...?" (`BUG-70`'s, so the later merge with master keeps both) |
+| "Dr.Stone", "Mr.Robot" | "Dr.Harbor", "Mr.Lantern" |
+
+Every property a test depends on is kept:
+- The dotted titles keep their shape. Lowercased, they match `BARE_HOST` and do not match `HOST_WITH_TAIL`, as the old
+  ones did, so `aTitleWithAQuestionMarkStays` still checks that a title of a host's shape is kept.
+- The four source rows still start with four different words, so each focus assertion still tells them apart.
+- A source with no quality still has a name alone ("Source Three").
+
+**Screenshots.** All five `playback-panel-*` references changed. `source` differed in 8,687 pixels, and the other four
+in 4,740 each. The diff was read before recording. Every changed pixel lies inside the lines whose words changed (the
+title, the episode line and the SOURCE cell, and in `source` also the four source rows), and nothing else moved.
+
+**Proof,** all local on `Television_720p` (CI is off):
+- `PlaybackPanelTvDeviceTest`: before the re-record, 10 tests with 5 failures (the five screenshots). After it, 10/0
+  three times in a row, with all five screenshots identical (0 pixels).
+- `TvPlaybackPanelsNavigationTest` (`:app`): 5/0.
+- `TvHudFactsTest` 8/0 and `TvPanelRowsTest` 3/0 (JVM).
+
+**Still in the tree, not from `#205`.** A scan of train 9 finds about 466 lines in some 60 files that name real titles
+or sites, nearly all already on master: "Dune" (307), "Witcher" (105), "Vidsrc" (28), "Arcane" (26), "Severance",
+"Nine Lives", "Gogoanime", "Naruto", "Internet Archive". `BUG-70` fixes the HUD tests' share on master. The rest is
+for its own task.

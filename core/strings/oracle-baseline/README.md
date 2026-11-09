@@ -120,6 +120,42 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Twenty-sixth move, 2026-11-08 — Train 9 (`#205`, `#228`, `#235`, `#224`, `#227`, `#230`, `#239`), one move: 12 new keys
+
+One combined baseline move for the train that merges `#205` (`KMP-66`), `#228` (`I18N-17`), `#235` (`I18N-18`), `#224`
+(`BUG-52`), `#227` (`BUG-54`), `#230` (`BUG-55`) and `#239` (`KMP-80`) together. Three of them carry keys, and each had
+recorded its own move from its own branch point: `#205` as a "twenty-third" (after master's twenty-second), `#228` as an
+unnumbered "Move for `I18N-17`" (after master's twenty-third) and `#230` as a "twenty-fourth" (branched before master's
+twenty-first). Those headings collided with each other and with master's twenty-third, so none of them is kept: the train
+regenerated once from the live generator on master's baseline, and all three are recorded here as this one move. It was
+first recorded as the twenty-fourth on master's twenty-third; trains 11 and 12 landed the twenty-fourth and twenty-fifth
+first, so the train merged master and regenerated once more on master's baseline with the twenty-fifth in it. `#235`, `#224`, `#227` and `#239` add none.
+
+New keys are approved in general (`I18N-09`, above). Additive, every key authored in all 62 directories, none a plural
+(`OWN` grows by 12 x 62 = 744):
+
+| PR | keys | `decoded` | `emitted` | `lookup` |
+|---|---:|---:|---:|---:|
+| `#205` `KMP-66`, the TV playback panels: `player_panel_failed`, `player_panel_keeps`, `player_panel_numbered`, `player_panel_on`, `player_panel_open`, `player_panel_quality_profile`, `player_panel_quality_unknown`, `player_panel_retry_all`, `player_panel_style`, `player_panel_use` | 10 | 620 | 640 | 870 |
+| `#228` `I18N-17`, the local library's name: `library_source_local` | 1 | 62 | 64 | 87 |
+| `#230` `BUG-55`, the wrong-PIN wait: `pin_error_wait` (the time is a `0:30`-style countdown) | 1 | 62 | 64 | 87 |
+| **total** | **12** | **744** | **768** | **1,044** |
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 56,492 | 57,236 | 744 | 0 | 0 |
+| `emitted.tsv` | 59,157 | 59,925 | 768 | 0 | 0 |
+| `lookup.tsv` | 102,425 | 103,469 | 1,044 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines
+lost in any file, every line that was in a file before is in it after in the same order, and every added line names exactly
+one of the twelve keys, all twelve present: 12 x 62, 12 x 64 and 12 x 87. Split by the PR that owns each key, the added lines
+equal, file by file, what each PR measured on its own branch (the per-PR columns above). `report.txt` moved only in its
+counts: `OWN` 54,506 -> 55,250 (12 x 62), visible keys 1,143 -> 1,155, plurals unchanged at 29, and 12 more values in each of the
+two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 54,506 -> 55,250.
+
 ## Twenty-fifth move, 2026-11-08 — `I18N-21`, 41 new keys for the account boards (`DS-25`)
 
 New keys are approved in general (`I18N-09`), and the owner approved the boards' wording. Additive: 41 `account_*`

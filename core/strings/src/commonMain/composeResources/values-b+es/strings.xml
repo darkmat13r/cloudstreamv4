@@ -75,6 +75,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d sección</item><item quantity="many">%d secciones</item><item quantity="other">%d secciones</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="many">%d títulos</item><item quantity="other">%d títulos</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d enlace oculto</item><item quantity="many">%d enlaces ocultos</item><item quantity="other">%d enlaces ocultos</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d segundo</item><item quantity="many">%d segundos</item><item quantity="other">%d segundos</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d fuente</item><item quantity="many">%d fuentes</item><item quantity="other">%d fuentes</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Siguiente episodio en %d s</item><item quantity="many">Siguiente episodio en %d s</item><item quantity="other">Siguiente episodio en %d s</item></plurals>
@@ -472,6 +473,7 @@
 <string name="library_sort_supported">%1$s admite %2$d de %3$d</string>
 <string name="library_sort_not_kept">%s no lo guarda</string>
 <string name="library_source">Origen de la biblioteca</string>
+<string name="library_source_local">Local</string>
 <string name="library_source_note">Uno a la vez · cambiar recarga</string>
 <string name="library_sync_cached">En caché</string>
 <string name="library_sync_failed">No se pudo sincronizar %1$s. Son de hace %2$s.</string>
@@ -555,6 +557,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">PIN incorrecto. Por favor, inténtelo de nuevo.</string>
 <string name="pin_error_length">El PIN debe tener 4 caracteres</string>
+<string name="pin_error_wait">Demasiados PIN incorrectos. Inténtalo de nuevo en %1$s</string>
 <string name="play_episode">Reproducir Episodio</string>
 <string name="play_episode_toast">Reproducir Episodio</string>
 <string name="play_from_beginning_img_des">Reproducir desde el principio</string>
@@ -588,6 +591,15 @@
 <string name="player_mute">Silenciar</string>
 <string name="player_notification_channel_description">La notificación del reproductor para controlar la reproducción en segundo plano</string>
 <string name="player_notification_channel_name">Notificaciones del reproductor</string>
+<string name="player_panel_failed">falló</string>
+<string name="player_panel_keeps">mantiene %s</string>
+<string name="player_panel_on">Activado</string>
+<string name="player_panel_open">Abrir</string>
+<string name="player_panel_quality_profile">Perfil de calidad</string>
+<string name="player_panel_quality_unknown">calidad desconocida</string>
+<string name="player_panel_retry_all">Reintentar todas las fuentes</string>
+<string name="player_panel_style">Estilo de subtítulos</string>
+<string name="player_panel_use">Usar</string>
 <string name="player_play_now">Reproducir ahora</string>
 <string name="player_pref">Reproductor de video preferido</string>
 <string name="player_settings_always_ask">Preguntar siempre</string>

@@ -75,4 +75,13 @@ sealed interface PlayerHudAction {
     data object OpenSubtitles : PlayerHudAction
     data object OpenAudio : PlayerHudAction
     data object OpenSpeed : PlayerHudAction
+
+    /** A 7e panel's row was pressed. Pressing is the commit. */
+    data class PanelRowPressed(val kind: PanelKind, val key: String) : PlayerHudAction
+
+    /** BACK on a panel: up a level, or closed, focus going back to the selector that opened it. */
+    data object PanelBack : PlayerHudAction
+
+    /** 7e's pinned `Done`: closes, and nothing is pending to apply. */
+    data object PanelDone : PlayerHudAction
 }

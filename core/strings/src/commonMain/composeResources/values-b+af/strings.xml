@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOEKMERK</item><item quantity="other">%d BOEKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d afdeling kon nie laai nie</item><item quantity="other">%d afdelings kon nie laai nie</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titel</item><item quantity="other">%d titels</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d sekonde</item><item quantity="other">%d sekondes</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d bron</item><item quantity="other">%d bronne</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Volgende episode oor %d s</item><item quantity="other">Volgende episode oor %d s</item></plurals>
@@ -224,6 +225,7 @@
 <string name="pick_subtitle">Onderskrifte</string>
 <string name="pin_error_incorrect">Verkeerde PIN. Probeer weer.</string>
 <string name="pin_error_length">PIN moet 4 karakters bevat</string>
+<string name="pin_error_wait">Te veel verkeerde PIN's. Probeer weer oor %1$s</string>
 <string name="play_episode">Speel Episode</string>
 <string name="play_livestream_button">Speel Regstreeks</string>
 <string name="play_movie_button">Speel Fliek</string>
@@ -245,6 +247,15 @@
 <string name="player_hud_speed">Spoed</string>
 <string name="player_hud_up_next">Volgende · %s</string>
 <string name="player_mute">Demp</string>
+<string name="player_panel_failed">misluk</string>
+<string name="player_panel_keeps">behou %s</string>
+<string name="player_panel_on">Aan</string>
+<string name="player_panel_open">Maak oop</string>
+<string name="player_panel_quality_profile">Kwaliteitsprofiel</string>
+<string name="player_panel_quality_unknown">kwaliteit onbekend</string>
+<string name="player_panel_retry_all">Probeer alle bronne weer</string>
+<string name="player_panel_style">Onderskrifstyl</string>
+<string name="player_panel_use">Gebruik</string>
 <string name="player_source_playing">Speel</string>
 <string name="player_source_resumes_at">Wissel behou jou posisie: gaan voort by %1$s</string>
 <string name="player_source_retry">Probeer weer</string>
@@ -459,6 +470,7 @@
 <string name="library_sort_supported">%1$s ondersteun %2$d van %3$d</string>
 <string name="library_sort_not_kept">Nie deur %s gehou nie</string>
 <string name="library_source">Biblioteekbron</string>
+<string name="library_source_local">Plaaslik</string>
 <string name="library_source_note">Een op 'n slag · oorskakel herlaai</string>
 <string name="library_sync_cached">Gekas</string>
 <string name="library_sync_failed">Kon %1$s nie sinkroniseer nie. Hierdie is van %2$s gelede.</string>

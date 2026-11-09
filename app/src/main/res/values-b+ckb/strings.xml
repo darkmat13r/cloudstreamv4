@@ -210,6 +210,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s ئەمە هەڵناگرێت"</string>
 <string name="library_sort_supported" formatted="true">"%1$s پشتگیری %2$d لە %3$d دەکات"</string>
 <string name="library_source">"سەرچاوەی کتێبخانە"</string>
+<string name="library_source_local">"ناوخۆیی"</string>
 <string name="library_source_note">"یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە"</string>
 <string name="library_sync_cached">"هەڵگیراوە"</string>
 <string name="library_sync_failed" formatted="true">"نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن."</string>
@@ -231,6 +232,7 @@
 <string name="open_local_video">"ڤیدیۆی ناوخۆیی بکەرەوە"</string>
 <string name="pick_source">"سەرچاوەکان"</string>
 <string name="pick_subtitle">"ژێرنووسەکان"</string>
+<string name="pin_error_wait" formatted="true">"زۆر PINی هەڵە. دوای %1$s دووبارە هەوڵ بدەرەوە"</string>
 <string name="play_from_beginning_img_des">"لە سەرەتاوە دەست پێ بکە"</string>
 <string name="play_torrent_button">"تۆرێنت ستریم بکە"</string>
 <string name="player_audio_stereo">"ستیریۆ"</string>
@@ -250,6 +252,16 @@
 <string name="player_hud_up_next" formatted="true">"دواتر · %s"</string>
 <string name="player_menu_playback">"لێدان"</string>
 <string name="player_mute">"بێدەنگکردن"</string>
+<string name="player_panel_failed">"شکستی هێنا"</string>
+<string name="player_panel_keeps" formatted="true">"%s دەهێڵێتەوە"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"چالاک"</string>
+<string name="player_panel_open">"کردنەوە"</string>
+<string name="player_panel_quality_profile">"پرۆفایلی کوالیتی"</string>
+<string name="player_panel_quality_unknown">"کوالیتی نەزانراو"</string>
+<string name="player_panel_retry_all">"هەموو سەرچاوەکان دووبارە تاقی بکەرەوە"</string>
+<string name="player_panel_style">"شێوازی ژێرنووس"</string>
+<string name="player_panel_use">"بەکارهێنان"</string>
 <string name="player_play_now">"ئێستا لێبدە"</string>
 <string name="player_source_decoded" formatted="true">"%s دیکۆدکراو"</string>
 <string name="player_source_playing">"لێدەدرێت"</string>

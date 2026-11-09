@@ -472,6 +472,7 @@
 <string name="library_sort_not_kept" formatted="true">"Sparas inte av %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s stöder %2$d av %3$d"</string>
 <string name="library_source">"Bibliotekskälla"</string>
+<string name="library_source_local">"Lokal"</string>
 <string name="library_source_note">"En i taget · byte laddar om"</string>
 <string name="library_sync_cached">"Cachad"</string>
 <string name="library_sync_failed" formatted="true">"Det gick inte att synkronisera %1$s. Detta är från för %2$s sedan."</string>
@@ -555,6 +556,7 @@
 <string name="pin">"PIN-kod"</string>
 <string name="pin_error_incorrect">"Felaktig PIN-kod. Försök igen."</string>
 <string name="pin_error_length">"PIN-koden måste vara fyra tecken"</string>
+<string name="pin_error_wait" formatted="true">"För många felaktiga PIN-koder. Försök igen om %1$s"</string>
 <string name="play_episode">"Spela avsnitt"</string>
 <string name="play_episode_toast">"Spela upp avsnitt"</string>
 <string name="play_from_beginning_img_des">"Spela från början"</string>
@@ -588,6 +590,16 @@
 <string name="player_mute">"Stäng av ljudet"</string>
 <string name="player_notification_channel_description">"Spelarnotisen för att styra uppspelningen i bakgrunden"</string>
 <string name="player_notification_channel_name">"Spelarnotiser"</string>
+<string name="player_panel_failed">"misslyckades"</string>
+<string name="player_panel_keeps" formatted="true">"behåller %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"På"</string>
+<string name="player_panel_open">"Öppna"</string>
+<string name="player_panel_quality_profile">"Kvalitetsprofil"</string>
+<string name="player_panel_quality_unknown">"okänd kvalitet"</string>
+<string name="player_panel_retry_all">"Försök med alla källor igen"</string>
+<string name="player_panel_style">"Undertextstil"</string>
+<string name="player_panel_use">"Använd"</string>
 <string name="player_play_now">"Spela nu"</string>
 <string name="player_pref">"Önskad videospelare"</string>
 <string name="player_settings_always_ask">"Fråga alltid"</string>

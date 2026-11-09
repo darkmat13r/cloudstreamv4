@@ -75,6 +75,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d sekce</item><item quantity="few">%d sekce</item><item quantity="many">%d sekce</item><item quantity="other">%d sekcí</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titul</item><item quantity="few">%d tituly</item><item quantity="many">%d titulu</item><item quantity="other">%d titulů</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d skrytý odkaz</item><item quantity="few">%d skryté odkazy</item><item quantity="many">%d skrytých odkazů</item><item quantity="other">%d skrytých odkazů</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d sekunda</item><item quantity="few">%d sekundy</item><item quantity="many">%d sekundy</item><item quantity="other">%d sekund</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d zdroj</item><item quantity="few">%d zdroje</item><item quantity="many">%d zdroje</item><item quantity="other">%d zdrojů</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Další díl za %d s</item><item quantity="few">Další díl za %d s</item><item quantity="many">Další díl za %d s</item><item quantity="other">Další díl za %d s</item></plurals>
@@ -472,6 +473,7 @@
 <string name="library_sort_supported">%1$s podporuje %2$d z %3$d</string>
 <string name="library_sort_not_kept">%s toto neuchovává</string>
 <string name="library_source">Zdroj knihovny</string>
+<string name="library_source_local">Místní</string>
 <string name="library_source_note">Jeden po druhém · přepnutí znovu načte</string>
 <string name="library_sync_cached">Z mezipaměti</string>
 <string name="library_sync_failed">%1$s se nepodařilo synchronizovat. Tato data jsou z doby před %2$s.</string>
@@ -555,6 +557,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Nesprávný PIN. Zkuste to prosím znovu.</string>
 <string name="pin_error_length">PIN musí obsahovat 4 znaky</string>
+<string name="pin_error_wait">Příliš mnoho chybných PINů. Zkuste to znovu za %1$s</string>
 <string name="play_episode">Přehrát epizodu</string>
 <string name="play_episode_toast">Přehrát epizodu</string>
 <string name="play_from_beginning_img_des">Přehrát od začátku</string>
@@ -588,6 +591,15 @@
 <string name="player_mute">Vypnout zvuk</string>
 <string name="player_notification_channel_description">Oznámení přehrávače pro ovládání přehrávání na pozadí</string>
 <string name="player_notification_channel_name">Oznámení přehrávače</string>
+<string name="player_panel_failed">selhalo</string>
+<string name="player_panel_keeps">zachová %s</string>
+<string name="player_panel_on">Zapnuto</string>
+<string name="player_panel_open">Otevřít</string>
+<string name="player_panel_quality_profile">Profil kvality</string>
+<string name="player_panel_quality_unknown">neznámá kvalita</string>
+<string name="player_panel_retry_all">Zkusit znovu všechny zdroje</string>
+<string name="player_panel_style">Styl titulků</string>
+<string name="player_panel_use">Použít</string>
 <string name="player_play_now">Přehrát hned</string>
 <string name="player_pref">Preferovaný přehrávač videí</string>
 <string name="player_settings_always_ask">Vždy se zeptat</string>

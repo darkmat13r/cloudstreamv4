@@ -109,8 +109,11 @@ private val RUN_OF_SPACES = Regex("\\s+")
 /** `file:/…`, with any number of slashes, up to the next whitespace. */
 private val FILE_URI = Regex("(?i)\\bfile:/\\S+")
 
-/** `scheme://[userinfo@]host[:port]`, then whatever follows up to the next whitespace. */
-private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*)://(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
+/**
+ * `scheme://[userinfo@]host[:port]`, then whatever follows up to the next whitespace. BUG-52: also
+ * when whitespace or a Unicode space (`\p{Z}`, NBSP among them) splits `scheme:` from `//`.
+ */
+private val URL_IN_TEXT = Regex("(?i)\\b([a-z][a-z0-9+.-]*):[\\s\\p{Z}]*//(?:[^\\s/?#@]*@)?([^\\s/?#@]*)(\\S*)")
 
 /**
  * An absolute path under a storage, home or volume root, up to a newline, a quote, `": "` or the end. A path may hold
@@ -126,14 +129,26 @@ private val WINDOWS_USER_PATH = Regex(
 )
 
 /**
+ * BUG-52: control and format characters (Unicode Cc and Cf: ZWSP, ZWJ, ZWNJ, BOM, bidi marks and the
+ * rest) out before any pattern runs, since one inside `://` (`https:<ZWSP>//`) would hide a url from
+ * [URL_IN_TEXT]. Line breaks stay, because they shape a stack trace. A tab becomes a space: a screen
+ * that strips controls after redaction (Home, Detail, the HUD) would otherwise rejoin `https:<tab>//`.
+ */
+private fun String.withoutHiddenCharacters(): String = replace('\t', ' ').filterNot { c ->
+    c.category == CharCategory.FORMAT ||
+        (c.category == CharCategory.CONTROL && c != '\n' && c != '\r')
+}
+
+/**
  * Text with a `file:` uri, a path under `/storage`, `/sdcard`, `/data/user`, `/mnt`, `/Users`, `/home` or `/Volumes`, or a
  * Windows `C:\Users\…` path replaced by `<path>`, and every other url cut to `scheme://host[:port]/<…>`. The host is kept
  * because it helps triage and is not a secret; the userinfo, path, query and fragment are not.
  *
- * Strip invisible characters **before** this: a format character inside `://` (`https:<ZWSP>//`) hides the url from
- * the pattern, and stripping it afterwards would put the whole url back together on screen.
+ * Invisible characters go first, inside this (BUG-52): a format character inside `://` (`https:<ZWSP>//`) would hide
+ * the url from the pattern, and stripping it afterwards would put the whole url back together on screen.
  */
 internal fun String.withoutUrls(): String = this
+    .withoutHiddenCharacters()
     .replace(FILE_URI, "<path>")
     .replace(URL_IN_TEXT) { match ->
         val (scheme, host, rest) = match.destructured

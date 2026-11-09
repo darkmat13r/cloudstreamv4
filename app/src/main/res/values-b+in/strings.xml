@@ -472,6 +472,7 @@
 <string name="library_sort_not_kept" formatted="true">"Tidak disimpan oleh %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s mendukung %2$d dari %3$d"</string>
 <string name="library_source">"Sumber pustaka"</string>
+<string name="library_source_local">"Lokal"</string>
 <string name="library_source_note">"Satu per satu · beralih memuat ulang"</string>
 <string name="library_sync_cached">"Tersimpan"</string>
 <string name="library_sync_failed" formatted="true">"Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu."</string>
@@ -555,6 +556,7 @@
 <string name="pin">"PIN"</string>
 <string name="pin_error_incorrect">"PIN Salah. Silahkan coba lagi."</string>
 <string name="pin_error_length">"PIN harus terdiri 4 karakter"</string>
+<string name="pin_error_wait" formatted="true">"Terlalu banyak PIN yang salah. Coba lagi dalam %1$s"</string>
 <string name="play_episode">"Putar Episode"</string>
 <string name="play_episode_toast">"Putar Episode"</string>
 <string name="play_from_beginning_img_des">"Putar dari awal"</string>
@@ -588,6 +590,16 @@
 <string name="player_mute">"Bisukan"</string>
 <string name="player_notification_channel_description">"Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang"</string>
 <string name="player_notification_channel_name">"Notifikasi pemain"</string>
+<string name="player_panel_failed">"gagal"</string>
+<string name="player_panel_keeps" formatted="true">"mempertahankan %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Aktif"</string>
+<string name="player_panel_open">"Buka"</string>
+<string name="player_panel_quality_profile">"Profil kualitas"</string>
+<string name="player_panel_quality_unknown">"kualitas tidak diketahui"</string>
+<string name="player_panel_retry_all">"Coba lagi semua sumber"</string>
+<string name="player_panel_style">"Gaya subtitel"</string>
+<string name="player_panel_use">"Gunakan"</string>
 <string name="player_play_now">"Putar sekarang"</string>
 <string name="player_pref">"Pemutar video utama"</string>
 <string name="player_settings_always_ask">"Selalu tanya"</string>

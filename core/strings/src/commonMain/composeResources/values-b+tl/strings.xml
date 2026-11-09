@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Hindi na-load ang %d seksyon</item><item quantity="other">Hindi na-load ang %d seksyon</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d pamagat</item><item quantity="other">%d na pamagat</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d segundo</item><item quantity="other">%d na segundo</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d source</item><item quantity="other">%d na source</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Susunod na episode sa loob ng %d s</item><item quantity="other">Susunod na episode sa loob ng %d s</item></plurals>
@@ -297,6 +298,7 @@
 <string name="pick_subtitle">Subtitles</string>
 <string name="picture_in_picture">Picture-in-picture</string>
 <string name="picture_in_picture_des">Magpatuloy ang playback sa isang maliit na player sa ibabaw ng ibang apps</string>
+<string name="pin_error_wait">Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s</string>
 <string name="play_episode">I-play ang episode</string>
 <string name="play_episode_toast">Play Episode</string>
 <string name="play_livestream_button">Panuorin ang Livestream</string>
@@ -319,6 +321,15 @@
 <string name="player_hud_speed">Bilis</string>
 <string name="player_hud_up_next">Susunod · %s</string>
 <string name="player_mute">I-mute</string>
+<string name="player_panel_failed">nabigo</string>
+<string name="player_panel_keeps">pinapanatili ang %s</string>
+<string name="player_panel_on">Naka-on</string>
+<string name="player_panel_open">Buksan</string>
+<string name="player_panel_quality_profile">Profile ng kalidad</string>
+<string name="player_panel_quality_unknown">hindi alam ang kalidad</string>
+<string name="player_panel_retry_all">Subukang muli ang lahat ng source</string>
+<string name="player_panel_style">Estilo ng subtitle</string>
+<string name="player_panel_use">Gamitin</string>
 <string name="player_size_settings">Pindutan upang baguhin ang laki</string>
 <string name="player_size_settings_des">Alisin ang black borders</string>
 <string name="player_source_playing">Nagpe-play</string>
@@ -590,6 +601,7 @@
 <string name="library_sort_supported">Sinusuportahan ng %1$s ang %2$d sa %3$d</string>
 <string name="library_sort_not_kept">Hindi itinatabi ng %s</string>
 <string name="library_source">Pinagmulan ng library</string>
+<string name="library_source_local">Local</string>
 <string name="library_source_note">Isa-isa · nagre-reload kapag nagpalit</string>
 <string name="library_sync_cached">Naka-cache</string>
 <string name="library_sync_failed">Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.</string>

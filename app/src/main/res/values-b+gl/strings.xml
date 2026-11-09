@@ -291,6 +291,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s non o garda"</string>
 <string name="library_sort_supported" formatted="true">"%1$s admite %2$d de %3$d"</string>
 <string name="library_source">"Orixe da biblioteca"</string>
+<string name="library_source_local">"Local"</string>
 <string name="library_source_note">"Unha de cada vez · cambiar recarga"</string>
 <string name="library_sync_cached">"Na caché"</string>
 <string name="library_sync_failed" formatted="true">"Non se puido sincronizar %1$s. Son de hai %2$s."</string>
@@ -336,6 +337,7 @@
 <string name="pick_subtitle">"Subtítulos"</string>
 <string name="picture_in_picture">"Imaxe en Imaxe"</string>
 <string name="picture_in_picture_des">"Continúa a reprodución nun reproductor miniatura enriba doutras aplicacións"</string>
+<string name="pin_error_wait" formatted="true">"Demasiados PIN incorrectos. Téntao de novo en %1$s"</string>
 <string name="play_episode">"Reproducir Episodio"</string>
 <string name="play_episode_toast">"Reproducir capítulo"</string>
 <string name="play_from_beginning_img_des">"Reproducir dende o comezo"</string>
@@ -361,6 +363,16 @@
 <string name="player_hud_up_next" formatted="true">"Seguinte · %s"</string>
 <string name="player_menu_playback">"Reprodución"</string>
 <string name="player_mute">"Silenciar"</string>
+<string name="player_panel_failed">"fallou"</string>
+<string name="player_panel_keeps" formatted="true">"mantén %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Activado"</string>
+<string name="player_panel_open">"Abrir"</string>
+<string name="player_panel_quality_profile">"Perfil de calidade"</string>
+<string name="player_panel_quality_unknown">"calidade descoñecida"</string>
+<string name="player_panel_retry_all">"Tentar de novo todas as fontes"</string>
+<string name="player_panel_style">"Estilo dos subtítulos"</string>
+<string name="player_panel_use">"Usar"</string>
 <string name="player_play_now">"Reproducir agora"</string>
 <string name="player_size_settings">"Botón de cambio de tamaño do reprodutor"</string>
 <string name="player_size_settings_des">"Eliminar bordes negros"</string>

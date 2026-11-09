@@ -234,6 +234,7 @@ values-b+af/strings.xml	string	library_sort_current	-	STR	Sorteer: %s
 values-b+af/strings.xml	string	library_sort_not_kept	-	STR	Nie deur %s gehou nie	
 values-b+af/strings.xml	string	library_sort_supported	-	STR	%1$s ondersteun %2$d van %3$d	
 values-b+af/strings.xml	string	library_source	-	STR	Biblioteekbron	
+values-b+af/strings.xml	string	library_source_local	-	STR	Plaaslik	
 values-b+af/strings.xml	string	library_source_note	-	STR	Een op 'n slag · oorskakel herlaai	
 values-b+af/strings.xml	string	library_sync_cached	-	STR	Gekas	
 values-b+af/strings.xml	string	library_sync_failed	-	STR	Kon %1$s nie sinkroniseer nie. Hierdie is van %2$s gelede.	
@@ -255,6 +256,7 @@ values-b+af/strings.xml	string	pick_source	-	STR	Bronne
 values-b+af/strings.xml	string	pick_subtitle	-	STR	Onderskrifte	
 values-b+af/strings.xml	string	pin_error_incorrect	-	STR	Verkeerde PIN. Probeer weer.	
 values-b+af/strings.xml	string	pin_error_length	-	STR	PIN moet 4 karakters bevat	
+values-b+af/strings.xml	string	pin_error_wait	-	STR	Te veel verkeerde PIN's. Probeer weer oor %1$s	
 values-b+af/strings.xml	string	play_episode	-	STR	Speel Episode	
 values-b+af/strings.xml	string	play_livestream_button	-	STR	Speel Regstreeks	
 values-b+af/strings.xml	string	play_movie_button	-	STR	Speel Fliek	
@@ -278,6 +280,16 @@ values-b+af/strings.xml	string	player_hud_speed	-	STR	Spoed
 values-b+af/strings.xml	string	player_hud_up_next	-	STR	Volgende · %s	
 values-b+af/strings.xml	string	player_menu_playback	-	STR	Afspeel	
 values-b+af/strings.xml	string	player_mute	-	STR	Demp	
+values-b+af/strings.xml	string	player_panel_failed	-	STR	misluk	
+values-b+af/strings.xml	string	player_panel_keeps	-	STR	behou %s	
+values-b+af/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+af/strings.xml	string	player_panel_on	-	STR	Aan	
+values-b+af/strings.xml	string	player_panel_open	-	STR	Maak oop	
+values-b+af/strings.xml	string	player_panel_quality_profile	-	STR	Kwaliteitsprofiel	
+values-b+af/strings.xml	string	player_panel_quality_unknown	-	STR	kwaliteit onbekend	
+values-b+af/strings.xml	string	player_panel_retry_all	-	STR	Probeer alle bronne weer	
+values-b+af/strings.xml	string	player_panel_style	-	STR	Onderskrifstyl	
+values-b+af/strings.xml	string	player_panel_use	-	STR	Gebruik	
 values-b+af/strings.xml	string	player_play_now	-	STR	Speel nou	
 values-b+af/strings.xml	string	player_source_decoded	-	STR	%s gedekodeer	
 values-b+af/strings.xml	string	player_source_playing	-	STR	Speel	
@@ -721,6 +733,7 @@ values-b+am/strings.xml	string	library_sort_current	-	STR	ደርድር፦ %s
 values-b+am/strings.xml	string	library_sort_not_kept	-	STR	በ%s አይያዝም	
 values-b+am/strings.xml	string	library_sort_supported	-	STR	%1$s ከ%3$d %2$d ይደግፋል	
 values-b+am/strings.xml	string	library_source	-	STR	የቤተ-መጽሐፍት ምንጭ	
+values-b+am/strings.xml	string	library_source_local	-	STR	አካባቢያዊ	
 values-b+am/strings.xml	string	library_source_note	-	STR	አንድ በአንድ · መቀየር እንደገና ይጭናል	
 values-b+am/strings.xml	string	library_sync_cached	-	STR	የተቀመጠ	
 values-b+am/strings.xml	string	library_sync_failed	-	STR	%1$sን ማመሳሰል አልተቻለም። እነዚህ ከ%2$s በፊት የነበሩ ናቸው።	
@@ -740,6 +753,7 @@ values-b+am/strings.xml	string	next_episode_time_min_format	-	STR	%dደቂቃ
 values-b+am/strings.xml	string	no_data	-	STR	ውሂብ የለም	
 values-b+am/strings.xml	string	pick_source	-	STR	ምንጮች	
 values-b+am/strings.xml	string	pick_subtitle	-	STR	የትርጉም ጽሑፎች	
+values-b+am/strings.xml	string	pin_error_wait	-	STR	በጣም ብዙ የተሳሳቱ ፒኖች። ከ%1$s በኋላ እንደገና ይሞክሩ	
 values-b+am/strings.xml	string	play_episode	-	STR	ክፍልን አጫውት	
 values-b+am/strings.xml	string	play_livestream_button	-	STR	የቀጥታ ስርጭት አጫውት	
 values-b+am/strings.xml	string	play_movie_button	-	STR	ሙቪ አጫውት	
@@ -763,6 +777,16 @@ values-b+am/strings.xml	string	player_hud_speed	-	STR	ፍጥነት
 values-b+am/strings.xml	string	player_hud_up_next	-	STR	ቀጣይ · %s	
 values-b+am/strings.xml	string	player_menu_playback	-	STR	መልሶ ማጫወት	
 values-b+am/strings.xml	string	player_mute	-	STR	ድምፅ አጥፋ	
+values-b+am/strings.xml	string	player_panel_failed	-	STR	አልተሳካም	
+values-b+am/strings.xml	string	player_panel_keeps	-	STR	%s ይቆያል	
+values-b+am/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+am/strings.xml	string	player_panel_on	-	STR	በርቷል	
+values-b+am/strings.xml	string	player_panel_open	-	STR	ክፈት	
+values-b+am/strings.xml	string	player_panel_quality_profile	-	STR	የጥራት መገለጫ	
+values-b+am/strings.xml	string	player_panel_quality_unknown	-	STR	ጥራት አይታወቅም	
+values-b+am/strings.xml	string	player_panel_retry_all	-	STR	ሁሉንም ምንጮች እንደገና ሞክር	
+values-b+am/strings.xml	string	player_panel_style	-	STR	የንዑስ ርዕስ ዘይቤ	
+values-b+am/strings.xml	string	player_panel_use	-	STR	ተጠቀም	
 values-b+am/strings.xml	string	player_play_now	-	STR	አሁን አጫውት	
 values-b+am/strings.xml	string	player_source_decoded	-	STR	%s ተፈትቷል	
 values-b+am/strings.xml	string	player_source_playing	-	STR	በመጫወት ላይ	
@@ -1467,6 +1491,7 @@ values-b+apc/strings.xml	string	library_sort_current	-	STR	الترتيب: %s
 values-b+apc/strings.xml	string	library_sort_not_kept	-	STR	%s ما بيحفظه	
 values-b+apc/strings.xml	string	library_sort_supported	-	STR	%1$s بيدعم %2$d من %3$d	
 values-b+apc/strings.xml	string	library_source	-	STR	مصدر الرفّ	
+values-b+apc/strings.xml	string	library_source_local	-	STR	محلي	
 values-b+apc/strings.xml	string	library_source_note	-	STR	وحدة بكل مرة · التبديل بيعيد التحميل	
 values-b+apc/strings.xml	string	library_sync_cached	-	STR	محفوظ	
 values-b+apc/strings.xml	string	library_sync_failed	-	STR	ما قدرنا نزامن %1$s. هدول من قبل %2$s.	
@@ -1550,6 +1575,7 @@ values-b+apc/strings.xml	string	picture_in_picture_des	-	STR	بعد ما تسك�
 values-b+apc/strings.xml	string	pin	-	STR	الأرقام السرية	
 values-b+apc/strings.xml	string	pin_error_incorrect	-	STR	الأرقام السرية يللي نحطت مش صحيحة. جرب مرة أخرى.	
 values-b+apc/strings.xml	string	pin_error_length	-	STR	لازم يكونو 4 أرقام	
+values-b+apc/strings.xml	string	pin_error_wait	-	STR	كتير PIN غلط. جرّب مرة تانية بعد %1$s	
 values-b+apc/strings.xml	string	play_episode	-	STR	مشّي الحلقة	
 values-b+apc/strings.xml	string	play_episode_toast	-	STR	مشّي الحلقة	
 values-b+apc/strings.xml	string	play_from_beginning_img_des	-	STR	بلشه من الأول	
@@ -1583,6 +1609,16 @@ values-b+apc/strings.xml	string	player_menu_playback	-	STR	التشغيل
 values-b+apc/strings.xml	string	player_mute	-	STR	كتّم الصوت	
 values-b+apc/strings.xml	string	player_notification_channel_description	-	STR	نوتيفيكايشن بت خليك تتحكم بال ڤيديو لما م يكون الآپ مفتوح	
 values-b+apc/strings.xml	string	player_notification_channel_name	-	STR	شغل الڤيديو عبر النوتيفيكايشنز	
+values-b+apc/strings.xml	string	player_panel_failed	-	STR	فشل	
+values-b+apc/strings.xml	string	player_panel_keeps	-	STR	بيحافظ على %s	
+values-b+apc/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+apc/strings.xml	string	player_panel_on	-	STR	شغّال	
+values-b+apc/strings.xml	string	player_panel_open	-	STR	افتح	
+values-b+apc/strings.xml	string	player_panel_quality_profile	-	STR	ملف الجودة	
+values-b+apc/strings.xml	string	player_panel_quality_unknown	-	STR	الجودة مش معروفة	
+values-b+apc/strings.xml	string	player_panel_retry_all	-	STR	جرّب كل المصادر من جديد	
+values-b+apc/strings.xml	string	player_panel_style	-	STR	شكل الترجمة	
+values-b+apc/strings.xml	string	player_panel_use	-	STR	استخدم	
 values-b+apc/strings.xml	string	player_play_now	-	STR	شغّل هلق	
 values-b+apc/strings.xml	string	player_pref	-	STR	مشغل الڤيديو المفضل	
 values-b+apc/strings.xml	string	player_settings_always_ask	-	STR	دايمًا سئالوني	
@@ -2662,6 +2698,7 @@ values-b+ar/strings.xml	string	library_sort_current	-	STR	الترتيب: %s
 values-b+ar/strings.xml	string	library_sort_not_kept	-	STR	لا يحفظه %s	
 values-b+ar/strings.xml	string	library_sort_supported	-	STR	يدعم %1$s %2$d من %3$d	
 values-b+ar/strings.xml	string	library_source	-	STR	مصدر المكتبة	
+values-b+ar/strings.xml	string	library_source_local	-	STR	محلي	
 values-b+ar/strings.xml	string	library_source_note	-	STR	مصدر واحد في كل مرة · التبديل يعيد التحميل	
 values-b+ar/strings.xml	string	library_sync_cached	-	STR	مخزّن	
 values-b+ar/strings.xml	string	library_sync_failed	-	STR	تعذّرت مزامنة %1$s. هذه من قبل %2$s.	
@@ -2745,6 +2782,7 @@ values-b+ar/strings.xml	string	picture_in_picture_des	-	STR	يستمر في ال
 values-b+ar/strings.xml	string	pin	-	STR	PIN	
 values-b+ar/strings.xml	string	pin_error_incorrect	-	STR	رقم PIN غير صحيح. برجاء المحاولة مرة اخرى.	
 values-b+ar/strings.xml	string	pin_error_length	-	STR	رقم ال PIN يجب ان يكون 4 ارقام	
+values-b+ar/strings.xml	string	pin_error_wait	-	STR	محاولات PIN خاطئة كثيرة جدًا. حاول مرة أخرى بعد %1$s	
 values-b+ar/strings.xml	string	play_episode	-	STR	تشغيل الحلقة	
 values-b+ar/strings.xml	string	play_episode_toast	-	STR	تشغيل الحلقة	
 values-b+ar/strings.xml	string	play_from_beginning_img_des	-	STR	تشغيل من البداية	
@@ -2778,6 +2816,16 @@ values-b+ar/strings.xml	string	player_menu_playback	-	STR	التشغيل
 values-b+ar/strings.xml	string	player_mute	-	STR	كتم الصوت	
 values-b+ar/strings.xml	string	player_notification_channel_description	-	STR	تنبيه المشغل المسؤول عن تشغيل الميديا في الخلفية	
 values-b+ar/strings.xml	string	player_notification_channel_name	-	STR	تنبيهات المشغل	
+values-b+ar/strings.xml	string	player_panel_failed	-	STR	فشل	
+values-b+ar/strings.xml	string	player_panel_keeps	-	STR	يحافظ على %s	
+values-b+ar/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ar/strings.xml	string	player_panel_on	-	STR	مُفعّل	
+values-b+ar/strings.xml	string	player_panel_open	-	STR	فتح	
+values-b+ar/strings.xml	string	player_panel_quality_profile	-	STR	ملف الجودة	
+values-b+ar/strings.xml	string	player_panel_quality_unknown	-	STR	الجودة غير معروفة	
+values-b+ar/strings.xml	string	player_panel_retry_all	-	STR	إعادة محاولة جميع المصادر	
+values-b+ar/strings.xml	string	player_panel_style	-	STR	نمط الترجمة	
+values-b+ar/strings.xml	string	player_panel_use	-	STR	استخدام	
 values-b+ar/strings.xml	string	player_play_now	-	STR	شغّل الآن	
 values-b+ar/strings.xml	string	player_pref	-	STR	مُشغل الفيديو المفضل	
 values-b+ar/strings.xml	string	player_settings_always_ask	-	STR	أسال دائما	
@@ -3687,6 +3735,7 @@ values-b+ars/strings.xml	string	library_sort_current	-	STR	الترتيب: %s
 values-b+ars/strings.xml	string	library_sort_not_kept	-	STR	لا يحفظه %s	
 values-b+ars/strings.xml	string	library_sort_supported	-	STR	يدعم %1$s %2$d من %3$d	
 values-b+ars/strings.xml	string	library_source	-	STR	مصدر المكتبة	
+values-b+ars/strings.xml	string	library_source_local	-	STR	محلي	
 values-b+ars/strings.xml	string	library_source_note	-	STR	مصدر واحد في كل مرة · التبديل يعيد التحميل	
 values-b+ars/strings.xml	string	library_sync_cached	-	STR	مخزّن	
 values-b+ars/strings.xml	string	library_sync_failed	-	STR	تعذّرت مزامنة %1$s. هذه من قبل %2$s.	
@@ -3732,6 +3781,7 @@ values-b+ars/strings.xml	string	pick_source	-	STR	مصادر
 values-b+ars/strings.xml	string	pick_subtitle	-	STR	ترجمات	
 values-b+ars/strings.xml	string	picture_in_picture	-	STR	صور في صور	
 values-b+ars/strings.xml	string	picture_in_picture_des	-	STR	يستمر التشغيل في مشغل مصغر فوق التطبيقات الأخرى	
+values-b+ars/strings.xml	string	pin_error_wait	-	STR	محاولات PIN غلط كثيرة. حاول مرة ثانية بعد %1$s	
 values-b+ars/strings.xml	string	play_episode	-	STR	تشغيل الحلقة	
 values-b+ars/strings.xml	string	play_episode_toast	-	STR	تشغيل الحلقة	
 values-b+ars/strings.xml	string	play_livestream_button	-	STR	تشغيل البث المباشر	
@@ -3756,6 +3806,16 @@ values-b+ars/strings.xml	string	player_hud_speed	-	STR	السرعة
 values-b+ars/strings.xml	string	player_hud_up_next	-	STR	التالي · %s	
 values-b+ars/strings.xml	string	player_menu_playback	-	STR	التشغيل	
 values-b+ars/strings.xml	string	player_mute	-	STR	كتم الصوت	
+values-b+ars/strings.xml	string	player_panel_failed	-	STR	فشل	
+values-b+ars/strings.xml	string	player_panel_keeps	-	STR	يحافظ على %s	
+values-b+ars/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ars/strings.xml	string	player_panel_on	-	STR	مفعّل	
+values-b+ars/strings.xml	string	player_panel_open	-	STR	افتح	
+values-b+ars/strings.xml	string	player_panel_quality_profile	-	STR	ملف الجودة	
+values-b+ars/strings.xml	string	player_panel_quality_unknown	-	STR	الجودة غير معروفة	
+values-b+ars/strings.xml	string	player_panel_retry_all	-	STR	جرّب كل المصادر مرة ثانية	
+values-b+ars/strings.xml	string	player_panel_style	-	STR	شكل الترجمة	
+values-b+ars/strings.xml	string	player_panel_use	-	STR	استخدم	
 values-b+ars/strings.xml	string	player_play_now	-	STR	شغّل الآن	
 values-b+ars/strings.xml	string	player_size_settings	-	STR	زر تغيير حجم المشغل	
 values-b+ars/strings.xml	string	player_size_settings_des	-	STR	إزالة الحدود السوداء	
@@ -4525,6 +4585,7 @@ values-b+as/strings.xml	string	library_sort_current	-	STR	সজোৱা: %s
 values-b+as/strings.xml	string	library_sort_not_kept	-	STR	%s-এ ৰখা নহয়	
 values-b+as/strings.xml	string	library_sort_supported	-	STR	%1$s-এ %3$d টাৰ %2$d টা সমৰ্থন কৰে	
 values-b+as/strings.xml	string	library_source	-	STR	পুথিভঁৰালৰ উৎস	
+values-b+as/strings.xml	string	library_source_local	-	STR	স্থানীয়	
 values-b+as/strings.xml	string	library_source_note	-	STR	এবাৰত এটা · সলনি কৰিলে পুনৰ লোড হয়	
 values-b+as/strings.xml	string	library_sync_cached	-	STR	কেশ্ব কৰা	
 values-b+as/strings.xml	string	library_sync_failed	-	STR	%1$s ছিংক কৰিব পৰা নগ'ল। এইবোৰ %2$s আগৰ।	
@@ -4598,6 +4659,7 @@ values-b+as/strings.xml	string	picture_in_picture_des	-	STR	অন্য এপ�
 values-b+as/strings.xml	string	pin	-	STR	পিন	
 values-b+as/strings.xml	string	pin_error_incorrect	-	STR	ভুল পিন। অনুগ্ৰহ কৰি পুনৰ চেষ্টা কৰক।	
 values-b+as/strings.xml	string	pin_error_length	-	STR	পিন ৪ অক্ষৰৰ হ'ব লাগিব	
+values-b+as/strings.xml	string	pin_error_wait	-	STR	বহুতো ভুল PIN। %1$s পিছত পুনৰ চেষ্টা কৰক	
 values-b+as/strings.xml	string	play_episode	-	STR	এপিচ'ড প্লে কৰক	
 values-b+as/strings.xml	string	play_episode_toast	-	STR	এপিচ’ড প্লে কৰক	
 values-b+as/strings.xml	string	play_from_beginning_img_des	-	STR	আৰম্ভৰ পৰা প্লে কৰক	
@@ -4627,6 +4689,16 @@ values-b+as/strings.xml	string	player_load_subtitles_online	-	STR	ইণ্ট�
 values-b+as/strings.xml	string	player_loaded_subtitles	-	STR	%s ল'ড হৈছে	
 values-b+as/strings.xml	string	player_menu_playback	-	STR	প্লেবেক	
 values-b+as/strings.xml	string	player_mute	-	STR	মৌন কৰক	
+values-b+as/strings.xml	string	player_panel_failed	-	STR	ব্যৰ্থ	
+values-b+as/strings.xml	string	player_panel_keeps	-	STR	%s ৰাখে	
+values-b+as/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+as/strings.xml	string	player_panel_on	-	STR	অন	
+values-b+as/strings.xml	string	player_panel_open	-	STR	খোলক	
+values-b+as/strings.xml	string	player_panel_quality_profile	-	STR	গুণমান প্ৰফাইল	
+values-b+as/strings.xml	string	player_panel_quality_unknown	-	STR	গুণমান অজ্ঞাত	
+values-b+as/strings.xml	string	player_panel_retry_all	-	STR	সকলো উৎস পুনৰ চেষ্টা কৰক	
+values-b+as/strings.xml	string	player_panel_style	-	STR	উপশিৰোনামৰ শৈলী	
+values-b+as/strings.xml	string	player_panel_use	-	STR	ব্যৱহাৰ কৰক	
 values-b+as/strings.xml	string	player_play_now	-	STR	এতিয়া চলাওক	
 values-b+as/strings.xml	string	player_pref	-	STR	পছন্দৰ ভিডিঅ' প্লেয়াৰ	
 values-b+as/strings.xml	string	player_settings_play_in_app	-	STR	আভ্যন্তৰীণ প্লেয়াৰ	
@@ -5334,6 +5406,7 @@ values-b+az/strings.xml	string	library_sort_current	-	STR	Sırala: %s
 values-b+az/strings.xml	string	library_sort_not_kept	-	STR	%s bunu saxlamır	
 values-b+az/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d meyardan %2$d-ni dəstəkləyir	
 values-b+az/strings.xml	string	library_source	-	STR	Kitabxana mənbəyi	
+values-b+az/strings.xml	string	library_source_local	-	STR	Yerli	
 values-b+az/strings.xml	string	library_source_note	-	STR	Eyni anda bir · dəyişmək yenidən yükləyir	
 values-b+az/strings.xml	string	library_sync_cached	-	STR	Keşlənib	
 values-b+az/strings.xml	string	library_sync_failed	-	STR	%1$s sinxronlaşdırılmadı. Bunlar %2$s əvvəlkidir.	
@@ -5367,6 +5440,7 @@ values-b+az/strings.xml	string	pause	-	STR	Dayandır
 values-b+az/strings.xml	string	pick_source	-	STR	Mənbələr	
 values-b+az/strings.xml	string	pick_subtitle	-	STR	Altyazılar	
 values-b+az/strings.xml	string	picture_in_picture	-	STR	Şəkil içində şəkil	
+values-b+az/strings.xml	string	pin_error_wait	-	STR	Həddindən çox səhv PIN. %1$s sonra yenidən cəhd edin	
 values-b+az/strings.xml	string	play_episode	-	STR	Bölümü oynat	
 values-b+az/strings.xml	string	play_from_beginning_img_des	-	STR	Əvvəldən oynat	
 values-b+az/strings.xml	string	play_livestream_button	-	STR	Canlı Yayını oynat	
@@ -5390,6 +5464,16 @@ values-b+az/strings.xml	string	player_hud_speed	-	STR	Sürət
 values-b+az/strings.xml	string	player_hud_up_next	-	STR	Növbəti · %s	
 values-b+az/strings.xml	string	player_menu_playback	-	STR	Oxutma	
 values-b+az/strings.xml	string	player_mute	-	STR	Səssizə al	
+values-b+az/strings.xml	string	player_panel_failed	-	STR	uğursuz	
+values-b+az/strings.xml	string	player_panel_keeps	-	STR	%s saxlanılır	
+values-b+az/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+az/strings.xml	string	player_panel_on	-	STR	Açıq	
+values-b+az/strings.xml	string	player_panel_open	-	STR	Aç	
+values-b+az/strings.xml	string	player_panel_quality_profile	-	STR	Keyfiyyət profili	
+values-b+az/strings.xml	string	player_panel_quality_unknown	-	STR	keyfiyyət bilinmir	
+values-b+az/strings.xml	string	player_panel_retry_all	-	STR	Bütün mənbələri yenidən sına	
+values-b+az/strings.xml	string	player_panel_style	-	STR	Altyazı üslubu	
+values-b+az/strings.xml	string	player_panel_use	-	STR	İstifadə et	
 values-b+az/strings.xml	string	player_play_now	-	STR	İndi oxut	
 values-b+az/strings.xml	string	player_size_settings	-	STR	Pleyeri yenidən ölçüləndirmə düyməsini	
 values-b+az/strings.xml	string	player_size_settings_des	-	STR	Qara sərhədləri, kənarları sil	
@@ -6137,6 +6221,7 @@ values-b+be/strings.xml	string	library_sort_current	-	STR	Парадак: %s
 values-b+be/strings.xml	string	library_sort_not_kept	-	STR	%s гэтага не захоўвае	
 values-b+be/strings.xml	string	library_sort_supported	-	STR	%1$s падтрымлівае %2$d з %3$d	
 values-b+be/strings.xml	string	library_source	-	STR	Крыніца бібліятэкі	
+values-b+be/strings.xml	string	library_source_local	-	STR	Лакальны	
 values-b+be/strings.xml	string	library_source_note	-	STR	Па адной · пераключэнне перазагружае	
 values-b+be/strings.xml	string	library_sync_cached	-	STR	З кэша	
 values-b+be/strings.xml	string	library_sync_failed	-	STR	Не ўдалося сінхранізаваць %1$s. Гэта даныя %2$s таму.	
@@ -6220,6 +6305,7 @@ values-b+be/strings.xml	string	picture_in_picture_des	-	STR	Працягвае �
 values-b+be/strings.xml	string	pin	-	STR	PIN-код	
 values-b+be/strings.xml	string	pin_error_incorrect	-	STR	Няправільны PIN-код. Паспрабуйце яшчэ раз.	
 values-b+be/strings.xml	string	pin_error_length	-	STR	PIN-код павінны быць з 4 сімвалаў	
+values-b+be/strings.xml	string	pin_error_wait	-	STR	Занадта шмат няправільных PIN-кодаў. Паспрабуйце зноў праз %1$s	
 values-b+be/strings.xml	string	play_episode	-	STR	Прайграць серыю	
 values-b+be/strings.xml	string	play_episode_toast	-	STR	Прайграць серыю	
 values-b+be/strings.xml	string	play_from_beginning_img_des	-	STR	Прайграць з пачатку	
@@ -6253,6 +6339,16 @@ values-b+be/strings.xml	string	player_menu_playback	-	STR	Прайграванн
 values-b+be/strings.xml	string	player_mute	-	STR	Выключыць гук	
 values-b+be/strings.xml	string	player_notification_channel_description	-	STR	Апавяшчэнне прайгравальніка для кіравання прайграваннем у фонавым рэжыме	
 values-b+be/strings.xml	string	player_notification_channel_name	-	STR	Апавяшчэнні прайгравальніка	
+values-b+be/strings.xml	string	player_panel_failed	-	STR	збой	
+values-b+be/strings.xml	string	player_panel_keeps	-	STR	захоўвае %s	
+values-b+be/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+be/strings.xml	string	player_panel_on	-	STR	Укл.	
+values-b+be/strings.xml	string	player_panel_open	-	STR	Адкрыць	
+values-b+be/strings.xml	string	player_panel_quality_profile	-	STR	Профіль якасці	
+values-b+be/strings.xml	string	player_panel_quality_unknown	-	STR	якасць невядомая	
+values-b+be/strings.xml	string	player_panel_retry_all	-	STR	Паўтарыць усе крыніцы	
+values-b+be/strings.xml	string	player_panel_style	-	STR	Стыль субцітраў	
+values-b+be/strings.xml	string	player_panel_use	-	STR	Выкарыстаць	
 values-b+be/strings.xml	string	player_play_now	-	STR	Прайграць зараз	
 values-b+be/strings.xml	string	player_pref	-	STR	Прыярытэтны прайгравальнік	
 values-b+be/strings.xml	string	player_settings_always_ask	-	STR	Заўсёды пытацца	
@@ -7238,6 +7334,7 @@ values-b+bg/strings.xml	string	library_sort_current	-	STR	Подреждане: 
 values-b+bg/strings.xml	string	library_sort_not_kept	-	STR	%s не го пази	
 values-b+bg/strings.xml	string	library_sort_supported	-	STR	%1$s поддържа %2$d от %3$d	
 values-b+bg/strings.xml	string	library_source	-	STR	Източник на библиотеката	
+values-b+bg/strings.xml	string	library_source_local	-	STR	Местен	
 values-b+bg/strings.xml	string	library_source_note	-	STR	Един по един · превключването презарежда	
 values-b+bg/strings.xml	string	library_sync_cached	-	STR	Кеширано	
 values-b+bg/strings.xml	string	library_sync_failed	-	STR	%1$s не можа да се синхронизира. Това е отпреди %2$s.	
@@ -7321,6 +7418,7 @@ values-b+bg/strings.xml	string	picture_in_picture_des	-	STR	Продължава
 values-b+bg/strings.xml	string	pin	-	STR	ПИН	
 values-b+bg/strings.xml	string	pin_error_incorrect	-	STR	Неверен ПИН. Моля опитайте отново.	
 values-b+bg/strings.xml	string	pin_error_length	-	STR	ПИН трябва да е 4 символа	
+values-b+bg/strings.xml	string	pin_error_wait	-	STR	Твърде много грешни ПИН кодове. Опитайте отново след %1$s	
 values-b+bg/strings.xml	string	play_episode	-	STR	Пусни епизод	
 values-b+bg/strings.xml	string	play_episode_toast	-	STR	Пусни епизода	
 values-b+bg/strings.xml	string	play_from_beginning_img_des	-	STR	Пусни от самото начало	
@@ -7353,6 +7451,16 @@ values-b+bg/strings.xml	string	player_menu_playback	-	STR	Възпроизвеж
 values-b+bg/strings.xml	string	player_mute	-	STR	Без звук	
 values-b+bg/strings.xml	string	player_notification_channel_description	-	STR	Известие на плейъра за контролиране на възпроизвеждането от фона	
 values-b+bg/strings.xml	string	player_notification_channel_name	-	STR	Известия на плейъра	
+values-b+bg/strings.xml	string	player_panel_failed	-	STR	неуспешно	
+values-b+bg/strings.xml	string	player_panel_keeps	-	STR	запазва %s	
+values-b+bg/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+bg/strings.xml	string	player_panel_on	-	STR	Вкл.	
+values-b+bg/strings.xml	string	player_panel_open	-	STR	Отвори	
+values-b+bg/strings.xml	string	player_panel_quality_profile	-	STR	Профил за качество	
+values-b+bg/strings.xml	string	player_panel_quality_unknown	-	STR	неизвестно качество	
+values-b+bg/strings.xml	string	player_panel_retry_all	-	STR	Опитай всички източници отново	
+values-b+bg/strings.xml	string	player_panel_style	-	STR	Стил на субтитрите	
+values-b+bg/strings.xml	string	player_panel_use	-	STR	Използвай	
 values-b+bg/strings.xml	string	player_play_now	-	STR	Пусни сега	
 values-b+bg/strings.xml	string	player_pref	-	STR	Предпочитан видео плеър	
 values-b+bg/strings.xml	string	player_settings_always_ask	-	STR	Винаги изпращай запитване	
@@ -8209,6 +8317,7 @@ values-b+bn/strings.xml	string	library_sort_current	-	STR	সাজান: %s
 values-b+bn/strings.xml	string	library_sort_not_kept	-	STR	%s এটি রাখে না	
 values-b+bn/strings.xml	string	library_sort_supported	-	STR	%1$s %3$dটির মধ্যে %2$dটি সমর্থন করে	
 values-b+bn/strings.xml	string	library_source	-	STR	লাইব্রেরির উৎস	
+values-b+bn/strings.xml	string	library_source_local	-	STR	লোকাল	
 values-b+bn/strings.xml	string	library_source_note	-	STR	একবারে একটি · পরিবর্তন করলে আবার লোড হয়	
 values-b+bn/strings.xml	string	library_sync_cached	-	STR	ক্যাশ করা	
 values-b+bn/strings.xml	string	library_sync_failed	-	STR	%1$s সিঙ্ক করা যায়নি। এগুলি %2$s আগের।	
@@ -8261,6 +8370,7 @@ values-b+bn/strings.xml	string	pick_source	-	STR	উৎসসমূহ
 values-b+bn/strings.xml	string	pick_subtitle	-	STR	সাবটাইটেলসমূহ	
 values-b+bn/strings.xml	string	picture_in_picture	-	STR	পিকচার ইন পিকচার	
 values-b+bn/strings.xml	string	picture_in_picture_des	-	STR	অন্য অ্যাপ এর উপর ভিডিও চালাতে থাকুন	
+values-b+bn/strings.xml	string	pin_error_wait	-	STR	অনেকবার ভুল PIN। %1$s পরে আবার চেষ্টা করুন	
 values-b+bn/strings.xml	string	play_episode	-	STR	পর্ব চালান	
 values-b+bn/strings.xml	string	play_episode_toast	-	STR	এপিসোড পরলে করুন	
 values-b+bn/strings.xml	string	play_from_beginning_img_des	-	STR	শুরু থেকে চালু করুন	
@@ -8287,6 +8397,16 @@ values-b+bn/strings.xml	string	player_hud_speed	-	STR	গতি
 values-b+bn/strings.xml	string	player_hud_up_next	-	STR	পরবর্তী · %s	
 values-b+bn/strings.xml	string	player_menu_playback	-	STR	প্লেব্যাক	
 values-b+bn/strings.xml	string	player_mute	-	STR	মিউট করুন	
+values-b+bn/strings.xml	string	player_panel_failed	-	STR	ব্যর্থ	
+values-b+bn/strings.xml	string	player_panel_keeps	-	STR	%s রাখে	
+values-b+bn/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+bn/strings.xml	string	player_panel_on	-	STR	চালু	
+values-b+bn/strings.xml	string	player_panel_open	-	STR	খুলুন	
+values-b+bn/strings.xml	string	player_panel_quality_profile	-	STR	মানের প্রোফাইল	
+values-b+bn/strings.xml	string	player_panel_quality_unknown	-	STR	মান অজানা	
+values-b+bn/strings.xml	string	player_panel_retry_all	-	STR	সব উৎস আবার চেষ্টা করুন	
+values-b+bn/strings.xml	string	player_panel_style	-	STR	সাবটাইটেলের স্টাইল	
+values-b+bn/strings.xml	string	player_panel_use	-	STR	ব্যবহার করুন	
 values-b+bn/strings.xml	string	player_play_now	-	STR	এখনই চালান	
 values-b+bn/strings.xml	string	player_size_settings	-	STR	প্লেয়ারের সাইজ পরিবর্তন বাটন	
 values-b+bn/strings.xml	string	player_size_settings_des	-	STR	কালো প্রান্ত অপসারণ করুন	
@@ -8960,6 +9080,7 @@ values-b+ca/strings.xml	string	library_sort_current	-	STR	Ordre: %s
 values-b+ca/strings.xml	string	library_sort_not_kept	-	STR	%s no ho desa	
 values-b+ca/strings.xml	string	library_sort_supported	-	STR	%1$s admet %2$d de %3$d	
 values-b+ca/strings.xml	string	library_source	-	STR	Font de la biblioteca	
+values-b+ca/strings.xml	string	library_source_local	-	STR	Local	
 values-b+ca/strings.xml	string	library_source_note	-	STR	Una alhora · canviar torna a carregar	
 values-b+ca/strings.xml	string	library_sync_cached	-	STR	A la memòria cau	
 values-b+ca/strings.xml	string	library_sync_failed	-	STR	No s'ha pogut sincronitzar %1$s. Són de fa %2$s.	
@@ -9006,6 +9127,7 @@ values-b+ca/strings.xml	string	picture_in_picture_des	-	STR	Continua la reproduc
 values-b+ca/strings.xml	string	pin	-	STR	PIN	
 values-b+ca/strings.xml	string	pin_error_incorrect	-	STR	PIN incorrecte. Si us plau, torneu a intentar-ho.	
 values-b+ca/strings.xml	string	pin_error_length	-	STR	El PIN ha de tenir 4 caràcters	
+values-b+ca/strings.xml	string	pin_error_wait	-	STR	Massa PIN incorrectes. Torna-ho a provar en %1$s	
 values-b+ca/strings.xml	string	play_episode	-	STR	Reprodueix l'episodi	
 values-b+ca/strings.xml	string	play_from_beginning_img_des	-	STR	Reproduïr des del començament	
 values-b+ca/strings.xml	string	play_livestream_button	-	STR	Reprodueix Livestream	
@@ -9034,6 +9156,16 @@ values-b+ca/strings.xml	string	player_load_subtitles_online	-	STR	Carrega des d'
 values-b+ca/strings.xml	string	player_loaded_subtitles	-	STR	%s carregat	
 values-b+ca/strings.xml	string	player_menu_playback	-	STR	Reproducció	
 values-b+ca/strings.xml	string	player_mute	-	STR	Silencia	
+values-b+ca/strings.xml	string	player_panel_failed	-	STR	ha fallat	
+values-b+ca/strings.xml	string	player_panel_keeps	-	STR	manté %s	
+values-b+ca/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ca/strings.xml	string	player_panel_on	-	STR	Activat	
+values-b+ca/strings.xml	string	player_panel_open	-	STR	Obre	
+values-b+ca/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de qualitat	
+values-b+ca/strings.xml	string	player_panel_quality_unknown	-	STR	qualitat desconeguda	
+values-b+ca/strings.xml	string	player_panel_retry_all	-	STR	Torna a provar totes les fonts	
+values-b+ca/strings.xml	string	player_panel_style	-	STR	Estil dels subtítols	
+values-b+ca/strings.xml	string	player_panel_use	-	STR	Fes servir	
 values-b+ca/strings.xml	string	player_play_now	-	STR	Reprodueix ara	
 values-b+ca/strings.xml	string	player_size_settings	-	STR	Botó de canvi de mida del reproductor	
 values-b+ca/strings.xml	string	player_source_decoded	-	STR	%s descodificat	
@@ -9579,6 +9711,7 @@ values-b+ckb/strings.xml	string	library_sort_current	-	STR	ڕیزکردن: %s
 values-b+ckb/strings.xml	string	library_sort_not_kept	-	STR	%s ئەمە هەڵناگرێت	
 values-b+ckb/strings.xml	string	library_sort_supported	-	STR	%1$s پشتگیری %2$d لە %3$d دەکات	
 values-b+ckb/strings.xml	string	library_source	-	STR	سەرچاوەی کتێبخانە	
+values-b+ckb/strings.xml	string	library_source_local	-	STR	ناوخۆیی	
 values-b+ckb/strings.xml	string	library_source_note	-	STR	یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە	
 values-b+ckb/strings.xml	string	library_sync_cached	-	STR	هەڵگیراوە	
 values-b+ckb/strings.xml	string	library_sync_failed	-	STR	نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن.	
@@ -9600,6 +9733,7 @@ values-b+ckb/strings.xml	string	offline_file	-	STR	بەردەستە بۆ سەی�
 values-b+ckb/strings.xml	string	open_local_video	-	STR	ڤیدیۆی ناوخۆیی بکەرەوە	
 values-b+ckb/strings.xml	string	pick_source	-	STR	سەرچاوەکان	
 values-b+ckb/strings.xml	string	pick_subtitle	-	STR	ژێرنووسەکان	
+values-b+ckb/strings.xml	string	pin_error_wait	-	STR	زۆر PINی هەڵە. دوای %1$s دووبارە هەوڵ بدەرەوە	
 values-b+ckb/strings.xml	string	play_from_beginning_img_des	-	STR	لە سەرەتاوە دەست پێ بکە	
 values-b+ckb/strings.xml	string	play_torrent_button	-	STR	تۆرێنت ستریم بکە	
 values-b+ckb/strings.xml	string	player_audio_stereo	-	STR	ستیریۆ	
@@ -9619,6 +9753,16 @@ values-b+ckb/strings.xml	string	player_hud_speed	-	STR	خێرایی
 values-b+ckb/strings.xml	string	player_hud_up_next	-	STR	دواتر · %s	
 values-b+ckb/strings.xml	string	player_menu_playback	-	STR	لێدان	
 values-b+ckb/strings.xml	string	player_mute	-	STR	بێدەنگکردن	
+values-b+ckb/strings.xml	string	player_panel_failed	-	STR	شکستی هێنا	
+values-b+ckb/strings.xml	string	player_panel_keeps	-	STR	%s دەهێڵێتەوە	
+values-b+ckb/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ckb/strings.xml	string	player_panel_on	-	STR	چالاک	
+values-b+ckb/strings.xml	string	player_panel_open	-	STR	کردنەوە	
+values-b+ckb/strings.xml	string	player_panel_quality_profile	-	STR	پرۆفایلی کوالیتی	
+values-b+ckb/strings.xml	string	player_panel_quality_unknown	-	STR	کوالیتی نەزانراو	
+values-b+ckb/strings.xml	string	player_panel_retry_all	-	STR	هەموو سەرچاوەکان دووبارە تاقی بکەرەوە	
+values-b+ckb/strings.xml	string	player_panel_style	-	STR	شێوازی ژێرنووس	
+values-b+ckb/strings.xml	string	player_panel_use	-	STR	بەکارهێنان	
 values-b+ckb/strings.xml	string	player_play_now	-	STR	ئێستا لێبدە	
 values-b+ckb/strings.xml	string	player_source_decoded	-	STR	%s دیکۆدکراو	
 values-b+ckb/strings.xml	string	player_source_playing	-	STR	لێدەدرێت	
@@ -10349,6 +10493,7 @@ values-b+cs/strings.xml	string	library_sort_current	-	STR	Řazení: %s
 values-b+cs/strings.xml	string	library_sort_not_kept	-	STR	%s toto neuchovává	
 values-b+cs/strings.xml	string	library_sort_supported	-	STR	%1$s podporuje %2$d z %3$d	
 values-b+cs/strings.xml	string	library_source	-	STR	Zdroj knihovny	
+values-b+cs/strings.xml	string	library_source_local	-	STR	Místní	
 values-b+cs/strings.xml	string	library_source_note	-	STR	Jeden po druhém · přepnutí znovu načte	
 values-b+cs/strings.xml	string	library_sync_cached	-	STR	Z mezipaměti	
 values-b+cs/strings.xml	string	library_sync_failed	-	STR	%1$s se nepodařilo synchronizovat. Tato data jsou z doby před %2$s.	
@@ -10432,6 +10577,7 @@ values-b+cs/strings.xml	string	picture_in_picture_des	-	STR	Přehrávání bude 
 values-b+cs/strings.xml	string	pin	-	STR	PIN	
 values-b+cs/strings.xml	string	pin_error_incorrect	-	STR	Nesprávný PIN. Zkuste to prosím znovu.	
 values-b+cs/strings.xml	string	pin_error_length	-	STR	PIN musí obsahovat 4 znaky	
+values-b+cs/strings.xml	string	pin_error_wait	-	STR	Příliš mnoho chybných PINů. Zkuste to znovu za %1$s	
 values-b+cs/strings.xml	string	play_episode	-	STR	Přehrát epizodu	
 values-b+cs/strings.xml	string	play_episode_toast	-	STR	Přehrát epizodu	
 values-b+cs/strings.xml	string	play_from_beginning_img_des	-	STR	Přehrát od začátku	
@@ -10465,6 +10611,16 @@ values-b+cs/strings.xml	string	player_menu_playback	-	STR	Přehrávání
 values-b+cs/strings.xml	string	player_mute	-	STR	Vypnout zvuk	
 values-b+cs/strings.xml	string	player_notification_channel_description	-	STR	Oznámení přehrávače pro ovládání přehrávání na pozadí	
 values-b+cs/strings.xml	string	player_notification_channel_name	-	STR	Oznámení přehrávače	
+values-b+cs/strings.xml	string	player_panel_failed	-	STR	selhalo	
+values-b+cs/strings.xml	string	player_panel_keeps	-	STR	zachová %s	
+values-b+cs/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+cs/strings.xml	string	player_panel_on	-	STR	Zapnuto	
+values-b+cs/strings.xml	string	player_panel_open	-	STR	Otevřít	
+values-b+cs/strings.xml	string	player_panel_quality_profile	-	STR	Profil kvality	
+values-b+cs/strings.xml	string	player_panel_quality_unknown	-	STR	neznámá kvalita	
+values-b+cs/strings.xml	string	player_panel_retry_all	-	STR	Zkusit znovu všechny zdroje	
+values-b+cs/strings.xml	string	player_panel_style	-	STR	Styl titulků	
+values-b+cs/strings.xml	string	player_panel_use	-	STR	Použít	
 values-b+cs/strings.xml	string	player_play_now	-	STR	Přehrát hned	
 values-b+cs/strings.xml	string	player_pref	-	STR	Preferovaný přehrávač videí	
 values-b+cs/strings.xml	string	player_settings_always_ask	-	STR	Vždy se zeptat	
@@ -11463,6 +11619,7 @@ values-b+de/strings.xml	string	library_sort_current	-	STR	Sortierung: %s
 values-b+de/strings.xml	string	library_sort_not_kept	-	STR	Von %s nicht gespeichert	
 values-b+de/strings.xml	string	library_sort_supported	-	STR	%1$s unterstützt %2$d von %3$d	
 values-b+de/strings.xml	string	library_source	-	STR	Bibliotheksquelle	
+values-b+de/strings.xml	string	library_source_local	-	STR	Lokal	
 values-b+de/strings.xml	string	library_source_note	-	STR	Jeweils eine · Wechsel lädt neu	
 values-b+de/strings.xml	string	library_sync_cached	-	STR	Zwischengespeichert	
 values-b+de/strings.xml	string	library_sync_failed	-	STR	%1$s konnte nicht synchronisiert werden. Das ist der Stand von vor %2$s.	
@@ -11546,6 +11703,7 @@ values-b+de/strings.xml	string	picture_in_picture_des	-	STR	Setzt die Wiedergabe
 values-b+de/strings.xml	string	pin	-	STR	PIN	
 values-b+de/strings.xml	string	pin_error_incorrect	-	STR	Falsche PIN. Bitte versuche es erneut.	
 values-b+de/strings.xml	string	pin_error_length	-	STR	PIN muss 4 Zeichen sein	
+values-b+de/strings.xml	string	pin_error_wait	-	STR	Zu viele falsche PINs. Erneut versuchen in %1$s	
 values-b+de/strings.xml	string	play_episode	-	STR	Episode abspielen	
 values-b+de/strings.xml	string	play_episode_toast	-	STR	Episode abspielen	
 values-b+de/strings.xml	string	play_from_beginning_img_des	-	STR	Vom Beginn an spielen	
@@ -11579,6 +11737,16 @@ values-b+de/strings.xml	string	player_menu_playback	-	STR	Wiedergabe
 values-b+de/strings.xml	string	player_mute	-	STR	Stummschalten	
 values-b+de/strings.xml	string	player_notification_channel_description	-	STR	Player-Benachrichtigung zur Steuerung der Hintergrundwiedergabe	
 values-b+de/strings.xml	string	player_notification_channel_name	-	STR	Player-Benachrichtigung	
+values-b+de/strings.xml	string	player_panel_failed	-	STR	fehlgeschlagen	
+values-b+de/strings.xml	string	player_panel_keeps	-	STR	behält %s	
+values-b+de/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+de/strings.xml	string	player_panel_on	-	STR	An	
+values-b+de/strings.xml	string	player_panel_open	-	STR	Öffnen	
+values-b+de/strings.xml	string	player_panel_quality_profile	-	STR	Qualitätsprofil	
+values-b+de/strings.xml	string	player_panel_quality_unknown	-	STR	Qualität unbekannt	
+values-b+de/strings.xml	string	player_panel_retry_all	-	STR	Alle Quellen erneut versuchen	
+values-b+de/strings.xml	string	player_panel_style	-	STR	Untertitelstil	
+values-b+de/strings.xml	string	player_panel_use	-	STR	Verwenden	
 values-b+de/strings.xml	string	player_play_now	-	STR	Jetzt abspielen	
 values-b+de/strings.xml	string	player_pref	-	STR	Bevorzugter Videoplayer	
 values-b+de/strings.xml	string	player_settings_always_ask	-	STR	Immer fragen	
@@ -12541,6 +12709,7 @@ values-b+el/strings.xml	string	library_sort_current	-	STR	Ταξινόμηση: 
 values-b+el/strings.xml	string	library_sort_not_kept	-	STR	Δεν το κρατά το %s	
 values-b+el/strings.xml	string	library_sort_supported	-	STR	Το %1$s υποστηρίζει %2$d από %3$d	
 values-b+el/strings.xml	string	library_source	-	STR	Πηγή βιβλιοθήκης	
+values-b+el/strings.xml	string	library_source_local	-	STR	Τοπικό	
 values-b+el/strings.xml	string	library_source_note	-	STR	Μία κάθε φορά · η εναλλαγή επαναφορτώνει	
 values-b+el/strings.xml	string	library_sync_cached	-	STR	Από προσωρινή μνήμη	
 values-b+el/strings.xml	string	library_sync_failed	-	STR	Δεν ήταν δυνατός ο συγχρονισμός του %1$s. Αυτά είναι από πριν από %2$s.	
@@ -12615,6 +12784,7 @@ values-b+el/strings.xml	string	picture_in_picture_des	-	STR	Συνεχίζει �
 values-b+el/strings.xml	string	pin	-	STR	Κωδικός	
 values-b+el/strings.xml	string	pin_error_incorrect	-	STR	Εσφαλμένος Κωδικός. Προσπαθήστε ξανά.	
 values-b+el/strings.xml	string	pin_error_length	-	STR	Ο κωδικός να περιέχει 4 χαρακτήρες	
+values-b+el/strings.xml	string	pin_error_wait	-	STR	Πάρα πολλά λάθος PIN. Δοκιμάστε ξανά σε %1$s	
 values-b+el/strings.xml	string	play_episode	-	STR	Αναπαραγωγή επεισοδίου	
 values-b+el/strings.xml	string	play_episode_toast	-	STR	Αναπαραγωγή επεισοδίου	
 values-b+el/strings.xml	string	play_from_beginning_img_des	-	STR	Παίξε από την αρχή	
@@ -12646,6 +12816,16 @@ values-b+el/strings.xml	string	player_menu_playback	-	STR	Αναπαραγωγή
 values-b+el/strings.xml	string	player_mute	-	STR	Σίγαση	
 values-b+el/strings.xml	string	player_notification_channel_description	-	STR	Η ειδοποίηση παίκτη για τον έλεγχο του playback από το φόντο	
 values-b+el/strings.xml	string	player_notification_channel_name	-	STR	Ειδοποίησεις αναπαραγωγής	
+values-b+el/strings.xml	string	player_panel_failed	-	STR	απέτυχε	
+values-b+el/strings.xml	string	player_panel_keeps	-	STR	κρατά %s	
+values-b+el/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+el/strings.xml	string	player_panel_on	-	STR	Ενεργό	
+values-b+el/strings.xml	string	player_panel_open	-	STR	Άνοιγμα	
+values-b+el/strings.xml	string	player_panel_quality_profile	-	STR	Προφίλ ποιότητας	
+values-b+el/strings.xml	string	player_panel_quality_unknown	-	STR	άγνωστη ποιότητα	
+values-b+el/strings.xml	string	player_panel_retry_all	-	STR	Επανάληψη όλων των πηγών	
+values-b+el/strings.xml	string	player_panel_style	-	STR	Στυλ υποτίτλων	
+values-b+el/strings.xml	string	player_panel_use	-	STR	Χρήση	
 values-b+el/strings.xml	string	player_play_now	-	STR	Αναπαραγωγή τώρα	
 values-b+el/strings.xml	string	player_pref	-	STR	Προτεινόμενο πρόγραμμα αναπαραγωγής	
 values-b+el/strings.xml	string	player_settings_play_in_app	-	STR	Ενσωματωμένο πρόγραμμα αναπαραγωγής	
@@ -13383,6 +13563,7 @@ values-b+eo/strings.xml	string	library_sort_current	-	STR	Ordigo: %s
 values-b+eo/strings.xml	string	library_sort_not_kept	-	STR	%s ne konservas tion	
 values-b+eo/strings.xml	string	library_sort_supported	-	STR	%1$s subtenas %2$d el %3$d	
 values-b+eo/strings.xml	string	library_source	-	STR	Fonto de biblioteko	
+values-b+eo/strings.xml	string	library_source_local	-	STR	Loka	
 values-b+eo/strings.xml	string	library_source_note	-	STR	Po unu · ŝanĝo reŝargas	
 values-b+eo/strings.xml	string	library_sync_cached	-	STR	Kaŝmemorita	
 values-b+eo/strings.xml	string	library_sync_failed	-	STR	Ne eblis sinkronigi %1$s. Ĉi tiuj estas de antaŭ %2$s.	
@@ -13416,6 +13597,7 @@ values-b+eo/strings.xml	string	others	-	STR	Aliaj
 values-b+eo/strings.xml	string	pause	-	STR	Paŭzigi	
 values-b+eo/strings.xml	string	pick_source	-	STR	Fontoj	
 values-b+eo/strings.xml	string	pick_subtitle	-	STR	Subtekstoj	
+values-b+eo/strings.xml	string	pin_error_wait	-	STR	Tro da malĝustaj PIN-oj. Reprovu post %1$s	
 values-b+eo/strings.xml	string	play_episode	-	STR	Ludi Epizodon	
 values-b+eo/strings.xml	string	play_from_beginning_img_des	-	STR	Legi ekde la komenco	
 values-b+eo/strings.xml	string	play_livestream_button	-	STR	Ludi tuj-elsendfluon	
@@ -13440,6 +13622,16 @@ values-b+eo/strings.xml	string	player_hud_speed	-	STR	Rapido
 values-b+eo/strings.xml	string	player_hud_up_next	-	STR	Sekva · %s	
 values-b+eo/strings.xml	string	player_menu_playback	-	STR	Ludado	
 values-b+eo/strings.xml	string	player_mute	-	STR	Silentigi	
+values-b+eo/strings.xml	string	player_panel_failed	-	STR	malsukcesis	
+values-b+eo/strings.xml	string	player_panel_keeps	-	STR	konservas %s	
+values-b+eo/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+eo/strings.xml	string	player_panel_on	-	STR	Ŝaltita	
+values-b+eo/strings.xml	string	player_panel_open	-	STR	Malfermi	
+values-b+eo/strings.xml	string	player_panel_quality_profile	-	STR	Kvalita profilo	
+values-b+eo/strings.xml	string	player_panel_quality_unknown	-	STR	nekonata kvalito	
+values-b+eo/strings.xml	string	player_panel_retry_all	-	STR	Reprovi ĉiujn fontojn	
+values-b+eo/strings.xml	string	player_panel_style	-	STR	Stilo de subtekstoj	
+values-b+eo/strings.xml	string	player_panel_use	-	STR	Uzi	
 values-b+eo/strings.xml	string	player_play_now	-	STR	Ludi nun	
 values-b+eo/strings.xml	string	player_size_settings_des	-	STR	Forigi nigrajn borderaĵojn	
 values-b+eo/strings.xml	string	player_source_decoded	-	STR	%s malkodita	
@@ -14193,6 +14385,7 @@ values-b+es/strings.xml	string	library_sort_current	-	STR	Orden: %s
 values-b+es/strings.xml	string	library_sort_not_kept	-	STR	%s no lo guarda	
 values-b+es/strings.xml	string	library_sort_supported	-	STR	%1$s admite %2$d de %3$d	
 values-b+es/strings.xml	string	library_source	-	STR	Origen de la biblioteca	
+values-b+es/strings.xml	string	library_source_local	-	STR	Local	
 values-b+es/strings.xml	string	library_source_note	-	STR	Uno a la vez · cambiar recarga	
 values-b+es/strings.xml	string	library_sync_cached	-	STR	En caché	
 values-b+es/strings.xml	string	library_sync_failed	-	STR	No se pudo sincronizar %1$s. Son de hace %2$s.	
@@ -14276,6 +14469,7 @@ values-b+es/strings.xml	string	picture_in_picture_des	-	STR	Continúa la reprodu
 values-b+es/strings.xml	string	pin	-	STR	PIN	
 values-b+es/strings.xml	string	pin_error_incorrect	-	STR	PIN incorrecto. Por favor, inténtelo de nuevo.	
 values-b+es/strings.xml	string	pin_error_length	-	STR	El PIN debe tener 4 caracteres	
+values-b+es/strings.xml	string	pin_error_wait	-	STR	Demasiados PIN incorrectos. Inténtalo de nuevo en %1$s	
 values-b+es/strings.xml	string	play_episode	-	STR	Reproducir Episodio	
 values-b+es/strings.xml	string	play_episode_toast	-	STR	Reproducir Episodio	
 values-b+es/strings.xml	string	play_from_beginning_img_des	-	STR	Reproducir desde el principio	
@@ -14309,6 +14503,16 @@ values-b+es/strings.xml	string	player_menu_playback	-	STR	Reproducción
 values-b+es/strings.xml	string	player_mute	-	STR	Silenciar	
 values-b+es/strings.xml	string	player_notification_channel_description	-	STR	La notificación del reproductor para controlar la reproducción en segundo plano	
 values-b+es/strings.xml	string	player_notification_channel_name	-	STR	Notificaciones del reproductor	
+values-b+es/strings.xml	string	player_panel_failed	-	STR	falló	
+values-b+es/strings.xml	string	player_panel_keeps	-	STR	mantiene %s	
+values-b+es/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+es/strings.xml	string	player_panel_on	-	STR	Activado	
+values-b+es/strings.xml	string	player_panel_open	-	STR	Abrir	
+values-b+es/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de calidad	
+values-b+es/strings.xml	string	player_panel_quality_unknown	-	STR	calidad desconocida	
+values-b+es/strings.xml	string	player_panel_retry_all	-	STR	Reintentar todas las fuentes	
+values-b+es/strings.xml	string	player_panel_style	-	STR	Estilo de subtítulos	
+values-b+es/strings.xml	string	player_panel_use	-	STR	Usar	
 values-b+es/strings.xml	string	player_play_now	-	STR	Reproducir ahora	
 values-b+es/strings.xml	string	player_pref	-	STR	Reproductor de video preferido	
 values-b+es/strings.xml	string	player_settings_always_ask	-	STR	Preguntar siempre	
@@ -15137,6 +15341,7 @@ values-b+fa/strings.xml	string	library_sort_current	-	STR	ترتیب: %s
 values-b+fa/strings.xml	string	library_sort_not_kept	-	STR	%s این را نگه نمی‌دارد	
 values-b+fa/strings.xml	string	library_sort_supported	-	STR	%1$s از %3$d مورد %2$d را پشتیبانی می‌کند	
 values-b+fa/strings.xml	string	library_source	-	STR	منبع کتابخانه	
+values-b+fa/strings.xml	string	library_source_local	-	STR	محلی	
 values-b+fa/strings.xml	string	library_source_note	-	STR	هر بار یکی · تغییر، دوباره بارگذاری می‌کند	
 values-b+fa/strings.xml	string	library_sync_cached	-	STR	ذخیره‌شده	
 values-b+fa/strings.xml	string	library_sync_failed	-	STR	همگام‌سازی %1$s ممکن نشد. این‌ها مال %2$s پیش هستند.	
@@ -15192,6 +15397,7 @@ values-b+fa/strings.xml	string	pick_source	-	STR	منابع
 values-b+fa/strings.xml	string	pick_subtitle	-	STR	زیرنویس‌ها	
 values-b+fa/strings.xml	string	picture_in_picture	-	STR	تصویر در تصویر	
 values-b+fa/strings.xml	string	picture_in_picture_des	-	STR	پخش را در یک پخش کننده مینیاتوری در بالای برنامه های دیگر ادامه می دهد	
+values-b+fa/strings.xml	string	pin_error_wait	-	STR	PIN اشتباه بیش از حد. %1$s دیگر دوباره امتحان کنید	
 values-b+fa/strings.xml	string	play_episode	-	STR	پخش قسمت	
 values-b+fa/strings.xml	string	play_episode_toast	-	STR	پخش قسمت	
 values-b+fa/strings.xml	string	play_from_beginning_img_des	-	STR	پخش از ابتدا	
@@ -15217,6 +15423,16 @@ values-b+fa/strings.xml	string	player_hud_speed	-	STR	سرعت
 values-b+fa/strings.xml	string	player_hud_up_next	-	STR	بعدی · %s	
 values-b+fa/strings.xml	string	player_menu_playback	-	STR	پخش	
 values-b+fa/strings.xml	string	player_mute	-	STR	بی‌صدا	
+values-b+fa/strings.xml	string	player_panel_failed	-	STR	ناموفق	
+values-b+fa/strings.xml	string	player_panel_keeps	-	STR	%s را نگه می‌دارد	
+values-b+fa/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+fa/strings.xml	string	player_panel_on	-	STR	روشن	
+values-b+fa/strings.xml	string	player_panel_open	-	STR	باز کردن	
+values-b+fa/strings.xml	string	player_panel_quality_profile	-	STR	نمایهٔ کیفیت	
+values-b+fa/strings.xml	string	player_panel_quality_unknown	-	STR	کیفیت نامشخص	
+values-b+fa/strings.xml	string	player_panel_retry_all	-	STR	تلاش دوباره برای همه منابع	
+values-b+fa/strings.xml	string	player_panel_style	-	STR	سبک زیرنویس	
+values-b+fa/strings.xml	string	player_panel_use	-	STR	استفاده	
 values-b+fa/strings.xml	string	player_play_now	-	STR	اکنون پخش کن	
 values-b+fa/strings.xml	string	player_pref	-	STR	پخش‌کننده ویدئو برگزیده	
 values-b+fa/strings.xml	string	player_size_settings	-	STR	دکمه تغییر‌اندازه پخش‌کننده	
@@ -15787,6 +16003,7 @@ values-b+fil/strings.xml	string	library_sort_current	-	STR	Pagkakasunod: %s
 values-b+fil/strings.xml	string	library_sort_not_kept	-	STR	Hindi itinatabi ng %s	
 values-b+fil/strings.xml	string	library_sort_supported	-	STR	Sinusuportahan ng %1$s ang %2$d sa %3$d	
 values-b+fil/strings.xml	string	library_source	-	STR	Pinagmulan ng library	
+values-b+fil/strings.xml	string	library_source_local	-	STR	Local	
 values-b+fil/strings.xml	string	library_source_note	-	STR	Isa-isa · nagre-reload kapag nagpalit	
 values-b+fil/strings.xml	string	library_sync_cached	-	STR	Naka-cache	
 values-b+fil/strings.xml	string	library_sync_failed	-	STR	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.	
@@ -15815,6 +16032,7 @@ values-b+fil/strings.xml	string	pick_source	-	STR	Mga Mapagkukunan
 values-b+fil/strings.xml	string	pick_subtitle	-	STR	Mga saling-teksto	
 values-b+fil/strings.xml	string	picture_in_picture_des	-	STR	Ipinagpapatuloy ang pag-playback sa isang miniature na player sa ibabaw ng iba pang mga app	
 values-b+fil/strings.xml	string	pin_error_incorrect	-	STR	Maling PIN. Pakisubukang muli.	
+values-b+fil/strings.xml	string	pin_error_wait	-	STR	Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s	
 values-b+fil/strings.xml	string	play_episode	-	STR	Ipatugtog ang Kabanata	
 values-b+fil/strings.xml	string	play_from_beginning_img_des	-	STR	Ipatugtog mula sa Simula	
 values-b+fil/strings.xml	string	play_full_series_button	-	STR	Ipatugtog ang Buong Serye	
@@ -15841,6 +16059,16 @@ values-b+fil/strings.xml	string	player_hud_up_next	-	STR	Susunod · %s
 values-b+fil/strings.xml	string	player_menu_playback	-	STR	Playback	
 values-b+fil/strings.xml	string	player_mute	-	STR	I-mute	
 values-b+fil/strings.xml	string	player_notification_channel_description	-	STR	Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background	
+values-b+fil/strings.xml	string	player_panel_failed	-	STR	nabigo	
+values-b+fil/strings.xml	string	player_panel_keeps	-	STR	pinapanatili ang %s	
+values-b+fil/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+fil/strings.xml	string	player_panel_on	-	STR	Naka-on	
+values-b+fil/strings.xml	string	player_panel_open	-	STR	Buksan	
+values-b+fil/strings.xml	string	player_panel_quality_profile	-	STR	Profile ng kalidad	
+values-b+fil/strings.xml	string	player_panel_quality_unknown	-	STR	hindi alam ang kalidad	
+values-b+fil/strings.xml	string	player_panel_retry_all	-	STR	Subukang muli ang lahat ng source	
+values-b+fil/strings.xml	string	player_panel_style	-	STR	Estilo ng subtitle	
+values-b+fil/strings.xml	string	player_panel_use	-	STR	Gamitin	
 values-b+fil/strings.xml	string	player_play_now	-	STR	I-play ngayon	
 values-b+fil/strings.xml	string	player_source_decoded	-	STR	%s na-decode	
 values-b+fil/strings.xml	string	player_source_playing	-	STR	Nagpe-play	
@@ -16584,6 +16812,7 @@ values-b+fr/strings.xml	string	library_sort_current	-	STR	Tri : %s
 values-b+fr/strings.xml	string	library_sort_not_kept	-	STR	Non conservé par %s	
 values-b+fr/strings.xml	string	library_sort_supported	-	STR	%1$s prend en charge %2$d sur %3$d	
 values-b+fr/strings.xml	string	library_source	-	STR	Source de la bibliothèque	
+values-b+fr/strings.xml	string	library_source_local	-	STR	Local	
 values-b+fr/strings.xml	string	library_source_note	-	STR	Une à la fois · changer recharge	
 values-b+fr/strings.xml	string	library_sync_cached	-	STR	En cache	
 values-b+fr/strings.xml	string	library_sync_failed	-	STR	Impossible de synchroniser %1$s. Ces données datent d'il y a %2$s.	
@@ -16667,6 +16896,7 @@ values-b+fr/strings.xml	string	picture_in_picture_des	-	STR	Poursuite de la lect
 values-b+fr/strings.xml	string	pin	-	STR	PIN	
 values-b+fr/strings.xml	string	pin_error_incorrect	-	STR	PIN incorrect. Ressayez s'il vous plait.	
 values-b+fr/strings.xml	string	pin_error_length	-	STR	Le PIN doit être de 4 caractères	
+values-b+fr/strings.xml	string	pin_error_wait	-	STR	Trop de codes PIN erronés. Réessayez dans %1$s	
 values-b+fr/strings.xml	string	play_episode	-	STR	Lire l'Épisode	
 values-b+fr/strings.xml	string	play_episode_toast	-	STR	Lecture de l'episode	
 values-b+fr/strings.xml	string	play_from_beginning_img_des	-	STR	Regarder depuis le début	
@@ -16700,6 +16930,16 @@ values-b+fr/strings.xml	string	player_menu_playback	-	STR	Lecture
 values-b+fr/strings.xml	string	player_mute	-	STR	Couper le son	
 values-b+fr/strings.xml	string	player_notification_channel_description	-	STR	La notification du lecteur pour contrôler la lecture en arrière-plan	
 values-b+fr/strings.xml	string	player_notification_channel_name	-	STR	Notifications du lecteur	
+values-b+fr/strings.xml	string	player_panel_failed	-	STR	échec	
+values-b+fr/strings.xml	string	player_panel_keeps	-	STR	garde %s	
+values-b+fr/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+fr/strings.xml	string	player_panel_on	-	STR	Activé	
+values-b+fr/strings.xml	string	player_panel_open	-	STR	Ouvrir	
+values-b+fr/strings.xml	string	player_panel_quality_profile	-	STR	Profil de qualité	
+values-b+fr/strings.xml	string	player_panel_quality_unknown	-	STR	qualité inconnue	
+values-b+fr/strings.xml	string	player_panel_retry_all	-	STR	Réessayer toutes les sources	
+values-b+fr/strings.xml	string	player_panel_style	-	STR	Style des sous-titres	
+values-b+fr/strings.xml	string	player_panel_use	-	STR	Utiliser	
 values-b+fr/strings.xml	string	player_play_now	-	STR	Lire maintenant	
 values-b+fr/strings.xml	string	player_pref	-	STR	Lecteur vidéo préféré	
 values-b+fr/strings.xml	string	player_settings_always_ask	-	STR	Demandez toujours	
@@ -17514,6 +17754,7 @@ values-b+gl/strings.xml	string	library_sort_current	-	STR	Orde: %s
 values-b+gl/strings.xml	string	library_sort_not_kept	-	STR	%s non o garda	
 values-b+gl/strings.xml	string	library_sort_supported	-	STR	%1$s admite %2$d de %3$d	
 values-b+gl/strings.xml	string	library_source	-	STR	Orixe da biblioteca	
+values-b+gl/strings.xml	string	library_source_local	-	STR	Local	
 values-b+gl/strings.xml	string	library_source_note	-	STR	Unha de cada vez · cambiar recarga	
 values-b+gl/strings.xml	string	library_sync_cached	-	STR	Na caché	
 values-b+gl/strings.xml	string	library_sync_failed	-	STR	Non se puido sincronizar %1$s. Son de hai %2$s.	
@@ -17559,6 +17800,7 @@ values-b+gl/strings.xml	string	pick_source	-	STR	Fontes
 values-b+gl/strings.xml	string	pick_subtitle	-	STR	Subtítulos	
 values-b+gl/strings.xml	string	picture_in_picture	-	STR	Imaxe en Imaxe	
 values-b+gl/strings.xml	string	picture_in_picture_des	-	STR	Continúa a reprodución nun reproductor miniatura enriba doutras aplicacións	
+values-b+gl/strings.xml	string	pin_error_wait	-	STR	Demasiados PIN incorrectos. Téntao de novo en %1$s	
 values-b+gl/strings.xml	string	play_episode	-	STR	Reproducir Episodio	
 values-b+gl/strings.xml	string	play_episode_toast	-	STR	Reproducir capítulo	
 values-b+gl/strings.xml	string	play_from_beginning_img_des	-	STR	Reproducir dende o comezo	
@@ -17584,6 +17826,16 @@ values-b+gl/strings.xml	string	player_hud_speed	-	STR	Velocidade
 values-b+gl/strings.xml	string	player_hud_up_next	-	STR	Seguinte · %s	
 values-b+gl/strings.xml	string	player_menu_playback	-	STR	Reprodución	
 values-b+gl/strings.xml	string	player_mute	-	STR	Silenciar	
+values-b+gl/strings.xml	string	player_panel_failed	-	STR	fallou	
+values-b+gl/strings.xml	string	player_panel_keeps	-	STR	mantén %s	
+values-b+gl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+gl/strings.xml	string	player_panel_on	-	STR	Activado	
+values-b+gl/strings.xml	string	player_panel_open	-	STR	Abrir	
+values-b+gl/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de calidade	
+values-b+gl/strings.xml	string	player_panel_quality_unknown	-	STR	calidade descoñecida	
+values-b+gl/strings.xml	string	player_panel_retry_all	-	STR	Tentar de novo todas as fontes	
+values-b+gl/strings.xml	string	player_panel_style	-	STR	Estilo dos subtítulos	
+values-b+gl/strings.xml	string	player_panel_use	-	STR	Usar	
 values-b+gl/strings.xml	string	player_play_now	-	STR	Reproducir agora	
 values-b+gl/strings.xml	string	player_size_settings	-	STR	Botón de cambio de tamaño do reprodutor	
 values-b+gl/strings.xml	string	player_size_settings_des	-	STR	Eliminar bordes negros	
@@ -18238,6 +18490,7 @@ values-b+hi/strings.xml	string	library_sort_current	-	STR	क्रम: %s
 values-b+hi/strings.xml	string	library_sort_not_kept	-	STR	%s इसे नहीं रखता	
 values-b+hi/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d में से %2$d का समर्थन करता है	
 values-b+hi/strings.xml	string	library_source	-	STR	लाइब्रेरी स्रोत	
+values-b+hi/strings.xml	string	library_source_local	-	STR	स्थानीय	
 values-b+hi/strings.xml	string	library_source_note	-	STR	एक समय में एक · बदलने पर फिर से लोड होता है	
 values-b+hi/strings.xml	string	library_sync_cached	-	STR	कैश किया	
 values-b+hi/strings.xml	string	library_sync_failed	-	STR	%1$s सिंक नहीं हो सका। ये %2$s पहले के हैं।	
@@ -18294,6 +18547,7 @@ values-b+hi/strings.xml	string	picture_in_picture_des	-	STR	अन्य ऐप�
 values-b+hi/strings.xml	string	pin	-	STR	पिन	
 values-b+hi/strings.xml	string	pin_error_incorrect	-	STR	ग़लत पिन. कृपया पुन: प्रयास करें।	
 values-b+hi/strings.xml	string	pin_error_length	-	STR	पिन 4 अक्षर का होना चाहिए	
+values-b+hi/strings.xml	string	pin_error_wait	-	STR	बहुत सारे गलत PIN। %1$s बाद फिर से कोशिश करें	
 values-b+hi/strings.xml	string	play_episode	-	STR	एपिसोड चलाएं	
 values-b+hi/strings.xml	string	play_episode_toast	-	STR	एपिसोड चलायें	
 values-b+hi/strings.xml	string	play_from_beginning_img_des	-	STR	आरम्भ से शुरू करें	
@@ -18320,6 +18574,16 @@ values-b+hi/strings.xml	string	player_hud_speed	-	STR	गति
 values-b+hi/strings.xml	string	player_hud_up_next	-	STR	अगला · %s	
 values-b+hi/strings.xml	string	player_menu_playback	-	STR	प्लेबैक	
 values-b+hi/strings.xml	string	player_mute	-	STR	म्यूट करें	
+values-b+hi/strings.xml	string	player_panel_failed	-	STR	विफल	
+values-b+hi/strings.xml	string	player_panel_keeps	-	STR	%s बनाए रखता है	
+values-b+hi/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+hi/strings.xml	string	player_panel_on	-	STR	चालू	
+values-b+hi/strings.xml	string	player_panel_open	-	STR	खोलें	
+values-b+hi/strings.xml	string	player_panel_quality_profile	-	STR	गुणवत्ता प्रोफ़ाइल	
+values-b+hi/strings.xml	string	player_panel_quality_unknown	-	STR	गुणवत्ता अज्ञात	
+values-b+hi/strings.xml	string	player_panel_retry_all	-	STR	सभी स्रोत फिर से आज़माएँ	
+values-b+hi/strings.xml	string	player_panel_style	-	STR	सबटाइटल शैली	
+values-b+hi/strings.xml	string	player_panel_use	-	STR	उपयोग करें	
 values-b+hi/strings.xml	string	player_play_now	-	STR	अभी चलाएँ	
 values-b+hi/strings.xml	string	player_size_settings	-	STR	प्लेयर आकार परिवर्तन बटन	
 values-b+hi/strings.xml	string	player_size_settings_des	-	STR	काले बॉर्डर हटाएँ	
@@ -19168,6 +19432,7 @@ values-b+hr/strings.xml	string	library_sort_current	-	STR	Poredak: %s
 values-b+hr/strings.xml	string	library_sort_not_kept	-	STR	%s to ne čuva	
 values-b+hr/strings.xml	string	library_sort_supported	-	STR	%1$s podržava %2$d od %3$d	
 values-b+hr/strings.xml	string	library_source	-	STR	Izvor biblioteke	
+values-b+hr/strings.xml	string	library_source_local	-	STR	Lokalno	
 values-b+hr/strings.xml	string	library_source_note	-	STR	Jedan po jedan · promjena ponovno učitava	
 values-b+hr/strings.xml	string	library_sync_cached	-	STR	Iz predmemorije	
 values-b+hr/strings.xml	string	library_sync_failed	-	STR	Nije moguće sinkronizirati %1$s. Ovo je od prije %2$s.	
@@ -19251,6 +19516,7 @@ values-b+hr/strings.xml	string	picture_in_picture_des	-	STR	Nastavlja reprodukci
 values-b+hr/strings.xml	string	pin	-	STR	PIN	
 values-b+hr/strings.xml	string	pin_error_incorrect	-	STR	Netočan PIN. Pokušajte ponovno.	
 values-b+hr/strings.xml	string	pin_error_length	-	STR	PIN mora imati 4 znaka	
+values-b+hr/strings.xml	string	pin_error_wait	-	STR	Previše pogrešnih PIN-ova. Pokušajte ponovno za %1$s	
 values-b+hr/strings.xml	string	play_episode	-	STR	Pokreni epizodu	
 values-b+hr/strings.xml	string	play_episode_toast	-	STR	Pokreni epizodu	
 values-b+hr/strings.xml	string	play_from_beginning_img_des	-	STR	Pokreni od početka	
@@ -19284,6 +19550,16 @@ values-b+hr/strings.xml	string	player_menu_playback	-	STR	Reprodukcija
 values-b+hr/strings.xml	string	player_mute	-	STR	Isključi zvuk	
 values-b+hr/strings.xml	string	player_notification_channel_description	-	STR	Obavijest reproduktora za upravljanje reprodukcijom iz pozadine	
 values-b+hr/strings.xml	string	player_notification_channel_name	-	STR	Obavijesti reproduktora	
+values-b+hr/strings.xml	string	player_panel_failed	-	STR	neuspjelo	
+values-b+hr/strings.xml	string	player_panel_keeps	-	STR	zadržava %s	
+values-b+hr/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+hr/strings.xml	string	player_panel_on	-	STR	Uključeno	
+values-b+hr/strings.xml	string	player_panel_open	-	STR	Otvori	
+values-b+hr/strings.xml	string	player_panel_quality_profile	-	STR	Profil kvalitete	
+values-b+hr/strings.xml	string	player_panel_quality_unknown	-	STR	nepoznata kvaliteta	
+values-b+hr/strings.xml	string	player_panel_retry_all	-	STR	Ponovi sve izvore	
+values-b+hr/strings.xml	string	player_panel_style	-	STR	Stil titlova	
+values-b+hr/strings.xml	string	player_panel_use	-	STR	Koristi	
 values-b+hr/strings.xml	string	player_play_now	-	STR	Reproduciraj sada	
 values-b+hr/strings.xml	string	player_pref	-	STR	Preferirani video player	
 values-b+hr/strings.xml	string	player_settings_always_ask	-	STR	Uvijek pitaj	
@@ -20235,6 +20511,7 @@ values-b+hu/strings.xml	string	library_sort_current	-	STR	Rendezés: %s
 values-b+hu/strings.xml	string	library_sort_not_kept	-	STR	A(z) %s nem tárolja	
 values-b+hu/strings.xml	string	library_sort_supported	-	STR	A(z) %1$s %3$d szempontból %2$d-t támogat	
 values-b+hu/strings.xml	string	library_source	-	STR	Könyvtár forrása	
+values-b+hu/strings.xml	string	library_source_local	-	STR	Helyi	
 values-b+hu/strings.xml	string	library_source_note	-	STR	Egyszerre egy · váltáskor újratölt	
 values-b+hu/strings.xml	string	library_sync_cached	-	STR	Gyorsítótárból	
 values-b+hu/strings.xml	string	library_sync_failed	-	STR	A(z) %1$s nem szinkronizálható. Ezek %2$s előttiek.	
@@ -20306,6 +20583,7 @@ values-b+hu/strings.xml	string	picture_in_picture_des	-	STR	Folytatja a lejátsz
 values-b+hu/strings.xml	string	pin	-	STR	PIN	
 values-b+hu/strings.xml	string	pin_error_incorrect	-	STR	Hibás PIN. Próbálja újra.	
 values-b+hu/strings.xml	string	pin_error_length	-	STR	A PIN 4 karakter hosszú kell legyen	
+values-b+hu/strings.xml	string	pin_error_wait	-	STR	Túl sok hibás PIN. Próbáld újra %1$s múlva	
 values-b+hu/strings.xml	string	play_episode	-	STR	Epizód lejátszása	
 values-b+hu/strings.xml	string	play_episode_toast	-	STR	Epizód lejátszása	
 values-b+hu/strings.xml	string	play_from_beginning_img_des	-	STR	Lejátszás az elejétől	
@@ -20336,6 +20614,16 @@ values-b+hu/strings.xml	string	player_load_subtitles_online	-	STR	Betöltés az 
 values-b+hu/strings.xml	string	player_loaded_subtitles	-	STR	%s betöltve	
 values-b+hu/strings.xml	string	player_menu_playback	-	STR	Lejátszás	
 values-b+hu/strings.xml	string	player_mute	-	STR	Némítás	
+values-b+hu/strings.xml	string	player_panel_failed	-	STR	sikertelen	
+values-b+hu/strings.xml	string	player_panel_keeps	-	STR	megtartja: %s	
+values-b+hu/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+hu/strings.xml	string	player_panel_on	-	STR	Be	
+values-b+hu/strings.xml	string	player_panel_open	-	STR	Megnyitás	
+values-b+hu/strings.xml	string	player_panel_quality_profile	-	STR	Minőségi profil	
+values-b+hu/strings.xml	string	player_panel_quality_unknown	-	STR	ismeretlen minőség	
+values-b+hu/strings.xml	string	player_panel_retry_all	-	STR	Összes forrás újrapróbálása	
+values-b+hu/strings.xml	string	player_panel_style	-	STR	Feliratstílus	
+values-b+hu/strings.xml	string	player_panel_use	-	STR	Használat	
 values-b+hu/strings.xml	string	player_play_now	-	STR	Lejátszás most	
 values-b+hu/strings.xml	string	player_pref	-	STR	Előnyben részesített videolejátszó	
 values-b+hu/strings.xml	string	player_settings_always_ask	-	STR	Mindig kérdezzen	
@@ -21264,6 +21552,7 @@ values-b+in/strings.xml	string	library_sort_current	-	STR	Urutan: %s
 values-b+in/strings.xml	string	library_sort_not_kept	-	STR	Tidak disimpan oleh %s	
 values-b+in/strings.xml	string	library_sort_supported	-	STR	%1$s mendukung %2$d dari %3$d	
 values-b+in/strings.xml	string	library_source	-	STR	Sumber pustaka	
+values-b+in/strings.xml	string	library_source_local	-	STR	Lokal	
 values-b+in/strings.xml	string	library_source_note	-	STR	Satu per satu · beralih memuat ulang	
 values-b+in/strings.xml	string	library_sync_cached	-	STR	Tersimpan	
 values-b+in/strings.xml	string	library_sync_failed	-	STR	Tidak dapat menyinkronkan %1$s. Ini dari %2$s yang lalu.	
@@ -21347,6 +21636,7 @@ values-b+in/strings.xml	string	picture_in_picture_des	-	STR	Lanjutkan pemutaran 
 values-b+in/strings.xml	string	pin	-	STR	PIN	
 values-b+in/strings.xml	string	pin_error_incorrect	-	STR	PIN Salah. Silahkan coba lagi.	
 values-b+in/strings.xml	string	pin_error_length	-	STR	PIN harus terdiri 4 karakter	
+values-b+in/strings.xml	string	pin_error_wait	-	STR	Terlalu banyak PIN yang salah. Coba lagi dalam %1$s	
 values-b+in/strings.xml	string	play_episode	-	STR	Putar Episode	
 values-b+in/strings.xml	string	play_episode_toast	-	STR	Putar Episode	
 values-b+in/strings.xml	string	play_from_beginning_img_des	-	STR	Putar dari awal	
@@ -21380,6 +21670,16 @@ values-b+in/strings.xml	string	player_menu_playback	-	STR	Pemutaran
 values-b+in/strings.xml	string	player_mute	-	STR	Bisukan	
 values-b+in/strings.xml	string	player_notification_channel_description	-	STR	Pemberitahuan pemutar untuk mengontrol pemutaran dari latar belakang	
 values-b+in/strings.xml	string	player_notification_channel_name	-	STR	Notifikasi pemain	
+values-b+in/strings.xml	string	player_panel_failed	-	STR	gagal	
+values-b+in/strings.xml	string	player_panel_keeps	-	STR	mempertahankan %s	
+values-b+in/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+in/strings.xml	string	player_panel_on	-	STR	Aktif	
+values-b+in/strings.xml	string	player_panel_open	-	STR	Buka	
+values-b+in/strings.xml	string	player_panel_quality_profile	-	STR	Profil kualitas	
+values-b+in/strings.xml	string	player_panel_quality_unknown	-	STR	kualitas tidak diketahui	
+values-b+in/strings.xml	string	player_panel_retry_all	-	STR	Coba lagi semua sumber	
+values-b+in/strings.xml	string	player_panel_style	-	STR	Gaya subtitel	
+values-b+in/strings.xml	string	player_panel_use	-	STR	Gunakan	
 values-b+in/strings.xml	string	player_play_now	-	STR	Putar sekarang	
 values-b+in/strings.xml	string	player_pref	-	STR	Pemutar video utama	
 values-b+in/strings.xml	string	player_settings_always_ask	-	STR	Selalu tanya	
@@ -22401,6 +22701,7 @@ values-b+it/strings.xml	string	library_sort_current	-	STR	Ordine: %s
 values-b+it/strings.xml	string	library_sort_not_kept	-	STR	Non conservato da %s	
 values-b+it/strings.xml	string	library_sort_supported	-	STR	%1$s supporta %2$d di %3$d	
 values-b+it/strings.xml	string	library_source	-	STR	Origine della libreria	
+values-b+it/strings.xml	string	library_source_local	-	STR	Locale	
 values-b+it/strings.xml	string	library_source_note	-	STR	Una alla volta · cambiare ricarica	
 values-b+it/strings.xml	string	library_sync_cached	-	STR	In cache	
 values-b+it/strings.xml	string	library_sync_failed	-	STR	Impossibile sincronizzare %1$s. Sono di %2$s fa.	
@@ -22484,6 +22785,7 @@ values-b+it/strings.xml	string	picture_in_picture_des	-	STR	Continua la riproduz
 values-b+it/strings.xml	string	pin	-	STR	PIN	
 values-b+it/strings.xml	string	pin_error_incorrect	-	STR	PIN non corretto. Riprova.	
 values-b+it/strings.xml	string	pin_error_length	-	STR	Il PIN deve essere almeno di 4 caratteri	
+values-b+it/strings.xml	string	pin_error_wait	-	STR	Troppi PIN errati. Riprova tra %1$s	
 values-b+it/strings.xml	string	play_episode	-	STR	Riproduci episodio	
 values-b+it/strings.xml	string	play_episode_toast	-	STR	Riproduci episodio	
 values-b+it/strings.xml	string	play_from_beginning_img_des	-	STR	Riproduci dall'inizio	
@@ -22517,6 +22819,16 @@ values-b+it/strings.xml	string	player_menu_playback	-	STR	Riproduzione
 values-b+it/strings.xml	string	player_mute	-	STR	Disattiva audio	
 values-b+it/strings.xml	string	player_notification_channel_description	-	STR	La notifica del lettore per controllare la riproduzione in background	
 values-b+it/strings.xml	string	player_notification_channel_name	-	STR	Notifiche lettore	
+values-b+it/strings.xml	string	player_panel_failed	-	STR	non riuscito	
+values-b+it/strings.xml	string	player_panel_keeps	-	STR	mantiene %s	
+values-b+it/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+it/strings.xml	string	player_panel_on	-	STR	Attivo	
+values-b+it/strings.xml	string	player_panel_open	-	STR	Apri	
+values-b+it/strings.xml	string	player_panel_quality_profile	-	STR	Profilo qualità	
+values-b+it/strings.xml	string	player_panel_quality_unknown	-	STR	qualità sconosciuta	
+values-b+it/strings.xml	string	player_panel_retry_all	-	STR	Riprova tutte le fonti	
+values-b+it/strings.xml	string	player_panel_style	-	STR	Stile sottotitoli	
+values-b+it/strings.xml	string	player_panel_use	-	STR	Usa	
 values-b+it/strings.xml	string	player_play_now	-	STR	Riproduci ora	
 values-b+it/strings.xml	string	player_pref	-	STR	Video lettore preferito	
 values-b+it/strings.xml	string	player_settings_always_ask	-	STR	Chiedi sempre	
@@ -23442,6 +23754,7 @@ values-b+iw/strings.xml	string	library_sort_current	-	STR	מיון: %s
 values-b+iw/strings.xml	string	library_sort_not_kept	-	STR	%s לא שומר את זה	
 values-b+iw/strings.xml	string	library_sort_supported	-	STR	%1$s תומך ב-%2$d מתוך %3$d	
 values-b+iw/strings.xml	string	library_source	-	STR	מקור הספריה	
+values-b+iw/strings.xml	string	library_source_local	-	STR	מקומי	
 values-b+iw/strings.xml	string	library_source_note	-	STR	אחד בכל פעם · החלפה טוענת מחדש	
 values-b+iw/strings.xml	string	library_sync_cached	-	STR	מהמטמון	
 values-b+iw/strings.xml	string	library_sync_failed	-	STR	לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s.	
@@ -23504,6 +23817,7 @@ values-b+iw/strings.xml	string	pick_source	-	STR	מקורות
 values-b+iw/strings.xml	string	pick_subtitle	-	STR	כתוביות	
 values-b+iw/strings.xml	string	picture_in_picture	-	STR	מצב תמונה בתמונה	
 values-b+iw/strings.xml	string	picture_in_picture_des	-	STR	ממשיך ניגון בנגן מינימלי מעל ישומים אחרים	
+values-b+iw/strings.xml	string	pin_error_wait	-	STR	יותר מדי קודי PIN שגויים. נסו שוב בעוד %1$s	
 values-b+iw/strings.xml	string	play_episode	-	STR	נגן פרק	
 values-b+iw/strings.xml	string	play_episode_toast	-	STR	נגן את הפרק	
 values-b+iw/strings.xml	string	play_from_beginning_img_des	-	STR	נגן מההתחלה	
@@ -23532,6 +23846,16 @@ values-b+iw/strings.xml	string	player_load_subtitles_online	-	STR	טען מהא�
 values-b+iw/strings.xml	string	player_loaded_subtitles	-	STR	נטען %s	
 values-b+iw/strings.xml	string	player_menu_playback	-	STR	הפעלה	
 values-b+iw/strings.xml	string	player_mute	-	STR	השתקה	
+values-b+iw/strings.xml	string	player_panel_failed	-	STR	נכשל	
+values-b+iw/strings.xml	string	player_panel_keeps	-	STR	שומר על %s	
+values-b+iw/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+iw/strings.xml	string	player_panel_on	-	STR	פועל	
+values-b+iw/strings.xml	string	player_panel_open	-	STR	פתיחה	
+values-b+iw/strings.xml	string	player_panel_quality_profile	-	STR	פרופיל איכות	
+values-b+iw/strings.xml	string	player_panel_quality_unknown	-	STR	איכות לא ידועה	
+values-b+iw/strings.xml	string	player_panel_retry_all	-	STR	לנסות שוב את כל המקורות	
+values-b+iw/strings.xml	string	player_panel_style	-	STR	סגנון כתוביות	
+values-b+iw/strings.xml	string	player_panel_use	-	STR	שימוש	
 values-b+iw/strings.xml	string	player_play_now	-	STR	הפעלה עכשיו	
 values-b+iw/strings.xml	string	player_pref	-	STR	נגן וידאו מועדף	
 values-b+iw/strings.xml	string	player_settings_play_in_app	-	STR	נגן פנימי	
@@ -24432,6 +24756,7 @@ values-b+ja/strings.xml	string	library_sort_current	-	STR	並べ替え：%s
 values-b+ja/strings.xml	string	library_sort_not_kept	-	STR	%sには保存されません	
 values-b+ja/strings.xml	string	library_sort_supported	-	STR	%1$s は %3$d 項目中 %2$d 項目に対応	
 values-b+ja/strings.xml	string	library_source	-	STR	ライブラリのソース	
+values-b+ja/strings.xml	string	library_source_local	-	STR	ローカル	
 values-b+ja/strings.xml	string	library_source_note	-	STR	一度に1つ · 切り替えると再読み込み	
 values-b+ja/strings.xml	string	library_sync_cached	-	STR	キャッシュ	
 values-b+ja/strings.xml	string	library_sync_failed	-	STR	%1$s を同期できませんでした。%2$s 前のデータです。	
@@ -24515,6 +24840,7 @@ values-b+ja/strings.xml	string	picture_in_picture_des	-	STR	他のアプリの�
 values-b+ja/strings.xml	string	pin	-	STR	PIN	
 values-b+ja/strings.xml	string	pin_error_incorrect	-	STR	PINが違います。もう一度試してください。	
 values-b+ja/strings.xml	string	pin_error_length	-	STR	PINは4文字でなければなりません	
+values-b+ja/strings.xml	string	pin_error_wait	-	STR	PIN の入力ミスが多すぎます。%1$s 後にもう一度お試しください	
 values-b+ja/strings.xml	string	play_episode	-	STR	再生エピソード	
 values-b+ja/strings.xml	string	play_episode_toast	-	STR	再生エピソード	
 values-b+ja/strings.xml	string	play_from_beginning_img_des	-	STR	最初から再生する	
@@ -24548,6 +24874,16 @@ values-b+ja/strings.xml	string	player_menu_playback	-	STR	再生
 values-b+ja/strings.xml	string	player_mute	-	STR	ミュート	
 values-b+ja/strings.xml	string	player_notification_channel_description	-	STR	バックグラウンドから再生を制御するためのプレーヤー通知	
 values-b+ja/strings.xml	string	player_notification_channel_name	-	STR	プレーヤー通知	
+values-b+ja/strings.xml	string	player_panel_failed	-	STR	失敗	
+values-b+ja/strings.xml	string	player_panel_keeps	-	STR	%s を維持	
+values-b+ja/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ja/strings.xml	string	player_panel_on	-	STR	オン	
+values-b+ja/strings.xml	string	player_panel_open	-	STR	開く	
+values-b+ja/strings.xml	string	player_panel_quality_profile	-	STR	画質プロファイル	
+values-b+ja/strings.xml	string	player_panel_quality_unknown	-	STR	画質不明	
+values-b+ja/strings.xml	string	player_panel_retry_all	-	STR	すべてのソースを再試行	
+values-b+ja/strings.xml	string	player_panel_style	-	STR	字幕スタイル	
+values-b+ja/strings.xml	string	player_panel_use	-	STR	使用	
 values-b+ja/strings.xml	string	player_play_now	-	STR	今すぐ再生	
 values-b+ja/strings.xml	string	player_pref	-	STR	優先ビデオプレーヤー	
 values-b+ja/strings.xml	string	player_settings_always_ask	-	STR	常に尋ねること	
@@ -25286,6 +25622,7 @@ values-b+kn/strings.xml	string	library_sort_current	-	STR	ವಿಂಗಡಣೆ:
 values-b+kn/strings.xml	string	library_sort_not_kept	-	STR	%s ಇದನ್ನು ಇರಿಸುವುದಿಲ್ಲ	
 values-b+kn/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d ರಲ್ಲಿ %2$d ಬೆಂಬಲಿಸುತ್ತದೆ	
 values-b+kn/strings.xml	string	library_source	-	STR	ಲೈಬ್ರರಿ ಮೂಲ	
+values-b+kn/strings.xml	string	library_source_local	-	STR	ಸ್ಥಳೀಯ	
 values-b+kn/strings.xml	string	library_source_note	-	STR	ಒಂದು ಬಾರಿಗೆ ಒಂದು · ಬದಲಿಸಿದರೆ ಮರುಲೋಡ್ ಆಗುತ್ತದೆ	
 values-b+kn/strings.xml	string	library_sync_cached	-	STR	ಕ್ಯಾಶ್	
 values-b+kn/strings.xml	string	library_sync_failed	-	STR	%1$s ಸಿಂಕ್ ಮಾಡಲಾಗಲಿಲ್ಲ. ಇವು %2$s ಹಿಂದಿನವು.	
@@ -25308,6 +25645,7 @@ values-b+kn/strings.xml	string	pick_source	-	STR	ಮೂಲಗಳು
 values-b+kn/strings.xml	string	pick_subtitle	-	STR	ಸಬ್ ಟೈಟಲ್ಸ್	
 values-b+kn/strings.xml	string	picture_in_picture	-	STR	ಚಿತ್ರದಲ್ಲಿ-ಚಿತ್ರದಲ್ಲಿ	
 values-b+kn/strings.xml	string	picture_in_picture_des	-	STR	ಇತರ ಅಪ್ಲಿಕೇಶನ್‌ಗಳ ಮೇಲೆ ಚಿಕಣಿ ಪ್ಲೇಯರ್‌ನಲ್ಲಿ ಪ್ಲೇಬ್ಯಾಕ್ ಅನ್ನು ಮುಂದುವರಿಸುತ್ತದೆ	
+values-b+kn/strings.xml	string	pin_error_wait	-	STR	ತುಂಬಾ ತಪ್ಪು PIN ಗಳು. %1$s ನಂತರ ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ	
 values-b+kn/strings.xml	string	play_episode	-	STR	ಸಂಚಿಕೆಯನ್ನು ಪ್ಲೇ ಮಾಡಿ	
 values-b+kn/strings.xml	string	play_livestream_button	-	STR	ಲೈವ್‌ಸ್ಟ್ರೀಮ್ ಪ್ಲೇ ಮಾಡಿ	
 values-b+kn/strings.xml	string	play_movie_button	-	STR	ಚಲನಚಿತ್ರವನ್ನು ಪ್ಲೇ ಮಾಡಿ	
@@ -25331,6 +25669,16 @@ values-b+kn/strings.xml	string	player_hud_speed	-	STR	ವೇಗ
 values-b+kn/strings.xml	string	player_hud_up_next	-	STR	ಮುಂದಿನದು · %s	
 values-b+kn/strings.xml	string	player_menu_playback	-	STR	ಪ್ಲೇಬ್ಯಾಕ್	
 values-b+kn/strings.xml	string	player_mute	-	STR	ಮ್ಯೂಟ್ ಮಾಡಿ	
+values-b+kn/strings.xml	string	player_panel_failed	-	STR	ವಿಫಲ	
+values-b+kn/strings.xml	string	player_panel_keeps	-	STR	%s ಉಳಿಸುತ್ತದೆ	
+values-b+kn/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+kn/strings.xml	string	player_panel_on	-	STR	ಆನ್	
+values-b+kn/strings.xml	string	player_panel_open	-	STR	ತೆರೆಯಿರಿ	
+values-b+kn/strings.xml	string	player_panel_quality_profile	-	STR	ಗುಣಮಟ್ಟದ ಪ್ರೊಫೈಲ್	
+values-b+kn/strings.xml	string	player_panel_quality_unknown	-	STR	ಗುಣಮಟ್ಟ ಅಜ್ಞಾತ	
+values-b+kn/strings.xml	string	player_panel_retry_all	-	STR	ಎಲ್ಲಾ ಮೂಲಗಳನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ	
+values-b+kn/strings.xml	string	player_panel_style	-	STR	ಉಪಶೀರ್ಷಿಕೆ ಶೈಲಿ	
+values-b+kn/strings.xml	string	player_panel_use	-	STR	ಬಳಸಿ	
 values-b+kn/strings.xml	string	player_play_now	-	STR	ಈಗ ಪ್ಲೇ ಮಾಡಿ	
 values-b+kn/strings.xml	string	player_size_settings	-	STR	ಪ್ಲೇಯರ್ ಮರುಗಾತ್ರಗೊಳಿಸಿ ಬಟನ್	
 values-b+kn/strings.xml	string	player_size_settings_des	-	STR	ಕಪ್ಪು ಗಡಿಗಳನ್ನು ತೆಗೆದುಹಾಕಿ	
@@ -26025,6 +26373,7 @@ values-b+ko/strings.xml	string	library_sort_current	-	STR	정렬: %s
 values-b+ko/strings.xml	string	library_sort_not_kept	-	STR	%s에는 저장되지 않음	
 values-b+ko/strings.xml	string	library_sort_supported	-	STR	%1$s은(는) %3$d개 중 %2$d개 지원	
 values-b+ko/strings.xml	string	library_source	-	STR	라이브러리 소스	
+values-b+ko/strings.xml	string	library_source_local	-	STR	로컬	
 values-b+ko/strings.xml	string	library_source_note	-	STR	한 번에 하나 · 전환하면 다시 불러옴	
 values-b+ko/strings.xml	string	library_sync_cached	-	STR	캐시됨	
 values-b+ko/strings.xml	string	library_sync_failed	-	STR	%1$s을(를) 동기화하지 못했습니다. %2$s 전 데이터입니다.	
@@ -26108,6 +26457,7 @@ values-b+ko/strings.xml	string	picture_in_picture_des	-	STR	미니플레이어�
 values-b+ko/strings.xml	string	pin	-	STR	PIN	
 values-b+ko/strings.xml	string	pin_error_incorrect	-	STR	잘못된 PIN입니다. 다시 시도하세요.	
 values-b+ko/strings.xml	string	pin_error_length	-	STR	PIN은 4자여야 합니다	
+values-b+ko/strings.xml	string	pin_error_wait	-	STR	잘못된 PIN을 너무 많이 입력했습니다. %1$s 후에 다시 시도하세요	
 values-b+ko/strings.xml	string	play_episode	-	STR	에피소드 재생	
 values-b+ko/strings.xml	string	play_episode_toast	-	STR	에피소드 재생	
 values-b+ko/strings.xml	string	play_from_beginning_img_des	-	STR	처음부터 재생	
@@ -26141,6 +26491,16 @@ values-b+ko/strings.xml	string	player_menu_playback	-	STR	재생
 values-b+ko/strings.xml	string	player_mute	-	STR	음소거	
 values-b+ko/strings.xml	string	player_notification_channel_description	-	STR	백그라운드에서 재생을 제어하기 위한 플레이어 알림	
 values-b+ko/strings.xml	string	player_notification_channel_name	-	STR	플레이어 알림	
+values-b+ko/strings.xml	string	player_panel_failed	-	STR	실패	
+values-b+ko/strings.xml	string	player_panel_keeps	-	STR	%s 유지	
+values-b+ko/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ko/strings.xml	string	player_panel_on	-	STR	켜짐	
+values-b+ko/strings.xml	string	player_panel_open	-	STR	열기	
+values-b+ko/strings.xml	string	player_panel_quality_profile	-	STR	화질 프로필	
+values-b+ko/strings.xml	string	player_panel_quality_unknown	-	STR	화질 알 수 없음	
+values-b+ko/strings.xml	string	player_panel_retry_all	-	STR	모든 소스 다시 시도	
+values-b+ko/strings.xml	string	player_panel_style	-	STR	자막 스타일	
+values-b+ko/strings.xml	string	player_panel_use	-	STR	사용	
 values-b+ko/strings.xml	string	player_play_now	-	STR	지금 재생	
 values-b+ko/strings.xml	string	player_pref	-	STR	선호하는 동영상 플레이어	
 values-b+ko/strings.xml	string	player_settings_always_ask	-	STR	항상 묻기	
@@ -26984,6 +27344,7 @@ values-b+lt/strings.xml	string	library_sort_current	-	STR	Rikiavimas: %s
 values-b+lt/strings.xml	string	library_sort_not_kept	-	STR	%s to nesaugo	
 values-b+lt/strings.xml	string	library_sort_supported	-	STR	%1$s palaiko %2$d iš %3$d	
 values-b+lt/strings.xml	string	library_source	-	STR	Bibliotekos šaltinis	
+values-b+lt/strings.xml	string	library_source_local	-	STR	Vietinis	
 values-b+lt/strings.xml	string	library_source_note	-	STR	Po vieną · perjungus įkeliama iš naujo	
 values-b+lt/strings.xml	string	library_sync_cached	-	STR	Iš podėlio	
 values-b+lt/strings.xml	string	library_sync_failed	-	STR	Nepavyko sinchronizuoti %1$s. Tai duomenys prieš %2$s.	
@@ -27022,6 +27383,7 @@ values-b+lt/strings.xml	string	pick_source	-	STR	Šaltiniai
 values-b+lt/strings.xml	string	pick_subtitle	-	STR	Subtitrai	
 values-b+lt/strings.xml	string	picture_in_picture	-	STR	Vaizdas vaizde	
 values-b+lt/strings.xml	string	picture_in_picture_des	-	STR	Tęsia atkūrimą mažame grotuve virš kitų programų	
+values-b+lt/strings.xml	string	pin_error_wait	-	STR	Per daug neteisingų PIN kodų. Bandykite dar kartą po %1$s	
 values-b+lt/strings.xml	string	play_episode	-	STR	Paleisti seriją	
 values-b+lt/strings.xml	string	play_episode_toast	-	STR	Leisti seriją	
 values-b+lt/strings.xml	string	play_full_series_button	-	STR	Paleisti visą seriją	
@@ -27047,6 +27409,16 @@ values-b+lt/strings.xml	string	player_hud_speed	-	STR	Greitis
 values-b+lt/strings.xml	string	player_hud_up_next	-	STR	Toliau · %s	
 values-b+lt/strings.xml	string	player_menu_playback	-	STR	Atkūrimas	
 values-b+lt/strings.xml	string	player_mute	-	STR	Nutildyti	
+values-b+lt/strings.xml	string	player_panel_failed	-	STR	nepavyko	
+values-b+lt/strings.xml	string	player_panel_keeps	-	STR	išlaiko %s	
+values-b+lt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+lt/strings.xml	string	player_panel_on	-	STR	Įjungta	
+values-b+lt/strings.xml	string	player_panel_open	-	STR	Atidaryti	
+values-b+lt/strings.xml	string	player_panel_quality_profile	-	STR	Kokybės profilis	
+values-b+lt/strings.xml	string	player_panel_quality_unknown	-	STR	kokybė nežinoma	
+values-b+lt/strings.xml	string	player_panel_retry_all	-	STR	Bandyti visus šaltinius iš naujo	
+values-b+lt/strings.xml	string	player_panel_style	-	STR	Subtitrų stilius	
+values-b+lt/strings.xml	string	player_panel_use	-	STR	Naudoti	
 values-b+lt/strings.xml	string	player_play_now	-	STR	Leisti dabar	
 values-b+lt/strings.xml	string	player_settings_play_in_app	-	STR	Integruotas grotuvas	
 values-b+lt/strings.xml	string	player_size_settings	-	STR	Grotuvo dydžio pakeitimo mygtukas	
@@ -27804,6 +28176,7 @@ values-b+lv/strings.xml	string	library_sort_current	-	STR	Kārtošana: %s
 values-b+lv/strings.xml	string	library_sort_not_kept	-	STR	%s to neglabā	
 values-b+lv/strings.xml	string	library_sort_supported	-	STR	%1$s atbalsta %2$d no %3$d	
 values-b+lv/strings.xml	string	library_source	-	STR	Bibliotēkas avots	
+values-b+lv/strings.xml	string	library_source_local	-	STR	Vietējais	
 values-b+lv/strings.xml	string	library_source_note	-	STR	Pa vienam · pārslēgšana pārlādē	
 values-b+lv/strings.xml	string	library_sync_cached	-	STR	No kešatmiņas	
 values-b+lv/strings.xml	string	library_sync_failed	-	STR	Neizdevās sinhronizēt %1$s. Šie dati ir no pirms %2$s.	
@@ -27878,6 +28251,7 @@ values-b+lv/strings.xml	string	picture_in_picture_des	-	STR	Turpina atskaņošan
 values-b+lv/strings.xml	string	pin	-	STR	PIN kods	
 values-b+lv/strings.xml	string	pin_error_incorrect	-	STR	Nepareizs PIN kods. Lūdzu, ievadiet to no jauna.	
 values-b+lv/strings.xml	string	pin_error_length	-	STR	PIN kods satur 4 rakstzīmes	
+values-b+lv/strings.xml	string	pin_error_wait	-	STR	Pārāk daudz nepareizu PIN. Mēģiniet vēlreiz pēc %1$s	
 values-b+lv/strings.xml	string	play_episode	-	STR	Palaist epizodi	
 values-b+lv/strings.xml	string	play_episode_toast	-	STR	Atskaņot epizodi	
 values-b+lv/strings.xml	string	play_from_beginning_img_des	-	STR	Atskaņot no sākuma	
@@ -27908,6 +28282,16 @@ values-b+lv/strings.xml	string	player_load_subtitles_online	-	STR	Lejupielādēt
 values-b+lv/strings.xml	string	player_loaded_subtitles	-	STR	Ielādēti %s	
 values-b+lv/strings.xml	string	player_menu_playback	-	STR	Atskaņošana	
 values-b+lv/strings.xml	string	player_mute	-	STR	Izslēgt skaņu	
+values-b+lv/strings.xml	string	player_panel_failed	-	STR	neizdevās	
+values-b+lv/strings.xml	string	player_panel_keeps	-	STR	saglabā %s	
+values-b+lv/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+lv/strings.xml	string	player_panel_on	-	STR	Ieslēgts	
+values-b+lv/strings.xml	string	player_panel_open	-	STR	Atvērt	
+values-b+lv/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitātes profils	
+values-b+lv/strings.xml	string	player_panel_quality_unknown	-	STR	kvalitāte nezināma	
+values-b+lv/strings.xml	string	player_panel_retry_all	-	STR	Mēģināt visus avotus vēlreiz	
+values-b+lv/strings.xml	string	player_panel_style	-	STR	Subtitru stils	
+values-b+lv/strings.xml	string	player_panel_use	-	STR	Izmantot	
 values-b+lv/strings.xml	string	player_play_now	-	STR	Atskaņot tagad	
 values-b+lv/strings.xml	string	player_pref	-	STR	Vēlamais video atskaņotājs	
 values-b+lv/strings.xml	string	player_settings_play_in_app	-	STR	Iekšējais atskaņotājs	
@@ -28850,6 +29234,7 @@ values-b+mk/strings.xml	string	library_sort_current	-	STR	Подредување
 values-b+mk/strings.xml	string	library_sort_not_kept	-	STR	%s не го чува	
 values-b+mk/strings.xml	string	library_sort_supported	-	STR	%1$s поддржува %2$d од %3$d	
 values-b+mk/strings.xml	string	library_source	-	STR	Извор на библиотеката	
+values-b+mk/strings.xml	string	library_source_local	-	STR	Локално	
 values-b+mk/strings.xml	string	library_source_note	-	STR	Еден по еден · менувањето превчитува	
 values-b+mk/strings.xml	string	library_sync_cached	-	STR	Кеширано	
 values-b+mk/strings.xml	string	library_sync_failed	-	STR	%1$s не може да се синхронизира. Ова е од пред %2$s.	
@@ -28933,6 +29318,7 @@ values-b+mk/strings.xml	string	picture_in_picture_des	-	STR	Продолжува
 values-b+mk/strings.xml	string	pin	-	STR	PIN	
 values-b+mk/strings.xml	string	pin_error_incorrect	-	STR	Неточен ПИН. Обиди се повторно.	
 values-b+mk/strings.xml	string	pin_error_length	-	STR	ПИН-кодот мора да има 4 знаци	
+values-b+mk/strings.xml	string	pin_error_wait	-	STR	Премногу погрешни PIN-кодови. Обидете се повторно за %1$s	
 values-b+mk/strings.xml	string	play_episode	-	STR	Вклучи епизода	
 values-b+mk/strings.xml	string	play_episode_toast	-	STR	Пушти ја епизодата	
 values-b+mk/strings.xml	string	play_from_beginning_img_des	-	STR	Пушти од почеток	
@@ -28966,6 +29352,16 @@ values-b+mk/strings.xml	string	player_menu_playback	-	STR	Репродукциј
 values-b+mk/strings.xml	string	player_mute	-	STR	Исклучи звук	
 values-b+mk/strings.xml	string	player_notification_channel_description	-	STR	Известување од плеерот за контрола на репродукцијата од позадина	
 values-b+mk/strings.xml	string	player_notification_channel_name	-	STR	Известувања од плеерот	
+values-b+mk/strings.xml	string	player_panel_failed	-	STR	неуспешно	
+values-b+mk/strings.xml	string	player_panel_keeps	-	STR	задржува %s	
+values-b+mk/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+mk/strings.xml	string	player_panel_on	-	STR	Вклучено	
+values-b+mk/strings.xml	string	player_panel_open	-	STR	Отвори	
+values-b+mk/strings.xml	string	player_panel_quality_profile	-	STR	Профил за квалитет	
+values-b+mk/strings.xml	string	player_panel_quality_unknown	-	STR	непознат квалитет	
+values-b+mk/strings.xml	string	player_panel_retry_all	-	STR	Обиди ги сите извори повторно	
+values-b+mk/strings.xml	string	player_panel_style	-	STR	Стил на преводот	
+values-b+mk/strings.xml	string	player_panel_use	-	STR	Користи	
 values-b+mk/strings.xml	string	player_play_now	-	STR	Пушти сега	
 values-b+mk/strings.xml	string	player_pref	-	STR	Префериран видео плеер	
 values-b+mk/strings.xml	string	player_settings_always_ask	-	STR	Секогаш прашувај	
@@ -29765,6 +30161,7 @@ values-b+ml/strings.xml	string	library_sort_current	-	STR	ക്രമം: %s
 values-b+ml/strings.xml	string	library_sort_not_kept	-	STR	%s ഇത് സൂക്ഷിക്കുന്നില്ല	
 values-b+ml/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d-ൽ %2$d പിന്തുണയ്ക്കുന്നു	
 values-b+ml/strings.xml	string	library_source	-	STR	ലൈബ്രറി ഉറവിടം	
+values-b+ml/strings.xml	string	library_source_local	-	STR	ലോക്കൽ	
 values-b+ml/strings.xml	string	library_source_note	-	STR	ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും	
 values-b+ml/strings.xml	string	library_sync_cached	-	STR	കാഷെ ചെയ്തത്	
 values-b+ml/strings.xml	string	library_sync_failed	-	STR	%1$s സമന്വയിപ്പിക്കാനായില്ല. ഇവ %2$s മുമ്പുള്ളതാണ്.	
@@ -29808,6 +30205,7 @@ values-b+ml/strings.xml	string	picture_in_picture_des	-	STR	മറ്റ് ആ�
 values-b+ml/strings.xml	string	pin	-	STR	പിൻ	
 values-b+ml/strings.xml	string	pin_error_incorrect	-	STR	തെറ്റായ പിൻ. ദയവായി വീണ്ടും ശ്രമിക്കുക.	
 values-b+ml/strings.xml	string	pin_error_length	-	STR	പിൻ 4 പ്രതീകങ്ങൾ ആയിരിക്കണം	
+values-b+ml/strings.xml	string	pin_error_wait	-	STR	വളരെയധികം തെറ്റായ PIN-കൾ. %1$s കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക	
 values-b+ml/strings.xml	string	play_episode	-	STR	എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക	
 values-b+ml/strings.xml	string	play_episode_toast	-	STR	എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക	
 values-b+ml/strings.xml	string	play_from_beginning_img_des	-	STR	തുടക്കം മുതൽ പ്ലേ ചെയ്യുക	
@@ -29835,6 +30233,16 @@ values-b+ml/strings.xml	string	player_hud_up_next	-	STR	അടുത്തത്
 values-b+ml/strings.xml	string	player_is_live	-	STR	തൽസമയം	
 values-b+ml/strings.xml	string	player_menu_playback	-	STR	പ്ലേബാക്ക്	
 values-b+ml/strings.xml	string	player_mute	-	STR	നിശബ്‌ദമാക്കുക	
+values-b+ml/strings.xml	string	player_panel_failed	-	STR	പരാജയപ്പെട്ടു	
+values-b+ml/strings.xml	string	player_panel_keeps	-	STR	%s നിലനിർത്തുന്നു	
+values-b+ml/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ml/strings.xml	string	player_panel_on	-	STR	ഓൺ	
+values-b+ml/strings.xml	string	player_panel_open	-	STR	തുറക്കുക	
+values-b+ml/strings.xml	string	player_panel_quality_profile	-	STR	ഗുണനിലവാര പ്രൊഫൈൽ	
+values-b+ml/strings.xml	string	player_panel_quality_unknown	-	STR	ഗുണനിലവാരം അറിയില്ല	
+values-b+ml/strings.xml	string	player_panel_retry_all	-	STR	എല്ലാ ഉറവിടങ്ങളും വീണ്ടും ശ്രമിക്കുക	
+values-b+ml/strings.xml	string	player_panel_style	-	STR	സബ്‌ടൈറ്റിൽ ശൈലി	
+values-b+ml/strings.xml	string	player_panel_use	-	STR	ഉപയോഗിക്കുക	
 values-b+ml/strings.xml	string	player_play_now	-	STR	ഇപ്പോൾ പ്ലേ ചെയ്യുക	
 values-b+ml/strings.xml	string	player_size_settings	-	STR	പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ	
 values-b+ml/strings.xml	string	player_size_settings_des	-	STR	കറുത്ത അതിർത്തി നീക്കംചെയ്യുക	
@@ -30529,6 +30937,7 @@ values-b+ms/strings.xml	string	library_sort_current	-	STR	Isih: %s
 values-b+ms/strings.xml	string	library_sort_not_kept	-	STR	Tidak disimpan oleh %s	
 values-b+ms/strings.xml	string	library_sort_supported	-	STR	%1$s menyokong %2$d daripada %3$d	
 values-b+ms/strings.xml	string	library_source	-	STR	Sumber perpustakaan	
+values-b+ms/strings.xml	string	library_source_local	-	STR	Tempatan	
 values-b+ms/strings.xml	string	library_source_note	-	STR	Satu demi satu · menukar memuat semula	
 values-b+ms/strings.xml	string	library_sync_cached	-	STR	Dicache	
 values-b+ms/strings.xml	string	library_sync_failed	-	STR	Tidak dapat menyegerakkan %1$s. Ini dari %2$s yang lalu.	
@@ -30599,6 +31008,7 @@ values-b+ms/strings.xml	string	picture_in_picture_des	-	STR	Sambung Rakaman dida
 values-b+ms/strings.xml	string	pin	-	STR	PIN	
 values-b+ms/strings.xml	string	pin_error_incorrect	-	STR	PIN salah. Sila cuba sekali lagi.	
 values-b+ms/strings.xml	string	pin_error_length	-	STR	PIN perlu mempunyai 4 aksara	
+values-b+ms/strings.xml	string	pin_error_wait	-	STR	Terlalu banyak PIN salah. Cuba lagi dalam %1$s	
 values-b+ms/strings.xml	string	play_episode	-	STR	Pasang Episod	
 values-b+ms/strings.xml	string	play_episode_toast	-	STR	Main episod	
 values-b+ms/strings.xml	string	play_from_beginning_img_des	-	STR	Main dari mula	
@@ -30624,6 +31034,16 @@ values-b+ms/strings.xml	string	player_hud_speed	-	STR	Kelajuan
 values-b+ms/strings.xml	string	player_hud_up_next	-	STR	Seterusnya · %s	
 values-b+ms/strings.xml	string	player_menu_playback	-	STR	Main balik	
 values-b+ms/strings.xml	string	player_mute	-	STR	Redam	
+values-b+ms/strings.xml	string	player_panel_failed	-	STR	gagal	
+values-b+ms/strings.xml	string	player_panel_keeps	-	STR	kekalkan %s	
+values-b+ms/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ms/strings.xml	string	player_panel_on	-	STR	Hidup	
+values-b+ms/strings.xml	string	player_panel_open	-	STR	Buka	
+values-b+ms/strings.xml	string	player_panel_quality_profile	-	STR	Profil kualiti	
+values-b+ms/strings.xml	string	player_panel_quality_unknown	-	STR	kualiti tidak diketahui	
+values-b+ms/strings.xml	string	player_panel_retry_all	-	STR	Cuba semula semua sumber	
+values-b+ms/strings.xml	string	player_panel_style	-	STR	Gaya sari kata	
+values-b+ms/strings.xml	string	player_panel_use	-	STR	Guna	
 values-b+ms/strings.xml	string	player_play_now	-	STR	Main sekarang	
 values-b+ms/strings.xml	string	player_settings_play_in_app	-	STR	Pemain dalaman	
 values-b+ms/strings.xml	string	player_size_settings	-	STR	Saiz butang pemain	
@@ -31304,6 +31724,7 @@ values-b+mt/strings.xml	string	library_sort_current	-	STR	Ordni: %s
 values-b+mt/strings.xml	string	library_sort_not_kept	-	STR	Mhux miżmum minn %s	
 values-b+mt/strings.xml	string	library_sort_supported	-	STR	%1$s jappoġġja %2$d minn %3$d	
 values-b+mt/strings.xml	string	library_source	-	STR	Sors tal-librerija	
+values-b+mt/strings.xml	string	library_source_local	-	STR	Lokali	
 values-b+mt/strings.xml	string	library_source_note	-	STR	Wieħed kull darba · il-bidla tgħabbi mill-ġdid	
 values-b+mt/strings.xml	string	library_sync_cached	-	STR	Fil-cache	
 values-b+mt/strings.xml	string	library_sync_failed	-	STR	Ma setax jiġi sinkronizzat %1$s. Dawn huma minn %2$s ilu.	
@@ -31327,6 +31748,7 @@ values-b+mt/strings.xml	string	pick_source	-	STR	Sorsi
 values-b+mt/strings.xml	string	pick_subtitle	-	STR	Sottotitli	
 values-b+mt/strings.xml	string	picture_in_picture	-	STR	Stampa f-istampa	
 values-b+mt/strings.xml	string	picture_in_picture_des	-	STR	Ikompli d-daqq fi player minjatura fuq apps oħra	
+values-b+mt/strings.xml	string	pin_error_wait	-	STR	Wisq PINs ħżiena. Ipprova mill-ġdid fi żmien %1$s	
 values-b+mt/strings.xml	string	play_episode	-	STR	Ibda l-episodju	
 values-b+mt/strings.xml	string	play_livestream_button	-	STR	Ibda l-livestream	
 values-b+mt/strings.xml	string	play_movie_button	-	STR	Ibda l-film	
@@ -31350,6 +31772,16 @@ values-b+mt/strings.xml	string	player_hud_speed	-	STR	Veloċità
 values-b+mt/strings.xml	string	player_hud_up_next	-	STR	Li jmiss · %s	
 values-b+mt/strings.xml	string	player_menu_playback	-	STR	Playback	
 values-b+mt/strings.xml	string	player_mute	-	STR	Itfi l-ħoss	
+values-b+mt/strings.xml	string	player_panel_failed	-	STR	falla	
+values-b+mt/strings.xml	string	player_panel_keeps	-	STR	iżomm %s	
+values-b+mt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+mt/strings.xml	string	player_panel_on	-	STR	Mixgħul	
+values-b+mt/strings.xml	string	player_panel_open	-	STR	Iftaħ	
+values-b+mt/strings.xml	string	player_panel_quality_profile	-	STR	Profil tal-kwalità	
+values-b+mt/strings.xml	string	player_panel_quality_unknown	-	STR	kwalità mhux magħrufa	
+values-b+mt/strings.xml	string	player_panel_retry_all	-	STR	Erġa' pprova s-sorsi kollha	
+values-b+mt/strings.xml	string	player_panel_style	-	STR	Stil tas-sottotitli	
+values-b+mt/strings.xml	string	player_panel_use	-	STR	Uża	
 values-b+mt/strings.xml	string	player_play_now	-	STR	Ħaddem issa	
 values-b+mt/strings.xml	string	player_source_decoded	-	STR	%s dekodifikat	
 values-b+mt/strings.xml	string	player_source_playing	-	STR	Qed jindaqq	
@@ -31943,6 +32375,7 @@ values-b+my/strings.xml	string	library_sort_current	-	STR	စီရန်: %s
 values-b+my/strings.xml	string	library_sort_not_kept	-	STR	%s က ဒါကို မသိမ်းထားပါ	
 values-b+my/strings.xml	string	library_sort_supported	-	STR	%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်	
 values-b+my/strings.xml	string	library_source	-	STR	လိုက်ဘရီ ရင်းမြစ်	
+values-b+my/strings.xml	string	library_source_local	-	STR	စက်တွင်း	
 values-b+my/strings.xml	string	library_source_note	-	STR	တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်	
 values-b+my/strings.xml	string	library_sync_cached	-	STR	သိမ်းထားသည်	
 values-b+my/strings.xml	string	library_sync_failed	-	STR	%1$s ကို ချိန်ကိုက်၍မရပါ။ ဤအရာများသည် လွန်ခဲ့သော %2$s ကဖြစ်သည်။	
@@ -32001,6 +32434,7 @@ values-b+my/strings.xml	string	pick_source	-	STR	ရင်းမြစ်မျ�
 values-b+my/strings.xml	string	pick_subtitle	-	STR	စာတန်းထိုး	
 values-b+my/strings.xml	string	picture_in_picture	-	STR	ရုပ်ပုံထပ်	
 values-b+my/strings.xml	string	picture_in_picture_des	-	STR	ပြန်ကြည့်ခြင်းကိုအသေးစား ကြည့်ရှုမှုတွင်ဆက်ပြပါ	
+values-b+my/strings.xml	string	pin_error_wait	-	STR	PIN မှားယွင်းမှု များလွန်းသည်။ %1$s အကြာတွင် ထပ်စမ်းကြည့်ပါ	
 values-b+my/strings.xml	string	play_episode	-	STR	အပိုင်း ကြည့်မည်	
 values-b+my/strings.xml	string	play_episode_toast	-	STR	အပိုင်းကြည့်မည်	
 values-b+my/strings.xml	string	play_livestream_button	-	STR	လိုက်ခ် ကြည့်မည်	
@@ -32028,6 +32462,16 @@ values-b+my/strings.xml	string	player_load_subtitles_online	-	STR	အင်တ�
 values-b+my/strings.xml	string	player_loaded_subtitles	-	STR	တင်ပြီး %s	
 values-b+my/strings.xml	string	player_menu_playback	-	STR	ပြန်ဖွင့်ခြင်း	
 values-b+my/strings.xml	string	player_mute	-	STR	အသံပိတ်ရန်	
+values-b+my/strings.xml	string	player_panel_failed	-	STR	မအောင်မြင်ပါ	
+values-b+my/strings.xml	string	player_panel_keeps	-	STR	%s ကို ထိန်းထားသည်	
+values-b+my/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+my/strings.xml	string	player_panel_on	-	STR	ဖွင့်	
+values-b+my/strings.xml	string	player_panel_open	-	STR	ဖွင့်ရန်	
+values-b+my/strings.xml	string	player_panel_quality_profile	-	STR	အရည်အသွေး ပရိုဖိုင်	
+values-b+my/strings.xml	string	player_panel_quality_unknown	-	STR	အရည်အသွေး မသိ	
+values-b+my/strings.xml	string	player_panel_retry_all	-	STR	ရင်းမြစ်အားလုံး ထပ်စမ်းရန်	
+values-b+my/strings.xml	string	player_panel_style	-	STR	စာတန်းထိုး ပုံစံ	
+values-b+my/strings.xml	string	player_panel_use	-	STR	သုံးရန်	
 values-b+my/strings.xml	string	player_play_now	-	STR	ယခုဖွင့်	
 values-b+my/strings.xml	string	player_pref	-	STR	ဦးစားပေး ဗီဒီယိုဖွင့်စက်	
 values-b+my/strings.xml	string	player_settings_play_in_app	-	STR	ဖုန်းတွင်းကြည့်ရှုမှု	
@@ -32677,6 +33121,7 @@ values-b+ne/strings.xml	string	library_sort_current	-	STR	क्रम: %s
 values-b+ne/strings.xml	string	library_sort_not_kept	-	STR	%s ले यो राख्दैन	
 values-b+ne/strings.xml	string	library_sort_supported	-	STR	%1$s ले %3$d मध्ये %2$d समर्थन गर्छ	
 values-b+ne/strings.xml	string	library_source	-	STR	लाइब्रेरी स्रोत	
+values-b+ne/strings.xml	string	library_source_local	-	STR	स्थानीय	
 values-b+ne/strings.xml	string	library_source_note	-	STR	एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ	
 values-b+ne/strings.xml	string	library_sync_cached	-	STR	क्यास गरिएको	
 values-b+ne/strings.xml	string	library_sync_failed	-	STR	%1$s सिंक गर्न सकिएन। यी %2$s अघिका हुन्।	
@@ -32701,6 +33146,7 @@ values-b+ne/strings.xml	string	pick_source	-	STR	स्रोतहरू
 values-b+ne/strings.xml	string	pick_subtitle	-	STR	उपशीर्षक	
 values-b+ne/strings.xml	string	picture_in_picture	-	STR	Picture-in-picture	
 values-b+ne/strings.xml	string	picture_in_picture_des	-	STR	अरु एप माथी सानो प्लेयरमा पलेब्याक जारी राख्दछ	
+values-b+ne/strings.xml	string	pin_error_wait	-	STR	धेरै पटक गलत PIN। %1$s पछि फेरि प्रयास गर्नुहोस्	
 values-b+ne/strings.xml	string	play_episode	-	STR	एपिसोड प्ले गर्नुहोस्	
 values-b+ne/strings.xml	string	play_livestream_button	-	STR	लाइभस्ट्रिम प्ले गर्नुहोस्	
 values-b+ne/strings.xml	string	play_movie_button	-	STR	चलचित्र प्ले गर्नुहोस्	
@@ -32724,6 +33170,16 @@ values-b+ne/strings.xml	string	player_hud_speed	-	STR	गति
 values-b+ne/strings.xml	string	player_hud_up_next	-	STR	अर्को · %s	
 values-b+ne/strings.xml	string	player_menu_playback	-	STR	प्लेब्याक	
 values-b+ne/strings.xml	string	player_mute	-	STR	म्यूट गर्नुहोस्	
+values-b+ne/strings.xml	string	player_panel_failed	-	STR	असफल	
+values-b+ne/strings.xml	string	player_panel_keeps	-	STR	%s राख्छ	
+values-b+ne/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ne/strings.xml	string	player_panel_on	-	STR	अन	
+values-b+ne/strings.xml	string	player_panel_open	-	STR	खोल्नुहोस्	
+values-b+ne/strings.xml	string	player_panel_quality_profile	-	STR	गुणस्तर प्रोफाइल	
+values-b+ne/strings.xml	string	player_panel_quality_unknown	-	STR	गुणस्तर अज्ञात	
+values-b+ne/strings.xml	string	player_panel_retry_all	-	STR	सबै स्रोत फेरि प्रयास गर्नुहोस्	
+values-b+ne/strings.xml	string	player_panel_style	-	STR	सबटाइटल शैली	
+values-b+ne/strings.xml	string	player_panel_use	-	STR	प्रयोग गर्नुहोस्	
 values-b+ne/strings.xml	string	player_play_now	-	STR	अहिले चलाउनुहोस्	
 values-b+ne/strings.xml	string	player_size_settings	-	STR	प्लेयर resize गर्ने वटन	
 values-b+ne/strings.xml	string	player_size_settings_des	-	STR	कालो सीमा हटाउनुहोस	
@@ -33414,6 +33870,7 @@ values-b+nl/strings.xml	string	library_sort_current	-	STR	Sorteren: %s
 values-b+nl/strings.xml	string	library_sort_not_kept	-	STR	Niet bewaard door %s	
 values-b+nl/strings.xml	string	library_sort_supported	-	STR	%1$s ondersteunt %2$d van %3$d	
 values-b+nl/strings.xml	string	library_source	-	STR	Bibliotheekbron	
+values-b+nl/strings.xml	string	library_source_local	-	STR	Lokaal	
 values-b+nl/strings.xml	string	library_source_note	-	STR	Eén tegelijk · wisselen laadt opnieuw	
 values-b+nl/strings.xml	string	library_sync_cached	-	STR	Uit cache	
 values-b+nl/strings.xml	string	library_sync_failed	-	STR	%1$s kon niet worden gesynchroniseerd. Dit is van %2$s geleden.	
@@ -33490,6 +33947,7 @@ values-b+nl/strings.xml	string	picture_in_picture_des	-	STR	Blijft afspelen in e
 values-b+nl/strings.xml	string	pin	-	STR	PIN	
 values-b+nl/strings.xml	string	pin_error_incorrect	-	STR	Onjuiste PIN. Probeer het opnieuw.	
 values-b+nl/strings.xml	string	pin_error_length	-	STR	PIN moet 4 teken bevatten	
+values-b+nl/strings.xml	string	pin_error_wait	-	STR	Te veel verkeerde pincodes. Probeer het over %1$s opnieuw	
 values-b+nl/strings.xml	string	play_episode	-	STR	Aflevering afspelen	
 values-b+nl/strings.xml	string	play_episode_toast	-	STR	Aflevering afspelen	
 values-b+nl/strings.xml	string	play_from_beginning_img_des	-	STR	Speel van het begin	
@@ -33522,6 +33980,16 @@ values-b+nl/strings.xml	string	player_menu_playback	-	STR	Afspelen
 values-b+nl/strings.xml	string	player_mute	-	STR	Dempen	
 values-b+nl/strings.xml	string	player_notification_channel_description	-	STR	De speler melding om de kijkervaring van de achtergrond de besturen	
 values-b+nl/strings.xml	string	player_notification_channel_name	-	STR	Speler meldingen	
+values-b+nl/strings.xml	string	player_panel_failed	-	STR	mislukt	
+values-b+nl/strings.xml	string	player_panel_keeps	-	STR	behoudt %s	
+values-b+nl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+nl/strings.xml	string	player_panel_on	-	STR	Aan	
+values-b+nl/strings.xml	string	player_panel_open	-	STR	Openen	
+values-b+nl/strings.xml	string	player_panel_quality_profile	-	STR	Kwaliteitsprofiel	
+values-b+nl/strings.xml	string	player_panel_quality_unknown	-	STR	kwaliteit onbekend	
+values-b+nl/strings.xml	string	player_panel_retry_all	-	STR	Alle bronnen opnieuw proberen	
+values-b+nl/strings.xml	string	player_panel_style	-	STR	Ondertitelstijl	
+values-b+nl/strings.xml	string	player_panel_use	-	STR	Gebruiken	
 values-b+nl/strings.xml	string	player_play_now	-	STR	Nu afspelen	
 values-b+nl/strings.xml	string	player_pref	-	STR	Gewenste videospeler	
 values-b+nl/strings.xml	string	player_settings_always_ask	-	STR	Vraag altijd	
@@ -34269,6 +34737,7 @@ values-b+nn/strings.xml	string	library_sort_current	-	STR	Sortering: %s
 values-b+nn/strings.xml	string	library_sort_not_kept	-	STR	Ikkje lagra av %s	
 values-b+nn/strings.xml	string	library_sort_supported	-	STR	%1$s støttar %2$d av %3$d	
 values-b+nn/strings.xml	string	library_source	-	STR	Bibliotekskjelde	
+values-b+nn/strings.xml	string	library_source_local	-	STR	Lokal	
 values-b+nn/strings.xml	string	library_source_note	-	STR	Éin om gongen · byte lastar på nytt	
 values-b+nn/strings.xml	string	library_sync_cached	-	STR	Mellomlagra	
 values-b+nn/strings.xml	string	library_sync_failed	-	STR	Kunne ikkje synkronisera %1$s. Desse er frå for %2$s sidan.	
@@ -34304,6 +34773,7 @@ values-b+nn/strings.xml	string	pause	-	STR	Pause
 values-b+nn/strings.xml	string	pick_source	-	STR	Kjelder	
 values-b+nn/strings.xml	string	pick_subtitle	-	STR	Undertekstar	
 values-b+nn/strings.xml	string	picture_in_picture	-	STR	Bilde i bilde	
+values-b+nn/strings.xml	string	pin_error_wait	-	STR	For mange feil PIN-kodar. Prøv igjen om %1$s	
 values-b+nn/strings.xml	string	play_episode	-	STR	Spel av episode	
 values-b+nn/strings.xml	string	play_episode_toast	-	STR	Spel av episode	
 values-b+nn/strings.xml	string	play_from_beginning_img_des	-	STR	Spel av frå start	
@@ -34330,6 +34800,16 @@ values-b+nn/strings.xml	string	player_hud_speed	-	STR	Fart
 values-b+nn/strings.xml	string	player_hud_up_next	-	STR	Neste · %s	
 values-b+nn/strings.xml	string	player_menu_playback	-	STR	Avspeling	
 values-b+nn/strings.xml	string	player_mute	-	STR	Slå av lyd	
+values-b+nn/strings.xml	string	player_panel_failed	-	STR	feila	
+values-b+nn/strings.xml	string	player_panel_keeps	-	STR	held på %s	
+values-b+nn/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+nn/strings.xml	string	player_panel_on	-	STR	På	
+values-b+nn/strings.xml	string	player_panel_open	-	STR	Opne	
+values-b+nn/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitetsprofil	
+values-b+nn/strings.xml	string	player_panel_quality_unknown	-	STR	ukjend kvalitet	
+values-b+nn/strings.xml	string	player_panel_retry_all	-	STR	Prøv alle kjeldene på nytt	
+values-b+nn/strings.xml	string	player_panel_style	-	STR	Stil for undertekstar	
+values-b+nn/strings.xml	string	player_panel_use	-	STR	Bruk	
 values-b+nn/strings.xml	string	player_play_now	-	STR	Spel no	
 values-b+nn/strings.xml	string	player_size_settings_des	-	STR	Fjern dei svarte kantane	
 values-b+nn/strings.xml	string	player_source_decoded	-	STR	%s dekoda	
@@ -34968,6 +35448,7 @@ values-b+no/strings.xml	string	library_sort_current	-	STR	Sortering: %s
 values-b+no/strings.xml	string	library_sort_not_kept	-	STR	Ikke lagret av %s	
 values-b+no/strings.xml	string	library_sort_supported	-	STR	%1$s støtter %2$d av %3$d	
 values-b+no/strings.xml	string	library_source	-	STR	Bibliotekkilde	
+values-b+no/strings.xml	string	library_source_local	-	STR	Lokal	
 values-b+no/strings.xml	string	library_source_note	-	STR	Én om gangen · bytte laster inn på nytt	
 values-b+no/strings.xml	string	library_sync_cached	-	STR	Mellomlagret	
 values-b+no/strings.xml	string	library_sync_failed	-	STR	Kunne ikke synkronisere %1$s. Disse er fra for %2$s siden.	
@@ -35024,6 +35505,7 @@ values-b+no/strings.xml	string	pick_source	-	STR	Kilder
 values-b+no/strings.xml	string	pick_subtitle	-	STR	Undertekster	
 values-b+no/strings.xml	string	picture_in_picture	-	STR	Bilde-i-bilde	
 values-b+no/strings.xml	string	picture_in_picture_des	-	STR	Fortsetter avspilling i en miniatyr spiller på toppen av andre apper	
+values-b+no/strings.xml	string	pin_error_wait	-	STR	For mange feil PIN-koder. Prøv igjen om %1$s	
 values-b+no/strings.xml	string	play_episode	-	STR	Spille Episode	
 values-b+no/strings.xml	string	play_episode_toast	-	STR	spille episode	
 values-b+no/strings.xml	string	play_livestream_button	-	STR	Spill direktestrøm	
@@ -35051,6 +35533,16 @@ values-b+no/strings.xml	string	player_load_subtitles_online	-	STR	Last inn fra I
 values-b+no/strings.xml	string	player_loaded_subtitles	-	STR	Lastet inn %s	
 values-b+no/strings.xml	string	player_menu_playback	-	STR	Avspilling	
 values-b+no/strings.xml	string	player_mute	-	STR	Slå av lyden	
+values-b+no/strings.xml	string	player_panel_failed	-	STR	feilet	
+values-b+no/strings.xml	string	player_panel_keeps	-	STR	beholder %s	
+values-b+no/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+no/strings.xml	string	player_panel_on	-	STR	På	
+values-b+no/strings.xml	string	player_panel_open	-	STR	Åpne	
+values-b+no/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitetsprofil	
+values-b+no/strings.xml	string	player_panel_quality_unknown	-	STR	ukjent kvalitet	
+values-b+no/strings.xml	string	player_panel_retry_all	-	STR	Prøv alle kildene på nytt	
+values-b+no/strings.xml	string	player_panel_style	-	STR	Undertekststil	
+values-b+no/strings.xml	string	player_panel_use	-	STR	Bruk	
 values-b+no/strings.xml	string	player_play_now	-	STR	Spill nå	
 values-b+no/strings.xml	string	player_pref	-	STR	Foretrukket videospiller	
 values-b+no/strings.xml	string	player_settings_play_in_app	-	STR	Intern spiller	
@@ -35719,6 +36211,7 @@ values-b+or/strings.xml	string	library_sort_current	-	STR	କ୍ରମ: %s
 values-b+or/strings.xml	string	library_sort_not_kept	-	STR	%s ଏହା ରଖେ ନାହିଁ	
 values-b+or/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d ମଧ୍ୟରୁ %2$d ସମର୍ଥନ କରେ	
 values-b+or/strings.xml	string	library_source	-	STR	ଲାଇବ୍ରେରୀ ଉତ୍ସ	
+values-b+or/strings.xml	string	library_source_local	-	STR	ସ୍ଥାନୀୟ	
 values-b+or/strings.xml	string	library_source_note	-	STR	ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ	
 values-b+or/strings.xml	string	library_sync_cached	-	STR	କ୍ୟାଶ୍	
 values-b+or/strings.xml	string	library_sync_failed	-	STR	%1$s ସିଙ୍କ୍ ହୋଇପାରିଲା ନାହିଁ। ଏଗୁଡ଼ିକ %2$s ପୂର୍ବର।	
@@ -35746,6 +36239,7 @@ values-b+or/strings.xml	string	no_season	-	STR	କୌଣସି ଋତୁ ନା�
 values-b+or/strings.xml	string	no_update_found	-	STR	କୌଣସି ଅଦ୍ୟତନ ମିଳିଲା ନାହିଁ	
 values-b+or/strings.xml	string	other_singular	-	STR	ଵିଡ଼ିଓ	
 values-b+or/strings.xml	string	others	-	STR	ଅନ୍ୟାନ୍ୟ	
+values-b+or/strings.xml	string	pin_error_wait	-	STR	ଅତ୍ୟଧିକ ଭୁଲ PIN। %1$s ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ	
 values-b+or/strings.xml	string	play_episode	-	STR	ଅଧ୍ୟାୟ ଚଲାଅ	
 values-b+or/strings.xml	string	play_episode_toast	-	STR	ଅଧ୍ୟାୟ ଚଲାଅ	
 values-b+or/strings.xml	string	play_movie_button	-	STR	ଚଳଚ୍ଚିତ୍ର ଚଲାଅ	
@@ -35766,6 +36260,16 @@ values-b+or/strings.xml	string	player_hud_speed	-	STR	ଗତି
 values-b+or/strings.xml	string	player_hud_up_next	-	STR	ପରବର୍ତ୍ତୀ · %s	
 values-b+or/strings.xml	string	player_menu_playback	-	STR	ପ୍ଲେବ୍ୟାକ୍	
 values-b+or/strings.xml	string	player_mute	-	STR	ମ୍ୟୁଟ କରନ୍ତୁ	
+values-b+or/strings.xml	string	player_panel_failed	-	STR	ବିଫଳ	
+values-b+or/strings.xml	string	player_panel_keeps	-	STR	%s ରଖେ	
+values-b+or/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+or/strings.xml	string	player_panel_on	-	STR	ଅନ୍	
+values-b+or/strings.xml	string	player_panel_open	-	STR	ଖୋଲନ୍ତୁ	
+values-b+or/strings.xml	string	player_panel_quality_profile	-	STR	ଗୁଣବତ୍ତା ପ୍ରୋଫାଇଲ୍	
+values-b+or/strings.xml	string	player_panel_quality_unknown	-	STR	ଗୁଣବତ୍ତା ଅଜଣା	
+values-b+or/strings.xml	string	player_panel_retry_all	-	STR	ସମସ୍ତ ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ	
+values-b+or/strings.xml	string	player_panel_style	-	STR	ସବଟାଇଟଲ୍ ଶୈଳୀ	
+values-b+or/strings.xml	string	player_panel_use	-	STR	ବ୍ୟବହାର କରନ୍ତୁ	
 values-b+or/strings.xml	string	player_play_now	-	STR	ବର୍ତ୍ତମାନ ଚଲାନ୍ତୁ	
 values-b+or/strings.xml	string	player_settings_play_in_app	-	STR	ଅନ୍ତଃ-ଚାଳକ	
 values-b+or/strings.xml	string	player_source_decoded	-	STR	%s ଡିକୋଡ୍ ହୋଇଛି	
@@ -36538,6 +37042,7 @@ values-b+pl/strings.xml	string	library_sort_current	-	STR	Sortowanie: %s
 values-b+pl/strings.xml	string	library_sort_not_kept	-	STR	%s tego nie przechowuje	
 values-b+pl/strings.xml	string	library_sort_supported	-	STR	%1$s obsługuje %2$d z %3$d	
 values-b+pl/strings.xml	string	library_source	-	STR	Źródło biblioteki	
+values-b+pl/strings.xml	string	library_source_local	-	STR	Lokalna	
 values-b+pl/strings.xml	string	library_source_note	-	STR	Jedno naraz · przełączenie wczytuje ponownie	
 values-b+pl/strings.xml	string	library_sync_cached	-	STR	Z pamięci podręcznej	
 values-b+pl/strings.xml	string	library_sync_failed	-	STR	Nie udało się zsynchronizować %1$s. To dane sprzed %2$s.	
@@ -36621,6 +37126,7 @@ values-b+pl/strings.xml	string	picture_in_picture_des	-	STR	Oglądaj w małym, p
 values-b+pl/strings.xml	string	pin	-	STR	PIN	
 values-b+pl/strings.xml	string	pin_error_incorrect	-	STR	Nieprawidłowy PIN. Spróbuj ponownie.	
 values-b+pl/strings.xml	string	pin_error_length	-	STR	Kod PIN musi mieć 4 znaki	
+values-b+pl/strings.xml	string	pin_error_wait	-	STR	Zbyt wiele błędnych kodów PIN. Spróbuj ponownie za %1$s	
 values-b+pl/strings.xml	string	play_episode	-	STR	Odtwórz odcinek	
 values-b+pl/strings.xml	string	play_episode_toast	-	STR	Odtwórz odcinek	
 values-b+pl/strings.xml	string	play_from_beginning_img_des	-	STR	Odtwarzaj od początku	
@@ -36654,6 +37160,16 @@ values-b+pl/strings.xml	string	player_menu_playback	-	STR	Odtwarzanie
 values-b+pl/strings.xml	string	player_mute	-	STR	Wycisz	
 values-b+pl/strings.xml	string	player_notification_channel_description	-	STR	Powiadomienie odtwarzacza umożliwiające sterowanie odtwarzaniem w tle	
 values-b+pl/strings.xml	string	player_notification_channel_name	-	STR	Powiadomienia odtwarzacza	
+values-b+pl/strings.xml	string	player_panel_failed	-	STR	błąd	
+values-b+pl/strings.xml	string	player_panel_keeps	-	STR	zachowuje %s	
+values-b+pl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+pl/strings.xml	string	player_panel_on	-	STR	Wł.	
+values-b+pl/strings.xml	string	player_panel_open	-	STR	Otwórz	
+values-b+pl/strings.xml	string	player_panel_quality_profile	-	STR	Profil jakości	
+values-b+pl/strings.xml	string	player_panel_quality_unknown	-	STR	nieznana jakość	
+values-b+pl/strings.xml	string	player_panel_retry_all	-	STR	Ponów wszystkie źródła	
+values-b+pl/strings.xml	string	player_panel_style	-	STR	Styl napisów	
+values-b+pl/strings.xml	string	player_panel_use	-	STR	Użyj	
 values-b+pl/strings.xml	string	player_play_now	-	STR	Odtwórz teraz	
 values-b+pl/strings.xml	string	player_pref	-	STR	Preferowany odtwarzacz wideo	
 values-b+pl/strings.xml	string	player_settings_always_ask	-	STR	Zawsze pytaj	
@@ -37675,6 +38191,7 @@ values-b+pt+BR/strings.xml	string	library_sort_current	-	STR	Ordenar: %s
 values-b+pt+BR/strings.xml	string	library_sort_not_kept	-	STR	Não salvo por %s	
 values-b+pt+BR/strings.xml	string	library_sort_supported	-	STR	%1$s suporta %2$d de %3$d	
 values-b+pt+BR/strings.xml	string	library_source	-	STR	Fonte da biblioteca	
+values-b+pt+BR/strings.xml	string	library_source_local	-	STR	Local	
 values-b+pt+BR/strings.xml	string	library_source_note	-	STR	Uma por vez · trocar recarrega	
 values-b+pt+BR/strings.xml	string	library_sync_cached	-	STR	Em cache	
 values-b+pt+BR/strings.xml	string	library_sync_failed	-	STR	Não foi possível sincronizar %1$s. Estes são de %2$s atrás.	
@@ -37758,6 +38275,7 @@ values-b+pt+BR/strings.xml	string	picture_in_picture_des	-	STR	Continua o vídeo
 values-b+pt+BR/strings.xml	string	pin	-	STR	PIN	
 values-b+pt+BR/strings.xml	string	pin_error_incorrect	-	STR	PIN incorreto. Por favor, tente novamente.	
 values-b+pt+BR/strings.xml	string	pin_error_length	-	STR	O PIN deve ter 4 caracteres	
+values-b+pt+BR/strings.xml	string	pin_error_wait	-	STR	Muitos PINs incorretos. Tente novamente em %1$s	
 values-b+pt+BR/strings.xml	string	play_episode	-	STR	Reproduzir episódio	
 values-b+pt+BR/strings.xml	string	play_episode_toast	-	STR	Assistir episódio	
 values-b+pt+BR/strings.xml	string	play_from_beginning_img_des	-	STR	Reproduzir do começo	
@@ -37791,6 +38309,16 @@ values-b+pt+BR/strings.xml	string	player_menu_playback	-	STR	Reprodução
 values-b+pt+BR/strings.xml	string	player_mute	-	STR	Desativar som	
 values-b+pt+BR/strings.xml	string	player_notification_channel_description	-	STR	Notificação do player para controlar a reprodução em segundo plano	
 values-b+pt+BR/strings.xml	string	player_notification_channel_name	-	STR	Notificações de reprodução	
+values-b+pt+BR/strings.xml	string	player_panel_failed	-	STR	falhou	
+values-b+pt+BR/strings.xml	string	player_panel_keeps	-	STR	mantém %s	
+values-b+pt+BR/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+pt+BR/strings.xml	string	player_panel_on	-	STR	Ativado	
+values-b+pt+BR/strings.xml	string	player_panel_open	-	STR	Abrir	
+values-b+pt+BR/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de qualidade	
+values-b+pt+BR/strings.xml	string	player_panel_quality_unknown	-	STR	qualidade desconhecida	
+values-b+pt+BR/strings.xml	string	player_panel_retry_all	-	STR	Tentar todas as fontes de novo	
+values-b+pt+BR/strings.xml	string	player_panel_style	-	STR	Estilo das legendas	
+values-b+pt+BR/strings.xml	string	player_panel_use	-	STR	Usar	
 values-b+pt+BR/strings.xml	string	player_play_now	-	STR	Assistir agora	
 values-b+pt+BR/strings.xml	string	player_pref	-	STR	Player de vídeo preferido	
 values-b+pt+BR/strings.xml	string	player_settings_always_ask	-	STR	Perguntar sempre	
@@ -38809,6 +39337,7 @@ values-b+pt/strings.xml	string	library_sort_current	-	STR	Ordenar: %s
 values-b+pt/strings.xml	string	library_sort_not_kept	-	STR	Não guardado por %s	
 values-b+pt/strings.xml	string	library_sort_supported	-	STR	%1$s suporta %2$d de %3$d	
 values-b+pt/strings.xml	string	library_source	-	STR	Origem da biblioteca	
+values-b+pt/strings.xml	string	library_source_local	-	STR	Local	
 values-b+pt/strings.xml	string	library_source_note	-	STR	Uma de cada vez · mudar recarrega	
 values-b+pt/strings.xml	string	library_sync_cached	-	STR	Em cache	
 values-b+pt/strings.xml	string	library_sync_failed	-	STR	Não foi possível sincronizar %1$s. São de há %2$s.	
@@ -38892,6 +39421,7 @@ values-b+pt/strings.xml	string	picture_in_picture_des	-	STR	Continua a reproduç
 values-b+pt/strings.xml	string	pin	-	STR	PIN	
 values-b+pt/strings.xml	string	pin_error_incorrect	-	STR	PIN incorreto. Por favor, tente novamente.	
 values-b+pt/strings.xml	string	pin_error_length	-	STR	O PIN deve ter 4 caracteres	
+values-b+pt/strings.xml	string	pin_error_wait	-	STR	Demasiados PIN errados. Tente novamente dentro de %1$s	
 values-b+pt/strings.xml	string	play_episode	-	STR	Reproduzir episódio	
 values-b+pt/strings.xml	string	play_episode_toast	-	STR	Reproduzir episódio	
 values-b+pt/strings.xml	string	play_from_beginning_img_des	-	STR	Recomeçar	
@@ -38925,6 +39455,16 @@ values-b+pt/strings.xml	string	player_menu_playback	-	STR	Reprodução
 values-b+pt/strings.xml	string	player_mute	-	STR	Desativar som	
 values-b+pt/strings.xml	string	player_notification_channel_description	-	STR	Notificação do player para controlar a reprodução em segundo plano	
 values-b+pt/strings.xml	string	player_notification_channel_name	-	STR	Notificações de reprodução	
+values-b+pt/strings.xml	string	player_panel_failed	-	STR	falhou	
+values-b+pt/strings.xml	string	player_panel_keeps	-	STR	mantém %s	
+values-b+pt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+pt/strings.xml	string	player_panel_on	-	STR	Ativado	
+values-b+pt/strings.xml	string	player_panel_open	-	STR	Abrir	
+values-b+pt/strings.xml	string	player_panel_quality_profile	-	STR	Perfil de qualidade	
+values-b+pt/strings.xml	string	player_panel_quality_unknown	-	STR	qualidade desconhecida	
+values-b+pt/strings.xml	string	player_panel_retry_all	-	STR	Tentar novamente todas as fontes	
+values-b+pt/strings.xml	string	player_panel_style	-	STR	Estilo das legendas	
+values-b+pt/strings.xml	string	player_panel_use	-	STR	Usar	
 values-b+pt/strings.xml	string	player_play_now	-	STR	Reproduzir agora	
 values-b+pt/strings.xml	string	player_pref	-	STR	Player de vídeo preferido	
 values-b+pt/strings.xml	string	player_settings_always_ask	-	STR	Sempre perguntar	
@@ -39853,6 +40393,7 @@ values-b+qt/strings.xml	string	library_sort_current	-	STR	Oouh: %s
 values-b+qt/strings.xml	string	library_sort_not_kept	-	STR	ooo uuh %s	
 values-b+qt/strings.xml	string	library_sort_supported	-	STR	%1$s ooh %2$d uuh %3$d	
 values-b+qt/strings.xml	string	library_source	-	STR	aaaghh ooo-ahah	
+values-b+qt/strings.xml	string	library_source_local	-	STR	uuhh	
 values-b+qt/strings.xml	string	library_source_note	-	STR	ooo aagg · uuhh-ahah	
 values-b+qt/strings.xml	string	library_sync_cached	-	STR	Uuh	
 values-b+qt/strings.xml	string	library_sync_failed	-	STR	Ooh %1$s uuh. Ahh %2$s.	
@@ -39926,6 +40467,7 @@ values-b+qt/strings.xml	string	picture_in_picture_des	-	STR	ooooooohhaa ouuhhh o
 values-b+qt/strings.xml	string	pin	-	STR	oog	
 values-b+qt/strings.xml	string	pin_error_incorrect	-	STR	oooohhhag uug oooohh uuh eeeek	
 values-b+qt/strings.xml	string	pin_error_length	-	STR	ooh oogg uh 4 uuuuhhhooh	
+values-b+qt/strings.xml	string	pin_error_wait	-	STR	oooohhhag uug ooh %1$s eeek	
 values-b+qt/strings.xml	string	play_episode	-	STR	aaaaa oh ohaouuhhh	
 values-b+qt/strings.xml	string	play_episode_toast	-	STR	ouuhhhoouuh ouuhhh	
 values-b+qt/strings.xml	string	play_from_beginning_img_des	-	STR	aahh oohh uuh uuuuggguh	
@@ -39954,6 +40496,16 @@ values-b+qt/strings.xml	string	player_load_subtitles_online	-	STR	eeek aahh oooo
 values-b+qt/strings.xml	string	player_loaded_subtitles	-	STR	oooohh %s	
 values-b+qt/strings.xml	string	player_menu_playback	-	STR	Oouh	
 values-b+qt/strings.xml	string	player_mute	-	STR	ooh oh	
+values-b+qt/strings.xml	string	player_panel_failed	-	STR	aagh	
+values-b+qt/strings.xml	string	player_panel_keeps	-	STR	ooh %s	
+values-b+qt/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+qt/strings.xml	string	player_panel_on	-	STR	Ook	
+values-b+qt/strings.xml	string	player_panel_open	-	STR	Aah	
+values-b+qt/strings.xml	string	player_panel_quality_profile	-	STR	Oohh aagh	
+values-b+qt/strings.xml	string	player_panel_quality_unknown	-	STR	oohh uuk	
+values-b+qt/strings.xml	string	player_panel_retry_all	-	STR	Aagh oohh uuk	
+values-b+qt/strings.xml	string	player_panel_style	-	STR	Oohh aak	
+values-b+qt/strings.xml	string	player_panel_use	-	STR	Uuk	
 values-b+qt/strings.xml	string	player_play_now	-	STR	Ahh ooh	
 values-b+qt/strings.xml	string	player_pref	-	STR	aaaagggah uuugg uuuugg	
 values-b+qt/strings.xml	string	player_settings_play_in_app	-	STR	aaaagggh uuuugg	
@@ -40871,6 +41423,7 @@ values-b+ro/strings.xml	string	library_sort_current	-	STR	Sortare: %s
 values-b+ro/strings.xml	string	library_sort_not_kept	-	STR	Nu este păstrat de %s	
 values-b+ro/strings.xml	string	library_sort_supported	-	STR	%1$s acceptă %2$d din %3$d	
 values-b+ro/strings.xml	string	library_source	-	STR	Sursa bibliotecii	
+values-b+ro/strings.xml	string	library_source_local	-	STR	Local	
 values-b+ro/strings.xml	string	library_source_note	-	STR	Câte una · schimbarea reîncarcă	
 values-b+ro/strings.xml	string	library_sync_cached	-	STR	Din cache	
 values-b+ro/strings.xml	string	library_sync_failed	-	STR	%1$s nu a putut fi sincronizat. Sunt de acum %2$s.	
@@ -40942,6 +41495,7 @@ values-b+ro/strings.xml	string	picture_in_picture_des	-	STR	Continuă redarea î
 values-b+ro/strings.xml	string	pin	-	STR	PIN	
 values-b+ro/strings.xml	string	pin_error_incorrect	-	STR	PIN incorect. Te rog să încerci din nou.	
 values-b+ro/strings.xml	string	pin_error_length	-	STR	PIN-ul trebuie să fie format din 4 caractere	
+values-b+ro/strings.xml	string	pin_error_wait	-	STR	Prea multe PIN-uri greșite. Încercați din nou peste %1$s	
 values-b+ro/strings.xml	string	play_episode	-	STR	Redă episodul	
 values-b+ro/strings.xml	string	play_episode_toast	-	STR	Redare episod	
 values-b+ro/strings.xml	string	play_from_beginning_img_des	-	STR	Redă de la început	
@@ -40972,6 +41526,16 @@ values-b+ro/strings.xml	string	player_load_subtitles_online	-	STR	Încărcare de
 values-b+ro/strings.xml	string	player_loaded_subtitles	-	STR	A fost încărcat %s	
 values-b+ro/strings.xml	string	player_menu_playback	-	STR	Redare	
 values-b+ro/strings.xml	string	player_mute	-	STR	Dezactivează sunetul	
+values-b+ro/strings.xml	string	player_panel_failed	-	STR	eșuat	
+values-b+ro/strings.xml	string	player_panel_keeps	-	STR	păstrează %s	
+values-b+ro/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ro/strings.xml	string	player_panel_on	-	STR	Activat	
+values-b+ro/strings.xml	string	player_panel_open	-	STR	Deschide	
+values-b+ro/strings.xml	string	player_panel_quality_profile	-	STR	Profil de calitate	
+values-b+ro/strings.xml	string	player_panel_quality_unknown	-	STR	calitate necunoscută	
+values-b+ro/strings.xml	string	player_panel_retry_all	-	STR	Reîncearcă toate sursele	
+values-b+ro/strings.xml	string	player_panel_style	-	STR	Stilul subtitrărilor	
+values-b+ro/strings.xml	string	player_panel_use	-	STR	Folosește	
 values-b+ro/strings.xml	string	player_play_now	-	STR	Redă acum	
 values-b+ro/strings.xml	string	player_pref	-	STR	Player video preferat	
 values-b+ro/strings.xml	string	player_settings_play_in_app	-	STR	Player intern	
@@ -41960,6 +42524,7 @@ values-b+ru/strings.xml	string	library_sort_current	-	STR	Сортировка: 
 values-b+ru/strings.xml	string	library_sort_not_kept	-	STR	%s этого не хранит	
 values-b+ru/strings.xml	string	library_sort_supported	-	STR	%1$s поддерживает %2$d из %3$d	
 values-b+ru/strings.xml	string	library_source	-	STR	Источник библиотеки	
+values-b+ru/strings.xml	string	library_source_local	-	STR	Локальный	
 values-b+ru/strings.xml	string	library_source_note	-	STR	По одному · переключение перезагружает	
 values-b+ru/strings.xml	string	library_sync_cached	-	STR	Из кеша	
 values-b+ru/strings.xml	string	library_sync_failed	-	STR	Не удалось синхронизировать %1$s. Это данные %2$s назад.	
@@ -42043,6 +42608,7 @@ values-b+ru/strings.xml	string	picture_in_picture_des	-	STR	Продолжени
 values-b+ru/strings.xml	string	pin	-	STR	ПИН-код	
 values-b+ru/strings.xml	string	pin_error_incorrect	-	STR	Неверный ПИН-код. Пожалуйста, введите его заново.	
 values-b+ru/strings.xml	string	pin_error_length	-	STR	ПИН-код должен содержать 4 символа	
+values-b+ru/strings.xml	string	pin_error_wait	-	STR	Слишком много неверных PIN-кодов. Повторите попытку через %1$s	
 values-b+ru/strings.xml	string	play_episode	-	STR	Смотреть серию	
 values-b+ru/strings.xml	string	play_episode_toast	-	STR	Смотреть серию	
 values-b+ru/strings.xml	string	play_from_beginning_img_des	-	STR	Играть с самого начала	
@@ -42076,6 +42642,16 @@ values-b+ru/strings.xml	string	player_menu_playback	-	STR	Воспроизвед
 values-b+ru/strings.xml	string	player_mute	-	STR	Выключить звук	
 values-b+ru/strings.xml	string	player_notification_channel_description	-	STR	Уведомление проигрывателя для управления воспроизведением в фоновом режиме	
 values-b+ru/strings.xml	string	player_notification_channel_name	-	STR	Уведомления плеера	
+values-b+ru/strings.xml	string	player_panel_failed	-	STR	сбой	
+values-b+ru/strings.xml	string	player_panel_keeps	-	STR	сохраняет %s	
+values-b+ru/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ru/strings.xml	string	player_panel_on	-	STR	Вкл.	
+values-b+ru/strings.xml	string	player_panel_open	-	STR	Открыть	
+values-b+ru/strings.xml	string	player_panel_quality_profile	-	STR	Профиль качества	
+values-b+ru/strings.xml	string	player_panel_quality_unknown	-	STR	качество неизвестно	
+values-b+ru/strings.xml	string	player_panel_retry_all	-	STR	Повторить все источники	
+values-b+ru/strings.xml	string	player_panel_style	-	STR	Стиль субтитров	
+values-b+ru/strings.xml	string	player_panel_use	-	STR	Использовать	
 values-b+ru/strings.xml	string	player_play_now	-	STR	Смотреть сейчас	
 values-b+ru/strings.xml	string	player_pref	-	STR	Предпочитаемый видеоплеер	
 values-b+ru/strings.xml	string	player_settings_always_ask	-	STR	Спрашивать всегда	
@@ -43002,6 +43578,7 @@ values-b+sk/strings.xml	string	library_sort_current	-	STR	Zoradenie: %s
 values-b+sk/strings.xml	string	library_sort_not_kept	-	STR	%s toto neuchováva	
 values-b+sk/strings.xml	string	library_sort_supported	-	STR	%1$s podporuje %2$d z %3$d	
 values-b+sk/strings.xml	string	library_source	-	STR	Zdroj knižnice	
+values-b+sk/strings.xml	string	library_source_local	-	STR	Lokálne	
 values-b+sk/strings.xml	string	library_source_note	-	STR	Jeden naraz · prepnutie znova načíta	
 values-b+sk/strings.xml	string	library_sync_cached	-	STR	Z vyrovnávacej pamäte	
 values-b+sk/strings.xml	string	library_sync_failed	-	STR	%1$s sa nepodarilo synchronizovať. Sú to údaje spred %2$s.	
@@ -43062,6 +43639,7 @@ values-b+sk/strings.xml	string	pick_source	-	STR	Zdroje
 values-b+sk/strings.xml	string	pick_subtitle	-	STR	Titulky	
 values-b+sk/strings.xml	string	picture_in_picture	-	STR	Obraz v obraze	
 values-b+sk/strings.xml	string	picture_in_picture_des	-	STR	Pokračuje v prehrávaní v miniatúrnom prehrávači nad ostatnými aplikáciami	
+values-b+sk/strings.xml	string	pin_error_wait	-	STR	Príliš veľa nesprávnych PIN kódov. Skúste to znova o %1$s	
 values-b+sk/strings.xml	string	play_episode	-	STR	Prehrať epizódu	
 values-b+sk/strings.xml	string	play_episode_toast	-	STR	Prehrať epizódu	
 values-b+sk/strings.xml	string	play_from_beginning_img_des	-	STR	Hrať od začiatku	
@@ -43091,6 +43669,16 @@ values-b+sk/strings.xml	string	player_load_subtitles_online	-	STR	Načítať z i
 values-b+sk/strings.xml	string	player_loaded_subtitles	-	STR	Načítané %s	
 values-b+sk/strings.xml	string	player_menu_playback	-	STR	Prehrávanie	
 values-b+sk/strings.xml	string	player_mute	-	STR	Vypnúť zvuk	
+values-b+sk/strings.xml	string	player_panel_failed	-	STR	zlyhalo	
+values-b+sk/strings.xml	string	player_panel_keeps	-	STR	zachová %s	
+values-b+sk/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+sk/strings.xml	string	player_panel_on	-	STR	Zapnuté	
+values-b+sk/strings.xml	string	player_panel_open	-	STR	Otvoriť	
+values-b+sk/strings.xml	string	player_panel_quality_profile	-	STR	Profil kvality	
+values-b+sk/strings.xml	string	player_panel_quality_unknown	-	STR	neznáma kvalita	
+values-b+sk/strings.xml	string	player_panel_retry_all	-	STR	Skúsiť znova všetky zdroje	
+values-b+sk/strings.xml	string	player_panel_style	-	STR	Štýl titulkov	
+values-b+sk/strings.xml	string	player_panel_use	-	STR	Použiť	
 values-b+sk/strings.xml	string	player_play_now	-	STR	Prehrať teraz	
 values-b+sk/strings.xml	string	player_size_settings	-	STR	Tlačidlo na zmenu veľkosti prehrávača	
 values-b+sk/strings.xml	string	player_size_settings_des	-	STR	Odstrániť čierne okraje	
@@ -43860,6 +44448,7 @@ values-b+so/strings.xml	string	library_sort_current	-	STR	Kala soocid: %s
 values-b+so/strings.xml	string	library_sort_not_kept	-	STR	%s ma kaydiyo	
 values-b+so/strings.xml	string	library_sort_supported	-	STR	%1$s wuxuu taageeraa %2$d ka mid ah %3$d	
 values-b+so/strings.xml	string	library_source	-	STR	Isha kaydka	
+values-b+so/strings.xml	string	library_source_local	-	STR	Maxalli	
 values-b+so/strings.xml	string	library_source_note	-	STR	Mid mid · beddelku wuu dib u soo raraa	
 values-b+so/strings.xml	string	library_sync_cached	-	STR	La kaydiyay	
 values-b+so/strings.xml	string	library_sync_failed	-	STR	Lama isku waafajin karin %1$s. Kuwani waa kuwii %2$s ka hor.	
@@ -43917,6 +44506,7 @@ values-b+so/strings.xml	string	pick_source	-	STR	Xigashooyinka
 values-b+so/strings.xml	string	pick_subtitle	-	STR	Qrl-hoosaadka	
 values-b+so/strings.xml	string	picture_in_picture	-	STR	Sawir-daaqadlaha	
 values-b+so/strings.xml	string	picture_in_picture_des	-	STR	Ka sii wado daawashada daaqad yar oo appska kale dul istaagi doonta	
+values-b+so/strings.xml	string	pin_error_wait	-	STR	PIN qaldan oo aad u badan. Isku day mar kale %1$s kadib	
 values-b+so/strings.xml	string	play_episode	-	STR	Xalqadda daaro	
 values-b+so/strings.xml	string	play_episode_toast	-	STR	Daari xalqaddan	
 values-b+so/strings.xml	string	play_from_beginning_img_des	-	STR	Ka bilow bilowga	
@@ -43946,6 +44536,16 @@ values-b+so/strings.xml	string	player_load_subtitles_online	-	STR	Internetka ka 
 values-b+so/strings.xml	string	player_loaded_subtitles	-	STR	Waxa laso kiciyey %s	
 values-b+so/strings.xml	string	player_menu_playback	-	STR	Ciyaarid	
 values-b+so/strings.xml	string	player_mute	-	STR	Aamusi	
+values-b+so/strings.xml	string	player_panel_failed	-	STR	fashilay	
+values-b+so/strings.xml	string	player_panel_keeps	-	STR	wuxuu hayaa %s	
+values-b+so/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+so/strings.xml	string	player_panel_on	-	STR	Shidan	
+values-b+so/strings.xml	string	player_panel_open	-	STR	Fur	
+values-b+so/strings.xml	string	player_panel_quality_profile	-	STR	Astaanta tayada	
+values-b+so/strings.xml	string	player_panel_quality_unknown	-	STR	tayada lama yaqaan	
+values-b+so/strings.xml	string	player_panel_retry_all	-	STR	Isku day mar kale dhammaan ilaha	
+values-b+so/strings.xml	string	player_panel_style	-	STR	Qaabka qoraalka hoose	
+values-b+so/strings.xml	string	player_panel_use	-	STR	Isticmaal	
 values-b+so/strings.xml	string	player_play_now	-	STR	Hadda ciyaar	
 values-b+so/strings.xml	string	player_pref	-	STR	Muqaal daaraha aad doorbiddo	
 values-b+so/strings.xml	string	player_settings_play_in_app	-	STR	Muqaal daaraha appka	
@@ -44842,6 +45442,7 @@ values-b+sq/strings.xml	string	library_sort_current	-	STR	Renditja: %s
 values-b+sq/strings.xml	string	library_sort_not_kept	-	STR	Nuk ruhet nga %s	
 values-b+sq/strings.xml	string	library_sort_supported	-	STR	%1$s mbështet %2$d nga %3$d	
 values-b+sq/strings.xml	string	library_source	-	STR	Burimi i bibliotekës	
+values-b+sq/strings.xml	string	library_source_local	-	STR	Lokale	
 values-b+sq/strings.xml	string	library_source_note	-	STR	Një në një kohë · ndërrimi ringarkon	
 values-b+sq/strings.xml	string	library_sync_cached	-	STR	Nga memoria	
 values-b+sq/strings.xml	string	library_sync_failed	-	STR	%1$s nuk u sinkronizua dot. Këto janë para %2$s.	
@@ -44925,6 +45526,7 @@ values-b+sq/strings.xml	string	picture_in_picture_des	-	STR	Vazhdo shikimin në 
 values-b+sq/strings.xml	string	pin	-	STR	PIN	
 values-b+sq/strings.xml	string	pin_error_incorrect	-	STR	PIN-i i gabuar. Ju lutem provoni përsëri.	
 values-b+sq/strings.xml	string	pin_error_length	-	STR	PIN-i duhet të ketë 4 karaktere	
+values-b+sq/strings.xml	string	pin_error_wait	-	STR	Shumë PIN të gabuar. Provo përsëri pas %1$s	
 values-b+sq/strings.xml	string	play_episode	-	STR	Luaj Episodin	
 values-b+sq/strings.xml	string	play_episode_toast	-	STR	Luaj Episodin	
 values-b+sq/strings.xml	string	play_from_beginning_img_des	-	STR	Luaj nga fillimi	
@@ -44958,6 +45560,16 @@ values-b+sq/strings.xml	string	player_menu_playback	-	STR	Luajtja
 values-b+sq/strings.xml	string	player_mute	-	STR	Hiq zërin	
 values-b+sq/strings.xml	string	player_notification_channel_description	-	STR	Njoftimi për kontrollin e luajtjes nga sfondi	
 values-b+sq/strings.xml	string	player_notification_channel_name	-	STR	Njoftimet e luajtësit	
+values-b+sq/strings.xml	string	player_panel_failed	-	STR	dështoi	
+values-b+sq/strings.xml	string	player_panel_keeps	-	STR	ruan %s	
+values-b+sq/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+sq/strings.xml	string	player_panel_on	-	STR	Aktiv	
+values-b+sq/strings.xml	string	player_panel_open	-	STR	Hap	
+values-b+sq/strings.xml	string	player_panel_quality_profile	-	STR	Profili i cilësisë	
+values-b+sq/strings.xml	string	player_panel_quality_unknown	-	STR	cilësi e panjohur	
+values-b+sq/strings.xml	string	player_panel_retry_all	-	STR	Riprovo të gjitha burimet	
+values-b+sq/strings.xml	string	player_panel_style	-	STR	Stili i titrave	
+values-b+sq/strings.xml	string	player_panel_use	-	STR	Përdor	
 values-b+sq/strings.xml	string	player_play_now	-	STR	Luaj tani	
 values-b+sq/strings.xml	string	player_pref	-	STR	Luajtësi i preferuar i videove	
 values-b+sq/strings.xml	string	player_settings_always_ask	-	STR	Pyet gjithmonë	
@@ -45956,6 +46568,7 @@ values-b+sv/strings.xml	string	library_sort_current	-	STR	Sortering: %s
 values-b+sv/strings.xml	string	library_sort_not_kept	-	STR	Sparas inte av %s	
 values-b+sv/strings.xml	string	library_sort_supported	-	STR	%1$s stöder %2$d av %3$d	
 values-b+sv/strings.xml	string	library_source	-	STR	Bibliotekskälla	
+values-b+sv/strings.xml	string	library_source_local	-	STR	Lokal	
 values-b+sv/strings.xml	string	library_source_note	-	STR	En i taget · byte laddar om	
 values-b+sv/strings.xml	string	library_sync_cached	-	STR	Cachad	
 values-b+sv/strings.xml	string	library_sync_failed	-	STR	Det gick inte att synkronisera %1$s. Detta är från för %2$s sedan.	
@@ -46039,6 +46652,7 @@ values-b+sv/strings.xml	string	picture_in_picture_des	-	STR	Fortsätter uppspeln
 values-b+sv/strings.xml	string	pin	-	STR	PIN-kod	
 values-b+sv/strings.xml	string	pin_error_incorrect	-	STR	Felaktig PIN-kod. Försök igen.	
 values-b+sv/strings.xml	string	pin_error_length	-	STR	PIN-koden måste vara fyra tecken	
+values-b+sv/strings.xml	string	pin_error_wait	-	STR	För många felaktiga PIN-koder. Försök igen om %1$s	
 values-b+sv/strings.xml	string	play_episode	-	STR	Spela avsnitt	
 values-b+sv/strings.xml	string	play_episode_toast	-	STR	Spela upp avsnitt	
 values-b+sv/strings.xml	string	play_from_beginning_img_des	-	STR	Spela från början	
@@ -46072,6 +46686,16 @@ values-b+sv/strings.xml	string	player_menu_playback	-	STR	Uppspelning
 values-b+sv/strings.xml	string	player_mute	-	STR	Stäng av ljudet	
 values-b+sv/strings.xml	string	player_notification_channel_description	-	STR	Spelarnotisen för att styra uppspelningen i bakgrunden	
 values-b+sv/strings.xml	string	player_notification_channel_name	-	STR	Spelarnotiser	
+values-b+sv/strings.xml	string	player_panel_failed	-	STR	misslyckades	
+values-b+sv/strings.xml	string	player_panel_keeps	-	STR	behåller %s	
+values-b+sv/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+sv/strings.xml	string	player_panel_on	-	STR	På	
+values-b+sv/strings.xml	string	player_panel_open	-	STR	Öppna	
+values-b+sv/strings.xml	string	player_panel_quality_profile	-	STR	Kvalitetsprofil	
+values-b+sv/strings.xml	string	player_panel_quality_unknown	-	STR	okänd kvalitet	
+values-b+sv/strings.xml	string	player_panel_retry_all	-	STR	Försök med alla källor igen	
+values-b+sv/strings.xml	string	player_panel_style	-	STR	Undertextstil	
+values-b+sv/strings.xml	string	player_panel_use	-	STR	Använd	
 values-b+sv/strings.xml	string	player_play_now	-	STR	Spela nu	
 values-b+sv/strings.xml	string	player_pref	-	STR	Önskad videospelare	
 values-b+sv/strings.xml	string	player_settings_always_ask	-	STR	Fråga alltid	
@@ -47070,6 +47694,7 @@ values-b+ta/strings.xml	string	library_sort_current	-	STR	வரிசை: %s
 values-b+ta/strings.xml	string	library_sort_not_kept	-	STR	%s இதை வைத்திருக்காது	
 values-b+ta/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d இல் %2$d ஐ ஆதரிக்கிறது	
 values-b+ta/strings.xml	string	library_source	-	STR	நூலக மூலம்	
+values-b+ta/strings.xml	string	library_source_local	-	STR	உள்ளகம்	
 values-b+ta/strings.xml	string	library_source_note	-	STR	ஒரு நேரத்தில் ஒன்று · மாற்றினால் மீண்டும் ஏற்றும்	
 values-b+ta/strings.xml	string	library_sync_cached	-	STR	தேக்கியது	
 values-b+ta/strings.xml	string	library_sync_failed	-	STR	%1$s ஐ ஒத்திசைக்க முடியவில்லை. இவை %2$s முன்பு உள்ளவை.	
@@ -47153,6 +47778,7 @@ values-b+ta/strings.xml	string	picture_in_picture_des	-	STR	மற்ற பய�
 values-b+ta/strings.xml	string	pin	-	STR	முள்	
 values-b+ta/strings.xml	string	pin_error_incorrect	-	STR	தவறான முள். தயவு செய்து மீண்டும் முயற்சிக்கவும்.	
 values-b+ta/strings.xml	string	pin_error_length	-	STR	முள் 4 எழுத்துகளாக இருக்க வேண்டும்	
+values-b+ta/strings.xml	string	pin_error_wait	-	STR	பல தவறான PIN-கள். %1$s கழித்து மீண்டும் முயலவும்	
 values-b+ta/strings.xml	string	play_episode	-	STR	அத்தியாயத்தை இயக்கு	
 values-b+ta/strings.xml	string	play_episode_toast	-	STR	அத்தியாயம் விளையாடுங்கள்	
 values-b+ta/strings.xml	string	play_from_beginning_img_des	-	STR	முதலில் இருந்து ஆரம்பி	
@@ -47186,6 +47812,16 @@ values-b+ta/strings.xml	string	player_menu_playback	-	STR	இயக்குத�
 values-b+ta/strings.xml	string	player_mute	-	STR	ஒலியடக்கு	
 values-b+ta/strings.xml	string	player_notification_channel_description	-	STR	பின்னணியில் இருந்து பின்னணியைக் கட்டுப்படுத்துவதற்கான பிளேயர் அறிவிப்பு	
 values-b+ta/strings.xml	string	player_notification_channel_name	-	STR	பிளேயர் அறிவிப்புகள்	
+values-b+ta/strings.xml	string	player_panel_failed	-	STR	தோல்வி	
+values-b+ta/strings.xml	string	player_panel_keeps	-	STR	%s ஐத் தக்கவைக்கிறது	
+values-b+ta/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ta/strings.xml	string	player_panel_on	-	STR	இயக்கம்	
+values-b+ta/strings.xml	string	player_panel_open	-	STR	திற	
+values-b+ta/strings.xml	string	player_panel_quality_profile	-	STR	தர சுயவிவரம்	
+values-b+ta/strings.xml	string	player_panel_quality_unknown	-	STR	தரம் தெரியவில்லை	
+values-b+ta/strings.xml	string	player_panel_retry_all	-	STR	எல்லா மூலங்களையும் மீண்டும் முயலவும்	
+values-b+ta/strings.xml	string	player_panel_style	-	STR	வசன நடை	
+values-b+ta/strings.xml	string	player_panel_use	-	STR	பயன்படுத்து	
 values-b+ta/strings.xml	string	player_play_now	-	STR	இப்போது இயக்கு	
 values-b+ta/strings.xml	string	player_pref	-	STR	விருப்பமான வீடியோ பிளேயர்	
 values-b+ta/strings.xml	string	player_settings_always_ask	-	STR	எப்போதும் கேளுங்கள்	
@@ -47882,6 +48518,7 @@ values-b+ti/strings.xml	string	library_sort_current	-	STR	ስርዓት፦ %s
 values-b+ti/strings.xml	string	library_sort_not_kept	-	STR	%s ኣይሕዞን	
 values-b+ti/strings.xml	string	library_sort_supported	-	STR	%1$s ካብ %3$d %2$d ይድግፍ	
 values-b+ti/strings.xml	string	library_source	-	STR	ምንጪ ቤተ-መጻሕፍቲ	
+values-b+ti/strings.xml	string	library_source_local	-	STR	ኣካባቢያዊ	
 values-b+ti/strings.xml	string	library_source_note	-	STR	ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን	
 values-b+ti/strings.xml	string	library_sync_cached	-	STR	ዝተዓቀበ	
 values-b+ti/strings.xml	string	library_sync_failed	-	STR	%1$s ክሰማማዕ ኣይከኣለን። እዚኦም ቅድሚ %2$s ዝነበሩ እዮም።	
@@ -47892,6 +48529,7 @@ values-b+ti/strings.xml	string	library_synced_format	-	STR	ቅድሚ %s ተሰ�
 values-b+ti/strings.xml	string	load_more	-	STR	ተወሳኺ ጽዓን	
 values-b+ti/strings.xml	string	more_like_this	-	STR	ተመሳሳሊ	
 values-b+ti/strings.xml	string	next_episode_format	-	STR	ክፋል %d በ ላይ ይወጣል	
+values-b+ti/strings.xml	string	pin_error_wait	-	STR	ብዙሕ ጌጋ PIN። ድሕሪ %1$s እንደገና ፈትኑ	
 values-b+ti/strings.xml	string	player_audio_stereo	-	STR	ስቴሪዮ	
 values-b+ti/strings.xml	string	player_enter_fullscreen	-	STR	ናብ ምሉእ ስክሪን እቶ	
 values-b+ti/strings.xml	string	player_exit_fullscreen	-	STR	ካብ ምሉእ ስክሪን ውጻእ	
@@ -47909,6 +48547,16 @@ values-b+ti/strings.xml	string	player_hud_speed	-	STR	ቅልጣፈ
 values-b+ti/strings.xml	string	player_hud_up_next	-	STR	ቀጺሉ · %s	
 values-b+ti/strings.xml	string	player_menu_playback	-	STR	ምጽዋት	
 values-b+ti/strings.xml	string	player_mute	-	STR	ድምጺ ኣጥፍእ	
+values-b+ti/strings.xml	string	player_panel_failed	-	STR	ፈሺሉ	
+values-b+ti/strings.xml	string	player_panel_keeps	-	STR	%s ይሕዝ	
+values-b+ti/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ti/strings.xml	string	player_panel_on	-	STR	ክፉት	
+values-b+ti/strings.xml	string	player_panel_open	-	STR	ክፈት	
+values-b+ti/strings.xml	string	player_panel_quality_profile	-	STR	ናይ ዓይነት መገለጺ	
+values-b+ti/strings.xml	string	player_panel_quality_unknown	-	STR	ዓይነት ኣይፍለጥን	
+values-b+ti/strings.xml	string	player_panel_retry_all	-	STR	ኩሎም ምንጭታት ደጊምካ ፈትን	
+values-b+ti/strings.xml	string	player_panel_style	-	STR	ቅዲ ንኡስ ጽሑፍ	
+values-b+ti/strings.xml	string	player_panel_use	-	STR	ተጠቐም	
 values-b+ti/strings.xml	string	player_play_now	-	STR	ሕጂ ኣጻውት	
 values-b+ti/strings.xml	string	player_source_decoded	-	STR	%s ተፈቲሑ	
 values-b+ti/strings.xml	string	player_source_playing	-	STR	ይጻወት ኣሎ	
@@ -48363,6 +49011,7 @@ values-b+tl/strings.xml	string	library_sort_current	-	STR	Pagkakasunod: %s
 values-b+tl/strings.xml	string	library_sort_not_kept	-	STR	Hindi itinatabi ng %s	
 values-b+tl/strings.xml	string	library_sort_supported	-	STR	Sinusuportahan ng %1$s ang %2$d sa %3$d	
 values-b+tl/strings.xml	string	library_source	-	STR	Pinagmulan ng library	
+values-b+tl/strings.xml	string	library_source_local	-	STR	Local	
 values-b+tl/strings.xml	string	library_source_note	-	STR	Isa-isa · nagre-reload kapag nagpalit	
 values-b+tl/strings.xml	string	library_sync_cached	-	STR	Naka-cache	
 values-b+tl/strings.xml	string	library_sync_failed	-	STR	Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito.	
@@ -48397,6 +49046,7 @@ values-b+tl/strings.xml	string	pick_source	-	STR	Sources
 values-b+tl/strings.xml	string	pick_subtitle	-	STR	Subtitles	
 values-b+tl/strings.xml	string	picture_in_picture	-	STR	Picture-in-picture	
 values-b+tl/strings.xml	string	picture_in_picture_des	-	STR	Magpatuloy ang playback sa isang maliit na player sa ibabaw ng ibang apps	
+values-b+tl/strings.xml	string	pin_error_wait	-	STR	Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s	
 values-b+tl/strings.xml	string	play_episode	-	STR	I-play ang episode	
 values-b+tl/strings.xml	string	play_episode_toast	-	STR	Play Episode	
 values-b+tl/strings.xml	string	play_livestream_button	-	STR	Panuorin ang Livestream	
@@ -48421,6 +49071,16 @@ values-b+tl/strings.xml	string	player_hud_speed	-	STR	Bilis
 values-b+tl/strings.xml	string	player_hud_up_next	-	STR	Susunod · %s	
 values-b+tl/strings.xml	string	player_menu_playback	-	STR	Playback	
 values-b+tl/strings.xml	string	player_mute	-	STR	I-mute	
+values-b+tl/strings.xml	string	player_panel_failed	-	STR	nabigo	
+values-b+tl/strings.xml	string	player_panel_keeps	-	STR	pinapanatili ang %s	
+values-b+tl/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+tl/strings.xml	string	player_panel_on	-	STR	Naka-on	
+values-b+tl/strings.xml	string	player_panel_open	-	STR	Buksan	
+values-b+tl/strings.xml	string	player_panel_quality_profile	-	STR	Profile ng kalidad	
+values-b+tl/strings.xml	string	player_panel_quality_unknown	-	STR	hindi alam ang kalidad	
+values-b+tl/strings.xml	string	player_panel_retry_all	-	STR	Subukang muli ang lahat ng source	
+values-b+tl/strings.xml	string	player_panel_style	-	STR	Estilo ng subtitle	
+values-b+tl/strings.xml	string	player_panel_use	-	STR	Gamitin	
 values-b+tl/strings.xml	string	player_play_now	-	STR	I-play ngayon	
 values-b+tl/strings.xml	string	player_size_settings	-	STR	Pindutan upang baguhin ang laki	
 values-b+tl/strings.xml	string	player_size_settings_des	-	STR	Alisin ang black borders	
@@ -49187,6 +49847,7 @@ values-b+tr/strings.xml	string	library_sort_current	-	STR	Sıralama: %s
 values-b+tr/strings.xml	string	library_sort_not_kept	-	STR	%s bunu tutmuyor	
 values-b+tr/strings.xml	string	library_sort_supported	-	STR	%1$s, %3$d ölçütten %2$d tanesini destekler	
 values-b+tr/strings.xml	string	library_source	-	STR	Kütüphane kaynağı	
+values-b+tr/strings.xml	string	library_source_local	-	STR	Yerel	
 values-b+tr/strings.xml	string	library_source_note	-	STR	Aynı anda bir tane · değiştirmek yeniden yükler	
 values-b+tr/strings.xml	string	library_sync_cached	-	STR	Önbellekten	
 values-b+tr/strings.xml	string	library_sync_failed	-	STR	%1$s eşitlenemedi. Bunlar %2$s öncesine ait.	
@@ -49270,6 +49931,7 @@ values-b+tr/strings.xml	string	picture_in_picture_des	-	STR	İçerik diğer uygu
 values-b+tr/strings.xml	string	pin	-	STR	PIN	
 values-b+tr/strings.xml	string	pin_error_incorrect	-	STR	Yanlış PIN. Lütfen tekrar deneyin.	
 values-b+tr/strings.xml	string	pin_error_length	-	STR	PIN 4 karakterden oluşmalı	
+values-b+tr/strings.xml	string	pin_error_wait	-	STR	Çok fazla hatalı PIN. %1$s sonra tekrar deneyin	
 values-b+tr/strings.xml	string	play_episode	-	STR	Bölümü Oynat	
 values-b+tr/strings.xml	string	play_episode_toast	-	STR	Bölümü oynat	
 values-b+tr/strings.xml	string	play_from_beginning_img_des	-	STR	Baştan Oynat	
@@ -49303,6 +49965,16 @@ values-b+tr/strings.xml	string	player_menu_playback	-	STR	Oynatma
 values-b+tr/strings.xml	string	player_mute	-	STR	Sesi kapat	
 values-b+tr/strings.xml	string	player_notification_channel_description	-	STR	Oynatıcı bildirimi arka planda oynatmasını kontrol etmek içindir	
 values-b+tr/strings.xml	string	player_notification_channel_name	-	STR	Oynatıcı bildirimleri	
+values-b+tr/strings.xml	string	player_panel_failed	-	STR	başarısız	
+values-b+tr/strings.xml	string	player_panel_keeps	-	STR	%s korunur	
+values-b+tr/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+tr/strings.xml	string	player_panel_on	-	STR	Açık	
+values-b+tr/strings.xml	string	player_panel_open	-	STR	Aç	
+values-b+tr/strings.xml	string	player_panel_quality_profile	-	STR	Kalite profili	
+values-b+tr/strings.xml	string	player_panel_quality_unknown	-	STR	kalite bilinmiyor	
+values-b+tr/strings.xml	string	player_panel_retry_all	-	STR	Tüm kaynakları yeniden dene	
+values-b+tr/strings.xml	string	player_panel_style	-	STR	Altyazı stili	
+values-b+tr/strings.xml	string	player_panel_use	-	STR	Kullan	
 values-b+tr/strings.xml	string	player_play_now	-	STR	Şimdi oynat	
 values-b+tr/strings.xml	string	player_pref	-	STR	Tercih edilen video oynatıcısı	
 values-b+tr/strings.xml	string	player_settings_always_ask	-	STR	Her zaman sor	
@@ -50347,6 +51019,7 @@ values-b+uk/strings.xml	string	library_sort_current	-	STR	Сортування: 
 values-b+uk/strings.xml	string	library_sort_not_kept	-	STR	%s цього не зберігає	
 values-b+uk/strings.xml	string	library_sort_supported	-	STR	%1$s підтримує %2$d з %3$d	
 values-b+uk/strings.xml	string	library_source	-	STR	Джерело бібліотеки	
+values-b+uk/strings.xml	string	library_source_local	-	STR	Локальний	
 values-b+uk/strings.xml	string	library_source_note	-	STR	По одному · перемикання перезавантажує	
 values-b+uk/strings.xml	string	library_sync_cached	-	STR	З кешу	
 values-b+uk/strings.xml	string	library_sync_failed	-	STR	Не вдалося синхронізувати %1$s. Це дані %2$s тому.	
@@ -50430,6 +51103,7 @@ values-b+uk/strings.xml	string	picture_in_picture_des	-	STR	Продовжува
 values-b+uk/strings.xml	string	pin	-	STR	PIN-код	
 values-b+uk/strings.xml	string	pin_error_incorrect	-	STR	Неправильний PIN-код. Спробуйте ще раз.	
 values-b+uk/strings.xml	string	pin_error_length	-	STR	PIN-код має складатися із 4 символів	
+values-b+uk/strings.xml	string	pin_error_wait	-	STR	Забагато неправильних PIN-кодів. Спробуйте ще раз через %1$s	
 values-b+uk/strings.xml	string	play_episode	-	STR	Відтворити епізод	
 values-b+uk/strings.xml	string	play_episode_toast	-	STR	Переглянути епізод	
 values-b+uk/strings.xml	string	play_from_beginning_img_des	-	STR	Відтворити з початку	
@@ -50463,6 +51137,16 @@ values-b+uk/strings.xml	string	player_menu_playback	-	STR	Відтворення
 values-b+uk/strings.xml	string	player_mute	-	STR	Вимкнути звук	
 values-b+uk/strings.xml	string	player_notification_channel_description	-	STR	Сповіщення програвача для керування відтворенням у фоновому режимі	
 values-b+uk/strings.xml	string	player_notification_channel_name	-	STR	Сповіщення програвача	
+values-b+uk/strings.xml	string	player_panel_failed	-	STR	збій	
+values-b+uk/strings.xml	string	player_panel_keeps	-	STR	зберігає %s	
+values-b+uk/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+uk/strings.xml	string	player_panel_on	-	STR	Увімк.	
+values-b+uk/strings.xml	string	player_panel_open	-	STR	Відкрити	
+values-b+uk/strings.xml	string	player_panel_quality_profile	-	STR	Профіль якості	
+values-b+uk/strings.xml	string	player_panel_quality_unknown	-	STR	якість невідома	
+values-b+uk/strings.xml	string	player_panel_retry_all	-	STR	Повторити всі джерела	
+values-b+uk/strings.xml	string	player_panel_style	-	STR	Стиль субтитрів	
+values-b+uk/strings.xml	string	player_panel_use	-	STR	Використати	
 values-b+uk/strings.xml	string	player_play_now	-	STR	Дивитися зараз	
 values-b+uk/strings.xml	string	player_pref	-	STR	Бажаний відеопрогравач	
 values-b+uk/strings.xml	string	player_settings_always_ask	-	STR	Завжди запитувати	
@@ -51402,6 +52086,7 @@ values-b+ur/strings.xml	string	library_sort_current	-	STR	ترتیب: %s
 values-b+ur/strings.xml	string	library_sort_not_kept	-	STR	%s اسے نہیں رکھتا	
 values-b+ur/strings.xml	string	library_sort_supported	-	STR	%1$s %3$d میں سے %2$d کی معاونت کرتا ہے	
 values-b+ur/strings.xml	string	library_source	-	STR	لائبریری کا ذریعہ	
+values-b+ur/strings.xml	string	library_source_local	-	STR	لوکل	
 values-b+ur/strings.xml	string	library_source_note	-	STR	ایک وقت میں ایک · تبدیل کرنے پر دوبارہ لوڈ ہوتا ہے	
 values-b+ur/strings.xml	string	library_sync_cached	-	STR	کیش شدہ	
 values-b+ur/strings.xml	string	library_sync_failed	-	STR	%1$s کو ہم آہنگ نہیں کیا جا سکا۔ یہ %2$s پہلے کے ہیں۔	
@@ -51473,6 +52158,7 @@ values-b+ur/strings.xml	string	picture_in_picture_des	-	STR	دوسری ایپس 
 values-b+ur/strings.xml	string	pin	-	STR	پن	
 values-b+ur/strings.xml	string	pin_error_incorrect	-	STR	غلط پن۔ دوبارہ کوشش کریں۔	
 values-b+ur/strings.xml	string	pin_error_length	-	STR	پن چار حروف کا ہونا چاہیے	
+values-b+ur/strings.xml	string	pin_error_wait	-	STR	بہت زیادہ غلط PIN۔ %1$s بعد دوبارہ کوشش کریں	
 values-b+ur/strings.xml	string	play_episode	-	STR	قسط چلائیں	
 values-b+ur/strings.xml	string	play_episode_toast	-	STR	قسط چلائیں	
 values-b+ur/strings.xml	string	play_from_beginning_img_des	-	STR	شروع سےپلے کریں	
@@ -51501,6 +52187,16 @@ values-b+ur/strings.xml	string	player_load_subtitles_online	-	STR	انٹرنیٹ
 values-b+ur/strings.xml	string	player_loaded_subtitles	-	STR	لوڈ %s	
 values-b+ur/strings.xml	string	player_menu_playback	-	STR	پلے بیک	
 values-b+ur/strings.xml	string	player_mute	-	STR	خاموش کریں	
+values-b+ur/strings.xml	string	player_panel_failed	-	STR	ناکام	
+values-b+ur/strings.xml	string	player_panel_keeps	-	STR	%s برقرار رکھتا ہے	
+values-b+ur/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+ur/strings.xml	string	player_panel_on	-	STR	آن	
+values-b+ur/strings.xml	string	player_panel_open	-	STR	کھولیں	
+values-b+ur/strings.xml	string	player_panel_quality_profile	-	STR	معیار کی پروفائل	
+values-b+ur/strings.xml	string	player_panel_quality_unknown	-	STR	معیار نامعلوم	
+values-b+ur/strings.xml	string	player_panel_retry_all	-	STR	تمام ذرائع دوبارہ آزمائیں	
+values-b+ur/strings.xml	string	player_panel_style	-	STR	سب ٹائٹل کا انداز	
+values-b+ur/strings.xml	string	player_panel_use	-	STR	استعمال کریں	
 values-b+ur/strings.xml	string	player_play_now	-	STR	ابھی چلائیں	
 values-b+ur/strings.xml	string	player_pref	-	STR	ترجیحی ویڈیو پلیئر	
 values-b+ur/strings.xml	string	player_settings_play_in_app	-	STR	اندرونی پلیئر	
@@ -52413,6 +53109,7 @@ values-b+vi/strings.xml	string	library_sort_current	-	STR	Sắp xếp: %s
 values-b+vi/strings.xml	string	library_sort_not_kept	-	STR	%s không lưu mục này	
 values-b+vi/strings.xml	string	library_sort_supported	-	STR	%1$s hỗ trợ %2$d/%3$d	
 values-b+vi/strings.xml	string	library_source	-	STR	Nguồn thư viện	
+values-b+vi/strings.xml	string	library_source_local	-	STR	Cục bộ	
 values-b+vi/strings.xml	string	library_source_note	-	STR	Mỗi lần một nguồn · chuyển sẽ tải lại	
 values-b+vi/strings.xml	string	library_sync_cached	-	STR	Đã lưu đệm	
 values-b+vi/strings.xml	string	library_sync_failed	-	STR	Không thể đồng bộ %1$s. Đây là dữ liệu từ %2$s trước.	
@@ -52496,6 +53193,7 @@ values-b+vi/strings.xml	string	picture_in_picture_des	-	STR	Tiếp tục phát t
 values-b+vi/strings.xml	string	pin	-	STR	PIN	
 values-b+vi/strings.xml	string	pin_error_incorrect	-	STR	Mã PIN không đúng. Vui lòng thử lại.	
 values-b+vi/strings.xml	string	pin_error_length	-	STR	Mã PIN phải có 4 ký tự	
+values-b+vi/strings.xml	string	pin_error_wait	-	STR	Nhập sai PIN quá nhiều lần. Thử lại sau %1$s	
 values-b+vi/strings.xml	string	play_episode	-	STR	Phát Tập phim	
 values-b+vi/strings.xml	string	play_episode_toast	-	STR	Phát Tập phim	
 values-b+vi/strings.xml	string	play_from_beginning_img_des	-	STR	Phát từ đầu	
@@ -52529,6 +53227,16 @@ values-b+vi/strings.xml	string	player_menu_playback	-	STR	Phát
 values-b+vi/strings.xml	string	player_mute	-	STR	Tắt tiếng	
 values-b+vi/strings.xml	string	player_notification_channel_description	-	STR	Điều khiển phát lại trong nền bằng thông báo của trình phát	
 values-b+vi/strings.xml	string	player_notification_channel_name	-	STR	Thông báo trình phát	
+values-b+vi/strings.xml	string	player_panel_failed	-	STR	thất bại	
+values-b+vi/strings.xml	string	player_panel_keeps	-	STR	giữ %s	
+values-b+vi/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+vi/strings.xml	string	player_panel_on	-	STR	Bật	
+values-b+vi/strings.xml	string	player_panel_open	-	STR	Mở	
+values-b+vi/strings.xml	string	player_panel_quality_profile	-	STR	Hồ sơ chất lượng	
+values-b+vi/strings.xml	string	player_panel_quality_unknown	-	STR	chất lượng không rõ	
+values-b+vi/strings.xml	string	player_panel_retry_all	-	STR	Thử lại mọi nguồn	
+values-b+vi/strings.xml	string	player_panel_style	-	STR	Kiểu phụ đề	
+values-b+vi/strings.xml	string	player_panel_use	-	STR	Dùng	
 values-b+vi/strings.xml	string	player_play_now	-	STR	Phát ngay	
 values-b+vi/strings.xml	string	player_pref	-	STR	Trình phát ưu tiên	
 values-b+vi/strings.xml	string	player_settings_always_ask	-	STR	Luôn hỏi	
@@ -53503,6 +54211,7 @@ values-b+zh+TW/strings.xml	string	library_sort_current	-	STR	排序：%s
 values-b+zh+TW/strings.xml	string	library_sort_not_kept	-	STR	%s 不保存此項	
 values-b+zh+TW/strings.xml	string	library_sort_supported	-	STR	%1$s 支援 %3$d 項中的 %2$d 項	
 values-b+zh+TW/strings.xml	string	library_source	-	STR	媒體庫來源	
+values-b+zh+TW/strings.xml	string	library_source_local	-	STR	本機	
 values-b+zh+TW/strings.xml	string	library_source_note	-	STR	一次一個 · 切換會重新載入	
 values-b+zh+TW/strings.xml	string	library_sync_cached	-	STR	已快取	
 values-b+zh+TW/strings.xml	string	library_sync_failed	-	STR	無法同步 %1$s。這些是 %2$s 前的內容。	
@@ -53586,6 +54295,7 @@ values-b+zh+TW/strings.xml	string	picture_in_picture_des	-	STR	在其他應用�
 values-b+zh+TW/strings.xml	string	pin	-	STR	PIN 碼	
 values-b+zh+TW/strings.xml	string	pin_error_incorrect	-	STR	PIN 碼不符，請再試一次。	
 values-b+zh+TW/strings.xml	string	pin_error_length	-	STR	PIN 碼需為 4 個字元	
+values-b+zh+TW/strings.xml	string	pin_error_wait	-	STR	PIN 錯誤次數過多。請在 %1$s 後再試一次	
 values-b+zh+TW/strings.xml	string	play_episode	-	STR	播放劇集	
 values-b+zh+TW/strings.xml	string	play_episode_toast	-	STR	播放劇集	
 values-b+zh+TW/strings.xml	string	play_from_beginning_img_des	-	STR	從頭開始播放	
@@ -53619,6 +54329,16 @@ values-b+zh+TW/strings.xml	string	player_menu_playback	-	STR	播放
 values-b+zh+TW/strings.xml	string	player_mute	-	STR	靜音	
 values-b+zh+TW/strings.xml	string	player_notification_channel_description	-	STR	控制背景播放的通知	
 values-b+zh+TW/strings.xml	string	player_notification_channel_name	-	STR	播放器通知	
+values-b+zh+TW/strings.xml	string	player_panel_failed	-	STR	失敗	
+values-b+zh+TW/strings.xml	string	player_panel_keeps	-	STR	保留 %s	
+values-b+zh+TW/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+zh+TW/strings.xml	string	player_panel_on	-	STR	開	
+values-b+zh+TW/strings.xml	string	player_panel_open	-	STR	開啟	
+values-b+zh+TW/strings.xml	string	player_panel_quality_profile	-	STR	畫質設定檔	
+values-b+zh+TW/strings.xml	string	player_panel_quality_unknown	-	STR	畫質不明	
+values-b+zh+TW/strings.xml	string	player_panel_retry_all	-	STR	重試所有來源	
+values-b+zh+TW/strings.xml	string	player_panel_style	-	STR	字幕樣式	
+values-b+zh+TW/strings.xml	string	player_panel_use	-	STR	使用	
 values-b+zh+TW/strings.xml	string	player_play_now	-	STR	立即播放	
 values-b+zh+TW/strings.xml	string	player_pref	-	STR	偏好影片播放器	
 values-b+zh+TW/strings.xml	string	player_settings_always_ask	-	STR	總是詢問	
@@ -54589,6 +55309,7 @@ values-b+zh/strings.xml	string	library_sort_current	-	STR	排序：%s
 values-b+zh/strings.xml	string	library_sort_not_kept	-	STR	%s 不保存此项	
 values-b+zh/strings.xml	string	library_sort_supported	-	STR	%1$s 支持 %3$d 项中的 %2$d 项	
 values-b+zh/strings.xml	string	library_source	-	STR	媒体库来源	
+values-b+zh/strings.xml	string	library_source_local	-	STR	本地	
 values-b+zh/strings.xml	string	library_source_note	-	STR	一次一个 · 切换会重新加载	
 values-b+zh/strings.xml	string	library_sync_cached	-	STR	已缓存	
 values-b+zh/strings.xml	string	library_sync_failed	-	STR	无法同步 %1$s。这些是 %2$s 前的内容。	
@@ -54672,6 +55393,7 @@ values-b+zh/strings.xml	string	picture_in_picture_des	-	STR	在其他应用上�
 values-b+zh/strings.xml	string	pin	-	STR	PIN	
 values-b+zh/strings.xml	string	pin_error_incorrect	-	STR	PIN码不正确，请再试一次。	
 values-b+zh/strings.xml	string	pin_error_length	-	STR	PIN码必须为4个字符	
+values-b+zh/strings.xml	string	pin_error_wait	-	STR	PIN 错误次数过多。请在 %1$s 后重试	
 values-b+zh/strings.xml	string	play_episode	-	STR	播放剧集	
 values-b+zh/strings.xml	string	play_episode_toast	-	STR	播放剧集	
 values-b+zh/strings.xml	string	play_from_beginning_img_des	-	STR	从头播放	
@@ -54705,6 +55427,16 @@ values-b+zh/strings.xml	string	player_menu_playback	-	STR	播放
 values-b+zh/strings.xml	string	player_mute	-	STR	静音	
 values-b+zh/strings.xml	string	player_notification_channel_description	-	STR	控制后台播放的播放器通知	
 values-b+zh/strings.xml	string	player_notification_channel_name	-	STR	播放器通知	
+values-b+zh/strings.xml	string	player_panel_failed	-	STR	失败	
+values-b+zh/strings.xml	string	player_panel_keeps	-	STR	保留 %s	
+values-b+zh/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values-b+zh/strings.xml	string	player_panel_on	-	STR	开	
+values-b+zh/strings.xml	string	player_panel_open	-	STR	打开	
+values-b+zh/strings.xml	string	player_panel_quality_profile	-	STR	画质配置	
+values-b+zh/strings.xml	string	player_panel_quality_unknown	-	STR	画质未知	
+values-b+zh/strings.xml	string	player_panel_retry_all	-	STR	重试所有来源	
+values-b+zh/strings.xml	string	player_panel_style	-	STR	字幕样式	
+values-b+zh/strings.xml	string	player_panel_use	-	STR	使用	
 values-b+zh/strings.xml	string	player_play_now	-	STR	立即播放	
 values-b+zh/strings.xml	string	player_pref	-	STR	首选视频播放器	
 values-b+zh/strings.xml	string	player_settings_always_ask	-	STR	始终询问	
@@ -55844,6 +56576,7 @@ values/strings.xml	string	library_sort_current	-	STR	Sort: %s
 values/strings.xml	string	library_sort_not_kept	-	STR	Not kept by %s	
 values/strings.xml	string	library_sort_supported	-	STR	%1$s supports %2$d of %3$d	
 values/strings.xml	string	library_source	-	STR	Library source	
+values/strings.xml	string	library_source_local	-	STR	Local	
 values/strings.xml	string	library_source_note	-	STR	One at a time · switching reloads	
 values/strings.xml	string	library_sync_cached	-	STR	Cached	
 values/strings.xml	string	library_sync_failed	-	STR	Couldn't sync %1$s. These are from %2$s ago.	
@@ -55928,6 +56661,7 @@ values/strings.xml	string	picture_in_picture_des	-	STR	Continues playback in a m
 values/strings.xml	string	pin	-	STR	PIN	
 values/strings.xml	string	pin_error_incorrect	-	STR	Incorrect PIN. Please try again.	
 values/strings.xml	string	pin_error_length	-	STR	PIN must be 4 characters	
+values/strings.xml	string	pin_error_wait	-	STR	Too many wrong PINs. Try again in %1$s	
 values/strings.xml	string	play_episode	-	STR	Play Episode	
 values/strings.xml	string	play_episode_toast	-	STR	Play Episode	
 values/strings.xml	string	play_from_beginning_img_des	-	STR	Play from the Beginning	
@@ -55961,6 +56695,16 @@ values/strings.xml	string	player_menu_playback	-	STR	Playback
 values/strings.xml	string	player_mute	-	STR	Mute	
 values/strings.xml	string	player_notification_channel_description	-	STR	The player notification for controlling the playback from the background	
 values/strings.xml	string	player_notification_channel_name	-	STR	Player notifications	
+values/strings.xml	string	player_panel_failed	-	STR	failed	
+values/strings.xml	string	player_panel_keeps	-	STR	keeps %s	
+values/strings.xml	string	player_panel_numbered	-	STR	%1$s %2$d	
+values/strings.xml	string	player_panel_on	-	STR	On	
+values/strings.xml	string	player_panel_open	-	STR	Open	
+values/strings.xml	string	player_panel_quality_profile	-	STR	Quality profile	
+values/strings.xml	string	player_panel_quality_unknown	-	STR	quality unknown	
+values/strings.xml	string	player_panel_retry_all	-	STR	Retry all sources	
+values/strings.xml	string	player_panel_style	-	STR	Subtitle style	
+values/strings.xml	string	player_panel_use	-	STR	Use	
 values/strings.xml	string	player_play_now	-	STR	Play now	
 values/strings.xml	string	player_pref	-	STR	Preferred video player	
 values/strings.xml	string	player_settings_always_ask	-	STR	Always ask	

@@ -57,12 +57,24 @@ class PlayerHudController(
     var state: PlayerHudState = PlayerHudState()
         set(value) {
             field = value
-            val hold = !value.playing || value.buffering
-            if (hold != holdOpen) {
-                holdOpen = hold
-                if (_shown.value) arm()
-            }
+            updateHold()
         }
+
+    /** A 7e panel is open over the HUD: it stays up under it, whatever is playing, and shows when the panel opens. */
+    var panelOpen: Boolean = false
+        set(value) {
+            field = value
+            if (value) _shown.value = true
+            updateHold()
+        }
+
+    private fun updateHold() {
+        val hold = !state.playing || state.buffering || panelOpen
+        if (hold != holdOpen) {
+            holdOpen = hold
+            if (_shown.value) arm()
+        }
+    }
 
     fun reveal() {
         _shown.value = true

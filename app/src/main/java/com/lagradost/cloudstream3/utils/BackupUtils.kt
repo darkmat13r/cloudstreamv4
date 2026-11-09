@@ -3,9 +3,11 @@ package com.lagradost.cloudstream3.utils
 import android.app.Activity
 import android.content.Context
 import android.net.Uri
+import android.util.Log
 import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.annotation.MainThread
 import androidx.annotation.VisibleForTesting
 import androidx.annotation.WorkerThread
 import androidx.core.net.toUri
@@ -15,6 +17,7 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import com.lagradost.cloudstream3.CloudStreamApp.Companion.getActivity
 import com.lagradost.cloudstream3.CommonActivity.showToast
 import com.lagradost.cloudstream3.R
+import com.lagradost.cloudstream3.ui.account.AccountHelper.showPinInputDialog
 import com.lagradost.cloudstream3.mvvm.logError
 import com.lagradost.cloudstream3.plugins.PLUGINS_KEY
 import com.lagradost.cloudstream3.plugins.PLUGINS_KEY_LOCAL
@@ -217,7 +220,10 @@ object BackupUtils {
             context.restoreMap(strings)
             // `BUG-51`: a restored profile list comes back unlocked. This device's PINs belong to the profiles it had,
             // keyed by index, and a different profile restored at the same index must not inherit one.
-            if (strings?.containsKey(PROFILES_KEY) == true) CredentialStore.replacePins(emptyMap())
+            if (strings?.containsKey(PROFILES_KEY) == true && !CredentialStore.replacePins(emptyMap())) {
+                // Fail-safe: the old PINs stay, so a restored profile at a locked index stays locked rather than open.
+                Log.w("BackupUtils", "Restore: could not clear profile PINs")
+            }
             context.restoreMap(backupFile.datastore.float)
             context.restoreMap(backupFile.datastore.long)
             context.restoreMap(backupFile.datastore.stringSet)
@@ -292,13 +298,7 @@ object BackupUtils {
                             val text = input.bufferedReader().readText()
                             val restoredValue = parseJson<BackupFile>(text)
 
-                            restore(
-                                activity,
-                                restoredValue,
-                                restoreSettings = true,
-                                restoreDataStore = true,
-                            )
-                            activity.runOnUiThread { activity.recreate() }
+                            main { activity.restoreAfterPins(restoredValue) { activity.recreate() } }
                         } catch (e: Exception) {
                             logError(e)
                             main { // smth can fail in .format
@@ -312,6 +312,55 @@ object BackupUtils {
         } catch (e: Exception) {
             logError(e)
         }
+    }
+
+    /** Whether restoring [file] replaces the profile list, as [restore] decides it. */
+    private fun replacesProfiles(file: BackupFile): Boolean =
+        file.datastore.string?.withoutPins()?.containsKey(PROFILES_KEY) == true
+
+    /**
+     * `BUG-54`: a restore that replaces the profile list first asks for the PIN of every profile locked now, one prompt
+     * each, through the profile lock's own prompt. A restore brings its profiles back unlocked (`BUG-51`), so without
+     * this anyone who could open Settings could lift every lock by restoring a file. Cancel on any prompt aborts with
+     * nothing written; a wrong PIN is refused by the prompt, which asks again until the right one or Cancel. With no
+     * locked profile, or a file that does not replace the list, nothing is asked.
+     *
+     * Call on the main thread. [onRestored] runs on the main thread once the restore is written.
+     */
+    @MainThread
+    internal fun FragmentActivity.restoreAfterPins(file: BackupFile, onRestored: () -> Unit) {
+        val activity = this
+        // With no context, `accounts` has no PINs to join, so nothing is locked and nothing is asked. The restore's
+        // `replacePins` then fails too, so this device's PINs stay: still fail-safe.
+        val locked = if (replacesProfiles(file)) DataStoreHelper.accounts.filter { it.lockPin != null } else emptyList()
+        fun ask(next: Int) {
+            if (next == locked.size) {
+                ioSafe {
+                    try {
+                        restore(activity, file, restoreSettings = true, restoreDataStore = true)
+                        main { onRestored() }
+                    } catch (e: Exception) {
+                        logError(e)
+                        main { showToast(getString(R.string.restore_failed_format).format(e.toString())) }
+                    }
+                }
+                return
+            }
+            val profile = locked[next]
+            // One prompt answers once: a second call (IME Done after the fourth digit) must not ask the next profile
+            // twice or run the restore twice.
+            var answered = false
+            showPinInputDialog(
+                activity, profile.lockPin, editAccount = false, forStartup = false, errorText = null,
+                title = getString(R.string.enter_pin_with_name, profile.name),
+                attemptsKey = profile.keyIndex,
+            ) { pin ->
+                if (answered) return@showPinInputDialog
+                answered = true
+                if (pin != null) ask(next + 1)
+            }
+        }
+        ask(0)
     }
 
     fun Activity.restorePrompt() {

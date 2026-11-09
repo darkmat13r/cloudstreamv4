@@ -382,6 +382,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s לא שומר את זה"</string>
 <string name="library_sort_supported" formatted="true">"%1$s תומך ב-%2$d מתוך %3$d"</string>
 <string name="library_source">"מקור הספריה"</string>
+<string name="library_source_local">"מקומי"</string>
 <string name="library_source_note">"אחד בכל פעם · החלפה טוענת מחדש"</string>
 <string name="library_sync_cached">"מהמטמון"</string>
 <string name="library_sync_failed" formatted="true">"לא ניתן לסנכרן את %1$s. הנתונים האלה מלפני %2$s."</string>
@@ -444,6 +445,7 @@
 <string name="pick_subtitle">"כתוביות"</string>
 <string name="picture_in_picture">"מצב תמונה בתמונה"</string>
 <string name="picture_in_picture_des">"ממשיך ניגון בנגן מינימלי מעל ישומים אחרים"</string>
+<string name="pin_error_wait" formatted="true">"יותר מדי קודי PIN שגויים. נסו שוב בעוד %1$s"</string>
 <string name="play_episode">"נגן פרק"</string>
 <string name="play_episode_toast">"נגן את הפרק"</string>
 <string name="play_from_beginning_img_des">"נגן מההתחלה"</string>
@@ -472,6 +474,16 @@
 <string name="player_loaded_subtitles" formatted="true">"נטען %s"</string>
 <string name="player_menu_playback">"הפעלה"</string>
 <string name="player_mute">"השתקה"</string>
+<string name="player_panel_failed">"נכשל"</string>
+<string name="player_panel_keeps" formatted="true">"שומר על %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"פועל"</string>
+<string name="player_panel_open">"פתיחה"</string>
+<string name="player_panel_quality_profile">"פרופיל איכות"</string>
+<string name="player_panel_quality_unknown">"איכות לא ידועה"</string>
+<string name="player_panel_retry_all">"לנסות שוב את כל המקורות"</string>
+<string name="player_panel_style">"סגנון כתוביות"</string>
+<string name="player_panel_use">"שימוש"</string>
 <string name="player_play_now">"הפעלה עכשיו"</string>
 <string name="player_pref">"נגן וידאו מועדף"</string>
 <string name="player_settings_play_in_app">"נגן פנימי"</string>

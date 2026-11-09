@@ -430,6 +430,7 @@
 <string name="library_sort_not_kept" formatted="true">"ooo uuh %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s ooh %2$d uuh %3$d"</string>
 <string name="library_source">"aaaghh ooo-ahah"</string>
+<string name="library_source_local">"uuhh"</string>
 <string name="library_source_note">"ooo aagg · uuhh-ahah"</string>
 <string name="library_sync_cached">"Uuh"</string>
 <string name="library_sync_failed" formatted="true">"Ooh %1$s uuh. Ahh %2$s."</string>
@@ -503,6 +504,7 @@
 <string name="pin">"oog"</string>
 <string name="pin_error_incorrect">"oooohhhag uug oooohh uuh eeeek"</string>
 <string name="pin_error_length">"ooh oogg uh 4 uuuuhhhooh"</string>
+<string name="pin_error_wait" formatted="true">"oooohhhag uug ooh %1$s eeek"</string>
 <string name="play_episode">"aaaaa oh ohaouuhhh"</string>
 <string name="play_episode_toast">"ouuhhhoouuh ouuhhh"</string>
 <string name="play_from_beginning_img_des">"aahh oohh uuh uuuuggguh"</string>
@@ -531,6 +533,16 @@
 <string name="player_loaded_subtitles" formatted="true">"oooohh %s"</string>
 <string name="player_menu_playback">"Oouh"</string>
 <string name="player_mute">"ooh oh"</string>
+<string name="player_panel_failed">"aagh"</string>
+<string name="player_panel_keeps" formatted="true">"ooh %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Ook"</string>
+<string name="player_panel_open">"Aah"</string>
+<string name="player_panel_quality_profile">"Oohh aagh"</string>
+<string name="player_panel_quality_unknown">"oohh uuk"</string>
+<string name="player_panel_retry_all">"Aagh oohh uuk"</string>
+<string name="player_panel_style">"Oohh aak"</string>
+<string name="player_panel_use">"Uuk"</string>
 <string name="player_play_now">"Ahh ooh"</string>
 <string name="player_pref">"aaaagggah uuugg uuuugg"</string>
 <string name="player_settings_play_in_app">"aaaagggh uuuugg"</string>

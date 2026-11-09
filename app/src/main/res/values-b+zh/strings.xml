@@ -472,6 +472,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s 不保存此项"</string>
 <string name="library_sort_supported" formatted="true">"%1$s 支持 %3$d 项中的 %2$d 项"</string>
 <string name="library_source">"媒体库来源"</string>
+<string name="library_source_local">"本地"</string>
 <string name="library_source_note">"一次一个 · 切换会重新加载"</string>
 <string name="library_sync_cached">"已缓存"</string>
 <string name="library_sync_failed" formatted="true">"无法同步 %1$s。这些是 %2$s 前的内容。"</string>
@@ -555,6 +556,7 @@
 <string name="pin">"PIN"</string>
 <string name="pin_error_incorrect">"PIN码不正确，请再试一次。"</string>
 <string name="pin_error_length">"PIN码必须为4个字符"</string>
+<string name="pin_error_wait" formatted="true">"PIN 错误次数过多。请在 %1$s 后重试"</string>
 <string name="play_episode">"播放剧集"</string>
 <string name="play_episode_toast">"播放剧集"</string>
 <string name="play_from_beginning_img_des">"从头播放"</string>
@@ -588,6 +590,16 @@
 <string name="player_mute">"静音"</string>
 <string name="player_notification_channel_description">"控制后台播放的播放器通知"</string>
 <string name="player_notification_channel_name">"播放器通知"</string>
+<string name="player_panel_failed">"失败"</string>
+<string name="player_panel_keeps" formatted="true">"保留 %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"开"</string>
+<string name="player_panel_open">"打开"</string>
+<string name="player_panel_quality_profile">"画质配置"</string>
+<string name="player_panel_quality_unknown">"画质未知"</string>
+<string name="player_panel_retry_all">"重试所有来源"</string>
+<string name="player_panel_style">"字幕样式"</string>
+<string name="player_panel_use">"使用"</string>
 <string name="player_play_now">"立即播放"</string>
 <string name="player_pref">"首选视频播放器"</string>
 <string name="player_settings_always_ask">"始终询问"</string>

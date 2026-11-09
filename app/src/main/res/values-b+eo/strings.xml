@@ -245,6 +245,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s ne konservas tion"</string>
 <string name="library_sort_supported" formatted="true">"%1$s subtenas %2$d el %3$d"</string>
 <string name="library_source">"Fonto de biblioteko"</string>
+<string name="library_source_local">"Loka"</string>
 <string name="library_source_note">"Po unu · ŝanĝo reŝargas"</string>
 <string name="library_sync_cached">"Kaŝmemorita"</string>
 <string name="library_sync_failed" formatted="true">"Ne eblis sinkronigi %1$s. Ĉi tiuj estas de antaŭ %2$s."</string>
@@ -278,6 +279,7 @@
 <string name="pause">"Paŭzigi"</string>
 <string name="pick_source">"Fontoj"</string>
 <string name="pick_subtitle">"Subtekstoj"</string>
+<string name="pin_error_wait" formatted="true">"Tro da malĝustaj PIN-oj. Reprovu post %1$s"</string>
 <string name="play_episode">"Ludi Epizodon"</string>
 <string name="play_from_beginning_img_des">"Legi ekde la komenco"</string>
 <string name="play_livestream_button">"Ludi tuj-elsendfluon"</string>
@@ -302,6 +304,16 @@
 <string name="player_hud_up_next" formatted="true">"Sekva · %s"</string>
 <string name="player_menu_playback">"Ludado"</string>
 <string name="player_mute">"Silentigi"</string>
+<string name="player_panel_failed">"malsukcesis"</string>
+<string name="player_panel_keeps" formatted="true">"konservas %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Ŝaltita"</string>
+<string name="player_panel_open">"Malfermi"</string>
+<string name="player_panel_quality_profile">"Kvalita profilo"</string>
+<string name="player_panel_quality_unknown">"nekonata kvalito"</string>
+<string name="player_panel_retry_all">"Reprovi ĉiujn fontojn"</string>
+<string name="player_panel_style">"Stilo de subtekstoj"</string>
+<string name="player_panel_use">"Uzi"</string>
 <string name="player_play_now">"Ludi nun"</string>
 <string name="player_size_settings_des">"Forigi nigrajn borderaĵojn"</string>
 <string name="player_source_decoded" formatted="true">"%s malkodita"</string>

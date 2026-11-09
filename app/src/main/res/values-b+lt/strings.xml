@@ -285,6 +285,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s to nesaugo"</string>
 <string name="library_sort_supported" formatted="true">"%1$s palaiko %2$d iš %3$d"</string>
 <string name="library_source">"Bibliotekos šaltinis"</string>
+<string name="library_source_local">"Vietinis"</string>
 <string name="library_source_note">"Po vieną · perjungus įkeliama iš naujo"</string>
 <string name="library_sync_cached">"Iš podėlio"</string>
 <string name="library_sync_failed" formatted="true">"Nepavyko sinchronizuoti %1$s. Tai duomenys prieš %2$s."</string>
@@ -323,6 +324,7 @@
 <string name="pick_subtitle">"Subtitrai"</string>
 <string name="picture_in_picture">"Vaizdas vaizde"</string>
 <string name="picture_in_picture_des">"Tęsia atkūrimą mažame grotuve virš kitų programų"</string>
+<string name="pin_error_wait" formatted="true">"Per daug neteisingų PIN kodų. Bandykite dar kartą po %1$s"</string>
 <string name="play_episode">"Paleisti seriją"</string>
 <string name="play_episode_toast">"Leisti seriją"</string>
 <string name="play_full_series_button">"Paleisti visą seriją"</string>
@@ -348,6 +350,16 @@
 <string name="player_hud_up_next" formatted="true">"Toliau · %s"</string>
 <string name="player_menu_playback">"Atkūrimas"</string>
 <string name="player_mute">"Nutildyti"</string>
+<string name="player_panel_failed">"nepavyko"</string>
+<string name="player_panel_keeps" formatted="true">"išlaiko %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Įjungta"</string>
+<string name="player_panel_open">"Atidaryti"</string>
+<string name="player_panel_quality_profile">"Kokybės profilis"</string>
+<string name="player_panel_quality_unknown">"kokybė nežinoma"</string>
+<string name="player_panel_retry_all">"Bandyti visus šaltinius iš naujo"</string>
+<string name="player_panel_style">"Subtitrų stilius"</string>
+<string name="player_panel_use">"Naudoti"</string>
 <string name="player_play_now">"Leisti dabar"</string>
 <string name="player_settings_play_in_app">"Integruotas grotuvas"</string>
 <string name="player_size_settings">"Grotuvo dydžio pakeitimo mygtukas"</string>

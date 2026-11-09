@@ -29,6 +29,7 @@ import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
 import com.lagradost.cloudstream4.core.devicetest.Dpad
 import com.lagradost.cloudstream4.core.devicetest.DpadDriver
+import com.lagradost.cloudstream4.core.devicetest.TouchModeReset
 import com.lagradost.cloudstream4.core.devicetest.assertScreenshot
 import com.lagradost.cloudstream4.core.devicetest.captureScreenshot
 import com.lagradost.cloudstream4.core.devicetest.focusedLabel
@@ -70,6 +71,10 @@ import org.junit.runner.RunWith
  */
 @RunWith(AndroidJUnit4::class)
 class DownloadsScreenTvDeviceTest {
+
+    /** `BUG-59`: starts and ends out of touch mode, whatever ran before it. */
+    @get:Rule
+    val touchMode = TouchModeReset()
 
     @get:Rule
     val rule = createComposeRule()

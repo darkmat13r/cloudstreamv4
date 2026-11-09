@@ -363,6 +363,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s toto neuchováva"</string>
 <string name="library_sort_supported" formatted="true">"%1$s podporuje %2$d z %3$d"</string>
 <string name="library_source">"Zdroj knižnice"</string>
+<string name="library_source_local">"Lokálne"</string>
 <string name="library_source_note">"Jeden naraz · prepnutie znova načíta"</string>
 <string name="library_sync_cached">"Z vyrovnávacej pamäte"</string>
 <string name="library_sync_failed" formatted="true">"%1$s sa nepodarilo synchronizovať. Sú to údaje spred %2$s."</string>
@@ -423,6 +424,7 @@
 <string name="pick_subtitle">"Titulky"</string>
 <string name="picture_in_picture">"Obraz v obraze"</string>
 <string name="picture_in_picture_des">"Pokračuje v prehrávaní v miniatúrnom prehrávači nad ostatnými aplikáciami"</string>
+<string name="pin_error_wait" formatted="true">"Príliš veľa nesprávnych PIN kódov. Skúste to znova o %1$s"</string>
 <string name="play_episode">"Prehrať epizódu"</string>
 <string name="play_episode_toast">"Prehrať epizódu"</string>
 <string name="play_from_beginning_img_des">"Hrať od začiatku"</string>
@@ -452,6 +454,16 @@
 <string name="player_loaded_subtitles" formatted="true">"Načítané %s"</string>
 <string name="player_menu_playback">"Prehrávanie"</string>
 <string name="player_mute">"Vypnúť zvuk"</string>
+<string name="player_panel_failed">"zlyhalo"</string>
+<string name="player_panel_keeps" formatted="true">"zachová %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Zapnuté"</string>
+<string name="player_panel_open">"Otvoriť"</string>
+<string name="player_panel_quality_profile">"Profil kvality"</string>
+<string name="player_panel_quality_unknown">"neznáma kvalita"</string>
+<string name="player_panel_retry_all">"Skúsiť znova všetky zdroje"</string>
+<string name="player_panel_style">"Štýl titulkov"</string>
+<string name="player_panel_use">"Použiť"</string>
 <string name="player_play_now">"Prehrať teraz"</string>
 <string name="player_size_settings">"Tlačidlo na zmenu veľkosti prehrávača"</string>
 <string name="player_size_settings_des">"Odstrániť čierne okraje"</string>

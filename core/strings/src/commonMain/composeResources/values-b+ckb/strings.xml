@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ئاماژە</item><item quantity="other">%d ئاماژە</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بەش بار نەکرا</item><item quantity="other">%d بەش بار نەکرا</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ناونیشان</item><item quantity="other">%d ناونیشان</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d چرکە</item><item quantity="other">%d چرکە</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d سەرچاوە</item><item quantity="other">%d سەرچاوە</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">ئەڵقەی داهاتوو لە %d چ دا</item><item quantity="other">ئەڵقەی داهاتوو لە %d چ دا</item></plurals>
@@ -218,6 +219,7 @@
 <string name="open_local_video">ڤیدیۆی ناوخۆیی بکەرەوە</string>
 <string name="pick_source">سەرچاوەکان</string>
 <string name="pick_subtitle">ژێرنووسەکان</string>
+<string name="pin_error_wait">زۆر PINی هەڵە. دوای %1$s دووبارە هەوڵ بدەرەوە</string>
 <string name="play_from_beginning_img_des">لە سەرەتاوە دەست پێ بکە</string>
 <string name="play_torrent_button">تۆرێنت ستریم بکە</string>
 <string name="player_enter_fullscreen">چوونە ناو پڕ بە شاشە</string>
@@ -235,6 +237,15 @@
 <string name="player_hud_speed">خێرایی</string>
 <string name="player_hud_up_next">دواتر · %s</string>
 <string name="player_mute">بێدەنگکردن</string>
+<string name="player_panel_failed">شکستی هێنا</string>
+<string name="player_panel_keeps">%s دەهێڵێتەوە</string>
+<string name="player_panel_on">چالاک</string>
+<string name="player_panel_open">کردنەوە</string>
+<string name="player_panel_quality_profile">پرۆفایلی کوالیتی</string>
+<string name="player_panel_quality_unknown">کوالیتی نەزانراو</string>
+<string name="player_panel_retry_all">هەموو سەرچاوەکان دووبارە تاقی بکەرەوە</string>
+<string name="player_panel_style">شێوازی ژێرنووس</string>
+<string name="player_panel_use">بەکارهێنان</string>
 <string name="player_source_playing">لێدەدرێت</string>
 <string name="player_source_resumes_at">گۆڕین شوێنەکەت دەپارێزێت: لە %1$s بەردەوام دەبێت</string>
 <string name="player_source_retry">دووبارە هەوڵبدەرەوە</string>
@@ -424,6 +435,7 @@
 <string name="library_sort_supported">%1$s پشتگیری %2$d لە %3$d دەکات</string>
 <string name="library_sort_not_kept">%s ئەمە هەڵناگرێت</string>
 <string name="library_source">سەرچاوەی کتێبخانە</string>
+<string name="library_source_local">ناوخۆیی</string>
 <string name="library_source_note">یەک بە یەک · گۆڕین دووبارە باری دەکاتەوە</string>
 <string name="library_sync_cached">هەڵگیراوە</string>
 <string name="library_sync_failed">نەتوانرا %1$s هاوکات بکرێت. ئەمانە هی %2$s لەمەوبەرن.</string>

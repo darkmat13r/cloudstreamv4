@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d FAVORIT</item><item quantity="many">%d DE FAVORITS</item><item quantity="other">%d FAVORITS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">No s'ha pogut carregar %d secció</item><item quantity="many">No s'han pogut carregar %d seccions</item><item quantity="other">No s'han pogut carregar %d seccions</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d títol</item><item quantity="many">%d títols</item><item quantity="other">%d títols</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d segon</item><item quantity="many">%d segons</item><item quantity="other">%d segons</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d font</item><item quantity="many">%d fonts</item><item quantity="other">%d fonts</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Episodi següent d'aquí a %d s</item><item quantity="many">Episodi següent d'aquí a %d s</item><item quantity="other">Episodi següent d'aquí a %d s</item></plurals>
@@ -328,6 +329,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">PIN incorrecte. Si us plau, torneu a intentar-ho.</string>
 <string name="pin_error_length">El PIN ha de tenir 4 caràcters</string>
+<string name="pin_error_wait">Massa PIN incorrectes. Torna-ho a provar en %1$s</string>
 <string name="play_episode">Reprodueix l'episodi</string>
 <string name="play_from_beginning_img_des">Reproduïr des del començament</string>
 <string name="play_livestream_button">Reprodueix Livestream</string>
@@ -354,6 +356,15 @@
 <string name="player_load_subtitles_online">Carrega des d'internet</string>
 <string name="player_loaded_subtitles">%s carregat</string>
 <string name="player_mute">Silencia</string>
+<string name="player_panel_failed">ha fallat</string>
+<string name="player_panel_keeps">manté %s</string>
+<string name="player_panel_on">Activat</string>
+<string name="player_panel_open">Obre</string>
+<string name="player_panel_quality_profile">Perfil de qualitat</string>
+<string name="player_panel_quality_unknown">qualitat desconeguda</string>
+<string name="player_panel_retry_all">Torna a provar totes les fonts</string>
+<string name="player_panel_style">Estil dels subtítols</string>
+<string name="player_panel_use">Fes servir</string>
 <string name="player_size_settings">Botó de canvi de mida del reproductor</string>
 <string name="player_source_playing">S'està reproduint</string>
 <string name="player_source_resumes_at">Canviar conserva la posició: es reprèn a %1$s</string>
@@ -669,6 +680,7 @@
 <string name="library_sort_supported">%1$s admet %2$d de %3$d</string>
 <string name="library_sort_not_kept">%s no ho desa</string>
 <string name="library_source">Font de la biblioteca</string>
+<string name="library_source_local">Local</string>
 <string name="library_source_note">Una alhora · canviar torna a carregar</string>
 <string name="library_sync_cached">A la memòria cau</string>
 <string name="library_sync_failed">No s'ha pogut sincronitzar %1$s. Són de fa %2$s.</string>

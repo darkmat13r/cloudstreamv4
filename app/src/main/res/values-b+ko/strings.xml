@@ -471,6 +471,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s에는 저장되지 않음"</string>
 <string name="library_sort_supported" formatted="true">"%1$s은(는) %3$d개 중 %2$d개 지원"</string>
 <string name="library_source">"라이브러리 소스"</string>
+<string name="library_source_local">"로컬"</string>
 <string name="library_source_note">"한 번에 하나 · 전환하면 다시 불러옴"</string>
 <string name="library_sync_cached">"캐시됨"</string>
 <string name="library_sync_failed" formatted="true">"%1$s을(를) 동기화하지 못했습니다. %2$s 전 데이터입니다."</string>
@@ -554,6 +555,7 @@
 <string name="pin">"PIN"</string>
 <string name="pin_error_incorrect">"잘못된 PIN입니다. 다시 시도하세요."</string>
 <string name="pin_error_length">"PIN은 4자여야 합니다"</string>
+<string name="pin_error_wait" formatted="true">"잘못된 PIN을 너무 많이 입력했습니다. %1$s 후에 다시 시도하세요"</string>
 <string name="play_episode">"에피소드 재생"</string>
 <string name="play_episode_toast">"에피소드 재생"</string>
 <string name="play_from_beginning_img_des">"처음부터 재생"</string>
@@ -587,6 +589,16 @@
 <string name="player_mute">"음소거"</string>
 <string name="player_notification_channel_description">"백그라운드에서 재생을 제어하기 위한 플레이어 알림"</string>
 <string name="player_notification_channel_name">"플레이어 알림"</string>
+<string name="player_panel_failed">"실패"</string>
+<string name="player_panel_keeps" formatted="true">"%s 유지"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"켜짐"</string>
+<string name="player_panel_open">"열기"</string>
+<string name="player_panel_quality_profile">"화질 프로필"</string>
+<string name="player_panel_quality_unknown">"화질 알 수 없음"</string>
+<string name="player_panel_retry_all">"모든 소스 다시 시도"</string>
+<string name="player_panel_style">"자막 스타일"</string>
+<string name="player_panel_use">"사용"</string>
 <string name="player_play_now">"지금 재생"</string>
 <string name="player_pref">"선호하는 동영상 플레이어"</string>
 <string name="player_settings_always_ask">"항상 묻기"</string>

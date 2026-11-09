@@ -272,7 +272,7 @@ Columns: Strings = yes/no, estimated from a spot check of `values/strings.xml` k
 | **Q22** | Link loading, reduced | 7c without per-source failure | `:feature:detail`, `A4/detail/` | no | yes | Some | Built on existing `DetailSource.links` flow; drawn rows reduced, tell owner | Q20 |
 | **Q23** | Link loading, full | 7c | `:library` (hook), `:core:data`, `:app` | no | **yes, published** | Some | `SourceId`, `ResolutionFailure`, per-source timeout: additive hook on `MainAPI`, needs owner | Q22 |
 | **Q24** ✅ done, `KMP-64` | Player HUD | 7d | **new `:feature:player`** (commonMain HUD), `:app` host | Yes, `navigation_player` (`NAV:564`), runtime | yes | Some | `getBufferedPosition` addition to published `IPlayer` needs a default. Auto-hide and pop behaviours | Q1, Q2 |
-| **Q25** | Playback panels | 7e | `:feature:player`, `:app` | no | yes | Some | Style editor, online subs, quality profile undrawn (H:247) | Q3, Q24 |
+| **Q25** ✅ done, `KMP-66` | Playback panels | 7e | `:feature:player`, `:app` | no | yes | Some | Style editor, online subs, quality profile undrawn (H:247) | Q3, Q24 |
 | **Q26** | Undrawn boards | queue, profile editor, settings re-skin, subtitle styles, plugin details | designs first, per H:93-100 | later | later | later | `DS-01`, `DS-05` for settings | owner |
 
 Order follows H:121-123 (search, home, library, downloads, account + setup, extensions, result, player). The foundation items Q1–Q3 go first as "cheapest blockers".

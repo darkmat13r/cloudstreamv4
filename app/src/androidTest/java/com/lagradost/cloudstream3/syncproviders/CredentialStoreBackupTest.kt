@@ -4,6 +4,7 @@ import android.content.Context
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
 import com.lagradost.cloudstream3.R
+import com.lagradost.cloudstream3.ui.account.PinAttempts
 import com.lagradost.cloudstream3.utils.AppUtils.parseJson
 import com.lagradost.cloudstream3.utils.AppUtils.toJson
 import com.lagradost.cloudstream3.utils.BackupUtils
@@ -145,6 +146,16 @@ class CredentialStoreBackupTest {
         val rules = excludes(R.xml.data_extraction_rules)
         assertTrue("Cloud backup carries the sign-ins", rules.contains("cloud-backup" to path))
         assertTrue("Device transfer carries the sign-ins", rules.contains("device-transfer" to path))
+    }
+
+    /** `BUG-55`: the wrong-PIN counts stay on this device too, so a wait never follows a profile elsewhere. */
+    @Test
+    fun androidBackupAndTransferExcludeThePinAttemptsFile() {
+        val path = "${PinAttempts.FILE}.xml"
+        assertTrue(excludes(R.xml.backup_descriptor).contains("full-backup-content" to path))
+        val rules = excludes(R.xml.data_extraction_rules)
+        assertTrue("Cloud backup carries the PIN counts", rules.contains("cloud-backup" to path))
+        assertTrue("Device transfer carries the PIN counts", rules.contains("device-transfer" to path))
     }
 
     /** (parent tag, path) for every `<exclude domain="sharedpref">`. */

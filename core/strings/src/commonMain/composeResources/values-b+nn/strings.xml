@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikkje lastast</item><item quantity="other">%d delar kunne ikkje lastast</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d tittel</item><item quantity="other">%d titlar</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d sekund</item><item quantity="other">%d sekund</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d kjelde</item><item quantity="other">%d kjelder</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Neste episode om %d s</item><item quantity="other">Neste episode om %d s</item></plurals>
@@ -266,6 +267,7 @@
 <string name="pick_source">Kjelder</string>
 <string name="pick_subtitle">Undertekstar</string>
 <string name="picture_in_picture">Bilde i bilde</string>
+<string name="pin_error_wait">For mange feil PIN-kodar. Prøv igjen om %1$s</string>
 <string name="play_episode">Spel av episode</string>
 <string name="play_episode_toast">Spel av episode</string>
 <string name="play_from_beginning_img_des">Spel av frå start</string>
@@ -290,6 +292,15 @@
 <string name="player_hud_speed">Fart</string>
 <string name="player_hud_up_next">Neste · %s</string>
 <string name="player_mute">Slå av lyd</string>
+<string name="player_panel_failed">feila</string>
+<string name="player_panel_keeps">held på %s</string>
+<string name="player_panel_on">På</string>
+<string name="player_panel_open">Opne</string>
+<string name="player_panel_quality_profile">Kvalitetsprofil</string>
+<string name="player_panel_quality_unknown">ukjend kvalitet</string>
+<string name="player_panel_retry_all">Prøv alle kjeldene på nytt</string>
+<string name="player_panel_style">Stil for undertekstar</string>
+<string name="player_panel_use">Bruk</string>
 <string name="player_size_settings_des">Fjern dei svarte kantane</string>
 <string name="player_source_playing">Spelar</string>
 <string name="player_source_resumes_at">Bytet held på plassen din: held fram frå %1$s</string>
@@ -538,6 +549,7 @@
 <string name="library_sort_supported">%1$s støttar %2$d av %3$d</string>
 <string name="library_sort_not_kept">Ikkje lagra av %s</string>
 <string name="library_source">Bibliotekskjelde</string>
+<string name="library_source_local">Lokal</string>
 <string name="library_source_note">Éin om gongen · byte lastar på nytt</string>
 <string name="library_sync_cached">Mellomlagra</string>
 <string name="library_sync_failed">Kunne ikkje synkronisera %1$s. Desse er frå for %2$s sidan.</string>

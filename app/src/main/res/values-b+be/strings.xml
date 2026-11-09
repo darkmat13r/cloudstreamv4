@@ -471,6 +471,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s гэтага не захоўвае"</string>
 <string name="library_sort_supported" formatted="true">"%1$s падтрымлівае %2$d з %3$d"</string>
 <string name="library_source">"Крыніца бібліятэкі"</string>
+<string name="library_source_local">"Лакальны"</string>
 <string name="library_source_note">"Па адной · пераключэнне перазагружае"</string>
 <string name="library_sync_cached">"З кэша"</string>
 <string name="library_sync_failed" formatted="true">"Не ўдалося сінхранізаваць %1$s. Гэта даныя %2$s таму."</string>
@@ -554,6 +555,7 @@
 <string name="pin">"PIN-код"</string>
 <string name="pin_error_incorrect">"Няправільны PIN-код. Паспрабуйце яшчэ раз."</string>
 <string name="pin_error_length">"PIN-код павінны быць з 4 сімвалаў"</string>
+<string name="pin_error_wait" formatted="true">"Занадта шмат няправільных PIN-кодаў. Паспрабуйце зноў праз %1$s"</string>
 <string name="play_episode">"Прайграць серыю"</string>
 <string name="play_episode_toast">"Прайграць серыю"</string>
 <string name="play_from_beginning_img_des">"Прайграць з пачатку"</string>
@@ -587,6 +589,16 @@
 <string name="player_mute">"Выключыць гук"</string>
 <string name="player_notification_channel_description">"Апавяшчэнне прайгравальніка для кіравання прайграваннем у фонавым рэжыме"</string>
 <string name="player_notification_channel_name">"Апавяшчэнні прайгравальніка"</string>
+<string name="player_panel_failed">"збой"</string>
+<string name="player_panel_keeps" formatted="true">"захоўвае %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Укл."</string>
+<string name="player_panel_open">"Адкрыць"</string>
+<string name="player_panel_quality_profile">"Профіль якасці"</string>
+<string name="player_panel_quality_unknown">"якасць невядомая"</string>
+<string name="player_panel_retry_all">"Паўтарыць усе крыніцы"</string>
+<string name="player_panel_style">"Стыль субцітраў"</string>
+<string name="player_panel_use">"Выкарыстаць"</string>
 <string name="player_play_now">"Прайграць зараз"</string>
 <string name="player_pref">"Прыярытэтны прайгравальнік"</string>
 <string name="player_settings_always_ask">"Заўсёды пытацца"</string>

@@ -75,6 +75,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d розділ</item><item quantity="few">%d розділи</item><item quantity="many">%d розділів</item><item quantity="other">%d розділу</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d назва</item><item quantity="few">%d назви</item><item quantity="many">%d назв</item><item quantity="other">%d назви</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d приховане посилання</item><item quantity="few">%d приховані посилання</item><item quantity="many">%d прихованих посилань</item><item quantity="other">%d прихованих посилань</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d секунда</item><item quantity="few">%d секунди</item><item quantity="many">%d секунд</item><item quantity="other">%d секунди</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d джерело</item><item quantity="few">%d джерела</item><item quantity="many">%d джерел</item><item quantity="other">%d джерела</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Наступна серія через %d с</item><item quantity="few">Наступна серія через %d с</item><item quantity="many">Наступна серія через %d с</item><item quantity="other">Наступна серія через %d с</item></plurals>
@@ -472,6 +473,7 @@
 <string name="library_sort_supported">%1$s підтримує %2$d з %3$d</string>
 <string name="library_sort_not_kept">%s цього не зберігає</string>
 <string name="library_source">Джерело бібліотеки</string>
+<string name="library_source_local">Локальний</string>
 <string name="library_source_note">По одному · перемикання перезавантажує</string>
 <string name="library_sync_cached">З кешу</string>
 <string name="library_sync_failed">Не вдалося синхронізувати %1$s. Це дані %2$s тому.</string>
@@ -555,6 +557,7 @@
 <string name="pin">PIN-код</string>
 <string name="pin_error_incorrect">Неправильний PIN-код. Спробуйте ще раз.</string>
 <string name="pin_error_length">PIN-код має складатися із 4 символів</string>
+<string name="pin_error_wait">Забагато неправильних PIN-кодів. Спробуйте ще раз через %1$s</string>
 <string name="play_episode">Відтворити епізод</string>
 <string name="play_episode_toast">Переглянути епізод</string>
 <string name="play_from_beginning_img_des">Відтворити з початку</string>
@@ -588,6 +591,15 @@
 <string name="player_mute">Вимкнути звук</string>
 <string name="player_notification_channel_description">Сповіщення програвача для керування відтворенням у фоновому режимі</string>
 <string name="player_notification_channel_name">Сповіщення програвача</string>
+<string name="player_panel_failed">збій</string>
+<string name="player_panel_keeps">зберігає %s</string>
+<string name="player_panel_on">Увімк.</string>
+<string name="player_panel_open">Відкрити</string>
+<string name="player_panel_quality_profile">Профіль якості</string>
+<string name="player_panel_quality_unknown">якість невідома</string>
+<string name="player_panel_retry_all">Повторити всі джерела</string>
+<string name="player_panel_style">Стиль субтитрів</string>
+<string name="player_panel_use">Використати</string>
 <string name="player_play_now">Дивитися зараз</string>
 <string name="player_pref">Бажаний відеопрогравач</string>
 <string name="player_settings_always_ask">Завжди запитувати</string>

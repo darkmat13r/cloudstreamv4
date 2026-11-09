@@ -75,6 +75,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d section</item><item quantity="many">%d sections</item><item quantity="other">%d sections</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titre</item><item quantity="many">%d titres</item><item quantity="other">%d titres</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d lien caché</item><item quantity="many">%d liens cachés</item><item quantity="other">%d liens cachés</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d seconde</item><item quantity="many">%d secondes</item><item quantity="other">%d secondes</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d source</item><item quantity="many">%d sources</item><item quantity="other">%d sources</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Épisode suivant dans %d s</item><item quantity="many">Épisode suivant dans %d s</item><item quantity="other">Épisode suivant dans %d s</item></plurals>
@@ -472,6 +473,7 @@
 <string name="library_sort_supported">%1$s prend en charge %2$d sur %3$d</string>
 <string name="library_sort_not_kept">Non conservé par %s</string>
 <string name="library_source">Source de la bibliothèque</string>
+<string name="library_source_local">Local</string>
 <string name="library_source_note">Une à la fois · changer recharge</string>
 <string name="library_sync_cached">En cache</string>
 <string name="library_sync_failed">Impossible de synchroniser %1$s. Ces données datent d'il y a %2$s.</string>
@@ -555,6 +557,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">PIN incorrect. Ressayez s'il vous plait.</string>
 <string name="pin_error_length">Le PIN doit être de 4 caractères</string>
+<string name="pin_error_wait">Trop de codes PIN erronés. Réessayez dans %1$s</string>
 <string name="play_episode">Lire l'Épisode</string>
 <string name="play_episode_toast">Lecture de l'episode</string>
 <string name="play_from_beginning_img_des">Regarder depuis le début</string>
@@ -588,6 +591,15 @@
 <string name="player_mute">Couper le son</string>
 <string name="player_notification_channel_description">La notification du lecteur pour contrôler la lecture en arrière-plan</string>
 <string name="player_notification_channel_name">Notifications du lecteur</string>
+<string name="player_panel_failed">échec</string>
+<string name="player_panel_keeps">garde %s</string>
+<string name="player_panel_on">Activé</string>
+<string name="player_panel_open">Ouvrir</string>
+<string name="player_panel_quality_profile">Profil de qualité</string>
+<string name="player_panel_quality_unknown">qualité inconnue</string>
+<string name="player_panel_retry_all">Réessayer toutes les sources</string>
+<string name="player_panel_style">Style des sous-titres</string>
+<string name="player_panel_use">Utiliser</string>
 <string name="player_play_now">Lire maintenant</string>
 <string name="player_pref">Lecteur vidéo préféré</string>
 <string name="player_settings_always_ask">Demandez toujours</string>

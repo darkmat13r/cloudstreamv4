@@ -472,6 +472,7 @@
 <string name="library_sort_not_kept" formatted="true">"Non conservato da %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s supporta %2$d di %3$d"</string>
 <string name="library_source">"Origine della libreria"</string>
+<string name="library_source_local">"Locale"</string>
 <string name="library_source_note">"Una alla volta · cambiare ricarica"</string>
 <string name="library_sync_cached">"In cache"</string>
 <string name="library_sync_failed" formatted="true">"Impossibile sincronizzare %1$s. Sono di %2$s fa."</string>
@@ -555,6 +556,7 @@
 <string name="pin">"PIN"</string>
 <string name="pin_error_incorrect">"PIN non corretto. Riprova."</string>
 <string name="pin_error_length">"Il PIN deve essere almeno di 4 caratteri"</string>
+<string name="pin_error_wait" formatted="true">"Troppi PIN errati. Riprova tra %1$s"</string>
 <string name="play_episode">"Riproduci episodio"</string>
 <string name="play_episode_toast">"Riproduci episodio"</string>
 <string name="play_from_beginning_img_des">"Riproduci dall'inizio"</string>
@@ -588,6 +590,16 @@
 <string name="player_mute">"Disattiva audio"</string>
 <string name="player_notification_channel_description">"La notifica del lettore per controllare la riproduzione in background"</string>
 <string name="player_notification_channel_name">"Notifiche lettore"</string>
+<string name="player_panel_failed">"non riuscito"</string>
+<string name="player_panel_keeps" formatted="true">"mantiene %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Attivo"</string>
+<string name="player_panel_open">"Apri"</string>
+<string name="player_panel_quality_profile">"Profilo qualità"</string>
+<string name="player_panel_quality_unknown">"qualità sconosciuta"</string>
+<string name="player_panel_retry_all">"Riprova tutte le fonti"</string>
+<string name="player_panel_style">"Stile sottotitoli"</string>
+<string name="player_panel_use">"Usa"</string>
 <string name="player_play_now">"Riproduci ora"</string>
 <string name="player_pref">"Video lettore preferito"</string>
 <string name="player_settings_always_ask">"Chiedi sempre"</string>

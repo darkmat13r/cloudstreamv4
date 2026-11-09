@@ -75,6 +75,7 @@
 <plurals name="home_source_sections"><item quantity="one">%d seksion</item><item quantity="other">%d seksione</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titull</item><item quantity="other">%d tituj</item></plurals>
 <plurals name="links_hidden"><item quantity="one">%d link i fshehur</item><item quantity="other">%d linqe të fshehura</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d sekondë</item><item quantity="other">%d sekonda</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d burim</item><item quantity="other">%d burime</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Episodi tjetër pas %d s</item><item quantity="other">Episodi tjetër pas %d s</item></plurals>
@@ -472,6 +473,7 @@
 <string name="library_sort_supported">%1$s mbështet %2$d nga %3$d</string>
 <string name="library_sort_not_kept">Nuk ruhet nga %s</string>
 <string name="library_source">Burimi i bibliotekës</string>
+<string name="library_source_local">Lokale</string>
 <string name="library_source_note">Një në një kohë · ndërrimi ringarkon</string>
 <string name="library_sync_cached">Nga memoria</string>
 <string name="library_sync_failed">%1$s nuk u sinkronizua dot. Këto janë para %2$s.</string>
@@ -555,6 +557,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">PIN-i i gabuar. Ju lutem provoni përsëri.</string>
 <string name="pin_error_length">PIN-i duhet të ketë 4 karaktere</string>
+<string name="pin_error_wait">Shumë PIN të gabuar. Provo përsëri pas %1$s</string>
 <string name="play_episode">Luaj Episodin</string>
 <string name="play_episode_toast">Luaj Episodin</string>
 <string name="play_from_beginning_img_des">Luaj nga fillimi</string>
@@ -588,6 +591,15 @@
 <string name="player_mute">Hiq zërin</string>
 <string name="player_notification_channel_description">Njoftimi për kontrollin e luajtjes nga sfondi</string>
 <string name="player_notification_channel_name">Njoftimet e luajtësit</string>
+<string name="player_panel_failed">dështoi</string>
+<string name="player_panel_keeps">ruan %s</string>
+<string name="player_panel_on">Aktiv</string>
+<string name="player_panel_open">Hap</string>
+<string name="player_panel_quality_profile">Profili i cilësisë</string>
+<string name="player_panel_quality_unknown">cilësi e panjohur</string>
+<string name="player_panel_retry_all">Riprovo të gjitha burimet</string>
+<string name="player_panel_style">Stili i titrave</string>
+<string name="player_panel_use">Përdor</string>
 <string name="player_play_now">Luaj tani</string>
 <string name="player_pref">Luajtësi i preferuar i videove</string>
 <string name="player_settings_always_ask">Pyet gjithmonë</string>

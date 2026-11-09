@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d खण्ड लोड हुन सकेन</item><item quantity="other">%d खण्डहरू लोड हुन सकेनन्</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d शीर्षक</item><item quantity="other">%d शीर्षकहरू</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d सेकेन्ड</item><item quantity="other">%d सेकेन्ड</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d स्रोत</item><item quantity="other">%d स्रोतहरू</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">%d से. मा अर्को एपिसोड</item><item quantity="other">%d से. मा अर्को एपिसोड</item></plurals>
@@ -221,6 +222,7 @@
 <string name="pick_subtitle">उपशीर्षक</string>
 <string name="picture_in_picture">Picture-in-picture</string>
 <string name="picture_in_picture_des">अरु एप माथी सानो प्लेयरमा पलेब्याक जारी राख्दछ</string>
+<string name="pin_error_wait">धेरै पटक गलत PIN। %1$s पछि फेरि प्रयास गर्नुहोस्</string>
 <string name="play_episode">एपिसोड प्ले गर्नुहोस्</string>
 <string name="play_livestream_button">लाइभस्ट्रिम प्ले गर्नुहोस्</string>
 <string name="play_movie_button">चलचित्र प्ले गर्नुहोस्</string>
@@ -242,6 +244,15 @@
 <string name="player_hud_speed">गति</string>
 <string name="player_hud_up_next">अर्को · %s</string>
 <string name="player_mute">म्यूट गर्नुहोस्</string>
+<string name="player_panel_failed">असफल</string>
+<string name="player_panel_keeps">%s राख्छ</string>
+<string name="player_panel_on">अन</string>
+<string name="player_panel_open">खोल्नुहोस्</string>
+<string name="player_panel_quality_profile">गुणस्तर प्रोफाइल</string>
+<string name="player_panel_quality_unknown">गुणस्तर अज्ञात</string>
+<string name="player_panel_retry_all">सबै स्रोत फेरि प्रयास गर्नुहोस्</string>
+<string name="player_panel_style">सबटाइटल शैली</string>
+<string name="player_panel_use">प्रयोग गर्नुहोस्</string>
 <string name="player_size_settings">प्लेयर resize गर्ने वटन</string>
 <string name="player_size_settings_des">कालो सीमा हटाउनुहोस</string>
 <string name="player_source_playing">चलिरहेको</string>
@@ -466,6 +477,7 @@
 <string name="library_sort_supported">%1$s ले %3$d मध्ये %2$d समर्थन गर्छ</string>
 <string name="library_sort_not_kept">%s ले यो राख्दैन</string>
 <string name="library_source">लाइब्रेरी स्रोत</string>
+<string name="library_source_local">स्थानीय</string>
 <string name="library_source_note">एक पटकमा एउटा · बदल्दा फेरि लोड हुन्छ</string>
 <string name="library_sync_cached">क्यास गरिएको</string>
 <string name="library_sync_failed">%1$s सिंक गर्न सकिएन। यी %2$s अघिका हुन्।</string>

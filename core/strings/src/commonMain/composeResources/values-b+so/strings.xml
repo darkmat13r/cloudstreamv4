@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d CALAAMAD</item><item quantity="other">%d CALAAMADOOD</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Waa ka keeni kari waayey %d qayb</item><item quantity="other">Waa ka keeni kari waayey %d qaybood</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d cinwaan</item><item quantity="other">%d cinwaan</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d ilbiriqsi</item><item quantity="other">%d ilbiriqsi</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d il</item><item quantity="other">%d ilo</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Qaybta xigta %d il. kadib</item><item quantity="other">Qaybta xigta %d il. kadib</item></plurals>
@@ -373,6 +374,7 @@
 <string name="library_sort_supported">%1$s wuxuu taageeraa %2$d ka mid ah %3$d</string>
 <string name="library_sort_not_kept">%s ma kaydiyo</string>
 <string name="library_source">Isha kaydka</string>
+<string name="library_source_local">Maxalli</string>
 <string name="library_source_note">Mid mid · beddelku wuu dib u soo raraa</string>
 <string name="library_sync_cached">La kaydiyay</string>
 <string name="library_sync_failed">Lama isku waafajin karin %1$s. Kuwani waa kuwii %2$s ka hor.</string>
@@ -430,6 +432,7 @@
 <string name="pick_subtitle">Qrl-hoosaadka</string>
 <string name="picture_in_picture">Sawir-daaqadlaha</string>
 <string name="picture_in_picture_des">Ka sii wado daawashada daaqad yar oo appska kale dul istaagi doonta</string>
+<string name="pin_error_wait">PIN qaldan oo aad u badan. Isku day mar kale %1$s kadib</string>
 <string name="play_episode">Xalqadda daaro</string>
 <string name="play_episode_toast">Daari xalqaddan</string>
 <string name="play_from_beginning_img_des">Ka bilow bilowga</string>
@@ -459,6 +462,15 @@
 <string name="player_loaded_subtitles">Waxa laso kiciyey %s</string>
 <string name="player_menu_playback">Ciyaarid</string>
 <string name="player_mute">Aamusi</string>
+<string name="player_panel_failed">fashilay</string>
+<string name="player_panel_keeps">wuxuu hayaa %s</string>
+<string name="player_panel_on">Shidan</string>
+<string name="player_panel_open">Fur</string>
+<string name="player_panel_quality_profile">Astaanta tayada</string>
+<string name="player_panel_quality_unknown">tayada lama yaqaan</string>
+<string name="player_panel_retry_all">Isku day mar kale dhammaan ilaha</string>
+<string name="player_panel_style">Qaabka qoraalka hoose</string>
+<string name="player_panel_use">Isticmaal</string>
 <string name="player_play_now">Hadda ciyaar</string>
 <string name="player_pref">Muqaal daaraha aad doorbiddo</string>
 <string name="player_settings_play_in_app">Muqaal daaraha appka</string>

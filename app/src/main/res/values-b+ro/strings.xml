@@ -431,6 +431,7 @@
 <string name="library_sort_not_kept" formatted="true">"Nu este păstrat de %s"</string>
 <string name="library_sort_supported" formatted="true">"%1$s acceptă %2$d din %3$d"</string>
 <string name="library_source">"Sursa bibliotecii"</string>
+<string name="library_source_local">"Local"</string>
 <string name="library_source_note">"Câte una · schimbarea reîncarcă"</string>
 <string name="library_sync_cached">"Din cache"</string>
 <string name="library_sync_failed" formatted="true">"%1$s nu a putut fi sincronizat. Sunt de acum %2$s."</string>
@@ -502,6 +503,7 @@
 <string name="pin">"PIN"</string>
 <string name="pin_error_incorrect">"PIN incorect. Te rog să încerci din nou."</string>
 <string name="pin_error_length">"PIN-ul trebuie să fie format din 4 caractere"</string>
+<string name="pin_error_wait" formatted="true">"Prea multe PIN-uri greșite. Încercați din nou peste %1$s"</string>
 <string name="play_episode">"Redă episodul"</string>
 <string name="play_episode_toast">"Redare episod"</string>
 <string name="play_from_beginning_img_des">"Redă de la început"</string>
@@ -532,6 +534,16 @@
 <string name="player_loaded_subtitles" formatted="true">"A fost încărcat %s"</string>
 <string name="player_menu_playback">"Redare"</string>
 <string name="player_mute">"Dezactivează sunetul"</string>
+<string name="player_panel_failed">"eșuat"</string>
+<string name="player_panel_keeps" formatted="true">"păstrează %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Activat"</string>
+<string name="player_panel_open">"Deschide"</string>
+<string name="player_panel_quality_profile">"Profil de calitate"</string>
+<string name="player_panel_quality_unknown">"calitate necunoscută"</string>
+<string name="player_panel_retry_all">"Reîncearcă toate sursele"</string>
+<string name="player_panel_style">"Stilul subtitrărilor"</string>
+<string name="player_panel_use">"Folosește"</string>
 <string name="player_play_now">"Redă acum"</string>
 <string name="player_pref">"Player video preferat"</string>
 <string name="player_settings_play_in_app">"Player intern"</string>

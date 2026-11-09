@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="other">စာမှတ် %d ခု</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">အပိုင်း %d ခု တင်သွင်း၍မရပါ</item></plurals>
 <plurals name="library_title_count"><item quantity="other">ခေါင်းစဉ် %d ခု</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="other">%d စက္ကန့်</item></plurals>
 <plurals name="player_source_count"><item quantity="other">ရင်းမြစ် %d ခု</item></plurals>
 <plurals name="player_up_next_in"><item quantity="other">နောက်အပိုင်း %d စက္ကန့်အတွင်း</item></plurals>
@@ -373,6 +374,7 @@
 <string name="library_sort_supported">%1$s သည် %3$d ခုအနက် %2$d ခုကို ပံ့ပိုးသည်</string>
 <string name="library_sort_not_kept">%s က ဒါကို မသိမ်းထားပါ</string>
 <string name="library_source">လိုက်ဘရီ ရင်းမြစ်</string>
+<string name="library_source_local">စက်တွင်း</string>
 <string name="library_source_note">တစ်ကြိမ်လျှင် တစ်ခု · ပြောင်းလျှင် ပြန်ဖွင့်သည်</string>
 <string name="library_sync_cached">သိမ်းထားသည်</string>
 <string name="library_sync_failed">%1$s ကို ချိန်ကိုက်၍မရပါ။ ဤအရာများသည် လွန်ခဲ့သော %2$s ကဖြစ်သည်။</string>
@@ -431,6 +433,7 @@
 <string name="pick_subtitle">စာတန်းထိုး</string>
 <string name="picture_in_picture">ရုပ်ပုံထပ်</string>
 <string name="picture_in_picture_des">ပြန်ကြည့်ခြင်းကိုအသေးစား ကြည့်ရှုမှုတွင်ဆက်ပြပါ</string>
+<string name="pin_error_wait">PIN မှားယွင်းမှု များလွန်းသည်။ %1$s အကြာတွင် ထပ်စမ်းကြည့်ပါ</string>
 <string name="play_episode">အပိုင်း ကြည့်မည်</string>
 <string name="play_episode_toast">အပိုင်းကြည့်မည်</string>
 <string name="play_livestream_button">လိုက်ခ် ကြည့်မည်</string>
@@ -458,6 +461,15 @@
 <string name="player_loaded_subtitles">တင်ပြီး %s</string>
 <string name="player_menu_playback">ပြန်ဖွင့်ခြင်း</string>
 <string name="player_mute">အသံပိတ်ရန်</string>
+<string name="player_panel_failed">မအောင်မြင်ပါ</string>
+<string name="player_panel_keeps">%s ကို ထိန်းထားသည်</string>
+<string name="player_panel_on">ဖွင့်</string>
+<string name="player_panel_open">ဖွင့်ရန်</string>
+<string name="player_panel_quality_profile">အရည်အသွေး ပရိုဖိုင်</string>
+<string name="player_panel_quality_unknown">အရည်အသွေး မသိ</string>
+<string name="player_panel_retry_all">ရင်းမြစ်အားလုံး ထပ်စမ်းရန်</string>
+<string name="player_panel_style">စာတန်းထိုး ပုံစံ</string>
+<string name="player_panel_use">သုံးရန်</string>
 <string name="player_play_now">ယခုဖွင့်</string>
 <string name="player_pref">ဦးစားပေး ဗီဒီယိုဖွင့်စက်</string>
 <string name="player_settings_play_in_app">ဖုန်းတွင်းကြည့်ရှုမှု</string>

@@ -281,6 +281,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s ഇത് സൂക്ഷിക്കുന്നില്ല"</string>
 <string name="library_sort_supported" formatted="true">"%1$s %3$d-ൽ %2$d പിന്തുണയ്ക്കുന്നു"</string>
 <string name="library_source">"ലൈബ്രറി ഉറവിടം"</string>
+<string name="library_source_local">"ലോക്കൽ"</string>
 <string name="library_source_note">"ഒരേ സമയം ഒന്ന് · മാറ്റിയാൽ വീണ്ടും ലോഡ് ചെയ്യും"</string>
 <string name="library_sync_cached">"കാഷെ ചെയ്തത്"</string>
 <string name="library_sync_failed" formatted="true">"%1$s സമന്വയിപ്പിക്കാനായില്ല. ഇവ %2$s മുമ്പുള്ളതാണ്."</string>
@@ -324,6 +325,7 @@
 <string name="pin">"പിൻ"</string>
 <string name="pin_error_incorrect">"തെറ്റായ പിൻ. ദയവായി വീണ്ടും ശ്രമിക്കുക."</string>
 <string name="pin_error_length">"പിൻ 4 പ്രതീകങ്ങൾ ആയിരിക്കണം"</string>
+<string name="pin_error_wait" formatted="true">"വളരെയധികം തെറ്റായ PIN-കൾ. %1$s കഴിഞ്ഞ് വീണ്ടും ശ്രമിക്കുക"</string>
 <string name="play_episode">"എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക"</string>
 <string name="play_episode_toast">"എപ്പിസോഡ് പ്ലേയ് ചെയ്യുക"</string>
 <string name="play_from_beginning_img_des">"തുടക്കം മുതൽ പ്ലേ ചെയ്യുക"</string>
@@ -351,6 +353,16 @@
 <string name="player_is_live">"തൽസമയം"</string>
 <string name="player_menu_playback">"പ്ലേബാക്ക്"</string>
 <string name="player_mute">"നിശബ്‌ദമാക്കുക"</string>
+<string name="player_panel_failed">"പരാജയപ്പെട്ടു"</string>
+<string name="player_panel_keeps" formatted="true">"%s നിലനിർത്തുന്നു"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"ഓൺ"</string>
+<string name="player_panel_open">"തുറക്കുക"</string>
+<string name="player_panel_quality_profile">"ഗുണനിലവാര പ്രൊഫൈൽ"</string>
+<string name="player_panel_quality_unknown">"ഗുണനിലവാരം അറിയില്ല"</string>
+<string name="player_panel_retry_all">"എല്ലാ ഉറവിടങ്ങളും വീണ്ടും ശ്രമിക്കുക"</string>
+<string name="player_panel_style">"സബ്‌ടൈറ്റിൽ ശൈലി"</string>
+<string name="player_panel_use">"ഉപയോഗിക്കുക"</string>
 <string name="player_play_now">"ഇപ്പോൾ പ്ലേ ചെയ്യുക"</string>
 <string name="player_size_settings">"പ്ലേയറിന്റെ വലുപ്പം മാറ്റുന്ന ബട്ടൻ"</string>
 <string name="player_size_settings_des">"കറുത്ത അതിർത്തി നീക്കംചെയ്യുക"</string>

@@ -341,6 +341,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s এটি রাখে না"</string>
 <string name="library_sort_supported" formatted="true">"%1$s %3$dটির মধ্যে %2$dটি সমর্থন করে"</string>
 <string name="library_source">"লাইব্রেরির উৎস"</string>
+<string name="library_source_local">"লোকাল"</string>
 <string name="library_source_note">"একবারে একটি · পরিবর্তন করলে আবার লোড হয়"</string>
 <string name="library_sync_cached">"ক্যাশ করা"</string>
 <string name="library_sync_failed" formatted="true">"%1$s সিঙ্ক করা যায়নি। এগুলি %2$s আগের।"</string>
@@ -393,6 +394,7 @@
 <string name="pick_subtitle">"সাবটাইটেলসমূহ"</string>
 <string name="picture_in_picture">"পিকচার ইন পিকচার"</string>
 <string name="picture_in_picture_des">"অন্য অ্যাপ এর উপর ভিডিও চালাতে থাকুন"</string>
+<string name="pin_error_wait" formatted="true">"অনেকবার ভুল PIN। %1$s পরে আবার চেষ্টা করুন"</string>
 <string name="play_episode">"পর্ব চালান"</string>
 <string name="play_episode_toast">"এপিসোড পরলে করুন"</string>
 <string name="play_from_beginning_img_des">"শুরু থেকে চালু করুন"</string>
@@ -419,6 +421,16 @@
 <string name="player_hud_up_next" formatted="true">"পরবর্তী · %s"</string>
 <string name="player_menu_playback">"প্লেব্যাক"</string>
 <string name="player_mute">"মিউট করুন"</string>
+<string name="player_panel_failed">"ব্যর্থ"</string>
+<string name="player_panel_keeps" formatted="true">"%s রাখে"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"চালু"</string>
+<string name="player_panel_open">"খুলুন"</string>
+<string name="player_panel_quality_profile">"মানের প্রোফাইল"</string>
+<string name="player_panel_quality_unknown">"মান অজানা"</string>
+<string name="player_panel_retry_all">"সব উৎস আবার চেষ্টা করুন"</string>
+<string name="player_panel_style">"সাবটাইটেলের স্টাইল"</string>
+<string name="player_panel_use">"ব্যবহার করুন"</string>
 <string name="player_play_now">"এখনই চালান"</string>
 <string name="player_size_settings">"প্লেয়ারের সাইজ পরিবর্তন বাটন"</string>
 <string name="player_size_settings_des">"কালো প্রান্ত অপসারণ করুন"</string>

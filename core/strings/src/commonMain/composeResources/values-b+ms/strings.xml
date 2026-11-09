@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="other">%d PENANDA HALAMAN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d bahagian gagal dimuatkan</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d tajuk</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="other">%d saat</item></plurals>
 <plurals name="player_source_count"><item quantity="other">%d sumber</item></plurals>
 <plurals name="player_up_next_in"><item quantity="other">Episod seterusnya dalam %d s</item></plurals>
@@ -404,6 +405,7 @@
 <string name="library_sort_supported">%1$s menyokong %2$d daripada %3$d</string>
 <string name="library_sort_not_kept">Tidak disimpan oleh %s</string>
 <string name="library_source">Sumber perpustakaan</string>
+<string name="library_source_local">Tempatan</string>
 <string name="library_source_note">Satu demi satu · menukar memuat semula</string>
 <string name="library_sync_cached">Dicache</string>
 <string name="library_sync_failed">Tidak dapat menyegerakkan %1$s. Ini dari %2$s yang lalu.</string>
@@ -474,6 +476,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">PIN salah. Sila cuba sekali lagi.</string>
 <string name="pin_error_length">PIN perlu mempunyai 4 aksara</string>
+<string name="pin_error_wait">Terlalu banyak PIN salah. Cuba lagi dalam %1$s</string>
 <string name="play_episode">Pasang Episod</string>
 <string name="play_episode_toast">Main episod</string>
 <string name="play_from_beginning_img_des">Main dari mula</string>
@@ -499,6 +502,15 @@
 <string name="player_hud_up_next">Seterusnya · %s</string>
 <string name="player_menu_playback">Main balik</string>
 <string name="player_mute">Redam</string>
+<string name="player_panel_failed">gagal</string>
+<string name="player_panel_keeps">kekalkan %s</string>
+<string name="player_panel_on">Hidup</string>
+<string name="player_panel_open">Buka</string>
+<string name="player_panel_quality_profile">Profil kualiti</string>
+<string name="player_panel_quality_unknown">kualiti tidak diketahui</string>
+<string name="player_panel_retry_all">Cuba semula semua sumber</string>
+<string name="player_panel_style">Gaya sari kata</string>
+<string name="player_panel_use">Guna</string>
 <string name="player_play_now">Main sekarang</string>
 <string name="player_settings_play_in_app">Pemain dalaman</string>
 <string name="player_size_settings">Saiz butang pemain</string>

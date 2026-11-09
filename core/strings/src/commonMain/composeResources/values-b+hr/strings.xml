@@ -73,6 +73,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d OZNAKA</item><item quantity="few">%d OZNAKE</item><item quantity="other">%d OZNAKA</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nije učitan %d odjeljak</item><item quantity="few">Nisu učitana %d odjeljka</item><item quantity="other">Nije učitano %d odjeljaka</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d naslov</item><item quantity="few">%d naslova</item><item quantity="other">%d naslova</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d sekunda</item><item quantity="few">%d sekunde</item><item quantity="other">%d sekundi</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d izvor</item><item quantity="few">%d izvora</item><item quantity="other">%d izvora</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Sljedeća epizoda za %d s</item><item quantity="few">Sljedeća epizoda za %d s</item><item quantity="other">Sljedeća epizoda za %d s</item></plurals>
@@ -471,6 +472,7 @@
 <string name="library_sort_supported">%1$s podržava %2$d od %3$d</string>
 <string name="library_sort_not_kept">%s to ne čuva</string>
 <string name="library_source">Izvor biblioteke</string>
+<string name="library_source_local">Lokalno</string>
 <string name="library_source_note">Jedan po jedan · promjena ponovno učitava</string>
 <string name="library_sync_cached">Iz predmemorije</string>
 <string name="library_sync_failed">Nije moguće sinkronizirati %1$s. Ovo je od prije %2$s.</string>
@@ -554,6 +556,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">Netočan PIN. Pokušajte ponovno.</string>
 <string name="pin_error_length">PIN mora imati 4 znaka</string>
+<string name="pin_error_wait">Previše pogrešnih PIN-ova. Pokušajte ponovno za %1$s</string>
 <string name="play_episode">Pokreni epizodu</string>
 <string name="play_episode_toast">Pokreni epizodu</string>
 <string name="play_from_beginning_img_des">Pokreni od početka</string>
@@ -587,6 +590,15 @@
 <string name="player_mute">Isključi zvuk</string>
 <string name="player_notification_channel_description">Obavijest reproduktora za upravljanje reprodukcijom iz pozadine</string>
 <string name="player_notification_channel_name">Obavijesti reproduktora</string>
+<string name="player_panel_failed">neuspjelo</string>
+<string name="player_panel_keeps">zadržava %s</string>
+<string name="player_panel_on">Uključeno</string>
+<string name="player_panel_open">Otvori</string>
+<string name="player_panel_quality_profile">Profil kvalitete</string>
+<string name="player_panel_quality_unknown">nepoznata kvaliteta</string>
+<string name="player_panel_retry_all">Ponovi sve izvore</string>
+<string name="player_panel_style">Stil titlova</string>
+<string name="player_panel_use">Koristi</string>
 <string name="player_play_now">Reproduciraj sada</string>
 <string name="player_pref">Preferirani video player</string>
 <string name="player_settings_always_ask">Uvijek pitaj</string>

@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.home
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewTreeObserver
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -127,8 +128,20 @@ class HomeTvFragment : BaseComposeFragment() {
     /** This page's own focus request in [onResume], which the page does not take for a person's choice (`BUG-41`). */
     private val hostFocus = HomeHostFocus()
 
+    /**
+     * Focus entering the page from nothing focused is the window's own grant, not a person's (`BUG-69`); see
+     * [HomeHostFocus.grantedFromNothing]. Android reports it here before the page's own focus change.
+     */
+    private val windowGrant = ViewTreeObserver.OnGlobalFocusChangeListener { old, new ->
+        val page = view ?: return@OnGlobalFocusChangeListener
+        if (old == null && new != null && page.holds(new)) {
+            hostFocus.grantedFromNothing(viewModel.state.value.landingOwed)
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        view.viewTreeObserver.addOnGlobalFocusChangeListener(windowGrant)
         // A remembered source that never arrives has to stop being waited for even if no event says so.
         viewLifecycleOwner.lifecycleScope.launch {
             delay(PLUGIN_WAIT_MS + PLUGIN_WAIT_MARGIN_MS)
@@ -168,8 +181,12 @@ class HomeTvFragment : BaseComposeFragment() {
 
     override fun onDestroyView() {
         activity?.detachBackPressedCallback(BACK_CLOSES_PICKER)
+        view?.viewTreeObserver?.removeOnGlobalFocusChangeListener(windowGrant)
         super.onDestroyView()
     }
+
+    /** Whether [other] is this view or inside it. */
+    private fun View.holds(other: View): Boolean = generateSequence(other) { it.parent as? View }.any { it === this }
 
     private fun onEffect(effect: HomeEffect) {
         when (effect) {

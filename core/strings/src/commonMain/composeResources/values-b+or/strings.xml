@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ବୁକମାର୍କ</item><item quantity="other">%d ବୁକମାର୍କ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item><item quantity="other">%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ଶୀର୍ଷକ</item><item quantity="other">%d ଶୀର୍ଷକ</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d ସେକେଣ୍ଡ</item><item quantity="other">%d ସେକେଣ୍ଡ</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d ଉତ୍ସ</item><item quantity="other">%d ଉତ୍ସ</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">%d ସେ. ପରେ ପରବର୍ତ୍ତୀ ଏପିସୋଡ୍</item><item quantity="other">%d ସେ. ପରେ ପରବର୍ତ୍ତୀ ଏପିସୋଡ୍</item></plurals>
@@ -235,6 +236,7 @@
 <string name="library_sort_supported">%1$s %3$d ମଧ୍ୟରୁ %2$d ସମର୍ଥନ କରେ</string>
 <string name="library_sort_not_kept">%s ଏହା ରଖେ ନାହିଁ</string>
 <string name="library_source">ଲାଇବ୍ରେରୀ ଉତ୍ସ</string>
+<string name="library_source_local">ସ୍ଥାନୀୟ</string>
 <string name="library_source_note">ଥରକେ ଗୋଟିଏ · ବଦଳାଇଲେ ପୁଣି ଲୋଡ୍ ହୁଏ</string>
 <string name="library_sync_cached">କ୍ୟାଶ୍</string>
 <string name="library_sync_failed">%1$s ସିଙ୍କ୍ ହୋଇପାରିଲା ନାହିଁ। ଏଗୁଡ଼ିକ %2$s ପୂର୍ବର।</string>
@@ -262,6 +264,7 @@
 <string name="no_update_found">କୌଣସି ଅଦ୍ୟତନ ମିଳିଲା ନାହିଁ</string>
 <string name="other_singular">ଵିଡ଼ିଓ</string>
 <string name="others">ଅନ୍ୟାନ୍ୟ</string>
+<string name="pin_error_wait">ଅତ୍ୟଧିକ ଭୁଲ PIN। %1$s ପରେ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ</string>
 <string name="play_episode">ଅଧ୍ୟାୟ ଚଲାଅ</string>
 <string name="play_episode_toast">ଅଧ୍ୟାୟ ଚଲାଅ</string>
 <string name="play_movie_button">ଚଳଚ୍ଚିତ୍ର ଚଲାଅ</string>
@@ -282,6 +285,15 @@
 <string name="player_hud_up_next">ପରବର୍ତ୍ତୀ · %s</string>
 <string name="player_menu_playback">ପ୍ଲେବ୍ୟାକ୍</string>
 <string name="player_mute">ମ୍ୟୁଟ କରନ୍ତୁ</string>
+<string name="player_panel_failed">ବିଫଳ</string>
+<string name="player_panel_keeps">%s ରଖେ</string>
+<string name="player_panel_on">ଅନ୍</string>
+<string name="player_panel_open">ଖୋଲନ୍ତୁ</string>
+<string name="player_panel_quality_profile">ଗୁଣବତ୍ତା ପ୍ରୋଫାଇଲ୍</string>
+<string name="player_panel_quality_unknown">ଗୁଣବତ୍ତା ଅଜଣା</string>
+<string name="player_panel_retry_all">ସମସ୍ତ ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ</string>
+<string name="player_panel_style">ସବଟାଇଟଲ୍ ଶୈଳୀ</string>
+<string name="player_panel_use">ବ୍ୟବହାର କରନ୍ତୁ</string>
 <string name="player_play_now">ବର୍ତ୍ତମାନ ଚଲାନ୍ତୁ</string>
 <string name="player_settings_play_in_app">ଅନ୍ତଃ-ଚାଳକ</string>
 <string name="player_source_decoded">%s ଡିକୋଡ୍ ହୋଇଛି</string>

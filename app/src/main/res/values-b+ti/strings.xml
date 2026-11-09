@@ -173,6 +173,7 @@
 <string name="library_sort_not_kept" formatted="true">"%s ኣይሕዞን"</string>
 <string name="library_sort_supported" formatted="true">"%1$s ካብ %3$d %2$d ይድግፍ"</string>
 <string name="library_source">"ምንጪ ቤተ-መጻሕፍቲ"</string>
+<string name="library_source_local">"ኣካባቢያዊ"</string>
 <string name="library_source_note">"ሓደ ብሓደ · ምቕያር ዳግም ይጽዕን"</string>
 <string name="library_sync_cached">"ዝተዓቀበ"</string>
 <string name="library_sync_failed" formatted="true">"%1$s ክሰማማዕ ኣይከኣለን። እዚኦም ቅድሚ %2$s ዝነበሩ እዮም።"</string>
@@ -183,6 +184,7 @@
 <string name="load_more">"ተወሳኺ ጽዓን"</string>
 <string name="more_like_this">"ተመሳሳሊ"</string>
 <string name="next_episode_format" formatted="true">"ክፋል %d በ ላይ ይወጣል"</string>
+<string name="pin_error_wait" formatted="true">"ብዙሕ ጌጋ PIN። ድሕሪ %1$s እንደገና ፈትኑ"</string>
 <string name="player_audio_stereo">"ስቴሪዮ"</string>
 <string name="player_enter_fullscreen">"ናብ ምሉእ ስክሪን እቶ"</string>
 <string name="player_exit_fullscreen">"ካብ ምሉእ ስክሪን ውጻእ"</string>
@@ -200,6 +202,16 @@
 <string name="player_hud_up_next" formatted="true">"ቀጺሉ · %s"</string>
 <string name="player_menu_playback">"ምጽዋት"</string>
 <string name="player_mute">"ድምጺ ኣጥፍእ"</string>
+<string name="player_panel_failed">"ፈሺሉ"</string>
+<string name="player_panel_keeps" formatted="true">"%s ይሕዝ"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"ክፉት"</string>
+<string name="player_panel_open">"ክፈት"</string>
+<string name="player_panel_quality_profile">"ናይ ዓይነት መገለጺ"</string>
+<string name="player_panel_quality_unknown">"ዓይነት ኣይፍለጥን"</string>
+<string name="player_panel_retry_all">"ኩሎም ምንጭታት ደጊምካ ፈትን"</string>
+<string name="player_panel_style">"ቅዲ ንኡስ ጽሑፍ"</string>
+<string name="player_panel_use">"ተጠቐም"</string>
 <string name="player_play_now">"ሕጂ ኣጻውት"</string>
 <string name="player_source_decoded" formatted="true">"%s ተፈቲሑ"</string>
 <string name="player_source_playing">"ይጻወት ኣሎ"</string>

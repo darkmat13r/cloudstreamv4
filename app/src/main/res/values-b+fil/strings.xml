@@ -233,6 +233,7 @@
 <string name="library_sort_not_kept" formatted="true">"Hindi itinatabi ng %s"</string>
 <string name="library_sort_supported" formatted="true">"Sinusuportahan ng %1$s ang %2$d sa %3$d"</string>
 <string name="library_source">"Pinagmulan ng library"</string>
+<string name="library_source_local">"Local"</string>
 <string name="library_source_note">"Isa-isa · nagre-reload kapag nagpalit"</string>
 <string name="library_sync_cached">"Naka-cache"</string>
 <string name="library_sync_failed" formatted="true">"Hindi ma-sync ang %1$s. Mula %2$s na ang nakalipas ang mga ito."</string>
@@ -261,6 +262,7 @@
 <string name="pick_subtitle">"Mga saling-teksto"</string>
 <string name="picture_in_picture_des">"Ipinagpapatuloy ang pag-playback sa isang miniature na player sa ibabaw ng iba pang mga app"</string>
 <string name="pin_error_incorrect">"Maling PIN. Pakisubukang muli."</string>
+<string name="pin_error_wait" formatted="true">"Masyadong maraming maling PIN. Subukang muli sa loob ng %1$s"</string>
 <string name="play_episode">"Ipatugtog ang Kabanata"</string>
 <string name="play_from_beginning_img_des">"Ipatugtog mula sa Simula"</string>
 <string name="play_full_series_button">"Ipatugtog ang Buong Serye"</string>
@@ -287,6 +289,16 @@
 <string name="player_menu_playback">"Playback"</string>
 <string name="player_mute">"I-mute"</string>
 <string name="player_notification_channel_description">"Ang abiso ng player para sa pagkontrol sa pag-playback mula sa background"</string>
+<string name="player_panel_failed">"nabigo"</string>
+<string name="player_panel_keeps" formatted="true">"pinapanatili ang %s"</string>
+<string name="player_panel_numbered" formatted="true">"%1$s %2$d"</string>
+<string name="player_panel_on">"Naka-on"</string>
+<string name="player_panel_open">"Buksan"</string>
+<string name="player_panel_quality_profile">"Profile ng kalidad"</string>
+<string name="player_panel_quality_unknown">"hindi alam ang kalidad"</string>
+<string name="player_panel_retry_all">"Subukang muli ang lahat ng source"</string>
+<string name="player_panel_style">"Estilo ng subtitle"</string>
+<string name="player_panel_use">"Gamitin"</string>
 <string name="player_play_now">"I-play ngayon"</string>
 <string name="player_source_decoded" formatted="true">"%s na-decode"</string>
 <string name="player_source_playing">"Nagpe-play"</string>

@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d نشانک</item><item quantity="other">%d نشانک</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بخش بارگیری نشد</item><item quantity="other">%d بخش بارگیری نشد</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عنوان</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d ثانیه</item><item quantity="other">%d ثانیه</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d منبع</item><item quantity="other">%d منبع</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">قسمت بعد تا %d ث دیگر</item><item quantity="other">قسمت بعد تا %d ث دیگر</item></plurals>
@@ -305,6 +306,7 @@
 <string name="library_sort_supported">%1$s از %3$d مورد %2$d را پشتیبانی می‌کند</string>
 <string name="library_sort_not_kept">%s این را نگه نمی‌دارد</string>
 <string name="library_source">منبع کتابخانه</string>
+<string name="library_source_local">محلی</string>
 <string name="library_source_note">هر بار یکی · تغییر، دوباره بارگذاری می‌کند</string>
 <string name="library_sync_cached">ذخیره‌شده</string>
 <string name="library_sync_failed">همگام‌سازی %1$s ممکن نشد. این‌ها مال %2$s پیش هستند.</string>
@@ -360,6 +362,7 @@
 <string name="pick_subtitle">زیرنویس‌ها</string>
 <string name="picture_in_picture">تصویر در تصویر</string>
 <string name="picture_in_picture_des">پخش را در یک پخش کننده مینیاتوری در بالای برنامه های دیگر ادامه می دهد</string>
+<string name="pin_error_wait">PIN اشتباه بیش از حد. %1$s دیگر دوباره امتحان کنید</string>
 <string name="play_episode">پخش قسمت</string>
 <string name="play_episode_toast">پخش قسمت</string>
 <string name="play_from_beginning_img_des">پخش از ابتدا</string>
@@ -385,6 +388,15 @@
 <string name="player_hud_up_next">بعدی · %s</string>
 <string name="player_menu_playback">پخش</string>
 <string name="player_mute">بی‌صدا</string>
+<string name="player_panel_failed">ناموفق</string>
+<string name="player_panel_keeps">%s را نگه می‌دارد</string>
+<string name="player_panel_on">روشن</string>
+<string name="player_panel_open">باز کردن</string>
+<string name="player_panel_quality_profile">نمایهٔ کیفیت</string>
+<string name="player_panel_quality_unknown">کیفیت نامشخص</string>
+<string name="player_panel_retry_all">تلاش دوباره برای همه منابع</string>
+<string name="player_panel_style">سبک زیرنویس</string>
+<string name="player_panel_use">استفاده</string>
 <string name="player_play_now">اکنون پخش کن</string>
 <string name="player_pref">پخش‌کننده ویدئو برگزیده</string>
 <string name="player_size_settings">دکمه تغییر‌اندازه پخش‌کننده</string>

@@ -71,6 +71,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d ƏLFƏCİN</item><item quantity="other">%d ƏLFƏCİN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d bölmə yüklənmədi</item><item quantity="other">%d bölmə yüklənmədi</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d başlıq</item><item quantity="other">%d başlıq</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d saniyə</item><item quantity="other">%d saniyə</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d mənbə</item><item quantity="other">%d mənbə</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Növbəti seriya %d san sonra</item><item quantity="other">Növbəti seriya %d san sonra</item></plurals>
@@ -233,6 +234,7 @@
 <string name="library_sort_supported">%1$s %3$d meyardan %2$d-ni dəstəkləyir</string>
 <string name="library_sort_not_kept">%s bunu saxlamır</string>
 <string name="library_source">Kitabxana mənbəyi</string>
+<string name="library_source_local">Yerli</string>
 <string name="library_source_note">Eyni anda bir · dəyişmək yenidən yükləyir</string>
 <string name="library_sync_cached">Keşlənib</string>
 <string name="library_sync_failed">%1$s sinxronlaşdırılmadı. Bunlar %2$s əvvəlkidir.</string>
@@ -266,6 +268,7 @@
 <string name="pick_source">Mənbələr</string>
 <string name="pick_subtitle">Altyazılar</string>
 <string name="picture_in_picture">Şəkil içində şəkil</string>
+<string name="pin_error_wait">Həddindən çox səhv PIN. %1$s sonra yenidən cəhd edin</string>
 <string name="play_episode">Bölümü oynat</string>
 <string name="play_from_beginning_img_des">Əvvəldən oynat</string>
 <string name="play_livestream_button">Canlı Yayını oynat</string>
@@ -289,6 +292,15 @@
 <string name="player_hud_up_next">Növbəti · %s</string>
 <string name="player_menu_playback">Oxutma</string>
 <string name="player_mute">Səssizə al</string>
+<string name="player_panel_failed">uğursuz</string>
+<string name="player_panel_keeps">%s saxlanılır</string>
+<string name="player_panel_on">Açıq</string>
+<string name="player_panel_open">Aç</string>
+<string name="player_panel_quality_profile">Keyfiyyət profili</string>
+<string name="player_panel_quality_unknown">keyfiyyət bilinmir</string>
+<string name="player_panel_retry_all">Bütün mənbələri yenidən sına</string>
+<string name="player_panel_style">Altyazı üslubu</string>
+<string name="player_panel_use">İstifadə et</string>
 <string name="player_play_now">İndi oxut</string>
 <string name="player_size_settings">Pleyeri yenidən ölçüləndirmə düyməsini</string>
 <string name="player_size_settings_des">Qara sərhədləri, kənarları sil</string>

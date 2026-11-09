@@ -73,6 +73,7 @@
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="many">%d DE MARCADORES</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Falha ao carregar %d secção</item><item quantity="many">Falha ao carregar %d secções</item><item quantity="other">Falha ao carregar %d secções</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="many">%d títulos</item><item quantity="other">%d títulos</item></plurals>
+<string name="player_panel_numbered">%1$s %2$d</string>
 <plurals name="player_seek_seconds"><item quantity="one">%d segundo</item><item quantity="many">%d segundos</item><item quantity="other">%d segundos</item></plurals>
 <plurals name="player_source_count"><item quantity="one">%d fonte</item><item quantity="many">%d fontes</item><item quantity="other">%d fontes</item></plurals>
 <plurals name="player_up_next_in"><item quantity="one">Próximo episódio em %d s</item><item quantity="many">Próximo episódio em %d s</item><item quantity="other">Próximo episódio em %d s</item></plurals>
@@ -471,6 +472,7 @@
 <string name="library_sort_supported">%1$s suporta %2$d de %3$d</string>
 <string name="library_sort_not_kept">Não guardado por %s</string>
 <string name="library_source">Origem da biblioteca</string>
+<string name="library_source_local">Local</string>
 <string name="library_source_note">Uma de cada vez · mudar recarrega</string>
 <string name="library_sync_cached">Em cache</string>
 <string name="library_sync_failed">Não foi possível sincronizar %1$s. São de há %2$s.</string>
@@ -554,6 +556,7 @@
 <string name="pin">PIN</string>
 <string name="pin_error_incorrect">PIN incorreto. Por favor, tente novamente.</string>
 <string name="pin_error_length">O PIN deve ter 4 caracteres</string>
+<string name="pin_error_wait">Demasiados PIN errados. Tente novamente dentro de %1$s</string>
 <string name="play_episode">Reproduzir episódio</string>
 <string name="play_episode_toast">Reproduzir episódio</string>
 <string name="play_from_beginning_img_des">Recomeçar</string>
@@ -587,6 +590,15 @@
 <string name="player_mute">Desativar som</string>
 <string name="player_notification_channel_description">Notificação do player para controlar a reprodução em segundo plano</string>
 <string name="player_notification_channel_name">Notificações de reprodução</string>
+<string name="player_panel_failed">falhou</string>
+<string name="player_panel_keeps">mantém %s</string>
+<string name="player_panel_on">Ativado</string>
+<string name="player_panel_open">Abrir</string>
+<string name="player_panel_quality_profile">Perfil de qualidade</string>
+<string name="player_panel_quality_unknown">qualidade desconhecida</string>
+<string name="player_panel_retry_all">Tentar novamente todas as fontes</string>
+<string name="player_panel_style">Estilo das legendas</string>
+<string name="player_panel_use">Usar</string>
 <string name="player_play_now">Reproduzir agora</string>
 <string name="player_pref">Player de vídeo preferido</string>
 <string name="player_settings_always_ask">Sempre perguntar</string>
