@@ -6950,6 +6950,17 @@ and re-checks the address really connected to, plus:
   4096 by 4096 (Coil's own bitmap ceiling, 64 MB) before Coil's own Skia decoder sees the bytes. No new decode path.
   Measured: without the check, a 175-byte PNG claiming 20000 by 20000 was decoded, and that one call took about four
   minutes.
+- **A byte cap on the wire,** 8 MB (`BACKDROP_MAX_BYTES`), because Coil fetches the whole body, to its disk cache or to
+  memory, before any decoder runs: the decoder's own byte check came too late to stop a server sending 600 MiB. A network
+  interceptor wraps every hop's body. One that declares a length past the cap fails on its first read, before a byte of
+  it is taken; one with no length fails once it passes the cap. Either way, and when a body is closed before its end, the
+  call is cancelled, so its socket closes: closing alone is not enough, because OkHttp reads what is left of a body it
+  closes, to keep the connection, for up to 100 ms (measured: all 32 MiB of a test body, read after a refusal).
+  The refusal is made when Coil reads the body, not inside the call. Measured by reading Coil 3.3.0's bytecode, its
+  callback drops the failure of a call that was cancelled, so a call cancelled and failed inside the chain left the load
+  waiting for ever (the first version did; its test hung until it was stopped).
+- **The cache.** Backdrops use Coil's own disk cache, the one posters share: under the temporary directory, files named
+  by a SHA-256 of the URL, readable by this user's other processes (0644), each body stored with its response headers.
 
 **The page.** A defaulted `backdrop` slot on `DetailScreenDesktop`, filled in `Main.kt` (one line, cleared with its
 owner). The boards' wash: the art across the page under the bar, 296 tall, under a scrim from the ground at 0.3 at the
@@ -6961,15 +6972,21 @@ top, 0.6 at 52 %, to the whole ground at its foot (`linear-gradient(0deg, #000 0
   (http, `file:`, `data:`, `localhost`, `.local`, `127.0.0.1`, `10.`, `192.168.`, `169.254.169.254`, `[::1]`, no scheme
   and empty all refused); 2 KiB read and one byte more skipped with the page kept; lying lengths inside the slice cost the
   backdrop only; a slice past the frame fails the call; nothing the URL held reaches the log.
-- `BackdropImageTest`, 4, against a server on this machine: an image inside its bounds loads, kept no larger than twice
-  the drawn size; a 175-byte file claiming 20000 by 20000, and one claiming 4097 by 4096, never reach the decoder (counted);
-  a file one byte past its cap is refused; the client sends no plain-http request and follows no https-to-http redirect.
+- `BackdropImageTest`, 5, against a server on this machine, each with its own temporary disk cache: an image inside its
+  bounds loads, kept no larger than twice the drawn size; a 175-byte file claiming 20000 by 20000, and one claiming 4097
+  by 4096, never reach the decoder (counted); a file one byte past its cap is refused; the client sends no plain-http
+  request and follows no https-to-http redirect; a body of the cap and 1 MiB, with a length and chunked, ends as Coil's
+  `ErrorResult` within 60 s, the server stops short of it, and the client takes off its socket only the read that
+  brought the headers (with a length: measured 8192 bytes) or the cap and one read (chunked: the cap and 8283). The
+  count is the client's socket, not the server's: loopback's socket buffers take 384 to 530 KiB past a reader that has
+  stopped (measured), and asking for 64 KiB a side did not change that.
 - `DetailScreenTest`: a title with a backdrop asks the slot for its URL and draws it under the bar, with the ground at
   the scrim's foot; one without asks nothing and draws plain ground. `TitleFactsTest`: the URL is carried, and none is
   none, not the poster.
 - Proved by mutation: without the pixel check, the claiming file decodes; with `httpUrlOrNull` in place of the https
   check, `http://` is kept; without the interceptor, a plain-http request is sent; without the wash, the slot is never
-  asked.
+  asked; without the byte cap, the over-cap body is read; without the refusal of a declared length, the cap is read
+  before it fails; with the call cancelled and failed inside the chain, the load times out at 60 s.
 
 **Changed existing test code:** `HostProtocolFactsTest`'s "cannot read into what follows it" case writes bytes past a
 short facts slice. They now meet the art reader, which steps over them as an unknown version, so its expected log gains
@@ -6978,7 +6995,8 @@ short facts slice. They now meet the art reader, which steps over them as an unk
 ## KMP-102 — The same hardening for posters · **open**, follow-up of `KMP-100`
 
 Posters go through `httpUrlOrNull()` and `posterHttpClient`, so they accept http, follow https-to-http redirects, and are
-decoded whole whatever size they claim. Give them `KMP-100`'s https-only check and client and its `BoundedDecoder`.
+decoded whole whatever size they claim. Give them `KMP-100`'s https-only check and client, its `BoundedDecoder`, and its
+byte cap on the wire (`withBodyCap`), with a 60 s bound on every network test.
 
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 

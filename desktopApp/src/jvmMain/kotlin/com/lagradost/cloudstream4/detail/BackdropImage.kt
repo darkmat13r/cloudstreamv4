@@ -15,6 +15,7 @@ import coil3.PlatformContext
 import coil3.decode.DecodeResult
 import coil3.decode.Decoder
 import coil3.decode.SkiaImageDecoder
+import coil3.disk.DiskCache
 import coil3.fetch.SourceFetchResult
 import coil3.network.okhttp.OkHttpNetworkFetcherFactory
 import coil3.request.ImageRequest
@@ -30,7 +31,14 @@ import java.net.InetSocketAddress
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import okhttp3.Interceptor
+import okhttp3.MediaType
 import okhttp3.OkHttpClient
+import okhttp3.Response
+import okhttp3.ResponseBody
+import okio.Buffer
+import okio.BufferedSource
+import okio.ForwardingSource
+import okio.buffer
 import org.jetbrains.skia.Codec
 import org.jetbrains.skia.Data
 
@@ -60,19 +68,29 @@ internal fun BackdropImage(url: String, modifier: Modifier = Modifier) {
 }
 
 /** [url] decoded to cover [width] by [height] pixels, or null when it cannot be had within the bounds. */
-internal suspend fun loadBackdrop(url: String, width: Int, height: Int, loader: ImageLoader = backdropLoader): ImageBitmap? {
-    val request = ImageRequest.Builder(PlatformContext.INSTANCE)
-        .data(url)
-        .size(width, height)
-        .scale(Scale.FILL)
-        .precision(Precision.INEXACT)
-        .build()
-    return (loader.execute(request) as? SuccessResult)?.image?.toBitmap()?.asComposeImageBitmap()
-}
+internal suspend fun loadBackdrop(url: String, width: Int, height: Int, loader: ImageLoader = backdropLoader): ImageBitmap? =
+    (loader.execute(backdropRequest(url, width, height)) as? SuccessResult)?.image?.toBitmap()?.asComposeImageBitmap()
 
-/** The poster's client (public addresses only, on every hop), with https required on every hop as well. */
+/** The request [loadBackdrop] makes: [url], drawn [width] by [height]. */
+internal fun backdropRequest(url: String, width: Int, height: Int): ImageRequest = ImageRequest.Builder(PlatformContext.INSTANCE)
+    .data(url)
+    .size(width, height)
+    .scale(Scale.FILL)
+    .precision(Precision.INEXACT)
+    .build()
+
+/**
+ * The poster's client (public addresses only, on every hop), with https required on every hop as well, and no body read
+ * past [maxBytes].
+ *
+ * The byte cap is here, on the wire, because Coil fetches a whole body (to its disk cache, or to memory) before any
+ * decoder runs: [BoundedDecoder]'s own byte check comes too late to stop a server sending 600 MiB. A declared length past
+ * the cap is refused before a byte of the body is read; a body with no length, or one that lies, fails once it passes the
+ * cap.
+ */
 internal fun backdropHttpClient(
     allow: (InetSocketAddress) -> Boolean = { SandboxPolicy.isPublicAddress(it.address) },
+    maxBytes: Long = BACKDROP_MAX_BYTES,
 ): OkHttpClient = posterHttpClient(allow).newBuilder()
     .followSslRedirects(false)
     .addNetworkInterceptor(
@@ -82,16 +100,90 @@ internal fun backdropHttpClient(
         }
     )
     .build()
+    .let { client -> withBodyCap(client, maxBytes) }
 
-/** Coil with [client], and every image through [BoundedDecoder] before Skia sees it. */
+/** [client], with every hop's body capped at [maxBytes]: [backdropHttpClient]'s cap, apart, so a test can serve http. */
+internal fun withBodyCap(client: OkHttpClient, maxBytes: Long): OkHttpClient = client.newBuilder()
+    .addNetworkInterceptor(Interceptor { chain ->
+        val call = chain.call()
+        chain.proceed(chain.request()).capped(maxBytes, stop = call::cancel)
+    })
+    .build()
+
+/**
+ * This response, with a body that fails on its first read if it says it is longer than [maxBytes], and once more than
+ * that is read from it if it does not.
+ *
+ * The refusal is made when the body is read, not here: Coil drops the failure of a call that was cancelled, so a call
+ * cancelled and failed inside the chain leaves its image loading for ever (measured: the test hung for hours).
+ *
+ * A refusal, or a body closed before its end, calls [stop] first, which cancels the call and so closes its socket.
+ * Closing the response alone is not enough: OkHttp reads what is left of a body it is asked to close, to keep the
+ * connection, for up to 100 ms, and on a fast link that is tens of megabytes (measured: all 32 MiB of a test body).
+ */
+internal fun Response.capped(maxBytes: Long, stop: () -> Unit): Response {
+    val body: ResponseBody = body ?: return this
+    return newBuilder().body(CappedBody(body, maxBytes, stop)).build()
+}
+
+/** [body], read through a count that fails past [maxBytes]: a chunked body states no length to refuse up front. */
+private class CappedBody(
+    private val body: ResponseBody,
+    private val maxBytes: Long,
+    private val stop: () -> Unit,
+) : ResponseBody() {
+    private var ended = false
+
+    private fun refuse(): Nothing {
+        stop()
+        throw IOException("backdrop refused: past $maxBytes bytes")
+    }
+
+    private val capped: BufferedSource by lazy {
+        object : ForwardingSource(body.source()) {
+            private var read = 0L
+
+            override fun read(sink: Buffer, byteCount: Long): Long {
+                if (body.contentLength() > maxBytes) refuse()
+                val count = super.read(sink, byteCount)
+                if (count == -1L) ended = true
+                if (count > 0) {
+                    read += count
+                    if (read > maxBytes) refuse()
+                }
+                return count
+            }
+        }.buffer()
+    }
+
+    override fun contentType(): MediaType? = body.contentType()
+
+    override fun contentLength(): Long = body.contentLength()
+
+    override fun source(): BufferedSource = capped
+
+    override fun close() {
+        if (!ended) stop()
+        body.close()
+    }
+}
+
+/**
+ * Coil with [client], and every image through [BoundedDecoder] before Skia sees it.
+ *
+ * @param diskCache null for Coil's own: the one the poster's loader shares, under the temporary directory, files named
+ *   by a SHA-256 of the URL, readable by this user's other processes (0644), the response headers stored with each body.
+ */
 internal fun backdropImageLoader(
     client: OkHttpClient,
     decoder: BoundedDecoder.Factory = BoundedDecoder.Factory(),
+    diskCache: (() -> DiskCache)? = null,
 ): ImageLoader = ImageLoader.Builder(PlatformContext.INSTANCE)
     .components {
         add(OkHttpNetworkFetcherFactory(callFactory = { client }))
         add(decoder)
     }
+    .apply { if (diskCache != null) diskCache(diskCache) }
     .build()
 
 private val backdropLoader: ImageLoader by lazy { backdropImageLoader(backdropHttpClient()) }

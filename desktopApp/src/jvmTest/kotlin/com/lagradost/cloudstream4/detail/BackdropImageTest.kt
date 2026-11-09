@@ -2,31 +2,48 @@ package com.lagradost.cloudstream4.detail
 
 import coil3.decode.Decoder
 import coil3.decode.SkiaImageDecoder
+import coil3.disk.DiskCache
+import coil3.request.ErrorResult
 import com.lagradost.cloudstream4.search.posterHttpClient
 import java.io.ByteArrayOutputStream
 import java.io.DataOutputStream
 import java.io.IOException
 import java.net.InetAddress
 import java.net.ServerSocket
+import java.net.Socket
+import javax.net.SocketFactory
 import java.util.concurrent.atomic.AtomicInteger
 import java.util.zip.CRC32
 import java.util.zip.Deflater
 import kotlin.concurrent.thread
+import kotlin.io.path.createTempDirectory
+import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
 import kotlin.test.assertFalse
+import kotlin.test.assertIs
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import okhttp3.Request
+import okio.Path.Companion.toOkioPath
 import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
 import org.jetbrains.skia.Image
 
 /** The backdrop's loader (`KMP-100`): https on every hop, and no decode past its bounds. */
 class BackdropImageTest {
+
+    private companion object {
+        const val CHUNK = 8 * 1024
+        const val MIB = 1024L * 1024
+        /** A small cap, so the test is quick: the code under test is the same for 8 MB. */
+        const val WIRE_CAP = 256L * 1024
+
+    }
 
     /** One thread answering every request with [body] as an image, counting the requests. */
     private class Server(private val body: ByteArray) : AutoCloseable {
@@ -53,6 +70,47 @@ class BackdropImageTest {
         }
 
         val url get() = "http://127.0.0.1:$port/b.png"
+
+        override fun close() = socket.close()
+    }
+
+    /**
+     * One request answered with [total] bytes, written 8 KiB at a time until the reader stops taking them, with a
+     * `Content-Length` or chunked. [sent] is what the socket accepted, so what a client let in plus the socket's buffers.
+     */
+    private class Streamer(private val total: Long, private val declared: Boolean) : AutoCloseable {
+        private val socket = ServerSocket(0, 8, InetAddress.getLoopbackAddress())
+        val sent = java.util.concurrent.atomic.AtomicLong()
+        private val done = java.util.concurrent.CountDownLatch(1)
+
+        init {
+            thread(isDaemon = true) {
+                runCatching {
+                    socket.accept().use { client ->
+                        val reader = client.getInputStream().bufferedReader()
+                        while (!reader.readLine().isNullOrEmpty()) Unit
+                        val out = client.getOutputStream()
+                        val length = if (declared) "Content-Length: $total" else "Transfer-Encoding: chunked"
+                        out.write("HTTP/1.1 200 OK\r\nContent-Type: image/png\r\n$length\r\nConnection: close\r\n\r\n".toByteArray())
+                        val chunk = ByteArray(CHUNK)
+                        while (sent.get() < total) {
+                            if (declared) out.write(chunk) else {
+                                out.write("${Integer.toHexString(CHUNK)}\r\n".toByteArray()); out.write(chunk); out.write("\r\n".toByteArray())
+                            }
+                            sent.addAndGet(CHUNK.toLong())
+                        }
+                        if (!declared) out.write("0\r\n\r\n".toByteArray())
+                        out.flush()
+                    }
+                }
+                done.countDown()
+            }
+        }
+
+        val url get() = "http://127.0.0.1:${socket.localPort}/big.png"
+
+        /** Waits for the writer to stop: it has sent all, or the client closed and a write failed. */
+        fun finished() = check(done.await(30, java.util.concurrent.TimeUnit.SECONDS)) { "the server is still writing" }
 
         override fun close() = socket.close()
     }
@@ -101,9 +159,52 @@ class BackdropImageTest {
         SkiaImageDecoder.Factory().create(result, options, loader)
     }
 
-    /** The backdrop's loader over plain http to this machine, as a test can serve: the decoder is what is checked. */
-    private fun localLoader(maxBytes: Long = BACKDROP_MAX_BYTES) =
-        backdropImageLoader(posterHttpClient { true }, BoundedDecoder.Factory(maxBytes = maxBytes, then = watchedSkia))
+    /** Coil's disk cache for this test alone, so nothing it fetches lands in the one the app's loaders share. */
+    private val cacheDirectory = createTempDirectory("backdrop-cache").also { it.toFile().deleteOnExit() }
+
+    private fun cache() = DiskCache.Builder().directory(cacheDirectory.toOkioPath()).maxSizeBytes(64L * 1024 * 1024).build()
+
+    @AfterTest
+    fun removeCache() {
+        cacheDirectory.toFile().deleteRecursively()
+    }
+
+    /**
+     * The backdrop's loader over plain http to this machine, as a test can serve: its body cap and decoder are what is
+     * checked here, the https rule in its own test.
+     */
+    private fun localLoader(maxBytes: Long = BACKDROP_MAX_BYTES, wireCap: Long = BACKDROP_MAX_BYTES) =
+        backdropImageLoader(
+            withBodyCap(posterHttpClient { true }.newBuilder().socketFactory(counting).build(), wireCap),
+            BoundedDecoder.Factory(maxBytes = maxBytes, then = watchedSkia),
+            diskCache = ::cache,
+        )
+
+    /**
+     * What the client took off its sockets, headers and all. The server's own count is no measure of that: the system's
+     * socket buffers take hundreds of KiB on loopback past a reader that has stopped (measured: 384 to 530 KiB, and asking
+     * for 64 KiB a side did not change it).
+     */
+    private val received = java.util.concurrent.atomic.AtomicLong()
+
+    private val counting = object : SocketFactory() {
+        override fun createSocket(): Socket = object : Socket() {
+            private val counted by lazy {
+                object : java.io.FilterInputStream(super.getInputStream()) {
+                    override fun read(): Int = super.read().also { if (it >= 0) received.incrementAndGet() }
+                    override fun read(b: ByteArray, off: Int, len: Int): Int =
+                        super.read(b, off, len).also { if (it > 0) received.addAndGet(it.toLong()) }
+                }
+            }
+
+            override fun getInputStream(): java.io.InputStream = counted
+        }
+        override fun createSocket(host: String, port: Int) = notUsed()
+        override fun createSocket(host: String, port: Int, local: InetAddress, localPort: Int) = notUsed()
+        override fun createSocket(host: InetAddress, port: Int) = notUsed()
+        override fun createSocket(host: InetAddress, port: Int, local: InetAddress, localPort: Int) = notUsed()
+        private fun notUsed(): Socket = throw UnsupportedOperationException("OkHttp makes the socket unconnected")
+    }
 
     @Test
     fun `an image inside its bounds loads, no larger than it is drawn`() = runBlocking<Unit> {
@@ -143,9 +244,33 @@ class BackdropImageTest {
     }
 
     @Test
+    fun `a body past the cap is not read past it, with a length or chunked`() = runBlocking<Unit> {
+        listOf(true, false).forEach { declared ->
+            Streamer(total = WIRE_CAP + MIB, declared = declared).use { server ->
+                // A refusal that never reaches Coil leaves the load waiting for ever: bounded here, so that fails too.
+                val result = withTimeout(60_000) {
+                    localLoader(wireCap = WIRE_CAP).execute(backdropRequest(server.url, 400, 200))
+                }
+                val error = assertIs<ErrorResult>(result, "declared=$declared").throwable
+                assertTrue("past $WIRE_CAP bytes" in error.message.orEmpty(), "declared=$declared: $error")
+                server.close()
+                server.finished()
+                val sent = server.sent.get()
+                val took = received.getAndSet(0)
+                // The client stopped the server short of its body. It took the read that brought the headers and, with no
+                // length to refuse, the cap and the read that passed it (measured: 8192, and the cap plus 8283).
+                assertTrue(sent < WIRE_CAP + MIB, "declared=$declared: the server sent all $sent")
+                val most = if (declared) CHUNK.toLong() else WIRE_CAP + CHUNK + CHUNK
+                assertTrue(took <= most, "declared=$declared took $took, past $most")
+                assertEquals(0, decoded.get(), "nothing reached the decoder")
+            }
+        }
+    }
+
+    @Test
     fun `the backdrop's client sends nothing that is not https, and follows no redirect off it`() {
         Server(png(8, 8)).use { server ->
-            val client = backdropHttpClient { true }
+            val client = backdropHttpClient(allow = { true })
             assertFailsWith<IOException> {
                 client.newCall(Request.Builder().url(server.url).build()).execute().close()
             }
