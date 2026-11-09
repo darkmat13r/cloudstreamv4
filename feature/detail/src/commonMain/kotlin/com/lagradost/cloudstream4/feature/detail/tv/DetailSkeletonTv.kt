@@ -168,35 +168,29 @@ internal object DetailSkeletonDefaults {
     val LineGap: Dp = CloudStreamDimens.StackGap
 
     /**
-     * One bar standing for the action row: a film's row while resuming, the longest the page draws.
+     * One bar standing for the action row: **the shortest row the page draws**, so it never overhangs.
      *
      * The skeleton cannot know the title's type before it resolves, so the bar either stops short of
-     * the row it becomes or overhangs it. The board set takes the first: a bar that grows on arrival
-     * reads as the page filling in, where one that shrinks reads as a mistake. This was the film
-     * row — primary, Start over, Trailer, the watchlist, Full synopsis — while a series' row, which
-     * added Season and Episodes, grew past it. Since those two left the row for 7i's season chips, a
-     * series' row is 472 (no Start over), so this bar now overhangs it by 60, as it does a film opened
-     * fresh. Whether the bar should become 472 is open in `KMP-38`; the number is unchanged here.
+     * the row it becomes or overhangs it. It must stop short: a bar that grows on arrival reads as the
+     * page filling in, where one that shrinks reads as a mistake.
      *
-     * Re-derived for the icon-only row (`DEC-17`, boards 7f and 7g). The old 784 came from the
-     * artboard's x200..x1768 and stood for a row of five text buttons; measured against what the page
-     * actually drew it overhung by 46px at 1280 wide. Three 48dp cells in place of three 120dp ghosts
-     * is what moves the number.
+     * The shortest row is primary, Trailer, the watchlist and Full synopsis, which is a series' row
+     * since Season and Episodes left it for 7i's season chips, and a film's row opened fresh. A film
+     * resuming adds Start over and grows 60 past the bar.
      *
-     * `ResumeWidth` + 3 × (`MinFocusGap` + `IconTargetCell`) + `MinFocusGap` + `TextButtonMinWidth`
-     * = 220 + 180 + 12 + 120 = 532.
+     * `ResumeWidth` + 2 × (`MinFocusGap` + `IconTargetCell`) + `MinFocusGap` + `TextButtonMinWidth`
+     * = 220 + 120 + 12 + 120 = 472.
      *
-     * That is a film's row **while resuming**. Start over is drawn only for a stored position, so a
-     * film opened fresh is one 48dp cell and one gap shorter, at 472, and the bar overhangs it by 60.
-     * Taking the shorter of those two instead would understate every other row by the same 60, and the
-     * resuming case is the one both boards draw.
+     * It was 532, the resuming film's row, while a series' row was the longer one. Before that, 784 came
+     * from the artboard's x200..x1768 for a row of five text buttons, and overhung what the page drew by
+     * 46px at 1280 wide (`DEC-17`'s icon-only row).
      */
     val ActionBarWidth: Dp = DetailScreenTvDefaults.ResumeWidth +
         (CloudStreamDimens.MinFocusGap + CloudStreamDimens.IconTargetCell) * ICON_SECONDARIES +
         CloudStreamDimens.MinFocusGap + CloudStreamDimens.TextButtonMinWidth
 
-    /** Start over, Trailer and the watchlist: the icon-only cells a film's row carries. */
-    private const val ICON_SECONDARIES = 3
+    /** Trailer and the watchlist: the icon-only cells every row carries. Start over is a resuming film's alone. */
+    private const val ICON_SECONDARIES = 2
 
     /**
      * What the loaded row's 48dp cell puts above its 32dp buttons, and the skeleton does not have.

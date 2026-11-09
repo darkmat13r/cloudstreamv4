@@ -912,7 +912,7 @@ class DetailScreenTvDeviceTest {
 
     /**
      * A film's row, which is the board that **does** draw "start over": five controls, 532dp while
-     * resuming — which is exactly what the loading skeleton's bar is derived from.
+     * resuming, the longest row the page draws. The loading skeleton's bar is the shortest, 472dp.
      *
      * Asserted from both sides deliberately. The show case above says the control is absent for a
      * series; without this one, a regression that dropped it everywhere would pass both.

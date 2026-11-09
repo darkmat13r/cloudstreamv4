@@ -3990,9 +3990,10 @@ prefix: Resume, Start over (a film with a position), Trailer, the watchlist, the
   `detail-synopsis-panel-open` were recorded again. Every other Detail case passed against its old
   reference first. Each diff is in the row's band only, x550..1013, y329..373 at 1280x720: the two
   buttons gone, Synopsis moved left into Season's place.
-- **Open:** `DetailSkeletonDefaults.ActionBarWidth` is still the resuming film's 532dp. A series' row is
-  now 472dp, so the loading bar overhangs it by 60dp, against the bar's own rule that it should stop
-  short. Changing it is a reference change of its own (`detail-loading`) and is left for a decision.
+- **The loading bar is 472dp** (follow-up, decided 2026-11-09: the placeholder must never overhang).
+  `DetailSkeletonDefaults.ActionBarWidth` was the resuming film's 532dp; with a series' row at 472dp it
+  overhung every series by 60dp. It is now the shortest row, `ResumeWidth` + 2 × (`MinFocusGap` +
+  `IconTargetCell`) + `MinFocusGap` + `TextButtonMinWidth`, and `detail-loading` was recorded again.
 
 What the overlap was, kept for the record. They were **almost** mutually exclusive with the chips, and
 the gap was worth knowing before anyone removed them. `namedSeason()` was `seasons.singleOrNull()`, so the two buttons
