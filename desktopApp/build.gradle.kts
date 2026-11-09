@@ -48,7 +48,15 @@ kotlin {
             // coil-compose comes with the compose bundle; this adds its network fetcher, for posters.
             implementation(libs.bundles.coil)
             // Plays what a plugin resolves. Loads the user's installed libVLC; bundles no VLC.
-            implementation(libs.vlcj)
+            // The string form, as `compose.desktop.currentOs` above: here an exclude needs it. The version is still the catalog's.
+            implementation(libs.vlcj.get().let { "${it.module}:${it.versionConstraint.requiredVersion}" }) {
+                // BUG-73: vlcj-natives brings JNA 5.16.0 as `jna-jpms` and `jna-platform-jpms`, the same `com.sun.jna`
+                // classes as the `jna` and `jna-platform` 5.19.1 that FileKit brings. Gradle sees two modules, so both
+                // shipped, and which one loaded was the classpath's order: 5.16.0 under `run`, 5.19.1 in the packaged app.
+                // Excluded, there is one JNA, 5.19.1, the version the owner approved for the Keychain (KMP-95f).
+                exclude(group = "net.java.dev.jna", module = "jna-jpms")
+                exclude(group = "net.java.dev.jna", module = "jna-platform-jpms")
+            }
             // KMP-25: subtitles. The parser and the types it returns; the fetch and the drawing are here.
             implementation(project(":media:subtitle"))
             implementation(project(":core:designsystem"))
