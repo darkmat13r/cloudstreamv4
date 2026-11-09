@@ -267,17 +267,19 @@ internal class SkipServices(
          * The poster client (public addresses only, on every hop), with no redirect followed, any hop to another host or
          * over http refused, the body capped on the wire, and the whole call timed.
          *
-         * @param hosts and [httpsOnly] replaceable only so a test can serve from this machine.
+         * @param hosts and [httpsOnly] replaceable only so a test can serve from this machine, and [callTimeoutSeconds] so
+         *   one can wait less than the real ten.
          */
         fun skipHttpClient(
             allow: (InetSocketAddress) -> Boolean = { SandboxPolicy.isPublicAddress(it.address) },
             hosts: Set<String> = HOSTS,
             httpsOnly: Boolean = true,
             dns: okhttp3.Dns? = null,
+            callTimeoutSeconds: Long = CALL_TIMEOUT_SECONDS,
         ): OkHttpClient = posterHttpClient(allow).newBuilder()
             .followRedirects(false)
             .followSslRedirects(false)
-            .callTimeout(CALL_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+            .callTimeout(callTimeoutSeconds, TimeUnit.SECONDS)
             .apply { dns?.let(::dns) }
             .addNetworkInterceptor(
                 Interceptor { chain ->

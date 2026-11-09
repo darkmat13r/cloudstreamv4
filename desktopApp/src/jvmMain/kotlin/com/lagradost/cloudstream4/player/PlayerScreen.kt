@@ -38,7 +38,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
-import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -243,16 +242,7 @@ internal fun PlayerScreen(
             }
         }
     }
-    // Per episode, not per stream: a source switch plays the same episode, so its stamps stay.
-    // Whichever stream is playing: one that failed before saying its length gives way to the next.
-    val lengthNow by rememberUpdatedState(status.lengthMillis)
-    val stamps by produceState(emptyList<SkipStamp>(), skipStamps) {
-        val source = skipStamps ?: return@produceState
-        value = source.stamps(snapshotFlow { lengthNow }.first { it > 0 })
-    }
-    val stamp = stamps.at(status.positionMillis)
-    val toNext = stamp?.skipsToNext(status.lengthMillis, hasNext = upNext != null) == true
-    val skip = stamp?.let { HudSkip(skipLabel(it.kind, toNext)) }
+    val skip = rememberSkip(skipStamps, status, hasNext = upNext != null, playback.player, onPlayNext)
     PlayerContent(
         frame = frame,
         pictureSize = pictureSize,
@@ -278,15 +268,8 @@ internal fun PlayerScreen(
         autoplayNext = autoplayNext,
         onPlayNext = onPlayNext,
         artwork = artwork,
-        skip = skip,
-        onSkip = {
-            when {
-                stamp == null -> Unit
-                toNext -> onPlayNext()
-                // Android's: just past the end, so the playhead is out of it.
-                else -> playback.player.seekBy(stamp.endMs + 1 - status.positionMillis)
-            }
-        },
+        skip = skip.hud,
+        onSkip = skip.onSkip,
     )
 }
 

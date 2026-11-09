@@ -33,11 +33,27 @@ class SkipServicesTest {
     /** Answers by host; anything not given is a 404 with no body. */
     private var replies: (host: String, uri: String) -> Reply? = { _, _ -> null }
 
+    /** A host that answers 200 and then sends its body a byte at a time, [DRIP_STEP_MS] apart, for [DRIP_FOR_MS]. */
+    private var drips: String? = null
+
     private val server = HttpServer.create(InetSocketAddress(InetAddress.getLoopbackAddress(), 0), 0).apply {
         createContext("/") { exchange ->
             val host = exchange.requestHeaders.getFirst("Host").substringBefore(':')
             val uri = exchange.requestURI.rawPath + (exchange.requestURI.rawQuery?.let { "?$it" } ?: "")
             seen += Seen(host, uri, exchange.requestHeaders.mapKeys { it.key.lowercase() })
+            if (host == drips) {
+                exchange.sendResponseHeaders(200, 0)
+                runCatching {
+                    exchange.responseBody.use { body ->
+                        repeat((DRIP_FOR_MS / DRIP_STEP_MS).toInt()) {
+                            body.write('['.code)
+                            body.flush()
+                            Thread.sleep(DRIP_STEP_MS)
+                        }
+                    }
+                }
+                return@createContext
+            }
             val reply = replies(host, uri) ?: Reply(status = 404)
             reply.headers.forEach { (name, value) -> exchange.responseHeaders.add(name, value) }
             exchange.sendResponseHeaders(reply.status, if (reply.body.isEmpty()) -1 else reply.body.size.toLong())
@@ -58,9 +74,14 @@ class SkipServicesTest {
             }
     }
 
-    private fun services(enabled: () -> Boolean = { true }, httpsOnly: Boolean = false) = SkipServices(
+    private fun services(enabled: () -> Boolean = { true }, httpsOnly: Boolean = false, callTimeoutSeconds: Long = 10) = SkipServices(
         enabled = enabled,
-        client = SkipServices.skipHttpClient(allow = { it.address.isLoopbackAddress }, httpsOnly = httpsOnly, dns = loopbackDns),
+        client = SkipServices.skipHttpClient(
+            allow = { it.address.isLoopbackAddress },
+            httpsOnly = httpsOnly,
+            dns = loopbackDns,
+            callTimeoutSeconds = callTimeoutSeconds,
+        ),
         scheme = "http",
         port = server.address.port,
     )
@@ -90,6 +111,19 @@ class SkipServicesTest {
         assertEquals(listOf(USER_AGENT), request.headers["user-agent"])
         assertNull(request.headers["referer"])
         assertNull(request.headers["cookie"])
+    }
+
+    @Test
+    fun `a body that drips past the call's time is no stamps, and the wait ends with it`() {
+        assertEquals(10_000, SkipServices.skipHttpClient().callTimeoutMillis, "the real client's whole call: 10 s")
+        drips = SkipServices.ANISKIP_HOST
+        // AniSkip alone is asked: anime, with a MAL id and nothing else.
+        val onlyAniSkip = anime.copy(ids = TitleIds(malId = 21))
+        val started = System.nanoTime()
+        assertEquals(emptyList(), stamps(services(callTimeoutSeconds = 1), onlyAniSkip))
+        val tookMs = (System.nanoTime() - started) / 1_000_000
+        assertEquals(listOf(SkipServices.ANISKIP_HOST), seen.map { it.host })
+        assertTrue(tookMs in 1_000 until DRIP_FOR_MS, "given up at the call's time, ${tookMs} ms, not at the body's end")
     }
 
     @Test
@@ -239,5 +273,7 @@ class SkipServicesTest {
 
     private companion object {
         const val OTHER_HOST = "collector.example"
+        const val DRIP_STEP_MS = 100L
+        const val DRIP_FOR_MS = 4_000L
     }
 }

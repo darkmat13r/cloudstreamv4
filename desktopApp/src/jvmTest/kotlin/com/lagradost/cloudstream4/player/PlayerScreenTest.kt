@@ -79,8 +79,12 @@ class PlayerScreenTest {
             log += "by $deltaMillis"
         }
 
+        /** Where each absolute seek went, as the fraction the player was sent (`KMP-86`'s Skip). */
+        val fractions = mutableListOf<Float>()
+
         override fun seekTo(fraction: Float) {
             log += "to"
+            fractions += fraction
         }
 
         val audioChoices = mutableListOf<Int>()
@@ -117,6 +121,7 @@ class PlayerScreenTest {
         upNext: UpNext? = null,
         autoplayNext: Boolean = true,
         val tick: ManualTick = ManualTick(),
+        skipStamps: SkipStampSource? = null,
     ) {
         /** What the player reports; a test changes it to seek out of the credits, or to end the stream (`KMP-94`). */
         var status by mutableStateOf(status)
@@ -125,6 +130,7 @@ class PlayerScreenTest {
         var playNexts = 0
         val calls = Calls()
         var skips = 0
+        private val countSkip: () -> Unit = { skips++ }
         val audioChosen = mutableListOf<AudioTrack>()
         val clock = PlaybackClock().also { it.onStatus(status) }
         val session = SubtitleSession(tracks, { load(it) }, CoroutineScope(SupervisorJob() + Dispatchers.Unconfined))
@@ -134,6 +140,8 @@ class PlayerScreenTest {
         val scene = ImageComposeScene(width, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
+                    // With stamps, Skip is PlayerScreen's own (`KMP-86`); without, the fixed one a test passes.
+                    val stamped = rememberSkip(skipStamps, this@Screen.status, upNext != null, calls) { playNexts++ }
                     Box(Modifier.fillMaxSize().background(Color.Black)) {
                         PlayerContent(
                             frame = frame,
@@ -153,8 +161,8 @@ class PlayerScreenTest {
                             fellThrough = fellThrough,
                             onAudioChosen = { audioChosen += it },
                             meta = meta,
-                            skip = skip,
-                            onSkip = { skips++ },
+                            skip = if (skipStamps != null) stamped.hud else skip,
+                            onSkip = if (skipStamps != null) stamped.onSkip else countSkip,
                             hudIdle = idle,
                             seekMillis = seekMillis,
                             upNext = upNext,
@@ -757,6 +765,77 @@ class PlayerScreenTest {
         assertEquals(0, none.skips)
         assertEquals(emptyList(), none.calls.log, "nothing else answers there either")
         none.scene.close()
+    }
+
+    // ---------------------------------------------------------------- KMP-86: Skip from the episode's stamps
+
+    private val opening = SkipStamp(SkipKind.Opening, 10_000, 40_000)
+
+    /** Where Skip sits while the HUD shows. */
+    private val Screen.skipButton: Offset
+        get() = Offset(width - SKIP_FROM_RIGHT, height - PlayerScreenDefaults.HudBottomInset.value - SKIP_ABOVE)
+
+    private fun playingAt(position: Long, length: Long = 60_000) =
+        PlayerStatus(playing = true, buffering = false, positionMillis = position, lengthMillis = length)
+
+    @Test
+    fun `KMP-86 Skip shows only while the playhead is in a stamp, with the stamp's words`() {
+        val asked = mutableListOf<Long>()
+        val screen = Screen(status = playingAt(1_000), skipStamps = { length -> listOf(opening).also { asked += length } })
+        screen.settle()
+        assertEquals(listOf(60_000L), asked, "asked once, with the stream's length")
+        assertFalse("Skip Opening" in screen.texts(), "before the stamp")
+        screen.click(screen.skipButton)
+        assertEquals(emptyList(), screen.calls.fractions, "nothing answers where it would be")
+        screen.status = playingAt(20_000)
+        assertTrue("Skip Opening" in screen.texts(), "inside it")
+        screen.status = playingAt(40_001)
+        assertFalse("Skip Opening" in screen.texts(), "where Skip lands")
+        assertEquals(listOf(60_000L), asked, "and not asked again")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `KMP-86 pressing Skip seeks to just past the stamp's end`() {
+        val screen = Screen(status = playingAt(20_000), skipStamps = { listOf(opening) })
+        screen.settle()
+        screen.click(screen.skipButton)
+        assertEquals(listOf(40_001f / 60_000), screen.calls.fractions, "an absolute seek, not one by the position")
+        assertEquals(0, screen.playNexts)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `KMP-86 a stamp running to the end plays the next episode, and with none seeks inside the stream`() {
+        // A minute and more before the end, so the Up next card, which takes Skip's place, is not up yet.
+        val ending = SkipStamp(SkipKind.Ending, 3_400_000, 3_600_000)
+        val next = Screen(status = playingAt(3_500_000, 3_600_000), upNext = harbor, skipStamps = { listOf(ending) })
+        assertTrue("Next episode" in next.texts())
+        next.click(next.skipButton)
+        assertEquals(1, next.playNexts)
+        assertEquals(emptyList(), next.calls.fractions)
+        next.scene.close()
+
+        val last = Screen(status = playingAt(3_500_000, 3_600_000), skipStamps = { listOf(ending) })
+        assertTrue("Skip Ending" in last.texts())
+        last.click(last.skipButton)
+        assertEquals(0, last.playNexts)
+        assertEquals(listOf(3_599_999f / 3_600_000), last.calls.fractions, "just before the end, never past it")
+        assertTrue(last.calls.fractions.single() < 1f)
+        last.scene.close()
+    }
+
+    @Test
+    fun `KMP-86 a stamp past the length of the stream playing is not offered`() {
+        // Asked for a longer cut; a source switch to a shorter one keeps the episode's stamps.
+        val long = SkipStamp(SkipKind.Recap, 10_000, 70_000)
+        val screen = Screen(status = playingAt(20_000, 80_000), skipStamps = { listOf(long) })
+        assertTrue("Skip Recap" in screen.texts(), "inside the cut it was asked for")
+        screen.status = playingAt(20_000, 60_000)
+        assertFalse("Skip Recap" in screen.texts(), "past the end of this one")
+        screen.click(screen.skipButton)
+        assertEquals(emptyList(), screen.calls.fractions)
+        screen.scene.close()
     }
 
     @Test

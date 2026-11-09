@@ -6413,7 +6413,9 @@ Android's `SkipAPI` asks, and passes the one under the playhead to `PlayerConten
   screen or the log, and neither does the title, an id or a URL. Kept in memory for the session, 64 episodes at most.
 - **Skip** shows while the playhead is in a stamp (Android's rule, with its 300 ms slack), with Android's words
   (`Skip Opening`). It seeks to just past the end, or, for a stamp ending in the last 20 s with an episode after it, plays
-  that one (`Next episode`).
+  that one (`Next episode`). Stamps are the episode's and stay across a source switch, so each use holds them to the
+  stream playing: a stamp past its length is not offered, and the seek is absolute, to at most a millisecond before the
+  end, so it never ends the stream or overshoots from a position reported late.
 - **Settings, Playback: Skip OP**, Android's key `enable_skip_op_from_database` and its own two strings. Off, the player
   asks no service anything.
 
@@ -6422,11 +6424,17 @@ Android's `SkipAPI` asks, and passes the one under the playhead to `PlayerConten
   parity (2026-11-09). On, the title's ids and the episode go to up to three third parties.
 - Stop at the first service with stamps, as Android does: one that answers with none passes to the next.
 
-**Tests:** `SkipServicesTest` (14) against a server on this machine standing in for the three hosts; `SkipStampsTest` (3);
+**Tests:** `SkipServicesTest` (15) against a server on this machine standing in for the three hosts, one of them a body
+dripping past a 1 s call; `SkipStampsTest` (5); `PlayerScreenTest`'s four `KMP-86` cases, through `rememberSkip` with a
+fake `SkipStampSource`: Skip only inside a stamp with its words, the seek just past its end, the next episode or a seek
+held inside the stream, and a stamp past the stream's length not offered;
 `HostProtocolIdsTest` (9); `SettingsWindowTest`'s Skip OP; `SettingsSearchTest`, `SettingsValuesTest` and
 `SettingsRepositoryTest`. Proved by mutation: without the read cap after gunzip, without the host interceptor, with
 `addQueryParameter` for `types[]`, without the off check, and without the range filter, each fails its test; so does
-following redirects, on #299's `bodyCap`, which no longer cancels a call when a body is closed early. **Not run:** Skip in a real player
+following redirects, on #299's `bodyCap`, which no longer cancels a call when a body is closed early; so does the
+seek without its clamp, `at` without the length filter, and a client that ignores the call's time (the dripping body
+then takes 4.3 s). The new `PlayerScreenTest` cases first ran red on a real fault: the button read `Skip %s`, because
+Compose's `stringResource(res, args)` fills only `%1$s`; the words now go through `UiString`. **Not run:** Skip in a real player
 window; the glue is read, not run.
 **Changed existing test code:** four settings tests that assert the whole stored map or file gain the new key, and
 `HostProtocolArtTest` (#299) takes `0x32` where it used `0x31` as a tag nobody reads, which is now the ids'.

@@ -48,9 +48,19 @@ internal fun interface SkipStampSource {
 /**
  * The stamp the playhead is in, Android's rule (`CS3IPlayer.getCurrentTimestamp`): from its start, and until a seek's
  * slack before its end, so a seek to just past the end never lands back in it.
+ *
+ * Only a stamp inside the stream playing, [lengthMs]: stamps are the episode's and stay across a source switch, and
+ * another cut of it can be shorter than the one they were asked for. A length not yet known offers none.
  */
-internal fun List<SkipStamp>.at(positionMs: Long): SkipStamp? =
-    firstOrNull { it.startMs <= positionMs && positionMs + SEEK_SLACK_MS + 1 < it.endMs }
+internal fun List<SkipStamp>.at(positionMs: Long, lengthMs: Long): SkipStamp? =
+    firstOrNull { it.endMs <= lengthMs && it.startMs <= positionMs && positionMs + SEEK_SLACK_MS + 1 < it.endMs }
+
+/**
+ * Where Skip seeks for [stamp], as a fraction of [lengthMs]: Android's just past its end, held inside the stream, so a
+ * seek never lands past the end and ends it. Absolute, so a position reported late cannot make it overshoot.
+ */
+internal fun skipTarget(stamp: SkipStamp, lengthMs: Long): Float =
+    (stamp.endMs + 1).coerceIn(0, lengthMs - 1).toFloat() / lengthMs
 
 /**
  * Whether Skip plays the next episode instead of seeking: Android's rule (`SkipAPI.videoStamps`), a stamp ending within

@@ -12,6 +12,8 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.skip_type_mix
 import com.lagradost.cloudstream4.core.strings.generated.resources.skip_type_op
 import com.lagradost.cloudstream4.core.strings.generated.resources.skip_type_preview
 import com.lagradost.cloudstream4.core.strings.generated.resources.skip_type_recap
+import com.lagradost.cloudstream4.core.strings.UiString
+import com.lagradost.cloudstream4.core.strings.resolve
 import org.jetbrains.compose.resources.stringResource
 
 /** The Skip button's words (`KMP-86`), Android's (`VideoSkipStamp.uiText`): `Skip Opening`, or `Next episode`. */
@@ -20,7 +22,8 @@ internal fun skipLabel(kind: SkipKind, toNextEpisode: Boolean): String =
     if (toNextEpisode) {
         stringResource(Res.string.next_episode)
     } else {
-        stringResource(Res.string.skip_type_format, stringResource(kindName(kind)))
+        // Android's pattern, `Skip %s`: Compose's own `stringResource(res, args)` reads only `%1$s`, so `UiString` formats.
+        UiString.Resource(Res.string.skip_type_format, listOf(stringResource(kindName(kind)))).resolve()
     }
 
 private fun kindName(kind: SkipKind) = when (kind) {
