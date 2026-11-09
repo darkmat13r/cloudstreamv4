@@ -14,6 +14,8 @@ import java.util.Base64
  * - **Only while a sign-in from this window is waiting**: an unsolicited `cloudstreamapp://` URL does nothing.
  * - **Only for that sign-in's path** (`mallogin`), and **only with the `state` it sent**: random, compared in constant
  *   time. A missing or wrong state does nothing, and the sign-in keeps waiting for the right one.
+ * - **Only the bare form** `cloudstreamapp://mallogin?…` (the reviewer of `#296`): a user part (`x@mallogin`), a port
+ *   (`mallogin:99`) or a path (`mallogin/other`) is refused, so nothing dressed up as the path gets through.
  * - **Once**: the first accepted redirect ends the wait, and any after it does nothing.
  * - **Cancel ends the wait at once**, so a redirect that arrives late does nothing.
  * - **The URL is never logged or stored**. Only its query's values reach the sign-in, which keeps nothing but the
@@ -59,6 +61,7 @@ internal class BrowserRedirects {
     fun deliver(url: String): Boolean {
         val uri = runCatching { URI(url) }.getOrNull() ?: return false
         if (!uri.scheme.equals(SCHEME, ignoreCase = true)) return false
+        if (uri.rawUserInfo != null || uri.port != -1 || !uri.rawPath.isNullOrEmpty()) return false
         val query = parameters(uri.rawQuery) ?: return false
         val accepted = synchronized(lock) {
             val current = waiting ?: return false
@@ -73,21 +76,25 @@ internal class BrowserRedirects {
         const val SCHEME = "cloudstreamapp"
         const val STATE = "state"
 
-        /** The query's values, each at most once; null for a query that repeats a name or cannot be read. */
+        /**
+         * The query's values, each at most once; null for a query that repeats a name or cannot be read. Decoded as
+         * RFC 3986 says a URI's query is (the reviewer of `#296`): `%XX` only, so a `+` stays a `+`. `URLDecoder` alone
+         * is HTML form decoding, which would turn it into a space and spoil a code or a token carrying one.
+         */
         internal fun parameters(raw: String?): Map<String, String>? {
             if (raw.isNullOrEmpty()) return emptyMap()
             if (raw.length > MAX_QUERY_CHARS) return null
             val pairs = raw.split('&').filter { it.isNotEmpty() }.map { part ->
                 val name = part.substringBefore('=')
                 val value = part.substringAfter('=', "")
-                runCatching {
-                    URLDecoder.decode(name, Charsets.UTF_8) to URLDecoder.decode(value, Charsets.UTF_8)
-                }.getOrNull() ?: return null
+                runCatching { decode(name) to decode(value) }.getOrNull() ?: return null
             }
             // A name twice is someone guessing which one a parser keeps.
             if (pairs.map { it.first }.toSet().size != pairs.size) return null
             return pairs.toMap()
         }
+
+        private fun decode(part: String): String = URLDecoder.decode(part.replace("+", "%2B"), Charsets.UTF_8)
 
         /** A fresh `state`: 32 bytes from [SecureRandom], base64url with no padding. */
         fun newState(): String = randomUrlSafe(STATE_BYTES)

@@ -7224,6 +7224,7 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
 | `KMP-95e` | The browser's redirect for AniList and MyAnimeList (A10): the scheme, the handler, `state` and PKCE | 95d |
 | `KMP-95f` | The Keychain through JNA 5.19.1, and Touch ID (A3t), measured on a signed build | The owner's Team ID and certificate |
 | `KMP-95g` | Pictures: the bundled ones, and "Use an image address" (A6) | The owner; see 95b |
+| `KMP-95h` | Renewing MyAnimeList's token with its refresh token before it expires (about 31 days) | 95e, 95f |
 
 **Rulings** (the owner and the PM, 2026-11-08):
 - JNA 5.19.1 is approved for the Keychain: an exact pin, declared only in `:desktopApp`'s account code (95f).
@@ -7601,11 +7602,14 @@ the Mac already has. There is no new dependency.
 
 **What a redirect must carry to be taken** (`BrowserRedirects`; the reviewer's and the owner's rules in `DS-25`):
 - **A sign-in from this window must be waiting.** An unsolicited `cloudstreamapp://` URL does nothing.
-- **That sign-in's path** (`mallogin`) and **the `cloudstreamapp` scheme**.
+- **That sign-in's path** (`mallogin`) and **the `cloudstreamapp` scheme**, in the bare form only (the reviewer of `#296`):
+  a user part (`x@mallogin`), a port (`mallogin:99`) or a path (`mallogin/other`) is refused.
 - **The very `state` it sent**, compared in constant time: 32 bytes from `SecureRandom`, base64url, fresh for every
   sign-in. This replaces Android's `RequestID<n>` counter, which the owner ruled out for the Mac. A wrong or missing
   state does nothing, and the sign-in keeps waiting.
 - **Once.** The first redirect taken ends the wait. A query that names a parameter twice is not read.
+- **Decoded as RFC 3986 reads a query** (the reviewer of `#296`): `%XX` only, so a `+` in a code stays a `+`.
+  `URLDecoder` alone is HTML form decoding, and would turn it into a space.
 - **Cancel, Escape or a switch ends the wait at once**, so a redirect that arrives later does nothing (A12).
 - **Never logged or stored.** Only the code reaches the exchange, and only the token it trades for reaches the store.
 
@@ -7616,6 +7620,11 @@ sent explicitly. The exchange is `MALApi.login`'s form POST, and its access and 
 
 **MyAnimeList's client id** comes from `MAL_KEY`, or `mal.key` in the untracked `local.properties`, as `:app` reads it,
 into the same generated `DesktopSecrets`. Without it, MyAnimeList reads "Not available here".
+
+**MyAnimeList's tokens expire after about 31 days, and nothing renews them yet.** The refresh token is checked and
+held, but unused: until `KMP-95h` (refresh-token renewal) lands, an expired sign-in needs a new one. The store holds
+sign-ins only until the app quits (`95d`), so a Mac session never outlives a token today; this matters once `95f`
+keeps them in the Keychain.
 
 **AniList waits on the owner** (asked, 2026-11-09). Its docs describe only the implicit grant for an app that cannot keep
 a secret, with no PKCE and no `state` shown, and Android sends none. Whether AniList echoes a `state` was not measured:
@@ -7633,10 +7642,11 @@ that takes a real sign-in under the app's client. So AniList is not on A9 in thi
 **Tests:**
 - `BrowserRedirectsTest`, 5 cases:
   - nothing is taken with no sign-in waiting;
-  - only the path, the scheme and the very state are taken, and only once, with eight wrong URLs refused;
+  - only the path, the scheme and the very state are taken, and only once, with twelve wrong URLs refused (a user
+    part, a port and a path among them, from the review);
   - a cancelled wait takes nothing, and a new sign-in ends the one before;
   - a state and a verifier are fresh, url-safe and the right length;
-  - a repeated or overlong query is not read.
+  - a repeated or overlong query is not read, and a `+` survives decoding.
 - `HttpSignInClientTest`, 2 more:
   - MyAnimeList's page: the client, the state, and the plain challenge;
   - the exchange: its form, a 400 as a refusal, and a code with CR/LF sending nothing.
@@ -7646,4 +7656,4 @@ that takes a real sign-in under the app's client. So AniList is not on A9 in thi
   - Cancel ending the wait, with a late redirect doing nothing, and a new sign-in getting a new state and verifier;
   - A13 on `error=`, and A13b on an exchange offline.
 - Red-checked: without the state comparison, 3 of these fail; without ending the wait on leaving the step, the late
-  redirect is taken and the Cancel test fails.
+  redirect is taken and the Cancel test fails; without the bare-form check or the RFC 3986 decoding, their tests fail.

@@ -31,6 +31,10 @@ class BrowserRedirectsTest {
             "cloudstreamapp://mallogin?code=c&state=s1x",
             "cloudstreamapp://mallogin?code=c&state=s1&state=s2",
             "cloudstreamapp://mallogin?state=s1&state=s1",
+            "cloudstreamapp://x@mallogin?code=c&state=s1",
+            "cloudstreamapp://mallogin:99?code=c&state=s1",
+            "cloudstreamapp://mallogin/other?code=c&state=s1",
+            "cloudstreamapp://mallogin/?code=c&state=s1",
             "not a url at all",
         ).forEach { assertFalse(redirects.deliver(it), it) }
         val answer = async { waiting.await() }
@@ -70,5 +74,6 @@ class BrowserRedirectsTest {
         assertNull(BrowserRedirects.parameters("a=1&a=2"))
         assertNull(BrowserRedirects.parameters("a=" + "x".repeat(9_000)))
         assertEquals(mapOf("a" to "1", "b" to ""), BrowserRedirects.parameters("a=1&b"))
+        assertEquals(mapOf("code" to "a+b c"), BrowserRedirects.parameters("code=a+b%20c"), "a + stays a +, as RFC 3986 reads a query")
     }
 }
