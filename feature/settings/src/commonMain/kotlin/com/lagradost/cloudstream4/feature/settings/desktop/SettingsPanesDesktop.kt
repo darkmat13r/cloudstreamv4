@@ -25,12 +25,14 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPopupButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopSwitch
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_show_in_finder
+import com.lagradost.cloudstream4.core.strings.generated.resources.poster_size_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.random_button_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_download_folder
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once
@@ -38,7 +40,11 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.settings_down
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder_missing
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_home_search
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_posters
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_speed
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_subtitle_size_large
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_subtitle_size_medium
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_subtitle_size_small
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -47,8 +53,8 @@ import com.lagradost.cloudstream4.feature.settings.SettingsValues
 import org.jetbrains.compose.resources.stringResource
 
 /**
- * `DS-24` ST11's Appearance pane, its first row (`KMP-90g`): whether Home shows Random. No line under it: the board's
- * "On Home and Library." is untrue on the Mac, whose Library has no Random.
+ * `DS-24` ST11's Appearance pane, the rows the Mac reads: Poster size (`KMP-90e`) and whether Home shows Random
+ * (`KMP-90g`). No line under Random: the board's "On Home and Library." is untrue on the Mac, whose Library has none.
  */
 @Composable
 internal fun ColumnScope.AppearancePane(
@@ -56,6 +62,19 @@ internal fun ColumnScope.AppearancePane(
     marked: Set<SettingsRow>,
     onAction: (SettingsAction) -> Unit,
 ) {
+    GroupHeader(stringResource(Res.string.settings_posters))
+    Group {
+        val title = stringResource(Res.string.poster_size_settings)
+        SettingRow(title = title, line = null, marked = SettingsRow.PosterSize in marked) {
+            DesktopPopupButton(
+                selected = values.posterSize,
+                options = PosterSize.entries,
+                onSelect = { onAction(SettingsAction.SetPosterSize(it)) },
+                label = title,
+                optionLabel = { posterSizeName(it) },
+            )
+        }
+    }
     GroupHeader(stringResource(Res.string.settings_home_search))
     Group {
         val title = stringResource(Res.string.random_button_settings)
@@ -67,6 +86,14 @@ internal fun ColumnScope.AppearancePane(
             )
         }
     }
+}
+
+/** The size words are Subtitles' (`I18N-20`): "Small", "Medium", "Large" of a size, which a poster's is too. */
+@Composable
+private fun posterSizeName(size: PosterSize): String = when (size) {
+    PosterSize.Small -> stringResource(Res.string.settings_subtitle_size_small)
+    PosterSize.Medium -> stringResource(Res.string.settings_subtitle_size_medium)
+    PosterSize.Large -> stringResource(Res.string.settings_subtitle_size_large)
 }
 
 /** `DS-24` ST6's Downloads pane, part 1: the folder by its name, and how many download at once. */

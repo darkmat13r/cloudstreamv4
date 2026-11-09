@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.feature.settings
 
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -12,11 +13,16 @@ interface AppearanceSettings {
     /** "Random Button": Android's `random_button_key`. Off, Home's top bar has no Random. */
     val showRandom: StateFlow<Boolean>
 
+    /** "Poster size": the Mac's `poster_size_desktop_key` (`KMP-90e`). Search, Home's poster rows and Library read it. */
+    val posterSize: StateFlow<PosterSize>
+
     companion object {
         /** Every value at its default, never stored. What a test or a host without storage reads. */
         val Default: AppearanceSettings = object : AppearanceSettings {
             override val showRandom: StateFlow<Boolean> =
                 MutableStateFlow(SettingsValues.DEFAULT_SHOW_RANDOM).asStateFlow()
+            override val posterSize: StateFlow<PosterSize> =
+                MutableStateFlow(SettingsValues.DEFAULT_POSTER_SIZE).asStateFlow()
         }
     }
 }

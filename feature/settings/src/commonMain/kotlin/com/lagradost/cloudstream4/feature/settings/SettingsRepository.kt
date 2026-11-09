@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.feature.settings
 
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
@@ -43,11 +44,13 @@ class SettingsRepository(
     private val autoplay = MutableStateFlow(state.value.autoplayNext)
     private val atOnce = MutableStateFlow(state.value.downloadsAtOnce)
     private val random = MutableStateFlow(state.value.showRandom)
+    private val posters = MutableStateFlow(state.value.posterSize)
 
     val values: StateFlow<SettingsValues> = state.asStateFlow()
     override val autoplayNext: StateFlow<Boolean> = autoplay.asStateFlow()
     override val downloadsAtOnce: StateFlow<Int> = atOnce.asStateFlow()
     override val showRandom: StateFlow<Boolean> = random.asStateFlow()
+    override val posterSize: StateFlow<PosterSize> = posters.asStateFlow()
 
     override fun setAutoplayNext(on: Boolean) = update { it.copy(autoplayNext = on) }
 
@@ -57,6 +60,8 @@ class SettingsRepository(
     }
 
     fun setShowRandom(on: Boolean) = update { it.copy(showRandom = on) }
+
+    fun setPosterSize(size: PosterSize) = update { it.copy(posterSize = size) }
 
     /**
      * Applies [change] atomically, so two changes at once never lose one. The views and the file then take whatever is
@@ -71,6 +76,7 @@ class SettingsRepository(
             autoplay.value = now.autoplayNext
             atOnce.value = now.downloadsAtOnce
             random.value = now.showRandom
+            posters.value = now.posterSize
             try {
                 storage.save(now.toStored())
             } catch (e: Exception) {

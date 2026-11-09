@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.feature.settings
 
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import java.util.concurrent.CyclicBarrier
 import kotlin.concurrent.thread
 import kotlin.test.Test
@@ -14,13 +15,20 @@ class SettingsRepositoryTest {
         settings.setAutoplayNext(false)
         settings.setDownloadsAtOnce(5)
         settings.setShowRandom(false)
-        val stored = mapOf("autoplay_next_key" to "false", "download_parallel_key" to "5", "random_button_key" to "false")
+        settings.setPosterSize(PosterSize.Large)
+        val stored = mapOf(
+            "autoplay_next_key" to "false",
+            "download_parallel_key" to "5",
+            "poster_size_desktop_key" to "large",
+            "random_button_key" to "false",
+        )
         assertEquals(stored, storage.stored)
 
         val reopened = SettingsRepository(storage)
         assertEquals(false, reopened.autoplayNext.value)
         assertEquals(5, reopened.downloadsAtOnce.value)
         assertEquals(false, reopened.showRandom.value)
+        assertEquals(PosterSize.Large, reopened.posterSize.value)
     }
 
     @Test
@@ -81,7 +89,12 @@ class SettingsRepositoryTest {
             assertEquals(SettingsValues(autoplayNext = false, downloadsAtOnce = 5), settings.values.value)
             assertEquals(false, settings.autoplayNext.value)
             assertEquals(5, settings.downloadsAtOnce.value)
-            val both = mapOf("autoplay_next_key" to "false", "download_parallel_key" to "5", "random_button_key" to "true")
+            val both = mapOf(
+                "autoplay_next_key" to "false",
+                "download_parallel_key" to "5",
+                "poster_size_desktop_key" to "medium",
+                "random_button_key" to "true",
+            )
             assertEquals(both, storage.stored, "the file ends on both")
         }
     }

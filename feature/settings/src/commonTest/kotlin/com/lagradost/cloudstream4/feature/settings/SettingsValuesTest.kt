@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.feature.settings
 
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFailsWith
@@ -18,7 +19,12 @@ class SettingsValuesTest {
         val values = SettingsValues.fromStored(mapOf("autoplay_next_key" to "false", "download_parallel_key" to "5"))
         assertEquals(SettingsValues(autoplayNext = false, downloadsAtOnce = 5), values)
         assertEquals(
-            mapOf("autoplay_next_key" to "false", "download_parallel_key" to "5", "random_button_key" to "true"),
+            mapOf(
+                "autoplay_next_key" to "false",
+                "download_parallel_key" to "5",
+                "poster_size_desktop_key" to "medium",
+                "random_button_key" to "true",
+            ),
             values.toStored(),
         )
     }
@@ -44,6 +50,23 @@ class SettingsValuesTest {
         assertEquals(true, SettingsValues.fromStored(mapOf("random_button_key" to "")).showRandom)
         assertEquals(false, SettingsValues.fromStored(mapOf("random_button_key" to " false ")).showRandom)
         assertEquals(true, AppearanceSettings.Default.showRandom.value)
+    }
+
+    @Test
+    fun posterSizeReadsBackUnderTheMacsOwnKeyAndAnythingElseIsMedium() {
+        assertEquals(PosterSize.Medium, SettingsValues().posterSize)
+        PosterSize.entries.forEach { size ->
+            val stored = SettingsValues(posterSize = size).toStored()
+            assertEquals(size.name.lowercase(), stored["poster_size_desktop_key"])
+            assertEquals(size, SettingsValues.fromStored(stored).posterSize)
+        }
+        assertEquals(PosterSize.Large, SettingsValues.fromStored(mapOf("poster_size_desktop_key" to " large ")).posterSize)
+        listOf("Large", "huge", "2", "").forEach { bad ->
+            assertEquals(PosterSize.Medium, SettingsValues.fromStored(mapOf("poster_size_desktop_key" to bad)).posterSize, bad)
+        }
+        // Android's slider is not read: the Mac's Small would mean nothing to it, and its steps mean nothing here.
+        assertEquals(PosterSize.Medium, SettingsValues.fromStored(mapOf("poster_size_key" to "15")).posterSize)
+        assertEquals(PosterSize.Medium, AppearanceSettings.Default.posterSize.value)
     }
 
     @Test

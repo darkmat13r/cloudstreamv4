@@ -1,5 +1,7 @@
 package com.lagradost.cloudstream4.feature.settings
 
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
+
 /**
  * Every setting the Settings window can change, with its default. Only rows that take effect are here (`KMP-90`):
  * a row lands with the thing that reads it, so no control in the window does nothing.
@@ -11,6 +13,7 @@ data class SettingsValues(
     val autoplayNext: Boolean = DEFAULT_AUTOPLAY_NEXT,
     val downloadsAtOnce: Int = DEFAULT_DOWNLOADS_AT_ONCE,
     val showRandom: Boolean = DEFAULT_SHOW_RANDOM,
+    val posterSize: PosterSize = DEFAULT_POSTER_SIZE,
 ) {
     init {
         require(downloadsAtOnce in DOWNLOADS_AT_ONCE) { "downloadsAtOnce out of range" }
@@ -21,6 +24,7 @@ data class SettingsValues(
         KEY_AUTOPLAY_NEXT to autoplayNext.toString(),
         KEY_DOWNLOADS_AT_ONCE to downloadsAtOnce.toString(),
         KEY_SHOW_RANDOM to showRandom.toString(),
+        KEY_POSTER_SIZE to posterSize.name.lowercase(),
     )
 
     companion object {
@@ -33,6 +37,12 @@ data class SettingsValues(
         /** Android's `random_button_key`. */
         const val KEY_SHOW_RANDOM = "random_button_key"
 
+        /**
+         * The Mac's own key, not Android's `poster_size_key`: that is a 0 to 15 slider, 10% a step from 0, so it has
+         * nothing smaller than its default, and the Mac's Small would mean nothing to it (`KMP-90e`).
+         */
+        const val KEY_POSTER_SIZE = "poster_size_desktop_key"
+
         const val DEFAULT_AUTOPLAY_NEXT = true
 
         /**
@@ -40,6 +50,9 @@ data class SettingsValues(
          * and the switch only lets someone hide it (the owner, 2026-11-08). The key means the same on both.
          */
         const val DEFAULT_SHOW_RANDOM = true
+
+        /** Every screen's width before the setting. */
+        val DEFAULT_POSTER_SIZE: PosterSize = PosterSize.Medium
 
         /** Android's default, and the Mac engine's until now (`DesktopDownloads.MAX_RUNNING`). */
         const val DEFAULT_DOWNLOADS_AT_ONCE = 3
@@ -54,6 +67,9 @@ data class SettingsValues(
                 ?.takeIf { it in DOWNLOADS_AT_ONCE }
                 ?: DEFAULT_DOWNLOADS_AT_ONCE,
             showRandom = stored.flag(KEY_SHOW_RANDOM, DEFAULT_SHOW_RANDOM),
+            posterSize = stored[KEY_POSTER_SIZE]?.trim()
+                ?.let { value -> PosterSize.entries.firstOrNull { it.name.lowercase() == value } }
+                ?: DEFAULT_POSTER_SIZE,
         )
 
         /** `true` or `false` exactly, around spaces; anything else is [default]. */

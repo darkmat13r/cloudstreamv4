@@ -8,12 +8,13 @@ package com.lagradost.cloudstream4.feature.settings
  * builds its reader, the Mac's Up next. [SettingsRow.entries] is everything search can find.
  */
 enum class SettingsPane(val rows: List<SettingsRow>) {
-    Appearance(listOf(SettingsRow.RandomButton)),
+    Appearance(listOf(SettingsRow.PosterSize, SettingsRow.RandomButton)),
     Downloads(listOf(SettingsRow.DownloadFolder, SettingsRow.DownloadsAtOnce)),
 }
 
 /** One row of a pane, as search sees it. The words are resolved where they are drawn, then handed to [SettingsSearch]. */
 enum class SettingsRow {
+    PosterSize,
     RandomButton,
     DownloadFolder,
     DownloadsAtOnce,
