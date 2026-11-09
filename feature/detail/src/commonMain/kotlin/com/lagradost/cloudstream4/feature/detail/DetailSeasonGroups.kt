@@ -89,7 +89,7 @@ internal fun List<DetailSeasonGroup>.shownSeasonIndex(chosen: Int?, primaryData:
  * unnumbered episodes and a special listed first still starts on its first episode. With only specials, it is the
  * first of them. Null for an empty list.
  */
-internal fun List<DetailEpisode>.firstEpisodeToPlay(): DetailEpisode? {
+fun List<DetailEpisode>.firstEpisodeToPlay(): DetailEpisode? {
     val season = mapNotNull { it.season }.filter { it > SPECIALS_SEASON }.minOrNull()
         ?: return firstOrNull { it.season != SPECIALS_SEASON } ?: firstOrNull()
     return filter { it.season == season }.sortedWith(compareBy(nullsLast()) { it.episode }).first()
