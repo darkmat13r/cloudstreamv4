@@ -35,7 +35,7 @@ import org.junit.runner.RunWith
  * the page, the panel on `surface` with its selected rows `raised`, and the header at the top. On Android TV the rail is a
  * separate view; `TvRailNavigationTest` measures that on the real shell.
  *
- * The rows are 4d's five providers in 4d's states: the first three selected and healthy, `Zoro` off and failed, the last
+ * The rows are 4d's five providers in 4d's states: the first three selected and healthy, `Source E` off and failed, the last
  * off and unchecked. Until `DS-15` the case had a selected row with a failed marker beside an unselected healthy one, a
  * pairing 4d never draws.
  */
@@ -101,11 +101,11 @@ class SidePanelScreenshotDeviceTest {
         const val WAIT_MS = 5_000L
         /** `TV Search` 4d's `pr`. A subtitle too long for the panel ellipsizes, as 4d's does. */
         val ROWS = listOf(
-            Source("Vidsrc", "EN · MOVIES, TV · PINNED", selected = true, StatusDotState.Ok),
-            Source("Gogoanime", "EN · ANIME", selected = true, StatusDotState.Ok),
-            Source("Filmxy", "EN · MOVIES", selected = true, StatusDotState.Ok),
-            Source("Zoro", "EN · ANIME · FAILED 2 MIN AGO", selected = false, StatusDotState.Failed),
-            Source("Dramacool", "KO · ASIAN DRAMA", selected = false, StatusDotState.Neutral),
+            Source("Source D", "EN · MOVIES, TV · PINNED", selected = true, StatusDotState.Ok),
+            Source("Source C", "EN · ANIME", selected = true, StatusDotState.Ok),
+            Source("Source B", "EN · MOVIES", selected = true, StatusDotState.Ok),
+            Source("Source E", "EN · ANIME · FAILED 2 MIN AGO", selected = false, StatusDotState.Failed),
+            Source("Source A", "KO · ASIAN DRAMA", selected = false, StatusDotState.Neutral),
         )
         val Items = listOf(
             NavRailItem("Home", CloudStreamIcons.Home),
