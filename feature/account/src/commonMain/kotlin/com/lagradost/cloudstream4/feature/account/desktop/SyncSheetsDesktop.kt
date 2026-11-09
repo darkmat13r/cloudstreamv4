@@ -63,7 +63,10 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_browser_body
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_browser_open_again
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_browser_title
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_browser_waiting
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_code_expired
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_code_expires
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_code_instructions
@@ -305,6 +308,36 @@ fun PairCodeSheet(
                 Spacer(Modifier.weight(1f))
                 DesktopButton(label = stringResource(Res.string.cancel), onClick = onCancel)
             }
+        }
+    }
+    LaunchedEffect(Unit) { runCatching { sheetFocus.requestFocus() } }
+}
+
+/**
+ * `DS-25` A10: signing in through the browser (`KMP-95e`). The page opens on its own; the service sends the browser back
+ * to `cloudstreamapp://`, and the host closes this sheet. There is no password field: the app never sees one.
+ * Open again opens the same page. Cancel ends the wait at once (A12).
+ */
+@Composable
+fun BrowserSignInSheet(serviceName: String, onOpenAgain: () -> Unit, onCancel: () -> Unit) {
+    val colors = CloudStreamTheme.colors
+    val typography = CloudStreamTheme.typography
+    val sheetFocus = remember { FocusRequester() }
+    SheetFrame(onEscape = onCancel, modifier = Modifier.focusRequester(sheetFocus).focusable()) {
+        BasicText(UiString.Resource(Res.string.account_browser_title, listOf(serviceName)).resolve(), style = typography.railTitle.copy(color = colors.ink))
+        Column(verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap)) {
+            BasicText(UiString.Resource(Res.string.account_browser_body, listOf(serviceName)).resolve(), style = typography.body.copy(color = colors.ink2))
+            BasicText(stringResource(Res.string.account_browser_waiting), style = typography.caption.copy(color = colors.muted))
+            UntilQuitLine()
+        }
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            DesktopButton(label = stringResource(Res.string.account_browser_open_again), onClick = onOpenAgain, icon = CloudStreamIcons.OpenExternal)
+            Spacer(Modifier.weight(1f))
+            DesktopButton(label = stringResource(Res.string.cancel), onClick = onCancel)
         }
     }
     LaunchedEffect(Unit) { runCatching { sheetFocus.requestFocus() } }

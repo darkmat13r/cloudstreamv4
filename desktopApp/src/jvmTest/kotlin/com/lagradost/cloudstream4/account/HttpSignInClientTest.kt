@@ -11,6 +11,7 @@ import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
+import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
@@ -40,8 +41,10 @@ class HttpSignInClientTest {
         if (bytes.isNotEmpty()) responseBody.use { it.write(bytes) } else close()
     }
 
-    private fun client(simkl: String? = "id0fixture") = HttpSignInClient(
+    private fun client(simkl: String? = "id0fixture", mal: String? = "mal0fixture") = HttpSignInClient(
         simklClientId = simkl,
+        malClientId = mal,
+        malSite = "${base}mal/".toHttpUrl(),
         simklApi = base.toHttpUrl(),
         openSubtitlesApi = "${base}os/".toHttpUrl(),
         subDlApi = "${base}subdl/".toHttpUrl(),
@@ -142,6 +145,36 @@ class HttpSignInClientTest {
 
         listOf("abc.DEF-123_~+/=", "a".repeat(4096)).forEach { assertTrue(HttpSignInClient.isToken(it), it.take(20)) }
         listOf("", "a b", "a\rb", "a\nb", "é", "a".repeat(4097)).forEach { assertTrue(!HttpSignInClient.isToken(it), it.take(20)) }
+    }
+
+    @Test
+    fun `MyAnimeList's page carries the client, the state and a plain PKCE challenge, and none without a key`() {
+        val page = assertNotNull(client().malSignInPage(state = "st4te", verifier = "v".repeat(128))).toHttpUrl()
+        assertEquals("code", page.queryParameter("response_type"))
+        assertEquals("mal0fixture", page.queryParameter("client_id"))
+        assertEquals("st4te", page.queryParameter("state"))
+        assertEquals("v".repeat(128), page.queryParameter("code_challenge"))
+        assertEquals("plain", page.queryParameter("code_challenge_method"))
+        assertNull(client(mal = null).malSignInPage("s", "v"))
+    }
+
+    @Test
+    fun `MyAnimeList's code is traded with its verifier, a 400 is a refusal, and a code that is not a token sends nothing`() = runBlocking {
+        server.createContext("/mal/v1/oauth2/token") { exchange ->
+            val form = exchange.requestBody.readBytes().decodeToString()
+            seen += exchange.requestURI.toString() to form
+            if ("code=good" in form) exchange.reply(200, """{"token_type":"Bearer","expires_in":2678400,"access_token":"at1","refresh_token":"rt1"}""")
+            else exchange.reply(400, """{"error":"invalid_grant"}""")
+        }
+        val kept = assertIs<SignInResult.Done<Credential>>(client().malExchange("good", "ver1fier")).value
+        assertEquals("at1", kept.token)
+        assertEquals("rt1", kept.refreshToken)
+        val form = seen.single().second
+        listOf("client_id=mal0fixture", "code=good", "code_verifier=ver1fier", "grant_type=authorization_code").forEach { assertTrue(it in form, it) }
+        assertEquals(SignInResult.Refused, client().malExchange("bad", "v"))
+        seen.clear()
+        assertEquals(SignInResult.Failed, client().malExchange("bad\r\ncode", "v"))
+        assertTrue(seen.isEmpty(), "nothing was sent")
     }
 
     @Test

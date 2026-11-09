@@ -9,13 +9,18 @@ internal enum class SignInKind {
 
     /** A16: an email and password typed here, the owner's exception for the two subtitle services. */
     Password,
+
+    /** A10: the browser, and back through a `cloudstreamapp://` redirect (`KMP-95e`). */
+    Browser,
 }
 
 /**
- * The services the Mac signs in to in `KMP-95d`. AniList and MyAnimeList join with `KMP-95e`'s browser redirect, and
- * are not listed until then (the PM, 2026-11-09). Kitsu is never on the Mac: it signs in only with a password.
+ * The services the Mac signs in to, in A9's order. MyAnimeList signs in through the browser (`KMP-95e`); AniList waits
+ * on the owner's answer about its `state` (the PM, 2026-11-09). Kitsu is never on the Mac: it signs in only with a
+ * password.
  */
 internal enum class DesktopService(val displayName: String, val kind: SignInKind, val subtitles: Boolean) {
+    MyAnimeList("MyAnimeList", SignInKind.Browser, subtitles = false),
     Simkl("Simkl", SignInKind.Code, subtitles = false),
     OpenSubtitles("OpenSubtitles", SignInKind.Password, subtitles = true),
     SubDl("SubDL", SignInKind.Password, subtitles = true),
@@ -29,11 +34,13 @@ internal enum class DesktopService(val displayName: String, val kind: SignInKind
  * - SubDL: [token] is the API key its login trades the password for; the password is not kept (`DS-25`).
  * - OpenSubtitles: [token] is a JWT said to last 24 hours, with no refresh token, so [email] and [password] are kept
  *   beside it to sign in again (the owner's ruling, 2026-11-08).
+ * - MyAnimeList: [token] and the [refreshToken] it is renewed with, as Android keeps them.
  */
 internal class Credential(
     val token: String,
     val email: String? = null,
     val password: String? = null,
+    val refreshToken: String? = null,
 ) {
     override fun toString(): String = "Credential(<hidden>)"
 }
@@ -127,4 +134,13 @@ internal interface SignInClient {
 
     /** A16: [service]'s own login. */
     suspend fun passwordSignIn(service: DesktopService, email: String, password: String): SignInResult<Credential>
+
+    /** MyAnimeList's client id is in this build. */
+    val malAvailable: Boolean
+
+    /** A10: MyAnimeList's page to sign in on, carrying [state] and the PKCE [verifier] (`plain`, as MAL allows only). */
+    fun malSignInPage(state: String, verifier: String): String?
+
+    /** The code the redirect brought, traded for the token with the same [verifier]. */
+    suspend fun malExchange(code: String, verifier: String): SignInResult<Credential>
 }
