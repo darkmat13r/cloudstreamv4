@@ -15,7 +15,11 @@ import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.semantics.SemanticsNode
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -108,6 +112,43 @@ class SearchScreenTest {
         settle()
         val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
+    }
+
+    /**
+     * `KMP-90e`: Poster size sets the smallest card, 128, 160 or 200, so a bigger size is fewer columns. Medium is the
+     * grid as it was. At 760 and 1280 wide, less the 24 margins, with 16 between cards.
+     */
+    @Test
+    fun `Poster size changes how many results fit across, and Medium is the grid as it was`() {
+        val many = state(SearchStatus.Showing(SearchContent.Results(listOf(group("Wide", 12)))), query = "q")
+        val expected = mapOf(
+            760 to listOf(PosterSize.Small to 5, PosterSize.Medium to 4, PosterSize.Large to 3),
+            1280 to listOf(PosterSize.Small to 8, PosterSize.Medium to 7, PosterSize.Large to 5),
+        )
+        expected.forEach { (width, sizes) ->
+            sizes.forEach { (size, columns) ->
+                val scene = scene(width) {
+                    SearchScreenDesktop(many, {}, artwork = { Box(Modifier.fillMaxSize().background(Color.DarkGray)) }, posterSize = size)
+                }
+                assertEquals(columns, scene.firstLine("Wide title"), "$size at $width")
+                if (width == 1280) scene.save("poster-size-${size.name.lowercase()}")
+                scene.close()
+            }
+        }
+        val before = scene(1280) { SearchScreenDesktop(many, {}, artwork = { Box(Modifier.fillMaxSize().background(Color.DarkGray)) }) }
+        assertEquals(7, before.firstLine("Wide title"), "no posterSize is Medium")
+        before.close()
+    }
+
+    /** How many cards the first line of [prefix]'s titles holds, read from what a screen reader is told. */
+    private fun ImageComposeScene.firstLine(prefix: String): Int {
+        settle()
+        fun SemanticsNode.every(): List<SemanticsNode> = listOf(this) + children.flatMap { it.every() }
+        val tops = semanticsOwners.flatMap { it.rootSemanticsNode.every() }
+            .filter { node -> node.config.getOrNull(SemanticsProperties.Text).orEmpty().any { it.text.startsWith(prefix) } }
+            .map { it.boundsInRoot }
+        val first = tops.minOf { it.top }
+        return tops.filter { it.top == first }.map { it.left }.distinct().size
     }
 
     @Test

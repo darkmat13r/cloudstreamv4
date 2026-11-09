@@ -14,21 +14,21 @@ class SearchSuggestionsTest {
         SearchResultItem(id = SearchResultId("$provider/$title"), title = title, providerName = provider)
 
     @Test
-    fun `the board's own case collapses dune and Dune into one row with both origins`() {
+    fun `the board's own case collapses tide and Tide into one row with both origins`() {
         val rows = mergeSuggestions(
-            typed = "dune",
-            suggestions = listOf("Dune", "Dune: Part Two", "Dune: Prophecy", "Dune (1984)", "Duna"),
-            recent = recent("dune", "dune messiah", "blade runner"),
+            typed = "tide",
+            suggestions = listOf("Tide", "Tide: Part Two", "Tide: Prophecy", "Tide (1991)", "Tida"),
+            recent = recent("tide", "tide warden", "salt road"),
         )
 
         assertEquals(
-            listOf("dune", "Dune: Part Two", "Dune: Prophecy", "Dune (1984)", "Duna", "dune messiah"),
+            listOf("tide", "Tide: Part Two", "Tide: Prophecy", "Tide (1991)", "Tida", "tide warden"),
             rows.map { it.query },
         )
         val first = rows.first()
         assertTrue(first.suggested, "the collapsed row keeps the suggestion's origin")
         assertEquals("2 days ago", first.recentWhen, "and the recent search's")
-        assertEquals(1, rows.count { it.query.equals("dune", ignoreCase = true) }, "one row, not two")
+        assertEquals(1, rows.count { it.query.equals("tide", ignoreCase = true) }, "one row, not two")
         assertFalse(rows.last().suggested, "a recent search nobody suggested is not marked suggested")
     }
 
@@ -54,26 +54,26 @@ class SearchSuggestionsTest {
 
     @Test
     fun `a recent search that does not contain the typed words is not a row`() {
-        val rows = mergeSuggestions(typed = "dune", suggestions = emptyList(), recent = recent("blade runner", "DUNE messiah"))
+        val rows = mergeSuggestions(typed = "tide", suggestions = emptyList(), recent = recent("salt road", "TIDE warden"))
 
-        assertEquals(listOf("DUNE messiah"), rows.map { it.query })
+        assertEquals(listOf("TIDE warden"), rows.map { it.query })
     }
 
     @Test
     fun `nothing typed is no rows`() {
-        assertTrue(mergeSuggestions(typed = "  ", suggestions = listOf("Dune"), recent = recent("dune")).isEmpty())
+        assertTrue(mergeSuggestions(typed = "  ", suggestions = listOf("Tide"), recent = recent("tide")).isEmpty())
     }
 
     @Test
     fun `a count is the providers carrying the title, each once, ignoring case`() {
-        val rows = listOf(SearchSuggestion("dune"), SearchSuggestion("Dune: Part Two"), SearchSuggestion("dune messiah"))
+        val rows = listOf(SearchSuggestion("tide"), SearchSuggestion("Tide: Part Two"), SearchSuggestion("tide warden"))
         val counted = rows.withSourceCounts(
             listOf(
-                item("Dune", "Filmxy"),
-                item("DUNE", "Vidplay"),
-                item("Dune", "Vidplay"),
-                item("Dune: Part Two", "Filmxy"),
-                item("Dune: Part Two (4K)", "Zoro"),
+                item("Tide", "Source A"),
+                item("TIDE", "Source B"),
+                item("Tide", "Source B"),
+                item("Tide: Part Two", "Source A"),
+                item("Tide: Part Two (4K)", "Source C"),
             ),
         )
 
@@ -82,6 +82,6 @@ class SearchSuggestionsTest {
 
     @Test
     fun `before the counts, a row has none rather than zero`() {
-        assertEquals(null, SearchSuggestion("dune").sources)
+        assertEquals(null, SearchSuggestion("tide").sources)
     }
 }

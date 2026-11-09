@@ -32,6 +32,7 @@ import com.lagradost.cloudstream3.utils.AppContextUtils.updateHasTrailers
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.ExtractorLink
 import com.lagradost.cloudstream3.utils.downloader.DownloadObjects
+import com.lagradost.cloudstream3.utils.redactedReason
 import com.lagradost.cloudstream4.feature.detail.DetailCastMember
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailRecommendation
@@ -270,8 +271,9 @@ internal class AndroidDetailSource(
         const val NO_ANSWER = "NO_RESPONSE"
         const val MAX_REASON_CHARS = 60
 
+        /** A provider's own words, so no address and no user path, however they are hidden (`BUG-63`). */
         fun String.firstLine(): String =
-            lineSequence().firstOrNull()?.trim()?.take(MAX_REASON_CHARS).orEmpty()
+            lineSequence().firstOrNull()?.let { redactedReason(it, MAX_REASON_CHARS) }.orEmpty()
     }
 }
 

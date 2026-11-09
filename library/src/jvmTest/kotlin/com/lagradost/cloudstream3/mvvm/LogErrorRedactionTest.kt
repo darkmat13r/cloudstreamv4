@@ -56,6 +56,25 @@ class LogErrorRedactionTest {
         "nl https:\n//host/p?token=MARKER_QUERY" to "nl https://host/<…>",
         "https:\u00A0//host/p?token=MARKER_QUERY" to "https://host/<…>",
         "keeps\nlines\r\nand\ttabs" to "keeps\nlines\r\nand tabs",
+        // BUG-64: a code point Unicode calls default-ignorable, Cc and Cf or not, must not hide a url or a path either.
+        "cgj https:\u034F//cdn.example/x?token=MARKER_QUERY" to "cgj https://cdn.example/<…>",
+        "vs ht\uFE0Ftps://cdn.example/MARKER_PATH" to "vs https://cdn.example/<…>",
+        "filler https:\u3164//host/p?token=MARKER_QUERY" to "filler https://host/<…>",
+        "supplement https:\uDB40\uDD00//host/p?token=MARKER_QUERY" to "supplement https://host/<…>",
+        "tag https:\uDB40\uDC41//host/p?token=MARKER_QUERY" to "tag https://host/<…>",
+        "cache at /Us\u034Fers/MARKER_USER/MARKER_PATH" to "cache at <path>",
+        "keeps 한국어 and \uD83D\uDE00" to "keeps 한국어 and \uD83D\uDE00",
+        // BUG-64: up to two characters a screen draws blank, around or between the slashes, are a url too.
+        "braille https:\u2800//host/p?token=MARKER_QUERY" to "braille https://host/<…>",
+        "notehead https:\uD834\uDD59//host/p?token=MARKER_QUERY" to "notehead https://host/<…>",
+        "between https:/\u2800/cdn.example/x?token=MARKER_QUERY" to "between https://cdn.example/<…>",
+        "both https:\u2800/\u2800/host/p?token=MARKER_QUERY" to "both https://host/<…>",
+        "spaced https: \u2800 //host/p?token=MARKER_QUERY" to "spaced https://host/<…>",
+        "Ratio 16:9 // wide" to "Ratio 16:9 // wide",
+        "Note: a/b" to "Note: a/b",
+        "Note: a/b/c" to "Note: a/b/c",
+        "x:a/b" to "x:a/b",
+        "1:2/3/4" to "1:2/3/4",
     )
 
     private fun captured(block: () -> Unit): String {
@@ -109,7 +128,7 @@ class LogErrorRedactionTest {
         val shown = safeFail<Unit>(failure) as Resource.Failure
         assertEquals(false, shown.isNetworkError)
         markers.forEach { assertFalse(shown.errorString.contains(it), "'$it' reached the screen:\n${shown.errorString}") }
-        // getStackTracePretty puts the message first, joined straight onto the first frame's "File.kt line".
+        // getStackTracePretty puts the message first, then the frames' "File.kt line", each on its own line (BUG-63).
         assertTrue(shown.errorString.startsWith("\nGET https://host.example/<…> failed"), shown.errorString)
         assertTrue(shown.errorString.contains("LogErrorRedactionTest.kt"), shown.errorString)
     }
@@ -128,5 +147,36 @@ class LogErrorRedactionTest {
 
         val noMessage = throwAbleToResource<Unit>(ErrorLoadingException()) as Resource.Failure
         assertEquals("Error loading, try again later.", noMessage.errorString)
+    }
+
+    /** A frame whose file name a plugin set: an address with a token, and a user path. */
+    private fun forged(error: Throwable, fileName: String) = error.apply {
+        stackTrace = arrayOf(StackTraceElement("a.B", "c", fileName, 7)) + stackTrace
+    }
+
+    @Test
+    fun theMessageIsItsOwnLineAndNoFrameIsGluedOntoIt() {
+        val shown = safeFail<Unit>(IOException("HTTP 503")) as Resource.Failure
+        // BUG-63: the first frame was joined onto the message, so the shown line ended in a file name and a line number.
+        assertEquals("HTTP 503", shown.errorString.trim().lines().first())
+    }
+
+    @Test
+    fun aForgedFrameShowsNoAddressTokenOrUserPath() {
+        val names = listOf(
+            "https://cdn.example/k?token=MARKER_QUERY provider.kt",
+            "/Users/MARKER_USER/secret/provider.kt",
+            "file:///storage/emulated/0/MARKER_PATH/provider.kt",
+        )
+        // BUG-63: with no message, the first line shown is a frame, with ":" made " ", so `https://` read `https //`.
+        for (name in names) {
+            val pretty = forged(IllegalStateException(), name).getStackTracePretty()
+            markers.forEach { assertFalse(pretty.contains(it), "'$it' reached the screen:\n$pretty") }
+            // The NullPointerException branch shows a frame named *provider.kt* on its first line.
+            val npe = throwAbleToResource<Unit>(forged(NullPointerException(), name)) as Resource.Failure
+            markers.forEach { assertFalse(npe.errorString.contains(it), "'$it' reached the screen:\n${npe.errorString}") }
+        }
+        val npe = throwAbleToResource<Unit>(forged(NullPointerException(), names.first())) as Resource.Failure
+        assertTrue(npe.errorString.startsWith("NullPointerException at https://cdn.example/<…> provider.kt:7"), npe.errorString)
     }
 }

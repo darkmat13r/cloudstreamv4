@@ -39,6 +39,7 @@ import com.lagradost.cloudstream4.feature.home.HomeAction
 import com.lagradost.cloudstream4.feature.home.HomeEffect
 import com.lagradost.cloudstream4.feature.home.HomeViewModel
 import com.lagradost.cloudstream4.feature.home.desktop.HomeScreenDesktop
+import com.lagradost.cloudstream4.feature.settings.AppearanceSettings
 import com.lagradost.cloudstream4.search.PosterImage
 import org.jetbrains.compose.resources.stringResource
 
@@ -52,8 +53,11 @@ internal fun HomeHost(
     setEscape: ((() -> Unit)?) -> Unit,
     onOpen: (String) -> Unit,
     onSearch: () -> Unit,
+    appearance: AppearanceSettings = AppearanceSettings.Default,
 ) {
     val state by viewModel.state.collectAsState()
+    val showRandom by appearance.showRandom.collectAsState()
+    val posterSize by appearance.posterSize.collectAsState()
     SideEffect {
         setEscape(if (state.pickerOpen) ({ viewModel.onAction(HomeAction.PickerDismissed) }) else null)
     }
@@ -73,6 +77,8 @@ internal fun HomeHost(
         // Only public http(s) addresses get this far. See `posterHttpClient`.
         artwork = { item -> PosterImage(url = item.posterUrl, modifier = Modifier.fillMaxSize()) },
         picture = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
+        showRandom = showRandom,
+        posterSize = posterSize,
     )
 }
 

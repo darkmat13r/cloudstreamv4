@@ -57,6 +57,7 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
@@ -110,6 +111,7 @@ import org.jetbrains.compose.resources.stringResource
  *
  * @param now the clock a sync's age is measured with, or null where there is none and no age is shown.
  * @param artwork draws a title's poster. Image loading is the host's.
+ * @param posterSize Settings' Poster size (`KMP-90e`): how wide a card is at least.
  */
 @Composable
 fun LibraryScreenDesktop(
@@ -118,6 +120,7 @@ fun LibraryScreenDesktop(
     modifier: Modifier = Modifier,
     now: (() -> Long)? = null,
     artwork: @Composable (LibraryCard) -> Unit = {},
+    posterSize: PosterSize = PosterSize.Medium,
 ) {
     val status = state.toDesktopUiState(onAction)
     val words = libraryCardWords()
@@ -138,8 +141,8 @@ fun LibraryScreenDesktop(
                 else -> UiStateHost(
                     state = content,
                     modifier = Modifier.fillMaxSize(),
-                    skeleton = { Skeleton() },
-                ) { cards -> Cards(cards, state.tab, held = state.stale != null, words, onAction, artwork) }
+                    skeleton = { Skeleton(posterSize) },
+                ) { cards -> Cards(cards, state.tab, held = state.stale != null, words, onAction, artwork, posterSize) }
             }
         }
         LibraryPanelsDesktop(state, now, onAction)
@@ -365,10 +368,11 @@ private fun Cards(
     words: LibraryCardWords,
     onAction: (LibraryAction) -> Unit,
     artwork: @Composable (LibraryCard) -> Unit,
+    posterSize: PosterSize,
 ) {
     BoxWithConstraints(Modifier.fillMaxSize()) {
         val width = maxWidth - DesktopDimens.WindowMargin * 2
-        val columns = LibraryScreenDesktopDefaults.columns(width)
+        val columns = LibraryScreenDesktopDefaults.columns(width, posterSize)
         val cardWidth = LibraryScreenDesktopDefaults.cardWidth(width, columns)
         val lines = cards.chunked(columns)
         LazyColumn(
@@ -553,12 +557,12 @@ private fun CardMeta(card: LibraryCard, modifier: Modifier = Modifier) {
 
 /** The shape of what lands, so the cards replacing it do not move anything. */
 @Composable
-private fun Skeleton() {
+private fun Skeleton(posterSize: PosterSize) {
     val colors = CloudStreamTheme.colors
     val shape = CloudStreamTheme.shapes.large
     BoxWithConstraints(Modifier.fillMaxSize()) {
         val width = maxWidth - DesktopDimens.WindowMargin * 2
-        val columns = LibraryScreenDesktopDefaults.columns(width)
+        val columns = LibraryScreenDesktopDefaults.columns(width, posterSize)
         val cardWidth = LibraryScreenDesktopDefaults.cardWidth(width, columns)
         Column(
             verticalArrangement = Arrangement.spacedBy(DesktopDimens.SectionGap),
@@ -590,6 +594,10 @@ object LibraryScreenDesktopDefaults {
      */
     val CardMinWidth: Dp = 200.dp
 
+    /** Poster size's Small and Large here (`KMP-90e`); Medium is [CardMinWidth]. A step wider than Search's and Home's. */
+    val SmallCardMinWidth: Dp = 160.dp
+    val LargeCardMinWidth: Dp = 240.dp
+
     /** Posters, as everywhere else that draws one. */
     const val CardRatio = 2f / 3f
 
@@ -618,6 +626,14 @@ object LibraryScreenDesktopDefaults {
     fun cardWidth(width: Dp, columns: Int): Dp =
         ((width - DesktopDimens.GroupGap * (columns - 1)) / columns).coerceAtLeast(0.dp)
 
-    fun columns(width: Dp): Int =
-        ((width + DesktopDimens.GroupGap) / (CardMinWidth + DesktopDimens.GroupGap)).toInt().coerceAtLeast(1)
+    fun cardMinWidth(size: PosterSize): Dp = when (size) {
+        PosterSize.Small -> SmallCardMinWidth
+        PosterSize.Medium -> CardMinWidth
+        PosterSize.Large -> LargeCardMinWidth
+    }
+
+    fun columns(width: Dp, posterSize: PosterSize = PosterSize.Medium): Int {
+        val minimum = cardMinWidth(posterSize)
+        return ((width + DesktopDimens.GroupGap) / (minimum + DesktopDimens.GroupGap)).toInt().coerceAtLeast(1)
+    }
 }

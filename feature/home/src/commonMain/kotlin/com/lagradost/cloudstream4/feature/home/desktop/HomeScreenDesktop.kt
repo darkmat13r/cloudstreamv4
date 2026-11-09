@@ -50,6 +50,7 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
@@ -139,6 +140,9 @@ import org.jetbrains.compose.resources.stringResource
  * @param picture draws the art at an address: a Continue watching poster or the hero's backdrop. Image loading is the
  *   host's, and an address it will not load draws nothing.
  * @param now the time in epoch milliseconds, for how old H4's kept rows are. A test passes its own.
+ * @param showRandom whether the top bar offers Random: Settings' Random Button (`KMP-90g`), on unless turned off.
+ * @param posterSize Settings' Poster size (`KMP-90e`): how wide a poster row's cards are at least. A row of 16:9 cards
+ *   keeps its own width, because the setting is about posters.
  */
 @Composable
 fun HomeScreenDesktop(
@@ -148,15 +152,17 @@ fun HomeScreenDesktop(
     artwork: @Composable (HomeItem) -> Unit = {},
     picture: @Composable (url: String?) -> Unit = {},
     now: () -> Long = { Clock.System.now().toEpochMilliseconds() },
+    showRandom: Boolean = true,
+    posterSize: PosterSize = PosterSize.Medium,
 ) {
     val status = state.status.toUiState(state.selectedOption?.name, onAction)
     val local = state.hero is HomeHero.Shown || state.history.resume.isNotEmpty() || state.bookmarks.all.isNotEmpty()
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
-            Toolbar(state, onAction)
+            Toolbar(state, onAction, showRandom)
             // H4: a failed reload keeps the rows, so it is the page with them, whatever the device keeps above.
             if (local || state.status is HomeStatus.Stale) {
-                Page(state, status, onAction, artwork, picture, now)
+                Page(state, status, onAction, artwork, picture, now, posterSize)
                 return@Column
             }
             status.failureNotice?.let { notice ->
@@ -171,8 +177,8 @@ fun HomeScreenDesktop(
                 else -> UiStateHost(
                     state = content,
                     modifier = Modifier.fillMaxSize(),
-                    skeleton = { Skeleton() },
-                ) { rows -> Rows(rows, onAction, artwork) }
+                    skeleton = { Skeleton(posterSize) },
+                ) { rows -> Rows(rows, onAction, artwork, posterSize) }
             }
         }
         SourcePanel(state, onAction)
@@ -180,7 +186,7 @@ fun HomeScreenDesktop(
 }
 
 @Composable
-private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit) {
+private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit, showRandom: Boolean) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Row(
@@ -207,11 +213,13 @@ private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit) {
                 contentDescription = stringResource(Res.string.reload_provider),
                 onClick = { onAction(HomeAction.ReloadRequested) },
             )
-            DesktopIconButton(
-                icon = CloudStreamIcons.Random,
-                contentDescription = stringResource(Res.string.home_random),
-                onClick = { onAction(HomeAction.RandomRequested()) },
-            )
+            if (showRandom) {
+                DesktopIconButton(
+                    icon = CloudStreamIcons.Random,
+                    contentDescription = stringResource(Res.string.home_random),
+                    onClick = { onAction(HomeAction.RandomRequested()) },
+                )
+            }
         }
     }
 }
@@ -263,6 +271,7 @@ private fun Page(
     artwork: @Composable (HomeItem) -> Unit,
     picture: @Composable (String?) -> Unit,
     now: () -> Long,
+    posterSize: PosterSize,
 ) {
     val stale = state.status as? HomeStatus.Stale
     BoxWithConstraints(Modifier.fillMaxSize()) {
@@ -291,19 +300,21 @@ private fun Page(
             }
             if (state.bookmarks.all.isNotEmpty()) {
                 item(key = "bookmarks") { BookmarksHeader(state.bookmarks, state.topGap("bookmarks"), onAction) }
-                bookmarkLines(state.bookmarks, width, onAction, artwork)
+                bookmarkLines(state.bookmarks, width, onAction, artwork, posterSize)
             }
             status.failureNotice?.let { notice -> item(key = "notice") { FailureBanner(notice = notice) } }
             if (stale != null) {
                 // Under the banner alone, the first row takes the first row's gap, as the board draws it.
                 val alone = state.hero !is HomeHero.Shown && state.history.resume.isEmpty() && state.bookmarks.all.isEmpty()
-                rowItems(stale.kept, width, onAction, artwork, first = alone, kept = true)
+                rowItems(stale.kept, width, onAction, artwork, posterSize, first = alone, kept = true)
                 return@LazyColumn
             }
             when (status) {
-                is UiState.Content -> rowItems(status.value, width, onAction, artwork, first = false)
-                is UiState.Partial -> rowItems(status.value, width, onAction, artwork, first = false)
-                UiState.Loading -> item(key = "loading") { Skeleton(Modifier.heightIn(max = HomeScreenDesktopDefaults.InlineStateHeight)) }
+                is UiState.Content -> rowItems(status.value, width, onAction, artwork, posterSize, first = false)
+                is UiState.Partial -> rowItems(status.value, width, onAction, artwork, posterSize, first = false)
+                UiState.Loading -> item(key = "loading") {
+                    Skeleton(posterSize, Modifier.heightIn(max = HomeScreenDesktopDefaults.InlineStateHeight))
+                }
                 is UiState.Empty -> item(key = "state") {
                     InlineState(state.desktopPrompt(status.prompt, onAction), status.detail)
                 }
@@ -374,6 +385,7 @@ private fun Rows(
     rows: List<HomeRow>,
     onAction: (HomeAction) -> Unit,
     artwork: @Composable (HomeItem) -> Unit,
+    posterSize: PosterSize,
 ) {
     BoxWithConstraints(Modifier.fillMaxSize()) {
         val width = maxWidth - DesktopDimens.WindowMargin * 2
@@ -386,7 +398,7 @@ private fun Rows(
             ),
             verticalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
         ) {
-            rowItems(rows, width, onAction, artwork, first = true)
+            rowItems(rows, width, onAction, artwork, posterSize, first = true)
         }
     }
 }
@@ -397,11 +409,12 @@ private fun LazyListScope.rowItems(
     width: Dp,
     onAction: (HomeAction) -> Unit,
     artwork: @Composable (HomeItem) -> Unit,
+    posterSize: PosterSize,
     first: Boolean,
     kept: Boolean = false,
 ) {
             rows.forEachIndexed { index, row ->
-                val columns = HomeScreenDesktopDefaults.columns(width, row.landscape)
+                val columns = HomeScreenDesktopDefaults.columns(width, row.landscape, posterSize)
                 val shown = row.items.take(row.lines * columns)
                 item(key = row.key) {
                     RowHeader(
@@ -751,8 +764,9 @@ private fun LazyListScope.bookmarkLines(
     width: Dp,
     onAction: (HomeAction) -> Unit,
     artwork: @Composable (HomeItem) -> Unit,
+    posterSize: PosterSize,
 ) {
-    val columns = HomeScreenDesktopDefaults.columns(width, landscape = false)
+    val columns = HomeScreenDesktopDefaults.columns(width, landscape = false, posterSize)
     // One line, as a source's row starts: the rest are one press away on the library's page.
     val shown = bookmarks.shown.take(columns)
     if (shown.isEmpty()) return
@@ -772,12 +786,12 @@ private val HomeWatchStatus.words: StringResource
 
 /** The shape of what lands, so rows replacing it do not move anything. */
 @Composable
-private fun Skeleton(modifier: Modifier = Modifier) {
+private fun Skeleton(posterSize: PosterSize, modifier: Modifier = Modifier) {
     val colors = CloudStreamTheme.colors
     val shape = CloudStreamTheme.shapes.large
     BoxWithConstraints(modifier.fillMaxSize().clipToBounds()) {
         val width = maxWidth - DesktopDimens.WindowMargin * 2
-        val columns = HomeScreenDesktopDefaults.columns(width, landscape = false)
+        val columns = HomeScreenDesktopDefaults.columns(width, landscape = false, posterSize)
         val cardWidth = HomeScreenDesktopDefaults.cardWidth(width, columns)
         Column(
             verticalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
@@ -914,6 +928,8 @@ private fun SourceChoice(title: String, subtitle: String, selected: Boolean, onC
 
 object HomeScreenDesktopDefaults {
     val PortraitCardMinWidth: Dp = 160.dp
+    val SmallPortraitCardMinWidth: Dp = 128.dp
+    val LargePortraitCardMinWidth: Dp = 200.dp
     /** Wider, because a 16:9 card at the portrait width is too small to read. */
     val LandscapeCardMinWidth: Dp = 280.dp
     const val PortraitRatio = 2f / 3f
@@ -965,9 +981,22 @@ object HomeScreenDesktopDefaults {
 
     fun ratio(landscape: Boolean): Float = if (landscape) LandscapeRatio else PortraitRatio
 
-    /** How many cards fit in [width], at least one, the same way an adaptive grid decides. */
-    fun columns(width: Dp, landscape: Boolean): Int {
-        val minimum = if (landscape) LandscapeCardMinWidth else PortraitCardMinWidth
+    /**
+     * The smallest poster card at each Poster size (`KMP-90e`): 128, 160, 200. [PosterSize.Medium] is
+     * [PortraitCardMinWidth], the width before the setting.
+     */
+    fun portraitCardMinWidth(size: PosterSize): Dp = when (size) {
+        PosterSize.Small -> SmallPortraitCardMinWidth
+        PosterSize.Medium -> PortraitCardMinWidth
+        PosterSize.Large -> LargePortraitCardMinWidth
+    }
+
+    /**
+     * How many cards fit in [width], at least one, the same way an adaptive grid decides. [posterSize] moves only
+     * portrait cards.
+     */
+    fun columns(width: Dp, landscape: Boolean, posterSize: PosterSize = PosterSize.Medium): Int {
+        val minimum = if (landscape) LandscapeCardMinWidth else portraitCardMinWidth(posterSize)
         return ((width + DesktopDimens.GroupGap) / (minimum + DesktopDimens.GroupGap)).toInt().coerceAtLeast(1)
     }
 }

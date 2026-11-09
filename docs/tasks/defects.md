@@ -2590,7 +2590,7 @@ All on `Television_720p`, locally (CI is off).
 
 ## BUG-61 — Android Home could show a provider's URL and token in its failure line · **medium, security** · measured 2026-11-08
 
-**Status:** fixed in pr · `app/.../cloudstream4/home/AndroidHomeSource.kt`, `toReply`
+**Status:** done · #251, merged in train 11 (`07f329dd9`) · `app/.../cloudstream4/home/AndroidHomeSource.kt`, `toReply`
 
 Home's failure line is the first line of `Resource.Failure.errorString`. Android's `toReply` cleaned that line (control
 and format characters out) and relied on `:library` to have redacted it. Desktop's copy redacts again after removing
@@ -2643,6 +2643,12 @@ compiler adds because the class reads the private pattern and the shared private
   The second needs a forged stack frame.
 - Search (`ApiRepositorySearchSource.detailOf`), detail (`AndroidDetailSource`) and downloads
   (`AndroidDownloadsSource`) also read `errorString`, with no redaction of their own.
+
+  `BUG-63` (#263) closes both.
+
+**Follow-up:**
+- [ ] When `BUG-64` (#253) is on master, delete `toReply`'s copy of the default-ignorable block and its second pass
+  with the link pattern, and keep only `redactedText`. Tracked in `BUG-63`.
 
 ## BUG-71 — `SearchSuggestionsViewModelTest` waited on the real clock · **low, test only (hardening)**
 
@@ -2981,3 +2987,251 @@ title, the episode line and the SOURCE cell, and in `source` also the four sourc
 or sites, nearly all already on master: "Dune" (307), "Witcher" (105), "Vidsrc" (28), "Arcane" (26), "Severance",
 "Nine Lives", "Gogoanime", "Naruto", "Internet Archive". `BUG-70` fixes the HUD tests' share on master. The rest is
 for its own task.
+
+## BUG-64 — A default-ignorable code point, or a blank-drawn character, inside `://` or `/Users/` still hid a url or a path from the redaction · **high, security** · measured 2026-11-08
+
+**Status:** fixed in the PR that adds this entry. It was built on #224 (`BUG-52`) and is rebased onto master, which train 9 brought it to. The fix is made in every copy of the invisible-character check:
+
+- the four redaction copies listed under `BUG-44`: `:app` `utils/LogRedaction.kt`, `:library` `mvvm/ArchComponentExt.kt`, `:feature:extensions:sandbox` `PluginHost.kt` and `:desktopApp` `detail/DesktopDetailSource.kt`
+- `:desktopApp`'s `withoutInvisible()`, which Home and Search run before redacting
+- the sandbox's subtitle-label check (`PluginHostClient.kt`, `RemoteSubtitle.cleaned`)
+
+`#251` (`BUG-61`, Android Home's failure line, on master) carries the same list and the same url pattern: at the rebase, the list block and the pattern line hash the same in all five copies.
+
+**The defects.**
+
+1. **Cc and Cf are not everything a screen draws as nothing.** `BUG-52` drops Unicode Cc and Cf before redacting. Unicode's Default_Ignorable_Code_Point also covers code points in other categories: U+034F (combining grapheme joiner), the variation selectors U+FE00–FE0F and U+E0100–E01EF, the Hangul fillers U+115F, U+1160, U+3164 and U+FFA0, U+17B4–17B5 and U+180B–180F. The check also read text one `Char` at a time, so it never saw a supplementary code point: the tag characters U+E0020–E007F are Cf, but a surrogate pair is not. Any of these inside `https:<x>//` or `/Us<x>ers/` stopped the pattern, while the text on screen still read as the url or the path.
+2. **Some visible characters are drawn blank.** U+2800 (braille pattern blank) and U+1D159 (a null notehead) are neither ignorable nor `\p{Z}`. Between `https:` and `//`, or between the two slashes, they stopped the pattern too.
+
+**Measured before the fix.**
+
+- On master `bb06dacb3`, the new rows fail in every copy. The first is `"cgj https:͏//cdn.example/x?token=MARKER_QUERY"`, which comes out unchanged, token and all. That happens in `StackTraceRedactionTest`, `LogErrorRedactionTest` (through `logError`), `PluginHostRedactionTest` and `DesktopRedactionTest`. The label test fails with `Eng` + U+034F + `lish` + U+FE0F, U+3164, U+E0100 and U+E0041 left in the label, and the Mac's `withoutInvisible` test keeps U+034F.
+- Against `#224`'s rules (its strip and its pattern, rebuilt in `jshell` from the `#224` head), each of the 11 hostile rows below leaks its marker. Every row is needed on top of `BUG-52`.
+
+**The fix.**
+
+- One block, `isDefaultIgnorable` plus `withoutDefaultIgnorable`, is pasted verbatim into each copy, so its md5 is the same everywhere. The list is DerivedCoreProperties 18.0's Default_Ignorable_Code_Point, range for range. The walker reads a code point at a time, so a surrogate pair goes or stays whole, and an emoji or any other supplementary character that is not on the list is kept. `:library` keeps it private: only function bodies and private members change, and nothing public is added. In the sandbox, `PluginHost` and the label check share one copy, `DefaultIgnorable.kt`, whose walker is `internal`.
+- Each redaction copy's `withoutHiddenCharacters` runs the block after its Cc/Cf filter. The Mac's `withoutInvisible` and the subtitle label do the same.
+- Each copy's `URL_IN_TEXT` now allows up to two non-space, non-slash characters between `scheme:` and the first `/`. It also allows up to two that are neither letters nor digits between the slashes, with spaces around either group. The output is still `scheme://host[:port]/<…>`, so the blank character goes with the rest. The pattern line has one md5 across the four copies and `#251`.
+
+**What changes for a user.**
+
+- Text such as `Note: a//b`, or `word:` followed within two characters by `//`, now reads as a url and is redacted. That over-redacts, which is the safe way round. Keep-rows prove that `Ratio 16:9 // wide`, `Note: a/b`, `Note: a/b/c`, `x:a/b` and `1:2/3/4` come out unchanged.
+- In logs, and in subtitle labels on the Mac, a variation selector is dropped. An emoji's presentation can change there (`❤️` becomes `❤`). Titles and other on-screen text keep their own Cc/Cf cleaning and are untouched.
+
+**Tests.** Every copy's table gains these rows, and the four tables share one md5:
+
+- CGJ, U+FE0F, U+3164, U+E0100 and U+E0041 inside the scheme or `://`
+- CGJ inside `/Users/`
+- U+2800 and U+1D159 inside `://`
+- `https:/⠀/`, `https:⠀/⠀/` and `https: ⠀ //`
+- the keep-rows above, and `keeps 한국어 and 😀` unchanged
+
+`HostProtocolTest` gains a subtitle-label case, and `DesktopRedactionTest` gains a case for `withoutInvisible`.
+
+**Threat model.** Redaction covers URLs and paths as code writes them, and invisible-character disguises; it does not stop an extension that deliberately encodes a secret. On the Mac the sandbox is the boundary.
+
+**Not covered.** These were found by the review's bypass hunt (33 cases) and left out on purpose:
+
+- Supplementary Cf code points outside the list (U+110BD, U+110CD, U+13430–1343F) are still not stripped. They are not default-ignorable, and fonts draw them.
+- Three or more blank-drawn characters inside `://` are not recognised.
+- Look-alike punctuation:
+  - a fullwidth slash (U+FF0F), a division slash (U+2215) or a fraction slash (U+2044) in place of `/`
+  - a fullwidth colon (U+FF1A) in place of `:`
+- Homoglyph paths, such as `/Users/` written with a Cyrillic `ѕ`.
+- Encoded separators: a percent-encoded (`%2F`) or HTML-encoded (`&#47;`) slash, and a backslash in place of a slash in a url.
+- A url with no scheme (`cdn.example/x?token=…`, or a protocol-relative `//host/…`).
+- A braille blank inside `/Users/` or another user path. Only the url pattern allows blank-drawn characters; the path rules do not.
+
+NFKC normalisation before redacting would cover the fullwidth forms, but it cannot run in `:library`'s `commonMain`, so the shared table would split. It is `BUG-66`.
+
+## BUG-66 — Look-alike slashes and colons still hide a url from the redaction · **medium, security** · open
+
+**Status:** open, a follow-up to `BUG-64`. A fullwidth slash (U+FF0F), a fullwidth colon (U+FF1A), and other compatibility forms read as `https://` on screen but do not match the url pattern. NFKC normalisation before redacting would fold them. It cannot run in `:library`'s `commonMain`, where one of the four synced copies lives, so a fix has to keep the shared case table whole: an expect/actual, or a small folding table shared like `BUG-64`'s list. The division and fraction slashes (U+2215, U+2044) are not folded by NFKC, so they need a rule of their own.
+
+## BUG-63 — Search, detail and downloads showed a provider's failure without their own redaction, and a forged stack frame went through unredacted · **high, security** · measured 2026-11-08
+
+**Status:** fixed in pr, stacked on `BUG-64` (#253) · found 2026-11-08 while auditing `BUG-61` (#251)
+
+Each of these screens shows a line of `Resource.Failure.errorString`, a provider's own words. Before this fix none of
+them redacted it on its own side. On master, the detail page showed an `ErrorLoadingException`'s message as thrown, so a
+tokened URL went on screen whole (measured: every hostile case below leaked there). `BUG-52` (#224) and `BUG-64` (#253)
+close that upstream. What they leave is below, and all of it is closed here.
+
+### Search's shortfall line (`ApiRepositorySearchSource`)
+
+- **Before:** `detailOf` showed each provider's first line, trimmed and capped. On `BUG-64`'s branch, a
+  `NullPointerException` with a forged frame named `https://cdn.example/k?token=… provider.kt` still put its token on
+  the line.
+- **Fix:** the line is built by `shortfallLine`, which runs each reason through `redactedReason`: `redactedText`, then
+  control and format characters out, then the cap. `detailOf` calls it. It moved out of the class so it can be tested
+  off a device.
+- **Test:** `SearchShortfallLineTest`. Every hostile text from the shared table (`HostileFailures`: a tokened URL; an
+  invisible, ignorable or drawn character in `://` or `/Users/`; a split `file:` URI) is thrown both as an
+  `IOException` and as an `ErrorLoadingException`, plus a forged NPE frame, and turned into a `Resource` by
+  `throwAbleToResource`, as `safeApiCall` does it. Before the fix, the forged frame leaked; now none does, and the
+  provider and the host stay.
+
+### The detail page's failure (`AndroidDetailSource`)
+
+- **Before:** `firstLine` trimmed and capped. On master, every `ErrorLoadingException` case leaked; on `BUG-64`'s
+  branch, the forged NPE frame still did.
+- **Fix:** `firstLine` runs through `redactedReason`.
+- **Test:** `AndroidDetailSourceFailureTest`, through the real `details()`, `APIRepository.load` and `safeApiCall`,
+  with a registered provider that throws each case (35: 17 texts two ways, and the forged frame). Before: the forged
+  frame leaked (and on master, every `ErrorLoadingException` case). After: none.
+
+### The downloads page's failure (`AndroidDownloadsSource`)
+
+- **Before:** the whole `errorString`, stack trace included, became the page's failure text.
+- **Fix:** its first line, through `redactedReason`, capped at 60 like search and detail.
+- **No test of its own, and why:** the branch cannot run today. `DownloadViewModel.headerCards` is written in one
+  place and only ever holds `Loading` or `Success`, and the class has no seam to give it a `Failure`. The line is
+  `redactedReason`'s, which `FailureReasonTest` covers with the same table.
+
+### `getStackTracePretty` (`:library`)
+
+- **The glue.** The message and the first frame were joined with no line break, so the line Home, search and detail
+  show ended in a file name and a line number (`HTTP 503` followed straight by `LogErrorRedactionTest.kt`). The frames now start on their own line.
+- **Frame names.** A frame's file name is whatever a plugin's class says, or whatever `setStackTrace` set. With no
+  message, the first line shown is a frame, with `:` turned into a space, so a forged `https://…?token=…` read
+  `https //…` and no pattern could find it. Each frame's location is redacted before the `:` goes. So is the
+  `NullPointerException` branch's `at <frame>` line.
+- **Test:** `LogErrorRedactionTest`, two new cases: the message is its own first line, and a forged frame (a tokened
+  URL, a `/Users/` path or a `file:` URI) leaves nothing on the line, through both `getStackTracePretty` and the NPE
+  branch. Both failed before the fix.
+- **Published API:** `getStackTracePretty`'s signature is unchanged; only its body changed. **Its output is not:** an
+  extension that calls it now gets a line break between the message and the frames, and redacted frame locations.
+  Noted for the owner (review on #263).
+
+### Measured (local, on `BUG-64`'s head `a82062f90`)
+
+The new tests against the old behaviour (search's and detail's old expressions patched back, `ArchComponentExt.kt` from
+the base) failed: `AndroidDetailSourceFailureTest` 1/1, `SearchShortfallLineTest` 1/2, `LogErrorRedactionTest` 2/6.
+With the fix, three times in a row: `AndroidDetailSourceFailureTest` 1/1, `SearchShortfallLineTest` 2/2,
+`FailureReasonTest` 4/4, `AndroidDetailSourceTest` 21/21, `StackTraceRedactionTest` 2/2, `LogErrorRedactionTest` 6/6,
+`ArchComponentExtTest` 1/1.
+
+### For `BUG-61` (#251), Home's copy
+
+- [ ] When `BUG-64` (#253) is on master, delete Home's copy of the default-ignorable block and its second pass with
+  the link pattern from `AndroidHomeSource.toReply`, and keep only `redactedText`, as `redactedReason` does here. Then
+  there is no fifth copy to drift. (Review on #251. `BUG-61`'s entry lives in #251; it gets the same line when this
+  lands.)
+
+---
+
+## BUG-76 — `--check-playback` on a local file never played: the sandbox cannot read it · **low, check only**
+
+**Status:** fixed in this PR · found 2026-11-08 by sys-desktop-2 (frames=0 on master, before `BUG-73` too)
+
+**Measured, on master (2a3f16b6a), a scratch `user.home`, nothing audible.** Two 20 s, 640×360 clips: `testsrc2` with
+no audio, and the same with a silent `anullsrc` track. Each was run by path and by `file://` URL, for 6 s:
+
+| Clip | Master | This PR |
+|---|---|---|
+| no audio, path | frames=0, failed=true | frames=68, 640x360, playing, failed=false |
+| no audio, `file://` | frames=0, failed=true | frames=82, playing, failed=false |
+| with audio, path | frames=0, failed=true | frames=84, playing, failed=false |
+| with audio, `file://` | frames=0, failed=true | frames=83, playing, failed=false |
+
+**So it was not the clip.** The media host runs under a sandbox that lets it read only its own directory, libVLC and
+a few system paths (`SeatbeltProfile.mediaHostRules`). `--check-playback` handed it the file where it was, which the
+host may not open. `--check-subtitle-render` already copies its clip in first (`VlcPlayer.stage`).
+
+**Fix.** `--check-playback` does the same for a local target. `localPlaybackFile` recognises a path or a `file://`
+URL to a file that exists, and that file is staged; anything else, a stream's URL included, goes to the host as before.
+Only a target typed on the command line is staged: the `plugin:` branch passes its link on as it is even when it names a
+local file, so nothing a provider returns can reach the staging, whatever filter a later caller forgets (review,
+defence in depth). Nothing the app plays changed.
+
+**Does real local playback work?** Nothing in the Mac app plays a local file today: the series page's Play is not wired
+(`DesktopDownloadsHost`: `SeriesEffect.Play -> Unit`), and every player the app opens plays a provider's stream.
+So no user meets this. But the same wall is there for whoever wires Play for a download: the host cannot read
+`~/Downloads/CloudStream`. Letting it read the download folder, or staging or serving the file, is a sandbox decision,
+reported to the PM rather than made here.
+
+**Tests.** `PlaybackCheckTest` (4, run): a path, a `file://` URL with its space encoded, and the scheme in any case
+are staged; a stream URL, a missing file, a folder and a malformed `file://` URL are passed on as they are; a
+command-line target is staged and a stream is not; a plugin's link naming a local file, by path or `file://` URL, is
+passed on as it is, never staged. The
+playback itself needs VLC and the sandbox, so it is the measurement above, not a unit test.
+
+## BUG-73 — Two copies of JNA in the Mac app, and which one ran depended on how it was started · **low** · **in pr #280**
+
+**Status:** fixed in this PR · found 2026-11-08 while preparing `KMP-95`'s dependency case for the Keychain
+
+**What was wrong.** `:desktopApp`'s runtime classpath held JNA twice, as two module names Gradle does not see as one:
+- `jna` and `jna-platform` **5.19.1**, from FileKit 0.17.0 through `:media:download`;
+- `jna-jpms` and `jna-platform-jpms` **5.16.0**, from vlcj 4.12.1 through `vlcj-natives` 4.12.0.
+
+Both carry the same `com.sun.jna` classes, so whichever came first on the classpath was the JNA that ran:
+- **Under Gradle** (`:desktopApp:run`, and the tests), 5.16.0's jars were first: entries 143 and 144 of 149, before
+  5.19.1's at 146 and 148. So FileKit, built against 5.19.1, ran on 5.16.0.
+- **In the packaged app**, `CloudStream.cfg` lists the jars by file name, so `jna-5.19.1-…` sorted first and 5.19.1 ran.
+  vlcj there already ran on 5.19.1.
+
+Nothing had failed from it. But the app ran a different JNA depending on how it was started, and the Keychain work
+(`KMP-95f`) is about to call native code through JNA.
+
+**Measured two ways, before the fix.** Gradle's classpath order, printed from `jvmRuntimeClasspath`. And a probe on
+Temurin 17 asking where `com.sun.jna.Native` and `com.sun.jna.platform.mac.CoreFoundation` loaded from. Over the Gradle
+order both came from the 5.16.0 jars; over the packaged app's `.cfg` order both came from 5.19.1.
+
+**Fix.** `desktopApp/build.gradle.kts` excludes `jna-jpms` and `jna-platform-jpms` from vlcj, so one JNA is left: 5.19.1,
+the version the owner approved for the Keychain (2026-11-08). There is no new dependency and nothing in the catalog
+changes. The vlcj line takes its string form, built from the catalog entry so the version is still the catalog's,
+because the multiplatform dependency block takes an `exclude` only on that form.
+
+**What vlcj now leans on.** Its JNA comes from FileKit's 5.19.1. If `:media:download` ever stopped bringing FileKit,
+vlcj would have no JNA. `KMP-95f` declares `jna` 5.19.1 directly in `:desktopApp`, which covers that.
+
+**Proof, before and after, the same commands:**
+
+| | Before | After |
+|---|---|---|
+| Gradle classpath, JNA jars | 5.16.0 (×2), then 5.19.1 (×2) | 5.19.1 (×2) only |
+| Packaged app's jars | four | `jna-5.19.1`, `jna-platform-5.19.1` |
+| Probe, packaged order | `Native` and `CoreFoundation` from 5.19.1 | the same |
+| `--check-subtitle-render`, packaged | cue on screen, pause 0 ms, +10 s seek on the same frame, 8 PNGs | the same |
+| `--check-subtitle-render` under `:desktopApp:run` | the same lines, on 5.16.0 | the same lines, on 5.19.1 |
+| `--check-playback` on the local file | fails, `frames=0` | the same |
+
+The clip was 20 s of `ffmpeg`'s `testsrc2`, with no audio stream, and an SRT with a cue each second; nothing played a
+sound. Both subtitle checks exit 1 only because that clip carries no frame numbers, so the sync figures are noise. The
+lines above are the deterministic ones, and the PNGs were compared by eye. The stop position differed by under 0.5 s
+between runs, as it does between any two runs. **`--check-playback` tells nothing here:** it fails on a local file
+before the change too, so it is reported, not counted as a pass.
+
+**Gates:** see the PR.
+
+## BUG-75 — Real titles and sites in tests, previews and KDoc, master-wide · **low, test only** · in progress
+
+`BUG-70`'s rule, across master: tests, previews, screenshots and KDoc name made-up titles and sources, never a real
+work or site, because they get copied. A generic phrase that happens to match a real work stays when nothing else ties
+it to one (`Nine Lives`); a name that is clearly one work or one site goes.
+
+**Scan of master** (whole words): `Dune` 397 lines, `Vidsrc` 31, `Arcane` 28, `Severance` 16, `Naruto` 7, `Powder` 4,
+`Dr.Stone` and `Mr.Robot` 3 each. A scan for `Witcher` matched only `SourceSwitcher`. Found while doing it: `Blade
+Runner` 39 lines, and the sites `Filmxy` 87, `Vidplay` 37 and `Zoro` 11.
+
+**Staying:** `Gogoanime` in `:app`'s legacy code (`SyncUtil` and `ResultViewModel2` match the real site's keys, and
+`classes-jar.api` carries `getGogoanime`); `tools:text` in legacy layouts; `Internet Archive`, a real official plugin
+and a `:library` class; and past records in `docs/tasks/`, which say what was measured.
+
+**One PR per module.** JVM tests first; the device tests and their screenshots after train 9, which carries those
+files, each screenshot diff read before it is re-recorded.
+
+### `:feature:search` (JVM tests, previews, KDoc)
+
+| Was | Now | Kept |
+|---|---|---|
+| `dune`, `Dune`, `DUNE` | `tide`, `Tide`, `TIDE` | four letters, so `d`, `du`, `dun` typing steps become `t`, `ti`, `tid`; case |
+| `Duna`, `Dunnne` | `Tida`, `Tiddde` | the near miss shares the typed prefix; the typo matches nothing |
+| `Dune: Part Two`, `Dune Part Two`, `Dune: Prophecy`, `Dune (1984)`, `Dune: Part Two (4K)` | `Tide: Part Two`, `Tide Part Two`, `Tide: Prophecy`, `Tide (1991)`, `Tide: Part Two (4K)` | colon, no colon, parenthesised year, suffix |
+| `dune messiah`, `DUNE messiah` | `tide warden`, `TIDE warden` | starts with the typed word; case |
+| `blade runner`, `Blade Runner` (and its sequels in previews) | `salt road`, `Salt Road` (`Salt Road II`, `Salt Road: Dusk`) | sorts before the other title, as it did |
+| `Filmxy`, `Vidplay`, `Zoro` | `Source A`, `Source B`, `Source C` | alphabetical order |
+| `Vidsrc`, `VIDSRC` | `Source A`, `SOURCE A` | |
+
+Tests: the same 58 in 5 classes, 117 assertion calls before and after, all passing.

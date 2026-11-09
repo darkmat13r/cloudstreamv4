@@ -24,24 +24,121 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPopupButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopSwitch
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_show_in_finder
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_seek_seconds
+import com.lagradost.cloudstream4.core.strings.generated.resources.poster_size_settings
+import com.lagradost.cloudstream4.core.strings.generated.resources.random_button_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_download_folder
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder_missing
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_home_search
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next_body
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_playing
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_posters
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_seek_amount
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_speed
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_subtitle_size_large
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_subtitle_size_medium
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_subtitle_size_small
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.settings.SettingsRow
 import com.lagradost.cloudstream4.feature.settings.SettingsValues
 import org.jetbrains.compose.resources.stringResource
+
+/**
+ * `DS-24` ST11's Appearance pane, the rows the Mac reads: Poster size (`KMP-90e`) and whether Home shows Random
+ * (`KMP-90g`). No line under Random: the board's "On Home and Library." is untrue on the Mac, whose Library has none.
+ */
+@Composable
+internal fun ColumnScope.AppearancePane(
+    values: SettingsValues,
+    marked: Set<SettingsRow>,
+    onAction: (SettingsAction) -> Unit,
+) {
+    GroupHeader(stringResource(Res.string.settings_posters))
+    Group {
+        val title = stringResource(Res.string.poster_size_settings)
+        SettingRow(title = title, line = null, marked = SettingsRow.PosterSize in marked) {
+            DesktopPopupButton(
+                selected = values.posterSize,
+                options = PosterSize.entries,
+                onSelect = { onAction(SettingsAction.SetPosterSize(it)) },
+                label = title,
+                optionLabel = { posterSizeName(it) },
+            )
+        }
+    }
+    GroupHeader(stringResource(Res.string.settings_home_search))
+    Group {
+        val title = stringResource(Res.string.random_button_settings)
+        SettingRow(title = title, line = null, marked = SettingsRow.RandomButton in marked) {
+            DesktopSwitch(
+                checked = values.showRandom,
+                onCheckedChange = { onAction(SettingsAction.SetShowRandom(it)) },
+                label = title,
+            )
+        }
+    }
+}
+
+/** The size words are Subtitles' (`I18N-20`): "Small", "Medium", "Large" of a size, which a poster's is too. */
+@Composable
+private fun posterSizeName(size: PosterSize): String = when (size) {
+    PosterSize.Small -> stringResource(Res.string.settings_subtitle_size_small)
+    PosterSize.Medium -> stringResource(Res.string.settings_subtitle_size_medium)
+    PosterSize.Large -> stringResource(Res.string.settings_subtitle_size_large)
+}
+
+/**
+ * `DS-24`'s Playback pane, its rows the player reads: Play the next episode (`KMP-94`'s Up next) and Seek amount
+ * (`KMP-96`), how far the arrow keys and the skip buttons move.
+ */
+@Composable
+internal fun ColumnScope.PlaybackPane(
+    values: SettingsValues,
+    marked: Set<SettingsRow>,
+    onAction: (SettingsAction) -> Unit,
+) {
+    GroupHeader(stringResource(Res.string.settings_playing))
+    Group {
+        // First, as `DS-24` lists them: Play the next episode, which Up next reads (`KMP-94`).
+        val playNext = stringResource(Res.string.settings_play_next)
+        SettingRow(
+            title = playNext,
+            line = stringResource(Res.string.settings_play_next_body),
+            marked = SettingsRow.PlayNextEpisode in marked,
+        ) {
+            DesktopSwitch(
+                checked = values.autoplayNext,
+                onCheckedChange = { onAction(SettingsAction.SetAutoplayNext(it)) },
+                label = playNext,
+            )
+        }
+        val title = stringResource(Res.string.settings_seek_amount)
+        SettingRow(title = title, line = null, marked = SettingsRow.SeekAmount in marked) {
+            DesktopPopupButton(
+                selected = values.seekSeconds,
+                options = SettingsValues.SEEK_SECONDS,
+                onSelect = { onAction(SettingsAction.SetSeekSeconds(it)) },
+                label = title,
+                // UiString, not pluralStringResource: Compose's overload leaves a bare `%d` unformatted.
+                optionLabel = { UiString.Plural(Res.plurals.player_seek_seconds, it).resolve() },
+            )
+        }
+    }
+}
 
 /** `DS-24` ST6's Downloads pane, part 1: the folder by its name, and how many download at once. */
 @Composable

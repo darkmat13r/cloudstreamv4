@@ -6127,7 +6127,7 @@ A follow-up to `KMP-52`. A plugin's `titleName` and `episodeName` became the fol
 - **The rule** is the TV HUD's title rule as `KMP-66` tightens it, restated in `DownloadPaths.looksLikeAddress`:
   - a scheme anywhere, or a path, `content:` or `file:` at the start;
   - a host at the start followed by a port, path, query or fragment.
-  A dotted title on its own (`Dr.Stone`, `Mr.Robot`, `Vol.II`) stays. Only a source's name gets the HUD's stricter rule (a bare host,
+  A dotted title on its own (`Dr.Harbor`, `Mr.Lantern`, `Vol.II`) stays. Only a source's name gets the HUD's stricter rule (a bare host,
   `sig=`, a backslash path), and a title never does.
 - **Where it applies.** It goes in `DownloadPaths.displayText`, which every title and episode name already passes through:
   - on enqueue, before the name is stored or names a folder or file;
@@ -6144,6 +6144,42 @@ A follow-up to `KMP-52`. A plugin's `titleName` and `episodeName` became the fol
   token, and runs it to Done. The file is `Download/S01E05.mp4`. Neither marker appears in `downloads.json`, in any other file in its
   folder, or in any file's bytes or any path name under the download root, either then or after a restart.
 - With `looksLikeAddress` forced to false, 3 of these fail: 2 in `DownloadPathsTest` and the new one in `DesktopDownloadsTest`.
+
+## KMP-81 — The title rule finds an address anywhere in a name, in any script · **in review**, follow-up of `KMP-71`
+
+Review of #233 found two gaps in the title rule that `KMP-66` gave the HUD and `KMP-71` restated for Mac downloads:
+- **An address inside a name** passed: the host check was anchored at the start, so `Ep 5 cdn.host.to/v/x?token=…`
+  was kept.
+- **A host in another script** passed: `\w` and `[a-z]` are ASCII, so `видео.рф/x` was kept. So was the same address
+  written in full-width characters.
+
+**The rule now**, read after NFKC so full-width characters count as their ASCII forms:
+- **Unchanged:** a scheme (`://`) anywhere; a path, `content:` or `file:` at the start.
+- **New, at the start of any word** (after a space or an opening bracket or quote):
+  - a host with a port, path, query or fragment after it;
+  - `content:/` or `file:/`;
+  - a path of two parts or more (`/storage/emulated/…`).
+- **Hosts:** labels may be in any script. The dots are `.`, `。` and `｡`. The top-level domain is two letters or more in
+  any script, or punycode.
+- **Fewer false positives:** a `?` or `#` counts only with a token after it, so `Is it Dr.Harbor?` and `Who is Mr.Lantern?!`
+  stay. `Harbor / North`, `Low Tide 1/2` and `Case File: 7` stay too.
+
+**Copies.**
+- **Mac downloads** (`DownloadPaths.looksLikeAddress`): done here. `DownloadPathsTest` passes 6/6. Control: with the old
+  rule, the new address test fails.
+- **TV HUD** (`TvHudFacts.hudText`): the same rule, restated, now that #205 is on master (train 9). A source's or a
+  subtitle's name goes through it too, since `hudLabel` reads `hudText` first. `hudLabel`'s own check for a host with
+  nothing after it (`stream.example.to`) also finds one at the start of any word and in any script now, so
+  `Mirror видео.рф` falls back to the quality. A name such as `Mirror 5.1` keeps its label.
+- **Tests:** `TvHudFactsTest` uses the same two lists as `DownloadPathsTest`, so the rule is checked on the same text
+  in both copies. Each list's titles are made up (`BUG-70`).
+
+**Proof**, all local (CI is off):
+- Control, with master's `TvHudFacts`: `TvHudFactsTest` 11 with 2 failures. All 11 addresses got through in a title
+  and an episode name, and `Mirror stream.example.to` kept its label. The titles that must stay passed there too, as a
+  guard should.
+- With the new rule, three runs in a row: `TvHudFactsTest` 11/0, `TvPanelRowsTest` 3/0, `DownloadPathsTest` 6/0 and
+  `DesktopDownloadsTest` 26/0.
 
 ## KMP-55 — The Mac's Home, built from `DS-21`
 
@@ -6348,6 +6384,64 @@ M5's Load from file, Load from Internet and Subtitle delay rows are not features
   panel's heading (`panelRow`). Each asserts what it did, except the held-list test, which keeps its point another way.
   Before, it clicked the foot, which was English while the list was held. Now a click where German's row would be
   chooses nothing while held, and German is there when the list opens again.
+
+## KMP-94 — The Mac player's Up next, `DS-23` M13 and M16
+
+**Status:** in review · `:desktopApp`, `:feature:settings`, `:feature:detail` · stacked on `KMP-90e` (#274), which is on
+`KMP-90g` (#273)
+
+At the end of an episode with one after it, a card offers the next one (`UpNextCard`), above the controls at the right:
+its line (`S1:E5 · Low Tide`), the title's poster (an episode has no still of its own), and what happens next.
+- **It counts down 10 s, then plays** (the owner's ruling, `DS-23`): a line, `Next episode in 8 s`
+  (`player_up_next_in`), and a rule along the card's foot that empties. Play now and Cancel are under it.
+- **The count runs only in the episode's last 10 s** (the PM's ruling in review), so autoplay never cuts an episode's
+  end. The card comes 30 s from the end showing `Next episode`; Cancel there stops the count that was to come. Until
+  `KMP-86`'s credit stamps reach the Mac, the end of the stream is the only "credits" the player knows.
+- **The count holds** while a panel is open or the pointer is on the card, and goes on from the same second.
+- **Cancel, or Esc, keeps the card** with no count (M16): Play now and × are left. × puts it away for the rest of the
+  credits; the end of the stream then goes back, as it always did. Once nothing counts, Esc goes back as before.
+- **Play now plays at once**, and only once: the card says `Loading…` while the next episode's sources are found.
+- **"Play the next episode" off** (`PlaybackSettings.autoplayNext`): the card comes with no count. A change in the
+  Settings window while the card is up starts or stops the count; it does not undo a Cancel.
+- An episode that ends with the card unanswered stays on it; with no episode after it, the end goes back as before.
+- Skip gives way to the card. The card gives way to an open panel, and its count holds meanwhile.
+
+**Where the next episode comes from.** The title's page is under the player, so its view model is live.
+- **Which one:** the one after this one in the order a viewer goes through them, `playOrder()` (`:feature:detail`, public
+  for this). That is the seasons in `seasonGroups()`' order (numbered ascending, then Specials, then Other), each by
+  its episode number with an unnumbered one last, as `firstEpisodeToPlay` reads them. It is not the provider's order,
+  which can list S2 first, put specials among the numbers, or count a season down. Two episodes with the same `data`
+  cannot be told apart by the player, so the first in that order is taken as the one playing.
+- **Playing it** asks the page for its sources as its Play does, playing the best found (`requestPlay`, `KMP-39`). It
+  takes this player's place, and full screen stays as it was (`PlayerHandover`). With nothing to play, the player goes
+  back to the page, whose source list says why.
+- **Closed while it loads** (review of #276): the wait is cancelled with the player, and it dismisses the page's search,
+  so nothing that search finds later plays the episode that was backed out of.
+
+**Settings.** The Playback pane and its Play the next episode row are back (`SettingsRow.PlayNextEpisode`,
+`SettingsAction.SetAutoplayNext`), as `KMP-90` had them before #266's review took them out until this reader landed.
+
+**DECIDED (small calls, reported to the PM).**
+- **When the card comes:** the last 30 s, or the end of the stream; the PM kept it, and moved the count's start to the
+  last 10 s. The Mac has no credit stamps (`KMP-86`); with them, the card would come at the credits.
+- **No "Up next" heading:** the boards' small heading would be a new key in 62 locales. The line under the title says
+  `Next episode` when nothing counts, and the count when something does; both strings exist.
+- **The art is the title's poster**, because an episode carries no still.
+
+**Tests** (all run):
+- `PlayerScreenTest`, 11 new:
+  - the count from ten, once;
+  - no card before the credits or after the last episode;
+  - seeking out and back starts a fresh ten;
+  - holds for a panel and for the pointer;
+  - Cancel, Esc, Play now;
+  - the setting off, and the setting changing;
+  - × and the end of the stream;
+  - an ended stream waiting on the card.
+- `UpNextCountdownTest`: the count, when the card is due, and the handover keeping full screen.
+- `NextEpisodeTest`: the next episode across seasons and at the ends, and asking the page to play it, with a search
+  that ends with nothing or fails.
+- `SettingsWindowTest` and `SettingsSearchTest`: the row's write-and-read-back test and the Playback pane are back.
 
 ## KMP-93 — The Mac player panels' rows, `DS-23` M4 to M7
 
@@ -6830,7 +6924,7 @@ rebuilding the page as the service ticked, and D1's state was made again with no
   on this branch.
 - `after a restart a resolver with no VIDEO link…` failed once in a full gate run.
 
-## KMP-92 — An unstarted show's Play starts S1E1, not a special · **in pr #265** · the owner's ruling, 2026-11-08
+## KMP-92 — An unstarted show's Play starts S1E1, not a special · **TV and the Mac in #265; the phone in pr #272** · the owner's ruling, 2026-11-08
 
 Found while fixing `#244`'s review. With no resume and no title-level `playData`, `TitleDetail.primaryData` was
 `episodes.firstOrNull()`: whatever the provider listed first. A provider that lists specials first therefore made
@@ -6847,18 +6941,27 @@ On TV the chip follows on its own through `shownSeasonIndex`, and so does the ma
 opens on the season of the episode `primaryData` names when there is no resume (`DetailScreenDesktop`'s `TitlePage`),
 so its list and its Play agree. Continue Watching's fallback on the Mac, `PlayRequested(resume.episodeData ?:
 primaryData)` in `Main.kt`, follows too.
-- **Not the phone yet.** The phone and emulator layouts still open the legacy `ResultFragment`, whose
-  `ResultViewModel2` picks its own season and episode and never reads `primaryData`. The legacy page is
-  unchanged here.
+- **The phone** never reads `primaryData`; its follow-up is below.
 
-**Follow-up, its own small PR after this one** (the PM, 2026-11-08: the owner's ruling covers the phone too):
-the legacy phone page applies the same S1E1 rule, reusing `firstEpisodeToPlay()`, until the Compose phone page
-replaces it. It comes with a jvm test. Two things to settle in that PR:
-- `firstEpisodeToPlay()` is `internal` to `:feature:detail` and takes `DetailEpisode`, so `:app` needs it public
-  or a mapping from `ResultEpisode`. Either way, the rule must stay in one place.
-- `ResultViewModel2` also remembers the last season viewed, so the rule applies only with no resume and no
-  remembered season.
-  Measure what it does today before changing it.
+**The phone follow-up** (the PM, 2026-11-08: the owner's ruling covers the phone too). The phone and emulator
+layouts open the legacy `ResultFragment`, over `ResultViewModel2`. Measured before changing it:
+- **An unstarted series has no Play there.** The primary button is posted only for a film. A series shows Resume only
+  once something was watched (`getLastWatched`), and that resume is untouched. The rule can only decide which season
+  the page opens on.
+- **The page opened on the season nearest the remembered one, else nearest 1.** The remembered season is saved the
+  first time the page shows, so a remembered season always wins and stays. With none, it aimed for 1. That already
+  gave Season 1 when a show has one. **With no Season 1**, Specials (0) and Season 2 tie on distance, and
+  `minByOrNull` takes the first the provider listed. So a show whose specials come first opened on the specials, and
+  remembered them. This page also files episodes with no season under 0.
+- **The fix.** With no remembered season, the page aims for the season of `firstEpisodeToPlay()`. That function is now
+  public, so the phone and the Compose pages share one rule. The choice is moved verbatim into `openingIndexer`
+  (`OpeningSeason.kt`) so it can be tested. A remembered season and the dub preference work as before.
+- **Tests,** `OpeningSeasonTest`, 5 cases:
+  - no Season 1 with specials first opens Season 2; on the old target this fails, `expected:<2> but was:<0>`;
+  - with Season 1, it still opens Season 1;
+  - a remembered season wins, Specials included;
+  - only specials, or no seasons, opens the one group there is;
+  - `startSeason` agrees with `firstEpisodeToPlay`.
 
 **Tests.**
 - jvm (`DetailSeasonGroupsTest`):
@@ -6890,7 +6993,7 @@ with what it waits for.
   the window is not reachable there yet.
 - **The sidebar** lists Downloads, the one pane with a working row. A search keeps the panes whose name or a row's words
   match, and marks the matching rows. With none, it says so ("No results for “%s”", ST7). Escape empties it.
-- **Playback: Play the next episode is not a row yet** (review of #266). Nothing on the Mac reads it until
+- **Playback: Play the next episode is not a row yet** (review of #266; **added back by `KMP-94`**, with its reader). Nothing on the Mac reads it until
   desktop-session-1's Up next (`DS-23`) lands, so a switch for it would do nothing, and Playback stays out of the
   sidebar. The setting is kept: `autoplay_next_key`, on by default, `SettingsRepository.setAutoplayNext`, and
   `PlaybackSettings.autoplayNext`, the `StateFlow` in `:feature:settings` commonMain that Up next takes as a parameter
@@ -6927,10 +7030,14 @@ only: a token or a password never goes in that file. Those go to the Keychain, w
 | `KMP-90b` | General: app language | An in-app locale switch on the Mac; today the app follows the system |
 | `KMP-90c` | General: check for updates at launch, Check now | A Mac updater (`DEC-03`, distribution) |
 | `KMP-90d` | General: Run setup again; Help and community; Disclaimer | A Mac setup flow; the Help menu; a disclaimer page |
-| `KMP-90e` | Appearance: poster size, title under poster, badges, hide quality in search | Home, Search and Library reading them |
-| `KMP-90f` | Appearance: trailers, cast, filler episodes | The Mac title page reading them |
-| `KMP-90g` | Appearance: Random button, suggestions while typing | Home's Random and Search's suggestions on the Mac |
-| `KMP-90h` | Playback: Offer Skip intro, seek amount, update watch progress | The Mac player reading them |
+| `KMP-90e` | Appearance: poster size | Built (below) |
+| `KMP-90e` | Appearance: title under the poster | The Mac always draws the title under. Off means the title on the art (Android's `bottom_title_key` false), which needs an overlay and scrim design |
+| `KMP-90e` | Appearance: badges, hide quality in search | Labels to show: `DesktopSearchSource` sets `qualityLabel` and `dubLabel` to null. First draw them, resolving `SearchQuality` and `DubStatus` through the `quality_*` strings; then each row is a switch |
+| `KMP-90f` | Appearance: trailers, cast, filler episodes | The Mac title page drawing them; it draws none today |
+| `KMP-90g` | Appearance: Random button | Built (below) |
+| `KMP-90g` | Appearance: suggestions while typing | A suggestion source: the Mac passes none (`SearchScreenDesktop`'s `SearchContent.Suggestions` branch) |
+| `KMP-90h` | Playback: Offer Skip intro, update watch progress | The Mac player reading them |
+| `KMP-96` | Playback: seek amount | Built (below), the first slice of `KMP-90h` |
 | `KMP-90i` | Playback: source order (Edit) | A source-order editor |
 | `KMP-90j` | Playback: network buffer, disk cache, clear cache | libVLC's options from the host, and a cache to clear (hash-keyed, never by URL) |
 | `KMP-90k` | Downloads: connections per download, Choose folder | The engine taking a per-download connection count, and a chosen root |
@@ -7014,3 +7121,92 @@ only: a token or a password never goes in that file. Those go to the Keychain, w
 ### Published API
 
 Additions only. `app/api/classes-jar.api` +92 / −0 over master after the rebase: 10 `R$string` fields, the panel hooks on `FullScreenPlayer` and `GeneratorPlayer`, `PanelStep`, `TvPanelRows`, and `TvPlayerHud`'s new constructors; its six-argument one from #189 is kept by `@JvmOverloads`.
+
+## KMP-90g — Settings' Appearance pane, its first row: Random Button · **in review (#273)**
+
+**Status:** #273, on master after train 12. The PM's call, 2026-11-08: one PR per row, Random first, then Poster size
+(`KMP-90e`).
+
+- **The row.** Appearance enters the sidebar, before Downloads as `DS-24` orders it, with one group, Home and Search
+  (`settings_home_search`), and one switch, Random Button (`random_button_settings`, reused). No line under it: the
+  board's "On Home and Library." is untrue on the Mac, whose Library has no Random, and no new string is needed.
+- **The setting.** Android's `random_button_key`. On by default, where Android's is off: the owner approved the switch
+  on 2026-11-08, and it overrides the 2026-11-05 "always shown" ruling on the Mac only (noted in `design-system.md`
+  where that ruling is). Read through `AppearanceSettings.showRandom` in `:feature:settings` commonMain, beside
+  `PlaybackSettings` and `DownloadSettings`.
+- **The reader.** `HomeScreenDesktop(showRandom)`, default true, so every other caller is unchanged. `HomeHost` collects
+  the flow and `DesktopApp(appearance)` passes `Main.kt`'s `SettingsRepository`. Off, the top bar has no Random; Reload
+  stays.
+
+**Tests.**
+- `SettingsValuesTest`: default on; `false` reads back under `random_button_key`; anything else reads as on.
+- `SettingsSearchTest`: "random" finds Appearance.
+- `SettingsRepositoryTest`: written, read back by a new repository, and seen through `AppearanceSettings`.
+- `SettingsWindowTest`: on by default, no "On Home and Library." line, a click writes `false`, and a new window over
+  what was stored shows it off.
+- `HomeScreenTest`: off, nothing is named Random and Reload still acts; turned on, Random is back and acts.
+
+## KMP-90e — Settings' Appearance pane: Poster size · **in review (#274)**
+
+**Status:** #274, stacked on `KMP-90g`'s #273, which merges first. The PM approved the widths and the key on
+2026-11-08.
+
+- **The row.** Appearance's first group, Posters (`settings_posters`), holds Poster size (`poster_size_settings`, reused)
+  as a pop-up of Small, Medium and Large, with Medium as the default. The size words are Subtitles' size keys
+  (`settings_subtitle_size_*`, `I18N-20`), which the PM approved on 2026-11-08 and `i18n.md` records under I18N-20's reuse
+  list. Both are the size of a thing, and the locales checked agree with Poster size's noun (de, fr, es, it, pt, ru,
+  pl, ar). No new string.
+- **The setting.** The Mac's own key, `poster_size_desktop_key` = `small` | `medium` | `large`; anything else reads as
+  `medium`. Not Android's `poster_size_key`: that is a 0 to 15 slider, 10% a step from its default of 0, so it has
+  nothing smaller than the default. `PosterSize` is in `:core:designsystem` (`desktop`), because Home, Search and
+  Library read it and none of them depends on `:feature:settings`. `AppearanceSettings.posterSize` reads it.
+- **The readers**, each a smallest card width in its `Defaults`, so a bigger size means fewer, wider columns:
+  - Search's grid: 128, 160, 200 (`SearchScreenDesktopDefaults.cardMinWidth`).
+  - Home's poster rows, bookmarks line and skeleton: 128, 160, 200 (`HomeScreenDesktopDefaults.portraitCardMinWidth`,
+    through `columns`). 16:9 rows keep 280, because the setting is about posters.
+  - Library's grid: 160, 200, 240 (`LibraryScreenDesktopDefaults.cardMinWidth`), a step wider, as Library already was.
+
+  Medium is every screen's width before the setting, so a default window draws as it did. Each screen takes
+  `posterSize`, defaulting to Medium, and each host collects the flow.
+
+**Tests.**
+- `SettingsValuesTest`: every size round-trips under `poster_size_desktop_key`; a bad value reads as Medium; Android's
+  `poster_size_key` is not read.
+- `SettingsSearchTest`: "poster" finds Appearance and marks Poster size.
+- `SettingsRepositoryTest`: written and read back by a new repository.
+- `SettingsWindowTest`: the pop-up opens on Medium, choosing Large writes `large`, and a new window shows Large.
+- `SearchScreenTest` and `LibraryScreenTest`: the cards on the first line at 760 and 1280 wide, for each size, and no
+  `posterSize` is Medium's count. Search: 5/4/3 and 8/7/5. Library: 4/3/2 and 7/5/4.
+- `HomeScreenTest`: `columns` per size at both widths, 16:9 rows unchanged at every size, and a row on screen holding
+  what its size allows.
+
+## KMP-96 — Settings' Playback pane, its first row: Seek amount · **in review (#277)**
+
+**Status:** #277, stacked on `KMP-90e`'s #274 (which carries #273), the PM's order so the Settings files meet once.
+The first slice of `KMP-90h`, claimed by the PM on 2026-11-08, with the key, the amounts and the buttons' names the
+PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play the next episode to the same pane.
+
+- **The row.** Playback enters the sidebar between Appearance and Downloads, as `DS-24` orders them. One group,
+  Playing (`settings_playing`), holds Seek amount (`settings_seek_amount`) as a pop-up of 5, 10, 15 and 30 seconds,
+  each named by `player_seek_seconds` (`I18N-19`'s plural). No new string.
+- **The setting.** The Mac's own key, `seek_amount_desktop_key`, in whole seconds; anything not offered reads as 10.
+  Not Android's seek keys: those are the TV's and the phone's double tap, in another range and with another meaning.
+  Read through `PlaybackSettings.seekSeconds`.
+- **The reader.** `PlayerScreen(seekMillis)`, defaulting to `PlayerScreenDefaults.SkipMillis` (10 s, the step until
+  now), so every other caller is unchanged. The left and right arrows and both skip buttons move by it.
+  `DesktopApp(playback)` collects the flow while the player is up, so a change applies to the next press.
+- **The buttons' names.** "Seek back" and "Seek forward" (`player_hud_seek_back` and `_forward`, which the TV HUD
+  uses), not "Skip back 10 seconds": a name with a number would be untrue at every other amount, and joining two strings
+  is not translatable. `seek_back_10_seconds` and `seek_forward_10_seconds` stay in the catalogue, unused on the Mac:
+  removing them would remove `R` fields, which is the owner's call.
+
+**Tests.**
+- `SettingsValuesTest`: default 10; every amount round-trips under `seek_amount_desktop_key`; anything else reads as
+  10, and Android's seek keys are not read.
+- `SettingsSearchTest`: "seek" finds Playback and marks Seek amount.
+- `SettingsRepositoryTest`: written, read back by a new repository, seen through `PlaybackSettings`; 20 is refused.
+- `SettingsWindowTest`: the pop-up opens on 10 seconds and offers the four; choosing 30 writes `30`; a new window shows
+  it. The sidebar lists Appearance, Playback, Downloads.
+- `PlayerScreenTest`: at 30 s, both arrows and both buttons move 30 000 ms; with nothing passed, the step is
+  Settings' default.
+- `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.

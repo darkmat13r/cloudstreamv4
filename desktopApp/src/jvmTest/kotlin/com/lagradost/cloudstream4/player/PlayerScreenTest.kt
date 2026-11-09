@@ -4,9 +4,15 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.InternalComposeUiApi
+import androidx.compose.ui.semantics.getOrNull
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
@@ -36,6 +42,7 @@ import com.lagradost.cloudstream4.media.subtitle.SubtitleParseResult
 import com.lagradost.cloudstream4.media.subtitle.SubtitleTimeline
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.player.HudSkip
+import com.lagradost.cloudstream4.feature.settings.SettingsValues
 import java.io.File
 import java.nio.file.Files
 import kotlin.test.Test
@@ -106,7 +113,16 @@ class PlayerScreenTest {
         meta: String? = null,
         skip: HudSkip? = null,
         val idle: ManualIdle = ManualIdle(),
+        seekMillis: Long = PlayerScreenDefaults.SkipMillis,
+        upNext: UpNext? = null,
+        autoplayNext: Boolean = true,
+        val tick: ManualTick = ManualTick(),
     ) {
+        /** What the player reports; a test changes it to seek out of the credits, or to end the stream (`KMP-94`). */
+        var status by mutableStateOf(status)
+        /** The Settings window's "Play the next episode", which a test can change while the card is up. */
+        var autoplayNext by mutableStateOf(autoplayNext)
+        var playNexts = 0
         val calls = Calls()
         var skips = 0
         val audioChosen = mutableListOf<AudioTrack>()
@@ -122,7 +138,7 @@ class PlayerScreenTest {
                         PlayerContent(
                             frame = frame,
                             pictureSize = pictureSize,
-                            status = status,
+                            status = this@Screen.status,
                             caption = "Title",
                             controls = calls,
                             subtitles = session,
@@ -140,6 +156,11 @@ class PlayerScreenTest {
                             skip = skip,
                             onSkip = { skips++ },
                             hudIdle = idle,
+                            seekMillis = seekMillis,
+                            upNext = upNext,
+                            autoplayNext = this@Screen.autoplayNext,
+                            onPlayNext = { playNexts++ },
+                            upNextTick = tick,
                         )
                     }
                 }
@@ -193,6 +214,16 @@ class PlayerScreenTest {
         val ruleRight: Float get() = rowRight - 16f
         val transportY: Float get() = height - 24f - 8f - 40f - 8f - 18f
 
+        /** The centre of what a screen reader names [label]. */
+        fun named(label: String): Offset {
+            settle()
+            fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
+            val node = scene.semanticsOwners.flatMap { it.rootSemanticsNode.all() }.lastOrNull { node ->
+                node.config.getOrNull(SemanticsProperties.ContentDescription).orEmpty().any { it == label }
+            }
+            return checkNotNull(node) { "nothing is named \"$label\"" }.boundsInRoot.center
+        }
+
         fun pixels(): PixelMap = settle().toComposeImageBitmap().toPixelMap()
 
         fun save(name: String) {
@@ -217,6 +248,27 @@ class PlayerScreenTest {
                 gate.await()
             } finally {
                 // A wait that was cancelled, by a move or a key, is not waiting any more.
+                waiting -= gate
+            }
+        }
+
+        fun elapse() {
+            waiting.toList().forEach { it.complete(Unit) }
+        }
+    }
+
+    /** Up next's seconds, run by hand (`KMP-94`): [elapse] is one second passing, with no sleep. */
+    private class ManualTick : UpNextTick {
+        private val waiting = mutableListOf<CompletableDeferred<Unit>>()
+        val pending: Int get() = waiting.count { !it.isCompleted }
+
+        override suspend fun second() {
+            val gate = CompletableDeferred<Unit>()
+            waiting += gate
+            try {
+                gate.await()
+            } finally {
+                // A second that a hold cancelled is not under way any more.
                 waiting -= gate
             }
         }
@@ -338,6 +390,28 @@ class PlayerScreenTest {
         screen.press(Key.DirectionRight)
         screen.press(Key.Spacebar)
         assertEquals(listOf("by 10000", "toggle"), screen.calls.log)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `the arrows and the skip buttons move by the Seek amount, and the buttons name no number`() {
+        val screen = Screen(seekMillis = 30_000L)
+        screen.settle()
+        screen.press(Key.DirectionRight)
+        screen.press(Key.DirectionLeft)
+        screen.click(screen.named("Seek forward"))
+        screen.click(screen.named("Seek back"))
+        assertEquals(listOf("by 30000", "by -30000", "by 30000", "by -30000"), screen.calls.log)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `with no Seek amount passed the step is Settings' default, 10 seconds`() {
+        assertEquals(SettingsValues.DEFAULT_SEEK_SECONDS * 1_000L, PlayerScreenDefaults.SkipMillis)
+        val screen = Screen()
+        screen.settle()
+        screen.click(screen.named("Seek forward"))
+        assertEquals(listOf("by 10000"), screen.calls.log)
         screen.scene.close()
     }
 
@@ -788,6 +862,247 @@ class PlayerScreenTest {
         assertTrue(screen.pixels()[probe.x.toInt(), probe.y.toInt()] != Color.Black, "the controls moved left of the panel")
         screen.escape()
         assertEquals(Color.Black, screen.pixels()[probe.x.toInt(), probe.y.toInt()], "and back when it closed")
+        screen.scene.close()
+    }
+
+    // ---------------------------------------------------------------- KMP-94: DS-23 M13 and M16, Up next
+
+    private val harbor = UpNext("S1:E5 · Low Tide", artUrl = null)
+
+    /** Ten seconds from the end of an hour: the card is up, and its count runs. */
+    private val credits = PlayerStatus(playing = false, buffering = false, positionMillis = 3_590_000, lengthMillis = 3_600_000)
+
+    /** Twenty seconds from the end: the card is up (the last 30 s), but its count waits for the last ten. */
+    private val beforeTheCount = credits.copy(positionMillis = 3_580_000)
+
+    private fun Screen.cardDrawn(): Boolean = pixels()[CARD_PROBE_X, CARD_PROBE_Y] != Color.Black
+
+    private fun Screen.second() {
+        tick.elapse()
+        settle()
+    }
+
+    @Test
+    fun `M13 at the credits the card counts down ten seconds, then plays the next episode once`() {
+        val screen = Screen(status = credits, upNext = harbor)
+        screen.settle()
+        screen.save("m13-up-next")
+        assertTrue(screen.cardDrawn(), "the card is up at the credits")
+        assertEquals(1, screen.tick.pending, "and counting")
+        repeat(UpNextDefaults.CountdownSeconds - 1) { screen.second() }
+        assertEquals(0, screen.playNexts, "nine seconds in, it is still counting")
+        screen.second()
+        assertEquals(1, screen.playNexts, "the tenth plays the next episode")
+        assertEquals(0, screen.tick.pending, "and nothing counts after that")
+        screen.second()
+        assertEquals(1, screen.playNexts)
+        assertEquals(0, screen.backs)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M13 the card comes 30 s from the end, and counts only in the last ten, so the episode is never cut`() {
+        val screen = Screen(status = beforeTheCount, upNext = harbor)
+        screen.settle()
+        screen.save("m13-up-next-waiting")
+        assertTrue(screen.cardDrawn(), "the card is up")
+        assertEquals(0, screen.tick.pending, "but nothing counts yet")
+        screen.status = credits
+        screen.settle()
+        assertEquals(1, screen.tick.pending, "ten seconds from the end, it counts")
+        repeat(UpNextDefaults.CountdownSeconds) { screen.second() }
+        assertEquals(1, screen.playNexts, "and plays as the episode ends")
+        screen.scene.close()
+    }
+
+    /** What the screen draws as text, from its semantics: words the pixels cannot be read for. */
+    private fun Screen.texts(): List<String> {
+        settle()
+        return scene.semanticsOwners.flatMap { it.rootSemanticsNode.allNodes() }
+            .flatMap { node -> node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text } }
+    }
+
+    private fun SemanticsNode.allNodes(): List<SemanticsNode> = listOf(this) + children.flatMap { it.allNodes() }
+
+    @Test
+    fun `M13 the count line says the number of seconds, never a bare %d`() {
+        // `pluralStringResource(res, n, n)` leaves a bare `%d` as it is; the card goes through `UiString.Plural`.
+        val screen = Screen(status = beforeTheCount, upNext = harbor)
+        assertTrue("Next episode" in screen.texts(), "before the count, the line names what is next")
+        screen.status = credits
+        assertTrue("Next episode in 10 s" in screen.texts(), screen.texts().toString())
+        repeat(2) { screen.second() }
+        val drawn = screen.texts()
+        assertTrue("Next episode in 8 s" in drawn, drawn.toString())
+        assertTrue(drawn.none { "%" in it }, "no format left unfilled: $drawn")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M16 Cancel before the count starts keeps it from starting`() {
+        val screen = Screen(status = beforeTheCount, upNext = harbor)
+        screen.settle()
+        screen.click(CANCEL)
+        screen.status = credits
+        screen.settle()
+        assertTrue(screen.cardDrawn())
+        assertEquals(0, screen.tick.pending, "the count that was coming was cancelled")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M13 there is no card before the credits, nor without a next episode`() {
+        val early = Screen(upNext = harbor)
+        early.settle()
+        assertFalse(early.cardDrawn())
+        assertEquals(0, early.tick.pending)
+        early.scene.close()
+
+        val last = Screen(status = credits, upNext = null)
+        last.settle()
+        assertFalse(last.cardDrawn(), "the last episode has nothing up next")
+        assertEquals(0, last.tick.pending)
+        last.scene.close()
+    }
+
+    @Test
+    fun `M13 seeking back out of the credits puts the card away, and it counts from ten when it comes again`() {
+        val screen = Screen(status = credits, upNext = harbor)
+        screen.settle()
+        repeat(4) { screen.second() }
+        screen.status = credits.copy(positionMillis = 60_000)
+        screen.settle()
+        assertFalse(screen.cardDrawn())
+        assertEquals(0, screen.tick.pending)
+        screen.status = credits
+        screen.settle()
+        repeat(UpNextDefaults.CountdownSeconds - 1) { screen.second() }
+        assertEquals(0, screen.playNexts, "a fresh ten, not the six that were left")
+        screen.second()
+        assertEquals(1, screen.playNexts)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M13 the count holds while a panel is open, and goes on from the same second when it closes`() {
+        val screen = Screen(status = credits, upNext = harbor)
+        screen.settle()
+        repeat(3) { screen.second() }
+        screen.press(Key.C)
+        assertEquals(0, screen.tick.pending, "held while the subtitles panel is open")
+        repeat(UpNextDefaults.CountdownSeconds) { screen.second() }
+        assertEquals(0, screen.playNexts)
+        screen.escape()
+        screen.settle()
+        assertEquals(1, screen.tick.pending, "the panel closed, and it counts again")
+        repeat(UpNextDefaults.CountdownSeconds - 3 - 1) { screen.second() }
+        assertEquals(0, screen.playNexts, "from where it held")
+        screen.second()
+        assertEquals(1, screen.playNexts)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M13 the count holds while the pointer is on the card`() {
+        val screen = Screen(status = credits, upNext = harbor)
+        screen.settle()
+        screen.scene.sendPointerEvent(PointerEventType.Move, Offset(CARD_PROBE_X.toFloat(), CARD_PROBE_Y.toFloat()))
+        screen.settle()
+        assertEquals(0, screen.tick.pending, "held under the pointer")
+        repeat(UpNextDefaults.CountdownSeconds) { screen.second() }
+        assertEquals(0, screen.playNexts)
+        screen.scene.sendPointerEvent(PointerEventType.Move, Offset(100f, 300f))
+        screen.settle()
+        assertEquals(1, screen.tick.pending, "and counts once it leaves")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M16 Cancel keeps the card without a count, and Play now is still there`() {
+        val screen = Screen(status = credits, upNext = harbor)
+        screen.settle()
+        screen.click(CANCEL)
+        screen.save("m16-up-next-cancelled")
+        assertTrue(screen.cardDrawn(), "the card stays")
+        assertEquals(0, screen.tick.pending, "without counting")
+        repeat(UpNextDefaults.CountdownSeconds) { screen.second() }
+        assertEquals(0, screen.playNexts)
+        screen.click(PLAY_NOW)
+        assertEquals(1, screen.playNexts, "Play now still plays")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M16 Esc cancels as Cancel does, and the next Esc goes back`() {
+        val screen = Screen(status = credits, upNext = harbor)
+        screen.settle()
+        screen.escape()
+        screen.settle()
+        assertTrue(screen.cardDrawn(), "the card stays")
+        assertEquals(0, screen.tick.pending, "without counting")
+        assertEquals(0, screen.backs)
+        screen.escape()
+        screen.settle()
+        assertEquals(1, screen.backs, "nothing counts, so Esc leaves the player as it always has")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M13 Play now plays at once, and only once`() {
+        val screen = Screen(status = credits, upNext = harbor)
+        screen.settle()
+        screen.click(PLAY_NOW)
+        assertEquals(1, screen.playNexts, "with no second to wait")
+        assertEquals(0, screen.tick.pending)
+        screen.save("m13-up-next-starting")
+        screen.click(PLAY_NOW)
+        repeat(UpNextDefaults.CountdownSeconds) { screen.second() }
+        assertEquals(1, screen.playNexts, "the buttons have gone while it starts, and the count with them")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M16 with Play the next episode off the card comes with no count, and the x puts it away`() {
+        val screen = Screen(status = credits, upNext = harbor, autoplayNext = false)
+        screen.settle()
+        screen.save("m16-up-next-autoplay-off")
+        assertTrue(screen.cardDrawn())
+        assertEquals(0, screen.tick.pending, "nothing counts")
+        repeat(UpNextDefaults.CountdownSeconds) { screen.second() }
+        assertEquals(0, screen.playNexts)
+        screen.click(DISMISS)
+        assertFalse(screen.cardDrawn(), "the x put it away")
+        assertEquals(0, screen.backs, "the episode is still playing its credits")
+        screen.status = credits.copy(positionMillis = credits.lengthMillis, finished = true)
+        screen.settle()
+        assertEquals(1, screen.backs, "and when it ends, the player goes back")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M16 at the end of the stream the card stays until it is answered`() {
+        val screen = Screen(status = credits.copy(finished = true), upNext = harbor, autoplayNext = false)
+        screen.settle()
+        assertTrue(screen.cardDrawn())
+        assertEquals(0, screen.backs, "an ended episode with one after it waits on the card")
+        screen.click(PLAY_NOW)
+        assertEquals(1, screen.playNexts)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M13 the setting changing while the card is up starts or stops the count`() {
+        val screen = Screen(status = credits, upNext = harbor, autoplayNext = false)
+        screen.settle()
+        assertEquals(0, screen.tick.pending)
+        screen.autoplayNext = true
+        screen.settle()
+        assertEquals(1, screen.tick.pending, "turned on, it counts")
+        screen.autoplayNext = false
+        screen.settle()
+        assertEquals(0, screen.tick.pending, "turned off, it stops")
+        repeat(UpNextDefaults.CountdownSeconds) { screen.second() }
+        assertEquals(0, screen.playNexts)
         screen.scene.close()
     }
 
@@ -1338,6 +1653,12 @@ class PlayerScreenTest {
     }
 
     private companion object {
+        /** `KMP-94`, at 1280 by 800 with the HUD up: the card is 896 to 1256 across and 504 to 616 down, its buttons 624 to 660. */
+        const val CARD_PROBE_X = 1240
+        const val CARD_PROBE_Y = 530
+        val PLAY_NOW = Offset(984f, 642f)
+        val CANCEL = Offset(1168f, 642f)
+        val DISMISS = Offset(1238f, 642f)
         /** KMP-91: the panel's middle, and its rows: under the 24 margin, the 32 heading and an 8 gap, 48 apart. */
         const val PANEL_HALF_WIDTH = 180f
         /** `DesktopDimens.SidePanelWidth`; the controls' window margin; their glass's top, from the window's foot. */

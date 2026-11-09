@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.DesktopApp
 import com.lagradost.cloudstream4.EscapeHandler
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -637,6 +638,42 @@ class LibraryScreenTest {
         val column = CARD_X.toInt()
         val found = (HEIGHT - 1 downTo 0).firstOrNull { bitmap.getColor(column, it) == ART.toArgb() }
         return checkNotNull(found) { "no artwork was drawn at x=$column" }
+    }
+
+    /**
+     * `KMP-90e`: Poster size sets the smallest card, 160, 200 or 240 here, a step wider than Search's. Medium is the
+     * grid as it was.
+     */
+    @Test
+    fun `Poster size changes how many cards fit across, and Medium is the grid as it was`() {
+        val cards = List(8) { card(LibraryTitleId("t$it"), "Shelf title $it") }
+        val shown = state(LibraryStatus.Showing(cards))
+        val expected = mapOf(
+            760 to listOf(PosterSize.Small to 4, PosterSize.Medium to 3, PosterSize.Large to 2),
+            1280 to listOf(PosterSize.Small to 7, PosterSize.Medium to 5, PosterSize.Large to 4),
+        )
+        expected.forEach { (width, sizes) ->
+            sizes.forEach { (size, columns) ->
+                scene(width) {
+                    LibraryScreenDesktop(shown, {}, now = { NOW }, artwork = { Box(Modifier.fillMaxSize().background(ART)) }, posterSize = size)
+                }.use { scene ->
+                    assertEquals(columns, scene.firstLine("Shelf title"), "$size at $width")
+                    if (width == WIDTH) scene.save("poster-size-${size.name.lowercase()}")
+                }
+            }
+        }
+        screen(shown).use { scene -> assertEquals(5, scene.firstLine("Shelf title"), "no posterSize is Medium") }
+    }
+
+    /** How many cards the first line of [prefix]'s titles holds, read from what a screen reader is told. */
+    private fun ImageComposeScene.firstLine(prefix: String): Int {
+        settle()
+        fun SemanticsNode.every(): List<SemanticsNode> = listOf(this) + children.flatMap { it.every() }
+        val tops = semanticsOwners.flatMap { it.rootSemanticsNode.every() }
+            .filter { node -> node.config.getOrNull(SemanticsProperties.Text).orEmpty().any { it.text.startsWith(prefix) } }
+            .map { it.boundsInRoot }
+        val first = tops.minOf { it.top }
+        return tops.filter { it.top == first }.map { it.left }.distinct().size
     }
 
     private fun ImageComposeScene.pixel(x: Int, y: Int): Int =

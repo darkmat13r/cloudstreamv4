@@ -91,8 +91,8 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.player_mute
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_subtitles_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_unmute
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
-import com.lagradost.cloudstream4.core.strings.generated.resources.seek_back_10_seconds
-import com.lagradost.cloudstream4.core.strings.generated.resources.seek_forward_10_seconds
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_hud_seek_back
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_hud_seek_forward
 import com.lagradost.cloudstream4.core.strings.generated.resources.source_error
 import com.lagradost.cloudstream4.core.strings.generated.resources.video_source
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -132,6 +132,7 @@ import org.jetbrains.compose.resources.stringResource
  * @param links the streams the search behind [link] has found so far, each time it finds more.
  * @param openPlayer a new player for a source someone chose. Null where sources cannot be switched, and then there
  *   is no selector for it, and nothing moves on by itself either.
+ * @param seekMillis how far the arrow keys and the skip buttons move: Settings' Seek amount (`KMP-96`).
  *
  * ## When a stream fails
  *
@@ -160,6 +161,12 @@ internal fun PlayerScreen(
     links: Flow<List<StreamLink>> = emptyFlow(),
     openPlayer: (() -> VlcPlayer?)? = null,
     switcher: SourceSwitcher = remember(player, link) { SourceSwitcher(link) },
+    seekMillis: Long = PlayerScreenDefaults.SkipMillis,
+    upNext: UpNext? = null,
+    autoplayNext: Boolean = true,
+    onPlayNext: () -> Unit = {},
+    artwork: @Composable (String) -> Unit = {},
+    keepFullscreen: () -> Boolean = { false },
 ) {
     var playback by remember(player, link) { mutableStateOf(Playback(player, link, startAtMillis)) }
     val audioChoice = remember(player, link) { AudioChoice() }
@@ -180,8 +187,10 @@ internal fun PlayerScreen(
         onDispose { thread(isDaemon = true, name = "vlc-release") { current.player.release() } }
     }
     KeepDisplayAwake(status.playing)
-    DisposableEffect(fullscreen) { onDispose { fullscreen?.leave() } }
-    LaunchedEffect(status.finished, framed) { if (status.finished && framed) onBack() }
+    // Kept when the next episode takes this one's place (`KMP-94`): the window stays as the viewer had it.
+    DisposableEffect(fullscreen) { onDispose { if (!keepFullscreen()) fullscreen?.leave() } }
+    // With an episode after this one, its card decides what the end does (`KMP-94`).
+    LaunchedEffect(status.finished, framed) { if (status.finished && framed && upNext == null) onBack() }
     LaunchedEffect(playback, clock) { playback.player.status.collect(clock::onStatus) }
     val progress by rememberUpdatedState(onProgress)
     LaunchedEffect(playback) {
@@ -240,6 +249,11 @@ internal fun PlayerScreen(
         sources = sources,
         fellThrough = switcher.fellThrough,
         onAudioChosen = audioChoice::chosen,
+        seekMillis = seekMillis,
+        upNext = upNext,
+        autoplayNext = autoplayNext,
+        onPlayNext = onPlayNext,
+        artwork = artwork,
     )
 }
 
@@ -273,6 +287,12 @@ internal fun PlayerContent(
     skip: HudSkip? = null,
     onSkip: () -> Unit = {},
     hudIdle: HudIdle = HudIdle.Real,
+    seekMillis: Long = PlayerScreenDefaults.SkipMillis,
+    upNext: UpNext? = null,
+    autoplayNext: Boolean = true,
+    onPlayNext: () -> Unit = {},
+    upNextTick: UpNextTick = UpNextTick.Real,
+    artwork: @Composable (String) -> Unit = {},
 ) {
     LaunchedEffect(controls, volume.audible) { controls.setVolume(volume.audible) }
     val tracks by subtitles.tracks.collectAsState()
@@ -301,6 +321,25 @@ internal fun PlayerContent(
     val listOpen = pickerOpen || fitOpen || audioOpen || sourcesOpen
     val failed = status.failed
     val fullscreenOn = fullscreen?.on == true
+    // `KMP-94`, `DS-23` M13 and M16: one count per time the card comes, so seeking back out of the credits starts it over.
+    val cardDue = upNext != null && !failed && upNextDue(status)
+    val countdown = remember(upNext, cardDue) { if (cardDue) UpNextCountdown(autoplayNext) else null }
+    LaunchedEffect(countdown, autoplayNext) { countdown?.autoplayChanged(autoplayNext) }
+    var pointerOnCard by remember(countdown) { mutableStateOf(false) }
+    val counting = upNextCounts(status)
+    val playNext by rememberUpdatedState(onPlayNext)
+    // A second at a time, only in the episode's last ten (`upNextCounts`), and only while nothing holds it: a panel open,
+    // or the pointer on the card. A hold cancels the second under way, so the count goes on from the same number.
+    LaunchedEffect(countdown, countdown?.left, counting, listOpen, pointerOnCard) {
+        val count = countdown ?: return@LaunchedEffect
+        if (!counting || count.left == null || count.starting || listOpen || pointerOnCard) return@LaunchedEffect
+        upNextTick.second()
+        if (count.tick()) playNext()
+    }
+    // × puts the card away; at the end of the stream that leaves nothing to stay for.
+    LaunchedEffect(countdown?.dismissed, status.finished) {
+        if (countdown?.dismissed == true && status.finished) onBack()
+    }
     SideEffect {
         setEscape {
             when {
@@ -308,6 +347,8 @@ internal fun PlayerContent(
                 fitOpen -> fitOpen = false
                 audioOpen -> audioWanted = false
                 sourcesOpen -> sourcesOpen = false
+                // As Cancel: the card stays, without counting.
+                countdown?.left != null && countdown.starting.not() -> countdown.cancel()
                 fullscreenOn -> fullscreen?.toggle()
                 else -> onBack()
             }
@@ -381,8 +422,8 @@ internal fun PlayerContent(
                 }
                 when (event.key) {
                     Key.Spacebar -> controls.togglePause()
-                    Key.DirectionLeft -> seekBy(-PlayerScreenDefaults.SkipMillis)
-                    Key.DirectionRight -> seekBy(PlayerScreenDefaults.SkipMillis)
+                    Key.DirectionLeft -> seekBy(-seekMillis)
+                    Key.DirectionRight -> seekBy(seekMillis)
                     Key.DirectionUp -> volume.step(PlayerVolume.STEP)
                     Key.DirectionDown -> volume.step(-PlayerVolume.STEP)
                     Key.M -> volume.toggleMute()
@@ -444,6 +485,7 @@ internal fun PlayerContent(
                 onTogglePause = controls::togglePause,
                 onSeekTo = seekTo,
                 onSeekBy = seekBy,
+                seekMillis = seekMillis,
                 onBack = onBack,
                 volumeControl = { withRule -> VolumeControl(volume, withRule) },
                 selectors = {
@@ -515,7 +557,25 @@ internal fun PlayerContent(
         }
         // `DS-23` M3: not part of the HUD, so it stays while the HUD is hidden; it is what the moment is for. Only while
         // the stream says there is something to skip (`KMP-86` gives the Mac that data), so it is never a dead control.
-        if (skip != null && !listOpen) {
+        val showCard = countdown != null && upNext != null && !countdown.dismissed && !listOpen
+        if (showCard && countdown != null && upNext != null) {
+            UpNextCard(
+                upNext = upNext,
+                countdown = countdown,
+                counting = counting,
+                onPlayNow = { if (countdown.playNow()) playNext() },
+                onPointerOnCard = { pointerOnCard = it },
+                artwork = artwork,
+                modifier = Modifier
+                    .align(Alignment.BottomEnd)
+                    .padding(
+                        end = DesktopDimens.WindowMargin,
+                        bottom = maxOf(bottomInset + DesktopDimens.RelatedGap, DesktopDimens.WindowMargin),
+                    ),
+            )
+        }
+        // The card is the credits' one control; Skip has nothing to skip past it.
+        if (skip != null && !listOpen && !showCard) {
             DesktopButton(
                 label = skip.label,
                 onClick = onSkip,
@@ -651,6 +711,7 @@ internal fun Hud(
     onSeekTo: (Float) -> Unit,
     onSeekBy: (Long) -> Unit,
     onBack: () -> Unit,
+    seekMillis: Long = PlayerScreenDefaults.SkipMillis,
     volumeControl: @Composable (withRule: Boolean) -> Unit = {},
     selectors: @Composable RowScope.() -> Unit = {},
     fullscreenControl: @Composable () -> Unit = {},
@@ -723,8 +784,9 @@ internal fun Hud(
                     else -> {
                         DesktopIconButton(
                             icon = CloudStreamIcons.SeekBackward,
-                            contentDescription = stringResource(Res.string.seek_back_10_seconds),
-                            onClick = { onSeekBy(-PlayerScreenDefaults.SkipMillis) },
+                            // No number in the name, so it is true at every Seek amount (`KMP-96`).
+                            contentDescription = stringResource(Res.string.player_hud_seek_back),
+                            onClick = { onSeekBy(-seekMillis) },
                             tone = DesktopButtonTone.Quiet,
                         )
                         DesktopIconButton(
@@ -735,8 +797,8 @@ internal fun Hud(
                         )
                         DesktopIconButton(
                             icon = CloudStreamIcons.SeekForward,
-                            contentDescription = stringResource(Res.string.seek_forward_10_seconds),
-                            onClick = { onSeekBy(PlayerScreenDefaults.SkipMillis) },
+                            contentDescription = stringResource(Res.string.player_hud_seek_forward),
+                            onClick = { onSeekBy(seekMillis) },
                             tone = DesktopButtonTone.Quiet,
                         )
                         SeekTrack(status, onSeekTo, Modifier.weight(1f))
@@ -903,7 +965,7 @@ internal object PlayerScreenDefaults {
     val VolumeTrackWidth: Dp = 80.dp
     /** Narrower controls than this drop the volume rule, so the seek rule keeps at least 88 (`KMP-91`). */
     val VolumeRuleMinControlsWidth: Dp = 480.dp
-    /** `seek_back_10_seconds` and `seek_forward_10_seconds` say this number: change them together. */
+    /** The arrow keys' and the skip buttons' step where no Seek amount is passed. Settings' default (`KMP-96`). */
     const val SkipMillis = 10_000L
     const val HudTimeoutMillis = 3_000L
     /** What the top row covers: its 36 button and a 24 margin on each side. Mirrors `DesktopDimens`. */

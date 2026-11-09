@@ -21,6 +21,7 @@ import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -72,6 +73,63 @@ class SettingsWindowTest {
         height: Int = HEIGHT,
     ) = scene(height) { SettingsContent(settings, root, state) }
 
+    /** `KMP-90g`: the Appearance pane's first row. Home reads the same flow; `HomeScreenTest` shows it hiding Random. */
+    @Test
+    fun `Random Button writes its setting and reads it back after a restart`() {
+        val storage = SettingsStorage.InMemory()
+        val settings = SettingsRepository(storage)
+        window(settings, SettingsWindowState(pane = SettingsPane.Appearance)).use { scene ->
+            scene.save("appearance")
+            assertEquals(true, scene.toggleState("Random Button"), "on by default")
+            assertTrue(scene.allText().none { it.startsWith("On Home and Library") }, "no line the Mac would make untrue")
+            scene.click(scene.bounds("Random Button").center)
+            assertEquals(false, settings.showRandom.value)
+            assertEquals("false", storage.stored["random_button_key"])
+            scene.save("appearance-random-off")
+        }
+        window(SettingsRepository(SettingsStorage.InMemory(storage.stored))).use { scene ->
+            assertEquals(false, scene.toggleState("Random Button"))
+        }
+    }
+
+    /** `KMP-90e`: Poster size, Medium by default. Search, Home and Library read the same flow; their tests count columns. */
+    @Test
+    fun `Poster size writes the chosen size and reads it back after a restart`() {
+        val storage = SettingsStorage.InMemory()
+        val settings = SettingsRepository(storage)
+        window(settings, SettingsWindowState(pane = SettingsPane.Appearance)).use { scene ->
+            scene.click(scene.bounds("Poster size, Medium").center)
+            scene.save("appearance-poster-menu")
+            scene.click(scene.bounds("Large", text = true).center)
+            assertEquals(PosterSize.Large, settings.posterSize.value)
+            assertEquals("large", storage.stored["poster_size_desktop_key"])
+            assertNotNull(scene.find("Poster size, Large"), "the button reads the new size")
+        }
+        window(SettingsRepository(SettingsStorage.InMemory(storage.stored))).use { scene ->
+            assertNotNull(scene.find("Poster size, Large"))
+        }
+    }
+
+    @Test
+    fun `Play the next episode writes its setting and reads it back`() {
+        val storage = SettingsStorage.InMemory()
+        val settings = SettingsRepository(storage)
+        window(settings, SettingsWindowState(pane = SettingsPane.Playback)).use { scene ->
+            scene.save("playback")
+            scene.click(scene.bounds("Play the next episode").center)
+            assertEquals(false, settings.autoplayNext.value)
+            assertEquals("false", storage.stored["autoplay_next_key"])
+            scene.save("playback-off")
+            scene.click(scene.bounds("Play the next episode").center)
+            assertEquals(true, settings.autoplayNext.value)
+        }
+        // A new window over what was stored shows it: off, after a restart.
+        val stored = SettingsStorage.InMemory(mapOf("autoplay_next_key" to "false"))
+        window(SettingsRepository(stored), SettingsWindowState(pane = SettingsPane.Playback)).use { scene ->
+            assertEquals(false, scene.toggleState("Play the next episode"))
+        }
+    }
+
     @Test
     fun `Downloads at once writes the chosen count and reads it back`() {
         val storage = SettingsStorage.InMemory()
@@ -84,6 +142,27 @@ class SettingsWindowTest {
             assertEquals(5, settings.downloadsAtOnce.value)
             assertEquals("5", storage.stored["download_parallel_key"])
             assertNotNull(scene.find("Downloads at once, 5"), "the button reads the new count")
+        }
+    }
+
+    @Test
+    fun `Seek amount writes the chosen step and reads it back`() {
+        val storage = SettingsStorage.InMemory()
+        val settings = SettingsRepository(storage)
+        window(settings, SettingsWindowState(pane = SettingsPane.Playback)).use { scene ->
+            scene.save("playback")
+            scene.click(scene.bounds("Seek amount, 10 seconds").center)
+            scene.save("playback-menu")
+            listOf("5 seconds", "10 seconds", "15 seconds", "30 seconds").forEach {
+                assertNotNull(scene.find(it, text = true), "the pop-up offers $it")
+            }
+            scene.click(scene.bounds("30 seconds", text = true).center)
+            assertEquals(30, settings.seekSeconds.value)
+            assertEquals("30", storage.stored["seek_amount_desktop_key"])
+            assertNotNull(scene.find("Seek amount, 30 seconds"), "the button reads the new step")
+        }
+        window(SettingsRepository(storage), SettingsWindowState(pane = SettingsPane.Playback)).use { scene ->
+            assertNotNull(scene.find("Seek amount, 30 seconds"), "a new window over what was stored shows it")
         }
     }
 
@@ -109,16 +188,23 @@ class SettingsWindowTest {
         val settings = SettingsRepository(SettingsStorage.InMemory())
         val state = SettingsWindowState()
         window(settings, state).use { scene ->
-            assertEquals(listOf("Downloads"), scene.panes())
+            assertEquals(listOf("Appearance", "Playback", "Downloads"), scene.panes())
 
             state.query = "at once"
             scene.settle()
             assertEquals(listOf("Downloads"), scene.panes())
             scene.save("search-found")
 
+            state.query = "random"
+            scene.settle()
+            assertEquals(listOf("Appearance"), scene.panes())
+            state.query = "seek"
+            scene.settle()
+            assertEquals(listOf("Playback"), scene.panes())
+
             state.query = "episode"
             scene.settle()
-            assertEquals(emptyList(), scene.panes(), "Play the next episode is not a row until Up next reads it")
+            assertEquals(listOf("Playback"), scene.panes(), "Play the next episode is a row, now that Up next reads it")
 
             state.query = "cast"
             scene.settle()
@@ -130,7 +216,7 @@ class SettingsWindowTest {
             scene.sendKeyEvent(KeyEvent(Key.Escape, KeyEventType.KeyDown))
             scene.settle()
             assertEquals("", state.query)
-            assertEquals(listOf("Downloads"), scene.panes())
+            assertEquals(listOf("Appearance", "Playback", "Downloads"), scene.panes())
         }
     }
 
@@ -141,7 +227,7 @@ class SettingsWindowTest {
         SettingsPane.entries.forEach { pane ->
             window(settings, SettingsWindowState(pane = pane), height = min).use { scene ->
                 scene.save("minimum-${pane.name.lowercase()}")
-                assertEquals(listOf("Downloads"), scene.panes())
+                assertEquals(listOf("Appearance", "Playback", "Downloads"), scene.panes())
                 scene.nodes().forEach { node ->
                     val box = node.boundsInRoot
                     assertTrue(box.left >= 0f && box.right <= WIDTH, "nothing runs off the side: $box")
@@ -178,6 +264,9 @@ class SettingsWindowTest {
 
     private fun ImageComposeScene.bounds(label: String, text: Boolean = false): Rect =
         checkNotNull(find(label, text)) { "nothing is named \"$label\"" }.boundsInRoot
+
+    private fun ImageComposeScene.toggleState(label: String): Boolean? =
+        find(label)?.config?.getOrNull(SemanticsProperties.ToggleableState)?.let { it == androidx.compose.ui.state.ToggleableState.On }
 
     private fun ImageComposeScene.allText(): List<String> =
         nodes().flatMap { node -> node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text } }

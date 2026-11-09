@@ -9,6 +9,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateListOf
@@ -36,6 +37,8 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
 import com.lagradost.cloudstream4.core.strings.generated.resources.season_short
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
+import com.lagradost.cloudstream4.detail.nextEpisode
+import com.lagradost.cloudstream4.detail.requestPlay
 import com.lagradost.cloudstream4.extensions.ExtensionApprovals
 import com.lagradost.cloudstream4.extensions.ExtensionReviewScreen
 import com.lagradost.cloudstream4.extensions.ExtensionsNotice
@@ -50,6 +53,8 @@ import com.lagradost.cloudstream4.feature.library.LibraryStore
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.LibraryViewModel
+import com.lagradost.cloudstream4.feature.settings.AppearanceSettings
+import com.lagradost.cloudstream4.feature.settings.PlaybackSettings
 import com.lagradost.cloudstream4.feature.settings.SettingsRepository
 import com.lagradost.cloudstream4.home.FileHomeSourceMemory
 import com.lagradost.cloudstream4.downloads.DesktopDownloads
@@ -86,6 +91,8 @@ import com.lagradost.cloudstream4.home.TopLevelScreen
 import com.lagradost.cloudstream4.home.TopLevelTab
 import com.lagradost.cloudstream4.player.MediaHost
 import com.lagradost.cloudstream4.player.PlayerFullscreen
+import com.lagradost.cloudstream4.player.PlayerHandover
+import com.lagradost.cloudstream4.player.UpNext
 import com.lagradost.cloudstream4.player.PlayerScreen
 import com.lagradost.cloudstream4.player.PlayerUnavailable
 import com.lagradost.cloudstream4.player.VlcPlayer
@@ -222,6 +229,8 @@ fun main(args: Array<String>) {
                             homeMemory = homeMemory,
                             shortcuts = shortcuts,
                             downloads = downloads,
+                            appearance = settings,
+                            playback = settings,
                         )
                     }
                 }
@@ -284,6 +293,7 @@ private sealed interface Screen {
  * @param shortcuts what the menu bar's Go menu and its keys do; this sets it for the screen on top (`KMP-53`).
  * @param downloads the download service. Null by default, so a test cannot read or write a real downloads file, and the
  *   page is then empty; the app passes the real one.
+ * @param playback what the player reads from Settings. Every default by default, so a test never reads a real file.
  */
 @Composable
 internal fun DesktopApp(
@@ -299,10 +309,13 @@ internal fun DesktopApp(
     homeMemory: HomeSourceMemory = HomeSourceMemory.None,
     shortcuts: DesktopShortcuts = remember { DesktopShortcuts() },
     downloads: DesktopDownloads? = null,
+    appearance: AppearanceSettings = AppearanceSettings.Default,
+    playback: PlaybackSettings = PlaybackSettings.Default,
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) { onDispose { scope.cancel() } }
     val stack = remember { mutableStateListOf<Screen>(Screen.Home) }
+    val handover = remember { PlayerHandover() }
     val review = approvals?.state?.collectAsState()?.value
     // Allowing or stopping an extension changes what is installed. `HomeViewModel` reads that once
     // when made, so it is rebuilt; `SearchViewModel` is told with `SourcesChanged` instead (BUG-24),
@@ -387,11 +400,18 @@ internal fun DesktopApp(
                     setEscape = { escape.onEscape = it },
                     onOpen = open,
                     onSearch = { top(Screen.Search) },
+                    appearance = appearance,
                 )
             }
             Screen.Search -> TopLevelScreen(TopLevelDestination.Search, toTab, trailing = notice) {
                 SideEffect { escape.onEscape = null }
-                SearchHost(scope, providerChanges, onOpen = open, onBrowseHome = { top(Screen.Home) })
+                SearchHost(
+                    scope,
+                    providerChanges,
+                    onOpen = open,
+                    onBrowseHome = { top(Screen.Home) },
+                    appearance = appearance,
+                )
             }
             Screen.Library -> TopLevelScreen(TopLevelDestination.Library, toTab, trailing = notice) {
                 LibraryHost(
@@ -400,6 +420,7 @@ internal fun DesktopApp(
                     onOpen = { id -> open(id.value) },
                     onResume = resume,
                     onSearch = { top(Screen.Search) },
+                    appearance = appearance,
                 )
             }
             Screen.Downloads -> TopLevelScreen(TopLevelDestination.Downloads, toTab, trailing = notice) {
@@ -450,11 +471,26 @@ internal fun DesktopApp(
             }
             is Screen.Player -> key(screen.link) {
                 SideEffect { escape.onEscape = { back(screen) } }
+                // After the screen this one replaced has closed, which is when it asked whether to keep full screen.
+                LaunchedEffect(screen) { handover.settled() }
                 val player = remember { VlcPlayer.createOrNull() }
+                // `KMP-94`: the title's page is under the player, so its view model is live and knows the episode list.
+                val page = remember(screen) { DesktopDetailViewModels.get(screen.kept.id.value, scope, library) }
+                val pageState by page.state.collectAsState()
+                val detail = (pageState.content as? DetailLoad.Loaded)?.value
+                val next = detail?.let { nextEpisode(it.episodes, screen.episodeData) }
+                val seasonShort = stringResource(Res.string.season_short)
+                val episodeShort = stringResource(Res.string.episode_short)
+                val nextMeta = next?.let { episodeMeta(it, seasonShort, episodeShort) }
+                val upNext = next?.let { UpNext(nextMeta ?: detail.title, detail.posterUrl) }
+                val autoplayNext by playback.autoplayNext.collectAsState()
+                val asking = rememberCoroutineScope()
                 val arrivingSubtitles = remember(screen) { DesktopDetailViewModels.subtitles(screen.kept.id.value) }
                 val recorder = remember(screen) {
                     WatchRecorder(library, screen.kept, screen.episodeData, scope)
                 }
+                // Read while playing, so a change in the Settings window applies to the next press.
+                val seekSeconds by playback.seekSeconds.collectAsState()
                 if (player == null) {
                     PlayerUnavailable(onBack = { back(screen) })
                 } else {
@@ -468,9 +504,32 @@ internal fun DesktopApp(
                         startAtMillis = screen.startAtMillis,
                         onProgress = recorder::onProgress,
                         arrivingSubtitles = arrivingSubtitles,
-                        fullscreen = remember(screen, window) { window?.let(::PlayerFullscreen) },
+                        fullscreen = remember(screen, window) { handover.fullscreen { window?.let(::PlayerFullscreen) } },
                         links = remember(screen) { DesktopDetailViewModels.links(screen.kept.id.value) },
                         openPlayer = VlcPlayer::createOrNull,
+                        seekMillis = seekSeconds * MILLIS_PER_SECOND,
+                        upNext = upNext,
+                        autoplayNext = autoplayNext,
+                        onPlayNext = {
+                            next?.let { episode ->
+                                asking.launch {
+                                    val play = requestPlay(page, episode.data)
+                                    when {
+                                        // Left some other way meanwhile: what was found is not wanted.
+                                        stack.lastOrNull() != screen -> page.onAction(DetailAction.LinksDismissed)
+                                        // Nothing to play: the page says why, with its source list.
+                                        play == null -> back(screen)
+                                        else -> {
+                                            handover.begin()
+                                            stack[stack.lastIndex] =
+                                                Screen.Player(screen.kept, episode.data, play.title, play.link, 0L, nextMeta)
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        artwork = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
+                        keepFullscreen = handover::keepsFullscreen,
                     )
                 }
                 DisposableEffect(screen) {
@@ -499,8 +558,10 @@ private fun SearchHost(
     providerChanges: Int,
     onOpen: (String) -> Unit,
     onBrowseHome: () -> Unit,
+    appearance: AppearanceSettings,
 ) {
     val history = remember { DesktopSearchHistory() }
+    val posterSize by appearance.posterSize.collectAsState()
     val viewModel = remember {
         DesktopSearchViewModels.live
             ?: SearchViewModel(source = DesktopSearchSource(), history = history, scope = scope)
@@ -533,6 +594,7 @@ private fun SearchHost(
             // Only public http(s) addresses get this far. See `posterHttpClient`.
             PosterImage(url = item.posterUrl, modifier = Modifier.fillMaxSize())
         },
+        posterSize = posterSize,
     )
 }
 
@@ -664,3 +726,4 @@ private val WINDOW_WIDTH = 1280.dp
 private val WINDOW_HEIGHT = 800.dp
 private const val MIN_WINDOW_WIDTH = 800
 private const val MIN_WINDOW_HEIGHT = 520
+private const val MILLIS_PER_SECOND = 1_000L

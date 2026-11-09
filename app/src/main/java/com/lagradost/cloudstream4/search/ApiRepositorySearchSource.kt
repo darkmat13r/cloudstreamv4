@@ -21,6 +21,7 @@ import com.lagradost.cloudstream3.utils.AppContextUtils.filterSearchResultByFilm
 import com.lagradost.cloudstream3.utils.AppContextUtils.getApiSettings
 import com.lagradost.cloudstream3.utils.DataStoreHelper
 import com.lagradost.cloudstream3.utils.DataStoreHelper.fixVisual
+import com.lagradost.cloudstream3.utils.redactedReason
 import com.lagradost.cloudstream4.feature.search.QuickSearchProgress
 import com.lagradost.cloudstream4.feature.search.QuickSearchSource
 import com.lagradost.cloudstream4.feature.search.SearchOutcome
@@ -382,19 +383,8 @@ internal class ApiRepositorySearchSource(
      * and a line that repeats it twelve times is unreadable at 10 feet. This is the field that
      * replaces the `Toast` the old screen dropped on the floor.
      */
-    private fun detailOf(failures: List<Pair<APIRepository, Resource<SearchResponseList>>>): String {
-        val byReason = failures.groupBy { (_, reply) ->
-            val reason = if (reply is Resource.Failure) reply.errorString else ""
-            reason.lineSequence().firstOrNull()?.trim()?.take(MAX_REASON_CHARS)
-                ?.ifBlank { null } ?: "NO RESPONSE"
-        }
-        val rendered = byReason.entries.take(MAX_REASONS)
-            .joinToString(" · ") { (reason, group) ->
-                group.joinToString(", ") { (repo, _) -> repo.name } + ": " + reason
-            }
-        val omitted = byReason.size - MAX_REASONS
-        return if (omitted > 0) "$rendered · +$omitted MORE" else rendered
-    }
+    private fun detailOf(failures: List<Pair<APIRepository, Resource<SearchResponseList>>>): String =
+        shortfallLine(failures.map { (repo, reply) -> repo.name to reply }, MAX_REASONS, MAX_REASON_CHARS)
 
     /**
      * `SearchResponse` -> `SearchResultItem`, the whole reason this class exists.
@@ -552,6 +542,27 @@ internal fun cleanProviderText(text: String): String =
     text.filterNot { it.isISOControl() }.trim().take(MAX_PROVIDER_TEXT_CHARS)
 
 private const val MAX_PROVIDER_TEXT_CHARS = 60
+
+/**
+ * Search's shortfall line: each failing provider, grouped by what it said, up to [maxReasons] reasons. Out of the class
+ * so it can be tested off a device (`BUG-63`).
+ *
+ * A reason is the first line of a provider's own words, so it is redacted: no address and no user path, however they
+ * are hidden.
+ */
+internal fun shortfallLine(failures: List<Pair<String, Resource<*>>>, maxReasons: Int, maxChars: Int): String {
+    val byReason = failures.groupBy { (_, reply) ->
+        val reason = if (reply is Resource.Failure) reply.errorString else ""
+        reason.lineSequence().firstOrNull()?.let { redactedReason(it, maxChars) }
+            ?.ifBlank { null } ?: "NO RESPONSE"
+    }
+    val rendered = byReason.entries.take(maxReasons)
+        .joinToString(" · ") { (reason, group) ->
+            group.joinToString(", ") { (name, _) -> name } + ": " + reason
+        }
+    val omitted = byReason.size - maxReasons
+    return if (omitted > 0) "$rendered · +$omitted MORE" else rendered
+}
 
 /** @property failedAt when it last failed, or `null` if its last answer was a good one. */
 internal data class ProviderHealth(val failedAt: Long?)

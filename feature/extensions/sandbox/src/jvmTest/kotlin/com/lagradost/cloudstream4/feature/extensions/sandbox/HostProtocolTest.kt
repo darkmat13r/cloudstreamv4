@@ -219,6 +219,14 @@ class HostProtocolTest {
     }
 
     @Test
+    fun `a label loses every default-ignorable code point, not only controls and format characters`() {
+        val hostile = "Eng\u034Flish\uFE0F\u3164\uDB40\uDD00\uDB40\uDC41"
+        assertEquals("English", subtitle(language = hostile).cleaned()?.language)
+        assertEquals("en", subtitle(language = "\u3164\uFFA0\u115F\u17B4").cleaned()?.language)
+        assertEquals("한국어 \uD83D\uDE00", subtitle(language = "한국어 \uD83D\uDE00").cleaned()?.language)
+    }
+
+    @Test
     fun `a label is cut, and an empty one falls back on the tag or the track is dropped`() {
         assertEquals(128, subtitle(language = "x".repeat(5000)).cleaned()?.language?.length)
         assertEquals("en", subtitle(language = "\u202E  ").cleaned()?.language)

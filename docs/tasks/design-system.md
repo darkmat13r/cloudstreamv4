@@ -554,6 +554,10 @@ closing note gives each board's focus order, states and prerequisites by file an
 violations, 0 clipped, 0 collisions, 9 rings at 4px gap and 4px stroke on all four sides, from `getBoundingClientRect` and
 again from the pixels.
 
+**Overridden on the Mac, 2026-11-08 (the owner, through the PM):** "the Random button stays, always shown" no longer holds
+on the Mac. Settings' Appearance pane has a Random Button switch (`KMP-90g`), on by default, so Home's Random shows until
+someone turns it off. The TV ruling is unchanged.
+
 ---
 
 ## DS-14 — Shared components to the boards, from the TV design review

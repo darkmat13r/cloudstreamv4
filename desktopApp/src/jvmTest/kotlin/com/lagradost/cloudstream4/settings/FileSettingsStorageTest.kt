@@ -23,7 +23,9 @@ class FileSettingsStorageTest {
     @Test
     fun aChangeIsWrittenOwnerOnlyAndReadBackAfterARestart() {
         SettingsRepository(FileSettingsStorage(file)).setDownloadsAtOnce(4)
-        assertEquals("autoplay_next_key=true\ndownload_parallel_key=4\n", file.readText())
+        val written = "autoplay_next_key=true\ndownload_parallel_key=4\nposter_size_desktop_key=medium\n" +
+            "random_button_key=true\nseek_amount_desktop_key=10\n"
+        assertEquals(written, file.readText())
         assertEquals("rw-------", PosixFilePermissions.toString(Files.getPosixFilePermissions(file.toPath())))
         assertEquals(4, SettingsRepository(FileSettingsStorage(file)).downloadsAtOnce.value)
         assertFalse(directory.listFiles().orEmpty().any { it.name.endsWith(".tmp") }, "no temporary file is left behind")

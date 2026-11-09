@@ -113,29 +113,29 @@ class SearchSuggestionsViewModelTest {
     @Test
     fun `typing shows 8a's column, with each row's count from the quick search`() = runTest(dispatcher) {
         val source = FakeSource(
-            SearchOutcome.Complete(listOf(item("Dune", "Filmxy"), item("Dune", "Vidplay"), item("Dune: Part Two", "Filmxy"))),
+            SearchOutcome.Complete(listOf(item("Tide", "Source A"), item("Tide", "Source B"), item("Tide: Part Two", "Source A"))),
         )
-        val suggestions = FakeSuggestions(listOf("Dune", "Dune: Part Two", "Duna"))
-        val vm = viewModel(source, suggestions, FakeHistory("dune"))
+        val suggestions = FakeSuggestions(listOf("Tide", "Tide: Part Two", "Tida"))
+        val vm = viewModel(source, suggestions, FakeHistory("tide"))
 
-        for (q in listOf("d", "du", "dun", "dune")) vm.onAction(SearchAction.QueryChanged(q))
+        for (q in listOf("t", "ti", "tid", "tide")) vm.onAction(SearchAction.QueryChanged(q))
         settle()
 
-        assertEquals(listOf("dune"), suggestions.asked, "only the settled query is asked")
-        assertEquals(listOf("dune"), source.quickSearched)
+        assertEquals(listOf("tide"), suggestions.asked, "only the settled query is asked")
+        assertEquals(listOf("tide"), source.quickSearched)
         assertTrue(source.searched.isEmpty(), "typing does not run the full search")
         val rows = vm.state.value.status.rows()
-        assertEquals(listOf("dune", "Dune: Part Two", "Duna"), rows.map { it.query })
+        assertEquals(listOf("tide", "Tide: Part Two", "Tida"), rows.map { it.query })
         assertEquals(listOf(2, 1, 0), rows.map { it.sources })
     }
 
     @Test
     fun `the rows land before the fan-out answers, and with no count until it has`() = runTest(dispatcher) {
         val gate = CompletableDeferred<Unit>()
-        val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune", "Filmxy"))), quickGate = gate)
-        val vm = viewModel(source, FakeSuggestions(listOf("Dune")))
+        val source = FakeSource(SearchOutcome.Complete(listOf(item("Tide", "Source A"))), quickGate = gate)
+        val vm = viewModel(source, FakeSuggestions(listOf("Tide")))
 
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         settle()
         assertEquals(listOf<Int?>(null), vm.state.value.status.rows().map { it.sources })
 
@@ -146,25 +146,25 @@ class SearchSuggestionsViewModelTest {
 
     @Test
     fun `nothing suggested and nothing recent is 8b, quoting the query and the selected sources`() = runTest(dispatcher) {
-        val vm = viewModel(FakeSource(), FakeSuggestions(emptyList()), FakeHistory("blade runner"))
+        val vm = viewModel(FakeSource(), FakeSuggestions(emptyList()), FakeHistory("salt road"))
 
-        vm.onAction(SearchAction.QueryChanged("dunnne"))
+        vm.onAction(SearchAction.QueryChanged("tiddde"))
         settle()
 
-        assertEquals(SearchStatus.NoSuggestions(query = "dunnne", selected = 12), vm.state.value.status)
+        assertEquals(SearchStatus.NoSuggestions(query = "tiddde", selected = 12), vm.state.value.status)
     }
 
     @Test
     fun `8b's action searches every selected source for what is typed`() = runTest(dispatcher) {
-        val source = FakeSource(SearchOutcome.Complete(listOf(item("Dunnne", "Filmxy"))))
+        val source = FakeSource(SearchOutcome.Complete(listOf(item("Tiddde", "Source A"))))
         val vm = viewModel(source, FakeSuggestions(emptyList()))
-        vm.onAction(SearchAction.QueryChanged("dunnne"))
+        vm.onAction(SearchAction.QueryChanged("tiddde"))
         settle()
 
         vm.onAction(SearchAction.Submit)
         settle()
 
-        assertEquals(listOf("dunnne"), source.searched)
+        assertEquals(listOf("tiddde"), source.searched)
         assertIs<SearchContent.Results>(assertIs<SearchStatus.Showing>(vm.state.value.status).content)
     }
 
@@ -172,7 +172,7 @@ class SearchSuggestionsViewModelTest {
     fun `offline with nothing suggested says offline, not that nothing matches`() = runTest(dispatcher) {
         val vm = viewModel(FakeSource(SearchOutcome.Offline), FakeSuggestions(emptyList()))
 
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         settle()
 
         assertEquals(SearchStatus.Offline, vm.state.value.status)
@@ -185,7 +185,7 @@ class SearchSuggestionsViewModelTest {
         val vm = viewModel(source, FakeSuggestions(emptyList()), connectivity = network(Connectivity.OFFLINE))
         settle()
 
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         settle()
 
         assertEquals(SearchStatus.Offline, vm.state.value.status)
@@ -208,7 +208,7 @@ class SearchSuggestionsViewModelTest {
         settle()
 
         device.value = Connectivity.OFFLINE
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         settle()
 
         assertEquals(SearchStatus.Offline, vm.state.value.status)
@@ -222,19 +222,19 @@ class SearchSuggestionsViewModelTest {
             val vm = viewModel(source, FakeSuggestions(emptyList()), connectivity = network(now))
             settle()
 
-            vm.onAction(SearchAction.QueryChanged("dune"))
+            vm.onAction(SearchAction.QueryChanged("tide"))
             settle()
 
-            assertEquals(SearchStatus.NoSuggestions("dune", 12), vm.state.value.status, "$now")
+            assertEquals(SearchStatus.NoSuggestions("tide", 12), vm.state.value.status, "$now")
         }
     }
 
     @Test
     fun `a fan-out that partly failed rides the chip row, and the counts are of those that answered`() = runTest(dispatcher) {
-        val source = FakeSource(SearchOutcome.Partial(listOf(item("Dune", "Filmxy")), answered = 9, total = 12, detail = "3 FAILED"))
-        val vm = viewModel(source, FakeSuggestions(listOf("Dune")))
+        val source = FakeSource(SearchOutcome.Partial(listOf(item("Tide", "Source A")), answered = 9, total = 12, detail = "3 FAILED"))
+        val vm = viewModel(source, FakeSuggestions(listOf("Tide")))
 
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         settle()
 
         val status = assertIs<SearchStatus.Partial>(vm.state.value.status)
@@ -245,10 +245,10 @@ class SearchSuggestionsViewModelTest {
     @Test
     fun `with no source that can quick-search, the rows come with no count and nothing is searched`() = runTest(dispatcher) {
         val source = FakeSource(sources = SearchSources(selected = 12, total = 48, quickSearchable = false))
-        val vm = viewModel(source, FakeSuggestions(listOf("Dune")))
+        val vm = viewModel(source, FakeSuggestions(listOf("Tide")))
         settle()
 
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         settle()
 
         assertEquals(listOf<Int?>(null), vm.state.value.status.rows().map { it.sources })
@@ -257,25 +257,25 @@ class SearchSuggestionsViewModelTest {
 
     @Test
     fun `a row runs the full search for its words, and shows results`() = runTest(dispatcher) {
-        val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune: Part Two", "Filmxy"))))
-        val vm = viewModel(source, FakeSuggestions(listOf("Dune: Part Two")))
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        val source = FakeSource(SearchOutcome.Complete(listOf(item("Tide: Part Two", "Source A"))))
+        val vm = viewModel(source, FakeSuggestions(listOf("Tide: Part Two")))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         settle()
 
-        vm.onAction(SearchAction.SuggestionActivated("Dune: Part Two"))
+        vm.onAction(SearchAction.SuggestionActivated("Tide: Part Two"))
         settle()
 
-        assertEquals(listOf("Dune: Part Two"), source.searched)
-        assertEquals("Dune: Part Two", vm.state.value.query, "the field shows what was searched")
+        assertEquals(listOf("Tide: Part Two"), source.searched)
+        assertEquals("Tide: Part Two", vm.state.value.query, "the field shows what was searched")
         assertIs<SearchContent.Results>(assertIs<SearchStatus.Showing>(vm.state.value.status).content)
     }
 
     @Test
     fun `without a suggestion source, typing still runs the quick search into rails`() = runTest(dispatcher) {
-        val source = FakeSource(SearchOutcome.Complete(listOf(item("Dune", "Filmxy"))))
+        val source = FakeSource(SearchOutcome.Complete(listOf(item("Tide", "Source A"))))
         val vm = viewModel(source, suggestions = null)
 
-        vm.onAction(SearchAction.QueryChanged("dune"))
+        vm.onAction(SearchAction.QueryChanged("tide"))
         settle()
 
         assertIs<SearchContent.Results>(assertIs<SearchStatus.Showing>(vm.state.value.status).content)

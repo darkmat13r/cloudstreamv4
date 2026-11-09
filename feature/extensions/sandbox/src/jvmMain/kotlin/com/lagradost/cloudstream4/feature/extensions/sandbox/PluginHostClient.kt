@@ -710,7 +710,8 @@ private fun RemoteLinks.cleaned() = copy(
  */
 internal fun RemoteSubtitle.cleaned(): RemoteSubtitle? {
     val tag = languageTag?.takeIf { it.length <= MAX_LANGUAGE_TAG_CHARS && it.all(::isLanguageTagChar) }
-    val label = language.take(MAX_SUBTITLE_LABEL_CHARS).filterNot(::isInvisibleInLabel).trim().ifEmpty { tag }
+    val label = language.take(MAX_SUBTITLE_LABEL_CHARS).filterNot(::isInvisibleInLabel).withoutDefaultIgnorable().trim()
+        .ifEmpty { tag }
         ?: return null
     if (!SandboxPolicy.isHttpUrlShape(url)) return null
     return copy(
