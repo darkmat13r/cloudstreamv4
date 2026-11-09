@@ -469,6 +469,60 @@ class DesktopDownloadsTest {
     }
 
     @Test
+    fun `a poster with userinfo is never written, and one already in the file is dropped on reading (BUG-78)`() = runBlocking {
+        server.add("userinfo.bin", 64 * 1024)
+        val clean = "https://img.example/posters/clean.jpg"
+        val first = host()
+        first.enqueue(
+            DesktopDownloadRequest(
+                episodeId = 41, titleId = 4100, titleName = "Credentialed", kind = DownloadTitleKind.Film,
+                season = null, episode = null, episodeName = null, source = sourceOf(41),
+                link = DesktopDownloadLink(server.url("userinfo.bin")), posterUrl = "https://user:secret@img.example/a.jpg",
+            ),
+        )
+        first.awaitDone(4100, 41)
+        assertNull(first.awaitContents { it.titles.size == 1 }.titles.single().posterUrl)
+        assertFalse("secret" in stateFile.readText(), "the credential never reaches the file")
+        first.close()
+
+        // A file from before the rule, or edited by hand: the same field with a credential in it.
+        val withClean = stateFile.readText().replace("\"posterUrl\":null", "\"posterUrl\":\"$clean\"")
+        assertTrue(clean in withClean, "the poster field is in the file to edit")
+        stateFile.writeText(withClean.replace(clean, "https://user:secret@img.example/a.jpg"))
+        val second = host()
+        assertNull(second.awaitContents { it.titles.size == 1 }.titles.single().posterUrl, "dropped on reading")
+        second.close()
+
+        stateFile.writeText(withClean)
+        val third = host()
+        assertEquals(clean, third.awaitContents { it.titles.size == 1 }.titles.single().posterUrl, "the control: a clean one reads")
+    }
+
+    @Test
+    fun `a poster with userinfo is refused however it is spelled, and an at sign in the path is not userinfo (BUG-78)`() {
+        listOf(
+            "https://user:secret@img.example/a.jpg",
+            "https://user@img.example/a.jpg",
+            "https://@img.example/a.jpg",
+            "HTTPS://User:Secret@img.example/a.jpg",
+            "https://img.example@127.0.0.1/a.jpg",
+            "https://user:pass@img.example?x=1",
+            "https://user:pass@img.example#f",
+            "http:///user:pass@img.example/a.jpg",
+            "http://\\user:pass@img.example/a.jpg",
+            "https://u@[2001:db8::1]/a.jpg",
+        ).forEach { refused -> assertNull(DesktopDownloads.posterOf(refused), "kept: $refused") }
+        listOf(
+            "https://img.example/a@2x.jpg",
+            "https://img.example/a.jpg?by=me@example.com",
+            "https://img.example/a.jpg#me@x",
+            "https://img.example\\a@b.jpg",
+            "https://user%40x.img.example/a.jpg",
+            "https://[2001:db8::1]/a@b.jpg",
+        ).forEach { kept -> assertEquals(kept, DesktopDownloads.posterOf(kept)) }
+    }
+
+    @Test
     fun `only a plain http(s) poster is kept, and none is fine (KMP-99)`() {
         assertEquals("https://img.example/a.jpg", DesktopDownloads.posterOf("https://img.example/a.jpg"))
         assertEquals("HTTP://img.example/a.jpg", DesktopDownloads.posterOf("HTTP://img.example/a.jpg"))

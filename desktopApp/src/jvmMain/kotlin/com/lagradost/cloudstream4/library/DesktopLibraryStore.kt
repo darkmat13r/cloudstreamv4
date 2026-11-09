@@ -5,6 +5,7 @@ import com.lagradost.cloudstream4.feature.library.LibraryStore
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
 import com.lagradost.cloudstream4.feature.library.WatchPosition
+import com.lagradost.cloudstream4.search.hasPosterUserInfo
 import java.io.File
 import java.io.IOException
 import java.nio.ByteBuffer
@@ -50,7 +51,8 @@ import kotlinx.coroutines.withContext
  *
  * Everything in these files was written from what a plugin returned, so reading them is reading
  * untrusted data again: titles and provider names lose control and format characters and are truncated,
- * and a poster that is not plain `http(s)` is dropped before it can reach the image loader. The id is
+ * and a poster that is not plain `http(s)`, or that carries userinfo (`BUG-78`), is dropped before it can reach the
+ * image loader. It is refused on the way in as well, so it never reaches the file. The id is
  * **not** sanitised — it is opaque and carries a NUL on purpose — only escaped.
  *
  * @param titlesFile defaults to `~/.cloudstream4/library.tsv`.
@@ -144,7 +146,7 @@ class DesktopLibraryStore(
                 title.bucket?.name.orEmpty(),
                 title.id.value,
                 title.title,
-                title.posterUrl.orEmpty(),
+                title.posterUrl?.takeIf { it.isPublicHttp() }.orEmpty(),
                 title.providerName.orEmpty(),
             )
         }
@@ -267,7 +269,8 @@ class DesktopLibraryStore(
     private fun String.safeText(): String =
         filterNot { it.isISOControl() || it.category == CharCategory.FORMAT }.trim().take(MAX_TEXT_CHARS)
 
-    private fun String.isPublicHttp(): Boolean = HTTP_PREFIXES.any { startsWith(it, ignoreCase = true) }
+    private fun String.isPublicHttp(): Boolean =
+        HTTP_PREFIXES.any { startsWith(it, ignoreCase = true) } && !hasPosterUserInfo(this)
 
     private fun clock() = System.currentTimeMillis()
 

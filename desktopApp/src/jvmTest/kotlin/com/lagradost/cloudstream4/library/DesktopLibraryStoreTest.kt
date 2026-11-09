@@ -82,6 +82,22 @@ class DesktopLibraryStoreTest {
     }
 
     @Test
+    fun `a poster with userinfo is never written, and one already in the file is dropped on reading (BUG-78)`() = runBlocking {
+        store().remember(title(id("x"), posterUrl = "https://user:secret@example.com/p.jpg"))
+        assertNull(store().titles().single().posterUrl)
+        assertTrue("secret" !in titlesFile.readText(), "the credential never reaches the file")
+
+        store().remember(title(id("y"), posterUrl = "https://example.com/clean.jpg"))
+        val withClean = titlesFile.readText()
+        assertTrue("https://example.com/clean.jpg" in withClean, "the control: a clean one is written")
+        titlesFile.writeText(withClean.replace("https://example.com/clean.jpg", "http:///user:secret@example.com/p.jpg"))
+        assertNull(store().titles().first { it.id == id("y") }.posterUrl, "dropped on reading")
+
+        store().remember(title(id("z"), posterUrl = "https://example.com/a@2x.jpg"))
+        assertEquals("https://example.com/a@2x.jpg", store().titles().first { it.id == id("z") }.posterUrl, "an at sign in the path")
+    }
+
+    @Test
     fun `one row per title, and the newest write wins`() = runBlocking {
         val store = store()
         store.remember(title(id("dune"), name = "Dune"))
