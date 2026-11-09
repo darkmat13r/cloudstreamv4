@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.player
 
+import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLink
 import java.io.File
 import java.nio.file.Files
 import kotlin.test.AfterTest
@@ -31,5 +32,29 @@ class PlaybackCheckTest {
         assertNull(localPlaybackFile(File(folder, "missing.mp4").path))
         assertNull(localPlaybackFile(folder.path), "a folder is not a clip")
         assertNull(localPlaybackFile("file://%zz"), "a malformed file URL is not a file")
+    }
+
+    @Test
+    fun onlyACommandLineTargetIsStaged() {
+        assertEquals(CheckStream.Staged(clip), directStream(clip.path))
+        val stream = "https://example.invalid/quiet-harbor.m3u8"
+        assertEquals(CheckStream.AsIs(stream, null, null, null), directStream(stream))
+    }
+
+    @Test
+    fun aPluginLinkIsNeverStagedEvenWhenItNamesALocalFile() {
+        listOf(clip.path, clip.toURI().toString()).forEach { named ->
+            val link = RemoteLink(
+                source = "Lantern Reel",
+                name = "Lantern Reel",
+                url = named,
+                quality = 1080,
+                type = "VIDEO",
+                referer = "https://example.invalid/",
+                userAgent = "Lantern/1",
+                audioUrl = null,
+            )
+            assertEquals(CheckStream.AsIs(named, "https://example.invalid/", "Lantern/1", null), pluginStream(link), named)
+        }
     }
 }

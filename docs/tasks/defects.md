@@ -3004,7 +3004,9 @@ host may not open. `--check-subtitle-render` already copies its clip in first (`
 
 **Fix.** `--check-playback` does the same for a local target. `localPlaybackFile` recognises a path or a `file://`
 URL to a file that exists, and that file is staged; anything else, a stream's URL included, goes to the host as before.
-Nothing the app plays changed.
+Only a target typed on the command line is staged: the `plugin:` branch passes its link on as it is even when it names a
+local file, so nothing a provider returns can reach the staging, whatever filter a later caller forgets (review,
+defence in depth). Nothing the app plays changed.
 
 **Does real local playback work?** Nothing in the Mac app plays a local file today: the series page's Play is not wired
 (`DesktopDownloadsHost`: `SeriesEffect.Play -> Unit`), and every player the app opens plays a provider's stream.
@@ -3012,6 +3014,8 @@ So no user meets this. But the same wall is there for whoever wires Play for a d
 `~/Downloads/CloudStream`. Letting it read the download folder, or staging or serving the file, is a sandbox decision,
 reported to the PM rather than made here.
 
-**Tests.** `PlaybackCheckTest` (2, run): a path, a `file://` URL with its space encoded, and the scheme in any case
-are staged; a stream URL, a missing file, a folder and a malformed `file://` URL are passed on as they are. The
+**Tests.** `PlaybackCheckTest` (4, run): a path, a `file://` URL with its space encoded, and the scheme in any case
+are staged; a stream URL, a missing file, a folder and a malformed `file://` URL are passed on as they are; a
+command-line target is staged and a stream is not; a plugin's link naming a local file, by path or `file://` URL, is
+passed on as it is, never staged. The
 playback itself needs VLC and the sandbox, so it is the measurement above, not a unit test.
