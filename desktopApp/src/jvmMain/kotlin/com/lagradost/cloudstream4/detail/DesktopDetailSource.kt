@@ -104,8 +104,8 @@ internal fun RemoteDetails.toTitleDetail(providerName: String) = TitleDetail(
     // Checked by the sandbox's reader (`KMP-86`): digits only for MAL and TMDb, so these parse.
     ids = TitleIds(ids.malId?.toIntOrNull(), ids.tmdbId?.toIntOrNull(), ids.imdbId),
     cast = cast.map { person ->
-        // The words, else the kind's own name, as Android's `toCast` does. The page turns a kind into words (KMP-104).
-        DetailCastMember(person.name, person.imageUrl, person.role ?: person.roleKind?.name, person.voiceActor)
+        // The words, and the kind apart, which the page puts in words where there are none (KMP-104).
+        DetailCastMember(person.name, person.imageUrl, person.role, person.voiceActor, person.roleKind?.name)
     },
     recommendations = recommendations.mapNotNull { title ->
         // Bound to the provider that sent it, never one it names (KMP-103), and kept only if the id gives back

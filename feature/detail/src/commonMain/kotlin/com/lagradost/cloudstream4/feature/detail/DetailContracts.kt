@@ -69,6 +69,11 @@ data class DetailCastMember(
     val imageUrl: String?,
     val role: String?,
     val voiceActorName: String? = null,
+    /**
+     * `Main`, `Supporting` or `Background` (`ActorRole`), for when there is no [role] (`KMP-104`). An identifier: the
+     * page turns it into words. Null where the host folds the kind into [role], as Android's does.
+     */
+    val roleKind: String? = null,
 )
 
 /**
