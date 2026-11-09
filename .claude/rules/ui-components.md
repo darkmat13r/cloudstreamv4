@@ -145,6 +145,8 @@ meaning, icon buttons are for toggles and overflow, and a screen has one primary
 | The detail row's watchlist toggle: off, then on (rule 4, colour says focus, shape says state) | `Add`, then `Done` | `Plus`, then `Check` |
 | Favourite (icon-only toggle) | `Favorite` | `Heart` |
 | More (icon-only overflow) | `More` | `Dots` |
+| A pop-up button's mark: pressing it lists the choices (the Mac's Settings, `DS-24`; first used by `KMP-90`) | `Selector` | `Selector` |
+| Use Touch ID: the 48 dp illustration in the Mac's Touch ID sheet (`DS-25` A3t); never on "Use PIN instead", which stays text-only | `TouchId` | `Fingerprint` |
 | More info (opens a title's page from Home's hero, which does not play: rule 1's Play or Resume when it can, `KMP-41`) | `Info` | `InfoCircle` |
 
 **Text-only, and why:** *Skip for now* and *Go to Watching* (navigation with no object a glyph
@@ -178,12 +180,19 @@ labels always visible.
   cannot see `R`, it is the `UiText` bridge (`UiText.Resource(id, args)`) that the migration plan
   describes — `Int` is not an Android type, so a ViewModel carrying one still compiles in
   `commonMain`.
-- Base strings live in `app/src/main/res/values/strings.xml`, with **62 locale directories**
-  managed by Weblate.
-- **Do not add strings to `composeResources`**, and do not migrate `res/values*` into it.
-  `shared/readme.md` asks for that to wait until Weblate is repointed, and the plan defers it to
-  the last phase. Adding one string there splits the translation pipeline in two.
-- Never hand-translate. Add the English string; Weblate handles the rest.
+- Every string's source is `core/strings/src/commonMain/composeResources/values*/strings.xml`,
+  **62 locale directories**. `app/src/main/res/values*/strings.xml` is generated from it: never
+  hand-edit it; regenerate with `./gradlew :core:strings:writeAndroidStrings`. Read
+  `docs/HANDOVER.md` before touching a string.
+- Weblate is retired (`I18N-07`; see the top of `docs/tasks/i18n.md`). A new English string is
+  machine-translated into every locale in the same PR and checked by script: every key present,
+  placeholders identical to English, and each locale's own plural categories. The task entry in
+  `docs/tasks/i18n.md` records that, and the key goes into its "Waiting on a native speaker" table.
+- One meaning, one key. Reuse an existing key only when the meaning is the same; a reworded
+  string is a new key.
+- A plural's forms agree with the number; they never change wording. In many locales `one`
+  also covers 21, 31… (`settings_extensions_all`, `I18N-20`). A form may drop its `%d` only
+  where the language says the number itself (the Arabic dual) and the strings guards accept it.
 
 ## Previews and screenshots
 
