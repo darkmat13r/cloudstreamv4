@@ -72,6 +72,25 @@ class SettingsWindowTest {
         height: Int = HEIGHT,
     ) = scene(height) { SettingsContent(settings, root, state) }
 
+    /** `KMP-90g`: the Appearance pane's first row. Home reads the same flow; `HomeScreenTest` shows it hiding Random. */
+    @Test
+    fun `Random Button writes its setting and reads it back after a restart`() {
+        val storage = SettingsStorage.InMemory()
+        val settings = SettingsRepository(storage)
+        window(settings, SettingsWindowState(pane = SettingsPane.Appearance)).use { scene ->
+            scene.save("appearance")
+            assertEquals(true, scene.toggleState("Random Button"), "on by default")
+            assertTrue(scene.allText().none { it.startsWith("On Home and Library") }, "no line the Mac would make untrue")
+            scene.click(scene.bounds("Random Button").center)
+            assertEquals(false, settings.showRandom.value)
+            assertEquals("false", storage.stored["random_button_key"])
+            scene.save("appearance-random-off")
+        }
+        window(SettingsRepository(SettingsStorage.InMemory(storage.stored))).use { scene ->
+            assertEquals(false, scene.toggleState("Random Button"))
+        }
+    }
+
     @Test
     fun `Downloads at once writes the chosen count and reads it back`() {
         val storage = SettingsStorage.InMemory()
@@ -109,12 +128,16 @@ class SettingsWindowTest {
         val settings = SettingsRepository(SettingsStorage.InMemory())
         val state = SettingsWindowState()
         window(settings, state).use { scene ->
-            assertEquals(listOf("Downloads"), scene.panes())
+            assertEquals(listOf("Appearance", "Downloads"), scene.panes())
 
             state.query = "at once"
             scene.settle()
             assertEquals(listOf("Downloads"), scene.panes())
             scene.save("search-found")
+
+            state.query = "random"
+            scene.settle()
+            assertEquals(listOf("Appearance"), scene.panes())
 
             state.query = "episode"
             scene.settle()
@@ -130,7 +153,7 @@ class SettingsWindowTest {
             scene.sendKeyEvent(KeyEvent(Key.Escape, KeyEventType.KeyDown))
             scene.settle()
             assertEquals("", state.query)
-            assertEquals(listOf("Downloads"), scene.panes())
+            assertEquals(listOf("Appearance", "Downloads"), scene.panes())
         }
     }
 
@@ -141,7 +164,7 @@ class SettingsWindowTest {
         SettingsPane.entries.forEach { pane ->
             window(settings, SettingsWindowState(pane = pane), height = min).use { scene ->
                 scene.save("minimum-${pane.name.lowercase()}")
-                assertEquals(listOf("Downloads"), scene.panes())
+                assertEquals(listOf("Appearance", "Downloads"), scene.panes())
                 scene.nodes().forEach { node ->
                     val box = node.boundsInRoot
                     assertTrue(box.left >= 0f && box.right <= WIDTH, "nothing runs off the side: $box")
@@ -178,6 +201,9 @@ class SettingsWindowTest {
 
     private fun ImageComposeScene.bounds(label: String, text: Boolean = false): Rect =
         checkNotNull(find(label, text)) { "nothing is named \"$label\"" }.boundsInRoot
+
+    private fun ImageComposeScene.toggleState(label: String): Boolean? =
+        find(label)?.config?.getOrNull(SemanticsProperties.ToggleableState)?.let { it == androidx.compose.ui.state.ToggleableState.On }
 
     private fun ImageComposeScene.allText(): List<String> =
         nodes().flatMap { node -> node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text } }

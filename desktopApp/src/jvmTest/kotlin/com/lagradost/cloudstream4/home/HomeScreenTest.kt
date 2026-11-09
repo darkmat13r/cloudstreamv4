@@ -5,6 +5,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.InternalComposeUiApi
@@ -16,6 +19,9 @@ import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
+import androidx.compose.ui.semantics.SemanticsNode
+import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.DesktopApp
@@ -56,6 +62,8 @@ import java.util.Locale
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
@@ -279,6 +287,46 @@ class HomeScreenTest {
             actions,
         )
         scene.close()
+    }
+
+    /**
+     * `KMP-90g`: Settings' Random Button. Off, the bar has no Random and Reload still acts; on, Random is back. Found by what a
+     * screen reader is told, so the test does not depend on where the bar puts them.
+     */
+    @Test
+    fun `Random is in the bar only while Settings shows it, and Reload stays either way`() {
+        val kept = listOf(row("Popular"), row("Clips", section = 1))
+        val stale = state(HomeStatus.Stale(HomeStatus.Failed("IOException"), kept, NOW - 12 * MINUTE))
+        var showRandom by mutableStateOf(false)
+        val actions = mutableListOf<HomeAction>()
+        val scene = scene {
+            HomeScreenDesktop(
+                stale,
+                { actions += it },
+                artwork = { Box(Modifier.fillMaxSize().background(Color.DarkGray)) },
+                now = { NOW },
+                showRandom = showRandom,
+            )
+        }
+        scene.settle()
+        scene.save("28-random-off")
+        assertNull(scene.named("Random"), "no Random while it is off")
+        scene.click(checkNotNull(scene.named("Reload Provider")).boundsInRoot.center)
+        assertEquals(listOf<HomeAction>(HomeAction.ReloadRequested), actions)
+
+        showRandom = true
+        scene.settle()
+        scene.click(checkNotNull(scene.named("Random"), { "Random is back when it is on" }).boundsInRoot.center)
+        assertEquals(listOf(HomeAction.ReloadRequested, HomeAction.RandomRequested()), actions)
+        assertNotNull(scene.named("Reload Provider"))
+        scene.close()
+    }
+
+    private fun ImageComposeScene.named(label: String): SemanticsNode? {
+        fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
+        return semanticsOwners.flatMap { it.rootSemanticsNode.all() }.lastOrNull { node ->
+            node.config.getOrNull(SemanticsProperties.ContentDescription).orEmpty().any { it == label }
+        }
     }
 
     /** The control for the test above: the same rows, on screen, have their Load more where it clicks. */

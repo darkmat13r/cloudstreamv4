@@ -139,6 +139,7 @@ import org.jetbrains.compose.resources.stringResource
  * @param picture draws the art at an address: a Continue watching poster or the hero's backdrop. Image loading is the
  *   host's, and an address it will not load draws nothing.
  * @param now the time in epoch milliseconds, for how old H4's kept rows are. A test passes its own.
+ * @param showRandom whether the top bar offers Random: Settings' Random Button (`KMP-90g`), on unless turned off.
  */
 @Composable
 fun HomeScreenDesktop(
@@ -148,12 +149,13 @@ fun HomeScreenDesktop(
     artwork: @Composable (HomeItem) -> Unit = {},
     picture: @Composable (url: String?) -> Unit = {},
     now: () -> Long = { Clock.System.now().toEpochMilliseconds() },
+    showRandom: Boolean = true,
 ) {
     val status = state.status.toUiState(state.selectedOption?.name, onAction)
     val local = state.hero is HomeHero.Shown || state.history.resume.isNotEmpty() || state.bookmarks.all.isNotEmpty()
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
-            Toolbar(state, onAction)
+            Toolbar(state, onAction, showRandom)
             // H4: a failed reload keeps the rows, so it is the page with them, whatever the device keeps above.
             if (local || state.status is HomeStatus.Stale) {
                 Page(state, status, onAction, artwork, picture, now)
@@ -180,7 +182,7 @@ fun HomeScreenDesktop(
 }
 
 @Composable
-private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit) {
+private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit, showRandom: Boolean) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     Row(
@@ -207,11 +209,13 @@ private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit) {
                 contentDescription = stringResource(Res.string.reload_provider),
                 onClick = { onAction(HomeAction.ReloadRequested) },
             )
-            DesktopIconButton(
-                icon = CloudStreamIcons.Random,
-                contentDescription = stringResource(Res.string.home_random),
-                onClick = { onAction(HomeAction.RandomRequested()) },
-            )
+            if (showRandom) {
+                DesktopIconButton(
+                    icon = CloudStreamIcons.Random,
+                    contentDescription = stringResource(Res.string.home_random),
+                    onClick = { onAction(HomeAction.RandomRequested()) },
+                )
+            }
         }
     }
 }

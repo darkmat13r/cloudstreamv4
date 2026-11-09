@@ -8,13 +8,19 @@ class SettingsSearchTest {
     /** The English words, as the window resolves them, plus a made-up folder name. */
     private val words: (SettingsRow) -> List<String> = { row ->
         when (row) {
+            SettingsRow.RandomButton -> listOf("Random Button")
             SettingsRow.DownloadFolder -> listOf("Download folder", "Harbor Films")
             SettingsRow.DownloadsAtOnce -> listOf("Downloads at once", "How many titles download together.")
         }
     }
 
-    /** A made-up pane name that no row's words contain, so a match on it can only be the name. */
-    private val title: (SettingsPane) -> String = { "Saved Titles" }
+    /** Made-up pane names that no row's words contain, so a match on one can only be the name. */
+    private val title: (SettingsPane) -> String = { pane ->
+        when (pane) {
+            SettingsPane.Appearance -> "Looks"
+            SettingsPane.Downloads -> "Saved Titles"
+        }
+    }
 
     private fun panes(query: String) = SettingsSearch.panes(query, words, title)
 
@@ -29,6 +35,7 @@ class SettingsSearchTest {
     fun aQueryKeepsOnlyThePanesHoldingAMatchingRowIgnoringCase() {
         assertEquals(listOf(SettingsPane.Downloads), panes("AT ONCE"))
         assertEquals(listOf(SettingsPane.Downloads), panes("download"))
+        assertEquals(listOf(SettingsPane.Appearance), panes("random"))
         assertEquals(SettingsPane.entries, panes("o"))
     }
 

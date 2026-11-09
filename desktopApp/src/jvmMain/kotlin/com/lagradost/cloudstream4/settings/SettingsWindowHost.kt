@@ -91,6 +91,7 @@ internal fun SettingsContent(
         folder = downloadFolder(downloadRoot),
         onAction = { action ->
             when (action) {
+                is SettingsAction.SetShowRandom -> settings.setShowRandom(action.on)
                 is SettingsAction.SetDownloadsAtOnce -> settings.setDownloadsAtOnce(action.count)
                 SettingsAction.RevealDownloadFolder -> reveal(downloadRoot)
             }

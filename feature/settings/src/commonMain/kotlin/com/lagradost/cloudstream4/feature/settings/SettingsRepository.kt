@@ -38,14 +38,16 @@ interface SettingsStorage {
 class SettingsRepository(
     private val storage: SettingsStorage,
     private val onSaveFailed: (String) -> Unit = {},
-) : MutablePlaybackSettings, DownloadSettings {
+) : MutablePlaybackSettings, DownloadSettings, AppearanceSettings {
     private val state = MutableStateFlow(SettingsValues.fromStored(storage.load()))
     private val autoplay = MutableStateFlow(state.value.autoplayNext)
     private val atOnce = MutableStateFlow(state.value.downloadsAtOnce)
+    private val random = MutableStateFlow(state.value.showRandom)
 
     val values: StateFlow<SettingsValues> = state.asStateFlow()
     override val autoplayNext: StateFlow<Boolean> = autoplay.asStateFlow()
     override val downloadsAtOnce: StateFlow<Int> = atOnce.asStateFlow()
+    override val showRandom: StateFlow<Boolean> = random.asStateFlow()
 
     override fun setAutoplayNext(on: Boolean) = update { it.copy(autoplayNext = on) }
 
@@ -53,6 +55,8 @@ class SettingsRepository(
         require(count in SettingsValues.DOWNLOADS_AT_ONCE) { "downloadsAtOnce out of range" }
         update { it.copy(downloadsAtOnce = count) }
     }
+
+    fun setShowRandom(on: Boolean) = update { it.copy(showRandom = on) }
 
     /**
      * Applies [change] atomically, so two changes at once never lose one. The views and the file then take whatever is
@@ -66,6 +70,7 @@ class SettingsRepository(
             val now = state.value
             autoplay.value = now.autoplayNext
             atOnce.value = now.downloadsAtOnce
+            random.value = now.showRandom
             try {
                 storage.save(now.toStored())
             } catch (e: Exception) {

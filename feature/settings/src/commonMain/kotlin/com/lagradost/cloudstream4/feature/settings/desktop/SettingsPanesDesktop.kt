@@ -24,17 +24,20 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPopupButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopSwitch
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_show_in_finder
+import com.lagradost.cloudstream4.core.strings.generated.resources.random_button_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_download_folder
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder_missing
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_home_search
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_speed
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
@@ -42,6 +45,29 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.settings.SettingsRow
 import com.lagradost.cloudstream4.feature.settings.SettingsValues
 import org.jetbrains.compose.resources.stringResource
+
+/**
+ * `DS-24` ST11's Appearance pane, its first row (`KMP-90g`): whether Home shows Random. No line under it: the board's
+ * "On Home and Library." is untrue on the Mac, whose Library has no Random.
+ */
+@Composable
+internal fun ColumnScope.AppearancePane(
+    values: SettingsValues,
+    marked: Set<SettingsRow>,
+    onAction: (SettingsAction) -> Unit,
+) {
+    GroupHeader(stringResource(Res.string.settings_home_search))
+    Group {
+        val title = stringResource(Res.string.random_button_settings)
+        SettingRow(title = title, line = null, marked = SettingsRow.RandomButton in marked) {
+            DesktopSwitch(
+                checked = values.showRandom,
+                onCheckedChange = { onAction(SettingsAction.SetShowRandom(it)) },
+                label = title,
+            )
+        }
+    }
+}
 
 /** `DS-24` ST6's Downloads pane, part 1: the folder by its name, and how many download at once. */
 @Composable
