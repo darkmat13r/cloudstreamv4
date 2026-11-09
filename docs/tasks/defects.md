@@ -3298,13 +3298,32 @@ from tokens only"*.
 |---|---|
 | 24dp between chips | 12dp (`MinFocusGap`) |
 | A focused chip's ring 4dp outside its cell | Inside its cell |
-| A chip's focus target as wide as its pill | 4dp wider each side |
+| A chip's focus target as wide as its pill | Unchanged: still the pill's width. The ring's room is outside it |
+
+### The regression train 13 caught, and its fix
+
+The first version put the ring's room *inside* the chip's focus target. `ChipRow` places the cells 4dp left of the row,
+so the first chip's focus target then started 4dp left of the content lined up under the row. Compose's focus search
+counts a target as "to the left" only when its left edge is strictly left of the focused one's. Before, the two edges
+were equal and the chip was not a candidate. With the room inside, the chip was a candidate, and nearer than the rail.
+Train 13's bisect found it: in `:app`'s `DownloadsTvNavigationTest`, Left from Downloads' series row went to "Download
+queue" instead of the rail's "Downloads". It passed 5/5 before this PR and failed with it. The same geometry was under
+every TV `ChipRow` with content beneath, not only Downloads.
+
+**Fix:** `Chip` pads the ring's room *outside* its `selectable`. What takes focus, and what a tap lands on, is the
+pill's width and the cell's 48dp height, as before this PR. The layout keeps the room, so the ring still draws inside
+the cell and the visible gap is still `MinFocusGap`. No pixel moves: every screenshot reference passed unchanged.
 
 ### Tests
 
 All on `Television_720p`, locally (CI is off).
 
-- `ChipDeviceTest` (`:core:designsystem`, 3, all pass), two new, all three **failing on the old `Chip` and `ChipRow`**:
+- `ChipDeviceTest` (`:core:designsystem`, 4, all pass), three new, all **failing on the old `Chip` and `ChipRow`**:
+  - `leftFromTheContentUnderAChipRowReachesTheRail`: a rail beside a column of a `ChipRow` over a full-width row. Left
+    from the row reaches the rail, and the first chip's focus target starts where the row does. It fails with the
+    ring's room inside the focus target: "the first chip's focus target starts with the content expected:<133.0> but
+    was:<138.0>".
+  - Its `cell` helper is the focus target plus `FocusRingBleed` each side, since the target is now the pill.
   - `theVisibleGapBetweenChipsIsMinFocusGap`: the ground between two pills, in pixels, is `MinFocusGap`. Old: "expected
     <15.975> but was <32.0>".
   - `eachRingStaysInsideItsOwnCellAndOneKeyFocusesOneChip`: each focused ring stays inside its own cell and clear of the
@@ -3322,3 +3341,7 @@ All on `Television_720p`, locally (CI is off).
 - On master `2a3f16b6a`, Detail's season chips use the same row, so `detail-season-chips` was recorded again too.
   Its pixel diff is 7,974 px, all in x 135..472, y 629..672: the chip row after Season 1, which stays put. No other
   Detail case changed, and every other module's references still pass.
+- After the fix, the full device run: `:core:designsystem` 32, `:feature:account` 6, `:feature:detail` 38,
+  `:feature:downloads` 61, `:feature:home` 86, `:feature:library` 34, `:feature:player` 14, `:feature:search` 62, and
+  the whole `:app` suite, 161. No failures, and no screenshot reference changed. `DownloadsTvNavigationTest` then
+  passed 3 runs of 3.

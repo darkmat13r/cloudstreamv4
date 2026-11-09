@@ -46,6 +46,12 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * focused chip never draws over a neighbour, however close [ChipRow] puts them. It used to be the
  * visual's width, and the ring bled 4dp past it.
  *
+ * **What takes focus is narrower than the cell**: the pill's width, 48dp tall, inside the ring's room.
+ * Focus search and a tap use that box, which is where they were before the cell widened. With the
+ * room inside the focus target, [ChipRow]'s first chip reached 4dp left of the content under it, so
+ * Left from that content went to the chip instead of the rail beside it (`BUG-65`,
+ * `DownloadsTvNavigationTest`).
+ *
  * The cell's **width is intrinsic** — the label's width plus [ChipDefaults.VisualHorizontalPadding]
  * on each side, plus the count if there is one, plus the ring's room. Geometry
  * rule 6 exempts text measurement from the step; see [ChipRow], which is where the next reader is
@@ -70,7 +76,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * @param label already-localised chip text.
  * @param selected whether this chip is the applied one. Hoisted; the caller owns it.
  * @param onClick invoked on D-pad centre, Enter, or a tap. Emits the intent, nothing more.
- * @param modifier applied to the focus *cell*, which is the focusable. The ring is on the visual inside it.
+ * @param modifier applied to the *cell*, the focusable plus the ring's room. The ring is on the visual inside it.
  * @param count optional trailing count, rendered in `CloudStreamTheme.typography.labelMono`. It is
  *   a `String` rather than an `Int` because formatting a number is locale work — thousands
  *   separators, "999+" — and a design system module has no locale. Format it at the call site.
@@ -90,14 +96,15 @@ fun Chip(
         modifier = modifier
             .zIndex(if (focused) FOCUSED_LAYER else RESTING_LAYER)
             .height(CloudStreamDimens.ChipFocusCell)
+            // The ring's room is outside the focus target, so focus search sees the pill's width (`BUG-65`).
+            .padding(horizontal = CloudStreamDimens.FocusRingBleed)
             .selectable(
                 selected = selected,
                 interactionSource = interactionSource,
                 indication = null,
                 role = Role.Tab,
                 onClick = onClick,
-            )
-            .padding(horizontal = CloudStreamDimens.FocusRingBleed),
+            ),
         contentAlignment = Alignment.Center,
     ) {
         ChipVisual(label = label, selected = selected, focused = focused, count = count, shape = shape)

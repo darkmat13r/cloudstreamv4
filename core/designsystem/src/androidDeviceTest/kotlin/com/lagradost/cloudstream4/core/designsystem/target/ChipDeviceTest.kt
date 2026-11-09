@@ -1,16 +1,28 @@
 package com.lagradost.cloudstream4.core.designsystem.target
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.PixelMap
 import androidx.compose.ui.graphics.toPixelMap
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.test.isFocused
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithText
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.unit.Dp
@@ -63,21 +75,25 @@ class ChipDeviceTest {
         }
     }
 
-    private fun cell(label: String): Rect {
+    /** What takes focus: the pill's width, the cell's height. The ring's room is outside it (`BUG-65`). */
+    private fun target(label: String): Rect {
         rule.waitForIdle()
         return rule.onNodeWithText(label).fetchSemanticsNode().boundsInRoot
+    }
+
+    /** The chip's cell: its focus target plus [CloudStreamDimens.FocusRingBleed] each side, the ring's room. */
+    private fun cell(label: String): Rect {
+        val target = target(label)
+        val room = CloudStreamDimens.FocusRingBleed.px()
+        return Rect(target.left - room, target.top, target.right + room, target.bottom)
     }
 
     private fun Dp.px(): Float = with(rule.density) { toPx() }
 
     private fun PixelMap.ringAt(x: Float, y: Float): Boolean = this[x.toInt(), y.toInt()] == cloudStreamDarkColors().focus
 
-    /** The pill inside a chip's cell: the cell less [CloudStreamDimens.FocusRingBleed] each side (`BUG-65`). */
-    private fun visual(label: String): Rect {
-        val cell = cell(label)
-        val room = CloudStreamDimens.FocusRingBleed.px()
-        return Rect(cell.left + room, cell.top, cell.right - room, cell.bottom)
-    }
+    /** The pill inside a chip's cell, as wide as its focus target (`BUG-65`). */
+    private fun visual(label: String): Rect = target(label)
 
     /** Clear at 1dp out, the stroke's middle at 3dp, and clear again at 5dp, on each side of the visual. */
     private fun assertEvenRing(label: String) {
@@ -191,10 +207,56 @@ class ChipDeviceTest {
         }
     }
 
+    /**
+     * `BUG-65`: Left from content lined up under a [ChipRow] reaches the rail beside it, not the row's first chip. The
+     * chips' ring room is outside what takes focus, so the first chip's focus target starts where the content does, and
+     * focus search does not count it as being to the left. With the room inside the focus target it started 4dp further
+     * left, and Left from the Downloads screen's first row went to "Download queue" (`DownloadsTvNavigationTest`).
+     */
+    @Test
+    fun leftFromTheContentUnderAChipRowReachesTheRail() {
+        val below = FocusRequester()
+        rule.setContent {
+            CloudStreamTheme {
+                Row(
+                    Modifier
+                        .fillMaxSize()
+                        .background(CloudStreamTheme.colors.bg)
+                        .padding(CloudStreamDimens.FocusBandInset),
+                ) {
+                    Box(Modifier.width(CloudStreamDimens.IconTargetCell).fillMaxHeight().stop(RAIL))
+                    Column(Modifier.padding(start = CloudStreamDimens.FocusBandInset)) {
+                        ChipRow {
+                            Chip(MOVIES, selected = false, onClick = {})
+                            Chip(SERIES, selected = false, onClick = {})
+                        }
+                        Box(
+                            Modifier
+                                .fillMaxWidth()
+                                .height(CloudStreamDimens.ListRowHeight)
+                                .focusRequester(below)
+                                .stop(BELOW),
+                        )
+                    }
+                }
+            }
+        }
+        rule.runOnIdle { below.requestFocus() }
+        assertEquals(BELOW, dpad.focused())
+        assertEquals("Left from the content", RAIL, dpad.press(Dpad.Left))
+        assertEquals("the first chip's focus target starts with the content", target(MOVIES).left, belowLeft(), 1f)
+    }
+
+    private fun belowLeft(): Float = rule.onNodeWithContentDescription(BELOW).fetchSemanticsNode().boundsInRoot.left
+
+    private fun Modifier.stop(name: String): Modifier = semantics { contentDescription = name }.focusable()
+
     private companion object {
         const val MOVIES = "Movies"
         const val SERIES = "Series"
         const val LIVE = "Live"
+        const val RAIL = "Rail"
+        const val BELOW = "Below"
         val GAP_MIDDLE = 1.dp
         val STROKE_MIDDLE = 3.dp
         val PAST_STROKE = 5.dp
