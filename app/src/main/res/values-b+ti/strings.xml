@@ -69,6 +69,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።"</string>
 <string name="account_signin_failed_title" formatted="true">"ናብ %s ምእታው ኣይተኻእለን"</string>
 <string name="account_signin_offline_body" formatted="true">"ናብ %s ንምእታው ምትእስሳር የድሊ። እዚ መሳርሒ ናብ መስመር ምስ ተመልሰ እንደገና ፈትን።"</string>
+<string name="account_signins_until_quit">"ምእታዋት ክሳብ CloudStream ትዓጽዉ ይጸንሑ።"</string>
 <string name="account_sync_connected">"ተራኺቡ · ኣብዚ መሳርሒ ኣቲዩ"</string>
 <string name="account_sync_needs_browser">"ምእታው መርበብ ሓበሬታ ይደሊ። እዚ መሳርሒ የብሉን።"</string>
 <string name="account_sync_note">"ኣማራጺ። ምዕባለ ምርኣይ ምስ ዘለካ ሕሳብ የተኣሳስር።"</string>

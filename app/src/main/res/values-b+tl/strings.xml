@@ -69,6 +69,7 @@
 <string name="account_signin_failed_body" formatted="true">"Hindi kinumpirma ng %s ang pag-sign in. Walang na-save."</string>
 <string name="account_signin_failed_title" formatted="true">"Hindi makapag-sign in sa %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito."</string>
+<string name="account_signins_until_quit">"Tatagal ang mga sign-in hanggang isara mo ang CloudStream."</string>
 <string name="account_sync_connected">"Nakakonekta · naka-sign in sa device na ito"</string>
 <string name="account_sync_needs_browser">"Kailangan ng web browser para mag-sign in. Wala nito ang device na ito."</string>
 <string name="account_sync_note">"Opsyonal. Sini-sync ang progreso ng panonood sa account na mayroon ka na."</string>

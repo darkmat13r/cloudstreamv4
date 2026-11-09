@@ -69,6 +69,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s het nie die aanmelding bevestig nie. Niks is gestoor nie."</string>
 <string name="account_signin_failed_title" formatted="true">"Kon nie by %s aanmeld nie"</string>
 <string name="account_signin_offline_body" formatted="true">"Om by %s aan te meld, is 'n verbinding nodig. Probeer weer wanneer hierdie toestel weer aanlyn is."</string>
+<string name="account_signins_until_quit">"Aanmeldings hou tot jy CloudStream afsluit."</string>
 <string name="account_sync_connected">"Gekoppel · aangemeld op hierdie toestel"</string>
 <string name="account_sync_needs_browser">"Aanmelding het 'n webblaaier nodig. Hierdie toestel het nie een nie."</string>
 <string name="account_sync_note">"Opsioneel. Sinkroniseer kykvordering met 'n rekening wat jy reeds het."</string>

@@ -120,6 +120,27 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Thirtieth move, 2026-11-09 — `KMP-95d`, 1 new key: sign-ins last until you quit
+
+New keys are approved in general (`I18N-09`), and the PM asked for this line (2026-11-09): until the Keychain (`KMP-95f`)
+the Mac keeps sign-ins in memory only, and the screen says so. Additive: `account_signins_until_quit`, no plural, authored
+in all 62 directories (`OWN` grows by 62). The Android res came out with 62 lines added and 0 removed. `report.txt` is the
+generator's. Measured over the twenty-ninth move (`KMP-95c`), which this PR is stacked on.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 57,422 | 57,484 | 62 | 0 | 0 |
+| `emitted.tsv` | 60,117 | 60,181 | 64 | 0 | 0 |
+| `lookup.tsv` | 103,730 | 103,817 | 87 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured twice over, a multiset in Python and `sort | comm`: 0 lines lost in any file, every line that was in a file
+before is in it after in the same order, and every added line names the one key: 62 lines in `decoded`, 64 in `emitted`
+(the `values-b+he` and `values-b+id` copies), 87 in `lookup`. `report.txt` moved only in its counts: `OWN` 55,436 ->
+55,498, visible keys 1,158 -> 1,159, plurals unchanged at 29, and one more value in each of the two locale copies.
+**`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 55,436 -> 55,498.
+
 ## Twenty-ninth move, 2026-11-09 — `KMP-95c`, 1 new key: a profile not added while the PINs could not be read
 
 New keys are approved in general (`I18N-09`). The reviewer of `#286` asked that Add adds nothing when a PIN left under

@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s က ဝင်ရောက်မှုကို အတည်မပြုခဲ့ပါ။ ဘာမျှ သိမ်းဆည်းမထားပါ။</string>
 <string name="account_signin_failed_title">%s သို့ ဝင်၍ မရပါ</string>
 <string name="account_signin_offline_body">%s သို့ ဝင်ရန် ချိတ်ဆက်မှု လိုအပ်သည်။ ဤစက် အွန်လိုင်း ပြန်ဖြစ်သောအခါ ထပ်စမ်းကြည့်ပါ။</string>
+<string name="account_signins_until_quit">CloudStream ကို ပိတ်သည်အထိ အကောင့်ဝင်မှုများ ရှိနေမည်။</string>
 <string name="account_sync_connected">ချိတ်ဆက်ထား · ဤစက်တွင် ဝင်ထား</string>
 <string name="account_sync_needs_browser">ဝင်ရောက်ရန် ဝဘ်ဘရောက်ဆာ လိုအပ်သည်။ ဤစက်တွင် မရှိပါ။</string>
 <string name="account_sync_note">ရွေးချယ်နိုင်သည်။ ကြည့်ရှုမှုတိုးတက်မှုကို သင့်တွင်ရှိပြီးသားအကောင့်နှင့် စင့်ခ်လုပ်သည်။</string>

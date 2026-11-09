@@ -73,6 +73,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s bekräftade inte inloggningen. Inget sparades."</string>
 <string name="account_signin_failed_title" formatted="true">"Det gick inte att logga in på %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Inloggning på %s kräver en anslutning. Försök igen när enheten är online igen."</string>
+<string name="account_signins_until_quit">"Inloggningar gäller tills du avslutar CloudStream."</string>
 <string name="account_sync_connected">"Ansluten · inloggad på den här enheten"</string>
 <string name="account_sync_needs_browser">"Inloggning kräver en webbläsare. Den här enheten har ingen."</string>
 <string name="account_sync_note">"Valfritt. Synkroniserar framstegen med ett konto du redan har."</string>

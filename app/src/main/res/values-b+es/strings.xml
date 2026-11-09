@@ -73,6 +73,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s no confirmó el inicio de sesión. No se ha guardado nada."</string>
 <string name="account_signin_failed_title" formatted="true">"No se pudo iniciar sesión en %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Para iniciar sesión en %s hace falta conexión. Vuelve a intentarlo cuando este dispositivo tenga conexión."</string>
+<string name="account_signins_until_quit">"Los inicios de sesión duran hasta que cierres CloudStream."</string>
 <string name="account_sync_connected">"Conectado · sesión iniciada en este dispositivo"</string>
 <string name="account_sync_needs_browser">"Iniciar sesión requiere un navegador web. Este dispositivo no tiene."</string>
 <string name="account_sync_note">"Opcional. Sincroniza el progreso con una cuenta que ya tienes."</string>

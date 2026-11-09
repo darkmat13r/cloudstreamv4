@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s girişi təsdiqləmədi. Heç nə saxlanılmadı.</string>
 <string name="account_signin_failed_title">%s hesabına daxil olmaq alınmadı</string>
 <string name="account_signin_offline_body">%s hesabına daxil olmaq üçün internet bağlantısı lazımdır. Bu cihaz yenidən onlayn olanda yenidən cəhd edin.</string>
+<string name="account_signins_until_quit">Girişlər CloudStream-dən çıxana qədər qalır.</string>
 <string name="account_sync_connected">Qoşulub · bu cihazda daxil olunub</string>
 <string name="account_sync_needs_browser">Giriş üçün veb brauzer lazımdır. Bu cihazda yoxdur.</string>
 <string name="account_sync_note">İstəyə bağlı. Baxış irəliləyişini artıq olan hesabınızla sinxronlaşdırır.</string>

@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s n'a pas confirmé la connexion. Rien n'a été enregistré.</string>
 <string name="account_signin_failed_title">Impossible de se connecter à %s</string>
 <string name="account_signin_offline_body">La connexion à %s nécessite un accès réseau. Réessayez lorsque cet appareil sera de nouveau en ligne.</string>
+<string name="account_signins_until_quit">Les connexions durent jusqu'à ce que vous quittiez CloudStream.</string>
 <string name="account_sync_connected">Connecté · sur cet appareil</string>
 <string name="account_sync_needs_browser">La connexion nécessite un navigateur web. Cet appareil n'en a pas.</string>
 <string name="account_sync_note">Facultatif. Synchronise votre progression avec un compte que vous avez déjà.</string>

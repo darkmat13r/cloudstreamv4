@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s bekreftet ikke innloggingen. Ingenting ble lagret.</string>
 <string name="account_signin_failed_title">Kunne ikke logge inn på %s</string>
 <string name="account_signin_offline_body">Innlogging på %s krever tilkobling. Prøv igjen når denne enheten er på nett igjen.</string>
+<string name="account_signins_until_quit">Innlogginger varer til du avslutter CloudStream.</string>
 <string name="account_sync_connected">Tilkoblet · logget inn på denne enheten</string>
 <string name="account_sync_needs_browser">Innlogging krever en nettleser. Denne enheten har ingen.</string>
 <string name="account_sync_note">Valgfritt. Synkroniserer fremdriften med en konto du allerede har.</string>

@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s didn't confirm the sign-in. Nothing was saved.</string>
 <string name="account_signin_failed_title">Couldn't sign in to %s</string>
 <string name="account_signin_offline_body">Signing in to %s needs a connection. Try again when this device is back online.</string>
+<string name="account_signins_until_quit">Sign-ins last until you quit CloudStream.</string>
 <string name="account_sync_connected">Connected · signed in on this device</string>
 <string name="account_sync_needs_browser">Sign-in needs a web browser. This device has none.</string>
 <string name="account_sync_note">Optional. Syncs watch progress to an account you already have.</string>

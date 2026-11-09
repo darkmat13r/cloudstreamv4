@@ -70,6 +70,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s לא אישר את ההתחברות. שום דבר לא נשמר."</string>
 <string name="account_signin_failed_title" formatted="true">"לא ניתן להתחבר אל %s"</string>
 <string name="account_signin_offline_body" formatted="true">"ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר."</string>
+<string name="account_signins_until_quit">"ההתחברויות נשמרות עד שתצא מ-CloudStream."</string>
 <string name="account_sync_connected">"מחובר · מחובר במכשיר הזה"</string>
 <string name="account_sync_needs_browser">"ההתחברות דורשת דפדפן אינטרנט. אין במכשיר הזה."</string>
 <string name="account_sync_note">"אופציונלי. מסנכרן את התקדמות הצפייה עם חשבון שכבר יש לך."</string>

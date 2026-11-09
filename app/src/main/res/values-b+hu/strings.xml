@@ -70,6 +70,7 @@
 <string name="account_signin_failed_body" formatted="true">"A(z) %s nem erősítette meg a bejelentkezést. Semmi sem lett mentve."</string>
 <string name="account_signin_failed_title" formatted="true">"Nem sikerült bejelentkezni: %s"</string>
 <string name="account_signin_offline_body" formatted="true">"A bejelentkezéshez (%s) internetkapcsolat szükséges. Próbálja újra, amikor az eszköz ismét online."</string>
+<string name="account_signins_until_quit">"A bejelentkezések addig tartanak, amíg ki nem lépsz a CloudStreamből."</string>
 <string name="account_sync_connected">"Csatlakoztatva · bejelentkezve ezen az eszközön"</string>
 <string name="account_sync_needs_browser">"A bejelentkezéshez webböngésző kell. Ezen az eszközön nincs."</string>
 <string name="account_sync_note">"Nem kötelező. A megtekintési előrehaladást egy meglévő fiókkal szinkronizálja."</string>

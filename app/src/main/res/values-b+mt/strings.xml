@@ -69,6 +69,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn."</string>
 <string name="account_signin_failed_title" formatted="true">"Ma setgħetx issir id-dħul f'%s"</string>
 <string name="account_signin_offline_body" formatted="true">"Biex tidħol f'%s trid konnessjoni. Erġa' pprova meta dan l-apparat jerġa' jkun online."</string>
+<string name="account_signins_until_quit">"Id-dħul idum sakemm toħroġ minn CloudStream."</string>
 <string name="account_sync_connected">"Imqabbad · dħalt fuq dan l-apparat"</string>
 <string name="account_sync_needs_browser">"Id-dħul jeħtieġ browser tal-web. Dan l-apparat m'għandux."</string>
 <string name="account_sync_note">"Fakultattiv. Jissinkronizza l-progress mal-kont li diġà għandek."</string>

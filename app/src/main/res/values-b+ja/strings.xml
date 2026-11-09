@@ -73,6 +73,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s でサインインが確認されませんでした。何も保存されていません。"</string>
 <string name="account_signin_failed_title" formatted="true">"%s にサインインできませんでした"</string>
 <string name="account_signin_offline_body" formatted="true">"%s へのサインインにはインターネット接続が必要です。このデバイスがオンラインに戻ったらもう一度お試しください。"</string>
+<string name="account_signins_until_quit">"サインインは CloudStream を終了するまで有効です。"</string>
 <string name="account_sync_connected">"接続済み · このデバイスでサインイン中"</string>
 <string name="account_sync_needs_browser">"サインインにはウェブブラウザが必要です。このデバイスにはありません。"</string>
 <string name="account_sync_note">"任意。視聴の進行状況を既にお持ちのアカウントと同期します。"</string>

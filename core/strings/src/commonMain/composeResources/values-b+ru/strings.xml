@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s не подтвердил вход. Ничего не сохранено.</string>
 <string name="account_signin_failed_title">Не удалось войти в %s</string>
 <string name="account_signin_offline_body">Для входа в %s нужно подключение. Попробуйте снова, когда это устройство будет в сети.</string>
+<string name="account_signins_until_quit">Входы сохраняются, пока вы не закроете CloudStream.</string>
 <string name="account_sync_connected">Подключено · вход выполнен на этом устройстве</string>
 <string name="account_sync_needs_browser">Для входа нужен веб-браузер. На этом устройстве его нет.</string>
 <string name="account_sync_note">Необязательно. Синхронизирует прогресс просмотра с уже имеющимся аккаунтом.</string>

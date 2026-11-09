@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">%s stadfesta ikkje innlogginga. Ingenting vart lagra.</string>
 <string name="account_signin_failed_title">Kunne ikkje logge inn på %s</string>
 <string name="account_signin_offline_body">Innlogging på %s krev tilkopling. Prøv igjen når denne eininga er tilkopla att.</string>
+<string name="account_signins_until_quit">Innloggingar varer til du avsluttar CloudStream.</string>
 <string name="account_sync_connected">Tilkopla · logga inn på denne eininga</string>
 <string name="account_sync_needs_browser">Innlogging krev ein nettlesar. Denne eininga har ingen.</string>
 <string name="account_sync_note">Valfritt. Synkroniserer framdrifta med ein konto du alt har.</string>

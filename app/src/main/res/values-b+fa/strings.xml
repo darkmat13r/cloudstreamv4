@@ -69,6 +69,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s ورود را تأیید نکرد. چیزی ذخیره نشد."</string>
 <string name="account_signin_failed_title" formatted="true">"ورود به %s ممکن نشد"</string>
 <string name="account_signin_offline_body" formatted="true">"ورود به %s به اتصال اینترنت نیاز دارد. وقتی این دستگاه دوباره آنلاین شد، دوباره تلاش کنید."</string>
+<string name="account_signins_until_quit">"ورودها تا وقتی از CloudStream خارج شوید باقی می‌مانند."</string>
 <string name="account_sync_connected">"متصل · واردشده در این دستگاه"</string>
 <string name="account_sync_needs_browser">"ورود به مرورگر وب نیاز دارد. این دستگاه مرورگر ندارد."</string>
 <string name="account_sync_note">"اختیاری. پیشرفت تماشا را با حسابی که از قبل دارید همگام می‌کند."</string>

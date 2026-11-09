@@ -71,6 +71,7 @@
 <string name="account_signin_failed_body" formatted="true">"%s neapstiprināja pieteikšanos. Nekas netika saglabāts."</string>
 <string name="account_signin_failed_title" formatted="true">"Neizdevās pieteikties pakalpojumā %s"</string>
 <string name="account_signin_offline_body" formatted="true">"Lai pieteiktos pakalpojumā %s, nepieciešams savienojums. Mēģiniet vēlreiz, kad šī ierīce atkal būs tiešsaistē."</string>
+<string name="account_signins_until_quit">"Pierakstīšanās ir spēkā, līdz aizverat CloudStream."</string>
 <string name="account_sync_connected">"Savienots · pieteicies šajā ierīcē"</string>
 <string name="account_sync_needs_browser">"Pieteikšanās prasa tīmekļa pārlūku. Šajā ierīcē tāda nav."</string>
 <string name="account_sync_note">"Neobligāti. Sinhronizē skatīšanās progresu ar kontu, kas jums jau ir."</string>

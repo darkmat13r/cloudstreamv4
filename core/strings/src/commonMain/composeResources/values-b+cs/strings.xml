@@ -49,6 +49,7 @@
 <string name="account_signin_failed_body">Služba %s přihlášení nepotvrdila. Nic nebylo uloženo.</string>
 <string name="account_signin_failed_title">Nelze se přihlásit k %s</string>
 <string name="account_signin_offline_body">Přihlášení k %s vyžaduje připojení. Zkuste to znovu, až bude toto zařízení opět online.</string>
+<string name="account_signins_until_quit">Přihlášení platí, dokud CloudStream neukončíte.</string>
 <string name="account_sync_connected">Připojeno · přihlášeno na tomto zařízení</string>
 <string name="account_sync_needs_browser">Přihlášení vyžaduje webový prohlížeč. Toto zařízení žádný nemá.</string>
 <string name="account_sync_note">Volitelné. Synchronizuje postup sledování s účtem, který už máte.</string>
