@@ -6988,21 +6988,22 @@ top, 0.6 at 52 %, to the whole ground at its foot (`linear-gradient(0deg, #000 0
   empty, and user info in five forms, all refused); 2 KiB read and one byte more skipped with the page kept; lying
   lengths inside the slice cost the backdrop only; a slice past the frame fails the call; nothing the URL held reaches
   the log.
-- `BackdropImageTest`, 10, against a server on this machine, with the client built by the app's own `boundedImageClient`
+- `BackdropImageTest`, 11, against a server on this machine, with the client built by the app's own `boundedImageClient`
   (https off, as a test can only serve http) and one temporary disk cache per test: an image inside its bounds loads,
-  kept no larger than twice the drawn size; a 175-byte file claiming 20000 by 20000, and one claiming 4097 by 4096, never
-  reach the decoder (counted); a file one byte past its cap is refused; the client sends no plain-http request and
-  follows no https-to-http redirect; a body of the cap and 1 MiB, with a length and chunked, ends as Coil's `ErrorResult`
-  within 60 s, the server stops short of it, and the client takes off its socket only the read that brought the headers
-  (with a length: measured 8192 bytes) or the cap and one read (chunked: the cap and 8283); a gzipped body of the cap and
-  1 MiB of zeros, under 16 KiB on the wire (asserted), ends as `ErrorResult` past the cap; an image behind a 302 with a body loads; a body
-  closed unread never cancels its call, and closes its hop's socket over HTTP/1.0 and 1.1 and not over HTTP/2; a body
-  read to its stated length, in pieces, leaves its socket open, and one byte short closes it; a body of no bytes closed
-  unread leaves its socket open (a chain
-  made by hand: a test server for HTTP/2 would be a new dependency, and OkHttp's own HTTP/2 classes differ between the
-  version this compiles against, 4.12.0, and the one it runs with, measured as a `NoSuchMethodError`). The byte count is
-  the client's socket, not the server's: loopback's socket buffers take 384 to 530 KiB past a reader that has stopped
-  (measured), and asking for 64 KiB a side did not change that.
+  kept no larger than twice the drawn size; a 175-byte file claiming 20000 by 20000, and one claiming 4097 by 4096,
+  never reach the decoder (counted); a file one byte past its cap is refused; the client sends no plain-http request and
+  follows no https-to-http redirect; a body of the cap and 1 MiB, with a length and chunked, ends as Coil's
+  `ErrorResult` within 60 s, the server stops short of it, and the client takes off its socket only the read that
+  brought the headers (with a length: measured 8192 bytes) or the cap and one read (chunked: the cap and 8283); a
+  gzipped body of the cap and 1 MiB of zeros, under 16 KiB on the wire (asserted), ends as `ErrorResult` past the cap;
+  an image behind a 302 with a body loads; a body closed unread never cancels its call, and closes its hop's socket over
+  HTTP/1.0 and 1.1 and not over HTTP/2; a body read to its stated length, in pieces, leaves its socket open, and one
+  byte short closes it; a body of no bytes closed unread leaves its socket open; a body of unknown length closed unread
+  closes it, and one read to its end leaves it open (a chain made by hand: a test server for HTTP/2 would be a new
+  dependency, and OkHttp's own HTTP/2 classes differ between the version this compiles against, 4.12.0, and the one it
+  runs with, measured as a `NoSuchMethodError`). The byte count is the client's socket, not the server's: loopback's
+  socket buffers take 384 to 530 KiB past a reader that has stopped (measured), and asking for 64 KiB a side did not
+  change that.
 - `DetailScreenTest`: a title with a backdrop asks the slot for its URL and draws it under the bar, with the ground at
   the scrim's foot; one without asks nothing and draws plain ground. `TitleFactsTest`: the URL is carried, and none is
   none, not the poster.
@@ -7013,8 +7014,10 @@ top, 0.6 at 52 %, to the whole ground at its foot (`linear-gradient(0deg, #000 0
   application-level cap, the gzipped body is read whole; with the cap's lines taken out of `boundedImageClient`, the
   over-cap test fails; with a close that cancels, the redirect times out and the closed-unread test fails; with every
   protocol's socket closed, the HTTP/2 case fails; with an unknown tag read as art, the tag tests fail; without the
-  user-info check, `https://user:pass@…` is kept; with a body ended only at its end, the pooled socket is closed; with a body of no bytes not counted as
-  ended, its socket is closed.
+  user-info check, `https://user:pass@…` is kept; with a body ended only at its end, the pooled socket is closed; with a
+  body of no bytes not counted as ended, its socket is closed; with a body of unknown length counted as ended from the
+  start, its socket is left open when closed unread; without the end of a body counted as its end, its socket is closed
+  after it was read whole.
 
 **Changed existing test code:** `HostProtocolFactsTest`'s "cannot read into what follows it" case writes bytes past a
 short facts slice. They now meet the reader of the sections after the facts, as an empty section of an unknown tag and

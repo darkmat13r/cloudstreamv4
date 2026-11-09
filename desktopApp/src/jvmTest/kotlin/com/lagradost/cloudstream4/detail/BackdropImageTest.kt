@@ -347,15 +347,15 @@ class BackdropImageTest {
         return cancelled
     }
 
-    /** 100 bytes, stating their length, that come at most 99 at a time, as a network's do in pieces. */
-    private fun hundredBytes(): okhttp3.ResponseBody {
+    /** 100 bytes, stating [length] (by default their own), that come at most 99 at a time, as a network's do in pieces. */
+    private fun hundredBytes(length: Long = 100): okhttp3.ResponseBody {
         val bytes = okio.Buffer().write(ByteArray(100))
         val source = object : okio.Source {
             override fun read(sink: okio.Buffer, byteCount: Long) = bytes.read(sink, minOf(byteCount, 99L))
             override fun timeout() = okio.Timeout.NONE
             override fun close() = Unit
         }
-        return source.buffer().asResponseBody(contentType = null, contentLength = 100)
+        return source.buffer().asResponseBody(contentType = null, contentLength = length)
     }
 
     @Test
@@ -392,6 +392,20 @@ class BackdropImageTest {
             val empty = okio.Buffer().asResponseBody(contentType = null, contentLength = 0)
             assertFalse(throughCap(Protocol.HTTP_1_1, socket, empty))
             assertFalse(socket.isClosed, "the socket of an empty body was closed")
+        }
+    }
+
+    @Test
+    fun `a body of unknown length has ended only once its end is read`() {
+        // Chunked, or closed by the server: no length says where it stops, so only the end itself does.
+        Socket().use { socket ->
+            assertFalse(throughCap(Protocol.HTTP_1_1, socket, hundredBytes(length = -1)))
+            assertTrue(socket.isClosed, "a body of unknown length closed unread left its socket open")
+        }
+        Socket().use { socket ->
+            val read = throughCap(Protocol.HTTP_1_1, socket, hundredBytes(length = -1)) { source -> source.readByteArray() }
+            assertFalse(read)
+            assertFalse(socket.isClosed, "the socket of a body read to its end was closed")
         }
     }
 
