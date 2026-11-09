@@ -166,7 +166,7 @@ class DownloadSeriesScreenTvDeviceTest {
     fun theBandSaysWhatIsOnDiskAndWhatIsMovingOrStuck() {
         source.contents(Board6d)
         showScreen()
-        awaitText("Downloads · Breaking Bad")
+        awaitText("Downloads · Low Tide")
         awaitText("5 Episodes · 980 MB on disk")
         awaitText("1 active download · 1 download queued · 1 failed")
         awaitText("Retry failed (1)")
@@ -488,10 +488,10 @@ class DownloadSeriesScreenTvDeviceTest {
         const val OFFLINE = "Offline · no connection"
 
         const val PILOT = "S1 · E1 · Pilot"
-        const val RUNNING = "S1 · E2 · Cat's in the Bag"
-        const val FAILED = "S1 · E3 · And the Bag's in the River"
-        const val QUEUED = "S1 · E4 · Cancer Man"
-        const val PAUSED = "S1 · E5 · Gray Matter"
+        const val RUNNING = "S1 · E2 · Ropes in the Hold"
+        const val FAILED = "S1 · E3 · And the Hold in the Bay"
+        const val QUEUED = "S1 · E4 · Harbor Man"
+        const val PAUSED = "S1 · E5 · Grey Water"
         const val LONG_NAME = "An Extraordinarily Long Episode Title That Will Never Fit On One Row However Wide The Television " +
             "Is, Which Goes On And On Well Past The Point Where Anyone Would Still Be Reading It"
 
@@ -516,15 +516,15 @@ class DownloadSeriesScreenTvDeviceTest {
         )
 
         val Board6d = DownloadSeriesContents(
-            name = "Breaking Bad",
+            name = "Low Tide",
             episodes = listOf(
                 episode(1, "Pilot", DownloadEpisodeState.Done).copy(watched = 0.38f),
-                episode(2, "Cat's in the Bag", DownloadEpisodeState.Running, done = 128 * MB)
+                episode(2, "Ropes in the Hold", DownloadEpisodeState.Running, done = 128 * MB)
                     .copy(bytesPerSecond = 4_200_000L, secondsLeft = 90L),
-                episode(3, "And the Bag's in the River", DownloadEpisodeState.Failed, done = 96 * MB)
+                episode(3, "And the Hold in the Bay", DownloadEpisodeState.Failed, done = 96 * MB)
                     .copy(failure = DownloadFailure.NetworkLost),
-                episode(4, "Cancer Man", DownloadEpisodeState.Queued, done = 0L).copy(queue = QueuePosition(2, 3)),
-                episode(5, "Gray Matter", DownloadEpisodeState.Paused, done = 256 * MB),
+                episode(4, "Harbor Man", DownloadEpisodeState.Queued, done = 0L).copy(queue = QueuePosition(2, 3)),
+                episode(5, "Grey Water", DownloadEpisodeState.Paused, done = 256 * MB),
             ),
         )
 
