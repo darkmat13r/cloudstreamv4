@@ -240,6 +240,78 @@ class DetailScreenTest {
         off.close()
     }
 
+    // ---- E1's facts and genres (KMP-82) ----
+
+    private val genres = listOf("Drama", "Mystery", "Science Fiction", "Thriller", "Slow Burn", "Space", "Horror")
+
+    private val withFacts = series.copy(
+        score = 8.4f,
+        tags = genres,
+        contentRating = "TV-MA",
+        statusName = "Ongoing",
+        durationMinutes = 48,
+    )
+
+    /** The name, the synopsis and every word under them, with no fact the source might have given. */
+    private val withoutFacts = series.copy(year = null, typeName = null, providerName = "")
+
+    /** The name as E1's heading: the breadcrumb says it too, smaller. */
+    private fun ImageComposeScene.heading(name: String) = nodes(name).maxBy { it.boundsInRoot.height }.boundsInRoot
+
+    private fun ImageComposeScene.gapUnderName(words: String, name: String): Float =
+        nodes(words).single().boundsInRoot.top - heading(name).bottom
+
+    @Test
+    fun `a title with every fact draws each of them under its name, and five of its genres`() {
+        val scene = page(loaded(withFacts))
+        scene.save("detail-e1-facts")
+        // The score is read as one thing, its star and its number.
+        assertTrue(scene.has("Rating 8.4"), "the score, with its star")
+        listOf("TV-MA", "2019", "48 min", "Ongoing", "Series", "CineTmdb").forEach { fact ->
+            assertTrue(scene.has(fact), fact)
+        }
+        assertTrue(scene.has(genres.take(5).joinToString(" · ")), "the first five genres, on their own line")
+        assertFalse(scene.has(genres.take(6).joinToString(" · ")), "no sixth")
+        // The facts come before the genres, and both before the synopsis.
+        val facts = scene.nodes("TV-MA").single().boundsInRoot
+        val shown = scene.nodes(genres.take(5).joinToString(" · ")).single().boundsInRoot
+        val synopsis = scene.nodes(series.plot!!).single().boundsInRoot
+        assertTrue(facts.bottom <= shown.top && shown.bottom <= synopsis.top, "$facts, $shown, $synopsis")
+        scene.close()
+    }
+
+    @Test
+    fun `a title with no facts draws neither line, and its synopsis sits where the facts would have`() {
+        val scene = page(loaded(withoutFacts))
+        assertFalse(scene.has("Rating 8.4"))
+        assertFalse(scene.nodes(series.title).isEmpty())
+        // Only the column's own gap between the name and the synopsis: nothing empty is drawn between them.
+        assertEquals(RELATED_GAP, scene.gapUnderName(series.plot!!, series.title))
+        scene.close()
+
+        val full = page(loaded(withFacts))
+        assertTrue(full.gapUnderName(series.plot!!, series.title) > RELATED_GAP, "the facts take room when there are some")
+        full.close()
+    }
+
+    @Test
+    fun `long genres stay on one line inside the reading width`() {
+        val long = List(5) { index -> "Genre ${index + 1} " + "w".repeat(56) }
+        val short = page(loaded(withFacts))
+        val oneLine = short.nodes(genres.take(5).joinToString(" · ")).single().boundsInRoot.height
+        short.close()
+
+        val scene = page(loaded(withFacts.copy(tags = long)))
+        scene.save("detail-e1-long-genres")
+        val line = scene.nodes(long.joinToString(" · ")).single().boundsInRoot
+        val name = scene.heading(series.title)
+        assertEquals(oneLine, line.height, "one line, cut with an ellipsis rather than wrapped")
+        assertTrue(line.right <= name.left + READING_WIDTH, "inside the reading width: $line")
+        // The facts above them are all still there.
+        listOf("TV-MA", "2019", "48 min", "Ongoing").forEach { fact -> assertTrue(scene.has(fact), fact) }
+        scene.close()
+    }
+
     // ---- Seasons and episodes (E1, E2) ----
 
     @Test
@@ -421,6 +493,10 @@ class DetailScreenTest {
         const val SETTLE_FRAMES = 30
         const val FRAME_NANOS = 50_000_000L
         const val MINUTE = 60_000L
+
+        /** `DesktopDimens.RelatedGap` and `ReadingWidth`, in pixels at the scene's density of 1. */
+        const val RELATED_GAP = 8f
+        const val READING_WIDTH = 640f
         const val MAX_TABS = 12
         val ART = Color(0xFF00FF80)
         val QUALITIES = listOf(2160, 1080, 720, 480)

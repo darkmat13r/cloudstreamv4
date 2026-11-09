@@ -12,6 +12,8 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -35,9 +37,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -51,6 +56,7 @@ import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.primitive.BadgeDefaults
 import com.lagradost.cloudstream4.core.designsystem.primitive.ProgressRule
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
@@ -62,6 +68,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_episodes_found
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_episode
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_movie_button
+import com.lagradost.cloudstream4.core.strings.generated.resources.rating
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
 import com.lagradost.cloudstream4.core.strings.generated.resources.season
 import com.lagradost.cloudstream4.core.strings.generated.resources.season_other
@@ -78,8 +85,10 @@ import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.code
 import com.lagradost.cloudstream4.feature.detail.episodeSubtitle
 import com.lagradost.cloudstream4.feature.detail.label
-import com.lagradost.cloudstream4.feature.detail.metaRun
+import com.lagradost.cloudstream4.feature.detail.oneDecimal
 import com.lagradost.cloudstream4.feature.detail.resumeCaption
+import com.lagradost.cloudstream4.feature.detail.runtimeLabel
+import com.lagradost.cloudstream4.feature.detail.statusLabel
 import com.lagradost.cloudstream4.feature.detail.toPageUiState
 import com.lagradost.cloudstream4.feature.detail.typeLabel
 import org.jetbrains.compose.resources.stringResource
@@ -274,30 +283,92 @@ private fun Header(
                 maxLines = DetailScreenDesktopDefaults.TitleLines,
                 overflow = TextOverflow.Ellipsis,
             )
-            val facts = facts(detail)
-            if (facts.isNotEmpty()) {
-                BasicText(
-                    text = facts,
-                    style = typography.body.copy(color = colors.ink2),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
+            FactsLine(detail)
+            GenresLine(detail.tags)
             detail.plot?.takeIf { it.isNotBlank() }?.let { plot -> Synopsis(plot, synopsisOpen, onAction) }
         }
     }
 }
 
 /**
- * The run of facts under the name: the shared run (score, tags, year, certification, runtime or status), then the
- * kind of title and where it came from. Each only where it is known, so a provider that sends little says little.
+ * E1's facts under the name (`KMP-82`): the score with its star, the certification in an outlined badge, the year, the
+ * runtime, the status, then the kind of title and where it came from. Each only where the source gave it, so a title
+ * with none draws no line and leaves no gap. The line wraps rather than cuts, so no fact is lost off its end.
  */
+@OptIn(ExperimentalLayoutApi::class)
 @Composable
-private fun facts(detail: TitleDetail): String = listOfNotNull(
-    metaRun(detail).takeIf { it.isNotBlank() },
-    detail.typeName?.let { typeLabel(it) },
-    detail.providerName.takeIf { it.isNotBlank() },
-).joinToString(META_SEPARATOR)
+private fun FactsLine(detail: TitleDetail) {
+    val colors = CloudStreamTheme.colors
+    val style = CloudStreamTheme.typography.body.copy(color = colors.ink2)
+    val words = listOfNotNull(
+        detail.year?.toString(),
+        detail.durationMinutes?.let { runtimeLabel(it) },
+        detail.statusName?.let { statusLabel(it) },
+        detail.typeName?.let { typeLabel(it) },
+        detail.providerName.takeIf { it.isNotBlank() },
+    )
+    val score = detail.score
+    val certification = detail.contentRating?.takeIf { it.isNotBlank() }
+    val legs = buildList<@Composable () -> Unit> {
+        if (score != null) add { Score(score, style) }
+        if (certification != null) add { Certification(certification) }
+        words.forEach { word -> add { BasicText(word, style = style, maxLines = 1) } }
+    }
+    if (legs.isEmpty()) return
+    FlowRow(
+        verticalArrangement = Arrangement.Center,
+        itemVerticalAlignment = Alignment.CenterVertically,
+    ) {
+        legs.forEachIndexed { index, leg ->
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                if (index > 0) BasicText(META_SEPARATOR, style = style, maxLines = 1)
+                leg()
+            }
+        }
+    }
+}
+
+/** `★ 8.4`: the Tabler star and the score to one decimal, read as "Rating 8.4". */
+@Composable
+private fun Score(score: Float, style: TextStyle) {
+    val described = "${stringResource(Res.string.rating)} ${oneDecimal(score)}"
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.StackGap),
+        modifier = Modifier.clearAndSetSemantics { contentDescription = described },
+    ) {
+        CloudStreamIcon(CloudStreamIcons.Star, null, size = CloudStreamIconSize.Small, tint = style.color)
+        BasicText(oneDecimal(score), style = style, maxLines = 1)
+    }
+}
+
+/** `PG-13` in a hairline outline: a label as the source spelled it, never translated. */
+@Composable
+private fun Certification(text: String) {
+    val colors = CloudStreamTheme.colors
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .heightIn(min = BadgeDefaults.Height)
+            .border(CloudStreamDimens.Hairline, colors.muted, CloudStreamTheme.shapes.small)
+            .padding(horizontal = BadgeDefaults.HorizontalPadding),
+    ) {
+        BasicText(text, style = CloudStreamTheme.typography.labelMono.copy(color = colors.ink2), maxLines = 1, softWrap = false)
+    }
+}
+
+/** Up to [DetailScreenDesktopDefaults.GenreCount] of the source's genres, quieter than the facts, on one line. */
+@Composable
+private fun GenresLine(tags: List<String>) {
+    val shown = tags.filter { it.isNotBlank() }.take(DetailScreenDesktopDefaults.GenreCount)
+    if (shown.isEmpty()) return
+    BasicText(
+        text = shown.joinToString(META_SEPARATOR),
+        style = CloudStreamTheme.typography.label.copy(color = CloudStreamTheme.colors.muted),
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+    )
+}
 
 /**
  * Two lines, and the whole block opens and closes in place on a press. No "More" word is drawn after the cut: there
@@ -625,6 +696,9 @@ object DetailScreenDesktopDefaults {
 
     /** E6: below this the name is a size down. Home's compact hero turns at the same width. */
     val CompactBelow: Dp = 720.dp
+
+    /** At most this many of the source's genres under the facts (`KMP-82`): enough to place a title, not a tag cloud. */
+    const val GenreCount: Int = 5
 
     const val TitleLines = 2
     const val SynopsisLines = 2
