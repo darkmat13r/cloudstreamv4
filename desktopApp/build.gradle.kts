@@ -103,6 +103,9 @@ kotlin {
             // KMP-52: the Mac download service: the engine and its file. `:feature:downloads` is above (KMP-54).
             implementation(project(":media:download"))
             implementation(libs.kotlinx.serialization.json)
+            // KMP-95d: A11's QR of Simkl's page, as `:app` draws it for TV. The catalog's version, approved for the Mac by
+            // the owner (2026-11-09).
+            implementation(libs.qrcode.kotlin)
         }
         jvmTest.dependencies {
             implementation(libs.kotlin.test)

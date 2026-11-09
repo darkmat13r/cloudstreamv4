@@ -76,8 +76,11 @@ internal class HttpSignInClient(
             if (status !in 200..299) return@exchange SignInResult.Failed
             val answer = json.decodeFromString(SimklExchange.serializer(), body)
             // Until the person approves the code, Simkl answers with no token.
-            answer.accessToken?.takeIf { it.isNotBlank() }?.let { SignInResult.Done(Credential(token = it)) }
-                ?: SignInResult.Pending
+            when (val token = answer.accessToken) {
+                null, "" -> SignInResult.Pending
+                // A token that could break a header later is never stored (the reviewer of #290).
+                else -> if (isToken(token)) SignInResult.Done(Credential(token = token)) else SignInResult.Failed
+            }
         }
     }
 
@@ -101,10 +104,10 @@ internal class HttpSignInClient(
             .build()
         return exchange(request) { status, text ->
             when (status) {
-                in 200..299 -> json.decodeFromString(OpenSubtitlesLogin.serializer(), text).token
-                    ?.takeIf { it.isNotBlank() }
-                    ?.let { SignInResult.Done(Credential(token = it, email = username, password = password)) }
-                    ?: SignInResult.Refused
+                in 200..299 -> when (val token = json.decodeFromString(OpenSubtitlesLogin.serializer(), text).token) {
+                    null, "" -> SignInResult.Refused
+                    else -> if (isToken(token)) SignInResult.Done(Credential(token = token, email = username, password = password)) else SignInResult.Failed
+                }
                 400, 401, 403 -> SignInResult.Refused
                 else -> SignInResult.Failed
             }
@@ -119,10 +122,11 @@ internal class HttpSignInClient(
         val login = Request.Builder().url(subDlApi.newBuilder().addPathSegment("login").build()).post(body).build()
         val token = when (val result = exchange(login) { status, text ->
             when (status) {
-                in 200..299 -> json.decodeFromString(SubDlLogin.serializer(), text).token
-                    ?.takeIf { it.isNotBlank() }
-                    ?.let { SignInResult.Done(it) }
-                    ?: SignInResult.Refused
+                in 200..299 -> when (val token = json.decodeFromString(SubDlLogin.serializer(), text).token) {
+                    null, "" -> SignInResult.Refused
+                    // It goes into a header next: a CR, LF or anything else OkHttp refuses would throw outside [exchange].
+                    else -> if (isToken(token)) SignInResult.Done(token) else SignInResult.Failed
+                }
                 400, 401, 403 -> SignInResult.Refused
                 else -> SignInResult.Failed
             }
@@ -139,7 +143,7 @@ internal class HttpSignInClient(
         return exchange(keyRequest) { status, text ->
             if (status !in 200..299) return@exchange SignInResult.Failed
             json.decodeFromString(SubDlKey.serializer(), text).apiKey
-                ?.takeIf { it.isNotBlank() }
+                ?.takeIf(::isToken)
                 ?.let { SignInResult.Done(Credential(token = it, email = email)) }
                 ?: SignInResult.Failed
         }
@@ -211,6 +215,14 @@ internal class HttpSignInClient(
         private const val MAX_INTERVAL_S = 60
         private const val MAX_BODY_BYTES = 64L * 1024
         private const val TIMEOUT_S = 20L
+
+        /**
+         * What a service's token may be before it is kept or put in a header (the reviewer of #290): the characters of
+         * a bearer token, so no CR, LF or non-ASCII ever reaches OkHttp, which would throw.
+         */
+        private val TOKEN = Regex("[A-Za-z0-9._~+/=-]{1,4096}")
+
+        internal fun isToken(value: String): Boolean = TOKEN.matches(value)
 
         /** A code is shown on screen, so only plain letters and digits get there. */
         private val USER_CODE = Regex("[A-Za-z0-9]{4,16}")

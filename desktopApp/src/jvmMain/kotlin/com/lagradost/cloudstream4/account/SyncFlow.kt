@@ -183,6 +183,7 @@ private fun PairStep(
         is PairState.Expired -> shown.code
     }
     val url = code?.verificationUrl ?: HttpSignInClient.SIMKL_PIN_PAGE
+    val qr = remember(code?.verificationUrl) { code?.let { pairQr(it.verificationUrl) } }
     PairCodeSheet(
         serviceName = DesktopService.Simkl.displayName,
         code = code?.userCode.orEmpty(),
@@ -192,6 +193,7 @@ private fun PairStep(
         onOpen = { openUrl(url) },
         onNewCode = { onStep(SyncStep.Pair(step.attempt + 1)) },
         onCancel = { onStep(step.back()) },
+        qr = qr,
     )
 }
 

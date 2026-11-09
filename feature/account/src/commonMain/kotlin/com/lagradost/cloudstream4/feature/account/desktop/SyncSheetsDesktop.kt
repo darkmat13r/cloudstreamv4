@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.feature.account.desktop
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -12,7 +13,9 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
@@ -32,6 +35,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.FilterQuality
+import androidx.compose.ui.graphics.ImageBitmap
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
@@ -214,8 +220,7 @@ private fun SyncRow(row: SyncRowState, focus: FocusRequester) {
  * `DS-25` A11 and A11b: **Pair Simkl** with a code (`KMP-95d`). The code is approved in any browser, so no redirect is
  * needed. The host polls while this shows; every way out stops the poll (`BUG-49`).
  *
- * The board's QR is not drawn: the Mac has no QR encoder yet, and adding one is a dependency decision. The address and
- * Open are the way there.
+ * [qr] is a QR of the page's address, never of the code, beside it as the board draws it; dimmed once [expired].
  *
  * @param code shown because it must be read; a short-lived credential, never logged.
  * @param address the page to approve it on, as shown: no scheme.
@@ -232,34 +237,55 @@ fun PairCodeSheet(
     onOpen: () -> Unit,
     onNewCode: () -> Unit,
     onCancel: () -> Unit,
+    qr: ImageBitmap? = null,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     val sheetFocus = remember { FocusRequester() }
     SheetFrame(onEscape = onCancel, modifier = Modifier.focusRequester(sheetFocus).focusable()) {
         BasicText(UiString.Resource(Res.string.account_pair_title, listOf(serviceName)).resolve(), style = typography.railTitle.copy(color = colors.ink))
-        Column(verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap)) {
-            BasicText(stringResource(Res.string.account_pair_code), style = typography.label.copy(color = colors.muted))
-            BasicText(
-                code,
-                style = typography.h1.copy(
-                    color = if (expired) colors.muted else colors.ink,
-                    fontWeight = FontWeight.ExtraBold,
-                    letterSpacing = SyncSheetsDesktopDefaults.CodeTracking,
-                    textDecoration = if (expired) TextDecoration.LineThrough else null,
-                ),
-                maxLines = 1,
-                modifier = Modifier.semantics { contentDescription = code },
-            )
-            if (expired) {
-                BasicText(stringResource(Res.string.account_code_expired), style = typography.body.copy(color = colors.ink2))
-            } else {
-                BasicText(UiString.Resource(Res.string.account_code_instructions, listOf(address)).resolve(), style = typography.body.copy(color = colors.ink2))
-                if (secondsLeft != null) {
-                    BasicText(
-                        UiString.Resource(Res.string.account_code_expires, listOf(countdown(secondsLeft))).resolve(),
-                        style = typography.caption.copy(color = colors.muted),
+        Row(horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap)) {
+            if (qr != null) {
+                Box(
+                    Modifier
+                        .size(SyncSheetsDesktopDefaults.QrSize)
+                        // White whatever the theme: a code has to scan.
+                        .background(Color.White, CloudStreamTheme.shapes.medium)
+                        .padding(SyncSheetsDesktopDefaults.QrQuietZone)
+                        .testTag(PAIR_QR_TAG),
+                ) {
+                    Image(
+                        bitmap = qr,
+                        contentDescription = null,
+                        filterQuality = FilterQuality.None,
+                        alpha = if (expired) SyncSheetsDesktopDefaults.ExpiredQrAlpha else 1f,
+                        modifier = Modifier.fillMaxSize(),
                     )
+                }
+            }
+            Column(Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap)) {
+                BasicText(stringResource(Res.string.account_pair_code), style = typography.label.copy(color = colors.muted))
+                BasicText(
+                    code,
+                    style = typography.h1.copy(
+                        color = if (expired) colors.muted else colors.ink,
+                        fontWeight = FontWeight.ExtraBold,
+                        letterSpacing = SyncSheetsDesktopDefaults.CodeTracking,
+                        textDecoration = if (expired) TextDecoration.LineThrough else null,
+                    ),
+                    maxLines = 1,
+                    modifier = Modifier.semantics { contentDescription = code },
+                )
+                if (expired) {
+                    BasicText(stringResource(Res.string.account_code_expired), style = typography.body.copy(color = colors.ink2))
+                } else {
+                    BasicText(UiString.Resource(Res.string.account_code_instructions, listOf(address)).resolve(), style = typography.body.copy(color = colors.ink2))
+                    if (secondsLeft != null) {
+                        BasicText(
+                            UiString.Resource(Res.string.account_code_expires, listOf(countdown(secondsLeft))).resolve(),
+                            style = typography.caption.copy(color = colors.muted),
+                        )
+                    }
                 }
             }
         }
@@ -522,6 +548,9 @@ private fun SheetRule() {
     Box(Modifier.fillMaxWidth().height(CloudStreamDimens.Hairline).background(CloudStreamTheme.colors.line))
 }
 
+/** The QR's test tag: it has no words, so a test finds it by this. */
+const val PAIR_QR_TAG = "pair-qr"
+
 /** `9:41`, as A11 counts down. */
 internal fun countdown(seconds: Int): String {
     val left = seconds.coerceAtLeast(0)
@@ -535,6 +564,15 @@ object SyncSheetsDesktopDefaults {
 
     /** `.code`'s tracking, so a code reads as separate characters, as 8d's does. */
     val CodeTracking = 0.18.em
+
+    /** `.qr`, 120 at 1 px = 1 dp, beside the code as A11 draws it. */
+    val QrSize: Dp = 120.dp
+
+    /** The white margin a scanner needs, inside [QrSize]. */
+    val QrQuietZone: Dp = 8.dp
+
+    /** A11b dims the QR with the struck-through code: it no longer leads anywhere useful. */
+    const val ExpiredQrAlpha = 0.32f
 
     /** Long enough for any email or password; the services' own limits are lower. */
     const val MaxFieldChars = 256

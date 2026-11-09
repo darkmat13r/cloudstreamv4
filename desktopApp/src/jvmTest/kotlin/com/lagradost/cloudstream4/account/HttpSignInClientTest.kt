@@ -122,6 +122,29 @@ class HttpSignInClientTest {
     }
 
     @Test
+    fun `a token with CR, LF or non-ASCII is a failure, never a header or a stored sign-in`() = runBlocking {
+        // SubDL's login token goes into the next request's Authorization header (the reviewer of #290).
+        answer("/subdl/login", 200, """{"token":"t1\r\nX-Injected: 1","status":true}""")
+        var keyAsked = false
+        server.createContext("/subdl/user/userApi") { exchange ->
+            keyAsked = true
+            exchange.reply(200, """{"ok":true,"api_key":"key1"}""")
+        }
+        assertEquals(SignInResult.Failed, client().passwordSignIn(DesktopService.SubDl, "robin@example.com", "pw"))
+        assertTrue(!keyAsked, "nothing was sent with it")
+
+        var approvedWith = "tok\\nen" // a JSON escape: the token Simkl sends holds a real LF
+        server.createContext("/oauth/pin/FAKE00") { exchange -> exchange.reply(200, """{"result":"OK","access_token":"$approvedWith"}""") }
+        val code = PairCode("FAKE00", "https://simkl.com/pin", 900, 5)
+        assertEquals(SignInResult.Failed, client().simklPoll(code), "Simkl's token is checked before it is kept")
+        approvedWith = "tökén"
+        assertEquals(SignInResult.Failed, client().simklPoll(code))
+
+        listOf("abc.DEF-123_~+/=", "a".repeat(4096)).forEach { assertTrue(HttpSignInClient.isToken(it), it.take(20)) }
+        listOf("", "a b", "a\rb", "a\nb", "é", "a".repeat(4097)).forEach { assertTrue(!HttpSignInClient.isToken(it), it.take(20)) }
+    }
+
+    @Test
     fun `a redirect is not followed, a huge or unreadable answer fails, and a closed port is offline`() = runBlocking {
         answer("/os/login", 302, "", mapOf("Location" to "${base}elsewhere"))
         answer("/elsewhere", 200, """{"token":"jwt"}""")

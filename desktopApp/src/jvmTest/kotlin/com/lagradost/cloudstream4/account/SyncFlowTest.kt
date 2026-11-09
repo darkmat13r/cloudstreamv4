@@ -20,6 +20,7 @@ import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.getAllSemanticsNodes
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.text.AnnotatedString
 import androidx.compose.ui.unit.Density
@@ -28,6 +29,7 @@ import com.lagradost.cloudstream4.EscapeHandler
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
+import com.lagradost.cloudstream4.feature.account.desktop.PAIR_QR_TAG
 import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
@@ -164,6 +166,9 @@ class SyncFlowTest {
             assertNotNull(scene.find(CODE, text = true))
             assertNotNull(scene.find("Expires in 10:00", text = true))
             assertNotNull(scene.find("Sign-ins last until you quit CloudStream.", text = true))
+            // A test tag does not survive merging into the sheet, so the QR is looked for in the unmerged tree.
+            val unmerged = scene.semanticsOwners.flatMap { it.getAllSemanticsNodes(mergingEnabled = false) }
+            assertNotNull(unmerged.find { it.config.getOrNull(SemanticsProperties.TestTag) == PAIR_QR_TAG }, "A11's QR")
             scene.save("A11-code")
             scene.advance(4)
             assertEquals(0, client.polls, "not before the interval")

@@ -7497,9 +7497,10 @@ The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once tr
 - **Sync services** in the sidebar's profile list opens **Sync for <profile>** (A9), the current profile's sign-ins. Each
   row reads Connected or Not connected and never shows an account name or an id.
 - **Simkl pairs with a code** (A11):
-  - the code, the page to approve it on, a countdown, and Open, which opens the page in the browser;
+  - the code, a QR of the page to approve it on, the page's address, a countdown, and Open, which opens the page in the
+    browser;
   - polling at Simkl's own interval until the code is approved;
-  - an expired code is struck through, and nothing polls (A11b);
+  - an expired code is struck through and its QR dimmed, and nothing polls (A11b);
   - Get a new code asks for another.
 - **OpenSubtitles and SubDL** sign in with an email and password (A16), the owner's exception:
   - the password is masked, with Show, and never prefilled;
@@ -7516,7 +7517,7 @@ The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once tr
 - `InMemorySignInStore` holds one credential per profile and service. Nothing goes to a file, a preference or a log, and
   quitting forgets them all.
 - **The screen says so:** "Sign-ins last until you quit CloudStream." (`account_signins_until_quit`) is on A9, A11 and A16.
-  It is a new key in all 62 locales: the strings baseline's twenty-seventh move, and one `R` field in
+  It is a new key in all 62 locales: the strings baseline's thirtieth move, and one `R` field in
   `classes-jar.api`.
 - On A16 the password note ("kept on this device only and never backed up") stays, with that line under it (the PM, Q2).
 - What each service keeps, as `DS-25` read it from Android:
@@ -7540,11 +7541,15 @@ the Mac already has. There is no new dependency.
   plain letters and digits get there. Without it, Simkl reads "Not available here" and has no button. Nothing is in the
   repo.
 - OpenSubtitles' app key and user agent are `OpenSubtitlesApi`'s own, already public in the Android source.
+- **A token is checked before it is kept or put in a header** (the reviewer of `#290`): the characters of a bearer token,
+  `[A-Za-z0-9._~+/=-]`, 1 to 4,096 of them. A SubDL token with a CR, LF or non-ASCII would have made OkHttp throw
+  outside the request's error handling and could crash the window. Now it is a failure. Simkl's, OpenSubtitles' and
+  SubDL's key are held to the same check.
+- **A11's QR** is `qrcode-kotlin` 4.5.0, the catalog's version that `:app` uses for TV. The owner approved it for
+  `:desktopApp` (2026-11-09). It encodes the page's address only, never the code.
 
 **Not here:**
 - AniList and MyAnimeList are hidden until `95e` adds the browser's redirect (the PM, Q4). Kitsu is never on the Mac.
-- **The QR on A11 is not drawn.** The Mac has no QR encoder. `:app`'s `qrcode-kotlin` 4.5.0 is in the catalog, but using
-  it in `:desktopApp` is a dependency decision, asked separately. The page's address and Open are the way there.
 - **Nothing uses a sign-in yet.** Syncing progress, and subtitle search through the services, come later.
 - The Keychain, so sign-ins outlive a quit, is `95f`.
 
@@ -7558,7 +7563,7 @@ the Mac already has. There is no new dependency.
 **Tests:**
 - `SyncFlowTest`, 10 cases through real key and pointer events, over a fake client and a fake clock:
   - A9 by presence, AniList, MyAnimeList and Kitsu absent, the until-quit line, and Done;
-  - Simkl's code, countdown and polling interval, Open, and approval connecting this profile only;
+  - Simkl's code, QR, countdown and polling interval, Open, and approval connecting this profile only;
   - Cancel ends the wait: no poll after it, and an approval after it stores nothing;
   - expiry stops polling, and Get a new code;
   - no client id means "Not available here";
@@ -7569,12 +7574,15 @@ the Mac already has. There is no new dependency.
   - **the PM's test:** the three sign-ins write no file under the profiles' directory or a sandboxed `user.home`, and no
     output or log line carries the email, password, token or code. Red-checked both ways: a token printed from the store,
     and a file written to `user.home`, each fail it.
-- `HttpSignInClientTest`, 7 cases against a loopback server:
+- `PairQrTest`: the QR is square, of dark and light cells, the same for the same address and different for another.
+- `HttpSignInClientTest`, 8 cases against a loopback server:
   - Simkl's code and the page check;
   - a code with markup refused;
   - no client id sends nothing;
   - a poll pending, then answered with a token;
   - OpenSubtitles: the key sent, the password kept, a 401 refused;
   - SubDL: the login traded for the key, and no password kept;
-  - a redirect not followed, a huge or unreadable answer failing, and a closed port reading as offline.
+  - a redirect not followed, a huge or unreadable answer failing, and a closed port reading as offline;
+  - a SubDL token with CR and LF failing with nothing sent, and Simkl tokens with LF or non-ASCII failing. Red-checked:
+    without the check, OkHttp's `IllegalArgumentException` escapes.
 - Renders of A9, A11, A11b, A12, A13, A13b, A14, A16 and A16b were compared with the boards by eye.
