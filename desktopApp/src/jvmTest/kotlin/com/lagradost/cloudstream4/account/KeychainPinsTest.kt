@@ -183,6 +183,17 @@ class KeychainPinsTest {
     }
 
     @Test
+    fun `a marker beside an item with no PINs is dropped, so nothing is locked once the item goes`() {
+        keychainPins().set(1, "4821")
+        vault.items[DesktopPins.PINS_ITEM] = """{"pins":{}}""".toByteArray() // the last PIN went, its marker did not
+        assertTrue(marked())
+        assertFalse(keychainPins().hasPin(1))
+        assertFalse(pinsFile.exists(), "the marker goes with the last PIN")
+        vault.items.remove(DesktopPins.PINS_ITEM)
+        assertFalse(keychainPins().hasPin(5), "with no marker left, an empty Keychain is no PINs")
+    }
+
+    @Test
     fun `with neither the Keychain item nor the file, no profile has a PIN`() {
         val pins = keychainPins()
         assertFalse(pins.hasPin(1))

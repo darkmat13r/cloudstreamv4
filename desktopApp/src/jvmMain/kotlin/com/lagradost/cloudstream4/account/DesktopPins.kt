@@ -266,7 +266,9 @@ internal class DesktopPins(
                         PinsRead.Failed
                     }
                     PinsFile.Absent -> PinsRead.Read(pins).also { if (pins.isNotEmpty()) markInKeychain(pins) }
-                    PinsFile.Marker, PinsFile.Unreadable -> PinsRead.Read(pins)
+                    // The marker beside an item with no PINs is left from a removal whose marker delete failed: it goes.
+                    PinsFile.Marker -> PinsRead.Read(pins).also { if (pins.isEmpty()) markInKeychain(pins) }
+                    PinsFile.Unreadable -> PinsRead.Read(pins)
                 }
             }
             VaultRead.Absent -> Unit
