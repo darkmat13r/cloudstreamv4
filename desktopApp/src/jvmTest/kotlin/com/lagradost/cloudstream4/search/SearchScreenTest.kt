@@ -19,6 +19,7 @@ import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -152,6 +153,15 @@ class SearchScreenTest {
     }
 
     @Test
+    fun `Search starts with the page bar, 52 tall with a hairline under it (KMP-98, S1)`() {
+        // The field and Sources, in the one band every Mac page has.
+        val scene = screen(state(SearchStatus.Showing(results), query = "blade runner"))
+        scene.settle()
+        scene.assertPageBar(WIDTH, atNanos = SETTLE_FRAMES * FRAME_NANOS)
+        scene.close()
+    }
+
+    @Test
     fun `renders`() {
         if (System.getProperty("cloudstream.search.renders") == null) return
         val partial = SearchStatus.Partial(results, answered = 9, total = 12, detail = "TIMEOUT · HTTP 503")
@@ -218,10 +228,11 @@ class SearchScreenTest {
         const val MIN_HEIGHT = 520
         const val SETTLE_FRAMES = 30
         const val FRAME_NANOS = 50_000_000L
-        /** Measured from `S1-recent.png` and `S4-sources.png` at 1060×800. */
-        const val TOOLBAR_Y = 44f
+        /** The middle of the 52 page bar (`KMP-98`). */
+        const val TOOLBAR_Y = 26f
         const val SOURCES_X = 950f
-        const val CHIP_Y = 104f
+        /** The chips' middle: the bar's 52, a 16 gap, and half a 32 chip. */
+        const val CHIP_Y = 84f
         const val ANIME_CHIP_X = 212f
         const val PANEL_ROW_X = 850f
         const val PANEL_FIRST_ROW_Y = 88f

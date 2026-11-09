@@ -46,6 +46,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBarDefaults
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRowsSkeleton
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
@@ -187,15 +189,8 @@ fun DownloadsScreenDesktop(
  */
 @Composable
 private fun Toolbar(state: DownloadsState, onAction: (DownloadsAction) -> Unit, canPlayFromLink: Boolean, canOpenQueue: Boolean) {
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap, Alignment.End),
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(DownloadsScreenDesktopDefaults.ToolbarHeight)
-            .border(CloudStreamDimens.Hairline, CloudStreamTheme.colors.line)
-            .padding(horizontal = DesktopDimens.WindowMargin),
-    ) {
+    // KMP-98: the page bar every Mac page starts with (board D1): a hairline under it, not a box round it.
+    DesktopPageBar(horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap, Alignment.End)) {
         if (canPlayFromLink) {
             DesktopButton(
                 label = stringResource(Res.string.downloads_play_from_link),
@@ -203,7 +198,7 @@ private fun Toolbar(state: DownloadsState, onAction: (DownloadsAction) -> Unit, 
                 icon = CloudStreamIcons.Link,
             )
         }
-        if (!canOpenQueue) return@Row
+        if (!canOpenQueue) return@DesktopPageBar
         val queue = stringResource(Res.string.download_queue)
         val label = if (state.queue.total > 0) {
             // The count joins the word through the shared separator key, so a translation and RTL order it.
@@ -466,8 +461,8 @@ internal data class DownloadsMenu(val id: DownloadTitleId, val at: Offset)
 
 /** Values this screen needs that `:core:theme` and `DesktopDimens` do not name. */
 object DownloadsScreenDesktopDefaults {
-    /** The window's toolbar band: a 36 button with 8 above and below. Mirrors `DesktopDimens.ButtonHeight` + 2 × `RelatedGap`. */
-    val ToolbarHeight: Dp = 52.dp
+    /** The page bar's band, which the delete sheet hangs under. Mirrors `DesktopPageBarDefaults.Height`. */
+    val ToolbarHeight: Dp = DesktopPageBarDefaults.Height
 
     /** A title's row, board D1: 48 of art and 4 above and below. */
     val RowHeight: Dp = 56.dp

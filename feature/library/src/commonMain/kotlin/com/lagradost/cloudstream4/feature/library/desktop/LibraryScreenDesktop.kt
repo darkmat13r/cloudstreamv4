@@ -56,6 +56,7 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
@@ -129,7 +130,6 @@ fun LibraryScreenDesktop(
         val compact = maxWidth < LibraryScreenDesktopDefaults.CompactBelow
         Column(Modifier.fillMaxSize()) {
             Bar(state, compact, now, onAction)
-            Box(Modifier.fillMaxWidth().height(CloudStreamDimens.Hairline).background(CloudStreamTheme.colors.line))
             TabStrip(state, onAction)
             if (state.stale != null) SyncBanner(state, now, onAction)
             val prompts = Modifier.fillMaxSize()
@@ -154,13 +154,8 @@ fun LibraryScreenDesktop(
 private fun Bar(state: LibraryState, compact: Boolean, now: (() -> Long)?, onAction: (LibraryAction) -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = DesktopDimens.WindowMargin, vertical = DesktopDimens.RelatedGap),
-    ) {
+    // KMP-98: the page bar every Mac page starts with, its hairline included.
+    DesktopPageBar {
         // The source and its line take what the trailing controls leave, and the line gives way first.
         Row(
             verticalAlignment = Alignment.CenterVertically,

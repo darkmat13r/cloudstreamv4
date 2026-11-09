@@ -45,6 +45,7 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
@@ -114,7 +115,6 @@ fun DetailScreenDesktop(
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
             TopBar(origin, state.detail?.title, onBack)
-            Box(Modifier.fillMaxWidth().height(CloudStreamDimens.Hairline).background(CloudStreamTheme.colors.line))
             when (val page = state.content.toPageUiState(onAction)) {
                 is UiState.Content -> TitlePage(page.value, state.synopsisOpen, onAction, artwork)
                 is UiState.Empty -> Failure(page.prompt, onBack)
@@ -133,13 +133,8 @@ fun DetailScreenDesktop(
 private fun TopBar(origin: String?, title: String?, onBack: () -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = DesktopDimens.WindowMargin - DesktopDimens.RelatedGap, vertical = DesktopDimens.RelatedGap),
-    ) {
+    // KMP-98: the page bar every Mac page starts with, its hairline included.
+    DesktopPageBar(contentPadding = DesktopDimens.WindowMargin - DesktopDimens.RelatedGap) {
         DesktopIconButton(
             CloudStreamIcons.Back,
             stringResource(Res.string.go_back),

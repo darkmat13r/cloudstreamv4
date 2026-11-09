@@ -54,6 +54,7 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRowsSkeleton
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
@@ -265,15 +266,8 @@ fun DownloadSeriesScreenDesktop(
 @Composable
 private fun Toolbar(name: String, back: () -> Unit) {
     val colors = CloudStreamTheme.colors
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(DownloadsScreenDesktopDefaults.ToolbarHeight)
-            .border(CloudStreamDimens.Hairline, colors.line)
-            .padding(horizontal = DesktopDimens.RowPadding),
-    ) {
+    // KMP-98: the page bar every Mac page starts with: a hairline under it, not a box round it.
+    DesktopPageBar(contentPadding = DesktopDimens.RowPadding) {
         DesktopIconButton(
             icon = CloudStreamIcons.Back,
             contentDescription = stringResource(Res.string.go_back),

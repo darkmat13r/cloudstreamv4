@@ -61,6 +61,7 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
@@ -152,6 +153,8 @@ private fun Page(
 ) {
     Column(Modifier.fillMaxSize()) {
         Toolbar(state, onAction)
+        // The gap under the page bar, as Home's rows have it (`KMP-98`).
+        Spacer(Modifier.height(DesktopDimens.GroupGap))
         TypeChips(state.typeFilters, onAction)
         status.failureNotice?.let { notice ->
             Box(Modifier.padding(horizontal = DesktopDimens.WindowMargin)) { FailureBanner(notice = notice) }
@@ -189,11 +192,8 @@ private fun Page(
 private fun Toolbar(state: SearchState, onAction: (SearchAction) -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
-        modifier = Modifier.fillMaxWidth().padding(DesktopDimens.WindowMargin),
-    ) {
+    // KMP-98: the page bar every Mac page starts with (board S1). The field is 40 in its 52, 6 above and below.
+    DesktopPageBar(horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap)) {
         QueryField(state.query, stringResource(Res.string.search_tv_field_placeholder), onAction, Modifier.weight(1f))
         // S1, S4: a button that opens the panel, now that the panel is built (`KMP-56`).
         DesktopButton(

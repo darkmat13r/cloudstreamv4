@@ -24,6 +24,7 @@ import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.DesktopApp
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
@@ -115,6 +116,15 @@ class HomeScreenTest {
         settle()
         val png = checkNotNull(render(SETTLE_FRAMES * FRAME_NANOS).encodeToData(EncodedImageFormat.PNG)).bytes
         File(directory, "$name.png").writeBytes(png)
+    }
+
+    @Test
+    fun `Home starts with the page bar, 52 tall with a hairline under it (KMP-98, H1)`() {
+        // The source and the reload and random buttons, in the one band every Mac page has.
+        val scene = screen(state(HomeStatus.Showing(listOf(row("Popular")))))
+        scene.settle()
+        scene.assertPageBar(WIDTH, atNanos = SETTLE_FRAMES * FRAME_NANOS)
+        scene.close()
     }
 
     @Test
@@ -698,8 +708,8 @@ class HomeScreenTest {
         const val FRAME_NANOS = 50_000_000L
         const val WAIT_ROUNDS = 6
         const val WAIT_MILLIS = 100L
-        /** Margin 16, button 36, margin 16; then a 36 header and 16 before the first card. */
-        const val TOOLBAR_Y = 34f
+        /** The middle of the 52 page bar (`KMP-98`); then 16, a 36 header and 16 before the first card. */
+        const val TOOLBAR_Y = 26f
         const val PICKER_X = 100f
         const val ROW_HEADER_Y = 86f
         /** Inside a row button's horizontal padding, and above its label's line box. */
@@ -715,10 +725,10 @@ class HomeScreenTest {
         const val PANEL_ROW_STEP = 49f
         /** In the window the page sits beside the 220 sidebar (`KMP-53`), so everything is further right. */
         const val SIDEBAR_WIDTH = 220f
-        /** Sidebar rows: 24 down, then 32 rows 4 apart. */
+        /** Sidebar rows: under the 52 title band (`KMP-98`), then 32 rows 4 apart. */
         const val SIDEBAR_ITEM_X = 100f
-        const val HOME_ITEM_Y = 40f
-        const val SEARCH_ITEM_Y = 76f
+        const val HOME_ITEM_Y = 68f
+        const val SEARCH_ITEM_Y = 104f
         /** Inside a sidebar row's fill, left of its glyph, and above its label's line: from `24-window-title-with-sidebar`. */
         const val ROW_FILL_X = 16
         const val ROW_FILL_ABOVE = 12

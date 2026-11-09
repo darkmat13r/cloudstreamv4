@@ -49,6 +49,7 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
@@ -166,7 +167,9 @@ fun HomeScreenDesktop(
                 return@Column
             }
             status.failureNotice?.let { notice ->
-                Box(Modifier.padding(horizontal = DesktopDimens.WindowMargin)) { FailureBanner(notice = notice) }
+                // The gap under the page bar, as the rows have it.
+                val inset = Modifier.padding(start = DesktopDimens.WindowMargin, top = DesktopDimens.GroupGap, end = DesktopDimens.WindowMargin)
+                Box(inset) { FailureBanner(notice = notice) }
             }
             val prompts = Modifier.fillMaxSize()
             when (val content = status) {
@@ -189,14 +192,9 @@ fun HomeScreenDesktop(
 private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit, showRandom: Boolean) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = DesktopDimens.WindowMargin, vertical = DesktopDimens.GroupGap),
-    ) {
-        val name = if (state.unsourced) stringResource(Res.string.none) else state.selectedOption?.name ?: return@Row
+    // KMP-98: the page bar every Mac page starts with (board H1).
+    DesktopPageBar {
+        val name = if (state.unsourced) stringResource(Res.string.none) else state.selectedOption?.name ?: return@DesktopPageBar
         BasicText(
             text = stringResource(Res.string.home_source),
             style = typography.label.copy(color = colors.muted),
@@ -278,8 +276,10 @@ private fun Page(
         val width = maxWidth - DesktopDimens.WindowMargin * 2
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
+            // The top is the gap the page bar used to hold below its controls (`KMP-98`), so the rows did not move.
             contentPadding = PaddingValues(
                 start = DesktopDimens.WindowMargin,
+                top = DesktopDimens.GroupGap,
                 end = DesktopDimens.WindowMargin,
                 bottom = DesktopDimens.SectionGap,
             ),
@@ -391,8 +391,10 @@ private fun Rows(
         val width = maxWidth - DesktopDimens.WindowMargin * 2
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
+            // The top is the gap the page bar used to hold below its controls (`KMP-98`), so the rows did not move.
             contentPadding = PaddingValues(
                 start = DesktopDimens.WindowMargin,
+                top = DesktopDimens.GroupGap,
                 end = DesktopDimens.WindowMargin,
                 bottom = DesktopDimens.SectionGap,
             ),

@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsFocusedAsState
 import androidx.compose.foundation.interaction.collectIsHoveredAsState
@@ -36,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.FrameWindowScope
 import androidx.compose.ui.window.MenuBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBarDefaults
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
@@ -45,8 +47,10 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.desktop_menu_go
 import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
+import com.lagradost.cloudstream4.core.strings.generated.resources.title_settings
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import org.jetbrains.compose.resources.stringResource
+import javax.swing.JRootPane
 
 /**
  * The window's sidebar (`KMP-53`): every destination with its glyph and name, the one shown filled, and at its foot
@@ -57,6 +61,11 @@ import org.jetbrains.compose.resources.stringResource
  * for every top-level screen. Its look is board D1's: a 220 column on `surface` with a hairline on its right edge, 32
  * rows with a 16 glyph, and the chosen row `raised`. ⌘1 to ⌘3 reach the rows from the keyboard, through the menu bar's
  * Go menu ([DesktopMenuBar]).
+ *
+ * `KMP-98`: the column runs the window's full height, under a transparent title bar, so its first
+ * [DesktopShellDefaults.TitleBand] is left to the traffic lights, level with each page's bar. Settings is its last row.
+ *
+ * @param onSettings opens the Settings window. Null draws no row, as where nothing can open it.
  */
 @Composable
 internal fun DesktopSidebar(
@@ -65,6 +74,7 @@ internal fun DesktopSidebar(
     onSelect: (TopLevelDestination) -> Unit,
     label: @Composable (TopLevelDestination) -> String,
     modifier: Modifier = Modifier,
+    onSettings: (() -> Unit)? = null,
     foot: @Composable () -> Unit = {},
 ) {
     val colors = CloudStreamTheme.colors
@@ -75,7 +85,12 @@ internal fun DesktopSidebar(
             .fillMaxHeight()
             .background(colors.surface)
             .rightRule(colors.line)
-            .padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.WindowMargin),
+            .padding(
+                start = DesktopDimens.RowPadding,
+                top = DesktopShellDefaults.TitleBand,
+                end = DesktopDimens.RowPadding,
+                bottom = DesktopDimens.WindowMargin,
+            ),
     ) {
         destinations.forEach { destination ->
             SidebarItem(
@@ -87,11 +102,34 @@ internal fun DesktopSidebar(
         }
         Spacer(Modifier.weight(1f))
         foot()
+        if (onSettings != null) {
+            SidebarItem(
+                icon = CloudStreamIcons.Settings,
+                label = stringResource(Res.string.title_settings),
+                selected = false,
+                onClick = onSettings,
+                // The key the app menu's Settings… has on a Mac. Elsewhere there is no such key, so none is shown.
+                hint = if (DesktopShortcuts.onMac) DesktopShellDefaults.SettingsKey else null,
+                role = Role.Button,
+            )
+        }
     }
 }
 
+/**
+ * A sidebar row. A destination is a tab and shows when it is chosen; Settings opens a window and is a button.
+ *
+ * @param hint the row's key, at its trailing end in the muted ink, as a Mac menu shows one.
+ */
 @Composable
-private fun SidebarItem(icon: ImageVector, label: String, selected: Boolean, onClick: () -> Unit) {
+private fun SidebarItem(
+    icon: ImageVector,
+    label: String,
+    selected: Boolean,
+    onClick: () -> Unit,
+    hint: String? = null,
+    role: Role = Role.Tab,
+) {
     val colors = CloudStreamTheme.colors
     val source = remember { MutableInteractionSource() }
     val hovered by source.collectIsHoveredAsState()
@@ -114,7 +152,13 @@ private fun SidebarItem(icon: ImageVector, label: String, selected: Boolean, onC
                 },
                 shape,
             )
-            .selectable(selected = selected, interactionSource = source, indication = null, role = Role.Tab, onClick = onClick)
+            .then(
+                if (role == Role.Tab) {
+                    Modifier.selectable(selected = selected, interactionSource = source, indication = null, role = role, onClick = onClick)
+                } else {
+                    Modifier.clickable(interactionSource = source, indication = null, role = role, onClick = onClick)
+                },
+            )
             .padding(horizontal = DesktopDimens.RowPadding),
     ) {
         // Decoration: the name beside it says where it goes.
@@ -124,7 +168,16 @@ private fun SidebarItem(icon: ImageVector, label: String, selected: Boolean, onC
             style = CloudStreamTheme.typography.label.copy(color = content),
             maxLines = 1,
             overflow = TextOverflow.Ellipsis,
+            // All the row the hint leaves, so the hint sits at the trailing end and the name gives way only to it.
+            modifier = Modifier.weight(1f),
         )
+        if (hint != null) {
+            BasicText(
+                text = hint,
+                style = CloudStreamTheme.typography.label.copy(color = colors.muted),
+                maxLines = 1,
+            )
+        }
     }
 }
 
@@ -221,6 +274,25 @@ internal fun FrameWindowScope.DesktopMenuBar(shortcuts: DesktopShortcuts, label:
     }
 }
 
+/**
+ * The window's title bar over its content, transparent and without the title, or a plain one above it (`KMP-98`). Over
+ * where the sidebar is, so the column runs the window's full height with the traffic lights in it, as in the Settings
+ * window; plain over the player and the review, which have no column to give them.
+ *
+ * Measured on Temurin 17 by asking AppKit which view a point hit-tests to: while it is over, every point of the title
+ * band is the content's, so a control in a page's bar takes its click, and the content view answers yes to
+ * `mouseDownCanMoveWindow`, which is what lets a press on an empty part move the window. Switching it while the window
+ * is open applies at once: the frame's top inset goes 28 to 0 and back. Off a Mac the properties are not read.
+ */
+internal fun JRootPane.titleBarOverContent(over: Boolean) {
+    if (getClientProperty(FULL_WINDOW_CONTENT) == over) return
+    putClientProperty(FULL_WINDOW_CONTENT, over)
+    putClientProperty("apple.awt.transparentTitleBar", over)
+    putClientProperty("apple.awt.windowTitleVisible", !over)
+}
+
+private const val FULL_WINDOW_CONTENT = "apple.awt.fullWindowContent"
+
 /** Values the shell needs that `DesktopDimens` does not name. */
 internal object DesktopShellDefaults {
     /** Board D1's sidebar column. */
@@ -231,4 +303,13 @@ internal object DesktopShellDefaults {
 
     /** Between rows. Mirrors `CloudStreamDimens.StackGap`. */
     val ItemGap: Dp = 4.dp
+
+    /**
+     * The top of the sidebar, left to the traffic lights (`KMP-98`). Mirrors `DesktopPageBarDefaults.Height`, so the
+     * first row starts where each page does, under its bar.
+     */
+    val TitleBand: Dp = DesktopPageBarDefaults.Height
+
+    /** Settings…'s key in every Mac app's menu, which the app menu's item also has. */
+    const val SettingsKey: String = "⌘,"
 }

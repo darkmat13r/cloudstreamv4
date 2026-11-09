@@ -23,6 +23,7 @@ import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.DesktopApp
 import com.lagradost.cloudstream4.EscapeHandler
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
@@ -161,6 +162,15 @@ class LibraryScreenTest {
     }
 
     // ---- The lists (L1, L3, L7) ----
+
+    @Test
+    fun `Library starts with the page bar, 52 tall with a hairline under it (KMP-98, L1)`() {
+        // The source, the filter and Sort, in the one band every Mac page has.
+        val scene = screen(state(LibraryStatus.Empty).sourced())
+        scene.settle()
+        scene.assertPageBar(WIDTH, atNanos = SETTLE_FRAMES * FRAME_NANOS)
+        scene.close()
+    }
 
     @Test
     fun `a click on the second list name selects it`() {
@@ -785,7 +795,7 @@ class LibraryScreenTest {
 
         /** In the window, the screen sits beside the 220 sidebar (`KMP-53`): its third row is Library. */
         const val SIDEBAR_ITEM_X = 100f
-        const val LIBRARY_ITEM_Y = 112f
+        const val LIBRARY_ITEM_Y = 140f
         const val WINDOW_CARD_X = 340f
         const val WINDOW_CARD_Y = 260f
         const val WINDOW_BAR_Y = 26f
