@@ -12,8 +12,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.ExperimentalLayoutApi
-import androidx.compose.foundation.layout.FlowRow
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -36,6 +34,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import androidx.compose.ui.semantics.contentDescription
@@ -293,9 +293,9 @@ private fun Header(
 /**
  * E1's facts under the name (`KMP-82`): the score with its star, the certification in an outlined badge, the year, the
  * runtime, the status, then the kind of title and where it came from. Each only where the source gave it, so a title
- * with none draws no line and leaves no gap. The line wraps rather than cuts, so no fact is lost off its end.
+ * with none draws no line and leaves no gap. The line wraps rather than cuts, so no fact is lost off its end, and a
+ * line never starts with a separator ([SeparatedLines]).
  */
-@OptIn(ExperimentalLayoutApi::class)
 @Composable
 private fun FactsLine(detail: TitleDetail) {
     val colors = CloudStreamTheme.colors
@@ -312,23 +312,66 @@ private fun FactsLine(detail: TitleDetail) {
     val legs = buildList<@Composable () -> Unit> {
         if (score != null) add { Score(score, style) }
         if (certification != null) add { Certification(certification) }
-        words.forEach { word -> add { BasicText(word, style = style, maxLines = 1) } }
+        words.forEach { word ->
+            add { BasicText(word, style = style, maxLines = 1, softWrap = false, overflow = TextOverflow.Ellipsis) }
+        }
     }
     if (legs.isEmpty()) return
-    FlowRow(
-        verticalArrangement = Arrangement.Center,
-        itemVerticalAlignment = Alignment.CenterVertically,
-    ) {
-        legs.forEachIndexed { index, leg ->
-            Row(verticalAlignment = Alignment.CenterVertically) {
-                if (index > 0) BasicText(META_SEPARATOR, style = style, maxLines = 1)
-                leg()
+    SeparatedLines(legs) {
+        // Decoration between two facts: a screen reader reads the facts, not the dots.
+        BasicText(META_SEPARATOR, style = style, maxLines = 1, modifier = Modifier.clearAndSetSemantics { })
+    }
+}
+
+/**
+ * [items] in lines, as wide as there is room for, with a [separator] only between two items on the same line: a line
+ * never starts or ends with one. An item wider than a whole line gets the line to itself, at most that wide, so a text
+ * item set to ellipsize cuts rather than overflowing. Items are centred on their line.
+ */
+@Composable
+private fun SeparatedLines(items: List<@Composable () -> Unit>, separator: @Composable () -> Unit) {
+    Layout(
+        content = {
+            items.forEach { item -> Box { item() } }
+            repeat(items.size - 1) { separator() }
+        },
+    ) { measurables, constraints ->
+        val loose = constraints.copy(minWidth = 0, minHeight = 0)
+        val placed = measurables.take(items.size).map { it.measure(loose) }
+        val separators = measurables.drop(items.size).map { it.measure(loose) }
+        // Each line: the item placeables and, for every item after the first, the separator before it.
+        val lines = mutableListOf(mutableListOf<Placeable>())
+        var x = 0
+        placed.forEachIndexed { index, item ->
+            val before = if (index == 0) null else separators[index - 1]
+            if (before != null && x + before.width + item.width > constraints.maxWidth) {
+                lines += mutableListOf<Placeable>()
+                x = 0
+            } else if (before != null) {
+                lines.last() += before
+                x += before.width
+            }
+            lines.last() += item
+            x += item.width
+        }
+        val widths = lines.map { line -> line.sumOf { it.width } }
+        val heights = lines.map { line -> line.maxOf { it.height } }
+        val width = widths.max().coerceIn(constraints.minWidth, constraints.maxWidth)
+        layout(width, heights.sum()) {
+            var y = 0
+            lines.forEachIndexed { row, line ->
+                var left = 0
+                line.forEach { placeable ->
+                    placeable.placeRelative(left, y + (heights[row] - placeable.height) / 2)
+                    left += placeable.width
+                }
+                y += heights[row]
             }
         }
     }
 }
 
-/** `★ 8.4`: the Tabler star and the score to one decimal, read as "Rating 8.4". */
+/** `☆ 8.4`: the Tabler star, an outline, and the score to one decimal, read as "Rating 8.4". */
 @Composable
 private fun Score(score: Float, style: TextStyle) {
     val described = "${stringResource(Res.string.rating)} ${oneDecimal(score)}"

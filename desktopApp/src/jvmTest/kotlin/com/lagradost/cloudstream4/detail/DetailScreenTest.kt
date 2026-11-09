@@ -10,6 +10,7 @@ import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.InternalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEvent
@@ -295,6 +296,41 @@ class DetailScreenTest {
     }
 
     @Test
+    fun `facts that need two lines keep every fact, and no line starts with a separator`() {
+        val source = "Source One, the long-named mirror"
+        val scene = page(loaded(withFacts.copy(providerName = source)), width = MIN_SCREEN_WIDTH)
+        scene.save("detail-e1-facts-wrapped")
+        val facts = listOf("Rating 8.4", "TV-MA", "2019", "48 min", "Ongoing", "Series", source)
+        val bounds = facts.map { fact -> scene.nodes(fact).single().boundsInRoot }
+        val name = scene.heading(series.title)
+        // Facts are centred on their line, so a line is the facts sharing a centre, give or take the half pixel that
+        // centring a badge or the star's row rounds to: neither is as tall as a word. Lines are a line's height apart.
+        val lines = bounds.sortedBy { it.center.y }.fold(mutableListOf<MutableList<Rect>>()) { found, fact ->
+            if (found.isNotEmpty() && fact.center.y - found.last().first().center.y < SAME_LINE) found.last() += fact
+            else found += mutableListOf(fact)
+            found
+        }.associateBy { it.first().center.y }
+        assertTrue(lines.size >= 2, "the facts wrap at this width: ${bounds.map { it.center.y }}")
+        // Each line's first fact sits at the column's own edge: nothing, a separator least of all, comes before it.
+        lines.forEach { (centre, line) -> assertEquals(name.left, line.minOf { it.left }, "the line centred at $centre") }
+        bounds.forEach { assertTrue(it.right <= name.left + READING_WIDTH, "inside the reading width: $it") }
+        scene.close()
+    }
+
+    @Test
+    fun `a fact wider than a line is cut to it, on one line`() {
+        val source = "Source " + "w".repeat(200)
+        val scene = page(loaded(withFacts.copy(providerName = source)), width = MIN_SCREEN_WIDTH)
+        val year = scene.nodes("2019").single().boundsInRoot
+        val wide = scene.nodes(source).single().boundsInRoot
+        val name = scene.heading(series.title)
+        assertEquals(year.height, wide.height, "one line, cut with an ellipsis rather than wrapped")
+        assertEquals(name.left, wide.left, "on a line of its own")
+        assertTrue(wide.right <= name.left + READING_WIDTH, "inside the reading width: $wide")
+        scene.close()
+    }
+
+    @Test
     fun `long genres stay on one line inside the reading width`() {
         val long = List(5) { index -> "Genre ${index + 1} " + "w".repeat(56) }
         val short = page(loaded(withFacts))
@@ -496,6 +532,9 @@ class DetailScreenTest {
 
         /** `DesktopDimens.RelatedGap` and `ReadingWidth`, in pixels at the scene's density of 1. */
         const val RELATED_GAP = 8f
+
+        /** Two facts whose centres are nearer than this are on one line: a line is about 24 apart. */
+        const val SAME_LINE = 4f
         const val READING_WIDTH = 640f
         const val MAX_TABS = 12
         val ART = Color(0xFF00FF80)

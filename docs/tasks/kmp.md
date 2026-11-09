@@ -6744,7 +6744,9 @@ certification included, and the score read `8.4/10.0`.
 - **The facts line:** the score with its star (`☆ 8.4`, Tabler `Star`, read as "Rating 8.4" from the existing `rating`
   key), the certification in a hairline outline (`muted`, `labelMono`, `BadgeDefaults`' height and padding), then the
   year, the runtime, the status, the kind of title and its source. Runtime and status both show where both are given.
-  The line wraps rather than cuts, so no fact is lost off its end.
+  The line wraps rather than cuts, so no fact is lost off its end. A separator sits only between two facts on the same
+  line (`SeparatedLines`), so no line starts with one, and a fact wider than a whole line is cut with an ellipsis on a
+  line of its own. The dots are decoration: a screen reader reads the facts.
 - **The genres line:** up to five of the source's tags (`GenreCount`), quieter (`muted`, `label`), on one line cut with an
   ellipsis. Text, not chips: a chip on the Mac reads as something to press.
 - Each fact only where the source gave it. With none, neither line is drawn and the synopsis sits under the name.
@@ -6753,14 +6755,18 @@ certification included, and the score read `8.4/10.0`.
 `metaRun`, unchanged. `oneDecimal` and `runtimeLabel` in `DetailCopy` are now internal so the Mac page can use them.
 `ui-components.md` gains the star's row.
 
-**Tests** (`DetailScreenTest`, 3 new, 19 in all):
+**Tests** (`DetailScreenTest`, 5 new, 21 in all):
 - every fact drawn, five genres and no sixth, in the order facts, genres, synopsis;
 - a title with no facts: the synopsis is the column's own gap (8 px) under the name;
 - five 64-character genres: one line, its height that of a short one, inside the reading width, with the facts above
-  still all there.
+  still all there;
+- facts forced onto two lines (the smallest window, a long source name): every fact there, and each line's first fact
+  at the column's own edge, so nothing comes before it;
+- a source name wider than a line: one line, on its own, inside the reading width.
 
 Proved against master's page code: the first and third fail ("the score, with its star"; no genres line). The second
 passes there, as master draws nothing for nothing, and fails (8 → 35 px) when the genres line is drawn without genres.
+The two wrap cases fail when a separator is put back before the fact that starts a line (the fact lands 14 px in).
 
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 
