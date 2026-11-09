@@ -7211,7 +7211,7 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
   Settings' default.
 - `FileSettingsStorageTest`: the file gains the line `seek_amount_desktop_key=10`.
 
-## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr #290, 95e in pr #296** · the PM's task, 2026-11-08
+## KMP-95 — The Mac's account and profiles, built from `DS-25` · **95a in pr #278, 95b in pr #281, 95c in pr #286, 95d in pr #290, 95e in pr #296 (AniList in pr #300)** · the PM's task, 2026-11-08
 
 `DS-25`'s boards, built in six PRs (the PM's plan, 2026-11-08):
 
@@ -7626,7 +7626,7 @@ held, but unused: until `KMP-95h` (refresh-token renewal) lands, an expired sign
 sign-ins only until the app quits (`95d`), so a Mac session never outlives a token today; this matters once `95f`
 keeps them in the Keychain.
 
-**AniList** (the follow-up to `#296`; the owner's ruling (a), 2026-11-09): its docs describe only the implicit grant for
+**AniList** (`#300`, the follow-up to `#296`; the owner's ruling (a), 2026-11-09): its docs describe only the implicit grant for
 an app that cannot keep a secret, with no PKCE and no `state` shown, and Android sends none.
 - The Mac sends a random `state` and **requires it back**. AniList's redirect puts the token in the URL's fragment, so
   `BrowserRedirects` reads the fragment as well as the query, and refuses a name that appears in both.
