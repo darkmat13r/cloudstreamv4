@@ -379,13 +379,13 @@ class LibraryScreenTvDeviceTest {
         val ShotPosters = listOf(0xFF39505C.toInt(), 0xFF5C4A39.toInt(), 0xFF3F5C39.toInt())
         private val ShotNames = listOf(
             "Fernwood: Beyond the Old Road", "Still Water", "Salt Road II", "The Long Dark", "Shoal Saga",
-            "Quiet Harbor", "Ashen Field", "Kingfisher", "Nine Lives", "The Final Cut", "Northern Line", "Paper Moons",
+            "Quiet Harbor", "Ashen Field", "Kingfisher", "Nine Lives", "The Last Reel", "Northern Line", "Paper Moons",
             "Saltwater", "Dust and Iron", "Low Tide", "Grey Harbour", "The Warden", "Halcyon", "Summer Gull", "Redwood",
         )
         private val ShotTypes = listOf("ANIME", "TV SERIES", "MOVIE")
         val ShotTitles = ShotNames.mapIndexed { index, name ->
             title(name, LibraryBucket.Watching, keptAt = 1000L - index).copy(typeLabel = ShotTypes[index % ShotTypes.size])
-        } + title("Arrival", LibraryBucket.Completed) + title("Tide", LibraryBucket.Favourites)
+        } + title("Mooring", LibraryBucket.Completed) + title("Tide", LibraryBucket.Favourites)
         /** Every third title part-watched, so the progress rule shows. */
         val ShotPositions = ShotTitles.filterIndexed { index, _ -> index % 3 == 0 }.mapIndexed { index, kept ->
             WatchPosition(kept.id, null, positionMillis = 600_000L + index * 300_000L, durationMillis = 3_000_000L, watchedAt = 1L)
