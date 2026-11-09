@@ -141,7 +141,7 @@ class DesignReviewFixesTest {
     @Test
     fun `the reveal scrim is a block behind the text, not a fixed share of the card`() {
         val (oneLine, line) = revealTop("Up")
-        val (twoLines, _) = revealTop("Blade Runner Twenty Forty Nine")
+        val (twoLines, _) = revealTop("Salt Road Crossing the Bay")
         val lead = MediaCardDefaults.RevealScrimLead.value.toInt()
         val inset = MediaCardDefaults.ContentPadding.value.toInt()
         val block = lead + line + inset
@@ -184,7 +184,7 @@ class DesignReviewFixesTest {
     fun `a list row's second line is muted, not ink2`() {
         Harness {
             Ground {
-                ListRow(state = ListRowState(title = " ", subtitle = "S5 E14 · 1.2 GB"), onClick = {}, modifier = Modifier.width(ROW_WIDTH.dp))
+                ListRow(state = ListRowState(title = " ", subtitle = "S3 E9 · 1.2 GB"), onClick = {}, modifier = Modifier.width(ROW_WIDTH.dp))
             }
         }.use { harness ->
             harness.settle()

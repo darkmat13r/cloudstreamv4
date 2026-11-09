@@ -58,7 +58,7 @@ class ListRowStopsTest {
         val bounds = Bounds()
         Harness {
             ListRow(
-                state = ListRowState(title = "Ozymandias", subtitle = "S5 E14"),
+                state = ListRowState(title = "Riptide", subtitle = "S3 E9"),
                 onClick = {},
                 modifier = Modifier.fillMaxWidth().onGloballyPositioned(bounds.record(RUN)),
                 trailing = { BasicText(text = "4.2 MB/S") },
@@ -119,7 +119,7 @@ class ListRowStopsTest {
         Harness {
             FocusableColumn(dpad) {
                 ListRow(
-                    state = ListRowState(title = "Ozymandias"),
+                    state = ListRowState(title = "Riptide"),
                     onClick = { pressed += ROW },
                     modifier = Modifier
                         .fillMaxWidth()

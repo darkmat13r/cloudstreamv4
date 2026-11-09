@@ -95,7 +95,7 @@ class TextFieldTest {
 
     @Test
     fun `the field holds no state of its own`() {
-        var value by mutableStateOf("dune")
+        var value by mutableStateOf("tide")
         Harness {
             TextField(
                 value = value,
@@ -105,9 +105,9 @@ class TextFieldTest {
             )
         }.use { harness ->
             harness.settle()
-            value = "dune messiah"
+            value = "tide warden"
             harness.settle()
-            assertEquals("dune messiah", value, "the caller's state is the only state")
+            assertEquals("tide warden", value, "the caller's state is the only state")
         }
     }
 
