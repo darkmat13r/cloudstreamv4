@@ -9,7 +9,8 @@ package com.lagradost.cloudstream4.core.strings
  * `SimpleStringFormatRegex`, which substitutes **only** `%N$s` and `%N$d`. `app/src/main/res` uses `%s`, `%d`,
  * `%1$s`…`%3$s`, `%1$d`…`%3$d`, `%.1f` and `%.2f`, so those overloads would leave `%s`, `%d` and `%.2f` in the
  * text. `UiString` therefore always fetches the **raw pattern** from Compose and formats it here. Feature code must
- * never call Compose's argument overloads; that is a rule, not something the compiler enforces.
+ * never call Compose's argument overloads; the compiler does not stop it, `StringResourceArgumentsGuardTest` does
+ * (`BUG-84`).
  *
  * ## What it covers
  *

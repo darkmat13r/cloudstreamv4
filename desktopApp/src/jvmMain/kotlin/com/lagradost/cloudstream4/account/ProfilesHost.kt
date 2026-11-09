@@ -377,7 +377,7 @@ private fun LimitedPin(
         }
     }
     val message = when {
-        waitMs > 0L -> stringResource(Res.string.pin_error_wait, waitClock(waitMs))
+        waitMs > 0L -> UiString.Resource(Res.string.pin_error_wait, listOf(waitClock(waitMs))).resolve()
         unreadable -> stringResource(Res.string.account_pin_unreadable)
         wrong -> stringResource(Res.string.pin_error_incorrect)
         else -> null

@@ -96,7 +96,7 @@ internal fun SourcePicker(
     PlayerListPanel(stringResource(Res.string.pick_source), onDismiss, subtitle = count) {
         if (sources.resumeAtMillis > 0L) {
             BasicText(
-                text = stringResource(Res.string.player_source_resumes_at, clock(sources.resumeAtMillis)),
+                text = UiString.Resource(Res.string.player_source_resumes_at, listOf(clock(sources.resumeAtMillis))).resolve(),
                 style = CloudStreamTheme.typography.caption.copy(color = colors.ink2),
                 modifier = Modifier.padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
             )
