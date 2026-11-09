@@ -41,6 +41,8 @@ values	plurals	search_state_no_suggestions_body	one	Press the keyboard’s searc
 values	plurals	search_state_no_suggestions_body	other	Press the keyboard’s search key to search all %d sources anyway.
 values	plurals	search_state_partial_headline	one	%d source failed
 values	plurals	search_state_partial_headline	other	%d sources failed
+values	plurals	search_state_retry_sources	one	Retry %d source
+values	plurals	search_state_retry_sources	other	Retry %d sources
 values	plurals	search_tv_recent_count	one	%d SAVED
 values	plurals	search_tv_recent_count	other	%d SAVED
 values	plurals	search_tv_result_count	one	%d RESULT
@@ -1217,6 +1219,8 @@ values-b+af	plurals	search_state_no_suggestions_action	one	Soek %d bron
 values-b+af	plurals	search_state_no_suggestions_action	other	Soek al %d bronne
 values-b+af	plurals	search_state_no_suggestions_body	one	Druk die sleutelbord se soeksleutel om tog %d bron te deursoek.
 values-b+af	plurals	search_state_no_suggestions_body	other	Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek.
+values-b+af	plurals	search_state_retry_sources	one	Probeer %d bron weer
+values-b+af	plurals	search_state_retry_sources	other	Probeer %d bronne weer
 values-b+af	plurals	search_tv_suggestion_sources	one	%d BRON
 values-b+af	plurals	search_tv_suggestion_sources	other	%d BRONNE
 values-b+af	plurals	settings_extension_scan_warnings	one	%d skanderingwaarskuwing
@@ -1732,6 +1736,8 @@ values-b+am	plurals	search_state_no_suggestions_action	one	%d ምንጭ ፈል�
 values-b+am	plurals	search_state_no_suggestions_action	other	ሁሉንም %d ምንጮች ፈልግ
 values-b+am	plurals	search_state_no_suggestions_body	one	ለማንኛውም %d ምንጭ ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።
 values-b+am	plurals	search_state_no_suggestions_body	other	ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።
+values-b+am	plurals	search_state_retry_sources	one	%d ምንጭ እንደገና ሞክር
+values-b+am	plurals	search_state_retry_sources	other	%d ምንጮችን እንደገና ሞክር
 values-b+am	plurals	search_tv_suggestion_sources	one	%d ምንጭ
 values-b+am	plurals	search_tv_suggestion_sources	other	%d ምንጮች
 values-b+am	plurals	settings_extension_scan_warnings	one	%d የቅኝት ማስጠንቀቂያ
@@ -2239,6 +2245,8 @@ values-b+apc	plurals	search_state_no_suggestions_action	one	نبّش بـ%d مص
 values-b+apc	plurals	search_state_no_suggestions_action	other	نبّش بكل المصادر الـ%d
 values-b+apc	plurals	search_state_no_suggestions_body	one	اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال.
 values-b+apc	plurals	search_state_no_suggestions_body	other	اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال.
+values-b+apc	plurals	search_state_retry_sources	one	جرّب %d مصدر كمان مرة
+values-b+apc	plurals	search_state_retry_sources	other	جرّب %d مصادر كمان مرة
 values-b+apc	plurals	search_tv_suggestion_sources	one	%d مصدر
 values-b+apc	plurals	search_tv_suggestion_sources	other	%d مصادر
 values-b+apc	plurals	settings_extension_scan_warnings	one	%d تحذير من الفحص
@@ -3441,6 +3449,12 @@ values-b+ar	plurals	search_state_no_suggestions_body	one	اضغط مفتاح ا�
 values-b+ar	plurals	search_state_no_suggestions_body	other	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
 values-b+ar	plurals	search_state_no_suggestions_body	two	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
 values-b+ar	plurals	search_state_no_suggestions_body	zero	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.
+values-b+ar	plurals	search_state_retry_sources	few	إعادة محاولة %d مصادر
+values-b+ar	plurals	search_state_retry_sources	many	إعادة محاولة %d مصدرًا
+values-b+ar	plurals	search_state_retry_sources	one	إعادة محاولة %d مصدر
+values-b+ar	plurals	search_state_retry_sources	other	إعادة محاولة %d مصدر
+values-b+ar	plurals	search_state_retry_sources	two	إعادة محاولة %d مصدرين
+values-b+ar	plurals	search_state_retry_sources	zero	إعادة محاولة %d مصدر
 values-b+ar	plurals	search_tv_suggestion_sources	few	%d مصادر
 values-b+ar	plurals	search_tv_suggestion_sources	many	%d مصدرًا
 values-b+ar	plurals	search_tv_suggestion_sources	one	%d مصدر
@@ -4656,6 +4670,12 @@ values-b+ars	plurals	search_state_no_suggestions_body	one	اضغط مفتاح ا
 values-b+ars	plurals	search_state_no_suggestions_body	other	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
 values-b+ars	plurals	search_state_no_suggestions_body	two	اضغط مفتاح البحث في لوحة المفاتيح للبحث في جميع المصادر الـ%d على أي حال.
 values-b+ars	plurals	search_state_no_suggestions_body	zero	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.
+values-b+ars	plurals	search_state_retry_sources	few	جرّب %d مصادر مرة ثانية
+values-b+ars	plurals	search_state_retry_sources	many	جرّب %d مصدرًا مرة ثانية
+values-b+ars	plurals	search_state_retry_sources	one	جرّب %d مصدر مرة ثانية
+values-b+ars	plurals	search_state_retry_sources	other	جرّب %d مصدر مرة ثانية
+values-b+ars	plurals	search_state_retry_sources	two	جرّب %d مصدرين مرة ثانية
+values-b+ars	plurals	search_state_retry_sources	zero	جرّب %d مصدر مرة ثانية
 values-b+ars	plurals	search_tv_suggestion_sources	few	%d مصادر
 values-b+ars	plurals	search_tv_suggestion_sources	many	%d مصدرًا
 values-b+ars	plurals	search_tv_suggestion_sources	one	%d مصدر
@@ -5411,6 +5431,8 @@ values-b+as	plurals	search_state_no_suggestions_action	one	%dটা উৎস �
 values-b+as	plurals	search_state_no_suggestions_action	other	আটাইকেইটা %dটা উৎস সন্ধান কৰক
 values-b+as	plurals	search_state_no_suggestions_body	one	তথাপি %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।
 values-b+as	plurals	search_state_no_suggestions_body	other	তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।
+values-b+as	plurals	search_state_retry_sources	one	%d টা উৎস পুনৰ চেষ্টা কৰক
+values-b+as	plurals	search_state_retry_sources	other	%d টা উৎস পুনৰ চেষ্টা কৰক
 values-b+as	plurals	search_tv_suggestion_sources	one	%d উৎস
 values-b+as	plurals	search_tv_suggestion_sources	other	%d উৎস
 values-b+as	plurals	settings_extension_scan_warnings	one	%d টা স্কেন সতৰ্কবাণী
@@ -6447,6 +6469,8 @@ values-b+az	plurals	search_state_no_suggestions_action	one	%d mənbədə axtar
 values-b+az	plurals	search_state_no_suggestions_action	other	Bütün %d mənbədə axtar
 values-b+az	plurals	search_state_no_suggestions_body	one	Yenə də %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.
 values-b+az	plurals	search_state_no_suggestions_body	other	Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.
+values-b+az	plurals	search_state_retry_sources	one	%d mənbəni yenidən sına
+values-b+az	plurals	search_state_retry_sources	other	%d mənbəni yenidən sına
 values-b+az	plurals	search_tv_suggestion_sources	one	%d MƏNBƏ
 values-b+az	plurals	search_tv_suggestion_sources	other	%d MƏNBƏ
 values-b+az	plurals	settings_extension_scan_warnings	one	%d yoxlama xəbərdarlığı
@@ -7026,6 +7050,10 @@ values-b+be	plurals	search_state_no_suggestions_body	few	Націсніце кл
 values-b+be	plurals	search_state_no_suggestions_body	many	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.
 values-b+be	plurals	search_state_no_suggestions_body	one	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць у %d крыніцы.
 values-b+be	plurals	search_state_no_suggestions_body	other	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.
+values-b+be	plurals	search_state_retry_sources	few	Паўтарыць %d крыніцы
+values-b+be	plurals	search_state_retry_sources	many	Паўтарыць %d крыніц
+values-b+be	plurals	search_state_retry_sources	one	Паўтарыць %d крыніцу
+values-b+be	plurals	search_state_retry_sources	other	Паўтарыць %d крыніцы
 values-b+be	plurals	search_tv_suggestion_sources	few	%d КРЫНІЦЫ
 values-b+be	plurals	search_tv_suggestion_sources	many	%d КРЫНІЦ
 values-b+be	plurals	search_tv_suggestion_sources	one	%d КРЫНІЦА
@@ -8170,6 +8198,8 @@ values-b+bg	plurals	search_state_no_suggestions_action	one	Търсене в %d 
 values-b+bg	plurals	search_state_no_suggestions_action	other	Търсене във всички %d източника
 values-b+bg	plurals	search_state_no_suggestions_body	one	Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това в %d източник.
 values-b+bg	plurals	search_state_no_suggestions_body	other	Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това във всички %d източника.
+values-b+bg	plurals	search_state_retry_sources	one	Опитай %d източник отново
+values-b+bg	plurals	search_state_retry_sources	other	Опитай %d източника отново
 values-b+bg	plurals	search_tv_suggestion_sources	one	%d ИЗТОЧНИК
 values-b+bg	plurals	search_tv_suggestion_sources	other	%d ИЗТОЧНИКА
 values-b+bg	plurals	settings_extension_scan_warnings	one	%d предупреждение от сканиране
@@ -9290,6 +9320,8 @@ values-b+bn	plurals	search_state_no_suggestions_action	one	%dটি উৎসে
 values-b+bn	plurals	search_state_no_suggestions_action	other	সব %dটি উৎসে খুঁজুন
 values-b+bn	plurals	search_state_no_suggestions_body	one	তবুও %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।
 values-b+bn	plurals	search_state_no_suggestions_body	other	তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।
+values-b+bn	plurals	search_state_retry_sources	one	%dটি উৎস আবার চেষ্টা করুন
+values-b+bn	plurals	search_state_retry_sources	other	%dটি উৎস আবার চেষ্টা করুন
 values-b+bn	plurals	search_tv_suggestion_sources	one	%d উৎস
 values-b+bn	plurals	search_tv_suggestion_sources	other	%d উৎস
 values-b+bn	plurals	settings_extension_scan_warnings	one	%dটি স্ক্যান সতর্কতা
@@ -10105,6 +10137,9 @@ values-b+ca	plurals	search_state_no_suggestions_action	other	Cercar a totes les 
 values-b+ca	plurals	search_state_no_suggestions_body	many	Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.
 values-b+ca	plurals	search_state_no_suggestions_body	one	Prem la tecla de cerca del teclat per cercar igualment a %d font.
 values-b+ca	plurals	search_state_no_suggestions_body	other	Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.
+values-b+ca	plurals	search_state_retry_sources	many	Torna a provar %d fonts
+values-b+ca	plurals	search_state_retry_sources	one	Torna a provar %d font
+values-b+ca	plurals	search_state_retry_sources	other	Torna a provar %d fonts
 values-b+ca	plurals	search_tv_suggestion_sources	many	%d FONTS
 values-b+ca	plurals	search_tv_suggestion_sources	one	%d FONT
 values-b+ca	plurals	search_tv_suggestion_sources	other	%d FONTS
@@ -10834,6 +10869,8 @@ values-b+ckb	plurals	search_state_no_suggestions_action	one	گەڕان لە %d �
 values-b+ckb	plurals	search_state_no_suggestions_action	other	گەڕان لە هەموو %d سەرچاوەکە
 values-b+ckb	plurals	search_state_no_suggestions_body	one	کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە %d سەرچاوە بگەڕێیت.
 values-b+ckb	plurals	search_state_no_suggestions_body	other	کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت.
+values-b+ckb	plurals	search_state_retry_sources	one	%d سەرچاوە دووبارە تاقی بکەرەوە
+values-b+ckb	plurals	search_state_retry_sources	other	%d سەرچاوە دووبارە تاقی بکەرەوە
 values-b+ckb	plurals	search_tv_suggestion_sources	one	%d سەرچاوە
 values-b+ckb	plurals	search_tv_suggestion_sources	other	%d سەرچاوە
 values-b+ckb	plurals	settings_extension_scan_warnings	one	%d ئاگاداری پشکنین
@@ -11354,6 +11391,10 @@ values-b+cs	plurals	search_state_no_suggestions_body	few	Stiskněte na klávesni
 values-b+cs	plurals	search_state_no_suggestions_body	many	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdroje.
 values-b+cs	plurals	search_state_no_suggestions_body	one	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte %d zdroj.
 values-b+cs	plurals	search_state_no_suggestions_body	other	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů.
+values-b+cs	plurals	search_state_retry_sources	few	Zkusit znovu %d zdroje
+values-b+cs	plurals	search_state_retry_sources	many	Zkusit znovu %d zdroje
+values-b+cs	plurals	search_state_retry_sources	one	Zkusit znovu %d zdroj
+values-b+cs	plurals	search_state_retry_sources	other	Zkusit znovu %d zdrojů
 values-b+cs	plurals	search_tv_suggestion_sources	few	%d ZDROJE
 values-b+cs	plurals	search_tv_suggestion_sources	many	%d ZDROJE
 values-b+cs	plurals	search_tv_suggestion_sources	one	%d ZDROJ
@@ -12505,6 +12546,8 @@ values-b+de	plurals	search_state_no_suggestions_action	one	%d Quelle durchsuchen
 values-b+de	plurals	search_state_no_suggestions_action	other	Alle %d Quellen durchsuchen
 values-b+de	plurals	search_state_no_suggestions_body	one	Drücke die Suchtaste der Tastatur, um trotzdem %d Quelle zu durchsuchen.
 values-b+de	plurals	search_state_no_suggestions_body	other	Drücke die Suchtaste der Tastatur, um trotzdem alle %d Quellen zu durchsuchen.
+values-b+de	plurals	search_state_retry_sources	one	%d Quelle erneut versuchen
+values-b+de	plurals	search_state_retry_sources	other	%d Quellen erneut versuchen
 values-b+de	plurals	search_tv_suggestion_sources	one	%d QUELLE
 values-b+de	plurals	search_tv_suggestion_sources	other	%d QUELLEN
 values-b+de	plurals	settings_extension_scan_warnings	one	%d Prüfwarnung
@@ -13640,6 +13683,8 @@ values-b+el	plurals	search_state_no_suggestions_action	one	Αναζήτηση σ
 values-b+el	plurals	search_state_no_suggestions_action	other	Αναζήτηση σε όλες τις %d πηγές
 values-b+el	plurals	search_state_no_suggestions_body	one	Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε %d πηγή ούτως ή άλλως.
 values-b+el	plurals	search_state_no_suggestions_body	other	Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως.
+values-b+el	plurals	search_state_retry_sources	one	Επανάληψη %d πηγής
+values-b+el	plurals	search_state_retry_sources	other	Επανάληψη %d πηγών
 values-b+el	plurals	search_tv_suggestion_sources	one	%d ΠΗΓΗ
 values-b+el	plurals	search_tv_suggestion_sources	other	%d ΠΗΓΕΣ
 values-b+el	plurals	settings_extension_scan_warnings	one	%d προειδοποίηση σάρωσης
@@ -14703,6 +14748,8 @@ values-b+eo	plurals	search_state_no_suggestions_action	one	Serĉi en %d fonto
 values-b+eo	plurals	search_state_no_suggestions_action	other	Serĉi en ĉiuj %d fontoj
 values-b+eo	plurals	search_state_no_suggestions_body	one	Premu la serĉoklavon de la klavaro por tamen serĉi en %d fonto.
 values-b+eo	plurals	search_state_no_suggestions_body	other	Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj.
+values-b+eo	plurals	search_state_retry_sources	one	Reprovi %d fonton
+values-b+eo	plurals	search_state_retry_sources	other	Reprovi %d fontojn
 values-b+eo	plurals	search_tv_suggestion_sources	one	%d FONTO
 values-b+eo	plurals	search_tv_suggestion_sources	other	%d FONTOJ
 values-b+eo	plurals	settings_extension_scan_warnings	one	%d skana averto
@@ -15309,6 +15356,9 @@ values-b+es	plurals	search_state_no_suggestions_action	other	Buscar en las %d fu
 values-b+es	plurals	search_state_no_suggestions_body	many	Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.
 values-b+es	plurals	search_state_no_suggestions_body	one	Pulsa la tecla de búsqueda del teclado para buscar igualmente en %d fuente.
 values-b+es	plurals	search_state_no_suggestions_body	other	Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.
+values-b+es	plurals	search_state_retry_sources	many	Reintentar %d fuentes
+values-b+es	plurals	search_state_retry_sources	one	Reintentar %d fuente
+values-b+es	plurals	search_state_retry_sources	other	Reintentar %d fuentes
 values-b+es	plurals	search_tv_suggestion_sources	many	%d FUENTES
 values-b+es	plurals	search_tv_suggestion_sources	one	%d FUENTE
 values-b+es	plurals	search_tv_suggestion_sources	other	%d FUENTES
@@ -16449,6 +16499,8 @@ values-b+fa	plurals	search_state_no_suggestions_action	one	جست‌وجو در 
 values-b+fa	plurals	search_state_no_suggestions_action	other	جست‌وجو در همهٔ %d منبع
 values-b+fa	plurals	search_state_no_suggestions_body	one	برای جست‌وجو در %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.
 values-b+fa	plurals	search_state_no_suggestions_body	other	برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.
+values-b+fa	plurals	search_state_retry_sources	one	تلاش دوباره برای %d منبع
+values-b+fa	plurals	search_state_retry_sources	other	تلاش دوباره برای %d منبع
 values-b+fa	plurals	search_tv_suggestion_sources	one	%d منبع
 values-b+fa	plurals	search_tv_suggestion_sources	other	%d منبع
 values-b+fa	plurals	settings_extension_scan_warnings	one	%d هشدار اسکن
@@ -17195,6 +17247,8 @@ values-b+fil	plurals	search_state_no_suggestions_action	one	Maghanap sa %d mapag
 values-b+fil	plurals	search_state_no_suggestions_action	other	Maghanap sa lahat ng %d mapagkukunan
 values-b+fil	plurals	search_state_no_suggestions_body	one	Pindutin ang search key ng keyboard para maghanap pa rin sa %d mapagkukunan.
 values-b+fil	plurals	search_state_no_suggestions_body	other	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.
+values-b+fil	plurals	search_state_retry_sources	one	Subukang muli ang %d source
+values-b+fil	plurals	search_state_retry_sources	other	Subukang muli ang %d na source
 values-b+fil	plurals	search_tv_suggestion_sources	one	%d MAPAGKUKUNAN
 values-b+fil	plurals	search_tv_suggestion_sources	other	%d MAPAGKUKUNAN
 values-b+fil	plurals	settings_extension_scan_warnings	one	%d babala ng scan
@@ -17886,6 +17940,9 @@ values-b+fr	plurals	search_state_no_suggestions_action	other	Rechercher dans les
 values-b+fr	plurals	search_state_no_suggestions_body	many	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.
 values-b+fr	plurals	search_state_no_suggestions_body	one	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans %d source.
 values-b+fr	plurals	search_state_no_suggestions_body	other	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.
+values-b+fr	plurals	search_state_retry_sources	many	Réessayer %d sources
+values-b+fr	plurals	search_state_retry_sources	one	Réessayer %d source
+values-b+fr	plurals	search_state_retry_sources	other	Réessayer %d sources
 values-b+fr	plurals	search_tv_suggestion_sources	many	%d SOURCES
 values-b+fr	plurals	search_tv_suggestion_sources	one	%d SOURCE
 values-b+fr	plurals	search_tv_suggestion_sources	other	%d SOURCES
@@ -19025,6 +19082,8 @@ values-b+gl	plurals	search_state_no_suggestions_action	one	Procurar en %d fonte
 values-b+gl	plurals	search_state_no_suggestions_action	other	Procurar en todas as %d fontes
 values-b+gl	plurals	search_state_no_suggestions_body	one	Preme a tecla de busca do teclado para procurar igualmente en %d fonte.
 values-b+gl	plurals	search_state_no_suggestions_body	other	Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes.
+values-b+gl	plurals	search_state_retry_sources	one	Tentar de novo %d fonte
+values-b+gl	plurals	search_state_retry_sources	other	Tentar de novo %d fontes
 values-b+gl	plurals	search_tv_suggestion_sources	one	%d FONTE
 values-b+gl	plurals	search_tv_suggestion_sources	other	%d FONTES
 values-b+gl	plurals	settings_extension_scan_warnings	one	%d aviso da análise
@@ -19727,6 +19786,9 @@ values-b+he	plurals	search_state_no_suggestions_action	two	חיפוש בכל %d 
 values-b+he	plurals	search_state_no_suggestions_body	one	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.
 values-b+he	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 values-b+he	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
+values-b+he	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+values-b+he	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
+values-b+he	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 values-b+he	plurals	search_tv_suggestion_sources	one	%d מקור
 values-b+he	plurals	search_tv_suggestion_sources	other	%d מקורות
 values-b+he	plurals	search_tv_suggestion_sources	two	%d מקורות
@@ -20679,6 +20741,8 @@ values-b+hi	plurals	search_state_no_suggestions_action	one	%d स्रोत �
 values-b+hi	plurals	search_state_no_suggestions_action	other	सभी %d स्रोतों में खोजें
 values-b+hi	plurals	search_state_no_suggestions_body	one	फिर भी %d स्रोत में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।
 values-b+hi	plurals	search_state_no_suggestions_body	other	फिर भी सभी %d स्रोतों में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।
+values-b+hi	plurals	search_state_retry_sources	one	%d स्रोत फिर से आज़माएँ
+values-b+hi	plurals	search_state_retry_sources	other	%d स्रोत फिर से आज़माएँ
 values-b+hi	plurals	search_tv_suggestion_sources	one	%d स्रोत
 values-b+hi	plurals	search_tv_suggestion_sources	other	%d स्रोत
 values-b+hi	plurals	settings_extension_scan_warnings	one	%d स्कैन चेतावनी
@@ -21513,6 +21577,9 @@ values-b+hr	plurals	search_state_no_suggestions_action	other	Pretraži svih %d i
 values-b+hr	plurals	search_state_no_suggestions_body	few	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili sva %d izvora.
 values-b+hr	plurals	search_state_no_suggestions_body	one	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili %d izvor.
 values-b+hr	plurals	search_state_no_suggestions_body	other	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora.
+values-b+hr	plurals	search_state_retry_sources	few	Ponovi %d izvora
+values-b+hr	plurals	search_state_retry_sources	one	Ponovi %d izvor
+values-b+hr	plurals	search_state_retry_sources	other	Ponovi %d izvora
 values-b+hr	plurals	search_tv_suggestion_sources	few	%d IZVORA
 values-b+hr	plurals	search_tv_suggestion_sources	one	%d IZVOR
 values-b+hr	plurals	search_tv_suggestion_sources	other	%d IZVORA
@@ -22648,6 +22715,8 @@ values-b+hu	plurals	search_state_no_suggestions_action	one	Keresés %d forrásba
 values-b+hu	plurals	search_state_no_suggestions_action	other	Keresés mind a(z) %d forrásban
 values-b+hu	plurals	search_state_no_suggestions_body	one	Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen %d forrásban.
 values-b+hu	plurals	search_state_no_suggestions_body	other	Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban.
+values-b+hu	plurals	search_state_retry_sources	one	%d forrás újrapróbálása
+values-b+hu	plurals	search_state_retry_sources	other	%d forrás újrapróbálása
 values-b+hu	plurals	search_tv_suggestion_sources	one	%d FORRÁS
 values-b+hu	plurals	search_tv_suggestion_sources	other	%d FORRÁS
 values-b+hu	plurals	settings_extension_scan_warnings	one	%d vizsgálati figyelmeztetés
@@ -23673,6 +23742,7 @@ values-b+id	plurals	player_source_count	other	%d sumber
 values-b+id	plurals	player_up_next_in	other	Episode berikutnya dalam %d dtk
 values-b+id	plurals	search_state_no_suggestions_action	other	Cari di semua %d sumber
 values-b+id	plurals	search_state_no_suggestions_body	other	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.
+values-b+id	plurals	search_state_retry_sources	other	Coba lagi %d sumber
 values-b+id	plurals	search_tv_suggestion_sources	other	%d SUMBER
 values-b+id	plurals	settings_extension_scan_warnings	other	%d peringatan pemindaian
 values-b+id	plurals	settings_extensions_all	other	Semua ekstensi (%d)
@@ -24789,6 +24859,7 @@ values-b+in	plurals	player_source_count	other	%d sumber
 values-b+in	plurals	player_up_next_in	other	Episode berikutnya dalam %d dtk
 values-b+in	plurals	search_state_no_suggestions_action	other	Cari di semua %d sumber
 values-b+in	plurals	search_state_no_suggestions_body	other	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.
+values-b+in	plurals	search_state_retry_sources	other	Coba lagi %d sumber
 values-b+in	plurals	search_tv_suggestion_sources	other	%d SUMBER
 values-b+in	plurals	settings_extension_scan_warnings	other	%d peringatan pemindaian
 values-b+in	plurals	settings_extensions_all	other	Semua ekstensi (%d)
@@ -25941,6 +26012,9 @@ values-b+it	plurals	search_state_no_suggestions_action	other	Cerca in tutte le %
 values-b+it	plurals	search_state_no_suggestions_body	many	Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.
 values-b+it	plurals	search_state_no_suggestions_body	one	Premi il tasto di ricerca della tastiera per cercare comunque in %d fonte.
 values-b+it	plurals	search_state_no_suggestions_body	other	Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.
+values-b+it	plurals	search_state_retry_sources	many	Riprova %d fonti
+values-b+it	plurals	search_state_retry_sources	one	Riprova %d fonte
+values-b+it	plurals	search_state_retry_sources	other	Riprova %d fonti
 values-b+it	plurals	search_tv_suggestion_sources	many	%d FONTI
 values-b+it	plurals	search_tv_suggestion_sources	one	%d FONTE
 values-b+it	plurals	search_tv_suggestion_sources	other	%d FONTI
@@ -27094,6 +27168,9 @@ values-b+iw	plurals	search_state_no_suggestions_action	two	חיפוש בכל %d 
 values-b+iw	plurals	search_state_no_suggestions_body	one	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.
 values-b+iw	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 values-b+iw	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
+values-b+iw	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+values-b+iw	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
+values-b+iw	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 values-b+iw	plurals	search_tv_suggestion_sources	one	%d מקור
 values-b+iw	plurals	search_tv_suggestion_sources	other	%d מקורות
 values-b+iw	plurals	search_tv_suggestion_sources	two	%d מקורות
@@ -28034,6 +28111,7 @@ values-b+ja	plurals	player_source_count	other	%d 件のソース
 values-b+ja	plurals	player_up_next_in	other	%d 秒後に次のエピソード
 values-b+ja	plurals	search_state_no_suggestions_action	other	全 %d ソースを検索
 values-b+ja	plurals	search_state_no_suggestions_body	other	それでも全 %d ソースを検索するには、キーボードの検索キーを押してください。
+values-b+ja	plurals	search_state_retry_sources	other	%d 件のソースを再試行
 values-b+ja	plurals	search_tv_suggestion_sources	other	%d ソース
 values-b+ja	plurals	settings_extension_scan_warnings	other	スキャン警告 %d 件
 values-b+ja	plurals	settings_extensions_all	other	すべての拡張機能 (%d)
@@ -29162,6 +29240,8 @@ values-b+kn	plurals	search_state_no_suggestions_action	one	%d ಮೂಲದಲ್
 values-b+kn	plurals	search_state_no_suggestions_action	other	ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಿ
 values-b+kn	plurals	search_state_no_suggestions_body	one	ಹಾಗಿದ್ದರೂ %d ಮೂಲದಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.
 values-b+kn	plurals	search_state_no_suggestions_body	other	ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.
+values-b+kn	plurals	search_state_retry_sources	one	%d ಮೂಲವನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ
+values-b+kn	plurals	search_state_retry_sources	other	%d ಮೂಲಗಳನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ
 values-b+kn	plurals	search_tv_suggestion_sources	one	%d ಮೂಲ
 values-b+kn	plurals	search_tv_suggestion_sources	other	%d ಮೂಲಗಳು
 values-b+kn	plurals	settings_extension_scan_warnings	one	%d ಸ್ಕ್ಯಾನ್ ಎಚ್ಚರಿಕೆ
@@ -29672,6 +29752,7 @@ values-b+ko	plurals	player_source_count	other	소스 %d개
 values-b+ko	plurals	player_up_next_in	other	%d초 후 다음 에피소드
 values-b+ko	plurals	search_state_no_suggestions_action	other	소스 %d개 모두 검색
 values-b+ko	plurals	search_state_no_suggestions_body	other	그래도 소스 %d개를 모두 검색하려면 키보드의 검색 키를 누르세요.
+values-b+ko	plurals	search_state_retry_sources	other	소스 %d개 다시 시도
 values-b+ko	plurals	search_tv_suggestion_sources	other	%d 소스
 values-b+ko	plurals	settings_extension_scan_warnings	other	검사 경고 %d개
 values-b+ko	plurals	settings_extensions_all	other	모든 확장 기능 (%d)
@@ -30827,6 +30908,10 @@ values-b+lt	plurals	search_state_no_suggestions_body	few	Paspauskite klaviatūro
 values-b+lt	plurals	search_state_no_suggestions_body	many	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).
 values-b+lt	plurals	search_state_no_suggestions_body	one	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte %d šaltinyje.
 values-b+lt	plurals	search_state_no_suggestions_body	other	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).
+values-b+lt	plurals	search_state_retry_sources	few	Bandyti %d šaltinius iš naujo
+values-b+lt	plurals	search_state_retry_sources	many	Bandyti %d šaltinio iš naujo
+values-b+lt	plurals	search_state_retry_sources	one	Bandyti %d šaltinį iš naujo
+values-b+lt	plurals	search_state_retry_sources	other	Bandyti %d šaltinių iš naujo
 values-b+lt	plurals	search_tv_suggestion_sources	few	%d ŠALTINIAI
 values-b+lt	plurals	search_tv_suggestion_sources	many	%d ŠALTINIO
 values-b+lt	plurals	search_tv_suggestion_sources	one	%d ŠALTINIS
@@ -31548,6 +31633,9 @@ values-b+lv	plurals	search_state_no_suggestions_action	zero	Meklēt visos %d dev
 values-b+lv	plurals	search_state_no_suggestions_body	one	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu %d devējā.
 values-b+lv	plurals	search_state_no_suggestions_body	other	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.
 values-b+lv	plurals	search_state_no_suggestions_body	zero	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.
+values-b+lv	plurals	search_state_retry_sources	one	Mēģināt vēlreiz %d avotu
+values-b+lv	plurals	search_state_retry_sources	other	Mēģināt vēlreiz %d avotus
+values-b+lv	plurals	search_state_retry_sources	zero	Mēģināt vēlreiz %d avotus
 values-b+lv	plurals	search_tv_suggestion_sources	one	%d DEVĒJS
 values-b+lv	plurals	search_tv_suggestion_sources	other	%d DEVĒJI
 values-b+lv	plurals	search_tv_suggestion_sources	zero	%d DEVĒJU
@@ -32569,6 +32657,8 @@ values-b+mk	plurals	search_state_no_suggestions_action	one	Барај во %d и
 values-b+mk	plurals	search_state_no_suggestions_action	other	Барај во сите %d извори
 values-b+mk	plurals	search_state_no_suggestions_body	one	Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во %d извор.
 values-b+mk	plurals	search_state_no_suggestions_body	other	Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во сите %d извори.
+values-b+mk	plurals	search_state_retry_sources	one	Обиди го повторно %d извор
+values-b+mk	plurals	search_state_retry_sources	other	Обиди ги повторно %d извори
 values-b+mk	plurals	search_tv_suggestion_sources	one	%d ИЗВОР
 values-b+mk	plurals	search_tv_suggestion_sources	other	%d ИЗВОРИ
 values-b+mk	plurals	settings_extension_scan_warnings	one	%d предупредување од скенирање
@@ -33699,6 +33789,8 @@ values-b+ml	plurals	search_state_no_suggestions_action	one	%d ഉറവിടത
 values-b+ml	plurals	search_state_no_suggestions_action	other	എല്ലാ %d ഉറവിടങ്ങളിലും തിരയുക
 values-b+ml	plurals	search_state_no_suggestions_body	one	എന്നിട്ടും %d ഉറവിടത്തിൽ തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.
 values-b+ml	plurals	search_state_no_suggestions_body	other	എന്നിട്ടും എല്ലാ %d ഉറവിടങ്ങളിലും തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.
+values-b+ml	plurals	search_state_retry_sources	one	%d ഉറവിടം വീണ്ടും ശ്രമിക്കുക
+values-b+ml	plurals	search_state_retry_sources	other	%d ഉറവിടങ്ങൾ വീണ്ടും ശ്രമിക്കുക
 values-b+ml	plurals	search_tv_suggestion_sources	one	%d ഉറവിടം
 values-b+ml	plurals	search_tv_suggestion_sources	other	%d ഉറവിടങ്ങൾ
 values-b+ml	plurals	settings_extension_scan_warnings	one	%d സ്കാൻ മുന്നറിയിപ്പ്
@@ -34368,6 +34460,7 @@ values-b+ms	plurals	player_source_count	other	%d sumber
 values-b+ms	plurals	player_up_next_in	other	Episod seterusnya dalam %d s
 values-b+ms	plurals	search_state_no_suggestions_action	other	Cari dalam semua %d sumber
 values-b+ms	plurals	search_state_no_suggestions_body	other	Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.
+values-b+ms	plurals	search_state_retry_sources	other	Cuba semula %d sumber
 values-b+ms	plurals	search_tv_suggestion_sources	other	%d SUMBER
 values-b+ms	plurals	settings_extension_scan_warnings	other	%d amaran imbasan
 values-b+ms	plurals	settings_extensions_all	other	Semua tambahan (%d)
@@ -35340,6 +35433,11 @@ values-b+mt	plurals	search_state_no_suggestions_body	many	Agħfas il-buttuna tat
 values-b+mt	plurals	search_state_no_suggestions_body	one	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta f'%d sors.
 values-b+mt	plurals	search_state_no_suggestions_body	other	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sors kollha.
 values-b+mt	plurals	search_state_no_suggestions_body	two	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.
+values-b+mt	plurals	search_state_retry_sources	few	Erġa' pprova %d sorsi
+values-b+mt	plurals	search_state_retry_sources	many	Erġa' pprova %d-il sors
+values-b+mt	plurals	search_state_retry_sources	one	Erġa' pprova %d sors
+values-b+mt	plurals	search_state_retry_sources	other	Erġa' pprova %d sors
+values-b+mt	plurals	search_state_retry_sources	two	Erġa' pprova %d sorsi
 values-b+mt	plurals	search_tv_suggestion_sources	few	%d SORSI
 values-b+mt	plurals	search_tv_suggestion_sources	many	%d SORS
 values-b+mt	plurals	search_tv_suggestion_sources	one	%d SORS
@@ -35856,6 +35954,7 @@ values-b+my	plurals	player_source_count	other	ရင်းမြစ် %d ခု
 values-b+my	plurals	player_up_next_in	other	နောက်အပိုင်း %d စက္ကန့်အတွင်း
 values-b+my	plurals	search_state_no_suggestions_action	other	ရင်းမြစ် %d ခုလုံးတွင် ရှာရန်
 values-b+my	plurals	search_state_no_suggestions_body	other	မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။
+values-b+my	plurals	search_state_retry_sources	other	ရင်းမြစ် %d ခု ထပ်စမ်းရန်
 values-b+my	plurals	search_tv_suggestion_sources	other	%d ရင်းမြစ်
 values-b+my	plurals	settings_extension_scan_warnings	other	စကင် သတိပေးချက် %d ခု
 values-b+my	plurals	settings_extensions_all	other	အဆက်အားလုံး (%d)
@@ -36773,6 +36872,8 @@ values-b+ne	plurals	search_state_no_suggestions_action	one	%d स्रोतम
 values-b+ne	plurals	search_state_no_suggestions_action	other	सबै %d स्रोतहरूमा खोज्नुहोस्
 values-b+ne	plurals	search_state_no_suggestions_body	one	जे भए पनि %d स्रोतमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।
 values-b+ne	plurals	search_state_no_suggestions_body	other	जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।
+values-b+ne	plurals	search_state_retry_sources	one	%d स्रोत फेरि प्रयास गर्नुहोस्
+values-b+ne	plurals	search_state_retry_sources	other	%d स्रोतहरू फेरि प्रयास गर्नुहोस्
 values-b+ne	plurals	search_tv_suggestion_sources	one	%d स्रोत
 values-b+ne	plurals	search_tv_suggestion_sources	other	%d स्रोतहरू
 values-b+ne	plurals	settings_extension_scan_warnings	one	%d स्क्यान चेतावनी
@@ -37295,6 +37396,8 @@ values-b+nl	plurals	search_state_no_suggestions_action	one	Zoek in %d bron
 values-b+nl	plurals	search_state_no_suggestions_action	other	Zoek in alle %d bronnen
 values-b+nl	plurals	search_state_no_suggestions_body	one	Druk op de zoektoets van het toetsenbord om toch in %d bron te zoeken.
 values-b+nl	plurals	search_state_no_suggestions_body	other	Druk op de zoektoets van het toetsenbord om toch in alle %d bronnen te zoeken.
+values-b+nl	plurals	search_state_retry_sources	one	%d bron opnieuw proberen
+values-b+nl	plurals	search_state_retry_sources	other	%d bronnen opnieuw proberen
 values-b+nl	plurals	search_tv_suggestion_sources	one	%d BRON
 values-b+nl	plurals	search_tv_suggestion_sources	other	%d BRONNEN
 values-b+nl	plurals	settings_extension_scan_warnings	one	%d scanwaarschuwing
@@ -38379,6 +38482,8 @@ values-b+nn	plurals	search_state_no_suggestions_action	one	Søk i %d kjelde
 values-b+nn	plurals	search_state_no_suggestions_action	other	Søk i alle %d kjeldene
 values-b+nn	plurals	search_state_no_suggestions_body	one	Trykk på søkjeknappen på tastaturet for å søkje i %d kjelde likevel.
 values-b+nn	plurals	search_state_no_suggestions_body	other	Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel.
+values-b+nn	plurals	search_state_retry_sources	one	Prøv %d kjelde på nytt
+values-b+nn	plurals	search_state_retry_sources	other	Prøv %d kjelder på nytt
 values-b+nn	plurals	search_tv_suggestion_sources	one	%d KJELDE
 values-b+nn	plurals	search_tv_suggestion_sources	other	%d KJELDER
 values-b+nn	plurals	settings_extension_scan_warnings	one	%d skanningsåtvaring
@@ -38978,6 +39083,8 @@ values-b+no	plurals	search_state_no_suggestions_action	one	Søk i %d kilde
 values-b+no	plurals	search_state_no_suggestions_action	other	Søk i alle %d kilder
 values-b+no	plurals	search_state_no_suggestions_body	one	Trykk på søketasten på tastaturet for å søke i %d kilde likevel.
 values-b+no	plurals	search_state_no_suggestions_body	other	Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel.
+values-b+no	plurals	search_state_retry_sources	one	Prøv %d kilde på nytt
+values-b+no	plurals	search_state_retry_sources	other	Prøv %d kilder på nytt
 values-b+no	plurals	search_tv_suggestion_sources	one	%d KILDE
 values-b+no	plurals	search_tv_suggestion_sources	other	%d KILDER
 values-b+no	plurals	settings_extension_scan_warnings	one	%d skanneadvarsel
@@ -39891,6 +39998,8 @@ values-b+or	plurals	search_state_no_suggestions_action	one	%d ଉତ୍ସରେ
 values-b+or	plurals	search_state_no_suggestions_action	other	ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରନ୍ତୁ
 values-b+or	plurals	search_state_no_suggestions_body	one	ତଥାପି %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।
 values-b+or	plurals	search_state_no_suggestions_body	other	ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।
+values-b+or	plurals	search_state_retry_sources	one	%d ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ
+values-b+or	plurals	search_state_retry_sources	other	%d ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ
 values-b+or	plurals	search_tv_suggestion_sources	one	%d ଉତ୍ସ
 values-b+or	plurals	search_tv_suggestion_sources	other	%d ଉତ୍ସ
 values-b+or	plurals	settings_extension_scan_warnings	one	%d ସ୍କାନ୍ ଚେତାବନୀ
@@ -40489,6 +40598,10 @@ values-b+pl	plurals	search_state_no_suggestions_body	few	Naciśnij klawisz wyszu
 values-b+pl	plurals	search_state_no_suggestions_body	many	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródeł.
 values-b+pl	plurals	search_state_no_suggestions_body	one	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać %d źródło.
 values-b+pl	plurals	search_state_no_suggestions_body	other	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.
+values-b+pl	plurals	search_state_retry_sources	few	Ponów %d źródła
+values-b+pl	plurals	search_state_retry_sources	many	Ponów %d źródeł
+values-b+pl	plurals	search_state_retry_sources	one	Ponów %d źródło
+values-b+pl	plurals	search_state_retry_sources	other	Ponów %d źródła
 values-b+pl	plurals	search_tv_suggestion_sources	few	%d ŹRÓDŁA
 values-b+pl	plurals	search_tv_suggestion_sources	many	%d ŹRÓDEŁ
 values-b+pl	plurals	search_tv_suggestion_sources	one	%d ŹRÓDŁO
@@ -41658,6 +41771,9 @@ values-b+pt	plurals	search_state_no_suggestions_action	other	Pesquisar em todas 
 values-b+pt	plurals	search_state_no_suggestions_body	many	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
 values-b+pt	plurals	search_state_no_suggestions_body	one	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.
 values-b+pt	plurals	search_state_no_suggestions_body	other	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
+values-b+pt	plurals	search_state_retry_sources	many	Tentar novamente %d fontes
+values-b+pt	plurals	search_state_retry_sources	one	Tentar novamente %d fonte
+values-b+pt	plurals	search_state_retry_sources	other	Tentar novamente %d fontes
 values-b+pt	plurals	search_tv_suggestion_sources	many	%d FONTES
 values-b+pt	plurals	search_tv_suggestion_sources	one	%d FONTE
 values-b+pt	plurals	search_tv_suggestion_sources	other	%d FONTES
@@ -42820,6 +42936,9 @@ values-b+pt+BR	plurals	search_state_no_suggestions_action	other	Pesquisar em tod
 values-b+pt+BR	plurals	search_state_no_suggestions_body	many	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
 values-b+pt+BR	plurals	search_state_no_suggestions_body	one	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em %d fonte.
 values-b+pt+BR	plurals	search_state_no_suggestions_body	other	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
+values-b+pt+BR	plurals	search_state_retry_sources	many	Tentar %d fontes de novo
+values-b+pt+BR	plurals	search_state_retry_sources	one	Tentar %d fonte de novo
+values-b+pt+BR	plurals	search_state_retry_sources	other	Tentar %d fontes de novo
 values-b+pt+BR	plurals	search_tv_suggestion_sources	many	%d FONTES
 values-b+pt+BR	plurals	search_tv_suggestion_sources	one	%d FONTE
 values-b+pt+BR	plurals	search_tv_suggestion_sources	other	%d FONTES
@@ -43939,6 +44058,7 @@ values-b+qt	plurals	player_source_count	other	%d ooh
 values-b+qt	plurals	player_up_next_in	other	Ooh uuh %d ahh
 values-b+qt	plurals	search_state_no_suggestions_action	other	aaoog %d ooh uugg
 values-b+qt	plurals	search_state_no_suggestions_body	other	uuh aagg oooh aaahh uug %d ooogg aah.
+values-b+qt	plurals	search_state_retry_sources	other	oouuh %d ooh
 values-b+qt	plurals	search_tv_suggestion_sources	other	%d OOGAH
 values-b+qt	plurals	settings_extension_scan_warnings	other	%d aahh aaahhhoo
 values-b+qt	plurals	settings_extensions_all	other	oog oooggguh (%d)
@@ -44973,6 +45093,9 @@ values-b+ro	plurals	search_state_no_suggestions_action	other	Caută în toate ce
 values-b+ro	plurals	search_state_no_suggestions_body	few	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d surse.
 values-b+ro	plurals	search_state_no_suggestions_body	one	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în %d sursă.
 values-b+ro	plurals	search_state_no_suggestions_body	other	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d de surse.
+values-b+ro	plurals	search_state_retry_sources	few	Reîncearcă %d surse
+values-b+ro	plurals	search_state_retry_sources	one	Reîncearcă %d sursă
+values-b+ro	plurals	search_state_retry_sources	other	Reîncearcă %d de surse
 values-b+ro	plurals	search_tv_suggestion_sources	few	%d SURSE
 values-b+ro	plurals	search_tv_suggestion_sources	one	%d SURSĂ
 values-b+ro	plurals	search_tv_suggestion_sources	other	%d DE SURSE
@@ -46046,6 +46169,10 @@ values-b+ru	plurals	search_state_no_suggestions_body	few	Нажмите клав
 values-b+ru	plurals	search_state_no_suggestions_body	many	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.
 values-b+ru	plurals	search_state_no_suggestions_body	one	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать в %d источнике.
 values-b+ru	plurals	search_state_no_suggestions_body	other	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.
+values-b+ru	plurals	search_state_retry_sources	few	Повторить %d источника
+values-b+ru	plurals	search_state_retry_sources	many	Повторить %d источников
+values-b+ru	plurals	search_state_retry_sources	one	Повторить %d источник
+values-b+ru	plurals	search_state_retry_sources	other	Повторить %d источника
 values-b+ru	plurals	search_tv_suggestion_sources	few	%d ИСТОЧНИКА
 values-b+ru	plurals	search_tv_suggestion_sources	many	%d ИСТОЧНИКОВ
 values-b+ru	plurals	search_tv_suggestion_sources	one	%d ИСТОЧНИК
@@ -47221,6 +47348,10 @@ values-b+sk	plurals	search_state_no_suggestions_body	few	Stlačte na klávesnici
 values-b+sk	plurals	search_state_no_suggestions_body	many	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.
 values-b+sk	plurals	search_state_no_suggestions_body	one	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte %d zdroj.
 values-b+sk	plurals	search_state_no_suggestions_body	other	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.
+values-b+sk	plurals	search_state_retry_sources	few	Skúsiť znova %d zdroje
+values-b+sk	plurals	search_state_retry_sources	many	Skúsiť znova %d zdroja
+values-b+sk	plurals	search_state_retry_sources	one	Skúsiť znova %d zdroj
+values-b+sk	plurals	search_state_retry_sources	other	Skúsiť znova %d zdrojov
 values-b+sk	plurals	search_tv_suggestion_sources	few	%d ZDROJE
 values-b+sk	plurals	search_tv_suggestion_sources	many	%d ZDROJA
 values-b+sk	plurals	search_tv_suggestion_sources	one	%d ZDROJ
@@ -48106,6 +48237,8 @@ values-b+so	plurals	search_state_no_suggestions_action	one	Ka raadi %d il
 values-b+so	plurals	search_state_no_suggestions_action	other	Ka raadi dhammaan %d ilood
 values-b+so	plurals	search_state_no_suggestions_body	one	Riix furaha raadinta ee kiiboodhka si aad u raadiso %d il si kastaba ha ahaatee.
 values-b+so	plurals	search_state_no_suggestions_body	other	Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee.
+values-b+so	plurals	search_state_retry_sources	one	Isku day mar kale %d il
+values-b+so	plurals	search_state_retry_sources	other	Isku day mar kale %d ilo
 values-b+so	plurals	search_tv_suggestion_sources	one	%d IL
 values-b+so	plurals	search_tv_suggestion_sources	other	%d ILOOD
 values-b+so	plurals	settings_extension_scan_warnings	one	%d digniin baaritaan
@@ -49019,6 +49152,8 @@ values-b+sq	plurals	search_state_no_suggestions_action	one	Kërko në %d burim
 values-b+sq	plurals	search_state_no_suggestions_action	other	Kërko në të gjitha %d burimet
 values-b+sq	plurals	search_state_no_suggestions_body	one	Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në %d burim.
 values-b+sq	plurals	search_state_no_suggestions_body	other	Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet.
+values-b+sq	plurals	search_state_retry_sources	one	Riprovo %d burim
+values-b+sq	plurals	search_state_retry_sources	other	Riprovo %d burime
 values-b+sq	plurals	search_tv_suggestion_sources	one	%d BURIM
 values-b+sq	plurals	search_tv_suggestion_sources	other	%d BURIME
 values-b+sq	plurals	settings_extension_scan_warnings	one	%d paralajmërim skanimi
@@ -50160,6 +50295,8 @@ values-b+sv	plurals	search_state_no_suggestions_action	one	Sök i %d källa
 values-b+sv	plurals	search_state_no_suggestions_action	other	Sök i alla %d källor
 values-b+sv	plurals	search_state_no_suggestions_body	one	Tryck på tangentbordets söktangent för att söka i %d källa ändå.
 values-b+sv	plurals	search_state_no_suggestions_body	other	Tryck på tangentbordets söktangent för att söka i alla %d källor ändå.
+values-b+sv	plurals	search_state_retry_sources	one	Försök med %d källa igen
+values-b+sv	plurals	search_state_retry_sources	other	Försök med %d källor igen
 values-b+sv	plurals	search_tv_suggestion_sources	one	%d KÄLLA
 values-b+sv	plurals	search_tv_suggestion_sources	other	%d KÄLLOR
 values-b+sv	plurals	settings_extension_scan_warnings	one	%d skanningsvarning
@@ -51301,6 +51438,8 @@ values-b+ta	plurals	search_state_no_suggestions_action	one	%d மூலத்த
 values-b+ta	plurals	search_state_no_suggestions_action	other	அனைத்து %d மூலங்களிலும் தேடு
 values-b+ta	plurals	search_state_no_suggestions_body	one	இருந்தாலும் %d மூலத்தில் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.
 values-b+ta	plurals	search_state_no_suggestions_body	other	இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.
+values-b+ta	plurals	search_state_retry_sources	one	%d மூலத்தை மீண்டும் முயலவும்
+values-b+ta	plurals	search_state_retry_sources	other	%d மூலங்களை மீண்டும் முயலவும்
 values-b+ta	plurals	search_tv_suggestion_sources	one	%d மூலம்
 values-b+ta	plurals	search_tv_suggestion_sources	other	%d மூலங்கள்
 values-b+ta	plurals	settings_extension_scan_warnings	one	%d ஸ்கேன் எச்சரிக்கை
@@ -52434,6 +52573,8 @@ values-b+ti	plurals	search_state_no_suggestions_action	one	ኣብ %d ምንጪ �
 values-b+ti	plurals	search_state_no_suggestions_action	other	ኣብ ኩሎም %d ምንጭታት ድለ
 values-b+ti	plurals	search_state_no_suggestions_body	one	ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።
 values-b+ti	plurals	search_state_no_suggestions_body	other	ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።
+values-b+ti	plurals	search_state_retry_sources	one	%d ምንጪ ደጊምካ ፈትን
+values-b+ti	plurals	search_state_retry_sources	other	%d ምንጭታት ደጊምካ ፈትን
 values-b+ti	plurals	search_tv_suggestion_sources	one	%d ምንጪ
 values-b+ti	plurals	search_tv_suggestion_sources	other	%d ምንጭታት
 values-b+ti	plurals	settings_extension_scan_warnings	one	%d መጠንቀቕታ ምርመራ
@@ -52828,6 +52969,8 @@ values-b+tl	plurals	search_state_no_suggestions_action	one	Maghanap sa %d source
 values-b+tl	plurals	search_state_no_suggestions_action	other	Maghanap sa lahat ng %d source
 values-b+tl	plurals	search_state_no_suggestions_body	one	Pindutin ang search key ng keyboard para maghanap pa rin sa %d source.
 values-b+tl	plurals	search_state_no_suggestions_body	other	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d source.
+values-b+tl	plurals	search_state_retry_sources	one	Subukang muli ang %d source
+values-b+tl	plurals	search_state_retry_sources	other	Subukang muli ang %d na source
 values-b+tl	plurals	search_tv_suggestion_sources	one	%d SOURCE
 values-b+tl	plurals	search_tv_suggestion_sources	other	%d SOURCES
 values-b+tl	plurals	settings_extension_scan_warnings	one	%d babala ng pag-scan
@@ -53538,6 +53681,8 @@ values-b+tr	plurals	search_state_no_suggestions_action	one	%d kaynakta ara
 values-b+tr	plurals	search_state_no_suggestions_action	other	Tüm %d kaynakta ara
 values-b+tr	plurals	search_state_no_suggestions_body	one	Yine de %d kaynakta aramak için klavyenin arama tuşuna basın.
 values-b+tr	plurals	search_state_no_suggestions_body	other	Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın.
+values-b+tr	plurals	search_state_retry_sources	one	%d kaynağı yeniden dene
+values-b+tr	plurals	search_state_retry_sources	other	%d kaynağı yeniden dene
 values-b+tr	plurals	search_tv_suggestion_sources	one	%d KAYNAK
 values-b+tr	plurals	search_tv_suggestion_sources	other	%d KAYNAK
 values-b+tr	plurals	settings_extension_scan_warnings	one	%d tarama uyarısı
@@ -54715,6 +54860,10 @@ values-b+uk	plurals	search_state_no_suggestions_body	few	Натисніть кл
 values-b+uk	plurals	search_state_no_suggestions_body	many	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.
 values-b+uk	plurals	search_state_no_suggestions_body	one	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в %d джерелі.
 values-b+uk	plurals	search_state_no_suggestions_body	other	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.
+values-b+uk	plurals	search_state_retry_sources	few	Повторити %d джерела
+values-b+uk	plurals	search_state_retry_sources	many	Повторити %d джерел
+values-b+uk	plurals	search_state_retry_sources	one	Повторити %d джерело
+values-b+uk	plurals	search_state_retry_sources	other	Повторити %d джерела
 values-b+uk	plurals	search_tv_suggestion_sources	few	%d ДЖЕРЕЛА
 values-b+uk	plurals	search_tv_suggestion_sources	many	%d ДЖЕРЕЛ
 values-b+uk	plurals	search_tv_suggestion_sources	one	%d ДЖЕРЕЛО
@@ -55860,6 +56009,8 @@ values-b+ur	plurals	search_state_no_suggestions_action	one	%d ذریعے میں 
 values-b+ur	plurals	search_state_no_suggestions_action	other	تمام %d ذرائع میں تلاش کریں
 values-b+ur	plurals	search_state_no_suggestions_body	one	پھر بھی %d ذریعے میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔
 values-b+ur	plurals	search_state_no_suggestions_body	other	پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔
+values-b+ur	plurals	search_state_retry_sources	one	%d ماخذ دوبارہ آزمائیں
+values-b+ur	plurals	search_state_retry_sources	other	%d ماخذ دوبارہ آزمائیں
 values-b+ur	plurals	search_tv_suggestion_sources	one	%d ذریعہ
 values-b+ur	plurals	search_tv_suggestion_sources	other	%d ذرائع
 values-b+ur	plurals	settings_extension_scan_warnings	one	%d اسکین انتباہ
@@ -56850,6 +57001,7 @@ values-b+vi	plurals	player_source_count	other	%d nguồn
 values-b+vi	plurals	player_up_next_in	other	Tập tiếp theo sau %d giây
 values-b+vi	plurals	search_state_no_suggestions_action	other	Tìm kiếm trên cả %d nguồn
 values-b+vi	plurals	search_state_no_suggestions_body	other	Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.
+values-b+vi	plurals	search_state_retry_sources	other	Thử lại %d nguồn
 values-b+vi	plurals	search_tv_suggestion_sources	other	%d NGUỒN
 values-b+vi	plurals	settings_extension_scan_warnings	other	%d cảnh báo khi quét
 values-b+vi	plurals	settings_extensions_all	other	Tất cả tiện ích mở rộng (%d)
@@ -57968,6 +58120,7 @@ values-b+zh	plurals	player_source_count	other	%d 个来源
 values-b+zh	plurals	player_up_next_in	other	%d 秒后播放下一集
 values-b+zh	plurals	search_state_no_suggestions_action	other	搜索全部 %d 个来源
 values-b+zh	plurals	search_state_no_suggestions_body	other	按键盘上的搜索键，仍然搜索全部 %d 个来源。
+values-b+zh	plurals	search_state_retry_sources	other	重试 %d 个来源
 values-b+zh	plurals	search_tv_suggestion_sources	other	%d 来源
 values-b+zh	plurals	settings_extension_scan_warnings	other	%d 个扫描警告
 values-b+zh	plurals	settings_extensions_all	other	全部扩展 (%d)
@@ -59085,6 +59238,7 @@ values-b+zh+TW	plurals	player_source_count	other	%d 個來源
 values-b+zh+TW	plurals	player_up_next_in	other	%d 秒後播放下一集
 values-b+zh+TW	plurals	search_state_no_suggestions_action	other	搜尋全部 %d 個來源
 values-b+zh+TW	plurals	search_state_no_suggestions_body	other	按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。
+values-b+zh+TW	plurals	search_state_retry_sources	other	重試 %d 個來源
 values-b+zh+TW	plurals	search_tv_suggestion_sources	other	%d 來源
 values-b+zh+TW	plurals	settings_extension_scan_warnings	other	%d 個掃描警告
 values-b+zh+TW	plurals	settings_extensions_all	other	全部擴充功能 (%d)

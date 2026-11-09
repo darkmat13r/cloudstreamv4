@@ -48,6 +48,7 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopOfflinePill
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
@@ -202,7 +203,7 @@ private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit, showRandom
         )
         DesktopButton(label = name, onClick = { onAction(HomeAction.PickerOpened) })
         // H4: offline costs no height. It sits beside the source, which is what it is about.
-        if (state.status.shown is HomeStatus.Offline) OfflinePill()
+        if (state.status.shown is HomeStatus.Offline) DesktopOfflinePill(stringResource(Res.string.downloads_offline_pill))
         Spacer(Modifier.weight(1f))
         // 3j: named in the bar. Each has something to act on only while the source's rows are on screen, kept ones included (H4).
         if (state.status.keptRows.isNotEmpty() && !state.unsourced) {
@@ -219,26 +220,6 @@ private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit, showRandom
                 )
             }
         }
-    }
-}
-
-@Composable
-private fun OfflinePill() {
-    val colors = CloudStreamTheme.colors
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-        modifier = Modifier
-            .height(HomeScreenDesktopDefaults.PillHeight)
-            .background(colors.raised, CloudStreamTheme.shapes.pill)
-            .padding(horizontal = DesktopDimens.RelatedGap),
-    ) {
-        CloudStreamIcon(CloudStreamIcons.Offline, null, size = CloudStreamIconSize.Small, tint = colors.muted)
-        BasicText(
-            text = stringResource(Res.string.downloads_offline_pill),
-            style = CloudStreamTheme.typography.caption.copy(color = colors.muted),
-            maxLines = 1,
-        )
     }
 }
 
@@ -943,8 +924,6 @@ object HomeScreenDesktopDefaults {
     const val ScrimAlpha = 0.6f
     /** How often H4's age is read again: it counts in minutes. */
     const val AGE_TICK_MILLIS = 60_000L
-    /** H4's offline pill. Mirrors `dimens.ChipVisualHeight`. */
-    val PillHeight: Dp = 24.dp
     /** A bookmark status chip, 3f at desktop size. */
     val ChipHeight: Dp = 32.dp
     /** A state where the source's rows would be, under the device's rails. */

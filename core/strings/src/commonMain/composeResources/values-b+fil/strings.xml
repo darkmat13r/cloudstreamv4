@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">Susunod na episode sa loob ng %d s</item><item quantity="other">Susunod na episode sa loob ng %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Maghanap sa %d mapagkukunan</item><item quantity="other">Maghanap sa lahat ng %d mapagkukunan</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Pindutin ang search key ng keyboard para maghanap pa rin sa %d mapagkukunan.</item><item quantity="other">Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">Subukang muli ang %d source</item><item quantity="other">Subukang muli ang %d na source</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d MAPAGKUKUNAN</item><item quantity="other">%d MAPAGKUKUNAN</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d seksyon</item><item quantity="other">%d na seksyon</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d babala ng scan</item><item quantity="other">%d na babala ng scan</item></plurals>

@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"Seguinte episodio en %d s"</item><item quantity="other">"Seguinte episodio en %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Procurar en %d fonte"</item><item quantity="other">"Procurar en todas as %d fontes"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Preme a tecla de busca do teclado para procurar igualmente en %d fonte."</item><item quantity="other">"Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"Tentar de novo %d fonte"</item><item quantity="other">"Tentar de novo %d fontes"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d FONTE"</item><item quantity="other">"%d FONTES"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d aviso da análise"</item><item quantity="other">"%d avisos da análise"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"Todas as extensións (%d)"</item><item quantity="other">"Todas as extensións (%d)"</item></plurals>

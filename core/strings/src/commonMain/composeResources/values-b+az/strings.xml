@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">Növbəti seriya %d san sonra</item><item quantity="other">Növbəti seriya %d san sonra</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d mənbədə axtar</item><item quantity="other">Bütün %d mənbədə axtar</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Yenə də %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.</item><item quantity="other">Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">%d mənbəni yenidən sına</item><item quantity="other">%d mənbəni yenidən sına</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d MƏNBƏ</item><item quantity="other">%d MƏNBƏ</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d bölmə</item><item quantity="other">%d bölmə</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d yoxlama xəbərdarlığı</item><item quantity="other">%d yoxlama xəbərdarlığı</item></plurals>

@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">הפרק הבא בעוד %d ש׳</item><item quantity="two">הפרק הבא בעוד %d ש׳</item><item quantity="other">הפרק הבא בעוד %d ש׳</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">חיפוש ב-%d מקור</item><item quantity="two">חיפוש בכל %d המקורות</item><item quantity="other">חיפוש בכל %d המקורות</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת ב-%d מקור.</item><item quantity="two">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.</item><item quantity="other">יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">לנסות שוב מקור %d</item><item quantity="two">לנסות שוב %d מקורות</item><item quantity="other">לנסות שוב %d מקורות</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d מקור</item><item quantity="two">%d מקורות</item><item quantity="other">%d מקורות</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d קטע</item><item quantity="two">%d קטעים</item><item quantity="other">%d קטעים</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d אזהרת סריקה</item><item quantity="two">%d אזהרות סריקה</item><item quantity="other">%d אזהרות סריקה</item></plurals>

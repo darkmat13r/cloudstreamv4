@@ -19,6 +19,7 @@
 <plurals name="player_up_next_in"><item quantity="other">"%d 秒後に次のエピソード"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"全 %d ソースを検索"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"それでも全 %d ソースを検索するには、キーボードの検索キーを押してください。"</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="other">"%d 件のソースを再試行"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d ソース"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">"スキャン警告 %d 件"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="other">"すべての拡張機能 (%d)"</item></plurals>

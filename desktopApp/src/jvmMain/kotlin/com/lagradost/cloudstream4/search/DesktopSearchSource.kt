@@ -60,7 +60,12 @@ import kotlinx.coroutines.withContext
  * onboarding cluster draws it (`design/TV Onboarding Extensions.dc.html` 8a, "First run — no
  * sources"); the contracts should gain it when desktop grows a runtime.
  */
-class DesktopSearchSource : SearchSource {
+class DesktopSearchSource internal constructor(
+    /** A card's `Movie · 4K` (`KMP-101`). A parameter so a test can see what reaches the item. */
+    private val labels: DesktopResultLabels,
+) : SearchSource {
+
+    constructor() : this(DesktopResultLabels())
 
     /**
      * The panel's picks (`DS-22` S4), by provider name, or `null` for every provider: what a first launch asks.
@@ -189,8 +194,14 @@ class DesktopSearchSource : SearchSource {
         replies.forEach { (repo, reply) -> failed[repo.name] = reply is Resource.Failure }
         val answered = replies.filter { it.second is Resource.Success }
         val failures = replies.mapNotNull { it.second as? Resource.Failure }
-        val items = answered.flatMap { (repo, reply) ->
-            (reply as Resource.Success).value.items.map { it.toItem(repo.name) }
+        val responses = answered.flatMap { (repo, reply) ->
+            (reply as Resource.Success).value.items.map { repo.name to it }
+        }
+        // Once per distinct value, not once per card: a page of results shares a handful of each.
+        val typeWords = responses.mapNotNullTo(HashSet()) { it.second.type }.associateWith { labels.type(it) }
+        val qualityWords = responses.mapNotNullTo(HashSet()) { it.second.quality }.associateWith { labels.quality(it) }
+        val items = responses.map { (provider, response) ->
+            response.toItem(provider, typeWords[response.type], qualityWords[response.quality])
         }
 
         when {
@@ -222,16 +233,13 @@ class DesktopSearchSource : SearchSource {
             .take(MAX_DETAIL_REASONS)
             .joinToString(DETAIL_SEPARATOR)
 
-    private fun SearchResponse.toItem(providerName: String) = SearchResultItem(
+    private fun SearchResponse.toItem(providerName: String, typeLabel: String?, qualityLabel: String?) = SearchResultItem(
         id = SearchResultId(encodeId(apiName, url)),
         title = name,
         posterUrl = posterUrl,
         providerName = providerName,
-        // Resolving TvType and SearchQuality to labels needs string resources, and on desktop
-        // those are Compose resources with no synchronous accessor. Left null rather than
-        // hardcoding English, which `.claude/rules` forbid. See DesktopSearchCopy's KDoc.
-        typeLabel = null,
-        qualityLabel = null,
+        typeLabel = typeLabel,
+        qualityLabel = qualityLabel,
         dubLabel = null,
         watchProgress = null,
     )

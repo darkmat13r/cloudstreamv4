@@ -41,6 +41,8 @@ values-b+af	plurals	search_state_no_suggestions_body	one	Druk die sleutelbord se
 values-b+af	plurals	search_state_no_suggestions_body	other	Druk die sleutelbord se soeksleutel om tog al %d bronne te deursoek.
 values-b+af	plurals	search_state_partial_headline	one	%d source failed
 values-b+af	plurals	search_state_partial_headline	other	%d sources failed
+values-b+af	plurals	search_state_retry_sources	one	Probeer %d bron weer
+values-b+af	plurals	search_state_retry_sources	other	Probeer %d bronne weer
 values-b+af	plurals	search_tv_recent_count	one	%d SAVED
 values-b+af	plurals	search_tv_recent_count	other	%d SAVED
 values-b+af	plurals	search_tv_result_count	one	%d RESULT
@@ -1229,6 +1231,8 @@ values-b+am	plurals	search_state_no_suggestions_body	one	ለማንኛውም %d �
 values-b+am	plurals	search_state_no_suggestions_body	other	ለማንኛውም ሁሉንም %d ምንጮች ለመፈለግ የቁልፍ ሰሌዳውን የፍለጋ ቁልፍ ይጫኑ።
 values-b+am	plurals	search_state_partial_headline	one	%d source failed
 values-b+am	plurals	search_state_partial_headline	other	%d sources failed
+values-b+am	plurals	search_state_retry_sources	one	%d ምንጭ እንደገና ሞክር
+values-b+am	plurals	search_state_retry_sources	other	%d ምንጮችን እንደገና ሞክር
 values-b+am	plurals	search_tv_recent_count	one	%d SAVED
 values-b+am	plurals	search_tv_recent_count	other	%d SAVED
 values-b+am	plurals	search_tv_result_count	one	%d RESULT
@@ -2417,6 +2421,8 @@ values-b+apc	plurals	search_state_no_suggestions_body	one	اكبس زر التن
 values-b+apc	plurals	search_state_no_suggestions_body	other	اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال.
 values-b+apc	plurals	search_state_partial_headline	one	%d source failed
 values-b+apc	plurals	search_state_partial_headline	other	%d sources failed
+values-b+apc	plurals	search_state_retry_sources	one	جرّب %d مصدر كمان مرة
+values-b+apc	plurals	search_state_retry_sources	other	جرّب %d مصادر كمان مرة
 values-b+apc	plurals	search_tv_recent_count	one	%d SAVED
 values-b+apc	plurals	search_tv_recent_count	other	%d SAVED
 values-b+apc	plurals	search_tv_result_count	one	%d RESULT
@@ -3673,6 +3679,12 @@ values-b+ar	plurals	search_state_no_suggestions_body	two	اضغط مفتاح ا�
 values-b+ar	plurals	search_state_no_suggestions_body	zero	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.
 values-b+ar	plurals	search_state_partial_headline	one	%d source failed
 values-b+ar	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ar	plurals	search_state_retry_sources	few	إعادة محاولة %d مصادر
+values-b+ar	plurals	search_state_retry_sources	many	إعادة محاولة %d مصدرًا
+values-b+ar	plurals	search_state_retry_sources	one	إعادة محاولة %d مصدر
+values-b+ar	plurals	search_state_retry_sources	other	إعادة محاولة %d مصدر
+values-b+ar	plurals	search_state_retry_sources	two	إعادة محاولة %d مصدرين
+values-b+ar	plurals	search_state_retry_sources	zero	إعادة محاولة %d مصدر
 values-b+ar	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ar	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ar	plurals	search_tv_result_count	one	%d RESULT
@@ -4941,6 +4953,12 @@ values-b+ars	plurals	search_state_no_suggestions_body	two	اضغط مفتاح ا
 values-b+ars	plurals	search_state_no_suggestions_body	zero	اضغط مفتاح البحث في لوحة المفاتيح للبحث في %d مصدر على أي حال.
 values-b+ars	plurals	search_state_partial_headline	one	%d source failed
 values-b+ars	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ars	plurals	search_state_retry_sources	few	جرّب %d مصادر مرة ثانية
+values-b+ars	plurals	search_state_retry_sources	many	جرّب %d مصدرًا مرة ثانية
+values-b+ars	plurals	search_state_retry_sources	one	جرّب %d مصدر مرة ثانية
+values-b+ars	plurals	search_state_retry_sources	other	جرّب %d مصدر مرة ثانية
+values-b+ars	plurals	search_state_retry_sources	two	جرّب %d مصدرين مرة ثانية
+values-b+ars	plurals	search_state_retry_sources	zero	جرّب %d مصدر مرة ثانية
 values-b+ars	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ars	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ars	plurals	search_tv_result_count	one	%d RESULT
@@ -6149,6 +6167,8 @@ values-b+as	plurals	search_state_no_suggestions_body	one	তথাপি %dট�
 values-b+as	plurals	search_state_no_suggestions_body	other	তথাপি আটাইকেইটা %dটা উৎস সন্ধান কৰিবলৈ কীব'ৰ্ডৰ সন্ধান কী টিপক।
 values-b+as	plurals	search_state_partial_headline	one	%d source failed
 values-b+as	plurals	search_state_partial_headline	other	%d sources failed
+values-b+as	plurals	search_state_retry_sources	one	%d টা উৎস পুনৰ চেষ্টা কৰক
+values-b+as	plurals	search_state_retry_sources	other	%d টা উৎস পুনৰ চেষ্টা কৰক
 values-b+as	plurals	search_tv_recent_count	one	%d SAVED
 values-b+as	plurals	search_tv_recent_count	other	%d SAVED
 values-b+as	plurals	search_tv_result_count	one	%d RESULT
@@ -7337,6 +7357,8 @@ values-b+az	plurals	search_state_no_suggestions_body	one	Yenə də %d mənbədə
 values-b+az	plurals	search_state_no_suggestions_body	other	Yenə də bütün %d mənbədə axtarmaq üçün klaviaturanın axtarış düyməsini basın.
 values-b+az	plurals	search_state_partial_headline	one	%d source failed
 values-b+az	plurals	search_state_partial_headline	other	%d sources failed
+values-b+az	plurals	search_state_retry_sources	one	%d mənbəni yenidən sına
+values-b+az	plurals	search_state_retry_sources	other	%d mənbəni yenidən sına
 values-b+az	plurals	search_tv_recent_count	one	%d SAVED
 values-b+az	plurals	search_tv_recent_count	other	%d SAVED
 values-b+az	plurals	search_tv_result_count	one	%d RESULT
@@ -8559,6 +8581,10 @@ values-b+be	plurals	search_state_no_suggestions_body	one	Націсніце кл
 values-b+be	plurals	search_state_no_suggestions_body	other	Націсніце клавішу пошуку на клавіятуры, каб усё роўна шукаць ва ўсіх %d крыніцах.
 values-b+be	plurals	search_state_partial_headline	one	%d source failed
 values-b+be	plurals	search_state_partial_headline	other	%d sources failed
+values-b+be	plurals	search_state_retry_sources	few	Паўтарыць %d крыніцы
+values-b+be	plurals	search_state_retry_sources	many	Паўтарыць %d крыніц
+values-b+be	plurals	search_state_retry_sources	one	Паўтарыць %d крыніцу
+values-b+be	plurals	search_state_retry_sources	other	Паўтарыць %d крыніцы
 values-b+be	plurals	search_tv_recent_count	one	%d SAVED
 values-b+be	plurals	search_tv_recent_count	other	%d SAVED
 values-b+be	plurals	search_tv_result_count	one	%d RESULT
@@ -9757,6 +9783,8 @@ values-b+bg	plurals	search_state_no_suggestions_body	one	Натиснете кл
 values-b+bg	plurals	search_state_no_suggestions_body	other	Натиснете клавиша за търсене на клавиатурата, за да търсите въпреки това във всички %d източника.
 values-b+bg	plurals	search_state_partial_headline	one	%d source failed
 values-b+bg	plurals	search_state_partial_headline	other	%d sources failed
+values-b+bg	plurals	search_state_retry_sources	one	Опитай %d източник отново
+values-b+bg	plurals	search_state_retry_sources	other	Опитай %d източника отново
 values-b+bg	plurals	search_tv_recent_count	one	%d SAVED
 values-b+bg	plurals	search_tv_recent_count	other	%d SAVED
 values-b+bg	plurals	search_tv_result_count	one	%d RESULT
@@ -10945,6 +10973,8 @@ values-b+bn	plurals	search_state_no_suggestions_body	one	তবুও %dটি �
 values-b+bn	plurals	search_state_no_suggestions_body	other	তবুও সব %dটি উৎসে খুঁজতে কীবোর্ডের সার্চ কী চাপুন।
 values-b+bn	plurals	search_state_partial_headline	one	%d source failed
 values-b+bn	plurals	search_state_partial_headline	other	%d sources failed
+values-b+bn	plurals	search_state_retry_sources	one	%dটি উৎস আবার চেষ্টা করুন
+values-b+bn	plurals	search_state_retry_sources	other	%dটি উৎস আবার চেষ্টা করুন
 values-b+bn	plurals	search_tv_recent_count	one	%d SAVED
 values-b+bn	plurals	search_tv_recent_count	other	%d SAVED
 values-b+bn	plurals	search_tv_result_count	one	%d RESULT
@@ -12148,6 +12178,9 @@ values-b+ca	plurals	search_state_no_suggestions_body	one	Prem la tecla de cerca 
 values-b+ca	plurals	search_state_no_suggestions_body	other	Prem la tecla de cerca del teclat per cercar igualment a totes les %d fonts.
 values-b+ca	plurals	search_state_partial_headline	one	%d source failed
 values-b+ca	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ca	plurals	search_state_retry_sources	many	Torna a provar %d fonts
+values-b+ca	plurals	search_state_retry_sources	one	Torna a provar %d font
+values-b+ca	plurals	search_state_retry_sources	other	Torna a provar %d fonts
 values-b+ca	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ca	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ca	plurals	search_tv_result_count	one	%d RESULT
@@ -13341,6 +13374,8 @@ values-b+ckb	plurals	search_state_no_suggestions_body	one	کلیلی گەڕان�
 values-b+ckb	plurals	search_state_no_suggestions_body	other	کلیلی گەڕانی تەختەکلیل دابگرە بۆ ئەوەی هەر لە هەموو %d سەرچاوەکە بگەڕێیت.
 values-b+ckb	plurals	search_state_partial_headline	one	%d source failed
 values-b+ckb	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ckb	plurals	search_state_retry_sources	one	%d سەرچاوە دووبارە تاقی بکەرەوە
+values-b+ckb	plurals	search_state_retry_sources	other	%d سەرچاوە دووبارە تاقی بکەرەوە
 values-b+ckb	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ckb	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ckb	plurals	search_tv_result_count	one	%d RESULT
@@ -14565,6 +14600,10 @@ values-b+cs	plurals	search_state_no_suggestions_body	one	Stiskněte na klávesni
 values-b+cs	plurals	search_state_no_suggestions_body	other	Stiskněte na klávesnici klávesu vyhledávání a i tak prohledejte všech %d zdrojů.
 values-b+cs	plurals	search_state_partial_headline	one	%d source failed
 values-b+cs	plurals	search_state_partial_headline	other	%d sources failed
+values-b+cs	plurals	search_state_retry_sources	few	Zkusit znovu %d zdroje
+values-b+cs	plurals	search_state_retry_sources	many	Zkusit znovu %d zdroje
+values-b+cs	plurals	search_state_retry_sources	one	Zkusit znovu %d zdroj
+values-b+cs	plurals	search_state_retry_sources	other	Zkusit znovu %d zdrojů
 values-b+cs	plurals	search_tv_recent_count	one	%d SAVED
 values-b+cs	plurals	search_tv_recent_count	other	%d SAVED
 values-b+cs	plurals	search_tv_result_count	one	%d RESULT
@@ -15763,6 +15802,8 @@ values-b+de	plurals	search_state_no_suggestions_body	one	Drücke die Suchtaste d
 values-b+de	plurals	search_state_no_suggestions_body	other	Drücke die Suchtaste der Tastatur, um trotzdem alle %d Quellen zu durchsuchen.
 values-b+de	plurals	search_state_partial_headline	one	%d source failed
 values-b+de	plurals	search_state_partial_headline	other	%d sources failed
+values-b+de	plurals	search_state_retry_sources	one	%d Quelle erneut versuchen
+values-b+de	plurals	search_state_retry_sources	other	%d Quellen erneut versuchen
 values-b+de	plurals	search_tv_recent_count	one	%d SAVED
 values-b+de	plurals	search_tv_recent_count	other	%d SAVED
 values-b+de	plurals	search_tv_result_count	one	%d RESULT
@@ -16951,6 +16992,8 @@ values-b+el	plurals	search_state_no_suggestions_body	one	Πατήστε το π�
 values-b+el	plurals	search_state_no_suggestions_body	other	Πατήστε το πλήκτρο αναζήτησης του πληκτρολογίου για αναζήτηση σε όλες τις %d πηγές ούτως ή άλλως.
 values-b+el	plurals	search_state_partial_headline	one	%d source failed
 values-b+el	plurals	search_state_partial_headline	other	%d sources failed
+values-b+el	plurals	search_state_retry_sources	one	Επανάληψη %d πηγής
+values-b+el	plurals	search_state_retry_sources	other	Επανάληψη %d πηγών
 values-b+el	plurals	search_tv_recent_count	one	%d SAVED
 values-b+el	plurals	search_tv_recent_count	other	%d SAVED
 values-b+el	plurals	search_tv_result_count	one	%d RESULT
@@ -18139,6 +18182,8 @@ values-b+eo	plurals	search_state_no_suggestions_body	one	Premu la serĉoklavon d
 values-b+eo	plurals	search_state_no_suggestions_body	other	Premu la serĉoklavon de la klavaro por tamen serĉi en ĉiuj %d fontoj.
 values-b+eo	plurals	search_state_partial_headline	one	%d source failed
 values-b+eo	plurals	search_state_partial_headline	other	%d sources failed
+values-b+eo	plurals	search_state_retry_sources	one	Reprovi %d fonton
+values-b+eo	plurals	search_state_retry_sources	other	Reprovi %d fontojn
 values-b+eo	plurals	search_tv_recent_count	one	%d SAVED
 values-b+eo	plurals	search_tv_recent_count	other	%d SAVED
 values-b+eo	plurals	search_tv_result_count	one	%d RESULT
@@ -19345,6 +19390,9 @@ values-b+es	plurals	search_state_no_suggestions_body	one	Pulsa la tecla de búsq
 values-b+es	plurals	search_state_no_suggestions_body	other	Pulsa la tecla de búsqueda del teclado para buscar igualmente en las %d fuentes.
 values-b+es	plurals	search_state_partial_headline	one	%d source failed
 values-b+es	plurals	search_state_partial_headline	other	%d sources failed
+values-b+es	plurals	search_state_retry_sources	many	Reintentar %d fuentes
+values-b+es	plurals	search_state_retry_sources	one	Reintentar %d fuente
+values-b+es	plurals	search_state_retry_sources	other	Reintentar %d fuentes
 values-b+es	plurals	search_tv_recent_count	one	%d SAVED
 values-b+es	plurals	search_tv_recent_count	other	%d SAVED
 values-b+es	plurals	search_tv_result_count	one	%d RESULT
@@ -20538,6 +20586,8 @@ values-b+fa	plurals	search_state_no_suggestions_body	one	برای جست‌وج�
 values-b+fa	plurals	search_state_no_suggestions_body	other	برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید.
 values-b+fa	plurals	search_state_partial_headline	one	%d source failed
 values-b+fa	plurals	search_state_partial_headline	other	%d sources failed
+values-b+fa	plurals	search_state_retry_sources	one	تلاش دوباره برای %d منبع
+values-b+fa	plurals	search_state_retry_sources	other	تلاش دوباره برای %d منبع
 values-b+fa	plurals	search_tv_recent_count	one	%d SAVED
 values-b+fa	plurals	search_tv_recent_count	other	%d SAVED
 values-b+fa	plurals	search_tv_result_count	one	%d RESULT
@@ -21726,6 +21776,8 @@ values-b+fil	plurals	search_state_no_suggestions_body	one	Pindutin ang search ke
 values-b+fil	plurals	search_state_no_suggestions_body	other	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.
 values-b+fil	plurals	search_state_partial_headline	one	%d source failed
 values-b+fil	plurals	search_state_partial_headline	other	%d sources failed
+values-b+fil	plurals	search_state_retry_sources	one	Subukang muli ang %d source
+values-b+fil	plurals	search_state_retry_sources	other	Subukang muli ang %d na source
 values-b+fil	plurals	search_tv_recent_count	one	%d SAVED
 values-b+fil	plurals	search_tv_recent_count	other	%d SAVED
 values-b+fil	plurals	search_tv_result_count	one	%d RESULT
@@ -22932,6 +22984,9 @@ values-b+fr	plurals	search_state_no_suggestions_body	one	Appuyez sur la touche d
 values-b+fr	plurals	search_state_no_suggestions_body	other	Appuyez sur la touche de recherche du clavier pour rechercher quand même dans les %d sources.
 values-b+fr	plurals	search_state_partial_headline	one	%d source failed
 values-b+fr	plurals	search_state_partial_headline	other	%d sources failed
+values-b+fr	plurals	search_state_retry_sources	many	Réessayer %d sources
+values-b+fr	plurals	search_state_retry_sources	one	Réessayer %d source
+values-b+fr	plurals	search_state_retry_sources	other	Réessayer %d sources
 values-b+fr	plurals	search_tv_recent_count	one	%d SAVED
 values-b+fr	plurals	search_tv_recent_count	other	%d SAVED
 values-b+fr	plurals	search_tv_result_count	one	%d RESULT
@@ -24125,6 +24180,8 @@ values-b+gl	plurals	search_state_no_suggestions_body	one	Preme a tecla de busca 
 values-b+gl	plurals	search_state_no_suggestions_body	other	Preme a tecla de busca do teclado para procurar igualmente en todas as %d fontes.
 values-b+gl	plurals	search_state_partial_headline	one	%d source failed
 values-b+gl	plurals	search_state_partial_headline	other	%d sources failed
+values-b+gl	plurals	search_state_retry_sources	one	Tentar de novo %d fonte
+values-b+gl	plurals	search_state_retry_sources	other	Tentar de novo %d fontes
 values-b+gl	plurals	search_tv_recent_count	one	%d SAVED
 values-b+gl	plurals	search_tv_recent_count	other	%d SAVED
 values-b+gl	plurals	search_tv_result_count	one	%d RESULT
@@ -25313,6 +25370,8 @@ values-b+hi	plurals	search_state_no_suggestions_body	one	फिर भी %d स
 values-b+hi	plurals	search_state_no_suggestions_body	other	फिर भी सभी %d स्रोतों में खोजने के लिए कीबोर्ड की सर्च कुंजी दबाएँ।
 values-b+hi	plurals	search_state_partial_headline	one	%d source failed
 values-b+hi	plurals	search_state_partial_headline	other	%d sources failed
+values-b+hi	plurals	search_state_retry_sources	one	%d स्रोत फिर से आज़माएँ
+values-b+hi	plurals	search_state_retry_sources	other	%d स्रोत फिर से आज़माएँ
 values-b+hi	plurals	search_tv_recent_count	one	%d SAVED
 values-b+hi	plurals	search_tv_recent_count	other	%d SAVED
 values-b+hi	plurals	search_tv_result_count	one	%d RESULT
@@ -26518,6 +26577,9 @@ values-b+hr	plurals	search_state_no_suggestions_body	one	Pritisnite tipku za pre
 values-b+hr	plurals	search_state_no_suggestions_body	other	Pritisnite tipku za pretraživanje na tipkovnici da biste ipak pretražili svih %d izvora.
 values-b+hr	plurals	search_state_partial_headline	one	%d source failed
 values-b+hr	plurals	search_state_partial_headline	other	%d sources failed
+values-b+hr	plurals	search_state_retry_sources	few	Ponovi %d izvora
+values-b+hr	plurals	search_state_retry_sources	one	Ponovi %d izvor
+values-b+hr	plurals	search_state_retry_sources	other	Ponovi %d izvora
 values-b+hr	plurals	search_tv_recent_count	one	%d SAVED
 values-b+hr	plurals	search_tv_recent_count	other	%d SAVED
 values-b+hr	plurals	search_tv_result_count	one	%d RESULT
@@ -27711,6 +27773,8 @@ values-b+hu	plurals	search_state_no_suggestions_body	one	Nyomja meg a billentyű
 values-b+hu	plurals	search_state_no_suggestions_body	other	Nyomja meg a billentyűzet keresőgombját, hogy mégis keressen mind a(z) %d forrásban.
 values-b+hu	plurals	search_state_partial_headline	one	%d source failed
 values-b+hu	plurals	search_state_partial_headline	other	%d sources failed
+values-b+hu	plurals	search_state_retry_sources	one	%d forrás újrapróbálása
+values-b+hu	plurals	search_state_retry_sources	other	%d forrás újrapróbálása
 values-b+hu	plurals	search_tv_recent_count	one	%d SAVED
 values-b+hu	plurals	search_tv_recent_count	other	%d SAVED
 values-b+hu	plurals	search_tv_result_count	one	%d RESULT
@@ -28881,6 +28945,7 @@ values-b+in	plurals	search_state_no_suggestions_action	other	Cari di semua %d su
 values-b+in	plurals	search_state_no_suggestions_body	other	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.
 values-b+in	plurals	search_state_partial_headline	one	%d source failed
 values-b+in	plurals	search_state_partial_headline	other	%d sources failed
+values-b+in	plurals	search_state_retry_sources	other	Coba lagi %d sumber
 values-b+in	plurals	search_tv_recent_count	one	%d SAVED
 values-b+in	plurals	search_tv_recent_count	other	%d SAVED
 values-b+in	plurals	search_tv_result_count	one	%d RESULT
@@ -30082,6 +30147,9 @@ values-b+it	plurals	search_state_no_suggestions_body	one	Premi il tasto di ricer
 values-b+it	plurals	search_state_no_suggestions_body	other	Premi il tasto di ricerca della tastiera per cercare comunque in tutte le %d fonti.
 values-b+it	plurals	search_state_partial_headline	one	%d source failed
 values-b+it	plurals	search_state_partial_headline	other	%d sources failed
+values-b+it	plurals	search_state_retry_sources	many	Riprova %d fonti
+values-b+it	plurals	search_state_retry_sources	one	Riprova %d fonte
+values-b+it	plurals	search_state_retry_sources	other	Riprova %d fonti
 values-b+it	plurals	search_tv_recent_count	one	%d SAVED
 values-b+it	plurals	search_tv_recent_count	other	%d SAVED
 values-b+it	plurals	search_tv_result_count	one	%d RESULT
@@ -31290,6 +31358,9 @@ values-b+iw	plurals	search_state_no_suggestions_body	other	יש ללחוץ על 
 values-b+iw	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 values-b+iw	plurals	search_state_partial_headline	one	%d source failed
 values-b+iw	plurals	search_state_partial_headline	other	%d sources failed
+values-b+iw	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+values-b+iw	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
+values-b+iw	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 values-b+iw	plurals	search_tv_recent_count	one	%d SAVED
 values-b+iw	plurals	search_tv_recent_count	other	%d SAVED
 values-b+iw	plurals	search_tv_result_count	one	%d RESULT
@@ -32465,6 +32536,7 @@ values-b+ja	plurals	search_state_no_suggestions_action	other	全 %d ソースを
 values-b+ja	plurals	search_state_no_suggestions_body	other	それでも全 %d ソースを検索するには、キーボードの検索キーを押してください。
 values-b+ja	plurals	search_state_partial_headline	one	%d source failed
 values-b+ja	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ja	plurals	search_state_retry_sources	other	%d 件のソースを再試行
 values-b+ja	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ja	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ja	plurals	search_tv_result_count	one	%d RESULT
@@ -33648,6 +33720,8 @@ values-b+kn	plurals	search_state_no_suggestions_body	one	ಹಾಗಿದ್ದ�
 values-b+kn	plurals	search_state_no_suggestions_body	other	ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ.
 values-b+kn	plurals	search_state_partial_headline	one	%d source failed
 values-b+kn	plurals	search_state_partial_headline	other	%d sources failed
+values-b+kn	plurals	search_state_retry_sources	one	%d ಮೂಲವನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ
+values-b+kn	plurals	search_state_retry_sources	other	%d ಮೂಲಗಳನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ
 values-b+kn	plurals	search_tv_recent_count	one	%d SAVED
 values-b+kn	plurals	search_tv_recent_count	other	%d SAVED
 values-b+kn	plurals	search_tv_result_count	one	%d RESULT
@@ -34819,6 +34893,7 @@ values-b+ko	plurals	search_state_no_suggestions_action	other	소스 %d개 모두
 values-b+ko	plurals	search_state_no_suggestions_body	other	그래도 소스 %d개를 모두 검색하려면 키보드의 검색 키를 누르세요.
 values-b+ko	plurals	search_state_partial_headline	one	%d source failed
 values-b+ko	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ko	plurals	search_state_retry_sources	other	소스 %d개 다시 시도
 values-b+ko	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ko	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ko	plurals	search_tv_result_count	one	%d RESULT
@@ -36032,6 +36107,10 @@ values-b+lt	plurals	search_state_no_suggestions_body	one	Paspauskite klaviatūro
 values-b+lt	plurals	search_state_no_suggestions_body	other	Paspauskite klaviatūros paieškos klavišą, kad vis tiek ieškotumėte visuose šaltiniuose (%d).
 values-b+lt	plurals	search_state_partial_headline	one	%d source failed
 values-b+lt	plurals	search_state_partial_headline	other	%d sources failed
+values-b+lt	plurals	search_state_retry_sources	few	Bandyti %d šaltinius iš naujo
+values-b+lt	plurals	search_state_retry_sources	many	Bandyti %d šaltinio iš naujo
+values-b+lt	plurals	search_state_retry_sources	one	Bandyti %d šaltinį iš naujo
+values-b+lt	plurals	search_state_retry_sources	other	Bandyti %d šaltinių iš naujo
 values-b+lt	plurals	search_tv_recent_count	one	%d SAVED
 values-b+lt	plurals	search_tv_recent_count	other	%d SAVED
 values-b+lt	plurals	search_tv_result_count	one	%d RESULT
@@ -37246,6 +37325,9 @@ values-b+lv	plurals	search_state_no_suggestions_body	other	Nospiediet tastatūra
 values-b+lv	plurals	search_state_no_suggestions_body	zero	Nospiediet tastatūras meklēšanas taustiņu, lai tomēr meklētu visos %d devējos.
 values-b+lv	plurals	search_state_partial_headline	one	%d source failed
 values-b+lv	plurals	search_state_partial_headline	other	%d sources failed
+values-b+lv	plurals	search_state_retry_sources	one	Mēģināt vēlreiz %d avotu
+values-b+lv	plurals	search_state_retry_sources	other	Mēģināt vēlreiz %d avotus
+values-b+lv	plurals	search_state_retry_sources	zero	Mēģināt vēlreiz %d avotus
 values-b+lv	plurals	search_tv_recent_count	one	%d SAVED
 values-b+lv	plurals	search_tv_recent_count	other	%d SAVED
 values-b+lv	plurals	search_tv_result_count	one	%d RESULT
@@ -38439,6 +38521,8 @@ values-b+mk	plurals	search_state_no_suggestions_body	one	Притиснете г
 values-b+mk	plurals	search_state_no_suggestions_body	other	Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во сите %d извори.
 values-b+mk	plurals	search_state_partial_headline	one	%d source failed
 values-b+mk	plurals	search_state_partial_headline	other	%d sources failed
+values-b+mk	plurals	search_state_retry_sources	one	Обиди го повторно %d извор
+values-b+mk	plurals	search_state_retry_sources	other	Обиди ги повторно %d извори
 values-b+mk	plurals	search_tv_recent_count	one	%d SAVED
 values-b+mk	plurals	search_tv_recent_count	other	%d SAVED
 values-b+mk	plurals	search_tv_result_count	one	%d RESULT
@@ -39627,6 +39711,8 @@ values-b+ml	plurals	search_state_no_suggestions_body	one	എന്നിട്�
 values-b+ml	plurals	search_state_no_suggestions_body	other	എന്നിട്ടും എല്ലാ %d ഉറവിടങ്ങളിലും തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക.
 values-b+ml	plurals	search_state_partial_headline	one	%d source failed
 values-b+ml	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ml	plurals	search_state_retry_sources	one	%d ഉറവിടം വീണ്ടും ശ്രമിക്കുക
+values-b+ml	plurals	search_state_retry_sources	other	%d ഉറവിടങ്ങൾ വീണ്ടും ശ്രമിക്കുക
 values-b+ml	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ml	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ml	plurals	search_tv_result_count	one	%d RESULT
@@ -40800,6 +40886,7 @@ values-b+ms	plurals	search_state_no_suggestions_action	other	Cari dalam semua %d
 values-b+ms	plurals	search_state_no_suggestions_body	other	Tekan kekunci carian papan kekunci untuk tetap mencari dalam semua %d sumber.
 values-b+ms	plurals	search_state_partial_headline	one	%d source failed
 values-b+ms	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ms	plurals	search_state_retry_sources	other	Cuba semula %d sumber
 values-b+ms	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ms	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ms	plurals	search_tv_result_count	one	%d RESULT
@@ -42028,6 +42115,11 @@ values-b+mt	plurals	search_state_no_suggestions_body	other	Agħfas il-buttuna ta
 values-b+mt	plurals	search_state_no_suggestions_body	two	Agħfas il-buttuna tat-tiftix tat-tastiera biex tfittex xorta fil-%d sorsi kollha.
 values-b+mt	plurals	search_state_partial_headline	one	%d source failed
 values-b+mt	plurals	search_state_partial_headline	other	%d sources failed
+values-b+mt	plurals	search_state_retry_sources	few	Erġa' pprova %d sorsi
+values-b+mt	plurals	search_state_retry_sources	many	Erġa' pprova %d-il sors
+values-b+mt	plurals	search_state_retry_sources	one	Erġa' pprova %d sors
+values-b+mt	plurals	search_state_retry_sources	other	Erġa' pprova %d sors
+values-b+mt	plurals	search_state_retry_sources	two	Erġa' pprova %d sorsi
 values-b+mt	plurals	search_tv_recent_count	one	%d SAVED
 values-b+mt	plurals	search_tv_recent_count	other	%d SAVED
 values-b+mt	plurals	search_tv_result_count	one	%d RESULT
@@ -43216,6 +43308,7 @@ values-b+my	plurals	search_state_no_suggestions_action	other	ရင်းမြ�
 values-b+my	plurals	search_state_no_suggestions_body	other	မည်သို့ပင်ဖြစ်စေ ရင်းမြစ် %d ခုလုံးတွင် ရှာရန် ကီးဘုတ်၏ ရှာဖွေရေးခလုတ်ကို နှိပ်ပါ။
 values-b+my	plurals	search_state_partial_headline	one	%d source failed
 values-b+my	plurals	search_state_partial_headline	other	%d sources failed
+values-b+my	plurals	search_state_retry_sources	other	ရင်းမြစ် %d ခု ထပ်စမ်းရန်
 values-b+my	plurals	search_tv_recent_count	one	%d SAVED
 values-b+my	plurals	search_tv_recent_count	other	%d SAVED
 values-b+my	plurals	search_tv_result_count	one	%d RESULT
@@ -44399,6 +44492,8 @@ values-b+ne	plurals	search_state_no_suggestions_body	one	जे भए पनि
 values-b+ne	plurals	search_state_no_suggestions_body	other	जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।
 values-b+ne	plurals	search_state_partial_headline	one	%d source failed
 values-b+ne	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ne	plurals	search_state_retry_sources	one	%d स्रोत फेरि प्रयास गर्नुहोस्
+values-b+ne	plurals	search_state_retry_sources	other	%d स्रोतहरू फेरि प्रयास गर्नुहोस्
 values-b+ne	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ne	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ne	plurals	search_tv_result_count	one	%d RESULT
@@ -45587,6 +45682,8 @@ values-b+nl	plurals	search_state_no_suggestions_body	one	Druk op de zoektoets va
 values-b+nl	plurals	search_state_no_suggestions_body	other	Druk op de zoektoets van het toetsenbord om toch in alle %d bronnen te zoeken.
 values-b+nl	plurals	search_state_partial_headline	one	%d source failed
 values-b+nl	plurals	search_state_partial_headline	other	%d sources failed
+values-b+nl	plurals	search_state_retry_sources	one	%d bron opnieuw proberen
+values-b+nl	plurals	search_state_retry_sources	other	%d bronnen opnieuw proberen
 values-b+nl	plurals	search_tv_recent_count	one	%d SAVED
 values-b+nl	plurals	search_tv_recent_count	other	%d SAVED
 values-b+nl	plurals	search_tv_result_count	one	%d RESULT
@@ -46775,6 +46872,8 @@ values-b+nn	plurals	search_state_no_suggestions_body	one	Trykk på søkjeknappen
 values-b+nn	plurals	search_state_no_suggestions_body	other	Trykk på søkjeknappen på tastaturet for å søkje i alle %d kjeldene likevel.
 values-b+nn	plurals	search_state_partial_headline	one	%d source failed
 values-b+nn	plurals	search_state_partial_headline	other	%d sources failed
+values-b+nn	plurals	search_state_retry_sources	one	Prøv %d kjelde på nytt
+values-b+nn	plurals	search_state_retry_sources	other	Prøv %d kjelder på nytt
 values-b+nn	plurals	search_tv_recent_count	one	%d SAVED
 values-b+nn	plurals	search_tv_recent_count	other	%d SAVED
 values-b+nn	plurals	search_tv_result_count	one	%d RESULT
@@ -47963,6 +48062,8 @@ values-b+no	plurals	search_state_no_suggestions_body	one	Trykk på søketasten p
 values-b+no	plurals	search_state_no_suggestions_body	other	Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel.
 values-b+no	plurals	search_state_partial_headline	one	%d source failed
 values-b+no	plurals	search_state_partial_headline	other	%d sources failed
+values-b+no	plurals	search_state_retry_sources	one	Prøv %d kilde på nytt
+values-b+no	plurals	search_state_retry_sources	other	Prøv %d kilder på nytt
 values-b+no	plurals	search_tv_recent_count	one	%d SAVED
 values-b+no	plurals	search_tv_recent_count	other	%d SAVED
 values-b+no	plurals	search_tv_result_count	one	%d RESULT
@@ -49151,6 +49252,8 @@ values-b+or	plurals	search_state_no_suggestions_body	one	ତଥାପି %d ଉ�
 values-b+or	plurals	search_state_no_suggestions_body	other	ତଥାପି ସମସ୍ତ %d ଉତ୍ସରେ ସନ୍ଧାନ କରିବାକୁ କୀବୋର୍ଡର ସନ୍ଧାନ କୀ ଦବାନ୍ତୁ।
 values-b+or	plurals	search_state_partial_headline	one	%d source failed
 values-b+or	plurals	search_state_partial_headline	other	%d sources failed
+values-b+or	plurals	search_state_retry_sources	one	%d ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ
+values-b+or	plurals	search_state_retry_sources	other	%d ଉତ୍ସ ପୁଣି ଚେଷ୍ଟା କରନ୍ତୁ
 values-b+or	plurals	search_tv_recent_count	one	%d SAVED
 values-b+or	plurals	search_tv_recent_count	other	%d SAVED
 values-b+or	plurals	search_tv_result_count	one	%d RESULT
@@ -50375,6 +50478,10 @@ values-b+pl	plurals	search_state_no_suggestions_body	one	Naciśnij klawisz wyszu
 values-b+pl	plurals	search_state_no_suggestions_body	other	Naciśnij klawisz wyszukiwania na klawiaturze, aby mimo to przeszukać wszystkie %d źródła.
 values-b+pl	plurals	search_state_partial_headline	one	%d source failed
 values-b+pl	plurals	search_state_partial_headline	other	%d sources failed
+values-b+pl	plurals	search_state_retry_sources	few	Ponów %d źródła
+values-b+pl	plurals	search_state_retry_sources	many	Ponów %d źródeł
+values-b+pl	plurals	search_state_retry_sources	one	Ponów %d źródło
+values-b+pl	plurals	search_state_retry_sources	other	Ponów %d źródła
 values-b+pl	plurals	search_tv_recent_count	one	%d SAVED
 values-b+pl	plurals	search_tv_recent_count	other	%d SAVED
 values-b+pl	plurals	search_tv_result_count	one	%d RESULT
@@ -51591,6 +51698,9 @@ values-b+pt	plurals	search_state_no_suggestions_body	one	Prima a tecla de pesqui
 values-b+pt	plurals	search_state_no_suggestions_body	other	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
 values-b+pt	plurals	search_state_partial_headline	one	%d source failed
 values-b+pt	plurals	search_state_partial_headline	other	%d sources failed
+values-b+pt	plurals	search_state_retry_sources	many	Tentar novamente %d fontes
+values-b+pt	plurals	search_state_retry_sources	one	Tentar novamente %d fonte
+values-b+pt	plurals	search_state_retry_sources	other	Tentar novamente %d fontes
 values-b+pt	plurals	search_tv_recent_count	one	%d SAVED
 values-b+pt	plurals	search_tv_recent_count	other	%d SAVED
 values-b+pt	plurals	search_tv_result_count	one	%d RESULT
@@ -52802,6 +52912,9 @@ values-b+pt+BR	plurals	search_state_no_suggestions_body	one	Pressione a tecla de
 values-b+pt+BR	plurals	search_state_no_suggestions_body	other	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
 values-b+pt+BR	plurals	search_state_partial_headline	one	%d source failed
 values-b+pt+BR	plurals	search_state_partial_headline	other	%d sources failed
+values-b+pt+BR	plurals	search_state_retry_sources	many	Tentar %d fontes de novo
+values-b+pt+BR	plurals	search_state_retry_sources	one	Tentar %d fonte de novo
+values-b+pt+BR	plurals	search_state_retry_sources	other	Tentar %d fontes de novo
 values-b+pt+BR	plurals	search_tv_recent_count	one	%d SAVED
 values-b+pt+BR	plurals	search_tv_recent_count	other	%d SAVED
 values-b+pt+BR	plurals	search_tv_result_count	one	%d RESULT
@@ -53980,6 +54093,7 @@ values-b+qt	plurals	search_state_no_suggestions_action	other	aaoog %d ooh uugg
 values-b+qt	plurals	search_state_no_suggestions_body	other	uuh aagg oooh aaahh uug %d ooogg aah.
 values-b+qt	plurals	search_state_partial_headline	one	%d source failed
 values-b+qt	plurals	search_state_partial_headline	other	%d sources failed
+values-b+qt	plurals	search_state_retry_sources	other	oouuh %d ooh
 values-b+qt	plurals	search_tv_recent_count	one	%d SAVED
 values-b+qt	plurals	search_tv_recent_count	other	%d SAVED
 values-b+qt	plurals	search_tv_result_count	one	%d RESULT
@@ -55178,6 +55292,9 @@ values-b+ro	plurals	search_state_no_suggestions_body	one	Apăsați tasta de cău
 values-b+ro	plurals	search_state_no_suggestions_body	other	Apăsați tasta de căutare a tastaturii pentru a căuta oricum în toate cele %d de surse.
 values-b+ro	plurals	search_state_partial_headline	one	%d source failed
 values-b+ro	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ro	plurals	search_state_retry_sources	few	Reîncearcă %d surse
+values-b+ro	plurals	search_state_retry_sources	one	Reîncearcă %d sursă
+values-b+ro	plurals	search_state_retry_sources	other	Reîncearcă %d de surse
 values-b+ro	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ro	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ro	plurals	search_tv_result_count	one	%d RESULT
@@ -56407,6 +56524,10 @@ values-b+ru	plurals	search_state_no_suggestions_body	one	Нажмите клав
 values-b+ru	plurals	search_state_no_suggestions_body	other	Нажмите клавишу поиска на клавиатуре, чтобы всё равно искать во всех %d источниках.
 values-b+ru	plurals	search_state_partial_headline	one	%d source failed
 values-b+ru	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ru	plurals	search_state_retry_sources	few	Повторить %d источника
+values-b+ru	plurals	search_state_retry_sources	many	Повторить %d источников
+values-b+ru	plurals	search_state_retry_sources	one	Повторить %d источник
+values-b+ru	plurals	search_state_retry_sources	other	Повторить %d источника
 values-b+ru	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ru	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ru	plurals	search_tv_result_count	one	%d RESULT
@@ -57635,6 +57756,10 @@ values-b+sk	plurals	search_state_no_suggestions_body	one	Stlačte na klávesnici
 values-b+sk	plurals	search_state_no_suggestions_body	other	Stlačte na klávesnici kláves vyhľadávania a aj tak prehľadajte všetkých %d zdrojov.
 values-b+sk	plurals	search_state_partial_headline	one	%d source failed
 values-b+sk	plurals	search_state_partial_headline	other	%d sources failed
+values-b+sk	plurals	search_state_retry_sources	few	Skúsiť znova %d zdroje
+values-b+sk	plurals	search_state_retry_sources	many	Skúsiť znova %d zdroja
+values-b+sk	plurals	search_state_retry_sources	one	Skúsiť znova %d zdroj
+values-b+sk	plurals	search_state_retry_sources	other	Skúsiť znova %d zdrojov
 values-b+sk	plurals	search_tv_recent_count	one	%d SAVED
 values-b+sk	plurals	search_tv_recent_count	other	%d SAVED
 values-b+sk	plurals	search_tv_result_count	one	%d RESULT
@@ -58833,6 +58958,8 @@ values-b+so	plurals	search_state_no_suggestions_body	one	Riix furaha raadinta ee
 values-b+so	plurals	search_state_no_suggestions_body	other	Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee.
 values-b+so	plurals	search_state_partial_headline	one	%d source failed
 values-b+so	plurals	search_state_partial_headline	other	%d sources failed
+values-b+so	plurals	search_state_retry_sources	one	Isku day mar kale %d il
+values-b+so	plurals	search_state_retry_sources	other	Isku day mar kale %d ilo
 values-b+so	plurals	search_tv_recent_count	one	%d SAVED
 values-b+so	plurals	search_tv_recent_count	other	%d SAVED
 values-b+so	plurals	search_tv_result_count	one	%d RESULT
@@ -60021,6 +60148,8 @@ values-b+sq	plurals	search_state_no_suggestions_body	one	Shtyp tastin e kërkimi
 values-b+sq	plurals	search_state_no_suggestions_body	other	Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet.
 values-b+sq	plurals	search_state_partial_headline	one	%d source failed
 values-b+sq	plurals	search_state_partial_headline	other	%d sources failed
+values-b+sq	plurals	search_state_retry_sources	one	Riprovo %d burim
+values-b+sq	plurals	search_state_retry_sources	other	Riprovo %d burime
 values-b+sq	plurals	search_tv_recent_count	one	%d SAVED
 values-b+sq	plurals	search_tv_recent_count	other	%d SAVED
 values-b+sq	plurals	search_tv_result_count	one	%d RESULT
@@ -61209,6 +61338,8 @@ values-b+sv	plurals	search_state_no_suggestions_body	one	Tryck på tangentbordet
 values-b+sv	plurals	search_state_no_suggestions_body	other	Tryck på tangentbordets söktangent för att söka i alla %d källor ändå.
 values-b+sv	plurals	search_state_partial_headline	one	%d source failed
 values-b+sv	plurals	search_state_partial_headline	other	%d sources failed
+values-b+sv	plurals	search_state_retry_sources	one	Försök med %d källa igen
+values-b+sv	plurals	search_state_retry_sources	other	Försök med %d källor igen
 values-b+sv	plurals	search_tv_recent_count	one	%d SAVED
 values-b+sv	plurals	search_tv_recent_count	other	%d SAVED
 values-b+sv	plurals	search_tv_result_count	one	%d RESULT
@@ -62397,6 +62528,8 @@ values-b+ta	plurals	search_state_no_suggestions_body	one	இருந்தா�
 values-b+ta	plurals	search_state_no_suggestions_body	other	இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்.
 values-b+ta	plurals	search_state_partial_headline	one	%d source failed
 values-b+ta	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ta	plurals	search_state_retry_sources	one	%d மூலத்தை மீண்டும் முயலவும்
+values-b+ta	plurals	search_state_retry_sources	other	%d மூலங்களை மீண்டும் முயலவும்
 values-b+ta	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ta	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ta	plurals	search_tv_result_count	one	%d RESULT
@@ -63585,6 +63718,8 @@ values-b+ti	plurals	search_state_no_suggestions_body	one	ብዝኾነ ኣብ %d 
 values-b+ti	plurals	search_state_no_suggestions_body	other	ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።
 values-b+ti	plurals	search_state_partial_headline	one	%d source failed
 values-b+ti	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ti	plurals	search_state_retry_sources	one	%d ምንጪ ደጊምካ ፈትን
+values-b+ti	plurals	search_state_retry_sources	other	%d ምንጭታት ደጊምካ ፈትን
 values-b+ti	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ti	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ti	plurals	search_tv_result_count	one	%d RESULT
@@ -64773,6 +64908,8 @@ values-b+tl	plurals	search_state_no_suggestions_body	one	Pindutin ang search key
 values-b+tl	plurals	search_state_no_suggestions_body	other	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d source.
 values-b+tl	plurals	search_state_partial_headline	one	%d source failed
 values-b+tl	plurals	search_state_partial_headline	other	%d sources failed
+values-b+tl	plurals	search_state_retry_sources	one	Subukang muli ang %d source
+values-b+tl	plurals	search_state_retry_sources	other	Subukang muli ang %d na source
 values-b+tl	plurals	search_tv_recent_count	one	%d SAVED
 values-b+tl	plurals	search_tv_recent_count	other	%d SAVED
 values-b+tl	plurals	search_tv_result_count	one	%d RESULT
@@ -65961,6 +66098,8 @@ values-b+tr	plurals	search_state_no_suggestions_body	one	Yine de %d kaynakta ara
 values-b+tr	plurals	search_state_no_suggestions_body	other	Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın.
 values-b+tr	plurals	search_state_partial_headline	one	%d source failed
 values-b+tr	plurals	search_state_partial_headline	other	%d sources failed
+values-b+tr	plurals	search_state_retry_sources	one	%d kaynağı yeniden dene
+values-b+tr	plurals	search_state_retry_sources	other	%d kaynağı yeniden dene
 values-b+tr	plurals	search_tv_recent_count	one	%d SAVED
 values-b+tr	plurals	search_tv_recent_count	other	%d SAVED
 values-b+tr	plurals	search_tv_result_count	one	%d RESULT
@@ -67185,6 +67324,10 @@ values-b+uk	plurals	search_state_no_suggestions_body	one	Натисніть кл
 values-b+uk	plurals	search_state_no_suggestions_body	other	Натисніть клавішу пошуку на клавіатурі, щоб усе одно шукати в усіх %d джерелах.
 values-b+uk	plurals	search_state_partial_headline	one	%d source failed
 values-b+uk	plurals	search_state_partial_headline	other	%d sources failed
+values-b+uk	plurals	search_state_retry_sources	few	Повторити %d джерела
+values-b+uk	plurals	search_state_retry_sources	many	Повторити %d джерел
+values-b+uk	plurals	search_state_retry_sources	one	Повторити %d джерело
+values-b+uk	plurals	search_state_retry_sources	other	Повторити %d джерела
 values-b+uk	plurals	search_tv_recent_count	one	%d SAVED
 values-b+uk	plurals	search_tv_recent_count	other	%d SAVED
 values-b+uk	plurals	search_tv_result_count	one	%d RESULT
@@ -68383,6 +68526,8 @@ values-b+ur	plurals	search_state_no_suggestions_body	one	پھر بھی %d ذری
 values-b+ur	plurals	search_state_no_suggestions_body	other	پھر بھی تمام %d ذرائع میں تلاش کرنے کے لیے کی بورڈ کی تلاش کی کلید دبائیں۔
 values-b+ur	plurals	search_state_partial_headline	one	%d source failed
 values-b+ur	plurals	search_state_partial_headline	other	%d sources failed
+values-b+ur	plurals	search_state_retry_sources	one	%d ماخذ دوبارہ آزمائیں
+values-b+ur	plurals	search_state_retry_sources	other	%d ماخذ دوبارہ آزمائیں
 values-b+ur	plurals	search_tv_recent_count	one	%d SAVED
 values-b+ur	plurals	search_tv_recent_count	other	%d SAVED
 values-b+ur	plurals	search_tv_result_count	one	%d RESULT
@@ -69553,6 +69698,7 @@ values-b+vi	plurals	search_state_no_suggestions_action	other	Tìm kiếm trên c
 values-b+vi	plurals	search_state_no_suggestions_body	other	Nhấn phím tìm kiếm trên bàn phím để vẫn tìm kiếm trên cả %d nguồn.
 values-b+vi	plurals	search_state_partial_headline	one	%d source failed
 values-b+vi	plurals	search_state_partial_headline	other	%d sources failed
+values-b+vi	plurals	search_state_retry_sources	other	Thử lại %d nguồn
 values-b+vi	plurals	search_tv_recent_count	one	%d SAVED
 values-b+vi	plurals	search_tv_recent_count	other	%d SAVED
 values-b+vi	plurals	search_tv_result_count	one	%d RESULT
@@ -70718,6 +70864,7 @@ values-b+zh	plurals	search_state_no_suggestions_action	other	搜索全部 %d 个
 values-b+zh	plurals	search_state_no_suggestions_body	other	按键盘上的搜索键，仍然搜索全部 %d 个来源。
 values-b+zh	plurals	search_state_partial_headline	one	%d source failed
 values-b+zh	plurals	search_state_partial_headline	other	%d sources failed
+values-b+zh	plurals	search_state_retry_sources	other	重试 %d 个来源
 values-b+zh	plurals	search_tv_recent_count	one	%d SAVED
 values-b+zh	plurals	search_tv_recent_count	other	%d SAVED
 values-b+zh	plurals	search_tv_result_count	one	%d RESULT
@@ -71884,6 +72031,7 @@ values-b+zh+TW	plurals	search_state_no_suggestions_action	other	搜尋全部 %d 
 values-b+zh+TW	plurals	search_state_no_suggestions_body	other	按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。
 values-b+zh+TW	plurals	search_state_partial_headline	one	%d source failed
 values-b+zh+TW	plurals	search_state_partial_headline	other	%d sources failed
+values-b+zh+TW	plurals	search_state_retry_sources	other	重試 %d 個來源
 values-b+zh+TW	plurals	search_tv_recent_count	one	%d SAVED
 values-b+zh+TW	plurals	search_tv_recent_count	other	%d SAVED
 values-b+zh+TW	plurals	search_tv_result_count	one	%d RESULT
@@ -73067,6 +73215,8 @@ en	plurals	search_state_no_suggestions_body	one	Press the keyboard’s search ke
 en	plurals	search_state_no_suggestions_body	other	Press the keyboard’s search key to search all %d sources anyway.
 en	plurals	search_state_partial_headline	one	%d source failed
 en	plurals	search_state_partial_headline	other	%d sources failed
+en	plurals	search_state_retry_sources	one	Retry %d source
+en	plurals	search_state_retry_sources	other	Retry %d sources
 en	plurals	search_tv_recent_count	one	%d SAVED
 en	plurals	search_tv_recent_count	other	%d SAVED
 en	plurals	search_tv_result_count	one	%d RESULT
@@ -74255,6 +74405,8 @@ en-US	plurals	search_state_no_suggestions_body	one	Press the keyboard’s search
 en-US	plurals	search_state_no_suggestions_body	other	Press the keyboard’s search key to search all %d sources anyway.
 en-US	plurals	search_state_partial_headline	one	%d source failed
 en-US	plurals	search_state_partial_headline	other	%d sources failed
+en-US	plurals	search_state_retry_sources	one	Retry %d source
+en-US	plurals	search_state_retry_sources	other	Retry %d sources
 en-US	plurals	search_tv_recent_count	one	%d SAVED
 en-US	plurals	search_tv_recent_count	other	%d SAVED
 en-US	plurals	search_tv_result_count	one	%d RESULT
@@ -75443,6 +75595,8 @@ en-GB	plurals	search_state_no_suggestions_body	one	Press the keyboard’s search
 en-GB	plurals	search_state_no_suggestions_body	other	Press the keyboard’s search key to search all %d sources anyway.
 en-GB	plurals	search_state_partial_headline	one	%d source failed
 en-GB	plurals	search_state_partial_headline	other	%d sources failed
+en-GB	plurals	search_state_retry_sources	one	Retry %d source
+en-GB	plurals	search_state_retry_sources	other	Retry %d sources
 en-GB	plurals	search_tv_recent_count	one	%d SAVED
 en-GB	plurals	search_tv_recent_count	other	%d SAVED
 en-GB	plurals	search_tv_result_count	one	%d RESULT
@@ -76649,6 +76803,9 @@ pt	plurals	search_state_no_suggestions_body	one	Prima a tecla de pesquisa do tec
 pt	plurals	search_state_no_suggestions_body	other	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
 pt	plurals	search_state_partial_headline	one	%d source failed
 pt	plurals	search_state_partial_headline	other	%d sources failed
+pt	plurals	search_state_retry_sources	many	Tentar novamente %d fontes
+pt	plurals	search_state_retry_sources	one	Tentar novamente %d fonte
+pt	plurals	search_state_retry_sources	other	Tentar novamente %d fontes
 pt	plurals	search_tv_recent_count	one	%d SAVED
 pt	plurals	search_tv_recent_count	other	%d SAVED
 pt	plurals	search_tv_result_count	one	%d RESULT
@@ -77860,6 +78017,9 @@ pt-PT	plurals	search_state_no_suggestions_body	one	Prima a tecla de pesquisa do 
 pt-PT	plurals	search_state_no_suggestions_body	other	Prima a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
 pt-PT	plurals	search_state_partial_headline	one	%d source failed
 pt-PT	plurals	search_state_partial_headline	other	%d sources failed
+pt-PT	plurals	search_state_retry_sources	many	Tentar novamente %d fontes
+pt-PT	plurals	search_state_retry_sources	one	Tentar novamente %d fonte
+pt-PT	plurals	search_state_retry_sources	other	Tentar novamente %d fontes
 pt-PT	plurals	search_tv_recent_count	one	%d SAVED
 pt-PT	plurals	search_tv_recent_count	other	%d SAVED
 pt-PT	plurals	search_tv_result_count	one	%d RESULT
@@ -79071,6 +79231,9 @@ pt-BR	plurals	search_state_no_suggestions_body	one	Pressione a tecla de pesquisa
 pt-BR	plurals	search_state_no_suggestions_body	other	Pressione a tecla de pesquisa do teclado para pesquisar mesmo assim em todas as %d fontes.
 pt-BR	plurals	search_state_partial_headline	one	%d source failed
 pt-BR	plurals	search_state_partial_headline	other	%d sources failed
+pt-BR	plurals	search_state_retry_sources	many	Tentar %d fontes de novo
+pt-BR	plurals	search_state_retry_sources	one	Tentar %d fonte de novo
+pt-BR	plurals	search_state_retry_sources	other	Tentar %d fontes de novo
 pt-BR	plurals	search_tv_recent_count	one	%d SAVED
 pt-BR	plurals	search_tv_recent_count	other	%d SAVED
 pt-BR	plurals	search_tv_result_count	one	%d RESULT
@@ -80264,6 +80427,8 @@ fil	plurals	search_state_no_suggestions_body	one	Pindutin ang search key ng keyb
 fil	plurals	search_state_no_suggestions_body	other	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.
 fil	plurals	search_state_partial_headline	one	%d source failed
 fil	plurals	search_state_partial_headline	other	%d sources failed
+fil	plurals	search_state_retry_sources	one	Subukang muli ang %d source
+fil	plurals	search_state_retry_sources	other	Subukang muli ang %d na source
 fil	plurals	search_tv_recent_count	one	%d SAVED
 fil	plurals	search_tv_recent_count	other	%d SAVED
 fil	plurals	search_tv_result_count	one	%d RESULT
@@ -81452,6 +81617,8 @@ tl	plurals	search_state_no_suggestions_body	one	Pindutin ang search key ng keybo
 tl	plurals	search_state_no_suggestions_body	other	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d source.
 tl	plurals	search_state_partial_headline	one	%d source failed
 tl	plurals	search_state_partial_headline	other	%d sources failed
+tl	plurals	search_state_retry_sources	one	Subukang muli ang %d source
+tl	plurals	search_state_retry_sources	other	Subukang muli ang %d na source
 tl	plurals	search_tv_recent_count	one	%d SAVED
 tl	plurals	search_tv_recent_count	other	%d SAVED
 tl	plurals	search_tv_result_count	one	%d RESULT
@@ -82640,6 +82807,8 @@ fil-PH	plurals	search_state_no_suggestions_body	one	Pindutin ang search key ng k
 fil-PH	plurals	search_state_no_suggestions_body	other	Pindutin ang search key ng keyboard para maghanap pa rin sa lahat ng %d mapagkukunan.
 fil-PH	plurals	search_state_partial_headline	one	%d source failed
 fil-PH	plurals	search_state_partial_headline	other	%d sources failed
+fil-PH	plurals	search_state_retry_sources	one	Subukang muli ang %d source
+fil-PH	plurals	search_state_retry_sources	other	Subukang muli ang %d na source
 fil-PH	plurals	search_tv_recent_count	one	%d SAVED
 fil-PH	plurals	search_tv_recent_count	other	%d SAVED
 fil-PH	plurals	search_tv_result_count	one	%d RESULT
@@ -83810,6 +83979,7 @@ zh	plurals	search_state_no_suggestions_action	other	搜索全部 %d 个来源
 zh	plurals	search_state_no_suggestions_body	other	按键盘上的搜索键，仍然搜索全部 %d 个来源。
 zh	plurals	search_state_partial_headline	one	%d source failed
 zh	plurals	search_state_partial_headline	other	%d sources failed
+zh	plurals	search_state_retry_sources	other	重试 %d 个来源
 zh	plurals	search_tv_recent_count	one	%d SAVED
 zh	plurals	search_tv_recent_count	other	%d SAVED
 zh	plurals	search_tv_result_count	one	%d RESULT
@@ -84975,6 +85145,7 @@ zh-CN	plurals	search_state_no_suggestions_action	other	搜索全部 %d 个来源
 zh-CN	plurals	search_state_no_suggestions_body	other	按键盘上的搜索键，仍然搜索全部 %d 个来源。
 zh-CN	plurals	search_state_partial_headline	one	%d source failed
 zh-CN	plurals	search_state_partial_headline	other	%d sources failed
+zh-CN	plurals	search_state_retry_sources	other	重试 %d 个来源
 zh-CN	plurals	search_tv_recent_count	one	%d SAVED
 zh-CN	plurals	search_tv_recent_count	other	%d SAVED
 zh-CN	plurals	search_tv_result_count	one	%d RESULT
@@ -86140,6 +86311,7 @@ zh-Hans-CN	plurals	search_state_no_suggestions_action	other	搜索全部 %d 个�
 zh-Hans-CN	plurals	search_state_no_suggestions_body	other	按键盘上的搜索键，仍然搜索全部 %d 个来源。
 zh-Hans-CN	plurals	search_state_partial_headline	one	%d source failed
 zh-Hans-CN	plurals	search_state_partial_headline	other	%d sources failed
+zh-Hans-CN	plurals	search_state_retry_sources	other	重试 %d 个来源
 zh-Hans-CN	plurals	search_tv_recent_count	one	%d SAVED
 zh-Hans-CN	plurals	search_tv_recent_count	other	%d SAVED
 zh-Hans-CN	plurals	search_tv_result_count	one	%d RESULT
@@ -87306,6 +87478,7 @@ zh-TW	plurals	search_state_no_suggestions_action	other	搜尋全部 %d 個來源
 zh-TW	plurals	search_state_no_suggestions_body	other	按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。
 zh-TW	plurals	search_state_partial_headline	one	%d source failed
 zh-TW	plurals	search_state_partial_headline	other	%d sources failed
+zh-TW	plurals	search_state_retry_sources	other	重試 %d 個來源
 zh-TW	plurals	search_tv_recent_count	one	%d SAVED
 zh-TW	plurals	search_tv_recent_count	other	%d SAVED
 zh-TW	plurals	search_tv_result_count	one	%d RESULT
@@ -88472,6 +88645,7 @@ zh-Hant-TW	plurals	search_state_no_suggestions_action	other	搜尋全部 %d 個�
 zh-Hant-TW	plurals	search_state_no_suggestions_body	other	按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。
 zh-Hant-TW	plurals	search_state_partial_headline	one	%d source failed
 zh-Hant-TW	plurals	search_state_partial_headline	other	%d sources failed
+zh-Hant-TW	plurals	search_state_retry_sources	other	重試 %d 個來源
 zh-Hant-TW	plurals	search_tv_recent_count	one	%d SAVED
 zh-Hant-TW	plurals	search_tv_recent_count	other	%d SAVED
 zh-Hant-TW	plurals	search_tv_result_count	one	%d RESULT
@@ -89638,6 +89812,7 @@ zh-HK	plurals	search_state_no_suggestions_action	other	搜尋全部 %d 個來源
 zh-HK	plurals	search_state_no_suggestions_body	other	按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。
 zh-HK	plurals	search_state_partial_headline	one	%d source failed
 zh-HK	plurals	search_state_partial_headline	other	%d sources failed
+zh-HK	plurals	search_state_retry_sources	other	重試 %d 個來源
 zh-HK	plurals	search_tv_recent_count	one	%d SAVED
 zh-HK	plurals	search_tv_recent_count	other	%d SAVED
 zh-HK	plurals	search_tv_result_count	one	%d RESULT
@@ -90804,6 +90979,7 @@ zh-Hant-HK	plurals	search_state_no_suggestions_action	other	搜尋全部 %d 個�
 zh-Hant-HK	plurals	search_state_no_suggestions_body	other	按下鍵盤上的搜尋鍵，仍然搜尋全部 %d 個來源。
 zh-Hant-HK	plurals	search_state_partial_headline	one	%d source failed
 zh-Hant-HK	plurals	search_state_partial_headline	other	%d sources failed
+zh-Hant-HK	plurals	search_state_retry_sources	other	重試 %d 個來源
 zh-Hant-HK	plurals	search_tv_recent_count	one	%d SAVED
 zh-Hant-HK	plurals	search_tv_recent_count	other	%d SAVED
 zh-Hant-HK	plurals	search_tv_result_count	one	%d RESULT
@@ -91987,6 +92163,8 @@ no	plurals	search_state_no_suggestions_body	one	Trykk på søketasten på tastat
 no	plurals	search_state_no_suggestions_body	other	Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel.
 no	plurals	search_state_partial_headline	one	%d source failed
 no	plurals	search_state_partial_headline	other	%d sources failed
+no	plurals	search_state_retry_sources	one	Prøv %d kilde på nytt
+no	plurals	search_state_retry_sources	other	Prøv %d kilder på nytt
 no	plurals	search_tv_recent_count	one	%d SAVED
 no	plurals	search_tv_recent_count	other	%d SAVED
 no	plurals	search_tv_result_count	one	%d RESULT
@@ -93175,6 +93353,8 @@ nb	plurals	search_state_no_suggestions_body	one	Press the keyboard’s search ke
 nb	plurals	search_state_no_suggestions_body	other	Press the keyboard’s search key to search all %d sources anyway.
 nb	plurals	search_state_partial_headline	one	%d source failed
 nb	plurals	search_state_partial_headline	other	%d sources failed
+nb	plurals	search_state_retry_sources	one	Retry %d source
+nb	plurals	search_state_retry_sources	other	Retry %d sources
 nb	plurals	search_tv_recent_count	one	%d SAVED
 nb	plurals	search_tv_recent_count	other	%d SAVED
 nb	plurals	search_tv_result_count	one	%d RESULT
@@ -94363,6 +94543,8 @@ nb-NO	plurals	search_state_no_suggestions_body	one	Press the keyboard’s search
 nb-NO	plurals	search_state_no_suggestions_body	other	Press the keyboard’s search key to search all %d sources anyway.
 nb-NO	plurals	search_state_partial_headline	one	%d source failed
 nb-NO	plurals	search_state_partial_headline	other	%d sources failed
+nb-NO	plurals	search_state_retry_sources	one	Retry %d source
+nb-NO	plurals	search_state_retry_sources	other	Retry %d sources
 nb-NO	plurals	search_tv_recent_count	one	%d SAVED
 nb-NO	plurals	search_tv_recent_count	other	%d SAVED
 nb-NO	plurals	search_tv_result_count	one	%d RESULT
@@ -95566,6 +95748,9 @@ iw	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש ה
 iw	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 iw	plurals	search_state_partial_headline	one	%d source failed
 iw	plurals	search_state_partial_headline	other	%d sources failed
+iw	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+iw	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
+iw	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 iw	plurals	search_tv_recent_count	one	%d SAVED
 iw	plurals	search_tv_recent_count	other	%d SAVED
 iw	plurals	search_tv_result_count	one	%d RESULT
@@ -96774,6 +96959,9 @@ he	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש ה
 he	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 he	plurals	search_state_partial_headline	one	%d source failed
 he	plurals	search_state_partial_headline	other	%d sources failed
+he	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+he	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
+he	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 he	plurals	search_tv_recent_count	one	%d SAVED
 he	plurals	search_tv_recent_count	other	%d SAVED
 he	plurals	search_tv_result_count	one	%d RESULT
@@ -97982,6 +98170,9 @@ he-IL	plurals	search_state_no_suggestions_body	other	יש ללחוץ על מקש
 he-IL	plurals	search_state_no_suggestions_body	two	יש ללחוץ על מקש החיפוש במקלדת כדי לחפש בכל זאת בכל %d המקורות.
 he-IL	plurals	search_state_partial_headline	one	%d source failed
 he-IL	plurals	search_state_partial_headline	other	%d sources failed
+he-IL	plurals	search_state_retry_sources	one	לנסות שוב מקור %d
+he-IL	plurals	search_state_retry_sources	other	לנסות שוב %d מקורות
+he-IL	plurals	search_state_retry_sources	two	לנסות שוב %d מקורות
 he-IL	plurals	search_tv_recent_count	one	%d SAVED
 he-IL	plurals	search_tv_recent_count	other	%d SAVED
 he-IL	plurals	search_tv_result_count	one	%d RESULT
@@ -99157,6 +99348,7 @@ in	plurals	search_state_no_suggestions_action	other	Cari di semua %d sumber
 in	plurals	search_state_no_suggestions_body	other	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.
 in	plurals	search_state_partial_headline	one	%d source failed
 in	plurals	search_state_partial_headline	other	%d sources failed
+in	plurals	search_state_retry_sources	other	Coba lagi %d sumber
 in	plurals	search_tv_recent_count	one	%d SAVED
 in	plurals	search_tv_recent_count	other	%d SAVED
 in	plurals	search_tv_result_count	one	%d RESULT
@@ -100322,6 +100514,7 @@ id	plurals	search_state_no_suggestions_action	other	Cari di semua %d sumber
 id	plurals	search_state_no_suggestions_body	other	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.
 id	plurals	search_state_partial_headline	one	%d source failed
 id	plurals	search_state_partial_headline	other	%d sources failed
+id	plurals	search_state_retry_sources	other	Coba lagi %d sumber
 id	plurals	search_tv_recent_count	one	%d SAVED
 id	plurals	search_tv_recent_count	other	%d SAVED
 id	plurals	search_tv_result_count	one	%d RESULT
@@ -101487,6 +101680,7 @@ id-ID	plurals	search_state_no_suggestions_action	other	Cari di semua %d sumber
 id-ID	plurals	search_state_no_suggestions_body	other	Tekan tombol cari di keyboard untuk tetap mencari di semua %d sumber.
 id-ID	plurals	search_state_partial_headline	one	%d source failed
 id-ID	plurals	search_state_partial_headline	other	%d sources failed
+id-ID	plurals	search_state_retry_sources	other	Coba lagi %d sumber
 id-ID	plurals	search_tv_recent_count	one	%d SAVED
 id-ID	plurals	search_tv_recent_count	other	%d SAVED
 id-ID	plurals	search_tv_result_count	one	%d RESULT
@@ -102670,6 +102864,8 @@ arz	plurals	search_state_no_suggestions_body	one	Press the keyboard’s search k
 arz	plurals	search_state_no_suggestions_body	other	Press the keyboard’s search key to search all %d sources anyway.
 arz	plurals	search_state_partial_headline	one	%d source failed
 arz	plurals	search_state_partial_headline	other	%d sources failed
+arz	plurals	search_state_retry_sources	one	Retry %d source
+arz	plurals	search_state_retry_sources	other	Retry %d sources
 arz	plurals	search_tv_recent_count	one	%d SAVED
 arz	plurals	search_tv_recent_count	other	%d SAVED
 arz	plurals	search_tv_result_count	one	%d RESULT

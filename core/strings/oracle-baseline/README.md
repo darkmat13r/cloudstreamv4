@@ -120,6 +120,38 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Thirty-first move, 2026-11-09 — `I18N-22`, 1 new plural for `KMP-101`'s S3 banner
+
+New keys are approved in general (`I18N-09`). Additive: one plural, `search_state_retry_sources`, authored in all 62
+directories with each locale's own categories, 150 in all (`OWN` counts one value per key and directory, so it grows by 62).
+First recorded as an unnumbered move on master's twenty-sixth; regenerated from the live generator on master's thirtieth
+(`KMP-95d`) when Train 14 landed, and numbered then.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 57,484 | 57,634 | 150 | 0 | 0 |
+| `emitted.tsv` | 60,181 | 60,335 | 154 | 0 | 0 |
+| `lookup.tsv` | 103,817 | 104,013 | 196 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+I measured this against master's thirtieth move twice: by whole-line set difference with `sort | comm`, and with a
+Python multiset that also checked order.
+- No line was lost in any file, and every line that was there before is still there, in the same order.
+- Every added line names the new key.
+- `decoded`'s 150 are the key's categories summed over the 62 directories.
+- `emitted`'s 154 are those 150, plus 3 for the `values-b+he` copy of `b+iw` (one, two, other) and 1 for the
+  `values-b+id` copy of `b+in` (other).
+
+`report.txt` moved only in its counts:
+- `OWN` 55,498 -> 55,560;
+- visible keys 1,159 -> 1,160, plurals 29 -> 30;
+- one more value in each of the two locale copies.
+
+**`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 55,498 -> 55,560, and
+`OracleBaselineTest`'s row counts to the three after-counts above. The Android
+res came out with 62 lines added and 0 removed, and `app/api/classes-jar.api` gains only the one `R` field.
+
 ## Thirtieth move, 2026-11-09 — `KMP-95d`, 1 new key: sign-ins last until you quit
 
 New keys are approved in general (`I18N-09`), and the PM asked for this line (2026-11-09): until the Keychain (`KMP-95f`)

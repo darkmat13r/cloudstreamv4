@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">Qaybta xigta %d il. kadib</item><item quantity="other">Qaybta xigta %d il. kadib</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Ka raadi %d il</item><item quantity="other">Ka raadi dhammaan %d ilood</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Riix furaha raadinta ee kiiboodhka si aad u raadiso %d il si kastaba ha ahaatee.</item><item quantity="other">Riix furaha raadinta ee kiiboodhka si aad u raadiso dhammaan %d ilood si kastaba ha ahaatee.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">Isku day mar kale %d il</item><item quantity="other">Isku day mar kale %d ilo</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d IL</item><item quantity="other">%d ILOOD</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d qayb</item><item quantity="other">%d qaybood</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d digniin baaritaan</item><item quantity="other">%d digniinood baaritaan</item></plurals>

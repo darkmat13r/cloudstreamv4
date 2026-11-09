@@ -83,6 +83,7 @@
 <plurals name="player_up_next_in"><item quantity="one">Следна епизода за %d с</item><item quantity="other">Следна епизода за %d с</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Барај во %d извор</item><item quantity="other">Барај во сите %d извори</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во %d извор.</item><item quantity="other">Притиснете го копчето за пребарување на тастатурата за сепак да пребарувате во сите %d извори.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">Обиди го повторно %d извор</item><item quantity="other">Обиди ги повторно %d извори</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ИЗВОР</item><item quantity="other">%d ИЗВОРИ</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d дел</item><item quantity="other">%d делови</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d предупредување од скенирање</item><item quantity="other">%d предупредувања од скенирање</item></plurals>

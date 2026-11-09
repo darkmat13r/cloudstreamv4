@@ -83,6 +83,7 @@
 <plurals name="player_up_next_in"><item quantity="one">الحلقة الجاية بعد %d ث</item><item quantity="other">الحلقة الجاية بعد %d ث</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">نبّش بـ%d مصدر</item><item quantity="other">نبّش بكل المصادر الـ%d</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">اكبس زر التنبيش بالكيبورد لتنبّش بـ%d مصدر على كل حال.</item><item quantity="other">اكبس زر التنبيش بالكيبورد لتنبّش بكل المصادر الـ%d على كل حال.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">جرّب %d مصدر كمان مرة</item><item quantity="other">جرّب %d مصادر كمان مرة</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d مصدر</item><item quantity="other">%d مصادر</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d قسم</item><item quantity="other">%d أقسام</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d تحذير من الفحص</item><item quantity="other">%d تحذيرات من الفحص</item></plurals>
