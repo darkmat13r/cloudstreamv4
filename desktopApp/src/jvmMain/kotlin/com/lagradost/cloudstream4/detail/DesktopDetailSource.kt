@@ -88,6 +88,8 @@ internal fun RemoteDetails.toTitleDetail(providerName: String) = TitleDetail(
     contentRating = facts.contentRating,
     statusName = facts.status?.name,
     durationMinutes = facts.runtimeMinutes,
+    // The sandbox's own, already checked (`KMP-100`). No fallback to the poster: E1 draws plain ground without one.
+    backdropUrl = backdropUrl,
 )
 
 /**
