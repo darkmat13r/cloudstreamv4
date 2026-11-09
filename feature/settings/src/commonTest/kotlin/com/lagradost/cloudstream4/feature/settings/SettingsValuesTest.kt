@@ -26,6 +26,7 @@ class SettingsValuesTest {
                 "poster_size_desktop_key" to "medium",
                 "random_button_key" to "true",
                 "seek_amount_desktop_key" to "10",
+                "enable_skip_op_from_database" to "true",
             ),
             values.toStored(),
         )
@@ -90,6 +91,22 @@ class SettingsValuesTest {
         // Android's slider is not read: the Mac's Small would mean nothing to it, and its steps mean nothing here.
         assertEquals(PosterSize.Medium, SettingsValues.fromStored(mapOf("poster_size_key" to "15")).posterSize)
         assertEquals(PosterSize.Medium, AppearanceSettings.Default.posterSize.value)
+    }
+
+    @Test
+    fun skipOpIsAndroidsKeyAndOnUntilTurnedOff() {
+        // KMP-86: one constant holds the default, and the switch reads Android's own key.
+        assertEquals(true, SettingsValues.DEFAULT_SKIP_STAMPS)
+        assertEquals(SettingsValues.DEFAULT_SKIP_STAMPS, SettingsValues.fromStored(emptyMap()).skipStamps)
+        assertEquals(SettingsValues.DEFAULT_SKIP_STAMPS, PlaybackSettings.Default.skipStamps.value)
+        val off = SettingsValues(skipStamps = false).toStored()
+        assertEquals("false", off["enable_skip_op_from_database"])
+        assertEquals(false, SettingsValues.fromStored(off).skipStamps)
+        assertEquals(true, SettingsValues.fromStored(mapOf("enable_skip_op_from_database" to " true ")).skipStamps)
+        assertEquals(
+            SettingsValues.DEFAULT_SKIP_STAMPS,
+            SettingsValues.fromStored(mapOf("enable_skip_op_from_database" to "no")).skipStamps,
+        )
     }
 
     @Test

@@ -38,6 +38,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
@@ -137,6 +138,9 @@ import org.jetbrains.compose.resources.stringResource
  * @param seekMillis how far the arrow keys and the skip buttons move: Settings' Seek amount (`KMP-96`).
  * @param start how a player starts its stream: [VlcPlayer.play] with the link's address, or, for a downloaded file,
  *   [VlcPlayer.playFile], which has no address to send (`KMP-74`).
+ * @param skipStamps the episode's skip stamps, asked for once the stream's length is known (`KMP-86`). Null asks nothing.
+ *   While the playhead is in one, Skip shows; it seeks past the stamp, or plays the next episode when the stamp runs to
+ *   the end and there is one, as Android's does.
  *
  * ## When a stream fails
  *
@@ -172,6 +176,7 @@ internal fun PlayerScreen(
     artwork: @Composable (String) -> Unit = {},
     keepFullscreen: () -> Boolean = { false },
     start: (VlcPlayer, StreamLink) -> Boolean = ::playLink,
+    skipStamps: SkipStampSource? = null,
 ) {
     var playback by remember(player, link) { mutableStateOf(Playback(player, link, startAtMillis)) }
     val audioChoice = remember(player, link) { AudioChoice() }
@@ -238,6 +243,16 @@ internal fun PlayerScreen(
             }
         }
     }
+    // Per episode, not per stream: a source switch plays the same episode, so its stamps stay.
+    // Whichever stream is playing: one that failed before saying its length gives way to the next.
+    val lengthNow by rememberUpdatedState(status.lengthMillis)
+    val stamps by produceState(emptyList<SkipStamp>(), skipStamps) {
+        val source = skipStamps ?: return@produceState
+        value = source.stamps(snapshotFlow { lengthNow }.first { it > 0 })
+    }
+    val stamp = stamps.at(status.positionMillis)
+    val toNext = stamp?.skipsToNext(status.lengthMillis, hasNext = upNext != null) == true
+    val skip = stamp?.let { HudSkip(skipLabel(it.kind, toNext)) }
     PlayerContent(
         frame = frame,
         pictureSize = pictureSize,
@@ -263,6 +278,15 @@ internal fun PlayerScreen(
         autoplayNext = autoplayNext,
         onPlayNext = onPlayNext,
         artwork = artwork,
+        skip = skip,
+        onSkip = {
+            when {
+                stamp == null -> Unit
+                toNext -> onPlayNext()
+                // Android's: just past the end, so the playhead is out of it.
+                else -> playback.player.seekBy(stamp.endMs + 1 - status.positionMillis)
+            }
+        },
     )
 }
 

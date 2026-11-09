@@ -6,6 +6,7 @@ import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
+import com.lagradost.cloudstream4.feature.detail.TitleIds
 import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginFailed
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteDetails
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLink
@@ -96,6 +97,8 @@ internal fun RemoteDetails.toTitleDetail(providerName: String) = TitleDetail(
     durationMinutes = facts.runtimeMinutes,
     // The sandbox's own, already checked (`KMP-100`). No fallback to the poster: E1 draws plain ground without one.
     backdropUrl = backdropUrl,
+    // Checked by the sandbox's reader (`KMP-86`): digits only for MAL and TMDb, so these parse.
+    ids = TitleIds(ids.malId?.toIntOrNull(), ids.tmdbId?.toIntOrNull(), ids.imdbId),
 )
 
 /**

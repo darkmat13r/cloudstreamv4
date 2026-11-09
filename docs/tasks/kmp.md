@@ -6388,11 +6388,48 @@ both ways out; it wants its own task.
 - **Changed existing test code:** the harness takes `meta`, `skip` and the idle; the fixtures `VidSrc`, `VidSrc Pro` and
   `Filemoon` are now `Source One` and `Source Two`. Each assertion is the same as before with the name swapped.
 
-## KMP-86 — Skip stamps for the Mac player · **open**, follow-up of `KMP-87`
+## KMP-86 — Skip stamps for the Mac player · **in review**, follow-up of `KMP-87`
 
-`DS-23` M3 draws Skip Intro while the stream has something to skip. The Mac player draws it from `HudSkip` (`KMP-87`),
-as TV does, but nothing on the Mac fills it: TV's stamps come from its host. Find where the stamps come from for a
-title, read them for the episode playing, and pass the current one to `PlayerContent.skip`, with `onSkip` seeking past it.
+**Status:** in review · `:desktopApp`, `:feature:extensions:sandbox`, `:feature:detail`, `:feature:settings` · stacked on
+`KMP-100` (#299), whose tagged sections the ids section joins
+
+`DS-23` M3 draws Skip while the stream has something to skip. The Mac player now has the stamps, from the services
+Android's `SkipAPI` asks, and passes the one under the playhead to `PlayerContent.skip`.
+
+- **Where they come from:** AniSkip (anime and OVA, by MAL id), then TheIntroDB (series, cartoon, anime, film, Asian
+  drama, by TMDb id, else IMDb id), then IntroDb (series and Asian drama, by IMDb id), the first with stamps kept, as
+  Android does. Android's fourth, AnimeSkip, needs an account the Mac cannot log in to, so Android sends it nothing either.
+- **The ids reach the Mac** in a new sandbox section, `IDS_V1` (tag `0x31`), appended after the art and read by its tag
+  as the art is: the first one read, a second or an unknown tag stepped over and said once. The host reads them with
+  `:library`'s own getters (`getMalId`, `getTMDbId`, `getImdbId`), so `:library` and `classes-jar.api` are unchanged.
+  The app keeps only the exact shapes, in ASCII: MAL and TMDb `[0-9]{1,9}`, parsed and written again; IMDb
+  `tt[0-9]{7,10}`. They ride `TitleDetail.ids` to the player and are never drawn.
+- **What is sent** is what Android sends: the same hosts, paths and query, byte for byte, built on constant hosts with
+  `HttpUrl.Builder`; season and episode only in `0..10000`; the episode's length the player's own. Android's
+  User-Agent, no cookie, no Referer.
+- **The client:** public addresses only on every hop (the poster client), no redirect followed, any host but the three or
+  any hop not https refused by a network interceptor, the whole call 10 s, the body 1 MiB on the wire and again after
+  gunzip. A stamp is kept only if finite and `0 <= start < end <= length`, 16 at most. Nothing from a response reaches the
+  screen or the log, and neither does the title, an id or a URL. Kept in memory for the session, 64 episodes at most.
+- **Skip** shows while the playhead is in a stamp (Android's rule, with its 300 ms slack), with Android's words
+  (`Skip Opening`). It seeks to just past the end, or, for a stamp ending in the last 20 s with an episode after it, plays
+  that one (`Next episode`).
+- **Settings, Playback: Skip OP**, Android's key `enable_skip_op_from_database` and its own two strings. Off, the player
+  asks no service anything.
+
+**DECIDED:**
+- The default is on, Android's, in one constant (`SettingsValues.DEFAULT_SKIP_STAMPS`): the owner chose Android's
+  parity (2026-11-09). On, the title's ids and the episode go to up to three third parties.
+- Stop at the first service with stamps, as Android does: one that answers with none passes to the next.
+
+**Tests:** `SkipServicesTest` (14) against a server on this machine standing in for the three hosts; `SkipStampsTest` (3);
+`HostProtocolIdsTest` (9); `SettingsWindowTest`'s Skip OP; `SettingsSearchTest`, `SettingsValuesTest` and
+`SettingsRepositoryTest`. Proved by mutation: without the read cap after gunzip, without the host interceptor, with
+`addQueryParameter` for `types[]`, without the off check, and without the range filter, each fails its test; so does
+following redirects, on #299's `bodyCap`, which no longer cancels a call when a body is closed early. **Not run:** Skip in a real player
+window; the glue is read, not run.
+**Changed existing test code:** four settings tests that assert the whole stored map or file gain the new key, and
+`HostProtocolArtTest` (#299) takes `0x32` where it used `0x31` as a tag nobody reads, which is now the ids'.
 
 ## KMP-101 — Mac Search and Downloads polish: S3's banner, S2's second line, D5's pill, outlined state actions · **in review**
 

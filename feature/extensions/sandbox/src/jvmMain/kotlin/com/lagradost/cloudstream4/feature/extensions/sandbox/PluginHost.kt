@@ -7,6 +7,9 @@ import com.lagradost.cloudstream3.EpisodeResponse
 import com.lagradost.cloudstream3.LiveStreamLoadResponse
 import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LoadResponse
+import com.lagradost.cloudstream3.LoadResponse.Companion.getImdbId
+import com.lagradost.cloudstream3.LoadResponse.Companion.getMalId
+import com.lagradost.cloudstream3.LoadResponse.Companion.getTMDbId
 import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.MainPageRequest
 import com.lagradost.cloudstream3.MovieLoadResponse
@@ -389,8 +392,17 @@ object PluginHost {
             facts = facts(),
             // Courtesy, as the facts' cuts are: one too long to be read is not sent. The app checks what arrives.
             backdropUrl = backgroundPosterUrl?.takeIf { it.toByteArray().size <= HostProtocol.MAX_IMAGE_URL_BYTES },
+            // `KMP-86`: the getters Android's skip services read. Courtesy again: the app checks each id's shape.
+            ids = RemoteIds(
+                malId = runCatching { getMalId() }.getOrNull()?.shortId(),
+                tmdbId = runCatching { getTMDbId() }.getOrNull()?.shortId(),
+                imdbId = runCatching { getImdbId() }.getOrNull()?.shortId(),
+            ),
         )
     }
+
+    /** One the app would skip unread is not sent (`KMP-86`). */
+    private fun String.shortId(): String? = takeIf { it.toByteArray().size <= HostProtocol.MAX_ID_BYTES }
 
     /**
      * Cut to the app's bounds here too (`KMP-76`), so an honest provider with too many tags is shortened rather than

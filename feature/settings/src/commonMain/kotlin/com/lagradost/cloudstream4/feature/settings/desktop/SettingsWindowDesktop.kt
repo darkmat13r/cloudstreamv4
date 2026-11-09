@@ -50,6 +50,7 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.enable_skip_op_from_database_des
 import com.lagradost.cloudstream4.core.strings.generated.resources.poster_size_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.random_button_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.search
@@ -66,6 +67,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.settings_sear
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_seek_amount
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_downloads
+import com.lagradost.cloudstream4.core.strings.generated.resources.video_skip_op
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.settings.SettingsPane
@@ -126,6 +128,7 @@ class SettingsWindowState(pane: SettingsPane = SettingsPane.entries.first(), que
 /** What the window asks its host to do. Each setting change is written at once; there is no Apply. */
 sealed interface SettingsAction {
     data class SetAutoplayNext(val on: Boolean) : SettingsAction
+    data class SetSkipStamps(val on: Boolean) : SettingsAction
 
     data class SetShowRandom(val on: Boolean) : SettingsAction
     data class SetPosterSize(val size: PosterSize) : SettingsAction
@@ -358,6 +361,10 @@ private fun rowWords(folder: DownloadFolder): Map<SettingsRow, List<String>> = m
     SettingsRow.PosterSize to listOf(stringResource(Res.string.poster_size_settings)),
     SettingsRow.RandomButton to listOf(stringResource(Res.string.random_button_settings)),
     SettingsRow.SeekAmount to listOf(stringResource(Res.string.settings_seek_amount)),
+    SettingsRow.SkipStamps to listOf(
+        stringResource(Res.string.video_skip_op),
+        stringResource(Res.string.enable_skip_op_from_database_des),
+    ),
     SettingsRow.DownloadFolder to listOf(stringResource(Res.string.settings_download_folder), folder.name),
     SettingsRow.DownloadsAtOnce to listOf(
         stringResource(Res.string.settings_downloads_at_once),
