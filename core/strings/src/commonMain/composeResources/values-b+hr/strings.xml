@@ -48,6 +48,8 @@
 <string name="account_select_title">Tko gleda?</string>
 <string name="account_signin_failed_body">%s nije potvrdio prijavu. Ništa nije spremljeno.</string>
 <string name="account_signin_failed_title">Prijava na %s nije uspjela</string>
+<string name="account_signin_not_kept">Prijava u %s nije se mogla zadržati na ovom računalu, pa niste prijavljeni.</string>
+<string name="account_signin_not_removed">Prijava u %s nije se mogla ukloniti s ovog računala, pa je i dalje aktivna.</string>
 <string name="account_signin_offline_body">Za prijavu na %s potrebna je veza. Pokušajte ponovno kad ovaj uređaj ponovno bude na mreži.</string>
 <string name="account_signins_until_quit">Prijave traju dok ne zatvorite CloudStream.</string>
 <string name="account_sync_connected">Povezano · prijavljeno na ovom uređaju</string>

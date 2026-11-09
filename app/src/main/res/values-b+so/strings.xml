@@ -70,6 +70,8 @@
 <string name="account_select_title">"Yaa daawanaya?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ma xaqiijin galitaanka. Waxba lama kaydin."</string>
 <string name="account_signin_failed_title" formatted="true">"Lama geli karo %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Lama hayn karin gelitaanka %s kombuyuutarkan, sidaa darteed ma gelin."</string>
+<string name="account_signin_not_removed" formatted="true">"Lama saari karin gelitaanka %s kombuyuutarkan, sidaa darteed weli waa la galay."</string>
 <string name="account_signin_offline_body" formatted="true">"Gelitaanka %s wuxuu u baahan yahay xiriir. Mar kale isku day marka qalabkani dib ugu soo laabto khadka."</string>
 <string name="account_signins_until_quit">"Gelitaanku way sii jiraan ilaa aad ka baxdo CloudStream."</string>
 <string name="account_sync_connected">"Waa ku xiran yahay · lagu galay qalabkan"</string>

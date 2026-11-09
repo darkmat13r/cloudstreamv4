@@ -48,6 +48,8 @@
 <string name="account_select_title">Qui mira?</string>
 <string name="account_signin_failed_body">%s no ha confirmat l'inici de sessió. No s'ha desat res.</string>
 <string name="account_signin_failed_title">No s'ha pogut iniciar la sessió a %s</string>
+<string name="account_signin_not_kept">No s'ha pogut conservar l'inici de sessió a %s en aquest ordinador, així que no has iniciat la sessió.</string>
+<string name="account_signin_not_removed">No s'ha pogut eliminar l'inici de sessió a %s d'aquest ordinador, així que la sessió continua iniciada.</string>
 <string name="account_signin_offline_body">Per iniciar la sessió a %s cal connexió. Torna-ho a provar quan aquest dispositiu torni a estar en línia.</string>
 <string name="account_signins_until_quit">Els inicis de sessió duren fins que surts de CloudStream.</string>
 <string name="account_sync_connected">Connectat · sessió iniciada en aquest dispositiu</string>

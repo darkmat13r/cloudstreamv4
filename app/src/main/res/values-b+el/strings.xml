@@ -70,6 +70,8 @@
 <string name="account_select_title">"Ποιος βλέπει;"</string>
 <string name="account_signin_failed_body" formatted="true">"Το %s δεν επιβεβαίωσε τη σύνδεση. Δεν αποθηκεύτηκε τίποτα."</string>
 <string name="account_signin_failed_title" formatted="true">"Δεν ήταν δυνατή η σύνδεση στο %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Δεν ήταν δυνατή η διατήρηση της σύνδεσης στο %s σε αυτόν τον υπολογιστή, οπότε δεν έχετε συνδεθεί."</string>
+<string name="account_signin_not_removed" formatted="true">"Δεν ήταν δυνατή η κατάργηση της σύνδεσης στο %s από αυτόν τον υπολογιστή, οπότε παραμένει ενεργή."</string>
 <string name="account_signin_offline_body" formatted="true">"Η σύνδεση στο %s απαιτεί πρόσβαση στο διαδίκτυο. Δοκιμάστε ξανά όταν η συσκευή είναι ξανά online."</string>
 <string name="account_signins_until_quit">"Οι συνδέσεις διαρκούν μέχρι να κλείσετε το CloudStream."</string>
 <string name="account_sync_connected">"Συνδεδεμένο · σε αυτή τη συσκευή"</string>

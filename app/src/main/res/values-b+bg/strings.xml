@@ -72,6 +72,8 @@
 <string name="account_select_title">"Кой гледа?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не потвърди вписването. Нищо не е запазено."</string>
 <string name="account_signin_failed_title" formatted="true">"Неуспешно вписване в %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Влизането в %s не можа да бъде запазено на този компютър, затова не сте влезли."</string>
+<string name="account_signin_not_removed" formatted="true">"Влизането в %s не можа да бъде премахнато от този компютър, затова все още е активно."</string>
 <string name="account_signin_offline_body" formatted="true">"Вписването в %s изисква връзка. Опитай отново, когато устройството е отново онлайн."</string>
 <string name="account_signins_until_quit">"Влизанията остават, докато не излезете от CloudStream."</string>
 <string name="account_sync_connected">"Свързан · вписан на това устройство"</string>

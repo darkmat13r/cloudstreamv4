@@ -48,6 +48,8 @@
 <string name="account_select_title">Wer schaut?</string>
 <string name="account_signin_failed_body">%s hat die Anmeldung nicht bestätigt. Es wurde nichts gespeichert.</string>
 <string name="account_signin_failed_title">Anmeldung bei %s fehlgeschlagen</string>
+<string name="account_signin_not_kept">Die Anmeldung bei %s konnte auf diesem Computer nicht gespeichert werden, daher bist du nicht angemeldet.</string>
+<string name="account_signin_not_removed">Die Anmeldung bei %s konnte nicht von diesem Computer entfernt werden, daher ist sie weiterhin aktiv.</string>
 <string name="account_signin_offline_body">Für die Anmeldung bei %s ist eine Verbindung nötig. Versuche es erneut, wenn dieses Gerät wieder online ist.</string>
 <string name="account_signins_until_quit">Anmeldungen gelten, bis du CloudStream beendest.</string>
 <string name="account_sync_connected">Verbunden · auf diesem Gerät angemeldet</string>

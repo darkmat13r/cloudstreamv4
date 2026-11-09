@@ -73,6 +73,8 @@
 <string name="account_select_title">"谁在观看？"</string>
 <string name="account_signin_failed_body" formatted="true">"%s 未确认登录。未保存任何内容。"</string>
 <string name="account_signin_failed_title" formatted="true">"无法登录 %s"</string>
+<string name="account_signin_not_kept" formatted="true">"无法在此电脑上保留 %s 的登录，因此你尚未登录。"</string>
+<string name="account_signin_not_removed" formatted="true">"无法从此电脑上移除 %s 的登录，因此仍处于登录状态。"</string>
 <string name="account_signin_offline_body" formatted="true">"登录 %s 需要网络连接。请在此设备恢复联网后重试。"</string>
 <string name="account_signins_until_quit">"登录状态会保留到你退出 CloudStream 为止。"</string>
 <string name="account_sync_connected">"已连接 · 已在此设备登录"</string>

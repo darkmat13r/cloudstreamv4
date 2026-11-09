@@ -48,6 +48,8 @@
 <string name="account_select_title">Wie kyk?</string>
 <string name="account_signin_failed_body">%s het nie die aanmelding bevestig nie. Niks is gestoor nie.</string>
 <string name="account_signin_failed_title">Kon nie by %s aanmeld nie</string>
+<string name="account_signin_not_kept">Kon nie die aanmelding by %s op hierdie rekenaar hou nie, so jy is nie aangemeld nie.</string>
+<string name="account_signin_not_removed">Kon nie die aanmelding by %s van hierdie rekenaar verwyder nie, so dit is steeds aangemeld.</string>
 <string name="account_signin_offline_body">Om by %s aan te meld, is 'n verbinding nodig. Probeer weer wanneer hierdie toestel weer aanlyn is.</string>
 <string name="account_signins_until_quit">Aanmeldings hou tot jy CloudStream afsluit.</string>
 <string name="account_sync_connected">Gekoppel · aangemeld op hierdie toestel</string>

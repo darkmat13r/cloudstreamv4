@@ -70,6 +70,8 @@
 <string name="account_select_title">"Wie kijkt er?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen."</string>
 <string name="account_signin_failed_title" formatted="true">"Kan niet aanmelden bij %s"</string>
+<string name="account_signin_not_kept" formatted="true">"De aanmelding bij %s kon niet op deze computer worden bewaard, dus je bent niet aangemeld."</string>
+<string name="account_signin_not_removed" formatted="true">"De aanmelding bij %s kon niet van deze computer worden verwijderd, dus die is nog actief."</string>
 <string name="account_signin_offline_body" formatted="true">"Aanmelden bij %s vereist een verbinding. Probeer het opnieuw als dit apparaat weer online is."</string>
 <string name="account_signins_until_quit">"Aanmeldingen blijven tot je CloudStream afsluit."</string>
 <string name="account_sync_connected">"Verbonden · aangemeld op dit apparaat"</string>

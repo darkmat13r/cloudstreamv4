@@ -73,6 +73,8 @@
 <string name="account_select_title">"யார் பார்க்கிறார்கள்?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s உள்நுழைவை உறுதிப்படுத்தவில்லை. எதுவும் சேமிக்கப்படவில்லை."</string>
 <string name="account_signin_failed_title" formatted="true">"%s இல் உள்நுழைய முடியவில்லை"</string>
+<string name="account_signin_not_kept" formatted="true">"இந்தக் கணினியில் %s உள்நுழைவை வைத்திருக்க முடியவில்லை, எனவே நீங்கள் உள்நுழையவில்லை."</string>
+<string name="account_signin_not_removed" formatted="true">"இந்தக் கணினியிலிருந்து %s உள்நுழைவை அகற்ற முடியவில்லை, எனவே அது இன்னும் உள்நுழைந்த நிலையில் உள்ளது."</string>
 <string name="account_signin_offline_body" formatted="true">"%s இல் உள்நுழைய இணைப்பு தேவை. இந்தச் சாதனம் மீண்டும் ஆன்லைனுக்கு வந்ததும் முயலவும்."</string>
 <string name="account_signins_until_quit">"CloudStream-ஐ மூடும் வரை உள்நுழைவுகள் இருக்கும்."</string>
 <string name="account_sync_connected">"இணைக்கப்பட்டது · இந்தச் சாதனத்தில் உள்நுழைந்துள்ளது"</string>

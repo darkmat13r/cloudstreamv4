@@ -72,6 +72,8 @@
 <string name="account_select_title">"Хто глядзіць?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не пацвердзіў уваход. Нічога не захавана."</string>
 <string name="account_signin_failed_title" formatted="true">"Не ўдалося ўвайсці ў %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Не ўдалося захаваць уваход у %s на гэтым камп'ютары, таму вы не ўвайшлі."</string>
+<string name="account_signin_not_removed" formatted="true">"Не ўдалося выдаліць уваход у %s з гэтага камп'ютара, таму ён усё яшчэ дзейнічае."</string>
 <string name="account_signin_offline_body" formatted="true">"Для ўваходу ў %s патрэбна злучэнне. Паспрабуйце зноў, калі гэта прылада зноў будзе ў сетцы."</string>
 <string name="account_signins_until_quit">"Уваходы захоўваюцца, пакуль вы не выйдзеце з CloudStream."</string>
 <string name="account_sync_connected">"Падключана · уваход на гэтай прыладзе"</string>

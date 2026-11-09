@@ -70,6 +70,8 @@
 <string name="account_select_title">"Siapa yang menonton?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s tidak mengesahkan log masuk. Tiada apa-apa yang disimpan."</string>
 <string name="account_signin_failed_title" formatted="true">"Tidak dapat log masuk ke %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Log masuk ke %s tidak dapat disimpan pada komputer ini, jadi anda tidak log masuk."</string>
+<string name="account_signin_not_removed" formatted="true">"Log masuk ke %s tidak dapat dialih keluar daripada komputer ini, jadi ia masih log masuk."</string>
 <string name="account_signin_offline_body" formatted="true">"Log masuk ke %s memerlukan sambungan. Cuba lagi apabila peranti ini kembali dalam talian."</string>
 <string name="account_signins_until_quit">"Log masuk kekal sehingga anda keluar dari CloudStream."</string>
 <string name="account_sync_connected">"Bersambung · log masuk pada peranti ini"</string>

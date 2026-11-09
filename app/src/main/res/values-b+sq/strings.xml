@@ -73,6 +73,8 @@
 <string name="account_select_title">"Kush po shikon?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s nuk e konfirmoi identifikimin. Nuk u ruajt asgjë."</string>
 <string name="account_signin_failed_title" formatted="true">"Identifikimi në %s dështoi"</string>
+<string name="account_signin_not_kept" formatted="true">"Hyrja në %s nuk u ruajt dot në këtë kompjuter, ndaj nuk je i identifikuar."</string>
+<string name="account_signin_not_removed" formatted="true">"Hyrja në %s nuk u hoq dot nga ky kompjuter, ndaj është ende aktive."</string>
 <string name="account_signin_offline_body" formatted="true">"Identifikimi në %s kërkon lidhje. Provo përsëri kur kjo pajisje të jetë sërish në linjë."</string>
 <string name="account_signins_until_quit">"Hyrjet zgjasin derisa të mbyllësh CloudStream."</string>
 <string name="account_sync_connected">"E lidhur · e identifikuar në këtë pajisje"</string>

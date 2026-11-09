@@ -72,6 +72,8 @@
 <string name="account_select_title">"誰在觀看？"</string>
 <string name="account_signin_failed_body" formatted="true">"%s 未確認登入。未儲存任何內容。"</string>
 <string name="account_signin_failed_title" formatted="true">"無法登入 %s"</string>
+<string name="account_signin_not_kept" formatted="true">"無法在這台電腦上保留 %s 的登入，因此你尚未登入。"</string>
+<string name="account_signin_not_removed" formatted="true">"無法從這台電腦上移除 %s 的登入，因此仍處於登入狀態。"</string>
 <string name="account_signin_offline_body" formatted="true">"登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。"</string>
 <string name="account_signins_until_quit">"登入狀態會保留到你結束 CloudStream 為止。"</string>
 <string name="account_sync_connected">"已連線 · 已在此裝置登入"</string>

@@ -73,6 +73,8 @@
 <string name="account_select_title">"Quem está assistindo?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s não confirmou o login. Nada foi salvo."</string>
 <string name="account_signin_failed_title" formatted="true">"Não foi possível entrar no %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Não foi possível manter o login em %s neste computador, então você não está conectado."</string>
+<string name="account_signin_not_removed" formatted="true">"Não foi possível remover o login em %s deste computador, então ele continua conectado."</string>
 <string name="account_signin_offline_body" formatted="true">"Para entrar no %s é preciso ter conexão. Tente de novo quando este dispositivo estiver on-line."</string>
 <string name="account_signins_until_quit">"Os logins duram até você fechar o CloudStream."</string>
 <string name="account_sync_connected">"Conectado · logado neste dispositivo"</string>

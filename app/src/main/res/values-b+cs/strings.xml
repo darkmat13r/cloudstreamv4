@@ -73,6 +73,8 @@
 <string name="account_select_title">"Kdo se dívá?"</string>
 <string name="account_signin_failed_body" formatted="true">"Služba %s přihlášení nepotvrdila. Nic nebylo uloženo."</string>
 <string name="account_signin_failed_title" formatted="true">"Nelze se přihlásit k %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Přihlášení k %s se na tomto počítači nepodařilo uchovat, takže nejste přihlášeni."</string>
+<string name="account_signin_not_removed" formatted="true">"Přihlášení k %s se z tohoto počítače nepodařilo odebrat, takže je stále aktivní."</string>
 <string name="account_signin_offline_body" formatted="true">"Přihlášení k %s vyžaduje připojení. Zkuste to znovu, až bude toto zařízení opět online."</string>
 <string name="account_signins_until_quit">"Přihlášení platí, dokud CloudStream neukončíte."</string>
 <string name="account_sync_connected">"Připojeno · přihlášeno na tomto zařízení"</string>

@@ -72,6 +72,8 @@
 <string name="account_select_title">"مين عم يحضر؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ما أكّد تسجيل الدخول. ما انحفظ شي."</string>
 <string name="account_signin_failed_title" formatted="true">"ما قدرنا نسجّل دخول على %s"</string>
+<string name="account_signin_not_kept" formatted="true">"ما قدرنا نحتفظ بتسجيل الدخول لـ%s على هالكمبيوتر، فإنت مش مسجّل دخول."</string>
+<string name="account_signin_not_removed" formatted="true">"ما قدرنا نشيل تسجيل الدخول لـ%s من هالكمبيوتر، فلسّا مسجّل دخول."</string>
 <string name="account_signin_offline_body" formatted="true">"تسجيل الدخول على %s بدو اتصال. جرب مرة تانية لما يرجع هالجهاز أونلاين."</string>
 <string name="account_signins_until_quit">"تسجيلات الدخول بتضل لحتى تسكّر CloudStream."</string>
 <string name="account_sync_connected">"متصل · مسجّل دخول على هالجهاز"</string>

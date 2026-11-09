@@ -72,6 +72,8 @@
 <string name="account_select_title">"Quem está a ver?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s não confirmou o início de sessão. Nada foi guardado."</string>
 <string name="account_signin_failed_title" formatted="true">"Não foi possível iniciar sessão em %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Não foi possível guardar o início de sessão em %s neste computador, por isso não tem sessão iniciada."</string>
+<string name="account_signin_not_removed" formatted="true">"Não foi possível remover o início de sessão em %s deste computador, por isso a sessão continua iniciada."</string>
 <string name="account_signin_offline_body" formatted="true">"Iniciar sessão em %s requer uma ligação. Tente novamente quando este dispositivo voltar a estar online."</string>
 <string name="account_signins_until_quit">"As sessões iniciadas duram até sair do CloudStream."</string>
 <string name="account_sync_connected">"Ligado · sessão iniciada neste dispositivo"</string>
