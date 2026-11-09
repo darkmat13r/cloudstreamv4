@@ -5,6 +5,7 @@ import com.lagradost.cloudstream3.utils.Qualities
 import com.lagradost.cloudstream4.feature.player.HudBanner
 import com.lagradost.cloudstream4.feature.player.HudSkip
 import com.lagradost.cloudstream4.feature.player.PlayerHudState
+import java.text.Normalizer
 
 /**
  * What the player knows at one moment, as the TV HUD needs it (`KMP-64`). `GeneratorPlayer` fills it; [toHudState] is
@@ -58,8 +59,8 @@ private fun episodeLabel(season: Int?, episode: Int?): String? = when {
 /**
  * Text from a provider or a file on its way to the screen: no control characters, capped, and **never anything that
  * reads as an address**. A provider can put whatever it likes in its strings, so one that looks like a URL is dropped
- * rather than shown: a scheme (`https://`, `content:`, `file:`), an absolute path, or a bare host (`cdn.host.to/v/…`,
- * `host.com:8443`).
+ * rather than shown: a scheme (`https://`, `content:`, `file:`), an absolute path, or a host with something after it
+ * (`cdn.host.to/v/…`, `host.com:8443`), at the start of any word and in any script (`KMP-81`).
  *
  * For titles and episode names. A name the HUD shows beside a stream, a source's or a subtitle's, goes through the
  * stricter [hudLabel].
@@ -67,31 +68,57 @@ private fun episodeLabel(season: Int?, episode: Int?): String? = when {
 internal fun hudText(text: String?): String? {
     val clean = text?.filterNot { it.isISOControl() }?.trim()?.take(MAX_TEXT_CHARS)?.takeIf { it.isNotBlank() }
         ?: return null
-    return clean.takeUnless { looksLikeAddress(it, HOST_WITH_TAIL) }
+    return clean.takeUnless { looksLikeAddress(it, ADDRESS_IN_A_WORD) }
 }
 
 /**
  * A source's or a subtitle's name: [hudText], and also nothing with `?`, `=`, `/` or `\` in it, which is where a query
- * string, a token or a path shows. A real name like `Server 1/2` is dropped too, and the row falls back to the quality
- * alone or to the localised fallback: a lost label is the cheap side of that trade (review of `KMP-64`).
+ * string, a token or a path shows, and no host name on its own. A real name like `Server 1/2` is dropped too, and the
+ * row falls back to the quality alone or to the localised fallback: a lost label is the cheap side of that trade
+ * (review of `KMP-64`).
  */
 internal fun hudLabel(text: String?): String? =
     hudText(text)?.takeUnless { label -> label.any { it in STRICT_CHARACTERS } || looksLikeAddress(label, BARE_HOST) }
 
+/**
+ * Read after NFKC, so full-width characters count as their ASCII forms: a scheme anywhere, a path, `content:` or `file:`
+ * at the start, or [host]. The same rule as the Mac's downloads (`DownloadPaths.looksLikeAddress`), restated.
+ */
 private fun looksLikeAddress(text: String, host: Regex): Boolean {
-    val lower = text.lowercase()
+    val lower = Normalizer.normalize(text, Normalizer.Form.NFKC).lowercase()
     return "://" in lower || lower.startsWith("/") || lower.startsWith("content:") || lower.startsWith("file:") ||
         host.containsMatchIn(lower)
 }
 
-/**
- * A host at the start, with an optional port, then a path, query or fragment or the end: `cdn.host.to/v`, `a.com:8443`,
- * `stream.example.to`. For a source's or subtitle's name only: as a title it would blank `Dr.Harbor` and `Mr.Lantern`.
- */
-private val BARE_HOST = Regex("""^[\w.-]+\.[a-z]{2,}(:\d+)?([/?#]|$)""")
+/** A label of a host name, in any script, and the dots IDNA reads as one (`.`, `。`, `｡`). */
+private const val LABEL = """[\p{L}\p{M}\p{N}_-]+"""
+private const val DOT = """[.。｡]"""
 
-/** The same host, but only with a port, path, query or fragment after it: a title is never just `Dr.Harbor`'s shape. */
-private val HOST_WITH_TAIL = Regex("""^[\w.-]+\.[a-z]{2,}(:\d+|[/?#])""")
+/** A top-level domain: two letters or more in any script, or a punycode one. */
+private const val TLD = """(?:\p{L}[\p{L}\p{M}]+|xn--[a-z0-9-]+)"""
+
+/** Where a word starts: the start, a space, or an opening bracket or quote. */
+private const val WORD_START = """(?:^|[\s(\[{<"'«“‘])"""
+
+/**
+ * At the start of any word: a host with a port, path, query or fragment after it (a `?` or `#` only with a token after
+ * it, so a title may end a sentence), `content:/` or `file:/`, or a path of two parts or more (`/storage/emulated/…`).
+ * A dotted title on its own, `Dr.Harbor` or `Mr.Lantern`, is a title and stays.
+ */
+private val ADDRESS_IN_A_WORD = Regex(
+    WORD_START + """(?:""" +
+        """$LABEL(?:$DOT$LABEL)*$DOT$TLD(?::\d+|/|[?#][\p{L}\p{N}_%=&.-])""" +
+        """|(?:content|file):/""" +
+        """|/[^\s/]+/)""",
+)
+
+/**
+ * [ADDRESS_IN_A_WORD], or a host with nothing after it: `stream.example.to`, `видео.рф`. For a source's or subtitle's
+ * name only: as a title it would blank `Dr.Harbor` and `Mr.Lantern`.
+ */
+private val BARE_HOST = Regex(
+    ADDRESS_IN_A_WORD.pattern + """|$WORD_START$LABEL(?:$DOT$LABEL)*$DOT$TLD(?::\d+)?(?![\p{L}\p{M}\p{N}_-])""",
+)
 private val STRICT_CHARACTERS = setOf('?', '=', '/', '\\')
 
 internal fun TvHudFacts.toHudState(): PlayerHudState {

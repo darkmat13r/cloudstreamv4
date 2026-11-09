@@ -6127,7 +6127,7 @@ A follow-up to `KMP-52`. A plugin's `titleName` and `episodeName` became the fol
 - **The rule** is the TV HUD's title rule as `KMP-66` tightens it, restated in `DownloadPaths.looksLikeAddress`:
   - a scheme anywhere, or a path, `content:` or `file:` at the start;
   - a host at the start followed by a port, path, query or fragment.
-  A dotted title on its own (`Dr.Stone`, `Mr.Robot`, `Vol.II`) stays. Only a source's name gets the HUD's stricter rule (a bare host,
+  A dotted title on its own (`Dr.Harbor`, `Mr.Lantern`, `Vol.II`) stays. Only a source's name gets the HUD's stricter rule (a bare host,
   `sig=`, a backslash path), and a title never does.
 - **Where it applies.** It goes in `DownloadPaths.displayText`, which every title and episode name already passes through:
   - on enqueue, before the name is stored or names a folder or file;
@@ -6144,6 +6144,42 @@ A follow-up to `KMP-52`. A plugin's `titleName` and `episodeName` became the fol
   token, and runs it to Done. The file is `Download/S01E05.mp4`. Neither marker appears in `downloads.json`, in any other file in its
   folder, or in any file's bytes or any path name under the download root, either then or after a restart.
 - With `looksLikeAddress` forced to false, 3 of these fail: 2 in `DownloadPathsTest` and the new one in `DesktopDownloadsTest`.
+
+## KMP-81 — The title rule finds an address anywhere in a name, in any script · **in review**, follow-up of `KMP-71`
+
+Review of #233 found two gaps in the title rule that `KMP-66` gave the HUD and `KMP-71` restated for Mac downloads:
+- **An address inside a name** passed: the host check was anchored at the start, so `Ep 5 cdn.host.to/v/x?token=…`
+  was kept.
+- **A host in another script** passed: `\w` and `[a-z]` are ASCII, so `видео.рф/x` was kept. So was the same address
+  written in full-width characters.
+
+**The rule now**, read after NFKC so full-width characters count as their ASCII forms:
+- **Unchanged:** a scheme (`://`) anywhere; a path, `content:` or `file:` at the start.
+- **New, at the start of any word** (after a space or an opening bracket or quote):
+  - a host with a port, path, query or fragment after it;
+  - `content:/` or `file:/`;
+  - a path of two parts or more (`/storage/emulated/…`).
+- **Hosts:** labels may be in any script. The dots are `.`, `。` and `｡`. The top-level domain is two letters or more in
+  any script, or punycode.
+- **Fewer false positives:** a `?` or `#` counts only with a token after it, so `Is it Dr.Harbor?` and `Who is Mr.Lantern?!`
+  stay. `Harbor / North`, `Low Tide 1/2` and `Case File: 7` stay too.
+
+**Copies.**
+- **Mac downloads** (`DownloadPaths.looksLikeAddress`): done here. `DownloadPathsTest` passes 6/6. Control: with the old
+  rule, the new address test fails.
+- **TV HUD** (`TvHudFacts.hudText`): the same rule, restated, now that #205 is on master (train 9). A source's or a
+  subtitle's name goes through it too, since `hudLabel` reads `hudText` first. `hudLabel`'s own check for a host with
+  nothing after it (`stream.example.to`) also finds one at the start of any word and in any script now, so
+  `Mirror видео.рф` falls back to the quality. A name such as `Mirror 5.1` keeps its label.
+- **Tests:** `TvHudFactsTest` uses the same two lists as `DownloadPathsTest`, so the rule is checked on the same text
+  in both copies. Each list's titles are made up (`BUG-70`).
+
+**Proof**, all local (CI is off):
+- Control, with master's `TvHudFacts`: `TvHudFactsTest` 11 with 2 failures. All 11 addresses got through in a title
+  and an episode name, and `Mirror stream.example.to` kept its label. The titles that must stay passed there too, as a
+  guard should.
+- With the new rule, three runs in a row: `TvHudFactsTest` 11/0, `TvPanelRowsTest` 3/0, `DownloadPathsTest` 6/0 and
+  `DesktopDownloadsTest` 26/0.
 
 ## KMP-55 — The Mac's Home, built from `DS-21`
 

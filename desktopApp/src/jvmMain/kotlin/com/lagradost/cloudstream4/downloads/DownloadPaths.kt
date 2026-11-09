@@ -1,5 +1,7 @@
 package com.lagradost.cloudstream4.downloads
 
+import java.text.Normalizer
+
 /**
  * Folder and file names made from what a plugin said a title is called.
  *
@@ -114,16 +116,30 @@ internal object DownloadPaths {
             ?.takeIf { it.isNotEmpty() }
 
     /**
-     * The TV HUD's rule for a title (`TvHudFacts.hudText`, as `KMP-66` tightened it), restated: a scheme anywhere, a
-     * path, `content:` or `file:` at the start, or a host at the start with a port, path, query or fragment after it.
-     * A dotted title on its own, `Dr.Stone` or `Mr.Robot`, is a title and stays.
+     * The TV HUD's rule for a title (`TvHudFacts.hudText`), restated. Read after NFKC, so full-width characters count as
+     * their ASCII forms: a scheme anywhere; a path, `content:` or `file:` at the start; and, at the start of any word
+     * (`KMP-81`), a host with a port, path, query or fragment after it, `content:/` or `file:/`, or a path of two parts or
+     * more. A host's labels may be in any script. A dotted title on its own, `Dr.Harbor` or `Mr.Lantern`, is a title and
+     * stays, and so does one that ends a sentence with `?`: only a `?` or `#` with a token after it counts.
      */
     internal fun looksLikeAddress(text: String): Boolean {
-        val lower = text.lowercase()
+        val lower = Normalizer.normalize(text, Normalizer.Form.NFKC).lowercase()
         return "://" in lower || lower.startsWith("/") || lower.startsWith("content:") || lower.startsWith("file:") ||
-            HOST_WITH_TAIL.containsMatchIn(lower)
+            ADDRESS_IN_A_WORD.containsMatchIn(lower)
     }
 
-    private val HOST_WITH_TAIL = Regex("""^[\w.-]+\.[a-z]{2,}(:\d+|[/?#])""")
+    /** A label of a host name, in any script, and the dots IDNA reads as one (`.`, `。`, `｡`). */
+    private const val LABEL = """[\p{L}\p{M}\p{N}_-]+"""
+    private const val DOT = """[.。｡]"""
+
+    /** A top-level domain: two letters or more in any script, or a punycode one. */
+    private const val TLD = """(?:\p{L}[\p{L}\p{M}]+|xn--[a-z0-9-]+)"""
+
+    private val ADDRESS_IN_A_WORD = Regex(
+        """(?:^|[\s(\[{<"'«“‘])(?:""" +
+            """$LABEL(?:$DOT$LABEL)*$DOT$TLD(?::\d+|/|[?#][\p{L}\p{N}_%=&.-])""" +
+            """|(?:content|file):/""" +
+            """|/[^\s/]+/)""",
+    )
     private const val MAX_TEXT_CHARS = 200
 }

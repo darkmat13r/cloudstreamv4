@@ -29,6 +29,7 @@ class TvHudFactsTest {
 
     private fun facts(
         title: String = "Quiet Harbor",
+        episodeName: String = "Low Tide",
         link: ExtractorLink? = link(),
         downloaded: Boolean = false,
         subtitle: String? = "English (SRT)",
@@ -38,7 +39,7 @@ class TvHudFactsTest {
         title = title,
         season = 1,
         episode = 4,
-        episodeName = "Low Tide",
+        episodeName = episodeName,
         videoHeight = 1080,
         videoCodec = "AVC",
         audioLanguage = "English",
@@ -136,6 +137,41 @@ class TvHudFactsTest {
         assertEquals("", facts(title = "cdn.host.to/v/$SECRET_PATH").toHudState().title)
     }
 
+    /**
+     * `KMP-81`: an address inside a title or an episode name, one in another script, and one written in full-width
+     * characters. Each drops the whole text, as an address at the start does.
+     */
+    @Test
+    fun anAddressAnywhereInATitleInAnyScriptIsDropped() {
+        val leaks = ADDRESSES_IN_A_NAME.filter { text ->
+            val state = facts(title = text, episodeName = text).toHudState()
+            state.title.isNotEmpty() || SECRET_PATH in state.meta || SECRET_TOKEN in state.meta
+        }
+        assertEquals(emptyList<String>(), leaks)
+    }
+
+    /** What the wider rule must not take: dotted words, sentence punctuation, slashes between words, `File:`. */
+    @Test
+    fun titlesWithDotsQuestionMarksAndSlashesBetweenWordsStay() {
+        val lost = TITLES_THAT_STAY.filter { facts(title = it).toHudState().title != it }
+        assertEquals(emptyList<String>(), lost)
+    }
+
+    /** A source's name with a host in it, anywhere and in any script, falls back to the quality alone. */
+    @Test
+    fun aSourceNameWithAHostAnywhereFallsBackToTheQuality() {
+        for (name in listOf(
+            "Mirror stream.example.to",
+            "Mirror (cdn.host.to)",
+            "Зеркало видео.рф",
+            "Mirror ｓｔｒｅａｍ．ｅｘａｍｐｌｅ．ｔｏ",
+            "Mirror host.com:8443",
+        )) {
+            assertEquals(name, "1080p", facts(link = link(name = name)).toHudState().source)
+        }
+        assertEquals("Mirror 5.1 · 1080p", facts(link = link(name = "Mirror 5.1")).toHudState().source)
+    }
+
     @Test
     fun providerTextLosesControlCharacters() {
         val state = facts(link = link(name = "Sou\nrce\u0007 One")).toHudState()
@@ -158,5 +194,35 @@ class TvHudFactsTest {
         const val SECRET_TOKEN = "TOKENSECRET42"
         const val SECRET_REFERER = "REFERERSECRET42"
         const val SECRET_COOKIE = "COOKIESECRET42"
+
+        /** The same lists as `DownloadPathsTest`'s (`KMP-81`): the rule is one text in both copies. */
+        val ADDRESSES_IN_A_NAME = listOf(
+            "Ep 5 cdn.host.to/v/$SECRET_PATH?token=$SECRET_TOKEN",
+            "Episode 5 (cdn.host.to/$SECRET_PATH)",
+            "Ep 5 host.com:8443",
+            "Ep 5 host.to?token=$SECRET_TOKEN",
+            "Ep 5 /storage/emulated/0/$SECRET_PATH",
+            "Ep 5 file:/Users/$SECRET_PATH",
+            "Серия 5 видео.рф/$SECRET_PATH",
+            "第5話 例え。テスト/$SECRET_PATH",
+            "Ep 5 xn--80ak6aa92e.xn--p1ai/$SECRET_PATH",
+            "ｈｔｔｐｓ：／／cdn.example.invalid／$SECRET_PATH",
+            "Ep 5 ｃｄｎ．ｈｏｓｔ．ｔｏ／$SECRET_PATH",
+        )
+
+        val TITLES_THAT_STAY = listOf(
+            "Harbor Lights...?",
+            "Is it Dr.Harbor?",
+            "Who is Mr.Lantern?!",
+            "Mr.Lantern: Season 1",
+            "Harbor / North",
+            "Low Tide 1/2",
+            "Case File: 7",
+            "Ep.10",
+            "Vol.6 #3",
+            "H.A.R.B.O.R.",
+            "Тихая гавань",
+            "静かな港",
+        )
     }
 }
