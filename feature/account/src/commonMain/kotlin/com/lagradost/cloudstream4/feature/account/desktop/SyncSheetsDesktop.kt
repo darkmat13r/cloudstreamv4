@@ -394,7 +394,7 @@ fun RemoveSignInSheet(profileName: String, serviceName: String, onRemove: () -> 
             .focusable(),
     ) {
         BasicText(UiString.Resource(Res.string.account_sync_remove_title, listOf(serviceName)).resolve(), style = typography.railTitle.copy(color = colors.ink))
-        BasicText(stringResource(Res.string.account_sync_remove_body, profileName, serviceName), style = typography.body.copy(color = colors.ink2))
+        BasicText(UiString.Resource(Res.string.account_sync_remove_body, listOf(profileName, serviceName)).resolve(), style = typography.body.copy(color = colors.ink2))
         Row(horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap, Alignment.End), modifier = Modifier.fillMaxWidth()) {
             DesktopButton(label = stringResource(Res.string.settings_remove), onClick = onRemove)
             DesktopButton(label = stringResource(Res.string.cancel), onClick = onCancel, primary = true)

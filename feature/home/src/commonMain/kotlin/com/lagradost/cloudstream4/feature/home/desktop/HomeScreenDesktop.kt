@@ -339,7 +339,7 @@ private fun StaleBanner(source: String, loadedAt: Long, now: () -> Long, onReloa
     ) {
         CloudStreamIcon(CloudStreamIcons.Warning, null, size = CloudStreamIconSize.Small, tint = colors.ink)
         BasicText(
-            text = stringResource(Res.string.home_reload_failed, source, elapsedAge(at - loadedAt).resolve()),
+            text = UiString.Resource(Res.string.home_reload_failed, listOf(source, elapsedAge(at - loadedAt).resolve())).resolve(),
             style = CloudStreamTheme.typography.body.copy(color = colors.ink),
             maxLines = 2,
             overflow = TextOverflow.Ellipsis,
@@ -464,7 +464,7 @@ private fun RowHeader(
 
             is HomeMore.Failed -> {
                 BasicText(
-                    text = stringResource(Res.string.downloads_joined, stringResource(Res.string.source_error), more.detail),
+                    text = UiString.Resource(Res.string.downloads_joined, listOf(stringResource(Res.string.source_error), more.detail)).resolve(),
                     style = typography.caption.copy(color = colors.muted),
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,

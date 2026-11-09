@@ -85,6 +85,19 @@ tasks.named<Test>("jvmTest") {
             baselineDir.set(layout.projectDirectory.dir("oracle-baseline"))
         },
     )
+    // `BUG-84`: `StringResourceArgumentsGuardTest` reads every module's main sources for Compose's argument overloads.
+    // The same tree it walks is declared here, so editing any of those files re-runs it.
+    jvmArgumentProviders.add(
+        objects.newInstance<strings.StringsCallSitesArgument>().apply {
+            root.set(layout.settingsDirectory)
+            sources.from(
+                fileTree(layout.settingsDirectory) {
+                    include("**/src/*Main/**/*.kt")
+                    exclude("app/**", "core/strings/**", "build-logic/**", "**/build/**", "**/.gradle/**")
+                },
+            )
+        },
+    )
 }
 
 // The strings flip is loss-free only if the authored Compose tree survives a full round trip through Android res

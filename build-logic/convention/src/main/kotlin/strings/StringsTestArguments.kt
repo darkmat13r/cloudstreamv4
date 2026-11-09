@@ -1,7 +1,10 @@
 package strings
 
+import org.gradle.api.file.ConfigurableFileCollection
 import org.gradle.api.file.DirectoryProperty
 import org.gradle.api.tasks.InputDirectory
+import org.gradle.api.tasks.InputFiles
+import org.gradle.api.tasks.Internal
 import org.gradle.api.tasks.PathSensitive
 import org.gradle.api.tasks.PathSensitivity
 import org.gradle.process.CommandLineArgumentProvider
@@ -34,4 +37,22 @@ abstract class StringsBaselineArgument : CommandLineArgumentProvider {
 
     override fun asArguments(): Iterable<String> =
         listOf("-Dstrings.baseline=${baselineDir.get().asFile.absolutePath}")
+}
+
+/**
+ * Hands the repository root to `StringResourceArgumentsGuardTest` as `-Dstrings.callSites=<root>` (`BUG-84`).
+ *
+ * The guard reads every main-source Kotlin file itself; [sources] declares those files as a relative-path-sensitive
+ * input, so an edit to any of them re-runs the guard rather than leaving an up-to-date result from before the edit.
+ * [root] is only the place to start reading, and is not part of the cache key.
+ */
+abstract class StringsCallSitesArgument : CommandLineArgumentProvider {
+    @get:InputFiles
+    @get:PathSensitive(PathSensitivity.RELATIVE)
+    abstract val sources: ConfigurableFileCollection
+
+    @get:Internal
+    abstract val root: DirectoryProperty
+
+    override fun asArguments(): Iterable<String> = listOf("-Dstrings.callSites=${root.get().asFile.absolutePath}")
 }

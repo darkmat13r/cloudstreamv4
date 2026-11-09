@@ -3261,3 +3261,40 @@ path, query or fragment (`a@2x.jpg`) is kept, and so is `%40`.
   in both classes passed in that run (49 tests, 3 failed).
 - With the fix, `:desktopApp:jvmTest` passed 543 of 543, and `:feature:settings:jvmTest` 17 of 17.
 - The four gates each exited 0, and `check-test-results.py` read 242 files with 0 failures.
+
+## BUG-84 — Nothing stopped a call to Compose's argument overloads, which leave `%s`, `%d` and `%.1f` unfilled · **low, i18n**
+
+**Status:** fixed in this PR · found in review of #311
+
+Compose Resources 1.12's `stringResource(res, args)`, `getString(res, args)`, `pluralStringResource(res, q, args)` and
+`getPluralString(res, q, args)` fill only `%N$s` and `%N$d`. A bare `%s`, `%d`, `%.1f` or `%%` is drawn as typed, and a
+`%N$` above the number of arguments throws. `UiStringFormat`'s KDoc said feature code never calls them, but nothing
+checked it, and #311 shipped "Skip %s". On master the five calls that pass arguments are all safe today: every
+locale's text for their keys holds only `%1$s` and `%2$s`. A later translation could change that.
+
+**Fix.** `StringResourceArgumentsGuardTest` in `:core:strings`'s `jvmTest`. It needs no new dependency.
+- It reads every `*/src/*Main/**/*.kt` outside `app/` and `core/strings/`, and fails on any call to the four lookups
+  that passes format arguments. There is no allow-list.
+- Comments and string text are blanked before it looks, but code inside a `${}` template is still read. An `import … as`
+  alias counts. A leading `environment` is not a format argument.
+- `getString` and `getPluralString` count only where Compose's is imported (by name or `.*`) or written fully qualified,
+  because the preference stores have their own `getString(key, default)`.
+- A second test checks that no locale's highest `%N$` is above English's for the same key. On master none is (61
+  locales).
+- The source files are declared as an input of the test task (`StringsCallSitesArgument`), so an edit to any of them
+  re-runs the guard instead of leaving an up-to-date result.
+- Master's five sites now use `UiString.Resource(res, listOf(…)).resolve()`: `pin_error_wait` (Mac PIN entry),
+  `player_source_resumes_at` (Mac source picker), `home_reload_failed` and `downloads_joined` (Mac Home), and
+  `account_sync_remove_body` (Mac sync sheet). The text is unchanged. In all 62 directories, the only `%` sequences in
+  those keys are `%1$s` and `%2$s`, every argument is a String, and both formatters substitute those the same way.
+
+**Proof,** all local (CI is off):
+- **Red, call sites:** with master's five calls and one planted `stringResource(Res.string.cast_format, name)`
+  (`Cast: %s`), the guard listed exactly those six. The test classes were up to date and the test still re-ran.
+- **Red, locales:** with `%3$s` planted in `values-b+de`'s `account_sync_remove_body`, the locale test failed with
+  `values-b+de string/account_sync_remove_body: %3$ but English stops at 2`.
+- **Green:** `StringResourceArgumentsGuardTest` 10 of 10. Its eight scanner cases cover a multi-line call, a spread, a
+  named argument, the plural and suspend forms, an alias, a fully qualified call, a preference store's `getString`,
+  comments, string text and a template. `:core:strings:jvmTest` 53 of 53.
+- The five gates each exited 0. `check-test-results.py` read 265 files with 0 failures, `:app:checkExtensionApi`
+  exited 0, and `classes-jar.api` has no diff.
