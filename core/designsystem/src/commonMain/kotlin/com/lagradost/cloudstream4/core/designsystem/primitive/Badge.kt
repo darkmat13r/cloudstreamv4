@@ -57,8 +57,9 @@ enum class BadgeTone {
  * English and `RANG DINAMIC SIMPLE (SDR)` — 154dp — in Catalan, inside an 80dp poster whose badge
  * box is 72dp (`BUG-62`). So the label **ellipsises at whatever width the caller allows**, and the
  * caller is the one that knows the cap: `MediaCard` gives its badges the card's width less
- * [BadgeDefaults.HorizontalPadding]'s inset on both sides, and [BadgeGroup] gives a pair of badges
- * on one edge that same cap between them. A clipped `RANG DINAMIC SIMPL` ends mid-word with
+ * `MediaCardDefaults.ContentPadding` on both sides — 4dp, the same number as
+ * [BadgeDefaults.HorizontalPadding] but the card's inset rather than the badge's own — and
+ * [BadgeGroup] gives a pair of badges on one edge that same cap between them. A clipped `RANG DINAMIC SIMPL` ends mid-word with
  * nothing to say it was cut; `RANG DINAM…` says so.
  *
  * **The height is a floor, not a fixed size** — `heightIn(min = …)` rather than `height(…)`. At

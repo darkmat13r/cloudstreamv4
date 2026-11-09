@@ -76,7 +76,7 @@ object ListRowDefaults {
      * It is also what rule 5 says about the row itself: *"a text stack must total a multiple of
      * 16px to centre in a 96px row"*. The row is the other half of that sentence.
      *
-     * Should be promoted as `CloudStreamDimens.ListRowHeightStep`.
+     * **Should become `CloudStreamDimens.ListRowHeightStep`.**
      */
     val HeightStep: Dp = 16.dp
 

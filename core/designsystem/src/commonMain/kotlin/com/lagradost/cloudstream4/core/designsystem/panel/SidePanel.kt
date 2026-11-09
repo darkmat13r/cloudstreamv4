@@ -164,8 +164,23 @@ object SidePanelDefaults {
  *
  *   **A row here may give its title a second line** ([LocalListRowTitleLines]), because 232dp of
  *   title is not enough for every language's `sort_*` label (`BUG-62`), and a row that does is
- *   64dp instead of 48dp. The [commit] row is deliberately left out of that: it holds one short
- *   verb, and a 64dp row there would eat 16dp of the bottom focus band.
+ *   64dp instead of 48dp.
+ *
+ *   A scrolling panel keeps a focused grown row inside its own box: the four `sort_*` criteria in
+ *   `ta`, all grown, come to 300dp inside the 336dp this region leaves on a 540dp screen, and
+ *   walking down a panel too short for its rows parks each focused row at the same y as the list
+ *   scrolls under it (`SidePanelLongLabelDeviceTest`). What does **not** work is asking focus for
+ *   a row the first frame does not compose — a `LazyColumn` disposes the item and cancels its
+ *   effect first — and that holds for one-line rows too, so it is `BUG-82` rather than this.
+ *
+ *   The [commit] row is deliberately left out of the second line, and the premise is measured
+ *   rather than assumed: a 64dp row here would eat 16dp of the bottom focus band, and no label a
+ *   commit row is given needs one. In the **220.1dp** this row allows a title on `Television_720p`,
+ *   the longest are `search_quick_open_full` at 199.2dp in `mk`, 180.9 in `el`, 171.0 in `fr`,
+ *   168.4 in `hr` and 146.5 in `my`; `go_back` is 160.0 in `ta`, `cancel` 68.4 in `my`,
+ *   `setup_done` 62.3 in `ta` and `search_state_retry` 55.2 in English. The widest is 21dp clear,
+ *   on one line and unellipsised, and `SidePanelLongLabelDeviceTest` drives all nine so a new
+ *   caller or a longer translation fails rather than quietly clips.
  */
 @Composable
 fun SidePanel(

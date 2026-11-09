@@ -1,11 +1,9 @@
 package com.lagradost.cloudstream4.core.designsystem.card
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
 import androidx.compose.foundation.layout.PaddingValues
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -16,8 +14,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Shape
-import androidx.compose.ui.unit.Dp
-import androidx.compose.ui.unit.dp
+import androidx.compose.ui.layout.Layout
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusLift
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.primitive.BadgeDefaults
@@ -124,21 +121,37 @@ private fun MediaCardSurface(
  *
  * ## The card is what caps a badge's width (`BUG-62`)
  *
- * The two slots are **one row across the card's top**, not two independently aligned corners, and
- * that is what gives each badge a width it can ellipsise against. The leading badge is weighted
- * with `fill = false`, so `Row` measures the trailing badge at the card's full box first, hands
- * the leading badge what is left, and the leading badge takes its own intrinsic width inside
- * that. The two therefore cannot overlap however long a translation is: `asian_drama_singular` is
- * `ASIAN DRAMA` in English and `DARAAMADA EESHIYAANKA` — 147dp — in Somali, on a 96dp card whose
- * badge box is 88dp.
+ * The two slots are **one layout across the card's top**, not two independently aligned corners,
+ * and that is what gives each badge a width it can ellipsise against. Aligned corners cannot
+ * express it: each corner box was measured against the whole card, so a long leading badge ran
+ * under the trailing one, and the card's clip cut both with nothing to say they had been cut.
+ * `asian_drama_singular` is `ASIAN DRAMA` in English and `DARAAMADA EESHIYAANKA` — 147dp — in
+ * Somali, on a 96dp card whose badge box is 88dp.
  *
- * Aligned corners cannot express that. Each corner box was measured against the whole card, so a
- * long leading badge ran under the trailing one and both were cut by the card's clip with nothing
- * to say they had been. `Arrangement.SpaceBetween` keeps the trailing badge on the trailing edge,
- * which is where `.tr` draws it in `TV Library`, and [BadgeDefaults.Gap] after the leading badge
- * keeps the two apart when the leading one fills what it was given.
+ * ## Both badges share the cap, and neither can starve the other
  *
- * Nothing about this is measured by the card: the row is a child of the card's own clipped box, so
+ * The first version of this was a `Row` with `Arrangement.SpaceBetween` and the leading badge
+ * weighted `fill = false`. A `Row` measures its **unweighted** children first, so the trailing
+ * badge was handed the whole box and the leading badge got whatever was left — which, for a
+ * long-translated trailing badge, is nothing at all. `TV Library` draws a rating or a status in
+ * `.tr`, so that pair is real, and it is this task's own overflow moved to the other edge. Found
+ * in review, `BUG-68`.
+ *
+ * So the width is shared explicitly. Each badge's intrinsic width is what it would ellipsise
+ * from, and [shareBadgeWidths] divides the room left after [BadgeDefaults.Gap] between the two:
+ *
+ * - both fit — both take their intrinsic width. This is the common case, and the one every
+ *   existing card screenshot records, so none of them moved;
+ * - one is over its half — the short badge keeps its intrinsic width and the long one takes all
+ *   the rest, so nothing ellipsises that had room to fit. This is what the weighted `Row` already
+ *   did for a long *leading* badge, and it now holds in both directions;
+ * - both are over — each takes half, because at that point one of them has to lose.
+ *
+ * Each badge is measured once, at the width it ends up with, so it ellipsises itself against that
+ * width. The trailing badge is placed against the trailing edge, which is where `.tr` draws it in
+ * `TV Library`, and `placeRelative` mirrors both in RTL.
+ *
+ * Nothing here is measured by the card: this layout is a child of the card's own clipped box, so
  * like every other overlay it cannot change what a rail measures.
  */
 @Composable
@@ -146,28 +159,55 @@ private fun BoxScope.MediaCardBadges(slots: MediaCardSlots) {
     val leading = slots.leadingBadge
     val trailing = slots.trailingBadge
     if (leading == null && trailing == null) return
-    Row(
+    Layout(
         modifier = Modifier
             .align(Alignment.TopStart)
             .fillMaxWidth()
             .padding(MediaCardDefaults.ContentPadding),
-        horizontalArrangement = Arrangement.SpaceBetween,
-    ) {
-        Box(
-            modifier = Modifier
-                .weight(WEIGHT_REMAINING, fill = false)
-                .padding(end = if (trailing == null) NO_GAP else BadgeDefaults.Gap),
-            content = { leading?.invoke() },
+        content = {
+            Box(content = { leading?.invoke() })
+            Box(content = { trailing?.invoke() })
+        },
+    ) { measurables, constraints ->
+        val gap = if (leading != null && trailing != null) BadgeDefaults.Gap.roundToPx() else 0
+        val widths = shareBadgeWidths(
+            leadingWanted = measurables[LEADING_BADGE].maxIntrinsicWidth(constraints.maxHeight),
+            trailingWanted = measurables[TRAILING_BADGE].maxIntrinsicWidth(constraints.maxHeight),
+            room = (constraints.maxWidth - gap).coerceAtLeast(0),
         )
-        trailing?.invoke()
+        val placeables = measurables.mapIndexed { slot, measurable ->
+            measurable.measure(constraints.copy(minWidth = 0, maxWidth = widths[slot]))
+        }
+        val height = placeables.maxOf { it.height }
+        layout(constraints.maxWidth, height) {
+            val trailingPlaceable = placeables[TRAILING_BADGE]
+            placeables[LEADING_BADGE].placeRelative(x = 0, y = 0)
+            trailingPlaceable.placeRelative(x = constraints.maxWidth - trailingPlaceable.width, y = 0)
+        }
     }
 }
 
-/** The leading badge takes what the trailing one leaves, and no more. */
-private const val WEIGHT_REMAINING = 1f
+/**
+ * Divides [room] between a leading badge that wants [leadingWanted] and a trailing badge that
+ * wants [trailingWanted], in px. Returns the leading width at [LEADING_BADGE] and the trailing
+ * width at [TRAILING_BADGE]; the two always sum to at most [room]. The rule, and why it is not a
+ * `Row` weight, is in [MediaCardBadges]'s KDoc.
+ */
+private fun shareBadgeWidths(leadingWanted: Int, trailingWanted: Int, room: Int): IntArray {
+    if (leadingWanted + trailingWanted <= room) return intArrayOf(leadingWanted, trailingWanted)
+    val half = room / 2
+    return when {
+        leadingWanted <= half -> intArrayOf(leadingWanted, room - leadingWanted)
+        trailingWanted <= half -> intArrayOf(room - trailingWanted, trailingWanted)
+        else -> intArrayOf(room - half, half)
+    }
+}
 
-/** A card with one badge has nothing to keep it apart from. */
-private val NO_GAP: Dp = 0.dp
+/** The badge drawn against the card's leading edge, and its slot in [MediaCardBadges]. */
+private const val LEADING_BADGE = 0
+
+/** The badge drawn against the card's trailing edge. */
+private const val TRAILING_BADGE = 1
 
 /**
  * Inset for the revealed text stack inside its scrim block. The top is the scrim's lead above the

@@ -3262,6 +3262,38 @@ path, query or fragment (`a@2x.jpg`) is kept, and so is `%40`.
 - With the fix, `:desktopApp:jvmTest` passed 543 of 543, and `:feature:settings:jvmTest` 17 of 17.
 - The four gates each exited 0, and `check-test-results.py` read 242 files with 0 failures.
 
+## BUG-82 — A side-panel row below the fold that asks for focus as the panel opens is never focused · **low** · measured 2026-11-10
+
+**Status:** open · found while reviewing `BUG-68` · not caused by it
+
+Every TV panel asks focus for one of its rows as it opens — `LibrarySortPanelTv` for the applied criterion,
+`QuickSearchPanel` for its commit row — with a `FocusRequester` on the row and a `LaunchedEffect` that waits one frame
+and calls `requestFocus`. In a `LazyColumn`, a row the first frame does not compose never runs that effect: the item is
+disposed, which cancels it, so nothing asks for focus and the list never scrolls to it. The panel opens with focus
+wherever `SidePanelHost`'s fallback puts it, and the row the caller named is reachable only by walking down to it.
+
+**Measured** on `Television_720p`, 8 rows in a panel whose region holds three and a half, focus asked for one row
+(a throwaway test, not committed; `BUG-68`'s `SidePanelLongLabelDeviceTest` KDoc records it):
+
+| Rows | Target | Composed on frame 1 | Focused | List scrolled |
+|---|---|---|---|---|
+| English, one line | index 4 | yes | yes | yes |
+| English, one line | index 7 | **no** | **no** | **no** |
+| `ta`, two lines | index 4 | frame 1 only, then disposed as the rows grow | **no** | **no** |
+| `ta`, two lines | index 7 | no | **no** | **no** |
+
+The English control is the point: this is the caller's pattern, not `BUG-68`'s second line. The second line only moves
+the fold, so a row that used to be above it can now be below it.
+
+**Not reachable in the app today.** The one panel whose rows grow is the sort panel, and its four criteria all fit the
+region with 36dp to spare (`BUG-68`). The panels that scroll — sources, tracks, quick search — draw short titles, so
+their rows are 48dp and the fold is where it always was. What makes it worth fixing is that nothing warns you:
+`requestFocusIfAttached()` returns false and the fallback hides it.
+
+**Fix, when it is taken:** scroll to the row before asking for its focus — a `LazyListState.scrollToItem(index)` (or
+`requestScrollToItem`) in the same effect, keyed on the row the caller names. Deciding a row's height in the same
+layout pass would hide the `ta` case above and leave the English one, so it is not the fix for this.
+
 ## BUG-62 — The longest translations overflow four TV surfaces · **medium** · measured 2026-11-08
 
 **Status:** measured; the four approved fixes are `BUG-68`.
@@ -3292,11 +3324,18 @@ Detail's action row (`qt` 826 of 832dp), the Downloads rows and every placeholde
 Every size comes from a token or from an existing `XxxDefaults` literal; nothing new is off the 4dp step.
 
 - **(a) Card badges ellipsise, and a pair that cannot share an edge stacks.** `Badge` draws
-  `TextOverflow.Ellipsis` instead of being cut by the card's clip. `MediaCard`'s two badge slots became **one row
-  across the card's top** with the leading badge weighted, so the card's width caps each badge and a long leading badge
-  can no longer run under the trailing one. `BadgeGroup` is new: the badges on one edge, side by side while they fit
-  and stacked when they do not, which is what keeps a second badge from being measured at zero width. `TV Search`'s
-  result card uses it.
+  `TextOverflow.Ellipsis` instead of being cut by the card's clip. `MediaCard`'s two badge slots became **one layout
+  across the card's top**, so the card's width caps each badge and a long leading badge can no longer run under the
+  trailing one. `BadgeGroup` is new: the badges on one edge, side by side while they fit and stacked when they do not,
+  which is what keeps a second badge from being measured at zero width. `TV Search`'s result card uses it.
+
+  The two-edge layout **shares the cap explicitly** rather than weighting one slot, which the review caught: a `Row`
+  measures its unweighted children first, so a weighted leading badge beside an unweighted trailing one gave the
+  trailing badge the whole box and the leading badge nothing — the same starvation this task is about, on the other
+  edge, and reachable in Slovak, where `library_sync_cached` is 151dp in `.tr`. Each badge's intrinsic width is what
+  it would ellipsise from, so: both fit, both keep it; one over its half, the short one keeps its width and the long
+  one takes the rest; both over, each takes half. The common case is unchanged, which is why no existing card
+  screenshot moved.
 - **(b) Three fixed-width controls grow to their label, with the old width as the minimum.** The player's `Skip`
   (`widthIn(min = SkipWidth)`), the account screen's `Manage profiles` and a sync row's verb. A label that still does
   not fit ellipsises, as it always did.
@@ -3343,6 +3382,29 @@ each guards itself with a case that fails if the locale ever stops reaching the 
 Eleven screenshots are recorded, and **every one of the 92 references already in those eight modules re-records
 byte-identically**, which is the evidence that nothing else on these screens moved. `:core:screenshot` gains a
 `long labels` case, which stays red with the rest of that suite.
+
+**What the review changed** (`#287`, 2026-11-09):
+
+- **The trailing badge could starve the leading one.** See the (a) bullet above. Fixed, with
+  `aLongTrailingBadgeStillLeavesTheLeadingOneItsWidth` as its case: `library_sync_cached` is 151dp in `sk` beside a
+  two-character quality badge, and before the fix the quality badge was measured at zero and never drawn.
+- **A grown row in a scrolling panel.** A row's height lands the frame after the title layout that reported it, so the
+  review asked whether a focused row near the bottom survives it. Measured on `Television_720p`:
+  - the **real** sort panel is unaffected: four grown `ta` criteria plus the list's 8dp of ring padding come to 300dp
+    inside the 336dp a 540dp panel leaves, and the applied row takes focus at 359..423dp inside a 128..464dp list;
+  - **walking down** a panel too short for its rows keeps every focused row and its 4dp of ring inside the list — each
+    one parks at 210..274dp of a 128..404dp list as the list scrolls under it;
+  - what fails is **not** the geometry: a focus target the first frame does not compose never reaches `requestFocus`,
+    because a `LazyColumn` disposes the item and cancels its effect. That is `BUG-82`, and it happens with one-line
+    rows too, so the second line only moves which rows are below the fold.
+- **The commit row stays one line, measured.** In the 220.1dp it allows, the longest label any caller gives it is
+  `search_quick_open_full` at 199.2dp in `mk` (then `el` 180.9, `fr` 171.0, `hr` 168.4, `my` 146.5), `go_back` 160.0
+  in `ta`, `cancel` 68.4, `setup_done` 62.3, `search_state_retry` 55.2. The widest is 21dp clear. The numbers are in
+  `SidePanel`'s KDoc and all nine are driven by a test.
+- **Smaller:** `measuredTitleLines`' `remember` is keyed on the title, so a reused row measures its own string;
+  `Badge`'s KDoc named `BadgeDefaults.HorizontalPadding` where the card uses `MediaCardDefaults.ContentPadding` (the
+  same 4dp, a different meaning); `ListRowDefaults.HeightStep`'s promotion note now uses the same
+  **Should become `CloudStreamDimens.…`** marker as the other four, so one grep finds them all.
 
 **Not in this task.** `quality_profile_help` measures 1247dp, but it is help text in a dialog rather than a badge, and
 the sweep lists it only because it shares the `quality_*` prefix.
