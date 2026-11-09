@@ -17,6 +17,8 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.PixelMap
 import androidx.compose.ui.graphics.toPixelMap
+import androidx.compose.ui.layout.boundsInRoot
+import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.test.captureToImage
@@ -67,9 +69,9 @@ class ChipDeviceTest {
                     .padding(CloudStreamDimens.FocusBandInset),
             ) {
                 ChipRow {
-                    Chip(MOVIES, selected = false, onClick = {})
-                    Chip(SERIES, selected = true, onClick = {})
-                    Chip(LIVE, selected = false, onClick = {})
+                    Chip(MOVIES, selected = false, onClick = {}, modifier = Modifier.cell(MOVIES))
+                    Chip(SERIES, selected = true, onClick = {}, modifier = Modifier.cell(SERIES))
+                    Chip(LIVE, selected = false, onClick = {}, modifier = Modifier.cell(LIVE))
                 }
             }
         }
@@ -81,11 +83,19 @@ class ChipDeviceTest {
         return rule.onNodeWithText(label).fetchSemanticsNode().boundsInRoot
     }
 
-    /** The chip's cell: its focus target plus [CloudStreamDimens.FocusRingBleed] each side, the ring's room. */
+    /**
+     * Each chip's cell as laid out, recorded by [cell] on the modifier the caller passes to [Chip], which is outermost
+     * in its chain. A `testTag` there would not do: it shares the `selectable`'s semantics node, whose bounds are the
+     * focus target's.
+     */
+    private val cells = mutableMapOf<String, Rect>()
+
+    private fun Modifier.cell(label: String): Modifier = onGloballyPositioned { cells[label] = it.boundsInRoot() }
+
+    /** The chip's cell, measured. */
     private fun cell(label: String): Rect {
-        val target = target(label)
-        val room = CloudStreamDimens.FocusRingBleed.px()
-        return Rect(target.left - room, target.top, target.right + room, target.bottom)
+        rule.waitForIdle()
+        return checkNotNull(cells[label]) { "$label was laid out" }
     }
 
     private fun Dp.px(): Float = with(rule.density) { toPx() }
@@ -187,6 +197,10 @@ class ChipDeviceTest {
             assertEquals("the key focused the next chip", label, moved)
             assertEquals("exactly one chip holds focus", 1, rule.onAllNodes(isFocused()).fetchSemanticsNodes().size)
             val cell = cell(label)
+            val target = target(label)
+            val room = CloudStreamDimens.FocusRingBleed.px()
+            assertEquals("$label's cell is its focus target plus the ring's room, left", target.left - room, cell.left, 1f)
+            assertEquals("$label's cell is its focus target plus the ring's room, right", target.right + room, cell.right, 1f)
             val frame = rule.onRoot().captureToImage().toPixelMap()
             var left = Int.MAX_VALUE; var right = -1; var top = Int.MAX_VALUE; var bottom = -1
             for (y in 0 until frame.height) for (x in 0 until frame.width) {

@@ -3323,7 +3323,10 @@ All on `Television_720p`, locally (CI is off).
     from the row reaches the rail, and the first chip's focus target starts where the row does. It fails with the
     ring's room inside the focus target: "the first chip's focus target starts with the content expected:<133.0> but
     was:<138.0>".
-  - Its `cell` helper is the focus target plus `FocusRingBleed` each side, since the target is now the pill.
+  - Its `cell` helper measures the cell, through `onGloballyPositioned` on the modifier the caller passes to `Chip`. A
+    `testTag` there would report the focus target's bounds, since it shares the `selectable`'s semantics node. Each
+    focused chip's cell is asserted to be its focus target plus `FocusRingBleed` each side. Without the outer padding it fails: "Movies's cell is its focus target plus the ring's room,
+    left expected:<26.675> but was:<32.0>".
   - `theVisibleGapBetweenChipsIsMinFocusGap`: the ground between two pills, in pixels, is `MinFocusGap`. Old: "expected
     <15.975> but was <32.0>".
   - `eachRingStaysInsideItsOwnCellAndOneKeyFocusesOneChip`: each focused ring stays inside its own cell and clear of the

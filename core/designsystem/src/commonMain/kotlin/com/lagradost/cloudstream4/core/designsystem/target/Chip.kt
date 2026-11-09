@@ -52,6 +52,9 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * Left from that content went to the chip instead of the rail beside it (`BUG-65`,
  * `DownloadsTvNavigationTest`).
  *
+ * **This chip is for TV only.** Its touch target is the pill's width, often narrower than 48dp, so reusing it on touch
+ * needs `Modifier.minimumInteractiveComponentSize()` added for a touch screen.
+ *
  * The cell's **width is intrinsic** — the label's width plus [ChipDefaults.VisualHorizontalPadding]
  * on each side, plus the count if there is one, plus the ring's room. Geometry
  * rule 6 exempts text measurement from the step; see [ChipRow], which is where the next reader is
