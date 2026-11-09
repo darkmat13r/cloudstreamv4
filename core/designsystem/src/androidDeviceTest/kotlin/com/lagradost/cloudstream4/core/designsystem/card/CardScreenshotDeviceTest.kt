@@ -51,7 +51,7 @@ class CardScreenshotDeviceTest {
                     Row(horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ChipRowSpacing)) {
                         PosterCard(
                             rung = PosterRung.Medium,
-                            state = MediaCardState(focused = true, title = "Blade Runner 2049", meta = "2017 · 2H 44M"),
+                            state = MediaCardState(focused = true, title = "Salt Road Crossing the Bay", meta = "2018 · 2H 36M"),
                             slots = MediaCardSlots(leadingBadge = { Badge(text = "4K") }),
                         ) { Box(Modifier.fillMaxSize().background(ART)) }
                         SeeAllCard(size = CloudStreamCardSizes.PortraitMedium, label = "See all", focused = false)
