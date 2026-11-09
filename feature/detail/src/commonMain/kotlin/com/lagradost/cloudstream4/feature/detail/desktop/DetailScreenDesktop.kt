@@ -34,10 +34,15 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.selected
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -45,12 +50,14 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
+import com.lagradost.cloudstream4.core.designsystem.primitive.BadgeDefaults
 import com.lagradost.cloudstream4.core.designsystem.primitive.ProgressRule
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
@@ -62,6 +69,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.go_back
 import com.lagradost.cloudstream4.core.strings.generated.resources.no_episodes_found
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_episode
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_movie_button
+import com.lagradost.cloudstream4.core.strings.generated.resources.rating
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
 import com.lagradost.cloudstream4.core.strings.generated.resources.season
 import com.lagradost.cloudstream4.core.strings.generated.resources.season_other
@@ -78,8 +86,10 @@ import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.code
 import com.lagradost.cloudstream4.feature.detail.episodeSubtitle
 import com.lagradost.cloudstream4.feature.detail.label
-import com.lagradost.cloudstream4.feature.detail.metaRun
+import com.lagradost.cloudstream4.feature.detail.oneDecimal
 import com.lagradost.cloudstream4.feature.detail.resumeCaption
+import com.lagradost.cloudstream4.feature.detail.runtimeLabel
+import com.lagradost.cloudstream4.feature.detail.statusLabel
 import com.lagradost.cloudstream4.feature.detail.toPageUiState
 import com.lagradost.cloudstream4.feature.detail.typeLabel
 import org.jetbrains.compose.resources.stringResource
@@ -114,7 +124,6 @@ fun DetailScreenDesktop(
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
             TopBar(origin, state.detail?.title, onBack)
-            Box(Modifier.fillMaxWidth().height(CloudStreamDimens.Hairline).background(CloudStreamTheme.colors.line))
             when (val page = state.content.toPageUiState(onAction)) {
                 is UiState.Content -> TitlePage(page.value, state.synopsisOpen, onAction, artwork)
                 is UiState.Empty -> Failure(page.prompt, onBack)
@@ -133,13 +142,8 @@ fun DetailScreenDesktop(
 private fun TopBar(origin: String?, title: String?, onBack: () -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = DesktopDimens.WindowMargin - DesktopDimens.RelatedGap, vertical = DesktopDimens.RelatedGap),
-    ) {
+    // KMP-98: the page bar every Mac page starts with, its hairline included.
+    DesktopPageBar(contentPadding = DesktopDimens.WindowMargin - DesktopDimens.RelatedGap) {
         DesktopIconButton(
             CloudStreamIcons.Back,
             stringResource(Res.string.go_back),
@@ -274,30 +278,135 @@ private fun Header(
                 maxLines = DetailScreenDesktopDefaults.TitleLines,
                 overflow = TextOverflow.Ellipsis,
             )
-            val facts = facts(detail)
-            if (facts.isNotEmpty()) {
-                BasicText(
-                    text = facts,
-                    style = typography.body.copy(color = colors.ink2),
-                    maxLines = 1,
-                    overflow = TextOverflow.Ellipsis,
-                )
-            }
+            FactsLine(detail)
+            GenresLine(detail.tags)
             detail.plot?.takeIf { it.isNotBlank() }?.let { plot -> Synopsis(plot, synopsisOpen, onAction) }
         }
     }
 }
 
 /**
- * The run of facts under the name: the shared run (score, tags, year, certification, runtime or status), then the
- * kind of title and where it came from. Each only where it is known, so a provider that sends little says little.
+ * E1's facts under the name (`KMP-82`): the score with its star, the certification in an outlined badge, the year, the
+ * runtime, the status, then the kind of title and where it came from. Each only where the source gave it, so a title
+ * with none draws no line and leaves no gap. The line wraps rather than cuts, so no fact is lost off its end, and a
+ * line never starts with a separator ([SeparatedLines]).
  */
 @Composable
-private fun facts(detail: TitleDetail): String = listOfNotNull(
-    metaRun(detail).takeIf { it.isNotBlank() },
-    detail.typeName?.let { typeLabel(it) },
-    detail.providerName.takeIf { it.isNotBlank() },
-).joinToString(META_SEPARATOR)
+private fun FactsLine(detail: TitleDetail) {
+    val colors = CloudStreamTheme.colors
+    val style = CloudStreamTheme.typography.body.copy(color = colors.ink2)
+    val words = listOfNotNull(
+        detail.year?.toString(),
+        detail.durationMinutes?.let { runtimeLabel(it) },
+        detail.statusName?.let { statusLabel(it) },
+        detail.typeName?.let { typeLabel(it) },
+        detail.providerName.takeIf { it.isNotBlank() },
+    )
+    val score = detail.score
+    val certification = detail.contentRating?.takeIf { it.isNotBlank() }
+    val legs = buildList<@Composable () -> Unit> {
+        if (score != null) add { Score(score, style) }
+        if (certification != null) add { Certification(certification) }
+        words.forEach { word ->
+            add { BasicText(word, style = style, maxLines = 1, softWrap = false, overflow = TextOverflow.Ellipsis) }
+        }
+    }
+    if (legs.isEmpty()) return
+    SeparatedLines(legs) {
+        // Decoration between two facts: a screen reader reads the facts, not the dots.
+        BasicText(META_SEPARATOR, style = style, maxLines = 1, modifier = Modifier.clearAndSetSemantics { })
+    }
+}
+
+/**
+ * [items] in lines, as wide as there is room for, with a [separator] only between two items on the same line: a line
+ * never starts or ends with one. An item wider than a whole line gets the line to itself, at most that wide, so a text
+ * item set to ellipsize cuts rather than overflowing. Items are centred on their line.
+ */
+@Composable
+private fun SeparatedLines(items: List<@Composable () -> Unit>, separator: @Composable () -> Unit) {
+    Layout(
+        content = {
+            items.forEach { item -> Box { item() } }
+            repeat(items.size - 1) { separator() }
+        },
+    ) { measurables, constraints ->
+        val loose = constraints.copy(minWidth = 0, minHeight = 0)
+        val placed = measurables.take(items.size).map { it.measure(loose) }
+        val separators = measurables.drop(items.size).map { it.measure(loose) }
+        // Each line: the item placeables and, for every item after the first, the separator before it.
+        val lines = mutableListOf(mutableListOf<Placeable>())
+        var x = 0
+        placed.forEachIndexed { index, item ->
+            val before = if (index == 0) null else separators[index - 1]
+            if (before != null && x + before.width + item.width > constraints.maxWidth) {
+                lines += mutableListOf<Placeable>()
+                x = 0
+            } else if (before != null) {
+                lines.last() += before
+                x += before.width
+            }
+            lines.last() += item
+            x += item.width
+        }
+        val widths = lines.map { line -> line.sumOf { it.width } }
+        val heights = lines.map { line -> line.maxOf { it.height } }
+        val width = widths.max().coerceIn(constraints.minWidth, constraints.maxWidth)
+        layout(width, heights.sum()) {
+            var y = 0
+            lines.forEachIndexed { row, line ->
+                var left = 0
+                line.forEach { placeable ->
+                    placeable.placeRelative(left, y + (heights[row] - placeable.height) / 2)
+                    left += placeable.width
+                }
+                y += heights[row]
+            }
+        }
+    }
+}
+
+/** `☆ 8.4`: the Tabler star, an outline, and the score to one decimal, read as "Rating 8.4". */
+@Composable
+private fun Score(score: Float, style: TextStyle) {
+    val described = "${stringResource(Res.string.rating)} ${oneDecimal(score)}"
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.StackGap),
+        modifier = Modifier.clearAndSetSemantics { contentDescription = described },
+    ) {
+        CloudStreamIcon(CloudStreamIcons.Star, null, size = CloudStreamIconSize.Small, tint = style.color)
+        BasicText(oneDecimal(score), style = style, maxLines = 1)
+    }
+}
+
+/** `PG-13` in a hairline outline: a label as the source spelled it, never translated. */
+@Composable
+private fun Certification(text: String) {
+    val colors = CloudStreamTheme.colors
+    Box(
+        contentAlignment = Alignment.Center,
+        modifier = Modifier
+            .heightIn(min = BadgeDefaults.Height)
+            .border(CloudStreamDimens.Hairline, colors.muted, CloudStreamTheme.shapes.small)
+            .padding(horizontal = BadgeDefaults.HorizontalPadding),
+    ) {
+        BasicText(text, style = CloudStreamTheme.typography.labelMono.copy(color = colors.ink2), maxLines = 1, softWrap = false)
+    }
+}
+
+/** Up to [DetailScreenDesktopDefaults.GenreCount] of the source's genres, quieter than the facts, on one line. */
+@Composable
+private fun GenresLine(tags: List<String>) {
+    val shown = tags.filter { it.isNotBlank() }.take(DetailScreenDesktopDefaults.GenreCount)
+    if (shown.isEmpty()) return
+    BasicText(
+        text = shown.joinToString(META_SEPARATOR),
+        style = CloudStreamTheme.typography.label.copy(color = CloudStreamTheme.colors.muted),
+        maxLines = 1,
+        overflow = TextOverflow.Ellipsis,
+    )
+}
 
 /**
  * Two lines, and the whole block opens and closes in place on a press. No "More" word is drawn after the cut: there
@@ -625,6 +734,9 @@ object DetailScreenDesktopDefaults {
 
     /** E6: below this the name is a size down. Home's compact hero turns at the same width. */
     val CompactBelow: Dp = 720.dp
+
+    /** At most this many of the source's genres under the facts (`KMP-82`): enough to place a title, not a tag cloud. */
+    const val GenreCount: Int = 5
 
     const val TitleLines = 2
     const val SynopsisLines = 2

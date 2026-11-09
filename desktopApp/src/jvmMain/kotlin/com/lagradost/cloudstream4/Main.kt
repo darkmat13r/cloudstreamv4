@@ -93,6 +93,7 @@ import com.lagradost.cloudstream4.home.label
 import com.lagradost.cloudstream4.home.HomeHost
 import com.lagradost.cloudstream4.home.TopLevelScreen
 import com.lagradost.cloudstream4.home.TopLevelTab
+import com.lagradost.cloudstream4.home.titleBarOverContent
 import com.lagradost.cloudstream4.player.MediaHost
 import com.lagradost.cloudstream4.player.PlayerFullscreen
 import com.lagradost.cloudstream4.player.PlayerHandover
@@ -244,6 +245,8 @@ fun main(args: Array<String>) {
                                 appearance = settings,
                                 playback = settings,
                                 profileFoot = foot,
+                                onOpenSettings = { settingsOpen = true },
+                                onSidebarShown = { shown -> window.rootPane.titleBarOverContent(shown) },
                             )
                         }
                     }
@@ -309,6 +312,9 @@ private sealed interface Screen {
  *   page is then empty; the app passes the real one.
  * @param playback what the player reads from Settings. Every default by default, so a test never reads a real file.
  * @param profileFoot the profile button at the sidebar's foot (`KMP-95`, `DS-25` A2). Nothing by default.
+ * @param onOpenSettings opens the Settings window, from the sidebar's last row (`KMP-98`). Null draws no row.
+ * @param onSidebarShown told whether the screen on top has the sidebar, so the window's title bar is transparent over
+ *   it (`KMP-98`) and plain over the player and the review, which have no column for the traffic lights to sit in.
  */
 @Composable
 internal fun DesktopApp(
@@ -327,6 +333,8 @@ internal fun DesktopApp(
     appearance: AppearanceSettings = AppearanceSettings.Default,
     playback: PlaybackSettings = PlaybackSettings.Default,
     profileFoot: @Composable () -> Unit = {},
+    onOpenSettings: (() -> Unit)? = null,
+    onSidebarShown: (Boolean) -> Unit = {},
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) {
@@ -388,7 +396,10 @@ internal fun DesktopApp(
     // Keeps the scroll position of what is under the top screen, so back returns to the same place.
     val saved = rememberSaveableStateHolder()
     val screen = stack.last()
-    SideEffect { onScreen(screen.toString()) }
+    SideEffect {
+        onScreen(screen.toString())
+        onSidebarShown(screen.hasSidebar)
+    }
     saved.SaveableStateProvider(screen.toString()) {
         // One place decides what a tab press does, so a new tab cannot be wired up two ways. `KMP-77`: the sidebar is on a
         // title's page too, so a press there leaves what was pushed for that tab, as a sidebar does in Finder or Music.
@@ -416,7 +427,7 @@ internal fun DesktopApp(
             shortcuts.onBack = if (stack.size > 1) ({ back(screen) }) else null
         }
         when (screen) {
-            Screen.Home -> TopLevelScreen(TopLevelDestination.Home, toTab, trailing = notice) {
+            Screen.Home -> TopLevelScreen(TopLevelDestination.Home, toTab, trailing = notice, onSettings = onOpenSettings) {
                 HomeHost(
                     homeViewModel,
                     setEscape = { escape.onEscape = it },
@@ -425,7 +436,7 @@ internal fun DesktopApp(
                     appearance = appearance,
                 )
             }
-            Screen.Search -> TopLevelScreen(TopLevelDestination.Search, toTab, trailing = notice) {
+            Screen.Search -> TopLevelScreen(TopLevelDestination.Search, toTab, trailing = notice, onSettings = onOpenSettings) {
                 SideEffect { escape.onEscape = null }
                 SearchHost(
                     scope,
@@ -435,7 +446,7 @@ internal fun DesktopApp(
                     appearance = appearance,
                 )
             }
-            Screen.Library -> TopLevelScreen(TopLevelDestination.Library, toTab, trailing = notice) {
+            Screen.Library -> TopLevelScreen(TopLevelDestination.Library, toTab, trailing = notice, onSettings = onOpenSettings) {
                 LibraryHost(
                     libraryViewModel,
                     setEscape = { escape.onEscape = it },
@@ -445,7 +456,7 @@ internal fun DesktopApp(
                     appearance = appearance,
                 )
             }
-            Screen.Downloads -> TopLevelScreen(TopLevelDestination.Downloads, toTab, trailing = notice) {
+            Screen.Downloads -> TopLevelScreen(TopLevelDestination.Downloads, toTab, trailing = notice, onSettings = onOpenSettings) {
                 if (downloads != null && downloadsViewModel != null) {
                     DownloadsHost(
                         downloads,
@@ -462,7 +473,7 @@ internal fun DesktopApp(
             }
             is Screen.DownloadSeries -> key(screen.id) {
                 // As a title's page: the sidebar stays, with Downloads chosen.
-                TopLevelScreen(origin, toTab, trailing = notice) {
+                TopLevelScreen(origin, toTab, trailing = notice, onSettings = onOpenSettings) {
                     if (downloads != null) {
                         DownloadSeriesHost(downloads, screen.id, scope, setEscape = { escape.onEscape = it }, onClose = { back(screen) })
                     }
@@ -476,7 +487,7 @@ internal fun DesktopApp(
             }
             is Screen.Detail -> key(screen.id) {
                 // `DS-21` E1: a title's page keeps the sidebar, with the tab it was opened from chosen.
-                TopLevelScreen(origin, toTab, trailing = notice) {
+                TopLevelScreen(origin, toTab, trailing = notice, onSettings = onOpenSettings) {
                     DetailHost(
                         id = screen.id,
                         scope = scope,

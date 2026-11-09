@@ -48,7 +48,9 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopOfflinePill
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
@@ -166,7 +168,9 @@ fun HomeScreenDesktop(
                 return@Column
             }
             status.failureNotice?.let { notice ->
-                Box(Modifier.padding(horizontal = DesktopDimens.WindowMargin)) { FailureBanner(notice = notice) }
+                // The gap under the page bar, as the rows have it.
+                val inset = Modifier.padding(start = DesktopDimens.WindowMargin, top = DesktopDimens.GroupGap, end = DesktopDimens.WindowMargin)
+                Box(inset) { FailureBanner(notice = notice) }
             }
             val prompts = Modifier.fillMaxSize()
             when (val content = status) {
@@ -189,14 +193,9 @@ fun HomeScreenDesktop(
 private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit, showRandom: Boolean) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(horizontal = DesktopDimens.WindowMargin, vertical = DesktopDimens.GroupGap),
-    ) {
-        val name = if (state.unsourced) stringResource(Res.string.none) else state.selectedOption?.name ?: return@Row
+    // KMP-98: the page bar every Mac page starts with (board H1).
+    DesktopPageBar {
+        val name = if (state.unsourced) stringResource(Res.string.none) else state.selectedOption?.name ?: return@DesktopPageBar
         BasicText(
             text = stringResource(Res.string.home_source),
             style = typography.label.copy(color = colors.muted),
@@ -204,7 +203,7 @@ private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit, showRandom
         )
         DesktopButton(label = name, onClick = { onAction(HomeAction.PickerOpened) })
         // H4: offline costs no height. It sits beside the source, which is what it is about.
-        if (state.status.shown is HomeStatus.Offline) OfflinePill()
+        if (state.status.shown is HomeStatus.Offline) DesktopOfflinePill(stringResource(Res.string.downloads_offline_pill))
         Spacer(Modifier.weight(1f))
         // 3j: named in the bar. Each has something to act on only while the source's rows are on screen, kept ones included (H4).
         if (state.status.keptRows.isNotEmpty() && !state.unsourced) {
@@ -221,26 +220,6 @@ private fun Toolbar(state: HomeState, onAction: (HomeAction) -> Unit, showRandom
                 )
             }
         }
-    }
-}
-
-@Composable
-private fun OfflinePill() {
-    val colors = CloudStreamTheme.colors
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-        modifier = Modifier
-            .height(HomeScreenDesktopDefaults.PillHeight)
-            .background(colors.raised, CloudStreamTheme.shapes.pill)
-            .padding(horizontal = DesktopDimens.RelatedGap),
-    ) {
-        CloudStreamIcon(CloudStreamIcons.Offline, null, size = CloudStreamIconSize.Small, tint = colors.muted)
-        BasicText(
-            text = stringResource(Res.string.downloads_offline_pill),
-            style = CloudStreamTheme.typography.caption.copy(color = colors.muted),
-            maxLines = 1,
-        )
     }
 }
 
@@ -278,8 +257,10 @@ private fun Page(
         val width = maxWidth - DesktopDimens.WindowMargin * 2
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
+            // The top is the gap the page bar used to hold below its controls (`KMP-98`), so the rows did not move.
             contentPadding = PaddingValues(
                 start = DesktopDimens.WindowMargin,
+                top = DesktopDimens.GroupGap,
                 end = DesktopDimens.WindowMargin,
                 bottom = DesktopDimens.SectionGap,
             ),
@@ -391,8 +372,10 @@ private fun Rows(
         val width = maxWidth - DesktopDimens.WindowMargin * 2
         LazyColumn(
             modifier = Modifier.fillMaxSize(),
+            // The top is the gap the page bar used to hold below its controls (`KMP-98`), so the rows did not move.
             contentPadding = PaddingValues(
                 start = DesktopDimens.WindowMargin,
+                top = DesktopDimens.GroupGap,
                 end = DesktopDimens.WindowMargin,
                 bottom = DesktopDimens.SectionGap,
             ),
@@ -941,8 +924,6 @@ object HomeScreenDesktopDefaults {
     const val ScrimAlpha = 0.6f
     /** How often H4's age is read again: it counts in minutes. */
     const val AGE_TICK_MILLIS = 60_000L
-    /** H4's offline pill. Mirrors `dimens.ChipVisualHeight`. */
-    val PillHeight: Dp = 24.dp
     /** A bookmark status chip, 3f at desktop size. */
     val ChipHeight: Dp = 32.dp
     /** A state where the source's rows would be, under the device's rails. */

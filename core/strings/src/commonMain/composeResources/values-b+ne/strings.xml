@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">%d से. मा अर्को एपिसोड</item><item quantity="other">%d से. मा अर्को एपिसोड</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d स्रोतमा खोज्नुहोस्</item><item quantity="other">सबै %d स्रोतहरूमा खोज्नुहोस्</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">जे भए पनि %d स्रोतमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।</item><item quantity="other">जे भए पनि सबै %d स्रोतहरूमा खोज्न किबोर्डको खोज कुञ्जी थिच्नुहोस्।</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">%d स्रोत फेरि प्रयास गर्नुहोस्</item><item quantity="other">%d स्रोतहरू फेरि प्रयास गर्नुहोस्</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d स्रोत</item><item quantity="other">%d स्रोतहरू</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d खण्ड</item><item quantity="other">%d खण्डहरू</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d स्क्यान चेतावनी</item><item quantity="other">%d स्क्यान चेतावनी</item></plurals>

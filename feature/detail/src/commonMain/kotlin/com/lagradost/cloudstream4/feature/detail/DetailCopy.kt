@@ -194,7 +194,7 @@ internal fun metaRun(detail: TitleDetail): String {
  * is its own key. Under an hour the hours form would read `0h 42m`, which no board draws.
  */
 @Composable
-private fun runtimeLabel(minutes: Int): String = if (minutes >= MINUTES_PER_HOUR) {
+internal fun runtimeLabel(minutes: Int): String = if (minutes >= MINUTES_PER_HOUR) {
     UiString.Resource(
         Res.string.duration_hours_minutes_format,
         listOf(minutes / MINUTES_PER_HOUR, minutes % MINUTES_PER_HOUR),
@@ -210,7 +210,7 @@ private fun runtimeLabel(minutes: Int): String = if (minutes >= MINUTES_PER_HOUR
  * side of the slash and a point on the other reads worse than writing neither. Formatting the whole
  * fraction through `%f` would need a resource that does not exist.
  */
-private fun oneDecimal(score: Float): String {
+internal fun oneDecimal(score: Float): String {
     val tenths = (score.coerceAtLeast(0f) * TENTHS).roundToInt()
     return "${tenths / TENTHS_PER_UNIT}.${tenths % TENTHS_PER_UNIT}"
 }

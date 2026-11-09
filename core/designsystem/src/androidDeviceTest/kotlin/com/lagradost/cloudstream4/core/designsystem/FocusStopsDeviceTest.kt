@@ -80,7 +80,7 @@ class FocusStopsDeviceTest {
                     ) {
                         GhostTextButton(label = ABOVE, onClick = { pressed += ABOVE })
                         ListRow(
-                            state = ListRowState(title = ROW, subtitle = "S5 E14 · 1.2 GB"),
+                            state = ListRowState(title = ROW, subtitle = "S3 E9 · 1.2 GB"),
                             onClick = { pressed += ROW },
                             modifier = Modifier.fillMaxWidth(),
                             actions = {
@@ -212,7 +212,7 @@ class FocusStopsDeviceTest {
         const val SETTLE_MS = 1_000L
         const val DOWN_ATTEMPTS = 6
         const val ABOVE = "Above"
-        const val ROW = "Ozymandias"
+        const val ROW = "Riptide"
         const val PLAY = "Play"
         const val DELETE = "Delete"
         const val DISABLED_ROW = "Your rating"

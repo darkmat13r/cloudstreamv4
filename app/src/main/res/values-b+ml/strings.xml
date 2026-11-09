@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"%d സെ. കഴിഞ്ഞ് അടുത്ത എപ്പിസോഡ്"</item><item quantity="other">"%d സെ. കഴിഞ്ഞ് അടുത്ത എപ്പിസോഡ്"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ഉറവിടത്തിൽ തിരയുക"</item><item quantity="other">"എല്ലാ %d ഉറവിടങ്ങളിലും തിരയുക"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"എന്നിട്ടും %d ഉറവിടത്തിൽ തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക."</item><item quantity="other">"എന്നിട്ടും എല്ലാ %d ഉറവിടങ്ങളിലും തിരയാൻ കീബോർഡിലെ തിരയൽ കീ അമർത്തുക."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"%d ഉറവിടം വീണ്ടും ശ്രമിക്കുക"</item><item quantity="other">"%d ഉറവിടങ്ങൾ വീണ്ടും ശ്രമിക്കുക"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ഉറവിടം"</item><item quantity="other">"%d ഉറവിടങ്ങൾ"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d സ്കാൻ മുന്നറിയിപ്പ്"</item><item quantity="other">"%d സ്കാൻ മുന്നറിയിപ്പുകൾ"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"എല്ലാ വിപുലീകരണങ്ങളും (%d)"</item><item quantity="other">"എല്ലാ വിപുലീകരണങ്ങളും (%d)"</item></plurals>

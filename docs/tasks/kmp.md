@@ -6350,6 +6350,70 @@ both ways out; it wants its own task.
 as TV does, but nothing on the Mac fills it: TV's stamps come from its host. Find where the stamps come from for a
 title, read them for the episode playing, and pass the current one to `PlayerContent.skip`, with `onSkip` seeking past it.
 
+## KMP-101 — Mac Search and Downloads polish: S3's banner, S2's second line, D5's pill, outlined state actions · **in review**
+
+**Status:** in review · `:desktopApp`, `:core:designsystem`, `:feature:{search,downloads,home}`, `:core:strings` · a design
+audit against boards S3, S2, D5, D4 and S6 · stacked on `KMP-98`, which changes both pages' bars · its key is `I18N-22`
+
+- **S3, a partial failure, is one band across the page** (`DesktopFailureBanner`): a warning glyph, what failed, the
+  mono detail, and an outlined **Retry N sources** at the far end, which counts the sources it asks again. The TV's
+  `FailureBanner` pill stays as it is: it is sized to ride a chip row, because a TV's vertical budget decides whether a
+  rail reaches the focus band.
+- **S2, the card's second line.** `DesktopSearchSource` filled `typeLabel` and `qualityLabel` with null, because a
+  Compose resource has no synchronous accessor. It now resolves them with the suspend `getString`, once for each distinct
+  value in a search, from the keys Android's search uses (`DesktopResultLabels`). A card shows `Movie · 4K`, a type
+  alone, or no second line.
+- **D5, offline on Downloads and a series' downloads, is Home's pill**: the wifi-off glyph and the same words, where it
+  drew a failed status dot. Home's private `OfflinePill` moved to `:core:designsystem` as `DesktopOfflinePill`, so the
+  three pages draw one component. Home's pixels do not change.
+- **D4 and S6, an empty or failed page's action is outlined**: a hairline and no fill, `raised` under the pointer.
+  `DesktopButtonTone.Outlined` is new, and `DesktopStateView` is `StateView` with that button. `StateView` gained an
+  `actionButton` slot whose default is the TV's button, so TV and Android draw what they drew.
+
+The string is `search_state_retry_sources`, a plural, in all 62 directories (`I18N-22`).
+
+## KMP-98 — The Mac window's chrome: the title bar, Settings in the sidebar, one page bar · **in review**
+
+**Status:** in review · `:desktopApp`, `:core:designsystem`, `:feature:{home,search,library,detail,downloads}` · a
+design audit against boards D1 (chrome and sidebar), S1, H1 and D1 (the bar).
+
+- **The title bar is transparent over the content** wherever the sidebar is, as the Settings window has it: the sidebar
+  runs the window's full height with the traffic lights in it, and its rows start under a 52 band. Over the player and
+  the extension review the title bar is plain, since neither has a column for the lights. `titleBarOverContent` sets
+  `apple.awt.fullWindowContent`, `transparentTitleBar` and `windowTitleVisible`; the host switches it per screen.
+- **Settings ⌘,** is the sidebar's last row, below whatever the foot holds (the extensions notice now, the profile
+  button after `KMP-95`). It opens the Settings window, as the app menu's Settings… does. The key is shown on a Mac only;
+  elsewhere nothing binds it.
+- **One page bar, `DesktopPageBar`** (`:core:designsystem`): 52 tall, the hairline along its bottom edge, on Home,
+  Search, Library, a title's page, Downloads and a series' downloads. Before, Home's bar was 68 with no hairline,
+  Search had a padded field and no bar, and both Downloads pages drew a box round theirs. Library's and the title
+  page's were already 52 with a hairline, which now sits inside the band, so the band stays on the 4 dp step.
+- Home's rows did not move: the 16 the old bar held below its controls is now the list's top padding. Search's chips
+  and results moved up 20 (the old bar had 24 round the field).
+
+### Measured on the way
+
+- **A control in the title band takes its click.** Asked AppKit, on Temurin 17 with JNA, which view a point
+  hit-tests to: with the three properties set, every point of the top 28 is the content's `AWTView`; without them the
+  band is `NSTitlebarView`. `AWTView` answers yes to `mouseDownCanMoveWindow`. Robot could not click here (no
+  Accessibility permission, and the control window got no clicks either), so a press and a drag in the real window
+  are still to be tried by hand.
+- **Switching it with the window open applies at once:** the frame's top inset went 28 to 0 and back, and the band's
+  hit-test followed.
+- **The lights sit in the standard 28 band**, not centred on the 52 bar. Centring them needs an `NSToolbar` or JBR's
+  custom title bar; the Settings window has the same placement.
+
+### Tests
+
+- Each page's test (`HomeScreenTest`, `SearchScreenTest`, `LibraryScreenTest`, `DetailScreenTest`,
+  `DownloadsScreenTest`, `DownloadSeriesScreenTest`): one page bar, 52 at the top, the page's width, a hairline along
+  the bottom and none along the top, read from the pixels (`PageBarAssertions`).
+- `DesktopShellTest`: the first sidebar row starts at 52 and the page bar beside it measures as above; Settings is the
+  last row, a button, `⌘,` on a Mac, and a click opens the window; no row without an opener; the window is told the
+  sidebar is shown on every top-level page; the three properties set and unset.
+- Moved coordinates in the existing tests: sidebar rows +28, the Search field and Home's bar at the bar's middle, the
+  chips at 84.
+
 ## KMP-91 — The Mac player's panels from the right, `DS-23` M4 to M7
 
 **Status:** in review · `:desktopApp` · after `KMP-87` (#257) and `I18N-19` (#249)
@@ -6828,12 +6892,39 @@ plugin's number, and many dropped tags make one line.
   has already stepped past the slice, so it is still in step; only the facts are lost. This covers a lying length inside
   the slice as well as a slice cut short, since both are contained by it.
 
-## KMP-82 — The Mac title page shows `KMP-76`'s facts, asserted on screen · **open**, follow-up of `KMP-76` and `KMP-58`
+## KMP-82 — The Mac title page shows `KMP-76`'s facts, and its genres · **built 2026-11-09**, follow-up of `KMP-76` and `KMP-58`
 
-`KMP-76` carries the score, tags, content rating, status and runtime into `TitleDetail`, and tests that mapping. The Mac
-title page on master does not draw the run of facts yet; `KMP-58` (`#226`) does. Once both are on master, add one case to
-`DetailScreenTest`: a title with all five facts shows them in E1's run under the name, in the shared order, and a title
-with none shows no empty separators. No production change is expected.
+**Found:** the page drew the facts, but as one line cut with an ellipsis, in the shared order: score, every tag, year,
+certification, runtime or status, then type and source. A title with a few genres lost everything after them,
+certification included, and the score read `8.4/10.0`.
+
+**Now, E1 under the name** (the owner approved the layout from a render):
+- **The facts line:** the score with its star (`☆ 8.4`, Tabler `Star`, read as "Rating 8.4" from the existing `rating`
+  key), the certification in a hairline outline (`muted`, `labelMono`, `BadgeDefaults`' height and padding), then the
+  year, the runtime, the status, the kind of title and its source. Runtime and status both show where both are given.
+  The line wraps rather than cuts, so no fact is lost off its end. A separator sits only between two facts on the same
+  line (`SeparatedLines`), so no line starts with one, and a fact wider than a whole line is cut with an ellipsis on a
+  line of its own. The dots are decoration: a screen reader reads the facts.
+- **The genres line:** up to five of the source's tags (`GenreCount`), quieter (`muted`, `label`), on one line cut with an
+  ellipsis. Text, not chips: a chip on the Mac reads as something to press.
+- Each fact only where the source gave it. With none, neither line is drawn and the synopsis sits under the name.
+
+**DECIDED:** the star takes the text's colour (no colour role means rating); no new strings; TV keeps the shared
+`metaRun`, unchanged. `oneDecimal` and `runtimeLabel` in `DetailCopy` are now internal so the Mac page can use them.
+`ui-components.md` gains the star's row.
+
+**Tests** (`DetailScreenTest`, 5 new, 21 in all):
+- every fact drawn, five genres and no sixth, in the order facts, genres, synopsis;
+- a title with no facts: the synopsis is the column's own gap (8 px) under the name;
+- five 64-character genres: one line, its height that of a short one, inside the reading width, with the facts above
+  still all there;
+- facts forced onto two lines (the smallest window, a long source name): every fact there, and each line's first fact
+  at the column's own edge, so nothing comes before it;
+- a source name wider than a line: one line, on its own, inside the reading width.
+
+Proved against master's page code: the first and third fail ("the score, with its star"; no genres line). The second
+passes there, as master draws nothing for nothing, and fails (8 → 35 px) when the genres line is drawn without genres.
+The two wrap cases fail when a separator is put back before the fact that starts a line (the fact lands 14 px in).
 
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 

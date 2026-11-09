@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"Neste episode om %d s"</item><item quantity="other">"Neste episode om %d s"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"Søk i %d kilde"</item><item quantity="other">"Søk i alle %d kilder"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"Trykk på søketasten på tastaturet for å søke i %d kilde likevel."</item><item quantity="other">"Trykk på søketasten på tastaturet for å søke i alle %d kilder likevel."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"Prøv %d kilde på nytt"</item><item quantity="other">"Prøv %d kilder på nytt"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d KILDE"</item><item quantity="other">"%d KILDER"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d skanneadvarsel"</item><item quantity="other">"%d skanneadvarsler"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"Alle utvidelser (%d)"</item><item quantity="other">"Alle utvidelser (%d)"</item></plurals>

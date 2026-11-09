@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">ዝቕጽል ክፋል ኣብ %d ካ</item><item quantity="other">ዝቕጽል ክፋል ኣብ %d ካ</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">ኣብ %d ምንጪ ድለ</item><item quantity="other">ኣብ ኩሎም %d ምንጭታት ድለ</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">ብዝኾነ ኣብ %d ምንጪ ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።</item><item quantity="other">ብዝኾነ ኣብ ኩሎም %d ምንጭታት ንምድላይ ናይ ኪቦርድ መድለዪ መጠወቒ ጠውቑ።</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">%d ምንጪ ደጊምካ ፈትን</item><item quantity="other">%d ምንጭታት ደጊምካ ፈትን</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d ምንጪ</item><item quantity="other">%d ምንጭታት</item></plurals>
 <string name="app_dub_sub_episode_text_format">%1$s ክፋል %2$d</string>
 <string name="cast">ተዋሳእቲ</string>

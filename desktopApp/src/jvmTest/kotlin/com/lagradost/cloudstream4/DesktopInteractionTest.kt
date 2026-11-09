@@ -251,7 +251,7 @@ class DesktopInteractionTest {
         const val CARD_Y = 200f
         /** Inside the first row: below the panel's title row. */
         const val FIRST_PANEL_ROW_Y = 88f
-        /** A 24dp margin, then half of the 40dp field. */
-        const val FIELD_CENTRE_Y = 44f
+        /** The middle of the 52 page bar the field sits in (`KMP-98`). */
+        const val FIELD_CENTRE_Y = 26f
     }
 }

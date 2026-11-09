@@ -228,7 +228,7 @@ class LibrarySourcesTvDeviceTest {
         showScreen()
         awaitText(ANILIST)
         // The time the host recorded, measured to the host's clock: four minutes.
-        awaitText("lagradost · Synced 4m ago")
+        awaitText("tidewatch · Synced 4m ago")
         focusProviderButton(ANILIST)
     }
 
@@ -373,7 +373,7 @@ class LibrarySourcesTvDeviceTest {
         sources.failing = false
         dpad.center()
         rule.waitUntil(WAIT_MS) { rule.onAllNodesWithText(CACHED).fetchSemanticsNodes().isEmpty() }
-        awaitText("lagradost · Synced 4m ago")
+        awaitText("tidewatch · Synced 4m ago")
         assertEquals(3, sources.reads.get())
     }
 
@@ -525,7 +525,7 @@ class LibrarySourcesTvDeviceTest {
         )
         val ShotPosters = listOf(0xFF39505C.toInt(), 0xFF5C4A39.toInt(), 0xFF3F5C39.toInt())
         val SyncedNames = listOf(
-            "Frieren: Beyond Journey's End", "Severance", "Vinland Saga", "The Long Dark", "Kingfisher", "Nine Lives",
+            "Fernwood: Beyond the Old Road", "Still Water", "Shoal Saga", "The Long Dark", "Kingfisher", "Nine Lives",
             "Paper Moons", "Grey Harbour", "Fathom", "Saltwater",
         )
         private val Counts = listOf(12 to 28, 9 to 10, 24 to 24, 3 to 8, 6 to 12, 11 to 13, 22 to 22, 7 to 26, 3 to 24, 1 to 8)
@@ -548,7 +548,7 @@ class LibrarySourcesTvDeviceTest {
 
     private class FakeStore : LibraryStore {
         override suspend fun titles() = listOf(
-            LibraryTitle(LibraryTitleId("id/Dune"), "Dune", LibraryBucket.Watching, keptAt = 1, providerName = "Filmxy"),
+            LibraryTitle(LibraryTitleId("id/Tide"), "Tide", LibraryBucket.Watching, keptAt = 1, providerName = "Source A"),
         )
         override suspend fun positions() = emptyList<WatchPosition>()
         override suspend fun remember(title: LibraryTitle) = Unit
@@ -566,7 +566,7 @@ class LibrarySourcesTvDeviceTest {
         override suspend fun sources() = listOf(
             // AniList keeps no release date here, so 5d has a disabled row to show.
             LibrarySource(
-                LibrarySourceId(ANILIST), ANILIST, account = "lagradost", syncedAt = SYNCED_AT,
+                LibrarySourceId(ANILIST), ANILIST, account = "tidewatch", syncedAt = SYNCED_AT,
                 sorts = setOf(LibrarySortCriterion.Updated, LibrarySortCriterion.Title, LibrarySortCriterion.Rating),
             ),
             LibrarySource(LibrarySourceId(LOCAL), LOCAL, local = true, titleCount = 308),

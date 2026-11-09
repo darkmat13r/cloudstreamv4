@@ -54,17 +54,17 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopOfflinePill
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRowsSkeleton
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopStateView
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.primitive.ProgressRule
-import com.lagradost.cloudstream4.core.designsystem.primitive.StatusPill
-import com.lagradost.cloudstream4.core.designsystem.primitive.StatusPillState
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
-import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.cancel
@@ -191,7 +191,7 @@ fun DownloadSeriesScreenDesktop(
                     Modifier.padding(horizontal = DesktopDimens.WindowMargin - DesktopDimens.RowPadding),
                 )
 
-                is SeriesStatus.Failed -> StateView(
+                is SeriesStatus.Failed -> DesktopStateView(
                     prompt = StatePrompt(
                         headline = stringResource(Res.string.downloads_load_failed_headline),
                         body = stringResource(Res.string.downloads_load_failed_body),
@@ -204,7 +204,7 @@ fun DownloadSeriesScreenDesktop(
                     requestInitialFocus = false,
                 )
 
-                SeriesStatus.Empty -> StateView(
+                SeriesStatus.Empty -> DesktopStateView(
                     prompt = StatePrompt(
                         headline = stringResource(Res.string.downloads_empty_headline),
                         body = stringResource(Res.string.downloads_empty_body),
@@ -265,15 +265,8 @@ fun DownloadSeriesScreenDesktop(
 @Composable
 private fun Toolbar(name: String, back: () -> Unit) {
     val colors = CloudStreamTheme.colors
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
-        modifier = Modifier
-            .fillMaxWidth()
-            .height(DownloadsScreenDesktopDefaults.ToolbarHeight)
-            .border(CloudStreamDimens.Hairline, colors.line)
-            .padding(horizontal = DesktopDimens.RowPadding),
-    ) {
+    // KMP-98: the page bar every Mac page starts with: a hairline under it, not a box round it.
+    DesktopPageBar(contentPadding = DesktopDimens.RowPadding) {
         DesktopIconButton(
             icon = CloudStreamIcons.Back,
             contentDescription = stringResource(Res.string.go_back),
@@ -319,7 +312,7 @@ private fun Header(
         Column(verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap)) {
             Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap)) {
                 BasicText(state.name, style = typography.h1.copy(color = colors.ink), maxLines = 1, overflow = TextOverflow.Ellipsis)
-                if (state.offline) StatusPill(StatusPillState.Failed, stringResource(Res.string.downloads_offline_pill))
+                if (state.offline) DesktopOfflinePill(stringResource(Res.string.downloads_offline_pill))
             }
             val count = UiString.Plural(Res.plurals.downloads_episode_count, episodes.size).resolve()
             val onDisk = UiString.Resource(Res.string.downloads_on_disk, listOf(formatBytes(episodes.sumOf { it.bytesDone }))).resolve()

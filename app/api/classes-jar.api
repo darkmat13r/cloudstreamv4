@@ -3212,6 +3212,7 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field search_state_no_suggestions_action I
 	public static field search_state_no_suggestions_body I
 	public static field search_state_partial_headline I
+	public static field search_state_retry_sources I
 	public static field search_tv_recent_count I
 	public static field search_tv_result_count I
 	public static field search_tv_sources_count I

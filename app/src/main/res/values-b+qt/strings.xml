@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="other">"Ooh uuh %d ahh"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="other">"aaoog %d ooh uugg"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="other">"uuh aagg oooh aaahh uug %d ooogg aah."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="other">"oouuh %d ooh"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="other">"%d OOGAH"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="other">"%d aahh aaahhhoo"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="other">"oog oooggguh (%d)"</item></plurals>

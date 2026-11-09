@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"%d ಸೆ. ನಲ್ಲಿ ಮುಂದಿನ ಸಂಚಿಕೆ"</item><item quantity="other">"%d ಸೆ. ನಲ್ಲಿ ಮುಂದಿನ ಸಂಚಿಕೆ"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d ಮೂಲದಲ್ಲಿ ಹುಡುಕಿ"</item><item quantity="other">"ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಿ"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"ಹಾಗಿದ್ದರೂ %d ಮೂಲದಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ."</item><item quantity="other">"ಹಾಗಿದ್ದರೂ ಎಲ್ಲಾ %d ಮೂಲಗಳಲ್ಲಿ ಹುಡುಕಲು ಕೀಬೋರ್ಡ್‌ನ ಹುಡುಕಾಟ ಕೀ ಒತ್ತಿರಿ."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"%d ಮೂಲವನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"</item><item quantity="other">"%d ಮೂಲಗಳನ್ನು ಮತ್ತೆ ಪ್ರಯತ್ನಿಸಿ"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d ಮೂಲ"</item><item quantity="other">"%d ಮೂಲಗಳು"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d ಸ್ಕ್ಯಾನ್ ಎಚ್ಚರಿಕೆ"</item><item quantity="other">"%d ಸ್ಕ್ಯಾನ್ ಎಚ್ಚರಿಕೆಗಳು"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"ಎಲ್ಲಾ ವಿಸ್ತರಣೆಗಳು (%d)"</item><item quantity="other">"ಎಲ್ಲಾ ವಿಸ್ತರಣೆಗಳು (%d)"</item></plurals>

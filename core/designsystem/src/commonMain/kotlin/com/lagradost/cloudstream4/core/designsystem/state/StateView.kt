@@ -81,6 +81,9 @@ object StateViewDefaults {
  * @param showAction `false` when the caller draws [StatePrompt.action] somewhere else, which
  *   `TV Search Suggestions` 8c does: its action rides the chip row. The caller then owes that action
  *   a focus stop, and owes it [requestInitialFocus]'s job too. The exactly-one-action rule still holds.
+ * @param actionButton how [StatePrompt.action] is drawn: [StateActionButton] unless a platform has its own button. It
+ *   is given the action and a modifier that carries [requestInitialFocus]'s requester, and must apply that modifier to
+ *   a focusable control. The Mac's outlined one is `DesktopStateView`'s (`KMP-101`).
  */
 @Composable
 fun StateView(
@@ -90,6 +93,9 @@ fun StateView(
     requestInitialFocus: Boolean = true,
     glyph: @Composable () -> Unit = {},
     showAction: Boolean = true,
+    actionButton: @Composable (action: StateAction, modifier: Modifier) -> Unit = { action, focus ->
+        StateActionButton(action = action, modifier = focus)
+    },
 ) {
     val actionFocus = remember { FocusRequester() }
     // Keyed on the flag alone, deliberately. `prompt.action` holds a lambda, so a ViewModel that
@@ -115,10 +121,7 @@ fun StateView(
             PromptText(prompt = prompt, detail = detail)
             if (showAction) {
                 Spacer(Modifier.height(StateViewDefaults.BlockGap))
-                StateActionButton(
-                    action = prompt.action,
-                    modifier = Modifier.focusRequester(actionFocus),
-                )
+                actionButton(prompt.action, Modifier.focusRequester(actionFocus))
             }
         }
     }

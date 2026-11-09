@@ -502,6 +502,7 @@ class ExtensionReviewScreenTest {
         const val NOTICE_X = 60f
         const val NOTICE_Y = 758f
         const val SIDEBAR_ITEM_X = 100f
-        const val SEARCH_ITEM_Y = 76f
+        /** The sidebar's second row, under the 52 title band (`KMP-98`). */
+        const val SEARCH_ITEM_Y = 104f
     }
 }

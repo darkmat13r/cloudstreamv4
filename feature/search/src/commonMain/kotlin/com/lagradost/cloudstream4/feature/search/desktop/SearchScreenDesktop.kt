@@ -61,24 +61,28 @@ import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopFailureBanner
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopMotion
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopRow
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopStateView
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
-import com.lagradost.cloudstream4.core.designsystem.state.FailureBanner
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
-import com.lagradost.cloudstream4.core.designsystem.state.StateView
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.UiStateHost
 import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
+import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.error
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_idle_body_desktop
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_retry_sources
+import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_clear_all
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_field_placeholder
 import com.lagradost.cloudstream4.core.strings.generated.resources.search_tv_recent_headline
@@ -95,6 +99,7 @@ import com.lagradost.cloudstream4.feature.search.SearchResultItem
 import com.lagradost.cloudstream4.feature.search.SearchSourceChoice
 import com.lagradost.cloudstream4.feature.search.SearchSourceHealth
 import com.lagradost.cloudstream4.feature.search.SearchState
+import com.lagradost.cloudstream4.feature.search.SearchStatus
 import com.lagradost.cloudstream4.feature.search.SearchTypeFilters
 import com.lagradost.cloudstream4.feature.search.SourcePanelState
 import com.lagradost.cloudstream4.feature.search.resultCountText
@@ -152,9 +157,22 @@ private fun Page(
 ) {
     Column(Modifier.fillMaxSize()) {
         Toolbar(state, onAction)
+        // The gap under the page bar, as Home's rows have it (`KMP-98`).
+        Spacer(Modifier.height(DesktopDimens.GroupGap))
         TypeChips(state.typeFilters, onAction)
         status.failureNotice?.let { notice ->
-            Box(Modifier.padding(horizontal = DesktopDimens.WindowMargin)) { FailureBanner(notice = notice) }
+            // S3: a band across the page, whose retry says how many sources it asks again (`KMP-101`).
+            val failed = (state.status as? SearchStatus.Partial)?.let { it.total - it.answered }
+            DesktopFailureBanner(
+                notice = notice,
+                retryLabel = failed?.let { UiString.Plural(Res.plurals.search_state_retry_sources, it).resolve() }
+                    ?: notice.retry.label,
+                modifier = Modifier.padding(
+                    start = DesktopDimens.WindowMargin,
+                    end = DesktopDimens.WindowMargin,
+                    bottom = DesktopDimens.GroupGap,
+                ),
+            )
         }
         val prompts = Modifier.fillMaxSize()
         when (val content = status) {
@@ -162,13 +180,13 @@ private fun Page(
                 if (state.query.isBlank()) {
                     IdleHint(content.prompt)
                 } else {
-                    StateView(content.prompt, prompts, content.detail, requestInitialFocus = false)
+                    DesktopStateView(content.prompt, prompts, content.detail, requestInitialFocus = false)
                 }
             }
             // Never takes focus. A search that fails or finds nothing arrives while the user may still
             // be typing, and focus moving to its button would swallow the next keystrokes.
-            is UiState.Offline -> StateView(content.prompt, prompts, requestInitialFocus = false)
-            is UiState.Error -> StateView(content.prompt, prompts, content.detail, requestInitialFocus = false)
+            is UiState.Offline -> DesktopStateView(content.prompt, prompts, requestInitialFocus = false)
+            is UiState.Error -> DesktopStateView(content.prompt, prompts, content.detail, requestInitialFocus = false)
             else -> UiStateHost(
                 state = content,
                 modifier = Modifier.fillMaxSize(),
@@ -189,11 +207,8 @@ private fun Page(
 private fun Toolbar(state: SearchState, onAction: (SearchAction) -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    Row(
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap),
-        modifier = Modifier.fillMaxWidth().padding(DesktopDimens.WindowMargin),
-    ) {
+    // KMP-98: the page bar every Mac page starts with (board S1). The field is 40 in its 52, 6 above and below.
+    DesktopPageBar(horizontalArrangement = Arrangement.spacedBy(DesktopDimens.GroupGap)) {
         QueryField(state.query, stringResource(Res.string.search_tv_field_placeholder), onAction, Modifier.weight(1f))
         // S1, S4: a button that opens the panel, now that the panel is built (`KMP-56`).
         DesktopButton(

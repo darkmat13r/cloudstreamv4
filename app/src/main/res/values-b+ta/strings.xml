@@ -19,6 +19,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"%d வி. இல் அடுத்த எபிசோடு"</item><item quantity="other">"%d வி. இல் அடுத்த எபிசோடு"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"%d மூலத்தில் தேடு"</item><item quantity="other">"அனைத்து %d மூலங்களிலும் தேடு"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"இருந்தாலும் %d மூலத்தில் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்."</item><item quantity="other">"இருந்தாலும் அனைத்து %d மூலங்களிலும் தேட, விசைப்பலகையின் தேடல் விசையை அழுத்தவும்."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"%d மூலத்தை மீண்டும் முயலவும்"</item><item quantity="other">"%d மூலங்களை மீண்டும் முயலவும்"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d மூலம்"</item><item quantity="other">"%d மூலங்கள்"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d ஸ்கேன் எச்சரிக்கை"</item><item quantity="other">"%d ஸ்கேன் எச்சரிக்கைகள்"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"அனைத்து நீட்டிப்புகளும் (%d)"</item><item quantity="other">"அனைத்து நீட்டிப்புகளும் (%d)"</item></plurals>

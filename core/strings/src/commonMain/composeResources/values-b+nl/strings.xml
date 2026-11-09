@@ -81,6 +81,7 @@
 <plurals name="player_up_next_in"><item quantity="one">Volgende aflevering over %d s</item><item quantity="other">Volgende aflevering over %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Zoek in %d bron</item><item quantity="other">Zoek in alle %d bronnen</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Druk op de zoektoets van het toetsenbord om toch in %d bron te zoeken.</item><item quantity="other">Druk op de zoektoets van het toetsenbord om toch in alle %d bronnen te zoeken.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">%d bron opnieuw proberen</item><item quantity="other">%d bronnen opnieuw proberen</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BRON</item><item quantity="other">%d BRONNEN</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d sectie</item><item quantity="other">%d secties</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d scanwaarschuwing</item><item quantity="other">%d scanwaarschuwingen</item></plurals>

@@ -16,6 +16,7 @@
 <plurals name="player_up_next_in"><item quantity="one">"قسمت بعد تا %d ث دیگر"</item><item quantity="other">"قسمت بعد تا %d ث دیگر"</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">"جست‌وجو در %d منبع"</item><item quantity="other">"جست‌وجو در همهٔ %d منبع"</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">"برای جست‌وجو در %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید."</item><item quantity="other">"برای جست‌وجو در همهٔ %d منبع، به‌هرحال کلید جست‌وجوی صفحه‌کلید را فشار دهید."</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">"تلاش دوباره برای %d منبع"</item><item quantity="other">"تلاش دوباره برای %d منبع"</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">"%d منبع"</item><item quantity="other">"%d منبع"</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">"%d هشدار اسکن"</item><item quantity="other">"%d هشدار اسکن"</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">"همهٔ افزونه‌ها (%d)"</item><item quantity="other">"همهٔ افزونه‌ها (%d)"</item></plurals>

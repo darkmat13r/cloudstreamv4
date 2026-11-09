@@ -85,6 +85,7 @@
 <plurals name="player_up_next_in"><item quantity="one">Episodi tjetër pas %d s</item><item quantity="other">Episodi tjetër pas %d s</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">Kërko në %d burim</item><item quantity="other">Kërko në të gjitha %d burimet</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në %d burim.</item><item quantity="other">Shtyp tastin e kërkimit të tastierës për të kërkuar gjithsesi në të gjitha %d burimet.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">Riprovo %d burim</item><item quantity="other">Riprovo %d burime</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d BURIM</item><item quantity="other">%d BURIME</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d paralajmërim skanimi</item><item quantity="other">%d paralajmërime skanimi</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">Të gjitha shtesat (%d)</item><item quantity="other">Të gjitha shtesat (%d)</item></plurals>

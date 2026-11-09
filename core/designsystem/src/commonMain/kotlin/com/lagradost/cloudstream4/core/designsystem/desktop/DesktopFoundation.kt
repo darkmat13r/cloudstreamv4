@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
+import com.lagradost.cloudstream4.core.designsystem.primitive.insetOutline
 import com.lagradost.cloudstream4.core.designsystem.state.SkeletonBlock
 import com.lagradost.cloudstream4.core.designsystem.state.SkeletonDefaults
 import com.lagradost.cloudstream4.core.designsystem.state.rememberSkeletonAlpha
@@ -133,6 +134,11 @@ enum class DesktopButtonTone {
     Secondary,
     /** No fill until the pointer arrives, for a control inside something that already has one. */
     Quiet,
+    /**
+     * A hairline and no fill, `raised` under the pointer: an action a state offers, which is not the one thing the
+     * surface is for (`KMP-101`, boards D4, S3 and S6).
+     */
+    Outlined,
 }
 
 /**
@@ -146,9 +152,10 @@ fun DesktopButton(
     modifier: Modifier = Modifier,
     primary: Boolean = false,
     icon: ImageVector? = null,
+    tone: DesktopButtonTone = if (primary) DesktopButtonTone.Primary else DesktopButtonTone.Secondary,
 ) {
     DesktopButtonSurface(
-        tone = if (primary) DesktopButtonTone.Primary else DesktopButtonTone.Secondary,
+        tone = tone,
         onClick = onClick,
         layout = Modifier
             .heightIn(min = DesktopDimens.ButtonHeight)
@@ -215,6 +222,7 @@ private fun DesktopButtonSurface(
         DesktopButtonTone.Primary -> if (hovered) colors.ink2 else colors.ink
         DesktopButtonTone.Secondary -> if (hovered) colors.line else colors.raised
         DesktopButtonTone.Quiet -> if (hovered) colors.line else Color.Transparent
+        DesktopButtonTone.Outlined -> if (hovered) colors.raised else Color.Transparent
     }
     Box(
         contentAlignment = Alignment.Center,
@@ -222,6 +230,7 @@ private fun DesktopButtonSurface(
             .desktopFeedback(source)
             .tvFocusRing(focused = focused, shape = shape)
             .background(fill, shape)
+            .then(if (tone == DesktopButtonTone.Outlined) Modifier.insetOutline(colors.line, shape) else Modifier)
             .clickable(interactionSource = source, indication = null, role = Role.Button, onClick = onClick)
             .then(layout),
     ) {

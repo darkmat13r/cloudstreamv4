@@ -24,6 +24,12 @@ import androidx.compose.ui.input.pointer.PointerButtons
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.input.pointer.PointerKeyboardModifiers
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.assertOutlined
+import com.lagradost.cloudstream4.assertPageBar
+import com.lagradost.cloudstream4.buttonLabelled
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopOfflinePillDefaults
+import com.lagradost.cloudstream4.tagged
+import com.lagradost.cloudstream4.textNode
 import com.lagradost.cloudstream4.core.connectivity.Connectivity
 import com.lagradost.cloudstream4.core.connectivity.ConnectivityFlow
 import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
@@ -211,6 +217,46 @@ class DownloadsScreenTest {
     private val shift = PointerKeyboardModifiers(isShiftPressed = true)
 
     @Test
+    fun `Downloads starts with the page bar, 52 tall with a hairline under it (KMP-98, D1)`() {
+        // Play from link and the queue, in the one band every Mac page has.
+        val scene = scene(Harness(contents()))
+        scene.settle()
+        scene.assertPageBar(WIDTH, atNanos = SETTLE_FRAMES * FRAME_NANOS)
+        scene.close()
+    }
+
+    @Test
+    fun `offline is Home's pill, the wifi-off glyph and its words, beside the title (KMP-101, D5)`() {
+        val offline = scene(Harness(contents(), offline = true))
+        offline.settle()
+        val pill = offline.tagged(DesktopOfflinePillDefaults.TestTag).single().boundsInRoot
+        assertEquals(DesktopOfflinePillDefaults.Height.value, pill.height)
+        val words = offline.textNode("Offline · no connection").boundsInRoot
+        val title = offline.textNode("Downloads").boundsInRoot
+        assertTrue(pill.left > title.right, "after the page's title")
+        // The glyph leads the words: 8 of padding, a 16 glyph and an 8 gap before them.
+        assertEquals(pill.left + PILL_WORDS_INSET, words.left, "a glyph's width before the words")
+        offline.close()
+
+        val online = scene(Harness(contents()))
+        online.settle()
+        assertTrue(online.tagged(DesktopOfflinePillDefaults.TestTag).isEmpty(), "no pill while connected")
+        online.close()
+    }
+
+    @Test
+    fun `the empty page offers the library with an outlined button, not a filled one (KMP-101, D4)`() {
+        val empty = Harness(DownloadsContents(emptyList(), storage, DownloadQueue(0, 0), null))
+        val scene = scene(empty)
+        scene.settle()
+        val button = scene.buttonLabelled("Browse library").boundsInRoot
+        scene.assertOutlined(button, clock, page = 8 to HEIGHT - 8)
+        scene.press(button.center)
+        assertEquals(listOf<DownloadsEffect>(DownloadsEffect.OpenLibrary), empty.effects, "it still does what it did")
+        scene.close()
+    }
+
+    @Test
     fun `a click selects one row, command adds, shift extends, and Escape clears`() {
         val harness = Harness(contents())
         val scene = scene(harness)
@@ -369,6 +415,8 @@ class DownloadsScreenTest {
         const val SETTLE_FRAMES = 20
         const val FRAME_NANOS = 50_000_000L
         const val NANOS_PER_MILLI = 1_000_000L
+        /** The offline pill's padding, glyph and gap before its words: 8 + 16 + 8. */
+        const val PILL_WORDS_INSET = 32f
 
         // Row centres and targets, measured from the D1 to D3 renders at 1060 x 800.
         const val FIRST_ROW_Y = 214f

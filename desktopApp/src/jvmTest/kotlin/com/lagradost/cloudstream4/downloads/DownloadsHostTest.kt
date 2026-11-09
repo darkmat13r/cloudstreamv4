@@ -350,8 +350,8 @@ class DownloadsHostTest {
         /** Off every row: the pointer waits here, so hover is not what the sample sees. */
         const val AWAY_X = 100f
         const val AWAY_Y = 700f
-        /** `HomeScreenTest`'s sidebar: 24 down, then rows 36 apart; the fourth is Downloads. */
+        /** `HomeScreenTest`'s sidebar: under the 52 title band (`KMP-98`), then rows 36 apart; the fourth is Downloads. */
         const val SIDEBAR_X = 100f
-        const val SIDEBAR_DOWNLOADS_Y = 148f
+        const val SIDEBAR_DOWNLOADS_Y = 176f
     }
 }

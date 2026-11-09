@@ -97,12 +97,17 @@ internal enum class TopLevelDestination {
     Downloads,
 }
 
-/** The screens that have nothing under them, and the control that moves between them. */
+/**
+ * The screens that have nothing under them, and the control that moves between them.
+ *
+ * @param onSettings opens the Settings window, from the sidebar's last row (`KMP-98`). Null draws no row.
+ */
 @Composable
 internal fun TopLevelScreen(
     selected: TopLevelDestination,
     onSelect: (TopLevelDestination) -> Unit,
     trailing: @Composable () -> Unit = {},
+    onSettings: (() -> Unit)? = null,
     content: @Composable () -> Unit,
 ) {
     // The sidebar, not a row of tabs, since `KMP-53`: `DesktopShell.kt` says why.
@@ -112,6 +117,7 @@ internal fun TopLevelScreen(
             selected = selected,
             onSelect = onSelect,
             label = { it.label() },
+            onSettings = onSettings,
             foot = trailing,
         )
         Box(Modifier.weight(1f).fillMaxHeight()) { content() }

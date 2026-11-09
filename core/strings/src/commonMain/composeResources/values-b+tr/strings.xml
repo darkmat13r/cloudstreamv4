@@ -85,6 +85,7 @@
 <plurals name="player_up_next_in"><item quantity="one">Sonraki bölüm %d sn sonra</item><item quantity="other">Sonraki bölüm %d sn sonra</item></plurals>
 <plurals name="search_state_no_suggestions_action"><item quantity="one">%d kaynakta ara</item><item quantity="other">Tüm %d kaynakta ara</item></plurals>
 <plurals name="search_state_no_suggestions_body"><item quantity="one">Yine de %d kaynakta aramak için klavyenin arama tuşuna basın.</item><item quantity="other">Yine de tüm %d kaynakta aramak için klavyenin arama tuşuna basın.</item></plurals>
+<plurals name="search_state_retry_sources"><item quantity="one">%d kaynağı yeniden dene</item><item quantity="other">%d kaynağı yeniden dene</item></plurals>
 <plurals name="search_tv_suggestion_sources"><item quantity="one">%d KAYNAK</item><item quantity="other">%d KAYNAK</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d tarama uyarısı</item><item quantity="other">%d tarama uyarısı</item></plurals>
 <plurals name="settings_extensions_all"><item quantity="one">Tüm eklentiler (%d)</item><item quantity="other">Tüm eklentiler (%d)</item></plurals>
