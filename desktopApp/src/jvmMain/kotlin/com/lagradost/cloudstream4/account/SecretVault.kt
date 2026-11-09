@@ -18,7 +18,8 @@ internal sealed interface VaultRead {
  * Where a signed build keeps its secrets (`KMP-95f`): the Mac's Keychain, through [MacKeychain]. Each secret is one item
  * under a fixed [name]; a test passes a fake.
  *
- * Nothing here logs, prints or throws a name or a value: a failure is only false or [VaultRead.Failed].
+ * Nothing here logs at the default log level, prints or throws a name or a value: a failure is only false or
+ * [VaultRead.Failed].
  */
 internal interface SecretVault {
     fun read(name: String): VaultRead

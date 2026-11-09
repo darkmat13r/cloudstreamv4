@@ -7594,7 +7594,7 @@ PM's calls the same day. Up next (`KMP-94`, #276) stacks on this and adds Play t
 | `KMP-95f` | The Keychain through JNA 5.19.1: the PINs and sign-ins on a signed build, and the signing wiring | 95e; measured with the owner's Team ID and certificate |
 | `KMP-95g` | Pictures: the bundled ones, and "Use an image address" (A6) | The owner; see 95b |
 | `KMP-95h` | Renewing MyAnimeList's token with its refresh token before it expires (about 31 days) | 95e, 95f |
-| `KMP-95i` | Touch ID (A3t): the Keychain's biometry access control, its strings, the `Fingerprint` row, `DS-24`'s switch | 95f; a signed build |
+| `KMP-95i` | Touch ID (A3t): the Keychain's biometry access control, its strings, the `Fingerprint` row, `DS-24`'s switch; Reset all PINs | 95f; a signed build |
 
 **Rulings** (the owner and the PM, 2026-11-08):
 - JNA 5.19.1 is approved for the Keychain: an exact pin, declared only in `:desktopApp`'s account code (95f).
@@ -8061,7 +8061,8 @@ of 2026-11-08, and the version FileKit already brings, so `BUG-73`'s one JNA is 
   to the entitlements' one access group, `<Team ID>.com.lagradost.cloudstream4`, so another app cannot read them, and nor
   can this one unsigned: it is refused with `errSecMissingEntitlement`.
 - **This Mac only, while unlocked** (`kSecAttrAccessibleWhenUnlockedThisDeviceOnly`): never in a backup or iCloud Keychain.
-- **Nothing is logged**: not an item's name, its value or the status. A failure is only false or "couldn't read".
+- **Nothing is logged at the default log level**: not an item's name, its value or the status. A failure is only false
+  or "couldn't read".
 
 **Signed or not is decided when it is built** (the PM, Q1 (a)). `generateDesktopSecrets` writes `DesktopSecrets.signedBuild`,
 true only for a packaging run given `-Pcloudstream.sign=true` (the PM, 2026-11-09), with both untracked values there:
@@ -8106,6 +8107,17 @@ true only for a packaging run given `-Pcloudstream.sign=true` (the PM, 2026-11-0
   says, this is a household lock: it guards against a step that failed, not against someone who can write this Mac
   account's files.
 - Sign-ins have no marker (the reviewer's call): a sign-in that goes missing is only signed out.
+- With the marker there and an item that holds no PINs, the marker goes: that is a removal whose marker delete failed.
+
+**Behaviour change: a lock with no way out in the app** (the PM, 2026-11-09). With the marker there and no item (a
+re-signed app, an item deleted in Keychain Access), every profile but the first stays locked, and no PIN opens them.
+Before 95f, a missing PINs file meant no PINs. Today the way out is by hand: delete `~/.cloudstream4/pins.json` (the
+marker). That needs the Mac user's own file access, so it is no weaker than the account itself, and D1 already says the
+PIN does not guard against that.
+- **In `KMP-95i`: "Reset all PINs"** on the first profile (the PM's call, 2026-11-09). It is offered only in that
+  state, only on a signed build, and only behind LocalAuthentication's `deviceOwnerAuthentication`: the Mac account's
+  password or Touch ID. It removes the item and the marker. Nothing gets weaker, since it asks for the same credential
+  that already grants file access.
 
 **Sign-ins outlive a profile's delete no more than its PIN does:** the launch sweep drops those of a profile that is
 gone, and Add adds nothing while sign-ins left under the new id cannot be forgotten. That is the same rule as the PIN, from
@@ -8125,6 +8137,11 @@ the reviewer of `#286`.
 - Signed, `macOS.signing` gets the identity, and `entitlementsFile` gets `build/generated/macos/entitlements.plist`, which
   `generateMacEntitlements` writes from `desktopApp/macos/entitlements.plist` with the Team ID put in.
 - The committed file keeps the placeholder. Beside the access group it has Compose's three defaults for a JVM app.
+- **A development profile signs a local build only** (the PM, 2026-11-09). Such a profile lists the devices it runs on,
+  by UDID. If it does (`ProvisionedDevices`), a run whose task graph holds `createReleaseDistributable` or a
+  `notarize*` task is refused before anything runs, and the error names no path or value. `packageRelease*` depends on
+  it, so it is refused too. Dry-run checked with dummy profiles, with and without the key: release and notarise are
+  refused with the devices key, and local `createDistributable` and a profile without the key are allowed.
 - With the flag, a missing value fails the build and names it. So does a Team ID that is not ten capitals and digits,
   and a profile path that names no file; no message prints a value. Without the flag, the values are not read at all.
 - The flag is refused for any task outside `:desktopApp`'s packaging, naming the task.
@@ -8151,7 +8168,7 @@ process is refused.
   - a bad token read back is dropped;
   - a refused remove or forget leaves it as it was;
   - nothing is named in `toString`.
-- `KeychainPinsTest`, 12:
+- `KeychainPinsTest`, 13:
   - set, check and remove through the Keychain, with only the marker on disk, which goes with the last PIN;
   - the move, and the marker after it;
   - after the move, an unsigned build is locked;
@@ -8161,6 +8178,7 @@ process is refused.
   - a differing item whose delete was refused is locked, and the move runs again once it can be removed;
   - an item beside a D1 file with the same PINs makes the marker;
   - a refused first PIN takes its marker back;
+  - a marker beside an item with no PINs is dropped;
   - an unreadable Keychain locks all but the first and never reads the file;
   - an item not ours is unreadable;
   - nothing at all is no PINs.

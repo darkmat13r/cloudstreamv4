@@ -17,7 +17,8 @@ import com.sun.jna.ptr.PointerByReference
  *   is refused (`errSecMissingEntitlement`), which reads as [VaultRead.Failed]: it never falls back to anything.
  * - **This Mac only, and only while it is unlocked** (`kSecAttrAccessibleWhenUnlockedThisDeviceOnly`): never in a
  *   backup or iCloud Keychain, as `DS-25` keeps sign-ins out of every backup.
- * - **Nothing is logged.** Not the item's name, its value, or the status code: a failure is only false or Failed.
+ * - **Nothing is logged at the default log level.** Not the item's name, its value, or the status code: a failure is
+ *   only false or Failed.
  *
  * Generic-password items, under [service], each named by its account. Every call is short and blocks the caller.
  */

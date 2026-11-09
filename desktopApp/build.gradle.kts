@@ -60,6 +60,18 @@ if (signRequested) {
     if (!File(provisioningProfilePath).isFile) {
         throw GradleException("CLOUDSTREAM_PROVISIONING_PROFILE does not name a file.")
     }
+    // A development profile lists the devices it runs on (their UDIDs), so it may sign a local build only: a release
+    // or notarised build refuses it (the PM, 2026-11-09). The profile's plist is plain text inside its CMS envelope.
+    val listsDevices = File(provisioningProfilePath).readBytes().decodeToString().contains("<key>ProvisionedDevices</key>")
+    gradle.taskGraph.whenReady {
+        val release = allTasks.map { it.path }.filter { it == ":desktopApp:createReleaseDistributable" || it.startsWith(":desktopApp:notarize") }
+        if (listsDevices && release.isNotEmpty()) {
+            throw GradleException(
+                "A release or notarised build cannot use a development provisioning profile: it lists devices. " +
+                    "Use a Developer ID profile, or package for a local run only.",
+            )
+        }
+    }
     // Only this module's packaging may ask for a signed build: a signed `run` or test is the trap this flag prevents.
     val packaging = Regex("(:desktopApp:)?(package|createDistributable|createReleaseDistributable|notarize|generateMacEntitlements|generateDesktopSecrets|bundleJnaDispatch)\\w*")
     val others = gradle.startParameter.taskNames.filterNot { it.startsWith("-") || packaging.matches(it) }

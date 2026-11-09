@@ -25,7 +25,7 @@ private data class StoredCredential(
  *   is refused, so a change never writes back a Keychain item holding only one profile's sign-ins, wiping the others'.
  *   Each change tries the read again.
  * - What is read back is checked as a token from a service is (`HttpSignInClient.isToken`); one that is not is dropped.
- * - Nothing is logged; [toString] names nothing.
+ * - Nothing is logged at the default log level; [toString] names nothing.
  *
  * Not thread-safe: the window calls it from its one UI thread, as [InMemorySignInStore].
  */
