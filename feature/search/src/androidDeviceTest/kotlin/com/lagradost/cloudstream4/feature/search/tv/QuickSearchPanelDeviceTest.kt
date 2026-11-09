@@ -58,7 +58,7 @@ class QuickSearchPanelDeviceTest {
     private val source = SteppedSource()
     private val effects = CopyOnWriteArrayList<QuickSearchEffect>()
 
-    private fun show(query: String = "dune"): QuickSearchViewModel {
+    private fun show(query: String = "tide"): QuickSearchViewModel {
         val viewModel = QuickSearchViewModel(query = query, source = source)
         rule.setContent {
             val state by viewModel.state.collectAsState()
@@ -101,8 +101,8 @@ class QuickSearchPanelDeviceTest {
 
         answer(Answering, viewModel)
         rule.onNodeWithText("3 OF 12 ANSWERED · 2 FAILED").assertExists()
-        rule.onNodeWithText("VIDSRC · MOVIE · 4K").assertExists()
-        rule.onNodeWithText("GOGO · TV SERIES").assertExists()
+        rule.onNodeWithText("SOURCE C · MOVIE · 4K").assertExists()
+        rule.onNodeWithText("SOURCE B · TV SERIES").assertExists()
         assertEquals(FIRST, dpad.focused())
     }
 
@@ -173,19 +173,19 @@ class QuickSearchPanelDeviceTest {
 
     @Test
     fun nothingCarriesItAndOpenFullSearchTakesTheFocus() {
-        val viewModel = show(query = "dunnne")
+        val viewModel = show(query = "tiddde")
         answer(Empty, viewModel)
         rule.onNodeWithText("No matches").assertExists()
         rule.onNodeWithText("ALL SOURCES ANSWERED").assertExists()
         rule.onNodeWithText("12 OF 12 ANSWERED · 0 FAILED").assertExists()
         rule.onNodeWithText(
-            "Every source answered and none of them carry “dunnne”. Try a shorter query, or open full search to change the source set.",
+            "Every source answered and none of them carry “tiddde”. Try a shorter query, or open full search to change the source set.",
         ).assertExists()
         assertEquals(OPEN_FULL, dpad.focused())
 
         dpad.center()
         rule.waitUntil(WAIT_MS) { effects.isNotEmpty() }
-        assertEquals(listOf(QuickSearchEffect.OpenFullSearch("dunnne")), effects.toList())
+        assertEquals(listOf(QuickSearchEffect.OpenFullSearch("tiddde")), effects.toList())
     }
 
     @Test
@@ -245,7 +245,7 @@ class QuickSearchPanelDeviceTest {
     /** 8e: everyone answered, nobody carries it, and the action that can change that has the focus. */
     @Test
     fun screenshotEmpty() {
-        val viewModel = show(query = "dunnne")
+        val viewModel = show(query = "tiddde")
         answer(Empty, viewModel)
         assertEquals(OPEN_FULL, dpad.focused())
         rule.assertScreenshot("quick-search-empty")
@@ -282,14 +282,14 @@ class QuickSearchPanelDeviceTest {
         const val OPEN_FULL = "Open full search"
         const val TRY_AGAIN = "Try again"
 
-        // Distinct titles, because the driver names a stop by its text. The board's two `Dune` rows differ by year,
+        // Distinct titles, because the driver names a stop by its text. The board's two `Tide` rows differ by year,
         // which the item does not carry, so the fixture says which is which.
-        const val FIRST = "Dune: Part Two"
-        const val SECOND = "Dune: Part Two (4K)"
-        const val THIRD = "Dune"
-        const val FOURTH = "Dune: Prophecy"
-        const val FIFTH = "Dune (1984)"
-        const val SIXTH = "Duna"
+        const val FIRST = "Tide: Part Two"
+        const val SECOND = "Tide: Part Two (4K)"
+        const val THIRD = "Tide"
+        const val FOURTH = "Tide: Prophecy"
+        const val FIFTH = "Tide (1991)"
+        const val SIXTH = "Tida"
 
         val Rail = listOf(
             NavRailItem("Home", CloudStreamIcons.Home),
@@ -310,11 +310,11 @@ class QuickSearchPanelDeviceTest {
         /** 8d's `qsRaw`, without the year. */
         val Answering = QuickSearchProgress(
             items = listOf(
-                hit(FIRST, "Vidsrc", "Movie"),
-                hit(SECOND, "Vidsrc", "Movie", "4K"),
-                hit(THIRD, "FilmXY", "Movie"),
-                hit(FOURTH, "Gogo", "TV Series"),
-                hit(FIFTH, "FilmXY", "Movie"),
+                hit(FIRST, "Source C", "Movie"),
+                hit(SECOND, "Source C", "Movie", "4K"),
+                hit(THIRD, "Source A", "Movie"),
+                hit(FOURTH, "Source B", "TV Series"),
+                hit(FIFTH, "Source A", "Movie"),
             ),
             answered = 3,
             failed = 2,
@@ -323,9 +323,9 @@ class QuickSearchPanelDeviceTest {
         /** More rows than the panel holds whole. */
         val Long = Answering.copy(
             items = Answering.items + listOf(
-                hit(SIXTH, "Gogo", "Movie"),
-                hit("Dune Messiah", "Vidsrc", "TV Series"),
-                hit("Dune: Water", "FilmXY", "Movie"),
+                hit(SIXTH, "Source B", "Movie"),
+                hit("Tide Warden", "Source C", "TV Series"),
+                hit("Tide: Water", "Source A", "Movie"),
             ),
         )
         val Empty = QuickSearchProgress(items = emptyList(), answered = 12, failed = 0, total = 12)

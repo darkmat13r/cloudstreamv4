@@ -159,7 +159,7 @@ class SearchScreenTvDeviceTest {
         source.outcome = SearchOutcome.Complete(Results)
         showScreen()
         viewModel.onAction(SearchAction.RecentActivated(QUERY))
-        awaitText("Filmxy")
+        awaitText("Source A")
     }
 
     private fun awaitText(text: String) = rule.waitUntil(WAIT_MS) {
@@ -172,10 +172,10 @@ class SearchScreenTvDeviceTest {
         source.outcome = SearchOutcome.Complete(Results)
         showScreen()
 
-        search("blade")
-        awaitText("Filmxy")
-        rule.onNodeWithText("Vidplay").assertExists()
-        assertEquals(listOf("blade"), source.searched)
+        search("salt")
+        awaitText("Source A")
+        rule.onNodeWithText("Source B").assertExists()
+        assertEquals(listOf("salt"), source.searched)
 
         // Down from the field lands on the first rail, which is what the design's fixed DOWN target asks.
         val card = generateSequence { dpad.press(Dpad.Down) }.take(4).first { it in Titles }
@@ -191,7 +191,7 @@ class SearchScreenTvDeviceTest {
         source.outcome = SearchOutcome.Failed("HTTP 503")
         showScreen()
 
-        search("blade")
+        search("salt")
         awaitText(RETRY)
         rule.onNodeWithText("HTTP 503").assertExists()
 
@@ -199,8 +199,8 @@ class SearchScreenTvDeviceTest {
         generateSequence { dpad.press(Dpad.Down) }.take(4).first { it == RETRY }
         dpad.center()
 
-        awaitText("Filmxy")
-        assertEquals(listOf("blade", "blade"), source.searched)
+        awaitText("Source A")
+        assertEquals(listOf("salt", "salt"), source.searched)
     }
 
     /** The field, the chip and every card can be reached by remote, and left again. */
@@ -209,8 +209,8 @@ class SearchScreenTvDeviceTest {
         source.outcome = SearchOutcome.Complete(Results)
         showScreen()
 
-        search("blade")
-        awaitText("Filmxy")
+        search("salt")
+        awaitText("Source A")
 
         val graph = dpad.walk()
         val expected = Titles + "Sources"
@@ -253,7 +253,7 @@ class SearchScreenTvDeviceTest {
         dpad.closeKeyboard()
         assertNoKeyboard("the field after Back")
         assertEquals(QUERY, dpad.focused())
-        assertTrue("Back left the screen", rule.onAllNodesWithText("Filmxy").fetchSemanticsNodes().isNotEmpty())
+        assertTrue("Back left the screen", rule.onAllNodesWithText("Source A").fetchSemanticsNodes().isNotEmpty())
 
         // OK again, because a remote may have nowhere else to go, and the D-pad is free after each Back.
         dpad.center()
@@ -295,7 +295,7 @@ class SearchScreenTvDeviceTest {
         assertEquals(QUERY, dpad.focused())
 
         rule.onNode(hasSetTextAction()).performImeAction()
-        awaitText("Filmxy")
+        awaitText("Source A")
         assertEquals(listOf(QUERY), source.searched)
         rule.waitUntil(WAIT_MS) { !dpad.keyboardShown() }
         assertNoKeyboard("the field after searching")
@@ -382,7 +382,7 @@ class SearchScreenTvDeviceTest {
     @Test
     fun screenshotResultsFocusOnACard() {
         showShotResults(SearchOutcome.Complete(ShotResults))
-        awaitText("Filmxy")
+        awaitText("Source A")
         assertTrue(focusDownFromTheField() in ShotResults.map { it.title })
         rule.assertScreenshot("search-results-focus-card")
     }
@@ -390,7 +390,7 @@ class SearchScreenTvDeviceTest {
     @Test
     fun screenshotPartialFailureFocusOnRetry() {
         showShotResults(SearchOutcome.Partial(ShotResults, answered = 9, total = 12, detail = "TIMEOUT 10S"))
-        awaitText("Filmxy")
+        awaitText("Source A")
         // Down from the field now means the first card, so Retry is reached from `Sources`, which is above it.
         rule.onNode(Field).requestFocus()
         assertEquals("Sources", dpad.press(Dpad.Right))
@@ -420,7 +420,7 @@ class SearchScreenTvDeviceTest {
     fun screenshotCaptureHoldsTheRingOutsideTheCardAndTheLiveColour() {
         val colors = cloudStreamDarkColors()
         showShotResults(SearchOutcome.Complete(ShotResults))
-        awaitText("Filmxy")
+        awaitText("Source A")
         focusDownFromTheField()
         rule.waitForIdle()
 
@@ -449,7 +449,7 @@ class SearchScreenTvDeviceTest {
         const val POLL_MS = 200L
         const val FIELD_UP_PRESSES = 4
         const val RETRY = "Try again"
-        const val QUERY = "blade"
+        const val QUERY = "salt"
         val Field = SemanticsMatcher.keyIsDefined(SemanticsProperties.EditableText)
 
         fun item(title: String, provider: String) = SearchResultItem(
@@ -459,11 +459,11 @@ class SearchScreenTvDeviceTest {
         )
 
         val Results = listOf(
-            item("Blade Runner", "Filmxy"),
-            item("Blade Runner 2049", "Filmxy"),
-            item("Blade Runner: Black Out", "Filmxy"),
-            item("Blade", "Vidplay"),
-            item("Blade II", "Vidplay"),
+            item("Salt Road", "Source A"),
+            item("Salt Road II", "Source A"),
+            item("Salt Road: Dusk", "Source A"),
+            item("Salt Flat", "Source B"),
+            item("Salt Flat II", "Source B"),
         )
         val Titles = Results.map { it.title }
 
@@ -479,11 +479,11 @@ class SearchScreenTvDeviceTest {
         )
         val ShotPosters = listOf(0xFF39505C.toInt(), 0xFF5C4A39.toInt(), 0xFF3F5C39.toInt())
         val ShotResults = listOf(
-            item("Blade Runner", "Filmxy").copy(typeLabel = "Movie", qualityLabel = "4K"),
-            item("Blade Runner 2049", "Filmxy").copy(typeLabel = "Movie", qualityLabel = "1080P", watchProgress = 0.4f),
-            item("Blade Runner: Black Out", "Filmxy").copy(typeLabel = "Movie"),
-            item("Blade", "Vidplay").copy(typeLabel = "Movie", qualityLabel = "720P"),
-            item("Blade II", "Vidplay").copy(typeLabel = "Movie", dubLabel = "DUB"),
+            item("Salt Road Ferry", "Source A").copy(typeLabel = "Movie", qualityLabel = "4K"),
+            item("Salt Road II", "Source A").copy(typeLabel = "Movie", qualityLabel = "1080P", watchProgress = 0.4f),
+            item("Salt Road: Dusk", "Source A").copy(typeLabel = "Movie"),
+            item("Salt Flat", "Source B").copy(typeLabel = "Movie", qualityLabel = "720P"),
+            item("Salt Flat II", "Source B").copy(typeLabel = "Movie", dubLabel = "DUB"),
         )
     }
 
@@ -497,7 +497,7 @@ class SearchScreenTvDeviceTest {
     }
 
     private object ShotHistory : SearchHistoryStore {
-        val entries = listOf(SearchHistoryEntry("blade runner", "2 days ago"), SearchHistoryEntry("dune", "last week"))
+        val entries = listOf(SearchHistoryEntry("salt road", "2 days ago"), SearchHistoryEntry("tide", "last week"))
 
         override suspend fun recent() = entries
         override suspend fun remove(query: String) = Unit
