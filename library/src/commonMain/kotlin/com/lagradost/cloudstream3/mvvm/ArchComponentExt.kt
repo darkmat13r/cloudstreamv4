@@ -223,16 +223,24 @@ fun Throwable.getAllMessages(): String {
 fun Throwable.getStackTracePretty(showMessage: Boolean = true): String {
     // BUG-44: the message reaches the screen through safeFail's Resource.Failure, so it is redacted.
     val prefix = if (showMessage) this.message?.let { "\n${it.withoutUrls()}" } ?: "" else ""
-    return prefix + this.stackTraceToString()
+    val frames = this.stackTraceToString()
         .lines()
         .mapNotNull { line ->
             val trimmed = line.trim()
             if (!trimmed.startsWith("at ")) return@mapNotNull null
             // pull "File.kt:42" out of "at com.pkg.Class.method(File.kt:42)"
+            // BUG-63: redacted before ":" becomes " ", since a file name can be anything a plugin sets, and a
+            // `https://` turned into `https //` is a url no pattern finds.
             Regex("""\(([^)]+)\)$""").find(trimmed)?.groupValues?.get(1)
-                ?.replace(":", " ")
+                ?.withoutUrls()?.replace(":", " ")
         }
         .joinToString("\n")
+    // BUG-63: the frames start on their own line; they were glued onto the end of the message.
+    return when {
+        frames.isEmpty() -> prefix
+        prefix.isEmpty() -> frames
+        else -> "$prefix\n$frames"
+    }
 }
 
 fun <T> safeFail(throwable: Throwable): Resource<T> {
@@ -270,6 +278,8 @@ fun <T> throwAbleToResource(
                 .lines()
                 .firstOrNull { it.contains("provider.kt", ignoreCase = true) }
                 ?.let { Regex("""\(([^)]+)\)$""").find(it)?.groupValues?.get(1) }
+                // BUG-63: a frame's file name can be anything a plugin sets, and this line is shown.
+                ?.withoutUrls()
             if (traceLine != null) {
                 return Resource.Failure(
                     false,

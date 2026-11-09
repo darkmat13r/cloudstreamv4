@@ -128,7 +128,7 @@ class LogErrorRedactionTest {
         val shown = safeFail<Unit>(failure) as Resource.Failure
         assertEquals(false, shown.isNetworkError)
         markers.forEach { assertFalse(shown.errorString.contains(it), "'$it' reached the screen:\n${shown.errorString}") }
-        // getStackTracePretty puts the message first, joined straight onto the first frame's "File.kt line".
+        // getStackTracePretty puts the message first, then the frames' "File.kt line", each on its own line (BUG-63).
         assertTrue(shown.errorString.startsWith("\nGET https://host.example/<…> failed"), shown.errorString)
         assertTrue(shown.errorString.contains("LogErrorRedactionTest.kt"), shown.errorString)
     }
@@ -147,5 +147,36 @@ class LogErrorRedactionTest {
 
         val noMessage = throwAbleToResource<Unit>(ErrorLoadingException()) as Resource.Failure
         assertEquals("Error loading, try again later.", noMessage.errorString)
+    }
+
+    /** A frame whose file name a plugin set: an address with a token, and a user path. */
+    private fun forged(error: Throwable, fileName: String) = error.apply {
+        stackTrace = arrayOf(StackTraceElement("a.B", "c", fileName, 7)) + stackTrace
+    }
+
+    @Test
+    fun theMessageIsItsOwnLineAndNoFrameIsGluedOntoIt() {
+        val shown = safeFail<Unit>(IOException("HTTP 503")) as Resource.Failure
+        // BUG-63: the first frame was joined onto the message, so the shown line ended in a file name and a line number.
+        assertEquals("HTTP 503", shown.errorString.trim().lines().first())
+    }
+
+    @Test
+    fun aForgedFrameShowsNoAddressTokenOrUserPath() {
+        val names = listOf(
+            "https://cdn.example/k?token=MARKER_QUERY provider.kt",
+            "/Users/MARKER_USER/secret/provider.kt",
+            "file:///storage/emulated/0/MARKER_PATH/provider.kt",
+        )
+        // BUG-63: with no message, the first line shown is a frame, with ":" made " ", so `https://` read `https //`.
+        for (name in names) {
+            val pretty = forged(IllegalStateException(), name).getStackTracePretty()
+            markers.forEach { assertFalse(pretty.contains(it), "'$it' reached the screen:\n$pretty") }
+            // The NullPointerException branch shows a frame named *provider.kt* on its first line.
+            val npe = throwAbleToResource<Unit>(forged(NullPointerException(), name)) as Resource.Failure
+            markers.forEach { assertFalse(npe.errorString.contains(it), "'$it' reached the screen:\n${npe.errorString}") }
+        }
+        val npe = throwAbleToResource<Unit>(forged(NullPointerException(), names.first())) as Resource.Failure
+        assertTrue(npe.errorString.startsWith("NullPointerException at https://cdn.example/<…> provider.kt:7"), npe.errorString)
     }
 }
