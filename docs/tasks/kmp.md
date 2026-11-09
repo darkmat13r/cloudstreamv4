@@ -7228,7 +7228,7 @@ short facts slice. They now meet the reader of the sections after the facts, as 
 then one claiming 90 bytes the frame does not hold, so the call now fails on that lying length, as any does; the test
 asserts that failure. Had the facts reader taken those bytes, they would have read as facts and nothing would fail.
 
-## KMP-103 — The plugin sandbox carries a title's cast and recommendations to the Mac · **design, for review before any code** · sys-desktop-2, the PM's call of 2026-11-09
+## KMP-103 — The plugin sandbox carries a title's cast and recommendations to the Mac · **design passed with conditions (the reviewer, 2026-11-09); building** · sys-desktop-2, the PM's call of 2026-11-09
 
 `TitleDetail.cast` and `.recommendations` already exist (`DetailCastMember`, `DetailRecommendation`). Android fills
 them; the sandbox does not carry them, so the Mac has neither. The data comes from `LoadResponse.actors` and
@@ -7389,6 +7389,42 @@ not). There is at most one line per field kind per section, so ten thousand bad 
 - **`TitleFactsTest`:** the mapping. The id is bound to the provider called, and the kind is used when there is no role
   text.
 - **Red without the app's checks:** with `cleaned()` switched off for these two sections, the bound cases fail.
+
+### The reviewer's conditions (passed with them, 2026-11-09)
+
+1. **The id codec round-trips any key.** `encodeId`/`decodeId` must give back exactly the provider and key for a key
+   holding the codec's own separator (NUL), non-ASCII text, and 2048 characters. A key that cannot round-trip is
+   dropped in `cleaned()`, never stored. A test covers each case, so no key can decode to another provider.
+2. **Where a key goes.** A key reaches disk only when the person opens or bookmarks the title, as a search result's id
+   does: in Library, history, or Back's stack. It is never in a log line or an error message, including every `OP_LOAD`
+   failure path (`DesktopDetailSource.details`, `PluginHostClient`'s call failure, the host's reply). Those paths are
+   checked in the build and each gets a test. `withoutUrls()` is not enough, because a key need not look like an
+   address.
+3. **The reader:**
+   - every field length is checked against the slice's `0..available()` before anything is skipped or read;
+   - steps use `skipNBytes`, never `skip()`;
+   - a negative count costs the section;
+   - text is decoded as UTF-8 with `CodingErrorAction.REPORT`, so malformed bytes cost that field, never a
+     replacement character;
+   - tests cover a lie inside the slice (costs the section) and past it (fails the call).
+4. **The host keeps each section under 64 KiB.** The honest maxima, about 67,000 bytes for cast and 93,000 for
+   recommendations, are past the cap. So the host drops trailing entries until the section fits, and never sends one
+   the app would step over.
+5. **Images of these kinds get their own caps,** tighter than the backdrop's:
+   - decoded at the drawn size (`Precision.INEXACT`);
+   - a lower decode cap: 1024×1024 for headshots and posters;
+   - a smaller byte cap: 2 MB, against the backdrop's 8 MB;
+   - loaded only when on screen.
+   `KMP-104` reports a measured peak heap for a page with 24 headshots and 20 posters.
+6. **Privacy and cache.** Up to 44 hosts the plugin chose (24 photos and 20 posters) learn this Mac's IP when the page is
+   drawn, as on Android, so images load lazily and only when on screen. They use `KMP-100`'s disk-cache decision, not
+   Coil's default.
+7. **Normalisation before comparing.** "The same person" and "the page's own key" are compared after `cleaned()`
+   (invisible characters out, trimmed), so a lookalike with a zero-width joiner is still a repeat. **Versions:** when a
+   `0x42` exists, the host keeps writing `0x41` beside it for as long as apps that read only `0x41` are supported. The
+   append-only rule keeps that safe.
+8. **The PR body says the Mac blocks cross-provider recommendations,** which Android allows. **Not requiring https for
+   the key** is the PM's call, on the decision board.
 
 ### Base
 
