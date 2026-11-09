@@ -67,6 +67,7 @@
 <string name="account_profile_current">"Текущий"</string>
 <string name="account_profile_locked">"Заблокирован · PIN"</string>
 <string name="account_profile_no_sync">"Без синхронизации"</string>
+<string name="account_profile_not_added">"Нельзя добавить профиль, пока PIN-коды на этом компьютере не читаются. Ничего не изменилось."</string>
 <string name="account_select_note">"Отдельная история просмотра · не входы в аккаунт"</string>
 <string name="account_select_title">"Кто смотрит?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не подтвердил вход. Ничего не сохранено."</string>

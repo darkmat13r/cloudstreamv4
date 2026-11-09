@@ -64,6 +64,7 @@
 <string name="account_profile_current">"বর্তমান"</string>
 <string name="account_profile_locked">"লক করা · পিন"</string>
 <string name="account_profile_no_sync">"সিঙ্ক নেই"</string>
+<string name="account_profile_not_added">"এই কম্পিউটারের PIN পড়া না যাওয়া পর্যন্ত প্রোফাইল যোগ করা যায়নি। কিছুই বদলায়নি।"</string>
 <string name="account_select_note">"আলাদা দেখার ইতিহাস · লগইন নয়"</string>
 <string name="account_select_title">"কে দেখছে?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s সাইন-ইন নিশ্চিত করেনি। কিছুই সংরক্ষণ করা হয়নি।"</string>

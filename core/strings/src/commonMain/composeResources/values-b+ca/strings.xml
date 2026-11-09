@@ -34,6 +34,7 @@
 <string name="account_pin_new">Escriu un PIN de 4 xifres.</string>
 <string name="account_pin_not_saved">No s'ha pogut desar el canvi del PIN. No s'ha canviat res.</string>
 <string name="account_pin_unreadable">No s'han pogut llegir els PIN d'aquest ordinador, així que aquest perfil continua bloquejat.</string>
+<string name="account_profile_not_added">No s'ha pogut afegir un perfil mentre no es puguin llegir els PIN d'aquest ordinador. No s'ha canviat res.</string>
 <string name="account_pin_off">Desactivat · qualsevol pot obrir aquest perfil</string>
 <string name="account_pin_on">Activat · es demana per obrir-lo</string>
 <string name="account_pin_prompt">Escriu el PIN de 4 xifres.</string>

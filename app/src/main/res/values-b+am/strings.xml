@@ -63,6 +63,7 @@
 <string name="account_profile_current">"የአሁኑ"</string>
 <string name="account_profile_locked">"ተቆልፏል · ፒን"</string>
 <string name="account_profile_no_sync">"ማመሳሰል የለም"</string>
+<string name="account_profile_not_added">"በዚህ ኮምፒውተር ላይ ያሉት ፒኖች ሊነበቡ ባለመቻላቸው መገለጫ ማከል አልተቻለም። ምንም አልተቀየረም።"</string>
 <string name="account_select_note">"የተለየ የእይታ ታሪክ · መግቢያዎች አይደሉም"</string>
 <string name="account_select_title">"ማን እየተመለከተ ነው?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s መግባቱን አላረጋገጠም። ምንም አልተቀመጠም።"</string>

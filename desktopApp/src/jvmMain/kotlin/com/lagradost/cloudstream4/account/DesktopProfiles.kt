@@ -204,7 +204,9 @@ internal class DesktopProfiles(
     val canAdd: Boolean get() = stored.profiles.size < DesktopProfileFile.MAX_PROFILES
 
     /**
-     * Adds a profile named [name] and returns its id, or null when there is no room (`KMP-95b`, A6b). It does not
+     * Adds a profile named [name] and returns its id, or null when there is no room (`KMP-95b`, A6b) or when a PIN
+     * left under its id could not be forgotten, because the PINs file could not be read or written (the reviewer of
+     * `#286`): then nothing is added, so the new profile can never inherit that PIN once the file reads. It does not
      * become the one watching. A blank name becomes [fallback], so a profile always has words on its card.
      *
      * Its id is one above the highest there is. Any library files already under that id are deleted first, so a new
@@ -215,8 +217,9 @@ internal class DesktopProfiles(
         val id = stored.profiles.maxOf { it.id } + 1
         if (id >= DesktopProfileFile.MAX_ID) return null
         // A reused id starts clean: no library, PIN or wrong-PIN count of a profile deleted before (the reviewer of #286).
+        // The PIN first: if it cannot be forgotten, nothing is added or touched.
+        if (!pins.forget(id)) return null
         clearLibrary(id)
-        pins.forget(id)
         val cleaned = DesktopProfileFile.cleanName(name).ifEmpty { DesktopProfileFile.cleanName(fallback) }
         update(stored.copy(profiles = stored.profiles + StoredProfile(id, cleaned.ifEmpty { null })))
         return id

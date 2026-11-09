@@ -64,6 +64,7 @@
 <string name="account_profile_current">"oooh"</string>
 <string name="account_profile_locked">"oooh-aah · ooh"</string>
 <string name="account_profile_no_sync">"aah oooh"</string>
+<string name="account_profile_not_added">"aagg ooh-ooh PIN. ooh-aah."</string>
 <string name="account_select_note">"oooh-aah aagg · ooh aah"</string>
 <string name="account_select_title">"ooh oooh aah?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s oooohh uugg ah. oooohh aagg."</string>

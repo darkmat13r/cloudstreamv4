@@ -64,6 +64,7 @@
 <string name="account_profile_current">"Τρέχον"</string>
 <string name="account_profile_locked">"Κλειδωμένο · PIN"</string>
 <string name="account_profile_no_sync">"Χωρίς συγχρονισμό"</string>
+<string name="account_profile_not_added">"Δεν ήταν δυνατή η προσθήκη προφίλ όσο δεν διαβάζονται τα PIN σε αυτόν τον υπολογιστή. Δεν άλλαξε τίποτα."</string>
 <string name="account_select_note">"Ξεχωριστό ιστορικό προβολής · όχι συνδέσεις"</string>
 <string name="account_select_title">"Ποιος βλέπει;"</string>
 <string name="account_signin_failed_body" formatted="true">"Το %s δεν επιβεβαίωσε τη σύνδεση. Δεν αποθηκεύτηκε τίποτα."</string>

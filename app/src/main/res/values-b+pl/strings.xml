@@ -67,6 +67,7 @@
 <string name="account_profile_current">"Bieżący"</string>
 <string name="account_profile_locked">"Zablokowany · PIN"</string>
 <string name="account_profile_no_sync">"Bez synchronizacji"</string>
+<string name="account_profile_not_added">"Nie można dodać profilu, dopóki nie da się odczytać kodów PIN na tym komputerze. Nic nie zostało zmienione."</string>
 <string name="account_select_note">"Osobna historia oglądania · to nie logowania"</string>
 <string name="account_select_title">"Kto ogląda?"</string>
 <string name="account_signin_failed_body" formatted="true">"Usługa %s nie potwierdziła logowania. Niczego nie zapisano."</string>

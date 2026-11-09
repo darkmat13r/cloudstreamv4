@@ -63,6 +63,7 @@
 <string name="account_profile_current">"Actual"</string>
 <string name="account_profile_locked">"Bloqueado · PIN"</string>
 <string name="account_profile_no_sync">"Sen sincronización"</string>
+<string name="account_profile_not_added">"Non se puido engadir un perfil mentres non se poidan ler os PIN deste ordenador. Non se cambiou nada."</string>
 <string name="account_select_note">"Historial de visualización separado · non son inicios de sesión"</string>
 <string name="account_select_title">"Quen está a ver?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s non confirmou o inicio de sesión. Non se gardou nada."</string>

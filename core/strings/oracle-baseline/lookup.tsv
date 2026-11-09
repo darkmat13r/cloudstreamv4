@@ -100,6 +100,7 @@ values-b+af	string	account_pin_unreadable	-	Kon nie die PIN's op hierdie rekenaa
 values-b+af	string	account_profile_current	-	Huidig
 values-b+af	string	account_profile_locked	-	Gesluit · PIN
 values-b+af	string	account_profile_no_sync	-	Geen sinkronisasie
+values-b+af	string	account_profile_not_added	-	Kon nie 'n profiel byvoeg terwyl die PIN's op hierdie rekenaar nie gelees kan word nie. Niks is verander nie.
 values-b+af	string	account_select_note	-	Aparte kykgeskiedenis · nie aanmeldings nie
 values-b+af	string	account_select_title	-	Wie kyk?
 values-b+af	string	account_signin_failed_body	-	%s het nie die aanmelding bevestig nie. Niks is gestoor nie.
@@ -1286,6 +1287,7 @@ values-b+am	string	account_pin_unreadable	-	በዚህ ኮምፒውተር ላይ 
 values-b+am	string	account_profile_current	-	የአሁኑ
 values-b+am	string	account_profile_locked	-	ተቆልፏል · ፒን
 values-b+am	string	account_profile_no_sync	-	ማመሳሰል የለም
+values-b+am	string	account_profile_not_added	-	በዚህ ኮምፒውተር ላይ ያሉት ፒኖች ሊነበቡ ባለመቻላቸው መገለጫ ማከል አልተቻለም። ምንም አልተቀየረም።
 values-b+am	string	account_select_note	-	የተለየ የእይታ ታሪክ · መግቢያዎች አይደሉም
 values-b+am	string	account_select_title	-	ማን እየተመለከተ ነው?
 values-b+am	string	account_signin_failed_body	-	%s መግባቱን አላረጋገጠም። ምንም አልተቀመጠም።
@@ -2472,6 +2474,7 @@ values-b+apc	string	account_pin_unreadable	-	ما قدرنا نقرأ أرقام
 values-b+apc	string	account_profile_current	-	الحالي
 values-b+apc	string	account_profile_locked	-	مقفول · PIN
 values-b+apc	string	account_profile_no_sync	-	ما في مزامنة
+values-b+apc	string	account_profile_not_added	-	ما قدرنا نضيف ملف شخصي لأنه ما فينا نقرأ أرقام الـPIN على هالكمبيوتر. ما تغيّر شي.
 values-b+apc	string	account_select_note	-	سجل مشاهدة منفصل · مش تسجيل دخول
 values-b+apc	string	account_select_title	-	مين عم يحضر؟
 values-b+apc	string	account_signin_failed_body	-	%s ما أكّد تسجيل الدخول. ما انحفظ شي.
@@ -3746,6 +3749,7 @@ values-b+ar	string	account_pin_unreadable	-	تعذّرت قراءة أرقام P
 values-b+ar	string	account_profile_current	-	الحالي
 values-b+ar	string	account_profile_locked	-	مقفل · رمز PIN
 values-b+ar	string	account_profile_no_sync	-	بلا مزامنة
+values-b+ar	string	account_profile_not_added	-	تعذّرت إضافة ملف شخصي لأنه لا يمكن قراءة أرقام PIN على هذا الكمبيوتر. لم يتغيّر شيء.
 values-b+ar	string	account_select_note	-	سجل مشاهدة منفصل · ليس تسجيلات دخول
 values-b+ar	string	account_select_title	-	من يشاهد؟
 values-b+ar	string	account_signin_failed_body	-	لم يؤكد %s تسجيل الدخول. لم يُحفظ أي شيء.
@@ -5012,6 +5016,7 @@ values-b+ars	string	account_pin_unreadable	-	ما قدرنا نقرأ أرقام
 values-b+ars	string	account_profile_current	-	الحالي
 values-b+ars	string	account_profile_locked	-	مقفل · PIN
 values-b+ars	string	account_profile_no_sync	-	بدون مزامنة
+values-b+ars	string	account_profile_not_added	-	ما قدرنا نضيف ملف شخصي لأن أرقام PIN على هالكمبيوتر ما تنقرأ. ما تغيّر شي.
 values-b+ars	string	account_select_note	-	سجل مشاهدة منفصل · مو تسجيل دخول
 values-b+ars	string	account_select_title	-	مين يشاهد؟
 values-b+ars	string	account_signin_failed_body	-	%s ما أكّد تسجيل الدخول. ما انحفظ شي.
@@ -6198,6 +6203,7 @@ values-b+as	string	account_pin_unreadable	-	এই কম্পিউটাৰ�
 values-b+as	string	account_profile_current	-	বৰ্তমান
 values-b+as	string	account_profile_locked	-	লক কৰা · PIN
 values-b+as	string	account_profile_no_sync	-	ছিংক নাই
+values-b+as	string	account_profile_not_added	-	এই কম্পিউটাৰৰ PIN পঢ়িব নোৱাৰাৰ বাবে প্ৰফাইল যোগ কৰিব পৰা নগ'ল। একো সলনি হোৱা নাই।
 values-b+as	string	account_select_note	-	পৃথক চোৱাৰ ইতিহাস · লগইন নহয়
 values-b+as	string	account_select_title	-	কোনে চাই আছে?
 values-b+as	string	account_signin_failed_body	-	%s এ ছাইন-ইন নিশ্চিত নকৰিলে। একো ছেভ কৰা হোৱা নাই।
@@ -7384,6 +7390,7 @@ values-b+az	string	account_pin_unreadable	-	Bu kompüterdəki PIN-lər oxuna bil
 values-b+az	string	account_profile_current	-	Cari
 values-b+az	string	account_profile_locked	-	Kilidli · PIN
 values-b+az	string	account_profile_no_sync	-	Sinxronizasiya yoxdur
+values-b+az	string	account_profile_not_added	-	Bu kompüterdəki PIN-lər oxuna bilmədiyi üçün profil əlavə edilmədi. Heç nə dəyişmədi.
 values-b+az	string	account_select_note	-	Ayrı baxış tarixçəsi · giriş deyil
 values-b+az	string	account_select_title	-	Kim baxır?
 values-b+az	string	account_signin_failed_body	-	%s girişi təsdiqləmədi. Heç nə saxlanılmadı.
@@ -8614,6 +8621,7 @@ values-b+be	string	account_pin_unreadable	-	Не ўдалося прачытац
 values-b+be	string	account_profile_current	-	Бягучы
 values-b+be	string	account_profile_locked	-	Заблакіраваны · PIN
 values-b+be	string	account_profile_no_sync	-	Без сінхранізацыі
+values-b+be	string	account_profile_not_added	-	Не ўдалося дадаць профіль, пакуль PIN-коды на гэтым камп'ютары нельга прачытаць. Нічога не змянілася.
 values-b+be	string	account_select_note	-	Асобная гісторыя прагляду · не ўваходы
 values-b+be	string	account_select_title	-	Хто глядзіць?
 values-b+be	string	account_signin_failed_body	-	%s не пацвердзіў уваход. Нічога не захавана.
@@ -9800,6 +9808,7 @@ values-b+bg	string	account_pin_unreadable	-	ПИН кодовете на тоз�
 values-b+bg	string	account_profile_current	-	Текущ
 values-b+bg	string	account_profile_locked	-	Заключен · ПИН
 values-b+bg	string	account_profile_no_sync	-	Без синхронизация
+values-b+bg	string	account_profile_not_added	-	Не може да се добави профил, докато ПИН кодовете на този компютър не могат да бъдат прочетени. Нищо не е променено.
 values-b+bg	string	account_select_note	-	Отделна история на гледане · не са профили за вход
 values-b+bg	string	account_select_title	-	Кой гледа?
 values-b+bg	string	account_signin_failed_body	-	%s не потвърди вписването. Нищо не е запазено.
@@ -10986,6 +10995,7 @@ values-b+bn	string	account_pin_unreadable	-	এই কম্পিউটার�
 values-b+bn	string	account_profile_current	-	বর্তমান
 values-b+bn	string	account_profile_locked	-	লক করা · পিন
 values-b+bn	string	account_profile_no_sync	-	সিঙ্ক নেই
+values-b+bn	string	account_profile_not_added	-	এই কম্পিউটারের PIN পড়া না যাওয়া পর্যন্ত প্রোফাইল যোগ করা যায়নি। কিছুই বদলায়নি।
 values-b+bn	string	account_select_note	-	আলাদা দেখার ইতিহাস · লগইন নয়
 values-b+bn	string	account_select_title	-	কে দেখছে?
 values-b+bn	string	account_signin_failed_body	-	%s সাইন-ইন নিশ্চিত করেনি। কিছুই সংরক্ষণ করা হয়নি।
@@ -12192,6 +12202,7 @@ values-b+ca	string	account_pin_unreadable	-	No s'han pogut llegir els PIN d'aque
 values-b+ca	string	account_profile_current	-	Actual
 values-b+ca	string	account_profile_locked	-	Bloquejat · PIN
 values-b+ca	string	account_profile_no_sync	-	Sense sincronització
+values-b+ca	string	account_profile_not_added	-	No s'ha pogut afegir un perfil mentre no es puguin llegir els PIN d'aquest ordinador. No s'ha canviat res.
 values-b+ca	string	account_select_note	-	Historial de visualització separat · no són inicis de sessió
 values-b+ca	string	account_select_title	-	Qui mira?
 values-b+ca	string	account_signin_failed_body	-	%s no ha confirmat l'inici de sessió. No s'ha desat res.
@@ -13378,6 +13389,7 @@ values-b+ckb	string	account_pin_unreadable	-	نەتوانرا PINەکانی ئە
 values-b+ckb	string	account_profile_current	-	ئێستا
 values-b+ckb	string	account_profile_locked	-	داخراو · PIN
 values-b+ckb	string	account_profile_no_sync	-	هاوکاتکردن نییە
+values-b+ckb	string	account_profile_not_added	-	نەتوانرا پرۆفایلێک زیاد بکرێت چونکە PINەکانی ئەم کۆمپیوتەرە ناخوێنرێنەوە. هیچ نەگۆڕا.
 values-b+ckb	string	account_select_note	-	مێژووی سەیرکردنی جیا · چوونەژوورەوە نییە
 values-b+ckb	string	account_select_title	-	کێ سەیر دەکات؟
 values-b+ckb	string	account_signin_failed_body	-	%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا.
@@ -14610,6 +14622,7 @@ values-b+cs	string	account_pin_unreadable	-	PIN kódy na tomto počítači nelze
 values-b+cs	string	account_profile_current	-	Aktuální
 values-b+cs	string	account_profile_locked	-	Zamčeno · PIN
 values-b+cs	string	account_profile_no_sync	-	Bez synchronizace
+values-b+cs	string	account_profile_not_added	-	Profil nelze přidat, dokud nelze přečíst PIN kódy na tomto počítači. Nic se nezměnilo.
 values-b+cs	string	account_select_note	-	Samostatná historie sledování · nejde o přihlášení
 values-b+cs	string	account_select_title	-	Kdo se dívá?
 values-b+cs	string	account_signin_failed_body	-	Služba %s přihlášení nepotvrdila. Nic nebylo uloženo.
@@ -15796,6 +15809,7 @@ values-b+de	string	account_pin_unreadable	-	Die PINs auf diesem Computer konnten
 values-b+de	string	account_profile_current	-	Aktuell
 values-b+de	string	account_profile_locked	-	Gesperrt · PIN
 values-b+de	string	account_profile_no_sync	-	Keine Synchronisierung
+values-b+de	string	account_profile_not_added	-	Ein Profil kann nicht hinzugefügt werden, solange die PINs auf diesem Computer nicht gelesen werden können. Es wurde nichts geändert.
 values-b+de	string	account_select_note	-	Eigener Wiedergabeverlauf · keine Anmeldungen
 values-b+de	string	account_select_title	-	Wer schaut?
 values-b+de	string	account_signin_failed_body	-	%s hat die Anmeldung nicht bestätigt. Es wurde nichts gespeichert.
@@ -16982,6 +16996,7 @@ values-b+el	string	account_pin_unreadable	-	Δεν ήταν δυνατή η αν
 values-b+el	string	account_profile_current	-	Τρέχον
 values-b+el	string	account_profile_locked	-	Κλειδωμένο · PIN
 values-b+el	string	account_profile_no_sync	-	Χωρίς συγχρονισμό
+values-b+el	string	account_profile_not_added	-	Δεν ήταν δυνατή η προσθήκη προφίλ όσο δεν διαβάζονται τα PIN σε αυτόν τον υπολογιστή. Δεν άλλαξε τίποτα.
 values-b+el	string	account_select_note	-	Ξεχωριστό ιστορικό προβολής · όχι συνδέσεις
 values-b+el	string	account_select_title	-	Ποιος βλέπει;
 values-b+el	string	account_signin_failed_body	-	Το %s δεν επιβεβαίωσε τη σύνδεση. Δεν αποθηκεύτηκε τίποτα.
@@ -18168,6 +18183,7 @@ values-b+eo	string	account_pin_unreadable	-	Ne eblis legi la PIN-ojn en ĉi tiu 
 values-b+eo	string	account_profile_current	-	Nuna
 values-b+eo	string	account_profile_locked	-	Ŝlosita · PIN
 values-b+eo	string	account_profile_no_sync	-	Sen sinkronigo
+values-b+eo	string	account_profile_not_added	-	Ne eblis aldoni profilon dum la PIN-oj en ĉi tiu komputilo ne legeblas. Nenio ŝanĝiĝis.
 values-b+eo	string	account_select_note	-	Aparta spekta historio · ne ensalutoj
 values-b+eo	string	account_select_title	-	Kiu spektas?
 values-b+eo	string	account_signin_failed_body	-	%s ne konfirmis la ensaluton. Nenio estis konservita.
@@ -19377,6 +19393,7 @@ values-b+es	string	account_pin_unreadable	-	No se pudieron leer los PIN de este 
 values-b+es	string	account_profile_current	-	Actual
 values-b+es	string	account_profile_locked	-	Bloqueado · PIN
 values-b+es	string	account_profile_no_sync	-	Sin sincronización
+values-b+es	string	account_profile_not_added	-	No se pudo añadir un perfil mientras no se puedan leer los PIN de este ordenador. No se cambió nada.
 values-b+es	string	account_select_note	-	Historial de visualización aparte · no son inicios de sesión
 values-b+es	string	account_select_title	-	¿Quién está viendo?
 values-b+es	string	account_signin_failed_body	-	%s no confirmó el inicio de sesión. No se ha guardado nada.
@@ -20563,6 +20580,7 @@ values-b+fa	string	account_pin_unreadable	-	PINهای این رایانه خوا
 values-b+fa	string	account_profile_current	-	فعلی
 values-b+fa	string	account_profile_locked	-	قفل‌شده · PIN
 values-b+fa	string	account_profile_no_sync	-	بدون همگام‌سازی
+values-b+fa	string	account_profile_not_added	-	تا وقتی PINهای این رایانه خوانده نشوند، افزودن نمایه ممکن نیست. چیزی تغییر نکرد.
 values-b+fa	string	account_select_note	-	تاریخچهٔ تماشای جدا · ورود به حساب نیست
 values-b+fa	string	account_select_title	-	چه کسی تماشا می‌کند؟
 values-b+fa	string	account_signin_failed_body	-	%s ورود را تأیید نکرد. چیزی ذخیره نشد.
@@ -21749,6 +21767,7 @@ values-b+fil	string	account_pin_unreadable	-	Hindi mabasa ang mga PIN sa compute
 values-b+fil	string	account_profile_current	-	Kasalukuyan
 values-b+fil	string	account_profile_locked	-	Naka-lock · PIN
 values-b+fil	string	account_profile_no_sync	-	Walang sync
+values-b+fil	string	account_profile_not_added	-	Hindi makapagdagdag ng profile habang hindi mabasa ang mga PIN sa computer na ito. Walang nabago.
 values-b+fil	string	account_select_note	-	Hiwalay na history ng panonood · hindi mga login
 values-b+fil	string	account_select_title	-	Sino ang nanonood?
 values-b+fil	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
@@ -22958,6 +22977,7 @@ values-b+fr	string	account_pin_unreadable	-	Impossible de lire les codes PIN de 
 values-b+fr	string	account_profile_current	-	Actuel
 values-b+fr	string	account_profile_locked	-	Verrouillé · PIN
 values-b+fr	string	account_profile_no_sync	-	Pas de synchronisation
+values-b+fr	string	account_profile_not_added	-	Impossible d'ajouter un profil tant que les codes PIN de cet ordinateur ne peuvent pas être lus. Rien n'a changé.
 values-b+fr	string	account_select_note	-	Historique de visionnage séparé · pas des connexions
 values-b+fr	string	account_select_title	-	Qui regarde ?
 values-b+fr	string	account_signin_failed_body	-	%s n'a pas confirmé la connexion. Rien n'a été enregistré.
@@ -24144,6 +24164,7 @@ values-b+gl	string	account_pin_unreadable	-	Non se puideron ler os PIN deste ord
 values-b+gl	string	account_profile_current	-	Actual
 values-b+gl	string	account_profile_locked	-	Bloqueado · PIN
 values-b+gl	string	account_profile_no_sync	-	Sen sincronización
+values-b+gl	string	account_profile_not_added	-	Non se puido engadir un perfil mentres non se poidan ler os PIN deste ordenador. Non se cambiou nada.
 values-b+gl	string	account_select_note	-	Historial de visualización separado · non son inicios de sesión
 values-b+gl	string	account_select_title	-	Quen está a ver?
 values-b+gl	string	account_signin_failed_body	-	%s non confirmou o inicio de sesión. Non se gardou nada.
@@ -25330,6 +25351,7 @@ values-b+hi	string	account_pin_unreadable	-	इस कंप्यूटर प�
 values-b+hi	string	account_profile_current	-	मौजूदा
 values-b+hi	string	account_profile_locked	-	लॉक · पिन
 values-b+hi	string	account_profile_no_sync	-	कोई सिंक नहीं
+values-b+hi	string	account_profile_not_added	-	जब तक इस कंप्यूटर के PIN पढ़े नहीं जा सकते, प्रोफ़ाइल जोड़ी नहीं जा सकी। कुछ नहीं बदला।
 values-b+hi	string	account_select_note	-	अलग देखने का इतिहास · लॉगिन नहीं
 values-b+hi	string	account_select_title	-	कौन देख रहा है?
 values-b+hi	string	account_signin_failed_body	-	%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।
@@ -26538,6 +26560,7 @@ values-b+hr	string	account_pin_unreadable	-	PIN-ovi na ovom računalu ne mogu se
 values-b+hr	string	account_profile_current	-	Trenutni
 values-b+hr	string	account_profile_locked	-	Zaključano · PIN
 values-b+hr	string	account_profile_no_sync	-	Bez sinkronizacije
+values-b+hr	string	account_profile_not_added	-	Profil se ne može dodati dok se PIN-ovi na ovom računalu ne mogu pročitati. Ništa nije promijenjeno.
 values-b+hr	string	account_select_note	-	Zasebna povijest gledanja · nisu prijave
 values-b+hr	string	account_select_title	-	Tko gleda?
 values-b+hr	string	account_signin_failed_body	-	%s nije potvrdio prijavu. Ništa nije spremljeno.
@@ -27724,6 +27747,7 @@ values-b+hu	string	account_pin_unreadable	-	Nem sikerült beolvasni a számító
 values-b+hu	string	account_profile_current	-	Jelenlegi
 values-b+hu	string	account_profile_locked	-	Zárolva · PIN
 values-b+hu	string	account_profile_no_sync	-	Nincs szinkronizálás
+values-b+hu	string	account_profile_not_added	-	Nem lehet profilt hozzáadni, amíg a számítógépen tárolt PIN-kódok nem olvashatók. Semmi sem változott.
 values-b+hu	string	account_select_note	-	Külön megtekintési előzmények · nem bejelentkezések
 values-b+hu	string	account_select_title	-	Ki néz?
 values-b+hu	string	account_signin_failed_body	-	A(z) %s nem erősítette meg a bejelentkezést. Semmi sem lett mentve.
@@ -28887,6 +28911,7 @@ values-b+in	string	account_pin_unreadable	-	Tidak dapat membaca PIN di komputer 
 values-b+in	string	account_profile_current	-	Saat ini
 values-b+in	string	account_profile_locked	-	Terkunci · PIN
 values-b+in	string	account_profile_no_sync	-	Tanpa sinkronisasi
+values-b+in	string	account_profile_not_added	-	Tidak dapat menambahkan profil selama PIN di komputer ini tidak dapat dibaca. Tidak ada yang berubah.
 values-b+in	string	account_select_note	-	Riwayat tontonan terpisah · bukan login
 values-b+in	string	account_select_title	-	Siapa yang menonton?
 values-b+in	string	account_signin_failed_body	-	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.
@@ -30096,6 +30121,7 @@ values-b+it	string	account_pin_unreadable	-	Impossibile leggere i PIN su questo 
 values-b+it	string	account_profile_current	-	Attuale
 values-b+it	string	account_profile_locked	-	Bloccato · PIN
 values-b+it	string	account_profile_no_sync	-	Nessuna sincronizzazione
+values-b+it	string	account_profile_not_added	-	Impossibile aggiungere un profilo finché i PIN su questo computer non possono essere letti. Non è cambiato nulla.
 values-b+it	string	account_select_note	-	Cronologia di visione separata · non sono accessi
 values-b+it	string	account_select_title	-	Chi sta guardando?
 values-b+it	string	account_signin_failed_body	-	%s non ha confermato l'accesso. Non è stato salvato nulla.
@@ -31302,6 +31328,7 @@ values-b+iw	string	account_pin_unreadable	-	לא ניתן היה לקרוא את
 values-b+iw	string	account_profile_current	-	נוכחי
 values-b+iw	string	account_profile_locked	-	נעול · PIN
 values-b+iw	string	account_profile_no_sync	-	ללא סנכרון
+values-b+iw	string	account_profile_not_added	-	לא ניתן להוסיף פרופיל כל עוד אי אפשר לקרוא את קודי ה-PIN במחשב הזה. שום דבר לא השתנה.
 values-b+iw	string	account_select_note	-	היסטוריית צפייה נפרדת · לא התחברויות
 values-b+iw	string	account_select_title	-	מי צופה?
 values-b+iw	string	account_signin_failed_body	-	%s לא אישר את ההתחברות. שום דבר לא נשמר.
@@ -32465,6 +32492,7 @@ values-b+ja	string	account_pin_unreadable	-	このコンピュータの PIN を�
 values-b+ja	string	account_profile_current	-	現在
 values-b+ja	string	account_profile_locked	-	ロック中 · PIN
 values-b+ja	string	account_profile_no_sync	-	同期なし
+values-b+ja	string	account_profile_not_added	-	このコンピュータの PIN を読み取れないため、プロフィールを追加できませんでした。何も変更されていません。
 values-b+ja	string	account_select_note	-	視聴履歴は別々 · ログインではありません
 values-b+ja	string	account_select_title	-	誰が見ていますか?
 values-b+ja	string	account_signin_failed_body	-	%s でサインインが確認されませんでした。何も保存されていません。
@@ -33651,6 +33679,7 @@ values-b+kn	string	account_pin_unreadable	-	ಈ ಕಂಪ್ಯೂಟರ್‌�
 values-b+kn	string	account_profile_current	-	ಪ್ರಸ್ತುತ
 values-b+kn	string	account_profile_locked	-	ಲಾಕ್ ಆಗಿದೆ · ಪಿನ್
 values-b+kn	string	account_profile_no_sync	-	ಸಿಂಕ್ ಇಲ್ಲ
+values-b+kn	string	account_profile_not_added	-	ಈ ಕಂಪ್ಯೂಟರ್‌ನ PIN ಗಳನ್ನು ಓದಲಾಗದ ಕಾರಣ ಪ್ರೊಫೈಲ್ ಸೇರಿಸಲಾಗಲಿಲ್ಲ. ಏನೂ ಬದಲಾಗಿಲ್ಲ.
 values-b+kn	string	account_select_note	-	ಪ್ರತ್ಯೇಕ ವೀಕ್ಷಣಾ ಇತಿಹಾಸ · ಲಾಗಿನ್‌ಗಳಲ್ಲ
 values-b+kn	string	account_select_title	-	ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?
 values-b+kn	string	account_signin_failed_body	-	%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ.
@@ -34815,6 +34844,7 @@ values-b+ko	string	account_pin_unreadable	-	이 컴퓨터의 PIN을 읽을 수 �
 values-b+ko	string	account_profile_current	-	현재
 values-b+ko	string	account_profile_locked	-	잠김 · PIN
 values-b+ko	string	account_profile_no_sync	-	동기화 없음
+values-b+ko	string	account_profile_not_added	-	이 컴퓨터의 PIN을 읽을 수 없어 프로필을 추가하지 못했습니다. 아무것도 바뀌지 않았습니다.
 values-b+ko	string	account_select_note	-	시청 기록은 따로 · 로그인이 아님
 values-b+ko	string	account_select_title	-	누가 보고 있나요?
 values-b+ko	string	account_signin_failed_body	-	%s에서 로그인을 확인하지 않았습니다. 저장된 내용이 없습니다.
@@ -36041,6 +36071,7 @@ values-b+lt	string	account_pin_unreadable	-	Nepavyko nuskaityti šio kompiuterio
 values-b+lt	string	account_profile_current	-	Dabartinis
 values-b+lt	string	account_profile_locked	-	Užrakinta · PIN
 values-b+lt	string	account_profile_no_sync	-	Be sinchronizavimo
+values-b+lt	string	account_profile_not_added	-	Negalima pridėti profilio, kol neįmanoma nuskaityti šio kompiuterio PIN kodų. Niekas nepakeista.
 values-b+lt	string	account_select_note	-	Atskira žiūrėjimo istorija · ne prisijungimai
 values-b+lt	string	account_select_title	-	Kas žiūri?
 values-b+lt	string	account_signin_failed_body	-	%s nepatvirtino prisijungimo. Niekas neišsaugota.
@@ -37248,6 +37279,7 @@ values-b+lv	string	account_pin_unreadable	-	Neizdevās nolasīt šī datora PIN 
 values-b+lv	string	account_profile_current	-	Pašreizējais
 values-b+lv	string	account_profile_locked	-	Bloķēts · PIN
 values-b+lv	string	account_profile_no_sync	-	Bez sinhronizācijas
+values-b+lv	string	account_profile_not_added	-	Nevar pievienot profilu, kamēr šī datora PIN kodus nevar nolasīt. Nekas netika mainīts.
 values-b+lv	string	account_select_note	-	Atsevišķa skatīšanās vēsture · nav pieteikšanās
 values-b+lv	string	account_select_title	-	Kas skatās?
 values-b+lv	string	account_signin_failed_body	-	%s neapstiprināja pieteikšanos. Nekas netika saglabāts.
@@ -38434,6 +38466,7 @@ values-b+mk	string	account_pin_unreadable	-	PIN-овите на овој ком�
 values-b+mk	string	account_profile_current	-	Тековен
 values-b+mk	string	account_profile_locked	-	Заклучен · PIN
 values-b+mk	string	account_profile_no_sync	-	Без синхронизација
+values-b+mk	string	account_profile_not_added	-	Не може да се додаде профил додека PIN-овите на овој компјутер не можат да се прочитаат. Ништо не е променето.
 values-b+mk	string	account_select_note	-	Посебна историја на гледање · не се најавувања
 values-b+mk	string	account_select_title	-	Кој гледа?
 values-b+mk	string	account_signin_failed_body	-	%s не ја потврди најавата. Ништо не е зачувано.
@@ -39620,6 +39653,7 @@ values-b+ml	string	account_pin_unreadable	-	ഈ കമ്പ്യൂട്ട�
 values-b+ml	string	account_profile_current	-	നിലവിലുള്ളത്
 values-b+ml	string	account_profile_locked	-	ലോക്ക് ചെയ്തു · പിൻ
 values-b+ml	string	account_profile_no_sync	-	സമന്വയമില്ല
+values-b+ml	string	account_profile_not_added	-	ഈ കമ്പ്യൂട്ടറിലെ PIN-കൾ വായിക്കാനാകാത്തതിനാൽ പ്രൊഫൈൽ ചേർക്കാനായില്ല. ഒന്നും മാറിയിട്ടില്ല.
 values-b+ml	string	account_select_note	-	പ്രത്യേക കാഴ്ച ചരിത്രം · ലോഗിനുകളല്ല
 values-b+ml	string	account_select_title	-	ആരാണ് കാണുന്നത്?
 values-b+ml	string	account_signin_failed_body	-	%s സൈൻ-ഇൻ സ്ഥിരീകരിച്ചില്ല. ഒന്നും സംരക്ഷിച്ചില്ല.
@@ -40786,6 +40820,7 @@ values-b+ms	string	account_pin_unreadable	-	PIN pada komputer ini tidak dapat di
 values-b+ms	string	account_profile_current	-	Semasa
 values-b+ms	string	account_profile_locked	-	Dikunci · PIN
 values-b+ms	string	account_profile_no_sync	-	Tiada penyegerakan
+values-b+ms	string	account_profile_not_added	-	Profil tidak dapat ditambah selagi PIN pada komputer ini tidak dapat dibaca. Tiada apa-apa yang berubah.
 values-b+ms	string	account_select_note	-	Sejarah tontonan berasingan · bukan log masuk
 values-b+ms	string	account_select_title	-	Siapa yang menonton?
 values-b+ms	string	account_signin_failed_body	-	%s tidak mengesahkan log masuk. Tiada apa-apa yang disimpan.
@@ -42032,6 +42067,7 @@ values-b+mt	string	account_pin_unreadable	-	Ma setax jinqraw il-PINs fuq dan il-
 values-b+mt	string	account_profile_current	-	Attwali
 values-b+mt	string	account_profile_locked	-	Imsakkar · PIN
 values-b+mt	string	account_profile_no_sync	-	L-ebda sinkronizzazzjoni
+values-b+mt	string	account_profile_not_added	-	Ma setax jiżdied profil sakemm il-PINs fuq dan il-kompjuter ma jistgħux jinqraw. Xejn ma nbidel.
 values-b+mt	string	account_select_note	-	Storja tal-wiri separata · mhux logins
 values-b+mt	string	account_select_title	-	Min qed jara?
 values-b+mt	string	account_signin_failed_body	-	%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn.
@@ -43198,6 +43234,7 @@ values-b+my	string	account_pin_unreadable	-	ဤကွန်ပျူတာရှ
 values-b+my	string	account_profile_current	-	လက်ရှိ
 values-b+my	string	account_profile_locked	-	လော့ခ်ချထား · PIN
 values-b+my	string	account_profile_no_sync	-	စင့်ခ်မရှိ
+values-b+my	string	account_profile_not_added	-	ဤကွန်ပျူတာရှိ PIN များကို ဖတ်၍မရသောကြောင့် ပရိုဖိုင် ထည့်၍မရပါ။ ဘာမျှ မပြောင်းလဲပါ။
 values-b+my	string	account_select_note	-	သီးခြားကြည့်ရှုမှုမှတ်တမ်း · ဝင်ရောက်မှုမဟုတ်
 values-b+my	string	account_select_title	-	ဘယ်သူကြည့်နေလဲ?
 values-b+my	string	account_signin_failed_body	-	%s က ဝင်ရောက်မှုကို အတည်မပြုခဲ့ပါ။ ဘာမျှ သိမ်းဆည်းမထားပါ။
@@ -44384,6 +44421,7 @@ values-b+ne	string	account_pin_unreadable	-	यस कम्प्युटर�
 values-b+ne	string	account_profile_current	-	हालको
 values-b+ne	string	account_profile_locked	-	लक गरिएको · पिन
 values-b+ne	string	account_profile_no_sync	-	सिंक छैन
+values-b+ne	string	account_profile_not_added	-	यस कम्प्युटरका PIN पढ्न नसकिँदासम्म प्रोफाइल थप्न सकिएन। केही परिवर्तन भएन।
 values-b+ne	string	account_select_note	-	छुट्टै हेराइ इतिहास · लगइन होइन
 values-b+ne	string	account_select_title	-	को हेर्दै हुनुहुन्छ?
 values-b+ne	string	account_signin_failed_body	-	%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।
@@ -45570,6 +45608,7 @@ values-b+nl	string	account_pin_unreadable	-	De pincodes op deze computer konden 
 values-b+nl	string	account_profile_current	-	Huidig
 values-b+nl	string	account_profile_locked	-	Vergrendeld · pincode
 values-b+nl	string	account_profile_no_sync	-	Geen synchronisatie
+values-b+nl	string	account_profile_not_added	-	Er kan geen profiel worden toegevoegd zolang de pincodes op deze computer niet kunnen worden gelezen. Er is niets gewijzigd.
 values-b+nl	string	account_select_note	-	Aparte kijkgeschiedenis · geen aanmeldingen
 values-b+nl	string	account_select_title	-	Wie kijkt er?
 values-b+nl	string	account_signin_failed_body	-	%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen.
@@ -46756,6 +46795,7 @@ values-b+nn	string	account_pin_unreadable	-	Kunne ikkje lese PIN-kodane på denn
 values-b+nn	string	account_profile_current	-	Gjeldande
 values-b+nn	string	account_profile_locked	-	Låst · PIN
 values-b+nn	string	account_profile_no_sync	-	Inga synkronisering
+values-b+nn	string	account_profile_not_added	-	Kunne ikkje leggje til ein profil medan PIN-kodane på denne datamaskina ikkje kan lesast. Ingenting vart endra.
 values-b+nn	string	account_select_note	-	Eiga sjåhistorikk · ikkje innloggingar
 values-b+nn	string	account_select_title	-	Kven ser på?
 values-b+nn	string	account_signin_failed_body	-	%s stadfesta ikkje innlogginga. Ingenting vart lagra.
@@ -47942,6 +47982,7 @@ values-b+no	string	account_pin_unreadable	-	Kunne ikke lese PIN-kodene på denne
 values-b+no	string	account_profile_current	-	Gjeldende
 values-b+no	string	account_profile_locked	-	Låst · PIN
 values-b+no	string	account_profile_no_sync	-	Ingen synkronisering
+values-b+no	string	account_profile_not_added	-	Kunne ikke legge til en profil mens PIN-kodene på denne datamaskinen ikke kan leses. Ingenting ble endret.
 values-b+no	string	account_select_note	-	Egen seerhistorikk · ikke innlogginger
 values-b+no	string	account_select_title	-	Hvem ser på?
 values-b+no	string	account_signin_failed_body	-	%s bekreftet ikke innloggingen. Ingenting ble lagret.
@@ -49128,6 +49169,7 @@ values-b+or	string	account_pin_unreadable	-	ଏହି କମ୍ପ୍ୟୁଟ�
 values-b+or	string	account_profile_current	-	ବର୍ତ୍ତମାନର
 values-b+or	string	account_profile_locked	-	ଲକ୍ ହୋଇଛି · PIN
 values-b+or	string	account_profile_no_sync	-	ସିଙ୍କ୍ ନାହିଁ
+values-b+or	string	account_profile_not_added	-	ଏହି କମ୍ପ୍ୟୁଟରର PIN ପଢ଼ିହେଉ ନଥିବାରୁ ପ୍ରୋଫାଇଲ୍ ଯୋଗ କରିହେଲା ନାହିଁ। କିଛି ବଦଳିନାହିଁ।
 values-b+or	string	account_select_note	-	ଅଲଗା ଦେଖିବା ଇତିହାସ · ଲଗଇନ୍ ନୁହେଁ
 values-b+or	string	account_select_title	-	କିଏ ଦେଖୁଛନ୍ତି?
 values-b+or	string	account_signin_failed_body	-	%s ସାଇନ୍-ଇନ୍ ନିଶ୍ଚିତ କଲା ନାହିଁ। କିଛି ସେଭ୍ ହୋଇନାହିଁ।
@@ -50360,6 +50402,7 @@ values-b+pl	string	account_pin_unreadable	-	Nie udało się odczytać kodów PIN
 values-b+pl	string	account_profile_current	-	Bieżący
 values-b+pl	string	account_profile_locked	-	Zablokowany · PIN
 values-b+pl	string	account_profile_no_sync	-	Bez synchronizacji
+values-b+pl	string	account_profile_not_added	-	Nie można dodać profilu, dopóki nie da się odczytać kodów PIN na tym komputerze. Nic nie zostało zmienione.
 values-b+pl	string	account_select_note	-	Osobna historia oglądania · to nie logowania
 values-b+pl	string	account_select_title	-	Kto ogląda?
 values-b+pl	string	account_signin_failed_body	-	Usługa %s nie potwierdziła logowania. Niczego nie zapisano.
@@ -51569,6 +51612,7 @@ values-b+pt	string	account_pin_unreadable	-	Não foi possível ler os PIN deste 
 values-b+pt	string	account_profile_current	-	Atual
 values-b+pt	string	account_profile_locked	-	Bloqueado · PIN
 values-b+pt	string	account_profile_no_sync	-	Sem sincronização
+values-b+pt	string	account_profile_not_added	-	Não é possível adicionar um perfil enquanto os PIN deste computador não puderem ser lidos. Nada foi alterado.
 values-b+pt	string	account_select_note	-	Histórico de visualização separado · não são inícios de sessão
 values-b+pt	string	account_select_title	-	Quem está a ver?
 values-b+pt	string	account_signin_failed_body	-	%s não confirmou o início de sessão. Nada foi guardado.
@@ -52778,6 +52822,7 @@ values-b+pt+BR	string	account_pin_unreadable	-	Não foi possível ler os PINs de
 values-b+pt+BR	string	account_profile_current	-	Atual
 values-b+pt+BR	string	account_profile_locked	-	Bloqueado · PIN
 values-b+pt+BR	string	account_profile_no_sync	-	Sem sincronização
+values-b+pt+BR	string	account_profile_not_added	-	Não é possível adicionar um perfil enquanto os PINs deste computador não puderem ser lidos. Nada foi alterado.
 values-b+pt+BR	string	account_select_note	-	Histórico separado · não são logins
 values-b+pt+BR	string	account_select_title	-	Quem está assistindo?
 values-b+pt+BR	string	account_signin_failed_body	-	%s não confirmou o login. Nada foi salvo.
@@ -53944,6 +53989,7 @@ values-b+qt	string	account_pin_unreadable	-	aagg ooh PIN. ooh-aah oouh.
 values-b+qt	string	account_profile_current	-	oooh
 values-b+qt	string	account_profile_locked	-	oooh-aah · ooh
 values-b+qt	string	account_profile_no_sync	-	aah oooh
+values-b+qt	string	account_profile_not_added	-	aagg ooh-ooh PIN. ooh-aah.
 values-b+qt	string	account_select_note	-	oooh-aah aagg · ooh aah
 values-b+qt	string	account_select_title	-	ooh oooh aah?
 values-b+qt	string	account_signin_failed_body	-	%s oooohh uugg ah. oooohh aagg.
@@ -55150,6 +55196,7 @@ values-b+ro	string	account_pin_unreadable	-	PIN-urile de pe acest computer nu au
 values-b+ro	string	account_profile_current	-	Curent
 values-b+ro	string	account_profile_locked	-	Blocat · PIN
 values-b+ro	string	account_profile_no_sync	-	Fără sincronizare
+values-b+ro	string	account_profile_not_added	-	Nu se poate adăuga un profil cât timp PIN-urile de pe acest computer nu pot fi citite. Nu s-a schimbat nimic.
 values-b+ro	string	account_select_note	-	Istoric de vizionare separat · nu sunt conectări
 values-b+ro	string	account_select_title	-	Cine se uită?
 values-b+ro	string	account_signin_failed_body	-	%s nu a confirmat conectarea. Nu s-a salvat nimic.
@@ -56382,6 +56429,7 @@ values-b+ru	string	account_pin_unreadable	-	Не удалось прочитат
 values-b+ru	string	account_profile_current	-	Текущий
 values-b+ru	string	account_profile_locked	-	Заблокирован · PIN
 values-b+ru	string	account_profile_no_sync	-	Без синхронизации
+values-b+ru	string	account_profile_not_added	-	Нельзя добавить профиль, пока PIN-коды на этом компьютере не читаются. Ничего не изменилось.
 values-b+ru	string	account_select_note	-	Отдельная история просмотра · не входы в аккаунт
 values-b+ru	string	account_select_title	-	Кто смотрит?
 values-b+ru	string	account_signin_failed_body	-	%s не подтвердил вход. Ничего не сохранено.
@@ -57608,6 +57656,7 @@ values-b+sk	string	account_pin_unreadable	-	PIN kódy na tomto počítači sa ne
 values-b+sk	string	account_profile_current	-	Aktuálny
 values-b+sk	string	account_profile_locked	-	Zamknuté · PIN
 values-b+sk	string	account_profile_no_sync	-	Bez synchronizácie
+values-b+sk	string	account_profile_not_added	-	Profil nemožno pridať, kým sa PIN kódy na tomto počítači nedajú prečítať. Nič sa nezmenilo.
 values-b+sk	string	account_select_note	-	Samostatná história pozerania · nie sú to prihlásenia
 values-b+sk	string	account_select_title	-	Kto sa pozerá?
 values-b+sk	string	account_signin_failed_body	-	Služba %s prihlásenie nepotvrdila. Nič sa neuložilo.
@@ -58794,6 +58843,7 @@ values-b+so	string	account_pin_unreadable	-	Lama akhrin karin PIN-ka kombuyuutar
 values-b+so	string	account_profile_current	-	Hadda
 values-b+so	string	account_profile_locked	-	La xiray · PIN
 values-b+so	string	account_profile_no_sync	-	Isku-dhafid ma jirto
+values-b+so	string	account_profile_not_added	-	Lama dari karin astaan inta aan PIN-ka kombuyuutarkan la akhrin karin. Waxba isma beddelin.
 values-b+so	string	account_select_note	-	Taariikh daawasho gooni ah · ma aha gelitaan
 values-b+so	string	account_select_title	-	Yaa daawanaya?
 values-b+so	string	account_signin_failed_body	-	%s ma xaqiijin galitaanka. Waxba lama kaydin.
@@ -59980,6 +60030,7 @@ values-b+sq	string	account_pin_unreadable	-	PIN-et në këtë kompjuter nuk u le
 values-b+sq	string	account_profile_current	-	Aktual
 values-b+sq	string	account_profile_locked	-	I kyçur · PIN
 values-b+sq	string	account_profile_no_sync	-	Pa sinkronizim
+values-b+sq	string	account_profile_not_added	-	Nuk mund të shtohet profil derisa PIN-et në këtë kompjuter nuk lexohen. Asgjë nuk ndryshoi.
 values-b+sq	string	account_select_note	-	Historik shikimi më vete · jo hyrje
 values-b+sq	string	account_select_title	-	Kush po shikon?
 values-b+sq	string	account_signin_failed_body	-	%s nuk e konfirmoi identifikimin. Nuk u ruajt asgjë.
@@ -61166,6 +61217,7 @@ values-b+sv	string	account_pin_unreadable	-	Det gick inte att läsa PIN-koderna 
 values-b+sv	string	account_profile_current	-	Aktuell
 values-b+sv	string	account_profile_locked	-	Låst · PIN
 values-b+sv	string	account_profile_no_sync	-	Ingen synkronisering
+values-b+sv	string	account_profile_not_added	-	Det går inte att lägga till en profil medan PIN-koderna på den här datorn inte kan läsas. Inget ändrades.
 values-b+sv	string	account_select_note	-	Egen visningshistorik · inte inloggningar
 values-b+sv	string	account_select_title	-	Vem tittar?
 values-b+sv	string	account_signin_failed_body	-	%s bekräftade inte inloggningen. Inget sparades.
@@ -62352,6 +62404,7 @@ values-b+ta	string	account_pin_unreadable	-	இந்தக் கணினி�
 values-b+ta	string	account_profile_current	-	தற்போதைய
 values-b+ta	string	account_profile_locked	-	பூட்டப்பட்டது · PIN
 values-b+ta	string	account_profile_no_sync	-	ஒத்திசைவு இல்லை
+values-b+ta	string	account_profile_not_added	-	இந்தக் கணினியின் PIN-களைப் படிக்க முடியாததால் சுயவிவரத்தைச் சேர்க்க முடியவில்லை. எதுவும் மாறவில்லை.
 values-b+ta	string	account_select_note	-	தனி பார்வை வரலாறு · உள்நுழைவுகள் அல்ல
 values-b+ta	string	account_select_title	-	யார் பார்க்கிறார்கள்?
 values-b+ta	string	account_signin_failed_body	-	%s உள்நுழைவை உறுதிப்படுத்தவில்லை. எதுவும் சேமிக்கப்படவில்லை.
@@ -63538,6 +63591,7 @@ values-b+ti	string	account_pin_unreadable	-	ኣብዚ ኮምፒዩተር ዘለ�
 values-b+ti	string	account_profile_current	-	ናይ ሕጂ
 values-b+ti	string	account_profile_locked	-	ተዓጽዩ · PIN
 values-b+ti	string	account_profile_no_sync	-	ምትእስሳር የለን
+values-b+ti	string	account_profile_not_added	-	ኣብዚ ኮምፒዩተር ዘለዉ PIN ክንበቡ ስለዘይከኣሉ ፕሮፋይል ክውሰኽ ኣይተኻእለን። ዝተቐየረ የለን።
 values-b+ti	string	account_select_note	-	ፍሉይ ታሪኽ ምርኣይ · መእተዊታት ኣይኮኑን
 values-b+ti	string	account_select_title	-	መን እዩ ዝርኢ ዘሎ?
 values-b+ti	string	account_signin_failed_body	-	%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።
@@ -64724,6 +64778,7 @@ values-b+tl	string	account_pin_unreadable	-	Hindi mabasa ang mga PIN sa computer
 values-b+tl	string	account_profile_current	-	Kasalukuyan
 values-b+tl	string	account_profile_locked	-	Naka-lock · PIN
 values-b+tl	string	account_profile_no_sync	-	Walang sync
+values-b+tl	string	account_profile_not_added	-	Hindi makapagdagdag ng profile habang hindi mabasa ang mga PIN sa computer na ito. Walang nabago.
 values-b+tl	string	account_select_note	-	Hiwalay na kasaysayan ng panonood · hindi mga login
 values-b+tl	string	account_select_title	-	Sino ang nanonood?
 values-b+tl	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
@@ -65910,6 +65965,7 @@ values-b+tr	string	account_pin_unreadable	-	Bu bilgisayardaki PIN'ler okunamadı
 values-b+tr	string	account_profile_current	-	Geçerli
 values-b+tr	string	account_profile_locked	-	Kilitli · PIN
 values-b+tr	string	account_profile_no_sync	-	Senkronizasyon yok
+values-b+tr	string	account_profile_not_added	-	Bu bilgisayardaki PIN'ler okunamadığı sürece profil eklenemez. Hiçbir şey değişmedi.
 values-b+tr	string	account_select_note	-	Ayrı izleme geçmişi · oturum açma değil
 values-b+tr	string	account_select_title	-	Kim izliyor?
 values-b+tr	string	account_signin_failed_body	-	%s oturum açmayı onaylamadı. Hiçbir şey kaydedilmedi.
@@ -67142,6 +67198,7 @@ values-b+uk	string	account_pin_unreadable	-	Не вдалося прочитат
 values-b+uk	string	account_profile_current	-	Поточний
 values-b+uk	string	account_profile_locked	-	Заблоковано · PIN
 values-b+uk	string	account_profile_no_sync	-	Без синхронізації
+values-b+uk	string	account_profile_not_added	-	Не можна додати профіль, доки PIN-коди на цьому комп'ютері не читаються. Нічого не змінилося.
 values-b+uk	string	account_select_note	-	Окрема історія перегляду · не входи в акаунт
 values-b+uk	string	account_select_title	-	Хто дивиться?
 values-b+uk	string	account_signin_failed_body	-	%s не підтвердив вхід. Нічого не збережено.
@@ -68328,6 +68385,7 @@ values-b+ur	string	account_pin_unreadable	-	اس کمپیوٹر پر PIN پڑھ�
 values-b+ur	string	account_profile_current	-	موجودہ
 values-b+ur	string	account_profile_locked	-	مقفل · PIN
 values-b+ur	string	account_profile_no_sync	-	کوئی ہم آہنگی نہیں
+values-b+ur	string	account_profile_not_added	-	جب تک اس کمپیوٹر کے PIN پڑھے نہیں جا سکتے، پروفائل شامل نہیں ہو سکی۔ کچھ تبدیل نہیں ہوا۔
 values-b+ur	string	account_select_note	-	الگ دیکھنے کی سرگزشت · لاگ ان نہیں
 values-b+ur	string	account_select_title	-	کون دیکھ رہا ہے؟
 values-b+ur	string	account_signin_failed_body	-	%s نے سائن ان کی تصدیق نہیں کی۔ کچھ بھی محفوظ نہیں ہوا۔
@@ -69491,6 +69549,7 @@ values-b+vi	string	account_pin_unreadable	-	Không thể đọc mã PIN trên m�
 values-b+vi	string	account_profile_current	-	Hiện tại
 values-b+vi	string	account_profile_locked	-	Đã khóa · PIN
 values-b+vi	string	account_profile_no_sync	-	Không đồng bộ
+values-b+vi	string	account_profile_not_added	-	Không thể thêm hồ sơ khi chưa đọc được mã PIN trên máy tính này. Không có gì thay đổi.
 values-b+vi	string	account_select_note	-	Lịch sử xem riêng · không phải đăng nhập
 values-b+vi	string	account_select_title	-	Ai đang xem?
 values-b+vi	string	account_signin_failed_body	-	%s không xác nhận đăng nhập. Chưa có gì được lưu.
@@ -70654,6 +70713,7 @@ values-b+zh	string	account_pin_unreadable	-	无法读取此电脑上的 PIN，�
 values-b+zh	string	account_profile_current	-	当前
 values-b+zh	string	account_profile_locked	-	已锁定 · PIN
 values-b+zh	string	account_profile_no_sync	-	不同步
+values-b+zh	string	account_profile_not_added	-	无法读取此电脑上的 PIN 时无法添加个人资料。没有任何更改。
 values-b+zh	string	account_select_note	-	独立的观看记录 · 不是登录账号
 values-b+zh	string	account_select_title	-	谁在观看？
 values-b+zh	string	account_signin_failed_body	-	%s 未确认登录。未保存任何内容。
@@ -71818,6 +71878,7 @@ values-b+zh+TW	string	account_pin_unreadable	-	無法讀取這台電腦上的 PI
 values-b+zh+TW	string	account_profile_current	-	目前
 values-b+zh+TW	string	account_profile_locked	-	已鎖定 · PIN
 values-b+zh+TW	string	account_profile_no_sync	-	不同步
+values-b+zh+TW	string	account_profile_not_added	-	無法讀取這台電腦上的 PIN 時無法新增設定檔。沒有任何變更。
 values-b+zh+TW	string	account_select_note	-	獨立的觀看紀錄 · 不是登入帳號
 values-b+zh+TW	string	account_select_title	-	誰在觀看？
 values-b+zh+TW	string	account_signin_failed_body	-	%s 未確認登入。未儲存任何內容。
@@ -73004,6 +73065,7 @@ en	string	account_pin_unreadable	-	Couldn't read the PINs on this computer, so t
 en	string	account_profile_current	-	Current
 en	string	account_profile_locked	-	Locked · PIN
 en	string	account_profile_no_sync	-	No sync
+en	string	account_profile_not_added	-	Couldn't add a profile while the PINs on this computer can't be read. Nothing was changed.
 en	string	account_select_note	-	Separate watch history · not logins
 en	string	account_select_title	-	Who's watching?
 en	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
@@ -74190,6 +74252,7 @@ en-US	string	account_pin_unreadable	-	Couldn't read the PINs on this computer, s
 en-US	string	account_profile_current	-	Current
 en-US	string	account_profile_locked	-	Locked · PIN
 en-US	string	account_profile_no_sync	-	No sync
+en-US	string	account_profile_not_added	-	Couldn't add a profile while the PINs on this computer can't be read. Nothing was changed.
 en-US	string	account_select_note	-	Separate watch history · not logins
 en-US	string	account_select_title	-	Who's watching?
 en-US	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
@@ -75376,6 +75439,7 @@ en-GB	string	account_pin_unreadable	-	Couldn't read the PINs on this computer, s
 en-GB	string	account_profile_current	-	Current
 en-GB	string	account_profile_locked	-	Locked · PIN
 en-GB	string	account_profile_no_sync	-	No sync
+en-GB	string	account_profile_not_added	-	Couldn't add a profile while the PINs on this computer can't be read. Nothing was changed.
 en-GB	string	account_select_note	-	Separate watch history · not logins
 en-GB	string	account_select_title	-	Who's watching?
 en-GB	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
@@ -76585,6 +76649,7 @@ pt	string	account_pin_unreadable	-	Não foi possível ler os PIN deste computado
 pt	string	account_profile_current	-	Atual
 pt	string	account_profile_locked	-	Bloqueado · PIN
 pt	string	account_profile_no_sync	-	Sem sincronização
+pt	string	account_profile_not_added	-	Não é possível adicionar um perfil enquanto os PIN deste computador não puderem ser lidos. Nada foi alterado.
 pt	string	account_select_note	-	Histórico de visualização separado · não são inícios de sessão
 pt	string	account_select_title	-	Quem está a ver?
 pt	string	account_signin_failed_body	-	%s não confirmou o início de sessão. Nada foi guardado.
@@ -77794,6 +77859,7 @@ pt-PT	string	account_pin_unreadable	-	Não foi possível ler os PIN deste comput
 pt-PT	string	account_profile_current	-	Atual
 pt-PT	string	account_profile_locked	-	Bloqueado · PIN
 pt-PT	string	account_profile_no_sync	-	Sem sincronização
+pt-PT	string	account_profile_not_added	-	Não é possível adicionar um perfil enquanto os PIN deste computador não puderem ser lidos. Nada foi alterado.
 pt-PT	string	account_select_note	-	Histórico de visualização separado · não são inícios de sessão
 pt-PT	string	account_select_title	-	Quem está a ver?
 pt-PT	string	account_signin_failed_body	-	%s não confirmou o início de sessão. Nada foi guardado.
@@ -79003,6 +79069,7 @@ pt-BR	string	account_pin_unreadable	-	Não foi possível ler os PINs deste compu
 pt-BR	string	account_profile_current	-	Atual
 pt-BR	string	account_profile_locked	-	Bloqueado · PIN
 pt-BR	string	account_profile_no_sync	-	Sem sincronização
+pt-BR	string	account_profile_not_added	-	Não é possível adicionar um perfil enquanto os PINs deste computador não puderem ser lidos. Nada foi alterado.
 pt-BR	string	account_select_note	-	Histórico separado · não são logins
 pt-BR	string	account_select_title	-	Quem está assistindo?
 pt-BR	string	account_signin_failed_body	-	%s não confirmou o login. Nada foi salvo.
@@ -80189,6 +80256,7 @@ fil	string	account_pin_unreadable	-	Hindi mabasa ang mga PIN sa computer na ito,
 fil	string	account_profile_current	-	Kasalukuyan
 fil	string	account_profile_locked	-	Naka-lock · PIN
 fil	string	account_profile_no_sync	-	Walang sync
+fil	string	account_profile_not_added	-	Hindi makapagdagdag ng profile habang hindi mabasa ang mga PIN sa computer na ito. Walang nabago.
 fil	string	account_select_note	-	Hiwalay na history ng panonood · hindi mga login
 fil	string	account_select_title	-	Sino ang nanonood?
 fil	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
@@ -81375,6 +81443,7 @@ tl	string	account_pin_unreadable	-	Hindi mabasa ang mga PIN sa computer na ito, 
 tl	string	account_profile_current	-	Kasalukuyan
 tl	string	account_profile_locked	-	Naka-lock · PIN
 tl	string	account_profile_no_sync	-	Walang sync
+tl	string	account_profile_not_added	-	Hindi makapagdagdag ng profile habang hindi mabasa ang mga PIN sa computer na ito. Walang nabago.
 tl	string	account_select_note	-	Hiwalay na kasaysayan ng panonood · hindi mga login
 tl	string	account_select_title	-	Sino ang nanonood?
 tl	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
@@ -82561,6 +82630,7 @@ fil-PH	string	account_pin_unreadable	-	Hindi mabasa ang mga PIN sa computer na i
 fil-PH	string	account_profile_current	-	Kasalukuyan
 fil-PH	string	account_profile_locked	-	Naka-lock · PIN
 fil-PH	string	account_profile_no_sync	-	Walang sync
+fil-PH	string	account_profile_not_added	-	Hindi makapagdagdag ng profile habang hindi mabasa ang mga PIN sa computer na ito. Walang nabago.
 fil-PH	string	account_select_note	-	Hiwalay na history ng panonood · hindi mga login
 fil-PH	string	account_select_title	-	Sino ang nanonood?
 fil-PH	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
@@ -83724,6 +83794,7 @@ zh	string	account_pin_unreadable	-	无法读取此电脑上的 PIN，因此此�
 zh	string	account_profile_current	-	当前
 zh	string	account_profile_locked	-	已锁定 · PIN
 zh	string	account_profile_no_sync	-	不同步
+zh	string	account_profile_not_added	-	无法读取此电脑上的 PIN 时无法添加个人资料。没有任何更改。
 zh	string	account_select_note	-	独立的观看记录 · 不是登录账号
 zh	string	account_select_title	-	谁在观看？
 zh	string	account_signin_failed_body	-	%s 未确认登录。未保存任何内容。
@@ -84887,6 +84958,7 @@ zh-CN	string	account_pin_unreadable	-	无法读取此电脑上的 PIN，因此�
 zh-CN	string	account_profile_current	-	当前
 zh-CN	string	account_profile_locked	-	已锁定 · PIN
 zh-CN	string	account_profile_no_sync	-	不同步
+zh-CN	string	account_profile_not_added	-	无法读取此电脑上的 PIN 时无法添加个人资料。没有任何更改。
 zh-CN	string	account_select_note	-	独立的观看记录 · 不是登录账号
 zh-CN	string	account_select_title	-	谁在观看？
 zh-CN	string	account_signin_failed_body	-	%s 未确认登录。未保存任何内容。
@@ -86050,6 +86122,7 @@ zh-Hans-CN	string	account_pin_unreadable	-	无法读取此电脑上的 PIN，因
 zh-Hans-CN	string	account_profile_current	-	当前
 zh-Hans-CN	string	account_profile_locked	-	已锁定 · PIN
 zh-Hans-CN	string	account_profile_no_sync	-	不同步
+zh-Hans-CN	string	account_profile_not_added	-	无法读取此电脑上的 PIN 时无法添加个人资料。没有任何更改。
 zh-Hans-CN	string	account_select_note	-	独立的观看记录 · 不是登录账号
 zh-Hans-CN	string	account_select_title	-	谁在观看？
 zh-Hans-CN	string	account_signin_failed_body	-	%s 未确认登录。未保存任何内容。
@@ -87214,6 +87287,7 @@ zh-TW	string	account_pin_unreadable	-	無法讀取這台電腦上的 PIN，因�
 zh-TW	string	account_profile_current	-	目前
 zh-TW	string	account_profile_locked	-	已鎖定 · PIN
 zh-TW	string	account_profile_no_sync	-	不同步
+zh-TW	string	account_profile_not_added	-	無法讀取這台電腦上的 PIN 時無法新增設定檔。沒有任何變更。
 zh-TW	string	account_select_note	-	獨立的觀看紀錄 · 不是登入帳號
 zh-TW	string	account_select_title	-	誰在觀看？
 zh-TW	string	account_signin_failed_body	-	%s 未確認登入。未儲存任何內容。
@@ -88378,6 +88452,7 @@ zh-Hant-TW	string	account_pin_unreadable	-	無法讀取這台電腦上的 PIN，
 zh-Hant-TW	string	account_profile_current	-	目前
 zh-Hant-TW	string	account_profile_locked	-	已鎖定 · PIN
 zh-Hant-TW	string	account_profile_no_sync	-	不同步
+zh-Hant-TW	string	account_profile_not_added	-	無法讀取這台電腦上的 PIN 時無法新增設定檔。沒有任何變更。
 zh-Hant-TW	string	account_select_note	-	獨立的觀看紀錄 · 不是登入帳號
 zh-Hant-TW	string	account_select_title	-	誰在觀看？
 zh-Hant-TW	string	account_signin_failed_body	-	%s 未確認登入。未儲存任何內容。
@@ -89542,6 +89617,7 @@ zh-HK	string	account_pin_unreadable	-	無法讀取這台電腦上的 PIN，因�
 zh-HK	string	account_profile_current	-	目前
 zh-HK	string	account_profile_locked	-	已鎖定 · PIN
 zh-HK	string	account_profile_no_sync	-	不同步
+zh-HK	string	account_profile_not_added	-	無法讀取這台電腦上的 PIN 時無法新增設定檔。沒有任何變更。
 zh-HK	string	account_select_note	-	獨立的觀看紀錄 · 不是登入帳號
 zh-HK	string	account_select_title	-	誰在觀看？
 zh-HK	string	account_signin_failed_body	-	%s 未確認登入。未儲存任何內容。
@@ -90706,6 +90782,7 @@ zh-Hant-HK	string	account_pin_unreadable	-	無法讀取這台電腦上的 PIN，
 zh-Hant-HK	string	account_profile_current	-	目前
 zh-Hant-HK	string	account_profile_locked	-	已鎖定 · PIN
 zh-Hant-HK	string	account_profile_no_sync	-	不同步
+zh-Hant-HK	string	account_profile_not_added	-	無法讀取這台電腦上的 PIN 時無法新增設定檔。沒有任何變更。
 zh-Hant-HK	string	account_select_note	-	獨立的觀看紀錄 · 不是登入帳號
 zh-Hant-HK	string	account_select_title	-	誰在觀看？
 zh-Hant-HK	string	account_signin_failed_body	-	%s 未確認登入。未儲存任何內容。
@@ -91892,6 +91969,7 @@ no	string	account_pin_unreadable	-	Kunne ikke lese PIN-kodene på denne datamask
 no	string	account_profile_current	-	Gjeldende
 no	string	account_profile_locked	-	Låst · PIN
 no	string	account_profile_no_sync	-	Ingen synkronisering
+no	string	account_profile_not_added	-	Kunne ikke legge til en profil mens PIN-kodene på denne datamaskinen ikke kan leses. Ingenting ble endret.
 no	string	account_select_note	-	Egen seerhistorikk · ikke innlogginger
 no	string	account_select_title	-	Hvem ser på?
 no	string	account_signin_failed_body	-	%s bekreftet ikke innloggingen. Ingenting ble lagret.
@@ -93078,6 +93156,7 @@ nb	string	account_pin_unreadable	-	Couldn't read the PINs on this computer, so t
 nb	string	account_profile_current	-	Current
 nb	string	account_profile_locked	-	Locked · PIN
 nb	string	account_profile_no_sync	-	No sync
+nb	string	account_profile_not_added	-	Couldn't add a profile while the PINs on this computer can't be read. Nothing was changed.
 nb	string	account_select_note	-	Separate watch history · not logins
 nb	string	account_select_title	-	Who's watching?
 nb	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
@@ -94264,6 +94343,7 @@ nb-NO	string	account_pin_unreadable	-	Couldn't read the PINs on this computer, s
 nb-NO	string	account_profile_current	-	Current
 nb-NO	string	account_profile_locked	-	Locked · PIN
 nb-NO	string	account_profile_no_sync	-	No sync
+nb-NO	string	account_profile_not_added	-	Couldn't add a profile while the PINs on this computer can't be read. Nothing was changed.
 nb-NO	string	account_select_note	-	Separate watch history · not logins
 nb-NO	string	account_select_title	-	Who's watching?
 nb-NO	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
@@ -95470,6 +95550,7 @@ iw	string	account_pin_unreadable	-	לא ניתן היה לקרוא את קודי
 iw	string	account_profile_current	-	נוכחי
 iw	string	account_profile_locked	-	נעול · PIN
 iw	string	account_profile_no_sync	-	ללא סנכרון
+iw	string	account_profile_not_added	-	לא ניתן להוסיף פרופיל כל עוד אי אפשר לקרוא את קודי ה-PIN במחשב הזה. שום דבר לא השתנה.
 iw	string	account_select_note	-	היסטוריית צפייה נפרדת · לא התחברויות
 iw	string	account_select_title	-	מי צופה?
 iw	string	account_signin_failed_body	-	%s לא אישר את ההתחברות. שום דבר לא נשמר.
@@ -96676,6 +96757,7 @@ he	string	account_pin_unreadable	-	לא ניתן היה לקרוא את קודי
 he	string	account_profile_current	-	נוכחי
 he	string	account_profile_locked	-	נעול · PIN
 he	string	account_profile_no_sync	-	ללא סנכרון
+he	string	account_profile_not_added	-	לא ניתן להוסיף פרופיל כל עוד אי אפשר לקרוא את קודי ה-PIN במחשב הזה. שום דבר לא השתנה.
 he	string	account_select_note	-	היסטוריית צפייה נפרדת · לא התחברויות
 he	string	account_select_title	-	מי צופה?
 he	string	account_signin_failed_body	-	%s לא אישר את ההתחברות. שום דבר לא נשמר.
@@ -97882,6 +97964,7 @@ he-IL	string	account_pin_unreadable	-	לא ניתן היה לקרוא את קו�
 he-IL	string	account_profile_current	-	נוכחי
 he-IL	string	account_profile_locked	-	נעול · PIN
 he-IL	string	account_profile_no_sync	-	ללא סנכרון
+he-IL	string	account_profile_not_added	-	לא ניתן להוסיף פרופיל כל עוד אי אפשר לקרוא את קודי ה-PIN במחשב הזה. שום דבר לא השתנה.
 he-IL	string	account_select_note	-	היסטוריית צפייה נפרדת · לא התחברויות
 he-IL	string	account_select_title	-	מי צופה?
 he-IL	string	account_signin_failed_body	-	%s לא אישר את ההתחברות. שום דבר לא נשמר.
@@ -99045,6 +99128,7 @@ in	string	account_pin_unreadable	-	Tidak dapat membaca PIN di komputer ini, jadi
 in	string	account_profile_current	-	Saat ini
 in	string	account_profile_locked	-	Terkunci · PIN
 in	string	account_profile_no_sync	-	Tanpa sinkronisasi
+in	string	account_profile_not_added	-	Tidak dapat menambahkan profil selama PIN di komputer ini tidak dapat dibaca. Tidak ada yang berubah.
 in	string	account_select_note	-	Riwayat tontonan terpisah · bukan login
 in	string	account_select_title	-	Siapa yang menonton?
 in	string	account_signin_failed_body	-	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.
@@ -100208,6 +100292,7 @@ id	string	account_pin_unreadable	-	Tidak dapat membaca PIN di komputer ini, jadi
 id	string	account_profile_current	-	Saat ini
 id	string	account_profile_locked	-	Terkunci · PIN
 id	string	account_profile_no_sync	-	Tanpa sinkronisasi
+id	string	account_profile_not_added	-	Tidak dapat menambahkan profil selama PIN di komputer ini tidak dapat dibaca. Tidak ada yang berubah.
 id	string	account_select_note	-	Riwayat tontonan terpisah · bukan login
 id	string	account_select_title	-	Siapa yang menonton?
 id	string	account_signin_failed_body	-	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.
@@ -101371,6 +101456,7 @@ id-ID	string	account_pin_unreadable	-	Tidak dapat membaca PIN di komputer ini, j
 id-ID	string	account_profile_current	-	Saat ini
 id-ID	string	account_profile_locked	-	Terkunci · PIN
 id-ID	string	account_profile_no_sync	-	Tanpa sinkronisasi
+id-ID	string	account_profile_not_added	-	Tidak dapat menambahkan profil selama PIN di komputer ini tidak dapat dibaca. Tidak ada yang berubah.
 id-ID	string	account_select_note	-	Riwayat tontonan terpisah · bukan login
 id-ID	string	account_select_title	-	Siapa yang menonton?
 id-ID	string	account_signin_failed_body	-	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.
@@ -102557,6 +102643,7 @@ arz	string	account_pin_unreadable	-	Couldn't read the PINs on this computer, so 
 arz	string	account_profile_current	-	Current
 arz	string	account_profile_locked	-	Locked · PIN
 arz	string	account_profile_no_sync	-	No sync
+arz	string	account_profile_not_added	-	Couldn't add a profile while the PINs on this computer can't be read. Nothing was changed.
 arz	string	account_select_note	-	Separate watch history · not logins
 arz	string	account_select_title	-	Who's watching?
 arz	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.

@@ -34,6 +34,7 @@
 <string name="account_pin_new">4 ہندسوں کا PIN ٹائپ کریں۔</string>
 <string name="account_pin_not_saved">PIN کی تبدیلی محفوظ نہیں ہو سکی۔ کچھ تبدیل نہیں ہوا۔</string>
 <string name="account_pin_unreadable">اس کمپیوٹر پر PIN پڑھے نہیں جا سکے، اس لیے یہ پروفائل مقفل رہے گی۔</string>
+<string name="account_profile_not_added">جب تک اس کمپیوٹر کے PIN پڑھے نہیں جا سکتے، پروفائل شامل نہیں ہو سکی۔ کچھ تبدیل نہیں ہوا۔</string>
 <string name="account_pin_off">بند · کوئی بھی اس پروفائل کو کھول سکتا ہے</string>
 <string name="account_pin_on">آن · کھولنے کے لیے پوچھا جاتا ہے</string>
 <string name="account_pin_prompt">4 ہندسوں والا PIN ٹائپ کریں۔</string>

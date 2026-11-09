@@ -67,6 +67,7 @@
 <string name="account_profile_current">"தற்போதைய"</string>
 <string name="account_profile_locked">"பூட்டப்பட்டது · PIN"</string>
 <string name="account_profile_no_sync">"ஒத்திசைவு இல்லை"</string>
+<string name="account_profile_not_added">"இந்தக் கணினியின் PIN-களைப் படிக்க முடியாததால் சுயவிவரத்தைச் சேர்க்க முடியவில்லை. எதுவும் மாறவில்லை."</string>
 <string name="account_select_note">"தனி பார்வை வரலாறு · உள்நுழைவுகள் அல்ல"</string>
 <string name="account_select_title">"யார் பார்க்கிறார்கள்?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s உள்நுழைவை உறுதிப்படுத்தவில்லை. எதுவும் சேமிக்கப்படவில்லை."</string>

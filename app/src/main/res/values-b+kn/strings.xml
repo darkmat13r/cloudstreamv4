@@ -63,6 +63,7 @@
 <string name="account_profile_current">"ಪ್ರಸ್ತುತ"</string>
 <string name="account_profile_locked">"ಲಾಕ್ ಆಗಿದೆ · ಪಿನ್"</string>
 <string name="account_profile_no_sync">"ಸಿಂಕ್ ಇಲ್ಲ"</string>
+<string name="account_profile_not_added">"ಈ ಕಂಪ್ಯೂಟರ್‌ನ PIN ಗಳನ್ನು ಓದಲಾಗದ ಕಾರಣ ಪ್ರೊಫೈಲ್ ಸೇರಿಸಲಾಗಲಿಲ್ಲ. ಏನೂ ಬದಲಾಗಿಲ್ಲ."</string>
 <string name="account_select_note">"ಪ್ರತ್ಯೇಕ ವೀಕ್ಷಣಾ ಇತಿಹಾಸ · ಲಾಗಿನ್‌ಗಳಲ್ಲ"</string>
 <string name="account_select_title">"ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ."</string>

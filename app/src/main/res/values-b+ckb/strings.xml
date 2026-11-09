@@ -63,6 +63,7 @@
 <string name="account_profile_current">"ئێستا"</string>
 <string name="account_profile_locked">"داخراو · PIN"</string>
 <string name="account_profile_no_sync">"هاوکاتکردن نییە"</string>
+<string name="account_profile_not_added">"نەتوانرا پرۆفایلێک زیاد بکرێت چونکە PINەکانی ئەم کۆمپیوتەرە ناخوێنرێنەوە. هیچ نەگۆڕا."</string>
 <string name="account_select_note">"مێژووی سەیرکردنی جیا · چوونەژوورەوە نییە"</string>
 <string name="account_select_title">"کێ سەیر دەکات؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا."</string>

@@ -81,6 +81,7 @@ values-b+af/strings.xml	string	account_pin_unreadable	-	STR	Kon nie die PIN's op
 values-b+af/strings.xml	string	account_profile_current	-	STR	Huidig	
 values-b+af/strings.xml	string	account_profile_locked	-	STR	Gesluit · PIN	
 values-b+af/strings.xml	string	account_profile_no_sync	-	STR	Geen sinkronisasie	
+values-b+af/strings.xml	string	account_profile_not_added	-	STR	Kon nie 'n profiel byvoeg terwyl die PIN's op hierdie rekenaar nie gelees kan word nie. Niks is verander nie.	
 values-b+af/strings.xml	string	account_select_note	-	STR	Aparte kykgeskiedenis · nie aanmeldings nie	
 values-b+af/strings.xml	string	account_select_title	-	STR	Wie kyk?	
 values-b+af/strings.xml	string	account_signin_failed_body	-	STR	%s het nie die aanmelding bevestig nie. Niks is gestoor nie.	
@@ -589,6 +590,7 @@ values-b+am/strings.xml	string	account_pin_unreadable	-	STR	በዚህ ኮምፒ�
 values-b+am/strings.xml	string	account_profile_current	-	STR	የአሁኑ	
 values-b+am/strings.xml	string	account_profile_locked	-	STR	ተቆልፏል · ፒን	
 values-b+am/strings.xml	string	account_profile_no_sync	-	STR	ማመሳሰል የለም	
+values-b+am/strings.xml	string	account_profile_not_added	-	STR	በዚህ ኮምፒውተር ላይ ያሉት ፒኖች ሊነበቡ ባለመቻላቸው መገለጫ ማከል አልተቻለም። ምንም አልተቀየረም።	
 values-b+am/strings.xml	string	account_select_note	-	STR	የተለየ የእይታ ታሪክ · መግቢያዎች አይደሉም	
 values-b+am/strings.xml	string	account_select_title	-	STR	ማን እየተመለከተ ነው?	
 values-b+am/strings.xml	string	account_signin_failed_body	-	STR	%s መግባቱን አላረጋገጠም። ምንም አልተቀመጠም።	
@@ -1090,6 +1092,7 @@ values-b+apc/strings.xml	string	account_pin_unreadable	-	STR	ما قدرنا ن�
 values-b+apc/strings.xml	string	account_profile_current	-	STR	الحالي	
 values-b+apc/strings.xml	string	account_profile_locked	-	STR	مقفول · PIN	
 values-b+apc/strings.xml	string	account_profile_no_sync	-	STR	ما في مزامنة	
+values-b+apc/strings.xml	string	account_profile_not_added	-	STR	ما قدرنا نضيف ملف شخصي لأنه ما فينا نقرأ أرقام الـPIN على هالكمبيوتر. ما تغيّر شي.	
 values-b+apc/strings.xml	string	account_select_note	-	STR	سجل مشاهدة منفصل · مش تسجيل دخول	
 values-b+apc/strings.xml	string	account_select_title	-	STR	مين عم يحضر؟	
 values-b+apc/strings.xml	string	account_signin_failed_body	-	STR	%s ما أكّد تسجيل الدخول. ما انحفظ شي.	
@@ -2299,6 +2302,7 @@ values-b+ar/strings.xml	string	account_pin_unreadable	-	STR	تعذّرت قرا�
 values-b+ar/strings.xml	string	account_profile_current	-	STR	الحالي	
 values-b+ar/strings.xml	string	account_profile_locked	-	STR	مقفل · رمز PIN	
 values-b+ar/strings.xml	string	account_profile_no_sync	-	STR	بلا مزامنة	
+values-b+ar/strings.xml	string	account_profile_not_added	-	STR	تعذّرت إضافة ملف شخصي لأنه لا يمكن قراءة أرقام PIN على هذا الكمبيوتر. لم يتغيّر شيء.	
 values-b+ar/strings.xml	string	account_select_note	-	STR	سجل مشاهدة منفصل · ليس تسجيلات دخول	
 values-b+ar/strings.xml	string	account_select_title	-	STR	من يشاهد؟	
 values-b+ar/strings.xml	string	account_signin_failed_body	-	STR	لم يؤكد %s تسجيل الدخول. لم يُحفظ أي شيء.	
@@ -3500,6 +3504,7 @@ values-b+ars/strings.xml	string	account_pin_unreadable	-	STR	ما قدرنا ن�
 values-b+ars/strings.xml	string	account_profile_current	-	STR	الحالي	
 values-b+ars/strings.xml	string	account_profile_locked	-	STR	مقفل · PIN	
 values-b+ars/strings.xml	string	account_profile_no_sync	-	STR	بدون مزامنة	
+values-b+ars/strings.xml	string	account_profile_not_added	-	STR	ما قدرنا نضيف ملف شخصي لأن أرقام PIN على هالكمبيوتر ما تنقرأ. ما تغيّر شي.	
 values-b+ars/strings.xml	string	account_select_note	-	STR	سجل مشاهدة منفصل · مو تسجيل دخول	
 values-b+ars/strings.xml	string	account_select_title	-	STR	مين يشاهد؟	
 values-b+ars/strings.xml	string	account_signin_failed_body	-	STR	%s ما أكّد تسجيل الدخول. ما انحفظ شي.	
@@ -4224,6 +4229,7 @@ values-b+as/strings.xml	string	account_pin_unreadable	-	STR	এই কম্প�
 values-b+as/strings.xml	string	account_profile_current	-	STR	বৰ্তমান	
 values-b+as/strings.xml	string	account_profile_locked	-	STR	লক কৰা · PIN	
 values-b+as/strings.xml	string	account_profile_no_sync	-	STR	ছিংক নাই	
+values-b+as/strings.xml	string	account_profile_not_added	-	STR	এই কম্পিউটাৰৰ PIN পঢ়িব নোৱাৰাৰ বাবে প্ৰফাইল যোগ কৰিব পৰা নগ'ল। একো সলনি হোৱা নাই।	
 values-b+as/strings.xml	string	account_select_note	-	STR	পৃথক চোৱাৰ ইতিহাস · লগইন নহয়	
 values-b+as/strings.xml	string	account_select_title	-	STR	কোনে চাই আছে?	
 values-b+as/strings.xml	string	account_signin_failed_body	-	STR	%s এ ছাইন-ইন নিশ্চিত নকৰিলে। একো ছেভ কৰা হোৱা নাই।	
@@ -5248,6 +5254,7 @@ values-b+az/strings.xml	string	account_pin_unreadable	-	STR	Bu kompüterdəki PI
 values-b+az/strings.xml	string	account_profile_current	-	STR	Cari	
 values-b+az/strings.xml	string	account_profile_locked	-	STR	Kilidli · PIN	
 values-b+az/strings.xml	string	account_profile_no_sync	-	STR	Sinxronizasiya yoxdur	
+values-b+az/strings.xml	string	account_profile_not_added	-	STR	Bu kompüterdəki PIN-lər oxuna bilmədiyi üçün profil əlavə edilmədi. Heç nə dəyişmədi.	
 values-b+az/strings.xml	string	account_select_note	-	STR	Ayrı baxış tarixçəsi · giriş deyil	
 values-b+az/strings.xml	string	account_select_title	-	STR	Kim baxır?	
 values-b+az/strings.xml	string	account_signin_failed_body	-	STR	%s girişi təsdiqləmədi. Heç nə saxlanılmadı.	
@@ -5830,6 +5837,7 @@ values-b+be/strings.xml	string	account_pin_unreadable	-	STR	Не ўдалося 
 values-b+be/strings.xml	string	account_profile_current	-	STR	Бягучы	
 values-b+be/strings.xml	string	account_profile_locked	-	STR	Заблакіраваны · PIN	
 values-b+be/strings.xml	string	account_profile_no_sync	-	STR	Без сінхранізацыі	
+values-b+be/strings.xml	string	account_profile_not_added	-	STR	Не ўдалося дадаць профіль, пакуль PIN-коды на гэтым камп'ютары нельга прачытаць. Нічога не змянілася.	
 values-b+be/strings.xml	string	account_select_note	-	STR	Асобная гісторыя прагляду · не ўваходы	
 values-b+be/strings.xml	string	account_select_title	-	STR	Хто глядзіць?	
 values-b+be/strings.xml	string	account_signin_failed_body	-	STR	%s не пацвердзіў уваход. Нічога не захавана.	
@@ -6951,6 +6959,7 @@ values-b+bg/strings.xml	string	account_pin_unreadable	-	STR	ПИН кодове�
 values-b+bg/strings.xml	string	account_profile_current	-	STR	Текущ	
 values-b+bg/strings.xml	string	account_profile_locked	-	STR	Заключен · ПИН	
 values-b+bg/strings.xml	string	account_profile_no_sync	-	STR	Без синхронизация	
+values-b+bg/strings.xml	string	account_profile_not_added	-	STR	Не може да се добави профил, докато ПИН кодовете на този компютър не могат да бъдат прочетени. Нищо не е променено.	
 values-b+bg/strings.xml	string	account_select_note	-	STR	Отделна история на гледане · не са профили за вход	
 values-b+bg/strings.xml	string	account_select_title	-	STR	Кой гледа?	
 values-b+bg/strings.xml	string	account_signin_failed_body	-	STR	%s не потвърди вписването. Нищо не е запазено.	
@@ -8058,6 +8067,7 @@ values-b+bn/strings.xml	string	account_pin_unreadable	-	STR	এই কম্প�
 values-b+bn/strings.xml	string	account_profile_current	-	STR	বর্তমান	
 values-b+bn/strings.xml	string	account_profile_locked	-	STR	লক করা · পিন	
 values-b+bn/strings.xml	string	account_profile_no_sync	-	STR	সিঙ্ক নেই	
+values-b+bn/strings.xml	string	account_profile_not_added	-	STR	এই কম্পিউটারের PIN পড়া না যাওয়া পর্যন্ত প্রোফাইল যোগ করা যায়নি। কিছুই বদলায়নি।	
 values-b+bn/strings.xml	string	account_select_note	-	STR	আলাদা দেখার ইতিহাস · লগইন নয়	
 values-b+bn/strings.xml	string	account_select_title	-	STR	কে দেখছে?	
 values-b+bn/strings.xml	string	account_signin_failed_body	-	STR	%s সাইন-ইন নিশ্চিত করেনি। কিছুই সংরক্ষণ করা হয়নি।	
@@ -8869,6 +8879,7 @@ values-b+ca/strings.xml	string	account_pin_unreadable	-	STR	No s'han pogut llegi
 values-b+ca/strings.xml	string	account_profile_current	-	STR	Actual	
 values-b+ca/strings.xml	string	account_profile_locked	-	STR	Bloquejat · PIN	
 values-b+ca/strings.xml	string	account_profile_no_sync	-	STR	Sense sincronització	
+values-b+ca/strings.xml	string	account_profile_not_added	-	STR	No s'ha pogut afegir un perfil mentre no es puguin llegir els PIN d'aquest ordinador. No s'ha canviat res.	
 values-b+ca/strings.xml	string	account_select_note	-	STR	Historial de visualització separat · no són inicis de sessió	
 values-b+ca/strings.xml	string	account_select_title	-	STR	Qui mira?	
 values-b+ca/strings.xml	string	account_signin_failed_body	-	STR	%s no ha confirmat l'inici de sessió. No s'ha desat res.	
@@ -9586,6 +9597,7 @@ values-b+ckb/strings.xml	string	account_pin_unreadable	-	STR	نەتوانرا PI
 values-b+ckb/strings.xml	string	account_profile_current	-	STR	ئێستا	
 values-b+ckb/strings.xml	string	account_profile_locked	-	STR	داخراو · PIN	
 values-b+ckb/strings.xml	string	account_profile_no_sync	-	STR	هاوکاتکردن نییە	
+values-b+ckb/strings.xml	string	account_profile_not_added	-	STR	نەتوانرا پرۆفایلێک زیاد بکرێت چونکە PINەکانی ئەم کۆمپیوتەرە ناخوێنرێنەوە. هیچ نەگۆڕا.	
 values-b+ckb/strings.xml	string	account_select_note	-	STR	مێژووی سەیرکردنی جیا · چوونەژوورەوە نییە	
 values-b+ckb/strings.xml	string	account_select_title	-	STR	کێ سەیر دەکات؟	
 values-b+ckb/strings.xml	string	account_signin_failed_body	-	STR	%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا.	
@@ -10112,6 +10124,7 @@ values-b+cs/strings.xml	string	account_pin_unreadable	-	STR	PIN kódy na tomto p
 values-b+cs/strings.xml	string	account_profile_current	-	STR	Aktuální	
 values-b+cs/strings.xml	string	account_profile_locked	-	STR	Zamčeno · PIN	
 values-b+cs/strings.xml	string	account_profile_no_sync	-	STR	Bez synchronizace	
+values-b+cs/strings.xml	string	account_profile_not_added	-	STR	Profil nelze přidat, dokud nelze přečíst PIN kódy na tomto počítači. Nic se nezměnilo.	
 values-b+cs/strings.xml	string	account_select_note	-	STR	Samostatná historie sledování · nejde o přihlášení	
 values-b+cs/strings.xml	string	account_select_title	-	STR	Kdo se dívá?	
 values-b+cs/strings.xml	string	account_signin_failed_body	-	STR	Služba %s přihlášení nepotvrdila. Nic nebylo uloženo.	
@@ -11240,6 +11253,7 @@ values-b+de/strings.xml	string	account_pin_unreadable	-	STR	Die PINs auf diesem 
 values-b+de/strings.xml	string	account_profile_current	-	STR	Aktuell	
 values-b+de/strings.xml	string	account_profile_locked	-	STR	Gesperrt · PIN	
 values-b+de/strings.xml	string	account_profile_no_sync	-	STR	Keine Synchronisierung	
+values-b+de/strings.xml	string	account_profile_not_added	-	STR	Ein Profil kann nicht hinzugefügt werden, solange die PINs auf diesem Computer nicht gelesen werden können. Es wurde nichts geändert.	
 values-b+de/strings.xml	string	account_select_note	-	STR	Eigener Wiedergabeverlauf · keine Anmeldungen	
 values-b+de/strings.xml	string	account_select_title	-	STR	Wer schaut?	
 values-b+de/strings.xml	string	account_signin_failed_body	-	STR	%s hat die Anmeldung nicht bestätigt. Es wurde nichts gespeichert.	
@@ -12362,6 +12376,7 @@ values-b+el/strings.xml	string	account_pin_unreadable	-	STR	Δεν ήταν δυ
 values-b+el/strings.xml	string	account_profile_current	-	STR	Τρέχον	
 values-b+el/strings.xml	string	account_profile_locked	-	STR	Κλειδωμένο · PIN	
 values-b+el/strings.xml	string	account_profile_no_sync	-	STR	Χωρίς συγχρονισμό	
+values-b+el/strings.xml	string	account_profile_not_added	-	STR	Δεν ήταν δυνατή η προσθήκη προφίλ όσο δεν διαβάζονται τα PIN σε αυτόν τον υπολογιστή. Δεν άλλαξε τίποτα.	
 values-b+el/strings.xml	string	account_select_note	-	STR	Ξεχωριστό ιστορικό προβολής · όχι συνδέσεις	
 values-b+el/strings.xml	string	account_select_title	-	STR	Ποιος βλέπει;	
 values-b+el/strings.xml	string	account_signin_failed_body	-	STR	Το %s δεν επιβεβαίωσε τη σύνδεση. Δεν αποθηκεύτηκε τίποτα.	
@@ -13412,6 +13427,7 @@ values-b+eo/strings.xml	string	account_pin_unreadable	-	STR	Ne eblis legi la PIN
 values-b+eo/strings.xml	string	account_profile_current	-	STR	Nuna	
 values-b+eo/strings.xml	string	account_profile_locked	-	STR	Ŝlosita · PIN	
 values-b+eo/strings.xml	string	account_profile_no_sync	-	STR	Sen sinkronigo	
+values-b+eo/strings.xml	string	account_profile_not_added	-	STR	Ne eblis aldoni profilon dum la PIN-oj en ĉi tiu komputilo ne legeblas. Nenio ŝanĝiĝis.	
 values-b+eo/strings.xml	string	account_select_note	-	STR	Aparta spekta historio · ne ensalutoj	
 values-b+eo/strings.xml	string	account_select_title	-	STR	Kiu spektas?	
 values-b+eo/strings.xml	string	account_signin_failed_body	-	STR	%s ne konfirmis la ensaluton. Nenio estis konservita.	
@@ -14012,6 +14028,7 @@ values-b+es/strings.xml	string	account_pin_unreadable	-	STR	No se pudieron leer 
 values-b+es/strings.xml	string	account_profile_current	-	STR	Actual	
 values-b+es/strings.xml	string	account_profile_locked	-	STR	Bloqueado · PIN	
 values-b+es/strings.xml	string	account_profile_no_sync	-	STR	Sin sincronización	
+values-b+es/strings.xml	string	account_profile_not_added	-	STR	No se pudo añadir un perfil mientras no se puedan leer los PIN de este ordenador. No se cambió nada.	
 values-b+es/strings.xml	string	account_select_note	-	STR	Historial de visualización aparte · no son inicios de sesión	
 values-b+es/strings.xml	string	account_select_title	-	STR	¿Quién está viendo?	
 values-b+es/strings.xml	string	account_signin_failed_body	-	STR	%s no confirmó el inicio de sesión. No se ha guardado nada.	
@@ -15133,6 +15150,7 @@ values-b+fa/strings.xml	string	account_pin_unreadable	-	STR	PINهای این ر�
 values-b+fa/strings.xml	string	account_profile_current	-	STR	فعلی	
 values-b+fa/strings.xml	string	account_profile_locked	-	STR	قفل‌شده · PIN	
 values-b+fa/strings.xml	string	account_profile_no_sync	-	STR	بدون همگام‌سازی	
+values-b+fa/strings.xml	string	account_profile_not_added	-	STR	تا وقتی PINهای این رایانه خوانده نشوند، افزودن نمایه ممکن نیست. چیزی تغییر نکرد.	
 values-b+fa/strings.xml	string	account_select_note	-	STR	تاریخچهٔ تماشای جدا · ورود به حساب نیست	
 values-b+fa/strings.xml	string	account_select_title	-	STR	چه کسی تماشا می‌کند؟	
 values-b+fa/strings.xml	string	account_signin_failed_body	-	STR	%s ورود را تأیید نکرد. چیزی ذخیره نشد.	
@@ -15869,6 +15887,7 @@ values-b+fil/strings.xml	string	account_pin_unreadable	-	STR	Hindi mabasa ang mg
 values-b+fil/strings.xml	string	account_profile_current	-	STR	Kasalukuyan	
 values-b+fil/strings.xml	string	account_profile_locked	-	STR	Naka-lock · PIN	
 values-b+fil/strings.xml	string	account_profile_no_sync	-	STR	Walang sync	
+values-b+fil/strings.xml	string	account_profile_not_added	-	STR	Hindi makapagdagdag ng profile habang hindi mabasa ang mga PIN sa computer na ito. Walang nabago.	
 values-b+fil/strings.xml	string	account_select_note	-	STR	Hiwalay na history ng panonood · hindi mga login	
 values-b+fil/strings.xml	string	account_select_title	-	STR	Sino ang nanonood?	
 values-b+fil/strings.xml	string	account_signin_failed_body	-	STR	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.	
@@ -16445,6 +16464,7 @@ values-b+fr/strings.xml	string	account_pin_unreadable	-	STR	Impossible de lire l
 values-b+fr/strings.xml	string	account_profile_current	-	STR	Actuel	
 values-b+fr/strings.xml	string	account_profile_locked	-	STR	Verrouillé · PIN	
 values-b+fr/strings.xml	string	account_profile_no_sync	-	STR	Pas de synchronisation	
+values-b+fr/strings.xml	string	account_profile_not_added	-	STR	Impossible d'ajouter un profil tant que les codes PIN de cet ordinateur ne peuvent pas être lus. Rien n'a changé.	
 values-b+fr/strings.xml	string	account_select_note	-	STR	Historique de visionnage séparé · pas des connexions	
 values-b+fr/strings.xml	string	account_select_title	-	STR	Qui regarde ?	
 values-b+fr/strings.xml	string	account_signin_failed_body	-	STR	%s n'a pas confirmé la connexion. Rien n'a été enregistré.	
@@ -17566,6 +17586,7 @@ values-b+gl/strings.xml	string	account_pin_unreadable	-	STR	Non se puideron ler 
 values-b+gl/strings.xml	string	account_profile_current	-	STR	Actual	
 values-b+gl/strings.xml	string	account_profile_locked	-	STR	Bloqueado · PIN	
 values-b+gl/strings.xml	string	account_profile_no_sync	-	STR	Sen sincronización	
+values-b+gl/strings.xml	string	account_profile_not_added	-	STR	Non se puido engadir un perfil mentres non se poidan ler os PIN deste ordenador. Non se cambiou nada.	
 values-b+gl/strings.xml	string	account_select_note	-	STR	Historial de visualización separado · non son inicios de sesión	
 values-b+gl/strings.xml	string	account_select_title	-	STR	Quen está a ver?	
 values-b+gl/strings.xml	string	account_signin_failed_body	-	STR	%s non confirmou o inicio de sesión. Non se gardou nada.	
@@ -18243,6 +18264,7 @@ values-b+hi/strings.xml	string	account_pin_unreadable	-	STR	इस कंप्�
 values-b+hi/strings.xml	string	account_profile_current	-	STR	मौजूदा	
 values-b+hi/strings.xml	string	account_profile_locked	-	STR	लॉक · पिन	
 values-b+hi/strings.xml	string	account_profile_no_sync	-	STR	कोई सिंक नहीं	
+values-b+hi/strings.xml	string	account_profile_not_added	-	STR	जब तक इस कंप्यूटर के PIN पढ़े नहीं जा सकते, प्रोफ़ाइल जोड़ी नहीं जा सकी। कुछ नहीं बदला।	
 values-b+hi/strings.xml	string	account_select_note	-	STR	अलग देखने का इतिहास · लॉगिन नहीं	
 values-b+hi/strings.xml	string	account_select_title	-	STR	कौन देख रहा है?	
 values-b+hi/strings.xml	string	account_signin_failed_body	-	STR	%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।	
@@ -19071,6 +19093,7 @@ values-b+hr/strings.xml	string	account_pin_unreadable	-	STR	PIN-ovi na ovom rač
 values-b+hr/strings.xml	string	account_profile_current	-	STR	Trenutni	
 values-b+hr/strings.xml	string	account_profile_locked	-	STR	Zaključano · PIN	
 values-b+hr/strings.xml	string	account_profile_no_sync	-	STR	Bez sinkronizacije	
+values-b+hr/strings.xml	string	account_profile_not_added	-	STR	Profil se ne može dodati dok se PIN-ovi na ovom računalu ne mogu pročitati. Ništa nije promijenjeno.	
 values-b+hr/strings.xml	string	account_select_note	-	STR	Zasebna povijest gledanja · nisu prijave	
 values-b+hr/strings.xml	string	account_select_title	-	STR	Tko gleda?	
 values-b+hr/strings.xml	string	account_signin_failed_body	-	STR	%s nije potvrdio prijavu. Ništa nije spremljeno.	
@@ -20188,6 +20211,7 @@ values-b+hu/strings.xml	string	account_pin_unreadable	-	STR	Nem sikerült beolva
 values-b+hu/strings.xml	string	account_profile_current	-	STR	Jelenlegi	
 values-b+hu/strings.xml	string	account_profile_locked	-	STR	Zárolva · PIN	
 values-b+hu/strings.xml	string	account_profile_no_sync	-	STR	Nincs szinkronizálás	
+values-b+hu/strings.xml	string	account_profile_not_added	-	STR	Nem lehet profilt hozzáadni, amíg a számítógépen tárolt PIN-kódok nem olvashatók. Semmi sem változott.	
 values-b+hu/strings.xml	string	account_select_note	-	STR	Külön megtekintési előzmények · nem bejelentkezések	
 values-b+hu/strings.xml	string	account_select_title	-	STR	Ki néz?	
 values-b+hu/strings.xml	string	account_signin_failed_body	-	STR	A(z) %s nem erősítette meg a bejelentkezést. Semmi sem lett mentve.	
@@ -21195,6 +21219,7 @@ values-b+in/strings.xml	string	account_pin_unreadable	-	STR	Tidak dapat membaca 
 values-b+in/strings.xml	string	account_profile_current	-	STR	Saat ini	
 values-b+in/strings.xml	string	account_profile_locked	-	STR	Terkunci · PIN	
 values-b+in/strings.xml	string	account_profile_no_sync	-	STR	Tanpa sinkronisasi	
+values-b+in/strings.xml	string	account_profile_not_added	-	STR	Tidak dapat menambahkan profil selama PIN di komputer ini tidak dapat dibaca. Tidak ada yang berubah.	
 values-b+in/strings.xml	string	account_select_note	-	STR	Riwayat tontonan terpisah · bukan login	
 values-b+in/strings.xml	string	account_select_title	-	STR	Siapa yang menonton?	
 values-b+in/strings.xml	string	account_signin_failed_body	-	STR	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.	
@@ -22346,6 +22371,7 @@ values-b+it/strings.xml	string	account_pin_unreadable	-	STR	Impossibile leggere 
 values-b+it/strings.xml	string	account_profile_current	-	STR	Attuale	
 values-b+it/strings.xml	string	account_profile_locked	-	STR	Bloccato · PIN	
 values-b+it/strings.xml	string	account_profile_no_sync	-	STR	Nessuna sincronizzazione	
+values-b+it/strings.xml	string	account_profile_not_added	-	STR	Impossibile aggiungere un profilo finché i PIN su questo computer non possono essere letti. Non è cambiato nulla.	
 values-b+it/strings.xml	string	account_select_note	-	STR	Cronologia di visione separata · non sono accessi	
 values-b+it/strings.xml	string	account_select_title	-	STR	Chi sta guardando?	
 values-b+it/strings.xml	string	account_signin_failed_body	-	STR	%s non ha confermato l'accesso. Non è stato salvato nulla.	
@@ -23488,6 +23514,7 @@ values-b+iw/strings.xml	string	account_pin_unreadable	-	STR	לא ניתן היה
 values-b+iw/strings.xml	string	account_profile_current	-	STR	נוכחי	
 values-b+iw/strings.xml	string	account_profile_locked	-	STR	נעול · PIN	
 values-b+iw/strings.xml	string	account_profile_no_sync	-	STR	ללא סנכרון	
+values-b+iw/strings.xml	string	account_profile_not_added	-	STR	לא ניתן להוסיף פרופיל כל עוד אי אפשר לקרוא את קודי ה-PIN במחשב הזה. שום דבר לא השתנה.	
 values-b+iw/strings.xml	string	account_select_note	-	STR	היסטוריית צפייה נפרדת · לא התחברויות	
 values-b+iw/strings.xml	string	account_select_title	-	STR	מי צופה?	
 values-b+iw/strings.xml	string	account_signin_failed_body	-	STR	%s לא אישר את ההתחברות. שום דבר לא נשמר.	
@@ -24405,6 +24432,7 @@ values-b+ja/strings.xml	string	account_pin_unreadable	-	STR	このコンピュ�
 values-b+ja/strings.xml	string	account_profile_current	-	STR	現在	
 values-b+ja/strings.xml	string	account_profile_locked	-	STR	ロック中 · PIN	
 values-b+ja/strings.xml	string	account_profile_no_sync	-	STR	同期なし	
+values-b+ja/strings.xml	string	account_profile_not_added	-	STR	このコンピュータの PIN を読み取れないため、プロフィールを追加できませんでした。何も変更されていません。	
 values-b+ja/strings.xml	string	account_select_note	-	STR	視聴履歴は別々 · ログインではありません	
 values-b+ja/strings.xml	string	account_select_title	-	STR	誰が見ていますか?	
 values-b+ja/strings.xml	string	account_signin_failed_body	-	STR	%s でサインインが確認されませんでした。何も保存されていません。	
@@ -25526,6 +25554,7 @@ values-b+kn/strings.xml	string	account_pin_unreadable	-	STR	ಈ ಕಂಪ್ಯ�
 values-b+kn/strings.xml	string	account_profile_current	-	STR	ಪ್ರಸ್ತುತ	
 values-b+kn/strings.xml	string	account_profile_locked	-	STR	ಲಾಕ್ ಆಗಿದೆ · ಪಿನ್	
 values-b+kn/strings.xml	string	account_profile_no_sync	-	STR	ಸಿಂಕ್ ಇಲ್ಲ	
+values-b+kn/strings.xml	string	account_profile_not_added	-	STR	ಈ ಕಂಪ್ಯೂಟರ್‌ನ PIN ಗಳನ್ನು ಓದಲಾಗದ ಕಾರಣ ಪ್ರೊಫೈಲ್ ಸೇರಿಸಲಾಗಲಿಲ್ಲ. ಏನೂ ಬದಲಾಗಿಲ್ಲ.	
 values-b+kn/strings.xml	string	account_select_note	-	STR	ಪ್ರತ್ಯೇಕ ವೀಕ್ಷಣಾ ಇತಿಹಾಸ · ಲಾಗಿನ್‌ಗಳಲ್ಲ	
 values-b+kn/strings.xml	string	account_select_title	-	STR	ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?	
 values-b+kn/strings.xml	string	account_signin_failed_body	-	STR	%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ.	
@@ -26026,6 +26055,7 @@ values-b+ko/strings.xml	string	account_pin_unreadable	-	STR	이 컴퓨터의 PIN
 values-b+ko/strings.xml	string	account_profile_current	-	STR	현재	
 values-b+ko/strings.xml	string	account_profile_locked	-	STR	잠김 · PIN	
 values-b+ko/strings.xml	string	account_profile_no_sync	-	STR	동기화 없음	
+values-b+ko/strings.xml	string	account_profile_not_added	-	STR	이 컴퓨터의 PIN을 읽을 수 없어 프로필을 추가하지 못했습니다. 아무것도 바뀌지 않았습니다.	
 values-b+ko/strings.xml	string	account_select_note	-	STR	시청 기록은 따로 · 로그인이 아님	
 values-b+ko/strings.xml	string	account_select_title	-	STR	누가 보고 있나요?	
 values-b+ko/strings.xml	string	account_signin_failed_body	-	STR	%s에서 로그인을 확인하지 않았습니다. 저장된 내용이 없습니다.	
@@ -27182,6 +27212,7 @@ values-b+lt/strings.xml	string	account_pin_unreadable	-	STR	Nepavyko nuskaityti 
 values-b+lt/strings.xml	string	account_profile_current	-	STR	Dabartinis	
 values-b+lt/strings.xml	string	account_profile_locked	-	STR	Užrakinta · PIN	
 values-b+lt/strings.xml	string	account_profile_no_sync	-	STR	Be sinchronizavimo	
+values-b+lt/strings.xml	string	account_profile_not_added	-	STR	Negalima pridėti profilio, kol neįmanoma nuskaityti šio kompiuterio PIN kodų. Niekas nepakeista.	
 values-b+lt/strings.xml	string	account_select_note	-	STR	Atskira žiūrėjimo istorija · ne prisijungimai	
 values-b+lt/strings.xml	string	account_select_title	-	STR	Kas žiūri?	
 values-b+lt/strings.xml	string	account_signin_failed_body	-	STR	%s nepatvirtino prisijungimo. Niekas neišsaugota.	
@@ -27890,6 +27921,7 @@ values-b+lv/strings.xml	string	account_pin_unreadable	-	STR	Neizdevās nolasīt 
 values-b+lv/strings.xml	string	account_profile_current	-	STR	Pašreizējais	
 values-b+lv/strings.xml	string	account_profile_locked	-	STR	Bloķēts · PIN	
 values-b+lv/strings.xml	string	account_profile_no_sync	-	STR	Bez sinhronizācijas	
+values-b+lv/strings.xml	string	account_profile_not_added	-	STR	Nevar pievienot profilu, kamēr šī datora PIN kodus nevar nolasīt. Nekas netika mainīts.	
 values-b+lv/strings.xml	string	account_select_note	-	STR	Atsevišķa skatīšanās vēsture · nav pieteikšanās	
 values-b+lv/strings.xml	string	account_select_title	-	STR	Kas skatās?	
 values-b+lv/strings.xml	string	account_signin_failed_body	-	STR	%s neapstiprināja pieteikšanos. Nekas netika saglabāts.	
@@ -28893,6 +28925,7 @@ values-b+mk/strings.xml	string	account_pin_unreadable	-	STR	PIN-овите на 
 values-b+mk/strings.xml	string	account_profile_current	-	STR	Тековен	
 values-b+mk/strings.xml	string	account_profile_locked	-	STR	Заклучен · PIN	
 values-b+mk/strings.xml	string	account_profile_no_sync	-	STR	Без синхронизација	
+values-b+mk/strings.xml	string	account_profile_not_added	-	STR	Не може да се додаде профил додека PIN-овите на овој компјутер не можат да се прочитаат. Ништо не е променето.	
 values-b+mk/strings.xml	string	account_select_note	-	STR	Посебна историја на гледање · не се најавувања	
 values-b+mk/strings.xml	string	account_select_title	-	STR	Кој гледа?	
 values-b+mk/strings.xml	string	account_signin_failed_body	-	STR	%s не ја потврди најавата. Ништо не е зачувано.	
@@ -30009,6 +30042,7 @@ values-b+ml/strings.xml	string	account_pin_unreadable	-	STR	ഈ കമ്പ്�
 values-b+ml/strings.xml	string	account_profile_current	-	STR	നിലവിലുള്ളത്	
 values-b+ml/strings.xml	string	account_profile_locked	-	STR	ലോക്ക് ചെയ്തു · പിൻ	
 values-b+ml/strings.xml	string	account_profile_no_sync	-	STR	സമന്വയമില്ല	
+values-b+ml/strings.xml	string	account_profile_not_added	-	STR	ഈ കമ്പ്യൂട്ടറിലെ PIN-കൾ വായിക്കാനാകാത്തതിനാൽ പ്രൊഫൈൽ ചേർക്കാനായില്ല. ഒന്നും മാറിയിട്ടില്ല.	
 values-b+ml/strings.xml	string	account_select_note	-	STR	പ്രത്യേക കാഴ്ച ചരിത്രം · ലോഗിനുകളല്ല	
 values-b+ml/strings.xml	string	account_select_title	-	STR	ആരാണ് കാണുന്നത്?	
 values-b+ml/strings.xml	string	account_signin_failed_body	-	STR	%s സൈൻ-ഇൻ സ്ഥിരീകരിച്ചില്ല. ഒന്നും സംരക്ഷിച്ചില്ല.	
@@ -30665,6 +30699,7 @@ values-b+ms/strings.xml	string	account_pin_unreadable	-	STR	PIN pada komputer in
 values-b+ms/strings.xml	string	account_profile_current	-	STR	Semasa	
 values-b+ms/strings.xml	string	account_profile_locked	-	STR	Dikunci · PIN	
 values-b+ms/strings.xml	string	account_profile_no_sync	-	STR	Tiada penyegerakan	
+values-b+ms/strings.xml	string	account_profile_not_added	-	STR	Profil tidak dapat ditambah selagi PIN pada komputer ini tidak dapat dibaca. Tiada apa-apa yang berubah.	
 values-b+ms/strings.xml	string	account_select_note	-	STR	Sejarah tontonan berasingan · bukan log masuk	
 values-b+ms/strings.xml	string	account_select_title	-	STR	Siapa yang menonton?	
 values-b+ms/strings.xml	string	account_signin_failed_body	-	STR	%s tidak mengesahkan log masuk. Tiada apa-apa yang disimpan.	
@@ -31647,6 +31682,7 @@ values-b+mt/strings.xml	string	account_pin_unreadable	-	STR	Ma setax jinqraw il-
 values-b+mt/strings.xml	string	account_profile_current	-	STR	Attwali	
 values-b+mt/strings.xml	string	account_profile_locked	-	STR	Imsakkar · PIN	
 values-b+mt/strings.xml	string	account_profile_no_sync	-	STR	L-ebda sinkronizzazzjoni	
+values-b+mt/strings.xml	string	account_profile_not_added	-	STR	Ma setax jiżdied profil sakemm il-PINs fuq dan il-kompjuter ma jistgħux jinqraw. Xejn ma nbidel.	
 values-b+mt/strings.xml	string	account_select_note	-	STR	Storja tal-wiri separata · mhux logins	
 values-b+mt/strings.xml	string	account_select_title	-	STR	Min qed jara?	
 values-b+mt/strings.xml	string	account_signin_failed_body	-	STR	%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn.	
@@ -32138,6 +32174,7 @@ values-b+my/strings.xml	string	account_pin_unreadable	-	STR	ဤကွန်ပ�
 values-b+my/strings.xml	string	account_profile_current	-	STR	လက်ရှိ	
 values-b+my/strings.xml	string	account_profile_locked	-	STR	လော့ခ်ချထား · PIN	
 values-b+my/strings.xml	string	account_profile_no_sync	-	STR	စင့်ခ်မရှိ	
+values-b+my/strings.xml	string	account_profile_not_added	-	STR	ဤကွန်ပျူတာရှိ PIN များကို ဖတ်၍မရသောကြောင့် ပရိုဖိုင် ထည့်၍မရပါ။ ဘာမျှ မပြောင်းလဲပါ။	
 values-b+my/strings.xml	string	account_select_note	-	STR	သီးခြားကြည့်ရှုမှုမှတ်တမ်း · ဝင်ရောက်မှုမဟုတ်	
 values-b+my/strings.xml	string	account_select_title	-	STR	ဘယ်သူကြည့်နေလဲ?	
 values-b+my/strings.xml	string	account_signin_failed_body	-	STR	%s က ဝင်ရောက်မှုကို အတည်မပြုခဲ့ပါ။ ဘာမျှ သိမ်းဆည်းမထားပါ။	
@@ -33048,6 +33085,7 @@ values-b+ne/strings.xml	string	account_pin_unreadable	-	STR	यस कम्प�
 values-b+ne/strings.xml	string	account_profile_current	-	STR	हालको	
 values-b+ne/strings.xml	string	account_profile_locked	-	STR	लक गरिएको · पिन	
 values-b+ne/strings.xml	string	account_profile_no_sync	-	STR	सिंक छैन	
+values-b+ne/strings.xml	string	account_profile_not_added	-	STR	यस कम्प्युटरका PIN पढ्न नसकिँदासम्म प्रोफाइल थप्न सकिएन। केही परिवर्तन भएन।	
 values-b+ne/strings.xml	string	account_select_note	-	STR	छुट्टै हेराइ इतिहास · लगइन होइन	
 values-b+ne/strings.xml	string	account_select_title	-	STR	को हेर्दै हुनुहुन्छ?	
 values-b+ne/strings.xml	string	account_signin_failed_body	-	STR	%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।	
@@ -33564,6 +33602,7 @@ values-b+nl/strings.xml	string	account_pin_unreadable	-	STR	De pincodes op deze 
 values-b+nl/strings.xml	string	account_profile_current	-	STR	Huidig	
 values-b+nl/strings.xml	string	account_profile_locked	-	STR	Vergrendeld · pincode	
 values-b+nl/strings.xml	string	account_profile_no_sync	-	STR	Geen synchronisatie	
+values-b+nl/strings.xml	string	account_profile_not_added	-	STR	Er kan geen profiel worden toegevoegd zolang de pincodes op deze computer niet kunnen worden gelezen. Er is niets gewijzigd.	
 values-b+nl/strings.xml	string	account_select_note	-	STR	Aparte kijkgeschiedenis · geen aanmeldingen	
 values-b+nl/strings.xml	string	account_select_title	-	STR	Wie kijkt er?	
 values-b+nl/strings.xml	string	account_signin_failed_body	-	STR	%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen.	
@@ -34634,6 +34673,7 @@ values-b+nn/strings.xml	string	account_pin_unreadable	-	STR	Kunne ikkje lese PIN
 values-b+nn/strings.xml	string	account_profile_current	-	STR	Gjeldande	
 values-b+nn/strings.xml	string	account_profile_locked	-	STR	Låst · PIN	
 values-b+nn/strings.xml	string	account_profile_no_sync	-	STR	Inga synkronisering	
+values-b+nn/strings.xml	string	account_profile_not_added	-	STR	Kunne ikkje leggje til ein profil medan PIN-kodane på denne datamaskina ikkje kan lesast. Ingenting vart endra.	
 values-b+nn/strings.xml	string	account_select_note	-	STR	Eiga sjåhistorikk · ikkje innloggingar	
 values-b+nn/strings.xml	string	account_select_title	-	STR	Kven ser på?	
 values-b+nn/strings.xml	string	account_signin_failed_body	-	STR	%s stadfesta ikkje innlogginga. Ingenting vart lagra.	
@@ -35222,6 +35262,7 @@ values-b+no/strings.xml	string	account_pin_unreadable	-	STR	Kunne ikke lese PIN-
 values-b+no/strings.xml	string	account_profile_current	-	STR	Gjeldende	
 values-b+no/strings.xml	string	account_profile_locked	-	STR	Låst · PIN	
 values-b+no/strings.xml	string	account_profile_no_sync	-	STR	Ingen synkronisering	
+values-b+no/strings.xml	string	account_profile_not_added	-	STR	Kunne ikke legge til en profil mens PIN-kodene på denne datamaskinen ikke kan leses. Ingenting ble endret.	
 values-b+no/strings.xml	string	account_select_note	-	STR	Egen seerhistorikk · ikke innlogginger	
 values-b+no/strings.xml	string	account_select_title	-	STR	Hvem ser på?	
 values-b+no/strings.xml	string	account_signin_failed_body	-	STR	%s bekreftet ikke innloggingen. Ingenting ble lagret.	
@@ -36121,6 +36162,7 @@ values-b+or/strings.xml	string	account_pin_unreadable	-	STR	ଏହି କମ୍�
 values-b+or/strings.xml	string	account_profile_current	-	STR	ବର୍ତ୍ତମାନର	
 values-b+or/strings.xml	string	account_profile_locked	-	STR	ଲକ୍ ହୋଇଛି · PIN	
 values-b+or/strings.xml	string	account_profile_no_sync	-	STR	ସିଙ୍କ୍ ନାହିଁ	
+values-b+or/strings.xml	string	account_profile_not_added	-	STR	ଏହି କମ୍ପ୍ୟୁଟରର PIN ପଢ଼ିହେଉ ନଥିବାରୁ ପ୍ରୋଫାଇଲ୍ ଯୋଗ କରିହେଲା ନାହିଁ। କିଛି ବଦଳିନାହିଁ।	
 values-b+or/strings.xml	string	account_select_note	-	STR	ଅଲଗା ଦେଖିବା ଇତିହାସ · ଲଗଇନ୍ ନୁହେଁ	
 values-b+or/strings.xml	string	account_select_title	-	STR	କିଏ ଦେଖୁଛନ୍ତି?	
 values-b+or/strings.xml	string	account_signin_failed_body	-	STR	%s ସାଇନ୍-ଇନ୍ ନିଶ୍ଚିତ କଲା ନାହିଁ। କିଛି ସେଭ୍ ହୋଇନାହିଁ।	
@@ -36721,6 +36763,7 @@ values-b+pl/strings.xml	string	account_pin_unreadable	-	STR	Nie udało się odcz
 values-b+pl/strings.xml	string	account_profile_current	-	STR	Bieżący	
 values-b+pl/strings.xml	string	account_profile_locked	-	STR	Zablokowany · PIN	
 values-b+pl/strings.xml	string	account_profile_no_sync	-	STR	Bez synchronizacji	
+values-b+pl/strings.xml	string	account_profile_not_added	-	STR	Nie można dodać profilu, dopóki nie da się odczytać kodów PIN na tym komputerze. Nic nie zostało zmienione.	
 values-b+pl/strings.xml	string	account_select_note	-	STR	Osobna historia oglądania · to nie logowania	
 values-b+pl/strings.xml	string	account_select_title	-	STR	Kto ogląda?	
 values-b+pl/strings.xml	string	account_signin_failed_body	-	STR	Usługa %s nie potwierdziła logowania. Niczego nie zapisano.	
@@ -37872,6 +37915,7 @@ values-b+pt+BR/strings.xml	string	account_pin_unreadable	-	STR	Não foi possíve
 values-b+pt+BR/strings.xml	string	account_profile_current	-	STR	Atual	
 values-b+pt+BR/strings.xml	string	account_profile_locked	-	STR	Bloqueado · PIN	
 values-b+pt+BR/strings.xml	string	account_profile_no_sync	-	STR	Sem sincronização	
+values-b+pt+BR/strings.xml	string	account_profile_not_added	-	STR	Não é possível adicionar um perfil enquanto os PINs deste computador não puderem ser lidos. Nada foi alterado.	
 values-b+pt+BR/strings.xml	string	account_select_note	-	STR	Histórico separado · não são logins	
 values-b+pt+BR/strings.xml	string	account_select_title	-	STR	Quem está assistindo?	
 values-b+pt+BR/strings.xml	string	account_signin_failed_body	-	STR	%s não confirmou o login. Nada foi salvo.	
@@ -39020,6 +39064,7 @@ values-b+pt/strings.xml	string	account_pin_unreadable	-	STR	Não foi possível l
 values-b+pt/strings.xml	string	account_profile_current	-	STR	Atual	
 values-b+pt/strings.xml	string	account_profile_locked	-	STR	Bloqueado · PIN	
 values-b+pt/strings.xml	string	account_profile_no_sync	-	STR	Sem sincronização	
+values-b+pt/strings.xml	string	account_profile_not_added	-	STR	Não é possível adicionar um perfil enquanto os PIN deste computador não puderem ser lidos. Nada foi alterado.	
 values-b+pt/strings.xml	string	account_select_note	-	STR	Histórico de visualização separado · não são inícios de sessão	
 values-b+pt/strings.xml	string	account_select_title	-	STR	Quem está a ver?	
 values-b+pt/strings.xml	string	account_signin_failed_body	-	STR	%s não confirmou o início de sessão. Nada foi guardado.	
@@ -40117,6 +40162,7 @@ values-b+qt/strings.xml	string	account_pin_unreadable	-	STR	aagg ooh PIN. ooh-aa
 values-b+qt/strings.xml	string	account_profile_current	-	STR	oooh	
 values-b+qt/strings.xml	string	account_profile_locked	-	STR	oooh-aah · ooh	
 values-b+qt/strings.xml	string	account_profile_no_sync	-	STR	aah oooh	
+values-b+qt/strings.xml	string	account_profile_not_added	-	STR	aagg ooh-ooh PIN. ooh-aah.	
 values-b+qt/strings.xml	string	account_select_note	-	STR	oooh-aah aagg · ooh aah	
 values-b+qt/strings.xml	string	account_select_title	-	STR	ooh oooh aah?	
 values-b+qt/strings.xml	string	account_signin_failed_body	-	STR	%s oooohh uugg ah. oooohh aagg.	
@@ -41148,6 +41194,7 @@ values-b+ro/strings.xml	string	account_pin_unreadable	-	STR	PIN-urile de pe aces
 values-b+ro/strings.xml	string	account_profile_current	-	STR	Curent	
 values-b+ro/strings.xml	string	account_profile_locked	-	STR	Blocat · PIN	
 values-b+ro/strings.xml	string	account_profile_no_sync	-	STR	Fără sincronizare	
+values-b+ro/strings.xml	string	account_profile_not_added	-	STR	Nu se poate adăuga un profil cât timp PIN-urile de pe acest computer nu pot fi citite. Nu s-a schimbat nimic.	
 values-b+ro/strings.xml	string	account_select_note	-	STR	Istoric de vizionare separat · nu sunt conectări	
 values-b+ro/strings.xml	string	account_select_title	-	STR	Cine se uită?	
 values-b+ro/strings.xml	string	account_signin_failed_body	-	STR	%s nu a confirmat conectarea. Nu s-a salvat nimic.	
@@ -42213,6 +42260,7 @@ values-b+ru/strings.xml	string	account_pin_unreadable	-	STR	Не удалось 
 values-b+ru/strings.xml	string	account_profile_current	-	STR	Текущий	
 values-b+ru/strings.xml	string	account_profile_locked	-	STR	Заблокирован · PIN	
 values-b+ru/strings.xml	string	account_profile_no_sync	-	STR	Без синхронизации	
+values-b+ru/strings.xml	string	account_profile_not_added	-	STR	Нельзя добавить профиль, пока PIN-коды на этом компьютере не читаются. Ничего не изменилось.	
 values-b+ru/strings.xml	string	account_select_note	-	STR	Отдельная история просмотра · не входы в аккаунт	
 values-b+ru/strings.xml	string	account_select_title	-	STR	Кто смотрит?	
 values-b+ru/strings.xml	string	account_signin_failed_body	-	STR	%s не подтвердил вход. Ничего не сохранено.	
@@ -43375,6 +43423,7 @@ values-b+sk/strings.xml	string	account_pin_unreadable	-	STR	PIN kódy na tomto p
 values-b+sk/strings.xml	string	account_profile_current	-	STR	Aktuálny	
 values-b+sk/strings.xml	string	account_profile_locked	-	STR	Zamknuté · PIN	
 values-b+sk/strings.xml	string	account_profile_no_sync	-	STR	Bez synchronizácie	
+values-b+sk/strings.xml	string	account_profile_not_added	-	STR	Profil nemožno pridať, kým sa PIN kódy na tomto počítači nedajú prečítať. Nič sa nezmenilo.	
 values-b+sk/strings.xml	string	account_select_note	-	STR	Samostatná história pozerania · nie sú to prihlásenia	
 values-b+sk/strings.xml	string	account_select_title	-	STR	Kto sa pozerá?	
 values-b+sk/strings.xml	string	account_signin_failed_body	-	STR	Služba %s prihlásenie nepotvrdila. Nič sa neuložilo.	
@@ -44237,6 +44286,7 @@ values-b+so/strings.xml	string	account_pin_unreadable	-	STR	Lama akhrin karin PI
 values-b+so/strings.xml	string	account_profile_current	-	STR	Hadda	
 values-b+so/strings.xml	string	account_profile_locked	-	STR	La xiray · PIN	
 values-b+so/strings.xml	string	account_profile_no_sync	-	STR	Isku-dhafid ma jirto	
+values-b+so/strings.xml	string	account_profile_not_added	-	STR	Lama dari karin astaan inta aan PIN-ka kombuyuutarkan la akhrin karin. Waxba isma beddelin.	
 values-b+so/strings.xml	string	account_select_note	-	STR	Taariikh daawasho gooni ah · ma aha gelitaan	
 values-b+so/strings.xml	string	account_select_title	-	STR	Yaa daawanaya?	
 values-b+so/strings.xml	string	account_signin_failed_body	-	STR	%s ma xaqiijin galitaanka. Waxba lama kaydin.	
@@ -45137,6 +45187,7 @@ values-b+sq/strings.xml	string	account_pin_unreadable	-	STR	PIN-et në këtë ko
 values-b+sq/strings.xml	string	account_profile_current	-	STR	Aktual	
 values-b+sq/strings.xml	string	account_profile_locked	-	STR	I kyçur · PIN	
 values-b+sq/strings.xml	string	account_profile_no_sync	-	STR	Pa sinkronizim	
+values-b+sq/strings.xml	string	account_profile_not_added	-	STR	Nuk mund të shtohet profil derisa PIN-et në këtë kompjuter nuk lexohen. Asgjë nuk ndryshoi.	
 values-b+sq/strings.xml	string	account_select_note	-	STR	Historik shikimi më vete · jo hyrje	
 values-b+sq/strings.xml	string	account_select_title	-	STR	Kush po shikon?	
 values-b+sq/strings.xml	string	account_signin_failed_body	-	STR	%s nuk e konfirmoi identifikimin. Nuk u ruajt asgjë.	
@@ -46265,6 +46316,7 @@ values-b+sv/strings.xml	string	account_pin_unreadable	-	STR	Det gick inte att l�
 values-b+sv/strings.xml	string	account_profile_current	-	STR	Aktuell	
 values-b+sv/strings.xml	string	account_profile_locked	-	STR	Låst · PIN	
 values-b+sv/strings.xml	string	account_profile_no_sync	-	STR	Ingen synkronisering	
+values-b+sv/strings.xml	string	account_profile_not_added	-	STR	Det går inte att lägga till en profil medan PIN-koderna på den här datorn inte kan läsas. Inget ändrades.	
 values-b+sv/strings.xml	string	account_select_note	-	STR	Egen visningshistorik · inte inloggningar	
 values-b+sv/strings.xml	string	account_select_title	-	STR	Vem tittar?	
 values-b+sv/strings.xml	string	account_signin_failed_body	-	STR	%s bekräftade inte inloggningen. Inget sparades.	
@@ -47393,6 +47445,7 @@ values-b+ta/strings.xml	string	account_pin_unreadable	-	STR	இந்தக் �
 values-b+ta/strings.xml	string	account_profile_current	-	STR	தற்போதைய	
 values-b+ta/strings.xml	string	account_profile_locked	-	STR	பூட்டப்பட்டது · PIN	
 values-b+ta/strings.xml	string	account_profile_no_sync	-	STR	ஒத்திசைவு இல்லை	
+values-b+ta/strings.xml	string	account_profile_not_added	-	STR	இந்தக் கணினியின் PIN-களைப் படிக்க முடியாததால் சுயவிவரத்தைச் சேர்க்க முடியவில்லை. எதுவும் மாறவில்லை.	
 values-b+ta/strings.xml	string	account_select_note	-	STR	தனி பார்வை வரலாறு · உள்நுழைவுகள் அல்ல	
 values-b+ta/strings.xml	string	account_select_title	-	STR	யார் பார்க்கிறார்கள்?	
 values-b+ta/strings.xml	string	account_signin_failed_body	-	STR	%s உள்நுழைவை உறுதிப்படுத்தவில்லை. எதுவும் சேமிக்கப்படவில்லை.	
@@ -48514,6 +48567,7 @@ values-b+ti/strings.xml	string	account_pin_unreadable	-	STR	ኣብዚ ኮምፒ�
 values-b+ti/strings.xml	string	account_profile_current	-	STR	ናይ ሕጂ	
 values-b+ti/strings.xml	string	account_profile_locked	-	STR	ተዓጽዩ · PIN	
 values-b+ti/strings.xml	string	account_profile_no_sync	-	STR	ምትእስሳር የለን	
+values-b+ti/strings.xml	string	account_profile_not_added	-	STR	ኣብዚ ኮምፒዩተር ዘለዉ PIN ክንበቡ ስለዘይከኣሉ ፕሮፋይል ክውሰኽ ኣይተኻእለን። ዝተቐየረ የለን።	
 values-b+ti/strings.xml	string	account_select_note	-	STR	ፍሉይ ታሪኽ ምርኣይ · መእተዊታት ኣይኮኑን	
 values-b+ti/strings.xml	string	account_select_title	-	STR	መን እዩ ዝርኢ ዘሎ?	
 values-b+ti/strings.xml	string	account_signin_failed_body	-	STR	%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።	
@@ -48906,6 +48960,7 @@ values-b+tl/strings.xml	string	account_pin_unreadable	-	STR	Hindi mabasa ang mga
 values-b+tl/strings.xml	string	account_profile_current	-	STR	Kasalukuyan	
 values-b+tl/strings.xml	string	account_profile_locked	-	STR	Naka-lock · PIN	
 values-b+tl/strings.xml	string	account_profile_no_sync	-	STR	Walang sync	
+values-b+tl/strings.xml	string	account_profile_not_added	-	STR	Hindi makapagdagdag ng profile habang hindi mabasa ang mga PIN sa computer na ito. Walang nabago.	
 values-b+tl/strings.xml	string	account_select_note	-	STR	Hiwalay na kasaysayan ng panonood · hindi mga login	
 values-b+tl/strings.xml	string	account_select_title	-	STR	Sino ang nanonood?	
 values-b+tl/strings.xml	string	account_signin_failed_body	-	STR	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.	
@@ -49552,6 +49607,7 @@ values-b+tr/strings.xml	string	account_pin_unreadable	-	STR	Bu bilgisayardaki PI
 values-b+tr/strings.xml	string	account_profile_current	-	STR	Geçerli	
 values-b+tr/strings.xml	string	account_profile_locked	-	STR	Kilitli · PIN	
 values-b+tr/strings.xml	string	account_profile_no_sync	-	STR	Senkronizasyon yok	
+values-b+tr/strings.xml	string	account_profile_not_added	-	STR	Bu bilgisayardaki PIN'ler okunamadığı sürece profil eklenemez. Hiçbir şey değişmedi.	
 values-b+tr/strings.xml	string	account_select_note	-	STR	Ayrı izleme geçmişi · oturum açma değil	
 values-b+tr/strings.xml	string	account_select_title	-	STR	Kim izliyor?	
 values-b+tr/strings.xml	string	account_signin_failed_body	-	STR	%s oturum açmayı onaylamadı. Hiçbir şey kaydedilmedi.	
@@ -50726,6 +50782,7 @@ values-b+uk/strings.xml	string	account_pin_unreadable	-	STR	Не вдалося 
 values-b+uk/strings.xml	string	account_profile_current	-	STR	Поточний	
 values-b+uk/strings.xml	string	account_profile_locked	-	STR	Заблоковано · PIN	
 values-b+uk/strings.xml	string	account_profile_no_sync	-	STR	Без синхронізації	
+values-b+uk/strings.xml	string	account_profile_not_added	-	STR	Не можна додати профіль, доки PIN-коди на цьому комп'ютері не читаються. Нічого не змінилося.	
 values-b+uk/strings.xml	string	account_select_note	-	STR	Окрема історія перегляду · не входи в акаунт	
 values-b+uk/strings.xml	string	account_select_title	-	STR	Хто дивиться?	
 values-b+uk/strings.xml	string	account_signin_failed_body	-	STR	%s не підтвердив вхід. Нічого не збережено.	
@@ -51848,6 +51905,7 @@ values-b+ur/strings.xml	string	account_pin_unreadable	-	STR	اس کمپیوٹر 
 values-b+ur/strings.xml	string	account_profile_current	-	STR	موجودہ	
 values-b+ur/strings.xml	string	account_profile_locked	-	STR	مقفل · PIN	
 values-b+ur/strings.xml	string	account_profile_no_sync	-	STR	کوئی ہم آہنگی نہیں	
+values-b+ur/strings.xml	string	account_profile_not_added	-	STR	جب تک اس کمپیوٹر کے PIN پڑھے نہیں جا سکتے، پروفائل شامل نہیں ہو سکی۔ کچھ تبدیل نہیں ہوا۔	
 values-b+ur/strings.xml	string	account_select_note	-	STR	الگ دیکھنے کی سرگزشت · لاگ ان نہیں	
 values-b+ur/strings.xml	string	account_select_title	-	STR	کون دیکھ رہا ہے؟	
 values-b+ur/strings.xml	string	account_signin_failed_body	-	STR	%s نے سائن ان کی تصدیق نہیں کی۔ کچھ بھی محفوظ نہیں ہوا۔	
@@ -52820,6 +52878,7 @@ values-b+vi/strings.xml	string	account_pin_unreadable	-	STR	Không thể đọc 
 values-b+vi/strings.xml	string	account_profile_current	-	STR	Hiện tại	
 values-b+vi/strings.xml	string	account_profile_locked	-	STR	Đã khóa · PIN	
 values-b+vi/strings.xml	string	account_profile_no_sync	-	STR	Không đồng bộ	
+values-b+vi/strings.xml	string	account_profile_not_added	-	STR	Không thể thêm hồ sơ khi chưa đọc được mã PIN trên máy tính này. Không có gì thay đổi.	
 values-b+vi/strings.xml	string	account_select_note	-	STR	Lịch sử xem riêng · không phải đăng nhập	
 values-b+vi/strings.xml	string	account_select_title	-	STR	Ai đang xem?	
 values-b+vi/strings.xml	string	account_signin_failed_body	-	STR	%s không xác nhận đăng nhập. Chưa có gì được lưu.	
@@ -53924,6 +53983,7 @@ values-b+zh+TW/strings.xml	string	account_pin_unreadable	-	STR	無法讀取這�
 values-b+zh+TW/strings.xml	string	account_profile_current	-	STR	目前	
 values-b+zh+TW/strings.xml	string	account_profile_locked	-	STR	已鎖定 · PIN	
 values-b+zh+TW/strings.xml	string	account_profile_no_sync	-	STR	不同步	
+values-b+zh+TW/strings.xml	string	account_profile_not_added	-	STR	無法讀取這台電腦上的 PIN 時無法新增設定檔。沒有任何變更。	
 values-b+zh+TW/strings.xml	string	account_select_note	-	STR	獨立的觀看紀錄 · 不是登入帳號	
 values-b+zh+TW/strings.xml	string	account_select_title	-	STR	誰在觀看？	
 values-b+zh+TW/strings.xml	string	account_signin_failed_body	-	STR	%s 未確認登入。未儲存任何內容。	
@@ -55024,6 +55084,7 @@ values-b+zh/strings.xml	string	account_pin_unreadable	-	STR	无法读取此电�
 values-b+zh/strings.xml	string	account_profile_current	-	STR	当前	
 values-b+zh/strings.xml	string	account_profile_locked	-	STR	已锁定 · PIN	
 values-b+zh/strings.xml	string	account_profile_no_sync	-	STR	不同步	
+values-b+zh/strings.xml	string	account_profile_not_added	-	STR	无法读取此电脑上的 PIN 时无法添加个人资料。没有任何更改。	
 values-b+zh/strings.xml	string	account_select_note	-	STR	独立的观看记录 · 不是登录账号	
 values-b+zh/strings.xml	string	account_select_title	-	STR	谁在观看？	
 values-b+zh/strings.xml	string	account_signin_failed_body	-	STR	%s 未确认登录。未保存任何内容。	
@@ -56274,6 +56335,7 @@ values/strings.xml	string	account_pin_unreadable	-	STR	Couldn't read the PINs on
 values/strings.xml	string	account_profile_current	-	STR	Current	
 values/strings.xml	string	account_profile_locked	-	STR	Locked · PIN	
 values/strings.xml	string	account_profile_no_sync	-	STR	No sync	
+values/strings.xml	string	account_profile_not_added	-	STR	Couldn't add a profile while the PINs on this computer can't be read. Nothing was changed.	
 values/strings.xml	string	account_select_note	-	STR	Separate watch history · not logins	
 values/strings.xml	string	account_select_title	-	STR	Who's watching?	
 values/strings.xml	string	account_signin_failed_body	-	STR	%s didn't confirm the sign-in. Nothing was saved.	

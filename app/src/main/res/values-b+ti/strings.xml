@@ -63,6 +63,7 @@
 <string name="account_profile_current">"ናይ ሕጂ"</string>
 <string name="account_profile_locked">"ተዓጽዩ · PIN"</string>
 <string name="account_profile_no_sync">"ምትእስሳር የለን"</string>
+<string name="account_profile_not_added">"ኣብዚ ኮምፒዩተር ዘለዉ PIN ክንበቡ ስለዘይከኣሉ ፕሮፋይል ክውሰኽ ኣይተኻእለን። ዝተቐየረ የለን።"</string>
 <string name="account_select_note">"ፍሉይ ታሪኽ ምርኣይ · መእተዊታት ኣይኮኑን"</string>
 <string name="account_select_title">"መን እዩ ዝርኢ ዘሎ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።"</string>

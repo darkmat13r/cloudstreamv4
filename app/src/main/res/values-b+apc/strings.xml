@@ -66,6 +66,7 @@
 <string name="account_profile_current">"الحالي"</string>
 <string name="account_profile_locked">"مقفول · PIN"</string>
 <string name="account_profile_no_sync">"ما في مزامنة"</string>
+<string name="account_profile_not_added">"ما قدرنا نضيف ملف شخصي لأنه ما فينا نقرأ أرقام الـPIN على هالكمبيوتر. ما تغيّر شي."</string>
 <string name="account_select_note">"سجل مشاهدة منفصل · مش تسجيل دخول"</string>
 <string name="account_select_title">"مين عم يحضر؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ما أكّد تسجيل الدخول. ما انحفظ شي."</string>

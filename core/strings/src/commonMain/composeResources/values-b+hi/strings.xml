@@ -34,6 +34,7 @@
 <string name="account_pin_new">4 अंकों का एक पिन टाइप करें।</string>
 <string name="account_pin_not_saved">PIN में बदलाव सहेजा नहीं जा सका। कुछ नहीं बदला।</string>
 <string name="account_pin_unreadable">इस कंप्यूटर पर PIN पढ़े नहीं जा सके, इसलिए यह प्रोफ़ाइल लॉक रहेगी।</string>
+<string name="account_profile_not_added">जब तक इस कंप्यूटर के PIN पढ़े नहीं जा सकते, प्रोफ़ाइल जोड़ी नहीं जा सकी। कुछ नहीं बदला।</string>
 <string name="account_pin_off">बंद · कोई भी इस प्रोफ़ाइल को खोल सकता है</string>
 <string name="account_pin_on">चालू · खोलने के लिए पूछा जाता है</string>
 <string name="account_pin_prompt">4 अंकों वाला पिन टाइप करें।</string>

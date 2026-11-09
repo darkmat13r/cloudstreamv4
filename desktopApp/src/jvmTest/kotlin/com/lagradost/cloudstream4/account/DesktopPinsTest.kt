@@ -4,10 +4,12 @@ import com.lagradost.cloudstream4.feature.account.PinLimit
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.attribute.PosixFilePermissions
+import org.junit.Assume.assumeFalse
 import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 
 /** `KMP-95c`: the Mac's PINs and their limit, in a temporary directory on a fake boot clock. */
@@ -169,6 +171,8 @@ class DesktopPinsTest {
         val pinsFile = File(directory, DesktopPins.PINS_FILE)
         val before = pinsFile.readText()
         Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("---------"))
+        // A run as root reads it anyway, and would pass for the wrong reason.
+        assumeFalse(pinsFile.canRead())
         try {
             assertEquals(PinCheck.Unreadable, pins.check(1, "0000"))
             assertEquals(PinCheck.Unreadable, pins.check(1, "4821"), "not even the right PIN: nothing is compared")
@@ -229,6 +233,36 @@ class DesktopPinsTest {
         assertFalse(profiles.pins.hasPin(2), "Robin is not locked by the PIN of the profile before")
         assertEquals(0L, profiles.pins.waitMs(2))
         assertFalse(profiles.cards("Default").first { it.id == 2 }.locked)
+    }
+
+    @Test
+    fun `a new profile is not added while a PIN left under its id cannot be forgotten`() {
+        val file = DesktopProfileFile(File(directory, DesktopProfileFile.FILE_NAME))
+        // A key this version does not know: the file loads, but the launch sweep removes nothing over it (#281).
+        File(directory, DesktopProfileFile.FILE_NAME).writeText(
+            """{"version":1,"current":0,"profiles":[{"id":0},{"id":1,"name":"Sam"}],"from":"a later version"}""",
+        )
+        // Left by a profile 2 whose delete was written but whose PIN was not removed.
+        pins().set(2, "1357")
+        val library = File(directory, "library-2.tsv").apply { writeText("left behind") }
+        val profiles = DesktopProfiles(file, libraryDirectory = directory, pins = pins())
+        val pinsFile = File(directory, DesktopPins.PINS_FILE)
+        val before = pinsFile.readText()
+        Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("---------"))
+        try {
+            assumeFalse(pinsFile.canRead())
+            assertNull(profiles.add("Robin", fallback = "Profile 3"), "Robin would inherit profile 2's PIN once the file reads")
+            assertEquals(listOf(0, 1), profiles.stored.profiles.map { it.id }, "nothing added")
+            assertEquals(listOf(0, 1), DesktopProfileFile(File(directory, DesktopProfileFile.FILE_NAME)).load().profiles.map { it.id })
+            assertTrue(library.exists(), "nothing touched")
+        } finally {
+            Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("rw-------"))
+        }
+        assertEquals(before, pinsFile.readText())
+        // Readable again: Robin is added, with no PIN and no library of the profile before.
+        assertEquals(2, profiles.add("Robin", fallback = "Profile 3"))
+        assertFalse(profiles.pins.hasPin(2))
+        assertFalse(library.exists())
     }
 
     @Test

@@ -34,6 +34,7 @@
 <string name="account_pin_new">Saisissez un PIN à 4 chiffres.</string>
 <string name="account_pin_not_saved">Impossible d'enregistrer la modification du code PIN. Rien n'a changé.</string>
 <string name="account_pin_unreadable">Impossible de lire les codes PIN de cet ordinateur, ce profil reste donc verrouillé.</string>
+<string name="account_profile_not_added">Impossible d'ajouter un profil tant que les codes PIN de cet ordinateur ne peuvent pas être lus. Rien n'a changé.</string>
 <string name="account_pin_off">Désactivé · tout le monde peut ouvrir ce profil</string>
 <string name="account_pin_on">Activé · demandé à l'ouverture</string>
 <string name="account_pin_prompt">Saisissez le PIN à 4 chiffres.</string>

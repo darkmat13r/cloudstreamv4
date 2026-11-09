@@ -85,7 +85,8 @@ import org.jetbrains.compose.resources.stringResource
  * - **Initials only** (the PM, 2026-11-08): the boards' picture row and "Use an image address" are `KMP-95g`'s.
  * - [pin] is the PIN row (`KMP-95c`): A6's Off with Set PIN, A6d's On with Change PIN and Remove PIN, or A6c's line
  *   that the first profile can't be locked. None while adding: a PIN is set once the profile exists.
- * - [pinMessage] says under the PIN row that a PIN change could not be saved, so nothing changed.
+ * - [pinMessage] says under the PIN row that a PIN change could not be saved, or while adding that the profile could
+ *   not be added because the PINs could not be read, so nothing changed.
  *
  * @param adding A6b: the title is Add profile and the primary is Add.
  * @param onSave given the name as typed; the host decides what a blank one means.

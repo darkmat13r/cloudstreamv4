@@ -34,6 +34,7 @@
 <string name="account_pin_new">4桁のPINを入力してください。</string>
 <string name="account_pin_not_saved">PIN の変更を保存できませんでした。何も変更されていません。</string>
 <string name="account_pin_unreadable">このコンピュータの PIN を読み取れなかったため、このプロフィールはロックされたままです。</string>
+<string name="account_profile_not_added">このコンピュータの PIN を読み取れないため、プロフィールを追加できませんでした。何も変更されていません。</string>
 <string name="account_pin_off">オフ · 誰でもこのプロフィールを開けます</string>
 <string name="account_pin_on">オン · 開くときに入力を求めます</string>
 <string name="account_pin_prompt">4桁のPINを入力</string>

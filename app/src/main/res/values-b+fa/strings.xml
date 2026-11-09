@@ -63,6 +63,7 @@
 <string name="account_profile_current">"فعلی"</string>
 <string name="account_profile_locked">"قفل‌شده · PIN"</string>
 <string name="account_profile_no_sync">"بدون همگام‌سازی"</string>
+<string name="account_profile_not_added">"تا وقتی PINهای این رایانه خوانده نشوند، افزودن نمایه ممکن نیست. چیزی تغییر نکرد."</string>
 <string name="account_select_note">"تاریخچهٔ تماشای جدا · ورود به حساب نیست"</string>
 <string name="account_select_title">"چه کسی تماشا می‌کند؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ورود را تأیید نکرد. چیزی ذخیره نشد."</string>

@@ -67,6 +67,7 @@
 <string name="account_profile_current">"Aktuální"</string>
 <string name="account_profile_locked">"Zamčeno · PIN"</string>
 <string name="account_profile_no_sync">"Bez synchronizace"</string>
+<string name="account_profile_not_added">"Profil nelze přidat, dokud nelze přečíst PIN kódy na tomto počítači. Nic se nezměnilo."</string>
 <string name="account_select_note">"Samostatná historie sledování · nejde o přihlášení"</string>
 <string name="account_select_title">"Kdo se dívá?"</string>
 <string name="account_signin_failed_body" formatted="true">"Služba %s přihlášení nepotvrdila. Nic nebylo uloženo."</string>

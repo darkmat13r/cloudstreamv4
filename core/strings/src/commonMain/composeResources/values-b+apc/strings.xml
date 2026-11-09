@@ -34,6 +34,7 @@
 <string name="account_pin_new">اكتب PIN من 4 أرقام.</string>
 <string name="account_pin_not_saved">ما قدرنا نحفظ تغيير الـPIN. ما تغيّر شي.</string>
 <string name="account_pin_unreadable">ما قدرنا نقرأ أرقام الـPIN على هالكمبيوتر، فهالملف الشخصي بيضل مقفول.</string>
+<string name="account_profile_not_added">ما قدرنا نضيف ملف شخصي لأنه ما فينا نقرأ أرقام الـPIN على هالكمبيوتر. ما تغيّر شي.</string>
 <string name="account_pin_off">مطفي · أي حدا فيه يفتح هالبروفايل</string>
 <string name="account_pin_on">شغّال · بينطلب لتفتحو</string>
 <string name="account_pin_prompt">اكتب الـPIN من 4 أرقام.</string>

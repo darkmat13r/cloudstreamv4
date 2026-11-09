@@ -64,6 +64,7 @@
 <string name="account_profile_current">"موجودہ"</string>
 <string name="account_profile_locked">"مقفل · PIN"</string>
 <string name="account_profile_no_sync">"کوئی ہم آہنگی نہیں"</string>
+<string name="account_profile_not_added">"جب تک اس کمپیوٹر کے PIN پڑھے نہیں جا سکتے، پروفائل شامل نہیں ہو سکی۔ کچھ تبدیل نہیں ہوا۔"</string>
 <string name="account_select_note">"الگ دیکھنے کی سرگزشت · لاگ ان نہیں"</string>
 <string name="account_select_title">"کون دیکھ رہا ہے؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s نے سائن ان کی تصدیق نہیں کی۔ کچھ بھی محفوظ نہیں ہوا۔"</string>

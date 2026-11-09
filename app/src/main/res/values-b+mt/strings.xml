@@ -63,6 +63,7 @@
 <string name="account_profile_current">"Attwali"</string>
 <string name="account_profile_locked">"Imsakkar · PIN"</string>
 <string name="account_profile_no_sync">"L-ebda sinkronizzazzjoni"</string>
+<string name="account_profile_not_added">"Ma setax jiżdied profil sakemm il-PINs fuq dan il-kompjuter ma jistgħux jinqraw. Xejn ma nbidel."</string>
 <string name="account_select_note">"Storja tal-wiri separata · mhux logins"</string>
 <string name="account_select_title">"Min qed jara?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn."</string>

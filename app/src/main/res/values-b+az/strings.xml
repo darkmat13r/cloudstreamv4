@@ -63,6 +63,7 @@
 <string name="account_profile_current">"Cari"</string>
 <string name="account_profile_locked">"Kilidli · PIN"</string>
 <string name="account_profile_no_sync">"Sinxronizasiya yoxdur"</string>
+<string name="account_profile_not_added">"Bu kompüterdəki PIN-lər oxuna bilmədiyi üçün profil əlavə edilmədi. Heç nə dəyişmədi."</string>
 <string name="account_select_note">"Ayrı baxış tarixçəsi · giriş deyil"</string>
 <string name="account_select_title">"Kim baxır?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s girişi təsdiqləmədi. Heç nə saxlanılmadı."</string>

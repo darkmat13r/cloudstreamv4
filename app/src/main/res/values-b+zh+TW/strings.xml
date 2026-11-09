@@ -66,6 +66,7 @@
 <string name="account_profile_current">"目前"</string>
 <string name="account_profile_locked">"已鎖定 · PIN"</string>
 <string name="account_profile_no_sync">"不同步"</string>
+<string name="account_profile_not_added">"無法讀取這台電腦上的 PIN 時無法新增設定檔。沒有任何變更。"</string>
 <string name="account_select_note">"獨立的觀看紀錄 · 不是登入帳號"</string>
 <string name="account_select_title">"誰在觀看？"</string>
 <string name="account_signin_failed_body" formatted="true">"%s 未確認登入。未儲存任何內容。"</string>

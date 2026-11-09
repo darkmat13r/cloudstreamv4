@@ -66,6 +66,7 @@
 <string name="account_profile_current">"Trenutni"</string>
 <string name="account_profile_locked">"Zaključano · PIN"</string>
 <string name="account_profile_no_sync">"Bez sinkronizacije"</string>
+<string name="account_profile_not_added">"Profil se ne može dodati dok se PIN-ovi na ovom računalu ne mogu pročitati. Ništa nije promijenjeno."</string>
 <string name="account_select_note">"Zasebna povijest gledanja · nisu prijave"</string>
 <string name="account_select_title">"Tko gleda?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s nije potvrdio prijavu. Ništa nije spremljeno."</string>

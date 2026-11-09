@@ -31,6 +31,7 @@ import com.lagradost.cloudstream4.feature.home.HomeSource
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.feature.home.HomeSources
 import org.jetbrains.skia.EncodedImageFormat
+import org.junit.Assume.assumeFalse
 import java.io.File
 import java.nio.file.Files
 import java.nio.file.attribute.PosixFilePermissions
@@ -108,6 +109,8 @@ class PinFlowTest {
             scene.click(scene.bounds("Sam, Locked · PIN").center)
             Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("---------"))
             try {
+                // A run as root reads it anyway, and would pass for the wrong reason.
+                assumeFalse(pinsFile.canRead())
                 scene.type(SAM_PIN)
                 assertNotNull(scene.find("Couldn't read the PINs on this computer, so this profile stays locked.", text = true))
                 assertNull(scene.find("Incorrect PIN. Please try again.", text = true))
@@ -128,6 +131,7 @@ class PinFlowTest {
         val pinsFile = File(directory, DesktopPins.PINS_FILE)
         Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("---------"))
         try {
+            assumeFalse(pinsFile.canRead())
             // A restart with the file broken: Robin has no PIN, but nothing can say so.
             val profiles = DesktopProfiles(file, libraryDirectory = directory, onSaveFailed = { throw it }, pins = DesktopPins(directory, clock = { now }))
             window(profiles).use { scene ->
@@ -145,6 +149,28 @@ class PinFlowTest {
             assertEquals(0L, profiles.pins.waitMs(2))
         } finally {
             Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("rw-------"))
+        }
+    }
+
+    @Test
+    fun `Add while the pins file cannot be read adds nothing and says so`() {
+        val profiles = household()
+        val pinsFile = File(directory, DesktopPins.PINS_FILE)
+        window(profiles).use { scene ->
+            scene.click(scene.bounds("Manage profiles", text = true).center)
+            scene.click(scene.bounds("Add profile").center)
+            Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("---------"))
+            try {
+                assumeFalse(pinsFile.canRead())
+                scene.click(scene.bounds("Add", text = true).center)
+                assertNotNull(scene.find("Couldn't add a profile while the PINs on this computer can't be read. Nothing was changed.", text = true))
+                assertEquals(3, profiles.stored.profiles.size, "nothing added")
+                scene.save("A6b-not-added")
+            } finally {
+                Files.setPosixFilePermissions(pinsFile.toPath(), PosixFilePermissions.fromString("rw-------"))
+            }
+            scene.click(scene.bounds("Add", text = true).center)
+            assertEquals(4, profiles.stored.profiles.size, "readable again, Add adds")
         }
     }
 

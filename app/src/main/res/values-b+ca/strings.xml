@@ -64,6 +64,7 @@
 <string name="account_profile_current">"Actual"</string>
 <string name="account_profile_locked">"Bloquejat · PIN"</string>
 <string name="account_profile_no_sync">"Sense sincronització"</string>
+<string name="account_profile_not_added">"No s'ha pogut afegir un perfil mentre no es puguin llegir els PIN d'aquest ordinador. No s'ha canviat res."</string>
 <string name="account_select_note">"Historial de visualització separat · no són inicis de sessió"</string>
 <string name="account_select_title">"Qui mira?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s no ha confirmat l'inici de sessió. No s'ha desat res."</string>

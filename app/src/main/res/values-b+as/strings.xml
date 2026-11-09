@@ -64,6 +64,7 @@
 <string name="account_profile_current">"বৰ্তমান"</string>
 <string name="account_profile_locked">"লক কৰা · PIN"</string>
 <string name="account_profile_no_sync">"ছিংক নাই"</string>
+<string name="account_profile_not_added">"এই কম্পিউটাৰৰ PIN পঢ়িব নোৱাৰাৰ বাবে প্ৰফাইল যোগ কৰিব পৰা নগ'ল। একো সলনি হোৱা নাই।"</string>
 <string name="account_select_note">"পৃথক চোৱাৰ ইতিহাস · লগইন নহয়"</string>
 <string name="account_select_title">"কোনে চাই আছে?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s এ ছাইন-ইন নিশ্চিত নকৰিলে। একো ছেভ কৰা হোৱা নাই।"</string>

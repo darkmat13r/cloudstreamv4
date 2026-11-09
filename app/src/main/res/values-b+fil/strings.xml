@@ -63,6 +63,7 @@
 <string name="account_profile_current">"Kasalukuyan"</string>
 <string name="account_profile_locked">"Naka-lock · PIN"</string>
 <string name="account_profile_no_sync">"Walang sync"</string>
+<string name="account_profile_not_added">"Hindi makapagdagdag ng profile habang hindi mabasa ang mga PIN sa computer na ito. Walang nabago."</string>
 <string name="account_select_note">"Hiwalay na history ng panonood · hindi mga login"</string>
 <string name="account_select_title">"Sino ang nanonood?"</string>
 <string name="account_signin_failed_body" formatted="true">"Hindi kinumpirma ng %s ang pag-sign in. Walang na-save."</string>

@@ -67,6 +67,7 @@
 <string name="account_profile_current">"Actuel"</string>
 <string name="account_profile_locked">"Verrouillé · PIN"</string>
 <string name="account_profile_no_sync">"Pas de synchronisation"</string>
+<string name="account_profile_not_added">"Impossible d'ajouter un profil tant que les codes PIN de cet ordinateur ne peuvent pas être lus. Rien n'a changé."</string>
 <string name="account_select_note">"Historique de visionnage séparé · pas des connexions"</string>
 <string name="account_select_title">"Qui regarde ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s n'a pas confirmé la connexion. Rien n'a été enregistré."</string>

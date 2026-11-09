@@ -34,6 +34,7 @@
 <string name="account_pin_new">Zadajte štvormiestny PIN.</string>
 <string name="account_pin_not_saved">Zmenu PIN sa nepodarilo uložiť. Nič sa nezmenilo.</string>
 <string name="account_pin_unreadable">PIN kódy na tomto počítači sa nepodarilo prečítať, takže tento profil zostáva zamknutý.</string>
+<string name="account_profile_not_added">Profil nemožno pridať, kým sa PIN kódy na tomto počítači nedajú prečítať. Nič sa nezmenilo.</string>
 <string name="account_pin_off">Vypnuté · tento profil môže otvoriť ktokoľvek</string>
 <string name="account_pin_on">Zapnuté · vyžaduje sa pri otvorení</string>
 <string name="account_pin_prompt">Zadajte štvormiestny PIN.</string>

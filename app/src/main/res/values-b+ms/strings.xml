@@ -64,6 +64,7 @@
 <string name="account_profile_current">"Semasa"</string>
 <string name="account_profile_locked">"Dikunci · PIN"</string>
 <string name="account_profile_no_sync">"Tiada penyegerakan"</string>
+<string name="account_profile_not_added">"Profil tidak dapat ditambah selagi PIN pada komputer ini tidak dapat dibaca. Tiada apa-apa yang berubah."</string>
 <string name="account_select_note">"Sejarah tontonan berasingan · bukan log masuk"</string>
 <string name="account_select_title">"Siapa yang menonton?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s tidak mengesahkan log masuk. Tiada apa-apa yang disimpan."</string>

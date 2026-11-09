@@ -66,6 +66,7 @@
 <string name="account_profile_current">"현재"</string>
 <string name="account_profile_locked">"잠김 · PIN"</string>
 <string name="account_profile_no_sync">"동기화 없음"</string>
+<string name="account_profile_not_added">"이 컴퓨터의 PIN을 읽을 수 없어 프로필을 추가하지 못했습니다. 아무것도 바뀌지 않았습니다."</string>
 <string name="account_select_note">"시청 기록은 따로 · 로그인이 아님"</string>
 <string name="account_select_title">"누가 보고 있나요?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s에서 로그인을 확인하지 않았습니다. 저장된 내용이 없습니다."</string>

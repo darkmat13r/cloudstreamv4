@@ -64,6 +64,7 @@
 <string name="account_profile_current">"Jelenlegi"</string>
 <string name="account_profile_locked">"Zárolva · PIN"</string>
 <string name="account_profile_no_sync">"Nincs szinkronizálás"</string>
+<string name="account_profile_not_added">"Nem lehet profilt hozzáadni, amíg a számítógépen tárolt PIN-kódok nem olvashatók. Semmi sem változott."</string>
 <string name="account_select_note">"Külön megtekintési előzmények · nem bejelentkezések"</string>
 <string name="account_select_title">"Ki néz?"</string>
 <string name="account_signin_failed_body" formatted="true">"A(z) %s nem erősítette meg a bejelentkezést. Semmi sem lett mentve."</string>

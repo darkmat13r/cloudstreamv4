@@ -67,6 +67,7 @@
 <string name="account_profile_current">"Geçerli"</string>
 <string name="account_profile_locked">"Kilitli · PIN"</string>
 <string name="account_profile_no_sync">"Senkronizasyon yok"</string>
+<string name="account_profile_not_added">"Bu bilgisayardaki PIN'ler okunamadığı sürece profil eklenemez. Hiçbir şey değişmedi."</string>
 <string name="account_select_note">"Ayrı izleme geçmişi · oturum açma değil"</string>
 <string name="account_select_title">"Kim izliyor?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s oturum açmayı onaylamadı. Hiçbir şey kaydedilmedi."</string>

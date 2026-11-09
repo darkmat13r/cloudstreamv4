@@ -34,6 +34,7 @@
 <string name="account_pin_new">یک PIN چهاررقمی وارد کنید.</string>
 <string name="account_pin_not_saved">تغییر PIN ذخیره نشد. چیزی تغییر نکرد.</string>
 <string name="account_pin_unreadable">PINهای این رایانه خوانده نشد، پس این نمایه قفل می‌ماند.</string>
+<string name="account_profile_not_added">تا وقتی PINهای این رایانه خوانده نشوند، افزودن نمایه ممکن نیست. چیزی تغییر نکرد.</string>
 <string name="account_pin_off">خاموش · هر کسی می‌تواند این نمایه را باز کند</string>
 <string name="account_pin_on">روشن · هنگام باز کردن پرسیده می‌شود</string>
 <string name="account_pin_prompt">PIN چهاررقمی را وارد کنید.</string>

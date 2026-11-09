@@ -67,6 +67,7 @@
 <string name="account_profile_current">"Aktual"</string>
 <string name="account_profile_locked">"I kyçur · PIN"</string>
 <string name="account_profile_no_sync">"Pa sinkronizim"</string>
+<string name="account_profile_not_added">"Nuk mund të shtohet profil derisa PIN-et në këtë kompjuter nuk lexohen. Asgjë nuk ndryshoi."</string>
 <string name="account_select_note">"Historik shikimi më vete · jo hyrje"</string>
 <string name="account_select_title">"Kush po shikon?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s nuk e konfirmoi identifikimin. Nuk u ruajt asgjë."</string>

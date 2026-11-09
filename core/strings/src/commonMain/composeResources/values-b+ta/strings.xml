@@ -34,6 +34,7 @@
 <string name="account_pin_new">4 இலக்க முள்ளைத் தட்டச்சு செய்யவும்.</string>
 <string name="account_pin_not_saved">PIN மாற்றத்தைச் சேமிக்க முடியவில்லை. எதுவும் மாறவில்லை.</string>
 <string name="account_pin_unreadable">இந்தக் கணினியில் உள்ள PIN-களைப் படிக்க முடியவில்லை, எனவே இந்தச் சுயவிவரம் பூட்டப்பட்டே இருக்கும்.</string>
+<string name="account_profile_not_added">இந்தக் கணினியின் PIN-களைப் படிக்க முடியாததால் சுயவிவரத்தைச் சேர்க்க முடியவில்லை. எதுவும் மாறவில்லை.</string>
 <string name="account_pin_off">முடக்கம் · யார் வேண்டுமானாலும் இந்தச் சுயவிவரத்தைத் திறக்கலாம்</string>
 <string name="account_pin_on">இயக்கம் · திறக்கும்போது கேட்கப்படும்</string>
 <string name="account_pin_prompt">4 இலக்க முள்ளைத் தட்டச்சு செய்யவும்.</string>

@@ -63,6 +63,7 @@
 <string name="account_profile_current">"हालको"</string>
 <string name="account_profile_locked">"लक गरिएको · पिन"</string>
 <string name="account_profile_no_sync">"सिंक छैन"</string>
+<string name="account_profile_not_added">"यस कम्प्युटरका PIN पढ्न नसकिँदासम्म प्रोफाइल थप्न सकिएन। केही परिवर्तन भएन।"</string>
 <string name="account_select_note">"छुट्टै हेराइ इतिहास · लगइन होइन"</string>
 <string name="account_select_title">"को हेर्दै हुनुहुन्छ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।"</string>

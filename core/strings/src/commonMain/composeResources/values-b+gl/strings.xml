@@ -34,6 +34,7 @@
 <string name="account_pin_new">Escribe un PIN de 4 díxitos.</string>
 <string name="account_pin_not_saved">Non se puido gardar o cambio do PIN. Non se cambiou nada.</string>
 <string name="account_pin_unreadable">Non se puideron ler os PIN deste ordenador, así que este perfil segue bloqueado.</string>
+<string name="account_profile_not_added">Non se puido engadir un perfil mentres non se poidan ler os PIN deste ordenador. Non se cambiou nada.</string>
 <string name="account_pin_off">Desactivado · calquera pode abrir este perfil</string>
 <string name="account_pin_on">Activado · pídese para abrilo</string>
 <string name="account_pin_prompt">Escribe o PIN de 4 díxitos.</string>

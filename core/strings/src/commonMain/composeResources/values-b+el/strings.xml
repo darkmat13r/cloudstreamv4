@@ -34,6 +34,7 @@
 <string name="account_pin_new">Πληκτρολογήστε ένα 4ψήφιο PIN.</string>
 <string name="account_pin_not_saved">Δεν ήταν δυνατή η αποθήκευση της αλλαγής PIN. Δεν άλλαξε τίποτα.</string>
 <string name="account_pin_unreadable">Δεν ήταν δυνατή η ανάγνωση των PIN σε αυτόν τον υπολογιστή, οπότε αυτό το προφίλ παραμένει κλειδωμένο.</string>
+<string name="account_profile_not_added">Δεν ήταν δυνατή η προσθήκη προφίλ όσο δεν διαβάζονται τα PIN σε αυτόν τον υπολογιστή. Δεν άλλαξε τίποτα.</string>
 <string name="account_pin_off">Ανενεργό · οποιοσδήποτε μπορεί να ανοίξει αυτό το προφίλ</string>
 <string name="account_pin_on">Ενεργό · ζητείται για το άνοιγμα</string>
 <string name="account_pin_prompt">Πληκτρολογήστε το 4ψήφιο PIN.</string>

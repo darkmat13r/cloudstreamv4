@@ -64,6 +64,7 @@
 <string name="account_profile_current">"လက်ရှိ"</string>
 <string name="account_profile_locked">"လော့ခ်ချထား · PIN"</string>
 <string name="account_profile_no_sync">"စင့်ခ်မရှိ"</string>
+<string name="account_profile_not_added">"ဤကွန်ပျူတာရှိ PIN များကို ဖတ်၍မရသောကြောင့် ပရိုဖိုင် ထည့်၍မရပါ။ ဘာမျှ မပြောင်းလဲပါ။"</string>
 <string name="account_select_note">"သီးခြားကြည့်ရှုမှုမှတ်တမ်း · ဝင်ရောက်မှုမဟုတ်"</string>
 <string name="account_select_title">"ဘယ်သူကြည့်နေလဲ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s က ဝင်ရောက်မှုကို အတည်မပြုခဲ့ပါ။ ဘာမျှ သိမ်းဆည်းမထားပါ။"</string>

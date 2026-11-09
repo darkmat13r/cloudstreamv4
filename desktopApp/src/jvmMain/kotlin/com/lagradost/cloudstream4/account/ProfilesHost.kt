@@ -26,6 +26,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_u
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_prompt
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_pin_set_title
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_profile_locked
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_profile_not_added
 import com.lagradost.cloudstream4.core.strings.generated.resources.default_account
 import com.lagradost.cloudstream4.core.strings.generated.resources.enter_current_pin
 import com.lagradost.cloudstream4.core.strings.generated.resources.enter_pin_with_name
@@ -59,7 +60,8 @@ private sealed interface ProfilesScreen {
 private sealed interface ProfilesSheet {
     /** [pinNotSaved]: a PIN change just failed to be written, and nothing changed (the reviewer of `#286`). */
     data class Edit(val id: Int, val pinNotSaved: Boolean = false) : ProfilesSheet
-    data object Add : ProfilesSheet
+    /** [notAdded]: an Add just failed, as the PINs file could not be read, and nothing changed (the reviewer of `#286`). */
+    data class Add(val notAdded: Boolean = false) : ProfilesSheet
     data class Delete(val id: Int) : ProfilesSheet
 
     /** A3 to A4b: [id]'s PIN, under `BUG-55`'s limit, before [then]. */
@@ -155,7 +157,7 @@ internal fun ProfilesHost(
                         }
                     },
                     onManage = { manageFrom(ProfilesScreen.Picking) },
-                    onAdd = if (profiles.canAdd) ({ sheet = ProfilesSheet.Add }) else null,
+                    onAdd = if (profiles.canAdd) ({ sheet = ProfilesSheet.Add() }) else null,
                 )
             }
             is ProfilesScreen.Managing -> {
@@ -166,7 +168,7 @@ internal fun ProfilesHost(
                     onChoose = { id -> sheet = if (locked(id)) ProfilesSheet.Unlock(id, AfterUnlock.Edit) else ProfilesSheet.Edit(id) },
                     managing = true,
                     onManage = { screen = current.returnTo },
-                    onAdd = if (profiles.canAdd) ({ sheet = ProfilesSheet.Add }) else null,
+                    onAdd = if (profiles.canAdd) ({ sheet = ProfilesSheet.Add() }) else null,
                 )
             }
             ProfilesScreen.App -> key(profiles.stored.current) {
@@ -186,15 +188,16 @@ internal fun ProfilesHost(
 
         when (openSheet) {
             null -> Unit
-            ProfilesSheet.Add -> ProfileEditorSheet(
+            is ProfilesSheet.Add -> ProfileEditorSheet(
                 name = numbered,
                 adding = true,
                 onSave = { name ->
-                    profiles.add(name, fallback = numbered)
-                    sheet = null
+                    // Add is offered only while there is room, so null here is a PIN that could not be forgotten.
+                    sheet = if (profiles.add(name, fallback = numbered) == null) ProfilesSheet.Add(notAdded = true) else null
                 },
                 onCancel = { sheet = null },
                 onDelete = null,
+                pinMessage = if (openSheet.notAdded) stringResource(Res.string.account_profile_not_added) else null,
             )
             is ProfilesSheet.Edit -> {
                 val card = cards.firstOrNull { it.id == openSheet.id }

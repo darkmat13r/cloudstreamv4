@@ -7406,6 +7406,11 @@ No JNA is needed for any of this.
 - **The same at launch** (the PM, 2026-11-09): a `pins.json` that cannot be read then leaves which profiles have a PIN
   unknown, so every profile but the first is locked, with the same reason, until the file reads. Nobody is locked out:
   the first profile never has a PIN. That closes "break the file, then restart".
+- **Add adds nothing while a PIN left under the new id cannot be forgotten** (the reviewer of `#286`): otherwise a reused
+  id could inherit a deleted profile's PIN once the file reads again. `add` forgets the PIN first, and on false returns
+  null before touching anything; the sheet stays open with "Couldn't add a profile while the PINs on this computer
+  can't be read. Nothing was changed." `account_profile_not_added` is a new key in all 62 locales: the strings
+  baseline's twenty-ninth move.
 - An attempts record out of range reads as the strictest wait, never a free one.
 - Deleting a profile removes its PIN and count. At launch, the PINs and counts of profiles no longer listed are
   removed, over the same strict read as the libraries' sweep and never over a lenient one.
@@ -7451,8 +7456,10 @@ The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once tr
 **Tests:**
 - `PinLimitTest` (`:feature:account` commonTest), 6 cases: the numbers, running down, per profile, a restart, a
   reboot, and a store that cannot write.
-- `DesktopPinsTest`, 15 cases (5 from the review: a set or remove that cannot be written, a check against the file,
-  a reused id, and a `pins.json` that cannot be read once running, by `chmod 000` and by a folder in its place):
+- `DesktopPinsTest`, 16 cases (6 from the review: a set or remove that cannot be written, a check against the file,
+  a reused id, a `pins.json` that cannot be read once running, by `chmod 000` and by a folder in its place, and an Add
+  refused while it cannot be read). Each `chmod 000` case assumes the file then really is unreadable, so a run as root
+  skips rather than passing for the wrong reason:
   - right, wrong and the count;
   - nothing compared during a wait;
   - the first profile and what counts as a PIN;
@@ -7463,12 +7470,13 @@ The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once tr
   - an unreadable one once running: a locked profile refused with the right PIN and the wrong, nothing counted, set,
     remove, forget and the sweep refused, and the file unchanged;
   - a folder in its place: unreadable, not empty, and not written over;
+  - Add over an unreadable file: nothing added or deleted, then added clean once it reads;
   - an attempts record out of range;
   - delete and the launch sweep, and none over a file that is not strictly this version's;
   - the `mm:ss` clock.
-- `PinFlowTest`, 12 cases (3 from the review: Set and Remove that cannot be written; a `pins.json` that cannot be
-  read keeping Sam shut with the reason shown, then opening once readable; and a launch over one, with Robin, who has
-  no PIN, locked too and Alex open) through real key and pointer events on a fake boot clock:
+- `PinFlowTest`, 13 cases (4 from the review: Set and Remove that cannot be written; a `pins.json` that cannot be
+  read keeping Sam shut with the reason shown, then opening once readable; a launch over one, with Robin, who has
+  no PIN, locked too and Alex open; and Add refused with the reason shown) through real key and pointer events on a fake boot clock:
   - A3 and A3b, with no digit drawn;
   - the wait counting down and nothing getting past it;
   - the wait outliving Cancel and a restart;
@@ -7479,5 +7487,6 @@ The wait's words are `pin_error_wait`, `BUG-55`'s key from `#230`, taken once tr
   - the first profile;
   - Escape back to the editor.
 - Red-checked: with a failed read taken as no file again, the three unreadable tests fail; with launch leaving
-  profiles open over a failed read, the two launch tests fail.
+  profiles open over a failed read, the two launch tests fail; with `add` ignoring `forget`'s false, the two Add tests
+  fail.
 - Renders: A3, A3b, A4, A6d, A7, A7b and A7c, compared with the boards by eye.

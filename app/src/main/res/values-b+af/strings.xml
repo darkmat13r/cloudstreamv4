@@ -63,6 +63,7 @@
 <string name="account_profile_current">"Huidig"</string>
 <string name="account_profile_locked">"Gesluit · PIN"</string>
 <string name="account_profile_no_sync">"Geen sinkronisasie"</string>
+<string name="account_profile_not_added">"Kon nie 'n profiel byvoeg terwyl die PIN's op hierdie rekenaar nie gelees kan word nie. Niks is verander nie."</string>
 <string name="account_select_note">"Aparte kykgeskiedenis · nie aanmeldings nie"</string>
 <string name="account_select_title">"Wie kyk?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s het nie die aanmelding bevestig nie. Niks is gestoor nie."</string>

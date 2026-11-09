@@ -67,6 +67,7 @@
 <string name="account_profile_current">"Aktuell"</string>
 <string name="account_profile_locked">"Gesperrt · PIN"</string>
 <string name="account_profile_no_sync">"Keine Synchronisierung"</string>
+<string name="account_profile_not_added">"Ein Profil kann nicht hinzugefügt werden, solange die PINs auf diesem Computer nicht gelesen werden können. Es wurde nichts geändert."</string>
 <string name="account_select_note">"Eigener Wiedergabeverlauf · keine Anmeldungen"</string>
 <string name="account_select_title">"Wer schaut?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s hat die Anmeldung nicht bestätigt. Es wurde nichts gespeichert."</string>

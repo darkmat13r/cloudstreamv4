@@ -64,6 +64,7 @@
 <string name="account_profile_current">"Gjeldende"</string>
 <string name="account_profile_locked">"Låst · PIN"</string>
 <string name="account_profile_no_sync">"Ingen synkronisering"</string>
+<string name="account_profile_not_added">"Kunne ikke legge til en profil mens PIN-kodene på denne datamaskinen ikke kan leses. Ingenting ble endret."</string>
 <string name="account_select_note">"Egen seerhistorikk · ikke innlogginger"</string>
 <string name="account_select_title">"Hvem ser på?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s bekreftet ikke innloggingen. Ingenting ble lagret."</string>

@@ -63,6 +63,7 @@
 <string name="account_profile_current">"Gjeldande"</string>
 <string name="account_profile_locked">"Låst · PIN"</string>
 <string name="account_profile_no_sync">"Inga synkronisering"</string>
+<string name="account_profile_not_added">"Kunne ikkje leggje til ein profil medan PIN-kodane på denne datamaskina ikkje kan lesast. Ingenting vart endra."</string>
 <string name="account_select_note">"Eiga sjåhistorikk · ikkje innloggingar"</string>
 <string name="account_select_title">"Kven ser på?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s stadfesta ikkje innlogginga. Ingenting vart lagra."</string>

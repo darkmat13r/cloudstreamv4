@@ -65,6 +65,7 @@
 <string name="account_profile_current">"Pašreizējais"</string>
 <string name="account_profile_locked">"Bloķēts · PIN"</string>
 <string name="account_profile_no_sync">"Bez sinhronizācijas"</string>
+<string name="account_profile_not_added">"Nevar pievienot profilu, kamēr šī datora PIN kodus nevar nolasīt. Nekas netika mainīts."</string>
 <string name="account_select_note">"Atsevišķa skatīšanās vēsture · nav pieteikšanās"</string>
 <string name="account_select_title">"Kas skatās?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s neapstiprināja pieteikšanos. Nekas netika saglabāts."</string>

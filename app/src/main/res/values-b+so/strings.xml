@@ -64,6 +64,7 @@
 <string name="account_profile_current">"Hadda"</string>
 <string name="account_profile_locked">"La xiray · PIN"</string>
 <string name="account_profile_no_sync">"Isku-dhafid ma jirto"</string>
+<string name="account_profile_not_added">"Lama dari karin astaan inta aan PIN-ka kombuyuutarkan la akhrin karin. Waxba isma beddelin."</string>
 <string name="account_select_note">"Taariikh daawasho gooni ah · ma aha gelitaan"</string>
 <string name="account_select_title">"Yaa daawanaya?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ma xaqiijin galitaanka. Waxba lama kaydin."</string>

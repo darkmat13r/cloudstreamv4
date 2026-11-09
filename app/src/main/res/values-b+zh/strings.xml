@@ -67,6 +67,7 @@
 <string name="account_profile_current">"当前"</string>
 <string name="account_profile_locked">"已锁定 · PIN"</string>
 <string name="account_profile_no_sync">"不同步"</string>
+<string name="account_profile_not_added">"无法读取此电脑上的 PIN 时无法添加个人资料。没有任何更改。"</string>
 <string name="account_select_note">"独立的观看记录 · 不是登录账号"</string>
 <string name="account_select_title">"谁在观看？"</string>
 <string name="account_signin_failed_body" formatted="true">"%s 未确认登录。未保存任何内容。"</string>

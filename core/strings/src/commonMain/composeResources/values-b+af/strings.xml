@@ -34,6 +34,7 @@
 <string name="account_pin_new">Tik 'n 4-syfer-PIN.</string>
 <string name="account_pin_not_saved">Kon nie die PIN-verandering stoor nie. Niks is verander nie.</string>
 <string name="account_pin_unreadable">Kon nie die PIN's op hierdie rekenaar lees nie, so hierdie profiel bly gesluit.</string>
+<string name="account_profile_not_added">Kon nie 'n profiel byvoeg terwyl die PIN's op hierdie rekenaar nie gelees kan word nie. Niks is verander nie.</string>
 <string name="account_pin_off">Af · enigiemand kan hierdie profiel oopmaak</string>
 <string name="account_pin_on">Aan · gevra om dit oop te maak</string>
 <string name="account_pin_prompt">Tik die 4-syfer-PIN.</string>

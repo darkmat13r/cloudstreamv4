@@ -63,6 +63,7 @@
 <string name="account_profile_current">"നിലവിലുള്ളത്"</string>
 <string name="account_profile_locked">"ലോക്ക് ചെയ്തു · പിൻ"</string>
 <string name="account_profile_no_sync">"സമന്വയമില്ല"</string>
+<string name="account_profile_not_added">"ഈ കമ്പ്യൂട്ടറിലെ PIN-കൾ വായിക്കാനാകാത്തതിനാൽ പ്രൊഫൈൽ ചേർക്കാനായില്ല. ഒന്നും മാറിയിട്ടില്ല."</string>
 <string name="account_select_note">"പ്രത്യേക കാഴ്ച ചരിത്രം · ലോഗിനുകളല്ല"</string>
 <string name="account_select_title">"ആരാണ് കാണുന്നത്?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s സൈൻ-ഇൻ സ്ഥിരീകരിച്ചില്ല. ഒന്നും സംരക്ഷിച്ചില്ല."</string>

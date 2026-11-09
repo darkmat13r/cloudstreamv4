@@ -64,6 +64,7 @@
 <string name="account_profile_current">"मौजूदा"</string>
 <string name="account_profile_locked">"लॉक · पिन"</string>
 <string name="account_profile_no_sync">"कोई सिंक नहीं"</string>
+<string name="account_profile_not_added">"जब तक इस कंप्यूटर के PIN पढ़े नहीं जा सकते, प्रोफ़ाइल जोड़ी नहीं जा सकी। कुछ नहीं बदला।"</string>
 <string name="account_select_note">"अलग देखने का इतिहास · लॉगिन नहीं"</string>
 <string name="account_select_title">"कौन देख रहा है?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।"</string>

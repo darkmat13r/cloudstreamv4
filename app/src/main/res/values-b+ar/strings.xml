@@ -66,6 +66,7 @@
 <string name="account_profile_current">"الحالي"</string>
 <string name="account_profile_locked">"مقفل · رمز PIN"</string>
 <string name="account_profile_no_sync">"بلا مزامنة"</string>
+<string name="account_profile_not_added">"تعذّرت إضافة ملف شخصي لأنه لا يمكن قراءة أرقام PIN على هذا الكمبيوتر. لم يتغيّر شيء."</string>
 <string name="account_select_note">"سجل مشاهدة منفصل · ليس تسجيلات دخول"</string>
 <string name="account_select_title">"من يشاهد؟"</string>
 <string name="account_signin_failed_body" formatted="true">"لم يؤكد %s تسجيل الدخول. لم يُحفظ أي شيء."</string>

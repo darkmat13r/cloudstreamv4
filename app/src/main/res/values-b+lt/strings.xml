@@ -63,6 +63,7 @@
 <string name="account_profile_current">"Dabartinis"</string>
 <string name="account_profile_locked">"Užrakinta · PIN"</string>
 <string name="account_profile_no_sync">"Be sinchronizavimo"</string>
+<string name="account_profile_not_added">"Negalima pridėti profilio, kol neįmanoma nuskaityti šio kompiuterio PIN kodų. Niekas nepakeista."</string>
 <string name="account_select_note">"Atskira žiūrėjimo istorija · ne prisijungimai"</string>
 <string name="account_select_title">"Kas žiūri?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s nepatvirtino prisijungimo. Niekas neišsaugota."</string>
