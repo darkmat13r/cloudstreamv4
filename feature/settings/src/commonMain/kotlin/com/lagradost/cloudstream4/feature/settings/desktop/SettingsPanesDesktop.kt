@@ -32,6 +32,7 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_show_in_finder
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_seek_seconds
 import com.lagradost.cloudstream4.core.strings.generated.resources.poster_size_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.random_button_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_download_folder
@@ -40,7 +41,9 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.settings_down
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_folder_missing
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_home_search
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_playing
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_posters
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_seek_amount
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_speed
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_subtitle_size_large
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_subtitle_size_medium
@@ -94,6 +97,29 @@ private fun posterSizeName(size: PosterSize): String = when (size) {
     PosterSize.Small -> stringResource(Res.string.settings_subtitle_size_small)
     PosterSize.Medium -> stringResource(Res.string.settings_subtitle_size_medium)
     PosterSize.Large -> stringResource(Res.string.settings_subtitle_size_large)
+}
+
+/** `DS-24`'s Playback pane, its first row (`KMP-96`): how far the arrow keys and the skip buttons move. */
+@Composable
+internal fun ColumnScope.PlaybackPane(
+    values: SettingsValues,
+    marked: Set<SettingsRow>,
+    onAction: (SettingsAction) -> Unit,
+) {
+    GroupHeader(stringResource(Res.string.settings_playing))
+    Group {
+        val title = stringResource(Res.string.settings_seek_amount)
+        SettingRow(title = title, line = null, marked = SettingsRow.SeekAmount in marked) {
+            DesktopPopupButton(
+                selected = values.seekSeconds,
+                options = SettingsValues.SEEK_SECONDS,
+                onSelect = { onAction(SettingsAction.SetSeekSeconds(it)) },
+                label = title,
+                // UiString, not pluralStringResource: Compose's overload leaves a bare `%d` unformatted.
+                optionLabel = { UiString.Plural(Res.plurals.player_seek_seconds, it).resolve() },
+            )
+        }
+    }
 }
 
 /** `DS-24` ST6's Downloads pane, part 1: the folder by its name, and how many download at once. */

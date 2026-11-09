@@ -10,6 +10,7 @@ class SettingsSearchTest {
         when (row) {
             SettingsRow.PosterSize -> listOf("Poster size")
             SettingsRow.RandomButton -> listOf("Random Button")
+            SettingsRow.SeekAmount -> listOf("Seek amount")
             SettingsRow.DownloadFolder -> listOf("Download folder", "Harbor Films")
             SettingsRow.DownloadsAtOnce -> listOf("Downloads at once", "How many titles download together.")
         }
@@ -19,6 +20,7 @@ class SettingsSearchTest {
     private val title: (SettingsPane) -> String = { pane ->
         when (pane) {
             SettingsPane.Appearance -> "Looks"
+            SettingsPane.Playback -> "Watching"
             SettingsPane.Downloads -> "Saved Titles"
         }
     }
@@ -55,9 +57,15 @@ class SettingsSearchTest {
     }
 
     @Test
+    fun seekFindsPlaybackAndMarksSeekAmount() {
+        assertEquals(listOf(SettingsPane.Playback), panes("seek"))
+        assertEquals(setOf(SettingsRow.SeekAmount), SettingsSearch.rows(SettingsPane.Playback, "SEEK", words))
+    }
+
+    @Test
     fun aQueryForARowThatIsNotBuiltFindsNothing() {
-        // Casting is not a Mac setting, and Playback and the title pages have no row yet: search only finds what
-        // exists (KMP-90).
+        // Casting is not a Mac setting, and the title pages and Play the next episode have no row yet: search only
+        // finds what exists (KMP-90).
         assertTrue(panes("cast").isEmpty())
         assertTrue(panes("trailer").isEmpty())
         assertTrue(panes("episode").isEmpty())

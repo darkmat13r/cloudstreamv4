@@ -16,11 +16,13 @@ class SettingsRepositoryTest {
         settings.setDownloadsAtOnce(5)
         settings.setShowRandom(false)
         settings.setPosterSize(PosterSize.Large)
+        settings.setSeekSeconds(30)
         val stored = mapOf(
             "autoplay_next_key" to "false",
             "download_parallel_key" to "5",
             "poster_size_desktop_key" to "large",
             "random_button_key" to "false",
+            "seek_amount_desktop_key" to "30",
         )
         assertEquals(stored, storage.stored)
 
@@ -29,6 +31,7 @@ class SettingsRepositoryTest {
         assertEquals(5, reopened.downloadsAtOnce.value)
         assertEquals(false, reopened.showRandom.value)
         assertEquals(PosterSize.Large, reopened.posterSize.value)
+        assertEquals(30, reopened.seekSeconds.value)
     }
 
     @Test
@@ -44,6 +47,9 @@ class SettingsRepositoryTest {
         assertEquals(1, downloads.downloadsAtOnce.value)
         settings.setShowRandom(false)
         assertEquals(false, appearance.showRandom.value)
+        assertEquals(10, player.seekSeconds.value)
+        settings.setSeekSeconds(5)
+        assertEquals(5, player.seekSeconds.value)
     }
 
     @Test
@@ -94,6 +100,7 @@ class SettingsRepositoryTest {
                 "download_parallel_key" to "5",
                 "poster_size_desktop_key" to "medium",
                 "random_button_key" to "true",
+                "seek_amount_desktop_key" to "10",
             )
             assertEquals(both, storage.stored, "the file ends on both")
         }
@@ -123,6 +130,8 @@ class SettingsRepositoryTest {
         val settings = SettingsRepository(SettingsStorage.InMemory())
         assertFailsWith<IllegalArgumentException> { settings.setDownloadsAtOnce(6) }
         assertEquals(3, settings.downloadsAtOnce.value)
+        assertFailsWith<IllegalArgumentException> { settings.setSeekSeconds(20) }
+        assertEquals(10, settings.seekSeconds.value)
     }
 
     private companion object {

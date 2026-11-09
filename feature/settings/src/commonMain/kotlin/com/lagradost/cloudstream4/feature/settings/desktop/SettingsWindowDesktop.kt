@@ -54,8 +54,10 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.settings_down
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_downloads_at_once_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_pane_appearance
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_pane_playback
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results_body
+import com.lagradost.cloudstream4.core.strings.generated.resources.settings_seek_amount
 import com.lagradost.cloudstream4.core.strings.generated.resources.title_downloads
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -116,6 +118,10 @@ class SettingsWindowState(pane: SettingsPane = SettingsPane.entries.first(), que
 sealed interface SettingsAction {
     data class SetShowRandom(val on: Boolean) : SettingsAction
     data class SetPosterSize(val size: PosterSize) : SettingsAction
+
+    /** Always one of `SettingsValues.SEEK_SECONDS`: the pop-up offers nothing else. */
+    data class SetSeekSeconds(val seconds: Int) : SettingsAction
+
     data class SetDownloadsAtOnce(val count: Int) : SettingsAction
 
     /** Opens the download folder in Finder. Offered only while the folder exists. */
@@ -301,6 +307,7 @@ private fun PaneColumn(
         ) {
             when (pane) {
                 SettingsPane.Appearance -> AppearancePane(values, marked, onAction)
+                SettingsPane.Playback -> PlaybackPane(values, marked, onAction)
                 SettingsPane.Downloads -> DownloadsPane(values, folder, marked, onAction)
             }
         }
@@ -310,6 +317,7 @@ private fun PaneColumn(
 @Composable
 private fun paneName(pane: SettingsPane): String = when (pane) {
     SettingsPane.Appearance -> stringResource(Res.string.settings_pane_appearance)
+    SettingsPane.Playback -> stringResource(Res.string.settings_pane_playback)
     SettingsPane.Downloads -> stringResource(Res.string.title_downloads)
 }
 
@@ -319,6 +327,7 @@ private fun rowWords(folder: DownloadFolder): Map<SettingsRow, List<String>> = m
     // No line under it: the board's "On Home and Library." is untrue on the Mac, whose Library has no Random.
     SettingsRow.PosterSize to listOf(stringResource(Res.string.poster_size_settings)),
     SettingsRow.RandomButton to listOf(stringResource(Res.string.random_button_settings)),
+    SettingsRow.SeekAmount to listOf(stringResource(Res.string.settings_seek_amount)),
     SettingsRow.DownloadFolder to listOf(stringResource(Res.string.settings_download_folder), folder.name),
     SettingsRow.DownloadsAtOnce to listOf(
         stringResource(Res.string.settings_downloads_at_once),

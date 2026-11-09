@@ -4,11 +4,12 @@ package com.lagradost.cloudstream4.feature.settings
  * The panes the window shows, in `DS-24`'s order, and the rows each holds today.
  *
  * A pane is listed only once it has a row that works (`KMP-90`): an empty pane is never in the sidebar, so General
- * and the other six arrive with their first row. Playback arrives with Play the next episode, in the PR that
- * builds its reader, the Mac's Up next. [SettingsRow.entries] is everything search can find.
+ * and the other six arrive with their first row. Playback arrives with Seek amount (`KMP-96`), which the player
+ * reads. [SettingsRow.entries] is everything search can find.
  */
 enum class SettingsPane(val rows: List<SettingsRow>) {
     Appearance(listOf(SettingsRow.PosterSize, SettingsRow.RandomButton)),
+    Playback(listOf(SettingsRow.SeekAmount)),
     Downloads(listOf(SettingsRow.DownloadFolder, SettingsRow.DownloadsAtOnce)),
 }
 
@@ -16,6 +17,7 @@ enum class SettingsPane(val rows: List<SettingsRow>) {
 enum class SettingsRow {
     PosterSize,
     RandomButton,
+    SeekAmount,
     DownloadFolder,
     DownloadsAtOnce,
 }

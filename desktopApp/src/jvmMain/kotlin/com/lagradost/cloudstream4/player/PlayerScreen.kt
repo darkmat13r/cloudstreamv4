@@ -91,8 +91,8 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.player_mute
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_subtitles_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_unmute
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
-import com.lagradost.cloudstream4.core.strings.generated.resources.seek_back_10_seconds
-import com.lagradost.cloudstream4.core.strings.generated.resources.seek_forward_10_seconds
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_hud_seek_back
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_hud_seek_forward
 import com.lagradost.cloudstream4.core.strings.generated.resources.source_error
 import com.lagradost.cloudstream4.core.strings.generated.resources.video_source
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -132,6 +132,7 @@ import org.jetbrains.compose.resources.stringResource
  * @param links the streams the search behind [link] has found so far, each time it finds more.
  * @param openPlayer a new player for a source someone chose. Null where sources cannot be switched, and then there
  *   is no selector for it, and nothing moves on by itself either.
+ * @param seekMillis how far the arrow keys and the skip buttons move: Settings' Seek amount (`KMP-96`).
  *
  * ## When a stream fails
  *
@@ -160,6 +161,7 @@ internal fun PlayerScreen(
     links: Flow<List<StreamLink>> = emptyFlow(),
     openPlayer: (() -> VlcPlayer?)? = null,
     switcher: SourceSwitcher = remember(player, link) { SourceSwitcher(link) },
+    seekMillis: Long = PlayerScreenDefaults.SkipMillis,
 ) {
     var playback by remember(player, link) { mutableStateOf(Playback(player, link, startAtMillis)) }
     val audioChoice = remember(player, link) { AudioChoice() }
@@ -240,6 +242,7 @@ internal fun PlayerScreen(
         sources = sources,
         fellThrough = switcher.fellThrough,
         onAudioChosen = audioChoice::chosen,
+        seekMillis = seekMillis,
     )
 }
 
@@ -273,6 +276,7 @@ internal fun PlayerContent(
     skip: HudSkip? = null,
     onSkip: () -> Unit = {},
     hudIdle: HudIdle = HudIdle.Real,
+    seekMillis: Long = PlayerScreenDefaults.SkipMillis,
 ) {
     LaunchedEffect(controls, volume.audible) { controls.setVolume(volume.audible) }
     val tracks by subtitles.tracks.collectAsState()
@@ -381,8 +385,8 @@ internal fun PlayerContent(
                 }
                 when (event.key) {
                     Key.Spacebar -> controls.togglePause()
-                    Key.DirectionLeft -> seekBy(-PlayerScreenDefaults.SkipMillis)
-                    Key.DirectionRight -> seekBy(PlayerScreenDefaults.SkipMillis)
+                    Key.DirectionLeft -> seekBy(-seekMillis)
+                    Key.DirectionRight -> seekBy(seekMillis)
                     Key.DirectionUp -> volume.step(PlayerVolume.STEP)
                     Key.DirectionDown -> volume.step(-PlayerVolume.STEP)
                     Key.M -> volume.toggleMute()
@@ -444,6 +448,7 @@ internal fun PlayerContent(
                 onTogglePause = controls::togglePause,
                 onSeekTo = seekTo,
                 onSeekBy = seekBy,
+                seekMillis = seekMillis,
                 onBack = onBack,
                 volumeControl = { withRule -> VolumeControl(volume, withRule) },
                 selectors = {
@@ -651,6 +656,7 @@ internal fun Hud(
     onSeekTo: (Float) -> Unit,
     onSeekBy: (Long) -> Unit,
     onBack: () -> Unit,
+    seekMillis: Long = PlayerScreenDefaults.SkipMillis,
     volumeControl: @Composable (withRule: Boolean) -> Unit = {},
     selectors: @Composable RowScope.() -> Unit = {},
     fullscreenControl: @Composable () -> Unit = {},
@@ -723,8 +729,9 @@ internal fun Hud(
                     else -> {
                         DesktopIconButton(
                             icon = CloudStreamIcons.SeekBackward,
-                            contentDescription = stringResource(Res.string.seek_back_10_seconds),
-                            onClick = { onSeekBy(-PlayerScreenDefaults.SkipMillis) },
+                            // No number in the name, so it is true at every Seek amount (`KMP-96`).
+                            contentDescription = stringResource(Res.string.player_hud_seek_back),
+                            onClick = { onSeekBy(-seekMillis) },
                             tone = DesktopButtonTone.Quiet,
                         )
                         DesktopIconButton(
@@ -735,8 +742,8 @@ internal fun Hud(
                         )
                         DesktopIconButton(
                             icon = CloudStreamIcons.SeekForward,
-                            contentDescription = stringResource(Res.string.seek_forward_10_seconds),
-                            onClick = { onSeekBy(PlayerScreenDefaults.SkipMillis) },
+                            contentDescription = stringResource(Res.string.player_hud_seek_forward),
+                            onClick = { onSeekBy(seekMillis) },
                             tone = DesktopButtonTone.Quiet,
                         )
                         SeekTrack(status, onSeekTo, Modifier.weight(1f))
@@ -903,7 +910,7 @@ internal object PlayerScreenDefaults {
     val VolumeTrackWidth: Dp = 80.dp
     /** Narrower controls than this drop the volume rule, so the seek rule keeps at least 88 (`KMP-91`). */
     val VolumeRuleMinControlsWidth: Dp = 480.dp
-    /** `seek_back_10_seconds` and `seek_forward_10_seconds` say this number: change them together. */
+    /** The arrow keys' and the skip buttons' step where no Seek amount is passed. Settings' default (`KMP-96`). */
     const val SkipMillis = 10_000L
     const val HudTimeoutMillis = 3_000L
     /** What the top row covers: its 36 button and a 24 margin on each side. Mirrors `DesktopDimens`. */
