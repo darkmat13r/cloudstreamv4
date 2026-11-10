@@ -100,6 +100,35 @@ class DownloadSeriesViewModelTest {
         assertEquals(SeriesEffect.Close, nextEffect())
     }
 
+    /**
+     * `BUG-80`: delete-all deletes every file, and each delete reads the series again. Two empty reads that differ (the
+     * free space changed between them) must close the page once. Twice is two back presses, past Downloads to Home.
+     */
+    @Test
+    fun aPageThatEmptiesClosesOnceHoweverManyEmptyReadsFollow() {
+        viewModel.state.value
+        show(episode(1, DownloadEpisodeState.Done), episode(2, DownloadEpisodeState.Done))
+        source.emit(DownloadSeriesContents("Show", emptyList(), freeBytes = 1_000L))
+        source.emit(DownloadSeriesContents("Show", emptyList(), freeBytes = 2_000L))
+        // Something to come after the one Close, so a second Close would be read in its place rather than waited for.
+        show(episode(3, DownloadEpisodeState.Done))
+        viewModel.onAction(SeriesAction.DeleteAllRequested)
+        assertEquals(SeriesEffect.Close, nextEffect())
+        assertEquals(SeriesEffect.ConfirmDeleteAll(listOf(DownloadEpisodeId(3))), nextEffect())
+    }
+
+    /** Closing once does not stop the next close: a page that fills again and then empties closes again. */
+    @Test
+    fun aPageThatFillsAgainAfterClosingClosesAgainWhenItEmpties() {
+        viewModel.state.value
+        show(episode(1, DownloadEpisodeState.Done))
+        show()
+        assertEquals(SeriesEffect.Close, nextEffect())
+        show(episode(2, DownloadEpisodeState.Done))
+        show()
+        assertEquals(SeriesEffect.Close, nextEffect())
+    }
+
     @Test
     fun aFailedReadSaysWhyAndRetryReadsAgain() {
         source.failure = IllegalStateException("unreadable")

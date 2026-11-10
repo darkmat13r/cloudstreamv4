@@ -117,7 +117,11 @@ class DownloadSeriesViewModel(
 
     private fun show(contents: DownloadSeriesContents) {
         val episodes = SeriesShelf.sorted(contents.episodes)
-        if (episodes.isEmpty() && hadEpisodes) post(SeriesEffect.Close)
+        if (episodes.isEmpty() && hadEpisodes) {
+            // `BUG-80`: once. Delete-all reads again after each file, and a second Close was a second back press.
+            hadEpisodes = false
+            post(SeriesEffect.Close)
+        }
         if (episodes.isNotEmpty()) hadEpisodes = true
         updateState {
             copy(
