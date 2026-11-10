@@ -45,6 +45,11 @@ val signIdentity: String = if (signRequested) signingValue("CLOUDSTREAM_SIGN_IDE
 // profile (TN3137): an untracked path, embedded only when signing. Never committed, and its path is never printed.
 val provisioningProfilePath: String = if (signRequested) signingValue("CLOUDSTREAM_PROVISIONING_PROFILE").get() else ""
 val signedBuild: Boolean = signRequested
+// Compose's `macOS.signing` takes a Developer ID or Mac App Store identity only: any other name gets "Developer ID
+// Application: " put before it (`ValidatedMacOSSigningSettings.fullDeveloperID`, Compose 1.12), and then no certificate
+// matches. An Apple Development identity is the right one for the owner's own Mac (the PM, 2026-11-10), so that build is
+// signed by `signMacApp` below instead.
+val developmentIdentity: Boolean = signedBuild && signIdentity.startsWith("Apple Development:")
 if (signRequested) {
     val missing = listOf(
         "CLOUDSTREAM_TEAM_ID" to teamId,
@@ -72,8 +77,17 @@ if (signRequested) {
             )
         }
     }
+    // A development identity signs a local `createDistributable` only (the PM, 2026-11-10): `signMacApp` signs that one
+    // image after it is made, so a dmg or a pkg packaged from it would be packaged before it is signed.
+    if (developmentIdentity) {
+        val notLocal = gradle.startParameter.taskNames.filterNot { it.startsWith("-") }
+            .filterNot { it == "createDistributable" || it == ":desktopApp:createDistributable" }
+        if (notLocal.isNotEmpty()) {
+            throw GradleException("An Apple Development identity signs createDistributable only; not: ${notLocal.joinToString()}.")
+        }
+    }
     // Only this module's packaging may ask for a signed build: a signed `run` or test is the trap this flag prevents.
-    val packaging = Regex("(:desktopApp:)?(package|createDistributable|createReleaseDistributable|notarize|generateMacEntitlements|generateDesktopSecrets|bundleJnaDispatch)\\w*")
+    val packaging = Regex("(:desktopApp:)?(package|createDistributable|createReleaseDistributable|notarize|generateMacEntitlements|generateDesktopSecrets|bundleJnaDispatch|signMacApp)\\w*")
     val others = gradle.startParameter.taskNames.filterNot { it.startsWith("-") || packaging.matches(it) }
     if (others.isNotEmpty()) {
         throw GradleException("-Pcloudstream.sign=true is only for packaging and notarising; not for: ${others.joinToString()}.")
@@ -145,6 +159,58 @@ val bundleJnaDispatch = if (!signedBuild) null else tasks.register<Sync>("bundle
     }
     into(layout.buildDirectory.dir("generated/jnaDispatch"))
 }
+
+// KMP-95f: a build signed with an Apple Development identity, signed here rather than by Compose (see
+// `developmentIdentity`). It runs after `createDistributable`, on the image it made:
+// - the profile goes in as `Contents/embedded.provisionprofile`, which authorises the restricted entitlements;
+// - every Mach-O file is signed, the deepest first: the runtime's dylibs and launchers, JNA's `libjnidispatch`;
+// - then the runtime's bundle, then the app with the entitlements.
+// With the hardened runtime, which the entitlements' JIT, executable-memory and library-validation keys are for. The
+// Keychain round trip was measured both ways on a signed build (2026-11-10), and passed both ways, so the stricter one
+// stays. The identity, the Team ID and the profile's path are passed to codesign only, never printed: a failure names
+// the file's place in the app and nothing else.
+val signMacApp = if (!developmentIdentity) null else tasks.register("signMacApp") {
+    val app = layout.buildDirectory.file("compose/binaries/main/app/CloudStream.app")
+    val entitlements = generateMacEntitlements.map { it.outputs.files.singleFile }
+    val profile = File(provisioningProfilePath)
+    val identity = signIdentity
+    dependsOn(generateMacEntitlements)
+    doLast {
+        val root = app.get().asFile
+        check(root.isDirectory) { "signMacApp: createDistributable made no app." }
+        profile.copyTo(root.resolve("Contents/embedded.provisionprofile"), overwrite = true)
+        fun codesign(target: File, vararg extra: String) {
+            val process = ProcessBuilder(listOf("codesign", "--force", "--timestamp=none", "--options", "runtime", "--sign", identity) + extra + target.path)
+                .redirectErrorStream(true)
+                .start()
+            process.inputStream.readBytes()
+            if (process.waitFor() != 0) throw GradleException("codesign refused ${target.relativeTo(root)}.")
+        }
+        fun isMachO(file: File): Boolean {
+            if (!file.isFile || file.length() < 8) return false
+            val head = file.inputStream().use { it.readNBytes(8) }
+            val magic = head.take(4).fold(0L) { acc, b -> (acc shl 8) or (b.toLong() and 0xFF) }
+            val second = head.drop(4).fold(0L) { acc, b -> (acc shl 8) or (b.toLong() and 0xFF) }
+            // 64-bit and 32-bit, either byte order; a universal binary's `cafebabe` has a small arch count after it,
+            // where a class file has its version.
+            return magic == 0xFEEDFACFL || magic == 0xCFFAEDFEL || magic == 0xFEEDFACEL || magic == 0xCEFAEDFEL ||
+                (magic == 0xCAFEBABEL && second in 1L..20L)
+        }
+        val contents = root.resolve("Contents")
+        val main = contents.resolve("MacOS").listFiles().orEmpty().toSet()
+        contents.walkBottomUp()
+            .filter { it !in main && isMachO(it) }
+            .sortedByDescending { it.path.count { c -> c == File.separatorChar } }
+            .forEach { codesign(it) }
+        contents.resolve("runtime").takeIf { it.resolve("Contents/Info.plist").isFile }?.let { codesign(it) }
+        main.filter(::isMachO).forEach { codesign(it) }
+        codesign(root, "--entitlements", entitlements.get().path)
+        val verify = ProcessBuilder("codesign", "--verify", "--strict", root.path).redirectErrorStream(true).start()
+        verify.inputStream.readBytes()
+        if (verify.waitFor() != 0) throw GradleException("signMacApp: the signed app does not verify.")
+    }
+}
+signMacApp?.let { sign -> tasks.matching { it.name == "createDistributable" }.configureEach { finalizedBy(sign) } }
 
 kotlin {
     jvm {}
@@ -271,7 +337,8 @@ compose.desktop {
                 // Signed only for `-Pcloudstream.sign=true` on a packaging run, with both untracked values; codesign is then
                 // given the identity, and the entitlements with the Team ID in. Otherwise nothing here runs and the app keeps
                 // 95c's and 95d's stores.
-                if (signedBuild) {
+                // An Apple Development identity is signed by `signMacApp` instead: Compose cannot name one.
+                if (signedBuild && !developmentIdentity) {
                     signing {
                         sign.set(true)
                         identity.set(signIdentity)

@@ -13,8 +13,9 @@ import com.sun.jna.ptr.PointerByReference
  *
  * - **Scoped to this app** (the PM, 2026-11-09): the data-protection keychain (`kSecUseDataProtectionKeychain`), whose
  *   items belong to an access group. The app's entitlements name one group, `<Team ID>.com.lagradost.cloudstream4`, and
- *   an item goes in the first group named, so another app, or this one unsigned, cannot read it. An unsigned process
- *   is refused (`errSecMissingEntitlement`), which reads as [VaultRead.Failed]: it never falls back to anything.
+ *   an item goes in the first group named, so another app, or this one unsigned, cannot read it. Measured on a signed
+ *   build (2026-11-10): an unsigned process with the same jars does not see the signed app's item (a read is
+ *   [VaultRead.Absent]), and cannot replace or delete it (false). It never falls back to anything.
  * - **This Mac only, and only while it is unlocked** (`kSecAttrAccessibleWhenUnlockedThisDeviceOnly`): never in a
  *   backup or iCloud Keychain, as `DS-25` keeps sign-ins out of every backup.
  * - **Nothing is logged at the default log level.** Not the item's name, its value, or the status code: a failure is

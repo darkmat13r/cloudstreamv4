@@ -8059,7 +8059,8 @@ waits, never a PIN.
 of 2026-11-08, and the version FileKit already brings, so `BUG-73`'s one JNA is unchanged).
 - **Scoped to this app** (the PM's rule): the data-protection keychain (`kSecUseDataProtectionKeychain`). Its items belong
   to the entitlements' one access group, `<Team ID>.com.lagradost.cloudstream4`, so another app cannot read them, and nor
-  can this one unsigned: it is refused with `errSecMissingEntitlement`.
+  can this one unsigned. Measured (2026-11-10): an unsigned process with the same jars does not see a signed build's
+  item, and its replace and delete are refused; the signed build then reads the item unchanged.
 - **This Mac only, while unlocked** (`kSecAttrAccessibleWhenUnlockedThisDeviceOnly`): never in a backup or iCloud Keychain.
 - **Nothing is logged at the default log level**: not an item's name, its value or the status. A failure is only false
   or "couldn't read".
@@ -8136,6 +8137,17 @@ the reviewer of `#286`.
   load, JNA fails, and the Keychain fails closed.
 - Signed, `macOS.signing` gets the identity, and `entitlementsFile` gets `build/generated/macos/entitlements.plist`, which
   `generateMacEntitlements` writes from `desktopApp/macos/entitlements.plist` with the Team ID put in.
+- **An Apple Development identity is signed by `signMacApp`, not by Compose** (the PM, 2026-11-10). Compose 1.12's
+  `macOS.signing` takes only a Developer ID or Mac App Store name: any other gets "Developer ID Application: " put before
+  it, and then no certificate matches (measured: the name as given matches 1 certificate, the prefixed name 0). That is
+  the right identity for the owner's own Mac, so for it:
+  - Compose's signing is off, and `signMacApp` runs after `createDistributable`, on the image it made;
+  - the profile goes in as `Contents/embedded.provisionprofile`;
+  - every Mach-O file is signed, the deepest first, then the runtime's bundle, then the app with the entitlements, all
+    with the hardened runtime;
+  - the result must pass `codesign --verify --strict`;
+  - such a build is `createDistributable` only: any other task, `packageDmg` included, is refused, since it would package
+    the image before it is signed.
 - The committed file keeps the placeholder. Beside the access group it has Compose's three defaults for a JVM app.
 - **A development profile signs a local build only** (the PM, 2026-11-09). Such a profile lists the devices it runs on,
   by UDID. If it does (`ProvisionedDevices`), a run whose task graph holds `createReleaseDistributable` or a
@@ -8154,10 +8166,17 @@ refused, so the item is never overwritten. The way out is Keychain Access: delet
 **Threads.** `DesktopPins` and `KeychainSignInStore` are called from the window's one UI thread. Each Keychain call is
 short, and blocks that thread briefly.
 
-**Not measured yet.** No codesign has run, and nothing has touched the real Keychain: the PM's call while the owner
-decides on signing (Q3). Every test is over `FakeVault`. Measuring on a signed build is the step before this merges:
-whether the access group needs a provisioning profile with an Apple Development certificate, and that an unsigned
-process is refused.
+**Measured on a signed build** (2026-11-10, the owner's Mac, an Apple Development certificate and Xcode's team profile):
+- `codesign -dvv`: signed, an Apple Development authority under Apple's WWDR chain, the hardened runtime, the profile
+  embedded; `--verify --deep --strict` passes, and all 30 Mach-O files in the app are signed.
+- A Keychain round trip from inside the signed app, under a scratch `user.home` and a throwaway service, never the
+  app's own items. A write, a read back of the same bytes, then a delete, after which the item reads as absent. The item
+  is `kSecAttrAccessibleWhenUnlockedThisDeviceOnly` (`aku`, read back from the item and checked against the
+  framework's constant), not synchronizable, and in the group `<Team ID>.com.lagradost.cloudstream4`.
+- The same round trip passed without the hardened runtime too; the stricter one stays.
+- An unsigned process with the same jars: it does not see the signed app's item, and its replace and delete are
+  refused; the signed app then read the item unchanged.
+- Not measured: the whole app run signed, with a sign-in and PINs through the UI. The probe ran before `main`.
 
 **Tests:**
 - `KeychainSignInStoreTest`, 7:
