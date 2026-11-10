@@ -7059,18 +7059,22 @@ more than twice that size.
 - **Layout:** `PosterImage` is a `BoxWithConstraints` with its modifier, and the image fills it. Every caller already
   passes `fillMaxSize()` inside a sized slot, so nothing moves. Before a poster loads, the box is empty and shows
   nothing, as before.
+- **A box with a bounded side of 0** (one animating in) asks for nothing until it has a size (review). Before this, it
+  fell through to the unbounded case and asked at the file's size.
 - **A slot with no bound** (none today) asks at the file's own size, as before, rather than drawing nothing. The
   decoder's bound of 4096 by 4096 still holds.
 - **A resize** asks again at the new size. The poster drawn before it stays until the new one arrives.
 
-**Tests:** `PosterImageTest`, 3:
+**Tests:** `PosterImageTest`, 4:
 - in a box of 64 by 96 dp at density 2, a poster is asked for at 128 by 192 pixels;
 - in a slot with no bound, it is asked for with no size;
+- a box of 0 by 96 dp asks for nothing, while a poster beside it in a real box is asked for at its size;
 - a 1600 by 2400 PNG asked for at 128 by 192 is kept at most twice that size, and the same file with no size is kept
   at 1600 by 2400. This runs through the bounded loader, reading a local file.
 
 Proved by mutation: with the box's size not passed on, the first test fails; with `loadPoster` ignoring the size, the
-third fails.
+third fails; with the first version's `PosterImage`, the box of 0 by 96 asks for `(null, null)`, the file's size,
+and the fourth fails, as it does with the guard taken out.
 
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 

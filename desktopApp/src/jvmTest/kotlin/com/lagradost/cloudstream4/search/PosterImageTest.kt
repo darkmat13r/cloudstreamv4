@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.search
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.ui.ImageComposeScene
@@ -15,6 +16,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import kotlinx.coroutines.yield
@@ -63,6 +65,42 @@ class PosterImageTest {
     }
 
     @Test
+    fun `a box with a bounded side of 0 asks for nothing, not the file's own size`() = runBlocking<Unit> {
+        // A poster in a real box is the sentinel: once it is asked for, the effects of both have run.
+        val asked = java.util.concurrent.ConcurrentHashMap<String, Pair<Int?, Int?>>()
+        val sentinel = CompletableDeferred<Unit>()
+        val scene = ImageComposeScene(SCENE, SCENE, Density(2f)) {
+            Column {
+                PosterImage("https://img.example/empty.jpg", Modifier.size(0.dp, 96.dp), load = { url, width, height ->
+                    asked[url] = width to height
+                    null
+                })
+                PosterImage(URL, Modifier.size(64.dp, 96.dp), load = { url, width, height ->
+                    asked[url] = width to height
+                    sentinel.complete(Unit)
+                    null
+                })
+            }
+        }
+        try {
+            withTimeout(60_000) {
+                while (!sentinel.isCompleted) {
+                    scene.render()
+                    yield()
+                }
+                // Give a load started in the same frame time to arrive, as it would without the guard.
+                repeat(SETTLE_FRAMES) {
+                    scene.render()
+                    delay(10)
+                }
+            }
+        } finally {
+            scene.close()
+        }
+        assertEquals(mapOf(URL to (128 to 192)), asked.toMap())
+    }
+
+    @Test
     fun `a large poster asked for at a card's size is kept no larger than twice that`() = runBlocking<Unit> {
         val file = folder.resolve("poster.png").apply { writeBytes(png(1600, 2400)) }
         val loader = backdropImageLoader(OkHttpClient())
@@ -84,6 +122,7 @@ class PosterImageTest {
 
     private companion object {
         const val SCENE = 400
+        const val SETTLE_FRAMES = 20
         const val URL = "https://img.example/p.jpg"
     }
 }

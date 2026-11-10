@@ -36,8 +36,9 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
  * it keeps Coil's caching. A failed poster is the card's own placeholder, not an error state.
  *
  * It is requested at the size it is drawn (`KMP-106`), as the backdrop is, so a poster of 4096 by 4096 is not kept
- * whole (64 MB) to fill a card a few hundred pixels wide. In a slot with no bound, it is requested at its own size, as
- * before, and the decoder's bound of 4096 by 4096 still holds.
+ * whole (64 MB) to fill a card a few hundred pixels wide. A box with a bounded side of 0 asks for nothing until it has
+ * a size. Only in a slot with no bound is it requested at its own size, as before, and the decoder's bound of 4096 by
+ * 4096 still holds.
  *
  * @param load fetches [url] at a size in pixels, or at its own size when both are null; replaceable for a test.
  */
@@ -48,11 +49,14 @@ internal fun PosterImage(
     load: suspend (url: String, width: Int?, height: Int?) -> ImageBitmap? = ::loadPoster,
 ) {
     BoxWithConstraints(modifier) {
-        val bounded = constraints.hasBoundedWidth && constraints.hasBoundedHeight &&
-            constraints.maxWidth > 0 && constraints.maxHeight > 0
+        // A bounded side of 0 (a box animating in) asks for nothing: asking at the file's size is what this prevents.
+        val empty = (constraints.hasBoundedWidth && constraints.maxWidth == 0) ||
+            (constraints.hasBoundedHeight && constraints.maxHeight == 0)
+        val bounded = constraints.hasBoundedWidth && constraints.hasBoundedHeight
         val width = if (bounded) constraints.maxWidth else null
         val height = if (bounded) constraints.maxHeight else null
-        val poster by produceState<ImageBitmap?>(initialValue = null, url, width, height) {
+        val poster by produceState<ImageBitmap?>(initialValue = null, url, width, height, empty) {
+            if (empty) return@produceState
             val model = url ?: return@produceState
             value = withContext(Dispatchers.IO) { load(model, width, height) }
         }
