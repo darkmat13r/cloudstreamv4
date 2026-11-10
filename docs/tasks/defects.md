@@ -3272,6 +3272,38 @@ rating come from the numbers and only change their names.
 
 Tests: the same 84 in 6 classes, 189 assertion calls before and after, all passing.
 
+## BUG-90 — libVLC's stream url is checked once, by name, and nothing checks what it then connects to · **medium, security** · narrowed in this PR; the full fix is `KMP-113`
+
+A stream url is checked before libVLC is given it (`SandboxPolicy.isPublicHttpUrl`: http(s) only, no user info,
+every address its name resolves to public; called from `RemoteLink.isPublic` when the link arrives, and from
+`PlaybackCheck`). libVLC then resolves and connects on its own, in the media host, whose sandbox allows any address
+but loopback: Seatbelt can name only `localhost` or `*`, so the LAN, the router and `169.254.169.254` are reachable
+from it. Three things are never checked:
+- **A name that resolves differently by then.** The check resolves once; libVLC resolves again, later. A name that
+  answers public first and private second (rebinding) passes the check and connects to the private address.
+- **libVLC's own redirects.** It follows a 3xx to wherever it points, private addresses included.
+- **HLS and DASH sub-urls.** A plugin's playlist can name variant, segment, key (`EXT-X-KEY`), map and media urls
+  on any host, private ones included, and libVLC fetches each one. Only the playlist's own url was checked.
+
+**Measured (scratch, VLC 3.0.24):** a forward proxy cannot close this. Under a policy allowing only a local proxy,
+https (the http module over its TLS client) connects directly and ignores `--socks`; `--http-proxy` no longer
+exists; `http_proxy` and `https_proxy` are not read. Only plain http goes through SOCKS. So every https stream
+would fail closed. The full fix is a TLS-terminating local gateway that fetches with the app's address-checked
+client and rewrites playlist urls to itself (`KMP-113`, design first).
+
+**Here (narrowing, not the fix):** `VlcPlayer.play` checks the url and the audio url again, the moment before it
+sends them to the host, with the same rules. A link that has turned private since it arrived, by a changed answer
+or a stale one, is refused there, and the player shows its failure. The window left is from that check to libVLC's
+own lookup, plus everything after it: redirects and playlist urls are as open as before.
+- The player screen starts a stream off the UI thread now (`LaunchedEffect` on `Dispatchers.IO`), because the check
+  looks the name up and a lookup can take seconds. Releasing stays where it was.
+- `--check-playback` on a local file (`BUG-76`) plays its copy through `playStaged`: a `file:` url is not a stream,
+  so it does not meet the address check, and it names only the copy in the host's own directory.
+
+**Proof,** all local (CI is off): `VlcPlayerUrlCheckTest`. A resolver answers public for the link check and then
+private: `play` refuses and sends the host nothing. The control, public both times, sends the url. The audio url
+is checked the same way. Without the check in `play`, the refusal test fails (checked).
+
 ## BUG-78 — A stored poster address could carry userinfo, on the Mac's library and downloads · **low, security**
 
 **Status:** fixed in this PR · found in review of `KMP-99` · stacked on `KMP-99`, whose `posterOf` it changes
