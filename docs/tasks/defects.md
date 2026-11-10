@@ -4059,3 +4059,24 @@ takes focus. The band fits, so the page does not move, and the chrome and its of
   passes too.
 - Two new screenshots, looked at: `home-offline-bookmarks-wrapped-focus-retry` (Somali) and
   `home-offline-bookmarks-long-name-focus-retry`. No existing reference changed.
+
+## BUG-99 — A repository-removal test waited for the installed list, not for the install, and failed under load · **low, test only** · measured 2026-11-11
+
+**Found** in train 20's gates: `ExtensionsPaneModelTest` "with the installed list unreadable, a repository is not
+removed and says so" (`#345`) failed once in a full `:desktopApp:jvmTest` run, with "its file was left with nothing to
+say where it came from". Its class alone passed 10 runs of 10.
+
+**Cause:** the test, not the app. `RepositoryInstaller` puts the installed-list entry in *before* it moves the file into
+place, on purpose (`KMP-110b`'s review: a file in the folder with no entry would be one the app does not know it
+installed). The test waited only for that entry, then wrote garbage to the list. The removal is refused at once, and
+the test checked the file, which the move had not always placed yet.
+
+**Fix:** the test waits for the row's own end, `RowState.Held`, as the pipeline test beside it does. A row is
+Installing until the install's job has finished, so Held comes after the move. The installer is unchanged.
+
+**Proof,** all local (CI is off), with `--no-build-cache`:
+- **Red:** on master `20ec055e3`, with only a scratch `Thread.sleep(300)` before the installer's move, this test fails
+  (1 of the class's 15) with the same words.
+- **Green:** with the fix and the same scratch delay, the class passes; with the fix alone, 10 `--rerun` runs of 10.
+- The other test that waits on the installed list ("removing a repository stops each of its extensions before deleting
+  it") passed under the same delay, so it is left as it is.
