@@ -5574,7 +5574,7 @@ Additions only. `app/api/classes-jar.api` gains 60 lines: 7 `R$string` fields, `
 
 ## KMP-63 — Per-episode watch state across the detail seam (board 7i's `WATCHED` and `24 MIN LEFT`) · **measured 2026-11-07**
 
-**Status:** open · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
+**Status:** in progress (cloudstream-worker-3), PR 1 of 3 · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
 
 Board 7i draws two readouts on an episode row that nothing in the tree can supply: `WATCHED` on a
 finished episode and `24 MIN LEFT` on a started one. 7i's other two row fields were simply discarded
@@ -5609,6 +5609,37 @@ Verified by grep, not assumed.
 
 **Why PR 2a does not do it:** a readout whose data does not exist is worse than none — the same reason
 `KMP-38` left Download and Mark watched out of the action row.
+
+### Re-measured on master `b3ea4b59e`, and the shape taken (2026-11-10, the PM's go)
+
+The line numbers above have moved: `viewPosition` is `AndroidDetailSource.kt:291`/`:313`, `resumeOf` `:598`,
+`DetailResume` `DetailContracts.kt:91`. Two things changed what A costs:
+
+- **The per-row id is no longer a blocker.** `episodeSlots` (`EpisodeSlots.kt`) has lifted `postEpisodes`' id
+  formula out, and `details()` already builds the chosen dub's slots for the player. A row finds its slot by `data`,
+  as `DetailPlaybackParts.indexOf` does, and reads `viewPosition(slot.id)`. No id leaves `:app`.
+- **A alone misses a stored fact.** `:app` keeps a "watched" mark apart from any position
+  (`DataStoreHelper.getVideoWatchState`); the old page's Mark watched sets it with no position
+  (`ResultViewModel2:1613-1617`), and its row draws the check for it (`EpisodeAdapter:211`). So the row also carries
+  `DetailEpisode.markedWatched: Boolean = false`. It is stored, not derived, so it has none of B's consistency
+  problem, and `setViewPosAndResume` clears it when the episode is played again.
+
+**The rule.** One function, `DetailEpisode.watchReadout()`, for both rows: the mark, or `DetailResume.finished` at
+95%, reads watched; otherwise a usable position reads the minutes left, rounded up. 95% is what `:app`'s old row
+draws the check at (`fixVisual`) and the Mac's `WatchPosition.FINISHED_FRACTION`. 90%
+(`NEXT_WATCH_EPISODE_PERCENTAGE`) is when Resume moves on, not when a row reads watched. No credits position is
+stored anywhere; the skip APIs are lookups the player makes.
+
+**`classes-jar.api` gains 8 lines and loses none.** `DetailEpisode` is still not in it. The mark is read through a
+new `LocalDetailRecords.videoWatchState(id)`, and `LocalDetailRecords` is, so the method has a body (`= null`)
+rather than being abstract: a class compiled against the interface before it inherits that body and reads "no
+mark", where an abstract method would throw `AbstractMethodError`. The 8 lines are that method (non-abstract) on the
+interface, its `$DefaultImpls` class (`JvmDefaultMode.ENABLE` emits both), the synthetic accessor, the
+`DataStoreDetailRecords` override, and the new `withProgress`.
+
+**The split:** PR 1, the contract and the Android host, with no visible change; PR 2, `ListRow`'s trailing slot, the
+TV row and `I18N-25`'s two strings; PR 3, `LibraryDetailSource` and the Mac row's second line, stacked on `KMP-109`.
+Mark watched as an action is not in this task.
 
 ## KMP-54 — The Mac downloads pages, boards D1 to D6 · **built 2026-11-07, not wired**
 

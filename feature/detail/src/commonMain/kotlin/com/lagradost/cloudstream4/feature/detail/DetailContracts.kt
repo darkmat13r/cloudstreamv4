@@ -16,6 +16,13 @@ import kotlinx.coroutines.flow.Flow
  *   locale-aware formatter (`:core:strings` has no date one; `NumberSymbols` is the precedent for what
  *   one costs) *and* a ruling on which zone to render in. Both are their own task, so 7i's
  *   `12 Mar 2019` is not drawn here rather than drawn wrongly.
+ * @param progress where the viewer stopped in **this** episode, or null where nothing usable is stored
+ *   (`KMP-63`). Its [DetailResume.episode] is null, because the row is the episode, and its
+ *   [DetailResume.data] is this episode's [data]. The host looks it up by its own key for the episode;
+ *   no key of the host's crosses this seam.
+ * @param markedWatched the host keeps a "watched" mark apart from any position: `:app`'s old page sets it
+ *   from Mark watched with no position stored. False where the host has no such mark. See
+ *   [watchReadout] for how the two combine.
  */
 @Immutable
 data class DetailEpisode(
@@ -25,6 +32,8 @@ data class DetailEpisode(
     val episode: Int?,
     val runTimeMinutes: Int? = null,
     val airDateMs: Long? = null,
+    val progress: DetailResume? = null,
+    val markedWatched: Boolean = false,
 )
 
 /**
@@ -104,8 +113,24 @@ data class DetailResume(
         get() = if (durationMs <= 0L || positionMs <= 0L) null
         else ((durationMs - positionMs).coerceAtLeast(0L) + MS_PER_MINUTE - 1).div(MS_PER_MINUTE).toInt()
 
-    private companion object {
-        const val MS_PER_MINUTE = 60_000L
+    /** Near enough to the end to read as watched: [fraction] at least [FINISHED_FRACTION]. */
+    val finished: Boolean
+        get() = (fraction ?: return false) >= FINISHED_FRACTION
+
+    companion object {
+        private const val MS_PER_MINUTE = 60_000L
+
+        /**
+         * 95%, the rule both hosts already draw by.
+         *
+         * `:app`'s old episode row snaps a position of 95% or more to the end and draws the check for it
+         * (`DataStoreHelper.fixVisual`), and the Mac's library counts 95% as watched
+         * (`WatchPosition.FINISHED_FRACTION`, which this module cannot see). `:app`'s other number, 90%
+         * (`NEXT_WATCH_EPISODE_PERCENTAGE`), is when Resume moves on to the next episode, not when a row
+         * reads watched: between the two, a row says what is left while Resume offers the next one, as
+         * the old page does.
+         */
+        const val FINISHED_FRACTION = 0.95f
     }
 }
 

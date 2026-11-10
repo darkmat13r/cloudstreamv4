@@ -37543,6 +37543,7 @@ public final class com/lagradost/cloudstream4/detail/AndroidDetailSourceKt : jav
 	public static final fun toTitleDetail (Lcom/lagradost/cloudstream3/LoadResponse;Ljava/util/List;Ljava/util/List;Lcom/lagradost/cloudstream4/feature/detail/DetailResume;Lcom/lagradost/cloudstream4/feature/detail/DetailWatchStatus;Z)Lcom/lagradost/cloudstream4/feature/detail/TitleDetail;
 	public static final fun toTracks (Ljava/util/List;)Ljava/util/List;
 	public static final fun toWatchType (Lcom/lagradost/cloudstream4/feature/detail/DetailWatchStatus;)Lcom/lagradost/cloudstream3/ui/WatchType;
+	public static final fun withProgress (Ljava/util/List;Lcom/lagradost/cloudstream4/detail/LocalDetailRecords;Ljava/util/List;)Ljava/util/List;
 	public static final fun withoutMarkup (Ljava/lang/String;)Ljava/lang/String;
 }
 
@@ -37571,6 +37572,7 @@ public final class com/lagradost/cloudstream4/detail/DataStoreDetailRecords : ja
 	public fun dub (I)Lcom/lagradost/cloudstream3/DubStatus;
 	public fun favourite (I)Lcom/lagradost/cloudstream3/utils/DataStoreHelper$FavoritesData;
 	public fun lastWatched (I)Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$ResumeWatching;
+	public fun videoWatchState (I)Lcom/lagradost/cloudstream3/ui/result/VideoWatchState;
 	public fun viewPosition (I)Lcom/lagradost/cloudstream3/utils/DataStoreHelper$PosDur;
 	public fun watchState (I)Lcom/lagradost/cloudstream3/ui/WatchType;
 	public fun writeFavourite (ILcom/lagradost/cloudstream3/utils/DataStoreHelper$FavoritesData;)V
@@ -37672,16 +37674,22 @@ public final class com/lagradost/cloudstream4/detail/DetailTvFragmentKt : java/l
 }
 
 public interface com/lagradost/cloudstream4/detail/LocalDetailRecords : java/lang/Object {
+	public static synthetic fun access$videoWatchState$jd (Lcom/lagradost/cloudstream4/detail/LocalDetailRecords;I)Lcom/lagradost/cloudstream3/ui/result/VideoWatchState;
 	public abstract fun announceBookmarks ()V
 	public abstract fun announceLibrary ()V
 	public abstract fun bookmark (I)Lcom/lagradost/cloudstream3/utils/DataStoreHelper$BookmarkedData;
 	public abstract fun dub (I)Lcom/lagradost/cloudstream3/DubStatus;
 	public abstract fun favourite (I)Lcom/lagradost/cloudstream3/utils/DataStoreHelper$FavoritesData;
 	public abstract fun lastWatched (I)Lcom/lagradost/cloudstream3/utils/downloader/DownloadObjects$ResumeWatching;
+	public fun videoWatchState (I)Lcom/lagradost/cloudstream3/ui/result/VideoWatchState;
 	public abstract fun viewPosition (I)Lcom/lagradost/cloudstream3/utils/DataStoreHelper$PosDur;
 	public abstract fun watchState (I)Lcom/lagradost/cloudstream3/ui/WatchType;
 	public abstract fun writeFavourite (ILcom/lagradost/cloudstream3/utils/DataStoreHelper$FavoritesData;)V
 	public abstract fun writeWatchState (ILcom/lagradost/cloudstream3/ui/WatchType;Lcom/lagradost/cloudstream3/utils/DataStoreHelper$BookmarkedData;)V
+}
+
+public final static class com/lagradost/cloudstream4/detail/LocalDetailRecords$DefaultImpls : java/lang/Object {
+	public static fun videoWatchState (Lcom/lagradost/cloudstream4/detail/LocalDetailRecords;I)Lcom/lagradost/cloudstream3/ui/result/VideoWatchState;
 }
 
 public final class com/lagradost/cloudstream4/download/AndroidDownloadSeriesSource : java/lang/Object, com/lagradost/cloudstream4/feature/downloads/series/DownloadSeriesSource {
