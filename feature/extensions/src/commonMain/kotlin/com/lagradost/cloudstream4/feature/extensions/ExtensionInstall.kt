@@ -88,7 +88,8 @@ sealed interface ExtensionVerification {
     /**
      * No check was possible, with the reason.
      *
-     * The common case is a repository that publishes no `fileHash`, which most do not. This is not a
+     * The usual case is an entry with no `fileHash`, which is the minority: 54 of the 583 plugins in 33
+     * public repositories had none on 2026-11-10 (`KMP-110`). This is not a
      * failure — it is the absence of a guarantee, and a caller that cannot tell the two apart will
      * eventually treat one as the other.
      */

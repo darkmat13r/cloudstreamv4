@@ -142,6 +142,27 @@ class ExtensionDecisionsTest {
         assertNull(snapshot.choiceFor("A.jar", first))
     }
 
+    /** `KMP-110b` review: the damaged file is replaced, and kept first, so nothing is destroyed. */
+    @Test
+    fun `a damaged file is kept aside, byte for byte and 0600, before it is replaced, and only the latest is kept`() {
+        val damaged = ExtensionDecisions.damagedFileFor(file)
+        ExtensionDecisions(file).record("A.jar", first, ExtensionChoice.Allow)
+        val once = file.readBytes() + "damaged once".toByteArray()
+        file.writeBytes(once)
+        ExtensionDecisions(file).record("B.jar", second, ExtensionChoice.KeepOff)
+        assertContentEquals(once, damaged.readBytes())
+        assertEquals(setOf(PosixFilePermission.OWNER_READ, PosixFilePermission.OWNER_WRITE), Files.getPosixFilePermissions(damaged.toPath()))
+
+        val twice = "damaged twice".toByteArray()
+        file.writeBytes(twice)
+        ExtensionDecisions(file).record("A.jar", first, ExtensionChoice.Allow)
+        assertContentEquals(twice, damaged.readBytes(), "the one copy is the latest")
+        assertEquals(listOf("extensions.decisions", "extensions.decisions.damaged"), root.list()!!.sorted())
+
+        ExtensionDecisions(file).record("B.jar", second, ExtensionChoice.Allow)
+        assertContentEquals(twice, damaged.readBytes(), "a readable file is not copied")
+    }
+
     @Test
     fun `a failure before the move leaves the old file exactly as it was, and nothing beside it`() {
         ExtensionDecisions(file).record("A.jar", first, ExtensionChoice.KeepOff)

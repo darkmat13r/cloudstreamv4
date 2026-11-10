@@ -8177,9 +8177,9 @@ a lighter tone, the same on every platform (board d159).
 Red-checked: with the Mac column put back on `surface`, 2 of the 4 fail. `SidebarToneRenders` writes the before and
 after PNGs when `-Pcloudstream.shell.renders` names a directory, and guards nothing.
 
-## KMP-110 — The Mac's extension repository manager · **110a in review**, 110b and 110c to follow · the owner's task, 2026-11-10
+## KMP-110 — The Mac's extension repository manager · **110a in review (#334), 110b in review**, 110c to follow · the owner's task, 2026-11-10
 
-**Status:** 110a (fetch, parse, saved repositories) in review. Today the Mac gets extensions only from files dropped
+**Status:** 110a (fetch, parse, saved repositories) in #334; 110b (install, update, remove) stacked on it. Today the Mac gets extensions only from files dropped
 into `~/.cloudstream4/extensions` before a restart. This adds a repository by URL, lists its plugins, and installs,
 updates or removes one into that folder, where the existing pipeline (hash, no-network `.cs3` conversion, scan,
 Allow / Keep off) takes over.
@@ -8245,10 +8245,78 @@ declared-length one. A "prints nothing" case now also goes through a real OkHttp
 **Green:** the 45 pass, and `:desktopApp:jvmTest` passes 772 of 772. The five gates passed, 273 XML results with 0
 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
 
-### 110b and 110c — next
+### 110b — install, update, remove (`RepositoryInstaller`)
 
-- [ ] 110b: install, update and remove into the folder. File name from `internalName` and the repository, checked to
-      stay in the folder; the published hash checked before the move and written as the `.sha256` sidecar; the
-      single-file scan with no start; the hold for every repository install; `installed.json` for versions.
-- [ ] 110c: the Settings → Extensions pane and Home's button, against the desktop board; strings; a section in
-      `desktop-design.md`.
+- **Held until Allow.** A new choice, `ExtensionChoice.Pending`, is recorded for the file's hash before the file is
+  moved in, and `SandboxedExtensions` holds a `Pending` file whatever the scan says. Allow replaces it; Keep off
+  replaces it. An update is a new hash, so it is held again. Side-loaded files are unchanged.
+- **Offered:** status Ok or Slow. DECIDED: beta only is not offered (options: offer it, hide it; chose hide because the
+  Mac has no beta builds, which is what the status is for), and an unknown code is read as Down.
+- **Which file:** the jar when the repository publishes one, otherwise the `.cs3`, which the pipeline converts without
+  network. A jar arriving replaces the `.cs3` it supersedes, and its sidecar.
+- **Fetched and checked:** through `RepositoryHttp` with a 120 s call limit, at most the stated size and never past
+  32 MiB. A stated size it does not match, or a published hash it does not match, writes nothing.
+- **No published hash:** installed and marked unverified, and held all the same (the owner confirmed, 2026-11-10). It
+  gets no sidecar, and a sidecar left by an earlier, verified version is removed: it would claim a check that was not
+  made, or refuse the new file.
+- **Named here:** `fileStem` keeps the first 40 characters of `internalName` in `A-Z a-z 0-9 _ -` and adds 12 hex of
+  SHA-256 over the repository URL and the name, so `18+` and `18_`, and one name from two repositories, are different
+  files. Every path is checked to be a plain name directly in the folder. `..`, `/` and U+202E stay in.
+- **Written whole:** staged in `.incoming/`, the sidecar moved in before the file, the file moved in atomically.
+- **`InstalledFromRepositories`:** `extensions.installed` beside the directory, 0600, with the repository's version
+  (the Mac never loads a manifest it was not allowed to).
+- **Remove** takes the file, its sidecar and its entry, keeps the choice, and leaves side-loaded files alone.
+- **Updates:** a higher version, or `-1` (always update), from a status that is offered.
+- `SandboxedExtensions.refresh(fileName)` takes one file through the pipeline while the app runs (it comes back held),
+  and `forget(fileName)` stops one before it is replaced or removed. 110c calls them.
+- `#334` review, carried in: `RepositoryLink.Https`, `SavedRepository` and `InstalledFromRepository` print no URL, and a
+  failed save throws `OwnerOnlyFile.NotSaved`, which has no message and no cause, since a `Files` exception names the
+  home directory.
+- The three comments that said most repositories publish no hash are corrected (`ExtensionHash.kt`,
+  `ExtensionInstall.kt`, `JvmExtensionRuntimeTest.kt`): 529 of 583 do.
+
+**Tests:** 17 more: `RepositoryInstallerTest` (13), `RepositoryInstallHoldTest` (2, the real scanner and a real host
+under Seatbelt, on the clean fixture built in the test), `RepositoryRedactionTest` (2). No real plugin is involved.
+
+**Red-checked:** with the guards removed at once (the `Pending` hold in the pipeline and its record in the installer,
+the hash and size checks, removing an old sidecar, the name's character rule and the
+in-folder checks, the three redacting `toString`s, and the path-free save error), 10 of 62 fail, each on its guard:
+among them the clean fixture starting before it was allowed.
+
+**Green:** the 62 repository tests pass, `ExtensionHoldTest` 25 of 25, and `:desktopApp:jvmTest` 789 of 789. The five
+gates passed, 276 XML results with 0 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is
+unchanged. All local.
+
+**Review (`#336`), fail closed.** The hold failed open when the decisions file could not be read: an empty snapshot
+had no choice, a clean scan started the file, and a write over the damaged file dropped every other repository file's
+`Pending`. Now:
+- a file named in `InstalledFromRepositories` is held unless this exact file is allowed, whatever else is recorded;
+- with the decisions file or the installed list unreadable, **every** file that is not allowed is held, side-loaded
+  ones included. **This changes master's behaviour for side-loaded files:** a clean one used to start with the
+  decisions file damaged;
+- the start decision is an exhaustive `when` over `ExtensionChoice`, so a choice added later has to say whether it
+  starts;
+- choosing again still repairs a damaged decisions file, as the shipped notice says, and the damaged file is first
+  copied whole to `extensions.decisions.damaged` (0600, one copy, the latest). DECIDED by the PM (option C, over
+  refusing to write, which left no way out but deleting the file by hand);
+- the installer writes its entry before the move and takes it back if the move does not happen, and a first install
+  that fails leaves no sidecar.
+
+Tests: `RepositoryInstallHoldTest` 3 more (a damaged file holds a repository install at launch; repairing it by
+choosing again leaves every other repository install held; a clean side-loaded file is held while it is damaged), and
+it now skips with `assumeTrue` where there is no `sandbox-exec`; `ExtensionDecisionsTest` 1 more (the `.damaged` copy:
+byte for byte, 0600, the latest only, none for a readable file); `RepositoryInstallerTest` 1 more (a first install that
+fails before its move leaves no entry and no file). **Red-checked one guard at a time:** without the installed-entry
+hold, the repair test fails; without the unreadable hold, the side-loaded test fails; without the copy aside, its test
+and the repair test fail; without the rollback, both "fails before its move" tests fail. **Green:** `:desktopApp:jvmTest`
+794 of 794; the five gates passed, 276 XML results with 0 failures; `:app:checkExtensionApi` passed and
+`app/api/classes-jar.api` is unchanged. All local.
+
+Found, not changed: two identical files in the extensions directory race for one `.store` entry when they load at once,
+and the loser's `NoSuchFileException` is not caught (`SandboxedExtensions.toStore` catches only
+`IllegalStateException`). Reported to the PM.
+
+### 110c — next
+
+- [ ] The Settings → Extensions pane and Home's button, against the desktop board; names and descriptions through
+      `untrustedText`; strings; a section in `desktop-design.md`.
