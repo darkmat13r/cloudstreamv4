@@ -56969,6 +56969,8 @@ values/strings.xml	string	ext_row_installing_unknown	-	STR	Installing · %s
 values/strings.xml	string	ext_row_turned_off	-	STR	Turned off by its repository	
 values/strings.xml	string	ext_row_unverified	-	STR	Unverified · its repository publishes no hash	
 values/strings.xml	string	ext_row_update	-	STR	Update available · v%1$d → v%2$d	
+values/strings.xml	string	ext_row_version	-	STR	v%d	
+values/strings.xml	string	ext_size_megabytes	-	STR	%s MB	
 values/strings.xml	string	extension_allow	-	STR	Allow	
 values/strings.xml	string	extension_authors	-	STR	Authors	
 values/strings.xml	string	extension_decision_not_saved	-	STR	Your choice could not be saved, so this extension stays off. You will be asked again.	

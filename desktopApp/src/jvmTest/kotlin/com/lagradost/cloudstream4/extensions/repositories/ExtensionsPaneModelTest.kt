@@ -40,6 +40,9 @@ class ExtensionsPaneModelTest {
     private val answers = Collections.synchronizedMap(mutableMapOf<String, Fetched>())
     private val gates = Collections.synchronizedMap(mutableMapOf<String, CompletableDeferred<Unit>>())
     private val calls = Collections.synchronizedList(mutableListOf<String>())
+    private val fetchCounts = java.util.concurrent.ConcurrentHashMap<String, java.util.concurrent.atomic.AtomicInteger>()
+
+    private fun reads(url: String) = fetchCounts[url]?.get() ?: 0
     private val pluginBytes = "made-up plugin".toByteArray()
 
     private val extensions = object : PaneExtensions {
@@ -80,6 +83,7 @@ class ExtensionsPaneModelTest {
 
     private fun model(scope: CoroutineScope): ExtensionsPaneModel {
         val fetcher = RepositoryReader.Fetcher { url, _ ->
+            fetchCounts.computeIfAbsent(url) { java.util.concurrent.atomic.AtomicInteger() }.incrementAndGet()
             gates[url]?.await()
             answers[url] ?: Fetched.Failed(RepositoryFailure.Unreachable)
         }
@@ -317,6 +321,23 @@ class ExtensionsPaneModelTest {
             immediate.install(key, "Lumen")
             assertIs<RowState.Failed>(immediate.state.value.open?.rows?.single()?.state, "round $round")
         }
+    }
+
+    /** `#349` review: coming back to the pane does not fetch every repository again. Retry still does. */
+    @Test
+    fun `load reads each repository once, and refresh reads it again`() {
+        serve(A, "Harbour Mirror", plugin("Lumen"))
+        model.add(A)
+        until("added") { it.repositories.isNotEmpty() && it.add == AddState.Idle }
+        val fresh = model(scope)
+        val before = reads(A)
+        repeat(3) { fresh.load() }
+        runBlocking { withTimeout(10_000) { while (reads(A) == before) delay(10) } }
+        runBlocking { delay(300) }
+        assertEquals(before + 1, reads(A), "three loads, one read")
+        fresh.refresh()
+        runBlocking { withTimeout(10_000) { while (reads(A) == before + 1) delay(10) } }
+        assertEquals(before + 2, reads(A))
     }
 
     private companion object {

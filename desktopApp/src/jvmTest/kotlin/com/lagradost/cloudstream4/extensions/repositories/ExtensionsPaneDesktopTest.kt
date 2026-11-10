@@ -105,6 +105,35 @@ class ExtensionsPaneDesktopTest {
         }
     }
 
+    /** `#349` review: the link a person typed can carry a token, so once it is added the field no longer shows it. */
+    @Test
+    fun `after a repository is added, the field is empty and the link is drawn nowhere`() {
+        val link = "https://files.example/harbour/repo.json?token=tok_made_up_8f2c"
+        val state = androidx.compose.runtime.mutableStateOf(ExtensionsPaneState())
+        val scene = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+            CloudStreamTheme {
+                CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
+                    Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                        ExtensionsPaneDesktop(state.value, onAction = { actions += it }, installedFrom = { 0 }, focusLink = false)
+                    }
+                }
+            }
+        }
+        scene.use {
+            val field = checkNotNull(scene.find("Repository link"))
+            checkNotNull(field.config.getOrNull(androidx.compose.ui.semantics.SemanticsActions.SetText)).action
+                ?.invoke(androidx.compose.ui.text.AnnotatedString(link))
+            scene.settle()
+            assertTrue(scene.allText().any { link in it }, "the link is in the field while it is typed")
+            scene.click(scene.bounds("Add", text = true).center)
+            assertTrue(actions.contains(ExtensionsPaneAction.Add(link)))
+            // The model reads it, adds it, and says so.
+            state.value = ExtensionsPaneState(repositories = listOf(repository()), added = 1)
+            scene.settle()
+            assertTrue(scene.allText().none { "tok_made_up" in it || "files.example" in it }, "${scene.allText()}")
+        }
+    }
+
     @Test
     fun `while reading, Add becomes Cancel, and Cancel ends it (X2a)`() {
         pane(ExtensionsPaneState(add = AddState.Reading)).use { scene ->
@@ -281,8 +310,11 @@ class ExtensionsPaneDesktopTest {
     private fun ImageComposeScene.bounds(label: String, text: Boolean = false): Rect =
         checkNotNull(find(label, text)) { "nothing is named \"$label\": ${allText()}" }.boundsInRoot
 
-    private fun ImageComposeScene.allText(): List<String> =
-        nodes().flatMap { node -> node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text } }
+    /** What is drawn as text, and what a field holds. */
+    private fun ImageComposeScene.allText(): List<String> = nodes().flatMap { node ->
+        node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text } +
+            listOfNotNull(node.config.getOrNull(SemanticsProperties.EditableText)?.text)
+    }
 
     private fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
 

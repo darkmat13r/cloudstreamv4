@@ -3662,6 +3662,8 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field ext_row_turned_off I
 	public static field ext_row_unverified I
 	public static field ext_row_update I
+	public static field ext_row_version I
+	public static field ext_size_megabytes I
 	public static field extension_allow I
 	public static field extension_authors I
 	public static field extension_decision_not_saved I

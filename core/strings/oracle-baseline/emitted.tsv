@@ -464,6 +464,8 @@ values	string	ext_row_installing_unknown	-	Installing · %s
 values	string	ext_row_turned_off	-	Turned off by its repository
 values	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values	string	ext_row_version	-	v%d
+values	string	ext_size_megabytes	-	%s MB
 values	string	extension_allow	-	Allow
 values	string	extension_authors	-	Authors
 values	string	extension_decision_not_saved	-	Your choice could not be saved, so this extension stays off. You will be asked again.

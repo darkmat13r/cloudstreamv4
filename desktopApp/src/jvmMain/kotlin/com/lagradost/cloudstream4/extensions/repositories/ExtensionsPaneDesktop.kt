@@ -101,6 +101,8 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.ext_row_insta
 import com.lagradost.cloudstream4.core.strings.generated.resources.ext_row_turned_off
 import com.lagradost.cloudstream4.core.strings.generated.resources.ext_row_unverified
 import com.lagradost.cloudstream4.core.strings.generated.resources.ext_row_update
+import com.lagradost.cloudstream4.core.strings.generated.resources.ext_row_version
+import com.lagradost.cloudstream4.core.strings.generated.resources.ext_size_megabytes
 import com.lagradost.cloudstream4.core.strings.generated.resources.extension_status_blocked
 import com.lagradost.cloudstream4.core.strings.generated.resources.extension_status_hash_mismatch
 import com.lagradost.cloudstream4.core.strings.generated.resources.extension_status_held
@@ -264,7 +266,7 @@ private fun PaneList(
             }
         }
         GroupHeader(stringResource(Res.string.ext_repo_add_group))
-        Group { AddRepository(state.add, offline = state.offline, focus = focusLink, onAction = onAction) }
+        Group { AddRepository(state.add, state.added, offline = state.offline, focus = focusLink, onAction = onAction) }
         GroupHeader(stringResource(Res.string.settings_repositories))
         if (state.removeFailed) WarningLine(stringResource(Res.string.ext_remove_failed))
         Group {
@@ -281,7 +283,7 @@ private fun PaneList(
 
 /** X1, X2a, X2b: the field, Add (or Cancel while reading), and the line under them. The link stays after a failure. */
 @Composable
-private fun AddRepository(add: AddState, offline: Boolean, focus: Boolean, onAction: (ExtensionsPaneAction) -> Unit) {
+private fun AddRepository(add: AddState, added: Int, offline: Boolean, focus: Boolean, onAction: (ExtensionsPaneAction) -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     var link by rememberSaveable { mutableStateOf("") }
@@ -347,6 +349,13 @@ private fun AddRepository(add: AddState, offline: Boolean, focus: Boolean, onAct
         }
     }
     LaunchedEffect(focus) { if (focus) runCatching { fieldFocus.requestFocus() } }
+    // `#349` review: once added, the link (which can carry a token) is not kept on screen. The first run is the pane
+    // opening, which has nothing to clear.
+    var seenAdded by remember { mutableStateOf(added) }
+    LaunchedEffect(added) {
+        if (added != seenAdded) link = ""
+        seenAdded = added
+    }
 }
 
 @Composable
@@ -603,13 +612,14 @@ private fun installFailure(failure: InstallFailure): String = when (failure) {
 private fun details(row: ExtensionRow): String {
     val types = row.tvTypes.mapNotNull { tvTypeName(it) }.distinct()
     return listOfNotNull(
-        "v${row.version}".takeIf { row.version > 0 },
+        UiString.Resource(Res.string.ext_row_version, listOf(row.version)).resolve().takeIf { row.version > 0 },
         row.language?.let(::languageName),
         types.joinToString(", ").takeIf { it.isNotEmpty() },
-        row.sizeBytes?.let(::bytes),
+        row.sizeBytes?.let { bytes(it) },
     ).joinToString(" · ")
 }
 
+@Composable
 private fun sizePart(size: Long?): String = size?.let { " · ${bytes(it)}" }.orEmpty()
 
 /** The repository's `tvTypes` are raw wire names; the ones the app has words for are shown in them, the rest not at all. */
@@ -637,13 +647,14 @@ private fun languageName(tag: String): String? = runCatching {
     Locale.forLanguageTag(tag).getDisplayLanguage(Locale.getDefault()).takeIf { it.isNotBlank() }
 }.getOrNull()
 
-/** Megabytes with one decimal, in the current locale's digits. */
+/** Megabytes with one decimal, in the current locale's digits, and the unit from the strings (`#349` review). */
+@Composable
 private fun bytes(count: Long): String {
     val format = NumberFormat.getNumberInstance(Locale.getDefault()).apply {
         minimumFractionDigits = 1
         maximumFractionDigits = 1
     }
-    return "${format.format(count / BYTES_PER_MEGABYTE)} MB"
+    return UiString.Resource(Res.string.ext_size_megabytes, listOf(format.format(count / BYTES_PER_MEGABYTE))).resolve()
 }
 
 /**

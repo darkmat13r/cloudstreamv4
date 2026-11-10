@@ -464,6 +464,8 @@ values-b+af	string	ext_row_installing_unknown	-	Installing · %s
 values-b+af	string	ext_row_turned_off	-	Turned off by its repository
 values-b+af	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+af	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+af	string	ext_row_version	-	v%d
+values-b+af	string	ext_size_megabytes	-	%s MB
 values-b+af	string	extension_allow	-	Laat toe
 values-b+af	string	extension_authors	-	Authors
 values-b+af	string	extension_decision_not_saved	-	Jou keuse kon nie gestoor word nie, dus bly hierdie uitbreiding af. Jy sal weer gevra word.
@@ -1695,6 +1697,8 @@ values-b+am	string	ext_row_installing_unknown	-	Installing · %s
 values-b+am	string	ext_row_turned_off	-	Turned off by its repository
 values-b+am	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+am	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+am	string	ext_row_version	-	v%d
+values-b+am	string	ext_size_megabytes	-	%s MB
 values-b+am	string	extension_allow	-	ፍቀድ
 values-b+am	string	extension_authors	-	Authors
 values-b+am	string	extension_decision_not_saved	-	ምርጫህን ማስቀመጥ ስላልተቻለ ይህ ቅጥያ ጠፍቶ ይቆያል። እንደገና ትጠየቃለህ።
@@ -2926,6 +2930,8 @@ values-b+apc	string	ext_row_installing_unknown	-	Installing · %s
 values-b+apc	string	ext_row_turned_off	-	Turned off by its repository
 values-b+apc	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+apc	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+apc	string	ext_row_version	-	v%d
+values-b+apc	string	ext_size_megabytes	-	%s MB
 values-b+apc	string	extension_allow	-	اسمح
 values-b+apc	string	extension_authors	-	المؤلفين
 values-b+apc	string	extension_decision_not_saved	-	ما قدرنا نحفظ اختيارك، فهالإضافة بتضل مطفية. رح نسألك مرة تانية.
@@ -4249,6 +4255,8 @@ values-b+ar	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ar	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ar	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ar	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ar	string	ext_row_version	-	v%d
+values-b+ar	string	ext_size_megabytes	-	%s MB
 values-b+ar	string	extension_allow	-	سماح
 values-b+ar	string	extension_authors	-	المؤلفون
 values-b+ar	string	extension_decision_not_saved	-	تعذر حفظ اختيارك، لذا تبقى هذه الإضافة معطّلة. سيُطلب منك الاختيار مجددًا.
@@ -5564,6 +5572,8 @@ values-b+ars	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ars	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ars	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ars	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ars	string	ext_row_version	-	v%d
+values-b+ars	string	ext_size_megabytes	-	%s MB
 values-b+ars	string	extension_allow	-	سماح
 values-b+ars	string	extension_authors	-	Authors
 values-b+ars	string	extension_decision_not_saved	-	تعذر حفظ اختيارك، لذا تبقى هذه الإضافة معطّلة. سيُطلب منك الاختيار مجددًا.
@@ -6795,6 +6805,8 @@ values-b+as	string	ext_row_installing_unknown	-	Installing · %s
 values-b+as	string	ext_row_turned_off	-	Turned off by its repository
 values-b+as	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+as	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+as	string	ext_row_version	-	v%d
+values-b+as	string	ext_size_megabytes	-	%s MB
 values-b+as	string	extension_allow	-	অনুমতি দিয়ক
 values-b+as	string	extension_authors	-	লেখক
 values-b+as	string	extension_decision_not_saved	-	আপোনাৰ বাছনি সংৰক্ষণ কৰিব পৰা নগ'ল, সেয়ে এই এক্সটেনশ্যনটো বন্ধ থাকিব। আপোনাক পুনৰ সোধা হ'ব।
@@ -8026,6 +8038,8 @@ values-b+az	string	ext_row_installing_unknown	-	Installing · %s
 values-b+az	string	ext_row_turned_off	-	Turned off by its repository
 values-b+az	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+az	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+az	string	ext_row_version	-	v%d
+values-b+az	string	ext_size_megabytes	-	%s MB
 values-b+az	string	extension_allow	-	İcazə ver
 values-b+az	string	extension_authors	-	Authors
 values-b+az	string	extension_decision_not_saved	-	Seçiminiz saxlanıla bilmədi, ona görə də bu uzantı söndürülü qalır. Sizdən yenidən soruşulacaq.
@@ -9303,6 +9317,8 @@ values-b+be	string	ext_row_installing_unknown	-	Installing · %s
 values-b+be	string	ext_row_turned_off	-	Turned off by its repository
 values-b+be	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+be	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+be	string	ext_row_version	-	v%d
+values-b+be	string	ext_size_megabytes	-	%s MB
 values-b+be	string	extension_allow	-	Дазволіць
 values-b+be	string	extension_authors	-	Аўтары
 values-b+be	string	extension_decision_not_saved	-	Не ўдалося захаваць ваш выбар, таму гэта пашырэнне застаецца выключаным. Вас спытаюць зноў.
@@ -10534,6 +10550,8 @@ values-b+bg	string	ext_row_installing_unknown	-	Installing · %s
 values-b+bg	string	ext_row_turned_off	-	Turned off by its repository
 values-b+bg	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+bg	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+bg	string	ext_row_version	-	v%d
+values-b+bg	string	ext_size_megabytes	-	%s MB
 values-b+bg	string	extension_allow	-	Разреши
 values-b+bg	string	extension_authors	-	Автори
 values-b+bg	string	extension_decision_not_saved	-	Изборът ви не можа да бъде запазен, затова това разширение остава изключено. Ще бъдете попитани отново.
@@ -11765,6 +11783,8 @@ values-b+bn	string	ext_row_installing_unknown	-	Installing · %s
 values-b+bn	string	ext_row_turned_off	-	Turned off by its repository
 values-b+bn	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+bn	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+bn	string	ext_row_version	-	v%d
+values-b+bn	string	ext_size_megabytes	-	%s MB
 values-b+bn	string	extension_allow	-	অনুমতি দিন
 values-b+bn	string	extension_authors	-	Authors
 values-b+bn	string	extension_decision_not_saved	-	আপনার পছন্দ সংরক্ষণ করা যায়নি, তাই এই এক্সটেনশনটি বন্ধ থাকবে। আপনাকে আবার জিজ্ঞাসা করা হবে।
@@ -13017,6 +13037,8 @@ values-b+ca	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ca	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ca	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ca	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ca	string	ext_row_version	-	v%d
+values-b+ca	string	ext_size_megabytes	-	%s MB
 values-b+ca	string	extension_allow	-	Permet
 values-b+ca	string	extension_authors	-	Authors
 values-b+ca	string	extension_decision_not_saved	-	No s'ha pogut desar la teva elecció, així que aquesta extensió continua desactivada. Se't tornarà a preguntar.
@@ -14248,6 +14270,8 @@ values-b+ckb	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ckb	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ckb	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ckb	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ckb	string	ext_row_version	-	v%d
+values-b+ckb	string	ext_size_megabytes	-	%s MB
 values-b+ckb	string	extension_allow	-	ڕێگە بدە
 values-b+ckb	string	extension_authors	-	Authors
 values-b+ckb	string	extension_decision_not_saved	-	هەڵبژاردنەکەت پاشەکەوت نەکرا، بۆیە ئەم زیادکراوەیە کوژاوە دەمێنێتەوە. دووبارە لێت دەپرسرێتەوە.
@@ -15527,6 +15551,8 @@ values-b+cs	string	ext_row_installing_unknown	-	Installing · %s
 values-b+cs	string	ext_row_turned_off	-	Turned off by its repository
 values-b+cs	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+cs	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+cs	string	ext_row_version	-	v%d
+values-b+cs	string	ext_size_megabytes	-	%s MB
 values-b+cs	string	extension_allow	-	Povolit
 values-b+cs	string	extension_authors	-	Autoři
 values-b+cs	string	extension_decision_not_saved	-	Vaši volbu se nepodařilo uložit, proto toto rozšíření zůstává vypnuté. Budete dotázáni znovu.
@@ -16758,6 +16784,8 @@ values-b+de	string	ext_row_installing_unknown	-	Installing · %s
 values-b+de	string	ext_row_turned_off	-	Turned off by its repository
 values-b+de	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+de	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+de	string	ext_row_version	-	v%d
+values-b+de	string	ext_size_megabytes	-	%s MB
 values-b+de	string	extension_allow	-	Erlauben
 values-b+de	string	extension_authors	-	Autoren
 values-b+de	string	extension_decision_not_saved	-	Ihre Entscheidung konnte nicht gespeichert werden, daher bleibt diese Erweiterung aus. Sie werden erneut gefragt.
@@ -17989,6 +18017,8 @@ values-b+el	string	ext_row_installing_unknown	-	Installing · %s
 values-b+el	string	ext_row_turned_off	-	Turned off by its repository
 values-b+el	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+el	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+el	string	ext_row_version	-	v%d
+values-b+el	string	ext_size_megabytes	-	%s MB
 values-b+el	string	extension_allow	-	Να επιτραπεί
 values-b+el	string	extension_authors	-	Συγγραφείς
 values-b+el	string	extension_decision_not_saved	-	Η επιλογή σας δεν ήταν δυνατό να αποθηκευτεί, οπότε αυτή η επέκταση μένει ανενεργή. Θα ερωτηθείτε ξανά.
@@ -19220,6 +19250,8 @@ values-b+eo	string	ext_row_installing_unknown	-	Installing · %s
 values-b+eo	string	ext_row_turned_off	-	Turned off by its repository
 values-b+eo	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+eo	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+eo	string	ext_row_version	-	v%d
+values-b+eo	string	ext_size_megabytes	-	%s MB
 values-b+eo	string	extension_allow	-	Permesi
 values-b+eo	string	extension_authors	-	Aŭtoroj
 values-b+eo	string	extension_decision_not_saved	-	Via elekto ne konserveblis, do ĉi tiu kromprogramo restas malŝaltita. Vi estos denove demandita.
@@ -20475,6 +20507,8 @@ values-b+es	string	ext_row_installing_unknown	-	Installing · %s
 values-b+es	string	ext_row_turned_off	-	Turned off by its repository
 values-b+es	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+es	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+es	string	ext_row_version	-	v%d
+values-b+es	string	ext_size_megabytes	-	%s MB
 values-b+es	string	extension_allow	-	Permitir
 values-b+es	string	extension_authors	-	Autores
 values-b+es	string	extension_decision_not_saved	-	No se pudo guardar su elección, por lo que esta extensión permanece desactivada. Se le volverá a preguntar.
@@ -21706,6 +21740,8 @@ values-b+fa	string	ext_row_installing_unknown	-	Installing · %s
 values-b+fa	string	ext_row_turned_off	-	Turned off by its repository
 values-b+fa	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+fa	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+fa	string	ext_row_version	-	v%d
+values-b+fa	string	ext_size_megabytes	-	%s MB
 values-b+fa	string	extension_allow	-	اجازه دادن
 values-b+fa	string	extension_authors	-	Authors
 values-b+fa	string	extension_decision_not_saved	-	انتخاب شما ذخیره نشد، بنابراین این افزونه خاموش می‌ماند. دوباره از شما پرسیده می‌شود.
@@ -22937,6 +22973,8 @@ values-b+fil	string	ext_row_installing_unknown	-	Installing · %s
 values-b+fil	string	ext_row_turned_off	-	Turned off by its repository
 values-b+fil	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+fil	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+fil	string	ext_row_version	-	v%d
+values-b+fil	string	ext_size_megabytes	-	%s MB
 values-b+fil	string	extension_allow	-	Payagan
 values-b+fil	string	extension_authors	-	Authors
 values-b+fil	string	extension_decision_not_saved	-	Hindi ma-save ang pinili mo, kaya mananatiling naka-off ang extension na ito. Tatanungin ka ulit.
@@ -24192,6 +24230,8 @@ values-b+fr	string	ext_row_installing_unknown	-	Installing · %s
 values-b+fr	string	ext_row_turned_off	-	Turned off by its repository
 values-b+fr	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+fr	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+fr	string	ext_row_version	-	v%d
+values-b+fr	string	ext_size_megabytes	-	%s MB
 values-b+fr	string	extension_allow	-	Autoriser
 values-b+fr	string	extension_authors	-	Auteurs
 values-b+fr	string	extension_decision_not_saved	-	Votre choix n'a pas pu être enregistré, cette extension reste donc désactivée. La question vous sera à nouveau posée.
@@ -25423,6 +25463,8 @@ values-b+gl	string	ext_row_installing_unknown	-	Installing · %s
 values-b+gl	string	ext_row_turned_off	-	Turned off by its repository
 values-b+gl	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+gl	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+gl	string	ext_row_version	-	v%d
+values-b+gl	string	ext_size_megabytes	-	%s MB
 values-b+gl	string	extension_allow	-	Permitir
 values-b+gl	string	extension_authors	-	Authors
 values-b+gl	string	extension_decision_not_saved	-	Non se puido gardar a súa escolla, polo que esta extensión segue apagada. Preguntaráselle de novo.
@@ -26654,6 +26696,8 @@ values-b+hi	string	ext_row_installing_unknown	-	Installing · %s
 values-b+hi	string	ext_row_turned_off	-	Turned off by its repository
 values-b+hi	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+hi	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+hi	string	ext_row_version	-	v%d
+values-b+hi	string	ext_size_megabytes	-	%s MB
 values-b+hi	string	extension_allow	-	अनुमति दें
 values-b+hi	string	extension_authors	-	Authors
 values-b+hi	string	extension_decision_not_saved	-	आपका चुनाव सहेजा नहीं जा सका, इसलिए यह एक्सटेंशन बंद रहेगा। आपसे फिर पूछा जाएगा।
@@ -27908,6 +27952,8 @@ values-b+hr	string	ext_row_installing_unknown	-	Installing · %s
 values-b+hr	string	ext_row_turned_off	-	Turned off by its repository
 values-b+hr	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+hr	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+hr	string	ext_row_version	-	v%d
+values-b+hr	string	ext_size_megabytes	-	%s MB
 values-b+hr	string	extension_allow	-	Dopusti
 values-b+hr	string	extension_authors	-	Autori
 values-b+hr	string	extension_decision_not_saved	-	Vaš odabir nije se mogao spremiti pa ovo proširenje ostaje isključeno. Ponovno ćemo vas pitati.
@@ -29139,6 +29185,8 @@ values-b+hu	string	ext_row_installing_unknown	-	Installing · %s
 values-b+hu	string	ext_row_turned_off	-	Turned off by its repository
 values-b+hu	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+hu	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+hu	string	ext_row_version	-	v%d
+values-b+hu	string	ext_size_megabytes	-	%s MB
 values-b+hu	string	extension_allow	-	Engedélyezés
 values-b+hu	string	extension_authors	-	Szerzők
 values-b+hu	string	extension_decision_not_saved	-	A döntését nem sikerült menteni, ezért ez a bővítmény kikapcsolva marad. Újra megkérdezzük.
@@ -30346,6 +30394,8 @@ values-b+in	string	ext_row_installing_unknown	-	Installing · %s
 values-b+in	string	ext_row_turned_off	-	Turned off by its repository
 values-b+in	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+in	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+in	string	ext_row_version	-	v%d
+values-b+in	string	ext_size_megabytes	-	%s MB
 values-b+in	string	extension_allow	-	Izinkan
 values-b+in	string	extension_authors	-	Pembuat
 values-b+in	string	extension_decision_not_saved	-	Pilihan Anda tidak dapat disimpan, jadi ekstensi ini tetap nonaktif. Anda akan ditanya lagi.
@@ -31601,6 +31651,8 @@ values-b+it	string	ext_row_installing_unknown	-	Installing · %s
 values-b+it	string	ext_row_turned_off	-	Turned off by its repository
 values-b+it	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+it	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+it	string	ext_row_version	-	v%d
+values-b+it	string	ext_size_megabytes	-	%s MB
 values-b+it	string	extension_allow	-	Consenti
 values-b+it	string	extension_authors	-	Autori
 values-b+it	string	extension_decision_not_saved	-	Non è stato possibile salvare la tua scelta, quindi questa estensione resta disattivata. Ti verrà chiesto di nuovo.
@@ -32853,6 +32905,8 @@ values-b+iw	string	ext_row_installing_unknown	-	Installing · %s
 values-b+iw	string	ext_row_turned_off	-	Turned off by its repository
 values-b+iw	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+iw	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+iw	string	ext_row_version	-	v%d
+values-b+iw	string	ext_size_megabytes	-	%s MB
 values-b+iw	string	extension_allow	-	לאפשר
 values-b+iw	string	extension_authors	-	מחברים
 values-b+iw	string	extension_decision_not_saved	-	לא ניתן היה לשמור את הבחירה שלך, ולכן ההרחבה הזו נשארת כבויה. השאלה תוצג שוב.
@@ -34060,6 +34114,8 @@ values-b+ja	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ja	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ja	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ja	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ja	string	ext_row_version	-	v%d
+values-b+ja	string	ext_size_megabytes	-	%s MB
 values-b+ja	string	extension_allow	-	許可
 values-b+ja	string	extension_authors	-	作成者
 values-b+ja	string	extension_decision_not_saved	-	選択を保存できなかったため、この拡張機能はオフのままです。もう一度確認します。
@@ -35291,6 +35347,8 @@ values-b+kn	string	ext_row_installing_unknown	-	Installing · %s
 values-b+kn	string	ext_row_turned_off	-	Turned off by its repository
 values-b+kn	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+kn	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+kn	string	ext_row_version	-	v%d
+values-b+kn	string	ext_size_megabytes	-	%s MB
 values-b+kn	string	extension_allow	-	ಅನುಮತಿಸಿ
 values-b+kn	string	extension_authors	-	Authors
 values-b+kn	string	extension_decision_not_saved	-	ನಿಮ್ಮ ಆಯ್ಕೆಯನ್ನು ಉಳಿಸಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಈ ವಿಸ್ತರಣೆ ಆಫ್ ಆಗಿರುತ್ತದೆ. ನಿಮ್ಮನ್ನು ಮತ್ತೆ ಕೇಳಲಾಗುತ್ತದೆ.
@@ -36499,6 +36557,8 @@ values-b+ko	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ko	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ko	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ko	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ko	string	ext_row_version	-	v%d
+values-b+ko	string	ext_size_megabytes	-	%s MB
 values-b+ko	string	extension_allow	-	허용
 values-b+ko	string	extension_authors	-	제작자
 values-b+ko	string	extension_decision_not_saved	-	선택을 저장할 수 없어 이 확장 기능은 꺼진 상태로 유지됩니다. 다시 묻습니다.
@@ -37772,6 +37832,8 @@ values-b+lt	string	ext_row_installing_unknown	-	Installing · %s
 values-b+lt	string	ext_row_turned_off	-	Turned off by its repository
 values-b+lt	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+lt	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+lt	string	ext_row_version	-	v%d
+values-b+lt	string	ext_size_megabytes	-	%s MB
 values-b+lt	string	extension_allow	-	Leisti
 values-b+lt	string	extension_authors	-	Autoriai
 values-b+lt	string	extension_decision_not_saved	-	Nepavyko išsaugoti jūsų pasirinkimo, todėl šis plėtinys lieka išjungtas. Vėl jūsų paklausime.
@@ -39025,6 +39087,8 @@ values-b+lv	string	ext_row_installing_unknown	-	Installing · %s
 values-b+lv	string	ext_row_turned_off	-	Turned off by its repository
 values-b+lv	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+lv	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+lv	string	ext_row_version	-	v%d
+values-b+lv	string	ext_size_megabytes	-	%s MB
 values-b+lv	string	extension_allow	-	Atļaut
 values-b+lv	string	extension_authors	-	Autori
 values-b+lv	string	extension_decision_not_saved	-	Jūsu izvēli nevarēja saglabāt, tāpēc šis papildinājums paliek izslēgts. Jums jautās vēlreiz.
@@ -40256,6 +40320,8 @@ values-b+mk	string	ext_row_installing_unknown	-	Installing · %s
 values-b+mk	string	ext_row_turned_off	-	Turned off by its repository
 values-b+mk	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+mk	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+mk	string	ext_row_version	-	v%d
+values-b+mk	string	ext_size_megabytes	-	%s MB
 values-b+mk	string	extension_allow	-	Дозволи
 values-b+mk	string	extension_authors	-	Автори
 values-b+mk	string	extension_decision_not_saved	-	Твојот избор не можеше да се зачува, па оваа екстензија останува исклучена. Ќе те прашаме повторно.
@@ -41487,6 +41553,8 @@ values-b+ml	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ml	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ml	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ml	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ml	string	ext_row_version	-	v%d
+values-b+ml	string	ext_size_megabytes	-	%s MB
 values-b+ml	string	extension_allow	-	അനുവദിക്കുക
 values-b+ml	string	extension_authors	-	Authors
 values-b+ml	string	extension_decision_not_saved	-	നിങ്ങളുടെ തിരഞ്ഞെടുപ്പ് സംരക്ഷിക്കാൻ കഴിഞ്ഞില്ല, അതിനാൽ ഈ വിപുലീകരണം ഓഫായി തുടരും. നിങ്ങളോട് വീണ്ടും ചോദിക്കും.
@@ -42697,6 +42765,8 @@ values-b+ms	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ms	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ms	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ms	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ms	string	ext_row_version	-	v%d
+values-b+ms	string	ext_size_megabytes	-	%s MB
 values-b+ms	string	extension_allow	-	Benarkan
 values-b+ms	string	extension_authors	-	Pengarang
 values-b+ms	string	extension_decision_not_saved	-	Pilihan anda tidak dapat disimpan, jadi tambahan ini kekal dimatikan. Anda akan ditanya sekali lagi.
@@ -43991,6 +44061,8 @@ values-b+mt	string	ext_row_installing_unknown	-	Installing · %s
 values-b+mt	string	ext_row_turned_off	-	Turned off by its repository
 values-b+mt	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+mt	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+mt	string	ext_row_version	-	v%d
+values-b+mt	string	ext_size_megabytes	-	%s MB
 values-b+mt	string	extension_allow	-	Ippermetti
 values-b+mt	string	extension_authors	-	Authors
 values-b+mt	string	extension_decision_not_saved	-	L-għażla tiegħek ma setgħetx tiġi salvata, għalhekk din l-estensjoni tibqa' mitfija. Terġa' tiġi mistoqsi.
@@ -45201,6 +45273,8 @@ values-b+my	string	ext_row_installing_unknown	-	Installing · %s
 values-b+my	string	ext_row_turned_off	-	Turned off by its repository
 values-b+my	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+my	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+my	string	ext_row_version	-	v%d
+values-b+my	string	ext_size_megabytes	-	%s MB
 values-b+my	string	extension_allow	-	ခွင့်ပြုရန်
 values-b+my	string	extension_authors	-	ရေးသားသူများ
 values-b+my	string	extension_decision_not_saved	-	သင့်ရွေးချယ်မှုကို သိမ်း၍မရသဖြင့် ဤအဆက်ကို ပိတ်ထားပါမည်။ သင့်ကို ထပ်မံမေးပါမည်။
@@ -46432,6 +46506,8 @@ values-b+ne	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ne	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ne	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ne	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ne	string	ext_row_version	-	v%d
+values-b+ne	string	ext_size_megabytes	-	%s MB
 values-b+ne	string	extension_allow	-	अनुमति दिनुहोस्
 values-b+ne	string	extension_authors	-	Authors
 values-b+ne	string	extension_decision_not_saved	-	तपाईंको छनोट सुरक्षित गर्न सकिएन, त्यसैले यो एक्सटेन्सन बन्द रहन्छ। तपाईंलाई फेरि सोधिनेछ।
@@ -47663,6 +47739,8 @@ values-b+nl	string	ext_row_installing_unknown	-	Installing · %s
 values-b+nl	string	ext_row_turned_off	-	Turned off by its repository
 values-b+nl	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+nl	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+nl	string	ext_row_version	-	v%d
+values-b+nl	string	ext_size_megabytes	-	%s MB
 values-b+nl	string	extension_allow	-	Toestaan
 values-b+nl	string	extension_authors	-	Auteurs
 values-b+nl	string	extension_decision_not_saved	-	Je keuze kon niet worden opgeslagen, dus deze uitbreiding blijft uit. Het wordt je opnieuw gevraagd.
@@ -48894,6 +48972,8 @@ values-b+nn	string	ext_row_installing_unknown	-	Installing · %s
 values-b+nn	string	ext_row_turned_off	-	Turned off by its repository
 values-b+nn	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+nn	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+nn	string	ext_row_version	-	v%d
+values-b+nn	string	ext_size_megabytes	-	%s MB
 values-b+nn	string	extension_allow	-	Tillat
 values-b+nn	string	extension_authors	-	Authors
 values-b+nn	string	extension_decision_not_saved	-	Valet ditt kunne ikkje lagrast, så denne utvidinga blir verande av. Du blir spurd igjen.
@@ -50125,6 +50205,8 @@ values-b+no	string	ext_row_installing_unknown	-	Installing · %s
 values-b+no	string	ext_row_turned_off	-	Turned off by its repository
 values-b+no	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+no	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+no	string	ext_row_version	-	v%d
+values-b+no	string	ext_size_megabytes	-	%s MB
 values-b+no	string	extension_allow	-	Tillat
 values-b+no	string	extension_authors	-	Utviklere
 values-b+no	string	extension_decision_not_saved	-	Valget ditt kunne ikke lagres, så denne utvidelsen forblir av. Du blir spurt igjen.
@@ -51356,6 +51438,8 @@ values-b+or	string	ext_row_installing_unknown	-	Installing · %s
 values-b+or	string	ext_row_turned_off	-	Turned off by its repository
 values-b+or	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+or	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+or	string	ext_row_version	-	v%d
+values-b+or	string	ext_size_megabytes	-	%s MB
 values-b+or	string	extension_allow	-	ଅନୁମତି ଦିଅନ୍ତୁ
 values-b+or	string	extension_authors	-	ଲେଖକ
 values-b+or	string	extension_decision_not_saved	-	ଆପଣଙ୍କ ପସନ୍ଦ ସଞ୍ଚୟ କରାଯାଇପାରିଲା ନାହିଁ, ତେଣୁ ଏହି ଏକ୍ସଟେନସନ ବନ୍ଦ ରହିବ। ଆପଣଙ୍କୁ ପୁଣି ପଚରାଯିବ।
@@ -52635,6 +52719,8 @@ values-b+pl	string	ext_row_installing_unknown	-	Installing · %s
 values-b+pl	string	ext_row_turned_off	-	Turned off by its repository
 values-b+pl	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+pl	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+pl	string	ext_row_version	-	v%d
+values-b+pl	string	ext_size_megabytes	-	%s MB
 values-b+pl	string	extension_allow	-	Zezwól
 values-b+pl	string	extension_authors	-	Autorzy
 values-b+pl	string	extension_decision_not_saved	-	Nie udało się zapisać twojego wyboru, więc to rozszerzenie pozostaje wyłączone. Zapytamy cię ponownie.
@@ -53890,6 +53976,8 @@ values-b+pt	string	ext_row_installing_unknown	-	Installing · %s
 values-b+pt	string	ext_row_turned_off	-	Turned off by its repository
 values-b+pt	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+pt	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+pt	string	ext_row_version	-	v%d
+values-b+pt	string	ext_size_megabytes	-	%s MB
 values-b+pt	string	extension_allow	-	Permitir
 values-b+pt	string	extension_authors	-	Autores
 values-b+pt	string	extension_decision_not_saved	-	Não foi possível guardar a sua escolha, por isso esta extensão fica desativada. Ser-lhe-á perguntado novamente.
@@ -55145,6 +55233,8 @@ values-b+pt+BR	string	ext_row_installing_unknown	-	Installing · %s
 values-b+pt+BR	string	ext_row_turned_off	-	Turned off by its repository
 values-b+pt+BR	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+pt+BR	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+pt+BR	string	ext_row_version	-	v%d
+values-b+pt+BR	string	ext_size_megabytes	-	%s MB
 values-b+pt+BR	string	extension_allow	-	Permitir
 values-b+pt+BR	string	extension_authors	-	Autores
 values-b+pt+BR	string	extension_decision_not_saved	-	Não foi possível salvar sua escolha, então esta extensão fica desligada. Você será perguntado de novo.
@@ -56355,6 +56445,8 @@ values-b+qt	string	ext_row_installing_unknown	-	Installing · %s
 values-b+qt	string	ext_row_turned_off	-	Turned off by its repository
 values-b+qt	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+qt	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+qt	string	ext_row_version	-	v%d
+values-b+qt	string	ext_size_megabytes	-	%s MB
 values-b+qt	string	extension_allow	-	ahu
 values-b+qt	string	extension_authors	-	ooooggg
 values-b+qt	string	extension_decision_not_saved	-	ouooooouuuu uuuuhhhuuh hhauhohhuu aaoough aah aaaahhh aaaaggguug ahhaaaaa
@@ -57607,6 +57699,8 @@ values-b+ro	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ro	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ro	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ro	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ro	string	ext_row_version	-	v%d
+values-b+ro	string	ext_size_megabytes	-	%s MB
 values-b+ro	string	extension_allow	-	Permiteți
 values-b+ro	string	extension_authors	-	Autori
 values-b+ro	string	extension_decision_not_saved	-	Alegerea dvs. nu a putut fi salvată, așa că această extensie rămâne oprită. Veți fi întrebat din nou.
@@ -58886,6 +58980,8 @@ values-b+ru	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ru	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ru	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ru	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ru	string	ext_row_version	-	v%d
+values-b+ru	string	ext_size_megabytes	-	%s MB
 values-b+ru	string	extension_allow	-	Разрешить
 values-b+ru	string	extension_authors	-	Авторы
 values-b+ru	string	extension_decision_not_saved	-	Не удалось сохранить ваш выбор, поэтому это дополнение остаётся выключенным. Вас спросят снова.
@@ -60159,6 +60255,8 @@ values-b+sk	string	ext_row_installing_unknown	-	Installing · %s
 values-b+sk	string	ext_row_turned_off	-	Turned off by its repository
 values-b+sk	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+sk	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+sk	string	ext_row_version	-	v%d
+values-b+sk	string	ext_size_megabytes	-	%s MB
 values-b+sk	string	extension_allow	-	Povoliť
 values-b+sk	string	extension_authors	-	Authors
 values-b+sk	string	extension_decision_not_saved	-	Vašu voľbu sa nepodarilo uložiť, takže toto rozšírenie zostáva vypnuté. Budeme sa vás pýtať znova.
@@ -61390,6 +61488,8 @@ values-b+so	string	ext_row_installing_unknown	-	Installing · %s
 values-b+so	string	ext_row_turned_off	-	Turned off by its repository
 values-b+so	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+so	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+so	string	ext_row_version	-	v%d
+values-b+so	string	ext_size_megabytes	-	%s MB
 values-b+so	string	extension_allow	-	Oggolow
 values-b+so	string	extension_authors	-	Lahaanshaha
 values-b+so	string	extension_decision_not_saved	-	Doorashadaada lama keydin karin, sidaas darteed kordhiyahan wuu dansanaanayaa. Mar kale ayaa lagu weydiin doonaa.
@@ -62621,6 +62721,8 @@ values-b+sq	string	ext_row_installing_unknown	-	Installing · %s
 values-b+sq	string	ext_row_turned_off	-	Turned off by its repository
 values-b+sq	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+sq	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+sq	string	ext_row_version	-	v%d
+values-b+sq	string	ext_size_megabytes	-	%s MB
 values-b+sq	string	extension_allow	-	Lejoni
 values-b+sq	string	extension_authors	-	Autorët
 values-b+sq	string	extension_decision_not_saved	-	Zgjedhja juaj nuk mund të ruhej, prandaj kjo shtesë mbetet e fikur. Do t'ju pyesim përsëri.
@@ -63852,6 +63954,8 @@ values-b+sv	string	ext_row_installing_unknown	-	Installing · %s
 values-b+sv	string	ext_row_turned_off	-	Turned off by its repository
 values-b+sv	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+sv	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+sv	string	ext_row_version	-	v%d
+values-b+sv	string	ext_size_megabytes	-	%s MB
 values-b+sv	string	extension_allow	-	Tillåt
 values-b+sv	string	extension_authors	-	Författarna
 values-b+sv	string	extension_decision_not_saved	-	Ditt val kunde inte sparas, så det här tillägget förblir avstängt. Du får frågan igen.
@@ -65083,6 +65187,8 @@ values-b+ta	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ta	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ta	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ta	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ta	string	ext_row_version	-	v%d
+values-b+ta	string	ext_size_megabytes	-	%s MB
 values-b+ta	string	extension_allow	-	அனுமதி
 values-b+ta	string	extension_authors	-	ஆசிரியர்கள்
 values-b+ta	string	extension_decision_not_saved	-	உங்கள் தேர்வைச் சேமிக்க முடியவில்லை, எனவே இந்த நீட்டிப்பு முடக்கத்தில் இருக்கும். உங்களிடம் மீண்டும் கேட்கப்படும்.
@@ -66314,6 +66420,8 @@ values-b+ti	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ti	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ti	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ti	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ti	string	ext_row_version	-	v%d
+values-b+ti	string	ext_size_megabytes	-	%s MB
 values-b+ti	string	extension_allow	-	ፍቀድ
 values-b+ti	string	extension_authors	-	Authors
 values-b+ti	string	extension_decision_not_saved	-	ምርጫኻ ክዕቀብ ኣይከኣለን፡ ስለዚ እዚ መስፋሕፋሕ ጠፊኡ ይጸንሕ። እንደገና ክትሕተት ኢኻ።
@@ -67545,6 +67653,8 @@ values-b+tl	string	ext_row_installing_unknown	-	Installing · %s
 values-b+tl	string	ext_row_turned_off	-	Turned off by its repository
 values-b+tl	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+tl	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+tl	string	ext_row_version	-	v%d
+values-b+tl	string	ext_size_megabytes	-	%s MB
 values-b+tl	string	extension_allow	-	Payagan
 values-b+tl	string	extension_authors	-	Authors
 values-b+tl	string	extension_decision_not_saved	-	Hindi ma-save ang pagpili mo, kaya mananatiling nakasara ang extension na ito. Tatanungin ka ulit.
@@ -68776,6 +68886,8 @@ values-b+tr	string	ext_row_installing_unknown	-	Installing · %s
 values-b+tr	string	ext_row_turned_off	-	Turned off by its repository
 values-b+tr	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+tr	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+tr	string	ext_row_version	-	v%d
+values-b+tr	string	ext_size_megabytes	-	%s MB
 values-b+tr	string	extension_allow	-	İzin ver
 values-b+tr	string	extension_authors	-	Geliştiriciler
 values-b+tr	string	extension_decision_not_saved	-	Seçiminiz kaydedilemedi, bu yüzden bu eklenti kapalı kalıyor. Size yeniden sorulacak.
@@ -70055,6 +70167,8 @@ values-b+uk	string	ext_row_installing_unknown	-	Installing · %s
 values-b+uk	string	ext_row_turned_off	-	Turned off by its repository
 values-b+uk	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+uk	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+uk	string	ext_row_version	-	v%d
+values-b+uk	string	ext_size_megabytes	-	%s MB
 values-b+uk	string	extension_allow	-	Дозволити
 values-b+uk	string	extension_authors	-	Автори
 values-b+uk	string	extension_decision_not_saved	-	Не вдалося зберегти ваш вибір, тому це розширення залишається вимкненим. Вас запитають знову.
@@ -71286,6 +71400,8 @@ values-b+ur	string	ext_row_installing_unknown	-	Installing · %s
 values-b+ur	string	ext_row_turned_off	-	Turned off by its repository
 values-b+ur	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+ur	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+ur	string	ext_row_version	-	v%d
+values-b+ur	string	ext_size_megabytes	-	%s MB
 values-b+ur	string	extension_allow	-	اجازت دیں
 values-b+ur	string	extension_authors	-	مصنفین
 values-b+ur	string	extension_decision_not_saved	-	آپ کا انتخاب محفوظ نہیں ہو سکا، اس لیے یہ ایکسٹینشن بند رہے گی۔ آپ سے دوبارہ پوچھا جائے گا۔
@@ -72493,6 +72609,8 @@ values-b+vi	string	ext_row_installing_unknown	-	Installing · %s
 values-b+vi	string	ext_row_turned_off	-	Turned off by its repository
 values-b+vi	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+vi	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+vi	string	ext_row_version	-	v%d
+values-b+vi	string	ext_size_megabytes	-	%s MB
 values-b+vi	string	extension_allow	-	Cho phép
 values-b+vi	string	extension_authors	-	Tác giả
 values-b+vi	string	extension_decision_not_saved	-	Không thể lưu lựa chọn của bạn nên tiện ích mở rộng này vẫn tắt. Bạn sẽ được hỏi lại.
@@ -73700,6 +73818,8 @@ values-b+zh	string	ext_row_installing_unknown	-	Installing · %s
 values-b+zh	string	ext_row_turned_off	-	Turned off by its repository
 values-b+zh	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+zh	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+zh	string	ext_row_version	-	v%d
+values-b+zh	string	ext_size_megabytes	-	%s MB
 values-b+zh	string	extension_allow	-	允许
 values-b+zh	string	extension_authors	-	作者
 values-b+zh	string	extension_decision_not_saved	-	无法保存你的选择，因此此扩展保持关闭。系统会再次询问你。
@@ -74908,6 +75028,8 @@ values-b+zh+TW	string	ext_row_installing_unknown	-	Installing · %s
 values-b+zh+TW	string	ext_row_turned_off	-	Turned off by its repository
 values-b+zh+TW	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 values-b+zh+TW	string	ext_row_update	-	Update available · v%1$d → v%2$d
+values-b+zh+TW	string	ext_row_version	-	v%d
+values-b+zh+TW	string	ext_size_megabytes	-	%s MB
 values-b+zh+TW	string	extension_allow	-	允許
 values-b+zh+TW	string	extension_authors	-	作者
 values-b+zh+TW	string	extension_decision_not_saved	-	無法儲存你的選擇，因此此擴充功能會保持關閉。系統會再次詢問你。
@@ -76139,6 +76261,8 @@ en	string	ext_row_installing_unknown	-	Installing · %s
 en	string	ext_row_turned_off	-	Turned off by its repository
 en	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 en	string	ext_row_update	-	Update available · v%1$d → v%2$d
+en	string	ext_row_version	-	v%d
+en	string	ext_size_megabytes	-	%s MB
 en	string	extension_allow	-	Allow
 en	string	extension_authors	-	Authors
 en	string	extension_decision_not_saved	-	Your choice could not be saved, so this extension stays off. You will be asked again.
@@ -77370,6 +77494,8 @@ en-US	string	ext_row_installing_unknown	-	Installing · %s
 en-US	string	ext_row_turned_off	-	Turned off by its repository
 en-US	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 en-US	string	ext_row_update	-	Update available · v%1$d → v%2$d
+en-US	string	ext_row_version	-	v%d
+en-US	string	ext_size_megabytes	-	%s MB
 en-US	string	extension_allow	-	Allow
 en-US	string	extension_authors	-	Authors
 en-US	string	extension_decision_not_saved	-	Your choice could not be saved, so this extension stays off. You will be asked again.
@@ -78601,6 +78727,8 @@ en-GB	string	ext_row_installing_unknown	-	Installing · %s
 en-GB	string	ext_row_turned_off	-	Turned off by its repository
 en-GB	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 en-GB	string	ext_row_update	-	Update available · v%1$d → v%2$d
+en-GB	string	ext_row_version	-	v%d
+en-GB	string	ext_size_megabytes	-	%s MB
 en-GB	string	extension_allow	-	Allow
 en-GB	string	extension_authors	-	Authors
 en-GB	string	extension_decision_not_saved	-	Your choice could not be saved, so this extension stays off. You will be asked again.
@@ -79856,6 +79984,8 @@ pt	string	ext_row_installing_unknown	-	Installing · %s
 pt	string	ext_row_turned_off	-	Turned off by its repository
 pt	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 pt	string	ext_row_update	-	Update available · v%1$d → v%2$d
+pt	string	ext_row_version	-	v%d
+pt	string	ext_size_megabytes	-	%s MB
 pt	string	extension_allow	-	Permitir
 pt	string	extension_authors	-	Autores
 pt	string	extension_decision_not_saved	-	Não foi possível guardar a sua escolha, por isso esta extensão fica desativada. Ser-lhe-á perguntado novamente.
@@ -81111,6 +81241,8 @@ pt-PT	string	ext_row_installing_unknown	-	Installing · %s
 pt-PT	string	ext_row_turned_off	-	Turned off by its repository
 pt-PT	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 pt-PT	string	ext_row_update	-	Update available · v%1$d → v%2$d
+pt-PT	string	ext_row_version	-	v%d
+pt-PT	string	ext_size_megabytes	-	%s MB
 pt-PT	string	extension_allow	-	Permitir
 pt-PT	string	extension_authors	-	Autores
 pt-PT	string	extension_decision_not_saved	-	Não foi possível guardar a sua escolha, por isso esta extensão fica desativada. Ser-lhe-á perguntado novamente.
@@ -82366,6 +82498,8 @@ pt-BR	string	ext_row_installing_unknown	-	Installing · %s
 pt-BR	string	ext_row_turned_off	-	Turned off by its repository
 pt-BR	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 pt-BR	string	ext_row_update	-	Update available · v%1$d → v%2$d
+pt-BR	string	ext_row_version	-	v%d
+pt-BR	string	ext_size_megabytes	-	%s MB
 pt-BR	string	extension_allow	-	Permitir
 pt-BR	string	extension_authors	-	Autores
 pt-BR	string	extension_decision_not_saved	-	Não foi possível salvar sua escolha, então esta extensão fica desligada. Você será perguntado de novo.
@@ -83597,6 +83731,8 @@ fil	string	ext_row_installing_unknown	-	Installing · %s
 fil	string	ext_row_turned_off	-	Turned off by its repository
 fil	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 fil	string	ext_row_update	-	Update available · v%1$d → v%2$d
+fil	string	ext_row_version	-	v%d
+fil	string	ext_size_megabytes	-	%s MB
 fil	string	extension_allow	-	Payagan
 fil	string	extension_authors	-	Authors
 fil	string	extension_decision_not_saved	-	Hindi ma-save ang pinili mo, kaya mananatiling naka-off ang extension na ito. Tatanungin ka ulit.
@@ -84828,6 +84964,8 @@ tl	string	ext_row_installing_unknown	-	Installing · %s
 tl	string	ext_row_turned_off	-	Turned off by its repository
 tl	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 tl	string	ext_row_update	-	Update available · v%1$d → v%2$d
+tl	string	ext_row_version	-	v%d
+tl	string	ext_size_megabytes	-	%s MB
 tl	string	extension_allow	-	Payagan
 tl	string	extension_authors	-	Authors
 tl	string	extension_decision_not_saved	-	Hindi ma-save ang pagpili mo, kaya mananatiling nakasara ang extension na ito. Tatanungin ka ulit.
@@ -86059,6 +86197,8 @@ fil-PH	string	ext_row_installing_unknown	-	Installing · %s
 fil-PH	string	ext_row_turned_off	-	Turned off by its repository
 fil-PH	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 fil-PH	string	ext_row_update	-	Update available · v%1$d → v%2$d
+fil-PH	string	ext_row_version	-	v%d
+fil-PH	string	ext_size_megabytes	-	%s MB
 fil-PH	string	extension_allow	-	Payagan
 fil-PH	string	extension_authors	-	Authors
 fil-PH	string	extension_decision_not_saved	-	Hindi ma-save ang pinili mo, kaya mananatiling naka-off ang extension na ito. Tatanungin ka ulit.
@@ -87266,6 +87406,8 @@ zh	string	ext_row_installing_unknown	-	Installing · %s
 zh	string	ext_row_turned_off	-	Turned off by its repository
 zh	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 zh	string	ext_row_update	-	Update available · v%1$d → v%2$d
+zh	string	ext_row_version	-	v%d
+zh	string	ext_size_megabytes	-	%s MB
 zh	string	extension_allow	-	允许
 zh	string	extension_authors	-	作者
 zh	string	extension_decision_not_saved	-	无法保存你的选择，因此此扩展保持关闭。系统会再次询问你。
@@ -88473,6 +88615,8 @@ zh-CN	string	ext_row_installing_unknown	-	Installing · %s
 zh-CN	string	ext_row_turned_off	-	Turned off by its repository
 zh-CN	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 zh-CN	string	ext_row_update	-	Update available · v%1$d → v%2$d
+zh-CN	string	ext_row_version	-	v%d
+zh-CN	string	ext_size_megabytes	-	%s MB
 zh-CN	string	extension_allow	-	允许
 zh-CN	string	extension_authors	-	作者
 zh-CN	string	extension_decision_not_saved	-	无法保存你的选择，因此此扩展保持关闭。系统会再次询问你。
@@ -89680,6 +89824,8 @@ zh-Hans-CN	string	ext_row_installing_unknown	-	Installing · %s
 zh-Hans-CN	string	ext_row_turned_off	-	Turned off by its repository
 zh-Hans-CN	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 zh-Hans-CN	string	ext_row_update	-	Update available · v%1$d → v%2$d
+zh-Hans-CN	string	ext_row_version	-	v%d
+zh-Hans-CN	string	ext_size_megabytes	-	%s MB
 zh-Hans-CN	string	extension_allow	-	允许
 zh-Hans-CN	string	extension_authors	-	作者
 zh-Hans-CN	string	extension_decision_not_saved	-	无法保存你的选择，因此此扩展保持关闭。系统会再次询问你。
@@ -90888,6 +91034,8 @@ zh-TW	string	ext_row_installing_unknown	-	Installing · %s
 zh-TW	string	ext_row_turned_off	-	Turned off by its repository
 zh-TW	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 zh-TW	string	ext_row_update	-	Update available · v%1$d → v%2$d
+zh-TW	string	ext_row_version	-	v%d
+zh-TW	string	ext_size_megabytes	-	%s MB
 zh-TW	string	extension_allow	-	允許
 zh-TW	string	extension_authors	-	作者
 zh-TW	string	extension_decision_not_saved	-	無法儲存你的選擇，因此此擴充功能會保持關閉。系統會再次詢問你。
@@ -92096,6 +92244,8 @@ zh-Hant-TW	string	ext_row_installing_unknown	-	Installing · %s
 zh-Hant-TW	string	ext_row_turned_off	-	Turned off by its repository
 zh-Hant-TW	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 zh-Hant-TW	string	ext_row_update	-	Update available · v%1$d → v%2$d
+zh-Hant-TW	string	ext_row_version	-	v%d
+zh-Hant-TW	string	ext_size_megabytes	-	%s MB
 zh-Hant-TW	string	extension_allow	-	允許
 zh-Hant-TW	string	extension_authors	-	作者
 zh-Hant-TW	string	extension_decision_not_saved	-	無法儲存你的選擇，因此此擴充功能會保持關閉。系統會再次詢問你。
@@ -93304,6 +93454,8 @@ zh-HK	string	ext_row_installing_unknown	-	Installing · %s
 zh-HK	string	ext_row_turned_off	-	Turned off by its repository
 zh-HK	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 zh-HK	string	ext_row_update	-	Update available · v%1$d → v%2$d
+zh-HK	string	ext_row_version	-	v%d
+zh-HK	string	ext_size_megabytes	-	%s MB
 zh-HK	string	extension_allow	-	允許
 zh-HK	string	extension_authors	-	作者
 zh-HK	string	extension_decision_not_saved	-	無法儲存你的選擇，因此此擴充功能會保持關閉。系統會再次詢問你。
@@ -94512,6 +94664,8 @@ zh-Hant-HK	string	ext_row_installing_unknown	-	Installing · %s
 zh-Hant-HK	string	ext_row_turned_off	-	Turned off by its repository
 zh-Hant-HK	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 zh-Hant-HK	string	ext_row_update	-	Update available · v%1$d → v%2$d
+zh-Hant-HK	string	ext_row_version	-	v%d
+zh-Hant-HK	string	ext_size_megabytes	-	%s MB
 zh-Hant-HK	string	extension_allow	-	允許
 zh-Hant-HK	string	extension_authors	-	作者
 zh-Hant-HK	string	extension_decision_not_saved	-	無法儲存你的選擇，因此此擴充功能會保持關閉。系統會再次詢問你。
@@ -95743,6 +95897,8 @@ no	string	ext_row_installing_unknown	-	Installing · %s
 no	string	ext_row_turned_off	-	Turned off by its repository
 no	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 no	string	ext_row_update	-	Update available · v%1$d → v%2$d
+no	string	ext_row_version	-	v%d
+no	string	ext_size_megabytes	-	%s MB
 no	string	extension_allow	-	Tillat
 no	string	extension_authors	-	Utviklere
 no	string	extension_decision_not_saved	-	Valget ditt kunne ikke lagres, så denne utvidelsen forblir av. Du blir spurt igjen.
@@ -96974,6 +97130,8 @@ nb	string	ext_row_installing_unknown	-	Installing · %s
 nb	string	ext_row_turned_off	-	Turned off by its repository
 nb	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 nb	string	ext_row_update	-	Update available · v%1$d → v%2$d
+nb	string	ext_row_version	-	v%d
+nb	string	ext_size_megabytes	-	%s MB
 nb	string	extension_allow	-	Allow
 nb	string	extension_authors	-	Authors
 nb	string	extension_decision_not_saved	-	Your choice could not be saved, so this extension stays off. You will be asked again.
@@ -98205,6 +98363,8 @@ nb-NO	string	ext_row_installing_unknown	-	Installing · %s
 nb-NO	string	ext_row_turned_off	-	Turned off by its repository
 nb-NO	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 nb-NO	string	ext_row_update	-	Update available · v%1$d → v%2$d
+nb-NO	string	ext_row_version	-	v%d
+nb-NO	string	ext_size_megabytes	-	%s MB
 nb-NO	string	extension_allow	-	Allow
 nb-NO	string	extension_authors	-	Authors
 nb-NO	string	extension_decision_not_saved	-	Your choice could not be saved, so this extension stays off. You will be asked again.
@@ -99457,6 +99617,8 @@ iw	string	ext_row_installing_unknown	-	Installing · %s
 iw	string	ext_row_turned_off	-	Turned off by its repository
 iw	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 iw	string	ext_row_update	-	Update available · v%1$d → v%2$d
+iw	string	ext_row_version	-	v%d
+iw	string	ext_size_megabytes	-	%s MB
 iw	string	extension_allow	-	לאפשר
 iw	string	extension_authors	-	מחברים
 iw	string	extension_decision_not_saved	-	לא ניתן היה לשמור את הבחירה שלך, ולכן ההרחבה הזו נשארת כבויה. השאלה תוצג שוב.
@@ -100709,6 +100871,8 @@ he	string	ext_row_installing_unknown	-	Installing · %s
 he	string	ext_row_turned_off	-	Turned off by its repository
 he	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 he	string	ext_row_update	-	Update available · v%1$d → v%2$d
+he	string	ext_row_version	-	v%d
+he	string	ext_size_megabytes	-	%s MB
 he	string	extension_allow	-	לאפשר
 he	string	extension_authors	-	מחברים
 he	string	extension_decision_not_saved	-	לא ניתן היה לשמור את הבחירה שלך, ולכן ההרחבה הזו נשארת כבויה. השאלה תוצג שוב.
@@ -101961,6 +102125,8 @@ he-IL	string	ext_row_installing_unknown	-	Installing · %s
 he-IL	string	ext_row_turned_off	-	Turned off by its repository
 he-IL	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 he-IL	string	ext_row_update	-	Update available · v%1$d → v%2$d
+he-IL	string	ext_row_version	-	v%d
+he-IL	string	ext_size_megabytes	-	%s MB
 he-IL	string	extension_allow	-	לאפשר
 he-IL	string	extension_authors	-	מחברים
 he-IL	string	extension_decision_not_saved	-	לא ניתן היה לשמור את הבחירה שלך, ולכן ההרחבה הזו נשארת כבויה. השאלה תוצג שוב.
@@ -103168,6 +103334,8 @@ in	string	ext_row_installing_unknown	-	Installing · %s
 in	string	ext_row_turned_off	-	Turned off by its repository
 in	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 in	string	ext_row_update	-	Update available · v%1$d → v%2$d
+in	string	ext_row_version	-	v%d
+in	string	ext_size_megabytes	-	%s MB
 in	string	extension_allow	-	Izinkan
 in	string	extension_authors	-	Pembuat
 in	string	extension_decision_not_saved	-	Pilihan Anda tidak dapat disimpan, jadi ekstensi ini tetap nonaktif. Anda akan ditanya lagi.
@@ -104375,6 +104543,8 @@ id	string	ext_row_installing_unknown	-	Installing · %s
 id	string	ext_row_turned_off	-	Turned off by its repository
 id	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 id	string	ext_row_update	-	Update available · v%1$d → v%2$d
+id	string	ext_row_version	-	v%d
+id	string	ext_size_megabytes	-	%s MB
 id	string	extension_allow	-	Izinkan
 id	string	extension_authors	-	Pembuat
 id	string	extension_decision_not_saved	-	Pilihan Anda tidak dapat disimpan, jadi ekstensi ini tetap nonaktif. Anda akan ditanya lagi.
@@ -105582,6 +105752,8 @@ id-ID	string	ext_row_installing_unknown	-	Installing · %s
 id-ID	string	ext_row_turned_off	-	Turned off by its repository
 id-ID	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 id-ID	string	ext_row_update	-	Update available · v%1$d → v%2$d
+id-ID	string	ext_row_version	-	v%d
+id-ID	string	ext_size_megabytes	-	%s MB
 id-ID	string	extension_allow	-	Izinkan
 id-ID	string	extension_authors	-	Pembuat
 id-ID	string	extension_decision_not_saved	-	Pilihan Anda tidak dapat disimpan, jadi ekstensi ini tetap nonaktif. Anda akan ditanya lagi.
@@ -106813,6 +106985,8 @@ arz	string	ext_row_installing_unknown	-	Installing · %s
 arz	string	ext_row_turned_off	-	Turned off by its repository
 arz	string	ext_row_unverified	-	Unverified · its repository publishes no hash
 arz	string	ext_row_update	-	Update available · v%1$d → v%2$d
+arz	string	ext_row_version	-	v%d
+arz	string	ext_size_megabytes	-	%s MB
 arz	string	extension_allow	-	Allow
 arz	string	extension_authors	-	Authors
 arz	string	extension_decision_not_saved	-	Your choice could not be saved, so this extension stays off. You will be asked again.

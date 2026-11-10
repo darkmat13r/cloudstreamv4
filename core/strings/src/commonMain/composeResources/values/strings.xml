@@ -1197,6 +1197,8 @@
 <string name="ext_row_failed_local">Install failed · the file is on your local network</string>
 <string name="ext_row_failed_not_saved">Install failed · it couldn't be saved</string>
 <string name="home_no_sources_title">No sources yet</string>
+<string name="ext_row_version">v%d</string>
+<string name="ext_size_megabytes">%s MB</string>
 <string name="home_no_sources_body">Home's rows come from extensions. Add a repository to choose some; nothing runs until you allow it.</string>
 <plurals name="ext_repo_remove_body"><item quantity="one">Its %d installed extension is removed from this Mac too. You can add the repository again later.</item><item quantity="other">Its %d installed extensions are removed from this Mac too. You can add the repository again later.</item></plurals>
 <plurals name="ext_repo_header"><item quantity="one">%1$d extension · %2$d installed · updated %3$s</item><item quantity="other">%1$d extensions · %2$d installed · updated %3$s</item></plurals>
