@@ -2548,7 +2548,8 @@ design. 3c draws the account as a 32dp avatar.
 **Fix:**
 - The account is now an `IconOnlyButton` like the other three: the same 32dp outlined tile, the same 16dp glyph in
   `ink`, the same ring, and "Switch account" drawn under it on focus, as Random's name is.
-- **The four icon cells touch** (`HomeScreenTvDefaults.ChromeCellGap`, 0dp), so two tiles are 16dp apart. The owner's
+- **The four icon cells touch** (a `Row` with no arrangement; it was `HomeScreenTvDefaults.ChromeCellGap`, 0dp, until
+  `BUG-65` removed the number under the owner's tokens-only rule), so two tiles are 16dp apart. The owner's
   call on 2026-11-08, an approved exception to `MinFocusGap` for this row only. It is safe: a ring is the 32dp tile plus
   2dp offset and 2dp stroke on each side, 40dp, inside its 48dp cell with 4dp spare on each side, so two rings never
   overlap and every cell is still a whole 48dp target. The source control keeps `MinFocusGap` before the first cell.
@@ -3363,3 +3364,96 @@ the first is released.
 | Measured (local, `Television_720p` API 36) | Master's `DownloadViewModel` | This PR |
 |---|---|---|
 | `DownloadHeaderRaceTest` | failed: "the list ends on the later read", expected `[]` but was `[A Raced Show]` | passed |
+
+## BUG-65 — TV chip rows: too far apart, and a focused chip's ring outside its cell · **low, visual** · measured 2026-11-08
+
+**Status:** fixed in pr · raised by the owner from a screenshot of TV Library's tabs ·
+`Chip.kt`, `ChipRow.kt`, `SearchChromeRow.kt`, `HomeScreenTv.kt`
+
+The owner: *"the spacing between chips is too much"*. Then: the visible gap should be 8dp or 12dp, *"and these come
+from tokens only"*.
+
+**Measured** on `Television_720p`, on the committed `library-grid-focus-tab` (1dp ≈ 1.33px), through the pills' middle:
+- **The pill** (the visible chip): 32px tall, 24dp (`ChipVisualHeight`). **Its focus cell** is 48dp tall (`ChipFocusCell`)
+  and exactly as wide as the pill.
+- **The visible gap** between two pills: 32px, 24dp, which is `ChipRowSpacing`. The owner's 50px was probably measured on
+  a 1080p screen, where 24dp is 48px.
+- **A focused chip's ring** ended 6px (4dp, `FocusRingBleed`) outside its own cell, into the gap.
+
+**Fix:**
+- **The ring stays inside its cell.** A chip's cell is now the pill plus `FocusRingBleed` on each side, the room the
+  ring takes.
+- **12dp between pills: `MinFocusGap`.** The owner preferred 12dp to 8dp. The cells are `MinFocusGap - 2 *
+  FocusRingBleed` (4dp) apart, so a focused ring ends 8dp short of its neighbour, and no two cells touch or overlap.
+- **The row still starts and ends at a pill.** `ChipRow` lays the cells out `FocusRingBleed` wider than itself on each
+  side and shifts them back, so the end cells' outer room lies where the ring used to bleed, and each caller's inset
+  still lines the first chip up with the content beside it.
+- **Every TV chip row** goes through `ChipRow`: Home's bookmark filters, Library's tabs, Search's type chips (which had
+  their own `Row` with `ChipRowSpacing`, now `ChipRow`), and both of Downloads' rows (the actions, and selection).
+- `ChipRowSpacing` is unchanged: it also spaces rail cards, the skeleton and Home's bookmarks title from its chips.
+- **`BUG-60`'s `ChromeCellGap` (0dp) is gone**, under the same tokens-only rule: Home's chrome cells sit in a `Row` with no
+  arrangement, which places them edge to edge with no number at all.
+
+### Behaviour changes
+
+| Before | Now |
+|---|---|
+| 24dp between chips | 12dp (`MinFocusGap`) |
+| A focused chip's ring 4dp outside its cell | Inside its cell |
+| A chip's focus target as wide as its pill | Unchanged: still the pill's width. The ring's room is outside it |
+
+### The regression train 13 caught, and its fix
+
+The first version put the ring's room *inside* the chip's focus target. `ChipRow` places the cells 4dp left of the row,
+so the first chip's focus target then started 4dp left of the content lined up under the row. Compose's focus search
+counts a target as "to the left" only when its left edge is strictly left of the focused one's. Before, the two edges
+were equal and the chip was not a candidate. With the room inside, the chip was a candidate, and nearer than the rail.
+Train 13's bisect found it: in `:app`'s `DownloadsTvNavigationTest`, Left from Downloads' series row went to "Download
+queue" instead of the rail's "Downloads". It passed 5/5 before this PR and failed with it. The same geometry was under
+every TV `ChipRow` with content beneath, not only Downloads.
+
+**Fix:** `Chip` pads the ring's room *outside* its `selectable`. What takes focus, and what a tap lands on, is the
+pill's width and the cell's 48dp height, as before this PR. The layout keeps the room, so the ring still draws inside
+the cell and the visible gap is still `MinFocusGap`. No pixel moves: every screenshot reference passed unchanged.
+
+### Tests
+
+All on `Television_720p`, locally (CI is off).
+
+- `ChipDeviceTest` (`:core:designsystem`, 4, all pass), three new, all **failing on the old `Chip` and `ChipRow`**:
+  - `leftFromTheContentUnderAChipRowReachesTheRail`: a rail beside a column of a `ChipRow` over a full-width row. Left
+    from the row reaches the rail, and the first chip's focus target starts where the row does. It fails with the
+    ring's room inside the focus target: "the first chip's focus target starts with the content expected:<133.0> but
+    was:<138.0>".
+  - Its `cell` helper measures the cell, through `onGloballyPositioned` on the modifier the caller passes to `Chip`. A
+    `testTag` there would report the focus target's bounds, since it shares the `selectable`'s semantics node. Each
+    focused chip's cell is asserted to be its focus target plus `FocusRingBleed` each side. Without the outer padding it fails: "Movies's cell is its focus target plus the ring's room,
+    left expected:<26.675> but was:<32.0>".
+  - `theVisibleGapBetweenChipsIsMinFocusGap`: the ground between two pills, in pixels, is `MinFocusGap`. Old: "expected
+    <15.975> but was <32.0>".
+  - `eachRingStaysInsideItsOwnCellAndOneKeyFocusesOneChip`: each focused ring stays inside its own cell and clear of the
+    next pill, and each key press leaves exactly one chip focused, the next one. Old: "Movies's ring x 32..122 passes its
+    cell x 37.0..118.0 on the left".
+  - `dpadMovesAcrossChipsAndTheRingStaysEvenWithNothingMoving` now measures the ring from the pill, since the cell is no
+    longer the pill. Old: "Movies left: the stroke is here".
+- `FocusRingGapTest` (JVM, 8): the touching-chips case now finds the ring from the pill, inside the cell, and asserts it
+  stays inside the cell.
+- Device suites, all pass against the new references: `:core:designsystem` 29, `:feature:home` 86, `:feature:library` 34,
+  `:feature:search` 62, `:feature:downloads` 61. `BUG-60`'s chrome tests pass with the cells' gap asserted as 0.
+- 30 screenshots recorded again across Home, Library, Search and Downloads. A pixel diff of each against its old version
+  shows changes only in its chip row's band, after the row's first pill, which stays put; each was looked at. Measured
+  after: 15 to 16px (12dp) between pills, and a focused ring ending 9px (about 7dp) short of the next pill.
+- On master `2a3f16b6a`, Detail's season chips use the same row, so `detail-season-chips` was recorded again too.
+  Its pixel diff is 7,974 px, all in x 135..472, y 629..672: the chip row after Season 1, which stays put. No other
+  Detail case changed, and every other module's references still pass.
+- After the fix, the full device run: `:core:designsystem` 32, `:feature:account` 6, `:feature:detail` 38,
+  `:feature:downloads` 61, `:feature:home` 86, `:feature:library` 34, `:feature:player` 14, `:feature:search` 62, and
+  the whole `:app` suite, 161. No failures, and no screenshot reference changed. `DownloadsTvNavigationTest` then
+  passed 3 runs of 3.
+- Rebased onto master `6e164f0ed` (train 15). Its references fail in 20 screenshots, all in the chip rows: Downloads 4,
+  Library 7 and Search 9. Each was recorded again and diffed against master's version. Every change is inside the chip
+  row's band, y 133..164 (127..170 for the two cases with a focused chip), and each changed-pixel count equals the one
+  this PR's first recording made against its own base, for example `downloads-choosing` 5,050, `library-grid-focus-tab`
+  15,568 and `search-suggestions-counted` 7,645. Each was looked at. Then the full run again: `:core:designsystem` 32,
+  `:feature:home` 87, `:feature:detail` 38, `:feature:downloads` 61, `:feature:library` 34, `:feature:search` 62, no
+  failures; `DownloadsTvNavigationTest` 3 runs of 3; the old `Chip` still fails `ChipDeviceTest` 3 of 4.

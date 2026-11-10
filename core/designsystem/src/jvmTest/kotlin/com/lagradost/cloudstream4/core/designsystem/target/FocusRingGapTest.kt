@@ -201,8 +201,13 @@ class FocusRingGapTest {
         }
     }
 
+    /**
+     * Two chips whose cells touch: the ring around the first is drawn whole, and the second's fill does not paint over it.
+     * Since `BUG-65` a cell holds its own ring, [CloudStreamDimens.FocusRingBleed] either side of the pill, so the ring
+     * is found from the pill's edge, inside the cell, rather than past the cell's edge.
+     */
     @Test
-    fun `a focused chip's ring draws over a neighbour that touches it`() {
+    fun `a focused chip's ring stays whole beside a neighbour that touches it`() {
         val dpad = Dpad()
         val bounds = Bounds()
         Harness {
@@ -217,11 +222,13 @@ class FocusRingGapTest {
             harness.settle()
             dpad.press(FocusDirection.Next, harness)
             val frame = harness.pixels()
-            val right = bounds[FIRST].right.toInt()
+            val cellRight = bounds[FIRST].right.toInt()
             val y = bounds[FIRST].center.y.toInt()
-            assertEquals(right, bounds[SECOND].left.toInt(), "the two touch")
+            assertEquals(cellRight, bounds[SECOND].left.toInt(), "the two touch")
+            val right = cellRight - CloudStreamDimens.FocusRingBleed.value.toInt()
             assertTrue(frame[right + gap, y].isRing(), "the next chip's fill must not paint over the ring")
             assertTrue(frame[right + gap + stroke - 1, y].isRing(), "the next chip's fill must not paint over the ring")
+            assertTrue(right + gap + stroke - 1 < cellRight, "the ring stays inside its own cell")
         }
     }
 
