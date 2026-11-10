@@ -7465,6 +7465,31 @@ not). There is at most one line per field kind per section, so ten thousand bad 
   Compose render, not Chrome, with Manrope loaded (`#295`), must show the descenders of "Voiced by Pippa Quigley-Jory"
   (g, j, p, q and y) whole (`KMP-97`'s fixed line box).
 
+## KMP-105 — Step over unread sections in place · **built 2026-11-10**, follow-up of `KMP-103`, stacked on it · sys-desktop-2
+
+The reviewer's security should-fix on `#310`. Restacking `KMP-103` onto `KMP-86` took `#310`'s shape for
+`readSectionsAfterFacts`, which copied every section after the facts into its own array with `readNBytes(length)`,
+including one of a tag it does not read and a second of one it has. `#299` and `#311` stepped over those with
+`skipNBytes(length)`. A lying host could make the app copy up to a frame's 8 MiB of sections it then throws away.
+
+- Only a tag in `SECTIONS_READ` (art, ids, cast, recommendations), seen for the first time, is copied out as a slice.
+  Any other tag, and a repeat, is skipped in place and said once, as before. The section length check against
+  `available()` comes first, unchanged.
+- **The size cap moves before the copy** (the PM, 2026-11-10). A first cast or recommendations section past
+  `MAX_SECTION_BYTES` (64 KiB) was copied whole, up to the frame's 8 MiB, before `slice` refused it. It is now skipped
+  in place and dropped as "a section past its bytes", the same words as before. `slice` no longer checks the size.
+- The two `when` branches that ran past 120 columns are wrapped.
+- **Test:** `HostProtocolSectionSkipTest` reads hand-written frames through a counting stream under the app's own
+  reader. That stream tells the bytes handed out by `read` from those passed by `skip`, so the test sees each section's
+  path without measuring memory.
+  - A 4 MiB unknown section, a cast and a second cast of just over 1 MiB. The first cast is kept, the skip is said once,
+    exactly the two bodies are skipped, and under 4 KiB is read.
+  - A first cast and recommendations are read, and nothing is skipped.
+  - A cast section of exactly 64 KiB is read. One a byte past it is skipped whole, and under 4 KiB is read.
+  - Recommendations padded past a megabyte are skipped, said once, and the cast beside them is kept.
+- **Red-checks:** the slice read for every tag, as `#310` had it, fails the first test. The cap checked after the copy,
+  as `#310` had it, fails the two size tests.
+
 ## KMP-102 — The same hardening for posters · **built 2026-11-09**, stacked on `KMP-100` (`#299`)
 
 Posters went through `httpUrlOrNull()` and `posterHttpClient`, so they accepted http, followed https-to-http redirects,

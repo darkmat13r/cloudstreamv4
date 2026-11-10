@@ -594,33 +594,49 @@ private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): A
         val tag = readUnsignedByte()
         val length = readInt()
         if (length !in 0..available()) throw IOException("section length $length out of range")
-        val section = readNBytes(length)
-        if (!read.add(tag)) {
+        // `KMP-105`: only a tag this app reads, seen for the first time, is copied out as a slice. Any other is stepped
+        // over in place, so a lying host's large unknown or repeated section costs no allocation.
+        if (tag !in SECTIONS_READ || !read.add(tag)) {
+            skipNBytes(length.toLong())
             unknown = true
             continue
         }
+        // Nor is a cast or recommendations section past its cap: it is stepped over before a byte of it is copied.
+        val capped = CAPPED_SECTIONS[tag]
+        if (capped != null && length > HostProtocol.MAX_SECTION_BYTES) {
+            skipNBytes(length.toLong())
+            dropped("$capped: a section past its bytes")
+            continue
+        }
+        val section = readNBytes(length)
         when (tag) {
             HostProtocol.ART_V1 -> backdrop = slice(section, "art", dropped, null) { readArtV1(dropped) }
             HostProtocol.IDS_V1 -> ids = readIds(section, dropped)
-            HostProtocol.CAST_V1 -> cast = slice(section, "cast", dropped, emptyList()) { readCastV1(Drops("cast", dropped)) }
-            HostProtocol.RECOMMENDATIONS_V1 -> recommendations =
-                slice(section, "recommendations", dropped, emptyList()) { readRecommendationsV1(Drops("recommendations", dropped)) }
-            else -> unknown = true
+            HostProtocol.CAST_V1 ->
+                cast = slice(section, "cast", dropped, emptyList()) { readCastV1(Drops("cast", dropped)) }
+            HostProtocol.RECOMMENDATIONS_V1 ->
+                recommendations = slice(section, "recommendations", dropped, emptyList()) {
+                    readRecommendationsV1(Drops("recommendations", dropped))
+                }
         }
     }
     if (unknown) dropped("a section this app does not read")
     return AfterFacts(backdrop, ids, cast, recommendations)
 }
 
+/** The tags [readSectionsAfterFacts] reads. Every other is stepped over unread. */
+private val SECTIONS_READ =
+    setOf(HostProtocol.ART_V1, HostProtocol.IDS_V1, HostProtocol.CAST_V1, HostProtocol.RECOMMENDATIONS_V1)
+
+/** The sections read only up to [HostProtocol.MAX_SECTION_BYTES], each by the name its drop is said under. */
+private val CAPPED_SECTIONS =
+    mapOf(HostProtocol.CAST_V1 to "cast", HostProtocol.RECOMMENDATIONS_V1 to "recommendations")
+
 /**
  * [parse] over its own [bytes], so nothing in it can reach past them: a section cut short, or lying about a length or a
- * count inside, costs [fallback]. A cast or recommendations section past [HostProtocol.MAX_SECTION_BYTES] is not read.
+ * count inside, costs [fallback]. One past its cap never gets here (see [CAPPED_SECTIONS]).
  */
 private fun <T> slice(bytes: ByteArray, name: String, dropped: (String) -> Unit, fallback: T, parse: DataInputStream.() -> T): T {
-    if (name != "art" && bytes.size > HostProtocol.MAX_SECTION_BYTES) {
-        dropped("$name: a section past its bytes")
-        return fallback
-    }
     return try {
         DataInputStream(ByteArrayInputStream(bytes)).use { it.parse() }
     } catch (unreadable: IOException) {
