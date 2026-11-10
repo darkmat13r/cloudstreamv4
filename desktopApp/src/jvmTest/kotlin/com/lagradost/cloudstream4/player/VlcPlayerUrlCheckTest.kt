@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.player
 
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
 import java.io.ByteArrayOutputStream
+import java.io.File
 import java.net.InetAddress
 import java.nio.file.Files
 import java.util.concurrent.atomic.AtomicInteger
@@ -54,6 +55,20 @@ class VlcPlayerUrlCheckTest {
         assertTrue(SandboxPolicy.isPublicHttpUrl(url, resolve))
         assertTrue(player(resolve).play(url, null, null, null))
         assertTrue(url in sent.toString(Charsets.UTF_8), "the url was not sent")
+    }
+
+    @Test
+    fun `a staged file is sent as its copy under the host's directory, and nothing else`() {
+        val outside = Files.createTempFile("staged", ".mkv").toFile().apply { writeText("not media") }
+        try {
+            assertTrue(player(rebinding("stream.example", publicAnswers = 0)).playStaged(outside))
+            val text = sent.toString(Charsets.UTF_8)
+            assertTrue(File(directory, outside.name).toPath().toUri().toString() in text, text)
+            assertFalse(outside.toPath().toUri().toString() in text, "the original's path was sent")
+            assertFalse("http" in text, text)
+        } finally {
+            outside.delete()
+        }
     }
 
     @Test

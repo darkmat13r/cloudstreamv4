@@ -3299,6 +3299,9 @@ own lookup, plus everything after it: redirects and playlist urls are as open as
   looks the name up and a lookup can take seconds. Releasing stays where it was.
 - `--check-playback` on a local file (`BUG-76`) plays its copy through `playStaged`: a `file:` url is not a stream,
   so it does not meet the address check, and it names only the copy in the host's own directory.
+- **A behaviour change in the check command:** `--check-playback <url>` passed its url to the host unchecked. A LAN
+  address played; loopback was already refused, by the sandbox's `localhost` rule, at connect. Both are now refused
+  by `play` before the host is asked, as any stream is.
 
 **Proof,** all local (CI is off): `VlcPlayerUrlCheckTest`. A resolver answers public for the link check and then
 private: `play` refuses and sends the host nothing. The control, public both times, sends the url. The audio url
