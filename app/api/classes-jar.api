@@ -3200,6 +3200,8 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field downloads_queued I
 	public static field downloads_titles_status I
 	public static field episodes I
+	public static field ext_repo_header I
+	public static field ext_repo_remove_body I
 	public static field home_bookmarks_count I
 	public static field home_sections_failed I
 	public static field home_source_sections I
@@ -3626,6 +3628,40 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field example_site_name I
 	public static field example_site_url I
 	public static field example_username I
+	public static field ext_install I
+	public static field ext_installed I
+	public static field ext_remove_failed I
+	public static field ext_repo_add_group I
+	public static field ext_repo_cant_reach_body I
+	public static field ext_repo_cant_reach_title I
+	public static field ext_repo_empty_body I
+	public static field ext_repo_empty_title I
+	public static field ext_repo_error_already I
+	public static field ext_repo_error_local I
+	public static field ext_repo_error_newer I
+	public static field ext_repo_error_not_https I
+	public static field ext_repo_error_not_repository I
+	public static field ext_repo_error_not_saved I
+	public static field ext_repo_error_shortcode I
+	public static field ext_repo_error_too_large I
+	public static field ext_repo_error_unreachable I
+	public static field ext_repo_link_help I
+	public static field ext_repo_link_hint I
+	public static field ext_repo_reading I
+	public static field ext_repo_remove_body_none I
+	public static field ext_repo_remove_title I
+	public static field ext_repo_unreachable_line I
+	public static field ext_row_failed_download I
+	public static field ext_row_failed_local I
+	public static field ext_row_failed_not_saved I
+	public static field ext_row_failed_size I
+	public static field ext_row_failed_too_large I
+	public static field ext_row_hash_mismatch I
+	public static field ext_row_installing I
+	public static field ext_row_installing_unknown I
+	public static field ext_row_turned_off I
+	public static field ext_row_unverified I
+	public static field ext_row_update I
 	public static field extension_allow I
 	public static field extension_authors I
 	public static field extension_decision_not_saved I
@@ -3700,6 +3736,8 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field home_main_poster_img_des I
 	public static field home_more_info I
 	public static field home_next_random_img_des I
+	public static field home_no_sources_body I
+	public static field home_no_sources_title I
 	public static field home_none_body I
 	public static field home_none_headline I
 	public static field home_offline_bookmarks_body I

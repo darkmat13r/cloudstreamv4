@@ -17,6 +17,10 @@ values	plurals	downloads_titles_status	one	%1$d title · %2$s
 values	plurals	downloads_titles_status	other	%1$d titles · %2$s
 values	plurals	episodes	one	Episode
 values	plurals	episodes	other	Episodes
+values	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
+values	plurals	ext_repo_header	other	%1$d extensions · %2$d installed · updated %3$s
+values	plurals	ext_repo_remove_body	one	Its %d installed extension is removed from this Mac too. You can add the repository again later.
+values	plurals	ext_repo_remove_body	other	Its %d installed extensions are removed from this Mac too. You can add the repository again later.
 values	plurals	home_bookmarks_count	one	%d BOOKMARK
 values	plurals	home_bookmarks_count	other	%d BOOKMARKS
 values	plurals	home_sections_failed	one	%d section failed to load
@@ -426,6 +430,40 @@ values	string	example_password	-	password123
 values	string	example_site_name	-	NewSiteName
 values	string	example_site_url	-	https://example.com
 values	string	example_username	-	Username
+values	string	ext_install	-	Install
+values	string	ext_installed	-	Installed
+values	string	ext_remove_failed	-	Some files couldn't be removed, so nothing was removed.
+values	string	ext_repo_add_group	-	Add a repository
+values	string	ext_repo_cant_reach_body	-	This list is from %s. Installing and updating wait until it answers.
+values	string	ext_repo_cant_reach_title	-	Can't reach %s
+values	string	ext_repo_empty_body	-	Each extension comes from a repository you add, and runs only after you allow it.
+values	string	ext_repo_empty_title	-	No repositories
+values	string	ext_repo_error_already	-	%s is already in your list.
+values	string	ext_repo_error_local	-	This link points to an address on your local network, which CloudStream doesn't open.
+values	string	ext_repo_error_newer	-	This repository uses a newer format. Update CloudStream to add it.
+values	string	ext_repo_error_not_https	-	Only https links can be added. Check that it starts with https://.
+values	string	ext_repo_error_not_repository	-	This link doesn't lead to a repository.
+values	string	ext_repo_error_not_saved	-	Your repositories couldn't be saved, so nothing was changed.
+values	string	ext_repo_error_shortcode	-	Short codes don't work on the Mac. Paste the full link instead.
+values	string	ext_repo_error_too_large	-	This repository is larger than CloudStream reads. Nothing was added.
+values	string	ext_repo_error_unreachable	-	Couldn't reach this repository. Check the link and your connection.
+values	string	ext_repo_link_help	-	A link that starts with https:// or cloudstreamrepo://
+values	string	ext_repo_link_hint	-	Repository link
+values	string	ext_repo_reading	-	Reading the repository
+values	string	ext_repo_remove_body_none	-	You can add the repository again later.
+values	string	ext_repo_remove_title	-	Remove %s?
+values	string	ext_repo_unreachable_line	-	Can't reach it · list from %s
+values	string	ext_row_failed_download	-	Install failed · the file couldn't be downloaded
+values	string	ext_row_failed_local	-	Install failed · the file is on your local network
+values	string	ext_row_failed_not_saved	-	Install failed · it couldn't be saved
+values	string	ext_row_failed_size	-	Install failed · the file isn't the size its repository stated
+values	string	ext_row_failed_too_large	-	Install failed · the file is larger than CloudStream installs
+values	string	ext_row_hash_mismatch	-	Its file didn't match the published hash. Nothing was installed.
+values	string	ext_row_installing	-	Installing · %1$s of %2$s
+values	string	ext_row_installing_unknown	-	Installing · %s
+values	string	ext_row_turned_off	-	Turned off by its repository
+values	string	ext_row_unverified	-	Unverified · its repository publishes no hash
+values	string	ext_row_update	-	Update available · v%1$d → v%2$d
 values	string	extension_allow	-	Allow
 values	string	extension_authors	-	Authors
 values	string	extension_decision_not_saved	-	Your choice could not be saved, so this extension stays off. You will be asked again.
@@ -497,6 +535,8 @@ values	string	home_info	-	Info
 values	string	home_main_poster_img_des	-	Main Poster
 values	string	home_more_info	-	More info
 values	string	home_next_random_img_des	-	Next Random
+values	string	home_no_sources_body	-	Home's rows come from extensions. Add a repository to choose some; nothing runs until you allow it.
+values	string	home_no_sources_title	-	No sources yet
 values	string	home_none_body	-	Choose a source to see its rows here. Continue watching and your bookmarks stay without one.
 values	string	home_none_headline	-	No source chosen
 values	string	home_offline_bookmarks_body	-	Your bookmarks are saved on this device.

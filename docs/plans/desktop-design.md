@@ -66,6 +66,25 @@ it is the one thing that is not a destination. Neither Allow nor Keep off is the
 this screen does not nudge. Text the plugin controls is smaller, muted and left to right, so it cannot pass for the app's own voice.
 See `KMP-24`.
 
+## Extensions and repositories
+
+`DS-27`'s X1 to X8 (`KMP-110c`): a fourth Settings pane, Extensions, between Playback and Downloads, words only as the
+other panes are. The way in is a link the person pastes: nothing is suggested and nothing is built in (`DEC-17`). A
+repository is its own name and "N extensions · updated X" once added, and never its link, which can carry a token.
+Every repository install is held until Allow, even with a clean scan, so the empty list says that rule before anything
+is added; Review opens the existing review screen in the main window. Remove a repository is a row verb under the
+pointer and asks first, with Cancel the primary (`DEC-19`). A repository opens in the pane with Back, ⌘[ and Escape; its
+rows say their state in the second line and offer one verb. A repository that cannot be reached keeps its last list with
+when it was read, and installs nothing from it; with two or more all failing, the pane says it is offline. Home, with no
+extension at all, says "No sources yet" and offers Add repository, which opens this pane with the field focused.
+
+| X | Here | Why |
+|---|---|---|
+| "updated 4 min ago" | "updated" with a localised short date and time | A relative time needs a plural set per unit, which is `I18N-01`'s; `DesktopSearchHistory` shows absolute dates for the same reason |
+| A plugin's language | The JDK's name for the tag, in the current language | The repository sends a tag, not a name |
+| `tvTypes` | The app's own words for the types it knows; others are left out | The wire names are not words |
+| X7's German | Not translated | The boards' German is a stand-in for lengths, not a translation (PM) |
+
 ## Source selector
 
 Artboards 7d and 7e, with these departures, each because a desktop player is not a 10-foot one:

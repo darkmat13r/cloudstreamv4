@@ -333,6 +333,33 @@ class HomeScreenTest {
         scene.close()
     }
 
+    /** `KMP-110c`, board X6: with nothing installed, the Mac's Home points at a repository, and adds nothing itself. */
+    @Test
+    fun `with nothing installed, Home says No sources yet and Add repository opens Settings`() {
+        var asked = 0
+        val scene = scene {
+            HomeScreenDesktop(state(HomeStatus.NoSources(0)), {}, onAddRepository = { asked++ })
+        }
+        scene.settle()
+        fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
+        val nodes = scene.semanticsOwners.flatMap { it.rootSemanticsNode.all() }
+        fun text(words: String) = nodes.lastOrNull { node ->
+            node.config.getOrNull(SemanticsProperties.Text).orEmpty().any { it.text == words }
+        }
+        assertNotNull(text("No sources yet"))
+        assertNotNull(text("Home's rows come from extensions. Add a repository to choose some; nothing runs until you allow it."))
+        scene.click(checkNotNull(text("Add repository")).boundsInRoot.center)
+        assertEquals(1, asked)
+        scene.close()
+        // Search-only extensions installed: Home keeps today's words.
+        val searchOnly = scene { HomeScreenDesktop(state(HomeStatus.NoSources(2)), {}, onAddRepository = { asked++ }) }
+        searchOnly.settle()
+        val words = searchOnly.semanticsOwners.flatMap { it.rootSemanticsNode.all() }
+            .flatMap { node -> node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text } }
+        assertTrue("No sources yet" !in words)
+        searchOnly.close()
+    }
+
     private fun ImageComposeScene.named(label: String): SemanticsNode? {
         fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
         return semanticsOwners.flatMap { it.rootSemanticsNode.all() }.lastOrNull { node ->

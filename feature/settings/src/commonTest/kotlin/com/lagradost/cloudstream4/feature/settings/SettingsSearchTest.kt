@@ -23,6 +23,7 @@ class SettingsSearchTest {
             SettingsPane.Appearance -> "Looks"
             SettingsPane.Playback -> "Watching"
             SettingsPane.Downloads -> "Saved Titles"
+            SettingsPane.Extensions -> "Add-ons"
         }
     }
 

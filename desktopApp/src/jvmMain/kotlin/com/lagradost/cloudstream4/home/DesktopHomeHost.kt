@@ -54,6 +54,7 @@ internal fun HomeHost(
     onOpen: (String) -> Unit,
     onSearch: () -> Unit,
     appearance: AppearanceSettings = AppearanceSettings.Default,
+    onAddRepository: (() -> Unit)? = null,
 ) {
     val state by viewModel.state.collectAsState()
     val showRandom by appearance.showRandom.collectAsState()
@@ -79,6 +80,7 @@ internal fun HomeHost(
         picture = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
         showRandom = showRandom,
         posterSize = posterSize,
+        onAddRepository = onAddRepository,
     )
 }
 
