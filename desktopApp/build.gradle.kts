@@ -159,7 +159,9 @@ compose.desktop {
 
             val iconsRoot = project.file("desktop-icons")
             macOS {
-                // iconFile.set(iconsRoot.resolve("icon-mac.icns"))
+                // DS-28: the app icon, Apple's grid (an 824 tile on 1024). Not iconsRoot: it names desktop-icons/, and the
+                // icons are in src/desktop-icons/.
+                iconFile.set(project.file("src/desktop-icons/icon-macos.icns"))
                 // KMP-95e: the browser's sign-ins come back as cloudstreamapp://mallogin and anilistlogin (`AccountManager.APP_STRING`).
                 // Only a packaged app has this; `BrowserRedirects` accepts only what a waiting sign-in asked for.
                 infoPlist {
