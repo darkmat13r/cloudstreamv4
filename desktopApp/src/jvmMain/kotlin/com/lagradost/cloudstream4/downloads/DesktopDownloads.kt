@@ -666,7 +666,16 @@ class DesktopDownloads internal constructor(
             ?: return EnqueueResult.Refused(EnqueueRefusal.NoSource)
         if (!readable) return EnqueueResult.Refused(EnqueueRefusal.StoreUnreadable)
 
+        val titleName = DownloadPaths.titleText(request.titleName)
+        // Another title's or another episode's id (`KMP-109`). Its ids are 32 bits of a hash, which a plugin choosing
+        // its own strings can land on in minutes, so a match is checked rather than trusted.
+        if (titleTaken(request.titleId, titleName, source)) return EnqueueResult.Refused(EnqueueRefusal.IdTaken)
         items[request.episodeId]?.let { existing ->
+            // A finished episode keeps no source, so one of the same title cannot be told apart and reads as this one.
+            val kept = existing.source
+            if (existing.titleId != request.titleId || (kept != null && kept != source)) {
+                return EnqueueResult.Refused(EnqueueRefusal.IdTaken)
+            }
             if (existing.phase != Phase.Paused && existing.phase != Phase.Failed) return EnqueueResult.AlreadyPresent
             // A paused or failed episode enqueued again goes in line; a new link replaces the one in memory.
             resumeNow(existing)
@@ -674,7 +683,6 @@ class DesktopDownloads internal constructor(
             return EnqueueResult.Queued
         }
 
-        val titleName = DownloadPaths.titleText(request.titleName)
         val folderName = items.values.firstOrNull { it.titleId == request.titleId }?.folderName
             ?: DownloadPaths.segment(titleName)
         val folder = File(root, folderName)
@@ -713,6 +721,16 @@ class DesktopDownloads internal constructor(
         publish()
         return EnqueueResult.Queued
     }
+
+    /**
+     * [titleId] already names another title: one listed under another name, or kept from another provider. A finished
+     * episode keeps its name and no source, so its name is what is compared.
+     */
+    private fun titleTaken(titleId: Int, titleName: String, source: DownloadSourceRef): Boolean =
+        items.values.any { item ->
+            item.titleId == titleId &&
+                (item.titleName != titleName || item.source?.let { it.providerName != source.providerName } == true)
+        }
 
     private suspend fun pauseNow(item: Item) {
         when (item.phase) {

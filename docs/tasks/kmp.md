@@ -8478,3 +8478,75 @@ working while the repository cannot be reached. **Green:** `:desktopApp:jvmTest`
 Green: `:desktopApp:jvmTest` 834, 0 failed (the 4 render cases skip without a render directory),
 `:core:strings:jvmTest` 53 of 53; the five gates passed, 280 XML results with 0 failures; `:app:checkExtensionApi`
 passed with the 40 new fields and no line removed. All local.
+
+## KMP-109 — A Download on each episode row of the Mac title page, with its states · **part 1 built 2026-11-10**; the row's slot waits for `KMP-104` (`#312`) · the PM's task
+
+Board E2's rows on the Mac title page offer a Download per episode. The cell then reads the episode's state and offers
+that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
+
+**Part 1, the parts away from the title page:**
+- **The request.** `episodeDownloadRequest(titleKey, detail, episode)` in `:desktopApp` builds a
+  `DesktopDownloadRequest` from the page's `TitleDetail` and `DetailEpisode`:
+  - it carries no link. Its source is the provider's name and the episode's data, what the player passes;
+  - `KMP-52`'s service asks the extension through its `LinkResolver` and checks the link as it checks every other.
+    No new fetch path.
+- **The ids.** The service files downloads under 32-bit ids. `EpisodeDownloadIds` takes the first 4 bytes of SHA-256
+  over the parts, each written as its UTF-8 length and then its bytes:
+  - the title's id comes from the page's title id (`DesktopSearchSource.encodeId`);
+  - the episode's id comes from the provider's name and the episode's data;
+  - not `String.hashCode`, which gives `Aa` and `BB` one value.
+- **`EnqueueRefusal.IdTaken`.** Ids can still collide, by chance or on purpose. A plugin picks its own title and
+  episode strings, and about 2³² SHA-256s, minutes of work, lands on a chosen 32-bit id. So a matching id is checked
+  rather than trusted (the PM's ruling). An enqueue is refused, and nothing changes, when:
+  - its title id is held by a title listed under another name, or kept from another provider;
+  - its episode id is held by another title's episode, or by one with another source. A paused one is not put back
+    in line.
+- **Known limits (decision 4).** A finished episode keeps no source (`KMP-52`, on purpose, so a finished download
+  holds no address). So against a finished one:
+  - an episode id of the same title cannot be told apart, and reads as that episode, downloaded;
+  - a title id is checked by its name alone. A plugin that copies a finished title's name exactly, and has no
+    unfinished episode in it, joins its row and its folder. It cannot overwrite a file there: file names are made
+    unique on the disk.
+  - Closing both would mean keeping the provider's name in a finished record, which changes `KMP-52`'s file.
+- **The cell.** `EpisodeDownloadDesktop` in `:feature:downloads` reads the state in D4's words, through D4's
+  `EpisodeStatus`, which is now internal rather than copied. While the row is hovered or focused it offers that
+  state's verbs, in the title page's 36 cells:
+
+  | State | Verbs |
+  |---|---|
+  | none yet | Download |
+  | waiting | Cancel |
+  | downloading | Pause, Cancel |
+  | paused | Resume |
+  | failed | Retry |
+  | downloaded | none |
+
+  The verbs hold their width while hidden, so the words never move.
+
+**Tests (jvm, run):**
+- `EpisodeDownloadRequestTest` (5):
+  - the ids are fixed numbers, worked out with Python's `hashlib`;
+  - `Aa` and `BB` differ;
+  - moving a character between parts changes the id;
+  - the request's fields, with no link;
+  - two episodes share a title id.
+- `DesktopDownloadsTest` (+3):
+  - an id held by another source is refused (`IdTaken`), running and paused, and the first is unchanged;
+  - a title id forced to collide through the request's id seam (`titleIdOf`) is refused for a title with another
+    name or provider, while the first runs and after it finishes. The same title's next episode is taken. One row
+    and one folder remain. An episode id naming another title's finished episode is refused too.
+    - **Red (run):** without the title check it fails "another name", `Queued` where `IdTaken` is expected. Without
+      the episode's title-id comparison it fails with `AlreadyPresent`.
+  - end to end, a page's episode downloads through the resolver from its source alone, and the resolver is asked
+    for exactly that source.
+  - **Red without the guard (run):** the first fails, with `AlreadyPresent` where `IdTaken` is expected.
+- `EpisodeDownloadDesktopTest` (3):
+  - each state's verbs, pressed with real pointer events, call their own callback;
+  - hidden verbs draw nothing and move no words;
+  - each state's words.
+- `DownloadSeriesScreenTest` is unchanged and passes: 10 of 10.
+
+**Part 2, after `#312`:**
+- the slot on `DetailScreenDesktop`'s episode row;
+- `Main.kt` wiring it to the service;
+- the page's tests, red first.

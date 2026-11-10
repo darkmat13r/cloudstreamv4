@@ -2,6 +2,8 @@ package com.lagradost.cloudstream4.downloads
 
 import com.lagradost.cloudstream3.utils.ExtractorLinkType
 import com.lagradost.cloudstream4.core.http.HttpClientFactory
+import com.lagradost.cloudstream4.feature.detail.DetailEpisode
+import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleKind
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleState
@@ -1009,8 +1011,114 @@ class DesktopDownloadsTest {
         }
     }
 
+    /** `KMP-109`: ids are 32 bits of a hash, so a second episode can arrive with the first one's id. */
+    @Test
+    fun `an id another episode holds is refused, and the first episode is left as it was`() = runBlocking {
+        server.add("held.bin", 1024 * 1024)
+        server.chunkDelayMillis.set(50)
+        val host = host()
+        val first = DesktopDownloadRequest(21, 2100, "First", DownloadTitleKind.Film, null, null, null,
+            DownloadSourceRef("Test Provider", "first-data"), DesktopDownloadLink(server.url("held.bin")))
+        assertEquals(EnqueueResult.Queued, host.enqueue(first))
+        host.awaitEpisode(2100, 21) { it.state == DownloadEpisodeState.Running }
+
+        val other = DesktopDownloadRequest(21, 2200, "Other", DownloadTitleKind.Film, null, null, null,
+            DownloadSourceRef("Test Provider", "other-data"), DesktopDownloadLink(server.url("held.bin")))
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), host.enqueue(other))
+        val otherProvider = DesktopDownloadRequest(21, 2100, "First", DownloadTitleKind.Film, null, null, null,
+            DownloadSourceRef("Another Provider", "first-data"), null)
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), host.enqueue(otherProvider))
+        assertEquals(EnqueueResult.AlreadyPresent, host.enqueue(first), "the same episode again is still itself")
+
+        val titles = host.awaitContents { true }.titles
+        assertEquals(listOf(DownloadTitleId(2100)), titles.map { it.id })
+        assertEquals("First", titles.single().name)
+
+        // Paused, it would otherwise be put back in line by an enqueue: the other episode must not resume it.
+        host.pause(DownloadEpisodeId(21))
+        host.awaitEpisode(2100, 21) { it.state == DownloadEpisodeState.Paused }
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), host.enqueue(other))
+        assertEquals(DownloadEpisodeState.Paused, host.awaitEpisode(2100, 21) { true }.state)
+    }
+
+    /**
+     * `KMP-109`: a plugin chooses its title-id strings, and 32 bits fall in minutes. A title id forced to collide, through
+     * the request's own id seam, is refused for another title, whether the first is running or finished, and taken
+     * for the same title's next episode.
+     */
+    @Test
+    fun `a title id another title holds is refused, running or finished`() = runBlocking {
+        server.add("victim.bin", 64 * 1024)
+        val forced = { _: String -> FORCED_TITLE_ID }
+        fun page(title: String, provider: String) = TitleDetail(
+            title = title, providerName = provider, typeName = "TvSeries", year = null, plot = null,
+            posterUrl = null, playData = null, episodes = emptyList(),
+        )
+        fun episodeOf(n: Int, data: String) = DetailEpisode(name = "Part $n", data = data, season = 1, episode = n)
+        val host = host(resolver = LinkResolver { listOf(DesktopDownloadLink(server.url("victim.bin"))) })
+
+        val victim = episodeDownloadRequest("Kept Provider\u0000show", page("Kept Show", "Kept Provider"),
+            episodeOf(1, "kept-1"), titleIdOf = forced)
+        assertEquals(EnqueueResult.Queued, host.enqueue(victim))
+        val renamed = episodeDownloadRequest("Hostile Provider\u0000x", page("Hostile Show", "Hostile Provider"),
+            episodeOf(1, "hostile-1"), titleIdOf = forced)
+        val sameName = episodeDownloadRequest("Hostile Provider\u0000y", page("Kept Show", "Hostile Provider"),
+            episodeOf(1, "hostile-2"), titleIdOf = forced)
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), host.enqueue(renamed), "another name")
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), host.enqueue(sameName), "another provider")
+
+        host.awaitDone(FORCED_TITLE_ID, victim.episodeId)
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), host.enqueue(renamed), "a finished title keeps its name")
+
+        val next = episodeDownloadRequest("Kept Provider\u0000show", page("Kept Show", "Kept Provider"),
+            episodeOf(2, "kept-2"), titleIdOf = forced)
+        assertEquals(EnqueueResult.Queued, host.enqueue(next), "the same title's next episode")
+        host.awaitDone(FORCED_TITLE_ID, next.episodeId)
+
+        val titles = host.awaitContents { true }.titles
+        assertEquals(listOf("Kept Show"), titles.map { it.name })
+        assertEquals(listOf("Kept Show"), root.listFiles()!!.map { it.name }, "no other title's folder, and none merged in")
+
+        // An episode id that names another title's episode is refused too, even though that one finished.
+        val stolen = DesktopDownloadRequest(victim.episodeId, 9900, "Elsewhere", DownloadTitleKind.Series, 1, 1, null,
+            DownloadSourceRef("Kept Provider", "kept-1"), null)
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), host.enqueue(stolen))
+    }
+
+    /**
+     * `KMP-109`, end to end: a title page's episode, with no link, is downloaded by asking the extension through the
+     * service's resolver for exactly the episode's source, as a resume does.
+     */
+    @Test
+    fun `a title page's episode downloads through the resolver, from its source alone`() = runBlocking {
+        val body = server.add("page-episode.bin", 128 * 1024)
+        val asked = CopyOnWriteArrayList<DownloadSourceRef>()
+        val host = host(resolver = LinkResolver { ref ->
+            asked += ref
+            listOf(DesktopDownloadLink(server.url("page-episode.bin")))
+        })
+        val detail = TitleDetail(
+            title = "Fixture Show", providerName = "Fixture Provider", typeName = "TvSeries", year = null, plot = null,
+            posterUrl = null, playData = null, episodes = emptyList(),
+        )
+        val episode = DetailEpisode(
+            name = "The Second", data = "https://fixture.example/show/1/2", season = 1, episode = 2,
+        )
+        val request = episodeDownloadRequest("Fixture Provider\u0000https://fixture.example/show", detail, episode)
+
+        assertEquals(EnqueueResult.Queued, host.enqueue(request))
+        val done = host.awaitDone(request.titleId, request.episodeId)
+        assertEquals(DownloadEpisodeId(request.episodeId), done.id)
+        assertEquals(listOf(DownloadSourceRef("Fixture Provider", "https://fixture.example/show/1/2")), asked.toList())
+        val file = assertNotNull(host.fileOf(DownloadEpisodeId(request.episodeId)))
+        assertContentEquals(body, file.readBytes())
+        assertEquals("Fixture Show", file.parentFile.name)
+        assertEquals(EnqueueResult.AlreadyPresent, host.enqueue(request), "a second press adds nothing")
+    }
+
     companion object {
         private const val TIMEOUT = 30_000L
+        private const val FORCED_TITLE_ID = 4242
         private const val SCAN_ATTEMPTS = 20
         private const val GIB = 1024L * 1024 * 1024
     }
