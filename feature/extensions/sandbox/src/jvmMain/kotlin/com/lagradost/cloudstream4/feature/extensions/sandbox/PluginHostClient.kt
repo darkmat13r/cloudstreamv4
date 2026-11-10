@@ -48,8 +48,9 @@ class HostLauncher internal constructor(
         gate: OutboundGate? = null,
         lowered: Boolean = false,
         input: ProcessBuilder.Redirect? = null,
+        mediaGatewayPort: Int? = null,
     ): Process {
-        val profile = SeatbeltProfile.render(executable, readable, readOnlyInputs, writable, network, extraRules, gate?.port)
+        val profile = profile(readOnlyInputs, writable, network, extraRules, gate, mediaGatewayPort)
         val sandboxed = listOf(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, executable.path) + prefixArguments + arguments
         // The same process all the way down, through `exec`, so what this returns is the JVM. A shell because a
         // limit needs one, and outside the sandbox, because the sandbox would not let it run.
@@ -73,12 +74,40 @@ class HostLauncher internal constructor(
      * @param silent no audio output: libVLC is told so, and the sandbox refuses it the audio devices anyway.
      * @param input the host's stdin in place of a pipe: one end of a socket pair, which a downloaded file's descriptor
      *   arrives over (`KMP-74`). The host is told only that one is coming, never where from, and its policy is the same.
+     * @param gatewayPort the media gateway's port (`KMP-113`): the host may then connect to that port on loopback and
+     *   nowhere else, and may not use the resolver. Bound before this is called. Null for a host that plays a file.
      */
+    /** The policy [start] writes, in one place, so a test reads exactly what a host is given. */
+    private fun profile(
+        readOnlyInputs: List<File>,
+        writable: File,
+        network: Boolean,
+        extraRules: List<String>,
+        gate: OutboundGate?,
+        mediaGatewayPort: Int?,
+    ): String = SeatbeltProfile.render(
+        executable, readable, readOnlyInputs, writable, network, extraRules,
+        gatewayPort = gate?.port ?: mediaGatewayPort,
+        resolver = mediaGatewayPort == null,
+    )
+
+    /** The policy [startMediaHost] gives its host, for a test (`KMP-113`). */
+    internal fun mediaHostProfile(vlcApp: File, writable: File, silent: Boolean, gatewayPort: Int?): String =
+        profile(
+            readOnlyInputs = emptyList(),
+            writable = writable,
+            network = true,
+            extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, writable, audio = !silent),
+            gate = null,
+            mediaGatewayPort = gatewayPort,
+        )
+
     fun startMediaHost(
         vlcApp: File,
         writable: File,
         silent: Boolean = false,
         input: ProcessBuilder.Redirect? = null,
+        gatewayPort: Int? = null,
     ): Process {
         val app = vlcApp.canonicalFile
         return start(
@@ -91,6 +120,7 @@ class HostLauncher internal constructor(
                 "-Djna.tmpdir=${writable.path}" + (if (silent) " -D$SILENT_PROPERTY=true" else "") +
                 if (input != null) " -D$FILE_PROPERTY=true" else "",
             input = input,
+            mediaGatewayPort = gatewayPort,
         )
     }
 

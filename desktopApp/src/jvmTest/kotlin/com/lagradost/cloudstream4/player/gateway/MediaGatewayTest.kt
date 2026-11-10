@@ -453,6 +453,27 @@ class MediaGatewayTest {
     // ---- Prints nothing ---------------------------------------------------------------------------------------
 
     @Test
+    fun `OkHttp's own logger is off once a gateway starts, so a leak warning would print nothing`() = within60s {
+        gateway(allowed = emptySet())
+        assertEquals(java.util.logging.Level.OFF, OkHttpLogging.level)
+        val out = ByteArrayOutputStream()
+        val realErr = System.err
+        System.setErr(PrintStream(out, true))
+        // The very logger and message OkHttp uses for an unclosed response, written as OkHttp would write it.
+        val handler = java.util.logging.ConsoleHandler()
+        val logger = java.util.logging.Logger.getLogger(okhttp3.OkHttpClient::class.java.name)
+        logger.addHandler(handler)
+        try {
+            logger.log(java.util.logging.Level.WARNING, "A connection to http://lan.example/ was leaked. Did you forget to close a response body?")
+            handler.flush()
+        } finally {
+            logger.removeHandler(handler)
+            System.setErr(realErr)
+        }
+        assertFalse("leaked" in out.toString(), out.toString())
+    }
+
+    @Test
     fun `a Referer or User-Agent OkHttp would refuse is made sendable or dropped, and nothing is printed`() = within60s {
         val marker = "MARKERxyz"
         val cdn = upstream { Reply(200, body = "x".toByteArray()) }

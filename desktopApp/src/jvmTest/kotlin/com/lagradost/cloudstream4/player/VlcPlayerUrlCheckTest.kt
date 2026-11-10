@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.player
 
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
+import com.lagradost.cloudstream4.player.gateway.MediaGateway
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.net.InetAddress
@@ -30,10 +31,14 @@ class VlcPlayerUrlCheckTest {
         return { host -> if (host == name && asked.incrementAndGet() > publicAnswers) loopback else public }
     }
 
-    private fun player(resolve: (String) -> Array<InetAddress>) = VlcPlayer.forStream(process, directory, sent, resolve)
+    private val gateway = checkNotNull(MediaGateway.start(null, null))
+
+    private fun player(resolve: (String) -> Array<InetAddress>, through: MediaGateway? = gateway) =
+        VlcPlayer.forStream(process, directory, sent, resolve, through)
 
     @AfterTest
     fun tearDown() {
+        gateway.close()
         process.destroyForcibly()
         directory.deleteRecursively()
     }
@@ -54,7 +59,26 @@ class VlcPlayerUrlCheckTest {
         val resolve = rebinding("stream.example", publicAnswers = Int.MAX_VALUE)
         assertTrue(SandboxPolicy.isPublicHttpUrl(url, resolve))
         assertTrue(player(resolve).play(url, null, null, null))
-        assertTrue(url in sent.toString(Charsets.UTF_8), "the url was not sent")
+        val text = sent.toString(Charsets.UTF_8)
+        // KMP-113: the host is given the gateway's url for it, never the url itself.
+        assertTrue("http://127.0.0.1:${gateway.port}/" in text && "/u/https/stream.example/v.m3u8" in text, text)
+        assertFalse(url in text, "the stream's own url was sent")
+    }
+
+    @Test
+    fun `the host is given neither the stream's Referer nor its User-Agent`() {
+        val url = "https://stream.example/v.m3u8"
+        val resolve = rebinding("stream.example", publicAnswers = Int.MAX_VALUE)
+        assertTrue(player(resolve).play(url, "https://referer.example/page", "Agent/1.0", null))
+        val text = sent.toString(Charsets.UTF_8)
+        assertFalse("referer.example" in text || "Agent/1.0" in text, text)
+    }
+
+    @Test
+    fun `a stream player without its gateway plays nothing`() {
+        val resolve = rebinding("stream.example", publicAnswers = Int.MAX_VALUE)
+        assertFalse(player(resolve, through = null).play("https://stream.example/v.m3u8", null, null, null))
+        assertEquals(0, sent.size())
     }
 
     @Test

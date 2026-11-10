@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.player.gateway
 
+import java.net.IDN
 import java.net.URI
 
 /** Why a playlist was not rewritten. A kind only: nothing from the playlist goes with it (§4a). */
@@ -143,7 +144,7 @@ class HlsRewriter(
          */
         internal fun lenient(reference: String): String {
             val start = authorityEnd(reference)
-            val out = StringBuilder(reference.length + 16).append(reference, 0, start)
+            val out = StringBuilder(reference.length + 16).append(asciiAuthority(reference.substring(0, start)))
             var i = start
             while (i < reference.length) {
                 val c = reference[i]
@@ -157,6 +158,24 @@ class HlsRewriter(
                 i += Character.charCount(reference.codePointAt(i))
             }
             return out.toString()
+        }
+
+        /**
+         * [prefix] (`scheme://authority` or `//authority`) with a non-ASCII host as punycode, the way OkHttp would
+         * write it; unchanged when it is ASCII already, or when the host does not convert.
+         */
+        private fun asciiAuthority(prefix: String): String {
+            if (prefix.all { it.code < 0x80 }) return prefix
+            val slashes = prefix.indexOf("//").takeIf { it >= 0 } ?: return prefix
+            val head = prefix.substring(0, slashes + 2)
+            val authority = prefix.substring(slashes + 2)
+            val info = authority.substringBeforeLast('@', missingDelimiterValue = "").let { if (it.isEmpty()) "" else "$it@" }
+            val hostPort = authority.removePrefix(info)
+            if (hostPort.startsWith("[")) return prefix
+            val host = hostPort.substringBeforeLast(':').takeIf { ':' in hostPort } ?: hostPort
+            val port = hostPort.removePrefix(host)
+            val ascii = runCatching { IDN.toASCII(host) }.getOrNull() ?: return prefix
+            return head + info + ascii + port
         }
 
         /** Where a reference's authority ends: after `scheme://host` or `//host`; 0 when it has none. */

@@ -311,6 +311,16 @@ the playlists. The media host's policy allowed only that port.
 6. **libVLC follows a 3xx from loopback on its own** (it requested the target twice), and **it keeps a `Set-Cookie`
    from `127.0.0.1`** and sends it back (5 of 6 later requests). Neither is moot. The gateway never answers 3xx, never
    passes `Set-Cookie`, and never forwards `Cookie`, as §2 and §4 say.
+7. **Through the wiring (PR 2):** `--check-playback` on the Apple HLS test streams, the gateway between. All played:
+   - TS, master and variants, 4:3 and 16:9;
+   - fMP4 with `EXT-X-MAP`, alternate audio and I-frame playlists, at 1920×1080;
+   - one segment as a single file, through the first-url path.
+
+   No stream url, and no OkHttp leak line, appeared in their output.
+8. **The media host's vlcj player does not play a local playlist's items:** a `.m3u8` opened as a file expands into
+   items it never plays. So the test of the sandbox uses a url the rewriter leaves as written (one with user info,
+   which the gateway refuses to encode) inside a playlist served through the gateway. libVLC then tries it itself,
+   and the sandbox refuses it. With `*:*` added to the policy, it is reached (checked).
 
 ## Open questions for review
 

@@ -97,6 +97,7 @@ import com.lagradost.cloudstream4.home.TopLevelScreen
 import com.lagradost.cloudstream4.home.TopLevelTab
 import com.lagradost.cloudstream4.home.titleBarOverContent
 import com.lagradost.cloudstream4.player.MediaHost
+import com.lagradost.cloudstream4.player.gateway.OkHttpLogging
 import com.lagradost.cloudstream4.player.LocalMedia
 import com.lagradost.cloudstream4.player.PlayerFullscreen
 import com.lagradost.cloudstream4.player.PlayerHandover
@@ -176,6 +177,8 @@ fun main(args: Array<String>) {
         MediaHost.main()
         return
     }
+    // KMP-113: OkHttp's own logger can name a host on stderr ("A connection to … was leaked"); nothing may (§4a).
+    OkHttpLogging.quiet()
     if (args.firstOrNull() == PLAYBACK_CHECK_ARGUMENT) {
         val url = requireNotNull(args.getOrNull(1)) { "$PLAYBACK_CHECK_ARGUMENT needs a url" }
         exitProcess(runPlaybackCheck(url, args.getOrNull(2)?.toIntOrNull() ?: DEFAULT_PLAYBACK_CHECK_SECONDS))

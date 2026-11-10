@@ -8106,7 +8106,7 @@ with a silent track:
   `WatchRecorder` needs one.
 - Playing a film from the D1 list. D1 has no Play on the Mac board.
 
-## KMP-113 — A local media gateway, so every connection libVLC makes is address-checked · **PR 1 of 2 (the gateway), in review**
+## KMP-113 — A local media gateway, so every connection libVLC makes is address-checked · **PR 2 of 2 (the wiring), in review**
 
 The full fix for `BUG-90`. libVLC checks nothing itself and ignores every proxy setting for https (measured on
 3.0.24), so the media host gets gateway urls on loopback, and a sandbox policy that allows nothing else. The gateway
@@ -8131,5 +8131,22 @@ Tests:
 
 Ten mutations each fail what they should.
 
-**PR 2, the wiring:** the media host's profile allows only the gateway port; `OP_PLAY` stops carrying `Referer` and
-`User-Agent`; the player plays gateway urls; and the VLC.app tests.
+**PR 2, the wiring:**
+- A stream player starts its gateway first, then its host. Without a gateway it does not start, so no stream plays
+  with the host's network open.
+- The host's policy allows the gateway's port on loopback and nothing else, with no resolver. `mediaHostProfile` is
+  the one place it is written.
+- `play` re-checks the url (`BUG-90`), gives the gateway the stream's `Referer` and `User-Agent`, and sends libVLC
+  only gateway urls. `OP_PLAY` carries no headers now.
+- OkHttp's own logger is off from app start.
+- An IDN host in a playlist url is written as punycode.
+- A host that plays a file is unchanged.
+
+Tests:
+- `GatewayPlaybackTest`, 2, with the real host: a segment on a refused host gets 0 requests; a url the rewriter
+  leaves as written is never reached, because the sandbox refuses it.
+- `MediaHostProfileTest`, 3.
+- `VlcPlayerUrlCheckTest` and the gateway suites, extended.
+
+**Measured:** the Apple HLS test streams (TS 4:3 and 16:9, fMP4 with `EXT-X-MAP`, alternate audio and I-frames)
+and one single file all play through the gateway, and nothing prints a url.

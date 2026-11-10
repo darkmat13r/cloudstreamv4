@@ -113,6 +113,13 @@ class HlsRewriterTest {
     }
 
     @Test
+    fun `an IDN host in a playlist url is written as punycode`() {
+        val out = lines("#EXTM3U\n#EXTINF:4,\nhttps://bücher.example/a.ts\n#EXTINF:4,\nhttps://viewer@bücher.example:8443/b.ts\n")
+        assertEquals("G[s]https://xn--bcher-kva.example/a.ts", out[2])
+        assertEquals("G[s]https://viewer@xn--bcher-kva.example:8443/b.ts", out[4])
+    }
+
+    @Test
     fun `a stray percent is escaped and a valid escape is kept`() {
         val out = lines("#EXTM3U\n#EXTINF:4,\nseg.ts?p=100%&q=%2F\n")
         assertEquals("G[s]https://cdn.example/live/seg.ts?p=100%25&q=%2F", out[2])

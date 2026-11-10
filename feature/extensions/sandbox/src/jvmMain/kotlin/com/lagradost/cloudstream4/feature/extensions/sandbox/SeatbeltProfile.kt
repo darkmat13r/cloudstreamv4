@@ -25,8 +25,10 @@ internal object SeatbeltProfile {
      * @param writable the only directory the process may change.
      * @param network whether outbound traffic is allowed. Conversion has no use for it.
      * @param extraRules whole SBPL rules for a host that needs more, from [mediaHostRules].
-     * @param gatewayPort with [network], the only port it may connect to, on loopback: an [OutboundGate]. Null leaves
-     *   every address but loopback open, for libVLC, which cannot be sent through a proxy.
+     * @param gatewayPort with [network], the only port it may connect to, on loopback: an [OutboundGate], or the media
+     *   host's gateway (`KMP-113`). Null leaves every address but loopback open.
+     * @param resolver whether the host may ask the system resolver. A media host behind its gateway is given only
+     *   `127.0.0.1` urls and has no use for it (measured, `docs/plans/media-gateway.md` §9).
      */
     fun render(
         executable: File,
@@ -36,6 +38,7 @@ internal object SeatbeltProfile {
         network: Boolean,
         extraRules: List<String> = emptyList(),
         gatewayPort: Int? = null,
+        resolver: Boolean = true,
     ): String = buildString {
         appendLine("(version 1)")
         appendLine("(deny default)")
@@ -78,7 +81,7 @@ internal object SeatbeltProfile {
         appendLine("(deny file-map-executable (subpath ${writable.quoted()}))")
         if (network) {
             appendLine("(allow system-socket)")
-            appendLine("(allow network-outbound (literal \"/private/var/run/mDNSResponder\"))")
+            if (resolver) appendLine("(allow network-outbound (literal \"/private/var/run/mDNSResponder\"))")
             if (gatewayPort != null) {
                 appendLine("(allow network-outbound (remote ip \"localhost:$gatewayPort\"))")
             } else {

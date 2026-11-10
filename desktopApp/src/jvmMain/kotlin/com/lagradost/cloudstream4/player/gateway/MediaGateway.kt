@@ -109,8 +109,8 @@ class MediaGateway private constructor(
     )
 
     val port: Int = v4.localPort
-    private val referer = headerValueOrNull(referer, isUrl = true)
-    private val userAgent = headerValueOrNull(userAgent, isUrl = false)
+    @Volatile private var referer = headerValueOrNull(referer, isUrl = true)
+    @Volatile private var userAgent = headerValueOrNull(userAgent, isUrl = false)
     private val live = java.util.concurrent.ConcurrentHashMap.newKeySet<Socket>()
     private val urls = GatewayUrl(port, token)
     private val rewriter = HlsRewriter(urls::encode, limits.rewriter)
@@ -149,6 +149,15 @@ class MediaGateway private constructor(
         listOf(v4, v6).forEach { server ->
             thread(isDaemon = true, name = "media-gateway") { acceptLoop(server) }
         }
+    }
+
+    /**
+     * The stream's own `Referer` and `User-Agent`, for every upstream request from now on (§4). Made sendable, or
+     * dropped, as at [start]. A player is made before it knows its stream, so this comes with the stream.
+     */
+    fun useHeaders(referer: String?, userAgent: String?) {
+        this.referer = headerValueOrNull(referer, isUrl = true)
+        this.userAgent = headerValueOrNull(userAgent, isUrl = false)
     }
 
     /** The url libVLC is given for a stream's first url: its role is unknown, so it is fetched as a playlist would be. */
@@ -545,6 +554,7 @@ class MediaGateway private constructor(
             random: SecureRandom = SecureRandom(),
             lookup: Dns = Dns.SYSTEM,
         ): MediaGateway? {
+            OkHttpLogging.quiet()
             val token = ByteArray(16).also(random::nextBytes).let { Base64.getUrlEncoder().withoutPadding().encodeToString(it) }
             repeat(BIND_ATTEMPTS) {
                 val v4 = exclusive().apply { bind(InetSocketAddress(InetAddress.getByName("127.0.0.1"), 0)) }
@@ -566,4 +576,18 @@ class MediaGateway private constructor(
             if (StandardSocketOptions.SO_REUSEPORT in supportedOptions()) setOption(StandardSocketOptions.SO_REUSEPORT, false)
         }
     }
+}
+
+/**
+ * OkHttp's own logger, held so it is never collected, and off (`#348` review). It can print "A connection to <host> was
+ * leaked" to stderr, naming the host, if a response were ever left unclosed: §4a allows no host on any output.
+ */
+object OkHttpLogging {
+    private val logger: java.util.logging.Logger = java.util.logging.Logger.getLogger(OkHttpClient::class.java.name)
+
+    fun quiet() {
+        logger.level = java.util.logging.Level.OFF
+    }
+
+    internal val level: java.util.logging.Level? get() = logger.level
 }
