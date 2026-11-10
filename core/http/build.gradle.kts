@@ -18,6 +18,9 @@
  *   reach the `OkHttp` engine factory, whose engine a closed `HttpClient` shuts down (see
  *   `OkHttpClientFactory.kt`). `okhttp3.OkHttpClient` is in the public signature there; any caller
  *   already has OkHttp on its compile classpath, since it has to pass a client in.
+ * - `iosMain` — `implementation(ktor-client-darwin)` (`KMP-112`), for the same reason. It exists only
+ *   when an iOS gate declares iOS targets (`-Pcloudstream.iosCanary=true` or `iosTest=true`), so it
+ *   is wired with `matching`, which does nothing when the source set is absent.
  */
 plugins {
     id("cloudstream.kmp.library")
@@ -43,6 +46,13 @@ kotlin {
 
         jvmTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+
+        matching { it.name == "iosMain" }.configureEach {
+            dependencies { implementation(libs.ktor.client.darwin) }
+        }
+        matching { it.name == "iosTest" }.configureEach {
+            dependencies { implementation(libs.kotlin.test) }
         }
     }
 }
