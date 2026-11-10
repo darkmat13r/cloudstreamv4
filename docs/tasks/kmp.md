@@ -7952,3 +7952,72 @@ an app that cannot keep a secret, with no PKCE and no `state` shown, and Android
   - A13 on `error=`, and A13b on an exchange offline.
 - Red-checked: without the state comparison, 3 of these fail; without ending the wait on leaving the step, the late
   redirect is taken and the Cancel test fails; without the bare-form check or the RFC 3986 decoding, their tests fail.
+
+## KMP-110 — The Mac's extension repository manager · **110a in review**, 110b and 110c to follow · the owner's task, 2026-11-10
+
+**Status:** 110a (fetch, parse, saved repositories) in review. Today the Mac gets extensions only from files dropped
+into `~/.cloudstream4/extensions` before a restart. This adds a repository by URL, lists its plugins, and installs,
+updates or removes one into that folder, where the existing pipeline (hash, no-network `.cs3` conversion, scan,
+Allow / Keep off) takes over.
+
+**Decided (PM, 2026-11-10):**
+- Every repository-installed file is held until Allow, even with a clean scan. Installing is not consent to run.
+  Side-loaded files behave as before. (110b.)
+- No short codes on the Mac. Android resolves one by asking `cutt.ly` or `py.md`; nothing typed here is sent to a
+  shortener. `cloudstreamrepo://` and `cs.repo` links stay, and a bare code is answered with "paste the full link".
+- A plugin whose repository publishes no hash is installed and marked unverified, and the hold still gates it.
+- Placement: Settings → Extensions, plus "Add repository" on Home's empty state. A desktop board is being drawn. (110c.)
+
+**Measured 2026-11-10**, the 34 repositories in the public `recloudstream/cs-repos` list (33 answered, 583 plugins).
+The limits in `RepositoryLimits` are set from it, and its KDoc has the table:
+- largest repository JSON 400 bytes; largest plugin list 69,046 bytes and 86 entries; one plugin list per repository;
+- largest `.cs3` 8,336,733 bytes and largest `.jar` 157,711 bytes, both checked a second way by downloading the file
+  and counting it. The plugin cap is 32 MiB, about four times the largest;
+- `manifestVersion` is 1 in 31 repositories and 2 in 2, which have exactly the version 1 keys. Android never reads it.
+  DECIDED: read 1 and 2, refuse anything else (options: refuse all but 1, which strands two working repositories;
+  read any, which reads a future format as this one);
+- 529 of 583 plugins publish `fileHash`, and all publish `fileSize`. 5 `internalName`s carry a space or a `+`, so
+  110b derives the file name rather than taking it.
+
+### 110a — what it does (`desktopApp`, `extensions/repositories/`)
+
+- `parseRepositoryLink`: https as typed; `cloudstreamrepo://` and `https://cs.repo/` unwrapped; short codes, http and
+  anything else refused without a request.
+- `RepositoryHttp`, built on `#299`'s `boundedImageClient`:
+  - public addresses only, by name before connecting, as an IP literal before connecting, and at the connected
+    address on every hop (`SandboxPolicy.isPublicAddress`);
+  - redirects followed here, each `Location` checked for https first, at most 5;
+  - a cap per file, refused on the declared length or once passed, counted after decompression;
+  - connect, read and whole-call time limits (`#299` sets none); no cookies, no cache;
+  - failures are a `RepositoryFailure` kind. Nothing is printed, and no exception message (which can carry a URL) is
+    kept.
+- `RepositoryIndexParser`: the `:app` wire keys onto `:feature:extensions`' `ExtensionRepositoryIndex` and
+  `ExtensionListing`. One bad entry costs that entry, not the list (`:app` loses the list). URLs must be https; a
+  hash that is present and unreadable drops its entry; numbers must be numbers; text is cut to its limit.
+- `RepositoryReader`: the index, then every plugin list at once. A list that cannot be read is counted, so an
+  unreachable repository is not shown as an empty one.
+- `RepositoryStore`: `extensions.repositories` beside the extensions directory, mode 0600 on every write (a URL can
+  carry a token), atomic, and never overwritten when it cannot be read.
+- The two KDocs that said `:app` never compares `fileHash` (`ExtensionInstall.kt`, `ExtensionIndex.kt`) are
+  corrected: `RepositoryManager.downloadPluginToFile` compares it and throws on a mismatch.
+
+**Tests:** 42, in `RepositoryHttpTest` (13, against a server on loopback), `RepositoryIndexParserTest` (12),
+`RepositoryLinkTest` (5), `RepositoryReaderTest` (4) and `RepositoryStoreTest` (8). No real repository is reached, and
+every name is made up. There is no TLS test server without a new dependency, so the https rule is tested as the
+redirect check, with plain http standing in for "not https".
+
+**Red-checked:** with every guard removed at once (the https check, the address checks, the redirect limit, both size
+checks, the call timeout, the parser's https rule, the 0600 write), 16 of the 42 fail, each on its own guard: for
+example `expected:<NotHttps> but was:<Unreachable>`, the stalled server `took 15.004370042 s`, and the file's mode
+`[OWNER_WRITE, OWNER_READ, OTHERS_READ, GROUP_READ]`.
+
+**Green:** the 42 pass, and `:desktopApp:jvmTest` passes 769 of 769. The five gates passed, 273 XML results with 0
+failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
+
+### 110b and 110c — next
+
+- [ ] 110b: install, update and remove into the folder. File name from `internalName` and the repository, checked to
+      stay in the folder; the published hash checked before the move and written as the `.sha256` sidecar; the
+      single-file scan with no start; the hold for every repository install; `installed.json` for versions.
+- [ ] 110c: the Settings → Extensions pane and Home's button, against the desktop board; strings; a section in
+      `desktop-design.md`.
