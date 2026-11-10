@@ -4,6 +4,7 @@ import java.io.Closeable
 import java.io.DataInputStream
 import java.io.File
 import java.io.IOException
+import java.io.InputStream
 import java.io.OutputStream
 import java.net.URI
 import java.util.concurrent.ConcurrentHashMap
@@ -166,11 +167,18 @@ class PluginHostClient internal constructor(
     private val nextId = AtomicInteger(HostProtocol.READY_ID)
     private val out: OutputStream = process.outputStream
     private val dead = AtomicBoolean(false)
-    private val diagnostics = StringBuffer()
+    private val stderr = HostStderr()
+    private val stderrDrain: Thread
     private val ready = Pending { it.readProviders() }
 
-    /** Up to [MAX_DIAGNOSTIC_CHARS] of what the host wrote to stderr, for a failure report. */
-    val hostOutput: String get() = diagnostics.toString()
+    /**
+     * What the host wrote to stderr, fixed in shape and holding none of the plugin's own text (`BUG-83`): its line and
+     * byte counts, and the class of the failure the host reported. For a failure report.
+     */
+    val hostSummary: String get() = stderr.summary
+
+    /** The plugin's own stderr lines, redacted ([redactedPluginText]). For `--check-extensions --verbose` and tests. */
+    val redactedLog: String get() = stderr.redactedLog
 
     /** Why this side stopped the host, when it did. */
     @Volatile
@@ -182,7 +190,7 @@ class PluginHostClient internal constructor(
     init {
         pending[HostProtocol.READY_ID] = ready
         thread(isDaemon = true, name = "plugin-host-$label-out") { readLoop() }
-        thread(isDaemon = true, name = "plugin-host-$label-err") { drainStderr() }
+        stderrDrain = thread(isDaemon = true, name = "plugin-host-$label-err") { drainStderr() }
     }
 
     private fun readLoop() {
@@ -215,7 +223,7 @@ class PluginHostClient internal constructor(
                         }
                         HostProtocol.REPLY_FAILED -> {
                             val waiter = claim(id) ?: throw IOException("reply to unknown request $id")
-                            waiter.reply.complete(Result.failure(IOException(readText().sanitized(MAX_ERROR_CHARS))))
+                            waiter.reply.complete(Result.failure(PluginFailed(readText().sanitized(MAX_ERROR_CHARS))))
                         }
                         else -> throw IOException("reply of unknown kind $kind")
                     }
@@ -250,20 +258,9 @@ class PluginHostClient internal constructor(
         return true
     }
 
-    /** Keeps only the start of it. A plugin writing forever must not be able to fill this process. */
+    /** Reads it all and keeps a bounded amount ([HostStderr]): a plugin writing forever must not fill this process. */
     private fun drainStderr() {
-        runCatching {
-            val chunk = ByteArray(DIAGNOSTIC_CHUNK)
-            process.errorStream.use { stream ->
-                while (true) {
-                    val count = stream.read(chunk)
-                    if (count < 0) break
-                    if (diagnostics.length < MAX_DIAGNOSTIC_CHARS) {
-                        diagnostics.append(String(chunk, 0, count, Charsets.UTF_8).sanitizedLog())
-                    }
-                }
-            }
-        }
+        process.errorStream.drainInto(stderr)
     }
 
     private fun abort(reason: String) {
@@ -429,6 +426,8 @@ class PluginHostClient internal constructor(
         runCatching { out.close() }
         process.destroy()
         if (!process.waitFor(STOP_GRACE_MILLIS, TimeUnit.MILLISECONDS)) process.destroyForcibly()
+        // So a failure report made after this reads all the host wrote, not part of it.
+        stderrDrain.join(STOP_GRACE_MILLIS)
         gate?.close()
     }
 
@@ -445,8 +444,21 @@ class PluginHostClient internal constructor(
         private const val START_TIMEOUT_MILLIS = 60_000L
         private const val STOP_GRACE_MILLIS = 500L
         private const val MAX_ERROR_CHARS = 400
-        private const val MAX_DIAGNOSTIC_CHARS = 16 * 1024
         private const val DIAGNOSTIC_CHUNK = 4096
+
+        private fun InputStream.drainInto(stderr: HostStderr) {
+            runCatching {
+                use { stream ->
+                    val chunk = ByteArray(DIAGNOSTIC_CHUNK)
+                    while (true) {
+                        val count = stream.read(chunk)
+                        if (count < 0) break
+                        stderr.feed(chunk, count)
+                    }
+                }
+            }
+            stderr.finish()
+        }
 
         /**
          * Starts a host for [jar] and waits for it to report what it registered.
@@ -487,7 +499,7 @@ class PluginHostClient internal constructor(
         /**
          * Converts a `.cs3` in a no-network sandbox that can write only [outputDir].
          *
-         * @return the host's stderr when it failed, or `null` on success.
+         * @return why it failed, fixed in shape (exit or timeout, and [HostStderr.summary]), or `null` on success.
          */
         suspend fun convert(launcher: HostLauncher, cs3: File, output: File, outputDir: File): String? =
             withContext(Dispatchers.IO) {
@@ -499,19 +511,14 @@ class PluginHostClient internal constructor(
                     network = false,
                 )
                 process.outputStream.close()
-                val errors = StringBuffer()
-                val drain = thread(isDaemon = true) {
-                    runCatching {
-                        val text = process.errorStream.readNBytes(MAX_DIAGNOSTIC_CHARS)
-                        errors.append(String(text, Charsets.UTF_8).sanitizedLog())
-                    }
-                }
+                val errors = HostStderr()
+                val drain = thread(isDaemon = true) { process.errorStream.drainInto(errors) }
                 val finished = process.waitFor(CONVERT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS)
                 if (!finished) process.destroyForcibly()
                 drain.join(STOP_GRACE_MILLIS)
                 when {
                     !finished -> "conversion did not finish within ${CONVERT_TIMEOUT_MILLIS}ms"
-                    process.exitValue() != 0 -> errors.toString().ifBlank { "exit ${process.exitValue()}" }
+                    process.exitValue() != 0 -> "exit ${process.exitValue()} · ${errors.summary}"
                     else -> null
                 }
             }
@@ -528,9 +535,6 @@ private const val MAX_PROVIDER_FIELD_CHARS = 256
 /** Terminal escapes and forged lines stop here, because this text reaches a screen and a log. */
 private fun String.sanitized(limit: Int = MAX_FIELD_CHARS): String =
     take(limit).filterNot { it.isISOControl() }
-
-private fun String.sanitizedLog(): String =
-    filter { it == '\n' || !it.isISOControl() }
 
 /**
  * A poster URL the app may fetch, or null.

@@ -71,8 +71,8 @@ class SandboxedProvider(
     /** [links], each time it has more. See [PluginHostClient.linksAsTheyArrive]. */
     fun linksAsTheyArrive(data: String): Flow<RemoteLinks> = host.linksAsTheyArrive(remote.name, data)
 
-    /** The start of what the plugin wrote to stderr, for a failure report. */
-    val hostOutput: String get() = host.hostOutput
+    /** The plugin's own stderr lines, redacted (`BUG-83`). Only `--check-extensions --verbose` reads it. */
+    val redactedHostLog: String get() = host.redactedLog
 
     private fun RemoteSearchItem.toResponse(): SearchResponse =
         newMovieSearchResponse(name, url, type?.toTvTypeOrNull() ?: TvType.Others, fix = false) {

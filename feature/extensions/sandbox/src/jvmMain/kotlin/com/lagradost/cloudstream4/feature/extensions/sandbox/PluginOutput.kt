@@ -1,0 +1,138 @@
+package com.lagradost.cloudstream4.feature.extensions.sandbox
+
+import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHost.withoutUrls
+import java.io.ByteArrayOutputStream
+import java.io.IOException
+
+/**
+ * A plugin's own text, for a developer's eyes only (`BUG-83`): what a plugin prints, logs or puts in an exception
+ * message is untrusted, and can carry the URLs it fetches, the keys it uses and what was searched for.
+ *
+ * - Every url is cut to `scheme://host[:port]/<…>`; `file:` uris and user paths become `<path>` ([withoutUrls]).
+ * - A path under the home directory written `~/…` becomes `<path>`.
+ * - An address like `name@host.example` becomes `<email>`.
+ * - An IPv4 literal, and an IPv6 literal with `::` or at least three colons, becomes `<ip>`.
+ * - A run of 24 or more of `A-Z a-z 0-9 + / = _ -` (a token, base64, long hex) becomes `<…>`. A class name written
+ *   with slashes (`android/view/View`) is such a run when it is long enough; with dots, as in a stack frame, it is not.
+ *
+ * The one copy of these rules: the plugin host's stderr log ([HostStderr.redactedLog]) and the extension check's
+ * failure lines both use it.
+ */
+fun String.redactedPluginText(): String = withoutUrls()
+    .replace(HOME_PATH, "<path>")
+    .replace(EMAIL, "<email>")
+    .replace(IPV4, "<ip>")
+    .replace(IPV6, "<ip>")
+    .replace(TOKEN, "<…>")
+
+private val HOME_PATH = Regex("(?<![\\w.~/-])~/\\S*")
+private val EMAIL = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\\.[A-Za-z0-9-]+)*\\.[A-Za-z]{2,}")
+private val IPV4 = Regex("(?<![\\w.])(?:\\d{1,3}\\.){3}\\d{1,3}(?![\\w.])")
+
+/** `::` somewhere, or at least three colons between hex groups. A time of day (`19:04:05`) has two and no `::`. */
+private val IPV6 = Regex(
+    "(?<![\\w:])(?:[0-9A-Fa-f]{0,4}:){2,7}[0-9A-Fa-f]{0,4}(?![\\w:])"
+        .let { candidate -> "(?=[0-9A-Fa-f:]*(?:::|(?:[0-9A-Fa-f]{0,4}:){3}))$candidate" }
+)
+private val TOKEN = Regex("[A-Za-z0-9+/=_-]{24,}")
+
+/**
+ * An exception's own name reads as words (`IllegalArgumentException`), and is often 24 letters or more. A run that
+ * long in any other shape, as a forged class name could carry, is cut as a token is.
+ */
+private val WORDS = Regex("(?:[A-Z][a-z]+)+")
+private const val TOKEN_LENGTH = 24
+
+internal fun String.asReportedClass(): String = split('.').joinToString(".") { segment ->
+    if (segment.length >= TOKEN_LENGTH && !WORDS.matches(segment)) "<…>" else segment
+}
+
+/**
+ * A failure the plugin itself reported over the protocol (`BUG-83`): `SimpleName: message`, as the host sends it. The
+ * message is redacted ([redactedPluginText]) before anything can read it. [reportedClass] is all a default output
+ * may show of it.
+ */
+class PluginFailed(text: String) : IOException(text.redactedPluginText()) {
+    val reportedClass: String = text.substringBefore(": ")
+        .takeIf { HostStderr.CLASS_NAME.matches(it) }?.asReportedClass() ?: "<class>"
+}
+
+/**
+ * What a plugin host wrote to stderr, kept so that none of the plugin's own text reaches a default output (`BUG-83`).
+ *
+ * - [summary] is fixed in shape: how many lines and bytes there were, and the class of the failure the host itself
+ *   reported, when it did. It holds nothing else the plugin wrote.
+ * - [redactedLog] is the plugin's own lines through [redactedPluginText], for `--check-extensions --verbose` and for
+ *   tests. Nothing on a default path reads it.
+ *
+ * Text is taken a whole line at a time, so a url split between two reads is still one url. A line past
+ * [MAX_LINE_BYTES] keeps only its words before the cut: a token or url in progress there goes with the rest.
+ */
+internal class HostStderr(private val maxLogChars: Int = MAX_LOG_CHARS) {
+    private var bytes = 0L
+    private var lines = 0
+    private var failedClass: String? = null
+    private val log = StringBuilder()
+    private val line = ByteArrayOutputStream()
+    private var cut = false
+
+    @Synchronized
+    fun feed(chunk: ByteArray, count: Int) {
+        bytes += count
+        for (index in 0 until count) {
+            val byte = chunk[index]
+            when {
+                byte == NEWLINE -> endLine()
+                line.size() < MAX_LINE_BYTES -> line.write(byte.toInt())
+                else -> cut = true
+            }
+        }
+    }
+
+    /** The end of the stream: a last line without a newline still counts. */
+    @Synchronized
+    fun finish() {
+        if (line.size() > 0 || cut) endLine()
+    }
+
+    val summary: String
+        @Synchronized get() = buildString {
+            append("stderr: $lines lines, $bytes bytes")
+            failedClass?.let { append(" · failed: ${it.asReportedClass()}") }
+        }
+
+    val redactedLog: String
+        @Synchronized get() = log.toString()
+
+    private fun endLine() {
+        lines++
+        var text = line.toString(Charsets.UTF_8).removeSuffix("\r")
+        line.reset()
+        if (cut) {
+            cut = false
+            text = if (text.contains(' ')) text.substringBeforeLast(' ') + " <…>" else "<…>"
+        }
+        val marker = FAILURE_LINE.matchEntire(text)
+        if (marker != null) {
+            failedClass = marker.groupValues[1]
+            return
+        }
+        if (log.length < maxLogChars) {
+            log.append(text.redactedPluginText().filterNot { it.isISOControl() }.take(maxLogChars - log.length))
+            log.append('\n')
+        }
+    }
+
+    companion object {
+        /** What [PluginHost] writes when it fails: this, then a class name and nothing else on the line. */
+        const val FAILURE_PREFIX = "plugin host: failed: "
+
+        /** A class name as the JVM writes one. Anything else, including a forged line, is not a marker. */
+        val CLASS_NAME = Regex("[A-Za-z0-9_.$]{1,128}")
+        private val FAILURE_LINE = Regex(Regex.escape(FAILURE_PREFIX) + "(" + CLASS_NAME.pattern + ")")
+
+        private const val NEWLINE = '\n'.code.toByte()
+        private const val MAX_LINE_BYTES = 4096
+        private const val MAX_LOG_CHARS = 16 * 1024
+    }
+}

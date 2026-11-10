@@ -80,7 +80,7 @@ class GsonInHostTest {
         return runBlocking {
             val (host, providers) = PluginHostClient.start(launcher, jar, File(jar.parentFile.parentFile, "data"), "gson")
             try {
-                providers.getOrElse { throw AssertionError("host: ${host.hostOutput}", it) }.single().name
+                providers.getOrElse { throw AssertionError("host: ${host.redactedLog}", it) }.single().name
             } finally {
                 host.close()
             }

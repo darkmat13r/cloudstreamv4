@@ -134,6 +134,9 @@ object PluginHost {
                 else -> EXIT_USAGE
             }
         } catch (failure: Throwable) {
+            // BUG-83: the one line the app reads by default, fixed in shape. The detail line is for --verbose only.
+            val name = failure::class.java.name.takeIf { HostStderr.CLASS_NAME.matches(it) } ?: "<class>"
+            System.err.println(HostStderr.FAILURE_PREFIX + name)
             System.err.println("plugin host: ${failure::class.java.name}: ${failure.message?.withoutUrls()}")
             EXIT_FAILED
         }

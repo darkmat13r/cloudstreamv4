@@ -3298,3 +3298,52 @@ locale's text for their keys holds only `%1$s` and `%2$s`. A later translation c
   comments, string text and a template. `:core:strings:jvmTest` 53 of 53.
 - The five gates each exited 0. `check-test-results.py` read 265 files with 0 failures, `:app:checkExtensionApi`
   exited 0, and `classes-jar.api` has no diff.
+
+## BUG-83 — A plugin's own stderr reached the Mac's printed diagnostics as it was · **low, security** · fixed in this PR
+
+A plugin's `println`, `System.err` and `android.util.Log` all go to its host's stderr (the host gives the protocol the
+real stdout). `PluginHostClient` kept the first 16 KiB of that with only control characters taken out, and two roads
+printed it: a host that failed to start had its last three lines put in its "not loaded" line, which the app prints
+at every launch and the check commands print again; and `--check-extensions --verbose` printed twelve lines of it per
+provider. A failed `.cs3` conversion sent the converter's stderr down the first road. A plugin's exception message
+took a third: a failed `load()` came back over the protocol as `SimpleName: message`, raw, and became the start
+failure's text. Any of it can carry the URLs a plugin fetches, its keys and what was searched for.
+
+Not roads: the media host's stderr is thrown away (`VlcPlayer`); nothing writes host output to a file; no screen
+shows it (they show `LoadState`); and the screens' failure reasons were already cut to `scheme://host`. **Not
+measured:** where a Finder-launched app's stdout ends up. The printed report goes there.
+
+**Fix.** A plugin's text never reaches a default output; a developer's run gets it redacted.
+- **Default (the "not loaded" line, every launch and every check):** a fixed shape, our words and counts only. A host
+  that failed to start reads `not loaded: plugin failed: IllegalStateException | stderr: 14 lines, 2310 bytes`, or
+  with the host's own failure class, `… · failed: java.lang.NoClassDefFoundError`. That class comes only from a
+  marker line the host writes (`plugin host: failed: <class>`), kept when the whole line is a class name of at most
+  128 characters; a long segment that does not read as words (`IllegalArgumentException` does) becomes `<…>`, so a
+  forged marker carries nothing. A failed conversion reads `conversion failed: exit 1 · stderr: …`.
+- **`--check-extensions --verbose` only:** the plugin's lines through one function, `redactedPluginText`: urls cut to
+  `scheme://host[:port]/<…>`, user paths and `~/…` to `<path>`, email addresses to `<email>`, IPv4 and IPv6 literals
+  to `<ip>`, and any run of 24 or more of `A-Z a-z 0-9 + / = _ -` (tokens, base64, long hex) to `<…>`. Text is taken
+  a whole line at a time, so a url split between two reads is still one url. The check's `search FAILED`, `open
+  FAILED` and `links FAILED` lines, which print a plugin's exception message, use the same function, and so does
+  every failure a plugin reports over the protocol (`PluginFailed`), before anything reads it.
+- **Tests** that print a host's output when they fail print the redacted log.
+
+**What a person loses, and how to get it back.** The plugin's own lines, its log and its stack trace, are gone from
+the default output: a "not loaded" line says which class failed and how much the plugin wrote, not what it wrote.
+Run `--check-extensions --verbose` to see them, redacted. The 24-character rule also cuts a class name written with
+slashes when it is that long (`android/webkit/WebViewClient`, as a `NoClassDefFoundError` names it); with dots, as in
+a stack frame, it is kept.
+
+**Proof,** all local (CI is off):
+- `PluginOutputTest`, 15: the rules one by one, with made-up values (a url with user info, query and fragment; a
+  token at 23 and at 24 characters; base64 with `=` padding; `~/` and `/Users/<name>/` paths; an email address; IP
+  literals, and a time of day that is not one); the summary; a url split at every point between two reads; forged
+  markers (a url, `/`, `:`, 129 characters; 128 is kept); a line past the cut.
+- `PluginOutputHostTest`, 2, through a real host: a running plugin's stdout, stderr and `Log` lines reach only the
+  redacted log, each in its redacted form; a plugin that fails to load is reported as `PluginFailed` by its class.
+- `ExtensionOutputTest`, through `SandboxedExtensions` and a real host: the "not loaded" line and the printed report
+  hold none of what the plugin wrote or said.
+- Proved by mutation, each failing what it should: the "not loaded" line using the plugin's message
+  (`ExtensionOutputTest`); the developer's log kept unredacted (both host tests, two unit tests); a marker taking any
+  text (the forged-marker test); a line ended at every read (the split test, the cut test); `PluginFailed` not
+  redacting (the failed-load host test).
