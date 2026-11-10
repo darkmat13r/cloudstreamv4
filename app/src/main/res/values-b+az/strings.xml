@@ -180,6 +180,8 @@
 <string name="episode_format" formatted="true">"%1$d%2$s"</string>
 <string name="episode_more_options_des">"Daha çox seçimlər"</string>
 <string name="episode_poster_img_des">"Bölüm Afişası"</string>
+<string name="episode_time_left" formatted="true">"%1$d dəq qalıb"</string>
+<string name="episode_watched">"Baxılıb"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="extension_allow">"İcazə ver"</string>
 <string name="extension_decision_not_saved">"Seçiminiz saxlanıla bilmədi, ona görə də bu uzantı söndürülü qalır. Sizdən yenidən soruşulacaq."</string>

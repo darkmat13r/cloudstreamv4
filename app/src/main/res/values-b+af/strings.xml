@@ -159,6 +159,8 @@
 <string name="edit">"Wysig"</string>
 <string name="episode_more_options_des">"Meer Opsies"</string>
 <string name="episode_poster_img_des">"Episode plakkaat"</string>
+<string name="episode_time_left" formatted="true">"%1$d min oor"</string>
+<string name="episode_watched">"Gekyk"</string>
 <string name="error_bookmarks_text">"Boekmerke"</string>
 <string name="error_loading_links_toast">"Kon nie skakels laai nie"</string>
 <string name="extension_allow">"Laat toe"</string>

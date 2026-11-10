@@ -74,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d qaybood</item><item quantity="other">%d qaybood</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ayaa fashilmay</item><item quantity="other">%d ayaa fashilmay</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d cinwaan · %2$s</item><item quantity="other">%1$d cinwaan · %2$s</item></plurals>
+<string name="episode_time_left">%1$d daqiiqo ayaa hadhay</string>
+<string name="episode_watched">La daawaday</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d CALAAMAD</item><item quantity="other">%d CALAAMADOOD</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Waa ka keeni kari waayey %d qayb</item><item quantity="other">Waa ka keeni kari waayey %d qaybood</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d cinwaan</item><item quantity="other">%d cinwaan</item></plurals>

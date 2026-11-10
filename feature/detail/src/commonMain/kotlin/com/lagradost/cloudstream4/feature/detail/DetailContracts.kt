@@ -120,24 +120,30 @@ data class DetailResume(
         get() = if (durationMs <= 0L || positionMs <= 0L) null
         else ((durationMs - positionMs).coerceAtLeast(0L) + MS_PER_MINUTE - 1).div(MS_PER_MINUTE).toInt()
 
-    /** Near enough to the end to read as watched: [fraction] at least [FINISHED_FRACTION]. */
+    /**
+     * Near enough to the end to read as watched: a whole percent of at least [FINISHED_PERCENT], in the integer
+     * arithmetic `fixVisual` uses (`position * 100 / duration`), so the two agree on every millisecond. A float
+     * `fraction >= 0.95f` does not: `0.95f` is just under 0.95, so a position a millisecond short of 95% of a long
+     * enough duration rounds up into it.
+     */
     val finished: Boolean
-        get() = (fraction ?: return false) >= FINISHED_FRACTION
+        get() = durationMs > 0L && positionMs > 0L && positionMs * PERCENT / durationMs >= FINISHED_PERCENT
 
     companion object {
         private const val MS_PER_MINUTE = 60_000L
+        private const val PERCENT = 100L
 
         /**
          * 95%, the rule both hosts already draw by.
          *
          * `:app`'s old episode row snaps a position of 95% or more to the end and draws the check for it
          * (`DataStoreHelper.fixVisual`), and the Mac's library counts 95% as watched
-         * (`WatchPosition.FINISHED_FRACTION`, which this module cannot see). `:app`'s other number, 90%
+         * (`WatchPosition.FINISHED_FRACTION`, which this module cannot see, as a float). `:app`'s other number, 90%
          * (`NEXT_WATCH_EPISODE_PERCENTAGE`), is when Resume moves on to the next episode, not when a row
          * reads watched: between the two, a row says what is left while Resume offers the next one, as
          * the old page does.
          */
-        const val FINISHED_FRACTION = 0.95f
+        const val FINISHED_PERCENT = 95L
     }
 }
 

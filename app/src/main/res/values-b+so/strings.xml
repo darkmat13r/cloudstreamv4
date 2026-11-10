@@ -277,6 +277,8 @@
 <string name="episode_short">"X"</string>
 <string name="episode_sync_settings">"Cusbooneysii marba halkaad marayso daawashada"</string>
 <string name="episode_sync_settings_des">"Si iskii ah ha ula socdo appku hadba xalqadda aad marayso"</string>
+<string name="episode_time_left" formatted="true">"%1$d daqiiqo ayaa hadhay"</string>
+<string name="episode_watched">"La daawaday"</string>
 <string name="episodes">"Xalqado"</string>
 <string name="episodes_range" formatted="true">"%1$d illaa %2$d"</string>
 <string name="error">"Xumaaday"</string>

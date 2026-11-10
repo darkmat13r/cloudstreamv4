@@ -76,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d misslyckades</item><item quantity="other">%d misslyckades</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d nedladdning i kö</item><item quantity="other">%d nedladdningar i kö</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titel · %2$s</item><item quantity="other">%1$d titlar · %2$s</item></plurals>
+<string name="episode_time_left">%1$d min kvar</string>
+<string name="episode_watched">Sedd</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMÄRKE</item><item quantity="other">%d BOKMÄRKEN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d sektion kunde inte laddas</item><item quantity="other">%d sektioner kunde inte laddas</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d avsnitt</item><item quantity="other">%d avsnitt</item></plurals>

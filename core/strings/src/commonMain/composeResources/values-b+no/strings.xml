@@ -74,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episoder</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d mislyktes</item><item quantity="other">%d mislyktes</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d tittel · %2$s</item><item quantity="other">%1$d titler · %2$s</item></plurals>
+<string name="episode_time_left">%1$d min igjen</string>
+<string name="episode_watched">Sett</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKER</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikke lastes inn</item><item quantity="other">%d deler kunne ikke lastes inn</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d tittel</item><item quantity="other">%d titler</item></plurals>

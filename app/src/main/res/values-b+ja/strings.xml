@@ -365,7 +365,9 @@
 <string name="episode_short">"エピソード"</string>
 <string name="episode_sync_settings">"視聴進捗を更新"</string>
 <string name="episode_sync_settings_des">"現在のエピソードの進捗を自動的に同期"</string>
+<string name="episode_time_left" formatted="true">"残り%1$d分"</string>
 <string name="episode_upcoming_format" formatted="true">"%s 後に公開"</string>
+<string name="episode_watched">"視聴済み"</string>
 <string name="episodes">"エピソード"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"エラー"</string>

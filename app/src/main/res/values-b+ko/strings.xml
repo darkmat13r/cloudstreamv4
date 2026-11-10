@@ -364,7 +364,9 @@
 <string name="episode_short">"에피소드"</string>
 <string name="episode_sync_settings">"시청 진행 상황 업데이트"</string>
 <string name="episode_sync_settings_des">"현재 에피소드 진행 상황을 자동으로 동기화합니다"</string>
+<string name="episode_time_left" formatted="true">"%1$d분 남음"</string>
 <string name="episode_upcoming_format" formatted="true">"%s 후 공개 예정"</string>
+<string name="episode_watched">"시청함"</string>
 <string name="episodes">"에피소드"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"오류"</string>

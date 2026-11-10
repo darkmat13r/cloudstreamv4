@@ -328,7 +328,9 @@
 <string name="episode_short">"A"</string>
 <string name="episode_sync_settings">"aaaagg aaahh aaaahhhg"</string>
 <string name="episode_sync_settings_des">"aaaaggguuuugg uuhh oohh ooooggg eeeeeek aaaagggh"</string>
+<string name="episode_time_left" formatted="true">"%1$d ooh haa ahhh"</string>
 <string name="episode_upcoming_format" formatted="true">"uuuugggg og %s"</string>
+<string name="episode_watched">"oouuh aaahhu"</string>
 <string name="episodes">"ahhh ooooo"</string>
 <string name="episodes_range" formatted="true">"%1$d%2$d"</string>
 <string name="error">"uuuhh"</string>

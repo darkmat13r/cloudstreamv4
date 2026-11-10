@@ -438,6 +438,22 @@ class AndroidDetailSourceTest {
         assertNull(response.map(records, dub = DubStatus.Subbed).episodes.single().progress)
     }
 
+    /**
+     * Two parts with one `data` are one stream, so both rows read the first slot's id, as
+     * `DetailPlaybackParts.indexOf` plays the first. A position kept under the second id is read by neither.
+     */
+    @Test
+    fun whenTwoSlotsShareDataTheFirstSlotsIdWins() {
+        val show = series(listOf(episode(1, 1, data = "same"), episode(1, 2, data = "same")))
+        val slots = show.episodeSlots(TITLE_ID)
+        assertEquals(2, slots.size)
+        val (first, second) = slots.map { it.id }
+        val underSecond = Records(positions = mapOf(second to DataStoreHelper.PosDur(600_000L, 1_500_000L)))
+        assertEquals(listOf(null, null), show.map(underSecond).episodes.map { it.progress })
+        val underFirst = Records(positions = mapOf(first to DataStoreHelper.PosDur(600_000L, 1_500_000L)))
+        assertEquals(listOf(600_000L, 600_000L), show.map(underFirst).episodes.map { it.progress?.positionMs })
+    }
+
     /** A zero position is "never started", as it is for the title's Resume. */
     @Test
     fun aZeroPositionIsNoProgress() {

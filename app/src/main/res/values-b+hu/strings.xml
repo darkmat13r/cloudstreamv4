@@ -328,7 +328,9 @@
 <string name="episode_short">"Ep"</string>
 <string name="episode_sync_settings">"Előrehaladás frissítése"</string>
 <string name="episode_sync_settings_des">"Automatikusan szinkronizálja az aktuális epizód előrehaladását"</string>
+<string name="episode_time_left" formatted="true">"Még %1$d perc"</string>
 <string name="episode_upcoming_format" formatted="true">"Hamarosan érkezik a(z) %s"</string>
+<string name="episode_watched">"Megnézve"</string>
 <string name="episodes">"Epizódok"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Hiba"</string>

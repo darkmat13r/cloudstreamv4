@@ -74,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d פרק</item><item quantity="two">%d פרקים</item><item quantity="other">%d פרקים</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d נכשלה</item><item quantity="two">%d נכשלו</item><item quantity="other">%d נכשלו</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d כותר · %2$s</item><item quantity="two">%1$d כותרים · %2$s</item><item quantity="other">%1$d כותרים · %2$s</item></plurals>
+<string name="episode_time_left">נותרו %1$d דק׳</string>
+<string name="episode_watched">נצפה</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d סימנייה</item><item quantity="two">%d סימניות</item><item quantity="other">%d סימניות</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">טעינת %d קטע נכשלה</item><item quantity="two">טעינת %d קטעים נכשלה</item><item quantity="other">טעינת %d קטעים נכשלה</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d כותר</item><item quantity="two">%d כותרים</item><item quantity="other">%d כותרים</item></plurals>

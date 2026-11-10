@@ -25,6 +25,8 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.documentaries
 import com.lagradost.cloudstream4.core.strings.generated.resources.duration_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.duration_hours_minutes_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
+import com.lagradost.cloudstream4.core.strings.generated.resources.episode_time_left
+import com.lagradost.cloudstream4.core.strings.generated.resources.episode_watched
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading_links_toast
 import com.lagradost.cloudstream4.core.strings.generated.resources.live_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.movies_singular
@@ -135,6 +137,21 @@ internal fun episodeSubtitle(episode: DetailEpisode, code: String, codeInTitle: 
         code.takeIf { !codeInTitle },
         episode.runTimeMinutes?.let { runtimeLabel(it) },
     ).takeIf { it.isNotEmpty() }?.joinToString(META_SEPARATOR)
+
+/**
+ * What an episode row says about how much of it was watched (`KMP-63`, `I18N-25`), or null where it says
+ * nothing.
+ *
+ * The words as written. Board 7i draws `WATCHED` and `24 MIN LEFT` in capitals, and that is a deliberate
+ * departure: a case transform is locale-hostile (Turkish dotted i, German ß, scripts with no case), and no
+ * screen in the tree applies one.
+ */
+@Composable
+internal fun episodeWatchLabel(readout: EpisodeWatchReadout): String? = when (readout) {
+    EpisodeWatchReadout.Watched -> UiString.Resource(Res.string.episode_watched).resolve()
+    is EpisodeWatchReadout.Left -> UiString.Resource(Res.string.episode_time_left, listOf(readout.minutes)).resolve()
+    EpisodeWatchReadout.None -> null
+}
 
 private val TYPE_LABELS: Map<String, StringResource> = mapOf(
     "Movie" to Res.string.movies_singular,

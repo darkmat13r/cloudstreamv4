@@ -213,6 +213,8 @@
 <string name="episode_more_options_des">"Opsyon"</string>
 <string name="episode_poster_img_des">"Episode Poster"</string>
 <string name="episode_short">"E"</string>
+<string name="episode_time_left" formatted="true">"%1$d min na lang"</string>
+<string name="episode_watched">"Napanood na"</string>
 <string name="episodes">"Episodes"</string>
 <string name="error_bookmarks_text">"Bookmark"</string>
 <string name="error_loading_links_toast">"Error Loading Links"</string>

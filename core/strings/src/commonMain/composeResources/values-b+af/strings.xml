@@ -74,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episodes</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d het misluk</item><item quantity="other">%d het misluk</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titel · %2$s</item><item quantity="other">%1$d titels · %2$s</item></plurals>
+<string name="episode_time_left">%1$d min oor</string>
+<string name="episode_watched">Gekyk</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOEKMERK</item><item quantity="other">%d BOEKMERKE</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d afdeling kon nie laai nie</item><item quantity="other">%d afdelings kon nie laai nie</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titel</item><item quantity="other">%d titels</item></plurals>

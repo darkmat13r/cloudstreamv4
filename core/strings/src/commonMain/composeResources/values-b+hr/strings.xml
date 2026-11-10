@@ -76,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d neuspjelo</item><item quantity="few">%d neuspjela</item><item quantity="other">%d neuspjelih</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d preuzimanje u redu čekanja</item><item quantity="few">%d preuzimanja u redu čekanja</item><item quantity="other">%d preuzimanja u redu čekanja</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d naslov · %2$s</item><item quantity="few">%1$d naslova · %2$s</item><item quantity="other">%1$d naslova · %2$s</item></plurals>
+<string name="episode_time_left">Još %1$d min</string>
+<string name="episode_watched">Pogledano</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d OZNAKA</item><item quantity="few">%d OZNAKE</item><item quantity="other">%d OZNAKA</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nije učitan %d odjeljak</item><item quantity="few">Nisu učitana %d odjeljka</item><item quantity="other">Nije učitano %d odjeljaka</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d naslov</item><item quantity="few">%d naslova</item><item quantity="other">%d naslova</item></plurals>

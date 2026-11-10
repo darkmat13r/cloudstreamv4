@@ -178,6 +178,8 @@ values-b+af/strings.xml	string	duration_format	-	STR	%d min
 values-b+af/strings.xml	string	edit	-	STR	Wysig	
 values-b+af/strings.xml	string	episode_more_options_des	-	STR	Meer Opsies	
 values-b+af/strings.xml	string	episode_poster_img_des	-	STR	Episode plakkaat	
+values-b+af/strings.xml	string	episode_time_left	-	STR	%1$d min oor	
+values-b+af/strings.xml	string	episode_watched	-	STR	Gekyk	
 values-b+af/strings.xml	string	error_bookmarks_text	-	STR	Boekmerke	
 values-b+af/strings.xml	string	error_loading_links_toast	-	STR	Kon nie skakels laai nie	
 values-b+af/strings.xml	string	extension_allow	-	STR	Laat toe	
@@ -688,6 +690,8 @@ values-b+am/strings.xml	string	downloads_watched	-	STR	%d%% ታይቷል
 values-b+am/strings.xml	string	duration_format	-	STR	%d ደቂቃ	
 values-b+am/strings.xml	string	episode_more_options_des	-	STR	ተጨማሪ አማራጮች	
 values-b+am/strings.xml	string	episode_poster_img_des	-	STR	የክፍሉ ፖስተር	
+values-b+am/strings.xml	string	episode_time_left	-	STR	%1$d ደቂቃ ቀርቷል	
+values-b+am/strings.xml	string	episode_watched	-	STR	ታይቷል	
 values-b+am/strings.xml	string	error_bookmarks_text	-	STR	ዕልባቶች	
 values-b+am/strings.xml	string	error_loading_links_toast	-	STR	አገናኞችን መጫን ላይ ስህተት	
 values-b+am/strings.xml	string	extension_allow	-	STR	ፍቀድ	
@@ -1405,7 +1409,9 @@ values-b+apc/strings.xml	string	episode_poster_img_des	-	STR	پوستر تبع �
 values-b+apc/strings.xml	string	episode_short	-	STR	ح	
 values-b+apc/strings.xml	string	episode_sync_settings	-	STR	سيّڤ تاريخ المشاهدة	
 values-b+apc/strings.xml	string	episode_sync_settings_des	-	STR	بتسيّڤ تاريخ المشاهدة و لوين وصلت بال ڤيديو	
+values-b+apc/strings.xml	string	episode_time_left	-	STR	باقي %1$d دقيقة	
 values-b+apc/strings.xml	string	episode_upcoming_format	-	STR	رح ينزل ب %s	
+values-b+apc/strings.xml	string	episode_watched	-	STR	تمّت المشاهدة	
 values-b+apc/strings.xml	string	episodes	-	STR	حلقات	
 values-b+apc/strings.xml	string	episodes_range	-	STR	%1$d–%2$d	
 values-b+apc/strings.xml	string	error	-	STR	مشكلة	
@@ -2626,7 +2632,9 @@ values-b+ar/strings.xml	string	episode_poster_img_des	-	STR	ملصق الحلق�
 values-b+ar/strings.xml	string	episode_short	-	STR	ح	
 values-b+ar/strings.xml	string	episode_sync_settings	-	STR	تحديث تقدم المشاهدة	
 values-b+ar/strings.xml	string	episode_sync_settings_des	-	STR	مزامنة التقدم في الحلقة الحالية تلقائيًا	
+values-b+ar/strings.xml	string	episode_time_left	-	STR	متبقٍ %1$d دقيقة	
 values-b+ar/strings.xml	string	episode_upcoming_format	-	STR	قادم خلال %s	
+values-b+ar/strings.xml	string	episode_watched	-	STR	تمت المشاهدة	
 values-b+ar/strings.xml	string	episodes	-	STR	حلقات	
 values-b+ar/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+ar/strings.xml	string	error	-	STR	خطأ	
@@ -3715,6 +3723,8 @@ values-b+ars/strings.xml	string	episode_poster_img_des	-	STR	لافتة الحل
 values-b+ars/strings.xml	string	episode_short	-	STR	يي	
 values-b+ars/strings.xml	string	episode_sync_settings	-	STR	تحديث مراقبة التقدم	
 values-b+ars/strings.xml	string	episode_sync_settings_des	-	STR	قم بمزامنة تقدم الحلقة الحالية تلقائيًا	
+values-b+ars/strings.xml	string	episode_time_left	-	STR	باقي %1$d دقيقة	
+values-b+ars/strings.xml	string	episode_watched	-	STR	تمت المشاهدة	
 values-b+ars/strings.xml	string	episodes	-	STR	الحلقات	
 values-b+ars/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+ars/strings.xml	string	error_bookmarks_text	-	STR	إشارات مرجعية	
@@ -4542,7 +4552,9 @@ values-b+as/strings.xml	string	episode_poster_img_des	-	STR	এপিচ'ড প
 values-b+as/strings.xml	string	episode_short	-	STR	এ	
 values-b+as/strings.xml	string	episode_sync_settings	-	STR	দেখাৰ প্ৰগতি আপডেট কৰক	
 values-b+as/strings.xml	string	episode_sync_settings_des	-	STR	স্বয়ংক্ৰিয়ভাৱে আপোনাৰ বৰ্তমানৰ খণ্ডৰ প্ৰগতি ছিঙ্ক কৰক	
+values-b+as/strings.xml	string	episode_time_left	-	STR	%1$d মিনিট বাকী	
 values-b+as/strings.xml	string	episode_upcoming_format	-	STR	%s ত আহি আছে	
+values-b+as/strings.xml	string	episode_watched	-	STR	চোৱা হৈছে	
 values-b+as/strings.xml	string	episodes	-	STR	এপিচ’ডসমূহ	
 values-b+as/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+as/strings.xml	string	error	-	STR	ভুল	
@@ -5422,6 +5434,8 @@ values-b+az/strings.xml	string	episode_action_cast_mirror	-	STR	Ekran yansıtma
 values-b+az/strings.xml	string	episode_format	-	STR	%1$d%2$s	
 values-b+az/strings.xml	string	episode_more_options_des	-	STR	Daha çox seçimlər	
 values-b+az/strings.xml	string	episode_poster_img_des	-	STR	Bölüm Afişası	
+values-b+az/strings.xml	string	episode_time_left	-	STR	%1$d dəq qalıb	
+values-b+az/strings.xml	string	episode_watched	-	STR	Baxılıb	
 values-b+az/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+az/strings.xml	string	extension_allow	-	STR	İcazə ver	
 values-b+az/strings.xml	string	extension_decision_not_saved	-	STR	Seçiminiz saxlanıla bilmədi, ona görə də bu uzantı söndürülü qalır. Sizdən yenidən soruşulacaq.	
@@ -6195,7 +6209,9 @@ values-b+be/strings.xml	string	episode_poster_img_des	-	STR	Плакат сер�
 values-b+be/strings.xml	string	episode_short	-	STR	Сер	
 values-b+be/strings.xml	string	episode_sync_settings	-	STR	Абнаўляць працэс прагляду	
 values-b+be/strings.xml	string	episode_sync_settings_des	-	STR	Аўтаматычна сінхранізаваць прагрэс бягучай серыі	
+values-b+be/strings.xml	string	episode_time_left	-	STR	Засталося %1$d хв	
 values-b+be/strings.xml	string	episode_upcoming_format	-	STR	Наступны праз %s	
+values-b+be/strings.xml	string	episode_watched	-	STR	Прагледжана	
 values-b+be/strings.xml	string	episodes	-	STR	Серый	
 values-b+be/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+be/strings.xml	string	error	-	STR	Памылка	
@@ -7319,7 +7335,9 @@ values-b+bg/strings.xml	string	episode_poster_img_des	-	STR	Episode Poster
 values-b+bg/strings.xml	string	episode_short	-	STR	Е	
 values-b+bg/strings.xml	string	episode_sync_settings	-	STR	Актуализирайте прогреса на гледане	
 values-b+bg/strings.xml	string	episode_sync_settings_des	-	STR	Автоматично синхронизирайте прогреса на текущия си епизод	
+values-b+bg/strings.xml	string	episode_time_left	-	STR	Остават %1$d мин	
 values-b+bg/strings.xml	string	episode_upcoming_format	-	STR	Предстоящо в %s	
+values-b+bg/strings.xml	string	episode_watched	-	STR	Гледано	
 values-b+bg/strings.xml	string	episodes	-	STR	Епизоди	
 values-b+bg/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+bg/strings.xml	string	error	-	STR	Грешка	
@@ -8338,7 +8356,9 @@ values-b+bn/strings.xml	string	episode_poster_img_des	-	STR	পর্বের �
 values-b+bn/strings.xml	string	episode_short	-	STR	E	
 values-b+bn/strings.xml	string	episode_sync_settings	-	STR	দেখার অগ্রগতি আপডেট করুন	
 values-b+bn/strings.xml	string	episode_sync_settings_des	-	STR	আপনার বর্তমান পর্বের অগ্রগতি স্বয়ংক্রিয়ভাবে সিঙ্ক করুন	
+values-b+bn/strings.xml	string	episode_time_left	-	STR	%1$d মিনিট বাকি	
 values-b+bn/strings.xml	string	episode_upcoming_format	-	STR	আসছে %s সময়ের মধ্যে	
+values-b+bn/strings.xml	string	episode_watched	-	STR	দেখা হয়েছে	
 values-b+bn/strings.xml	string	episodes	-	STR	পর্ব	
 values-b+bn/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+bn/strings.xml	string	error_bookmarks_text	-	STR	বুকমার্কসমূহ	
@@ -9117,6 +9137,8 @@ values-b+ca/strings.xml	string	episode_action_play_mirror	-	STR	Reprodueix en du
 values-b+ca/strings.xml	string	episode_action_reload_links	-	STR	Torna a carregar els enllaços	
 values-b+ca/strings.xml	string	episode_more_options_des	-	STR	Més opcions	
 values-b+ca/strings.xml	string	episode_poster_img_des	-	STR	Cartell de l'episodi	
+values-b+ca/strings.xml	string	episode_time_left	-	STR	Queden %1$d min	
+values-b+ca/strings.xml	string	episode_watched	-	STR	Vist	
 values-b+ca/strings.xml	string	error	-	STR	Error	
 values-b+ca/strings.xml	string	error_bookmarks_text	-	STR	Favorits	
 values-b+ca/strings.xml	string	error_invalid_data	-	STR	Dades no vàlides	
@@ -9779,6 +9801,8 @@ values-b+ckb/strings.xml	string	duration_format	-	STR	min%d
 values-b+ckb/strings.xml	string	duration_hours_minutes_format	-	STR	%1$dh %2$dm	
 values-b+ckb/strings.xml	string	episode_more_options_des	-	STR	هەڵبژاردنی زیاتر	
 values-b+ckb/strings.xml	string	episode_poster_img_des	-	STR	پۆستەری ئەڵقە	
+values-b+ckb/strings.xml	string	episode_time_left	-	STR	%1$d خولەک ماوە	
+values-b+ckb/strings.xml	string	episode_watched	-	STR	بینراوە	
 values-b+ckb/strings.xml	string	error_bookmarks_text	-	STR	ئاماژەکان	
 values-b+ckb/strings.xml	string	extension_allow	-	STR	ڕێگە بدە	
 values-b+ckb/strings.xml	string	extension_decision_not_saved	-	STR	هەڵبژاردنەکەت پاشەکەوت نەکرا، بۆیە ئەم زیادکراوەیە کوژاوە دەمێنێتەوە. دووبارە لێت دەپرسرێتەوە.	
@@ -10520,7 +10544,9 @@ values-b+cs/strings.xml	string	episode_poster_img_des	-	STR	Plakát epizody
 values-b+cs/strings.xml	string	episode_short	-	STR	E	
 values-b+cs/strings.xml	string	episode_sync_settings	-	STR	Aktualizovat postup sledování	
 values-b+cs/strings.xml	string	episode_sync_settings_des	-	STR	Automaticky synchronizovat postup sledování současné epizody	
+values-b+cs/strings.xml	string	episode_time_left	-	STR	Zbývá %1$d min	
 values-b+cs/strings.xml	string	episode_upcoming_format	-	STR	Vychází %s	
+values-b+cs/strings.xml	string	episode_watched	-	STR	Zhlédnuto	
 values-b+cs/strings.xml	string	episodes	-	STR	Epizody	
 values-b+cs/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+cs/strings.xml	string	error	-	STR	Chyba	
@@ -11656,7 +11682,9 @@ values-b+de/strings.xml	string	episode_poster_img_des	-	STR	Episodenvorschaubild
 values-b+de/strings.xml	string	episode_short	-	STR	E	
 values-b+de/strings.xml	string	episode_sync_settings	-	STR	Episodenfortschritt aktualisieren	
 values-b+de/strings.xml	string	episode_sync_settings_des	-	STR	Automatisches synchronisieren des aktuellen Episodenfortschritts	
+values-b+de/strings.xml	string	episode_time_left	-	STR	Noch %1$d Min	
 values-b+de/strings.xml	string	episode_upcoming_format	-	STR	Wird veröffentlicht in %s	
+values-b+de/strings.xml	string	episode_watched	-	STR	Gesehen	
 values-b+de/strings.xml	string	episodes	-	STR	Episoden	
 values-b+de/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+de/strings.xml	string	error	-	STR	Fehler	
@@ -12761,7 +12789,9 @@ values-b+el/strings.xml	string	episode_poster_img_des	-	STR	Αφίσα επει�
 values-b+el/strings.xml	string	episode_short	-	STR	E	
 values-b+el/strings.xml	string	episode_sync_settings	-	STR	Ενημέρωση προόδου παρακολούθησης	
 values-b+el/strings.xml	string	episode_sync_settings_des	-	STR	Αυτόματος συγχρονισμός της προόδου του τρέχοντος επεισοδίου	
+values-b+el/strings.xml	string	episode_time_left	-	STR	Απομένουν %1$d λεπ.	
 values-b+el/strings.xml	string	episode_upcoming_format	-	STR	Έρχεται σε %s	
+values-b+el/strings.xml	string	episode_watched	-	STR	Προβλήθηκε	
 values-b+el/strings.xml	string	episodes	-	STR	Επεισόδια	
 values-b+el/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+el/strings.xml	string	error	-	STR	Σφάλμα	
@@ -13652,6 +13682,8 @@ values-b+eo/strings.xml	string	episode_format	-	STR	%1$d %2$s
 values-b+eo/strings.xml	string	episode_more_options_des	-	STR	Pli da Opcioj	
 values-b+eo/strings.xml	string	episode_poster_img_des	-	STR	Epizoda Afiŝo	
 values-b+eo/strings.xml	string	episode_short	-	STR	E	
+values-b+eo/strings.xml	string	episode_time_left	-	STR	Restas %1$d min	
+values-b+eo/strings.xml	string	episode_watched	-	STR	Spektita	
 values-b+eo/strings.xml	string	episodes	-	STR	Epizodoj	
 values-b+eo/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+eo/strings.xml	string	error_bookmarks_text	-	STR	Legosignoj	
@@ -14453,7 +14485,9 @@ values-b+es/strings.xml	string	episode_poster_img_des	-	STR	Póster del episodio
 values-b+es/strings.xml	string	episode_short	-	STR	E	
 values-b+es/strings.xml	string	episode_sync_settings	-	STR	Actualizar progreso de lo visto	
 values-b+es/strings.xml	string	episode_sync_settings_des	-	STR	Sincronizar automáticamente el progreso de su episodio actual	
+values-b+es/strings.xml	string	episode_time_left	-	STR	Quedan %1$d min	
 values-b+es/strings.xml	string	episode_upcoming_format	-	STR	Próximamente en %s	
+values-b+es/strings.xml	string	episode_watched	-	STR	Visto	
 values-b+es/strings.xml	string	episodes	-	STR	Episodios	
 values-b+es/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+es/strings.xml	string	error	-	STR	Error	
@@ -15454,6 +15488,8 @@ values-b+fa/strings.xml	string	episode_more_options_des	-	STR	گزینه‌ها�
 values-b+fa/strings.xml	string	episode_poster_img_des	-	STR	پوستر قسمت	
 values-b+fa/strings.xml	string	episode_short	-	STR	ق	
 values-b+fa/strings.xml	string	episode_sync_settings	-	STR	به‌روزرسانی پیشرفت ساعت	
+values-b+fa/strings.xml	string	episode_time_left	-	STR	%1$d دقیقه مانده	
+values-b+fa/strings.xml	string	episode_watched	-	STR	دیده‌شده	
 values-b+fa/strings.xml	string	episodes	-	STR	قسمت‌ها	
 values-b+fa/strings.xml	string	error	-	STR	خطا	
 values-b+fa/strings.xml	string	error_bookmarks_text	-	STR	نشانک‌ها	
@@ -16142,6 +16178,8 @@ values-b+fil/strings.xml	string	duration_hours_minutes_format	-	STR	%1$do %2$dm
 values-b+fil/strings.xml	string	episode_more_options_des	-	STR	Iba pang Mga Pagpipilian	
 values-b+fil/strings.xml	string	episode_poster_img_des	-	STR	Poster ng Kabanata	
 values-b+fil/strings.xml	string	episode_sync_settings_des	-	STR	Awtomatikong i-sync ang iyong kasalukuyang episode	
+values-b+fil/strings.xml	string	episode_time_left	-	STR	%1$d min na lang	
+values-b+fil/strings.xml	string	episode_watched	-	STR	Napanood na	
 values-b+fil/strings.xml	string	error_bookmarks_text	-	STR	Mga Bookmark	
 values-b+fil/strings.xml	string	error_loading_links_toast	-	STR	Nagkamali sa paglo-load ng mga link	
 values-b+fil/strings.xml	string	extension_allow	-	STR	Payagan	
@@ -16911,7 +16949,9 @@ values-b+fr/strings.xml	string	episode_poster_img_des	-	STR	Affiche de l'épisod
 values-b+fr/strings.xml	string	episode_short	-	STR	E	
 values-b+fr/strings.xml	string	episode_sync_settings	-	STR	Mise à jour de la progression du visionnage	
 values-b+fr/strings.xml	string	episode_sync_settings_des	-	STR	Synchronisation automatique de la progression de votre épisode en cours	
+values-b+fr/strings.xml	string	episode_time_left	-	STR	Encore %1$d min	
 values-b+fr/strings.xml	string	episode_upcoming_format	-	STR	À venir dans %s	
+values-b+fr/strings.xml	string	episode_watched	-	STR	Vu	
 values-b+fr/strings.xml	string	episodes	-	STR	Épisodes	
 values-b+fr/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+fr/strings.xml	string	error	-	STR	Erreur	
@@ -17906,7 +17946,9 @@ values-b+gl/strings.xml	string	episode_poster_img_des	-	STR	Póster do Episodio
 values-b+gl/strings.xml	string	episode_short	-	STR	C	
 values-b+gl/strings.xml	string	episode_sync_settings	-	STR	Actualizar progreso do visto	
 values-b+gl/strings.xml	string	episode_sync_settings_des	-	STR	Sincronizar automáticamente o progreso do episodio actual	
+values-b+gl/strings.xml	string	episode_time_left	-	STR	Quedan %1$d min	
 values-b+gl/strings.xml	string	episode_upcoming_format	-	STR	Próximamente en %s	
+values-b+gl/strings.xml	string	episode_watched	-	STR	Visto	
 values-b+gl/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+gl/strings.xml	string	error_bookmarks_text	-	STR	Marcadores	
 values-b+gl/strings.xml	string	error_loading_links_toast	-	STR	Error Cargando Ligazón	
@@ -18637,7 +18679,9 @@ values-b+hi/strings.xml	string	episode_poster_img_des	-	STR	एपिसोड �
 values-b+hi/strings.xml	string	episode_short	-	STR	E	
 values-b+hi/strings.xml	string	episode_sync_settings	-	STR	देखा हुआ प्रोग्रेस अपडेट करें	
 values-b+hi/strings.xml	string	episode_sync_settings_des	-	STR	अपने वर्तमान प्रकरण की प्रगति को स्वचालित रूप से समकालीन बनाएं	
+values-b+hi/strings.xml	string	episode_time_left	-	STR	%1$d मिनट बाकी	
 values-b+hi/strings.xml	string	episode_upcoming_format	-	STR	%s में	
+values-b+hi/strings.xml	string	episode_watched	-	STR	देखा गया	
 values-b+hi/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+hi/strings.xml	string	error_bookmarks_text	-	STR	बुकमार्क्स	
 values-b+hi/strings.xml	string	error_loading_links_toast	-	STR	लिंक लोड करने में त्रुटि	
@@ -19562,7 +19606,9 @@ values-b+hr/strings.xml	string	episode_poster_img_des	-	STR	Poster epizode
 values-b+hr/strings.xml	string	episode_short	-	STR	E	
 values-b+hr/strings.xml	string	episode_sync_settings	-	STR	Ažuriraj napredak gledanja	
 values-b+hr/strings.xml	string	episode_sync_settings_des	-	STR	Automatski sinkronizira vaš trenutni napredak u filmu ili epizodi	
+values-b+hr/strings.xml	string	episode_time_left	-	STR	Još %1$d min	
 values-b+hr/strings.xml	string	episode_upcoming_format	-	STR	Sljedeća u %s	
+values-b+hr/strings.xml	string	episode_watched	-	STR	Pogledano	
 values-b+hr/strings.xml	string	episodes	-	STR	Epizoda	
 values-b+hr/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+hr/strings.xml	string	error	-	STR	Pogreška	
@@ -20653,7 +20699,9 @@ values-b+hu/strings.xml	string	episode_poster_img_des	-	STR	Epizód Plakát
 values-b+hu/strings.xml	string	episode_short	-	STR	Ep	
 values-b+hu/strings.xml	string	episode_sync_settings	-	STR	Előrehaladás frissítése	
 values-b+hu/strings.xml	string	episode_sync_settings_des	-	STR	Automatikusan szinkronizálja az aktuális epizód előrehaladását	
+values-b+hu/strings.xml	string	episode_time_left	-	STR	Még %1$d perc	
 values-b+hu/strings.xml	string	episode_upcoming_format	-	STR	Hamarosan érkezik a(z) %s	
+values-b+hu/strings.xml	string	episode_watched	-	STR	Megnézve	
 values-b+hu/strings.xml	string	episodes	-	STR	Epizódok	
 values-b+hu/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+hu/strings.xml	string	error	-	STR	Hiba	
@@ -21701,7 +21749,9 @@ values-b+in/strings.xml	string	episode_poster_img_des	-	STR	Poster Episode
 values-b+in/strings.xml	string	episode_short	-	STR	E	
 values-b+in/strings.xml	string	episode_sync_settings	-	STR	Perbarui progres tontonan	
 values-b+in/strings.xml	string	episode_sync_settings_des	-	STR	Sinkronisasikan progres episode saat ini secara otomatis	
+values-b+in/strings.xml	string	episode_time_left	-	STR	Sisa %1$d mnt	
 values-b+in/strings.xml	string	episode_upcoming_format	-	STR	Akan datang di %s	
+values-b+in/strings.xml	string	episode_watched	-	STR	Sudah ditonton	
 values-b+in/strings.xml	string	episodes	-	STR	Episode	
 values-b+in/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+in/strings.xml	string	error	-	STR	Error	
@@ -22861,7 +22911,9 @@ values-b+it/strings.xml	string	episode_poster_img_des	-	STR	Poster episodio
 values-b+it/strings.xml	string	episode_short	-	STR	E	
 values-b+it/strings.xml	string	episode_sync_settings	-	STR	Aggiorna progresso di visione	
 values-b+it/strings.xml	string	episode_sync_settings_des	-	STR	Sincronizza automaticamente gli episodi guardati	
+values-b+it/strings.xml	string	episode_time_left	-	STR	Mancano %1$d min	
 values-b+it/strings.xml	string	episode_upcoming_format	-	STR	Prossimamente tra %s	
+values-b+it/strings.xml	string	episode_watched	-	STR	Visto	
 values-b+it/strings.xml	string	episodes	-	STR	Episodi	
 values-b+it/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+it/strings.xml	string	error	-	STR	Errore	
@@ -23936,6 +23988,8 @@ values-b+iw/strings.xml	string	episode_poster_img_des	-	STR	הפוסטר של ה
 values-b+iw/strings.xml	string	episode_short	-	STR	פר	
 values-b+iw/strings.xml	string	episode_sync_settings	-	STR	עדכן התקדמות צפייה	
 values-b+iw/strings.xml	string	episode_sync_settings_des	-	STR	סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך	
+values-b+iw/strings.xml	string	episode_time_left	-	STR	נותרו %1$d דק׳	
+values-b+iw/strings.xml	string	episode_watched	-	STR	נצפה	
 values-b+iw/strings.xml	string	episodes	-	STR	פרקים	
 values-b+iw/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+iw/strings.xml	string	error	-	STR	שגיאה	
@@ -24936,7 +24990,9 @@ values-b+ja/strings.xml	string	episode_poster_img_des	-	STR	エピソードポ�
 values-b+ja/strings.xml	string	episode_short	-	STR	エピソード	
 values-b+ja/strings.xml	string	episode_sync_settings	-	STR	視聴進捗を更新	
 values-b+ja/strings.xml	string	episode_sync_settings_des	-	STR	現在のエピソードの進捗を自動的に同期	
+values-b+ja/strings.xml	string	episode_time_left	-	STR	残り%1$d分	
 values-b+ja/strings.xml	string	episode_upcoming_format	-	STR	%s 後に公開	
+values-b+ja/strings.xml	string	episode_watched	-	STR	視聴済み	
 values-b+ja/strings.xml	string	episodes	-	STR	エピソード	
 values-b+ja/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+ja/strings.xml	string	error	-	STR	エラー	
@@ -25863,6 +25919,8 @@ values-b+kn/strings.xml	string	downloads_watched	-	STR	%d%% ವೀಕ್ಷಿ�
 values-b+kn/strings.xml	string	duration_format	-	STR	%dಮಿನ	
 values-b+kn/strings.xml	string	episode_more_options_des	-	STR	ಹೆಚ್ಚಿನ ಆಯ್ಕೆ	
 values-b+kn/strings.xml	string	episode_poster_img_des	-	STR	ಸಂಚಿಕೆ ಪೋಸ್ಟರ್	
+values-b+kn/strings.xml	string	episode_time_left	-	STR	%1$d ನಿಮಿಷ ಬಾಕಿ	
+values-b+kn/strings.xml	string	episode_watched	-	STR	ವೀಕ್ಷಿಸಲಾಗಿದೆ	
 values-b+kn/strings.xml	string	error_bookmarks_text	-	STR	ಬುಕ್‌ಮಾರ್ಕ್‌	
 values-b+kn/strings.xml	string	error_loading_links_toast	-	STR	ಲೋಡಿಂಗ್ ಲಿಂಕ್ ಎರರ್ ಬಂದಿದೆ	
 values-b+kn/strings.xml	string	extension_allow	-	STR	ಅನುಮತಿಸಿ	
@@ -26572,7 +26630,9 @@ values-b+ko/strings.xml	string	episode_poster_img_des	-	STR	에피소드 포스�
 values-b+ko/strings.xml	string	episode_short	-	STR	에피소드	
 values-b+ko/strings.xml	string	episode_sync_settings	-	STR	시청 진행 상황 업데이트	
 values-b+ko/strings.xml	string	episode_sync_settings_des	-	STR	현재 에피소드 진행 상황을 자동으로 동기화합니다	
+values-b+ko/strings.xml	string	episode_time_left	-	STR	%1$d분 남음	
 values-b+ko/strings.xml	string	episode_upcoming_format	-	STR	%s 후 공개 예정	
+values-b+ko/strings.xml	string	episode_watched	-	STR	시청함	
 values-b+ko/strings.xml	string	episodes	-	STR	에피소드	
 values-b+ko/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+ko/strings.xml	string	error	-	STR	오류	
@@ -27580,6 +27640,8 @@ values-b+lt/strings.xml	string	episode_action_reload_links	-	STR	Perkrauti nuoro
 values-b+lt/strings.xml	string	episode_format	-	STR	%1$d %2$s	
 values-b+lt/strings.xml	string	episode_more_options_des	-	STR	Daugiau parinkčių	
 values-b+lt/strings.xml	string	episode_poster_img_des	-	STR	Serijos plakatas	
+values-b+lt/strings.xml	string	episode_time_left	-	STR	Liko %1$d min	
+values-b+lt/strings.xml	string	episode_watched	-	STR	Peržiūrėta	
 values-b+lt/strings.xml	string	episodes	-	STR	Serijos	
 values-b+lt/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+lt/strings.xml	string	error	-	STR	Klaida	
@@ -28405,6 +28467,8 @@ values-b+lv/strings.xml	string	episode_poster_img_des	-	STR	Epizodes plakāts
 values-b+lv/strings.xml	string	episode_short	-	STR	E	
 values-b+lv/strings.xml	string	episode_sync_settings	-	STR	Atjaunināt skatīšanos progresu	
 values-b+lv/strings.xml	string	episode_sync_settings_des	-	STR	Automātiski sync savu pašreizējo epizodes progresu	
+values-b+lv/strings.xml	string	episode_time_left	-	STR	Atlikušas %1$d min.	
+values-b+lv/strings.xml	string	episode_watched	-	STR	Noskatīts	
 values-b+lv/strings.xml	string	episodes	-	STR	Epizodes	
 values-b+lv/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+lv/strings.xml	string	error	-	STR	Kļūda	
@@ -29466,7 +29530,9 @@ values-b+mk/strings.xml	string	episode_poster_img_des	-	STR	Постер за е
 values-b+mk/strings.xml	string	episode_short	-	STR	Е	
 values-b+mk/strings.xml	string	episode_sync_settings	-	STR	Ажурирај го напредокот на гледање	
 values-b+mk/strings.xml	string	episode_sync_settings_des	-	STR	Автоматски синхронизирај го напредокот на твојата тековна епизода	
+values-b+mk/strings.xml	string	episode_time_left	-	STR	Преостануваат %1$d мин	
 values-b+mk/strings.xml	string	episode_upcoming_format	-	STR	Претстои во %s	
+values-b+mk/strings.xml	string	episode_watched	-	STR	Гледано	
 values-b+mk/strings.xml	string	episodes	-	STR	Епизоди	
 values-b+mk/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+mk/strings.xml	string	error	-	STR	Грешка	
@@ -30448,6 +30514,8 @@ values-b+ml/strings.xml	string	episode_action_play_in_format	-	STR	%sയിൽ �
 values-b+ml/strings.xml	string	episode_action_reload_links	-	STR	ലിങ്ക്സ് വീണ്ടും ലോഡുചെയ്യുക	
 values-b+ml/strings.xml	string	episode_more_options_des	-	STR	കൂടുതൽ ഓപ്ഷൻസ്	
 values-b+ml/strings.xml	string	episode_poster_img_des	-	STR	എപ്പിസോഡ് പോസ്റ്റർ	
+values-b+ml/strings.xml	string	episode_time_left	-	STR	%1$d മിനിറ്റ് ബാക്കി	
+values-b+ml/strings.xml	string	episode_watched	-	STR	കണ്ടു	
 values-b+ml/strings.xml	string	episodes	-	STR	എപ്പിസോഡുകൾ	
 values-b+ml/strings.xml	string	error_bookmarks_text	-	STR	ബുക്മാർക്	
 values-b+ml/strings.xml	string	error_loading_links_toast	-	STR	ലിങ്കിൽ തകരാർ	
@@ -31199,7 +31267,9 @@ values-b+ms/strings.xml	string	episode_poster_img_des	-	STR	Poster Episod
 values-b+ms/strings.xml	string	episode_short	-	STR	E	
 values-b+ms/strings.xml	string	episode_sync_settings	-	STR	Kemaskini kemajuan tontonan	
 values-b+ms/strings.xml	string	episode_sync_settings_des	-	STR	Selaraskan kemajuan episod secara automatik	
+values-b+ms/strings.xml	string	episode_time_left	-	STR	Tinggal %1$d min	
 values-b+ms/strings.xml	string	episode_upcoming_format	-	STR	Akan datang pada %s	
+values-b+ms/strings.xml	string	episode_watched	-	STR	Sudah ditonton	
 values-b+ms/strings.xml	string	error	-	STR	Ralat	
 values-b+ms/strings.xml	string	error_bookmarks_text	-	STR	Penanda halaman	
 values-b+ms/strings.xml	string	error_invalid_data	-	STR	Data tidak sah	
@@ -32039,6 +32109,8 @@ values-b+mt/strings.xml	string	downloads_watched	-	STR	%d%% mħares
 values-b+mt/strings.xml	string	duration_format	-	STR	%d min	
 values-b+mt/strings.xml	string	episode_more_options_des	-	STR	Iktar Preferenzi	
 values-b+mt/strings.xml	string	episode_poster_img_des	-	STR	Kartellun tal-episodju	
+values-b+mt/strings.xml	string	episode_time_left	-	STR	Fadal %1$d min	
+values-b+mt/strings.xml	string	episode_watched	-	STR	Rajt	
 values-b+mt/strings.xml	string	error_bookmarks_text	-	STR	Bookmarks	
 values-b+mt/strings.xml	string	error_loading_links_toast	-	STR	Tagħbija tal-Links falliet	
 values-b+mt/strings.xml	string	extension_allow	-	STR	Ippermetti	
@@ -32659,6 +32731,8 @@ values-b+my/strings.xml	string	episode_poster_img_des	-	STR	အပိုင်�
 values-b+my/strings.xml	string	episode_short	-	STR	အပိုင်း	
 values-b+my/strings.xml	string	episode_sync_settings	-	STR	ကြည့်ရှုမှုတိုးတက်ခြင်းကိုအပ်ဒိတ်လုပ်ပါ	
 values-b+my/strings.xml	string	episode_sync_settings_des	-	STR	သင့်၏အပိုင်းကြည်ရှုမှုရောက်ရှိနေရာကိုအလိုအလျောက်သိမ်းဆည်းပါ	
+values-b+my/strings.xml	string	episode_time_left	-	STR	%1$d မိနစ် ကျန်	
+values-b+my/strings.xml	string	episode_watched	-	STR	ကြည့်ပြီး	
 values-b+my/strings.xml	string	episodes	-	STR	အပိုင်းများ	
 values-b+my/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+my/strings.xml	string	error	-	STR	အချို့အယွင်း	
@@ -33455,6 +33529,8 @@ values-b+ne/strings.xml	string	downloads_watched	-	STR	%d%% हेरिएक�
 values-b+ne/strings.xml	string	duration_format	-	STR	%d मिनेट	
 values-b+ne/strings.xml	string	episode_more_options_des	-	STR	थप विकल्पहरू	
 values-b+ne/strings.xml	string	episode_poster_img_des	-	STR	एपिसोडको पोस्टर	
+values-b+ne/strings.xml	string	episode_time_left	-	STR	%1$d मिनेट बाँकी	
+values-b+ne/strings.xml	string	episode_watched	-	STR	हेरिएको	
 values-b+ne/strings.xml	string	error_bookmarks_text	-	STR	बुकमार्कहरू	
 values-b+ne/strings.xml	string	error_loading_links_toast	-	STR	लिङ्क लोड गर्दा त्रुटि भयो	
 values-b+ne/strings.xml	string	extension_allow	-	STR	अनुमति दिनुहोस्	
@@ -34164,7 +34240,9 @@ values-b+nl/strings.xml	string	episode_poster_img_des	-	STR	Aflevering Poster
 values-b+nl/strings.xml	string	episode_short	-	STR	E	
 values-b+nl/strings.xml	string	episode_sync_settings	-	STR	Kijkvoortgang bijwerken	
 values-b+nl/strings.xml	string	episode_sync_settings_des	-	STR	Automatisch synchroniseren van je huidige episode vooruitgang	
+values-b+nl/strings.xml	string	episode_time_left	-	STR	Nog %1$d min	
 values-b+nl/strings.xml	string	episode_upcoming_format	-	STR	Binnenkort beschikbaar in %s	
+values-b+nl/strings.xml	string	episode_watched	-	STR	Bekeken	
 values-b+nl/strings.xml	string	episodes	-	STR	afleveringen	
 values-b+nl/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+nl/strings.xml	string	error	-	STR	Fout	
@@ -35085,6 +35163,8 @@ values-b+nn/strings.xml	string	episode_action_reload_links	-	STR	Last inn lenker
 values-b+nn/strings.xml	string	episode_more_options_des	-	STR	Fleire val	
 values-b+nn/strings.xml	string	episode_poster_img_des	-	STR	Episodeminiatyrbilete	
 values-b+nn/strings.xml	string	episode_short	-	STR	E	
+values-b+nn/strings.xml	string	episode_time_left	-	STR	%1$d min att	
+values-b+nn/strings.xml	string	episode_watched	-	STR	Sett	
 values-b+nn/strings.xml	string	episodes	-	STR	Episodar	
 values-b+nn/strings.xml	string	error_bookmarks_text	-	STR	Bokmerker	
 values-b+nn/strings.xml	string	error_loading_links_toast	-	STR	Feil ved innlasting av lenker	
@@ -35772,6 +35852,8 @@ values-b+no/strings.xml	string	episode_poster_img_des	-	STR	Episode Plakat
 values-b+no/strings.xml	string	episode_short	-	STR	E	
 values-b+no/strings.xml	string	episode_sync_settings	-	STR	Oppdater visningsframdrift	
 values-b+no/strings.xml	string	episode_sync_settings_des	-	STR	Synkroniser automatisk fremdriften din for gjeldende episode	
+values-b+no/strings.xml	string	episode_time_left	-	STR	%1$d min igjen	
+values-b+no/strings.xml	string	episode_watched	-	STR	Sett	
 values-b+no/strings.xml	string	episodes	-	STR	Episoder	
 values-b+no/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+no/strings.xml	string	error	-	STR	Feil	
@@ -36578,6 +36660,8 @@ values-b+or/strings.xml	string	episode_action_reload_links	-	STR	ଲିଙ୍କ
 values-b+or/strings.xml	string	episode_more_options_des	-	STR	ଅଧିକ ଵିକଳ୍ପ	
 values-b+or/strings.xml	string	episode_poster_img_des	-	STR	ଅଧ୍ୟାୟର ପୋଷ୍ଟର୍	
 values-b+or/strings.xml	string	episode_short	-	STR	ଅ	
+values-b+or/strings.xml	string	episode_time_left	-	STR	%1$d ମିନିଟ୍ ବାକି	
+values-b+or/strings.xml	string	episode_watched	-	STR	ଦେଖାଯାଇଛି	
 values-b+or/strings.xml	string	episodes	-	STR	ଟି ଅଧ୍ୟାୟ	
 values-b+or/strings.xml	string	error	-	STR	ତ୍ରୁଟି	
 values-b+or/strings.xml	string	extension_allow	-	STR	ଅନୁମତି ଦିଅନ୍ତୁ	
@@ -37377,7 +37461,9 @@ values-b+pl/strings.xml	string	episode_poster_img_des	-	STR	Obrazek odcinka
 values-b+pl/strings.xml	string	episode_short	-	STR	O	
 values-b+pl/strings.xml	string	episode_sync_settings	-	STR	Aktualizuj postęp oglądania	
 values-b+pl/strings.xml	string	episode_sync_settings_des	-	STR	Automatycznie synchronizuj postęp aktualnego odcinka	
+values-b+pl/strings.xml	string	episode_time_left	-	STR	Zostało %1$d min	
 values-b+pl/strings.xml	string	episode_upcoming_format	-	STR	Nadchodzące w %s	
+values-b+pl/strings.xml	string	episode_watched	-	STR	Obejrzane	
 values-b+pl/strings.xml	string	episodes	-	STR	Odcinki	
 values-b+pl/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+pl/strings.xml	string	error	-	STR	Błąd	
@@ -38537,7 +38623,9 @@ values-b+pt+BR/strings.xml	string	episode_poster_img_des	-	STR	Pôster do episó
 values-b+pt+BR/strings.xml	string	episode_short	-	STR	E	
 values-b+pt+BR/strings.xml	string	episode_sync_settings	-	STR	Atualizar progresso assistido	
 values-b+pt+BR/strings.xml	string	episode_sync_settings_des	-	STR	Sincronize automaticamente seu progresso do episódio	
+values-b+pt+BR/strings.xml	string	episode_time_left	-	STR	Faltam %1$d min	
 values-b+pt+BR/strings.xml	string	episode_upcoming_format	-	STR	Próximo em %s	
+values-b+pt+BR/strings.xml	string	episode_watched	-	STR	Assistido	
 values-b+pt+BR/strings.xml	string	episodes	-	STR	Episódios	
 values-b+pt+BR/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+pt+BR/strings.xml	string	error	-	STR	Erro	
@@ -39694,7 +39782,9 @@ values-b+pt/strings.xml	string	episode_poster_img_des	-	STR	Pôster do episódio
 values-b+pt/strings.xml	string	episode_short	-	STR	E	
 values-b+pt/strings.xml	string	episode_sync_settings	-	STR	Atualizar progresso	
 values-b+pt/strings.xml	string	episode_sync_settings_des	-	STR	Sincronizar automaticamente o progresso do seu episódio atual	
+values-b+pt/strings.xml	string	episode_time_left	-	STR	Faltam %1$d min	
 values-b+pt/strings.xml	string	episode_upcoming_format	-	STR	Próximo em %s	
+values-b+pt/strings.xml	string	episode_watched	-	STR	Visto	
 values-b+pt/strings.xml	string	episodes	-	STR	Episódios	
 values-b+pt/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+pt/strings.xml	string	error	-	STR	Erro	
@@ -40764,7 +40854,9 @@ values-b+qt/strings.xml	string	episode_poster_img_des	-	STR	oouuhahoooooo-ahahoo
 values-b+qt/strings.xml	string	episode_short	-	STR	A	
 values-b+qt/strings.xml	string	episode_sync_settings	-	STR	aaaagg aaahh aaaahhhg	
 values-b+qt/strings.xml	string	episode_sync_settings_des	-	STR	aaaaggguuuugg uuhh oohh ooooggg eeeeeek aaaagggh	
+values-b+qt/strings.xml	string	episode_time_left	-	STR	%1$d ooh haa ahhh	
 values-b+qt/strings.xml	string	episode_upcoming_format	-	STR	uuuugggg og %s	
+values-b+qt/strings.xml	string	episode_watched	-	STR	oouuh aaahhu	
 values-b+qt/strings.xml	string	episodes	-	STR	ahhh ooooo	
 values-b+qt/strings.xml	string	episodes_range	-	STR	%1$d%2$d	
 values-b+qt/strings.xml	string	error	-	STR	uuuhh	
@@ -41805,7 +41897,9 @@ values-b+ro/strings.xml	string	episode_poster_img_des	-	STR	Poster Episod
 values-b+ro/strings.xml	string	episode_short	-	STR	E	
 values-b+ro/strings.xml	string	episode_sync_settings	-	STR	Actualizați progresul ceasului	
 values-b+ro/strings.xml	string	episode_sync_settings_des	-	STR	Sincronizează automat episoadele vizionate	
+values-b+ro/strings.xml	string	episode_time_left	-	STR	Mai sunt %1$d min	
 values-b+ro/strings.xml	string	episode_upcoming_format	-	STR	Următorul în %s	
+values-b+ro/strings.xml	string	episode_watched	-	STR	Vizionat	
 values-b+ro/strings.xml	string	episodes	-	STR	Episoade	
 values-b+ro/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+ro/strings.xml	string	error	-	STR	Eroare	
@@ -42913,7 +43007,9 @@ values-b+ru/strings.xml	string	episode_poster_img_des	-	STR	Плакат сер�
 values-b+ru/strings.xml	string	episode_short	-	STR	Э	
 values-b+ru/strings.xml	string	episode_sync_settings	-	STR	Обновлять прогресс просмотра	
 values-b+ru/strings.xml	string	episode_sync_settings_des	-	STR	Автоматически синхронизировать текущий прогресс серии	
+values-b+ru/strings.xml	string	episode_time_left	-	STR	Осталось %1$d мин	
 values-b+ru/strings.xml	string	episode_upcoming_format	-	STR	Выйдет %s	
+values-b+ru/strings.xml	string	episode_watched	-	STR	Просмотрено	
 values-b+ru/strings.xml	string	episodes	-	STR	Серии	
 values-b+ru/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+ru/strings.xml	string	error	-	STR	Ошибка	
@@ -43999,7 +44095,9 @@ values-b+sk/strings.xml	string	episode_poster_img_des	-	STR	Plagát epizódy
 values-b+sk/strings.xml	string	episode_short	-	STR	E	
 values-b+sk/strings.xml	string	episode_sync_settings	-	STR	Aktualizovať priebeh sledovania	
 values-b+sk/strings.xml	string	episode_sync_settings_des	-	STR	Automaticky synchronizovať priebeh sledovania súčasnej epizódy	
+values-b+sk/strings.xml	string	episode_time_left	-	STR	Zostáva %1$d min	
 values-b+sk/strings.xml	string	episode_upcoming_format	-	STR	Nadchádzajúce o %s	
+values-b+sk/strings.xml	string	episode_watched	-	STR	Pozreté	
 values-b+sk/strings.xml	string	episodes	-	STR	Epizódy	
 values-b+sk/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+sk/strings.xml	string	error	-	STR	Chyba	
@@ -44870,6 +44968,8 @@ values-b+so/strings.xml	string	episode_poster_img_des	-	STR	Boodhka xalqadda
 values-b+so/strings.xml	string	episode_short	-	STR	X	
 values-b+so/strings.xml	string	episode_sync_settings	-	STR	Cusbooneysii marba halkaad marayso daawashada	
 values-b+so/strings.xml	string	episode_sync_settings_des	-	STR	Si iskii ah ha ula socdo appku hadba xalqadda aad marayso	
+values-b+so/strings.xml	string	episode_time_left	-	STR	%1$d daqiiqo ayaa hadhay	
+values-b+so/strings.xml	string	episode_watched	-	STR	La daawaday	
 values-b+so/strings.xml	string	episodes	-	STR	Xalqado	
 values-b+so/strings.xml	string	episodes_range	-	STR	%1$d illaa %2$d	
 values-b+so/strings.xml	string	error	-	STR	Xumaaday	
@@ -45863,7 +45963,9 @@ values-b+sq/strings.xml	string	episode_poster_img_des	-	STR	Posteri i episodit
 values-b+sq/strings.xml	string	episode_short	-	STR	E	
 values-b+sq/strings.xml	string	episode_sync_settings	-	STR	Përditëso progresin e shikimit	
 values-b+sq/strings.xml	string	episode_sync_settings_des	-	STR	Sinkronizo automatikisht progresin e episodit aktual	
+values-b+sq/strings.xml	string	episode_time_left	-	STR	Mbeten %1$d min	
 values-b+sq/strings.xml	string	episode_upcoming_format	-	STR	Vazhdon në %s	
+values-b+sq/strings.xml	string	episode_watched	-	STR	Parë	
 values-b+sq/strings.xml	string	episodes	-	STR	Episode	
 values-b+sq/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+sq/strings.xml	string	error	-	STR	Gabim	
@@ -46999,7 +47101,9 @@ values-b+sv/strings.xml	string	episode_poster_img_des	-	REF	string/result_poster
 values-b+sv/strings.xml	string	episode_short	-	STR	A	
 values-b+sv/strings.xml	string	episode_sync_settings	-	STR	Uppdatera visnings förlopp	
 values-b+sv/strings.xml	string	episode_sync_settings_des	-	STR	Automatiskt uppdatera antalet episoder sedda	
+values-b+sv/strings.xml	string	episode_time_left	-	STR	%1$d min kvar	
 values-b+sv/strings.xml	string	episode_upcoming_format	-	STR	Kommer ut om %s	
+values-b+sv/strings.xml	string	episode_watched	-	STR	Sedd	
 values-b+sv/strings.xml	string	episodes	-	STR	Avsnitt	
 values-b+sv/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+sv/strings.xml	string	error	-	STR	Fel	
@@ -48135,7 +48239,9 @@ values-b+ta/strings.xml	string	episode_poster_img_des	-	STR	எபிசோட�
 values-b+ta/strings.xml	string	episode_short	-	STR	இ	
 values-b+ta/strings.xml	string	episode_sync_settings	-	STR	வாட்ச் முன்னேற்றத்தைப் புதுப்பிக்கவும்	
 values-b+ta/strings.xml	string	episode_sync_settings_des	-	STR	உங்கள் தற்போதைய அத்தியாயம் முன்னேற்றத்தை தானாக ஒத்திசைக்கவும்	
+values-b+ta/strings.xml	string	episode_time_left	-	STR	%1$d நிமி மீதம்	
 values-b+ta/strings.xml	string	episode_upcoming_format	-	STR	%s இல் வரவிருக்கும்	
+values-b+ta/strings.xml	string	episode_watched	-	STR	பார்த்தது	
 values-b+ta/strings.xml	string	episodes	-	STR	அத்தியாயங்கள்	
 values-b+ta/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+ta/strings.xml	string	error	-	STR	பிழை	
@@ -49033,6 +49139,8 @@ values-b+ti/strings.xml	string	downloads_storage_full_headline	-	STR	እኹል �
 values-b+ti/strings.xml	string	downloads_storage_legend	-	STR	%1$s ካብ %2$s ተጠቒሙ · %3$s ኣብ ውርዳት	
 values-b+ti/strings.xml	string	downloads_storage_needs	-	STR	ተወሳኺ %s የድሊ	
 values-b+ti/strings.xml	string	downloads_watched	-	STR	%d%% ተራእዩ	
+values-b+ti/strings.xml	string	episode_time_left	-	STR	%1$d ደቒቕ ተሪፉ	
+values-b+ti/strings.xml	string	episode_watched	-	STR	ተራእዩ	
 values-b+ti/strings.xml	string	extension_allow	-	STR	ፍቀድ	
 values-b+ti/strings.xml	string	extension_decision_not_saved	-	STR	ምርጫኻ ክዕቀብ ኣይከኣለን፡ ስለዚ እዚ መስፋሕፋሕ ጠፊኡ ይጸንሕ። እንደገና ክትሕተት ኢኻ።	
 values-b+ti/strings.xml	string	extension_decisions_unreadable	-	STR	ዝተዓቀበ ምርጫታትካ ክንበብ ኣይከኣለን፡ ስለዚ ኣይተወሰደን። መጠንቀቕታ ዘለዎም መስፋሕፋሕቲ ክሳብ እንደገና እትመርጽ ጠፊኦም ይጸንሑ።	
@@ -49516,6 +49624,8 @@ values-b+tl/strings.xml	string	episode_action_reload_links	-	STR	Subukan muli
 values-b+tl/strings.xml	string	episode_more_options_des	-	STR	Opsyon	
 values-b+tl/strings.xml	string	episode_poster_img_des	-	STR	Episode Poster	
 values-b+tl/strings.xml	string	episode_short	-	STR	E	
+values-b+tl/strings.xml	string	episode_time_left	-	STR	%1$d min na lang	
+values-b+tl/strings.xml	string	episode_watched	-	STR	Napanood na	
 values-b+tl/strings.xml	string	episodes	-	STR	Episodes	
 values-b+tl/strings.xml	string	error_bookmarks_text	-	STR	Bookmark	
 values-b+tl/strings.xml	string	error_loading_links_toast	-	STR	Error Loading Links	
@@ -50318,7 +50428,9 @@ values-b+tr/strings.xml	string	episode_poster_img_des	-	STR	Bölüm Afişi
 values-b+tr/strings.xml	string	episode_short	-	STR	B	
 values-b+tr/strings.xml	string	episode_sync_settings	-	STR	İzleme ilerlemesini güncelle	
 values-b+tr/strings.xml	string	episode_sync_settings_des	-	STR	Mevcut bölüm ilerlemesini otomatik eşitle	
+values-b+tr/strings.xml	string	episode_time_left	-	STR	%1$d dk kaldı	
 values-b+tr/strings.xml	string	episode_upcoming_format	-	STR	%s içinde yaklaşıyor	
+values-b+tr/strings.xml	string	episode_watched	-	STR	İzlendi	
 values-b+tr/strings.xml	string	episodes	-	STR	Bölüm	
 values-b+tr/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+tr/strings.xml	string	error	-	STR	Hata	
@@ -51502,7 +51614,9 @@ values-b+uk/strings.xml	string	episode_poster_img_des	-	STR	Постер епі�
 values-b+uk/strings.xml	string	episode_short	-	STR	Е	
 values-b+uk/strings.xml	string	episode_sync_settings	-	STR	Оновлювати прогрес перегляду	
 values-b+uk/strings.xml	string	episode_sync_settings_des	-	STR	Автоматично синхронізувати прогрес поточного епізоду	
+values-b+uk/strings.xml	string	episode_time_left	-	STR	Залишилося %1$d хв	
 values-b+uk/strings.xml	string	episode_upcoming_format	-	STR	Наступний через %s	
+values-b+uk/strings.xml	string	episode_watched	-	STR	Переглянуто	
 values-b+uk/strings.xml	string	episodes	-	STR	Епізоди	
 values-b+uk/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+uk/strings.xml	string	error	-	STR	Помилка	
@@ -52585,7 +52699,9 @@ values-b+ur/strings.xml	string	episode_poster_img_des	-	STR	قسط کا پوسٹ
 values-b+ur/strings.xml	string	episode_short	-	STR	E	
 values-b+ur/strings.xml	string	episode_sync_settings	-	STR	دیکھنے کی پیشرفت کو اپ ڈیٹ کریں	
 values-b+ur/strings.xml	string	episode_sync_settings_des	-	STR	آپ کی حالیہ قسط کی پیش رفت خود بخود مطابقت پذیر کریں	
+values-b+ur/strings.xml	string	episode_time_left	-	STR	%1$d منٹ باقی	
 values-b+ur/strings.xml	string	episode_upcoming_format	-	STR	%s میں آنے والا ہے	
+values-b+ur/strings.xml	string	episode_watched	-	STR	دیکھ لیا	
 values-b+ur/strings.xml	string	episodes	-	STR	اقساط	
 values-b+ur/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+ur/strings.xml	string	error	-	STR	خرابی	
@@ -53611,7 +53727,9 @@ values-b+vi/strings.xml	string	episode_poster_img_des	-	STR	Poster tập phim
 values-b+vi/strings.xml	string	episode_short	-	STR	Tập	
 values-b+vi/strings.xml	string	episode_sync_settings	-	STR	Cập nhật tiến trình xem	
 values-b+vi/strings.xml	string	episode_sync_settings_des	-	STR	Tự động đồng bộ tiến trình hiện tại của bạn	
+values-b+vi/strings.xml	string	episode_time_left	-	STR	Còn %1$d phút	
 values-b+vi/strings.xml	string	episode_upcoming_format	-	STR	Sắp ra mắt sau %s	
+values-b+vi/strings.xml	string	episode_watched	-	STR	Đã xem	
 values-b+vi/strings.xml	string	episodes	-	STR	Tập	
 values-b+vi/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+vi/strings.xml	string	error	-	STR	Lỗi	
@@ -54722,7 +54840,9 @@ values-b+zh+TW/strings.xml	string	episode_poster_img_des	-	STR	劇集封面
 values-b+zh+TW/strings.xml	string	episode_short	-	STR	E	
 values-b+zh+TW/strings.xml	string	episode_sync_settings	-	STR	更新觀看進度	
 values-b+zh+TW/strings.xml	string	episode_sync_settings_des	-	STR	自動同步當前劇集進度	
+values-b+zh+TW/strings.xml	string	episode_time_left	-	STR	剩下 %1$d 分鐘	
 values-b+zh+TW/strings.xml	string	episode_upcoming_format	-	STR	即將在 %s 推出	
+values-b+zh+TW/strings.xml	string	episode_watched	-	STR	已看完	
 values-b+zh+TW/strings.xml	string	episodes	-	STR	集	
 values-b+zh+TW/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+zh+TW/strings.xml	string	error	-	STR	錯誤	
@@ -55829,7 +55949,9 @@ values-b+zh/strings.xml	string	episode_poster_img_des	-	STR	剧集封面
 values-b+zh/strings.xml	string	episode_short	-	STR	E	
 values-b+zh/strings.xml	string	episode_sync_settings	-	STR	更新观看进度	
 values-b+zh/strings.xml	string	episode_sync_settings_des	-	STR	自动同步当前剧集进度	
+values-b+zh/strings.xml	string	episode_time_left	-	STR	剩余 %1$d 分钟	
 values-b+zh/strings.xml	string	episode_upcoming_format	-	STR	即将在 %s	
+values-b+zh/strings.xml	string	episode_watched	-	STR	已看完	
 values-b+zh/strings.xml	string	episodes	-	STR	集	
 values-b+zh/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values-b+zh/strings.xml	string	error	-	STR	错误	
@@ -57105,7 +57227,9 @@ values/strings.xml	string	episode_poster_img_des	-	STR	Episode Poster
 values/strings.xml	string	episode_short	-	STR	E	
 values/strings.xml	string	episode_sync_settings	-	STR	Update watch progress	
 values/strings.xml	string	episode_sync_settings_des	-	STR	Automatically sync your current episode progress	
+values/strings.xml	string	episode_time_left	-	STR	%1$d min left	
 values/strings.xml	string	episode_upcoming_format	-	STR	Upcoming in %s	
+values/strings.xml	string	episode_watched	-	STR	Watched	
 values/strings.xml	string	episodes	-	STR	Episodes	
 values/strings.xml	string	episodes_range	-	STR	%1$d-%2$d	
 values/strings.xml	string	error	-	STR	Error	

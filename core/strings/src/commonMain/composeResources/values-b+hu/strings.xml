@@ -74,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d epizód</item><item quantity="other">%d epizód</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d sikertelen</item><item quantity="other">%d sikertelen</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d cím · %2$s</item><item quantity="other">%1$d cím · %2$s</item></plurals>
+<string name="episode_time_left">Még %1$d perc</string>
+<string name="episode_watched">Megnézve</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d KÖNYVJELZŐ</item><item quantity="other">%d KÖNYVJELZŐ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d szakasz betöltése sikertelen</item><item quantity="other">%d szakasz betöltése sikertelen</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d cím</item><item quantity="other">%d cím</item></plurals>

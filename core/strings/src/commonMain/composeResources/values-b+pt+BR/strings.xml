@@ -76,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d falhou</item><item quantity="many">%d falharam</item><item quantity="other">%d falharam</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download na sequência</item><item quantity="many">%d downloads na sequência</item><item quantity="other">%d downloads na sequência</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d título · %2$s</item><item quantity="many">%1$d títulos · %2$s</item><item quantity="other">%1$d títulos · %2$s</item></plurals>
+<string name="episode_time_left">Faltam %1$d min</string>
+<string name="episode_watched">Assistido</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="many">%d DE MARCADORES</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Falha ao carregar %d seção</item><item quantity="many">Falha ao carregar %d seções</item><item quantity="other">Falha ao carregar %d seções</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d seção</item><item quantity="many">%d seções</item><item quantity="other">%d seções</item></plurals>

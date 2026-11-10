@@ -365,7 +365,9 @@
 <string name="episode_short">"Tập"</string>
 <string name="episode_sync_settings">"Cập nhật tiến trình xem"</string>
 <string name="episode_sync_settings_des">"Tự động đồng bộ tiến trình hiện tại của bạn"</string>
+<string name="episode_time_left" formatted="true">"Còn %1$d phút"</string>
 <string name="episode_upcoming_format" formatted="true">"Sắp ra mắt sau %s"</string>
+<string name="episode_watched">"Đã xem"</string>
 <string name="episodes">"Tập"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Lỗi"</string>

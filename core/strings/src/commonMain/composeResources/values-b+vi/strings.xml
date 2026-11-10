@@ -76,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d thất bại</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d tải xuống đang chờ</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d tựa · %2$s</item></plurals>
+<string name="episode_time_left">Còn %1$d phút</string>
+<string name="episode_watched">Đã xem</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d MỤC</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">Không tải được %d mục</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">%d mục</item></plurals>

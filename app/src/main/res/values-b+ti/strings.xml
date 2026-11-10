@@ -130,6 +130,8 @@
 <string name="downloads_storage_legend" formatted="true">"%1$s ካብ %2$s ተጠቒሙ · %3$s ኣብ ውርዳት"</string>
 <string name="downloads_storage_needs" formatted="true">"ተወሳኺ %s የድሊ"</string>
 <string name="downloads_watched" formatted="true">"%d%% ተራእዩ"</string>
+<string name="episode_time_left" formatted="true">"%1$d ደቒቕ ተሪፉ"</string>
+<string name="episode_watched">"ተራእዩ"</string>
 <string name="extension_allow">"ፍቀድ"</string>
 <string name="extension_decision_not_saved">"ምርጫኻ ክዕቀብ ኣይከኣለን፡ ስለዚ እዚ መስፋሕፋሕ ጠፊኡ ይጸንሕ። እንደገና ክትሕተት ኢኻ።"</string>
 <string name="extension_decisions_unreadable">"ዝተዓቀበ ምርጫታትካ ክንበብ ኣይከኣለን፡ ስለዚ ኣይተወሰደን። መጠንቀቕታ ዘለዎም መስፋሕፋሕቲ ክሳብ እንደገና እትመርጽ ጠፊኦም ይጸንሑ።"</string>

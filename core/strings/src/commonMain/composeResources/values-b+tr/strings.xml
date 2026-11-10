@@ -76,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d başarısız</item><item quantity="other">%d başarısız</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d indirme kuyrukta</item><item quantity="other">%d indirilecekler kuyruğa alındı</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d başlık · %2$s</item><item quantity="other">%1$d başlık · %2$s</item></plurals>
+<string name="episode_time_left">%1$d dk kaldı</string>
+<string name="episode_watched">İzlendi</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d YER İMİ</item><item quantity="other">%d YER İMİ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d kısım yüklenemedi</item><item quantity="other">%d kısım yüklenemedi</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d bölüm</item><item quantity="other">%d bölüm</item></plurals>

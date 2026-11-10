@@ -74,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d টা পৰ্ব</item><item quantity="other">%d টা পৰ্ব</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d টা বিফল</item><item quantity="other">%d টা বিফল</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d টা শিৰোনাম · %2$s</item><item quantity="other">%1$d টা শিৰোনাম · %2$s</item></plurals>
+<string name="episode_time_left">%1$d মিনিট বাকী</string>
+<string name="episode_watched">চোৱা হৈছে</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d টা বুকমাৰ্ক</item><item quantity="other">%d টা বুকমাৰ্ক</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d টা অংশ লোড কৰিব পৰা নগ'ল</item><item quantity="other">%d টা অংশ লোড কৰিব পৰা নগ'ল</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d টা শিৰোনাম</item><item quantity="other">%d টা শিৰোনাম</item></plurals>

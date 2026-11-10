@@ -365,7 +365,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Perbarui progres tontonan"</string>
 <string name="episode_sync_settings_des">"Sinkronisasikan progres episode saat ini secara otomatis"</string>
+<string name="episode_time_left" formatted="true">"Sisa %1$d mnt"</string>
 <string name="episode_upcoming_format" formatted="true">"Akan datang di %s"</string>
+<string name="episode_watched">"Sudah ditonton"</string>
 <string name="episodes">"Episode"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Error"</string>

@@ -333,7 +333,9 @@
 <string name="episode_short">"এ"</string>
 <string name="episode_sync_settings">"দেখাৰ প্ৰগতি আপডেট কৰক"</string>
 <string name="episode_sync_settings_des">"স্বয়ংক্ৰিয়ভাৱে আপোনাৰ বৰ্তমানৰ খণ্ডৰ প্ৰগতি ছিঙ্ক কৰক"</string>
+<string name="episode_time_left" formatted="true">"%1$d মিনিট বাকী"</string>
 <string name="episode_upcoming_format" formatted="true">"%s ত আহি আছে"</string>
+<string name="episode_watched">"চোৱা হৈছে"</string>
 <string name="episodes">"এপিচ’ডসমূহ"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"ভুল"</string>

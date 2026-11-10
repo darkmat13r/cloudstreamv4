@@ -74,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="other">%d episod</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d gagal</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d tajuk · %2$s</item></plurals>
+<string name="episode_time_left">Tinggal %1$d min</string>
+<string name="episode_watched">Sudah ditonton</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d PENANDA HALAMAN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d bahagian gagal dimuatkan</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d tajuk</item></plurals>

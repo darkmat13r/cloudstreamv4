@@ -74,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d episodi</item><item quantity="many">%d episodis</item><item quantity="other">%d episodis</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d fallida</item><item quantity="many">%d fallides</item><item quantity="other">%d fallides</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d títol · %2$s</item><item quantity="many">%1$d títols · %2$s</item><item quantity="other">%1$d títols · %2$s</item></plurals>
+<string name="episode_time_left">Queden %1$d min</string>
+<string name="episode_watched">Vist</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d FAVORIT</item><item quantity="many">%d DE FAVORITS</item><item quantity="other">%d FAVORITS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">No s'ha pogut carregar %d secció</item><item quantity="many">No s'han pogut carregar %d seccions</item><item quantity="other">No s'han pogut carregar %d seccions</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d títol</item><item quantity="many">%d títols</item><item quantity="other">%d títols</item></plurals>

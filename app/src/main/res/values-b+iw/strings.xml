@@ -286,6 +286,8 @@
 <string name="episode_short">"פר"</string>
 <string name="episode_sync_settings">"עדכן התקדמות צפייה"</string>
 <string name="episode_sync_settings_des">"סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך"</string>
+<string name="episode_time_left" formatted="true">"נותרו %1$d דק׳"</string>
+<string name="episode_watched">"נצפה"</string>
 <string name="episodes">"פרקים"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"שגיאה"</string>

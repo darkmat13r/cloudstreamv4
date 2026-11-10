@@ -153,6 +153,8 @@
 <string name="duration_format" formatted="true">"%d ደቂቃ"</string>
 <string name="episode_more_options_des">"ተጨማሪ አማራጮች"</string>
 <string name="episode_poster_img_des">"የክፍሉ ፖስተር"</string>
+<string name="episode_time_left" formatted="true">"%1$d ደቂቃ ቀርቷል"</string>
+<string name="episode_watched">"ታይቷል"</string>
 <string name="error_bookmarks_text">"ዕልባቶች"</string>
 <string name="error_loading_links_toast">"አገናኞችን መጫን ላይ ስህተት"</string>
 <string name="extension_allow">"ፍቀድ"</string>

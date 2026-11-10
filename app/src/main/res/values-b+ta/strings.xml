@@ -365,7 +365,9 @@
 <string name="episode_short">"இ"</string>
 <string name="episode_sync_settings">"வாட்ச் முன்னேற்றத்தைப் புதுப்பிக்கவும்"</string>
 <string name="episode_sync_settings_des">"உங்கள் தற்போதைய அத்தியாயம் முன்னேற்றத்தை தானாக ஒத்திசைக்கவும்"</string>
+<string name="episode_time_left" formatted="true">"%1$d நிமி மீதம்"</string>
 <string name="episode_upcoming_format" formatted="true">"%s இல் வரவிருக்கும்"</string>
+<string name="episode_watched">"பார்த்தது"</string>
 <string name="episodes">"அத்தியாயங்கள்"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"பிழை"</string>

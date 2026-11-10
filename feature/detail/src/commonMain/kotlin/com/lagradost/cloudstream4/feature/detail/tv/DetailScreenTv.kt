@@ -81,6 +81,7 @@ import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.chipsVisible
 import com.lagradost.cloudstream4.feature.detail.code
 import com.lagradost.cloudstream4.feature.detail.episodeSubtitle
+import com.lagradost.cloudstream4.feature.detail.episodeWatchLabel
 import com.lagradost.cloudstream4.feature.detail.metaRun
 import com.lagradost.cloudstream4.feature.detail.resumeCaption
 import com.lagradost.cloudstream4.feature.detail.seasonGroups
@@ -88,6 +89,7 @@ import com.lagradost.cloudstream4.feature.detail.shownSeasonIndex
 import com.lagradost.cloudstream4.feature.detail.toLinksUiState
 import com.lagradost.cloudstream4.feature.detail.toPageUiState
 import com.lagradost.cloudstream4.feature.detail.typeLabel
+import com.lagradost.cloudstream4.feature.detail.watchReadout
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
 
@@ -654,6 +656,8 @@ private fun EpisodeRow(
     }
     val code = episode.code(index)
     val codeInTitle = episode.name == null
+    // Board 7i's `.ltrail`: `WATCHED` or `24 MIN LEFT`, a muted mono readout at the row's end (`KMP-63`).
+    val watch = episodeWatchLabel(episode.watchReadout())
     ListRow(
         state = ListRowState(
             title = episode.name ?: code,
@@ -666,6 +670,9 @@ private fun EpisodeRow(
             .contentInset()
             .padding(top = CloudStreamDimens.MinFocusGap)
             .focusRequester(focusRequester),
+        trailing = watch?.let { text ->
+            { TextLine(text, CloudStreamTheme.typography.labelMono, CloudStreamTheme.colors.muted) }
+        },
     )
 }
 

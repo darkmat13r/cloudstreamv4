@@ -364,7 +364,9 @@
 <string name="episode_short">"Сер"</string>
 <string name="episode_sync_settings">"Абнаўляць працэс прагляду"</string>
 <string name="episode_sync_settings_des">"Аўтаматычна сінхранізаваць прагрэс бягучай серыі"</string>
+<string name="episode_time_left" formatted="true">"Засталося %1$d хв"</string>
 <string name="episode_upcoming_format" formatted="true">"Наступны праз %s"</string>
+<string name="episode_watched">"Прагледжана"</string>
 <string name="episodes">"Серый"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Памылка"</string>

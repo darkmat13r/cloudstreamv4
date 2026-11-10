@@ -75,6 +75,8 @@
 <plurals name="downloads_episode_count"><item quantity="zero">%d sēriju</item><item quantity="one">%d sērija</item><item quantity="other">%d sērijas</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="zero">%d neizdevās</item><item quantity="one">%d neizdevās</item><item quantity="other">%d neizdevās</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="zero">%1$d nosaukumu · %2$s</item><item quantity="one">%1$d nosaukums · %2$s</item><item quantity="other">%1$d nosaukumi · %2$s</item></plurals>
+<string name="episode_time_left">Atlikušas %1$d min.</string>
+<string name="episode_watched">Noskatīts</string>
 <plurals name="home_bookmarks_count"><item quantity="zero">%d GRĀMATZĪMJU</item><item quantity="one">%d GRĀMATZĪME</item><item quantity="other">%d GRĀMATZĪMES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">Neizdevās ielādēt %d sadaļu</item><item quantity="one">Neizdevās ielādēt %d sadaļu</item><item quantity="other">Neizdevās ielādēt %d sadaļas</item></plurals>
 <plurals name="library_title_count"><item quantity="zero">%d nosaukumu</item><item quantity="one">%d nosaukums</item><item quantity="other">%d nosaukumi</item></plurals>

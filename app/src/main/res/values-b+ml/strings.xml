@@ -219,6 +219,8 @@
 <string name="episode_action_reload_links">"ലിങ്ക്സ് വീണ്ടും ലോഡുചെയ്യുക"</string>
 <string name="episode_more_options_des">"കൂടുതൽ ഓപ്ഷൻസ്"</string>
 <string name="episode_poster_img_des">"എപ്പിസോഡ് പോസ്റ്റർ"</string>
+<string name="episode_time_left" formatted="true">"%1$d മിനിറ്റ് ബാക്കി"</string>
+<string name="episode_watched">"കണ്ടു"</string>
 <string name="episodes">"എപ്പിസോഡുകൾ"</string>
 <string name="error_bookmarks_text">"ബുക്മാർക്"</string>
 <string name="error_loading_links_toast">"ലിങ്കിൽ തകരാർ"</string>

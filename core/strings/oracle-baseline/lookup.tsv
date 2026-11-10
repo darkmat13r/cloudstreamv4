@@ -417,7 +417,9 @@ values-b+af	string	episode_poster_img_des	-	Episode plakkaat
 values-b+af	string	episode_short	-	E
 values-b+af	string	episode_sync_settings	-	Update watch progress
 values-b+af	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+af	string	episode_time_left	-	%1$d min oor
 values-b+af	string	episode_upcoming_format	-	Upcoming in %s
+values-b+af	string	episode_watched	-	Gekyk
 values-b+af	string	episodes	-	Episodes
 values-b+af	string	episodes_range	-	%1$d-%2$d
 values-b+af	string	error	-	Error
@@ -1653,7 +1655,9 @@ values-b+am	string	episode_poster_img_des	-	የክፍሉ ፖስተር
 values-b+am	string	episode_short	-	E
 values-b+am	string	episode_sync_settings	-	Update watch progress
 values-b+am	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+am	string	episode_time_left	-	%1$d ደቂቃ ቀርቷል
 values-b+am	string	episode_upcoming_format	-	Upcoming in %s
+values-b+am	string	episode_watched	-	ታይቷል
 values-b+am	string	episodes	-	Episodes
 values-b+am	string	episodes_range	-	%1$d-%2$d
 values-b+am	string	error	-	Error
@@ -2889,7 +2893,9 @@ values-b+apc	string	episode_poster_img_des	-	پوستر تبع الحلقة
 values-b+apc	string	episode_short	-	ح
 values-b+apc	string	episode_sync_settings	-	سيّڤ تاريخ المشاهدة
 values-b+apc	string	episode_sync_settings_des	-	بتسيّڤ تاريخ المشاهدة و لوين وصلت بال ڤيديو
+values-b+apc	string	episode_time_left	-	باقي %1$d دقيقة
 values-b+apc	string	episode_upcoming_format	-	رح ينزل ب %s
+values-b+apc	string	episode_watched	-	تمّت المشاهدة
 values-b+apc	string	episodes	-	حلقات
 values-b+apc	string	episodes_range	-	%1$d–%2$d
 values-b+apc	string	error	-	مشكلة
@@ -4217,7 +4223,9 @@ values-b+ar	string	episode_poster_img_des	-	ملصق الحلقة
 values-b+ar	string	episode_short	-	ح
 values-b+ar	string	episode_sync_settings	-	تحديث تقدم المشاهدة
 values-b+ar	string	episode_sync_settings_des	-	مزامنة التقدم في الحلقة الحالية تلقائيًا
+values-b+ar	string	episode_time_left	-	متبقٍ %1$d دقيقة
 values-b+ar	string	episode_upcoming_format	-	قادم خلال %s
+values-b+ar	string	episode_watched	-	تمت المشاهدة
 values-b+ar	string	episodes	-	حلقات
 values-b+ar	string	episodes_range	-	%1$d-%2$d
 values-b+ar	string	error	-	خطأ
@@ -5537,7 +5545,9 @@ values-b+ars	string	episode_poster_img_des	-	لافتة الحلقة
 values-b+ars	string	episode_short	-	يي
 values-b+ars	string	episode_sync_settings	-	تحديث مراقبة التقدم
 values-b+ars	string	episode_sync_settings_des	-	قم بمزامنة تقدم الحلقة الحالية تلقائيًا
+values-b+ars	string	episode_time_left	-	باقي %1$d دقيقة
 values-b+ars	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ars	string	episode_watched	-	تمت المشاهدة
 values-b+ars	string	episodes	-	الحلقات
 values-b+ars	string	episodes_range	-	%1$d-%2$d
 values-b+ars	string	error	-	Error
@@ -6773,7 +6783,9 @@ values-b+as	string	episode_poster_img_des	-	এপিচ'ড পোস্টা�
 values-b+as	string	episode_short	-	এ
 values-b+as	string	episode_sync_settings	-	দেখাৰ প্ৰগতি আপডেট কৰক
 values-b+as	string	episode_sync_settings_des	-	স্বয়ংক্ৰিয়ভাৱে আপোনাৰ বৰ্তমানৰ খণ্ডৰ প্ৰগতি ছিঙ্ক কৰক
+values-b+as	string	episode_time_left	-	%1$d মিনিট বাকী
 values-b+as	string	episode_upcoming_format	-	%s ত আহি আছে
+values-b+as	string	episode_watched	-	চোৱা হৈছে
 values-b+as	string	episodes	-	এপিচ’ডসমূহ
 values-b+as	string	episodes_range	-	%1$d-%2$d
 values-b+as	string	error	-	ভুল
@@ -8009,7 +8021,9 @@ values-b+az	string	episode_poster_img_des	-	Bölüm Afişası
 values-b+az	string	episode_short	-	E
 values-b+az	string	episode_sync_settings	-	Update watch progress
 values-b+az	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+az	string	episode_time_left	-	%1$d dəq qalıb
 values-b+az	string	episode_upcoming_format	-	Upcoming in %s
+values-b+az	string	episode_watched	-	Baxılıb
 values-b+az	string	episodes	-	Episodes
 values-b+az	string	episodes_range	-	%1$d-%2$d
 values-b+az	string	error	-	Error
@@ -9291,7 +9305,9 @@ values-b+be	string	episode_poster_img_des	-	Плакат серыі
 values-b+be	string	episode_short	-	Сер
 values-b+be	string	episode_sync_settings	-	Абнаўляць працэс прагляду
 values-b+be	string	episode_sync_settings_des	-	Аўтаматычна сінхранізаваць прагрэс бягучай серыі
+values-b+be	string	episode_time_left	-	Засталося %1$d хв
 values-b+be	string	episode_upcoming_format	-	Наступны праз %s
+values-b+be	string	episode_watched	-	Прагледжана
 values-b+be	string	episodes	-	Серый
 values-b+be	string	episodes_range	-	%1$d-%2$d
 values-b+be	string	error	-	Памылка
@@ -10527,7 +10543,9 @@ values-b+bg	string	episode_poster_img_des	-	Episode Poster
 values-b+bg	string	episode_short	-	Е
 values-b+bg	string	episode_sync_settings	-	Актуализирайте прогреса на гледане
 values-b+bg	string	episode_sync_settings_des	-	Автоматично синхронизирайте прогреса на текущия си епизод
+values-b+bg	string	episode_time_left	-	Остават %1$d мин
 values-b+bg	string	episode_upcoming_format	-	Предстоящо в %s
+values-b+bg	string	episode_watched	-	Гледано
 values-b+bg	string	episodes	-	Епизоди
 values-b+bg	string	episodes_range	-	%1$d-%2$d
 values-b+bg	string	error	-	Грешка
@@ -11763,7 +11781,9 @@ values-b+bn	string	episode_poster_img_des	-	পর্বের পোস্ট�
 values-b+bn	string	episode_short	-	E
 values-b+bn	string	episode_sync_settings	-	দেখার অগ্রগতি আপডেট করুন
 values-b+bn	string	episode_sync_settings_des	-	আপনার বর্তমান পর্বের অগ্রগতি স্বয়ংক্রিয়ভাবে সিঙ্ক করুন
+values-b+bn	string	episode_time_left	-	%1$d মিনিট বাকি
 values-b+bn	string	episode_upcoming_format	-	আসছে %s সময়ের মধ্যে
+values-b+bn	string	episode_watched	-	দেখা হয়েছে
 values-b+bn	string	episodes	-	পর্ব
 values-b+bn	string	episodes_range	-	%1$d-%2$d
 values-b+bn	string	error	-	Error
@@ -13020,7 +13040,9 @@ values-b+ca	string	episode_poster_img_des	-	Cartell de l'episodi
 values-b+ca	string	episode_short	-	E
 values-b+ca	string	episode_sync_settings	-	Update watch progress
 values-b+ca	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+ca	string	episode_time_left	-	Queden %1$d min
 values-b+ca	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ca	string	episode_watched	-	Vist
 values-b+ca	string	episodes	-	Episodes
 values-b+ca	string	episodes_range	-	%1$d-%2$d
 values-b+ca	string	error	-	Error
@@ -14256,7 +14278,9 @@ values-b+ckb	string	episode_poster_img_des	-	پۆستەری ئەڵقە
 values-b+ckb	string	episode_short	-	E
 values-b+ckb	string	episode_sync_settings	-	Update watch progress
 values-b+ckb	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+ckb	string	episode_time_left	-	%1$d خولەک ماوە
 values-b+ckb	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ckb	string	episode_watched	-	بینراوە
 values-b+ckb	string	episodes	-	Episodes
 values-b+ckb	string	episodes_range	-	%1$d-%2$d
 values-b+ckb	string	error	-	Error
@@ -15540,7 +15564,9 @@ values-b+cs	string	episode_poster_img_des	-	Plakát epizody
 values-b+cs	string	episode_short	-	E
 values-b+cs	string	episode_sync_settings	-	Aktualizovat postup sledování
 values-b+cs	string	episode_sync_settings_des	-	Automaticky synchronizovat postup sledování současné epizody
+values-b+cs	string	episode_time_left	-	Zbývá %1$d min
 values-b+cs	string	episode_upcoming_format	-	Vychází %s
+values-b+cs	string	episode_watched	-	Zhlédnuto
 values-b+cs	string	episodes	-	Epizody
 values-b+cs	string	episodes_range	-	%1$d-%2$d
 values-b+cs	string	error	-	Chyba
@@ -16776,7 +16802,9 @@ values-b+de	string	episode_poster_img_des	-	Episodenvorschaubild
 values-b+de	string	episode_short	-	E
 values-b+de	string	episode_sync_settings	-	Episodenfortschritt aktualisieren
 values-b+de	string	episode_sync_settings_des	-	Automatisches synchronisieren des aktuellen Episodenfortschritts
+values-b+de	string	episode_time_left	-	Noch %1$d Min
 values-b+de	string	episode_upcoming_format	-	Wird veröffentlicht in %s
+values-b+de	string	episode_watched	-	Gesehen
 values-b+de	string	episodes	-	Episoden
 values-b+de	string	episodes_range	-	%1$d-%2$d
 values-b+de	string	error	-	Fehler
@@ -18012,7 +18040,9 @@ values-b+el	string	episode_poster_img_des	-	Αφίσα επεισοδίου
 values-b+el	string	episode_short	-	E
 values-b+el	string	episode_sync_settings	-	Ενημέρωση προόδου παρακολούθησης
 values-b+el	string	episode_sync_settings_des	-	Αυτόματος συγχρονισμός της προόδου του τρέχοντος επεισοδίου
+values-b+el	string	episode_time_left	-	Απομένουν %1$d λεπ.
 values-b+el	string	episode_upcoming_format	-	Έρχεται σε %s
+values-b+el	string	episode_watched	-	Προβλήθηκε
 values-b+el	string	episodes	-	Επεισόδια
 values-b+el	string	episodes_range	-	%1$d-%2$d
 values-b+el	string	error	-	Σφάλμα
@@ -19248,7 +19278,9 @@ values-b+eo	string	episode_poster_img_des	-	Epizoda Afiŝo
 values-b+eo	string	episode_short	-	E
 values-b+eo	string	episode_sync_settings	-	Update watch progress
 values-b+eo	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+eo	string	episode_time_left	-	Restas %1$d min
 values-b+eo	string	episode_upcoming_format	-	Upcoming in %s
+values-b+eo	string	episode_watched	-	Spektita
 values-b+eo	string	episodes	-	Epizodoj
 values-b+eo	string	episodes_range	-	%1$d-%2$d
 values-b+eo	string	error	-	Error
@@ -20508,7 +20540,9 @@ values-b+es	string	episode_poster_img_des	-	Póster del episodio
 values-b+es	string	episode_short	-	E
 values-b+es	string	episode_sync_settings	-	Actualizar progreso de lo visto
 values-b+es	string	episode_sync_settings_des	-	Sincronizar automáticamente el progreso de su episodio actual
+values-b+es	string	episode_time_left	-	Quedan %1$d min
 values-b+es	string	episode_upcoming_format	-	Próximamente en %s
+values-b+es	string	episode_watched	-	Visto
 values-b+es	string	episodes	-	Episodios
 values-b+es	string	episodes_range	-	%1$d-%2$d
 values-b+es	string	error	-	Error
@@ -21744,7 +21778,9 @@ values-b+fa	string	episode_poster_img_des	-	پوستر قسمت
 values-b+fa	string	episode_short	-	ق
 values-b+fa	string	episode_sync_settings	-	به‌روزرسانی پیشرفت ساعت
 values-b+fa	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+fa	string	episode_time_left	-	%1$d دقیقه مانده
 values-b+fa	string	episode_upcoming_format	-	Upcoming in %s
+values-b+fa	string	episode_watched	-	دیده‌شده
 values-b+fa	string	episodes	-	قسمت‌ها
 values-b+fa	string	episodes_range	-	%1$d-%2$d
 values-b+fa	string	error	-	خطا
@@ -22980,7 +23016,9 @@ values-b+fil	string	episode_poster_img_des	-	Poster ng Kabanata
 values-b+fil	string	episode_short	-	E
 values-b+fil	string	episode_sync_settings	-	Update watch progress
 values-b+fil	string	episode_sync_settings_des	-	Awtomatikong i-sync ang iyong kasalukuyang episode
+values-b+fil	string	episode_time_left	-	%1$d min na lang
 values-b+fil	string	episode_upcoming_format	-	Upcoming in %s
+values-b+fil	string	episode_watched	-	Napanood na
 values-b+fil	string	episodes	-	Episodes
 values-b+fil	string	episodes_range	-	%1$d-%2$d
 values-b+fil	string	error	-	Error
@@ -24240,7 +24278,9 @@ values-b+fr	string	episode_poster_img_des	-	Affiche de l'épisode
 values-b+fr	string	episode_short	-	E
 values-b+fr	string	episode_sync_settings	-	Mise à jour de la progression du visionnage
 values-b+fr	string	episode_sync_settings_des	-	Synchronisation automatique de la progression de votre épisode en cours
+values-b+fr	string	episode_time_left	-	Encore %1$d min
 values-b+fr	string	episode_upcoming_format	-	À venir dans %s
+values-b+fr	string	episode_watched	-	Vu
 values-b+fr	string	episodes	-	Épisodes
 values-b+fr	string	episodes_range	-	%1$d-%2$d
 values-b+fr	string	error	-	Erreur
@@ -25476,7 +25516,9 @@ values-b+gl	string	episode_poster_img_des	-	Póster do Episodio
 values-b+gl	string	episode_short	-	C
 values-b+gl	string	episode_sync_settings	-	Actualizar progreso do visto
 values-b+gl	string	episode_sync_settings_des	-	Sincronizar automáticamente o progreso do episodio actual
+values-b+gl	string	episode_time_left	-	Quedan %1$d min
 values-b+gl	string	episode_upcoming_format	-	Próximamente en %s
+values-b+gl	string	episode_watched	-	Visto
 values-b+gl	string	episodes	-	Episodes
 values-b+gl	string	episodes_range	-	%1$d-%2$d
 values-b+gl	string	error	-	Error
@@ -26712,7 +26754,9 @@ values-b+hi	string	episode_poster_img_des	-	एपिसोड का पोस�
 values-b+hi	string	episode_short	-	E
 values-b+hi	string	episode_sync_settings	-	देखा हुआ प्रोग्रेस अपडेट करें
 values-b+hi	string	episode_sync_settings_des	-	अपने वर्तमान प्रकरण की प्रगति को स्वचालित रूप से समकालीन बनाएं
+values-b+hi	string	episode_time_left	-	%1$d मिनट बाकी
 values-b+hi	string	episode_upcoming_format	-	%s में
+values-b+hi	string	episode_watched	-	देखा गया
 values-b+hi	string	episodes	-	Episodes
 values-b+hi	string	episodes_range	-	%1$d-%2$d
 values-b+hi	string	error	-	Error
@@ -27971,7 +28015,9 @@ values-b+hr	string	episode_poster_img_des	-	Poster epizode
 values-b+hr	string	episode_short	-	E
 values-b+hr	string	episode_sync_settings	-	Ažuriraj napredak gledanja
 values-b+hr	string	episode_sync_settings_des	-	Automatski sinkronizira vaš trenutni napredak u filmu ili epizodi
+values-b+hr	string	episode_time_left	-	Još %1$d min
 values-b+hr	string	episode_upcoming_format	-	Sljedeća u %s
+values-b+hr	string	episode_watched	-	Pogledano
 values-b+hr	string	episodes	-	Epizoda
 values-b+hr	string	episodes_range	-	%1$d-%2$d
 values-b+hr	string	error	-	Pogreška
@@ -29207,7 +29253,9 @@ values-b+hu	string	episode_poster_img_des	-	Epizód Plakát
 values-b+hu	string	episode_short	-	Ep
 values-b+hu	string	episode_sync_settings	-	Előrehaladás frissítése
 values-b+hu	string	episode_sync_settings_des	-	Automatikusan szinkronizálja az aktuális epizód előrehaladását
+values-b+hu	string	episode_time_left	-	Még %1$d perc
 values-b+hu	string	episode_upcoming_format	-	Hamarosan érkezik a(z) %s
+values-b+hu	string	episode_watched	-	Megnézve
 values-b+hu	string	episodes	-	Epizódok
 values-b+hu	string	episodes_range	-	%1$d-%2$d
 values-b+hu	string	error	-	Hiba
@@ -30419,7 +30467,9 @@ values-b+in	string	episode_poster_img_des	-	Poster Episode
 values-b+in	string	episode_short	-	E
 values-b+in	string	episode_sync_settings	-	Perbarui progres tontonan
 values-b+in	string	episode_sync_settings_des	-	Sinkronisasikan progres episode saat ini secara otomatis
+values-b+in	string	episode_time_left	-	Sisa %1$d mnt
 values-b+in	string	episode_upcoming_format	-	Akan datang di %s
+values-b+in	string	episode_watched	-	Sudah ditonton
 values-b+in	string	episodes	-	Episode
 values-b+in	string	episodes_range	-	%1$d-%2$d
 values-b+in	string	error	-	Error
@@ -31679,7 +31729,9 @@ values-b+it	string	episode_poster_img_des	-	Poster episodio
 values-b+it	string	episode_short	-	E
 values-b+it	string	episode_sync_settings	-	Aggiorna progresso di visione
 values-b+it	string	episode_sync_settings_des	-	Sincronizza automaticamente gli episodi guardati
+values-b+it	string	episode_time_left	-	Mancano %1$d min
 values-b+it	string	episode_upcoming_format	-	Prossimamente tra %s
+values-b+it	string	episode_watched	-	Visto
 values-b+it	string	episodes	-	Episodi
 values-b+it	string	episodes_range	-	%1$d-%2$d
 values-b+it	string	error	-	Errore
@@ -32936,7 +32988,9 @@ values-b+iw	string	episode_poster_img_des	-	הפוסטר של הפרק
 values-b+iw	string	episode_short	-	פר
 values-b+iw	string	episode_sync_settings	-	עדכן התקדמות צפייה
 values-b+iw	string	episode_sync_settings_des	-	סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך
+values-b+iw	string	episode_time_left	-	נותרו %1$d דק׳
 values-b+iw	string	episode_upcoming_format	-	Upcoming in %s
+values-b+iw	string	episode_watched	-	נצפה
 values-b+iw	string	episodes	-	פרקים
 values-b+iw	string	episodes_range	-	%1$d-%2$d
 values-b+iw	string	error	-	שגיאה
@@ -34148,7 +34202,9 @@ values-b+ja	string	episode_poster_img_des	-	エピソードポスター
 values-b+ja	string	episode_short	-	エピソード
 values-b+ja	string	episode_sync_settings	-	視聴進捗を更新
 values-b+ja	string	episode_sync_settings_des	-	現在のエピソードの進捗を自動的に同期
+values-b+ja	string	episode_time_left	-	残り%1$d分
 values-b+ja	string	episode_upcoming_format	-	%s 後に公開
+values-b+ja	string	episode_watched	-	視聴済み
 values-b+ja	string	episodes	-	エピソード
 values-b+ja	string	episodes_range	-	%1$d-%2$d
 values-b+ja	string	error	-	エラー
@@ -35384,7 +35440,9 @@ values-b+kn	string	episode_poster_img_des	-	ಸಂಚಿಕೆ ಪೋಸ್ಟ�
 values-b+kn	string	episode_short	-	E
 values-b+kn	string	episode_sync_settings	-	Update watch progress
 values-b+kn	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+kn	string	episode_time_left	-	%1$d ನಿಮಿಷ ಬಾಕಿ
 values-b+kn	string	episode_upcoming_format	-	Upcoming in %s
+values-b+kn	string	episode_watched	-	ವೀಕ್ಷಿಸಲಾಗಿದೆ
 values-b+kn	string	episodes	-	Episodes
 values-b+kn	string	episodes_range	-	%1$d-%2$d
 values-b+kn	string	error	-	Error
@@ -36597,7 +36655,9 @@ values-b+ko	string	episode_poster_img_des	-	에피소드 포스터
 values-b+ko	string	episode_short	-	에피소드
 values-b+ko	string	episode_sync_settings	-	시청 진행 상황 업데이트
 values-b+ko	string	episode_sync_settings_des	-	현재 에피소드 진행 상황을 자동으로 동기화합니다
+values-b+ko	string	episode_time_left	-	%1$d분 남음
 values-b+ko	string	episode_upcoming_format	-	%s 후 공개 예정
+values-b+ko	string	episode_watched	-	시청함
 values-b+ko	string	episodes	-	에피소드
 values-b+ko	string	episodes_range	-	%1$d-%2$d
 values-b+ko	string	error	-	오류
@@ -37875,7 +37935,9 @@ values-b+lt	string	episode_poster_img_des	-	Serijos plakatas
 values-b+lt	string	episode_short	-	E
 values-b+lt	string	episode_sync_settings	-	Update watch progress
 values-b+lt	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+lt	string	episode_time_left	-	Liko %1$d min
 values-b+lt	string	episode_upcoming_format	-	Upcoming in %s
+values-b+lt	string	episode_watched	-	Peržiūrėta
 values-b+lt	string	episodes	-	Serijos
 values-b+lt	string	episodes_range	-	%1$d-%2$d
 values-b+lt	string	error	-	Klaida
@@ -39133,7 +39195,9 @@ values-b+lv	string	episode_poster_img_des	-	Epizodes plakāts
 values-b+lv	string	episode_short	-	E
 values-b+lv	string	episode_sync_settings	-	Atjaunināt skatīšanos progresu
 values-b+lv	string	episode_sync_settings_des	-	Automātiski sync savu pašreizējo epizodes progresu
+values-b+lv	string	episode_time_left	-	Atlikušas %1$d min.
 values-b+lv	string	episode_upcoming_format	-	Upcoming in %s
+values-b+lv	string	episode_watched	-	Noskatīts
 values-b+lv	string	episodes	-	Epizodes
 values-b+lv	string	episodes_range	-	%1$d-%2$d
 values-b+lv	string	error	-	Kļūda
@@ -40369,7 +40433,9 @@ values-b+mk	string	episode_poster_img_des	-	Постер за епизода
 values-b+mk	string	episode_short	-	Е
 values-b+mk	string	episode_sync_settings	-	Ажурирај го напредокот на гледање
 values-b+mk	string	episode_sync_settings_des	-	Автоматски синхронизирај го напредокот на твојата тековна епизода
+values-b+mk	string	episode_time_left	-	Преостануваат %1$d мин
 values-b+mk	string	episode_upcoming_format	-	Претстои во %s
+values-b+mk	string	episode_watched	-	Гледано
 values-b+mk	string	episodes	-	Епизоди
 values-b+mk	string	episodes_range	-	%1$d-%2$d
 values-b+mk	string	error	-	Грешка
@@ -41605,7 +41671,9 @@ values-b+ml	string	episode_poster_img_des	-	എപ്പിസോഡ് പോ�
 values-b+ml	string	episode_short	-	E
 values-b+ml	string	episode_sync_settings	-	Update watch progress
 values-b+ml	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+ml	string	episode_time_left	-	%1$d മിനിറ്റ് ബാക്കി
 values-b+ml	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ml	string	episode_watched	-	കണ്ടു
 values-b+ml	string	episodes	-	എപ്പിസോഡുകൾ
 values-b+ml	string	episodes_range	-	%1$d-%2$d
 values-b+ml	string	error	-	Error
@@ -42820,7 +42888,9 @@ values-b+ms	string	episode_poster_img_des	-	Poster Episod
 values-b+ms	string	episode_short	-	E
 values-b+ms	string	episode_sync_settings	-	Kemaskini kemajuan tontonan
 values-b+ms	string	episode_sync_settings_des	-	Selaraskan kemajuan episod secara automatik
+values-b+ms	string	episode_time_left	-	Tinggal %1$d min
 values-b+ms	string	episode_upcoming_format	-	Akan datang pada %s
+values-b+ms	string	episode_watched	-	Sudah ditonton
 values-b+ms	string	episodes	-	Episodes
 values-b+ms	string	episodes_range	-	%1$d-%2$d
 values-b+ms	string	error	-	Ralat
@@ -44119,7 +44189,9 @@ values-b+mt	string	episode_poster_img_des	-	Kartellun tal-episodju
 values-b+mt	string	episode_short	-	E
 values-b+mt	string	episode_sync_settings	-	Update watch progress
 values-b+mt	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+mt	string	episode_time_left	-	Fadal %1$d min
 values-b+mt	string	episode_upcoming_format	-	Upcoming in %s
+values-b+mt	string	episode_watched	-	Rajt
 values-b+mt	string	episodes	-	Episodes
 values-b+mt	string	episodes_range	-	%1$d-%2$d
 values-b+mt	string	error	-	Error
@@ -45334,7 +45406,9 @@ values-b+my	string	episode_poster_img_des	-	အပိုင်း ပိုစ�
 values-b+my	string	episode_short	-	အပိုင်း
 values-b+my	string	episode_sync_settings	-	ကြည့်ရှုမှုတိုးတက်ခြင်းကိုအပ်ဒိတ်လုပ်ပါ
 values-b+my	string	episode_sync_settings_des	-	သင့်၏အပိုင်းကြည်ရှုမှုရောက်ရှိနေရာကိုအလိုအလျောက်သိမ်းဆည်းပါ
+values-b+my	string	episode_time_left	-	%1$d မိနစ် ကျန်
 values-b+my	string	episode_upcoming_format	-	Upcoming in %s
+values-b+my	string	episode_watched	-	ကြည့်ပြီး
 values-b+my	string	episodes	-	အပိုင်းများ
 values-b+my	string	episodes_range	-	%1$d-%2$d
 values-b+my	string	error	-	အချို့အယွင်း
@@ -46570,7 +46644,9 @@ values-b+ne	string	episode_poster_img_des	-	एपिसोडको पोस�
 values-b+ne	string	episode_short	-	E
 values-b+ne	string	episode_sync_settings	-	Update watch progress
 values-b+ne	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+ne	string	episode_time_left	-	%1$d मिनेट बाँकी
 values-b+ne	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ne	string	episode_watched	-	हेरिएको
 values-b+ne	string	episodes	-	Episodes
 values-b+ne	string	episodes_range	-	%1$d-%2$d
 values-b+ne	string	error	-	Error
@@ -47806,7 +47882,9 @@ values-b+nl	string	episode_poster_img_des	-	Aflevering Poster
 values-b+nl	string	episode_short	-	E
 values-b+nl	string	episode_sync_settings	-	Kijkvoortgang bijwerken
 values-b+nl	string	episode_sync_settings_des	-	Automatisch synchroniseren van je huidige episode vooruitgang
+values-b+nl	string	episode_time_left	-	Nog %1$d min
 values-b+nl	string	episode_upcoming_format	-	Binnenkort beschikbaar in %s
+values-b+nl	string	episode_watched	-	Bekeken
 values-b+nl	string	episodes	-	afleveringen
 values-b+nl	string	episodes_range	-	%1$d-%2$d
 values-b+nl	string	error	-	Fout
@@ -49042,7 +49120,9 @@ values-b+nn	string	episode_poster_img_des	-	Episodeminiatyrbilete
 values-b+nn	string	episode_short	-	E
 values-b+nn	string	episode_sync_settings	-	Update watch progress
 values-b+nn	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+nn	string	episode_time_left	-	%1$d min att
 values-b+nn	string	episode_upcoming_format	-	Upcoming in %s
+values-b+nn	string	episode_watched	-	Sett
 values-b+nn	string	episodes	-	Episodar
 values-b+nn	string	episodes_range	-	%1$d-%2$d
 values-b+nn	string	error	-	Error
@@ -50278,7 +50358,9 @@ values-b+no	string	episode_poster_img_des	-	Episode Plakat
 values-b+no	string	episode_short	-	E
 values-b+no	string	episode_sync_settings	-	Oppdater visningsframdrift
 values-b+no	string	episode_sync_settings_des	-	Synkroniser automatisk fremdriften din for gjeldende episode
+values-b+no	string	episode_time_left	-	%1$d min igjen
 values-b+no	string	episode_upcoming_format	-	Upcoming in %s
+values-b+no	string	episode_watched	-	Sett
 values-b+no	string	episodes	-	Episoder
 values-b+no	string	episodes_range	-	%1$d-%2$d
 values-b+no	string	error	-	Feil
@@ -51514,7 +51596,9 @@ values-b+or	string	episode_poster_img_des	-	ଅଧ୍ୟାୟର ପୋଷ୍�
 values-b+or	string	episode_short	-	ଅ
 values-b+or	string	episode_sync_settings	-	Update watch progress
 values-b+or	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+or	string	episode_time_left	-	%1$d ମିନିଟ୍ ବାକି
 values-b+or	string	episode_upcoming_format	-	Upcoming in %s
+values-b+or	string	episode_watched	-	ଦେଖାଯାଇଛି
 values-b+or	string	episodes	-	ଟି ଅଧ୍ୟାୟ
 values-b+or	string	episodes_range	-	%1$d-%2$d
 values-b+or	string	error	-	ତ୍ରୁଟି
@@ -52798,7 +52882,9 @@ values-b+pl	string	episode_poster_img_des	-	Obrazek odcinka
 values-b+pl	string	episode_short	-	O
 values-b+pl	string	episode_sync_settings	-	Aktualizuj postęp oglądania
 values-b+pl	string	episode_sync_settings_des	-	Automatycznie synchronizuj postęp aktualnego odcinka
+values-b+pl	string	episode_time_left	-	Zostało %1$d min
 values-b+pl	string	episode_upcoming_format	-	Nadchodzące w %s
+values-b+pl	string	episode_watched	-	Obejrzane
 values-b+pl	string	episodes	-	Odcinki
 values-b+pl	string	episodes_range	-	%1$d-%2$d
 values-b+pl	string	error	-	Błąd
@@ -54058,7 +54144,9 @@ values-b+pt	string	episode_poster_img_des	-	Pôster do episódio
 values-b+pt	string	episode_short	-	E
 values-b+pt	string	episode_sync_settings	-	Atualizar progresso
 values-b+pt	string	episode_sync_settings_des	-	Sincronizar automaticamente o progresso do seu episódio atual
+values-b+pt	string	episode_time_left	-	Faltam %1$d min
 values-b+pt	string	episode_upcoming_format	-	Próximo em %s
+values-b+pt	string	episode_watched	-	Visto
 values-b+pt	string	episodes	-	Episódios
 values-b+pt	string	episodes_range	-	%1$d-%2$d
 values-b+pt	string	error	-	Erro
@@ -55318,7 +55406,9 @@ values-b+pt+BR	string	episode_poster_img_des	-	Pôster do episódio
 values-b+pt+BR	string	episode_short	-	E
 values-b+pt+BR	string	episode_sync_settings	-	Atualizar progresso assistido
 values-b+pt+BR	string	episode_sync_settings_des	-	Sincronize automaticamente seu progresso do episódio
+values-b+pt+BR	string	episode_time_left	-	Faltam %1$d min
 values-b+pt+BR	string	episode_upcoming_format	-	Próximo em %s
+values-b+pt+BR	string	episode_watched	-	Assistido
 values-b+pt+BR	string	episodes	-	Episódios
 values-b+pt+BR	string	episodes_range	-	%1$d-%2$d
 values-b+pt+BR	string	error	-	Erro
@@ -56533,7 +56623,9 @@ values-b+qt	string	episode_poster_img_des	-	oouuhahoooooo-ahahoooohh
 values-b+qt	string	episode_short	-	A
 values-b+qt	string	episode_sync_settings	-	aaaagg aaahh aaaahhhg
 values-b+qt	string	episode_sync_settings_des	-	aaaaggguuuugg uuhh oohh ooooggg eeeeeek aaaagggh
+values-b+qt	string	episode_time_left	-	%1$d ooh haa ahhh
 values-b+qt	string	episode_upcoming_format	-	uuuugggg og %s
+values-b+qt	string	episode_watched	-	oouuh aaahhu
 values-b+qt	string	episodes	-	ahhh ooooo
 values-b+qt	string	episodes_range	-	%1$d%2$d
 values-b+qt	string	error	-	uuuhh
@@ -57790,7 +57882,9 @@ values-b+ro	string	episode_poster_img_des	-	Poster Episod
 values-b+ro	string	episode_short	-	E
 values-b+ro	string	episode_sync_settings	-	Actualizați progresul ceasului
 values-b+ro	string	episode_sync_settings_des	-	Sincronizează automat episoadele vizionate
+values-b+ro	string	episode_time_left	-	Mai sunt %1$d min
 values-b+ro	string	episode_upcoming_format	-	Următorul în %s
+values-b+ro	string	episode_watched	-	Vizionat
 values-b+ro	string	episodes	-	Episoade
 values-b+ro	string	episodes_range	-	%1$d-%2$d
 values-b+ro	string	error	-	Eroare
@@ -59074,7 +59168,9 @@ values-b+ru	string	episode_poster_img_des	-	Плакат серии
 values-b+ru	string	episode_short	-	Э
 values-b+ru	string	episode_sync_settings	-	Обновлять прогресс просмотра
 values-b+ru	string	episode_sync_settings_des	-	Автоматически синхронизировать текущий прогресс серии
+values-b+ru	string	episode_time_left	-	Осталось %1$d мин
 values-b+ru	string	episode_upcoming_format	-	Выйдет %s
+values-b+ru	string	episode_watched	-	Просмотрено
 values-b+ru	string	episodes	-	Серии
 values-b+ru	string	episodes_range	-	%1$d-%2$d
 values-b+ru	string	error	-	Ошибка
@@ -60352,7 +60448,9 @@ values-b+sk	string	episode_poster_img_des	-	Plagát epizódy
 values-b+sk	string	episode_short	-	E
 values-b+sk	string	episode_sync_settings	-	Aktualizovať priebeh sledovania
 values-b+sk	string	episode_sync_settings_des	-	Automaticky synchronizovať priebeh sledovania súčasnej epizódy
+values-b+sk	string	episode_time_left	-	Zostáva %1$d min
 values-b+sk	string	episode_upcoming_format	-	Nadchádzajúce o %s
+values-b+sk	string	episode_watched	-	Pozreté
 values-b+sk	string	episodes	-	Epizódy
 values-b+sk	string	episodes_range	-	%1$d-%2$d
 values-b+sk	string	error	-	Chyba
@@ -61588,7 +61686,9 @@ values-b+so	string	episode_poster_img_des	-	Boodhka xalqadda
 values-b+so	string	episode_short	-	X
 values-b+so	string	episode_sync_settings	-	Cusbooneysii marba halkaad marayso daawashada
 values-b+so	string	episode_sync_settings_des	-	Si iskii ah ha ula socdo appku hadba xalqadda aad marayso
+values-b+so	string	episode_time_left	-	%1$d daqiiqo ayaa hadhay
 values-b+so	string	episode_upcoming_format	-	Upcoming in %s
+values-b+so	string	episode_watched	-	La daawaday
 values-b+so	string	episodes	-	Xalqado
 values-b+so	string	episodes_range	-	%1$d illaa %2$d
 values-b+so	string	error	-	Xumaaday
@@ -62824,7 +62924,9 @@ values-b+sq	string	episode_poster_img_des	-	Posteri i episodit
 values-b+sq	string	episode_short	-	E
 values-b+sq	string	episode_sync_settings	-	Përditëso progresin e shikimit
 values-b+sq	string	episode_sync_settings_des	-	Sinkronizo automatikisht progresin e episodit aktual
+values-b+sq	string	episode_time_left	-	Mbeten %1$d min
 values-b+sq	string	episode_upcoming_format	-	Vazhdon në %s
+values-b+sq	string	episode_watched	-	Parë
 values-b+sq	string	episodes	-	Episode
 values-b+sq	string	episodes_range	-	%1$d-%2$d
 values-b+sq	string	error	-	Gabim
@@ -64060,7 +64162,9 @@ values-b+sv	string	episode_poster_img_des	-	Affisch
 values-b+sv	string	episode_short	-	A
 values-b+sv	string	episode_sync_settings	-	Uppdatera visnings förlopp
 values-b+sv	string	episode_sync_settings_des	-	Automatiskt uppdatera antalet episoder sedda
+values-b+sv	string	episode_time_left	-	%1$d min kvar
 values-b+sv	string	episode_upcoming_format	-	Kommer ut om %s
+values-b+sv	string	episode_watched	-	Sedd
 values-b+sv	string	episodes	-	Avsnitt
 values-b+sv	string	episodes_range	-	%1$d-%2$d
 values-b+sv	string	error	-	Fel
@@ -65296,7 +65400,9 @@ values-b+ta	string	episode_poster_img_des	-	எபிசோட்டின் �
 values-b+ta	string	episode_short	-	இ
 values-b+ta	string	episode_sync_settings	-	வாட்ச் முன்னேற்றத்தைப் புதுப்பிக்கவும்
 values-b+ta	string	episode_sync_settings_des	-	உங்கள் தற்போதைய அத்தியாயம் முன்னேற்றத்தை தானாக ஒத்திசைக்கவும்
+values-b+ta	string	episode_time_left	-	%1$d நிமி மீதம்
 values-b+ta	string	episode_upcoming_format	-	%s இல் வரவிருக்கும்
+values-b+ta	string	episode_watched	-	பார்த்தது
 values-b+ta	string	episodes	-	அத்தியாயங்கள்
 values-b+ta	string	episodes_range	-	%1$d-%2$d
 values-b+ta	string	error	-	பிழை
@@ -66532,7 +66638,9 @@ values-b+ti	string	episode_poster_img_des	-	Episode Poster
 values-b+ti	string	episode_short	-	E
 values-b+ti	string	episode_sync_settings	-	Update watch progress
 values-b+ti	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+ti	string	episode_time_left	-	%1$d ደቒቕ ተሪፉ
 values-b+ti	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ti	string	episode_watched	-	ተራእዩ
 values-b+ti	string	episodes	-	Episodes
 values-b+ti	string	episodes_range	-	%1$d-%2$d
 values-b+ti	string	error	-	Error
@@ -67768,7 +67876,9 @@ values-b+tl	string	episode_poster_img_des	-	Episode Poster
 values-b+tl	string	episode_short	-	E
 values-b+tl	string	episode_sync_settings	-	Update watch progress
 values-b+tl	string	episode_sync_settings_des	-	Awtomatikong i-sync ang iyong kasalukuyang episode
+values-b+tl	string	episode_time_left	-	%1$d min na lang
 values-b+tl	string	episode_upcoming_format	-	Upcoming in %s
+values-b+tl	string	episode_watched	-	Napanood na
 values-b+tl	string	episodes	-	Episodes
 values-b+tl	string	episodes_range	-	%1$d-%2$d
 values-b+tl	string	error	-	Error
@@ -69004,7 +69114,9 @@ values-b+tr	string	episode_poster_img_des	-	Bölüm Afişi
 values-b+tr	string	episode_short	-	B
 values-b+tr	string	episode_sync_settings	-	İzleme ilerlemesini güncelle
 values-b+tr	string	episode_sync_settings_des	-	Mevcut bölüm ilerlemesini otomatik eşitle
+values-b+tr	string	episode_time_left	-	%1$d dk kaldı
 values-b+tr	string	episode_upcoming_format	-	%s içinde yaklaşıyor
+values-b+tr	string	episode_watched	-	İzlendi
 values-b+tr	string	episodes	-	Bölüm
 values-b+tr	string	episodes_range	-	%1$d-%2$d
 values-b+tr	string	error	-	Hata
@@ -70288,7 +70400,9 @@ values-b+uk	string	episode_poster_img_des	-	Постер епізоду
 values-b+uk	string	episode_short	-	Е
 values-b+uk	string	episode_sync_settings	-	Оновлювати прогрес перегляду
 values-b+uk	string	episode_sync_settings_des	-	Автоматично синхронізувати прогрес поточного епізоду
+values-b+uk	string	episode_time_left	-	Залишилося %1$d хв
 values-b+uk	string	episode_upcoming_format	-	Наступний через %s
+values-b+uk	string	episode_watched	-	Переглянуто
 values-b+uk	string	episodes	-	Епізоди
 values-b+uk	string	episodes_range	-	%1$d-%2$d
 values-b+uk	string	error	-	Помилка
@@ -71524,7 +71638,9 @@ values-b+ur	string	episode_poster_img_des	-	قسط کا پوسٹر
 values-b+ur	string	episode_short	-	E
 values-b+ur	string	episode_sync_settings	-	دیکھنے کی پیشرفت کو اپ ڈیٹ کریں
 values-b+ur	string	episode_sync_settings_des	-	آپ کی حالیہ قسط کی پیش رفت خود بخود مطابقت پذیر کریں
+values-b+ur	string	episode_time_left	-	%1$d منٹ باقی
 values-b+ur	string	episode_upcoming_format	-	%s میں آنے والا ہے
+values-b+ur	string	episode_watched	-	دیکھ لیا
 values-b+ur	string	episodes	-	اقساط
 values-b+ur	string	episodes_range	-	%1$d-%2$d
 values-b+ur	string	error	-	خرابی
@@ -72736,7 +72852,9 @@ values-b+vi	string	episode_poster_img_des	-	Poster tập phim
 values-b+vi	string	episode_short	-	Tập
 values-b+vi	string	episode_sync_settings	-	Cập nhật tiến trình xem
 values-b+vi	string	episode_sync_settings_des	-	Tự động đồng bộ tiến trình hiện tại của bạn
+values-b+vi	string	episode_time_left	-	Còn %1$d phút
 values-b+vi	string	episode_upcoming_format	-	Sắp ra mắt sau %s
+values-b+vi	string	episode_watched	-	Đã xem
 values-b+vi	string	episodes	-	Tập
 values-b+vi	string	episodes_range	-	%1$d-%2$d
 values-b+vi	string	error	-	Lỗi
@@ -73948,7 +74066,9 @@ values-b+zh	string	episode_poster_img_des	-	剧集封面
 values-b+zh	string	episode_short	-	E
 values-b+zh	string	episode_sync_settings	-	更新观看进度
 values-b+zh	string	episode_sync_settings_des	-	自动同步当前剧集进度
+values-b+zh	string	episode_time_left	-	剩余 %1$d 分钟
 values-b+zh	string	episode_upcoming_format	-	即将在 %s
+values-b+zh	string	episode_watched	-	已看完
 values-b+zh	string	episodes	-	集
 values-b+zh	string	episodes_range	-	%1$d-%2$d
 values-b+zh	string	error	-	错误
@@ -75161,7 +75281,9 @@ values-b+zh+TW	string	episode_poster_img_des	-	劇集封面
 values-b+zh+TW	string	episode_short	-	E
 values-b+zh+TW	string	episode_sync_settings	-	更新觀看進度
 values-b+zh+TW	string	episode_sync_settings_des	-	自動同步當前劇集進度
+values-b+zh+TW	string	episode_time_left	-	剩下 %1$d 分鐘
 values-b+zh+TW	string	episode_upcoming_format	-	即將在 %s 推出
+values-b+zh+TW	string	episode_watched	-	已看完
 values-b+zh+TW	string	episodes	-	集
 values-b+zh+TW	string	episodes_range	-	%1$d-%2$d
 values-b+zh+TW	string	error	-	錯誤
@@ -76397,7 +76519,9 @@ en	string	episode_poster_img_des	-	Episode Poster
 en	string	episode_short	-	E
 en	string	episode_sync_settings	-	Update watch progress
 en	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+en	string	episode_time_left	-	%1$d min left
 en	string	episode_upcoming_format	-	Upcoming in %s
+en	string	episode_watched	-	Watched
 en	string	episodes	-	Episodes
 en	string	episodes_range	-	%1$d-%2$d
 en	string	error	-	Error
@@ -77633,7 +77757,9 @@ en-US	string	episode_poster_img_des	-	Episode Poster
 en-US	string	episode_short	-	E
 en-US	string	episode_sync_settings	-	Update watch progress
 en-US	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+en-US	string	episode_time_left	-	%1$d min left
 en-US	string	episode_upcoming_format	-	Upcoming in %s
+en-US	string	episode_watched	-	Watched
 en-US	string	episodes	-	Episodes
 en-US	string	episodes_range	-	%1$d-%2$d
 en-US	string	error	-	Error
@@ -78869,7 +78995,9 @@ en-GB	string	episode_poster_img_des	-	Episode Poster
 en-GB	string	episode_short	-	E
 en-GB	string	episode_sync_settings	-	Update watch progress
 en-GB	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+en-GB	string	episode_time_left	-	%1$d min left
 en-GB	string	episode_upcoming_format	-	Upcoming in %s
+en-GB	string	episode_watched	-	Watched
 en-GB	string	episodes	-	Episodes
 en-GB	string	episodes_range	-	%1$d-%2$d
 en-GB	string	error	-	Error
@@ -80129,7 +80257,9 @@ pt	string	episode_poster_img_des	-	Pôster do episódio
 pt	string	episode_short	-	E
 pt	string	episode_sync_settings	-	Atualizar progresso
 pt	string	episode_sync_settings_des	-	Sincronizar automaticamente o progresso do seu episódio atual
+pt	string	episode_time_left	-	Faltam %1$d min
 pt	string	episode_upcoming_format	-	Próximo em %s
+pt	string	episode_watched	-	Visto
 pt	string	episodes	-	Episódios
 pt	string	episodes_range	-	%1$d-%2$d
 pt	string	error	-	Erro
@@ -81389,7 +81519,9 @@ pt-PT	string	episode_poster_img_des	-	Pôster do episódio
 pt-PT	string	episode_short	-	E
 pt-PT	string	episode_sync_settings	-	Atualizar progresso
 pt-PT	string	episode_sync_settings_des	-	Sincronizar automaticamente o progresso do seu episódio atual
+pt-PT	string	episode_time_left	-	Faltam %1$d min
 pt-PT	string	episode_upcoming_format	-	Próximo em %s
+pt-PT	string	episode_watched	-	Visto
 pt-PT	string	episodes	-	Episódios
 pt-PT	string	episodes_range	-	%1$d-%2$d
 pt-PT	string	error	-	Erro
@@ -82649,7 +82781,9 @@ pt-BR	string	episode_poster_img_des	-	Pôster do episódio
 pt-BR	string	episode_short	-	E
 pt-BR	string	episode_sync_settings	-	Atualizar progresso assistido
 pt-BR	string	episode_sync_settings_des	-	Sincronize automaticamente seu progresso do episódio
+pt-BR	string	episode_time_left	-	Faltam %1$d min
 pt-BR	string	episode_upcoming_format	-	Próximo em %s
+pt-BR	string	episode_watched	-	Assistido
 pt-BR	string	episodes	-	Episódios
 pt-BR	string	episodes_range	-	%1$d-%2$d
 pt-BR	string	error	-	Erro
@@ -83885,7 +84019,9 @@ fil	string	episode_poster_img_des	-	Poster ng Kabanata
 fil	string	episode_short	-	E
 fil	string	episode_sync_settings	-	Update watch progress
 fil	string	episode_sync_settings_des	-	Awtomatikong i-sync ang iyong kasalukuyang episode
+fil	string	episode_time_left	-	%1$d min na lang
 fil	string	episode_upcoming_format	-	Upcoming in %s
+fil	string	episode_watched	-	Napanood na
 fil	string	episodes	-	Episodes
 fil	string	episodes_range	-	%1$d-%2$d
 fil	string	error	-	Error
@@ -85121,7 +85257,9 @@ tl	string	episode_poster_img_des	-	Episode Poster
 tl	string	episode_short	-	E
 tl	string	episode_sync_settings	-	Update watch progress
 tl	string	episode_sync_settings_des	-	Awtomatikong i-sync ang iyong kasalukuyang episode
+tl	string	episode_time_left	-	%1$d min na lang
 tl	string	episode_upcoming_format	-	Upcoming in %s
+tl	string	episode_watched	-	Napanood na
 tl	string	episodes	-	Episodes
 tl	string	episodes_range	-	%1$d-%2$d
 tl	string	error	-	Error
@@ -86357,7 +86495,9 @@ fil-PH	string	episode_poster_img_des	-	Poster ng Kabanata
 fil-PH	string	episode_short	-	E
 fil-PH	string	episode_sync_settings	-	Update watch progress
 fil-PH	string	episode_sync_settings_des	-	Awtomatikong i-sync ang iyong kasalukuyang episode
+fil-PH	string	episode_time_left	-	%1$d min na lang
 fil-PH	string	episode_upcoming_format	-	Upcoming in %s
+fil-PH	string	episode_watched	-	Napanood na
 fil-PH	string	episodes	-	Episodes
 fil-PH	string	episodes_range	-	%1$d-%2$d
 fil-PH	string	error	-	Error
@@ -87569,7 +87709,9 @@ zh	string	episode_poster_img_des	-	剧集封面
 zh	string	episode_short	-	E
 zh	string	episode_sync_settings	-	更新观看进度
 zh	string	episode_sync_settings_des	-	自动同步当前剧集进度
+zh	string	episode_time_left	-	剩余 %1$d 分钟
 zh	string	episode_upcoming_format	-	即将在 %s
+zh	string	episode_watched	-	已看完
 zh	string	episodes	-	集
 zh	string	episodes_range	-	%1$d-%2$d
 zh	string	error	-	错误
@@ -88781,7 +88923,9 @@ zh-CN	string	episode_poster_img_des	-	剧集封面
 zh-CN	string	episode_short	-	E
 zh-CN	string	episode_sync_settings	-	更新观看进度
 zh-CN	string	episode_sync_settings_des	-	自动同步当前剧集进度
+zh-CN	string	episode_time_left	-	剩余 %1$d 分钟
 zh-CN	string	episode_upcoming_format	-	即将在 %s
+zh-CN	string	episode_watched	-	已看完
 zh-CN	string	episodes	-	集
 zh-CN	string	episodes_range	-	%1$d-%2$d
 zh-CN	string	error	-	错误
@@ -89993,7 +90137,9 @@ zh-Hans-CN	string	episode_poster_img_des	-	剧集封面
 zh-Hans-CN	string	episode_short	-	E
 zh-Hans-CN	string	episode_sync_settings	-	更新观看进度
 zh-Hans-CN	string	episode_sync_settings_des	-	自动同步当前剧集进度
+zh-Hans-CN	string	episode_time_left	-	剩余 %1$d 分钟
 zh-Hans-CN	string	episode_upcoming_format	-	即将在 %s
+zh-Hans-CN	string	episode_watched	-	已看完
 zh-Hans-CN	string	episodes	-	集
 zh-Hans-CN	string	episodes_range	-	%1$d-%2$d
 zh-Hans-CN	string	error	-	错误
@@ -91206,7 +91352,9 @@ zh-TW	string	episode_poster_img_des	-	劇集封面
 zh-TW	string	episode_short	-	E
 zh-TW	string	episode_sync_settings	-	更新觀看進度
 zh-TW	string	episode_sync_settings_des	-	自動同步當前劇集進度
+zh-TW	string	episode_time_left	-	剩下 %1$d 分鐘
 zh-TW	string	episode_upcoming_format	-	即將在 %s 推出
+zh-TW	string	episode_watched	-	已看完
 zh-TW	string	episodes	-	集
 zh-TW	string	episodes_range	-	%1$d-%2$d
 zh-TW	string	error	-	錯誤
@@ -92419,7 +92567,9 @@ zh-Hant-TW	string	episode_poster_img_des	-	劇集封面
 zh-Hant-TW	string	episode_short	-	E
 zh-Hant-TW	string	episode_sync_settings	-	更新觀看進度
 zh-Hant-TW	string	episode_sync_settings_des	-	自動同步當前劇集進度
+zh-Hant-TW	string	episode_time_left	-	剩下 %1$d 分鐘
 zh-Hant-TW	string	episode_upcoming_format	-	即將在 %s 推出
+zh-Hant-TW	string	episode_watched	-	已看完
 zh-Hant-TW	string	episodes	-	集
 zh-Hant-TW	string	episodes_range	-	%1$d-%2$d
 zh-Hant-TW	string	error	-	錯誤
@@ -93632,7 +93782,9 @@ zh-HK	string	episode_poster_img_des	-	劇集封面
 zh-HK	string	episode_short	-	E
 zh-HK	string	episode_sync_settings	-	更新觀看進度
 zh-HK	string	episode_sync_settings_des	-	自動同步當前劇集進度
+zh-HK	string	episode_time_left	-	剩下 %1$d 分鐘
 zh-HK	string	episode_upcoming_format	-	即將在 %s 推出
+zh-HK	string	episode_watched	-	已看完
 zh-HK	string	episodes	-	集
 zh-HK	string	episodes_range	-	%1$d-%2$d
 zh-HK	string	error	-	錯誤
@@ -94845,7 +94997,9 @@ zh-Hant-HK	string	episode_poster_img_des	-	劇集封面
 zh-Hant-HK	string	episode_short	-	E
 zh-Hant-HK	string	episode_sync_settings	-	更新觀看進度
 zh-Hant-HK	string	episode_sync_settings_des	-	自動同步當前劇集進度
+zh-Hant-HK	string	episode_time_left	-	剩下 %1$d 分鐘
 zh-Hant-HK	string	episode_upcoming_format	-	即將在 %s 推出
+zh-Hant-HK	string	episode_watched	-	已看完
 zh-Hant-HK	string	episodes	-	集
 zh-Hant-HK	string	episodes_range	-	%1$d-%2$d
 zh-Hant-HK	string	error	-	錯誤
@@ -96081,7 +96235,9 @@ no	string	episode_poster_img_des	-	Episode Plakat
 no	string	episode_short	-	E
 no	string	episode_sync_settings	-	Oppdater visningsframdrift
 no	string	episode_sync_settings_des	-	Synkroniser automatisk fremdriften din for gjeldende episode
+no	string	episode_time_left	-	%1$d min igjen
 no	string	episode_upcoming_format	-	Upcoming in %s
+no	string	episode_watched	-	Sett
 no	string	episodes	-	Episoder
 no	string	episodes_range	-	%1$d-%2$d
 no	string	error	-	Feil
@@ -97317,7 +97473,9 @@ nb	string	episode_poster_img_des	-	Episode Poster
 nb	string	episode_short	-	E
 nb	string	episode_sync_settings	-	Update watch progress
 nb	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+nb	string	episode_time_left	-	%1$d min left
 nb	string	episode_upcoming_format	-	Upcoming in %s
+nb	string	episode_watched	-	Watched
 nb	string	episodes	-	Episodes
 nb	string	episodes_range	-	%1$d-%2$d
 nb	string	error	-	Error
@@ -98553,7 +98711,9 @@ nb-NO	string	episode_poster_img_des	-	Episode Poster
 nb-NO	string	episode_short	-	E
 nb-NO	string	episode_sync_settings	-	Update watch progress
 nb-NO	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+nb-NO	string	episode_time_left	-	%1$d min left
 nb-NO	string	episode_upcoming_format	-	Upcoming in %s
+nb-NO	string	episode_watched	-	Watched
 nb-NO	string	episodes	-	Episodes
 nb-NO	string	episodes_range	-	%1$d-%2$d
 nb-NO	string	error	-	Error
@@ -99810,7 +99970,9 @@ iw	string	episode_poster_img_des	-	הפוסטר של הפרק
 iw	string	episode_short	-	פר
 iw	string	episode_sync_settings	-	עדכן התקדמות צפייה
 iw	string	episode_sync_settings_des	-	סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך
+iw	string	episode_time_left	-	נותרו %1$d דק׳
 iw	string	episode_upcoming_format	-	Upcoming in %s
+iw	string	episode_watched	-	נצפה
 iw	string	episodes	-	פרקים
 iw	string	episodes_range	-	%1$d-%2$d
 iw	string	error	-	שגיאה
@@ -101067,7 +101229,9 @@ he	string	episode_poster_img_des	-	הפוסטר של הפרק
 he	string	episode_short	-	פר
 he	string	episode_sync_settings	-	עדכן התקדמות צפייה
 he	string	episode_sync_settings_des	-	סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך
+he	string	episode_time_left	-	נותרו %1$d דק׳
 he	string	episode_upcoming_format	-	Upcoming in %s
+he	string	episode_watched	-	נצפה
 he	string	episodes	-	פרקים
 he	string	episodes_range	-	%1$d-%2$d
 he	string	error	-	שגיאה
@@ -102324,7 +102488,9 @@ he-IL	string	episode_poster_img_des	-	הפוסטר של הפרק
 he-IL	string	episode_short	-	פר
 he-IL	string	episode_sync_settings	-	עדכן התקדמות צפייה
 he-IL	string	episode_sync_settings_des	-	סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך
+he-IL	string	episode_time_left	-	נותרו %1$d דק׳
 he-IL	string	episode_upcoming_format	-	Upcoming in %s
+he-IL	string	episode_watched	-	נצפה
 he-IL	string	episodes	-	פרקים
 he-IL	string	episodes_range	-	%1$d-%2$d
 he-IL	string	error	-	שגיאה
@@ -103536,7 +103702,9 @@ in	string	episode_poster_img_des	-	Poster Episode
 in	string	episode_short	-	E
 in	string	episode_sync_settings	-	Perbarui progres tontonan
 in	string	episode_sync_settings_des	-	Sinkronisasikan progres episode saat ini secara otomatis
+in	string	episode_time_left	-	Sisa %1$d mnt
 in	string	episode_upcoming_format	-	Akan datang di %s
+in	string	episode_watched	-	Sudah ditonton
 in	string	episodes	-	Episode
 in	string	episodes_range	-	%1$d-%2$d
 in	string	error	-	Error
@@ -104748,7 +104916,9 @@ id	string	episode_poster_img_des	-	Poster Episode
 id	string	episode_short	-	E
 id	string	episode_sync_settings	-	Perbarui progres tontonan
 id	string	episode_sync_settings_des	-	Sinkronisasikan progres episode saat ini secara otomatis
+id	string	episode_time_left	-	Sisa %1$d mnt
 id	string	episode_upcoming_format	-	Akan datang di %s
+id	string	episode_watched	-	Sudah ditonton
 id	string	episodes	-	Episode
 id	string	episodes_range	-	%1$d-%2$d
 id	string	error	-	Error
@@ -105960,7 +106130,9 @@ id-ID	string	episode_poster_img_des	-	Poster Episode
 id-ID	string	episode_short	-	E
 id-ID	string	episode_sync_settings	-	Perbarui progres tontonan
 id-ID	string	episode_sync_settings_des	-	Sinkronisasikan progres episode saat ini secara otomatis
+id-ID	string	episode_time_left	-	Sisa %1$d mnt
 id-ID	string	episode_upcoming_format	-	Akan datang di %s
+id-ID	string	episode_watched	-	Sudah ditonton
 id-ID	string	episodes	-	Episode
 id-ID	string	episodes_range	-	%1$d-%2$d
 id-ID	string	error	-	Error
@@ -107196,7 +107368,9 @@ arz	string	episode_poster_img_des	-	Episode Poster
 arz	string	episode_short	-	E
 arz	string	episode_sync_settings	-	Update watch progress
 arz	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+arz	string	episode_time_left	-	%1$d min left
 arz	string	episode_upcoming_format	-	Upcoming in %s
+arz	string	episode_watched	-	Watched
 arz	string	episodes	-	Episodes
 arz	string	episodes_range	-	%1$d-%2$d
 arz	string	error	-	Error

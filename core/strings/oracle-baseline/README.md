@@ -120,16 +120,12 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
-## Thirty-sixth move, 2026-11-11 — `KMP-95f`, 2 new keys: a sign-in the Keychain would not keep, or remove
+## Thirty-fifth move, 2026-11-10 — `I18N-25`, 2 new keys for an episode row's watch state (`KMP-63`)
 
-New keys are approved in general (`I18N-09`). On a signed build the Keychain holds sign-ins, and the PM's ruling
-(2026-11-09) is that a Keychain failure fails closed, so the screen says when one was not kept, or not removed. Additive:
-`account_signin_not_kept` and `account_signin_not_removed`, no plurals, authored in all 62 directories (`OWN` grows by
-124). The Android res came out with 124 lines added and 0 removed, and `app/api/classes-jar.api` gains only the two `R`
-fields. Numbered thirty-first on an older base; regenerated from the live generator on master's thirty-fourth move
-(`20ec055e3`, train 19) when `KMP-95f` rebased for train 20. Numbered thirty-sixth because it rebases after `#312`'s
-thirty-third and `#346`'s thirty-fifth; train 20 regenerates the baseline once over all of them, which settles the
-numbers.
+New keys are approved in general (`I18N-09`). Additive: `episode_watched` ("Watched") and `episode_time_left` ("%1$d min
+left"), no plural, each authored in all 62 directories (`OWN` grows by 124). Regenerated from the live generator on master
+`20ec055e3` (Train 19), which holds the thirty-fourth move (`KMP-110c2`). The thirty-third stays `#312`'s: if it lands
+first, this is regenerated on top of it before this lands.
 
 | file | before | after | added | changed | lost |
 |---|---|---|---|---|---|
@@ -139,12 +135,12 @@ numbers.
 | `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
 | `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
 
-Measured twice over, a multiset in Python that also checked order and `sort | comm`: 0 lines lost in any file, every
-line that was in a file before is in it after in the same order, and every added line names one of the two keys: 62
-lines each in `decoded`, 64 each in `emitted` (the `values-b+he` and `values-b+id` copies), 87 each in `lookup`.
-`report.txt` moved only in its counts: `OWN` 55,662 -> 55,786, visible keys 1,201 -> 1,203, plurals unchanged at 32,
-and two more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at
-173.** `expectedOwn` 55,662 -> 55,786, and `OracleBaselineTest`'s row counts to the three after-counts above.
+Measured twice, by whole-line set difference with `sort | comm` and with a Python multiset that also checked order: no
+line lost, every earlier line still there in the same order, and every added line names one of the two keys.
+`report.txt` moved only in its counts: `OWN` 55,662 -> 55,786, visible keys 1,201 -> 1,203, plurals unchanged at 32, and 2
+more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.**
+`expectedOwn` 55,662 -> 55,786. `app/src/main/res`: 124 lines added, 0 removed; `app/api/classes-jar.api` gains the two
+`R.string` fields and nothing else.
 
 ## Thirty-fourth move, 2026-11-10 — `KMP-110c2`, 40 new English keys for the Mac's Extensions pane
 
@@ -167,30 +163,6 @@ line lost, every earlier line still there in the same order, and every added lin
 `decoded`'s 42 are the 38 strings and the 2 plurals' two categories each. `OWN` 55,622 -> 55,662, `REFERENCE_IN_LOCALE`
 500 and `ANDROID_FALLBACK` 173 unchanged, and `expectedOwn` to match. `app/src/main/res`: 40 lines added, 0 removed;
 `app/api/classes-jar.api` gains the 40 `R.string` fields and nothing else.
-
-## Thirty-third move, 2026-11-10 — `KMP-104`, 1 new key: who voices a character
-
-New keys are approved in general (`I18N-09`), and the PM asked for this line (2026-11-09, `DS-26` C3b): a voice actor
-under a person's role on the Mac title page. Additive: `cast_voiced_by`, no plurals, authored in all 62 directories
-(`OWN` grows by 62). The Android res came out with 62 lines added and 0 removed, and `app/api/classes-jar.api` gains
-only the one `R` field. Numbered thirty-second on train 16's master; regenerated from the live generator on master's
-thirty-fourth move (`20ec055e3`, train 19) when `KMP-104` rebased for train 20, and numbered thirty-third, the slot
-the thirty-fourth left for it.
-
-| file | before | after | added | changed | lost |
-|---|---|---|---|---|---|
-| `decoded.tsv` | 57,738 | 57,800 | 62 | 0 | 0 |
-| `emitted.tsv` | 60,441 | 60,505 | 64 | 0 | 0 |
-| `lookup.tsv` | 107,754 | 107,841 | 87 | 0 | 0 |
-| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
-| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
-
-Measured twice over, a multiset in Python that also checked order and `sort | comm`: 0 lines lost in any file, every
-line that was in a file before is in it after in the same order, and every added line names the key: 62 in `decoded`,
-64 in `emitted` (the `values-b+he` and `values-b+id` copies), 87 in `lookup`. `report.txt` moved only in its counts:
-`OWN` 55,662 -> 55,724, visible keys 1,201 -> 1,202, plurals unchanged at 32, and one more value in each of the two
-locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 55,662 -> 55,724,
-and `OracleBaselineTest`'s row counts to the three after-counts above.
 
 ## Thirty-second move, 2026-11-10 — `I18N-23`, 1 new key for the subtitle picker (`BUG-77`)
 
