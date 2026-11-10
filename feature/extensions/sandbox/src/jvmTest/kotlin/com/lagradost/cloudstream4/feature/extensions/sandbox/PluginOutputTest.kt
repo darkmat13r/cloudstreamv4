@@ -91,15 +91,24 @@ class PluginOutputTest {
     }
 
     @Test
-    fun `a control character inside a token does not rejoin it once removed`() {
-        val split = "Zq8Xv3Lm9Pt2Rk\nWd4Hs6Nb1Yc5G"
-        val joined = split.replace("\n", "")
-        assertFalse(joined in PluginFailed("IllegalStateException: $split").message.orEmpty())
-        val stderr = HostStderr()
-        val bytes = "key ${split.replace('\n', '\r')} end\n".toByteArray()
-        stderr.feed(bytes, bytes.size)
-        stderr.finish()
-        assertFalse(joined in stderr.redactedLog, stderr.redactedLog)
+    fun `a control character inside a token does not hide either half of it`() {
+        // Each half is under 24 characters, so only the token as a whole meets the rule.
+        val halves = listOf("Zq8Xv3Lm9Pt2Rk", "Wd4Hs6Nb1Yc5G")
+        listOf('\n', '\r', '\u0000').forEach { control ->
+            val split = halves.joinToString(control.toString())
+            val reported = PluginFailed("IllegalStateException: $split").message.orEmpty()
+            val stderr = HostStderr()
+            val bytes = "key $split end\n".toByteArray()
+            stderr.feed(bytes, bytes.size)
+            stderr.finish()
+            halves.forEach { half ->
+                assertFalse(half in reported, "${control.code}: $half in $reported")
+                // On stderr a line feed ends the line, so a token printed across two lines is two lines there.
+                if (control != '\n') {
+                    assertFalse(half in stderr.redactedLog, "${control.code}: $half in ${stderr.redactedLog}")
+                }
+            }
+        }
     }
 
     // ---- HostStderr: what is kept of a host's stderr ---------------------------------------------------------

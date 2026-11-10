@@ -3357,6 +3357,9 @@ a stack frame, it is kept.
     cut by either cut. A 30-character token and an IPv4 address across character 400 come out redacted (tests);
     with the old order they do not (checked).
   - Control characters were removed after redaction, so a `\r` inside a token split it for the rules and then
-    rejoined it. They become spaces first now (test; red with the old order).
+    rejoined it. They are removed before it now, so the halves are read as one run and the whole token is redacted
+    (test: neither half appears, after `\n`, `\r` or NUL; red with the control replaced by a space instead). On stderr
+    a line feed ends a line, so a token a plugin prints across two lines is two lines there, each half shown when it
+    is under 24 characters.
 - **Follow-up, not here:** `close()` waits up to 500 ms for stderr to drain, so a report made after it can still miss
   the end of a slow host's output.

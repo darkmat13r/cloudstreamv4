@@ -28,18 +28,19 @@ fun String.redactedPluginText(): String = withoutUrls()
 /**
  * [redactedPluginText], then at most [limit] characters: in that order, because a token or an address cut at the limit
  * first would be too short for its rule (`#335` review). A word cut by either cut goes whole, for the same reason.
- * Control characters become spaces first: removed after, a line break inside a token would rejoin its two halves.
+ * Control characters go first, so a line break inside a token cannot split it into halves too short for the rule:
+ * the halves join, and the whole is redacted. Joining two real words too is the safe direction.
  */
 fun String.redactedWithin(limit: Int): String {
     val input = take(limit * INPUT_PER_OUTPUT)
     val whole = if (length > input.length) input.substringBeforeLast(' ', "") else input
-    val redacted = whole.controlsAsSpaces().redactedPluginText()
+    val redacted = whole.withoutControls().redactedPluginText()
     if (redacted.length <= limit) return redacted
     return redacted.take(limit - CUT_MARK.length).substringBeforeLast(' ', "") + CUT_MARK
 }
 
-/** Every control character as a space, so it still separates the words on either side of it. */
-internal fun String.controlsAsSpaces(): String = map { if (it.isISOControl()) ' ' else it }.joinToString("")
+/** Without its control characters, so the text on either side of one is read as one run. */
+internal fun String.withoutControls(): String = filterNot { it.isISOControl() }
 
 /** How much more text is read than kept: enough for redaction to shorten it, bounded so a huge message costs little. */
 private const val INPUT_PER_OUTPUT = 4
@@ -143,7 +144,7 @@ internal class HostStderr(private val maxLogChars: Int = MAX_LOG_CHARS) {
             return
         }
         if (log.length < maxLogChars) {
-            log.append(text.controlsAsSpaces().redactedPluginText().take(maxLogChars - log.length))
+            log.append(text.withoutControls().redactedPluginText().take(maxLogChars - log.length))
             log.append('\n')
         }
     }
