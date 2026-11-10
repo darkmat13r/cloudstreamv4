@@ -8350,6 +8350,22 @@ offline rule; the cache's size cap; the cache's hashed name; no install while un
 **Green:** `:desktopApp:jvmTest` 812 of 812; the five gates passed, 278 XML results with 0 failures;
 `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
 
+**Review (`#345`):**
+- **Cancel stops the network now.** The call is closed the moment the caller is cancelled, by a child that waits for
+  cancellation, rather than on completion, which a blocking read delayed to the end of the body or the 120 s limit. The
+  add's Cancel reads through the same fetch. Tested against a server that holds the connection open: `cancelAndJoin`
+  returns within a second, and the server sees its socket close. Red: without the close, the test fails.
+- **A removal that cannot account for every file is refused** (`removeFailed`), and the repository stays: with the
+  installed list unreadable, or a file that cannot be deleted. A review row is dropped only for a file that went. Red:
+  each of the two checks removed fails its own test.
+- **An install is recorded before it starts** (`CoroutineStart.LAZY`). Not red-checked, because it could not be made
+  to fail: in the code before, the completion handler was registered after the entry was added, and a handler on a job
+  already finished runs at once, so the entry was always taken away. The test (an unconfined scope, so an install that
+  fails at once finishes inside `launch`) passes either way and stays as a guard.
+
+Green: `:desktopApp:jvmTest` 816 of 816; the five gates passed, 278 XML results with 0 failures;
+`:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
+
 #### 110c2 — next
 
 - [ ] The Settings → Extensions pane, the repository screen and the Remove sheet, against `DS-27`; Home's "No sources

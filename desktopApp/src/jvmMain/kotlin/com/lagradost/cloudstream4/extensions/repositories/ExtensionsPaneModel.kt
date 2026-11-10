@@ -7,6 +7,7 @@ import com.lagradost.cloudstream4.feature.extensions.ExtensionListing
 import java.io.IOException
 import java.security.MessageDigest
 import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.async
 import kotlinx.coroutines.awaitAll
@@ -128,6 +129,8 @@ data class ExtensionsPaneState(
     val waiting: Int = 0,
     val offline: Boolean = false,
     val listsFromMillis: Long? = null,
+    /** A removal could not be done, so nothing was removed: the installed list could not be read, or a file deleted. */
+    val removeFailed: Boolean = false,
 )
 
 /** What the pane needs of the running extensions: `SandboxedExtensions`, in the app. */
@@ -279,7 +282,8 @@ class ExtensionsPaneModel(
         val id = url to internalName
         if (id in installing.value) return
         failures.update { it - id }
-        val job = scope.launch {
+        // `#345` review: recorded before it can run, so a fast finish cannot leave a permanent Installing behind it.
+        val job = scope.launch(start = CoroutineStart.LAZY) {
             val result = installer.install(url, listing) { received, stated ->
                 installing.update { current -> current[id]?.let { current + (id to Installing(it.job, received, stated)) } ?: current }
                 publish()
@@ -301,6 +305,7 @@ class ExtensionsPaneModel(
             publish()
         }
         publish()
+        job.start()
     }
 
     /** Cancel on an installing row (X4a): the download stops, and nothing is written or recorded. */
@@ -313,13 +318,30 @@ class ExtensionsPaneModel(
     fun removeExtension(key: String, internalName: String) {
         val url = urlFor(key) ?: return
         scope.launch {
-            installed.read().orEmpty().filter { it.repositoryUrl == url && it.internalName == internalName }.forEach { entry ->
-                extensions.forget(entry.fileName)
-                runCatching { installer.remove(entry.fileName) }
-                reviews.forget(entry.fileName)
-            }
+            _state.update { it.copy(removeFailed = false) }
+            val list = installed.read() ?: return@launch removeFailed()
+            if (!removeAll(list.filter { it.repositoryUrl == url && it.internalName == internalName })) removeFailed()
             publish()
         }
+    }
+
+    /**
+     * Stops and deletes each of [entries]. A review row is dropped only for a file that really went.
+     *
+     * @return false when any could not be deleted.
+     */
+    private suspend fun removeAll(entries: List<InstalledFromRepository>): Boolean {
+        var all = true
+        entries.forEach { entry ->
+            extensions.forget(entry.fileName)
+            val removed = runCatching { installer.remove(entry.fileName) }.getOrDefault(false)
+            if (removed) reviews.forget(entry.fileName) else all = false
+        }
+        return all
+    }
+
+    private fun removeFailed() {
+        _state.update { it.copy(removeFailed = true) }
     }
 
     /** How many of its extensions a repository's removal takes with it, for X3b's sheet. */
@@ -332,12 +354,12 @@ class ExtensionsPaneModel(
     fun removeRepository(key: String) {
         val url = urlFor(key) ?: return
         scope.launch {
-            installed.read().orEmpty().filter { it.repositoryUrl == url }.forEach { entry ->
-                extensions.forget(entry.fileName)
-                runCatching { installer.remove(entry.fileName) }
-                reviews.forget(entry.fileName)
-            }
-            runCatching { store.remove(url) }
+            _state.update { it.copy(removeFailed = false) }
+            // `#345` review: a repository whose files cannot all be accounted for stays, or they would be left behind with
+            // nothing to say where they came from.
+            val list = installed.read() ?: return@launch removeFailed()
+            if (!removeAll(list.filter { it.repositoryUrl == url })) return@launch removeFailed()
+            if (runCatching { store.remove(url) }.isFailure) return@launch removeFailed()
             cache.remove(url)
             known.update { it - url }
             if (openKey == key) openKey = null

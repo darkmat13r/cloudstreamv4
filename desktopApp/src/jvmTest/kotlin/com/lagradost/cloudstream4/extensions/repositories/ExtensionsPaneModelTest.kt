@@ -75,11 +75,15 @@ class ExtensionsPaneModelTest {
         directory = File(home, "extensions").apply { mkdirs() }
         installed = InstalledFromRepositories(InstalledFromRepositories.fileFor(directory))
         store = RepositoryStore(RepositoryStore.fileFor(directory))
+        model = model(scope)
+    }
+
+    private fun model(scope: CoroutineScope): ExtensionsPaneModel {
         val fetcher = RepositoryReader.Fetcher { url, _ ->
             gates[url]?.await()
             answers[url] ?: Fetched.Failed(RepositoryFailure.Unreachable)
         }
-        model = ExtensionsPaneModel(
+        return ExtensionsPaneModel(
             scope = scope,
             store = store,
             cache = RepositoryCache(RepositoryCache.directoryFor(directory)),
@@ -259,6 +263,60 @@ class ExtensionsPaneModelTest {
         assertEquals(emptyList(), installed.read())
         assertEquals(emptyList(), store.read().repositories)
         assertEquals(0, RepositoryCache.directoryFor(directory).list()?.size ?: 0)
+    }
+
+    /** `#345` review: a repository whose installed files cannot be accounted for is not removed. */
+    @Test
+    fun `with the installed list unreadable, a repository is not removed and says so`() {
+        serve(A, "Harbour Mirror", plugin("Lumen"))
+        model.add(A)
+        val key = until("added") { it.repositories.isNotEmpty() }.repositories.single().key
+        model.install(key, "Lumen")
+        until("installed") { installed.read().orEmpty().isNotEmpty() }
+        val fileName = installed.read()!!.single().fileName
+        InstalledFromRepositories.fileFor(directory).writeText("garbage")
+        model.removeRepository(key)
+        until("refused") { it.removeFailed }
+        assertEquals(1, model.state.value.repositories.size)
+        assertTrue(File(directory, fileName).isFile, "its file was left with nothing to say where it came from")
+        assertEquals(1, store.read().repositories.size)
+    }
+
+    @Test
+    fun `a file that cannot be deleted keeps its review row, and its repository`() {
+        serve(A, "Harbour Mirror", plugin("Lumen"))
+        model.add(A)
+        val key = until("added") { it.repositories.isNotEmpty() }.repositories.single().key
+        model.install(key, "Lumen")
+        until("held") { it.waiting == 1 }
+        assertTrue(directory.setWritable(false))
+        try {
+            model.removeRepository(key)
+            until("refused") { it.removeFailed }
+            assertEquals(1, model.state.value.waiting, "the review row went with a file that did not")
+            assertEquals(1, store.read().repositories.size)
+        } finally {
+            directory.setWritable(true)
+        }
+    }
+
+    /**
+     * `#345` review: an install that finishes at once must not leave Installing behind, which would block a retry. With an
+     * unconfined scope, an install that fails without suspending finishes inside `launch`, before the line after it:
+     * the race, every time, rather than once in a while.
+     */
+    @Test
+    fun `an install that fails at once can always be tried again`() {
+        val immediate = model(CoroutineScope(SupervisorJob() + Dispatchers.Unconfined))
+        serve(A, "Harbour Mirror", plugin("Lumen"))
+        immediate.add(A)
+        val key = immediate.state.value.repositories.single().key
+        immediate.open(key)
+        answers.remove("https://files.example/Lumen-1.cs3")
+        repeat(3) { round ->
+            immediate.install(key, "Lumen")
+            assertIs<RowState.Failed>(immediate.state.value.open?.rows?.single()?.state, "round $round")
+        }
     }
 
     private companion object {
