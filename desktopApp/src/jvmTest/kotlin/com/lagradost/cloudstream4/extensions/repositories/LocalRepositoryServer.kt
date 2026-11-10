@@ -22,6 +22,9 @@ internal class LocalRepositoryServer : AutoCloseable {
         /** [total] bytes of zeros, with or without a `Content-Length`, until the client stops reading. */
         data class Stream(val total: Long, val declared: Boolean) : Reply
 
+        /** States [declared] bytes and sends [sent], then closes. */
+        data class Lying(val declared: Long, val sent: Int) : Reply
+
         /** Headers, then nothing, for [millis]. */
         data class Stall(val millis: Long) : Reply
     }
@@ -70,6 +73,10 @@ internal class LocalRepositoryServer : AutoCloseable {
                     streamed.addAndGet(CHUNK.toLong())
                 }
                 if (!reply.declared) out.write("0\r\n\r\n".toByteArray())
+            }
+            is Reply.Lying -> {
+                head(out, 200, "Content-Length: ${reply.declared}\r\n")
+                out.write(ByteArray(reply.sent))
             }
             is Reply.Stall -> {
                 head(out, 200, "Content-Length: 10\r\n")

@@ -54,15 +54,56 @@ class RepositoryHttpTest {
         assertEquals(0, other.requests.get(), "the redirect's target must never be asked")
     }
 
+    private val toLoopback = object : Dns {
+        override fun lookup(hostname: String) = listOf(InetAddress.getLoopbackAddress())
+    }
+
+    /**
+     * The name filter alone: it is asked with port 0 and refuses that, while the connected-address check, which sees the
+     * real port, would let it through. So only the filter stands between this and the server.
+     */
     @Test
     fun `a name that resolves to this computer is refused before connecting`() = runBlocking {
         server.routes["/repo.json"] = Reply.Body("{}".toByteArray())
-        val toLoopback = object : Dns {
-            override fun lookup(hostname: String) = listOf(InetAddress.getLoopbackAddress())
-        }
-        val http = RepositoryHttp(requireHttps = false, secure = { true }, lookup = toLoopback)
+        val http = RepositoryHttp(allow = { it.port != 0 }, requireHttps = false, secure = { true }, lookup = toLoopback)
         assertEquals(RepositoryFailure.PrivateAddress, failure(http.fetch("http://repo.example:${server.port}/repo.json", 1024)))
         assertEquals(0, server.requests.get())
+    }
+
+    /**
+     * The connected-address check alone: the name filter passes (port 0 is allowed), there is no IP literal, and only
+     * the check on the address actually connected to, with its real port, refuses.
+     */
+    @Test
+    fun `the address connected to is checked again, before a request is sent`() = runBlocking {
+        server.routes["/repo.json"] = Reply.Body("{}".toByteArray())
+        val http = RepositoryHttp(allow = { it.port == 0 }, requireHttps = false, secure = { true }, lookup = toLoopback)
+        assertEquals(RepositoryFailure.PrivateAddress, failure(http.fetch("http://repo.example:${server.port}/repo.json", 1024)))
+        assertEquals(0, server.requests.get())
+    }
+
+    /** `#334` review: a JVM proxy would be asked for the target by name, which neither address check would ever see. */
+    @Test
+    fun `a JVM proxy setting is not used, so the address checks still see the target`() = runBlocking {
+        val proxy = LocalRepositoryServer()
+        val before = java.net.ProxySelector.getDefault()
+        java.net.ProxySelector.setDefault(object : java.net.ProxySelector() {
+            override fun select(uri: java.net.URI?) =
+                listOf(java.net.Proxy(java.net.Proxy.Type.HTTP, java.net.InetSocketAddress("127.0.0.1", proxy.port)))
+
+            override fun connectFailed(uri: java.net.URI?, sa: java.net.SocketAddress?, ioe: java.io.IOException?) = Unit
+        })
+        try {
+            server.routes["/repo.json"] = Reply.Body("direct".toByteArray())
+            assertIs<Fetched.Bytes>(local().fetch(server.url("/repo.json"), 1024))
+            // The proxy is allowed as if it were public; the target's name resolves to this computer.
+            val http = RepositoryHttp(allow = { it.port == proxy.port }, requireHttps = false, secure = { true }, lookup = toLoopback)
+            assertEquals(RepositoryFailure.PrivateAddress, failure(http.fetch("http://repo.example:${server.port}/repo.json", 1024)))
+            assertEquals(0, proxy.requests.get(), "a request went to the proxy")
+        } finally {
+            java.net.ProxySelector.setDefault(before)
+            proxy.close()
+        }
     }
 
     @Test
@@ -102,6 +143,13 @@ class RepositoryHttpTest {
         server.routes["/big.json"] = Reply.Stream(total = 64L * 1024 * 1024, declared = true)
         assertEquals(RepositoryFailure.TooLarge, failure(local().fetch(server.url("/big.json"), 1024)))
         assertTrue(server.streamed.get() < 8L * 1024 * 1024, "streamed ${server.streamed.get()} bytes")
+    }
+
+    /** The declared-length check alone: the body is short of what it states, so only the stated length is too large. */
+    @Test
+    fun `a stated length past the cap is refused on the statement alone`() = runBlocking {
+        server.routes["/lying.json"] = Reply.Lying(declared = 4096, sent = 10)
+        assertEquals(RepositoryFailure.TooLarge, failure(local().fetch(server.url("/lying.json"), 1024)))
     }
 
     @Test

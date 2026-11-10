@@ -73,15 +73,22 @@ class RepositoryReaderTest {
         val (stdout, stderr) = System.out to System.err
         System.setOut(PrintStream(out, true))
         System.setErr(PrintStream(out, true))
+        var refused: RepositoryRead? = null
         val result = try {
             reader.read("$REPO?token=$token")
             // The real client, refusing an address: the path most likely to carry a URL in an exception.
             RepositoryReader().read("https://127.0.0.1:9/repo.json?token=$token")
+                .also { refused = it }
+            // Through a real OkHttp failure, whose message names the host and port: a connection refused.
+            val closed = java.net.ServerSocket(0).use { it.localPort }
+            val open = RepositoryHttp(allow = { true }, requireHttps = false, secure = { true })
+            RepositoryReader { url, maxBytes -> open.fetch(url, maxBytes) }.read("http://127.0.0.1:$closed/repo.json?token=$token")
         } finally {
             System.setOut(stdout)
             System.setErr(stderr)
         }
-        assertEquals(RepositoryRead.Failed(RepositoryFailure.PrivateAddress), result)
+        assertEquals(RepositoryRead.Failed(RepositoryFailure.PrivateAddress), refused)
+        assertEquals(RepositoryRead.Failed(RepositoryFailure.Unreachable), result)
         assertFalse(out.toString().contains(token), "printed: $out")
         assertFalse(out.toString().contains("127.0.0.1"), "printed: $out")
     }

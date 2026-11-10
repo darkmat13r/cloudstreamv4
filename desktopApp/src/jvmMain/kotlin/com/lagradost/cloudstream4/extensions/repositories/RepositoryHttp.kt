@@ -7,6 +7,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.net.InetAddress
 import java.net.InetSocketAddress
+import java.net.Proxy
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.Dispatchers
@@ -71,6 +72,8 @@ sealed interface Fetched {
  *   this one ([BACKSTOP_MARGIN_BYTES]), so that it is a backstop and the count here is what names the failure.
  * - **Timed.** A connect, a read and the whole call each have a limit. `#299` sets none, so a server that answers one
  *   byte a minute would hold a call open for ever.
+ * - **No proxy.** A JVM proxy setting would send the request to the proxy by name, and the target would never be
+ *   resolved here, so neither address check would see it.
  * - **Nothing kept.** No cookies, no cache.
  *
  * @param allow decides an address; replaceable so a test can use a server on this machine.
@@ -89,6 +92,9 @@ class RepositoryHttp(
 ) {
     private val base: OkHttpClient by lazy {
         OkHttpClient.Builder()
+            // A proxy would be asked for the target by name, so the target is never resolved here and neither
+            // address check below ever sees it. No JVM proxy setting applies to this client.
+            .proxy(Proxy.NO_PROXY)
             .dns(
                 object : Dns {
                     override fun lookup(hostname: String): List<InetAddress> =

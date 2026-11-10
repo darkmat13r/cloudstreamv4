@@ -7989,6 +7989,8 @@ The limits in `RepositoryLimits` are set from it, and its KDoc has the table:
   - redirects followed here, each `Location` checked for https first, at most 5;
   - a cap per file, refused on the declared length or once passed, counted after decompression;
   - connect, read and whole-call time limits (`#299` sets none); no cookies, no cache;
+  - no proxy: a JVM proxy setting would send the request to the proxy by name, so the target would never be resolved
+    here and neither address check would see it (`#334` review);
   - failures are a `RepositoryFailure` kind. Nothing is printed, and no exception message (which can carry a URL) is
     kept.
 - `RepositoryIndexParser`: the `:app` wire keys onto `:feature:extensions`' `ExtensionRepositoryIndex` and
@@ -8001,7 +8003,7 @@ The limits in `RepositoryLimits` are set from it, and its KDoc has the table:
 - The two KDocs that said `:app` never compares `fileHash` (`ExtensionInstall.kt`, `ExtensionIndex.kt`) are
   corrected: `RepositoryManager.downloadPluginToFile` compares it and throws on a mismatch.
 
-**Tests:** 42, in `RepositoryHttpTest` (13, against a server on loopback), `RepositoryIndexParserTest` (12),
+**Tests:** 45, in `RepositoryHttpTest` (16, against a server on loopback), `RepositoryIndexParserTest` (12),
 `RepositoryLinkTest` (5), `RepositoryReaderTest` (4) and `RepositoryStoreTest` (8). No real repository is reached, and
 every name is made up. There is no TLS test server without a new dependency, so the https rule is tested as the
 redirect check, with plain http standing in for "not https".
@@ -8011,7 +8013,12 @@ checks, the call timeout, the parser's https rule, the 0600 write), 16 of the 42
 example `expected:<NotHttps> but was:<Unreachable>`, the stalled server `took 15.004370042 s`, and the file's mode
 `[OWNER_WRITE, OWNER_READ, OTHERS_READ, GROUP_READ]`.
 
-**Green:** the 42 pass, and `:desktopApp:jvmTest` passes 769 of 769. The five gates passed, 273 XML results with 0
+**Review (`#334`), each guard pinned alone:** the name filter, the connected-address check, the no-proxy rule and the
+stated-length check each have a test that only that guard can pass. Removed one at a time, each fails its own test and
+nothing else: 1 of 45 for each of the first three, and for the stated-length check its new test plus the older
+declared-length one. A "prints nothing" case now also goes through a real OkHttp connection failure.
+
+**Green:** the 45 pass, and `:desktopApp:jvmTest` passes 772 of 772. The five gates passed, 273 XML results with 0
 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
 
 ### 110b and 110c — next
