@@ -995,12 +995,24 @@ internal object PlayerScreenDefaults {
     val TransportHeight: Dp = 36.dp
     /** Two lines, on the 4dp step. */
     val SelectorHeight: Dp = 40.dp
-    val PickerMarkSize: Dp = 16.dp
-    /** Artboard 7e's 8 x 48 marker, halved. A marker's width is a stroke on its own axis, as `ProgressRule`'s is. */
-    val SourceMarkerWidth: Dp = 4.dp
-    val SourceMarkerHeight: Dp = 24.dp
+    /** `DS-23` M4 to M7's 4×24 marker, at a chosen row's left edge. Its width is a stroke on its own axis. */
+    val PanelMarkerWidth: Dp = 4.dp
+    val PanelMarkerHeight: Dp = 24.dp
     /** `FocusRingStroke`, the ring's width, and what it needs clear around a row. */
     val PickerRingRoom: Dp = 4.dp
+    /** M4 to M7: a row is 8 + a 24 name + a 16 mono line + 8, and the next starts 4 below it. */
+    val PanelRowHeight: Dp = 56.dp
+    val PanelRowGap: Dp = 4.dp
+    /** A row's words start 16 in from its edge, and its verb ends 24 before the other. */
+    val PanelRowTextStart: Dp = 16.dp
+    val PanelRowVerbEnd: Dp = 24.dp
+    /**
+     * The list's edge, from the panel's: rows sit 12 in (the boards' 932 in a panel at 920), less the ring's
+     * [PickerRingRoom], which the list keeps clear inside it.
+     */
+    val PanelListEdge: Dp = 8.dp
+    /** The heading, Done and any line between rows sit at the window's 24 margin: this much past [PanelListEdge]. */
+    val PanelWordsInset: Dp = 16.dp
     const val PickerAlpha = 0.96f
     /**
      * How often the shown cue is checked against the clock: the most a cue can be late by, on top of one

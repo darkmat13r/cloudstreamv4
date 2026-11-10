@@ -94,12 +94,11 @@ Artboards 7d and 7e, with these departures, each because a desktop player is not
 | A 560 panel the full height of the screen, over the video | The list floating above the controls, as the other two are | The picture stays visible, and one kind of list is easier to learn than two |
 | A pinned Done row | None | Pressing a row commits, so Done has nothing to confirm. Escape, S and a click elsewhere close it |
 | A `Quality profile` row | None | There is no quality profile on desktop |
-| `1920×1080 decoded` under the row playing | Nothing | The player does not read that out yet |
-| `keeps 42:13` under each row, and `4 sources · all shown` | One line at the head: "Switching keeps your position: resumes at 42:13" | The same words on every row say nothing more. The count is not a decision anyone makes here |
-| `failed · code 2004`, and `live` on that reason line | `Source error`, muted | There is no code to show, and `live` is kept to playback progress here, which is tighter than the design file's own note: that note allows it on this line |
+| `1920×1080 decoded` under the row playing | Nothing | The Mac knows the size it draws, capped at 1920×1080, not the size decoded (`KMP-93`) |
+| `failed · code 2004`, and `live` on that reason line | `failed`, muted | There is no code to show, and `live` is kept to playback progress here, which is tighter than the design file's own note: that note allows it on this line |
 
 Selected is the raised fill, the ink label and the muted marker, and each row says what pressing it does (`Playing`, `Switch`,
-`Retry`). 7d's error is a banner over the HUD; here it is the words in the transport row, above the selector.
+`Retry`). Since `KMP-93` the rows are `DS-23` M4's: 56 tall, with a mono second line (`keeps 42:13`, `quality unknown`). 7d's error is a banner over the HUD; here it is the words in the transport row, above the selector.
 
 Since `KMP-39` the rows are best first, the order the player tries them in, and a source that fails is left for the next
 without asking. Moving on is said the way a subtitle failure is: `Source error · VidSrc · 2160p` above the controls for
@@ -144,13 +143,12 @@ Departures from 7e, each deliberate:
 
 - **The list floats above the controls**, as the subtitle list does, rather than a side panel 560 from the edge. It is a
   window, not a 10-foot screen, and the video stays in view.
-- **No trailing verb** (`On`, `Use`) and **no `Playing` tag.** Those are new strings for words the row's own state already
-  says, so the state is the fill, the label and the marker. 7e marks the active row three ways because of a filtered source
-  list returning -1; nothing filters audio tracks.
+- **The trailing verb** (`On`, `Use`) is drawn since `KMP-93`, as `DS-23` M6 has it, with the keys TV's 7e rows use.
 - **No pinned Done.** A press commits and closes, and Escape or a click elsewhere closes with nothing pending.
-- **The marker is the pack's check glyph**, not an 8 px mark, as the subtitle list already draws it.
+- **The marker is `DS-23`'s 4×24 mark** at the row's left edge since `KMP-93`, muted, as every Mac panel's is.
 - **No Video row.** Choosing among video tracks is not built.
-- **A line under a row** is only a file's own title, in place of 7e's explanatory `b` line.
+- **A line under a row** is a file's own title, or `stereo` for two channels with none (`KMP-93`), in place of 7e's
+  explanatory `b` line.
 
 ## Not done
 
