@@ -69,6 +69,8 @@
 <string name="account_select_title">"ማን እየተመለከተ ነው?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s መግባቱን አላረጋገጠም። ምንም አልተቀመጠም።"</string>
 <string name="account_signin_failed_title" formatted="true">"ወደ %s መግባት አልተቻለም"</string>
+<string name="account_signin_not_kept" formatted="true">"የ%s መግቢያን በዚህ ኮምፒውተር ላይ ማስቀመጥ አልተቻለም፣ ስለዚህ አልገቡም።"</string>
+<string name="account_signin_not_removed" formatted="true">"የ%s መግቢያን ከዚህ ኮምፒውተር ማስወገድ አልተቻለም፣ ስለዚህ አሁንም እንደገባ ነው።"</string>
 <string name="account_signin_offline_body" formatted="true">"ወደ %s ለመግባት ግንኙነት ያስፈልጋል። ይህ መሣሪያ ተመልሶ መስመር ላይ ሲሆን እንደገና ይሞክሩ።"</string>
 <string name="account_signins_until_quit">"መግቢያዎች CloudStreamን እስኪያቋርጡ ድረስ ይቆያሉ።"</string>
 <string name="account_sync_connected">"ተገናኝቷል · በዚህ መሣሪያ ላይ ገብቷል"</string>
@@ -98,6 +100,7 @@
 <string name="browser">"አሳሽ"</string>
 <string name="cast">"ተዋናዮች"</string>
 <string name="cast_format" formatted="true">"ተዋናዮች: %s"</string>
+<string name="cast_voiced_by" formatted="true">"ድምፅ በ%s"</string>
 <string name="continue_watching">"መመልከትዎን ይቀጥሉ"</string>
 <string name="desktop_menu_go">"ሂድ"</string>
 <string name="detail_load_failed_body">"ምንጩ ላይገኝ ይችላል።"</string>
@@ -150,6 +153,8 @@
 <string name="duration_format" formatted="true">"%d ደቂቃ"</string>
 <string name="episode_more_options_des">"ተጨማሪ አማራጮች"</string>
 <string name="episode_poster_img_des">"የክፍሉ ፖስተር"</string>
+<string name="episode_time_left" formatted="true">"%1$d ደቂቃ ቀርቷል"</string>
+<string name="episode_watched">"ታይቷል"</string>
 <string name="error_bookmarks_text">"ዕልባቶች"</string>
 <string name="error_loading_links_toast">"አገናኞችን መጫን ላይ ስህተት"</string>
 <string name="extension_allow">"ፍቀድ"</string>

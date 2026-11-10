@@ -86,7 +86,7 @@ class HostProtocolArtTest {
 
     @Test
     fun `a tag this app does not know is skipped whole`() {
-        listOf(HostProtocol.FACTS_V1, 2, 0x22, 0x31, 0xFF).forEach { tag ->
+        listOf(HostProtocol.FACTS_V1, 2, 0x22, 0x32, 0xFF).forEach { tag ->
             val dropped = ArrayList<String>()
             val read = received(art(version = tag) { writeOptional("https://img.example/b.jpg"); write(ByteArray(50) { 7 }) }, dropped)
             assertEquals(page, read, "tag $tag")
@@ -100,10 +100,10 @@ class HostProtocolArtTest {
         val dropped = ArrayList<String>()
         val read = received(
             reply {
-                section(0x31) { writeOptional("https://img.example/not-art.jpg"); writeInt(7) }
+                section(0x32) { writeOptional("https://img.example/not-art.jpg"); writeInt(7) }
                 section(HostProtocol.ART_V1) { writeOptional("https://img.example/b.jpg") }
                 section(HostProtocol.ART_V1) { writeOptional("https://img.example/second.jpg") }
-                section(0x41) { }
+                section(0x71) { } // a tag no app reads yet; 0x41 is the cast now (KMP-103)
             },
             dropped,
         )
@@ -145,7 +145,8 @@ class HostProtocolArtTest {
         val read = received(backdrop(atCap + "a"), dropped)
         assertNull(read.backdropUrl)
         assertEquals(page, read)
-        assertEquals(listOf("backdropUrl: past its bytes"), dropped)
+        // `KMP-108`: a URL a byte past its cap makes the section a byte past its own, so the section is skipped whole.
+        assertEquals(listOf("art: a section past its bytes"), dropped)
     }
 
     @Test

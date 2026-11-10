@@ -72,6 +72,8 @@
 <string name="account_select_title">"Quem está a ver?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s não confirmou o início de sessão. Nada foi guardado."</string>
 <string name="account_signin_failed_title" formatted="true">"Não foi possível iniciar sessão em %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Não foi possível guardar o início de sessão em %s neste computador, por isso não tem sessão iniciada."</string>
+<string name="account_signin_not_removed" formatted="true">"Não foi possível remover o início de sessão em %s deste computador, por isso a sessão continua iniciada."</string>
 <string name="account_signin_offline_body" formatted="true">"Iniciar sessão em %s requer uma ligação. Tente novamente quando este dispositivo voltar a estar online."</string>
 <string name="account_signins_until_quit">"As sessões iniciadas duram até sair do CloudStream."</string>
 <string name="account_sync_connected">"Ligado · sessão iniciada neste dispositivo"</string>
@@ -198,6 +200,7 @@
 <string name="cartoons_singular">"Desenho Animado"</string>
 <string name="cast">"Elenco"</string>
 <string name="cast_format" formatted="true">"Elenco: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Voz de %s"</string>
 <string name="category_account">"Contas e segurança"</string>
 <string name="category_general">"Geral"</string>
 <string name="category_player">"Player"</string>
@@ -361,7 +364,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Atualizar progresso"</string>
 <string name="episode_sync_settings_des">"Sincronizar automaticamente o progresso do seu episódio atual"</string>
+<string name="episode_time_left" formatted="true">"Faltam %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Próximo em %s"</string>
+<string name="episode_watched">"Visto"</string>
 <string name="episodes">"Episódios"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Erro"</string>

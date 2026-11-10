@@ -15,6 +15,7 @@ data class SettingsValues(
     val showRandom: Boolean = DEFAULT_SHOW_RANDOM,
     val posterSize: PosterSize = DEFAULT_POSTER_SIZE,
     val seekSeconds: Int = DEFAULT_SEEK_SECONDS,
+    val skipStamps: Boolean = DEFAULT_SKIP_STAMPS,
 ) {
     init {
         require(downloadsAtOnce in DOWNLOADS_AT_ONCE) { "downloadsAtOnce out of range" }
@@ -28,6 +29,7 @@ data class SettingsValues(
         KEY_SHOW_RANDOM to showRandom.toString(),
         KEY_POSTER_SIZE to posterSize.name.lowercase(),
         KEY_SEEK_SECONDS to seekSeconds.toString(),
+        KEY_SKIP_STAMPS to skipStamps.toString(),
     )
 
     companion object {
@@ -52,7 +54,17 @@ data class SettingsValues(
          */
         const val KEY_SEEK_SECONDS = "seek_amount_desktop_key"
 
+        /** Android's `enable_skip_op_from_database`, its "Skip OP" switch (`KMP-86`). */
+        const val KEY_SKIP_STAMPS = "enable_skip_op_from_database"
+
         const val DEFAULT_AUTOPLAY_NEXT = true
+
+        /**
+         * Whether the player asks the skip services for an episode's stamps (`KMP-86`). On, as Android's is: the owner
+         * chose Android's parity. On, the title's MAL, TMDb or IMDb id and the episode go to up to three third parties.
+         * The one place the default is set.
+         */
+        const val DEFAULT_SKIP_STAMPS = true
 
         /**
          * On, where Android's is off: the Mac's Home has always shown Random (the owner's call on `DS-24`, 2026-11-05),
@@ -88,6 +100,7 @@ data class SettingsValues(
             seekSeconds = stored[KEY_SEEK_SECONDS]?.trim()?.toIntOrNull()
                 ?.takeIf { it in SEEK_SECONDS }
                 ?: DEFAULT_SEEK_SECONDS,
+            skipStamps = stored.flag(KEY_SKIP_STAMPS, DEFAULT_SKIP_STAMPS),
         )
 
         /** `true` or `false` exactly, around spaces; anything else is [default]. */

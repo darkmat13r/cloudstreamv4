@@ -136,6 +136,13 @@ class SyncFlowTest {
         return DesktopProfiles(file, libraryDirectory = directory, onSaveFailed = { throw it })
     }
 
+    /** `KMP-95f`: the same household on a signed build, its sign-ins in [vault]. */
+    private fun keychainHousehold(vault: FakeVault): DesktopProfiles {
+        file.save(StoredProfiles(profiles = listOf(StoredProfile(0, "Alex"), StoredProfile(1, "Sam"))))
+        val storage = AccountStorage.forBuild(signed = true, directory = directory, vault = { vault })
+        return DesktopProfiles(file, libraryDirectory = directory, onSaveFailed = { throw it }, pins = storage.pins, signIns = storage.signIns)
+    }
+
     private val redirects = BrowserRedirects()
 
     private fun window(profiles: DesktopProfiles, client: SignInClient, escape: EscapeHandler = EscapeHandler()) =
@@ -476,6 +483,69 @@ class SyncFlowTest {
         assertNotNull(profiles.signIns.get(0, DesktopService.SubDl))
         val restarted = DesktopProfiles(file, libraryDirectory = directory)
         assertNull(restarted.signIns.get(0, DesktopService.SubDl), "in memory only: quitting forgets them")
+    }
+
+    @Test
+    fun `on a signed build a sign-in is in the Keychain, outlives a restart, and no sheet says it ends at quit`() {
+        val vault = FakeVault()
+        val profiles = keychainHousehold(vault)
+        val client = FakeClient()
+        window(profiles, client).use { scene ->
+            scene.openSync()
+            assertNull(scene.find("Sign-ins last until you quit CloudStream.", text = true), "A9")
+            scene.click(scene.signIn(0))
+            assertNull(scene.find("Sign-ins last until you quit CloudStream.", text = true), "A11")
+            client.approved = true
+            scene.advance(5)
+            assertNotNull(scene.find("Sync for Alex", text = true))
+            scene.click(scene.signIn(0))
+            assertNull(scene.find("Sign-ins last until you quit CloudStream.", text = true), "A16")
+            scene.save("A16-signed")
+        }
+        assertTrue(KeychainSignInStore.ITEM in vault.items)
+        assertNotNull(keychainHousehold(vault).signIns.get(0, DesktopService.Simkl), "a restart keeps it")
+    }
+
+    @Test
+    fun `a sign-in the Keychain will not keep is not signed in, and A13 says why`() {
+        val vault = FakeVault()
+        val profiles = keychainHousehold(vault)
+        val client = FakeClient()
+        window(profiles, client).use { scene ->
+            scene.openSync()
+            scene.click(scene.signIn(0))
+            vault.refuseWrites = true
+            client.approved = true
+            scene.advance(5)
+            assertNotNull(scene.find("Couldn't sign in to Simkl", text = true), "A13")
+            assertNotNull(scene.find("Couldn't keep the sign-in to Simkl on this computer, so you're not signed in.", text = true))
+            scene.save("A13c-not-kept")
+            assertNull(profiles.signIns.get(0, DesktopService.Simkl), "not even until quit")
+            scene.press(Key.Escape)
+            assertEquals(3, scene.allText().count { it == "Not connected" }, "A9 shows it is not connected")
+        }
+        assertFalse(KeychainSignInStore.ITEM in vault.items)
+    }
+
+    @Test
+    fun `a removal the Keychain refuses stays on A14 and says the sign-in is still there`() {
+        val vault = FakeVault()
+        val profiles = keychainHousehold(vault)
+        profiles.signIns.put(0, DesktopService.Simkl, Credential(TOKEN))
+        window(profiles, FakeClient()).use { scene ->
+            scene.openSync()
+            scene.click(scene.bounds("Remove from this device", text = true).center)
+            vault.refuseWrites = true
+            scene.click(scene.bounds("Remove", text = true).center)
+            assertNotNull(scene.find("Remove Simkl from this device?", text = true), "still A14")
+            assertNotNull(scene.find("Couldn't remove the sign-in to Simkl from this computer, so it's still signed in.", text = true))
+            scene.save("A14b-not-removed")
+            assertNotNull(profiles.signIns.get(0, DesktopService.Simkl))
+            vault.refuseWrites = false
+            scene.click(scene.bounds("Remove", text = true).center)
+            assertNull(profiles.signIns.get(0, DesktopService.Simkl))
+            assertNotNull(scene.find("Sync for Alex", text = true))
+        }
     }
 
     @Test

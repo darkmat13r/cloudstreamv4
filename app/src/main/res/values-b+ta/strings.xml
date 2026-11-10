@@ -73,6 +73,8 @@
 <string name="account_select_title">"யார் பார்க்கிறார்கள்?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s உள்நுழைவை உறுதிப்படுத்தவில்லை. எதுவும் சேமிக்கப்படவில்லை."</string>
 <string name="account_signin_failed_title" formatted="true">"%s இல் உள்நுழைய முடியவில்லை"</string>
+<string name="account_signin_not_kept" formatted="true">"இந்தக் கணினியில் %s உள்நுழைவை வைத்திருக்க முடியவில்லை, எனவே நீங்கள் உள்நுழையவில்லை."</string>
+<string name="account_signin_not_removed" formatted="true">"இந்தக் கணினியிலிருந்து %s உள்நுழைவை அகற்ற முடியவில்லை, எனவே அது இன்னும் உள்நுழைந்த நிலையில் உள்ளது."</string>
 <string name="account_signin_offline_body" formatted="true">"%s இல் உள்நுழைய இணைப்பு தேவை. இந்தச் சாதனம் மீண்டும் ஆன்லைனுக்கு வந்ததும் முயலவும்."</string>
 <string name="account_signins_until_quit">"CloudStream-ஐ மூடும் வரை உள்நுழைவுகள் இருக்கும்."</string>
 <string name="account_sync_connected">"இணைக்கப்பட்டது · இந்தச் சாதனத்தில் உள்நுழைந்துள்ளது"</string>
@@ -199,6 +201,7 @@
 <string name="cartoons_singular">"கார்ட்டூன்"</string>
 <string name="cast">"நடிகர்கள்"</string>
 <string name="cast_format" formatted="true">"நடிகர்கள்: %s"</string>
+<string name="cast_voiced_by" formatted="true">"குரல்: %s"</string>
 <string name="category_account">"கணக்குகள் மற்றும் பாதுகாப்பு"</string>
 <string name="category_general">"பொது"</string>
 <string name="category_player">"ஆட்டக்காரர்"</string>
@@ -362,7 +365,9 @@
 <string name="episode_short">"இ"</string>
 <string name="episode_sync_settings">"வாட்ச் முன்னேற்றத்தைப் புதுப்பிக்கவும்"</string>
 <string name="episode_sync_settings_des">"உங்கள் தற்போதைய அத்தியாயம் முன்னேற்றத்தை தானாக ஒத்திசைக்கவும்"</string>
+<string name="episode_time_left" formatted="true">"%1$d நிமி மீதம்"</string>
 <string name="episode_upcoming_format" formatted="true">"%s இல் வரவிருக்கும்"</string>
+<string name="episode_watched">"பார்த்தது"</string>
 <string name="episodes">"அத்தியாயங்கள்"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"பிழை"</string>

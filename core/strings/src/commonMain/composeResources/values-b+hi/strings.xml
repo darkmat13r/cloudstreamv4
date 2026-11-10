@@ -48,6 +48,8 @@
 <string name="account_select_title">कौन देख रहा है?</string>
 <string name="account_signin_failed_body">%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।</string>
 <string name="account_signin_failed_title">%s में साइन इन नहीं हो सका</string>
+<string name="account_signin_not_kept">इस कंप्यूटर पर %s का साइन-इन रखा नहीं जा सका, इसलिए आप साइन इन नहीं हैं।</string>
+<string name="account_signin_not_removed">इस कंप्यूटर से %s का साइन-इन हटाया नहीं जा सका, इसलिए यह अब भी साइन इन है।</string>
 <string name="account_signin_offline_body">%s में साइन इन करने के लिए कनेक्शन चाहिए। यह डिवाइस फिर से ऑनलाइन होने पर कोशिश करें।</string>
 <string name="account_signins_until_quit">साइन-इन तब तक रहते हैं जब तक आप CloudStream बंद नहीं करते।</string>
 <string name="account_sync_connected">कनेक्टेड · इस डिवाइस पर साइन इन</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d एपिसोड</item><item quantity="other">%d एपिसोड</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d विफल</item><item quantity="other">%d विफल</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d शीर्षक · %2$s</item><item quantity="other">%1$d शीर्षक · %2$s</item></plurals>
+<string name="episode_time_left">%1$d मिनट बाकी</string>
+<string name="episode_watched">देखा गया</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d अनुभाग लोड नहीं हो सका</item><item quantity="other">%d अनुभाग लोड नहीं हो सके</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d शीर्षक</item><item quantity="other">%d शीर्षक</item></plurals>
@@ -151,6 +155,7 @@
 <string name="cartoons_singular">हास्यचित्र</string>
 <string name="cast">Cast</string>
 <string name="cast_format">Cast: %s</string>
+<string name="cast_voiced_by">आवाज़: %s</string>
 <string name="category_account">खाते और सुरक्षा</string>
 <string name="category_general">सामान्य</string>
 <string name="category_provider_test">प्रदाता परीक्षण</string>

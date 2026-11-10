@@ -111,6 +111,8 @@ values-b+af	string	account_select_note	-	Aparte kykgeskiedenis · nie aanmelding
 values-b+af	string	account_select_title	-	Wie kyk?
 values-b+af	string	account_signin_failed_body	-	%s het nie die aanmelding bevestig nie. Niks is gestoor nie.
 values-b+af	string	account_signin_failed_title	-	Kon nie by %s aanmeld nie
+values-b+af	string	account_signin_not_kept	-	Kon nie die aanmelding by %s op hierdie rekenaar hou nie, so jy is nie aangemeld nie.
+values-b+af	string	account_signin_not_removed	-	Kon nie die aanmelding by %s van hierdie rekenaar verwyder nie, so dit is steeds aangemeld.
 values-b+af	string	account_signin_offline_body	-	Om by %s aan te meld, is 'n verbinding nodig. Probeer weer wanneer hierdie toestel weer aanlyn is.
 values-b+af	string	account_signins_until_quit	-	Aanmeldings hou tot jy CloudStream afsluit.
 values-b+af	string	account_sync_connected	-	Gekoppel · aangemeld op hierdie toestel
@@ -237,6 +239,7 @@ values-b+af	string	cartoons	-	Cartoons
 values-b+af	string	cartoons_singular	-	Cartoon
 values-b+af	string	cast	-	Rolverdeling
 values-b+af	string	cast_format	-	Rolverdeling: %s
+values-b+af	string	cast_voiced_by	-	Stem deur %s
 values-b+af	string	category_account	-	Accounts and Security
 values-b+af	string	category_general	-	General
 values-b+af	string	category_player	-	Player
@@ -414,7 +417,9 @@ values-b+af	string	episode_poster_img_des	-	Episode plakkaat
 values-b+af	string	episode_short	-	E
 values-b+af	string	episode_sync_settings	-	Update watch progress
 values-b+af	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+af	string	episode_time_left	-	%1$d min oor
 values-b+af	string	episode_upcoming_format	-	Upcoming in %s
+values-b+af	string	episode_watched	-	Gekyk
 values-b+af	string	episodes	-	Episodes
 values-b+af	string	episodes_range	-	%1$d-%2$d
 values-b+af	string	error	-	Error
@@ -1344,6 +1349,8 @@ values-b+am	string	account_select_note	-	የተለየ የእይታ ታሪክ · 
 values-b+am	string	account_select_title	-	ማን እየተመለከተ ነው?
 values-b+am	string	account_signin_failed_body	-	%s መግባቱን አላረጋገጠም። ምንም አልተቀመጠም።
 values-b+am	string	account_signin_failed_title	-	ወደ %s መግባት አልተቻለም
+values-b+am	string	account_signin_not_kept	-	የ%s መግቢያን በዚህ ኮምፒውተር ላይ ማስቀመጥ አልተቻለም፣ ስለዚህ አልገቡም።
+values-b+am	string	account_signin_not_removed	-	የ%s መግቢያን ከዚህ ኮምፒውተር ማስወገድ አልተቻለም፣ ስለዚህ አሁንም እንደገባ ነው።
 values-b+am	string	account_signin_offline_body	-	ወደ %s ለመግባት ግንኙነት ያስፈልጋል። ይህ መሣሪያ ተመልሶ መስመር ላይ ሲሆን እንደገና ይሞክሩ።
 values-b+am	string	account_signins_until_quit	-	መግቢያዎች CloudStreamን እስኪያቋርጡ ድረስ ይቆያሉ።
 values-b+am	string	account_sync_connected	-	ተገናኝቷል · በዚህ መሣሪያ ላይ ገብቷል
@@ -1470,6 +1477,7 @@ values-b+am	string	cartoons	-	Cartoons
 values-b+am	string	cartoons_singular	-	Cartoon
 values-b+am	string	cast	-	ተዋናዮች
 values-b+am	string	cast_format	-	ተዋናዮች: %s
+values-b+am	string	cast_voiced_by	-	ድምፅ በ%s
 values-b+am	string	category_account	-	Accounts and Security
 values-b+am	string	category_general	-	General
 values-b+am	string	category_player	-	Player
@@ -1647,7 +1655,9 @@ values-b+am	string	episode_poster_img_des	-	የክፍሉ ፖስተር
 values-b+am	string	episode_short	-	E
 values-b+am	string	episode_sync_settings	-	Update watch progress
 values-b+am	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+am	string	episode_time_left	-	%1$d ደቂቃ ቀርቷል
 values-b+am	string	episode_upcoming_format	-	Upcoming in %s
+values-b+am	string	episode_watched	-	ታይቷል
 values-b+am	string	episodes	-	Episodes
 values-b+am	string	episodes_range	-	%1$d-%2$d
 values-b+am	string	error	-	Error
@@ -2577,6 +2587,8 @@ values-b+apc	string	account_select_note	-	سجل مشاهدة منفصل · مش
 values-b+apc	string	account_select_title	-	مين عم يحضر؟
 values-b+apc	string	account_signin_failed_body	-	%s ما أكّد تسجيل الدخول. ما انحفظ شي.
 values-b+apc	string	account_signin_failed_title	-	ما قدرنا نسجّل دخول على %s
+values-b+apc	string	account_signin_not_kept	-	ما قدرنا نحتفظ بتسجيل الدخول لـ%s على هالكمبيوتر، فإنت مش مسجّل دخول.
+values-b+apc	string	account_signin_not_removed	-	ما قدرنا نشيل تسجيل الدخول لـ%s من هالكمبيوتر، فلسّا مسجّل دخول.
 values-b+apc	string	account_signin_offline_body	-	تسجيل الدخول على %s بدو اتصال. جرب مرة تانية لما يرجع هالجهاز أونلاين.
 values-b+apc	string	account_signins_until_quit	-	تسجيلات الدخول بتضل لحتى تسكّر CloudStream.
 values-b+apc	string	account_sync_connected	-	متصل · مسجّل دخول على هالجهاز
@@ -2703,6 +2715,7 @@ values-b+apc	string	cartoons	-	رسوم مُتَحَرِكة
 values-b+apc	string	cartoons_singular	-	رسوم مُتَحَرِكة
 values-b+apc	string	cast	-	ممثلين
 values-b+apc	string	cast_format	-	ممثلين: %s
+values-b+apc	string	cast_voiced_by	-	بصوت %s
 values-b+apc	string	category_account	-	الحسابات وال أمان
 values-b+apc	string	category_general	-	عام
 values-b+apc	string	category_player	-	مشغل الڤيديو
@@ -2880,7 +2893,9 @@ values-b+apc	string	episode_poster_img_des	-	پوستر تبع الحلقة
 values-b+apc	string	episode_short	-	ح
 values-b+apc	string	episode_sync_settings	-	سيّڤ تاريخ المشاهدة
 values-b+apc	string	episode_sync_settings_des	-	بتسيّڤ تاريخ المشاهدة و لوين وصلت بال ڤيديو
+values-b+apc	string	episode_time_left	-	باقي %1$d دقيقة
 values-b+apc	string	episode_upcoming_format	-	رح ينزل ب %s
+values-b+apc	string	episode_watched	-	تمّت المشاهدة
 values-b+apc	string	episodes	-	حلقات
 values-b+apc	string	episodes_range	-	%1$d–%2$d
 values-b+apc	string	error	-	مشكلة
@@ -3902,6 +3917,8 @@ values-b+ar	string	account_select_note	-	سجل مشاهدة منفصل · لي�
 values-b+ar	string	account_select_title	-	من يشاهد؟
 values-b+ar	string	account_signin_failed_body	-	لم يؤكد %s تسجيل الدخول. لم يُحفظ أي شيء.
 values-b+ar	string	account_signin_failed_title	-	تعذّر تسجيل الدخول إلى %s
+values-b+ar	string	account_signin_not_kept	-	تعذّر الاحتفاظ بتسجيل الدخول إلى %s على هذا الكمبيوتر، لذا لم تسجّل الدخول.
+values-b+ar	string	account_signin_not_removed	-	تعذّرت إزالة تسجيل الدخول إلى %s من هذا الكمبيوتر، لذا لا يزال مسجّلاً.
 values-b+ar	string	account_signin_offline_body	-	يتطلب تسجيل الدخول إلى %s اتصالاً بالإنترنت. حاول مرة أخرى عند عودة هذا الجهاز إلى الاتصال.
 values-b+ar	string	account_signins_until_quit	-	تبقى عمليات تسجيل الدخول حتى تُنهي CloudStream.
 values-b+ar	string	account_sync_connected	-	متصل · تم تسجيل الدخول على هذا الجهاز
@@ -4028,6 +4045,7 @@ values-b+ar	string	cartoons	-	رسوم متحركة
 values-b+ar	string	cartoons_singular	-	كرتون
 values-b+ar	string	cast	-	طاقم العمل
 values-b+ar	string	cast_format	-	طاقم العمل: %s
+values-b+ar	string	cast_voiced_by	-	بصوت %s
 values-b+ar	string	category_account	-	الحسابات والأمن
 values-b+ar	string	category_general	-	عام
 values-b+ar	string	category_player	-	المُشغل
@@ -4205,7 +4223,9 @@ values-b+ar	string	episode_poster_img_des	-	ملصق الحلقة
 values-b+ar	string	episode_short	-	ح
 values-b+ar	string	episode_sync_settings	-	تحديث تقدم المشاهدة
 values-b+ar	string	episode_sync_settings_des	-	مزامنة التقدم في الحلقة الحالية تلقائيًا
+values-b+ar	string	episode_time_left	-	متبقٍ %1$d دقيقة
 values-b+ar	string	episode_upcoming_format	-	قادم خلال %s
+values-b+ar	string	episode_watched	-	تمت المشاهدة
 values-b+ar	string	episodes	-	حلقات
 values-b+ar	string	episodes_range	-	%1$d-%2$d
 values-b+ar	string	error	-	خطأ
@@ -5219,6 +5239,8 @@ values-b+ars	string	account_select_note	-	سجل مشاهدة منفصل · مو
 values-b+ars	string	account_select_title	-	مين يشاهد؟
 values-b+ars	string	account_signin_failed_body	-	%s ما أكّد تسجيل الدخول. ما انحفظ شي.
 values-b+ars	string	account_signin_failed_title	-	ما قدرنا نسجّل دخول في %s
+values-b+ars	string	account_signin_not_kept	-	ما قدرنا نحفظ تسجيل الدخول لـ%s على هالكمبيوتر، عشان كذا أنت مو مسجّل دخول.
+values-b+ars	string	account_signin_not_removed	-	ما قدرنا نشيل تسجيل الدخول لـ%s من هالكمبيوتر، عشان كذا للحين مسجّل دخول.
 values-b+ars	string	account_signin_offline_body	-	تسجيل الدخول في %s يبي اتصال. حاول مرة ثانية لما يرجع هالجهاز متصل.
 values-b+ars	string	account_signins_until_quit	-	تسجيلات الدخول تبقى لين تقفل CloudStream.
 values-b+ars	string	account_sync_connected	-	متصل · مسجّل دخول على هالجهاز
@@ -5345,6 +5367,7 @@ values-b+ars	string	cartoons	-	الرسوم المتحركة
 values-b+ars	string	cartoons_singular	-	فلم كرتون
 values-b+ars	string	cast	-	طاقم العمل
 values-b+ars	string	cast_format	-	بث%s
+values-b+ars	string	cast_voiced_by	-	بصوت %s
 values-b+ars	string	category_account	-	حسابات
 values-b+ars	string	category_general	-	General
 values-b+ars	string	category_player	-	Player
@@ -5522,7 +5545,9 @@ values-b+ars	string	episode_poster_img_des	-	لافتة الحلقة
 values-b+ars	string	episode_short	-	يي
 values-b+ars	string	episode_sync_settings	-	تحديث مراقبة التقدم
 values-b+ars	string	episode_sync_settings_des	-	قم بمزامنة تقدم الحلقة الحالية تلقائيًا
+values-b+ars	string	episode_time_left	-	باقي %1$d دقيقة
 values-b+ars	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ars	string	episode_watched	-	تمت المشاهدة
 values-b+ars	string	episodes	-	الحلقات
 values-b+ars	string	episodes_range	-	%1$d-%2$d
 values-b+ars	string	error	-	Error
@@ -6452,6 +6477,8 @@ values-b+as	string	account_select_note	-	পৃথক চোৱাৰ ইতি�
 values-b+as	string	account_select_title	-	কোনে চাই আছে?
 values-b+as	string	account_signin_failed_body	-	%s এ ছাইন-ইন নিশ্চিত নকৰিলে। একো ছেভ কৰা হোৱা নাই।
 values-b+as	string	account_signin_failed_title	-	%s ত ছাইন ইন কৰিব পৰা নগ'ল
+values-b+as	string	account_signin_not_kept	-	এই কম্পিউটাৰত %s-ৰ ছাইন-ইন ৰাখিব পৰা নগ'ল, গতিকে আপুনি ছাইন ইন হোৱা নাই।
+values-b+as	string	account_signin_not_removed	-	এই কম্পিউটাৰৰ পৰা %s-ৰ ছাইন-ইন আঁতৰাব পৰা নগ'ল, গতিকে ই এতিয়াও ছাইন ইন হৈ আছে।
 values-b+as	string	account_signin_offline_body	-	%s ত ছাইন ইন কৰিবলৈ সংযোগৰ প্ৰয়োজন। এই ডিভাইচটো পুনৰ অনলাইন হ'লে আকৌ চেষ্টা কৰক।
 values-b+as	string	account_signins_until_quit	-	CloudStream বন্ধ নকৰালৈকে ছাইন-ইন থাকে।
 values-b+as	string	account_sync_connected	-	সংযুক্ত · এই ডিভাইচত ছাইন ইন কৰা
@@ -6578,6 +6605,7 @@ values-b+as	string	cartoons	-	কাৰ্টুন
 values-b+as	string	cartoons_singular	-	কাৰ্টুন
 values-b+as	string	cast	-	Cast
 values-b+as	string	cast_format	-	Cast: %s
+values-b+as	string	cast_voiced_by	-	%sৰ কণ্ঠত
 values-b+as	string	category_account	-	একাউণ্ট আৰু সুৰক্ষা
 values-b+as	string	category_general	-	সাধাৰণ
 values-b+as	string	category_player	-	প্লেয়াৰ
@@ -6755,7 +6783,9 @@ values-b+as	string	episode_poster_img_des	-	এপিচ'ড পোস্টা�
 values-b+as	string	episode_short	-	এ
 values-b+as	string	episode_sync_settings	-	দেখাৰ প্ৰগতি আপডেট কৰক
 values-b+as	string	episode_sync_settings_des	-	স্বয়ংক্ৰিয়ভাৱে আপোনাৰ বৰ্তমানৰ খণ্ডৰ প্ৰগতি ছিঙ্ক কৰক
+values-b+as	string	episode_time_left	-	%1$d মিনিট বাকী
 values-b+as	string	episode_upcoming_format	-	%s ত আহি আছে
+values-b+as	string	episode_watched	-	চোৱা হৈছে
 values-b+as	string	episodes	-	এপিচ’ডসমূহ
 values-b+as	string	episodes_range	-	%1$d-%2$d
 values-b+as	string	error	-	ভুল
@@ -7685,6 +7715,8 @@ values-b+az	string	account_select_note	-	Ayrı baxış tarixçəsi · giriş dey
 values-b+az	string	account_select_title	-	Kim baxır?
 values-b+az	string	account_signin_failed_body	-	%s girişi təsdiqləmədi. Heç nə saxlanılmadı.
 values-b+az	string	account_signin_failed_title	-	%s hesabına daxil olmaq alınmadı
+values-b+az	string	account_signin_not_kept	-	%s girişi bu kompüterdə saxlanıla bilmədi, ona görə daxil olmamısınız.
+values-b+az	string	account_signin_not_removed	-	%s girişi bu kompüterdən silinə bilmədi, ona görə hələ də daxil olunub.
 values-b+az	string	account_signin_offline_body	-	%s hesabına daxil olmaq üçün internet bağlantısı lazımdır. Bu cihaz yenidən onlayn olanda yenidən cəhd edin.
 values-b+az	string	account_signins_until_quit	-	Girişlər CloudStream-dən çıxana qədər qalır.
 values-b+az	string	account_sync_connected	-	Qoşulub · bu cihazda daxil olunub
@@ -7811,6 +7843,7 @@ values-b+az	string	cartoons	-	Cizgi filmləri
 values-b+az	string	cartoons_singular	-	Cizgi filmi
 values-b+az	string	cast	-	Oyunçu heyəti
 values-b+az	string	cast_format	-	Oyunçu heyəti: %s
+values-b+az	string	cast_voiced_by	-	Səsləndirən: %s
 values-b+az	string	category_account	-	Hesablar və Təhlükəsizlik
 values-b+az	string	category_general	-	General
 values-b+az	string	category_player	-	Player
@@ -7988,7 +8021,9 @@ values-b+az	string	episode_poster_img_des	-	Bölüm Afişası
 values-b+az	string	episode_short	-	E
 values-b+az	string	episode_sync_settings	-	Update watch progress
 values-b+az	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+az	string	episode_time_left	-	%1$d dəq qalıb
 values-b+az	string	episode_upcoming_format	-	Upcoming in %s
+values-b+az	string	episode_watched	-	Baxılıb
 values-b+az	string	episodes	-	Episodes
 values-b+az	string	episodes_range	-	%1$d-%2$d
 values-b+az	string	error	-	Error
@@ -8964,6 +8999,8 @@ values-b+be	string	account_select_note	-	Асобная гісторыя пра�
 values-b+be	string	account_select_title	-	Хто глядзіць?
 values-b+be	string	account_signin_failed_body	-	%s не пацвердзіў уваход. Нічога не захавана.
 values-b+be	string	account_signin_failed_title	-	Не ўдалося ўвайсці ў %s
+values-b+be	string	account_signin_not_kept	-	Не ўдалося захаваць уваход у %s на гэтым камп'ютары, таму вы не ўвайшлі.
+values-b+be	string	account_signin_not_removed	-	Не ўдалося выдаліць уваход у %s з гэтага камп'ютара, таму ён усё яшчэ дзейнічае.
 values-b+be	string	account_signin_offline_body	-	Для ўваходу ў %s патрэбна злучэнне. Паспрабуйце зноў, калі гэта прылада зноў будзе ў сетцы.
 values-b+be	string	account_signins_until_quit	-	Уваходы захоўваюцца, пакуль вы не выйдзеце з CloudStream.
 values-b+be	string	account_sync_connected	-	Падключана · уваход на гэтай прыладзе
@@ -9090,6 +9127,7 @@ values-b+be	string	cartoons	-	Мультфільмы
 values-b+be	string	cartoons_singular	-	Мультфільм
 values-b+be	string	cast	-	Склад
 values-b+be	string	cast_format	-	Склад: %s
+values-b+be	string	cast_voiced_by	-	Агучвае %s
 values-b+be	string	category_account	-	Уліковыя запісы і бяспека
 values-b+be	string	category_general	-	Агульныя
 values-b+be	string	category_player	-	Прайгравальнік
@@ -9267,7 +9305,9 @@ values-b+be	string	episode_poster_img_des	-	Плакат серыі
 values-b+be	string	episode_short	-	Сер
 values-b+be	string	episode_sync_settings	-	Абнаўляць працэс прагляду
 values-b+be	string	episode_sync_settings_des	-	Аўтаматычна сінхранізаваць прагрэс бягучай серыі
+values-b+be	string	episode_time_left	-	Засталося %1$d хв
 values-b+be	string	episode_upcoming_format	-	Наступны праз %s
+values-b+be	string	episode_watched	-	Прагледжана
 values-b+be	string	episodes	-	Серый
 values-b+be	string	episodes_range	-	%1$d-%2$d
 values-b+be	string	error	-	Памылка
@@ -10197,6 +10237,8 @@ values-b+bg	string	account_select_note	-	Отделна история на гл
 values-b+bg	string	account_select_title	-	Кой гледа?
 values-b+bg	string	account_signin_failed_body	-	%s не потвърди вписването. Нищо не е запазено.
 values-b+bg	string	account_signin_failed_title	-	Неуспешно вписване в %s
+values-b+bg	string	account_signin_not_kept	-	Влизането в %s не можа да бъде запазено на този компютър, затова не сте влезли.
+values-b+bg	string	account_signin_not_removed	-	Влизането в %s не можа да бъде премахнато от този компютър, затова все още е активно.
 values-b+bg	string	account_signin_offline_body	-	Вписването в %s изисква връзка. Опитай отново, когато устройството е отново онлайн.
 values-b+bg	string	account_signins_until_quit	-	Влизанията остават, докато не излезете от CloudStream.
 values-b+bg	string	account_sync_connected	-	Свързан · вписан на това устройство
@@ -10323,6 +10365,7 @@ values-b+bg	string	cartoons	-	Анимационни филми
 values-b+bg	string	cartoons_singular	-	Анимационен филм
 values-b+bg	string	cast	-	Актьори
 values-b+bg	string	cast_format	-	Актьори: %s
+values-b+bg	string	cast_voiced_by	-	Озвучава %s
 values-b+bg	string	category_account	-	Акаунти и сигурност
 values-b+bg	string	category_general	-	Общ
 values-b+bg	string	category_player	-	Плеър
@@ -10500,7 +10543,9 @@ values-b+bg	string	episode_poster_img_des	-	Episode Poster
 values-b+bg	string	episode_short	-	Е
 values-b+bg	string	episode_sync_settings	-	Актуализирайте прогреса на гледане
 values-b+bg	string	episode_sync_settings_des	-	Автоматично синхронизирайте прогреса на текущия си епизод
+values-b+bg	string	episode_time_left	-	Остават %1$d мин
 values-b+bg	string	episode_upcoming_format	-	Предстоящо в %s
+values-b+bg	string	episode_watched	-	Гледано
 values-b+bg	string	episodes	-	Епизоди
 values-b+bg	string	episodes_range	-	%1$d-%2$d
 values-b+bg	string	error	-	Грешка
@@ -11430,6 +11475,8 @@ values-b+bn	string	account_select_note	-	আলাদা দেখার ইত�
 values-b+bn	string	account_select_title	-	কে দেখছে?
 values-b+bn	string	account_signin_failed_body	-	%s সাইন-ইন নিশ্চিত করেনি। কিছুই সংরক্ষণ করা হয়নি।
 values-b+bn	string	account_signin_failed_title	-	%s-এ সাইন ইন করা যায়নি
+values-b+bn	string	account_signin_not_kept	-	এই কম্পিউটারে %s-এর সাইন-ইন রাখা যায়নি, তাই আপনি সাইন ইন করেননি।
+values-b+bn	string	account_signin_not_removed	-	এই কম্পিউটার থেকে %s-এর সাইন-ইন সরানো যায়নি, তাই এটি এখনও সাইন ইন করা আছে।
 values-b+bn	string	account_signin_offline_body	-	%s-এ সাইন ইন করতে সংযোগ প্রয়োজন। এই ডিভাইসটি আবার অনলাইনে এলে চেষ্টা করুন।
 values-b+bn	string	account_signins_until_quit	-	CloudStream বন্ধ না করা পর্যন্ত সাইন-ইন থাকে।
 values-b+bn	string	account_sync_connected	-	সংযুক্ত · এই ডিভাইসে সাইন ইন করা
@@ -11556,6 +11603,7 @@ values-b+bn	string	cartoons	-	কার্টুন
 values-b+bn	string	cartoons_singular	-	কার্টুন
 values-b+bn	string	cast	-	অভিনয়ে
 values-b+bn	string	cast_format	-	অভিনয়ে: %s
+values-b+bn	string	cast_voiced_by	-	কণ্ঠ দিয়েছেন %s
 values-b+bn	string	category_account	-	অ্যাকাউন্টসমূহ এবং নিরাপত্তা
 values-b+bn	string	category_general	-	সাধারণ
 values-b+bn	string	category_player	-	Player
@@ -11733,7 +11781,9 @@ values-b+bn	string	episode_poster_img_des	-	পর্বের পোস্ট�
 values-b+bn	string	episode_short	-	E
 values-b+bn	string	episode_sync_settings	-	দেখার অগ্রগতি আপডেট করুন
 values-b+bn	string	episode_sync_settings_des	-	আপনার বর্তমান পর্বের অগ্রগতি স্বয়ংক্রিয়ভাবে সিঙ্ক করুন
+values-b+bn	string	episode_time_left	-	%1$d মিনিট বাকি
 values-b+bn	string	episode_upcoming_format	-	আসছে %s সময়ের মধ্যে
+values-b+bn	string	episode_watched	-	দেখা হয়েছে
 values-b+bn	string	episodes	-	পর্ব
 values-b+bn	string	episodes_range	-	%1$d-%2$d
 values-b+bn	string	error	-	Error
@@ -12684,6 +12734,8 @@ values-b+ca	string	account_select_note	-	Historial de visualització separat · 
 values-b+ca	string	account_select_title	-	Qui mira?
 values-b+ca	string	account_signin_failed_body	-	%s no ha confirmat l'inici de sessió. No s'ha desat res.
 values-b+ca	string	account_signin_failed_title	-	No s'ha pogut iniciar la sessió a %s
+values-b+ca	string	account_signin_not_kept	-	No s'ha pogut conservar l'inici de sessió a %s en aquest ordinador, així que no has iniciat la sessió.
+values-b+ca	string	account_signin_not_removed	-	No s'ha pogut eliminar l'inici de sessió a %s d'aquest ordinador, així que la sessió continua iniciada.
 values-b+ca	string	account_signin_offline_body	-	Per iniciar la sessió a %s cal connexió. Torna-ho a provar quan aquest dispositiu torni a estar en línia.
 values-b+ca	string	account_signins_until_quit	-	Els inicis de sessió duren fins que surts de CloudStream.
 values-b+ca	string	account_sync_connected	-	Connectat · sessió iniciada en aquest dispositiu
@@ -12810,6 +12862,7 @@ values-b+ca	string	cartoons	-	Cartoons
 values-b+ca	string	cartoons_singular	-	Cartoon
 values-b+ca	string	cast	-	Repartiment
 values-b+ca	string	cast_format	-	Repartiment:%s
+values-b+ca	string	cast_voiced_by	-	Veu de %s
 values-b+ca	string	category_account	-	Accounts and Security
 values-b+ca	string	category_general	-	General
 values-b+ca	string	category_player	-	Reproductor
@@ -12987,7 +13040,9 @@ values-b+ca	string	episode_poster_img_des	-	Cartell de l'episodi
 values-b+ca	string	episode_short	-	E
 values-b+ca	string	episode_sync_settings	-	Update watch progress
 values-b+ca	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+ca	string	episode_time_left	-	Queden %1$d min
 values-b+ca	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ca	string	episode_watched	-	Vist
 values-b+ca	string	episodes	-	Episodes
 values-b+ca	string	episodes_range	-	%1$d-%2$d
 values-b+ca	string	error	-	Error
@@ -13917,6 +13972,8 @@ values-b+ckb	string	account_select_note	-	مێژووی سەیرکردنی جیا
 values-b+ckb	string	account_select_title	-	کێ سەیر دەکات؟
 values-b+ckb	string	account_signin_failed_body	-	%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا.
 values-b+ckb	string	account_signin_failed_title	-	نەتوانرا بچیتە ژوورەوەی %s
+values-b+ckb	string	account_signin_not_kept	-	چوونەژوورەوەی %s لەسەر ئەم کۆمپیوتەرە هەڵنەگیرا، بۆیە تۆ نەچوویتە ژوورەوە.
+values-b+ckb	string	account_signin_not_removed	-	چوونەژوورەوەی %s لەم کۆمپیوتەرە لانەبرا، بۆیە هێشتا لەژوورەوەیە.
 values-b+ckb	string	account_signin_offline_body	-	چوونەژوورەوە بۆ %s پەیوەندی پێویستە. کاتێک ئەم ئامێرە دووبارە سەرهێڵ بوو هەوڵ بدەرەوە.
 values-b+ckb	string	account_signins_until_quit	-	چوونەژوورەوەکان دەمێننەوە تا CloudStream دادەخەیت.
 values-b+ckb	string	account_sync_connected	-	پەیوەستە · لەسەر ئەم ئامێرە چووەتە ژوورەوە
@@ -14043,6 +14100,7 @@ values-b+ckb	string	cartoons	-	Cartoons
 values-b+ckb	string	cartoons_singular	-	Cartoon
 values-b+ckb	string	cast	-	تیم
 values-b+ckb	string	cast_format	-	تیم:%s
+values-b+ckb	string	cast_voiced_by	-	دەنگی %s
 values-b+ckb	string	category_account	-	Accounts and Security
 values-b+ckb	string	category_general	-	General
 values-b+ckb	string	category_player	-	Player
@@ -14220,7 +14278,9 @@ values-b+ckb	string	episode_poster_img_des	-	پۆستەری ئەڵقە
 values-b+ckb	string	episode_short	-	E
 values-b+ckb	string	episode_sync_settings	-	Update watch progress
 values-b+ckb	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+ckb	string	episode_time_left	-	%1$d خولەک ماوە
 values-b+ckb	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ckb	string	episode_watched	-	بینراوە
 values-b+ckb	string	episodes	-	Episodes
 values-b+ckb	string	episodes_range	-	%1$d-%2$d
 values-b+ckb	string	error	-	Error
@@ -15198,6 +15258,8 @@ values-b+cs	string	account_select_note	-	Samostatná historie sledování · nej
 values-b+cs	string	account_select_title	-	Kdo se dívá?
 values-b+cs	string	account_signin_failed_body	-	Služba %s přihlášení nepotvrdila. Nic nebylo uloženo.
 values-b+cs	string	account_signin_failed_title	-	Nelze se přihlásit k %s
+values-b+cs	string	account_signin_not_kept	-	Přihlášení k %s se na tomto počítači nepodařilo uchovat, takže nejste přihlášeni.
+values-b+cs	string	account_signin_not_removed	-	Přihlášení k %s se z tohoto počítače nepodařilo odebrat, takže je stále aktivní.
 values-b+cs	string	account_signin_offline_body	-	Přihlášení k %s vyžaduje připojení. Zkuste to znovu, až bude toto zařízení opět online.
 values-b+cs	string	account_signins_until_quit	-	Přihlášení platí, dokud CloudStream neukončíte.
 values-b+cs	string	account_sync_connected	-	Připojeno · přihlášeno na tomto zařízení
@@ -15324,6 +15386,7 @@ values-b+cs	string	cartoons	-	Animované
 values-b+cs	string	cartoons_singular	-	Animovaný
 values-b+cs	string	cast	-	Hrají
 values-b+cs	string	cast_format	-	Hrají: %s
+values-b+cs	string	cast_voiced_by	-	Hlas: %s
 values-b+cs	string	category_account	-	Účty a zabezpečení
 values-b+cs	string	category_general	-	Obecné
 values-b+cs	string	category_player	-	Přehrávač
@@ -15501,7 +15564,9 @@ values-b+cs	string	episode_poster_img_des	-	Plakát epizody
 values-b+cs	string	episode_short	-	E
 values-b+cs	string	episode_sync_settings	-	Aktualizovat postup sledování
 values-b+cs	string	episode_sync_settings_des	-	Automaticky synchronizovat postup sledování současné epizody
+values-b+cs	string	episode_time_left	-	Zbývá %1$d min
 values-b+cs	string	episode_upcoming_format	-	Vychází %s
+values-b+cs	string	episode_watched	-	Zhlédnuto
 values-b+cs	string	episodes	-	Epizody
 values-b+cs	string	episodes_range	-	%1$d-%2$d
 values-b+cs	string	error	-	Chyba
@@ -16431,6 +16496,8 @@ values-b+de	string	account_select_note	-	Eigener Wiedergabeverlauf · keine Anme
 values-b+de	string	account_select_title	-	Wer schaut?
 values-b+de	string	account_signin_failed_body	-	%s hat die Anmeldung nicht bestätigt. Es wurde nichts gespeichert.
 values-b+de	string	account_signin_failed_title	-	Anmeldung bei %s fehlgeschlagen
+values-b+de	string	account_signin_not_kept	-	Die Anmeldung bei %s konnte auf diesem Computer nicht gespeichert werden, daher bist du nicht angemeldet.
+values-b+de	string	account_signin_not_removed	-	Die Anmeldung bei %s konnte nicht von diesem Computer entfernt werden, daher ist sie weiterhin aktiv.
 values-b+de	string	account_signin_offline_body	-	Für die Anmeldung bei %s ist eine Verbindung nötig. Versuche es erneut, wenn dieses Gerät wieder online ist.
 values-b+de	string	account_signins_until_quit	-	Anmeldungen gelten, bis du CloudStream beendest.
 values-b+de	string	account_sync_connected	-	Verbunden · auf diesem Gerät angemeldet
@@ -16557,6 +16624,7 @@ values-b+de	string	cartoons	-	Trickfilme
 values-b+de	string	cartoons_singular	-	Trickfilm
 values-b+de	string	cast	-	Besetzung
 values-b+de	string	cast_format	-	Besetzung: %s
+values-b+de	string	cast_voiced_by	-	Gesprochen von %s
 values-b+de	string	category_account	-	Konten und Sicherheit
 values-b+de	string	category_general	-	Allgemein
 values-b+de	string	category_player	-	Player
@@ -16734,7 +16802,9 @@ values-b+de	string	episode_poster_img_des	-	Episodenvorschaubild
 values-b+de	string	episode_short	-	E
 values-b+de	string	episode_sync_settings	-	Episodenfortschritt aktualisieren
 values-b+de	string	episode_sync_settings_des	-	Automatisches synchronisieren des aktuellen Episodenfortschritts
+values-b+de	string	episode_time_left	-	Noch %1$d Min
 values-b+de	string	episode_upcoming_format	-	Wird veröffentlicht in %s
+values-b+de	string	episode_watched	-	Gesehen
 values-b+de	string	episodes	-	Episoden
 values-b+de	string	episodes_range	-	%1$d-%2$d
 values-b+de	string	error	-	Fehler
@@ -17664,6 +17734,8 @@ values-b+el	string	account_select_note	-	Ξεχωριστό ιστορικό π�
 values-b+el	string	account_select_title	-	Ποιος βλέπει;
 values-b+el	string	account_signin_failed_body	-	Το %s δεν επιβεβαίωσε τη σύνδεση. Δεν αποθηκεύτηκε τίποτα.
 values-b+el	string	account_signin_failed_title	-	Δεν ήταν δυνατή η σύνδεση στο %s
+values-b+el	string	account_signin_not_kept	-	Δεν ήταν δυνατή η διατήρηση της σύνδεσης στο %s σε αυτόν τον υπολογιστή, οπότε δεν έχετε συνδεθεί.
+values-b+el	string	account_signin_not_removed	-	Δεν ήταν δυνατή η κατάργηση της σύνδεσης στο %s από αυτόν τον υπολογιστή, οπότε παραμένει ενεργή.
 values-b+el	string	account_signin_offline_body	-	Η σύνδεση στο %s απαιτεί πρόσβαση στο διαδίκτυο. Δοκιμάστε ξανά όταν η συσκευή είναι ξανά online.
 values-b+el	string	account_signins_until_quit	-	Οι συνδέσεις διαρκούν μέχρι να κλείσετε το CloudStream.
 values-b+el	string	account_sync_connected	-	Συνδεδεμένο · σε αυτή τη συσκευή
@@ -17790,6 +17862,7 @@ values-b+el	string	cartoons	-	Κινούμενα σχέδια
 values-b+el	string	cartoons_singular	-	Κινούμενα Σχέδια
 values-b+el	string	cast	-	Ηθοποιοί
 values-b+el	string	cast_format	-	Ηθοποιοί: %s
+values-b+el	string	cast_voiced_by	-	Φωνή: %s
 values-b+el	string	category_account	-	Λογαριασμοί και Ασφάλεια
 values-b+el	string	category_general	-	Γενικά
 values-b+el	string	category_player	-	Πρόγραμμα αναπαραγωγής
@@ -17967,7 +18040,9 @@ values-b+el	string	episode_poster_img_des	-	Αφίσα επεισοδίου
 values-b+el	string	episode_short	-	E
 values-b+el	string	episode_sync_settings	-	Ενημέρωση προόδου παρακολούθησης
 values-b+el	string	episode_sync_settings_des	-	Αυτόματος συγχρονισμός της προόδου του τρέχοντος επεισοδίου
+values-b+el	string	episode_time_left	-	Απομένουν %1$d λεπ.
 values-b+el	string	episode_upcoming_format	-	Έρχεται σε %s
+values-b+el	string	episode_watched	-	Προβλήθηκε
 values-b+el	string	episodes	-	Επεισόδια
 values-b+el	string	episodes_range	-	%1$d-%2$d
 values-b+el	string	error	-	Σφάλμα
@@ -18897,6 +18972,8 @@ values-b+eo	string	account_select_note	-	Aparta spekta historio · ne ensalutoj
 values-b+eo	string	account_select_title	-	Kiu spektas?
 values-b+eo	string	account_signin_failed_body	-	%s ne konfirmis la ensaluton. Nenio estis konservita.
 values-b+eo	string	account_signin_failed_title	-	Ne eblis ensaluti al %s
+values-b+eo	string	account_signin_not_kept	-	Ne eblis konservi la ensaluton al %s en ĉi tiu komputilo, do vi ne estas ensalutinta.
+values-b+eo	string	account_signin_not_removed	-	Ne eblis forigi la ensaluton al %s el ĉi tiu komputilo, do ĝi ankoraŭ estas ensalutinta.
 values-b+eo	string	account_signin_offline_body	-	Ensaluti al %s bezonas konekton. Reprovu kiam ĉi tiu aparato denove estos enreta.
 values-b+eo	string	account_signins_until_quit	-	Ensalutoj daŭras ĝis vi fermas CloudStream.
 values-b+eo	string	account_sync_connected	-	Konektita · ensalutinta en ĉi tiu aparato
@@ -19023,6 +19100,7 @@ values-b+eo	string	cartoons	-	Cartoons
 values-b+eo	string	cartoons_singular	-	Cartoon
 values-b+eo	string	cast	-	Rolantaro
 values-b+eo	string	cast_format	-	Rolantaro: %s
+values-b+eo	string	cast_voiced_by	-	Voĉo de %s
 values-b+eo	string	category_account	-	Kontoj kaj Sekureco
 values-b+eo	string	category_general	-	General
 values-b+eo	string	category_player	-	Player
@@ -19200,7 +19278,9 @@ values-b+eo	string	episode_poster_img_des	-	Epizoda Afiŝo
 values-b+eo	string	episode_short	-	E
 values-b+eo	string	episode_sync_settings	-	Update watch progress
 values-b+eo	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+eo	string	episode_time_left	-	Restas %1$d min
 values-b+eo	string	episode_upcoming_format	-	Upcoming in %s
+values-b+eo	string	episode_watched	-	Spektita
 values-b+eo	string	episodes	-	Epizodoj
 values-b+eo	string	episodes_range	-	%1$d-%2$d
 values-b+eo	string	error	-	Error
@@ -20154,6 +20234,8 @@ values-b+es	string	account_select_note	-	Historial de visualización aparte · n
 values-b+es	string	account_select_title	-	¿Quién está viendo?
 values-b+es	string	account_signin_failed_body	-	%s no confirmó el inicio de sesión. No se ha guardado nada.
 values-b+es	string	account_signin_failed_title	-	No se pudo iniciar sesión en %s
+values-b+es	string	account_signin_not_kept	-	No se pudo guardar el inicio de sesión en %s en este ordenador, así que no has iniciado sesión.
+values-b+es	string	account_signin_not_removed	-	No se pudo quitar el inicio de sesión en %s de este ordenador, así que la sesión sigue iniciada.
 values-b+es	string	account_signin_offline_body	-	Para iniciar sesión en %s hace falta conexión. Vuelve a intentarlo cuando este dispositivo tenga conexión.
 values-b+es	string	account_signins_until_quit	-	Los inicios de sesión duran hasta que cierres CloudStream.
 values-b+es	string	account_sync_connected	-	Conectado · sesión iniciada en este dispositivo
@@ -20280,6 +20362,7 @@ values-b+es	string	cartoons	-	Dibujos animados
 values-b+es	string	cartoons_singular	-	Dibujo animado
 values-b+es	string	cast	-	Reparto
 values-b+es	string	cast_format	-	Reparto: %s
+values-b+es	string	cast_voiced_by	-	Voz de %s
 values-b+es	string	category_account	-	Cuentas y seguridad
 values-b+es	string	category_general	-	General
 values-b+es	string	category_player	-	Reproductor
@@ -20457,7 +20540,9 @@ values-b+es	string	episode_poster_img_des	-	Póster del episodio
 values-b+es	string	episode_short	-	E
 values-b+es	string	episode_sync_settings	-	Actualizar progreso de lo visto
 values-b+es	string	episode_sync_settings_des	-	Sincronizar automáticamente el progreso de su episodio actual
+values-b+es	string	episode_time_left	-	Quedan %1$d min
 values-b+es	string	episode_upcoming_format	-	Próximamente en %s
+values-b+es	string	episode_watched	-	Visto
 values-b+es	string	episodes	-	Episodios
 values-b+es	string	episodes_range	-	%1$d-%2$d
 values-b+es	string	error	-	Error
@@ -21387,6 +21472,8 @@ values-b+fa	string	account_select_note	-	تاریخچهٔ تماشای جدا ·
 values-b+fa	string	account_select_title	-	چه کسی تماشا می‌کند؟
 values-b+fa	string	account_signin_failed_body	-	%s ورود را تأیید نکرد. چیزی ذخیره نشد.
 values-b+fa	string	account_signin_failed_title	-	ورود به %s ممکن نشد
+values-b+fa	string	account_signin_not_kept	-	ورود به %s در این رایانه نگه داشته نشد، پس وارد نشده‌اید.
+values-b+fa	string	account_signin_not_removed	-	ورود به %s از این رایانه حذف نشد، پس هنوز وارد است.
 values-b+fa	string	account_signin_offline_body	-	ورود به %s به اتصال اینترنت نیاز دارد. وقتی این دستگاه دوباره آنلاین شد، دوباره تلاش کنید.
 values-b+fa	string	account_signins_until_quit	-	ورودها تا وقتی از CloudStream خارج شوید باقی می‌مانند.
 values-b+fa	string	account_sync_connected	-	متصل · واردشده در این دستگاه
@@ -21513,6 +21600,7 @@ values-b+fa	string	cartoons	-	کارتون‌ها
 values-b+fa	string	cartoons_singular	-	کارتون
 values-b+fa	string	cast	-	بازیگران
 values-b+fa	string	cast_format	-	بازیگران: %s
+values-b+fa	string	cast_voiced_by	-	با صدای %s
 values-b+fa	string	category_account	-	حساب‌ها و امنیت
 values-b+fa	string	category_general	-	کلی
 values-b+fa	string	category_player	-	Player
@@ -21690,7 +21778,9 @@ values-b+fa	string	episode_poster_img_des	-	پوستر قسمت
 values-b+fa	string	episode_short	-	ق
 values-b+fa	string	episode_sync_settings	-	به‌روزرسانی پیشرفت ساعت
 values-b+fa	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+fa	string	episode_time_left	-	%1$d دقیقه مانده
 values-b+fa	string	episode_upcoming_format	-	Upcoming in %s
+values-b+fa	string	episode_watched	-	دیده‌شده
 values-b+fa	string	episodes	-	قسمت‌ها
 values-b+fa	string	episodes_range	-	%1$d-%2$d
 values-b+fa	string	error	-	خطا
@@ -22620,6 +22710,8 @@ values-b+fil	string	account_select_note	-	Hiwalay na history ng panonood · hind
 values-b+fil	string	account_select_title	-	Sino ang nanonood?
 values-b+fil	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
 values-b+fil	string	account_signin_failed_title	-	Hindi makapag-sign in sa %s
+values-b+fil	string	account_signin_not_kept	-	Hindi maitago ang pag-sign in sa %s sa computer na ito, kaya hindi ka naka-sign in.
+values-b+fil	string	account_signin_not_removed	-	Hindi maalis ang pag-sign in sa %s sa computer na ito, kaya naka-sign in pa rin ito.
 values-b+fil	string	account_signin_offline_body	-	Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito.
 values-b+fil	string	account_signins_until_quit	-	Tatagal ang mga sign-in hanggang isara mo ang CloudStream.
 values-b+fil	string	account_sync_connected	-	Nakakonekta · naka-sign in sa device na ito
@@ -22746,6 +22838,7 @@ values-b+fil	string	cartoons	-	Cartoons
 values-b+fil	string	cartoons_singular	-	Cartoon
 values-b+fil	string	cast	-	Tauhan
 values-b+fil	string	cast_format	-	Tauhan: %s
+values-b+fil	string	cast_voiced_by	-	Boses ni %s
 values-b+fil	string	category_account	-	Accounts and Security
 values-b+fil	string	category_general	-	Pangkalahatan
 values-b+fil	string	category_player	-	Player
@@ -22923,7 +23016,9 @@ values-b+fil	string	episode_poster_img_des	-	Poster ng Kabanata
 values-b+fil	string	episode_short	-	E
 values-b+fil	string	episode_sync_settings	-	Update watch progress
 values-b+fil	string	episode_sync_settings_des	-	Awtomatikong i-sync ang iyong kasalukuyang episode
+values-b+fil	string	episode_time_left	-	%1$d min na lang
 values-b+fil	string	episode_upcoming_format	-	Upcoming in %s
+values-b+fil	string	episode_watched	-	Napanood na
 values-b+fil	string	episodes	-	Episodes
 values-b+fil	string	episodes_range	-	%1$d-%2$d
 values-b+fil	string	error	-	Error
@@ -23877,6 +23972,8 @@ values-b+fr	string	account_select_note	-	Historique de visionnage séparé · pa
 values-b+fr	string	account_select_title	-	Qui regarde ?
 values-b+fr	string	account_signin_failed_body	-	%s n'a pas confirmé la connexion. Rien n'a été enregistré.
 values-b+fr	string	account_signin_failed_title	-	Impossible de se connecter à %s
+values-b+fr	string	account_signin_not_kept	-	Impossible de conserver la connexion à %s sur cet ordinateur, vous n'êtes donc pas connecté.
+values-b+fr	string	account_signin_not_removed	-	Impossible de supprimer la connexion à %s de cet ordinateur, elle reste donc active.
 values-b+fr	string	account_signin_offline_body	-	La connexion à %s nécessite un accès réseau. Réessayez lorsque cet appareil sera de nouveau en ligne.
 values-b+fr	string	account_signins_until_quit	-	Les connexions durent jusqu'à ce que vous quittiez CloudStream.
 values-b+fr	string	account_sync_connected	-	Connecté · sur cet appareil
@@ -24003,6 +24100,7 @@ values-b+fr	string	cartoons	-	Dessins animés
 values-b+fr	string	cartoons_singular	-	Dessin animé
 values-b+fr	string	cast	-	Distribution
 values-b+fr	string	cast_format	-	Distribution : %s
+values-b+fr	string	cast_voiced_by	-	Voix de %s
 values-b+fr	string	category_account	-	Comptes et Sécurité
 values-b+fr	string	category_general	-	Général
 values-b+fr	string	category_player	-	Lecteur
@@ -24180,7 +24278,9 @@ values-b+fr	string	episode_poster_img_des	-	Affiche de l'épisode
 values-b+fr	string	episode_short	-	E
 values-b+fr	string	episode_sync_settings	-	Mise à jour de la progression du visionnage
 values-b+fr	string	episode_sync_settings_des	-	Synchronisation automatique de la progression de votre épisode en cours
+values-b+fr	string	episode_time_left	-	Encore %1$d min
 values-b+fr	string	episode_upcoming_format	-	À venir dans %s
+values-b+fr	string	episode_watched	-	Vu
 values-b+fr	string	episodes	-	Épisodes
 values-b+fr	string	episodes_range	-	%1$d-%2$d
 values-b+fr	string	error	-	Erreur
@@ -25110,6 +25210,8 @@ values-b+gl	string	account_select_note	-	Historial de visualización separado ·
 values-b+gl	string	account_select_title	-	Quen está a ver?
 values-b+gl	string	account_signin_failed_body	-	%s non confirmou o inicio de sesión. Non se gardou nada.
 values-b+gl	string	account_signin_failed_title	-	Non se puido iniciar sesión en %s
+values-b+gl	string	account_signin_not_kept	-	Non se puido conservar o inicio de sesión en %s neste ordenador, así que non iniciaches sesión.
+values-b+gl	string	account_signin_not_removed	-	Non se puido quitar o inicio de sesión en %s deste ordenador, así que a sesión segue iniciada.
 values-b+gl	string	account_signin_offline_body	-	Para iniciar sesión en %s fai falta conexión. Téntao de novo cando este dispositivo volva estar en liña.
 values-b+gl	string	account_signins_until_quit	-	Os inicios de sesión duran ata que saias de CloudStream.
 values-b+gl	string	account_sync_connected	-	Conectado · sesión iniciada neste dispositivo
@@ -25236,6 +25338,7 @@ values-b+gl	string	cartoons	-	Debuxos animados
 values-b+gl	string	cartoons_singular	-	Debuxo animado
 values-b+gl	string	cast	-	Elenco
 values-b+gl	string	cast_format	-	Elenco: %s
+values-b+gl	string	cast_voiced_by	-	Voz de %s
 values-b+gl	string	category_account	-	Contas e seguridade
 values-b+gl	string	category_general	-	General
 values-b+gl	string	category_player	-	Player
@@ -25413,7 +25516,9 @@ values-b+gl	string	episode_poster_img_des	-	Póster do Episodio
 values-b+gl	string	episode_short	-	C
 values-b+gl	string	episode_sync_settings	-	Actualizar progreso do visto
 values-b+gl	string	episode_sync_settings_des	-	Sincronizar automáticamente o progreso do episodio actual
+values-b+gl	string	episode_time_left	-	Quedan %1$d min
 values-b+gl	string	episode_upcoming_format	-	Próximamente en %s
+values-b+gl	string	episode_watched	-	Visto
 values-b+gl	string	episodes	-	Episodes
 values-b+gl	string	episodes_range	-	%1$d-%2$d
 values-b+gl	string	error	-	Error
@@ -26343,6 +26448,8 @@ values-b+hi	string	account_select_note	-	अलग देखने का इत
 values-b+hi	string	account_select_title	-	कौन देख रहा है?
 values-b+hi	string	account_signin_failed_body	-	%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।
 values-b+hi	string	account_signin_failed_title	-	%s में साइन इन नहीं हो सका
+values-b+hi	string	account_signin_not_kept	-	इस कंप्यूटर पर %s का साइन-इन रखा नहीं जा सका, इसलिए आप साइन इन नहीं हैं।
+values-b+hi	string	account_signin_not_removed	-	इस कंप्यूटर से %s का साइन-इन हटाया नहीं जा सका, इसलिए यह अब भी साइन इन है।
 values-b+hi	string	account_signin_offline_body	-	%s में साइन इन करने के लिए कनेक्शन चाहिए। यह डिवाइस फिर से ऑनलाइन होने पर कोशिश करें।
 values-b+hi	string	account_signins_until_quit	-	साइन-इन तब तक रहते हैं जब तक आप CloudStream बंद नहीं करते।
 values-b+hi	string	account_sync_connected	-	कनेक्टेड · इस डिवाइस पर साइन इन
@@ -26469,6 +26576,7 @@ values-b+hi	string	cartoons	-	कार्टून
 values-b+hi	string	cartoons_singular	-	हास्यचित्र
 values-b+hi	string	cast	-	Cast
 values-b+hi	string	cast_format	-	Cast: %s
+values-b+hi	string	cast_voiced_by	-	आवाज़: %s
 values-b+hi	string	category_account	-	खाते और सुरक्षा
 values-b+hi	string	category_general	-	सामान्य
 values-b+hi	string	category_player	-	Player
@@ -26646,7 +26754,9 @@ values-b+hi	string	episode_poster_img_des	-	एपिसोड का पोस�
 values-b+hi	string	episode_short	-	E
 values-b+hi	string	episode_sync_settings	-	देखा हुआ प्रोग्रेस अपडेट करें
 values-b+hi	string	episode_sync_settings_des	-	अपने वर्तमान प्रकरण की प्रगति को स्वचालित रूप से समकालीन बनाएं
+values-b+hi	string	episode_time_left	-	%1$d मिनट बाकी
 values-b+hi	string	episode_upcoming_format	-	%s में
+values-b+hi	string	episode_watched	-	देखा गया
 values-b+hi	string	episodes	-	Episodes
 values-b+hi	string	episodes_range	-	%1$d-%2$d
 values-b+hi	string	error	-	Error
@@ -27599,6 +27709,8 @@ values-b+hr	string	account_select_note	-	Zasebna povijest gledanja · nisu prija
 values-b+hr	string	account_select_title	-	Tko gleda?
 values-b+hr	string	account_signin_failed_body	-	%s nije potvrdio prijavu. Ništa nije spremljeno.
 values-b+hr	string	account_signin_failed_title	-	Prijava na %s nije uspjela
+values-b+hr	string	account_signin_not_kept	-	Prijava u %s nije se mogla zadržati na ovom računalu, pa niste prijavljeni.
+values-b+hr	string	account_signin_not_removed	-	Prijava u %s nije se mogla ukloniti s ovog računala, pa je i dalje aktivna.
 values-b+hr	string	account_signin_offline_body	-	Za prijavu na %s potrebna je veza. Pokušajte ponovno kad ovaj uređaj ponovno bude na mreži.
 values-b+hr	string	account_signins_until_quit	-	Prijave traju dok ne zatvorite CloudStream.
 values-b+hr	string	account_sync_connected	-	Povezano · prijavljeno na ovom uređaju
@@ -27725,6 +27837,7 @@ values-b+hr	string	cartoons	-	Crtići
 values-b+hr	string	cartoons_singular	-	Crtić
 values-b+hr	string	cast	-	Glumačka postava
 values-b+hr	string	cast_format	-	Glumačka postava: %s
+values-b+hr	string	cast_voiced_by	-	Glas: %s
 values-b+hr	string	category_account	-	Računi i sigurnost
 values-b+hr	string	category_general	-	Općenito
 values-b+hr	string	category_player	-	Player
@@ -27902,7 +28015,9 @@ values-b+hr	string	episode_poster_img_des	-	Poster epizode
 values-b+hr	string	episode_short	-	E
 values-b+hr	string	episode_sync_settings	-	Ažuriraj napredak gledanja
 values-b+hr	string	episode_sync_settings_des	-	Automatski sinkronizira vaš trenutni napredak u filmu ili epizodi
+values-b+hr	string	episode_time_left	-	Još %1$d min
 values-b+hr	string	episode_upcoming_format	-	Sljedeća u %s
+values-b+hr	string	episode_watched	-	Pogledano
 values-b+hr	string	episodes	-	Epizoda
 values-b+hr	string	episodes_range	-	%1$d-%2$d
 values-b+hr	string	error	-	Pogreška
@@ -28832,6 +28947,8 @@ values-b+hu	string	account_select_note	-	Külön megtekintési előzmények · n
 values-b+hu	string	account_select_title	-	Ki néz?
 values-b+hu	string	account_signin_failed_body	-	A(z) %s nem erősítette meg a bejelentkezést. Semmi sem lett mentve.
 values-b+hu	string	account_signin_failed_title	-	Nem sikerült bejelentkezni: %s
+values-b+hu	string	account_signin_not_kept	-	Nem sikerült megőrizni a(z) %s bejelentkezést ezen a számítógépen, ezért nem vagy bejelentkezve.
+values-b+hu	string	account_signin_not_removed	-	Nem sikerült eltávolítani a(z) %s bejelentkezést erről a számítógépről, ezért továbbra is aktív.
 values-b+hu	string	account_signin_offline_body	-	A bejelentkezéshez (%s) internetkapcsolat szükséges. Próbálja újra, amikor az eszköz ismét online.
 values-b+hu	string	account_signins_until_quit	-	A bejelentkezések addig tartanak, amíg ki nem lépsz a CloudStreamből.
 values-b+hu	string	account_sync_connected	-	Csatlakoztatva · bejelentkezve ezen az eszközön
@@ -28958,6 +29075,7 @@ values-b+hu	string	cartoons	-	Rajzfilmek
 values-b+hu	string	cartoons_singular	-	Rajzfilm
 values-b+hu	string	cast	-	Stáblista
 values-b+hu	string	cast_format	-	Stáblista: %s
+values-b+hu	string	cast_voiced_by	-	Hangja: %s
 values-b+hu	string	category_account	-	Fiókok és Biztonság
 values-b+hu	string	category_general	-	Általános
 values-b+hu	string	category_player	-	Lejátszó
@@ -29135,7 +29253,9 @@ values-b+hu	string	episode_poster_img_des	-	Epizód Plakát
 values-b+hu	string	episode_short	-	Ep
 values-b+hu	string	episode_sync_settings	-	Előrehaladás frissítése
 values-b+hu	string	episode_sync_settings_des	-	Automatikusan szinkronizálja az aktuális epizód előrehaladását
+values-b+hu	string	episode_time_left	-	Még %1$d perc
 values-b+hu	string	episode_upcoming_format	-	Hamarosan érkezik a(z) %s
+values-b+hu	string	episode_watched	-	Megnézve
 values-b+hu	string	episodes	-	Epizódok
 values-b+hu	string	episodes_range	-	%1$d-%2$d
 values-b+hu	string	error	-	Hiba
@@ -30041,6 +30161,8 @@ values-b+in	string	account_select_note	-	Riwayat tontonan terpisah · bukan logi
 values-b+in	string	account_select_title	-	Siapa yang menonton?
 values-b+in	string	account_signin_failed_body	-	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.
 values-b+in	string	account_signin_failed_title	-	Tidak dapat masuk ke %s
+values-b+in	string	account_signin_not_kept	-	Tidak dapat menyimpan login ke %s di komputer ini, jadi Anda tidak masuk.
+values-b+in	string	account_signin_not_removed	-	Tidak dapat menghapus login ke %s dari komputer ini, jadi masih masuk.
 values-b+in	string	account_signin_offline_body	-	Masuk ke %s memerlukan koneksi. Coba lagi saat perangkat ini kembali online.
 values-b+in	string	account_signins_until_quit	-	Info masuk bertahan sampai Anda keluar dari CloudStream.
 values-b+in	string	account_sync_connected	-	Terhubung · masuk di perangkat ini
@@ -30167,6 +30289,7 @@ values-b+in	string	cartoons	-	Kartun
 values-b+in	string	cartoons_singular	-	Kartun
 values-b+in	string	cast	-	Pemeran
 values-b+in	string	cast_format	-	Pemeran: %s
+values-b+in	string	cast_voiced_by	-	Disuarakan oleh %s
 values-b+in	string	category_account	-	Akun dan Keamanan
 values-b+in	string	category_general	-	Umum
 values-b+in	string	category_player	-	Pemutar
@@ -30344,7 +30467,9 @@ values-b+in	string	episode_poster_img_des	-	Poster Episode
 values-b+in	string	episode_short	-	E
 values-b+in	string	episode_sync_settings	-	Perbarui progres tontonan
 values-b+in	string	episode_sync_settings_des	-	Sinkronisasikan progres episode saat ini secara otomatis
+values-b+in	string	episode_time_left	-	Sisa %1$d mnt
 values-b+in	string	episode_upcoming_format	-	Akan datang di %s
+values-b+in	string	episode_watched	-	Sudah ditonton
 values-b+in	string	episodes	-	Episode
 values-b+in	string	episodes_range	-	%1$d-%2$d
 values-b+in	string	error	-	Error
@@ -31298,6 +31423,8 @@ values-b+it	string	account_select_note	-	Cronologia di visione separata · non s
 values-b+it	string	account_select_title	-	Chi sta guardando?
 values-b+it	string	account_signin_failed_body	-	%s non ha confermato l'accesso. Non è stato salvato nulla.
 values-b+it	string	account_signin_failed_title	-	Impossibile accedere a %s
+values-b+it	string	account_signin_not_kept	-	Impossibile conservare l'accesso a %s su questo computer, quindi non hai effettuato l'accesso.
+values-b+it	string	account_signin_not_removed	-	Impossibile rimuovere l'accesso a %s da questo computer, quindi è ancora attivo.
 values-b+it	string	account_signin_offline_body	-	Per accedere a %s serve una connessione. Riprova quando questo dispositivo sarà di nuovo online.
 values-b+it	string	account_signins_until_quit	-	Gli accessi durano finché non chiudi CloudStream.
 values-b+it	string	account_sync_connected	-	Connesso · accesso eseguito su questo dispositivo
@@ -31424,6 +31551,7 @@ values-b+it	string	cartoons	-	Cartone
 values-b+it	string	cartoons_singular	-	Cartoni
 values-b+it	string	cast	-	Cast
 values-b+it	string	cast_format	-	Cast: %s
+values-b+it	string	cast_voiced_by	-	Voce di %s
 values-b+it	string	category_account	-	Account e sicurezza
 values-b+it	string	category_general	-	Generale
 values-b+it	string	category_player	-	Lettore
@@ -31601,7 +31729,9 @@ values-b+it	string	episode_poster_img_des	-	Poster episodio
 values-b+it	string	episode_short	-	E
 values-b+it	string	episode_sync_settings	-	Aggiorna progresso di visione
 values-b+it	string	episode_sync_settings_des	-	Sincronizza automaticamente gli episodi guardati
+values-b+it	string	episode_time_left	-	Mancano %1$d min
 values-b+it	string	episode_upcoming_format	-	Prossimamente tra %s
+values-b+it	string	episode_watched	-	Visto
 values-b+it	string	episodes	-	Episodi
 values-b+it	string	episodes_range	-	%1$d-%2$d
 values-b+it	string	error	-	Errore
@@ -32552,6 +32682,8 @@ values-b+iw	string	account_select_note	-	היסטוריית צפייה נפרד�
 values-b+iw	string	account_select_title	-	מי צופה?
 values-b+iw	string	account_signin_failed_body	-	%s לא אישר את ההתחברות. שום דבר לא נשמר.
 values-b+iw	string	account_signin_failed_title	-	לא ניתן להתחבר אל %s
+values-b+iw	string	account_signin_not_kept	-	לא ניתן היה לשמור את ההתחברות אל %s במחשב הזה, ולכן לא התחברת.
+values-b+iw	string	account_signin_not_removed	-	לא ניתן היה להסיר את ההתחברות אל %s מהמחשב הזה, ולכן היא עדיין פעילה.
 values-b+iw	string	account_signin_offline_body	-	ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר.
 values-b+iw	string	account_signins_until_quit	-	ההתחברויות נשמרות עד שתצא מ-CloudStream.
 values-b+iw	string	account_sync_connected	-	מחובר · מחובר במכשיר הזה
@@ -32678,6 +32810,7 @@ values-b+iw	string	cartoons	-	סדרות/סרטים מצוירים
 values-b+iw	string	cartoons_singular	-	סדרה/סרט מצויר
 values-b+iw	string	cast	-	צוות שחקנים
 values-b+iw	string	cast_format	-	צוות שחקנים: %s
+values-b+iw	string	cast_voiced_by	-	בדיבוב של %s
 values-b+iw	string	category_account	-	חשבונות ובטיחות
 values-b+iw	string	category_general	-	כללי
 values-b+iw	string	category_player	-	נגן
@@ -32855,7 +32988,9 @@ values-b+iw	string	episode_poster_img_des	-	הפוסטר של הפרק
 values-b+iw	string	episode_short	-	פר
 values-b+iw	string	episode_sync_settings	-	עדכן התקדמות צפייה
 values-b+iw	string	episode_sync_settings_des	-	סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך
+values-b+iw	string	episode_time_left	-	נותרו %1$d דק׳
 values-b+iw	string	episode_upcoming_format	-	Upcoming in %s
+values-b+iw	string	episode_watched	-	נצפה
 values-b+iw	string	episodes	-	פרקים
 values-b+iw	string	episodes_range	-	%1$d-%2$d
 values-b+iw	string	error	-	שגיאה
@@ -33761,6 +33896,8 @@ values-b+ja	string	account_select_note	-	視聴履歴は別々 · ログイン�
 values-b+ja	string	account_select_title	-	誰が見ていますか?
 values-b+ja	string	account_signin_failed_body	-	%s でサインインが確認されませんでした。何も保存されていません。
 values-b+ja	string	account_signin_failed_title	-	%s にサインインできませんでした
+values-b+ja	string	account_signin_not_kept	-	このコンピュータに %s へのサインインを保持できなかったため、サインインしていません。
+values-b+ja	string	account_signin_not_removed	-	このコンピュータから %s へのサインインを削除できなかったため、サインインしたままです。
 values-b+ja	string	account_signin_offline_body	-	%s へのサインインにはインターネット接続が必要です。このデバイスがオンラインに戻ったらもう一度お試しください。
 values-b+ja	string	account_signins_until_quit	-	サインインは CloudStream を終了するまで有効です。
 values-b+ja	string	account_sync_connected	-	接続済み · このデバイスでサインイン中
@@ -33887,6 +34024,7 @@ values-b+ja	string	cartoons	-	カートゥーン
 values-b+ja	string	cartoons_singular	-	カートゥーン
 values-b+ja	string	cast	-	出演者
 values-b+ja	string	cast_format	-	出演者：%s
+values-b+ja	string	cast_voiced_by	-	声優: %s
 values-b+ja	string	category_account	-	ア﻿カ﻿ウ﻿ン﻿トとセキュリティ
 values-b+ja	string	category_general	-	全般
 values-b+ja	string	category_player	-	プレーヤー
@@ -34064,7 +34202,9 @@ values-b+ja	string	episode_poster_img_des	-	エピソードポスター
 values-b+ja	string	episode_short	-	エピソード
 values-b+ja	string	episode_sync_settings	-	視聴進捗を更新
 values-b+ja	string	episode_sync_settings_des	-	現在のエピソードの進捗を自動的に同期
+values-b+ja	string	episode_time_left	-	残り%1$d分
 values-b+ja	string	episode_upcoming_format	-	%s 後に公開
+values-b+ja	string	episode_watched	-	視聴済み
 values-b+ja	string	episodes	-	エピソード
 values-b+ja	string	episodes_range	-	%1$d-%2$d
 values-b+ja	string	error	-	エラー
@@ -34994,6 +35134,8 @@ values-b+kn	string	account_select_note	-	ಪ್ರತ್ಯೇಕ ವೀಕ್�
 values-b+kn	string	account_select_title	-	ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?
 values-b+kn	string	account_signin_failed_body	-	%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ.
 values-b+kn	string	account_signin_failed_title	-	%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ
+values-b+kn	string	account_signin_not_kept	-	ಈ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿ %s ಸೈನ್-ಇನ್ ಅನ್ನು ಇರಿಸಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ನೀವು ಸೈನ್ ಇನ್ ಆಗಿಲ್ಲ.
+values-b+kn	string	account_signin_not_removed	-	ಈ ಕಂಪ್ಯೂಟರ್‌ನಿಂದ %s ಸೈನ್-ಇನ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಅದು ಇನ್ನೂ ಸೈನ್ ಇನ್ ಆಗಿದೆ.
 values-b+kn	string	account_signin_offline_body	-	%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಂಪರ್ಕ ಬೇಕು. ಈ ಸಾಧನ ಮತ್ತೆ ಆನ್‌ಲೈನ್ ಆದಾಗ ಪ್ರಯತ್ನಿಸಿ.
 values-b+kn	string	account_signins_until_quit	-	CloudStream ಅನ್ನು ಮುಚ್ಚುವವರೆಗೆ ಸೈನ್-ಇನ್‌ಗಳು ಇರುತ್ತವೆ.
 values-b+kn	string	account_sync_connected	-	ಸಂಪರ್ಕಗೊಂಡಿದೆ · ಈ ಸಾಧನದಲ್ಲಿ ಸೈನ್ ಇನ್
@@ -35120,6 +35262,7 @@ values-b+kn	string	cartoons	-	Cartoons
 values-b+kn	string	cartoons_singular	-	Cartoon
 values-b+kn	string	cast	-	ಕ್ಯಾಸ್ಟ್
 values-b+kn	string	cast_format	-	ಕ್ಯಾಸ್ಟ್:%s
+values-b+kn	string	cast_voiced_by	-	ಧ್ವನಿ: %s
 values-b+kn	string	category_account	-	Accounts and Security
 values-b+kn	string	category_general	-	General
 values-b+kn	string	category_player	-	Player
@@ -35297,7 +35440,9 @@ values-b+kn	string	episode_poster_img_des	-	ಸಂಚಿಕೆ ಪೋಸ್ಟ�
 values-b+kn	string	episode_short	-	E
 values-b+kn	string	episode_sync_settings	-	Update watch progress
 values-b+kn	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+kn	string	episode_time_left	-	%1$d ನಿಮಿಷ ಬಾಕಿ
 values-b+kn	string	episode_upcoming_format	-	Upcoming in %s
+values-b+kn	string	episode_watched	-	ವೀಕ್ಷಿಸಲಾಗಿದೆ
 values-b+kn	string	episodes	-	Episodes
 values-b+kn	string	episodes_range	-	%1$d-%2$d
 values-b+kn	string	error	-	Error
@@ -36204,6 +36349,8 @@ values-b+ko	string	account_select_note	-	시청 기록은 따로 · 로그인이
 values-b+ko	string	account_select_title	-	누가 보고 있나요?
 values-b+ko	string	account_signin_failed_body	-	%s에서 로그인을 확인하지 않았습니다. 저장된 내용이 없습니다.
 values-b+ko	string	account_signin_failed_title	-	%s에 로그인할 수 없음
+values-b+ko	string	account_signin_not_kept	-	이 컴퓨터에 %s 로그인을 보관할 수 없어 로그인되지 않았습니다.
+values-b+ko	string	account_signin_not_removed	-	이 컴퓨터에서 %s 로그인을 삭제할 수 없어 아직 로그인된 상태입니다.
 values-b+ko	string	account_signin_offline_body	-	%s에 로그인하려면 인터넷 연결이 필요합니다. 이 기기가 다시 온라인 상태가 되면 시도하세요.
 values-b+ko	string	account_signins_until_quit	-	로그인은 CloudStream을 종료할 때까지 유지됩니다.
 values-b+ko	string	account_sync_connected	-	연결됨 · 이 기기에서 로그인됨
@@ -36330,6 +36477,7 @@ values-b+ko	string	cartoons	-	카툰
 values-b+ko	string	cartoons_singular	-	카툰
 values-b+ko	string	cast	-	출연
 values-b+ko	string	cast_format	-	출연: %s
+values-b+ko	string	cast_voiced_by	-	성우: %s
 values-b+ko	string	category_account	-	계정 및 보안
 values-b+ko	string	category_general	-	일반
 values-b+ko	string	category_player	-	플레이어
@@ -36507,7 +36655,9 @@ values-b+ko	string	episode_poster_img_des	-	에피소드 포스터
 values-b+ko	string	episode_short	-	에피소드
 values-b+ko	string	episode_sync_settings	-	시청 진행 상황 업데이트
 values-b+ko	string	episode_sync_settings_des	-	현재 에피소드 진행 상황을 자동으로 동기화합니다
+values-b+ko	string	episode_time_left	-	%1$d분 남음
 values-b+ko	string	episode_upcoming_format	-	%s 후 공개 예정
+values-b+ko	string	episode_watched	-	시청함
 values-b+ko	string	episodes	-	에피소드
 values-b+ko	string	episodes_range	-	%1$d-%2$d
 values-b+ko	string	error	-	오류
@@ -37479,6 +37629,8 @@ values-b+lt	string	account_select_note	-	Atskira žiūrėjimo istorija · ne pri
 values-b+lt	string	account_select_title	-	Kas žiūri?
 values-b+lt	string	account_signin_failed_body	-	%s nepatvirtino prisijungimo. Niekas neišsaugota.
 values-b+lt	string	account_signin_failed_title	-	Nepavyko prisijungti prie %s
+values-b+lt	string	account_signin_not_kept	-	Nepavyko išsaugoti prisijungimo prie %s šiame kompiuteryje, todėl nesate prisijungę.
+values-b+lt	string	account_signin_not_removed	-	Nepavyko pašalinti prisijungimo prie %s iš šio kompiuterio, todėl jis vis dar aktyvus.
 values-b+lt	string	account_signin_offline_body	-	Norint prisijungti prie %s, reikia ryšio. Bandykite dar kartą, kai šis įrenginys vėl bus prisijungęs prie interneto.
 values-b+lt	string	account_signins_until_quit	-	Prisijungimai galioja, kol išeisite iš CloudStream.
 values-b+lt	string	account_sync_connected	-	Prijungta · prisijungta šiame įrenginyje
@@ -37605,6 +37757,7 @@ values-b+lt	string	cartoons	-	Cartoons
 values-b+lt	string	cartoons_singular	-	Filmukas
 values-b+lt	string	cast	-	Aktoriai
 values-b+lt	string	cast_format	-	Skleisti: %s
+values-b+lt	string	cast_voiced_by	-	Įgarsino %s
 values-b+lt	string	category_account	-	Paskyros
 values-b+lt	string	category_general	-	General
 values-b+lt	string	category_player	-	Player
@@ -37782,7 +37935,9 @@ values-b+lt	string	episode_poster_img_des	-	Serijos plakatas
 values-b+lt	string	episode_short	-	E
 values-b+lt	string	episode_sync_settings	-	Update watch progress
 values-b+lt	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+lt	string	episode_time_left	-	Liko %1$d min
 values-b+lt	string	episode_upcoming_format	-	Upcoming in %s
+values-b+lt	string	episode_watched	-	Peržiūrėta
 values-b+lt	string	episodes	-	Serijos
 values-b+lt	string	episodes_range	-	%1$d-%2$d
 values-b+lt	string	error	-	Klaida
@@ -38734,6 +38889,8 @@ values-b+lv	string	account_select_note	-	Atsevišķa skatīšanās vēsture · n
 values-b+lv	string	account_select_title	-	Kas skatās?
 values-b+lv	string	account_signin_failed_body	-	%s neapstiprināja pieteikšanos. Nekas netika saglabāts.
 values-b+lv	string	account_signin_failed_title	-	Neizdevās pieteikties pakalpojumā %s
+values-b+lv	string	account_signin_not_kept	-	Neizdevās saglabāt pierakstīšanos %s šajā datorā, tāpēc jūs neesat pierakstījies.
+values-b+lv	string	account_signin_not_removed	-	Neizdevās noņemt pierakstīšanos %s no šī datora, tāpēc tā joprojām ir aktīva.
 values-b+lv	string	account_signin_offline_body	-	Lai pieteiktos pakalpojumā %s, nepieciešams savienojums. Mēģiniet vēlreiz, kad šī ierīce atkal būs tiešsaistē.
 values-b+lv	string	account_signins_until_quit	-	Pierakstīšanās ir spēkā, līdz aizverat CloudStream.
 values-b+lv	string	account_sync_connected	-	Savienots · pieteicies šajā ierīcē
@@ -38860,6 +39017,7 @@ values-b+lv	string	cartoons	-	Animācija
 values-b+lv	string	cartoons_singular	-	Animācija
 values-b+lv	string	cast	-	Lomās
 values-b+lv	string	cast_format	-	Lomās: %s
+values-b+lv	string	cast_voiced_by	-	Ierunājis %s
 values-b+lv	string	category_account	-	Konti un drošība
 values-b+lv	string	category_general	-	Vispārīgie
 values-b+lv	string	category_player	-	Atskaņotājs
@@ -39037,7 +39195,9 @@ values-b+lv	string	episode_poster_img_des	-	Epizodes plakāts
 values-b+lv	string	episode_short	-	E
 values-b+lv	string	episode_sync_settings	-	Atjaunināt skatīšanos progresu
 values-b+lv	string	episode_sync_settings_des	-	Automātiski sync savu pašreizējo epizodes progresu
+values-b+lv	string	episode_time_left	-	Atlikušas %1$d min.
 values-b+lv	string	episode_upcoming_format	-	Upcoming in %s
+values-b+lv	string	episode_watched	-	Noskatīts
 values-b+lv	string	episodes	-	Epizodes
 values-b+lv	string	episodes_range	-	%1$d-%2$d
 values-b+lv	string	error	-	Kļūda
@@ -39967,6 +40127,8 @@ values-b+mk	string	account_select_note	-	Посебна историја на г
 values-b+mk	string	account_select_title	-	Кој гледа?
 values-b+mk	string	account_signin_failed_body	-	%s не ја потврди најавата. Ништо не е зачувано.
 values-b+mk	string	account_signin_failed_title	-	Не може да се најавиш на %s
+values-b+mk	string	account_signin_not_kept	-	Најавата на %s не можеше да се зачува на овој компјутер, па не сте најавени.
+values-b+mk	string	account_signin_not_removed	-	Најавата на %s не можеше да се отстрани од овој компјутер, па сè уште е активна.
 values-b+mk	string	account_signin_offline_body	-	За најава на %s е потребна врска. Обиди се повторно кога уредот ќе биде пак на интернет.
 values-b+mk	string	account_signins_until_quit	-	Најавите траат додека не излезете од CloudStream.
 values-b+mk	string	account_sync_connected	-	Поврзано · најавено на овој уред
@@ -40093,6 +40255,7 @@ values-b+mk	string	cartoons	-	Цртани
 values-b+mk	string	cartoons_singular	-	Цртан филм
 values-b+mk	string	cast	-	Актери
 values-b+mk	string	cast_format	-	Актери: %s
+values-b+mk	string	cast_voiced_by	-	Глас: %s
 values-b+mk	string	category_account	-	Сметки и безбедност
 values-b+mk	string	category_general	-	Општи поставки
 values-b+mk	string	category_player	-	Плеер
@@ -40270,7 +40433,9 @@ values-b+mk	string	episode_poster_img_des	-	Постер за епизода
 values-b+mk	string	episode_short	-	Е
 values-b+mk	string	episode_sync_settings	-	Ажурирај го напредокот на гледање
 values-b+mk	string	episode_sync_settings_des	-	Автоматски синхронизирај го напредокот на твојата тековна епизода
+values-b+mk	string	episode_time_left	-	Преостануваат %1$d мин
 values-b+mk	string	episode_upcoming_format	-	Претстои во %s
+values-b+mk	string	episode_watched	-	Гледано
 values-b+mk	string	episodes	-	Епизоди
 values-b+mk	string	episodes_range	-	%1$d-%2$d
 values-b+mk	string	error	-	Грешка
@@ -41200,6 +41365,8 @@ values-b+ml	string	account_select_note	-	പ്രത്യേക കാഴ്�
 values-b+ml	string	account_select_title	-	ആരാണ് കാണുന്നത്?
 values-b+ml	string	account_signin_failed_body	-	%s സൈൻ-ഇൻ സ്ഥിരീകരിച്ചില്ല. ഒന്നും സംരക്ഷിച്ചില്ല.
 values-b+ml	string	account_signin_failed_title	-	%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാനായില്ല
+values-b+ml	string	account_signin_not_kept	-	ഈ കമ്പ്യൂട്ടറിൽ %s സൈൻ-ഇൻ സൂക്ഷിക്കാനായില്ല, അതിനാൽ നിങ്ങൾ സൈൻ ഇൻ ചെയ്തിട്ടില്ല.
+values-b+ml	string	account_signin_not_removed	-	ഈ കമ്പ്യൂട്ടറിൽ നിന്ന് %s സൈൻ-ഇൻ നീക്കം ചെയ്യാനായില്ല, അതിനാൽ അത് ഇപ്പോഴും സൈൻ ഇൻ ചെയ്ത നിലയിലാണ്.
 values-b+ml	string	account_signin_offline_body	-	%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാൻ കണക്ഷൻ ആവശ്യമാണ്. ഈ ഉപകരണം വീണ്ടും ഓൺലൈനാകുമ്പോൾ ശ്രമിക്കുക.
 values-b+ml	string	account_signins_until_quit	-	CloudStream അടയ്ക്കുന്നതുവരെ സൈൻ-ഇനുകൾ നിലനിൽക്കും.
 values-b+ml	string	account_sync_connected	-	കണക്റ്റ് ചെയ്തു · ഈ ഉപകരണത്തിൽ സൈൻ ഇൻ ചെയ്തു
@@ -41326,6 +41493,7 @@ values-b+ml	string	cartoons	-	കാർട്ടൂൺസ്
 values-b+ml	string	cartoons_singular	-	Cartoon
 values-b+ml	string	cast	-	കാസ്റ്റ്
 values-b+ml	string	cast_format	-	കാസ്റ്റ്:%s
+values-b+ml	string	cast_voiced_by	-	ശബ്ദം: %s
 values-b+ml	string	category_account	-	Accounts and Security
 values-b+ml	string	category_general	-	General
 values-b+ml	string	category_player	-	Player
@@ -41503,7 +41671,9 @@ values-b+ml	string	episode_poster_img_des	-	എപ്പിസോഡ് പോ�
 values-b+ml	string	episode_short	-	E
 values-b+ml	string	episode_sync_settings	-	Update watch progress
 values-b+ml	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+ml	string	episode_time_left	-	%1$d മിനിറ്റ് ബാക്കി
 values-b+ml	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ml	string	episode_watched	-	കണ്ടു
 values-b+ml	string	episodes	-	എപ്പിസോഡുകൾ
 values-b+ml	string	episodes_range	-	%1$d-%2$d
 values-b+ml	string	error	-	Error
@@ -42412,6 +42582,8 @@ values-b+ms	string	account_select_note	-	Sejarah tontonan berasingan · bukan lo
 values-b+ms	string	account_select_title	-	Siapa yang menonton?
 values-b+ms	string	account_signin_failed_body	-	%s tidak mengesahkan log masuk. Tiada apa-apa yang disimpan.
 values-b+ms	string	account_signin_failed_title	-	Tidak dapat log masuk ke %s
+values-b+ms	string	account_signin_not_kept	-	Log masuk ke %s tidak dapat disimpan pada komputer ini, jadi anda tidak log masuk.
+values-b+ms	string	account_signin_not_removed	-	Log masuk ke %s tidak dapat dialih keluar daripada komputer ini, jadi ia masih log masuk.
 values-b+ms	string	account_signin_offline_body	-	Log masuk ke %s memerlukan sambungan. Cuba lagi apabila peranti ini kembali dalam talian.
 values-b+ms	string	account_signins_until_quit	-	Log masuk kekal sehingga anda keluar dari CloudStream.
 values-b+ms	string	account_sync_connected	-	Bersambung · log masuk pada peranti ini
@@ -42538,6 +42710,7 @@ values-b+ms	string	cartoons	-	Kartun
 values-b+ms	string	cartoons_singular	-	Kartun
 values-b+ms	string	cast	-	Pelakon
 values-b+ms	string	cast_format	-	Pelakon:%s
+values-b+ms	string	cast_voiced_by	-	Disuarakan oleh %s
 values-b+ms	string	category_account	-	Akaun dan Sekuriti
 values-b+ms	string	category_general	-	Umum
 values-b+ms	string	category_player	-	Pemain
@@ -42715,7 +42888,9 @@ values-b+ms	string	episode_poster_img_des	-	Poster Episod
 values-b+ms	string	episode_short	-	E
 values-b+ms	string	episode_sync_settings	-	Kemaskini kemajuan tontonan
 values-b+ms	string	episode_sync_settings_des	-	Selaraskan kemajuan episod secara automatik
+values-b+ms	string	episode_time_left	-	Tinggal %1$d min
 values-b+ms	string	episode_upcoming_format	-	Akan datang pada %s
+values-b+ms	string	episode_watched	-	Sudah ditonton
 values-b+ms	string	episodes	-	Episodes
 values-b+ms	string	episodes_range	-	%1$d-%2$d
 values-b+ms	string	error	-	Ralat
@@ -43708,6 +43883,8 @@ values-b+mt	string	account_select_note	-	Storja tal-wiri separata · mhux logins
 values-b+mt	string	account_select_title	-	Min qed jara?
 values-b+mt	string	account_signin_failed_body	-	%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn.
 values-b+mt	string	account_signin_failed_title	-	Ma setgħetx issir id-dħul f'%s
+values-b+mt	string	account_signin_not_kept	-	Ma setax jinżamm id-dħul f'%s fuq dan il-kompjuter, għalhekk m'intix dħalt.
+values-b+mt	string	account_signin_not_removed	-	Ma setax jitneħħa d-dħul f'%s minn dan il-kompjuter, għalhekk għadu attiv.
 values-b+mt	string	account_signin_offline_body	-	Biex tidħol f'%s trid konnessjoni. Erġa' pprova meta dan l-apparat jerġa' jkun online.
 values-b+mt	string	account_signins_until_quit	-	Id-dħul idum sakemm toħroġ minn CloudStream.
 values-b+mt	string	account_sync_connected	-	Imqabbad · dħalt fuq dan l-apparat
@@ -43834,6 +44011,7 @@ values-b+mt	string	cartoons	-	Cartoons
 values-b+mt	string	cartoons_singular	-	Cartoon
 values-b+mt	string	cast	-	Atturi
 values-b+mt	string	cast_format	-	Atturi: %s
+values-b+mt	string	cast_voiced_by	-	Leħen ta' %s
 values-b+mt	string	category_account	-	Accounts and Security
 values-b+mt	string	category_general	-	General
 values-b+mt	string	category_player	-	Player
@@ -44011,7 +44189,9 @@ values-b+mt	string	episode_poster_img_des	-	Kartellun tal-episodju
 values-b+mt	string	episode_short	-	E
 values-b+mt	string	episode_sync_settings	-	Update watch progress
 values-b+mt	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+mt	string	episode_time_left	-	Fadal %1$d min
 values-b+mt	string	episode_upcoming_format	-	Upcoming in %s
+values-b+mt	string	episode_watched	-	Rajt
 values-b+mt	string	episodes	-	Episodes
 values-b+mt	string	episodes_range	-	%1$d-%2$d
 values-b+mt	string	error	-	Error
@@ -44920,6 +45100,8 @@ values-b+my	string	account_select_note	-	သီးခြားကြည့်ရ
 values-b+my	string	account_select_title	-	ဘယ်သူကြည့်နေလဲ?
 values-b+my	string	account_signin_failed_body	-	%s က ဝင်ရောက်မှုကို အတည်မပြုခဲ့ပါ။ ဘာမျှ သိမ်းဆည်းမထားပါ။
 values-b+my	string	account_signin_failed_title	-	%s သို့ ဝင်၍ မရပါ
+values-b+my	string	account_signin_not_kept	-	ဤကွန်ပျူတာတွင် %s သို့ ဝင်ရောက်မှုကို သိမ်းထား၍မရပါ၊ ထို့ကြောင့် သင် ဝင်ရောက်ထားခြင်းမရှိပါ။
+values-b+my	string	account_signin_not_removed	-	ဤကွန်ပျူတာမှ %s သို့ ဝင်ရောက်မှုကို ဖယ်ရှား၍မရပါ၊ ထို့ကြောင့် ဝင်ရောက်ထားဆဲဖြစ်သည်။
 values-b+my	string	account_signin_offline_body	-	%s သို့ ဝင်ရန် ချိတ်ဆက်မှု လိုအပ်သည်။ ဤစက် အွန်လိုင်း ပြန်ဖြစ်သောအခါ ထပ်စမ်းကြည့်ပါ။
 values-b+my	string	account_signins_until_quit	-	CloudStream ကို ပိတ်သည်အထိ အကောင့်ဝင်မှုများ ရှိနေမည်။
 values-b+my	string	account_sync_connected	-	ချိတ်ဆက်ထား · ဤစက်တွင် ဝင်ထား
@@ -45046,6 +45228,7 @@ values-b+my	string	cartoons	-	ကာတွန်းများ
 values-b+my	string	cartoons_singular	-	ကာတွန်း
 values-b+my	string	cast	-	သရုပ်ဆောင်များ
 values-b+my	string	cast_format	-	သရုပ်ဆောင်များ: %s
+values-b+my	string	cast_voiced_by	-	အသံ - %s
 values-b+my	string	category_account	-	အကောင့်များ
 values-b+my	string	category_general	-	အထွေထွေ
 values-b+my	string	category_player	-	ကြည့်ရှုမှု
@@ -45223,7 +45406,9 @@ values-b+my	string	episode_poster_img_des	-	အပိုင်း ပိုစ�
 values-b+my	string	episode_short	-	အပိုင်း
 values-b+my	string	episode_sync_settings	-	ကြည့်ရှုမှုတိုးတက်ခြင်းကိုအပ်ဒိတ်လုပ်ပါ
 values-b+my	string	episode_sync_settings_des	-	သင့်၏အပိုင်းကြည်ရှုမှုရောက်ရှိနေရာကိုအလိုအလျောက်သိမ်းဆည်းပါ
+values-b+my	string	episode_time_left	-	%1$d မိနစ် ကျန်
 values-b+my	string	episode_upcoming_format	-	Upcoming in %s
+values-b+my	string	episode_watched	-	ကြည့်ပြီး
 values-b+my	string	episodes	-	အပိုင်းများ
 values-b+my	string	episodes_range	-	%1$d-%2$d
 values-b+my	string	error	-	အချို့အယွင်း
@@ -46153,6 +46338,8 @@ values-b+ne	string	account_select_note	-	छुट्टै हेराइ इ�
 values-b+ne	string	account_select_title	-	को हेर्दै हुनुहुन्छ?
 values-b+ne	string	account_signin_failed_body	-	%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।
 values-b+ne	string	account_signin_failed_title	-	%s मा साइन इन गर्न सकिएन
+values-b+ne	string	account_signin_not_kept	-	यस कम्प्युटरमा %s को साइन-इन राख्न सकिएन, त्यसैले तपाईं साइन इन हुनुभएको छैन।
+values-b+ne	string	account_signin_not_removed	-	यस कम्प्युटरबाट %s को साइन-इन हटाउन सकिएन, त्यसैले यो अझै साइन इन छ।
 values-b+ne	string	account_signin_offline_body	-	%s मा साइन इन गर्न इन्टरनेट जडान चाहिन्छ। यो उपकरण फेरि अनलाइन भएपछि पुनः प्रयास गर्नुहोस्।
 values-b+ne	string	account_signins_until_quit	-	CloudStream बन्द नगरेसम्म साइन-इन रहन्छ।
 values-b+ne	string	account_sync_connected	-	जडान भयो · यो उपकरणमा साइन इन
@@ -46279,6 +46466,7 @@ values-b+ne	string	cartoons	-	Cartoons
 values-b+ne	string	cartoons_singular	-	Cartoon
 values-b+ne	string	cast	-	अभिनेता
 values-b+ne	string	cast_format	-	अभिनेता:%s
+values-b+ne	string	cast_voiced_by	-	आवाज: %s
 values-b+ne	string	category_account	-	Accounts and Security
 values-b+ne	string	category_general	-	General
 values-b+ne	string	category_player	-	Player
@@ -46456,7 +46644,9 @@ values-b+ne	string	episode_poster_img_des	-	एपिसोडको पोस�
 values-b+ne	string	episode_short	-	E
 values-b+ne	string	episode_sync_settings	-	Update watch progress
 values-b+ne	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+ne	string	episode_time_left	-	%1$d मिनेट बाँकी
 values-b+ne	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ne	string	episode_watched	-	हेरिएको
 values-b+ne	string	episodes	-	Episodes
 values-b+ne	string	episodes_range	-	%1$d-%2$d
 values-b+ne	string	error	-	Error
@@ -47386,6 +47576,8 @@ values-b+nl	string	account_select_note	-	Aparte kijkgeschiedenis · geen aanmeld
 values-b+nl	string	account_select_title	-	Wie kijkt er?
 values-b+nl	string	account_signin_failed_body	-	%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen.
 values-b+nl	string	account_signin_failed_title	-	Kan niet aanmelden bij %s
+values-b+nl	string	account_signin_not_kept	-	De aanmelding bij %s kon niet op deze computer worden bewaard, dus je bent niet aangemeld.
+values-b+nl	string	account_signin_not_removed	-	De aanmelding bij %s kon niet van deze computer worden verwijderd, dus die is nog actief.
 values-b+nl	string	account_signin_offline_body	-	Aanmelden bij %s vereist een verbinding. Probeer het opnieuw als dit apparaat weer online is.
 values-b+nl	string	account_signins_until_quit	-	Aanmeldingen blijven tot je CloudStream afsluit.
 values-b+nl	string	account_sync_connected	-	Verbonden · aangemeld op dit apparaat
@@ -47512,6 +47704,7 @@ values-b+nl	string	cartoons	-	tekenfilms
 values-b+nl	string	cartoons_singular	-	Tekenfilm
 values-b+nl	string	cast	-	Cast
 values-b+nl	string	cast_format	-	Cast: %s
+values-b+nl	string	cast_voiced_by	-	Stem van %s
 values-b+nl	string	category_account	-	Accounts en Beveiliging
 values-b+nl	string	category_general	-	Algemeen
 values-b+nl	string	category_player	-	Player
@@ -47689,7 +47882,9 @@ values-b+nl	string	episode_poster_img_des	-	Aflevering Poster
 values-b+nl	string	episode_short	-	E
 values-b+nl	string	episode_sync_settings	-	Kijkvoortgang bijwerken
 values-b+nl	string	episode_sync_settings_des	-	Automatisch synchroniseren van je huidige episode vooruitgang
+values-b+nl	string	episode_time_left	-	Nog %1$d min
 values-b+nl	string	episode_upcoming_format	-	Binnenkort beschikbaar in %s
+values-b+nl	string	episode_watched	-	Bekeken
 values-b+nl	string	episodes	-	afleveringen
 values-b+nl	string	episodes_range	-	%1$d-%2$d
 values-b+nl	string	error	-	Fout
@@ -48619,6 +48814,8 @@ values-b+nn	string	account_select_note	-	Eiga sjåhistorikk · ikkje innlogginga
 values-b+nn	string	account_select_title	-	Kven ser på?
 values-b+nn	string	account_signin_failed_body	-	%s stadfesta ikkje innlogginga. Ingenting vart lagra.
 values-b+nn	string	account_signin_failed_title	-	Kunne ikkje logge inn på %s
+values-b+nn	string	account_signin_not_kept	-	Kunne ikkje ta vare på innlogginga til %s på denne datamaskina, så du er ikkje logga inn.
+values-b+nn	string	account_signin_not_removed	-	Kunne ikkje fjerne innlogginga til %s frå denne datamaskina, så ho er framleis aktiv.
 values-b+nn	string	account_signin_offline_body	-	Innlogging på %s krev tilkopling. Prøv igjen når denne eininga er tilkopla att.
 values-b+nn	string	account_signins_until_quit	-	Innloggingar varer til du avsluttar CloudStream.
 values-b+nn	string	account_sync_connected	-	Tilkopla · logga inn på denne eininga
@@ -48745,6 +48942,7 @@ values-b+nn	string	cartoons	-	Teikneseriar
 values-b+nn	string	cartoons_singular	-	Teiknefilm
 values-b+nn	string	cast	-	Rollebesetning
 values-b+nn	string	cast_format	-	Rollebesetning: %s
+values-b+nn	string	cast_voiced_by	-	Stemme: %s
 values-b+nn	string	category_account	-	Kontoar
 values-b+nn	string	category_general	-	General
 values-b+nn	string	category_player	-	Player
@@ -48922,7 +49120,9 @@ values-b+nn	string	episode_poster_img_des	-	Episodeminiatyrbilete
 values-b+nn	string	episode_short	-	E
 values-b+nn	string	episode_sync_settings	-	Update watch progress
 values-b+nn	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+nn	string	episode_time_left	-	%1$d min att
 values-b+nn	string	episode_upcoming_format	-	Upcoming in %s
+values-b+nn	string	episode_watched	-	Sett
 values-b+nn	string	episodes	-	Episodar
 values-b+nn	string	episodes_range	-	%1$d-%2$d
 values-b+nn	string	error	-	Error
@@ -49852,6 +50052,8 @@ values-b+no	string	account_select_note	-	Egen seerhistorikk · ikke innlogginger
 values-b+no	string	account_select_title	-	Hvem ser på?
 values-b+no	string	account_signin_failed_body	-	%s bekreftet ikke innloggingen. Ingenting ble lagret.
 values-b+no	string	account_signin_failed_title	-	Kunne ikke logge inn på %s
+values-b+no	string	account_signin_not_kept	-	Kunne ikke beholde påloggingen til %s på denne datamaskinen, så du er ikke logget på.
+values-b+no	string	account_signin_not_removed	-	Kunne ikke fjerne påloggingen til %s fra denne datamaskinen, så den er fortsatt aktiv.
 values-b+no	string	account_signin_offline_body	-	Innlogging på %s krever tilkobling. Prøv igjen når denne enheten er på nett igjen.
 values-b+no	string	account_signins_until_quit	-	Innlogginger varer til du avslutter CloudStream.
 values-b+no	string	account_sync_connected	-	Tilkoblet · logget inn på denne enheten
@@ -49978,6 +50180,7 @@ values-b+no	string	cartoons	-	Tegneserier
 values-b+no	string	cartoons_singular	-	Tegnefilm
 values-b+no	string	cast	-	Besetning
 values-b+no	string	cast_format	-	Besetning: %s
+values-b+no	string	cast_voiced_by	-	Stemme: %s
 values-b+no	string	category_account	-	Kontoer
 values-b+no	string	category_general	-	Grunnleggende
 values-b+no	string	category_player	-	Avspiller
@@ -50155,7 +50358,9 @@ values-b+no	string	episode_poster_img_des	-	Episode Plakat
 values-b+no	string	episode_short	-	E
 values-b+no	string	episode_sync_settings	-	Oppdater visningsframdrift
 values-b+no	string	episode_sync_settings_des	-	Synkroniser automatisk fremdriften din for gjeldende episode
+values-b+no	string	episode_time_left	-	%1$d min igjen
 values-b+no	string	episode_upcoming_format	-	Upcoming in %s
+values-b+no	string	episode_watched	-	Sett
 values-b+no	string	episodes	-	Episoder
 values-b+no	string	episodes_range	-	%1$d-%2$d
 values-b+no	string	error	-	Feil
@@ -51085,6 +51290,8 @@ values-b+or	string	account_select_note	-	ଅଲଗା ଦେଖିବା ଇତ�
 values-b+or	string	account_select_title	-	କିଏ ଦେଖୁଛନ୍ତି?
 values-b+or	string	account_signin_failed_body	-	%s ସାଇନ୍-ଇନ୍ ନିଶ୍ଚିତ କଲା ନାହିଁ। କିଛି ସେଭ୍ ହୋଇନାହିଁ।
 values-b+or	string	account_signin_failed_title	-	%s ରେ ସାଇନ୍ ଇନ୍ କରିହେଲା ନାହିଁ
+values-b+or	string	account_signin_not_kept	-	ଏହି କମ୍ପ୍ୟୁଟରରେ %s ସାଇନ-ଇନ୍ ରଖିହେଲା ନାହିଁ, ତେଣୁ ଆପଣ ସାଇନ ଇନ୍ ହୋଇନାହାନ୍ତି।
+values-b+or	string	account_signin_not_removed	-	ଏହି କମ୍ପ୍ୟୁଟରରୁ %s ସାଇନ-ଇନ୍ କାଢ଼ିହେଲା ନାହିଁ, ତେଣୁ ଏହା ଏବେ ବି ସାଇନ ଇନ୍ ଅଛି।
 values-b+or	string	account_signin_offline_body	-	%s ରେ ସାଇନ୍ ଇନ୍ କରିବାକୁ ସଂଯୋଗ ଆବଶ୍ୟକ। ଏହି ଡିଭାଇସ୍ ପୁଣି ଅନଲାଇନ୍ ହେଲେ ଆଉଥରେ ଚେଷ୍ଟା କରନ୍ତୁ।
 values-b+or	string	account_signins_until_quit	-	CloudStream ବନ୍ଦ ନକରିବା ପର୍ଯ୍ୟନ୍ତ ସାଇନ-ଇନ୍ ରହେ।
 values-b+or	string	account_sync_connected	-	ସଂଯୁକ୍ତ · ଏହି ଡିଭାଇସରେ ସାଇନ୍ ଇନ୍
@@ -51211,6 +51418,7 @@ values-b+or	string	cartoons	-	Cartoons
 values-b+or	string	cartoons_singular	-	Cartoon
 values-b+or	string	cast	-	ପାତ୍ର
 values-b+or	string	cast_format	-	ପାତ୍ର: %s
+values-b+or	string	cast_voiced_by	-	ସ୍ୱର: %s
 values-b+or	string	category_account	-	Accounts and Security
 values-b+or	string	category_general	-	ସାଧାରଣ
 values-b+or	string	category_player	-	ଚାଳକ
@@ -51388,7 +51596,9 @@ values-b+or	string	episode_poster_img_des	-	ଅଧ୍ୟାୟର ପୋଷ୍�
 values-b+or	string	episode_short	-	ଅ
 values-b+or	string	episode_sync_settings	-	Update watch progress
 values-b+or	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+or	string	episode_time_left	-	%1$d ମିନିଟ୍ ବାକି
 values-b+or	string	episode_upcoming_format	-	Upcoming in %s
+values-b+or	string	episode_watched	-	ଦେଖାଯାଇଛି
 values-b+or	string	episodes	-	ଟି ଅଧ୍ୟାୟ
 values-b+or	string	episodes_range	-	%1$d-%2$d
 values-b+or	string	error	-	ତ୍ରୁଟି
@@ -52366,6 +52576,8 @@ values-b+pl	string	account_select_note	-	Osobna historia oglądania · to nie lo
 values-b+pl	string	account_select_title	-	Kto ogląda?
 values-b+pl	string	account_signin_failed_body	-	Usługa %s nie potwierdziła logowania. Niczego nie zapisano.
 values-b+pl	string	account_signin_failed_title	-	Nie udało się zalogować do %s
+values-b+pl	string	account_signin_not_kept	-	Nie udało się zachować logowania do %s na tym komputerze, więc nie jesteś zalogowany.
+values-b+pl	string	account_signin_not_removed	-	Nie udało się usunąć logowania do %s z tego komputera, więc nadal jest aktywne.
 values-b+pl	string	account_signin_offline_body	-	Logowanie do %s wymaga połączenia. Spróbuj ponownie, gdy to urządzenie znów będzie online.
 values-b+pl	string	account_signins_until_quit	-	Logowania trwają do zamknięcia CloudStream.
 values-b+pl	string	account_sync_connected	-	Połączono · zalogowano na tym urządzeniu
@@ -52492,6 +52704,7 @@ values-b+pl	string	cartoons	-	Kreskówki
 values-b+pl	string	cartoons_singular	-	Kreskówka
 values-b+pl	string	cast	-	Obsada
 values-b+pl	string	cast_format	-	Obsada: %s
+values-b+pl	string	cast_voiced_by	-	Głos: %s
 values-b+pl	string	category_account	-	Konta i zabezpieczenia
 values-b+pl	string	category_general	-	Ogólne
 values-b+pl	string	category_player	-	Odtwarzacz
@@ -52669,7 +52882,9 @@ values-b+pl	string	episode_poster_img_des	-	Obrazek odcinka
 values-b+pl	string	episode_short	-	O
 values-b+pl	string	episode_sync_settings	-	Aktualizuj postęp oglądania
 values-b+pl	string	episode_sync_settings_des	-	Automatycznie synchronizuj postęp aktualnego odcinka
+values-b+pl	string	episode_time_left	-	Zostało %1$d min
 values-b+pl	string	episode_upcoming_format	-	Nadchodzące w %s
+values-b+pl	string	episode_watched	-	Obejrzane
 values-b+pl	string	episodes	-	Odcinki
 values-b+pl	string	episodes_range	-	%1$d-%2$d
 values-b+pl	string	error	-	Błąd
@@ -53623,6 +53838,8 @@ values-b+pt	string	account_select_note	-	Histórico de visualização separado �
 values-b+pt	string	account_select_title	-	Quem está a ver?
 values-b+pt	string	account_signin_failed_body	-	%s não confirmou o início de sessão. Nada foi guardado.
 values-b+pt	string	account_signin_failed_title	-	Não foi possível iniciar sessão em %s
+values-b+pt	string	account_signin_not_kept	-	Não foi possível guardar o início de sessão em %s neste computador, por isso não tem sessão iniciada.
+values-b+pt	string	account_signin_not_removed	-	Não foi possível remover o início de sessão em %s deste computador, por isso a sessão continua iniciada.
 values-b+pt	string	account_signin_offline_body	-	Iniciar sessão em %s requer uma ligação. Tente novamente quando este dispositivo voltar a estar online.
 values-b+pt	string	account_signins_until_quit	-	As sessões iniciadas duram até sair do CloudStream.
 values-b+pt	string	account_sync_connected	-	Ligado · sessão iniciada neste dispositivo
@@ -53749,6 +53966,7 @@ values-b+pt	string	cartoons	-	Desenhos Animados
 values-b+pt	string	cartoons_singular	-	Desenho Animado
 values-b+pt	string	cast	-	Elenco
 values-b+pt	string	cast_format	-	Elenco: %s
+values-b+pt	string	cast_voiced_by	-	Voz de %s
 values-b+pt	string	category_account	-	Contas e segurança
 values-b+pt	string	category_general	-	Geral
 values-b+pt	string	category_player	-	Player
@@ -53926,7 +54144,9 @@ values-b+pt	string	episode_poster_img_des	-	Pôster do episódio
 values-b+pt	string	episode_short	-	E
 values-b+pt	string	episode_sync_settings	-	Atualizar progresso
 values-b+pt	string	episode_sync_settings_des	-	Sincronizar automaticamente o progresso do seu episódio atual
+values-b+pt	string	episode_time_left	-	Faltam %1$d min
 values-b+pt	string	episode_upcoming_format	-	Próximo em %s
+values-b+pt	string	episode_watched	-	Visto
 values-b+pt	string	episodes	-	Episódios
 values-b+pt	string	episodes_range	-	%1$d-%2$d
 values-b+pt	string	error	-	Erro
@@ -54880,6 +55100,8 @@ values-b+pt+BR	string	account_select_note	-	Histórico separado · não são log
 values-b+pt+BR	string	account_select_title	-	Quem está assistindo?
 values-b+pt+BR	string	account_signin_failed_body	-	%s não confirmou o login. Nada foi salvo.
 values-b+pt+BR	string	account_signin_failed_title	-	Não foi possível entrar no %s
+values-b+pt+BR	string	account_signin_not_kept	-	Não foi possível manter o login em %s neste computador, então você não está conectado.
+values-b+pt+BR	string	account_signin_not_removed	-	Não foi possível remover o login em %s deste computador, então ele continua conectado.
 values-b+pt+BR	string	account_signin_offline_body	-	Para entrar no %s é preciso ter conexão. Tente de novo quando este dispositivo estiver on-line.
 values-b+pt+BR	string	account_signins_until_quit	-	Os logins duram até você fechar o CloudStream.
 values-b+pt+BR	string	account_sync_connected	-	Conectado · logado neste dispositivo
@@ -55006,6 +55228,7 @@ values-b+pt+BR	string	cartoons	-	Desenhos animados
 values-b+pt+BR	string	cartoons_singular	-	Desenho Animado
 values-b+pt+BR	string	cast	-	Elenco
 values-b+pt+BR	string	cast_format	-	Elenco: %s
+values-b+pt+BR	string	cast_voiced_by	-	Voz de %s
 values-b+pt+BR	string	category_account	-	Contas e Segurança
 values-b+pt+BR	string	category_general	-	Geral
 values-b+pt+BR	string	category_player	-	Player
@@ -55183,7 +55406,9 @@ values-b+pt+BR	string	episode_poster_img_des	-	Pôster do episódio
 values-b+pt+BR	string	episode_short	-	E
 values-b+pt+BR	string	episode_sync_settings	-	Atualizar progresso assistido
 values-b+pt+BR	string	episode_sync_settings_des	-	Sincronize automaticamente seu progresso do episódio
+values-b+pt+BR	string	episode_time_left	-	Faltam %1$d min
 values-b+pt+BR	string	episode_upcoming_format	-	Próximo em %s
+values-b+pt+BR	string	episode_watched	-	Assistido
 values-b+pt+BR	string	episodes	-	Episódios
 values-b+pt+BR	string	episodes_range	-	%1$d-%2$d
 values-b+pt+BR	string	error	-	Erro
@@ -56092,6 +56317,8 @@ values-b+qt	string	account_select_note	-	oooh-aah aagg · ooh aah
 values-b+qt	string	account_select_title	-	ooh oooh aah?
 values-b+qt	string	account_signin_failed_body	-	%s oooohh uugg ah. oooohh aagg.
 values-b+qt	string	account_signin_failed_title	-	oooohh uugg ah %s
+values-b+qt	string	account_signin_not_kept	-	%s aagg ooh. ooh-aah oouh.
+values-b+qt	string	account_signin_not_removed	-	%s aagg ooh. ooh-aah oouh.
 values-b+qt	string	account_signin_offline_body	-	uugg ah %s ooh aagg. uuh eeeek oooh aah aagg.
 values-b+qt	string	account_signins_until_quit	-	ooh-aah aagg ooh CloudStream.
 values-b+qt	string	account_sync_connected	-	oooh-aah · ooh aagg
@@ -56218,6 +56445,7 @@ values-b+qt	string	cartoons	-	ahoooouuhhh
 values-b+qt	string	cartoons_singular	-	uuuuggg
 values-b+qt	string	cast	-	oouaaahh
 values-b+qt	string	cast_format	-	oouaaahh %s
+values-b+qt	string	cast_voiced_by	-	ooh aahh %s
 values-b+qt	string	category_account	-	oooogggg aah aaaaaakh
 values-b+qt	string	category_general	-	a ahu uoo uoahuo uo
 values-b+qt	string	category_player	-	ahaough aaouuuuh-h
@@ -56395,7 +56623,9 @@ values-b+qt	string	episode_poster_img_des	-	oouuhahoooooo-ahahoooohh
 values-b+qt	string	episode_short	-	A
 values-b+qt	string	episode_sync_settings	-	aaaagg aaahh aaaahhhg
 values-b+qt	string	episode_sync_settings_des	-	aaaaggguuuugg uuhh oohh ooooggg eeeeeek aaaagggh
+values-b+qt	string	episode_time_left	-	%1$d ooh haa ahhh
 values-b+qt	string	episode_upcoming_format	-	uuuugggg og %s
+values-b+qt	string	episode_watched	-	oouuh aaahhu
 values-b+qt	string	episodes	-	ahhh ooooo
 values-b+qt	string	episodes_range	-	%1$d%2$d
 values-b+qt	string	error	-	uuuhh
@@ -57346,6 +57576,8 @@ values-b+ro	string	account_select_note	-	Istoric de vizionare separat · nu sunt
 values-b+ro	string	account_select_title	-	Cine se uită?
 values-b+ro	string	account_signin_failed_body	-	%s nu a confirmat conectarea. Nu s-a salvat nimic.
 values-b+ro	string	account_signin_failed_title	-	Nu te-ai putut conecta la %s
+values-b+ro	string	account_signin_not_kept	-	Conectarea la %s nu a putut fi păstrată pe acest computer, așa că nu ești conectat.
+values-b+ro	string	account_signin_not_removed	-	Conectarea la %s nu a putut fi eliminată de pe acest computer, așa că este încă activă.
 values-b+ro	string	account_signin_offline_body	-	Conectarea la %s necesită o conexiune la internet. Încearcă din nou când acest dispozitiv este din nou online.
 values-b+ro	string	account_signins_until_quit	-	Conectările durează până când închizi CloudStream.
 values-b+ro	string	account_sync_connected	-	Conectat · pe acest dispozitiv
@@ -57472,6 +57704,7 @@ values-b+ro	string	cartoons	-	Desene Animate
 values-b+ro	string	cartoons_singular	-	Desen Animat
 values-b+ro	string	cast	-	Distribuție
 values-b+ro	string	cast_format	-	Distribuție: %s
+values-b+ro	string	cast_voiced_by	-	Vocea: %s
 values-b+ro	string	category_account	-	Conturi și Securitate
 values-b+ro	string	category_general	-	General
 values-b+ro	string	category_player	-	Player
@@ -57649,7 +57882,9 @@ values-b+ro	string	episode_poster_img_des	-	Poster Episod
 values-b+ro	string	episode_short	-	E
 values-b+ro	string	episode_sync_settings	-	Actualizați progresul ceasului
 values-b+ro	string	episode_sync_settings_des	-	Sincronizează automat episoadele vizionate
+values-b+ro	string	episode_time_left	-	Mai sunt %1$d min
 values-b+ro	string	episode_upcoming_format	-	Următorul în %s
+values-b+ro	string	episode_watched	-	Vizionat
 values-b+ro	string	episodes	-	Episoade
 values-b+ro	string	episodes_range	-	%1$d-%2$d
 values-b+ro	string	error	-	Eroare
@@ -58627,6 +58862,8 @@ values-b+ru	string	account_select_note	-	Отдельная история пр�
 values-b+ru	string	account_select_title	-	Кто смотрит?
 values-b+ru	string	account_signin_failed_body	-	%s не подтвердил вход. Ничего не сохранено.
 values-b+ru	string	account_signin_failed_title	-	Не удалось войти в %s
+values-b+ru	string	account_signin_not_kept	-	Не удалось сохранить вход в %s на этом компьютере, поэтому вы не вошли.
+values-b+ru	string	account_signin_not_removed	-	Не удалось удалить вход в %s с этого компьютера, поэтому он всё ещё активен.
 values-b+ru	string	account_signin_offline_body	-	Для входа в %s нужно подключение. Попробуйте снова, когда это устройство будет в сети.
 values-b+ru	string	account_signins_until_quit	-	Входы сохраняются, пока вы не закроете CloudStream.
 values-b+ru	string	account_sync_connected	-	Подключено · вход выполнен на этом устройстве
@@ -58753,6 +58990,7 @@ values-b+ru	string	cartoons	-	Мультфильмы
 values-b+ru	string	cartoons_singular	-	Мультфильм
 values-b+ru	string	cast	-	В ролях
 values-b+ru	string	cast_format	-	В ролях: %s
+values-b+ru	string	cast_voiced_by	-	Озвучивает %s
 values-b+ru	string	category_account	-	Учётные записи и Безопасность
 values-b+ru	string	category_general	-	Общие
 values-b+ru	string	category_player	-	Плеер
@@ -58930,7 +59168,9 @@ values-b+ru	string	episode_poster_img_des	-	Плакат серии
 values-b+ru	string	episode_short	-	Э
 values-b+ru	string	episode_sync_settings	-	Обновлять прогресс просмотра
 values-b+ru	string	episode_sync_settings_des	-	Автоматически синхронизировать текущий прогресс серии
+values-b+ru	string	episode_time_left	-	Осталось %1$d мин
 values-b+ru	string	episode_upcoming_format	-	Выйдет %s
+values-b+ru	string	episode_watched	-	Просмотрено
 values-b+ru	string	episodes	-	Серии
 values-b+ru	string	episodes_range	-	%1$d-%2$d
 values-b+ru	string	error	-	Ошибка
@@ -59902,6 +60142,8 @@ values-b+sk	string	account_select_note	-	Samostatná história pozerania · nie 
 values-b+sk	string	account_select_title	-	Kto sa pozerá?
 values-b+sk	string	account_signin_failed_body	-	Služba %s prihlásenie nepotvrdila. Nič sa neuložilo.
 values-b+sk	string	account_signin_failed_title	-	Nepodarilo sa prihlásiť do %s
+values-b+sk	string	account_signin_not_kept	-	Prihlásenie do %s sa na tomto počítači nepodarilo uchovať, takže nie ste prihlásený.
+values-b+sk	string	account_signin_not_removed	-	Prihlásenie do %s sa z tohto počítača nepodarilo odstrániť, takže je stále aktívne.
 values-b+sk	string	account_signin_offline_body	-	Prihlásenie do %s vyžaduje pripojenie. Skúste to znova, keď bude toto zariadenie opäť online.
 values-b+sk	string	account_signins_until_quit	-	Prihlásenia platia, kým CloudStream neukončíte.
 values-b+sk	string	account_sync_connected	-	Pripojené · prihlásené na tomto zariadení
@@ -60028,6 +60270,7 @@ values-b+sk	string	cartoons	-	Kreslené
 values-b+sk	string	cartoons_singular	-	Kreslený
 values-b+sk	string	cast	-	Hrajú
 values-b+sk	string	cast_format	-	Hrajú: %s
+values-b+sk	string	cast_voiced_by	-	Hlas: %s
 values-b+sk	string	category_account	-	Účty a Zabezpečenie
 values-b+sk	string	category_general	-	Všeobecné
 values-b+sk	string	category_player	-	Prehrávač
@@ -60205,7 +60448,9 @@ values-b+sk	string	episode_poster_img_des	-	Plagát epizódy
 values-b+sk	string	episode_short	-	E
 values-b+sk	string	episode_sync_settings	-	Aktualizovať priebeh sledovania
 values-b+sk	string	episode_sync_settings_des	-	Automaticky synchronizovať priebeh sledovania súčasnej epizódy
+values-b+sk	string	episode_time_left	-	Zostáva %1$d min
 values-b+sk	string	episode_upcoming_format	-	Nadchádzajúce o %s
+values-b+sk	string	episode_watched	-	Pozreté
 values-b+sk	string	episodes	-	Epizódy
 values-b+sk	string	episodes_range	-	%1$d-%2$d
 values-b+sk	string	error	-	Chyba
@@ -61135,6 +61380,8 @@ values-b+so	string	account_select_note	-	Taariikh daawasho gooni ah · ma aha ge
 values-b+so	string	account_select_title	-	Yaa daawanaya?
 values-b+so	string	account_signin_failed_body	-	%s ma xaqiijin galitaanka. Waxba lama kaydin.
 values-b+so	string	account_signin_failed_title	-	Lama geli karo %s
+values-b+so	string	account_signin_not_kept	-	Lama hayn karin gelitaanka %s kombuyuutarkan, sidaa darteed ma gelin.
+values-b+so	string	account_signin_not_removed	-	Lama saari karin gelitaanka %s kombuyuutarkan, sidaa darteed weli waa la galay.
 values-b+so	string	account_signin_offline_body	-	Gelitaanka %s wuxuu u baahan yahay xiriir. Mar kale isku day marka qalabkani dib ugu soo laabto khadka.
 values-b+so	string	account_signins_until_quit	-	Gelitaanku way sii jiraan ilaa aad ka baxdo CloudStream.
 values-b+so	string	account_sync_connected	-	Waa ku xiran yahay · lagu galay qalabkan
@@ -61261,6 +61508,7 @@ values-b+so	string	cartoons	-	Kartoon
 values-b+so	string	cartoons_singular	-	Kartoob
 values-b+so	string	cast	-	Metalaya
 values-b+so	string	cast_format	-	Metalaya: %s
+values-b+so	string	cast_voiced_by	-	Codka: %s
 values-b+so	string	category_account	-	Akoonada iyo Amniga
 values-b+so	string	category_general	-	Guud
 values-b+so	string	category_player	-	Daaraha
@@ -61438,7 +61686,9 @@ values-b+so	string	episode_poster_img_des	-	Boodhka xalqadda
 values-b+so	string	episode_short	-	X
 values-b+so	string	episode_sync_settings	-	Cusbooneysii marba halkaad marayso daawashada
 values-b+so	string	episode_sync_settings_des	-	Si iskii ah ha ula socdo appku hadba xalqadda aad marayso
+values-b+so	string	episode_time_left	-	%1$d daqiiqo ayaa hadhay
 values-b+so	string	episode_upcoming_format	-	Upcoming in %s
+values-b+so	string	episode_watched	-	La daawaday
 values-b+so	string	episodes	-	Xalqado
 values-b+so	string	episodes_range	-	%1$d illaa %2$d
 values-b+so	string	error	-	Xumaaday
@@ -62368,6 +62618,8 @@ values-b+sq	string	account_select_note	-	Historik shikimi më vete · jo hyrje
 values-b+sq	string	account_select_title	-	Kush po shikon?
 values-b+sq	string	account_signin_failed_body	-	%s nuk e konfirmoi identifikimin. Nuk u ruajt asgjë.
 values-b+sq	string	account_signin_failed_title	-	Identifikimi në %s dështoi
+values-b+sq	string	account_signin_not_kept	-	Hyrja në %s nuk u ruajt dot në këtë kompjuter, ndaj nuk je i identifikuar.
+values-b+sq	string	account_signin_not_removed	-	Hyrja në %s nuk u hoq dot nga ky kompjuter, ndaj është ende aktive.
 values-b+sq	string	account_signin_offline_body	-	Identifikimi në %s kërkon lidhje. Provo përsëri kur kjo pajisje të jetë sërish në linjë.
 values-b+sq	string	account_signins_until_quit	-	Hyrjet zgjasin derisa të mbyllësh CloudStream.
 values-b+sq	string	account_sync_connected	-	E lidhur · e identifikuar në këtë pajisje
@@ -62494,6 +62746,7 @@ values-b+sq	string	cartoons	-	Vizatimore
 values-b+sq	string	cartoons_singular	-	Vizatimorë
 values-b+sq	string	cast	-	Kasti
 values-b+sq	string	cast_format	-	Kasti: %s
+values-b+sq	string	cast_voiced_by	-	Zëri: %s
 values-b+sq	string	category_account	-	Llogaritë dhe Siguria
 values-b+sq	string	category_general	-	Të përgjithshme
 values-b+sq	string	category_player	-	Luajtësi
@@ -62671,7 +62924,9 @@ values-b+sq	string	episode_poster_img_des	-	Posteri i episodit
 values-b+sq	string	episode_short	-	E
 values-b+sq	string	episode_sync_settings	-	Përditëso progresin e shikimit
 values-b+sq	string	episode_sync_settings_des	-	Sinkronizo automatikisht progresin e episodit aktual
+values-b+sq	string	episode_time_left	-	Mbeten %1$d min
 values-b+sq	string	episode_upcoming_format	-	Vazhdon në %s
+values-b+sq	string	episode_watched	-	Parë
 values-b+sq	string	episodes	-	Episode
 values-b+sq	string	episodes_range	-	%1$d-%2$d
 values-b+sq	string	error	-	Gabim
@@ -63601,6 +63856,8 @@ values-b+sv	string	account_select_note	-	Egen visningshistorik · inte inloggnin
 values-b+sv	string	account_select_title	-	Vem tittar?
 values-b+sv	string	account_signin_failed_body	-	%s bekräftade inte inloggningen. Inget sparades.
 values-b+sv	string	account_signin_failed_title	-	Det gick inte att logga in på %s
+values-b+sv	string	account_signin_not_kept	-	Inloggningen på %s kunde inte sparas på den här datorn, så du är inte inloggad.
+values-b+sv	string	account_signin_not_removed	-	Inloggningen på %s kunde inte tas bort från den här datorn, så den är fortfarande aktiv.
 values-b+sv	string	account_signin_offline_body	-	Inloggning på %s kräver en anslutning. Försök igen när enheten är online igen.
 values-b+sv	string	account_signins_until_quit	-	Inloggningar gäller tills du avslutar CloudStream.
 values-b+sv	string	account_sync_connected	-	Ansluten · inloggad på den här enheten
@@ -63727,6 +63984,7 @@ values-b+sv	string	cartoons	-	Cartoons
 values-b+sv	string	cartoons_singular	-	Tecknade serier
 values-b+sv	string	cast	-	Skådespelare
 values-b+sv	string	cast_format	-	Skådespelare: %s
+values-b+sv	string	cast_voiced_by	-	Röst: %s
 values-b+sv	string	category_account	-	Konton och säkerhet
 values-b+sv	string	category_general	-	Allmänna Inställningar
 values-b+sv	string	category_player	-	Videospelare
@@ -63904,7 +64162,9 @@ values-b+sv	string	episode_poster_img_des	-	Affisch
 values-b+sv	string	episode_short	-	A
 values-b+sv	string	episode_sync_settings	-	Uppdatera visnings förlopp
 values-b+sv	string	episode_sync_settings_des	-	Automatiskt uppdatera antalet episoder sedda
+values-b+sv	string	episode_time_left	-	%1$d min kvar
 values-b+sv	string	episode_upcoming_format	-	Kommer ut om %s
+values-b+sv	string	episode_watched	-	Sedd
 values-b+sv	string	episodes	-	Avsnitt
 values-b+sv	string	episodes_range	-	%1$d-%2$d
 values-b+sv	string	error	-	Fel
@@ -64834,6 +65094,8 @@ values-b+ta	string	account_select_note	-	தனி பார்வை வரல�
 values-b+ta	string	account_select_title	-	யார் பார்க்கிறார்கள்?
 values-b+ta	string	account_signin_failed_body	-	%s உள்நுழைவை உறுதிப்படுத்தவில்லை. எதுவும் சேமிக்கப்படவில்லை.
 values-b+ta	string	account_signin_failed_title	-	%s இல் உள்நுழைய முடியவில்லை
+values-b+ta	string	account_signin_not_kept	-	இந்தக் கணினியில் %s உள்நுழைவை வைத்திருக்க முடியவில்லை, எனவே நீங்கள் உள்நுழையவில்லை.
+values-b+ta	string	account_signin_not_removed	-	இந்தக் கணினியிலிருந்து %s உள்நுழைவை அகற்ற முடியவில்லை, எனவே அது இன்னும் உள்நுழைந்த நிலையில் உள்ளது.
 values-b+ta	string	account_signin_offline_body	-	%s இல் உள்நுழைய இணைப்பு தேவை. இந்தச் சாதனம் மீண்டும் ஆன்லைனுக்கு வந்ததும் முயலவும்.
 values-b+ta	string	account_signins_until_quit	-	CloudStream-ஐ மூடும் வரை உள்நுழைவுகள் இருக்கும்.
 values-b+ta	string	account_sync_connected	-	இணைக்கப்பட்டது · இந்தச் சாதனத்தில் உள்நுழைந்துள்ளது
@@ -64960,6 +65222,7 @@ values-b+ta	string	cartoons	-	கார்ட்டூன்கள்
 values-b+ta	string	cartoons_singular	-	கார்ட்டூன்
 values-b+ta	string	cast	-	நடிகர்கள்
 values-b+ta	string	cast_format	-	நடிகர்கள்: %s
+values-b+ta	string	cast_voiced_by	-	குரல்: %s
 values-b+ta	string	category_account	-	கணக்குகள் மற்றும் பாதுகாப்பு
 values-b+ta	string	category_general	-	பொது
 values-b+ta	string	category_player	-	ஆட்டக்காரர்
@@ -65137,7 +65400,9 @@ values-b+ta	string	episode_poster_img_des	-	எபிசோட்டின் �
 values-b+ta	string	episode_short	-	இ
 values-b+ta	string	episode_sync_settings	-	வாட்ச் முன்னேற்றத்தைப் புதுப்பிக்கவும்
 values-b+ta	string	episode_sync_settings_des	-	உங்கள் தற்போதைய அத்தியாயம் முன்னேற்றத்தை தானாக ஒத்திசைக்கவும்
+values-b+ta	string	episode_time_left	-	%1$d நிமி மீதம்
 values-b+ta	string	episode_upcoming_format	-	%s இல் வரவிருக்கும்
+values-b+ta	string	episode_watched	-	பார்த்தது
 values-b+ta	string	episodes	-	அத்தியாயங்கள்
 values-b+ta	string	episodes_range	-	%1$d-%2$d
 values-b+ta	string	error	-	பிழை
@@ -66067,6 +66332,8 @@ values-b+ti	string	account_select_note	-	ፍሉይ ታሪኽ ምርኣይ · መ
 values-b+ti	string	account_select_title	-	መን እዩ ዝርኢ ዘሎ?
 values-b+ti	string	account_signin_failed_body	-	%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።
 values-b+ti	string	account_signin_failed_title	-	ናብ %s ምእታው ኣይተኻእለን
+values-b+ti	string	account_signin_not_kept	-	ኣብዚ ኮምፒዩተር ምእታው ናብ %s ክዕቀብ ኣይተኻእለን፣ ስለዚ ኣይኣቶኻን።
+values-b+ti	string	account_signin_not_removed	-	ምእታው ናብ %s ካብዚ ኮምፒዩተር ክእለ ኣይተኻእለን፣ ስለዚ ሕጂ'ውን ኣቲዩ ኣሎ።
 values-b+ti	string	account_signin_offline_body	-	ናብ %s ንምእታው ምትእስሳር የድሊ። እዚ መሳርሒ ናብ መስመር ምስ ተመልሰ እንደገና ፈትን።
 values-b+ti	string	account_signins_until_quit	-	ምእታዋት ክሳብ CloudStream ትዓጽዉ ይጸንሑ።
 values-b+ti	string	account_sync_connected	-	ተራኺቡ · ኣብዚ መሳርሒ ኣቲዩ
@@ -66193,6 +66460,7 @@ values-b+ti	string	cartoons	-	Cartoons
 values-b+ti	string	cartoons_singular	-	Cartoon
 values-b+ti	string	cast	-	ተዋሳእቲ
 values-b+ti	string	cast_format	-	ተዋሳእቲ፡ %s
+values-b+ti	string	cast_voiced_by	-	ድምጺ: %s
 values-b+ti	string	category_account	-	Accounts and Security
 values-b+ti	string	category_general	-	General
 values-b+ti	string	category_player	-	Player
@@ -66370,7 +66638,9 @@ values-b+ti	string	episode_poster_img_des	-	Episode Poster
 values-b+ti	string	episode_short	-	E
 values-b+ti	string	episode_sync_settings	-	Update watch progress
 values-b+ti	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+values-b+ti	string	episode_time_left	-	%1$d ደቒቕ ተሪፉ
 values-b+ti	string	episode_upcoming_format	-	Upcoming in %s
+values-b+ti	string	episode_watched	-	ተራእዩ
 values-b+ti	string	episodes	-	Episodes
 values-b+ti	string	episodes_range	-	%1$d-%2$d
 values-b+ti	string	error	-	Error
@@ -67300,6 +67570,8 @@ values-b+tl	string	account_select_note	-	Hiwalay na kasaysayan ng panonood · hi
 values-b+tl	string	account_select_title	-	Sino ang nanonood?
 values-b+tl	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
 values-b+tl	string	account_signin_failed_title	-	Hindi makapag-sign in sa %s
+values-b+tl	string	account_signin_not_kept	-	Hindi maitago ang pag-sign in sa %s sa computer na ito, kaya hindi ka naka-sign in.
+values-b+tl	string	account_signin_not_removed	-	Hindi maalis ang pag-sign in sa %s sa computer na ito, kaya naka-sign in pa rin ito.
 values-b+tl	string	account_signin_offline_body	-	Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito.
 values-b+tl	string	account_signins_until_quit	-	Tatagal ang mga sign-in hanggang isara mo ang CloudStream.
 values-b+tl	string	account_sync_connected	-	Nakakonekta · naka-sign in sa device na ito
@@ -67426,6 +67698,7 @@ values-b+tl	string	cartoons	-	Cartoons
 values-b+tl	string	cartoons_singular	-	Cartoon
 values-b+tl	string	cast	-	I-Cast
 values-b+tl	string	cast_format	-	I-Cast: %s
+values-b+tl	string	cast_voiced_by	-	Boses ni %s
 values-b+tl	string	category_account	-	Accounts and Security
 values-b+tl	string	category_general	-	Pangkalahatan
 values-b+tl	string	category_player	-	Player
@@ -67603,7 +67876,9 @@ values-b+tl	string	episode_poster_img_des	-	Episode Poster
 values-b+tl	string	episode_short	-	E
 values-b+tl	string	episode_sync_settings	-	Update watch progress
 values-b+tl	string	episode_sync_settings_des	-	Awtomatikong i-sync ang iyong kasalukuyang episode
+values-b+tl	string	episode_time_left	-	%1$d min na lang
 values-b+tl	string	episode_upcoming_format	-	Upcoming in %s
+values-b+tl	string	episode_watched	-	Napanood na
 values-b+tl	string	episodes	-	Episodes
 values-b+tl	string	episodes_range	-	%1$d-%2$d
 values-b+tl	string	error	-	Error
@@ -68533,6 +68808,8 @@ values-b+tr	string	account_select_note	-	Ayrı izleme geçmişi · oturum açma 
 values-b+tr	string	account_select_title	-	Kim izliyor?
 values-b+tr	string	account_signin_failed_body	-	%s oturum açmayı onaylamadı. Hiçbir şey kaydedilmedi.
 values-b+tr	string	account_signin_failed_title	-	%s hesabında oturum açılamadı
+values-b+tr	string	account_signin_not_kept	-	%s oturumu bu bilgisayarda saklanamadı, bu yüzden oturum açmadınız.
+values-b+tr	string	account_signin_not_removed	-	%s oturumu bu bilgisayardan kaldırılamadı, bu yüzden oturum hâlâ açık.
 values-b+tr	string	account_signin_offline_body	-	%s hesabında oturum açmak için bağlantı gerekir. Bu cihaz yeniden çevrimiçi olduğunda tekrar deneyin.
 values-b+tr	string	account_signins_until_quit	-	Oturum açmalar CloudStream'den çıkana kadar sürer.
 values-b+tr	string	account_sync_connected	-	Bağlı · bu cihazda oturum açık
@@ -68659,6 +68936,7 @@ values-b+tr	string	cartoons	-	Çizgi filmler
 values-b+tr	string	cartoons_singular	-	Çizgi film
 values-b+tr	string	cast	-	Oyuncular
 values-b+tr	string	cast_format	-	Oyuncular: %s
+values-b+tr	string	cast_voiced_by	-	Seslendiren: %s
 values-b+tr	string	category_account	-	Hesaplar ve Güvenlik
 values-b+tr	string	category_general	-	Genel
 values-b+tr	string	category_player	-	Oynatıcı
@@ -68836,7 +69114,9 @@ values-b+tr	string	episode_poster_img_des	-	Bölüm Afişi
 values-b+tr	string	episode_short	-	B
 values-b+tr	string	episode_sync_settings	-	İzleme ilerlemesini güncelle
 values-b+tr	string	episode_sync_settings_des	-	Mevcut bölüm ilerlemesini otomatik eşitle
+values-b+tr	string	episode_time_left	-	%1$d dk kaldı
 values-b+tr	string	episode_upcoming_format	-	%s içinde yaklaşıyor
+values-b+tr	string	episode_watched	-	İzlendi
 values-b+tr	string	episodes	-	Bölüm
 values-b+tr	string	episodes_range	-	%1$d-%2$d
 values-b+tr	string	error	-	Hata
@@ -69814,6 +70094,8 @@ values-b+uk	string	account_select_note	-	Окрема історія перег�
 values-b+uk	string	account_select_title	-	Хто дивиться?
 values-b+uk	string	account_signin_failed_body	-	%s не підтвердив вхід. Нічого не збережено.
 values-b+uk	string	account_signin_failed_title	-	Не вдалося увійти в %s
+values-b+uk	string	account_signin_not_kept	-	Не вдалося зберегти вхід у %s на цьому комп'ютері, тому ви не ввійшли.
+values-b+uk	string	account_signin_not_removed	-	Не вдалося видалити вхід у %s з цього комп'ютера, тому він досі активний.
 values-b+uk	string	account_signin_offline_body	-	Для входу в %s потрібне з'єднання. Спробуйте ще раз, коли пристрій знову буде онлайн.
 values-b+uk	string	account_signins_until_quit	-	Входи діють, доки ви не закриєте CloudStream.
 values-b+uk	string	account_sync_connected	-	Підключено · вхід виконано на цьому пристрої
@@ -69940,6 +70222,7 @@ values-b+uk	string	cartoons	-	Мультфільми
 values-b+uk	string	cartoons_singular	-	Мультфільм
 values-b+uk	string	cast	-	У ролях
 values-b+uk	string	cast_format	-	У ролях: %s
+values-b+uk	string	cast_voiced_by	-	Озвучує %s
 values-b+uk	string	category_account	-	Облікові записи та безпека
 values-b+uk	string	category_general	-	Загальні
 values-b+uk	string	category_player	-	Програвач
@@ -70117,7 +70400,9 @@ values-b+uk	string	episode_poster_img_des	-	Постер епізоду
 values-b+uk	string	episode_short	-	Е
 values-b+uk	string	episode_sync_settings	-	Оновлювати прогрес перегляду
 values-b+uk	string	episode_sync_settings_des	-	Автоматично синхронізувати прогрес поточного епізоду
+values-b+uk	string	episode_time_left	-	Залишилося %1$d хв
 values-b+uk	string	episode_upcoming_format	-	Наступний через %s
+values-b+uk	string	episode_watched	-	Переглянуто
 values-b+uk	string	episodes	-	Епізоди
 values-b+uk	string	episodes_range	-	%1$d-%2$d
 values-b+uk	string	error	-	Помилка
@@ -71047,6 +71332,8 @@ values-b+ur	string	account_select_note	-	الگ دیکھنے کی سرگزشت �
 values-b+ur	string	account_select_title	-	کون دیکھ رہا ہے؟
 values-b+ur	string	account_signin_failed_body	-	%s نے سائن ان کی تصدیق نہیں کی۔ کچھ بھی محفوظ نہیں ہوا۔
 values-b+ur	string	account_signin_failed_title	-	%s میں سائن ان نہیں ہو سکا
+values-b+ur	string	account_signin_not_kept	-	اس کمپیوٹر پر %s کا سائن اِن رکھا نہیں جا سکا، اس لیے آپ سائن اِن نہیں ہیں۔
+values-b+ur	string	account_signin_not_removed	-	اس کمپیوٹر سے %s کا سائن اِن ہٹایا نہیں جا سکا، اس لیے یہ اب بھی سائن اِن ہے۔
 values-b+ur	string	account_signin_offline_body	-	%s میں سائن ان کرنے کے لیے کنکشن درکار ہے۔ یہ آلہ دوبارہ آن لائن ہونے پر کوشش کریں۔
 values-b+ur	string	account_signins_until_quit	-	سائن اِن تب تک رہتے ہیں جب تک آپ CloudStream بند نہیں کرتے۔
 values-b+ur	string	account_sync_connected	-	منسلک · اس آلے پر سائن ان
@@ -71173,6 +71460,7 @@ values-b+ur	string	cartoons	-	کارٹون
 values-b+ur	string	cartoons_singular	-	کارٹون
 values-b+ur	string	cast	-	کاسٹ
 values-b+ur	string	cast_format	-	کاسٹ: %s
+values-b+ur	string	cast_voiced_by	-	آواز: %s
 values-b+ur	string	category_account	-	اکاؤنٹس اور سیکیورٹی
 values-b+ur	string	category_general	-	عمومی
 values-b+ur	string	category_player	-	پلیئر
@@ -71350,7 +71638,9 @@ values-b+ur	string	episode_poster_img_des	-	قسط کا پوسٹر
 values-b+ur	string	episode_short	-	E
 values-b+ur	string	episode_sync_settings	-	دیکھنے کی پیشرفت کو اپ ڈیٹ کریں
 values-b+ur	string	episode_sync_settings_des	-	آپ کی حالیہ قسط کی پیش رفت خود بخود مطابقت پذیر کریں
+values-b+ur	string	episode_time_left	-	%1$d منٹ باقی
 values-b+ur	string	episode_upcoming_format	-	%s میں آنے والا ہے
+values-b+ur	string	episode_watched	-	دیکھ لیا
 values-b+ur	string	episodes	-	اقساط
 values-b+ur	string	episodes_range	-	%1$d-%2$d
 values-b+ur	string	error	-	خرابی
@@ -72256,6 +72546,8 @@ values-b+vi	string	account_select_note	-	Lịch sử xem riêng · không phải
 values-b+vi	string	account_select_title	-	Ai đang xem?
 values-b+vi	string	account_signin_failed_body	-	%s không xác nhận đăng nhập. Chưa có gì được lưu.
 values-b+vi	string	account_signin_failed_title	-	Không thể đăng nhập vào %s
+values-b+vi	string	account_signin_not_kept	-	Không thể giữ thông tin đăng nhập %s trên máy tính này, nên bạn chưa đăng nhập.
+values-b+vi	string	account_signin_not_removed	-	Không thể xóa thông tin đăng nhập %s khỏi máy tính này, nên vẫn đang đăng nhập.
 values-b+vi	string	account_signin_offline_body	-	Cần có kết nối để đăng nhập vào %s. Hãy thử lại khi thiết bị này có mạng trở lại.
 values-b+vi	string	account_signins_until_quit	-	Đăng nhập được giữ cho đến khi bạn thoát CloudStream.
 values-b+vi	string	account_sync_connected	-	Đã kết nối · đã đăng nhập trên thiết bị này
@@ -72382,6 +72674,7 @@ values-b+vi	string	cartoons	-	Hoạt Hình
 values-b+vi	string	cartoons_singular	-	Hoạt Hình
 values-b+vi	string	cast	-	Diễn viên
 values-b+vi	string	cast_format	-	Diễn viên: %s
+values-b+vi	string	cast_voiced_by	-	Lồng tiếng: %s
 values-b+vi	string	category_account	-	Tài khoản và Bảo mật
 values-b+vi	string	category_general	-	Tổng quan
 values-b+vi	string	category_player	-	Trình phát
@@ -72559,7 +72852,9 @@ values-b+vi	string	episode_poster_img_des	-	Poster tập phim
 values-b+vi	string	episode_short	-	Tập
 values-b+vi	string	episode_sync_settings	-	Cập nhật tiến trình xem
 values-b+vi	string	episode_sync_settings_des	-	Tự động đồng bộ tiến trình hiện tại của bạn
+values-b+vi	string	episode_time_left	-	Còn %1$d phút
 values-b+vi	string	episode_upcoming_format	-	Sắp ra mắt sau %s
+values-b+vi	string	episode_watched	-	Đã xem
 values-b+vi	string	episodes	-	Tập
 values-b+vi	string	episodes_range	-	%1$d-%2$d
 values-b+vi	string	error	-	Lỗi
@@ -73465,6 +73760,8 @@ values-b+zh	string	account_select_note	-	独立的观看记录 · 不是登录�
 values-b+zh	string	account_select_title	-	谁在观看？
 values-b+zh	string	account_signin_failed_body	-	%s 未确认登录。未保存任何内容。
 values-b+zh	string	account_signin_failed_title	-	无法登录 %s
+values-b+zh	string	account_signin_not_kept	-	无法在此电脑上保留 %s 的登录，因此你尚未登录。
+values-b+zh	string	account_signin_not_removed	-	无法从此电脑上移除 %s 的登录，因此仍处于登录状态。
 values-b+zh	string	account_signin_offline_body	-	登录 %s 需要网络连接。请在此设备恢复联网后重试。
 values-b+zh	string	account_signins_until_quit	-	登录状态会保留到你退出 CloudStream 为止。
 values-b+zh	string	account_sync_connected	-	已连接 · 已在此设备登录
@@ -73591,6 +73888,7 @@ values-b+zh	string	cartoons	-	卡通
 values-b+zh	string	cartoons_singular	-	卡通
 values-b+zh	string	cast	-	演员
 values-b+zh	string	cast_format	-	演员：%s
+values-b+zh	string	cast_voiced_by	-	配音：%s
 values-b+zh	string	category_account	-	账户和安全
 values-b+zh	string	category_general	-	通用
 values-b+zh	string	category_player	-	播放器
@@ -73768,7 +74066,9 @@ values-b+zh	string	episode_poster_img_des	-	剧集封面
 values-b+zh	string	episode_short	-	E
 values-b+zh	string	episode_sync_settings	-	更新观看进度
 values-b+zh	string	episode_sync_settings_des	-	自动同步当前剧集进度
+values-b+zh	string	episode_time_left	-	剩余 %1$d 分钟
 values-b+zh	string	episode_upcoming_format	-	即将在 %s
+values-b+zh	string	episode_watched	-	已看完
 values-b+zh	string	episodes	-	集
 values-b+zh	string	episodes_range	-	%1$d-%2$d
 values-b+zh	string	error	-	错误
@@ -74675,6 +74975,8 @@ values-b+zh+TW	string	account_select_note	-	獨立的觀看紀錄 · 不是登�
 values-b+zh+TW	string	account_select_title	-	誰在觀看？
 values-b+zh+TW	string	account_signin_failed_body	-	%s 未確認登入。未儲存任何內容。
 values-b+zh+TW	string	account_signin_failed_title	-	無法登入 %s
+values-b+zh+TW	string	account_signin_not_kept	-	無法在這台電腦上保留 %s 的登入，因此你尚未登入。
+values-b+zh+TW	string	account_signin_not_removed	-	無法從這台電腦上移除 %s 的登入，因此仍處於登入狀態。
 values-b+zh+TW	string	account_signin_offline_body	-	登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。
 values-b+zh+TW	string	account_signins_until_quit	-	登入狀態會保留到你結束 CloudStream 為止。
 values-b+zh+TW	string	account_sync_connected	-	已連線 · 已在此裝置登入
@@ -74801,6 +75103,7 @@ values-b+zh+TW	string	cartoons	-	卡通
 values-b+zh+TW	string	cartoons_singular	-	卡通
 values-b+zh+TW	string	cast	-	演員
 values-b+zh+TW	string	cast_format	-	演員：%s
+values-b+zh+TW	string	cast_voiced_by	-	配音：%s
 values-b+zh+TW	string	category_account	-	帳戶和安全
 values-b+zh+TW	string	category_general	-	通用
 values-b+zh+TW	string	category_player	-	播放器
@@ -74978,7 +75281,9 @@ values-b+zh+TW	string	episode_poster_img_des	-	劇集封面
 values-b+zh+TW	string	episode_short	-	E
 values-b+zh+TW	string	episode_sync_settings	-	更新觀看進度
 values-b+zh+TW	string	episode_sync_settings_des	-	自動同步當前劇集進度
+values-b+zh+TW	string	episode_time_left	-	剩下 %1$d 分鐘
 values-b+zh+TW	string	episode_upcoming_format	-	即將在 %s 推出
+values-b+zh+TW	string	episode_watched	-	已看完
 values-b+zh+TW	string	episodes	-	集
 values-b+zh+TW	string	episodes_range	-	%1$d-%2$d
 values-b+zh+TW	string	error	-	錯誤
@@ -75908,6 +76213,8 @@ en	string	account_select_note	-	Separate watch history · not logins
 en	string	account_select_title	-	Who's watching?
 en	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
 en	string	account_signin_failed_title	-	Couldn't sign in to %s
+en	string	account_signin_not_kept	-	Couldn't keep the sign-in to %s on this computer, so you're not signed in.
+en	string	account_signin_not_removed	-	Couldn't remove the sign-in to %s from this computer, so it's still signed in.
 en	string	account_signin_offline_body	-	Signing in to %s needs a connection. Try again when this device is back online.
 en	string	account_signins_until_quit	-	Sign-ins last until you quit CloudStream.
 en	string	account_sync_connected	-	Connected · signed in on this device
@@ -76034,6 +76341,7 @@ en	string	cartoons	-	Cartoons
 en	string	cartoons_singular	-	Cartoon
 en	string	cast	-	Cast
 en	string	cast_format	-	Cast: %s
+en	string	cast_voiced_by	-	Voiced by %s
 en	string	category_account	-	Accounts and Security
 en	string	category_general	-	General
 en	string	category_player	-	Player
@@ -76211,7 +76519,9 @@ en	string	episode_poster_img_des	-	Episode Poster
 en	string	episode_short	-	E
 en	string	episode_sync_settings	-	Update watch progress
 en	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+en	string	episode_time_left	-	%1$d min left
 en	string	episode_upcoming_format	-	Upcoming in %s
+en	string	episode_watched	-	Watched
 en	string	episodes	-	Episodes
 en	string	episodes_range	-	%1$d-%2$d
 en	string	error	-	Error
@@ -77141,6 +77451,8 @@ en-US	string	account_select_note	-	Separate watch history · not logins
 en-US	string	account_select_title	-	Who's watching?
 en-US	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
 en-US	string	account_signin_failed_title	-	Couldn't sign in to %s
+en-US	string	account_signin_not_kept	-	Couldn't keep the sign-in to %s on this computer, so you're not signed in.
+en-US	string	account_signin_not_removed	-	Couldn't remove the sign-in to %s from this computer, so it's still signed in.
 en-US	string	account_signin_offline_body	-	Signing in to %s needs a connection. Try again when this device is back online.
 en-US	string	account_signins_until_quit	-	Sign-ins last until you quit CloudStream.
 en-US	string	account_sync_connected	-	Connected · signed in on this device
@@ -77267,6 +77579,7 @@ en-US	string	cartoons	-	Cartoons
 en-US	string	cartoons_singular	-	Cartoon
 en-US	string	cast	-	Cast
 en-US	string	cast_format	-	Cast: %s
+en-US	string	cast_voiced_by	-	Voiced by %s
 en-US	string	category_account	-	Accounts and Security
 en-US	string	category_general	-	General
 en-US	string	category_player	-	Player
@@ -77444,7 +77757,9 @@ en-US	string	episode_poster_img_des	-	Episode Poster
 en-US	string	episode_short	-	E
 en-US	string	episode_sync_settings	-	Update watch progress
 en-US	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+en-US	string	episode_time_left	-	%1$d min left
 en-US	string	episode_upcoming_format	-	Upcoming in %s
+en-US	string	episode_watched	-	Watched
 en-US	string	episodes	-	Episodes
 en-US	string	episodes_range	-	%1$d-%2$d
 en-US	string	error	-	Error
@@ -78374,6 +78689,8 @@ en-GB	string	account_select_note	-	Separate watch history · not logins
 en-GB	string	account_select_title	-	Who's watching?
 en-GB	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
 en-GB	string	account_signin_failed_title	-	Couldn't sign in to %s
+en-GB	string	account_signin_not_kept	-	Couldn't keep the sign-in to %s on this computer, so you're not signed in.
+en-GB	string	account_signin_not_removed	-	Couldn't remove the sign-in to %s from this computer, so it's still signed in.
 en-GB	string	account_signin_offline_body	-	Signing in to %s needs a connection. Try again when this device is back online.
 en-GB	string	account_signins_until_quit	-	Sign-ins last until you quit CloudStream.
 en-GB	string	account_sync_connected	-	Connected · signed in on this device
@@ -78500,6 +78817,7 @@ en-GB	string	cartoons	-	Cartoons
 en-GB	string	cartoons_singular	-	Cartoon
 en-GB	string	cast	-	Cast
 en-GB	string	cast_format	-	Cast: %s
+en-GB	string	cast_voiced_by	-	Voiced by %s
 en-GB	string	category_account	-	Accounts and Security
 en-GB	string	category_general	-	General
 en-GB	string	category_player	-	Player
@@ -78677,7 +78995,9 @@ en-GB	string	episode_poster_img_des	-	Episode Poster
 en-GB	string	episode_short	-	E
 en-GB	string	episode_sync_settings	-	Update watch progress
 en-GB	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+en-GB	string	episode_time_left	-	%1$d min left
 en-GB	string	episode_upcoming_format	-	Upcoming in %s
+en-GB	string	episode_watched	-	Watched
 en-GB	string	episodes	-	Episodes
 en-GB	string	episodes_range	-	%1$d-%2$d
 en-GB	string	error	-	Error
@@ -79631,6 +79951,8 @@ pt	string	account_select_note	-	Histórico de visualização separado · não s�
 pt	string	account_select_title	-	Quem está a ver?
 pt	string	account_signin_failed_body	-	%s não confirmou o início de sessão. Nada foi guardado.
 pt	string	account_signin_failed_title	-	Não foi possível iniciar sessão em %s
+pt	string	account_signin_not_kept	-	Não foi possível guardar o início de sessão em %s neste computador, por isso não tem sessão iniciada.
+pt	string	account_signin_not_removed	-	Não foi possível remover o início de sessão em %s deste computador, por isso a sessão continua iniciada.
 pt	string	account_signin_offline_body	-	Iniciar sessão em %s requer uma ligação. Tente novamente quando este dispositivo voltar a estar online.
 pt	string	account_signins_until_quit	-	As sessões iniciadas duram até sair do CloudStream.
 pt	string	account_sync_connected	-	Ligado · sessão iniciada neste dispositivo
@@ -79757,6 +80079,7 @@ pt	string	cartoons	-	Desenhos Animados
 pt	string	cartoons_singular	-	Desenho Animado
 pt	string	cast	-	Elenco
 pt	string	cast_format	-	Elenco: %s
+pt	string	cast_voiced_by	-	Voz de %s
 pt	string	category_account	-	Contas e segurança
 pt	string	category_general	-	Geral
 pt	string	category_player	-	Player
@@ -79934,7 +80257,9 @@ pt	string	episode_poster_img_des	-	Pôster do episódio
 pt	string	episode_short	-	E
 pt	string	episode_sync_settings	-	Atualizar progresso
 pt	string	episode_sync_settings_des	-	Sincronizar automaticamente o progresso do seu episódio atual
+pt	string	episode_time_left	-	Faltam %1$d min
 pt	string	episode_upcoming_format	-	Próximo em %s
+pt	string	episode_watched	-	Visto
 pt	string	episodes	-	Episódios
 pt	string	episodes_range	-	%1$d-%2$d
 pt	string	error	-	Erro
@@ -80888,6 +81213,8 @@ pt-PT	string	account_select_note	-	Histórico de visualização separado · não
 pt-PT	string	account_select_title	-	Quem está a ver?
 pt-PT	string	account_signin_failed_body	-	%s não confirmou o início de sessão. Nada foi guardado.
 pt-PT	string	account_signin_failed_title	-	Não foi possível iniciar sessão em %s
+pt-PT	string	account_signin_not_kept	-	Não foi possível guardar o início de sessão em %s neste computador, por isso não tem sessão iniciada.
+pt-PT	string	account_signin_not_removed	-	Não foi possível remover o início de sessão em %s deste computador, por isso a sessão continua iniciada.
 pt-PT	string	account_signin_offline_body	-	Iniciar sessão em %s requer uma ligação. Tente novamente quando este dispositivo voltar a estar online.
 pt-PT	string	account_signins_until_quit	-	As sessões iniciadas duram até sair do CloudStream.
 pt-PT	string	account_sync_connected	-	Ligado · sessão iniciada neste dispositivo
@@ -81014,6 +81341,7 @@ pt-PT	string	cartoons	-	Desenhos Animados
 pt-PT	string	cartoons_singular	-	Desenho Animado
 pt-PT	string	cast	-	Elenco
 pt-PT	string	cast_format	-	Elenco: %s
+pt-PT	string	cast_voiced_by	-	Voz de %s
 pt-PT	string	category_account	-	Contas e segurança
 pt-PT	string	category_general	-	Geral
 pt-PT	string	category_player	-	Player
@@ -81191,7 +81519,9 @@ pt-PT	string	episode_poster_img_des	-	Pôster do episódio
 pt-PT	string	episode_short	-	E
 pt-PT	string	episode_sync_settings	-	Atualizar progresso
 pt-PT	string	episode_sync_settings_des	-	Sincronizar automaticamente o progresso do seu episódio atual
+pt-PT	string	episode_time_left	-	Faltam %1$d min
 pt-PT	string	episode_upcoming_format	-	Próximo em %s
+pt-PT	string	episode_watched	-	Visto
 pt-PT	string	episodes	-	Episódios
 pt-PT	string	episodes_range	-	%1$d-%2$d
 pt-PT	string	error	-	Erro
@@ -82145,6 +82475,8 @@ pt-BR	string	account_select_note	-	Histórico separado · não são logins
 pt-BR	string	account_select_title	-	Quem está assistindo?
 pt-BR	string	account_signin_failed_body	-	%s não confirmou o login. Nada foi salvo.
 pt-BR	string	account_signin_failed_title	-	Não foi possível entrar no %s
+pt-BR	string	account_signin_not_kept	-	Não foi possível manter o login em %s neste computador, então você não está conectado.
+pt-BR	string	account_signin_not_removed	-	Não foi possível remover o login em %s deste computador, então ele continua conectado.
 pt-BR	string	account_signin_offline_body	-	Para entrar no %s é preciso ter conexão. Tente de novo quando este dispositivo estiver on-line.
 pt-BR	string	account_signins_until_quit	-	Os logins duram até você fechar o CloudStream.
 pt-BR	string	account_sync_connected	-	Conectado · logado neste dispositivo
@@ -82271,6 +82603,7 @@ pt-BR	string	cartoons	-	Desenhos animados
 pt-BR	string	cartoons_singular	-	Desenho Animado
 pt-BR	string	cast	-	Elenco
 pt-BR	string	cast_format	-	Elenco: %s
+pt-BR	string	cast_voiced_by	-	Voz de %s
 pt-BR	string	category_account	-	Contas e Segurança
 pt-BR	string	category_general	-	Geral
 pt-BR	string	category_player	-	Player
@@ -82448,7 +82781,9 @@ pt-BR	string	episode_poster_img_des	-	Pôster do episódio
 pt-BR	string	episode_short	-	E
 pt-BR	string	episode_sync_settings	-	Atualizar progresso assistido
 pt-BR	string	episode_sync_settings_des	-	Sincronize automaticamente seu progresso do episódio
+pt-BR	string	episode_time_left	-	Faltam %1$d min
 pt-BR	string	episode_upcoming_format	-	Próximo em %s
+pt-BR	string	episode_watched	-	Assistido
 pt-BR	string	episodes	-	Episódios
 pt-BR	string	episodes_range	-	%1$d-%2$d
 pt-BR	string	error	-	Erro
@@ -83378,6 +83713,8 @@ fil	string	account_select_note	-	Hiwalay na history ng panonood · hindi mga log
 fil	string	account_select_title	-	Sino ang nanonood?
 fil	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
 fil	string	account_signin_failed_title	-	Hindi makapag-sign in sa %s
+fil	string	account_signin_not_kept	-	Hindi maitago ang pag-sign in sa %s sa computer na ito, kaya hindi ka naka-sign in.
+fil	string	account_signin_not_removed	-	Hindi maalis ang pag-sign in sa %s sa computer na ito, kaya naka-sign in pa rin ito.
 fil	string	account_signin_offline_body	-	Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito.
 fil	string	account_signins_until_quit	-	Tatagal ang mga sign-in hanggang isara mo ang CloudStream.
 fil	string	account_sync_connected	-	Nakakonekta · naka-sign in sa device na ito
@@ -83504,6 +83841,7 @@ fil	string	cartoons	-	Cartoons
 fil	string	cartoons_singular	-	Cartoon
 fil	string	cast	-	Tauhan
 fil	string	cast_format	-	Tauhan: %s
+fil	string	cast_voiced_by	-	Boses ni %s
 fil	string	category_account	-	Accounts and Security
 fil	string	category_general	-	Pangkalahatan
 fil	string	category_player	-	Player
@@ -83681,7 +84019,9 @@ fil	string	episode_poster_img_des	-	Poster ng Kabanata
 fil	string	episode_short	-	E
 fil	string	episode_sync_settings	-	Update watch progress
 fil	string	episode_sync_settings_des	-	Awtomatikong i-sync ang iyong kasalukuyang episode
+fil	string	episode_time_left	-	%1$d min na lang
 fil	string	episode_upcoming_format	-	Upcoming in %s
+fil	string	episode_watched	-	Napanood na
 fil	string	episodes	-	Episodes
 fil	string	episodes_range	-	%1$d-%2$d
 fil	string	error	-	Error
@@ -84611,6 +84951,8 @@ tl	string	account_select_note	-	Hiwalay na kasaysayan ng panonood · hindi mga l
 tl	string	account_select_title	-	Sino ang nanonood?
 tl	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
 tl	string	account_signin_failed_title	-	Hindi makapag-sign in sa %s
+tl	string	account_signin_not_kept	-	Hindi maitago ang pag-sign in sa %s sa computer na ito, kaya hindi ka naka-sign in.
+tl	string	account_signin_not_removed	-	Hindi maalis ang pag-sign in sa %s sa computer na ito, kaya naka-sign in pa rin ito.
 tl	string	account_signin_offline_body	-	Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito.
 tl	string	account_signins_until_quit	-	Tatagal ang mga sign-in hanggang isara mo ang CloudStream.
 tl	string	account_sync_connected	-	Nakakonekta · naka-sign in sa device na ito
@@ -84737,6 +85079,7 @@ tl	string	cartoons	-	Cartoons
 tl	string	cartoons_singular	-	Cartoon
 tl	string	cast	-	I-Cast
 tl	string	cast_format	-	I-Cast: %s
+tl	string	cast_voiced_by	-	Boses ni %s
 tl	string	category_account	-	Accounts and Security
 tl	string	category_general	-	Pangkalahatan
 tl	string	category_player	-	Player
@@ -84914,7 +85257,9 @@ tl	string	episode_poster_img_des	-	Episode Poster
 tl	string	episode_short	-	E
 tl	string	episode_sync_settings	-	Update watch progress
 tl	string	episode_sync_settings_des	-	Awtomatikong i-sync ang iyong kasalukuyang episode
+tl	string	episode_time_left	-	%1$d min na lang
 tl	string	episode_upcoming_format	-	Upcoming in %s
+tl	string	episode_watched	-	Napanood na
 tl	string	episodes	-	Episodes
 tl	string	episodes_range	-	%1$d-%2$d
 tl	string	error	-	Error
@@ -85844,6 +86189,8 @@ fil-PH	string	account_select_note	-	Hiwalay na history ng panonood · hindi mga 
 fil-PH	string	account_select_title	-	Sino ang nanonood?
 fil-PH	string	account_signin_failed_body	-	Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.
 fil-PH	string	account_signin_failed_title	-	Hindi makapag-sign in sa %s
+fil-PH	string	account_signin_not_kept	-	Hindi maitago ang pag-sign in sa %s sa computer na ito, kaya hindi ka naka-sign in.
+fil-PH	string	account_signin_not_removed	-	Hindi maalis ang pag-sign in sa %s sa computer na ito, kaya naka-sign in pa rin ito.
 fil-PH	string	account_signin_offline_body	-	Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito.
 fil-PH	string	account_signins_until_quit	-	Tatagal ang mga sign-in hanggang isara mo ang CloudStream.
 fil-PH	string	account_sync_connected	-	Nakakonekta · naka-sign in sa device na ito
@@ -85970,6 +86317,7 @@ fil-PH	string	cartoons	-	Cartoons
 fil-PH	string	cartoons_singular	-	Cartoon
 fil-PH	string	cast	-	Tauhan
 fil-PH	string	cast_format	-	Tauhan: %s
+fil-PH	string	cast_voiced_by	-	Boses ni %s
 fil-PH	string	category_account	-	Accounts and Security
 fil-PH	string	category_general	-	Pangkalahatan
 fil-PH	string	category_player	-	Player
@@ -86147,7 +86495,9 @@ fil-PH	string	episode_poster_img_des	-	Poster ng Kabanata
 fil-PH	string	episode_short	-	E
 fil-PH	string	episode_sync_settings	-	Update watch progress
 fil-PH	string	episode_sync_settings_des	-	Awtomatikong i-sync ang iyong kasalukuyang episode
+fil-PH	string	episode_time_left	-	%1$d min na lang
 fil-PH	string	episode_upcoming_format	-	Upcoming in %s
+fil-PH	string	episode_watched	-	Napanood na
 fil-PH	string	episodes	-	Episodes
 fil-PH	string	episodes_range	-	%1$d-%2$d
 fil-PH	string	error	-	Error
@@ -87053,6 +87403,8 @@ zh	string	account_select_note	-	独立的观看记录 · 不是登录账号
 zh	string	account_select_title	-	谁在观看？
 zh	string	account_signin_failed_body	-	%s 未确认登录。未保存任何内容。
 zh	string	account_signin_failed_title	-	无法登录 %s
+zh	string	account_signin_not_kept	-	无法在此电脑上保留 %s 的登录，因此你尚未登录。
+zh	string	account_signin_not_removed	-	无法从此电脑上移除 %s 的登录，因此仍处于登录状态。
 zh	string	account_signin_offline_body	-	登录 %s 需要网络连接。请在此设备恢复联网后重试。
 zh	string	account_signins_until_quit	-	登录状态会保留到你退出 CloudStream 为止。
 zh	string	account_sync_connected	-	已连接 · 已在此设备登录
@@ -87179,6 +87531,7 @@ zh	string	cartoons	-	卡通
 zh	string	cartoons_singular	-	卡通
 zh	string	cast	-	演员
 zh	string	cast_format	-	演员：%s
+zh	string	cast_voiced_by	-	配音：%s
 zh	string	category_account	-	账户和安全
 zh	string	category_general	-	通用
 zh	string	category_player	-	播放器
@@ -87356,7 +87709,9 @@ zh	string	episode_poster_img_des	-	剧集封面
 zh	string	episode_short	-	E
 zh	string	episode_sync_settings	-	更新观看进度
 zh	string	episode_sync_settings_des	-	自动同步当前剧集进度
+zh	string	episode_time_left	-	剩余 %1$d 分钟
 zh	string	episode_upcoming_format	-	即将在 %s
+zh	string	episode_watched	-	已看完
 zh	string	episodes	-	集
 zh	string	episodes_range	-	%1$d-%2$d
 zh	string	error	-	错误
@@ -88262,6 +88617,8 @@ zh-CN	string	account_select_note	-	独立的观看记录 · 不是登录账号
 zh-CN	string	account_select_title	-	谁在观看？
 zh-CN	string	account_signin_failed_body	-	%s 未确认登录。未保存任何内容。
 zh-CN	string	account_signin_failed_title	-	无法登录 %s
+zh-CN	string	account_signin_not_kept	-	无法在此电脑上保留 %s 的登录，因此你尚未登录。
+zh-CN	string	account_signin_not_removed	-	无法从此电脑上移除 %s 的登录，因此仍处于登录状态。
 zh-CN	string	account_signin_offline_body	-	登录 %s 需要网络连接。请在此设备恢复联网后重试。
 zh-CN	string	account_signins_until_quit	-	登录状态会保留到你退出 CloudStream 为止。
 zh-CN	string	account_sync_connected	-	已连接 · 已在此设备登录
@@ -88388,6 +88745,7 @@ zh-CN	string	cartoons	-	卡通
 zh-CN	string	cartoons_singular	-	卡通
 zh-CN	string	cast	-	演员
 zh-CN	string	cast_format	-	演员：%s
+zh-CN	string	cast_voiced_by	-	配音：%s
 zh-CN	string	category_account	-	账户和安全
 zh-CN	string	category_general	-	通用
 zh-CN	string	category_player	-	播放器
@@ -88565,7 +88923,9 @@ zh-CN	string	episode_poster_img_des	-	剧集封面
 zh-CN	string	episode_short	-	E
 zh-CN	string	episode_sync_settings	-	更新观看进度
 zh-CN	string	episode_sync_settings_des	-	自动同步当前剧集进度
+zh-CN	string	episode_time_left	-	剩余 %1$d 分钟
 zh-CN	string	episode_upcoming_format	-	即将在 %s
+zh-CN	string	episode_watched	-	已看完
 zh-CN	string	episodes	-	集
 zh-CN	string	episodes_range	-	%1$d-%2$d
 zh-CN	string	error	-	错误
@@ -89471,6 +89831,8 @@ zh-Hans-CN	string	account_select_note	-	独立的观看记录 · 不是登录账
 zh-Hans-CN	string	account_select_title	-	谁在观看？
 zh-Hans-CN	string	account_signin_failed_body	-	%s 未确认登录。未保存任何内容。
 zh-Hans-CN	string	account_signin_failed_title	-	无法登录 %s
+zh-Hans-CN	string	account_signin_not_kept	-	无法在此电脑上保留 %s 的登录，因此你尚未登录。
+zh-Hans-CN	string	account_signin_not_removed	-	无法从此电脑上移除 %s 的登录，因此仍处于登录状态。
 zh-Hans-CN	string	account_signin_offline_body	-	登录 %s 需要网络连接。请在此设备恢复联网后重试。
 zh-Hans-CN	string	account_signins_until_quit	-	登录状态会保留到你退出 CloudStream 为止。
 zh-Hans-CN	string	account_sync_connected	-	已连接 · 已在此设备登录
@@ -89597,6 +89959,7 @@ zh-Hans-CN	string	cartoons	-	卡通
 zh-Hans-CN	string	cartoons_singular	-	卡通
 zh-Hans-CN	string	cast	-	演员
 zh-Hans-CN	string	cast_format	-	演员：%s
+zh-Hans-CN	string	cast_voiced_by	-	配音：%s
 zh-Hans-CN	string	category_account	-	账户和安全
 zh-Hans-CN	string	category_general	-	通用
 zh-Hans-CN	string	category_player	-	播放器
@@ -89774,7 +90137,9 @@ zh-Hans-CN	string	episode_poster_img_des	-	剧集封面
 zh-Hans-CN	string	episode_short	-	E
 zh-Hans-CN	string	episode_sync_settings	-	更新观看进度
 zh-Hans-CN	string	episode_sync_settings_des	-	自动同步当前剧集进度
+zh-Hans-CN	string	episode_time_left	-	剩余 %1$d 分钟
 zh-Hans-CN	string	episode_upcoming_format	-	即将在 %s
+zh-Hans-CN	string	episode_watched	-	已看完
 zh-Hans-CN	string	episodes	-	集
 zh-Hans-CN	string	episodes_range	-	%1$d-%2$d
 zh-Hans-CN	string	error	-	错误
@@ -90681,6 +91046,8 @@ zh-TW	string	account_select_note	-	獨立的觀看紀錄 · 不是登入帳號
 zh-TW	string	account_select_title	-	誰在觀看？
 zh-TW	string	account_signin_failed_body	-	%s 未確認登入。未儲存任何內容。
 zh-TW	string	account_signin_failed_title	-	無法登入 %s
+zh-TW	string	account_signin_not_kept	-	無法在這台電腦上保留 %s 的登入，因此你尚未登入。
+zh-TW	string	account_signin_not_removed	-	無法從這台電腦上移除 %s 的登入，因此仍處於登入狀態。
 zh-TW	string	account_signin_offline_body	-	登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。
 zh-TW	string	account_signins_until_quit	-	登入狀態會保留到你結束 CloudStream 為止。
 zh-TW	string	account_sync_connected	-	已連線 · 已在此裝置登入
@@ -90807,6 +91174,7 @@ zh-TW	string	cartoons	-	卡通
 zh-TW	string	cartoons_singular	-	卡通
 zh-TW	string	cast	-	演員
 zh-TW	string	cast_format	-	演員：%s
+zh-TW	string	cast_voiced_by	-	配音：%s
 zh-TW	string	category_account	-	帳戶和安全
 zh-TW	string	category_general	-	通用
 zh-TW	string	category_player	-	播放器
@@ -90984,7 +91352,9 @@ zh-TW	string	episode_poster_img_des	-	劇集封面
 zh-TW	string	episode_short	-	E
 zh-TW	string	episode_sync_settings	-	更新觀看進度
 zh-TW	string	episode_sync_settings_des	-	自動同步當前劇集進度
+zh-TW	string	episode_time_left	-	剩下 %1$d 分鐘
 zh-TW	string	episode_upcoming_format	-	即將在 %s 推出
+zh-TW	string	episode_watched	-	已看完
 zh-TW	string	episodes	-	集
 zh-TW	string	episodes_range	-	%1$d-%2$d
 zh-TW	string	error	-	錯誤
@@ -91891,6 +92261,8 @@ zh-Hant-TW	string	account_select_note	-	獨立的觀看紀錄 · 不是登入帳
 zh-Hant-TW	string	account_select_title	-	誰在觀看？
 zh-Hant-TW	string	account_signin_failed_body	-	%s 未確認登入。未儲存任何內容。
 zh-Hant-TW	string	account_signin_failed_title	-	無法登入 %s
+zh-Hant-TW	string	account_signin_not_kept	-	無法在這台電腦上保留 %s 的登入，因此你尚未登入。
+zh-Hant-TW	string	account_signin_not_removed	-	無法從這台電腦上移除 %s 的登入，因此仍處於登入狀態。
 zh-Hant-TW	string	account_signin_offline_body	-	登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。
 zh-Hant-TW	string	account_signins_until_quit	-	登入狀態會保留到你結束 CloudStream 為止。
 zh-Hant-TW	string	account_sync_connected	-	已連線 · 已在此裝置登入
@@ -92017,6 +92389,7 @@ zh-Hant-TW	string	cartoons	-	卡通
 zh-Hant-TW	string	cartoons_singular	-	卡通
 zh-Hant-TW	string	cast	-	演員
 zh-Hant-TW	string	cast_format	-	演員：%s
+zh-Hant-TW	string	cast_voiced_by	-	配音：%s
 zh-Hant-TW	string	category_account	-	帳戶和安全
 zh-Hant-TW	string	category_general	-	通用
 zh-Hant-TW	string	category_player	-	播放器
@@ -92194,7 +92567,9 @@ zh-Hant-TW	string	episode_poster_img_des	-	劇集封面
 zh-Hant-TW	string	episode_short	-	E
 zh-Hant-TW	string	episode_sync_settings	-	更新觀看進度
 zh-Hant-TW	string	episode_sync_settings_des	-	自動同步當前劇集進度
+zh-Hant-TW	string	episode_time_left	-	剩下 %1$d 分鐘
 zh-Hant-TW	string	episode_upcoming_format	-	即將在 %s 推出
+zh-Hant-TW	string	episode_watched	-	已看完
 zh-Hant-TW	string	episodes	-	集
 zh-Hant-TW	string	episodes_range	-	%1$d-%2$d
 zh-Hant-TW	string	error	-	錯誤
@@ -93101,6 +93476,8 @@ zh-HK	string	account_select_note	-	獨立的觀看紀錄 · 不是登入帳號
 zh-HK	string	account_select_title	-	誰在觀看？
 zh-HK	string	account_signin_failed_body	-	%s 未確認登入。未儲存任何內容。
 zh-HK	string	account_signin_failed_title	-	無法登入 %s
+zh-HK	string	account_signin_not_kept	-	無法在這台電腦上保留 %s 的登入，因此你尚未登入。
+zh-HK	string	account_signin_not_removed	-	無法從這台電腦上移除 %s 的登入，因此仍處於登入狀態。
 zh-HK	string	account_signin_offline_body	-	登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。
 zh-HK	string	account_signins_until_quit	-	登入狀態會保留到你結束 CloudStream 為止。
 zh-HK	string	account_sync_connected	-	已連線 · 已在此裝置登入
@@ -93227,6 +93604,7 @@ zh-HK	string	cartoons	-	卡通
 zh-HK	string	cartoons_singular	-	卡通
 zh-HK	string	cast	-	演員
 zh-HK	string	cast_format	-	演員：%s
+zh-HK	string	cast_voiced_by	-	配音：%s
 zh-HK	string	category_account	-	帳戶和安全
 zh-HK	string	category_general	-	通用
 zh-HK	string	category_player	-	播放器
@@ -93404,7 +93782,9 @@ zh-HK	string	episode_poster_img_des	-	劇集封面
 zh-HK	string	episode_short	-	E
 zh-HK	string	episode_sync_settings	-	更新觀看進度
 zh-HK	string	episode_sync_settings_des	-	自動同步當前劇集進度
+zh-HK	string	episode_time_left	-	剩下 %1$d 分鐘
 zh-HK	string	episode_upcoming_format	-	即將在 %s 推出
+zh-HK	string	episode_watched	-	已看完
 zh-HK	string	episodes	-	集
 zh-HK	string	episodes_range	-	%1$d-%2$d
 zh-HK	string	error	-	錯誤
@@ -94311,6 +94691,8 @@ zh-Hant-HK	string	account_select_note	-	獨立的觀看紀錄 · 不是登入帳
 zh-Hant-HK	string	account_select_title	-	誰在觀看？
 zh-Hant-HK	string	account_signin_failed_body	-	%s 未確認登入。未儲存任何內容。
 zh-Hant-HK	string	account_signin_failed_title	-	無法登入 %s
+zh-Hant-HK	string	account_signin_not_kept	-	無法在這台電腦上保留 %s 的登入，因此你尚未登入。
+zh-Hant-HK	string	account_signin_not_removed	-	無法從這台電腦上移除 %s 的登入，因此仍處於登入狀態。
 zh-Hant-HK	string	account_signin_offline_body	-	登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。
 zh-Hant-HK	string	account_signins_until_quit	-	登入狀態會保留到你結束 CloudStream 為止。
 zh-Hant-HK	string	account_sync_connected	-	已連線 · 已在此裝置登入
@@ -94437,6 +94819,7 @@ zh-Hant-HK	string	cartoons	-	卡通
 zh-Hant-HK	string	cartoons_singular	-	卡通
 zh-Hant-HK	string	cast	-	演員
 zh-Hant-HK	string	cast_format	-	演員：%s
+zh-Hant-HK	string	cast_voiced_by	-	配音：%s
 zh-Hant-HK	string	category_account	-	帳戶和安全
 zh-Hant-HK	string	category_general	-	通用
 zh-Hant-HK	string	category_player	-	播放器
@@ -94614,7 +94997,9 @@ zh-Hant-HK	string	episode_poster_img_des	-	劇集封面
 zh-Hant-HK	string	episode_short	-	E
 zh-Hant-HK	string	episode_sync_settings	-	更新觀看進度
 zh-Hant-HK	string	episode_sync_settings_des	-	自動同步當前劇集進度
+zh-Hant-HK	string	episode_time_left	-	剩下 %1$d 分鐘
 zh-Hant-HK	string	episode_upcoming_format	-	即將在 %s 推出
+zh-Hant-HK	string	episode_watched	-	已看完
 zh-Hant-HK	string	episodes	-	集
 zh-Hant-HK	string	episodes_range	-	%1$d-%2$d
 zh-Hant-HK	string	error	-	錯誤
@@ -95544,6 +95929,8 @@ no	string	account_select_note	-	Egen seerhistorikk · ikke innlogginger
 no	string	account_select_title	-	Hvem ser på?
 no	string	account_signin_failed_body	-	%s bekreftet ikke innloggingen. Ingenting ble lagret.
 no	string	account_signin_failed_title	-	Kunne ikke logge inn på %s
+no	string	account_signin_not_kept	-	Kunne ikke beholde påloggingen til %s på denne datamaskinen, så du er ikke logget på.
+no	string	account_signin_not_removed	-	Kunne ikke fjerne påloggingen til %s fra denne datamaskinen, så den er fortsatt aktiv.
 no	string	account_signin_offline_body	-	Innlogging på %s krever tilkobling. Prøv igjen når denne enheten er på nett igjen.
 no	string	account_signins_until_quit	-	Innlogginger varer til du avslutter CloudStream.
 no	string	account_sync_connected	-	Tilkoblet · logget inn på denne enheten
@@ -95670,6 +96057,7 @@ no	string	cartoons	-	Tegneserier
 no	string	cartoons_singular	-	Tegnefilm
 no	string	cast	-	Besetning
 no	string	cast_format	-	Besetning: %s
+no	string	cast_voiced_by	-	Stemme: %s
 no	string	category_account	-	Kontoer
 no	string	category_general	-	Grunnleggende
 no	string	category_player	-	Avspiller
@@ -95847,7 +96235,9 @@ no	string	episode_poster_img_des	-	Episode Plakat
 no	string	episode_short	-	E
 no	string	episode_sync_settings	-	Oppdater visningsframdrift
 no	string	episode_sync_settings_des	-	Synkroniser automatisk fremdriften din for gjeldende episode
+no	string	episode_time_left	-	%1$d min igjen
 no	string	episode_upcoming_format	-	Upcoming in %s
+no	string	episode_watched	-	Sett
 no	string	episodes	-	Episoder
 no	string	episodes_range	-	%1$d-%2$d
 no	string	error	-	Feil
@@ -96777,6 +97167,8 @@ nb	string	account_select_note	-	Separate watch history · not logins
 nb	string	account_select_title	-	Who's watching?
 nb	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
 nb	string	account_signin_failed_title	-	Couldn't sign in to %s
+nb	string	account_signin_not_kept	-	Couldn't keep the sign-in to %s on this computer, so you're not signed in.
+nb	string	account_signin_not_removed	-	Couldn't remove the sign-in to %s from this computer, so it's still signed in.
 nb	string	account_signin_offline_body	-	Signing in to %s needs a connection. Try again when this device is back online.
 nb	string	account_signins_until_quit	-	Sign-ins last until you quit CloudStream.
 nb	string	account_sync_connected	-	Connected · signed in on this device
@@ -96903,6 +97295,7 @@ nb	string	cartoons	-	Cartoons
 nb	string	cartoons_singular	-	Cartoon
 nb	string	cast	-	Cast
 nb	string	cast_format	-	Cast: %s
+nb	string	cast_voiced_by	-	Voiced by %s
 nb	string	category_account	-	Accounts and Security
 nb	string	category_general	-	General
 nb	string	category_player	-	Player
@@ -97080,7 +97473,9 @@ nb	string	episode_poster_img_des	-	Episode Poster
 nb	string	episode_short	-	E
 nb	string	episode_sync_settings	-	Update watch progress
 nb	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+nb	string	episode_time_left	-	%1$d min left
 nb	string	episode_upcoming_format	-	Upcoming in %s
+nb	string	episode_watched	-	Watched
 nb	string	episodes	-	Episodes
 nb	string	episodes_range	-	%1$d-%2$d
 nb	string	error	-	Error
@@ -98010,6 +98405,8 @@ nb-NO	string	account_select_note	-	Separate watch history · not logins
 nb-NO	string	account_select_title	-	Who's watching?
 nb-NO	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
 nb-NO	string	account_signin_failed_title	-	Couldn't sign in to %s
+nb-NO	string	account_signin_not_kept	-	Couldn't keep the sign-in to %s on this computer, so you're not signed in.
+nb-NO	string	account_signin_not_removed	-	Couldn't remove the sign-in to %s from this computer, so it's still signed in.
 nb-NO	string	account_signin_offline_body	-	Signing in to %s needs a connection. Try again when this device is back online.
 nb-NO	string	account_signins_until_quit	-	Sign-ins last until you quit CloudStream.
 nb-NO	string	account_sync_connected	-	Connected · signed in on this device
@@ -98136,6 +98533,7 @@ nb-NO	string	cartoons	-	Cartoons
 nb-NO	string	cartoons_singular	-	Cartoon
 nb-NO	string	cast	-	Cast
 nb-NO	string	cast_format	-	Cast: %s
+nb-NO	string	cast_voiced_by	-	Voiced by %s
 nb-NO	string	category_account	-	Accounts and Security
 nb-NO	string	category_general	-	General
 nb-NO	string	category_player	-	Player
@@ -98313,7 +98711,9 @@ nb-NO	string	episode_poster_img_des	-	Episode Poster
 nb-NO	string	episode_short	-	E
 nb-NO	string	episode_sync_settings	-	Update watch progress
 nb-NO	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+nb-NO	string	episode_time_left	-	%1$d min left
 nb-NO	string	episode_upcoming_format	-	Upcoming in %s
+nb-NO	string	episode_watched	-	Watched
 nb-NO	string	episodes	-	Episodes
 nb-NO	string	episodes_range	-	%1$d-%2$d
 nb-NO	string	error	-	Error
@@ -99264,6 +99664,8 @@ iw	string	account_select_note	-	היסטוריית צפייה נפרדת · לא
 iw	string	account_select_title	-	מי צופה?
 iw	string	account_signin_failed_body	-	%s לא אישר את ההתחברות. שום דבר לא נשמר.
 iw	string	account_signin_failed_title	-	לא ניתן להתחבר אל %s
+iw	string	account_signin_not_kept	-	לא ניתן היה לשמור את ההתחברות אל %s במחשב הזה, ולכן לא התחברת.
+iw	string	account_signin_not_removed	-	לא ניתן היה להסיר את ההתחברות אל %s מהמחשב הזה, ולכן היא עדיין פעילה.
 iw	string	account_signin_offline_body	-	ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר.
 iw	string	account_signins_until_quit	-	ההתחברויות נשמרות עד שתצא מ-CloudStream.
 iw	string	account_sync_connected	-	מחובר · מחובר במכשיר הזה
@@ -99390,6 +99792,7 @@ iw	string	cartoons	-	סדרות/סרטים מצוירים
 iw	string	cartoons_singular	-	סדרה/סרט מצויר
 iw	string	cast	-	צוות שחקנים
 iw	string	cast_format	-	צוות שחקנים: %s
+iw	string	cast_voiced_by	-	בדיבוב של %s
 iw	string	category_account	-	חשבונות ובטיחות
 iw	string	category_general	-	כללי
 iw	string	category_player	-	נגן
@@ -99567,7 +99970,9 @@ iw	string	episode_poster_img_des	-	הפוסטר של הפרק
 iw	string	episode_short	-	פר
 iw	string	episode_sync_settings	-	עדכן התקדמות צפייה
 iw	string	episode_sync_settings_des	-	סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך
+iw	string	episode_time_left	-	נותרו %1$d דק׳
 iw	string	episode_upcoming_format	-	Upcoming in %s
+iw	string	episode_watched	-	נצפה
 iw	string	episodes	-	פרקים
 iw	string	episodes_range	-	%1$d-%2$d
 iw	string	error	-	שגיאה
@@ -100518,6 +100923,8 @@ he	string	account_select_note	-	היסטוריית צפייה נפרדת · לא
 he	string	account_select_title	-	מי צופה?
 he	string	account_signin_failed_body	-	%s לא אישר את ההתחברות. שום דבר לא נשמר.
 he	string	account_signin_failed_title	-	לא ניתן להתחבר אל %s
+he	string	account_signin_not_kept	-	לא ניתן היה לשמור את ההתחברות אל %s במחשב הזה, ולכן לא התחברת.
+he	string	account_signin_not_removed	-	לא ניתן היה להסיר את ההתחברות אל %s מהמחשב הזה, ולכן היא עדיין פעילה.
 he	string	account_signin_offline_body	-	ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר.
 he	string	account_signins_until_quit	-	ההתחברויות נשמרות עד שתצא מ-CloudStream.
 he	string	account_sync_connected	-	מחובר · מחובר במכשיר הזה
@@ -100644,6 +101051,7 @@ he	string	cartoons	-	סדרות/סרטים מצוירים
 he	string	cartoons_singular	-	סדרה/סרט מצויר
 he	string	cast	-	צוות שחקנים
 he	string	cast_format	-	צוות שחקנים: %s
+he	string	cast_voiced_by	-	בדיבוב של %s
 he	string	category_account	-	חשבונות ובטיחות
 he	string	category_general	-	כללי
 he	string	category_player	-	נגן
@@ -100821,7 +101229,9 @@ he	string	episode_poster_img_des	-	הפוסטר של הפרק
 he	string	episode_short	-	פר
 he	string	episode_sync_settings	-	עדכן התקדמות צפייה
 he	string	episode_sync_settings_des	-	סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך
+he	string	episode_time_left	-	נותרו %1$d דק׳
 he	string	episode_upcoming_format	-	Upcoming in %s
+he	string	episode_watched	-	נצפה
 he	string	episodes	-	פרקים
 he	string	episodes_range	-	%1$d-%2$d
 he	string	error	-	שגיאה
@@ -101772,6 +102182,8 @@ he-IL	string	account_select_note	-	היסטוריית צפייה נפרדת · �
 he-IL	string	account_select_title	-	מי צופה?
 he-IL	string	account_signin_failed_body	-	%s לא אישר את ההתחברות. שום דבר לא נשמר.
 he-IL	string	account_signin_failed_title	-	לא ניתן להתחבר אל %s
+he-IL	string	account_signin_not_kept	-	לא ניתן היה לשמור את ההתחברות אל %s במחשב הזה, ולכן לא התחברת.
+he-IL	string	account_signin_not_removed	-	לא ניתן היה להסיר את ההתחברות אל %s מהמחשב הזה, ולכן היא עדיין פעילה.
 he-IL	string	account_signin_offline_body	-	ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר.
 he-IL	string	account_signins_until_quit	-	ההתחברויות נשמרות עד שתצא מ-CloudStream.
 he-IL	string	account_sync_connected	-	מחובר · מחובר במכשיר הזה
@@ -101898,6 +102310,7 @@ he-IL	string	cartoons	-	סדרות/סרטים מצוירים
 he-IL	string	cartoons_singular	-	סדרה/סרט מצויר
 he-IL	string	cast	-	צוות שחקנים
 he-IL	string	cast_format	-	צוות שחקנים: %s
+he-IL	string	cast_voiced_by	-	בדיבוב של %s
 he-IL	string	category_account	-	חשבונות ובטיחות
 he-IL	string	category_general	-	כללי
 he-IL	string	category_player	-	נגן
@@ -102075,7 +102488,9 @@ he-IL	string	episode_poster_img_des	-	הפוסטר של הפרק
 he-IL	string	episode_short	-	פר
 he-IL	string	episode_sync_settings	-	עדכן התקדמות צפייה
 he-IL	string	episode_sync_settings_des	-	סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך
+he-IL	string	episode_time_left	-	נותרו %1$d דק׳
 he-IL	string	episode_upcoming_format	-	Upcoming in %s
+he-IL	string	episode_watched	-	נצפה
 he-IL	string	episodes	-	פרקים
 he-IL	string	episodes_range	-	%1$d-%2$d
 he-IL	string	error	-	שגיאה
@@ -102981,6 +103396,8 @@ in	string	account_select_note	-	Riwayat tontonan terpisah · bukan login
 in	string	account_select_title	-	Siapa yang menonton?
 in	string	account_signin_failed_body	-	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.
 in	string	account_signin_failed_title	-	Tidak dapat masuk ke %s
+in	string	account_signin_not_kept	-	Tidak dapat menyimpan login ke %s di komputer ini, jadi Anda tidak masuk.
+in	string	account_signin_not_removed	-	Tidak dapat menghapus login ke %s dari komputer ini, jadi masih masuk.
 in	string	account_signin_offline_body	-	Masuk ke %s memerlukan koneksi. Coba lagi saat perangkat ini kembali online.
 in	string	account_signins_until_quit	-	Info masuk bertahan sampai Anda keluar dari CloudStream.
 in	string	account_sync_connected	-	Terhubung · masuk di perangkat ini
@@ -103107,6 +103524,7 @@ in	string	cartoons	-	Kartun
 in	string	cartoons_singular	-	Kartun
 in	string	cast	-	Pemeran
 in	string	cast_format	-	Pemeran: %s
+in	string	cast_voiced_by	-	Disuarakan oleh %s
 in	string	category_account	-	Akun dan Keamanan
 in	string	category_general	-	Umum
 in	string	category_player	-	Pemutar
@@ -103284,7 +103702,9 @@ in	string	episode_poster_img_des	-	Poster Episode
 in	string	episode_short	-	E
 in	string	episode_sync_settings	-	Perbarui progres tontonan
 in	string	episode_sync_settings_des	-	Sinkronisasikan progres episode saat ini secara otomatis
+in	string	episode_time_left	-	Sisa %1$d mnt
 in	string	episode_upcoming_format	-	Akan datang di %s
+in	string	episode_watched	-	Sudah ditonton
 in	string	episodes	-	Episode
 in	string	episodes_range	-	%1$d-%2$d
 in	string	error	-	Error
@@ -104190,6 +104610,8 @@ id	string	account_select_note	-	Riwayat tontonan terpisah · bukan login
 id	string	account_select_title	-	Siapa yang menonton?
 id	string	account_signin_failed_body	-	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.
 id	string	account_signin_failed_title	-	Tidak dapat masuk ke %s
+id	string	account_signin_not_kept	-	Tidak dapat menyimpan login ke %s di komputer ini, jadi Anda tidak masuk.
+id	string	account_signin_not_removed	-	Tidak dapat menghapus login ke %s dari komputer ini, jadi masih masuk.
 id	string	account_signin_offline_body	-	Masuk ke %s memerlukan koneksi. Coba lagi saat perangkat ini kembali online.
 id	string	account_signins_until_quit	-	Info masuk bertahan sampai Anda keluar dari CloudStream.
 id	string	account_sync_connected	-	Terhubung · masuk di perangkat ini
@@ -104316,6 +104738,7 @@ id	string	cartoons	-	Kartun
 id	string	cartoons_singular	-	Kartun
 id	string	cast	-	Pemeran
 id	string	cast_format	-	Pemeran: %s
+id	string	cast_voiced_by	-	Disuarakan oleh %s
 id	string	category_account	-	Akun dan Keamanan
 id	string	category_general	-	Umum
 id	string	category_player	-	Pemutar
@@ -104493,7 +104916,9 @@ id	string	episode_poster_img_des	-	Poster Episode
 id	string	episode_short	-	E
 id	string	episode_sync_settings	-	Perbarui progres tontonan
 id	string	episode_sync_settings_des	-	Sinkronisasikan progres episode saat ini secara otomatis
+id	string	episode_time_left	-	Sisa %1$d mnt
 id	string	episode_upcoming_format	-	Akan datang di %s
+id	string	episode_watched	-	Sudah ditonton
 id	string	episodes	-	Episode
 id	string	episodes_range	-	%1$d-%2$d
 id	string	error	-	Error
@@ -105399,6 +105824,8 @@ id-ID	string	account_select_note	-	Riwayat tontonan terpisah · bukan login
 id-ID	string	account_select_title	-	Siapa yang menonton?
 id-ID	string	account_signin_failed_body	-	%s tidak mengonfirmasi proses masuk. Tidak ada yang disimpan.
 id-ID	string	account_signin_failed_title	-	Tidak dapat masuk ke %s
+id-ID	string	account_signin_not_kept	-	Tidak dapat menyimpan login ke %s di komputer ini, jadi Anda tidak masuk.
+id-ID	string	account_signin_not_removed	-	Tidak dapat menghapus login ke %s dari komputer ini, jadi masih masuk.
 id-ID	string	account_signin_offline_body	-	Masuk ke %s memerlukan koneksi. Coba lagi saat perangkat ini kembali online.
 id-ID	string	account_signins_until_quit	-	Info masuk bertahan sampai Anda keluar dari CloudStream.
 id-ID	string	account_sync_connected	-	Terhubung · masuk di perangkat ini
@@ -105525,6 +105952,7 @@ id-ID	string	cartoons	-	Kartun
 id-ID	string	cartoons_singular	-	Kartun
 id-ID	string	cast	-	Pemeran
 id-ID	string	cast_format	-	Pemeran: %s
+id-ID	string	cast_voiced_by	-	Disuarakan oleh %s
 id-ID	string	category_account	-	Akun dan Keamanan
 id-ID	string	category_general	-	Umum
 id-ID	string	category_player	-	Pemutar
@@ -105702,7 +106130,9 @@ id-ID	string	episode_poster_img_des	-	Poster Episode
 id-ID	string	episode_short	-	E
 id-ID	string	episode_sync_settings	-	Perbarui progres tontonan
 id-ID	string	episode_sync_settings_des	-	Sinkronisasikan progres episode saat ini secara otomatis
+id-ID	string	episode_time_left	-	Sisa %1$d mnt
 id-ID	string	episode_upcoming_format	-	Akan datang di %s
+id-ID	string	episode_watched	-	Sudah ditonton
 id-ID	string	episodes	-	Episode
 id-ID	string	episodes_range	-	%1$d-%2$d
 id-ID	string	error	-	Error
@@ -106632,6 +107062,8 @@ arz	string	account_select_note	-	Separate watch history · not logins
 arz	string	account_select_title	-	Who's watching?
 arz	string	account_signin_failed_body	-	%s didn't confirm the sign-in. Nothing was saved.
 arz	string	account_signin_failed_title	-	Couldn't sign in to %s
+arz	string	account_signin_not_kept	-	Couldn't keep the sign-in to %s on this computer, so you're not signed in.
+arz	string	account_signin_not_removed	-	Couldn't remove the sign-in to %s from this computer, so it's still signed in.
 arz	string	account_signin_offline_body	-	Signing in to %s needs a connection. Try again when this device is back online.
 arz	string	account_signins_until_quit	-	Sign-ins last until you quit CloudStream.
 arz	string	account_sync_connected	-	Connected · signed in on this device
@@ -106758,6 +107190,7 @@ arz	string	cartoons	-	Cartoons
 arz	string	cartoons_singular	-	Cartoon
 arz	string	cast	-	Cast
 arz	string	cast_format	-	Cast: %s
+arz	string	cast_voiced_by	-	Voiced by %s
 arz	string	category_account	-	Accounts and Security
 arz	string	category_general	-	General
 arz	string	category_player	-	Player
@@ -106935,7 +107368,9 @@ arz	string	episode_poster_img_des	-	Episode Poster
 arz	string	episode_short	-	E
 arz	string	episode_sync_settings	-	Update watch progress
 arz	string	episode_sync_settings_des	-	Automatically sync your current episode progress
+arz	string	episode_time_left	-	%1$d min left
 arz	string	episode_upcoming_format	-	Upcoming in %s
+arz	string	episode_watched	-	Watched
 arz	string	episodes	-	Episodes
 arz	string	episodes_range	-	%1$d-%2$d
 arz	string	error	-	Error

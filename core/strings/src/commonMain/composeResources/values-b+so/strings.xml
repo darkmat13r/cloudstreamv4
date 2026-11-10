@@ -48,6 +48,8 @@
 <string name="account_select_title">Yaa daawanaya?</string>
 <string name="account_signin_failed_body">%s ma xaqiijin galitaanka. Waxba lama kaydin.</string>
 <string name="account_signin_failed_title">Lama geli karo %s</string>
+<string name="account_signin_not_kept">Lama hayn karin gelitaanka %s kombuyuutarkan, sidaa darteed ma gelin.</string>
+<string name="account_signin_not_removed">Lama saari karin gelitaanka %s kombuyuutarkan, sidaa darteed weli waa la galay.</string>
 <string name="account_signin_offline_body">Gelitaanka %s wuxuu u baahan yahay xiriir. Mar kale isku day marka qalabkani dib ugu soo laabto khadka.</string>
 <string name="account_signins_until_quit">Gelitaanku way sii jiraan ilaa aad ka baxdo CloudStream.</string>
 <string name="account_sync_connected">Waa ku xiran yahay · lagu galay qalabkan</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d qaybood</item><item quantity="other">%d qaybood</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ayaa fashilmay</item><item quantity="other">%d ayaa fashilmay</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d cinwaan · %2$s</item><item quantity="other">%1$d cinwaan · %2$s</item></plurals>
+<string name="episode_time_left">%1$d daqiiqo ayaa hadhay</string>
+<string name="episode_watched">La daawaday</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d CALAAMAD</item><item quantity="other">%d CALAAMADOOD</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Waa ka keeni kari waayey %d qayb</item><item quantity="other">Waa ka keeni kari waayey %d qaybood</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d cinwaan</item><item quantity="other">%d cinwaan</item></plurals>
@@ -163,6 +167,7 @@
 <string name="cartoons_singular">Kartoob</string>
 <string name="cast">Metalaya</string>
 <string name="cast_format">Metalaya: %s</string>
+<string name="cast_voiced_by">Codka: %s</string>
 <string name="category_account">Akoonada iyo Amniga</string>
 <string name="category_general">Guud</string>
 <string name="category_player">Daaraha</string>

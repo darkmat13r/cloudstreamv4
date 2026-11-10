@@ -230,6 +230,25 @@ internal object DetailFixtures {
     )
 
     /**
+     * Board 7i's watch state (`KMP-63`): episode 1 played to the end, episode 2 part-way with 24 minutes left
+     * and the one Resume plays, episode 3 untouched. 7i draws `WATCHED` on 1 and `24 MIN LEFT` on 2.
+     */
+    val WatchStateEpisodes: TitleDetail = run {
+        val rows = episodes(3, runTimeMinutes = EPISODE_MINUTES)
+        val second = rows[1].copy(
+            progress = DetailResume("e1", positionMs = 60_000L, durationMs = 1_500_000L, episode = null),
+        )
+        Show.copy(
+            episodes = listOf(
+                rows[0].copy(progress = DetailResume("e0", 1_440_000L, 1_440_000L, episode = null)),
+                second,
+                rows[2],
+            ),
+            resume = DetailResume("e1", positionMs = 60_000L, durationMs = 1_500_000L, episode = second),
+        )
+    }
+
+    /**
      * Board 7i's chip row with all four kinds of group at once: two numbered seasons, a specials
      * season, and episodes the provider never gave a season.
      *

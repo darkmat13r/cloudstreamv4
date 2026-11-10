@@ -115,6 +115,8 @@ import org.jetbrains.compose.resources.stringResource
  *
  * @param origin the name of the screen the page was opened from, for the bar. Null draws Back alone.
  * @param artwork draws the poster; the host owns image loading.
+ * @param thumbnail draws a cast photo or a recommendation's poster (`KMP-104`), each only while its line is on screen.
+ *   The host bounds them more tightly than the poster above.
  */
 @Composable
 fun DetailScreenDesktop(
@@ -125,12 +127,13 @@ fun DetailScreenDesktop(
     modifier: Modifier = Modifier,
     origin: String? = null,
     backdrop: @Composable (String) -> Unit = {},
+    thumbnail: @Composable (String) -> Unit = {},
 ) {
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
             TopBar(origin, state.detail?.title, onBack)
             when (val page = state.content.toPageUiState(onAction)) {
-                is UiState.Content -> TitlePage(page.value, state.synopsisOpen, onAction, artwork, backdrop)
+                is UiState.Content -> TitlePage(page.value, state.synopsisOpen, onAction, artwork, backdrop, thumbnail)
                 is UiState.Empty -> Failure(page.prompt, onBack)
                 is UiState.Error -> Failure(page.prompt, onBack)
                 is UiState.Offline -> Failure(page.prompt, onBack)
@@ -202,8 +205,11 @@ private fun TitlePage(
     onAction: (DetailAction) -> Unit,
     artwork: @Composable (String?) -> Unit,
     backdrop: @Composable (String) -> Unit,
+    thumbnail: @Composable (String) -> Unit,
 ) {
     val seasons = remember(detail.episodes) { seasonGroups(detail.episodes) }
+    // DS-26: More like this opens on one line, and each Load more opens one more.
+    var moreLines by remember(detail.recommendations) { mutableStateOf(1) }
     // The season Resume is in, else the one Play starts (KMP-92's S1E1), so the row it will play is on screen;
     // else the first.
     var chosen by remember(detail.episodes) {
@@ -247,6 +253,17 @@ private fun TitlePage(
                     EpisodeRow(episode, index, onAction)
                 }
             }
+            // DS-26, under the episodes: each only when it has something, never a header over nothing.
+            val width = maxWidth - DesktopDimens.WindowMargin * 2
+            castSection(detail.cast, DetailCastDesktopDefaults.columns(width, DetailCastDesktopDefaults.PersonMinWidth), thumbnail)
+            recommendationsSection(
+                recommendations = detail.recommendations,
+                columns = DetailCastDesktopDefaults.columns(width, DetailCastDesktopDefaults.CardMinWidth),
+                shownLines = moreLines,
+                onMore = { moreLines++ },
+                onAction = onAction,
+                poster = thumbnail,
+            )
         }
     }
 }

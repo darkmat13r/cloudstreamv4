@@ -48,6 +48,8 @@
 <string name="account_select_title">Kdo se dívá?</string>
 <string name="account_signin_failed_body">Služba %s přihlášení nepotvrdila. Nic nebylo uloženo.</string>
 <string name="account_signin_failed_title">Nelze se přihlásit k %s</string>
+<string name="account_signin_not_kept">Přihlášení k %s se na tomto počítači nepodařilo uchovat, takže nejste přihlášeni.</string>
+<string name="account_signin_not_removed">Přihlášení k %s se z tohoto počítače nepodařilo odebrat, takže je stále aktivní.</string>
 <string name="account_signin_offline_body">Přihlášení k %s vyžaduje připojení. Zkuste to znovu, až bude toto zařízení opět online.</string>
 <string name="account_signins_until_quit">Přihlášení platí, dokud CloudStream neukončíte.</string>
 <string name="account_sync_connected">Připojeno · přihlášeno na tomto zařízení</string>
@@ -74,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d neúspěšné</item><item quantity="few">%d neúspěšná</item><item quantity="many">%d neúspěšných</item><item quantity="other">%d neúspěšných</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d stahování uloženo do fronty</item><item quantity="few">%d stahování uložena do fronty</item><item quantity="many">%d stahování uloženo do fronty</item><item quantity="other">%d stahování uloženo do fronty</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titul · %2$s</item><item quantity="few">%1$d tituly · %2$s</item><item quantity="many">%1$d titulu · %2$s</item><item quantity="other">%1$d titulů · %2$s</item></plurals>
+<string name="episode_time_left">Zbývá %1$d min</string>
+<string name="episode_watched">Zhlédnuto</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽEK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepodařilo se načíst %d sekci</item><item quantity="few">Nepodařilo se načíst %d sekce</item><item quantity="many">Nepodařilo se načíst %d sekcí</item><item quantity="other">Nepodařilo se načíst %d sekcí</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d sekce</item><item quantity="few">%d sekce</item><item quantity="many">%d sekce</item><item quantity="other">%d sekcí</item></plurals>
@@ -202,6 +206,7 @@
 <string name="cartoons_singular">Animovaný</string>
 <string name="cast">Hrají</string>
 <string name="cast_format">Hrají: %s</string>
+<string name="cast_voiced_by">Hlas: %s</string>
 <string name="category_account">Účty a zabezpečení</string>
 <string name="category_general">Obecné</string>
 <string name="category_player">Přehrávač</string>

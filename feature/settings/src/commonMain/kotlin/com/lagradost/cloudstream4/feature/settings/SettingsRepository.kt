@@ -46,6 +46,7 @@ class SettingsRepository(
     private val random = MutableStateFlow(state.value.showRandom)
     private val posters = MutableStateFlow(state.value.posterSize)
     private val seek = MutableStateFlow(state.value.seekSeconds)
+    private val skip = MutableStateFlow(state.value.skipStamps)
 
     val values: StateFlow<SettingsValues> = state.asStateFlow()
     override val autoplayNext: StateFlow<Boolean> = autoplay.asStateFlow()
@@ -53,6 +54,7 @@ class SettingsRepository(
     override val showRandom: StateFlow<Boolean> = random.asStateFlow()
     override val posterSize: StateFlow<PosterSize> = posters.asStateFlow()
     override val seekSeconds: StateFlow<Int> = seek.asStateFlow()
+    override val skipStamps: StateFlow<Boolean> = skip.asStateFlow()
 
     override fun setAutoplayNext(on: Boolean) = update { it.copy(autoplayNext = on) }
 
@@ -70,6 +72,8 @@ class SettingsRepository(
         update { it.copy(seekSeconds = seconds) }
     }
 
+    fun setSkipStamps(on: Boolean) = update { it.copy(skipStamps = on) }
+
     /**
      * Applies [change] atomically, so two changes at once never lose one. The views and the file then take whatever is
      * current, and again if it moved meanwhile: whichever change lands last, the views and the file end on it.
@@ -85,6 +89,7 @@ class SettingsRepository(
             random.value = now.showRandom
             posters.value = now.posterSize
             seek.value = now.seekSeconds
+            skip.value = now.skipStamps
             try {
                 storage.save(now.toStored())
             } catch (e: Exception) {

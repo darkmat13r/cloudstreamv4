@@ -48,6 +48,8 @@
 <string name="account_select_title">को हेर्दै हुनुहुन्छ?</string>
 <string name="account_signin_failed_body">%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।</string>
 <string name="account_signin_failed_title">%s मा साइन इन गर्न सकिएन</string>
+<string name="account_signin_not_kept">यस कम्प्युटरमा %s को साइन-इन राख्न सकिएन, त्यसैले तपाईं साइन इन हुनुभएको छैन।</string>
+<string name="account_signin_not_removed">यस कम्प्युटरबाट %s को साइन-इन हटाउन सकिएन, त्यसैले यो अझै साइन इन छ।</string>
 <string name="account_signin_offline_body">%s मा साइन इन गर्न इन्टरनेट जडान चाहिन्छ। यो उपकरण फेरि अनलाइन भएपछि पुनः प्रयास गर्नुहोस्।</string>
 <string name="account_signins_until_quit">CloudStream बन्द नगरेसम्म साइन-इन रहन्छ।</string>
 <string name="account_sync_connected">जडान भयो · यो उपकरणमा साइन इन</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d एपिसोड</item><item quantity="other">%d एपिसोड</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d असफल</item><item quantity="other">%d असफल</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d शीर्षक · %2$s</item><item quantity="other">%1$d शीर्षक · %2$s</item></plurals>
+<string name="episode_time_left">%1$d मिनेट बाँकी</string>
+<string name="episode_watched">हेरिएको</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d खण्ड लोड हुन सकेन</item><item quantity="other">%d खण्डहरू लोड हुन सकेनन्</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d शीर्षक</item><item quantity="other">%d शीर्षकहरू</item></plurals>
@@ -101,6 +105,7 @@
 <string name="browser">ब्राउजर</string>
 <string name="cast">अभिनेता</string>
 <string name="cast_format">अभिनेता:%s</string>
+<string name="cast_voiced_by">आवाज: %s</string>
 <string name="chromecast_subtitles_settings">Chromecast को उपशीर्षकहरु</string>
 <string name="continue_watching">हेर्न सुचारु राख्नुहोस</string>
 <string name="desktop_menu_go">जानुहोस्</string>

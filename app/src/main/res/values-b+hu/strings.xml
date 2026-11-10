@@ -70,6 +70,8 @@
 <string name="account_select_title">"Ki néz?"</string>
 <string name="account_signin_failed_body" formatted="true">"A(z) %s nem erősítette meg a bejelentkezést. Semmi sem lett mentve."</string>
 <string name="account_signin_failed_title" formatted="true">"Nem sikerült bejelentkezni: %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Nem sikerült megőrizni a(z) %s bejelentkezést ezen a számítógépen, ezért nem vagy bejelentkezve."</string>
+<string name="account_signin_not_removed" formatted="true">"Nem sikerült eltávolítani a(z) %s bejelentkezést erről a számítógépről, ezért továbbra is aktív."</string>
 <string name="account_signin_offline_body" formatted="true">"A bejelentkezéshez (%s) internetkapcsolat szükséges. Próbálja újra, amikor az eszköz ismét online."</string>
 <string name="account_signins_until_quit">"A bejelentkezések addig tartanak, amíg ki nem lépsz a CloudStreamből."</string>
 <string name="account_sync_connected">"Csatlakoztatva · bejelentkezve ezen az eszközön"</string>
@@ -177,6 +179,7 @@
 <string name="cartoons_singular">"Rajzfilm"</string>
 <string name="cast">"Stáblista"</string>
 <string name="cast_format" formatted="true">"Stáblista: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Hangja: %s"</string>
 <string name="category_account">"Fiókok és Biztonság"</string>
 <string name="category_general">"Általános"</string>
 <string name="category_player">"Lejátszó"</string>
@@ -325,7 +328,9 @@
 <string name="episode_short">"Ep"</string>
 <string name="episode_sync_settings">"Előrehaladás frissítése"</string>
 <string name="episode_sync_settings_des">"Automatikusan szinkronizálja az aktuális epizód előrehaladását"</string>
+<string name="episode_time_left" formatted="true">"Még %1$d perc"</string>
 <string name="episode_upcoming_format" formatted="true">"Hamarosan érkezik a(z) %s"</string>
+<string name="episode_watched">"Megnézve"</string>
 <string name="episodes">"Epizódok"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Hiba"</string>

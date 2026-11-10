@@ -130,6 +130,24 @@ class SettingsWindowTest {
         }
     }
 
+    /** `KMP-86`: Skip OP, Android's key, on by default; off, the player asks the skip services nothing. */
+    @Test
+    fun `Skip OP writes Android's key and reads it back`() {
+        val storage = SettingsStorage.InMemory()
+        val settings = SettingsRepository(storage)
+        window(settings, SettingsWindowState(pane = SettingsPane.Playback)).use { scene ->
+            assertEquals(true, scene.toggleState("Skip OP"))
+            assertNotNull(scene.find("Show skip popups for opening/ending", text = true), "Android's line under it")
+            scene.click(scene.bounds("Skip OP").center)
+            assertEquals(false, settings.skipStamps.value)
+            assertEquals("false", storage.stored["enable_skip_op_from_database"])
+            scene.save("playback-skip-off")
+        }
+        window(SettingsRepository(SettingsStorage.InMemory(storage.stored)), SettingsWindowState(pane = SettingsPane.Playback)).use { scene ->
+            assertEquals(false, scene.toggleState("Skip OP"))
+        }
+    }
+
     @Test
     fun `Downloads at once writes the chosen count and reads it back`() {
         val storage = SettingsStorage.InMemory()

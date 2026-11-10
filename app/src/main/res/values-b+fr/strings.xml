@@ -73,6 +73,8 @@
 <string name="account_select_title">"Qui regarde ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s n'a pas confirmé la connexion. Rien n'a été enregistré."</string>
 <string name="account_signin_failed_title" formatted="true">"Impossible de se connecter à %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Impossible de conserver la connexion à %s sur cet ordinateur, vous n'êtes donc pas connecté."</string>
+<string name="account_signin_not_removed" formatted="true">"Impossible de supprimer la connexion à %s de cet ordinateur, elle reste donc active."</string>
 <string name="account_signin_offline_body" formatted="true">"La connexion à %s nécessite un accès réseau. Réessayez lorsque cet appareil sera de nouveau en ligne."</string>
 <string name="account_signins_until_quit">"Les connexions durent jusqu'à ce que vous quittiez CloudStream."</string>
 <string name="account_sync_connected">"Connecté · sur cet appareil"</string>
@@ -199,6 +201,7 @@
 <string name="cartoons_singular">"Dessin animé"</string>
 <string name="cast">"Distribution"</string>
 <string name="cast_format" formatted="true">"Distribution : %s"</string>
+<string name="cast_voiced_by" formatted="true">"Voix de %s"</string>
 <string name="category_account">"Comptes et Sécurité"</string>
 <string name="category_general">"Général"</string>
 <string name="category_player">"Lecteur"</string>
@@ -362,7 +365,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Mise à jour de la progression du visionnage"</string>
 <string name="episode_sync_settings_des">"Synchronisation automatique de la progression de votre épisode en cours"</string>
+<string name="episode_time_left" formatted="true">"Encore %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"À venir dans %s"</string>
+<string name="episode_watched">"Vu"</string>
 <string name="episodes">"Épisodes"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Erreur"</string>

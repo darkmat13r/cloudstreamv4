@@ -72,6 +72,8 @@
 <string name="account_select_title">"من يشاهد؟"</string>
 <string name="account_signin_failed_body" formatted="true">"لم يؤكد %s تسجيل الدخول. لم يُحفظ أي شيء."</string>
 <string name="account_signin_failed_title" formatted="true">"تعذّر تسجيل الدخول إلى %s"</string>
+<string name="account_signin_not_kept" formatted="true">"تعذّر الاحتفاظ بتسجيل الدخول إلى %s على هذا الكمبيوتر، لذا لم تسجّل الدخول."</string>
+<string name="account_signin_not_removed" formatted="true">"تعذّرت إزالة تسجيل الدخول إلى %s من هذا الكمبيوتر، لذا لا يزال مسجّلاً."</string>
 <string name="account_signin_offline_body" formatted="true">"يتطلب تسجيل الدخول إلى %s اتصالاً بالإنترنت. حاول مرة أخرى عند عودة هذا الجهاز إلى الاتصال."</string>
 <string name="account_signins_until_quit">"تبقى عمليات تسجيل الدخول حتى تُنهي CloudStream."</string>
 <string name="account_sync_connected">"متصل · تم تسجيل الدخول على هذا الجهاز"</string>
@@ -198,6 +200,7 @@
 <string name="cartoons_singular">"كرتون"</string>
 <string name="cast">"طاقم العمل"</string>
 <string name="cast_format" formatted="true">"طاقم العمل: %s"</string>
+<string name="cast_voiced_by" formatted="true">"بصوت %s"</string>
 <string name="category_account">"الحسابات والأمن"</string>
 <string name="category_general">"عام"</string>
 <string name="category_player">"المُشغل"</string>
@@ -361,7 +364,9 @@
 <string name="episode_short">"ح"</string>
 <string name="episode_sync_settings">"تحديث تقدم المشاهدة"</string>
 <string name="episode_sync_settings_des">"مزامنة التقدم في الحلقة الحالية تلقائيًا"</string>
+<string name="episode_time_left" formatted="true">"متبقٍ %1$d دقيقة"</string>
 <string name="episode_upcoming_format" formatted="true">"قادم خلال %s"</string>
+<string name="episode_watched">"تمت المشاهدة"</string>
 <string name="episodes">"حلقات"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"خطأ"</string>

@@ -69,6 +69,8 @@
 <string name="account_select_title">"को हेर्दै हुनुहुन्छ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s मा साइन इन गर्न सकिएन"</string>
+<string name="account_signin_not_kept" formatted="true">"यस कम्प्युटरमा %s को साइन-इन राख्न सकिएन, त्यसैले तपाईं साइन इन हुनुभएको छैन।"</string>
+<string name="account_signin_not_removed" formatted="true">"यस कम्प्युटरबाट %s को साइन-इन हटाउन सकिएन, त्यसैले यो अझै साइन इन छ।"</string>
 <string name="account_signin_offline_body" formatted="true">"%s मा साइन इन गर्न इन्टरनेट जडान चाहिन्छ। यो उपकरण फेरि अनलाइन भएपछि पुनः प्रयास गर्नुहोस्।"</string>
 <string name="account_signins_until_quit">"CloudStream बन्द नगरेसम्म साइन-इन रहन्छ।"</string>
 <string name="account_sync_connected">"जडान भयो · यो उपकरणमा साइन इन"</string>
@@ -98,6 +100,7 @@
 <string name="browser">"ब्राउजर"</string>
 <string name="cast">"अभिनेता"</string>
 <string name="cast_format" formatted="true">"अभिनेता:%s"</string>
+<string name="cast_voiced_by" formatted="true">"आवाज: %s"</string>
 <string name="chromecast_subtitles_settings">"Chromecast को उपशीर्षकहरु"</string>
 <string name="continue_watching">"हेर्न सुचारु राख्नुहोस"</string>
 <string name="desktop_menu_go">"जानुहोस्"</string>
@@ -151,6 +154,8 @@
 <string name="duration_format" formatted="true">"%d मिनेट"</string>
 <string name="episode_more_options_des">"थप विकल्पहरू"</string>
 <string name="episode_poster_img_des">"एपिसोडको पोस्टर"</string>
+<string name="episode_time_left" formatted="true">"%1$d मिनेट बाँकी"</string>
+<string name="episode_watched">"हेरिएको"</string>
 <string name="error_bookmarks_text">"बुकमार्कहरू"</string>
 <string name="error_loading_links_toast">"लिङ्क लोड गर्दा त्रुटि भयो"</string>
 <string name="extension_allow">"अनुमति दिनुहोस्"</string>

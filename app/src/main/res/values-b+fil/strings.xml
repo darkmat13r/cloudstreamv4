@@ -69,6 +69,8 @@
 <string name="account_select_title">"Sino ang nanonood?"</string>
 <string name="account_signin_failed_body" formatted="true">"Hindi kinumpirma ng %s ang pag-sign in. Walang na-save."</string>
 <string name="account_signin_failed_title" formatted="true">"Hindi makapag-sign in sa %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Hindi maitago ang pag-sign in sa %s sa computer na ito, kaya hindi ka naka-sign in."</string>
+<string name="account_signin_not_removed" formatted="true">"Hindi maalis ang pag-sign in sa %s sa computer na ito, kaya naka-sign in pa rin ito."</string>
 <string name="account_signin_offline_body" formatted="true">"Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito."</string>
 <string name="account_signins_until_quit">"Tatagal ang mga sign-in hanggang isara mo ang CloudStream."</string>
 <string name="account_sync_connected">"Nakakonekta · naka-sign in sa device na ito"</string>
@@ -108,6 +110,7 @@
 <string name="browser">"Browser"</string>
 <string name="cast">"Tauhan"</string>
 <string name="cast_format" formatted="true">"Tauhan: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Boses ni %s"</string>
 <string name="confirm_before_exiting_desc">"Ipakita ang dialog bago lumabas sa app"</string>
 <string name="confirm_before_exiting_title">"Kumpirmahin bago lumabas"</string>
 <string name="deselect_all">"Alisin sa pagkakapili ang Lahat"</string>
@@ -174,6 +177,8 @@
 <string name="episode_more_options_des">"Iba pang Mga Pagpipilian"</string>
 <string name="episode_poster_img_des">"Poster ng Kabanata"</string>
 <string name="episode_sync_settings_des">"Awtomatikong i-sync ang iyong kasalukuyang episode"</string>
+<string name="episode_time_left" formatted="true">"%1$d min na lang"</string>
+<string name="episode_watched">"Napanood na"</string>
 <string name="error_bookmarks_text">"Mga Bookmark"</string>
 <string name="error_loading_links_toast">"Nagkamali sa paglo-load ng mga link"</string>
 <string name="extension_allow">"Payagan"</string>

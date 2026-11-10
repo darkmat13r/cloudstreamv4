@@ -69,6 +69,8 @@
 <string name="account_select_title">"ആരാണ് കാണുന്നത്?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s സൈൻ-ഇൻ സ്ഥിരീകരിച്ചില്ല. ഒന്നും സംരക്ഷിച്ചില്ല."</string>
 <string name="account_signin_failed_title" formatted="true">"%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാനായില്ല"</string>
+<string name="account_signin_not_kept" formatted="true">"ഈ കമ്പ്യൂട്ടറിൽ %s സൈൻ-ഇൻ സൂക്ഷിക്കാനായില്ല, അതിനാൽ നിങ്ങൾ സൈൻ ഇൻ ചെയ്തിട്ടില്ല."</string>
+<string name="account_signin_not_removed" formatted="true">"ഈ കമ്പ്യൂട്ടറിൽ നിന്ന് %s സൈൻ-ഇൻ നീക്കം ചെയ്യാനായില്ല, അതിനാൽ അത് ഇപ്പോഴും സൈൻ ഇൻ ചെയ്ത നിലയിലാണ്."</string>
 <string name="account_signin_offline_body" formatted="true">"%s-ലേക്ക് സൈൻ ഇൻ ചെയ്യാൻ കണക്ഷൻ ആവശ്യമാണ്. ഈ ഉപകരണം വീണ്ടും ഓൺലൈനാകുമ്പോൾ ശ്രമിക്കുക."</string>
 <string name="account_signins_until_quit">"CloudStream അടയ്ക്കുന്നതുവരെ സൈൻ-ഇനുകൾ നിലനിൽക്കും."</string>
 <string name="account_sync_connected">"കണക്റ്റ് ചെയ്തു · ഈ ഉപകരണത്തിൽ സൈൻ ഇൻ ചെയ്തു"</string>
@@ -117,6 +119,7 @@
 <string name="cartoons">"കാർട്ടൂൺസ്"</string>
 <string name="cast">"കാസ്റ്റ്"</string>
 <string name="cast_format" formatted="true">"കാസ്റ്റ്:%s"</string>
+<string name="cast_voiced_by" formatted="true">"ശബ്ദം: %s"</string>
 <string name="category_updates">"അപ്ഡേറ്റുകളും ഒപ്പം ബാക്കപ്പും"</string>
 <string name="check_for_update">"അപ്ഡേറ്റിനായി തിരയുക"</string>
 <string name="chromecast_subtitles_settings">"ക്രോംകാസ്റ്റ് സബ്ടൈട്ടിൽസ്"</string>
@@ -216,6 +219,8 @@
 <string name="episode_action_reload_links">"ലിങ്ക്സ് വീണ്ടും ലോഡുചെയ്യുക"</string>
 <string name="episode_more_options_des">"കൂടുതൽ ഓപ്ഷൻസ്"</string>
 <string name="episode_poster_img_des">"എപ്പിസോഡ് പോസ്റ്റർ"</string>
+<string name="episode_time_left" formatted="true">"%1$d മിനിറ്റ് ബാക്കി"</string>
+<string name="episode_watched">"കണ്ടു"</string>
 <string name="episodes">"എപ്പിസോഡുകൾ"</string>
 <string name="error_bookmarks_text">"ബുക്മാർക്"</string>
 <string name="error_loading_links_toast">"ലിങ്കിൽ തകരാർ"</string>

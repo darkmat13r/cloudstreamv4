@@ -70,6 +70,8 @@
 <string name="account_select_title">"ooh oooh aah?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s oooohh uugg ah. oooohh aagg."</string>
 <string name="account_signin_failed_title" formatted="true">"oooohh uugg ah %s"</string>
+<string name="account_signin_not_kept" formatted="true">"%s aagg ooh. ooh-aah oouh."</string>
+<string name="account_signin_not_removed" formatted="true">"%s aagg ooh. ooh-aah oouh."</string>
 <string name="account_signin_offline_body" formatted="true">"uugg ah %s ooh aagg. uuh eeeek oooh aah aagg."</string>
 <string name="account_signins_until_quit">"ooh-aah aagg ooh CloudStream."</string>
 <string name="account_sync_connected">"oooh-aah · ooh aagg"</string>
@@ -182,6 +184,7 @@
 <string name="cartoons_singular">"uuuuggg"</string>
 <string name="cast">"oouaaahh"</string>
 <string name="cast_format" formatted="true">"oouaaahh %s"</string>
+<string name="cast_voiced_by" formatted="true">"ooh aahh %s"</string>
 <string name="category_account">"oooogggg aah aaaaaakh"</string>
 <string name="category_general">"a ahu uoo uoahuo uo"</string>
 <string name="category_player">"ahaough aaouuuuh-h"</string>
@@ -325,7 +328,9 @@
 <string name="episode_short">"A"</string>
 <string name="episode_sync_settings">"aaaagg aaahh aaaahhhg"</string>
 <string name="episode_sync_settings_des">"aaaaggguuuugg uuhh oohh ooooggg eeeeeek aaaagggh"</string>
+<string name="episode_time_left" formatted="true">"%1$d ooh haa ahhh"</string>
 <string name="episode_upcoming_format" formatted="true">"uuuugggg og %s"</string>
+<string name="episode_watched">"oouuh aaahhu"</string>
 <string name="episodes">"ahhh ooooo"</string>
 <string name="episodes_range" formatted="true">"%1$d%2$d"</string>
 <string name="error">"uuuhh"</string>

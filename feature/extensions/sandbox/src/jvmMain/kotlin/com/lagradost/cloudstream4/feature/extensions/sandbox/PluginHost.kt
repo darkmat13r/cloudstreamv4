@@ -1,18 +1,27 @@
 package com.lagradost.cloudstream4.feature.extensions.sandbox
 
 import com.lagradost.cloudstream3.APIHolder
+import com.lagradost.cloudstream3.ActorData
+import com.lagradost.cloudstream3.ActorRole
 import com.lagradost.cloudstream3.AnimeLoadResponse
+import com.lagradost.cloudstream3.AnimeSearchResponse
 import com.lagradost.cloudstream3.Episode
 import com.lagradost.cloudstream3.EpisodeResponse
 import com.lagradost.cloudstream3.LiveStreamLoadResponse
 import com.lagradost.cloudstream3.HomePageResponse
 import com.lagradost.cloudstream3.LoadResponse
+import com.lagradost.cloudstream3.LoadResponse.Companion.getImdbId
+import com.lagradost.cloudstream3.LoadResponse.Companion.getMalId
+import com.lagradost.cloudstream3.LoadResponse.Companion.getTMDbId
 import com.lagradost.cloudstream3.MainAPI
 import com.lagradost.cloudstream3.MainPageRequest
 import com.lagradost.cloudstream3.MovieLoadResponse
+import com.lagradost.cloudstream3.MovieSearchResponse
+import com.lagradost.cloudstream3.SearchResponse
 import com.lagradost.cloudstream3.ShowStatus
 import com.lagradost.cloudstream3.SubtitleFile
 import com.lagradost.cloudstream3.TvSeriesLoadResponse
+import com.lagradost.cloudstream3.TvSeriesSearchResponse
 import com.lagradost.cloudstream3.newSearchResponseList
 import com.lagradost.cloudstream4.feature.extensions.InstalledExtension
 import com.lagradost.cloudstream4.feature.extensions.JvmExtensionRuntime
@@ -238,7 +247,7 @@ object PluginHost {
                     }
                     HostProtocol.OP_LOAD -> {
                         val details = checkNotNull(api.load(args.readText())) { "provider returned nothing" }
-                        writer.send(id) { writeDetails(details.toRemote()) }
+                        writer.send(id) { writeDetails(details.toRemote(api.name)) }
                     }
                     HostProtocol.OP_LOAD_LINKS -> {
                         val call = checkNotNull(linkCall)
@@ -366,7 +375,7 @@ object PluginHost {
         hasNext = this?.hasNext == true,
     )
 
-    private fun LoadResponse.toRemote(): RemoteDetails {
+    private fun LoadResponse.toRemote(apiName: String): RemoteDetails {
         val episodes: List<Episode> = when (this) {
             is TvSeriesLoadResponse -> episodes
             is AnimeLoadResponse -> episodes.values.flatten()
@@ -389,7 +398,80 @@ object PluginHost {
             facts = facts(),
             // Courtesy, as the facts' cuts are: one too long to be read is not sent. The app checks what arrives.
             backdropUrl = backgroundPosterUrl?.takeIf { it.toByteArray().size <= HostProtocol.MAX_IMAGE_URL_BYTES },
+            // `KMP-86`: the getters Android's skip services read. Courtesy again: the app checks each id's shape.
+            ids = RemoteIds(
+                malId = runCatching { getMalId() }.getOrNull()?.shortId(),
+                tmdbId = runCatching { getTMDbId() }.getOrNull()?.shortId(),
+                imdbId = runCatching { getImdbId() }.getOrNull()?.shortId(),
+            ),
+            cast = actors.orEmpty().toRemoteCast(),
+            recommendations = recommendations.orEmpty().toRemoteRecommendations(apiName),
         )
+    }
+
+    /** One the app would skip unread is not sent (`KMP-86`). */
+    private fun String.shortId(): String? = takeIf { it.toByteArray().size <= HostProtocol.MAX_ID_BYTES }
+
+    /**
+     * Cut to the app's bounds here too (`KMP-103`), so an honest provider's cast is shortened rather than refused: the
+     * first [HostProtocol.MAX_CAST] with a name, words cut to [HostProtocol.MAX_PERSON_CHARS], and trailing people
+     * dropped until the section fits [HostProtocol.MAX_SECTION_BYTES]. Courtesy, not the check: the app reads it as hostile.
+     */
+    private fun List<ActorData>.toRemoteCast(): List<RemoteCastMember> {
+        val cast = asSequence()
+            .mapNotNull { entry ->
+                val name = entry.actor.name.trim().take(HostProtocol.MAX_PERSON_CHARS).ifEmpty { return@mapNotNull null }
+                RemoteCastMember(
+                    name = name,
+                    roleKind = when (entry.role) {
+                        ActorRole.Main -> RemoteActorRole.Main
+                        ActorRole.Supporting -> RemoteActorRole.Supporting
+                        ActorRole.Background -> RemoteActorRole.Background
+                        null -> null
+                    },
+                    role = entry.roleString?.trim()?.take(HostProtocol.MAX_PERSON_CHARS)?.ifEmpty { null },
+                    voiceActor = entry.voiceActor?.name?.trim()?.take(HostProtocol.MAX_PERSON_CHARS)?.ifEmpty { null },
+                    imageUrl = entry.actor.image?.takeIf { it.length <= HostProtocol.MAX_IMAGE_URL_CHARS && it.toByteArray().size <= HostProtocol.MAX_IMAGE_URL_BYTES },
+                )
+            }
+            .take(HostProtocol.MAX_CAST)
+            .toMutableList()
+        while (castBytes(cast).size > HostProtocol.MAX_SECTION_BYTES) cast.removeAt(cast.lastIndex)
+        return cast
+    }
+
+    /**
+     * The provider's own recommendations only: one naming another provider is dropped, because the app opens a
+     * recommendation with the provider that sent it and nothing else (`KMP-103`). Keys are never cut, since a cut key
+     * opens something else: one too long, blank or holding a control character is dropped. Then the first
+     * [HostProtocol.MAX_RECOMMENDATIONS], trailing ones dropped until the section fits [HostProtocol.MAX_SECTION_BYTES].
+     */
+    private fun List<SearchResponse>.toRemoteRecommendations(apiName: String): List<RemoteRecommendation> {
+        val titles = asSequence()
+            .filter { it.apiName == apiName }
+            .filter { it.url.isNotEmpty() && it.url.length <= HostProtocol.MAX_KEY_CHARS && it.url.none(Char::isISOControl) }
+            .mapNotNull { hit ->
+                val title = hit.name.trim().take(HostProtocol.MAX_RECOMMENDATION_TITLE_CHARS).ifEmpty { return@mapNotNull null }
+                RemoteRecommendation(
+                    title = title,
+                    key = hit.url,
+                    type = hit.type?.name?.takeIf { it in HostProtocol.TYPE_CODES },
+                    year = hit.yearOrNull()?.takeIf { it in HostProtocol.MIN_YEAR..HostProtocol.MAX_YEAR },
+                    posterUrl = hit.posterUrl?.takeIf { it.length <= HostProtocol.MAX_IMAGE_URL_CHARS && it.toByteArray().size <= HostProtocol.MAX_IMAGE_URL_BYTES },
+                )
+            }
+            .take(HostProtocol.MAX_RECOMMENDATIONS)
+            .toMutableList()
+        while (recommendationsBytes(titles).size > HostProtocol.MAX_SECTION_BYTES) titles.removeAt(titles.lastIndex)
+        return titles
+    }
+
+    /** `SearchResponse` declares no year; three of its types do, as Android's `toRecommendations` reads them. */
+    private fun SearchResponse.yearOrNull(): Int? = when (this) {
+        is AnimeSearchResponse -> year
+        is MovieSearchResponse -> year
+        is TvSeriesSearchResponse -> year
+        else -> null
     }
 
     /**

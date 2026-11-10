@@ -1,5 +1,6 @@
 package com.lagradost.cloudstream4.player
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -11,10 +12,9 @@ import androidx.compose.runtime.withFrameNanos
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.text.style.TextDirection
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.audio_tracks
-import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
+import com.lagradost.cloudstream4.core.strings.generated.resources.player_audio_stereo
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -35,6 +35,9 @@ internal data class AudioTrack(val id: Int, val name: String, val channels: Int 
             .filterNot { it.isNullOrEmpty() }
             .joinToString(SEPARATOR)
 
+    /** Two channels: `DS-23` M6's second line says `stereo` where the file gives the track no title of its own. */
+    val stereo: Boolean get() = channels == STEREO_CHANNELS
+
     /** The file's own title, when the readout has a language in its place and the title is not libVLC's filler. */
     val detail: String?
         get() = title.takeIf { language.isNotEmpty() && it.isNotEmpty() && !FILLER.matches(it) }
@@ -43,6 +46,7 @@ internal data class AudioTrack(val id: Int, val name: String, val channels: Int 
         val DESCRIPTION = Regex("(.*) - \\[(.*)\\]")
         val FILLER = Regex("Track \\d+")
         const val SEPARATOR = " · "
+        const val STEREO_CHANNELS = 2
 
         /** Only the layouts these counts nearly always are. Three could be 2.1 or 3.0, so it says nothing. */
         val CHANNEL_LAYOUTS = mapOf(1 to "1.0", 2 to "2.0", 6 to "5.1", 8 to "7.1")
@@ -120,23 +124,21 @@ internal fun AudioTrackPicker(
             withFrameNanos { }
             runCatching { focus.requestFocus() }
         }
-        LazyColumn(state = list, contentPadding = PaddingValues(all = PlayerScreenDefaults.PickerRingRoom)) {
+        LazyColumn(
+            state = list,
+            contentPadding = PaddingValues(all = PlayerScreenDefaults.PickerRingRoom),
+            verticalArrangement = Arrangement.spacedBy(PlayerScreenDefaults.PanelRowGap),
+        ) {
             itemsIndexed(audio.tracks) { index, track ->
                 val selected = track.id == audio.selected
-                TrackRow(
+                PlayerPanelRow(
                     title = track.readout,
-                    detail = track.detail,
+                    detail = track.detail ?: stringResource(Res.string.player_audio_stereo).takeIf { track.stereo },
+                    verb = useVerb(selected),
                     selected = selected,
                     onClick = { onSelect(track) },
                     modifier = if (index == selectedRow) Modifier.focusRequester(focus) else Modifier,
-                    titleStyle = CloudStreamTheme.typography.label.copy(
-                        color = if (selected) CloudStreamTheme.colors.ink else CloudStreamTheme.colors.ink2,
-                        textDirection = TextDirection.Ltr,
-                    ),
-                    detailStyle = CloudStreamTheme.typography.caption.copy(
-                        color = CloudStreamTheme.colors.muted,
-                        textDirection = TextDirection.Ltr,
-                    ),
+                    fromFile = true,
                 )
             }
         }

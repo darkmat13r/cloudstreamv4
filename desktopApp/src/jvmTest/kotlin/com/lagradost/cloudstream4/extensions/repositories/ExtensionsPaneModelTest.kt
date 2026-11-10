@@ -275,8 +275,11 @@ class ExtensionsPaneModelTest {
         serve(A, "Harbour Mirror", plugin("Lumen"))
         model.add(A)
         val key = until("added") { it.repositories.isNotEmpty() }.repositories.single().key
+        model.open(key)
         model.install(key, "Lumen")
-        until("installed") { installed.read().orEmpty().isNotEmpty() }
+        // BUG-99: the row's own end, not the installed list. The list has the entry before the file is moved into place
+        // (`KMP-110b`), so a wait on the list can see it while the move is still to come.
+        until("installed") { it.open?.rows?.single()?.state == RowState.Held }
         val fileName = installed.read()!!.single().fileName
         InstalledFromRepositories.fileFor(directory).writeText("garbage")
         model.removeRepository(key)

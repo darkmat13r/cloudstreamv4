@@ -72,6 +72,8 @@
 <string name="account_select_title">"Tko gleda?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s nije potvrdio prijavu. Ništa nije spremljeno."</string>
 <string name="account_signin_failed_title" formatted="true">"Prijava na %s nije uspjela"</string>
+<string name="account_signin_not_kept" formatted="true">"Prijava u %s nije se mogla zadržati na ovom računalu, pa niste prijavljeni."</string>
+<string name="account_signin_not_removed" formatted="true">"Prijava u %s nije se mogla ukloniti s ovog računala, pa je i dalje aktivna."</string>
 <string name="account_signin_offline_body" formatted="true">"Za prijavu na %s potrebna je veza. Pokušajte ponovno kad ovaj uređaj ponovno bude na mreži."</string>
 <string name="account_signins_until_quit">"Prijave traju dok ne zatvorite CloudStream."</string>
 <string name="account_sync_connected">"Povezano · prijavljeno na ovom uređaju"</string>
@@ -198,6 +200,7 @@
 <string name="cartoons_singular">"Crtić"</string>
 <string name="cast">"Glumačka postava"</string>
 <string name="cast_format" formatted="true">"Glumačka postava: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Glas: %s"</string>
 <string name="category_account">"Računi i sigurnost"</string>
 <string name="category_general">"Općenito"</string>
 <string name="category_player">"Player"</string>
@@ -361,7 +364,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Ažuriraj napredak gledanja"</string>
 <string name="episode_sync_settings_des">"Automatski sinkronizira vaš trenutni napredak u filmu ili epizodi"</string>
+<string name="episode_time_left" formatted="true">"Još %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Sljedeća u %s"</string>
+<string name="episode_watched">"Pogledano"</string>
 <string name="episodes">"Epizoda"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Pogreška"</string>

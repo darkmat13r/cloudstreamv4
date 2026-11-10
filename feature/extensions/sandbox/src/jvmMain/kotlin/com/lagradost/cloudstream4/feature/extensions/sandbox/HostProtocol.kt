@@ -6,6 +6,9 @@ import java.io.DataInputStream
 import java.io.DataOutputStream
 import java.io.IOException
 import java.io.InputStream
+import java.nio.ByteBuffer
+import java.nio.charset.CharacterCodingException
+import java.nio.charset.CodingErrorAction
 
 /**
  * The wire format between the app and a plugin host.
@@ -66,15 +69,88 @@ internal object HostProtocol {
      *
      * Each is a tag byte, a length, and a slice read on its own. The facts come first, as they always have; after them
      * a reader takes each section by its tag and steps over one whose tag it does not know, rather than read it as the
-     * wrong section. Tags: facts `0x01`, art `0x21`; `0x31` is taken (`KMP-86`).
+     * wrong section. Tags: facts `0x01`, art `0x21`, ids `0x31` (`KMP-86`), cast `0x41` and recommendations `0x51`
+     * (`KMP-103`). The high nibble is the section and the low its version, so a later cast is `0x42`, written beside
+     * `0x41` for as long as apps that read only `0x41` are kept working.
      */
     const val FACTS_V1 = 1
 
     /** The art section's tag (`KMP-100`), after the facts: a title's backdrop. A frame from before has none. */
     const val ART_V1 = 0x21
 
+    /**
+     * The ids section's tag (`KMP-86`), after the art: the title's MAL, TMDb and IMDb ids, which the Mac player sends
+     * to the skip services. Read by its tag (see [FACTS_V1]), so a reader that does not know it steps over it whole, and
+     * a frame from before has none.
+     */
+    const val IDS_V1 = 0x31
+
+    /** One id's bytes. Every real one is far shorter; past this it is skipped unread and the id is left out. */
+    const val MAX_ID_BYTES = 16
+
     /** A backdrop URL's bytes. Past this it is skipped unread and the page opens without one. */
     const val MAX_IMAGE_URL_BYTES = 2048
+
+    /**
+     * The ids section's bytes at most (`KMP-108`): its three ids, each a presence flag (1 byte), a length (4) and at
+     * most [MAX_ID_BYTES] (16), so 3 x (1 + 4 + 16) = 63. Past it the section is stepped over before a byte is copied.
+     * Within it, one id past its own bytes is still skipped alone and the others kept.
+     */
+    const val MAX_IDS_SECTION_BYTES = 3 * (1 + Int.SIZE_BYTES + MAX_ID_BYTES)
+
+    /**
+     * The art section's bytes at most (`KMP-108`): a presence flag (1 byte), a length (4) and at most
+     * [MAX_IMAGE_URL_BYTES] (2048), so 2053. Not [MAX_LINK_BYTES], which is the whole frame's 8 MiB and so bounds
+     * nothing a section adds: the backdrop is the section's one field, and its own cap is the real one. Past it the
+     * section is stepped over before a byte is copied.
+     */
+    const val MAX_ART_SECTION_BYTES = 1 + Int.SIZE_BYTES + MAX_IMAGE_URL_BYTES
+
+    /** The cast section's tag (`KMP-103`): who is in the title. */
+    const val CAST_V1 = 0x41
+
+    /** The recommendations section's tag (`KMP-103`): titles the same provider suggests after this one. */
+    const val RECOMMENDATIONS_V1 = 0x51
+
+    /**
+     * Each of the two sections' bytes. Past it the section is stepped over unread. The host drops trailing entries until
+     * its section fits, so an honest one is never past it.
+     */
+    const val MAX_SECTION_BYTES = 64 * 1024
+    const val MAX_CAST = 24
+    const val MAX_RECOMMENDATIONS = 20
+
+    /** A name, a role or a voice actor: at most this many characters once cleaned, and these many bytes as sent. */
+    const val MAX_PERSON_CHARS = 64
+    const val MAX_PERSON_BYTES = 256
+    const val MAX_RECOMMENDATION_TITLE_CHARS = 128
+    const val MAX_RECOMMENDATION_TITLE_BYTES = 512
+
+    /** What opens a recommendation: an opaque string for the provider that sent it, never a page to the app. */
+    const val MAX_KEY_CHARS = 2048
+
+    /** 2048 characters of any script fit: four bytes at most each. */
+    const val MAX_KEY_BYTES = 4 * MAX_KEY_CHARS
+
+    /** An image URL here is at most this many characters, as well as [MAX_IMAGE_URL_BYTES] bytes. */
+    const val MAX_IMAGE_URL_CHARS = 2048
+    const val MIN_YEAR = 1870
+    const val MAX_YEAR = 2100
+
+    /** A person's role as a kind, one byte, as `ActorRole` names them. */
+    const val ROLE_NONE = 0
+    const val ROLE_MAIN = 1
+    const val ROLE_SUPPORTING = 2
+    const val ROLE_BACKGROUND = 3
+
+    /**
+     * A recommendation's kind, one byte: code `n` is the `n`th name here, 0 is none. The protocol's own table, so a
+     * plugin can name only one of these and never spell its own. It matches `TvType`'s values today.
+     */
+    val TYPE_CODES: List<String> = listOf(
+        "Movie", "AnimeMovie", "TvSeries", "Cartoon", "Anime", "OVA", "Torrent", "Documentary", "AsianDrama", "Live",
+        "NSFW", "Others", "Music", "AudioBook", "CustomMedia", "Audio", "Podcast", "Video",
+    )
 
     /** A score out of ten, in tenths: 8.4 is 84. A whole number on the wire, so there is no NaN to send. */
     const val MAX_SCORE_TENTHS = 100
@@ -200,7 +276,60 @@ data class RemoteDetails(
     val facts: RemoteFacts = RemoteFacts.NONE,
     /** The wide art behind the title page's header (`KMP-100`), as the plugin wrote it until the app checks it. */
     val backdropUrl: String? = null,
+    /** The title's ids on other sites (`KMP-86`), as the plugin wrote them until the app checks them. */
+    val ids: RemoteIds = RemoteIds.NONE,
+    /** Who is in it (`KMP-103`), at most [HostProtocol.MAX_CAST]. None from a host that sent none. */
+    val cast: List<RemoteCastMember> = emptyList(),
+    /** What the provider suggests after it (`KMP-103`), at most [HostProtocol.MAX_RECOMMENDATIONS]. */
+    val recommendations: List<RemoteRecommendation> = emptyList(),
 )
+
+/**
+ * One person in a title's cast (`KMP-103`). Read as hostile, as the facts are: words are checked and cleaned by the
+ * app, and a photo is a URL the app may fetch only once it passes the image checks.
+ *
+ * @param role the character, or what the provider wrote for the part.
+ * @param roleKind the part as a kind, from a fixed code, for when there are no words.
+ */
+data class RemoteCastMember(
+    val name: String,
+    val roleKind: RemoteActorRole? = null,
+    val role: String? = null,
+    val voiceActor: String? = null,
+    val imageUrl: String? = null,
+) {
+    override fun toString(): String = "RemoteCastMember(<hidden>)"
+}
+
+/** Named as `ActorRole` names them. */
+enum class RemoteActorRole { Main, Supporting, Background }
+
+/**
+ * A title the provider suggests (`KMP-103`).
+ *
+ * @param type a name from [HostProtocol.TYPE_CODES], never the plugin's spelling.
+ * @param key what opens it: opaque, and only ever handed back to the provider that sent it, through its own `load`.
+ *   The app never fetches it, opens it in a browser, shows it or logs it.
+ */
+data class RemoteRecommendation(
+    val title: String,
+    val key: String,
+    val type: String? = null,
+    val year: Int? = null,
+    val posterUrl: String? = null,
+) {
+    override fun toString(): String = "RemoteRecommendation(<hidden>)"
+}
+
+/**
+ * A title's ids on other sites (`KMP-86`), each as text. The Mac player puts them in a skip service's URL, so the app
+ * keeps only the exact shapes ([cleaned]): a MAL or TMDb id is 1 to 9 ASCII digits, an IMDb id `tt` and 7 to 10.
+ */
+data class RemoteIds(val malId: String? = null, val tmdbId: String? = null, val imdbId: String? = null) {
+    companion object {
+        val NONE = RemoteIds()
+    }
+}
 
 /**
  * A title's facts, as the app keeps them: every one in its bound, or absent.
@@ -370,26 +499,32 @@ internal fun DataOutputStream.writeDetails(details: RemoteDetails) {
     }
     writeFacts(details.facts)
     writeArt(details.backdropUrl)
+    writeIds(details.ids)
+    writeCast(details.cast)
+    writeRecommendations(details.recommendations)
 }
 
 /**
  * @param dropped told the name of each fact left out and why, in words of this code's own: never the value, which is
  *   the plugin's and can carry an address or a token.
  */
-internal fun DataInputStream.readDetails(dropped: (String) -> Unit = {}): RemoteDetails = RemoteDetails(
-    name = readText(),
-    url = readText(),
-    type = readText(),
-    plot = readOptional(),
-    posterUrl = readOptional(),
-    year = readNumber(),
-    dataUrl = readOptional(),
-    episodes = List(readCount()) {
-        RemoteEpisode(readOptional(), readText(), readNumber(), readNumber())
-    },
-    facts = readFacts(dropped),
-    backdropUrl = readSectionsAfterFacts(dropped),
-)
+internal fun DataInputStream.readDetails(dropped: (String) -> Unit = {}): RemoteDetails {
+    val page = RemoteDetails(
+        name = readText(),
+        url = readText(),
+        type = readText(),
+        plot = readOptional(),
+        posterUrl = readOptional(),
+        year = readNumber(),
+        dataUrl = readOptional(),
+        episodes = List(readCount()) {
+            RemoteEpisode(readOptional(), readText(), readNumber(), readNumber())
+        },
+        facts = readFacts(dropped),
+    )
+    val after = readSectionsAfterFacts(dropped)
+    return page.copy(backdropUrl = after.backdrop, ids = after.ids, cast = after.cast, recommendations = after.recommendations)
+}
 
 /** After the episodes, so a reader from before `KMP-76` stops where it always did and never sees it. */
 private fun DataOutputStream.writeFacts(facts: RemoteFacts) {
@@ -449,36 +584,231 @@ private fun DataOutputStream.writeArt(backdropUrl: String?) {
     section.writeTo(this)
 }
 
+/** What follows the facts, each section as read, or none. */
+private class AfterFacts(
+    val backdrop: String? = null,
+    val ids: RemoteIds = RemoteIds.NONE,
+    val cast: List<RemoteCastMember> = emptyList(),
+    val recommendations: List<RemoteRecommendation> = emptyList(),
+)
+
 /**
- * The sections after the facts, each by its tag (see [HostProtocol.FACTS_V1]): today the art, a title's backdrop. A
- * section whose tag this app does not know, or a second of one it has read, is stepped over whole, and said once. A
- * slice that cannot be read costs its section, not the page. Only a slice whose own length lies past the frame fails the
- * call. Nothing left means a host from before: no backdrop.
+ * The sections after the facts, each by its tag (see [HostProtocol.FACTS_V1]): the art, the ids (`KMP-86`), the cast
+ * and the recommendations. A section whose tag this app does not know, or a second of one it has read, is stepped over
+ * whole, and said once. A slice that cannot be read costs its section, not the page. Only a slice whose own length lies
+ * past the frame fails the call. Nothing left means a host from before: none of them.
  */
-private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): String? {
+private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): AfterFacts {
     var backdrop: String? = null
-    var artRead = false
+    var ids = RemoteIds.NONE
+    var cast: List<RemoteCastMember> = emptyList()
+    var recommendations: List<RemoteRecommendation> = emptyList()
+    val read = HashSet<Int>()
     var unknown = false
     while (available() > 0) {
         val tag = readUnsignedByte()
         val length = readInt()
         if (length !in 0..available()) throw IOException("section length $length out of range")
-        if (tag == HostProtocol.ART_V1 && !artRead) {
-            artRead = true
-            val section = readNBytes(length)
-            backdrop = try {
-                DataInputStream(ByteArrayInputStream(section)).use { it.readArtV1(dropped) }
-            } catch (unreadable: IOException) {
-                dropped("art: a section that could not be read")
-                null
-            }
-        } else {
+        // `KMP-105`: only a tag this app reads, seen for the first time, is copied out as a slice. Any other is stepped
+        // over in place, so a lying host's large unknown or repeated section costs no allocation.
+        if (tag !in SECTION_CAPS || !read.add(tag)) {
             skipNBytes(length.toLong())
             unknown = true
+            continue
+        }
+        // Nor is a section past its cap (`KMP-105`, `KMP-108`): it is stepped over before a byte of it is copied.
+        val cap = SECTION_CAPS.getValue(tag)
+        if (length > cap.maxBytes) {
+            skipNBytes(length.toLong())
+            dropped("${cap.name}: a section past its bytes")
+            continue
+        }
+        val section = readNBytes(length)
+        when (tag) {
+            HostProtocol.ART_V1 -> backdrop = slice(section, "art", dropped, null) { readArtV1(dropped) }
+            HostProtocol.IDS_V1 -> ids = readIds(section, dropped)
+            HostProtocol.CAST_V1 ->
+                cast = slice(section, "cast", dropped, emptyList()) { readCastV1(Drops("cast", dropped)) }
+            HostProtocol.RECOMMENDATIONS_V1 ->
+                recommendations = slice(section, "recommendations", dropped, emptyList()) {
+                    readRecommendationsV1(Drops("recommendations", dropped))
+                }
         }
     }
     if (unknown) dropped("a section this app does not read")
-    return backdrop
+    return AfterFacts(backdrop, ids, cast, recommendations)
+}
+
+/** A section's most bytes, and the name its drop is said under. */
+private class SectionCap(val name: String, val maxBytes: Int)
+
+/**
+ * The sections [readSectionsAfterFacts] reads, each with a cap so none is copied past what it can hold. Every other tag
+ * is stepped over unread.
+ */
+private val SECTION_CAPS = mapOf(
+    HostProtocol.ART_V1 to SectionCap("art", HostProtocol.MAX_ART_SECTION_BYTES),
+    HostProtocol.IDS_V1 to SectionCap("ids", HostProtocol.MAX_IDS_SECTION_BYTES),
+    HostProtocol.CAST_V1 to SectionCap("cast", HostProtocol.MAX_SECTION_BYTES),
+    HostProtocol.RECOMMENDATIONS_V1 to SectionCap("recommendations", HostProtocol.MAX_SECTION_BYTES),
+)
+
+/**
+ * [parse] over its own [bytes], so nothing in it can reach past them: a section cut short, or lying about a length or a
+ * count inside, costs [fallback]. One past its cap never gets here (see [SECTION_CAPS]).
+ */
+private fun <T> slice(bytes: ByteArray, name: String, dropped: (String) -> Unit, fallback: T, parse: DataInputStream.() -> T): T {
+    return try {
+        DataInputStream(ByteArrayInputStream(bytes)).use { it.parse() }
+    } catch (unreadable: IOException) {
+        dropped("$name: a section that could not be read")
+        fallback
+    }
+}
+
+/** Why fields were left out of one section, each reason said once however often it happened: never a value or a count. */
+private class Drops(private val section: String, private val dropped: (String) -> Unit) {
+    private val said = HashSet<String>()
+
+    fun note(reason: String) {
+        if (said.add(reason)) dropped("$section: $reason")
+    }
+}
+
+/** What [readField] found: the text, or why there is none. */
+private sealed interface Field {
+    data class Text(val value: String) : Field
+    data object PastItsBytes : Field
+    data object NotUtf8 : Field
+}
+
+/**
+ * One length-prefixed text inside a slice. The length is checked against what is left before anything is skipped or
+ * read. Past [maxBytes] it is stepped over with `skipNBytes`, never decoded. Bytes that are not UTF-8 are refused, never
+ * replaced: a name made of replacement characters is not a name.
+ */
+private fun DataInputStream.readField(maxBytes: Int): Field {
+    val length = readInt()
+    if (length !in 0..available()) throw IOException("a field length past its section")
+    if (length > maxBytes) {
+        skipNBytes(length.toLong())
+        return Field.PastItsBytes
+    }
+    val bytes = readNBytes(length)
+    return try {
+        Field.Text(
+            Charsets.UTF_8.newDecoder()
+                .onMalformedInput(CodingErrorAction.REPORT)
+                .onUnmappableCharacter(CodingErrorAction.REPORT)
+                .decode(ByteBuffer.wrap(bytes))
+                .toString(),
+        )
+    } catch (malformed: CharacterCodingException) {
+        Field.NotUtf8
+    }
+}
+
+/** [readField] as a value, saying in [drops] why one was left out under [name]. */
+private fun DataInputStream.readTextField(maxBytes: Int, name: String, drops: Drops): String? =
+    when (val field = readField(maxBytes)) {
+        is Field.Text -> field.value
+        Field.PastItsBytes -> null.also { drops.note("$name past its bytes") }
+        Field.NotUtf8 -> null.also { drops.note("$name not UTF-8") }
+    }
+
+private fun DataInputStream.readOptionalText(maxBytes: Int, name: String, drops: Drops): String? =
+    if (readBoolean()) readTextField(maxBytes, name, drops) else null
+
+/**
+ * A count, then entries. A negative count costs the section. Past [max] the rest of the slice is left unread: it is the
+ * section's own, so nothing after it is out of step.
+ */
+private inline fun <T> DataInputStream.readEntries(max: Int, drops: Drops, entry: () -> T?): List<T> {
+    val count = readInt()
+    if (count < 0) throw IOException("a negative count")
+    if (count > max) drops.note("entries past the count")
+    val out = ArrayList<T>(minOf(count, max))
+    repeat(minOf(count, max)) { entry()?.let(out::add) }
+    return out
+}
+
+private fun DataInputStream.readCastV1(drops: Drops): List<RemoteCastMember> =
+    readEntries(HostProtocol.MAX_CAST, drops) {
+        val name = readTextField(HostProtocol.MAX_PERSON_BYTES, "name", drops)
+        val kind = when (readUnsignedByte()) {
+            HostProtocol.ROLE_NONE -> null
+            HostProtocol.ROLE_MAIN -> RemoteActorRole.Main
+            HostProtocol.ROLE_SUPPORTING -> RemoteActorRole.Supporting
+            HostProtocol.ROLE_BACKGROUND -> RemoteActorRole.Background
+            else -> null.also { drops.note("role kind not a code this app knows") }
+        }
+        val role = readOptionalText(HostProtocol.MAX_PERSON_BYTES, "role", drops)
+        val voice = readOptionalText(HostProtocol.MAX_PERSON_BYTES, "voice actor", drops)
+        val image = readOptionalText(HostProtocol.MAX_IMAGE_URL_BYTES, "image", drops)
+        if (name == null) null.also { drops.note("a person without a name") } else RemoteCastMember(name, kind, role, voice, image)
+    }
+
+private fun DataInputStream.readRecommendationsV1(drops: Drops): List<RemoteRecommendation> =
+    readEntries(HostProtocol.MAX_RECOMMENDATIONS, drops) {
+        val title = readTextField(HostProtocol.MAX_RECOMMENDATION_TITLE_BYTES, "title", drops)
+        val code = readUnsignedByte()
+        val type = when {
+            code == 0 -> null
+            code <= HostProtocol.TYPE_CODES.size -> HostProtocol.TYPE_CODES[code - 1]
+            else -> null.also { drops.note("type not a code this app knows") }
+        }
+        val year = readNumber()
+        val poster = readOptionalText(HostProtocol.MAX_IMAGE_URL_BYTES, "poster", drops)
+        val key = readTextField(HostProtocol.MAX_KEY_BYTES, "key", drops)
+        if (title == null || key == null) null.also { drops.note("a recommendation without its title or key") }
+        else RemoteRecommendation(title, key, type, year, poster)
+    }
+
+/** After the art, so a reader from before `KMP-103` steps over it as a tag it does not know. Always written. */
+private fun DataOutputStream.writeCast(cast: List<RemoteCastMember>) = writeSection(HostProtocol.CAST_V1, castBytes(cast))
+
+private fun DataOutputStream.writeRecommendations(recommendations: List<RemoteRecommendation>) =
+    writeSection(HostProtocol.RECOMMENDATIONS_V1, recommendationsBytes(recommendations))
+
+private fun DataOutputStream.writeSection(tag: Int, body: ByteArray) {
+    writeByte(tag)
+    writeInt(body.size)
+    write(body)
+}
+
+internal fun castBytes(cast: List<RemoteCastMember>): ByteArray = sectionBytes {
+    writeInt(cast.size)
+    cast.forEach { person ->
+        writeText(person.name)
+        writeByte(
+            when (person.roleKind) {
+                null -> HostProtocol.ROLE_NONE
+                RemoteActorRole.Main -> HostProtocol.ROLE_MAIN
+                RemoteActorRole.Supporting -> HostProtocol.ROLE_SUPPORTING
+                RemoteActorRole.Background -> HostProtocol.ROLE_BACKGROUND
+            },
+        )
+        writeOptional(person.role)
+        writeOptional(person.voiceActor)
+        writeOptional(person.imageUrl)
+    }
+}
+
+internal fun recommendationsBytes(recommendations: List<RemoteRecommendation>): ByteArray = sectionBytes {
+    writeInt(recommendations.size)
+    recommendations.forEach { title ->
+        writeText(title.title)
+        writeByte(title.type?.let { HostProtocol.TYPE_CODES.indexOf(it) + 1 } ?: 0)
+        writeInt(title.year ?: NO_NUMBER)
+        writeOptional(title.posterUrl)
+        writeText(title.key)
+    }
+}
+
+private fun sectionBytes(body: DataOutputStream.() -> Unit): ByteArray {
+    val out = ByteArrayOutputStream()
+    DataOutputStream(out).use(body)
+    return out.toByteArray()
 }
 
 private fun DataInputStream.readArtV1(dropped: (String) -> Unit): String? {
@@ -488,6 +818,42 @@ private fun DataInputStream.readArtV1(dropped: (String) -> Unit): String? {
     if (length > HostProtocol.MAX_IMAGE_URL_BYTES) {
         skipNBytes(length.toLong())
         dropped("backdropUrl: past its bytes")
+        return null
+    }
+    return String(readNBytes(length), Charsets.UTF_8)
+}
+
+/** After the art, appended: a reader from before `KMP-86` steps over it as a tag it does not know. */
+private fun DataOutputStream.writeIds(ids: RemoteIds) {
+    val section = ByteArrayOutputStream()
+    DataOutputStream(section).use { out ->
+        out.writeOptional(ids.malId)
+        out.writeOptional(ids.tmdbId)
+        out.writeOptional(ids.imdbId)
+    }
+    writeByte(HostProtocol.IDS_V1)
+    writeInt(section.size())
+    section.writeTo(this)
+}
+
+/** The ids section's slice: one that cannot be read costs the ids, never the page. */
+private fun readIds(section: ByteArray, dropped: (String) -> Unit): RemoteIds = try {
+    DataInputStream(ByteArrayInputStream(section)).use { input ->
+        RemoteIds(input.readId("malId", dropped), input.readId("tmdbId", dropped), input.readId("imdbId", dropped))
+    }
+} catch (unreadable: IOException) {
+    dropped("ids: a section that could not be read")
+    RemoteIds.NONE
+}
+
+/** One id, or null: one past [HostProtocol.MAX_ID_BYTES] is skipped unread, and named by [name], never by its value. */
+private fun DataInputStream.readId(name: String, dropped: (String) -> Unit): String? {
+    if (!readBoolean()) return null
+    val length = readInt()
+    if (length !in 0..available()) throw IOException("$name length $length out of range")
+    if (length > HostProtocol.MAX_ID_BYTES) {
+        skipNBytes(length.toLong())
+        dropped("$name: past its bytes")
         return null
     }
     return String(readNBytes(length), Charsets.UTF_8)

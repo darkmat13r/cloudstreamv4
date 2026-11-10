@@ -72,6 +72,8 @@
 <string name="account_select_title">"誰在觀看？"</string>
 <string name="account_signin_failed_body" formatted="true">"%s 未確認登入。未儲存任何內容。"</string>
 <string name="account_signin_failed_title" formatted="true">"無法登入 %s"</string>
+<string name="account_signin_not_kept" formatted="true">"無法在這台電腦上保留 %s 的登入，因此你尚未登入。"</string>
+<string name="account_signin_not_removed" formatted="true">"無法從這台電腦上移除 %s 的登入，因此仍處於登入狀態。"</string>
 <string name="account_signin_offline_body" formatted="true">"登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。"</string>
 <string name="account_signins_until_quit">"登入狀態會保留到你結束 CloudStream 為止。"</string>
 <string name="account_sync_connected">"已連線 · 已在此裝置登入"</string>
@@ -198,6 +200,7 @@
 <string name="cartoons_singular">"卡通"</string>
 <string name="cast">"演員"</string>
 <string name="cast_format" formatted="true">"演員：%s"</string>
+<string name="cast_voiced_by" formatted="true">"配音：%s"</string>
 <string name="category_account">"帳戶和安全"</string>
 <string name="category_general">"通用"</string>
 <string name="category_player">"播放器"</string>
@@ -361,7 +364,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"更新觀看進度"</string>
 <string name="episode_sync_settings_des">"自動同步當前劇集進度"</string>
+<string name="episode_time_left" formatted="true">"剩下 %1$d 分鐘"</string>
 <string name="episode_upcoming_format" formatted="true">"即將在 %s 推出"</string>
+<string name="episode_watched">"已看完"</string>
 <string name="episodes">"集"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"錯誤"</string>

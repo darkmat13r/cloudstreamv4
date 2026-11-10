@@ -73,6 +73,8 @@
 <string name="account_select_title">"Kush po shikon?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s nuk e konfirmoi identifikimin. Nuk u ruajt asgjë."</string>
 <string name="account_signin_failed_title" formatted="true">"Identifikimi në %s dështoi"</string>
+<string name="account_signin_not_kept" formatted="true">"Hyrja në %s nuk u ruajt dot në këtë kompjuter, ndaj nuk je i identifikuar."</string>
+<string name="account_signin_not_removed" formatted="true">"Hyrja në %s nuk u hoq dot nga ky kompjuter, ndaj është ende aktive."</string>
 <string name="account_signin_offline_body" formatted="true">"Identifikimi në %s kërkon lidhje. Provo përsëri kur kjo pajisje të jetë sërish në linjë."</string>
 <string name="account_signins_until_quit">"Hyrjet zgjasin derisa të mbyllësh CloudStream."</string>
 <string name="account_sync_connected">"E lidhur · e identifikuar në këtë pajisje"</string>
@@ -199,6 +201,7 @@
 <string name="cartoons_singular">"Vizatimorë"</string>
 <string name="cast">"Kasti"</string>
 <string name="cast_format" formatted="true">"Kasti: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Zëri: %s"</string>
 <string name="category_account">"Llogaritë dhe Siguria"</string>
 <string name="category_general">"Të përgjithshme"</string>
 <string name="category_player">"Luajtësi"</string>
@@ -362,7 +365,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Përditëso progresin e shikimit"</string>
 <string name="episode_sync_settings_des">"Sinkronizo automatikisht progresin e episodit aktual"</string>
+<string name="episode_time_left" formatted="true">"Mbeten %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Vazhdon në %s"</string>
+<string name="episode_watched">"Parë"</string>
 <string name="episodes">"Episode"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Gabim"</string>

@@ -70,6 +70,8 @@
 <string name="account_select_title">"מי צופה?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s לא אישר את ההתחברות. שום דבר לא נשמר."</string>
 <string name="account_signin_failed_title" formatted="true">"לא ניתן להתחבר אל %s"</string>
+<string name="account_signin_not_kept" formatted="true">"לא ניתן היה לשמור את ההתחברות אל %s במחשב הזה, ולכן לא התחברת."</string>
+<string name="account_signin_not_removed" formatted="true">"לא ניתן היה להסיר את ההתחברות אל %s מהמחשב הזה, ולכן היא עדיין פעילה."</string>
 <string name="account_signin_offline_body" formatted="true">"ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר."</string>
 <string name="account_signins_until_quit">"ההתחברויות נשמרות עד שתצא מ-CloudStream."</string>
 <string name="account_sync_connected">"מחובר · מחובר במכשיר הזה"</string>
@@ -165,6 +167,7 @@
 <string name="cartoons_singular">"סדרה/סרט מצויר"</string>
 <string name="cast">"צוות שחקנים"</string>
 <string name="cast_format" formatted="true">"צוות שחקנים: %s"</string>
+<string name="cast_voiced_by" formatted="true">"בדיבוב של %s"</string>
 <string name="category_account">"חשבונות ובטיחות"</string>
 <string name="category_general">"כללי"</string>
 <string name="category_player">"נגן"</string>
@@ -283,6 +286,8 @@
 <string name="episode_short">"פר"</string>
 <string name="episode_sync_settings">"עדכן התקדמות צפייה"</string>
 <string name="episode_sync_settings_des">"סנכרן אוטומטית את התקדמות הפרק הנוכחית שלך"</string>
+<string name="episode_time_left" formatted="true">"נותרו %1$d דק׳"</string>
+<string name="episode_watched">"נצפה"</string>
 <string name="episodes">"פרקים"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"שגיאה"</string>

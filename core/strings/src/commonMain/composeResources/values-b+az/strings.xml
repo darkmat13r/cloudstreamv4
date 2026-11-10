@@ -48,6 +48,8 @@
 <string name="account_select_title">Kim baxır?</string>
 <string name="account_signin_failed_body">%s girişi təsdiqləmədi. Heç nə saxlanılmadı.</string>
 <string name="account_signin_failed_title">%s hesabına daxil olmaq alınmadı</string>
+<string name="account_signin_not_kept">%s girişi bu kompüterdə saxlanıla bilmədi, ona görə daxil olmamısınız.</string>
+<string name="account_signin_not_removed">%s girişi bu kompüterdən silinə bilmədi, ona görə hələ də daxil olunub.</string>
 <string name="account_signin_offline_body">%s hesabına daxil olmaq üçün internet bağlantısı lazımdır. Bu cihaz yenidən onlayn olanda yenidən cəhd edin.</string>
 <string name="account_signins_until_quit">Girişlər CloudStream-dən çıxana qədər qalır.</string>
 <string name="account_sync_connected">Qoşulub · bu cihazda daxil olunub</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d bölüm</item><item quantity="other">%d bölüm</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d uğursuz</item><item quantity="other">%d uğursuz</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d başlıq · %2$s</item><item quantity="other">%1$d başlıq · %2$s</item></plurals>
+<string name="episode_time_left">%1$d dəq qalıb</string>
+<string name="episode_watched">Baxılıb</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ƏLFƏCİN</item><item quantity="other">%d ƏLFƏCİN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d bölmə yüklənmədi</item><item quantity="other">%d bölmə yüklənmədi</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d başlıq</item><item quantity="other">%d başlıq</item></plurals>
@@ -108,6 +112,7 @@
 <string name="cartoons_singular">Cizgi filmi</string>
 <string name="cast">Oyunçu heyəti</string>
 <string name="cast_format">Oyunçu heyəti: %s</string>
+<string name="cast_voiced_by">Səsləndirən: %s</string>
 <string name="category_account">Hesablar və Təhlükəsizlik</string>
 <string name="category_updates">Yeniləmələr və Ehtiyat Nüsxələmə</string>
 <string name="chromecast_subtitles_settings">Chromecast Subtitrləri</string>

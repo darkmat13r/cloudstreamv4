@@ -73,6 +73,8 @@
 <string name="account_select_title">"Кто смотрит?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не подтвердил вход. Ничего не сохранено."</string>
 <string name="account_signin_failed_title" formatted="true">"Не удалось войти в %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Не удалось сохранить вход в %s на этом компьютере, поэтому вы не вошли."</string>
+<string name="account_signin_not_removed" formatted="true">"Не удалось удалить вход в %s с этого компьютера, поэтому он всё ещё активен."</string>
 <string name="account_signin_offline_body" formatted="true">"Для входа в %s нужно подключение. Попробуйте снова, когда это устройство будет в сети."</string>
 <string name="account_signins_until_quit">"Входы сохраняются, пока вы не закроете CloudStream."</string>
 <string name="account_sync_connected">"Подключено · вход выполнен на этом устройстве"</string>
@@ -199,6 +201,7 @@
 <string name="cartoons_singular">"Мультфильм"</string>
 <string name="cast">"В ролях"</string>
 <string name="cast_format" formatted="true">"В ролях: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Озвучивает %s"</string>
 <string name="category_account">"Учётные записи и Безопасность"</string>
 <string name="category_general">"Общие"</string>
 <string name="category_player">"Плеер"</string>
@@ -362,7 +365,9 @@
 <string name="episode_short">"Э"</string>
 <string name="episode_sync_settings">"Обновлять прогресс просмотра"</string>
 <string name="episode_sync_settings_des">"Автоматически синхронизировать текущий прогресс серии"</string>
+<string name="episode_time_left" formatted="true">"Осталось %1$d мин"</string>
 <string name="episode_upcoming_format" formatted="true">"Выйдет %s"</string>
+<string name="episode_watched">"Просмотрено"</string>
 <string name="episodes">"Серии"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Ошибка"</string>

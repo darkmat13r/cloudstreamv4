@@ -48,6 +48,8 @@
 <string name="account_select_title">Quem está a ver?</string>
 <string name="account_signin_failed_body">%s não confirmou o início de sessão. Nada foi guardado.</string>
 <string name="account_signin_failed_title">Não foi possível iniciar sessão em %s</string>
+<string name="account_signin_not_kept">Não foi possível guardar o início de sessão em %s neste computador, por isso não tem sessão iniciada.</string>
+<string name="account_signin_not_removed">Não foi possível remover o início de sessão em %s deste computador, por isso a sessão continua iniciada.</string>
 <string name="account_signin_offline_body">Iniciar sessão em %s requer uma ligação. Tente novamente quando este dispositivo voltar a estar online.</string>
 <string name="account_signins_until_quit">As sessões iniciadas duram até sair do CloudStream.</string>
 <string name="account_sync_connected">Ligado · sessão iniciada neste dispositivo</string>
@@ -74,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d falhado</item><item quantity="many">%d falhados</item><item quantity="other">%d falhados</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download na fila</item><item quantity="many">%d downloads na fila</item><item quantity="other">%d downloads na fila</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d título · %2$s</item><item quantity="many">%1$d títulos · %2$s</item><item quantity="other">%1$d títulos · %2$s</item></plurals>
+<string name="episode_time_left">Faltam %1$d min</string>
+<string name="episode_watched">Visto</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="many">%d DE MARCADORES</item><item quantity="other">%d MARCADORES</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Falha ao carregar %d secção</item><item quantity="many">Falha ao carregar %d secções</item><item quantity="other">Falha ao carregar %d secções</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d título</item><item quantity="many">%d títulos</item><item quantity="other">%d títulos</item></plurals>
@@ -201,6 +205,7 @@
 <string name="cartoons_singular">Desenho Animado</string>
 <string name="cast">Elenco</string>
 <string name="cast_format">Elenco: %s</string>
+<string name="cast_voiced_by">Voz de %s</string>
 <string name="category_account">Contas e segurança</string>
 <string name="category_general">Geral</string>
 <string name="category_player">Player</string>

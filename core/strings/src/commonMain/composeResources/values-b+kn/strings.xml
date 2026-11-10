@@ -48,6 +48,8 @@
 <string name="account_select_title">ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?</string>
 <string name="account_signin_failed_body">%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ.</string>
 <string name="account_signin_failed_title">%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+<string name="account_signin_not_kept">ಈ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿ %s ಸೈನ್-ಇನ್ ಅನ್ನು ಇರಿಸಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ನೀವು ಸೈನ್ ಇನ್ ಆಗಿಲ್ಲ.</string>
+<string name="account_signin_not_removed">ಈ ಕಂಪ್ಯೂಟರ್‌ನಿಂದ %s ಸೈನ್-ಇನ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಅದು ಇನ್ನೂ ಸೈನ್ ಇನ್ ಆಗಿದೆ.</string>
 <string name="account_signin_offline_body">%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಂಪರ್ಕ ಬೇಕು. ಈ ಸಾಧನ ಮತ್ತೆ ಆನ್‌ಲೈನ್ ಆದಾಗ ಪ್ರಯತ್ನಿಸಿ.</string>
 <string name="account_signins_until_quit">CloudStream ಅನ್ನು ಮುಚ್ಚುವವರೆಗೆ ಸೈನ್-ಇನ್‌ಗಳು ಇರುತ್ತವೆ.</string>
 <string name="account_sync_connected">ಸಂಪರ್ಕಗೊಂಡಿದೆ · ಈ ಸಾಧನದಲ್ಲಿ ಸೈನ್ ಇನ್</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d ಸಂಚಿಕೆಗಳು</item><item quantity="other">%d ಸಂಚಿಕೆಗಳು</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ವಿಫಲವಾಗಿದೆ</item><item quantity="other">%d ವಿಫಲವಾಗಿವೆ</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item><item quantity="other">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item></plurals>
+<string name="episode_time_left">%1$d ನಿಮಿಷ ಬಾಕಿ</string>
+<string name="episode_watched">ವೀಕ್ಷಿಸಲಾಗಿದೆ</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ಬುಕ್‌ಮಾರ್ಕ್</item><item quantity="other">%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item><item quantity="other">%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ಶೀರ್ಷಿಕೆ</item><item quantity="other">%d ಶೀರ್ಷಿಕೆಗಳು</item></plurals>
@@ -104,6 +108,7 @@
 <string name="browser">ಬ್ರೌಸರ್</string>
 <string name="cast">ಕ್ಯಾಸ್ಟ್</string>
 <string name="cast_format">ಕ್ಯಾಸ್ಟ್:%s</string>
+<string name="cast_voiced_by">ಧ್ವನಿ: %s</string>
 <string name="chromecast_subtitles_settings">ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್</string>
 <string name="chromecast_subtitles_settings_des">ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್</string>
 <string name="continue_watching">ಕಂಟಿನ್ಯೂ ವಾಟಚಿಂಗ್</string>

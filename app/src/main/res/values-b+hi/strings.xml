@@ -70,6 +70,8 @@
 <string name="account_select_title">"कौन देख रहा है?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ने साइन-इन की पुष्टि नहीं की। कुछ भी सहेजा नहीं गया।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s में साइन इन नहीं हो सका"</string>
+<string name="account_signin_not_kept" formatted="true">"इस कंप्यूटर पर %s का साइन-इन रखा नहीं जा सका, इसलिए आप साइन इन नहीं हैं।"</string>
+<string name="account_signin_not_removed" formatted="true">"इस कंप्यूटर से %s का साइन-इन हटाया नहीं जा सका, इसलिए यह अब भी साइन इन है।"</string>
 <string name="account_signin_offline_body" formatted="true">"%s में साइन इन करने के लिए कनेक्शन चाहिए। यह डिवाइस फिर से ऑनलाइन होने पर कोशिश करें।"</string>
 <string name="account_signins_until_quit">"साइन-इन तब तक रहते हैं जब तक आप CloudStream बंद नहीं करते।"</string>
 <string name="account_sync_connected">"कनेक्टेड · इस डिवाइस पर साइन इन"</string>
@@ -148,6 +150,7 @@
 <string name="cartoons_singular">"हास्यचित्र"</string>
 <string name="cast">"Cast"</string>
 <string name="cast_format" formatted="true">"Cast: %s"</string>
+<string name="cast_voiced_by" formatted="true">"आवाज़: %s"</string>
 <string name="category_account">"खाते और सुरक्षा"</string>
 <string name="category_general">"सामान्य"</string>
 <string name="category_provider_test">"प्रदाता परीक्षण"</string>
@@ -271,7 +274,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"देखा हुआ प्रोग्रेस अपडेट करें"</string>
 <string name="episode_sync_settings_des">"अपने वर्तमान प्रकरण की प्रगति को स्वचालित रूप से समकालीन बनाएं"</string>
+<string name="episode_time_left" formatted="true">"%1$d मिनट बाकी"</string>
 <string name="episode_upcoming_format" formatted="true">"%s में"</string>
+<string name="episode_watched">"देखा गया"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error_bookmarks_text">"बुकमार्क्स"</string>
 <string name="error_loading_links_toast">"लिंक लोड करने में त्रुटि"</string>

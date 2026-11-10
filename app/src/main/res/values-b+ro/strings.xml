@@ -70,6 +70,8 @@
 <string name="account_select_title">"Cine se uită?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s nu a confirmat conectarea. Nu s-a salvat nimic."</string>
 <string name="account_signin_failed_title" formatted="true">"Nu te-ai putut conecta la %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Conectarea la %s nu a putut fi păstrată pe acest computer, așa că nu ești conectat."</string>
+<string name="account_signin_not_removed" formatted="true">"Conectarea la %s nu a putut fi eliminată de pe acest computer, așa că este încă activă."</string>
 <string name="account_signin_offline_body" formatted="true">"Conectarea la %s necesită o conexiune la internet. Încearcă din nou când acest dispozitiv este din nou online."</string>
 <string name="account_signins_until_quit">"Conectările durează până când închizi CloudStream."</string>
 <string name="account_sync_connected">"Conectat · pe acest dispozitiv"</string>
@@ -184,6 +186,7 @@
 <string name="cartoons_singular">"Desen Animat"</string>
 <string name="cast">"Distribuție"</string>
 <string name="cast_format" formatted="true">"Distribuție: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Vocea: %s"</string>
 <string name="category_account">"Conturi și Securitate"</string>
 <string name="category_general">"General"</string>
 <string name="category_player">"Player"</string>
@@ -326,7 +329,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Actualizați progresul ceasului"</string>
 <string name="episode_sync_settings_des">"Sincronizează automat episoadele vizionate"</string>
+<string name="episode_time_left" formatted="true">"Mai sunt %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Următorul în %s"</string>
+<string name="episode_watched">"Vizionat"</string>
 <string name="episodes">"Episoade"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Eroare"</string>

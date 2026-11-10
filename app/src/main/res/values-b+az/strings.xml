@@ -69,6 +69,8 @@
 <string name="account_select_title">"Kim baxır?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s girişi təsdiqləmədi. Heç nə saxlanılmadı."</string>
 <string name="account_signin_failed_title" formatted="true">"%s hesabına daxil olmaq alınmadı"</string>
+<string name="account_signin_not_kept" formatted="true">"%s girişi bu kompüterdə saxlanıla bilmədi, ona görə daxil olmamısınız."</string>
+<string name="account_signin_not_removed" formatted="true">"%s girişi bu kompüterdən silinə bilmədi, ona görə hələ də daxil olunub."</string>
 <string name="account_signin_offline_body" formatted="true">"%s hesabına daxil olmaq üçün internet bağlantısı lazımdır. Bu cihaz yenidən onlayn olanda yenidən cəhd edin."</string>
 <string name="account_signins_until_quit">"Girişlər CloudStream-dən çıxana qədər qalır."</string>
 <string name="account_sync_connected">"Qoşulub · bu cihazda daxil olunub"</string>
@@ -105,6 +107,7 @@
 <string name="cartoons_singular">"Cizgi filmi"</string>
 <string name="cast">"Oyunçu heyəti"</string>
 <string name="cast_format" formatted="true">"Oyunçu heyəti: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Səsləndirən: %s"</string>
 <string name="category_account">"Hesablar və Təhlükəsizlik"</string>
 <string name="category_updates">"Yeniləmələr və Ehtiyat Nüsxələmə"</string>
 <string name="chromecast_subtitles_settings">"Chromecast Subtitrləri"</string>
@@ -177,6 +180,8 @@
 <string name="episode_format" formatted="true">"%1$d%2$s"</string>
 <string name="episode_more_options_des">"Daha çox seçimlər"</string>
 <string name="episode_poster_img_des">"Bölüm Afişası"</string>
+<string name="episode_time_left" formatted="true">"%1$d dəq qalıb"</string>
+<string name="episode_watched">"Baxılıb"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="extension_allow">"İcazə ver"</string>
 <string name="extension_decision_not_saved">"Seçiminiz saxlanıla bilmədi, ona görə də bu uzantı söndürülü qalır. Sizdən yenidən soruşulacaq."</string>

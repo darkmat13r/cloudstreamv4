@@ -48,6 +48,8 @@
 <string name="account_select_title">Kto ogląda?</string>
 <string name="account_signin_failed_body">Usługa %s nie potwierdziła logowania. Niczego nie zapisano.</string>
 <string name="account_signin_failed_title">Nie udało się zalogować do %s</string>
+<string name="account_signin_not_kept">Nie udało się zachować logowania do %s na tym komputerze, więc nie jesteś zalogowany.</string>
+<string name="account_signin_not_removed">Nie udało się usunąć logowania do %s z tego komputera, więc nadal jest aktywne.</string>
 <string name="account_signin_offline_body">Logowanie do %s wymaga połączenia. Spróbuj ponownie, gdy to urządzenie znów będzie online.</string>
 <string name="account_signins_until_quit">Logowania trwają do zamknięcia CloudStream.</string>
 <string name="account_sync_connected">Połączono · zalogowano na tym urządzeniu</string>
@@ -74,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d nieudane</item><item quantity="few">%d nieudane</item><item quantity="many">%d nieudanych</item><item quantity="other">%d nieudanych</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d pobieranie w kolejce</item><item quantity="few">%d pobierania w kolejce</item><item quantity="many">%d pobierań w kolejce</item><item quantity="other">%d pobierań w kolejce</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d tytuł · %2$s</item><item quantity="few">%1$d tytuły · %2$s</item><item quantity="many">%1$d tytułów · %2$s</item><item quantity="other">%1$d tytułu · %2$s</item></plurals>
+<string name="episode_time_left">Zostało %1$d min</string>
+<string name="episode_watched">Obejrzane</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZAKŁADKA</item><item quantity="few">%d ZAKŁADKI</item><item quantity="many">%d ZAKŁADEK</item><item quantity="other">%d ZAKŁADKI</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nie udało się załadować %d sekcji</item><item quantity="few">Nie udało się załadować %d sekcji</item><item quantity="many">Nie udało się załadować %d sekcji</item><item quantity="other">Nie udało się załadować %d sekcji</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d sekcja</item><item quantity="few">%d sekcje</item><item quantity="many">%d sekcji</item><item quantity="other">%d sekcji</item></plurals>
@@ -202,6 +206,7 @@
 <string name="cartoons_singular">Kreskówka</string>
 <string name="cast">Obsada</string>
 <string name="cast_format">Obsada: %s</string>
+<string name="cast_voiced_by">Głos: %s</string>
 <string name="category_account">Konta i zabezpieczenia</string>
 <string name="category_general">Ogólne</string>
 <string name="category_player">Odtwarzacz</string>

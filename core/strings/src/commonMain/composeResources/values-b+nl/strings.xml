@@ -48,6 +48,8 @@
 <string name="account_select_title">Wie kijkt er?</string>
 <string name="account_signin_failed_body">%s heeft de aanmelding niet bevestigd. Er is niets opgeslagen.</string>
 <string name="account_signin_failed_title">Kan niet aanmelden bij %s</string>
+<string name="account_signin_not_kept">De aanmelding bij %s kon niet op deze computer worden bewaard, dus je bent niet aangemeld.</string>
+<string name="account_signin_not_removed">De aanmelding bij %s kon niet van deze computer worden verwijderd, dus die is nog actief.</string>
 <string name="account_signin_offline_body">Aanmelden bij %s vereist een verbinding. Probeer het opnieuw als dit apparaat weer online is.</string>
 <string name="account_signins_until_quit">Aanmeldingen blijven tot je CloudStream afsluit.</string>
 <string name="account_sync_connected">Verbonden · aangemeld op dit apparaat</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d aflevering</item><item quantity="other">%d afleveringen</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d mislukt</item><item quantity="other">%d mislukt</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titel · %2$s</item><item quantity="other">%1$d titels · %2$s</item></plurals>
+<string name="episode_time_left">Nog %1$d min</string>
+<string name="episode_watched">Bekeken</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BLADWIJZER</item><item quantity="other">%d BLADWIJZERS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d sectie kon niet worden geladen</item><item quantity="other">%d secties konden niet worden geladen</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titel</item><item quantity="other">%d titels</item></plurals>
@@ -186,6 +190,7 @@
 <string name="cartoons_singular">Tekenfilm</string>
 <string name="cast">Cast</string>
 <string name="cast_format">Cast: %s</string>
+<string name="cast_voiced_by">Stem van %s</string>
 <string name="category_account">Accounts en Beveiliging</string>
 <string name="category_general">Algemeen</string>
 <string name="category_player">Player</string>

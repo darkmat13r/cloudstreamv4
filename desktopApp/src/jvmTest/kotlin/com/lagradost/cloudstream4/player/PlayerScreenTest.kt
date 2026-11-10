@@ -11,10 +11,12 @@ import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.InternalComposeUiApi
 import androidx.compose.ui.semantics.getOrNull
+import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
+import androidx.compose.ui.geometry.Rect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.PixelMap
@@ -79,8 +81,12 @@ class PlayerScreenTest {
             log += "by $deltaMillis"
         }
 
+        /** Where each absolute seek went, as the fraction the player was sent (`KMP-86`'s Skip). */
+        val fractions = mutableListOf<Float>()
+
         override fun seekTo(fraction: Float) {
             log += "to"
+            fractions += fraction
         }
 
         val audioChoices = mutableListOf<Int>()
@@ -117,6 +123,7 @@ class PlayerScreenTest {
         upNext: UpNext? = null,
         autoplayNext: Boolean = true,
         val tick: ManualTick = ManualTick(),
+        skipStamps: SkipStampSource? = null,
     ) {
         /** What the player reports; a test changes it to seek out of the credits, or to end the stream (`KMP-94`). */
         var status by mutableStateOf(status)
@@ -125,6 +132,7 @@ class PlayerScreenTest {
         var playNexts = 0
         val calls = Calls()
         var skips = 0
+        private val countSkip: () -> Unit = { skips++ }
         val audioChosen = mutableListOf<AudioTrack>()
         val clock = PlaybackClock().also { it.onStatus(status) }
         val session = SubtitleSession(tracks, { load(it) }, CoroutineScope(SupervisorJob() + Dispatchers.Unconfined))
@@ -134,6 +142,8 @@ class PlayerScreenTest {
         val scene = ImageComposeScene(width, height, Density(1f)) {
             CloudStreamTheme {
                 CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
+                    // With stamps, Skip is PlayerScreen's own (`KMP-86`); without, the fixed one a test passes.
+                    val stamped = rememberSkip(skipStamps, this@Screen.status, upNext != null, calls) { playNexts++ }
                     Box(Modifier.fillMaxSize().background(Color.Black)) {
                         PlayerContent(
                             frame = frame,
@@ -153,8 +163,8 @@ class PlayerScreenTest {
                             fellThrough = fellThrough,
                             onAudioChosen = { audioChosen += it },
                             meta = meta,
-                            skip = skip,
-                            onSkip = { skips++ },
+                            skip = if (skipStamps != null) stamped.hud else skip,
+                            onSkip = if (skipStamps != null) stamped.onSkip else countSkip,
                             hudIdle = idle,
                             seekMillis = seekMillis,
                             upNext = upNext,
@@ -207,7 +217,7 @@ class PlayerScreenTest {
         /** Inside a list: `DS-23`'s panel from the right, 360 wide, so its middle. */
         val panelX: Float get() = width - PANEL_HALF_WIDTH
 
-        /** A list's row [index], from the top: under the panel's heading, 48 apart (`KMP-91`). */
+        /** A list's row [index], from the top: under the panel's heading, 56 tall and 4 apart (`KMP-93`). */
         fun panelRow(index: Int): Offset = Offset(panelX, PANEL_FIRST_ROW_Y + index * PANEL_ROW_STEP)
 
         /** Transport row, at its right end: the volume rule ends here. */
@@ -222,6 +232,22 @@ class PlayerScreenTest {
                 node.config.getOrNull(SemanticsProperties.ContentDescription).orEmpty().any { it == label }
             }
             return checkNotNull(node) { "nothing is named \"$label\"" }.boundsInRoot.center
+        }
+
+        /**
+         * The clickable row in the open panel whose words include [text]: where it is, and all its words in order
+         * (`KMP-93`). In the panel only, since a selector reads out what is chosen too.
+         */
+        fun row(text: String): Pair<Rect, List<String>> {
+            settle()
+            fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
+            val node = scene.semanticsOwners.flatMap { it.rootSemanticsNode.all() }.lastOrNull { node ->
+                SemanticsActions.OnClick in node.config &&
+                    node.boundsInRoot.left >= width - PANEL_WIDTH &&
+                    node.config.getOrNull(SemanticsProperties.Text).orEmpty().any { it.text == text }
+            }
+            checkNotNull(node) { "no row says \"$text\"" }
+            return node.boundsInRoot to node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text }
         }
 
         fun pixels(): PixelMap = settle().toComposeImageBitmap().toPixelMap()
@@ -757,6 +783,77 @@ class PlayerScreenTest {
         assertEquals(0, none.skips)
         assertEquals(emptyList(), none.calls.log, "nothing else answers there either")
         none.scene.close()
+    }
+
+    // ---------------------------------------------------------------- KMP-86: Skip from the episode's stamps
+
+    private val opening = SkipStamp(SkipKind.Opening, 10_000, 40_000)
+
+    /** Where Skip sits while the HUD shows. */
+    private val Screen.skipButton: Offset
+        get() = Offset(width - SKIP_FROM_RIGHT, height - PlayerScreenDefaults.HudBottomInset.value - SKIP_ABOVE)
+
+    private fun playingAt(position: Long, length: Long = 60_000) =
+        PlayerStatus(playing = true, buffering = false, positionMillis = position, lengthMillis = length)
+
+    @Test
+    fun `KMP-86 Skip shows only while the playhead is in a stamp, with the stamp's words`() {
+        val asked = mutableListOf<Long>()
+        val screen = Screen(status = playingAt(1_000), skipStamps = { length -> listOf(opening).also { asked += length } })
+        screen.settle()
+        assertEquals(listOf(60_000L), asked, "asked once, with the stream's length")
+        assertFalse("Skip Opening" in screen.texts(), "before the stamp")
+        screen.click(screen.skipButton)
+        assertEquals(emptyList(), screen.calls.fractions, "nothing answers where it would be")
+        screen.status = playingAt(20_000)
+        assertTrue("Skip Opening" in screen.texts(), "inside it")
+        screen.status = playingAt(40_001)
+        assertFalse("Skip Opening" in screen.texts(), "where Skip lands")
+        assertEquals(listOf(60_000L), asked, "and not asked again")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `KMP-86 pressing Skip seeks to just past the stamp's end`() {
+        val screen = Screen(status = playingAt(20_000), skipStamps = { listOf(opening) })
+        screen.settle()
+        screen.click(screen.skipButton)
+        assertEquals(listOf(40_001f / 60_000), screen.calls.fractions, "an absolute seek, not one by the position")
+        assertEquals(0, screen.playNexts)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `KMP-86 a stamp running to the end plays the next episode, and with none seeks inside the stream`() {
+        // A minute and more before the end, so the Up next card, which takes Skip's place, is not up yet.
+        val ending = SkipStamp(SkipKind.Ending, 3_400_000, 3_600_000)
+        val next = Screen(status = playingAt(3_500_000, 3_600_000), upNext = harbor, skipStamps = { listOf(ending) })
+        assertTrue("Next episode" in next.texts())
+        next.click(next.skipButton)
+        assertEquals(1, next.playNexts)
+        assertEquals(emptyList(), next.calls.fractions)
+        next.scene.close()
+
+        val last = Screen(status = playingAt(3_500_000, 3_600_000), skipStamps = { listOf(ending) })
+        assertTrue("Skip Ending" in last.texts())
+        last.click(last.skipButton)
+        assertEquals(0, last.playNexts)
+        assertEquals(listOf(3_599_999f / 3_600_000), last.calls.fractions, "just before the end, never past it")
+        assertTrue(last.calls.fractions.single() < 1f)
+        last.scene.close()
+    }
+
+    @Test
+    fun `KMP-86 a stamp past the length of the stream playing is not offered`() {
+        // Asked for a longer cut; a source switch to a shorter one keeps the episode's stamps.
+        val long = SkipStamp(SkipKind.Recap, 10_000, 70_000)
+        val screen = Screen(status = playingAt(20_000, 80_000), skipStamps = { listOf(long) })
+        assertTrue("Skip Recap" in screen.texts(), "inside the cut it was asked for")
+        screen.status = playingAt(20_000, 60_000)
+        assertFalse("Skip Recap" in screen.texts(), "past the end of this one")
+        screen.click(screen.skipButton)
+        assertEquals(emptyList(), screen.calls.fractions)
+        screen.scene.close()
     }
 
     @Test
@@ -1389,6 +1486,105 @@ class PlayerScreenTest {
         }
     }
 
+    @Test
+    fun `M4 a source row says what pressing it does, over a line from what the player knows`() {
+        val one = stream("Source One")
+        val two = stream("Source Two", "720p")
+        val three = stream("Source Three", null)
+        val four = stream("Source Four", "720p")
+        val screen = Screen(sources = PlayerSources(listOf(one, two, three, four), one, listOf(four), RESUME_MILLIS) {})
+        screen.settle()
+        screen.press(Key.S)
+        screen.save("kmp93-source-rows")
+        // The one playing has no second line: the player knows the size it draws, not the size decoded.
+        assertEquals(listOf("Source One · 1080p", "Playing"), screen.row("Source One · 1080p").second)
+        assertEquals(listOf("Source Two · 720p", "keeps 42:13", "Switch"), screen.row("Source Two · 720p").second)
+        assertEquals(listOf("Source Three", "quality unknown", "Switch"), screen.row("Source Three").second)
+        assertEquals(listOf("Source Four · 720p", "failed", "Retry"), screen.row("Source Four · 720p").second)
+        for (name in listOf("Source One · 1080p", "Source Two · 720p", "Source Three", "Source Four · 720p")) {
+            val (bounds, _) = screen.row(name)
+            assertEquals(PANEL_ROW_HEIGHT, bounds.height, "$name is 56 tall")
+            assertEquals(screen.width - PANEL_WIDTH + PANEL_ROW_INSET, bounds.left, "$name starts 12 into the panel")
+            assertEquals(screen.width - PANEL_ROW_INSET, bounds.right, "$name ends 12 before the window's edge")
+        }
+        val first = screen.row("Source One · 1080p").first
+        val second = screen.row("Source Two · 720p").first
+        assertEquals(PANEL_ROW_GAP, second.top - first.bottom, "the rows are 4 apart")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M4 with no position to keep, a source row says nothing it does not know`() {
+        val one = stream("Source One")
+        val screen = Screen(sources = PlayerSources(listOf(one, stream("Source Two", "720p")), one, emptyList()) {})
+        screen.settle()
+        screen.press(Key.S)
+        assertEquals(listOf("Source Two · 720p", "Switch"), screen.row("Source Two · 720p").second)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M5 the row in use says On and is marked, and the others say Use`() {
+        val screen = Screen()
+        screen.settle()
+        screen.click(screen.button)
+        assertEquals(listOf("No Subtitles", "On"), screen.row("No Subtitles").second)
+        assertEquals(listOf("English", "Use"), screen.row("English").second)
+        // The marker: at the chosen row's left edge, and at no other row's.
+        val pixels = screen.pixels()
+        fun marked(bounds: Rect): Boolean {
+            val y = bounds.center.y.toInt()
+            return pixels[(bounds.left + MARKER_X).toInt(), y] != pixels[(bounds.left + BESIDE_MARKER_X).toInt(), y]
+        }
+        assertTrue(marked(screen.row("No Subtitles").first), "Off, in use, is marked")
+        assertFalse(marked(screen.row("English").first), "English is not")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M5 a track that failed says why and Retry, and pressing it loads it again`() {
+        var loads = 0
+        val screen = Screen(load = { loads++; SubtitleLoad.Failed(SubtitleFailure.Fetch) })
+        screen.settle()
+        screen.press(Key.C)
+        screen.press(Key.DirectionDown)
+        screen.press(Key.Enter)
+        assertEquals(1, loads)
+        screen.press(Key.C)
+        val (_, words) = screen.row("English")
+        assertEquals("English", words.first())
+        assertEquals("Retry", words.last(), "not On: nothing is showing")
+        assertEquals(3, words.size, "the reason is the second line")
+        screen.press(Key.Enter)
+        assertEquals(2, loads, "pressing it tried again")
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M6 an audio row's second line is the file's title, or stereo where it has none`() {
+        val screen = Screen(audio = threeTracks)
+        screen.settle()
+        screen.press(Key.A)
+        screen.save("kmp93-audio-rows")
+        assertEquals(listOf("English · 5.1 · EAC3", "Original", "On"), screen.row("English · 5.1 · EAC3").second)
+        assertEquals(listOf("German · 2.0 · AAC", "stereo", "Use"), screen.row("German · 2.0 · AAC").second)
+        assertEquals(listOf("Hindi · 1.0 · AAC", "Commentary gnp.exe", "Use"), screen.row("Hindi · 1.0 · AAC").second)
+        screen.scene.close()
+    }
+
+    @Test
+    fun `M7 a picture size row is one line, and still 56 tall`() {
+        val screen = Screen()
+        screen.settle()
+        screen.press(Key.R)
+        screen.save("kmp93-fit-rows")
+        assertEquals(listOf("Original aspect ratio", "On"), screen.row("Original aspect ratio").second)
+        assertEquals(listOf("Fill width", "Use"), screen.row("Fill width").second)
+        assertEquals(listOf("Fill screen", "Use"), screen.row("Fill screen").second)
+        assertEquals(PANEL_ROW_HEIGHT, screen.row("Fill screen").first.height, "a one-line row is still 56 tall")
+        screen.scene.close()
+    }
+
     private val threeTracks = AudioTracks(
         listOf(
             AudioTrack(1, "Original - [English]", 6, "eac3"),
@@ -1659,7 +1855,10 @@ class PlayerScreenTest {
         val PLAY_NOW = Offset(984f, 642f)
         val CANCEL = Offset(1168f, 642f)
         val DISMISS = Offset(1238f, 642f)
-        /** KMP-91: the panel's middle, and its rows: under the 24 margin, the 32 heading and an 8 gap, 48 apart. */
+        /**
+         * KMP-91: the panel's middle. KMP-93: its rows, under the 24 margin, the 32 heading, an 8 gap and the ring's 4:
+         * the first spans 68 to 124, and each is 56 tall and 4 from the next.
+         */
         const val PANEL_HALF_WIDTH = 180f
         /** `DesktopDimens.SidePanelWidth`; the controls' window margin; their glass's top, from the window's foot. */
         const val PANEL_WIDTH = 360
@@ -1669,8 +1868,17 @@ class PlayerScreenTest {
         const val SEEK_RULE_FROM = 244
         const val SEEK_RULE_TO = 300
         const val RULE_CLEARANCE = 8
-        const val PANEL_FIRST_ROW_Y = 88f
-        const val PANEL_ROW_STEP = 48f
+        const val PANEL_FIRST_ROW_Y = 96f
+        const val PANEL_ROW_STEP = 60f
+        /** KMP-93: a row's height and the gap to the next; 12 between a row and the panel's edges, the boards' 932. */
+        const val PANEL_ROW_HEIGHT = 56f
+        const val PANEL_ROW_GAP = 4f
+        const val PANEL_ROW_INSET = 12f
+        /** On the 4 wide marker, and in the 12 between it and the row's words. */
+        const val MARKER_X = 2f
+        const val BESIDE_MARKER_X = 8f
+        /** 42:13, as the boards have it. */
+        const val RESUME_MILLIS = 2_533_000L
         /** Inside the panel, clear of its rows and words. */
         const val PANEL_EDGE_INSET = 12f
         /** Inside Done: the 24 margin, then into the button. */

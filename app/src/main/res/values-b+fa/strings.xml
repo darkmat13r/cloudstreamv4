@@ -69,6 +69,8 @@
 <string name="account_select_title">"چه کسی تماشا می‌کند؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ورود را تأیید نکرد. چیزی ذخیره نشد."</string>
 <string name="account_signin_failed_title" formatted="true">"ورود به %s ممکن نشد"</string>
+<string name="account_signin_not_kept" formatted="true">"ورود به %s در این رایانه نگه داشته نشد، پس وارد نشده‌اید."</string>
+<string name="account_signin_not_removed" formatted="true">"ورود به %s از این رایانه حذف نشد، پس هنوز وارد است."</string>
 <string name="account_signin_offline_body" formatted="true">"ورود به %s به اتصال اینترنت نیاز دارد. وقتی این دستگاه دوباره آنلاین شد، دوباره تلاش کنید."</string>
 <string name="account_signins_until_quit">"ورودها تا وقتی از CloudStream خارج شوید باقی می‌مانند."</string>
 <string name="account_sync_connected">"متصل · واردشده در این دستگاه"</string>
@@ -135,6 +137,7 @@
 <string name="cartoons_singular">"کارتون"</string>
 <string name="cast">"بازیگران"</string>
 <string name="cast_format" formatted="true">"بازیگران: %s"</string>
+<string name="cast_voiced_by" formatted="true">"با صدای %s"</string>
 <string name="category_account">"حساب‌ها و امنیت"</string>
 <string name="category_general">"کلی"</string>
 <string name="category_provider_test">"تست ارائه‌دهنده"</string>
@@ -230,6 +233,8 @@
 <string name="episode_poster_img_des">"پوستر قسمت"</string>
 <string name="episode_short">"ق"</string>
 <string name="episode_sync_settings">"به‌روزرسانی پیشرفت ساعت"</string>
+<string name="episode_time_left" formatted="true">"%1$d دقیقه مانده"</string>
+<string name="episode_watched">"دیده‌شده"</string>
 <string name="episodes">"قسمت‌ها"</string>
 <string name="error">"خطا"</string>
 <string name="error_bookmarks_text">"نشانک‌ها"</string>

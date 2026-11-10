@@ -48,6 +48,8 @@
 <string name="account_select_title">Hvem ser på?</string>
 <string name="account_signin_failed_body">%s bekreftet ikke innloggingen. Ingenting ble lagret.</string>
 <string name="account_signin_failed_title">Kunne ikke logge inn på %s</string>
+<string name="account_signin_not_kept">Kunne ikke beholde påloggingen til %s på denne datamaskinen, så du er ikke logget på.</string>
+<string name="account_signin_not_removed">Kunne ikke fjerne påloggingen til %s fra denne datamaskinen, så den er fortsatt aktiv.</string>
 <string name="account_signin_offline_body">Innlogging på %s krever tilkobling. Prøv igjen når denne enheten er på nett igjen.</string>
 <string name="account_signins_until_quit">Innlogginger varer til du avslutter CloudStream.</string>
 <string name="account_sync_connected">Tilkoblet · logget inn på denne enheten</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episoder</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d mislyktes</item><item quantity="other">%d mislyktes</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d tittel · %2$s</item><item quantity="other">%1$d titler · %2$s</item></plurals>
+<string name="episode_time_left">%1$d min igjen</string>
+<string name="episode_watched">Sett</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKER</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d del kunne ikke lastes inn</item><item quantity="other">%d deler kunne ikke lastes inn</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d tittel</item><item quantity="other">%d titler</item></plurals>
@@ -164,6 +168,7 @@
 <string name="cartoons_singular">Tegnefilm</string>
 <string name="cast">Besetning</string>
 <string name="cast_format">Besetning: %s</string>
+<string name="cast_voiced_by">Stemme: %s</string>
 <string name="category_account">Kontoer</string>
 <string name="category_general">Grunnleggende</string>
 <string name="category_player">Avspiller</string>

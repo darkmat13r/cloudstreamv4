@@ -69,6 +69,8 @@
 <string name="account_select_title">"କିଏ ଦେଖୁଛନ୍ତି?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ସାଇନ୍-ଇନ୍ ନିଶ୍ଚିତ କଲା ନାହିଁ। କିଛି ସେଭ୍ ହୋଇନାହିଁ।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s ରେ ସାଇନ୍ ଇନ୍ କରିହେଲା ନାହିଁ"</string>
+<string name="account_signin_not_kept" formatted="true">"ଏହି କମ୍ପ୍ୟୁଟରରେ %s ସାଇନ-ଇନ୍ ରଖିହେଲା ନାହିଁ, ତେଣୁ ଆପଣ ସାଇନ ଇନ୍ ହୋଇନାହାନ୍ତି।"</string>
+<string name="account_signin_not_removed" formatted="true">"ଏହି କମ୍ପ୍ୟୁଟରରୁ %s ସାଇନ-ଇନ୍ କାଢ଼ିହେଲା ନାହିଁ, ତେଣୁ ଏହା ଏବେ ବି ସାଇନ ଇନ୍ ଅଛି।"</string>
 <string name="account_signin_offline_body" formatted="true">"%s ରେ ସାଇନ୍ ଇନ୍ କରିବାକୁ ସଂଯୋଗ ଆବଶ୍ୟକ। ଏହି ଡିଭାଇସ୍ ପୁଣି ଅନଲାଇନ୍ ହେଲେ ଆଉଥରେ ଚେଷ୍ଟା କରନ୍ତୁ।"</string>
 <string name="account_signins_until_quit">"CloudStream ବନ୍ଦ ନକରିବା ପର୍ଯ୍ୟନ୍ତ ସାଇନ-ଇନ୍ ରହେ।"</string>
 <string name="account_sync_connected">"ସଂଯୁକ୍ତ · ଏହି ଡିଭାଇସରେ ସାଇନ୍ ଇନ୍"</string>
@@ -104,6 +106,7 @@
 <string name="backup_success">"ତଥ୍ୟ ଗଚ୍ଛିତ ହୋଇଛି"</string>
 <string name="cast">"ପାତ୍ର"</string>
 <string name="cast_format" formatted="true">"ପାତ୍ର: %s"</string>
+<string name="cast_voiced_by" formatted="true">"ସ୍ୱର: %s"</string>
 <string name="category_general">"ସାଧାରଣ"</string>
 <string name="category_player">"ଚାଳକ"</string>
 <string name="category_updates">"ଅଦ୍ୟତନ ଏଵଂ ବ୍ୟାକଅପ୍"</string>
@@ -169,6 +172,8 @@
 <string name="episode_more_options_des">"ଅଧିକ ଵିକଳ୍ପ"</string>
 <string name="episode_poster_img_des">"ଅଧ୍ୟାୟର ପୋଷ୍ଟର୍"</string>
 <string name="episode_short">"ଅ"</string>
+<string name="episode_time_left" formatted="true">"%1$d ମିନିଟ୍ ବାକି"</string>
+<string name="episode_watched">"ଦେଖାଯାଇଛି"</string>
 <string name="episodes">"ଟି ଅଧ୍ୟାୟ"</string>
 <string name="error">"ତ୍ରୁଟି"</string>
 <string name="extension_allow">"ଅନୁମତି ଦିଅନ୍ତୁ"</string>

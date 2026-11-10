@@ -43,11 +43,14 @@ import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
 import com.lagradost.cloudstream4.core.strings.generated.resources.season_short
+import com.lagradost.cloudstream4.account.AccountStorage
 import com.lagradost.cloudstream4.account.BrowserRedirects
 import com.lagradost.cloudstream4.account.DesktopProfiles
+import com.lagradost.cloudstream4.account.DesktopSecrets
 import com.lagradost.cloudstream4.account.ProfilesHost
 import com.lagradost.cloudstream4.account.installRedirectHandler
 import com.lagradost.cloudstream4.detail.BackdropImage
+import com.lagradost.cloudstream4.detail.ThumbnailImage
 import com.lagradost.cloudstream4.detail.DesktopDetailViewModels
 import com.lagradost.cloudstream4.detail.nextEpisode
 import com.lagradost.cloudstream4.detail.requestPlay
@@ -115,6 +118,8 @@ import com.lagradost.cloudstream4.player.VlcPlayer
 import com.lagradost.cloudstream4.player.runDownloadPlaybackCheck
 import com.lagradost.cloudstream4.player.runPlaybackCheck
 import com.lagradost.cloudstream4.player.runSubtitleRenderCheck
+import com.lagradost.cloudstream4.player.SkipServices
+import com.lagradost.cloudstream4.player.skipQuery
 import com.lagradost.cloudstream4.player.episodeMeta
 import com.lagradost.cloudstream4.search.DesktopSearchHistory
 import com.lagradost.cloudstream4.search.DesktopSearchSource
@@ -227,9 +232,19 @@ fun main(args: Array<String>) {
     // KMP-90: the one store of the Mac's Settings. The player and the downloads engine read it from here.
     val settings = SettingsRepository(FileSettingsStorage()) { println("settings not saved: $it") }
     val downloads = DesktopDownloads(runningLimit = { settings.downloadsAtOnce.value })
+    // `KMP-86`: asked at each request, so turning Skip OP off stops the next one.
+    val skipServices = SkipServices(enabled = { settings.skipStamps.value })
     Runtime.getRuntime().addShutdownHook(Thread { runBlocking { downloads.close() } })
     // KMP-95: who is watching. Only the library is a profile's own; everything above is the Mac's.
-    val profiles = DesktopProfiles(onSaveFailed = { println("profiles not saved: ${it::class.simpleName}") })
+    val profilesNotSaved: (Throwable) -> Unit = { println("profiles not saved: ${it::class.simpleName}") }
+    // KMP-95f: the PINs and sign-ins in the Keychain on a signed build, decided when it was built; 95c's and 95d's stores
+    // on an unsigned one.
+    val accounts = AccountStorage.forBuild(
+        signed = DesktopSecrets.signedBuild,
+        directory = DesktopLibraryStore.defaultTitlesFile().parentFile,
+        onSaveFailed = profilesNotSaved,
+    )
+    val profiles = DesktopProfiles(onSaveFailed = profilesNotSaved, pins = accounts.pins, signIns = accounts.signIns)
     // KMP-95e: cloudstreamapp:// URLs from the browser. Set before the window, so macOS has a handler from the start;
     // nothing is accepted unless a sign-in from this window is waiting, and no URL is ever printed.
     val redirects = BrowserRedirects()
@@ -301,6 +316,7 @@ fun main(args: Array<String>) {
                                 },
                                 reviewRequests = reviewRequests,
                                 onSidebarShown = { shown -> window.rootPane.titleBarOverContent(shown) },
+                                skipServices = skipServices,
                             )
                         }
                     }
@@ -374,6 +390,8 @@ private sealed interface Screen {
  *   it (`KMP-98`) and plain over the player and the review, which have no column for the traffic lights to sit in.
  * @param openDownload a player for a downloaded episode, handed its file (`KMP-74`). A seam, so a test can see what is
  *   asked for without starting a media host.
+ * @param skipServices where the player asks for an episode's skip stamps (`KMP-86`). Null by default, so a test never
+ *   reaches the network; the app passes the real one, which asks nothing while Settings' Skip OP is off.
  */
 @Composable
 internal fun DesktopApp(
@@ -398,6 +416,7 @@ internal fun DesktopApp(
     // `KMP-110c`: Home's Add repository (board X6), and the Settings pane's Review, which shows the review here.
     onAddRepository: (() -> Unit)? = null,
     reviewRequests: Int = 0,
+    skipServices: SkipServices? = null,
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) {
@@ -435,11 +454,17 @@ internal fun DesktopApp(
         }
         profileFoot()
     }
+    // Keeps the scroll position of what is under the top screen, so back returns to the same place. Keyed by place in
+    // the stack as well as by screen (KMP-104): a title opened over itself from More like this keeps its own scroll, and
+    // what is popped lets its state go, so the holder does not grow with every page opened.
+    val saved = rememberSaveableStateHolder()
+    val stateKey: (Int, Screen) -> String = { index, screen -> "$index:$screen" }
     // A swap and not a push: no top-level screen is under another, so Back never goes between them.
     val top: (Screen) -> Unit = { next -> if (stack.size == 1) stack[0] = next }
     // From anywhere the sidebar is: what was pushed goes, with its title's view model, and [next] is all there is.
     val root: (Screen) -> Unit = { next ->
         stack.drop(1).forEach { if (it is Screen.Detail) DesktopDetailViewModels.forget(it.id) }
+        stack.forEachIndexed { index, screen -> if (index > 0) saved.removeState(stateKey(index, screen)) }
         stack.clear()
         stack += next
     }
@@ -452,12 +477,12 @@ internal fun DesktopApp(
     // Pops only when the caller is still on top, so two queued back events cannot empty the stack.
     val back: (Screen) -> Unit = { from ->
         if (stack.size > 1 && stack.last() == from) {
+            saved.removeState(stateKey(stack.lastIndex, from))
             stack.removeLast()
-            if (from is Screen.Detail) DesktopDetailViewModels.forget(from.id)
+            // A title can be under itself once recommendations open titles (KMP-104): that page keeps its model.
+            if (from is Screen.Detail && stack.none { it is Screen.Detail && it.id == from.id }) DesktopDetailViewModels.forget(from.id)
         }
     }
-    // Keeps the scroll position of what is under the top screen, so back returns to the same place.
-    val saved = rememberSaveableStateHolder()
     LaunchedEffect(reviewRequests) {
         if (reviewRequests > 0 && approvals != null && stack.last() != Screen.Extensions) stack += Screen.Extensions
     }
@@ -466,7 +491,7 @@ internal fun DesktopApp(
         onScreen(screen.toString())
         onSidebarShown(screen.hasSidebar)
     }
-    saved.SaveableStateProvider(screen.toString()) {
+    saved.SaveableStateProvider(stateKey(stack.lastIndex, screen)) {
         // One place decides what a tab press does, so a new tab cannot be wired up two ways. `KMP-77`: the sidebar is on a
         // title's page too, so a press there leaves what was pushed for that tab, as a sidebar does in Finder or Music.
         val toTab: (TopLevelDestination) -> Unit = { destination ->
@@ -568,8 +593,13 @@ internal fun DesktopApp(
                         escape = escape,
                         resume = screen.resume,
                         library = library,
-                        origin = stack.first().originLabel(),
+                        // A title opened from another title's More like this goes back to that title, by name.
+                        origin = stack.getOrNull(stack.lastIndex - 1)
+                            ?.let { below -> (below as? Screen.Detail)?.let { DesktopDetailViewModels.title(it.id) } }
+                            ?: stack.first().originLabel(),
                         onBack = { back(screen) },
+                        // Only from the page on top, so a double click opens one page, not two.
+                        onOpenTitle = { next -> if (stack.last() == screen) stack += Screen.Detail(next) },
                         onPlay = { kept, episodeData, title, meta, link, startAt ->
                             stack += Screen.Player(kept, episodeData, title, link, startAt, meta)
                         },
@@ -598,6 +628,10 @@ internal fun DesktopApp(
                 }
                 // Read while playing, so a change in the Settings window applies to the next press.
                 val seekSeconds by playback.seekSeconds.collectAsState()
+                // `KMP-86`: the episode's stamps, once the page under the player has loaded.
+                val skipStamps = remember(screen, skipServices, detail != null) {
+                    detail?.let { loaded -> skipServices?.source(skipQuery(loaded, screen.episodeData)) }
+                }
                 if (player == null) {
                     PlayerUnavailable(onBack = { back(screen) })
                 } else {
@@ -637,6 +671,7 @@ internal fun DesktopApp(
                         },
                         artwork = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
                         keepFullscreen = handover::keepsFullscreen,
+                        skipStamps = skipStamps,
                     )
                 }
                 DisposableEffect(screen) {
@@ -772,6 +807,7 @@ private fun DetailHost(
     origin: String?,
     onBack: () -> Unit,
     onPlay: (kept: LibraryTitle, episodeData: String?, title: String, meta: String?, link: StreamLink, startAt: Long) -> Unit,
+    onOpenTitle: (String) -> Unit = {},
 ) {
     val viewModel = remember(id) { DesktopDetailViewModels.get(id, scope, library) }
     // Read in the composition, for the effect below that is not in one: the player's `S1:E4` in the translated letters.
@@ -830,11 +866,13 @@ private fun DetailHost(
                     val episode = detail?.episodes?.firstOrNull { it.data == playing }
                     onPlay(kept, playing, effect.title, episode?.let { episodeMeta(it, letters.first, letters.second) }, effect.link, startAt)
                 }
-                // The three Android effects. None of the actions that produce them reach the ViewModel from
+                // DS-26's More like this (KMP-104): a card opens its title as a page over this one.
+                is DetailEffect.OpenTitle -> onOpenTitle(effect.id)
+                // The two other Android effects. None of the actions that produce them reach the ViewModel from
                 // here: the page's `PlaybackRequested` is turned into `PlayRequested` above, and it draws no
-                // trailer button and no recommendations rail. They are named rather than swept up by an `else` so that a
-                // fourth effect still fails this build instead of being silently dropped here.
-                is DetailEffect.OpenPlayer, DetailEffect.PlayTrailer, is DetailEffect.OpenTitle -> Unit
+                // trailer button. They are named rather than swept up by an `else` so that a fourth effect still fails
+                // this build instead of being silently dropped here.
+                is DetailEffect.OpenPlayer, DetailEffect.PlayTrailer -> Unit
             }
         }
     }
@@ -845,6 +883,7 @@ private fun DetailHost(
         artwork = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
         origin = origin,
         backdrop = { url -> BackdropImage(url = url, modifier = Modifier.fillMaxSize()) },
+        thumbnail = { url -> ThumbnailImage(url = url, modifier = Modifier.fillMaxSize()) },
     )
 }
 

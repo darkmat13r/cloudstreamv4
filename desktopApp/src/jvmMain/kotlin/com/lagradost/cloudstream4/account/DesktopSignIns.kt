@@ -49,16 +49,25 @@ internal class Credential(
 /**
  * Where sign-ins are kept: one [Credential] per profile and service.
  *
- * `KMP-95d` has only [InMemorySignInStore]: sign-ins last until the app quits, and the window says so. `KMP-95f` puts
- * the Keychain behind the same interface.
+ * An unsigned build has [InMemorySignInStore] (`KMP-95d`): sign-ins last until the app quits, and the window says so.
+ * A signed build has [KeychainSignInStore] (`KMP-95f`) and nothing else (`AccountStorage.forBuild`).
+ *
+ * Every change says whether it was kept. **False means nothing changed**: a sign-in that could not be kept is not
+ * signed in, and one that could not be removed is still there.
  */
 internal interface SignInStore {
-    fun get(profile: Int, service: DesktopService): Credential?
-    fun put(profile: Int, service: DesktopService, credential: Credential)
-    fun remove(profile: Int, service: DesktopService)
+    /** Whether a sign-in outlives a quit; when it does not, the window says so (`account_signins_until_quit`). */
+    val lastsAfterQuit: Boolean
 
-    /** [profile] was deleted: every sign-in of its goes with it. */
-    fun forget(profile: Int)
+    fun get(profile: Int, service: DesktopService): Credential?
+    fun put(profile: Int, service: DesktopService, credential: Credential): Boolean
+    fun remove(profile: Int, service: DesktopService): Boolean
+
+    /** [profile] was deleted, or its id is about to be reused: every sign-in of its goes with it. */
+    fun forget(profile: Int): Boolean
+
+    /** Drops the sign-ins of every profile not in [profiles], as the launch sweep does libraries and PINs. */
+    fun retainOnly(profiles: Set<Int>): Boolean
 }
 
 /**
@@ -68,6 +77,8 @@ internal interface SignInStore {
 internal class InMemorySignInStore : SignInStore {
     private val held = HashMap<Pair<Int, DesktopService>, Credential>()
 
+    override val lastsAfterQuit: Boolean get() = false
+
     /** Bumped on every change, so a screen reading [get] recomposes. */
     private val changes = mutableIntStateOf(0)
 
@@ -76,17 +87,25 @@ internal class InMemorySignInStore : SignInStore {
         return held[profile to service]
     }
 
-    override fun put(profile: Int, service: DesktopService, credential: Credential) {
+    override fun put(profile: Int, service: DesktopService, credential: Credential): Boolean {
         held[profile to service] = credential
         changes.intValue++
+        return true
     }
 
-    override fun remove(profile: Int, service: DesktopService) {
+    override fun remove(profile: Int, service: DesktopService): Boolean {
         if (held.remove(profile to service) != null) changes.intValue++
+        return true
     }
 
-    override fun forget(profile: Int) {
+    override fun forget(profile: Int): Boolean {
         if (held.keys.removeAll { it.first == profile }) changes.intValue++
+        return true
+    }
+
+    override fun retainOnly(profiles: Set<Int>): Boolean {
+        if (held.keys.removeAll { it.first !in profiles }) changes.intValue++
+        return true
     }
 
     override fun toString(): String = "InMemorySignInStore(<hidden>)"

@@ -69,6 +69,8 @@
 <string name="account_select_title">"Min qed jara?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn."</string>
 <string name="account_signin_failed_title" formatted="true">"Ma setgħetx issir id-dħul f'%s"</string>
+<string name="account_signin_not_kept" formatted="true">"Ma setax jinżamm id-dħul f'%s fuq dan il-kompjuter, għalhekk m'intix dħalt."</string>
+<string name="account_signin_not_removed" formatted="true">"Ma setax jitneħħa d-dħul f'%s minn dan il-kompjuter, għalhekk għadu attiv."</string>
 <string name="account_signin_offline_body" formatted="true">"Biex tidħol f'%s trid konnessjoni. Erġa' pprova meta dan l-apparat jerġa' jkun online."</string>
 <string name="account_signins_until_quit">"Id-dħul idum sakemm toħroġ minn CloudStream."</string>
 <string name="account_sync_connected">"Imqabbad · dħalt fuq dan l-apparat"</string>
@@ -99,6 +101,7 @@
 <string name="browser">"Brawser"</string>
 <string name="cast">"Atturi"</string>
 <string name="cast_format" formatted="true">"Atturi: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Leħen ta' %s"</string>
 <string name="continue_watching">"Kompli Ara"</string>
 <string name="desktop_menu_go">"Mur"</string>
 <string name="detail_load_failed_body">"Is-sors jista' jkun mhux disponibbli."</string>
@@ -151,6 +154,8 @@
 <string name="duration_format" formatted="true">"%d min"</string>
 <string name="episode_more_options_des">"Iktar Preferenzi"</string>
 <string name="episode_poster_img_des">"Kartellun tal-episodju"</string>
+<string name="episode_time_left" formatted="true">"Fadal %1$d min"</string>
+<string name="episode_watched">"Rajt"</string>
 <string name="error_bookmarks_text">"Bookmarks"</string>
 <string name="error_loading_links_toast">"Tagħbija tal-Links falliet"</string>
 <string name="extension_allow">"Ippermetti"</string>

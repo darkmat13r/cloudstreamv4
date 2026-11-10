@@ -432,6 +432,7 @@ class DownloadsHostTest {
             val thirtySeconds = object : PlaybackSettings {
                 override val autoplayNext: StateFlow<Boolean> = MutableStateFlow(true)
                 override val seekSeconds: StateFlow<Int> = MutableStateFlow(SEEK_SECONDS)
+                override val skipStamps: StateFlow<Boolean> = MutableStateFlow(false)
             }
             val scene = scene {
                 DesktopApp(

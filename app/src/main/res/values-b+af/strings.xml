@@ -69,6 +69,8 @@
 <string name="account_select_title">"Wie kyk?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s het nie die aanmelding bevestig nie. Niks is gestoor nie."</string>
 <string name="account_signin_failed_title" formatted="true">"Kon nie by %s aanmeld nie"</string>
+<string name="account_signin_not_kept" formatted="true">"Kon nie die aanmelding by %s op hierdie rekenaar hou nie, so jy is nie aangemeld nie."</string>
+<string name="account_signin_not_removed" formatted="true">"Kon nie die aanmelding by %s van hierdie rekenaar verwyder nie, so dit is steeds aangemeld."</string>
 <string name="account_signin_offline_body" formatted="true">"Om by %s aan te meld, is 'n verbinding nodig. Probeer weer wanneer hierdie toestel weer aanlyn is."</string>
 <string name="account_signins_until_quit">"Aanmeldings hou tot jy CloudStream afsluit."</string>
 <string name="account_sync_connected">"Gekoppel · aangemeld op hierdie toestel"</string>
@@ -99,6 +101,7 @@
 <string name="cancel">"Kanselleer"</string>
 <string name="cast">"Rolverdeling"</string>
 <string name="cast_format" formatted="true">"Rolverdeling: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Stem deur %s"</string>
 <string name="category_providers">"Verskaffers"</string>
 <string name="continue_watching">"Kyk verder"</string>
 <string name="delete">"Wis Uit"</string>
@@ -156,6 +159,8 @@
 <string name="edit">"Wysig"</string>
 <string name="episode_more_options_des">"Meer Opsies"</string>
 <string name="episode_poster_img_des">"Episode plakkaat"</string>
+<string name="episode_time_left" formatted="true">"%1$d min oor"</string>
+<string name="episode_watched">"Gekyk"</string>
 <string name="error_bookmarks_text">"Boekmerke"</string>
 <string name="error_loading_links_toast">"Kon nie skakels laai nie"</string>
 <string name="extension_allow">"Laat toe"</string>

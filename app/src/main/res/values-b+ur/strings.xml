@@ -70,6 +70,8 @@
 <string name="account_select_title">"کون دیکھ رہا ہے؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s نے سائن ان کی تصدیق نہیں کی۔ کچھ بھی محفوظ نہیں ہوا۔"</string>
 <string name="account_signin_failed_title" formatted="true">"%s میں سائن ان نہیں ہو سکا"</string>
+<string name="account_signin_not_kept" formatted="true">"اس کمپیوٹر پر %s کا سائن اِن رکھا نہیں جا سکا، اس لیے آپ سائن اِن نہیں ہیں۔"</string>
+<string name="account_signin_not_removed" formatted="true">"اس کمپیوٹر سے %s کا سائن اِن ہٹایا نہیں جا سکا، اس لیے یہ اب بھی سائن اِن ہے۔"</string>
 <string name="account_signin_offline_body" formatted="true">"%s میں سائن ان کرنے کے لیے کنکشن درکار ہے۔ یہ آلہ دوبارہ آن لائن ہونے پر کوشش کریں۔"</string>
 <string name="account_signins_until_quit">"سائن اِن تب تک رہتے ہیں جب تک آپ CloudStream بند نہیں کرتے۔"</string>
 <string name="account_sync_connected">"منسلک · اس آلے پر سائن ان"</string>
@@ -183,6 +185,7 @@
 <string name="cartoons_singular">"کارٹون"</string>
 <string name="cast">"کاسٹ"</string>
 <string name="cast_format" formatted="true">"کاسٹ: %s"</string>
+<string name="cast_voiced_by" formatted="true">"آواز: %s"</string>
 <string name="category_account">"اکاؤنٹس اور سیکیورٹی"</string>
 <string name="category_general">"عمومی"</string>
 <string name="category_player">"پلیئر"</string>
@@ -312,7 +315,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"دیکھنے کی پیشرفت کو اپ ڈیٹ کریں"</string>
 <string name="episode_sync_settings_des">"آپ کی حالیہ قسط کی پیش رفت خود بخود مطابقت پذیر کریں"</string>
+<string name="episode_time_left" formatted="true">"%1$d منٹ باقی"</string>
 <string name="episode_upcoming_format" formatted="true">"%s میں آنے والا ہے"</string>
+<string name="episode_watched">"دیکھ لیا"</string>
 <string name="episodes">"اقساط"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"خرابی"</string>

@@ -3274,6 +3274,8 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field account_select_title I
 	public static field account_signin_failed_body I
 	public static field account_signin_failed_title I
+	public static field account_signin_not_kept I
+	public static field account_signin_not_removed I
 	public static field account_signin_offline_body I
 	public static field account_signins_until_quit I
 	public static field account_sync_connected I
@@ -3421,6 +3423,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field cartoons_singular I
 	public static field cast I
 	public static field cast_format I
+	public static field cast_voiced_by I
 	public static field category_account I
 	public static field category_general I
 	public static field category_player I
@@ -3612,7 +3615,9 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field episode_sync_settings I
 	public static field episode_sync_settings_des I
 	public static field episode_text I
+	public static field episode_time_left I
 	public static field episode_upcoming_format I
+	public static field episode_watched I
 	public static field episodes I
 	public static field episodes_range I
 	public static field error I

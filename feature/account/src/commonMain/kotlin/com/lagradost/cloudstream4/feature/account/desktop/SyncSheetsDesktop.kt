@@ -80,6 +80,8 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.account_passw
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_password_note
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_signin_failed_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_signin_failed_title
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_signin_not_kept
+import com.lagradost.cloudstream4.core.strings.generated.resources.account_signin_not_removed
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_signin_offline_body
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_signins_until_quit
 import com.lagradost.cloudstream4.core.strings.generated.resources.account_sync_connected
@@ -124,6 +126,7 @@ data class SyncRowState(
  * - [syncRows] are the sync services and [subtitleRows] the subtitle services, under their own heading. The Mac's
  *   Settings has no subtitle services yet, so A16 is reached from here (a difference from the board, reported).
  * - **Sign-ins last until you quit** (D3): the line says so under the note, while sign-ins are kept in memory only.
+ *   [untilQuit] is false on a signed build, whose sign-ins are in the Keychain (`KMP-95f`), and the line is not drawn.
  * - [focusOn] is the row a cancelled or finished sign-in came from: its button takes focus again (A12).
  */
 @Composable
@@ -133,6 +136,7 @@ fun SyncServicesSheet(
     subtitleRows: List<SyncRowState>,
     onDone: () -> Unit,
     focusOn: String? = null,
+    untilQuit: Boolean = true,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -145,7 +149,7 @@ fun SyncServicesSheet(
                 stringResource(Res.string.settings_sync_per_profile) + " " + stringResource(Res.string.account_sync_note),
                 style = typography.label.copy(color = colors.muted),
             )
-            UntilQuitLine()
+            if (untilQuit) UntilQuitLine()
         }
         Column {
             syncRows.forEachIndexed { index, row ->
@@ -229,6 +233,7 @@ private fun SyncRow(row: SyncRowState, focus: FocusRequester) {
  * @param address the page to approve it on, as shown: no scheme.
  * @param secondsLeft the countdown, or null once [expired].
  * @param expired A11b: the code is struck through and nothing polls; a new code is the one primary.
+ * @param untilQuit draws "Sign-ins last until you quit"; false on a signed build (`KMP-95f`).
  */
 @Composable
 fun PairCodeSheet(
@@ -241,6 +246,7 @@ fun PairCodeSheet(
     onNewCode: () -> Unit,
     onCancel: () -> Unit,
     qr: ImageBitmap? = null,
+    untilQuit: Boolean = true,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -293,7 +299,7 @@ fun PairCodeSheet(
             }
         }
         if (!expired) LinkAction(UiString.Resource(Res.string.account_code_open, listOf(address)).resolve(), onOpen)
-        UntilQuitLine()
+        if (untilQuit) UntilQuitLine()
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
@@ -316,10 +322,10 @@ fun PairCodeSheet(
 /**
  * `DS-25` A10: signing in through the browser (`KMP-95e`). The page opens on its own; the service sends the browser back
  * to `cloudstreamapp://`, and the host closes this sheet. There is no password field: the app never sees one.
- * Open again opens the same page. Cancel ends the wait at once (A12).
+ * Open again opens the same page. Cancel ends the wait at once (A12). [untilQuit] is false on a signed build (`KMP-95f`).
  */
 @Composable
-fun BrowserSignInSheet(serviceName: String, onOpenAgain: () -> Unit, onCancel: () -> Unit) {
+fun BrowserSignInSheet(serviceName: String, onOpenAgain: () -> Unit, onCancel: () -> Unit, untilQuit: Boolean = true) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     val sheetFocus = remember { FocusRequester() }
@@ -328,7 +334,7 @@ fun BrowserSignInSheet(serviceName: String, onOpenAgain: () -> Unit, onCancel: (
         Column(verticalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap)) {
             BasicText(UiString.Resource(Res.string.account_browser_body, listOf(serviceName)).resolve(), style = typography.body.copy(color = colors.ink2))
             BasicText(stringResource(Res.string.account_browser_waiting), style = typography.caption.copy(color = colors.muted))
-            UntilQuitLine()
+            if (untilQuit) UntilQuitLine()
         }
         Row(
             verticalAlignment = Alignment.CenterVertically,
@@ -345,10 +351,11 @@ fun BrowserSignInSheet(serviceName: String, onOpenAgain: () -> Unit, onCancel: (
 
 /**
  * `DS-25` A13 and A13b: a sign-in that failed, or could not start offline (`KMP-95d`). No detail from the service is
- * shown. Try again is the primary and starts the sign-in afresh.
+ * shown. Try again is the primary and starts the sign-in afresh. [notKept]: the service said yes, but the Keychain did
+ * not keep it, so nothing is signed in (`KMP-95f`).
  */
 @Composable
-fun SignInFailedSheet(serviceName: String, offline: Boolean, onRetry: () -> Unit, onCancel: () -> Unit) {
+fun SignInFailedSheet(serviceName: String, offline: Boolean, onRetry: () -> Unit, onCancel: () -> Unit, notKept: Boolean = false) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     val sheetFocus = remember { FocusRequester() }
@@ -360,7 +367,11 @@ fun SignInFailedSheet(serviceName: String, offline: Boolean, onRetry: () -> Unit
         )
         BasicText(
             UiString.Resource(
-                if (offline) Res.string.account_signin_offline_body else Res.string.account_signin_failed_body,
+                when {
+                    offline -> Res.string.account_signin_offline_body
+                    notKept -> Res.string.account_signin_not_kept
+                    else -> Res.string.account_signin_failed_body
+                },
                 listOf(serviceName),
             ).resolve(),
             style = typography.body.copy(color = colors.ink2),
@@ -376,9 +387,16 @@ fun SignInFailedSheet(serviceName: String, offline: Boolean, onRetry: () -> Unit
 /**
  * `DS-25` A14: removing a sign-in from this Mac. **Cancel is the primary** (`DEC-19`), and Return and Escape both land
  * on it; only a click removes. No service revokes a token, so the words say what happens: it leaves this device.
+ * [notRemoved]: the last Remove was refused by the Keychain, so the sign-in is still there (`KMP-95f`).
  */
 @Composable
-fun RemoveSignInSheet(profileName: String, serviceName: String, onRemove: () -> Unit, onCancel: () -> Unit) {
+fun RemoveSignInSheet(
+    profileName: String,
+    serviceName: String,
+    onRemove: () -> Unit,
+    onCancel: () -> Unit,
+    notRemoved: Boolean = false,
+) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     val sheetFocus = remember { FocusRequester() }
@@ -395,6 +413,12 @@ fun RemoveSignInSheet(profileName: String, serviceName: String, onRemove: () -> 
     ) {
         BasicText(UiString.Resource(Res.string.account_sync_remove_title, listOf(serviceName)).resolve(), style = typography.railTitle.copy(color = colors.ink))
         BasicText(UiString.Resource(Res.string.account_sync_remove_body, listOf(profileName, serviceName)).resolve(), style = typography.body.copy(color = colors.ink2))
+        if (notRemoved) {
+            BasicText(
+                UiString.Resource(Res.string.account_signin_not_removed, listOf(serviceName)).resolve(),
+                style = typography.label.copy(color = colors.ink2),
+            )
+        }
         Row(horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap, Alignment.End), modifier = Modifier.fillMaxWidth()) {
             DesktopButton(label = stringResource(Res.string.settings_remove), onClick = onRemove)
             DesktopButton(label = stringResource(Res.string.cancel), onClick = onCancel, primary = true)
@@ -412,6 +436,7 @@ fun RemoveSignInSheet(profileName: String, serviceName: String, onRemove: () -> 
  * - The note says the password stays on this device, and the line under it that sign-ins last until you quit (D3).
  *
  * @param attempt changed by the host after a refusal, to clear the password.
+ * @param untilQuit draws "Sign-ins last until you quit"; false on a signed build (`KMP-95f`).
  */
 @Composable
 fun PasswordSignInSheet(
@@ -422,6 +447,7 @@ fun PasswordSignInSheet(
     onSignIn: (email: String, password: String) -> Unit,
     onCancel: () -> Unit,
     email: String = "",
+    untilQuit: Boolean = true,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -439,7 +465,7 @@ fun PasswordSignInSheet(
                 else UiString.Resource(Res.string.account_password_note, listOf(serviceName)).resolve(),
                 style = typography.body.copy(color = colors.ink2),
             )
-            UntilQuitLine()
+            if (untilQuit) UntilQuitLine()
         }
         SheetField(
             label = stringResource(Res.string.account_email),
@@ -566,7 +592,7 @@ private fun LinkAction(label: String, onClick: () -> Unit) {
     }
 }
 
-/** D3: sign-ins are kept in memory only until `KMP-95f`, and the window says so wherever one is made or shown. */
+/** D3: an unsigned build keeps sign-ins in memory only, and the window says so wherever one is made or shown. */
 @Composable
 private fun UntilQuitLine() {
     BasicText(

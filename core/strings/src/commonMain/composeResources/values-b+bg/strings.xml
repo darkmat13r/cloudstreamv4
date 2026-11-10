@@ -48,6 +48,8 @@
 <string name="account_select_title">Кой гледа?</string>
 <string name="account_signin_failed_body">%s не потвърди вписването. Нищо не е запазено.</string>
 <string name="account_signin_failed_title">Неуспешно вписване в %s</string>
+<string name="account_signin_not_kept">Влизането в %s не можа да бъде запазено на този компютър, затова не сте влезли.</string>
+<string name="account_signin_not_removed">Влизането в %s не можа да бъде премахнато от този компютър, затова все още е активно.</string>
 <string name="account_signin_offline_body">Вписването в %s изисква връзка. Опитай отново, когато устройството е отново онлайн.</string>
 <string name="account_signins_until_quit">Влизанията остават, докато не излезете от CloudStream.</string>
 <string name="account_sync_connected">Свързан · вписан на това устройство</string>
@@ -74,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d неуспешно</item><item quantity="other">%d неуспешни</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d изтегляне в опашката</item><item quantity="other">%d изтегляния в опашката</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d заглавие · %2$s</item><item quantity="other">%1$d заглавия · %2$s</item></plurals>
+<string name="episode_time_left">Остават %1$d мин</string>
+<string name="episode_watched">Гледано</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ОТМЕТКА</item><item quantity="other">%d ОТМЕТКИ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d секция не се зареди</item><item quantity="other">%d секции не се заредиха</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d заглавие</item><item quantity="other">%d заглавия</item></plurals>
@@ -201,6 +205,7 @@
 <string name="cartoons_singular">Анимационен филм</string>
 <string name="cast">Актьори</string>
 <string name="cast_format">Актьори: %s</string>
+<string name="cast_voiced_by">Озвучава %s</string>
 <string name="category_account">Акаунти и сигурност</string>
 <string name="category_general">Общ</string>
 <string name="category_player">Плеър</string>

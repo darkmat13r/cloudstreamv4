@@ -22,6 +22,7 @@ import kotlin.coroutines.coroutineContext
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
+import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
 
@@ -60,9 +61,13 @@ internal fun interface SubtitleLoader {
  *
  * - **Addresses:** [SandboxPolicy.isPublicHttpUrl] before anything opens, then `posterHttpClient`'s DNS
  *   filter and connection check on every hop, so a redirect is checked like the first request.
+ * - **Redirects** are followed here, not by okhttp (`BUG-94`), at most [MAX_REDIRECTS], and each is the URL check's
+ *   again. One from https to http is refused, and the track's headers stay on its own host: see [nextHop].
  * - **Size and time:** [MAX_BYTES] after decompression, however the body says it is encoded, and
- *   [CALL_TIMEOUT_SECONDS] over the whole call including the body.
- * - **Sent:** only the track's `Referer` and `User-Agent`. This client has no cookie jar and no cache.
+ *   [CALL_TIMEOUT_SECONDS] over the whole load: every redirect and the body. Each hop is its own call, and is given
+ *   only what is left of that, so a chain of slow redirects cannot take 20 s each.
+ * - **Sent:** only the track's `Referer` and `User-Agent`, and only to the track's own host. This client has no
+ *   cookie jar and no cache.
  *
  * @param allowUrl replaceable, as with `posterHttpClient`, so a test can talk to a loopback server.
  */
@@ -89,38 +94,88 @@ internal class HttpSubtitleLoader(
     }
 
     private suspend fun fetch(source: SubtitleSource.Remote): Body? {
-        if (!allowUrl(source.url)) return null
-        val request = Request.Builder().url(source.url)
-        source.headers.forEach { (name, value) -> runCatching { request.header(name, value) } }
-        val call = client.newCall(request.build())
-        val cancel = coroutineContext[Job]?.invokeOnCompletion { call.cancel() }
-        try {
-            call.execute().use { response ->
-                if (!response.isSuccessful) return null
-                val body = response.body ?: return null
-                val declared = body.contentType()?.charset()
-                if (body.contentLength() > MAX_BYTES) return null
-                val raw = body.byteStream().use { it.readAtMost(MAX_BYTES) } ?: return null
-                return Body(raw.gunzippedOrNull() ?: return null, declared)
+        // The exact string first, as the URL check has always seen it; each redirect's target after that.
+        var checked = source.url
+        var url = Request.Builder().url(source.url).build().url
+        var headers = source.headers
+        // The client's call limit is for the whole load. A hop past it fails in okhttp as an IOException, as one call
+        // past its limit always has; a coroutine timeout could not stop a hop already blocked in `execute`.
+        val budget = client.callTimeoutMillis.toLong()
+        val deadline = System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(budget)
+        repeat(MAX_REDIRECTS + 1) {
+            if (!allowUrl(checked)) return null
+            val request = Request.Builder().url(url)
+            headers.forEach { (name, value) -> runCatching { request.header(name, value) } }
+            val call = client.newCall(request.build())
+            if (budget > 0) {
+                val left = deadline - System.nanoTime()
+                if (left <= 0) return null
+                call.timeout().timeout(left, TimeUnit.NANOSECONDS)
             }
-        } finally {
-            cancel?.dispose()
+            val cancel = coroutineContext[Job]?.invokeOnCompletion { call.cancel() }
+            try {
+                call.execute().use { response ->
+                    if (response.isRedirect) {
+                        val target = response.header(LOCATION)?.let(url::resolve) ?: return null
+                        val hop = nextHop(url, target) ?: return null
+                        if (!hop.keepsHeaders) headers = emptyMap()
+                        url = target
+                        checked = target.toString()
+                        return@repeat
+                    }
+                    if (!response.isSuccessful) return null
+                    val body = response.body ?: return null
+                    val declared = body.contentType()?.charset()
+                    if (body.contentLength() > MAX_BYTES) return null
+                    val raw = body.byteStream().use { it.readAtMost(MAX_BYTES) } ?: return null
+                    return Body(raw.gunzippedOrNull() ?: return null, declared)
+                }
+            } finally {
+                cancel?.dispose()
+            }
         }
+        return null
     }
 
     private class Body(val bytes: ByteArray, val declared: Charset?)
 
+    /** A redirect that may be followed; [keepsHeaders] when it stays on the origin the track's headers were for. */
+    internal data class Hop(val keepsHeaders: Boolean)
+
     companion object {
         const val MAX_BYTES = 8 * 1024 * 1024
         const val CALL_TIMEOUT_SECONDS = 20L
+        /** Fewer than okhttp's 20: a subtitle behind more than a couple is not one anyone offers. */
+        const val MAX_REDIRECTS = 5
+        private const val LOCATION = "Location"
         private const val CONNECT_TIMEOUT_SECONDS = 10L
 
-        /** Most of [posterHttpClient]'s reasoning applies word for word; this adds only the time bound. */
+        /**
+         * Most of [posterHttpClient]'s reasoning applies word for word; this adds the time bound, and follows no
+         * redirect of its own: [HttpSubtitleLoader] does, so it can check each one.
+         */
         fun subtitleHttpClient(allow: ((InetSocketAddress) -> Boolean)? = null): OkHttpClient =
             (allow?.let { posterHttpClient(it) } ?: posterHttpClient()).newBuilder()
                 .callTimeout(CALL_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .connectTimeout(CONNECT_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .followRedirects(false)
+                .followSslRedirects(false)
                 .build()
+
+        /**
+         * Whether a redirect from [from] to [to] may be followed, and with which headers (`BUG-94`). Pure, for tests.
+         *
+         * - **https to http is refused:** the track's `Referer` and `User-Agent` would go in clear text, and so would
+         *   the file. http to https is an upgrade, and is followed.
+         * - **The headers stay on their own host:** the same scheme and port, or an upgrade to https there. A plugin's
+         *   `Referer` can carry a token in its query, and another host is the redirecting server's choice, not the
+         *   plugin's. An upgrade keeps them because a server that wants a `Referer` often redirects to https first.
+         */
+        internal fun nextHop(from: HttpUrl, to: HttpUrl): Hop? {
+            if (from.isHttps && !to.isHttps) return null
+            val sameOrigin = from.scheme == to.scheme && from.port == to.port
+            return Hop(keepsHeaders = from.host == to.host && (sameOrigin || (!from.isHttps && to.isHttps)))
+        }
 
         /** Text, parsed, or the reason there is nothing to show. Pure, for tests and the check. */
         fun parse(bytes: ByteArray, declared: Charset?, languageTag: String?): SubtitleLoad =

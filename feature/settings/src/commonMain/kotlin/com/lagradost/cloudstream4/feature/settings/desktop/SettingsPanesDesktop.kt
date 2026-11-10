@@ -32,6 +32,7 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.downloads_show_in_finder
+import com.lagradost.cloudstream4.core.strings.generated.resources.enable_skip_op_from_database_des
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_seek_seconds
 import com.lagradost.cloudstream4.core.strings.generated.resources.poster_size_settings
 import com.lagradost.cloudstream4.core.strings.generated.resources.random_button_settings
@@ -50,6 +51,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.settings_spee
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_subtitle_size_large
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_subtitle_size_medium
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_subtitle_size_small
+import com.lagradost.cloudstream4.core.strings.generated.resources.video_skip_op
 import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -102,8 +104,9 @@ private fun posterSizeName(size: PosterSize): String = when (size) {
 }
 
 /**
- * `DS-24`'s Playback pane, its rows the player reads: Play the next episode (`KMP-94`'s Up next) and Seek amount
- * (`KMP-96`), how far the arrow keys and the skip buttons move.
+ * `DS-24`'s Playback pane, its rows the player reads: Play the next episode (`KMP-94`'s Up next), Seek amount
+ * (`KMP-96`), how far the arrow keys and the skip buttons move, and Skip OP (`KMP-86`), whether the player asks the
+ * skip services for an episode's stamps.
  */
 @Composable
 internal fun ColumnScope.PlaybackPane(
@@ -135,6 +138,19 @@ internal fun ColumnScope.PlaybackPane(
                 label = title,
                 // UiString, not pluralStringResource: Compose's overload leaves a bare `%d` unformatted.
                 optionLabel = { UiString.Plural(Res.plurals.player_seek_seconds, it).resolve() },
+            )
+        }
+        // Android's own words and key (`KMP-86`). Off, the player asks no skip service anything.
+        val skipOp = stringResource(Res.string.video_skip_op)
+        SettingRow(
+            title = skipOp,
+            line = stringResource(Res.string.enable_skip_op_from_database_des),
+            marked = SettingsRow.SkipStamps in marked,
+        ) {
+            DesktopSwitch(
+                checked = values.skipStamps,
+                onCheckedChange = { onAction(SettingsAction.SetSkipStamps(it)) },
+                label = skipOp,
             )
         }
     }

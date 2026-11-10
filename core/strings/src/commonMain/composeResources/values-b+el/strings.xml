@@ -48,6 +48,8 @@
 <string name="account_select_title">Ποιος βλέπει;</string>
 <string name="account_signin_failed_body">Το %s δεν επιβεβαίωσε τη σύνδεση. Δεν αποθηκεύτηκε τίποτα.</string>
 <string name="account_signin_failed_title">Δεν ήταν δυνατή η σύνδεση στο %s</string>
+<string name="account_signin_not_kept">Δεν ήταν δυνατή η διατήρηση της σύνδεσης στο %s σε αυτόν τον υπολογιστή, οπότε δεν έχετε συνδεθεί.</string>
+<string name="account_signin_not_removed">Δεν ήταν δυνατή η κατάργηση της σύνδεσης στο %s από αυτόν τον υπολογιστή, οπότε παραμένει ενεργή.</string>
 <string name="account_signin_offline_body">Η σύνδεση στο %s απαιτεί πρόσβαση στο διαδίκτυο. Δοκιμάστε ξανά όταν η συσκευή είναι ξανά online.</string>
 <string name="account_signins_until_quit">Οι συνδέσεις διαρκούν μέχρι να κλείσετε το CloudStream.</string>
 <string name="account_sync_connected">Συνδεδεμένο · σε αυτή τη συσκευή</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d επεισόδιο</item><item quantity="other">%d επεισόδια</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d απέτυχε</item><item quantity="other">%d απέτυχαν</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d τίτλος · %2$s</item><item quantity="other">%1$d τίτλοι · %2$s</item></plurals>
+<string name="episode_time_left">Απομένουν %1$d λεπ.</string>
+<string name="episode_watched">Προβλήθηκε</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ</item><item quantity="other">%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Αποτυχία φόρτωσης %d ενότητας</item><item quantity="other">Αποτυχία φόρτωσης %d ενοτήτων</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d τίτλος</item><item quantity="other">%d τίτλοι</item></plurals>
@@ -191,6 +195,7 @@
 <string name="cartoons_singular">Κινούμενα Σχέδια</string>
 <string name="cast">Ηθοποιοί</string>
 <string name="cast_format">Ηθοποιοί: %s</string>
+<string name="cast_voiced_by">Φωνή: %s</string>
 <string name="category_account">Λογαριασμοί και Ασφάλεια</string>
 <string name="category_general">Γενικά</string>
 <string name="category_player">Πρόγραμμα αναπαραγωγής</string>

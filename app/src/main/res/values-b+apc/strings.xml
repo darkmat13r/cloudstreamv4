@@ -72,6 +72,8 @@
 <string name="account_select_title">"مين عم يحضر؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ما أكّد تسجيل الدخول. ما انحفظ شي."</string>
 <string name="account_signin_failed_title" formatted="true">"ما قدرنا نسجّل دخول على %s"</string>
+<string name="account_signin_not_kept" formatted="true">"ما قدرنا نحتفظ بتسجيل الدخول لـ%s على هالكمبيوتر، فإنت مش مسجّل دخول."</string>
+<string name="account_signin_not_removed" formatted="true">"ما قدرنا نشيل تسجيل الدخول لـ%s من هالكمبيوتر، فلسّا مسجّل دخول."</string>
 <string name="account_signin_offline_body" formatted="true">"تسجيل الدخول على %s بدو اتصال. جرب مرة تانية لما يرجع هالجهاز أونلاين."</string>
 <string name="account_signins_until_quit">"تسجيلات الدخول بتضل لحتى تسكّر CloudStream."</string>
 <string name="account_sync_connected">"متصل · مسجّل دخول على هالجهاز"</string>
@@ -198,6 +200,7 @@
 <string name="cartoons_singular">"رسوم مُتَحَرِكة"</string>
 <string name="cast">"ممثلين"</string>
 <string name="cast_format" formatted="true">"ممثلين: %s"</string>
+<string name="cast_voiced_by" formatted="true">"بصوت %s"</string>
 <string name="category_account">"الحسابات وال أمان"</string>
 <string name="category_general">"عام"</string>
 <string name="category_player">"مشغل الڤيديو"</string>
@@ -361,7 +364,9 @@
 <string name="episode_short">"ح"</string>
 <string name="episode_sync_settings">"سيّڤ تاريخ المشاهدة"</string>
 <string name="episode_sync_settings_des">"بتسيّڤ تاريخ المشاهدة و لوين وصلت بال ڤيديو"</string>
+<string name="episode_time_left" formatted="true">"باقي %1$d دقيقة"</string>
 <string name="episode_upcoming_format" formatted="true">"رح ينزل ب %s"</string>
+<string name="episode_watched">"تمّت المشاهدة"</string>
 <string name="episodes">"حلقات"</string>
 <string name="episodes_range" formatted="true">"%1$d–%2$d"</string>
 <string name="error">"مشكلة"</string>

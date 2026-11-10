@@ -4059,3 +4059,174 @@ takes focus. The band fits, so the page does not move, and the chrome and its of
   passes too.
 - Two new screenshots, looked at: `home-offline-bookmarks-wrapped-focus-retry` (Somali) and
   `home-offline-bookmarks-long-name-focus-retry`. No existing reference changed.
+
+## BUG-91 — "%1$d min left" is not a plural · **low, i18n** · backlog
+
+**Status:** open, backlog · from #346's review (nit 2), 2026-11-10 · not to be fixed before a native review
+
+`episode_time_left` (`I18N-25`, `KMP-63`) is one `<string>`, `%1$d min left`, in all 62 directories. English needs no
+plural because "min" is an abbreviation, and most locales were written with their own abbreviation for the same reason.
+But a language that inflects even an abbreviated noun or its verb by count (Slavic and Baltic "left", Arabic's dual) reads
+wrongly at some counts: Russian "Осталось 1 мин" is fine, but a full-word translation would need one, few and many forms.
+
+**The fix, when there is a native review:** make it a `<plurals>` resource with the forms each locale needs, read with
+`pluralStringResource`, and move the strings oracle baseline for it (a plural is a new key shape in `decoded.tsv`). Until
+then the abbreviation is the hedge, and the machine translations are not to be "corrected" into full words without one.
+
+## BUG-97 — A file that could not be read put its path, and so the home directory, in its "not loaded" line, or stopped the launch · **low, security** · fixed in this PR
+
+The same class as `BUG-89`, earlier in `SandboxedExtensions.loadOne`. A file is read twice before it is stored, and
+neither read kept a path out of what the person sees:
+- **The published hash's check** (`ExtensionHash.verify`), when a hash is published for the file: a `.sha256`
+  sidecar, or a pinned official name. It had no catch. A jar the app could not read (unreadable, or gone between the
+  listing and the read) threw out of `loadOne`, so the whole scan failed, the app did not launch, and the exception,
+  path and all, was printed. The check commands (`--check-extensions`, `--scan`, the playback and subtitle checks)
+  ran into the same throw.
+- **The store's hash** (`sha256(source)`), for every file. It caught the `IOException` and used its message as the
+  "not loaded" reason. A `Files` or stream exception names the file's path, so the home directory reached a line that
+  is shown and printed at every launch.
+
+Found in review of #347 and #357.
+
+**Fix.** Both reads refuse that file in fixed words, `not loaded: the extension could not be read`, and the
+exception's message is not kept. The other files still load. A file refused at the first read has the verification
+`Skipped` with the same words, since no check was possible.
+
+**Proof,** all local (CI is off): `UnreadableExtensionTest`, 2, through `SandboxedExtensions` with an unreadable
+side-loaded jar. Each checks that the reason is exactly the fixed words and names no path, and that the next file still
+scans.
+- With no hash published, the store's hash is the first read. Red-checked: on master's code the reason was the
+  file's temporary path followed by `(Permission denied)`.
+- With a well-formed hash in a sidecar, the check is the first read. Red-checked: on master's code `scanInstalled`
+  threw `FileNotFoundException` naming the path.
+
+## BUG-94 — The Mac's network clients: a subtitle redirect not checked as a url, no time limit on images, silent tunnels kept, `::/96` public · **low, security** · fixed in this PR
+
+**Status:** fixed in this PR · from the extension-wire audit's low findings A-5, A-6, A-7 and A-11, batched by the PM
+(2026-11-10) as the network ones. Each is hardening: none of them reaches a private address. That is still checked
+on every connection.
+
+**A-5, subtitle redirects.** okhttp followed them itself, so only the client's address checks met a redirect, never
+the url check (`SandboxPolicy.isPublicHttpUrl`), and a hop from https to http was followed. The track's headers went
+on every hop. On the Mac those are only the plugin's `Referer` and `User-Agent` (`DesktopDetailSource.toTracks`), never
+a Cookie as the audit's repro supposed, but a `Referer` can carry a token in its query. Now `HttpSubtitleLoader` follows
+redirects itself, at most 5 (`MAX_REDIRECTS`):
+- each target meets the url check, as the first url did;
+- https to http is refused, so a downgrade fails the track; http to https is an upgrade, and is followed;
+- the headers stay on their own host: the same scheme and port there, or an upgrade to https on it. A server that
+  wants a `Referer` often redirects to https first;
+- the call limit, 20 s, is for the whole load. Each hop is its own call now, so the client's limit alone bounded one
+  hop, and 6 slow hops took 120 s (the reviewer of `#358`). One deadline is taken at the start, and each hop's call is
+  given what is left of it (`Call.timeout`). A coroutine `withTimeout` was measured and does not do it: it cannot stop
+  a hop blocked in `execute`, and the chain ran its full length.
+
+**A-6, images.** `backdropHttpClient`, which posters and backdrops both use, had okhttp's 10 s per read and no limit
+on the call. A server sending a byte every 9 s held a fetch thread, within the 8 MB cap, for as long as it liked. Now
+the call has a 30 s limit (`BACKDROP_CALL_TIMEOUT_MILLIS`), its body included: 8 MB in that time is about 280 KB a
+second. `boundedImageClient` is unchanged, since `RepositoryHttp` sets its own limit on it.
+
+**A-7, `OutboundGate`.** After the handshake both sockets had no timeout, so a plugin could hold its 256 tunnels
+silent, two threads each, for its host's life. Now a tunnel that nothing has crossed, either way, for 6 minutes is
+closed. That is longer than okhttp keeps a pooled connection idle (5), so a plugin's pool meets its own limit first.
+Both directions share one clock. A download sends nothing for minutes while its bytes come back, and a clock for each
+direction would have shut the plugin's side of it.
+
+**A-11, `isPublicAddress`.** IPv4-compatible IPv6 addresses (`::/96`: `::127.0.0.1`, `::a00:1`) reached the IPv6
+branch, which checked only ULA and the translation prefixes, and were called public. The audit measured no route to
+either on macOS. They are refused now, as `UrlGuard.isPublicAddress` in `:media:download` already refused them.
+
+**Tests**, 10 new: `SubtitleLoaderTest` 6, `BackdropImageTest` 1, `OutboundGateTest` 3. Seven were red-checked: with
+that fix taken out, the test fails.
+
+| Fix | Test | Red-checked against |
+|---|---|---|
+| A-5 | `SubtitleLoaderTest`: a redirect is checked as the first url was, and a refused one is never opened | redirects checked only on the first url: the refused target was opened |
+| A-5 | the track's headers go to its own host, and not to the host a redirect names | the headers kept on every hop |
+| A-5 | a chain of slow redirects is cut at the whole load's limit, not one limit a hop | no deadline: 1867 ms for a 700 ms limit; and `withTimeoutOrNull` in its place: 1858 ms |
+| A-5 | a redirect on the same host keeps the track's headers; a redirect that never ends stops after a few | not red-checked: they hold behaviour in place |
+| A-5 | https to http is refused, and the headers stay on their host or its upgrade (`nextHop`, pure) | not red-checked; it failed on this PR's first version, which kept the headers for https to another https port |
+| A-6 | `BackdropImageTest`: an image that never finishes coming fails at the call's limit | no call limit |
+| A-7 | `OutboundGateTest`: a tunnel nothing crosses is closed once it has been idle | the idle cut taken out |
+| A-7 | a tunnel whose bytes go one way only is not idle, and the plugin's side still works after | a clock for each direction |
+| A-11 | an IPv4-compatible IPv6 address is not public, whatever IPv4 address it carries | the `::/96` rule taken out |
+
+The timing tests passed 5 runs in a row (`--rerun`): a 600 ms idle timeout, a 500 ms image limit, and a 700 ms limit over
+300 ms redirects.
+
+## BUG-99 — A repository-removal test waited for the installed list, not for the install, and failed under load · **low, test only** · measured 2026-11-11
+
+**Found** in train 20's gates: `ExtensionsPaneModelTest` "with the installed list unreadable, a repository is not
+removed and says so" (`#345`) failed once in a full `:desktopApp:jvmTest` run, with "its file was left with nothing to
+say where it came from". Its class alone passed 10 runs of 10.
+
+**Cause:** the test, not the app. `RepositoryInstaller` puts the installed-list entry in *before* it moves the file into
+place, on purpose (`KMP-110b`'s review: a file in the folder with no entry would be one the app does not know it
+installed). The test waited only for that entry, then wrote garbage to the list. The removal is refused at once, and
+the test checked the file, which the move had not always placed yet.
+
+**Fix:** the test waits for the row's own end, `RowState.Held`, as the pipeline test beside it does. A row is
+Installing until the install's job has finished, so Held comes after the move. The installer is unchanged.
+
+**Proof,** all local (CI is off), with `--no-build-cache`:
+- **Red:** on master `20ec055e3`, with only a scratch `Thread.sleep(300)` before the installer's move, this test fails
+  (1 of the class's 15) with the same words.
+- **Green:** with the fix and the same scratch delay, the class passes; with the fix alone, 10 `--rerun` runs of 10.
+- The other test that waits on the installed list ("removing a repository stops each of its extensions before deleting
+  it") passed under the same delay, so it is left as it is.
+
+## BUG-100 — The dropped-connection download test lost to a slow disk under load, past its own tolerance · **low, test only** · measured 2026-11-11
+
+**Found** in train 20's gates: `FaultSuiteTest` "bytes received before the connection dropped are kept on disk" (`KMP-46`)
+failed 3 full `check` runs of 3 in a row, while its class alone passed 10 of 10. The retry resumed 1,187,843 and
+1,204,227 bytes before the 3 MiB + 3 the server sent; the test allows 1,114,112 (`CHANNEL_LOSS_TOLERANCE`).
+
+**Cause:** the test, not the engine. Measured before fixing:
+- **Not the kernel.** The server's drop is `shutdownOutput()`, a FIN after its data, so the client reads every byte
+  before it sees the end. This Mac's TCP buffers (128 KiB, autotuned to 4 MiB) are not where the bytes go.
+- **Ktor's unread channel.** An early end closes the body channel with a cause, and Ktor drops what the engine has not
+  read yet. The tolerance took Ktor's `ByteChannel` as 1 MiB plus one 64 KiB read buffer. Its two buffers can hold
+  about twice that when the reader is behind.
+- **The reader's speed decides it.** A scratch test slowed the engine's disk per write: 0 lost at full speed,
+  1,736,707 at 0.5 ms a write, 1,974,275 at 2 ms. A loaded machine made the disk slow by chance.
+
+**Fix:** in the tests only; the engine and the tolerance are unchanged.
+- `Fault.DropAfter` takes an optional `holdUntil`, which the test server polls, for at most ten seconds, before the
+  close.
+- The test holds the close until the part file has what was sent, less one read buffer. It also runs the engine on a
+  disk slowed by 0.5 ms a write, so the channel is full every time and load cannot decide the outcome either way.
+- It still asserts the retry resumes within `CHANNEL_LOSS_TOLERANCE` of what was sent.
+
+**Proof,** all local (CI is off), `--no-build-cache`, the class with `--rerun`:
+- **Red:** with the hold made to return at once, the test fails 3 runs of 3, at its loss assertion.
+- **Green:** with the hold, 10 runs of 10, and 10 more of 10 with every core kept busy by a CPU burner.
+
+**Review (`#361`):**
+- `CHANNEL_LOSS_TOLERANCE`'s KDoc says it is a bound only while the reader keeps up, with the measurements above.
+- An added assertion: the retry starts no lower than the part file had reached before the drop, less one read buffer.
+  The tolerance alone lets an engine throw away up to about 1 MiB it had already written. Red: with 512 KiB cut from
+  the part file after the failed attempt, the added assertion fails and the tolerance's passes.
+
+**Product note (`KMP-46`):** on a slow disk, a dropped connection costs a re-download of up to about 2 MiB the engine
+had received but not yet written. That is efficiency, not correctness, and a limit of Ktor's channel.
+
+## BUG-101 — A second-download test took its mark after the first download's first part, so a later part counted against it · **low, test only** · measured 2026-11-11
+
+**Found** in train 20's gates: `ResumeSuiteTest` "a second download of the same target while one runs fails before
+any byte" (`:media:download`) failed a full `check` with "the rejected download still sent requests", naming
+`GET /f range=0-6291455`: part 0 of the *first* download.
+
+**Cause:** the test, not the engine. The first download fetches 4 parts of 6 MiB. The test waited only until the server
+had seen one body request, took its mark, and asserted that nothing was logged after it while the second download was
+refused. A part of the first that reached the server after the mark was counted against the second. The same family
+as `BUG-99`: a wait for the first of N events.
+
+**Fix:** the test waits until all 4 of the first download's parts have reached the server before it takes the mark.
+The assertion is unchanged.
+
+**Proof,** all local (CI is off), `--no-build-cache`:
+- **Red:** with two scratch changes, master's test fails 3 runs of 3, each listing parts of the first download. The
+  server logs every body request after the first 300 ms late, and the test waits 600 ms between the refusal and its
+  assertion, as a slow refusal would. With only the late parts it passed, because the refusal is quick and the check
+  came first. That is why the flake is rare.
+- **Green:** the fix under the same two scratch changes passes 3 of 3. Without them, the class passes 10 `--rerun`
+  runs of 10, and 10 more of 10 with every core kept busy by a CPU burner.

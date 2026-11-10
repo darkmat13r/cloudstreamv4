@@ -70,6 +70,8 @@
 <string name="account_select_title">"Qui mira?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s no ha confirmat l'inici de sessió. No s'ha desat res."</string>
 <string name="account_signin_failed_title" formatted="true">"No s'ha pogut iniciar la sessió a %s"</string>
+<string name="account_signin_not_kept" formatted="true">"No s'ha pogut conservar l'inici de sessió a %s en aquest ordinador, així que no has iniciat la sessió."</string>
+<string name="account_signin_not_removed" formatted="true">"No s'ha pogut eliminar l'inici de sessió a %s d'aquest ordinador, així que la sessió continua iniciada."</string>
 <string name="account_signin_offline_body" formatted="true">"Per iniciar la sessió a %s cal connexió. Torna-ho a provar quan aquest dispositiu torni a estar en línia."</string>
 <string name="account_signins_until_quit">"Els inicis de sessió duren fins que surts de CloudStream."</string>
 <string name="account_sync_connected">"Connectat · sessió iniciada en aquest dispositiu"</string>
@@ -123,6 +125,7 @@
 <string name="browser">"Navegador"</string>
 <string name="cast">"Repartiment"</string>
 <string name="cast_format" formatted="true">"Repartiment:%s"</string>
+<string name="cast_voiced_by" formatted="true">"Veu de %s"</string>
 <string name="category_general">"General"</string>
 <string name="category_player">"Reproductor"</string>
 <string name="category_provider_test">"Comprova els proveïdors"</string>
@@ -217,6 +220,8 @@
 <string name="episode_action_reload_links">"Torna a carregar els enllaços"</string>
 <string name="episode_more_options_des">"Més opcions"</string>
 <string name="episode_poster_img_des">"Cartell de l'episodi"</string>
+<string name="episode_time_left" formatted="true">"Queden %1$d min"</string>
+<string name="episode_watched">"Vist"</string>
 <string name="error">"Error"</string>
 <string name="error_bookmarks_text">"Favorits"</string>
 <string name="error_invalid_data">"Dades no vàlides"</string>

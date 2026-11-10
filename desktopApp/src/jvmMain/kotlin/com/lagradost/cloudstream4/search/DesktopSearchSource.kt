@@ -266,10 +266,16 @@ class DesktopSearchSource internal constructor(
          */
         fun encodeId(apiName: String, url: String): String = apiName + ID_SEPARATOR + url
 
-        /** The inverse of [encodeId]; `null` when the id did not come from this source. */
+        /**
+         * The inverse of [encodeId]; `null` when the id did not come from this source.
+         *
+         * Split at the **first** separator only, so any url round-trips, one holding the separator included (`KMP-103`): a
+         * recommendation's key is the plugin's, and must never decode to another provider. A provider name cannot hold
+         * the separator, because the app strips control characters from it (`RemoteProvider.cleaned`).
+         */
         fun decodeId(id: SearchResultId): Pair<String, String>? {
-            val parts = id.value.split(ID_SEPARATOR)
-            return if (parts.size == 2) parts[0] to parts[1] else null
+            val at = id.value.indexOf(ID_SEPARATOR)
+            return if (at < 0) null else id.value.substring(0, at) to id.value.substring(at + ID_SEPARATOR.length)
         }
     }
 }

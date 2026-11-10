@@ -48,6 +48,8 @@
 <string name="account_select_title">ooh oooh aah?</string>
 <string name="account_signin_failed_body">%s oooohh uugg ah. oooohh aagg.</string>
 <string name="account_signin_failed_title">oooohh uugg ah %s</string>
+<string name="account_signin_not_kept">%s aagg ooh. ooh-aah oouh.</string>
+<string name="account_signin_not_removed">%s aagg ooh. ooh-aah oouh.</string>
 <string name="account_signin_offline_body">uugg ah %s ooh aagg. uuh eeeek oooh aah aagg.</string>
 <string name="account_signins_until_quit">ooh-aah aagg ooh CloudStream.</string>
 <string name="account_sync_connected">oooh-aah · ooh aagg</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="other">%d ooh</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d oooogg</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d ooh · %2$s</item></plurals>
+<string name="episode_time_left">%1$d ooh haa ahhh</string>
+<string name="episode_watched">oouuh aaahhu</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d OOUUH OOH</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d oooogg ooh aaahhu</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d oouh</item></plurals>
@@ -185,6 +189,7 @@
 <string name="cartoons_singular">uuuuggg</string>
 <string name="cast">oouaaahh</string>
 <string name="cast_format">oouaaahh %s</string>
+<string name="cast_voiced_by">ooh aahh %s</string>
 <string name="category_account">oooogggg aah aaaaaakh</string>
 <string name="category_general">a ahu uoo uoahuo uo</string>
 <string name="category_player">ahaough aaouuuuh-h</string>

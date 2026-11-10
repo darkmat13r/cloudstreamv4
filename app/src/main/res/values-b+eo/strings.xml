@@ -70,6 +70,8 @@
 <string name="account_select_title">"Kiu spektas?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ne konfirmis la ensaluton. Nenio estis konservita."</string>
 <string name="account_signin_failed_title" formatted="true">"Ne eblis ensaluti al %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Ne eblis konservi la ensaluton al %s en ĉi tiu komputilo, do vi ne estas ensalutinta."</string>
+<string name="account_signin_not_removed" formatted="true">"Ne eblis forigi la ensaluton al %s el ĉi tiu komputilo, do ĝi ankoraŭ estas ensalutinta."</string>
 <string name="account_signin_offline_body" formatted="true">"Ensaluti al %s bezonas konekton. Reprovu kiam ĉi tiu aparato denove estos enreta."</string>
 <string name="account_signins_until_quit">"Ensalutoj daŭras ĝis vi fermas CloudStream."</string>
 <string name="account_sync_connected">"Konektita · ensalutinta en ĉi tiu aparato"</string>
@@ -100,6 +102,7 @@
 <string name="cancel">"Nuligi"</string>
 <string name="cast">"Rolantaro"</string>
 <string name="cast_format" formatted="true">"Rolantaro: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Voĉo de %s"</string>
 <string name="category_account">"Kontoj kaj Sekureco"</string>
 <string name="delete">"Forigi"</string>
 <string name="delete_file">"Forigi Dosieron"</string>
@@ -167,6 +170,8 @@
 <string name="episode_more_options_des">"Pli da Opcioj"</string>
 <string name="episode_poster_img_des">"Epizoda Afiŝo"</string>
 <string name="episode_short">"E"</string>
+<string name="episode_time_left" formatted="true">"Restas %1$d min"</string>
+<string name="episode_watched">"Spektita"</string>
 <string name="episodes">"Epizodoj"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error_bookmarks_text">"Legosignoj"</string>

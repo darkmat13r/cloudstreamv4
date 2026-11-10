@@ -153,7 +153,16 @@ class SandboxedExtensions(
     }
 
     private suspend fun loadOne(source: File, launcher: HostLauncher, start: Boolean): SandboxedLoad {
-        val verification = withContext(Dispatchers.IO) { ExtensionHash.verify(source, expectedHash(source)) }
+        val verification = try {
+            withContext(Dispatchers.IO) { ExtensionHash.verify(source, expectedHash(source)) }
+        } catch (_: IOException) {
+            // `BUG-97`: with a hash published for it, this is the file's first read. A failure refuses this file, not
+            // the launch, and its message is not kept: it names the path, and so the person's home directory.
+            return SandboxedLoad(
+                source.name, ExtensionVerification.Skipped(UNREADABLE), null, 0, "not loaded: $UNREADABLE", null,
+                LoadState.Failed,
+            )
+        }
         fun refused(why: String, scan: ScanReport? = null, sha256: String? = null, state: LoadState = LoadState.Failed) =
             SandboxedLoad(source.name, verification, scan, 0, "not loaded: $why", sha256, state)
 
@@ -168,8 +177,9 @@ class SandboxedExtensions(
             ?: return refused("unsafe file name")
         val sha256 = try {
             withContext(Dispatchers.IO) { sha256(source) }
-        } catch (failure: IOException) {
-            return refused(failure.message.orEmpty())
+        } catch (_: IOException) {
+            // `BUG-97`: the message is not kept. A `Files` exception names the path, and so the person's home directory.
+            return refused(UNREADABLE)
         }
         val jar = try {
             toStore(source, sha256, launcher)
@@ -347,6 +357,9 @@ class SandboxedExtensions(
          */
         private const val CONVERTER_REVISION = "-c3"
         private const val SIDECAR_SUFFIX = ".sha256"
+
+        /** `BUG-97`: why a file that could not be read is refused, in our words, never the exception's. */
+        private const val UNREADABLE = "the extension could not be read"
         private const val STAGING_SUFFIX = ".part"
         private const val MAX_SIDECAR_BYTES = 1024L
         private const val DIRECTORY_ENV = "CLOUDSTREAM4_EXTENSIONS_DIR"

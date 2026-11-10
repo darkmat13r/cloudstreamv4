@@ -48,6 +48,8 @@
 <string name="account_select_title">Кто смотрит?</string>
 <string name="account_signin_failed_body">%s не подтвердил вход. Ничего не сохранено.</string>
 <string name="account_signin_failed_title">Не удалось войти в %s</string>
+<string name="account_signin_not_kept">Не удалось сохранить вход в %s на этом компьютере, поэтому вы не вошли.</string>
+<string name="account_signin_not_removed">Не удалось удалить вход в %s с этого компьютера, поэтому он всё ещё активен.</string>
 <string name="account_signin_offline_body">Для входа в %s нужно подключение. Попробуйте снова, когда это устройство будет в сети.</string>
 <string name="account_signins_until_quit">Входы сохраняются, пока вы не закроете CloudStream.</string>
 <string name="account_sync_connected">Подключено · вход выполнен на этом устройстве</string>
@@ -74,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d неудачная</item><item quantity="few">%d неудачные</item><item quantity="many">%d неудачных</item><item quantity="other">%d неудачных</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">Запланировано %d загрузка</item><item quantity="few">Запланировано %d загрузки</item><item quantity="many">Запланировано %d загрузок</item><item quantity="other">Запланировано %d загрузок</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d название · %2$s</item><item quantity="few">%1$d названия · %2$s</item><item quantity="many">%1$d названий · %2$s</item><item quantity="other">%1$d названия · %2$s</item></plurals>
+<string name="episode_time_left">Осталось %1$d мин</string>
+<string name="episode_watched">Просмотрено</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ЗАКЛАДКА</item><item quantity="few">%d ЗАКЛАДКИ</item><item quantity="many">%d ЗАКЛАДОК</item><item quantity="other">%d ЗАКЛАДКИ</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Не удалось загрузить %d раздел</item><item quantity="few">Не удалось загрузить %d раздела</item><item quantity="many">Не удалось загрузить %d разделов</item><item quantity="other">Не удалось загрузить %d разделов</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d раздел</item><item quantity="few">%d раздела</item><item quantity="many">%d разделов</item><item quantity="other">%d раздела</item></plurals>
@@ -202,6 +206,7 @@
 <string name="cartoons_singular">Мультфильм</string>
 <string name="cast">В ролях</string>
 <string name="cast_format">В ролях: %s</string>
+<string name="cast_voiced_by">Озвучивает %s</string>
 <string name="category_account">Учётные записи и Безопасность</string>
 <string name="category_general">Общие</string>
 <string name="category_player">Плеер</string>

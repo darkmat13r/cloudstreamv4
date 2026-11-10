@@ -677,7 +677,95 @@ internal fun RemoteDetails.cleaned(dropped: (String) -> Unit = {}) = copy(
     episodes = episodes.take(MAX_ITEMS).map { it.copy(name = it.name?.sanitized(), data = it.data.sanitized()) },
     facts = facts.cleaned(dropped),
     backdropUrl = backdropUrl.httpsUrlOrNull(),
+    ids = ids.cleaned(dropped),
+    cast = cast.cleanedCast(dropped),
+    recommendations = recommendations.cleanedRecommendations(ownKey = url.sanitized(), dropped),
 )
+
+/**
+ * The ids the Mac player may put in a skip service's URL (`KMP-86`), each in its exact shape or left out. Matched in
+ * explicit ASCII, never `isDigit`, which takes Arabic-Indic and other digits. MAL and TMDb are parsed and written again,
+ * so `007` goes out as `7`, the form Android's own `toIntOrNull` sends; zero is no id.
+ */
+internal fun RemoteIds.cleaned(dropped: (String) -> Unit = {}): RemoteIds {
+    fun number(name: String, value: String?): String? = value?.let {
+        it.takeIf(NUMERIC_ID::matches)?.toInt()?.takeIf { id -> id > 0 }?.toString()
+            ?: null.also { dropped("$name: not an id") }
+    }
+    return RemoteIds(
+        malId = number("malId", malId),
+        tmdbId = number("tmdbId", tmdbId),
+        imdbId = imdbId?.let { it.takeIf(IMDB_ID::matches) ?: null.also { dropped("imdbId: not an id") } },
+    )
+}
+
+private val NUMERIC_ID = Regex("^[0-9]{1,9}$")
+private val IMDB_ID = Regex("^tt[0-9]{7,10}$")
+
+/**
+ * The cast the page may show (`KMP-103`). A person without a name is left out; any other field that fails costs only
+ * itself, so a bad photo leaves the person without one. Words lose controls, format and separator characters and are
+ * trimmed, then dropped if blank or too long: never shortened. Repeats are found after that, so a name with a zero-width
+ * joiner in it is still the same name.
+ */
+internal fun List<RemoteCastMember>.cleanedCast(dropped: (String) -> Unit = {}): List<RemoteCastMember> {
+    val reasons = LinkedHashSet<String>()
+    val kept = mapNotNull { person ->
+        val name = person.name.personWords() ?: return@mapNotNull null.also { reasons += "a name blank or too long" }
+        val role = person.role?.let { words -> words.personWords().also { if (it == null) reasons += "a role blank or too long" } }
+        val voice = person.voiceActor?.let { words ->
+            words.personWords().also { if (it == null) reasons += "a voice actor blank or too long" }
+        }
+        val image = person.imageUrl?.let { url -> url.imageUrlOrNull().also { if (it == null) reasons += "an image refused" } }
+        RemoteCastMember(name, person.roleKind, role, voice, image)
+    }.distinctBy { it.name to it.role }.take(HostProtocol.MAX_CAST)
+    reasons.forEach { dropped("cast: $it") }
+    return kept
+}
+
+/**
+ * The recommendations the page may show (`KMP-103`). One without a title or a usable key is left out; a bad type, year
+ * or poster costs only itself.
+ *
+ * A key is opaque and never repaired: it goes back unchanged to the provider that sent it, so one holding a control
+ * character, or past [HostProtocol.MAX_KEY_CHARS], is refused rather than cleaned into a different key. One equal to
+ * [ownKey], the open title's, is left out, so a page never suggests itself; so are repeats.
+ */
+internal fun List<RemoteRecommendation>.cleanedRecommendations(
+    ownKey: String,
+    dropped: (String) -> Unit = {},
+): List<RemoteRecommendation> {
+    val reasons = LinkedHashSet<String>()
+    val kept = mapNotNull { title ->
+        val words = title.title.labelWords(HostProtocol.MAX_RECOMMENDATION_TITLE_CHARS)
+            ?: return@mapNotNull null.also { reasons += "a title blank or too long" }
+        val key = title.key.takeIf { it.isNotEmpty() && it.length <= HostProtocol.MAX_KEY_CHARS && it.none(Char::isISOControl) }
+            ?: return@mapNotNull null.also { reasons += "a key refused" }
+        if (key == ownKey) return@mapNotNull null.also { reasons += "the title itself" }
+        val year = title.year?.let { year ->
+            year.takeIf { it in HostProtocol.MIN_YEAR..HostProtocol.MAX_YEAR }.also { if (it == null) reasons += "a year out of range" }
+        }
+        val poster = title.posterUrl?.let { url -> url.imageUrlOrNull().also { if (it == null) reasons += "a poster refused" } }
+        RemoteRecommendation(words, key, title.type?.takeIf { it in HostProtocol.TYPE_CODES }, year, poster)
+    }.distinctBy { it.key }.take(HostProtocol.MAX_RECOMMENDATIONS)
+    reasons.forEach { dropped("recommendations: $it") }
+    return kept
+}
+
+private fun String.personWords(): String? = labelWords(HostProtocol.MAX_PERSON_CHARS)
+
+/** Words drawn beside a title: no controls, format or separator characters (U+202E would reverse the line), trimmed. */
+private fun String.labelWords(maxChars: Int): String? =
+    filterNot(::isInvisibleInLabel).trim().takeIf { it.isNotEmpty() && it.length <= maxChars }
+
+/**
+ * A headshot or a recommendation's poster the app may fetch (`KMP-103`), or null: the URL exactly as sent, never
+ * repaired. No control characters and at most [HostProtocol.MAX_IMAGE_URL_CHARS]; then [httpsUrlOrNull]'s checks (https,
+ * no local or private host as written); and no userinfo, which [SandboxPolicy.isHttpUrlShape] refuses.
+ */
+internal fun String.imageUrlOrNull(): String? = takeIf { it.length <= HostProtocol.MAX_IMAGE_URL_CHARS && it.none(Char::isISOControl) }
+    ?.httpsUrlOrNull()
+    ?.takeIf { it == this && SandboxPolicy.isHttpUrlShape(it) }
 
 /**
  * The facts the page may show, each checked for what it means once the reader has checked its shape (`KMP-76`).

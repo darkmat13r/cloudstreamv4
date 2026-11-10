@@ -69,6 +69,8 @@
 <string name="account_select_title">"Kven ser på?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s stadfesta ikkje innlogginga. Ingenting vart lagra."</string>
 <string name="account_signin_failed_title" formatted="true">"Kunne ikkje logge inn på %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Kunne ikkje ta vare på innlogginga til %s på denne datamaskina, så du er ikkje logga inn."</string>
+<string name="account_signin_not_removed" formatted="true">"Kunne ikkje fjerne innlogginga til %s frå denne datamaskina, så ho er framleis aktiv."</string>
 <string name="account_signin_offline_body" formatted="true">"Innlogging på %s krev tilkopling. Prøv igjen når denne eininga er tilkopla att."</string>
 <string name="account_signins_until_quit">"Innloggingar varer til du avsluttar CloudStream."</string>
 <string name="account_sync_connected">"Tilkopla · logga inn på denne eininga"</string>
@@ -107,6 +109,7 @@
 <string name="cartoons_singular">"Teiknefilm"</string>
 <string name="cast">"Rollebesetning"</string>
 <string name="cast_format" formatted="true">"Rollebesetning: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Stemme: %s"</string>
 <string name="category_account">"Kontoar"</string>
 <string name="category_updates">"Oppdateringar og sikkerheitskopiering av data"</string>
 <string name="continue_watching">"Fortsett å sjå"</string>
@@ -179,6 +182,8 @@
 <string name="episode_more_options_des">"Fleire val"</string>
 <string name="episode_poster_img_des">"Episodeminiatyrbilete"</string>
 <string name="episode_short">"E"</string>
+<string name="episode_time_left" formatted="true">"%1$d min att"</string>
+<string name="episode_watched">"Sett"</string>
 <string name="episodes">"Episodar"</string>
 <string name="error_bookmarks_text">"Bokmerker"</string>
 <string name="error_loading_links_toast">"Feil ved innlasting av lenker"</string>

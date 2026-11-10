@@ -73,6 +73,8 @@
 <string name="account_select_title">"Chi sta guardando?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s non ha confermato l'accesso. Non è stato salvato nulla."</string>
 <string name="account_signin_failed_title" formatted="true">"Impossibile accedere a %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Impossibile conservare l'accesso a %s su questo computer, quindi non hai effettuato l'accesso."</string>
+<string name="account_signin_not_removed" formatted="true">"Impossibile rimuovere l'accesso a %s da questo computer, quindi è ancora attivo."</string>
 <string name="account_signin_offline_body" formatted="true">"Per accedere a %s serve una connessione. Riprova quando questo dispositivo sarà di nuovo online."</string>
 <string name="account_signins_until_quit">"Gli accessi durano finché non chiudi CloudStream."</string>
 <string name="account_sync_connected">"Connesso · accesso eseguito su questo dispositivo"</string>
@@ -199,6 +201,7 @@
 <string name="cartoons_singular">"Cartoni"</string>
 <string name="cast">"Cast"</string>
 <string name="cast_format" formatted="true">"Cast: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Voce di %s"</string>
 <string name="category_account">"Account e sicurezza"</string>
 <string name="category_general">"Generale"</string>
 <string name="category_player">"Lettore"</string>
@@ -362,7 +365,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Aggiorna progresso di visione"</string>
 <string name="episode_sync_settings_des">"Sincronizza automaticamente gli episodi guardati"</string>
+<string name="episode_time_left" formatted="true">"Mancano %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Prossimamente tra %s"</string>
+<string name="episode_watched">"Visto"</string>
 <string name="episodes">"Episodi"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Errore"</string>

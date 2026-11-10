@@ -69,6 +69,8 @@
 <string name="account_select_title">"Quen está a ver?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s non confirmou o inicio de sesión. Non se gardou nada."</string>
 <string name="account_signin_failed_title" formatted="true">"Non se puido iniciar sesión en %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Non se puido conservar o inicio de sesión en %s neste ordenador, así que non iniciaches sesión."</string>
+<string name="account_signin_not_removed" formatted="true">"Non se puido quitar o inicio de sesión en %s deste ordenador, así que a sesión segue iniciada."</string>
 <string name="account_signin_offline_body" formatted="true">"Para iniciar sesión en %s fai falta conexión. Téntao de novo cando este dispositivo volva estar en liña."</string>
 <string name="account_signins_until_quit">"Os inicios de sesión duran ata que saias de CloudStream."</string>
 <string name="account_sync_connected">"Conectado · sesión iniciada neste dispositivo"</string>
@@ -128,6 +130,7 @@
 <string name="cartoons_singular">"Debuxo animado"</string>
 <string name="cast">"Elenco"</string>
 <string name="cast_format" formatted="true">"Elenco: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Voz de %s"</string>
 <string name="category_account">"Contas e seguridade"</string>
 <string name="category_updates">"Actualizacións e copias de seguridade"</string>
 <string name="check_for_update">"Buscar actualizacións"</string>
@@ -224,7 +227,9 @@
 <string name="episode_short">"C"</string>
 <string name="episode_sync_settings">"Actualizar progreso do visto"</string>
 <string name="episode_sync_settings_des">"Sincronizar automáticamente o progreso do episodio actual"</string>
+<string name="episode_time_left" formatted="true">"Quedan %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Próximamente en %s"</string>
+<string name="episode_watched">"Visto"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error_bookmarks_text">"Marcadores"</string>
 <string name="error_loading_links_toast">"Error Cargando Ligazón"</string>

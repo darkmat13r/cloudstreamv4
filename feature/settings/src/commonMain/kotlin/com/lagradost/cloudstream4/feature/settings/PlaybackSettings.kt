@@ -19,6 +19,12 @@ interface PlaybackSettings {
     /** "Seek amount": how far the arrow keys and the skip buttons move, always one of [SettingsValues.SEEK_SECONDS]. */
     val seekSeconds: StateFlow<Int>
 
+    /**
+     * "Skip OP": Android's `enable_skip_op_from_database` (`KMP-86`). On, the player asks the skip services for the
+     * episode's stamps; off, it asks nothing at all.
+     */
+    val skipStamps: StateFlow<Boolean>
+
     companion object {
         /** Every value at its default, never stored. What a test or a host without storage reads. */
         val Default: PlaybackSettings = object : PlaybackSettings {
@@ -26,6 +32,8 @@ interface PlaybackSettings {
                 MutableStateFlow(SettingsValues.DEFAULT_AUTOPLAY_NEXT).asStateFlow()
             override val seekSeconds: StateFlow<Int> =
                 MutableStateFlow(SettingsValues.DEFAULT_SEEK_SECONDS).asStateFlow()
+            override val skipStamps: StateFlow<Boolean> =
+                MutableStateFlow(SettingsValues.DEFAULT_SKIP_STAMPS).asStateFlow()
         }
     }
 }

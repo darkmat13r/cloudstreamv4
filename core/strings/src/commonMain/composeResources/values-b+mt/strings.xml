@@ -48,6 +48,8 @@
 <string name="account_select_title">Min qed jara?</string>
 <string name="account_signin_failed_body">%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn.</string>
 <string name="account_signin_failed_title">Ma setgħetx issir id-dħul f'%s</string>
+<string name="account_signin_not_kept">Ma setax jinżamm id-dħul f'%s fuq dan il-kompjuter, għalhekk m'intix dħalt.</string>
+<string name="account_signin_not_removed">Ma setax jitneħħa d-dħul f'%s minn dan il-kompjuter, għalhekk għadu attiv.</string>
 <string name="account_signin_offline_body">Biex tidħol f'%s trid konnessjoni. Erġa' pprova meta dan l-apparat jerġa' jkun online.</string>
 <string name="account_signins_until_quit">Id-dħul idum sakemm toħroġ minn CloudStream.</string>
 <string name="account_sync_connected">Imqabbad · dħalt fuq dan l-apparat</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d episodju</item><item quantity="two">%d episodji</item><item quantity="few">%d episodji</item><item quantity="many">%d episodji</item><item quantity="other">%d episodji</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d falla</item><item quantity="two">%d fallew</item><item quantity="few">%d fallew</item><item quantity="many">%d fallew</item><item quantity="other">%d fallew</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titlu · %2$s</item><item quantity="two">%1$d titli · %2$s</item><item quantity="few">%1$d titli · %2$s</item><item quantity="many">%1$d titli · %2$s</item><item quantity="other">%1$d titli · %2$s</item></plurals>
+<string name="episode_time_left">Fadal %1$d min</string>
+<string name="episode_watched">Rajt</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="two">%d BOOKMARKS</item><item quantity="few">%d BOOKMARKS</item><item quantity="many">%d BOOKMARKS</item><item quantity="other">%d BOOKMARKS</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Ma setgħetx tiġi mgħobbija %d taqsima</item><item quantity="two">Ma setgħux jiġu mgħobbija %d taqsimat</item><item quantity="few">Ma setgħux jiġu mgħobbija %d taqsimat</item><item quantity="many">Ma setgħux jiġu mgħobbija %d taqsima</item><item quantity="other">Ma setgħux jiġu mgħobbija %d taqsima</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titlu</item><item quantity="two">%d titli</item><item quantity="few">%d titli</item><item quantity="many">%d-il titlu</item><item quantity="other">%d titlu</item></plurals>
@@ -102,6 +106,7 @@
 <string name="browser">Brawser</string>
 <string name="cast">Atturi</string>
 <string name="cast_format">Atturi: %s</string>
+<string name="cast_voiced_by">Leħen ta' %s</string>
 <string name="continue_watching">Kompli Ara</string>
 <string name="desktop_menu_go">Mur</string>
 <string name="detail_source_resolving">Qed isolvi…</string>

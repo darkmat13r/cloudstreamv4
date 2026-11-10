@@ -72,6 +72,8 @@
 <string name="account_select_title">"Хто глядзіць?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не пацвердзіў уваход. Нічога не захавана."</string>
 <string name="account_signin_failed_title" formatted="true">"Не ўдалося ўвайсці ў %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Не ўдалося захаваць уваход у %s на гэтым камп'ютары, таму вы не ўвайшлі."</string>
+<string name="account_signin_not_removed" formatted="true">"Не ўдалося выдаліць уваход у %s з гэтага камп'ютара, таму ён усё яшчэ дзейнічае."</string>
 <string name="account_signin_offline_body" formatted="true">"Для ўваходу ў %s патрэбна злучэнне. Паспрабуйце зноў, калі гэта прылада зноў будзе ў сетцы."</string>
 <string name="account_signins_until_quit">"Уваходы захоўваюцца, пакуль вы не выйдзеце з CloudStream."</string>
 <string name="account_sync_connected">"Падключана · уваход на гэтай прыладзе"</string>
@@ -198,6 +200,7 @@
 <string name="cartoons_singular">"Мультфільм"</string>
 <string name="cast">"Склад"</string>
 <string name="cast_format" formatted="true">"Склад: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Агучвае %s"</string>
 <string name="category_account">"Уліковыя запісы і бяспека"</string>
 <string name="category_general">"Агульныя"</string>
 <string name="category_player">"Прайгравальнік"</string>
@@ -361,7 +364,9 @@
 <string name="episode_short">"Сер"</string>
 <string name="episode_sync_settings">"Абнаўляць працэс прагляду"</string>
 <string name="episode_sync_settings_des">"Аўтаматычна сінхранізаваць прагрэс бягучай серыі"</string>
+<string name="episode_time_left" formatted="true">"Засталося %1$d хв"</string>
 <string name="episode_upcoming_format" formatted="true">"Наступны праз %s"</string>
+<string name="episode_watched">"Прагледжана"</string>
 <string name="episodes">"Серый"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Памылка"</string>

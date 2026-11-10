@@ -69,6 +69,8 @@
 <string name="account_select_title">"ಯಾರು ನೋಡುತ್ತಿದ್ದಾರೆ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ಸೈನ್ ಇನ್ ಅನ್ನು ಖಚಿತಪಡಿಸಲಿಲ್ಲ. ಏನನ್ನೂ ಉಳಿಸಲಾಗಿಲ್ಲ."</string>
 <string name="account_signin_failed_title" formatted="true">"%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"</string>
+<string name="account_signin_not_kept" formatted="true">"ಈ ಕಂಪ್ಯೂಟರ್‌ನಲ್ಲಿ %s ಸೈನ್-ಇನ್ ಅನ್ನು ಇರಿಸಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ನೀವು ಸೈನ್ ಇನ್ ಆಗಿಲ್ಲ."</string>
+<string name="account_signin_not_removed" formatted="true">"ಈ ಕಂಪ್ಯೂಟರ್‌ನಿಂದ %s ಸೈನ್-ಇನ್ ಅನ್ನು ತೆಗೆದುಹಾಕಲಾಗಲಿಲ್ಲ, ಆದ್ದರಿಂದ ಅದು ಇನ್ನೂ ಸೈನ್ ಇನ್ ಆಗಿದೆ."</string>
 <string name="account_signin_offline_body" formatted="true">"%s ಗೆ ಸೈನ್ ಇನ್ ಮಾಡಲು ಸಂಪರ್ಕ ಬೇಕು. ಈ ಸಾಧನ ಮತ್ತೆ ಆನ್‌ಲೈನ್ ಆದಾಗ ಪ್ರಯತ್ನಿಸಿ."</string>
 <string name="account_signins_until_quit">"CloudStream ಅನ್ನು ಮುಚ್ಚುವವರೆಗೆ ಸೈನ್-ಇನ್‌ಗಳು ಇರುತ್ತವೆ."</string>
 <string name="account_sync_connected">"ಸಂಪರ್ಕಗೊಂಡಿದೆ · ಈ ಸಾಧನದಲ್ಲಿ ಸೈನ್ ಇನ್"</string>
@@ -101,6 +103,7 @@
 <string name="browser">"ಬ್ರೌಸರ್"</string>
 <string name="cast">"ಕ್ಯಾಸ್ಟ್"</string>
 <string name="cast_format" formatted="true">"ಕ್ಯಾಸ್ಟ್:%s"</string>
+<string name="cast_voiced_by" formatted="true">"ಧ್ವನಿ: %s"</string>
 <string name="chromecast_subtitles_settings">"ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್"</string>
 <string name="chromecast_subtitles_settings_des">"ಕ್ರೋಮ್ ಕ್ಯಾಸ್ಟ್ ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್"</string>
 <string name="continue_watching">"ಕಂಟಿನ್ಯೂ ವಾಟಚಿಂಗ್"</string>
@@ -156,6 +159,8 @@
 <string name="duration_format" formatted="true">"%dಮಿನ"</string>
 <string name="episode_more_options_des">"ಹೆಚ್ಚಿನ ಆಯ್ಕೆ"</string>
 <string name="episode_poster_img_des">"ಸಂಚಿಕೆ ಪೋಸ್ಟರ್"</string>
+<string name="episode_time_left" formatted="true">"%1$d ನಿಮಿಷ ಬಾಕಿ"</string>
+<string name="episode_watched">"ವೀಕ್ಷಿಸಲಾಗಿದೆ"</string>
 <string name="error_bookmarks_text">"ಬುಕ್‌ಮಾರ್ಕ್‌"</string>
 <string name="error_loading_links_toast">"ಲೋಡಿಂಗ್ ಲಿಂಕ್ ಎರರ್ ಬಂದಿದೆ"</string>
 <string name="extension_allow">"ಅನುಮತಿಸಿ"</string>

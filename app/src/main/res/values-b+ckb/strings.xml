@@ -69,6 +69,8 @@
 <string name="account_select_title">"کێ سەیر دەکات؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا."</string>
 <string name="account_signin_failed_title" formatted="true">"نەتوانرا بچیتە ژوورەوەی %s"</string>
+<string name="account_signin_not_kept" formatted="true">"چوونەژوورەوەی %s لەسەر ئەم کۆمپیوتەرە هەڵنەگیرا، بۆیە تۆ نەچوویتە ژوورەوە."</string>
+<string name="account_signin_not_removed" formatted="true">"چوونەژوورەوەی %s لەم کۆمپیوتەرە لانەبرا، بۆیە هێشتا لەژوورەوەیە."</string>
 <string name="account_signin_offline_body" formatted="true">"چوونەژوورەوە بۆ %s پەیوەندی پێویستە. کاتێک ئەم ئامێرە دووبارە سەرهێڵ بوو هەوڵ بدەرەوە."</string>
 <string name="account_signins_until_quit">"چوونەژوورەوەکان دەمێننەوە تا CloudStream دادەخەیت."</string>
 <string name="account_sync_connected">"پەیوەستە · لەسەر ئەم ئامێرە چووەتە ژوورەوە"</string>
@@ -95,6 +97,7 @@
 <string name="browser">"براوزەر"</string>
 <string name="cast">"تیم"</string>
 <string name="cast_format" formatted="true">"تیم:%s"</string>
+<string name="cast_voiced_by" formatted="true">"دەنگی %s"</string>
 <string name="deselect_all">"هەمووی لابدە"</string>
 <string name="desktop_menu_go">"بڕۆ"</string>
 <string name="detail_load_failed_body">"ڕەنگە سەرچاوەکە بەردەست نەبێت."</string>
@@ -153,6 +156,8 @@
 <string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
 <string name="episode_more_options_des">"هەڵبژاردنی زیاتر"</string>
 <string name="episode_poster_img_des">"پۆستەری ئەڵقە"</string>
+<string name="episode_time_left" formatted="true">"%1$d خولەک ماوە"</string>
+<string name="episode_watched">"بینراوە"</string>
 <string name="error_bookmarks_text">"ئاماژەکان"</string>
 <string name="extension_allow">"ڕێگە بدە"</string>
 <string name="extension_decision_not_saved">"هەڵبژاردنەکەت پاشەکەوت نەکرا، بۆیە ئەم زیادکراوەیە کوژاوە دەمێنێتەوە. دووبارە لێت دەپرسرێتەوە."</string>

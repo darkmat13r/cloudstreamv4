@@ -43,11 +43,11 @@ internal sealed interface SyncStep {
         override fun toString(): String = "Password(service=$service, attempt=$attempt, mismatch=$mismatch)"
     }
 
-    /** A13, A13b. */
-    data class Failed(val service: DesktopService, val offline: Boolean) : SyncStep
+    /** A13, A13b. [notKept]: the service said yes and the Keychain refused it, so nothing is signed in (`KMP-95f`). */
+    data class Failed(val service: DesktopService, val offline: Boolean, val notKept: Boolean = false) : SyncStep
 
-    /** A14. */
-    data class Remove(val service: DesktopService) : SyncStep
+    /** A14. [notRemoved]: the last Remove was refused, so the sign-in is still there (`KMP-95f`). */
+    data class Remove(val service: DesktopService, val notRemoved: Boolean = false) : SyncStep
 
     /** The step Cancel goes back to. */
     fun back(): SyncStep? = when (this) {
@@ -68,6 +68,8 @@ internal sealed interface SyncStep {
  *   the poll or the request in flight. An answer that comes after is never stored: the store is written only from a
  *   coroutine still running, checked just before.
  * - Nothing about a sign-in is logged or written to a file here: the store is the only place one goes.
+ * - **A sign-in the store cannot keep is not signed in** (`KMP-95f`): it ends as A13 with [SyncStep.Failed.notKept], and
+ *   a Remove the store refuses stays on A14 and says so. Only an unsigned build's store says sign-ins end at quit.
  *
  * @param tick waits between Simkl's countdown seconds; a test passes one on a fake clock.
  * @param openUrl opens Simkl's page in the browser. Only an https address on simkl.com reaches it.
@@ -108,6 +110,7 @@ internal fun SyncSheets(
                 subtitleRows = DesktopService.entries.filter { it.subtitles }.map(row),
                 onDone = { onStep(null) },
                 focusOn = step.focusOn?.name,
+                untilQuit = !store.lastsAfterQuit,
             )
         }
         is SyncStep.Pair -> PairStep(step, onStep, profile, store, client, tick, openUrl)
@@ -119,18 +122,23 @@ internal fun SyncSheets(
             // A13: Try again starts the sign-in afresh.
             onRetry = { onStep(start(step.service)) },
             onCancel = { onStep(step.back()) },
+            notKept = step.notKept,
         )
         is SyncStep.Remove -> RemoveSignInSheet(
             profileName = profileName,
             serviceName = step.service.displayName,
             onRemove = {
-                store.remove(profile, step.service)
-                onStep(SyncStep.List(step.service))
+                onStep(if (store.remove(profile, step.service)) SyncStep.List(step.service) else SyncStep.Remove(step.service, notRemoved = true))
             },
             onCancel = { onStep(step.back()) },
+            notRemoved = step.notRemoved,
         )
     }
 }
+
+/** Where a sign-in the service accepted goes: back to A9 if the store kept it, A13 saying so if not (`KMP-95f`). */
+private fun kept(stored: Boolean, service: DesktopService): SyncStep =
+    if (stored) SyncStep.List(service) else SyncStep.Failed(service, offline = false, notKept = true)
 
 /** A sign-in's first step, by how its service signs in. */
 private fun start(service: DesktopService): SyncStep = when (service.kind) {
@@ -182,8 +190,7 @@ private fun BrowserStep(
             val next = when (result) {
                 is SignInResult.Done -> {
                     currentCoroutineContext().ensureActive()
-                    store.put(profile, step.service, result.value)
-                    SyncStep.List(step.service)
+                    kept(store.put(profile, step.service, result.value), step.service)
                 }
                 SignInResult.Offline -> SyncStep.Failed(step.service, offline = true)
                 else -> SyncStep.Failed(step.service, offline = false)
@@ -197,6 +204,7 @@ private fun BrowserStep(
         serviceName = step.service.displayName,
         onOpenAgain = { page?.let(openUrl) },
         onCancel = { onStep(step.back()) },
+        untilQuit = !store.lastsAfterQuit,
     )
 }
 
@@ -243,8 +251,7 @@ private fun PairStep(
                 is SignInResult.Done -> {
                     // Cancel leaves this composition and cancels this coroutine: a late answer stops here.
                     currentCoroutineContext().ensureActive()
-                    store.put(profile, DesktopService.Simkl, answer.value)
-                    return@LaunchedEffect onStep(SyncStep.List(DesktopService.Simkl))
+                    return@LaunchedEffect onStep(kept(store.put(profile, DesktopService.Simkl, answer.value), DesktopService.Simkl))
                 }
                 SignInResult.Pending -> Unit
                 SignInResult.Offline -> return@LaunchedEffect onStep(SyncStep.Failed(DesktopService.Simkl, offline = true))
@@ -273,6 +280,7 @@ private fun PairStep(
         onNewCode = { onStep(SyncStep.Pair(step.attempt + 1)) },
         onCancel = { onStep(step.back()) },
         qr = qr,
+        untilQuit = !store.lastsAfterQuit,
     )
 }
 
@@ -294,8 +302,7 @@ private fun PasswordStep(
             val next = when (val answer = client.passwordSignIn(step.service, email, password)) {
                 is SignInResult.Done -> {
                     currentCoroutineContext().ensureActive()
-                    store.put(profile, step.service, answer.value)
-                    SyncStep.List(step.service)
+                    kept(store.put(profile, step.service, answer.value), step.service)
                 }
                 SignInResult.Refused, SignInResult.Pending ->
                     SyncStep.Password(step.service, attempt = step.attempt + 1, mismatch = true, email = email)
@@ -317,6 +324,7 @@ private fun PasswordStep(
             submissions++
         },
         onCancel = { onStep(step.back()) },
+        untilQuit = !store.lastsAfterQuit,
     )
 }
 

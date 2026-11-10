@@ -48,6 +48,8 @@
 <string name="account_select_title">کون دیکھ رہا ہے؟</string>
 <string name="account_signin_failed_body">%s نے سائن ان کی تصدیق نہیں کی۔ کچھ بھی محفوظ نہیں ہوا۔</string>
 <string name="account_signin_failed_title">%s میں سائن ان نہیں ہو سکا</string>
+<string name="account_signin_not_kept">اس کمپیوٹر پر %s کا سائن اِن رکھا نہیں جا سکا، اس لیے آپ سائن اِن نہیں ہیں۔</string>
+<string name="account_signin_not_removed">اس کمپیوٹر سے %s کا سائن اِن ہٹایا نہیں جا سکا، اس لیے یہ اب بھی سائن اِن ہے۔</string>
 <string name="account_signin_offline_body">%s میں سائن ان کرنے کے لیے کنکشن درکار ہے۔ یہ آلہ دوبارہ آن لائن ہونے پر کوشش کریں۔</string>
 <string name="account_signins_until_quit">سائن اِن تب تک رہتے ہیں جب تک آپ CloudStream بند نہیں کرتے۔</string>
 <string name="account_sync_connected">منسلک · اس آلے پر سائن ان</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d اقساط</item><item quantity="other">%d اقساط</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ناکام</item><item quantity="other">%d ناکام</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d عنوانات · %2$s</item><item quantity="other">%1$d عنوانات · %2$s</item></plurals>
+<string name="episode_time_left">%1$d منٹ باقی</string>
+<string name="episode_watched">دیکھ لیا</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d بک مارک</item><item quantity="other">%d بک مارکس</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d سیکشن لوڈ نہیں ہو سکا</item><item quantity="other">%d سیکشنز لوڈ نہیں ہو سکے</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عنوانات</item></plurals>
@@ -186,6 +190,7 @@
 <string name="cartoons_singular">کارٹون</string>
 <string name="cast">کاسٹ</string>
 <string name="cast_format">کاسٹ: %s</string>
+<string name="cast_voiced_by">آواز: %s</string>
 <string name="category_account">اکاؤنٹس اور سیکیورٹی</string>
 <string name="category_general">عمومی</string>
 <string name="category_player">پلیئر</string>

@@ -2,10 +2,13 @@ package com.lagradost.cloudstream4.detail
 
 import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream4.extensions.untrustedText
+import com.lagradost.cloudstream4.feature.detail.DetailCastMember
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
+import com.lagradost.cloudstream4.feature.detail.DetailRecommendation
 import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
+import com.lagradost.cloudstream4.feature.detail.TitleIds
 import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginFailed
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteDetails
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLink
@@ -53,10 +56,12 @@ class DesktopDetailSource : DetailSource {
             provider.details(url)
         } catch (failure: IOException) {
             // The page shows none of this (BUG-21): it is a class name and a plugin's words. It goes
-            // where a person debugging a plugin can find it, without a URL, which can carry a token.
+            // where a person debugging a plugin can find it, without a URL, which can carry a token. Nor the key
+            // the title was asked for (KMP-103): a recommendation's need not look like a URL, and the plugin's
+            // words may repeat it.
             // BUG-92: a plugin's reported failure says only its class; its words go to no log, redacted or not.
-            val reason = if (failure is PluginFailed) failure.toString() else failure.message.orEmpty().withoutUrls()
-            System.err.println("detail: ${provider.name} could not open a title: $reason")
+            val reason = if (failure is PluginFailed) failure.toString() else failure.message.orEmpty()
+            System.err.println(detailFailureLine(provider.name, reason, url))
             throw failure
         }
         return details.toTitleDetail(provider.name)
@@ -96,7 +101,29 @@ internal fun RemoteDetails.toTitleDetail(providerName: String) = TitleDetail(
     durationMinutes = facts.runtimeMinutes,
     // The sandbox's own, already checked (`KMP-100`). No fallback to the poster: E1 draws plain ground without one.
     backdropUrl = backdropUrl,
+    // Checked by the sandbox's reader (`KMP-86`): digits only for MAL and TMDb, so these parse.
+    ids = TitleIds(ids.malId?.toIntOrNull(), ids.tmdbId?.toIntOrNull(), ids.imdbId),
+    cast = cast.map { person ->
+        // The words, and the kind apart, which the page puts in words where there are none (KMP-104).
+        DetailCastMember(person.name, person.imageUrl, person.role, person.voiceActor, person.roleKind?.name)
+    },
+    recommendations = recommendations.mapNotNull { title ->
+        // Bound to the provider that sent it, never one it names (KMP-103), and kept only if the id gives back
+        // exactly this provider and this key.
+        val id = DesktopSearchSource.encodeId(providerName, title.key)
+        if (DesktopSearchSource.decodeId(SearchResultId(id)) != providerName to title.key) return@mapNotNull null
+        DetailRecommendation(id = id, title = title.title, posterUrl = title.posterUrl, year = title.year, typeName = title.type)
+    },
 )
+
+/** What is logged when a title cannot be opened: the provider and the plugin's words, with no URL and not [key]. */
+internal fun detailFailureLine(providerName: String, message: String, key: String): String =
+    "detail: $providerName could not open a title: ${message.withoutKey(key).withoutUrls()}"
+
+/** [key] in a plugin's words, if they repeat it, as a marker. An empty key is left alone. */
+internal fun String.withoutKey(key: String): String = if (key.isEmpty()) this else replace(key, KEY_MARKER)
+
+private const val KEY_MARKER = "<key>"
 
 /**
  * The plot as plain text. Providers send HTML (`<br>` in a YouTube description) and nothing here

@@ -48,6 +48,8 @@
 <string name="account_select_title">誰在觀看？</string>
 <string name="account_signin_failed_body">%s 未確認登入。未儲存任何內容。</string>
 <string name="account_signin_failed_title">無法登入 %s</string>
+<string name="account_signin_not_kept">無法在這台電腦上保留 %s 的登入，因此你尚未登入。</string>
+<string name="account_signin_not_removed">無法從這台電腦上移除 %s 的登入，因此仍處於登入狀態。</string>
 <string name="account_signin_offline_body">登入 %s 需要網路連線。請在此裝置恢復連線後再試一次。</string>
 <string name="account_signins_until_quit">登入狀態會保留到你結束 CloudStream 為止。</string>
 <string name="account_sync_connected">已連線 · 已在此裝置登入</string>
@@ -74,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d 個失敗</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">佇列中有 %d 個下載</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d 部作品 · %2$s</item></plurals>
+<string name="episode_time_left">剩下 %1$d 分鐘</string>
+<string name="episode_watched">已看完</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d 個書籤</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d 個分區載入失敗</item></plurals>
 <plurals name="library_title_count"><item quantity="other">%d 部作品</item></plurals>
@@ -201,6 +205,7 @@
 <string name="cartoons_singular">卡通</string>
 <string name="cast">演員</string>
 <string name="cast_format">演員：%s</string>
+<string name="cast_voiced_by">配音：%s</string>
 <string name="category_account">帳戶和安全</string>
 <string name="category_general">通用</string>
 <string name="category_player">播放器</string>

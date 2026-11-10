@@ -48,6 +48,8 @@
 <string name="account_select_title">ማን እየተመለከተ ነው?</string>
 <string name="account_signin_failed_body">%s መግባቱን አላረጋገጠም። ምንም አልተቀመጠም።</string>
 <string name="account_signin_failed_title">ወደ %s መግባት አልተቻለም</string>
+<string name="account_signin_not_kept">የ%s መግቢያን በዚህ ኮምፒውተር ላይ ማስቀመጥ አልተቻለም፣ ስለዚህ አልገቡም።</string>
+<string name="account_signin_not_removed">የ%s መግቢያን ከዚህ ኮምፒውተር ማስወገድ አልተቻለም፣ ስለዚህ አሁንም እንደገባ ነው።</string>
 <string name="account_signin_offline_body">ወደ %s ለመግባት ግንኙነት ያስፈልጋል። ይህ መሣሪያ ተመልሶ መስመር ላይ ሲሆን እንደገና ይሞክሩ።</string>
 <string name="account_signins_until_quit">መግቢያዎች CloudStreamን እስኪያቋርጡ ድረስ ይቆያሉ።</string>
 <string name="account_sync_connected">ተገናኝቷል · በዚህ መሣሪያ ላይ ገብቷል</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d ክፍሎች</item><item quantity="other">%d ክፍሎች</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d አልተሳካም</item><item quantity="other">%d አልተሳኩም</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d ርዕሶች · %2$s</item><item quantity="other">%1$d ርዕሶች · %2$s</item></plurals>
+<string name="episode_time_left">%1$d ደቂቃ ቀርቷል</string>
+<string name="episode_watched">ታይቷል</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ዕልባት</item><item quantity="other">%d ዕልባቶች</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ክፍል መጫን አልተቻለም</item><item quantity="other">%d ክፍል መጫን አልተቻለም</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ርዕስ</item><item quantity="other">%d ርዕሶች</item></plurals>
@@ -101,6 +105,7 @@
 <string name="browser">አሳሽ</string>
 <string name="cast">ተዋናዮች</string>
 <string name="cast_format">ተዋናዮች: %s</string>
+<string name="cast_voiced_by">ድምፅ በ%s</string>
 <string name="continue_watching">መመልከትዎን ይቀጥሉ</string>
 <string name="desktop_menu_go">ሂድ</string>
 <string name="detail_source_resolving">በመፍታት ላይ…</string>

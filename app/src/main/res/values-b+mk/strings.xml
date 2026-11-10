@@ -72,6 +72,8 @@
 <string name="account_select_title">"Кој гледа?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не ја потврди најавата. Ништо не е зачувано."</string>
 <string name="account_signin_failed_title" formatted="true">"Не може да се најавиш на %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Најавата на %s не можеше да се зачува на овој компјутер, па не сте најавени."</string>
+<string name="account_signin_not_removed" formatted="true">"Најавата на %s не можеше да се отстрани од овој компјутер, па сè уште е активна."</string>
 <string name="account_signin_offline_body" formatted="true">"За најава на %s е потребна врска. Обиди се повторно кога уредот ќе биде пак на интернет."</string>
 <string name="account_signins_until_quit">"Најавите траат додека не излезете од CloudStream."</string>
 <string name="account_sync_connected">"Поврзано · најавено на овој уред"</string>
@@ -198,6 +200,7 @@
 <string name="cartoons_singular">"Цртан филм"</string>
 <string name="cast">"Актери"</string>
 <string name="cast_format" formatted="true">"Актери: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Глас: %s"</string>
 <string name="category_account">"Сметки и безбедност"</string>
 <string name="category_general">"Општи поставки"</string>
 <string name="category_player">"Плеер"</string>
@@ -361,7 +364,9 @@
 <string name="episode_short">"Е"</string>
 <string name="episode_sync_settings">"Ажурирај го напредокот на гледање"</string>
 <string name="episode_sync_settings_des">"Автоматски синхронизирај го напредокот на твојата тековна епизода"</string>
+<string name="episode_time_left" formatted="true">"Преостануваат %1$d мин"</string>
 <string name="episode_upcoming_format" formatted="true">"Претстои во %s"</string>
+<string name="episode_watched">"Гледано"</string>
 <string name="episodes">"Епизоди"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Грешка"</string>

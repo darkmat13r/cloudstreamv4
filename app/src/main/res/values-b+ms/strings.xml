@@ -70,6 +70,8 @@
 <string name="account_select_title">"Siapa yang menonton?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s tidak mengesahkan log masuk. Tiada apa-apa yang disimpan."</string>
 <string name="account_signin_failed_title" formatted="true">"Tidak dapat log masuk ke %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Log masuk ke %s tidak dapat disimpan pada komputer ini, jadi anda tidak log masuk."</string>
+<string name="account_signin_not_removed" formatted="true">"Log masuk ke %s tidak dapat dialih keluar daripada komputer ini, jadi ia masih log masuk."</string>
 <string name="account_signin_offline_body" formatted="true">"Log masuk ke %s memerlukan sambungan. Cuba lagi apabila peranti ini kembali dalam talian."</string>
 <string name="account_signins_until_quit">"Log masuk kekal sehingga anda keluar dari CloudStream."</string>
 <string name="account_sync_connected">"Bersambung · log masuk pada peranti ini"</string>
@@ -169,6 +171,7 @@
 <string name="cartoons_singular">"Kartun"</string>
 <string name="cast">"Pelakon"</string>
 <string name="cast_format" formatted="true">"Pelakon:%s"</string>
+<string name="cast_voiced_by" formatted="true">"Disuarakan oleh %s"</string>
 <string name="category_account">"Akaun dan Sekuriti"</string>
 <string name="category_general">"Umum"</string>
 <string name="category_player">"Pemain"</string>
@@ -305,7 +308,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Kemaskini kemajuan tontonan"</string>
 <string name="episode_sync_settings_des">"Selaraskan kemajuan episod secara automatik"</string>
+<string name="episode_time_left" formatted="true">"Tinggal %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Akan datang pada %s"</string>
+<string name="episode_watched">"Sudah ditonton"</string>
 <string name="error">"Ralat"</string>
 <string name="error_bookmarks_text">"Penanda halaman"</string>
 <string name="error_invalid_data">"Data tidak sah"</string>

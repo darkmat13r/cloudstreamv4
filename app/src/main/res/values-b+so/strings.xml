@@ -70,6 +70,8 @@
 <string name="account_select_title">"Yaa daawanaya?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ma xaqiijin galitaanka. Waxba lama kaydin."</string>
 <string name="account_signin_failed_title" formatted="true">"Lama geli karo %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Lama hayn karin gelitaanka %s kombuyuutarkan, sidaa darteed ma gelin."</string>
+<string name="account_signin_not_removed" formatted="true">"Lama saari karin gelitaanka %s kombuyuutarkan, sidaa darteed weli waa la galay."</string>
 <string name="account_signin_offline_body" formatted="true">"Gelitaanka %s wuxuu u baahan yahay xiriir. Mar kale isku day marka qalabkani dib ugu soo laabto khadka."</string>
 <string name="account_signins_until_quit">"Gelitaanku way sii jiraan ilaa aad ka baxdo CloudStream."</string>
 <string name="account_sync_connected">"Waa ku xiran yahay · lagu galay qalabkan"</string>
@@ -160,6 +162,7 @@
 <string name="cartoons_singular">"Kartoob"</string>
 <string name="cast">"Metalaya"</string>
 <string name="cast_format" formatted="true">"Metalaya: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Codka: %s"</string>
 <string name="category_account">"Akoonada iyo Amniga"</string>
 <string name="category_general">"Guud"</string>
 <string name="category_player">"Daaraha"</string>
@@ -274,6 +277,8 @@
 <string name="episode_short">"X"</string>
 <string name="episode_sync_settings">"Cusbooneysii marba halkaad marayso daawashada"</string>
 <string name="episode_sync_settings_des">"Si iskii ah ha ula socdo appku hadba xalqadda aad marayso"</string>
+<string name="episode_time_left" formatted="true">"%1$d daqiiqo ayaa hadhay"</string>
+<string name="episode_watched">"La daawaday"</string>
 <string name="episodes">"Xalqado"</string>
 <string name="episodes_range" formatted="true">"%1$d illaa %2$d"</string>
 <string name="error">"Xumaaday"</string>

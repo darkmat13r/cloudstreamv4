@@ -73,6 +73,8 @@
 <string name="account_select_title">"¿Quién está viendo?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s no confirmó el inicio de sesión. No se ha guardado nada."</string>
 <string name="account_signin_failed_title" formatted="true">"No se pudo iniciar sesión en %s"</string>
+<string name="account_signin_not_kept" formatted="true">"No se pudo guardar el inicio de sesión en %s en este ordenador, así que no has iniciado sesión."</string>
+<string name="account_signin_not_removed" formatted="true">"No se pudo quitar el inicio de sesión en %s de este ordenador, así que la sesión sigue iniciada."</string>
 <string name="account_signin_offline_body" formatted="true">"Para iniciar sesión en %s hace falta conexión. Vuelve a intentarlo cuando este dispositivo tenga conexión."</string>
 <string name="account_signins_until_quit">"Los inicios de sesión duran hasta que cierres CloudStream."</string>
 <string name="account_sync_connected">"Conectado · sesión iniciada en este dispositivo"</string>
@@ -199,6 +201,7 @@
 <string name="cartoons_singular">"Dibujo animado"</string>
 <string name="cast">"Reparto"</string>
 <string name="cast_format" formatted="true">"Reparto: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Voz de %s"</string>
 <string name="category_account">"Cuentas y seguridad"</string>
 <string name="category_general">"General"</string>
 <string name="category_player">"Reproductor"</string>
@@ -362,7 +365,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Actualizar progreso de lo visto"</string>
 <string name="episode_sync_settings_des">"Sincronizar automáticamente el progreso de su episodio actual"</string>
+<string name="episode_time_left" formatted="true">"Quedan %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Próximamente en %s"</string>
+<string name="episode_watched">"Visto"</string>
 <string name="episodes">"Episodios"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Error"</string>

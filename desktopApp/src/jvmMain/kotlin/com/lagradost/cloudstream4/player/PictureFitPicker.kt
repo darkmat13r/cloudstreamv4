@@ -1,5 +1,8 @@
 package com.lagradost.cloudstream4.player
 
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.remember
@@ -24,14 +27,21 @@ internal fun PictureFitPicker(current: PictureFit, onSelect: (PictureFit) -> Uni
         runCatching { focus.requestFocus() }
     }
     PlayerListPanel(stringResource(Res.string.player_fit_title), onDismiss) {
-        PictureFit.entries.forEach { fit ->
-            TrackRow(
-                title = stringResource(fit.words()),
-                detail = null,
-                selected = fit == current,
-                onClick = { onSelect(fit) },
-                modifier = if (fit == current) Modifier.focusRequester(focus) else Modifier,
-            )
+        // As the lazy lists are: room for the ring, and the rows 4 apart.
+        Column(
+            verticalArrangement = Arrangement.spacedBy(PlayerScreenDefaults.PanelRowGap),
+            modifier = Modifier.padding(PlayerScreenDefaults.PickerRingRoom),
+        ) {
+            PictureFit.entries.forEach { fit ->
+                PlayerPanelRow(
+                    title = stringResource(fit.words()),
+                    detail = null,
+                    verb = useVerb(fit == current),
+                    selected = fit == current,
+                    onClick = { onSelect(fit) },
+                    modifier = if (fit == current) Modifier.focusRequester(focus) else Modifier,
+                )
+            }
         }
     }
 }

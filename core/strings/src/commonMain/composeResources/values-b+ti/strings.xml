@@ -48,6 +48,8 @@
 <string name="account_select_title">መን እዩ ዝርኢ ዘሎ?</string>
 <string name="account_signin_failed_body">%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።</string>
 <string name="account_signin_failed_title">ናብ %s ምእታው ኣይተኻእለን</string>
+<string name="account_signin_not_kept">ኣብዚ ኮምፒዩተር ምእታው ናብ %s ክዕቀብ ኣይተኻእለን፣ ስለዚ ኣይኣቶኻን።</string>
+<string name="account_signin_not_removed">ምእታው ናብ %s ካብዚ ኮምፒዩተር ክእለ ኣይተኻእለን፣ ስለዚ ሕጂ'ውን ኣቲዩ ኣሎ።</string>
 <string name="account_signin_offline_body">ናብ %s ንምእታው ምትእስሳር የድሊ። እዚ መሳርሒ ናብ መስመር ምስ ተመልሰ እንደገና ፈትን።</string>
 <string name="account_signins_until_quit">ምእታዋት ክሳብ CloudStream ትዓጽዉ ይጸንሑ።</string>
 <string name="account_sync_connected">ተራኺቡ · ኣብዚ መሳርሒ ኣቲዩ</string>
@@ -72,6 +74,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d ክፍልታት</item><item quantity="other">%d ክፍልታት</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ኣይተዓወተን</item><item quantity="other">%d ኣይተዓወቱን</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d ኣርእስቲ · %2$s</item><item quantity="other">%1$d ኣርእስቲ · %2$s</item></plurals>
+<string name="episode_time_left">%1$d ደቒቕ ተሪፉ</string>
+<string name="episode_watched">ተራእዩ</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ምልክታት</item><item quantity="other">%d ምልክታት</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ክፍሊ ክጽዓን ኣይከኣለን</item><item quantity="other">%d ክፍሊ ክጽዓን ኣይከኣለን</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ኣርእስቲ</item><item quantity="other">%d ኣርእስትታት</item></plurals>
@@ -86,6 +90,7 @@
 <string name="app_dub_sub_episode_text_format">%1$s ክፋል %2$d</string>
 <string name="cast">ተዋሳእቲ</string>
 <string name="cast_format">ተዋሳእቲ፡ %s</string>
+<string name="cast_voiced_by">ድምጺ: %s</string>
 <string name="desktop_menu_go">ኪድ</string>
 <plurals name="home_source_sections"><item quantity="one">%d ክፋል</item><item quantity="other">%d ክፋላት</item></plurals>
 <plurals name="settings_extension_scan_warnings"><item quantity="one">%d መጠንቀቕታ ምርመራ</item><item quantity="other">%d መጠንቀቕታታት ምርመራ</item></plurals>

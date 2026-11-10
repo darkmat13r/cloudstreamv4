@@ -48,6 +48,8 @@
 <string name="account_select_title">مين عم يحضر؟</string>
 <string name="account_signin_failed_body">%s ما أكّد تسجيل الدخول. ما انحفظ شي.</string>
 <string name="account_signin_failed_title">ما قدرنا نسجّل دخول على %s</string>
+<string name="account_signin_not_kept">ما قدرنا نحتفظ بتسجيل الدخول لـ%s على هالكمبيوتر، فإنت مش مسجّل دخول.</string>
+<string name="account_signin_not_removed">ما قدرنا نشيل تسجيل الدخول لـ%s من هالكمبيوتر، فلسّا مسجّل دخول.</string>
 <string name="account_signin_offline_body">تسجيل الدخول على %s بدو اتصال. جرب مرة تانية لما يرجع هالجهاز أونلاين.</string>
 <string name="account_signins_until_quit">تسجيلات الدخول بتضل لحتى تسكّر CloudStream.</string>
 <string name="account_sync_connected">متصل · مسجّل دخول على هالجهاز</string>
@@ -74,6 +76,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">فشل %d</item><item quantity="other">فشلوا %d</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">مافي شي بعد بده يبلش يتنزل</item><item quantity="other">فيه شي واحد بعد بده يبلش يتنزل</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d عنوان · %2$s</item><item quantity="other">%1$d عناوين · %2$s</item></plurals>
+<string name="episode_time_left">باقي %1$d دقيقة</string>
+<string name="episode_watched">تمّت المشاهدة</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d إشارة مرجعية</item><item quantity="other">%d إشارات مرجعية</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">م قدرنا نفتح %d قسم</item><item quantity="other">م قدرنا نفتح %d أقسام</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عناوين</item></plurals>
@@ -201,6 +205,7 @@
 <string name="cartoons_singular">رسوم مُتَحَرِكة</string>
 <string name="cast">ممثلين</string>
 <string name="cast_format">ممثلين: %s</string>
+<string name="cast_voiced_by">بصوت %s</string>
 <string name="category_account">الحسابات وال أمان</string>
 <string name="category_general">عام</string>
 <string name="category_player">مشغل الڤيديو</string>

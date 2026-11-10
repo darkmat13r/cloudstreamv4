@@ -23,6 +23,7 @@ class SettingsRepositoryTest {
             "poster_size_desktop_key" to "large",
             "random_button_key" to "false",
             "seek_amount_desktop_key" to "30",
+            "enable_skip_op_from_database" to "true",
         )
         assertEquals(stored, storage.stored)
 
@@ -48,6 +49,9 @@ class SettingsRepositoryTest {
         settings.setShowRandom(false)
         assertEquals(false, appearance.showRandom.value)
         assertEquals(10, player.seekSeconds.value)
+        assertEquals(true, player.skipStamps.value)
+        settings.setSkipStamps(false)
+        assertEquals(false, player.skipStamps.value)
         settings.setSeekSeconds(5)
         assertEquals(5, player.seekSeconds.value)
     }
@@ -101,6 +105,7 @@ class SettingsRepositoryTest {
                 "poster_size_desktop_key" to "medium",
                 "random_button_key" to "true",
                 "seek_amount_desktop_key" to "10",
+                "enable_skip_op_from_database" to "true",
             )
             assertEquals(both, storage.stored, "the file ends on both")
         }

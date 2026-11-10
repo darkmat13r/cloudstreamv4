@@ -73,6 +73,8 @@
 <string name="account_select_title">"Kdo se dívá?"</string>
 <string name="account_signin_failed_body" formatted="true">"Služba %s přihlášení nepotvrdila. Nic nebylo uloženo."</string>
 <string name="account_signin_failed_title" formatted="true">"Nelze se přihlásit k %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Přihlášení k %s se na tomto počítači nepodařilo uchovat, takže nejste přihlášeni."</string>
+<string name="account_signin_not_removed" formatted="true">"Přihlášení k %s se z tohoto počítače nepodařilo odebrat, takže je stále aktivní."</string>
 <string name="account_signin_offline_body" formatted="true">"Přihlášení k %s vyžaduje připojení. Zkuste to znovu, až bude toto zařízení opět online."</string>
 <string name="account_signins_until_quit">"Přihlášení platí, dokud CloudStream neukončíte."</string>
 <string name="account_sync_connected">"Připojeno · přihlášeno na tomto zařízení"</string>
@@ -199,6 +201,7 @@
 <string name="cartoons_singular">"Animovaný"</string>
 <string name="cast">"Hrají"</string>
 <string name="cast_format" formatted="true">"Hrají: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Hlas: %s"</string>
 <string name="category_account">"Účty a zabezpečení"</string>
 <string name="category_general">"Obecné"</string>
 <string name="category_player">"Přehrávač"</string>
@@ -362,7 +365,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Aktualizovat postup sledování"</string>
 <string name="episode_sync_settings_des">"Automaticky synchronizovat postup sledování současné epizody"</string>
+<string name="episode_time_left" formatted="true">"Zbývá %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Vychází %s"</string>
+<string name="episode_watched">"Zhlédnuto"</string>
 <string name="episodes">"Epizody"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Chyba"</string>
