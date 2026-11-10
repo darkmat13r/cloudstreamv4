@@ -141,7 +141,7 @@ private fun ExtensionsPaneHost(model: ExtensionsPaneModel, focusLink: Boolean, o
             when (action) {
                 is ExtensionsPaneAction.Add -> model.add(action.text)
                 ExtensionsPaneAction.CancelAdd -> model.cancelAdd()
-                ExtensionsPaneAction.Editing -> model.editing()
+                is ExtensionsPaneAction.Editing -> model.editing(action.text)
                 is ExtensionsPaneAction.Open -> model.open(action.key)
                 ExtensionsPaneAction.Close -> model.close()
                 ExtensionsPaneAction.Retry -> model.refresh()

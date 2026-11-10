@@ -105,31 +105,22 @@ class ExtensionsPaneDesktopTest {
         }
     }
 
-    /** `#349` review: the link a person typed can carry a token, so once it is added the field no longer shows it. */
+    /** `#349` review: the field shows what the model holds, so typing goes to the model, and an empty one draws no link. */
     @Test
-    fun `after a repository is added, the field is empty and the link is drawn nowhere`() {
+    fun `the field is the model's, and a link the model no longer holds is drawn nowhere`() {
         val link = "https://files.example/harbour/repo.json?token=tok_made_up_8f2c"
-        val state = androidx.compose.runtime.mutableStateOf(ExtensionsPaneState())
-        val scene = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
-            CloudStreamTheme {
-                CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
-                    Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                        ExtensionsPaneDesktop(state.value, onAction = { actions += it }, installedFrom = { 0 }, focusLink = false)
-                    }
-                }
-            }
-        }
-        scene.use {
+        pane(ExtensionsPaneState()).use { scene ->
             val field = checkNotNull(scene.find("Repository link"))
             checkNotNull(field.config.getOrNull(androidx.compose.ui.semantics.SemanticsActions.SetText)).action
                 ?.invoke(androidx.compose.ui.text.AnnotatedString(link))
             scene.settle()
-            assertTrue(scene.allText().any { link in it }, "the link is in the field while it is typed")
-            scene.click(scene.bounds("Add", text = true).center)
-            assertTrue(actions.contains(ExtensionsPaneAction.Add(link)))
-            // The model reads it, adds it, and says so.
-            state.value = ExtensionsPaneState(repositories = listOf(repository()), added = 1)
-            scene.settle()
+            assertEquals(listOf<ExtensionsPaneAction>(ExtensionsPaneAction.Editing(link)), actions, "typing goes to the model")
+        }
+        pane(ExtensionsPaneState(link = link)).use { scene ->
+            assertTrue(scene.allText().any { link in it }, "the field draws what the model holds")
+        }
+        // After an add succeeds the model holds nothing: a pane drawn now, a restored one included, has no link.
+        pane(ExtensionsPaneState(repositories = listOf(repository()))).use { scene ->
             assertTrue(scene.allText().none { "tok_made_up" in it || "files.example" in it }, "${scene.allText()}")
         }
     }
@@ -224,6 +215,48 @@ class ExtensionsPaneDesktopTest {
                 ),
                 actions,
             )
+        }
+    }
+
+    /** `#349` review, `DS-27`: off until you choose is a filled Review; kept off and blocked are quiet ones. */
+    @Test
+    fun `each Review's fill says whether there is a choice to make (X4)`() {
+        val rows = listOf(
+            extension("Northlight", RowState.Held),
+            extension("Copperleaf", RowState.KeptOff),
+            extension("Fernway", RowState.Blocked),
+            extension("Tidewater", RowState.HashMismatch),
+        )
+        val state = ExtensionsPaneState(open = OpenRepository("k1", "Harbor Mirror", READ_AT, reachable = true, rows = rows))
+        var raised = androidx.compose.ui.graphics.Color.Unspecified
+        val scene = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+            CloudStreamTheme {
+                raised = CloudStreamTheme.colors.raised
+                CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
+                    Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                        ExtensionsPaneDesktop(state, onAction = {}, installedFrom = { 0 }, focusLink = false)
+                    }
+                }
+            }
+        }
+        scene.use {
+            val image = scene.render(SETTLE_FRAMES * FRAME_NANOS)
+            val bitmap = org.jetbrains.skia.Bitmap.makeFromImage(image)
+            // Each Review's word, top to bottom: the rows' order.
+            val reviews = scene.nodes()
+                .filter { node -> node.config.getOrNull(SemanticsProperties.Text).orEmpty().any { it.text == "Review" } }
+                .sortedBy { it.boundsInRoot.top }
+            assertEquals(4, reviews.size)
+            // The merged node is the whole button. Just inside its left edge, in its padding and clear of the word: the
+            // button's fill, or the group's ground under a quiet one.
+            val filled = reviews.map { node ->
+                val at = node.boundsInRoot
+                val pixel = androidx.compose.ui.graphics.Color(bitmap.getColor((at.left + REVIEW_FILL_INSET).toInt(), at.center.y.toInt()))
+                kotlin.math.abs(pixel.red - raised.red) < COLOUR_TOLERANCE &&
+                    kotlin.math.abs(pixel.green - raised.green) < COLOUR_TOLERANCE &&
+                    kotlin.math.abs(pixel.blue - raised.blue) < COLOUR_TOLERANCE
+            }
+            assertEquals(listOf(true, false, false, false), filled, "Off until you choose, Kept off, Blocked, Hash mismatch")
         }
     }
 
@@ -361,6 +394,10 @@ class ExtensionsPaneDesktopTest {
         val WIDTH = (SettingsWindowDefaults.Width - SettingsWindowDefaults.SidebarWidth).value.toInt()
         val HEIGHT = SettingsWindowDefaults.Height.value.toInt()
         const val TALL = 1600
+        /** Pixels inside a button's left edge: within its 16 of padding, clear of its corner and its word. */
+        const val REVIEW_FILL_INSET = 6f
+        /** One step of 8-bit colour, either way. */
+        const val COLOUR_TOLERANCE = 0.01f
         const val READ_AT = 1_700_000_000_000L
         const val SETTLE_FRAMES = 30
         const val FRAME_NANOS = 50_000_000L

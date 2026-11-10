@@ -132,11 +132,17 @@ data class ExtensionsPaneState(
     /** A removal could not be done, so nothing was removed: the installed list could not be read, or a file deleted. */
     val removeFailed: Boolean = false,
     /**
-     * Goes up each time a repository is added. The pane empties its field on it (`#349` review): the link a person typed
-     * can carry a token, and once it is added it is not shown again.
+     * What the add field holds. Here rather than in the pane (`#349` review): the link a person typed can carry a token,
+     * and an add that succeeds empties it whether or not the pane is on screen, so a pane restored later cannot bring it
+     * back. A failure keeps it, so it can be fixed.
      */
-    val added: Int = 0,
-)
+    val link: String = "",
+) {
+    /** Without the field's text, which can carry a token. */
+    override fun toString(): String =
+        "ExtensionsPaneState(add=$add, repositories=$repositories, open=$open, waiting=$waiting, offline=$offline, " +
+            "listsFromMillis=$listsFromMillis, removeFailed=$removeFailed, link=<${link.length} chars>)"
+}
 
 /** What the pane needs of the running extensions: `SandboxedExtensions`, in the app. */
 interface PaneExtensions {
@@ -254,7 +260,7 @@ class ExtensionsPaneModel(
                     val at = now()
                     runCatching { cache.write(url, read, at) }
                     known.update { it + (url to Known(read, at, reachable = true)) }
-                    _state.update { it.copy(add = AddState.Idle, added = it.added + 1) }
+                    _state.update { it.copy(add = AddState.Idle, link = "") }
                     publish()
                 } catch (_: IOException) {
                     failAdd(AddFailure.NotSaved)
@@ -271,8 +277,9 @@ class ExtensionsPaneModel(
     }
 
     /** Typing in the field clears an add failure. */
-    fun editing() {
-        if (_state.value.add is AddState.Failed) _state.update { it.copy(add = AddState.Idle) }
+    /** The field's text changed. Typing also clears an add failure. */
+    fun editing(text: String) {
+        _state.update { it.copy(link = text, add = if (it.add is AddState.Failed) AddState.Idle else it.add) }
     }
 
     fun open(key: String) {

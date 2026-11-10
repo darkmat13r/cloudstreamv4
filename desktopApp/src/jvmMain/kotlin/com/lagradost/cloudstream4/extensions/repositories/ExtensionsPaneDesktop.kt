@@ -30,7 +30,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -146,7 +145,8 @@ sealed interface ExtensionsPaneAction {
 
     data object CancelAdd : ExtensionsPaneAction
 
-    data object Editing : ExtensionsPaneAction
+    /** The field's text changed; the model holds it. */
+    data class Editing(val text: String) : ExtensionsPaneAction
 
     data class Open(val key: String) : ExtensionsPaneAction
 
@@ -267,7 +267,7 @@ private fun PaneList(
             }
         }
         GroupHeader(stringResource(Res.string.ext_repo_add_group))
-        Group { AddRepository(state.add, state.added, offline = state.offline, focus = focusLink, onAction = onAction) }
+        Group { AddRepository(state.add, state.link, offline = state.offline, focus = focusLink, onAction = onAction) }
         GroupHeader(stringResource(Res.string.settings_repositories))
         if (state.removeFailed) WarningLine(stringResource(Res.string.ext_remove_failed))
         Group {
@@ -284,10 +284,9 @@ private fun PaneList(
 
 /** X1, X2a, X2b: the field, Add (or Cancel while reading), and the line under them. The link stays after a failure. */
 @Composable
-private fun AddRepository(add: AddState, added: Int, offline: Boolean, focus: Boolean, onAction: (ExtensionsPaneAction) -> Unit) {
+private fun AddRepository(add: AddState, link: String, offline: Boolean, focus: Boolean, onAction: (ExtensionsPaneAction) -> Unit) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
-    var link by rememberSaveable { mutableStateOf("") }
     val reading = add == AddState.Reading
     val fieldFocus = remember { FocusRequester() }
     val source = remember { MutableInteractionSource() }
@@ -312,10 +311,7 @@ private fun AddRepository(add: AddState, added: Int, offline: Boolean, focus: Bo
                 if (link.isEmpty()) BasicText(hint, style = typography.body.copy(color = colors.muted), maxLines = 1)
                 BasicTextField(
                     value = link,
-                    onValueChange = {
-                        link = it
-                        onAction(ExtensionsPaneAction.Editing)
-                    },
+                    onValueChange = { onAction(ExtensionsPaneAction.Editing(it)) },
                     enabled = !reading && !offline,
                     textStyle = typography.body.copy(color = if (reading) colors.muted else colors.ink),
                     singleLine = true,
@@ -350,13 +346,6 @@ private fun AddRepository(add: AddState, added: Int, offline: Boolean, focus: Bo
         }
     }
     LaunchedEffect(focus) { if (focus) runCatching { fieldFocus.requestFocus() } }
-    // `#349` review: once added, the link (which can carry a token) is not kept on screen. The first run is the pane
-    // opening, which has nothing to clear.
-    var seenAdded by remember { mutableStateOf(added) }
-    LaunchedEffect(added) {
-        if (added != seenAdded) link = ""
-        seenAdded = added
-    }
 }
 
 @Composable
@@ -547,9 +536,11 @@ private fun ExtensionListRow(
                 }
             }
             is RowState.UpdateAvailable -> Verb(stringResource(Res.string.update), enabled = reachable) { onAction(ExtensionsPaneAction::Install) }
-            RowState.Held, RowState.Blocked, RowState.HashMismatch ->
+            // `DS-27`: off until you choose is the one with a choice to make, so its Review is filled. Kept off, and the
+            // two that cannot be allowed (blocked by the scan, or not the file its hash names), are quiet.
+            RowState.Held ->
                 DesktopButton(stringResource(Res.string.settings_extension_review), onClick = { onAction { _, _ -> ExtensionsPaneAction.Review } })
-            RowState.KeptOff -> DesktopButton(
+            RowState.KeptOff, RowState.Blocked, RowState.HashMismatch -> DesktopButton(
                 stringResource(Res.string.settings_extension_review),
                 onClick = { onAction { _, _ -> ExtensionsPaneAction.Review } },
                 tone = DesktopButtonTone.Quiet,

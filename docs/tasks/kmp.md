@@ -8408,6 +8408,12 @@ working while the repository cannot be reached. **Green:** `:desktopApp:jvmTest`
 - **Renders** of X3, X4, X5a and X8 (760 × 480, German) from `ExtensionsPaneRenders`, written with
   `-Pcloudstream.extensions.renders=<directory>`, are on the orphan branch `review/kmp-110c2-renders` for the PM and the
   reviewer.
+- **The field's text is the model's** (`ExtensionsPaneState.link`): a successful add empties it whether or not the pane
+  is on screen, so a pane restored by the Settings window's saved state cannot bring a link back. A failure keeps it.
+  The state's `toString` gives only the field's length. Red: an add that leaves the link in the model fails its test.
+- **Review's fill follows `DS-27`:** off until you choose is filled; kept off and blocked are quiet, and so is a file
+  that does not match its hash (DECIDED: it cannot be allowed either, as blocked cannot). Pinned by sampling each
+  button's fill in the drawn image; red with Blocked filled.
 - **An off verb is `muted`** (DECIDED, PM): an Install or Update while its repository cannot be reached is the words in
   `muted` on the secondary fill, with no click, hover or focus, and `disabled()` for a screen reader. The board's grey
   from a token the theme has, so no design-system change. Re-rendered X5a. Red: with the words in `ink`, its test fails. Green: `:desktopApp:jvmTest` 835, 0 failed (4 render

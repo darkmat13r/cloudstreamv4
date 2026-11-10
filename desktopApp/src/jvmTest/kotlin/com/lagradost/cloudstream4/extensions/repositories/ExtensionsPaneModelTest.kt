@@ -134,7 +134,7 @@ class ExtensionsPaneModelTest {
             model.add(text)
             assertEquals(AddState.Failed(failure), model.state.value.add, text)
         }
-        model.editing()
+        model.editing("harbour")
         assertEquals(AddState.Idle, model.state.value.add)
     }
 
@@ -321,6 +321,27 @@ class ExtensionsPaneModelTest {
             immediate.install(key, "Lumen")
             assertIs<RowState.Failed>(immediate.state.value.open?.rows?.single()?.state, "round $round")
         }
+    }
+
+    /**
+     * `#349` review: an add that finishes while the pane is not on screen still empties the field, because the field is the
+     * model's. A pane restored afterwards has nothing to show. A failure keeps the link, so it can be fixed.
+     */
+    @Test
+    fun `an add that succeeds while the pane is away empties the field, and a failure keeps it`() {
+        serve(A, "Harbour Mirror", plugin("Lumen"))
+        gates[A] = CompletableDeferred()
+        model.editing(A)
+        model.add(A)
+        assertEquals(A, model.state.value.link, "the link stays while it is read")
+        gates.getValue(A).complete(Unit) // the read finishes with nothing drawing the pane
+        val state = until("added") { it.repositories.isNotEmpty() && it.add == AddState.Idle }
+        assertEquals("", state.link)
+        assertFalse("tok" in state.toString() || "files.example" in state.toString(), state.toString())
+
+        model.editing("http://files.example/x.json")
+        model.add("http://files.example/x.json")
+        assertEquals("http://files.example/x.json", model.state.value.link, "a failure keeps the link to be fixed")
     }
 
     /** `#349` review: coming back to the pane does not fetch every repository again. Retry still does. */
