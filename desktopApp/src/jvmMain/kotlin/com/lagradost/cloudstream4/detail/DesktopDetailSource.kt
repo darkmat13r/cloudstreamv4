@@ -6,6 +6,7 @@ import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
+import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginFailed
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteDetails
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLink
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteLinks
@@ -53,7 +54,9 @@ class DesktopDetailSource : DetailSource {
         } catch (failure: IOException) {
             // The page shows none of this (BUG-21): it is a class name and a plugin's words. It goes
             // where a person debugging a plugin can find it, without a URL, which can carry a token.
-            System.err.println("detail: ${provider.name} could not open a title: ${failure.message.orEmpty().withoutUrls()}")
+            // BUG-92: a plugin's reported failure says only its class; its words go to no log, redacted or not.
+            val reason = if (failure is PluginFailed) failure.toString() else failure.message.orEmpty().withoutUrls()
+            System.err.println("detail: ${provider.name} could not open a title: $reason")
             throw failure
         }
         return details.toTitleDetail(provider.name)

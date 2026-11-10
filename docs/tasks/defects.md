@@ -3184,6 +3184,35 @@ command-line target is staged and a stream is not; a plugin's link naming a loca
 passed on as it is, never staged. The
 playback itself needs VLC and the sandbox, so it is the measurement above, not a unit test.
 
+## BUG-92 — A plugin's failure printed its own words to the Mac's default stdout and stderr · **medium, security** · fixed in this PR
+
+Found by the extension-wire audit (finding A-2). `BUG-83` kept a plugin's output off the default paths, but it traced
+the host's output, not exception messages. A failure a plugin reports arrives as `PluginFailed`, whose message is
+the plugin's text, redacted (urls, tokens, email addresses and IP literals cut). Two paths still printed that text:
+- Home and Search reach a provider through `APIRepository`, so through `safeApiCall`, whose `logError` printed
+  `safeApiCall: <message>` on stdout and the stack trace on stderr. The trace's first line is the exception's
+  `toString()`, so it held the message too. This ran at every launch where a search or a home page failed.
+- The title page's own log line, in `DesktopDetailSource`, printed the message on stderr.
+
+So a plugin's words reached the default output: an echoed query, a name, a short secret under the token rule.
+
+**Fix**, a body-only change in `:library`, which is published API, so `classes.jar` is unchanged:
+- `PluginFailed.toString()` is fixed in shape: `PluginFailed: <the class the plugin reported>`. A printed trace's
+  first line is that, so the trace carries none of the message either.
+- `logError` recognises `PluginFailed` by its simple name (`:library` cannot depend on the sandbox, and not every target
+  has qualified names) and prints that `toString()` instead of the message. Every other failure is logged as before.
+- The title page logs the same.
+- The screens still show the redacted reason. That is the user's own screen, not a log; `BUG-83`'s scope was
+  diagnostics.
+
+**Proof,** all local (CI is off): `PluginFailedLogTest`, 3, with stdout and stderr captured.
+- A `PluginFailed` through `safeApiCall` prints `PluginFailed: IllegalStateException` and none of the plugin's words,
+  and its `Resource.Failure` still carries the redacted reason.
+- Any other failure is logged as before, redacted.
+- The string and the trace's first line are fixed in shape.
+- Red-checked: without the special case in `logError`, and without the fixed `toString()`, the first test fails (and,
+  for the second, the third).
+
 ## BUG-73 — Two copies of JNA in the Mac app, and which one ran depended on how it was started · **low** · **in pr #280**
 
 **Status:** fixed in this PR · found 2026-11-08 while preparing `KMP-95`'s dependency case for the Keychain

@@ -77,6 +77,13 @@ class PluginFailed(text: String) : IOException(text.redactedWithin(MAX_MESSAGE_C
     val reportedClass: String = text.substringBefore(": ")
         .takeIf { HostStderr.CLASS_NAME.matches(it) }?.asReportedClass() ?: "<class>"
 
+    /**
+     * Fixed in shape: what this is and the class the plugin reported, never its words (BUG-92). A stack trace's first
+     * line is this, so a printed trace carries none of the message either. [message] keeps the redacted words, for
+     * the screen that shows a reason and for `--check-extensions --verbose`.
+     */
+    override fun toString(): String = "PluginFailed: $reportedClass"
+
     companion object {
         /** As long as a reported failure may be, on both sides of the protocol. */
         const val MAX_MESSAGE_CHARS = 400
