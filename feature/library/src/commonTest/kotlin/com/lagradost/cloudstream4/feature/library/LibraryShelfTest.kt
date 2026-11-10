@@ -9,7 +9,7 @@ import kotlin.test.assertTrue
 class LibraryShelfTest {
 
     private val tide = LibraryTitleId("Prov\u0000/tide")
-    private val arrival = LibraryTitleId("Prov\u0000/arrival")
+    private val mooring = LibraryTitleId("Prov\u0000/mooring")
 
     private fun title(id: LibraryTitleId, bucket: LibraryBucket?, keptAt: Long = 0L) =
         LibraryTitle(id = id, title = id.value, bucket = bucket, keptAt = keptAt, providerName = "Prov")
@@ -68,10 +68,10 @@ class LibraryShelfTest {
 
     @Test
     fun `continue watching is newest first`() {
-        val titles = listOf(title(tide, null), title(arrival, null))
-        val positions = listOf(position(tide, watchedAt = 10L), position(arrival, watchedAt = 20L))
+        val titles = listOf(title(tide, null), title(mooring, null))
+        val positions = listOf(position(tide, watchedAt = 10L), position(mooring, watchedAt = 20L))
         val cards = LibraryShelf.cards(LibraryTab.ContinueWatching, titles, positions)
-        assertEquals(listOf(arrival, tide), cards.map { it.id })
+        assertEquals(listOf(mooring, tide), cards.map { it.id })
     }
 
     @Test
@@ -95,11 +95,11 @@ class LibraryShelfTest {
     fun `a bucket holds only its own titles — newest kept first`() {
         val titles = listOf(
             title(tide, LibraryBucket.Watching, keptAt = 10L),
-            title(arrival, LibraryBucket.Watching, keptAt = 20L),
+            title(mooring, LibraryBucket.Watching, keptAt = 20L),
             title(LibraryTitleId("Prov\u0000/other"), LibraryBucket.Completed, keptAt = 30L),
         )
         val cards = LibraryShelf.cards(LibraryTab.Bucket(LibraryBucket.Watching), titles, emptyList())
-        assertEquals(listOf(arrival, tide), cards.map { it.id })
+        assertEquals(listOf(mooring, tide), cards.map { it.id })
     }
 
     @Test
@@ -126,7 +126,7 @@ class LibraryShelfTest {
     fun `a row in no list and with no position is forgettable — one with either is not`() {
         val titles = listOf(
             title(tide, null),
-            title(arrival, LibraryBucket.Dropped),
+            title(mooring, LibraryBucket.Dropped),
         )
         assertEquals(listOf(tide), LibraryShelf.forgettable(titles, emptyList()))
         assertEquals(emptyList(), LibraryShelf.forgettable(titles, listOf(position(tide))))
@@ -144,7 +144,7 @@ class LibraryShelfTest {
 
     @Test
     fun `a filter ignores case and blank keeps everything`() {
-        val titles = listOf(title(tide, LibraryBucket.Watching), title(arrival, LibraryBucket.Watching))
+        val titles = listOf(title(tide, LibraryBucket.Watching), title(mooring, LibraryBucket.Watching))
         val tab = LibraryTab.Bucket(LibraryBucket.Watching)
         assertEquals(listOf(tide), LibraryShelf.cards(tab, titles, emptyList(), "/TIDE").map { it.id })
         assertEquals(2, LibraryShelf.cards(tab, titles, emptyList(), "  ").size)
@@ -171,8 +171,8 @@ class LibraryShelfTest {
 
     @Test
     fun `a service's list is newest kept first, one card per title`() {
-        val list = SyncedList("w", "Watching", listOf(synced(tide, 1), synced(arrival, 3), synced(tide, 1)))
-        assertEquals(listOf(arrival, tide), LibraryShelf.syncedCards(list).map { it.id })
+        val list = SyncedList("w", "Watching", listOf(synced(tide, 1), synced(mooring, 3), synced(tide, 1)))
+        assertEquals(listOf(mooring, tide), LibraryShelf.syncedCards(list).map { it.id })
     }
 
     @Test
@@ -180,11 +180,11 @@ class LibraryShelfTest {
         val list = SyncedList(
             "w",
             "Watching",
-            listOf(synced(tide, 2, watched = 3, total = 12), synced(arrival, 1, watched = 0, total = 12)),
+            listOf(synced(tide, 2, watched = 3, total = 12), synced(mooring, 1, watched = 0, total = 12)),
         )
         val cards = LibraryShelf.syncedCards(list).associateBy { it.id }
         assertEquals(0.25f, cards.getValue(tide).progress)
-        assertNull(cards.getValue(arrival).progress, "nothing seen is no bar")
+        assertNull(cards.getValue(mooring).progress, "nothing seen is no bar")
         val unknown = SyncedList("w", "Watching", listOf(synced(tide, 1, watched = 3, total = 0)))
         val card = LibraryShelf.syncedCards(unknown).single()
         assertNull(card.progress)
@@ -194,8 +194,8 @@ class LibraryShelfTest {
 
     @Test
     fun `a service's list narrows by its filter, and a store tab never shows a service's titles`() {
-        val list = SyncedList("w", "Watching", listOf(synced(tide, 1), synced(arrival, 2)))
-        assertEquals(listOf(arrival), LibraryShelf.syncedCards(list, "ARRIV").map { it.id })
+        val list = SyncedList("w", "Watching", listOf(synced(tide, 1), synced(mooring, 2)))
+        assertEquals(listOf(mooring), LibraryShelf.syncedCards(list, "MOOR").map { it.id })
         assertTrue(LibraryShelf.cards(LibraryTab.Synced("w", "Watching"), listOf(title(tide, null)), emptyList()).isEmpty())
     }
 
@@ -203,7 +203,7 @@ class LibraryShelfTest {
     fun `a service's titles are counted once across its lists`() {
         val lists = listOf(
             SyncedList("w", "Watching", listOf(synced(tide, 1))),
-            SyncedList("r", "Rewatching", listOf(synced(tide, 1), synced(arrival, 1))),
+            SyncedList("r", "Rewatching", listOf(synced(tide, 1), synced(mooring, 1))),
         )
         assertEquals(2, LibraryShelf.syncedTotal(lists))
     }
