@@ -103,7 +103,7 @@ class HostProtocolArtTest {
                 section(0x32) { writeOptional("https://img.example/not-art.jpg"); writeInt(7) }
                 section(HostProtocol.ART_V1) { writeOptional("https://img.example/b.jpg") }
                 section(HostProtocol.ART_V1) { writeOptional("https://img.example/second.jpg") }
-                section(0x41) { }
+                section(0x71) { } // a tag no app reads yet; 0x41 is the cast now (KMP-103)
             },
             dropped,
         )

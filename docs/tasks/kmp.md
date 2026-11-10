@@ -7228,6 +7228,243 @@ short facts slice. They now meet the reader of the sections after the facts, as 
 then one claiming 90 bytes the frame does not hold, so the call now fails on that lying length, as any does; the test
 asserts that failure. Had the facts reader taken those bytes, they would have read as facts and nothing would fail.
 
+## KMP-103 — The plugin sandbox carries a title's cast and recommendations to the Mac · **built 2026-11-09**, design passed with conditions (the reviewer, 2026-11-09) · sys-desktop-2, the PM's call of 2026-11-09
+
+`TitleDetail.cast` and `.recommendations` already exist (`DetailCastMember`, `DetailRecommendation`). Android fills
+them; the sandbox does not carry them, so the Mac has neither. The data comes from `LoadResponse.actors` and
+`.recommendations`, which are existing API fields, so `:library` and `classes-jar.api` are unchanged. Drawing them is
+`KMP-104`.
+
+**The trust boundary is the app's reader, as in `KMP-76`.** The plugin shares the host's process and can write any
+bytes. The host's cuts only help an honest plugin fit. The app checks everything again, in three steps: the shape (the
+reader), the bytes (skipped unread past a cap) and the meaning (`cleaned()`).
+
+### Where it goes on the wire
+
+There are two new sections after `KMP-86`'s ids (`0x31`), each with its own tag, framed as `#299` framed the art: a tag
+byte, an `Int` length, and a slice read on its own. The tags are **cast `0x41`** and **recommendations `0x51`**: the
+high nibble is the section and the low nibble its version (the PM's call, 2026-11-09). The order after the episodes is
+facts `0x01`, art `0x21`, ids `0x31`, cast `0x41`, recommendations `0x51`. They follow `HostProtocol`'s three rules:
+- **Append-only:** each section takes a new tag and goes after the last one. A tag is never reused, and a later field
+  goes in a new tag (`0x42`), never in a changed `0x41`.
+- **Always written:** the host writes both sections in every reply, empty when there is nothing to send.
+- **Never reordered.**
+
+What each kind of reader does:
+- **This app** takes each section by its tag in `readSectionsAfterFacts`. A tag it does not know, or a second section
+  with a tag it has already read, is stepped over whole, and that is logged once. A frame from before these sections
+  just ends, so the title has no cast and no recommendations, and the page is as it was.
+- **An app from before** steps over `0x41` and `0x51` as tags it does not know.
+- **Two sections, not one,** so a bad cast costs only the cast.
+
+### The cast section, `0x41`
+
+`count: Int`, then for each person:
+
+| Field | Wire | Bound in the app |
+|---|---|---|
+| name | text | 1 to 64 chars after cleaning, ≤ 256 bytes as sent. Required: a person without a name is dropped |
+| role kind | one byte | 0 none, 1 Main, 2 Supporting, 3 Background (`ActorRole`). Any other code loses this field only |
+| role | optional text | the character, as the provider wrote it. ≤ 64 chars, ≤ 256 bytes |
+| voice actor | optional text | name only, ≤ 64 chars, ≤ 256 bytes. The voice actor's image is not carried |
+| image | optional text | an https image URL (rules below), ≤ 2048 bytes |
+
+- **At most 24 people.** The reader stops after the 24th and drops the rest of the slice. Because the slice stands on
+  its own, a count of a million costs nothing past the 24th.
+- **The whole section is at most 64 KiB.** Twenty-four honest people need at most about 67,000 bytes at the byte caps,
+  but real ones are a small part of that. Past 64 KiB the section is stepped over unread and costs only the cast.
+- **A field over its byte cap is skipped without being decoded,** and the reader stays in step, as an oversized tag is
+  in `KMP-76`.
+- **Words** are cleaned as tags are: control, format and separator characters are removed (U+202E and zero-width
+  joiners among them), then the text is trimmed. Blank text, or text over its character cap, is dropped. The app never
+  shortens anything. `isInvisibleInLabel`, as tags and subtitle labels are.
+- **A bad field costs only itself.** A bad image leaves the person without a headshot, decided per person as on Android
+  (`toCast`). A bad role leaves the person without that line.
+- **Repeats:** the same name with the same role is kept once.
+- **The page shows the role text if there is one, else the kind.** That is `toCast`'s order. The kind arrives as a code,
+  so `KMP-104` can show it in words (there are no keys for it yet: an `I18N` item), never as an English enum name.
+
+### The recommendations section, `0x51`
+
+`count: Int`, then for each title:
+
+| Field | Wire | Bound in the app |
+|---|---|---|
+| title | text | 1 to 128 chars after cleaning, ≤ 512 bytes as sent. Required |
+| type | one byte | 0 none, 1 to 18 as in the table in `HostProtocol` (`Movie` 1 … `Video` 18; the protocol's own table, which happens to match `TvType`'s values). Any other code loses the type only |
+| year | `Int` | `NO_NUMBER`, or 1870 to 2100; anything else loses the year only |
+| poster | optional text | an https image URL (rules below), ≤ 2048 bytes |
+| key | text | what opens it (below): 1 to 2048 chars, no control characters, ≤ 8192 bytes (2048 characters of any script). Required |
+
+- **At most 20 titles,** read as the cast is: stop after the 20th. **The section is at most 64 KiB** (twenty honest
+  titles need at most about 93,000 bytes at the caps, real ones far fewer); past that it is stepped over.
+- **A bad title or key drops that recommendation.** A bad type, year or poster loses only that field.
+- **Repeats:** the same key is kept once. A key equal to the open title's own `url` is dropped, so a page never
+  recommends itself.
+- `DetailRecommendation` gains `typeName: String? = null`. This is a defaulted field in `:feature:detail`'s
+  contract, so Android's call site is unchanged. The name is a fixed code's name, never the plugin's spelling.
+
+### Image URLs (cast photos and posters)
+
+This is `KMP-100`'s `httpsUrlOrNull()`: controls out; https only; no `localhost`, `.local`, loopback, private,
+link-local or unspecified address as written. On top of that:
+- **No userinfo** (`https://user:pass@host/` is refused). The PM's call, 2026-11-09: `httpsUrlOrNull()` (`#299`) and
+  posters (`KMP-102`) refuse it too. Until that lands, these URLs are also put through `SandboxPolicy.isHttpUrlShape`,
+  which already refuses it.
+- **At most 2048 chars.**
+- **Anything else is dropped.** An image is never repaired.
+
+They are fetched only by `KMP-100`'s bounded loader. That loader allows https on every hop, public addresses re-checked
+on connect, an 8 MB byte cap and a 4096×4096 decode cap.
+
+### Opening a recommendation (the open question)
+
+**The key is not a page to the app.** It is an opaque string that goes back to the provider that sent it, and nowhere
+else:
+1. **Bound to the sender.** The app builds the recommendation's id as `encodeId(<the provider this load went to>,
+   key)`. That is the same codec as a search result, so Library, history and Back treat it as any title. No provider
+   name crosses the wire. On Android, `toRecommendations` uses the plugin's `hit.apiName`, so a plugin can route a
+   recommendation to another installed provider. The Mac does not allow that, and the host drops a recommendation whose
+   `apiName` is not its own, so an honest plugin's list is not silently retargeted.
+2. **Never fetched, opened or shown by the app.** The key goes only to `OP_LOAD` on that same sandboxed provider. That
+   runs inside its sandbox, behind `OutboundGate`, exactly as a search or Home result's `url` does today. So a plugin
+   can name only something its own `load()` is asked to open. It can already do that through search, so this adds no
+   reach. What comes back is a `RemoteDetails` like any other, checked by every rule above.
+3. **No browser.** No action opens a key, or any recommendation field, in the system browser or a web view.
+
+**Why the key is not required to be https.** Providers use `url` as a key, and some send JSON or an id, not an address
+(search results already allow any string). The app never fetches a key, so an https check would protect nothing and
+would drop those providers' recommendations. The checks that do matter are applied: length, no control characters,
+the same provider, and `load()` only.
+
+**Rejected alternatives:**
+- **B: an https key on the provider's own `mainUrl` host.** This is stricter on paper. But it drops providers whose keys
+  are data or whose pages are on another domain, and it guards nothing that (2) does not already.
+- **C: a handle.** The host keeps the list and the app sends back `(load call, index)`. That would not survive a restart,
+  Library, history or Back, which all need a stable id. And the plugin shares the host's process, so a handle the host
+  holds is no safer than the plugin's own `load()`.
+
+### Faults
+
+**A malformed section costs only that section,** as the facts and art do (the PM kept this, 2026-11-09):
+- A count, or a length inside the slice, that lies costs the cast or the recommendations, and the page opens.
+- Only a section length that lies past the frame fails the call and ends the host, as any lying length elsewhere in this
+  format does. Nothing can make the app crash: every read is bounded, and a failure is a `dropped` line or a failed call.
+
+### Logging
+
+**Nothing from the wire is logged.** Each drop is one line naming the section or field and a reason in the code's own
+words. The line holds no value and no number the plugin chose, not even a count (`KMP-76` logs a tag count; this does
+not). There is at most one line per field kind per section, so ten thousand bad people make a handful of lines.
+
+### Host side, courtesy only
+
+- The host takes the first 24 people and the first 20 recommendations of its own provider.
+- It drops a person with a blank name, and a recommendation whose key is over 2048 chars or blank.
+- It cuts honest words to their character caps, as tags are cut in `KMP-76`.
+- It never sends anything the app would refuse to read.
+
+### Tests, planned
+
+- **`HostProtocolCastTest` and `HostProtocolRecommendationsTest`,** with hand-written frames:
+  - each bound, just inside and just past;
+  - a frame from before, and an unknown version;
+  - an oversized field skipped with the reader still in step;
+  - a count of a million;
+  - a section past 64 KiB;
+  - lying lengths inside the slice, which cost only the section;
+  - a slice length past the frame, which fails the call;
+  - for images: http, `file:`, `data:`, private addresses, userinfo and controls are refused;
+  - a key equal to the title's own url, and repeats;
+  - nothing from the wire in the log.
+- **`PluginHostClientTest`:** lying-host cases through the real client. Past every bound, the page and the host live;
+  a section length past the frame ends the host.
+- **`SandboxEnforcementTest`,** with a malicious plugin in a real sandboxed host. It sends:
+  - 100,000 people;
+  - a 1 MiB name;
+  - U+202E and terminal escapes in roles;
+  - `http://169.254.169.254/` and `https://u:p@host/` photos;
+  - a recommendation naming another provider;
+  - a key equal to its own url.
+- **`TitleFactsTest`:** the mapping. The id is bound to the provider called, and the kind is used when there is no role
+  text.
+- **Red without the app's checks:** with `cleaned()` switched off for these two sections, the bound cases fail.
+
+### The reviewer's conditions (passed with them, 2026-11-09)
+
+1. **The id codec round-trips any key.** `encodeId`/`decodeId` must give back exactly the provider and key for a key
+   holding the codec's own separator (NUL), non-ASCII text, and 2048 characters. `decodeId` splits at the first separator, so it does; a key that still did not would be dropped where the page's
+   id is made (`toTitleDetail`), never stored. A test covers each case, so no key can decode to another provider.
+2. **Where a key goes.** A key reaches disk only when the person opens or bookmarks the title, as a search result's id
+   does: in Library, history, or Back's stack. It is never in a log line or an error message, including every `OP_LOAD`
+   failure path (`DesktopDetailSource.details`, `PluginHostClient`'s call failure, the host's reply). Those paths are
+   checked in the build and each gets a test. `withoutUrls()` is not enough, because a key need not look like an
+   address.
+3. **The reader:**
+   - every field length is checked against the slice's `0..available()` before anything is skipped or read;
+   - steps use `skipNBytes`, never `skip()`;
+   - a negative count costs the section;
+   - text is decoded as UTF-8 with `CodingErrorAction.REPORT`, so malformed bytes cost that field, never a
+     replacement character;
+   - tests cover a lie inside the slice (costs the section) and past it (fails the call).
+4. **The host keeps each section under 64 KiB.** The honest maxima, about 67,000 bytes for cast and 93,000 for
+   recommendations, are past the cap. So the host drops trailing entries until the section fits, and never sends one
+   the app would step over.
+5. **Images of these kinds get their own caps,** tighter than the backdrop's. This is `KMP-104`'s, which fetches and draws them:
+   - decoded at the drawn size (`Precision.INEXACT`);
+   - a lower decode cap: 1024×1024 for headshots and posters;
+   - a smaller byte cap: 2 MB, against the backdrop's 8 MB;
+   - loaded only when on screen.
+   `KMP-104` reports a measured peak heap for a page with 24 headshots and 20 posters.
+6. **Privacy and cache** (`KMP-104`'s too). Up to 44 hosts the plugin chose (24 photos and 20 posters) learn this Mac's IP when the page is
+   drawn, as on Android, so images load lazily and only when on screen. They use `KMP-100`'s disk-cache decision, not
+   Coil's default.
+7. **Normalisation before comparing.** "The same person" and "the page's own key" are compared after `cleaned()`
+   (invisible characters out, trimmed), so a lookalike with a zero-width joiner is still a repeat. **Versions:** when a
+   `0x42` exists, the host keeps writing `0x41` beside it for as long as apps that read only `0x41` are supported. The
+   append-only rule keeps that safe.
+8. **The PR body says the Mac blocks cross-provider recommendations,** which Android allows. **Not requiring https for
+   the key** is the PM's call, on the decision board.
+
+### Built
+
+- **Wire:** `HostProtocol.CAST_V1` (`0x41`) and `RECOMMENDATIONS_V1` (`0x51`), written after the art in every reply,
+  each read on its own slice by `readSectionsAfterFacts`. Field lengths are checked against the slice before anything is
+  skipped or read (`skipNBytes`), text is decoded with `CodingErrorAction.REPORT`, and a negative count, a lying length
+  inside the slice or a slice cut short costs only that section.
+- **The app's checks:** `cleanedCast` and `cleanedRecommendations` in `PluginHostClient.kt`; photos and posters through
+  `imageUrlOrNull()` (exactly as sent, at most 2048 characters, `httpsUrlOrNull`, no userinfo).
+- **The host:** `toRemoteCast` and `toRemoteRecommendations` in `PluginHost.kt` cut honest words, keep only its own
+  provider's recommendations, never cut a key, and drop trailing entries until each section fits 64 KiB.
+- **The Mac:** `toTitleDetail` binds each recommendation to the provider called; `decodeId` now splits at the first
+  separator, so any key round-trips. A failure's log line goes through `detailFailureLine`, which takes out the key
+  before `withoutUrls()`. `DetailRecommendation` gains a defaulted `typeName`.
+- **Tests:** `HostProtocolCastTest` (16), `HostProtocolRecommendationsTest` (13), four lying-host cases in
+  `PluginHostClientTest`, one malicious-plugin case in `SandboxEnforcementTest` (`HostilePlugin` now sends 100,000
+  people and recommendations, another provider's title, itself, a NUL key, a metadata-address photo and userinfo), and
+  `TitleCastTest` (5) on the Mac.
+- **Red-checked**, each failing what it should, then restored:
+  - `cleaned()` off for both sections: 12 tests fail;
+  - userinfo allowed: 4;
+  - UTF-8 replaced, not refused: 1;
+  - no 64 KiB section cap: 1;
+  - another provider's recommendations kept by the host: 1;
+  - the old codec, split on every separator: 2;
+  - the key left in the failure's log line: 1.
+- **Changed existing test code:** `HostProtocolArtTest` used `0x41` as its stand-in for a tag no app reads. `0x41` is
+  the cast now, so the stand-in is `0x71`.
+
+### Base
+
+- Stacked on `#299` (`KMP-100`, `63aa03c53`) for now, whose tagged framing, `httpsUrlOrNull` and loader this uses. It
+  moves onto `KMP-86`'s branch once that is pushed.
+- `KMP-104` draws Cast and More like this. `DS-21` has no board for either on the Mac (E1 to E6 stop at the episodes),
+  so `KMP-104` needs one drawn first. That board is `DS-26`.
+- **For `KMP-104`** (the PM, 2026-11-09): voice actors are a second line under the role, "Voiced by %s", a new key and
+  an `I18N` item (DS-26 C3b). Manrope's natural line at 10sp is about 13.75, taller than caption's 12 line box, so a
+  Compose render, not Chrome, with Manrope loaded (`#295`), must show the descenders of "Voiced by Pippa Quigley-Jory"
+  (g, j, p, q and y) whole (`KMP-97`'s fixed line box).
+
 ## KMP-102 — The same hardening for posters · **built 2026-11-09**, stacked on `KMP-100` (`#299`)
 
 Posters went through `httpUrlOrNull()` and `posterHttpClient`, so they accepted http, followed https-to-http redirects,
