@@ -88,13 +88,13 @@ class DownloadsScreenTest {
         DownloadTitle(DownloadTitleId(id), name, kind, episodes, done, total, state, progress)
 
     private val titles = listOf(
-        title(1, "Breaking Bad", DownloadTitleKind.Series, 12, 4_240 * MB, 5_100 * MB, DownloadTitleState.Running, 0.62f),
-        title(2, "Dune: Part Two", DownloadTitleKind.Film, 1, 6_800 * MB, 6_800 * MB),
-        title(3, "Severance", DownloadTitleKind.Series, 9, 3_100 * MB, 3_600 * MB, DownloadTitleState.Failed, 0.86f),
-        title(4, "The Bear", DownloadTitleKind.Series, 8, 1_900 * MB, 4_700 * MB, DownloadTitleState.Paused, 0.40f),
-        title(5, "Past Lives", DownloadTitleKind.Film, 1, 2_200 * MB, 2_200 * MB),
-        title(6, "Shōgun", DownloadTitleKind.Series, 10, 7_900 * MB, 7_900 * MB),
-        title(7, "Arrival", DownloadTitleKind.Film, 1, 3_400 * MB, 3_400 * MB),
+        title(1, "Low Tide", DownloadTitleKind.Series, 12, 4_240 * MB, 5_100 * MB, DownloadTitleState.Running, 0.62f),
+        title(2, "Tide: Part Two", DownloadTitleKind.Film, 1, 6_800 * MB, 6_800 * MB),
+        title(3, "Quiet Harbor", DownloadTitleKind.Series, 9, 3_100 * MB, 3_600 * MB, DownloadTitleState.Failed, 0.86f),
+        title(4, "The Galley", DownloadTitleKind.Series, 8, 1_900 * MB, 4_700 * MB, DownloadTitleState.Paused, 0.40f),
+        title(5, "Far Shores", DownloadTitleKind.Film, 1, 2_200 * MB, 2_200 * MB),
+        title(6, "Ōmi Light", DownloadTitleKind.Series, 10, 7_900 * MB, 7_900 * MB),
+        title(7, "Mooring", DownloadTitleKind.Film, 1, 3_400 * MB, 3_400 * MB),
     )
 
     private val storage = DownloadStorage(usedBytes = 384_000 * MB, totalBytes = 512_000 * MB, downloadBytes = 128_000 * MB)
@@ -354,7 +354,7 @@ class DownloadsScreenTest {
 
     @Test
     fun `hovering a failed row shows Retry, which asks the source for what is left`() {
-        // Severance's finished episodes are on the disk, so all three verbs show: Retry, Show in Finder, Delete.
+        // Quiet Harbor's finished episodes are on the disk, so all three verbs show: Retry, Show in Finder, Delete.
         val harness = Harness(contents(), revealable = setOf(DownloadTitleId(3)))
         val scene = scene(harness)
         scene.settle()

@@ -3219,6 +3219,24 @@ Runner` 39 lines, and the sites `Filmxy` 87, `Vidplay` 37 and `Zoro` 11.
 `classes-jar.api` carries `getGogoanime`); `tools:text` in legacy layouts; `Internet Archive`, a real official plugin
 and a `:library` class; and past records in `docs/tasks/`, which say what was measured.
 
+### `:desktopApp` (JVM tests)
+
+| Was | Now | Kept |
+|---|---|---|
+| `Dune`, `dune`, `Dune: Part Two` (library, store, watch recorder; ids `…/dune`, the filter `dune`) | `Tide`, `tide`, `Tide: Part Two` | case; a title renamed under the same id |
+| `Arrival` (library) | `Mooring` | sorts before `Tide` by title, as `Arrival` did before `Dune` |
+| the account `lagradost` (library) | `tidewatch` | |
+| search history `blade runner`, `severance`, `frieren`; the query `blade runner` | `salt road`, `still water`, `fernwood`; `salt road` | |
+| sources `Gogoanime`, `Vidsrc`, `Zoro` | `Source A`, `Source B`, `Source C` | the same alphabetical order |
+| downloads `Breaking Bad`, `Dune: Part Two`, `Severance`, `The Bear`, `Past Lives`, `Shōgun`, `Arrival` | `Low Tide`, `Tide: Part Two`, `Quiet Harbor`, `The Galley`, `Far Shores`, `Ōmi Light`, `Mooring` | a series and a film each; a title with a long vowel mark |
+
+The window's sort test reads the first card before and after A to Z. `Tide` was kept last and `Mooring` sorts first,
+so the first card changes, as it did with `Dune` and `Arrival`. With a name that sorts after `Tide` in place of
+`Mooring`, the test fails (checked).
+
+Tests: the same 77 in 5 classes (`LibraryScreenTest` 26, `DesktopLibraryStoreTest` 19, `SearchScreenTest` 10,
+`WatchRecorderTest` 10, `DownloadsScreenTest` 12), 152 assertion lines before and after, all passing.
+
 **One PR per module.** JVM tests first; the device tests and their screenshots after train 9, which carries those
 files, each screenshot diff read before it is re-recorded.
 

@@ -37,7 +37,7 @@ class DesktopLibraryStoreTest {
     private fun title(
         id: LibraryTitleId,
         bucket: LibraryBucket? = LibraryBucket.Watching,
-        name: String = "Dune",
+        name: String = "Tide",
         keptAt: Long = 10L,
         posterUrl: String? = "https://example.com/p.jpg",
     ) = LibraryTitle(id, name, bucket, keptAt, posterUrl, "Prov")
@@ -50,7 +50,7 @@ class DesktopLibraryStoreTest {
 
     @Test
     fun `a title survives a round trip, NUL and all`() = runBlocking {
-        val kept = title(id("dune"))
+        val kept = title(id("tide"))
         store().remember(kept)
         assertEquals(listOf(kept), store().titles())
     }
@@ -69,8 +69,8 @@ class DesktopLibraryStoreTest {
 
     @Test
     fun `a title's text is sanitised again on the way out`() = runBlocking {
-        store().remember(title(id("x"), name = "Dune‮evil"))
-        assertEquals("Duneevil", store().titles().single().title)
+        store().remember(title(id("x"), name = "Tide‮evil"))
+        assertEquals("Tideevil", store().titles().single().title)
     }
 
     @Test
@@ -100,19 +100,19 @@ class DesktopLibraryStoreTest {
     @Test
     fun `one row per title, and the newest write wins`() = runBlocking {
         val store = store()
-        store.remember(title(id("dune"), name = "Dune"))
-        store.remember(title(id("dune"), name = "Dune: Part Two"))
+        store.remember(title(id("tide"), name = "Tide"))
+        store.remember(title(id("tide"), name = "Tide: Part Two"))
         val held = store.titles()
         assertEquals(1, held.size)
-        assertEquals("Dune: Part Two", held.single().title)
+        assertEquals("Tide: Part Two", held.single().title)
     }
 
     @Test
     fun `remembering a title keeps the list it is already in`() = runBlocking {
         val store = store()
-        store.remember(title(id("dune"), bucket = LibraryBucket.Completed, keptAt = 5L))
+        store.remember(title(id("tide"), bucket = LibraryBucket.Completed, keptAt = 5L))
         // What playing it does: records what it looks like and claims no list.
-        store.remember(title(id("dune"), bucket = null, keptAt = 99L))
+        store.remember(title(id("tide"), bucket = null, keptAt = 99L))
         val held = store.titles().single()
         assertEquals(LibraryBucket.Completed, held.bucket)
         assertEquals(5L, held.keptAt)
@@ -121,13 +121,13 @@ class DesktopLibraryStoreTest {
     @Test
     fun `moving a title to another list dates it now, and back to none keeps the date`() = runBlocking {
         val store = store()
-        store.remember(title(id("dune"), bucket = LibraryBucket.Watching, keptAt = 1L))
-        store.setBucket(id("dune"), LibraryBucket.Dropped)
+        store.remember(title(id("tide"), bucket = LibraryBucket.Watching, keptAt = 1L))
+        store.setBucket(id("tide"), LibraryBucket.Dropped)
         val moved = store.titles().single()
         assertEquals(LibraryBucket.Dropped, moved.bucket)
         assertTrue(moved.keptAt > 1L)
 
-        store.setBucket(id("dune"), null)
+        store.setBucket(id("tide"), null)
         val dropped = store.titles().single()
         assertNull(dropped.bucket)
         assertEquals(moved.keptAt, dropped.keptAt)
@@ -135,7 +135,7 @@ class DesktopLibraryStoreTest {
 
     @Test
     fun `a bucket this version does not know refuses the whole line rather than guessing`() = runBlocking {
-        store().remember(title(id("dune")))
+        store().remember(title(id("tide")))
         val text = titlesFile.readText().replace("Watching", "Rewatching")
         titlesFile.writeText(text)
         assertEquals(emptyList(), store().titles())
@@ -162,7 +162,7 @@ class DesktopLibraryStoreTest {
 
     @Test
     fun `a link is not followed`() = runBlocking {
-        store().remember(title(id("dune")))
+        store().remember(title(id("tide")))
         val real = File(directory, "real.tsv")
         titlesFile.renameTo(real)
         Files.createSymbolicLink(titlesFile.toPath(), real.toPath())
@@ -173,8 +173,8 @@ class DesktopLibraryStoreTest {
     @Test
     fun `a position survives a round trip and there is one per episode`() = runBlocking {
         val store = store()
-        val first = WatchPosition(id("dune"), "e1", 60_000L, 600_000L, 10L)
-        val second = WatchPosition(id("dune"), "e2", 90_000L, 600_000L, 20L)
+        val first = WatchPosition(id("tide"), "e1", 60_000L, 600_000L, 10L)
+        val second = WatchPosition(id("tide"), "e2", 90_000L, 600_000L, 20L)
         store.record(first)
         store.record(second)
         store.record(first.copy(positionMillis = 120_000L, watchedAt = 30L))
@@ -193,10 +193,10 @@ class DesktopLibraryStoreTest {
     @Test
     fun `clearing positions drops every episode of that title and leaves the others`() = runBlocking {
         val store = store()
-        store.record(WatchPosition(id("dune"), "e1", 60_000L, 600_000L, 1L))
-        store.record(WatchPosition(id("dune"), "e2", 60_000L, 600_000L, 2L))
+        store.record(WatchPosition(id("tide"), "e1", 60_000L, 600_000L, 1L))
+        store.record(WatchPosition(id("tide"), "e2", 60_000L, 600_000L, 2L))
         store.record(WatchPosition(id("other"), null, 60_000L, 600_000L, 3L))
-        store.clearPositions(id("dune"))
+        store.clearPositions(id("tide"))
         assertEquals(listOf(id("other")), store.positions().map { it.id })
     }
 
