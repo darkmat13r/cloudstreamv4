@@ -71,8 +71,8 @@ import org.jetbrains.skia.EncodedImageFormat
 @OptIn(ExperimentalComposeUiApi::class, InternalComposeUiApi::class)
 class LibraryScreenTest {
 
-    private val dune = LibraryTitleId("Prov\u0000https://example.com/dune")
-    private val arrival = LibraryTitleId("Prov\u0000https://example.com/arrival")
+    private val tide = LibraryTitleId("Prov\u0000https://example.com/tide")
+    private val mooring = LibraryTitleId("Prov\u0000https://example.com/mooring")
 
     private val local = LibrarySource(
         LibrarySourceId("Local"),
@@ -84,7 +84,7 @@ class LibraryScreenTest {
     private val aniList = LibrarySource(
         LibrarySourceId("AniList"),
         "AniList",
-        account = "lagradost",
+        account = "tidewatch",
         syncedAt = NOW - 2 * HOUR,
     )
     private val mal = LibrarySource(LibrarySourceId("MyAnimeList"), "MyAnimeList", connected = false)
@@ -263,30 +263,30 @@ class LibraryScreenTest {
     @Test
     fun `a click on a card on continue watching resumes it`() {
         val actions = mutableListOf<LibraryAction>()
-        val cards = listOf(card(dune, "Dune", resume = LibraryResume("e1", 60_000L), progress = 0.1f))
+        val cards = listOf(card(tide, "Tide", resume = LibraryResume("e1", 60_000L), progress = 0.1f))
         val scene = screen(state(LibraryStatus.Showing(cards)), { actions += it })
         scene.settle()
         scene.click(Offset(CARD_X, CARD_Y))
-        assertEquals(listOf<LibraryAction>(LibraryAction.ResumeActivated(dune)), actions)
+        assertEquals(listOf<LibraryAction>(LibraryAction.ResumeActivated(tide)), actions)
         scene.close()
     }
 
     @Test
     fun `a click on a card in a list opens the title instead`() {
         val actions = mutableListOf<LibraryAction>()
-        val cards = listOf(card(dune, "Dune", bucket = LibraryBucket.Watching))
+        val cards = listOf(card(tide, "Tide", bucket = LibraryBucket.Watching))
         val tab = LibraryTab.Bucket(LibraryBucket.Watching)
         val scene = screen(state(LibraryStatus.Showing(cards), tab), { actions += it })
         scene.settle()
         scene.click(Offset(CARD_X, CARD_Y))
-        assertEquals(listOf<LibraryAction>(LibraryAction.TitleActivated(dune)), actions)
+        assertEquals(listOf<LibraryAction>(LibraryAction.TitleActivated(tide)), actions)
         scene.close()
     }
 
     @Test
     fun `hovering a card shows Remove on its poster, and Remove removes that card without opening it`() {
         val actions = mutableListOf<LibraryAction>()
-        val cards = listOf(card(dune, "Dune", LibraryBucket.Watching), card(arrival, "Arrival", LibraryBucket.Watching))
+        val cards = listOf(card(tide, "Tide", LibraryBucket.Watching), card(mooring, "Mooring", LibraryBucket.Watching))
         val tab = LibraryTab.Bucket(LibraryBucket.Watching)
         val scene = screen(state(LibraryStatus.Showing(cards), tab).sourced(), { actions += it })
         scene.settle()
@@ -298,49 +298,49 @@ class LibraryScreenTest {
         scene.save("library-l1-hovered-remove")
         actions.clear()
         scene.click(remove)
-        assertEquals(listOf<LibraryAction>(LibraryAction.RemoveRequested(arrival)), actions)
+        assertEquals(listOf<LibraryAction>(LibraryAction.RemoveRequested(mooring)), actions)
         scene.close()
     }
 
     @Test
     fun `a secondary click on a card opens the list picker for that card and not another`() {
         val actions = mutableListOf<LibraryAction>()
-        val cards = listOf(card(dune, "Dune"), card(arrival, "Arrival"))
+        val cards = listOf(card(tide, "Tide"), card(mooring, "Mooring"))
         val scene = screen(state(LibraryStatus.Showing(cards)), { actions += it })
         scene.settle()
         scene.secondaryClick(Offset(cardCentreX(1), CARD_Y))
         // And only that: the press that opens the menu does not also resume or open the title.
-        assertEquals(listOf<LibraryAction>(LibraryAction.PickerOpened(arrival)), actions)
+        assertEquals(listOf<LibraryAction>(LibraryAction.PickerOpened(mooring)), actions)
         scene.close()
     }
 
     @Test
     fun `the context-menu keys open the picker for the card Tab reached`() {
         val actions = mutableListOf<LibraryAction>()
-        val cards = listOf(card(dune, "Dune"), card(arrival, "Arrival"))
+        val cards = listOf(card(tide, "Tide"), card(mooring, "Mooring"))
         val scene = screen(state(LibraryStatus.Showing(cards)), { actions += it })
         scene.settle()
         // The filter, Sort, the seven lists, then the first card.
         repeat(TABS_TO_FIRST_CARD) { scene.press(Key.Tab) }
         scene.save("library-keyboard-card")
         scene.press(Key.F10, shift = true)
-        assertEquals(listOf<LibraryAction>(LibraryAction.PickerOpened(dune)), actions)
+        assertEquals(listOf<LibraryAction>(LibraryAction.PickerOpened(tide)), actions)
         actions.clear()
         scene.press(Key.Menu)
-        assertEquals(listOf<LibraryAction>(LibraryAction.PickerOpened(dune)), actions)
+        assertEquals(listOf<LibraryAction>(LibraryAction.PickerOpened(tide)), actions)
         scene.close()
     }
 
     @Test
     fun `progress draws over the art, and no progress draws nothing`() {
         // Found by scanning rather than by a constant: a token change should move the bar, not fail here.
-        val without = screen(state(LibraryStatus.Showing(listOf(card(dune, "Dune")))))
+        val without = screen(state(LibraryStatus.Showing(listOf(card(tide, "Tide")))))
         without.settle()
         val bottom = without.lastArtRow()
         assertEquals(ART.toArgb(), without.pixel(CARD_X.toInt(), bottom))
         without.close()
 
-        val withBar = screen(state(LibraryStatus.Showing(listOf(card(dune, "Dune", progress = 1f)))))
+        val withBar = screen(state(LibraryStatus.Showing(listOf(card(tide, "Tide", progress = 1f)))))
         withBar.settle()
         assertTrue(withBar.pixel(CARD_X.toInt(), bottom) != ART.toArgb())
         // And it is only the last few rows: a bar that covered the poster would be a layout bug.
@@ -353,7 +353,7 @@ class LibraryScreenTest {
     @Test
     fun `the bar opens the source and Sort panels`() {
         val actions = mutableListOf<LibraryAction>()
-        val scene = screen(state(LibraryStatus.Showing(listOf(card(dune, "Dune")))).sourced(), { actions += it })
+        val scene = screen(state(LibraryStatus.Showing(listOf(card(tide, "Tide")))).sourced(), { actions += it })
         scene.settle()
         scene.click(Offset(SOURCE_BUTTON_X, BAR_Y))
         scene.click(Offset(SORT_BUTTON_X, BAR_Y))
@@ -364,7 +364,7 @@ class LibraryScreenTest {
     @Test
     fun `Escape in the filter empties it`() {
         val actions = mutableListOf<LibraryAction>()
-        val filtered = state(LibraryStatus.Showing(listOf(card(dune, "Dune")))).copy(filter = "dune")
+        val filtered = state(LibraryStatus.Showing(listOf(card(tide, "Tide")))).copy(filter = "tide")
         val scene = screen(filtered, { actions += it })
         scene.settle()
         scene.click(Offset(FILTER_X, BAR_Y))
@@ -376,7 +376,7 @@ class LibraryScreenTest {
     @Test
     fun `in the minimum window the filter gives way, unless it holds words (L7)`() {
         val actions = mutableListOf<LibraryAction>()
-        val cards = listOf(card(dune, "Dune"))
+        val cards = listOf(card(tide, "Tide"))
         val bare = screen(state(LibraryStatus.Showing(cards)).sourced(), { actions += it }, MIN_SCREEN_WIDTH, MIN_HEIGHT)
         bare.settle()
         bare.save("library-l7-minimum-window")
@@ -405,7 +405,7 @@ class LibraryScreenTest {
     @Test
     fun `a failed sync keeps the cards, dims them, and offers the read again (L2)`() {
         val actions = mutableListOf<LibraryAction>()
-        val cards = listOf(card(dune, "Dune", LibraryBucket.Watching))
+        val cards = listOf(card(tide, "Tide", LibraryBucket.Watching))
         // A service's own lists, as the ViewModel gives them: its tabs are those, not the store's.
         val watching = LibraryTab.Synced("CURRENT", "Watching")
         val held = state(LibraryStatus.Showing(cards), watching)
@@ -430,7 +430,7 @@ class LibraryScreenTest {
     @Test
     fun `Sort lists every criterion, and one the source does not keep is greyed and takes no press (L4)`() {
         val actions = mutableListOf<LibraryAction>()
-        val open = state(LibraryStatus.Showing(listOf(card(dune, "Dune")))).sourced().copy(sortOpen = true)
+        val open = state(LibraryStatus.Showing(listOf(card(tide, "Tide")))).sourced().copy(sortOpen = true)
         val scene = screen(open, { actions += it })
         scene.settle()
         scene.save("library-l4-sort")
@@ -452,7 +452,7 @@ class LibraryScreenTest {
     @Test
     fun `the source panel chooses a connected source and refuses one that is not (L5)`() {
         val actions = mutableListOf<LibraryAction>()
-        val open = state(LibraryStatus.Showing(listOf(card(dune, "Dune")))).sourced().copy(sourcesOpen = true)
+        val open = state(LibraryStatus.Showing(listOf(card(tide, "Tide")))).sourced().copy(sourcesOpen = true)
         val scene = screen(open, { actions += it })
         scene.settle()
         scene.save("library-l5-source")
@@ -470,8 +470,8 @@ class LibraryScreenTest {
     @Test
     fun `the picker offers every list and the way out of all of them (L6)`() {
         val actions = mutableListOf<LibraryAction>()
-        val cards = listOf(card(dune, "Dune", bucket = LibraryBucket.Completed))
-        val open = state(LibraryStatus.Showing(cards)).copy(picking = dune)
+        val cards = listOf(card(tide, "Tide", bucket = LibraryBucket.Completed))
+        val open = state(LibraryStatus.Showing(cards)).copy(picking = tide)
         val scene = screen(open, { actions += it })
         scene.settle()
         scene.save("library-picker")
@@ -482,18 +482,18 @@ class LibraryScreenTest {
         LibraryBucket.entries.forEachIndexed { index, bucket ->
             actions.clear()
             scene.click(Offset(PANEL_X, FIRST_PANEL_ROW_Y + index * PANEL_ROW_STEP))
-            assertEquals(LibraryAction.BucketChosen(dune, bucket), actions.single())
+            assertEquals(LibraryAction.BucketChosen(tide, bucket), actions.single())
         }
         actions.clear()
         scene.click(Offset(PANEL_X, PICKER_REMOVE_Y))
-        assertEquals(listOf<LibraryAction>(LibraryAction.RemoveRequested(dune)), actions)
+        assertEquals(listOf<LibraryAction>(LibraryAction.RemoveRequested(tide)), actions)
         scene.close()
     }
 
     @Test
     fun `a click outside the picker closes it`() {
         val actions = mutableListOf<LibraryAction>()
-        val open = state(LibraryStatus.Showing(listOf(card(dune, "Dune")))).copy(picking = dune)
+        val open = state(LibraryStatus.Showing(listOf(card(tide, "Tide")))).copy(picking = tide)
         val scene = screen(open, { actions += it })
         scene.settle()
         scene.click(Offset(CARD_X, CARD_Y))
@@ -504,14 +504,14 @@ class LibraryScreenTest {
     @Test
     fun `the renders are written`() {
         val cards = listOf(
-            card(dune, "Dune", resume = LibraryResume("e1", 60_000L), progress = 0.4f),
-            card(arrival, "Arrival", bucket = LibraryBucket.Completed, progress = 1f),
+            card(tide, "Tide", resume = LibraryResume("e1", 60_000L), progress = 0.4f),
+            card(mooring, "Mooring", bucket = LibraryBucket.Completed, progress = 1f),
             card(LibraryTitleId("Prov\u0000c"), "A title with a name long enough to need two lines of label"),
         )
         screen(state(LibraryStatus.Showing(cards))).use { it.save("library-continue") }
         screen(state(LibraryStatus.Showing(cards), LibraryTab.Bucket(LibraryBucket.Watching)).sourced())
             .use { it.save("library-l1-list") }
-        screen(state(LibraryStatus.Showing(cards)).sourced().copy(picking = arrival))
+        screen(state(LibraryStatus.Showing(cards)).sourced().copy(picking = mooring))
             .use { it.save("library-l6-picker-counted") }
         screen(state(LibraryStatus.Loading)).use { it.save("library-loading") }
         screen(state(LibraryStatus.Showing(cards)), width = MIN_SCREEN_WIDTH, height = MIN_HEIGHT)
@@ -525,9 +525,9 @@ class LibraryScreenTest {
     fun `command 4 from a title opened from the library lands on Downloads and lets the title go`() {
         var at = ""
         val store = InMemoryLibraryStore(
-            listOf(LibraryTitle(dune, "Quiet Harbor", LibraryBucket.Watching, keptAt = 1L, providerName = "Source One")),
+            listOf(LibraryTitle(tide, "Quiet Harbor", LibraryBucket.Watching, keptAt = 1L, providerName = "Source One")),
             // Resumable, so its card is on Continue watching, where the window opens the library, at the card's place.
-            listOf(WatchPosition(dune, "e1", 60_000L, 600_000L, 1L)),
+            listOf(WatchPosition(tide, "e1", 60_000L, 600_000L, 1L)),
         )
         val shortcuts = DesktopShortcuts()
         val escape = EscapeHandler()
@@ -554,9 +554,9 @@ class LibraryScreenTest {
         var at = ""
         val store = InMemoryLibraryStore(
             listOf(
-                LibraryTitle(dune, "Dune", LibraryBucket.Watching, keptAt = 1L, providerName = "Prov"),
+                LibraryTitle(tide, "Tide", LibraryBucket.Watching, keptAt = 1L, providerName = "Prov"),
             ),
-            listOf(WatchPosition(dune, "e1", 60_000L, 600_000L, 1L)),
+            listOf(WatchPosition(tide, "e1", 60_000L, 600_000L, 1L)),
         )
         val escape = EscapeHandler()
         val scene = scene { DesktopApp(escape, EmptyHome, library = store, onScreen = { at = it }) }
@@ -582,8 +582,8 @@ class LibraryScreenTest {
     fun `in the window, Sort reorders the list, and Escape closes the panel`() {
         val store = InMemoryLibraryStore(
             listOf(
-                LibraryTitle(arrival, "Arrival", LibraryBucket.Watching, keptAt = 1L, providerName = "Prov"),
-                LibraryTitle(dune, "Dune", LibraryBucket.Watching, keptAt = 2L, providerName = "Prov"),
+                LibraryTitle(mooring, "Mooring", LibraryBucket.Watching, keptAt = 1L, providerName = "Prov"),
+                LibraryTitle(tide, "Tide", LibraryBucket.Watching, keptAt = 2L, providerName = "Prov"),
             ),
             emptyList(),
         )
@@ -603,7 +603,7 @@ class LibraryScreenTest {
         scene.wait()
         scene.click(Offset(WINDOW_SECOND_TAB_X, WINDOW_TAB_Y))
         scene.wait()
-        // Last updated first: Dune was changed last.
+        // Last updated first: Tide was changed last.
         val first = scene.pixelRow(WINDOW_TITLE_Y)
         scene.click(Offset(WINDOW_SORT_X, WINDOW_BAR_Y))
         scene.wait()
@@ -614,7 +614,7 @@ class LibraryScreenTest {
         assertTrue(escape.handle())
         scene.wait()
         scene.save("library-in-window-sorted")
-        // A to Z: Arrival first now, so the first card's words are not what they were.
+        // A to Z: Mooring first now, so the first card's words are not what they were.
         assertNotEquals(first, scene.pixelRow(WINDOW_TITLE_Y))
         assertTrue(!escape.handle())
         scene.close()
