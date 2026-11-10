@@ -17,7 +17,7 @@ import kotlinx.coroutines.test.runTest
 class LibraryViewModelTest {
 
     private val tide = LibraryTitleId("Prov\u0000/tide")
-    private val arrival = LibraryTitleId("Prov\u0000/arrival")
+    private val mooring = LibraryTitleId("Prov\u0000/mooring")
 
     /** The store as a host would behave: a write changes what the next read returns. */
     private class Fake(
@@ -222,7 +222,7 @@ class LibraryViewModelTest {
         val vm = model(store)
         assertEquals(LibraryStatus.Empty, vm.state.value.status)
 
-        store.titles += title(arrival, LibraryBucket.Favourites)
+        store.titles += title(mooring, LibraryBucket.Favourites)
         vm.onAction(LibraryAction.Refresh)
         vm.onAction(LibraryAction.TabSelected(LibraryTab.Bucket(LibraryBucket.Favourites)))
         assertIs<LibraryStatus.Showing>(vm.state.value.status)
@@ -278,7 +278,7 @@ class LibraryViewModelTest {
                 listOf(
                     title(tide, LibraryBucket.Watching),
                     title(tide, LibraryBucket.Favourites),
-                    title(arrival, LibraryBucket.Completed),
+                    title(mooring, LibraryBucket.Completed),
                     title(LibraryTitleId("played only"), null),
                 ),
             ),
@@ -311,11 +311,11 @@ class LibraryViewModelTest {
     @Test
     fun `a filter narrows the cards and leaves the counts alone`() = runTest {
         val vm = tvModel(
-            Fake(listOf(title(tide, LibraryBucket.Watching), title(arrival, LibraryBucket.Watching))),
+            Fake(listOf(title(tide, LibraryBucket.Watching), title(mooring, LibraryBucket.Watching))),
         )
-        vm.onAction(LibraryAction.FilterChanged("ARRIV"))
+        vm.onAction(LibraryAction.FilterChanged("MOOR"))
         val cards = assertIs<LibraryStatus.Showing>(vm.state.value.status).cards
-        assertEquals(listOf(arrival), cards.map { it.id })
+        assertEquals(listOf(mooring), cards.map { it.id })
         assertEquals(2, vm.state.value.counts[LibraryBucket.Watching])
 
         vm.onAction(LibraryAction.FilterChanged("nothing has this"))

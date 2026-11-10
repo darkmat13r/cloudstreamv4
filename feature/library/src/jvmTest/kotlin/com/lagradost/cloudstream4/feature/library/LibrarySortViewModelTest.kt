@@ -53,7 +53,7 @@ class LibrarySortViewModelTest {
         ratingValue = rating,
     )
 
-    private val localTitles = listOf(title("Brazil", 1), title("Alien", 3), title("Cube", 2))
+    private val localTitles = listOf(title("Breakwater", 1), title("Anchor", 3), title("Cove", 2))
     private val serviceTitles = listOf(title("Fernwood", 1, rating = 91), title("Still Water", 2, rating = 88))
 
     private fun TestScope.model(host: LibrarySources?) = LibraryViewModel(
@@ -69,13 +69,13 @@ class LibrarySortViewModelTest {
     fun `nothing saved is last updated, newest first`() = runTest {
         val vm = model(Sources(current = local))
         assertEquals(LibrarySort.Default, vm.state.value.sort)
-        assertEquals(listOf("Alien", "Cube", "Brazil"), vm.titles())
+        assertEquals(listOf("Anchor", "Cove", "Breakwater"), vm.titles())
     }
 
     @Test
     fun `the saved sort is read and applied`() = runTest {
         val vm = model(Sources(current = local, saved = LibrarySort(LibrarySortCriterion.Title, descending = false)))
-        assertEquals(listOf("Alien", "Brazil", "Cube"), vm.titles())
+        assertEquals(listOf("Anchor", "Breakwater", "Cove"), vm.titles())
     }
 
     @Test
@@ -84,7 +84,7 @@ class LibrarySortViewModelTest {
         val vm = model(host)
         vm.onAction(LibraryAction.SortOpened)
         vm.onAction(LibraryAction.SortChosen(LibrarySortCriterion.Title))
-        assertEquals(listOf("Alien", "Brazil", "Cube"), vm.titles())
+        assertEquals(listOf("Anchor", "Breakwater", "Cove"), vm.titles())
         assertTrue(vm.state.value.sortOpen)
         assertEquals(listOf(LibrarySort(LibrarySortCriterion.Title, descending = false)), host.kept)
     }
@@ -95,11 +95,11 @@ class LibrarySortViewModelTest {
         val vm = model(host)
         vm.onAction(LibraryAction.SortChosen(LibrarySortCriterion.Title))
         vm.onAction(LibraryAction.SortChosen(LibrarySortCriterion.Title))
-        assertEquals(listOf("Cube", "Brazil", "Alien"), vm.titles())
+        assertEquals(listOf("Cove", "Breakwater", "Anchor"), vm.titles())
         // The default is applied already, so its own row turns it oldest first.
         vm.onAction(LibraryAction.SortChosen(LibrarySortCriterion.Updated))
         vm.onAction(LibraryAction.SortChosen(LibrarySortCriterion.Updated))
-        assertEquals(listOf("Brazil", "Cube", "Alien"), vm.titles())
+        assertEquals(listOf("Breakwater", "Cove", "Anchor"), vm.titles())
     }
 
     @Test
@@ -122,7 +122,7 @@ class LibrarySortViewModelTest {
         vm.onAction(LibraryAction.SourceChosen(local))
         assertEquals(LibrarySort.Default, vm.state.value.appliedSort, "Local keeps no rating")
         assertEquals(rating, vm.state.value.sort, "the choice is kept")
-        assertEquals(listOf("Alien", "Cube", "Brazil"), vm.titles())
+        assertEquals(listOf("Anchor", "Cove", "Breakwater"), vm.titles())
         assertTrue(host.kept.isEmpty(), "falling back writes nothing")
 
         vm.onAction(LibraryAction.SourceChosen(aniList))
@@ -136,13 +136,13 @@ class LibrarySortViewModelTest {
         vm.onAction(LibraryAction.SortChosen(LibrarySortCriterion.Title))
         vm.onAction(LibraryAction.SortDismissed)
         assertFalse(vm.state.value.sortOpen)
-        assertEquals(listOf("Alien", "Brazil", "Cube"), vm.titles())
+        assertEquals(listOf("Anchor", "Breakwater", "Cove"), vm.titles())
     }
 
     @Test
     fun `without sources a sort still applies, and nothing keeps it`() = runTest {
         val vm = model(host = null)
         vm.onAction(LibraryAction.SortChosen(LibrarySortCriterion.Title))
-        assertEquals(listOf("Alien", "Brazil", "Cube"), vm.titles())
+        assertEquals(listOf("Anchor", "Breakwater", "Cove"), vm.titles())
     }
 }
