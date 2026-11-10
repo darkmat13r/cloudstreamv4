@@ -30,9 +30,10 @@ import kotlinx.coroutines.test.runTest
  *
  * Loading an extension executes third-party code in this process. Three of the cases below are
  * nothing but refusals — a lying caller, a hash that does not match, a name that escapes the
- * directory — and they are the point of the class rather than padding: `KMP-11` recorded that `:app`
- * carries `fileHash` through its index and never compares it, so "the check exists" has to be
- * something a test asserts rather than something a KDoc claims.
+ * directory — and they are the point of the class rather than padding: "the check exists" has to be
+ * something a test asserts rather than something a KDoc claims. (`KMP-11` recorded that `:app` never
+ * compares `fileHash`, and that was itself a claim nobody tested: `RepositoryManager.downloadPluginToFile`
+ * does compare it. Corrected in `KMP-110`.)
  */
 class JvmExtensionRuntimeTest {
 

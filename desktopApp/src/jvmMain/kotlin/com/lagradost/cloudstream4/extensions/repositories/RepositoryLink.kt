@@ -5,7 +5,10 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
 /** What a person typed into "Add repository", read without touching the network (`KMP-110`). */
 sealed interface RepositoryLink {
     /** An https URL to fetch. */
-    data class Https(val url: String) : RepositoryLink
+    data class Https(val url: String) : RepositoryLink {
+        /** Without the URL, which can carry a token: a log or an assertion message must not print it. */
+        override fun toString(): String = "Https(url=<redacted>)"
+    }
 
     /**
      * A short code, which Android resolves by asking a third-party URL shortener (`cutt.ly`, or `py.md` for `!code`).

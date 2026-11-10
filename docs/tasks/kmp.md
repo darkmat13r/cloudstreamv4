@@ -7953,9 +7953,9 @@ an app that cannot keep a secret, with no PKCE and no `state` shown, and Android
 - Red-checked: without the state comparison, 3 of these fail; without ending the wait on leaving the step, the late
   redirect is taken and the Cancel test fails; without the bare-form check or the RFC 3986 decoding, their tests fail.
 
-## KMP-110 — The Mac's extension repository manager · **110a in review**, 110b and 110c to follow · the owner's task, 2026-11-10
+## KMP-110 — The Mac's extension repository manager · **110a in review (#334), 110b in review**, 110c to follow · the owner's task, 2026-11-10
 
-**Status:** 110a (fetch, parse, saved repositories) in review. Today the Mac gets extensions only from files dropped
+**Status:** 110a (fetch, parse, saved repositories) in #334; 110b (install, update, remove) stacked on it. Today the Mac gets extensions only from files dropped
 into `~/.cloudstream4/extensions` before a restart. This adds a repository by URL, lists its plugins, and installs,
 updates or removes one into that folder, where the existing pipeline (hash, no-network `.cs3` conversion, scan,
 Allow / Keep off) takes over.
@@ -8021,10 +8021,49 @@ declared-length one. A "prints nothing" case now also goes through a real OkHttp
 **Green:** the 45 pass, and `:desktopApp:jvmTest` passes 772 of 772. The five gates passed, 273 XML results with 0
 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
 
-### 110b and 110c — next
+### 110b — install, update, remove (`RepositoryInstaller`)
 
-- [ ] 110b: install, update and remove into the folder. File name from `internalName` and the repository, checked to
-      stay in the folder; the published hash checked before the move and written as the `.sha256` sidecar; the
-      single-file scan with no start; the hold for every repository install; `installed.json` for versions.
-- [ ] 110c: the Settings → Extensions pane and Home's button, against the desktop board; strings; a section in
-      `desktop-design.md`.
+- **Held until Allow.** A new choice, `ExtensionChoice.Pending`, is recorded for the file's hash before the file is
+  moved in, and `SandboxedExtensions` holds a `Pending` file whatever the scan says. Allow replaces it; Keep off
+  replaces it. An update is a new hash, so it is held again. Side-loaded files are unchanged.
+- **Offered:** status Ok or Slow. DECIDED: beta only is not offered (options: offer it, hide it; chose hide because the
+  Mac has no beta builds, which is what the status is for), and an unknown code is read as Down.
+- **Which file:** the jar when the repository publishes one, otherwise the `.cs3`, which the pipeline converts without
+  network. A jar arriving replaces the `.cs3` it supersedes, and its sidecar.
+- **Fetched and checked:** through `RepositoryHttp` with a 120 s call limit, at most the stated size and never past
+  32 MiB. A stated size it does not match, or a published hash it does not match, writes nothing.
+- **No published hash:** installed and marked unverified, and held all the same (the owner confirmed, 2026-11-10). It
+  gets no sidecar, and a sidecar left by an earlier, verified version is removed: it would claim a check that was not
+  made, or refuse the new file.
+- **Named here:** `fileStem` keeps the first 40 characters of `internalName` in `A-Z a-z 0-9 _ -` and adds 12 hex of
+  SHA-256 over the repository URL and the name, so `18+` and `18_`, and one name from two repositories, are different
+  files. Every path is checked to be a plain name directly in the folder. `..`, `/` and U+202E stay in.
+- **Written whole:** staged in `.incoming/`, the sidecar moved in before the file, the file moved in atomically.
+- **`InstalledFromRepositories`:** `extensions.installed` beside the directory, 0600, with the repository's version
+  (the Mac never loads a manifest it was not allowed to).
+- **Remove** takes the file, its sidecar and its entry, keeps the choice, and leaves side-loaded files alone.
+- **Updates:** a higher version, or `-1` (always update), from a status that is offered.
+- `SandboxedExtensions.refresh(fileName)` takes one file through the pipeline while the app runs (it comes back held),
+  and `forget(fileName)` stops one before it is replaced or removed. 110c calls them.
+- `#334` review, carried in: `RepositoryLink.Https`, `SavedRepository` and `InstalledFromRepository` print no URL, and a
+  failed save throws `OwnerOnlyFile.NotSaved`, which has no message and no cause, since a `Files` exception names the
+  home directory.
+- The three comments that said most repositories publish no hash are corrected (`ExtensionHash.kt`,
+  `ExtensionInstall.kt`, `JvmExtensionRuntimeTest.kt`): 529 of 583 do.
+
+**Tests:** 17 more: `RepositoryInstallerTest` (13), `RepositoryInstallHoldTest` (2, the real scanner and a real host
+under Seatbelt, on the clean fixture built in the test), `RepositoryRedactionTest` (2). No real plugin is involved.
+
+**Red-checked:** with the guards removed at once (the `Pending` hold in the pipeline and its record in the installer,
+the hash and size checks, removing an old sidecar, the name's character rule and the
+in-folder checks, the three redacting `toString`s, and the path-free save error), 10 of 62 fail, each on its guard:
+among them the clean fixture starting before it was allowed.
+
+**Green:** the 62 repository tests pass, `ExtensionHoldTest` 25 of 25, and `:desktopApp:jvmTest` 789 of 789. The five
+gates passed, 276 XML results with 0 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is
+unchanged. All local.
+
+### 110c — next
+
+- [ ] The Settings → Extensions pane and Home's button, against the desktop board; names and descriptions through
+      `untrustedText`; strings; a section in `desktop-design.md`.

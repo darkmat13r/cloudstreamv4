@@ -36,7 +36,7 @@ import kotlinx.coroutines.withContext
  * 3. **Scan.** [ExtensionScanner] in this process, so a plugin cannot forge its own verdict. A
  *    blocking finding refuses the extension.
  * 4. **Hold.** An extension with warnings stops here until the person has allowed that exact file
- *    ([ExtensionDecisions]). Everything so far is safe to do first, because none of it runs the plugin:
+ *    ([ExtensionDecisions]), and so does every file installed from a repository, warnings or none (`KMP-110`). Everything so far is safe to do first, because none of it runs the plugin:
  *    the scan reads its bytes, and conversion translates a dex without loading a class from it.
  * 5. **Run.** A host per extension under Seatbelt, with its own data directory. One extension cannot
  *    read another's cookies, and a crash or a hang takes down one host.
@@ -107,6 +107,25 @@ class SandboxedExtensions(
         return loadOne(source, launcher, start = false)
     }
 
+    /**
+     * Takes one file through the pipeline again, after a repository installed or replaced it (`KMP-110`): stops it if it
+     * was running, then hashes, stores, scans and decides as a launch would. A file installed from a repository comes
+     * back held, so this starts nothing until it is allowed.
+     *
+     * @return where it ended up, or null when the file is not there, or there is no sandbox on this platform.
+     */
+    suspend fun refresh(fileName: String): SandboxedLoad? {
+        val source = candidates().firstOrNull { it.name == fileName } ?: return null
+        val launcher = launcher ?: return null
+        stop(source)
+        return loadOne(source, launcher, start = true)
+    }
+
+    /** Stops the extension in [fileName], if it is running, before a repository removes or replaces it (`KMP-110`). */
+    fun forget(fileName: String) {
+        stop(File(root, fileName))
+    }
+
     /** Stops one host and takes its providers away, so no screen can reach a host that has gone. */
     private fun stop(source: File) {
         val host = synchronized(hosts) { running.remove(source.name)?.also { hosts -= it } } ?: return
@@ -162,6 +181,12 @@ class SandboxedExtensions(
             choice == ExtensionChoice.Allow -> Unit
             choice == ExtensionChoice.KeepOff ->
                 return SandboxedLoad(source.name, verification, scan, 0, "kept off, as chosen", sha256, LoadState.KeptOff)
+            // `KMP-110`: installed from a repository. Installing is not consent to run, warnings or none.
+            choice == ExtensionChoice.Pending ->
+                return SandboxedLoad(
+                    source.name, verification, scan, 0, "HELD: installed from a repository, waiting for a decision", sha256,
+                    LoadState.Held, fromRepository = true,
+                )
             newVersion ->
                 return SandboxedLoad(
                     source.name, verification, scan, 0, "HELD: a new version, waiting for a decision", sha256, LoadState.Held,
@@ -373,6 +398,8 @@ data class SandboxedLoad(
     val newVersion: Boolean = false,
     /** Someone allowed this exact file, so it can be changed on the review screen even if the scan found nothing. */
     val chosen: Boolean = false,
+    /** Held because it was installed from a repository and has not been allowed (`KMP-110`). */
+    val fromRepository: Boolean = false,
 )
 
 /** What the startup pass did, as data, so the caller decides where the words go. */

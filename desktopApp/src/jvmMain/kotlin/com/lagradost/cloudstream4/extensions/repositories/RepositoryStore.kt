@@ -2,19 +2,15 @@ package com.lagradost.cloudstream4.extensions.repositories
 
 import java.io.File
 import java.io.IOException
-import java.nio.ByteBuffer
-import java.nio.channels.FileChannel
-import java.nio.file.Files
-import java.nio.file.LinkOption
-import java.nio.file.StandardCopyOption
-import java.nio.file.StandardOpenOption
-import java.nio.file.attribute.PosixFilePermission
 import kotlinx.serialization.Serializable
 import kotlinx.serialization.json.Json
 
 /** One repository the person added: where it is, and the name it gave itself when it was added. */
 @Serializable
-data class SavedRepository(val url: String, val name: String)
+data class SavedRepository(val url: String, val name: String) {
+    /** Without the URL, which can carry a token: a log or an assertion message must not print it. */
+    override fun toString(): String = "SavedRepository(name=$name, url=<redacted>)"
+}
 
 /** What was read. [unreadable]: the file is there and is not what [RepositoryStore] writes, so nothing in it counts. */
 data class SavedRepositories(val repositories: List<SavedRepository>, val unreadable: Boolean)
@@ -44,16 +40,14 @@ class RepositoryStore(
     private val lock = Any()
 
     fun read(): SavedRepositories = synchronized(lock) {
-        val path = file.toPath()
-        if (!Files.exists(path, LinkOption.NOFOLLOW_LINKS)) return SavedRepositories(emptyList(), unreadable = false)
-        val saved = runCatching {
-            if (!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS) || Files.size(path) > MAX_BYTES) {
-                null
-            } else {
-                json.decodeFromString<SavedFile>(Files.readAllBytes(path).toString(Charsets.UTF_8))
+        val saved = when (val read = OwnerOnlyFile.read(file, MAX_BYTES)) {
+            OwnerOnlyFile.Read.Absent -> return SavedRepositories(emptyList(), unreadable = false)
+            OwnerOnlyFile.Read.Unreadable -> null
+            is OwnerOnlyFile.Read.Bytes -> runCatching {
+                json.decodeFromString<SavedFile>(read.bytes.toString(Charsets.UTF_8))
                     .takeIf { it.format == FORMAT && it.repositories.size <= MAX_REPOSITORIES }
-            }
-        }.getOrNull()
+            }.getOrNull()
+        }
         return saved?.let { SavedRepositories(it.repositories, unreadable = false) }
             ?: SavedRepositories(emptyList(), unreadable = true)
     }
@@ -94,23 +88,7 @@ class RepositoryStore(
     private fun write(repositories: List<SavedRepository>) {
         val bytes = json.encodeToString(SavedFile.serializer(), SavedFile(FORMAT, repositories)).toByteArray(Charsets.UTF_8)
         if (bytes.size > MAX_BYTES) throw IOException("the saved repositories would be too large")
-        val parent = checkNotNull(file.absoluteFile.parentFile) { "no parent directory" }
-        if (!parent.mkdirs() && !parent.isDirectory) throw IOException("cannot create the settings directory")
-        // In the same directory, so the move is atomic. The JDK creates a temporary file 0600; set again, so the mode
-        // does not rest on that default.
-        val staging = Files.createTempFile(parent.toPath(), ".${file.name}", STAGING_SUFFIX)
-        try {
-            Files.setPosixFilePermissions(staging, OWNER_ONLY)
-            FileChannel.open(staging, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING).use { channel ->
-                val buffer = ByteBuffer.wrap(bytes)
-                while (buffer.hasRemaining()) channel.write(buffer)
-                channel.force(true)
-            }
-            beforeMove()
-            Files.move(staging, file.toPath(), StandardCopyOption.ATOMIC_MOVE)
-        } finally {
-            Files.deleteIfExists(staging)
-        }
+        OwnerOnlyFile.write(file, bytes, beforeMove)
     }
 
     @Serializable
@@ -118,10 +96,8 @@ class RepositoryStore(
 
     companion object {
         private const val FORMAT = 1
-        private const val STAGING_SUFFIX = ".part"
         private const val MAX_BYTES = 256L * 1024
         private const val MAX_REPOSITORIES = 100
-        private val OWNER_ONLY = setOf(PosixFilePermission.OWNER_READ, PosixFilePermission.OWNER_WRITE)
         private val json = Json { prettyPrint = true }
 
         /** Beside [extensionsDirectory], and so never inside anything a host is given. */

@@ -20,6 +20,13 @@ enum class ExtensionChoice(internal val word: String) {
      * that a different file under this name is noticed, and it is never an approval of warnings.
      */
     Seen("seen"),
+
+    /**
+     * Installed from a repository and not allowed yet (`KMP-110`). Held whatever the scan says: installing is not
+     * consent to run, so a repository's file waits for Allow even when the scan has nothing to say. Recorded before the
+     * file is moved into the directory, so there is no moment when it is there without this.
+     */
+    Pending("pending"),
 }
 
 /**
