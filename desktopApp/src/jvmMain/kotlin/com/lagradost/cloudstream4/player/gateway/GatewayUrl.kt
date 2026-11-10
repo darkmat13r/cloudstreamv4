@@ -45,7 +45,7 @@ class GatewayUrl(private val port: Int, private val token: String) {
 
     /** [url], absolute http(s), as the gateway url for [role]; null for anything this scheme refuses. */
     fun encode(url: String, role: GatewayRole): String? {
-        if (url.length > SandboxPolicy.MAX_URL_CHARS || url.any { it.isISOControl() }) return null
+        if (url.length > SandboxPolicy.MAX_URL_CHARS || hasControl(url)) return null
         val parsed = runCatching { URI(url) }.getOrNull() ?: return null
         val scheme = parsed.scheme?.lowercase()?.takeIf { it in SCHEMES } ?: return null
         if (parsed.rawUserInfo != null) return null

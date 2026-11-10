@@ -37,7 +37,40 @@ import okhttp3.Response
 enum class GatewayFailure {
     RefusedAddress, TooManyRedirects, Downgrade, PlaylistTooLarge, PlaylistUnreadable, DashUnsupported,
     UpstreamTls, UpstreamTimeout, UpstreamUnreachable, UpstreamStatus4xx, UpstreamStatus5xx, BadRequest, NoToken,
+
+    /** Anything else that went wrong while serving a connection. Nothing is written, and its message goes nowhere. */
+    Internal,
 }
+
+/** Where a redirect goes next, or why it goes nowhere. */
+sealed interface Hop {
+    data class Next(val url: HttpUrl) : Hop
+    data class Stop(val kind: GatewayFailure) : Hop
+}
+
+/**
+ * The next hop of a redirect from [current] to [location]: resolved as OkHttp resolves a url, and refused when it is
+ * missing, not http(s), a step down from https to http, or carries user info.
+ */
+internal fun nextHop(current: HttpUrl, location: String?): Hop {
+    val next = location?.let { current.resolve(it) } ?: return Hop.Stop(GatewayFailure.UpstreamUnreachable)
+    if (current.isHttps && !next.isHttps) return Hop.Stop(GatewayFailure.Downgrade)
+    if (next.username.isNotEmpty() || next.password.isNotEmpty()) return Hop.Stop(GatewayFailure.BadRequest)
+    return Hop.Next(next)
+}
+
+/**
+ * [value] as a header value OkHttp will send, or null. A url is written as OkHttp writes it, so an IDN host becomes
+ * punycode and a non-ASCII path is percent-encoded. Anything still outside printable ASCII is dropped: OkHttp would
+ * throw on it, with the value in the exception's message (`#348` review).
+ */
+internal fun headerValueOrNull(value: String?, isUrl: Boolean): String? {
+    if (value == null || value.length > MAX_HEADER_VALUE) return null
+    val written = if (isUrl) value.toHttpUrlOrNull()?.toString() ?: value else value
+    return written.takeIf { text -> text.all { it == '\t' || it in ' '..'~' } }
+}
+
+private const val MAX_HEADER_VALUE = 8 * 1024
 
 /**
  * The media host's only way out (`KMP-113`, `docs/plans/media-gateway.md`): an HTTP/1.1 origin on loopback that fetches
@@ -55,8 +88,8 @@ class MediaGateway private constructor(
     private val v4: ServerSocket,
     private val v6: ServerSocket,
     token: String,
-    private val referer: String?,
-    private val userAgent: String?,
+    referer: String?,
+    userAgent: String?,
     allow: (InetSocketAddress) -> Boolean,
     lookup: Dns,
     private val limits: Limits,
@@ -76,6 +109,9 @@ class MediaGateway private constructor(
     )
 
     val port: Int = v4.localPort
+    private val referer = headerValueOrNull(referer, isUrl = true)
+    private val userAgent = headerValueOrNull(userAgent, isUrl = false)
+    private val live = java.util.concurrent.ConcurrentHashMap.newKeySet<Socket>()
     private val urls = GatewayUrl(port, token)
     private val rewriter = HlsRewriter(urls::encode, limits.rewriter)
     private val slots = Semaphore(limits.maxConnections)
@@ -122,6 +158,7 @@ class MediaGateway private constructor(
         closed = true
         runCatching { v4.close() }
         runCatching { v6.close() }
+        live.forEach { runCatching { it.close() } }
         watchdog.shutdownNow()
         client.dispatcher.executorService.shutdown()
         client.connectionPool.evictAll()
@@ -135,10 +172,15 @@ class MediaGateway private constructor(
                     runCatching { socket.close() }
                     continue
                 }
+                live += socket
                 thread(isDaemon = true, name = "media-gateway-connection") {
                     try {
                         socket.use { serve(it, isV6 = server === v6) }
+                    } catch (_: Throwable) {
+                        // Nothing escapes to the default handler, which would print it and its message (§4a).
+                        fail(GatewayFailure.Internal)
                     } finally {
+                        live -= socket
                         slots.release()
                     }
                 }
@@ -198,22 +240,38 @@ class MediaGateway private constructor(
     // ---- Upstream ---------------------------------------------------------------------------------------------
 
     private fun fetch(target: GatewayTarget, head: Head, output: OutputStream): Boolean {
-        val playlist = target.role != GatewayRole.Media
-        val fetched = try {
-            followRedirects(target.upstream, head, playlist)
-        } catch (failure: Failure) {
-            fail(failure.kind)
-            return respond(output, BAD_GATEWAY)
-        }
+        // A playlist is never asked for in part. The first url (Unknown) is: most streams are one file, and seeking in
+        // it needs its range. If it turns out to be a playlist after all, it is fetched again, whole (§2).
+        val ranged = target.role != GatewayRole.Playlist
+        val fetched = fetchOrFail(target.upstream, head, ranged) ?: return respond(output, BAD_GATEWAY)
         fetched.response.use {
-            val code = it.code
-            if (code !in 200..299 && code != 416) {
-                fail(if (code in 400..499) GatewayFailure.UpstreamStatus4xx else GatewayFailure.UpstreamStatus5xx)
-                return respond(output, BAD_GATEWAY)
+            if (!statusOk(it.code)) return respond(output, BAD_GATEWAY)
+            if (head.method == "HEAD") return respondHead(output, it, playlist = target.role != GatewayRole.Media)
+            val again: (() -> Fetched?)? = if (target.role == GatewayRole.Unknown && head.header("Range") != null) {
+                { fetchOrFail(target.upstream, head, ranged = false) }
+            } else {
+                null
             }
-            if (head.method == "HEAD") return respondHead(output, it, playlist)
-            return if (playlist) servePlaylist(fetched, output) else stream(it, output)
+            return when (target.role) {
+                GatewayRole.Media -> stream(it, output)
+                GatewayRole.Playlist, GatewayRole.Unknown -> servePlaylist(fetched, output, again)
+            }
         }
+    }
+
+    /** [url] fetched, redirects followed; null, counted, when that failed. */
+    private fun fetchOrFail(url: String, head: Head, ranged: Boolean): Fetched? = try {
+        followRedirects(url, head, ranged)
+    } catch (failure: Failure) {
+        fail(failure.kind)
+        null
+    }
+
+    /** Whether libVLC may see an upstream status; counted when it may not. */
+    private fun statusOk(code: Int): Boolean {
+        if (code in 200..299 || code == 416) return true
+        fail(if (code in 400..499) GatewayFailure.UpstreamStatus4xx else GatewayFailure.UpstreamStatus5xx)
+        return false
     }
 
     private class Fetched(val call: Call, val response: Response)
@@ -221,27 +279,27 @@ class MediaGateway private constructor(
     private class Refused : IOException(null as String?)
     private class BadHead : Exception(null, null, false, false)
 
-    private fun followRedirects(start: String, head: Head, playlist: Boolean): Fetched {
+    private fun followRedirects(start: String, head: Head, ranged: Boolean): Fetched {
         var url = start.toHttpUrlOrNull() ?: throw Failure(GatewayFailure.BadRequest)
         repeat(limits.maxRedirects + 1) {
-            val fetched = execute(request(url, head, playlist))
+            val fetched = execute(request(url, head, ranged))
             val response = fetched.response
             if (response.code !in 300..399 || response.code == 304) return fetched
             val location = response.header("Location")
             response.close()
-            val next = location?.let { url.resolve(it) } ?: throw Failure(GatewayFailure.UpstreamUnreachable)
-            if (url.isHttps && !next.isHttps) throw Failure(GatewayFailure.Downgrade)
-            if (next.username.isNotEmpty() || next.password.isNotEmpty()) throw Failure(GatewayFailure.BadRequest)
-            url = next
+            url = when (val hop = nextHop(url, location)) {
+                is Hop.Next -> hop.url
+                is Hop.Stop -> throw Failure(hop.kind)
+            }
         }
         throw Failure(GatewayFailure.TooManyRedirects)
     }
 
-    private fun request(url: HttpUrl, head: Head, playlist: Boolean): Request = Request.Builder().url(url).apply {
+    private fun request(url: HttpUrl, head: Head, ranged: Boolean): Request = Request.Builder().url(url).apply {
         referer?.let { header("Referer", it) }
         userAgent?.let { header("User-Agent", it) }
         head.header("Accept")?.takeUnless(urls::namesGateway)?.let { header("Accept", it) }
-        if (!playlist) {
+        if (ranged) {
             // Media streams through as it is: no compression for OkHttp to undo, and the ranges libVLC asked for.
             header("Accept-Encoding", "identity")
             head.header("Range")?.takeUnless(urls::namesGateway)?.let { header("Range", it) }
@@ -269,7 +327,7 @@ class MediaGateway private constructor(
 
     // ---- Answers ----------------------------------------------------------------------------------------------
 
-    private fun servePlaylist(fetched: Fetched, output: OutputStream): Boolean {
+    private fun servePlaylist(fetched: Fetched, output: OutputStream, again: (() -> Fetched?)?): Boolean {
         val response = fetched.response
         val source = response.body?.byteStream() ?: run {
             fail(GatewayFailure.UpstreamUnreachable)
@@ -288,9 +346,18 @@ class MediaGateway private constructor(
                 return respond(output, BAD_GATEWAY)
             }
             if (type !in HLS_TYPES && !text.startsWith("#EXTM3U")) {
-                // The first url was media after all: it streams through, whole, with no time limit on its length.
+                // The first url was media after all: it streams through as asked, a 206 included, with no time limit.
                 timer.cancel(false)
                 return streamFrom(response, sniff, source, output)
+            }
+            if (again != null) {
+                // A playlist asked for in part: fetched again, whole, and rewritten from that. Never from a part.
+                timer.cancel(false)
+                response.close()
+                val whole = again() ?: return respond(output, BAD_GATEWAY)
+                return whole.response.use {
+                    if (!statusOk(it.code)) respond(output, BAD_GATEWAY) else servePlaylist(whole, output, again = null)
+                }
             }
             val rest = readUpTo(source, limits.rewriter.maxBytes + 1 - sniff.size, fetched.call)
                 ?: run { fail(GatewayFailure.UpstreamTimeout); return respond(output, BAD_GATEWAY) }

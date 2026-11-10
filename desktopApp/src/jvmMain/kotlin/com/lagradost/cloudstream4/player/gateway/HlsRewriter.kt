@@ -33,7 +33,8 @@ class HlsRewriter(
     /** [body], fetched from [base] (the final url, after redirects), rewritten. */
     fun rewrite(body: ByteArray, base: String): Rewrite {
         if (body.size > limits.maxBytes) return Rewrite.Failed(RewriteFailure.TooLarge)
-        val baseUri = runCatching { URI(base) }.getOrNull() ?: return Rewrite.Failed(RewriteFailure.Unreadable)
+        val baseUri = runCatching { withRootPath(URI(lenient(base))) }.getOrNull()
+            ?: return Rewrite.Failed(RewriteFailure.Unreadable)
         val text = String(body, Charsets.UTF_8).removePrefix(BOM)
         val lines = text.split('\n')
         if (lines.size > limits.maxLines) return Rewrite.Failed(RewriteFailure.TooManyLines)
@@ -85,7 +86,8 @@ class HlsRewriter(
 
     /** [reference] resolved against [base] and encoded, or null to leave it as written (not http(s), or refused). */
     private fun rewriteUri(reference: String, base: URI, role: GatewayRole): String? {
-        val ref = runCatching { URI(reference) }.getOrNull() ?: return null
+        // Lenient first: real CDN urls carry `|`, `^`, `{}`, `[]` and spaces, which java.net.URI refuses (#348 review).
+        val ref = runCatching { URI(lenient(reference)) }.getOrNull() ?: return null
         val scheme = ref.scheme?.lowercase()
         if (scheme != null && scheme !in HTTP) return null
         val resolved = runCatching { base.resolve(ref) }.getOrNull() ?: return null
@@ -135,6 +137,52 @@ class HlsRewriter(
     }
 
     companion object {
+        /**
+         * [reference] with every character `java.net.URI` refuses percent-encoded, after its authority only, so an IPv6
+         * host keeps its brackets. A `%` that does not start an escape becomes `%25`. Nothing already valid changes.
+         */
+        internal fun lenient(reference: String): String {
+            val start = authorityEnd(reference)
+            val out = StringBuilder(reference.length + 16).append(reference, 0, start)
+            var i = start
+            while (i < reference.length) {
+                val c = reference[i]
+                val escape = c == '%' && i + 2 <= reference.lastIndex && reference[i + 1].isHex() && reference[i + 2].isHex()
+                when {
+                    escape -> out.append(c)
+                    c != '%' && (c in ALLOWED) -> out.append(c)
+                    else -> String(Character.toChars(reference.codePointAt(i))).toByteArray(Charsets.UTF_8)
+                        .forEach { out.append('%').append("%02X".format(it.toInt() and 0xFF)) }
+                }
+                i += Character.charCount(reference.codePointAt(i))
+            }
+            return out.toString()
+        }
+
+        /** Where a reference's authority ends: after `scheme://host` or `//host`; 0 when it has none. */
+        private fun authorityEnd(reference: String): Int {
+            val scheme = SCHEME_PREFIX.find(reference)
+            val from = when {
+                scheme != null -> scheme.range.last + 1
+                reference.startsWith("//") -> 2
+                else -> return 0
+            }
+            val end = reference.indexOfAny(charArrayOf('/', '?', '#'), from)
+            return if (end < 0) reference.length else end
+        }
+
+        /** A base with no path resolves as if its path were `/`. java.net.URI otherwise joins `host` and `a.ts`. */
+        private fun withRootPath(base: URI): URI =
+            if (base.rawPath.isNullOrEmpty() && base.rawAuthority != null) {
+                URI("${base.scheme}://${base.rawAuthority}/" + base.rawQuery?.let { "?$it" }.orEmpty())
+            } else {
+                base
+            }
+
+        private fun Char.isHex() = this in '0'..'9' || this in 'a'..'f' || this in 'A'..'F'
+        private val SCHEME_PREFIX = Regex("^[A-Za-z][A-Za-z0-9+.-]*://")
+        private const val ALLOWED = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-._~:/?#@!$&'()*+,;="
+
         private const val MIB = 1024 * 1024
         private const val BOM = "﻿"
         private const val STREAM_INF = "#EXT-X-STREAM-INF"

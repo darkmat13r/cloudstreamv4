@@ -91,6 +91,8 @@ class GatewayUrlTest {
         assertNull(urls.decode("/$token/s/https/cdn.example/a%0Ab"))
         assertNull(urls.decode("/$token/s/https/cdn.example/a%7f"))
         assertNull(urls.encode("https://cdn.example/a\tb", GatewayRole.Media))
+        assertNull(urls.encode("https://cdn.example/a%0Ab", GatewayRole.Media))
+        assertNull(urls.encode("https://cdn.example/a?x=%7F", GatewayRole.Media))
         val long = "https://cdn.example/" + "a".repeat(SandboxPolicy.MAX_URL_CHARS)
         assertNull(urls.encode(long, GatewayRole.Media))
         assertNull(urls.decode("/$token/s/https/cdn.example/" + "a".repeat(SandboxPolicy.MAX_URL_CHARS)))

@@ -22,6 +22,7 @@ import kotlin.test.assertNotNull
 import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import okhttp3.Dns
+import okhttp3.HttpUrl.Companion.toHttpUrl
 
 /**
  * `KMP-113`: the gateway against local servers. Made-up names resolve to loopback through an injected lookup, and the
@@ -255,14 +256,45 @@ class MediaGatewayTest {
     }
 
     @Test
-    fun `a first url that is media after all streams through whole`() = within60s {
+    fun `a first url that is media after all streams through, its range kept`() = within60s {
         val bytes = ByteArray(200_000) { (it % 251).toByte() }
         val cdn = upstream { Reply(200, listOf("Content-Type" to "video/mp4"), bytes) }
         val gateway = gateway(allowed = setOf(cdn.port))
         val answer = ask(gateway, target(gateway, "http://127.0.0.1:${cdn.port}/film.mp4", GatewayRole.Unknown), listOf("Range" to "bytes=0-"))
         assertEquals(200, answer.code)
         assertTrue(bytes.contentEquals(answer.body))
-        assertNull(cdn.seen.single().headers["range"])
+        assertEquals("bytes=0-", cdn.seen.single().headers["range"])
+    }
+
+    @Test
+    fun `a single file as the first url can seek - its 206 comes through`() = within60s {
+        val cdn = upstream { seen ->
+            assertEquals("bytes=1000-", seen.headers["range"])
+            Reply(206, listOf("Content-Type" to "video/mp4", "Content-Range" to "bytes 1000-1003/5000", "Accept-Ranges" to "bytes"), "abcd".toByteArray())
+        }
+        val gateway = gateway(allowed = setOf(cdn.port))
+        val answer = ask(gateway, target(gateway, "http://127.0.0.1:${cdn.port}/film.mp4", GatewayRole.Unknown), listOf("Range" to "bytes=1000-"))
+        assertEquals(206, answer.code)
+        assertEquals("bytes 1000-1003/5000", answer.headers["content-range"])
+        assertEquals("abcd", answer.text)
+    }
+
+    @Test
+    fun `a first url that is a playlist asked for in part is fetched again whole, and rewritten from that`() = within60s {
+        val body = "#EXTM3U\n#EXTINF:4,\none.ts\n#EXTINF:4,\ntwo.ts\n"
+        val cdn = upstream { seen ->
+            if (seen.headers["range"] != null) {
+                Reply(206, listOf("Content-Type" to "application/vnd.apple.mpegurl", "Content-Range" to "bytes 0-9/${body.length}"), body.take(10).toByteArray())
+            } else {
+                Reply(200, listOf("Content-Type" to "application/vnd.apple.mpegurl"), body.toByteArray())
+            }
+        }
+        val gateway = gateway(allowed = setOf(cdn.port))
+        val answer = ask(gateway, target(gateway, "http://127.0.0.1:${cdn.port}/v.m3u8", GatewayRole.Unknown), listOf("Range" to "bytes=0-9"))
+        assertEquals(200, answer.code)
+        assertTrue(answer.text.lines()[2].endsWith("/one.ts") && answer.text.lines()[4].endsWith("/two.ts"), answer.text)
+        assertEquals(2, cdn.seen.size)
+        assertNull(cdn.seen.last().headers["range"], "the second fetch asked for a part")
     }
 
     @Test
@@ -391,7 +423,62 @@ class MediaGatewayTest {
         assertEquals(400, ask(gateway, "/x", huge).code)
     }
 
+    // ---- Redirect hops ----------------------------------------------------------------------------------------
+
+    @Test
+    fun `a redirect hop - downgrade, scheme-relative, upgrade, user info, missing and not http`() {
+        val https = "https://cdn.example/a/b".toHttpUrl()
+        assertEquals(Hop.Stop(GatewayFailure.Downgrade), nextHop(https, "http://other.example/x"))
+        assertEquals(Hop.Next("https://other.example/y".toHttpUrl()), nextHop(https, "//other.example/y"))
+        assertEquals(Hop.Next("https://cdn.example/a/c".toHttpUrl()), nextHop(https, "c"))
+        assertEquals(Hop.Next("https://other.example/".toHttpUrl()), nextHop("http://cdn.example/".toHttpUrl(), "https://other.example/"))
+        assertEquals(Hop.Stop(GatewayFailure.BadRequest), nextHop(https, "https://viewer:pw@other.example/"))
+        assertEquals(Hop.Stop(GatewayFailure.UpstreamUnreachable), nextHop(https, null))
+        assertEquals(Hop.Stop(GatewayFailure.UpstreamUnreachable), nextHop(https, "ftp://other.example/x"))
+    }
+
+    // ---- Closing ----------------------------------------------------------------------------------------------
+
+    @Test
+    fun `closing the gateway closes the connections it is serving`() = within60s {
+        val gateway = gateway(allowed = emptySet())
+        Socket("127.0.0.1", gateway.port).use { idle ->
+            idle.soTimeout = 5_000
+            Thread.sleep(200)
+            gateway.close()
+            assertEquals(-1, idle.getInputStream().read(), "an idle connection outlived the gateway")
+        }
+    }
+
     // ---- Prints nothing ---------------------------------------------------------------------------------------
+
+    @Test
+    fun `a Referer or User-Agent OkHttp would refuse is made sendable or dropped, and nothing is printed`() = within60s {
+        val marker = "MARKERxyz"
+        val cdn = upstream { Reply(200, body = "x".toByteArray()) }
+        val out = ByteArrayOutputStream()
+        val realOut = System.out
+        val realErr = System.err
+        System.setOut(PrintStream(out, true))
+        System.setErr(PrintStream(out, true))
+        val gateway = gateway(allowed = setOf(cdn.port), referer = "https://é$marker.example/pâge", userAgent = "agent $marker é 🎬")
+        // Whatever the answer, or none: what was printed is checked first.
+        val answer = try {
+            runCatching { ask(gateway, target(gateway, "http://127.0.0.1:${cdn.port}/seg.ts")) }.also { Thread.sleep(300) }
+        } finally {
+            System.setOut(realOut)
+            System.setErr(realErr)
+        }
+        assertFalse(marker in out.toString(), "printed")
+        assertEquals("", out.toString(), "printed")
+        assertEquals(200, answer.getOrThrow().code)
+        val seen = cdn.seen.single().headers
+        // The IDN host as punycode, and the path percent-encoded: what OkHttp writes for that url.
+        assertTrue(seen["referer"]!!.startsWith("https://xn--"), seen["referer"])
+        assertTrue("/p%C3%A2ge" in seen["referer"]!!, seen["referer"])
+        assertNull(seen["user-agent"]?.takeIf { marker in it }, "the non-ASCII User-Agent was sent")
+        assertNull(gateway.failures[GatewayFailure.Internal])
+    }
 
     @Test
     fun `nothing a stream carries is printed or written`() = within60s {

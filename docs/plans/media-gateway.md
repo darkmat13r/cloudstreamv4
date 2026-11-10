@@ -44,7 +44,9 @@ http://127.0.0.1:<port>/<token>/<role>/<scheme>/<authority>/<path>[?<query>]
   - `p` is a playlist: the uri after `EXT-X-STREAM-INF`, and `URI` on `EXT-X-MEDIA`, `EXT-X-I-FRAME-STREAM-INF`,
     `EXT-X-RENDITION-REPORT`, and `X-ASSET-URI`.
   - `s` is media: segments, keys, maps, parts, hints, data and steering files.
-  - `u` is the stream's first url, whose role nobody knows. It is fetched as a playlist would be.
+  - `u` is the stream's first url, whose role nobody knows. Its `Range` goes upstream (review 2), because most
+    streams are a single file, and seeking needs it. If the answer is a playlist, it is fetched again, whole,
+    without the range, and rewritten from that.
   - It decides `Range` (§2).
 - `<scheme>`: `http` or `https`, and nothing else.
 - `<authority>`: the host, lowercased, as `URI` reads it (IDN as ASCII), with `:port` when it is not the default.
@@ -78,10 +80,9 @@ http://127.0.0.1:<port>/<token>/<role>/<scheme>/<authority>/<path>[?<query>]
   - libVLC never sees a 3xx, so it has nothing to follow on its own.
 - **Byte ranges** (review, decision (i)): `Range` and `If-Range` go upstream only for a url whose role is `s`, and
   `206`, `Content-Range`, `Content-Length` and `Accept-Ranges` come back.
-  - A `p` or `u` url never sends a range. It is fetched whole, and served `200` rewritten. A partial body is never
-    rewritten.
-  - A `u` url that turns out to be media streams through whole, as a `200`. libVLC accepts a `200` for a ranged
-    request.
+  - A `p` url never sends a range. It is fetched whole, and served `200` rewritten.
+  - A `u` url sends its range. Media comes back as it came, a `206` included. A playlist, even a `206` one, is
+    fetched again whole, and only that is rewritten. A partial body is never rewritten.
 - **Keep-alive:** HTTP/1.1 persistent connections from libVLC, with a 30 s idle limit. Upstream, OkHttp's pool is
   per gateway. Its network interceptor checks the connected address on every request, so a reused connection is
   still one the check passed.
@@ -119,6 +120,10 @@ names (see "The shape of the fix").
 - Tag and attribute names are matched exactly as RFC 8216 writes them, and written back exactly as received. Case is
   never changed, so a tag that only differs in case is an unknown tag.
 
+**Resolution is lenient** (review 2). Real CDN urls carry `|`, `^`, `{}`, `[]` and spaces, which `java.net.URI`
+refuses. So every such character after a reference's authority is percent-encoded first, and a `%` that starts no
+escape becomes `%25`; nothing already valid changes. A base with no path resolves as if its path were `/`.
+
 **Dot segments** are removed here too, once a reference is resolved, by the gateway's own rule (§1). A url whose `..`
 climbs above its root is left as written, and the kernel stops it.
 
@@ -147,7 +152,10 @@ climbs above its root is left as written, and the kernel stops it.
 (including on a playlist) and `User-Agent`; `Referer` when given `:http-referrer`; and `Cookie` once anything has set
 one on `127.0.0.1`.
 
-**The gateway owns `Referer` and `User-Agent`.** It takes them from the stream's `StreamLink` when the stream starts,
+**The gateway owns `Referer` and `User-Agent`.** Each is made sendable when the gateway starts (review 2). OkHttp
+throws on a header value outside printable ASCII, with the value in its message. So a `Referer` url is written as
+OkHttp writes urls: an IDN host as punycode, and a non-ASCII path percent-encoded. Anything still outside printable
+ASCII is dropped. The gateway takes them from the stream's `StreamLink` when the stream starts,
 sends them on every upstream request of that stream, and drops whatever libVLC sends for either. libVLC is no longer
 given them (`OP_PLAY` stops carrying them). The gateway never forwards a value that names the gateway
 (`127.0.0.1:<port>`, `[::1]:<port>`) or holds the token, whatever header it is in.
@@ -186,10 +194,12 @@ and anything else not on the list above.
 Nothing that holds a url, a header, a cookie, the token or a body ever reaches a log, stdout, stderr or the disk. Not
 a failure's message, not a debug line, not an exception's text.
 - A failure is one of a fixed set of kinds: `refused-address`, `too-many-redirects`, `downgrade`, `playlist-too-large`,
-  `playlist-unreadable`, `upstream-tls`, `upstream-timeout`, `upstream-status-4xx`, `upstream-status-5xx`,
-  `bad-request`, `no-token`.
+  `playlist-unreadable`, `dash-unsupported`, `upstream-tls`, `upstream-timeout`, `upstream-unreachable`,
+  `upstream-status-4xx`, `upstream-status-5xx`, `bad-request`, `no-token`, `internal`.
 - A log line, if any, is a kind and a count. Nothing else.
 - Exceptions from OkHttp and the parser are mapped to a kind at the boundary, and their message is dropped.
+- Each connection's thread catches everything that is left (`Throwable`), counts it as `internal`, and writes
+  nothing. An uncaught exception would reach the default handler, which prints it and its message (review 2).
 - The cookie jar is in memory only. Nothing is cached to disk: OkHttp's cache is off.
 
 ## 5. The gateway's own limits
@@ -203,8 +213,8 @@ a failure's message, not a debug line, not an exception's text.
 - 16 connections from its media host at once; the next is closed unanswered.
 - Request line and headers: 16 KiB together, 100 headers.
 - Upstream: 15 s to connect, 30 s between reads, and no limit on a media body's total length, since a film is long.
-- One gateway per media host. It is closed with the host: its listener, its connections, its pool and its cookie
-  jar.
+- One gateway per media host. It is closed with the host: its listeners, every connection it is serving, its pool
+  and its cookie jar.
 
 ## 6. Failure modes
 
@@ -274,9 +284,9 @@ a failure's message, not a debug line, not an exception's text.
 - with the gateway closed, the same run fails closed;
 - a playlist whose segments sit on a refused host plays nothing, with 0 requests at that host.
 
-**Not tested locally:** a redirect from https to http being refused. A local https upstream needs a test certificate,
-which is a new test dependency or a keystore written at test time. The rule is one line (`url.isHttps &&
-!next.isHttps`), and it is listed for the second pass to decide.
+**Redirect hops** are decided by one pure function, `nextHop`, tested without a server (review 2): an https to http
+step is refused, a scheme-relative one keeps https, http to https is allowed, and user info, a missing `Location`
+and a non-http one are refused.
 
 **The policy:** the media host's profile allows only the gateway port. Red-checked: with `*:*` put back, the
 refused-segment test reaches the host.

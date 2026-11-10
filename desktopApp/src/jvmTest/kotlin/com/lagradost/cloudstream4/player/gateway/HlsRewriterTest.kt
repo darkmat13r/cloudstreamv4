@@ -106,6 +106,27 @@ class HlsRewriterTest {
     }
 
     @Test
+    fun `a real CDN url with characters java_net_URI refuses is rewritten, encoded, not left behind`() {
+        val out = lines("#EXTM3U\n#EXTINF:4,\nseg.ts?a=1|2&b={x}&c=[y] z^w\n#EXTINF:4,\nhttps://[2001:db8::1]/v.ts?t=a|b\n")
+        assertEquals("G[s]https://cdn.example/live/seg.ts?a=1%7C2&b=%7Bx%7D&c=%5By%5D%20z%5Ew", out[2])
+        assertEquals("G[s]https://[2001:db8::1]/v.ts?t=a%7Cb", out[4])
+    }
+
+    @Test
+    fun `a stray percent is escaped and a valid escape is kept`() {
+        val out = lines("#EXTM3U\n#EXTINF:4,\nseg.ts?p=100%&q=%2F\n")
+        assertEquals("G[s]https://cdn.example/live/seg.ts?p=100%25&q=%2F", out[2])
+    }
+
+    @Test
+    fun `a base with no path resolves as if its path were the root`() {
+        listOf("https://cdn.example", "https://cdn.example?sig=1").forEach { base ->
+            val out = assertIs<Rewrite.Done>(rewriter.rewrite("#EXTM3U\n#EXTINF:4,\na.ts\n".toByteArray(), base)).text.lines()
+            assertEquals("G[s]https://cdn.example/a.ts", out[2], base)
+        }
+    }
+
+    @Test
     fun `each limit is a failure at one past it, and none at it`() {
         val small = HlsRewriter.Limits(maxBytes = 100, maxLines = 5, maxLineChars = 40, maxAttributes = 3, maxOutputChars = 200)
         val atBytes = "#EXTM3U\n" + "#" + "x".repeat(30) + "\n" + "#" + "y".repeat(30) + "\n" + "#" + "z".repeat(27)
