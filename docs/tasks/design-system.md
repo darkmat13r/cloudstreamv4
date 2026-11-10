@@ -1267,7 +1267,8 @@ anti-aliased edges, worst 31/255.
 - **Adaptive icon.** `ic_launcher_foreground` is the mark, 55 dp wide on the 108 dp canvas. Its farthest point is 30.8 dp
   from the centre, inside the 33 dp safe circle. `ic_launcher.xml` and `ic_launcher_round.xml` now take
   `@drawable/ic_launcher_background`, the radial ground as a vector. It used to be the template's unused green grid.
-  `@color/ic_launcher_background` stays, set to `#0A0E13`.
+  `@color/ic_launcher_background` stays, set to `#0A0E13`, because `R` keeps it. Nothing references it now: the
+  adaptive icons were its only users, and the splash draws `?attr/primaryBlackBackground`.
 - **Themed icon (Android 13).** `ic_cloudstream_monochrome` is the cloud with the play cut out (`evenOdd`).
 - **Legacy PNGs (API 24 and 25).** A circle of ground, Material's 176 of 192 keyline, with the mark at the adaptive
   icon's scale, at mdpi to xxxhdpi, square and round.
@@ -1291,5 +1292,8 @@ wired into `nativeDistributions.macOS.iconFile`. macOS masks nothing, so it foll
 **Left as they were.**
 - `ic_banner_foreground` (all three source sets): no banner references it.
 - `ic_cloudstream_monochrome_big`: the notification and TV rail glyph. It is not the launcher icon.
-- The Windows and Linux icons. `iconsRoot` in `desktopApp/build.gradle.kts` names `desktop-icons/`, but the icons are in
-  `src/desktop-icons/`, so those two `iconFile`s name missing files. That was reported, not fixed here.
+- The Windows and Linux icons' artwork (the old mark).
+
+**Fixed alongside** (the PM's call, 2026-11-10). `iconsRoot` in `desktopApp/build.gradle.kts` named `desktop-icons/`, but
+the icons are in `src/desktop-icons/`, so the Windows and Linux `iconFile`s named missing files, and an `.msi` or `.deb`
+would have failed to package. It is now `src/desktop-icons`, and the Mac's `iconFile` goes through it too.
