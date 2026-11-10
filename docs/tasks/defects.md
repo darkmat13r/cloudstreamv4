@@ -3720,3 +3720,18 @@ a stack frame, it is kept.
     is under 24 characters.
 - **Follow-up, not here:** `close()` waits up to 500 ms for stderr to drain, so a report made after it can still miss
   the end of a slow host's output.
+
+## BUG-97 — A file that could not be read put its path, and so the home directory, in its "not loaded" line · **low, security** · fixed in this PR
+
+The same class as `BUG-89`, one step earlier in `SandboxedExtensions.loadOne`. The store's hash of a file
+(`sha256(source)`) caught an `IOException` and used its message as the "not loaded" reason. A `Files` or stream
+exception names the file's path, so a jar the app could not read (unreadable, or gone between the listing and the
+read) put the person's home directory into a line that is shown and printed at every launch. Found in review.
+
+**Fix.** The reason is fixed words, `not loaded: the extension could not be read`, and the exception's message is not
+kept. Nothing else changes: the file is refused, and the others still load.
+
+**Proof,** all local (CI is off): `UnreadableExtensionTest`, 1, through `SandboxedExtensions` with an unreadable
+side-loaded jar that has no published hash, so the store's hash is its first read. It checks the reason is exactly the
+fixed words, names no path, and that the next file still scans. Red-checked: on master's code it fails with the
+file's temporary path followed by `(Permission denied)`.

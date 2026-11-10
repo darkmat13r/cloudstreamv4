@@ -166,8 +166,9 @@ class SandboxedExtensions(
             ?: return refused("unsafe file name")
         val sha256 = try {
             withContext(Dispatchers.IO) { sha256(source) }
-        } catch (failure: IOException) {
-            return refused(failure.message.orEmpty())
+        } catch (_: IOException) {
+            // `BUG-97`: the message is not kept. A `Files` exception names the path, and so the person's home directory.
+            return refused("the extension could not be read")
         }
         val jar = try {
             toStore(source, sha256, launcher)
