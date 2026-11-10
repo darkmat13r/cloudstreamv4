@@ -51,4 +51,23 @@ class UnreadableExtensionTest {
         assertFalse(home.name in refused.outcome, "the outcome names a path: ${refused.outcome}")
         assertEquals(LoadState.Scanned, loads.single { it.fileName == "Fine.jar" }.state)
     }
+
+    /** A published hash makes its check the first read, before the store's: that read must not name a path either. */
+    @Test
+    fun `a file that cannot be read is refused the same way when a hash is published for it`() {
+        assumeTrue("no sandbox-exec on this platform", HostLauncher.forThisProcess() != null)
+        writeFixtureJar(unreadable, PlainPlugin::class.java, PlainApi::class.java, padding = "unreadable")
+        writeFixtureJar(File(directory, "Fine.jar"), PlainPlugin::class.java, PlainApi::class.java, padding = "fine")
+        File(directory, "Plain.jar.sha256").writeText("sha256-" + "0".repeat(64))
+        assertTrue(unreadable.setReadable(false, false), "could not make the file unreadable")
+        assumeTrue("this user can read the file anyway", !unreadable.canRead())
+
+        val loads = runBlocking { SandboxedExtensions(directory).scanInstalled() }.loads
+        val refused = loads.single { it.fileName == "Plain.jar" }
+        assertEquals(LoadState.Failed, refused.state, refused.outcome)
+        assertEquals("not loaded: the extension could not be read", refused.outcome)
+        assertFalse(home.name in refused.outcome, "the outcome names a path: ${refused.outcome}")
+        assertFalse(home.name in refused.verification.toString(), "the verification names a path")
+        assertEquals(LoadState.Scanned, loads.single { it.fileName == "Fine.jar" }.state)
+    }
 }
