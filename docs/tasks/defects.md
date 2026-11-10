@@ -3122,7 +3122,7 @@ With the fix, three times in a row: `AndroidDetailSourceFailureTest` 1/1, `Searc
 
 ---
 
-## Audit, 2026-11-10 — the extension wire, end to end · **findings, untriaged** (IDs to be assigned at triage)
+## Audit, 2026-11-10 — the extension wire, end to end · **findings, triaged**
 
 Read-only, from code. **What was read:**
 - master `6c6179784`, with the frozen media gateway (#348, #350, carrying #343), the plugin-output redaction (#335)
@@ -3140,7 +3140,8 @@ Each finding was confirmed by reading the code, and where it says so, by a measu
 
 ### Medium
 
-**A-1. Every sandboxed host can still reach `trustd`, because the policy imports `system.sb`, which allows it.**
+**A-1. Every sandboxed host can still reach `trustd`, because the policy imports `system.sb`, which allows it.** ·
+**fixed in #350** (`KMP-113`), proved at runtime: from inside the real policy the lookup succeeded, and it is refused now.
 - **The code:** `SeatbeltProfile.render` imports `system.sb`. On macOS 27.0.1 its lines 158–179 are an
   unconditional `allow mach-lookup` that names `com.apple.trustd` and `com.apple.trustd.agent`. The media hosts'
   `tls = false` (#350) only leaves out the app's own list.
@@ -3154,7 +3155,7 @@ Each finding was confirmed by reading the code, and where it says so, by a measu
 - **Fix shape:** an explicit `deny mach-lookup` of both names after the import, for the media hosts and the converter,
   and a test that the lookup fails under the real profile.
 
-**A-2. A plugin's exception text reaches the app's default stdout and stderr, on every launch where a search, a home
+**A-2 = `BUG-92`. A plugin's exception text reaches the app's default stdout and stderr, on every launch where a search, a home
 page or a title fails.**
 - **The path:** Home and Search go through `APIRepository` (`core/data`, `:96`, `:137`, `:150`) into `safeApiCall`
   (`library/…/mvvm/ArchComponentExt.kt:312–322`). That calls `logError`, which writes
@@ -3169,7 +3170,7 @@ page or a title fails.**
 - **Fix shape:** on the desktop, print only `PluginFailed.reportedClass` on these paths. `:library` is published API,
   so the change is a function body there.
 
-**A-3. The title page draws a plugin's title, plot and episode names with bidi and format characters still in them.**
+**A-3 = `BUG-93`. The title page draws a plugin's title, plot and episode names with bidi and format characters still in them.**
 - **The path:** `cleaned()` (`PluginHostClient.kt:664` and the lines around it) uses `sanitized()`, which removes only
   `Cc`. `toTitleDetail` (`DesktopDetailSource.kt:83–90`) passes the values on, and `DetailScreenDesktop.kt:330`
   draws them.
@@ -3177,6 +3178,13 @@ page or a title fails.**
 - **Repro:** `name = "Safe Title\u202Eexe.4pm"` draws reversed on the title page and in the top bar.
 
 ### Low
+
+These are batched by area at triage (network, profiles, text), with IDs claimed then. Two additions from review go in
+the same batch:
+- the plugin hosts deny the certificate services too, so that every host without a use for TLS has the same rule;
+- `MediaHostServicesTest` asserts that `ocspd`, `SecurityServer`, `securityd.xpc` and `dnssd.service` are refused
+  from inside both media hosts' policies. They are refused today only because nothing allows them.
+
 
 **A-4. FACTS is copied with no cap of its own.**
 - **The code:** `HostProtocol.kt:561` checks only `0..available()`, then `:567` does `readNBytes(length)`. Every
