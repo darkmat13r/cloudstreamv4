@@ -31,6 +31,14 @@ class FaultSuiteTest : SuiteBase() {
          */
         const val CHANNEL_LOSS_TOLERANCE = 1 * MIB + 64 * KIB
         const val SLOW_BYTES_PER_SECOND = 1 * MIB
+
+        /** The one 64 KiB read buffer [CHANNEL_LOSS_TOLERANCE] allows beside Ktor's channel. */
+        const val READ_BUFFER_IN_HAND = 64 * KIB
+
+        /** A disk slow enough that Ktor's channel is full when the connection drops (`BUG-100`). */
+        const val SLOW_WRITE_MICROS = 500L
+        const val MICROS_PER_MILLI = 1_000L
+        const val NANOS_PER_MICRO = 1_000L
         const val HIGH_FREE_SPACE = 1L shl 40
     }
 
@@ -66,12 +74,25 @@ class FaultSuiteTest : SuiteBase() {
     fun `a connection reset mid-part retries from the size of the part file on disk`() =
         assertDropResumesFromDiskOffset { Fault.ResetAfter(it) }
 
+    /**
+     * `BUG-100`: what reaches the engine is kept, whatever the speed of its disk. The engine writes to a disk slowed by
+     * [SLOW_WRITE_MICROS] a write, so Ktor's channel fills, and the server holds the close until the part file has
+     * what was sent, less one read buffer. Without the hold, the close lands on a full channel whose bytes Ktor
+     * discards: up to about 2 MiB on a slow disk (1,736,707 measured at this speed), which a loaded machine reached
+     * by chance, past [CHANNEL_LOSS_TOLERANCE].
+     */
     @Test
     fun `bytes received before the connection dropped are kept on disk`() {
         val res = h.resource(size = 4 * MIB)
         val dropped = AtomicBoolean(false)
-        h.server.fault = { info -> if (!info.isProbe && dropped.compareAndSet(false, true)) Fault.DropAfter(DROP_AT) else null }
-        val run = h.run(h.request(options = suiteOptions(parts = 1, minPartBytes = 4 * MIB)))
+        val landed = { partBytes() >= DROP_AT - READ_BUFFER_IN_HAND }
+        h.server.fault = { info ->
+            if (!info.isProbe && dropped.compareAndSet(false, true)) Fault.DropAfter(DROP_AT, holdUntil = landed) else null
+        }
+        val run = h.run(
+            h.request(options = suiteOptions(parts = 1, minPartBytes = 4 * MIB)),
+            downloader = h.downloader(storage = SlowStorage(SLOW_WRITE_MICROS)),
+        )
 
         h.assertCompleted(run, res.source)
         val retryStart = assertIs<Long>(h.server.bodyRequests()[1].info.rangeStart)
@@ -338,6 +359,25 @@ class FaultSuiteTest : SuiteBase() {
         assertEquals(res.size, failure.expected)
         assertEquals(res.size - 1, failure.actual)
         assertTrue(storage.dropped.get(), "the join never appended, so the guard was not exercised")
+    }
+
+    /** The bytes in the download's part files so far: what the engine has written of what it received. */
+    private fun partBytes(): Long = h.tempDir().listFiles().orEmpty().filter { it.name.startsWith("part-") }.sumOf { it.length() }
+
+    /** Every write waits [delayMicros] first: a slow disk, so the engine reads behind the network (`BUG-100`). */
+    private class SlowStorage(
+        private val delayMicros: Long,
+        private val inner: DownloadStorage = FileKitStorage(),
+    ) : DownloadStorage by inner {
+        override fun sink(file: PlatformFile, append: Boolean): RawSink {
+            val sink = inner.sink(file, append)
+            return object : RawSink by sink {
+                override fun write(source: Buffer, byteCount: Long) {
+                    Thread.sleep(delayMicros / MICROS_PER_MILLI, ((delayMicros % MICROS_PER_MILLI) * NANOS_PER_MICRO).toInt())
+                    sink.write(source, byteCount)
+                }
+            }
+        }
     }
 
     /** Appends to `joined` lose the last byte of their first write, once, without an error. */
