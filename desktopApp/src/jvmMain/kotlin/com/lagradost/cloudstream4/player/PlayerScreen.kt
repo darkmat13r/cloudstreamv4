@@ -102,10 +102,12 @@ import com.lagradost.cloudstream4.media.model.SubtitleTrack
 import com.lagradost.cloudstream4.feature.player.HudSkip
 import kotlin.concurrent.thread
 import kotlin.math.roundToInt
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.emptyFlow
 import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.withContext
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -183,9 +185,13 @@ internal fun PlayerScreen(
     // Whether this stream has shown anything. One that ends without a frame never played, so it failed.
     var framed by remember(playback) { mutableStateOf(false) }
     LaunchedEffect(playback, frame != null) { if (frame != null) framed = true }
+    LaunchedEffect(playback) {
+        val current = playback
+        // Off the UI thread: play() looks the stream's name up again (BUG-90), which can take seconds.
+        started = withContext(Dispatchers.IO) { start(current.player, current.link) }
+    }
     DisposableEffect(playback) {
         val current = playback
-        started = start(current.player, current.link)
         // Off the UI thread: stopping libVLC blocks, and can take seconds on a stalled stream.
         onDispose { thread(isDaemon = true, name = "vlc-release") { current.player.release() } }
     }

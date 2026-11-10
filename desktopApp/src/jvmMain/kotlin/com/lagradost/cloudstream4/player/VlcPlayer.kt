@@ -4,12 +4,14 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asComposeImageBitmap
 import androidx.compose.ui.unit.IntSize
 import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
+import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
 import com.lagradost.cloudstream4.player.MediaProtocol.writeText
 import java.io.DataOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
+import java.net.InetAddress
 import java.nio.ByteBuffer
 import java.nio.file.FileVisitResult
 import java.nio.file.Files
@@ -69,6 +71,8 @@ class VlcPlayer private constructor(
     commandStream: OutputStream = process.outputStream,
     /** Whether this host was handed a file at its start, and so plays [playFile] rather than [play]. */
     private val local: Boolean = false,
+    /** The name lookup [play]'s check uses; replaceable so a test can change the answer between two checks. */
+    private val resolve: (String) -> Array<InetAddress> = InetAddress::getAllByName,
 ) : PlayerControls {
     private val commands = DataOutputStream(commandStream.buffered())
     private val _frame = MutableStateFlow<ImageBitmap?>(null)
@@ -147,12 +151,17 @@ class VlcPlayer private constructor(
     }
 
     /**
-     * @param url already refused unless http(s) to a public host. Each option is passed as its own
-     *   argument, so a value cannot introduce another option. `:input-slave` is itself a `#`-separated
+     * @param url already refused unless http(s) to a public host when the link arrived. Each option is passed as its
+     *   own argument, so a value cannot introduce another option. `:input-slave` is itself a `#`-separated
      *   list, which is why a `#` is refused here as well as in `SandboxPolicy`.
-     * @return false when the host has already gone.
+     * @return false when the host has already gone, or when [url] or [audioUrl] no longer passes.
      */
     fun play(url: String, referer: String?, userAgent: String?, audioUrl: String?): Boolean {
+        // BUG-90: checked again now, as late as this process can. A name that has turned private since the link
+        // arrived is refused here. What libVLC resolves after this, redirects and playlist urls stay unchecked
+        // until KMP-113.
+        if (!SandboxPolicy.isPublicHttpUrl(url, resolve)) return false
+        if (audioUrl != null && !SandboxPolicy.isPublicAudioUrl(audioUrl, resolve)) return false
         val fields = listOf(url, referer, userAgent, audioUrl?.takeUnless { '#' in it })
         if (fields.any { it != null && it.encodeToByteArray().size > MediaProtocol.MAX_TEXT_BYTES }) return false
         return send {
@@ -206,6 +215,18 @@ class VlcPlayer private constructor(
     internal fun stage(file: File): String =
         file.copyTo(File(directory, file.name), overwrite = true).toPath().toUri().toString()
 
+    /**
+     * Copies [file] into the host's own directory ([stage]) and plays that copy. For `--check-playback` on a local
+     * file (`BUG-76`): a `file:` url is not a stream, so it skips [play]'s address check, and names only the copy.
+     */
+    internal fun playStaged(file: File): Boolean {
+        val url = stage(file)
+        return send {
+            writeByte(MediaProtocol.OP_PLAY.toInt())
+            listOf(url, null, null, null).forEach { writeText(it) }
+        }
+    }
+
     /** Ends the host, so the audio stops now. Waits for it, so call it off the UI thread. */
     fun release() {
         released = true
@@ -245,6 +266,14 @@ class VlcPlayer private constructor(
          */
         internal fun forDownload(process: Process, directory: File, commands: OutputStream): VlcPlayer =
             VlcPlayer(process, directory, commands, local = true)
+
+        /** A player for a stream over [process], whose commands go to [commands], looking names up with [resolve]. */
+        internal fun forStream(
+            process: Process,
+            directory: File,
+            commands: OutputStream,
+            resolve: (String) -> Array<InetAddress>,
+        ): VlcPlayer = VlcPlayer(process, directory, commands, resolve = resolve)
 
         /**
          * A host for one downloaded file, which it gets as [media]'s descriptor and never by name (`KMP-74`). [media]
