@@ -3223,6 +3223,17 @@ and a `:library` class; and past records in `docs/tasks/`, which say what was me
 **One PR per module.** JVM tests first; the device tests and their screenshots after train 9, which carries those
 files, each screenshot diff read before it is re-recorded.
 
+### `:core:designsystem` (JVM tests)
+
+| Was | Now | Kept |
+|---|---|---|
+| `Ozymandias`, `S5 E14` (a list row, twice; and `S5 E14 · 1.2 GB`) | `Riptide`, `S3 E9` (`S3 E9 · 1.2 GB`) | a title and an episode line |
+| `dune`, `dune messiah` (a text field's value) | `tide`, `tide warden` | a value, then a longer one that starts with it |
+| `Blade Runner Twenty Forty Nine` (a card's revealed title) | `Salt Road Crossing the Bay` | two lines on the card: the test fails with a one-line title (checked with `Salt Road`) |
+
+Tests: the same 20 in 3 classes (`ListRowStopsTest` 6, `TextFieldTest` 5, `DesignReviewFixesTest` 9), 58 assertion lines
+before and after, all passing.
+
 ### `:feature:search` (JVM tests, previews, KDoc)
 
 | Was | Now | Kept |
