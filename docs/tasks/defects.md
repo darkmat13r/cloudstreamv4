@@ -3720,3 +3720,52 @@ a stack frame, it is kept.
     is under 24 characters.
 - **Follow-up, not here:** `close()` waits up to 500 ms for stderr to drain, so a report made after it can still miss
   the end of a slow host's output.
+
+## BUG-79 — TV Home offline under the bookmarks: a headline that wraps moves the chrome, and its offline notice, off the screen · **medium, visual, i18n**
+
+**Status:** fixed in this PR · reproduced on master `b3ea4b59e`
+
+3g puts the offline notice ("You are offline") in the chrome when the bookmarks stay above offline's prompt. The prompt
+under them is "<source> needs a connection", the body "Your bookmarks are saved on this device." and Try again, in a
+slot sized to exactly what 720p leaves below the bookmarks. A headline that wraps makes the prompt taller than the slot.
+When Try again takes focus, `revealState` moves the page until the chrome is wholly off the screen, the rule kept from
+the Continue watching case so the chrome is never left in a TV's overscan. The notice goes with it, and nothing left
+on the screen says the device is offline.
+
+**Measured** on `Television_720p`, three bookmarks, offline, Try again focused:
+- English with the source "Source One": the headline is one line, the chrome rests at 36dp. Correct.
+- The same source in `so`, `nl` and `my`: the headline wraps (two lines, three in `my`), and the chrome's top is at
+  -39.8dp: wholly off the screen, notice included.
+- English with a 58-character source name: three lines, the same -39.8dp.
+- Every locale's headline with "Source One", in `StateView`'s h1 at its 480dp width: 18 of 62 wrap. They are `af`, `de`,
+  `el`, `fil`, `fr`, `hu`, `it`, `lv`, `mk`, `ml`, `ms`, `my`, `nl`, `pt`, `ro`, `so`, `ta` and `tl`. So German, French,
+  Italian and Portuguese users hit this today, with a source name as short as "Source One". A longer name wraps in more.
+- Dropping the body under the bookmarks, as is done under Continue watching, is not enough: `so`'s two-line headline
+  alone still moves the chrome off.
+- A font scale of 1.3 and 1.5, set through `LocalDensity` in the test, did not change the headline's height. The system
+  setting itself was not tried.
+
+**Fix.** Where 3g's prompt fits under the bookmarks, it is unchanged. Where it does not, offline's prompt is 3m's band,
+the one a failure under the local rails already is: the hollow marker, "<source> needs a connection" on one line
+(ellipsized if it is wider than the band, its whole text kept in the semantics), and Try again at the band's end, which
+takes focus. The band fits, so the page does not move, and the chrome and its offline notice stay on the screen.
+- The check, `offlinePromptFits` in `HomeScreenTv.kt`, measures the headline and the body with a `TextMeasurer` and what
+  `StateView` draws them with: its h1 and body styles, centred, at most `StateViewDefaults.MaxTextWidth` (480dp) wide and
+  no wider than the page's content. The rest of `StateView`'s stack is a named value,
+  `HomeScreenTvDefaults.StatePromptStackHeight`: the glyph's box, three gaps and the button, from `StateViewDefaults`
+  and `TextButtonHeight` (136dp). A prompt fits when the two add up to no more than the slot, give or take the 2px of
+  rounding the page's move already allows.
+- Only offline under the bookmarks alone changes. Under Continue watching the body already goes, and a state too tall
+  there still moves the chrome wholly off, as before.
+
+**Proof,** all local (CI is off):
+- **Red:** three new device tests on master's code, all failing with "the chrome rests … expected:<36.0> but was:
+  <-39.812206>": Somali with "Source One" (two lines), Burmese with "Source One" (three lines), and English with a
+  58-character name.
+- **Green:** the same three pass. Each asserts the chrome at rest (36dp), "You are offline" displayed, the full headline
+  in the semantics, no 3g body, the headline one line beside Try again, and Try again focused inside the bottom band.
+- English with "Source One" stays 3g: `offlineKeepsTheBookmarksAboveTheStateDimmedAndSaysWhatNeedsTheConnection` and
+  `home-offline-bookmarks-focus-retry` pass unchanged. `aStateTooTallUnderContinueWatchingMovesTheChromeWhollyOffTheScreen`
+  passes too.
+- Two new screenshots, looked at: `home-offline-bookmarks-wrapped-focus-retry` (Somali) and
+  `home-offline-bookmarks-long-name-focus-retry`. No existing reference changed.

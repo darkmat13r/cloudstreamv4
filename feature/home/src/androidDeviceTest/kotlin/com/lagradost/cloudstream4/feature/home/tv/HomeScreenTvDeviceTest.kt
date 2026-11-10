@@ -24,10 +24,12 @@ import androidx.compose.ui.test.assertHeightIsEqualTo
 import androidx.compose.ui.test.assertIsDisplayed
 import androidx.compose.ui.test.assertWidthIsEqualTo
 import androidx.compose.ui.test.getUnclippedBoundsInRoot
+import androidx.compose.ui.test.hasContentDescription
 import androidx.compose.ui.test.isFocused
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithContentDescription
 import androidx.compose.ui.test.onAllNodesWithText
+import androidx.compose.ui.test.onFirst
 import androidx.compose.ui.test.onNodeWithContentDescription
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.onNodeWithText
@@ -55,6 +57,10 @@ import com.lagradost.cloudstream4.core.designsystem.panel.sidePanelOutsideDim
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRail
 import com.lagradost.cloudstream4.core.designsystem.rail.NavRailItem
 import com.lagradost.cloudstream4.core.designsystem.rows.RailHeaderDefaults
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_offline_bookmarks_body
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_offline_source_headline
+import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_offline_headline
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
@@ -1368,6 +1374,73 @@ class HomeScreenTvDeviceTest {
         assertEquals(graph.toString(), emptyList<String>(), graph.traps())
     }
 
+    /** Runs [block] with the default locale set to [tag], which Compose resources read, then puts it back. */
+    private fun inLocale(tag: String, block: () -> Unit) {
+        val previous = java.util.Locale.getDefault()
+        java.util.Locale.setDefault(java.util.Locale.forLanguageTag(tag))
+        try {
+            block()
+        } finally {
+            java.util.Locale.setDefault(previous)
+        }
+    }
+
+    /** A string as the screen resolves it, in the current default locale. */
+    private fun text(res: org.jetbrains.compose.resources.StringResource): String =
+        kotlinx.coroutines.runBlocking { org.jetbrains.compose.resources.getString(res) }
+
+    /** The focused node, once something holds focus: in another locale Try again has another label. */
+    private fun awaitAnyFocus() {
+        rule.waitUntil(WAIT_MS) { rule.onAllNodes(isFocused()).fetchSemanticsNodes().isNotEmpty() }
+        rule.waitForIdle()
+    }
+
+    /**
+     * `BUG-79`: offline under the bookmarks, with a headline that wraps. 3g's prompt would outgrow its slot, and the page
+     * would move the chrome, with its offline notice, off the screen. Instead the prompt is 3m's band, so nothing moves:
+     * the chrome rests where it does, the notice is on the screen, Try again is focused in the band, and the headline,
+     * one ellipsized line there, keeps its whole text in the semantics.
+     */
+    private fun aWrappedOfflineHeadlineIsTheBand(tag: String, name: String) = inLocale(tag) {
+        val option = HomeSourceOption(HomeSourceId("wrapped"), name)
+        source.options = listOf(option)
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        bookmarking(3)
+        showScreen()
+        awaitAnyFocus()
+        // The band appears and takes focus at once; give the page the frames a move would take, so a move is seen.
+        Thread.sleep(MOVE_SETTLE_MS)
+        rule.waitForIdle()
+
+        val chrome = rule.onAllNodes(hasContentDescription(name, substring = true)).onFirst().getUnclippedBoundsInRoot()
+        assertEquals("the chrome rests, $tag", CHROME_CONTROL_TOP, chrome.top.value, GEOMETRY_SLACK)
+        rule.onNodeWithText(text(Res.string.search_state_offline_headline)).assertIsDisplayed()
+
+        val headline = text(Res.string.home_offline_source_headline).replace("%1\$s", name)
+        rule.onNodeWithText(headline).assertExists()
+        rule.onAllNodesWithText(text(Res.string.home_offline_bookmarks_body)).fetchSemanticsNodes().let {
+            assertTrue("no 3g body in the band, $tag", it.isEmpty())
+        }
+        val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        val line = rule.onNodeWithText(headline).getUnclippedBoundsInRoot()
+        assertTrue("the headline is one line beside Try again, was $line against $retry", line.bottom - line.top < retry.bottom - retry.top)
+        assertTrue("the headline ends before Try again", line.right <= retry.left)
+        assertTrue("the button is inside the band", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
+        rule.onNode(isFocused()).assertIsDisplayed()
+    }
+
+    @Test
+    fun offlineUnderTheBookmarksASomaliHeadlineOnTwoLinesIsTheBandAndTheChromeStays() =
+        aWrappedOfflineHeadlineIsTheBand("so", ONE.name)
+
+    @Test
+    fun offlineUnderTheBookmarksABurmeseHeadlineOnThreeLinesIsTheBandAndTheChromeStays() =
+        aWrappedOfflineHeadlineIsTheBand("my", ONE.name)
+
+    @Test
+    fun offlineUnderTheBookmarksALongSourceNameIsTheBandAndTheChromeStays() =
+        aWrappedOfflineHeadlineIsTheBand("en", LONG_SOURCE_NAME)
+
     /** A card's middle, under the rail's title: cards start where the title does, a chip cell and the clearance below. */
     private fun firstBookmarkPixel(): Int {
         val title = rule.onNodeWithText(BOOKMARKS).getUnclippedBoundsInRoot()
@@ -1807,6 +1880,31 @@ class HomeScreenTvDeviceTest {
         rule.assertScreenshot("home-offline-bookmarks-focus-retry")
     }
 
+    /** `BUG-79`: offline under the bookmarks in Somali, whose headline wraps: 3m's band, the chrome and its notice in place. */
+    @Test
+    fun screenshotOfflineWithBookmarksWrappedHeadlineFocusOnRetry() = inLocale("so") {
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        shotBookmarks()
+        showForScreenshot()
+        awaitAnyFocus()
+        Thread.sleep(MOVE_SETTLE_MS)
+        rule.waitForIdle()
+        rule.assertScreenshot("home-offline-bookmarks-wrapped-focus-retry")
+    }
+
+    /** `BUG-79`: a source name long enough to wrap the headline in English: the band, its headline ellipsized. */
+    @Test
+    fun screenshotOfflineWithBookmarksLongSourceNameFocusOnRetry() {
+        source.options = listOf(HomeSourceOption(HomeSourceId("long"), LONG_SOURCE_NAME))
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        shotBookmarks()
+        showForScreenshot()
+        awaitFocus(RETRY)
+        Thread.sleep(MOVE_SETTLE_MS)
+        rule.waitForIdle()
+        rule.assertScreenshot("home-offline-bookmarks-long-name-focus-retry")
+    }
+
     /**
      * 3g at its tightest at 720p: offline with Continue watching and the bookmarks both above the prompt. The prompt keeps
      * the source's headline and drops its body, and Try again is focused, on screen and out of the bottom focus band.
@@ -2226,6 +2324,10 @@ class HomeScreenTvDeviceTest {
             "connection termination · retried 3 times against mirror two of three"
         /** `Television_720p` is 540.8dp tall; the band's foot is `FocusBandInset` above that. */
         const val SCREEN_HEIGHT_DP = 540.8f
+        /** A source name long enough to wrap offline's headline in English at 720p (58 characters). */
+        const val LONG_SOURCE_NAME = "Anime Multi-Language Streaming Provider Collection Extended"
+        /** Long enough for the page's animated move to finish, so a test sees where the page ends up. */
+        const val MOVE_SETTLE_MS = 1500L
         const val COLOUR_SLACK = 8
         val FEATURED = HomeFeatured(
             id = "id/A 0",

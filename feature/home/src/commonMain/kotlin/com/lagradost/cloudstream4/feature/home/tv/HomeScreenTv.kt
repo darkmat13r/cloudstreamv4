@@ -50,7 +50,10 @@ import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.contentDescription
 import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.text.rememberTextMeasurer
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.Constraints
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.card.PosterRung
@@ -67,6 +70,7 @@ import com.lagradost.cloudstream4.core.designsystem.state.StateActionButton
 import com.lagradost.cloudstream4.core.designsystem.state.StateActionEmphasis
 import com.lagradost.cloudstream4.core.designsystem.state.StatePrompt
 import com.lagradost.cloudstream4.core.designsystem.state.StateView
+import com.lagradost.cloudstream4.core.designsystem.state.StateViewDefaults
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.designsystem.state.failureNotice
 import com.lagradost.cloudstream4.core.designsystem.target.IconOnlyButton
@@ -437,7 +441,16 @@ fun HomeScreenTv(
                             // the 720p screen has left, and its first sentence repeats the headline. Under the bookmarks it
                             // says what needs the connection, as 3g does, and the chrome says that the page is offline.
                             val prompt = offlinePrompt(content.prompt, state.selectedOption?.name, hasBookmarks, hasContinue)
-                            HomeStatePrompt(prompt, null, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
+                            // `BUG-79`: under the bookmarks alone, a headline that wraps (a long name, or 18 of the 62
+                            // locales) outgrew the slot, and the page moved the chrome, and the offline notice in it, off
+                            // the screen. Where 3g's prompt does not fit, it is 3m's band, which does, and nothing moves.
+                            val asBand = hasBookmarks && !hasContinue && !offlinePromptFits(prompt, maxWidth, promptHeight)
+                            if (asBand) {
+                                // The band says one thing: what needs the connection, where a failure's band says what failed.
+                                HomeFailureBand(prompt.copy(body = prompt.headline), null, state, mayTakeFocus, stops, promptModifier)
+                            } else {
+                                HomeStatePrompt(prompt, null, promptHeight, hasLocalRails, state, mayTakeFocus, promptModifier)
+                            }
                         }
                         is UiState.Error -> item(key = STATE_KEY) {
                             // 3m: under what the device keeps, the failure is a 48dp band where the source's rails were,
@@ -586,6 +599,25 @@ private fun offlinePrompt(prompt: StatePrompt, sourceName: String?, underBookmar
         ?: prompt.headline
     val body = if (underContinue) "" else stringResource(Res.string.home_offline_bookmarks_body)
     return StatePrompt(headline = headline, body = body, action = prompt.action)
+}
+
+/**
+ * `BUG-79`: whether [prompt], as [StateView] draws it, fits a [slot] that tall on a page [pageWidth] wide. Its headline and
+ * body are measured with what `StateView` draws them with: its h1 and body styles, centred, no wider than
+ * [StateViewDefaults.MaxTextWidth] or the page's content. The rest of its stack is
+ * [HomeScreenTvDefaults.StatePromptStackHeight]. A pixel or two over is rounding, as [ROUNDING_PX] says where the page moves.
+ */
+@Composable
+private fun offlinePromptFits(prompt: StatePrompt, pageWidth: Dp, slot: Dp): Boolean {
+    val measurer = rememberTextMeasurer()
+    val typography = CloudStreamTheme.typography
+    val density = LocalDensity.current
+    val content = pageWidth - HomeScreenTvDefaults.ContentInsetStart - HomeScreenTvDefaults.ContentInsetEnd
+    val constraints = with(density) { Constraints(maxWidth = minOf(StateViewDefaults.MaxTextWidth, content).roundToPx()) }
+    val headline = measurer.measure(prompt.headline, typography.h1.copy(textAlign = TextAlign.Center), constraints = constraints)
+    val body = measurer.measure(prompt.body, typography.body.copy(textAlign = TextAlign.Center), constraints = constraints)
+    val needed = headline.size.height + body.size.height + with(density) { HomeScreenTvDefaults.StatePromptStackHeight.toPx() }
+    return needed <= with(density) { slot.toPx() } + ROUNDING_PX
 }
 
 /**
@@ -899,6 +931,14 @@ object HomeScreenTvDefaults {
 
     /** The page above the first thing under the chrome. */
     val PageAboveContent: Dp = CloudStreamDimens.ChromeRowBottom + CloudStreamDimens.MinFocusGap
+
+    /**
+     * What `StateView`'s stack takes besides its words (`BUG-79`): the glyph's box, the gap under it, the gap between the
+     * headline and the body, the gap above the action, and the action. Mirrors `StateViewDefaults.GlyphSize`, `BlockGap`
+     * twice, `TextGap` and `CloudStreamDimens.TextButtonHeight`.
+     */
+    val StatePromptStackHeight: Dp = StateViewDefaults.GlyphSize + StateViewDefaults.BlockGap * 2 +
+        StateViewDefaults.TextGap + CloudStreamDimens.TextButtonHeight
 
     /** 3c's `.srcpill { min-width: 320px }`. */
     val SourceControlMinWidth: Dp = 160.dp
