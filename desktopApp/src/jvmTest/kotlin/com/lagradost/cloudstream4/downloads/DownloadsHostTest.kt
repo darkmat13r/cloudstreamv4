@@ -45,6 +45,7 @@ import kotlin.test.AfterTest
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -55,6 +56,14 @@ import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
 import okhttp3.OkHttpClient
 import org.jetbrains.skia.EncodedImageFormat
+import com.lagradost.cloudstream4.feature.settings.PlaybackSettings
+import com.lagradost.cloudstream4.player.MediaProtocol
+import com.lagradost.cloudstream4.player.VlcPlayer
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.DataInputStream
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 
 /**
  * The sidebar's fourth row over the real service (`KMP-54` over `KMP-52`): a film downloaded from a loopback server into a
@@ -318,6 +327,168 @@ class DownloadsHostTest {
         window.cancel()
     }
 
+    /** Two presses at the scene's clock, together: the row reads them as a double-click, its Play (`D4`). */
+    private fun ImageComposeScene.doubleClick(at: Offset) {
+        val time = clock / NANOS_PER_MILLI
+        repeat(2) {
+            sendPointerEvent(PointerEventType.Press, at, buttons = PointerButtons(isPrimaryPressed = true), button = PointerButton.Primary, timeMillis = time)
+            sendPointerEvent(PointerEventType.Release, at, buttons = PointerButtons(), button = PointerButton.Primary, timeMillis = time)
+        }
+        settle()
+    }
+
+    /**
+     * `KMP-74`: an episode's Play hands the player its file and the download folder it must be inside. One whose file
+     * went since the page was drawn plays nothing, and leaves the list.
+     */
+    @Test
+    fun `Play on a finished episode hands over its file and the folder, and a file gone since plays nothing`() {
+        val downloads = host()
+        downloads.downloadSeries()
+        val played = mutableListOf<PlayableDownload>()
+        val scene = scene {
+            DownloadSeriesHost(downloads, DownloadTitleId(SERIES), scope, setEscape = {}, onClose = {}, onPlay = { played += it })
+        }
+        // The page reads the service on its own threads: double-click until its first row is there to take it.
+        scene.until {
+            if (played.isEmpty()) scene.doubleClick(Offset(NAME_X, SERIES_FIRST_ROW_Y))
+            played.isNotEmpty()
+        }
+        val first = played.single()
+        assertEquals(DownloadEpisodeId(301), first.id)
+        assertEquals(downloads.fileOf(DownloadEpisodeId(301)), first.file)
+        assertEquals(root.absoluteFile, first.root)
+        assertEquals("A Series", first.title)
+        assertEquals(1, first.season)
+        assertEquals(1, first.episode)
+        assertEquals("PlayableDownload(id=301)", first.toString(), "no path in its name")
+
+        assertTrue(checkNotNull(downloads.fileOf(DownloadEpisodeId(302))).delete())
+        scene.doubleClick(Offset(NAME_X, SERIES_FIRST_ROW_Y + SERIES_ROW_PITCH))
+        assertEquals(listOf(first), played, "the second episode's file has gone")
+        assertNull(downloads.playable(DownloadEpisodeId(302)))
+        scene.until { runBlocking { downloads.series(DownloadTitleId(SERIES)).contents.first() }.episodes.size == 1 }
+        scene.close()
+    }
+
+    /** `KMP-74`: in the window, Play opens the player over the series page, and Escape comes back to it. */
+    @Test
+    fun `in the window an episode's Play opens the player on that download, and Escape returns to the series`() {
+        val downloads = host()
+        downloads.downloadSeries()
+        val escape = EscapeHandler()
+        val shortcuts = DesktopShortcuts()
+        val screens = mutableListOf<String>()
+        val asked = mutableListOf<PlayableDownload>()
+        val scene = scene {
+            DesktopApp(
+                escape,
+                library = InMemoryLibraryStore(),
+                onScreen = { screens += it },
+                shortcuts = shortcuts,
+                downloads = downloads,
+                // Nothing is started: the screen shows that no player could be opened, which is enough to see where it is.
+                openDownload = { asked += it; null },
+            )
+        }
+        scene.settle()
+        shortcuts.go(TopLevelDestination.Downloads)
+        scene.until { screens.last() == "Downloads" && runBlocking { downloads.source().contents.first() }.titles.isNotEmpty() }
+        scene.until {
+            if (!screens.last().startsWith("DownloadSeries")) scene.doubleClick(Offset(WINDOW_NAME_X, WINDOW_FIRST_ROW_Y))
+            screens.last().startsWith("DownloadSeries")
+        }
+        scene.until {
+            if (asked.isEmpty()) scene.doubleClick(Offset(WINDOW_NAME_X, SERIES_FIRST_ROW_Y))
+            asked.isNotEmpty()
+        }
+        assertEquals(listOf(DownloadEpisodeId(301)), asked.map { it.id })
+        assertEquals("DownloadPlayer(download=PlayableDownload(id=301))", screens.last())
+        assertTrue(escape.handle(), "the player has Back on Escape")
+        scene.settle()
+        assertTrue(screens.last().startsWith("DownloadSeries"), screens.last())
+        assertEquals(1, asked.size, "opened once")
+        scene.close()
+    }
+
+    /**
+     * `KMP-74`, new with the rebase onto `KMP-96`: the download player steps by Settings' Seek amount, as a stream's does,
+     * and starts with the one command that names no file.
+     */
+    @Test
+    fun `the download player plays its descriptor and steps by Settings' Seek amount`() {
+        val downloads = host()
+        downloads.downloadSeries()
+        val escape = EscapeHandler()
+        val shortcuts = DesktopShortcuts()
+        val screens = mutableListOf<String>()
+        val sent = ByteArrayOutputStream()
+        // Waits, writing nothing, so the player neither fails nor plays; it is ended when the player is released, and
+        // here whatever happens.
+        val process = ProcessBuilder("/bin/sleep", "60").start()
+        val directory = Files.createTempDirectory("download-player").toFile()
+        try {
+            val player = VlcPlayer.forDownload(process, directory, sent)
+            val thirtySeconds = object : PlaybackSettings {
+                override val autoplayNext: StateFlow<Boolean> = MutableStateFlow(true)
+                override val seekSeconds: StateFlow<Int> = MutableStateFlow(SEEK_SECONDS)
+            }
+            val scene = scene {
+                DesktopApp(
+                    escape,
+                    library = InMemoryLibraryStore(),
+                    onScreen = { screens += it },
+                    shortcuts = shortcuts,
+                    downloads = downloads,
+                    playback = thirtySeconds,
+                    openDownload = { player },
+                )
+            }
+            scene.settle()
+            shortcuts.go(TopLevelDestination.Downloads)
+            scene.until { screens.last() == "Downloads" && runBlocking { downloads.source().contents.first() }.titles.isNotEmpty() }
+            scene.until {
+                if (!screens.last().startsWith("DownloadSeries")) scene.doubleClick(Offset(WINDOW_NAME_X, WINDOW_FIRST_ROW_Y))
+                screens.last().startsWith("DownloadSeries")
+            }
+            scene.until {
+                if (!screens.last().startsWith("DownloadPlayer")) scene.doubleClick(Offset(WINDOW_NAME_X, SERIES_FIRST_ROW_Y))
+                screens.last().startsWith("DownloadPlayer")
+            }
+            scene.until { "play file" in commands(sent) }
+            scene.key(Key.DirectionRight)
+            scene.key(Key.DirectionLeft)
+            val seen = commands(sent)
+            assertEquals("play file", seen.first(), "the first command plays the descriptor")
+            assertEquals(1, seen.count { it == "play file" })
+            assertEquals(listOf("by 30000", "by -30000"), seen.filter { it.startsWith("by ") })
+            assertTrue(escape.handle())
+            scene.settle()
+            scene.close()
+        } finally {
+            process.destroyForcibly()
+            directory.deleteRecursively()
+        }
+    }
+
+    /** What the screen sent the host, decoded as `MediaHost` reads it. */
+    private fun commands(sent: ByteArrayOutputStream): List<String> {
+        val input = DataInputStream(ByteArrayInputStream(sent.toByteArray()))
+        val seen = mutableListOf<String>()
+        while (input.available() > 0) {
+            seen += when (input.readByte()) {
+                MediaProtocol.OP_PLAY_FILE -> "play file"
+                MediaProtocol.OP_TOGGLE_PAUSE -> "toggle"
+                MediaProtocol.OP_SEEK_BY -> "by ${input.readLong()}"
+                MediaProtocol.OP_SEEK_TO -> "to ${input.readFloat()}"
+                MediaProtocol.OP_SET_VOLUME -> "volume ${input.readInt()}"
+                MediaProtocol.OP_SET_AUDIO_TRACK -> "audio ${input.readInt()}"
+                else -> error("a command the download player should never send")
+            }
+        }
+        return seen
+    }
+
     @Test
     fun `sizes read as Finder writes them`() {
         assertEquals("0 B", formatBytes(0, Locale.ROOT))
@@ -342,6 +513,9 @@ class DownloadsHostTest {
         const val DELETE_VERB_X = 1024f
         const val NANOS_PER_MILLI = 1_000_000L
         const val SERIES = 300
+        /** `DownloadSeriesScreenTest`'s, at the same size: D4's first episode row, and the pitch between rows. */
+        const val SERIES_FIRST_ROW_Y = 312f
+        const val SERIES_ROW_PITCH = 48f
         /** The first row in the whole window, past the 220 sidebar, from `host-window-D1`. */
         const val WINDOW_FIRST_ROW_Y = 214f
         const val WINDOW_NAME_X = 340f
@@ -353,5 +527,7 @@ class DownloadsHostTest {
         /** `HomeScreenTest`'s sidebar: under the 52 title band (`KMP-98`), then rows 36 apart; the fourth is Downloads. */
         const val SIDEBAR_X = 100f
         const val SIDEBAR_DOWNLOADS_Y = 176f
+        /** Not Settings' default of 10, so a step that ignored the setting would show. */
+        const val SEEK_SECONDS = 30
     }
 }

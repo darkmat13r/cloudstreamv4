@@ -25,6 +25,9 @@ internal object MediaProtocol {
     const val OP_SET_VOLUME: Byte = 5
     const val OP_SET_AUDIO_TRACK: Byte = 6
 
+    /** Play the file whose descriptor the host was handed at its start (`KMP-74`). No text follows: no path, no URL. */
+    const val OP_PLAY_FILE: Byte = 7
+
     const val MESSAGE_STATUS: Byte = 1
     const val MESSAGE_FORMAT: Byte = 2
     const val MESSAGE_FRAME: Byte = 3

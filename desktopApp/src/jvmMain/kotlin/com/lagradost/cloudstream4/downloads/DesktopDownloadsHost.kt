@@ -101,6 +101,9 @@ internal fun DownloadsHost(
  *
  * Its view model lives in a child of [scope], cancelled when the page leaves, so its readers stop with it. A delete the
  * sheet confirmed runs in [scope] itself and finishes either way.
+ *
+ * @param onPlay an episode's Play, once it is done and on disk (`KMP-74`). One that has gone since the page was drawn
+ *   plays nothing: the page reads the disk again, and the episode leaves the list.
  */
 @Composable
 internal fun DownloadSeriesHost(
@@ -109,6 +112,7 @@ internal fun DownloadSeriesHost(
     scope: CoroutineScope,
     setEscape: ((() -> Unit)?) -> Unit,
     onClose: () -> Unit,
+    onPlay: (PlayableDownload) -> Unit = {},
 ) {
     val page = remember(downloads, id) { CoroutineScope(scope.coroutineContext + SupervisorJob(scope.coroutineContext[Job])) }
     DisposableEffect(page) { onDispose { page.cancel() } }
@@ -122,8 +126,7 @@ internal fun DownloadSeriesHost(
                 is SeriesEffect.ConfirmDelete -> confirming = listOf(effect.id)
                 is SeriesEffect.ConfirmDeleteAll -> confirming = effect.ids
                 SeriesEffect.Close -> onClose()
-                // Playing a file from the disk needs the player to take a local file, which it does not yet (`KMP-74`).
-                is SeriesEffect.Play -> Unit
+                is SeriesEffect.Play -> downloads.playable(effect.id)?.let(onPlay) ?: downloads.refresh()
             }
         }
     }
