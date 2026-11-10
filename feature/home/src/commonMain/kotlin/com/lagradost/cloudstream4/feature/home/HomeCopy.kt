@@ -46,12 +46,15 @@ fun HomeStatus.toUiState(sourceName: String?, onAction: (HomeAction) -> Unit): U
 /**
  * @param install what the nothing-installed prompt offers, on a host with somewhere to install from. Without one it
  *   offers to look again.
+ * @param nothingInstalled the whole nothing-installed prompt, for a host that words it its own way: the Mac's "No sources
+ *   yet" and Add repository (`KMP-110c`, board X6). Shown only when no extension is installed at all.
  */
 @Composable
 fun HomeStatus.toUiState(
     sourceName: String?,
     install: StateAction?,
     onAction: (HomeAction) -> Unit,
+    nothingInstalled: StatePrompt? = null,
 ): UiState<List<HomeRow>> {
     val latest by rememberUpdatedState(onAction)
     val retry = remember { { latest(HomeAction.Retry) } }
@@ -87,6 +90,8 @@ fun HomeStatus.toUiState(
                     action = StateAction(stringResource(Res.string.title_search), CloudStreamIcons.Search, search),
                 ),
             )
+        } else if (nothingInstalled != null) {
+            UiState.Empty(nothingInstalled)
         } else {
             UiState.Empty(
                 StatePrompt(

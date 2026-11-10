@@ -1,5 +1,12 @@
 package com.lagradost.cloudstream4
 
+import com.lagradost.cloudstream4.feature.settings.desktop.SettingsWindowState
+import com.lagradost.cloudstream4.feature.settings.SettingsPane
+import com.lagradost.cloudstream4.extensions.repositories.RepositoryStore
+import com.lagradost.cloudstream4.extensions.repositories.RepositoryInstaller
+import com.lagradost.cloudstream4.extensions.repositories.RepositoryCache
+import com.lagradost.cloudstream4.extensions.repositories.InstalledFromRepositories
+import com.lagradost.cloudstream4.extensions.repositories.ExtensionsPaneModel
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -197,11 +204,24 @@ fun main(args: Array<String>) {
     if (args.firstOrNull() == SCAN_ARGUMENT) exitProcess(runExtensionScan())
 
     // The report is printed, not logged: desktop has no logging, so the host is where the words go.
-    val extensions = SandboxedExtensions()
+    // `KMP-110c`: one installed list for the app, shared by the pipeline's hold and the repository installer.
+    val extensionsDirectory = SandboxedExtensions.defaultDirectory()
+    val installedFromRepositories = InstalledFromRepositories(InstalledFromRepositories.fileFor(extensionsDirectory))
+    val extensions = SandboxedExtensions(extensionsDirectory, installed = installedFromRepositories)
     val report = runBlocking { extensions.loadInstalled() }
     report.lines().forEach(::println)
     Runtime.getRuntime().addShutdownHook(Thread { extensions.close() })
     val approvals = ExtensionApprovals(extensions, report, CoroutineScope(SupervisorJob() + Dispatchers.Default))
+    // The Extensions pane's state. Nothing is fetched until the pane is opened.
+    val repositories = ExtensionsPaneModel(
+        scope = CoroutineScope(SupervisorJob() + Dispatchers.Default),
+        store = RepositoryStore(RepositoryStore.fileFor(extensionsDirectory)),
+        cache = RepositoryCache(RepositoryCache.directoryFor(extensionsDirectory)),
+        installer = RepositoryInstaller(extensionsDirectory, installed = installedFromRepositories),
+        installed = installedFromRepositories,
+        extensions = extensions,
+        reviews = approvals,
+    )
     // `KMP-52`'s service: ~/Downloads/CloudStream and ~/.cloudstream4/downloads.json. Closed on the way out, so a running
     // download stops cleanly and comes back Paused.
     // KMP-90: the one store of the Mac's Settings. The player and the downloads engine read it from here.
@@ -224,8 +244,23 @@ fun main(args: Array<String>) {
         // A new Downloads at once applies to the next start, not only to the next download queued.
         LaunchedEffect(Unit) { settings.downloadsAtOnce.collect { downloads.limitChanged() } }
         var settingsOpen by remember { mutableStateOf(false) }
+        val settingsState = remember { SettingsWindowState() }
+        var focusLink by remember { mutableStateOf(false) }
+        var reviewRequests by remember { mutableStateOf(0) }
         LaunchedEffect(Unit) { installSettingsOpener { settingsOpen = true } }
-        if (settingsOpen) SettingsWindow(settings, onClose = { settingsOpen = false })
+        if (settingsOpen) {
+            SettingsWindow(
+                settings,
+                onClose = {
+                    settingsOpen = false
+                    focusLink = false
+                },
+                state = settingsState,
+                extensions = repositories,
+                focusLink = focusLink,
+                onReview = { reviewRequests++ },
+            )
+        }
         Window(
             onCloseRequest = ::exitApplication,
             title = WINDOW_TITLE,
@@ -257,6 +292,14 @@ fun main(args: Array<String>) {
                                 playback = settings,
                                 profileFoot = foot,
                                 onOpenSettings = { settingsOpen = true },
+                                // Board X6: Settings, on Extensions, with the field focused. Nothing is added from here.
+                                onAddRepository = {
+                                    settingsState.pane = SettingsPane.Extensions
+                                    repositories.close()
+                                    focusLink = true
+                                    settingsOpen = true
+                                },
+                                reviewRequests = reviewRequests,
                                 onSidebarShown = { shown -> window.rootPane.titleBarOverContent(shown) },
                             )
                         }
@@ -352,6 +395,9 @@ internal fun DesktopApp(
     onOpenSettings: (() -> Unit)? = null,
     onSidebarShown: (Boolean) -> Unit = {},
     openDownload: (PlayableDownload) -> VlcPlayer? = ::openDownloadPlayer,
+    // `KMP-110c`: Home's Add repository (board X6), and the Settings pane's Review, which shows the review here.
+    onAddRepository: (() -> Unit)? = null,
+    reviewRequests: Int = 0,
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) {
@@ -412,6 +458,9 @@ internal fun DesktopApp(
     }
     // Keeps the scroll position of what is under the top screen, so back returns to the same place.
     val saved = rememberSaveableStateHolder()
+    LaunchedEffect(reviewRequests) {
+        if (reviewRequests > 0 && approvals != null && stack.last() != Screen.Extensions) stack += Screen.Extensions
+    }
     val screen = stack.last()
     SideEffect {
         onScreen(screen.toString())
@@ -451,6 +500,7 @@ internal fun DesktopApp(
                     onOpen = open,
                     onSearch = { top(Screen.Search) },
                     appearance = appearance,
+                    onAddRepository = onAddRepository,
                 )
             }
             Screen.Search -> TopLevelScreen(TopLevelDestination.Search, toTab, trailing = notice, onSettings = onOpenSettings) {

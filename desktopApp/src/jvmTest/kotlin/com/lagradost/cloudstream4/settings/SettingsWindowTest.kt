@@ -188,7 +188,7 @@ class SettingsWindowTest {
         val settings = SettingsRepository(SettingsStorage.InMemory())
         val state = SettingsWindowState()
         window(settings, state).use { scene ->
-            assertEquals(listOf("Appearance", "Playback", "Downloads"), scene.panes())
+            assertEquals(listOf("Appearance", "Playback", "Extensions", "Downloads"), scene.panes())
 
             state.query = "at once"
             scene.settle()
@@ -216,7 +216,7 @@ class SettingsWindowTest {
             scene.sendKeyEvent(KeyEvent(Key.Escape, KeyEventType.KeyDown))
             scene.settle()
             assertEquals("", state.query)
-            assertEquals(listOf("Appearance", "Playback", "Downloads"), scene.panes())
+            assertEquals(listOf("Appearance", "Playback", "Extensions", "Downloads"), scene.panes())
         }
     }
 
@@ -227,7 +227,7 @@ class SettingsWindowTest {
         SettingsPane.entries.forEach { pane ->
             window(settings, SettingsWindowState(pane = pane), height = min).use { scene ->
                 scene.save("minimum-${pane.name.lowercase()}")
-                assertEquals(listOf("Appearance", "Playback", "Downloads"), scene.panes())
+                assertEquals(listOf("Appearance", "Playback", "Extensions", "Downloads"), scene.panes())
                 scene.nodes().forEach { node ->
                     val box = node.boundsInRoot
                     assertTrue(box.left >= 0f && box.right <= WIDTH, "nothing runs off the side: $box")

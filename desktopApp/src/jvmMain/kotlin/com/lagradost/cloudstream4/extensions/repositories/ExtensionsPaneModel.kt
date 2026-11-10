@@ -131,7 +131,18 @@ data class ExtensionsPaneState(
     val listsFromMillis: Long? = null,
     /** A removal could not be done, so nothing was removed: the installed list could not be read, or a file deleted. */
     val removeFailed: Boolean = false,
-)
+    /**
+     * What the add field holds. Here rather than in the pane (`#349` review): the link a person typed can carry a token,
+     * and an add that succeeds empties it whether or not the pane is on screen, so a pane restored later cannot bring it
+     * back. A failure keeps it, so it can be fixed.
+     */
+    val link: String = "",
+) {
+    /** Without the field's text, which can carry a token. */
+    override fun toString(): String =
+        "ExtensionsPaneState(add=$add, repositories=$repositories, open=$open, waiting=$waiting, offline=$offline, " +
+            "listsFromMillis=$listsFromMillis, removeFailed=$removeFailed, link=<${link.length} chars>)"
+}
 
 /** What the pane needs of the running extensions: `SandboxedExtensions`, in the app. */
 interface PaneExtensions {
@@ -179,6 +190,7 @@ class ExtensionsPaneModel(
     private var adding: Job? = null
     private var openKey: String? = null
     private var offline = false
+    private var loaded = false
 
     private class Known(val read: RepositoryRead.Read?, val readAtMillis: Long?, val reachable: Boolean)
 
@@ -188,8 +200,13 @@ class ExtensionsPaneModel(
         scope.launch { reviews.state.collect { publish() } }
     }
 
-    /** Reads every saved repository: the cache first, so the list shows at once, then each live. */
+    /**
+     * Reads every saved repository: the cache first, so the list shows at once, then each live. Once per model: coming
+     * back to the pane does not fetch every repository again (`#349` review); [refresh] is the explicit way to.
+     */
     fun load() {
+        if (loaded) return
+        loaded = true
         val saved = store.read().repositories
         known.value = saved.associate { repository ->
             val cached = cache.read(repository.url)
@@ -243,7 +260,7 @@ class ExtensionsPaneModel(
                     val at = now()
                     runCatching { cache.write(url, read, at) }
                     known.update { it + (url to Known(read, at, reachable = true)) }
-                    _state.update { it.copy(add = AddState.Idle) }
+                    _state.update { it.copy(add = AddState.Idle, link = "") }
                     publish()
                 } catch (_: IOException) {
                     failAdd(AddFailure.NotSaved)
@@ -260,8 +277,9 @@ class ExtensionsPaneModel(
     }
 
     /** Typing in the field clears an add failure. */
-    fun editing() {
-        if (_state.value.add is AddState.Failed) _state.update { it.copy(add = AddState.Idle) }
+    /** The field's text changed. Typing also clears an add failure. */
+    fun editing(text: String) {
+        _state.update { it.copy(link = text, add = if (it.add is AddState.Failed) AddState.Idle else it.add) }
     }
 
     fun open(key: String) {

@@ -56522,6 +56522,10 @@ values/strings.xml	plurals	downloads_titles_status	one	STR	%1$d title · %2$s
 values/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titles · %2$s	
 values/strings.xml	plurals	episodes	one	REF	string/episode	
 values/strings.xml	plurals	episodes	other	REF	string/episodes	
+values/strings.xml	plurals	ext_repo_header	one	STR	%1$d extension · %2$d installed · updated %3$s	
+values/strings.xml	plurals	ext_repo_header	other	STR	%1$d extensions · %2$d installed · updated %3$s	
+values/strings.xml	plurals	ext_repo_remove_body	one	STR	Its %d installed extension is removed from this Mac too. You can add the repository again later.	
+values/strings.xml	plurals	ext_repo_remove_body	other	STR	Its %d installed extensions are removed from this Mac too. You can add the repository again later.	
 values/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOOKMARK	
 values/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOOKMARKS	
 values/strings.xml	plurals	home_sections_failed	one	STR	%d section failed to load	
@@ -56931,6 +56935,42 @@ values/strings.xml	string	example_password	-	STR	password123
 values/strings.xml	string	example_site_name	-	STR	NewSiteName	
 values/strings.xml	string	example_site_url	-	STR	https://example.com	
 values/strings.xml	string	example_username	-	STR	Username	
+values/strings.xml	string	ext_install	-	STR	Install	
+values/strings.xml	string	ext_installed	-	STR	Installed	
+values/strings.xml	string	ext_remove_failed	-	STR	Some files couldn't be removed, so nothing was removed.	
+values/strings.xml	string	ext_repo_add_group	-	STR	Add a repository	
+values/strings.xml	string	ext_repo_cant_reach_body	-	STR	This list is from %s. Installing and updating wait until it answers.	
+values/strings.xml	string	ext_repo_cant_reach_title	-	STR	Can't reach %s	
+values/strings.xml	string	ext_repo_empty_body	-	STR	Each extension comes from a repository you add, and runs only after you allow it.	
+values/strings.xml	string	ext_repo_empty_title	-	STR	No repositories	
+values/strings.xml	string	ext_repo_error_already	-	STR	%s is already in your list.	
+values/strings.xml	string	ext_repo_error_local	-	STR	This link points to an address on your local network, which CloudStream doesn't open.	
+values/strings.xml	string	ext_repo_error_newer	-	STR	This repository uses a newer format. Update CloudStream to add it.	
+values/strings.xml	string	ext_repo_error_not_https	-	STR	Only https links can be added. Check that it starts with https://.	
+values/strings.xml	string	ext_repo_error_not_repository	-	STR	This link doesn't lead to a repository.	
+values/strings.xml	string	ext_repo_error_not_saved	-	STR	Your repositories couldn't be saved, so nothing was changed.	
+values/strings.xml	string	ext_repo_error_shortcode	-	STR	Short codes don't work on the Mac. Paste the full link instead.	
+values/strings.xml	string	ext_repo_error_too_large	-	STR	This repository is larger than CloudStream reads. Nothing was added.	
+values/strings.xml	string	ext_repo_error_unreachable	-	STR	Couldn't reach this repository. Check the link and your connection.	
+values/strings.xml	string	ext_repo_link_help	-	STR	A link that starts with https:// or cloudstreamrepo://	
+values/strings.xml	string	ext_repo_link_hint	-	STR	Repository link	
+values/strings.xml	string	ext_repo_reading	-	STR	Reading the repository	
+values/strings.xml	string	ext_repo_remove_body_none	-	STR	You can add the repository again later.	
+values/strings.xml	string	ext_repo_remove_title	-	STR	Remove %s?	
+values/strings.xml	string	ext_repo_unreachable_line	-	STR	Can't reach it · list from %s	
+values/strings.xml	string	ext_row_failed_download	-	STR	Install failed · the file couldn't be downloaded	
+values/strings.xml	string	ext_row_failed_local	-	STR	Install failed · the file is on your local network	
+values/strings.xml	string	ext_row_failed_not_saved	-	STR	Install failed · it couldn't be saved	
+values/strings.xml	string	ext_row_failed_size	-	STR	Install failed · the file isn't the size its repository stated	
+values/strings.xml	string	ext_row_failed_too_large	-	STR	Install failed · the file is larger than CloudStream installs	
+values/strings.xml	string	ext_row_hash_mismatch	-	STR	Its file didn't match the published hash. Nothing was installed.	
+values/strings.xml	string	ext_row_installing	-	STR	Installing · %1$s of %2$s	
+values/strings.xml	string	ext_row_installing_unknown	-	STR	Installing · %s	
+values/strings.xml	string	ext_row_turned_off	-	STR	Turned off by its repository	
+values/strings.xml	string	ext_row_unverified	-	STR	Unverified · its repository publishes no hash	
+values/strings.xml	string	ext_row_update	-	STR	Update available · v%1$d → v%2$d	
+values/strings.xml	string	ext_row_version	-	STR	v%d	
+values/strings.xml	string	ext_size_megabytes	-	STR	%s MB	
 values/strings.xml	string	extension_allow	-	STR	Allow	
 values/strings.xml	string	extension_authors	-	STR	Authors	
 values/strings.xml	string	extension_decision_not_saved	-	STR	Your choice could not be saved, so this extension stays off. You will be asked again.	
@@ -57002,6 +57042,8 @@ values/strings.xml	string	home_info	-	STR	Info
 values/strings.xml	string	home_main_poster_img_des	-	STR	Main Poster	
 values/strings.xml	string	home_more_info	-	STR	More info	
 values/strings.xml	string	home_next_random_img_des	-	STR	Next Random	
+values/strings.xml	string	home_no_sources_body	-	STR	Home's rows come from extensions. Add a repository to choose some; nothing runs until you allow it.	
+values/strings.xml	string	home_no_sources_title	-	STR	No sources yet	
 values/strings.xml	string	home_none_body	-	STR	Choose a source to see its rows here. Continue watching and your bookmarks stay without one.	
 values/strings.xml	string	home_none_headline	-	STR	No source chosen	
 values/strings.xml	string	home_offline_bookmarks_body	-	STR	Your bookmarks are saved on this device.	

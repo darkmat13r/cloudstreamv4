@@ -40,6 +40,9 @@ class ExtensionsPaneModelTest {
     private val answers = Collections.synchronizedMap(mutableMapOf<String, Fetched>())
     private val gates = Collections.synchronizedMap(mutableMapOf<String, CompletableDeferred<Unit>>())
     private val calls = Collections.synchronizedList(mutableListOf<String>())
+    private val fetchCounts = java.util.concurrent.ConcurrentHashMap<String, java.util.concurrent.atomic.AtomicInteger>()
+
+    private fun reads(url: String) = fetchCounts[url]?.get() ?: 0
     private val pluginBytes = "made-up plugin".toByteArray()
 
     private val extensions = object : PaneExtensions {
@@ -80,6 +83,7 @@ class ExtensionsPaneModelTest {
 
     private fun model(scope: CoroutineScope): ExtensionsPaneModel {
         val fetcher = RepositoryReader.Fetcher { url, _ ->
+            fetchCounts.computeIfAbsent(url) { java.util.concurrent.atomic.AtomicInteger() }.incrementAndGet()
             gates[url]?.await()
             answers[url] ?: Fetched.Failed(RepositoryFailure.Unreachable)
         }
@@ -130,7 +134,7 @@ class ExtensionsPaneModelTest {
             model.add(text)
             assertEquals(AddState.Failed(failure), model.state.value.add, text)
         }
-        model.editing()
+        model.editing("harbour")
         assertEquals(AddState.Idle, model.state.value.add)
     }
 
@@ -317,6 +321,44 @@ class ExtensionsPaneModelTest {
             immediate.install(key, "Lumen")
             assertIs<RowState.Failed>(immediate.state.value.open?.rows?.single()?.state, "round $round")
         }
+    }
+
+    /**
+     * `#349` review: an add that finishes while the pane is not on screen still empties the field, because the field is the
+     * model's. A pane restored afterwards has nothing to show. A failure keeps the link, so it can be fixed.
+     */
+    @Test
+    fun `an add that succeeds while the pane is away empties the field, and a failure keeps it`() {
+        serve(A, "Harbour Mirror", plugin("Lumen"))
+        gates[A] = CompletableDeferred()
+        model.editing(A)
+        model.add(A)
+        assertEquals(A, model.state.value.link, "the link stays while it is read")
+        gates.getValue(A).complete(Unit) // the read finishes with nothing drawing the pane
+        val state = until("added") { it.repositories.isNotEmpty() && it.add == AddState.Idle }
+        assertEquals("", state.link)
+        assertFalse("tok" in state.toString() || "files.example" in state.toString(), state.toString())
+
+        model.editing("http://files.example/x.json")
+        model.add("http://files.example/x.json")
+        assertEquals("http://files.example/x.json", model.state.value.link, "a failure keeps the link to be fixed")
+    }
+
+    /** `#349` review: coming back to the pane does not fetch every repository again. Retry still does. */
+    @Test
+    fun `load reads each repository once, and refresh reads it again`() {
+        serve(A, "Harbour Mirror", plugin("Lumen"))
+        model.add(A)
+        until("added") { it.repositories.isNotEmpty() && it.add == AddState.Idle }
+        val fresh = model(scope)
+        val before = reads(A)
+        repeat(3) { fresh.load() }
+        runBlocking { withTimeout(10_000) { while (reads(A) == before) delay(10) } }
+        runBlocking { delay(300) }
+        assertEquals(before + 1, reads(A), "three loads, one read")
+        fresh.refresh()
+        runBlocking { withTimeout(10_000) { while (reads(A) == before + 1) delay(10) } }
+        assertEquals(before + 2, reads(A))
     }
 
     private companion object {
