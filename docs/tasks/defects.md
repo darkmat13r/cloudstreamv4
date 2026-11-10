@@ -3298,6 +3298,40 @@ path, query or fragment (`a@2x.jpg`) is kept, and so is `%40`.
 - With the fix, `:desktopApp:jvmTest` passed 543 of 543, and `:feature:settings:jvmTest` 17 of 17.
 - The four gates each exited 0, and `check-test-results.py` read 242 files with 0 failures.
 
+## BUG-88 — A JVM proxy setting would have taken the Mac's image, subtitle and download fetches past their address check · **low, security** · fixed in this PR
+
+Found in review of `#334`, which had the same gap and closed it the same way. `posterHttpClient` stops a plugin
+aiming the app at this computer or the local network with two checks: a `Dns` filter on the target's addresses, and
+a network interceptor on the address actually connected to. Neither set a proxy. With a JVM proxy (`http(s).proxyHost`,
+`java.net.useSystemProxies`, or a default `ProxySelector`), OkHttp asks the proxy for the target by name: the target
+is never resolved here, the filter never runs, and the interceptor sees only the proxy. A public-looking name that
+resolves to a private address would have been fetched by the proxy. Not reachable today: nothing sets a proxy.
+
+**Fix.** `.proxy(Proxy.NO_PROXY)` on `posterHttpClient`. Every client for an untrusted url on the Mac is built on it,
+so one line covers them all:
+- posters and backdrops (`boundedImageClient`, `KMP-100`; posters join it in `KMP-102`);
+- subtitles (`HttpSubtitleLoader.subtitleHttpClient`, `newBuilder()` on it);
+- downloads (`HttpClientFactory(posterHttpClient())`): Ktor 3.6.0's `OkHttpEngine` calls `proxy()` on its derived
+  client only when the engine's own `proxy` is set (read in its bytecode), and downloads set none.
+
+**Other clients, not changed:**
+- `HttpSignInClient.defaultClient`: it reaches only the app's own fixed endpoints (AniList, MyAnimeList, Simkl,
+  OpenSubtitles, SubDL), with redirects off. No untrusted url, no address check for a proxy to bypass.
+- The plugin host's `HostNewPipeDownloader` goes through the sandbox's SOCKS gate on purpose; the gate checks
+  addresses itself (`OutboundGate`).
+- Extension repositories (`RepositoryHttp`, `#334`) already set no proxy.
+- **Not an OkHttp client, and a narrower gap of its own (`BUG-90`):** a stream url is checked once before libVLC
+  is given it (`SandboxPolicy.isPublicHttpUrl`: http(s) only, every address the name resolves to public; called by
+  `RemoteLink.isPublic` in `DesktopDetailSource.kt` and by `PlaybackCheck`). libVLC then resolves and connects on
+  its own, with no check at connection time: a name that resolves differently by then, a redirect libVLC follows,
+  and HLS variant and segment urls from a playlist are not seen. Its environment is emptied, so no proxy variable
+  reaches it.
+
+**Proof,** all local (CI is off): `PosterHttpClientTest`, a JVM `ProxySelector` pointing every request at a fake
+proxy that the check allows as if it were public, and a target named `localhost`. The poster, image, subtitle and
+download clients are each refused, with 0 requests at the proxy and 0 at the target, every call bounded at 60 s.
+Without `NO_PROXY` the poster client reaches the target through the proxy (checked).
+
 ## BUG-84 — Nothing stopped a call to Compose's argument overloads, which leave `%s`, `%d` and `%.1f` unfilled · **low, i18n**
 
 **Status:** fixed in this PR · found in review of #311

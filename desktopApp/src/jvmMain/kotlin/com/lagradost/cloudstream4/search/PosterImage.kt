@@ -17,6 +17,7 @@ import kotlinx.coroutines.Dispatchers
 import java.io.IOException
 import java.net.InetAddress
 import java.net.InetSocketAddress
+import java.net.Proxy
 import kotlinx.coroutines.withContext
 import com.lagradost.cloudstream4.detail.extensionImageLoader
 import okhttp3.Dns
@@ -66,12 +67,16 @@ internal val posterLoader: ImageLoader get() = extensionImageLoader
  * - The network interceptor checks the address actually connected to, before a request is sent. It
  *   runs once per redirect hop, and it is the only check an IP literal meets, since OkHttp does not
  *   call [Dns] for one. So a redirect to a private IP literal opens a TCP connection and sends nothing.
+ * - No proxy (`BUG-88`). A proxy is asked for the target by name, so the target would never be resolved here, and
+ *   both checks above would see only the proxy. No JVM proxy setting (`http(s).proxyHost`, `useSystemProxies`, a
+ *   default `ProxySelector`) applies to this client, nor to the image, subtitle and download clients built on it.
  *
  * @param allow decides a connected address; replaceable so a test can use a loopback server.
  */
 internal fun posterHttpClient(
     allow: (InetSocketAddress) -> Boolean = { SandboxPolicy.isPublicAddress(it.address) },
 ): OkHttpClient = OkHttpClient.Builder()
+    .proxy(Proxy.NO_PROXY)
     .dns(
         object : Dns {
             override fun lookup(hostname: String): List<InetAddress> =
