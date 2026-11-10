@@ -3332,3 +3332,34 @@ then empties closes again.
 
 **Not this:** `BUG-86`, an older race in `:app`'s `DownloadViewModel` that can put a deleted series' row back, is real
 and has its own PR, but the capture shows it was not what this test met.
+
+## BUG-86 — An earlier read of the Downloads list could post after a later one, and put a deleted series back · **low** · measured 2026-11-09
+
+**Status:** fixed in this PR · found while looking for `BUG-80`'s cause, and **not** that cause · **a fix to existing
+upstream code:** `DownloadViewModel` in `:app`, the old Downloads list, which the TV Downloads page still reads.
+
+**Not `BUG-80`.** `BUG-80`'s delete-all flake was the series page closing twice; a capture at the failure showed the app
+on Home, not a stale row. With only this fix, `DownloadSeriesTvNavigationTest` still failed 1 run in 8 (run, local).
+
+**Cause.** Delete-all deletes each episode file in parallel, and each file's `downloadDeleteEvent` makes the view model
+call `updateHeaderList`. Each call launched its own read of the download store, unversioned. A read that began while an
+episode still existed could finish after a read that began once it had gone, and post last. The series' row was then
+back on screen with nothing left to refresh it.
+
+**Fix.** `updateHeaderList` takes a generation number when it is called, before its coroutine starts, and drops its
+result if a newer call, or a `removeItems`, began while it read. `removeItems` bumps the generation before it posts, so
+a read already under way cannot post the removed rows back. The delete dialog's `onComplete` reads once more after every
+file has gone, so the list ends on what is left. The return type (`Job`) is unchanged.
+
+**Extension API.** `DownloadViewModel` is in `classes.jar`. The new field is private and read through a local, so no
+accessor or class is added: `:app:checkExtensionApi` passes with `classes-jar.api` unchanged, and `javap -p` of every
+`DownloadViewModel*.class` shows the same 30 classes and the same 14 `access$` methods, built from master's file and
+from this one.
+
+**Test.** `DownloadHeaderRaceTest` (device, 1 test) forces the order rather than hoping for it. The first read is given
+the store as it was before the delete and held at its first read; the second read, begun after the delete, posts; then
+the first is released.
+
+| Measured (local, `Television_720p` API 36) | Master's `DownloadViewModel` | This PR |
+|---|---|---|
+| `DownloadHeaderRaceTest` | failed: "the list ends on the later read", expected `[]` but was `[A Raced Show]` | passed |
