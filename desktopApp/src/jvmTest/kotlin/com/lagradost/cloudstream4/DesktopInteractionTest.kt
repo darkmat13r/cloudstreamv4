@@ -16,6 +16,7 @@ import androidx.compose.ui.input.key.KeyEvent
 import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.core.designsystem.cloudStreamAppTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailLoad
@@ -48,7 +49,7 @@ import kotlin.test.assertTrue
 class DesktopInteractionTest {
 
     private fun scene(content: @Composable () -> Unit) =
-        ImageComposeScene(WIDTH, HEIGHT, Density(1f)) { CloudStreamTheme { content() } }
+        ImageComposeScene(WIDTH, HEIGHT, Density(1f)) { CloudStreamTheme(typography = cloudStreamAppTypography()) { content() } }
 
     private fun ImageComposeScene.settle() = repeat(SETTLE_FRAMES) { render(it * FRAME_NANOS) }
 

@@ -21,7 +21,7 @@ import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
 import com.lagradost.cloudstream4.assertPageBar
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.detail.DetailAction
@@ -40,6 +40,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
+import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
 
 /**
@@ -96,7 +97,7 @@ class DetailScreenTest {
     private fun scene(width: Int = WIDTH, height: Int = HEIGHT, content: @Composable () -> Unit) =
         ImageComposeScene(width, height, Density(1f)) {
             CloudStreamTheme {
-                CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+                CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                     Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) { content() }
                 }
             }
@@ -108,6 +109,7 @@ class DetailScreenTest {
         onBack: () -> Unit = {},
         width: Int = WIDTH,
         height: Int = HEIGHT,
+        backdrop: @Composable (String) -> Unit = {},
     ) = scene(width, height) {
         DetailScreenDesktop(
             state = state,
@@ -115,6 +117,7 @@ class DetailScreenTest {
             onBack = onBack,
             artwork = { Box(Modifier.fillMaxSize().background(ART)) },
             origin = "Home",
+            backdrop = backdrop,
         )
     }
 
@@ -166,6 +169,17 @@ class DetailScreenTest {
     }
 
     private fun ImageComposeScene.has(words: String) = nodes(words).isNotEmpty()
+
+    /** The colour drawn at [x], [y] once the scene has settled. */
+    private fun ImageComposeScene.pixel(x: Int, y: Int): Color {
+        settle()
+        val bitmap = Bitmap.makeFromImage(render(SETTLE_FRAMES * FRAME_NANOS))
+        return Color(bitmap.getColor(x, y))
+    }
+
+    /** Where the page starts under the bar: the Back button, the bar's padding under it, and its hairline. */
+    private fun ImageComposeScene.barBottom(): Int =
+        (nodes("Go Back").single().boundsInRoot.bottom + RELATED_GAP + 1).toInt()
 
     /** What a screen reader is told about the one control that reads as [words], beside its name. */
     private fun ImageComposeScene.stateOf(words: String): String? =
@@ -358,6 +372,32 @@ class DetailScreenTest {
         scene.close()
     }
 
+    // ---- E1 and E3's backdrop (KMP-100) ----
+
+    @Test
+    fun `a title with a backdrop washes the header with it, and one without draws plain ground`() {
+        val asked = mutableListOf<String>()
+        val drawn = page(loaded(series.copy(backdropUrl = "https://img.example/b.jpg")), backdrop = { url ->
+            asked += url
+            Box(Modifier.fillMaxSize().background(BACKDROP))
+        })
+        drawn.save("detail-e1-backdrop")
+        // Right of the words, near the top of the header: the art shows through the scrim's lightest part. Sampling
+        // settles the scene, so the slot has been composed by the time it is asked about below.
+        val top = drawn.pixel(WIDTH - 40, drawn.barBottom() + 24)
+        assertEquals(listOf("https://img.example/b.jpg"), asked.distinct())
+        assertTrue(top != Color.Black, "the wash is drawn: $top")
+        // At the scrim's foot the page is the ground again.
+        val foot = drawn.pixel(WIDTH - 40, drawn.barBottom() + BACKDROP_HEIGHT - 1)
+        assertTrue(foot.red < 0.01f && foot.green < 0.01f && foot.blue < 0.01f, "the scrim's foot is the ground: $foot")
+        drawn.close()
+
+        val plain = page(loaded(series), backdrop = { url -> asked += "none: $url" })
+        assertEquals(Color.Black, plain.pixel(WIDTH - 40, plain.barBottom() + 24))
+        plain.close()
+        assertTrue(asked.none { it.startsWith("none") }, "no slot is asked for a title without a backdrop: $asked")
+    }
+
     // ---- Seasons and episodes (E1, E2) ----
 
     @Test
@@ -548,6 +588,10 @@ class DetailScreenTest {
         const val READING_WIDTH = 640f
         const val MAX_TABS = 12
         val ART = Color(0xFF00FF80)
+        val BACKDROP = Color(0xFFFF8040)
+
+        /** `DetailScreenDesktopDefaults.BackdropHeight`, in pixels at the scene's density of 1. */
+        const val BACKDROP_HEIGHT = 296
         val QUALITIES = listOf(2160, 1080, 720, 480)
     }
 }

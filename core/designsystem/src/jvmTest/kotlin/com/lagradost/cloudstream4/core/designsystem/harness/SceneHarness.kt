@@ -18,6 +18,7 @@ import androidx.compose.ui.layout.LayoutCoordinates
 import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.Density
+import com.lagradost.cloudstream4.core.designsystem.cloudStreamAppTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 
 /**
@@ -38,7 +39,7 @@ internal class Harness(
 ) : AutoCloseable {
 
     private val scene = ImageComposeScene(width, height, Density(1f)) {
-        CloudStreamTheme { content() }
+        CloudStreamTheme(typography = cloudStreamAppTypography()) { content() }
     }
 
     /**

@@ -22,7 +22,7 @@ import com.lagradost.cloudstream4.EscapeHandler
 import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBarDefaults
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.feature.home.HomePageReply
@@ -55,7 +55,7 @@ class DesktopShellTest {
 
     private fun scene(onOpenSettings: (() -> Unit)? = { settingsOpened++ }) = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
         CloudStreamTheme {
-            CompositionLocalProvider(LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop()) {
+            CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
                     DesktopApp(
                         EscapeHandler(),

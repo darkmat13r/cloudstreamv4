@@ -27,10 +27,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.lagradost.cloudstream4.core.designsystem.cloudStreamAppTypography
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIconSize
@@ -92,17 +94,28 @@ object DesktopMotion {
  *
  * Sizes are that table's. Line boxes are the same table's TV ratio for the matching size, which keeps
  * them on the 4dp step: the ink has to fit the box, and that ratio is what was measured.
+ *
+ * Weights are the boards' (`KMP-97`): the weight each role is drawn at in `Design System v2`'s line-box samples, and
+ * the one most of the boards use at that role's size. They are here and not in the shared ramp until TV takes the
+ * bundled fonts too, so that TV's pixels do not move before it does.
  */
 fun CloudStreamTypography.forDesktop(): CloudStreamTypography = copy(
-    display = display.copy(fontSize = 40.sp, lineHeight = 56.sp),
-    h1 = h1.copy(fontSize = 32.sp, lineHeight = 44.sp),
-    railTitle = railTitle.copy(fontSize = 24.sp, lineHeight = 32.sp),
-    body = body.copy(fontSize = 16.sp, lineHeight = 24.sp),
-    label = label.copy(fontSize = 16.sp, lineHeight = 24.sp),
-    caption = caption.copy(fontSize = 12.sp, lineHeight = 16.sp),
-    labelMono = labelMono.copy(fontSize = 12.sp, lineHeight = 16.sp),
-    captionMono = captionMono.copy(fontSize = 12.sp, lineHeight = 16.sp),
+    display = display.copy(fontSize = 40.sp, lineHeight = 56.sp, fontWeight = FontWeight.ExtraBold),
+    h1 = h1.copy(fontSize = 32.sp, lineHeight = 44.sp, fontWeight = FontWeight.Bold),
+    railTitle = railTitle.copy(fontSize = 24.sp, lineHeight = 32.sp, fontWeight = FontWeight.Bold),
+    body = body.copy(fontSize = 16.sp, lineHeight = 24.sp, fontWeight = FontWeight.Normal),
+    label = label.copy(fontSize = 16.sp, lineHeight = 24.sp, fontWeight = FontWeight.SemiBold),
+    caption = caption.copy(fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.Bold),
+    labelMono = labelMono.copy(fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.Medium),
+    captionMono = captionMono.copy(fontSize = 12.sp, lineHeight = 16.sp, fontWeight = FontWeight.Medium),
 )
+
+/** What the Mac draws with: the bundled families ([cloudStreamAppTypography]) on the desktop column of the ramp. */
+@Composable
+fun desktopTypography(): CloudStreamTypography {
+    val app = cloudStreamAppTypography()
+    return remember(app) { app.forDesktop() }
+}
 
 /**
  * Press and hover feedback: the moment the pointer goes down, not when it comes up.

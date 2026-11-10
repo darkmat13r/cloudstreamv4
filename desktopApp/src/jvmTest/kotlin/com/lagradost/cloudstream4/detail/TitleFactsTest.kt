@@ -38,4 +38,11 @@ class TitleFactsTest {
         assertNull(page.durationMinutes)
         assertEquals("Completed", details.copy(facts = RemoteFacts(status = RemoteShowStatus.Completed)).toTitleDetail("p").statusName)
     }
+
+    @Test
+    fun `the backdrop the sandbox kept is the page's, and none is none, not the poster`() {
+        val withArt = details.copy(posterUrl = "https://img.example/p.jpg", backdropUrl = "https://img.example/b.jpg")
+        assertEquals("https://img.example/b.jpg", withArt.toTitleDetail("p").backdropUrl)
+        assertNull(withArt.copy(backdropUrl = null).toTitleDetail("p").backdropUrl)
+    }
 }

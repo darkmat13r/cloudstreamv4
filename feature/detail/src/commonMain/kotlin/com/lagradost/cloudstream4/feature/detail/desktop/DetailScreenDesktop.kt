@@ -24,6 +24,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyListState
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.text.BasicText
 import androidx.compose.runtime.Composable
@@ -34,6 +36,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.Placeable
 import androidx.compose.ui.semantics.Role
@@ -120,12 +124,13 @@ fun DetailScreenDesktop(
     artwork: @Composable (String?) -> Unit,
     modifier: Modifier = Modifier,
     origin: String? = null,
+    backdrop: @Composable (String) -> Unit = {},
 ) {
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
             TopBar(origin, state.detail?.title, onBack)
             when (val page = state.content.toPageUiState(onAction)) {
-                is UiState.Content -> TitlePage(page.value, state.synopsisOpen, onAction, artwork)
+                is UiState.Content -> TitlePage(page.value, state.synopsisOpen, onAction, artwork, backdrop)
                 is UiState.Empty -> Failure(page.prompt, onBack)
                 is UiState.Error -> Failure(page.prompt, onBack)
                 is UiState.Offline -> Failure(page.prompt, onBack)
@@ -196,6 +201,7 @@ private fun TitlePage(
     synopsisOpen: Boolean,
     onAction: (DetailAction) -> Unit,
     artwork: @Composable (String?) -> Unit,
+    backdrop: @Composable (String) -> Unit,
 ) {
     val seasons = remember(detail.episodes) { seasonGroups(detail.episodes) }
     // The season Resume is in, else the one Play starts (KMP-92's S1E1), so the row it will play is on screen;
@@ -213,7 +219,10 @@ private fun TitlePage(
     }
     BoxWithConstraints(Modifier.fillMaxSize()) {
         val compact = maxWidth < DetailScreenDesktopDefaults.CompactBelow
+        val list = rememberLazyListState()
+        detail.backdropUrl?.let { url -> Backdrop(url, list, backdrop) }
         LazyColumn(
+            state = list,
             modifier = Modifier.fillMaxSize(),
             contentPadding = PaddingValues(
                 start = DesktopDimens.WindowMargin - DesktopDimens.RowPadding,
@@ -239,6 +248,35 @@ private fun TitlePage(
                 }
             }
         }
+    }
+}
+
+/**
+ * E1 and E3's wash (`KMP-100`): the title's backdrop across the page under the bar, [DetailScreenDesktopDefaults.BackdropHeight]
+ * tall, under a scrim that is the ground at its foot, so the header's words keep their contrast and the page below
+ * starts on plain ground. It scrolls away with the header. Without a backdrop nothing is drawn: no poster in its place.
+ */
+@Composable
+private fun Backdrop(url: String, list: LazyListState, backdrop: @Composable (String) -> Unit) {
+    val ground = CloudStreamTheme.colors.bg
+    Box(
+        Modifier
+            .fillMaxWidth()
+            .height(DetailScreenDesktopDefaults.BackdropHeight)
+            .graphicsLayer {
+                translationY = if (list.firstVisibleItemIndex == 0) -list.firstVisibleItemScrollOffset.toFloat() else -size.height
+            },
+    ) {
+        backdrop(url)
+        Box(
+            Modifier.matchParentSize().background(
+                Brush.verticalGradient(
+                    0f to ground.copy(alpha = DetailScreenDesktopDefaults.WashTopAlpha),
+                    DetailScreenDesktopDefaults.WashMiddleAt to ground.copy(alpha = DetailScreenDesktopDefaults.WashMiddleAlpha),
+                    1f to ground,
+                ),
+            ),
+        )
     }
 }
 
@@ -734,6 +772,17 @@ object DetailScreenDesktopDefaults {
 
     /** E6: below this the name is a size down. Home's compact hero turns at the same width. */
     val CompactBelow: Dp = 720.dp
+
+    /** E1 and E3's backdrop: 296 tall under the bar, down to the action row's middle, on the boards. */
+    val BackdropHeight: Dp = 296.dp
+
+    /**
+     * The scrim over it, from the boards' `linear-gradient(0deg, #000 0%, rgba(0,0,0,0.6) 48%, rgba(0,0,0,0.3) 100%)`,
+     * read top to bottom: the ground at 0.3 at the top, 0.6 just past the middle, and the whole ground at the foot.
+     */
+    const val WashTopAlpha: Float = 0.3f
+    const val WashMiddleAt: Float = 0.52f
+    const val WashMiddleAlpha: Float = 0.6f
 
     /** At most this many of the source's genres under the facts (`KMP-82`): enough to place a title, not a tag cloud. */
     const val GenreCount: Int = 5

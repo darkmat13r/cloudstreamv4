@@ -8,7 +8,7 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.ui.ImageComposeScene
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.Density
-import com.lagradost.cloudstream4.core.designsystem.desktop.forDesktop
+import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.designsystem.state.UiState
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
@@ -127,7 +127,7 @@ class DetailPageFailureTest {
             val scene = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
                 CloudStreamTheme {
                     CompositionLocalProvider(
-                        LocalCloudStreamTypography provides CloudStreamTheme.typography.forDesktop(),
+                        LocalCloudStreamTypography provides desktopTypography(),
                     ) {
                         Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
                             DetailScreenDesktop(DetailState(DetailLoad.Failed(raw)), {}, {}, {})
