@@ -60,9 +60,9 @@ data class SettingsValues(
         const val DEFAULT_AUTOPLAY_NEXT = true
 
         /**
-         * Whether the player asks the skip services for an episode's stamps (`KMP-86`). On, as Android's is, until the
-         * owner rules: on, the title's MAL, TMDb or IMDb id and the episode go to up to three third parties. The one
-         * place the default is set.
+         * Whether the player asks the skip services for an episode's stamps (`KMP-86`). On, as Android's is: the owner
+         * chose Android's parity. On, the title's MAL, TMDb or IMDb id and the episode go to up to three third parties.
+         * The one place the default is set.
          */
         const val DEFAULT_SKIP_STAMPS = true
 
