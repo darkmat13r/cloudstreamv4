@@ -3316,10 +3316,13 @@ measured:** where a Finder-launched app's stdout ends up. The printed report goe
 **Fix.** A plugin's text never reaches a default output; a developer's run gets it redacted.
 - **Default (the "not loaded" line, every launch and every check):** a fixed shape, our words and counts only. A host
   that failed to start reads `not loaded: plugin failed: IllegalStateException | stderr: 14 lines, 2310 bytes`, or
-  with the host's own failure class, `… · failed: java.lang.NoClassDefFoundError`. That class comes only from a
-  marker line the host writes (`plugin host: failed: <class>`), kept when the whole line is a class name of at most
-  128 characters; a long segment that does not read as words (`IllegalArgumentException` does) becomes `<…>`, so a
-  forged marker carries nothing. A failed conversion reads `conversion failed: exit 1 · stderr: …`.
+  with the host's own failure class, `… · failed: java.lang.NoClassDefFoundError`. That class comes from a marker
+  line the host writes (`plugin host: failed: <class>`). **A plugin can write that line too**: it runs in the host's
+  JVM, so it can also write protocol frames and choose the exit code, and no channel from the host is one it cannot
+  write. What holds is the shape: the line counts only when it is wholly a class name of at most 128 characters, and a
+  long segment that does not read as words (`IllegalArgumentException` does) becomes `<…>`. So a forged class can
+  mislead about which class failed, and can carry an identifier, but not a url, a path or a token. A failed
+  conversion reads `conversion failed: exit 1 · stderr: …`.
 - **`--check-extensions --verbose` only:** the plugin's lines through one function, `redactedPluginText`: urls cut to
   `scheme://host[:port]/<…>`, user paths and `~/…` to `<path>`, email addresses to `<email>`, IPv4 and IPv6 literals
   to `<ip>`, and any run of 24 or more of `A-Z a-z 0-9 + / = _ -` (tokens, base64, long hex) to `<…>`. Text is taken
@@ -3330,12 +3333,13 @@ measured:** where a Finder-launched app's stdout ends up. The printed report goe
 
 **What a person loses, and how to get it back.** The plugin's own lines, its log and its stack trace, are gone from
 the default output: a "not loaded" line says which class failed and how much the plugin wrote, not what it wrote.
-Run `--check-extensions --verbose` to see them, redacted. The 24-character rule also cuts a class name written with
+Run `--check-extensions --verbose` to see them, redacted. The rules there are shapes, so a secret with none of them
+survives: a value under 24 characters (`key=abc123`, a short password) is shown as written. The 24-character rule also cuts a class name written with
 slashes when it is that long (`android/webkit/WebViewClient`, as a `NoClassDefFoundError` names it); with dots, as in
 a stack frame, it is kept.
 
 **Proof,** all local (CI is off):
-- `PluginOutputTest`, 15: the rules one by one, with made-up values (a url with user info, query and fragment; a
+- `PluginOutputTest`, 18: the rules one by one, with made-up values (a url with user info, query and fragment; a
   token at 23 and at 24 characters; base64 with `=` padding; `~/` and `/Users/<name>/` paths; an email address; IP
   literals, and a time of day that is not one); the summary; a url split at every point between two reads; forged
   markers (a url, `/`, `:`, 129 characters; 128 is kept); a line past the cut.
@@ -3347,3 +3351,12 @@ a stack frame, it is kept.
   (`ExtensionOutputTest`); the developer's log kept unredacted (both host tests, two unit tests); a marker taking any
   text (the forged-marker test); a line ended at every read (the split test, the cut test); `PluginFailed` not
   redacting (the failed-load host test).
+- **Review (`#335`):**
+  - A reported failure was cut to 400 characters and then redacted, so a token or an address across the cut was too
+    short for its rule. Now `redactedWithin` redacts and then cuts, on both sides of the protocol, and drops a word
+    cut by either cut. A 30-character token and an IPv4 address across character 400 come out redacted (tests);
+    with the old order they do not (checked).
+  - Control characters were removed after redaction, so a `\r` inside a token split it for the rules and then
+    rejoined it. They become spaces first now (test; red with the old order).
+- **Follow-up, not here:** `close()` waits up to 500 ms for stderr to drain, so a report made after it can still miss
+  the end of a slow host's output.

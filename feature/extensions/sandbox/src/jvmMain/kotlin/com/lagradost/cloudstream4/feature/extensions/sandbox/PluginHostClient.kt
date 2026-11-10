@@ -223,7 +223,7 @@ class PluginHostClient internal constructor(
                         }
                         HostProtocol.REPLY_FAILED -> {
                             val waiter = claim(id) ?: throw IOException("reply to unknown request $id")
-                            waiter.reply.complete(Result.failure(PluginFailed(readText().sanitized(MAX_ERROR_CHARS))))
+                            waiter.reply.complete(Result.failure(PluginFailed(readText())))
                         }
                         else -> throw IOException("reply of unknown kind $kind")
                     }

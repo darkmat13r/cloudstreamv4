@@ -58,6 +58,50 @@ class PluginOutputTest {
         assertEquals("no results for that page", "no results for that page".redactedPluginText())
     }
 
+    // ---- redactedWithin and PluginFailed: redacted, then cut (#335 review) --------------------------------------
+
+    /** "IllegalStateException: " and words, then [secret] starting [before] characters before the 400th. */
+    private fun straddling(secret: String, before: Int): String {
+        val head = "IllegalStateException: "
+        val room = 400 - before - head.length
+        val words = "word ".repeat(room / 5 + 1).take(room - 1).trimEnd().padEnd(room)
+        return head + words + secret + " and more words after it"
+    }
+
+    private val token30 = "Zq8Xv3Lm9Pt2Rk7Wd4Hs6Nb1Yc5Gf0"
+
+    @Test
+    fun `a token across the cut at 400 is redacted, not cut short of its rule`() {
+        val text = straddling(token30, before = 15)
+        assertEquals(400 - 15, text.indexOf(token30))
+        listOf(text.redactedWithin(400), PluginFailed(text).message.orEmpty()).forEach { message ->
+            assertTrue(message.length <= 400, "${message.length}")
+            assertFalse(token30.take(10) in message, message)
+        }
+    }
+
+    @Test
+    fun `an address across the cut at 400 is redacted, not cut short of its rule`() {
+        val text = straddling("192.0.2.44", before = 5)
+        assertEquals(400 - 5, text.indexOf("192.0.2.44"))
+        listOf(text.redactedWithin(400), PluginFailed(text).message.orEmpty()).forEach { message ->
+            assertTrue(message.length <= 400, "${message.length}")
+            assertFalse("192.0" in message, message)
+        }
+    }
+
+    @Test
+    fun `a control character inside a token does not rejoin it once removed`() {
+        val split = "Zq8Xv3Lm9Pt2Rk\nWd4Hs6Nb1Yc5G"
+        val joined = split.replace("\n", "")
+        assertFalse(joined in PluginFailed("IllegalStateException: $split").message.orEmpty())
+        val stderr = HostStderr()
+        val bytes = "key ${split.replace('\n', '\r')} end\n".toByteArray()
+        stderr.feed(bytes, bytes.size)
+        stderr.finish()
+        assertFalse(joined in stderr.redactedLog, stderr.redactedLog)
+    }
+
     // ---- HostStderr: what is kept of a host's stderr ---------------------------------------------------------
 
     private fun HostStderr.write(text: String, chunk: Int = text.length) {

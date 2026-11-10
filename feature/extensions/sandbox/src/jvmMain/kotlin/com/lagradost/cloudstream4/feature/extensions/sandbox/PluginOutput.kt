@@ -25,6 +25,26 @@ fun String.redactedPluginText(): String = withoutUrls()
     .replace(IPV6, "<ip>")
     .replace(TOKEN, "<…>")
 
+/**
+ * [redactedPluginText], then at most [limit] characters: in that order, because a token or an address cut at the limit
+ * first would be too short for its rule (`#335` review). A word cut by either cut goes whole, for the same reason.
+ * Control characters become spaces first: removed after, a line break inside a token would rejoin its two halves.
+ */
+fun String.redactedWithin(limit: Int): String {
+    val input = take(limit * INPUT_PER_OUTPUT)
+    val whole = if (length > input.length) input.substringBeforeLast(' ', "") else input
+    val redacted = whole.controlsAsSpaces().redactedPluginText()
+    if (redacted.length <= limit) return redacted
+    return redacted.take(limit - CUT_MARK.length).substringBeforeLast(' ', "") + CUT_MARK
+}
+
+/** Every control character as a space, so it still separates the words on either side of it. */
+internal fun String.controlsAsSpaces(): String = map { if (it.isISOControl()) ' ' else it }.joinToString("")
+
+/** How much more text is read than kept: enough for redaction to shorten it, bounded so a huge message costs little. */
+private const val INPUT_PER_OUTPUT = 4
+private const val CUT_MARK = " <…>"
+
 private val HOME_PATH = Regex("(?<![\\w.~/-])~/\\S*")
 private val EMAIL = Regex("[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\\.[A-Za-z0-9-]+)*\\.[A-Za-z]{2,}")
 private val IPV4 = Regex("(?<![\\w.])(?:\\d{1,3}\\.){3}\\d{1,3}(?![\\w.])")
@@ -52,9 +72,14 @@ internal fun String.asReportedClass(): String = split('.').joinToString(".") { s
  * message is redacted ([redactedPluginText]) before anything can read it. [reportedClass] is all a default output
  * may show of it.
  */
-class PluginFailed(text: String) : IOException(text.redactedPluginText()) {
+class PluginFailed(text: String) : IOException(text.redactedWithin(MAX_MESSAGE_CHARS)) {
     val reportedClass: String = text.substringBefore(": ")
         .takeIf { HostStderr.CLASS_NAME.matches(it) }?.asReportedClass() ?: "<class>"
+
+    companion object {
+        /** As long as a reported failure may be, on both sides of the protocol. */
+        const val MAX_MESSAGE_CHARS = 400
+    }
 }
 
 /**
@@ -118,7 +143,7 @@ internal class HostStderr(private val maxLogChars: Int = MAX_LOG_CHARS) {
             return
         }
         if (log.length < maxLogChars) {
-            log.append(text.redactedPluginText().filterNot { it.isISOControl() }.take(maxLogChars - log.length))
+            log.append(text.controlsAsSpaces().redactedPluginText().take(maxLogChars - log.length))
             log.append('\n')
         }
     }
