@@ -5,6 +5,7 @@ import com.lagradost.cloudstream4.feature.extensions.ExtensionHash
 import com.lagradost.cloudstream4.feature.extensions.ExtensionVerification
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ExtensionScanner
 import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
+import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginFailed
 import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHostClient
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxedProvider
@@ -178,8 +179,11 @@ class SandboxedExtensions(
         val (host, started) = PluginHostClient.start(launcher, jar, data, source.nameWithoutExtension)
         val remotes = started.getOrElse { failure ->
             host.close()
+            // BUG-83: what the plugin said is never part of this line; its class and our own words are.
+            val reason =
+                if (failure is PluginFailed) "plugin failed: ${failure.reportedClass}" else failure.message.orEmpty()
             return refused(
-                listOf(failure.message.orEmpty(), host.hostOutput.lastLines()).filter { it.isNotBlank() }
+                listOf(reason, host.hostSummary).filter { it.isNotBlank() }
                     .joinToString(" | "),
                 scan,
                 sha256,
@@ -236,7 +240,7 @@ class SandboxedExtensions(
             try {
                 copyExpecting(source, input, sha256)
                 convertIntoStore(target, work) { output, directory ->
-                    conversions.withPermit { PluginHostClient.convert(launcher, input, output, directory) }?.lastLines()
+                    conversions.withPermit { PluginHostClient.convert(launcher, input, output, directory) }
                 }
             } finally {
                 input.delete()
@@ -276,10 +280,6 @@ class SandboxedExtensions(
         }
     }
 
-    private fun String.lastLines(): String =
-        lineSequence().filter { it.isNotBlank() && !it.startsWith(PICKED_UP) }.toList()
-            .takeLast(MAX_REPORTED_LINES).joinToString(" / ")
-
     companion object {
         private const val MAX_PARALLEL_CONVERSIONS = 4
         private const val STORE_DIRECTORY = ".store"
@@ -296,8 +296,6 @@ class SandboxedExtensions(
         private const val SIDECAR_SUFFIX = ".sha256"
         private const val STAGING_SUFFIX = ".part"
         private const val MAX_SIDECAR_BYTES = 1024L
-        private const val MAX_REPORTED_LINES = 3
-        private const val PICKED_UP = "Picked up JAVA_TOOL_OPTIONS"
         private const val DIRECTORY_ENV = "CLOUDSTREAM4_EXTENSIONS_DIR"
 
         /** An override must be absolute, so it can never mean "wherever the app was started from". */

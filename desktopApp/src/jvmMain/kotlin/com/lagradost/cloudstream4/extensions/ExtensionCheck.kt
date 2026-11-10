@@ -3,6 +3,7 @@ package com.lagradost.cloudstream4.extensions
 import com.lagradost.cloudstream4.detail.isPublic
 import com.lagradost.cloudstream4.feature.extensions.sandbox.RemoteSubtitle
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxedProvider
+import com.lagradost.cloudstream4.feature.extensions.sandbox.redactedPluginText
 import com.lagradost.cloudstream4.feature.home.HomePageReply
 import com.lagradost.cloudstream4.feature.home.HomeSourceId
 import com.lagradost.cloudstream4.home.DesktopHomeSource
@@ -42,7 +43,7 @@ fun runExtensionCheck(query: String, verbose: Boolean = false): Int = runBlockin
             println("check: ${provider.name} — ${outcome.summary}")
             println("check: ${provider.name} — ${checkHome(provider)}")
             if (verbose) {
-                provider.hostOutput.lineSequence()
+                provider.redactedHostLog.lineSequence()
                     .filter { it.isNotBlank() && !it.startsWith("Picked up") }
                     .take(MAX_LOG_LINES)
                     .forEach { println("check:   | ${it.take(MAX_LOG_CHARS)}") }
@@ -90,14 +91,14 @@ private suspend fun check(provider: SandboxedProvider, query: String, verbose: B
     val page = try {
         provider.search(query, 1)
     } catch (failure: Exception) {
-        return CheckOutcome(false, "search FAILED: ${failure.message}")
+        return CheckOutcome(false, "search FAILED: ${failure.message.orEmpty().redactedPluginText()}")
     }
     val first = page.items.firstOrNull() ?: return CheckOutcome(false, "search ok · 0 results")
     val found = "search ok · ${page.items.size} results"
     val details = try {
         provider.details(first.url)
     } catch (failure: Exception) {
-        return CheckOutcome(true, "$found · open FAILED: ${failure.message}")
+        return CheckOutcome(true, "$found · open FAILED: ${failure.message.orEmpty().redactedPluginText()}")
     }
     val opened = "$found · opened \"${first.name}\" (${details.type}, ${details.episodes.size} episodes)"
     val data = details.dataUrl ?: details.episodes.firstOrNull()?.data
@@ -128,7 +129,7 @@ private suspend fun check(provider: SandboxedProvider, query: String, verbose: B
                 "${links.subtitles.size} subtitles$first$ended$subtitles",
         )
     } catch (failure: Exception) {
-        CheckOutcome(true, "$opened · links FAILED: ${failure.message}")
+        CheckOutcome(true, "$opened · links FAILED: ${failure.message.orEmpty().redactedPluginText()}")
     }
 }
 

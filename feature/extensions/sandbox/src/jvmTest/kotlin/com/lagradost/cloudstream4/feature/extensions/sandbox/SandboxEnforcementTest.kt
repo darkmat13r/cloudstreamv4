@@ -63,7 +63,7 @@ class SandboxEnforcementTest {
             host = client
             assertEquals(
                 "Hostile",
-                providers.getOrElse { throw AssertionError("host: ${client.hostOutput}", it) }.single().name,
+                providers.getOrElse { throw AssertionError("host: ${client.redactedLog}", it) }.single().name,
             )
             block(client)
         }
@@ -146,7 +146,7 @@ class SandboxEnforcementTest {
         val launcher = HostLauncher.forThisProcess() ?: return@runTest
         val (client, providers) = withContext(Dispatchers.IO) { PluginHostClient.start(launcher, jar, data, "hostile") }
         host = client
-        providers.getOrElse { throw AssertionError("host: ${client.hostOutput}", it) }
+        providers.getOrElse { throw AssertionError("host: ${client.redactedLog}", it) }
         block(client)
     }
 
@@ -435,7 +435,7 @@ class SandboxEnforcementTest {
         writeJar(broken, BrokenMainPagePlugin::class.java, BrokenMainPageApi::class.java)
         val (client, providers) = PluginHostClient.start(launcher, broken, data, "broken")
         host = client
-        val provider = providers.getOrElse { throw AssertionError("host: ${client.hostOutput}", it) }.single()
+        val provider = providers.getOrElse { throw AssertionError("host: ${client.redactedLog}", it) }.single()
         assertFalse(provider.hasMainPage)
         assertTrue(provider.mainPage.isEmpty())
         assertEquals("still searches", client.search("Broken", "q", 1).items.single().name)

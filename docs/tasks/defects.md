@@ -3655,3 +3655,68 @@ says no `R.font` field changed.
 
 **Proof:** a script hashes every font and licence file in `:app` and `:core:ui` (54) and finds each SHA-256 in `NOTICE`.
 Before this change the three fonts' hashes were missing from it.
+
+## BUG-83 — A plugin's own stderr reached the Mac's printed diagnostics as it was · **low, security** · fixed in this PR
+
+A plugin's `println`, `System.err` and `android.util.Log` all go to its host's stderr (the host gives the protocol the
+real stdout). `PluginHostClient` kept the first 16 KiB of that with only control characters taken out, and two roads
+printed it: a host that failed to start had its last three lines put in its "not loaded" line, which the app prints
+at every launch and the check commands print again; and `--check-extensions --verbose` printed twelve lines of it per
+provider. A failed `.cs3` conversion sent the converter's stderr down the first road. A plugin's exception message
+took a third: a failed `load()` came back over the protocol as `SimpleName: message`, raw, and became the start
+failure's text. Any of it can carry the URLs a plugin fetches, its keys and what was searched for.
+
+Not roads: the media host's stderr is thrown away (`VlcPlayer`); nothing writes host output to a file; no screen
+shows it (they show `LoadState`); and the screens' failure reasons were already cut to `scheme://host`. **Not
+measured:** where a Finder-launched app's stdout ends up. The printed report goes there.
+
+**Fix.** A plugin's text never reaches a default output; a developer's run gets it redacted.
+- **Default (the "not loaded" line, every launch and every check):** a fixed shape, our words and counts only. A host
+  that failed to start reads `not loaded: plugin failed: IllegalStateException | stderr: 14 lines, 2310 bytes`, or
+  with the host's own failure class, `… · failed: java.lang.NoClassDefFoundError`. That class comes from a marker
+  line the host writes (`plugin host: failed: <class>`). **A plugin can write that line too**: it runs in the host's
+  JVM, so it can also write protocol frames and choose the exit code, and no channel from the host is one it cannot
+  write. What holds is the shape: the line counts only when it is wholly a class name of at most 128 characters, and a
+  long segment that does not read as words (`IllegalArgumentException` does) becomes `<…>`. So a forged class can
+  mislead about which class failed, and can carry an identifier, but not a url, a path or a token. A failed
+  conversion reads `conversion failed: exit 1 · stderr: …`.
+- **`--check-extensions --verbose` only:** the plugin's lines through one function, `redactedPluginText`: urls cut to
+  `scheme://host[:port]/<…>`, user paths and `~/…` to `<path>`, email addresses to `<email>`, IPv4 and IPv6 literals
+  to `<ip>`, and any run of 24 or more of `A-Z a-z 0-9 + / = _ -` (tokens, base64, long hex) to `<…>`. Text is taken
+  a whole line at a time, so a url split between two reads is still one url. The check's `search FAILED`, `open
+  FAILED` and `links FAILED` lines, which print a plugin's exception message, use the same function, and so does
+  every failure a plugin reports over the protocol (`PluginFailed`), before anything reads it.
+- **Tests** that print a host's output when they fail print the redacted log.
+
+**What a person loses, and how to get it back.** The plugin's own lines, its log and its stack trace, are gone from
+the default output: a "not loaded" line says which class failed and how much the plugin wrote, not what it wrote.
+Run `--check-extensions --verbose` to see them, redacted. The rules there are shapes, so a secret with none of them
+survives: a value under 24 characters (`key=abc123`, a short password) is shown as written. The 24-character rule also cuts a class name written with
+slashes when it is that long (`android/webkit/WebViewClient`, as a `NoClassDefFoundError` names it); with dots, as in
+a stack frame, it is kept.
+
+**Proof,** all local (CI is off):
+- `PluginOutputTest`, 18: the rules one by one, with made-up values (a url with user info, query and fragment; a
+  token at 23 and at 24 characters; base64 with `=` padding; `~/` and `/Users/<name>/` paths; an email address; IP
+  literals, and a time of day that is not one); the summary; a url split at every point between two reads; forged
+  markers (a url, `/`, `:`, 129 characters; 128 is kept); a line past the cut.
+- `PluginOutputHostTest`, 2, through a real host: a running plugin's stdout, stderr and `Log` lines reach only the
+  redacted log, each in its redacted form; a plugin that fails to load is reported as `PluginFailed` by its class.
+- `ExtensionOutputTest`, through `SandboxedExtensions` and a real host: the "not loaded" line and the printed report
+  hold none of what the plugin wrote or said.
+- Proved by mutation, each failing what it should: the "not loaded" line using the plugin's message
+  (`ExtensionOutputTest`); the developer's log kept unredacted (both host tests, two unit tests); a marker taking any
+  text (the forged-marker test); a line ended at every read (the split test, the cut test); `PluginFailed` not
+  redacting (the failed-load host test).
+- **Review (`#335`):**
+  - A reported failure was cut to 400 characters and then redacted, so a token or an address across the cut was too
+    short for its rule. Now `redactedWithin` redacts and then cuts, on both sides of the protocol, and drops a word
+    cut by either cut. A 30-character token and an IPv4 address across character 400 come out redacted (tests);
+    with the old order they do not (checked).
+  - Control characters were removed after redaction, so a `\r` inside a token split it for the rules and then
+    rejoined it. They are removed before it now, so the halves are read as one run and the whole token is redacted
+    (test: neither half appears, after `\n`, `\r` or NUL; red with the control replaced by a space instead). On stderr
+    a line feed ends a line, so a token a plugin prints across two lines is two lines there, each half shown when it
+    is under 24 characters.
+- **Follow-up, not here:** `close()` waits up to 500 ms for stderr to drain, so a report made after it can still miss
+  the end of a slow host's output.

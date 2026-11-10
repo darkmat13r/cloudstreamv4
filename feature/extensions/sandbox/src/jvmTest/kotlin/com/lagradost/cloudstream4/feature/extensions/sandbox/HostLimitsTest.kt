@@ -47,7 +47,7 @@ class HostLimitsTest {
         runBlocking {
             val (client, providers) = PluginHostClient.start(launcher, jar, data, "hostile", limits)
             try {
-                providers.getOrElse { throw AssertionError("host: ${client.hostOutput}", it) }
+                providers.getOrElse { throw AssertionError("host: ${client.redactedLog}", it) }
                 block(client)
             } finally {
                 client.close()
