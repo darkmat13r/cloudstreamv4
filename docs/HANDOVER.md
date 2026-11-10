@@ -300,9 +300,9 @@ OOMs in D8 on a 48 GB machine. Pass it on the command line rather than editing t
 
 **And in a worktree:** `-x :app:generateGitHash`, because `.git` is a file there, not a directory.
 
-### The four gates
+### The five gates
 
-These are what CI used to run, plus the canary CI never ran. **All four, every PR**, and name the
+These are what CI used to run, plus the canary CI never ran. **The first four on every PR; gate 5 on any desktop-affecting change.** Name the
 exit codes in the PR body:
 
     T17=/path/to/temurin-17.0.20.1
@@ -313,6 +313,12 @@ exit codes in the PR body:
     G assemblePrereleaseDebug lint check -Pcloudstream.strings.guards=fail # 2  check
     G :app:checkExtensionApi                                              # 3  extapi
     G iosCanary -Pcloudstream.iosCanary=true                              # 4  canary
+    G :desktopApp:createDistributable                                     # 5  dist
+
+Gate 5 packages the Compose Desktop (Mac) app. It catches a broken desktop build or an unresolved
+`nativeDistributions` icon/path before a train, and the merge trains already run it. Required for any
+change touching `desktopApp`, a `:core:*`/`:feature:*` wired into it, or the desktop build; name its
+exit too. A change that cannot reach the desktop app may skip it — say so in the PR.
 
 Gate 3 is **not** part of `check`. Gate 4 is not either, and it is the only one that catches a
 Kotlin/Native break — on 2026-10-15 a `@JvmInline` with no import made `abi`, `check` and `extapi`
