@@ -4,12 +4,16 @@ import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.graphics.asComposeImageBitmap
 import androidx.compose.ui.unit.IntSize
 import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
+import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
+import com.lagradost.cloudstream4.player.gateway.HlsRewriter
+import com.lagradost.cloudstream4.player.gateway.MediaGateway
 import com.lagradost.cloudstream4.player.MediaProtocol.writeText
 import java.io.DataOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.OutputStream
+import java.net.InetAddress
 import java.nio.ByteBuffer
 import java.nio.file.FileVisitResult
 import java.nio.file.Files
@@ -69,6 +73,13 @@ class VlcPlayer private constructor(
     commandStream: OutputStream = process.outputStream,
     /** Whether this host was handed a file at its start, and so plays [playFile] rather than [play]. */
     private val local: Boolean = false,
+    /** The name lookup [play]'s check uses; replaceable so a test can change the answer between two checks. */
+    private val resolve: (String) -> Array<InetAddress> = InetAddress::getAllByName,
+    /**
+     * The only way out of a stream's host (`KMP-113`): [play] hands libVLC gateway urls, and the host's sandbox allows
+     * the gateway's port and nothing else. Null for a host that plays a file, which [play] then refuses.
+     */
+    private val gateway: MediaGateway? = null,
 ) : PlayerControls {
     private val commands = DataOutputStream(commandStream.buffered())
     private val _frame = MutableStateFlow<ImageBitmap?>(null)
@@ -147,13 +158,25 @@ class VlcPlayer private constructor(
     }
 
     /**
-     * @param url already refused unless http(s) to a public host. Each option is passed as its own
-     *   argument, so a value cannot introduce another option. `:input-slave` is itself a `#`-separated
+     * @param url already refused unless http(s) to a public host when the link arrived. Each option is passed as its
+     *   own argument, so a value cannot introduce another option. `:input-slave` is itself a `#`-separated
      *   list, which is why a `#` is refused here as well as in `SandboxPolicy`.
-     * @return false when the host has already gone.
+     * @return false when the host has already gone, or when [url] or [audioUrl] no longer passes.
      */
-    fun play(url: String, referer: String?, userAgent: String?, audioUrl: String?): Boolean {
-        val fields = listOf(url, referer, userAgent, audioUrl?.takeUnless { '#' in it })
+    fun play(streamUrl: String, referer: String?, userAgent: String?, streamAudioUrl: String?): Boolean {
+        // KMP-113: as a playlist's urls are, so an IDN host or a character java.net.URI refuses does not fail it here.
+        val url = HlsRewriter.lenient(streamUrl)
+        val audioUrl = streamAudioUrl?.let(HlsRewriter::lenient)
+        // BUG-90: checked again now, so a link that has turned private since it arrived fails at once. Every connection
+        // after this is checked by the gateway (KMP-113): libVLC can reach nothing else.
+        if (!SandboxPolicy.isPublicHttpUrl(url, resolve)) return false
+        if (audioUrl != null && !SandboxPolicy.isPublicAudioUrl(audioUrl, resolve)) return false
+        val gateway = gateway ?: return false
+        // The gateway sends the stream's own Referer and User-Agent; libVLC is given neither (§4).
+        gateway.useHeaders(referer, userAgent)
+        val routed = gateway.urlFor(url) ?: return false
+        val routedAudio = audioUrl?.takeUnless { '#' in it }?.let { gateway.urlFor(it) ?: return false }
+        val fields = listOf(routed, null, null, routedAudio)
         if (fields.any { it != null && it.encodeToByteArray().size > MediaProtocol.MAX_TEXT_BYTES }) return false
         return send {
             writeByte(MediaProtocol.OP_PLAY.toInt())
@@ -206,9 +229,22 @@ class VlcPlayer private constructor(
     internal fun stage(file: File): String =
         file.copyTo(File(directory, file.name), overwrite = true).toPath().toUri().toString()
 
+    /**
+     * Copies [file] into the host's own directory ([stage]) and plays that copy. For `--check-playback` on a local
+     * file (`BUG-76`): a `file:` url is not a stream, so it skips [play]'s address check, and names only the copy.
+     */
+    internal fun playStaged(file: File): Boolean {
+        val url = stage(file)
+        return send {
+            writeByte(MediaProtocol.OP_PLAY.toInt())
+            listOf(url, null, null, null).forEach { writeText(it) }
+        }
+    }
+
     /** Ends the host, so the audio stops now. Waits for it, so call it off the UI thread. */
     fun release() {
         released = true
+        gateway?.close()
         process.destroyForcibly()
         process.waitFor(EXIT_WAIT_SECONDS, TimeUnit.SECONDS)
         // Now, not at collection: for a downloaded file this is the app's end of the host's socket (`KMP-74`). The host
@@ -229,13 +265,37 @@ class VlcPlayer private constructor(
          *
          * @param silent for a check run where nobody is listening. See [HostLauncher.startMediaHost].
          */
-        fun createOrNull(silent: Boolean = false): VlcPlayer? {
+        fun createOrNull(silent: Boolean = false): VlcPlayer? =
+            createWith(silent, startGateway = { MediaGateway.start(null, null) })
+
+        /**
+         * [createOrNull], with the gateway made by [startGateway], so a test can give it its own address check.
+         *
+         * The gateway is bound first, then the host's policy names its port (`KMP-113`). No gateway, no player: a
+         * stream never plays with the host's network open.
+         */
+        internal fun createWith(
+            silent: Boolean,
+            startGateway: () -> MediaGateway?,
+            resolve: (String) -> Array<InetAddress> = InetAddress::getAllByName,
+        ): VlcPlayer? {
             val launcher = HostLauncher.forMediaHost(MediaHost.ARGUMENT, MEDIA_HOST_MAIN) ?: return null
             if (!File(VLC_APP, "Contents/MacOS/lib/libvlc.dylib").isFile) return null
+            val gateway = startGateway() ?: return null
             val base = File(System.getProperty("user.home"), ".cloudstream4/.media-host").apply { mkdirs() }
             val directory = newHostDirectory(base)
-            return runCatching { VlcPlayer(launcher.startMediaHost(VLC_APP, directory, silent), directory) }
-                .onFailure { deleteHostDirectory(directory.toPath()) }
+            return runCatching {
+                VlcPlayer(
+                    launcher.startMediaHost(VLC_APP, directory, silent, gatewayPort = gateway.port),
+                    directory,
+                    resolve = resolve,
+                    gateway = gateway,
+                )
+            }
+                .onFailure {
+                    gateway.close()
+                    deleteHostDirectory(directory.toPath())
+                }
                 .getOrNull()
         }
 
@@ -245,6 +305,18 @@ class VlcPlayer private constructor(
          */
         internal fun forDownload(process: Process, directory: File, commands: OutputStream): VlcPlayer =
             VlcPlayer(process, directory, commands, local = true)
+
+        /**
+         * A player for a stream over [process], whose commands go to [commands], looking names up with [resolve], its
+         * urls routed through [gateway].
+         */
+        internal fun forStream(
+            process: Process,
+            directory: File,
+            commands: OutputStream,
+            resolve: (String) -> Array<InetAddress>,
+            gateway: MediaGateway?,
+        ): VlcPlayer = VlcPlayer(process, directory, commands, resolve = resolve, gateway = gateway)
 
         /**
          * A host for one downloaded file, which it gets as [media]'s descriptor and never by name (`KMP-74`). [media]

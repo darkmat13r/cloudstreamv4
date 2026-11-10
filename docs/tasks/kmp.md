@@ -8320,3 +8320,55 @@ and the loser's `NoSuchFileException` is not caught (`SandboxedExtensions.toStor
 
 - [ ] The Settings → Extensions pane and Home's button, against the desktop board; names and descriptions through
       `untrustedText`; strings; a section in `desktop-design.md`.
+
+## KMP-113 — A local media gateway, so every connection libVLC makes is address-checked · **PR 2 of 2 (the wiring), in review**
+
+The full fix for `BUG-90`. libVLC checks nothing itself and ignores every proxy setting for https (measured on
+3.0.24), so the media host gets gateway urls on loopback, and a sandbox policy that allows nothing else. The gateway
+fetches with the app's address-checked client, follows redirects itself, and rewrites playlist urls to itself. The
+kernel refuses whatever it does not route, so the rewriter is there for playback, not for safety.
+
+The design is in `docs/plans/media-gateway.md`: the url encoding; the HLS rewriter (DASH a second step) and its
+limits; redirects, byte ranges and keep-alive; which headers pass and which never do; per-host cookies; the
+gateway's own limits; the failure modes; the test plan; and three measurements to take before the first line of code.
+The design was approved after two passes.
+
+**PR 1, the gateway** (`player/gateway/`), not yet used by the player:
+- `GatewayUrl`: the encoding, with each url's role (`p`, `s`, `u`).
+- `HlsRewriter`: the bounded rewriter.
+- `MediaGateway`: the loopback origin. It fetches through its own client with the two address checks and no proxy,
+  follows redirects itself, owns `Referer` and `User-Agent`, keeps cookies per host in memory, and logs nothing.
+
+Tests:
+- `GatewayUrlTest` 9;
+- `HlsRewriterTest` 10;
+- `MediaGatewayTest` 18, against local servers, with "prints nothing" included.
+
+Ten mutations each fail what they should.
+
+**PR 2, the wiring:**
+- A stream player starts its gateway first, then its host. Without a gateway it does not start, so no stream plays
+  with the host's network open.
+- The host's policy allows the gateway's port on loopback and nothing else, with no resolver. `mediaHostProfile` is
+  the one place it is written.
+- `play` re-checks the url (`BUG-90`), gives the gateway the stream's `Referer` and `User-Agent`, and sends libVLC
+  only gateway urls. `OP_PLAY` carries no headers now.
+- OkHttp's own logger is off from app start.
+- An IDN host, in a playlist url or the first url, is written as punycode.
+- A host that plays a downloaded file has no network at all (review): it has its file's descriptor, and a crafted
+  file that took over libVLC's demuxer would find nothing to reach.
+- Neither host may ask the system's certificate services (`trustd`, `ocspd` and the rest). Behind the gateway libVLC
+  speaks only plain http to `127.0.0.1`, and those services fetch on a caller's behalf, which would be a way around
+  the kernel's rule.
+  - `system.sb` allows `trustd` itself, so the media hosts and the converter deny it by name (audit A-1).
+  - `MediaHostServicesTest` asks the kernel from inside the real policy: `trustd` is refused, and it is found when
+    the deny rule is taken out.
+
+Tests:
+- `GatewayPlaybackTest`, 2, with the real host: a segment on a refused host gets 0 requests; a url the rewriter
+  leaves as written is never reached, because the sandbox refuses it.
+- `MediaHostProfileTest`, 3.
+- `VlcPlayerUrlCheckTest` and the gateway suites, extended.
+
+**Measured:** the Apple HLS test streams (TS 4:3 and 16:9, fMP4 with `EXT-X-MAP`, alternate audio and I-frames)
+and one single file all play through the gateway, and nothing prints a url.

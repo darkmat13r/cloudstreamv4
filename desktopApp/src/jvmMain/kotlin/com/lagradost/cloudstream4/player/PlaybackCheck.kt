@@ -84,7 +84,7 @@ private fun play(stream: CheckStream, seconds: Int): Int {
         }
     }.launchIn(scope)
     val started = when (stream) {
-        is CheckStream.Staged -> player.play(player.stage(stream.file), null, null, null)
+        is CheckStream.Staged -> player.playStaged(stream.file)
         is CheckStream.AsIs -> player.play(stream.url, stream.referer, stream.userAgent, stream.audioUrl)
     }
     repeat(seconds) { Thread.sleep(MILLIS_PER_SECOND) }

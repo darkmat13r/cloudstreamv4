@@ -58,14 +58,16 @@ object SandboxPolicy {
      * 2048 characters of `http://public:000…80@127.0.0.1/` read the host as `public`, and VLC connected
      * to loopback. Userinfo is refused outright because it is where URL parsers disagree, and no stream
      * URL needs it.
+     *
+     * @param resolve the name lookup; replaceable so a test can make a name answer differently the second time.
      */
-    fun isPublicHttpUrl(url: String): Boolean {
+    fun isPublicHttpUrl(url: String, resolve: (String) -> Array<InetAddress> = InetAddress::getAllByName): Boolean {
         if (url.length > MAX_URL_CHARS || url.any { it.isISOControl() }) return false
         val parsed = runCatching { URI(url) }.getOrNull() ?: return false
         if (parsed.rawUserInfo != null || parsed.scheme?.lowercase() !in HTTP_SCHEMES) return false
         val host = parsed.host?.lowercase()?.trim('[', ']')?.trimEnd('.') ?: return false
         if (isPrivateHostName(host)) return false
-        val addresses = runCatching { InetAddress.getAllByName(host) }.getOrNull() ?: return false
+        val addresses = runCatching { resolve(host) }.getOrNull() ?: return false
         return addresses.isNotEmpty() && addresses.all(::isPublicAddress)
     }
 
@@ -88,7 +90,8 @@ object SandboxPolicy {
      * `https://public/a#file:///x` passes as a URL with a fragment and then opens a local file
      * (measured on VLC 3.0.23).
      */
-    fun isPublicAudioUrl(url: String): Boolean = '#' !in url && isPublicHttpUrl(url)
+    fun isPublicAudioUrl(url: String, resolve: (String) -> Array<InetAddress> = InetAddress::getAllByName): Boolean =
+        '#' !in url && isPublicHttpUrl(url, resolve)
 
     /** Signed stream URLs run long: a googlevideo one is well past the 2048 used for other fields. */
     const val MAX_URL_CHARS = 16 * 1024

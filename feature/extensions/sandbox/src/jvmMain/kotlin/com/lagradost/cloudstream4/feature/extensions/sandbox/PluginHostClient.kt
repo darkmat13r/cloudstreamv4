@@ -49,8 +49,11 @@ class HostLauncher internal constructor(
         gate: OutboundGate? = null,
         lowered: Boolean = false,
         input: ProcessBuilder.Redirect? = null,
+        mediaGatewayPort: Int? = null,
+        denyCertificateServices: Boolean = false,
     ): Process {
-        val profile = SeatbeltProfile.render(executable, readable, readOnlyInputs, writable, network, extraRules, gate?.port)
+        val profile =
+            profile(readOnlyInputs, writable, network, extraRules, gate, mediaGatewayPort, denyCertificateServices)
         val sandboxed = listOf(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, executable.path) + prefixArguments + arguments
         // The same process all the way down, through `exec`, so what this returns is the JVM. A shell because a
         // limit needs one, and outside the sandbox, because the sandbox would not let it run.
@@ -66,6 +69,34 @@ class HostLauncher internal constructor(
         return builder.start()
     }
 
+    /** The policy [start] writes, in one place, so a test reads exactly what a host is given. */
+    private fun profile(
+        readOnlyInputs: List<File>,
+        writable: File,
+        network: Boolean,
+        extraRules: List<String>,
+        gate: OutboundGate?,
+        mediaGatewayPort: Int?,
+        denyCertificateServices: Boolean,
+    ): String = SeatbeltProfile.render(
+        executable, readable, readOnlyInputs, writable, network, extraRules,
+        gatewayPort = gate?.port ?: mediaGatewayPort,
+        resolver = mediaGatewayPort == null,
+        denyCertificateServices = denyCertificateServices,
+    )
+
+    /** The policy [startMediaHost] gives its host, for a test (`KMP-113`). */
+    internal fun mediaHostProfile(vlcApp: File, writable: File, silent: Boolean, gatewayPort: Int?): String =
+        profile(
+            readOnlyInputs = emptyList(),
+            writable = writable,
+            network = gatewayPort != null,
+            extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, writable, audio = !silent, tls = false),
+            gate = null,
+            mediaGatewayPort = gatewayPort,
+            denyCertificateServices = true,
+        )
+
     /**
      * Starts the libVLC host under the plugin hosts' policy plus [SeatbeltProfile.mediaHostRules].
      *
@@ -74,24 +105,32 @@ class HostLauncher internal constructor(
      * @param silent no audio output: libVLC is told so, and the sandbox refuses it the audio devices anyway.
      * @param input the host's stdin in place of a pipe: one end of a socket pair, which a downloaded file's descriptor
      *   arrives over (`KMP-74`). The host is told only that one is coming, never where from, and its policy is the same.
+     * @param gatewayPort the media gateway's port (`KMP-113`): the host may then connect to that port on loopback and
+     *   nowhere else, and may not use the resolver. Bound before this is called. Null for a host that plays a file,
+     *   which then has no network at all. Neither asks the system's certificate services.
      */
     fun startMediaHost(
         vlcApp: File,
         writable: File,
         silent: Boolean = false,
         input: ProcessBuilder.Redirect? = null,
+        gatewayPort: Int? = null,
     ): Process {
         val app = vlcApp.canonicalFile
         return start(
             arguments = emptyList(),
             readOnlyInputs = emptyList(),
             writable = writable,
-            network = true,
-            extraRules = SeatbeltProfile.mediaHostRules(app, writable, audio = !silent),
+            // A host behind its gateway reaches that port and nothing else. A host that plays a file reaches nothing:
+            // it has its descriptor, and a crafted file that took over its demuxer would find no network (KMP-113).
+            network = gatewayPort != null,
+            extraRules = SeatbeltProfile.mediaHostRules(app, writable, audio = !silent, tls = false),
             jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} " +
                 "-Djna.tmpdir=${writable.path}" + (if (silent) " -D$SILENT_PROPERTY=true" else "") +
                 if (input != null) " -D$FILE_PROPERTY=true" else "",
             input = input,
+            mediaGatewayPort = gatewayPort,
+            denyCertificateServices = true,
         )
     }
 
@@ -523,6 +562,7 @@ class PluginHostClient internal constructor(
                     readOnlyInputs = listOf(cs3),
                     writable = outputDir,
                     network = false,
+                    denyCertificateServices = true,
                 )
                 process.outputStream.close()
                 val errors = HostStderr()
