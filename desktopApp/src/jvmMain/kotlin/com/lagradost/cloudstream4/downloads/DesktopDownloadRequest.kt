@@ -117,8 +117,9 @@ enum class EnqueueRefusal {
     StoreUnreadable,
 
     /**
-     * Another episode, with another source, already has this id. Nothing changed. `KMP-109`'s ids are 32 bits of a
-     * hash, so two episodes can share one.
+     * The id is another's. Nothing changed. Either the title id names a title with another name or another
+     * provider, or the episode id names another title's episode or one with another source. `KMP-109`'s ids are
+     * 32 bits of a hash, so two can share one by chance or by a plugin's choosing.
      */
     IdTaken,
 }

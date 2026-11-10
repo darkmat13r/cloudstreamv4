@@ -8122,10 +8122,19 @@ that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
   - the title's id comes from the page's title id (`DesktopSearchSource.encodeId`);
   - the episode's id comes from the provider's name and the episode's data;
   - not `String.hashCode`, which gives `Aa` and `BB` one value.
-- **`EnqueueRefusal.IdTaken`.** Two episodes can still share 32 bits. An enqueue whose id is held by an episode with
-  a different source is refused, and the first episode is left as it was. A paused one is not put back in line.
-  - **Not covered:** a finished episode keeps no source (`KMP-52`, on purpose), so a collision with one reads as
-    that episode, downloaded.
+- **`EnqueueRefusal.IdTaken`.** Ids can still collide, by chance or on purpose. A plugin picks its own title and
+  episode strings, and about 2³² SHA-256s, minutes of work, lands on a chosen 32-bit id. So a matching id is checked
+  rather than trusted (the PM's ruling). An enqueue is refused, and nothing changes, when:
+  - its title id is held by a title listed under another name, or kept from another provider;
+  - its episode id is held by another title's episode, or by one with another source. A paused one is not put back
+    in line.
+- **Known limits (decision 4).** A finished episode keeps no source (`KMP-52`, on purpose, so a finished download
+  holds no address). So against a finished one:
+  - an episode id of the same title cannot be told apart, and reads as that episode, downloaded;
+  - a title id is checked by its name alone. A plugin that copies a finished title's name exactly, and has no
+    unfinished episode in it, joins its row and its folder. It cannot overwrite a file there: file names are made
+    unique on the disk.
+  - Closing both would mean keeping the provider's name in a finished record, which changes `KMP-52`'s file.
 - **The cell.** `EpisodeDownloadDesktop` in `:feature:downloads` reads the state in D4's words, through D4's
   `EpisodeStatus`, which is now internal rather than copied. While the row is hovered or focused it offers that
   state's verbs, in the title page's 36 cells:
@@ -8148,8 +8157,13 @@ that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
   - moving a character between parts changes the id;
   - the request's fields, with no link;
   - two episodes share a title id.
-- `DesktopDownloadsTest` (+2):
+- `DesktopDownloadsTest` (+3):
   - an id held by another source is refused (`IdTaken`), running and paused, and the first is unchanged;
+  - a title id forced to collide through the request's id seam (`titleIdOf`) is refused for a title with another
+    name or provider, while the first runs and after it finishes. The same title's next episode is taken. One row
+    and one folder remain. An episode id naming another title's finished episode is refused too.
+    - **Red (run):** without the title check it fails "another name", `Queued` where `IdTaken` is expected. Without
+      the episode's title-id comparison it fails with `AlreadyPresent`.
   - end to end, a page's episode downloads through the resolver from its source alone, and the resolver is asked
     for exactly that source.
   - **Red without the guard (run):** the first fails, with `AlreadyPresent` where `IdTaken` is expected.

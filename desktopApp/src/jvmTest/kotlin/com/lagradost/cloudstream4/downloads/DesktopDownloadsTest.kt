@@ -1042,6 +1042,50 @@ class DesktopDownloadsTest {
     }
 
     /**
+     * `KMP-109`: a plugin chooses its title-id strings, and 32 bits fall in minutes. A title id forced to collide, through
+     * the request's own id seam, is refused for another title, whether the first is running or finished, and taken
+     * for the same title's next episode.
+     */
+    @Test
+    fun `a title id another title holds is refused, running or finished`() = runBlocking {
+        server.add("victim.bin", 64 * 1024)
+        val forced = { _: String -> FORCED_TITLE_ID }
+        fun page(title: String, provider: String) = TitleDetail(
+            title = title, providerName = provider, typeName = "TvSeries", year = null, plot = null,
+            posterUrl = null, playData = null, episodes = emptyList(),
+        )
+        fun episodeOf(n: Int, data: String) = DetailEpisode(name = "Part $n", data = data, season = 1, episode = n)
+        val host = host(resolver = LinkResolver { listOf(DesktopDownloadLink(server.url("victim.bin"))) })
+
+        val victim = episodeDownloadRequest("Kept Provider\u0000show", page("Kept Show", "Kept Provider"),
+            episodeOf(1, "kept-1"), titleIdOf = forced)
+        assertEquals(EnqueueResult.Queued, host.enqueue(victim))
+        val renamed = episodeDownloadRequest("Hostile Provider\u0000x", page("Hostile Show", "Hostile Provider"),
+            episodeOf(1, "hostile-1"), titleIdOf = forced)
+        val sameName = episodeDownloadRequest("Hostile Provider\u0000y", page("Kept Show", "Hostile Provider"),
+            episodeOf(1, "hostile-2"), titleIdOf = forced)
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), host.enqueue(renamed), "another name")
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), host.enqueue(sameName), "another provider")
+
+        host.awaitDone(FORCED_TITLE_ID, victim.episodeId)
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), host.enqueue(renamed), "a finished title keeps its name")
+
+        val next = episodeDownloadRequest("Kept Provider\u0000show", page("Kept Show", "Kept Provider"),
+            episodeOf(2, "kept-2"), titleIdOf = forced)
+        assertEquals(EnqueueResult.Queued, host.enqueue(next), "the same title's next episode")
+        host.awaitDone(FORCED_TITLE_ID, next.episodeId)
+
+        val titles = host.awaitContents { true }.titles
+        assertEquals(listOf("Kept Show"), titles.map { it.name })
+        assertEquals(listOf("Kept Show"), root.listFiles()!!.map { it.name }, "no other title's folder, and none merged in")
+
+        // An episode id that names another title's episode is refused too, even though that one finished.
+        val stolen = DesktopDownloadRequest(victim.episodeId, 9900, "Elsewhere", DownloadTitleKind.Series, 1, 1, null,
+            DownloadSourceRef("Kept Provider", "kept-1"), null)
+        assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), host.enqueue(stolen))
+    }
+
+    /**
      * `KMP-109`, end to end: a title page's episode, with no link, is downloaded by asking the extension through the
      * service's resolver for exactly the episode's source, as a resume does.
      */
@@ -1074,6 +1118,7 @@ class DesktopDownloadsTest {
 
     companion object {
         private const val TIMEOUT = 30_000L
+        private const val FORCED_TITLE_ID = 4242
         private const val SCAN_ATTEMPTS = 20
         private const val GIB = 1024L * 1024 * 1024
     }

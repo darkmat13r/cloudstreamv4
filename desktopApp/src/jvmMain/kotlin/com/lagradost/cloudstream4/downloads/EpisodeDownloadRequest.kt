@@ -15,11 +15,17 @@ import java.security.MessageDigest
  * checks and nowhere else.
  *
  * @param titleKey the page's title id, the string the Mac opens a title by (`DesktopSearchSource.encodeId`).
+ * @param titleIdOf [EpisodeDownloadIds.titleId]; a test passes one that collides on purpose.
  */
-internal fun episodeDownloadRequest(titleKey: String, detail: TitleDetail, episode: DetailEpisode): DesktopDownloadRequest =
+internal fun episodeDownloadRequest(
+    titleKey: String,
+    detail: TitleDetail,
+    episode: DetailEpisode,
+    titleIdOf: (String) -> Int = EpisodeDownloadIds::titleId,
+): DesktopDownloadRequest =
     DesktopDownloadRequest(
         episodeId = EpisodeDownloadIds.episodeId(detail.providerName, episode.data),
-        titleId = EpisodeDownloadIds.titleId(titleKey),
+        titleId = titleIdOf(titleKey),
         titleName = detail.title,
         kind = DownloadTitleKind.Series,
         season = episode.season,
@@ -34,8 +40,8 @@ internal fun episodeDownloadRequest(titleKey: String, detail: TitleDetail, episo
  * and every machine: the first 4 bytes of SHA-256 over the parts, each written as its UTF-8 length then its bytes, so
  * no two lists of parts share an encoding. Not `String.hashCode`, which gives `Aa` and `BB` one value.
  *
- * Two different episodes can still share 32 bits. [DesktopDownloads.enqueue] refuses the second with
- * [EnqueueRefusal.IdTaken] while the first keeps its source.
+ * Two titles or two episodes can still share 32 bits, by chance or because a plugin chose its strings to.
+ * [DesktopDownloads.enqueue] refuses the second with [EnqueueRefusal.IdTaken].
  */
 internal object EpisodeDownloadIds {
     fun titleId(titleKey: String): Int = idOf(titleKey)
