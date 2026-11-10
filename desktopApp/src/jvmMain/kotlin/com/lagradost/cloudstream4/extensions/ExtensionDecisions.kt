@@ -139,8 +139,18 @@ class ExtensionDecisions(
         val parent = checkNotNull(file.absoluteFile.parentFile) { "no parent directory" }
         val staging = Files.createTempFile(parent.toPath(), ".${file.name}", STAGING_SUFFIX)
         try {
+            // At most what this class would ever read: a damaged file can be anything, of any size.
             Files.newInputStream(path, LinkOption.NOFOLLOW_LINKS).use { input ->
-                Files.newOutputStream(staging, StandardOpenOption.TRUNCATE_EXISTING).use { input.copyTo(it) }
+                Files.newOutputStream(staging, StandardOpenOption.TRUNCATE_EXISTING).use { output ->
+                    val buffer = ByteArray(COPY_BUFFER_BYTES)
+                    var left = MAX_BYTES
+                    while (left > 0) {
+                        val read = input.read(buffer, 0, minOf(buffer.size.toLong(), left).toInt())
+                        if (read < 0) break
+                        output.write(buffer, 0, read)
+                        left -= read
+                    }
+                }
             }
             Files.move(staging, damaged, StandardCopyOption.ATOMIC_MOVE)
         } finally {
@@ -190,6 +200,7 @@ class ExtensionDecisions(
         private const val CHECKSUM = "checksum"
         private const val STAGING_SUFFIX = ".part"
         private const val MAX_BYTES = 1024L * 1024
+        private const val COPY_BUFFER_BYTES = 8 * 1024
         private val SHA256 = Regex("[0-9a-f]{64}")
 
         /** The stem is what `SandboxPolicy.dataDirectory` accepts, plus the file's extension. */

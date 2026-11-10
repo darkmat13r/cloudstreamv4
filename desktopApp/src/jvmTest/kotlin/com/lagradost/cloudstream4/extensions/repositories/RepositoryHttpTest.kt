@@ -2,7 +2,12 @@ package com.lagradost.cloudstream4.extensions.repositories
 
 import com.lagradost.cloudstream4.extensions.repositories.LocalRepositoryServer.Reply
 import java.net.InetAddress
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withTimeout
 import okhttp3.Dns
 import kotlin.test.AfterTest
 import kotlin.test.Test
@@ -172,6 +177,21 @@ class RepositoryHttpTest {
         assertEquals(RepositoryFailure.Unreachable, failure(local(callTimeoutMillis = 500).fetch(server.url("/slow.json"), 1024)))
         val seconds = (System.nanoTime() - started) / 1e9
         assertTrue(seconds < 5, "took $seconds s")
+    }
+
+    /** `#345` review: Cancel stops the network now, not when the body or the call's time limit ends. */
+    @Test
+    fun `cancelling a download closes its socket at once`() = runBlocking {
+        server.routes["/held.cs3"] = Reply.HoldOpen
+        val http = local(callTimeoutMillis = RepositoryHttp.PLUGIN_CALL_TIMEOUT_MILLIS)
+        val job = launch(Dispatchers.Default) { http.fetch(server.url("/held.cs3"), 1024 * 1024) }
+        withTimeout(10_000) { while (server.requests.get() == 0) delay(10) }
+        delay(200)
+        val started = System.nanoTime()
+        job.cancelAndJoin()
+        val seconds = (System.nanoTime() - started) / 1e9
+        assertTrue(seconds < 1.0, "cancelAndJoin took $seconds s")
+        assertTrue(server.closed.await(2, java.util.concurrent.TimeUnit.SECONDS), "the server never saw the socket close")
     }
 
     @Test
