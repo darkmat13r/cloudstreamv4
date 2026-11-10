@@ -8407,9 +8407,11 @@ working while the repository cannot be reached. **Green:** `:desktopApp:jvmTest`
 - **The version prefix and the size unit are strings** (`ext_row_version`, `ext_size_megabytes`), through `UiString`.
 - **Renders** of X3, X4, X5a and X8 (760 × 480, German) from `ExtensionsPaneRenders`, written with
   `-Pcloudstream.extensions.renders=<directory>`, are on the orphan branch `review/kmp-110c2-renders` for the PM and the
-  reviewer. One departure from the boards: an Install or Update that is off while its repository cannot be reached is a
-  quiet button with ink words, where X5a greys it; the design system has no disabled tone, and adding one is its own
-  change.
+  reviewer.
+- **An off verb is `muted`** (DECIDED, PM): an Install or Update while its repository cannot be reached is the words in
+  `muted` on the secondary fill, with no click, hover or focus, and `disabled()` for a screen reader. The board's grey
+  from a token the theme has, so no design-system change. Re-rendered X5a. Red: with the words in `ink`, its test fails. Green: `:desktopApp:jvmTest` 835, 0 failed (4 render
+  cases skip); the five gates passed, 280 XML results with 0 failures.
 
 Green: `:desktopApp:jvmTest` 834, 0 failed (the 4 render cases skip without a render directory),
 `:core:strings:jvmTest` 53 of 53; the five gates passed, 280 XML results with 0 failures; `:app:checkExtensionApi`

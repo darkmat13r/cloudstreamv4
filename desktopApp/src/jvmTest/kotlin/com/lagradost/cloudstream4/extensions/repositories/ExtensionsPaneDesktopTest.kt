@@ -251,6 +251,35 @@ class ExtensionsPaneDesktopTest {
         }
     }
 
+    /** DECIDED by the PM: an off verb is `muted`, takes no click, and says it is off. */
+    @Test
+    fun `an Install or Update that is off is drawn muted, says it is off, and does nothing`() {
+        val rows = listOf(extension("Lumen", RowState.Available), extension("Saltmarsh", RowState.UpdateAvailable(4, 9)))
+        val state = ExtensionsPaneState(open = OpenRepository("k1", "Example Repository", READ_AT, reachable = false, rows = rows))
+        var muted = androidx.compose.ui.graphics.Color.Unspecified
+        val scene = ImageComposeScene(WIDTH, HEIGHT, Density(1f)) {
+            CloudStreamTheme {
+                muted = CloudStreamTheme.colors.muted
+                CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
+                    Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
+                        ExtensionsPaneDesktop(state, onAction = { actions += it }, installedFrom = { 0 }, focusLink = false)
+                    }
+                }
+            }
+        }
+        scene.use {
+            listOf("Install", "Update").forEach { verb ->
+                val node = checkNotNull(scene.find(verb, text = true)) { verb }
+                val layouts = mutableListOf<androidx.compose.ui.text.TextLayoutResult>()
+                node.config.getOrNull(androidx.compose.ui.semantics.SemanticsActions.GetTextLayoutResult)?.action?.invoke(layouts)
+                assertEquals(muted, layouts.single().layoutInput.style.color, "$verb is drawn muted")
+                assertTrue(node.config.contains(SemanticsProperties.Disabled), "$verb says it is off")
+                scene.click(node.boundsInRoot.center)
+            }
+            assertEquals(emptyList(), actions, "an off verb does nothing")
+        }
+    }
+
     @Test
     fun `offline, the pane says so at the top, and the lists stay (X5b)`() {
         val state = ExtensionsPaneState(repositories = listOf(repository()), offline = true, listsFromMillis = READ_AT)

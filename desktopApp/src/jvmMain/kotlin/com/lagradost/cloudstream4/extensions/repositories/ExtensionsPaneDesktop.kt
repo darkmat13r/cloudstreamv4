@@ -46,6 +46,7 @@ import androidx.compose.ui.input.key.key
 import androidx.compose.ui.input.key.onPreviewKeyEvent
 import androidx.compose.ui.input.key.type
 import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.disabled
 import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -561,16 +562,32 @@ private fun ExtensionListRow(
     }
 }
 
-/** A row's verb. Off while its repository cannot be reached (X5a): a cached list can name an old hash. */
+/**
+ * A row's verb. Off while its repository cannot be reached (X5a): a cached list can name an old hash.
+ *
+ * Off is the words in `muted` on the secondary fill, with no click, no hover and no focus, and said to be off to a
+ * screen reader (DECIDED, PM 2026-11-10): the board's grey, from a token the theme already has, rather than a disabled
+ * tone the design system does not.
+ */
 @Composable
 private fun Verb(label: String, enabled: Boolean, icon: Boolean = false, onClick: () -> Unit) {
-    DesktopButton(
-        label = label,
-        onClick = { if (enabled) onClick() },
-        icon = if (icon) CloudStreamIcons.Retry else null,
-        tone = if (enabled) DesktopButtonTone.Secondary else DesktopButtonTone.Quiet,
-        modifier = if (enabled) Modifier else Modifier.semantics { contentDescription = "$label (off)" },
-    )
+    if (enabled) {
+        DesktopButton(label = label, onClick = onClick, icon = if (icon) CloudStreamIcons.Retry else null)
+        return
+    }
+    val colors = CloudStreamTheme.colors
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
+        modifier = Modifier
+            .background(colors.raised, CloudStreamTheme.shapes.medium)
+            .heightIn(min = DesktopDimens.ButtonHeight)
+            .padding(horizontal = DesktopDimens.ButtonPadding)
+            .semantics(mergeDescendants = true) { disabled() },
+    ) {
+        if (icon) CloudStreamIcon(CloudStreamIcons.Retry, null, size = CloudStreamIconSize.Small, tint = colors.muted)
+        BasicText(label, style = CloudStreamTheme.typography.label.copy(color = colors.muted), maxLines = 1)
+    }
 }
 
 /** X4a's 96 rule: what has arrived of what was stated. Its height is a stroke, exempt in its own axis. */
