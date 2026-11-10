@@ -17,6 +17,7 @@ import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
 import kotlinx.coroutines.runBlocking
+import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
 
 /** A plugin chooses these URLs and the bytes behind them, so most of this is what it might try. */
@@ -128,6 +129,83 @@ class SubtitleLoaderTest {
             assertTrue(second.any { it == "User-Agent: ua" }, "$second")
             assertTrue(second.none { it.startsWith("Cookie", ignoreCase = true) }, "$second")
         }
+    }
+
+    private fun redirectTo(location: String) =
+        "HTTP/1.1 302 Found\r\nLocation: $location\r\nContent-Length: 0\r\nConnection: close\r\n\r\n".toByteArray()
+
+    private companion object {
+        const val SLOW_HOP_MILLIS = 300L
+        const val CHAIN_LIMIT_MILLIS = 700L
+    }
+
+    private val pluginHeaders = mapOf("Referer" to "https://example.com/?token=t", "User-Agent" to "ua")
+
+    @Test
+    fun `a redirect is checked as the first url was, and a refused one is never opened`() {
+        // BUG-94 (A-5): okhttp followed redirects itself, so only the client's address checks met them, never the
+        // URL check. A loopback server on another port stands in for a private address.
+        Server { ok(srt.toByteArray()) }.use { target ->
+            Server { redirectTo("http://127.0.0.1:${target.port}/private") }.use { start ->
+                val loader = HttpSubtitleLoader(
+                    client = HttpSubtitleLoader.subtitleHttpClient { it.port in setOf(start.port, target.port) },
+                    allowUrl = { "/private" !in it },
+                )
+                assertFailed(SubtitleFailure.Fetch, load(loader, track(start)))
+                assertEquals(1, start.requests.size)
+                assertEquals(0, target.connections.get(), "not even a TCP connection")
+            }
+        }
+    }
+
+    @Test
+    fun `the track's headers go to its own host, and not to the host a redirect names`() {
+        Server { ok(srt.toByteArray()) }.use { other ->
+            // 127.0.0.1 and localhost are two hosts to okhttp, as two names on the internet would be.
+            Server { redirectTo("http://localhost:${other.port}/s") }.use { start ->
+                // The DNS filter asks with port 0, so a name needs that too; the connection check still names the port.
+                val loader = HttpSubtitleLoader(
+                    client = HttpSubtitleLoader.subtitleHttpClient { it.port == 0 || it.port in setOf(start.port, other.port) },
+                    allowUrl = { true },
+                )
+                assertIs<SubtitleLoad.Ready>(load(loader, track(start, headers = pluginHeaders)))
+                assertTrue(start.requests.single().any { it == "User-Agent: ua" }, "${start.requests}")
+                val moved = other.requests.single()
+                assertTrue(moved.none { it.startsWith("Referer", ignoreCase = true) }, "$moved")
+                assertTrue(moved.none { it == "User-Agent: ua" }, "$moved")
+            }
+        }
+    }
+
+    @Test
+    fun `a redirect on the same host keeps the track's headers`() {
+        // A path on the same server: another port would be another origin.
+        var first = true
+        Server { if (first) { first = false; redirectTo("/s") } else ok(srt.toByteArray()) }.use { server ->
+            assertIs<SubtitleLoad.Ready>(load(loader(server.port), track(server, path = "/a", headers = pluginHeaders)))
+            val (a, s) = server.requests.toList()
+            assertTrue(a.first().startsWith("GET /a ") && s.first().startsWith("GET /s "), "${server.requests}")
+            assertTrue(s.any { it == "Referer: https://example.com/?token=t" } && s.any { it == "User-Agent: ua" }, "$s")
+        }
+    }
+
+    @Test
+    fun `a redirect that never ends stops after a few`() {
+        Server { redirectTo("/again") }.use { server ->
+            assertFailed(SubtitleFailure.Fetch, load(loader(server.port), track(server)))
+            assertEquals(HttpSubtitleLoader.MAX_REDIRECTS + 1, server.requests.size)
+        }
+    }
+
+    @Test
+    fun `https to http is refused, and the headers stay on their host or its upgrade`() {
+        fun hop(from: String, to: String) = HttpSubtitleLoader.nextHop(from.toHttpUrl(), to.toHttpUrl())
+        assertEquals(null, hop("https://a.example/s", "http://a.example/s"), "a downgrade, even on the same host")
+        assertEquals(true, hop("https://a.example/s", "https://a.example/t")?.keepsHeaders)
+        assertEquals(true, hop("http://a.example/s", "https://a.example/s")?.keepsHeaders, "an upgrade")
+        assertEquals(false, hop("https://a.example/s", "https://b.example/s")?.keepsHeaders)
+        assertEquals(false, hop("https://a.example/s", "https://a.example:8443/s")?.keepsHeaders, "another port")
+        assertEquals(false, hop("http://a.example/s", "http://a.example.evil/s")?.keepsHeaders)
     }
 
     @Test
@@ -246,6 +324,20 @@ class SubtitleLoaderTest {
             val result = load(quick, SubtitleTrack(SubtitleSource.Remote("http://127.0.0.1:${socket.localPort}/s"), "x"))
             assertFailed(SubtitleFailure.Fetch, result)
             assertTrue(System.nanoTime() - started < 5_000_000_000L)
+        }
+    }
+
+    @Test
+    fun `a chain of slow redirects is cut at the whole load's limit, not one limit a hop`() {
+        // Each hop is its own call, so the client's limit alone bounded one hop: 6 hops of 20 s were 120 s.
+        Server { Thread.sleep(SLOW_HOP_MILLIS); redirectTo("/again") }.use { server ->
+            val quick = loader(server.port) { it.newBuilder().callTimeout(CHAIN_LIMIT_MILLIS, TimeUnit.MILLISECONDS).build() }
+            val started = System.nanoTime()
+            assertFailed(SubtitleFailure.Fetch, load(quick, track(server)))
+            val waited = (System.nanoTime() - started) / 1_000_000
+            // Six hops would take 6 x 300 ms; the limit is 700 ms for all of them.
+            assertTrue(waited < CHAIN_LIMIT_MILLIS + SLOW_HOP_MILLIS, "took $waited ms")
+            assertTrue(server.requests.size < HttpSubtitleLoader.MAX_REDIRECTS + 1, "${server.requests.size} hops")
         }
     }
 

@@ -9,8 +9,10 @@ import java.net.InetAddress
 import java.net.InetSocketAddress
 import java.net.ServerSocket
 import java.net.Socket
+import java.net.SocketTimeoutException
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.Semaphore
+import java.util.concurrent.atomic.AtomicLong
 import kotlin.concurrent.thread
 
 /**
@@ -25,9 +27,14 @@ import kotlin.concurrent.thread
  * this proxy the kernel refuses the connection, and `SandboxEscapeAttemptTest` tries it.
  *
  * Traffic stays end to end, so all this can see is where a connection goes. That is what [contacted] reports.
+ *
+ * A tunnel nothing has crossed, either way, for [idleTimeoutMillis] is closed (`BUG-94`). Without that, a plugin could
+ * hold [MAX_CONNECTIONS] silent tunnels, two threads each, for as long as its host lives. It is idle in both directions,
+ * never one: a download sends nothing for minutes while its bytes come back, and must not be cut.
  */
 class OutboundGate(
     private val allowed: (InetAddress) -> Boolean = SandboxPolicy::isPublicAddress,
+    private val idleTimeoutMillis: Long = IDLE_TIMEOUT_MILLIS,
 ) : Closeable {
     private val server = ServerSocket(0, BACKLOG, InetAddress.getLoopbackAddress())
     private val slots = Semaphore(MAX_CONNECTIONS)
@@ -65,9 +72,13 @@ class OutboundGate(
         val output = client.getOutputStream()
         val remote = runCatching { handshake(input, output) }.getOrNull() ?: return
         remote.use {
-            client.soTimeout = 0
-            val back = thread(isDaemon = true, name = "outbound-gate-back") { pump(remote.getInputStream(), output, client) }
-            pump(input, remote.getOutputStream(), remote)
+            // Each read wakes this often to ask whether the tunnel as a whole has gone quiet.
+            val wake = minOf(idleTimeoutMillis, IDLE_CHECK_MILLIS).toInt().coerceAtLeast(1)
+            client.soTimeout = wake
+            remote.soTimeout = wake
+            val crossed = AtomicLong(System.nanoTime())
+            val back = thread(isDaemon = true, name = "outbound-gate-back") { pump(remote.getInputStream(), output, client, crossed) }
+            pump(input, remote.getOutputStream(), remote, crossed)
             back.join()
         }
     }
@@ -114,12 +125,19 @@ class OutboundGate(
         return null
     }
 
-    private fun pump(from: InputStream, to: OutputStream, target: Socket) {
+    /** Copies until the end, a failure, or [crossed] (shared by both directions) is older than the idle timeout. */
+    private fun pump(from: InputStream, to: OutputStream, target: Socket, crossed: AtomicLong) {
         runCatching {
             val buffer = ByteArray(BUFFER_BYTES)
             while (true) {
-                val read = from.read(buffer)
+                val read = try {
+                    from.read(buffer)
+                } catch (_: SocketTimeoutException) {
+                    if ((System.nanoTime() - crossed.get()) / NANOS_PER_MILLI >= idleTimeoutMillis) break
+                    continue
+                }
                 if (read < 0) break
+                crossed.set(System.nanoTime())
                 to.write(buffer, 0, read)
                 to.flush()
             }
@@ -139,6 +157,10 @@ class OutboundGate(
         const val MAX_NAME_CHARS = 255
         const val HANDSHAKE_TIMEOUT_MILLIS = 10_000
         const val CONNECT_TIMEOUT_MILLIS = 20_000
+        /** Longer than OkHttp keeps an idle pooled connection (five minutes), so a plugin's pool never meets it first. */
+        const val IDLE_TIMEOUT_MILLIS = 6 * 60_000L
+        const val IDLE_CHECK_MILLIS = 10_000L
+        const val NANOS_PER_MILLI = 1_000_000L
         const val BUFFER_BYTES = 16 * 1024
         const val VERSION = 5
         const val NO_AUTHENTICATION: Byte = 0
