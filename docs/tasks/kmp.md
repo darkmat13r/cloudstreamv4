@@ -7048,7 +7048,29 @@ rows built outside the sandbox) keep their own URL checks, which allow http; the
   loaders differ.
 
 **Not here:** a poster is asked for at its file's size, not the card's, so one up to 4096 by 4096 is kept whole (64 MB).
-Asking at the drawn size, as the backdrop does, changes `PosterImage`'s layout and is its own change.
+Asking at the drawn size, as the backdrop does, changes `PosterImage`'s layout and is its own change: `KMP-106`.
+
+## KMP-106 — A poster is asked for at the size it is drawn · **built 2026-11-10**, stacked on `KMP-102` (`#316`)
+
+A poster was requested at its file's size, so one of 4096 by 4096 was decoded and kept whole (64 MB) to fill a card a
+few hundred pixels wide. Now `PosterImage` measures its box, as `BackdropImage` does, and asks for that size in
+pixels: `loadPoster` makes the backdrop's request (filled and cropped, as the card draws it), which Coil keeps at no
+more than twice that size.
+- **Layout:** `PosterImage` is a `BoxWithConstraints` with its modifier, and the image fills it. Every caller already
+  passes `fillMaxSize()` inside a sized slot, so nothing moves. Before a poster loads, the box is empty and shows
+  nothing, as before.
+- **A slot with no bound** (none today) asks at the file's own size, as before, rather than drawing nothing. The
+  decoder's bound of 4096 by 4096 still holds.
+- **A resize** asks again at the new size. The poster drawn before it stays until the new one arrives.
+
+**Tests:** `PosterImageTest`, 3:
+- in a box of 64 by 96 dp at density 2, a poster is asked for at 128 by 192 pixels;
+- in a slot with no bound, it is asked for with no size;
+- a 1600 by 2400 PNG asked for at 128 by 192 is kept at most twice that size, and the same file with no size is kept
+  at 1600 by 2400. This runs through the bounded loader, reading a local file.
+
+Proved by mutation: with the box's size not passed on, the first test fails; with `loadPoster` ignoring the size, the
+third fails.
 
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 
