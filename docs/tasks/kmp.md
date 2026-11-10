@@ -5587,7 +5587,7 @@ Additions only. `app/api/classes-jar.api` gains 60 lines: 7 `R$string` fields, `
 
 ## KMP-63 — Per-episode watch state across the detail seam (board 7i's `WATCHED` and `24 MIN LEFT`) · **measured 2026-11-07**
 
-**Status:** open · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
+**Status:** in progress (cloudstream-worker-3), PR 1 of 3 · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
 
 Board 7i draws two readouts on an episode row that nothing in the tree can supply: `WATCHED` on a
 finished episode and `24 MIN LEFT` on a started one. 7i's other two row fields were simply discarded
@@ -5622,6 +5622,37 @@ Verified by grep, not assumed.
 
 **Why PR 2a does not do it:** a readout whose data does not exist is worse than none — the same reason
 `KMP-38` left Download and Mark watched out of the action row.
+
+### Re-measured on master `b3ea4b59e`, and the shape taken (2026-11-10, the PM's go)
+
+The line numbers above have moved: `viewPosition` is `AndroidDetailSource.kt:291`/`:313`, `resumeOf` `:598`,
+`DetailResume` `DetailContracts.kt:91`. Two things changed what A costs:
+
+- **The per-row id is no longer a blocker.** `episodeSlots` (`EpisodeSlots.kt`) has lifted `postEpisodes`' id
+  formula out, and `details()` already builds the chosen dub's slots for the player. A row finds its slot by `data`,
+  as `DetailPlaybackParts.indexOf` does, and reads `viewPosition(slot.id)`. No id leaves `:app`.
+- **A alone misses a stored fact.** `:app` keeps a "watched" mark apart from any position
+  (`DataStoreHelper.getVideoWatchState`); the old page's Mark watched sets it with no position
+  (`ResultViewModel2:1613-1617`), and its row draws the check for it (`EpisodeAdapter:211`). So the row also carries
+  `DetailEpisode.markedWatched: Boolean = false`. It is stored, not derived, so it has none of B's consistency
+  problem, and `setViewPosAndResume` clears it when the episode is played again.
+
+**The rule.** One function, `DetailEpisode.watchReadout()`, for both rows: the mark, or `DetailResume.finished` at
+95%, reads watched; otherwise a usable position reads the minutes left, rounded up. 95% is what `:app`'s old row
+draws the check at (`fixVisual`) and the Mac's `WatchPosition.FINISHED_FRACTION`. 90%
+(`NEXT_WATCH_EPISODE_PERCENTAGE`) is when Resume moves on, not when a row reads watched. No credits position is
+stored anywhere; the skip APIs are lookups the player makes.
+
+**`classes-jar.api` gains 8 lines and loses none.** `DetailEpisode` is still not in it. The mark is read through a
+new `LocalDetailRecords.videoWatchState(id)`, and `LocalDetailRecords` is, so the method has a body (`= null`)
+rather than being abstract: a class compiled against the interface before it inherits that body and reads "no
+mark", where an abstract method would throw `AbstractMethodError`. The 8 lines are that method (non-abstract) on the
+interface, its `$DefaultImpls` class (`JvmDefaultMode.ENABLE` emits both), the synthetic accessor, the
+`DataStoreDetailRecords` override, and the new `withProgress`.
+
+**The split:** PR 1, the contract and the Android host, with no visible change; PR 2, `ListRow`'s trailing slot, the
+TV row and `I18N-25`'s two strings; PR 3, `LibraryDetailSource` and the Mac row's second line, stacked on `KMP-109`.
+Mark watched as an action is not in this task.
 
 ## KMP-54 — The Mac downloads pages, boards D1 to D6 · **built 2026-11-07, not wired**
 
@@ -8316,7 +8347,237 @@ Found, not changed: two identical files in the extensions directory race for one
 and the loser's `NoSuchFileException` is not caught (`SandboxedExtensions.toStore` catches only
 `IllegalStateException`). Reported to the PM.
 
-### 110c — next
+**`#336` review, follow-up (first commit of 110c1):** with `extensions.installed` unreadable, a repository's file and a
+clean side-loaded one are both held. Red-checked by removing only `|| installedList == null`: that test fails, alone.
+The `.damaged` copy is capped at the decisions file's own read limit.
 
 - [ ] The Settings → Extensions pane and Home's button, against the desktop board; names and descriptions through
       `untrustedText`; strings; a section in `desktop-design.md`.
+
+## KMP-113 — A local media gateway, so every connection libVLC makes is address-checked · **PR 2 of 2 (the wiring), in review**
+
+The full fix for `BUG-90`. libVLC checks nothing itself and ignores every proxy setting for https (measured on
+3.0.24), so the media host gets gateway urls on loopback, and a sandbox policy that allows nothing else. The gateway
+fetches with the app's address-checked client, follows redirects itself, and rewrites playlist urls to itself. The
+kernel refuses whatever it does not route, so the rewriter is there for playback, not for safety.
+
+The design is in `docs/plans/media-gateway.md`: the url encoding; the HLS rewriter (DASH a second step) and its
+limits; redirects, byte ranges and keep-alive; which headers pass and which never do; per-host cookies; the
+gateway's own limits; the failure modes; the test plan; and three measurements to take before the first line of code.
+The design was approved after two passes.
+
+**PR 1, the gateway** (`player/gateway/`), not yet used by the player:
+- `GatewayUrl`: the encoding, with each url's role (`p`, `s`, `u`).
+- `HlsRewriter`: the bounded rewriter.
+- `MediaGateway`: the loopback origin. It fetches through its own client with the two address checks and no proxy,
+  follows redirects itself, owns `Referer` and `User-Agent`, keeps cookies per host in memory, and logs nothing.
+
+Tests:
+- `GatewayUrlTest` 9;
+- `HlsRewriterTest` 10;
+- `MediaGatewayTest` 18, against local servers, with "prints nothing" included.
+
+Ten mutations each fail what they should.
+
+**PR 2, the wiring:**
+- A stream player starts its gateway first, then its host. Without a gateway it does not start, so no stream plays
+  with the host's network open.
+- The host's policy allows the gateway's port on loopback and nothing else, with no resolver. `mediaHostProfile` is
+  the one place it is written.
+- `play` re-checks the url (`BUG-90`), gives the gateway the stream's `Referer` and `User-Agent`, and sends libVLC
+  only gateway urls. `OP_PLAY` carries no headers now.
+- OkHttp's own logger is off from app start.
+- An IDN host, in a playlist url or the first url, is written as punycode.
+- A host that plays a downloaded file has no network at all (review): it has its file's descriptor, and a crafted
+  file that took over libVLC's demuxer would find nothing to reach.
+- Neither host may ask the system's certificate services (`trustd`, `ocspd` and the rest). Behind the gateway libVLC
+  speaks only plain http to `127.0.0.1`, and those services fetch on a caller's behalf, which would be a way around
+  the kernel's rule.
+  - `system.sb` allows `trustd` itself, so the media hosts and the converter deny it by name (audit A-1).
+  - `MediaHostServicesTest` asks the kernel from inside the real policy: `trustd` is refused, and it is found when
+    the deny rule is taken out.
+
+Tests:
+- `GatewayPlaybackTest`, 2, with the real host: a segment on a refused host gets 0 requests; a url the rewriter
+  leaves as written is never reached, because the sandbox refuses it.
+- `MediaHostProfileTest`, 3.
+- `VlcPlayerUrlCheckTest` and the gateway suites, extended.
+
+**Measured:** the Apple HLS test streams (TS 4:3 and 16:9, fMP4 with `EXT-X-MAP`, alternate audio and I-frames)
+and one single file all play through the gateway, and nothing prints a url.
+
+### 110c — the pane, from `DS-27` (X1–X8)
+
+Split in two (DECIDED, PM 2026-11-10): **110c1** the state and the verbs, **110c2** the Compose UI and the strings.
+
+#### 110c1 — `ExtensionsPaneModel`
+
+- **The pane's state** (`ExtensionsPaneState`): the add group (Idle, Reading, or a failure kind for each of X2c's
+  eight, `AlreadyAdded` naming the repository as it names itself), the repositories (name, count, installed, read time,
+  reachable), one open repository's rows (X4a and X4b's states), the number waiting for a choice (X3c, hidden at 0),
+  and offline (X5b). No URL a person added is in it: a repository is a 16-hex key of a hash of its URL.
+- **Offline vs unreachable:** offline only when two or more repositories all fail. With one, the two cannot be told
+  apart, so it is unreachable (DECIDED, PM).
+- **The last list read is kept** (`RepositoryCache`): one file per repository, named by SHA-256 of its URL, 0600,
+  bounded, holding the bytes the repository sent. Read back, they go through the same parser and caps as a live read
+  (`RepositoryReader.parse`), and anything damaged reads as no cache. An unreachable repository shows its cached list
+  and when it was read, and nothing is installed or updated from it (X5a).
+- **Progress and Cancel** (X4a): `RepositoryHttp.fetch` and `RepositoryInstaller.install` report bytes as they arrive.
+  The file is held in memory until it has all arrived and been checked, so a cancel during the download leaves no
+  `.part` and no `Pending`; once writing begins it finishes.
+- **The order around a file**, as the review asked: an install is followed by `SandboxedExtensions.refresh` (it comes
+  back held, and `ExtensionApprovals.track` adds its review row); a removal is preceded by `forget`. One installer and
+  one installed list for the app.
+
+**Tests:** `ExtensionsPaneModelTest` 10 (the fakes stand in for the network, the pipeline and the review),
+`RepositoryCacheTest` 5, and 2 more in `RepositoryInstallerTest` (cancel; progress). **Red-checked one guard at a time**,
+each failing its own test: the hold recorded only after the download (moved before it, the cancel test fails); the
+offline rule; the cache's size cap; the cache's hashed name; no install while unreachable; `forget` before removal.
+**Green:** `:desktopApp:jvmTest` 812 of 812; the five gates passed, 278 XML results with 0 failures;
+`:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
+
+**Review (`#345`):**
+- **Cancel stops the network now.** The call is closed the moment the caller is cancelled, by a child that waits for
+  cancellation, rather than on completion, which a blocking read delayed to the end of the body or the 120 s limit. The
+  add's Cancel reads through the same fetch. Tested against a server that holds the connection open: `cancelAndJoin`
+  returns within a second, and the server sees its socket close. Red: without the close, the test fails.
+- **A removal that cannot account for every file is refused** (`removeFailed`), and the repository stays: with the
+  installed list unreadable, or a file that cannot be deleted. A review row is dropped only for a file that went. Red:
+  each of the two checks removed fails its own test.
+- **An install is recorded before it starts** (`CoroutineStart.LAZY`). Not red-checked, because it could not be made
+  to fail: in the code before, the completion handler was registered after the entry was added, and a handler on a job
+  already finished runs at once, so the entry was always taken away. The test (an unconfined scope, so an install that
+  fails at once finishes inside `launch`) passes either way and stays as a guard.
+
+Green: `:desktopApp:jvmTest` 816 of 816; the five gates passed, 278 XML results with 0 failures;
+`:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
+
+#### 110c2 — the pane, drawn (`ExtensionsPaneDesktop`)
+
+- **Settings → Extensions** (`SettingsPane.Extensions`, between Playback and Downloads), the host's slot in
+  `SettingsWindowDesktop`, over the app's one `ExtensionsPaneModel`. Nothing is fetched until the pane is first shown.
+- **X1–X3c:** the add group (field, Add as the one primary only while it holds a link, Cancel while reading, each
+  failure's sentence under it), the waiting row (hidden at 0), the repository rows (name, summary or "Can't reach it",
+  Remove under the pointer, the Disclosure glyph) and the Remove sheet (Cancel the primary; Return and Escape land on
+  it).
+- **X4–X5:** a repository opened in the pane with Back, ⌘[ and Escape; each row's second line and one verb (Install,
+  Cancel with a 96 rule, Installed, Update, Review, Retry, none when turned off); the unreachable notice with Retry,
+  and Install and Update off while it shows; the offline notice.
+- **X6:** Home's "No sources yet" and Add repository, which opens Settings on Extensions with the field focused. Only
+  with nothing installed at all; with search-only extensions Home keeps its words (`HomeCopy.toUiState`'s new
+  `nothingInstalled`).
+- **The words:** every name a repository sent goes through `untrustedText`. Descriptions are not shown on these boards.
+  English only (DECIDED by the PM: the boards' German is a stand-in; the gap is `I18N-26`). 38 strings and 2 plurals,
+  the version prefix and the size unit among them (`#349` review); the verbs and states the
+  app already has are reused (`settings_remove`, `player_source_retry`, `settings_extension_review`, `duplicate_add`,
+  `update`, `cancel`, the `extension_status_*` set, `settings_repo_summary`, `settings_offline_repos`,
+  `extensions_waiting_count`). Times are a localised short date and time, as `DesktopSearchHistory`'s are.
+- **The strings move:** `app/src/main/res` regenerated by `writeAndroidStrings` (40 lines added, 0 removed);
+  `classes-jar.api` gains the 40 `R.string` fields and loses nothing; the oracle baseline moves additively, measured as
+  a multiset and in order (0 lines lost, every added line names a new key): `decoded` +42, `emitted` +42, `lookup`
+  +3,654; regenerated on master `38488365` (Train 18): OWN 55,622 → 55,662, with `expectedOwn` and
+  `OracleBaselineTest`'s counts to match. The thirty-fourth move, after `#312`'s thirty-third. **Regenerated again on
+  the master it rebases onto before it lands.**
+
+**Tests:** `ExtensionsPaneDesktopTest` 11 (each board's state, through real pointer and key events), one more in
+`HomeScreenTest` (X6), and `SettingsWindowTest`'s sidebar now lists four panes. **Red-checked one guard at a time,** each failing its own
+test: a repository name drawn without `untrustedText` (a U+202E is drawn); Return on the Remove sheet removing; Install
+working while the repository cannot be reached. **Green:** `:desktopApp:jvmTest` 828 of 828, `:core:strings:jvmTest` 53 of 53 (`OracleBaselineTest` 4 of 4),
+`:feature:settings` 22 of 22, `:feature:home` 73 of 73; the five gates passed, 279 XML results with 0 failures;
+`:app:checkExtensionApi` passed with the 38 new fields and no line removed. All local.
+
+**Review (`#349`):**
+- **The link is not kept on screen once it is added:** the model counts each add (`ExtensionsPaneState.added`), and
+  the field empties on it, since a link can carry a token. Red: without the clearing, its test fails.
+- **`load()` runs once per model;** coming back to the pane does not fetch every repository again, and Retry is the
+  explicit refresh. Red: without the guard, its test fails.
+- **The version prefix and the size unit are strings** (`ext_row_version`, `ext_size_megabytes`), through `UiString`.
+- **Renders** of X3, X4, X5a and X8 (760 × 480, German) from `ExtensionsPaneRenders`, written with
+  `-Pcloudstream.extensions.renders=<directory>`, are on the orphan branch `review/kmp-110c2-renders` for the PM and the
+  reviewer.
+- **The field's text is the model's** (`ExtensionsPaneState.link`): a successful add empties it whether or not the pane
+  is on screen, so a pane restored by the Settings window's saved state cannot bring a link back. A failure keeps it.
+  The state's `toString` gives only the field's length. Red: an add that leaves the link in the model fails its test.
+- **Review's fill follows `DS-27`:** off until you choose is filled; kept off and blocked are quiet, and so is a file
+  that does not match its hash (DECIDED: it cannot be allowed either, as blocked cannot). Pinned by sampling each
+  button's fill in the drawn image; red with Blocked filled.
+- **An off verb is `muted`** (DECIDED, PM): an Install or Update while its repository cannot be reached is the words in
+  `muted` on the secondary fill, with no click, hover or focus, and `disabled()` for a screen reader. The board's grey
+  from a token the theme has, so no design-system change. Re-rendered X5a. Red: with the words in `ink`, its test fails. Green: `:desktopApp:jvmTest` 835, 0 failed (4 render
+  cases skip); the five gates passed, 280 XML results with 0 failures.
+
+Green: `:desktopApp:jvmTest` 834, 0 failed (the 4 render cases skip without a render directory),
+`:core:strings:jvmTest` 53 of 53; the five gates passed, 280 XML results with 0 failures; `:app:checkExtensionApi`
+passed with the 40 new fields and no line removed. All local.
+
+## KMP-109 — A Download on each episode row of the Mac title page, with its states · **part 1 built 2026-11-10**; the row's slot waits for `KMP-104` (`#312`) · the PM's task
+
+Board E2's rows on the Mac title page offer a Download per episode. The cell then reads the episode's state and offers
+that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
+
+**Part 1, the parts away from the title page:**
+- **The request.** `episodeDownloadRequest(titleKey, detail, episode)` in `:desktopApp` builds a
+  `DesktopDownloadRequest` from the page's `TitleDetail` and `DetailEpisode`:
+  - it carries no link. Its source is the provider's name and the episode's data, what the player passes;
+  - `KMP-52`'s service asks the extension through its `LinkResolver` and checks the link as it checks every other.
+    No new fetch path.
+- **The ids.** The service files downloads under 32-bit ids. `EpisodeDownloadIds` takes the first 4 bytes of SHA-256
+  over the parts, each written as its UTF-8 length and then its bytes:
+  - the title's id comes from the page's title id (`DesktopSearchSource.encodeId`);
+  - the episode's id comes from the provider's name and the episode's data;
+  - not `String.hashCode`, which gives `Aa` and `BB` one value.
+- **`EnqueueRefusal.IdTaken`.** Ids can still collide, by chance or on purpose. A plugin picks its own title and
+  episode strings, and about 2³² SHA-256s, minutes of work, lands on a chosen 32-bit id. So a matching id is checked
+  rather than trusted (the PM's ruling). An enqueue is refused, and nothing changes, when:
+  - its title id is held by a title listed under another name, or kept from another provider;
+  - its episode id is held by another title's episode, or by one with another source. A paused one is not put back
+    in line.
+- **Known limits (decision 4).** A finished episode keeps no source (`KMP-52`, on purpose, so a finished download
+  holds no address). So against a finished one:
+  - an episode id of the same title cannot be told apart, and reads as that episode, downloaded;
+  - a title id is checked by its name alone. A plugin that copies a finished title's name exactly, and has no
+    unfinished episode in it, joins its row and its folder. It cannot overwrite a file there: file names are made
+    unique on the disk.
+  - Closing both would mean keeping the provider's name in a finished record, which changes `KMP-52`'s file.
+- **The cell.** `EpisodeDownloadDesktop` in `:feature:downloads` reads the state in D4's words, through D4's
+  `EpisodeStatus`, which is now internal rather than copied. While the row is hovered or focused it offers that
+  state's verbs, in the title page's 36 cells:
+
+  | State | Verbs |
+  |---|---|
+  | none yet | Download |
+  | waiting | Cancel |
+  | downloading | Pause, Cancel |
+  | paused | Resume |
+  | failed | Retry |
+  | downloaded | none |
+
+  The verbs hold their width while hidden, so the words never move.
+
+**Tests (jvm, run):**
+- `EpisodeDownloadRequestTest` (5):
+  - the ids are fixed numbers, worked out with Python's `hashlib`;
+  - `Aa` and `BB` differ;
+  - moving a character between parts changes the id;
+  - the request's fields, with no link;
+  - two episodes share a title id.
+- `DesktopDownloadsTest` (+3):
+  - an id held by another source is refused (`IdTaken`), running and paused, and the first is unchanged;
+  - a title id forced to collide through the request's id seam (`titleIdOf`) is refused for a title with another
+    name or provider, while the first runs and after it finishes. The same title's next episode is taken. One row
+    and one folder remain. An episode id naming another title's finished episode is refused too.
+    - **Red (run):** without the title check it fails "another name", `Queued` where `IdTaken` is expected. Without
+      the episode's title-id comparison it fails with `AlreadyPresent`.
+  - end to end, a page's episode downloads through the resolver from its source alone, and the resolver is asked
+    for exactly that source.
+  - **Red without the guard (run):** the first fails, with `AlreadyPresent` where `IdTaken` is expected.
+- `EpisodeDownloadDesktopTest` (3):
+  - each state's verbs, pressed with real pointer events, call their own callback;
+  - hidden verbs draw nothing and move no words;
+  - each state's words.
+- `DownloadSeriesScreenTest` is unchanged and passes: 10 of 10.
+
+**Part 2, after `#312`:**
+- the slot on `DetailScreenDesktop`'s episode row;
+- `Main.kt` wiring it to the service;
+- the page's tests, red first.

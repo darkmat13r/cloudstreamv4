@@ -25,6 +25,9 @@ internal class LocalRepositoryServer : AutoCloseable {
         /** States [declared] bytes and sends [sent], then closes. */
         data class Lying(val declared: Long, val sent: Int) : Reply
 
+        /** States 1000 bytes, sends 10, then waits for the client to close the socket, and counts down [closed]. */
+        data object HoldOpen : Reply
+
         /** Headers, then nothing, for [millis]. */
         data class Stall(val millis: Long) : Reply
     }
@@ -34,6 +37,9 @@ internal class LocalRepositoryServer : AutoCloseable {
     val requests = AtomicInteger()
     val streamed = java.util.concurrent.atomic.AtomicLong()
     val port: Int get() = socket.localPort
+
+    /** Counted down when a [Reply.HoldOpen] client closes its end. */
+    val closed = java.util.concurrent.CountDownLatch(1)
 
     fun url(path: String) = "http://127.0.0.1:$port$path"
 
@@ -77,6 +83,13 @@ internal class LocalRepositoryServer : AutoCloseable {
             is Reply.Lying -> {
                 head(out, 200, "Content-Length: ${reply.declared}\r\n")
                 out.write(ByteArray(reply.sent))
+            }
+            is Reply.HoldOpen -> {
+                head(out, 200, "Content-Length: 1000\r\n")
+                out.write(ByteArray(10))
+                out.flush()
+                runCatching { while (client.getInputStream().read() != -1) Unit }
+                closed.countDown()
             }
             is Reply.Stall -> {
                 head(out, 200, "Content-Length: 10\r\n")

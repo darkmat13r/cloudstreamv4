@@ -1162,4 +1162,44 @@
 <string name="year">Year</string>
 <string name="year_format">%d</string>
 <string name="yes">Yes</string>
+<string name="ext_repo_add_group">Add a repository</string>
+<string name="ext_repo_link_hint">Repository link</string>
+<string name="ext_repo_link_help">A link that starts with https:// or cloudstreamrepo://</string>
+<string name="ext_repo_reading">Reading the repository</string>
+<string name="ext_repo_error_not_https">Only https links can be added. Check that it starts with https://.</string>
+<string name="ext_repo_error_local">This link points to an address on your local network, which CloudStream doesn't open.</string>
+<string name="ext_repo_error_too_large">This repository is larger than CloudStream reads. Nothing was added.</string>
+<string name="ext_repo_error_newer">This repository uses a newer format. Update CloudStream to add it.</string>
+<string name="ext_repo_error_not_repository">This link doesn't lead to a repository.</string>
+<string name="ext_repo_error_unreachable">Couldn't reach this repository. Check the link and your connection.</string>
+<string name="ext_repo_error_already">%s is already in your list.</string>
+<string name="ext_repo_error_shortcode">Short codes don't work on the Mac. Paste the full link instead.</string>
+<string name="ext_repo_error_not_saved">Your repositories couldn't be saved, so nothing was changed.</string>
+<string name="ext_repo_empty_title">No repositories</string>
+<string name="ext_repo_empty_body">Each extension comes from a repository you add, and runs only after you allow it.</string>
+<string name="ext_repo_unreachable_line">Can't reach it · list from %s</string>
+<string name="ext_repo_remove_title">Remove %s?</string>
+<string name="ext_repo_remove_body_none">You can add the repository again later.</string>
+<string name="ext_repo_cant_reach_title">Can't reach %s</string>
+<string name="ext_repo_cant_reach_body">This list is from %s. Installing and updating wait until it answers.</string>
+<string name="ext_remove_failed">Some files couldn't be removed, so nothing was removed.</string>
+<string name="ext_install">Install</string>
+<string name="ext_installed">Installed</string>
+<string name="ext_row_installing">Installing · %1$s of %2$s</string>
+<string name="ext_row_installing_unknown">Installing · %s</string>
+<string name="ext_row_update">Update available · v%1$d → v%2$d</string>
+<string name="ext_row_unverified">Unverified · its repository publishes no hash</string>
+<string name="ext_row_turned_off">Turned off by its repository</string>
+<string name="ext_row_hash_mismatch">Its file didn't match the published hash. Nothing was installed.</string>
+<string name="ext_row_failed_download">Install failed · the file couldn't be downloaded</string>
+<string name="ext_row_failed_size">Install failed · the file isn't the size its repository stated</string>
+<string name="ext_row_failed_too_large">Install failed · the file is larger than CloudStream installs</string>
+<string name="ext_row_failed_local">Install failed · the file is on your local network</string>
+<string name="ext_row_failed_not_saved">Install failed · it couldn't be saved</string>
+<string name="home_no_sources_title">No sources yet</string>
+<string name="ext_row_version">v%d</string>
+<string name="ext_size_megabytes">%s MB</string>
+<string name="home_no_sources_body">Home's rows come from extensions. Add a repository to choose some; nothing runs until you allow it.</string>
+<plurals name="ext_repo_remove_body"><item quantity="one">Its %d installed extension is removed from this Mac too. You can add the repository again later.</item><item quantity="other">Its %d installed extensions are removed from this Mac too. You can add the repository again later.</item></plurals>
+<plurals name="ext_repo_header"><item quantity="one">%1$d extension · %2$d installed · updated %3$s</item><item quantity="other">%1$d extensions · %2$d installed · updated %3$s</item></plurals>
 </resources>

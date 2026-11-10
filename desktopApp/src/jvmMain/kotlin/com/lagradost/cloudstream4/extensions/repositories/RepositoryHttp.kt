@@ -11,9 +11,12 @@ import java.net.Proxy
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.CoroutineStart
+import kotlinx.coroutines.awaitCancellation
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.Call
 import okhttp3.Dns
 import okhttp3.HttpUrl
 import okhttp3.HttpUrl.Companion.toHttpUrlOrNull
@@ -124,20 +127,26 @@ class RepositoryHttp(
         boundedImageClient(base, maxBytes = maxBytes + BACKSTOP_MARGIN_BYTES, requireHttps = requireHttps)
     }
 
-    /** [url]'s body, at most [maxBytes] of it, following at most [MAX_REDIRECTS] redirects, each checked first. */
-    suspend fun fetch(url: String, maxBytes: Long): Fetched = withContext(Dispatchers.IO) {
-        val client = client(maxBytes)
-        var current = url.toHttpUrlOrNull() ?: return@withContext Fetched.Failed(RepositoryFailure.NotFound)
-        repeat(MAX_REDIRECTS + 1) {
-            if (!secure(current)) return@withContext Fetched.Failed(RepositoryFailure.NotHttps)
-            if (refusedLiteral(current)) return@withContext Fetched.Failed(RepositoryFailure.PrivateAddress)
-            when (val hop = hop(client, current, maxBytes)) {
-                is Hop.Done -> return@withContext hop.fetched
-                is Hop.Redirect -> current = hop.to
+    /**
+     * [url]'s body, at most [maxBytes] of it, following at most [MAX_REDIRECTS] redirects, each checked first.
+     *
+     * @param progress told the bytes received so far and the length the server stated (null when it stated none), as
+     *   they arrive (`KMP-110c`'s "0.7 MB of 1.2 MB"). Cancelling the calling coroutine cancels the call.
+     */
+    suspend fun fetch(url: String, maxBytes: Long, progress: (received: Long, stated: Long?) -> Unit = { _, _ -> }): Fetched =
+        withContext(Dispatchers.IO) {
+            val client = client(maxBytes)
+            var current = url.toHttpUrlOrNull() ?: return@withContext Fetched.Failed(RepositoryFailure.NotFound)
+            repeat(MAX_REDIRECTS + 1) {
+                if (!secure(current)) return@withContext Fetched.Failed(RepositoryFailure.NotHttps)
+                if (refusedLiteral(current)) return@withContext Fetched.Failed(RepositoryFailure.PrivateAddress)
+                when (val hop = hop(client, current, maxBytes, progress)) {
+                    is Hop.Done -> return@withContext hop.fetched
+                    is Hop.Redirect -> current = hop.to
+                }
             }
+            Fetched.Failed(RepositoryFailure.TooManyRedirects)
         }
-        Fetched.Failed(RepositoryFailure.TooManyRedirects)
-    }
 
     /**
      * Whether [url] names a refused address as an IP literal. Checked before connecting: the connected-address check
@@ -157,10 +166,29 @@ class RepositoryHttp(
         class Redirect(val to: HttpUrl) : Hop
     }
 
-    private suspend fun hop(client: OkHttpClient, url: HttpUrl, maxBytes: Long): Hop {
-        fun failed(failure: RepositoryFailure) = Hop.Done(Fetched.Failed(failure))
+    private suspend fun hop(client: OkHttpClient, url: HttpUrl, maxBytes: Long, progress: (Long, Long?) -> Unit): Hop {
         val call = client.newCall(Request.Builder().url(url).header("User-Agent", USER_AGENT).build())
-        val cancel = currentCoroutineContext()[Job]?.invokeOnCompletion { call.cancel() }
+        // `#345` review: cancelled means the socket closes now. The call below blocks its thread, so a handler run on
+        // completion would wait for the whole body (up to the cap, or the call's time limit). This child is suspended
+        // until the caller is cancelled, and closes the call the moment it is; the blocked read then fails at once.
+        return coroutineScope {
+            val canceller = launch(start = CoroutineStart.UNDISPATCHED) {
+                try {
+                    awaitCancellation()
+                } finally {
+                    call.cancel()
+                }
+            }
+            try {
+                blockingHop(call, url, maxBytes, progress)
+            } finally {
+                canceller.cancel()
+            }
+        }
+    }
+
+    private fun blockingHop(call: Call, url: HttpUrl, maxBytes: Long, progress: (Long, Long?) -> Unit): Hop {
+        fun failed(failure: RepositoryFailure) = Hop.Done(Fetched.Failed(failure))
         return try {
             call.execute().use { response ->
                 val body: ResponseBody = response.body ?: return@use failed(RepositoryFailure.NotFound)
@@ -173,7 +201,11 @@ class RepositoryHttp(
                         call.cancel()
                         failed(RepositoryFailure.TooLarge)
                     }
-                    else -> Hop.Done(readAtMost(body.byteStream(), maxBytes, call::cancel))
+                    else -> Hop.Done(
+                        readAtMost(body.byteStream(), maxBytes, call::cancel) { received ->
+                            progress(received, body.contentLength().takeIf { it >= 0 })
+                        },
+                    )
                 }
             }
         } catch (_: RefusedAddress) {
@@ -181,12 +213,10 @@ class RepositoryHttp(
         } catch (_: IOException) {
             // Timeouts (`InterruptedIOException`) included: to the person, both are "could not reach it".
             failed(RepositoryFailure.Unreachable)
-        } finally {
-            cancel?.dispose()
         }
     }
 
-    private fun readAtMost(stream: InputStream, maxBytes: Long, stop: () -> Unit): Fetched {
+    private fun readAtMost(stream: InputStream, maxBytes: Long, stop: () -> Unit, received: (Long) -> Unit): Fetched {
         val out = ByteArrayOutputStream()
         val buffer = ByteArray(BUFFER_BYTES)
         var total = 0L
@@ -199,6 +229,7 @@ class RepositoryHttp(
                 return Fetched.Failed(RepositoryFailure.TooLarge)
             }
             out.write(buffer, 0, read)
+            received(total)
         }
         return Fetched.Bytes(out.toByteArray())
     }

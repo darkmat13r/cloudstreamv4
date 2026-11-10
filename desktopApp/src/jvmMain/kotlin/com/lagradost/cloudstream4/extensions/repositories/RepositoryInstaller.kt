@@ -16,6 +16,9 @@ import java.nio.file.StandardCopyOption
 import java.nio.file.StandardOpenOption
 import java.security.MessageDigest
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.NonCancellable
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.sync.Mutex
 import kotlinx.coroutines.sync.withLock
 import kotlinx.coroutines.withContext
@@ -92,15 +95,32 @@ class RepositoryInstaller(
     private val decisions: ExtensionDecisions = ExtensionDecisions(ExtensionDecisions.fileFor(directory)),
     private val installed: InstalledFromRepositories =
         InstalledFromRepositories(InstalledFromRepositories.fileFor(directory)),
-    private val fetch: RepositoryReader.Fetcher = RepositoryHttp(callTimeoutMillis = RepositoryHttp.PLUGIN_CALL_TIMEOUT_MILLIS)
-        .let { http -> RepositoryReader.Fetcher { url, maxBytes -> http.fetch(url, maxBytes) } },
+    private val fetch: PluginFetcher = RepositoryHttp(callTimeoutMillis = RepositoryHttp.PLUGIN_CALL_TIMEOUT_MILLIS)
+        .let { http -> PluginFetcher { url, maxBytes, progress -> http.fetch(url, maxBytes, progress) } },
     private val beforeMove: () -> Unit = {},
 ) {
     private val root = directory.canonicalFile
     private val incoming = File(root, INCOMING_DIRECTORY)
     private val lock = Mutex()
 
-    suspend fun install(repositoryUrl: String, listing: ExtensionListing): InstallResult = lock.withLock {
+    /** [RepositoryHttp.fetch]'s shape with progress, so a test can answer without a server. */
+    fun interface PluginFetcher {
+        suspend fun fetch(url: String, maxBytes: Long, progress: (received: Long, stated: Long?) -> Unit): Fetched
+    }
+
+    /**
+     * @param progress the bytes received and the size stated, as they arrive (`KMP-110c`, board X4a).
+     *
+     * **Cancelling** the calling coroutine while the file is fetched cancels the download, and nothing has been written
+     * or recorded by then: the bytes are held in memory (at most [RepositoryLimits.MAX_PLUGIN_BYTES]) and nothing
+     * touches the disk until they are all here and checked, so there is no `.part` and no `Pending` to clean up. Once
+     * writing has begun it runs to its end, cancelled or not, so a cancel never leaves half of an install.
+     */
+    suspend fun install(
+        repositoryUrl: String,
+        listing: ExtensionListing,
+        progress: (received: Long, stated: Long?) -> Unit = { _, _ -> },
+    ): InstallResult = lock.withLock {
         if (!isOffered(listing.status)) return InstallResult.Failed(InstallFailure.NotOffered)
         val jar = listing.jarUrl != null
         val url = listing.jarUrl ?: listing.downloadUrl
@@ -109,7 +129,7 @@ class RepositoryInstaller(
         if (statedSize != null && statedSize > RepositoryLimits.MAX_PLUGIN_BYTES) {
             return InstallResult.Failed(InstallFailure.Fetch(RepositoryFailure.TooLarge))
         }
-        val bytes = when (val fetched = fetch.fetch(url, statedSize ?: RepositoryLimits.MAX_PLUGIN_BYTES)) {
+        val bytes = when (val fetched = fetch.fetch(url, statedSize ?: RepositoryLimits.MAX_PLUGIN_BYTES, progress)) {
             is Fetched.Bytes -> fetched.bytes
             is Fetched.Failed -> return InstallResult.Failed(InstallFailure.Fetch(fetched.failure))
         }
@@ -121,7 +141,9 @@ class RepositoryInstaller(
         val fileName = stem + if (jar) JAR_SUFFIX else CS3_SUFFIX
         val other = stem + if (jar) CS3_SUFFIX else JAR_SUFFIX
         val sha256 = ExtensionHash.of(bytes).removePrefix(ExtensionHash.PREFIX)
-        withContext(Dispatchers.IO) {
+        // The last chance to stop before anything is written.
+        currentCoroutineContext().ensureActive()
+        withContext(Dispatchers.IO + NonCancellable) {
             try {
                 val target = inRoot(fileName)
                 decisions.record(fileName, sha256, ExtensionChoice.Pending)

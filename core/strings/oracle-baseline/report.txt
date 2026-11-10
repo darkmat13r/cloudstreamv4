@@ -1,12 +1,12 @@
 aapt2 9.1.1-14792394 compile --legacy; guards=fail
 stray text runs removed before aapt2: 0
-decoded: 62 directories, 55732 entries
-visible keys: 1161 (30 plurals)
-emitted values by reason: {OWN=55622, REFERENCE_IN_LOCALE=500, ANDROID_FALLBACK=173}
+decoded: 62 directories, 55772 entries
+visible keys: 1201 (32 plurals)
+emitted values by reason: {OWN=55662, REFERENCE_IN_LOCALE=500, ANDROID_FALLBACK=173}
 locale copy values-b+he <- values-b+iw: 928 values
 locale copy values-b+id <- values-b+in: 1117 values
 styled values emitted as plain text: 0
 parity requests: 87 (26 beyond directory locales)
-emitted directories: 64, values: 58340
-lean directories: 62, values: 55622
+emitted directories: 64, values: 58380
+lean directories: 62, values: 55662
 @string references preserved: 67

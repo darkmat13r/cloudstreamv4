@@ -120,6 +120,28 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Thirty-fourth move, 2026-11-10 — `KMP-110c2`, 40 new English keys for the Mac's Extensions pane
+
+New keys are approved in general (`I18N-09`). Additive: 38 strings and 2 plurals, authored in the English directory only
+(the PM: the boards' German is a stand-in for lengths); the other 61 directories fall back to English until `I18N-26`
+translates them. Regenerated from the live generator on master's thirty-second move (`38488365`, Train 18). Numbered
+thirty-fourth because `#312`, the thirty-third, goes ahead of it in Train 19: if it lands first, this is regenerated on
+top of it before this lands.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 57,696 | 57,738 | 42 | 0 | 0 |
+| `emitted.tsv` | 60,399 | 60,441 | 42 | 0 | 0 |
+| `lookup.tsv` | 104,100 | 107,754 | 3,654 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured twice, by whole-line set difference with `sort | comm` and with a Python multiset that also checked order: no
+line lost, every earlier line still there in the same order, and every added line names one of the new keys.
+`decoded`'s 42 are the 38 strings and the 2 plurals' two categories each. `OWN` 55,622 -> 55,662, `REFERENCE_IN_LOCALE`
+500 and `ANDROID_FALLBACK` 173 unchanged, and `expectedOwn` to match. `app/src/main/res`: 40 lines added, 0 removed;
+`app/api/classes-jar.api` gains the 40 `R.string` fields and nothing else.
+
 ## Thirty-second move, 2026-11-10 — `I18N-23`, 1 new key for the subtitle picker (`BUG-77`)
 
 New keys are approved in general (`I18N-09`). Additive: `subtitles_font_app` ("App font"), no plural, authored in all 62

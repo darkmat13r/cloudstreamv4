@@ -60,6 +60,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.settings_pane
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_play_next_body
 
+import com.lagradost.cloudstream4.core.strings.generated.resources.extensions
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_pane_appearance
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results
 import com.lagradost.cloudstream4.core.strings.generated.resources.settings_search_no_results_body
@@ -87,6 +88,7 @@ fun SettingsWindowDesktop(
     onAction: (SettingsAction) -> Unit,
     modifier: Modifier = Modifier,
     state: SettingsWindowState = remember { SettingsWindowState() },
+    extensions: @Composable () -> Unit = {},
 ) {
     val colors = CloudStreamTheme.colors
     val words = rowWords(folder)
@@ -106,6 +108,7 @@ fun SettingsWindowDesktop(
             values = values,
             folder = folder,
             onAction = onAction,
+            extensions = extensions,
         )
     }
 }
@@ -298,8 +301,15 @@ private fun PaneColumn(
     values: SettingsValues,
     folder: DownloadFolder,
     onAction: (SettingsAction) -> Unit,
+    extensions: @Composable () -> Unit,
 ) {
     val colors = CloudStreamTheme.colors
+    // `KMP-110c`: the Extensions pane is the host's, title and all, because a repository opens in place of the list
+    // with Back and its own name (board X4).
+    if (pane == SettingsPane.Extensions) {
+        Box(Modifier.fillMaxSize()) { extensions() }
+        return
+    }
     Box(Modifier.fillMaxSize()) {
         BasicText(
             paneName(pane),
@@ -321,6 +331,7 @@ private fun PaneColumn(
 
                 SettingsPane.Appearance -> AppearancePane(values, marked, onAction)
                 SettingsPane.Downloads -> DownloadsPane(values, folder, marked, onAction)
+                SettingsPane.Extensions -> Unit
             }
         }
     }
@@ -332,6 +343,7 @@ private fun paneName(pane: SettingsPane): String = when (pane) {
 
     SettingsPane.Appearance -> stringResource(Res.string.settings_pane_appearance)
     SettingsPane.Downloads -> stringResource(Res.string.title_downloads)
+    SettingsPane.Extensions -> stringResource(Res.string.extensions)
 }
 
 /** Each row's words as search reads them: what the row shows, in the current language. */

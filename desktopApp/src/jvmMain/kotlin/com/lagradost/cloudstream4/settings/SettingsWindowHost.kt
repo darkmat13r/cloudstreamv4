@@ -1,5 +1,8 @@
 package com.lagradost.cloudstream4.settings
 
+import com.lagradost.cloudstream4.extensions.repositories.ExtensionsPaneModel
+import com.lagradost.cloudstream4.extensions.repositories.ExtensionsPaneDesktop
+import com.lagradost.cloudstream4.extensions.repositories.ExtensionsPaneAction
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -52,12 +55,16 @@ internal fun SettingsWindow(
     settings: SettingsRepository,
     onClose: () -> Unit,
     downloadRoot: File = remember { DesktopDownloads.defaultDownloadRoot() },
+    state: SettingsWindowState = remember { SettingsWindowState() },
+    extensions: ExtensionsPaneModel? = null,
+    focusLink: Boolean = false,
+    onReview: () -> Unit = {},
 ) {
-    val state = rememberWindowState(size = DpSize(SettingsWindowDefaults.Width, SettingsWindowDefaults.Height))
+    val windowState = rememberWindowState(size = DpSize(SettingsWindowDefaults.Width, SettingsWindowDefaults.Height))
     Window(
         onCloseRequest = onClose,
         title = stringResource(Res.string.title_settings),
-        state = state,
+        state = windowState,
     ) {
         LaunchedEffect(window) {
             val width = SettingsWindowDefaults.Width.value.toInt()
@@ -70,7 +77,7 @@ internal fun SettingsWindow(
         CloudStreamTheme {
             CompositionLocalProvider(LocalCloudStreamTypography provides desktopTypography()) {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
-                    SettingsContent(settings, downloadRoot)
+                    SettingsContent(settings, downloadRoot, state, extensions, focusLink, onReview)
                 }
             }
         }
@@ -83,10 +90,14 @@ internal fun SettingsContent(
     settings: SettingsRepository,
     downloadRoot: File,
     state: SettingsWindowState = remember { SettingsWindowState() },
+    extensions: ExtensionsPaneModel? = null,
+    focusLink: Boolean = false,
+    onReview: () -> Unit = {},
 ) {
     val values by settings.values.collectAsState()
     SettingsWindowDesktop(
         state = state,
+        extensions = { if (extensions != null) ExtensionsPaneHost(extensions, focusLink, onReview) },
         values = values,
         folder = downloadFolder(downloadRoot),
         onAction = { action ->
@@ -112,4 +123,34 @@ private fun reveal(directory: File) {
     thread(isDaemon = true, name = "settings-reveal") {
         runCatching { Desktop.getDesktop().open(directory) }
     }
+}
+
+/**
+ * The Extensions pane over the app's one [ExtensionsPaneModel] (`KMP-110c`). The lists are read when the pane is first
+ * shown, not when the app starts: nothing is fetched for a person who never opens it.
+ */
+@Composable
+private fun ExtensionsPaneHost(model: ExtensionsPaneModel, focusLink: Boolean, onReview: () -> Unit) {
+    val state by model.state.collectAsState()
+    LaunchedEffect(model) { model.load() }
+    ExtensionsPaneDesktop(
+        state = state,
+        installedFrom = model::installedFrom,
+        focusLink = focusLink || state.repositories.isEmpty(),
+        onAction = { action ->
+            when (action) {
+                is ExtensionsPaneAction.Add -> model.add(action.text)
+                ExtensionsPaneAction.CancelAdd -> model.cancelAdd()
+                is ExtensionsPaneAction.Editing -> model.editing(action.text)
+                is ExtensionsPaneAction.Open -> model.open(action.key)
+                ExtensionsPaneAction.Close -> model.close()
+                ExtensionsPaneAction.Retry -> model.refresh()
+                is ExtensionsPaneAction.Install -> model.install(action.key, action.internalName)
+                is ExtensionsPaneAction.CancelInstall -> model.cancelInstall(action.key, action.internalName)
+                is ExtensionsPaneAction.RemoveExtension -> model.removeExtension(action.key, action.internalName)
+                is ExtensionsPaneAction.RemoveRepository -> model.removeRepository(action.key)
+                ExtensionsPaneAction.Review -> onReview()
+            }
+        },
+    )
 }

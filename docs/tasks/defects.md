@@ -2949,6 +2949,32 @@ reaches into Compose internals.
 Gradle, where `animationsDisabled` doesn't apply. The reason in `scripts/device-tests.sh`'s comment on its scale reset
 is corrected, because no case turns the scale off for itself any more. The reset itself is kept.
 
+## BUG-93 — The Mac title page drew a plugin's title, plot and episode names with characters that reverse text · **medium, security** · fixed in this PR
+
+Found by the extension-wire audit (finding A-3). Before a plugin's details reached the title page, they went through
+`cleaned()` (`PluginHostClient`), whose `sanitized()` removes only control characters (`Cc`). `toTitleDetail`
+passed the title and the episode names on as they were, and stripped only markup from the plot.
+- So U+202E RIGHT-TO-LEFT OVERRIDE, the isolates U+2066–2069, zero-width characters and the BOM (all `Cf`) reached
+  the screen.
+- A title such as `Safe Title<U+202E>exe.4pm` drew its end reversed, on the title page and in its top bar.
+- Every other page that shows a plugin's words already strips these: search, home, library, cast and
+  recommendations.
+
+**Fix.** `toTitleDetail` cleans each value with `untrustedText`, the same function the extensions screen uses. It
+removes control, format, separator, surrogate, private-use and unassigned code points, and works in code points, so a
+cut never leaves half a pair. Each value has its own cap:
+- the title, 300 code points (the default, 160, would cut real titles);
+- the plot, 2048, after markup goes; a plot was already one line of plain text;
+- each episode's name, 160.
+
+**Proof,** all local (CI is off): `TitlePageTextTest`, 4, made-up titles.
+- The audit's repro reads as written.
+- None of U+202E, U+202D, U+2066–2069, U+200B, U+200F or U+FEFF survives in the title, the plot or an episode's
+  name. Nor does a tag character outside the basic plane.
+- A plot is still one line of plain text.
+- A title past its cap ends in an ellipsis.
+- Against the old `toTitleDetail`, all four fail.
+
 ## BUG-74 — Train 9's player panels named real sites and titles · **low, test only**
 
 **Status:** fixed in this PR · the PM's call, 2026-11-08 · the rule `BUG-70` applied to `#205`
@@ -3122,6 +3148,164 @@ With the fix, three times in a row: `AndroidDetailSourceFailureTest` 1/1, `Searc
 
 ---
 
+## Audit, 2026-11-10 — the extension wire, end to end · **findings, triaged**
+
+Read-only, from code. **What was read:**
+- master `6c6179784`, with the frozen media gateway (#348, #350, carrying #343), the plugin-output redaction (#335)
+  and the no-proxy fix (#340);
+- separately, the title-section stack (#310, #327, #329, #312), which does not yet merge with that master.
+
+**What it covers:**
+- every section reader (facts `0x01`, art `0x21`, ids `0x31`, cast `0x41`, recs `0x51`);
+- every value that crosses from a plugin to the screen;
+- every network client;
+- every path for a plugin's output;
+- every sandbox profile.
+
+Each finding was confirmed by reading the code, and where it says so, by a measurement. Nothing here is fixed.
+
+### Medium
+
+**A-1. Every sandboxed host can still reach `trustd`, because the policy imports `system.sb`, which allows it.** ·
+**fixed in #350** (`KMP-113`), proved at runtime: from inside the real policy the lookup succeeded, and it is refused now.
+- **The code:** `SeatbeltProfile.render` imports `system.sb`. On macOS 27.0.1 its lines 158–179 are an
+  unconditional `allow mach-lookup` that names `com.apple.trustd` and `com.apple.trustd.agent`. The media hosts'
+  `tls = false` (#350) only leaves out the app's own list.
+- **Which hosts:** the stream host, the file host, the converter and the plugin hosts all keep the lookup.
+- **Why the test passes:** `MediaHostProfileTest` checks the profile's text, not what the kernel allows, so it passes
+  anyway.
+- **Repro of the risk:** native code in a media host (a crafted media file that took over libVLC's demuxer) asks
+  Security.framework to evaluate a chain whose AIA or OCSP url is a LAN or attacker address. `trustd` fetches it,
+  outside the sandbox. That is a blind request into the LAN, and a way out of a host meant to reach nothing.
+- **Not measured:** whether `trustd` fetches in that setup.
+- **Fix shape:** an explicit `deny mach-lookup` of both names after the import, for the media hosts and the converter,
+  and a test that the lookup fails under the real profile.
+
+**A-2 = `BUG-92`. A plugin's exception text reaches the app's default stdout and stderr, on every launch where a search, a home
+page or a title fails.**
+- **The path:** Home and Search go through `APIRepository` (`core/data`, `:96`, `:137`, `:150`) into `safeApiCall`
+  (`library/…/mvvm/ArchComponentExt.kt:312–322`). That calls `logError`, which writes
+  `Log.d("ApiError", "safeApiCall: " + message.withoutUrls())` (`:71`; on the JVM `Log.d` is `println`), then the
+  stack trace to stderr (`:74`).
+- **A second path:** `DesktopDetailSource.kt:55` writes `failure.message.withoutUrls()` to stderr.
+- **What gets through:** the message is #335's `PluginFailed`, redacted within 400 characters. URLs, tokens, email
+  addresses and IP addresses are cut. The plugin's own words are not: a query echoed back, a name, a short secret.
+- **Why it matters:** this contradicts #335 ("never on a default output"). #335's map traced the host's output, not
+  exception messages through the shared library.
+- **Repro:** `search()` throws `IllegalStateException("searched: <query>; account <name>")`. Both appear on stdout.
+- **Fix shape:** on the desktop, print only `PluginFailed.reportedClass` on these paths. `:library` is published API,
+  so the change is a function body there.
+
+**A-3 = `BUG-93`. The title page draws a plugin's title, plot and episode names with bidi and format characters still in them.**
+- **The path:** `cleaned()` (`PluginHostClient.kt:664` and the lines around it) uses `sanitized()`, which removes only
+  `Cc`. `toTitleDetail` (`DesktopDetailSource.kt:83–90`) passes the values on, and `DetailScreenDesktop.kt:330`
+  draws them.
+- **Why it matters:** search, home, library, cast and recommendations all strip `Cf`. This path alone does not.
+- **Repro:** `name = "Safe Title\u202Eexe.4pm"` draws reversed on the title page and in the top bar.
+
+### Low
+
+These are batched by area at triage (network, profiles, text), with IDs claimed then. Two additions from review go in
+the same batch:
+- the plugin hosts deny the certificate services too, so that every host without a use for TLS has the same rule;
+- `MediaHostServicesTest` asserts that `ocspd`, `SecurityServer`, `securityd.xpc` and `dnssd.service` are refused
+  from inside both media hosts' policies. They are refused today only because nothing allows them.
+
+
+**A-4. FACTS is copied with no cap of its own.**
+- **The code:** `HostProtocol.kt:561` checks only `0..available()`, then `:567` does `readNBytes(length)`. Every
+  section after FACTS meets `SECTION_CAPS` first. The most a real FACTS section needs is about 16.5 KiB.
+- **Repro:** a FACTS slice of 8 MB copies 8 MB beside the frame. It is bounded by the 8 MiB frame limit, so it does
+  not grow without limit, but it contradicts "bounded before copy".
+
+**A-5. The subtitle client follows https to http, and sends the plugin's headers on every hop.**
+- **The code:** `posterHttpClient` never calls `followSslRedirects(false)`, and `subtitleHttpClient`
+  (`SubtitleLoader.kt:119`) inherits that. `SubtitleLoader.kt:93` sets the plugin's headers on the request.
+- **Repro:** a plugin's `Cookie`, on an https url that redirects to `http://other.example/`, goes there in clear
+  text. The address is still checked on every hop; this is about integrity and privacy.
+
+**A-6. Image fetches have no overall time limit.**
+- **The code:** `posterHttpClient` and `boundedImageClient` keep OkHttp's defaults: 10 s per read, and no limit on
+  the call.
+- **Repro:** a server that sends one byte every 9 s holds a fetch thread for as long as it likes, within the 8 MB
+  cap. The subtitle client has a 20 s call limit; images have none.
+
+**A-7. `OutboundGate` has no idle timeout once a tunnel is open.**
+- **The code:** `OutboundGate.kt:68` sets `client.soTimeout = 0`, and the remote socket gets none.
+- **Repro:** a plugin can keep `MAX_CONNECTIONS` (256) silent tunnels, which is 512 threads, for the life of its
+  host. Only resources are pinned; the address check holds.
+
+**A-8. The check commands print a plugin's strings by default.**
+- **`--check-extensions`:** provider names, titles (`ExtensionCheck.kt:103`), subtitle languages, the hosts it
+  contacted (any printable SOCKS name) and the `PluginFailed` text, unredacted.
+- **`--check-playback`:** the link's name (`PlaybackCheck.kt:39`). A `PluginFailed` from its `runBlocking` (`:49–51`)
+  is uncaught, so the default handler prints it.
+- **Scope:** both are developer commands. `--verbose` was meant to be the only way to see a plugin's text.
+
+**A-9. The media host's own directory is both writable and mappable as code.** `render` denies `file-map-executable`
+on `writable` (`SeatbeltProfile.kt:81`). `mediaHostRules` allows it there again (`:112`), and the later rule wins
+(JNA unpacks its library there). It is the one path that is both writable and executable.
+
+**A-10. The converter and the file host get system-configuration services they have no use for.** `MACH_SERVICES`
+(`:201–207`) goes to every profile, `SystemConfiguration.configd` and `DNSConfiguration` included. Through configd's
+dynamic store, a host can read the computer's name and its interface addresses, which the sysctl rules otherwise
+hide.
+
+**A-11. `isPublicAddress` calls IPv4-compatible IPv6 addresses public.** `::127.0.0.1` and `::a00:1` reach the IPv6
+branch, which checks only ULA and the translation prefixes.
+- **Measured on macOS:** no path. A connection to `[::127.0.0.1]` and `[::a00:1]` gives `NoRouteToHostException`.
+  `::ffff:` addresses become IPv4 in Java, and are refused as loopback.
+- **Fix shape:** refuse `::/96` too, as hardening.
+
+**A-12. Invisible characters outside the basic plane survive the cleaning of cast names and tags.**
+`isInvisibleInLabel` (`PluginHostClient.kt:829–831`) tests one `Char` at a time, so the tag characters
+`U+E0020`–`E007F` and other supplementary `Cf` characters stay. So does `U+3164`, because `withoutDefaultIgnorable` is
+not called there. The result is cosmetic, a blank tile or a near-duplicate; none of these can reverse a line.
+
+### Unsure (not confirmed)
+- **Episodes:** `List(readCount())` (`HostProtocol.kt:520`) presizes a list from the plugin's count, up to about 8 M,
+  before the first item fails. This predates the sections. It needs a heap measurement.
+- **`(allow file-read-metadata)` with no filter** (`SeatbeltProfile.kt:63`): any path under home can be stat'ed (not
+  listed). It is intentional, and broader than the file's own claim.
+- **`system.sb`'s other grants** (`xpc-service-name-prefix ""`, the syslog socket, `logd`): native code in the media
+  host could write to the system log.
+- **The plugin host keeps `mDNSResponder`:** a DNS lookup of `<data>.attacker.example` leaves the machine and never
+  appears in the gate's contacted names.
+- **No default uncaught-exception handler on the app's coroutine scopes:** a `PluginFailed` that escapes one would
+  print. Not every launch site was traced.
+
+### Confirmed correct (coverage)
+- **Section readers:**
+  - The frame length is checked before it is allocated (`HostProtocol.kt:183`).
+  - Each section after FACTS is checked against what is left, then against its cap, and is skipped in place when its
+    tag is unknown or repeated. The log line holds no plugin bytes.
+  - Art, ids, cast and recs: each field is checked against its cap before it is copied, and each count is capped.
+  - A length that lies fails the call, without putting the stream out of step.
+- **Values from a plugin to the screen:**
+  - Ids are validated, and reach only `HttpUrl.Builder` path segments.
+  - Cast and recommendation images go through `imageUrlOrNull` and `ThumbnailImage`.
+  - The backdrop is https only.
+  - Every image client checks the resolved and the connected address.
+- **Network:**
+  - `posterHttpClient`, `boundedImageClient`, the subtitle client, the downloads client (Ktor keeps the proxy and
+    DNS settings), the gateway and `OutboundGate` all check the connected address on every hop, with no proxy.
+  - Sign-in reaches only fixed endpoints; `Desktop.browse` opens only a checked Simkl url; no WebView, no plain
+    `URL.openStream`.
+- **Output:**
+  - Everything that #335 routed through `HostStderr` and `PluginFailed`.
+  - Downloads and storage logs carry a class name only.
+  - The OkHttp logger is off.
+  - The library store and download paths clean their strings and cap them.
+- **Profiles:**
+  - `deny default` first.
+  - One binary may run.
+  - Signals and process info are limited to the host itself.
+  - Sysctl is allowed by name.
+  - Writes are limited to the host's own directory.
+  - Network: the plugin host reaches only the gate, the stream host only its gateway; the converter and the file
+    host have none.
+  - No `mach-lookup` rule without a name, from the app's own rules.
+
 ## BUG-76 — `--check-playback` on a local file never played: the sandbox cannot read it · **low, check only**
 
 **Status:** fixed in this PR · found 2026-11-08 by sys-desktop-2 (frames=0 on master, before `BUG-73` too)
@@ -3157,6 +3341,35 @@ are staged; a stream URL, a missing file, a folder and a malformed `file://` URL
 command-line target is staged and a stream is not; a plugin's link naming a local file, by path or `file://` URL, is
 passed on as it is, never staged. The
 playback itself needs VLC and the sandbox, so it is the measurement above, not a unit test.
+
+## BUG-92 — A plugin's failure printed its own words to the Mac's default stdout and stderr · **medium, security** · fixed in this PR
+
+Found by the extension-wire audit (finding A-2). `BUG-83` kept a plugin's output off the default paths, but it traced
+the host's output, not exception messages. A failure a plugin reports arrives as `PluginFailed`, whose message is
+the plugin's text, redacted (urls, tokens, email addresses and IP literals cut). Two paths still printed that text:
+- Home and Search reach a provider through `APIRepository`, so through `safeApiCall`, whose `logError` printed
+  `safeApiCall: <message>` on stdout and the stack trace on stderr. The trace's first line is the exception's
+  `toString()`, so it held the message too. This ran at every launch where a search or a home page failed.
+- The title page's own log line, in `DesktopDetailSource`, printed the message on stderr.
+
+So a plugin's words reached the default output: an echoed query, a name, a short secret under the token rule.
+
+**Fix**, a body-only change in `:library`, which is published API, so `classes.jar` is unchanged:
+- `PluginFailed.toString()` is fixed in shape: `PluginFailed: <the class the plugin reported>`. A printed trace's
+  first line is that, so the trace carries none of the message either.
+- `logError` recognises `PluginFailed` by its simple name (`:library` cannot depend on the sandbox, and not every target
+  has qualified names) and prints that `toString()` instead of the message. Every other failure is logged as before.
+- The title page logs the same.
+- The screens still show the redacted reason. That is the user's own screen, not a log; `BUG-83`'s scope was
+  diagnostics.
+
+**Proof,** all local (CI is off): `PluginFailedLogTest`, 3, with stdout and stderr captured.
+- A `PluginFailed` through `safeApiCall` prints `PluginFailed: IllegalStateException` and none of the plugin's words,
+  and its `Resource.Failure` still carries the redacted reason.
+- Any other failure is logged as before, redacted.
+- The string and the trace's first line are fixed in shape.
+- Red-checked: without the special case in `logError`, and without the fixed `toString()`, the first test fails (and,
+  for the second, the third).
 
 ## BUG-73 — Two copies of JNA in the Mac app, and which one ran depended on how it was started · **low** · **in pr #280**
 
@@ -3302,6 +3515,41 @@ read as films, so they go too:
 rating come from the numbers and only change their names.
 
 Tests: the same 84 in 6 classes, 189 assertion calls before and after, all passing.
+
+## BUG-90 — libVLC's stream url is checked once, by name, and nothing checks what it then connects to · **medium, security** · narrowed in this PR; the full fix is `KMP-113`
+
+A stream url is checked before libVLC is given it (`SandboxPolicy.isPublicHttpUrl`: http(s) only, no user info,
+every address its name resolves to public; called from `RemoteLink.isPublic` when the link arrives, and from
+`PlaybackCheck`). libVLC then resolves and connects on its own, in the media host, whose sandbox allows any address
+but loopback: Seatbelt can name only `localhost` or `*`, so the LAN, the router and `169.254.169.254` are reachable
+from it. Three things are never checked:
+- **A name that resolves differently by then.** The check resolves once; libVLC resolves again, later. A name that
+  answers public first and private second (rebinding) passes the check and connects to the private address.
+- **libVLC's own redirects.** It follows a 3xx to wherever it points, private addresses included.
+- **HLS and DASH sub-urls.** A plugin's playlist can name variant, segment, key (`EXT-X-KEY`), map and media urls
+  on any host, private ones included, and libVLC fetches each one. Only the playlist's own url was checked.
+
+**Measured (scratch, VLC 3.0.24):** a forward proxy cannot close this. Under a policy allowing only a local proxy,
+https (the http module over its TLS client) connects directly and ignores `--socks`; `--http-proxy` no longer
+exists; `http_proxy` and `https_proxy` are not read. Only plain http goes through SOCKS. So every https stream
+would fail closed. The full fix is a TLS-terminating local gateway that fetches with the app's address-checked
+client and rewrites playlist urls to itself (`KMP-113`, design first).
+
+**Here (narrowing, not the fix):** `VlcPlayer.play` checks the url and the audio url again, the moment before it
+sends them to the host, with the same rules. A link that has turned private since it arrived, by a changed answer
+or a stale one, is refused there, and the player shows its failure. The window left is from that check to libVLC's
+own lookup, plus everything after it: redirects and playlist urls are as open as before.
+- The player screen starts a stream off the UI thread now (`LaunchedEffect` on `Dispatchers.IO`), because the check
+  looks the name up and a lookup can take seconds. Releasing stays where it was.
+- `--check-playback` on a local file (`BUG-76`) plays its copy through `playStaged`: a `file:` url is not a stream,
+  so it does not meet the address check, and it names only the copy in the host's own directory.
+- **A behaviour change in the check command:** `--check-playback <url>` passed its url to the host unchecked. A LAN
+  address played; loopback was already refused, by the sandbox's `localhost` rule, at connect. Both are now refused
+  by `play` before the host is asked, as any stream is.
+
+**Proof,** all local (CI is off): `VlcPlayerUrlCheckTest`. A resolver answers public for the link check and then
+private: `play` refuses and sends the host nothing. The control, public both times, sends the url. The audio url
+is checked the same way. Without the check in `play`, the refusal test fails (checked).
 
 ## BUG-78 — A stored poster address could carry userinfo, on the Mac's library and downloads · **low, security**
 
@@ -3720,3 +3968,94 @@ a stack frame, it is kept.
     is under 24 characters.
 - **Follow-up, not here:** `close()` waits up to 500 ms for stderr to drain, so a report made after it can still miss
   the end of a slow host's output.
+
+## BUG-89 — Two identical extension files raced for one store entry, and the loser failed the whole launch · **medium** · measured 2026-11-10
+
+**Found** while building `KMP-110b`'s hold tests: two files with the same bytes in `~/.cloudstream4/extensions`,
+loaded at once, both want `.store/<sha256>.jar`.
+
+**Cause:**
+- **One staging name for one target.** `SandboxedExtensions.toStore` staged every copy of a hash as
+  `.store/<sha256>.jar.part`, and deleted it first. Two loads at once deleted or moved each other's staging file, and one
+  move failed with `NoSuchFileException`. `convertIntoStore` had the same shared name for `.cs3` conversions
+  (`<target>.staging`).
+- **The failure escaped the load.** `loadOne` caught only `IllegalStateException` from `toStore`. An `IOException` left
+  `loadInstalled` (and `scanInstalled`), and with it the launch.
+
+**Fix:**
+- Each copy and each conversion gets a staging file of its own (`Files.createTempFile` in the store), so two cannot
+  take each other's.
+- A move that fails anyway counts as success only when the target is there and is exactly these bytes (its SHA-256
+  matches); otherwise the failure stands.
+- An `IOException` from the store refuses that one file ("the extension store could not be written"), and the launch
+  goes on. Its message is not kept, since a `Files` exception names the home directory.
+
+**Proof,** all local (CI is off):
+- **Red,** against master's code: `StoreRaceTest`'s two cases both failed. Four identical jars scanned at once, 40 rounds
+  with a fresh store each: `java.nio.file.NoSuchFileException` escaped `scanInstalled`. A store that cannot be written:
+  `java.io.FileNotFoundException (Permission denied)` escaped too.
+- **Review (`#347`):** the read-only case also checks the outcome names no path; a third case has one file whose store
+  entry is taken by a non-empty directory, so only that file is refused and the next is still scanned; the hash-match
+  fallback reads the target with `NOFOLLOW_LINKS`, as the rest of the store does. Red: with the exception's text in
+  the outcome, or with the `IOException` not caught, both of those cases fail. The link check is not red-checked: a
+  move onto a link replaces the link, so it cannot be made to fail there.
+- **Green (`#347` review):** `StoreRaceTest` 3 of 3, `:desktopApp:jvmTest` 746 of 746; the five gates passed, 272 XML results with 0 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged.
+- **Green:** `StoreRaceTest` 2 of 2, `ConvertIntoStoreTest` 5 of 5, `:desktopApp:jvmTest` 745 of 745. The five gates
+  passed, 272 XML results with 0 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged.
+
+## BUG-79 — TV Home offline under the bookmarks: a headline that wraps moves the chrome, and its offline notice, off the screen · **medium, visual, i18n**
+
+**Status:** fixed in this PR · reproduced on master `b3ea4b59e`
+
+3g puts the offline notice ("You are offline") in the chrome when the bookmarks stay above offline's prompt. The prompt
+under them is "<source> needs a connection", the body "Your bookmarks are saved on this device." and Try again, in a
+slot sized to exactly what 720p leaves below the bookmarks. A headline that wraps makes the prompt taller than the slot.
+When Try again takes focus, `revealState` moves the page until the chrome is wholly off the screen, the rule kept from
+the Continue watching case so the chrome is never left in a TV's overscan. The notice goes with it, and nothing left
+on the screen says the device is offline.
+
+**Measured** on `Television_720p`, three bookmarks, offline, Try again focused:
+- English with the source "Source One": the headline is one line, the chrome rests at 36dp. Correct.
+- The same source in `so`, `nl` and `my`: the headline wraps (two lines, three in `my`), and the chrome's top is at
+  -39.8dp: wholly off the screen, notice included.
+- English with a 58-character source name: three lines, the same -39.8dp.
+- Every locale's headline with "Source One", in `StateView`'s h1 at its 480dp width: 18 of 62 wrap. They are `af`, `de`,
+  `el`, `fil`, `fr`, `hu`, `it`, `lv`, `mk`, `ml`, `ms`, `my`, `nl`, `pt`, `ro`, `so`, `ta` and `tl`. So German, French,
+  Italian and Portuguese users hit this today, with a source name as short as "Source One". A longer name wraps in more.
+- Dropping the body under the bookmarks, as is done under Continue watching, is not enough: `so`'s two-line headline
+  alone still moves the chrome off.
+- Font scale, set through `LocalDensity` around `HomeScreenTv`: the scale reaches the screen. The body grows from 22 to
+  34px at 1.5, the chrome's notice from 19 to 28px at 1.5 and 38px at 2.0, and the bookmarks' title from 32 to 40 and
+  53px. The h1 headline stays one 50px line at 1.5, since Android scales large text far less than small text. So English
+  with "Source One" still fits as 3g at 1.5, and at 2.0, Android's largest setting, it does not. (An earlier note here said
+  font scale changed nothing; it read only the headline, and was wrong.)
+
+**Fix.** Where 3g's prompt fits under the bookmarks, it is unchanged. Where it does not, offline's prompt is 3m's band,
+the one a failure under the local rails already is: the hollow marker, "<source> needs a connection" on one line
+(ellipsized if it is wider than the band, its whole text kept in the semantics), and Try again at the band's end, which
+takes focus. The band fits, so the page does not move, and the chrome and its offline notice stay on the screen.
+- The check, `offlinePromptFits` in `HomeScreenTv.kt`, measures the headline and the body with a `TextMeasurer` and what
+  `StateView` draws them with: its h1 and body styles, centred, at most `StateViewDefaults.MaxTextWidth` (480dp) wide and
+  no wider than the page's content. The rest of `StateView`'s stack is a named value,
+  `HomeScreenTvDefaults.StatePromptStackHeight`: the glyph's box, three gaps and the button, from `StateViewDefaults`
+  and `TextButtonHeight` (136dp). A prompt fits when the two add up to no more than the slot, give or take the 2px of
+  rounding the page's move already allows.
+- Only offline under the bookmarks alone changes. Under Continue watching the body already goes, and a state too tall
+  there still moves the chrome wholly off, as before.
+
+**Proof,** all local (CI is off):
+- **Red:** three new device tests on master's code, all failing with "the chrome rests … expected:<36.0> but was:
+  <-39.812206>": Somali with "Source One" (two lines), Burmese with "Source One" (three lines), and English with a
+  58-character name.
+- **Green:** the same three pass. Each asserts the chrome at rest (36dp), "You are offline" displayed, the full headline
+  in the semantics, no 3g body, the headline one line beside Try again, and Try again focused inside the bottom band.
+- **Font scale:** English with "Source One" at 2.0 is the band, with the chrome at rest and its notice shown, and its
+  headline measured taller than the same words at 1.0. It fails, as the three above do, with the fit check forced to pass.
+  At 1.5 it stays 3g with the chrome at rest, and the notice is measured taller than at 1.0.
+- From #330's review, in a follow-up: at 2.0 the test also asserts that the headline ends before Try again, and both
+  font-scale tests measure their 1.0 heights with the typography the theme draws the screen with.
+- English with "Source One" stays 3g: `offlineKeepsTheBookmarksAboveTheStateDimmedAndSaysWhatNeedsTheConnection` and
+  `home-offline-bookmarks-focus-retry` pass unchanged. `aStateTooTallUnderContinueWatchingMovesTheChromeWhollyOffTheScreen`
+  passes too.
+- Two new screenshots, looked at: `home-offline-bookmarks-wrapped-focus-retry` (Somali) and
+  `home-offline-bookmarks-long-name-focus-retry`. No existing reference changed.

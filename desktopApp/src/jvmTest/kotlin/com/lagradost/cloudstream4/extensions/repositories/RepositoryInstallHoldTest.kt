@@ -91,7 +91,7 @@ class RepositoryInstallHoldTest {
             status = ExtensionStatus.Ok, version = 1, apiVersion = 1,
             jarUrl = "https://files.example/plain.jar", jarHash = ExtensionHash.of(bytes), jarFileSizeBytes = bytes.size.toLong(),
         )
-        val installer = RepositoryInstaller(directory, fetch = { _, _ -> Fetched.Bytes(bytes) })
+        val installer = RepositoryInstaller(directory, fetch = { _, _, _ -> Fetched.Bytes(bytes) })
         return assertIs<InstallResult.Installed>(runBlocking { installer.install("https://files.example/repo.json", listing) }).fileName
     }
 
@@ -167,6 +167,19 @@ class RepositoryInstallHoldTest {
         val load = runBlocking { extensions.loadInstalled() }.loads.single()
         assertEquals(LoadState.Held, load.state, load.outcome)
         assertTrue(extensions.providers.none { it.name == "Plain" })
+    }
+
+    /** `#336` review: the installed list unreadable holds everything not allowed, as the decisions file does. */
+    @Test
+    fun `with the installed list damaged, a repository's file and a clean side-loaded one are both held`() {
+        needsSandbox()
+        val fromRepository = installPlain()
+        writeFixtureJar(File(directory, "SideLoaded.jar"), PlainPlugin::class.java, PlainApi::class.java, padding = "side-loaded")
+        InstalledFromRepositories.fileFor(directory).writeText("garbage")
+        val loads = runBlocking { extensions.loadInstalled() }.loads
+        assertEquals(LoadState.Held, loads.single { it.fileName == fromRepository }.state)
+        assertEquals(LoadState.Held, loads.single { it.fileName == "SideLoaded.jar" }.state)
+        assertTrue(extensions.providers.none { it.name == "Plain" }, "something started")
     }
 
     private companion object {

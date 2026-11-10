@@ -1,5 +1,8 @@
 package com.lagradost.cloudstream4.feature.home.desktop
 
+import com.lagradost.cloudstream4.core.strings.generated.resources.add_repository
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_no_sources_body
+import com.lagradost.cloudstream4.core.strings.generated.resources.home_no_sources_title
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.FiniteAnimationSpec
 import androidx.compose.animation.fadeIn
@@ -156,8 +159,17 @@ fun HomeScreenDesktop(
     now: () -> Long = { Clock.System.now().toEpochMilliseconds() },
     showRandom: Boolean = true,
     posterSize: PosterSize = PosterSize.Medium,
+    onAddRepository: (() -> Unit)? = null,
 ) {
-    val status = state.status.toUiState(state.selectedOption?.name, onAction)
+    // `KMP-110c`, board X6: with nothing installed at all, the way on is a repository, and nothing is suggested.
+    val nothingInstalled = onAddRepository?.let { add ->
+        StatePrompt(
+            headline = stringResource(Res.string.home_no_sources_title),
+            body = stringResource(Res.string.home_no_sources_body),
+            action = StateAction(stringResource(Res.string.add_repository), CloudStreamIcons.Add, add),
+        )
+    }
+    val status = state.status.toUiState(state.selectedOption?.name, install = null, onAction, nothingInstalled)
     val local = state.hero is HomeHero.Shown || state.history.resume.isNotEmpty() || state.bookmarks.all.isNotEmpty()
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {

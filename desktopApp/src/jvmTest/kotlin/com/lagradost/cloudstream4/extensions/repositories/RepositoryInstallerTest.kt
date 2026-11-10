@@ -11,6 +11,11 @@ import java.io.IOException
 import java.nio.file.Files
 import java.nio.file.attribute.PosixFilePermissions
 import java.util.concurrent.atomic.AtomicInteger
+import kotlinx.coroutines.CompletableDeferred
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.awaitCancellation
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
@@ -48,7 +53,7 @@ class RepositoryInstallerTest {
 
     private fun installer(beforeMove: () -> Unit = {}) = RepositoryInstaller(
         directory,
-        fetch = { url, _ ->
+        fetch = { url, _, _ ->
             fetches.incrementAndGet()
             files[url] ?: Fetched.Failed(RepositoryFailure.NotFound)
         },
@@ -206,6 +211,36 @@ class RepositoryInstallerTest {
         assertEquals(InstallResult.Failed(InstallFailure.NotSaved), failed)
         assertContentEquals(before, File(directory, first.fileName).readBytes())
         assertEquals(3, installed()?.single()?.version)
+    }
+
+    /** `KMP-110c`: Cancel while the file is fetched leaves nothing on disk and nothing recorded. */
+    @Test
+    fun `a cancelled install writes nothing and records nothing`() = runBlocking {
+        val started = CompletableDeferred<Unit>()
+        val slow = RepositoryInstaller(directory, fetch = { _, _, progress ->
+            progress(5, 20)
+            started.complete(Unit)
+            awaitCancellation()
+        })
+        val job = launch(Dispatchers.Default) { slow.install(REPO, listing()) }
+        started.await()
+        job.cancelAndJoin()
+        assertEquals(emptyList(), listed())
+        assertEquals(emptyList(), File(directory, ".incoming").list()?.toList().orEmpty(), "no .part")
+        assertTrue(decisions().all.isEmpty(), "no Pending left behind")
+        assertEquals(emptyList(), installed().orEmpty())
+    }
+
+    @Test
+    fun `progress is passed on as it arrives`() = runBlocking {
+        val seen = mutableListOf<Pair<Long, Long?>>()
+        val reporting = RepositoryInstaller(directory, fetch = { _, _, progress ->
+            progress(8, bytes.size.toLong())
+            progress(bytes.size.toLong(), bytes.size.toLong())
+            Fetched.Bytes(bytes)
+        })
+        assertIs<InstallResult.Installed>(reporting.install(REPO, listing()) { received, stated -> seen += received to stated })
+        assertEquals<List<Pair<Long, Long?>>>(listOf(8L to bytes.size.toLong(), bytes.size.toLong() to bytes.size.toLong()), seen)
     }
 
     /** `KMP-110b` review: the entry is written before the move, and taken back when the move does not happen. */

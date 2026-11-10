@@ -1251,3 +1251,49 @@ Renders: in the shared local review folder (not published).
     Android have.
 
 **Strings:** `I18N-21`.
+
+## DS-28 — The app icon (icon A) on Android, Android TV and the Mac · **done**
+
+The mark, as approved: a white cloud with a red play (`#CD3D4B`) on a dark radial ground (`#121821` to `#05070A`),
+centred on its canvas. It is a brand mark, which `icons.md` exempts from the icon pack.
+
+**One source.** One generator wrote every vector and every PNG from the same numbers: the cloud's circles and rounded
+rect, the play, the centring shift and the ground. The cloud is one outline: arcs between the shapes' outer
+intersections. Against the union of its shapes, rasterised at 1024, 1,292 of 1,048,576 pixels differ in alpha, all on
+anti-aliased edges, worst 31/255.
+
+**Android** (`app/src/{main,prerelease,debug}/res`). Resources were changed in place; none was added or removed, so
+`R`, and with it `classes-jar.api`, is unchanged:
+- **Adaptive icon.** `ic_launcher_foreground` is the mark, 55 dp wide on the 108 dp canvas. Its farthest point is 30.8 dp
+  from the centre, inside the 33 dp safe circle. `ic_launcher.xml` and `ic_launcher_round.xml` now take
+  `@drawable/ic_launcher_background`, the radial ground as a vector. It used to be the template's unused green grid.
+  `@color/ic_launcher_background` stays, set to `#0A0E13`, because `R` keeps it. Nothing references it now: the
+  adaptive icons were its only users, and the splash draws `?attr/primaryBlackBackground`.
+- **Themed icon (Android 13).** `ic_cloudstream_monochrome` is the cloud with the play cut out (`evenOdd`).
+- **Legacy PNGs (API 24 and 25).** A circle of ground, Material's 176 of 192 keyline, with the mark at the adaptive
+  icon's scale, at mdpi to xxxhdpi, square and round.
+- **TV banner.** `ic_banner_background` (320 × 180 dp) is the mark at 40 dp tall with "CloudStream" in Manrope Bold,
+  caps 20 dp, 12 dp apart, the pair centred. Margins are 35.9 and 37.6 dp, measured on the vector. The wordmark is
+  glyph outlines, so the banner needs no font. `mipmap-xhdpi/ic_banner.png` is the same at 320 × 180 px.
+- **Flavours.** The three builds install side by side and were told apart by the icon's colour. They still are, by the
+  play alone: stable `#CD3D4B`, Beta (`prerelease`) `#C2700A` and debug `#2F8F46`. Against the white cloud these are
+  4.81, 3.74 and 4.09 to 1, all above 3 to 1 for a graphic.
+
+**Mac** (`desktopApp`). `src/desktop-icons/icon-macos.icns` is built with `iconutil` from 10 PNGs at 16 to 1024. It is
+wired into `nativeDistributions.macOS.iconFile`. macOS masks nothing, so it follows Apple's grid: an 824 rounded square
+(radius 185.4) on a 1024 canvas, with the template's shadow, and master's composition fitted to the tile.
+
+**Checked.**
+- The vectors were converted to SVG and drawn in Chrome, and their boxes were measured.
+- The packaged app's bundle names `CloudStream.icns`, which is byte-identical to the source.
+- The running app's icon was read from macOS (`NSRunningApplication.icon`). A screenshot of the Dock could not be
+  taken: the session has no screen-recording access.
+
+**Left as they were.**
+- `ic_banner_foreground` (all three source sets): no banner references it.
+- `ic_cloudstream_monochrome_big`: the notification and TV rail glyph. It is not the launcher icon.
+- The Windows and Linux icons' artwork (the old mark).
+
+**Fixed alongside** (the PM's call, 2026-11-10). `iconsRoot` in `desktopApp/build.gradle.kts` named `desktop-icons/`, but
+the icons are in `src/desktop-icons/`, so the Windows and Linux `iconFile`s named missing files, and an `.msi` or `.deb`
+would have failed to package. It is now `src/desktop-icons`, and the Mac's `iconFile` goes through it too.
