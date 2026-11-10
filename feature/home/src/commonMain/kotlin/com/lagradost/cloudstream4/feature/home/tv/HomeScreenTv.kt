@@ -614,9 +614,12 @@ private fun offlinePromptFits(prompt: StatePrompt, pageWidth: Dp, slot: Dp): Boo
     val density = LocalDensity.current
     val content = pageWidth - HomeScreenTvDefaults.ContentInsetStart - HomeScreenTvDefaults.ContentInsetEnd
     val constraints = with(density) { Constraints(maxWidth = minOf(StateViewDefaults.MaxTextWidth, content).roundToPx()) }
-    val headline = measurer.measure(prompt.headline, typography.h1.copy(textAlign = TextAlign.Center), constraints = constraints)
-    val body = measurer.measure(prompt.body, typography.body.copy(textAlign = TextAlign.Center), constraints = constraints)
-    val needed = headline.size.height + body.size.height + with(density) { HomeScreenTvDefaults.StatePromptStackHeight.toPx() }
+    val words = remember(prompt.headline, prompt.body, constraints, density) {
+        val headline = measurer.measure(prompt.headline, typography.h1.copy(textAlign = TextAlign.Center), constraints = constraints)
+        val body = measurer.measure(prompt.body, typography.body.copy(textAlign = TextAlign.Center), constraints = constraints)
+        headline.size.height + body.size.height
+    }
+    val needed = words + with(density) { HomeScreenTvDefaults.StatePromptStackHeight.toPx() }
     return needed <= with(density) { slot.toPx() } + ROUNDING_PX
 }
 

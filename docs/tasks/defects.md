@@ -3742,8 +3742,11 @@ on the screen says the device is offline.
   Italian and Portuguese users hit this today, with a source name as short as "Source One". A longer name wraps in more.
 - Dropping the body under the bookmarks, as is done under Continue watching, is not enough: `so`'s two-line headline
   alone still moves the chrome off.
-- A font scale of 1.3 and 1.5, set through `LocalDensity` in the test, did not change the headline's height. The system
-  setting itself was not tried.
+- Font scale, set through `LocalDensity` around `HomeScreenTv`: the scale reaches the screen. The body grows from 22 to
+  34px at 1.5, the chrome's notice from 19 to 28px at 1.5 and 38px at 2.0, and the bookmarks' title from 32 to 40 and
+  53px. The h1 headline stays one 50px line at 1.5, since Android scales large text far less than small text. So English
+  with "Source One" still fits as 3g at 1.5, and at 2.0, Android's largest setting, it does not. (An earlier note here said
+  font scale changed nothing; it read only the headline, and was wrong.)
 
 **Fix.** Where 3g's prompt fits under the bookmarks, it is unchanged. Where it does not, offline's prompt is 3m's band,
 the one a failure under the local rails already is: the hollow marker, "<source> needs a connection" on one line
@@ -3764,6 +3767,9 @@ takes focus. The band fits, so the page does not move, and the chrome and its of
   58-character name.
 - **Green:** the same three pass. Each asserts the chrome at rest (36dp), "You are offline" displayed, the full headline
   in the semantics, no 3g body, the headline one line beside Try again, and Try again focused inside the bottom band.
+- **Font scale:** English with "Source One" at 2.0 is the band, with the chrome at rest and its notice shown, and its
+  headline measured taller than the same words at 1.0. It fails, as the three above do, with the fit check forced to pass.
+  At 1.5 it stays 3g with the chrome at rest, and the notice is measured taller than at 1.0.
 - English with "Source One" stays 3g: `offlineKeepsTheBookmarksAboveTheStateDimmedAndSaysWhatNeedsTheConnection` and
   `home-offline-bookmarks-focus-retry` pass unchanged. `aStateTooTallUnderContinueWatchingMovesTheChromeWhollyOffTheScreen`
   passes too.

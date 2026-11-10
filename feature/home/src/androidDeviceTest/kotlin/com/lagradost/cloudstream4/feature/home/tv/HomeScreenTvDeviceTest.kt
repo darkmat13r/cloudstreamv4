@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -16,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.SemanticsActions
 import androidx.compose.ui.semantics.SemanticsProperties
@@ -39,6 +41,11 @@ import androidx.compose.ui.graphics.asAndroidBitmap
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.test.captureToImage
 import androidx.compose.ui.text.TextLayoutResult
+import androidx.compose.ui.text.TextMeasurer
+import androidx.compose.ui.text.font.createFontFamilyResolver
+import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.DpRect
+import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import androidx.test.platform.app.InstrumentationRegistry
@@ -64,6 +71,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
+import com.lagradost.cloudstream4.core.theme.cloudStreamTypography
 import com.lagradost.cloudstream4.feature.home.HomeAction
 import com.lagradost.cloudstream4.feature.home.HomeBookmark
 import com.lagradost.cloudstream4.feature.home.HomeBookmarkStore
@@ -144,7 +152,8 @@ class HomeScreenTvDeviceTest {
     @After
     fun stopTheViewModel() = scope.cancel()
 
-    private fun showScreen(resume: Boolean = true) {
+    /** @param fontScale the font scale the screen is drawn at, as a viewer's accessibility setting would set it. */
+    private fun showScreen(resume: Boolean = true, fontScale: Float? = null) {
         rule.setContent {
             val state by viewModel.state.collectAsState()
             val view = androidx.compose.ui.platform.LocalView.current
@@ -162,12 +171,17 @@ class HomeScreenTvDeviceTest {
             CloudStreamTheme {
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
                     if (onScreen) {
-                        HomeScreenTv(
-                            state = state,
-                            onAction = viewModel::onAction,
-                            mayTakeFocus = { mayTakeFocus },
-                            hostFocus = hostFocus,
-                        )
+                        val density = LocalDensity.current
+                        CompositionLocalProvider(
+                            LocalDensity provides Density(density.density, fontScale = fontScale ?: density.fontScale),
+                        ) {
+                            HomeScreenTv(
+                                state = state,
+                                onAction = viewModel::onAction,
+                                mayTakeFocus = { mayTakeFocus },
+                                hostFocus = hostFocus,
+                            )
+                        }
                     }
                 }
             }
@@ -1429,6 +1443,66 @@ class HomeScreenTvDeviceTest {
         rule.onNode(isFocused()).assertIsDisplayed()
     }
 
+    /** The height, in dp, of [text] set in [style] at a font scale of 1.0, which is what this test's screen is at by default. */
+    private fun heightAtOne(text: String, style: androidx.compose.ui.text.TextStyle) = with(rule.density) {
+        val context = InstrumentationRegistry.getInstrumentation().targetContext
+        TextMeasurer(createFontFamilyResolver(context), Density(density, fontScale = 1f), LayoutDirection.Ltr)
+            .measure(text, style).size.height.toDp()
+    }
+
+    private fun DpRect.heightDp() = (bottom - top).value
+
+    /**
+     * `BUG-79` at the largest font scale: English and "Source One", which fits as 3g at 1.0, does not at 2.0, and is the
+     * band, with the chrome resting and its notice shown. The band's headline is measured against the same words at 1.0, so
+     * the scale is known to have reached the screen.
+     */
+    @Test
+    fun offlineUnderTheBookmarksAtTheLargestFontScaleIsTheBandAndTheChromeStays() {
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        bookmarking(3)
+        showScreen(fontScale = LARGEST_FONT_SCALE)
+        awaitFocus(RETRY)
+        Thread.sleep(MOVE_SETTLE_MS)
+        rule.waitForIdle()
+
+        assertEquals("the chrome rests", CHROME_CONTROL_TOP, rule.onNodeWithContentDescription(SOURCE_ONE).getUnclippedBoundsInRoot().top.value, GEOMETRY_SLACK)
+        rule.onNodeWithText(OFFLINE).assertIsDisplayed()
+        val headline = "${ONE.name} needs a connection"
+        val drawn = rule.onNodeWithText(headline).getUnclippedBoundsInRoot().heightDp()
+        val atOne = heightAtOne(headline, cloudStreamTypography().label).value
+        assertTrue("the headline is taller at 2.0, $drawn against $atOne at 1.0", drawn > atOne * 1.5f)
+        rule.onAllNodesWithText("Your bookmarks are saved on this device.").fetchSemanticsNodes().let {
+            assertTrue("no 3g body", it.isEmpty())
+        }
+        val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
+        val line = rule.onNodeWithText(headline).getUnclippedBoundsInRoot()
+        assertTrue("the headline is one line beside Try again, was $line against $retry", line.bottom - line.top < retry.bottom - retry.top)
+        assertTrue("the button is inside the band", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
+    }
+
+    /**
+     * `BUG-79`: at 1.5 the same page still fits as 3g. Android scales large text far less than small text, so the h1
+     * headline stays one line while the body and the chrome's notice grow (measured). The notice is measured against the
+     * same words at 1.0, so the scale is known to have reached the screen.
+     */
+    @Test
+    fun offlineUnderTheBookmarksAtFontScaleOneAndAHalfStaysThreeG() {
+        source.answer = { _, _, _ -> HomePageReply.Offline }
+        bookmarking(3)
+        showScreen(fontScale = LARGE_FONT_SCALE)
+        awaitFocus(RETRY)
+        Thread.sleep(MOVE_SETTLE_MS)
+        rule.waitForIdle()
+
+        assertEquals("the chrome rests", CHROME_CONTROL_TOP, rule.onNodeWithContentDescription(SOURCE_ONE).getUnclippedBoundsInRoot().top.value, GEOMETRY_SLACK)
+        val notice = rule.onNodeWithText(OFFLINE).assertIsDisplayed().getUnclippedBoundsInRoot().heightDp()
+        val atOne = heightAtOne(OFFLINE, cloudStreamTypography().label).value
+        assertTrue("the notice is taller at 1.5, $notice against $atOne at 1.0", notice > atOne * 1.3f)
+        rule.onNodeWithText("Your bookmarks are saved on this device.").assertIsDisplayed()
+        rule.onNode(isFocused()).assertIsDisplayed()
+    }
+
     @Test
     fun offlineUnderTheBookmarksASomaliHeadlineOnTwoLinesIsTheBandAndTheChromeStays() =
         aWrappedOfflineHeadlineIsTheBand("so", ONE.name)
@@ -2328,6 +2402,10 @@ class HomeScreenTvDeviceTest {
         const val LONG_SOURCE_NAME = "Anime Multi-Language Streaming Provider Collection Extended"
         /** Long enough for the page's animated move to finish, so a test sees where the page ends up. */
         const val MOVE_SETTLE_MS = 1500L
+        /** A large font size setting, short of the largest. */
+        const val LARGE_FONT_SCALE = 1.5f
+        /** Android's largest font size setting. */
+        const val LARGEST_FONT_SCALE = 2f
         const val COLOUR_SLACK = 8
         val FEATURED = HomeFeatured(
             id = "id/A 0",
