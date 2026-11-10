@@ -14,6 +14,7 @@ import com.lagradost.cloudstream4.feature.extensions.ExtensionListing
 import com.lagradost.cloudstream4.feature.extensions.ExtensionStatus
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ExtensionScanner
 import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
+import com.lagradost.cloudstream4.extensions.ExtensionDecisions
 import java.io.File
 import java.nio.file.Files
 import kotlinx.coroutines.CoroutineScope
@@ -29,6 +30,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
+import org.junit.Assume.assumeTrue
 
 /**
  * `KMP-110b`, through the real pipeline: a file a repository installed is held even when the real scanner finds nothing,
@@ -59,16 +61,33 @@ class RepositoryInstallHoldTest {
         home.deleteRecursively()
     }
 
-    private val hasSandbox get() = HostLauncher.forThisProcess() != null
+    /** Skipped, and said to be, where there is no `sandbox-exec`: nothing is loaded on those platforms at all. */
+    private fun needsSandbox() = assumeTrue("no sandbox-exec on this platform", HostLauncher.forThisProcess() != null)
 
-    /** The clean fixture, installed as a repository's jar. */
-    private fun installPlain(): String {
+    private val decisions get() = ExtensionDecisions.fileFor(directory)
+
+    /** Damage the decisions file the way a bad restore or a disk error would: it fails its checksum. */
+    private fun damageDecisions() = decisions.appendText("damaged\n")
+
+    private fun restart() {
+        extensions.providers.forEach {
+            APIHolder.allProviders.remove(it)
+            APIHolder.removePluginMapping(it)
+        }
+        extensions.close()
+        extensions = SandboxedExtensions(directory)
+    }
+
+    /** The clean fixture, installed as a repository's jar under [internalName]. */
+    private fun installPlain(internalName: String = "Plain"): String {
         val jar = File(home, "built.jar")
-        writeFixtureJar(jar, PlainPlugin::class.java, PlainApi::class.java)
+        // Padded by name, so two installs are two different files: two identical files in the folder race for one
+        // store entry, which is not what these tests are about.
+        writeFixtureJar(jar, PlainPlugin::class.java, PlainApi::class.java, padding = internalName)
         assertEquals(emptyList(), ExtensionScanner.scan(jar).findings, "the fixture must scan clean, or this proves nothing")
         val bytes = jar.readBytes()
         val listing = ExtensionListing(
-            internalName = "Plain", name = "Plain", downloadUrl = "https://files.example/plain.cs3",
+            internalName = internalName, name = internalName, downloadUrl = "https://files.example/plain.cs3",
             status = ExtensionStatus.Ok, version = 1, apiVersion = 1,
             jarUrl = "https://files.example/plain.jar", jarHash = ExtensionHash.of(bytes), jarFileSizeBytes = bytes.size.toLong(),
         )
@@ -78,7 +97,7 @@ class RepositoryInstallHoldTest {
 
     @Test
     fun `a clean file from a repository is held at launch, and runs once allowed`() {
-        if (!hasSandbox) return
+        needsSandbox()
         val fileName = installPlain()
         val report = runBlocking { extensions.loadInstalled() }
         val load = report.loads.single()
@@ -100,11 +119,53 @@ class RepositoryInstallHoldTest {
 
     @Test
     fun `installed while the app runs, a refresh takes it through the pipeline and starts nothing`() {
-        if (!hasSandbox) return
+        needsSandbox()
         runBlocking { extensions.loadInstalled() }
         val fileName = installPlain()
         val load = runBlocking { extensions.refresh(fileName) }
         assertEquals(LoadState.Held, load?.state, load?.outcome)
+        assertTrue(extensions.providers.none { it.name == "Plain" })
+    }
+
+    @Test
+    fun `with the decisions file damaged, a repository's file is held at launch`() {
+        needsSandbox()
+        installPlain()
+        damageDecisions()
+        val report = runBlocking { extensions.loadInstalled() }
+        assertTrue(report.decisionsUnreadable)
+        assertEquals(LoadState.Held, report.loads.single().state, report.loads.single().outcome)
+        assertTrue(extensions.providers.none { it.name == "Plain" }, "it started without Allow")
+    }
+
+    /**
+     * The second install replaces the damaged file (kept aside as `.damaged`), and with it the first install's Pending.
+     * The first is still held, by its installed entry.
+     */
+    @Test
+    fun `repairing a damaged file by choosing again leaves every other repository install held`() {
+        needsSandbox()
+        val first = installPlain("Plain")
+        damageDecisions()
+        installPlain("Second")
+        assertTrue(ExtensionDecisions.damagedFileFor(decisions).isFile)
+        assertTrue(!ExtensionDecisions(decisions).read().unreadable, "the second install repaired the file")
+        restart()
+        val loads = runBlocking { extensions.loadInstalled() }.loads
+        assertEquals(LoadState.Held, loads.single { it.fileName == first }.state)
+        assertTrue(loads.all { it.state == LoadState.Held }, loads.joinToString { "${it.fileName}=${it.state}" })
+        assertTrue(extensions.providers.none { it.name == "Plain" })
+    }
+
+    @Test
+    fun `with the decisions file damaged, a clean side-loaded file is held too`() {
+        needsSandbox()
+        writeFixtureJar(File(directory, "SideLoaded.jar"), PlainPlugin::class.java, PlainApi::class.java)
+        assertEquals(LoadState.Running, runBlocking { extensions.loadInstalled() }.loads.single().state, "runs while readable")
+        restart()
+        damageDecisions()
+        val load = runBlocking { extensions.loadInstalled() }.loads.single()
+        assertEquals(LoadState.Held, load.state, load.outcome)
         assertTrue(extensions.providers.none { it.name == "Plain" })
     }
 

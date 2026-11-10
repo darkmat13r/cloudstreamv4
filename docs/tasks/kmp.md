@@ -8063,6 +8063,35 @@ among them the clean fixture starting before it was allowed.
 gates passed, 276 XML results with 0 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is
 unchanged. All local.
 
+**Review (`#336`), fail closed.** The hold failed open when the decisions file could not be read: an empty snapshot
+had no choice, a clean scan started the file, and a write over the damaged file dropped every other repository file's
+`Pending`. Now:
+- a file named in `InstalledFromRepositories` is held unless this exact file is allowed, whatever else is recorded;
+- with the decisions file or the installed list unreadable, **every** file that is not allowed is held, side-loaded
+  ones included. **This changes master's behaviour for side-loaded files:** a clean one used to start with the
+  decisions file damaged;
+- the start decision is an exhaustive `when` over `ExtensionChoice`, so a choice added later has to say whether it
+  starts;
+- choosing again still repairs a damaged decisions file, as the shipped notice says, and the damaged file is first
+  copied whole to `extensions.decisions.damaged` (0600, one copy, the latest). DECIDED by the PM (option C, over
+  refusing to write, which left no way out but deleting the file by hand);
+- the installer writes its entry before the move and takes it back if the move does not happen, and a first install
+  that fails leaves no sidecar.
+
+Tests: `RepositoryInstallHoldTest` 3 more (a damaged file holds a repository install at launch; repairing it by
+choosing again leaves every other repository install held; a clean side-loaded file is held while it is damaged), and
+it now skips with `assumeTrue` where there is no `sandbox-exec`; `ExtensionDecisionsTest` 1 more (the `.damaged` copy:
+byte for byte, 0600, the latest only, none for a readable file); `RepositoryInstallerTest` 1 more (a first install that
+fails before its move leaves no entry and no file). **Red-checked one guard at a time:** without the installed-entry
+hold, the repair test fails; without the unreadable hold, the side-loaded test fails; without the copy aside, its test
+and the repair test fail; without the rollback, both "fails before its move" tests fail. **Green:** `:desktopApp:jvmTest`
+794 of 794; the five gates passed, 276 XML results with 0 failures; `:app:checkExtensionApi` passed and
+`app/api/classes-jar.api` is unchanged. All local.
+
+Found, not changed: two identical files in the extensions directory race for one `.store` entry when they load at once,
+and the loser's `NoSuchFileException` is not caught (`SandboxedExtensions.toStore` catches only
+`IllegalStateException`). Reported to the PM.
+
 ### 110c — next
 
 - [ ] The Settings → Extensions pane and Home's button, against the desktop board; names and descriptions through

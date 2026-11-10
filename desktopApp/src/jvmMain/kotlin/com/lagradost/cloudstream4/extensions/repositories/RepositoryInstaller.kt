@@ -34,7 +34,10 @@ sealed interface InstallFailure {
     /** Not the file its repository's hash describes. Nothing was written. */
     data object HashMismatch : InstallFailure
 
-    /** It could not be saved. The extension that was there before, if any, is still there. */
+    /**
+     * It could not be saved. The extension that was there before, if any, is still there, with its installed entry as it
+     * was; it may now be held, because the hold for this file was recorded first, and "ask again" is the failure to have.
+     */
     data object NotSaved : InstallFailure
 }
 
@@ -122,24 +125,10 @@ class RepositoryInstaller(
             try {
                 val target = inRoot(fileName)
                 decisions.record(fileName, sha256, ExtensionChoice.Pending)
-                val staged = stage(bytes)
-                try {
-                    val sidecar = inRoot(fileName + SIDECAR_SUFFIX)
-                    if (verification is ExtensionVerification.Verified && statedHash != null) {
-                        Files.move(stage(statedHash.trim().toByteArray(Charsets.US_ASCII)).toPath(), sidecar.toPath(), StandardCopyOption.ATOMIC_MOVE)
-                    } else {
-                        Files.deleteIfExists(sidecar.toPath())
-                    }
-                    beforeMove()
-                    Files.move(staged.toPath(), target.toPath(), StandardCopyOption.ATOMIC_MOVE)
-                } finally {
-                    Files.deleteIfExists(staged.toPath())
-                }
-                val replaced = listOf(other).filter { inRoot(it).isFile }
-                replaced.forEach { name ->
-                    Files.deleteIfExists(inRoot(name).toPath())
-                    Files.deleteIfExists(inRoot(name + SIDECAR_SUFFIX).toPath())
-                }
+                // The entry before the move (`KMP-110b` review): a file in the folder with no entry would be a
+                // repository's file the app does not know it installed. If the move fails, the entry is put back.
+                val before = installed.read() ?: throw IOException("the installed list could not be read")
+                val earlier = before.firstOrNull { it.fileName == fileName }
                 installed.put(
                     InstalledFromRepository(
                         fileName = fileName,
@@ -150,6 +139,32 @@ class RepositoryInstaller(
                         verified = verification is ExtensionVerification.Verified,
                     ),
                 )
+                val staged = stage(bytes)
+                var moved = false
+                try {
+                    val sidecar = inRoot(fileName + SIDECAR_SUFFIX)
+                    if (verification is ExtensionVerification.Verified && statedHash != null) {
+                        Files.move(stage(statedHash.trim().toByteArray(Charsets.US_ASCII)).toPath(), sidecar.toPath(), StandardCopyOption.ATOMIC_MOVE)
+                    } else {
+                        Files.deleteIfExists(sidecar.toPath())
+                    }
+                    beforeMove()
+                    Files.move(staged.toPath(), target.toPath(), StandardCopyOption.ATOMIC_MOVE)
+                    moved = true
+                } finally {
+                    Files.deleteIfExists(staged.toPath())
+                    if (!moved) {
+                        runCatching { if (earlier != null) installed.put(earlier) else installed.remove(fileName) }
+                        // A first install leaves nothing. An update leaves its earlier file, which meets the new sidecar
+                        // and is refused at the next launch, as the class KDoc says.
+                        if (earlier == null) runCatching { Files.deleteIfExists(inRoot(fileName + SIDECAR_SUFFIX).toPath()) }
+                    }
+                }
+                val replaced = listOf(other).filter { inRoot(it).isFile }
+                replaced.forEach { name ->
+                    Files.deleteIfExists(inRoot(name).toPath())
+                    Files.deleteIfExists(inRoot(name + SIDECAR_SUFFIX).toPath())
+                }
                 installed.read()?.filter { it.fileName in replaced }?.forEach { installed.remove(it.fileName) }
                 InstallResult.Installed(fileName, verification, replaced)
             } catch (_: IOException) {

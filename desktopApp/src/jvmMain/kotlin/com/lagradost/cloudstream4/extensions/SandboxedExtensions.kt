@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.extensions
 
 import com.lagradost.cloudstream3.APIHolder
+import com.lagradost.cloudstream4.extensions.repositories.InstalledFromRepositories
 import com.lagradost.cloudstream4.feature.extensions.ExtensionHash
 import com.lagradost.cloudstream4.feature.extensions.ExtensionVerification
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ExtensionScanner
@@ -49,6 +50,8 @@ class SandboxedExtensions(
     directory: File = defaultDirectory(),
     private val launcher: HostLauncher? = HostLauncher.forThisProcess(),
     private val decisions: ExtensionDecisions = ExtensionDecisions(ExtensionDecisions.fileFor(directory)),
+    /** What repositories installed (`KMP-110b`): a file named there is held unless allowed, whatever its choice says. */
+    private val installed: InstalledFromRepositories = InstalledFromRepositories(InstalledFromRepositories.fileFor(directory)),
 ) : ExtensionControl {
     private val root = directory.canonicalFile
     private val store = File(root, STORE_DIRECTORY)
@@ -175,28 +178,39 @@ class SandboxedExtensions(
         // Off unless this exact file was allowed. No other flag, argument or setting reaches past this.
         // A new version waits too, with warnings or without: a scan that finds nothing is not a review of different code.
         val recorded = withContext(Dispatchers.IO) { decisions.read() }
+        val installedList = withContext(Dispatchers.IO) { installed.read() }
         val newVersion = recorded.isNewVersion(source.name, sha256)
         val choice = recorded.choiceFor(source.name, sha256)
-        when {
-            choice == ExtensionChoice.Allow -> Unit
-            choice == ExtensionChoice.KeepOff ->
+        fun held(why: String, newVersion: Boolean = false, fromRepository: Boolean = false) = SandboxedLoad(
+            source.name, verification, scan, 0, "HELD: $why, waiting for a decision", sha256, LoadState.Held,
+            newVersion = newVersion, fromRepository = fromRepository,
+        )
+        // `KMP-110b` review: fail closed. A record that cannot be read cannot say yes, so with either file unreadable
+        // nothing starts that is not explicitly allowed in a file that could be read. A repository's file is held by its
+        // installed entry as well as by its Pending choice, so losing one of the two still holds it.
+        val recordUnreadable = recorded.unreadable || installedList == null
+        val fromRepository = installedList.orEmpty().any { it.fileName == source.name }
+        // Exhaustive over the choices: a choice added later has to say here whether it starts, or this does not compile.
+        when (choice) {
+            ExtensionChoice.Allow -> Unit
+            ExtensionChoice.KeepOff ->
                 return SandboxedLoad(source.name, verification, scan, 0, "kept off, as chosen", sha256, LoadState.KeptOff)
             // `KMP-110`: installed from a repository. Installing is not consent to run, warnings or none.
-            choice == ExtensionChoice.Pending ->
-                return SandboxedLoad(
-                    source.name, verification, scan, 0, "HELD: installed from a repository, waiting for a decision", sha256,
-                    LoadState.Held, fromRepository = true,
-                )
-            newVersion ->
-                return SandboxedLoad(
-                    source.name, verification, scan, 0, "HELD: a new version, waiting for a decision", sha256, LoadState.Held,
-                    newVersion = true,
-                )
-            scan.warnings > 0 ->
-                return SandboxedLoad(source.name, verification, scan, 0, "HELD: warnings, waiting for a decision", sha256, LoadState.Held)
-            // Scan-only writes nothing. A failed write costs noticing the next version, and is not worth refusing this one.
-            choice == null && start ->
-                withContext(Dispatchers.IO) { runCatching { decisions.record(source.name, sha256, ExtensionChoice.Seen) } }
+            ExtensionChoice.Pending -> return held("installed from a repository", fromRepository = true)
+            ExtensionChoice.Seen, null -> when {
+                recordUnreadable -> return held("the saved choices could not be read")
+                fromRepository -> return held("installed from a repository", fromRepository = true)
+                newVersion -> return held("a new version", newVersion = true)
+                scan.warnings > 0 -> return held("warnings")
+                // Seen: this exact file ran before with nothing to say. Null: first sight of a clean side-loaded file,
+                // which is recorded as Seen so the next version is noticed. Scan-only writes nothing, and a failed write
+                // costs noticing the next version, which is not worth refusing this one.
+                else -> {
+                    if (choice == null && start) {
+                        withContext(Dispatchers.IO) { runCatching { decisions.record(source.name, sha256, ExtensionChoice.Seen) } }
+                    }
+                }
+            }
         }
         if (!start) return SandboxedLoad(source.name, verification, scan, 0, "scanned only", sha256, LoadState.Scanned)
 

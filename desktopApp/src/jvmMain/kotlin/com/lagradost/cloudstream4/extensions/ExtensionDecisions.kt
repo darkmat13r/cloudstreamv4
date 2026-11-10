@@ -99,14 +99,19 @@ class ExtensionDecisions(
      * back to an earlier file asks again.
      *
      * Atomic: a crash leaves the old file or the new one. An unreadable file is replaced, since what it held
-     * no longer counts.
+     * no longer counts, but it is not destroyed: a regular file is first copied whole to [damagedFileFor] (0600, the
+     * one copy kept), so whoever wants to know what it said can still read it (`KMP-110b` review). Replacing it is how
+     * the person gets out: "stay off until you choose again" is the notice. Nothing starts because of the replacement,
+     * because a repository's file is also held by its installed entry, which this does not touch.
      *
      * @throws IOException when it could not be saved. The old file is untouched.
      */
     fun record(fileName: String, sha256: String, choice: ExtensionChoice): Unit = synchronized(lock) {
         require(fileName.matches(SAFE_NAME)) { "unsafe extension file name" }
         require(sha256.matches(SHA256)) { "not a SHA-256" }
-        val entries = read().all + (fileName to (sha256 to choice))
+        val current = read()
+        if (current.unreadable) keepDamaged()
+        val entries = current.all + (fileName to (sha256 to choice))
         val bytes = serialize(entries)
         val parent = checkNotNull(file.absoluteFile.parentFile) { "no parent directory" }
         if (!parent.mkdirs() && !parent.isDirectory) throw IOException("cannot create ${parent.name}")
@@ -120,6 +125,24 @@ class ExtensionDecisions(
             }
             beforeMove()
             Files.move(staging, file.toPath(), StandardCopyOption.ATOMIC_MOVE)
+        } finally {
+            Files.deleteIfExists(staging)
+        }
+    }
+
+    /** Copies the unreadable file to [damagedFileFor], replacing any earlier copy, before it is written over. */
+    private fun keepDamaged() {
+        val path = file.toPath()
+        // A link or a directory is not copied: following a link would copy whatever it points at.
+        if (!Files.isRegularFile(path, LinkOption.NOFOLLOW_LINKS)) return
+        val damaged = damagedFileFor(file).toPath()
+        val parent = checkNotNull(file.absoluteFile.parentFile) { "no parent directory" }
+        val staging = Files.createTempFile(parent.toPath(), ".${file.name}", STAGING_SUFFIX)
+        try {
+            Files.newInputStream(path, LinkOption.NOFOLLOW_LINKS).use { input ->
+                Files.newOutputStream(staging, StandardOpenOption.TRUNCATE_EXISTING).use { input.copyTo(it) }
+            }
+            Files.move(staging, damaged, StandardCopyOption.ATOMIC_MOVE)
         } finally {
             Files.deleteIfExists(staging)
         }
@@ -171,6 +194,9 @@ class ExtensionDecisions(
 
         /** The stem is what `SandboxPolicy.dataDirectory` accepts, plus the file's extension. */
         private val SAFE_NAME = Regex("[A-Za-z0-9][A-Za-z0-9._-]{0,72}")
+
+        /** Where an unreadable decisions file is copied before it is replaced: beside it, one copy. */
+        fun damagedFileFor(decisionsFile: File): File = File(decisionsFile.absoluteFile.parentFile, "${decisionsFile.name}.damaged")
 
         /** Beside [extensionsDirectory], and so never inside anything a host is given. */
         fun fileFor(extensionsDirectory: File): File {

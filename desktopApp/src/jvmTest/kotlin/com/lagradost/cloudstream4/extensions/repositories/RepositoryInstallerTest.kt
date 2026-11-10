@@ -208,6 +208,15 @@ class RepositoryInstallerTest {
         assertEquals(3, installed()?.single()?.version)
     }
 
+    /** `KMP-110b` review: the entry is written before the move, and taken back when the move does not happen. */
+    @Test
+    fun `a first install that fails before its move leaves no entry and no file`() {
+        val failed = install(listing(), installer(beforeMove = { throw IOException("stopped") }))
+        assertEquals(InstallResult.Failed(InstallFailure.NotSaved), failed)
+        assertEquals(emptyList(), installed())
+        assertEquals(emptyList(), listed())
+    }
+
     @Test
     fun `an update is offered for a higher version, or always-update, and never for a status not offered`() {
         val entry = InstalledFromRepository("f.cs3", REPO, "Lanternfish", 3, "a".repeat(64), verified = true)
