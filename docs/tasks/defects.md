@@ -3237,6 +3237,20 @@ files, each screenshot diff read before it is re-recorded.
 
 Tests: the same 58 in 5 classes, 117 assertion calls before and after, all passing.
 
+### `:feature:library` (JVM tests, a preview, KDoc)
+
+| Was | Now | Kept |
+|---|---|---|
+| `dune`, `Dune`, `DUNE` (ids `Prov\u0000/dune`, the filter `/DUNE`) | `tide`, `Tide`, `TIDE` | the lowercase title still sorts after `Brazil` ignoring case; the filter's case |
+| `Frieren` (id `AniList\u0000/frieren`, the filter `frie`) | `Fernwood` (`fernwood`, the filter `fern`) | a prefix filter that matches it alone |
+| `Severance` (id `AniList\u0000/severance`) | `Still Water` (`still-water`); downloads' fixtures have `Quiet Harbor`, so the two stay apart | rating and kept-at order are its numbers, not its name |
+| the account `lagradost` (the upstream project's name, three view-model tests) | `tidewatch` | |
+| `Filmxy` (a preview) | `Source A` | |
+
+`Alien`, `Arrival`, `Brazil` and `Cube` stay: single common words with nothing else tying them to one work.
+
+Tests: the same 84 in 6 classes, 189 assertion calls before and after, all passing.
+
 ## BUG-78 — A stored poster address could carry userinfo, on the Mac's library and downloads · **low, security**
 
 **Status:** fixed in this PR · found in review of `KMP-99` · stacked on `KMP-99`, whose `posterOf` it changes

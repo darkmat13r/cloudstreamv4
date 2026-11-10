@@ -8,7 +8,7 @@ import kotlin.test.assertTrue
 /** Pure Kotlin, so this is the suite that also runs on iOS. */
 class LibraryShelfTest {
 
-    private val dune = LibraryTitleId("Prov\u0000/dune")
+    private val tide = LibraryTitleId("Prov\u0000/tide")
     private val arrival = LibraryTitleId("Prov\u0000/arrival")
 
     private fun title(id: LibraryTitleId, bucket: LibraryBucket?, keptAt: Long = 0L) =
@@ -24,26 +24,26 @@ class LibraryShelfTest {
 
     @Test
     fun `a fraction needs a duration — an unknown one is zero rather than infinite`() {
-        assertEquals(0f, position(dune, positionMillis = 5_000L, durationMillis = 0L).fraction)
-        assertEquals(0f, position(dune, positionMillis = 5_000L, durationMillis = -1L).fraction)
-        assertEquals(0.1f, position(dune, positionMillis = 60_000L, durationMillis = 600_000L).fraction)
+        assertEquals(0f, position(tide, positionMillis = 5_000L, durationMillis = 0L).fraction)
+        assertEquals(0f, position(tide, positionMillis = 5_000L, durationMillis = -1L).fraction)
+        assertEquals(0.1f, position(tide, positionMillis = 60_000L, durationMillis = 600_000L).fraction)
     }
 
     @Test
     fun `a position past the end cannot report more than all of it`() {
-        assertEquals(1f, position(dune, positionMillis = 900_000L, durationMillis = 600_000L).fraction)
+        assertEquals(1f, position(tide, positionMillis = 900_000L, durationMillis = 600_000L).fraction)
     }
 
     @Test
     fun `the first half minute is not something to resume`() {
-        assertTrue(position(dune, positionMillis = 30_000L).resumable)
-        assertTrue(!position(dune, positionMillis = 29_999L).resumable)
+        assertTrue(position(tide, positionMillis = 30_000L).resumable)
+        assertTrue(!position(tide, positionMillis = 29_999L).resumable)
     }
 
     @Test
     fun `a finished title leaves continue watching but a nearly finished one stays`() {
-        val nearly = position(dune, positionMillis = 560_000L, durationMillis = 600_000L)
-        val done = position(dune, positionMillis = 580_000L, durationMillis = 600_000L)
+        val nearly = position(tide, positionMillis = 560_000L, durationMillis = 600_000L)
+        val done = position(tide, positionMillis = 580_000L, durationMillis = 600_000L)
         assertTrue(nearly.resumable)
         assertTrue(!done.resumable)
         assertTrue(done.finished)
@@ -51,32 +51,32 @@ class LibraryShelfTest {
 
     @Test
     fun `a duration the player never reported can never be resumed however far in it got`() {
-        assertTrue(!position(dune, positionMillis = 5_000_000L, durationMillis = 0L).resumable)
+        assertTrue(!position(tide, positionMillis = 5_000_000L, durationMillis = 0L).resumable)
     }
 
     @Test
     fun `one card per title — from its newest episode`() {
         val positions = listOf(
-            position(dune, watchedAt = 10L, episodeData = "e1"),
-            position(dune, watchedAt = 30L, episodeData = "e3"),
-            position(dune, watchedAt = 20L, episodeData = "e2"),
+            position(tide, watchedAt = 10L, episodeData = "e1"),
+            position(tide, watchedAt = 30L, episodeData = "e3"),
+            position(tide, watchedAt = 20L, episodeData = "e2"),
         )
-        val cards = LibraryShelf.cards(LibraryTab.ContinueWatching, listOf(title(dune, null)), positions)
+        val cards = LibraryShelf.cards(LibraryTab.ContinueWatching, listOf(title(tide, null)), positions)
         assertEquals(1, cards.size)
         assertEquals("e3", cards.single().resume?.episodeData)
     }
 
     @Test
     fun `continue watching is newest first`() {
-        val titles = listOf(title(dune, null), title(arrival, null))
-        val positions = listOf(position(dune, watchedAt = 10L), position(arrival, watchedAt = 20L))
+        val titles = listOf(title(tide, null), title(arrival, null))
+        val positions = listOf(position(tide, watchedAt = 10L), position(arrival, watchedAt = 20L))
         val cards = LibraryShelf.cards(LibraryTab.ContinueWatching, titles, positions)
-        assertEquals(listOf(arrival, dune), cards.map { it.id })
+        assertEquals(listOf(arrival, tide), cards.map { it.id })
     }
 
     @Test
     fun `a position whose title the store does not know is dropped`() {
-        val cards = LibraryShelf.cards(LibraryTab.ContinueWatching, emptyList(), listOf(position(dune)))
+        val cards = LibraryShelf.cards(LibraryTab.ContinueWatching, emptyList(), listOf(position(tide)))
         assertEquals(emptyList(), cards)
     }
 
@@ -94,18 +94,18 @@ class LibraryShelfTest {
     @Test
     fun `a bucket holds only its own titles — newest kept first`() {
         val titles = listOf(
-            title(dune, LibraryBucket.Watching, keptAt = 10L),
+            title(tide, LibraryBucket.Watching, keptAt = 10L),
             title(arrival, LibraryBucket.Watching, keptAt = 20L),
             title(LibraryTitleId("Prov\u0000/other"), LibraryBucket.Completed, keptAt = 30L),
         )
         val cards = LibraryShelf.cards(LibraryTab.Bucket(LibraryBucket.Watching), titles, emptyList())
-        assertEquals(listOf(arrival, dune), cards.map { it.id })
+        assertEquals(listOf(arrival, tide), cards.map { it.id })
     }
 
     @Test
     fun `a bucket card shows how far through it is even when it is finished`() {
-        val titles = listOf(title(dune, LibraryBucket.Watching))
-        val done = position(dune, positionMillis = 600_000L, durationMillis = 600_000L)
+        val titles = listOf(title(tide, LibraryBucket.Watching))
+        val done = position(tide, positionMillis = 600_000L, durationMillis = 600_000L)
         val card = LibraryShelf.cards(LibraryTab.Bucket(LibraryBucket.Watching), titles, listOf(done)).single()
         assertEquals(1f, card.progress)
         // Finished, so there is nowhere to come back to — the bar says watched, the card offers nothing.
@@ -114,10 +114,10 @@ class LibraryShelfTest {
 
     @Test
     fun `no progress is no bar rather than a bar of nothing`() {
-        val titles = listOf(title(dune, LibraryBucket.PlanToWatch))
+        val titles = listOf(title(tide, LibraryBucket.PlanToWatch))
         val cards = LibraryShelf.cards(LibraryTab.Bucket(LibraryBucket.PlanToWatch), titles, emptyList())
         assertNull(cards.single().progress)
-        val zero = position(dune, positionMillis = 0L)
+        val zero = position(tide, positionMillis = 0L)
         val withZero = LibraryShelf.cards(LibraryTab.Bucket(LibraryBucket.PlanToWatch), titles, listOf(zero))
         assertNull(withZero.single().progress)
     }
@@ -125,11 +125,11 @@ class LibraryShelfTest {
     @Test
     fun `a row in no list and with no position is forgettable — one with either is not`() {
         val titles = listOf(
-            title(dune, null),
+            title(tide, null),
             title(arrival, LibraryBucket.Dropped),
         )
-        assertEquals(listOf(dune), LibraryShelf.forgettable(titles, emptyList()))
-        assertEquals(emptyList(), LibraryShelf.forgettable(titles, listOf(position(dune))))
+        assertEquals(listOf(tide), LibraryShelf.forgettable(titles, emptyList()))
+        assertEquals(emptyList(), LibraryShelf.forgettable(titles, listOf(position(tide))))
     }
 
     @Test
@@ -144,15 +144,15 @@ class LibraryShelfTest {
 
     @Test
     fun `a filter ignores case and blank keeps everything`() {
-        val titles = listOf(title(dune, LibraryBucket.Watching), title(arrival, LibraryBucket.Watching))
+        val titles = listOf(title(tide, LibraryBucket.Watching), title(arrival, LibraryBucket.Watching))
         val tab = LibraryTab.Bucket(LibraryBucket.Watching)
-        assertEquals(listOf(dune), LibraryShelf.cards(tab, titles, emptyList(), "/DUNE").map { it.id })
+        assertEquals(listOf(tide), LibraryShelf.cards(tab, titles, emptyList(), "/TIDE").map { it.id })
         assertEquals(2, LibraryShelf.cards(tab, titles, emptyList(), "  ").size)
     }
 
     @Test
     fun `an id in two lists appears on each with its own count`() {
-        val titles = listOf(title(dune, LibraryBucket.Watching), title(dune, LibraryBucket.Favourites))
+        val titles = listOf(title(tide, LibraryBucket.Watching), title(tide, LibraryBucket.Favourites))
         assertEquals(mapOf(LibraryBucket.Watching to 1, LibraryBucket.Favourites to 1), LibraryShelf.counts(titles))
         assertEquals(1, LibraryShelf.totalTitles(titles))
         assertEquals(1, LibraryShelf.cards(LibraryTab.Bucket(LibraryBucket.Favourites), titles, emptyList()).size)
@@ -160,7 +160,7 @@ class LibraryShelfTest {
 
     @Test
     fun `a card carries the host's type and poster headers`() {
-        val kept = title(dune, LibraryBucket.Watching).copy(typeLabel = "MOVIE", posterHeaders = mapOf("a" to "b"))
+        val kept = title(tide, LibraryBucket.Watching).copy(typeLabel = "MOVIE", posterHeaders = mapOf("a" to "b"))
         val card = LibraryShelf.cards(LibraryTab.Bucket(LibraryBucket.Watching), listOf(kept), emptyList()).single()
         assertEquals("MOVIE", card.typeLabel)
         assertEquals(mapOf("a" to "b"), card.posterHeaders)
@@ -171,8 +171,8 @@ class LibraryShelfTest {
 
     @Test
     fun `a service's list is newest kept first, one card per title`() {
-        val list = SyncedList("w", "Watching", listOf(synced(dune, 1), synced(arrival, 3), synced(dune, 1)))
-        assertEquals(listOf(arrival, dune), LibraryShelf.syncedCards(list).map { it.id })
+        val list = SyncedList("w", "Watching", listOf(synced(tide, 1), synced(arrival, 3), synced(tide, 1)))
+        assertEquals(listOf(arrival, tide), LibraryShelf.syncedCards(list).map { it.id })
     }
 
     @Test
@@ -180,12 +180,12 @@ class LibraryShelfTest {
         val list = SyncedList(
             "w",
             "Watching",
-            listOf(synced(dune, 2, watched = 3, total = 12), synced(arrival, 1, watched = 0, total = 12)),
+            listOf(synced(tide, 2, watched = 3, total = 12), synced(arrival, 1, watched = 0, total = 12)),
         )
         val cards = LibraryShelf.syncedCards(list).associateBy { it.id }
-        assertEquals(0.25f, cards.getValue(dune).progress)
+        assertEquals(0.25f, cards.getValue(tide).progress)
         assertNull(cards.getValue(arrival).progress, "nothing seen is no bar")
-        val unknown = SyncedList("w", "Watching", listOf(synced(dune, 1, watched = 3, total = 0)))
+        val unknown = SyncedList("w", "Watching", listOf(synced(tide, 1, watched = 3, total = 0)))
         val card = LibraryShelf.syncedCards(unknown).single()
         assertNull(card.progress)
         assertNull(card.episodesTotal, "a total of 0 is not known")
@@ -194,16 +194,16 @@ class LibraryShelfTest {
 
     @Test
     fun `a service's list narrows by its filter, and a store tab never shows a service's titles`() {
-        val list = SyncedList("w", "Watching", listOf(synced(dune, 1), synced(arrival, 2)))
+        val list = SyncedList("w", "Watching", listOf(synced(tide, 1), synced(arrival, 2)))
         assertEquals(listOf(arrival), LibraryShelf.syncedCards(list, "ARRIV").map { it.id })
-        assertTrue(LibraryShelf.cards(LibraryTab.Synced("w", "Watching"), listOf(title(dune, null)), emptyList()).isEmpty())
+        assertTrue(LibraryShelf.cards(LibraryTab.Synced("w", "Watching"), listOf(title(tide, null)), emptyList()).isEmpty())
     }
 
     @Test
     fun `a service's titles are counted once across its lists`() {
         val lists = listOf(
-            SyncedList("w", "Watching", listOf(synced(dune, 1))),
-            SyncedList("r", "Rewatching", listOf(synced(dune, 1), synced(arrival, 1))),
+            SyncedList("w", "Watching", listOf(synced(tide, 1))),
+            SyncedList("r", "Rewatching", listOf(synced(tide, 1), synced(arrival, 1))),
         )
         assertEquals(2, LibraryShelf.syncedTotal(lists))
     }

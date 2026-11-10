@@ -16,7 +16,7 @@ import kotlin.jvm.JvmInline
  * `:app` does it differently, and measurably worse: `getLoadResponseIdFromUrl` is a 32-bit
  * `String.hashCode()` of the provider-*relative* path with its slashes stripped, and the provider's name
  * is used only to find the prefix to strip — it is not part of what is hashed. So two providers that both
- * serve `/movie/dune` collide to one id, and therefore share one bucket, one record and one position. The
+ * serve `/movie/tide` collide to one id, and therefore share one bucket, one record and one position. The
  * id also changes depending on whether the extension is currently loaded, because an unloaded provider
  * means the whole URL is hashed instead. None of that is acknowledged in a comment there.
  *

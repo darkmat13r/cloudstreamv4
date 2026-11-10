@@ -16,7 +16,7 @@ import kotlinx.coroutines.test.runTest
 @OptIn(ExperimentalCoroutinesApi::class)
 class LibraryViewModelTest {
 
-    private val dune = LibraryTitleId("Prov\u0000/dune")
+    private val tide = LibraryTitleId("Prov\u0000/tide")
     private val arrival = LibraryTitleId("Prov\u0000/arrival")
 
     /** The store as a host would behave: a write changes what the next read returns. */
@@ -107,7 +107,7 @@ class LibraryViewModelTest {
 
     @Test
     fun `retry reads again and recovers`() = runTest {
-        val store = Fake(listOf(title(dune, LibraryBucket.Watching)))
+        val store = Fake(listOf(title(tide, LibraryBucket.Watching)))
         store.failReads = IllegalStateException("broken")
         val vm = model(store)
         assertIs<LibraryStatus.Failed>(vm.state.value.status)
@@ -120,7 +120,7 @@ class LibraryViewModelTest {
 
     @Test
     fun `changing list does not touch the store`() = runTest {
-        val store = Fake(listOf(title(dune, LibraryBucket.Dropped)))
+        val store = Fake(listOf(title(tide, LibraryBucket.Dropped)))
         val vm = model(store)
         val afterFirstRead = store.reads
         vm.onAction(LibraryAction.TabSelected(LibraryTab.Bucket(LibraryBucket.Dropped)))
@@ -130,7 +130,7 @@ class LibraryViewModelTest {
 
     @Test
     fun `a list with nothing in it is empty while another still has content`() = runTest {
-        val vm = model(Fake(listOf(title(dune, LibraryBucket.Completed))))
+        val vm = model(Fake(listOf(title(tide, LibraryBucket.Completed))))
         vm.onAction(LibraryAction.TabSelected(LibraryTab.Bucket(LibraryBucket.Completed)))
         assertIs<LibraryStatus.Showing>(vm.state.value.status)
         vm.onAction(LibraryAction.TabSelected(LibraryTab.Bucket(LibraryBucket.Dropped)))
@@ -139,27 +139,27 @@ class LibraryViewModelTest {
 
     @Test
     fun `opening a title asks the host to open it and leaves the store alone`() = runTest {
-        val store = Fake(listOf(title(dune, LibraryBucket.Watching)))
+        val store = Fake(listOf(title(tide, LibraryBucket.Watching)))
         val vm = model(store)
         val effects = mutableListOf<LibraryEffect>()
         val collector = collecting(vm, effects)
-        vm.onAction(LibraryAction.TitleActivated(dune))
+        vm.onAction(LibraryAction.TitleActivated(tide))
         runCurrent()
-        assertEquals(listOf<LibraryEffect>(LibraryEffect.OpenTitle(dune)), effects)
+        assertEquals(listOf<LibraryEffect>(LibraryEffect.OpenTitle(tide)), effects)
         assertEquals(1, store.titles.size)
         collector.cancel()
     }
 
     @Test
     fun `resume carries where to start from`() = runTest {
-        val store = Fake(listOf(title(dune, null)), listOf(position(dune)))
+        val store = Fake(listOf(title(tide, null)), listOf(position(tide)))
         val vm = model(store)
         val effects = mutableListOf<LibraryEffect>()
         val collector = collecting(vm, effects)
-        vm.onAction(LibraryAction.ResumeActivated(dune))
+        vm.onAction(LibraryAction.ResumeActivated(tide))
         runCurrent()
         assertEquals(
-            listOf<LibraryEffect>(LibraryEffect.ResumeTitle(dune, LibraryResume(null, 60_000L))),
+            listOf<LibraryEffect>(LibraryEffect.ResumeTitle(tide, LibraryResume(null, 60_000L))),
             effects,
         )
         collector.cancel()
@@ -167,12 +167,12 @@ class LibraryViewModelTest {
 
     @Test
     fun `resume on a card with nowhere to come back to does nothing at all`() = runTest {
-        val store = Fake(listOf(title(dune, LibraryBucket.PlanToWatch)))
+        val store = Fake(listOf(title(tide, LibraryBucket.PlanToWatch)))
         val vm = model(store)
         val effects = mutableListOf<LibraryEffect>()
         val collector = collecting(vm, effects)
         vm.onAction(LibraryAction.TabSelected(LibraryTab.Bucket(LibraryBucket.PlanToWatch)))
-        vm.onAction(LibraryAction.ResumeActivated(dune))
+        vm.onAction(LibraryAction.ResumeActivated(tide))
         runCurrent()
         assertEquals(emptyList(), effects)
         collector.cancel()
@@ -180,10 +180,10 @@ class LibraryViewModelTest {
 
     @Test
     fun `remove on a bucket takes the title out of every list and keeps its position`() = runTest {
-        val store = Fake(listOf(title(dune, LibraryBucket.Watching)), listOf(position(dune)))
+        val store = Fake(listOf(title(tide, LibraryBucket.Watching)), listOf(position(tide)))
         val vm = model(store)
         vm.onAction(LibraryAction.TabSelected(LibraryTab.Bucket(LibraryBucket.Watching)))
-        vm.onAction(LibraryAction.RemoveRequested(dune))
+        vm.onAction(LibraryAction.RemoveRequested(tide))
 
         assertEquals(LibraryStatus.Empty, vm.state.value.status)
         assertNull(store.titles.single().bucket)
@@ -195,9 +195,9 @@ class LibraryViewModelTest {
 
     @Test
     fun `remove on continue watching clears the position and leaves the bookmark`() = runTest {
-        val store = Fake(listOf(title(dune, LibraryBucket.Watching)), listOf(position(dune)))
+        val store = Fake(listOf(title(tide, LibraryBucket.Watching)), listOf(position(tide)))
         val vm = model(store)
-        vm.onAction(LibraryAction.RemoveRequested(dune))
+        vm.onAction(LibraryAction.RemoveRequested(tide))
 
         assertEquals(LibraryStatus.Empty, vm.state.value.status)
         assertEquals(emptyList(), store.positions)
@@ -206,14 +206,14 @@ class LibraryViewModelTest {
 
     @Test
     fun `a write that fails shows what the store still holds instead of pretending`() = runTest {
-        val store = Fake(listOf(title(dune, LibraryBucket.Watching)))
+        val store = Fake(listOf(title(tide, LibraryBucket.Watching)))
         val vm = model(store)
         vm.onAction(LibraryAction.TabSelected(LibraryTab.Bucket(LibraryBucket.Watching)))
         store.failWrites = IllegalStateException("read only")
-        vm.onAction(LibraryAction.RemoveRequested(dune))
+        vm.onAction(LibraryAction.RemoveRequested(tide))
 
         val status = assertIs<LibraryStatus.Showing>(vm.state.value.status)
-        assertEquals(listOf(dune), status.cards.map { it.id })
+        assertEquals(listOf(tide), status.cards.map { it.id })
     }
 
     @Test
@@ -242,8 +242,8 @@ class LibraryViewModelTest {
     @Test
     fun `cards carry what the store knows about a title`() = runTest {
         val kept = LibraryTitle(
-            id = dune,
-            title = "Dune",
+            id = tide,
+            title = "Tide",
             bucket = LibraryBucket.Watching,
             keptAt = 5L,
             posterUrl = "https://example.com/p.jpg",
@@ -252,7 +252,7 @@ class LibraryViewModelTest {
         val vm = model(Fake(listOf(kept)))
         vm.onAction(LibraryAction.TabSelected(LibraryTab.Bucket(LibraryBucket.Watching)))
         val card = assertIs<LibraryStatus.Showing>(vm.state.value.status).cards.single()
-        assertEquals("Dune", card.title)
+        assertEquals("Tide", card.title)
         assertEquals("https://example.com/p.jpg", card.posterUrl)
         assertEquals("Prov", card.providerName)
         assertTrue(card.progress == null)
@@ -266,7 +266,7 @@ class LibraryViewModelTest {
 
     @Test
     fun `a screen can open on a list of its own`() = runTest {
-        val vm = tvModel(Fake(listOf(title(dune, LibraryBucket.Watching))))
+        val vm = tvModel(Fake(listOf(title(tide, LibraryBucket.Watching))))
         assertEquals(LibraryTab.Bucket(LibraryBucket.Watching), vm.state.value.tab)
         assertIs<LibraryStatus.Showing>(vm.state.value.status)
     }
@@ -276,8 +276,8 @@ class LibraryViewModelTest {
         val vm = tvModel(
             Fake(
                 listOf(
-                    title(dune, LibraryBucket.Watching),
-                    title(dune, LibraryBucket.Favourites),
+                    title(tide, LibraryBucket.Watching),
+                    title(tide, LibraryBucket.Favourites),
                     title(arrival, LibraryBucket.Completed),
                     title(LibraryTitleId("played only"), null),
                 ),
@@ -292,7 +292,7 @@ class LibraryViewModelTest {
 
     @Test
     fun `no counts exist before a read or after a failed one`() = runTest {
-        val store = Fake(listOf(title(dune, LibraryBucket.Watching)))
+        val store = Fake(listOf(title(tide, LibraryBucket.Watching)))
         store.failReads = IllegalStateException("no")
         val vm = tvModel(store)
         assertEquals(emptyMap(), vm.state.value.counts)
@@ -311,7 +311,7 @@ class LibraryViewModelTest {
     @Test
     fun `a filter narrows the cards and leaves the counts alone`() = runTest {
         val vm = tvModel(
-            Fake(listOf(title(dune, LibraryBucket.Watching), title(arrival, LibraryBucket.Watching))),
+            Fake(listOf(title(tide, LibraryBucket.Watching), title(arrival, LibraryBucket.Watching))),
         )
         vm.onAction(LibraryAction.FilterChanged("ARRIV"))
         val cards = assertIs<LibraryStatus.Showing>(vm.state.value.status).cards
@@ -336,19 +336,19 @@ class LibraryViewModelTest {
 
     @Test
     fun `opening from a grid keeps a return point until it is handled`() = runTest {
-        val vm = tvModel(Fake(listOf(title(dune, LibraryBucket.Watching))))
-        vm.onAction(LibraryAction.TitleActivated(dune, firstVisibleIndex = 14))
-        assertEquals(LibraryReturn(dune, 14), vm.state.value.returnTo)
+        val vm = tvModel(Fake(listOf(title(tide, LibraryBucket.Watching))))
+        vm.onAction(LibraryAction.TitleActivated(tide, firstVisibleIndex = 14))
+        assertEquals(LibraryReturn(tide, 14), vm.state.value.returnTo)
         vm.onAction(LibraryAction.Reappeared)
-        assertEquals(LibraryReturn(dune, 14, ready = true), vm.state.value.returnTo)
+        assertEquals(LibraryReturn(tide, 14, ready = true), vm.state.value.returnTo)
         vm.onAction(LibraryAction.ReturnHandled)
         assertNull(vm.state.value.returnTo)
     }
 
     @Test
     fun `opening without an index keeps no return point, which is what desktop sends`() = runTest {
-        val vm = model(Fake(listOf(title(dune, LibraryBucket.Watching))))
-        vm.onAction(LibraryAction.TitleActivated(dune))
+        val vm = model(Fake(listOf(title(tide, LibraryBucket.Watching))))
+        vm.onAction(LibraryAction.TitleActivated(tide))
         assertNull(vm.state.value.returnTo)
     }
 
@@ -366,7 +366,7 @@ class LibraryViewModelTest {
         assertEquals(reads + 1, store.reads)
         assertTrue(seen.none { it is LibraryStatus.Loading }, "$seen")
 
-        store.titles += title(dune, LibraryBucket.Watching)
+        store.titles += title(tide, LibraryBucket.Watching)
         vm.onAction(LibraryAction.Reappeared)
         assertIs<LibraryStatus.Showing>(vm.state.value.status)
         watcher.cancel()
