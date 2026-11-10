@@ -4173,3 +4173,38 @@ Installing until the install's job has finished, so Held comes after the move. T
 - **Green:** with the fix and the same scratch delay, the class passes; with the fix alone, 10 `--rerun` runs of 10.
 - The other test that waits on the installed list ("removing a repository stops each of its extensions before deleting
   it") passed under the same delay, so it is left as it is.
+
+## BUG-100 — The dropped-connection download test lost to a slow disk under load, past its own tolerance · **low, test only** · measured 2026-11-11
+
+**Found** in train 20's gates: `FaultSuiteTest` "bytes received before the connection dropped are kept on disk" (`KMP-46`)
+failed 3 full `check` runs of 3 in a row, while its class alone passed 10 of 10. The retry resumed 1,187,843 and
+1,204,227 bytes before the 3 MiB + 3 the server sent; the test allows 1,114,112 (`CHANNEL_LOSS_TOLERANCE`).
+
+**Cause:** the test, not the engine. Measured before fixing:
+- **Not the kernel.** The server's drop is `shutdownOutput()`, a FIN after its data, so the client reads every byte
+  before it sees the end. This Mac's TCP buffers (128 KiB, autotuned to 4 MiB) are not where the bytes go.
+- **Ktor's unread channel.** An early end closes the body channel with a cause, and Ktor drops what the engine has not
+  read yet. The tolerance took Ktor's `ByteChannel` as 1 MiB plus one 64 KiB read buffer. Its two buffers can hold
+  about twice that when the reader is behind.
+- **The reader's speed decides it.** A scratch test slowed the engine's disk per write: 0 lost at full speed,
+  1,736,707 at 0.5 ms a write, 1,974,275 at 2 ms. A loaded machine made the disk slow by chance.
+
+**Fix:** in the tests only; the engine and the tolerance are unchanged.
+- `Fault.DropAfter` takes an optional `holdUntil`, which the test server polls, for at most ten seconds, before the
+  close.
+- The test holds the close until the part file has what was sent, less one read buffer. It also runs the engine on a
+  disk slowed by 0.5 ms a write, so the channel is full every time and load cannot decide the outcome either way.
+- It still asserts the retry resumes within `CHANNEL_LOSS_TOLERANCE` of what was sent.
+
+**Proof,** all local (CI is off), `--no-build-cache`, the class with `--rerun`:
+- **Red:** with the hold made to return at once, the test fails 3 runs of 3, at its loss assertion.
+- **Green:** with the hold, 10 runs of 10, and 10 more of 10 with every core kept busy by a CPU burner.
+
+**Review (`#361`):**
+- `CHANNEL_LOSS_TOLERANCE`'s KDoc says it is a bound only while the reader keeps up, with the measurements above.
+- An added assertion: the retry starts no lower than the part file had reached before the drop, less one read buffer.
+  The tolerance alone lets an engine throw away up to about 1 MiB it had already written. Red: with 512 KiB cut from
+  the part file after the failed attempt, the added assertion fails and the tolerance's passes.
+
+**Product note (`KMP-46`):** on a slow disk, a dropped connection costs a re-download of up to about 2 MiB the engine
+had received but not yet written. That is efficiency, not correctness, and a limit of Ktor's channel.
