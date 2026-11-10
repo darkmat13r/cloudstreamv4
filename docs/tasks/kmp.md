@@ -8106,7 +8106,7 @@ with a silent track:
   `WatchRecorder` needs one.
 - Playing a film from the D1 list. D1 has no Play on the Mac board.
 
-## KMP-113 — A local media gateway, so every connection libVLC makes is address-checked · **design, in review**
+## KMP-113 — A local media gateway, so every connection libVLC makes is address-checked · **PR 1 of 2 (the gateway), in review**
 
 The full fix for `BUG-90`. libVLC checks nothing itself and ignores every proxy setting for https (measured on
 3.0.24), so the media host gets gateway urls on loopback, and a sandbox policy that allows nothing else. The gateway
@@ -8116,4 +8116,20 @@ kernel refuses whatever it does not route, so the rewriter is there for playback
 The design is in `docs/plans/media-gateway.md`: the url encoding; the HLS rewriter (DASH a second step) and its
 limits; redirects, byte ranges and keep-alive; which headers pass and which never do; per-host cookies; the
 gateway's own limits; the failure modes; the test plan; and three measurements to take before the first line of code.
-No code until the design is approved.
+The design was approved after two passes.
+
+**PR 1, the gateway** (`player/gateway/`), not yet used by the player:
+- `GatewayUrl`: the encoding, with each url's role (`p`, `s`, `u`).
+- `HlsRewriter`: the bounded rewriter.
+- `MediaGateway`: the loopback origin. It fetches through its own client with the two address checks and no proxy,
+  follows redirects itself, owns `Referer` and `User-Agent`, keeps cookies per host in memory, and logs nothing.
+
+Tests:
+- `GatewayUrlTest` 9;
+- `HlsRewriterTest` 10;
+- `MediaGatewayTest` 18, against local servers, with "prints nothing" included.
+
+Ten mutations each fail what they should.
+
+**PR 2, the wiring:** the media host's profile allows only the gateway port; `OP_PLAY` stops carrying `Referer` and
+`User-Agent`; the player plays gateway urls; and the VLC.app tests.

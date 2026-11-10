@@ -33,13 +33,19 @@ hostile-input parsing below small: it never has to be complete, only bounded.
 ## 1. The url encoding
 
 ```
-http://127.0.0.1:<port>/<token>/<scheme>/<authority>/<path>[?<query>]
-        e.g. /k3Jd…Q/https/cdn.example/v/1080/seg-0001.ts?sig=…
+http://127.0.0.1:<port>/<token>/<role>/<scheme>/<authority>/<path>[?<query>]
+        e.g. /k3Jd…Q/s/https/cdn.example/v/1080/seg-0001.ts?sig=…
 ```
 - `<token>`: 128 random bits, base64url, made per gateway and given only to its media host. A request without it gets
   `404` and a fixed body. Other processes on this Mac can reach the port. The token stops them using the gateway as an
   open relay that fetches with the app's identity: its cookies, its address and its client. It is not what stops a
   relay into the LAN; the address check does that for every request, token or not. The comparison is constant-time.
+- `<role>` (review, decision (i)): what the url is for, set by the rewriter.
+  - `p` is a playlist: the uri after `EXT-X-STREAM-INF`, and `URI` on `EXT-X-MEDIA`, `EXT-X-I-FRAME-STREAM-INF`,
+    `EXT-X-RENDITION-REPORT`, and `X-ASSET-URI`.
+  - `s` is media: segments, keys, maps, parts, hints, data and steering files.
+  - `u` is the stream's first url, whose role nobody knows. It is fetched as a playlist would be.
+  - It decides `Range` (§2).
 - `<scheme>`: `http` or `https`, and nothing else.
 - `<authority>`: the host, lowercased, as `URI` reads it (IDN as ASCII), with `:port` when it is not the default.
   - User info is never encoded; a url with any is refused, as `SandboxPolicy` refuses it today.
@@ -70,8 +76,12 @@ http://127.0.0.1:<port>/<token>/<scheme>/<authority>/<path>[?<query>]
   - It never follows https to http.
   - The final url is the base for resolving the playlist's relative urls (§3).
   - libVLC never sees a 3xx, so it has nothing to follow on its own.
-- **Byte ranges:** `Range` and `If-Range` go upstream as they came, and `206`, `Content-Range`, `Content-Length` and
-  `Accept-Ranges` come back. A playlist is always fetched whole and served `200`, because it is rewritten.
+- **Byte ranges** (review, decision (i)): `Range` and `If-Range` go upstream only for a url whose role is `s`, and
+  `206`, `Content-Range`, `Content-Length` and `Accept-Ranges` come back.
+  - A `p` or `u` url never sends a range. It is fetched whole, and served `200` rewritten. A partial body is never
+    rewritten.
+  - A `u` url that turns out to be media streams through whole, as a `200`. libVLC accepts a `200` for a ranged
+    request.
 - **Keep-alive:** HTTP/1.1 persistent connections from libVLC, with a 30 s idle limit. Upstream, OkHttp's pool is
   per gateway. Its network interceptor checks the connected address on every request, so a reused connection is
   still one the check passed.
@@ -109,6 +119,9 @@ names (see "The shape of the fix").
 - Tag and attribute names are matched exactly as RFC 8216 writes them, and written back exactly as received. Case is
   never changed, so a tag that only differs in case is an unknown tag.
 
+**Dot segments** are removed here too, once a reference is resolved, by the gateway's own rule (§1). A url whose `..`
+climbs above its root is left as written, and the kernel stops it.
+
 **What is not rewritten:**
 - A url whose scheme is not http(s): `skd://` for FairPlay, `data:`. It passes unchanged. `data:` needs no network.
   Anything else that needs one fails closed.
@@ -123,8 +136,10 @@ names (see "The shape of the fix").
   `PatchLocation`, and the absolute http(s) values of `@media`, `@initialization`, `@index` and `@sourceURL`. Each is
   made absolute against its effective base and encoded.
 - `SegmentTemplate` `$…$` identifiers sit in the path and survive the encoding as text.
-- Until this step lands, a DASH manifest streams through unrewritten: a relative `BaseURL` plays, an absolute one
-  fails closed.
+- **Until this step lands, a DASH manifest is refused at once** (`502`, kind `dash-unsupported`). The gateway
+  recognises it by its `Content-Type` or by a body starting `<MPD`, or `<?xml` with an `<MPD` element. Passed through
+  unrewritten, libVLC would be left waiting on urls it cannot reach. That is a hang, where a refusal is a prompt
+  failure.
 
 ## 4. Headers
 
@@ -155,6 +170,8 @@ The gateway never adds `Forwarded`, `X-Forwarded-*` or `Via`.
 would go to every other. So:
 - the gateway keeps its own cookie jar per gateway, in memory only, keyed by the real host, through OkHttp's
   `CookieJar`;
+- cookies are parsed and matched by OkHttp's rules, `Cookie.parse` and `Cookie.matches`. So a `Set-Cookie` for another
+  domain (`Domain=other.example` from `cdn.example`) is never kept;
 - it never passes `Set-Cookie` on to libVLC;
 - the jar goes with the gateway when the stream ends.
 
@@ -177,7 +194,12 @@ a failure's message, not a debug line, not an exception's text.
 
 ## 5. The gateway's own limits
 
-- Binds `127.0.0.1` only, on an ephemeral port.
+- Binds `127.0.0.1`, on an ephemeral port, and then the same port on `[::1]`.
+  - Both sockets are exclusive: `SO_REUSEADDR` is off (a Java `ServerSocket` has it on by default on macOS; checked)
+    and `SO_REUSEPORT` is off.
+  - If the `[::1]` bind fails, both are closed and a new port is tried, five times.
+  - After five, the gateway does not start, and nor does the stream. It fails closed and never plays without the
+    gateway.
 - 16 connections from its media host at once; the next is closed unanswered.
 - Request line and headers: 16 KiB together, 100 headers.
 - Upstream: 15 s to connect, 30 s between reads, and no limit on a media body's total length, since a film is long.
@@ -195,6 +217,8 @@ a failure's message, not a debug line, not an exception's text.
 | a url the rewriter missed, or a non-http scheme | nothing: libVLC tries directly and the kernel refuses | failure for that rendition or stream |
 | the gateway dies | libVLC's connections are refused | failure, never a direct fetch |
 | request without the token | `404` | nothing; not libVLC |
+| a DASH manifest (before its step) | `502`, at once | failure |
+| the gateway cannot hold its port | it does not start, and the stream does not start | failure |
 
 ## 7. What stays as it is
 
@@ -249,6 +273,10 @@ a failure's message, not a debug line, not an exception's text.
 - the Apple HLS test stream plays through the gateway, reaching buffering and starting its decoders;
 - with the gateway closed, the same run fails closed;
 - a playlist whose segments sit on a refused host plays nothing, with 0 requests at that host.
+
+**Not tested locally:** a redirect from https to http being refused. A local https upstream needs a test certificate,
+which is a new test dependency or a keystore written at test time. The rule is one line (`url.isHttps &&
+!next.isHttps`), and it is listed for the second pass to decide.
 
 **The policy:** the media host's profile allows only the gateway port. Red-checked: with `*:*` put back, the
 refused-segment test reaches the host.
