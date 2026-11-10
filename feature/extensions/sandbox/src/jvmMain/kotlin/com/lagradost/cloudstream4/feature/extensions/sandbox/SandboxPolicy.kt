@@ -45,8 +45,10 @@ object SandboxPolicy {
             IPV4_BYTES -> first != 0 && first < RESERVED_FROM && !(first == CGNAT_FIRST && second in CGNAT_SECOND) &&
                 !(first == BENCHMARK_FIRST && second in BENCHMARK_SECOND) &&
                 !(first == PROTOCOL_FIRST && second == 0 && bytes[2].toInt() == 0)
-            // Translation prefixes carry an IPv4 address inside, which could be a private one.
-            else -> first and ULA_MASK != ULA_PREFIX && !isTranslated(bytes)
+            // Translation prefixes carry an IPv4 address inside, which could be a private one. So does the deprecated
+            // IPv4-compatible form, `::/96` (`BUG-94`): `::127.0.0.1` and `::a00:1` are not public. macOS gives no route
+            // to either (measured), so this is hardening; `UrlGuard` already refuses it.
+            else -> first and ULA_MASK != ULA_PREFIX && !isTranslated(bytes) && !isIpv4Compatible(bytes)
         }
     }
 
@@ -93,6 +95,9 @@ object SandboxPolicy {
     /** Signed stream URLs run long: a googlevideo one is well past the 2048 used for other fields. */
     const val MAX_URL_CHARS = 16 * 1024
 
+    /** `::/96`. `::` and `::1` are in it too, and are refused before this as any-local and loopback. */
+    private fun isIpv4Compatible(bytes: ByteArray): Boolean = (0 until IPV4_COMPATIBLE_PREFIX_BYTES).all { bytes[it].toInt() == 0 }
+
     private fun isTranslated(bytes: ByteArray): Boolean {
         val second = bytes[1].toInt() and BYTE_MASK
         val firstByte = bytes[0].toInt() and BYTE_MASK
@@ -102,6 +107,7 @@ object SandboxPolicy {
     }
 
     private const val BYTE_MASK = 0xFF
+    private const val IPV4_COMPATIBLE_PREFIX_BYTES = 12
     private const val RESERVED_FROM = 240
     private const val BENCHMARK_FIRST = 198
     private val BENCHMARK_SECOND = 18..19

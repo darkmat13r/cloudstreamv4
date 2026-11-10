@@ -46,6 +46,9 @@ class BackdropImageTest {
         const val MOVED = "<html>Moved</html>"
         /** A small cap, so the test is quick: the code under test is the same for 8 MB. */
         const val WIRE_CAP = 256L * 1024
+        const val SHORT_CALL_MILLIS = 500L
+        /** Well inside OkHttp's 10 s read timeout, so only the call's limit can end it. */
+        const val TRICKLE_GAP_MILLIS = 50L
 
     }
 
@@ -436,5 +439,35 @@ class BackdropImageTest {
             // The connection is made, so the hop's scheme can be seen; no request is written on it.
             assertEquals(0, server.requests.get())
         }
+    }
+
+    @Test
+    fun `an image that never finishes coming fails at the call's limit, not after it`() {
+        // BUG-94 (A-6): one byte every so often stayed inside every per-read timeout, so the fetch never ended.
+        ServerSocket(0, 1, InetAddress.getLoopbackAddress()).use { slow ->
+            thread(isDaemon = true) {
+                runCatching {
+                    slow.accept().use { client ->
+                        val reader = client.getInputStream().bufferedReader()
+                        while (!reader.readLine().isNullOrEmpty()) Unit
+                        val out = client.getOutputStream()
+                        out.write("HTTP/1.1 200 OK\r\nContent-Type: image/png\r\nContent-Length: 4096\r\n\r\n".toByteArray())
+                        repeat(4096) { out.write(0); out.flush(); Thread.sleep(TRICKLE_GAP_MILLIS) }
+                    }
+                }
+            }
+            val client = withImageCallTimeout(
+                boundedImageClient(posterHttpClient { true }, maxBytes = WIRE_CAP, requireHttps = false),
+                millis = SHORT_CALL_MILLIS,
+            )
+            val started = System.nanoTime()
+            assertFailsWith<IOException> {
+                client.newCall(Request.Builder().url("http://127.0.0.1:${slow.localPort}/b.png").build()).execute()
+                    .use { it.body!!.bytes() }
+            }
+            val waited = (System.nanoTime() - started) / 1_000_000
+            assertTrue(waited < SHORT_CALL_MILLIS * 4, "ended after $waited ms")
+        }
+        assertEquals(BACKDROP_CALL_TIMEOUT_MILLIS.toInt(), backdropHttpClient().callTimeoutMillis, "the app's client has the limit")
     }
 }

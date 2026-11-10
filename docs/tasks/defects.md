@@ -3720,3 +3720,50 @@ a stack frame, it is kept.
     is under 24 characters.
 - **Follow-up, not here:** `close()` waits up to 500 ms for stderr to drain, so a report made after it can still miss
   the end of a slow host's output.
+
+## BUG-94 — The Mac's network clients: a subtitle redirect not checked as a url, no time limit on images, silent tunnels kept, `::/96` public · **low, security** · fixed in this PR
+
+**Status:** fixed in this PR · from the extension-wire audit's low findings A-5, A-6, A-7 and A-11, batched by the PM
+(2026-11-10) as the network ones. Each is hardening: none of them reaches a private address. That is still checked
+on every connection.
+
+**A-5, subtitle redirects.** okhttp followed them itself, so only the client's address checks met a redirect, never
+the url check (`SandboxPolicy.isPublicHttpUrl`), and a hop from https to http was followed. The track's headers went
+on every hop. On the Mac those are only the plugin's `Referer` and `User-Agent` (`DesktopDetailSource.toTracks`), never
+a Cookie as the audit's repro supposed, but a `Referer` can carry a token in its query. Now `HttpSubtitleLoader` follows
+redirects itself, at most 5 (`MAX_REDIRECTS`):
+- each target meets the url check, as the first url did;
+- https to http is refused, so a downgrade fails the track; http to https is an upgrade, and is followed;
+- the headers stay on their own host: the same scheme and port there, or an upgrade to https on it. A server that
+  wants a `Referer` often redirects to https first.
+
+**A-6, images.** `backdropHttpClient`, which posters and backdrops both use, had okhttp's 10 s per read and no limit
+on the call. A server sending a byte every 9 s held a fetch thread, within the 8 MB cap, for as long as it liked. Now
+the call has a 30 s limit (`BACKDROP_CALL_TIMEOUT_MILLIS`), its body included: 8 MB in that time is about 280 KB a
+second. `boundedImageClient` is unchanged, since `RepositoryHttp` sets its own limit on it.
+
+**A-7, `OutboundGate`.** After the handshake both sockets had no timeout, so a plugin could hold its 256 tunnels
+silent, two threads each, for its host's life. Now a tunnel that nothing has crossed, either way, for 6 minutes is
+closed. That is longer than okhttp keeps a pooled connection idle (5), so a plugin's pool meets its own limit first.
+Both directions share one clock. A download sends nothing for minutes while its bytes come back, and a clock for each
+direction would have shut the plugin's side of it.
+
+**A-11, `isPublicAddress`.** IPv4-compatible IPv6 addresses (`::/96`: `::127.0.0.1`, `::a00:1`) reached the IPv6
+branch, which checked only ULA and the translation prefixes, and were called public. The audit measured no route to
+either on macOS. They are refused now, as `UrlGuard.isPublicAddress` in `:media:download` already refused them.
+
+**Tests**, 9 new: `SubtitleLoaderTest` 5, `BackdropImageTest` 1, `OutboundGateTest` 3. Six were red-checked: with that
+fix taken out, the test fails.
+
+| Fix | Test | Red-checked against |
+|---|---|---|
+| A-5 | `SubtitleLoaderTest`: a redirect is checked as the first url was, and a refused one is never opened | redirects checked only on the first url: the refused target was opened |
+| A-5 | the track's headers go to its own host, and not to the host a redirect names | the headers kept on every hop |
+| A-5 | a redirect on the same host keeps the track's headers; a redirect that never ends stops after a few | not red-checked: they hold behaviour in place |
+| A-5 | https to http is refused, and the headers stay on their host or its upgrade (`nextHop`, pure) | not red-checked; it failed on this PR's first version, which kept the headers for https to another https port |
+| A-6 | `BackdropImageTest`: an image that never finishes coming fails at the call's limit | no call limit |
+| A-7 | `OutboundGateTest`: a tunnel nothing crosses is closed once it has been idle | the idle cut taken out |
+| A-7 | a tunnel whose bytes go one way only is not idle, and the plugin's side still works after | a clock for each direction |
+| A-11 | an IPv4-compatible IPv6 address is not public, whatever IPv4 address it carries | the `::/96` rule taken out |
+
+The two timing tests passed 5 runs in a row (`--rerun`), with a 600 ms idle timeout and a 500 ms call limit.
