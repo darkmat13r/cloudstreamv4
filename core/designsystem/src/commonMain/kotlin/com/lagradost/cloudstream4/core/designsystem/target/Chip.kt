@@ -39,12 +39,24 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * The ring sits on the *visual*, the same as on a text button: [CloudStreamDimens.FocusRingOffset]
  * (2dp) clear of the pill on all four sides, with the pill's own corners (`DEC-17`, 2026-11-05).
  * It used to ring the cell, which left 2dp at the sides and 14dp above and below. It is draw-only,
- * so a focused chip moves and resizes nothing. It stays inside the cell's height, and bleeds
- * [CloudStreamDimens.FocusRingBleed] (4dp) past the cell's width, so a focused chip draws above its
- * neighbours and no ancestor may clip that bleed.
+ * so a focused chip moves and resizes nothing.
  *
- * The cell's **width is intrinsic** — it is the visual's width, which is the label's width plus
- * [ChipDefaults.VisualHorizontalPadding] on each side, plus the count if there is one. Geometry
+ * **The ring stays inside the cell** (`BUG-65`, owner, 2026-11-08). The cell is the visual plus
+ * [CloudStreamDimens.FocusRingBleed] (4dp) on each side, exactly the room the ring takes, so a
+ * focused chip never draws over a neighbour, however close [ChipRow] puts them. It used to be the
+ * visual's width, and the ring bled 4dp past it.
+ *
+ * **What takes focus is narrower than the cell**: the pill's width, 48dp tall, inside the ring's room.
+ * Focus search and a tap use that box, which is where they were before the cell widened. With the
+ * room inside the focus target, [ChipRow]'s first chip reached 4dp left of the content under it, so
+ * Left from that content went to the chip instead of the rail beside it (`BUG-65`,
+ * `DownloadsTvNavigationTest`).
+ *
+ * **This chip is for TV only.** Its touch target is the pill's width, often narrower than 48dp, so reusing it on touch
+ * needs `Modifier.minimumInteractiveComponentSize()` added for a touch screen.
+ *
+ * The cell's **width is intrinsic** — the label's width plus [ChipDefaults.VisualHorizontalPadding]
+ * on each side, plus the count if there is one, plus the ring's room. Geometry
  * rule 6 exempts text measurement from the step; see [ChipRow], which is where the next reader is
  * most likely to try to "fix" that.
  *
@@ -67,7 +79,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
  * @param label already-localised chip text.
  * @param selected whether this chip is the applied one. Hoisted; the caller owns it.
  * @param onClick invoked on D-pad centre, Enter, or a tap. Emits the intent, nothing more.
- * @param modifier applied to the focus *cell*, which is the focusable. The ring is on the visual inside it.
+ * @param modifier applied to the *cell*, the focusable plus the ring's room. The ring is on the visual inside it.
  * @param count optional trailing count, rendered in `CloudStreamTheme.typography.labelMono`. It is
  *   a `String` rather than an `Int` because formatting a number is locale work — thousands
  *   separators, "999+" — and a design system module has no locale. Format it at the call site.
@@ -87,6 +99,8 @@ fun Chip(
         modifier = modifier
             .zIndex(if (focused) FOCUSED_LAYER else RESTING_LAYER)
             .height(CloudStreamDimens.ChipFocusCell)
+            // The ring's room is outside the focus target, so focus search sees the pill's width (`BUG-65`).
+            .padding(horizontal = CloudStreamDimens.FocusRingBleed)
             .selectable(
                 selected = selected,
                 interactionSource = interactionSource,

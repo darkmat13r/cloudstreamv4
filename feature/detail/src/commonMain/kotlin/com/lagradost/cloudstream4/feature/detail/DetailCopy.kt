@@ -125,8 +125,7 @@ internal fun DetailEpisode.code(index: Int): String {
  * the board also has **season chips**: the chip says which season the list is showing, so a row only
  * has to say which episode. The chips are a later task, and until they exist the code has to stay in
  * this line — on a multi-season list it is the only thing on a row that says which season an episode
- * belongs to, and [TitleDetail.namedSeason] deliberately names no season above a list holding more
- * than one. Taking it out first would make a two-season list unreadable to buy a board match.
+ * belongs to. Taking it out first would make a two-season list unreadable to buy a board match.
  *
  * The air date 7i draws is absent for the reason [DetailEpisode.airDateMs] gives.
  */
@@ -263,22 +262,6 @@ internal fun initialsOf(name: String): String = name
     .filter { it.isNotBlank() }
     .take(MAX_INITIALS)
     .joinToString("") { it.first().uppercaseChar().toString() }
-
-/**
- * The one season the action row may name, or null where naming one would be a claim the page cannot
- * make.
- *
- * On the board `Season 1` and `Episodes · 10` are a pair: the second is **that season's**
- * [DetailSeason.episodeCount], not the title's whole episode list, and both open the season panel
- * (board 6a, unbuilt). With the panel missing there is no selector and no "showing season N" state, so
- * a title with several seasons would get `Season 1` beside a count drawn from one of them while the
- * list underneath shows every season — two numbers that contradict each other in a row whose whole
- * point is that it never reshuffles.
- *
- * So the row names a season only when the provider named exactly one. Beyond that the episode list
- * carries the seasons itself: every row shows its own `S1:E4` through [DetailEpisode.code].
- */
-internal fun TitleDetail.namedSeason(): DetailSeason? = seasons.singleOrNull()
 
 private const val MINUTES_PER_HOUR = 60
 private const val TENTHS = 10f

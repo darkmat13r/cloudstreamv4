@@ -20,9 +20,9 @@ class LibrarySourcesViewModelTest {
     private val aniList = LibrarySourceId("AniList")
     private val mal = LibrarySourceId("MAL")
 
-    private val dune = LibraryTitleId("Prov\u0000/dune")
-    private val frieren = LibraryTitleId("AniList\u0000/frieren")
-    private val severance = LibraryTitleId("AniList\u0000/severance")
+    private val tide = LibraryTitleId("Prov\u0000/tide")
+    private val fernwood = LibraryTitleId("AniList\u0000/fernwood")
+    private val stillWater = LibraryTitleId("AniList\u0000/still-water")
 
     private class Store(var titles: List<LibraryTitle> = emptyList()) : LibraryStore {
         override suspend fun titles() = titles
@@ -67,7 +67,7 @@ class LibrarySourcesViewModelTest {
 
     private fun sources(current: LibrarySourceId = local) = Sources(
         all = listOf(
-            LibrarySource(aniList, "AniList", account = "lagradost"),
+            LibrarySource(aniList, "AniList", account = "tidewatch"),
             LibrarySource(local, "Local", local = true, titleCount = 1),
             LibrarySource(mal, "MyAnimeList", connected = false),
         ),
@@ -78,11 +78,11 @@ class LibrarySourcesViewModelTest {
                     "watching",
                     "Watching",
                     listOf(
-                        synced(frieren, "Frieren", keptAt = 2, watched = 12, total = 28, rating = "9.1"),
-                        synced(severance, "Severance", keptAt = 5, watched = 9, total = 10),
+                        synced(fernwood, "Fernwood", keptAt = 2, watched = 12, total = 28, rating = "9.1"),
+                        synced(stillWater, "Still Water", keptAt = 5, watched = 9, total = 10),
                     ),
                 ),
-                SyncedList("rewatching", "Rewatching", listOf(synced(frieren, "Frieren", keptAt = 2))),
+                SyncedList("rewatching", "Rewatching", listOf(synced(fernwood, "Fernwood", keptAt = 2))),
                 SyncedList("dropped", "Dropped", emptyList()),
             ),
         ),
@@ -100,7 +100,7 @@ class LibrarySourcesViewModelTest {
         episodesWatched = watched, episodesTotal = total, rating = rating,
     )
 
-    private val store = Store(listOf(LibraryTitle(dune, "Dune", LibraryBucket.Watching, keptAt = 1)))
+    private val store = Store(listOf(LibraryTitle(tide, "Tide", LibraryBucket.Watching, keptAt = 1)))
 
     private fun TestScope.model(host: LibrarySources?) = LibraryViewModel(
         store,
@@ -117,7 +117,7 @@ class LibrarySourcesViewModelTest {
         assertEquals(local, state.source)
         assertNull(state.syncedTabs)
         assertEquals(LibraryTab.Bucket(LibraryBucket.Watching), state.tab)
-        assertEquals(listOf(dune), assertIs<LibraryStatus.Showing>(state.status).cards.map { it.id })
+        assertEquals(listOf(tide), assertIs<LibraryStatus.Showing>(state.status).cards.map { it.id })
     }
 
     @Test
@@ -128,17 +128,17 @@ class LibrarySourcesViewModelTest {
         assertEquals(listOf("Watching", "Rewatching", "Dropped"), state.syncedTabs?.map { it.label })
         assertEquals(LibraryTab.Synced("watching", "Watching"), state.tab)
         assertEquals(mapOf("watching" to 2, "rewatching" to 1, "dropped" to 0), state.syncedCounts)
-        // Frieren is in two lists and is one title.
+        // Fernwood is in two lists and is one title.
         assertEquals(2, state.totalTitles)
         val cards = assertIs<LibraryStatus.Showing>(state.status).cards
-        assertEquals(listOf(severance, frieren), cards.map { it.id }, "newest kept first")
+        assertEquals(listOf(stillWater, fernwood), cards.map { it.id }, "newest kept first")
         assertEquals(listOf(aniList), host.read)
     }
 
     @Test
     fun `a service's card carries its count, its bar and the user's own rating`() = runTest {
         val vm = model(sources(current = aniList))
-        val card = assertIs<LibraryStatus.Showing>(vm.state.value.status).cards.first { it.id == frieren }
+        val card = assertIs<LibraryStatus.Showing>(vm.state.value.status).cards.first { it.id == fernwood }
         assertEquals(12, card.episodesWatched)
         assertEquals(28, card.episodesTotal)
         assertEquals("9.1", card.rating)
@@ -181,7 +181,7 @@ class LibrarySourcesViewModelTest {
         assertNull(state.syncedTabs)
         assertEquals(LibraryTab.Bucket(LibraryBucket.Watching), state.tab)
         assertEquals(1, state.counts[LibraryBucket.Watching])
-        assertEquals(listOf(dune), assertIs<LibraryStatus.Showing>(state.status).cards.map { it.id })
+        assertEquals(listOf(tide), assertIs<LibraryStatus.Showing>(state.status).cards.map { it.id })
     }
 
     @Test
@@ -228,14 +228,14 @@ class LibrarySourcesViewModelTest {
         host.failSources = IllegalStateException("no")
         val vm = model(host)
         assertTrue(vm.state.value.sources.isEmpty())
-        assertEquals(listOf(dune), assertIs<LibraryStatus.Showing>(vm.state.value.status).cards.map { it.id })
+        assertEquals(listOf(tide), assertIs<LibraryStatus.Showing>(vm.state.value.status).cards.map { it.id })
     }
 
     @Test
     fun `a filter narrows a service's list and leaves its counts`() = runTest {
         val vm = model(sources(current = aniList))
-        vm.onAction(LibraryAction.FilterChanged("frie"))
-        assertEquals(listOf(frieren), assertIs<LibraryStatus.Showing>(vm.state.value.status).cards.map { it.id })
+        vm.onAction(LibraryAction.FilterChanged("fern"))
+        assertEquals(listOf(fernwood), assertIs<LibraryStatus.Showing>(vm.state.value.status).cards.map { it.id })
         assertEquals(2, vm.state.value.syncedCounts["watching"])
     }
 

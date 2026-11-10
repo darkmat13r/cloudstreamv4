@@ -3948,11 +3948,9 @@ pixels apart; the old 784dp overhung by 46.
 - **Icon-only glyphs render `ink` at rest, not `muted`.** That is `DS-17`, app-wide; `#170` does not touch
   `IconOnlyButton`'s tint, and every reference showing an icon-only control at rest changes again when
   DS-17 lands.
-- **Season, Episodes and Full synopsis still trail the row as text buttons.** They are on no board here and
-  stay until their replacements exist. The row's order is the board's **as a prefix**, so nothing is
-  reordered when they go. As of PR 2b the Season button resolves `season_format` rather than
-  concatenating, so it and the chips read the same key; it still scrolls to the list rather than
-  choosing a season, and **removing it is not 2b's** — it is the one part of 7i still open, below.
+- **Full synopsis still trails the row as a text button.** It is on no board here and stays until 7j/7k
+  replace it. The row's order is the board's **as a prefix**, so nothing is reordered when it goes.
+  Season and Episodes left the row with "7i, the row", below.
 - **Queued, in order:** boards 7j and 7k, the collapsed synopsis opening the panel (Synopsis leaves);
   then Download and Mark watched for films, wired to real `DetailAction`s with tests — `DetailAction`
   has neither today, which is why 7g's two cells are not drawn. **More** has no board yet.
@@ -3978,19 +3976,34 @@ group. `shownSeasonIndex` resolves and clamps it on the screen, which keeps the 
   not a special a provider lists first, so the page opens on Season 1. `detail-season-chips` changed in
   2b only by the marked "One One" row.
 
-**Still open on 7i:** Season and Episodes leave the action row. Both still do the one thing the chips
-do not — each calls `onScrollToEpisodes` — so removing them is a focus-order and reference change of
-its own, not a line in the chip PR.
+**7i, the row: Season and Episodes leave the action row** (done 2026-11-09). The row is 7f's as a
+prefix: Resume, Start over (a film with a position), Trailer, the watchlist, then Full synopsis until
+7j/7k. The chips choose the season, and the episode header's count is the only count on the page.
+- **Focus.** Arrival and the return from the player are unchanged. The one-press jump to the list
+  (`onScrollToEpisodes`) went with the buttons: D-pad down from the row now reaches the list through
+  the rails above it. That is board 7f's choice, which draws no shortcut. `namedSeason()` had no other
+  caller and is deleted with its JVM case.
+- **Tests.** `seasonOneAndOtherPutOneEpisodeCountOnScreen` is the `[1, Other]` title below, with a
+  fixture of its own (`SeasonOneAndOther`). It and the show's row test fail on the old row ("Season 1
+  is in the action row"). The button's scroll test is gone; the focus walk is 14 stops, not 16.
+- **References.** `detail-show-focus-primary`, `detail-watch-status-cell-focused` and
+  `detail-synopsis-panel-open` were recorded again. Every other Detail case passed against its old
+  reference first. Each diff is in the row's band only, x550..1013, y329..373 at 1280x720: the two
+  buttons gone, Synopsis moved left into Season's place.
+- **The loading bar is 472dp** (follow-up, decided 2026-11-09: the placeholder must never overhang).
+  `DetailSkeletonDefaults.ActionBarWidth` was the resuming film's 532dp; with a series' row at 472dp it
+  overhung every series by 60dp. It is now the shortest row, `ResumeWidth` + 2 × (`MinFocusGap` +
+  `IconTargetCell`) + `MinFocusGap` + `TextButtonMinWidth`, and `detail-loading` was recorded again.
 
-They are **almost** mutually exclusive with the chips, and the gap is worth knowing before anyone
-removes them. `namedSeason()` is `seasons.singleOrNull()` (`DetailCopy.kt:281`), so the two buttons
-appear only when the title has exactly **one** season, and chips appear only at **two or more**
+What the overlap was, kept for the record. They were **almost** mutually exclusive with the chips, and
+the gap was worth knowing before anyone removed them. `namedSeason()` was `seasons.singleOrNull()`, so the two buttons
+appeared only when the title has exactly **one** season, and chips appear only at **two or more**
 groups. The overlap is a title whose episodes carry one season number *and* some with no season at
 all: `toSeasons()` drops the nulls and yields a single season, so both buttons draw, while the groups
 are `[1, Other]`, so the chips draw too. On that title the Episodes button counts season 1 while the
-header counts the chosen group, so picking Other puts two different counts on one screen. Measured
-from the two functions, not seen on a device — no fixture here produces it, because `SeasonGroups`
-sets `seasons = emptyList()`.
+header counts the chosen group, so picking Other put two different counts on one screen. First
+measured from the two functions only, since `SeasonGroups` sets `seasons = emptyList()`; the
+`SeasonOneAndOther` fixture now produces it, and the row test fails on the old row.
 - **Board 6a's chip gap is wrong**, not the code's: 6a draws range chips at 12dp where `ChipRow` spaces at
   `ChipRowSpacing` 24dp. Board 7i is drawn at the token. Raised as an owner correction.
 
@@ -7081,11 +7094,31 @@ short facts slice. They now meet the reader of the sections after the facts, as 
 then one claiming 90 bytes the frame does not hold, so the call now fails on that lying length, as any does; the test
 asserts that failure. Had the facts reader taken those bytes, they would have read as facts and nothing would fail.
 
-## KMP-102 — The same hardening for posters · **open**, follow-up of `KMP-100`
+## KMP-102 — The same hardening for posters · **built 2026-11-09**, stacked on `KMP-100` (`#299`)
 
-Posters go through `httpUrlOrNull()` and `posterHttpClient`, so they accept http, follow https-to-http redirects, and are
-decoded whole whatever size they claim. Give them `KMP-100`'s https-only check and client, its `BoundedDecoder`, and its
-byte cap at both levels (`boundedImageClient`), with a 60 s bound on every network test.
+Posters went through `httpUrlOrNull()` and `posterHttpClient`, so they accepted http, followed https-to-http redirects,
+were read whole whatever their size, and were decoded whole whatever size they claimed. Now:
+- **The check:** `cleaned()` keeps a home, search or title-page poster only through `httpsUrlOrNull()`, as the backdrop:
+  public, https, and no user info.
+- **The loader:** posters load through the backdrop's own loader, `extensionImageLoader`, one for every image an
+  extension names: https on every hop, the byte cap at both levels (`boundedImageClient`), and `BoundedDecoder`.
+- **`posterHttpClient` is unchanged.** Downloads and subtitles build on it, and their bodies are neither images nor
+  under 8 MB; only the image loader is bounded.
+
+What a poster from an extension that serves http now does: the sandbox drops its URL, and the card shows its own
+placeholder, as for any poster that fails. Posters reaching the page by other roads (the Mac's stored library, home
+rows built outside the sandbox) keep their own URL checks, which allow http; the loader refuses those at the first hop.
+
+**Tests:**
+- `PosterUrlTest`, 2: a public https poster is kept on the home page, in search and on the title page; http, `file:`,
+  `data:`, `localhost`, private and link-local addresses, empty, and user info are dropped on all three.
+- `PosterLoaderTest`: posters load through the same loader object as backdrops, so `BackdropImageTest`'s eight cases
+  are the posters' too.
+- Proved by mutation: with `httpUrlOrNull` back in `cleaned()`, http posters are kept; with the old poster loader, the
+  loaders differ.
+
+**Not here:** a poster is asked for at its file's size, not the card's, so one up to 4096 by 4096 is kept whole (64 MB).
+Asking at the drawn size, as the backdrop does, changes `PosterImage`'s layout and is its own change.
 
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 
@@ -7156,7 +7189,7 @@ rebuilding the page as the service ticked, and D1's state was made again with no
   what is installed changes; it holds no reader that outlives its loads.
 
 **Not here:**
-- **Playing a downloaded episode** (D4's Play) is `KMP-74`. The player takes a `StreamLink`, not a local file.
+- **Playing a downloaded episode** (D4's Play) is `KMP-74`, built: the app hands the media host one open descriptor.
 
 **Tests** (`DownloadsHostTest`, against the real service and a loopback server in a temporary folder):
 - A film is downloaded; ⌘⌫ asks and Cancel keeps the file; the row's menu Delete, then the sheet's Delete, removes the
@@ -7952,3 +7985,123 @@ an app that cannot keep a secret, with no PKCE and no `state` shown, and Android
   - A13 on `error=`, and A13b on an exchange offline.
 - Red-checked: without the state comparison, 3 of these fail; without ending the wait on leaving the step, the late
   redirect is taken and the Cancel test fails; without the bare-form check or the RFC 3986 decoding, their tests fail.
+---
+
+## KMP-74 — The Mac plays a downloaded episode: the app opens the file, and the media host gets only its descriptor · **built 2026-11-09**
+
+**Status:** in the PR that adds this entry · taken over from desktop-session-1, at the PM's word
+
+**The owner's ruling (2026-11-09):** "hand it just the one file". The app opens the chosen file itself and passes only
+that open descriptor to the media host. The host's sandbox rules don't widen, and it never sees a folder or a path.
+`BUG-76` measured why this is needed: the host may read nothing outside its own directory, so a download played by
+path gets `frames=0`.
+
+**How the descriptor crosses.** Java starts a process with nothing open above stderr, and the host's three are taken:
+commands come in on stdin, frames go out on stdout, and stderr is drained. So nothing can be inherited. And a socket
+the host connects to would need a new `network-outbound` rule, which is a wider sandbox. Instead:
+1. The app makes a socket pair (JNA). One end becomes the host's stdin: `ProcessBuilder.Redirect.from(/dev/fd/N)`
+   opens a duplicate, and the app closes its own copy.
+2. The app opens the file and sends it with `sendmsg(SCM_RIGHTS)` and one marker byte. It closes its copy of the file
+   at once, sent or not.
+3. The host is told only that a descriptor is coming (`-Dcloudstream.mediahost.file=true`, never a path). It takes
+   it with one `recvmsg` before anything reads stdin with buffering, because a plain read of that byte would drop it.
+   A host given none exits.
+4. Commands follow on the same socket, in the same form as ever, written through `FileOutputStream(/dev/fd/<app end>)`.
+   The app's end closing is still the host's sign to exit.
+5. `OP_PLAY_FILE` (7) carries no text. The host builds `fd://<n>` itself, so the app has no say in what libVLC opens.
+
+**What the app opens (`LocalMedia`).** Only a regular file inside the download folder, reached without a link at any
+step below it. The path is checked first: its real path must equal the folder's real path plus the same steps. Then
+the descriptor is checked: it is opened with `O_RDONLY | O_NOFOLLOW | O_NONBLOCK | O_CLOEXEC`, `fstat` must say a
+regular file, and `F_GETPATH` must give the same path still inside the folder. So a link or a folder swapped in
+between the two checks is refused too.
+
+**Accepted residual (owner, 2026-11-09):** the host can ask the kernel for the path of a descriptor it holds
+(`F_GETPATH`; measured, it answers). So a compromised decoder could learn the download's folder and file name. It
+still cannot open anything by that path, and its home is already named after the account. No descriptor design hides
+this on macOS. The only alternative, the app streaming bytes to a libVLC callback stream, was not chosen. The host's
+own KDoc says so.
+
+**JNA** is declared in `:desktopApp` at 5.19.1, pinned. The owner approved it 2026-11-09, at the version `BUG-73`
+settles on.
+
+**Review (#293):**
+- `release()` closes the app's end of the socket at once, rather than at collection.
+- `receive` has room for four descriptors, so extras arrive whole and are closed, and only exactly one is taken.
+- A host that never became a player is cleaned up on any failure, thrown or not: its process, its directory, and
+  both socket ends.
+
+**Second review (#293, at 859284c12):**
+- `receive` reads every control message the kernel left, not only the first. It takes a descriptor only from exactly
+  one `SCM_RIGHTS` message carrying exactly one, whose aligned length is the whole control length. Anything else is
+  refused, and every descriptor in every message is closed, so a second message cannot install descriptors unclosed.
+  Measured: macOS refuses a `sendmsg` with two `SCM_RIGHTS` messages (`EINVAL`), so this guards a kernel that would
+  deliver one, and is tested over hand-built control buffers.
+- The Seek amount window test ends its `/bin/sleep` process and deletes its directory in a `finally`.
+
+**New with the rebase onto `KMP-96` (#277):** the download player steps by Settings' Seek amount, as a stream's player
+does: `DesktopApp` passes it `seekMillis` from `PlaybackSettings.seekSeconds`, read while playing. Up next and Play
+the next episode do not apply, because a download has no next link.
+
+**Where Play goes.** `DownloadSeriesHost` turns `SeriesEffect.Play` into `DesktopDownloads.playable(id)`: the episode's
+file, the download folder, and its name and numbers. The app pushes `Screen.DownloadPlayer` over the series page. Its
+name in a screen's text is `PlayableDownload(id=…)`, with no path. The player is the stream player, given a `start`
+that plays the descriptor, no address and no source selector. The top band reads `S1:E2 · name · Downloads`. A file
+gone since the page was drawn plays nothing, and the page reads the disk again.
+
+**Measured end to end, through the real sandboxed host** (`--check-download-playback <file> [seconds]`, the packaged
+build, a scratch `user.home`). Two 20 s 640×360 clips in a folder the host may not read, one with no audio and one
+with a silent track:
+
+| | No audio | Silent track |
+|---|---|---|
+| Played 4 s | frames=25, playing | frames=35, playing |
+| Seek to 0.75, then 2 s | position 16575 of 20000, 51 more frames, playing | position 16571 of 20000, 51 more frames, playing |
+| Failed | false | false |
+
+- **Control:** the same file by path through `--check-playback`, without the hand-off, gets frames=0 and fails. The
+  host's sandbox still refuses the folder.
+- **Refusals:** a link to the clip and a folder named like one are both refused before any host starts (exit 4).
+- **`lsof` during playback:**
+  - The app holds no descriptor on the clip.
+  - The host holds it read-only, twice: the one it received and libVLC's duplicate. Its stdin is the Unix socket.
+- **Before the code (scratch, the rendered media-host profile):**
+  - VLC 3.0.24 played `fd://3` and seeked (`mp4 demux: seeking`); by path, "Operation not permitted".
+  - Its log never named the path with `fd://`; by path it did, 14 times.
+  - A sandboxed receiver read the whole clip through an `SCM_RIGHTS` descriptor. The descriptor was `O_RDONLY`, and a
+    `write` failed.
+
+**Tests:**
+- `LocalMediaTest` (12, run against the real kernel, because the structure layouts are written by hand):
+  - A file inside opens read-only; writing through it fails; it closes once.
+  - Refused: outside the folder, through `..`, the folder itself, a missing file, a link at any step below the folder
+    (to outside, to inside, a linked folder), a folder.
+  - A folder named through a link, as `/tmp` is, still works.
+  - `O_NOFOLLOW`, and `fstat` on a folder.
+  - A descriptor sent across a socket pair reads the same bytes; a byte sent with no descriptor is not taken for one.
+  - A FIFO is refused, without waiting for a writer (`O_NONBLOCK`).
+  - Two descriptors in one message are refused, and both are closed: the process's open descriptors are counted
+    before and after (review).
+  - Two `SCM_RIGHTS` messages in one `sendmsg` are refused by the kernel (second review).
+  - Over hand-built control buffers: one message of one descriptor is taken; two messages, a control length past the
+    first message, `MSG_CTRUNC`, and two descriptors in one message are each refused, with every descriptor listed to
+    close (second review).
+- `DownloadsHostTest` (+3, over the real service and a loopback server):
+  - Double-clicking an episode hands over its file, the folder, its name and its numbers, and the name has no path.
+  - An episode whose file went since plays nothing and leaves the list.
+  - In the window, Play opens `DownloadPlayer` for that episode, opened once, and Escape returns to the series page.
+  - In the window, with Seek amount at 30 s, the download player's first command is `OP_PLAY_FILE`, alone and with
+    no text after it, and the arrows send 30 000 and -30 000. It reads the bytes the screen wrote, through
+    `VlcPlayer.forDownload`, a seam over a process that writes nothing.
+- **Mutations, run:**
+  - Dropping the regular-file check fails "a folder is refused".
+  - Dropping both link checks fails "a linked folder on the way".
+  - Unwiring Play fails both host tests.
+  - Exactly those four failed, and nothing else.
+  - Review round: dropping the regular-file check also fails the FIFO case. Leaving refused descriptors open fails
+    the two-descriptor case (206 open before, 208 after).
+
+**Not here:**
+- Resume and watch progress for a download. There is no library record to write to; the stream player's
+  `WatchRecorder` needs one.
+- Playing a film from the D1 list. D1 has no Play on the Mac board.

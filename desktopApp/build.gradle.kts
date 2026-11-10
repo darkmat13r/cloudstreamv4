@@ -115,6 +115,9 @@ kotlin {
             // KMP-95d: A11's QR of Simkl's page, as `:app` draws it for TV. The catalog's version, approved for the Mac by
             // the owner (2026-11-09).
             implementation(libs.qrcode.kotlin)
+            // KMP-74: socketpair, sendmsg and recvmsg, so a downloaded file reaches the sandboxed media host as one open,
+            // read-only descriptor and never as a path. Declared, not taken from vlcj or FileKit, and pinned.
+            implementation(libs.jna)
         }
         jvmTest.dependencies {
             implementation(libs.kotlin.test)

@@ -21,25 +21,18 @@ import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.designsystem.target.GhostTextButton
 import com.lagradost.cloudstream4.core.designsystem.target.IconOnlyButton
 import com.lagradost.cloudstream4.core.designsystem.target.PrimaryTextButton
-import com.lagradost.cloudstream4.core.strings.UiString
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.action_add_to_bookmarks
-import com.lagradost.cloudstream4.core.strings.generated.resources.episodes
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_episode
 import com.lagradost.cloudstream4.core.strings.generated.resources.play_movie_button
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
-import com.lagradost.cloudstream4.core.strings.generated.resources.season
-import com.lagradost.cloudstream4.core.strings.generated.resources.season_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.synopsis
 import com.lagradost.cloudstream4.core.strings.generated.resources.trailer
-import com.lagradost.cloudstream4.core.strings.resolve
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
-import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
-import com.lagradost.cloudstream4.feature.detail.namedSeason
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -57,11 +50,10 @@ import org.jetbrains.compose.resources.stringResource
  * own [CloudStreamIcons.Play] glyph. That also buys back the width the old five-ghost row had no room
  * for: a 48dp cell against a 120dp ghost.
  *
- * Order is the board's, as a prefix: Resume, Start over, Trailer, watchlist. Season, Episodes and Full
- * synopsis follow as text buttons and are **not** on 7f or 7g — they stay only until their
- * replacements exist (the inline episode list of 7i, and the synopsis stop of 7j/7k). Removing them
- * first would leave no way to pick an episode or read a clamped plot, so when those land the row
- * becomes 7f exactly, with nothing to reorder.
+ * Order is the board's, as a prefix: Resume, Start over, Trailer, watchlist. Full synopsis follows as a
+ * text button and is **not** on 7f or 7g. It stays only until its replacement exists (the synopsis stop
+ * of 7j/7k), because removing it first would leave no way to read a clamped plot. Season and Episodes
+ * left once 7i's season chips existed: the chips choose the season, and the episode header counts it.
  *
  * Still absent, and deliberately: **Download** and **Mark watched**, which 7g draws for films —
  * `DetailAction` has neither action, and a control with nothing behind it is worse than none. **More**
@@ -73,8 +65,6 @@ import org.jetbrains.compose.resources.stringResource
  *
  * @param takeFocus whether the primary takes focus now — on arrival, which both boards state, or on
  *   coming back from the player.
- * @param onScrollToEpisodes what Season and Episodes do, in place of the episode panel they are drawn
- *   for, which is board 6a and a later task.
  * @param onWatchStatusRequested opens the watch-status panel. The cell is a button, not a toggle: five
  *   values cannot be cycled on a remote.
  */
@@ -84,7 +74,6 @@ internal fun DetailActionRowTv(
     onAction: (DetailAction) -> Unit,
     takeFocus: Boolean,
     onFocusTaken: () -> Unit,
-    onScrollToEpisodes: () -> Unit,
     onWatchStatusRequested: () -> Unit,
 ) {
     val fromStart = if (detail.playData != null) {
@@ -149,26 +138,6 @@ internal fun DetailActionRowTv(
                 label = stringResource(Res.string.action_add_to_bookmarks),
                 onClick = onWatchStatusRequested,
                 modifier = LocalDetailPanelOpeners.current?.let { Modifier.focusRequester(it.watchStatus) } ?: Modifier,
-            )
-        }
-        // Both are dropped where there is no one season to name — see `namedSeason`. A button of fixed
-        // width holding a bare word, or a count that belongs to a different season from the one beside
-        // it, is not the control the board drew.
-        val season = detail.namedSeason()
-        if (season != null && detail.episodes.isNotEmpty()) {
-            GhostTextButton(
-                // Through `season_format`, not concatenated: a language may put the number
-                // first, and the season chips (`seasonChipLabel`) resolve the same key.
-                label = UiString.Resource(
-                    Res.string.season_format,
-                    listOf(stringResource(Res.string.season), season.number, ""),
-                ).resolve(),
-                onClick = onScrollToEpisodes,
-            )
-            GhostTextButton(
-                label = UiString.Plural(Res.plurals.episodes, season.episodeCount).resolve() +
-                    META_SEPARATOR + season.episodeCount,
-                onClick = onScrollToEpisodes,
             )
         }
         if (!detail.plot.isNullOrBlank()) {

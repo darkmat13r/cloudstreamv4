@@ -65,6 +65,7 @@ import com.lagradost.cloudstream4.home.FileHomeSourceMemory
 import com.lagradost.cloudstream4.downloads.DesktopDownloads
 import com.lagradost.cloudstream4.downloads.DownloadSeriesHost
 import com.lagradost.cloudstream4.downloads.DownloadsHost
+import com.lagradost.cloudstream4.downloads.PlayableDownload
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
 import com.lagradost.cloudstream4.feature.downloads.DownloadsViewModel
 import com.lagradost.cloudstream4.home.TopLevelDestination
@@ -96,12 +97,14 @@ import com.lagradost.cloudstream4.home.TopLevelScreen
 import com.lagradost.cloudstream4.home.TopLevelTab
 import com.lagradost.cloudstream4.home.titleBarOverContent
 import com.lagradost.cloudstream4.player.MediaHost
+import com.lagradost.cloudstream4.player.LocalMedia
 import com.lagradost.cloudstream4.player.PlayerFullscreen
 import com.lagradost.cloudstream4.player.PlayerHandover
 import com.lagradost.cloudstream4.player.UpNext
 import com.lagradost.cloudstream4.player.PlayerScreen
 import com.lagradost.cloudstream4.player.PlayerUnavailable
 import com.lagradost.cloudstream4.player.VlcPlayer
+import com.lagradost.cloudstream4.player.runDownloadPlaybackCheck
 import com.lagradost.cloudstream4.player.runPlaybackCheck
 import com.lagradost.cloudstream4.player.runSubtitleRenderCheck
 import com.lagradost.cloudstream4.player.episodeMeta
@@ -176,6 +179,10 @@ fun main(args: Array<String>) {
     if (args.firstOrNull() == PLAYBACK_CHECK_ARGUMENT) {
         val url = requireNotNull(args.getOrNull(1)) { "$PLAYBACK_CHECK_ARGUMENT needs a url" }
         exitProcess(runPlaybackCheck(url, args.getOrNull(2)?.toIntOrNull() ?: DEFAULT_PLAYBACK_CHECK_SECONDS))
+    }
+    if (args.firstOrNull() == DOWNLOAD_PLAYBACK_CHECK_ARGUMENT) {
+        val file = requireNotNull(args.getOrNull(1)) { "$DOWNLOAD_PLAYBACK_CHECK_ARGUMENT needs a file" }
+        exitProcess(runDownloadPlaybackCheck(file, args.getOrNull(2)?.toIntOrNull() ?: DEFAULT_PLAYBACK_CHECK_SECONDS))
     }
     if (args.firstOrNull() == SUBTITLE_RENDER_CHECK_ARGUMENT) {
         exitProcess(runSubtitleRenderCheck(args.drop(1)))
@@ -292,6 +299,9 @@ private sealed interface Screen {
         /** `S1:E4 · Its name`, beside the title in the player's top band (`DS-23` M1). Null for a film. */
         val meta: String? = null,
     ) : Screen
+
+    /** A downloaded episode, played from the disk (`KMP-74`). Over its series page, which Back returns to. */
+    data class DownloadPlayer(val download: PlayableDownload) : Screen
 }
 
 /**
@@ -316,6 +326,8 @@ private sealed interface Screen {
  * @param onOpenSettings opens the Settings window, from the sidebar's last row (`KMP-98`). Null draws no row.
  * @param onSidebarShown told whether the screen on top has the sidebar, so the window's title bar is transparent over
  *   it (`KMP-98`) and plain over the player and the review, which have no column for the traffic lights to sit in.
+ * @param openDownload a player for a downloaded episode, handed its file (`KMP-74`). A seam, so a test can see what is
+ *   asked for without starting a media host.
  */
 @Composable
 internal fun DesktopApp(
@@ -336,6 +348,7 @@ internal fun DesktopApp(
     profileFoot: @Composable () -> Unit = {},
     onOpenSettings: (() -> Unit)? = null,
     onSidebarShown: (Boolean) -> Unit = {},
+    openDownload: (PlayableDownload) -> VlcPlayer? = ::openDownloadPlayer,
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) {
@@ -476,7 +489,14 @@ internal fun DesktopApp(
                 // As a title's page: the sidebar stays, with Downloads chosen.
                 TopLevelScreen(origin, toTab, trailing = notice, onSettings = onOpenSettings) {
                     if (downloads != null) {
-                        DownloadSeriesHost(downloads, screen.id, scope, setEscape = { escape.onEscape = it }, onClose = { back(screen) })
+                        DownloadSeriesHost(
+                            downloads,
+                            screen.id,
+                            scope,
+                            setEscape = { escape.onEscape = it },
+                            onClose = { back(screen) },
+                            onPlay = { download -> if (stack.last() == screen) stack += Screen.DownloadPlayer(download) },
+                        )
                     }
                 }
             }
@@ -570,9 +590,42 @@ internal fun DesktopApp(
                     onDispose { recorder.flush() }
                 }
             }
+            is Screen.DownloadPlayer -> key(screen.download.id) {
+                SideEffect { escape.onEscape = { back(screen) } }
+                val download = screen.download
+                val player = remember { openDownload(download) }
+                // In the band where a stream's source would be: where this one comes from.
+                val source = TopLevelDestination.Downloads.label()
+                val letters = stringResource(Res.string.season_short) to stringResource(Res.string.episode_short)
+                // As a stream's player: Settings' Seek amount, read while playing (`KMP-96`).
+                val seekSeconds by playback.seekSeconds.collectAsState()
+                if (player == null) {
+                    PlayerUnavailable(onBack = { back(screen) })
+                } else {
+                    PlayerScreen(
+                        player,
+                        download.title,
+                        // No address: the host plays the descriptor it was handed, so nothing here is sent.
+                        remember(download, source) { StreamLink(source, null, url = "", referer = null, userAgent = null, audioUrl = null) },
+                        onBack = { back(screen) },
+                        meta = episodeMeta(download.season, download.episode, download.episodeName, letters.first, letters.second),
+                        setEscape = { escape.onEscape = it },
+                        fullscreen = remember(screen, window) { window?.let(::PlayerFullscreen) },
+                        seekMillis = seekSeconds * MILLIS_PER_SECOND,
+                        start = { started, _ -> started.playFile() },
+                    )
+                }
+            }
         }
     }
 }
+
+/**
+ * The app opens the file, and the host gets only that descriptor (`KMP-74`). Null for a file that has gone, been replaced
+ * by a link, or left the download folder since the page was drawn; or with no VLC.
+ */
+private fun openDownloadPlayer(download: PlayableDownload): VlcPlayer? =
+    LocalMedia.open(download.file, download.root)?.let(VlcPlayer::createOrNull)
 
 /** What Escape does on the current screen; null where there is nothing to go back to. */
 internal class EscapeHandler {
@@ -768,6 +821,7 @@ private const val SCAN_ARGUMENT = "--scan-extensions"
 private const val DEFAULT_CHECK_QUERY = "nasa"
 private const val VERBOSE_ARGUMENT = "--verbose"
 private const val PLAYBACK_CHECK_ARGUMENT = "--check-playback"
+private const val DOWNLOAD_PLAYBACK_CHECK_ARGUMENT = "--check-download-playback"
 private const val DEFAULT_PLAYBACK_CHECK_SECONDS = 15
 private const val SUBTITLE_RENDER_CHECK_ARGUMENT = "--check-subtitle-render"
 

@@ -23,6 +23,7 @@ import com.lagradost.cloudstream4.core.designsystem.state.FailureNotice
 import com.lagradost.cloudstream4.core.designsystem.state.StateAction
 import com.lagradost.cloudstream4.core.designsystem.state.StateActionButton
 import com.lagradost.cloudstream4.core.designsystem.target.Chip
+import com.lagradost.cloudstream4.core.designsystem.target.ChipRow
 import com.lagradost.cloudstream4.core.designsystem.target.ChromeButton
 import com.lagradost.cloudstream4.core.designsystem.target.TextField
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
@@ -139,7 +140,8 @@ internal fun SearchChipRow(
         modifier = modifier.fillMaxWidth().height(CloudStreamDimens.ChipFocusCell),
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        Row(
+        // `BUG-65`: the design system's chip row, so these chips are spaced like every other TV chip row.
+        ChipRow(
             modifier = Modifier
                 .weight(CHIPS_WEIGHT)
                 .horizontalScroll(rememberScrollState())
@@ -147,8 +149,6 @@ internal fun SearchChipRow(
                     start = SearchScreenTvDefaults.ContentInsetStart,
                     end = CloudStreamDimens.ChipRowSpacing,
                 ),
-            horizontalArrangement = Arrangement.spacedBy(CloudStreamDimens.ChipRowSpacing),
-            verticalAlignment = Alignment.CenterVertically,
         ) {
             filters.available.forEach { type ->
                 TypeChip(

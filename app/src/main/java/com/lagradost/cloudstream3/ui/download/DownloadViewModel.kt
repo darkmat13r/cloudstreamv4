@@ -41,7 +41,9 @@ import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.deleteFi
 import com.lagradost.cloudstream3.utils.downloader.VideoDownloadManager.downloadDeleteEvent
 import com.lagradost.cloudstream4.download.EngineVideoDownload.Companion.getDownloadListInfo
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.withContext
+import java.util.concurrent.atomic.AtomicInteger
 
 class DownloadViewModel : ViewModel() {
     companion object {
@@ -69,6 +71,12 @@ class DownloadViewModel : ViewModel() {
 
     private val _selectedItemIds = ConsistentLiveData<Set<Int>?>(null)
     val selectedItemIds: LiveData<Set<Int>?> = _selectedItemIds
+
+    /**
+     * BUG-86: bumped by every [updateHeaderList] call and by [removeItems], before either posts. A read that finishes
+     * after a newer call began is dropped, so a read taken mid-delete can never post last.
+     */
+    private val headerGeneration = AtomicInteger()
 
     init {
         // Keep the Downloads list in sync when a download is deleted/cancelled from
@@ -207,48 +215,56 @@ class DownloadViewModel : ViewModel() {
         }
     }
 
-    fun updateHeaderList(context: Context) = viewModelScope.launchSafe {
-        // Do not push loading as it interrupts the UI
-        //_headerCards.postValue(Resource.Loading())
+    fun updateHeaderList(context: Context): Job {
+        // BUG-86: taken now, in call order, not when the coroutine runs. Read through a local, so the coroutine's
+        // class needs no accessor for the field.
+        val generations = headerGeneration
+        val generation = generations.incrementAndGet()
+        return viewModelScope.launchSafe {
+            // Do not push loading as it interrupts the UI
+            //_headerCards.postValue(Resource.Loading())
 
-        val visual = ioWork {
-            val children = context.getKeys(DOWNLOAD_EPISODE_CACHE)
-                .mapNotNull { context.getKey<DownloadObjects.DownloadEpisodeCached>(it) }
-                .distinctBy { it.id } // Remove duplicates
+            val visual = ioWork {
+                val children = context.getKeys(DOWNLOAD_EPISODE_CACHE)
+                    .mapNotNull { context.getKey<DownloadObjects.DownloadEpisodeCached>(it) }
+                    .distinctBy { it.id } // Remove duplicates
 
-            val isCurrentlyDownloading =
-                DownloadQueueService.isRunning || downloadInstances.value.isNotEmpty() || DownloadQueueManager.queue.value.isNotEmpty()
+                val isCurrentlyDownloading =
+                    DownloadQueueService.isRunning || downloadInstances.value.isNotEmpty() || DownloadQueueManager.queue.value.isNotEmpty()
 
-            val downloadStats =
-                calculateDownloadStats(context, children)
+                val downloadStats =
+                    calculateDownloadStats(context, children)
 
-            val cached = context.getKeys(DOWNLOAD_HEADER_CACHE)
-                .mapNotNull { context.getKey<DownloadObjects.DownloadHeaderCached>(it) }
+                val cached = context.getKeys(DOWNLOAD_HEADER_CACHE)
+                    .mapNotNull { context.getKey<DownloadObjects.DownloadHeaderCached>(it) }
 
-            // Download stats and header keys may change when downloading.
-            // To prevent the downloader and key removal from colliding, simply do not prune keys when downloading.
-            if (!isCurrentlyDownloading) {
-                removeRedundantHeaderKeys(
+                // Download stats and header keys may change when downloading.
+                // To prevent the downloader and key removal from colliding, simply do not prune keys when downloading.
+                if (!isCurrentlyDownloading) {
+                    removeRedundantHeaderKeys(
+                        context,
+                        cached,
+                        downloadStats.totalBytesUsedByChild,
+                        downloadStats.totalDownloads
+                    )
+                }
+                // calculateDownloadStats already performed checks when creating redundantDownloads, no extra check required
+                removeRedundantEpisodeKeys(context, downloadStats.redundantDownloads)
+
+                createVisualDownloadList(
                     context,
                     cached,
                     downloadStats.totalBytesUsedByChild,
+                    downloadStats.currentBytesUsedByChild,
                     downloadStats.totalDownloads
                 )
             }
-            // calculateDownloadStats already performed checks when creating redundantDownloads, no extra check required
-            removeRedundantEpisodeKeys(context, downloadStats.redundantDownloads)
 
-            createVisualDownloadList(
-                context,
-                cached,
-                downloadStats.totalBytesUsedByChild,
-                downloadStats.currentBytesUsedByChild,
-                downloadStats.totalDownloads
-            )
+            // A newer call, or a removal, began while this one read: what it read may already be gone.
+            if (generations.get() != generation) return@launchSafe
+            updateStorageStats(visual)
+            postHeaders(visual)
         }
-
-        updateStorageStats(visual)
-        postHeaders(visual)
     }
 
     fun postHeaders(newValue: List<VisualDownloadCached.Header>? = null) {
@@ -398,10 +414,14 @@ class DownloadViewModel : ViewModel() {
         postChildren(visual)
     }
 
-    private fun removeItems(idsToRemove: Set<Int>) = viewModelScope.launchSafe {
-        _selectedItemIds.postValue(null)
-        postHeaders(_headerCards.success?.filter { it.data.id !in idsToRemove })
-        postChildren(_childCards.success?.filter { it.data.id !in idsToRemove })
+    private fun removeItems(idsToRemove: Set<Int>): Job {
+        // BUG-86: a header read already under way read these items, and must not post them back.
+        headerGeneration.incrementAndGet()
+        return viewModelScope.launchSafe {
+            _selectedItemIds.postValue(null)
+            postHeaders(_headerCards.success?.filter { it.data.id !in idsToRemove })
+            postChildren(_childCards.success?.filter { it.data.id !in idsToRemove })
+        }
     }
 
     /**
@@ -563,6 +583,8 @@ class DownloadViewModel : ViewModel() {
                                 // and we have it as non-empty, it was triggered on
                                 // parent header card
                                 removeItems(successfulIds + parentIds)
+                                // BUG-86: one read after every file has gone, so the list ends on what is left.
+                                updateHeaderList(context)
                             }
                         }
                     }

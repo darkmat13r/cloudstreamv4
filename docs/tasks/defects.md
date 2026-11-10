@@ -2548,7 +2548,8 @@ design. 3c draws the account as a 32dp avatar.
 **Fix:**
 - The account is now an `IconOnlyButton` like the other three: the same 32dp outlined tile, the same 16dp glyph in
   `ink`, the same ring, and "Switch account" drawn under it on focus, as Random's name is.
-- **The four icon cells touch** (`HomeScreenTvDefaults.ChromeCellGap`, 0dp), so two tiles are 16dp apart. The owner's
+- **The four icon cells touch** (a `Row` with no arrangement; it was `HomeScreenTvDefaults.ChromeCellGap`, 0dp, until
+  `BUG-65` removed the number under the owner's tokens-only rule), so two tiles are 16dp apart. The owner's
   call on 2026-11-08, an approved exception to `MinFocusGap` for this row only. It is safe: a ring is the 32dp tile plus
   2dp offset and 2dp stroke on each side, 40dp, inside its 48dp cell with 4dp spare on each side, so two rings never
   overlap and every cell is still a whole 48dp target. The source control keeps `MinFocusGap` before the first cell.
@@ -3222,6 +3223,17 @@ and a `:library` class; and past records in `docs/tasks/`, which say what was me
 **One PR per module.** JVM tests first; the device tests and their screenshots after train 9, which carries those
 files, each screenshot diff read before it is re-recorded.
 
+### `:core:designsystem` (JVM tests)
+
+| Was | Now | Kept |
+|---|---|---|
+| `Ozymandias`, `S5 E14` (a list row, twice; and `S5 E14 · 1.2 GB`) | `Riptide`, `S3 E9` (`S3 E9 · 1.2 GB`) | a title and an episode line |
+| `dune`, `dune messiah` (a text field's value) | `tide`, `tide warden` | a value, then a longer one that starts with it |
+| `Blade Runner Twenty Forty Nine` (a card's revealed title) | `Salt Road Crossing the Bay` | two lines on the card: the test fails with a one-line title (checked with `Salt Road`) |
+
+Tests: the same 20 in 3 classes (`ListRowStopsTest` 6, `TextFieldTest` 5, `DesignReviewFixesTest` 9), 58 assertion lines
+before and after, all passing.
+
 ### `:feature:search` (JVM tests, previews, KDoc)
 
 | Was | Now | Kept |
@@ -3235,6 +3247,30 @@ files, each screenshot diff read before it is re-recorded.
 | `Vidsrc`, `VIDSRC` | `Source A`, `SOURCE A` | |
 
 Tests: the same 58 in 5 classes, 117 assertion calls before and after, all passing.
+
+### `:feature:library` (JVM tests, a preview, KDoc)
+
+| Was | Now | Kept |
+|---|---|---|
+| `dune`, `Dune`, `DUNE` (ids `Prov\u0000/dune`, the filter `/DUNE`) | `tide`, `Tide`, `TIDE` | the lowercase title still sorts last ignoring case; the filter's case |
+| `Frieren` (id `AniList\u0000/frieren`, the filter `frie`) | `Fernwood` (`fernwood`, the filter `fern`) | a prefix filter that matches it alone |
+| `Severance` (id `AniList\u0000/severance`) | `Still Water` (`still-water`); downloads' fixtures have `Quiet Harbor`, so the two stay apart | rating and kept-at order are its numbers, not its name |
+| the account `lagradost` (the upstream project's name, three view-model tests) | `tidewatch` | |
+| `Filmxy` (a preview) | `Source A` | |
+
+`Alien`, `Arrival`, `Brazil` and `Cube` were kept at first as single common words. In a list together they still
+read as films, so they go too:
+
+| Was | Now | Kept |
+|---|---|---|
+| `Arrival` (id `Prov\u0000/arrival`, the filter `ARRIV`) | `Mooring` (`mooring`, the filter `MOOR`) | a filter that matches it alone; its keptAt, year and rating |
+| `Alien`, `Brazil`, `Cube` | `Anchor`, `Breakwater`, `Cove` | the same alphabetical order, A, B, C |
+
+`Mooring` sorts third by title where `Arrival` sorted second, so the three title-order assertions in
+`LibrarySortShelfTest` are re-derived (A to Z: `Anchor`, `Breakwater`, `Mooring`, `tide`). The orders by kept, year and
+rating come from the numbers and only change their names.
+
+Tests: the same 84 in 6 classes, 189 assertion calls before and after, all passing.
 
 ## BUG-78 — A stored poster address could carry userinfo, on the Mac's library and downloads · **low, security**
 
@@ -3273,8 +3309,8 @@ checked it, and #311 shipped "Skip %s". On master the five calls that pass argum
 locale's text for their keys holds only `%1$s` and `%2$s`. A later translation could change that.
 
 **Fix.** `StringResourceArgumentsGuardTest` in `:core:strings`'s `jvmTest`. It needs no new dependency.
-- It reads every `*/src/*Main/**/*.kt` outside `app/` and `core/strings/`, and fails on any call to the four lookups
-  that passes format arguments. There is no allow-list.
+- It reads every `*/src/*Main/**/*.kt` outside `app/` (since `BUG-85`, `core/strings/` too), and fails on any call
+  to the four lookups that passes format arguments. There is no allow-list.
 - Comments and string text are blanked before it looks, but code inside a `${}` template is still read. An `import … as`
   alias counts. A leading `environment` is not a format argument.
 - `getString` and `getPluralString` count only where Compose's is imported (by name or `.*`) or written fully qualified,
@@ -3298,3 +3334,181 @@ locale's text for their keys holds only `%1$s` and `%2$s`. A later translation c
   comments, string text and a template. `:core:strings:jvmTest` 53 of 53.
 - The five gates each exited 0. `check-test-results.py` read 265 files with 0 failures, `:app:checkExtensionApi`
   exited 0, and `classes-jar.api` has no diff.
+
+## BUG-80 — After a delete-all, the series page could close twice, past Downloads to Home · **low** · measured 2026-11-10
+
+**Status:** fixed in this PR · found on Train 13: `DownloadSeriesTvNavigationTest.deleteAll…` timed out waiting for
+"No downloads yet", 1 run in 7 there, and 3 in 10 in the PM's Train 14 measure, before this fix.
+
+**What was on screen.** A test-only capture, never committed, recorded the app at the failure: the fragment was
+`HomeTvFragment`, not `DownloadsTvFragment`; Home's texts were showing; the store held no episode, header or download-info
+key, so the delete itself had finished. 30 s later the app was still on Home. Stuck, then, not slow: the app had gone back
+one screen too far.
+
+**Cause.** `DownloadSeriesViewModel.show` posted `SeriesEffect.Close` for every empty read after the page had had
+episodes, and nothing cleared that. `DownloadSeriesTvFragment` turns each `Close` into a back press. Delete-all deletes
+every file, and each delete makes the page read again. Two empty reads that differ, because the free space changed
+between them, were two `Close`s: two back presses, the page and then Downloads, ending on Home, the start destination.
+Whether the second read differed depended on timing, hence a flake.
+
+**Fix.** `show` clears `hadEpisodes` when it posts `Close`, so a page closes once. A page that fills again later and
+then empties closes again.
+
+**Tests** (`DownloadSeriesViewModelTest`, JVM, 2 new, no existing test changed):
+- `aPageThatEmptiesClosesOnceHoweverManyEmptyReadsFollow`: two episodes, two differing empty reads, then a new episode
+  and Delete all. The effects must be `Close` and then `ConfirmDeleteAll([3])`. **Red on master** (run):
+  `expected ConfirmDeleteAll(ids=[3]) but was Close`.
+- `aPageThatFillsAgainAfterClosingClosesAgainWhenItEmpties`: closing once does not stop a later close. Passes before and
+  after; it guards the fix.
+
+| Measured (local) | Before | After |
+|---|---|---|
+| `DownloadSeriesViewModelTest` | 10 of 11 | 11 of 11 |
+| `DownloadSeriesTvNavigationTest` ×20 (`Television_720p`, API 36) | 3 in 10 (the PM's Train 14 measure) | 0 in 20 (20 runs, 80 tests, 0 failures) |
+
+**Not this:** `BUG-86`, an older race in `:app`'s `DownloadViewModel` that can put a deleted series' row back, is real
+and has its own PR, but the capture shows it was not what this test met.
+
+## BUG-86 — An earlier read of the Downloads list could post after a later one, and put a deleted series back · **low** · measured 2026-11-09
+
+**Status:** fixed in this PR · found while looking for `BUG-80`'s cause, and **not** that cause · **a fix to existing
+upstream code:** `DownloadViewModel` in `:app`, the old Downloads list, which the TV Downloads page still reads.
+
+**Not `BUG-80`.** `BUG-80`'s delete-all flake was the series page closing twice; a capture at the failure showed the app
+on Home, not a stale row. With only this fix, `DownloadSeriesTvNavigationTest` still failed 1 run in 8 (run, local).
+
+**Cause.** Delete-all deletes each episode file in parallel, and each file's `downloadDeleteEvent` makes the view model
+call `updateHeaderList`. Each call launched its own read of the download store, unversioned. A read that began while an
+episode still existed could finish after a read that began once it had gone, and post last. The series' row was then
+back on screen with nothing left to refresh it.
+
+**Fix.** `updateHeaderList` takes a generation number when it is called, before its coroutine starts, and drops its
+result if a newer call, or a `removeItems`, began while it read. `removeItems` bumps the generation before it posts, so
+a read already under way cannot post the removed rows back. The delete dialog's `onComplete` reads once more after every
+file has gone, so the list ends on what is left. The return type (`Job`) is unchanged.
+
+**Extension API.** `DownloadViewModel` is in `classes.jar`. The new field is private and read through a local, so no
+accessor or class is added: `:app:checkExtensionApi` passes with `classes-jar.api` unchanged, and `javap -p` of every
+`DownloadViewModel*.class` shows the same 30 classes and the same 14 `access$` methods, built from master's file and
+from this one.
+
+**Test.** `DownloadHeaderRaceTest` (device, 1 test) forces the order rather than hoping for it. The first read is given
+the store as it was before the delete and held at its first read; the second read, begun after the delete, posts; then
+the first is released.
+
+| Measured (local, `Television_720p` API 36) | Master's `DownloadViewModel` | This PR |
+|---|---|---|
+| `DownloadHeaderRaceTest` | failed: "the list ends on the later read", expected `[]` but was `[A Raced Show]` | passed |
+
+## BUG-65 — TV chip rows: too far apart, and a focused chip's ring outside its cell · **low, visual** · measured 2026-11-08
+
+**Status:** fixed in pr · raised by the owner from a screenshot of TV Library's tabs ·
+`Chip.kt`, `ChipRow.kt`, `SearchChromeRow.kt`, `HomeScreenTv.kt`
+
+The owner: *"the spacing between chips is too much"*. Then: the visible gap should be 8dp or 12dp, *"and these come
+from tokens only"*.
+
+**Measured** on `Television_720p`, on the committed `library-grid-focus-tab` (1dp ≈ 1.33px), through the pills' middle:
+- **The pill** (the visible chip): 32px tall, 24dp (`ChipVisualHeight`). **Its focus cell** is 48dp tall (`ChipFocusCell`)
+  and exactly as wide as the pill.
+- **The visible gap** between two pills: 32px, 24dp, which is `ChipRowSpacing`. The owner's 50px was probably measured on
+  a 1080p screen, where 24dp is 48px.
+- **A focused chip's ring** ended 6px (4dp, `FocusRingBleed`) outside its own cell, into the gap.
+
+**Fix:**
+- **The ring stays inside its cell.** A chip's cell is now the pill plus `FocusRingBleed` on each side, the room the
+  ring takes.
+- **12dp between pills: `MinFocusGap`.** The owner preferred 12dp to 8dp. The cells are `MinFocusGap - 2 *
+  FocusRingBleed` (4dp) apart, so a focused ring ends 8dp short of its neighbour, and no two cells touch or overlap.
+- **The row still starts and ends at a pill.** `ChipRow` lays the cells out `FocusRingBleed` wider than itself on each
+  side and shifts them back, so the end cells' outer room lies where the ring used to bleed, and each caller's inset
+  still lines the first chip up with the content beside it.
+- **Every TV chip row** goes through `ChipRow`: Home's bookmark filters, Library's tabs, Search's type chips (which had
+  their own `Row` with `ChipRowSpacing`, now `ChipRow`), and both of Downloads' rows (the actions, and selection).
+- `ChipRowSpacing` is unchanged: it also spaces rail cards, the skeleton and Home's bookmarks title from its chips.
+- **`BUG-60`'s `ChromeCellGap` (0dp) is gone**, under the same tokens-only rule: Home's chrome cells sit in a `Row` with no
+  arrangement, which places them edge to edge with no number at all.
+
+### Behaviour changes
+
+| Before | Now |
+|---|---|
+| 24dp between chips | 12dp (`MinFocusGap`) |
+| A focused chip's ring 4dp outside its cell | Inside its cell |
+| A chip's focus target as wide as its pill | Unchanged: still the pill's width. The ring's room is outside it |
+
+### The regression train 13 caught, and its fix
+
+The first version put the ring's room *inside* the chip's focus target. `ChipRow` places the cells 4dp left of the row,
+so the first chip's focus target then started 4dp left of the content lined up under the row. Compose's focus search
+counts a target as "to the left" only when its left edge is strictly left of the focused one's. Before, the two edges
+were equal and the chip was not a candidate. With the room inside, the chip was a candidate, and nearer than the rail.
+Train 13's bisect found it: in `:app`'s `DownloadsTvNavigationTest`, Left from Downloads' series row went to "Download
+queue" instead of the rail's "Downloads". It passed 5/5 before this PR and failed with it. The same geometry was under
+every TV `ChipRow` with content beneath, not only Downloads.
+
+**Fix:** `Chip` pads the ring's room *outside* its `selectable`. What takes focus, and what a tap lands on, is the
+pill's width and the cell's 48dp height, as before this PR. The layout keeps the room, so the ring still draws inside
+the cell and the visible gap is still `MinFocusGap`. No pixel moves: every screenshot reference passed unchanged.
+
+### Tests
+
+All on `Television_720p`, locally (CI is off).
+
+- `ChipDeviceTest` (`:core:designsystem`, 4, all pass), three new, all **failing on the old `Chip` and `ChipRow`**:
+  - `leftFromTheContentUnderAChipRowReachesTheRail`: a rail beside a column of a `ChipRow` over a full-width row. Left
+    from the row reaches the rail, and the first chip's focus target starts where the row does. It fails with the
+    ring's room inside the focus target: "the first chip's focus target starts with the content expected:<133.0> but
+    was:<138.0>".
+  - Its `cell` helper measures the cell, through `onGloballyPositioned` on the modifier the caller passes to `Chip`. A
+    `testTag` there would report the focus target's bounds, since it shares the `selectable`'s semantics node. Each
+    focused chip's cell is asserted to be its focus target plus `FocusRingBleed` each side. Without the outer padding it fails: "Movies's cell is its focus target plus the ring's room,
+    left expected:<26.675> but was:<32.0>".
+  - `theVisibleGapBetweenChipsIsMinFocusGap`: the ground between two pills, in pixels, is `MinFocusGap`. Old: "expected
+    <15.975> but was <32.0>".
+  - `eachRingStaysInsideItsOwnCellAndOneKeyFocusesOneChip`: each focused ring stays inside its own cell and clear of the
+    next pill, and each key press leaves exactly one chip focused, the next one. Old: "Movies's ring x 32..122 passes its
+    cell x 37.0..118.0 on the left".
+  - `dpadMovesAcrossChipsAndTheRingStaysEvenWithNothingMoving` now measures the ring from the pill, since the cell is no
+    longer the pill. Old: "Movies left: the stroke is here".
+- `FocusRingGapTest` (JVM, 8): the touching-chips case now finds the ring from the pill, inside the cell, and asserts it
+  stays inside the cell.
+- Device suites, all pass against the new references: `:core:designsystem` 29, `:feature:home` 86, `:feature:library` 34,
+  `:feature:search` 62, `:feature:downloads` 61. `BUG-60`'s chrome tests pass with the cells' gap asserted as 0.
+- 30 screenshots recorded again across Home, Library, Search and Downloads. A pixel diff of each against its old version
+  shows changes only in its chip row's band, after the row's first pill, which stays put; each was looked at. Measured
+  after: 15 to 16px (12dp) between pills, and a focused ring ending 9px (about 7dp) short of the next pill.
+- On master `2a3f16b6a`, Detail's season chips use the same row, so `detail-season-chips` was recorded again too.
+  Its pixel diff is 7,974 px, all in x 135..472, y 629..672: the chip row after Season 1, which stays put. No other
+  Detail case changed, and every other module's references still pass.
+- After the fix, the full device run: `:core:designsystem` 32, `:feature:account` 6, `:feature:detail` 38,
+  `:feature:downloads` 61, `:feature:home` 86, `:feature:library` 34, `:feature:player` 14, `:feature:search` 62, and
+  the whole `:app` suite, 161. No failures, and no screenshot reference changed. `DownloadsTvNavigationTest` then
+  passed 3 runs of 3.
+- Rebased onto master `6e164f0ed` (train 15). Its references fail in 20 screenshots, all in the chip rows: Downloads 4,
+  Library 7 and Search 9. Each was recorded again and diffed against master's version. Every change is inside the chip
+  row's band, y 133..164 (127..170 for the two cases with a focused chip), and each changed-pixel count equals the one
+  this PR's first recording made against its own base, for example `downloads-choosing` 5,050, `library-grid-focus-tab`
+  15,568 and `search-suggestions-counted` 7,645. Each was looked at. Then the full run again: `:core:designsystem` 32,
+  `:feature:home` 87, `:feature:detail` 38, `:feature:downloads` 61, `:feature:library` 34, `:feature:search` 62, no
+  failures; `DownloadsTvNavigationTest` 3 runs of 3; the old `Chip` still fails `ChipDeviceTest` 3 of 4.
+
+## BUG-85 — The BUG-84 guard missed a qualified call split across lines, skipped `core/strings`, and re-ran for other worktrees' edits · **low, i18n**
+
+**Status:** fixed in this PR · found in review of #314 · stacked on #314
+
+- **A fully qualified call broken across lines was missed.** `qualifierBefore` stopped at the whitespace after a `.`,
+  so `org.jetbrains.compose.resources` on one line and `.getString(res, name)` on the next read as a call with an empty
+  receiver, and an empty receiver was treated like someone else's member call. It now skips whitespace on both sides of
+  every `.` and of a safe call's `?.`. A receiver that is an expression (`f().getString`) is still a member call.
+- **`core/strings/` was excluded as a whole.** Its main sources are now read like every other module's. They pass.
+- **Dot-directories were test inputs.** The input tree included `.claude/worktrees/…`, so an edit in another worktree
+  re-ran this checkout's guard. The inputs now exclude `.*/**` and `**/.*/**`, the same directories the test skips.
+
+**Proof,** all local (CI is off):
+- **Red:** the new case `aFullyQualifiedCallBrokenAcrossLinesCounts` plants two split qualified calls, a split
+  `prefs?.getString` and a one-line qualified call. Against the old `qualifierBefore` it failed with
+  `expected:<[3, 5, 8]> but was:<[8]>`: both split calls were missed.
+- **Green:** `StringResourceArgumentsGuardTest` 11 of 11, with `core/strings`' 13 main files now scanned and clean.
+  `:core:strings:jvmTest` 54 of 54. The five gates passed, 265 XML results with 0 failures; `:app:checkExtensionApi`
+  passed and `app/api/classes-jar.api` is unchanged.

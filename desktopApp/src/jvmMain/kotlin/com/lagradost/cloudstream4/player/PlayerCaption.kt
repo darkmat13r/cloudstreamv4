@@ -6,12 +6,16 @@ import com.lagradost.cloudstream4.feature.detail.DetailEpisode
  * The line beside the title in the player's top band (`DS-23` M1): the episode's code, `S1:E4`, in the app's own form
  * and translated letters, then its name. Null for a film, or an episode that says nothing about itself.
  */
-internal fun episodeMeta(episode: DetailEpisode, seasonShort: String, episodeShort: String): String? {
+internal fun episodeMeta(episode: DetailEpisode, seasonShort: String, episodeShort: String): String? =
+    episodeMeta(episode.season, episode.episode, episode.name, seasonShort, episodeShort)
+
+/** The same line from its parts, for an episode that is not a page's, such as a download (`KMP-74`). */
+internal fun episodeMeta(season: Int?, episode: Int?, name: String?, seasonShort: String, episodeShort: String): String? {
     val code = listOfNotNull(
-        episode.season?.let { "$seasonShort$it" },
-        episode.episode?.let { "$episodeShort$it" },
+        season?.let { "$seasonShort$it" },
+        episode?.let { "$episodeShort$it" },
     ).joinToString(":")
-    return listOfNotNull(code.ifEmpty { null }, episode.name?.trim()?.ifEmpty { null })
+    return listOfNotNull(code.ifEmpty { null }, name?.trim()?.ifEmpty { null })
         .joinToString(CAPTION_SEPARATOR)
         .ifEmpty { null }
 }
