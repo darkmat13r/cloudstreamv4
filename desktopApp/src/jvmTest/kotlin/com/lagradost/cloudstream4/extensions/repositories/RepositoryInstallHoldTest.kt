@@ -169,6 +169,19 @@ class RepositoryInstallHoldTest {
         assertTrue(extensions.providers.none { it.name == "Plain" })
     }
 
+    /** `#336` review: the installed list unreadable holds everything not allowed, as the decisions file does. */
+    @Test
+    fun `with the installed list damaged, a repository's file and a clean side-loaded one are both held`() {
+        needsSandbox()
+        val fromRepository = installPlain()
+        writeFixtureJar(File(directory, "SideLoaded.jar"), PlainPlugin::class.java, PlainApi::class.java, padding = "side-loaded")
+        InstalledFromRepositories.fileFor(directory).writeText("garbage")
+        val loads = runBlocking { extensions.loadInstalled() }.loads
+        assertEquals(LoadState.Held, loads.single { it.fileName == fromRepository }.state)
+        assertEquals(LoadState.Held, loads.single { it.fileName == "SideLoaded.jar" }.state)
+        assertTrue(extensions.providers.none { it.name == "Plain" }, "something started")
+    }
+
     private companion object {
         const val POLL_MILLIS = 50L
         const val TIMEOUT_MILLIS = 60_000L
