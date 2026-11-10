@@ -8145,6 +8145,9 @@ Ten mutations each fail what they should.
 - Neither host may ask the system's certificate services (`trustd`, `ocspd` and the rest). Behind the gateway libVLC
   speaks only plain http to `127.0.0.1`, and those services fetch on a caller's behalf, which would be a way around
   the kernel's rule.
+  - `system.sb` allows `trustd` itself, so the media hosts and the converter deny it by name (audit A-1).
+  - `MediaHostServicesTest` asks the kernel from inside the real policy: `trustd` is refused, and it is found when
+    the deny rule is taken out.
 
 Tests:
 - `GatewayPlaybackTest`, 2, with the real host: a segment on a refused host gets 0 requests; a url the rewriter

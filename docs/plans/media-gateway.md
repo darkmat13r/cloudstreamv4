@@ -26,6 +26,13 @@ A **gateway** in the app's own process: an HTTP/1.1 *origin* server on `127.0.0.
   behalf, so a crafted certificate could aim them at an address the kernel refuses the host itself. With sound off
   and no certificate services, the media rules name no mach service. Then they write no `mach-lookup` rule at all,
   because one with no names would allow every service.
+  - **Leaving them out was not enough** (audit A-1). `system.sb`, which every policy imports, allows `com.apple.trustd`
+    and `com.apple.trustd.agent` unconditionally. So the media hosts and the converter deny both by name, as the
+    policy's last rule, so that nothing above it can win.
+  - **Measured from inside the real policy**, with `bootstrap_look_up`: without the deny rule `trustd` is found
+    (result 0); with it, refused. A service `system.sb` allows and the host keeps is found either way, which is the
+    control that the probe ran. A check of the policy's text could not tell these apart, and passed while the
+    lookup was open.
 - **Order:** the gateway binds its port first, on both `127.0.0.1` and `[::1]`, and only then is the media host's
   profile written with that port. Seatbelt's `localhost:<port>` allows both loopback addresses (measured, §9). If the
   gateway held only one, another process could bind the same port on the other and catch whatever was aimed there.

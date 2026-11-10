@@ -49,8 +49,10 @@ class HostLauncher internal constructor(
         lowered: Boolean = false,
         input: ProcessBuilder.Redirect? = null,
         mediaGatewayPort: Int? = null,
+        denyCertificateServices: Boolean = false,
     ): Process {
-        val profile = profile(readOnlyInputs, writable, network, extraRules, gate, mediaGatewayPort)
+        val profile =
+            profile(readOnlyInputs, writable, network, extraRules, gate, mediaGatewayPort, denyCertificateServices)
         val sandboxed = listOf(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, executable.path) + prefixArguments + arguments
         // The same process all the way down, through `exec`, so what this returns is the JVM. A shell because a
         // limit needs one, and outside the sandbox, because the sandbox would not let it run.
@@ -74,10 +76,12 @@ class HostLauncher internal constructor(
         extraRules: List<String>,
         gate: OutboundGate?,
         mediaGatewayPort: Int?,
+        denyCertificateServices: Boolean,
     ): String = SeatbeltProfile.render(
         executable, readable, readOnlyInputs, writable, network, extraRules,
         gatewayPort = gate?.port ?: mediaGatewayPort,
         resolver = mediaGatewayPort == null,
+        denyCertificateServices = denyCertificateServices,
     )
 
     /** The policy [startMediaHost] gives its host, for a test (`KMP-113`). */
@@ -89,6 +93,7 @@ class HostLauncher internal constructor(
             extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, writable, audio = !silent, tls = false),
             gate = null,
             mediaGatewayPort = gatewayPort,
+            denyCertificateServices = true,
         )
 
     /**
@@ -124,6 +129,7 @@ class HostLauncher internal constructor(
                 if (input != null) " -D$FILE_PROPERTY=true" else "",
             input = input,
             mediaGatewayPort = gatewayPort,
+            denyCertificateServices = true,
         )
     }
 
@@ -544,6 +550,7 @@ class PluginHostClient internal constructor(
                     readOnlyInputs = listOf(cs3),
                     writable = outputDir,
                     network = false,
+                    denyCertificateServices = true,
                 )
                 process.outputStream.close()
                 val errors = StringBuffer()

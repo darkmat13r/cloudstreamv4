@@ -29,6 +29,10 @@ internal object SeatbeltProfile {
      *   host's gateway (`KMP-113`). Null leaves every address but loopback open.
      * @param resolver whether the host may ask the system resolver. A media host behind its gateway is given only
      *   `127.0.0.1` urls and has no use for it (measured, `docs/plans/media-gateway.md` §9).
+     * @param denyCertificateServices deny the certificate services by name (audit A-1). `system.sb`, imported above,
+     *   allows `com.apple.trustd` unconditionally, so leaving them out of this profile's own rules does not deny them.
+     *   They fetch OCSP responses, CRLs and issuers on a caller's behalf, which would let native code in the host aim a
+     *   request at an address the kernel refuses the host itself.
      */
     fun render(
         executable: File,
@@ -39,6 +43,7 @@ internal object SeatbeltProfile {
         extraRules: List<String> = emptyList(),
         gatewayPort: Int? = null,
         resolver: Boolean = true,
+        denyCertificateServices: Boolean = false,
     ): String = buildString {
         appendLine("(version 1)")
         appendLine("(deny default)")
@@ -91,7 +96,16 @@ internal object SeatbeltProfile {
             }
         }
         extraRules.forEach(::appendLine)
+        // Last, so no allow above, the import's included, can win over it.
+        if (denyCertificateServices) {
+            appendLine("(deny mach-lookup")
+            CERTIFICATE_SERVICES.forEach { appendLine("  (global-name \"$it\")") }
+            appendLine(")")
+        }
     }
+
+    /** What `system.sb` grants that a host behind the gateway, or one with no network, must not ask (audit A-1). */
+    internal val CERTIFICATE_SERVICES = listOf("com.apple.trustd", "com.apple.trustd.agent")
 
     /**
      * What the libVLC host needs beyond a plugin host, and nothing that opens the home directory.

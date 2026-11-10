@@ -29,7 +29,8 @@ class MediaHostProfileTest {
         assertTrue("(allow network-outbound (remote ip \"localhost:40125\"))" in profile, profile)
         assertFalse("\"*:*\"" in profile, "every address is open")
         assertFalse("mDNSResponder" in profile, "the resolver is open")
-        assertFalse("trustd" in profile || "ocspd" in profile || "SecurityServer" in profile, "certificate services are open")
+        // Whether the certificate services are reachable is the kernel's answer, not this text's: system.sb, imported,
+        // allows them. MediaHostServicesTest asks from inside the real policy (audit A-1).
         // Silent, and no certificate services: the media rules name no service, and write no rule for none. An
         // `allow mach-lookup` with no names would allow every service there is.
         assertFalse(Regex("\\(allow mach-lookup\\s*\\)").containsMatchIn(profile), profile)
@@ -42,7 +43,6 @@ class MediaHostProfileTest {
         val file = launcher.mediaHostProfile(File("/Applications/VLC.app"), writable, silent = false, gatewayPort = null)
         assertFalse("network-outbound" in file, file)
         assertFalse("system-socket" in file, file)
-        assertFalse("trustd" in file || "ocspd" in file, "certificate services are open")
         // With sound, the audio services are named.
         assertTrue("coreaudiod" in file, file)
         assertFalse(Regex("\\(allow mach-lookup\\s*\\)").containsMatchIn(file), file)
