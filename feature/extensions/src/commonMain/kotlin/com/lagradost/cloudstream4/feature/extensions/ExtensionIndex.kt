@@ -132,8 +132,9 @@ data class ExtensionListing(
      * (`WriteCacheEntryTask.kt:85-97`) and `:app`'s reader (`RepositoryManager.kt:107-122`) are two
      * independent implementations that already agree, and `shasum -a 256` over a downloaded
      * `YoutubeProvider.jar` reproduces the published value byte for byte. A host that compares it can
-     * return [ExtensionVerification.Verified] rather than [ExtensionVerification.Skipped], which
-     * `:app` — carrying [fileHash] and never comparing it — has never done.
+     * return [ExtensionVerification.Verified] rather than [ExtensionVerification.Skipped]. `:app`
+     * reads no jar, and compares [fileHash] when one is published (`RepositoryManager.downloadPluginToFile`
+     * throws on a mismatch) without naming the outcome.
      */
     val jarHash: String? = null,
     /**
