@@ -140,7 +140,7 @@ private const val WEIGHT_REMAINING = 1f
 
 private val PreviewNotice = FailureNotice(
     headline = "3 of 12 providers failed",
-    detail = "vidsrc.to, 2embed.cc - HTTP 503",
+    detail = "source-a.example, source-b.example - HTTP 503",
     retry = StateAction(label = "Retry", onActivate = {}),
 )
 

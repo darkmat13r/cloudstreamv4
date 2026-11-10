@@ -320,7 +320,7 @@ private fun TitlePage(
                     Spacer(Modifier.height(DetailScreenTvDefaults.SectionGap))
                     RailHeader(
                         title = stringResource(Res.string.episodes),
-                        // 7i writes "24 · HDREZKA": the count, then the provider, in the separator
+                        // 7i writes "24 · <PROVIDER>": the count, then the provider, in the separator
                         // the related rail already uses. Count first is 7a-ii's order — the leading
                         // element must not change when a provider name is missing. The count is the
                         // **shown** season's, the only episode count on the page, so choosing a chip

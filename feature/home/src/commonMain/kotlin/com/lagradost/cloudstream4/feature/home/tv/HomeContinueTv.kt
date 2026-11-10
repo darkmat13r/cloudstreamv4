@@ -165,7 +165,7 @@ private fun HomeContinueCardTv(
 }
 
 /**
- * 3c's `.cs`, `S2 E4 · 28m left · vidplay 1080p`, from what is stored: the part, and the source it reopens from. How long is
+ * 3c's `.cs`, `S2 E4 · 28m left · <source> 1080p`, from what is stored: the part, and the source it reopens from. How long is
  * left and the quality are not: the first has no word without a line break in it, and the second is not stored.
  */
 @Composable

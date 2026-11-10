@@ -16,7 +16,7 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 private const val ARTBOARD_WIDTH = 960
 private const val ARTBOARD_HEIGHT = 540
 
-private val PREVIEW_SOURCES = listOf("1080p · vidsrc", "720p · vidsrc", "480p · mirror")
+private val PREVIEW_SOURCES = listOf("1080p · Source A", "720p · Source A", "480p · mirror")
 
 @Preview(widthDp = ARTBOARD_WIDTH, heightDp = ARTBOARD_HEIGHT)
 @Composable

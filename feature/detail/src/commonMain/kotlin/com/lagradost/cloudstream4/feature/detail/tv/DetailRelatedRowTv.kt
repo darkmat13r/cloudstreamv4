@@ -39,7 +39,7 @@ import org.jetbrains.compose.resources.stringResource
  * 108dp pitch as the cast row.
  *
  * The header reads `recommended` ("Recommended") because `:core:strings` has no "More like this", and
- * its count line is the count alone: the board writes `HDREZKA · 24`, but the provider name is already
+ * its count line is the count alone: the board writes `<PROVIDER> · 24`, but the provider name is already
  * in the chrome row and the board's own uppercase there is mockup copy rather than a style rule.
  *
  * There is no "See all" card — no key for the words, no destination drawn anywhere, and `CardSize`'s

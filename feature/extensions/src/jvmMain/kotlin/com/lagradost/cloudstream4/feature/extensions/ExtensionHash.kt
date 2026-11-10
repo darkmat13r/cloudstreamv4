@@ -70,7 +70,7 @@ object ExtensionHash {
      *
      * - absent or blank → [ExtensionVerification.Skipped]. Most repositories publish no hash at
      *   all: 230 of the 235 catalogue entries surveyed in `KMP-13` §2 carry no `jarUrl`, and the
-     *   86-entry Phisher index has no hash key either.
+     *   86-entry index from a single author has no hash key either.
      * - present but not `sha256-…` → [ExtensionVerification.Skipped], **not** a mismatch. "I cannot
      *   check this" and "this is the wrong file" are different facts, and a caller that treats an
      *   unreadable hash as tampering cannot ever adopt a second algorithm. The caller's policy

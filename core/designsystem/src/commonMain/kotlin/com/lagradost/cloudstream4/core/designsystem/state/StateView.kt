@@ -183,6 +183,6 @@ private fun StateViewPreview() {
 @Composable
 private fun StateViewWithDetailPreview() {
     StatePreviewSurface {
-        StateView(prompt = PreviewFailurePrompt, detail = "vidsrc.to - HTTP 503")
+        StateView(prompt = PreviewFailurePrompt, detail = "source-a.example - HTTP 503")
     }
 }

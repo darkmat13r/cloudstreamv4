@@ -103,14 +103,14 @@ fun Chips() {
 @Composable
 fun ListRows() {
     Surface {
-        ListRow(state = ListRowState(title = "Vidsrc"), onClick = {})
+        ListRow(state = ListRowState(title = "Source A"), onClick = {})
         ListRow(
-            state = ListRowState(title = "Gogoanime", subtitle = "EN · ANIME"),
+            state = ListRowState(title = "Source B", subtitle = "EN · ANIME"),
             onClick = {},
         )
         ListRow(
             state = ListRowState(
-                title = "Filmxy",
+                title = "Source C",
                 subtitle = "EN · MOVIES",
                 selected = true,
             ),
@@ -118,7 +118,7 @@ fun ListRows() {
         )
         ListRow(
             state = ListRowState(
-                title = "Dramacool",
+                title = "Source D",
                 subtitle = "KO · UNAVAILABLE",
                 enabled = false,
             ),

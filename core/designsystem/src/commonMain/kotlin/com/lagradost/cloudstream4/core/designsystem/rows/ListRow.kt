@@ -293,13 +293,13 @@ private fun ListRowStatesPreview() {
     PreviewSurface {
         Column(verticalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap)) {
             ListRow(
-                state = ListRowState(title = "1080p", subtitle = "Direct · vidsrc"),
+                state = ListRowState(title = "1080p", subtitle = "Direct · Source A"),
                 onClick = {},
             )
             ListRow(
                 state = ListRowState(
                     title = "720p",
-                    subtitle = "Direct · vidsrc",
+                    subtitle = "Direct · Source A",
                     selected = true,
                 ),
                 onClick = {},
@@ -347,7 +347,7 @@ private fun ListRowActionsPreview() {
     PreviewSurface {
         Column(verticalArrangement = Arrangement.spacedBy(CloudStreamDimens.MinFocusGap)) {
             ListRow(
-                state = ListRowState(title = "Ozymandias", subtitle = "S5 E14 · 1.2 GB"),
+                state = ListRowState(title = "Riptide", subtitle = "S3 E9 · 1.2 GB"),
                 onClick = {},
                 leading = { PreviewDisc() },
                 trailing = { PreviewCount(text = "4.2 MB/S") },

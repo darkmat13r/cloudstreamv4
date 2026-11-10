@@ -49,7 +49,7 @@ private val PreviewRecommendations = listOf(
 /** 7b: a film, with a stored position two thirds of the way through. */
 private val PreviewMovie = TitleDetail(
     title = "The Last Expedition",
-    providerName = "HDRezka",
+    providerName = "Source A",
     typeName = "Movie",
     year = 2024,
     plot = "A salvage crew answers a distress call from a ship that vanished forty years ago, with one " +

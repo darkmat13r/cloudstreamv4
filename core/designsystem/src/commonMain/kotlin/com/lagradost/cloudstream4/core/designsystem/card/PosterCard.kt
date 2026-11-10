@@ -69,7 +69,7 @@ fun PosterCard(
     )
 }
 
-private const val PREVIEW_TITLE = "The Man in the High Castle"
+private const val PREVIEW_TITLE = "The Keeper of Quiet Harbor"
 private const val PREVIEW_META = "S2 E4 · 48m"
 private const val PREVIEW_PROGRESS = 0.4f
 

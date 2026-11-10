@@ -76,7 +76,7 @@ A section header, not an instruction.
   status. Shown when the person has cleared the filter chip above the bookmarks rail.
 - **`home_bookmarks_no_status_body`**: *"one"* is one of those status chips, which sit above this line.
 - **`home_offline_source_headline`**, *"%1$s needs a connection"*: `%1$s` is the name of the extension's source, as the
-  source names itself (`vidsrc`), never translated.
+  source names itself (`Source A`), never translated.
 - **`home_bookmarks_count`**: a count in the monospaced line beside *"You are offline"*. Written in capitals in English
   because that line is; a script without case keeps its own form.
 

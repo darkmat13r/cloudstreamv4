@@ -83,7 +83,7 @@ Selected is the raised fill, the ink label and the muted marker, and each row sa
 `Retry`). 7d's error is a banner over the HUD; here it is the words in the transport row, above the selector.
 
 Since `KMP-39` the rows are best first, the order the player tries them in, and a source that fails is left for the next
-without asking. Moving on is said the way a subtitle failure is: `Source error · VidSrc · 2160p` above the controls for
+without asking. Moving on is said the way a subtitle failure is: `Source error · Source A · 2160p` above the controls for
 five seconds, not over an open list, while the transport says `Loading…` and the selector names the one now trying.
 
 ## Library

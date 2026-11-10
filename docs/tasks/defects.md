@@ -3272,6 +3272,35 @@ rating come from the numbers and only change their names.
 
 Tests: the same 84 in 6 classes, 189 assertion calls before and after, all passing.
 
+### Previews, KDoc and doc samples (`:core:designsystem`, `:core:screenshot`, `:feature:detail`, `:feature:home`, `:feature:extensions`, `docs/`)
+
+| Where | Was | Now | Kept |
+|---|---|---|---|
+| `PosterCard`'s preview title | `The Man in the High Castle` | `The Keeper of Quiet Harbor` | 26 characters, so the card still wraps and clips the same way |
+| `SidePanelPreviews`' source rows | `1080p · vidsrc`, `720p · vidsrc` | `1080p · Source A`, `720p · Source A` | `480p · mirror`, already generic |
+| `ListRow`'s states preview, twice | `Direct · vidsrc` | `Direct · Source A` | |
+| `ListRow`'s actions preview | `Ozymandias`, `S5 E14 · 1.2 GB` | `Riptide`, `S3 E9 · 1.2 GB` | the names `:core:designsystem`'s tests already use |
+| `FailureBanner`'s preview detail | `vidsrc.to, 2embed.cc - HTTP 503` | `source-a.example, source-b.example - HTTP 503` | two hosts, then the status; `.example` is reserved (RFC 2606) |
+| `StateView`'s preview detail | `vidsrc.to - HTTP 503` | `source-a.example - HTTP 503` | |
+| `:core:screenshot`'s `ListRows` case | `Vidsrc`, `Gogoanime`, `Filmxy`, `Dramacool` | `Source A`, `Source B`, `Source C`, `Source D` | the subtitles and the selected and disabled states |
+| `DetailScreenTvPreviews`' provider | `HDRezka` | `Source A` | |
+| `DetailRelatedRowTv` and `DetailScreenTv` KDoc quoting the board | `HDREZKA · 24`, `24 · HDREZKA` | `<PROVIDER> · 24`, `24 · <PROVIDER>` | the board's order; the board itself, and `tv-detail-board-spec.md` which quotes it, are unchanged |
+| `HomeContinueTv` KDoc quoting 3c | `S2 E4 · 28m left · vidplay 1080p` | `S2 E4 · 28m left · <source> 1080p` | |
+| `ExtensionHash` KDoc | `86-entry Phisher index` (an extension author's account) | `86-entry index from a single author` | the count |
+| `docs/plans/desktop-design.md` | `Source error · VidSrc · 2160p` | `Source error · Source A · 2160p` | |
+| `docs/strings-translator-notes.md` | `` `vidsrc` `` | `` `Source A` `` | |
+
+**Screenshots:** none change. Every value above is `private` preview data, KDoc, or one of the unused `:core:screenshot`
+cases, which have no committed references (`git ls-files core/screenshot` lists no PNG). No `androidDeviceTest` reads
+any of them.
+
+**Also staying:** `DesktopDetailSource`'s KDoc describing what real providers do (a recorded exception), and
+`tv-detail-board-spec.md`, which quotes the board verbatim.
+
+**Still open, test code, outside this PR:** `Naruto` in `:core:strings`' `UiStringTest` and `UiStringResolveTest` (5
+lines, plus 1 in the `FormatCorpus` fixture); `Dune` and `Dune: Part Two` in `:desktopApp`'s `DesktopLibraryStoreTest`
+(7 lines); `Vidsrc` and `Gogoanime` in `:desktopApp`'s `SearchScreenTest` (4 lines).
+
 ## BUG-78 — A stored poster address could carry userinfo, on the Mac's library and downloads · **low, security**
 
 **Status:** fixed in this PR · found in review of `KMP-99` · stacked on `KMP-99`, whose `posterOf` it changes
