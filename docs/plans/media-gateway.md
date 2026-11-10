@@ -18,7 +18,11 @@ A **gateway** in the app's own process: an HTTP/1.1 *origin* server on `127.0.0.
 - The gateway fetches upstream with the app's address-checked client: `posterHttpClient`'s DNS filter, its
   connected-address check on every hop, and `Proxy.NO_PROXY`. The JVM validates TLS.
 - The media host's Seatbelt policy allows outbound **only** to `localhost:<gateway port>`. The `*:*` rule goes, and
-  so does `mDNSResponder`, since the host no longer resolves anything.
+  so does `mDNSResponder`, since the host no longer resolves anything (measured, §9).
+- **Order:** the gateway binds its port first, on both `127.0.0.1` and `[::1]`, and only then is the media host's
+  profile written with that port. Seatbelt's `localhost:<port>` allows both loopback addresses (measured, §9). If the
+  gateway held only one, another process could bind the same port on the other and catch whatever was aimed there.
+  The media urls name `127.0.0.1`; the `[::1]` socket exists only to hold the port, and answers `404` to everything.
 
 **The kernel is the guarantee.** Anything the gateway does not route, libVLC cannot fetch directly: a url the rewriter
 missed, an unknown scheme, a redirect libVLC tried to follow itself, `rtsp://`, `udp://`. Each fails closed with
@@ -33,16 +37,27 @@ http://127.0.0.1:<port>/<token>/<scheme>/<authority>/<path>[?<query>]
         e.g. /k3Jd…Q/https/cdn.example/v/1080/seg-0001.ts?sig=…
 ```
 - `<token>`: 128 random bits, base64url, made per gateway and given only to its media host. A request without it gets
-  `404` and a fixed body. Other processes on this Mac can reach the port, and without the token they cannot use the
-  gateway as a relay into the LAN. The comparison is constant-time.
+  `404` and a fixed body. Other processes on this Mac can reach the port. The token stops them using the gateway as an
+  open relay that fetches with the app's identity: its cookies, its address and its client. It is not what stops a
+  relay into the LAN; the address check does that for every request, token or not. The comparison is constant-time.
 - `<scheme>`: `http` or `https`, and nothing else.
 - `<authority>`: the host, lowercased, as `URI` reads it (IDN as ASCII), with `:port` when it is not the default.
-  User info is never encoded; a url with any is refused, as `SandboxPolicy` refuses it today.
+  - User info is never encoded; a url with any is refused, as `SandboxPolicy` refuses it today.
+  - An IPv6 literal is encoded bracketed (`[2001:db8::1]`). One with a zone id (`%25…`, `fe80::1%25en0`) is refused.
+  - An empty host is refused.
+  - A non-default port is allowed. That is safe because the check is by address, whatever the port.
 - `<path>` and `<query>`: passed as received, percent-encoding kept byte for byte, so a signed url's signature
   survives. A fragment is dropped.
-- **Decoding is strict.** The gateway percent-decodes nothing it does not have to, and refuses a path whose dot
-  segments would climb above `<authority>` once normalised. A path over `SandboxPolicy.MAX_URL_CHARS` is refused, as
-  is any control character.
+- **Decoding is strict, and in this order:**
+  1. The request target is split on `/` while still raw. `<token>`, `<scheme>` and `<authority>` are taken from the
+     first three raw segments, before anything is percent-decoded, so an encoded `/` (`%2F`) can never move a
+     boundary.
+  2. The rest is the upstream path. Its dot segments are removed as RFC 3986 §5.2.4 says, treating `%2e` and `%2E`
+     as `.` for that purpose only. A path whose dot segments would climb above its root is refused; it is never
+     clamped.
+  3. Nothing else is decoded. The path and query go upstream byte for byte, so a signature survives.
+  A target over `SandboxPolicy.MAX_URL_CHARS`, or holding a control character (raw or percent-encoded below `%20`),
+  is refused.
 - **Every url in a rewritten playlist is absolute** (§3), so libVLC never resolves a relative reference itself. A
   root-relative `/x` resolved against a gateway url would drop the token, the scheme and the host. It would only ever
   get a `404`, never a leak, but it would also not play.
@@ -75,7 +90,9 @@ BOM). Anything else streams through untouched.
 - 100,000 lines;
 - 16 KiB per line (`MAX_URL_CHARS`);
 - 64 attributes per tag;
-- 5 s to read it all, so a slow trickle is a failure, not a wait.
+- 5 s to read it all, so a slow trickle is a failure, not a wait;
+- the **rewritten output** too: 8 MiB in total and 16 KiB per line after encoding, since each url grows by the
+  gateway prefix and the token. Past either, `502`.
 
 **What is rewritten.** Each one goes through the gateway encoding (§1), resolved against the playlist's *final* url:
 - every uri line (a non-blank line not starting with `#`);
@@ -88,6 +105,9 @@ BOM). Anything else streams through untouched.
 **Attribute lists** are parsed as RFC 8216 §4.2 defines them: `NAME=value` pairs, commas outside quotes, quoted
 strings with no escapes. A tag whose list does not parse is passed through unchanged; the kernel stops whatever it
 names (see "The shape of the fix").
+- A list that names `URI` twice does not parse, and passes through unchanged. The gateway never picks one of two.
+- Tag and attribute names are matched exactly as RFC 8216 writes them, and written back exactly as received. Case is
+  never changed, so a tag that only differs in case is an unknown tag.
 
 **What is not rewritten:**
 - A url whose scheme is not http(s): `skd://` for FairPlay, `data:`. It passes unchanged. `data:` needs no network.
@@ -108,15 +128,26 @@ names (see "The shape of the fix").
 
 ## 4. Headers
 
-**From libVLC upstream, forwarded:** `Range`, `If-Range`, `Accept`, `User-Agent`, `Referer`. The last two are the
-plugin's `:http-user-agent` and `:http-referrer`, which the gateway could hold itself (open question 2).
+**What libVLC sends (measured, §9):** `Accept`, `Accept-Encoding`, `Accept-Language`, `Cache-Control`, `Host`, `Range`
+(including on a playlist) and `User-Agent`; `Referer` when given `:http-referrer`; and `Cookie` once anything has set
+one on `127.0.0.1`.
+
+**The gateway owns `Referer` and `User-Agent`.** It takes them from the stream's `StreamLink` when the stream starts,
+sends them on every upstream request of that stream, and drops whatever libVLC sends for either. libVLC is no longer
+given them (`OP_PLAY` stops carrying them). The gateway never forwards a value that names the gateway
+(`127.0.0.1:<port>`, `[::1]:<port>`) or holds the token, whatever header it is in.
+
+**From libVLC upstream, forwarded:** `Range` and `If-Range`, for media only (never for a playlist, which is fetched
+whole), and `Accept`.
 
 **Never forwarded upstream:**
 - `Host`: the gateway sets it from the decoded url;
 - `Cookie` and `Authorization`;
 - `Proxy-*`;
 - the hop-by-hop headers: `Connection`, `Keep-Alive`, `TE`, `Trailer`, `Transfer-Encoding`, `Upgrade`;
-- `Accept-Encoding`: the gateway decides it.
+- `Accept-Encoding`: the gateway decides it;
+- `Accept-Language` and `Cache-Control`: neither is needed, and both fingerprint;
+- `Referer` and `User-Agent` as libVLC sends them: the gateway's own go instead.
 
 The gateway never adds `Forwarded`, `X-Forwarded-*` or `Via`.
 
@@ -132,6 +163,17 @@ would go to every other. So:
 
 **Back to libVLC, never passed:** `Set-Cookie`, `Location`, `Alt-Svc`, `Strict-Transport-Security`, CORS headers,
 and anything else not on the list above.
+
+## 4a. Logging and disk
+
+Nothing that holds a url, a header, a cookie, the token or a body ever reaches a log, stdout, stderr or the disk. Not
+a failure's message, not a debug line, not an exception's text.
+- A failure is one of a fixed set of kinds: `refused-address`, `too-many-redirects`, `downgrade`, `playlist-too-large`,
+  `playlist-unreadable`, `upstream-tls`, `upstream-timeout`, `upstream-status-4xx`, `upstream-status-5xx`,
+  `bad-request`, `no-token`.
+- A log line, if any, is a kind and a count. Nothing else.
+- Exceptions from OkHttp and the parser are mapped to a kind at the boundary, and their message is dropped.
+- The cookie jar is in memory only. Nothing is cached to disk: OkHttp's cache is off.
 
 ## 5. The gateway's own limits
 
@@ -191,7 +233,17 @@ and anything else not on the list above.
 - 16 connections at once, and the 17th closed;
 - oversized headers refused;
 - a slow playlist gives up at 5 s;
-- every network wait inside `withTimeout(60_000)`.
+- every network wait inside `withTimeout(60_000)`;
+- **prints nothing:** a run whose urls, `Referer`, `User-Agent`, cookies and bodies each hold a marker, with stdout and
+  stderr captured and the gateway's directory listed afterwards. No marker appears anywhere, and nothing is written to
+  disk;
+- `Referer` and `User-Agent` upstream are the `StreamLink`'s, whatever libVLC sends; a value naming the gateway or
+  holding the token never goes upstream;
+- an IPv6 literal round-trips bracketed; a zone id and an empty host are refused;
+- `%2F` in the first three segments cannot move a boundary; `%2e%2e` above the root is refused;
+- the rewritten-output limits, at the limit and one past it;
+- a list naming `URI` twice passes through unchanged, and so does a tag in another case;
+- the `[::1]` socket answers `404` to a valid token.
 
 **With VLC.app** (skips without it or `sandbox-exec`):
 - the Apple HLS test stream plays through the gateway, reaching buffering and starting its decoders;
@@ -201,18 +253,30 @@ and anything else not on the list above.
 **The policy:** the media host's profile allows only the gateway port. Red-checked: with `*:*` put back, the
 refused-segment test reaches the host.
 
-## 9. To measure before the first line of code
+## 9. Measured (scratch runs, VLC 3.0.24, nothing committed)
 
-1. libVLC plays an HLS playlist served from `http://127.0.0.1:<port>/…` under a gateway-only policy, through the new
-   http module, with keep-alive. Expected, from the plain-http run in `BUG-90`; not yet measured on loopback.
-2. libVLC does not resolve a gateway url's host. It is a literal, so it should not, and mDNSResponder can then be
-   denied without breaking playback.
-3. How many connections at once libVLC's adaptive demuxer opens on the Apple test stream, to size §5's 16.
+The streams were Apple's public HLS test streams, played with no audio or video output and a scratch home. A
+stand-in gateway in a scratch script played the gateway's part: it fetched upstream outside the sandbox and rewrote
+the playlists. The media host's policy allowed only that port.
+
+1. **libVLC plays an HLS playlist from `http://127.0.0.1:<port>/…` under a gateway-only policy.** It buffered to 96%
+   and started its decoders, over the new http module, with keep-alive (6 requests on one connection).
+2. **libVLC does not need DNS for a gateway url.** With `mDNSResponder` denied it played the same, and nothing was
+   refused. So the media host's profile drops it.
+3. **Connections at once:** at most 2 on the test stream. §5's 16 leaves room.
+4. **Seatbelt's port granularity holds.** With only `localhost:A` allowed, `127.0.0.1:B` and `[::1]:B` are refused
+   ("Operation not permitted"). `127.0.0.1:A` and **`[::1]:A` both connect**, so the gateway holds `A` on both
+   (§ "The shape of the fix").
+5. **What libVLC sends** is listed in §4. It sends `Range` on a playlist, so "a playlist is fetched whole and served
+   `200`" is needed, not tidiness. With `:http-referrer` and `:http-user-agent` it sends both on every request,
+   segments included.
+6. **libVLC follows a 3xx from loopback on its own** (it requested the target twice), and **it keeps a `Set-Cookie`
+   from `127.0.0.1`** and sends it back (5 of 6 later requests). Neither is moot. The gateway never answers 3xx, never
+   passes `Set-Cookie`, and never forwards `Cookie`, as §2 and §4 say.
 
 ## Open questions for review
 
 1. **DASH:** in this task, or a follow-up? The proposal is HLS first, with DASH as its own step, because most plugin
    streams seen so far are HLS or progressive.
-2. **The plugin's headers:** should the gateway hold a stream's `Referer` and `User-Agent` itself, from the
-   `StreamLink`, so libVLC never sees them? That is cleaner, but it changes `MediaProtocol`'s `OP_PLAY`.
+2. ~~The plugin's headers~~ — decided in review: the gateway owns them (§4), and `OP_PLAY` stops carrying them.
 3. **`#EXT-X-DEFINE`:** is leaving it unexpanded acceptable?
