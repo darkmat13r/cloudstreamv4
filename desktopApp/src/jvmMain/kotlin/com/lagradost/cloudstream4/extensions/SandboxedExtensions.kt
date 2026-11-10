@@ -15,6 +15,7 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanSeverity
 import java.io.File
 import java.io.IOException
 import java.nio.file.Files
+import java.nio.file.LinkOption
 import java.nio.file.StandardCopyOption
 import java.security.MessageDigest
 import kotlinx.coroutines.Dispatchers
@@ -173,6 +174,10 @@ class SandboxedExtensions(
             toStore(source, sha256, launcher)
         } catch (failure: IllegalStateException) {
             return refused(failure.message.orEmpty(), sha256 = sha256)
+        } catch (_: IOException) {
+            // `BUG-89`: a store that cannot be written refuses this file, not the launch. The message is not kept: a
+            // `Files` exception names the path, and so the person's home directory.
+            return refused("the extension store could not be written", sha256 = sha256)
         }
         val scan = withContext(Dispatchers.IO) { ExtensionScanner.scan(jar) }
         if (scan.blocked) return refused("blocked by the security scan", scan, sha256, LoadState.Blocked)
@@ -285,10 +290,18 @@ class SandboxedExtensions(
                 input.delete()
             }
         } else {
-            val staging = File(store, "${target.name}$STAGING_SUFFIX").apply { delete() }
+            // `BUG-89`: a staging file of its own. Two identical files loading at once want the same target, and with one
+            // shared staging name each deleted or moved the other's, so one of them failed the whole launch.
+            val staging = Files.createTempFile(store.toPath(), target.name, STAGING_SUFFIX).toFile()
             try {
                 copyExpecting(source, staging, sha256)
-                Files.move(staging.toPath(), target.toPath(), StandardCopyOption.ATOMIC_MOVE)
+                try {
+                    Files.move(staging.toPath(), target.toPath(), StandardCopyOption.ATOMIC_MOVE)
+                } catch (failure: IOException) {
+                    // Someone else's copy of the same bytes may be there already. It counts only if it is exactly them.
+                    // A link there is not a store entry: the store treats links as nothing, everywhere.
+                    if (!(Files.isRegularFile(target.toPath(), LinkOption.NOFOLLOW_LINKS) && sha256(target) == sha256)) throw failure
+                }
             } finally {
                 staging.delete()
             }
