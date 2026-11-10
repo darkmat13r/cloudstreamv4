@@ -145,7 +145,8 @@ class HostProtocolArtTest {
         val read = received(backdrop(atCap + "a"), dropped)
         assertNull(read.backdropUrl)
         assertEquals(page, read)
-        assertEquals(listOf("backdropUrl: past its bytes"), dropped)
+        // `KMP-108`: a URL a byte past its cap makes the section a byte past its own, so the section is skipped whole.
+        assertEquals(listOf("art: a section past its bytes"), dropped)
     }
 
     @Test
