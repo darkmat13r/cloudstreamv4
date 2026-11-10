@@ -91,6 +91,21 @@ internal object HostProtocol {
     /** A backdrop URL's bytes. Past this it is skipped unread and the page opens without one. */
     const val MAX_IMAGE_URL_BYTES = 2048
 
+    /**
+     * The ids section's bytes at most (`KMP-108`): its three ids, each a presence flag (1 byte), a length (4) and at
+     * most [MAX_ID_BYTES] (16), so 3 x (1 + 4 + 16) = 63. Past it the section is stepped over before a byte is copied.
+     * Within it, one id past its own bytes is still skipped alone and the others kept.
+     */
+    const val MAX_IDS_SECTION_BYTES = 3 * (1 + Int.SIZE_BYTES + MAX_ID_BYTES)
+
+    /**
+     * The art section's bytes at most (`KMP-108`): a presence flag (1 byte), a length (4) and at most
+     * [MAX_IMAGE_URL_BYTES] (2048), so 2053. Not [MAX_LINK_BYTES], which is the whole frame's 8 MiB and so bounds
+     * nothing a section adds: the backdrop is the section's one field, and its own cap is the real one. Past it the
+     * section is stepped over before a byte is copied.
+     */
+    const val MAX_ART_SECTION_BYTES = 1 + Int.SIZE_BYTES + MAX_IMAGE_URL_BYTES
+
     /** The cast section's tag (`KMP-103`): who is in the title. */
     const val CAST_V1 = 0x41
 
@@ -596,16 +611,16 @@ private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): A
         if (length !in 0..available()) throw IOException("section length $length out of range")
         // `KMP-105`: only a tag this app reads, seen for the first time, is copied out as a slice. Any other is stepped
         // over in place, so a lying host's large unknown or repeated section costs no allocation.
-        if (tag !in SECTIONS_READ || !read.add(tag)) {
+        if (tag !in SECTION_CAPS || !read.add(tag)) {
             skipNBytes(length.toLong())
             unknown = true
             continue
         }
-        // Nor is a cast or recommendations section past its cap: it is stepped over before a byte of it is copied.
-        val capped = CAPPED_SECTIONS[tag]
-        if (capped != null && length > HostProtocol.MAX_SECTION_BYTES) {
+        // Nor is a section past its cap (`KMP-105`, `KMP-108`): it is stepped over before a byte of it is copied.
+        val cap = SECTION_CAPS.getValue(tag)
+        if (length > cap.maxBytes) {
             skipNBytes(length.toLong())
-            dropped("$capped: a section past its bytes")
+            dropped("${cap.name}: a section past its bytes")
             continue
         }
         val section = readNBytes(length)
@@ -624,17 +639,23 @@ private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): A
     return AfterFacts(backdrop, ids, cast, recommendations)
 }
 
-/** The tags [readSectionsAfterFacts] reads. Every other is stepped over unread. */
-private val SECTIONS_READ =
-    setOf(HostProtocol.ART_V1, HostProtocol.IDS_V1, HostProtocol.CAST_V1, HostProtocol.RECOMMENDATIONS_V1)
+/** A section's most bytes, and the name its drop is said under. */
+private class SectionCap(val name: String, val maxBytes: Int)
 
-/** The sections read only up to [HostProtocol.MAX_SECTION_BYTES], each by the name its drop is said under. */
-private val CAPPED_SECTIONS =
-    mapOf(HostProtocol.CAST_V1 to "cast", HostProtocol.RECOMMENDATIONS_V1 to "recommendations")
+/**
+ * The sections [readSectionsAfterFacts] reads, each with a cap so none is copied past what it can hold. Every other tag
+ * is stepped over unread.
+ */
+private val SECTION_CAPS = mapOf(
+    HostProtocol.ART_V1 to SectionCap("art", HostProtocol.MAX_ART_SECTION_BYTES),
+    HostProtocol.IDS_V1 to SectionCap("ids", HostProtocol.MAX_IDS_SECTION_BYTES),
+    HostProtocol.CAST_V1 to SectionCap("cast", HostProtocol.MAX_SECTION_BYTES),
+    HostProtocol.RECOMMENDATIONS_V1 to SectionCap("recommendations", HostProtocol.MAX_SECTION_BYTES),
+)
 
 /**
  * [parse] over its own [bytes], so nothing in it can reach past them: a section cut short, or lying about a length or a
- * count inside, costs [fallback]. One past its cap never gets here (see [CAPPED_SECTIONS]).
+ * count inside, costs [fallback]. One past its cap never gets here (see [SECTION_CAPS]).
  */
 private fun <T> slice(bytes: ByteArray, name: String, dropped: (String) -> Unit, fallback: T, parse: DataInputStream.() -> T): T {
     return try {

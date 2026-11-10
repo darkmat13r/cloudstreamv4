@@ -7490,6 +7490,29 @@ including one of a tag it does not read and a second of one it has. `#299` and `
 - **Red-checks:** the slice read for every tag, as `#310` had it, fails the first test. The cap checked after the copy,
   as `#310` had it, fails the two size tests.
 
+## KMP-108 — Caps on the art and ids sections too · **built 2026-11-10**, follow-up of `KMP-105`, stacked on it (`#327`) · sys-desktop-2
+
+The reviewer's low follow-up on `#327`, not a regression: after `KMP-105` a first art or ids section was still copied
+whole, up to the rest of the frame, before its own reader looked inside. Every section the app reads now has a cap,
+checked before a byte is copied, in one table (`SECTION_CAPS`) that is also the list of tags read:
+- **ids:** `MAX_IDS_SECTION_BYTES` = 3 x (a presence flag 1 + a length 4 + `MAX_ID_BYTES` 16) = **63**. One id past
+  its 16 bytes still fits the section with the other two short, so it is still skipped alone and the others kept.
+- **art:** `MAX_ART_SECTION_BYTES` = a presence flag 1 + a length 4 + `MAX_IMAGE_URL_BYTES` 2048 = **2053**.
+  `MAX_LINK_BYTES` was the other candidate, but it is the frame's whole 8 MiB, so it bounds nothing here: the backdrop
+  is the section's one field, and its own cap is the real one.
+- Past its cap a section is skipped and dropped as "art: a section past its bytes" or "ids: …", as cast and
+  recommendations already were. `SECTIONS_READ` is gone: the caps table is the one list.
+- **Changed existing test code:** `HostProtocolArtTest`'s "a URL at its bytes is read, and one past them is skipped"
+  now expects "art: a section past its bytes" for the URL a byte past 2048. That URL makes the section 2054, a byte
+  past its cap, so the whole section goes before `readArtV1`'s own check is reached. The page is still kept, and that
+  check stays as the slice's guard.
+- **Tests,** `HostProtocolSectionSkipTest` (7), on the counting stream:
+  - ids of exactly 63 bytes (three 16-digit ids) are read with nothing skipped; 64 is skipped whole;
+  - art of exactly 2053 bytes (a 2048-byte backdrop) is read with nothing skipped; 2054 is skipped whole;
+  - a megabyte of art and of ids beside a cast: both skipped, said once each, under 4 KiB read, the cast kept.
+- **Red-checks:** without the ids cap, the ids test and the megabyte test fail. Without the art cap, the art test,
+  the megabyte test and `HostProtocolArtTest`'s changed case fail.
+
 ## KMP-102 — The same hardening for posters · **built 2026-11-09**, stacked on `KMP-100` (`#299`)
 
 Posters went through `httpUrlOrNull()` and `posterHttpClient`, so they accepted http, followed https-to-http redirects,
