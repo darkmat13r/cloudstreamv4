@@ -3148,6 +3148,164 @@ With the fix, three times in a row: `AndroidDetailSourceFailureTest` 1/1, `Searc
 
 ---
 
+## Audit, 2026-11-10 — the extension wire, end to end · **findings, triaged**
+
+Read-only, from code. **What was read:**
+- master `6c6179784`, with the frozen media gateway (#348, #350, carrying #343), the plugin-output redaction (#335)
+  and the no-proxy fix (#340);
+- separately, the title-section stack (#310, #327, #329, #312), which does not yet merge with that master.
+
+**What it covers:**
+- every section reader (facts `0x01`, art `0x21`, ids `0x31`, cast `0x41`, recs `0x51`);
+- every value that crosses from a plugin to the screen;
+- every network client;
+- every path for a plugin's output;
+- every sandbox profile.
+
+Each finding was confirmed by reading the code, and where it says so, by a measurement. Nothing here is fixed.
+
+### Medium
+
+**A-1. Every sandboxed host can still reach `trustd`, because the policy imports `system.sb`, which allows it.** ·
+**fixed in #350** (`KMP-113`), proved at runtime: from inside the real policy the lookup succeeded, and it is refused now.
+- **The code:** `SeatbeltProfile.render` imports `system.sb`. On macOS 27.0.1 its lines 158–179 are an
+  unconditional `allow mach-lookup` that names `com.apple.trustd` and `com.apple.trustd.agent`. The media hosts'
+  `tls = false` (#350) only leaves out the app's own list.
+- **Which hosts:** the stream host, the file host, the converter and the plugin hosts all keep the lookup.
+- **Why the test passes:** `MediaHostProfileTest` checks the profile's text, not what the kernel allows, so it passes
+  anyway.
+- **Repro of the risk:** native code in a media host (a crafted media file that took over libVLC's demuxer) asks
+  Security.framework to evaluate a chain whose AIA or OCSP url is a LAN or attacker address. `trustd` fetches it,
+  outside the sandbox. That is a blind request into the LAN, and a way out of a host meant to reach nothing.
+- **Not measured:** whether `trustd` fetches in that setup.
+- **Fix shape:** an explicit `deny mach-lookup` of both names after the import, for the media hosts and the converter,
+  and a test that the lookup fails under the real profile.
+
+**A-2 = `BUG-92`. A plugin's exception text reaches the app's default stdout and stderr, on every launch where a search, a home
+page or a title fails.**
+- **The path:** Home and Search go through `APIRepository` (`core/data`, `:96`, `:137`, `:150`) into `safeApiCall`
+  (`library/…/mvvm/ArchComponentExt.kt:312–322`). That calls `logError`, which writes
+  `Log.d("ApiError", "safeApiCall: " + message.withoutUrls())` (`:71`; on the JVM `Log.d` is `println`), then the
+  stack trace to stderr (`:74`).
+- **A second path:** `DesktopDetailSource.kt:55` writes `failure.message.withoutUrls()` to stderr.
+- **What gets through:** the message is #335's `PluginFailed`, redacted within 400 characters. URLs, tokens, email
+  addresses and IP addresses are cut. The plugin's own words are not: a query echoed back, a name, a short secret.
+- **Why it matters:** this contradicts #335 ("never on a default output"). #335's map traced the host's output, not
+  exception messages through the shared library.
+- **Repro:** `search()` throws `IllegalStateException("searched: <query>; account <name>")`. Both appear on stdout.
+- **Fix shape:** on the desktop, print only `PluginFailed.reportedClass` on these paths. `:library` is published API,
+  so the change is a function body there.
+
+**A-3 = `BUG-93`. The title page draws a plugin's title, plot and episode names with bidi and format characters still in them.**
+- **The path:** `cleaned()` (`PluginHostClient.kt:664` and the lines around it) uses `sanitized()`, which removes only
+  `Cc`. `toTitleDetail` (`DesktopDetailSource.kt:83–90`) passes the values on, and `DetailScreenDesktop.kt:330`
+  draws them.
+- **Why it matters:** search, home, library, cast and recommendations all strip `Cf`. This path alone does not.
+- **Repro:** `name = "Safe Title\u202Eexe.4pm"` draws reversed on the title page and in the top bar.
+
+### Low
+
+These are batched by area at triage (network, profiles, text), with IDs claimed then. Two additions from review go in
+the same batch:
+- the plugin hosts deny the certificate services too, so that every host without a use for TLS has the same rule;
+- `MediaHostServicesTest` asserts that `ocspd`, `SecurityServer`, `securityd.xpc` and `dnssd.service` are refused
+  from inside both media hosts' policies. They are refused today only because nothing allows them.
+
+
+**A-4. FACTS is copied with no cap of its own.**
+- **The code:** `HostProtocol.kt:561` checks only `0..available()`, then `:567` does `readNBytes(length)`. Every
+  section after FACTS meets `SECTION_CAPS` first. The most a real FACTS section needs is about 16.5 KiB.
+- **Repro:** a FACTS slice of 8 MB copies 8 MB beside the frame. It is bounded by the 8 MiB frame limit, so it does
+  not grow without limit, but it contradicts "bounded before copy".
+
+**A-5. The subtitle client follows https to http, and sends the plugin's headers on every hop.**
+- **The code:** `posterHttpClient` never calls `followSslRedirects(false)`, and `subtitleHttpClient`
+  (`SubtitleLoader.kt:119`) inherits that. `SubtitleLoader.kt:93` sets the plugin's headers on the request.
+- **Repro:** a plugin's `Cookie`, on an https url that redirects to `http://other.example/`, goes there in clear
+  text. The address is still checked on every hop; this is about integrity and privacy.
+
+**A-6. Image fetches have no overall time limit.**
+- **The code:** `posterHttpClient` and `boundedImageClient` keep OkHttp's defaults: 10 s per read, and no limit on
+  the call.
+- **Repro:** a server that sends one byte every 9 s holds a fetch thread for as long as it likes, within the 8 MB
+  cap. The subtitle client has a 20 s call limit; images have none.
+
+**A-7. `OutboundGate` has no idle timeout once a tunnel is open.**
+- **The code:** `OutboundGate.kt:68` sets `client.soTimeout = 0`, and the remote socket gets none.
+- **Repro:** a plugin can keep `MAX_CONNECTIONS` (256) silent tunnels, which is 512 threads, for the life of its
+  host. Only resources are pinned; the address check holds.
+
+**A-8. The check commands print a plugin's strings by default.**
+- **`--check-extensions`:** provider names, titles (`ExtensionCheck.kt:103`), subtitle languages, the hosts it
+  contacted (any printable SOCKS name) and the `PluginFailed` text, unredacted.
+- **`--check-playback`:** the link's name (`PlaybackCheck.kt:39`). A `PluginFailed` from its `runBlocking` (`:49–51`)
+  is uncaught, so the default handler prints it.
+- **Scope:** both are developer commands. `--verbose` was meant to be the only way to see a plugin's text.
+
+**A-9. The media host's own directory is both writable and mappable as code.** `render` denies `file-map-executable`
+on `writable` (`SeatbeltProfile.kt:81`). `mediaHostRules` allows it there again (`:112`), and the later rule wins
+(JNA unpacks its library there). It is the one path that is both writable and executable.
+
+**A-10. The converter and the file host get system-configuration services they have no use for.** `MACH_SERVICES`
+(`:201–207`) goes to every profile, `SystemConfiguration.configd` and `DNSConfiguration` included. Through configd's
+dynamic store, a host can read the computer's name and its interface addresses, which the sysctl rules otherwise
+hide.
+
+**A-11. `isPublicAddress` calls IPv4-compatible IPv6 addresses public.** `::127.0.0.1` and `::a00:1` reach the IPv6
+branch, which checks only ULA and the translation prefixes.
+- **Measured on macOS:** no path. A connection to `[::127.0.0.1]` and `[::a00:1]` gives `NoRouteToHostException`.
+  `::ffff:` addresses become IPv4 in Java, and are refused as loopback.
+- **Fix shape:** refuse `::/96` too, as hardening.
+
+**A-12. Invisible characters outside the basic plane survive the cleaning of cast names and tags.**
+`isInvisibleInLabel` (`PluginHostClient.kt:829–831`) tests one `Char` at a time, so the tag characters
+`U+E0020`–`E007F` and other supplementary `Cf` characters stay. So does `U+3164`, because `withoutDefaultIgnorable` is
+not called there. The result is cosmetic, a blank tile or a near-duplicate; none of these can reverse a line.
+
+### Unsure (not confirmed)
+- **Episodes:** `List(readCount())` (`HostProtocol.kt:520`) presizes a list from the plugin's count, up to about 8 M,
+  before the first item fails. This predates the sections. It needs a heap measurement.
+- **`(allow file-read-metadata)` with no filter** (`SeatbeltProfile.kt:63`): any path under home can be stat'ed (not
+  listed). It is intentional, and broader than the file's own claim.
+- **`system.sb`'s other grants** (`xpc-service-name-prefix ""`, the syslog socket, `logd`): native code in the media
+  host could write to the system log.
+- **The plugin host keeps `mDNSResponder`:** a DNS lookup of `<data>.attacker.example` leaves the machine and never
+  appears in the gate's contacted names.
+- **No default uncaught-exception handler on the app's coroutine scopes:** a `PluginFailed` that escapes one would
+  print. Not every launch site was traced.
+
+### Confirmed correct (coverage)
+- **Section readers:**
+  - The frame length is checked before it is allocated (`HostProtocol.kt:183`).
+  - Each section after FACTS is checked against what is left, then against its cap, and is skipped in place when its
+    tag is unknown or repeated. The log line holds no plugin bytes.
+  - Art, ids, cast and recs: each field is checked against its cap before it is copied, and each count is capped.
+  - A length that lies fails the call, without putting the stream out of step.
+- **Values from a plugin to the screen:**
+  - Ids are validated, and reach only `HttpUrl.Builder` path segments.
+  - Cast and recommendation images go through `imageUrlOrNull` and `ThumbnailImage`.
+  - The backdrop is https only.
+  - Every image client checks the resolved and the connected address.
+- **Network:**
+  - `posterHttpClient`, `boundedImageClient`, the subtitle client, the downloads client (Ktor keeps the proxy and
+    DNS settings), the gateway and `OutboundGate` all check the connected address on every hop, with no proxy.
+  - Sign-in reaches only fixed endpoints; `Desktop.browse` opens only a checked Simkl url; no WebView, no plain
+    `URL.openStream`.
+- **Output:**
+  - Everything that #335 routed through `HostStderr` and `PluginFailed`.
+  - Downloads and storage logs carry a class name only.
+  - The OkHttp logger is off.
+  - The library store and download paths clean their strings and cap them.
+- **Profiles:**
+  - `deny default` first.
+  - One binary may run.
+  - Signals and process info are limited to the host itself.
+  - Sysctl is allowed by name.
+  - Writes are limited to the host's own directory.
+  - Network: the plugin host reaches only the gate, the stream host only its gateway; the converter and the file
+    host have none.
+  - No `mach-lookup` rule without a name, from the app's own rules.
+
 ## BUG-76 — `--check-playback` on a local file never played: the sandbox cannot read it · **low, check only**
 
 **Status:** fixed in this PR · found 2026-11-08 by sys-desktop-2 (frames=0 on master, before `BUG-73` too)
