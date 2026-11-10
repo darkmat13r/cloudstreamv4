@@ -199,6 +199,7 @@
 <string name="cartoons_singular">"カートゥーン"</string>
 <string name="cast">"出演者"</string>
 <string name="cast_format" formatted="true">"出演者：%s"</string>
+<string name="cast_voiced_by" formatted="true">"声優: %s"</string>
 <string name="category_account">"ア﻿カ﻿ウ﻿ン﻿トとセキュリティ"</string>
 <string name="category_general">"全般"</string>
 <string name="category_player">"プレーヤー"</string>

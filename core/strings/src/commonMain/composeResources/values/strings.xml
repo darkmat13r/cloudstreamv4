@@ -208,6 +208,7 @@
 <string name="cartoons_singular">Cartoon</string>
 <string name="cast">Cast</string>
 <string name="cast_format">Cast: %s</string>
+<string name="cast_voiced_by">Voiced by %s</string>
 <string name="category_account">Accounts and Security</string>
 <string name="category_general">General</string>
 <string name="category_player">Player</string>

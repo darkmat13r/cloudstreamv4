@@ -173,6 +173,7 @@
 <string name="cartoons_singular">"Animācija"</string>
 <string name="cast">"Lomās"</string>
 <string name="cast_format" formatted="true">"Lomās: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Ierunājis %s"</string>
 <string name="category_account">"Konti un drošība"</string>
 <string name="category_general">"Vispārīgie"</string>
 <string name="category_player">"Atskaņotājs"</string>

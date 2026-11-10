@@ -182,6 +182,7 @@
 <string name="cartoons_singular">"uuuuggg"</string>
 <string name="cast">"oouaaahh"</string>
 <string name="cast_format" formatted="true">"oouaaahh %s"</string>
+<string name="cast_voiced_by" formatted="true">"ooh aahh %s"</string>
 <string name="category_account">"oooogggg aah aaaaaakh"</string>
 <string name="category_general">"a ahu uoo uoahuo uo"</string>
 <string name="category_player">"ahaough aaouuuuh-h"</string>

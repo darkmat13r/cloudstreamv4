@@ -151,6 +151,7 @@
 <string name="cartoons_singular">हास्यचित्र</string>
 <string name="cast">Cast</string>
 <string name="cast_format">Cast: %s</string>
+<string name="cast_voiced_by">आवाज़: %s</string>
 <string name="category_account">खाते और सुरक्षा</string>
 <string name="category_general">सामान्य</string>
 <string name="category_provider_test">प्रदाता परीक्षण</string>

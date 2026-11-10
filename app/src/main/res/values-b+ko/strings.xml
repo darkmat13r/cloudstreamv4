@@ -198,6 +198,7 @@
 <string name="cartoons_singular">"카툰"</string>
 <string name="cast">"출연"</string>
 <string name="cast_format" formatted="true">"출연: %s"</string>
+<string name="cast_voiced_by" formatted="true">"성우: %s"</string>
 <string name="category_account">"계정 및 보안"</string>
 <string name="category_general">"일반"</string>
 <string name="category_player">"플레이어"</string>

@@ -199,6 +199,7 @@
 <string name="cartoons_singular">"Trickfilm"</string>
 <string name="cast">"Besetzung"</string>
 <string name="cast_format" formatted="true">"Besetzung: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Gesprochen von %s"</string>
 <string name="category_account">"Konten und Sicherheit"</string>
 <string name="category_general">"Allgemein"</string>
 <string name="category_player">"Player"</string>

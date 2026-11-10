@@ -177,6 +177,7 @@
 <string name="cartoons_singular">"Rajzfilm"</string>
 <string name="cast">"Stáblista"</string>
 <string name="cast_format" formatted="true">"Stáblista: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Hangja: %s"</string>
 <string name="category_account">"Fiókok és Biztonság"</string>
 <string name="category_general">"Általános"</string>
 <string name="category_player">"Lejátszó"</string>

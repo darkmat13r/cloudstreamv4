@@ -100,6 +100,7 @@
 <string name="cancel">"Nuligi"</string>
 <string name="cast">"Rolantaro"</string>
 <string name="cast_format" formatted="true">"Rolantaro: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Voĉo de %s"</string>
 <string name="category_account">"Kontoj kaj Sekureco"</string>
 <string name="delete">"Forigi"</string>
 <string name="delete_file">"Forigi Dosieron"</string>

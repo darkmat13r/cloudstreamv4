@@ -7513,6 +7513,85 @@ checked before a byte is copied, in one table (`SECTION_CAPS`) that is also the 
 - **Red-checks:** without the ids cap, the ids test and the megabyte test fail. Without the art cap, the art test,
   the megabyte test and `HostProtocolArtTest`'s changed case fail.
 
+## KMP-104 — The Mac title page draws Cast and More like this, from `DS-26` · **built 2026-11-10**, stacked on `KMP-105` (`#327`)
+
+**On Manrope** (`#295`, train 16): rebased onto `KMP-105`, which is on `#310`, on train 16's master. The page's tests now
+draw with `desktopTypography()`, the bundled faces, so the descender check below measures Manrope and not a fallback.
+
+**The page** (`DetailCastDesktop.kt`, `:feature:detail`), under the episodes, each only when it has something:
+- **Cast** (C1, C3, C3b, C4): a header, then everyone, at most 24, in lines of people at least 232 wide: four in the
+  1280 window's page, two in the 800 window's. A person is a 40 round photo over their initials, then their name (label),
+  their role (caption), and "Voiced by %s" (caption, `I18N-24`) when the provider named a voice actor. A person is 40
+  tall, or 56 on a line where anyone has a voice line (below). A role that is
+  only a kind (`ActorRole`) reads `actor_main`, `actor_supporting` or `actor_background`. A person takes no press: there
+  is no person page. Words cut by an ellipsis show whole in a tooltip once the pointer rests.
+- **More like this** (C1, C2, C6): Home's row. A header with Load more, then the cards a line at a time, at least 160
+  wide (five, three); the first line shows, and each Load more opens one more. A card is Home's: the 2:3 poster on the
+  card's surface, the title in two lines at most, then its kind and year. A press opens the title as a page over this one,
+  whose crumb is this title's name; Back returns here.
+- **No header over nothing** (C5a, C5b).
+- `DetailCastMember` gains a defaulted `roleKind`, so the page can say a kind in words; Android's call site is unchanged.
+
+**Images** (`ThumbnailImage.kt`, `:desktopApp`), `KMP-103`'s conditions 5 and 6:
+- **Only on screen.** Every line of people or cards is its own lazy item, and a picture is asked for only when its line
+  is composed: tested by scrolling a long series down a step at a time.
+- **At the drawn size,** `Precision.INEXACT`; **1024 by 1024** at most decoded and **2 MB** a file, both refused before
+  Skia decodes a pixel, by `KMP-100`'s `BoundedDecoder` and body cap.
+- **The same client and cache as backdrops** (the PM, 2026-11-10: one decision in one place; `KMP-102` changes all
+  three kinds): https on every hop, public addresses re-checked on connect, Coil's shared disk cache.
+
+**Measured** (`ThumbnailImageTest`, a whole page: 24 headshots drawn 40 by 40 and 20 posters drawn 190 by 285, every one
+from a 1024 by 1024 file, the largest allowed, loaded at once): the bitmaps kept came to 6,495 KiB, under the bound
+INEXACT allows (twice the drawn size a side: 17.9 MB) and against 176 MB for 44 full decodes. The JVM heap peaked 5 to 6
+MiB above its 15 to 20 MiB start in two runs. Skia's pixels are native memory, so the bitmaps are counted from their sizes.
+
+**A person's height: 40, or 56 with a voice line** (the PM, 2026-11-10, decision (a)). The 40 ruling (2026-11-09) was
+made against the board's line boxes: label 16 and caption 12, so three lines in 40. The Mac's ramp (`forDesktop`, what
+`desktopTypography()` draws with) gives label a 24 line box and caption 16, so two lines fit 40 and three need
+24 + 16 + 16 = 56. `DetailCastDesktopDefaults.PersonHeightWithVoice` is that 56, and its KDoc shows the sum. Every person on
+a line with a voice line takes 56, so the line's edges stay even; a line with none stays 40.
+- **Measured before the fix**, with Manrope loaded, a voiced person beside an unvoiced one on a line: the person was
+  444 to 484 (40). The voice line's box was 482 to 484, 2 of its 16, with its baseline at 494.4 and its line box ending at
+  498, 14 below the person. Its layout reported visual overflow: the line was cut almost whole.
+- **After:** the person is 444 to 500 (56), the voice line's box 483 to 499 (16) with its line box ending at 499, no
+  overflow, and 47 pixels of ink below the baseline across the line, where "Pippa Quigley-Jory"'s g, j, p, q and y
+  descend.
+
+**Tests:**
+- `DetailCastScreenTest` (12), real pointer events, drawn with `desktopTypography()`:
+  - C1, everyone shown, four a line;
+  - C3 and C3b, a kind in words, the voice actor under the role, a name alone, and an unknown kind never shown;
+  - initials, and a photo asked for only where there is one;
+  - Load more, line by line, until it goes;
+  - a card opens its title, by its poster or its words;
+  - C5a and C5b, no header over nothing;
+  - C7, two and three a line;
+  - a line below the window not asked for its pictures until scrolled to;
+  - C4's tooltip, and none where nothing was cut;
+  - the descender check: "Voiced by Pippa Quigley-Jory" lies inside its person, its layout has no overflow, its line box
+    fits the box it is given, and ink is drawn below its baseline (counted in the rendered pixels);
+  - a line with one voiced and one unvoiced person: both 56;
+  - a line with no voice: both 40.
+- `ThumbnailImageTest` (5): a headshot kept at about its drawn size; 1024 by 1024 decodes and one pixel more never
+  reaches Skia; 2 MB passes and one byte more does not; https only; the page measured above.
+- `DetailCastDesktopTest` (2): columns and initials.
+- **Red-checked**, each failing what it should, then restored:
+  - every cast line composed at once (fails the on-screen test);
+  - the backdrop's decode cap in place of the thumbnail's;
+  - Compose's own formatting of "Voiced by %s" (leaves `%s` in the text);
+  - every line of More like this shown, with no Load more;
+  - a kind shown as its identifier;
+  - no tooltip;
+  - the 40 cell, before the fix: the descender check fails ("nothing of the line is cut") and the mixed line fails
+    (expected 56, was 40);
+  - a clipped box, the voice line held to 12 and clipped: the descender check fails ("nothing of the line is cut");
+  - a clip of the drawing alone, the text laid out whole but drawn only to 12: the descender check fails on its pixels
+    ("the descenders are drawn: 0 pixels below the baseline");
+  - each person at their own height rather than the line's: the mixed line fails (the unvoiced one 40, not 56).
+
+**Strings:** `cast_voiced_by` in all 62 directories (`I18N-24`), the thirty-third baseline move, regenerated from the
+live generator on train 19's master and written up in `oracle-baseline/README.md`; one `R` field in `classes-jar.api`.
+
 ## KMP-102 — The same hardening for posters · **built 2026-11-09**, stacked on `KMP-100` (`#299`)
 
 Posters went through `httpUrlOrNull()` and `posterHttpClient`, so they accepted http, followed https-to-http redirects,

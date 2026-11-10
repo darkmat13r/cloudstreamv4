@@ -102,6 +102,7 @@
 <string name="browser">Brawser</string>
 <string name="cast">Atturi</string>
 <string name="cast_format">Atturi: %s</string>
+<string name="cast_voiced_by">Leħen ta' %s</string>
 <string name="continue_watching">Kompli Ara</string>
 <string name="desktop_menu_go">Mur</string>
 <string name="detail_source_resolving">Qed isolvi…</string>

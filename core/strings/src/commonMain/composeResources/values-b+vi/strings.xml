@@ -202,6 +202,7 @@
 <string name="cartoons_singular">Hoạt Hình</string>
 <string name="cast">Diễn viên</string>
 <string name="cast_format">Diễn viên: %s</string>
+<string name="cast_voiced_by">Lồng tiếng: %s</string>
 <string name="category_account">Tài khoản và Bảo mật</string>
 <string name="category_general">Tổng quan</string>
 <string name="category_player">Trình phát</string>

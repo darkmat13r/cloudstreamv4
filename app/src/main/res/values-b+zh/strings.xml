@@ -199,6 +199,7 @@
 <string name="cartoons_singular">"卡通"</string>
 <string name="cast">"演员"</string>
 <string name="cast_format" formatted="true">"演员：%s"</string>
+<string name="cast_voiced_by" formatted="true">"配音：%s"</string>
 <string name="category_account">"账户和安全"</string>
 <string name="category_general">"通用"</string>
 <string name="category_player">"播放器"</string>

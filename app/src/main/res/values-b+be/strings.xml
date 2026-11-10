@@ -198,6 +198,7 @@
 <string name="cartoons_singular">"Мультфільм"</string>
 <string name="cast">"Склад"</string>
 <string name="cast_format" formatted="true">"Склад: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Агучвае %s"</string>
 <string name="category_account">"Уліковыя запісы і бяспека"</string>
 <string name="category_general">"Агульныя"</string>
 <string name="category_player">"Прайгравальнік"</string>

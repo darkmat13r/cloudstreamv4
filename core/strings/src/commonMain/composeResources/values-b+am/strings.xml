@@ -101,6 +101,7 @@
 <string name="browser">አሳሽ</string>
 <string name="cast">ተዋናዮች</string>
 <string name="cast_format">ተዋናዮች: %s</string>
+<string name="cast_voiced_by">ድምፅ በ%s</string>
 <string name="continue_watching">መመልከትዎን ይቀጥሉ</string>
 <string name="desktop_menu_go">ሂድ</string>
 <string name="detail_source_resolving">በመፍታት ላይ…</string>

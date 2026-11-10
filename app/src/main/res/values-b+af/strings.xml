@@ -99,6 +99,7 @@
 <string name="cancel">"Kanselleer"</string>
 <string name="cast">"Rolverdeling"</string>
 <string name="cast_format" formatted="true">"Rolverdeling: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Stem deur %s"</string>
 <string name="category_providers">"Verskaffers"</string>
 <string name="continue_watching">"Kyk verder"</string>
 <string name="delete">"Wis Uit"</string>

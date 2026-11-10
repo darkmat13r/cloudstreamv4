@@ -138,6 +138,7 @@
 <string name="cartoons_singular">کارتون</string>
 <string name="cast">بازیگران</string>
 <string name="cast_format">بازیگران: %s</string>
+<string name="cast_voiced_by">با صدای %s</string>
 <string name="category_account">حساب‌ها و امنیت</string>
 <string name="category_general">کلی</string>
 <string name="category_provider_test">تست ارائه‌دهنده</string>

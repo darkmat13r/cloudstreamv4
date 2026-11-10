@@ -199,6 +199,7 @@
 <string name="cartoons_singular">"கார்ட்டூன்"</string>
 <string name="cast">"நடிகர்கள்"</string>
 <string name="cast_format" formatted="true">"நடிகர்கள்: %s"</string>
+<string name="cast_voiced_by" formatted="true">"குரல்: %s"</string>
 <string name="category_account">"கணக்குகள் மற்றும் பாதுகாப்பு"</string>
 <string name="category_general">"பொது"</string>
 <string name="category_player">"ஆட்டக்காரர்"</string>

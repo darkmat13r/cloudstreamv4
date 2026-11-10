@@ -199,6 +199,7 @@
 <string name="cartoons_singular">"Kreskówka"</string>
 <string name="cast">"Obsada"</string>
 <string name="cast_format" formatted="true">"Obsada: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Głos: %s"</string>
 <string name="category_account">"Konta i zabezpieczenia"</string>
 <string name="category_general">"Ogólne"</string>
 <string name="category_player">"Odtwarzacz"</string>

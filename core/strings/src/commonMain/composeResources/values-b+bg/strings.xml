@@ -201,6 +201,7 @@
 <string name="cartoons_singular">Анимационен филм</string>
 <string name="cast">Актьори</string>
 <string name="cast_format">Актьори: %s</string>
+<string name="cast_voiced_by">Озвучава %s</string>
 <string name="category_account">Акаунти и сигурност</string>
 <string name="category_general">Общ</string>
 <string name="category_player">Плеър</string>

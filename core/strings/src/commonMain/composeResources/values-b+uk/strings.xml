@@ -202,6 +202,7 @@
 <string name="cartoons_singular">Мультфільм</string>
 <string name="cast">У ролях</string>
 <string name="cast_format">У ролях: %s</string>
+<string name="cast_voiced_by">Озвучує %s</string>
 <string name="category_account">Облікові записи та безпека</string>
 <string name="category_general">Загальні</string>
 <string name="category_player">Програвач</string>

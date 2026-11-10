@@ -98,6 +98,7 @@
 <string name="browser">"አሳሽ"</string>
 <string name="cast">"ተዋናዮች"</string>
 <string name="cast_format" formatted="true">"ተዋናዮች: %s"</string>
+<string name="cast_voiced_by" formatted="true">"ድምፅ በ%s"</string>
 <string name="continue_watching">"መመልከትዎን ይቀጥሉ"</string>
 <string name="desktop_menu_go">"ሂድ"</string>
 <string name="detail_load_failed_body">"ምንጩ ላይገኝ ይችላል።"</string>

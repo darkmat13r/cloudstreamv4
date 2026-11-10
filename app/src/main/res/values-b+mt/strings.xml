@@ -99,6 +99,7 @@
 <string name="browser">"Brawser"</string>
 <string name="cast">"Atturi"</string>
 <string name="cast_format" formatted="true">"Atturi: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Leħen ta' %s"</string>
 <string name="continue_watching">"Kompli Ara"</string>
 <string name="desktop_menu_go">"Mur"</string>
 <string name="detail_load_failed_body">"Is-sors jista' jkun mhux disponibbli."</string>

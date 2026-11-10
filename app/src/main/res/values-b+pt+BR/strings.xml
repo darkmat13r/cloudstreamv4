@@ -199,6 +199,7 @@
 <string name="cartoons_singular">"Desenho Animado"</string>
 <string name="cast">"Elenco"</string>
 <string name="cast_format" formatted="true">"Elenco: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Voz de %s"</string>
 <string name="category_account">"Contas e Segurança"</string>
 <string name="category_general">"Geral"</string>
 <string name="category_player">"Player"</string>

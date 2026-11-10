@@ -137,6 +137,7 @@
 <string name="cartoons_singular">"فلم كرتون"</string>
 <string name="cast">"طاقم العمل"</string>
 <string name="cast_format" formatted="true">"بث%s"</string>
+<string name="cast_voiced_by" formatted="true">"بصوت %s"</string>
 <string name="category_account">"حسابات"</string>
 <string name="category_updates">"التحديثات والنسخ الاحتياطي"</string>
 <string name="check_for_update">"فحص التحديثات"</string>

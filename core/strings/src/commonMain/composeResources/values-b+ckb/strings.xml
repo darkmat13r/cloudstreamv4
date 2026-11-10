@@ -98,6 +98,7 @@
 <string name="browser">براوزەر</string>
 <string name="cast">تیم</string>
 <string name="cast_format">تیم:%s</string>
+<string name="cast_voiced_by">دەنگی %s</string>
 <string name="deselect_all">هەمووی لابدە</string>
 <string name="desktop_menu_go">بڕۆ</string>
 <string name="detail_source_resolving">چارەسەرکردن…</string>

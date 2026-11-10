@@ -34,6 +34,9 @@ internal object DesktopDetailViewModels {
             DetailViewModel(id, source, scope, playBestAfter = BEST_LINK_WAIT)
         }
 
+    /** [id]'s title once its page has loaded, for the crumb of a title opened from it (`KMP-104`). */
+    fun title(id: String): String? = live[id]?.state?.value?.detail?.title
+
     /** Whether [id]'s view model is still kept. For tests: leaving a title by any way out must let it go. */
     internal fun isLive(id: String): Boolean = id in live
 

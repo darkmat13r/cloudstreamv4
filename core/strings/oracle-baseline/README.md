@@ -142,6 +142,30 @@ line lost, every earlier line still there in the same order, and every added lin
 500 and `ANDROID_FALLBACK` 173 unchanged, and `expectedOwn` to match. `app/src/main/res`: 40 lines added, 0 removed;
 `app/api/classes-jar.api` gains the 40 `R.string` fields and nothing else.
 
+## Thirty-third move, 2026-11-10 — `KMP-104`, 1 new key: who voices a character
+
+New keys are approved in general (`I18N-09`), and the PM asked for this line (2026-11-09, `DS-26` C3b): a voice actor
+under a person's role on the Mac title page. Additive: `cast_voiced_by`, no plurals, authored in all 62 directories
+(`OWN` grows by 62). The Android res came out with 62 lines added and 0 removed, and `app/api/classes-jar.api` gains
+only the one `R` field. Numbered thirty-second on train 16's master; regenerated from the live generator on master's
+thirty-fourth move (`20ec055e3`, train 19) when `KMP-104` rebased for train 20, and numbered thirty-third, the slot
+the thirty-fourth left for it.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 57,738 | 57,800 | 62 | 0 | 0 |
+| `emitted.tsv` | 60,441 | 60,505 | 64 | 0 | 0 |
+| `lookup.tsv` | 107,754 | 107,841 | 87 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured twice over, a multiset in Python that also checked order and `sort | comm`: 0 lines lost in any file, every
+line that was in a file before is in it after in the same order, and every added line names the key: 62 in `decoded`,
+64 in `emitted` (the `values-b+he` and `values-b+id` copies), 87 in `lookup`. `report.txt` moved only in its counts:
+`OWN` 55,662 -> 55,724, visible keys 1,201 -> 1,202, plurals unchanged at 32, and one more value in each of the two
+locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 55,662 -> 55,724,
+and `OracleBaselineTest`'s row counts to the three after-counts above.
+
 ## Thirty-second move, 2026-11-10 — `I18N-23`, 1 new key for the subtitle picker (`BUG-77`)
 
 New keys are approved in general (`I18N-09`). Additive: `subtitles_font_app` ("App font"), no plural, authored in all 62

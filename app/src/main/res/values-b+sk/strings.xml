@@ -153,6 +153,7 @@
 <string name="cartoons_singular">"Kreslený"</string>
 <string name="cast">"Hrajú"</string>
 <string name="cast_format" formatted="true">"Hrajú: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Hlas: %s"</string>
 <string name="category_account">"Účty a Zabezpečenie"</string>
 <string name="category_general">"Všeobecné"</string>
 <string name="category_player">"Prehrávač"</string>

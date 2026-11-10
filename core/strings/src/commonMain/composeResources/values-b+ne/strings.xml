@@ -101,6 +101,7 @@
 <string name="browser">ब्राउजर</string>
 <string name="cast">अभिनेता</string>
 <string name="cast_format">अभिनेता:%s</string>
+<string name="cast_voiced_by">आवाज: %s</string>
 <string name="chromecast_subtitles_settings">Chromecast को उपशीर्षकहरु</string>
 <string name="continue_watching">हेर्न सुचारु राख्नुहोस</string>
 <string name="desktop_menu_go">जानुहोस्</string>

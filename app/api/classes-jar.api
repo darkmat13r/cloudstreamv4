@@ -3421,6 +3421,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field cartoons_singular I
 	public static field cast I
 	public static field cast_format I
+	public static field cast_voiced_by I
 	public static field category_account I
 	public static field category_general I
 	public static field category_player I

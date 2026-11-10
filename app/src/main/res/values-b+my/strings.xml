@@ -163,6 +163,7 @@
 <string name="cartoons_singular">"ကာတွန်း"</string>
 <string name="cast">"သရုပ်ဆောင်များ"</string>
 <string name="cast_format" formatted="true">"သရုပ်ဆောင်များ: %s"</string>
+<string name="cast_voiced_by" formatted="true">"အသံ - %s"</string>
 <string name="category_account">"အကောင့်များ"</string>
 <string name="category_general">"အထွေထွေ"</string>
 <string name="category_player">"ကြည့်ရှုမှု"</string>

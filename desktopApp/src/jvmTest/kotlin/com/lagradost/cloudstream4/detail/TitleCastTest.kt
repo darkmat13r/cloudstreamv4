@@ -58,7 +58,7 @@ class TitleCastTest {
     }
 
     @Test
-    fun `a person's words win over the kind, which is the kind's name until the page puts it in words`() {
+    fun `a person's words and kind arrive apart, for the page to put the kind in words`() {
         val page = details.copy(
             cast = listOf(
                 RemoteCastMember("Ines", RemoteActorRole.Main, "Cdr. Voss", null, "https://img.example/i.jpg"),
@@ -68,8 +68,8 @@ class TitleCastTest {
         ).toTitleDetail("p")
         assertEquals(
             listOf(
-                DetailCastMember("Ines", "https://img.example/i.jpg", "Cdr. Voss"),
-                DetailCastMember("Ren", null, "Supporting", "Hana Sato"),
+                DetailCastMember("Ines", "https://img.example/i.jpg", "Cdr. Voss", roleKind = "Main"),
+                DetailCastMember("Ren", null, null, "Hana Sato", roleKind = "Supporting"),
                 DetailCastMember("Noor", null, null),
             ),
             page.cast,

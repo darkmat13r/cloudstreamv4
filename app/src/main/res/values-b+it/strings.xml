@@ -199,6 +199,7 @@
 <string name="cartoons_singular">"Cartoni"</string>
 <string name="cast">"Cast"</string>
 <string name="cast_format" formatted="true">"Cast: %s"</string>
+<string name="cast_voiced_by" formatted="true">"Voce di %s"</string>
 <string name="category_account">"Account e sicurezza"</string>
 <string name="category_general">"Generale"</string>
 <string name="category_player">"Lettore"</string>
