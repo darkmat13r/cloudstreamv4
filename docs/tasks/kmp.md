@@ -8086,7 +8086,8 @@ true only for a packaging run given `-Pcloudstream.sign=true` (the PM, 2026-11-0
 - An item that cannot be read, or is not ours, is never "none":
   - no sign-in shows, and every change is refused, so one profile's change never overwrites the others';
   - for the PINs it is `95c`'s unreadable file again: every profile but the first is locked, and a check says why.
-- Two new keys in all 62 directories: the strings baseline's thirty-first move, and two `R` fields in `classes-jar.api`.
+- Two new keys in all 62 directories: the strings baseline's thirty-sixth move (regenerated on train 19's master; train
+  20's one regeneration settles the number), and two `R` fields in `classes-jar.api`.
   Neither string names the Keychain, which macOS calls by a different name in each language; "this computer" is what
   the PIN lines say.
 
@@ -8145,7 +8146,9 @@ the reviewer of `#286`.
   - the profile goes in as `Contents/embedded.provisionprofile`;
   - every Mach-O file is signed, the deepest first, then the runtime's bundle, then the app with the entitlements, all
     with the hardened runtime;
-  - the result must pass `codesign --verify --strict`;
+  - the result must pass `codesign --verify --deep --strict` (review: `--deep` checks each nested signature too);
+  - the task opts out of the configuration cache (on in `gradle.properties`), since its action is a closure in the
+    build script;
   - such a build is `createDistributable` only: any other task, `packageDmg` included, is refused, since it would package
     the image before it is signed.
 - The committed file keeps the placeholder. Beside the access group it has Compose's three defaults for a JVM app.

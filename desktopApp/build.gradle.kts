@@ -175,6 +175,8 @@ val signMacApp = if (!developmentIdentity) null else tasks.register("signMacApp"
     val profile = File(provisioningProfilePath)
     val identity = signIdentity
     dependsOn(generateMacEntitlements)
+    // A local, development-only step whose action is a closure in this script, not a task class Gradle can serialize.
+    notCompatibleWithConfigurationCache("signMacApp signs a local Apple Development build from a build-script action.")
     doLast {
         val root = app.get().asFile
         check(root.isDirectory) { "signMacApp: createDistributable made no app." }
@@ -205,7 +207,7 @@ val signMacApp = if (!developmentIdentity) null else tasks.register("signMacApp"
         contents.resolve("runtime").takeIf { it.resolve("Contents/Info.plist").isFile }?.let { codesign(it) }
         main.filter(::isMachO).forEach { codesign(it) }
         codesign(root, "--entitlements", entitlements.get().path)
-        val verify = ProcessBuilder("codesign", "--verify", "--strict", root.path).redirectErrorStream(true).start()
+        val verify = ProcessBuilder("codesign", "--verify", "--deep", "--strict", root.path).redirectErrorStream(true).start()
         verify.inputStream.readBytes()
         if (verify.waitFor() != 0) throw GradleException("signMacApp: the signed app does not verify.")
     }
