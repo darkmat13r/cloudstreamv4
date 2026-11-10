@@ -134,6 +134,11 @@ class SubtitleLoaderTest {
     private fun redirectTo(location: String) =
         "HTTP/1.1 302 Found\r\nLocation: $location\r\nContent-Length: 0\r\nConnection: close\r\n\r\n".toByteArray()
 
+    private companion object {
+        const val SLOW_HOP_MILLIS = 300L
+        const val CHAIN_LIMIT_MILLIS = 700L
+    }
+
     private val pluginHeaders = mapOf("Referer" to "https://example.com/?token=t", "User-Agent" to "ua")
 
     @Test
@@ -319,6 +324,20 @@ class SubtitleLoaderTest {
             val result = load(quick, SubtitleTrack(SubtitleSource.Remote("http://127.0.0.1:${socket.localPort}/s"), "x"))
             assertFailed(SubtitleFailure.Fetch, result)
             assertTrue(System.nanoTime() - started < 5_000_000_000L)
+        }
+    }
+
+    @Test
+    fun `a chain of slow redirects is cut at the whole load's limit, not one limit a hop`() {
+        // Each hop is its own call, so the client's limit alone bounded one hop: 6 hops of 20 s were 120 s.
+        Server { Thread.sleep(SLOW_HOP_MILLIS); redirectTo("/again") }.use { server ->
+            val quick = loader(server.port) { it.newBuilder().callTimeout(CHAIN_LIMIT_MILLIS, TimeUnit.MILLISECONDS).build() }
+            val started = System.nanoTime()
+            assertFailed(SubtitleFailure.Fetch, load(quick, track(server)))
+            val waited = (System.nanoTime() - started) / 1_000_000
+            // Six hops would take 6 x 300 ms; the limit is 700 ms for all of them.
+            assertTrue(waited < CHAIN_LIMIT_MILLIS + SLOW_HOP_MILLIS, "took $waited ms")
+            assertTrue(server.requests.size < HttpSubtitleLoader.MAX_REDIRECTS + 1, "${server.requests.size} hops")
         }
     }
 

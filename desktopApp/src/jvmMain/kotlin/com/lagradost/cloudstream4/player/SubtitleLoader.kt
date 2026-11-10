@@ -64,7 +64,8 @@ internal fun interface SubtitleLoader {
  * - **Redirects** are followed here, not by okhttp (`BUG-94`), at most [MAX_REDIRECTS], and each is the URL check's
  *   again. One from https to http is refused, and the track's headers stay on its own host: see [nextHop].
  * - **Size and time:** [MAX_BYTES] after decompression, however the body says it is encoded, and
- *   [CALL_TIMEOUT_SECONDS] over the whole call including the body.
+ *   [CALL_TIMEOUT_SECONDS] over the whole load: every redirect and the body. Each hop is its own call, and is given
+ *   only what is left of that, so a chain of slow redirects cannot take 20 s each.
  * - **Sent:** only the track's `Referer` and `User-Agent`, and only to the track's own host. This client has no
  *   cookie jar and no cache.
  *
@@ -97,11 +98,20 @@ internal class HttpSubtitleLoader(
         var checked = source.url
         var url = Request.Builder().url(source.url).build().url
         var headers = source.headers
+        // The client's call limit is for the whole load. A hop past it fails in okhttp as an IOException, as one call
+        // past its limit always has; a coroutine timeout could not stop a hop already blocked in `execute`.
+        val budget = client.callTimeoutMillis.toLong()
+        val deadline = System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(budget)
         repeat(MAX_REDIRECTS + 1) {
             if (!allowUrl(checked)) return null
             val request = Request.Builder().url(url)
             headers.forEach { (name, value) -> runCatching { request.header(name, value) } }
             val call = client.newCall(request.build())
+            if (budget > 0) {
+                val left = deadline - System.nanoTime()
+                if (left <= 0) return null
+                call.timeout().timeout(left, TimeUnit.NANOSECONDS)
+            }
             val cancel = coroutineContext[Job]?.invokeOnCompletion { call.cancel() }
             try {
                 call.execute().use { response ->

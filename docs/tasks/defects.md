@@ -3735,7 +3735,11 @@ redirects itself, at most 5 (`MAX_REDIRECTS`):
 - each target meets the url check, as the first url did;
 - https to http is refused, so a downgrade fails the track; http to https is an upgrade, and is followed;
 - the headers stay on their own host: the same scheme and port there, or an upgrade to https on it. A server that
-  wants a `Referer` often redirects to https first.
+  wants a `Referer` often redirects to https first;
+- the call limit, 20 s, is for the whole load. Each hop is its own call now, so the client's limit alone bounded one
+  hop, and 6 slow hops took 120 s (the reviewer of `#358`). One deadline is taken at the start, and each hop's call is
+  given what is left of it (`Call.timeout`). A coroutine `withTimeout` was measured and does not do it: it cannot stop
+  a hop blocked in `execute`, and the chain ran its full length.
 
 **A-6, images.** `backdropHttpClient`, which posters and backdrops both use, had okhttp's 10 s per read and no limit
 on the call. A server sending a byte every 9 s held a fetch thread, within the 8 MB cap, for as long as it liked. Now
@@ -3752,13 +3756,14 @@ direction would have shut the plugin's side of it.
 branch, which checked only ULA and the translation prefixes, and were called public. The audit measured no route to
 either on macOS. They are refused now, as `UrlGuard.isPublicAddress` in `:media:download` already refused them.
 
-**Tests**, 9 new: `SubtitleLoaderTest` 5, `BackdropImageTest` 1, `OutboundGateTest` 3. Six were red-checked: with that
-fix taken out, the test fails.
+**Tests**, 10 new: `SubtitleLoaderTest` 6, `BackdropImageTest` 1, `OutboundGateTest` 3. Seven were red-checked: with
+that fix taken out, the test fails.
 
 | Fix | Test | Red-checked against |
 |---|---|---|
 | A-5 | `SubtitleLoaderTest`: a redirect is checked as the first url was, and a refused one is never opened | redirects checked only on the first url: the refused target was opened |
 | A-5 | the track's headers go to its own host, and not to the host a redirect names | the headers kept on every hop |
+| A-5 | a chain of slow redirects is cut at the whole load's limit, not one limit a hop | no deadline: 1867 ms for a 700 ms limit; and `withTimeoutOrNull` in its place: 1858 ms |
 | A-5 | a redirect on the same host keeps the track's headers; a redirect that never ends stops after a few | not red-checked: they hold behaviour in place |
 | A-5 | https to http is refused, and the headers stay on their host or its upgrade (`nextHop`, pure) | not red-checked; it failed on this PR's first version, which kept the headers for https to another https port |
 | A-6 | `BackdropImageTest`: an image that never finishes coming fails at the call's limit | no call limit |
@@ -3766,4 +3771,5 @@ fix taken out, the test fails.
 | A-7 | a tunnel whose bytes go one way only is not idle, and the plugin's side still works after | a clock for each direction |
 | A-11 | an IPv4-compatible IPv6 address is not public, whatever IPv4 address it carries | the `::/96` rule taken out |
 
-The two timing tests passed 5 runs in a row (`--rerun`), with a 600 ms idle timeout and a 500 ms call limit.
+The timing tests passed 5 runs in a row (`--rerun`): a 600 ms idle timeout, a 500 ms image limit, and a 700 ms limit over
+300 ms redirects.
