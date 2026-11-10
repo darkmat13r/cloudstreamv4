@@ -3948,11 +3948,9 @@ pixels apart; the old 784dp overhung by 46.
 - **Icon-only glyphs render `ink` at rest, not `muted`.** That is `DS-17`, app-wide; `#170` does not touch
   `IconOnlyButton`'s tint, and every reference showing an icon-only control at rest changes again when
   DS-17 lands.
-- **Season, Episodes and Full synopsis still trail the row as text buttons.** They are on no board here and
-  stay until their replacements exist. The row's order is the board's **as a prefix**, so nothing is
-  reordered when they go. As of PR 2b the Season button resolves `season_format` rather than
-  concatenating, so it and the chips read the same key; it still scrolls to the list rather than
-  choosing a season, and **removing it is not 2b's** — it is the one part of 7i still open, below.
+- **Full synopsis still trails the row as a text button.** It is on no board here and stays until 7j/7k
+  replace it. The row's order is the board's **as a prefix**, so nothing is reordered when it goes.
+  Season and Episodes left the row with "7i, the row", below.
 - **Queued, in order:** boards 7j and 7k, the collapsed synopsis opening the panel (Synopsis leaves);
   then Download and Mark watched for films, wired to real `DetailAction`s with tests — `DetailAction`
   has neither today, which is why 7g's two cells are not drawn. **More** has no board yet.
@@ -3978,19 +3976,33 @@ group. `shownSeasonIndex` resolves and clamps it on the screen, which keeps the 
   not a special a provider lists first, so the page opens on Season 1. `detail-season-chips` changed in
   2b only by the marked "One One" row.
 
-**Still open on 7i:** Season and Episodes leave the action row. Both still do the one thing the chips
-do not — each calls `onScrollToEpisodes` — so removing them is a focus-order and reference change of
-its own, not a line in the chip PR.
+**7i, the row: Season and Episodes leave the action row** (done 2026-11-09). The row is 7f's as a
+prefix: Resume, Start over (a film with a position), Trailer, the watchlist, then Full synopsis until
+7j/7k. The chips choose the season, and the episode header's count is the only count on the page.
+- **Focus.** Arrival and the return from the player are unchanged. The one-press jump to the list
+  (`onScrollToEpisodes`) went with the buttons: D-pad down from the row now reaches the list through
+  the rails above it. That is board 7f's choice, which draws no shortcut. `namedSeason()` had no other
+  caller and is deleted with its JVM case.
+- **Tests.** `seasonOneAndOtherPutOneEpisodeCountOnScreen` is the `[1, Other]` title below, with a
+  fixture of its own (`SeasonOneAndOther`). It and the show's row test fail on the old row ("Season 1
+  is in the action row"). The button's scroll test is gone; the focus walk is 14 stops, not 16.
+- **References.** `detail-show-focus-primary`, `detail-watch-status-cell-focused` and
+  `detail-synopsis-panel-open` were recorded again. Every other Detail case passed against its old
+  reference first. Each diff is in the row's band only, x550..1013, y329..373 at 1280x720: the two
+  buttons gone, Synopsis moved left into Season's place.
+- **Open:** `DetailSkeletonDefaults.ActionBarWidth` is still the resuming film's 532dp. A series' row is
+  now 472dp, so the loading bar overhangs it by 60dp, against the bar's own rule that it should stop
+  short. Changing it is a reference change of its own (`detail-loading`) and is left for a decision.
 
-They are **almost** mutually exclusive with the chips, and the gap is worth knowing before anyone
-removes them. `namedSeason()` is `seasons.singleOrNull()` (`DetailCopy.kt:281`), so the two buttons
-appear only when the title has exactly **one** season, and chips appear only at **two or more**
+What the overlap was, kept for the record. They were **almost** mutually exclusive with the chips, and
+the gap was worth knowing before anyone removed them. `namedSeason()` was `seasons.singleOrNull()`, so the two buttons
+appeared only when the title has exactly **one** season, and chips appear only at **two or more**
 groups. The overlap is a title whose episodes carry one season number *and* some with no season at
 all: `toSeasons()` drops the nulls and yields a single season, so both buttons draw, while the groups
 are `[1, Other]`, so the chips draw too. On that title the Episodes button counts season 1 while the
-header counts the chosen group, so picking Other puts two different counts on one screen. Measured
-from the two functions, not seen on a device — no fixture here produces it, because `SeasonGroups`
-sets `seasons = emptyList()`.
+header counts the chosen group, so picking Other put two different counts on one screen. First
+measured from the two functions only, since `SeasonGroups` sets `seasons = emptyList()`; the
+`SeasonOneAndOther` fixture now produces it, and the row test fails on the old row.
 - **Board 6a's chip gap is wrong**, not the code's: 6a draws range chips at 12dp where `ChipRow` spaces at
   `ChipRowSpacing` 24dp. Board 7i is drawn at the token. Raised as an owner correction.
 

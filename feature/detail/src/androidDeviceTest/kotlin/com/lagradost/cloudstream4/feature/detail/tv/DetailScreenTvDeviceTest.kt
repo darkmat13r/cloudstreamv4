@@ -195,6 +195,18 @@ class DetailScreenTvDeviceTest {
     }
 
     /**
+     * Nothing in the action row says [text]. Measured against the [primary]'s band, not as "not on screen":
+     * a season chip says `Season 1` too, and it may be composed below the row.
+     */
+    private fun assertNotInTheActionRow(text: String, primary: String) {
+        rule.waitForIdle()
+        val row = rule.onNodeWithText(primary).fetchSemanticsNode().boundsInRoot
+        val inRow = rule.onAllNodesWithText(text).fetchSemanticsNodes()
+            .filter { it.boundsInRoot.top < row.bottom && it.boundsInRoot.bottom > row.top }
+        assertEquals("\"$text\" is in the action row", 0, inRow.size)
+    }
+
+    /**
      * Asserts focus stays where it is for [STILL_MS], running frames throughout.
      *
      * A single read cannot say this: the thing being ruled out is a focus request that arrives a frame
@@ -371,7 +383,6 @@ class DetailScreenTvDeviceTest {
         rule.onNodeWithText(DetailFixtures.Show.plot.orEmpty()).assertExists()
         rule.onNodeWithText(DetailFixtures.Cast.first().name).assertExists()
         rule.onNodeWithText(RECOMMENDED).assertExists()
-        rule.onNodeWithText("$EPISODES_PLURAL · 3").assertExists()
 
         // The list is below the fold. A lazy column composes past its bounds for a focus search, so
         // DOWN reaches it: cast, then a recommendation, then the first row.
@@ -391,7 +402,7 @@ class DetailScreenTvDeviceTest {
         rule.onNodeWithContentDescription(PLAY_MOVIE).assertExists()
         assertNoText(PLAY_EPISODE)
         assertNoText(DetailFixtures.episodeName(0))
-        // No season pair: a film names no season, so neither button is drawn.
+        // A film has no episodes, so nothing names a season or counts episodes.
         assertNoText(EPISODES_PLURAL, substring = true)
         assertNoText(SEASON, substring = true)
     }
@@ -471,13 +482,16 @@ class DetailScreenTvDeviceTest {
         assertTrue("DOWN from the back cell reached $below", below == TRAILER || below == SYNOPSIS)
     }
 
-    /** One episode: the plural resolves to its singular, and the list is one row. */
+    /**
+     * One episode: the list is one row. The singular `Episode · 1` this used to read was the action
+     * row's Episodes button, which board 7i's chips replaced; nothing on this page counts with the
+     * plural any more.
+     */
     @Test
-    fun oneEpisodeIsASingularAndASingleRow() {
+    fun oneEpisodeIsASingleRow() {
         show(DetailFixtures.OneEpisode)
         awaitFocus(PLAY_EPISODE)
 
-        rule.onNodeWithText("$EPISODE_SINGULAR · 1").assertExists()
         assertEquals(DetailFixtures.episodeName(0), pressUntil(Dpad.Down, DetailFixtures.episodeName(0)))
         assertEquals(
             "one row",
@@ -493,7 +507,6 @@ class DetailScreenTvDeviceTest {
         show(DetailFixtures.FortyEpisodes)
         awaitFocus(PLAY_EPISODE)
 
-        rule.onNodeWithText("$EPISODES_PLURAL · 40").assertExists()
         val last = DetailFixtures.episodeName(LAST_OF_FORTY)
         assertEquals(last, pressUntil(Dpad.Down, last, presses = FORTY_PRESSES))
         rule.onNodeWithText(last).assertExists()
@@ -744,10 +757,8 @@ class DetailScreenTvDeviceTest {
     }
 
     /**
-     * The header counts the season on screen, not the title.
-     *
-     * `DetailCopy.namedSeason` already states the rule the board works by: a season and a count are
-     * a pair, and a count drawn from a different season than the one beside it contradicts itself.
+     * The header counts the season on screen, not the title: a season and a count are a pair, and a
+     * count drawn from a different season than the one shown contradicts itself.
      */
     @Test
     fun theEpisodesHeaderCountsTheSeasonOnScreen() {
@@ -765,6 +776,33 @@ class DetailScreenTvDeviceTest {
             rule.onAllNodesWithText("2 $SEPARATOR ${DetailFixtures.SeasonGroups.providerName}")
                 .fetchSemanticsNodes().isNotEmpty()
         }
+    }
+
+    /**
+     * `[1, Other]`: episodes in one season plus some with none (#244's review). The provider's season
+     * list names only season 1, which is what used to draw `Season 1` and `Episodes · 2` in the row,
+     * while the chips draw too, so choosing Other put two different counts on one screen. The row now
+     * draws neither, and the header's count, the only one on the page, follows the chip.
+     */
+    @Test
+    fun seasonOneAndOtherPutOneEpisodeCountOnScreen() {
+        val provider = DetailFixtures.SeasonOneAndOther.providerName
+        show(DetailFixtures.SeasonOneAndOther)
+        awaitFocus(PLAY_EPISODE)
+        assertNotInTheActionRow("$SEASON 1", PLAY_EPISODE)
+        assertNoText("$EPISODES_PLURAL · 2")
+
+        assertEquals("$SEASON 1", enterTheChipRow())
+        rule.onNodeWithText("2 $SEPARATOR $provider").assertExists()
+
+        assertEquals(OTHER, pressUntil(Dpad.Right, OTHER))
+        dpad.center()
+        rule.waitUntil(WAIT_MS) {
+            rule.onAllNodesWithText("1 $SEPARATOR $provider").fetchSemanticsNodes().isNotEmpty()
+        }
+        rule.onNodeWithText("Unnumbered One").assertExists()
+        assertNoText("2 $SEPARATOR $provider")
+        assertNoText("$EPISODES_PLURAL · 2")
     }
 
     /**
@@ -821,7 +859,7 @@ class DetailScreenTvDeviceTest {
         // `focusedLabel()` falls back to, so the walk still names them exactly as before.
         val expected = listOf(
             BACK, FAVOURITE,
-            RESUME, TRAILER, WATCH_STATUS, "$SEASON 1", "$EPISODES_PLURAL · 2", SYNOPSIS,
+            RESUME, TRAILER, WATCH_STATUS, SYNOPSIS,
         ) +
             DetailFixtures.Cast.map { it.name } +
             DetailFixtures.Recommendations.map { it.title } +
@@ -840,16 +878,14 @@ class DetailScreenTvDeviceTest {
     }
 
     /**
-     * A show's action row at its ceiling: **six** controls — Resume, Trailer, the watch-status cell,
-     * Season N, Episodes · N, Synopsis.
+     * A show's action row: **four** controls, board 7f's as a prefix — Resume, Trailer, the watch-status
+     * cell, then Synopsis until 7j/7k replace it. No `Season N` or `Episodes · N`, on a show with exactly
+     * the one season that used to draw them: 7i's chips choose the season and the header counts it.
      *
-     * `DEC-17` is what let it reach six without overflowing. Trailer and the watch-status cell are
-     * [CloudStreamDimens.IconTargetCell] (48dp) rather than
-     * [CloudStreamDimens.TextButtonMinWidth] (120dp) ghosts, so the row is
-     * [DetailScreenTvDefaults.ResumeWidth] 220 + 2 x (12 + 48) + 3 x (12 + 120) = **736dp** against the
-     * band's 833 (961.5 less [DetailScreenTvDefaults.ContentStart] and
-     * [DetailScreenTvDefaults.ContentEnd]). The old five-text-button row was 748dp and a sixth text
-     * button would have been 880, which is what used to overflow this band.
+     * Trailer and the watch-status cell are [CloudStreamDimens.IconTargetCell] (48dp) cells (`DEC-17`), so
+     * the row is [DetailScreenTvDefaults.ResumeWidth] 220 + 2 x (12 + 48) + (12 + 120) = **472dp** against
+     * the band's 833 (961.5 less [DetailScreenTvDefaults.ContentStart] and
+     * [DetailScreenTvDefaults.ContentEnd]). A film's row, below, is now the longer of the two.
      *
      * There is no "start over" here and that is the point. `KMP-38`: a series' only candidate for it is
      * **episode 1**, which beside a Resume of S3:E4 is a different action rather than the same one from
@@ -861,13 +897,15 @@ class DetailScreenTvDeviceTest {
      * own floor, so an icon cell is not let off the check — it is held to 48dp instead of 120.
      */
     @Test
-    fun theShowsActionRowFitsTheBandAtItsSixControlCeiling() {
+    fun theShowsActionRowIsSevenFsFourControlsAndFitsTheBand() {
         show(DetailFixtures.Show)
         awaitFocus(RESUME)
 
         assertNoText(PLAY_EPISODE)
+        assertNotInTheActionRow("$SEASON 1", RESUME)
+        assertNoText("$EPISODES_PLURAL · 3")
         assertActionRowFits(
-            texts = listOf(RESUME, "$SEASON 1", "$EPISODES_PLURAL · 3", SYNOPSIS),
+            texts = listOf(RESUME, SYNOPSIS),
             cells = listOf(TRAILER, WATCH_STATUS),
         )
     }
@@ -888,29 +926,6 @@ class DetailScreenTvDeviceTest {
         assertActionRowFits(
             texts = listOf(RESUME, SYNOPSIS),
             cells = listOf(PLAY_MOVIE, TRAILER, WATCH_STATUS),
-        )
-    }
-
-    /**
-     * `Episodes · N` scrolls to the list, which is what it does in place of the episode panel board 6a
-     * draws.
-     *
-     * It also asserts the page still has a focus owner afterwards. The scroll takes the head block —
-     * and with it the button that was pressed — off screen, and a TV screen with nothing focused
-     * answers the D-pad with nothing.
-     */
-    @Test
-    fun theEpisodesButtonScrollsToTheListAndKeepsAFocusOwner() {
-        show(DetailFixtures.Show)
-        awaitFocus(RESUME)
-
-        pressUntil(Dpad.Right, "$EPISODES_PLURAL · 3")
-        dpad.center()
-
-        awaitText(DetailFixtures.episodeName(0))
-        assertNotNull(
-            "the scroll took the pressed button off screen and left nothing focused",
-            dpad.focused(),
         )
     }
 
@@ -1064,7 +1079,7 @@ class DetailScreenTvDeviceTest {
         // `SEASON` is already declared below, beside the walk's own labels.
         const val SPECIALS = "Specials"
         const val OTHER = "Other"
-        const val WALK_STOPS = 16
+        const val WALK_STOPS = 14
         const val VOICED = 2
         const val CHANNELS = 3f
 
@@ -1091,7 +1106,6 @@ class DetailScreenTvDeviceTest {
         const val SEASON = "Season"
         const val SYNOPSIS = "Synopsis"
         const val EPISODES_PLURAL = "Episodes"
-        const val EPISODE_SINGULAR = "Episode"
         const val RECOMMENDED = "More like this"
         const val NO_EPISODES = "No Episodes found"
         const val RETRY = "Try again"

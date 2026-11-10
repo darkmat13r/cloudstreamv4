@@ -78,8 +78,7 @@ internal class FakeDetailSource : DetailSource {
  * names a stop by its text, then its content description, then its class and bounds, so two stops
  * sharing a label read as one and `FocusGraph` would report a screen smaller than it is. That is why no
  * two cast members, recommendations or episodes here share a name, and why none of them collides with a
- * button label ("Resume", "Play Movie", "Play Episode", "Trailer", "Season 1", "Episodes · N",
- * "Synopsis") or with a chrome cell's description ("Go Back", "Set watch status", "Favorite").
+ * button label ("Resume", "Play Movie", "Play Episode", "Trailer", "Synopsis") or with a chrome cell's description ("Go Back", "Set watch status", "Favorite").
  *
  * Every cast member has an image URL. [com.lagradost.cloudstream4.core.designsystem.primitive.Avatar]
  * draws initials **instead of** the image when there is none, and those initials are then the first text
@@ -188,9 +187,9 @@ internal object DetailFixtures {
     /**
      * The fixture the D-pad walk maps: every kind of stop, as few of each as the screen still means.
      *
-     * It keeps [Show]'s whole action row — five controls, 748dp of the band's 833dp — and cuts only the
+     * It keeps [Show]'s whole action row — four controls, 472dp of the band's 833dp — and cuts only the
      * repetition: two episodes rather than three, which is all a list needs to be a list. Every one of
-     * the walk's 16 stops is named by a distinct label, which is the condition `FocusGraph` depends on.
+     * the walk's 14 stops is named by a distinct label, which is the condition `FocusGraph` depends on.
      */
     val WalkShow = Show.copy(
         episodes = episodes(2),
@@ -250,6 +249,22 @@ internal object DetailFixtures {
             DetailEpisode("Unnumbered One", "x0", null, null, EPISODE_MINUTES),
         ),
         seasons = emptyList(),
+        resume = null,
+        playData = null,
+    )
+
+    /**
+     * Season 1 and episodes with no season: the chips are `[1, Other]`, while the provider's season list,
+     * which drops the unnumbered ones, names season 1 alone. That pair is what used to draw the row's
+     * `Season 1` and `Episodes · 2` beside the chips (#244's review).
+     */
+    val SeasonOneAndOther = Show.copy(
+        episodes = listOf(
+            DetailEpisode("One One", "s1e0", 1, 1, EPISODE_MINUTES),
+            DetailEpisode("One Two", "s1e1", 1, 2, EPISODE_MINUTES),
+            DetailEpisode("Unnumbered One", "x0", null, null, EPISODE_MINUTES),
+        ),
+        seasons = listOf(DetailSeason(number = 1, episodeCount = 2)),
         resume = null,
         playData = null,
     )
