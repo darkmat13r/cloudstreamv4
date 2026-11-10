@@ -72,6 +72,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d एपिसोड</item><item quantity="other">%d एपिसोड</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d असफल</item><item quantity="other">%d असफल</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d शीर्षक · %2$s</item><item quantity="other">%1$d शीर्षक · %2$s</item></plurals>
+<string name="episode_time_left">%1$d मिनेट बाँकी</string>
+<string name="episode_watched">हेरिएको</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d खण्ड लोड हुन सकेन</item><item quantity="other">%d खण्डहरू लोड हुन सकेनन्</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d शीर्षक</item><item quantity="other">%d शीर्षकहरू</item></plurals>

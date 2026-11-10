@@ -361,7 +361,9 @@
 <string name="episode_short">"ح"</string>
 <string name="episode_sync_settings">"تحديث تقدم المشاهدة"</string>
 <string name="episode_sync_settings_des">"مزامنة التقدم في الحلقة الحالية تلقائيًا"</string>
+<string name="episode_time_left" formatted="true">"متبقٍ %1$d دقيقة"</string>
 <string name="episode_upcoming_format" formatted="true">"قادم خلال %s"</string>
+<string name="episode_watched">"تمت المشاهدة"</string>
 <string name="episodes">"حلقات"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"خطأ"</string>

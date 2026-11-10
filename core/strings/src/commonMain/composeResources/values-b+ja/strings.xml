@@ -74,6 +74,8 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d 件失敗</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d 件が待機中</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d作品 · %2$s</item></plurals>
+<string name="episode_time_left">残り%1$d分</string>
+<string name="episode_watched">視聴済み</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d 件のブックマーク</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">%d 件のセクションを読み込めませんでした</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">%d セクション</item></plurals>

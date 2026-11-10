@@ -362,7 +362,9 @@
 <string name="episode_short">"Э"</string>
 <string name="episode_sync_settings">"Обновлять прогресс просмотра"</string>
 <string name="episode_sync_settings_des">"Автоматически синхронизировать текущий прогресс серии"</string>
+<string name="episode_time_left" formatted="true">"Осталось %1$d мин"</string>
 <string name="episode_upcoming_format" formatted="true">"Выйдет %s"</string>
+<string name="episode_watched">"Просмотрено"</string>
 <string name="episodes">"Серии"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Ошибка"</string>

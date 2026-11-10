@@ -310,6 +310,8 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Atjaunināt skatīšanos progresu"</string>
 <string name="episode_sync_settings_des">"Automātiski sync savu pašreizējo epizodes progresu"</string>
+<string name="episode_time_left" formatted="true">"Atlikušas %1$d min."</string>
+<string name="episode_watched">"Noskatīts"</string>
 <string name="episodes">"Epizodes"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Kļūda"</string>

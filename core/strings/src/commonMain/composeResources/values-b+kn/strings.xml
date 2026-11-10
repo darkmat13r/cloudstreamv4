@@ -72,6 +72,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d ಸಂಚಿಕೆಗಳು</item><item quantity="other">%d ಸಂಚಿಕೆಗಳು</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ವಿಫಲವಾಗಿದೆ</item><item quantity="other">%d ವಿಫಲವಾಗಿವೆ</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item><item quantity="other">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item></plurals>
+<string name="episode_time_left">%1$d ನಿಮಿಷ ಬಾಕಿ</string>
+<string name="episode_watched">ವೀಕ್ಷಿಸಲಾಗಿದೆ</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ಬುಕ್‌ಮಾರ್ಕ್</item><item quantity="other">%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item><item quantity="other">%d ವಿಭಾಗಗಳನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ಶೀರ್ಷಿಕೆ</item><item quantity="other">%d ಶೀರ್ಷಿಕೆಗಳು</item></plurals>

@@ -41,6 +41,24 @@ class EpisodeWatchReadoutTest {
         assertFalse(DetailResume("e1", 60_000L, 0L, episode = null).finished)
     }
 
+    /**
+     * `fixVisual`'s whole-percent rule: at most 1% in integer arithmetic is not started. So 1.1% and 1.9% are
+     * still nothing, and 2% is the first that reads what is left.
+     */
+    @Test
+    fun underTwoWholePercentIsNotStartedAsTheOldRowDrawsIt() {
+        assertEquals(EpisodeWatchReadout.None, row(positionMs = DURATION * 9 / 1000).watchReadout())
+        assertEquals(EpisodeWatchReadout.None, row(positionMs = DURATION * 11 / 1000).watchReadout())
+        assertEquals(EpisodeWatchReadout.None, row(positionMs = DURATION * 19 / 1000).watchReadout())
+        assertEquals(EpisodeWatchReadout.Left(49), row(positionMs = DURATION * 2 / 100).watchReadout())
+    }
+
+    /** `:app` clears the mark when the episode is played again, so a mark still set beats the position. */
+    @Test
+    fun theMarkWinsOverAPositionPartWayThrough() {
+        assertEquals(EpisodeWatchReadout.Watched, row(positionMs = DURATION * 40 / 100, marked = true).watchReadout())
+    }
+
     @Test
     fun theMarkIsWatchedWithOrWithoutAPosition() {
         assertEquals(EpisodeWatchReadout.Watched, row(marked = true).watchReadout())

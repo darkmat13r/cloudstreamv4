@@ -230,6 +230,8 @@
 <string name="episode_poster_img_des">"پوستر قسمت"</string>
 <string name="episode_short">"ق"</string>
 <string name="episode_sync_settings">"به‌روزرسانی پیشرفت ساعت"</string>
+<string name="episode_time_left" formatted="true">"%1$d دقیقه مانده"</string>
+<string name="episode_watched">"دیده‌شده"</string>
 <string name="episodes">"قسمت‌ها"</string>
 <string name="error">"خطا"</string>
 <string name="error_bookmarks_text">"نشانک‌ها"</string>

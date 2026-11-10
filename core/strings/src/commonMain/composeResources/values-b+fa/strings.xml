@@ -72,6 +72,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d قسمت</item><item quantity="other">%d قسمت</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ناموفق</item><item quantity="other">%d ناموفق</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d عنوان · %2$s</item><item quantity="other">%1$d عنوان · %2$s</item></plurals>
+<string name="episode_time_left">%1$d دقیقه مانده</string>
+<string name="episode_watched">دیده‌شده</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d نشانک</item><item quantity="other">%d نشانک</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d بخش بارگیری نشد</item><item quantity="other">%d بخش بارگیری نشد</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d عنوان</item><item quantity="other">%d عنوان</item></plurals>

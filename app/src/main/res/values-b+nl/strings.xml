@@ -337,7 +337,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Kijkvoortgang bijwerken"</string>
 <string name="episode_sync_settings_des">"Automatisch synchroniseren van je huidige episode vooruitgang"</string>
+<string name="episode_time_left" formatted="true">"Nog %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Binnenkort beschikbaar in %s"</string>
+<string name="episode_watched">"Bekeken"</string>
 <string name="episodes">"afleveringen"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Fout"</string>

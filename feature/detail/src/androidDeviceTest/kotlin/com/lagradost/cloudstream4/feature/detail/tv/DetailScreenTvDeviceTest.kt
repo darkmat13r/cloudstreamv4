@@ -20,11 +20,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toPixelMap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.semantics.SemanticsNode
+import androidx.compose.ui.semantics.SemanticsProperties
 import androidx.compose.ui.test.ComposeTimeoutException
 import androidx.compose.ui.test.SemanticsNodeInteraction
 import androidx.compose.ui.test.assertIsNotSelected
 import androidx.compose.ui.test.assertIsSelected
 import androidx.compose.ui.test.captureToImage
+import androidx.compose.ui.test.getUnclippedBoundsInRoot
 import androidx.compose.ui.test.hasClickAction
 import androidx.compose.ui.test.junit4.createComposeRule
 import androidx.compose.ui.test.onAllNodesWithText
@@ -592,6 +594,36 @@ class DetailScreenTvDeviceTest {
     }
 
     /**
+     * Board 7i's trailing readout (`KMP-63`): a finished row says watched, a started one what is left, an
+     * untouched one nothing. Each sits after its row's title and inside the row, and the second line keeps
+     * the code and runtime.
+     */
+    @Test
+    fun episodeRowsSayWhichAreWatchedAndWhatIsLeft() {
+        show(DetailFixtures.WatchStateEpisodes)
+        awaitFocus(RESUME)
+        val last = DetailFixtures.episodeName(2)
+        assertEquals(last, pressUntil(Dpad.Down, last))
+        rule.waitForIdle()
+
+        assertEquals(1, rule.onAllNodesWithText(WATCHED, useUnmergedTree = true).fetchSemanticsNodes().size)
+        assertEquals(1, rule.onAllNodesWithText(LEFT_24, useUnmergedTree = true).fetchSemanticsNodes().size)
+        rule.onNodeWithText("${SEASON_SHORT}1:${EPISODE_SHORT}1 $SEPARATOR ${DetailFixtures.EPISODE_MINUTES} min").assertExists()
+
+        for ((index, readout) in listOf(0 to WATCHED, 1 to LEFT_24)) {
+            val title = rule.onNodeWithText(DetailFixtures.episodeName(index), useUnmergedTree = true)
+                .getUnclippedBoundsInRoot()
+            val trail = rule.onNodeWithText(readout, useUnmergedTree = true).getUnclippedBoundsInRoot()
+            val row = rule.onNodeWithText(DetailFixtures.episodeName(index)).getUnclippedBoundsInRoot()
+            assertTrue("$readout after its title, $trail against $title", trail.left >= title.right)
+            assertTrue("$readout inside its row, $trail against $row", trail.right <= row.right && trail.top >= row.top && trail.bottom <= row.bottom)
+        }
+        // The untouched row's merged text is its title and second line only.
+        val third = rule.onNodeWithText(last).fetchSemanticsNode().config[SemanticsProperties.Text].map { it.text }
+        assertEquals(listOf(last, "${SEASON_SHORT}1:${EPISODE_SHORT}3 $SEPARATOR ${DetailFixtures.EPISODE_MINUTES} min"), third)
+    }
+
+    /**
      * 7i's pill marks the row the primary would act on, and marks exactly one.
      *
      * `ListRow` puts this in the semantics tree as `selectable(selected = …)`, so the fact is
@@ -1076,6 +1108,8 @@ class DetailScreenTvDeviceTest {
         const val SEASON_SHORT = "S"
         const val EPISODE_SHORT = "E"
         const val SEPARATOR = "\u00b7"
+        const val WATCHED = "Watched"
+        const val LEFT_24 = "24 min left"
         // `SEASON` is already declared below, beside the walk's own labels.
         const val SPECIALS = "Specials"
         const val OTHER = "Other"

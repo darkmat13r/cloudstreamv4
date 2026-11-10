@@ -361,7 +361,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"更新觀看進度"</string>
 <string name="episode_sync_settings_des">"自動同步當前劇集進度"</string>
+<string name="episode_time_left" formatted="true">"剩下 %1$d 分鐘"</string>
 <string name="episode_upcoming_format" formatted="true">"即將在 %s 推出"</string>
+<string name="episode_watched">"已看完"</string>
 <string name="episodes">"集"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"錯誤"</string>

@@ -334,7 +334,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Ενημέρωση προόδου παρακολούθησης"</string>
 <string name="episode_sync_settings_des">"Αυτόματος συγχρονισμός της προόδου του τρέχοντος επεισοδίου"</string>
+<string name="episode_time_left" formatted="true">"Απομένουν %1$d λεπ."</string>
 <string name="episode_upcoming_format" formatted="true">"Έρχεται σε %s"</string>
+<string name="episode_watched">"Προβλήθηκε"</string>
 <string name="episodes">"Επεισόδια"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Σφάλμα"</string>

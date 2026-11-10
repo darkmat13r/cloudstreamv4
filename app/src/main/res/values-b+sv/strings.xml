@@ -362,7 +362,9 @@
 <string name="episode_short">"A"</string>
 <string name="episode_sync_settings">"Uppdatera visnings förlopp"</string>
 <string name="episode_sync_settings_des">"Automatiskt uppdatera antalet episoder sedda"</string>
+<string name="episode_time_left" formatted="true">"%1$d min kvar"</string>
 <string name="episode_upcoming_format" formatted="true">"Kommer ut om %s"</string>
+<string name="episode_watched">"Sedd"</string>
 <string name="episodes">"Avsnitt"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Fel"</string>

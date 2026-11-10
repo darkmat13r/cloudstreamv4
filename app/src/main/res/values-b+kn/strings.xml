@@ -156,6 +156,8 @@
 <string name="duration_format" formatted="true">"%dಮಿನ"</string>
 <string name="episode_more_options_des">"ಹೆಚ್ಚಿನ ಆಯ್ಕೆ"</string>
 <string name="episode_poster_img_des">"ಸಂಚಿಕೆ ಪೋಸ್ಟರ್"</string>
+<string name="episode_time_left" formatted="true">"%1$d ನಿಮಿಷ ಬಾಕಿ"</string>
+<string name="episode_watched">"ವೀಕ್ಷಿಸಲಾಗಿದೆ"</string>
 <string name="error_bookmarks_text">"ಬುಕ್‌ಮಾರ್ಕ್‌"</string>
 <string name="error_loading_links_toast">"ಲೋಡಿಂಗ್ ಲಿಂಕ್ ಎರರ್ ಬಂದಿದೆ"</string>
 <string name="extension_allow">"ಅನುಮತಿಸಿ"</string>

@@ -167,6 +167,8 @@
 <string name="episode_more_options_des">"Pli da Opcioj"</string>
 <string name="episode_poster_img_des">"Epizoda Afiŝo"</string>
 <string name="episode_short">"E"</string>
+<string name="episode_time_left" formatted="true">"Restas %1$d min"</string>
+<string name="episode_watched">"Spektita"</string>
 <string name="episodes">"Epizodoj"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error_bookmarks_text">"Legosignoj"</string>

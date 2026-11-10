@@ -72,6 +72,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d ክፍልታት</item><item quantity="other">%d ክፍልታት</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ኣይተዓወተን</item><item quantity="other">%d ኣይተዓወቱን</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d ኣርእስቲ · %2$s</item><item quantity="other">%1$d ኣርእስቲ · %2$s</item></plurals>
+<string name="episode_time_left">%1$d ደቒቕ ተሪፉ</string>
+<string name="episode_watched">ተራእዩ</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ምልክታት</item><item quantity="other">%d ምልክታት</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d ክፍሊ ክጽዓን ኣይከኣለን</item><item quantity="other">%d ክፍሊ ክጽዓን ኣይከኣለን</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d ኣርእስቲ</item><item quantity="other">%d ኣርእስትታት</item></plurals>

@@ -271,6 +271,8 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Oppdater visningsframdrift"</string>
 <string name="episode_sync_settings_des">"Synkroniser automatisk fremdriften din for gjeldende episode"</string>
+<string name="episode_time_left" formatted="true">"%1$d min igjen"</string>
+<string name="episode_watched">"Sett"</string>
 <string name="episodes">"Episoder"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Feil"</string>

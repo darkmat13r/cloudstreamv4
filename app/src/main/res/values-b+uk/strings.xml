@@ -362,7 +362,9 @@
 <string name="episode_short">"Е"</string>
 <string name="episode_sync_settings">"Оновлювати прогрес перегляду"</string>
 <string name="episode_sync_settings_des">"Автоматично синхронізувати прогрес поточного епізоду"</string>
+<string name="episode_time_left" formatted="true">"Залишилося %1$d хв"</string>
 <string name="episode_upcoming_format" formatted="true">"Наступний через %s"</string>
+<string name="episode_watched">"Переглянуто"</string>
 <string name="episodes">"Епізоди"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Помилка"</string>

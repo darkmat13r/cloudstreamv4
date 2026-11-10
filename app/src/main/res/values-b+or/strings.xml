@@ -169,6 +169,8 @@
 <string name="episode_more_options_des">"ଅଧିକ ଵିକଳ୍ପ"</string>
 <string name="episode_poster_img_des">"ଅଧ୍ୟାୟର ପୋଷ୍ଟର୍"</string>
 <string name="episode_short">"ଅ"</string>
+<string name="episode_time_left" formatted="true">"%1$d ମିନିଟ୍ ବାକି"</string>
+<string name="episode_watched">"ଦେଖାଯାଇଛି"</string>
 <string name="episodes">"ଟି ଅଧ୍ୟାୟ"</string>
 <string name="error">"ତ୍ରୁଟି"</string>
 <string name="extension_allow">"ଅନୁମତି ଦିଅନ୍ତୁ"</string>

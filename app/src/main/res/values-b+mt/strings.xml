@@ -151,6 +151,8 @@
 <string name="duration_format" formatted="true">"%d min"</string>
 <string name="episode_more_options_des">"Iktar Preferenzi"</string>
 <string name="episode_poster_img_des">"Kartellun tal-episodju"</string>
+<string name="episode_time_left" formatted="true">"Fadal %1$d min"</string>
+<string name="episode_watched">"Rajt"</string>
 <string name="error_bookmarks_text">"Bookmarks"</string>
 <string name="error_loading_links_toast">"Tagħbija tal-Links falliet"</string>
 <string name="extension_allow">"Ippermetti"</string>

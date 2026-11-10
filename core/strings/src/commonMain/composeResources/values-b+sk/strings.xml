@@ -72,6 +72,8 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d epizóda</item><item quantity="few">%d epizódy</item><item quantity="many">%d epizódy</item><item quantity="other">%d epizód</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d neúspešné</item><item quantity="few">%d neúspešné</item><item quantity="many">%d neúspešných</item><item quantity="other">%d neúspešných</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titul · %2$s</item><item quantity="few">%1$d tituly · %2$s</item><item quantity="many">%1$d titulu · %2$s</item><item quantity="other">%1$d titulov · %2$s</item></plurals>
+<string name="episode_time_left">Zostáva %1$d min</string>
+<string name="episode_watched">Pozreté</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽIEK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepodarilo sa načítať %d sekciu</item><item quantity="few">Nepodarilo sa načítať %d sekcie</item><item quantity="many">Nepodarilo sa načítať %d sekcií</item><item quantity="other">Nepodarilo sa načítať %d sekcií</item></plurals>
 <plurals name="library_title_count"><item quantity="one">%d titul</item><item quantity="few">%d tituly</item><item quantity="many">%d titulu</item><item quantity="other">%d titulov</item></plurals>

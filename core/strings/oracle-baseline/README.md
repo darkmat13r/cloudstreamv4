@@ -120,6 +120,30 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Move number set at rebase, 2026-11-10 — `I18N-25`, 2 new keys for an episode row's watch state (`KMP-63`)
+
+**The ordinal is not this PR's to take yet.** #312 holds the thirty-third and another PR the next; this one is regenerated
+on whichever master it rebases onto, and the heading gets its number then. The counts below are against master
+`b3ea4b59e`, which has no thirty-second move (`I18N-23` was not on it).
+
+New keys are approved in general (`I18N-09`). Additive: `episode_watched` ("Watched") and `episode_time_left` ("%1$d min
+left"), no plural, each authored in all 62 directories (`OWN` grows by 124). The Android res came out with 124 lines
+added and 0 removed.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 57,634 | 57,758 | 124 | 0 | 0 |
+| `emitted.tsv` | 60,335 | 60,463 | 128 | 0 | 0 |
+| `lookup.tsv` | 104,013 | 104,187 | 174 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline as a multiset difference, with a check that every line that was in a file before is in
+it after, in the same order: 0 lines lost in any file, and every added line names one of the two keys. `report.txt` moved
+only in its counts: `OWN` 55,560 -> 55,684, visible keys 1,160 -> 1,162, plurals unchanged at 30, and 2 more values in
+each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn`
+55,560 -> 55,684.
+
 ## Thirty-fourth move, 2026-11-10 — `KMP-110c2`, 40 new English keys for the Mac's Extensions pane
 
 New keys are approved in general (`I18N-09`). Additive: 38 strings and 2 plurals, authored in the English directory only

@@ -273,7 +273,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Aktualizovať priebeh sledovania"</string>
 <string name="episode_sync_settings_des">"Automaticky synchronizovať priebeh sledovania súčasnej epizódy"</string>
+<string name="episode_time_left" formatted="true">"Zostáva %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Nadchádzajúce o %s"</string>
+<string name="episode_watched">"Pozreté"</string>
 <string name="episodes">"Epizódy"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Chyba"</string>

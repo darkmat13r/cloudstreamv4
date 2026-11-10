@@ -217,6 +217,8 @@
 <string name="episode_action_reload_links">"Torna a carregar els enllaços"</string>
 <string name="episode_more_options_des">"Més opcions"</string>
 <string name="episode_poster_img_des">"Cartell de l'episodi"</string>
+<string name="episode_time_left" formatted="true">"Queden %1$d min"</string>
+<string name="episode_watched">"Vist"</string>
 <string name="error">"Error"</string>
 <string name="error_bookmarks_text">"Favorits"</string>
 <string name="error_invalid_data">"Dades no vàlides"</string>

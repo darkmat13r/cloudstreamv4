@@ -153,6 +153,8 @@
 <string name="duration_hours_minutes_format" formatted="true">"%1$dh %2$dm"</string>
 <string name="episode_more_options_des">"هەڵبژاردنی زیاتر"</string>
 <string name="episode_poster_img_des">"پۆستەری ئەڵقە"</string>
+<string name="episode_time_left" formatted="true">"%1$d خولەک ماوە"</string>
+<string name="episode_watched">"بینراوە"</string>
 <string name="error_bookmarks_text">"ئاماژەکان"</string>
 <string name="extension_allow">"ڕێگە بدە"</string>
 <string name="extension_decision_not_saved">"هەڵبژاردنەکەت پاشەکەوت نەکرا، بۆیە ئەم زیادکراوەیە کوژاوە دەمێنێتەوە. دووبارە لێت دەپرسرێتەوە."</string>

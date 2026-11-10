@@ -274,6 +274,8 @@
 <string name="episode_short">"အပိုင်း"</string>
 <string name="episode_sync_settings">"ကြည့်ရှုမှုတိုးတက်ခြင်းကိုအပ်ဒိတ်လုပ်ပါ"</string>
 <string name="episode_sync_settings_des">"သင့်၏အပိုင်းကြည်ရှုမှုရောက်ရှိနေရာကိုအလိုအလျောက်သိမ်းဆည်းပါ"</string>
+<string name="episode_time_left" formatted="true">"%1$d မိနစ် ကျန်"</string>
+<string name="episode_watched">"ကြည့်ပြီး"</string>
 <string name="episodes">"အပိုင်းများ"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"အချို့အယွင်း"</string>

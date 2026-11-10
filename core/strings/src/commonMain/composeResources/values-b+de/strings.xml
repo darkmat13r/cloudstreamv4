@@ -74,6 +74,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d fehlgeschlagen</item><item quantity="other">%d fehlgeschlagen</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d Download in Warteschlange</item><item quantity="other">%d Downloads in Warteschlange</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d Titel · %2$s</item><item quantity="other">%1$d Titel · %2$s</item></plurals>
+<string name="episode_time_left">Noch %1$d Min</string>
+<string name="episode_watched">Gesehen</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d LESEZEICHEN</item><item quantity="other">%d LESEZEICHEN</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d Bereich konnte nicht geladen werden</item><item quantity="other">%d Bereiche konnten nicht geladen werden</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d Bereich</item><item quantity="other">%d Bereiche</item></plurals>

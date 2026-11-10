@@ -179,6 +179,8 @@
 <string name="episode_more_options_des">"Fleire val"</string>
 <string name="episode_poster_img_des">"Episodeminiatyrbilete"</string>
 <string name="episode_short">"E"</string>
+<string name="episode_time_left" formatted="true">"%1$d min att"</string>
+<string name="episode_watched">"Sett"</string>
 <string name="episodes">"Episodar"</string>
 <string name="error_bookmarks_text">"Bokmerker"</string>
 <string name="error_loading_links_toast">"Feil ved innlasting av lenker"</string>

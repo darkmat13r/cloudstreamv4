@@ -3612,7 +3612,9 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field episode_sync_settings I
 	public static field episode_sync_settings_des I
 	public static field episode_text I
+	public static field episode_time_left I
 	public static field episode_upcoming_format I
+	public static field episode_watched I
 	public static field episodes I
 	public static field episodes_range I
 	public static field error I

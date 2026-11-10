@@ -74,6 +74,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d தோல்வி</item><item quantity="other">%d தோல்வி</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d பதிவிறக்கம் வரிசையில் உள்ளது</item><item quantity="other">%d பதிவிறக்கங்கள் வரிசையில் உள்ளன</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d தலைப்பு · %2$s</item><item quantity="other">%1$d தலைப்புகள் · %2$s</item></plurals>
+<string name="episode_time_left">%1$d நிமி மீதம்</string>
+<string name="episode_watched">பார்த்தது</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d புக்மார்க்</item><item quantity="other">%d புக்மார்க்குகள்</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">%d பிரிவை ஏற்ற முடியவில்லை</item><item quantity="other">%d பிரிவுகளை ஏற்ற முடியவில்லை</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d பிரிவு</item><item quantity="other">%d பிரிவுகள்</item></plurals>

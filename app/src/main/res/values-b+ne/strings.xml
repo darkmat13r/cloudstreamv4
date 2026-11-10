@@ -151,6 +151,8 @@
 <string name="duration_format" formatted="true">"%d मिनेट"</string>
 <string name="episode_more_options_des">"थप विकल्पहरू"</string>
 <string name="episode_poster_img_des">"एपिसोडको पोस्टर"</string>
+<string name="episode_time_left" formatted="true">"%1$d मिनेट बाँकी"</string>
+<string name="episode_watched">"हेरिएको"</string>
 <string name="error_bookmarks_text">"बुकमार्कहरू"</string>
 <string name="error_loading_links_toast">"लिङ्क लोड गर्दा त्रुटि भयो"</string>
 <string name="extension_allow">"अनुमति दिनुहोस्"</string>

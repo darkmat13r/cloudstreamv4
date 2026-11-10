@@ -362,7 +362,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Përditëso progresin e shikimit"</string>
 <string name="episode_sync_settings_des">"Sinkronizo automatikisht progresin e episodit aktual"</string>
+<string name="episode_time_left" formatted="true">"Mbeten %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"Vazhdon në %s"</string>
+<string name="episode_watched">"Parë"</string>
 <string name="episodes">"Episode"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Gabim"</string>

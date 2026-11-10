@@ -74,6 +74,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d neúspěšné</item><item quantity="few">%d neúspěšná</item><item quantity="many">%d neúspěšných</item><item quantity="other">%d neúspěšných</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d stahování uloženo do fronty</item><item quantity="few">%d stahování uložena do fronty</item><item quantity="many">%d stahování uloženo do fronty</item><item quantity="other">%d stahování uloženo do fronty</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titul · %2$s</item><item quantity="few">%1$d tituly · %2$s</item><item quantity="many">%1$d titulu · %2$s</item><item quantity="other">%1$d titulů · %2$s</item></plurals>
+<string name="episode_time_left">Zbývá %1$d min</string>
+<string name="episode_watched">Zhlédnuto</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽEK</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nepodařilo se načíst %d sekci</item><item quantity="few">Nepodařilo se načíst %d sekce</item><item quantity="many">Nepodařilo se načíst %d sekcí</item><item quantity="other">Nepodařilo se načíst %d sekcí</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d sekce</item><item quantity="few">%d sekce</item><item quantity="many">%d sekce</item><item quantity="other">%d sekcí</item></plurals>

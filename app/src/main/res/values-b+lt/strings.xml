@@ -200,6 +200,8 @@
 <string name="episode_format" formatted="true">"%1$d %2$s"</string>
 <string name="episode_more_options_des">"Daugiau parinkčių"</string>
 <string name="episode_poster_img_des">"Serijos plakatas"</string>
+<string name="episode_time_left" formatted="true">"Liko %1$d min"</string>
+<string name="episode_watched">"Peržiūrėta"</string>
 <string name="episodes">"Serijos"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Klaida"</string>

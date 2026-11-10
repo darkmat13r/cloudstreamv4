@@ -74,6 +74,8 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d dështoi</item><item quantity="other">%d dështuan</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d shkarkim në radhë</item><item quantity="other">%d shkarkime në radhë</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titull · %2$s</item><item quantity="other">%1$d tituj · %2$s</item></plurals>
+<string name="episode_time_left">Mbeten %1$d min</string>
+<string name="episode_watched">Parë</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d TË RUAJTURA</item><item quantity="other">%d TË RUAJTURA</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">Nuk mund të ngarkohej %d seksion</item><item quantity="other">Nuk mund të ngarkoheshin %d seksione</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">%d seksion</item><item quantity="other">%d seksione</item></plurals>

@@ -362,7 +362,9 @@
 <string name="episode_short">"E"</string>
 <string name="episode_sync_settings">"Mise à jour de la progression du visionnage"</string>
 <string name="episode_sync_settings_des">"Synchronisation automatique de la progression de votre épisode en cours"</string>
+<string name="episode_time_left" formatted="true">"Encore %1$d min"</string>
 <string name="episode_upcoming_format" formatted="true">"À venir dans %s"</string>
+<string name="episode_watched">"Vu"</string>
 <string name="episodes">"Épisodes"</string>
 <string name="episodes_range" formatted="true">"%1$d-%2$d"</string>
 <string name="error">"Erreur"</string>
