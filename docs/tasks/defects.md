@@ -3261,3 +3261,37 @@ path, query or fragment (`a@2x.jpg`) is kept, and so is `%40`.
   in both classes passed in that run (49 tests, 3 failed).
 - With the fix, `:desktopApp:jvmTest` passed 543 of 543, and `:feature:settings:jvmTest` 17 of 17.
 - The four gates each exited 0, and `check-test-results.py` read 242 files with 0 failures.
+
+## BUG-80 — After a delete-all, the series page could close twice, past Downloads to Home · **low** · measured 2026-11-10
+
+**Status:** fixed in this PR · found on Train 13: `DownloadSeriesTvNavigationTest.deleteAll…` timed out waiting for
+"No downloads yet", 1 run in 7 there, and 3 in 10 in the PM's Train 14 measure, before this fix.
+
+**What was on screen.** A test-only capture, never committed, recorded the app at the failure: the fragment was
+`HomeTvFragment`, not `DownloadsTvFragment`; Home's texts were showing; the store held no episode, header or download-info
+key, so the delete itself had finished. 30 s later the app was still on Home. Stuck, then, not slow: the app had gone back
+one screen too far.
+
+**Cause.** `DownloadSeriesViewModel.show` posted `SeriesEffect.Close` for every empty read after the page had had
+episodes, and nothing cleared that. `DownloadSeriesTvFragment` turns each `Close` into a back press. Delete-all deletes
+every file, and each delete makes the page read again. Two empty reads that differ, because the free space changed
+between them, were two `Close`s: two back presses, the page and then Downloads, ending on Home, the start destination.
+Whether the second read differed depended on timing, hence a flake.
+
+**Fix.** `show` clears `hadEpisodes` when it posts `Close`, so a page closes once. A page that fills again later and
+then empties closes again.
+
+**Tests** (`DownloadSeriesViewModelTest`, JVM, 2 new, no existing test changed):
+- `aPageThatEmptiesClosesOnceHoweverManyEmptyReadsFollow`: two episodes, two differing empty reads, then a new episode
+  and Delete all. The effects must be `Close` and then `ConfirmDeleteAll([3])`. **Red on master** (run):
+  `expected ConfirmDeleteAll(ids=[3]) but was Close`.
+- `aPageThatFillsAgainAfterClosingClosesAgainWhenItEmpties`: closing once does not stop a later close. Passes before and
+  after; it guards the fix.
+
+| Measured (local) | Before | After |
+|---|---|---|
+| `DownloadSeriesViewModelTest` | 10 of 11 | 11 of 11 |
+| `DownloadSeriesTvNavigationTest` ×20 (`Television_720p`, API 36) | 3 in 10 (the PM's Train 14 measure) | 0 in 20 (20 runs, 80 tests, 0 failures) |
+
+**Not this:** `BUG-86`, an older race in `:app`'s `DownloadViewModel` that can put a deleted series' row back, is real
+and has its own PR, but the capture shows it was not what this test met.
