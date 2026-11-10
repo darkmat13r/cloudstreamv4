@@ -8105,3 +8105,61 @@ with a silent track:
 - Resume and watch progress for a download. There is no library record to write to; the stream player's
   `WatchRecorder` needs one.
 - Playing a film from the D1 list. D1 has no Play on the Mac board.
+
+## KMP-109 — A Download on each episode row of the Mac title page, with its states · **part 1 built 2026-11-10**; the row's slot waits for `KMP-104` (`#312`) · the PM's task
+
+Board E2's rows on the Mac title page offer a Download per episode. The cell then reads the episode's state and offers
+that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
+
+**Part 1, the parts away from the title page:**
+- **The request.** `episodeDownloadRequest(titleKey, detail, episode)` in `:desktopApp` builds a
+  `DesktopDownloadRequest` from the page's `TitleDetail` and `DetailEpisode`:
+  - it carries no link. Its source is the provider's name and the episode's data, what the player passes;
+  - `KMP-52`'s service asks the extension through its `LinkResolver` and checks the link as it checks every other.
+    No new fetch path.
+- **The ids.** The service files downloads under 32-bit ids. `EpisodeDownloadIds` takes the first 4 bytes of SHA-256
+  over the parts, each written as its UTF-8 length and then its bytes:
+  - the title's id comes from the page's title id (`DesktopSearchSource.encodeId`);
+  - the episode's id comes from the provider's name and the episode's data;
+  - not `String.hashCode`, which gives `Aa` and `BB` one value.
+- **`EnqueueRefusal.IdTaken`.** Two episodes can still share 32 bits. An enqueue whose id is held by an episode with
+  a different source is refused, and the first episode is left as it was. A paused one is not put back in line.
+  - **Not covered:** a finished episode keeps no source (`KMP-52`, on purpose), so a collision with one reads as
+    that episode, downloaded.
+- **The cell.** `EpisodeDownloadDesktop` in `:feature:downloads` reads the state in D4's words, through D4's
+  `EpisodeStatus`, which is now internal rather than copied. While the row is hovered or focused it offers that
+  state's verbs, in the title page's 36 cells:
+
+  | State | Verbs |
+  |---|---|
+  | none yet | Download |
+  | waiting | Cancel |
+  | downloading | Pause, Cancel |
+  | paused | Resume |
+  | failed | Retry |
+  | downloaded | none |
+
+  The verbs hold their width while hidden, so the words never move.
+
+**Tests (jvm, run):**
+- `EpisodeDownloadRequestTest` (5):
+  - the ids are fixed numbers, worked out with Python's `hashlib`;
+  - `Aa` and `BB` differ;
+  - moving a character between parts changes the id;
+  - the request's fields, with no link;
+  - two episodes share a title id.
+- `DesktopDownloadsTest` (+2):
+  - an id held by another source is refused (`IdTaken`), running and paused, and the first is unchanged;
+  - end to end, a page's episode downloads through the resolver from its source alone, and the resolver is asked
+    for exactly that source.
+  - **Red without the guard (run):** the first fails, with `AlreadyPresent` where `IdTaken` is expected.
+- `EpisodeDownloadDesktopTest` (3):
+  - each state's verbs, pressed with real pointer events, call their own callback;
+  - hidden verbs draw nothing and move no words;
+  - each state's words.
+- `DownloadSeriesScreenTest` is unchanged and passes: 10 of 10.
+
+**Part 2, after `#312`:**
+- the slot on `DetailScreenDesktop`'s episode row;
+- `Main.kt` wiring it to the service;
+- the page's tests, red first.

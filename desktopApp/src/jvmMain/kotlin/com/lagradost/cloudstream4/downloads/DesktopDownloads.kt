@@ -667,6 +667,10 @@ class DesktopDownloads internal constructor(
         if (!readable) return EnqueueResult.Refused(EnqueueRefusal.StoreUnreadable)
 
         items[request.episodeId]?.let { existing ->
+            // Another episode's id (`KMP-109`): its ids are 32 bits of a hash. A finished one keeps no source, so it
+            // cannot be told apart and reads as this one.
+            val kept = existing.source
+            if (kept != null && kept != source) return EnqueueResult.Refused(EnqueueRefusal.IdTaken)
             if (existing.phase != Phase.Paused && existing.phase != Phase.Failed) return EnqueueResult.AlreadyPresent
             // A paused or failed episode enqueued again goes in line; a new link replaces the one in memory.
             resumeNow(existing)

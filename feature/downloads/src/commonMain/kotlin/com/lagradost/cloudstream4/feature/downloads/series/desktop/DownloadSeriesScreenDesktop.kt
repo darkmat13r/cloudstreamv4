@@ -533,9 +533,12 @@ private fun EpisodeRow(
     }
 }
 
-/** The state in words: what is moving and how fast, or why it failed. The rule sits under it while it is not done. */
+/**
+ * The state in words: what is moving and how fast, or why it failed. The rule sits under it while it is not done.
+ * The title page's episode rows draw it too (`KMP-109`).
+ */
 @Composable
-private fun EpisodeStatus(episode: DownloadEpisode, formatBytes: (Long) -> String) {
+internal fun EpisodeStatus(episode: DownloadEpisode, formatBytes: (Long) -> String) {
     val colors = CloudStreamTheme.colors
     val percent = episode.progress?.let { "${(it * PERCENT).toInt()}%" }
     val parts: List<String> = when (episode.state) {

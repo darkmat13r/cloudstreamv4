@@ -115,4 +115,10 @@ enum class EnqueueRefusal {
 
     /** The downloads file could not be read at start-up, so nothing is written over it. */
     StoreUnreadable,
+
+    /**
+     * Another episode, with another source, already has this id. Nothing changed. `KMP-109`'s ids are 32 bits of a
+     * hash, so two episodes can share one.
+     */
+    IdTaken,
 }
