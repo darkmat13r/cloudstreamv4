@@ -69,6 +69,8 @@
 <string name="account_select_title">"Kim baxır?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s girişi təsdiqləmədi. Heç nə saxlanılmadı."</string>
 <string name="account_signin_failed_title" formatted="true">"%s hesabına daxil olmaq alınmadı"</string>
+<string name="account_signin_not_kept" formatted="true">"%s girişi bu kompüterdə saxlanıla bilmədi, ona görə daxil olmamısınız."</string>
+<string name="account_signin_not_removed" formatted="true">"%s girişi bu kompüterdən silinə bilmədi, ona görə hələ də daxil olunub."</string>
 <string name="account_signin_offline_body" formatted="true">"%s hesabına daxil olmaq üçün internet bağlantısı lazımdır. Bu cihaz yenidən onlayn olanda yenidən cəhd edin."</string>
 <string name="account_signins_until_quit">"Girişlər CloudStream-dən çıxana qədər qalır."</string>
 <string name="account_sync_connected">"Qoşulub · bu cihazda daxil olunub"</string>

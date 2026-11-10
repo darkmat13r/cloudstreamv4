@@ -69,6 +69,8 @@
 <string name="account_select_title">"को हेर्दै हुनुहुन्छ?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ले साइन इन पुष्टि गरेन। केही पनि सेभ भएन।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s मा साइन इन गर्न सकिएन"</string>
+<string name="account_signin_not_kept" formatted="true">"यस कम्प्युटरमा %s को साइन-इन राख्न सकिएन, त्यसैले तपाईं साइन इन हुनुभएको छैन।"</string>
+<string name="account_signin_not_removed" formatted="true">"यस कम्प्युटरबाट %s को साइन-इन हटाउन सकिएन, त्यसैले यो अझै साइन इन छ।"</string>
 <string name="account_signin_offline_body" formatted="true">"%s मा साइन इन गर्न इन्टरनेट जडान चाहिन्छ। यो उपकरण फेरि अनलाइन भएपछि पुनः प्रयास गर्नुहोस्।"</string>
 <string name="account_signins_until_quit">"CloudStream बन्द नगरेसम्म साइन-इन रहन्छ।"</string>
 <string name="account_sync_connected">"जडान भयो · यो उपकरणमा साइन इन"</string>

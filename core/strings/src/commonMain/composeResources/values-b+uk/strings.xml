@@ -48,6 +48,8 @@
 <string name="account_select_title">Хто дивиться?</string>
 <string name="account_signin_failed_body">%s не підтвердив вхід. Нічого не збережено.</string>
 <string name="account_signin_failed_title">Не вдалося увійти в %s</string>
+<string name="account_signin_not_kept">Не вдалося зберегти вхід у %s на цьому комп'ютері, тому ви не ввійшли.</string>
+<string name="account_signin_not_removed">Не вдалося видалити вхід у %s з цього комп'ютера, тому він досі активний.</string>
 <string name="account_signin_offline_body">Для входу в %s потрібне з'єднання. Спробуйте ще раз, коли пристрій знову буде онлайн.</string>
 <string name="account_signins_until_quit">Входи діють, доки ви не закриєте CloudStream.</string>
 <string name="account_sync_connected">Підключено · вхід виконано на цьому пристрої</string>

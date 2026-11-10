@@ -69,6 +69,8 @@
 <string name="account_select_title">"ማን እየተመለከተ ነው?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s መግባቱን አላረጋገጠም። ምንም አልተቀመጠም።"</string>
 <string name="account_signin_failed_title" formatted="true">"ወደ %s መግባት አልተቻለም"</string>
+<string name="account_signin_not_kept" formatted="true">"የ%s መግቢያን በዚህ ኮምፒውተር ላይ ማስቀመጥ አልተቻለም፣ ስለዚህ አልገቡም።"</string>
+<string name="account_signin_not_removed" formatted="true">"የ%s መግቢያን ከዚህ ኮምፒውተር ማስወገድ አልተቻለም፣ ስለዚህ አሁንም እንደገባ ነው።"</string>
 <string name="account_signin_offline_body" formatted="true">"ወደ %s ለመግባት ግንኙነት ያስፈልጋል። ይህ መሣሪያ ተመልሶ መስመር ላይ ሲሆን እንደገና ይሞክሩ።"</string>
 <string name="account_signins_until_quit">"መግቢያዎች CloudStreamን እስኪያቋርጡ ድረስ ይቆያሉ።"</string>
 <string name="account_sync_connected">"ተገናኝቷል · በዚህ መሣሪያ ላይ ገብቷል"</string>

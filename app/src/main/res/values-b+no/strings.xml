@@ -70,6 +70,8 @@
 <string name="account_select_title">"Hvem ser på?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s bekreftet ikke innloggingen. Ingenting ble lagret."</string>
 <string name="account_signin_failed_title" formatted="true">"Kunne ikke logge inn på %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Kunne ikke beholde påloggingen til %s på denne datamaskinen, så du er ikke logget på."</string>
+<string name="account_signin_not_removed" formatted="true">"Kunne ikke fjerne påloggingen til %s fra denne datamaskinen, så den er fortsatt aktiv."</string>
 <string name="account_signin_offline_body" formatted="true">"Innlogging på %s krever tilkobling. Prøv igjen når denne enheten er på nett igjen."</string>
 <string name="account_signins_until_quit">"Innlogginger varer til du avslutter CloudStream."</string>
 <string name="account_sync_connected">"Tilkoblet · logget inn på denne enheten"</string>

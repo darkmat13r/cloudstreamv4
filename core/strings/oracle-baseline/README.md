@@ -120,6 +120,32 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Thirty-sixth move, 2026-11-11 — `KMP-95f`, 2 new keys: a sign-in the Keychain would not keep, or remove
+
+New keys are approved in general (`I18N-09`). On a signed build the Keychain holds sign-ins, and the PM's ruling
+(2026-11-09) is that a Keychain failure fails closed, so the screen says when one was not kept, or not removed. Additive:
+`account_signin_not_kept` and `account_signin_not_removed`, no plurals, authored in all 62 directories (`OWN` grows by
+124). The Android res came out with 124 lines added and 0 removed, and `app/api/classes-jar.api` gains only the two `R`
+fields. Numbered thirty-first on an older base; regenerated from the live generator on master's thirty-fourth move
+(`20ec055e3`, train 19) when `KMP-95f` rebased for train 20. Numbered thirty-sixth because it rebases after `#312`'s
+thirty-third and `#346`'s thirty-fifth; train 20 regenerates the baseline once over all of them, which settles the
+numbers.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 57,738 | 57,862 | 124 | 0 | 0 |
+| `emitted.tsv` | 60,441 | 60,569 | 128 | 0 | 0 |
+| `lookup.tsv` | 107,754 | 107,928 | 174 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured twice over, a multiset in Python that also checked order and `sort | comm`: 0 lines lost in any file, every
+line that was in a file before is in it after in the same order, and every added line names one of the two keys: 62
+lines each in `decoded`, 64 each in `emitted` (the `values-b+he` and `values-b+id` copies), 87 each in `lookup`.
+`report.txt` moved only in its counts: `OWN` 55,662 -> 55,786, visible keys 1,201 -> 1,203, plurals unchanged at 32,
+and two more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at
+173.** `expectedOwn` 55,662 -> 55,786, and `OracleBaselineTest`'s row counts to the three after-counts above.
+
 ## Thirty-fourth move, 2026-11-10 — `KMP-110c2`, 40 new English keys for the Mac's Extensions pane
 
 New keys are approved in general (`I18N-09`). Additive: 38 strings and 2 plurals, authored in the English directory only

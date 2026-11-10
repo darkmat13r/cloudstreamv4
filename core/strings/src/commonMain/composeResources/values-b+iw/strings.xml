@@ -48,6 +48,8 @@
 <string name="account_select_title">מי צופה?</string>
 <string name="account_signin_failed_body">%s לא אישר את ההתחברות. שום דבר לא נשמר.</string>
 <string name="account_signin_failed_title">לא ניתן להתחבר אל %s</string>
+<string name="account_signin_not_kept">לא ניתן היה לשמור את ההתחברות אל %s במחשב הזה, ולכן לא התחברת.</string>
+<string name="account_signin_not_removed">לא ניתן היה להסיר את ההתחברות אל %s מהמחשב הזה, ולכן היא עדיין פעילה.</string>
 <string name="account_signin_offline_body">ההתחברות אל %s דורשת חיבור לאינטרנט. אפשר לנסות שוב כשהמכשיר יחזור להיות מחובר.</string>
 <string name="account_signins_until_quit">ההתחברויות נשמרות עד שתצא מ-CloudStream.</string>
 <string name="account_sync_connected">מחובר · מחובר במכשיר הזה</string>

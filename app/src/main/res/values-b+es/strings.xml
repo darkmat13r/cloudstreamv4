@@ -73,6 +73,8 @@
 <string name="account_select_title">"¿Quién está viendo?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s no confirmó el inicio de sesión. No se ha guardado nada."</string>
 <string name="account_signin_failed_title" formatted="true">"No se pudo iniciar sesión en %s"</string>
+<string name="account_signin_not_kept" formatted="true">"No se pudo guardar el inicio de sesión en %s en este ordenador, así que no has iniciado sesión."</string>
+<string name="account_signin_not_removed" formatted="true">"No se pudo quitar el inicio de sesión en %s de este ordenador, así que la sesión sigue iniciada."</string>
 <string name="account_signin_offline_body" formatted="true">"Para iniciar sesión en %s hace falta conexión. Vuelve a intentarlo cuando este dispositivo tenga conexión."</string>
 <string name="account_signins_until_quit">"Los inicios de sesión duran hasta que cierres CloudStream."</string>
 <string name="account_sync_connected">"Conectado · sesión iniciada en este dispositivo"</string>

@@ -43,8 +43,10 @@ import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
 import com.lagradost.cloudstream4.core.strings.generated.resources.season_short
+import com.lagradost.cloudstream4.account.AccountStorage
 import com.lagradost.cloudstream4.account.BrowserRedirects
 import com.lagradost.cloudstream4.account.DesktopProfiles
+import com.lagradost.cloudstream4.account.DesktopSecrets
 import com.lagradost.cloudstream4.account.ProfilesHost
 import com.lagradost.cloudstream4.account.installRedirectHandler
 import com.lagradost.cloudstream4.detail.BackdropImage
@@ -234,7 +236,15 @@ fun main(args: Array<String>) {
     val skipServices = SkipServices(enabled = { settings.skipStamps.value })
     Runtime.getRuntime().addShutdownHook(Thread { runBlocking { downloads.close() } })
     // KMP-95: who is watching. Only the library is a profile's own; everything above is the Mac's.
-    val profiles = DesktopProfiles(onSaveFailed = { println("profiles not saved: ${it::class.simpleName}") })
+    val profilesNotSaved: (Throwable) -> Unit = { println("profiles not saved: ${it::class.simpleName}") }
+    // KMP-95f: the PINs and sign-ins in the Keychain on a signed build, decided when it was built; 95c's and 95d's stores
+    // on an unsigned one.
+    val accounts = AccountStorage.forBuild(
+        signed = DesktopSecrets.signedBuild,
+        directory = DesktopLibraryStore.defaultTitlesFile().parentFile,
+        onSaveFailed = profilesNotSaved,
+    )
+    val profiles = DesktopProfiles(onSaveFailed = profilesNotSaved, pins = accounts.pins, signIns = accounts.signIns)
     // KMP-95e: cloudstreamapp:// URLs from the browser. Set before the window, so macOS has a handler from the start;
     // nothing is accepted unless a sign-in from this window is waiting, and no URL is ever printed.
     val redirects = BrowserRedirects()

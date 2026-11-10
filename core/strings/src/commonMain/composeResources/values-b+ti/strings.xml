@@ -48,6 +48,8 @@
 <string name="account_select_title">መን እዩ ዝርኢ ዘሎ?</string>
 <string name="account_signin_failed_body">%s ነቲ ምእታው ኣየረጋገጸን። ዋላ ሓንቲ ኣይተዓቀበትን።</string>
 <string name="account_signin_failed_title">ናብ %s ምእታው ኣይተኻእለን</string>
+<string name="account_signin_not_kept">ኣብዚ ኮምፒዩተር ምእታው ናብ %s ክዕቀብ ኣይተኻእለን፣ ስለዚ ኣይኣቶኻን።</string>
+<string name="account_signin_not_removed">ምእታው ናብ %s ካብዚ ኮምፒዩተር ክእለ ኣይተኻእለን፣ ስለዚ ሕጂ'ውን ኣቲዩ ኣሎ።</string>
 <string name="account_signin_offline_body">ናብ %s ንምእታው ምትእስሳር የድሊ። እዚ መሳርሒ ናብ መስመር ምስ ተመልሰ እንደገና ፈትን።</string>
 <string name="account_signins_until_quit">ምእታዋት ክሳብ CloudStream ትዓጽዉ ይጸንሑ።</string>
 <string name="account_sync_connected">ተራኺቡ · ኣብዚ መሳርሒ ኣቲዩ</string>

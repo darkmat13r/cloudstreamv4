@@ -48,6 +48,8 @@
 <string name="account_select_title">Sino ang nanonood?</string>
 <string name="account_signin_failed_body">Hindi kinumpirma ng %s ang pag-sign in. Walang na-save.</string>
 <string name="account_signin_failed_title">Hindi makapag-sign in sa %s</string>
+<string name="account_signin_not_kept">Hindi maitago ang pag-sign in sa %s sa computer na ito, kaya hindi ka naka-sign in.</string>
+<string name="account_signin_not_removed">Hindi maalis ang pag-sign in sa %s sa computer na ito, kaya naka-sign in pa rin ito.</string>
 <string name="account_signin_offline_body">Kailangan ng koneksyon para mag-sign in sa %s. Subukang muli kapag online na ulit ang device na ito.</string>
 <string name="account_signins_until_quit">Tatagal ang mga sign-in hanggang isara mo ang CloudStream.</string>
 <string name="account_sync_connected">Nakakonekta · naka-sign in sa device na ito</string>

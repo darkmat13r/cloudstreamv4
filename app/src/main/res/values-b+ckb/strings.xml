@@ -69,6 +69,8 @@
 <string name="account_select_title">"کێ سەیر دەکات؟"</string>
 <string name="account_signin_failed_body" formatted="true">"%s چوونەژوورەوەکەی پشتڕاست نەکردەوە. هیچ شتێک پاشەکەوت نەکرا."</string>
 <string name="account_signin_failed_title" formatted="true">"نەتوانرا بچیتە ژوورەوەی %s"</string>
+<string name="account_signin_not_kept" formatted="true">"چوونەژوورەوەی %s لەسەر ئەم کۆمپیوتەرە هەڵنەگیرا، بۆیە تۆ نەچوویتە ژوورەوە."</string>
+<string name="account_signin_not_removed" formatted="true">"چوونەژوورەوەی %s لەم کۆمپیوتەرە لانەبرا، بۆیە هێشتا لەژوورەوەیە."</string>
 <string name="account_signin_offline_body" formatted="true">"چوونەژوورەوە بۆ %s پەیوەندی پێویستە. کاتێک ئەم ئامێرە دووبارە سەرهێڵ بوو هەوڵ بدەرەوە."</string>
 <string name="account_signins_until_quit">"چوونەژوورەوەکان دەمێننەوە تا CloudStream دادەخەیت."</string>
 <string name="account_sync_connected">"پەیوەستە · لەسەر ئەم ئامێرە چووەتە ژوورەوە"</string>

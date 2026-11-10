@@ -48,6 +48,8 @@
 <string name="account_select_title">من يشاهد؟</string>
 <string name="account_signin_failed_body">لم يؤكد %s تسجيل الدخول. لم يُحفظ أي شيء.</string>
 <string name="account_signin_failed_title">تعذّر تسجيل الدخول إلى %s</string>
+<string name="account_signin_not_kept">تعذّر الاحتفاظ بتسجيل الدخول إلى %s على هذا الكمبيوتر، لذا لم تسجّل الدخول.</string>
+<string name="account_signin_not_removed">تعذّرت إزالة تسجيل الدخول إلى %s من هذا الكمبيوتر، لذا لا يزال مسجّلاً.</string>
 <string name="account_signin_offline_body">يتطلب تسجيل الدخول إلى %s اتصالاً بالإنترنت. حاول مرة أخرى عند عودة هذا الجهاز إلى الاتصال.</string>
 <string name="account_signins_until_quit">تبقى عمليات تسجيل الدخول حتى تُنهي CloudStream.</string>
 <string name="account_sync_connected">متصل · تم تسجيل الدخول على هذا الجهاز</string>

@@ -48,6 +48,8 @@
 <string name="account_select_title">誰が見ていますか?</string>
 <string name="account_signin_failed_body">%s でサインインが確認されませんでした。何も保存されていません。</string>
 <string name="account_signin_failed_title">%s にサインインできませんでした</string>
+<string name="account_signin_not_kept">このコンピュータに %s へのサインインを保持できなかったため、サインインしていません。</string>
+<string name="account_signin_not_removed">このコンピュータから %s へのサインインを削除できなかったため、サインインしたままです。</string>
 <string name="account_signin_offline_body">%s へのサインインにはインターネット接続が必要です。このデバイスがオンラインに戻ったらもう一度お試しください。</string>
 <string name="account_signins_until_quit">サインインは CloudStream を終了するまで有効です。</string>
 <string name="account_sync_connected">接続済み · このデバイスでサインイン中</string>

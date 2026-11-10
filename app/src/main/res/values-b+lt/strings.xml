@@ -69,6 +69,8 @@
 <string name="account_select_title">"Kas žiūri?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s nepatvirtino prisijungimo. Niekas neišsaugota."</string>
 <string name="account_signin_failed_title" formatted="true">"Nepavyko prisijungti prie %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Nepavyko išsaugoti prisijungimo prie %s šiame kompiuteryje, todėl nesate prisijungę."</string>
+<string name="account_signin_not_removed" formatted="true">"Nepavyko pašalinti prisijungimo prie %s iš šio kompiuterio, todėl jis vis dar aktyvus."</string>
 <string name="account_signin_offline_body" formatted="true">"Norint prisijungti prie %s, reikia ryšio. Bandykite dar kartą, kai šis įrenginys vėl bus prisijungęs prie interneto."</string>
 <string name="account_signins_until_quit">"Prisijungimai galioja, kol išeisite iš CloudStream."</string>
 <string name="account_sync_connected">"Prijungta · prisijungta šiame įrenginyje"</string>

@@ -48,6 +48,8 @@
 <string name="account_select_title">Who's watching?</string>
 <string name="account_signin_failed_body">%s didn't confirm the sign-in. Nothing was saved.</string>
 <string name="account_signin_failed_title">Couldn't sign in to %s</string>
+<string name="account_signin_not_kept">Couldn't keep the sign-in to %s on this computer, so you're not signed in.</string>
+<string name="account_signin_not_removed">Couldn't remove the sign-in to %s from this computer, so it's still signed in.</string>
 <string name="account_signin_offline_body">Signing in to %s needs a connection. Try again when this device is back online.</string>
 <string name="account_signins_until_quit">Sign-ins last until you quit CloudStream.</string>
 <string name="account_sync_connected">Connected · signed in on this device</string>

@@ -69,6 +69,8 @@
 <string name="account_select_title">"Min qed jara?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s ma kkonfermax id-dħul. Ma ġie ssejvjat xejn."</string>
 <string name="account_signin_failed_title" formatted="true">"Ma setgħetx issir id-dħul f'%s"</string>
+<string name="account_signin_not_kept" formatted="true">"Ma setax jinżamm id-dħul f'%s fuq dan il-kompjuter, għalhekk m'intix dħalt."</string>
+<string name="account_signin_not_removed" formatted="true">"Ma setax jitneħħa d-dħul f'%s minn dan il-kompjuter, għalhekk għadu attiv."</string>
 <string name="account_signin_offline_body" formatted="true">"Biex tidħol f'%s trid konnessjoni. Erġa' pprova meta dan l-apparat jerġa' jkun online."</string>
 <string name="account_signins_until_quit">"Id-dħul idum sakemm toħroġ minn CloudStream."</string>
 <string name="account_sync_connected">"Imqabbad · dħalt fuq dan l-apparat"</string>

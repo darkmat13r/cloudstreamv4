@@ -48,6 +48,8 @@
 <string name="account_select_title">Chi sta guardando?</string>
 <string name="account_signin_failed_body">%s non ha confermato l'accesso. Non è stato salvato nulla.</string>
 <string name="account_signin_failed_title">Impossibile accedere a %s</string>
+<string name="account_signin_not_kept">Impossibile conservare l'accesso a %s su questo computer, quindi non hai effettuato l'accesso.</string>
+<string name="account_signin_not_removed">Impossibile rimuovere l'accesso a %s da questo computer, quindi è ancora attivo.</string>
 <string name="account_signin_offline_body">Per accedere a %s serve una connessione. Riprova quando questo dispositivo sarà di nuovo online.</string>
 <string name="account_signins_until_quit">Gli accessi durano finché non chiudi CloudStream.</string>
 <string name="account_sync_connected">Connesso · accesso eseguito su questo dispositivo</string>

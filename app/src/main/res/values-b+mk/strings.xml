@@ -72,6 +72,8 @@
 <string name="account_select_title">"Кој гледа?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s не ја потврди најавата. Ништо не е зачувано."</string>
 <string name="account_signin_failed_title" formatted="true">"Не може да се најавиш на %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Најавата на %s не можеше да се зачува на овој компјутер, па не сте најавени."</string>
+<string name="account_signin_not_removed" formatted="true">"Најавата на %s не можеше да се отстрани од овој компјутер, па сè уште е активна."</string>
 <string name="account_signin_offline_body" formatted="true">"За најава на %s е потребна врска. Обиди се повторно кога уредот ќе биде пак на интернет."</string>
 <string name="account_signins_until_quit">"Најавите траат додека не излезете од CloudStream."</string>
 <string name="account_sync_connected">"Поврзано · најавено на овој уред"</string>

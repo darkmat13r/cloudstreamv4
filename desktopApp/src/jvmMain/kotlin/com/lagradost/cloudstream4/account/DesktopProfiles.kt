@@ -169,9 +169,12 @@ internal class DesktopProfiles(
     private val file: DesktopProfileFile = DesktopProfileFile(),
     private val libraryDirectory: File = DesktopLibraryStore.defaultTitlesFile().parentFile,
     private val onSaveFailed: (Throwable) -> Unit = {},
-    /** `KMP-95c`: each profile's PIN and its wrong-PIN count, in their own owner-only files beside the profiles. */
+    /**
+     * `KMP-95c`: each profile's PIN and its wrong-PIN count. These defaults are an unsigned build's; the app passes
+     * `AccountStorage.forBuild`'s, which are the Keychain's on a signed build (`KMP-95f`).
+     */
     val pins: DesktopPins = DesktopPins(libraryDirectory, onSaveFailed = onSaveFailed),
-    /** `KMP-95d`: each profile's sign-ins, in memory only until `KMP-95f` (D3). */
+    /** `KMP-95d`: each profile's sign-ins. In memory on an unsigned build (D3), the Keychain on a signed one (`95f`). */
     val signIns: SignInStore = InMemorySignInStore(),
 ) {
     var stored: StoredProfiles by mutableStateOf(StoredProfiles())
@@ -188,8 +191,9 @@ internal class DesktopProfiles(
         // every other profile's library.
         file.strictIds()?.let { kept ->
             clearLibrariesNotIn(kept)
-            // The same rule for a deleted profile's PIN and count: only over a strict read.
+            // The same rule for a deleted profile's PIN and count, and its sign-ins: only over a strict read.
             pins.retainOnly(kept)
+            signIns.retainOnly(kept)
         }
     }
 
@@ -208,8 +212,9 @@ internal class DesktopProfiles(
     /**
      * Adds a profile named [name] and returns its id, or null when there is no room (`KMP-95b`, A6b) or when a PIN
      * left under its id could not be forgotten, because the PINs file could not be read or written (the reviewer of
-     * `#286`): then nothing is added, so the new profile can never inherit that PIN once the file reads. It does not
-     * become the one watching. A blank name becomes [fallback], so a profile always has words on its card.
+     * `#286`): then nothing is added, so the new profile can never inherit that PIN once the file reads. The same for
+     * sign-ins left under its id, which outlive a quit on a signed build (`KMP-95f`). It does not become the one
+     * watching. A blank name becomes [fallback], so a profile always has words on its card.
      *
      * Its id is one above the highest there is. Any library files already under that id are deleted first, so a new
      * profile never starts with what a deleted one left behind (a delete whose file removal failed).
@@ -219,8 +224,9 @@ internal class DesktopProfiles(
         val id = stored.profiles.maxOf { it.id } + 1
         if (id >= DesktopProfileFile.MAX_ID) return null
         // A reused id starts clean: no library, PIN or wrong-PIN count of a profile deleted before (the reviewer of #286).
-        // The PIN first: if it cannot be forgotten, nothing is added or touched.
+        // The PIN first: if it cannot be forgotten, nothing is added or touched. Then any sign-ins under that id.
         if (!pins.forget(id)) return null
+        if (!signIns.forget(id)) return null
         clearLibrary(id)
         val cleaned = DesktopProfileFile.cleanName(name).ifEmpty { DesktopProfileFile.cleanName(fallback) }
         update(stored.copy(profiles = stored.profiles + StoredProfile(id, cleaned.ifEmpty { null })))
@@ -266,7 +272,8 @@ internal class DesktopProfiles(
             clearLibrary(id)
             pins.forget(id)
         }
-        // In memory only, so they go whether or not the file was written: A8 says the sign-ins leave with the profile.
+        // Whether or not the file was written: A8 says the sign-ins leave with the profile. On a signed build a forget the
+        // Keychain refuses leaves them under an id no profile has; the next add under it, or the launch sweep, retries.
         signIns.forget(id)
         return true
     }

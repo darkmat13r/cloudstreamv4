@@ -70,6 +70,8 @@
 <string name="account_select_title">"কোনে চাই আছে?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s এ ছাইন-ইন নিশ্চিত নকৰিলে। একো ছেভ কৰা হোৱা নাই।"</string>
 <string name="account_signin_failed_title" formatted="true">"%s ত ছাইন ইন কৰিব পৰা নগ'ল"</string>
+<string name="account_signin_not_kept" formatted="true">"এই কম্পিউটাৰত %s-ৰ ছাইন-ইন ৰাখিব পৰা নগ'ল, গতিকে আপুনি ছাইন ইন হোৱা নাই।"</string>
+<string name="account_signin_not_removed" formatted="true">"এই কম্পিউটাৰৰ পৰা %s-ৰ ছাইন-ইন আঁতৰাব পৰা নগ'ল, গতিকে ই এতিয়াও ছাইন ইন হৈ আছে।"</string>
 <string name="account_signin_offline_body" formatted="true">"%s ত ছাইন ইন কৰিবলৈ সংযোগৰ প্ৰয়োজন। এই ডিভাইচটো পুনৰ অনলাইন হ'লে আকৌ চেষ্টা কৰক।"</string>
 <string name="account_signins_until_quit">"CloudStream বন্ধ নকৰালৈকে ছাইন-ইন থাকে।"</string>
 <string name="account_sync_connected">"সংযুক্ত · এই ডিভাইচত ছাইন ইন কৰা"</string>

@@ -73,6 +73,8 @@
 <string name="account_select_title">"Vem tittar?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s bekräftade inte inloggningen. Inget sparades."</string>
 <string name="account_signin_failed_title" formatted="true">"Det gick inte att logga in på %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Inloggningen på %s kunde inte sparas på den här datorn, så du är inte inloggad."</string>
+<string name="account_signin_not_removed" formatted="true">"Inloggningen på %s kunde inte tas bort från den här datorn, så den är fortfarande aktiv."</string>
 <string name="account_signin_offline_body" formatted="true">"Inloggning på %s kräver en anslutning. Försök igen när enheten är online igen."</string>
 <string name="account_signins_until_quit">"Inloggningar gäller tills du avslutar CloudStream."</string>
 <string name="account_sync_connected">"Ansluten · inloggad på den här enheten"</string>

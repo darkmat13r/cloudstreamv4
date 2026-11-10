@@ -48,6 +48,8 @@
 <string name="account_select_title">Cine se uită?</string>
 <string name="account_signin_failed_body">%s nu a confirmat conectarea. Nu s-a salvat nimic.</string>
 <string name="account_signin_failed_title">Nu te-ai putut conecta la %s</string>
+<string name="account_signin_not_kept">Conectarea la %s nu a putut fi păstrată pe acest computer, așa că nu ești conectat.</string>
+<string name="account_signin_not_removed">Conectarea la %s nu a putut fi eliminată de pe acest computer, așa că este încă activă.</string>
 <string name="account_signin_offline_body">Conectarea la %s necesită o conexiune la internet. Încearcă din nou când acest dispozitiv este din nou online.</string>
 <string name="account_signins_until_quit">Conectările durează până când închizi CloudStream.</string>
 <string name="account_sync_connected">Conectat · pe acest dispozitiv</string>

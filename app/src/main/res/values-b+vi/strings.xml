@@ -73,6 +73,8 @@
 <string name="account_select_title">"Ai đang xem?"</string>
 <string name="account_signin_failed_body" formatted="true">"%s không xác nhận đăng nhập. Chưa có gì được lưu."</string>
 <string name="account_signin_failed_title" formatted="true">"Không thể đăng nhập vào %s"</string>
+<string name="account_signin_not_kept" formatted="true">"Không thể giữ thông tin đăng nhập %s trên máy tính này, nên bạn chưa đăng nhập."</string>
+<string name="account_signin_not_removed" formatted="true">"Không thể xóa thông tin đăng nhập %s khỏi máy tính này, nên vẫn đang đăng nhập."</string>
 <string name="account_signin_offline_body" formatted="true">"Cần có kết nối để đăng nhập vào %s. Hãy thử lại khi thiết bị này có mạng trở lại."</string>
 <string name="account_signins_until_quit">"Đăng nhập được giữ cho đến khi bạn thoát CloudStream."</string>
 <string name="account_sync_connected">"Đã kết nối · đã đăng nhập trên thiết bị này"</string>
