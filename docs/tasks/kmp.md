@@ -8105,3 +8105,15 @@ with a silent track:
 - Resume and watch progress for a download. There is no library record to write to; the stream player's
   `WatchRecorder` needs one.
 - Playing a film from the D1 list. D1 has no Play on the Mac board.
+
+## KMP-113 — A local media gateway, so every connection libVLC makes is address-checked · **design, in review**
+
+The full fix for `BUG-90`. libVLC checks nothing itself and ignores every proxy setting for https (measured on
+3.0.24), so the media host gets gateway urls on loopback, and a sandbox policy that allows nothing else. The gateway
+fetches with the app's address-checked client, follows redirects itself, and rewrites playlist urls to itself. The
+kernel refuses whatever it does not route, so the rewriter is there for playback, not for safety.
+
+The design is in `docs/plans/media-gateway.md`: the url encoding; the HLS rewriter (DASH a second step) and its
+limits; redirects, byte ranges and keep-alive; which headers pass and which never do; per-host cookies; the
+gateway's own limits; the failure modes; the test plan; and three measurements to take before the first line of code.
+No code until the design is approved.
