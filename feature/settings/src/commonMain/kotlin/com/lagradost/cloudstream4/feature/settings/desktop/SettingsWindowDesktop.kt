@@ -27,7 +27,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.input.key.Key
 import androidx.compose.ui.input.key.KeyEventType
@@ -40,6 +39,10 @@ import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.SidebarRowMarker
+import com.lagradost.cloudstream4.core.designsystem.desktop.sidebarRowFill
+import com.lagradost.cloudstream4.core.designsystem.material.CloudStreamMaterial
+import com.lagradost.cloudstream4.core.designsystem.material.material
 import com.lagradost.cloudstream4.core.designsystem.desktop.PosterSize
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcon
@@ -179,7 +182,7 @@ private fun Sidebar(
         Modifier
             .width(SettingsWindowDefaults.SidebarWidth)
             .fillMaxHeight()
-            .background(colors.surface),
+            .material(CloudStreamMaterial.Sidebar),
     ) {
         SearchField(
             query = query,
@@ -266,16 +269,19 @@ private fun NavItem(label: String, selected: Boolean, onClick: () -> Unit) {
     val source = remember { MutableInteractionSource() }
     val focused by source.collectIsFocusedAsState()
     val shape = CloudStreamTheme.shapes.medium
-    Box(
-        contentAlignment = Alignment.CenterStart,
+    // KMP-111: chosen as in the main window's sidebar, the line fill, the ink label and the marker.
+    Row(
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(DesktopDimens.RelatedGap),
         modifier = Modifier
             .fillMaxWidth()
             .tvFocusRing(focused = focused, shape = shape)
-            .background(if (selected) colors.raised else Color.Transparent, shape)
+            .background(sidebarRowFill(chosen = selected, hovered = false), shape)
             .clickable(interactionSource = source, indication = null, role = Role.Tab, onClick = onClick)
             .heightIn(min = SettingsWindowDefaults.NavItemHeight)
             .padding(horizontal = DesktopDimens.RowPadding),
     ) {
+        SidebarRowMarker(chosen = selected)
         val style = CloudStreamTheme.typography.label
         BasicText(
             label,

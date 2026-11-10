@@ -270,7 +270,7 @@ private fun PanelHost(
 /**
  * The scrim over [SidePanelHost]'s content, at [SCRIM_ALPHA] times the panel's travel.
  *
- * It is the `bg` token — the palette has nine colours and a scrim is not a tenth. Its opacity
+ * It is the `bg` token — the palette has ten colours and a scrim is not an eleventh. Its opacity
  * rides the slide rather than cutting in: a scrim that appears at full strength on frame one
  * announces the panel before the panel arrives, and on a 10-foot screen that reads as a flash.
  *
