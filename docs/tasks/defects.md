@@ -4072,3 +4072,30 @@ wrongly at some counts: Russian "Осталось 1 мин" is fine, but a full-
 **The fix, when there is a native review:** make it a `<plurals>` resource with the forms each locale needs, read with
 `pluralStringResource`, and move the strings oracle baseline for it (a plural is a new key shape in `decoded.tsv`). Until
 then the abbreviation is the hedge, and the machine translations are not to be "corrected" into full words without one.
+
+## BUG-97 — A file that could not be read put its path, and so the home directory, in its "not loaded" line, or stopped the launch · **low, security** · fixed in this PR
+
+The same class as `BUG-89`, earlier in `SandboxedExtensions.loadOne`. A file is read twice before it is stored, and
+neither read kept a path out of what the person sees:
+- **The published hash's check** (`ExtensionHash.verify`), when a hash is published for the file: a `.sha256`
+  sidecar, or a pinned official name. It had no catch. A jar the app could not read (unreadable, or gone between the
+  listing and the read) threw out of `loadOne`, so the whole scan failed, the app did not launch, and the exception,
+  path and all, was printed. The check commands (`--check-extensions`, `--scan`, the playback and subtitle checks)
+  ran into the same throw.
+- **The store's hash** (`sha256(source)`), for every file. It caught the `IOException` and used its message as the
+  "not loaded" reason. A `Files` or stream exception names the file's path, so the home directory reached a line that
+  is shown and printed at every launch.
+
+Found in review of #347 and #357.
+
+**Fix.** Both reads refuse that file in fixed words, `not loaded: the extension could not be read`, and the
+exception's message is not kept. The other files still load. A file refused at the first read has the verification
+`Skipped` with the same words, since no check was possible.
+
+**Proof,** all local (CI is off): `UnreadableExtensionTest`, 2, through `SandboxedExtensions` with an unreadable
+side-loaded jar. Each checks that the reason is exactly the fixed words and names no path, and that the next file still
+scans.
+- With no hash published, the store's hash is the first read. Red-checked: on master's code the reason was the
+  file's temporary path followed by `(Permission denied)`.
+- With a well-formed hash in a sidecar, the check is the first read. Red-checked: on master's code `scanInstalled`
+  threw `FileNotFoundException` naming the path.
