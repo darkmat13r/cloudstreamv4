@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.detail
 
 import com.lagradost.cloudstream3.APIHolder
+import com.lagradost.cloudstream4.extensions.untrustedText
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.StreamLink
@@ -75,14 +76,16 @@ class DesktopDetailSource : DetailSource {
  * (`KMP-76`), so this only changes units: the page keeps a score out of ten, the wire sends tenths.
  */
 internal fun RemoteDetails.toTitleDetail(providerName: String) = TitleDetail(
-    title = name,
+    // BUG-93: a plugin's words, drawn on the title page and in its top bar. Format characters go (U+202E would draw the
+    // rest of a title reversed), as they do on every other page that shows them.
+    title = name.untrustedText(MAX_TITLE_CODE_POINTS),
     providerName = providerName,
     typeName = type,
     year = year,
-    plot = plot?.withoutMarkup(),
+    plot = plot?.withoutMarkup()?.untrustedText(MAX_PLOT_CODE_POINTS),
     posterUrl = posterUrl,
     playData = dataUrl,
-    episodes = episodes.map { DetailEpisode(it.name, it.data, it.season, it.episode) },
+    episodes = episodes.map { DetailEpisode(it.name?.untrustedText(), it.data, it.season, it.episode) },
     score = facts.scoreTenths?.let { it / TENTHS },
     tags = facts.tags,
     contentRating = facts.contentRating,
@@ -278,3 +281,9 @@ private fun displayName(subtitle: RemoteSubtitle): String {
 private const val REFERER = "Referer"
 private const val USER_AGENT = "User-Agent"
 private const val MAX_CODE_CHARS = 3
+
+/** As long as a title on the title page may be: past it, an ellipsis. The default, 160, would cut real ones. */
+private const val MAX_TITLE_CODE_POINTS = 300
+
+/** As long as a plot may be: what the wire already allows for it. */
+private const val MAX_PLOT_CODE_POINTS = 2048

@@ -2949,6 +2949,32 @@ reaches into Compose internals.
 Gradle, where `animationsDisabled` doesn't apply. The reason in `scripts/device-tests.sh`'s comment on its scale reset
 is corrected, because no case turns the scale off for itself any more. The reset itself is kept.
 
+## BUG-93 — The Mac title page drew a plugin's title, plot and episode names with characters that reverse text · **medium, security** · fixed in this PR
+
+Found by the extension-wire audit (finding A-3). Before a plugin's details reached the title page, they went through
+`cleaned()` (`PluginHostClient`), whose `sanitized()` removes only control characters (`Cc`). `toTitleDetail`
+passed the title and the episode names on as they were, and stripped only markup from the plot.
+- So U+202E RIGHT-TO-LEFT OVERRIDE, the isolates U+2066–2069, zero-width characters and the BOM (all `Cf`) reached
+  the screen.
+- A title such as `Safe Title<U+202E>exe.4pm` drew its end reversed, on the title page and in its top bar.
+- Every other page that shows a plugin's words already strips these: search, home, library, cast and
+  recommendations.
+
+**Fix.** `toTitleDetail` cleans each value with `untrustedText`, the same function the extensions screen uses. It
+removes control, format, separator, surrogate, private-use and unassigned code points, and works in code points, so a
+cut never leaves half a pair. Each value has its own cap:
+- the title, 300 code points (the default, 160, would cut real titles);
+- the plot, 2048, after markup goes; a plot was already one line of plain text;
+- each episode's name, 160.
+
+**Proof,** all local (CI is off): `TitlePageTextTest`, 4, made-up titles.
+- The audit's repro reads as written.
+- None of U+202E, U+202D, U+2066–2069, U+200B, U+200F or U+FEFF survives in the title, the plot or an episode's
+  name. Nor does a tag character outside the basic plane.
+- A plot is still one line of plain text.
+- A title past its cap ends in an ellipsis.
+- Against the old `toTitleDetail`, all four fail.
+
 ## BUG-74 — Train 9's player panels named real sites and titles · **low, test only**
 
 **Status:** fixed in this PR · the PM's call, 2026-11-08 · the rule `BUG-70` applied to `#205`
