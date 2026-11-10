@@ -143,3 +143,302 @@ JetBrains Mono — SIL Open Font License 1.1
 
     JetBrainsMono-OFL.txt      (OFL.txt)
       30f0c136e3c88e422d0791acd97238870f9054a9729bc34cf2ff0d4ed8cac4ad
+
+
+================================================================================
+Subtitle and legacy UI fonts (BUG-77, DEC-02)
+================================================================================
+
+  The fonts below replace proprietary fonts the repository used to ship, under the
+  same resource names, so no R field changes (app/api/classes-jar.api is unchanged).
+  Each is upstream's file byte for byte, only renamed to the resource name it
+  replaces, except Google Sans, which is derived (see its entry). The licence texts are packaged
+  with the app, in app/src/main/assets/licences/ (and core/ui/src/commonMain/composeResources/files/licences/ for :core:ui).
+
+================================================================================
+Google Sans — SIL Open Font License 1.1, no Reserved Font Name
+================================================================================
+
+  Replaces: Product Sans (Google, proprietary)
+  Source:    https://github.com/google/fonts
+             commit d4eb04601981780781306966afb88e876652bab4, ofl/googlesans/ (upstream googlefonts/googlesans, tag v14.000):
+             GoogleSans[GRAD,opsz,wght].ttf  d0a87d835a944b8b40d0e82a5651bb59ab97b936a2aeed5946eb57e7b2a3a90a
+             GoogleSans-Italic[GRAD,opsz,wght].ttf  b6662abd2131cad1b248750149a7f2b644f871ebcc9af7fe4cd1135cd290b6d1
+  Version:   14.000
+  Licence:   SIL Open Font License 1.1, no Reserved Font Name
+  DERIVED FILES. These are not upstream files: each is a static instance of the
+  variable font, subset, so they are Modified Font Software under the OFL. Upstream
+  declares no Reserved Font Name (TRADEMARKS.md, packaged beside it); "Google Sans" is a
+  trademark of Google LLC, kept here only in the font's own name table as fontTools
+  wrote it. Nothing here implies affiliation with or endorsement by Google.
+  
+  Google Sans has weights 400 to 700 only, so Thin and Light are the 400 instance and
+  Black the 700 instance (byte-identical copies). Italics come from the italic file.
+  
+  Built with fontTools 4.67.0 (PyPI, pinned), SOURCE_DATE_EPOCH=1793117090
+  (the google/fonts commit time, so head.modified is fixed), for wght in 400, 500, 700:
+  
+    fonttools varLib.instancer <variable font> wght=<w> opsz=18 GRAD=0 \
+        --static --update-name-table -o GoogleSans-<w>[Italic].ttf
+    pyftsubset GoogleSans-<w>[Italic].ttf --unicodes="<ranges>" --layout-features='*' \
+        --name-IDs='*' --name-languages='*' --notdef-outline --glyph-names
+  
+  <ranges> (Latin, Latin Extended, IPA, combining marks, Greek and Coptic, Cyrillic
+  and its supplement, Latin Extended Additional incl. Vietnamese, Greek Extended,
+  punctuation, currency, letterlike, arrows, maths operators, shapes, ligatures):
+    U+0000-024F, U+0250-02FF, U+0300-036F, U+0370-03FF, U+0400-04FF, U+0500-052F
+    U+1E00-1EFF, U+1F00-1FFF, U+2000-206F, U+20A0-20CF, U+2100-218F, U+2190-21FF
+    U+2200-22FF, U+25A0-25FF, U+FB00-FB06, U+FEFF, U+FFFD
+
+  Copyright 2025 The Google Sans Project Authors (https://github.com/googlefonts/googlesans)
+
+  WHAT IS INCLUDED
+
+    productsans_thin.ttf          (GoogleSans-400.ttf)
+      2f6af843a8b56a4c97a5082927a586274b9af4ee5a3c7720c3965cd9f2b6c61e
+    productsans_thinitalic.ttf    (GoogleSans-400Italic.ttf)
+      2dd9fd7be1a2dcd50bcd8a4a5fa2014d1f41dbd6151668db80acf32253795bea
+    productsans_light.ttf         (GoogleSans-400.ttf)
+      2f6af843a8b56a4c97a5082927a586274b9af4ee5a3c7720c3965cd9f2b6c61e
+    productsans_lightitalic.ttf   (GoogleSans-400Italic.ttf)
+      2dd9fd7be1a2dcd50bcd8a4a5fa2014d1f41dbd6151668db80acf32253795bea
+    productsans_regular.ttf       (GoogleSans-400.ttf)
+      2f6af843a8b56a4c97a5082927a586274b9af4ee5a3c7720c3965cd9f2b6c61e
+    productsans_italic.ttf        (GoogleSans-400Italic.ttf)
+      2dd9fd7be1a2dcd50bcd8a4a5fa2014d1f41dbd6151668db80acf32253795bea
+    productsans_medium.ttf        (GoogleSans-500.ttf)
+      67196e7c93874aede452700b9231382051e8470c6e3e4569834f9c2af5a6b7c6
+    productsans_mediumitalic.ttf  (GoogleSans-500Italic.ttf)
+      b75b0d5909331acb949fc3d50dda20b763739d8035dcb07340a9639219c10055
+    productsans_bold.ttf          (GoogleSans-700.ttf)
+      5c16fe705007ae9b4f6f7b332fbf5780882642721d4acc6ebdd145d3f0a9e3bb
+    productsans_bolditalic.ttf    (GoogleSans-700Italic.ttf)
+      41d38dbabec4f7483b9da493a1250debb7a68782cc361b48a3fd10c885a770f4
+    productsans_black.ttf         (GoogleSans-700.ttf)
+      5c16fe705007ae9b4f6f7b332fbf5780882642721d4acc6ebdd145d3f0a9e3bb
+    productsans_blackitalic.ttf   (GoogleSans-700Italic.ttf)
+      41d38dbabec4f7483b9da493a1250debb7a68782cc361b48a3fd10c885a770f4
+
+  The same twelve files, byte for byte, are also at
+  core/ui/src/commonMain/composeResources/font/productsans_*.ttf, for :core:ui.
+
+    app/src/main/assets/licences/GoogleSans-OFL.txt
+      (OFL.txt) 2b75ef20f13d83a7514aee452c4782c20cdc9ff2dee17600f44d37a06d4fb958
+    app/src/main/assets/licences/GoogleSans-TRADEMARKS.md
+      (TRADEMARKS.md) 215bc8c1ce46d1b81531f33ebb5af201e7a5da76b8f3ae4c705336fd70fc89e1
+    core/ui/src/commonMain/composeResources/files/licences/GoogleSans-OFL.txt
+      (OFL.txt) 2b75ef20f13d83a7514aee452c4782c20cdc9ff2dee17600f44d37a06d4fb958
+    core/ui/src/commonMain/composeResources/files/licences/GoogleSans-TRADEMARKS.md
+      (TRADEMARKS.md) 215bc8c1ce46d1b81531f33ebb5af201e7a5da76b8f3ae4c705336fd70fc89e1
+
+================================================================================
+Inter — SIL Open Font License 1.1
+================================================================================
+
+  Replaces: Netflix Sans (Netflix, proprietary)
+  Source:    https://github.com/rsms/inter
+             release v4.1, asset Inter-4.1.zip
+             (SHA-256 9883fdd4a49d4fb66bd8177ba6625ef9a64aa45899767dde3d36aa425756b11e), extras/ttf/
+  Version:   4.001 (release v4.1)
+  Licence:   SIL Open Font License 1.1
+
+  Copyright (c) 2016 The Inter Project Authors (https://github.com/rsms/inter)
+
+  WHAT IS INCLUDED
+
+    netflix_sans.ttf              (Inter-Regular.ttf)
+      40d692fce188e4471e2b3cba937be967878f631ad3ebbbdcd587687c7ebe0c82
+
+    app/src/main/assets/licences/Inter-OFL.txt
+      (LICENSE.txt) 262481e844521b326f5ecd053e59b98c8b2da78c8ee1bdbb6e8174305e54935a
+
+================================================================================
+Montserrat — SIL Open Font License 1.1
+================================================================================
+
+  Replaces: Gotham Medium (Hoefler & Co., proprietary)
+  Source:    https://github.com/JulietaUla/Montserrat
+             tag v7.222, commit 5dae7a4ef9c0bf9fe48dc54fd1076eefaa0a8c7e, fonts/ttf/
+  Version:   7.222
+  Licence:   SIL Open Font License 1.1
+
+  Copyright 2011 The Montserrat Project Authors (https://github.com/JulietaUla/Montserrat)
+
+  WHAT IS INCLUDED
+
+    gotham.ttf                    (Montserrat-Medium.ttf)
+      7ce96811837174f00c087b73332aed3f04a19069248ab46213d9ea05ff879cbc
+
+    app/src/main/assets/licences/Montserrat-OFL.txt
+      (OFL.txt) 41f82bb4d24b304f30f7136bc47abdd083782e4265c984160f5649d1e78ea49c
+
+================================================================================
+Jost* — SIL Open Font License 1.1
+================================================================================
+
+  Replaces: Futura Book (Bitstream, proprietary)
+  Source:    https://github.com/indestructible-type/Jost
+             tag 3.5, commit 2d521acf1613aee2847cceaeabe980a3d6df2bcc, fonts/ttf/
+  Version:   3.500
+  Licence:   SIL Open Font License 1.1
+
+  Copyright 2019 indestructible type* (https://github.com/indestructible-type)
+
+  WHAT IS INCLUDED
+
+    futura.ttf                    (Jost-400-Book.ttf)
+      60de951651870fd2dbbd099a96f9321f183171cd7d73047905787f37d2ec2a13
+
+    app/src/main/assets/licences/Jost-OFL.md
+      (LICENSE.md) 19c79f9c1fd0c058ec89701d3dcafe248b7a41f39c1f77448e40b8b06a843fcb
+
+================================================================================
+Liberation Serif — SIL Open Font License 1.1
+================================================================================
+
+  Replaces: Times New Roman (Monotype, proprietary)
+  Source:    https://github.com/liberationfonts/liberation-fonts
+             release 2.1.5, liberation-fonts-ttf-2.1.5.tar.gz
+             (SHA-256 7191c669bf38899f73a2094ed00f7b800553364f90e2637010a69c0e268f25d0)
+  Version:   2.1.5
+  Licence:   SIL Open Font License 1.1
+
+  Digitized data copyright (c) 2010 Google Corporation, with Reserved Font Arimo, Tinos and Cousine.
+  Copyright (c) 2012 Red Hat, Inc., with Reserved Font Name Liberation.
+
+  WHAT IS INCLUDED
+
+    times_new_roman.ttf           (LiberationSerif-Regular.ttf)
+      058ea80864aef09a23f45cbec2bb5400bc3dfbdea01c3f10538a21fcb497fb74
+
+    app/src/main/assets/licences/LiberationSerif-OFL.txt
+      (LICENSE) 93fed46019c38bbe566b479d22148e2e8a1e85ada614accb0211c37b2c61c19b
+
+================================================================================
+DejaVu Sans — Bitstream Vera Fonts licence, with public-domain DejaVu changes
+================================================================================
+
+  Replaces: Verdana (Microsoft, proprietary)
+  Source:    https://github.com/dejavu-fonts/dejavu-fonts
+             release version_2_37, asset dejavu-fonts-ttf-2.37.zip
+             (SHA-256 7576310b219e04159d35ff61dd4a4ec4cdba4f35c00e002a136f00e96a908b0a), ttf/
+  Version:   2.37
+  Licence:   Bitstream Vera Fonts licence, with public-domain DejaVu changes
+  Not OFL or Apache: the owner accepted this permissive licence for DejaVu (BUG-77). It
+  allows redistribution; a modified font must be renamed, and none is modified here.
+
+  Fonts are (c) Bitstream (see the licence). DejaVu changes are in the public domain.
+  Glyphs imported from Arev fonts are (c) Tavmjong Bah.
+
+  WHAT IS INCLUDED
+
+    verdana.ttf                   (DejaVuSans.ttf)
+      7da195a74c55bef988d0d48f9508bd5d849425c1770dba5d7bfc6ce9ed848954
+
+    app/src/main/assets/licences/DejaVuSans-LICENSE.txt
+      (LICENSE) 7a083b136e64d064794c3419751e5c7dd10d2f64c108fe5ba161eae5e5958a93
+
+================================================================================
+Fira Sans — SIL Open Font License 1.1
+================================================================================
+
+  Replaces: Trebuchet MS (Microsoft, proprietary)
+  Source:    https://github.com/bBoxType/FiraSans
+             commit f54eeb3124c63fe9b5bcd36d09d1cd46788cd15e (the repository has no tags),
+             Fira_Sans_4_3/Fonts/Fira_Sans_TTF_4301/Normal/Roman/
+  Version:   4.301
+  Licence:   SIL Open Font License 1.1
+
+  Digitized data copyright 2012-2018: The Mozilla Foundation, Telefonica S.A., Carrois Corporate GbR and bBox Type GmbH
+
+  WHAT IS INCLUDED
+
+    trebuchet_ms.ttf              (FiraSans-Regular.ttf)
+      43c240a110cf888686d13cd17400fd0ca376ce55656150e52abff95f67a9532e
+
+    app/src/main/assets/licences/FiraSans-OFL.txt
+      (OFL.txt) 5c29650250730778eccb5475b112d32a8e0c9dd1860d9509693329652bf8e9eb
+
+================================================================================
+Comic Neue — SIL Open Font License 1.1
+================================================================================
+
+  Replaces: Comic Sans MS (Microsoft, proprietary)
+  Source:    https://github.com/crozynski/comicneue
+             tag 2.51, commit 1fa968608b1f4f7f1775824df3d2081fc93e2e9f, Fonts/TTF/ComicNeue/
+  Version:   2.003 (release 2.51)
+  Licence:   SIL Open Font License 1.1
+
+  Copyright 2014 The Comic Neue Project Authors (https://github.com/crozynski/comicneue)
+
+  WHAT IS INCLUDED
+
+    comic_sans.ttf                (ComicNeue-Regular.ttf)
+      a0ee5a37c8b27c4db0700137d928598b1e23b0089e1546a8961909176b779360
+
+    app/src/main/assets/licences/ComicNeue-OFL.txt
+      (OFL.txt) 7c38a22e5878e60fe423360553e63dd7be23d29f1f60336034935dbfc96e8320
+
+================================================================================
+Source Sans 3 — SIL Open Font License 1.1
+================================================================================
+
+  Replaces: Lucida Grande (Bigelow & Holmes, proprietary)
+  Source:    https://github.com/adobe-fonts/source-sans
+             release 3.052R, asset TTF-source-sans-3.052R.zip
+             (SHA-256 1b0dd1ec44b39f1dd98bbd153a1a3815f083639874ddee02c842bd601bad3d21), TTF/
+  Version:   3.052
+  Licence:   SIL Open Font License 1.1
+
+  Copyright 2010-2022 Adobe (http://www.adobe.com/), with Reserved Font Name 'Source'.
+
+  WHAT IS INCLUDED
+
+    lucida_grande.ttf             (SourceSans3-Regular.ttf)
+      4644c81b86ec9caaa76b634889968ed3c4f4f52f054855933acc7c2b21e53b0f
+
+    app/src/main/assets/licences/SourceSans3-OFL.md
+      (LICENSE.md, at tag 3.052R) 89ad2c4f66dd29127527493e729c31e731f111cf10faf5774c3db9275ed0c22c
+
+================================================================================
+JetBrains Mono — SIL Open Font License 1.1
+================================================================================
+
+  Replaces: Consolas (Microsoft, proprietary)
+  Source:    https://github.com/JetBrains/JetBrainsMono
+             release v2.304, asset JetBrainsMono-2.304.zip
+             (SHA-256 6f6376c6ed2960ea8a963cd7387ec9d76e3f629125bc33d1fdcd7eb7012f7bbf), fonts/ttf/
+  Version:   2.304
+  Licence:   SIL Open Font License 1.1
+
+  Copyright 2020 The JetBrains Mono Project Authors (https://github.com/JetBrains/JetBrainsMono)
+
+  WHAT IS INCLUDED
+
+    consola.ttf                   (JetBrainsMono-Regular.ttf)
+      a0bf60ef0f83c5ed4d7a75d45838548b1f6873372dfac88f71804491898d138f
+
+  The same file KMP-97 ships as jetbrainsmono_regular.ttf.
+
+    app/src/main/assets/licences/JetBrainsMono-OFL.txt
+      (OFL.txt) 30f0c136e3c88e422d0791acd97238870f9054a9729bc34cf2ff0d4ed8cac4ad
+
+================================================================================
+STIX Two Text — SIL Open Font License 1.1
+================================================================================
+
+  Replaces: STIXGeneral 1.1.0 (STIX Font License 2010, not OFL)
+  Source:    https://github.com/stipub/stixfonts
+             tag v2.13b171, commit 744a22a4dd626cd14d75728aef34fc8ad7c85db0, fonts/static_ttf/
+  Version:   2.13 b171
+  Licence:   SIL Open Font License 1.1
+
+  Copyright 2001-2021 The STIX Fonts Project Authors (https://github.com/stipub/stixfonts)
+
+  WHAT IS INCLUDED
+
+    stix_general.ttf              (STIXTwoText-Regular.ttf)
+      0566a1be411c0b2463fad8563b33f1c299442b8882c7fce9ef95e079f43233da
+
+    app/src/main/assets/licences/STIXTwoText-OFL.txt
+      (OFL.txt) 0c8825913b60d858aacdb33c4ca6660a7d64b0d6464702efbb19313f5765861a

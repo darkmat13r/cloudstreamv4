@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">"The quick brown fox jumps over the lazy dog"</string>
 <string name="subtitles_file_empty">"この字幕ファイルは空です"</string>
 <string name="subtitles_filter_lang">"優先メディア言語でフィルタ"</string>
+<string name="subtitles_font_app">"アプリのフォント"</string>
 <string name="subtitles_format_unsupported">"この字幕形式には対応していません"</string>
 <string name="subtitles_from_embedded">"埋め込み"</string>
 <string name="subtitles_from_online">"オンライン"</string>

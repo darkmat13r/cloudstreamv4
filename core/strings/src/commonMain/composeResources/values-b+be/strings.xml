@@ -1007,6 +1007,7 @@
 <string name="subtitles_example_text">У цэху з’яўляецца чорт, кроўю і пугай фарбуе свежы шампіньён</string>
 <string name="subtitles_file_empty">Гэты файл субцітраў пусты</string>
 <string name="subtitles_filter_lang">Фільтраваць па прыярытэтнай мове медыя</string>
+<string name="subtitles_font_app">Шрыфт праграмы</string>
 <string name="subtitles_format_unsupported">Гэты фармат субцітраў не падтрымліваецца</string>
 <string name="subtitles_from_embedded">Убудаваны</string>
 <string name="subtitles_from_online">Сеткавы</string>

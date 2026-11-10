@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">"Phụ đề của bạn sẽ trông tương tự như thế này"</string>
 <string name="subtitles_file_empty">"Tệp phụ đề này trống"</string>
 <string name="subtitles_filter_lang">"Lọc theo ngôn ngữ ưu tiên"</string>
+<string name="subtitles_font_app">"Phông chữ của ứng dụng"</string>
 <string name="subtitles_format_unsupported">"Định dạng phụ đề này không được hỗ trợ"</string>
 <string name="subtitles_from_embedded">"Được nhúng"</string>
 <string name="subtitles_from_online">"Trực tuyến"</string>

@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">Vogel Quax zwickt Johnys Pferd Bim</string>
 <string name="subtitles_file_empty">Diese Untertiteldatei ist leer</string>
 <string name="subtitles_filter_lang">Nach bevorzugter Mediensprache filtern</string>
+<string name="subtitles_font_app">App-Schriftart</string>
 <string name="subtitles_format_unsupported">Dieses Untertitelformat wird nicht unterstützt</string>
 <string name="subtitles_from_embedded">Eingebettet</string>
 <string name="subtitles_from_online">Online</string>

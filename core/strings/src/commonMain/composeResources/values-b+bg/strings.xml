@@ -998,6 +998,7 @@
 <string name="subtitles_example_text">Бързата кафява лисица прескача мързеливото куче</string>
 <string name="subtitles_file_empty">Този файл със субтитри е празен</string>
 <string name="subtitles_filter_lang">Филтриране по предпочитан медиен език</string>
+<string name="subtitles_font_app">Шрифт на приложението</string>
 <string name="subtitles_format_unsupported">Този формат на субтитри не се поддържа</string>
 <string name="subtitles_from_embedded">Вграден</string>
 <string name="subtitles_from_online">Онлайн</string>

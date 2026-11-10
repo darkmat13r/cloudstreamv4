@@ -810,6 +810,7 @@
 <string name="subtitles_example_text">"Sær golfer med kølle vant sexquiz på WC i hjemby"</string>
 <string name="subtitles_file_empty">"Denne undertekstfilen er tom"</string>
 <string name="subtitles_filter_lang">"Filtrer etter foretrukket mediaspråk"</string>
+<string name="subtitles_font_app">"Appens skrifttype"</string>
 <string name="subtitles_format_unsupported">"Dette undertekstformatet støttes ikke"</string>
 <string name="subtitles_load_failed">"Kunne ikke laste disse undertekstene"</string>
 <string name="subtitles_outline">"Omriss"</string>

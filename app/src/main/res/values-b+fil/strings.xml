@@ -508,6 +508,7 @@
 <string name="subs_window_color">"Kulay ng Bintana"</string>
 <string name="subscribe_tooltip">"Bagong notipikasyon ng kabanata"</string>
 <string name="subtitles_file_empty">"Walang laman ang subtitle file na ito"</string>
+<string name="subtitles_font_app">"Font ng app"</string>
 <string name="subtitles_format_unsupported">"Hindi sinusuportahan ang format ng subtitle na ito"</string>
 <string name="subtitles_load_failed">"Hindi ma-load ang mga subtitle na ito"</string>
 <string name="subtitles_settings">"Pagpipilian sa Saling-teksto"</string>

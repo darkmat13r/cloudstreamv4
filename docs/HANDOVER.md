@@ -414,7 +414,6 @@ Nothing below can be settled by reading the code.
 
 | | | |
 |---|---|---|
-| `DEC-02` | **Product Sans** | Measured: 24 files, two byte-identical sets of 12, genuine Google Product Sans v1.009 (`GOOG` vendor ID, empty copyright field, licence URL pointing at a page that does not exist). Eight other proprietary fonts sit beside them in the subtitle picker. Dormant while private; wakes on first distribution. Blocks `DS-05`. |
 | `DEC-04` | **iOS extensions** | Unanswered. Blocks `KMP-08` and the iOS half of plan row 18. |
 | `DEC-05` | **macOS runner, minimum iOS** | Blocks `INF-02`, which is **moot while CI stays off**. |
 | `DEC-06` | **Apple TV** | Blocking nothing today. |

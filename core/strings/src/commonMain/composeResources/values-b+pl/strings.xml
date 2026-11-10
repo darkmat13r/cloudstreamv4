@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">Pchnąć w tę łódź jeża lub ośm skrzyń fig</string>
 <string name="subtitles_file_empty">Ten plik napisów jest pusty</string>
 <string name="subtitles_filter_lang">Filtrowanie wg preferowanego języka</string>
+<string name="subtitles_font_app">Czcionka aplikacji</string>
 <string name="subtitles_format_unsupported">Ten format napisów nie jest obsługiwany</string>
 <string name="subtitles_from_embedded">Osadzone</string>
 <string name="subtitles_from_online">Online</string>

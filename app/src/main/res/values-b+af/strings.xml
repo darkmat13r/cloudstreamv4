@@ -477,6 +477,7 @@
 <string name="subs_window_color">"Venster kleur"</string>
 <string name="subscribe_tooltip">"Nuwe episode notifikasie"</string>
 <string name="subtitles_file_empty">"Hierdie onderskriflêer is leeg"</string>
+<string name="subtitles_font_app">"Toepassingsfont"</string>
 <string name="subtitles_format_unsupported">"Hierdie onderskrifformaat word nie ondersteun nie"</string>
 <string name="subtitles_load_failed">"Kon nie hierdie onderskrifte laai nie"</string>
 <string name="subtitles_settings">"Onderskrifinstellings"</string>

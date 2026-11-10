@@ -896,6 +896,7 @@
 <string name="subtitles_example_text">Fogts čuhņā mīļi lenc - ģērbj, žvadz, pūkšķ</string>
 <string name="subtitles_file_empty">Šis subtitru fails ir tukšs</string>
 <string name="subtitles_filter_lang">Atlasīt pēc vēlamās multimediju valodas</string>
+<string name="subtitles_font_app">Lietotnes fonts</string>
 <string name="subtitles_format_unsupported">Šis subtitru formāts netiek atbalstīts</string>
 <string name="subtitles_from_embedded">Iegultie</string>
 <string name="subtitles_from_online">No interneta</string>

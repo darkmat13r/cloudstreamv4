@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">El pingüino Wenceslao hizo kilómetros bajo exhaustiva lluvia y frío; añoraba a su querido cachorro</string>
 <string name="subtitles_file_empty">Este archivo de subtítulos está vacío</string>
 <string name="subtitles_filter_lang">Filtrar por idioma preferido</string>
+<string name="subtitles_font_app">Fuente de la aplicación</string>
 <string name="subtitles_format_unsupported">Este formato de subtítulos no es compatible</string>
 <string name="subtitles_from_embedded">Integrado</string>
 <string name="subtitles_from_online">En línea</string>

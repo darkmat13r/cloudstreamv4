@@ -120,6 +120,25 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Thirty-second move, 2026-11-10 — `I18N-23`, 1 new key for the subtitle picker (`BUG-77`)
+
+New keys are approved in general (`I18N-09`). Additive: `subtitles_font_app` ("App font"), no plural, authored in all 62
+directories (`OWN` grows by 62). The Android res came out with 62 lines added and 0 removed.
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 57,634 | 57,696 | 62 | 0 | 0 |
+| `emitted.tsv` | 60,335 | 60,399 | 64 | 0 | 0 |
+| `lookup.tsv` | 104,013 | 104,100 | 87 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured against master's baseline by whole-line set difference twice over, a multiset in Python and `sort | comm`: 0 lines
+lost in any file, every line that was in a file before is in it after in the same order, and every added line names
+`subtitles_font_app`. `report.txt` moved only in its counts: `OWN` 55,560 -> 55,622, visible keys 1,160 -> 1,161, plurals
+unchanged at 30, and 1 more value in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
+`ANDROID_FALLBACK` at 173.** `expectedOwn` 55,560 -> 55,622. Measured over the thirty-first move (`I18N-22`).
+
 ## Thirty-first move, 2026-11-09 — `I18N-22`, 1 new plural for `KMP-101`'s S3 banner
 
 New keys are approved in general (`I18N-09`). Additive: one plural, `search_state_retry_sources`, authored in all 62

@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">"The quick brown fox jumps over the lazy dog"</string>
 <string name="subtitles_file_empty">"此字幕文件为空"</string>
 <string name="subtitles_filter_lang">"按首选片源语言过滤"</string>
+<string name="subtitles_font_app">"应用字体"</string>
 <string name="subtitles_format_unsupported">"不支持此字幕格式"</string>
 <string name="subtitles_from_embedded">"内嵌"</string>
 <string name="subtitles_from_online">"在线"</string>

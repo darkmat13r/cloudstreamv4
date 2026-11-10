@@ -963,6 +963,7 @@
 <string name="subtitles_example_text">"De snelle bruine vos springt over de luie hond"</string>
 <string name="subtitles_file_empty">"Dit ondertitelbestand is leeg"</string>
 <string name="subtitles_filter_lang">"Filter op gewenste mediataal"</string>
+<string name="subtitles_font_app">"App-lettertype"</string>
 <string name="subtitles_format_unsupported">"Deze ondertitelindeling wordt niet ondersteund"</string>
 <string name="subtitles_from_online">"Online"</string>
 <string name="subtitles_load_failed">"Deze ondertitels konden niet worden geladen"</string>

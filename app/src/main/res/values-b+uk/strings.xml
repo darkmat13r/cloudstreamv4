@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">"Щастям б’єш жук їх глицю в фон й ґедзь пріч"</string>
 <string name="subtitles_file_empty">"Цей файл субтитрів порожній"</string>
 <string name="subtitles_filter_lang">"Фільтрувати за бажаною мовою медіа"</string>
+<string name="subtitles_font_app">"Шрифт застосунку"</string>
 <string name="subtitles_format_unsupported">"Цей формат субтитрів не підтримується"</string>
 <string name="subtitles_from_embedded">"Вбудовані"</string>
 <string name="subtitles_from_online">"Мережеві"</string>

@@ -1007,6 +1007,7 @@
 <string name="subtitles_example_text">다람쥐 헌 쳇바퀴에 타고파</string>
 <string name="subtitles_file_empty">이 자막 파일은 비어 있습니다</string>
 <string name="subtitles_filter_lang">선호하는 미디어 언어로 필터링</string>
+<string name="subtitles_font_app">앱 글꼴</string>
 <string name="subtitles_format_unsupported">지원되지 않는 자막 형식입니다</string>
 <string name="subtitles_from_embedded">내장 자막</string>
 <string name="subtitles_from_online">온라인</string>

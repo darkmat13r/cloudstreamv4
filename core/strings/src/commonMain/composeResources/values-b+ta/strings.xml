@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">விரைவான பழுப்பு நரி சோம்பேறி நாய் மீது குதிக்கிறது</string>
 <string name="subtitles_file_empty">இந்த வசன வரி கோப்பு காலியாக உள்ளது</string>
 <string name="subtitles_filter_lang">விருப்பமான ஊடக மொழியால் வடிகட்டவும்</string>
+<string name="subtitles_font_app">ஆப்ஸ் எழுத்துரு</string>
 <string name="subtitles_format_unsupported">இந்த வசன வரி வடிவம் ஆதரிக்கப்படவில்லை</string>
 <string name="subtitles_from_embedded">உட்பொதிக்கப்பட்டது</string>
 <string name="subtitles_from_online">ஆன்லைனில்</string>
