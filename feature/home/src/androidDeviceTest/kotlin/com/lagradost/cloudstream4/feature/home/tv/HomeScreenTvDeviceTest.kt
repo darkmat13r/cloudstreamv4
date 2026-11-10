@@ -71,7 +71,7 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.search_state_
 import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
-import com.lagradost.cloudstream4.core.theme.cloudStreamTypography
+import com.lagradost.cloudstream4.core.theme.CloudStreamTypography
 import com.lagradost.cloudstream4.feature.home.HomeAction
 import com.lagradost.cloudstream4.feature.home.HomeBookmark
 import com.lagradost.cloudstream4.feature.home.HomeBookmarkStore
@@ -145,6 +145,9 @@ class HomeScreenTvDeviceTest {
     private var mayTakeFocus = true
     /** The view hosting the screen, which `HomeTvFragment.onResume` asks for focus as the page first opens. */
     private var hostView: android.view.View? = null
+
+    /** The typography the screen is drawn with, read from the theme inside the composition. */
+    private var themeTypography: CloudStreamTypography? = null
     private val hostFocus = HomeHostFocus()
 
     private val viewModel by lazy { HomeViewModel(source, scope, memory, history, shelf) }
@@ -169,6 +172,8 @@ class HomeScreenTvDeviceTest {
                 onDispose { closes.remove() }
             }
             CloudStreamTheme {
+                val typography = CloudStreamTheme.typography
+                androidx.compose.runtime.SideEffect { themeTypography = typography }
                 Box(Modifier.fillMaxSize().background(CloudStreamTheme.colors.bg)) {
                     if (onScreen) {
                         val density = LocalDensity.current
@@ -1470,7 +1475,7 @@ class HomeScreenTvDeviceTest {
         rule.onNodeWithText(OFFLINE).assertIsDisplayed()
         val headline = "${ONE.name} needs a connection"
         val drawn = rule.onNodeWithText(headline).getUnclippedBoundsInRoot().heightDp()
-        val atOne = heightAtOne(headline, cloudStreamTypography().label).value
+        val atOne = heightAtOne(headline, themeTypography!!.label).value
         assertTrue("the headline is taller at 2.0, $drawn against $atOne at 1.0", drawn > atOne * 1.5f)
         rule.onAllNodesWithText("Your bookmarks are saved on this device.").fetchSemanticsNodes().let {
             assertTrue("no 3g body", it.isEmpty())
@@ -1478,6 +1483,7 @@ class HomeScreenTvDeviceTest {
         val retry = rule.onNode(isFocused()).getUnclippedBoundsInRoot()
         val line = rule.onNodeWithText(headline).getUnclippedBoundsInRoot()
         assertTrue("the headline is one line beside Try again, was $line against $retry", line.bottom - line.top < retry.bottom - retry.top)
+        assertTrue("the headline ends before Try again, was $line against $retry", line.right <= retry.left)
         assertTrue("the button is inside the band", retry.bottom.value <= SCREEN_HEIGHT_DP - 28f + GEOMETRY_SLACK)
     }
 
@@ -1497,7 +1503,7 @@ class HomeScreenTvDeviceTest {
 
         assertEquals("the chrome rests", CHROME_CONTROL_TOP, rule.onNodeWithContentDescription(SOURCE_ONE).getUnclippedBoundsInRoot().top.value, GEOMETRY_SLACK)
         val notice = rule.onNodeWithText(OFFLINE).assertIsDisplayed().getUnclippedBoundsInRoot().heightDp()
-        val atOne = heightAtOne(OFFLINE, cloudStreamTypography().label).value
+        val atOne = heightAtOne(OFFLINE, themeTypography!!.label).value
         assertTrue("the notice is taller at 1.5, $notice against $atOne at 1.0", notice > atOne * 1.3f)
         rule.onNodeWithText("Your bookmarks are saved on this device.").assertIsDisplayed()
         rule.onNode(isFocused()).assertIsDisplayed()

@@ -3894,6 +3894,8 @@ takes focus. The band fits, so the page does not move, and the chrome and its of
 - **Font scale:** English with "Source One" at 2.0 is the band, with the chrome at rest and its notice shown, and its
   headline measured taller than the same words at 1.0. It fails, as the three above do, with the fit check forced to pass.
   At 1.5 it stays 3g with the chrome at rest, and the notice is measured taller than at 1.0.
+- From #330's review, in a follow-up: at 2.0 the test also asserts that the headline ends before Try again, and both
+  font-scale tests measure their 1.0 heights with the typography the theme draws the screen with.
 - English with "Source One" stays 3g: `offlineKeepsTheBookmarksAboveTheStateDimmedAndSaysWhatNeedsTheConnection` and
   `home-offline-bookmarks-focus-retry` pass unchanged. `aStateTooTallUnderContinueWatchingMovesTheChromeWhollyOffTheScreen`
   passes too.
