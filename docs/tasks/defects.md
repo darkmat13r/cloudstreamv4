@@ -3720,3 +3720,31 @@ a stack frame, it is kept.
     is under 24 characters.
 - **Follow-up, not here:** `close()` waits up to 500 ms for stderr to drain, so a report made after it can still miss
   the end of a slow host's output.
+
+## BUG-89 — Two identical extension files raced for one store entry, and the loser failed the whole launch · **medium** · measured 2026-11-10
+
+**Found** while building `KMP-110b`'s hold tests: two files with the same bytes in `~/.cloudstream4/extensions`,
+loaded at once, both want `.store/<sha256>.jar`.
+
+**Cause:**
+- **One staging name for one target.** `SandboxedExtensions.toStore` staged every copy of a hash as
+  `.store/<sha256>.jar.part`, and deleted it first. Two loads at once deleted or moved each other's staging file, and one
+  move failed with `NoSuchFileException`. `convertIntoStore` had the same shared name for `.cs3` conversions
+  (`<target>.staging`).
+- **The failure escaped the load.** `loadOne` caught only `IllegalStateException` from `toStore`. An `IOException` left
+  `loadInstalled` (and `scanInstalled`), and with it the launch.
+
+**Fix:**
+- Each copy and each conversion gets a staging file of its own (`Files.createTempFile` in the store), so two cannot
+  take each other's.
+- A move that fails anyway counts as success only when the target is there and is exactly these bytes (its SHA-256
+  matches); otherwise the failure stands.
+- An `IOException` from the store refuses that one file ("the extension store could not be written"), and the launch
+  goes on. Its message is not kept, since a `Files` exception names the home directory.
+
+**Proof,** all local (CI is off):
+- **Red,** against master's code: `StoreRaceTest`'s two cases both failed. Four identical jars scanned at once, 40 rounds
+  with a fresh store each: `java.nio.file.NoSuchFileException` escaped `scanInstalled`. A store that cannot be written:
+  `java.io.FileNotFoundException (Permission denied)` escaped too.
+- **Green:** `StoreRaceTest` 2 of 2, `ConvertIntoStoreTest` 5 of 5, `:desktopApp:jvmTest` 745 of 745. The five gates
+  passed, 272 XML results with 0 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged.
