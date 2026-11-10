@@ -15,6 +15,7 @@ import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanSeverity
 import java.io.File
 import java.io.IOException
 import java.nio.file.Files
+import java.nio.file.LinkOption
 import java.nio.file.StandardCopyOption
 import java.security.MessageDigest
 import kotlinx.coroutines.Dispatchers
@@ -298,7 +299,8 @@ class SandboxedExtensions(
                     Files.move(staging.toPath(), target.toPath(), StandardCopyOption.ATOMIC_MOVE)
                 } catch (failure: IOException) {
                     // Someone else's copy of the same bytes may be there already. It counts only if it is exactly them.
-                    if (!(target.isFile && sha256(target) == sha256)) throw failure
+                    // A link there is not a store entry: the store treats links as nothing, everywhere.
+                    if (!(Files.isRegularFile(target.toPath(), LinkOption.NOFOLLOW_LINKS) && sha256(target) == sha256)) throw failure
                 }
             } finally {
                 staging.delete()
