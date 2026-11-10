@@ -19,6 +19,13 @@ A **gateway** in the app's own process: an HTTP/1.1 *origin* server on `127.0.0.
   connected-address check on every hop, and `Proxy.NO_PROXY`. The JVM validates TLS.
 - The media host's Seatbelt policy allows outbound **only** to `localhost:<gateway port>`. The `*:*` rule goes, and
   so does `mDNSResponder`, since the host no longer resolves anything (measured, §9).
+- **A host that plays a downloaded file has no network at all** (review of PR 2). It gets its file as a descriptor
+  and needs nothing else.
+- **Neither host may ask the system's certificate services** (`trustd`, `ocspd`, `securityd`). Behind the gateway
+  libVLC speaks only plain http to `127.0.0.1`. Those services fetch OCSP responses, CRLs and issuers on a caller's
+  behalf, so a crafted certificate could aim them at an address the kernel refuses the host itself. With sound off
+  and no certificate services, the media rules name no mach service. Then they write no `mach-lookup` rule at all,
+  because one with no names would allow every service.
 - **Order:** the gateway binds its port first, on both `127.0.0.1` and `[::1]`, and only then is the media host's
   profile written with that port. Seatbelt's `localhost:<port>` allows both loopback addresses (measured, §9). If the
   gateway held only one, another process could bind the same port on the other and catch whatever was aimed there.

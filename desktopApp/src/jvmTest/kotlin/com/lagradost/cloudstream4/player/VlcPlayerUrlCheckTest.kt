@@ -75,6 +75,13 @@ class VlcPlayerUrlCheckTest {
     }
 
     @Test
+    fun `a first url with an IDN host is played, written as punycode`() {
+        val resolve: (String) -> Array<InetAddress> = { host -> arrayOf(InetAddress.getByAddress(host, byteArrayOf(8, 8, 8, 8))) }
+        assertTrue(player(resolve).play("https://bücher.example/v.m3u8", null, null, null))
+        assertTrue("/u/https/xn--bcher-kva.example/v.m3u8" in sent.toString(Charsets.UTF_8), sent.toString(Charsets.UTF_8))
+    }
+
+    @Test
     fun `a stream player without its gateway plays nothing`() {
         val resolve = rebinding("stream.example", publicAnswers = Int.MAX_VALUE)
         assertFalse(player(resolve, through = null).play("https://stream.example/v.m3u8", null, null, null))

@@ -13,6 +13,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 import okhttp3.Dns
+import org.junit.Assume.assumeTrue
 
 /**
  * `KMP-113` with the real media host: libVLC 3 under its sandbox, behind its gateway. Skips without VLC.app or
@@ -90,6 +91,9 @@ class GatewayPlaybackTest {
         val pool = Executors.newSingleThreadExecutor()
         try {
             pool.submit(block).get(60, TimeUnit.SECONDS)
+        } catch (failure: java.util.concurrent.ExecutionException) {
+            // As it was thrown, so an assumption that fails is a skip, not a failure.
+            throw failure.cause ?: failure
         } finally {
             pool.shutdownNow()
         }
@@ -114,7 +118,7 @@ class GatewayPlaybackTest {
                     .also { gateway = it }
             },
             resolve = publicLookup,
-        ) ?: return@within60s
+        ).also { assumeTrue("no sandboxed player here (VLC missing, or no sandbox-exec)", it != null) }
         assertTrue(player!!.play("http://site.example:${site.port}/v.m3u8", null, null, null))
         // Positive control: libVLC reached the playlist, through the gateway.
         waitFor(20) { site.requests.get() >= 1 }
@@ -127,8 +131,9 @@ class GatewayPlaybackTest {
 
     @Test
     fun `a playlist url the rewriter leaves as written is one libVLC cannot reach - the sandbox refuses it`() = within60s {
-        val address = lanAddress() ?: return@within60s
-        val direct = counting("video/mp2t", address) { ByteArray(188) }
+        val address = lanAddress()
+        assumeTrue("this Mac has no address on a network", address != null)
+        val direct = counting("video/mp2t", address!!) { ByteArray(188) }
         // User info makes the gateway refuse to encode the url, so the rewriter leaves it as written, and libVLC tries it
         // itself. That is the case the design rests on: whatever the rewriter misses, only the sandbox stands in the way.
         val site = counting("application/vnd.apple.mpegurl") {
@@ -138,7 +143,7 @@ class GatewayPlaybackTest {
             silent = true,
             startGateway = { MediaGateway.start(null, null, allow = { it.port == 0 || it.port == site.port }, lookup = names) },
             resolve = publicLookup,
-        ) ?: return@within60s
+        ).also { assumeTrue("no sandboxed player here (VLC missing, or no sandbox-exec)", it != null) }
         assertTrue(player!!.play("http://site.example:${site.port}/v.m3u8", null, null, null))
         // Positive control: libVLC fetched the playlist through the gateway, so it has the url it would try.
         waitFor(20) { site.requests.get() >= 1 }

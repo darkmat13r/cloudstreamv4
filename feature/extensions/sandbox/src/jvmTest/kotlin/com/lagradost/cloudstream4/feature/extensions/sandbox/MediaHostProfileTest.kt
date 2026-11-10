@@ -29,9 +29,23 @@ class MediaHostProfileTest {
         assertTrue("(allow network-outbound (remote ip \"localhost:40125\"))" in profile, profile)
         assertFalse("\"*:*\"" in profile, "every address is open")
         assertFalse("mDNSResponder" in profile, "the resolver is open")
-        // A host that plays a file keeps the policy it had.
-        val file = launcher.mediaHostProfile(File("/Applications/VLC.app"), writable, silent = true, gatewayPort = null)
-        assertTrue("\"*:*\"" in file && "mDNSResponder" in file)
+        assertFalse("trustd" in profile || "ocspd" in profile || "SecurityServer" in profile, "certificate services are open")
+        // Silent, and no certificate services: the media rules name no service, and write no rule for none. An
+        // `allow mach-lookup` with no names would allow every service there is.
+        assertFalse(Regex("\\(allow mach-lookup\\s*\\)").containsMatchIn(profile), profile)
+        assertFalse("coreaudiod" in profile, "a silent host may reach audio")
+    }
+
+    @Test
+    fun `a host that plays a downloaded file has no network at all`() {
+        val launcher = HostLauncher.forThisProcess() ?: return
+        val file = launcher.mediaHostProfile(File("/Applications/VLC.app"), writable, silent = false, gatewayPort = null)
+        assertFalse("network-outbound" in file, file)
+        assertFalse("system-socket" in file, file)
+        assertFalse("trustd" in file || "ocspd" in file, "certificate services are open")
+        // With sound, the audio services are named.
+        assertTrue("coreaudiod" in file, file)
+        assertFalse(Regex("\\(allow mach-lookup\\s*\\)").containsMatchIn(file), file)
     }
 
     @Test

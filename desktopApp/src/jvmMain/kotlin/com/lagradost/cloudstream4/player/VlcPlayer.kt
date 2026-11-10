@@ -5,6 +5,7 @@ import androidx.compose.ui.graphics.asComposeImageBitmap
 import androidx.compose.ui.unit.IntSize
 import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
+import com.lagradost.cloudstream4.player.gateway.HlsRewriter
 import com.lagradost.cloudstream4.player.gateway.MediaGateway
 import com.lagradost.cloudstream4.player.MediaProtocol.writeText
 import java.io.DataOutputStream
@@ -162,7 +163,10 @@ class VlcPlayer private constructor(
      *   list, which is why a `#` is refused here as well as in `SandboxPolicy`.
      * @return false when the host has already gone, or when [url] or [audioUrl] no longer passes.
      */
-    fun play(url: String, referer: String?, userAgent: String?, audioUrl: String?): Boolean {
+    fun play(streamUrl: String, referer: String?, userAgent: String?, streamAudioUrl: String?): Boolean {
+        // KMP-113: as a playlist's urls are, so an IDN host or a character java.net.URI refuses does not fail it here.
+        val url = HlsRewriter.lenient(streamUrl)
+        val audioUrl = streamAudioUrl?.let(HlsRewriter::lenient)
         // BUG-90: checked again now, so a link that has turned private since it arrived fails at once. Every connection
         // after this is checked by the gateway (KMP-113): libVLC can reach nothing else.
         if (!SandboxPolicy.isPublicHttpUrl(url, resolve)) return false

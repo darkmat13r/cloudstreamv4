@@ -8139,8 +8139,12 @@ Ten mutations each fail what they should.
 - `play` re-checks the url (`BUG-90`), gives the gateway the stream's `Referer` and `User-Agent`, and sends libVLC
   only gateway urls. `OP_PLAY` carries no headers now.
 - OkHttp's own logger is off from app start.
-- An IDN host in a playlist url is written as punycode.
-- A host that plays a file is unchanged.
+- An IDN host, in a playlist url or the first url, is written as punycode.
+- A host that plays a downloaded file has no network at all (review): it has its file's descriptor, and a crafted
+  file that took over libVLC's demuxer would find nothing to reach.
+- Neither host may ask the system's certificate services (`trustd`, `ocspd` and the rest). Behind the gateway libVLC
+  speaks only plain http to `127.0.0.1`, and those services fetch on a caller's behalf, which would be a way around
+  the kernel's rule.
 
 Tests:
 - `GatewayPlaybackTest`, 2, with the real host: a segment on a refused host gets 0 requests; a url the rewriter

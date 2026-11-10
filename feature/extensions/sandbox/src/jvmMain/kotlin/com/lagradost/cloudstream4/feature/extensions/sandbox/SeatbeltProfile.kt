@@ -102,16 +102,23 @@ internal object SeatbeltProfile {
      *
      * @param audio false for a check that must make no sound: the kernel then refuses every route to an
      *   audio device, whatever libVLC is told.
+     * @param tls whether the host may ask the system's certificate services. A host behind its gateway speaks only plain
+     *   http to `127.0.0.1`, and a host that plays a file speaks to nobody, so neither needs them (`KMP-113`). They fetch
+     *   on a caller's behalf (OCSP, CRLs, issuers), so a crafted certificate could aim them at an address the kernel
+     *   would refuse the host itself.
      */
-    fun mediaHostRules(vlcApp: File, writable: File, audio: Boolean = true): List<String> = buildList {
+    fun mediaHostRules(vlcApp: File, writable: File, audio: Boolean = true, tls: Boolean = true): List<String> = buildList {
         add("(allow file-read* (subpath ${vlcApp.quoted()}))")
         add("(allow file-map-executable (subpath ${vlcApp.quoted()}) (subpath ${writable.quoted()}))")
         // Certificate checks are done by trustd, out of process: without it every https stream fails
         // with -9808. Audio devices are CoreAudio's: without it, "No audio output devices found".
-        add("(allow mach-lookup")
-        MEDIA_MACH_SERVICES.forEach { add("  (global-name \"$it\")") }
-        if (audio) MEDIA_AUDIO_MACH_SERVICES.forEach { add("  (global-name \"$it\")") }
-        add(")")
+        val services = (if (tls) MEDIA_MACH_SERVICES else emptyList()) + (if (audio) MEDIA_AUDIO_MACH_SERVICES else emptyList())
+        // Only with names: an `allow mach-lookup` with none would allow every service there is.
+        if (services.isNotEmpty()) {
+            add("(allow mach-lookup")
+            services.forEach { add("  (global-name \"$it\")") }
+            add(")")
+        }
         if (audio) add("(allow ipc-posix-shm-read* ipc-posix-shm-write-data (ipc-posix-name-prefix \"AudioIO\"))")
         add("(allow file-read*")
         MEDIA_READS.forEach { add("  (subpath \"$it\")") }
