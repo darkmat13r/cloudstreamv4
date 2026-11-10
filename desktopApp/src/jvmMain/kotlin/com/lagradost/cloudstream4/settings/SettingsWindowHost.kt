@@ -103,6 +103,7 @@ internal fun SettingsContent(
         onAction = { action ->
             when (action) {
                 is SettingsAction.SetAutoplayNext -> settings.setAutoplayNext(action.on)
+                is SettingsAction.SetSkipStamps -> settings.setSkipStamps(action.on)
 
                 is SettingsAction.SetShowRandom -> settings.setShowRandom(action.on)
                 is SettingsAction.SetPosterSize -> settings.setPosterSize(action.size)

@@ -115,6 +115,8 @@ import com.lagradost.cloudstream4.player.VlcPlayer
 import com.lagradost.cloudstream4.player.runDownloadPlaybackCheck
 import com.lagradost.cloudstream4.player.runPlaybackCheck
 import com.lagradost.cloudstream4.player.runSubtitleRenderCheck
+import com.lagradost.cloudstream4.player.SkipServices
+import com.lagradost.cloudstream4.player.skipQuery
 import com.lagradost.cloudstream4.player.episodeMeta
 import com.lagradost.cloudstream4.search.DesktopSearchHistory
 import com.lagradost.cloudstream4.search.DesktopSearchSource
@@ -227,6 +229,8 @@ fun main(args: Array<String>) {
     // KMP-90: the one store of the Mac's Settings. The player and the downloads engine read it from here.
     val settings = SettingsRepository(FileSettingsStorage()) { println("settings not saved: $it") }
     val downloads = DesktopDownloads(runningLimit = { settings.downloadsAtOnce.value })
+    // `KMP-86`: asked at each request, so turning Skip OP off stops the next one.
+    val skipServices = SkipServices(enabled = { settings.skipStamps.value })
     Runtime.getRuntime().addShutdownHook(Thread { runBlocking { downloads.close() } })
     // KMP-95: who is watching. Only the library is a profile's own; everything above is the Mac's.
     val profiles = DesktopProfiles(onSaveFailed = { println("profiles not saved: ${it::class.simpleName}") })
@@ -301,6 +305,7 @@ fun main(args: Array<String>) {
                                 },
                                 reviewRequests = reviewRequests,
                                 onSidebarShown = { shown -> window.rootPane.titleBarOverContent(shown) },
+                                skipServices = skipServices,
                             )
                         }
                     }
@@ -374,6 +379,8 @@ private sealed interface Screen {
  *   it (`KMP-98`) and plain over the player and the review, which have no column for the traffic lights to sit in.
  * @param openDownload a player for a downloaded episode, handed its file (`KMP-74`). A seam, so a test can see what is
  *   asked for without starting a media host.
+ * @param skipServices where the player asks for an episode's skip stamps (`KMP-86`). Null by default, so a test never
+ *   reaches the network; the app passes the real one, which asks nothing while Settings' Skip OP is off.
  */
 @Composable
 internal fun DesktopApp(
@@ -398,6 +405,7 @@ internal fun DesktopApp(
     // `KMP-110c`: Home's Add repository (board X6), and the Settings pane's Review, which shows the review here.
     onAddRepository: (() -> Unit)? = null,
     reviewRequests: Int = 0,
+    skipServices: SkipServices? = null,
 ) {
     val scope = remember { CoroutineScope(SupervisorJob() + Dispatchers.Default) }
     DisposableEffect(scope) {
@@ -598,6 +606,10 @@ internal fun DesktopApp(
                 }
                 // Read while playing, so a change in the Settings window applies to the next press.
                 val seekSeconds by playback.seekSeconds.collectAsState()
+                // `KMP-86`: the episode's stamps, once the page under the player has loaded.
+                val skipStamps = remember(screen, skipServices, detail != null) {
+                    detail?.let { loaded -> skipServices?.source(skipQuery(loaded, screen.episodeData)) }
+                }
                 if (player == null) {
                     PlayerUnavailable(onBack = { back(screen) })
                 } else {
@@ -637,6 +649,7 @@ internal fun DesktopApp(
                         },
                         artwork = { url -> PosterImage(url = url, modifier = Modifier.fillMaxSize()) },
                         keepFullscreen = handover::keepsFullscreen,
+                        skipStamps = skipStamps,
                     )
                 }
                 DisposableEffect(screen) {

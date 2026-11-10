@@ -192,6 +192,8 @@ data class TitleDetail(
     val resume: DetailResume? = null,
     val watchStatus: DetailWatchStatus? = null,
     val isFavourite: Boolean? = null,
+    /** The title's ids on other sites, for the Mac player's skip stamps (`KMP-86`). Never drawn. */
+    val ids: TitleIds = TitleIds(),
 ) {
     /**
      * What the primary button plays: where the viewer stopped, else the title, else where an unstarted show starts —
@@ -246,3 +248,12 @@ interface DetailSource {
     /** Adds or removes a favourite. The default does nothing, as [setWatchStatus] does. */
     suspend fun setFavourite(id: String, favourite: Boolean) = Unit
 }
+
+/**
+ * A title's ids on other sites (`KMP-86`), each already in its exact shape: what the Mac player sends to the skip
+ * services. Android's player reads its `LoadResponse` directly and leaves these empty.
+ *
+ * @param imdbId `tt` and 7 to 10 ASCII digits.
+ */
+@Immutable
+data class TitleIds(val malId: Int? = null, val tmdbId: Int? = null, val imdbId: String? = null)

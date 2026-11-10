@@ -677,7 +677,28 @@ internal fun RemoteDetails.cleaned(dropped: (String) -> Unit = {}) = copy(
     episodes = episodes.take(MAX_ITEMS).map { it.copy(name = it.name?.sanitized(), data = it.data.sanitized()) },
     facts = facts.cleaned(dropped),
     backdropUrl = backdropUrl.httpsUrlOrNull(),
+    ids = ids.cleaned(dropped),
 )
+
+/**
+ * The ids the Mac player may put in a skip service's URL (`KMP-86`), each in its exact shape or left out. Matched in
+ * explicit ASCII, never `isDigit`, which takes Arabic-Indic and other digits. MAL and TMDb are parsed and written again,
+ * so `007` goes out as `7`, the form Android's own `toIntOrNull` sends; zero is no id.
+ */
+internal fun RemoteIds.cleaned(dropped: (String) -> Unit = {}): RemoteIds {
+    fun number(name: String, value: String?): String? = value?.let {
+        it.takeIf(NUMERIC_ID::matches)?.toInt()?.takeIf { id -> id > 0 }?.toString()
+            ?: null.also { dropped("$name: not an id") }
+    }
+    return RemoteIds(
+        malId = number("malId", malId),
+        tmdbId = number("tmdbId", tmdbId),
+        imdbId = imdbId?.let { it.takeIf(IMDB_ID::matches) ?: null.also { dropped("imdbId: not an id") } },
+    )
+}
+
+private val NUMERIC_ID = Regex("^[0-9]{1,9}$")
+private val IMDB_ID = Regex("^tt[0-9]{7,10}$")
 
 /**
  * The facts the page may show, each checked for what it means once the reader has checked its shape (`KMP-76`).

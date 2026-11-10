@@ -66,12 +66,22 @@ internal object HostProtocol {
      *
      * Each is a tag byte, a length, and a slice read on its own. The facts come first, as they always have; after them
      * a reader takes each section by its tag and steps over one whose tag it does not know, rather than read it as the
-     * wrong section. Tags: facts `0x01`, art `0x21`; `0x31` is taken (`KMP-86`).
+     * wrong section. Tags: facts `0x01`, art `0x21`, ids `0x31` (`KMP-86`).
      */
     const val FACTS_V1 = 1
 
     /** The art section's tag (`KMP-100`), after the facts: a title's backdrop. A frame from before has none. */
     const val ART_V1 = 0x21
+
+    /**
+     * The ids section's tag (`KMP-86`), after the art: the title's MAL, TMDb and IMDb ids, which the Mac player sends
+     * to the skip services. Read by its tag (see [FACTS_V1]), so a reader that does not know it steps over it whole, and
+     * a frame from before has none.
+     */
+    const val IDS_V1 = 0x31
+
+    /** One id's bytes. Every real one is far shorter; past this it is skipped unread and the id is left out. */
+    const val MAX_ID_BYTES = 16
 
     /** A backdrop URL's bytes. Past this it is skipped unread and the page opens without one. */
     const val MAX_IMAGE_URL_BYTES = 2048
@@ -200,7 +210,19 @@ data class RemoteDetails(
     val facts: RemoteFacts = RemoteFacts.NONE,
     /** The wide art behind the title page's header (`KMP-100`), as the plugin wrote it until the app checks it. */
     val backdropUrl: String? = null,
+    /** The title's ids on other sites (`KMP-86`), as the plugin wrote them until the app checks them. */
+    val ids: RemoteIds = RemoteIds.NONE,
 )
+
+/**
+ * A title's ids on other sites (`KMP-86`), each as text. The Mac player puts them in a skip service's URL, so the app
+ * keeps only the exact shapes ([cleaned]): a MAL or TMDb id is 1 to 9 ASCII digits, an IMDb id `tt` and 7 to 10.
+ */
+data class RemoteIds(val malId: String? = null, val tmdbId: String? = null, val imdbId: String? = null) {
+    companion object {
+        val NONE = RemoteIds()
+    }
+}
 
 /**
  * A title's facts, as the app keeps them: every one in its bound, or absent.
@@ -370,26 +392,30 @@ internal fun DataOutputStream.writeDetails(details: RemoteDetails) {
     }
     writeFacts(details.facts)
     writeArt(details.backdropUrl)
+    writeIds(details.ids)
 }
 
 /**
  * @param dropped told the name of each fact left out and why, in words of this code's own: never the value, which is
  *   the plugin's and can carry an address or a token.
  */
-internal fun DataInputStream.readDetails(dropped: (String) -> Unit = {}): RemoteDetails = RemoteDetails(
-    name = readText(),
-    url = readText(),
-    type = readText(),
-    plot = readOptional(),
-    posterUrl = readOptional(),
-    year = readNumber(),
-    dataUrl = readOptional(),
-    episodes = List(readCount()) {
-        RemoteEpisode(readOptional(), readText(), readNumber(), readNumber())
-    },
-    facts = readFacts(dropped),
-    backdropUrl = readSectionsAfterFacts(dropped),
-)
+internal fun DataInputStream.readDetails(dropped: (String) -> Unit = {}): RemoteDetails {
+    val page = RemoteDetails(
+        name = readText(),
+        url = readText(),
+        type = readText(),
+        plot = readOptional(),
+        posterUrl = readOptional(),
+        year = readNumber(),
+        dataUrl = readOptional(),
+        episodes = List(readCount()) {
+            RemoteEpisode(readOptional(), readText(), readNumber(), readNumber())
+        },
+        facts = readFacts(dropped),
+    )
+    val after = readSectionsAfterFacts(dropped)
+    return page.copy(backdropUrl = after.backdropUrl, ids = after.ids)
+}
 
 /** After the episodes, so a reader from before `KMP-76` stops where it always did and never sees it. */
 private fun DataOutputStream.writeFacts(facts: RemoteFacts) {
@@ -450,14 +476,16 @@ private fun DataOutputStream.writeArt(backdropUrl: String?) {
 }
 
 /**
- * The sections after the facts, each by its tag (see [HostProtocol.FACTS_V1]): today the art, a title's backdrop. A
- * section whose tag this app does not know, or a second of one it has read, is stepped over whole, and said once. A
- * slice that cannot be read costs its section, not the page. Only a slice whose own length lies past the frame fails the
- * call. Nothing left means a host from before: no backdrop.
+ * The sections after the facts, each by its tag (see [HostProtocol.FACTS_V1]): the art, a title's backdrop, and the
+ * ids (`KMP-86`). A section whose tag this app does not know, or a second of one it has read, is stepped over whole, and
+ * said once. A slice that cannot be read costs its section, not the page. Only a slice whose own length lies past the
+ * frame fails the call. Nothing left means a host from before: no backdrop, no ids.
  */
-private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): String? {
+private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): AfterFacts {
     var backdrop: String? = null
+    var ids = RemoteIds.NONE
     var artRead = false
+    var idsRead = false
     var unknown = false
     while (available() > 0) {
         val tag = readUnsignedByte()
@@ -472,14 +500,20 @@ private fun DataInputStream.readSectionsAfterFacts(dropped: (String) -> Unit): S
                 dropped("art: a section that could not be read")
                 null
             }
+        } else if (tag == HostProtocol.IDS_V1 && !idsRead) {
+            idsRead = true
+            ids = readIds(readNBytes(length), dropped)
         } else {
             skipNBytes(length.toLong())
             unknown = true
         }
     }
     if (unknown) dropped("a section this app does not read")
-    return backdrop
+    return AfterFacts(backdrop, ids)
 }
+
+/** What [readSectionsAfterFacts] found: each section's value, or its none. */
+private class AfterFacts(val backdropUrl: String?, val ids: RemoteIds)
 
 private fun DataInputStream.readArtV1(dropped: (String) -> Unit): String? {
     if (!readBoolean()) return null
@@ -488,6 +522,42 @@ private fun DataInputStream.readArtV1(dropped: (String) -> Unit): String? {
     if (length > HostProtocol.MAX_IMAGE_URL_BYTES) {
         skipNBytes(length.toLong())
         dropped("backdropUrl: past its bytes")
+        return null
+    }
+    return String(readNBytes(length), Charsets.UTF_8)
+}
+
+/** After the art, appended: a reader from before `KMP-86` steps over it as a tag it does not know. */
+private fun DataOutputStream.writeIds(ids: RemoteIds) {
+    val section = ByteArrayOutputStream()
+    DataOutputStream(section).use { out ->
+        out.writeOptional(ids.malId)
+        out.writeOptional(ids.tmdbId)
+        out.writeOptional(ids.imdbId)
+    }
+    writeByte(HostProtocol.IDS_V1)
+    writeInt(section.size())
+    section.writeTo(this)
+}
+
+/** The ids section's slice: one that cannot be read costs the ids, never the page. */
+private fun readIds(section: ByteArray, dropped: (String) -> Unit): RemoteIds = try {
+    DataInputStream(ByteArrayInputStream(section)).use { input ->
+        RemoteIds(input.readId("malId", dropped), input.readId("tmdbId", dropped), input.readId("imdbId", dropped))
+    }
+} catch (unreadable: IOException) {
+    dropped("ids: a section that could not be read")
+    RemoteIds.NONE
+}
+
+/** One id, or null: one past [HostProtocol.MAX_ID_BYTES] is skipped unread, and named by [name], never by its value. */
+private fun DataInputStream.readId(name: String, dropped: (String) -> Unit): String? {
+    if (!readBoolean()) return null
+    val length = readInt()
+    if (length !in 0..available()) throw IOException("$name length $length out of range")
+    if (length > HostProtocol.MAX_ID_BYTES) {
+        skipNBytes(length.toLong())
+        dropped("$name: past its bytes")
         return null
     }
     return String(readNBytes(length), Charsets.UTF_8)
