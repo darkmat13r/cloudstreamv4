@@ -37,6 +37,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.FrameWindowScope
 import androidx.compose.ui.window.MenuBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
+import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopSidebarRowDefaults
+import com.lagradost.cloudstream4.core.designsystem.desktop.SidebarRowMarker
+import com.lagradost.cloudstream4.core.designsystem.desktop.hintColor
+import com.lagradost.cloudstream4.core.designsystem.desktop.sidebarRowFill
+import com.lagradost.cloudstream4.core.designsystem.material.CloudStreamMaterial
+import com.lagradost.cloudstream4.core.designsystem.material.material
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopPageBarDefaults
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopFeedback
 import com.lagradost.cloudstream4.core.designsystem.focus.tvFocusRing
@@ -58,9 +64,11 @@ import javax.swing.JRootPane
  *
  * `docs/plans/desktop-design.md` kept three tabs while three did the job, and said "a sidebar is worth it at the
  * fourth". Downloads is the fourth (`KMP-54`, board D1 of `design/Desktop Downloads.dc.html`), so this replaces the bar
- * for every top-level screen. Its look is board D1's: a 220 column on `surface` with a hairline on its right edge, 32
- * rows with a 16 glyph, and the chosen row `raised`. ⌘1 to ⌘3 reach the rows from the keyboard, through the menu bar's
- * Go menu ([DesktopMenuBar]).
+ * for every top-level screen. Its look is board D1's: a 220 column with a hairline on its right edge, and 32 rows with
+ * a 16 glyph. ⌘1 to ⌘3 reach the rows from the keyboard, through the menu bar's Go menu ([DesktopMenuBar]).
+ *
+ * `KMP-111`: the column is [CloudStreamMaterial.Sidebar], a step lighter than the page (the owner's choice, board d159),
+ * and its rows show chosen and under-the-pointer as [DesktopSidebarRowDefaults] says.
  *
  * `KMP-98`: the column runs the window's full height, under a transparent title bar, so its first
  * [DesktopShellDefaults.TitleBand] is left to the traffic lights, level with each page's bar. Settings is its last row.
@@ -83,7 +91,7 @@ internal fun DesktopSidebar(
         modifier = modifier
             .width(DesktopShellDefaults.SidebarWidth)
             .fillMaxHeight()
-            .background(colors.surface)
+            .material(CloudStreamMaterial.Sidebar)
             .rightRule(colors.line)
             .padding(
                 start = DesktopDimens.RowPadding,
@@ -144,14 +152,7 @@ private fun SidebarItem(
             .height(DesktopShellDefaults.ItemHeight)
             .desktopFeedback(source, lift = false)
             .tvFocusRing(focused = focused, shape = shape)
-            .background(
-                when {
-                    selected -> colors.raised
-                    hovered -> colors.line
-                    else -> Color.Transparent
-                },
-                shape,
-            )
+            .background(sidebarRowFill(chosen = selected, hovered = hovered), shape)
             .then(
                 if (role == Role.Tab) {
                     Modifier.selectable(selected = selected, interactionSource = source, indication = null, role = role, onClick = onClick)
@@ -161,6 +162,7 @@ private fun SidebarItem(
             )
             .padding(horizontal = DesktopDimens.RowPadding),
     ) {
+        SidebarRowMarker(chosen = selected)
         // Decoration: the name beside it says where it goes.
         CloudStreamIcon(icon, null, size = CloudStreamIconSize.Small, tint = content)
         BasicText(
@@ -174,7 +176,7 @@ private fun SidebarItem(
         if (hint != null) {
             BasicText(
                 text = hint,
-                style = CloudStreamTheme.typography.label.copy(color = colors.muted),
+                style = CloudStreamTheme.typography.label.copy(color = hintColor(filled = selected || hovered)),
                 maxLines = 1,
             )
         }

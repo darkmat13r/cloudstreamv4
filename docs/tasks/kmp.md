@@ -7952,3 +7952,48 @@ an app that cannot keep a secret, with no PKCE and no `state` shown, and Android
   - A13 on `error=`, and A13b on an exchange offline.
 - Red-checked: without the state comparison, 3 of these fail; without ending the wait on leaving the step, the late
   redirect is taken and the Cancel test fails; without the bare-form check or the RFC 3986 decoding, their tests fail.
+
+## KMP-111 — The sidebar's own tone: `CloudStreamMaterial.Sidebar` · **in review** · the owner's choice, 2026-11-10
+
+**Status:** in review · `:core:theme`, `:core:designsystem`, `:desktopApp`, `:feature:settings`
+
+The owner found the Mac window's sidebar and its title band "just black": `surface` (#0A1016) on the page's `bg`
+(#000000) is 1.10:1. Translucency was spiked first, and only the Mac can have it: an iPad or Android window cannot
+see what is behind it, and a sidebar beside the content has nothing of the app's own under it. The owner then chose
+a lighter tone, the same on every platform (board d159).
+
+- **A tenth colour, `sidebar` = #1A1E24**, between `surface` and `line`, in the ladder's own cool tint. The bound is
+  muted text: L(#858585) = 0.23455, so 4.5:1 needs the ground at L ≤ (0.23455 + 0.05) / 4.5 − 0.05 = 0.01323, and
+  #1A1E24 is 0.01276. WCAG ratios on it:
+  - against the page: 1.26;
+  - ink: 16.73; ink2: 10.42; muted: 4.53; the focus ring: 16.73.
+  - `#191F25` is a hair lighter (1.264) with muted at 4.502, a margin of 0.002, so this one, with 0.034, is kept.
+  - `#1B2026` (1.28) puts muted at 4.44, which fails.
+- **`CloudStreamMaterial.Sidebar`** in `:core:designsystem`, painted by `Modifier.material(...)`. Screens name the
+  material, not the colour. It is solid only: there is no native backdrop behind it.
+- **A chosen row:** the `line` fill (1.16:1 on the sidebar), the ink label (14.48) and a leading 4 x 24 marker in
+  `ink2` (9.01 on the fill), the player panels' marker (`KMP-93`). So a chosen row is never told by its fill alone.
+  The marker has a fixed slot on every row, so labels never move between states. That moves each row's glyph and
+  label 12 right of where they were.
+- **A row under the pointer:** `ink` at `DesktopSidebarRowDefaults.HoverAlpha` (0.04) over the row, which is
+  #23272D: 1.12 on the sidebar and 1.04 against a chosen row's fill, with an ink2 label at 9.34. No hover fill can
+  sit clearly apart from both, because the whole span from sidebar to chosen is 1.16; the marker is what tells them
+  apart.
+- **The trailing hint (`⌘,` on Settings):** muted text falls under 4.5 on any visible hover fill (4.07 at 0.04).
+  On master it was 3.92 on the old hover, `line`. On a filled row it is now drawn in ink2 (9.34).
+- **The Settings window's sidebar** is the same material. Its chosen pane takes the same fill and marker, because
+  its old `raised` fill would now be darker than the column. It gains no hover, since it had none. Its search
+  field stays `raised`, 1.05 darker than the column, and reads as an inset well (the PM's call). Its placeholder
+  is muted at 4.78.
+- **Where the other platforms would take it:** the TV rail and a tablet layout, when either gains a sidebar column.
+  Neither has one today, so nothing changes there.
+
+**Tests:** `SidebarMaterialTest` (4), reading rendered pixels:
+- the main window's title band and column are the token, and the page is `bg`;
+- a chosen row is the `line` fill with the `ink2` marker;
+- a row under the pointer is `ink` at `HoverAlpha` over the sidebar, and plain once the pointer leaves;
+- the Settings window's band, column and chosen pane, against a `bg` pane;
+- the token is #1A1E24.
+
+Red-checked: with the Mac column put back on `surface`, 2 of the 4 fail. `SidebarToneRenders` writes the before and
+after PNGs when `-Pcloudstream.shell.renders` names a directory, and guards nothing.

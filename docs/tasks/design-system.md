@@ -11,7 +11,7 @@ the **Claude Design project** rather than being derived in code.
 
 ## The gap, measured
 
-`:core:theme` has **one fixed dark scheme**, nine colours, no accent role, no dynamic colour.
+`:core:theme` has **one fixed dark scheme**, ten colours (the tenth, `sidebar`, since `KMP-111`), no accent role, no dynamic colour.
 `cloudStreamDarkColors()` exists; `cloudStreamLightColors()` does not. Its KDoc is explicit that a
 straight role inversion produces *"creams that nobody designed"* and that deriving a light scheme
 means deciding whether hue is preserved and what `live` and `focus` become on white — **designer
