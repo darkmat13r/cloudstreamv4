@@ -551,8 +551,8 @@ internal fun String?.httpUrlOrNull(): String? {
 internal val HTTP_SCHEMES = setOf("http", "https")
 
 /**
- * A backdrop URL the app may fetch (`KMP-100`), or null: [httpUrlOrNull]'s checks, https only, and no user info. The
- * backdrop's client also refuses any hop that is not https, so a redirect cannot step it down.
+ * A poster or backdrop URL the app may fetch (`KMP-100`, `KMP-102`), or null: [httpUrlOrNull]'s checks, https only, and
+ * no user info. Their image client also refuses any hop that is not https, so a redirect cannot step one down.
  *
  * User info (`https://user:pass@host/`) is refused: an image needs no credentials, and a plugin could use them to have
  * the app send a name and password of the plugin's choosing, or to dress one host up as another
@@ -591,20 +591,20 @@ internal fun RemoteHomePage.cleaned() = copy(
                     name = item.name.sanitized(),
                     url = item.url.sanitized(),
                     type = item.type?.sanitized(MAX_PROVIDER_FIELD_CHARS),
-                    posterUrl = item.posterUrl.httpUrlOrNull(),
+                    posterUrl = item.posterUrl.httpsUrlOrNull(),
                 )
             },
         )
     },
 )
 
-private fun RemoteSearchPage.cleaned() = copy(
+internal fun RemoteSearchPage.cleaned() = copy(
     items = items.take(MAX_ITEMS).map { item ->
         item.copy(
             name = item.name.sanitized(),
             url = item.url.sanitized(),
             type = item.type?.sanitized(MAX_PROVIDER_FIELD_CHARS),
-            posterUrl = item.posterUrl.httpUrlOrNull(),
+            posterUrl = item.posterUrl.httpsUrlOrNull(),
         )
     },
 )
@@ -614,7 +614,7 @@ internal fun RemoteDetails.cleaned(dropped: (String) -> Unit = {}) = copy(
     url = url.sanitized(),
     type = type.sanitized(MAX_PROVIDER_FIELD_CHARS),
     plot = plot?.sanitized(),
-    posterUrl = posterUrl.httpUrlOrNull(),
+    posterUrl = posterUrl.httpsUrlOrNull(),
     dataUrl = dataUrl?.sanitized(),
     episodes = episodes.take(MAX_ITEMS).map { it.copy(name = it.name?.sanitized(), data = it.data.sanitized()) },
     facts = facts.cleaned(dropped),
