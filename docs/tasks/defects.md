@@ -3320,8 +3320,12 @@ so one line covers them all:
 - The plugin host's `HostNewPipeDownloader` goes through the sandbox's SOCKS gate on purpose; the gate checks
   addresses itself (`OutboundGate`).
 - Extension repositories (`RepositoryHttp`, `#334`) already set no proxy.
-- **Not an OkHttp client, and a gap of its own:** the media host's libVLC fetches a plugin's stream urls with its
-  own stack and no address check at all. Its environment is emptied, so no proxy variable reaches it.
+- **Not an OkHttp client, and a narrower gap of its own (`BUG-90`):** a stream url is checked once before libVLC
+  is given it (`SandboxPolicy.isPublicHttpUrl`: http(s) only, every address the name resolves to public; called by
+  `RemoteLink.isPublic` in `DesktopDetailSource.kt` and by `PlaybackCheck`). libVLC then resolves and connects on
+  its own, with no check at connection time: a name that resolves differently by then, a redirect libVLC follows,
+  and HLS variant and segment urls from a playlist are not seen. Its environment is emptied, so no proxy variable
+  reaches it.
 
 **Proof,** all local (CI is off): `PosterHttpClientTest`, a JVM `ProxySelector` pointing every request at a fake
 proxy that the check allows as if it were public, and a target named `localhost`. The poster, image, subtitle and
