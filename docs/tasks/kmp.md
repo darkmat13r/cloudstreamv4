@@ -6672,11 +6672,52 @@ its line (`S1:E5 · Low Tide`), the title's poster (an episode has no still of i
 
 ## KMP-93 — The Mac player panels' rows, `DS-23` M4 to M7
 
-**Status:** open · `:desktopApp` · after `KMP-91`
+**Status:** in review · `:desktopApp` · after `KMP-91`
 
-`KMP-91` built the panel; this makes its rows the boards' rows: 56 tall, a name and a mono second line, a verb at the
-right (Use, On, Switch, Retry, Open), the 4×24 marker on the chosen row. A second line is drawn only from data the player
-has; a row without one stays one line. Only the rows that are features get drawn.
+`KMP-91` built the panel; this makes its rows the boards' rows. Every panel draws one row, `PlayerPanelRow`, in place of
+the Source panel's own and the other three's check-mark row:
+- **56 tall, 4 apart, 12 in from the panel's edges** (the boards' 932 in a panel at 920). The heading, its line and
+  Done stay at the window's 24 margin.
+- **The name, and under it a mono second line** (`labelMono`, muted), drawn only from what the player knows. A row with
+  none is one line and still 56 tall.
+- **The verb at the right** says what pressing the row does, in the keys TV's 7e rows use (`KMP-66`): Playing, Switch
+  or Retry for a source; On for the one in use and Use for the rest everywhere else. A subtitle track that failed says
+  Retry, since pressing it loads it again, not On over nothing showing. A failed row dims its name and verb.
+- **The 4×24 marker** at the chosen row's left edge, with the raised fill.
+
+| Panel | Second line |
+|---|---|
+| Source (M4) | `failed`; `quality unknown` with no quality; `keeps 42:13` when a switch keeps a position; none on the one playing |
+| Subtitles (M5) | Loading, or why a track failed, as before |
+| Audio tracks (M6) | The file's own title, as before; `stereo` (`player_audio_stereo`) for two channels with none |
+| Picture size (M7) | None |
+
+**Not drawn**, each because the player does not know it or it is not a feature:
+- **`1920×1080 decoded`** under the source playing. The Mac knows the size it draws, which is corrected for the pixels'
+  shape and capped at 1920×1080, so a 4K stream would read `1920×1080 decoded`. The decoded size stays in the media host.
+- **M4's `failed · code 2004`**: there is no code. The row says `failed`.
+- **M5's `3 variants`, `in the file` and `no subtitles` under Off**: the Mac's tracks carry no variants or origin, and
+  Off's name already says it. M5's Load from file, Load from Internet and Subtitle delay rows are not features yet.
+- **M6's `current track`** and **M7's three explanations**: no keys exist, and the verb and marker already say which is on.
+
+**Decided here:**
+- **The marker is muted, not the boards' white.** White is focus only (Design System v2, `docs/plans/desktop-design.md`),
+  and the Mac's marks were already muted.
+- **The second line may wrap to two lines**, and the row grows: a subtitle's failure is a sentence, longer in some
+  languages. The boards' lines are one.
+- **No Open verb is drawn**: the rows it belongs to (Load from file, Load from Internet, Subtitle delay) are not built.
+
+**Tests** (`PlayerScreenTest`, 93, all run):
+- New: M4's four source rows read their name, second line and verb, are 56 tall, 12 in from each edge and 4 apart; with
+  no position to keep, a source row has no second line.
+- New: M5's row in use says On and is marked, the others Use and unmarked; a failed track says why and Retry, and
+  pressing it loads it again; M6's second lines; M7's rows are one line and 56 tall.
+- **Changed existing tests:** the helper that finds a panel's rows (`panelRow`) moves with them: the first row's middle
+  from 88 to 96, and the step from 48 to 60. No test's assertions change. With the old
+  numbers on these rows, four of them click the wrong row (run): the subtitle list's click, the fit list at the
+  smallest window, the audio list at the smallest window, and a track arriving while rows are open.
+- Red on master (run): the four new tests that read rows fail there, each on a missing verb or second line; the fifth,
+  no position to keep, passes before and after.
 
 ## KMP-89 — Player KDoc examples use a made-up source
 
