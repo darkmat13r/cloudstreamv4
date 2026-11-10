@@ -478,6 +478,7 @@
 <string name="subs_text_color">"ಟೆಕ್ಸ್ಟ್ ಕಲರ್"</string>
 <string name="subs_window_color">"ವಿಂಡೋ ಕಲರ್"</string>
 <string name="subtitles_file_empty">"ಈ ಸಬ್ ಟೈಟಲ್ ಫೈಲ್ ಖಾಲಿಯಾಗಿದೆ"</string>
+<string name="subtitles_font_app">"ಆ್ಯಪ್ ಫಾಂಟ್"</string>
 <string name="subtitles_format_unsupported">"ಈ ಸಬ್ ಟೈಟಲ್ ಸ್ವರೂಪಕ್ಕೆ ಬೆಂಬಲವಿಲ್ಲ"</string>
 <string name="subtitles_load_failed">"ಈ ಸಬ್ ಟೈಟಲ್ಸ್ ಲೋಡ್ ಮಾಡಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ"</string>
 <string name="subtitles_settings">"ಸಬ್ ಟೈಟಲ್ಸ್ ಸೆಟ್ಟಿಂಗ್ಸ್"</string>

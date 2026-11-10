@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">Příliš žluťoučký kůň úpěl ďábelské ódy</string>
 <string name="subtitles_file_empty">Tento soubor titulků je prázdný</string>
 <string name="subtitles_filter_lang">Filtrování podle preferovaného jazyka médií</string>
+<string name="subtitles_font_app">Písmo aplikace</string>
 <string name="subtitles_format_unsupported">Tento formát titulků není podporován</string>
 <string name="subtitles_from_embedded">Vložené</string>
 <string name="subtitles_from_online">Online</string>

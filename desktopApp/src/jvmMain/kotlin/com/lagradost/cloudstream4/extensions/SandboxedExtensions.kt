@@ -1,10 +1,12 @@
 package com.lagradost.cloudstream4.extensions
 
 import com.lagradost.cloudstream3.APIHolder
+import com.lagradost.cloudstream4.extensions.repositories.InstalledFromRepositories
 import com.lagradost.cloudstream4.feature.extensions.ExtensionHash
 import com.lagradost.cloudstream4.feature.extensions.ExtensionVerification
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ExtensionScanner
 import com.lagradost.cloudstream4.feature.extensions.sandbox.HostLauncher
+import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginFailed
 import com.lagradost.cloudstream4.feature.extensions.sandbox.PluginHostClient
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxedProvider
@@ -36,7 +38,7 @@ import kotlinx.coroutines.withContext
  * 3. **Scan.** [ExtensionScanner] in this process, so a plugin cannot forge its own verdict. A
  *    blocking finding refuses the extension.
  * 4. **Hold.** An extension with warnings stops here until the person has allowed that exact file
- *    ([ExtensionDecisions]). Everything so far is safe to do first, because none of it runs the plugin:
+ *    ([ExtensionDecisions]), and so does every file installed from a repository, warnings or none (`KMP-110`). Everything so far is safe to do first, because none of it runs the plugin:
  *    the scan reads its bytes, and conversion translates a dex without loading a class from it.
  * 5. **Run.** A host per extension under Seatbelt, with its own data directory. One extension cannot
  *    read another's cookies, and a crash or a hang takes down one host.
@@ -49,6 +51,8 @@ class SandboxedExtensions(
     directory: File = defaultDirectory(),
     private val launcher: HostLauncher? = HostLauncher.forThisProcess(),
     private val decisions: ExtensionDecisions = ExtensionDecisions(ExtensionDecisions.fileFor(directory)),
+    /** What repositories installed (`KMP-110b`): a file named there is held unless allowed, whatever its choice says. */
+    private val installed: InstalledFromRepositories = InstalledFromRepositories(InstalledFromRepositories.fileFor(directory)),
 ) : ExtensionControl {
     private val root = directory.canonicalFile
     private val store = File(root, STORE_DIRECTORY)
@@ -107,6 +111,25 @@ class SandboxedExtensions(
         return loadOne(source, launcher, start = false)
     }
 
+    /**
+     * Takes one file through the pipeline again, after a repository installed or replaced it (`KMP-110`): stops it if it
+     * was running, then hashes, stores, scans and decides as a launch would. A file installed from a repository comes
+     * back held, so this starts nothing until it is allowed.
+     *
+     * @return where it ended up, or null when the file is not there, or there is no sandbox on this platform.
+     */
+    suspend fun refresh(fileName: String): SandboxedLoad? {
+        val source = candidates().firstOrNull { it.name == fileName } ?: return null
+        val launcher = launcher ?: return null
+        stop(source)
+        return loadOne(source, launcher, start = true)
+    }
+
+    /** Stops the extension in [fileName], if it is running, before a repository removes or replaces it (`KMP-110`). */
+    fun forget(fileName: String) {
+        stop(File(root, fileName))
+    }
+
     /** Stops one host and takes its providers away, so no screen can reach a host that has gone. */
     private fun stop(source: File) {
         val host = synchronized(hosts) { running.remove(source.name)?.also { hosts -= it } } ?: return
@@ -156,30 +179,50 @@ class SandboxedExtensions(
         // Off unless this exact file was allowed. No other flag, argument or setting reaches past this.
         // A new version waits too, with warnings or without: a scan that finds nothing is not a review of different code.
         val recorded = withContext(Dispatchers.IO) { decisions.read() }
+        val installedList = withContext(Dispatchers.IO) { installed.read() }
         val newVersion = recorded.isNewVersion(source.name, sha256)
         val choice = recorded.choiceFor(source.name, sha256)
-        when {
-            choice == ExtensionChoice.Allow -> Unit
-            choice == ExtensionChoice.KeepOff ->
+        fun held(why: String, newVersion: Boolean = false, fromRepository: Boolean = false) = SandboxedLoad(
+            source.name, verification, scan, 0, "HELD: $why, waiting for a decision", sha256, LoadState.Held,
+            newVersion = newVersion, fromRepository = fromRepository,
+        )
+        // `KMP-110b` review: fail closed. A record that cannot be read cannot say yes, so with either file unreadable
+        // nothing starts that is not explicitly allowed in a file that could be read. A repository's file is held by its
+        // installed entry as well as by its Pending choice, so losing one of the two still holds it.
+        val recordUnreadable = recorded.unreadable || installedList == null
+        val fromRepository = installedList.orEmpty().any { it.fileName == source.name }
+        // Exhaustive over the choices: a choice added later has to say here whether it starts, or this does not compile.
+        when (choice) {
+            ExtensionChoice.Allow -> Unit
+            ExtensionChoice.KeepOff ->
                 return SandboxedLoad(source.name, verification, scan, 0, "kept off, as chosen", sha256, LoadState.KeptOff)
-            newVersion ->
-                return SandboxedLoad(
-                    source.name, verification, scan, 0, "HELD: a new version, waiting for a decision", sha256, LoadState.Held,
-                    newVersion = true,
-                )
-            scan.warnings > 0 ->
-                return SandboxedLoad(source.name, verification, scan, 0, "HELD: warnings, waiting for a decision", sha256, LoadState.Held)
-            // Scan-only writes nothing. A failed write costs noticing the next version, and is not worth refusing this one.
-            choice == null && start ->
-                withContext(Dispatchers.IO) { runCatching { decisions.record(source.name, sha256, ExtensionChoice.Seen) } }
+            // `KMP-110`: installed from a repository. Installing is not consent to run, warnings or none.
+            ExtensionChoice.Pending -> return held("installed from a repository", fromRepository = true)
+            ExtensionChoice.Seen, null -> when {
+                recordUnreadable -> return held("the saved choices could not be read")
+                fromRepository -> return held("installed from a repository", fromRepository = true)
+                newVersion -> return held("a new version", newVersion = true)
+                scan.warnings > 0 -> return held("warnings")
+                // Seen: this exact file ran before with nothing to say. Null: first sight of a clean side-loaded file,
+                // which is recorded as Seen so the next version is noticed. Scan-only writes nothing, and a failed write
+                // costs noticing the next version, which is not worth refusing this one.
+                else -> {
+                    if (choice == null && start) {
+                        withContext(Dispatchers.IO) { runCatching { decisions.record(source.name, sha256, ExtensionChoice.Seen) } }
+                    }
+                }
+            }
         }
         if (!start) return SandboxedLoad(source.name, verification, scan, 0, "scanned only", sha256, LoadState.Scanned)
 
         val (host, started) = PluginHostClient.start(launcher, jar, data, source.nameWithoutExtension)
         val remotes = started.getOrElse { failure ->
             host.close()
+            // BUG-83: what the plugin said is never part of this line; its class and our own words are.
+            val reason =
+                if (failure is PluginFailed) "plugin failed: ${failure.reportedClass}" else failure.message.orEmpty()
             return refused(
-                listOf(failure.message.orEmpty(), host.hostOutput.lastLines()).filter { it.isNotBlank() }
+                listOf(reason, host.hostSummary).filter { it.isNotBlank() }
                     .joinToString(" | "),
                 scan,
                 sha256,
@@ -236,7 +279,7 @@ class SandboxedExtensions(
             try {
                 copyExpecting(source, input, sha256)
                 convertIntoStore(target, work) { output, directory ->
-                    conversions.withPermit { PluginHostClient.convert(launcher, input, output, directory) }?.lastLines()
+                    conversions.withPermit { PluginHostClient.convert(launcher, input, output, directory) }
                 }
             } finally {
                 input.delete()
@@ -276,10 +319,6 @@ class SandboxedExtensions(
         }
     }
 
-    private fun String.lastLines(): String =
-        lineSequence().filter { it.isNotBlank() && !it.startsWith(PICKED_UP) }.toList()
-            .takeLast(MAX_REPORTED_LINES).joinToString(" / ")
-
     companion object {
         private const val MAX_PARALLEL_CONVERSIONS = 4
         private const val STORE_DIRECTORY = ".store"
@@ -296,8 +335,6 @@ class SandboxedExtensions(
         private const val SIDECAR_SUFFIX = ".sha256"
         private const val STAGING_SUFFIX = ".part"
         private const val MAX_SIDECAR_BYTES = 1024L
-        private const val MAX_REPORTED_LINES = 3
-        private const val PICKED_UP = "Picked up JAVA_TOOL_OPTIONS"
         private const val DIRECTORY_ENV = "CLOUDSTREAM4_EXTENSIONS_DIR"
 
         /** An override must be absolute, so it can never mean "wherever the app was started from". */
@@ -373,6 +410,8 @@ data class SandboxedLoad(
     val newVersion: Boolean = false,
     /** Someone allowed this exact file, so it can be changed on the review screen even if the scan found nothing. */
     val chosen: Boolean = false,
+    /** Held because it was installed from a repository and has not been allowed (`KMP-110`). */
+    val fromRepository: Boolean = false,
 )
 
 /** What the startup pass did, as data, so the caller decides where the words go. */

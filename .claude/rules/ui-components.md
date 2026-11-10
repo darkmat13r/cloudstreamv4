@@ -54,7 +54,8 @@ opener in as well fights that, measured.
 
 - Dimensions: `CloudStreamDimens.*` — named by role (`ListRowHeight`, `ChipFocusCell`,
   `SidePanelWidth`), not by t-shirt size. Never an inline `.dp`. See `dimension-scale.md`.
-- Colours: `CloudStreamTheme.colors.*` — nine roles, no others. Never `Color(0xFF…)`.
+- Colours: `CloudStreamTheme.colors.*` — ten roles, no others (the tenth, `sidebar`, came with
+  `KMP-111`). Never `Color(0xFF…)`.
   `live` is playback state only; it is never a button.
 - Shapes: `CloudStreamTheme.shapes.*`. Never `RoundedCornerShape(…)` at a call site.
 - Type: `CloudStreamTheme.typography.*`. Never a raw `.sp`.

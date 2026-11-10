@@ -557,6 +557,7 @@
 <string name="subs_text_color">Kulay ng Teksto</string>
 <string name="subs_window_color">Window Color</string>
 <string name="subtitles_file_empty">Walang laman ang subtitle file na ito</string>
+<string name="subtitles_font_app">Font ng app</string>
 <string name="subtitles_format_unsupported">Hindi sinusuportahan ang format ng subtitle na ito</string>
 <string name="subtitles_load_failed">Hindi ma-load ang mga subtitle na ito</string>
 <string name="subtitles_settings">Subtitle Setting</string>

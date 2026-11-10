@@ -3220,6 +3220,37 @@ Runner` 39 lines, and the sites `Filmxy` 87, `Vidplay` 37 and `Zoro` 11.
 `classes-jar.api` carries `getGogoanime`); `tools:text` in legacy layouts; `Internet Archive`, a real official plugin
 and a `:library` class; and past records in `docs/tasks/`, which say what was measured.
 
+### `:desktopApp` (JVM tests)
+
+| Was | Now | Kept |
+|---|---|---|
+| `Dune`, `dune`, `Dune: Part Two` (library, store, watch recorder; ids `…/dune`, the filter `dune`) | `Tide`, `tide`, `Tide: Part Two` | case; a title renamed under the same id |
+| `Arrival` (library) | `Mooring` | sorts before `Tide` by title, as `Arrival` did before `Dune` |
+| the account `lagradost` (library) | `tidewatch` | |
+| search history `blade runner`, `severance`, `frieren`; the query `blade runner` | `salt road`, `still water`, `fernwood`; `salt road` | |
+| sources `Gogoanime`, `Vidsrc`, `Zoro` | `Source A`, `Source B`, `Source C` | the same alphabetical order |
+| downloads `Breaking Bad`, `Dune: Part Two`, `Severance`, `The Bear`, `Past Lives`, `Shōgun`, `Arrival` | `Low Tide`, `Tide: Part Two`, `Quiet Harbor`, `The Galley`, `Far Shores`, `Ōmi Light`, `Mooring` | a series and a film each; a title with a long vowel mark |
+
+The window's sort test reads the first card before and after A to Z. `Tide` was kept last and `Mooring` sorts first,
+so the first card changes, as it did with `Dune` and `Arrival`. With a name that sorts after `Tide` in place of
+`Mooring`, the test fails (checked).
+
+Tests: the same 77 in 5 classes (`LibraryScreenTest` 26, `DesktopLibraryStoreTest` 19, `SearchScreenTest` 10,
+`WatchRecorderTest` 10, `DownloadsScreenTest` 12), 152 assertion lines before and after, all passing.
+
+Then the home tests and one interaction test:
+
+| Was | Now | Kept |
+|---|---|---|
+| `Severance`, `Arcane` (`HomeScreenTest`, to resume and in the kept library) | `Still Water`, `Lantern` | home orders by time watched and kept, never by name |
+| the source `YouTube` (`HomeScreenTest`, `HomeStatusWordsTest`, `DesktopInteractionTest`) | `Wavecast` | a failure still names its source (`HomeStatusWordsTest`; it fails with another name in the prompt, checked) |
+
+A real service's name in a test is the same problem as a real title. `Internet Archive` stays, by this entry's own
+record above: "a real official plugin and a `:library` class" (`InternetArchive`, an extractor in `:library`).
+
+Tests: the same 34 in 3 classes (`HomeScreenTest` 20, `HomeStatusWordsTest` 6, `DesktopInteractionTest` 8), 91
+assertion lines before and after, all passing.
+
 **One PR per module.** JVM tests first; the device tests and their screenshots after train 9, which carries those
 files, each screenshot diff read before it is re-recorded.
 
@@ -3512,3 +3543,180 @@ All on `Television_720p`, locally (CI is off).
 - **Green:** `StringResourceArgumentsGuardTest` 11 of 11, with `core/strings`' 13 main files now scanned and clean.
   `:core:strings:jvmTest` 54 of 54. The five gates passed, 265 XML results with 0 failures; `:app:checkExtensionApi`
   passed and `app/api/classes-jar.api` is unchanged.
+
+## BUG-77 — The repository shipped proprietary fonts · **high, licensing** · `DEC-02`
+
+**Status:** fixed in this PR · the owner's call through the PM, 2026-11-09 · closes `DEC-02`
+
+Eleven faces are replaced, ten of them proprietary. The subtitle picker offered nine proprietary fonts, measured from each
+file's name table (Microsoft's Comic Sans MS, Consolas, Trebuchet MS and Verdana, Monotype's Times New Roman, Bitstream's
+Futura, Hoefler's Gotham, Bigelow & Holmes's Lucida Grande, and Netflix Sans). The tenth, Product Sans (Google's corporate
+typeface, 24 files, two byte-identical sets of 12), was also the legacy UI's font: `google_sans.xml` in `:app`'s layouts and `AppFont` in
+`:core:ui`. `DEC-02` has the measurement. Each is now a free face, under the **same resource name**. No resource was
+added, removed or renamed, so `R` is unchanged: the whole `R.txt` is byte-identical between master and this branch (28
+font entries). An id a user saved before the change is the same id after it.
+
+| Resource | Was | Now | Licence |
+|---|---|---|---|
+| `productsans_*` (12, in `:app` and `:core:ui`) | Product Sans | Google Sans 14.000, static instances, subset (below) | OFL, no RFN |
+| `netflix_sans` | Netflix Sans | Inter 4.1 Regular | OFL |
+| `gotham` | Gotham Medium | Montserrat 7.222 Medium | OFL |
+| `futura` | Futura Book | Jost 3.5 Book | OFL |
+| `times_new_roman` | Times New Roman | Liberation Serif 2.1.5 | OFL |
+| `verdana` | Verdana | DejaVu Sans 2.37 | Bitstream Vera licence (owner-approved) |
+| `trebuchet_ms` | Trebuchet MS | Fira Sans 4.301 | OFL |
+| `comic_sans` | Comic Sans MS | Comic Neue 2.51 | OFL |
+| `lucida_grande` | Lucida Grande | Source Sans 3 3.052 | OFL |
+| `consola` | Consolas | JetBrains Mono 2.304 Regular (`KMP-97`'s file, the same SHA-256) | OFL |
+| `stix_general` | STIXGeneral 1.1 (STIX licence) | STIX Two Text 2.13 | OFL |
+
+The eleventh, STIXGeneral 1.1, was free under the STIX Font License, not OFL. `open_sans`, `poppins_regular` and
+`ubuntu_regular` were already free and are unchanged; their licence texts and `NOTICE` entries are `BUG-87`. Every file but Google Sans is
+upstream's, byte for byte, from a pinned tag or commit. `NOTICE` records each source, version and SHA-256. The licence
+texts are packaged in `app/src/main/assets/licences/`, and Google Sans's also in `:core:ui`'s `files/licences/`.
+
+**Google Sans is derived, not upstream.** Upstream ships only variable fonts, and the app's minSdk is 24, below the API
+26 that varies a font's weight. The 12 files are static instances, made with fontTools 4.67.0 (a dev tool, approved by
+the owner, not shipped). The source is google/fonts `d4eb0460`, `ofl/googlesans/`. Each instance is `opsz=18 GRAD=0`,
+subset to Latin, Latin Extended, Vietnamese, Greek, Cyrillic, punctuation and common symbols (`NOTICE` has the exact
+commands and ranges). The build is reproducible: `SOURCE_DATE_EPOCH` is pinned, and two builds from scratch were
+byte-identical.
+- Google Sans has weights 400 to 700 only. Thin and Light are the 400 instance and Black the 700 one. No layout or
+  Compose code asks for 100, 300 or 900, so nothing on screen uses those weights.
+- Google Sans Flex, which has every weight, was measured first and rejected: it has no Cyrillic and one Greek letter.
+- Size: about 350 KB a file, 4.0 MB per module against Product Sans's 1.1 MB. The full instances were 2.4 MB each.
+- "Google Sans" is Google's trademark (`TRADEMARKS.md`, packaged). It stays only in the font's own name table. The
+  picker calls the entry "App font" (`subtitles_font_app`, `I18N-23`).
+
+**The picker's labels are the real face names**, in the same order, so a person is not told they have Verdana when they
+have DejaVu Sans. The stored value is the `R.font` id (`SaveCaptionStyle.typeface`), never the label, so relabelling
+moves no one's choice.
+
+**Coverage, measured old -> new from each file's `cmap`** (glyphs, of Latin-1 96, Greek 56, Cyrillic 64, Vietnamese
+90, Hebrew 27, Arabic 42). Android draws a missing glyph from the system font, so a letter still shows, in another
+face.
+- Gains: Product Sans -> Google Sans adds Vietnamese (2 -> 90) and one Greek letter. Gotham -> Montserrat adds Cyrillic
+  (0 -> 64), Vietnamese and the rest of Latin-1. Times New Roman -> Liberation Serif adds Latin-1, Greek, Vietnamese
+  and Hebrew. Verdana -> DejaVu Sans adds Vietnamese, Hebrew and Arabic. Trebuchet MS, Consolas and STIX add
+  Vietnamese.
+- **Losses, accepted by the owner:**
+  - Futura -> Jost: Greek 56 -> 4.
+  - Lucida Grande -> Source Sans 3: Hebrew 27 -> 0.
+  - Comic Sans -> Comic Neue: Greek 4 -> 0.
+  - Netflix Sans -> Inter: Latin-1 96 -> 95.
+
+**The legacy UI's font changes from Product Sans to Google Sans.** It reaches only `:app`'s XML layouts and `:core:ui`'s
+old Material theme (`AppFont`, used by the `:core:mihon` settings widgets and `ComposeFragment`). None of the committed
+screenshot references renders through it: the TV screens use `:core:theme`'s type.
+
+**Proof,** all local on `Television_720p` (CI is off):
+- `SubtitleFontsTest` (new, `:app`): a style saved with `R.font.netflix_sans` reads back with that id and loads Inter.
+  Every picker font's own name table names its label's face. All 12 `productsans_*` are Google Sans, at the expected
+  `OS/2` weight and italic bit.
+- A before/after render of every picker entry, master's file beside this branch's, was looked at. It is not committed.
+- `SubtitleFontsTest`: 3 runs of 3 green.
+- Device suites, all green: `:core:designsystem` 29, `:feature:account` 6, `:feature:detail` 38, `:feature:downloads`
+  61, `:feature:home` 87, `:feature:library` 34, `:feature:player` 24, `:feature:search` 62. No screenshot reference
+  changed: the TV screens do not use these fonts.
+- The whole `:app` suite: 177 tests (with the temporary render), 1 failure. It was
+  `DownloadSeriesTvNavigationTest.deleteAllGoesThroughTheRealDialogAndThePageClosesWhenNothingIsLeft`, timing out on
+  "No downloads yet". That is `BUG-80`, a known flake on master (1 in 7 on train 13) on a screen this change does not
+  reach. Run alone 3 times on this branch, it failed once more and passed twice.
+
+## BUG-87 — Three kept fonts shipped without their licence texts · **medium, licensing** · follows `BUG-77`
+
+**Status:** fixed in this PR · raised in `BUG-77`'s review, 2026-11-10
+
+`BUG-77` packaged a licence text and a `NOTICE` entry for every face it replaced, and left `open_sans`,
+`poppins_regular` and `ubuntu_regular` alone because they were already free. They still shipped with no licence text
+and no attribution, as before `BUG-77`. Closing `DEC-02` must not read as covering them. Two of the three require it:
+Apache 2.0 asks for a copy of the licence with any redistribution, and the Ubuntu Font Licence must be distributed with
+the font.
+
+**Fix:** each licence text in `app/src/main/assets/licences/` (`OpenSans-LICENSE.txt`, `Poppins-OFL.txt`,
+`Ubuntu-UFL.txt`), and a `NOTICE` entry for each with its version, copyright and trademark lines from the file's own
+name table, and the SHA-256 of the font and of its licence text. The fonts are unchanged.
+
+**Where they came from is not recorded.** They arrived with upstream CloudStream. None is byte-identical to any version
+of the same file in google/fonts' history: every commit that touched `apache/opensans/OpenSans-Regular.ttf`,
+`ofl/poppins/Poppins-Regular.ttf` and `ufl/ubuntu/Ubuntu-Regular.ttf` was checked by git blob hash. So `NOTICE` names
+the licence the file states, and pins where the licence *text* came from: google/fonts `90abd17b` (`apache/opensans/`,
+the commit with Open Sans 1.10) and `d4eb0460` (`ofl/poppins/`, `ufl/ubuntu/`, the commit `BUG-77` used). The Apache
+text keeps its upstream CRLF line endings, so its bytes match the hash.
+
+**One count everywhere.** `BUG-77`'s prose disagreed with itself: `DEC-02` said "eight other proprietary fonts",
+`BUG-77` "nine", and its commit message "nine others" over a list of ten. Measured from each replaced file's name table on
+master: **eleven faces were replaced, ten of them proprietary.** The ten are Product Sans and nine subtitle fonts:
+Microsoft's Comic Sans MS, Consolas, Trebuchet MS and Verdana, Monotype's Times New Roman, Bitstream's Futura, Hoefler's
+Gotham, Bigelow & Holmes's Lucida Grande, and Netflix Sans. `DEC-02`'s measurement missed Trebuchet MS. The eleventh,
+STIXGeneral 1.1, was free under the STIX Font License, not OFL. `decisions.md`, `BUG-77` above and `NOTICE`'s header now
+say this. `NOTICE`'s header also said `classes-jar.api` was unchanged, which `BUG-77`'s new string made untrue; it now
+says no `R.font` field changed.
+
+**Proof:** a script hashes every font and licence file in `:app` and `:core:ui` (54) and finds each SHA-256 in `NOTICE`.
+Before this change the three fonts' hashes were missing from it.
+
+## BUG-83 — A plugin's own stderr reached the Mac's printed diagnostics as it was · **low, security** · fixed in this PR
+
+A plugin's `println`, `System.err` and `android.util.Log` all go to its host's stderr (the host gives the protocol the
+real stdout). `PluginHostClient` kept the first 16 KiB of that with only control characters taken out, and two roads
+printed it: a host that failed to start had its last three lines put in its "not loaded" line, which the app prints
+at every launch and the check commands print again; and `--check-extensions --verbose` printed twelve lines of it per
+provider. A failed `.cs3` conversion sent the converter's stderr down the first road. A plugin's exception message
+took a third: a failed `load()` came back over the protocol as `SimpleName: message`, raw, and became the start
+failure's text. Any of it can carry the URLs a plugin fetches, its keys and what was searched for.
+
+Not roads: the media host's stderr is thrown away (`VlcPlayer`); nothing writes host output to a file; no screen
+shows it (they show `LoadState`); and the screens' failure reasons were already cut to `scheme://host`. **Not
+measured:** where a Finder-launched app's stdout ends up. The printed report goes there.
+
+**Fix.** A plugin's text never reaches a default output; a developer's run gets it redacted.
+- **Default (the "not loaded" line, every launch and every check):** a fixed shape, our words and counts only. A host
+  that failed to start reads `not loaded: plugin failed: IllegalStateException | stderr: 14 lines, 2310 bytes`, or
+  with the host's own failure class, `… · failed: java.lang.NoClassDefFoundError`. That class comes from a marker
+  line the host writes (`plugin host: failed: <class>`). **A plugin can write that line too**: it runs in the host's
+  JVM, so it can also write protocol frames and choose the exit code, and no channel from the host is one it cannot
+  write. What holds is the shape: the line counts only when it is wholly a class name of at most 128 characters, and a
+  long segment that does not read as words (`IllegalArgumentException` does) becomes `<…>`. So a forged class can
+  mislead about which class failed, and can carry an identifier, but not a url, a path or a token. A failed
+  conversion reads `conversion failed: exit 1 · stderr: …`.
+- **`--check-extensions --verbose` only:** the plugin's lines through one function, `redactedPluginText`: urls cut to
+  `scheme://host[:port]/<…>`, user paths and `~/…` to `<path>`, email addresses to `<email>`, IPv4 and IPv6 literals
+  to `<ip>`, and any run of 24 or more of `A-Z a-z 0-9 + / = _ -` (tokens, base64, long hex) to `<…>`. Text is taken
+  a whole line at a time, so a url split between two reads is still one url. The check's `search FAILED`, `open
+  FAILED` and `links FAILED` lines, which print a plugin's exception message, use the same function, and so does
+  every failure a plugin reports over the protocol (`PluginFailed`), before anything reads it.
+- **Tests** that print a host's output when they fail print the redacted log.
+
+**What a person loses, and how to get it back.** The plugin's own lines, its log and its stack trace, are gone from
+the default output: a "not loaded" line says which class failed and how much the plugin wrote, not what it wrote.
+Run `--check-extensions --verbose` to see them, redacted. The rules there are shapes, so a secret with none of them
+survives: a value under 24 characters (`key=abc123`, a short password) is shown as written. The 24-character rule also cuts a class name written with
+slashes when it is that long (`android/webkit/WebViewClient`, as a `NoClassDefFoundError` names it); with dots, as in
+a stack frame, it is kept.
+
+**Proof,** all local (CI is off):
+- `PluginOutputTest`, 18: the rules one by one, with made-up values (a url with user info, query and fragment; a
+  token at 23 and at 24 characters; base64 with `=` padding; `~/` and `/Users/<name>/` paths; an email address; IP
+  literals, and a time of day that is not one); the summary; a url split at every point between two reads; forged
+  markers (a url, `/`, `:`, 129 characters; 128 is kept); a line past the cut.
+- `PluginOutputHostTest`, 2, through a real host: a running plugin's stdout, stderr and `Log` lines reach only the
+  redacted log, each in its redacted form; a plugin that fails to load is reported as `PluginFailed` by its class.
+- `ExtensionOutputTest`, through `SandboxedExtensions` and a real host: the "not loaded" line and the printed report
+  hold none of what the plugin wrote or said.
+- Proved by mutation, each failing what it should: the "not loaded" line using the plugin's message
+  (`ExtensionOutputTest`); the developer's log kept unredacted (both host tests, two unit tests); a marker taking any
+  text (the forged-marker test); a line ended at every read (the split test, the cut test); `PluginFailed` not
+  redacting (the failed-load host test).
+- **Review (`#335`):**
+  - A reported failure was cut to 400 characters and then redacted, so a token or an address across the cut was too
+    short for its rule. Now `redactedWithin` redacts and then cuts, on both sides of the protocol, and drops a word
+    cut by either cut. A 30-character token and an IPv4 address across character 400 come out redacted (tests);
+    with the old order they do not (checked).
+  - Control characters were removed after redaction, so a `\r` inside a token split it for the rules and then
+    rejoined it. They are removed before it now, so the halves are read as one run and the whole token is redacted
+    (test: neither half appears, after `\n`, `\r` or NUL; red with the control replaced by a space instead). On stderr
+    a line feed ends a line, so a token a plugin prints across two lines is two lines there, each half shown when it
+    is under 24 characters.
+- **Follow-up, not here:** `close()` waits up to 500 ms for stderr to drain, so a report made after it can still miss
+  the end of a slow host's output.

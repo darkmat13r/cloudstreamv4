@@ -1007,6 +1007,7 @@
 <string name="subtitles_example_text">"أبجد هوز حطي كلمن سعفص قرشت ثخذ ضظغ"</string>
 <string name="subtitles_file_empty">"ملف الترجمة هاد فاضي"</string>
 <string name="subtitles_filter_lang">"فَلتِر حسب اللغة المفضلة"</string>
+<string name="subtitles_font_app">"خط التطبيق"</string>
 <string name="subtitles_format_unsupported">"صيغة الترجمة هاي مش مدعومة"</string>
 <string name="subtitles_from_embedded">"داخلياً"</string>
 <string name="subtitles_from_online">"اونلاين"</string>

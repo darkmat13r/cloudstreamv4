@@ -7118,7 +7118,33 @@ rows built outside the sandbox) keep their own URL checks, which allow http; the
   loaders differ.
 
 **Not here:** a poster is asked for at its file's size, not the card's, so one up to 4096 by 4096 is kept whole (64 MB).
-Asking at the drawn size, as the backdrop does, changes `PosterImage`'s layout and is its own change.
+Asking at the drawn size, as the backdrop does, changes `PosterImage`'s layout and is its own change: `KMP-106`.
+
+## KMP-106 — A poster is asked for at the size it is drawn · **built 2026-11-10**, stacked on `KMP-102` (`#316`)
+
+A poster was requested at its file's size, so one of 4096 by 4096 was decoded and kept whole (64 MB) to fill a card a
+few hundred pixels wide. Now `PosterImage` measures its box, as `BackdropImage` does, and asks for that size in
+pixels: `loadPoster` makes the backdrop's request (filled and cropped, as the card draws it), which Coil keeps at no
+more than twice that size.
+- **Layout:** `PosterImage` is a `BoxWithConstraints` with its modifier, and the image fills it. Every caller already
+  passes `fillMaxSize()` inside a sized slot, so nothing moves. Before a poster loads, the box is empty and shows
+  nothing, as before.
+- **A box with a bounded side of 0** (one animating in) asks for nothing until it has a size (review). Before this, it
+  fell through to the unbounded case and asked at the file's size.
+- **A slot with no bound** (none today) asks at the file's own size, as before, rather than drawing nothing. The
+  decoder's bound of 4096 by 4096 still holds.
+- **A resize** asks again at the new size. The poster drawn before it stays until the new one arrives.
+
+**Tests:** `PosterImageTest`, 4:
+- in a box of 64 by 96 dp at density 2, a poster is asked for at 128 by 192 pixels;
+- in a slot with no bound, it is asked for with no size;
+- a box of 0 by 96 dp asks for nothing, while a poster beside it in a real box is asked for at its size;
+- a 1600 by 2400 PNG asked for at 128 by 192 is kept at most twice that size, and the same file with no size is kept
+  at 1600 by 2400. This runs through the bounded loader, reading a local file.
+
+Proved by mutation: with the box's size not passed on, the first test fails; with `loadPoster` ignoring the size, the
+third fails; with the first version's `PosterImage`, the box of 0 by 96 asks for `(null, null)`, the file's size,
+and the fourth fails, as it does with the guard taken out.
 
 ## KMP-88 — DNS over HTTPS for the Mac's media host · **open**, follow-up of `DS-24`
 
@@ -8105,3 +8131,192 @@ with a silent track:
 - Resume and watch progress for a download. There is no library record to write to; the stream player's
   `WatchRecorder` needs one.
 - Playing a film from the D1 list. D1 has no Play on the Mac board.
+
+## KMP-111 — The sidebar's own tone: `CloudStreamMaterial.Sidebar` · **in review** · the owner's choice, 2026-11-10
+
+**Status:** in review · `:core:theme`, `:core:designsystem`, `:desktopApp`, `:feature:settings`
+
+The owner found the Mac window's sidebar and its title band "just black": `surface` (#0A1016) on the page's `bg`
+(#000000) is 1.10:1. Translucency was spiked first, and only the Mac can have it: an iPad or Android window cannot
+see what is behind it, and a sidebar beside the content has nothing of the app's own under it. The owner then chose
+a lighter tone, the same on every platform (board d159).
+
+- **A tenth colour, `sidebar` = #1A1E24**, between `surface` and `line`, in the ladder's own cool tint. The bound is
+  muted text: L(#858585) = 0.23455, so 4.5:1 needs the ground at L ≤ (0.23455 + 0.05) / 4.5 − 0.05 = 0.01323, and
+  #1A1E24 is 0.01276. WCAG ratios on it:
+  - against the page: 1.26;
+  - ink: 16.73; ink2: 10.42; muted: 4.53; the focus ring: 16.73.
+  - `#191F25` is a hair lighter (1.264) with muted at 4.502, a margin of 0.002, so this one, with 0.034, is kept.
+  - `#1B2026` (1.28) puts muted at 4.44, which fails.
+- **`CloudStreamMaterial.Sidebar`** in `:core:designsystem`, painted by `Modifier.material(...)`. Screens name the
+  material, not the colour. It is solid only: there is no native backdrop behind it.
+- **A chosen row:** the `line` fill (1.16:1 on the sidebar), the ink label (14.48) and a leading 4 x 24 marker in
+  `ink2` (9.01 on the fill), the player panels' marker (`KMP-93`). So a chosen row is never told by its fill alone.
+  The marker has a fixed slot on every row, so labels never move between states. That moves each row's glyph and
+  label 12 right of where they were.
+- **A row under the pointer:** `ink` at `DesktopSidebarRowDefaults.HoverAlpha` (0.04) over the row, which is
+  #23272D: 1.12 on the sidebar and 1.04 against a chosen row's fill, with an ink2 label at 9.34. No hover fill can
+  sit clearly apart from both, because the whole span from sidebar to chosen is 1.16; the marker is what tells them
+  apart.
+- **The trailing hint (`⌘,` on Settings):** muted text falls under 4.5 on any visible hover fill (4.07 at 0.04).
+  On master it was 3.92 on the old hover, `line`. On a filled row it is now drawn in ink2 (9.34).
+- **The Settings window's sidebar** is the same material. Its chosen pane takes the same fill and marker, because
+  its old `raised` fill would now be darker than the column. It gains no hover, since it had none. Its search
+  field stays `raised`, 1.05 darker than the column, and reads as an inset well (the PM's call). Its placeholder
+  is muted at 4.78.
+- **Where the other platforms would take it:** the TV rail and a tablet layout, when either gains a sidebar column.
+  Neither has one today, so nothing changes there.
+
+**Tests:** `SidebarMaterialTest` (4), reading rendered pixels:
+- the main window's title band and column are the token, and the page is `bg`;
+- a chosen row is the `line` fill with the `ink2` marker;
+- a row under the pointer is `ink` at `HoverAlpha` over the sidebar, and plain once the pointer leaves;
+- the Settings window's band, column and chosen pane, against a `bg` pane;
+- the token is #1A1E24.
+
+Red-checked: with the Mac column put back on `surface`, 2 of the 4 fail. `SidebarToneRenders` writes the before and
+after PNGs when `-Pcloudstream.shell.renders` names a directory, and guards nothing.
+
+## KMP-110 — The Mac's extension repository manager · **110a in review (#334), 110b in review**, 110c to follow · the owner's task, 2026-11-10
+
+**Status:** 110a (fetch, parse, saved repositories) in #334; 110b (install, update, remove) stacked on it. Today the Mac gets extensions only from files dropped
+into `~/.cloudstream4/extensions` before a restart. This adds a repository by URL, lists its plugins, and installs,
+updates or removes one into that folder, where the existing pipeline (hash, no-network `.cs3` conversion, scan,
+Allow / Keep off) takes over.
+
+**Decided (PM, 2026-11-10):**
+- Every repository-installed file is held until Allow, even with a clean scan. Installing is not consent to run.
+  Side-loaded files behave as before. (110b.)
+- No short codes on the Mac. Android resolves one by asking `cutt.ly` or `py.md`; nothing typed here is sent to a
+  shortener. `cloudstreamrepo://` and `cs.repo` links stay, and a bare code is answered with "paste the full link".
+- A plugin whose repository publishes no hash is installed and marked unverified, and the hold still gates it.
+- Placement: Settings → Extensions, plus "Add repository" on Home's empty state. A desktop board is being drawn. (110c.)
+
+**Measured 2026-11-10**, the 34 repositories in the public `recloudstream/cs-repos` list (33 answered, 583 plugins).
+The limits in `RepositoryLimits` are set from it, and its KDoc has the table:
+- largest repository JSON 400 bytes; largest plugin list 69,046 bytes and 86 entries; one plugin list per repository;
+- largest `.cs3` 8,336,733 bytes and largest `.jar` 157,711 bytes, both checked a second way by downloading the file
+  and counting it. The plugin cap is 32 MiB, about four times the largest;
+- `manifestVersion` is 1 in 31 repositories and 2 in 2, which have exactly the version 1 keys. Android never reads it.
+  DECIDED: read 1 and 2, refuse anything else (options: refuse all but 1, which strands two working repositories;
+  read any, which reads a future format as this one);
+- 529 of 583 plugins publish `fileHash`, and all publish `fileSize`. 5 `internalName`s carry a space or a `+`, so
+  110b derives the file name rather than taking it.
+
+### 110a — what it does (`desktopApp`, `extensions/repositories/`)
+
+- `parseRepositoryLink`: https as typed; `cloudstreamrepo://` and `https://cs.repo/` unwrapped; short codes, http and
+  anything else refused without a request.
+- `RepositoryHttp`, built on `#299`'s `boundedImageClient`:
+  - public addresses only, by name before connecting, as an IP literal before connecting, and at the connected
+    address on every hop (`SandboxPolicy.isPublicAddress`);
+  - redirects followed here, each `Location` checked for https first, at most 5;
+  - a cap per file, refused on the declared length or once passed, counted after decompression;
+  - connect, read and whole-call time limits (`#299` sets none); no cookies, no cache;
+  - no proxy: a JVM proxy setting would send the request to the proxy by name, so the target would never be resolved
+    here and neither address check would see it (`#334` review);
+  - failures are a `RepositoryFailure` kind. Nothing is printed, and no exception message (which can carry a URL) is
+    kept.
+- `RepositoryIndexParser`: the `:app` wire keys onto `:feature:extensions`' `ExtensionRepositoryIndex` and
+  `ExtensionListing`. One bad entry costs that entry, not the list (`:app` loses the list). URLs must be https; a
+  hash that is present and unreadable drops its entry; numbers must be numbers; text is cut to its limit.
+- `RepositoryReader`: the index, then every plugin list at once. A list that cannot be read is counted, so an
+  unreachable repository is not shown as an empty one.
+- `RepositoryStore`: `extensions.repositories` beside the extensions directory, mode 0600 on every write (a URL can
+  carry a token), atomic, and never overwritten when it cannot be read.
+- The two KDocs that said `:app` never compares `fileHash` (`ExtensionInstall.kt`, `ExtensionIndex.kt`) are
+  corrected: `RepositoryManager.downloadPluginToFile` compares it and throws on a mismatch.
+
+**Tests:** 45, in `RepositoryHttpTest` (16, against a server on loopback), `RepositoryIndexParserTest` (12),
+`RepositoryLinkTest` (5), `RepositoryReaderTest` (4) and `RepositoryStoreTest` (8). No real repository is reached, and
+every name is made up. There is no TLS test server without a new dependency, so the https rule is tested as the
+redirect check, with plain http standing in for "not https".
+
+**Red-checked:** with every guard removed at once (the https check, the address checks, the redirect limit, both size
+checks, the call timeout, the parser's https rule, the 0600 write), 16 of the 42 fail, each on its own guard: for
+example `expected:<NotHttps> but was:<Unreachable>`, the stalled server `took 15.004370042 s`, and the file's mode
+`[OWNER_WRITE, OWNER_READ, OTHERS_READ, GROUP_READ]`.
+
+**Review (`#334`), each guard pinned alone:** the name filter, the connected-address check, the no-proxy rule and the
+stated-length check each have a test that only that guard can pass. Removed one at a time, each fails its own test and
+nothing else: 1 of 45 for each of the first three, and for the stated-length check its new test plus the older
+declared-length one. A "prints nothing" case now also goes through a real OkHttp connection failure.
+
+**Green:** the 45 pass, and `:desktopApp:jvmTest` passes 772 of 772. The five gates passed, 273 XML results with 0
+failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
+
+### 110b — install, update, remove (`RepositoryInstaller`)
+
+- **Held until Allow.** A new choice, `ExtensionChoice.Pending`, is recorded for the file's hash before the file is
+  moved in, and `SandboxedExtensions` holds a `Pending` file whatever the scan says. Allow replaces it; Keep off
+  replaces it. An update is a new hash, so it is held again. Side-loaded files are unchanged.
+- **Offered:** status Ok or Slow. DECIDED: beta only is not offered (options: offer it, hide it; chose hide because the
+  Mac has no beta builds, which is what the status is for), and an unknown code is read as Down.
+- **Which file:** the jar when the repository publishes one, otherwise the `.cs3`, which the pipeline converts without
+  network. A jar arriving replaces the `.cs3` it supersedes, and its sidecar.
+- **Fetched and checked:** through `RepositoryHttp` with a 120 s call limit, at most the stated size and never past
+  32 MiB. A stated size it does not match, or a published hash it does not match, writes nothing.
+- **No published hash:** installed and marked unverified, and held all the same (the owner confirmed, 2026-11-10). It
+  gets no sidecar, and a sidecar left by an earlier, verified version is removed: it would claim a check that was not
+  made, or refuse the new file.
+- **Named here:** `fileStem` keeps the first 40 characters of `internalName` in `A-Z a-z 0-9 _ -` and adds 12 hex of
+  SHA-256 over the repository URL and the name, so `18+` and `18_`, and one name from two repositories, are different
+  files. Every path is checked to be a plain name directly in the folder. `..`, `/` and U+202E stay in.
+- **Written whole:** staged in `.incoming/`, the sidecar moved in before the file, the file moved in atomically.
+- **`InstalledFromRepositories`:** `extensions.installed` beside the directory, 0600, with the repository's version
+  (the Mac never loads a manifest it was not allowed to).
+- **Remove** takes the file, its sidecar and its entry, keeps the choice, and leaves side-loaded files alone.
+- **Updates:** a higher version, or `-1` (always update), from a status that is offered.
+- `SandboxedExtensions.refresh(fileName)` takes one file through the pipeline while the app runs (it comes back held),
+  and `forget(fileName)` stops one before it is replaced or removed. 110c calls them.
+- `#334` review, carried in: `RepositoryLink.Https`, `SavedRepository` and `InstalledFromRepository` print no URL, and a
+  failed save throws `OwnerOnlyFile.NotSaved`, which has no message and no cause, since a `Files` exception names the
+  home directory.
+- The three comments that said most repositories publish no hash are corrected (`ExtensionHash.kt`,
+  `ExtensionInstall.kt`, `JvmExtensionRuntimeTest.kt`): 529 of 583 do.
+
+**Tests:** 17 more: `RepositoryInstallerTest` (13), `RepositoryInstallHoldTest` (2, the real scanner and a real host
+under Seatbelt, on the clean fixture built in the test), `RepositoryRedactionTest` (2). No real plugin is involved.
+
+**Red-checked:** with the guards removed at once (the `Pending` hold in the pipeline and its record in the installer,
+the hash and size checks, removing an old sidecar, the name's character rule and the
+in-folder checks, the three redacting `toString`s, and the path-free save error), 10 of 62 fail, each on its guard:
+among them the clean fixture starting before it was allowed.
+
+**Green:** the 62 repository tests pass, `ExtensionHoldTest` 25 of 25, and `:desktopApp:jvmTest` 789 of 789. The five
+gates passed, 276 XML results with 0 failures; `:app:checkExtensionApi` passed and `app/api/classes-jar.api` is
+unchanged. All local.
+
+**Review (`#336`), fail closed.** The hold failed open when the decisions file could not be read: an empty snapshot
+had no choice, a clean scan started the file, and a write over the damaged file dropped every other repository file's
+`Pending`. Now:
+- a file named in `InstalledFromRepositories` is held unless this exact file is allowed, whatever else is recorded;
+- with the decisions file or the installed list unreadable, **every** file that is not allowed is held, side-loaded
+  ones included. **This changes master's behaviour for side-loaded files:** a clean one used to start with the
+  decisions file damaged;
+- the start decision is an exhaustive `when` over `ExtensionChoice`, so a choice added later has to say whether it
+  starts;
+- choosing again still repairs a damaged decisions file, as the shipped notice says, and the damaged file is first
+  copied whole to `extensions.decisions.damaged` (0600, one copy, the latest). DECIDED by the PM (option C, over
+  refusing to write, which left no way out but deleting the file by hand);
+- the installer writes its entry before the move and takes it back if the move does not happen, and a first install
+  that fails leaves no sidecar.
+
+Tests: `RepositoryInstallHoldTest` 3 more (a damaged file holds a repository install at launch; repairing it by
+choosing again leaves every other repository install held; a clean side-loaded file is held while it is damaged), and
+it now skips with `assumeTrue` where there is no `sandbox-exec`; `ExtensionDecisionsTest` 1 more (the `.damaged` copy:
+byte for byte, 0600, the latest only, none for a readable file); `RepositoryInstallerTest` 1 more (a first install that
+fails before its move leaves no entry and no file). **Red-checked one guard at a time:** without the installed-entry
+hold, the repair test fails; without the unreadable hold, the side-loaded test fails; without the copy aside, its test
+and the repair test fail; without the rollback, both "fails before its move" tests fail. **Green:** `:desktopApp:jvmTest`
+794 of 794; the five gates passed, 276 XML results with 0 failures; `:app:checkExtensionApi` passed and
+`app/api/classes-jar.api` is unchanged. All local.
+
+Found, not changed: two identical files in the extensions directory race for one `.store` entry when they load at once,
+and the loser's `NoSuchFileException` is not caught (`SandboxedExtensions.toStore` catches only
+`IllegalStateException`). Reported to the PM.
+
+### 110c — next
+
+- [ ] The Settings → Extensions pane and Home's button, against the desktop board; names and descriptions through
+      `untrustedText`; strings; a section in `desktop-design.md`.

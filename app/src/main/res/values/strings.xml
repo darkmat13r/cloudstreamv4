@@ -1060,6 +1060,7 @@
 <string name="subtitles_example_text">"The quick brown fox jumps over the lazy dog"</string>
 <string name="subtitles_file_empty">"This subtitle file is empty"</string>
 <string name="subtitles_filter_lang">"Filter by preferred media language"</string>
+<string name="subtitles_font_app">"App font"</string>
 <string name="subtitles_format_unsupported">"This subtitle format isn't supported"</string>
 <string name="subtitles_from_embedded">"Embedded"</string>
 <string name="subtitles_from_online">"Online"</string>

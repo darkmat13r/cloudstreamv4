@@ -617,6 +617,7 @@
 <string name="subs_window_color">"Cor de Ventá"</string>
 <string name="subscribe_tooltip">"Notificación de novo capítulo"</string>
 <string name="subtitles_file_empty">"Este ficheiro de subtítulos está baleiro"</string>
+<string name="subtitles_font_app">"Tipo de letra da aplicación"</string>
 <string name="subtitles_format_unsupported">"Este formato de subtítulos non é compatible"</string>
 <string name="subtitles_load_failed">"Non se puideron cargar estes subtítulos"</string>
 <string name="subtitles_settings">"Configurar Subtítulos"</string>

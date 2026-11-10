@@ -1007,6 +1007,7 @@
 <string name="subtitles_example_text">"Брзата кафеава лисица го прескокнува мрзливото куче"</string>
 <string name="subtitles_file_empty">"Оваа датотека со преводи е празна"</string>
 <string name="subtitles_filter_lang">"Филтрирај по претпочитан медиумски јазик"</string>
+<string name="subtitles_font_app">"Фонт на апликацијата"</string>
 <string name="subtitles_format_unsupported">"Овој формат на преводи не е поддржан"</string>
 <string name="subtitles_from_embedded">"Вграден"</string>
 <string name="subtitles_from_online">"Онлајн"</string>

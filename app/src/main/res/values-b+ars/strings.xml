@@ -650,6 +650,7 @@
 <string name="subscription_list_name">"مشترك"</string>
 <string name="subscription_new" formatted="true">"%sتم الاشتراك في"</string>
 <string name="subtitles_file_empty">"ملف الترجمة هذا فارغ"</string>
+<string name="subtitles_font_app">"خط التطبيق"</string>
 <string name="subtitles_format_unsupported">"صيغة الترجمة هذه غير مدعومة"</string>
 <string name="subtitles_load_failed">"تعذّر تحميل هذه الترجمات"</string>
 <string name="subtitles_settings">"إعدادات الترجمة"</string>

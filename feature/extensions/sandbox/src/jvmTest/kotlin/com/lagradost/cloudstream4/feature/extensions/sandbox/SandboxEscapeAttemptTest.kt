@@ -182,7 +182,7 @@ class SandboxEscapeAttemptTest {
         val results = runBlocking {
             val (client, providers) = PluginHostClient.start(launcher, jar, own, "hostile")
             try {
-                providers.getOrElse { throw AssertionError("host: ${client.hostOutput}", it) }
+                providers.getOrElse { throw AssertionError("host: ${client.redactedLog}", it) }
                 attempts(own).map { (what, attempt) ->
                     what to client.search("Hostile", "attempt:$attempt", 1).items.single().name
                 }

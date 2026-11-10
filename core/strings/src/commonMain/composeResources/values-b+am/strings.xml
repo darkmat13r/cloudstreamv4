@@ -440,6 +440,7 @@
 <string name="subs_text_color">የጽሑፍ ቀለም</string>
 <string name="subs_window_color">የዊንዶው ቀለም</string>
 <string name="subtitles_file_empty">ይህ የንዑስ ርዕስ ፋይል ባዶ ነው</string>
+<string name="subtitles_font_app">የመተግበሪያ ቅርጸ-ቁምፊ</string>
 <string name="subtitles_format_unsupported">ይህ የንዑስ ርዕስ ቅርጸት አይደገፍም</string>
 <string name="subtitles_load_failed">እነዚህን ንዑስ ርዕሶች መጫን አልተቻለም</string>
 <string name="subtitles_settings">የትርጉም ጽሑፍ ቅንብሮች</string>

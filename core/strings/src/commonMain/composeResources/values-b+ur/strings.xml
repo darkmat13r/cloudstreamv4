@@ -890,6 +890,7 @@
 <string name="subtitles_example_text">تیز بھوری لومڑی سست کتے پر چھلانگ لگاتی ہے</string>
 <string name="subtitles_file_empty">یہ سب ٹائٹل فائل خالی ہے</string>
 <string name="subtitles_filter_lang">ترجیحی میڈیا زبان کے لحاظ سے فلٹر کریں</string>
+<string name="subtitles_font_app">ایپ کا فونٹ</string>
 <string name="subtitles_format_unsupported">یہ سب ٹائٹل فارمیٹ معاون نہیں ہے</string>
 <string name="subtitles_load_failed">یہ سب ٹائٹلز لوڈ نہیں ہو سکے</string>
 <string name="subtitles_outline">خاکہ</string>

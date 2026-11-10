@@ -1011,6 +1011,7 @@
 <string name="subtitles_example_text">"Portez ce vieux whisky au juge blond qui fume"</string>
 <string name="subtitles_file_empty">"Ce fichier de sous-titres est vide"</string>
 <string name="subtitles_filter_lang">"Filtrez par langue préférée"</string>
+<string name="subtitles_font_app">"Police de l'application"</string>
 <string name="subtitles_format_unsupported">"Ce format de sous-titres n'est pas pris en charge"</string>
 <string name="subtitles_from_embedded">"Intégré"</string>
 <string name="subtitles_from_online">"En ligne"</string>

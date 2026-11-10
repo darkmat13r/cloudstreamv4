@@ -589,6 +589,7 @@
 <string name="subs_window_color">വിൻഡോ നിറം</string>
 <string name="subscribe_tooltip">പുതിയ എപ്പിസോഡ് അറിയിപ്പ്</string>
 <string name="subtitles_file_empty">ഈ സബ്ടൈട്ടിൽ ഫയൽ ശൂന്യമാണ്</string>
+<string name="subtitles_font_app">ആപ്പ് ഫോണ്ട്</string>
 <string name="subtitles_format_unsupported">ഈ സബ്ടൈട്ടിൽ ഫോർമാറ്റ് പിന്തുണയ്ക്കുന്നില്ല</string>
 <string name="subtitles_load_failed">ഈ സബ്ടൈട്ടിലുകൾ ലോഡ് ചെയ്യാനായില്ല</string>
 <string name="subtitles_settings">ഉപശീർഷകം ക്രമീകരണങ്ങൾ</string>

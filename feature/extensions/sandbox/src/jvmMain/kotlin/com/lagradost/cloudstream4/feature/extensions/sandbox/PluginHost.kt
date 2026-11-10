@@ -134,6 +134,9 @@ object PluginHost {
                 else -> EXIT_USAGE
             }
         } catch (failure: Throwable) {
+            // BUG-83: the one line the app reads by default, fixed in shape. The detail line is for --verbose only.
+            val name = failure::class.java.name.takeIf { HostStderr.CLASS_NAME.matches(it) } ?: "<class>"
+            System.err.println(HostStderr.FAILURE_PREFIX + name)
             System.err.println("plugin host: ${failure::class.java.name}: ${failure.message?.withoutUrls()}")
             EXIT_FAILED
         }
@@ -424,7 +427,11 @@ object PluginHost {
             HostProtocol.encode {
                 writeInt(id)
                 writeByte(HostProtocol.REPLY_FAILED)
-                writeText("${failure::class.java.simpleName}: ${failure.message.orEmpty()}".take(MAX_ERROR_CHARS))
+                // #335 review: redacted, then cut. The client redacts again; a plugin can write frames of its own.
+                writeText(
+                    "${failure::class.java.simpleName}: ${failure.message.orEmpty()}"
+                        .redactedWithin(PluginFailed.MAX_MESSAGE_CHARS)
+                )
             }
         )
 
@@ -445,7 +452,6 @@ object PluginHost {
     private const val EXIT_OK = 0
     private const val EXIT_USAGE = 64
     private const val EXIT_FAILED = 70
-    private const val MAX_ERROR_CHARS = 400
 }
 
 /** The host's entry point when not packaged, launched as a plain `java -cp … PluginHostMainKt`. */

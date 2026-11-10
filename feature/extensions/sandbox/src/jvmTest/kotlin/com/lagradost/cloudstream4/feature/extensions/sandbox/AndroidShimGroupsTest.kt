@@ -248,7 +248,7 @@ class AndroidShimGroupsTest {
             runBlocking {
                 val (host, providers) = PluginHostClient.start(launcher, jar, File(root, "data"), "shim")
                 try {
-                    providers.getOrElse { throw AssertionError(host.hostOutput, it) }
+                    providers.getOrElse { throw AssertionError(host.redactedLog, it) }
                     val seen = host.search("Shim", "query", 1).items.single().name
                     assertEquals("true|stored|true|0|UnsupportedOperationException|plugin-main", seen)
                 } finally {

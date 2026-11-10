@@ -68,9 +68,9 @@ object ExtensionHash {
      * [expected] is an `ExtensionListing.jarHash` / `fileHash` — a string from a third-party index,
      * so every shape it could be has a named outcome:
      *
-     * - absent or blank → [ExtensionVerification.Skipped]. Most repositories publish no hash at
-     *   all: 230 of the 235 catalogue entries surveyed in `KMP-13` §2 carry no `jarUrl`, and the
-     *   86-entry Phisher index has no hash key either.
+     * - absent or blank → [ExtensionVerification.Skipped]. Some entries publish no hash: 54 of
+     *   the 583 plugins in 33 public repositories had no `fileHash` on 2026-11-10 (`KMP-110`). A jar
+     *   hash is rarer: 230 of the 235 catalogue entries surveyed in `KMP-13` §2 carry no `jarUrl`.
      * - present but not `sha256-…` → [ExtensionVerification.Skipped], **not** a mismatch. "I cannot
      *   check this" and "this is the wrong file" are different facts, and a caller that treats an
      *   unreadable hash as tampering cannot ever adopt a second algorithm. The caller's policy

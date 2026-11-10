@@ -69,10 +69,11 @@ sealed interface ExtensionState {
 /**
  * Whether a downloaded `.cs3` is what the repository said it would be.
  *
- * `:app` does not check this today — `ExtensionListing.fileHash` is carried through the index and
- * never compared — and this contract exists so that the check has somewhere to live when it is
- * written. **Nothing in this module performs verification**; it only names the outcomes, so a runtime
- * that skips the step has to say so with [Skipped] rather than by returning success.
+ * `:app` does compare a published hash: `RepositoryManager.downloadPluginToFile` hashes the download
+ * and throws on a mismatch, before the file is moved into place. It has no outcome type, though, and
+ * a plugin with no hash is installed with nothing saying so; this contract names all three outcomes.
+ * **Nothing in this module performs verification**; it only names the outcomes, so a runtime that
+ * skips the step has to say so with [Skipped] rather than by returning success.
  *
  * Extension code is third-party and arbitrary, and `.claude/rules/dependency-security.md` treats its
  * output as untrusted input. An unverified download is the step before that trust boundary.
@@ -87,7 +88,8 @@ sealed interface ExtensionVerification {
     /**
      * No check was possible, with the reason.
      *
-     * The common case is a repository that publishes no `fileHash`, which most do not. This is not a
+     * The usual case is an entry with no `fileHash`, which is the minority: 54 of the 583 plugins in 33
+     * public repositories had none on 2026-11-10 (`KMP-110`). This is not a
      * failure — it is the absence of a guarantee, and a caller that cannot tell the two apart will
      * eventually treat one as the other.
      */

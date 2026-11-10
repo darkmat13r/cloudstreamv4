@@ -207,6 +207,13 @@ class HostileApi : MainAPI() {
                     "forged"
                 }
                 "hostile-text" -> "evil\u001B[2J\nforged line"
+                "leak" -> {
+                    // BUG-83: the plugin's own text, by each road a plugin has to stderr.
+                    println("stdout GET https://viewer:hunter2@media.example/watch?q=SECRET_QUERY")
+                    System.err.println("stderr token Zq8Xv3Lm9Pt2Rk7Wd4Hs6Nb1Yc from 192.0.2.44")
+                    android.util.Log.d("Hostile", "log viewer.one@mail.example at /Users/sample-user/Library/x")
+                    "leaked"
+                }
                 "attempt" -> EscapeAttempts.run(argument)
                 else -> "unknown"
             }

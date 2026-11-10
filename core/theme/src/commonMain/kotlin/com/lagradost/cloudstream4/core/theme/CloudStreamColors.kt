@@ -5,10 +5,13 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.graphics.Color
 
 /**
- * The complete CloudStream 4 colour set: **nine roles, no others.**
+ * The complete CloudStream 4 colour set: **ten roles, no others.**
  *
- * The artboards were drawn with exactly these nine values. A tenth colour at a call site is a
- * design change, not an implementation detail — raise it rather than adding a `Color(0xFF…)`.
+ * The artboards were drawn with the first nine. The tenth, [sidebar], is the owner's choice of
+ * 2026-11-10 (board d159, `KMP-111`): the sidebar column reads as its own area, one visible step
+ * lighter than the page, the same on every platform, in place of translucency. An eleventh colour
+ * at a call site is a design change, not an implementation detail — raise it rather than adding a
+ * `Color(0xFF…)`.
  *
  * @property bg the ground the whole app sits on.
  * @property surface an *inset* surface — a text field, a well.
@@ -23,6 +26,8 @@ import androidx.compose.ui.graphics.Color
  * @property focus the focus ring. Consumed by the design system's focus-ring modifier.
  * @property live **playback state only** — progress, LIVE badges, a failure marker. It is never a
  *   button and never a generic accent: the primary button is an [ink] fill with a [bg] label.
+ * @property sidebar the sidebar column's ground, title band included (`KMP-111`). Reach it through
+ *   the design system's `CloudStreamMaterial.Sidebar`, not by name. See [CloudStreamPalette.Sidebar].
  */
 @Immutable
 data class CloudStreamColors(
@@ -35,6 +40,7 @@ data class CloudStreamColors(
     val ink: Color,
     val focus: Color,
     val live: Color,
+    val sidebar: Color,
 )
 
 /**
@@ -59,13 +65,24 @@ private object CloudStreamPalette {
     val SecondaryInk = Color(0xFFCCCCCC)
     val White = Color(0xFFFFFFFF)
     val Live = Color(0xFFCD3D4B)
+
+    /**
+     * The lightest value in the ladder's own cool tint that keeps [Muted] at the 4.5:1 floor (`KMP-111`).
+     * WCAG ratios: **1.26:1** against [Black], [Muted] **4.53:1**, [SecondaryInk] **10.42:1**, [White] **16.73:1**.
+     *
+     * The bound: [Muted]'s relative luminance is 0.23455, so 4.5:1 needs the ground's at most
+     * (0.23455 + 0.05) / 4.5 − 0.05 = 0.01323; this is 0.01276. `#1B2026` would read lighter (1.28:1) but
+     * puts [Muted] at 4.44:1. `#191F25` is a hair lighter again (1.264:1) with [Muted] at 4.502:1, a margin
+     * of 0.002, so this one, with 0.034, is the one kept.
+     */
+    val Sidebar = Color(0xFF1A1E24)
 }
 
 /**
  * The dark scheme — the authoritative one. CloudStream 4 is a dark-first, TV-first design and
  * every artboard was drawn against [CloudStreamPalette.Black].
  *
- * There is deliberately **no light scheme here.** A "straight role inversion" of these nine values
+ * There is deliberately **no light scheme here.** A "straight role inversion" of these ten values
  * is not honest: [CloudStreamColors.surface] (`#0A1016`) and [CloudStreamColors.raised]
  * (`#15191E`) are cool-tinted near-blacks, and a channel-wise inversion turns them into warm
  * creams (`#F5EFE9`, `#EAE6E1`) that nobody designed. Deriving a light scheme means deciding
@@ -83,6 +100,7 @@ fun cloudStreamDarkColors(): CloudStreamColors = CloudStreamColors(
     ink = CloudStreamPalette.White,
     focus = CloudStreamPalette.White,
     live = CloudStreamPalette.Live,
+    sidebar = CloudStreamPalette.Sidebar,
 )
 
 /**

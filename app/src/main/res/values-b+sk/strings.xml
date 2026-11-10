@@ -774,6 +774,7 @@
 <string name="subtitles_encoding">"Kódovanie titulkov"</string>
 <string name="subtitles_example_text">"V kŕdli čajok švihol ďateľ v ústí milej obžerky"</string>
 <string name="subtitles_file_empty">"Tento súbor titulkov je prázdny"</string>
+<string name="subtitles_font_app">"Písmo aplikácie"</string>
 <string name="subtitles_format_unsupported">"Tento formát titulkov nie je podporovaný"</string>
 <string name="subtitles_load_failed">"Tieto titulky sa nepodarilo načítať"</string>
 <string name="subtitles_outline">"Obrys"</string>
