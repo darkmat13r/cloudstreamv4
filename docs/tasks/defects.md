@@ -4059,3 +4059,16 @@ takes focus. The band fits, so the page does not move, and the chrome and its of
   passes too.
 - Two new screenshots, looked at: `home-offline-bookmarks-wrapped-focus-retry` (Somali) and
   `home-offline-bookmarks-long-name-focus-retry`. No existing reference changed.
+
+## BUG-91 — "%1$d min left" is not a plural · **low, i18n** · backlog
+
+**Status:** open, backlog · from #346's review (nit 2), 2026-11-10 · not to be fixed before a native review
+
+`episode_time_left` (`I18N-25`, `KMP-63`) is one `<string>`, `%1$d min left`, in all 62 directories. English needs no
+plural because "min" is an abbreviation, and most locales were written with their own abbreviation for the same reason.
+But a language that inflects even an abbreviated noun or its verb by count (Slavic and Baltic "left", Arabic's dual) reads
+wrongly at some counts: Russian "Осталось 1 мин" is fine, but a full-word translation would need one, few and many forms.
+
+**The fix, when there is a native review:** make it a `<plurals>` resource with the forms each locale needs, read with
+`pluralStringResource`, and move the strings oracle baseline for it (a plural is a new key shape in `decoded.tsv`). Until
+then the abbreviation is the hedge, and the machine translations are not to be "corrected" into full words without one.

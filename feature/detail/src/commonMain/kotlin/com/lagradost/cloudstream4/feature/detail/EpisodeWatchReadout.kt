@@ -9,7 +9,7 @@ import androidx.compose.runtime.Immutable
  */
 @Immutable
 sealed interface EpisodeWatchReadout {
-    /** Marked watched, or played to [DetailResume.FINISHED_FRACTION]. */
+    /** Marked watched, or played to [DetailResume.FINISHED_PERCENT]. */
     data object Watched : EpisodeWatchReadout
 
     /** Started and not finished: [minutes] left, rounded up as [DetailResume.remainingMinutes] is. */
