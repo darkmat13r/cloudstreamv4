@@ -3274,8 +3274,8 @@ checked it, and #311 shipped "Skip %s". On master the five calls that pass argum
 locale's text for their keys holds only `%1$s` and `%2$s`. A later translation could change that.
 
 **Fix.** `StringResourceArgumentsGuardTest` in `:core:strings`'s `jvmTest`. It needs no new dependency.
-- It reads every `*/src/*Main/**/*.kt` outside `app/` and `core/strings/`, and fails on any call to the four lookups
-  that passes format arguments. There is no allow-list.
+- It reads every `*/src/*Main/**/*.kt` outside `app/` (since `BUG-85`, `core/strings/` too), and fails on any call
+  to the four lookups that passes format arguments. There is no allow-list.
 - Comments and string text are blanked before it looks, but code inside a `${}` template is still read. An `import … as`
   alias counts. A leading `environment` is not a format argument.
 - `getString` and `getPluralString` count only where Compose's is imported (by name or `.*`) or written fully qualified,
@@ -3457,3 +3457,23 @@ All on `Television_720p`, locally (CI is off).
   15,568 and `search-suggestions-counted` 7,645. Each was looked at. Then the full run again: `:core:designsystem` 32,
   `:feature:home` 87, `:feature:detail` 38, `:feature:downloads` 61, `:feature:library` 34, `:feature:search` 62, no
   failures; `DownloadsTvNavigationTest` 3 runs of 3; the old `Chip` still fails `ChipDeviceTest` 3 of 4.
+
+## BUG-85 — The BUG-84 guard missed a qualified call split across lines, skipped `core/strings`, and re-ran for other worktrees' edits · **low, i18n**
+
+**Status:** fixed in this PR · found in review of #314 · stacked on #314
+
+- **A fully qualified call broken across lines was missed.** `qualifierBefore` stopped at the whitespace after a `.`,
+  so `org.jetbrains.compose.resources` on one line and `.getString(res, name)` on the next read as a call with an empty
+  receiver, and an empty receiver was treated like someone else's member call. It now skips whitespace on both sides of
+  every `.` and of a safe call's `?.`. A receiver that is an expression (`f().getString`) is still a member call.
+- **`core/strings/` was excluded as a whole.** Its main sources are now read like every other module's. They pass.
+- **Dot-directories were test inputs.** The input tree included `.claude/worktrees/…`, so an edit in another worktree
+  re-ran this checkout's guard. The inputs now exclude `.*/**` and `**/.*/**`, the same directories the test skips.
+
+**Proof,** all local (CI is off):
+- **Red:** the new case `aFullyQualifiedCallBrokenAcrossLinesCounts` plants two split qualified calls, a split
+  `prefs?.getString` and a one-line qualified call. Against the old `qualifierBefore` it failed with
+  `expected:<[3, 5, 8]> but was:<[8]>`: both split calls were missed.
+- **Green:** `StringResourceArgumentsGuardTest` 11 of 11, with `core/strings`' 13 main files now scanned and clean.
+  `:core:strings:jvmTest` 54 of 54. The five gates passed, 265 XML results with 0 failures; `:app:checkExtensionApi`
+  passed and `app/api/classes-jar.api` is unchanged.

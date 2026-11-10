@@ -86,14 +86,15 @@ tasks.named<Test>("jvmTest") {
         },
     )
     // `BUG-84`: `StringResourceArgumentsGuardTest` reads every module's main sources for Compose's argument overloads.
-    // The same tree it walks is declared here, so editing any of those files re-runs it.
+    // The same tree it walks is declared here, so editing any of those files re-runs it. Dot-directories are left out
+    // (`BUG-85`): a worktree under `.claude/` is another checkout, and its edits should not re-run this one's guard.
     jvmArgumentProviders.add(
         objects.newInstance<strings.StringsCallSitesArgument>().apply {
             root.set(layout.settingsDirectory)
             sources.from(
                 fileTree(layout.settingsDirectory) {
                     include("**/src/*Main/**/*.kt")
-                    exclude("app/**", "core/strings/**", "build-logic/**", "**/build/**", "**/.gradle/**")
+                    exclude("app/**", "build-logic/**", "**/build/**", ".*/**", "**/.*/**")
                 },
             )
         },
