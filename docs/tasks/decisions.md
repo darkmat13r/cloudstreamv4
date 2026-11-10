@@ -97,6 +97,8 @@ instances subset to Latin, Greek, Cyrillic and Vietnamese. The subtitle picker's
 the Google Sans entry is "App font". `BUG-77` in `defects.md` has the mapping, the coverage measured old against new,
 and the losses the owner accepted. `NOTICE` has every source, command and SHA-256.
 
+2026-11-10: the owner was told the replaced fonts remain readable in the public history and chose not to rewrite it.
+
 The measurement below is kept as the record of what was replaced.
 
 ### What the files actually are
