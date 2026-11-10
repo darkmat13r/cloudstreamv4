@@ -157,7 +157,9 @@ class ResumeSuiteTest : SuiteBase() {
         runBlocking {
             val first = CoroutineScope(Dispatchers.Default).launch { downloader.download(h.request(options = options())).collect { } }
             try {
-                withTimeout(20_000) { while (h.server.bodyRequests().isEmpty()) kotlinx.coroutines.delay(5) }
+                // BUG-101: every part of the first download, not only its first, has reached the server before the
+                // mark, so a part of the first that arrives late is never counted against the second.
+                withTimeout(20_000) { while (h.server.bodyRequests().size < PARTS) kotlinx.coroutines.delay(5) }
                 val mark = h.server.log.size
                 assertFailsWith<IllegalStateException> { downloader.download(h.request(options = options())).collect { } }
                 assertEquals(emptyList(), h.server.since(mark).map { it.toString() }, "the rejected download still sent requests")

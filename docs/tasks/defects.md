@@ -4059,3 +4059,25 @@ takes focus. The band fits, so the page does not move, and the chrome and its of
   passes too.
 - Two new screenshots, looked at: `home-offline-bookmarks-wrapped-focus-retry` (Somali) and
   `home-offline-bookmarks-long-name-focus-retry`. No existing reference changed.
+
+## BUG-101 — A second-download test took its mark after the first download's first part, so a later part counted against it · **low, test only** · measured 2026-11-11
+
+**Found** in train 20's gates: `ResumeSuiteTest` "a second download of the same target while one runs fails before
+any byte" (`:media:download`) failed a full `check` with "the rejected download still sent requests", naming
+`GET /f range=0-6291455`: part 0 of the *first* download.
+
+**Cause:** the test, not the engine. The first download fetches 4 parts of 6 MiB. The test waited only until the server
+had seen one body request, took its mark, and asserted that nothing was logged after it while the second download was
+refused. A part of the first that reached the server after the mark was counted against the second. The same family
+as `BUG-99`: a wait for the first of N events.
+
+**Fix:** the test waits until all 4 of the first download's parts have reached the server before it takes the mark.
+The assertion is unchanged.
+
+**Proof,** all local (CI is off), `--no-build-cache`:
+- **Red:** with two scratch changes, master's test fails 3 runs of 3, each listing parts of the first download. The
+  server logs every body request after the first 300 ms late, and the test waits 600 ms between the refusal and its
+  assertion, as a slow refusal would. With only the late parts it passed, because the refusal is quick and the check
+  came first. That is why the flake is rare.
+- **Green:** the fix under the same two scratch changes passes 3 of 3. Without them, the class passes 10 `--rerun`
+  runs of 10, and 10 more of 10 with every core kept busy by a CPU burner.
