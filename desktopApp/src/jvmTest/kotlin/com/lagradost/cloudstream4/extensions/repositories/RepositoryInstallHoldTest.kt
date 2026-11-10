@@ -91,7 +91,7 @@ class RepositoryInstallHoldTest {
             status = ExtensionStatus.Ok, version = 1, apiVersion = 1,
             jarUrl = "https://files.example/plain.jar", jarHash = ExtensionHash.of(bytes), jarFileSizeBytes = bytes.size.toLong(),
         )
-        val installer = RepositoryInstaller(directory, fetch = { _, _ -> Fetched.Bytes(bytes) })
+        val installer = RepositoryInstaller(directory, fetch = { _, _, _ -> Fetched.Bytes(bytes) })
         return assertIs<InstallResult.Installed>(runBlocking { installer.install("https://files.example/repo.json", listing) }).fileName
     }
 

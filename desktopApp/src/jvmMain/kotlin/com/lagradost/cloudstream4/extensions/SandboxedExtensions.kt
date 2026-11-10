@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.extensions
 
 import com.lagradost.cloudstream3.APIHolder
 import com.lagradost.cloudstream4.extensions.repositories.InstalledFromRepositories
+import com.lagradost.cloudstream4.extensions.repositories.PaneExtensions
 import com.lagradost.cloudstream4.feature.extensions.ExtensionHash
 import com.lagradost.cloudstream4.feature.extensions.ExtensionVerification
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ExtensionScanner
@@ -53,7 +54,7 @@ class SandboxedExtensions(
     private val decisions: ExtensionDecisions = ExtensionDecisions(ExtensionDecisions.fileFor(directory)),
     /** What repositories installed (`KMP-110b`): a file named there is held unless allowed, whatever its choice says. */
     private val installed: InstalledFromRepositories = InstalledFromRepositories(InstalledFromRepositories.fileFor(directory)),
-) : ExtensionControl {
+) : ExtensionControl, PaneExtensions {
     private val root = directory.canonicalFile
     private val store = File(root, STORE_DIRECTORY)
     private val sandboxes = File(root, SANDBOX_DIRECTORY)
@@ -118,7 +119,7 @@ class SandboxedExtensions(
      *
      * @return where it ended up, or null when the file is not there, or there is no sandbox on this platform.
      */
-    suspend fun refresh(fileName: String): SandboxedLoad? {
+    override suspend fun refresh(fileName: String): SandboxedLoad? {
         val source = candidates().firstOrNull { it.name == fileName } ?: return null
         val launcher = launcher ?: return null
         stop(source)
@@ -126,7 +127,7 @@ class SandboxedExtensions(
     }
 
     /** Stops the extension in [fileName], if it is running, before a repository removes or replaces it (`KMP-110`). */
-    fun forget(fileName: String) {
+    override fun forget(fileName: String) {
         stop(File(root, fileName))
     }
 

@@ -8316,7 +8316,42 @@ Found, not changed: two identical files in the extensions directory race for one
 and the loser's `NoSuchFileException` is not caught (`SandboxedExtensions.toStore` catches only
 `IllegalStateException`). Reported to the PM.
 
-### 110c — next
+**`#336` review, follow-up (first commit of 110c1):** with `extensions.installed` unreadable, a repository's file and a
+clean side-loaded one are both held. Red-checked by removing only `|| installedList == null`: that test fails, alone.
+The `.damaged` copy is capped at the decisions file's own read limit.
 
-- [ ] The Settings → Extensions pane and Home's button, against the desktop board; names and descriptions through
-      `untrustedText`; strings; a section in `desktop-design.md`.
+### 110c — the pane, from `DS-27` (X1–X8)
+
+Split in two (DECIDED, PM 2026-11-10): **110c1** the state and the verbs, **110c2** the Compose UI and the strings.
+
+#### 110c1 — `ExtensionsPaneModel`
+
+- **The pane's state** (`ExtensionsPaneState`): the add group (Idle, Reading, or a failure kind for each of X2c's
+  eight, `AlreadyAdded` naming the repository as it names itself), the repositories (name, count, installed, read time,
+  reachable), one open repository's rows (X4a and X4b's states), the number waiting for a choice (X3c, hidden at 0),
+  and offline (X5b). No URL a person added is in it: a repository is a 16-hex key of a hash of its URL.
+- **Offline vs unreachable:** offline only when two or more repositories all fail. With one, the two cannot be told
+  apart, so it is unreachable (DECIDED, PM).
+- **The last list read is kept** (`RepositoryCache`): one file per repository, named by SHA-256 of its URL, 0600,
+  bounded, holding the bytes the repository sent. Read back, they go through the same parser and caps as a live read
+  (`RepositoryReader.parse`), and anything damaged reads as no cache. An unreachable repository shows its cached list
+  and when it was read, and nothing is installed or updated from it (X5a).
+- **Progress and Cancel** (X4a): `RepositoryHttp.fetch` and `RepositoryInstaller.install` report bytes as they arrive.
+  The file is held in memory until it has all arrived and been checked, so a cancel during the download leaves no
+  `.part` and no `Pending`; once writing begins it finishes.
+- **The order around a file**, as the review asked: an install is followed by `SandboxedExtensions.refresh` (it comes
+  back held, and `ExtensionApprovals.track` adds its review row); a removal is preceded by `forget`. One installer and
+  one installed list for the app.
+
+**Tests:** `ExtensionsPaneModelTest` 10 (the fakes stand in for the network, the pipeline and the review),
+`RepositoryCacheTest` 5, and 2 more in `RepositoryInstallerTest` (cancel; progress). **Red-checked one guard at a time**,
+each failing its own test: the hold recorded only after the download (moved before it, the cancel test fails); the
+offline rule; the cache's size cap; the cache's hashed name; no install while unreachable; `forget` before removal.
+**Green:** `:desktopApp:jvmTest` 812 of 812; the five gates passed, 278 XML results with 0 failures;
+`:app:checkExtensionApi` passed and `app/api/classes-jar.api` is unchanged. All local.
+
+#### 110c2 — next
+
+- [ ] The Settings → Extensions pane, the repository screen and the Remove sheet, against `DS-27`; Home's "No sources
+      yet"; names and descriptions through `untrustedText`; English strings only; a section in `desktop-design.md`.
+      A strings baseline move: the 34th at the earliest, regenerated on the master it rebases onto.

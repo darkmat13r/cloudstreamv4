@@ -3,6 +3,7 @@ package com.lagradost.cloudstream4.extensions
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanFinding
 import com.lagradost.cloudstream4.feature.extensions.sandbox.ScanSeverity
 import java.io.IOException
+import com.lagradost.cloudstream4.extensions.repositories.PaneReviews
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -89,7 +90,7 @@ class ExtensionApprovals(
     private val control: ExtensionControl,
     report: SandboxReport,
     private val scope: CoroutineScope,
-) {
+) : PaneReviews {
     private val _state = MutableStateFlow(
         ExtensionReviewState(
             // Held first, once. Not re-sorted on a choice: a row must not jump out from under the pointer.
@@ -98,9 +99,32 @@ class ExtensionApprovals(
             decisionsUnreadable = report.decisionsUnreadable,
         ),
     )
-    val state: StateFlow<ExtensionReviewState> = _state
+    override val state: StateFlow<ExtensionReviewState> = _state
 
     private val actions = Mutex()
+
+    /**
+     * Takes in what became of one file after the launch (`KMP-110c`): a repository installed it, or replaced it. Its row
+     * is replaced, added at the end, or removed when it has nothing to ask; nothing else moves.
+     */
+    override fun track(load: SandboxedLoad) {
+        val review = load.toReview()
+        _state.update { state ->
+            val others = state.reviews.filter { it.fileName != load.fileName }
+            val at = state.reviews.indexOfFirst { it.fileName == load.fileName }
+            val reviews = when {
+                review == null -> others
+                at < 0 -> others + review
+                else -> others.toMutableList().apply { add(at, review) }
+            }
+            state.copy(reviews = reviews, providerChanges = state.providerChanges + 1)
+        }
+    }
+
+    /** Forgets [fileName]'s row, when a repository removed the file (`KMP-110c`). */
+    override fun forget(fileName: String) {
+        _state.update { state -> state.copy(reviews = state.reviews.filter { it.fileName != fileName }) }
+    }
 
     fun onAction(action: ReviewAction) {
         when (action) {
