@@ -98,10 +98,10 @@ class DesktopInteractionTest {
     @Test
     fun `a click on a card opens it`() {
         val actions = mutableListOf<SearchAction>()
-        val item = SearchResultItem(SearchResultId("one"), "Title", providerName = "YouTube")
+        val item = SearchResultItem(SearchResultId("one"), "Title", providerName = "Wavecast")
         val state = SearchState(
             query = "q",
-            status = SearchStatus.Showing(SearchContent.Results(listOf(SearchResultGroup("YouTube", listOf(item))))),
+            status = SearchStatus.Showing(SearchContent.Results(listOf(SearchResultGroup("Wavecast", listOf(item))))),
         )
         val scene = scene {
             SearchScreenDesktop(state, { actions += it })

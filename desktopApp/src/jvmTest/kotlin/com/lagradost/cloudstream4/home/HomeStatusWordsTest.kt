@@ -17,7 +17,7 @@ import kotlin.test.assertTrue
 /** Runs here because this module is where the resources are packaged for a real render on the JVM. */
 class HomeStatusWordsTest {
 
-    private fun render(status: HomeStatus, name: String? = "YouTube"): UiState<List<HomeRow>> {
+    private fun render(status: HomeStatus, name: String? = "Wavecast"): UiState<List<HomeRow>> {
         var state: UiState<List<HomeRow>>? = null
         val scene = ImageComposeScene(width = 100, height = 100, density = Density(1f)) {
             state = status.toUiState(name) {}
@@ -55,7 +55,7 @@ class HomeStatusWordsTest {
     @Test
     fun aFailureNamesTheSourceAndKeepsTheReason() {
         val failed = render(HomeStatus.Failed("HTTP 503")) as UiState.Error
-        assertTrue("YouTube" in failed.prompt.body, failed.prompt.body)
+        assertTrue("Wavecast" in failed.prompt.body, failed.prompt.body)
         assertEquals("HTTP 503", failed.detail)
     }
 

@@ -3238,6 +3238,19 @@ so the first card changes, as it did with `Dune` and `Arrival`. With a name that
 Tests: the same 77 in 5 classes (`LibraryScreenTest` 26, `DesktopLibraryStoreTest` 19, `SearchScreenTest` 10,
 `WatchRecorderTest` 10, `DownloadsScreenTest` 12), 152 assertion lines before and after, all passing.
 
+Then the home tests and one interaction test:
+
+| Was | Now | Kept |
+|---|---|---|
+| `Severance`, `Arcane` (`HomeScreenTest`, to resume and in the kept library) | `Still Water`, `Lantern` | home orders by time watched and kept, never by name |
+| the source `YouTube` (`HomeScreenTest`, `HomeStatusWordsTest`, `DesktopInteractionTest`) | `Wavecast` | a failure still names its source (`HomeStatusWordsTest`; it fails with another name in the prompt, checked) |
+
+A real service's name in a test is the same problem as a real title. `Internet Archive` stays, by this entry's own
+record above: "a real official plugin and a `:library` class" (`InternetArchive`, an extractor in `:library`).
+
+Tests: the same 34 in 3 classes (`HomeScreenTest` 20, `HomeStatusWordsTest` 6, `DesktopInteractionTest` 8), 91
+assertion lines before and after, all passing.
+
 **One PR per module.** JVM tests first; the device tests and their screenshots after train 9, which carries those
 files, each screenshot diff read before it is re-recorded.
 
