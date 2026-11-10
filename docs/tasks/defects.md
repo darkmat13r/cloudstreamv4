@@ -3348,3 +3348,10 @@ All on `Television_720p`, locally (CI is off).
   `:feature:downloads` 61, `:feature:home` 86, `:feature:library` 34, `:feature:player` 14, `:feature:search` 62, and
   the whole `:app` suite, 161. No failures, and no screenshot reference changed. `DownloadsTvNavigationTest` then
   passed 3 runs of 3.
+- Rebased onto master `6e164f0ed` (train 15). Its references fail in 20 screenshots, all in the chip rows: Downloads 4,
+  Library 7 and Search 9. Each was recorded again and diffed against master's version. Every change is inside the chip
+  row's band, y 133..164 (127..170 for the two cases with a focused chip), and each changed-pixel count equals the one
+  this PR's first recording made against its own base, for example `downloads-choosing` 5,050, `library-grid-focus-tab`
+  15,568 and `search-suggestions-counted` 7,645. Each was looked at. Then the full run again: `:core:designsystem` 32,
+  `:feature:home` 87, `:feature:detail` 38, `:feature:downloads` 61, `:feature:library` 34, `:feature:search` 62, no
+  failures; `DownloadsTvNavigationTest` 3 runs of 3; the old `Chip` still fails `ChipDeviceTest` 3 of 4.
