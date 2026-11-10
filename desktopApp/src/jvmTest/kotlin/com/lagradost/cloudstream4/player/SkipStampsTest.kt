@@ -44,6 +44,15 @@ class SkipStampsTest {
     }
 
     @Test
+    fun `Skip stays inside a stream too long for a Float to tell its last millisecond from its end`() {
+        val long = 1L shl 25 // 9 h 19 min: past 2^24, a Float rounds length - 1 up to length
+        assertEquals(long.toFloat(), (long - 1).toFloat(), "the case this guards")
+        val target = skipTarget(SkipStamp(SkipKind.Ending, 0, long), long)
+        assertTrue(target < 1f, "never the end itself: was $target")
+        assertEquals(Math.nextDown(1f), target)
+    }
+
+    @Test
     fun `Skip plays the next episode only for a stamp ending in the last 20 s, and only with one to play`() {
         assertTrue(ending.skipsToNext(1_440_500, hasNext = true))
         assertFalse(ending.skipsToNext(1_440_500, hasNext = false))

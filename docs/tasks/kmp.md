@@ -6439,6 +6439,23 @@ window; the glue is read, not run.
 **Changed existing test code:** four settings tests that assert the whole stored map or file gain the new key, and
 `HostProtocolArtTest` (#299) takes `0x32` where it used `0x31` as a tag nobody reads, which is now the ids'.
 
+## KMP-107 — Skip's seek held below the end as a `Float`, and the Skip OP default's KDoc · **in review**, follow-up of `KMP-86`
+
+**Status:** in review · `:desktopApp`, `:feature:settings` · stacked on `KMP-86` (#311), merged right after it
+
+Two points from #311's review, in its own PR, because #311 was frozen with #310 stacked on it.
+
+- **The seek, as a `Float`.** `skipTarget` holds the target at `lengthMs - 1`, but `PlayerControls.seekTo` takes a
+  `Float` fraction, and a `Float` has 24 bits. From 2^24 ms (4 h 40 min) `lengthMs - 1` can round up to `lengthMs`
+  itself, and the fraction to exactly 1: the end, which ends the stream. The fraction is now also held at
+  `Math.nextDown(1f)`.
+- **The KDoc of `SettingsValues.DEFAULT_SKIP_STAMPS`** said on "until the owner rules"; the owner has ruled, for
+  Android's parity. It now says so. The value is unchanged.
+
+**Tests:** `SkipStampsTest` (6): a stamp ending at the end of a stream of 2^25 ms (9 h 19 min) seeks to
+`Math.nextDown(1f)`, not 1. The test first asserts that a `Float` cannot tell 2^25 - 1 from 2^25, so it states the case
+it guards. Proved by mutation: without the `minOf`, the fraction is 1.0 and the test fails.
+
 ## KMP-101 — Mac Search and Downloads polish: S3's banner, S2's second line, D5's pill, outlined state actions · **in review**
 
 **Status:** in review · `:desktopApp`, `:core:designsystem`, `:feature:{search,downloads,home}`, `:core:strings` · a design

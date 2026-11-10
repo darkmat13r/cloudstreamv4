@@ -58,9 +58,12 @@ internal fun List<SkipStamp>.at(positionMs: Long, lengthMs: Long): SkipStamp? =
 /**
  * Where Skip seeks for [stamp], as a fraction of [lengthMs]: Android's just past its end, held inside the stream, so a
  * seek never lands past the end and ends it. Absolute, so a position reported late cannot make it overshoot.
+ *
+ * Held below 1 as a `Float` too (`KMP-107`): a `Float` has 24 bits, so from 2^24 ms (4 h 40 min) `lengthMs - 1` can
+ * round up to `lengthMs` itself, and the fraction to 1.
  */
 internal fun skipTarget(stamp: SkipStamp, lengthMs: Long): Float =
-    (stamp.endMs + 1).coerceIn(0, lengthMs - 1).toFloat() / lengthMs
+    minOf((stamp.endMs + 1).coerceIn(0, lengthMs - 1).toFloat() / lengthMs, Math.nextDown(1f))
 
 /**
  * Whether Skip plays the next episode instead of seeking: Android's rule (`SkipAPI.videoStamps`), a stamp ending within
