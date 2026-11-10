@@ -4085,3 +4085,12 @@ failed 3 full `check` runs of 3 in a row, while its class alone passed 10 of 10.
 **Proof,** all local (CI is off), `--no-build-cache`, the class with `--rerun`:
 - **Red:** with the hold made to return at once, the test fails 3 runs of 3, at its loss assertion.
 - **Green:** with the hold, 10 runs of 10, and 10 more of 10 with every core kept busy by a CPU burner.
+
+**Review (`#361`):**
+- `CHANNEL_LOSS_TOLERANCE`'s KDoc says it is a bound only while the reader keeps up, with the measurements above.
+- An added assertion: the retry starts no lower than the part file had reached before the drop, less one read buffer.
+  The tolerance alone lets an engine throw away up to about 1 MiB it had already written. Red: with 512 KiB cut from
+  the part file after the failed attempt, the added assertion fails and the tolerance's passes.
+
+**Product note (`KMP-46`):** on a slow disk, a dropped connection costs a re-download of up to about 2 MiB the engine
+had received but not yet written. That is efficiency, not correctness, and a limit of Ktor's channel.

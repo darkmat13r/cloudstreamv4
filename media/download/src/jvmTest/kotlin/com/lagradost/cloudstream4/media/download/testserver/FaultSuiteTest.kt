@@ -24,10 +24,15 @@ class FaultSuiteTest : SuiteBase() {
         const val DROP_AT = 3 * MIB + 3
 
         /**
-         * The most received-but-unwritten bytes a failed body can cost: Ktor's `ByteChannel` buffer is
-         * 1048576 bytes (measured with `javap` on ktor-io-jvm 3.6.0) and its unread contents are discarded
-         * when the engine fails the body, plus one 64 KiB read buffer the engine had in hand. A Ktor
+         * The most received-but-unwritten bytes a failed body can cost **while the engine's reader keeps up**:
+         * Ktor's `ByteChannel` buffer of 1048576 bytes (measured with `javap` on ktor-io-jvm 3.6.0), whose unread
+         * contents are discarded when the engine fails the body, plus one 64 KiB read buffer in hand. A Ktor
          * limitation, not something the engine can fix.
+         *
+         * It is not a bound when the reader is behind (`BUG-100`): the channel's two buffers can then hold about
+         * twice that. Measured with a slowed disk and one drop at [DROP_AT]: 1,736,707 lost at 0.5 ms a write,
+         * 1,974,275 at 2 ms. The test that uses it holds the drop until the engine has written what it was sent,
+         * which makes "the reader keeps up" true at the moment of the drop.
          */
         const val CHANNEL_LOSS_TOLERANCE = 1 * MIB + 64 * KIB
         const val SLOW_BYTES_PER_SECOND = 1 * MIB
@@ -99,6 +104,12 @@ class FaultSuiteTest : SuiteBase() {
         assertTrue(
             retryStart >= DROP_AT - CHANNEL_LOSS_TOLERANCE,
             "the server delivered $DROP_AT bytes before closing but the retry resumed from $retryStart: ${DROP_AT - retryStart} received bytes were thrown away",
+        )
+        // The hold let the part file reach this before the drop, so a retry from below it threw away bytes already
+        // written: within CHANNEL_LOSS_TOLERANCE, but not lost to Ktor (BUG-100's review).
+        assertTrue(
+            retryStart >= DROP_AT - READ_BUFFER_IN_HAND,
+            "the part file held at least ${DROP_AT - READ_BUFFER_IN_HAND} bytes before the drop but the retry resumed from $retryStart",
         )
     }
 
