@@ -1,11 +1,11 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" width="1024" height="1024">
   <defs><radialGradient id="g" cx="38%" cy="30%" r="90%"><stop offset="0" stop-color="#121821"/><stop offset="1" stop-color="#05070a"/></radialGradient></defs>
   <rect width="1024" height="1024" fill="url(#g)"/>
-  <g fill="#ffffff">
-    <circle cx="398" cy="470" r="118"/>
-    <circle cx="560" cy="408" r="150"/>
-    <circle cx="690" cy="486" r="112"/>
-    <rect x="360" y="470" width="372" height="150" rx="75"/>
+  <g transform="translate(-29,73)">
+    <g fill="#ffffff">
+      <circle cx="398" cy="470" r="118"/><circle cx="560" cy="408" r="150"/><circle cx="690" cy="486" r="112"/>
+      <rect x="360" y="470" width="372" height="150" rx="75"/>
+    </g>
+    <path d="M470 452 L470 576 L584 514 Z" fill="#CD3D4B"/>
   </g>
-  <path d="M470 452 L470 576 L584 514 Z" fill="#CD3D4B"/>
 </svg>
