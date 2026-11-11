@@ -4230,3 +4230,61 @@ The assertion is unchanged.
   came first. That is why the flake is rare.
 - **Green:** the fix under the same two scratch changes passes 3 of 3. Without them, the class passes 10 `--rerun`
   runs of 10, and 10 more of 10 with every core kept busy by a CPU burner.
+
+## BUG-105 — A plugin's URL could make the Mac connect to a private address written as an address · **medium, security** · fixed in this PR
+
+**Status:** fixed in this PR · found 2026-11-11 while building `KMP-116`'s test that a private still is never fetched.
+
+**What happened.** The Mac's clients for a URL a plugin chose check an address twice: a DNS filter on what a name
+resolves to, and a network interceptor on the address connected to. OkHttp asks the DNS filter only for a name. An
+address written as one is never looked up, so only the interceptor saw it, and only once the TCP connection was open
+and a TLS hello had been sent. The image or stream was refused; the connection, a port probe of this Mac or its
+network, was not. `posterHttpClient`'s own KDoc said so ("opens a TCP connection and sends nothing").
+
+The wire's check (`isPrivateHostName`) was meant to stop these first, but it matched a pattern of spellings. It let
+through, measured on master: `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]`, `[::ffff:a00:1]`, `[::127.0.0.1]`,
+`2130706433`, `3232235777`, `0x7f000001` and `0177.0.0.1`. So a plugin could name one as a poster, a backdrop, a cast
+photo or a recommendation's poster. Through the poster client, which also serves subtitles, skip lookups and downloads,
+and through the media gateway, which serves streams to libVLC, the Mac then connected to it.
+
+**Measured** with the production clients against a server on this Mac counting the connections it was offered. Before:
+- the poster client: one connection for `127.0.0.1`, `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]` and `2130706433`; none
+  for `localhost` (a name, which the DNS filter stops) or `0x7f000001`;
+- the media gateway: one connection for `127.0.0.1` too;
+- the repository client: none. It already refuses an address written as one before connecting (`refusedLiteral`).
+
+**Fix, two layers:**
+1. **At the socket** (`AddressCheckedSocketFactory`, on `posterHttpClient` and the media gateway's client): each
+   destination is checked by the client's own `allow` before it connects. That covers an address written as one, every
+   address a name resolves to, and each redirect hop's, since every connection OkHttp makes goes through the socket
+   factory. An unresolved destination is refused too. The DNS filter and the interceptor stay, behind it.
+2. **At the wire** (`isPrivateHostName`): a host written as an address is read as one, with no lookup, and judged by
+   `SandboxPolicy.isPublicAddress`, the predicate the clients connect by. IPv6 is read in brackets, so Java never looks
+   it up. IPv4 is read as `inet_aton` reads it: one to four parts, each decimal, octal or hex. A host written as an
+   address that no reader agrees on (`08.0.0.1`, `4294967296`) is refused. A name stays a name: `cafe.be` and
+   `0x7f.example` are kept.
+
+**A proxy.** With a proxy, the socket's destination is the proxy, never the target, so the socket check would judge
+the proxy. `posterHttpClient` sets none on master; `BUG-88` (`#340`) gives it `Proxy.NO_PROXY`, which the media
+gateway and the repository client already have. Until `#340` lands, a JVM proxy setting would make this check judge the
+proxy's address: refused if it is private (a local proxy), passed if it is public. Nothing sets one today.
+
+**Tests** (run, all local):
+- `ConnectTimeAddressCheckTest` (desktopApp, 4): the poster client, the repository client and the media gateway are
+  each pointed at 127.0.0.1 in five spellings (`127.0.0.1`, `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]`, `2130706433`,
+  `0x7f000001`), over http and https. **0 connections** are offered for any. An address the check allows is still
+  connected to. **Red (run)** on master: the poster client and the gateway were each offered a connection, for
+  `http://127.0.0.1:…`.
+- `HostProtocolTest`, +1: sixteen private spellings refused by `httpUrlOrNull` and `httpsUrlOrNull`. Public ones
+  (`93.184.216.34`, `1572395042`, an IPv6 address) and lookalike names are kept. A host's details frame naming three of
+  them for its poster, backdrop and cast photo reaches the page with none. **Red (run)** on master: the first,
+  `[::ffff:127.0.0.1]`, was kept.
+- Measured once over the network, not a test: the fixed poster client fetched a public `https` image, 200 and 5,430
+  bytes of `image/x-icon`.
+
+**Not changed:** the pattern still refuses a name that starts with `127.` or `10.` (`127.example`), as it did.
+
+**Follow-up, not fixed here (the PM's note):** whether Android's image loader can be pointed by a plugin at this
+device's own addresses. It is a different threat model, where the plugin runs in the app's own process. Logged for a
+look.
+
