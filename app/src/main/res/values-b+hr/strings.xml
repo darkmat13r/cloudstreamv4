@@ -275,6 +275,7 @@
 <string name="download_done">"Preuzimanje dovršeno"</string>
 <string name="download_episode_range" formatted="true">"Želiš li preuzeti epizodu %s?"</string>
 <string name="download_failed">"Preuzimanje neuspjelo"</string>
+<string name="download_not_available_here">"Ovdje nije dostupno"</string>
 <string name="download_parallel_settings_des">"Koliko se različitih stavki može istovremeno preuzimati"</string>
 <string name="download_path_pref">"Putanja preuzimanja"</string>
 <string name="download_paused">"Preuzimanje pauzirano"</string>

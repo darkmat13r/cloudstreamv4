@@ -68,6 +68,7 @@
 <string name="account_use_pin">इसके बजाय पिन इस्तेमाल करें</string>
 <string name="detail_load_failed_body">हो सकता है स्रोत उपलब्ध न हो।</string>
 <string name="detail_load_failed_headline">यह शीर्षक नहीं खुल सका</string>
+<string name="download_not_available_here">यहाँ उपलब्ध नहीं</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d डाउनलोड हो रहे हैं</item><item quantity="other">%d डाउनलोड हो रहे हैं</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d कतार में</item><item quantity="other">%d कतार में</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d डाउनलोड हटाएँ?</item><item quantity="other">%d डाउनलोड हटाएँ?</item></plurals>

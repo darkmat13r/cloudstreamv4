@@ -209,6 +209,7 @@
 <string name="download_canceled">"Sťahovanie zrušené"</string>
 <string name="download_done">"Sťahovanie dokončené"</string>
 <string name="download_failed">"Sťahovanie zlyhalo"</string>
+<string name="download_not_available_here">"Tu nie je k dispozícii"</string>
 <string name="download_path_pref">"Cesta sťahovania"</string>
 <string name="download_paused">"Sťahovanie pozastavené"</string>
 <string name="download_queue">"Poradie sťahovania"</string>

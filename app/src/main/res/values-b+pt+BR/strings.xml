@@ -276,6 +276,7 @@
 <string name="download_done">"Download concluído"</string>
 <string name="download_episode_range" formatted="true">"Você deseja baixar o episódio%s?"</string>
 <string name="download_failed">"Download falhou"</string>
+<string name="download_not_available_here">"Indisponível aqui"</string>
 <string name="download_parallel_settings_des">"Quantos itens diferentes podem ser baixados em paralelo"</string>
 <string name="download_path_pref">"Onde salvar Downloads"</string>
 <string name="download_paused">"Download pausado"</string>

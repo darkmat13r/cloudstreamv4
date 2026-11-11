@@ -288,6 +288,7 @@
 <string name="download_episode_range" formatted="true">"Do you want to download episode %s?"</string>
 <string name="download_failed">"Download Failed"</string>
 <string name="download_format" formatted="true">"%1$s - %2$s"</string>
+<string name="download_not_available_here">"Not available here"</string>
 <string name="download_parallel_settings_des">"How many different items that can be downloaded in parallel"</string>
 <string name="download_path_pref">"Download path"</string>
 <string name="download_paused">"Download Paused"</string>

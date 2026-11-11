@@ -211,6 +211,7 @@
 <string name="download_canceled">"Nedlasting avbrutt"</string>
 <string name="download_done">"Last ned Ferdig"</string>
 <string name="download_failed">"Nedlasting mislyktes"</string>
+<string name="download_not_available_here">"Ikke tilgjengelig her"</string>
 <string name="download_path_pref">"Nedlastingssti"</string>
 <string name="download_paused">"Nedlasting stoppet midlertidig"</string>
 <string name="download_started">"Nedlasting startet"</string>

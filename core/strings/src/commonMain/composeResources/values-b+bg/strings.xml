@@ -68,6 +68,7 @@
 <string name="account_use_pin">Използвай ПИН</string>
 <string name="detail_load_failed_body">Източникът може да не е наличен.</string>
 <string name="detail_load_failed_headline">Заглавието не можа да се отвори</string>
+<string name="download_not_available_here">Не е налично тук</string>
 <plurals name="downloads_active"><item quantity="one">%d активно изтегляне</item><item quantity="other">%d активни изтегляния</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d се изтеглят</item><item quantity="other">%d се изтеглят</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d в опашка</item><item quantity="other">%d в опашка</item></plurals>

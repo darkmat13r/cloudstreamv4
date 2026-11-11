@@ -68,6 +68,7 @@
 <string name="account_use_pin">Utilitza el PIN</string>
 <string name="detail_load_failed_body">Potser la font no està disponible.</string>
 <string name="detail_load_failed_headline">No s'ha pogut obrir aquest títol</string>
+<string name="download_not_available_here">No disponible aquí</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d en baixada</item><item quantity="many">%d en baixada</item><item quantity="other">%d en baixada</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d a la cua</item><item quantity="many">%d a la cua</item><item quantity="other">%d a la cua</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Voleu suprimir %d baixada?</item><item quantity="many">Voleu suprimir %d baixades?</item><item quantity="other">Voleu suprimir %d baixades?</item></plurals>

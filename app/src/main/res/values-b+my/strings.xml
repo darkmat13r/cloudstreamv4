@@ -214,6 +214,7 @@
 <string name="download_canceled">"ဒေါင်းလုဒ် ပယ်ဖျက်ပြီး"</string>
 <string name="download_done">"ဒေါင်းလုဒ်ပြီးစီး"</string>
 <string name="download_failed">"ဒေါင်းလုဒ် မအောင်မြင်"</string>
+<string name="download_not_available_here">"ဤနေရာတွင် မရနိုင်ပါ"</string>
 <string name="download_path_pref">"ဒေါင်းလုဒ်လမ်းကြောင်း"</string>
 <string name="download_paused">"ဒေါင်းလုဒ် ရပ်ထား"</string>
 <string name="download_started">"ဒေါင်းလုဒ်စတင်"</string>

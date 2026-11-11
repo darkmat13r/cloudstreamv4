@@ -68,6 +68,7 @@
 <string name="account_use_pin">ኣብ ክንዳኡ PIN ተጠቐም</string>
 <string name="detail_load_failed_body">ምንጪ ኣይርከብ ይኸውን።</string>
 <string name="detail_load_failed_headline">እዚ ኣርእስቲ ክኽፈት ኣይከኣለን</string>
+<string name="download_not_available_here">ኣብዚ ኣይርከብን</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d ይወርድ ኣሎ</item><item quantity="other">%d ይወርድ ኣሎ</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d ኣብ መስርዕ</item><item quantity="other">%d ኣብ መስርዕ</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ውርዳት ይደምሰሱ?</item><item quantity="other">%d ውርዳት ይደምሰሱ?</item></plurals>

@@ -3,6 +3,8 @@ package com.lagradost.cloudstream4.downloads
 import com.lagradost.cloudstream4.core.http.HttpClientFactory
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
+import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
+import com.lagradost.cloudstream4.feature.downloads.DownloadTitleKind
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeState
 import com.lagradost.cloudstream4.media.download.DownloadOptions
 import java.io.File
@@ -111,6 +113,41 @@ class PageDownloadsTest {
         val row = page.awaitRow(detail) { it[id]?.unavailable == true }.getValue(id)
         assertNull(row.download, "the other title's download is not drawn on this row")
     }
+
+    /**
+     * The other title copies this page's name exactly and collides on both 32-bit ids, from another provider: a plugin
+     * picks all three strings. The name alone would let its record through; the row must refuse it as enqueue does,
+     * on the provider, so this page neither shows nor pauses or cancels another provider's download.
+     */
+    @Test
+    fun `a title with the same name from another provider, on both ids, is refused, and its download never shows`() =
+        runBlocking {
+            server.add("copied.bin", 4 * 1024 * 1024)
+            server.chunkDelayMillis.set(10)
+            val host = host("copied.bin")
+            val detail = show("Fixture Show")
+            val page = PageDownloads(host, TITLE_KEY) { FORCED_TITLE_ID }
+            val id = page.episodeId(detail, EPISODE)
+            val copied = DesktopDownloadRequest(
+                episodeId = id,
+                titleId = FORCED_TITLE_ID,
+                titleName = "Fixture Show",
+                kind = DownloadTitleKind.Series,
+                season = 1,
+                episode = 2,
+                episodeName = "The Second",
+                source = DownloadSourceRef("Another Provider", EPISODE.data),
+            )
+            assertEquals(EnqueueResult.Queued, host.enqueue(copied))
+            withTimeout(TIMEOUT) {
+                host.series(DownloadTitleId(FORCED_TITLE_ID)).contents.first { c -> c.episodes.any { it.id.value == id } }
+            }
+
+            assertNull(page.awaitRow(detail) { true }[id], "before Download, the copied title's download is not shown")
+            assertEquals(EnqueueResult.Refused(EnqueueRefusal.IdTaken), page.download(detail, EPISODE))
+            val row = page.awaitRow(detail) { it[id]?.unavailable == true }.getValue(id)
+            assertNull(row.download, "after it, the row reads unavailable and still shows nothing of the other's")
+        }
 
     @Test
     fun `a downloads file that cannot be read gives rows with no download, and Download reads unavailable`() =

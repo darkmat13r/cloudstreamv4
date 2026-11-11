@@ -275,6 +275,7 @@
 <string name="download_done">"다운로드 완료"</string>
 <string name="download_episode_range" formatted="true">"에피소드를 다운로드 하시겠습니까 %s?"</string>
 <string name="download_failed">"다운로드 실패"</string>
+<string name="download_not_available_here">"여기서는 사용할 수 없음"</string>
 <string name="download_parallel_settings_des">"병렬로 다운로드 할 수 있는 아이템의 수"</string>
 <string name="download_path_pref">"다운로드 경로"</string>
 <string name="download_paused">"다운로드 일시정지"</string>

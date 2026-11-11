@@ -16,9 +16,9 @@ import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopIconButton
 import com.lagradost.cloudstream4.core.designsystem.icon.CloudStreamIcons
 import com.lagradost.cloudstream4.core.strings.generated.resources.Res
-import com.lagradost.cloudstream4.core.strings.generated.resources.account_sync_unavailable
 import com.lagradost.cloudstream4.core.strings.generated.resources.cancel
 import com.lagradost.cloudstream4.core.strings.generated.resources.download
+import com.lagradost.cloudstream4.core.strings.generated.resources.download_not_available_here
 import com.lagradost.cloudstream4.core.strings.generated.resources.pause
 import com.lagradost.cloudstream4.core.strings.generated.resources.player_source_retry
 import com.lagradost.cloudstream4.core.strings.generated.resources.resume
@@ -70,7 +70,7 @@ fun EpisodeDownloadDesktop(
             EpisodeStatus(download, formatBytes)
         } else if (unavailable) {
             BasicText(
-                text = stringResource(Res.string.account_sync_unavailable),
+                text = stringResource(Res.string.download_not_available_here),
                 style = CloudStreamTheme.typography.body.copy(color = CloudStreamTheme.colors.muted),
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,

@@ -68,6 +68,7 @@
 <string name="account_use_pin">ইয়াৰ সলনি পিন ব্যৱহাৰ কৰক</string>
 <string name="detail_load_failed_body">উৎসটো পোৱা নাযাব পাৰে।</string>
 <string name="detail_load_failed_headline">এই শিৰোনামটো খুলিব নোৱাৰিলোঁ</string>
+<string name="download_not_available_here">ইয়াত উপলব্ধ নহয়</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d ডাউনলোড হৈ আছে</item><item quantity="other">%d ডাউনলোড হৈ আছে</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d শাৰীত</item><item quantity="other">%d শাৰীত</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d টা ডাউনলোড মচিবনে?</item><item quantity="other">%d টা ডাউনলোড মচিবনে?</item></plurals>

@@ -276,6 +276,7 @@
 <string name="download_done">"Stahování dokončeno"</string>
 <string name="download_episode_range" formatted="true">"Chcete stáhnout epizodu %s?"</string>
 <string name="download_failed">"Stahování selhalo"</string>
+<string name="download_not_available_here">"Zde není k dispozici"</string>
 <string name="download_parallel_settings_des">"Počet různých položek, které lze stahovat v jednu chvíli"</string>
 <string name="download_path_pref">"Cesta stahování"</string>
 <string name="download_paused">"Stahování pozastaveno"</string>

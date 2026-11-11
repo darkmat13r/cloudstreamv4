@@ -68,6 +68,7 @@
 <string name="account_use_pin">استعمل الـPIN</string>
 <string name="detail_load_failed_body">يمكن المصدر مو متوفر.</string>
 <string name="detail_load_failed_headline">ما قدرنا نفتح هالعنوان</string>
+<string name="download_not_available_here">مش متوفر هون</string>
 <plurals name="downloads_active"><item quantity="one">م شي عم يتنزل</item><item quantity="other">شي واحد عم يتنزل</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d عم ينزل</item><item quantity="other">%d عم ينزل</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d بالدور</item><item quantity="other">%d بالدور</item></plurals>

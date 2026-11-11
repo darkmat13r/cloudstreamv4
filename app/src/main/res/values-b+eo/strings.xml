@@ -121,6 +121,7 @@
 <string name="download_canceled">"Elŝuto Nuligite"</string>
 <string name="download_done">"Elŝuto Farite"</string>
 <string name="download_failed">"Elŝuto Malsukcesite"</string>
+<string name="download_not_available_here">"Ne disponebla ĉi tie"</string>
 <string name="download_paused">"Elŝuto Paŭzite"</string>
 <string name="download_queue">"Elsûtovico"</string>
 <string name="download_started">"Elŝuto Komencite"</string>

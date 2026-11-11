@@ -5,12 +5,10 @@ import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisode
 import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
-import com.lagradost.cloudstream4.feature.downloads.series.DownloadSeriesContents
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.flow.combine
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.update
 
 /** One episode row's download on the title page: the download, or none, and whether this page's enqueue was refused. */
@@ -23,10 +21,13 @@ internal data class EpisodeDownloadRow(val download: DownloadEpisode?, val unava
  * it. The service asks the extension for a link through its resolver, from the episode's source alone, and checks
  * that link as it checks every other. This adds no fetch path.
  *
- * **What a row shows** comes from the service's own record of this title ([DesktopDownloads.series]), by the
+ * **What a row shows** comes from the service's own record of this title ([DesktopDownloads.titleOnPage]), by the
  * episode's id. Two guards keep a row to its own episode:
- * - the record must carry this page's title name. The title id is 32 bits of a hash, so another title can hold it, by
- *   chance or because a plugin chose its strings to. A row never shows another title's download.
+ * - no record under the title's id may be another title's, by the same test the service's enqueue refuses `IdTaken`
+ *   by ([DesktopDownloads.ownsTitle]): another name, or a kept provider that differs. The title id is 32 bits of a
+ *   hash, so another title can hold it, by chance or because a plugin chose its strings to, the name included. A row
+ *   never shows, and its verbs never act on, another title's download. A finished episode keeps no provider, so it is
+ *   told apart by its name only, as enqueue tells it apart.
  * - an enqueue the service refuses is kept for this page, and its row reads unavailable, with no verb. `IdTaken` means
  *   the id is another's, so the row does not claim a download that is not its own. `AlreadyPresent` changes nothing
  *   here: the record already holds the episode, and the row shows it as it is.
@@ -51,12 +52,10 @@ internal class PageDownloads(
     /** Each row's download, by [episodeId], again whenever it changes. Rows with nothing to show are absent. */
     fun rows(detail: TitleDetail): Flow<Map<Int, EpisodeDownloadRow>> =
         combine(
-            downloads.series(titleId).contents
-                .map<DownloadSeriesContents, DownloadSeriesContents?> { it }
-                .catch { emit(null) },
+            downloads.titleOnPage(titleId, detail.title, detail.providerName).catch { emit(null) },
             refused,
         ) { contents, refusedIds ->
-            val own = contents?.takeIf { it.name == detail.title }?.episodes.orEmpty().associateBy { it.id.value }
+            val own = contents?.episodes.orEmpty().associateBy { it.id.value }
             (own.keys + refusedIds).associateWith { id ->
                 val download = own[id]
                 EpisodeDownloadRow(download, unavailable = download == null && id in refusedIds)

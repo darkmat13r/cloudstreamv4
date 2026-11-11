@@ -9265,26 +9265,36 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
 - **`PageDownloads`** sits between one title's page and `DesktopDownloads`:
   - Download builds the request with `episodeDownloadRequest`, which has no link, and enqueues it. The service asks
     the extension through its resolver, as part 1 does. No new fetch path.
-  - Each row's state comes from the service's own record of the title (`DesktopDownloads.series`), by the episode's
-    id. That flow existed already, so nothing new is read from the service.
-  - **Two guards keep a row to its own episode.** The record must carry the page's title name, so a title holding the
-    same 32-bit title id never shows its download on this page. A refused enqueue is kept for the page.
+  - Each row's state comes from the service's own record of the title (`DesktopDownloads.titleOnPage`), by the
+    episode's id.
+  - **Two guards keep a row to its own episode.**
+    - No record under the title's id may be another title's, by the test enqueue refuses `IdTaken` by: another name,
+      or a kept provider that differs. `DesktopDownloads.ownsTitle` and enqueue's `titleTaken` share one predicate,
+      and the page reads the check and the episodes from one snapshot. So a title that holds the same 32-bit ids never
+      shows its download on this page, and the row's verbs never act on it, even when it copies the name exactly. A
+      finished episode keeps no provider, so it is told apart by its name only, as enqueue tells it apart.
+    - A refused enqueue is kept for the page.
+    - The reviewer found the first guard comparing the name alone. A plugin that collides on both ids and copies the
+      name would have shown its download on the row, under this row's Pause and Cancel.
   - A downloads file that cannot be read gives rows with no download.
 - **Refusals, the PM's ruling.** No refusal is shown as an error.
   - `AlreadyPresent` changes nothing: the row shows the episode as the record holds it.
   - Every `Refused` reason, `IdTaken` included, reads "Not available here", muted, with no verb. `IdTaken` means the
     id is another title's, so the row never claims a download that is not its own.
-  - The words reuse `account_sync_unavailable`, which is "Not available here" in every locale, so no strings move.
+  - The words are `download_not_available_here` (`I18N-27`), a key of its own, with `account_sync_unavailable`'s text
+    in each locale. The PM's ruling: one key per meaning, so an edit to the sync line cannot change this one.
 - **The cell.** `EpisodeDownloadDesktop` takes `unavailable`, false by default. With no download it draws those words
   in the status column and no verb. A download the service holds is drawn as it is.
 - **`Main.kt`.** `DetailHost` passes the app's service to `rememberEpisodeDownloadCell`, which fills the page's slot.
   With no service (a test's window), the page draws no cell.
 - **Tests (jvm, run):**
-  - `PageDownloadsTest` (4), through a real `DesktopDownloads` and a loopback server:
+  - `PageDownloadsTest` (5), through a real `DesktopDownloads` and a loopback server:
     - Download starts the row's own episode through the resolver, and the row follows it to Done. A second press is
       `AlreadyPresent` and does not read as refused.
     - An id held by another title, with the same episode id, is refused `IdTaken`. The row reads unavailable, and never
       shows the other title's download.
+    - The same, with a title that copies this page's name exactly, from another provider. Its download never shows,
+      and Download reads unavailable.
     - An unreadable downloads file gives no rows and no throw. Download reads unavailable, asks no source and writes
       nothing over the file.
     - Pause, Resume and Cancel act on the row's own episode.
@@ -9294,8 +9304,8 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
     `detail-e2-download-unavailable`.
   - **Red (run), one change at a time:**
     - the cell neither says unavailable nor withholds its verbs: both refused-cell tests fail;
-    - no title-name guard: the other title's download shows on this page's row ("before Download, this row shows
-      nothing");
+    - no page guard: both collision tests show the other title's download on this page's row;
+    - the shared predicate without its provider check: the same-name test shows the other provider's download;
     - refusals not kept: the `IdTaken` and unreadable-file tests time out waiting for the unavailable row;
     - no catch on an unreadable file: that test fails with the service's `IOException`;
     - the cell never filled: the end-to-end test finds no Download on the hovered row.

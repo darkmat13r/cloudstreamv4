@@ -68,6 +68,7 @@
 <string name="account_use_pin">ಬದಲಿಗೆ ಪಿನ್ ಬಳಸಿ</string>
 <string name="detail_load_failed_body">ಮೂಲ ಲಭ್ಯವಿಲ್ಲದಿರಬಹುದು.</string>
 <string name="detail_load_failed_headline">ಈ ಶೀರ್ಷಿಕೆಯನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+<string name="download_not_available_here">ಇಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</item><item quantity="other">%d ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d ಸರದಿಯಲ್ಲಿ</item><item quantity="other">%d ಸರದಿಯಲ್ಲಿ</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</item><item quantity="other">%d ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</item></plurals>

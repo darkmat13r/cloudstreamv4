@@ -276,6 +276,7 @@
 <string name="download_done">"İndirme Tamamlandı"</string>
 <string name="download_episode_range" formatted="true">"%s numaralı bölümü indirmek istiyor musunuz?"</string>
 <string name="download_failed">"İndirme Başarısız"</string>
+<string name="download_not_available_here">"Burada kullanılamaz"</string>
 <string name="download_parallel_settings_des">"Aynı anda kaç farklı öğe indirilebilir"</string>
 <string name="download_path_pref">"İndirme konumu"</string>
 <string name="download_paused">"İndirme Duraklatıldı"</string>

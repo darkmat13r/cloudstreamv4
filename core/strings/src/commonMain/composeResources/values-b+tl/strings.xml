@@ -68,6 +68,7 @@
 <string name="account_use_pin">Gamitin na lang ang PIN</string>
 <string name="detail_load_failed_body">Maaaring hindi available ang source.</string>
 <string name="detail_load_failed_headline">Hindi mabuksan ang pamagat na ito</string>
+<string name="download_not_available_here">Hindi available dito</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d nagda-download</item><item quantity="other">%d nagda-download</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d nakapila</item><item quantity="other">%d nakapila</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Burahin ang %d download?</item><item quantity="other">Burahin ang %d download?</item></plurals>

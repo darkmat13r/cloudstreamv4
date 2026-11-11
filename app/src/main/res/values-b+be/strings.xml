@@ -275,6 +275,7 @@
 <string name="download_done">"Спампоўванне завершана"</string>
 <string name="download_episode_range" formatted="true">"Спампаваць %s серыю?"</string>
 <string name="download_failed">"Не ўдалося спампаваць"</string>
+<string name="download_not_available_here">"Тут недаступна"</string>
 <string name="download_parallel_settings_des">"Колькі разных элементаў можна спампоўваць паралельна"</string>
 <string name="download_path_pref">"Шлях спампоўкі"</string>
 <string name="download_paused">"Спампоўванне прыпынена"</string>

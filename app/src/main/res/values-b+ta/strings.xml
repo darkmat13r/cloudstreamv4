@@ -276,6 +276,7 @@
 <string name="download_done">"பதிவிறக்கம் முடிந்தது"</string>
 <string name="download_episode_range" formatted="true">"அத்தியாயம் %s ஐ பதிவிறக்க விரும்புகிறீர்களா?"</string>
 <string name="download_failed">"பதிவிறக்கம் தோல்வியடைந்தது"</string>
+<string name="download_not_available_here">"இங்கே கிடைக்கவில்லை"</string>
 <string name="download_parallel_settings_des">"எத்தனை வெவ்வேறு உருப்படிகளை இணையாக பதிவிறக்கம் செய்யலாம்"</string>
 <string name="download_path_pref">"பாதை பதிவிறக்க"</string>
 <string name="download_paused">"பதிவிறக்கம் இடைநிறுத்தப்பட்டது"</string>

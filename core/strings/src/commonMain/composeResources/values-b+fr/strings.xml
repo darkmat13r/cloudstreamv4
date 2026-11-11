@@ -68,6 +68,7 @@
 <string name="account_use_pin">Utiliser plutôt le PIN</string>
 <string name="detail_load_failed_body">La source est peut-être indisponible.</string>
 <string name="detail_load_failed_headline">Impossible d'ouvrir ce titre</string>
+<string name="download_not_available_here">Indisponible ici</string>
 <plurals name="downloads_active"><item quantity="one">%d téléchargement actif</item><item quantity="many">%d téléchargements actifs</item><item quantity="other">%d téléchargements actifs</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d en cours</item><item quantity="many">%d en cours</item><item quantity="other">%d en cours</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d en attente</item><item quantity="many">%d en attente</item><item quantity="other">%d en attente</item></plurals>

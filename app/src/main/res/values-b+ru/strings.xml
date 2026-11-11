@@ -276,6 +276,7 @@
 <string name="download_done">"Скачивание закончено"</string>
 <string name="download_episode_range" formatted="true">"Вы хотите загрузить эпизод %s?"</string>
 <string name="download_failed">"Скачивание не удалось"</string>
+<string name="download_not_available_here">"Здесь недоступно"</string>
 <string name="download_parallel_settings_des">"Сколько различных элементов можно загружать параллельно"</string>
 <string name="download_path_pref">"Путь скачивания"</string>
 <string name="download_paused">"Скачивание остановлено"</string>

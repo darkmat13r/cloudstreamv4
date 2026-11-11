@@ -68,6 +68,7 @@
 <string name="account_use_pin">Использовать ПИН-код</string>
 <string name="detail_load_failed_body">Источник может быть недоступен.</string>
 <string name="detail_load_failed_headline">Не удалось открыть это название</string>
+<string name="download_not_available_here">Здесь недоступно</string>
 <plurals name="downloads_active"><item quantity="one">%d активная загрузка</item><item quantity="few">%d активные загрузки</item><item quantity="many">%d активных загрузок</item><item quantity="other">%d активных загрузок</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">загружается: %d</item><item quantity="few">загружается: %d</item><item quantity="many">загружается: %d</item><item quantity="other">загружается: %d</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">в очереди: %d</item><item quantity="few">в очереди: %d</item><item quantity="many">в очереди: %d</item><item quantity="other">в очереди: %d</item></plurals>

@@ -68,6 +68,7 @@
 <string name="account_use_pin">Uzi PIN anstataŭe</string>
 <string name="detail_load_failed_body">La fonto eble ne disponeblas.</string>
 <string name="detail_load_failed_headline">Ne eblis malfermi ĉi tiun titolon</string>
+<string name="download_not_available_here">Ne disponebla ĉi tie</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d elŝutataj</item><item quantity="other">%d elŝutataj</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d atendantaj</item><item quantity="other">%d atendantaj</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Ĉu forigi %d elŝuton?</item><item quantity="other">Ĉu forigi %d elŝutojn?</item></plurals>

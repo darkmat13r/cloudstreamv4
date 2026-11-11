@@ -3509,6 +3509,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field download_episode_range I
 	public static field download_failed I
 	public static field download_format I
+	public static field download_not_available_here I
 	public static field download_parallel_key I
 	public static field download_parallel_settings_des I
 	public static field download_path_key I

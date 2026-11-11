@@ -275,6 +275,7 @@
 <string name="download_done">"下載完畢"</string>
 <string name="download_episode_range" formatted="true">"需要下載第 %s 集嗎？"</string>
 <string name="download_failed">"下載失敗"</string>
+<string name="download_not_available_here">"此處無法使用"</string>
 <string name="download_parallel_settings_des">"允許同時下載幾個項目"</string>
 <string name="download_path_pref">"下載路徑"</string>
 <string name="download_paused">"下載暫停"</string>

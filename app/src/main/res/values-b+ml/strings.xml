@@ -156,6 +156,7 @@
 <string name="download_canceled">"ഡൌൺലോഡ് റദ്ദാക്കി"</string>
 <string name="download_done">"ഡൌൺലോഡ് പൂർത്തിയായി"</string>
 <string name="download_failed">"ഡൌൺലോഡ് മുടങ്ങി"</string>
+<string name="download_not_available_here">"ഇവിടെ ലഭ്യമല്ല"</string>
 <string name="download_paused">"ഡൌൺലോഡ് നിർത്തി"</string>
 <string name="download_queue">"ഡൗൺലോഡ് ക്യൂ"</string>
 <string name="download_started">"ഡൌൺലോഡ് ആരംഭിച്ചു"</string>

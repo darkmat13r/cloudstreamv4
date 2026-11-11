@@ -98,6 +98,7 @@
 <string name="detail_sources_done" formatted="true">"ካብ %2$d %1$d መሊሶም"</string>
 <string name="detail_sources_progress" formatted="true">"ካብ %2$d %1$d መሊሶም · ይጽዕን ኣሎ…"</string>
 <string name="detail_start_over">"ካብ መጀመርታ ጀምር"</string>
+<string name="download_not_available_here">"ኣብዚ ኣይርከብን"</string>
 <string name="downloads_browse_library">"ቤተ-መጻሕፍቲ ድለ"</string>
 <string name="downloads_cancel_confirm_body" formatted="true">"እዚ ክሳብ ሕጂ ዝወረደ %s ይድርብዮ።"</string>
 <string name="downloads_cancel_confirm_title">"እዚ ውርዲ ይሰረዝ?"</string>

@@ -276,6 +276,7 @@
 <string name="download_done">"Shkarkimi u krye"</string>
 <string name="download_episode_range" formatted="true">"Dëshiron të shkarkosh episodin %s?"</string>
 <string name="download_failed">"Shkarkimi dështoi"</string>
+<string name="download_not_available_here">"Nuk ofrohet këtu"</string>
 <string name="download_parallel_settings_des">"Sa elementë të ndryshëm mund të shkarkohen njëkohësisht"</string>
 <string name="download_path_pref">"Destinacioni i shkarkimit"</string>
 <string name="download_paused">"Shkarkimi u ndërpre"</string>

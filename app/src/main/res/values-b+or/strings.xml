@@ -125,6 +125,7 @@
 <string name="documentaries">"ଵୃତ୍ତଚିତ୍ର"</string>
 <string name="documentaries_singular">"ଵୃତ୍ତଚିତ୍ର"</string>
 <string name="dont_show_again">"ପୁନଃ ଦେଖାଅନି"</string>
+<string name="download_not_available_here">"ଏଠାରେ ଉପଲବ୍ଧ ନାହିଁ"</string>
 <string name="download_storage_text">"ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍"</string>
 <string name="download_time_left_hour_min_sec_format" formatted="true">"%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ"</string>
 <string name="downloads_browse_library">"ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର"</string>

@@ -197,6 +197,7 @@
 <string name="download_canceled">"डाउनलोड रद्द"</string>
 <string name="download_done">"डाउनलोड मुकम्मल"</string>
 <string name="download_failed">"डाउनलोड विफल"</string>
+<string name="download_not_available_here">"यहाँ उपलब्ध नहीं"</string>
 <string name="download_path_pref">"डाउनलोड पथ"</string>
 <string name="download_paused">"डाउनलोड रोका गया"</string>
 <string name="download_queue">"कतार डाउनलोड करें"</string>

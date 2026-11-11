@@ -68,6 +68,7 @@
 <string name="account_use_pin">Uża l-PIN minflok</string>
 <string name="detail_load_failed_body">Is-sors jista' jkun mhux disponibbli.</string>
 <string name="detail_load_failed_headline">It-titlu ma setax jinfetaħ</string>
+<string name="download_not_available_here">Mhux disponibbli hawn</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d qed jitniżżlu</item><item quantity="two">%d qed jitniżżlu</item><item quantity="few">%d qed jitniżżlu</item><item quantity="many">%d qed jitniżżlu</item><item quantity="other">%d qed jitniżżlu</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d fil-kju</item><item quantity="two">%d fil-kju</item><item quantity="few">%d fil-kju</item><item quantity="many">%d fil-kju</item><item quantity="other">%d fil-kju</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Tħassar %d tniżżila?</item><item quantity="two">Tħassar %d tniżżiliet?</item><item quantity="few">Tħassar %d tniżżiliet?</item><item quantity="many">Tħassar %d tniżżiliet?</item><item quantity="other">Tħassar %d tniżżiliet?</item></plurals>

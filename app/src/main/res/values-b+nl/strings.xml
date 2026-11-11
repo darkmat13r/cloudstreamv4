@@ -256,6 +256,7 @@
 <string name="download_canceled">"Download Geannuleerd"</string>
 <string name="download_done">"Download Gereed"</string>
 <string name="download_failed">"Download Mislukt"</string>
+<string name="download_not_available_here">"Hier niet beschikbaar"</string>
 <string name="download_parallel_settings_des">"Hoeveel verschillende items kunnen in parallel gedownload worden"</string>
 <string name="download_path_pref">"Downloadpad"</string>
 <string name="download_paused">"Downloaden Gepauzeerd"</string>

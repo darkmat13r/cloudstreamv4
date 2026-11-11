@@ -68,6 +68,7 @@
 <string name="account_use_pin">PIN használata helyette</string>
 <string name="detail_load_failed_body">Lehet, hogy a forrás nem érhető el.</string>
 <string name="detail_load_failed_headline">Ezt a címet nem sikerült megnyitni</string>
+<string name="download_not_available_here">Itt nem érhető el</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d letöltés folyamatban</item><item quantity="other">%d letöltés folyamatban</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d várakozik</item><item quantity="other">%d várakozik</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Törölsz %d letöltést?</item><item quantity="other">Törölsz %d letöltést?</item></plurals>
