@@ -122,7 +122,8 @@ class HostLauncher internal constructor(
         val app = vlcApp.canonicalFile
         // Null only where this process has no JNA (the sandbox module's own tests): the host then has none to map, and
         // `jna.nounpack` still keeps it from unpacking one into [writable].
-        val dispatch = JnaDispatch.prepare(nativeLibraries)
+        // One canonical directory for the host's read rule, its map rule and JNA's boot path alike.
+        val dispatch = JnaDispatch.prepare(nativeLibraries)?.canonicalFile
         return start(
             arguments = emptyList(),
             readOnlyInputs = listOfNotNull(dispatch?.let { File(it, JnaDispatch.LIBRARY) }),
@@ -133,7 +134,7 @@ class HostLauncher internal constructor(
             extraRules = SeatbeltProfile.mediaHostRules(app, dispatch, audio = !silent, tls = false),
             // JNA loads its native part from [dispatch] and never unpacks one into [writable] (`BUG-96`, A-9).
             jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} -Djna.nounpack=true" +
-                dispatch?.let { " -Djna.boot.library.path=${it.canonicalPath}" }.orEmpty() +
+                dispatch?.let { " -Djna.boot.library.path=${it.path}" }.orEmpty() +
                 (if (silent) " -D$SILENT_PROPERTY=true" else "") +
                 if (input != null) " -D$FILE_PROPERTY=true" else "",
             input = input,

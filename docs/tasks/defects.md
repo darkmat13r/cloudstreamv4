@@ -4264,6 +4264,11 @@ untrusted media, was the one host that could write native code and run it.
 **Review (`#375`):** `GatewayPlaybackTest` passes a scratch directory for JNA's copy (`createWith(libraries = …)`), so
 no test writes `.jna` into the real `~/.cloudstream4`. A `.jna` this PR's first gate run left there was removed.
 
+**Not a gap, so the next audit need not raise it:** between `prepare()` checking the copy's hash and the host loading
+it there is a window. Only a process outside every sandbox, running as the same user, can write `~/.cloudstream4/.jna`
+in it, and such a process can already change the app itself, so it is outside the threat model. Copies left by earlier
+JNA versions (a few hundred KB each) are not cleaned yet; later.
+
 **Found, for a later small PR:** `GatewayPlaybackTest` still starts its player under the real
 `~/.cloudstream4/.media-host`, as it did before this PR, against the rule that tests never touch the owner's real
 `~/.cloudstream4`. It should run under a scratch home entirely.
