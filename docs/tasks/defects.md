@@ -4261,5 +4261,12 @@ untrusted media, was the one host that could write native code and run it.
 - **The profile's text:** `MediaHostProfileTest` checks that the map-executable allow names JNA's directory and never
   the writable one.
 
+**Review (`#375`):** `GatewayPlaybackTest` passes a scratch directory for JNA's copy (`createWith(libraries = …)`), so
+no test writes `.jna` into the real `~/.cloudstream4`. A `.jna` this PR's first gate run left there was removed.
+
+**Found, for a later small PR:** `GatewayPlaybackTest` still starts its player under the real
+`~/.cloudstream4/.media-host`, as it did before this PR, against the rule that tests never touch the owner's real
+`~/.cloudstream4`. It should run under a scratch home entirely.
+
 **Still open in BUG-96,** for part 2: A-10, one certificate-services rule for every plugin host, runtime refusals in
 `MediaHostServicesTest`, and a write timeout in `OutboundGate`.

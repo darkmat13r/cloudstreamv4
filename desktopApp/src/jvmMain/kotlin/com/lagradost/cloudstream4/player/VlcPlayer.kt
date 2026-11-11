@@ -278,6 +278,7 @@ class VlcPlayer private constructor(
             silent: Boolean,
             startGateway: () -> MediaGateway?,
             resolve: (String) -> Array<InetAddress> = InetAddress::getAllByName,
+            libraries: File = nativeLibraries(),
         ): VlcPlayer? {
             val launcher = HostLauncher.forMediaHost(MediaHost.ARGUMENT, MEDIA_HOST_MAIN) ?: return null
             if (!File(VLC_APP, "Contents/MacOS/lib/libvlc.dylib").isFile) return null
@@ -286,7 +287,7 @@ class VlcPlayer private constructor(
             val directory = newHostDirectory(base)
             return runCatching {
                 VlcPlayer(
-                    launcher.startMediaHost(VLC_APP, directory, nativeLibraries(), silent, gatewayPort = gateway.port),
+                    launcher.startMediaHost(VLC_APP, directory, libraries, silent, gatewayPort = gateway.port),
                     directory,
                     resolve = resolve,
                     gateway = gateway,
