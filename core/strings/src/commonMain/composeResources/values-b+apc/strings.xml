@@ -77,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">فشل %d</item><item quantity="other">فشلوا %d</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">مافي شي بعد بده يبلش يتنزل</item><item quantity="other">فيه شي واحد بعد بده يبلش يتنزل</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d عنوان · %2$s</item><item quantity="other">%1$d عناوين · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">باقي %1$d دقيقة</item><item quantity="other">باقي %1$d دقيقة</item></plurals>
 <string name="episode_time_left">باقي %1$d دقيقة</string>
 <string name="episode_watched">تمّت المشاهدة</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d إشارة مرجعية</item><item quantity="other">%d إشارات مرجعية</item></plurals>

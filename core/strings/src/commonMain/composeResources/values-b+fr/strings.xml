@@ -77,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d échec</item><item quantity="many">%d échecs</item><item quantity="other">%d échecs</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d téléchargement en attente</item><item quantity="many">%d téléchargements en attente</item><item quantity="other">%d téléchargements en attente</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titre · %2$s</item><item quantity="many">%1$d titres · %2$s</item><item quantity="other">%1$d titres · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Encore %1$d min</item><item quantity="many">Encore %1$d min</item><item quantity="other">Encore %1$d min</item></plurals>
 <string name="episode_time_left">Encore %1$d min</string>
 <string name="episode_watched">Vu</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARQUE-PAGE</item><item quantity="many">%d DE MARQUE-PAGES</item><item quantity="other">%d MARQUE-PAGES</item></plurals>

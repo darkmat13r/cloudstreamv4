@@ -75,6 +75,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d episodio</item><item quantity="other">%d episodios</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d fallida</item><item quantity="other">%d fallidas</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d título · %2$s</item><item quantity="other">%1$d títulos · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Quedan %1$d min</item><item quantity="other">Quedan %1$d min</item></plurals>
 <string name="episode_time_left">Quedan %1$d min</string>
 <string name="episode_watched">Visto</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d MARCADOR</item><item quantity="other">%d MARCADORES</item></plurals>

@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">"%d gagal"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"%d unduhan dalam antrean"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">"%1$d judul · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">"Sisa %1$d mnt"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d MARKAH"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d bagian gagal dimuat"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d bagian"</item></plurals>

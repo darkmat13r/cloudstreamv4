@@ -4060,9 +4060,10 @@ takes focus. The band fits, so the page does not move, and the chrome and its of
 - Two new screenshots, looked at: `home-offline-bookmarks-wrapped-focus-retry` (Somali) and
   `home-offline-bookmarks-long-name-focus-retry`. No existing reference changed.
 
-## BUG-91 — "%1$d min left" is not a plural · **low, i18n** · backlog
+## BUG-91 — "%1$d min left" is not a plural · **low, i18n** · the shape fixed in this PR; the words wait for a native review
 
-**Status:** open, backlog · from #346's review (nit 2), 2026-11-10 · not to be fixed before a native review
+**Status:** the shape fixed in this PR (2026-11-11, the PM's ruling) · from #346's review (nit 2), 2026-11-10 · the
+words still wait for a native review
 
 `episode_time_left` (`I18N-25`, `KMP-63`) is one `<string>`, `%1$d min left`, in all 62 directories. English needs no
 plural because "min" is an abbreviation, and most locales were written with their own abbreviation for the same reason.
@@ -4072,6 +4073,27 @@ wrongly at some counts: Russian "Осталось 1 мин" is fine, but a full-
 **The fix, when there is a native review:** make it a `<plurals>` resource with the forms each locale needs, read with
 `pluralStringResource`, and move the strings oracle baseline for it (a plural is a new key shape in `decoded.tsv`). Until
 then the abbreviation is the hedge, and the machine translations are not to be "corrected" into full words without one.
+
+**Done here: the shape, not the words.** The row reads `episode_minutes_left`, a new `<plurals>`, through
+`UiString.Plural`. In each of the 62 directories it has the forms that directory's other plurals have (Russian one, few,
+many, other; Arabic all six), and every form holds that directory's `episode_time_left` text unchanged. So nothing reads
+differently at any count, and a native review now edits forms only, with no code or shape change. No word was written
+by machine.
+- **A new key, not the old one's name** (the PM's ruling). `R$string.episode_time_left` is in `classes-jar.api`, and
+  replacing it would remove that line, which is the owner's call. `classes-jar.api` gains `R$plurals.episode_minutes_left`
+  and loses nothing. The old key stays in all 62 directories, unused: see the retired keys below.
+- **Tests:** `EpisodeWatchReadoutTest.theMinutesLeftAreAPluralPickedByTheirCount`, **red (run)** while the row still read
+  the string: "expected Plural(…, quantity=24) but was Resource(…)". `DetailScreenTest` reads the rows at 1 and 24
+  minutes left, "1 min left" and "24 min left", and passes before and after: the words did not move.
+
+## Retired string keys, waiting for an owner-approved ABI removal
+
+A key no screen reads any more, kept because its `R` field is in `classes-jar.api` and removing a line there is the
+owner's call. A future removal pass, signed off by the owner, can take these together.
+
+| Key | Retired by | Replaced by |
+|---|---|---|
+| `episode_time_left` (`R$string`) | `BUG-91`, 2026-11-11 | `episode_minutes_left` (`R$plurals`) |
 
 ## BUG-97 — A file that could not be read put its path, and so the home directory, in its "not loaded" line, or stopped the launch · **low, security** · fixed in this PR
 

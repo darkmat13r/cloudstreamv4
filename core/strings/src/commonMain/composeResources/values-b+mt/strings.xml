@@ -75,6 +75,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d episodju</item><item quantity="two">%d episodji</item><item quantity="few">%d episodji</item><item quantity="many">%d episodji</item><item quantity="other">%d episodji</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d falla</item><item quantity="two">%d fallew</item><item quantity="few">%d fallew</item><item quantity="many">%d fallew</item><item quantity="other">%d fallew</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titlu · %2$s</item><item quantity="two">%1$d titli · %2$s</item><item quantity="few">%1$d titli · %2$s</item><item quantity="many">%1$d titli · %2$s</item><item quantity="other">%1$d titli · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Fadal %1$d min</item><item quantity="two">Fadal %1$d min</item><item quantity="few">Fadal %1$d min</item><item quantity="many">Fadal %1$d min</item><item quantity="other">Fadal %1$d min</item></plurals>
 <string name="episode_time_left">Fadal %1$d min</string>
 <string name="episode_watched">Rajt</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="two">%d BOOKMARKS</item><item quantity="few">%d BOOKMARKS</item><item quantity="many">%d BOOKMARKS</item><item quantity="other">%d BOOKMARKS</item></plurals>

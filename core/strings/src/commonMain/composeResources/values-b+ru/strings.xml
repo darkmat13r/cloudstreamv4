@@ -77,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d неудачная</item><item quantity="few">%d неудачные</item><item quantity="many">%d неудачных</item><item quantity="other">%d неудачных</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">Запланировано %d загрузка</item><item quantity="few">Запланировано %d загрузки</item><item quantity="many">Запланировано %d загрузок</item><item quantity="other">Запланировано %d загрузок</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d название · %2$s</item><item quantity="few">%1$d названия · %2$s</item><item quantity="many">%1$d названий · %2$s</item><item quantity="other">%1$d названия · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Осталось %1$d мин</item><item quantity="few">Осталось %1$d мин</item><item quantity="many">Осталось %1$d мин</item><item quantity="other">Осталось %1$d мин</item></plurals>
 <string name="episode_time_left">Осталось %1$d мин</string>
 <string name="episode_watched">Просмотрено</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ЗАКЛАДКА</item><item quantity="few">%d ЗАКЛАДКИ</item><item quantity="many">%d ЗАКЛАДОК</item><item quantity="other">%d ЗАКЛАДКИ</item></plurals>

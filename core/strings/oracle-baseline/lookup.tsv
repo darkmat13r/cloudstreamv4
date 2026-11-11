@@ -15,6 +15,8 @@ values-b+af	plurals	downloads_queued	one	%d download queued
 values-b+af	plurals	downloads_queued	other	%d downloads queued
 values-b+af	plurals	downloads_titles_status	one	%1$d titel · %2$s
 values-b+af	plurals	downloads_titles_status	other	%1$d titels · %2$s
+values-b+af	plurals	episode_minutes_left	one	%1$d min oor
+values-b+af	plurals	episode_minutes_left	other	%1$d min oor
 values-b+af	plurals	episodes	one	Episode
 values-b+af	plurals	episodes	other	Episodes
 values-b+af	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -1254,6 +1256,8 @@ values-b+am	plurals	downloads_queued	one	%d download queued
 values-b+am	plurals	downloads_queued	other	%d downloads queued
 values-b+am	plurals	downloads_titles_status	one	%1$d ርዕሶች · %2$s
 values-b+am	plurals	downloads_titles_status	other	%1$d ርዕሶች · %2$s
+values-b+am	plurals	episode_minutes_left	one	%1$d ደቂቃ ቀርቷል
+values-b+am	plurals	episode_minutes_left	other	%1$d ደቂቃ ቀርቷል
 values-b+am	plurals	episodes	one	Episode
 values-b+am	plurals	episodes	other	Episodes
 values-b+am	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -2493,6 +2497,8 @@ values-b+apc	plurals	downloads_queued	one	مافي شي بعد بده يبلش �
 values-b+apc	plurals	downloads_queued	other	فيه شي واحد بعد بده يبلش يتنزل
 values-b+apc	plurals	downloads_titles_status	one	%1$d عنوان · %2$s
 values-b+apc	plurals	downloads_titles_status	other	%1$d عناوين · %2$s
+values-b+apc	plurals	episode_minutes_left	one	باقي %1$d دقيقة
+values-b+apc	plurals	episode_minutes_left	other	باقي %1$d دقيقة
 values-b+apc	plurals	episodes	one	حلقة
 values-b+apc	plurals	episodes	other	حلقات
 values-b+apc	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -3764,6 +3770,12 @@ values-b+ar	plurals	downloads_titles_status	one	%1$d عنوان · %2$s
 values-b+ar	plurals	downloads_titles_status	other	%1$d عنوان · %2$s
 values-b+ar	plurals	downloads_titles_status	two	%1$d عنوانان · %2$s
 values-b+ar	plurals	downloads_titles_status	zero	%1$d عنوان · %2$s
+values-b+ar	plurals	episode_minutes_left	few	متبقٍ %1$d دقيقة
+values-b+ar	plurals	episode_minutes_left	many	متبقٍ %1$d دقيقة
+values-b+ar	plurals	episode_minutes_left	one	متبقٍ %1$d دقيقة
+values-b+ar	plurals	episode_minutes_left	other	متبقٍ %1$d دقيقة
+values-b+ar	plurals	episode_minutes_left	two	متبقٍ %1$d دقيقة
+values-b+ar	plurals	episode_minutes_left	zero	متبقٍ %1$d دقيقة
 values-b+ar	plurals	episodes	one	حلقة
 values-b+ar	plurals	episodes	other	حلقات
 values-b+ar	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -5087,6 +5099,12 @@ values-b+ars	plurals	downloads_titles_status	one	%1$d عنوان · %2$s
 values-b+ars	plurals	downloads_titles_status	other	%1$d عنوان · %2$s
 values-b+ars	plurals	downloads_titles_status	two	%1$d عنوانان · %2$s
 values-b+ars	plurals	downloads_titles_status	zero	%1$d عنوان · %2$s
+values-b+ars	plurals	episode_minutes_left	few	باقي %1$d دقيقة
+values-b+ars	plurals	episode_minutes_left	many	باقي %1$d دقيقة
+values-b+ars	plurals	episode_minutes_left	one	باقي %1$d دقيقة
+values-b+ars	plurals	episode_minutes_left	other	باقي %1$d دقيقة
+values-b+ars	plurals	episode_minutes_left	two	باقي %1$d دقيقة
+values-b+ars	plurals	episode_minutes_left	zero	باقي %1$d دقيقة
 values-b+ars	plurals	episodes	one	حلقة
 values-b+ars	plurals	episodes	other	الحلقات
 values-b+ars	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -6386,6 +6404,8 @@ values-b+as	plurals	downloads_queued	one	%d download queued
 values-b+as	plurals	downloads_queued	other	%d downloads queued
 values-b+as	plurals	downloads_titles_status	one	%1$d টা শিৰোনাম · %2$s
 values-b+as	plurals	downloads_titles_status	other	%1$d টা শিৰোনাম · %2$s
+values-b+as	plurals	episode_minutes_left	one	%1$d মিনিট বাকী
+values-b+as	plurals	episode_minutes_left	other	%1$d মিনিট বাকী
 values-b+as	plurals	episodes	one	এপিচ’ড
 values-b+as	plurals	episodes	other	এপিচ’ডসমূহ
 values-b+as	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -7625,6 +7645,8 @@ values-b+az	plurals	downloads_queued	one	%d download queued
 values-b+az	plurals	downloads_queued	other	%d downloads queued
 values-b+az	plurals	downloads_titles_status	one	%1$d başlıq · %2$s
 values-b+az	plurals	downloads_titles_status	other	%1$d başlıq · %2$s
+values-b+az	plurals	episode_minutes_left	one	%1$d dəq qalıb
+values-b+az	plurals	episode_minutes_left	other	%1$d dəq qalıb
 values-b+az	plurals	episodes	one	Episode
 values-b+az	plurals	episodes	other	Episodes
 values-b+az	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -8880,6 +8902,10 @@ values-b+be	plurals	downloads_titles_status	few	%1$d назвы · %2$s
 values-b+be	plurals	downloads_titles_status	many	%1$d назваў · %2$s
 values-b+be	plurals	downloads_titles_status	one	%1$d назва · %2$s
 values-b+be	plurals	downloads_titles_status	other	%1$d назвы · %2$s
+values-b+be	plurals	episode_minutes_left	few	Засталося %1$d хв
+values-b+be	plurals	episode_minutes_left	many	Засталося %1$d хв
+values-b+be	plurals	episode_minutes_left	one	Засталося %1$d хв
+values-b+be	plurals	episode_minutes_left	other	Засталося %1$d хв
 values-b+be	plurals	episodes	one	Серыя
 values-b+be	plurals	episodes	other	Серый
 values-b+be	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -10149,6 +10175,8 @@ values-b+bg	plurals	downloads_queued	one	%d изтегляне в опашкат
 values-b+bg	plurals	downloads_queued	other	%d изтегляния в опашката
 values-b+bg	plurals	downloads_titles_status	one	%1$d заглавие · %2$s
 values-b+bg	plurals	downloads_titles_status	other	%1$d заглавия · %2$s
+values-b+bg	plurals	episode_minutes_left	one	Остават %1$d мин
+values-b+bg	plurals	episode_minutes_left	other	Остават %1$d мин
 values-b+bg	plurals	episodes	one	Епизод
 values-b+bg	plurals	episodes	other	Епизоди
 values-b+bg	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -11388,6 +11416,8 @@ values-b+bn	plurals	downloads_queued	one	%d download queued
 values-b+bn	plurals	downloads_queued	other	%d downloads queued
 values-b+bn	plurals	downloads_titles_status	one	%1$dটি শিরোনাম · %2$s
 values-b+bn	plurals	downloads_titles_status	other	%1$dটি শিরোনাম · %2$s
+values-b+bn	plurals	episode_minutes_left	one	%1$d মিনিট বাকি
+values-b+bn	plurals	episode_minutes_left	other	%1$d মিনিট বাকি
 values-b+bn	plurals	episodes	one	পর্ব
 values-b+bn	plurals	episodes	other	পর্ব
 values-b+bn	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -12633,6 +12663,9 @@ values-b+ca	plurals	downloads_queued	other	%d downloads queued
 values-b+ca	plurals	downloads_titles_status	many	%1$d títols · %2$s
 values-b+ca	plurals	downloads_titles_status	one	%1$d títol · %2$s
 values-b+ca	plurals	downloads_titles_status	other	%1$d títols · %2$s
+values-b+ca	plurals	episode_minutes_left	many	Queden %1$d min
+values-b+ca	plurals	episode_minutes_left	one	Queden %1$d min
+values-b+ca	plurals	episode_minutes_left	other	Queden %1$d min
 values-b+ca	plurals	episodes	one	Episode
 values-b+ca	plurals	episodes	other	Episodes
 values-b+ca	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -13887,6 +13920,8 @@ values-b+ckb	plurals	downloads_queued	one	%d download queued
 values-b+ckb	plurals	downloads_queued	other	%d downloads queued
 values-b+ckb	plurals	downloads_titles_status	one	%1$d ناونیشان · %2$s
 values-b+ckb	plurals	downloads_titles_status	other	%1$d ناونیشان · %2$s
+values-b+ckb	plurals	episode_minutes_left	one	%1$d خولەک ماوە
+values-b+ckb	plurals	episode_minutes_left	other	%1$d خولەک ماوە
 values-b+ckb	plurals	episodes	one	Episode
 values-b+ckb	plurals	episodes	other	Episodes
 values-b+ckb	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -15142,6 +15177,10 @@ values-b+cs	plurals	downloads_titles_status	few	%1$d tituly · %2$s
 values-b+cs	plurals	downloads_titles_status	many	%1$d titulu · %2$s
 values-b+cs	plurals	downloads_titles_status	one	%1$d titul · %2$s
 values-b+cs	plurals	downloads_titles_status	other	%1$d titulů · %2$s
+values-b+cs	plurals	episode_minutes_left	few	Zbývá %1$d min
+values-b+cs	plurals	episode_minutes_left	many	Zbývá %1$d min
+values-b+cs	plurals	episode_minutes_left	one	Zbývá %1$d min
+values-b+cs	plurals	episode_minutes_left	other	Zbývá %1$d min
 values-b+cs	plurals	episodes	one	Epizoda
 values-b+cs	plurals	episodes	other	Epizody
 values-b+cs	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -16413,6 +16452,8 @@ values-b+de	plurals	downloads_queued	one	%d Download in Warteschlange
 values-b+de	plurals	downloads_queued	other	%d Downloads in Warteschlange
 values-b+de	plurals	downloads_titles_status	one	%1$d Titel · %2$s
 values-b+de	plurals	downloads_titles_status	other	%1$d Titel · %2$s
+values-b+de	plurals	episode_minutes_left	one	Noch %1$d Min
+values-b+de	plurals	episode_minutes_left	other	Noch %1$d Min
 values-b+de	plurals	episodes	one	Episode
 values-b+de	plurals	episodes	other	Episoden
 values-b+de	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -17652,6 +17693,8 @@ values-b+el	plurals	downloads_queued	one	%d download queued
 values-b+el	plurals	downloads_queued	other	%d downloads queued
 values-b+el	plurals	downloads_titles_status	one	%1$d τίτλος · %2$s
 values-b+el	plurals	downloads_titles_status	other	%1$d τίτλοι · %2$s
+values-b+el	plurals	episode_minutes_left	one	Απομένουν %1$d λεπ.
+values-b+el	plurals	episode_minutes_left	other	Απομένουν %1$d λεπ.
 values-b+el	plurals	episodes	one	Επεισόδιο
 values-b+el	plurals	episodes	other	Επεισόδια
 values-b+el	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -18891,6 +18934,8 @@ values-b+eo	plurals	downloads_queued	one	%d download queued
 values-b+eo	plurals	downloads_queued	other	%d downloads queued
 values-b+eo	plurals	downloads_titles_status	one	%1$d titolo · %2$s
 values-b+eo	plurals	downloads_titles_status	other	%1$d titoloj · %2$s
+values-b+eo	plurals	episode_minutes_left	one	Restas %1$d min
+values-b+eo	plurals	episode_minutes_left	other	Restas %1$d min
 values-b+eo	plurals	episodes	one	Epizodo
 values-b+eo	plurals	episodes	other	Epizodoj
 values-b+eo	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -20138,6 +20183,9 @@ values-b+es	plurals	downloads_queued	other	%d descargas encoladas
 values-b+es	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 values-b+es	plurals	downloads_titles_status	one	%1$d título · %2$s
 values-b+es	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+values-b+es	plurals	episode_minutes_left	many	Quedan %1$d min
+values-b+es	plurals	episode_minutes_left	one	Quedan %1$d min
+values-b+es	plurals	episode_minutes_left	other	Quedan %1$d min
 values-b+es	plurals	episodes	one	Episodio
 values-b+es	plurals	episodes	other	Episodios
 values-b+es	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -21393,6 +21441,8 @@ values-b+fa	plurals	downloads_queued	one	%d download queued
 values-b+fa	plurals	downloads_queued	other	%d downloads queued
 values-b+fa	plurals	downloads_titles_status	one	%1$d عنوان · %2$s
 values-b+fa	plurals	downloads_titles_status	other	%1$d عنوان · %2$s
+values-b+fa	plurals	episode_minutes_left	one	%1$d دقیقه مانده
+values-b+fa	plurals	episode_minutes_left	other	%1$d دقیقه مانده
 values-b+fa	plurals	episodes	one	قسمت
 values-b+fa	plurals	episodes	other	قسمت‌ها
 values-b+fa	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -22632,6 +22682,8 @@ values-b+fil	plurals	downloads_queued	one	%d download queued
 values-b+fil	plurals	downloads_queued	other	%d downloads queued
 values-b+fil	plurals	downloads_titles_status	one	%1$d pamagat · %2$s
 values-b+fil	plurals	downloads_titles_status	other	%1$d pamagat · %2$s
+values-b+fil	plurals	episode_minutes_left	one	%1$d min na lang
+values-b+fil	plurals	episode_minutes_left	other	%1$d min na lang
 values-b+fil	plurals	episodes	one	Episode
 values-b+fil	plurals	episodes	other	Episodes
 values-b+fil	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -23879,6 +23931,9 @@ values-b+fr	plurals	downloads_queued	other	%d téléchargements en attente
 values-b+fr	plurals	downloads_titles_status	many	%1$d titres · %2$s
 values-b+fr	plurals	downloads_titles_status	one	%1$d titre · %2$s
 values-b+fr	plurals	downloads_titles_status	other	%1$d titres · %2$s
+values-b+fr	plurals	episode_minutes_left	many	Encore %1$d min
+values-b+fr	plurals	episode_minutes_left	one	Encore %1$d min
+values-b+fr	plurals	episode_minutes_left	other	Encore %1$d min
 values-b+fr	plurals	episodes	one	Épisode
 values-b+fr	plurals	episodes	other	Épisodes
 values-b+fr	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -25134,6 +25189,8 @@ values-b+gl	plurals	downloads_queued	one	%d download queued
 values-b+gl	plurals	downloads_queued	other	%d downloads queued
 values-b+gl	plurals	downloads_titles_status	one	%1$d título · %2$s
 values-b+gl	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+values-b+gl	plurals	episode_minutes_left	one	Quedan %1$d min
+values-b+gl	plurals	episode_minutes_left	other	Quedan %1$d min
 values-b+gl	plurals	episodes	one	Capítulo
 values-b+gl	plurals	episodes	other	Episodes
 values-b+gl	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -26373,6 +26430,8 @@ values-b+hi	plurals	downloads_queued	one	%d download queued
 values-b+hi	plurals	downloads_queued	other	%d downloads queued
 values-b+hi	plurals	downloads_titles_status	one	%1$d शीर्षक · %2$s
 values-b+hi	plurals	downloads_titles_status	other	%1$d शीर्षक · %2$s
+values-b+hi	plurals	episode_minutes_left	one	%1$d मिनट बाकी
+values-b+hi	plurals	episode_minutes_left	other	%1$d मिनट बाकी
 values-b+hi	plurals	episodes	one	प्रकरण
 values-b+hi	plurals	episodes	other	Episodes
 values-b+hi	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -27620,6 +27679,9 @@ values-b+hr	plurals	downloads_queued	other	%d preuzimanja u redu čekanja
 values-b+hr	plurals	downloads_titles_status	few	%1$d naslova · %2$s
 values-b+hr	plurals	downloads_titles_status	one	%1$d naslov · %2$s
 values-b+hr	plurals	downloads_titles_status	other	%1$d naslova · %2$s
+values-b+hr	plurals	episode_minutes_left	few	Još %1$d min
+values-b+hr	plurals	episode_minutes_left	one	Još %1$d min
+values-b+hr	plurals	episode_minutes_left	other	Još %1$d min
 values-b+hr	plurals	episodes	one	Epizoda
 values-b+hr	plurals	episodes	other	Epizoda
 values-b+hr	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -28874,6 +28936,8 @@ values-b+hu	plurals	downloads_queued	one	%d download queued
 values-b+hu	plurals	downloads_queued	other	%d downloads queued
 values-b+hu	plurals	downloads_titles_status	one	%1$d cím · %2$s
 values-b+hu	plurals	downloads_titles_status	other	%1$d cím · %2$s
+values-b+hu	plurals	episode_minutes_left	one	Még %1$d perc
+values-b+hu	plurals	episode_minutes_left	other	Még %1$d perc
 values-b+hu	plurals	episodes	one	Epizód
 values-b+hu	plurals	episodes	other	Epizódok
 values-b+hu	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -30105,6 +30169,7 @@ values-b+in	plurals	downloads_episode_count	other	%d episode
 values-b+in	plurals	downloads_failed_count	other	%d gagal
 values-b+in	plurals	downloads_queued	other	%d unduhan dalam antrean
 values-b+in	plurals	downloads_titles_status	other	%1$d judul · %2$s
+values-b+in	plurals	episode_minutes_left	other	Sisa %1$d mnt
 values-b+in	plurals	episodes	one	Episode
 values-b+in	plurals	episodes	other	Episode
 values-b+in	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -31336,6 +31401,9 @@ values-b+it	plurals	downloads_queued	other	%d download in coda
 values-b+it	plurals	downloads_titles_status	many	%1$d titoli · %2$s
 values-b+it	plurals	downloads_titles_status	one	%1$d titolo · %2$s
 values-b+it	plurals	downloads_titles_status	other	%1$d titoli · %2$s
+values-b+it	plurals	episode_minutes_left	many	Mancano %1$d min
+values-b+it	plurals	episode_minutes_left	one	Mancano %1$d min
+values-b+it	plurals	episode_minutes_left	other	Mancano %1$d min
 values-b+it	plurals	episodes	one	Episodio
 values-b+it	plurals	episodes	other	Episodi
 values-b+it	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -32597,6 +32665,9 @@ values-b+iw	plurals	downloads_queued	other	%d downloads queued
 values-b+iw	plurals	downloads_titles_status	one	%1$d כותר · %2$s
 values-b+iw	plurals	downloads_titles_status	other	%1$d כותרים · %2$s
 values-b+iw	plurals	downloads_titles_status	two	%1$d כותרים · %2$s
+values-b+iw	plurals	episode_minutes_left	one	נותרו %1$d דק׳
+values-b+iw	plurals	episode_minutes_left	other	נותרו %1$d דק׳
+values-b+iw	plurals	episode_minutes_left	two	נותרו %1$d דק׳
 values-b+iw	plurals	episodes	one	פרק
 values-b+iw	plurals	episodes	other	פרקים
 values-b+iw	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -33843,6 +33914,7 @@ values-b+ja	plurals	downloads_episode_count	other	%dエピソード
 values-b+ja	plurals	downloads_failed_count	other	%d 件失敗
 values-b+ja	plurals	downloads_queued	other	%d 件が待機中
 values-b+ja	plurals	downloads_titles_status	other	%1$d作品 · %2$s
+values-b+ja	plurals	episode_minutes_left	other	残り%1$d分
 values-b+ja	plurals	episodes	one	エピソード
 values-b+ja	plurals	episodes	other	エピソード
 values-b+ja	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -35066,6 +35138,8 @@ values-b+kn	plurals	downloads_queued	one	%d download queued
 values-b+kn	plurals	downloads_queued	other	%d downloads queued
 values-b+kn	plurals	downloads_titles_status	one	%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s
 values-b+kn	plurals	downloads_titles_status	other	%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s
+values-b+kn	plurals	episode_minutes_left	one	%1$d ನಿಮಿಷ ಬಾಕಿ
+values-b+kn	plurals	episode_minutes_left	other	%1$d ನಿಮಿಷ ಬಾಕಿ
 values-b+kn	plurals	episodes	one	Episode
 values-b+kn	plurals	episodes	other	Episodes
 values-b+kn	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -36297,6 +36371,7 @@ values-b+ko	plurals	downloads_episode_count	other	%d화
 values-b+ko	plurals	downloads_failed_count	other	%d개 실패
 values-b+ko	plurals	downloads_queued	other	%d 다운로드
 values-b+ko	plurals	downloads_titles_status	other	작품 %1$d개 · %2$s
+values-b+ko	plurals	episode_minutes_left	other	%1$d분 남음
 values-b+ko	plurals	episodes	one	에피소드
 values-b+ko	plurals	episodes	other	에피소드
 values-b+ko	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -37533,6 +37608,10 @@ values-b+lt	plurals	downloads_titles_status	few	%1$d pavadinimai · %2$s
 values-b+lt	plurals	downloads_titles_status	many	%1$d pavadinimo · %2$s
 values-b+lt	plurals	downloads_titles_status	one	%1$d pavadinimas · %2$s
 values-b+lt	plurals	downloads_titles_status	other	%1$d pavadinimų · %2$s
+values-b+lt	plurals	episode_minutes_left	few	Liko %1$d min
+values-b+lt	plurals	episode_minutes_left	many	Liko %1$d min
+values-b+lt	plurals	episode_minutes_left	one	Liko %1$d min
+values-b+lt	plurals	episode_minutes_left	other	Liko %1$d min
 values-b+lt	plurals	episodes	one	Serija
 values-b+lt	plurals	episodes	other	Serijos
 values-b+lt	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -38809,6 +38888,9 @@ values-b+lv	plurals	downloads_queued	other	%d downloads queued
 values-b+lv	plurals	downloads_titles_status	one	%1$d nosaukums · %2$s
 values-b+lv	plurals	downloads_titles_status	other	%1$d nosaukumi · %2$s
 values-b+lv	plurals	downloads_titles_status	zero	%1$d nosaukumu · %2$s
+values-b+lv	plurals	episode_minutes_left	one	Atlikušas %1$d min.
+values-b+lv	plurals	episode_minutes_left	other	Atlikušas %1$d min.
+values-b+lv	plurals	episode_minutes_left	zero	Atlikušas %1$d min.
 values-b+lv	plurals	episodes	one	Epizode
 values-b+lv	plurals	episodes	other	Epizodes
 values-b+lv	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -40063,6 +40145,8 @@ values-b+mk	plurals	downloads_queued	one	%d преземање во редица
 values-b+mk	plurals	downloads_queued	other	%d преземања во редицата
 values-b+mk	plurals	downloads_titles_status	one	%1$d наслов · %2$s
 values-b+mk	plurals	downloads_titles_status	other	%1$d наслови · %2$s
+values-b+mk	plurals	episode_minutes_left	one	Преостануваат %1$d мин
+values-b+mk	plurals	episode_minutes_left	other	Преостануваат %1$d мин
 values-b+mk	plurals	episodes	one	Епизода
 values-b+mk	plurals	episodes	other	Епизоди
 values-b+mk	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -41302,6 +41386,8 @@ values-b+ml	plurals	downloads_queued	one	%d download queued
 values-b+ml	plurals	downloads_queued	other	%d downloads queued
 values-b+ml	plurals	downloads_titles_status	one	%1$d ശീർഷകങ്ങൾ · %2$s
 values-b+ml	plurals	downloads_titles_status	other	%1$d ശീർഷകങ്ങൾ · %2$s
+values-b+ml	plurals	episode_minutes_left	one	%1$d മിനിറ്റ് ബാക്കി
+values-b+ml	plurals	episode_minutes_left	other	%1$d മിനിറ്റ് ബാക്കി
 values-b+ml	plurals	episodes	one	എപ്പിസോഡ്
 values-b+ml	plurals	episodes	other	എപ്പിസോഡുകൾ
 values-b+ml	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -42535,6 +42621,7 @@ values-b+ms	plurals	downloads_failed_count	other	%d gagal
 values-b+ms	plurals	downloads_queued	one	%d download queued
 values-b+ms	plurals	downloads_queued	other	%d downloads queued
 values-b+ms	plurals	downloads_titles_status	other	%1$d tajuk · %2$s
+values-b+ms	plurals	episode_minutes_left	other	Tinggal %1$d min
 values-b+ms	plurals	episodes	one	Episod
 values-b+ms	plurals	episodes	other	Episodes
 values-b+ms	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -43777,6 +43864,11 @@ values-b+mt	plurals	downloads_titles_status	many	%1$d titli · %2$s
 values-b+mt	plurals	downloads_titles_status	one	%1$d titlu · %2$s
 values-b+mt	plurals	downloads_titles_status	other	%1$d titli · %2$s
 values-b+mt	plurals	downloads_titles_status	two	%1$d titli · %2$s
+values-b+mt	plurals	episode_minutes_left	few	Fadal %1$d min
+values-b+mt	plurals	episode_minutes_left	many	Fadal %1$d min
+values-b+mt	plurals	episode_minutes_left	one	Fadal %1$d min
+values-b+mt	plurals	episode_minutes_left	other	Fadal %1$d min
+values-b+mt	plurals	episode_minutes_left	two	Fadal %1$d min
 values-b+mt	plurals	episodes	one	Episode
 values-b+mt	plurals	episodes	other	Episodes
 values-b+mt	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -45055,6 +45147,7 @@ values-b+my	plurals	downloads_failed_count	other	%d ခု မအောင်မ
 values-b+my	plurals	downloads_queued	one	%d download queued
 values-b+my	plurals	downloads_queued	other	%d downloads queued
 values-b+my	plurals	downloads_titles_status	other	ခေါင်းစဉ် %1$d ခု · %2$s
+values-b+my	plurals	episode_minutes_left	other	%1$d မိနစ် ကျန်
 values-b+my	plurals	episodes	one	အပိုင်း
 values-b+my	plurals	episodes	other	အပိုင်းများ
 values-b+my	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -46279,6 +46372,8 @@ values-b+ne	plurals	downloads_queued	one	%d download queued
 values-b+ne	plurals	downloads_queued	other	%d downloads queued
 values-b+ne	plurals	downloads_titles_status	one	%1$d शीर्षक · %2$s
 values-b+ne	plurals	downloads_titles_status	other	%1$d शीर्षक · %2$s
+values-b+ne	plurals	episode_minutes_left	one	%1$d मिनेट बाँकी
+values-b+ne	plurals	episode_minutes_left	other	%1$d मिनेट बाँकी
 values-b+ne	plurals	episodes	one	Episode
 values-b+ne	plurals	episodes	other	Episodes
 values-b+ne	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -47518,6 +47613,8 @@ values-b+nl	plurals	downloads_queued	one	%d download queued
 values-b+nl	plurals	downloads_queued	other	%d downloads queued
 values-b+nl	plurals	downloads_titles_status	one	%1$d titel · %2$s
 values-b+nl	plurals	downloads_titles_status	other	%1$d titels · %2$s
+values-b+nl	plurals	episode_minutes_left	one	Nog %1$d min
+values-b+nl	plurals	episode_minutes_left	other	Nog %1$d min
 values-b+nl	plurals	episodes	one	Aflevering
 values-b+nl	plurals	episodes	other	afleveringen
 values-b+nl	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -48757,6 +48854,8 @@ values-b+nn	plurals	downloads_queued	one	%d download queued
 values-b+nn	plurals	downloads_queued	other	%d downloads queued
 values-b+nn	plurals	downloads_titles_status	one	%1$d tittel · %2$s
 values-b+nn	plurals	downloads_titles_status	other	%1$d titlar · %2$s
+values-b+nn	plurals	episode_minutes_left	one	%1$d min att
+values-b+nn	plurals	episode_minutes_left	other	%1$d min att
 values-b+nn	plurals	episodes	one	Episode
 values-b+nn	plurals	episodes	other	Episodar
 values-b+nn	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -49996,6 +50095,8 @@ values-b+no	plurals	downloads_queued	one	%d download queued
 values-b+no	plurals	downloads_queued	other	%d downloads queued
 values-b+no	plurals	downloads_titles_status	one	%1$d tittel · %2$s
 values-b+no	plurals	downloads_titles_status	other	%1$d titler · %2$s
+values-b+no	plurals	episode_minutes_left	one	%1$d min igjen
+values-b+no	plurals	episode_minutes_left	other	%1$d min igjen
 values-b+no	plurals	episodes	one	Episode
 values-b+no	plurals	episodes	other	Episoder
 values-b+no	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -51235,6 +51336,8 @@ values-b+or	plurals	downloads_queued	one	%d download queued
 values-b+or	plurals	downloads_queued	other	%d downloads queued
 values-b+or	plurals	downloads_titles_status	one	%1$d ଶୀର୍ଷକ · %2$s
 values-b+or	plurals	downloads_titles_status	other	%1$d ଶୀର୍ଷକ · %2$s
+values-b+or	plurals	episode_minutes_left	one	%1$d ମିନିଟ୍ ବାକି
+values-b+or	plurals	episode_minutes_left	other	%1$d ମିନିଟ୍ ବାକି
 values-b+or	plurals	episodes	one	ଅଧ୍ୟାୟ
 values-b+or	plurals	episodes	other	ଟି ଅଧ୍ୟାୟ
 values-b+or	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -52490,6 +52593,10 @@ values-b+pl	plurals	downloads_titles_status	few	%1$d tytuły · %2$s
 values-b+pl	plurals	downloads_titles_status	many	%1$d tytułów · %2$s
 values-b+pl	plurals	downloads_titles_status	one	%1$d tytuł · %2$s
 values-b+pl	plurals	downloads_titles_status	other	%1$d tytułu · %2$s
+values-b+pl	plurals	episode_minutes_left	few	Zostało %1$d min
+values-b+pl	plurals	episode_minutes_left	many	Zostało %1$d min
+values-b+pl	plurals	episode_minutes_left	one	Zostało %1$d min
+values-b+pl	plurals	episode_minutes_left	other	Zostało %1$d min
 values-b+pl	plurals	episodes	one	Odcinek
 values-b+pl	plurals	episodes	other	Odcinki
 values-b+pl	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -53769,6 +53876,9 @@ values-b+pt	plurals	downloads_queued	other	%d downloads na fila
 values-b+pt	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 values-b+pt	plurals	downloads_titles_status	one	%1$d título · %2$s
 values-b+pt	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+values-b+pt	plurals	episode_minutes_left	many	Faltam %1$d min
+values-b+pt	plurals	episode_minutes_left	one	Faltam %1$d min
+values-b+pt	plurals	episode_minutes_left	other	Faltam %1$d min
 values-b+pt	plurals	episodes	one	Episódio
 values-b+pt	plurals	episodes	other	Episódios
 values-b+pt	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -55032,6 +55142,9 @@ values-b+pt+BR	plurals	downloads_queued	other	%d downloads na sequência
 values-b+pt+BR	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 values-b+pt+BR	plurals	downloads_titles_status	one	%1$d título · %2$s
 values-b+pt+BR	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+values-b+pt+BR	plurals	episode_minutes_left	many	Faltam %1$d min
+values-b+pt+BR	plurals	episode_minutes_left	one	Faltam %1$d min
+values-b+pt+BR	plurals	episode_minutes_left	other	Faltam %1$d min
 values-b+pt+BR	plurals	episodes	one	Episódio
 values-b+pt+BR	plurals	episodes	other	Episódios
 values-b+pt+BR	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -56281,6 +56394,7 @@ values-b+qt	plurals	downloads_failed_count	other	%d oooogg
 values-b+qt	plurals	downloads_queued	one	%d download queued
 values-b+qt	plurals	downloads_queued	other	%d downloads queued
 values-b+qt	plurals	downloads_titles_status	other	%1$d ooh · %2$s
+values-b+qt	plurals	episode_minutes_left	other	%1$d ooh haa ahhh
 values-b+qt	plurals	episodes	one	ahhhaaahhu
 values-b+qt	plurals	episodes	other	ahhh ooooo
 values-b+qt	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -57511,6 +57625,9 @@ values-b+ro	plurals	downloads_queued	other	%d downloads queued
 values-b+ro	plurals	downloads_titles_status	few	%1$d titluri · %2$s
 values-b+ro	plurals	downloads_titles_status	one	%1$d titlu · %2$s
 values-b+ro	plurals	downloads_titles_status	other	%1$d de titluri · %2$s
+values-b+ro	plurals	episode_minutes_left	few	Mai sunt %1$d min
+values-b+ro	plurals	episode_minutes_left	one	Mai sunt %1$d min
+values-b+ro	plurals	episode_minutes_left	other	Mai sunt %1$d min
 values-b+ro	plurals	episodes	one	Episodul
 values-b+ro	plurals	episodes	other	Episoade
 values-b+ro	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -58781,6 +58898,10 @@ values-b+ru	plurals	downloads_titles_status	few	%1$d названия · %2$s
 values-b+ru	plurals	downloads_titles_status	many	%1$d названий · %2$s
 values-b+ru	plurals	downloads_titles_status	one	%1$d название · %2$s
 values-b+ru	plurals	downloads_titles_status	other	%1$d названия · %2$s
+values-b+ru	plurals	episode_minutes_left	few	Осталось %1$d мин
+values-b+ru	plurals	episode_minutes_left	many	Осталось %1$d мин
+values-b+ru	plurals	episode_minutes_left	one	Осталось %1$d мин
+values-b+ru	plurals	episode_minutes_left	other	Осталось %1$d мин
 values-b+ru	plurals	episodes	one	Серия
 values-b+ru	plurals	episodes	other	Серии
 values-b+ru	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -60064,6 +60185,10 @@ values-b+sk	plurals	downloads_titles_status	few	%1$d tituly · %2$s
 values-b+sk	plurals	downloads_titles_status	many	%1$d titulu · %2$s
 values-b+sk	plurals	downloads_titles_status	one	%1$d titul · %2$s
 values-b+sk	plurals	downloads_titles_status	other	%1$d titulov · %2$s
+values-b+sk	plurals	episode_minutes_left	few	Zostáva %1$d min
+values-b+sk	plurals	episode_minutes_left	many	Zostáva %1$d min
+values-b+sk	plurals	episode_minutes_left	one	Zostáva %1$d min
+values-b+sk	plurals	episode_minutes_left	other	Zostáva %1$d min
 values-b+sk	plurals	episodes	one	Epizóda
 values-b+sk	plurals	episodes	other	Epizódy
 values-b+sk	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -61333,6 +61458,8 @@ values-b+so	plurals	downloads_queued	one	%d download queued
 values-b+so	plurals	downloads_queued	other	%d downloads queued
 values-b+so	plurals	downloads_titles_status	one	%1$d cinwaan · %2$s
 values-b+so	plurals	downloads_titles_status	other	%1$d cinwaan · %2$s
+values-b+so	plurals	episode_minutes_left	one	%1$d daqiiqo ayaa hadhay
+values-b+so	plurals	episode_minutes_left	other	%1$d daqiiqo ayaa hadhay
 values-b+so	plurals	episodes	one	Xalqad
 values-b+so	plurals	episodes	other	Xalqado
 values-b+so	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -62572,6 +62699,8 @@ values-b+sq	plurals	downloads_queued	one	%d shkarkim në radhë
 values-b+sq	plurals	downloads_queued	other	%d shkarkime në radhë
 values-b+sq	plurals	downloads_titles_status	one	%1$d titull · %2$s
 values-b+sq	plurals	downloads_titles_status	other	%1$d tituj · %2$s
+values-b+sq	plurals	episode_minutes_left	one	Mbeten %1$d min
+values-b+sq	plurals	episode_minutes_left	other	Mbeten %1$d min
 values-b+sq	plurals	episodes	one	Episodi
 values-b+sq	plurals	episodes	other	Episode
 values-b+sq	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -63811,6 +63940,8 @@ values-b+sv	plurals	downloads_queued	one	%d nedladdning i kö
 values-b+sv	plurals	downloads_queued	other	%d nedladdningar i kö
 values-b+sv	plurals	downloads_titles_status	one	%1$d titel · %2$s
 values-b+sv	plurals	downloads_titles_status	other	%1$d titlar · %2$s
+values-b+sv	plurals	episode_minutes_left	one	%1$d min kvar
+values-b+sv	plurals	episode_minutes_left	other	%1$d min kvar
 values-b+sv	plurals	episodes	one	Avsnitt
 values-b+sv	plurals	episodes	other	Avsnitt
 values-b+sv	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -65050,6 +65181,8 @@ values-b+ta	plurals	downloads_queued	one	%d பதிவிறக்கம் �
 values-b+ta	plurals	downloads_queued	other	%d பதிவிறக்கங்கள் வரிசையில் உள்ளன
 values-b+ta	plurals	downloads_titles_status	one	%1$d தலைப்பு · %2$s
 values-b+ta	plurals	downloads_titles_status	other	%1$d தலைப்புகள் · %2$s
+values-b+ta	plurals	episode_minutes_left	one	%1$d நிமி மீதம்
+values-b+ta	plurals	episode_minutes_left	other	%1$d நிமி மீதம்
 values-b+ta	plurals	episodes	one	அத்தியாயம்
 values-b+ta	plurals	episodes	other	அத்தியாயங்கள்
 values-b+ta	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -66289,6 +66422,8 @@ values-b+ti	plurals	downloads_queued	one	%d download queued
 values-b+ti	plurals	downloads_queued	other	%d downloads queued
 values-b+ti	plurals	downloads_titles_status	one	%1$d ኣርእስቲ · %2$s
 values-b+ti	plurals	downloads_titles_status	other	%1$d ኣርእስቲ · %2$s
+values-b+ti	plurals	episode_minutes_left	one	%1$d ደቒቕ ተሪፉ
+values-b+ti	plurals	episode_minutes_left	other	%1$d ደቒቕ ተሪፉ
 values-b+ti	plurals	episodes	one	Episode
 values-b+ti	plurals	episodes	other	Episodes
 values-b+ti	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -67528,6 +67663,8 @@ values-b+tl	plurals	downloads_queued	one	%d download queued
 values-b+tl	plurals	downloads_queued	other	%d downloads queued
 values-b+tl	plurals	downloads_titles_status	one	%1$d pamagat · %2$s
 values-b+tl	plurals	downloads_titles_status	other	%1$d pamagat · %2$s
+values-b+tl	plurals	episode_minutes_left	one	%1$d min na lang
+values-b+tl	plurals	episode_minutes_left	other	%1$d min na lang
 values-b+tl	plurals	episodes	one	Episode
 values-b+tl	plurals	episodes	other	Episodes
 values-b+tl	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -68767,6 +68904,8 @@ values-b+tr	plurals	downloads_queued	one	%d indirme kuyrukta
 values-b+tr	plurals	downloads_queued	other	%d indirilecekler kuyruğa alındı
 values-b+tr	plurals	downloads_titles_status	one	%1$d başlık · %2$s
 values-b+tr	plurals	downloads_titles_status	other	%1$d başlık · %2$s
+values-b+tr	plurals	episode_minutes_left	one	%1$d dk kaldı
+values-b+tr	plurals	episode_minutes_left	other	%1$d dk kaldı
 values-b+tr	plurals	episodes	one	Bölüm
 values-b+tr	plurals	episodes	other	Bölüm
 values-b+tr	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -70022,6 +70161,10 @@ values-b+uk	plurals	downloads_titles_status	few	%1$d назви · %2$s
 values-b+uk	plurals	downloads_titles_status	many	%1$d назв · %2$s
 values-b+uk	plurals	downloads_titles_status	one	%1$d назва · %2$s
 values-b+uk	plurals	downloads_titles_status	other	%1$d назви · %2$s
+values-b+uk	plurals	episode_minutes_left	few	Залишилося %1$d хв
+values-b+uk	plurals	episode_minutes_left	many	Залишилося %1$d хв
+values-b+uk	plurals	episode_minutes_left	one	Залишилося %1$d хв
+values-b+uk	plurals	episode_minutes_left	other	Залишилося %1$d хв
 values-b+uk	plurals	episodes	one	Епізод
 values-b+uk	plurals	episodes	other	Епізоди
 values-b+uk	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -71293,6 +71436,8 @@ values-b+ur	plurals	downloads_queued	one	%d download queued
 values-b+ur	plurals	downloads_queued	other	%d downloads queued
 values-b+ur	plurals	downloads_titles_status	one	%1$d عنوانات · %2$s
 values-b+ur	plurals	downloads_titles_status	other	%1$d عنوانات · %2$s
+values-b+ur	plurals	episode_minutes_left	one	%1$d منٹ باقی
+values-b+ur	plurals	episode_minutes_left	other	%1$d منٹ باقی
 values-b+ur	plurals	episodes	one	قسط
 values-b+ur	plurals	episodes	other	اقساط
 values-b+ur	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -72524,6 +72669,7 @@ values-b+vi	plurals	downloads_episode_count	other	%d tập
 values-b+vi	plurals	downloads_failed_count	other	%d thất bại
 values-b+vi	plurals	downloads_queued	other	%d tải xuống đang chờ
 values-b+vi	plurals	downloads_titles_status	other	%1$d tựa · %2$s
+values-b+vi	plurals	episode_minutes_left	other	Còn %1$d phút
 values-b+vi	plurals	episodes	one	Tập
 values-b+vi	plurals	episodes	other	Tập
 values-b+vi	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -73739,6 +73885,7 @@ values-b+zh	plurals	downloads_episode_count	other	%d 集
 values-b+zh	plurals	downloads_failed_count	other	%d 个失败
 values-b+zh	plurals	downloads_queued	other	队列中有 %d 个下载
 values-b+zh	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+values-b+zh	plurals	episode_minutes_left	other	剩余 %1$d 分钟
 values-b+zh	plurals	episodes	one	集
 values-b+zh	plurals	episodes	other	集
 values-b+zh	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -74954,6 +75101,7 @@ values-b+zh+TW	plurals	downloads_episode_count	other	%d 集
 values-b+zh+TW	plurals	downloads_failed_count	other	%d 個失敗
 values-b+zh+TW	plurals	downloads_queued	other	佇列中有 %d 個下載
 values-b+zh+TW	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+values-b+zh+TW	plurals	episode_minutes_left	other	剩下 %1$d 分鐘
 values-b+zh+TW	plurals	episodes	one	集
 values-b+zh+TW	plurals	episodes	other	集
 values-b+zh+TW	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -76178,6 +76326,8 @@ en	plurals	downloads_queued	one	%d download queued
 en	plurals	downloads_queued	other	%d downloads queued
 en	plurals	downloads_titles_status	one	%1$d title · %2$s
 en	plurals	downloads_titles_status	other	%1$d titles · %2$s
+en	plurals	episode_minutes_left	one	%1$d min left
+en	plurals	episode_minutes_left	other	%1$d min left
 en	plurals	episodes	one	Episode
 en	plurals	episodes	other	Episodes
 en	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -77417,6 +77567,8 @@ en-US	plurals	downloads_queued	one	%d download queued
 en-US	plurals	downloads_queued	other	%d downloads queued
 en-US	plurals	downloads_titles_status	one	%1$d title · %2$s
 en-US	plurals	downloads_titles_status	other	%1$d titles · %2$s
+en-US	plurals	episode_minutes_left	one	%1$d min left
+en-US	plurals	episode_minutes_left	other	%1$d min left
 en-US	plurals	episodes	one	Episode
 en-US	plurals	episodes	other	Episodes
 en-US	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -78656,6 +78808,8 @@ en-GB	plurals	downloads_queued	one	%d download queued
 en-GB	plurals	downloads_queued	other	%d downloads queued
 en-GB	plurals	downloads_titles_status	one	%1$d title · %2$s
 en-GB	plurals	downloads_titles_status	other	%1$d titles · %2$s
+en-GB	plurals	episode_minutes_left	one	%1$d min left
+en-GB	plurals	episode_minutes_left	other	%1$d min left
 en-GB	plurals	episodes	one	Episode
 en-GB	plurals	episodes	other	Episodes
 en-GB	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -79903,6 +80057,9 @@ pt	plurals	downloads_queued	other	%d downloads na fila
 pt	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 pt	plurals	downloads_titles_status	one	%1$d título · %2$s
 pt	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+pt	plurals	episode_minutes_left	many	Faltam %1$d min
+pt	plurals	episode_minutes_left	one	Faltam %1$d min
+pt	plurals	episode_minutes_left	other	Faltam %1$d min
 pt	plurals	episodes	one	Episódio
 pt	plurals	episodes	other	Episódios
 pt	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -81166,6 +81323,9 @@ pt-PT	plurals	downloads_queued	other	%d downloads na fila
 pt-PT	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 pt-PT	plurals	downloads_titles_status	one	%1$d título · %2$s
 pt-PT	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+pt-PT	plurals	episode_minutes_left	many	Faltam %1$d min
+pt-PT	plurals	episode_minutes_left	one	Faltam %1$d min
+pt-PT	plurals	episode_minutes_left	other	Faltam %1$d min
 pt-PT	plurals	episodes	one	Episódio
 pt-PT	plurals	episodes	other	Episódios
 pt-PT	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -82429,6 +82589,9 @@ pt-BR	plurals	downloads_queued	other	%d downloads na sequência
 pt-BR	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 pt-BR	plurals	downloads_titles_status	one	%1$d título · %2$s
 pt-BR	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+pt-BR	plurals	episode_minutes_left	many	Faltam %1$d min
+pt-BR	plurals	episode_minutes_left	one	Faltam %1$d min
+pt-BR	plurals	episode_minutes_left	other	Faltam %1$d min
 pt-BR	plurals	episodes	one	Episódio
 pt-BR	plurals	episodes	other	Episódios
 pt-BR	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -83684,6 +83847,8 @@ fil	plurals	downloads_queued	one	%d download queued
 fil	plurals	downloads_queued	other	%d downloads queued
 fil	plurals	downloads_titles_status	one	%1$d pamagat · %2$s
 fil	plurals	downloads_titles_status	other	%1$d pamagat · %2$s
+fil	plurals	episode_minutes_left	one	%1$d min na lang
+fil	plurals	episode_minutes_left	other	%1$d min na lang
 fil	plurals	episodes	one	Episode
 fil	plurals	episodes	other	Episodes
 fil	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -84923,6 +85088,8 @@ tl	plurals	downloads_queued	one	%d download queued
 tl	plurals	downloads_queued	other	%d downloads queued
 tl	plurals	downloads_titles_status	one	%1$d pamagat · %2$s
 tl	plurals	downloads_titles_status	other	%1$d pamagat · %2$s
+tl	plurals	episode_minutes_left	one	%1$d min na lang
+tl	plurals	episode_minutes_left	other	%1$d min na lang
 tl	plurals	episodes	one	Episode
 tl	plurals	episodes	other	Episodes
 tl	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -86162,6 +86329,8 @@ fil-PH	plurals	downloads_queued	one	%d download queued
 fil-PH	plurals	downloads_queued	other	%d downloads queued
 fil-PH	plurals	downloads_titles_status	one	%1$d pamagat · %2$s
 fil-PH	plurals	downloads_titles_status	other	%1$d pamagat · %2$s
+fil-PH	plurals	episode_minutes_left	one	%1$d min na lang
+fil-PH	plurals	episode_minutes_left	other	%1$d min na lang
 fil-PH	plurals	episodes	one	Episode
 fil-PH	plurals	episodes	other	Episodes
 fil-PH	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -87393,6 +87562,7 @@ zh	plurals	downloads_episode_count	other	%d 集
 zh	plurals	downloads_failed_count	other	%d 个失败
 zh	plurals	downloads_queued	other	队列中有 %d 个下载
 zh	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh	plurals	episode_minutes_left	other	剩余 %1$d 分钟
 zh	plurals	episodes	one	集
 zh	plurals	episodes	other	集
 zh	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -88608,6 +88778,7 @@ zh-CN	plurals	downloads_episode_count	other	%d 集
 zh-CN	plurals	downloads_failed_count	other	%d 个失败
 zh-CN	plurals	downloads_queued	other	队列中有 %d 个下载
 zh-CN	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-CN	plurals	episode_minutes_left	other	剩余 %1$d 分钟
 zh-CN	plurals	episodes	one	集
 zh-CN	plurals	episodes	other	集
 zh-CN	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -89823,6 +89994,7 @@ zh-Hans-CN	plurals	downloads_episode_count	other	%d 集
 zh-Hans-CN	plurals	downloads_failed_count	other	%d 个失败
 zh-Hans-CN	plurals	downloads_queued	other	队列中有 %d 个下载
 zh-Hans-CN	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-Hans-CN	plurals	episode_minutes_left	other	剩余 %1$d 分钟
 zh-Hans-CN	plurals	episodes	one	集
 zh-Hans-CN	plurals	episodes	other	集
 zh-Hans-CN	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -91038,6 +91210,7 @@ zh-TW	plurals	downloads_episode_count	other	%d 集
 zh-TW	plurals	downloads_failed_count	other	%d 個失敗
 zh-TW	plurals	downloads_queued	other	佇列中有 %d 個下載
 zh-TW	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-TW	plurals	episode_minutes_left	other	剩下 %1$d 分鐘
 zh-TW	plurals	episodes	one	集
 zh-TW	plurals	episodes	other	集
 zh-TW	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -92254,6 +92427,7 @@ zh-Hant-TW	plurals	downloads_episode_count	other	%d 集
 zh-Hant-TW	plurals	downloads_failed_count	other	%d 個失敗
 zh-Hant-TW	plurals	downloads_queued	other	佇列中有 %d 個下載
 zh-Hant-TW	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-Hant-TW	plurals	episode_minutes_left	other	剩下 %1$d 分鐘
 zh-Hant-TW	plurals	episodes	one	集
 zh-Hant-TW	plurals	episodes	other	集
 zh-Hant-TW	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -93470,6 +93644,7 @@ zh-HK	plurals	downloads_episode_count	other	%d 集
 zh-HK	plurals	downloads_failed_count	other	%d 個失敗
 zh-HK	plurals	downloads_queued	other	佇列中有 %d 個下載
 zh-HK	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-HK	plurals	episode_minutes_left	other	剩下 %1$d 分鐘
 zh-HK	plurals	episodes	one	集
 zh-HK	plurals	episodes	other	集
 zh-HK	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -94686,6 +94861,7 @@ zh-Hant-HK	plurals	downloads_episode_count	other	%d 集
 zh-Hant-HK	plurals	downloads_failed_count	other	%d 個失敗
 zh-Hant-HK	plurals	downloads_queued	other	佇列中有 %d 個下載
 zh-Hant-HK	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-Hant-HK	plurals	episode_minutes_left	other	剩下 %1$d 分鐘
 zh-Hant-HK	plurals	episodes	one	集
 zh-Hant-HK	plurals	episodes	other	集
 zh-Hant-HK	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -95910,6 +96086,8 @@ no	plurals	downloads_queued	one	%d download queued
 no	plurals	downloads_queued	other	%d downloads queued
 no	plurals	downloads_titles_status	one	%1$d tittel · %2$s
 no	plurals	downloads_titles_status	other	%1$d titler · %2$s
+no	plurals	episode_minutes_left	one	%1$d min igjen
+no	plurals	episode_minutes_left	other	%1$d min igjen
 no	plurals	episodes	one	Episode
 no	plurals	episodes	other	Episoder
 no	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -97149,6 +97327,8 @@ nb	plurals	downloads_queued	one	%d download queued
 nb	plurals	downloads_queued	other	%d downloads queued
 nb	plurals	downloads_titles_status	one	%1$d title · %2$s
 nb	plurals	downloads_titles_status	other	%1$d titles · %2$s
+nb	plurals	episode_minutes_left	one	%1$d min left
+nb	plurals	episode_minutes_left	other	%1$d min left
 nb	plurals	episodes	one	Episode
 nb	plurals	episodes	other	Episodes
 nb	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -98388,6 +98568,8 @@ nb-NO	plurals	downloads_queued	one	%d download queued
 nb-NO	plurals	downloads_queued	other	%d downloads queued
 nb-NO	plurals	downloads_titles_status	one	%1$d title · %2$s
 nb-NO	plurals	downloads_titles_status	other	%1$d titles · %2$s
+nb-NO	plurals	episode_minutes_left	one	%1$d min left
+nb-NO	plurals	episode_minutes_left	other	%1$d min left
 nb-NO	plurals	episodes	one	Episode
 nb-NO	plurals	episodes	other	Episodes
 nb-NO	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -99633,6 +99815,9 @@ iw	plurals	downloads_queued	other	%d downloads queued
 iw	plurals	downloads_titles_status	one	%1$d כותר · %2$s
 iw	plurals	downloads_titles_status	other	%1$d כותרים · %2$s
 iw	plurals	downloads_titles_status	two	%1$d כותרים · %2$s
+iw	plurals	episode_minutes_left	one	נותרו %1$d דק׳
+iw	plurals	episode_minutes_left	other	נותרו %1$d דק׳
+iw	plurals	episode_minutes_left	two	נותרו %1$d דק׳
 iw	plurals	episodes	one	פרק
 iw	plurals	episodes	other	פרקים
 iw	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -100893,6 +101078,9 @@ he	plurals	downloads_queued	other	%d downloads queued
 he	plurals	downloads_titles_status	one	%1$d כותר · %2$s
 he	plurals	downloads_titles_status	other	%1$d כותרים · %2$s
 he	plurals	downloads_titles_status	two	%1$d כותרים · %2$s
+he	plurals	episode_minutes_left	one	נותרו %1$d דק׳
+he	plurals	episode_minutes_left	other	נותרו %1$d דק׳
+he	plurals	episode_minutes_left	two	נותרו %1$d דק׳
 he	plurals	episodes	one	פרק
 he	plurals	episodes	other	פרקים
 he	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -102153,6 +102341,9 @@ he-IL	plurals	downloads_queued	other	%d downloads queued
 he-IL	plurals	downloads_titles_status	one	%1$d כותר · %2$s
 he-IL	plurals	downloads_titles_status	other	%1$d כותרים · %2$s
 he-IL	plurals	downloads_titles_status	two	%1$d כותרים · %2$s
+he-IL	plurals	episode_minutes_left	one	נותרו %1$d דק׳
+he-IL	plurals	episode_minutes_left	other	נותרו %1$d דק׳
+he-IL	plurals	episode_minutes_left	two	נותרו %1$d דק׳
 he-IL	plurals	episodes	one	פרק
 he-IL	plurals	episodes	other	פרקים
 he-IL	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -103399,6 +103590,7 @@ in	plurals	downloads_episode_count	other	%d episode
 in	plurals	downloads_failed_count	other	%d gagal
 in	plurals	downloads_queued	other	%d unduhan dalam antrean
 in	plurals	downloads_titles_status	other	%1$d judul · %2$s
+in	plurals	episode_minutes_left	other	Sisa %1$d mnt
 in	plurals	episodes	one	Episode
 in	plurals	episodes	other	Episode
 in	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -104614,6 +104806,7 @@ id	plurals	downloads_episode_count	other	%d episode
 id	plurals	downloads_failed_count	other	%d gagal
 id	plurals	downloads_queued	other	%d unduhan dalam antrean
 id	plurals	downloads_titles_status	other	%1$d judul · %2$s
+id	plurals	episode_minutes_left	other	Sisa %1$d mnt
 id	plurals	episodes	one	Episode
 id	plurals	episodes	other	Episode
 id	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -105829,6 +106022,7 @@ id-ID	plurals	downloads_episode_count	other	%d episode
 id-ID	plurals	downloads_failed_count	other	%d gagal
 id-ID	plurals	downloads_queued	other	%d unduhan dalam antrean
 id-ID	plurals	downloads_titles_status	other	%1$d judul · %2$s
+id-ID	plurals	episode_minutes_left	other	Sisa %1$d mnt
 id-ID	plurals	episodes	one	Episode
 id-ID	plurals	episodes	other	Episode
 id-ID	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -107052,6 +107246,8 @@ arz	plurals	downloads_queued	one	%d download queued
 arz	plurals	downloads_queued	other	%d downloads queued
 arz	plurals	downloads_titles_status	one	%1$d title · %2$s
 arz	plurals	downloads_titles_status	other	%1$d titles · %2$s
+arz	plurals	episode_minutes_left	one	%1$d min left
+arz	plurals	episode_minutes_left	other	%1$d min left
 arz	plurals	episodes	one	Episode
 arz	plurals	episodes	other	Episodes
 arz	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s

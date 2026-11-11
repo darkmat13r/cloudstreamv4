@@ -1,5 +1,8 @@
 package com.lagradost.cloudstream4.feature.detail
 
+import com.lagradost.cloudstream4.core.strings.UiString
+import com.lagradost.cloudstream4.core.strings.generated.resources.Res
+import com.lagradost.cloudstream4.core.strings.generated.resources.episode_minutes_left
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
@@ -15,6 +18,20 @@ class EpisodeWatchReadoutTest {
         progress = positionMs?.let { DetailResume("e1", it, durationMs, episode = null) },
         markedWatched = marked,
     )
+
+    /**
+     * `BUG-91`: the minutes left are a plural, picked by the count, so a locale whose words change with the number
+     * can say it once a native speaker writes its forms. Every form holds today's text, so nothing reads differently
+     * (`DetailScreenTest` reads the words at 1 and 24).
+     */
+    @Test
+    fun theMinutesLeftAreAPluralPickedByTheirCount() {
+        assertEquals(
+            UiString.Plural(Res.plurals.episode_minutes_left, 24),
+            episodeWatchText(EpisodeWatchReadout.Left(24)),
+        )
+        assertEquals(UiString.Plural(Res.plurals.episode_minutes_left, 1), episodeWatchText(EpisodeWatchReadout.Left(1)))
+    }
 
     @Test
     fun ninetyFivePercentIsWatchedAndJustUnderItIsTimeLeft() {

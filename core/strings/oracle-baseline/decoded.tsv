@@ -11,6 +11,8 @@ values-b+af/strings.xml	plurals	downloads_failed_count	one	STR	%d het misluk
 values-b+af/strings.xml	plurals	downloads_failed_count	other	STR	%d het misluk	
 values-b+af/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titel · %2$s	
 values-b+af/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titels · %2$s	
+values-b+af/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min oor	
+values-b+af/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min oor	
 values-b+af/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOEKMERK	
 values-b+af/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOEKMERKE	
 values-b+af/strings.xml	plurals	home_sections_failed	one	STR	%d afdeling kon nie laai nie	
@@ -530,6 +532,8 @@ values-b+am/strings.xml	plurals	downloads_failed_count	one	STR	%d አልተሳ�
 values-b+am/strings.xml	plurals	downloads_failed_count	other	STR	%d አልተሳኩም	
 values-b+am/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ርዕሶች · %2$s	
 values-b+am/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ርዕሶች · %2$s	
+values-b+am/strings.xml	plurals	episode_minutes_left	one	STR	%1$d ደቂቃ ቀርቷል	
+values-b+am/strings.xml	plurals	episode_minutes_left	other	STR	%1$d ደቂቃ ቀርቷል	
 values-b+am/strings.xml	plurals	home_bookmarks_count	one	STR	%d ዕልባት	
 values-b+am/strings.xml	plurals	home_bookmarks_count	other	STR	%d ዕልባቶች	
 values-b+am/strings.xml	plurals	home_sections_failed	one	STR	%d ክፍል መጫን አልተቻለም	
@@ -1041,6 +1045,8 @@ values-b+apc/strings.xml	plurals	downloads_queued	one	STR	مافي شي بعد �
 values-b+apc/strings.xml	plurals	downloads_queued	other	STR	فيه شي واحد بعد بده يبلش يتنزل	
 values-b+apc/strings.xml	plurals	downloads_titles_status	one	STR	%1$d عنوان · %2$s	
 values-b+apc/strings.xml	plurals	downloads_titles_status	other	STR	%1$d عناوين · %2$s	
+values-b+apc/strings.xml	plurals	episode_minutes_left	one	STR	باقي %1$d دقيقة	
+values-b+apc/strings.xml	plurals	episode_minutes_left	other	STR	باقي %1$d دقيقة	
 values-b+apc/strings.xml	plurals	home_bookmarks_count	one	STR	%d إشارة مرجعية	
 values-b+apc/strings.xml	plurals	home_bookmarks_count	other	STR	%d إشارات مرجعية	
 values-b+apc/strings.xml	plurals	home_sections_failed	one	STR	م قدرنا نفتح %d قسم	
@@ -2205,6 +2211,12 @@ values-b+ar/strings.xml	plurals	downloads_titles_status	two	STR	%1$d عنوان�
 values-b+ar/strings.xml	plurals	downloads_titles_status	few	STR	%1$d عناوين · %2$s	
 values-b+ar/strings.xml	plurals	downloads_titles_status	many	STR	%1$d عنوانًا · %2$s	
 values-b+ar/strings.xml	plurals	downloads_titles_status	other	STR	%1$d عنوان · %2$s	
+values-b+ar/strings.xml	plurals	episode_minutes_left	zero	STR	متبقٍ %1$d دقيقة	
+values-b+ar/strings.xml	plurals	episode_minutes_left	one	STR	متبقٍ %1$d دقيقة	
+values-b+ar/strings.xml	plurals	episode_minutes_left	two	STR	متبقٍ %1$d دقيقة	
+values-b+ar/strings.xml	plurals	episode_minutes_left	few	STR	متبقٍ %1$d دقيقة	
+values-b+ar/strings.xml	plurals	episode_minutes_left	many	STR	متبقٍ %1$d دقيقة	
+values-b+ar/strings.xml	plurals	episode_minutes_left	other	STR	متبقٍ %1$d دقيقة	
 values-b+ar/strings.xml	plurals	home_bookmarks_count	zero	STR	%d إشارة مرجعية	
 values-b+ar/strings.xml	plurals	home_bookmarks_count	one	STR	%d إشارة مرجعية	
 values-b+ar/strings.xml	plurals	home_bookmarks_count	two	STR	%d إشارتان مرجعيتان	
@@ -3422,6 +3434,12 @@ values-b+ars/strings.xml	plurals	downloads_titles_status	two	STR	%1$d عنوان
 values-b+ars/strings.xml	plurals	downloads_titles_status	few	STR	%1$d عناوين · %2$s	
 values-b+ars/strings.xml	plurals	downloads_titles_status	many	STR	%1$d عنوانًا · %2$s	
 values-b+ars/strings.xml	plurals	downloads_titles_status	other	STR	%1$d عنوان · %2$s	
+values-b+ars/strings.xml	plurals	episode_minutes_left	zero	STR	باقي %1$d دقيقة	
+values-b+ars/strings.xml	plurals	episode_minutes_left	one	STR	باقي %1$d دقيقة	
+values-b+ars/strings.xml	plurals	episode_minutes_left	two	STR	باقي %1$d دقيقة	
+values-b+ars/strings.xml	plurals	episode_minutes_left	few	STR	باقي %1$d دقيقة	
+values-b+ars/strings.xml	plurals	episode_minutes_left	many	STR	باقي %1$d دقيقة	
+values-b+ars/strings.xml	plurals	episode_minutes_left	other	STR	باقي %1$d دقيقة	
 values-b+ars/strings.xml	plurals	home_bookmarks_count	zero	STR	%d إشارة مرجعية	
 values-b+ars/strings.xml	plurals	home_bookmarks_count	one	STR	%d إشارة مرجعية	
 values-b+ars/strings.xml	plurals	home_bookmarks_count	two	STR	%d إشارتان مرجعيتان	
@@ -4216,6 +4234,8 @@ values-b+as/strings.xml	plurals	downloads_failed_count	one	STR	%d টা বি�
 values-b+as/strings.xml	plurals	downloads_failed_count	other	STR	%d টা বিফল	
 values-b+as/strings.xml	plurals	downloads_titles_status	one	STR	%1$d টা শিৰোনাম · %2$s	
 values-b+as/strings.xml	plurals	downloads_titles_status	other	STR	%1$d টা শিৰোনাম · %2$s	
+values-b+as/strings.xml	plurals	episode_minutes_left	one	STR	%1$d মিনিট বাকী	
+values-b+as/strings.xml	plurals	episode_minutes_left	other	STR	%1$d মিনিট বাকী	
 values-b+as/strings.xml	plurals	home_bookmarks_count	one	STR	%d টা বুকমাৰ্ক	
 values-b+as/strings.xml	plurals	home_bookmarks_count	other	STR	%d টা বুকমাৰ্ক	
 values-b+as/strings.xml	plurals	home_sections_failed	one	STR	%d টা অংশ লোড কৰিব পৰা নগ'ল	
@@ -5252,6 +5272,8 @@ values-b+az/strings.xml	plurals	downloads_failed_count	one	STR	%d uğursuz
 values-b+az/strings.xml	plurals	downloads_failed_count	other	STR	%d uğursuz	
 values-b+az/strings.xml	plurals	downloads_titles_status	one	STR	%1$d başlıq · %2$s	
 values-b+az/strings.xml	plurals	downloads_titles_status	other	STR	%1$d başlıq · %2$s	
+values-b+az/strings.xml	plurals	episode_minutes_left	one	STR	%1$d dəq qalıb	
+values-b+az/strings.xml	plurals	episode_minutes_left	other	STR	%1$d dəq qalıb	
 values-b+az/strings.xml	plurals	home_bookmarks_count	one	STR	%d ƏLFƏCİN	
 values-b+az/strings.xml	plurals	home_bookmarks_count	other	STR	%d ƏLFƏCİN	
 values-b+az/strings.xml	plurals	home_sections_failed	one	STR	%d bölmə yüklənmədi	
@@ -5816,6 +5838,10 @@ values-b+be/strings.xml	plurals	downloads_titles_status	one	STR	%1$d назва 
 values-b+be/strings.xml	plurals	downloads_titles_status	few	STR	%1$d назвы · %2$s	
 values-b+be/strings.xml	plurals	downloads_titles_status	many	STR	%1$d назваў · %2$s	
 values-b+be/strings.xml	plurals	downloads_titles_status	other	STR	%1$d назвы · %2$s	
+values-b+be/strings.xml	plurals	episode_minutes_left	one	STR	Засталося %1$d хв	
+values-b+be/strings.xml	plurals	episode_minutes_left	few	STR	Засталося %1$d хв	
+values-b+be/strings.xml	plurals	episode_minutes_left	many	STR	Засталося %1$d хв	
+values-b+be/strings.xml	plurals	episode_minutes_left	other	STR	Засталося %1$d хв	
 values-b+be/strings.xml	plurals	home_bookmarks_count	one	STR	%d ЗАКЛАДКА	
 values-b+be/strings.xml	plurals	home_bookmarks_count	few	STR	%d ЗАКЛАДКІ	
 values-b+be/strings.xml	plurals	home_bookmarks_count	many	STR	%d ЗАКЛАДАК	
@@ -6978,6 +7004,8 @@ values-b+bg/strings.xml	plurals	downloads_queued	one	STR	%d изтегляне �
 values-b+bg/strings.xml	plurals	downloads_queued	other	STR	%d изтегляния в опашката	
 values-b+bg/strings.xml	plurals	downloads_titles_status	one	STR	%1$d заглавие · %2$s	
 values-b+bg/strings.xml	plurals	downloads_titles_status	other	STR	%1$d заглавия · %2$s	
+values-b+bg/strings.xml	plurals	episode_minutes_left	one	STR	Остават %1$d мин	
+values-b+bg/strings.xml	plurals	episode_minutes_left	other	STR	Остават %1$d мин	
 values-b+bg/strings.xml	plurals	home_bookmarks_count	one	STR	%d ОТМЕТКА	
 values-b+bg/strings.xml	plurals	home_bookmarks_count	other	STR	%d ОТМЕТКИ	
 values-b+bg/strings.xml	plurals	home_sections_failed	one	STR	%d секция не се зареди	
@@ -8096,6 +8124,8 @@ values-b+bn/strings.xml	plurals	downloads_failed_count	one	STR	%dটি ব্�
 values-b+bn/strings.xml	plurals	downloads_failed_count	other	STR	%dটি ব্যর্থ	
 values-b+bn/strings.xml	plurals	downloads_titles_status	one	STR	%1$dটি শিরোনাম · %2$s	
 values-b+bn/strings.xml	plurals	downloads_titles_status	other	STR	%1$dটি শিরোনাম · %2$s	
+values-b+bn/strings.xml	plurals	episode_minutes_left	one	STR	%1$d মিনিট বাকি	
+values-b+bn/strings.xml	plurals	episode_minutes_left	other	STR	%1$d মিনিট বাকি	
 values-b+bn/strings.xml	plurals	home_bookmarks_count	one	STR	%d টি বুকমার্ক	
 values-b+bn/strings.xml	plurals	home_bookmarks_count	other	STR	%d টি বুকমার্ক	
 values-b+bn/strings.xml	plurals	home_sections_failed	one	STR	%dটি বিভাগ লোড করা যায়নি	
@@ -8904,6 +8934,9 @@ values-b+ca/strings.xml	plurals	downloads_failed_count	other	STR	%d fallides
 values-b+ca/strings.xml	plurals	downloads_titles_status	one	STR	%1$d títol · %2$s	
 values-b+ca/strings.xml	plurals	downloads_titles_status	many	STR	%1$d títols · %2$s	
 values-b+ca/strings.xml	plurals	downloads_titles_status	other	STR	%1$d títols · %2$s	
+values-b+ca/strings.xml	plurals	episode_minutes_left	one	STR	Queden %1$d min	
+values-b+ca/strings.xml	plurals	episode_minutes_left	many	STR	Queden %1$d min	
+values-b+ca/strings.xml	plurals	episode_minutes_left	other	STR	Queden %1$d min	
 values-b+ca/strings.xml	plurals	home_bookmarks_count	one	STR	%d FAVORIT	
 values-b+ca/strings.xml	plurals	home_bookmarks_count	many	STR	%d DE FAVORITS	
 values-b+ca/strings.xml	plurals	home_bookmarks_count	other	STR	%d FAVORITS	
@@ -9648,6 +9681,8 @@ values-b+ckb/strings.xml	plurals	downloads_failed_count	one	STR	%d شکستی ه
 values-b+ckb/strings.xml	plurals	downloads_failed_count	other	STR	%d شکستی هێنا	
 values-b+ckb/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ناونیشان · %2$s	
 values-b+ckb/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ناونیشان · %2$s	
+values-b+ckb/strings.xml	plurals	episode_minutes_left	one	STR	%1$d خولەک ماوە	
+values-b+ckb/strings.xml	plurals	episode_minutes_left	other	STR	%1$d خولەک ماوە	
 values-b+ckb/strings.xml	plurals	home_bookmarks_count	one	STR	%d ئاماژە	
 values-b+ckb/strings.xml	plurals	home_bookmarks_count	other	STR	%d ئاماژە	
 values-b+ckb/strings.xml	plurals	home_sections_failed	one	STR	%d بەش بار نەکرا	
@@ -10152,6 +10187,10 @@ values-b+cs/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titul · %2
 values-b+cs/strings.xml	plurals	downloads_titles_status	few	STR	%1$d tituly · %2$s	
 values-b+cs/strings.xml	plurals	downloads_titles_status	many	STR	%1$d titulu · %2$s	
 values-b+cs/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titulů · %2$s	
+values-b+cs/strings.xml	plurals	episode_minutes_left	one	STR	Zbývá %1$d min	
+values-b+cs/strings.xml	plurals	episode_minutes_left	few	STR	Zbývá %1$d min	
+values-b+cs/strings.xml	plurals	episode_minutes_left	many	STR	Zbývá %1$d min	
+values-b+cs/strings.xml	plurals	episode_minutes_left	other	STR	Zbývá %1$d min	
 values-b+cs/strings.xml	plurals	home_bookmarks_count	one	STR	%d ZÁLOŽKA	
 values-b+cs/strings.xml	plurals	home_bookmarks_count	few	STR	%d ZÁLOŽKY	
 values-b+cs/strings.xml	plurals	home_bookmarks_count	many	STR	%d ZÁLOŽKY	
@@ -11323,6 +11362,8 @@ values-b+de/strings.xml	plurals	downloads_queued	one	STR	%d Download in Wartesch
 values-b+de/strings.xml	plurals	downloads_queued	other	STR	%d Downloads in Warteschlange	
 values-b+de/strings.xml	plurals	downloads_titles_status	one	STR	%1$d Titel · %2$s	
 values-b+de/strings.xml	plurals	downloads_titles_status	other	STR	%1$d Titel · %2$s	
+values-b+de/strings.xml	plurals	episode_minutes_left	one	STR	Noch %1$d Min	
+values-b+de/strings.xml	plurals	episode_minutes_left	other	STR	Noch %1$d Min	
 values-b+de/strings.xml	plurals	home_bookmarks_count	one	STR	%d LESEZEICHEN	
 values-b+de/strings.xml	plurals	home_bookmarks_count	other	STR	%d LESEZEICHEN	
 values-b+de/strings.xml	plurals	home_sections_failed	one	STR	%d Bereich konnte nicht geladen werden	
@@ -12458,6 +12499,8 @@ values-b+el/strings.xml	plurals	downloads_failed_count	one	STR	%d απέτυχε
 values-b+el/strings.xml	plurals	downloads_failed_count	other	STR	%d απέτυχαν	
 values-b+el/strings.xml	plurals	downloads_titles_status	one	STR	%1$d τίτλος · %2$s	
 values-b+el/strings.xml	plurals	downloads_titles_status	other	STR	%1$d τίτλοι · %2$s	
+values-b+el/strings.xml	plurals	episode_minutes_left	one	STR	Απομένουν %1$d λεπ.	
+values-b+el/strings.xml	plurals	episode_minutes_left	other	STR	Απομένουν %1$d λεπ.	
 values-b+el/strings.xml	plurals	home_bookmarks_count	one	STR	%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ	
 values-b+el/strings.xml	plurals	home_bookmarks_count	other	STR	%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ	
 values-b+el/strings.xml	plurals	home_sections_failed	one	STR	Αποτυχία φόρτωσης %d ενότητας	
@@ -13519,6 +13562,8 @@ values-b+eo/strings.xml	plurals	downloads_failed_count	one	STR	%d malsukcesis
 values-b+eo/strings.xml	plurals	downloads_failed_count	other	STR	%d malsukcesis	
 values-b+eo/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titolo · %2$s	
 values-b+eo/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titoloj · %2$s	
+values-b+eo/strings.xml	plurals	episode_minutes_left	one	STR	Restas %1$d min	
+values-b+eo/strings.xml	plurals	episode_minutes_left	other	STR	Restas %1$d min	
 values-b+eo/strings.xml	plurals	home_bookmarks_count	one	STR	%d LEGOSIGNO	
 values-b+eo/strings.xml	plurals	home_bookmarks_count	other	STR	%d LEGOSIGNOJ	
 values-b+eo/strings.xml	plurals	home_sections_failed	one	STR	%d sekcio ne ŝargiĝis	
@@ -14113,6 +14158,9 @@ values-b+es/strings.xml	plurals	downloads_queued	other	STR	%d descargas encolada
 values-b+es/strings.xml	plurals	downloads_titles_status	one	STR	%1$d título · %2$s	
 values-b+es/strings.xml	plurals	downloads_titles_status	many	STR	%1$d títulos · %2$s	
 values-b+es/strings.xml	plurals	downloads_titles_status	other	STR	%1$d títulos · %2$s	
+values-b+es/strings.xml	plurals	episode_minutes_left	one	STR	Quedan %1$d min	
+values-b+es/strings.xml	plurals	episode_minutes_left	many	STR	Quedan %1$d min	
+values-b+es/strings.xml	plurals	episode_minutes_left	other	STR	Quedan %1$d min	
 values-b+es/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARCADOR	
 values-b+es/strings.xml	plurals	home_bookmarks_count	many	STR	%d DE MARCADORES	
 values-b+es/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARCADORES	
@@ -15264,6 +15312,8 @@ values-b+fa/strings.xml	plurals	downloads_failed_count	one	STR	%d ناموفق
 values-b+fa/strings.xml	plurals	downloads_failed_count	other	STR	%d ناموفق	
 values-b+fa/strings.xml	plurals	downloads_titles_status	one	STR	%1$d عنوان · %2$s	
 values-b+fa/strings.xml	plurals	downloads_titles_status	other	STR	%1$d عنوان · %2$s	
+values-b+fa/strings.xml	plurals	episode_minutes_left	one	STR	%1$d دقیقه مانده	
+values-b+fa/strings.xml	plurals	episode_minutes_left	other	STR	%1$d دقیقه مانده	
 values-b+fa/strings.xml	plurals	home_bookmarks_count	one	STR	%d نشانک	
 values-b+fa/strings.xml	plurals	home_bookmarks_count	other	STR	%d نشانک	
 values-b+fa/strings.xml	plurals	home_sections_failed	one	STR	%d بخش بارگیری نشد	
@@ -16011,6 +16061,8 @@ values-b+fil/strings.xml	plurals	downloads_failed_count	one	STR	%d nabigo
 values-b+fil/strings.xml	plurals	downloads_failed_count	other	STR	%d nabigo	
 values-b+fil/strings.xml	plurals	downloads_titles_status	one	STR	%1$d pamagat · %2$s	
 values-b+fil/strings.xml	plurals	downloads_titles_status	other	STR	%1$d pamagat · %2$s	
+values-b+fil/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min na lang	
+values-b+fil/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min na lang	
 values-b+fil/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOOKMARK	
 values-b+fil/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOOKMARK	
 values-b+fil/strings.xml	plurals	home_sections_failed	one	STR	Hindi na-load ang %d seksyon	
@@ -16580,6 +16632,9 @@ values-b+fr/strings.xml	plurals	downloads_queued	other	STR	%d téléchargements 
 values-b+fr/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titre · %2$s	
 values-b+fr/strings.xml	plurals	downloads_titles_status	many	STR	%1$d titres · %2$s	
 values-b+fr/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titres · %2$s	
+values-b+fr/strings.xml	plurals	episode_minutes_left	one	STR	Encore %1$d min	
+values-b+fr/strings.xml	plurals	episode_minutes_left	many	STR	Encore %1$d min	
+values-b+fr/strings.xml	plurals	episode_minutes_left	other	STR	Encore %1$d min	
 values-b+fr/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARQUE-PAGE	
 values-b+fr/strings.xml	plurals	home_bookmarks_count	many	STR	%d DE MARQUE-PAGES	
 values-b+fr/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARQUE-PAGES	
@@ -17731,6 +17786,8 @@ values-b+gl/strings.xml	plurals	downloads_failed_count	one	STR	%d fallida
 values-b+gl/strings.xml	plurals	downloads_failed_count	other	STR	%d fallidas	
 values-b+gl/strings.xml	plurals	downloads_titles_status	one	STR	%1$d título · %2$s	
 values-b+gl/strings.xml	plurals	downloads_titles_status	other	STR	%1$d títulos · %2$s	
+values-b+gl/strings.xml	plurals	episode_minutes_left	one	STR	Quedan %1$d min	
+values-b+gl/strings.xml	plurals	episode_minutes_left	other	STR	Quedan %1$d min	
 values-b+gl/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARCADOR	
 values-b+gl/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARCADORES	
 values-b+gl/strings.xml	plurals	home_sections_failed	one	STR	Non se puido cargar %d sección	
@@ -18418,6 +18475,8 @@ values-b+hi/strings.xml	plurals	downloads_failed_count	one	STR	%d विफल
 values-b+hi/strings.xml	plurals	downloads_failed_count	other	STR	%d विफल	
 values-b+hi/strings.xml	plurals	downloads_titles_status	one	STR	%1$d शीर्षक · %2$s	
 values-b+hi/strings.xml	plurals	downloads_titles_status	other	STR	%1$d शीर्षक · %2$s	
+values-b+hi/strings.xml	plurals	episode_minutes_left	one	STR	%1$d मिनट बाकी	
+values-b+hi/strings.xml	plurals	episode_minutes_left	other	STR	%1$d मिनट बाकी	
 values-b+hi/strings.xml	plurals	home_bookmarks_count	one	STR	%d बुकमार्क	
 values-b+hi/strings.xml	plurals	home_bookmarks_count	other	STR	%d बुकमार्क	
 values-b+hi/strings.xml	plurals	home_sections_failed	one	STR	%d अनुभाग लोड नहीं हो सका	
@@ -19243,6 +19302,9 @@ values-b+hr/strings.xml	plurals	downloads_queued	other	STR	%d preuzimanja u redu
 values-b+hr/strings.xml	plurals	downloads_titles_status	one	STR	%1$d naslov · %2$s	
 values-b+hr/strings.xml	plurals	downloads_titles_status	few	STR	%1$d naslova · %2$s	
 values-b+hr/strings.xml	plurals	downloads_titles_status	other	STR	%1$d naslova · %2$s	
+values-b+hr/strings.xml	plurals	episode_minutes_left	one	STR	Još %1$d min	
+values-b+hr/strings.xml	plurals	episode_minutes_left	few	STR	Još %1$d min	
+values-b+hr/strings.xml	plurals	episode_minutes_left	other	STR	Još %1$d min	
 values-b+hr/strings.xml	plurals	home_bookmarks_count	one	STR	%d OZNAKA	
 values-b+hr/strings.xml	plurals	home_bookmarks_count	few	STR	%d OZNAKE	
 values-b+hr/strings.xml	plurals	home_bookmarks_count	other	STR	%d OZNAKA	
@@ -20386,6 +20448,8 @@ values-b+hu/strings.xml	plurals	downloads_failed_count	one	STR	%d sikertelen
 values-b+hu/strings.xml	plurals	downloads_failed_count	other	STR	%d sikertelen	
 values-b+hu/strings.xml	plurals	downloads_titles_status	one	STR	%1$d cím · %2$s	
 values-b+hu/strings.xml	plurals	downloads_titles_status	other	STR	%1$d cím · %2$s	
+values-b+hu/strings.xml	plurals	episode_minutes_left	one	STR	Még %1$d perc	
+values-b+hu/strings.xml	plurals	episode_minutes_left	other	STR	Még %1$d perc	
 values-b+hu/strings.xml	plurals	home_bookmarks_count	one	STR	%d KÖNYVJELZŐ	
 values-b+hu/strings.xml	plurals	home_bookmarks_count	other	STR	%d KÖNYVJELZŐ	
 values-b+hu/strings.xml	plurals	home_sections_failed	one	STR	%d szakasz betöltése sikertelen	
@@ -21417,6 +21481,7 @@ values-b+in/strings.xml	plurals	downloads_episode_count	other	STR	%d episode
 values-b+in/strings.xml	plurals	downloads_failed_count	other	STR	%d gagal	
 values-b+in/strings.xml	plurals	downloads_queued	other	STR	%d unduhan dalam antrean	
 values-b+in/strings.xml	plurals	downloads_titles_status	other	STR	%1$d judul · %2$s	
+values-b+in/strings.xml	plurals	episode_minutes_left	other	STR	Sisa %1$d mnt	
 values-b+in/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARKAH	
 values-b+in/strings.xml	plurals	home_sections_failed	other	STR	%d bagian gagal dimuat	
 values-b+in/strings.xml	plurals	home_source_sections	other	STR	%d bagian	
@@ -22548,6 +22613,9 @@ values-b+it/strings.xml	plurals	downloads_queued	other	STR	%d download in coda
 values-b+it/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titolo · %2$s	
 values-b+it/strings.xml	plurals	downloads_titles_status	many	STR	%1$d titoli · %2$s	
 values-b+it/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titoli · %2$s	
+values-b+it/strings.xml	plurals	episode_minutes_left	one	STR	Mancano %1$d min	
+values-b+it/strings.xml	plurals	episode_minutes_left	many	STR	Mancano %1$d min	
+values-b+it/strings.xml	plurals	episode_minutes_left	other	STR	Mancano %1$d min	
 values-b+it/strings.xml	plurals	home_bookmarks_count	one	STR	%d SEGNALIBRO	
 values-b+it/strings.xml	plurals	home_bookmarks_count	many	STR	%d DI SEGNALIBRI	
 values-b+it/strings.xml	plurals	home_bookmarks_count	other	STR	%d SEGNALIBRI	
@@ -23705,6 +23773,9 @@ values-b+iw/strings.xml	plurals	downloads_failed_count	other	STR	%d נכשלו
 values-b+iw/strings.xml	plurals	downloads_titles_status	one	STR	%1$d כותר · %2$s	
 values-b+iw/strings.xml	plurals	downloads_titles_status	two	STR	%1$d כותרים · %2$s	
 values-b+iw/strings.xml	plurals	downloads_titles_status	other	STR	%1$d כותרים · %2$s	
+values-b+iw/strings.xml	plurals	episode_minutes_left	one	STR	נותרו %1$d דק׳	
+values-b+iw/strings.xml	plurals	episode_minutes_left	two	STR	נותרו %1$d דק׳	
+values-b+iw/strings.xml	plurals	episode_minutes_left	other	STR	נותרו %1$d דק׳	
 values-b+iw/strings.xml	plurals	home_bookmarks_count	one	STR	%d סימנייה	
 values-b+iw/strings.xml	plurals	home_bookmarks_count	two	STR	%d סימניות	
 values-b+iw/strings.xml	plurals	home_bookmarks_count	other	STR	%d סימניות	
@@ -24661,6 +24732,7 @@ values-b+ja/strings.xml	plurals	downloads_episode_count	other	STR	%dエピソー
 values-b+ja/strings.xml	plurals	downloads_failed_count	other	STR	%d 件失敗	
 values-b+ja/strings.xml	plurals	downloads_queued	other	STR	%d 件が待機中	
 values-b+ja/strings.xml	plurals	downloads_titles_status	other	STR	%1$d作品 · %2$s	
+values-b+ja/strings.xml	plurals	episode_minutes_left	other	STR	残り%1$d分	
 values-b+ja/strings.xml	plurals	home_bookmarks_count	other	STR	%d 件のブックマーク	
 values-b+ja/strings.xml	plurals	home_sections_failed	other	STR	%d 件のセクションを読み込めませんでした	
 values-b+ja/strings.xml	plurals	home_source_sections	other	STR	%d セクション	
@@ -25780,6 +25852,8 @@ values-b+kn/strings.xml	plurals	downloads_failed_count	one	STR	%d ವಿಫಲ�
 values-b+kn/strings.xml	plurals	downloads_failed_count	other	STR	%d ವಿಫಲವಾಗಿವೆ	
 values-b+kn/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s	
 values-b+kn/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s	
+values-b+kn/strings.xml	plurals	episode_minutes_left	one	STR	%1$d ನಿಮಿಷ ಬಾಕಿ	
+values-b+kn/strings.xml	plurals	episode_minutes_left	other	STR	%1$d ನಿಮಿಷ ಬಾಕಿ	
 values-b+kn/strings.xml	plurals	home_bookmarks_count	one	STR	%d ಬುಕ್‌ಮಾರ್ಕ್	
 values-b+kn/strings.xml	plurals	home_bookmarks_count	other	STR	%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು	
 values-b+kn/strings.xml	plurals	home_sections_failed	one	STR	%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ	
@@ -26304,6 +26378,7 @@ values-b+ko/strings.xml	plurals	downloads_episode_count	other	STR	%d화
 values-b+ko/strings.xml	plurals	downloads_failed_count	other	STR	%d개 실패	
 values-b+ko/strings.xml	plurals	downloads_queued	other	STR	%d 다운로드	
 values-b+ko/strings.xml	plurals	downloads_titles_status	other	STR	작품 %1$d개 · %2$s	
+values-b+ko/strings.xml	plurals	episode_minutes_left	other	STR	%1$d분 남음	
 values-b+ko/strings.xml	plurals	home_bookmarks_count	other	STR	북마크 %d개	
 values-b+ko/strings.xml	plurals	home_sections_failed	other	STR	섹션 %d개를 불러오지 못했습니다	
 values-b+ko/strings.xml	plurals	home_source_sections	other	STR	섹션 %d개	
@@ -27429,6 +27504,10 @@ values-b+lt/strings.xml	plurals	downloads_titles_status	one	STR	%1$d pavadinimas
 values-b+lt/strings.xml	plurals	downloads_titles_status	few	STR	%1$d pavadinimai · %2$s	
 values-b+lt/strings.xml	plurals	downloads_titles_status	many	STR	%1$d pavadinimo · %2$s	
 values-b+lt/strings.xml	plurals	downloads_titles_status	other	STR	%1$d pavadinimų · %2$s	
+values-b+lt/strings.xml	plurals	episode_minutes_left	one	STR	Liko %1$d min	
+values-b+lt/strings.xml	plurals	episode_minutes_left	few	STR	Liko %1$d min	
+values-b+lt/strings.xml	plurals	episode_minutes_left	many	STR	Liko %1$d min	
+values-b+lt/strings.xml	plurals	episode_minutes_left	other	STR	Liko %1$d min	
 values-b+lt/strings.xml	plurals	home_bookmarks_count	one	STR	%d ŽYMA	
 values-b+lt/strings.xml	plurals	home_bookmarks_count	few	STR	%d ŽYMOS	
 values-b+lt/strings.xml	plurals	home_bookmarks_count	many	STR	%d ŽYMOS	
@@ -28163,6 +28242,9 @@ values-b+lv/strings.xml	plurals	downloads_failed_count	other	STR	%d neizdevās
 values-b+lv/strings.xml	plurals	downloads_titles_status	zero	STR	%1$d nosaukumu · %2$s	
 values-b+lv/strings.xml	plurals	downloads_titles_status	one	STR	%1$d nosaukums · %2$s	
 values-b+lv/strings.xml	plurals	downloads_titles_status	other	STR	%1$d nosaukumi · %2$s	
+values-b+lv/strings.xml	plurals	episode_minutes_left	zero	STR	Atlikušas %1$d min.	
+values-b+lv/strings.xml	plurals	episode_minutes_left	one	STR	Atlikušas %1$d min.	
+values-b+lv/strings.xml	plurals	episode_minutes_left	other	STR	Atlikušas %1$d min.	
 values-b+lv/strings.xml	plurals	home_bookmarks_count	zero	STR	%d GRĀMATZĪMJU	
 values-b+lv/strings.xml	plurals	home_bookmarks_count	one	STR	%d GRĀMATZĪME	
 values-b+lv/strings.xml	plurals	home_bookmarks_count	other	STR	%d GRĀMATZĪMES	
@@ -29192,6 +29274,8 @@ values-b+mk/strings.xml	plurals	downloads_queued	one	STR	%d преземање �
 values-b+mk/strings.xml	plurals	downloads_queued	other	STR	%d преземања во редицата	
 values-b+mk/strings.xml	plurals	downloads_titles_status	one	STR	%1$d наслов · %2$s	
 values-b+mk/strings.xml	plurals	downloads_titles_status	other	STR	%1$d наслови · %2$s	
+values-b+mk/strings.xml	plurals	episode_minutes_left	one	STR	Преостануваат %1$d мин	
+values-b+mk/strings.xml	plurals	episode_minutes_left	other	STR	Преостануваат %1$d мин	
 values-b+mk/strings.xml	plurals	home_bookmarks_count	one	STR	%d ОБЕЛЕЖУВАЧ	
 values-b+mk/strings.xml	plurals	home_bookmarks_count	other	STR	%d ОБЕЛЕЖУВАЧИ	
 values-b+mk/strings.xml	plurals	home_sections_failed	one	STR	%d дел не се вчита	
@@ -30320,6 +30404,8 @@ values-b+ml/strings.xml	plurals	downloads_failed_count	one	STR	%d പരാജ�
 values-b+ml/strings.xml	plurals	downloads_failed_count	other	STR	%d പരാജയപ്പെട്ടു	
 values-b+ml/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ശീർഷകങ്ങൾ · %2$s	
 values-b+ml/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ശീർഷകങ്ങൾ · %2$s	
+values-b+ml/strings.xml	plurals	episode_minutes_left	one	STR	%1$d മിനിറ്റ് ബാക്കി	
+values-b+ml/strings.xml	plurals	episode_minutes_left	other	STR	%1$d മിനിറ്റ് ബാക്കി	
 values-b+ml/strings.xml	plurals	home_bookmarks_count	one	STR	%d ബുക്ക്‌മാർക്ക്	
 values-b+ml/strings.xml	plurals	home_bookmarks_count	other	STR	%d ബുക്ക്‌മാർക്കുകൾ	
 values-b+ml/strings.xml	plurals	home_sections_failed	one	STR	%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല	
@@ -31000,6 +31086,7 @@ values-b+ms/strings.xml	plurals	downloads_delete_confirm_title	other	STR	Padam %
 values-b+ms/strings.xml	plurals	downloads_episode_count	other	STR	%d episod	
 values-b+ms/strings.xml	plurals	downloads_failed_count	other	STR	%d gagal	
 values-b+ms/strings.xml	plurals	downloads_titles_status	other	STR	%1$d tajuk · %2$s	
+values-b+ms/strings.xml	plurals	episode_minutes_left	other	STR	Tinggal %1$d min	
 values-b+ms/strings.xml	plurals	home_bookmarks_count	other	STR	%d PENANDA HALAMAN	
 values-b+ms/strings.xml	plurals	home_sections_failed	other	STR	%d bahagian gagal dimuatkan	
 values-b+ms/strings.xml	plurals	home_source_sections	other	STR	%d bahagian	
@@ -31937,6 +32024,11 @@ values-b+mt/strings.xml	plurals	downloads_titles_status	two	STR	%1$d titli · %2
 values-b+mt/strings.xml	plurals	downloads_titles_status	few	STR	%1$d titli · %2$s	
 values-b+mt/strings.xml	plurals	downloads_titles_status	many	STR	%1$d titli · %2$s	
 values-b+mt/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titli · %2$s	
+values-b+mt/strings.xml	plurals	episode_minutes_left	one	STR	Fadal %1$d min	
+values-b+mt/strings.xml	plurals	episode_minutes_left	two	STR	Fadal %1$d min	
+values-b+mt/strings.xml	plurals	episode_minutes_left	few	STR	Fadal %1$d min	
+values-b+mt/strings.xml	plurals	episode_minutes_left	many	STR	Fadal %1$d min	
+values-b+mt/strings.xml	plurals	episode_minutes_left	other	STR	Fadal %1$d min	
 values-b+mt/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOOKMARK	
 values-b+mt/strings.xml	plurals	home_bookmarks_count	two	STR	%d BOOKMARKS	
 values-b+mt/strings.xml	plurals	home_bookmarks_count	few	STR	%d BOOKMARKS	
@@ -32497,6 +32589,7 @@ values-b+my/strings.xml	plurals	downloads_delete_confirm_title	other	STR	ဒေ�
 values-b+my/strings.xml	plurals	downloads_episode_count	other	STR	အပိုင်း %d ပိုင်း	
 values-b+my/strings.xml	plurals	downloads_failed_count	other	STR	%d ခု မအောင်မြင်	
 values-b+my/strings.xml	plurals	downloads_titles_status	other	STR	ခေါင်းစဉ် %1$d ခု · %2$s	
+values-b+my/strings.xml	plurals	episode_minutes_left	other	STR	%1$d မိနစ် ကျန်	
 values-b+my/strings.xml	plurals	home_bookmarks_count	other	STR	စာမှတ် %d ခု	
 values-b+my/strings.xml	plurals	home_sections_failed	other	STR	အပိုင်း %d ခု တင်သွင်း၍မရပါ	
 values-b+my/strings.xml	plurals	home_source_sections	other	STR	ကဏ္ဍ %d ခု	
@@ -33404,6 +33497,8 @@ values-b+ne/strings.xml	plurals	downloads_failed_count	one	STR	%d असफल
 values-b+ne/strings.xml	plurals	downloads_failed_count	other	STR	%d असफल	
 values-b+ne/strings.xml	plurals	downloads_titles_status	one	STR	%1$d शीर्षक · %2$s	
 values-b+ne/strings.xml	plurals	downloads_titles_status	other	STR	%1$d शीर्षक · %2$s	
+values-b+ne/strings.xml	plurals	episode_minutes_left	one	STR	%1$d मिनेट बाँकी	
+values-b+ne/strings.xml	plurals	episode_minutes_left	other	STR	%1$d मिनेट बाँकी	
 values-b+ne/strings.xml	plurals	home_bookmarks_count	one	STR	%d बुकमार्क	
 values-b+ne/strings.xml	plurals	home_bookmarks_count	other	STR	%d बुकमार्क	
 values-b+ne/strings.xml	plurals	home_sections_failed	one	STR	%d खण्ड लोड हुन सकेन	
@@ -33930,6 +34025,8 @@ values-b+nl/strings.xml	plurals	downloads_failed_count	one	STR	%d mislukt
 values-b+nl/strings.xml	plurals	downloads_failed_count	other	STR	%d mislukt	
 values-b+nl/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titel · %2$s	
 values-b+nl/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titels · %2$s	
+values-b+nl/strings.xml	plurals	episode_minutes_left	one	STR	Nog %1$d min	
+values-b+nl/strings.xml	plurals	episode_minutes_left	other	STR	Nog %1$d min	
 values-b+nl/strings.xml	plurals	home_bookmarks_count	one	STR	%d BLADWIJZER	
 values-b+nl/strings.xml	plurals	home_bookmarks_count	other	STR	%d BLADWIJZERS	
 values-b+nl/strings.xml	plurals	home_sections_failed	one	STR	%d sectie kon niet worden geladen	
@@ -35012,6 +35109,8 @@ values-b+nn/strings.xml	plurals	downloads_failed_count	one	STR	%d feila
 values-b+nn/strings.xml	plurals	downloads_failed_count	other	STR	%d feila	
 values-b+nn/strings.xml	plurals	downloads_titles_status	one	STR	%1$d tittel · %2$s	
 values-b+nn/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titlar · %2$s	
+values-b+nn/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min att	
+values-b+nn/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min att	
 values-b+nn/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOKMERKE	
 values-b+nn/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOKMERKE	
 values-b+nn/strings.xml	plurals	home_sections_failed	one	STR	%d del kunne ikkje lastast	
@@ -35610,6 +35709,8 @@ values-b+no/strings.xml	plurals	downloads_failed_count	one	STR	%d mislyktes
 values-b+no/strings.xml	plurals	downloads_failed_count	other	STR	%d mislyktes	
 values-b+no/strings.xml	plurals	downloads_titles_status	one	STR	%1$d tittel · %2$s	
 values-b+no/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titler · %2$s	
+values-b+no/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min igjen	
+values-b+no/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min igjen	
 values-b+no/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOKMERKE	
 values-b+no/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOKMERKER	
 values-b+no/strings.xml	plurals	home_sections_failed	one	STR	%d del kunne ikke lastes inn	
@@ -36521,6 +36622,8 @@ values-b+or/strings.xml	plurals	downloads_failed_count	one	STR	%d ଵିଫଳ �
 values-b+or/strings.xml	plurals	downloads_failed_count	other	STR	%d ଵିଫଳ ହେଲା	
 values-b+or/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ଶୀର୍ଷକ · %2$s	
 values-b+or/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ଶୀର୍ଷକ · %2$s	
+values-b+or/strings.xml	plurals	episode_minutes_left	one	STR	%1$d ମିନିଟ୍ ବାକି	
+values-b+or/strings.xml	plurals	episode_minutes_left	other	STR	%1$d ମିନିଟ୍ ବାକି	
 values-b+or/strings.xml	plurals	home_bookmarks_count	one	STR	%d ବୁକମାର୍କ	
 values-b+or/strings.xml	plurals	home_bookmarks_count	other	STR	%d ବୁକମାର୍କ	
 values-b+or/strings.xml	plurals	home_sections_failed	one	STR	%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ	
@@ -37099,6 +37202,10 @@ values-b+pl/strings.xml	plurals	downloads_titles_status	one	STR	%1$d tytuł · %
 values-b+pl/strings.xml	plurals	downloads_titles_status	few	STR	%1$d tytuły · %2$s	
 values-b+pl/strings.xml	plurals	downloads_titles_status	many	STR	%1$d tytułów · %2$s	
 values-b+pl/strings.xml	plurals	downloads_titles_status	other	STR	%1$d tytułu · %2$s	
+values-b+pl/strings.xml	plurals	episode_minutes_left	one	STR	Zostało %1$d min	
+values-b+pl/strings.xml	plurals	episode_minutes_left	few	STR	Zostało %1$d min	
+values-b+pl/strings.xml	plurals	episode_minutes_left	many	STR	Zostało %1$d min	
+values-b+pl/strings.xml	plurals	episode_minutes_left	other	STR	Zostało %1$d min	
 values-b+pl/strings.xml	plurals	home_bookmarks_count	one	STR	%d ZAKŁADKA	
 values-b+pl/strings.xml	plurals	home_bookmarks_count	few	STR	%d ZAKŁADKI	
 values-b+pl/strings.xml	plurals	home_bookmarks_count	many	STR	%d ZAKŁADEK	
@@ -38278,6 +38385,9 @@ values-b+pt+BR/strings.xml	plurals	downloads_queued	other	STR	%d downloads na se
 values-b+pt+BR/strings.xml	plurals	downloads_titles_status	one	STR	%1$d título · %2$s	
 values-b+pt+BR/strings.xml	plurals	downloads_titles_status	many	STR	%1$d títulos · %2$s	
 values-b+pt+BR/strings.xml	plurals	downloads_titles_status	other	STR	%1$d títulos · %2$s	
+values-b+pt+BR/strings.xml	plurals	episode_minutes_left	one	STR	Faltam %1$d min	
+values-b+pt+BR/strings.xml	plurals	episode_minutes_left	many	STR	Faltam %1$d min	
+values-b+pt+BR/strings.xml	plurals	episode_minutes_left	other	STR	Faltam %1$d min	
 values-b+pt+BR/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARCADOR	
 values-b+pt+BR/strings.xml	plurals	home_bookmarks_count	many	STR	%d DE MARCADORES	
 values-b+pt+BR/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARCADORES	
@@ -39441,6 +39551,9 @@ values-b+pt/strings.xml	plurals	downloads_queued	other	STR	%d downloads na fila
 values-b+pt/strings.xml	plurals	downloads_titles_status	one	STR	%1$d título · %2$s	
 values-b+pt/strings.xml	plurals	downloads_titles_status	many	STR	%1$d títulos · %2$s	
 values-b+pt/strings.xml	plurals	downloads_titles_status	other	STR	%1$d títulos · %2$s	
+values-b+pt/strings.xml	plurals	episode_minutes_left	one	STR	Faltam %1$d min	
+values-b+pt/strings.xml	plurals	episode_minutes_left	many	STR	Faltam %1$d min	
+values-b+pt/strings.xml	plurals	episode_minutes_left	other	STR	Faltam %1$d min	
 values-b+pt/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARCADOR	
 values-b+pt/strings.xml	plurals	home_bookmarks_count	many	STR	%d DE MARCADORES	
 values-b+pt/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARCADORES	
@@ -40578,6 +40691,7 @@ values-b+qt/strings.xml	plurals	downloads_delete_confirm_title	other	STR	oooooah
 values-b+qt/strings.xml	plurals	downloads_episode_count	other	STR	%d ooh	
 values-b+qt/strings.xml	plurals	downloads_failed_count	other	STR	%d oooogg	
 values-b+qt/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ooh · %2$s	
+values-b+qt/strings.xml	plurals	episode_minutes_left	other	STR	%1$d ooh haa ahhh	
 values-b+qt/strings.xml	plurals	home_bookmarks_count	other	STR	%d OOUUH OOH	
 values-b+qt/strings.xml	plurals	home_sections_failed	other	STR	%d oooogg ooh aaahhu	
 values-b+qt/strings.xml	plurals	home_source_sections	other	STR	%d oouh	
@@ -41591,6 +41705,9 @@ values-b+ro/strings.xml	plurals	downloads_failed_count	other	STR	%d au eșuat
 values-b+ro/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titlu · %2$s	
 values-b+ro/strings.xml	plurals	downloads_titles_status	few	STR	%1$d titluri · %2$s	
 values-b+ro/strings.xml	plurals	downloads_titles_status	other	STR	%1$d de titluri · %2$s	
+values-b+ro/strings.xml	plurals	episode_minutes_left	one	STR	Mai sunt %1$d min	
+values-b+ro/strings.xml	plurals	episode_minutes_left	few	STR	Mai sunt %1$d min	
+values-b+ro/strings.xml	plurals	episode_minutes_left	other	STR	Mai sunt %1$d min	
 values-b+ro/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARCAJ	
 values-b+ro/strings.xml	plurals	home_bookmarks_count	few	STR	%d MARCAJE	
 values-b+ro/strings.xml	plurals	home_bookmarks_count	other	STR	%d DE MARCAJE	
@@ -42650,6 +42767,10 @@ values-b+ru/strings.xml	plurals	downloads_titles_status	one	STR	%1$d назва�
 values-b+ru/strings.xml	plurals	downloads_titles_status	few	STR	%1$d названия · %2$s	
 values-b+ru/strings.xml	plurals	downloads_titles_status	many	STR	%1$d названий · %2$s	
 values-b+ru/strings.xml	plurals	downloads_titles_status	other	STR	%1$d названия · %2$s	
+values-b+ru/strings.xml	plurals	episode_minutes_left	one	STR	Осталось %1$d мин	
+values-b+ru/strings.xml	plurals	episode_minutes_left	few	STR	Осталось %1$d мин	
+values-b+ru/strings.xml	plurals	episode_minutes_left	many	STR	Осталось %1$d мин	
+values-b+ru/strings.xml	plurals	episode_minutes_left	other	STR	Осталось %1$d мин	
 values-b+ru/strings.xml	plurals	home_bookmarks_count	one	STR	%d ЗАКЛАДКА	
 values-b+ru/strings.xml	plurals	home_bookmarks_count	few	STR	%d ЗАКЛАДКИ	
 values-b+ru/strings.xml	plurals	home_bookmarks_count	many	STR	%d ЗАКЛАДОК	
@@ -43829,6 +43950,10 @@ values-b+sk/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titul · %2
 values-b+sk/strings.xml	plurals	downloads_titles_status	few	STR	%1$d tituly · %2$s	
 values-b+sk/strings.xml	plurals	downloads_titles_status	many	STR	%1$d titulu · %2$s	
 values-b+sk/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titulov · %2$s	
+values-b+sk/strings.xml	plurals	episode_minutes_left	one	STR	Zostáva %1$d min	
+values-b+sk/strings.xml	plurals	episode_minutes_left	few	STR	Zostáva %1$d min	
+values-b+sk/strings.xml	plurals	episode_minutes_left	many	STR	Zostáva %1$d min	
+values-b+sk/strings.xml	plurals	episode_minutes_left	other	STR	Zostáva %1$d min	
 values-b+sk/strings.xml	plurals	home_bookmarks_count	one	STR	%d ZÁLOŽKA	
 values-b+sk/strings.xml	plurals	home_bookmarks_count	few	STR	%d ZÁLOŽKY	
 values-b+sk/strings.xml	plurals	home_bookmarks_count	many	STR	%d ZÁLOŽKY	
@@ -44732,6 +44857,8 @@ values-b+so/strings.xml	plurals	downloads_failed_count	one	STR	%d ayaa fashilmay
 values-b+so/strings.xml	plurals	downloads_failed_count	other	STR	%d ayaa fashilmay	
 values-b+so/strings.xml	plurals	downloads_titles_status	one	STR	%1$d cinwaan · %2$s	
 values-b+so/strings.xml	plurals	downloads_titles_status	other	STR	%1$d cinwaan · %2$s	
+values-b+so/strings.xml	plurals	episode_minutes_left	one	STR	%1$d daqiiqo ayaa hadhay	
+values-b+so/strings.xml	plurals	episode_minutes_left	other	STR	%1$d daqiiqo ayaa hadhay	
 values-b+so/strings.xml	plurals	home_bookmarks_count	one	STR	%d CALAAMAD	
 values-b+so/strings.xml	plurals	home_bookmarks_count	other	STR	%d CALAAMADOOD	
 values-b+so/strings.xml	plurals	home_sections_failed	one	STR	Waa ka keeni kari waayey %d qayb	
@@ -45641,6 +45768,8 @@ values-b+sq/strings.xml	plurals	downloads_queued	one	STR	%d shkarkim në radhë
 values-b+sq/strings.xml	plurals	downloads_queued	other	STR	%d shkarkime në radhë	
 values-b+sq/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titull · %2$s	
 values-b+sq/strings.xml	plurals	downloads_titles_status	other	STR	%1$d tituj · %2$s	
+values-b+sq/strings.xml	plurals	episode_minutes_left	one	STR	Mbeten %1$d min	
+values-b+sq/strings.xml	plurals	episode_minutes_left	other	STR	Mbeten %1$d min	
 values-b+sq/strings.xml	plurals	home_bookmarks_count	one	STR	%d TË RUAJTURA	
 values-b+sq/strings.xml	plurals	home_bookmarks_count	other	STR	%d TË RUAJTURA	
 values-b+sq/strings.xml	plurals	home_sections_failed	one	STR	Nuk mund të ngarkohej %d seksion	
@@ -46780,6 +46909,8 @@ values-b+sv/strings.xml	plurals	downloads_queued	one	STR	%d nedladdning i kö
 values-b+sv/strings.xml	plurals	downloads_queued	other	STR	%d nedladdningar i kö	
 values-b+sv/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titel · %2$s	
 values-b+sv/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titlar · %2$s	
+values-b+sv/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min kvar	
+values-b+sv/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min kvar	
 values-b+sv/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOKMÄRKE	
 values-b+sv/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOKMÄRKEN	
 values-b+sv/strings.xml	plurals	home_sections_failed	one	STR	%d sektion kunde inte laddas	
@@ -47919,6 +48050,8 @@ values-b+ta/strings.xml	plurals	downloads_queued	one	STR	%d பதிவிற�
 values-b+ta/strings.xml	plurals	downloads_queued	other	STR	%d பதிவிறக்கங்கள் வரிசையில் உள்ளன	
 values-b+ta/strings.xml	plurals	downloads_titles_status	one	STR	%1$d தலைப்பு · %2$s	
 values-b+ta/strings.xml	plurals	downloads_titles_status	other	STR	%1$d தலைப்புகள் · %2$s	
+values-b+ta/strings.xml	plurals	episode_minutes_left	one	STR	%1$d நிமி மீதம்	
+values-b+ta/strings.xml	plurals	episode_minutes_left	other	STR	%1$d நிமி மீதம்	
 values-b+ta/strings.xml	plurals	home_bookmarks_count	one	STR	%d புக்மார்க்	
 values-b+ta/strings.xml	plurals	home_bookmarks_count	other	STR	%d புக்மார்க்குகள்	
 values-b+ta/strings.xml	plurals	home_sections_failed	one	STR	%d பிரிவை ஏற்ற முடியவில்லை	
@@ -49054,6 +49187,8 @@ values-b+ti/strings.xml	plurals	downloads_failed_count	one	STR	%d ኣይተዓ�
 values-b+ti/strings.xml	plurals	downloads_failed_count	other	STR	%d ኣይተዓወቱን	
 values-b+ti/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ኣርእስቲ · %2$s	
 values-b+ti/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ኣርእስቲ · %2$s	
+values-b+ti/strings.xml	plurals	episode_minutes_left	one	STR	%1$d ደቒቕ ተሪፉ	
+values-b+ti/strings.xml	plurals	episode_minutes_left	other	STR	%1$d ደቒቕ ተሪፉ	
 values-b+ti/strings.xml	plurals	home_bookmarks_count	one	STR	%d ምልክታት	
 values-b+ti/strings.xml	plurals	home_bookmarks_count	other	STR	%d ምልክታት	
 values-b+ti/strings.xml	plurals	home_sections_failed	one	STR	%d ክፍሊ ክጽዓን ኣይከኣለን	
@@ -49457,6 +49592,8 @@ values-b+tl/strings.xml	plurals	downloads_failed_count	one	STR	%d nabigo
 values-b+tl/strings.xml	plurals	downloads_failed_count	other	STR	%d nabigo	
 values-b+tl/strings.xml	plurals	downloads_titles_status	one	STR	%1$d pamagat · %2$s	
 values-b+tl/strings.xml	plurals	downloads_titles_status	other	STR	%1$d pamagat · %2$s	
+values-b+tl/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min na lang	
+values-b+tl/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min na lang	
 values-b+tl/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOOKMARK	
 values-b+tl/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOOKMARK	
 values-b+tl/strings.xml	plurals	home_sections_failed	one	STR	Hindi na-load ang %d seksyon	
@@ -50111,6 +50248,8 @@ values-b+tr/strings.xml	plurals	downloads_queued	one	STR	%d indirme kuyrukta
 values-b+tr/strings.xml	plurals	downloads_queued	other	STR	%d indirilecekler kuyruğa alındı	
 values-b+tr/strings.xml	plurals	downloads_titles_status	one	STR	%1$d başlık · %2$s	
 values-b+tr/strings.xml	plurals	downloads_titles_status	other	STR	%1$d başlık · %2$s	
+values-b+tr/strings.xml	plurals	episode_minutes_left	one	STR	%1$d dk kaldı	
+values-b+tr/strings.xml	plurals	episode_minutes_left	other	STR	%1$d dk kaldı	
 values-b+tr/strings.xml	plurals	home_bookmarks_count	one	STR	%d YER İMİ	
 values-b+tr/strings.xml	plurals	home_bookmarks_count	other	STR	%d YER İMİ	
 values-b+tr/strings.xml	plurals	home_sections_failed	one	STR	%d kısım yüklenemedi	
@@ -51266,6 +51405,10 @@ values-b+uk/strings.xml	plurals	downloads_titles_status	one	STR	%1$d назва 
 values-b+uk/strings.xml	plurals	downloads_titles_status	few	STR	%1$d назви · %2$s	
 values-b+uk/strings.xml	plurals	downloads_titles_status	many	STR	%1$d назв · %2$s	
 values-b+uk/strings.xml	plurals	downloads_titles_status	other	STR	%1$d назви · %2$s	
+values-b+uk/strings.xml	plurals	episode_minutes_left	one	STR	Залишилося %1$d хв	
+values-b+uk/strings.xml	plurals	episode_minutes_left	few	STR	Залишилося %1$d хв	
+values-b+uk/strings.xml	plurals	episode_minutes_left	many	STR	Залишилося %1$d хв	
+values-b+uk/strings.xml	plurals	episode_minutes_left	other	STR	Залишилося %1$d хв	
 values-b+uk/strings.xml	plurals	home_bookmarks_count	one	STR	%d ЗАКЛАДКА	
 values-b+uk/strings.xml	plurals	home_bookmarks_count	few	STR	%d ЗАКЛАДКИ	
 values-b+uk/strings.xml	plurals	home_bookmarks_count	many	STR	%d ЗАКЛАДОК	
@@ -52433,6 +52576,8 @@ values-b+ur/strings.xml	plurals	downloads_failed_count	one	STR	%d ناکام
 values-b+ur/strings.xml	plurals	downloads_failed_count	other	STR	%d ناکام	
 values-b+ur/strings.xml	plurals	downloads_titles_status	one	STR	%1$d عنوانات · %2$s	
 values-b+ur/strings.xml	plurals	downloads_titles_status	other	STR	%1$d عنوانات · %2$s	
+values-b+ur/strings.xml	plurals	episode_minutes_left	one	STR	%1$d منٹ باقی	
+values-b+ur/strings.xml	plurals	episode_minutes_left	other	STR	%1$d منٹ باقی	
 values-b+ur/strings.xml	plurals	home_bookmarks_count	one	STR	%d بک مارک	
 values-b+ur/strings.xml	plurals	home_bookmarks_count	other	STR	%d بک مارکس	
 values-b+ur/strings.xml	plurals	home_sections_failed	one	STR	%d سیکشن لوڈ نہیں ہو سکا	
@@ -53429,6 +53574,7 @@ values-b+vi/strings.xml	plurals	downloads_episode_count	other	STR	%d tập
 values-b+vi/strings.xml	plurals	downloads_failed_count	other	STR	%d thất bại	
 values-b+vi/strings.xml	plurals	downloads_queued	other	STR	%d tải xuống đang chờ	
 values-b+vi/strings.xml	plurals	downloads_titles_status	other	STR	%1$d tựa · %2$s	
+values-b+vi/strings.xml	plurals	episode_minutes_left	other	STR	Còn %1$d phút	
 values-b+vi/strings.xml	plurals	home_bookmarks_count	other	STR	%d MỤC	
 values-b+vi/strings.xml	plurals	home_sections_failed	other	STR	Không tải được %d mục	
 values-b+vi/strings.xml	plurals	home_source_sections	other	STR	%d mục	
@@ -54544,6 +54690,7 @@ values-b+zh+TW/strings.xml	plurals	downloads_episode_count	other	STR	%d 集
 values-b+zh+TW/strings.xml	plurals	downloads_failed_count	other	STR	%d 個失敗	
 values-b+zh+TW/strings.xml	plurals	downloads_queued	other	STR	佇列中有 %d 個下載	
 values-b+zh+TW/strings.xml	plurals	downloads_titles_status	other	STR	%1$d 部作品 · %2$s	
+values-b+zh+TW/strings.xml	plurals	episode_minutes_left	other	STR	剩下 %1$d 分鐘	
 values-b+zh+TW/strings.xml	plurals	home_bookmarks_count	other	STR	%d 個書籤	
 values-b+zh+TW/strings.xml	plurals	home_sections_failed	other	STR	%d 個分區載入失敗	
 values-b+zh+TW/strings.xml	plurals	home_source_sections	other	STR	%d 個區塊	
@@ -55653,6 +55800,7 @@ values-b+zh/strings.xml	plurals	downloads_episode_count	other	STR	%d 集
 values-b+zh/strings.xml	plurals	downloads_failed_count	other	STR	%d 个失败	
 values-b+zh/strings.xml	plurals	downloads_queued	other	STR	队列中有 %d 个下载	
 values-b+zh/strings.xml	plurals	downloads_titles_status	other	STR	%1$d 部作品 · %2$s	
+values-b+zh/strings.xml	plurals	episode_minutes_left	other	STR	剩余 %1$d 分钟	
 values-b+zh/strings.xml	plurals	home_bookmarks_count	other	STR	%d 个书签	
 values-b+zh/strings.xml	plurals	home_sections_failed	other	STR	%d 个分区加载失败	
 values-b+zh/strings.xml	plurals	home_source_sections	other	STR	%d 个版块	
@@ -56886,6 +57034,8 @@ values/strings.xml	plurals	downloads_queued	one	STR	%d download queued
 values/strings.xml	plurals	downloads_queued	other	STR	%d downloads queued	
 values/strings.xml	plurals	downloads_titles_status	one	STR	%1$d title · %2$s	
 values/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titles · %2$s	
+values/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min left	
+values/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min left	
 values/strings.xml	plurals	episodes	one	REF	string/episode	
 values/strings.xml	plurals	episodes	other	REF	string/episodes	
 values/strings.xml	plurals	ext_repo_header	one	STR	%1$d extension · %2$d installed · updated %3$s	

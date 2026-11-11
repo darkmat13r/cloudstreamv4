@@ -75,6 +75,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d επεισόδιο</item><item quantity="other">%d επεισόδια</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d απέτυχε</item><item quantity="other">%d απέτυχαν</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d τίτλος · %2$s</item><item quantity="other">%1$d τίτλοι · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Απομένουν %1$d λεπ.</item><item quantity="other">Απομένουν %1$d λεπ.</item></plurals>
 <string name="episode_time_left">Απομένουν %1$d λεπ.</string>
 <string name="episode_watched">Προβλήθηκε</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ</item><item quantity="other">%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ</item></plurals>

@@ -77,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d неуспешно</item><item quantity="other">%d неуспешни</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d преземање во редицата</item><item quantity="other">%d преземања во редицата</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d наслов · %2$s</item><item quantity="other">%1$d наслови · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Преостануваат %1$d мин</item><item quantity="other">Преостануваат %1$d мин</item></plurals>
 <string name="episode_time_left">Преостануваат %1$d мин</string>
 <string name="episode_watched">Гледано</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ОБЕЛЕЖУВАЧ</item><item quantity="other">%d ОБЕЛЕЖУВАЧИ</item></plurals>

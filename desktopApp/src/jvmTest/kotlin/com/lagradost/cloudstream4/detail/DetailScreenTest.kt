@@ -630,6 +630,22 @@ class DetailScreenTest {
         scene.close()
     }
 
+    /** `BUG-91`: the minutes left are now a plural; one form and the other read the words the string did. */
+    @Test
+    fun `one minute left and twenty-four read as they did, through the plural (BUG-91)`() {
+        val started = series.copy(
+            episodes = listOf(
+                // 9 of 10 minutes: 90%, under the 95% that reads watched, with 1 minute left.
+                episodes[0].copy(progress = DetailResume("s1e1", 9 * MINUTE, 10 * MINUTE, episode = null)),
+                episodes[1].copy(progress = DetailResume("s1e2", 24 * MINUTE, 48 * MINUTE, episode = null)),
+            ) + episodes.drop(2),
+        )
+        val scene = page(loaded(started))
+        assertTrue(scene.has("S1:E1 \u00b7 1 min left"), "one")
+        assertTrue(scene.has("S1:E2 \u00b7 24 min left"), "other")
+        scene.close()
+    }
+
     @Test
     fun `the watch state changes only the episodes' second lines, pixel for pixel (KMP-63)`() {
         val plain = page(loaded(series))

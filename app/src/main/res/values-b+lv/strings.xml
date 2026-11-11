@@ -8,6 +8,7 @@
 <plurals name="downloads_episode_count"><item quantity="zero">"%d sēriju"</item><item quantity="one">"%d sērija"</item><item quantity="other">"%d sērijas"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="zero">"%d neizdevās"</item><item quantity="one">"%d neizdevās"</item><item quantity="other">"%d neizdevās"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="zero">"%1$d nosaukumu · %2$s"</item><item quantity="one">"%1$d nosaukums · %2$s"</item><item quantity="other">"%1$d nosaukumi · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="zero">"Atlikušas %1$d min."</item><item quantity="one">"Atlikušas %1$d min."</item><item quantity="other">"Atlikušas %1$d min."</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="zero">"%d GRĀMATZĪMJU"</item><item quantity="one">"%d GRĀMATZĪME"</item><item quantity="other">"%d GRĀMATZĪMES"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="zero">"Neizdevās ielādēt %d sadaļu"</item><item quantity="one">"Neizdevās ielādēt %d sadaļu"</item><item quantity="other">"Neizdevās ielādēt %d sadaļas"</item></plurals>
 <plurals name="home_source_sections"><item quantity="zero">"%d sadaļu"</item><item quantity="one">"%d sadaļa"</item><item quantity="other">"%d sadaļas"</item></plurals>

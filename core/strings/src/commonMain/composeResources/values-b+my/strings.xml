@@ -75,6 +75,7 @@
 <plurals name="downloads_episode_count"><item quantity="other">အပိုင်း %d ပိုင်း</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d ခု မအောင်မြင်</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">ခေါင်းစဉ် %1$d ခု · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">%1$d မိနစ် ကျန်</item></plurals>
 <string name="episode_time_left">%1$d မိနစ် ကျန်</string>
 <string name="episode_watched">ကြည့်ပြီး</string>
 <plurals name="home_bookmarks_count"><item quantity="other">စာမှတ် %d ခု</item></plurals>

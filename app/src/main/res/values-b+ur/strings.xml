@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d اقساط"</item><item quantity="other">"%d اقساط"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d ناکام"</item><item quantity="other">"%d ناکام"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d عنوانات · %2$s"</item><item quantity="other">"%1$d عنوانات · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d منٹ باقی"</item><item quantity="other">"%1$d منٹ باقی"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d بک مارک"</item><item quantity="other">"%d بک مارکس"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d سیکشن لوڈ نہیں ہو سکا"</item><item quantity="other">"%d سیکشنز لوڈ نہیں ہو سکے"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d حصہ"</item><item quantity="other">"%d حصے"</item></plurals>
