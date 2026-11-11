@@ -170,11 +170,15 @@ class DownloadsHostTest {
         render(clock)
     }
 
-    /** Whether a node with text is drawn under [point]: a row there to be pressed (`BUG-102`). */
-    private fun ImageComposeScene.textAt(point: Offset): Boolean {
+    /**
+     * Whether a node with text is drawn under [point]: a row there to be pressed (`BUG-102`). With [text], only a node
+     * that says it, so a loading or empty line in the same place does not count.
+     */
+    private fun ImageComposeScene.textAt(point: Offset, text: String? = null): Boolean {
         fun SemanticsNode.all(): List<SemanticsNode> = listOf(this) + children.flatMap { it.all() }
         return semanticsOwners.flatMap { it.rootSemanticsNode.all() }.any { node ->
-            node.boundsInRoot.contains(point) && node.config.getOrNull(SemanticsProperties.Text).orEmpty().isNotEmpty()
+            val words = node.config.getOrNull(SemanticsProperties.Text).orEmpty().map { it.text }
+            node.boundsInRoot.contains(point) && words.isNotEmpty() && (text == null || text in words)
         }
     }
 
@@ -222,7 +226,7 @@ class DownloadsHostTest {
         val scene = scene { DownloadsHost(downloads, viewModel, scope, setEscape = {}, onOpenTitle = {}, onLibrary = {}) }
         // BUG-102: the row drawn, not the service's list. The download is already done, so the service says so at once,
         // while the screen's model reads it on its own threads and may not have drawn the row yet.
-        scene.until { viewModel.state.value.status is DownloadsStatus.Showing && scene.textAt(Offset(NAME_X, FIRST_ROW_Y)) }
+        scene.until { viewModel.state.value.status is DownloadsStatus.Showing && scene.textAt(Offset(NAME_X, FIRST_ROW_Y), "A Film") }
         scene.settle()
         scene.save("host-D1-one-film")
 
@@ -288,7 +292,7 @@ class DownloadsHostTest {
         scene.settle()
         shortcuts.go(TopLevelDestination.Downloads)
         // BUG-102: the row drawn (as above); the window's own model is not reachable from here, so its row is.
-        scene.until { screens.last() == "Downloads" && scene.textAt(Offset(WINDOW_NAME_X, WINDOW_FIRST_ROW_Y)) }
+        scene.until { screens.last() == "Downloads" && scene.textAt(Offset(WINDOW_NAME_X, WINDOW_FIRST_ROW_Y), "A Series") }
         scene.sendPointerEvent(PointerEventType.Move, Offset(AWAY_X, AWAY_Y))
         val unselected = scene.pixel(ROW_FILL_X, WINDOW_FIRST_ROW_Y.toInt())
         scene.save("host-window-D1")
