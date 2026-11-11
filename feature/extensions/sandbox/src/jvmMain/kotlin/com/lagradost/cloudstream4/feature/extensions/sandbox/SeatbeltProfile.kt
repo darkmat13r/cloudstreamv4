@@ -107,8 +107,19 @@ internal object SeatbeltProfile {
         appendLine(")")
     }
 
-    /** What `system.sb` grants that a host behind the gateway, or one with no network, must not ask (audit A-1). */
-    internal val CERTIFICATE_SERVICES = listOf("com.apple.trustd", "com.apple.trustd.agent")
+    /**
+     * The security services no host may ask (audit A-1, `BUG-96`), denied by name so that is so whatever `system.sb`
+     * allows in a given macOS. `trustd` and its agent fetch OCSP responses, CRLs and issuers on a caller's behalf, and
+     * the rest serve the keychain and certificate checks. The resolver's services are not here: the plugin host needs
+     * them, and they are given only to a host that resolves names ([render]'s `resolver`).
+     */
+    internal val CERTIFICATE_SERVICES = listOf(
+        "com.apple.trustd",
+        "com.apple.trustd.agent",
+        "com.apple.ocspd",
+        "com.apple.SecurityServer",
+        "com.apple.securityd.xpc",
+    )
 
     /**
      * What the libVLC host needs beyond a plugin host, and nothing that opens the home directory.
@@ -119,17 +130,15 @@ internal object SeatbeltProfile {
      *
      * @param audio false for a check that must make no sound: the kernel then refuses every route to an
      *   audio device, whatever libVLC is told.
-     * @param tls whether the host may ask the system's certificate services. A host behind its gateway speaks only plain
-     *   http to `127.0.0.1`, and a host that plays a file speaks to nobody, so neither needs them (`KMP-113`). They fetch
-     *   on a caller's behalf (OCSP, CRLs, issuers), so a crafted certificate could aim them at an address the kernel
-     *   would refuse the host itself.
+     *
+     * No certificate service is allowed here (`KMP-113`, `BUG-96`): a host behind its gateway speaks only plain http to
+     * `127.0.0.1`, and a host that plays a file speaks to nobody. [render] denies them for every host, last.
      */
-    fun mediaHostRules(vlcApp: File, writable: File, audio: Boolean = true, tls: Boolean = true): List<String> = buildList {
+    fun mediaHostRules(vlcApp: File, writable: File, audio: Boolean = true): List<String> = buildList {
         add("(allow file-read* (subpath ${vlcApp.quoted()}))")
         add("(allow file-map-executable (subpath ${vlcApp.quoted()}) (subpath ${writable.quoted()}))")
-        // Certificate checks are done by trustd, out of process: without it every https stream fails
-        // with -9808. Audio devices are CoreAudio's: without it, "No audio output devices found".
-        val services = (if (tls) MEDIA_MACH_SERVICES else emptyList()) + (if (audio) MEDIA_AUDIO_MACH_SERVICES else emptyList())
+        // Audio devices are CoreAudio's: without it, "No audio output devices found".
+        val services = if (audio) MEDIA_AUDIO_MACH_SERVICES else emptyList()
         // Only with names: an `allow mach-lookup` with none would allow every service there is.
         if (services.isNotEmpty()) {
             add("(allow mach-lookup")
@@ -142,14 +151,6 @@ internal object SeatbeltProfile {
         if (audio) add("  (subpath \"$MEDIA_AUDIO_READ\")")
         add(")")
     }
-
-    private val MEDIA_MACH_SERVICES = listOf(
-        "com.apple.trustd",
-        "com.apple.trustd.agent",
-        "com.apple.SecurityServer",
-        "com.apple.securityd.xpc",
-        "com.apple.ocspd",
-    )
 
     private val MEDIA_AUDIO_MACH_SERVICES = listOf(
         "com.apple.audio.coreaudiod",

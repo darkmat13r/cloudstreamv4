@@ -283,6 +283,7 @@ class HostProtocolTest {
         val silent = SeatbeltProfile.mediaHostRules(app, dir, audio = false).joinToString("\n")
         assertEquals(true, "audio" in loud.lowercase())
         assertEquals(false, "audio" in silent.lowercase(), silent)
-        assertEquals(true, "com.apple.trustd" in silent, "https still works")
+        // No certificate service is allowed for a media host at all (`BUG-96`): render denies them for every host.
+        assertEquals(false, "com.apple.trustd" in loud + silent, silent)
     }
 }

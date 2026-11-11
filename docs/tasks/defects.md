@@ -4246,6 +4246,15 @@ its gateway do not.
 for them, since the JVM's TLS checks against its own trust store. `render` now always writes the deny, last, and the
 `denyCertificateServices` flag is gone.
 
+**Review (`#376`): the deny is explicit and complete, and pinned last.** The final `(deny mach-lookup …)` now names
+all five security services, `trustd`, `trustd.agent`, `ocspd`, `SecurityServer` and `securityd.xpc`, so they are refused
+whatever `system.sb` allows in a given macOS, not only because nothing here allows them. The resolver's services
+(`dnssd`, `configd`, `DNSConfiguration`) are not in it: the plugin host needs them, under the resolver gate.
+`mediaHostRules` lost its `tls` parameter, a default of `true` no host used. `MediaHostProfileTest` checks the deny is
+the profile's end, holding only those five names. Measured once, then reverted: inside a real plugin host under this
+profile, an https fetch of example.com returned 200 over TLS 1.3, and a name resolved. The JVM's TLS needs none of these
+services.
+
 **`OutboundGate`: a write the far end never reads.** Idle shut only the side its own read was on (`shutdownOutput`),
 so a write the other way, blocked on a peer that had stopped reading, never woke. The tunnel, its two threads and its
 slot were held for good. Idle now closes both sockets, which wakes the blocked write. An end of stream still half-closes

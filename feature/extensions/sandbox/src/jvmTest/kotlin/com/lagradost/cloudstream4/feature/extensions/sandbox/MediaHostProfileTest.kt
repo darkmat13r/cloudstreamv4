@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.feature.extensions.sandbox
 
 import java.io.File
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -68,8 +69,13 @@ class MediaHostProfileTest {
         val converter = SeatbeltProfile.render(File("/usr/bin/java"), emptyList(), emptyList(), writable, network = false)
         val behindGateway = render(gatewayPort = 40_127, resolver = false)
         listOf(plugin, converter, behindGateway).forEach { profile ->
-            val denied = profile.substringAfterLast("(deny mach-lookup")
-            assertTrue("com.apple.trustd\"" in denied && "com.apple.trustd.agent" in denied, profile)
+            // The deny is the profile's final form: nothing after it, so no later rule can allow one back.
+            val denied = profile.trimEnd().substringAfterLast("(deny mach-lookup")
+            assertTrue(denied.trimEnd().endsWith(")"), profile)
+            val rest = denied.trimEnd().removeSuffix(")").lines().map { it.trim() }.filter { it.isNotEmpty() }
+            assertTrue(rest.all { it.startsWith("(global-name \"") && it.endsWith("\")") }, "only names after the deny: $rest")
+            assertEquals(SeatbeltProfile.CERTIFICATE_SERVICES.map { "(global-name \"$it\")" }, rest, profile)
+            assertFalse("dnssd" in denied || "SystemConfiguration" in denied, "the resolver's services are not denied here")
         }
         listOf(converter, behindGateway).forEach { profile ->
             assertFalse("SystemConfiguration" in profile, profile)

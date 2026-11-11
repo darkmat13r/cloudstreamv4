@@ -88,7 +88,7 @@ class HostLauncher internal constructor(
             readOnlyInputs = emptyList(),
             writable = writable,
             network = gatewayPort != null,
-            extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, writable, audio = !silent, tls = false),
+            extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, writable, audio = !silent),
             gate = null,
             mediaGatewayPort = gatewayPort,
         )
@@ -120,7 +120,7 @@ class HostLauncher internal constructor(
             // A host behind its gateway reaches that port and nothing else. A host that plays a file reaches nothing:
             // it has its descriptor, and a crafted file that took over its demuxer would find no network (KMP-113).
             network = gatewayPort != null,
-            extraRules = SeatbeltProfile.mediaHostRules(app, writable, audio = !silent, tls = false),
+            extraRules = SeatbeltProfile.mediaHostRules(app, writable, audio = !silent),
             jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} " +
                 "-Djna.tmpdir=${writable.path}" + (if (silent) " -D$SILENT_PROPERTY=true" else "") +
                 if (input != null) " -D$FILE_PROPERTY=true" else "",
