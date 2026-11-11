@@ -9309,3 +9309,33 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
     - refusals not kept: the `IdTaken` and unreadable-file tests time out waiting for the unavailable row;
     - no catch on an unreadable file: that test fails with the service's `IOException`;
     - the cell never filled: the end-to-end test finds no Download on the hovered row.
+
+## KMP-115 — The Mac title page's episode rows draw a still and a progress rule, from board E1 · **115a built 2026-11-11**, 115b to follow · the PM's task
+
+Board `DS-21` E1 (the Mac's boards are drawn at 1 px = 1 dp) draws every episode row 72 tall, with a still at its start:
+96 by 56, radius 8. Along the still's bottom edge, inside it, is a 4-tall rule in `live`, its bottom-left corner rounded
+8, as wide as the progress: the whole still on a watched row, the share watched on a started one (19 of 48 minutes is
+drawn 40 of 96, the share snapped to the 4 step), and none on a row not started. Then 16 to the episode's number. The
+code's row is 56 tall today, with no still.
+
+**The split** (the PM, 2026-11-11):
+- **115a, the contract and the Android host** (this PR): `DetailEpisode.stillUrl`, null by default, and `:app`'s
+  `AndroidDetailSource` filling it from the provider's `Episode.posterUrl`, through the same plain-http(s) filter the
+  cast's photos take. The Mac's host leaves it null. No screen draws it yet, so nothing visible changes.
+- **115b, the Mac row:** the still through the page's existing `thumbnail` slot and `KMP-104`'s bounded loader, the
+  rule from `KMP-63`'s positions, and the 72 row. Tested with fixture stills. Until `KMP-116`, the Mac draws a row's
+  still ground with no image.
+- **`KMP-116`, the Mac's stills:** the sandbox's frame has no still for an episode, so carrying one is a new tagged
+  section on the extension wire, modelled on `KMP-103`'s cast section, with its own caps and its own security review.
+
+**115a's tests** (`AndroidDetailSourceTest`, +2, run):
+- each row carries its own episode's still, and a row with none has null. **Red (run)** before the mapping:
+  "expected [https://…, http://…, null] but was [null, null, null]".
+- a still that is not plain http(s) is dropped: `javascript:`, `file:`, `data:`, `content:`, a leading space, a line
+  break and empty. **Red (run)** with the filter removed: every one of them reached the row.
+
+**`classes-jar.api`: no change.** `:app:checkExtensionApi` exits 0 and a fresh `dumpExtensionApi` is identical.
+`DetailEpisode` is in `:feature:detail`, and `classes.jar` holds no `:feature` class (none of its 4,931 entries), so the
+new constructor parameter, `copy` and `component9` are not part of the extension contract. `AndroidDetailSource`'s
+change is inside a private function.
+

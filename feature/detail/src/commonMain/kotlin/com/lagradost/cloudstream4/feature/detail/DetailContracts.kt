@@ -23,6 +23,9 @@ import kotlinx.coroutines.flow.Flow
  * @param markedWatched the host keeps a "watched" mark apart from any position: `:app`'s old page sets it
  *   from Mark watched with no position stored. False where the host has no such mark. See
  *   [watchReadout] for how the two combine.
+ * @param stillUrl a still from the episode, which board E1 draws at the start of the Mac's row (`KMP-115`). A
+ *   provider's address, so untrusted: each host lets through only an http(s) one, and the screen's host loads it
+ *   with its own checks. Null where the provider gave none, or the host does not carry one yet.
  */
 @Immutable
 data class DetailEpisode(
@@ -34,6 +37,7 @@ data class DetailEpisode(
     val airDateMs: Long? = null,
     val progress: DetailResume? = null,
     val markedWatched: Boolean = false,
+    val stillUrl: String? = null,
 )
 
 /**

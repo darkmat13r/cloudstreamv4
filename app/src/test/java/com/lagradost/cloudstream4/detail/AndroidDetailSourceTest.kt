@@ -129,6 +129,38 @@ class AndroidDetailSourceTest {
         assertEquals(listOf(DetailSeason(1, 2), DetailSeason(2, 1)), detail.seasons)
     }
 
+    /** `KMP-115`: each row carries its own episode's still, the provider's `posterUrl`. */
+    @Test
+    fun eachRowCarriesItsOwnEpisodesStill() {
+        val detail = series(
+            listOf(
+                episode(1, 1).apply { posterUrl = "https://img.example/s1e1.jpg" },
+                episode(1, 2).apply { posterUrl = "http://img.example/s1e2.jpg" },
+                episode(1, 3),
+            ),
+        ).map()
+        assertEquals(
+            listOf("https://img.example/s1e1.jpg", "http://img.example/s1e2.jpg", null),
+            detail.episodes.map { it.stillUrl },
+        )
+    }
+
+    /** A still is a provider's address: only a plain http(s) one reaches the page, as the cast's photos are filtered. */
+    @Test
+    fun aStillThatIsNotPlainHttpIsDropped() {
+        val refused = listOf(
+            "javascript:alert(1)",
+            "file:///etc/passwd",
+            "data:image/png;base64,AAAA",
+            "content://media/1",
+            " https://img.example/space.jpg",
+            "https://img.example/line\nbreak.jpg",
+            "",
+        )
+        val detail = series(refused.mapIndexed { i, url -> episode(1, i + 1).apply { posterUrl = url } }).map()
+        assertEquals(List(refused.size) { null }, detail.episodes.map { it.stillUrl })
+    }
+
     /** `Episode 12` is what the screen's own copy already says, so the provider's copy of it goes. */
     @Test
     fun aNameThatIsJustTheEpisodeNumberIsDropped() {
