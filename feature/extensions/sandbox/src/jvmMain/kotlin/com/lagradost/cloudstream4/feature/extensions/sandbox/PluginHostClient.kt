@@ -85,13 +85,13 @@ class HostLauncher internal constructor(
         denyCertificateServices = denyCertificateServices,
     )
 
-    /** The policy [startMediaHost] gives its host, for a test (`KMP-113`). */
-    internal fun mediaHostProfile(vlcApp: File, writable: File, silent: Boolean, gatewayPort: Int?): String =
+    /** The policy [startMediaHost] gives its host, for a test (`KMP-113`). [nativeLibraries] as [JnaDispatch.prepare] makes it. */
+    internal fun mediaHostProfile(vlcApp: File, writable: File, silent: Boolean, gatewayPort: Int?, nativeLibraries: File): String =
         profile(
-            readOnlyInputs = emptyList(),
+            readOnlyInputs = listOf(File(nativeLibraries, JnaDispatch.LIBRARY)),
             writable = writable,
             network = gatewayPort != null,
-            extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, writable, audio = !silent, tls = false),
+            extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, nativeLibraries, audio = !silent, tls = false),
             gate = null,
             mediaGatewayPort = gatewayPort,
             denyCertificateServices = true,
@@ -108,25 +108,33 @@ class HostLauncher internal constructor(
      * @param gatewayPort the media gateway's port (`KMP-113`): the host may then connect to that port on loopback and
      *   nowhere else, and may not use the resolver. Bound before this is called. Null for a host that plays a file,
      *   which then has no network at all. Neither asks the system's certificate services.
+     * @param nativeLibraries where JNA's native part is kept for the host ([JnaDispatch.prepare]): a directory no host
+     *   can write, outside [writable], the one place besides the VLC bundle the host may map as code (`BUG-96`, A-9).
      */
     fun startMediaHost(
         vlcApp: File,
         writable: File,
+        nativeLibraries: File,
         silent: Boolean = false,
         input: ProcessBuilder.Redirect? = null,
         gatewayPort: Int? = null,
     ): Process {
         val app = vlcApp.canonicalFile
+        // Null only where this process has no JNA (the sandbox module's own tests): the host then has none to map, and
+        // `jna.nounpack` still keeps it from unpacking one into [writable].
+        val dispatch = JnaDispatch.prepare(nativeLibraries)
         return start(
             arguments = emptyList(),
-            readOnlyInputs = emptyList(),
+            readOnlyInputs = listOfNotNull(dispatch?.let { File(it, JnaDispatch.LIBRARY) }),
             writable = writable,
             // A host behind its gateway reaches that port and nothing else. A host that plays a file reaches nothing:
             // it has its descriptor, and a crafted file that took over its demuxer would find no network (KMP-113).
             network = gatewayPort != null,
-            extraRules = SeatbeltProfile.mediaHostRules(app, writable, audio = !silent, tls = false),
-            jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} " +
-                "-Djna.tmpdir=${writable.path}" + (if (silent) " -D$SILENT_PROPERTY=true" else "") +
+            extraRules = SeatbeltProfile.mediaHostRules(app, dispatch, audio = !silent, tls = false),
+            // JNA loads its native part from [dispatch] and never unpacks one into [writable] (`BUG-96`, A-9).
+            jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} -Djna.nounpack=true" +
+                dispatch?.let { " -Djna.boot.library.path=${it.canonicalPath}" }.orEmpty() +
+                (if (silent) " -D$SILENT_PROPERTY=true" else "") +
                 if (input != null) " -D$FILE_PROPERTY=true" else "",
             input = input,
             mediaGatewayPort = gatewayPort,

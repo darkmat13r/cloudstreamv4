@@ -54,7 +54,8 @@ class MediaHostServicesTest {
         val launcher = HostLauncher.forMediaHost("--probe", MachLookupProbe::class.java.name)
         assumeTrue("no sandbox-exec here", launcher != null)
         val directory = Files.createTempDirectory("media-host-services").toFile().canonicalFile.also { directories += it }
-        val process = launcher!!.startMediaHost(File("/Applications/VLC.app"), directory, silent = true, gatewayPort = gatewayPort)
+        val libraries = Files.createTempDirectory("media-host-jna").toFile().canonicalFile.also { directories += it }
+        val process = launcher!!.startMediaHost(File("/Applications/VLC.app"), directory, libraries, silent = true, gatewayPort = gatewayPort)
         process.outputStream.close()
         val finished = process.waitFor(60, TimeUnit.SECONDS)
         if (!finished) process.destroyForcibly()

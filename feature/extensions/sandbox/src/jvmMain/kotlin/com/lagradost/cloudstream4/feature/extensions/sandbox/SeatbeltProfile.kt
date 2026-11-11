@@ -111,8 +111,9 @@ internal object SeatbeltProfile {
      * What the libVLC host needs beyond a plugin host, and nothing that opens the home directory.
      *
      * Each entry was added because a denial stopped playback, read from the system log. Reads VLC's own
-     * bundle, and maps its libraries as code. Mapping from [writable] is for the one library JNA unpacks
-     * there; a host that can already run code gains nothing from it.
+     * bundle, and maps its libraries as code, and JNA's from [nativeLibraries]: a directory the host can read and not
+     * write. Its own writable directory is never mapped as code (`BUG-96`, audit A-9): `render`'s deny there stands, so
+     * a host cannot both write native code and run it.
      *
      * @param audio false for a check that must make no sound: the kernel then refuses every route to an
      *   audio device, whatever libVLC is told.
@@ -121,9 +122,10 @@ internal object SeatbeltProfile {
      *   on a caller's behalf (OCSP, CRLs, issuers), so a crafted certificate could aim them at an address the kernel
      *   would refuse the host itself.
      */
-    fun mediaHostRules(vlcApp: File, writable: File, audio: Boolean = true, tls: Boolean = true): List<String> = buildList {
+    fun mediaHostRules(vlcApp: File, nativeLibraries: File?, audio: Boolean = true, tls: Boolean = true): List<String> = buildList {
         add("(allow file-read* (subpath ${vlcApp.quoted()}))")
-        add("(allow file-map-executable (subpath ${vlcApp.quoted()}) (subpath ${writable.quoted()}))")
+        val libraries = nativeLibraries?.let { " (subpath ${it.quoted()})" }.orEmpty()
+        add("(allow file-map-executable (subpath ${vlcApp.quoted()})$libraries)")
         // Certificate checks are done by trustd, out of process: without it every https stream fails
         // with -9808. Audio devices are CoreAudio's: without it, "No audio output devices found".
         val services = (if (tls) MEDIA_MACH_SERVICES else emptyList()) + (if (audio) MEDIA_AUDIO_MACH_SERVICES else emptyList())

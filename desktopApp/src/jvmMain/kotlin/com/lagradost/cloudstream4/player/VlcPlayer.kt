@@ -286,7 +286,7 @@ class VlcPlayer private constructor(
             val directory = newHostDirectory(base)
             return runCatching {
                 VlcPlayer(
-                    launcher.startMediaHost(VLC_APP, directory, silent, gatewayPort = gateway.port),
+                    launcher.startMediaHost(VLC_APP, directory, nativeLibraries(), silent, gatewayPort = gateway.port),
                     directory,
                     resolve = resolve,
                     gateway = gateway,
@@ -340,7 +340,7 @@ class VlcPlayer private constructor(
                 player = if (UnixFds.send(app, media.fd)) {
                     media.close()
                     // Opening /dev/fd/N duplicates descriptor N: Java gives the child its own copy as stdin.
-                    val started = launcher.startMediaHost(VLC_APP, directory, input = ProcessBuilder.Redirect.from(descriptor(host)))
+                    val started = launcher.startMediaHost(VLC_APP, directory, nativeLibraries(), input = ProcessBuilder.Redirect.from(descriptor(host)))
                     process = started
                     UnixFds.close(host)
                     hostEnd = null
@@ -379,6 +379,12 @@ class VlcPlayer private constructor(
  * each name says which app made it, and only directories whose app has gone are cleared. A directory is
  * never reused, so a host that outlives its app has no rights over a later one.
  */
+/**
+ * Where JNA's native part is kept for the media host (`BUG-96`, audit A-9): beside `.media-host`, never inside it, so
+ * no host can write it and the sweep of unused host directories never touches it.
+ */
+internal fun nativeLibraries(): File = File(System.getProperty("user.home"), ".cloudstream4/.jna")
+
 internal fun newHostDirectory(base: File): File {
     base.listFiles()?.filterNot { hostDirectoryInUse(it.name) }?.forEach { deleteHostDirectory(it.toPath()) }
     val self = ProcessHandle.current()

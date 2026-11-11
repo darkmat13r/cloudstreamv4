@@ -8,6 +8,7 @@ import kotlin.test.assertTrue
 /** `KMP-113`: the media host's policy behind its gateway: that one port on loopback, nothing else, and no resolver. */
 class MediaHostProfileTest {
     private val writable = File("/var/empty/media-host")
+    private val libraries = File("/var/empty/media-host-jna")
 
     private fun render(gatewayPort: Int?, resolver: Boolean) = SeatbeltProfile.render(
         File("/usr/bin/java"), emptyList(), emptyList(), writable, network = true,
@@ -25,7 +26,7 @@ class MediaHostProfileTest {
     @Test
     fun `the policy a media host is really given, behind its gateway`() {
         val launcher = HostLauncher.forThisProcess() ?: return
-        val profile = launcher.mediaHostProfile(File("/Applications/VLC.app"), writable, silent = true, gatewayPort = 40_125)
+        val profile = launcher.mediaHostProfile(File("/Applications/VLC.app"), writable, silent = true, gatewayPort = 40_125, nativeLibraries = libraries)
         assertTrue("(allow network-outbound (remote ip \"localhost:40125\"))" in profile, profile)
         assertFalse("\"*:*\"" in profile, "every address is open")
         assertFalse("mDNSResponder" in profile, "the resolver is open")
@@ -35,12 +36,17 @@ class MediaHostProfileTest {
         // `allow mach-lookup` with no names would allow every service there is.
         assertFalse(Regex("\\(allow mach-lookup\\s*\\)").containsMatchIn(profile), profile)
         assertFalse("coreaudiod" in profile, "a silent host may reach audio")
+        // `BUG-96` (A-9): code is mapped from VLC and from JNA's read-only copy, never from the host's own directory.
+        // The kernel's answer is SandboxEscapeAttemptTest's, through a real media host.
+        val mapped = profile.lines().filter { "allow file-map-executable" in it }
+        assertTrue(mapped.any { "\"${libraries.canonicalPath}\"" in it }, profile)
+        assertTrue(mapped.none { "\"${writable.canonicalPath}\"" in it }, profile)
     }
 
     @Test
     fun `a host that plays a downloaded file has no network at all`() {
         val launcher = HostLauncher.forThisProcess() ?: return
-        val file = launcher.mediaHostProfile(File("/Applications/VLC.app"), writable, silent = false, gatewayPort = null)
+        val file = launcher.mediaHostProfile(File("/Applications/VLC.app"), writable, silent = false, gatewayPort = null, nativeLibraries = libraries)
         assertFalse("network-outbound" in file, file)
         assertFalse("system-socket" in file, file)
         // With sound, the audio services are named.
