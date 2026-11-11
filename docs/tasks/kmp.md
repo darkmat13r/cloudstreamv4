@@ -9310,7 +9310,7 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
     - no catch on an unreadable file: that test fails with the service's `IOException`;
     - the cell never filled: the end-to-end test finds no Download on the hovered row.
 
-## KMP-115 — The Mac title page's episode rows draw a still and a progress rule, from board E1 · **115a built 2026-11-11**, 115b to follow · the PM's task
+## KMP-115 — The Mac title page's episode rows draw a still and a progress rule, from board E1 · **115a and 115b built 2026-11-11**; the Mac's stills wait for `KMP-116` · the PM's task
 
 Board `DS-21` E1 (the Mac's boards are drawn at 1 px = 1 dp) draws every episode row 72 tall, with a still at its start:
 96 by 56, radius 8. Along the still's bottom edge, inside it, is a 4-tall rule in `live`, its bottom-left corner rounded
@@ -9338,4 +9338,27 @@ code's row is 56 tall today, with no still.
 `DetailEpisode` is in `:feature:detail`, and `classes.jar` holds no `:feature` class (none of its 4,931 entries), so the
 new constructor parameter, `copy` and `component9` are not part of the extension contract. `AndroidDetailSource`'s
 change is inside a private function.
+
+**115b, the Mac row** (built 2026-11-11, on 115a):
+- `EpisodeRow` starts with `EpisodeStill`: 96 by 56, clipped to `shapes.medium` (8), on the `surface` ground, with the
+  still drawn by the page's `thumbnail` slot (so the host's bounded loader and its address checks) when the episode has
+  one. A row with no still keeps its ground and asks for nothing.
+- Along the still's bottom edge, inside its corners, a `live` rule `MediaCardDefaults.ProgressRuleHeight` (4) tall and
+  `episodeRuleWidth` long: the whole still on a watched episode; on a started one the share watched, snapped to the 4
+  step and never less than one step; none otherwise. Drawn inside the still's clip, a full rule's bottom-right corner
+  follows the still's curve, where the board's separate box squares it.
+- The row is 72 (`EpisodeRowHeight` 56 -> 72): the still and `RelatedGap` above and below. The still is 16
+  (`GroupGap`) before the number.
+- **Not changed, a gap for `KMP-58`'s owner** (the PM's call): E1 puts the title 32 after the number's left edge; the
+  built row puts it 40 after (a 24 right-aligned number cell, then the 16 gap). Left as built.
+- **Tests** (`DetailScreenTest`, +3, pixels and unmerged semantics bounds, run):
+  - the still is 96 wide, 16 before the number cell, 56 tall with its rule in its last 4 lines, the rows 72 apart, and
+    the image is asked for with each row's own address;
+  - the rule: the whole still on the watched row, 40 on the row 19 of 48 minutes in, none on the row not started;
+  - a row with no still draws the 96-wide ground and asks for no image.
+  - **Red (run):** on the row as it was, all three fail ("row pitch expected 72 but was 56"). With the rule not snapped
+    to the step, the started row's rule is 38 where 40 is expected.
+  - `KMP-63`'s pixel test now allows the stills too, since the watch state draws the rule there as well. It is
+    otherwise unchanged and passes on the old row and the new.
+  - Render: `detail-e1-episode-stills`. Its fixture's third row is the one Resume plays, so the row and Resume agree.
 
