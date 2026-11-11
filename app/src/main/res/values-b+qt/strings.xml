@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="other">"%d ooh"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">"%d oooogg"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">"%1$d ooh · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">"%1$d ooh haa ahhh"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d OOUUH OOH"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d oooogg ooh aaahhu"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d oouh"</item></plurals>

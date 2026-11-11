@@ -75,6 +75,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episode</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d nabigo</item><item quantity="other">%d nabigo</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d pamagat · %2$s</item><item quantity="other">%1$d pamagat · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d min na lang</item><item quantity="other">%1$d min na lang</item></plurals>
 <string name="episode_time_left">%1$d min na lang</string>
 <string name="episode_watched">Napanood na</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOOKMARK</item><item quantity="other">%d BOOKMARK</item></plurals>

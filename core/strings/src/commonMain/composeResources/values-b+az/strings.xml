@@ -75,6 +75,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d bölüm</item><item quantity="other">%d bölüm</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d uğursuz</item><item quantity="other">%d uğursuz</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d başlıq · %2$s</item><item quantity="other">%1$d başlıq · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d dəq qalıb</item><item quantity="other">%1$d dəq qalıb</item></plurals>
 <string name="episode_time_left">%1$d dəq qalıb</string>
 <string name="episode_watched">Baxılıb</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ƏLFƏCİN</item><item quantity="other">%d ƏLFƏCİN</item></plurals>

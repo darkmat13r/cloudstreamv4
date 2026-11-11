@@ -75,6 +75,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">%d एपिसोड</item><item quantity="other">%d एपिसोड</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d विफल</item><item quantity="other">%d विफल</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d शीर्षक · %2$s</item><item quantity="other">%1$d शीर्षक · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d मिनट बाकी</item><item quantity="other">%1$d मिनट बाकी</item></plurals>
 <string name="episode_time_left">%1$d मिनट बाकी</string>
 <string name="episode_watched">देखा गया</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>

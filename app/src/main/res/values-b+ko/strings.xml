@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">"%d개 실패"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"%d 다운로드"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">"작품 %1$d개 · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">"%1$d분 남음"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"북마크 %d개"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"섹션 %d개를 불러오지 못했습니다"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"섹션 %d개"</item></plurals>

@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d falhado"</item><item quantity="many">"%d falhados"</item><item quantity="other">"%d falhados"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d download na fila"</item><item quantity="many">"%d downloads na fila"</item><item quantity="other">"%d downloads na fila"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d título · %2$s"</item><item quantity="many">"%1$d títulos · %2$s"</item><item quantity="other">"%1$d títulos · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Faltam %1$d min"</item><item quantity="many">"Faltam %1$d min"</item><item quantity="other">"Faltam %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d MARCADOR"</item><item quantity="many">"%d DE MARCADORES"</item><item quantity="other">"%d MARCADORES"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Falha ao carregar %d secção"</item><item quantity="many">"Falha ao carregar %d secções"</item><item quantity="other">"Falha ao carregar %d secções"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d secção"</item><item quantity="many">"%d secções"</item><item quantity="other">"%d secções"</item></plurals>

@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%dটি পর্ব"</item><item quantity="other">"%dটি পর্ব"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%dটি ব্যর্থ"</item><item quantity="other">"%dটি ব্যর্থ"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$dটি শিরোনাম · %2$s"</item><item quantity="other">"%1$dটি শিরোনাম · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d মিনিট বাকি"</item><item quantity="other">"%1$d মিনিট বাকি"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d টি বুকমার্ক"</item><item quantity="other">"%d টি বুকমার্ক"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%dটি বিভাগ লোড করা যায়নি"</item><item quantity="other">"%dটি বিভাগ লোড করা যায়নি"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%dটি বিভাগ"</item><item quantity="other">"%dটি বিভাগ"</item></plurals>

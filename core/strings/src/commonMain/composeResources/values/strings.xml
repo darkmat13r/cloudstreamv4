@@ -77,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d failed</item><item quantity="other">%d failed</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download queued</item><item quantity="other">%d downloads queued</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d title · %2$s</item><item quantity="other">%1$d titles · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d min left</item><item quantity="other">%1$d min left</item></plurals>
 <string name="episode_time_left">%1$d min left</string>
 <string name="episode_watched">Watched</string>
 <plurals name="episodes"><item quantity="one">Episode</item><item quantity="other">Episodes</item></plurals>

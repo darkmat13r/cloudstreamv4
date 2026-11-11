@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d epizodo"</item><item quantity="other">"%d epizodoj"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d malsukcesis"</item><item quantity="other">"%d malsukcesis"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titolo · %2$s"</item><item quantity="other">"%1$d titoloj · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Restas %1$d min"</item><item quantity="other">"Restas %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d LEGOSIGNO"</item><item quantity="other">"%d LEGOSIGNOJ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d sekcio ne ŝargiĝis"</item><item quantity="other">"%d sekcioj ne ŝargiĝis"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sekcio"</item><item quantity="other">"%d sekcioj"</item></plurals>

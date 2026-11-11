@@ -24,8 +24,8 @@ import com.lagradost.cloudstream4.core.strings.generated.resources.detail_load_f
 import com.lagradost.cloudstream4.core.strings.generated.resources.documentaries_singular
 import com.lagradost.cloudstream4.core.strings.generated.resources.duration_format
 import com.lagradost.cloudstream4.core.strings.generated.resources.duration_hours_minutes_format
+import com.lagradost.cloudstream4.core.strings.generated.resources.episode_minutes_left
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_short
-import com.lagradost.cloudstream4.core.strings.generated.resources.episode_time_left
 import com.lagradost.cloudstream4.core.strings.generated.resources.episode_watched
 import com.lagradost.cloudstream4.core.strings.generated.resources.error_loading_links_toast
 import com.lagradost.cloudstream4.core.strings.generated.resources.live_singular
@@ -155,9 +155,14 @@ internal fun episodeSubtitle(
  * screen in the tree applies one.
  */
 @Composable
-internal fun episodeWatchLabel(readout: EpisodeWatchReadout): String? = when (readout) {
-    EpisodeWatchReadout.Watched -> UiString.Resource(Res.string.episode_watched).resolve()
-    is EpisodeWatchReadout.Left -> UiString.Resource(Res.string.episode_time_left, listOf(readout.minutes)).resolve()
+internal fun episodeWatchLabel(readout: EpisodeWatchReadout): String? = episodeWatchText(readout)?.resolve()
+
+/** [episodeWatchLabel]'s text, unresolved. */
+internal fun episodeWatchText(readout: EpisodeWatchReadout): UiString? = when (readout) {
+    EpisodeWatchReadout.Watched -> UiString.Resource(Res.string.episode_watched)
+    // BUG-91: a plural, so a locale whose words change with the count can say so. Every form holds the text the
+    // retired `episode_time_left` held, until a native speaker writes them.
+    is EpisodeWatchReadout.Left -> UiString.Plural(Res.plurals.episode_minutes_left, readout.minutes)
     EpisodeWatchReadout.None -> null
 }
 

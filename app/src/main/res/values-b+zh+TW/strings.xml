@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">"%d 個失敗"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"佇列中有 %d 個下載"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">"%1$d 部作品 · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">"剩下 %1$d 分鐘"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d 個書籤"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d 個分區載入失敗"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d 個區塊"</item></plurals>

@@ -120,6 +120,31 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Move number set at rebase, 2026-11-11 — `BUG-91`, 1 new plural for the minutes left on an episode row
+
+**The ordinal is set when this rides a train**, regenerated from the live generator on that train's master with its
+other moves. The counts below are against master `b723bf154` with `#364`, `#365` and `#367` on it, so after `I18N-27`.
+
+Additive: `episode_minutes_left`, a `<plurals>`, in all 62 directories (`OWN` grows by 62). Each directory has the forms
+its other plurals have, and each form holds that directory's `episode_time_left` text, unchanged (the PM's ruling: the
+shape now, the words at a native review). `episode_time_left` stays, unread (`defects.md`'s retired keys).
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 58,110 | 58,260 | 150 | 0 | 0 |
+| `emitted.tsv` | 60,825 | 60,979 | 154 | 0 | 0 |
+| `lookup.tsv` | 108,276 | 108,472 | 196 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+`decoded.tsv` holds a row per plural form, which is why it grows by 150 for 62 keys. Measured twice, by whole-line set
+difference with `sort | comm` and with a Python multiset that also checked order: no line lost, every earlier line still
+there in the same order, and every added line names the new key. `report.txt` moved only in its counts: `OWN` 56,034 ->
+56,096, visible keys 1,207 -> 1,208, plurals 32 -> 33, and 1 more value in each of the two locale copies.
+**`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 56,034 -> 56,096.
+`app/src/main/res`: 62 lines added, 0 removed; `app/api/classes-jar.api` gains `R$plurals.episode_minutes_left` and
+nothing else.
+
 ## Move number set at rebase, 2026-11-11 — `I18N-27`, 1 new key for a refused episode download (`KMP-109`)
 
 **The ordinal is set when this rides a train.** It is regenerated from the live generator on that train's master, with
