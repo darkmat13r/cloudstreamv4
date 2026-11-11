@@ -9229,3 +9229,22 @@ that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
 - the slot on `DetailScreenDesktop`'s episode row;
 - `Main.kt` wiring it to the service;
 - the page's tests, red first.
+
+## KMP-114 — A title's facts are read in place, never copied · **built 2026-11-11**, audit A-4 (`#351`)
+
+The audit's A-4: the facts section was checked only against the frame, then copied whole (`readNBytes(length)`)
+before its own reader bounded anything. Every section after it meets a cap before any copy (`KMP-105`, `KMP-108`).
+At most the frame's 8 MiB, so not unbounded, but against "bounded before copy".
+
+- **Read in place, not capped (the PM's call, 2026-11-11):** `readFacts` parses through a view of its slice (`Slice`:
+  it ends where the slice does, and its `available()` is what is left of it), then steps over whatever the parse did not
+  take, so the reader stays in step. Nothing is copied, so a section of megabytes allocates no more than an honest one.
+- **Why not a cap:** a cap that drops the whole section would change `KMP-76`'s tested contract. A host that sends
+  100,000 tags keeps its first sixteen, with one line of log. Reading in place meets A-4 with no change to that, and its
+  three tests pass unchanged.
+- **Tests:** two in `HostProtocolSectionSkipTest`, through its counting stream:
+  - a 4 MiB facts section of padding costs the facts and keeps the page, and under 4 KiB of it is read;
+  - well-formed facts with a 4 MiB tag after sixteen good ones keep the sixteen and the score, and the big tag is
+    stepped over in place (under 8 KiB read).
+- **Red:** with master's reader, which copies the slice, both fail. `TitleSectionFrames.reply` takes the facts to write
+  (an empty section unless given), so the tests can send their own.

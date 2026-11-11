@@ -193,4 +193,39 @@ class HostProtocolSectionSkipTest {
         const val BACKDROP_PREFIX = "https://img.example/"
         val MAX_BACKDROP = BACKDROP_PREFIX + "a".repeat(HostProtocol.MAX_IMAGE_URL_BYTES - BACKDROP_PREFIX.length)
     }
+
+    @Test
+    fun `facts of megabytes are never copied, cost only themselves, and the page still opens`() {
+        val size = 4 * 1024 * 1024
+        val reading = readCounting(reply(facts = { section(HostProtocol.FACTS_V1) { write(padding(size)) } }) {})
+
+        assertEquals(TitleSectionFrames.page.name, reading.details.name)
+        assertEquals(RemoteFacts.NONE, reading.details.facts)
+        assertEquals(listOf("facts: a section that could not be read"), reading.dropped)
+        assertTrue(reading.read < 4 * 1024, "the facts were read in place, not copied: ${reading.read} bytes read")
+        assertTrue(reading.skipped > size - 1024, "the rest of the section was stepped over: ${reading.skipped}")
+    }
+
+    @Test
+    fun `well-formed facts of megabytes keep their sixteen tags and copy none of the rest`() {
+        val big = 4 * 1024 * 1024
+        val facts: java.io.DataOutputStream.() -> Unit = {
+            section(HostProtocol.FACTS_V1) {
+                writeInt(84)
+                writeInt(HostProtocol.MAX_TAGS + 1)
+                repeat(HostProtocol.MAX_TAGS) { writeText("tag$it") }
+                writeInt(big)
+                write(padding(big))
+                writeBoolean(false)
+                writeByte(HostProtocol.STATUS_NONE)
+                writeInt(Int.MIN_VALUE)
+            }
+        }
+        val reading = readCounting(reply(facts = facts) {})
+
+        assertEquals(List(HostProtocol.MAX_TAGS) { "tag$it" }, reading.details.facts.tags)
+        assertEquals(84, reading.details.facts.scoreTenths)
+        assertEquals(big.toLong(), reading.skipped, "the oversized tag was stepped over in place")
+        assertTrue(reading.read < 8 * 1024, "only the kept tags were read: ${reading.read} bytes")
+    }
 }
