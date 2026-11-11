@@ -51,6 +51,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import com.lagradost.cloudstream4.core.designsystem.card.MediaCardDefaults
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButton
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopButtonTone
 import com.lagradost.cloudstream4.core.designsystem.desktop.DesktopDimens
@@ -83,8 +84,10 @@ import com.lagradost.cloudstream4.core.theme.CloudStreamDimens
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
+import com.lagradost.cloudstream4.feature.detail.DetailResume
 import com.lagradost.cloudstream4.feature.detail.DetailState
 import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
+import com.lagradost.cloudstream4.feature.detail.EpisodeWatchReadout
 import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.code
@@ -98,6 +101,7 @@ import com.lagradost.cloudstream4.feature.detail.statusLabel
 import com.lagradost.cloudstream4.feature.detail.toPageUiState
 import com.lagradost.cloudstream4.feature.detail.typeLabel
 import com.lagradost.cloudstream4.feature.detail.watchReadout
+import kotlin.math.roundToInt
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -231,6 +235,9 @@ private fun TitlePage(
         if (seasons.size <= 1) detail.episodes.withIndex().toList()
         else detail.episodes.withIndex().filter { groupOf(it.value) == chosen }
     }
+    // KMP-115: the still column only where the season has a still to show. A season with none keeps the compact row,
+    // so a host that sends no stills draws the page as it did, never a column of empty boxes.
+    val stills = remember(shown) { shown.any { it.value.stillUrl != null } }
     BoxWithConstraints(Modifier.fillMaxSize()) {
         val compact = maxWidth < DetailScreenDesktopDefaults.CompactBelow
         val list = rememberLazyListState()
@@ -258,7 +265,7 @@ private fun TitlePage(
                 }
                 items(shown.size, key = { "${shown[it].index}:${shown[it].value.data}" }) { position ->
                     val (index, episode) = shown[position]
-                    EpisodeRow(episode, index, onAction, episodeTrailing)
+                    EpisodeRow(episode, index, onAction, episodeTrailing, thumbnail.takeIf { stills })
                 }
             }
             // DS-26, under the episodes: each only when it has something, never a header over nothing.
@@ -656,9 +663,13 @@ private fun SeasonButton(label: String, chosen: Boolean, onClick: () -> Unit) {
 }
 
 /**
- * One episode: its number, its name and its second line. The row plays it; while the pointer or focus is on the row,
- * Play shows at its end too (E2), so a row says what pressing it does. [trailing], the host's cell, sits between the
- * words and Play (`KMP-109`).
+ * One episode: its still, its number, its name and its second line. The row plays it; while the pointer or focus is on
+ * the row, Play shows at its end too (E2), so a row says what pressing it does. [trailing], the host's cell, sits
+ * between the words and Play (`KMP-109`).
+ *
+ * @param still draws the episode's still (`KMP-115`): the page's `thumbnail`, so the host's bounded loader and its
+ *   address checks, as the cast's photos have. Null where the season has no still: no still column, and the compact
+ *   row.
  */
 @Composable
 private fun EpisodeRow(
@@ -666,6 +677,7 @@ private fun EpisodeRow(
     index: Int,
     onAction: (DetailAction) -> Unit,
     trailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)?,
+    still: (@Composable (String) -> Unit)?,
 ) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
@@ -689,9 +701,16 @@ private fun EpisodeRow(
                 .background(if (hovered) colors.raised else colors.bg, shape)
                 .border(CloudStreamDimens.Hairline, if (hovered) colors.line else colors.bg, shape)
                 .clickable(interactionSource = source, indication = null, onClick = play)
-                .heightIn(min = DetailScreenDesktopDefaults.EpisodeRowHeight)
+                .heightIn(
+                    min = if (still != null) {
+                        DetailScreenDesktopDefaults.EpisodeRowStillHeight
+                    } else {
+                        DetailScreenDesktopDefaults.EpisodeRowHeight
+                    },
+                )
                 .padding(horizontal = DesktopDimens.RowPadding, vertical = DesktopDimens.RelatedGap),
         ) {
+            still?.let { EpisodeStill(episode, it) }
             BasicText(
                 text = (episode.episode ?: (index + 1)).toString(),
                 style = typography.captionMono.copy(color = colors.muted, textAlign = TextAlign.End),
@@ -730,6 +749,45 @@ private fun EpisodeRow(
             )
         }
     }
+}
+
+/**
+ * E1's still at the start of an episode's row (`KMP-115`), on the still's ground until the image arrives, and along its
+ * bottom edge, inside its rounded corners, the share of the episode watched: [episodeRuleWidth].
+ */
+@Composable
+private fun EpisodeStill(episode: DetailEpisode, still: @Composable (String) -> Unit) {
+    Box(
+        contentAlignment = Alignment.BottomStart,
+        modifier = Modifier
+            .size(DetailScreenDesktopDefaults.EpisodeStillWidth, DetailScreenDesktopDefaults.EpisodeStillHeight)
+            .clip(CloudStreamTheme.shapes.medium)
+            .background(CloudStreamTheme.colors.surface),
+    ) {
+        episode.stillUrl?.let { url -> Box(Modifier.fillMaxSize()) { still(url) } }
+        episodeRuleWidth(episode.watchReadout(), episode.progress)?.let { width ->
+            Box(
+                Modifier
+                    .width(width)
+                    .height(MediaCardDefaults.ProgressRuleHeight)
+                    .background(CloudStreamTheme.colors.live),
+            )
+        }
+    }
+}
+
+/**
+ * How far E1's rule runs along a still: all of it on a watched episode; on a started one the share watched, snapped
+ * to the 4 step as the board draws it (19 of 48 minutes is 40 of 96) and never less than one step; none otherwise.
+ */
+internal fun episodeRuleWidth(readout: EpisodeWatchReadout, progress: DetailResume?): Dp? = when (readout) {
+    EpisodeWatchReadout.Watched -> DetailScreenDesktopDefaults.EpisodeStillWidth
+    is EpisodeWatchReadout.Left -> progress?.takeIf { it.durationMs > 0L }?.let {
+        val steps = DetailScreenDesktopDefaults.EpisodeStillWidth / DetailScreenDesktopDefaults.RuleStep
+        val share = it.positionMs.toDouble() / it.durationMs.toDouble()
+        DetailScreenDesktopDefaults.RuleStep * (share * steps).roundToInt().coerceIn(1, steps.roundToInt())
+    }
+    EpisodeWatchReadout.None -> null
 }
 
 /**
@@ -827,8 +885,18 @@ object DetailScreenDesktopDefaults {
     /** E1's Resume, wide enough for `Resume S1:E3` in the board's language, and its rule under it. */
     val PrimaryWidth: Dp = 176.dp
 
-    /** An episode row with its two lines and the room the board gives it. */
+    /** An episode row with its two lines and the room the board gives it, in a season with no still. */
     val EpisodeRowHeight: Dp = 56.dp
+
+    /** E1's episode row with its still: the still and [DesktopDimens.RelatedGap] above and below it (`KMP-115`). */
+    val EpisodeRowStillHeight: Dp = 72.dp
+
+    /** E1's still at the start of an episode's row, drawn at 1 px = 1 dp. */
+    val EpisodeStillWidth: Dp = 96.dp
+    val EpisodeStillHeight: Dp = 56.dp
+
+    /** The step a row's rule is snapped to, as E1 draws it: the dimension scale's 4. */
+    val RuleStep: Dp = 4.dp
 
     /** Three digits of episode number, in the mono face. */
     val EpisodeNumberWidth: Dp = 24.dp

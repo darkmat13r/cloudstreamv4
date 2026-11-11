@@ -29,6 +29,7 @@ import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
+import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailLoad
@@ -48,6 +49,8 @@ import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
@@ -119,6 +122,7 @@ class DetailScreenTest {
         width: Int = WIDTH,
         height: Int = HEIGHT,
         backdrop: @Composable (String) -> Unit = {},
+        thumbnail: @Composable (String) -> Unit = {},
         episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)? = null,
     ) = scene(width, height) {
         DetailScreenDesktop(
@@ -129,6 +133,7 @@ class DetailScreenTest {
             origin = "Home",
             backdrop = backdrop,
             episodeTrailing = episodeTrailing,
+            thumbnail = thumbnail,
         )
     }
 
@@ -647,14 +652,17 @@ class DetailScreenTest {
     }
 
     @Test
-    fun `the watch state changes only the episodes' second lines, pixel for pixel (KMP-63)`() {
+    fun `the watch state changes only the episodes' second lines and their stills' rules, pixel for pixel (KMP-63)`() {
         val plain = page(loaded(series))
         val before = plain.bitmap()
         // The old lines and the new, in case an old one is the wider.
         val oldLines = listOf("S1:E1 \u00b7 48 min", "S1:E3 \u00b7 48 min").map { plain.boundsOf(it) }
         plain.close()
         val scene = page(loaded(watchedSeries))
-        val lines = oldLines + listOf("S1:E1 \u00b7 Watched", "S1:E3 \u00b7 29 min left").map { scene.boundsOf(it) }
+        // KMP-115: the watch state also draws E1's rule along the still of a watched or started row.
+        val stills = listOf("1", "3").map { stillBoxOf(scene.boundsOf(it)) }
+        val lines = oldLines + stills +
+            listOf("S1:E1 \u00b7 Watched", "S1:E3 \u00b7 29 min left").map { scene.boundsOf(it) }
         val after = scene.bitmap()
         scene.close()
         var outside = 0
@@ -663,13 +671,143 @@ class DetailScreenTest {
             if (before.getColor(x, y) == after.getColor(x, y)) continue
             if (lines.any { it.contains(Offset(x + 0.5f, y + 0.5f)) }) inside++ else outside++
         }
-        assertEquals(0, outside, "pixels changed outside the second lines")
+        assertEquals(0, outside, "pixels changed outside the second lines and the stills")
         assertTrue(inside > 0, "the second lines changed")
     }
 
     private fun ImageComposeScene.bitmap(): Bitmap {
         settle()
         return Bitmap.makeFromImage(render(SETTLE_FRAMES * FRAME_NANOS))
+    }
+
+    // ---- KMP-115: board E1's still and its progress rule on each episode row ----
+
+    /**
+     * Season 1: a watched episode, one not started with no still, and the one Resume plays, 19 of 48 minutes in, so its
+     * row and Resume's "29m remaining" agree. The first and third have a still.
+     */
+    private val stillSeries = series.copy(
+        episodes = listOf(
+            episodes[0].copy(markedWatched = true, stillUrl = "https://img.example/s1e1.jpg"),
+            episodes[1],
+            episodes[2].copy(
+                stillUrl = "https://img.example/s1e3.jpg",
+                progress = DetailResume("s1e3", 19 * MINUTE, 48 * MINUTE, episode = null),
+            ),
+        ) + episodes.drop(3),
+    )
+
+    private fun stillPage(asked: MutableList<String> = mutableListOf()) =
+        page(loaded(stillSeries), thumbnail = { url ->
+            asked += url
+            Box(Modifier.fillMaxSize().background(STILL))
+        })
+
+    /** A row's still, from its number's cell: E1's 96 by 56, ending 16 before the cell, centred on the row. */
+    private fun stillBoxOf(number: Rect): Rect {
+        val right = number.left - GROUP_GAP
+        val middle = number.center.y
+        return Rect(right - STILL_WIDTH, middle - STILL_HEIGHT / 2f, right, middle + STILL_HEIGHT / 2f)
+    }
+
+    /** The first and last x on line [y] drawn exactly [colour], or null where none is. */
+    private fun Bitmap.runOf(y: Int, colour: Color, from: Int = 0, to: Int = WIDTH): IntRange? {
+        val xs = (from until to).filter { Color(getColor(it, y)) == colour }
+        return if (xs.isEmpty()) null else xs.first()..xs.last()
+    }
+
+    /** The first and last y in column [x] drawn exactly [colour], between [from] and [to]. */
+    private fun Bitmap.columnOf(x: Int, colour: Color, from: Int, to: Int): IntRange? {
+        val ys = (from until to).filter { Color(getColor(x, it)) == colour }
+        return if (ys.isEmpty()) null else ys.first()..ys.last()
+    }
+
+    @Test
+    fun `each row starts with its still, 96 by 56, 16 before its number, and the rows are 72 apart (KMP-115, E1)`() {
+        val asked = mutableListOf<String>()
+        val scene = stillPage(asked)
+        val one = scene.boundsOf("1")
+        val two = scene.boundsOf("2")
+        val image = scene.bitmap()
+        scene.save("detail-e1-episode-stills")
+        scene.close()
+        assertEquals(EPISODE_ROW, (two.top - one.top).toInt(), "row pitch")
+        val across = assertNotNull(image.runOf(one.center.y.toInt(), STILL, to = one.left.toInt()), "the first still")
+        assertEquals(STILL_WIDTH, across.last - across.first + 1, "the still's width")
+        assertEquals(GROUP_GAP, (one.left - (across.last + 1)).toInt(), "from the still to the number cell")
+        val middle = one.center.y.toInt()
+        val down = assertNotNull(image.columnOf(across.first + STILL_WIDTH / 2, STILL, middle - EPISODE_ROW / 2, middle + EPISODE_ROW / 2))
+        // The first row is watched, so its rule takes the still's last 4 lines.
+        assertEquals(STILL_HEIGHT - RULE, down.last - down.first + 1, "the still above its rule")
+        assertEquals(listOf("https://img.example/s1e1.jpg", "https://img.example/s1e3.jpg"), asked.distinct())
+    }
+
+    @Test
+    fun `the rule is the share watched, snapped to the 4 step, the whole still, 40 for 19 of 48, none unstarted (KMP-115)`() {
+        val scene = stillPage()
+        val rows = listOf("1", "2", "3").map { scene.boundsOf(it) }
+        val image = scene.bitmap()
+        scene.close()
+        val live = cloudStreamDarkColors().live
+        val stillLeft = assertNotNull(image.runOf(rows[0].center.y.toInt(), STILL, to = rows[0].left.toInt())).first
+        val stillRight = stillLeft + STILL_WIDTH - 1
+        fun ruleOf(row: Rect): Pair<IntRange, IntRange>? {
+            // Clear of the still's rounded corner, where the rule's edge is blended.
+            val middle = row.center.y.toInt()
+            val down = image.columnOf(stillLeft + CLEAR_OF_CORNER, live, middle - EPISODE_ROW / 2, middle + EPISODE_ROW / 2) ?: return null
+            val across = assertNotNull(image.runOf(down.first, live, from = stillLeft, to = stillRight + 1))
+            return down to across
+        }
+        val (watchedDown, watched) = assertNotNull(ruleOf(rows[0]), "a watched row has a rule")
+        assertEquals(RULE, watchedDown.last - watchedDown.first + 1, "4 tall")
+        // The still's rounded corner takes the last pixels of a full rule's top line.
+        assertTrue(watched.last >= stillRight - RULE, "a watched row's rule runs the whole still: ends ${watched.last}, still ends $stillRight")
+        assertNull(ruleOf(rows[1]), "a row not started has none")
+        val (_, started) = assertNotNull(ruleOf(rows[2]), "a started row has a rule")
+        assertEquals(STARTED_RULE, started.last - stillLeft + 1, "19 of 48 minutes, snapped to the 4 step")
+    }
+
+    /**
+     * The PM's ruling on `#374`: a season with no still keeps the compact row, so a host that sends none (the Mac's,
+     * until `KMP-116`) draws the page as before. No still column, no ground box, nothing asked for.
+     */
+    @Test
+    fun `a season with no still keeps the compact 56 row and draws no still column (KMP-115)`() {
+        val asked = mutableListOf<String>()
+        val scene = page(loaded(series), thumbnail = { url -> asked += url })
+        val one = scene.boundsOf("1")
+        val two = scene.boundsOf("2")
+        val image = scene.bitmap()
+        scene.close()
+        assertEquals(COMPACT_ROW, (two.top - one.top).toInt(), "row pitch")
+        assertNull(image.runOf(one.center.y.toInt(), cloudStreamDarkColors().surface, to = one.left.toInt()), "no still ground")
+        assertTrue(asked.isEmpty(), "no image asked for")
+    }
+
+    /** One still in the season is enough: every row of it takes the still column, and the others draw the ground. */
+    @Test
+    fun `one still in the season gives every row of it the still column (KMP-115)`() {
+        val one = series.copy(episodes = listOf(episodes[0].copy(stillUrl = "https://img.example/s1e1.jpg")) + episodes.drop(1))
+        val scene = page(loaded(one), thumbnail = { Box(Modifier.fillMaxSize().background(STILL)) })
+        val first = scene.boundsOf("1")
+        val second = scene.boundsOf("2")
+        val image = scene.bitmap()
+        scene.close()
+        assertEquals(EPISODE_ROW, (second.top - first.top).toInt(), "row pitch")
+        val ground = assertNotNull(image.runOf(second.center.y.toInt(), cloudStreamDarkColors().surface, to = second.left.toInt()))
+        assertEquals(STILL_WIDTH, ground.last - ground.first + 1, "the second row's still ground")
+    }
+
+    @Test
+    fun `a row with no still draws the still's ground, and its image is never asked for (KMP-115)`() {
+        val asked = mutableListOf<String>()
+        val scene = stillPage(asked)
+        val two = scene.boundsOf("2")
+        val image = scene.bitmap()
+        scene.close()
+        val ground = assertNotNull(image.runOf(two.center.y.toInt(), cloudStreamDarkColors().surface, to = two.left.toInt()))
+        assertEquals(STILL_WIDTH, ground.last - ground.first + 1, "the still's ground, as wide as a still")
+        assertTrue(asked.none { "s1e2" in it }, "nothing asked for a row with no still")
     }
 
     // ---- E3: a film and its sources ----
@@ -801,6 +939,23 @@ class DetailScreenTest {
         const val READING_WIDTH = 640f
         const val MAX_TABS = 12
         val ART = Color(0xFF00FF80)
+        val STILL = Color(0xFF3060FF)
+
+        /** Board E1's row, in pixels at the scene's density of 1: 72 tall, a 96 by 56 still, a 4 rule, the 16 gap. */
+        const val EPISODE_ROW = 72
+
+        /** The row in a season with no still: the 56 it was before `KMP-115`. */
+        const val COMPACT_ROW = 56
+        const val STILL_WIDTH = 96
+        const val STILL_HEIGHT = 56
+        const val RULE = 4
+        const val GROUP_GAP = 16
+
+        /** Twice the still's corner radius in from its left edge: the rule there is drawn whole. */
+        const val CLEAR_OF_CORNER = 16
+
+        /** 19 of 48 minutes of a 96 still is 38, drawn at 40 on the 4 step, as E1 draws it. */
+        const val STARTED_RULE = 40
         val BACKDROP = Color(0xFFFF8040)
 
         /** `DetailScreenDesktopDefaults.BackdropHeight`, in pixels at the scene's density of 1. */
