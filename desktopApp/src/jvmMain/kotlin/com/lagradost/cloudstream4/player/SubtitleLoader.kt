@@ -18,10 +18,15 @@ import java.nio.charset.CodingErrorAction
 import java.util.concurrent.TimeUnit
 import java.util.zip.GZIPInputStream
 import kotlin.coroutines.cancellation.CancellationException
-import kotlin.coroutines.coroutineContext
+import kotlinx.coroutines.CoroutineStart
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.Job
+import kotlinx.coroutines.awaitCancellation
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.currentCoroutineContext
+import kotlinx.coroutines.ensureActive
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import okhttp3.Call
 import okhttp3.HttpUrl
 import okhttp3.OkHttpClient
 import okhttp3.Request
@@ -103,6 +108,8 @@ internal class HttpSubtitleLoader(
         val budget = client.callTimeoutMillis.toLong()
         val deadline = System.nanoTime() + TimeUnit.MILLISECONDS.toNanos(budget)
         repeat(MAX_REDIRECTS + 1) {
+            // BUG-98: a load cancelled between hops starts no other.
+            currentCoroutineContext().ensureActive()
             if (!allowUrl(checked)) return null
             val request = Request.Builder().url(url)
             headers.forEach { (name, value) -> runCatching { request.header(name, value) } }
@@ -112,34 +119,66 @@ internal class HttpSubtitleLoader(
                 if (left <= 0) return null
                 call.timeout().timeout(left, TimeUnit.NANOSECONDS)
             }
-            val cancel = coroutineContext[Job]?.invokeOnCompletion { call.cancel() }
-            try {
-                call.execute().use { response ->
-                    if (response.isRedirect) {
-                        val target = response.header(LOCATION)?.let(url::resolve) ?: return null
-                        val hop = nextHop(url, target) ?: return null
-                        if (!hop.keepsHeaders) headers = emptyMap()
-                        url = target
-                        checked = target.toString()
-                        return@repeat
-                    }
-                    if (!response.isSuccessful) return null
-                    val body = response.body ?: return null
-                    val declared = body.contentType()?.charset()
-                    if (body.contentLength() > MAX_BYTES) return null
-                    val raw = body.byteStream().use { it.readAtMost(MAX_BYTES) } ?: return null
-                    return Body(raw.gunzippedOrNull() ?: return null, declared)
+            when (val outcome = cancellable(call) { blockingHop(call, url) }) {
+                is HopOutcome.Done -> return outcome.body
+                is HopOutcome.Redirect -> {
+                    if (!outcome.hop.keepsHeaders) headers = emptyMap()
+                    url = outcome.to
+                    checked = outcome.to.toString()
                 }
-            } finally {
-                cancel?.dispose()
             }
         }
         return null
     }
 
+    /**
+     * [block] with [call] closed the moment this coroutine is cancelled (`BUG-98`, as `#345` does for repositories).
+     * The call blocks its thread, and a handler run on the job's completion waits for that thread, so it only ran once
+     * the call had ended by itself: up to the whole load's time limit after a cancel. This child is suspended until the
+     * caller is cancelled and closes the call then; the blocked read fails at once.
+     */
+    private suspend fun <T> cancellable(call: Call, block: () -> T): T = coroutineScope {
+        val canceller = launch(start = CoroutineStart.UNDISPATCHED) {
+            try {
+                awaitCancellation()
+            } finally {
+                call.cancel()
+            }
+        }
+        try {
+            block()
+        } finally {
+            canceller.cancel()
+        }
+    }
+
+    /** One hop's request, on this thread. A redirect is returned to be checked; anything else ends the load. */
+    private fun blockingHop(call: Call, url: HttpUrl): HopOutcome = call.execute().use { response ->
+        if (response.isRedirect) {
+            val target = response.header(LOCATION)?.let(url::resolve) ?: return HopOutcome.Done(null)
+            val hop = nextHop(url, target) ?: return HopOutcome.Done(null)
+            return HopOutcome.Redirect(target, hop)
+        }
+        if (!response.isSuccessful) return HopOutcome.Done(null)
+        val body = response.body ?: return HopOutcome.Done(null)
+        val declared = body.contentType()?.charset()
+        if (body.contentLength() > MAX_BYTES) return HopOutcome.Done(null)
+        val raw = body.byteStream().use { it.readAtMost(MAX_BYTES) } ?: return HopOutcome.Done(null)
+        HopOutcome.Done(raw.gunzippedOrNull()?.let { Body(it, declared) })
+    }
+
+    private sealed interface HopOutcome {
+        class Done(val body: Body?) : HopOutcome
+
+        class Redirect(val to: HttpUrl, val hop: Hop) : HopOutcome
+    }
+
     private class Body(val bytes: ByteArray, val declared: Charset?)
 
-    /** A redirect that may be followed; [keepsHeaders] when it stays on the origin the track's headers were for. */
+    /**
+     * A redirect that may be followed; [keepsHeaders] when it stays on the host the track's headers were for: the same
+     * scheme and port, or an upgrade to https there ([nextHop]).
+     */
     internal data class Hop(val keepsHeaders: Boolean)
 
     companion object {

@@ -4507,3 +4507,25 @@ private IPv4 inside are not refused: they go to a remote translator, never to th
 device's own addresses. It is a different threat model, where the plugin runs in the app's own process. Logged for a
 look.
 
+## BUG-98 — A cancelled subtitle load kept its request open until the load's time limit · **low** · measured 2026-11-11
+
+**Found** in `#358`'s review. `HttpSubtitleLoader` closed a hop's call from `invokeOnCompletion` on the load's job. A
+handler there runs when the job completes, and a job blocked in `call.execute()` cannot complete until that call ends.
+So cancelling a load (the person picked another track, or left the player) did nothing until the call ended by itself,
+at up to the whole load's 20 s limit, and the server kept its socket for that long.
+
+**Fix,** as `#345` does for repositories:
+- **Each hop's call is closed the moment the load is cancelled:** a child started `UNDISPATCHED` waits in
+  `awaitCancellation()` and closes the call then, so the blocked read fails at once.
+- **A load cancelled between hops starts no other:** `ensureActive()` at the top of each hop.
+- **The blocking part moved out** into `blockingHop`, which returns its outcome (a body, nothing, or a redirect to
+  check), because a lambda cannot return from `fetch`.
+- **`Hop`'s KDoc** says what `nextHop` keeps the headers for: the same host, by scheme and port, or an upgrade to https
+  there. It is not the origin (`#358`'s review).
+
+**Proof,** all local (CI is off), `--no-build-cache`:
+- **A new test,** "cancelling a load in the middle of a hop ends it at once…": the server sends headers and part of a
+  body, then holds the connection, under a 5 s call limit. The test cancels the load once its request has arrived. The
+  load must end within 1 s, and the server must see its socket close within 1 s.
+- **Red:** with master's loader, it fails 2 of 2. The cancel took 5,004 and 5,038 ms, the whole call limit.
+- **Green:** `SubtitleLoaderTest` passes, and then 5 runs of 5.
