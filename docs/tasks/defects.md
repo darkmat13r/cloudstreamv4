@@ -4384,3 +4384,19 @@ Measured too: with every body request logged 300 ms late (scratch), both suites 
 pass. Without the slowdowns, `ExtensionReviewScreenTest`, `DesktopDownloadsTest` and `DownloadsHostTest` together:
 10 `--rerun` runs of 10, then 10 of 10 with every core kept busy by a CPU burner. (An earlier loaded batch, before the
 volume fix, failed 1 of 10 on that test, which is how it was found.)
+
+## BUG-102, part 2 — `:media:download`: two fault tests read the server's counts before they had caught up · **low, test only** · 2026-11-11
+
+Part 2 of the sweep in `BUG-102`'s entry. Both were reproduced on master with a scratch delay in the test server,
+then fixed.
+
+| Test | It read | Now | Master's test under the scratch delay |
+|---|---|---|---|
+| `FaultSuiteTest` "without range support a dropped connection restarts from byte zero…" (163) | the last request's `bytesSent` as soon as the run returned. The server counts a chunk after writing it, and the client can read it, finish and return first | waits, at most 5 s, for the count to reach the size, then asserts as before. A server that sent less still fails | 2 of 2 fail, with the last chunk counted 300 ms late |
+| `FaultSuiteTest` "thirty two parts at once all join" (468) and "asking for a thousand parts is clamped…" (477) | the server's `peakConcurrency`, which a handler leaves only after its last write, which the client may already have read before starting its next call. So the server can count one more than the engine ever had open | `Harness.peakConcurrentCalls`: calls open at once in the engine's own OkHttp client (an `EventListener`: started on `callStart`, ended on `callEnd` or `callFailed`). The bound stays 32 | both fail, with each handler keeping its slot 300 ms past its reply |
+
+- **The counter counts:** in a scratch print, the client saw 29 calls at once in the 32-part test and 28 in the 1,000-part test. The server's count, meanwhile, read 3.
+- **Left as it is:** the 503 test's `peakConcurrency <= 2` is enforced by the server's own admission limit.
+
+**Proof,** `--no-build-cache`: under the same scratch delays the fixed tests pass. Without them, `FaultSuiteTest` passes
+10 `--rerun` runs of 10, then 10 of 10 with every core kept busy by a CPU burner.

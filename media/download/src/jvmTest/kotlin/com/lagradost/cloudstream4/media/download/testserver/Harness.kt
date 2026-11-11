@@ -18,13 +18,17 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.transformWhile
 import kotlinx.coroutines.runBlocking
 import kotlinx.coroutines.withTimeout
+import okhttp3.Call
 import okhttp3.Dns
+import okhttp3.EventListener
 import okhttp3.OkHttpClient
 import java.io.File
+import java.io.IOException
 import java.net.InetAddress
 import java.nio.file.Files
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.CopyOnWriteArraySet
+import java.util.concurrent.atomic.AtomicInteger
 import kotlin.test.assertEquals
 import kotlin.test.assertNotNull
 import kotlin.test.assertNull
@@ -90,7 +94,30 @@ class Harness(dns: Map<String, String> = emptyMap()) : AutoCloseable {
     val folder: PlatformFile = PlatformFile(folderFile)
     val server = TestServer()
 
+    private val inFlight = AtomicInteger()
+    private val peakCalls = AtomicInteger()
+
+    /**
+     * The most calls the engine had open at once, counted in its own client (`BUG-102`): a call starts when it is made
+     * and ends when its body is closed or it fails. The server's [TestServer.peakConcurrency] lags this by design, since
+     * a handler frees its slot only after its last write, which the client may already have read.
+     */
+    val peakConcurrentCalls: Int get() = peakCalls.get()
+
     private val okHttp: OkHttpClient = OkHttpClient.Builder()
+        .eventListener(object : EventListener() {
+            override fun callStart(call: Call) {
+                peakCalls.accumulateAndGet(inFlight.incrementAndGet(), ::maxOf)
+            }
+
+            override fun callEnd(call: Call) {
+                inFlight.decrementAndGet()
+            }
+
+            override fun callFailed(call: Call, ioe: IOException) {
+                inFlight.decrementAndGet()
+            }
+        })
         .retryOnConnectionFailure(false)
         .followRedirects(false)
         .followSslRedirects(false)
