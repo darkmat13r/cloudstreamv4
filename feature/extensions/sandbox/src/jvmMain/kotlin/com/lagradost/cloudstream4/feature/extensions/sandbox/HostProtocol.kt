@@ -551,8 +551,11 @@ private fun DataOutputStream.writeFacts(facts: RemoteFacts) {
 /**
  * The facts section, or none. Nothing left means a host from before it: no facts, and the page as it was.
  *
- * Read from its own slice of the frame, so nothing in it can reach past its stated length, and what follows it stays
+ * Read through its own slice of the frame, so nothing in it can reach past its stated length, and what follows it stays
  * in step whatever the section holds. So a section that cannot be read costs the facts and keeps the page.
+ *
+ * The slice is a view, not a copy (`KMP-114`, audit A-4): the reader takes what it keeps (sixteen tags at most, each
+ * bounded) and steps over the rest in place, so a section of megabytes allocates no more than an honest one.
  */
 private fun DataInputStream.readFacts(dropped: (String) -> Unit): RemoteFacts {
     if (available() == 0) return RemoteFacts.NONE
@@ -564,15 +567,44 @@ private fun DataInputStream.readFacts(dropped: (String) -> Unit): RemoteFacts {
         dropped("facts: a version this app does not read")
         return RemoteFacts.NONE
     }
-    val section = readNBytes(length)
-    // Inside its slice, a section cut short or lying about a length cannot move this reader, which has already
-    // stepped past it: the facts are lost, the page is not. A lying length for the slice itself still fails, above.
-    return try {
-        DataInputStream(ByteArrayInputStream(section)).use { it.readFactsV1(dropped) }
+    val slice = Slice(this, length)
+    // Inside its slice, a section cut short or lying about a length cannot move this reader past it: what is left of
+    // the slice is stepped over after, either way. The facts are lost, the page is not. A lying length for the slice
+    // itself still fails, above.
+    val facts = try {
+        DataInputStream(slice).readFactsV1(dropped)
     } catch (unreadable: IOException) {
         dropped("facts: a section that could not be read")
         RemoteFacts.NONE
     }
+    skipNBytes(slice.left.toLong())
+    return facts
+}
+
+/**
+ * The next [length] bytes of [outer], read in place (`KMP-114`). It ends where the slice does, its [available] is what
+ * is left of it, and closing it leaves [outer] open. [left] is what the parse did not take.
+ */
+private class Slice(private val outer: InputStream, length: Int) : InputStream() {
+    var left: Int = length
+        private set
+
+    override fun read(): Int {
+        if (left <= 0) return -1
+        return outer.read().also { if (it >= 0) left-- }
+    }
+
+    override fun read(b: ByteArray, off: Int, len: Int): Int {
+        if (len == 0) return 0
+        if (left <= 0) return -1
+        return outer.read(b, off, minOf(len, left)).also { if (it > 0) left -= it }
+    }
+
+    override fun skip(n: Long): Long = outer.skip(minOf(n, left.toLong())).also { left -= it.toInt() }
+
+    override fun available(): Int = minOf(left, outer.available())
+
+    override fun close() = Unit
 }
 
 /** After the facts, so a reader from before `KMP-100` stops where it did and never sees it. */
