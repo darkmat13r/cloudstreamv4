@@ -310,7 +310,10 @@ class ExtensionReviewScreenTest {
         val scene = screenOn(approvals)
         scene.settle()
         scene.click(firstRowButton(ALLOW_FROM_RIGHT, FIRST_ROW_Y))
-        waitUntil(scene) { approvals.state.value.waiting == 0 }
+        // BUG-102: the row's end, not `waiting`. The click marks it Starting at once, which already takes it out of
+        // waiting, and only then launches the work that calls allow and publishes Allowed.
+        waitUntil(scene) { approvals.state.value.reviews.single().status == ReviewStatus.Allowed }
+        assertEquals(0, approvals.state.value.waiting)
         assertEquals(listOf("allow One.jar"), control.calls)
         assertEquals(ReviewStatus.Allowed, approvals.state.value.reviews.single().status)
         assertEquals(1, approvals.state.value.providerChanges)

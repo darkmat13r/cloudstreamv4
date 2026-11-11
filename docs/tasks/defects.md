@@ -4230,3 +4230,47 @@ The assertion is unchanged.
   came first. That is why the flake is rare.
 - **Green:** the fix under the same two scratch changes passes 3 of 3. Without them, the class passes 10 `--rerun`
   runs of 10, and 10 more of 10 with every core kept busy by a CPU burner.
+
+## BUG-102 — A sweep for tests that wait for the first of several events · **low, test only** · 2026-11-11
+
+**Why:** `BUG-99`, `BUG-100` and `BUG-101` were each a test that waited for one event, then asserted something the code
+produces later. This sweep reads every polling wait in the JVM tests the gates run: `:desktopApp`, `:media:*` and
+`:feature:*` (`jvmTest` and `commonTest`; not `androidDeviceTest`). A wait is fixed only when a scratch slowdown in the code it
+races makes the old test fail and the new one pass.
+
+**Fixed here (`:desktopApp`), each red-checked:**
+
+| Test | It waited for | Now waits for | Old test under the slowdown |
+|---|---|---|---|
+| `ExtensionReviewScreenTest` "allowing from the window…" | `waiting == 0`, which the click sets at once (the row turns Starting) before the work that calls allow is launched | the row's `Allowed` | 2 of 2 fail, with `allow` 300 ms slower |
+| `DesktopDownloadsTest` "deleting a title and an episode…" | a new host's first view (`{ true }`), which can be built after the load completes and before it is published | the reloaded titles | 2 of 2 fail, with publish 300 ms after complete |
+| `DownloadsHostTest` "delete asks first…" | the service's list, true at once since the download is done, while the screen's model reads on its own threads | the model's `Showing` and a row drawn under the press | fails (the press lands on an empty list), with the model's read 1.5 s late |
+| `DownloadsHostTest` "the list is the same one after a visit elsewhere…" | the same | a row drawn under the press | fails (both samples on an empty list), the same slowdown |
+| `DownloadsHostTest` "Play on a finished episode…" | double-clicking again until something played, which can play twice once the first play is late | the first row drawn, then one double-click | 2 of 8 fail, with each play 300 ms late |
+| `DownloadsHostTest` "the download player plays its descriptor…" | nothing: it asserted "play file" is the very first command, while the player's volume, sent by its own effect beside the play from the IO thread, can come first. Found by this PR's loaded runs (1 of 10) | the first command other than the volume is "play file"; the host keeps a level until the output can take it (`MediaHost.keepVolume`), so that order is no contract | 2 of 2 fail ("volume 100" first), with the play 300 ms later |
+
+**Read and safe** (the reason is in the code each waits on: one state update, a mutex, a single atomic write, or a
+publish after a join): the other 33 polling waits in `:desktopApp`, among them `ExtensionsPaneModelTest`'s second
+installed-list wait (`install` and `remove` share the installer's mutex), and every `awaitEpisode`/`awaitContents` in
+`DesktopDownloadsTest` except the one above. Also `SessionSuiteTest` (PAUSED is published after `cancelAndJoin`),
+`HostLimitsTest`, and the Resume/Kill suites' `mark = log.size` sites. A request from the stopped run can be logged
+after the mark, but it delivered nothing and starts at its part's size on disk, so it cannot turn a pass into a fail.
+Measured too: with every body request logged 300 ms late (scratch), both suites passed 3 runs of 3.
+
+**Found, for the next PRs of this sweep:**
+- `:media:download` `FaultSuiteTest`: line 163 reads `bytesSent`, which the server sets after the last write the client
+  may already have read. Lines 468 and 477 assert a concurrency peak that can count a handler still between its last
+  flush and its `serving--`.
+- `:feature:search` `SearchViewModelTest`: several tests stand a fixed `delay(600)` in for a debounce and a search on a
+  real dispatcher (140, 154/159, 174-181, 193-199).
+
+**Read, not reproduced, left as they are:**
+- `RepositoryHttpTest` "cancelling a download closes its socket at once": a reset landing between the held reply's two
+  writes would skip the server's close latch. With the reply 400 ms after the cancel, the old test still passed 3 of 3,
+  since the first write after a FIN succeeds.
+- `PluginOutputHostTest` 71-73: a starved stderr drain thread could miss the plugin's lines (unsure).
+
+**Proof** for the fixes here (`--no-build-cache`): each red above, then the same slowdown with the fix, 2 of 2 or more
+pass. Without the slowdowns, `ExtensionReviewScreenTest`, `DesktopDownloadsTest` and `DownloadsHostTest` together:
+10 `--rerun` runs of 10, then 10 of 10 with every core kept busy by a CPU burner. (An earlier loaded batch, before the
+volume fix, failed 1 of 10 on that test, which is how it was found.)
