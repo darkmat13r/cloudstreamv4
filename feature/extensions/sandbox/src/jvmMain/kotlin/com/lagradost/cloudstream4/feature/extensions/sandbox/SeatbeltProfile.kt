@@ -28,11 +28,14 @@ internal object SeatbeltProfile {
      * @param gatewayPort with [network], the only port it may connect to, on loopback: an [OutboundGate], or the media
      *   host's gateway (`KMP-113`). Null leaves every address but loopback open.
      * @param resolver whether the host may ask the system resolver. A media host behind its gateway is given only
-     *   `127.0.0.1` urls and has no use for it (measured, `docs/plans/media-gateway.md` §9).
-     * @param denyCertificateServices deny the certificate services by name (audit A-1). `system.sb`, imported above,
-     *   allows `com.apple.trustd` unconditionally, so leaving them out of this profile's own rules does not deny them.
-     *   They fetch OCSP responses, CRLs and issuers on a caller's behalf, which would let native code in the host aim a
-     *   request at an address the kernel refuses the host itself.
+     *   `127.0.0.1` urls and has no use for it (measured, `docs/plans/media-gateway.md` §9). With [network], it also
+     *   brings the system configuration services; without both, no host is given them (`BUG-96`, audit A-10).
+     *
+     * The certificate services are denied by name for every host (audit A-1; `BUG-96` for the plugin host). `system.sb`,
+     * imported above, allows `com.apple.trustd` unconditionally, so leaving them out of this profile's own rules does not
+     * deny them. They fetch OCSP responses, CRLs and issuers on a caller's behalf, which would let native code in the
+     * host aim a request at an address the kernel refuses the host itself. No host needs them: the JVM's own TLS checks
+     * certificates against its own trust store, and the media host behind its gateway speaks plain http.
      */
     fun render(
         executable: File,
@@ -43,7 +46,6 @@ internal object SeatbeltProfile {
         extraRules: List<String> = emptyList(),
         gatewayPort: Int? = null,
         resolver: Boolean = true,
-        denyCertificateServices: Boolean = false,
     ): String = buildString {
         appendLine("(version 1)")
         appendLine("(deny default)")
@@ -69,6 +71,9 @@ internal object SeatbeltProfile {
         appendLine("(allow ipc-posix-shm-read* (ipc-posix-name \"apple.shm.notification_center\"))")
         appendLine("(allow mach-lookup")
         MACH_SERVICES.forEach { appendLine("  (global-name \"$it\")") }
+        // The computer's name and its interface addresses are in configd's store, which the sysctl rules above hide
+        // otherwise. Only a host that resolves names itself has a use for these (`BUG-96`, audit A-10).
+        if (network && resolver) RESOLVER_MACH_SERVICES.forEach { appendLine("  (global-name \"$it\")") }
         appendLine(")")
         appendLine("(allow file-read*")
         SYSTEM_READS.forEach { appendLine("  (subpath \"$it\")") }
@@ -96,12 +101,10 @@ internal object SeatbeltProfile {
             }
         }
         extraRules.forEach(::appendLine)
-        // Last, so no allow above, the import's included, can win over it.
-        if (denyCertificateServices) {
-            appendLine("(deny mach-lookup")
-            CERTIFICATE_SERVICES.forEach { appendLine("  (global-name \"$it\")") }
-            appendLine(")")
-        }
+        // Last, so no allow above, the import's included, can win over it. Every host (`BUG-96`).
+        appendLine("(deny mach-lookup")
+        CERTIFICATE_SERVICES.forEach { appendLine("  (global-name \"$it\")") }
+        appendLine(")")
     }
 
     /** What `system.sb` grants that a host behind the gateway, or one with no network, must not ask (audit A-1). */
@@ -216,6 +219,10 @@ internal object SeatbeltProfile {
         "com.apple.system.notification_center",
         "com.apple.logd",
         "com.apple.diagnosticd",
+    )
+
+    /** Only for a host with the network and the resolver: the plugin host. */
+    private val RESOLVER_MACH_SERVICES = listOf(
         "com.apple.SystemConfiguration.configd",
         "com.apple.SystemConfiguration.DNSConfiguration",
     )
