@@ -9158,7 +9158,7 @@ Green: `:desktopApp:jvmTest` 834, 0 failed (the 4 render cases skip without a re
 `:core:strings:jvmTest` 53 of 53; the five gates passed, 280 XML results with 0 failures; `:app:checkExtensionApi`
 passed with the 40 new fields and no line removed. All local.
 
-## KMP-109 — A Download on each episode row of the Mac title page, with its states · **part 1 built 2026-11-10**; the row's slot waits for `KMP-104` (`#312`) · the PM's task
+## KMP-109 — A Download on each episode row of the Mac title page, with its states · **part 1 built 2026-11-10; part 2a, the row's slot, built 2026-11-11**; part 2b, the wiring, to come · the PM's task
 
 Board E2's rows on the Mac title page offer a Download per episode. The cell then reads the episode's state and offers
 that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
@@ -9225,7 +9225,26 @@ that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
   - each state's words.
 - `DownloadSeriesScreenTest` is unchanged and passes: 10 of 10.
 
-**Part 2, after `#312`:**
-- the slot on `DetailScreenDesktop`'s episode row;
-- `Main.kt` wiring it to the service;
-- the page's tests, red first.
+**Part 2 is two PRs (the PM's ruling, 2026-11-11).** The slot is mechanical and draws nothing until a host fills it.
+The wiring starts real downloads from the page, so it is reviewed on its own.
+
+**Part 2a, the slot (built 2026-11-11, on master after `#312`):**
+- `DetailScreenDesktop` takes `episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)? = null`. It
+  reaches each `EpisodeRow` through `TitlePage`. `shown` is the row's hovered-or-focused, the same test as its Play.
+- The cell sits after the row's words and before the width kept for Play. As the row's literal last child it would be
+  under Play, which is drawn over the row's end. The title column is not changed.
+- Null, the default, draws nothing. With no cell, all 13 of the page's renders are the same as master's, pixel
+  for pixel.
+- **Tests** (`DetailScreenTest`, +4, jvm, run):
+  - each shown row's cell is told its own episode, and is told to show only while the pointer is on its row;
+  - a row reached with Tab tells its cell to show, as it shows Play;
+  - the cell is after the name and ends before Play, centred as Play is, and the name does not move;
+  - part 1's `EpisodeDownloadDesktop` in the slot: each state's words, and the verbs only on the hovered row. Its two
+    renders are `detail-e2-download-cells` and `detail-e2-download-cell-none`.
+  - **Red (run):** with the slot taken but not drawn, all four fail. Drawn as the row's last child, the placement test
+    fails: the cell ends at 1256, and Play starts at 1228.
+
+**Part 2b, the wiring (to come):**
+- `Main.kt` fills the slot with `EpisodeDownloadDesktop`, from a per-episode state flow out of `DesktopDownloads` that
+  does not exist yet.
+- Open, to settle when 2b starts: what the page shows when an enqueue is refused (`AlreadyPresent`, `IdTaken`).

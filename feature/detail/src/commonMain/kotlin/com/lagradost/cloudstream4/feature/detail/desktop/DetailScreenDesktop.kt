@@ -117,6 +117,9 @@ import org.jetbrains.compose.resources.stringResource
  * @param artwork draws the poster; the host owns image loading.
  * @param thumbnail draws a cast photo or a recommendation's poster (`KMP-104`), each only while its line is on screen.
  *   The host bounds them more tightly than the poster above.
+ * @param episodeTrailing draws the host's cell at the end of an episode's row, after its words and before its Play
+ *   (`KMP-109`): the episode, and whether the row is hovered or focused, which is when a row shows its verbs. Null
+ *   draws nothing there.
  */
 @Composable
 fun DetailScreenDesktop(
@@ -128,12 +131,14 @@ fun DetailScreenDesktop(
     origin: String? = null,
     backdrop: @Composable (String) -> Unit = {},
     thumbnail: @Composable (String) -> Unit = {},
+    episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)? = null,
 ) {
     Box(modifier.fillMaxSize()) {
         Column(Modifier.fillMaxSize()) {
             TopBar(origin, state.detail?.title, onBack)
             when (val page = state.content.toPageUiState(onAction)) {
-                is UiState.Content -> TitlePage(page.value, state.synopsisOpen, onAction, artwork, backdrop, thumbnail)
+                is UiState.Content ->
+                    TitlePage(page.value, state.synopsisOpen, onAction, artwork, backdrop, thumbnail, episodeTrailing)
                 is UiState.Empty -> Failure(page.prompt, onBack)
                 is UiState.Error -> Failure(page.prompt, onBack)
                 is UiState.Offline -> Failure(page.prompt, onBack)
@@ -206,6 +211,7 @@ private fun TitlePage(
     artwork: @Composable (String?) -> Unit,
     backdrop: @Composable (String) -> Unit,
     thumbnail: @Composable (String) -> Unit,
+    episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)?,
 ) {
     val seasons = remember(detail.episodes) { seasonGroups(detail.episodes) }
     // DS-26: More like this opens on one line, and each Load more opens one more.
@@ -250,7 +256,7 @@ private fun TitlePage(
                 }
                 items(shown.size, key = { "${shown[it].index}:${shown[it].value.data}" }) { position ->
                     val (index, episode) = shown[position]
-                    EpisodeRow(episode, index, onAction)
+                    EpisodeRow(episode, index, onAction, episodeTrailing)
                 }
             }
             // DS-26, under the episodes: each only when it has something, never a header over nothing.
@@ -649,10 +655,16 @@ private fun SeasonButton(label: String, chosen: Boolean, onClick: () -> Unit) {
 
 /**
  * One episode: its number, its name and its second line. The row plays it; while the pointer or focus is on the row,
- * Play shows at its end too (E2), so a row says what pressing it does.
+ * Play shows at its end too (E2), so a row says what pressing it does. [trailing], the host's cell, sits between the
+ * words and Play (`KMP-109`).
  */
 @Composable
-private fun EpisodeRow(episode: DetailEpisode, index: Int, onAction: (DetailAction) -> Unit) {
+private fun EpisodeRow(
+    episode: DetailEpisode,
+    index: Int,
+    onAction: (DetailAction) -> Unit,
+    trailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)?,
+) {
     val colors = CloudStreamTheme.colors
     val typography = CloudStreamTheme.typography
     val hover = remember { MutableInteractionSource() }
@@ -700,6 +712,7 @@ private fun EpisodeRow(episode: DetailEpisode, index: Int, onAction: (DetailActi
                     )
                 }
             }
+            trailing?.invoke(episode, hovered || focused)
             // Holds the verb's width whether or not it shows, so the words never move under the pointer.
             Spacer(Modifier.width(DesktopDimens.ButtonHeight))
         }
