@@ -4230,3 +4230,24 @@ The assertion is unchanged.
   came first. That is why the flake is rare.
 - **Green:** the fix under the same two scratch changes passes 3 of 3. Without them, the class passes 10 `--rerun`
   runs of 10, and 10 more of 10 with every core kept busy by a CPU burner.
+
+## BUG-102, part 3 — `:feature:search`: the view-model tests slept past a debounce on the real clock · **low, test only** · 2026-11-11
+
+Part 3 of the sweep in `BUG-102`'s entry. `SearchViewModelTest` waited out the 200 ms debounce with a real 600 ms sleep,
+while the debounce ran on `Dispatchers.Default` against the real clock, and some view models ran on whatever `Main` was.
+That is `BUG-71`'s shape, fixed then for the suggestions only. `SearchViewModel` already takes a `debounceDispatcher`.
+
+**Fix:**
+- The test's view models debounce on its test dispatcher (`debounceDispatcher = dispatcher`), and `settle()` advances
+  the virtual clock (`advanceTimeBy`, then `runCurrent`). The two tests that never set `Main` now do, and the filter
+  tests' helper hands its block the `TestScope`.
+- **The `BUG-25` stress test stays on real threads**, because racing keystrokes on a multi-thread scope is what it is
+  for. Its two closing sleeps become a wait, bounded at 10 s, until no model is loading. A model stuck on loading still
+  fails it.
+
+**Proof,** `--no-build-cache`:
+- **Red:** with a scratch 700 ms block in the fake source's quick search, master's three debounce tests ("typing is
+  debounced…", "adding a letter and deleting it again…", "clearing the field and typing the same words again…") fail 3 of
+  3, twice.
+- **Green:** the same three under the same block, 2 of 2. The class (31) passes 10 `--rerun` runs of 10, then 10 of 10
+  with every core kept busy by a CPU burner.
