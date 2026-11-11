@@ -3,9 +3,14 @@ package com.lagradost.cloudstream4.net
 import com.lagradost.cloudstream4.extensions.repositories.RepositoryHttp
 import com.lagradost.cloudstream4.player.gateway.MediaGateway
 import com.lagradost.cloudstream4.search.posterHttpClient
+import java.io.IOException
 import java.net.InetAddress
 import java.net.InetSocketAddress
+import java.net.Proxy
+import java.net.ProxySelector
 import java.net.ServerSocket
+import java.net.SocketAddress
+import java.net.URI
 import java.util.concurrent.TimeUnit
 import java.util.concurrent.atomic.AtomicInteger
 import kotlin.concurrent.thread
@@ -97,6 +102,32 @@ class ConnectTimeAddressCheckTest {
             }
         } finally {
             gateway.close()
+        }
+    }
+
+    /**
+     * A SOCKS proxy is connected to by OkHttp with `Socket(proxy)`, never through the socket factory, so with one set
+     * the socket check would be skipped and the proxy asked for the target. The poster client uses no proxy whatever the
+     * JVM is set to: a default selector naming a SOCKS proxy on this machine is offered no connection, and neither is
+     * the private target.
+     */
+    @Test
+    fun `the poster client ignores a JVM proxy, so a SOCKS proxy cannot carry it past the check`() {
+        Listener().use { proxy ->
+            val before = ProxySelector.getDefault()
+            ProxySelector.setDefault(object : ProxySelector() {
+                override fun select(uri: URI?): List<Proxy> =
+                    listOf(Proxy(Proxy.Type.SOCKS, InetSocketAddress(InetAddress.getByName("127.0.0.1"), proxy.port)))
+
+                override fun connectFailed(uri: URI?, sa: SocketAddress?, ioe: IOException?) = Unit
+            })
+            try {
+                posterHttpClient().attempt("http://[::ffff:127.0.0.1]:${listener.port}/still.jpg")
+                assertEquals(0, proxy.accepted.also { Thread.sleep(SETTLE_MILLIS) }.get(), "the proxy was offered a connection")
+                assertEquals(0, acceptedAfterSettling(), "the target was offered a connection")
+            } finally {
+                ProxySelector.setDefault(before)
+            }
         }
     }
 

@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.extensions.repositories
 
 import com.lagradost.cloudstream4.detail.boundedImageClient
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
+import com.lagradost.cloudstream4.net.AddressCheckedSocketFactory
 import java.io.ByteArrayOutputStream
 import java.io.IOException
 import java.io.InputStream
@@ -98,6 +99,9 @@ class RepositoryHttp(
             // A proxy would be asked for the target by name, so the target is never resolved here and neither
             // address check below ever sees it. No JVM proxy setting applies to this client.
             .proxy(Proxy.NO_PROXY)
+            // BUG-105: each destination is checked before connecting too, as the other Mac clients do. An IP literal
+            // is refused before this by `refusedLiteral`; the DNS filter and the interceptor stay behind it.
+            .socketFactory(AddressCheckedSocketFactory(allow) { RefusedAddress() })
             .dns(
                 object : Dns {
                     override fun lookup(hostname: String): List<InetAddress> =

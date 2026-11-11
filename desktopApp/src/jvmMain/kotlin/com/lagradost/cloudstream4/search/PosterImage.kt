@@ -19,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import java.io.IOException
 import java.net.InetAddress
 import java.net.InetSocketAddress
+import java.net.Proxy
 import kotlinx.coroutines.withContext
 import com.lagradost.cloudstream4.detail.extensionImageLoader
 import com.lagradost.cloudstream4.detail.loadBackdrop
@@ -110,12 +111,16 @@ internal val posterLoader: ImageLoader get() = extensionImageLoader
  * - The [Dns] filter stops a name before any connection is made.
  * - The network interceptor checks the address actually connected to, before a request is sent, once
  *   per redirect hop: a layer behind the socket check.
+ * - No proxy, whatever the JVM is set to (`BUG-105`, `BUG-88`). OkHttp connects to a SOCKS proxy with
+ *   `Socket(proxy)`, not through the socket factory, and asks any proxy for the target by name, so with
+ *   one set neither the socket check nor the DNS filter would ever see the target.
  *
  * @param allow decides a connected address; replaceable so a test can use a loopback server.
  */
 internal fun posterHttpClient(
     allow: (InetSocketAddress) -> Boolean = { SandboxPolicy.isPublicAddress(it.address) },
 ): OkHttpClient = OkHttpClient.Builder()
+    .proxy(Proxy.NO_PROXY)
     .socketFactory(AddressCheckedSocketFactory(allow))
     .dns(
         object : Dns {

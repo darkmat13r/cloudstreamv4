@@ -4254,7 +4254,8 @@ and through the media gateway, which serves streams to libVLC, the Mac then conn
 - the repository client: none. It already refuses an address written as one before connecting (`refusedLiteral`).
 
 **Fix, two layers:**
-1. **At the socket** (`AddressCheckedSocketFactory`, on `posterHttpClient` and the media gateway's client): each
+1. **At the socket** (`AddressCheckedSocketFactory`, on `posterHttpClient`, the media gateway's client and the
+   repository client): each
    destination is checked by the client's own `allow` before it connects. That covers an address written as one, every
    address a name resolves to, and each redirect hop's, since every connection OkHttp makes goes through the socket
    factory. An unresolved destination is refused too. The DNS filter and the interceptor stay, behind it.
@@ -4264,17 +4265,24 @@ and through the media gateway, which serves streams to libVLC, the Mac then conn
    address that no reader agrees on (`08.0.0.1`, `4294967296`) is refused. A name stays a name: `cafe.be` and
    `0x7f.example` are kept.
 
-**A proxy.** With a proxy, the socket's destination is the proxy, never the target, so the socket check would judge
-the proxy. `posterHttpClient` sets none on master; `BUG-88` (`#340`) gives it `Proxy.NO_PROXY`, which the media
-gateway and the repository client already have. Until `#340` lands, a JVM proxy setting would make this check judge the
-proxy's address: refused if it is private (a local proxy), passed if it is public. Nothing sets one today.
+**No proxy** (the reviewer's should-fix). OkHttp connects to a SOCKS proxy with `Socket(proxy)`, not through the
+socket factory, so with `socksProxyHost` or the system's proxies set the socket check was skipped entirely, and any
+proxy is asked for the target by name, past the DNS filter too. `posterHttpClient` now sets `Proxy.NO_PROXY`, as the
+media gateway and the repository client already did. Measured: with a default selector naming a SOCKS proxy on this
+Mac, the proxy was offered a connection before the line, and neither it nor the private target after. `BUG-88`
+(`#340`) set the same line, so it drops it when it rebases.
+
+**Not refused, on purpose.** The outcome rests on `SandboxPolicy.isPublicAddress`, which since `#358` reads the
+IPv4-mapped and IPv4-compatible forms as the IPv4 address inside. NAT64 (`64:ff9b::/96`) and 6to4 (`2002::/16`) with a
+private IPv4 inside are not refused: they go to a remote translator, never to this Mac's own network.
 
 **Tests** (run, all local):
-- `ConnectTimeAddressCheckTest` (desktopApp, 4): the poster client, the repository client and the media gateway are
+- `ConnectTimeAddressCheckTest` (desktopApp, 5): the poster client, the repository client and the media gateway are
   each pointed at 127.0.0.1 in five spellings (`127.0.0.1`, `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]`, `2130706433`,
   `0x7f000001`), over http and https. **0 connections** are offered for any. An address the check allows is still
-  connected to. **Red (run)** on master: the poster client and the gateway were each offered a connection, for
-  `http://127.0.0.1:…`.
+  connected to. With a JVM SOCKS proxy set, neither the proxy nor the target is offered one. **Red (run)** on master:
+  the poster client and the gateway were each offered a connection, for `http://127.0.0.1:…`; and before the no-proxy
+  line, the SOCKS proxy was.
 - `HostProtocolTest`, +1: sixteen private spellings refused by `httpUrlOrNull` and `httpsUrlOrNull`. Public ones
   (`93.184.216.34`, `1572395042`, an IPv6 address) and lookalike names are kept. A host's details frame naming three of
   them for its poster, backdrop and cast photo reaches the page with none. **Red (run)** on master: the first,
