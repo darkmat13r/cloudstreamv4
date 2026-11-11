@@ -19,7 +19,22 @@ import org.junit.Assume.assumeTrue
  * main class, so it lives under exactly the policy a media host is given.
  */
 object MachLookupProbe {
-    val SERVICES = listOf("com.apple.trustd", "com.apple.trustd.agent", ALLOWED)
+    /**
+     * What no media host may look up: the certificate services (audit A-1), the rest of the security services, the
+     * mDNS resolver, and the system configuration services (`BUG-96`, audit A-10).
+     */
+    val REFUSED = listOf(
+        "com.apple.trustd",
+        "com.apple.trustd.agent",
+        "com.apple.ocspd",
+        "com.apple.SecurityServer",
+        "com.apple.securityd.xpc",
+        "com.apple.dnssd.service",
+        "com.apple.SystemConfiguration.configd",
+        "com.apple.SystemConfiguration.DNSConfiguration",
+    )
+
+    val SERVICES = REFUSED + ALLOWED
 
     /** A service `system.sb` allows and the media host keeps: the control that lookups work at all in there. */
     const val ALLOWED = "com.apple.system.notification_center"
@@ -67,25 +82,24 @@ class MediaHostServicesTest {
     }
 
     @Test
-    fun `outside any sandbox the certificate services are there, so the probe can tell`() {
+    fun `outside any sandbox every service it checks is there, so the probe can tell`() {
         assumeTrue("macOS only", System.getProperty("os.name").startsWith("Mac"))
-        assertEquals(0, MachLookupProbe.lookUp("com.apple.trustd"))
+        MachLookupProbe.REFUSED.forEach { assertEquals(0, MachLookupProbe.lookUp(it), it) }
     }
 
     @Test
-    fun `a stream's media host cannot look up the certificate services`() {
+    fun `a stream's media host cannot look up any of them`() {
         val port = ServerSocket(0, 1, InetAddress.getLoopbackAddress()).use { it.localPort }
-        val seen = probe(gatewayPort = port)
-        assertEquals(0, seen[MachLookupProbe.ALLOWED], "the probe did not run, or lookups fail for everything: $seen")
-        assertNotEquals(0, seen["com.apple.trustd"], "trustd was found: $seen")
-        assertNotEquals(0, seen["com.apple.trustd.agent"], "trustd.agent was found: $seen")
+        assertRefused(probe(gatewayPort = port))
     }
 
     @Test
     fun `a file's media host cannot look them up either`() {
-        val seen = probe(gatewayPort = null)
+        assertRefused(probe(gatewayPort = null))
+    }
+
+    private fun assertRefused(seen: Map<String, Int>) {
         assertEquals(0, seen[MachLookupProbe.ALLOWED], "the probe did not run, or lookups fail for everything: $seen")
-        assertNotEquals(0, seen["com.apple.trustd"], "trustd was found: $seen")
-        assertNotEquals(0, seen["com.apple.trustd.agent"], "trustd.agent was found: $seen")
+        MachLookupProbe.REFUSED.forEach { assertNotEquals(0, seen[it] ?: 0, "$it was found: $seen") }
     }
 }

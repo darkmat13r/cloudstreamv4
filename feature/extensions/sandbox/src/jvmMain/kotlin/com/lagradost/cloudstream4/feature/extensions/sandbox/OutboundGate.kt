@@ -42,6 +42,9 @@ class OutboundGate(
 
     val port: Int get() = server.localPort
 
+    /** Tunnels open now: what [MAX_CONNECTIONS] bounds. For a test. */
+    internal val openTunnels: Int get() = MAX_CONNECTIONS - slots.availablePermits()
+
     /** Names and addresses this host asked for, allowed or not. Never a path: the proxy does not see one. */
     val contacted: Set<String> get() = hosts.toSet()
 
@@ -77,8 +80,14 @@ class OutboundGate(
             client.soTimeout = wake
             remote.soTimeout = wake
             val crossed = AtomicLong(System.nanoTime())
-            val back = thread(isDaemon = true, name = "outbound-gate-back") { pump(remote.getInputStream(), output, client, crossed) }
-            pump(input, remote.getOutputStream(), remote, crossed)
+            // Idle closes both ends, not only the one it read from (`BUG-96`): a write the other way may be blocked on a
+            // peer that stopped reading, and only closing its socket wakes it. Without that, the tunnel never ended.
+            val cut: () -> Unit = {
+                runCatching { client.close() }
+                runCatching { remote.close() }
+            }
+            val back = thread(isDaemon = true, name = "outbound-gate-back") { pump(remote.getInputStream(), output, client, crossed, cut) }
+            pump(input, remote.getOutputStream(), remote, crossed, cut)
             back.join()
         }
     }
@@ -125,15 +134,22 @@ class OutboundGate(
         return null
     }
 
-    /** Copies until the end, a failure, or [crossed] (shared by both directions) is older than the idle timeout. */
-    private fun pump(from: InputStream, to: OutputStream, target: Socket, crossed: AtomicLong) {
+    /**
+     * Copies until the end, a failure, or [crossed] (shared by both directions) is older than the idle timeout, when it
+     * [cut]s the whole tunnel. A write is not timed by itself: a write blocked on a peer that stopped reading crosses
+     * nothing, so the other direction finds the tunnel idle and [cut] ends it.
+     */
+    private fun pump(from: InputStream, to: OutputStream, target: Socket, crossed: AtomicLong, cut: () -> Unit) {
         runCatching {
             val buffer = ByteArray(BUFFER_BYTES)
             while (true) {
                 val read = try {
                     from.read(buffer)
                 } catch (_: SocketTimeoutException) {
-                    if ((System.nanoTime() - crossed.get()) / NANOS_PER_MILLI >= idleTimeoutMillis) break
+                    if ((System.nanoTime() - crossed.get()) / NANOS_PER_MILLI >= idleTimeoutMillis) {
+                        cut()
+                        break
+                    }
                     continue
                 }
                 if (read < 0) break

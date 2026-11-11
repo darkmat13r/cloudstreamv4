@@ -2,6 +2,7 @@ package com.lagradost.cloudstream4.feature.extensions.sandbox
 
 import java.io.File
 import kotlin.test.Test
+import kotlin.test.assertEquals
 import kotlin.test.assertFalse
 import kotlin.test.assertTrue
 
@@ -59,5 +60,31 @@ class MediaHostProfileTest {
         val profile = render(gatewayPort = 40_124, resolver = true)
         assertTrue("mDNSResponder" in profile)
         assertFalse("\"*:*\"" in profile)
+        // It resolves names itself, so it keeps the configuration services (`BUG-96`, A-10).
+        assertTrue("com.apple.SystemConfiguration.configd" in profile, profile)
+    }
+
+    /**
+     * `BUG-96`: the certificate services are denied for every host, the plugin host included, last so nothing above wins;
+     * and only a host with the network and the resolver gets the configuration services (A-10). The kernel's answer for
+     * the same rules is `MediaHostServicesTest`'s, from inside a real media host.
+     */
+    @Test
+    fun `every host is denied the certificate services, and only one that resolves names gets the configuration ones`() {
+        val plugin = render(gatewayPort = 40_126, resolver = true)
+        val converter = SeatbeltProfile.render(File("/usr/bin/java"), emptyList(), emptyList(), writable, network = false)
+        val behindGateway = render(gatewayPort = 40_127, resolver = false)
+        listOf(plugin, converter, behindGateway).forEach { profile ->
+            // The deny is the profile's final form: nothing after it, so no later rule can allow one back.
+            val denied = profile.trimEnd().substringAfterLast("(deny mach-lookup")
+            assertTrue(denied.trimEnd().endsWith(")"), profile)
+            val rest = denied.trimEnd().removeSuffix(")").lines().map { it.trim() }.filter { it.isNotEmpty() }
+            assertTrue(rest.all { it.startsWith("(global-name \"") && it.endsWith("\")") }, "only names after the deny: $rest")
+            assertEquals(SeatbeltProfile.CERTIFICATE_SERVICES.map { "(global-name \"$it\")" }, rest, profile)
+            assertFalse("dnssd" in denied || "SystemConfiguration" in denied, "the resolver's services are not denied here")
+        }
+        listOf(converter, behindGateway).forEach { profile ->
+            assertFalse("SystemConfiguration" in profile, profile)
+        }
     }
 }

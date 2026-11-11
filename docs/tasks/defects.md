@@ -4297,3 +4297,46 @@ JNA versions (a few hundred KB each) are not cleaned yet; later.
 
 **Still open in BUG-96,** for part 2: A-10, one certificate-services rule for every plugin host, runtime refusals in
 `MediaHostServicesTest`, and a write timeout in `OutboundGate`.
+## BUG-96, part 2 — System services the hosts had no use for, and a tunnel a blocked write could hold · **medium, security** · measured 2026-11-11
+
+The rest of `BUG-96` (part 1, audit A-9, is its own PR).
+
+**A-10: configuration services only for a host that resolves names.** `MACH_SERVICES` gave every host
+`com.apple.SystemConfiguration.configd` and `.DNSConfiguration`. Through configd's store a host can read the
+computer's name and its interface addresses, which the sysctl rules otherwise hide. Now only a profile with the
+network and the resolver gets them, which is the plugin host. The converter, the file host and the media host behind
+its gateway do not.
+
+**The certificate services, denied for every host.** The media hosts and the converter already denied
+`com.apple.trustd` and `.agent` by name (audit A-1). The plugin host did not, because `system.sb` allows them. It has no use
+for them, since the JVM's TLS checks against its own trust store. `render` now always writes the deny, last, and the
+`denyCertificateServices` flag is gone.
+
+**Review (`#376`): the deny is explicit and complete, and pinned last.** The final `(deny mach-lookup …)` now names
+all five security services, `trustd`, `trustd.agent`, `ocspd`, `SecurityServer` and `securityd.xpc`, so they are refused
+whatever `system.sb` allows in a given macOS, not only because nothing here allows them. The resolver's services
+(`dnssd`, `configd`, `DNSConfiguration`) are not in it: the plugin host needs them, under the resolver gate.
+`mediaHostRules` lost its `tls` parameter, a default of `true` no host used. `MediaHostProfileTest` checks the deny is
+the profile's end, holding only those five names. Measured once, then reverted: inside a real plugin host under this
+profile, an https fetch of example.com returned 200 over TLS 1.3, and a name resolved. The JVM's TLS needs none of these
+services.
+
+**`OutboundGate`: a write the far end never reads.** Idle shut only the side its own read was on (`shutdownOutput`),
+so a write the other way, blocked on a peer that had stopped reading, never woke. The tunnel, its two threads and its
+slot were held for good. Idle now closes both sockets, which wakes the blocked write. An end of stream still half-closes
+as before. (#358's review: the pump's `to.write` had no time limit; idle is now that limit.)
+
+**Proof,** all local (CI is off), `--no-build-cache`:
+- **A-10, at the kernel:** `MediaHostServicesTest`'s probe looks services up with `bootstrap_look_up` from inside a real
+  media host, for a stream and for a file.
+  - **Refused, both hosts:** `trustd`, `trustd.agent`, `ocspd`, `SecurityServer`, `securityd.xpc`, `dnssd.service`,
+    `configd` and `DNSConfiguration`, while the control (`notification_center`) is found. The same probe outside any
+    sandbox finds all eight, so a refusal means something.
+  - **Red:** with master's profile code, both fail: "com.apple.SystemConfiguration.configd was found". The other six were
+    already refused on master (1100), and are kept as guards.
+- **The plugin host:** its profile, the converter's and the gateway media host's all end with the certificate deny,
+  and only the plugin host's names the configuration services (`MediaHostProfileTest`). The kernel's answer for that
+  same `render` rule is the media hosts' above. The plugin host has no JNA probe of its own.
+- **The gate:** `OutboundGateTest` "a write the far end never reads is cut…": a far end that accepts and never reads, a
+  32 MiB write, a 600 ms idle limit, and the tunnel's slot must come back. Red without the cut: it never does. With it,
+  all 9 gate tests pass, `BUG-94`'s idle and one-way tests among them.

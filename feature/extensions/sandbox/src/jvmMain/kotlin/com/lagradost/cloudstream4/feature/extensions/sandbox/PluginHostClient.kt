@@ -50,10 +50,9 @@ class HostLauncher internal constructor(
         lowered: Boolean = false,
         input: ProcessBuilder.Redirect? = null,
         mediaGatewayPort: Int? = null,
-        denyCertificateServices: Boolean = false,
     ): Process {
         val profile =
-            profile(readOnlyInputs, writable, network, extraRules, gate, mediaGatewayPort, denyCertificateServices)
+            profile(readOnlyInputs, writable, network, extraRules, gate, mediaGatewayPort)
         val sandboxed = listOf(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, executable.path) + prefixArguments + arguments
         // The same process all the way down, through `exec`, so what this returns is the JVM. A shell because a
         // limit needs one, and outside the sandbox, because the sandbox would not let it run.
@@ -77,12 +76,10 @@ class HostLauncher internal constructor(
         extraRules: List<String>,
         gate: OutboundGate?,
         mediaGatewayPort: Int?,
-        denyCertificateServices: Boolean,
     ): String = SeatbeltProfile.render(
         executable, readable, readOnlyInputs, writable, network, extraRules,
         gatewayPort = gate?.port ?: mediaGatewayPort,
         resolver = mediaGatewayPort == null,
-        denyCertificateServices = denyCertificateServices,
     )
 
     /** The policy [startMediaHost] gives its host, for a test (`KMP-113`). [nativeLibraries] as [JnaDispatch.prepare] makes it. */
@@ -91,10 +88,9 @@ class HostLauncher internal constructor(
             readOnlyInputs = listOf(File(nativeLibraries, JnaDispatch.LIBRARY)),
             writable = writable,
             network = gatewayPort != null,
-            extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, nativeLibraries, audio = !silent, tls = false),
+            extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, nativeLibraries, audio = !silent),
             gate = null,
             mediaGatewayPort = gatewayPort,
-            denyCertificateServices = true,
         )
 
     /**
@@ -131,7 +127,7 @@ class HostLauncher internal constructor(
             // A host behind its gateway reaches that port and nothing else. A host that plays a file reaches nothing:
             // it has its descriptor, and a crafted file that took over its demuxer would find no network (KMP-113).
             network = gatewayPort != null,
-            extraRules = SeatbeltProfile.mediaHostRules(app, dispatch, audio = !silent, tls = false),
+            extraRules = SeatbeltProfile.mediaHostRules(app, dispatch, audio = !silent),
             // JNA loads its native part from [dispatch] and never unpacks one into [writable] (`BUG-96`, A-9).
             jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} -Djna.nounpack=true" +
                 dispatch?.let { " -Djna.boot.library.path=${it.path}" }.orEmpty() +
@@ -139,7 +135,6 @@ class HostLauncher internal constructor(
                 if (input != null) " -D$FILE_PROPERTY=true" else "",
             input = input,
             mediaGatewayPort = gatewayPort,
-            denyCertificateServices = true,
         )
     }
 
@@ -571,7 +566,6 @@ class PluginHostClient internal constructor(
                     readOnlyInputs = listOf(cs3),
                     writable = outputDir,
                     network = false,
-                    denyCertificateServices = true,
                 )
                 process.outputStream.close()
                 val errors = HostStderr()
