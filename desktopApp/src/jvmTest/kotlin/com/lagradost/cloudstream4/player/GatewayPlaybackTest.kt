@@ -60,10 +60,14 @@ class GatewayPlaybackTest {
     private val opened = mutableListOf<AutoCloseable>()
     private var player: VlcPlayer? = null
 
+    /** JNA's copy for the host, in a scratch directory, never the real `~/.cloudstream4/.jna` (`BUG-96`). */
+    private val libraries = java.nio.file.Files.createTempDirectory("gateway-playback-jna").toFile()
+
     @AfterTest
     fun tearDown() {
         player?.release()
         opened.forEach { runCatching { it.close() } }
+        libraries.walkBottomUp().forEach { it.setWritable(true); it.delete() }
     }
 
     private fun counting(type: String, address: InetAddress = InetAddress.getLoopbackAddress(), body: (Int) -> ByteArray) =
@@ -118,6 +122,7 @@ class GatewayPlaybackTest {
                     .also { gateway = it }
             },
             resolve = publicLookup,
+            libraries = libraries,
         ).also { assumeTrue("no sandboxed player here (VLC missing, or no sandbox-exec)", it != null) }
         assertTrue(player!!.play("http://site.example:${site.port}/v.m3u8", null, null, null))
         // Positive control: libVLC reached the playlist, through the gateway.
@@ -143,6 +148,7 @@ class GatewayPlaybackTest {
             silent = true,
             startGateway = { MediaGateway.start(null, null, allow = { it.port == 0 || it.port == site.port }, lookup = names) },
             resolve = publicLookup,
+            libraries = libraries,
         ).also { assumeTrue("no sandboxed player here (VLC missing, or no sandbox-exec)", it != null) }
         assertTrue(player!!.play("http://site.example:${site.port}/v.m3u8", null, null, null))
         // Positive control: libVLC fetched the playlist through the gateway, so it has the url it would try.

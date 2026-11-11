@@ -521,7 +521,7 @@ class SandboxEnforcementTest {
             readOnlyInputs = emptyList(),
             writable = writable,
             network = true,
-            extraRules = SeatbeltProfile.mediaHostRules(vlc, writable),
+            extraRules = SeatbeltProfile.mediaHostRules(vlc, File(root, "jna").apply { mkdirs() }),
         )
 
         fun cat(file: File): Pair<Int, String> {

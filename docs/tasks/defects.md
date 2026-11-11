@@ -4252,3 +4252,48 @@ The assertion is unchanged.
   came first. That is why the flake is rare.
 - **Green:** the fix under the same two scratch changes passes 3 of 3. Without them, the class passes 10 `--rerun`
   runs of 10, and 10 more of 10 with every core kept busy by a CPU burner.
+
+## BUG-96, part 1 — The media host's own directory was both writable and mappable as code · **high, security** · measured 2026-11-11
+
+Audit A-9 (`#351`). `SeatbeltProfile.render` denies `file-map-executable` on a host's writable directory, so nothing a
+host writes runs as native code. `mediaHostRules` allowed it there again, and the later rule wins, because JNA
+unpacked `libjnidispatch` into the host's temp directory, which is that directory. So the media host, which parses
+untrusted media, was the one host that could write native code and run it.
+
+**Fix:**
+- **A read-only copy:** the app copies JNA's native part once, from the JNA jar on its own classpath, into a directory
+  no host can write (`JnaDispatch`). The app uses `~/.cloudstream4/.jna`, beside `.media-host` and never in it, so the
+  sweep of unused host directories never touches it. The directory is named by the library's hash, and the file is
+  checked against that hash each launch and replaced if it differs. The file is read-only.
+- **The host:** gets `jna.nounpack=true` and `jna.boot.library.path` for that directory, and may map code only from
+  VLC's bundle and there. `render`'s deny on its own directory now stands for the media host too.
+- **Where this process has no JNA** (the sandbox module's own tests), the host has none to map, and `jna.nounpack`
+  still keeps it from unpacking one into its directory.
+
+**Proof,** all local (CI is off), `--no-build-cache`:
+- **Red:** `SandboxEscapeAttemptTest` "through a real media host" now holds the media host to the same rule as every
+  plugin host: a library dropped in its own directory must not load. With the old rule put back (scratch), it fails:
+  "got through … load a dropped native library=allowed". With the fix: `UnsatisfiedLinkError`, refused.
+- **JNA still works in the host:** `MediaHostServicesTest`'s probe calls into JNA from inside a real media host. It passes, so
+  JNA loaded from the read-only copy.
+- **Real playback, with a scratch home:** the packaged app's `--check-download-playback` on a 10 s test pattern made
+  with ffmpeg gave 36 frames at 640x360 in 5 s, then a seek to 0.75 landed at 9,330 ms and 53 frames more. Exit 0.
+  `.jna` was written in the scratch home, read-only, and the real `~/.cloudstream4` was not touched. The stream path,
+  behind the gateway, is `GatewayPlaybackTest`'s, in the gates.
+- **The profile's text:** `MediaHostProfileTest` checks that the map-executable allow names JNA's directory and never
+  the writable one.
+
+**Review (`#375`):** `GatewayPlaybackTest` passes a scratch directory for JNA's copy (`createWith(libraries = …)`), so
+no test writes `.jna` into the real `~/.cloudstream4`. A `.jna` this PR's first gate run left there was removed.
+
+**Not a gap, so the next audit need not raise it:** between `prepare()` checking the copy's hash and the host loading
+it there is a window. Only a process outside every sandbox, running as the same user, can write `~/.cloudstream4/.jna`
+in it, and such a process can already change the app itself, so it is outside the threat model. Copies left by earlier
+JNA versions (a few hundred KB each) are not cleaned yet; later.
+
+**Found, for a later small PR:** `GatewayPlaybackTest` still starts its player under the real
+`~/.cloudstream4/.media-host`, as it did before this PR, against the rule that tests never touch the owner's real
+`~/.cloudstream4`. It should run under a scratch home entirely.
+
+**Still open in BUG-96,** for part 2: A-10, one certificate-services rule for every plugin host, runtime refusals in
+`MediaHostServicesTest`, and a write timeout in `OutboundGate`.
