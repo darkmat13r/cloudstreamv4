@@ -767,6 +767,37 @@ class DetailScreenTest {
         assertEquals(STARTED_RULE, started.last - stillLeft + 1, "19 of 48 minutes, snapped to the 4 step")
     }
 
+    /**
+     * The PM's ruling on `#374`: a season with no still keeps the compact row, so a host that sends none (the Mac's,
+     * until `KMP-116`) draws the page as before. No still column, no ground box, nothing asked for.
+     */
+    @Test
+    fun `a season with no still keeps the compact 56 row and draws no still column (KMP-115)`() {
+        val asked = mutableListOf<String>()
+        val scene = page(loaded(series), thumbnail = { url -> asked += url })
+        val one = scene.boundsOf("1")
+        val two = scene.boundsOf("2")
+        val image = scene.bitmap()
+        scene.close()
+        assertEquals(COMPACT_ROW, (two.top - one.top).toInt(), "row pitch")
+        assertNull(image.runOf(one.center.y.toInt(), cloudStreamDarkColors().surface, to = one.left.toInt()), "no still ground")
+        assertTrue(asked.isEmpty(), "no image asked for")
+    }
+
+    /** One still in the season is enough: every row of it takes the still column, and the others draw the ground. */
+    @Test
+    fun `one still in the season gives every row of it the still column (KMP-115)`() {
+        val one = series.copy(episodes = listOf(episodes[0].copy(stillUrl = "https://img.example/s1e1.jpg")) + episodes.drop(1))
+        val scene = page(loaded(one), thumbnail = { Box(Modifier.fillMaxSize().background(STILL)) })
+        val first = scene.boundsOf("1")
+        val second = scene.boundsOf("2")
+        val image = scene.bitmap()
+        scene.close()
+        assertEquals(EPISODE_ROW, (second.top - first.top).toInt(), "row pitch")
+        val ground = assertNotNull(image.runOf(second.center.y.toInt(), cloudStreamDarkColors().surface, to = second.left.toInt()))
+        assertEquals(STILL_WIDTH, ground.last - ground.first + 1, "the second row's still ground")
+    }
+
     @Test
     fun `a row with no still draws the still's ground, and its image is never asked for (KMP-115)`() {
         val asked = mutableListOf<String>()
@@ -912,6 +943,9 @@ class DetailScreenTest {
 
         /** Board E1's row, in pixels at the scene's density of 1: 72 tall, a 96 by 56 still, a 4 rule, the 16 gap. */
         const val EPISODE_ROW = 72
+
+        /** The row in a season with no still: the 56 it was before `KMP-115`. */
+        const val COMPACT_ROW = 56
         const val STILL_WIDTH = 96
         const val STILL_HEIGHT = 56
         const val RULE = 4

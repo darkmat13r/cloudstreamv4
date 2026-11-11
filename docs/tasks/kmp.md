@@ -9347,8 +9347,14 @@ change is inside a private function.
   `episodeRuleWidth` long: the whole still on a watched episode; on a started one the share watched, snapped to the 4
   step and never less than one step; none otherwise. Drawn inside the still's clip, a full rule's bottom-right corner
   follows the still's curve, where the board's separate box squares it.
-- The row is 72 (`EpisodeRowHeight` 56 -> 72): the still and `RelatedGap` above and below. The still is 16
-  (`GroupGap`) before the number.
+- The row is 72 (`EpisodeRowStillHeight`): the still and `RelatedGap` above and below. The still is 16 (`GroupGap`)
+  before the number.
+- **Only in a season with a still** (the PM's ruling on the review, 2026-11-11). Until `KMP-116`, the Mac's host sends
+  no still, and every row would draw an empty box and grow to 72: a page that reads as broken images. So the still
+  column, its rule and the 72 row show only when the season on screen has at least one episode with a still. In one
+  with none, the row is the compact 56 (`EpisodeRowHeight`, unchanged) with no still column: with no still, all 17 of
+  the page's renders are byte-identical to the row's before. A row with no still in a season that has some still
+  draws the ground, as E1 does.
 - **Not changed, a gap for `KMP-58`'s owner** (the PM's call): E1 puts the title 32 after the number's left edge; the
   built row puts it 40 after (a 24 right-aligned number cell, then the 16 gap). Left as built.
 - **Tests** (`DetailScreenTest`, +3, pixels and unmerged semantics bounds, run):
@@ -9360,5 +9366,8 @@ change is inside a private function.
     to the step, the started row's rule is 38 where 40 is expected.
   - `KMP-63`'s pixel test now allows the stills too, since the watch state draws the rule there as well. It is
     otherwise unchanged and passes on the old row and the new.
+  - +2 for the gating: a season with no still keeps 56 rows, no still ground and asks for no image (**red (run)**
+    before the gating: "row pitch expected 56 but was 72"); one still in a season gives every row of it the column,
+    the others the ground.
   - Render: `detail-e1-episode-stills`. Its fixture's third row is the one Resume plays, so the row and Resume agree.
 
