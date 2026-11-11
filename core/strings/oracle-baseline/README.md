@@ -120,7 +120,7 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
-## Move number set at rebase, 2026-11-11 — `BUG-91`, 1 new plural for the minutes left on an episode row
+## Thirty-seventh move, 2026-11-11 — `BUG-91`, 1 new plural for the minutes left on an episode row
 
 **The ordinal is set when this rides a train**, regenerated from the live generator on that train's master with its
 other moves. The counts below are against master `b723bf154` with `#364`, `#365` and `#367` on it, so after `I18N-27`.
@@ -145,7 +145,7 @@ there in the same order, and every added line names the new key. `report.txt` mo
 `app/src/main/res`: 62 lines added, 0 removed; `app/api/classes-jar.api` gains `R$plurals.episode_minutes_left` and
 nothing else.
 
-## Move number set at rebase, 2026-11-11 — `I18N-27`, 1 new key for a refused episode download (`KMP-109`)
+## Thirty-sixth move, 2026-11-11 — `I18N-27`, 1 new key for a refused episode download (`KMP-109`)
 
 **The ordinal is set when this rides a train.** It is regenerated from the live generator on that train's master, with
 the train's other moves, and the heading gets its number then. The counts below are against master `b723bf154`
