@@ -654,8 +654,14 @@ class DesktopDownloads internal constructor(
             loadFailed = true
             log("the downloads file could not be read: ${e.javaClass.name}")
         } finally {
-            loaded.complete(Unit)
-            publish()
+            // BUG-103: the view first, then the readers. The other way round, a reader released by `loaded` could build
+            // its first view from the empty one before this load was published: a brief "no downloads". Released
+            // whatever happens, so a publish that threw would leave no reader waiting for ever.
+            try {
+                publish()
+            } finally {
+                loaded.complete(Unit)
+            }
         }
     }
 

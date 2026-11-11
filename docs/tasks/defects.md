@@ -4421,3 +4421,23 @@ That is `BUG-71`'s shape, fixed then for the suggestions only. `SearchViewModel`
   3, twice.
 - **Green:** the same three under the same block, 2 of 2. The class (31) passes 10 `--rerun` runs of 10, then 10 of 10
   with every core kept busy by a CPU burner.
+
+## BUG-103 — A new downloads host could show "no downloads" for a moment before its list · **low, visual** · measured 2026-11-11
+
+**Found** by `BUG-102`'s sweep. `DesktopDownloads.load()` ended with `loaded.complete(Unit)` and then `publish()`. A
+reader released by `loaded` (every `contents` and `series` flow waits on it) builds its first view straight away. In
+the gap it built from the empty view, so the first thing the Downloads screen could get on a launch with downloads was
+an empty list, then the real one.
+
+**Fix:** `publish()` first, then `loaded.complete(Unit)`. `loaded` is awaited only in `throttled()`, and `ticks` is a
+state flow, so a reader's first `build()` now sees the loaded view and cannot miss its tick. `fileOf`, `contentsNow`
+and `seriesNow` read the view without waiting on `loaded`, so they only see the loaded state sooner. A load that
+fails publishes the same empty view as before, and the flows still throw on `loadFailed`.
+
+**Proof,** all local (CI is off), `--no-build-cache`:
+- **A new test**, "a new host's first view already holds what it loaded": it downloads a film, starts a new host, and
+  takes its first view with `{ true }`.
+- **Red:** master's order with a scratch 300 ms sleep between `complete` and `publish`: it fails 2 of 2, the first view
+  empty.
+- **Green:** the new order with the same sleep between `publish` and `complete`: 2 of 2. `DesktopDownloadsTest` and
+  `DownloadsHostTest` then pass 10 `--rerun` runs of 10.
