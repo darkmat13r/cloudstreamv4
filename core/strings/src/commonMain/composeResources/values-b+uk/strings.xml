@@ -68,6 +68,7 @@
 <string name="account_use_pin">Використати PIN-код</string>
 <string name="detail_load_failed_body">Джерело може бути недоступним.</string>
 <string name="detail_load_failed_headline">Не вдалося відкрити цю назву</string>
+<string name="download_not_available_here">Тут недоступно</string>
 <plurals name="downloads_active"><item quantity="one">%d активне завантаження</item><item quantity="few">%d активні завантаження</item><item quantity="many">%d активних завантажень</item><item quantity="other">%d активних завантажень</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">завантажується: %d</item><item quantity="few">завантажується: %d</item><item quantity="many">завантажується: %d</item><item quantity="other">завантажується: %d</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">у черзі: %d</item><item quantity="few">у черзі: %d</item><item quantity="many">у черзі: %d</item><item quantity="other">у черзі: %d</item></plurals>

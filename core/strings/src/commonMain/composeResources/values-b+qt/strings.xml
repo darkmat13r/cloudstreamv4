@@ -68,6 +68,7 @@
 <string name="account_use_pin">oog aah ooh</string>
 <string name="detail_load_failed_body">uhaauauau ahuuouaha oooohhaaaghh.</string>
 <string name="detail_load_failed_headline">ahooo uuhh ahhhaauugghh oouuh</string>
+<string name="download_not_available_here">aah ooh-ooh</string>
 <plurals name="downloads_count_downloading"><item quantity="other">%d ouuhhuhooh</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d uuuugg</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="other">oooooah %d ouuhhuhooh?</item></plurals>

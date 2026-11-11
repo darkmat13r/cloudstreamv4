@@ -68,6 +68,7 @@
 <string name="account_use_pin">Isticmaal PIN</string>
 <string name="detail_load_failed_body">Isha waxaa laga yaabaa inaysan diyaar ahayn.</string>
 <string name="detail_load_failed_headline">Cinwaankan lama furi karo</string>
+<string name="download_not_available_here">Halkan lagama heli karo</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d ayaa la soo dejinayaa</item><item quantity="other">%d ayaa la soo dejinayaa</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d safka ku jira</item><item quantity="other">%d safka ku jira</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Ma tirtirtaa %d soo dejin?</item><item quantity="other">Ma tirtirtaa %d soo dejin?</item></plurals>

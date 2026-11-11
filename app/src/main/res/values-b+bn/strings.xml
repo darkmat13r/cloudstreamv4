@@ -193,6 +193,7 @@
 <string name="download_canceled">"ডাউনলোড বাদ"</string>
 <string name="download_done">"ডাউনলোড শেষ"</string>
 <string name="download_failed">"ডাউনলোড ব্যর্থ"</string>
+<string name="download_not_available_here">"এখানে উপলব্ধ নয়"</string>
 <string name="download_path_pref">"ডাউনলোডের পথ"</string>
 <string name="download_paused">"ডাউনলোড স্থগিত"</string>
 <string name="download_queue">"ডাউনলোড তালিকা"</string>

@@ -182,6 +182,7 @@
 <string name="download_canceled">"دانلود لغو شد"</string>
 <string name="download_done">"داتلود پایان یافت"</string>
 <string name="download_failed">"دانلود ناموفق بود"</string>
+<string name="download_not_available_here">"اینجا در دسترس نیست"</string>
 <string name="download_path_pref">"راه دانلود"</string>
 <string name="download_paused">"دانلود متوقف شده"</string>
 <string name="download_started">"دانلود آغاز شد"</string>

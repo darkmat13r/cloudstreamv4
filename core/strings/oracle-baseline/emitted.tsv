@@ -318,6 +318,7 @@ values	string	download_done	-	Download Done
 values	string	download_episode_range	-	Do you want to download episode %s?
 values	string	download_failed	-	Download Failed
 values	string	download_format	-	%1$s - %2$s
+values	string	download_not_available_here	-	Not available here
 values	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values	string	download_path_pref	-	Download path
 values	string	download_paused	-	Download Paused
@@ -1375,6 +1376,7 @@ values-b+af	string	download	-	Laai af
 values-b+af	string	download_canceled	-	Aflaai gekanselleer
 values-b+af	string	download_done	-	Klaar Afgelaai
 values-b+af	string	download_failed	-	Aflaai het misluk
+values-b+af	string	download_not_available_here	-	Nie hier beskikbaar nie
 values-b+af	string	download_paused	-	Aflaai op rus
 values-b+af	string	download_started	-	Aflaai het begin
 values-b+af	string	download_storage_text	-	Interne Berging
@@ -1895,6 +1897,7 @@ values-b+am	string	download	-	ማውረጃ
 values-b+am	string	download_canceled	-	ማውረድ ተቋርጧል
 values-b+am	string	download_done	-	ማውረድ ተከናውኗል
 values-b+am	string	download_failed	-	ማውረድ አልተሳካም
+values-b+am	string	download_not_available_here	-	እዚህ አይገኝም
 values-b+am	string	download_paused	-	ማውረድ ቆሟል
 values-b+am	string	download_started	-	ማውረድ ተጀምሯል
 values-b+am	string	download_storage_text	-	ውስጣዊ ማከማቻ
@@ -2571,6 +2574,7 @@ values-b+apc	string	download_canceled	-	نلغى التنزيل
 values-b+apc	string	download_done	-	خُلِص التنزيل
 values-b+apc	string	download_episode_range	-	بدك تنزل الحلقة %s؟
 values-b+apc	string	download_failed	-	فِشِل التنزيل
+values-b+apc	string	download_not_available_here	-	مش متوفر هون
 values-b+apc	string	download_parallel_settings_des	-	كم شغلة مختلفة فيها تتنزل ب نفس الوقت
 values-b+apc	string	download_path_pref	-	ممر التنزيل
 values-b+apc	string	download_paused	-	محطوت پوز على التنزيل
@@ -3805,6 +3809,7 @@ values-b+ar	string	download_canceled	-	تم إلغاء التنزيل
 values-b+ar	string	download_done	-	تم التنزيل
 values-b+ar	string	download_episode_range	-	هل ترغب في تنزيل الحلقة %s ؟
 values-b+ar	string	download_failed	-	فشل التنزيل
+values-b+ar	string	download_not_available_here	-	غير متاح هنا
 values-b+ar	string	download_parallel_settings_des	-	عدد الأصناف المختلفة التي يمكن تنزيلها بالتوازي
 values-b+ar	string	download_path_pref	-	مسار التنزيل
 values-b+ar	string	download_paused	-	توقف التنزيل مؤقتًا
@@ -4937,6 +4942,7 @@ values-b+ars	string	download	-	تحميل
 values-b+ars	string	download_canceled	-	تم إلغاء التنزيل
 values-b+ars	string	download_done	-	تم التنزيل
 values-b+ars	string	download_failed	-	التحميل فشل
+values-b+ars	string	download_not_available_here	-	مو متوفر هنا
 values-b+ars	string	download_path_pref	-	مسار التحميل
 values-b+ars	string	download_paused	-	توقف التنزيل
 values-b+ars	string	download_started	-	بدأ التنزيل
@@ -5758,6 +5764,7 @@ values-b+as	string	download_all_plugins_from_repo	-	সতর্কতা: Cloud
 values-b+as	string	download_canceled	-	ডাউনলোড বাতিল
 values-b+as	string	download_done	-	ডাউনলোড সম্পন্ন
 values-b+as	string	download_failed	-	ডাউনলোড বিফল
+values-b+as	string	download_not_available_here	-	ইয়াত উপলব্ধ নহয়
 values-b+as	string	download_path_pref	-	ডাউনলোড পথ
 values-b+as	string	download_paused	-	ডাউনলোড ৰখা হৈছে
 values-b+as	string	download_started	-	ডাউনলোড আৰম্ভ হৈছে
@@ -6679,6 +6686,7 @@ values-b+az	string	download	-	Yüklə
 values-b+az	string	download_canceled	-	Yükləmə ləğv edildi
 values-b+az	string	download_done	-	Yükləmə bitdi
 values-b+az	string	download_failed	-	Yükləmə uğursuz oldu
+values-b+az	string	download_not_available_here	-	Burada mövcud deyil
 values-b+az	string	download_paused	-	Yükləmə dayandırıldı
 values-b+az	string	download_started	-	Yükləmə başladıldı
 values-b+az	string	downloaded	-	Yükləndi
@@ -7418,6 +7426,7 @@ values-b+be	string	download_canceled	-	Спампоўванне скасаван
 values-b+be	string	download_done	-	Спампоўванне завершана
 values-b+be	string	download_episode_range	-	Спампаваць %s серыю?
 values-b+be	string	download_failed	-	Не ўдалося спампаваць
+values-b+be	string	download_not_available_here	-	Тут недаступна
 values-b+be	string	download_parallel_settings_des	-	Колькі разных элементаў можна спампоўваць паралельна
 values-b+be	string	download_path_pref	-	Шлях спампоўкі
 values-b+be	string	download_paused	-	Спампоўванне прыпынена
@@ -8560,6 +8569,7 @@ values-b+bg	string	download_canceled	-	Изтеглянето е отменен�
 values-b+bg	string	download_done	-	Изтеглянето е завършено
 values-b+bg	string	download_episode_range	-	Искаш ли да изтеглиш епизод %s?
 values-b+bg	string	download_failed	-	Изтеглянето се провали
+values-b+bg	string	download_not_available_here	-	Не е налично тук
 values-b+bg	string	download_parallel_settings_des	-	Колко различни елемента могат да бъдат изтеглени паралелно
 values-b+bg	string	download_path_pref	-	Път за изтегляне
 values-b+bg	string	download_paused	-	Изтеглянето е на пауза
@@ -9608,6 +9618,7 @@ values-b+bn	string	download	-	ডাউনলোড
 values-b+bn	string	download_canceled	-	ডাউনলোড বাদ
 values-b+bn	string	download_done	-	ডাউনলোড শেষ
 values-b+bn	string	download_failed	-	ডাউনলোড ব্যর্থ
+values-b+bn	string	download_not_available_here	-	এখানে উপলব্ধ নয়
 values-b+bn	string	download_path_pref	-	ডাউনলোডের পথ
 values-b+bn	string	download_paused	-	ডাউনলোড স্থগিত
 values-b+bn	string	download_queue	-	ডাউনলোড তালিকা
@@ -10392,6 +10403,7 @@ values-b+ca	string	download	-	Descarregar
 values-b+ca	string	download_canceled	-	Descàrrega cancel·lada
 values-b+ca	string	download_done	-	Descàrrega completada
 values-b+ca	string	download_failed	-	Descarrega fallida
+values-b+ca	string	download_not_available_here	-	No disponible aquí
 values-b+ca	string	download_paused	-	Descàrrega en espera
 values-b+ca	string	download_started	-	S'ha iniciat la descàrrega
 values-b+ca	string	download_storage_text	-	emmagatzematge intern
@@ -11084,6 +11096,7 @@ values-b+ckb	string	download	-	داونلۆد
 values-b+ckb	string	download_canceled	-	داونلۆد هەڵوەشایەوە
 values-b+ckb	string	download_done	-	داونلۆد تەواو بووە
 values-b+ckb	string	download_failed	-	داونلۆدکردن شکستی هێنا
+values-b+ckb	string	download_not_available_here	-	لێرە بەردەست نییە
 values-b+ckb	string	download_paused	-	دابەزاندن وەستاوە
 values-b+ckb	string	download_started	-	داگرتن دەستی پێکرد
 values-b+ckb	string	download_storage_text	-	کۆگای ناوخۆیی
@@ -11789,6 +11802,7 @@ values-b+cs	string	download_canceled	-	Stahování zrušeno
 values-b+cs	string	download_done	-	Stahování dokončeno
 values-b+cs	string	download_episode_range	-	Chcete stáhnout epizodu %s?
 values-b+cs	string	download_failed	-	Stahování selhalo
+values-b+cs	string	download_not_available_here	-	Zde není k dispozici
 values-b+cs	string	download_parallel_settings_des	-	Počet různých položek, které lze stahovat v jednu chvíli
 values-b+cs	string	download_path_pref	-	Cesta stahování
 values-b+cs	string	download_paused	-	Stahování pozastaveno
@@ -12938,6 +12952,7 @@ values-b+de	string	download_canceled	-	Download abgebrochen
 values-b+de	string	download_done	-	Download abgeschlossen
 values-b+de	string	download_episode_range	-	Möchtest du Episode %s herunter laden?
 values-b+de	string	download_failed	-	Download fehlgeschlagen
+values-b+de	string	download_not_available_here	-	Hier nicht verfügbar
 values-b+de	string	download_parallel_settings_des	-	Wie viele verschiedene Elemente können parallel heruntergeladen werden
 values-b+de	string	download_path_pref	-	Downloadpfad
 values-b+de	string	download_paused	-	Download pausiert
@@ -14068,6 +14083,7 @@ values-b+el	string	download_all_plugins_from_repo	-	Προειδοποίηση: 
 values-b+el	string	download_canceled	-	Η λήψη ακυρώθηκε
 values-b+el	string	download_done	-	Η λήψη ολοκληρώθηκε
 values-b+el	string	download_failed	-	Η λήψη απέτυχε
+values-b+el	string	download_not_available_here	-	Δεν είναι διαθέσιμο εδώ
 values-b+el	string	download_path_pref	-	Διαδρομή λήψης
 values-b+el	string	download_paused	-	Η λήψη παύθηκε
 values-b+el	string	download_started	-	Η λήψη ξεκίνησε
@@ -14998,6 +15014,7 @@ values-b+eo	string	download	-	Elŝuti
 values-b+eo	string	download_canceled	-	Elŝuto Nuligite
 values-b+eo	string	download_done	-	Elŝuto Farite
 values-b+eo	string	download_failed	-	Elŝuto Malsukcesite
+values-b+eo	string	download_not_available_here	-	Ne disponebla ĉi tie
 values-b+eo	string	download_paused	-	Elŝuto Paŭzite
 values-b+eo	string	download_queue	-	Elsûtovico
 values-b+eo	string	download_started	-	Elŝuto Komencite
@@ -15772,6 +15789,7 @@ values-b+es	string	download_canceled	-	Descarga Cancelada
 values-b+es	string	download_done	-	Descarga Finalizada
 values-b+es	string	download_episode_range	-	¿Desea descargar el episodio %s?
 values-b+es	string	download_failed	-	Descarga fallida
+values-b+es	string	download_not_available_here	-	No disponible aquí
 values-b+es	string	download_parallel_settings_des	-	Cuántos elementos diferentes pueden descargarse en paralelo
 values-b+es	string	download_path_pref	-	Ruta de descarga
 values-b+es	string	download_paused	-	Descarga pausada
@@ -16824,6 +16842,7 @@ values-b+fa	string	download	-	دانلود
 values-b+fa	string	download_canceled	-	دانلود لغو شد
 values-b+fa	string	download_done	-	داتلود پایان یافت
 values-b+fa	string	download_failed	-	دانلود ناموفق بود
+values-b+fa	string	download_not_available_here	-	اینجا در دسترس نیست
 values-b+fa	string	download_path_pref	-	راه دانلود
 values-b+fa	string	download_paused	-	دانلود متوقف شده
 values-b+fa	string	download_started	-	دانلود آغاز شد
@@ -17560,6 +17579,7 @@ values-b+fil	string	download_all_plugins_from_repo	-	Babala: Walang pananagutan 
 values-b+fil	string	download_canceled	-	Kinansela ang pag-download
 values-b+fil	string	download_done	-	Natapos ang pag-download
 values-b+fil	string	download_failed	-	Nabigong ma-download
+values-b+fil	string	download_not_available_here	-	Hindi available dito
 values-b+fil	string	download_paused	-	Hininto ang pag-download
 values-b+fil	string	download_queue	-	Nakapila na download
 values-b+fil	string	download_started	-	Sinimulan ang pag-download
@@ -18374,6 +18394,7 @@ values-b+fr	string	download_canceled	-	Téléchargement annulé
 values-b+fr	string	download_done	-	Téléchargement terminé
 values-b+fr	string	download_episode_range	-	Voulez-vous télécharger l'épisode %s ?
 values-b+fr	string	download_failed	-	Échec du téléchargement
+values-b+fr	string	download_not_available_here	-	Indisponible ici
 values-b+fr	string	download_parallel_settings_des	-	Combien d'objets différents peuvent être téléchargés en parallèle
 values-b+fr	string	download_path_pref	-	Emplacement de téléchargement
 values-b+fr	string	download_paused	-	Téléchargement en pause
@@ -19412,6 +19433,7 @@ values-b+gl	string	download	-	Descargar
 values-b+gl	string	download_canceled	-	Descarga Cancelada
 values-b+gl	string	download_done	-	Descarga rematada
 values-b+gl	string	download_failed	-	Descarga Fallida
+values-b+gl	string	download_not_available_here	-	Non dispoñible aquí
 values-b+gl	string	download_paused	-	Descarga Pausada
 values-b+gl	string	download_started	-	Descarga comezada
 values-b+gl	string	download_storage_text	-	Almacenamento Interno
@@ -20176,6 +20198,7 @@ values-b+he	string	download_all_plugins_from_repo	-	הורד את כל התוס�
 values-b+he	string	download_canceled	-	ההורדה בוטלה
 values-b+he	string	download_done	-	נגן טריילר
 values-b+he	string	download_failed	-	ההורדה נכשלה
+values-b+he	string	download_not_available_here	-	לא זמין כאן
 values-b+he	string	download_path_pref	-	נתיב הורדה
 values-b+he	string	download_paused	-	ההורדה מושהית
 values-b+he	string	download_started	-	ההורדה התחילה
@@ -21111,6 +21134,7 @@ values-b+hi	string	download	-	डाउनलोड
 values-b+hi	string	download_canceled	-	डाउनलोड रद्द
 values-b+hi	string	download_done	-	डाउनलोड मुकम्मल
 values-b+hi	string	download_failed	-	डाउनलोड विफल
+values-b+hi	string	download_not_available_here	-	यहाँ उपलब्ध नहीं
 values-b+hi	string	download_path_pref	-	डाउनलोड पथ
 values-b+hi	string	download_paused	-	डाउनलोड रोका गया
 values-b+hi	string	download_queue	-	कतार डाउनलोड करें
@@ -22035,6 +22059,7 @@ values-b+hr	string	download_canceled	-	Preuzimanje otkazano
 values-b+hr	string	download_done	-	Preuzimanje dovršeno
 values-b+hr	string	download_episode_range	-	Želiš li preuzeti epizodu %s?
 values-b+hr	string	download_failed	-	Preuzimanje neuspjelo
+values-b+hr	string	download_not_available_here	-	Ovdje nije dostupno
 values-b+hr	string	download_parallel_settings_des	-	Koliko se različitih stavki može istovremeno preuzimati
 values-b+hr	string	download_path_pref	-	Putanja preuzimanja
 values-b+hr	string	download_paused	-	Preuzimanje pauzirano
@@ -23146,6 +23171,7 @@ values-b+hu	string	download_all_plugins_from_repo	-	Töltse le az összes bőví
 values-b+hu	string	download_canceled	-	Letöltés megszakítva
 values-b+hu	string	download_done	-	Letöltés kész
 values-b+hu	string	download_failed	-	Letöltés sikertelen
+values-b+hu	string	download_not_available_here	-	Itt nem érhető el
 values-b+hu	string	download_path_pref	-	Letöltési útvonal
 values-b+hu	string	download_paused	-	Letöltés szüneteltetve
 values-b+hu	string	download_queue	-	Letöltési sor
@@ -24198,6 +24224,7 @@ values-b+id	string	download_canceled	-	Unduhan diibatalkan
 values-b+id	string	download_done	-	Unduhan selesai
 values-b+id	string	download_episode_range	-	Apakah kamu ingin mengunduh episode %s?
 values-b+id	string	download_failed	-	Unduhan gagal
+values-b+id	string	download_not_available_here	-	Tidak tersedia di sini
 values-b+id	string	download_parallel_settings_des	-	Berapa banyak item yang bisa diunduh secara paralel
 values-b+id	string	download_path_pref	-	Lokasi unduhan
 values-b+id	string	download_paused	-	Unduhan dijeda
@@ -25321,6 +25348,7 @@ values-b+in	string	download_canceled	-	Unduhan diibatalkan
 values-b+in	string	download_done	-	Unduhan selesai
 values-b+in	string	download_episode_range	-	Apakah kamu ingin mengunduh episode %s?
 values-b+in	string	download_failed	-	Unduhan gagal
+values-b+in	string	download_not_available_here	-	Tidak tersedia di sini
 values-b+in	string	download_parallel_settings_des	-	Berapa banyak item yang bisa diunduh secara paralel
 values-b+in	string	download_path_pref	-	Lokasi unduhan
 values-b+in	string	download_paused	-	Unduhan dijeda
@@ -26492,6 +26520,7 @@ values-b+it	string	download_canceled	-	Download cancellato
 values-b+it	string	download_done	-	Download completato
 values-b+it	string	download_episode_range	-	Vuoi scaricare l'episodio %s?
 values-b+it	string	download_failed	-	Download fallito
+values-b+it	string	download_not_available_here	-	Non disponibile qui
 values-b+it	string	download_parallel_settings_des	-	Quanti oggetti possono essere scaricati contemporaneamente
 values-b+it	string	download_path_pref	-	Percorso di download
 values-b+it	string	download_paused	-	Download in pausa
@@ -27600,6 +27629,7 @@ values-b+iw	string	download_all_plugins_from_repo	-	הורד את כל התוס�
 values-b+iw	string	download_canceled	-	ההורדה בוטלה
 values-b+iw	string	download_done	-	נגן טריילר
 values-b+iw	string	download_failed	-	ההורדה נכשלה
+values-b+iw	string	download_not_available_here	-	לא זמין כאן
 values-b+iw	string	download_path_pref	-	נתיב הורדה
 values-b+iw	string	download_paused	-	ההורדה מושהית
 values-b+iw	string	download_started	-	ההורדה התחילה
@@ -28593,6 +28623,7 @@ values-b+ja	string	download_canceled	-	ダウンロード終了
 values-b+ja	string	download_done	-	ダウンロード完了
 values-b+ja	string	download_episode_range	-	エピソード %s をダウンロードしますか？
 values-b+ja	string	download_failed	-	ダウンロード失敗
+values-b+ja	string	download_not_available_here	-	ここでは利用できません
 values-b+ja	string	download_parallel_settings_des	-	並行してダウンロードできるアイテム
 values-b+ja	string	download_path_pref	-	ダウンロードパス
 values-b+ja	string	download_paused	-	ダウンロードが一時停止
@@ -29578,6 +29609,7 @@ values-b+kn	string	download	-	ಡೌನ್‌ಲೋಡ್
 values-b+kn	string	download_canceled	-	ಡೌನ್‌ಲೋಡ್ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ
 values-b+kn	string	download_done	-	ಡೌನ್‌ಲೋಡ್ ಮುಗಿದಿದೆ
 values-b+kn	string	download_failed	-	ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ
+values-b+kn	string	download_not_available_here	-	ಇಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ
 values-b+kn	string	download_paused	-	ಡೌನ್‌ಲೋಡ್ ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ
 values-b+kn	string	download_started	-	ಡೌನ್‌ಲೋಡ್ ಪ್ರಾರಂಭವಾಗಿದೆ
 values-b+kn	string	download_storage_text	-	ಇಂಟರ್ನಲ್ ಸ್ಟೋರೇಜ್
@@ -30246,6 +30278,7 @@ values-b+ko	string	download_canceled	-	다운로드 취소
 values-b+ko	string	download_done	-	다운로드 완료
 values-b+ko	string	download_episode_range	-	에피소드를 다운로드 하시겠습니까 %s?
 values-b+ko	string	download_failed	-	다운로드 실패
+values-b+ko	string	download_not_available_here	-	여기서는 사용할 수 없음
 values-b+ko	string	download_parallel_settings_des	-	병렬로 다운로드 할 수 있는 아이템의 수
 values-b+ko	string	download_path_pref	-	다운로드 경로
 values-b+ko	string	download_paused	-	다운로드 일시정지
@@ -31302,6 +31335,7 @@ values-b+lt	string	download	-	Atsisiųsti
 values-b+lt	string	download_canceled	-	Atsisiuntimas atšauktas
 values-b+lt	string	download_done	-	Atsisiuntimas baigtas
 values-b+lt	string	download_failed	-	Atsisiuntimas nepavyko
+values-b+lt	string	download_not_available_here	-	Čia nepasiekiama
 values-b+lt	string	download_path_pref	-	Atsiuntimo kelias
 values-b+lt	string	download_paused	-	Siuntimas sustabdytas
 values-b+lt	string	download_queue	-	Atsisiuntimų eilė
@@ -32108,6 +32142,7 @@ values-b+lv	string	download_all_plugins_from_repo	-	Uzmanību: CloudStream neuz�
 values-b+lv	string	download_canceled	-	Lejupielāde atcelta
 values-b+lv	string	download_done	-	Lejupielāde pabeigta
 values-b+lv	string	download_failed	-	Lejupielāde neizdevās
+values-b+lv	string	download_not_available_here	-	Šeit nav pieejams
 values-b+lv	string	download_path_pref	-	Ielādēšanas ceļš
 values-b+lv	string	download_paused	-	Lejupielāde iepauzēta
 values-b+lv	string	download_queue	-	Lejupielādes rinda
@@ -33175,6 +33210,7 @@ values-b+mk	string	download_canceled	-	Преземањето е откажан�
 values-b+mk	string	download_done	-	Преземањето е готово
 values-b+mk	string	download_episode_range	-	Дали сакате да ја преземете епизодата %s?
 values-b+mk	string	download_failed	-	Преземањето е неуспешно
+values-b+mk	string	download_not_available_here	-	Не е достапно тука
 values-b+mk	string	download_parallel_settings_des	-	Колку различни содржини можат да се симнуваат паралелно
 values-b+mk	string	download_path_pref	-	Патека на преземање
 values-b+mk	string	download_paused	-	Преземањето е паузирано
@@ -34194,6 +34230,7 @@ values-b+ml	string	download_all_plugins_from_repo	-	ഈ ശേഖരത്തി
 values-b+ml	string	download_canceled	-	ഡൌൺലോഡ് റദ്ദാക്കി
 values-b+ml	string	download_done	-	ഡൌൺലോഡ് പൂർത്തിയായി
 values-b+ml	string	download_failed	-	ഡൌൺലോഡ് മുടങ്ങി
+values-b+ml	string	download_not_available_here	-	ഇവിടെ ലഭ്യമല്ല
 values-b+ml	string	download_paused	-	ഡൌൺലോഡ് നിർത്തി
 values-b+ml	string	download_queue	-	ഡൗൺലോഡ് ക്യൂ
 values-b+ml	string	download_started	-	ഡൌൺലോഡ് ആരംഭിച്ചു
@@ -34943,6 +34980,7 @@ values-b+ms	string	download_all_plugins_from_repo	-	Amaran: CloudStream 3 tidak 
 values-b+ms	string	download_canceled	-	Muat turun dibatalkan
 values-b+ms	string	download_done	-	Muat turun selesai
 values-b+ms	string	download_failed	-	Muat turun gagal
+values-b+ms	string	download_not_available_here	-	Tidak tersedia di sini
 values-b+ms	string	download_path_pref	-	Laluan muat turun
 values-b+ms	string	download_paused	-	Muat turun dihentikan
 values-b+ms	string	download_started	-	Muat turun dimulakan
@@ -35826,6 +35864,7 @@ values-b+mt	string	download	-	Niżżel
 values-b+mt	string	download_canceled	-	Tniżżil ikkanċellat
 values-b+mt	string	download_done	-	Lest it-tniżżil
 values-b+mt	string	download_failed	-	Falla t-tniżżil
+values-b+mt	string	download_not_available_here	-	Mhux disponibbli hawn
 values-b+mt	string	download_paused	-	Tniżżila ppawzata
 values-b+mt	string	download_started	-	Beda t-tniżżil
 values-b+mt	string	download_storage_text	-	Ħażna Interna
@@ -36431,6 +36470,7 @@ values-b+my	string	download_all_plugins_from_repo	-	ဤရီပိုစစ်�
 values-b+my	string	download_canceled	-	ဒေါင်းလုဒ် ပယ်ဖျက်ပြီး
 values-b+my	string	download_done	-	ဒေါင်းလုဒ်ပြီးစီး
 values-b+my	string	download_failed	-	ဒေါင်းလုဒ် မအောင်မြင်
+values-b+my	string	download_not_available_here	-	ဤနေရာတွင် မရနိုင်ပါ
 values-b+my	string	download_path_pref	-	ဒေါင်းလုဒ်လမ်းကြောင်း
 values-b+my	string	download_paused	-	ဒေါင်းလုဒ် ရပ်ထား
 values-b+my	string	download_started	-	ဒေါင်းလုဒ်စတင်
@@ -37260,6 +37300,7 @@ values-b+ne	string	download	-	डाउनलोड
 values-b+ne	string	download_canceled	-	डाउनलोड रद्द गरियो
 values-b+ne	string	download_done	-	डाउनलोड भयो
 values-b+ne	string	download_failed	-	डाउनलोड असफल भयो
+values-b+ne	string	download_not_available_here	-	यहाँ उपलब्ध छैन
 values-b+ne	string	download_paused	-	डाउनलोड रोकियो
 values-b+ne	string	download_started	-	डाउनलोड सुरु भयो
 values-b+ne	string	download_storage_text	-	भित्री स्टोरेज
@@ -37933,6 +37974,7 @@ values-b+nl	string	download_all_plugins_from_repo	-	Waarschuwing: Cloudstream is
 values-b+nl	string	download_canceled	-	Download Geannuleerd
 values-b+nl	string	download_done	-	Download Gereed
 values-b+nl	string	download_failed	-	Download Mislukt
+values-b+nl	string	download_not_available_here	-	Hier niet beschikbaar
 values-b+nl	string	download_parallel_settings_des	-	Hoeveel verschillende items kunnen in parallel gedownload worden
 values-b+nl	string	download_path_pref	-	Downloadpad
 values-b+nl	string	download_paused	-	Downloaden Gepauzeerd
@@ -38903,6 +38945,7 @@ values-b+nn	string	download	-	Nedlasting
 values-b+nn	string	download_canceled	-	Nedlasting avbrote
 values-b+nn	string	download_done	-	Nedlasting ferdig
 values-b+nn	string	download_failed	-	Nedlasting feila
+values-b+nn	string	download_not_available_here	-	Ikkje tilgjengeleg her
 values-b+nn	string	download_paused	-	Nedlasting satt på vent
 values-b+nn	string	download_queue	-	Nedlastingskø
 values-b+nn	string	download_started	-	Nedlasting starta
@@ -39587,6 +39630,7 @@ values-b+no	string	download_all_plugins_from_repo	-	Last ned alle programtillegg
 values-b+no	string	download_canceled	-	Nedlasting avbrutt
 values-b+no	string	download_done	-	Last ned Ferdig
 values-b+no	string	download_failed	-	Nedlasting mislyktes
+values-b+no	string	download_not_available_here	-	Ikke tilgjengelig her
 values-b+no	string	download_path_pref	-	Nedlastingssti
 values-b+no	string	download_paused	-	Nedlasting stoppet midlertidig
 values-b+no	string	download_started	-	Nedlasting startet
@@ -40423,6 +40467,7 @@ values-b+or	string	detail_start_over	-	ପୁଣି ଆରମ୍ଭ କରନ୍
 values-b+or	string	documentaries	-	ଵୃତ୍ତଚିତ୍ର
 values-b+or	string	documentaries_singular	-	ଵୃତ୍ତଚିତ୍ର
 values-b+or	string	dont_show_again	-	ପୁନଃ ଦେଖାଅନି
+values-b+or	string	download_not_available_here	-	ଏଠାରେ ଉପଲବ୍ଧ ନାହିଁ
 values-b+or	string	download_storage_text	-	ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍
 values-b+or	string	download_time_left_hour_min_sec_format	-	%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ
 values-b+or	string	downloads_browse_library	-	ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର
@@ -41188,6 +41233,7 @@ values-b+pl	string	download_canceled	-	Anulowano pobieranie
 values-b+pl	string	download_done	-	Zakończono pobieranie
 values-b+pl	string	download_episode_range	-	Czy chcesz pobrać odcinek %s?
 values-b+pl	string	download_failed	-	Błąd przy pobieraniu
+values-b+pl	string	download_not_available_here	-	Niedostępne tutaj
 values-b+pl	string	download_parallel_settings_des	-	Ile różnych elementów można pobrać równolegle
 values-b+pl	string	download_path_pref	-	Ścieżka pobierania
 values-b+pl	string	download_paused	-	Wstrzymano pobieranie
@@ -42361,6 +42407,7 @@ values-b+pt	string	download_canceled	-	Download cancelado
 values-b+pt	string	download_done	-	Download concluído
 values-b+pt	string	download_episode_range	-	Deseja baixar o episódio %s?
 values-b+pt	string	download_failed	-	Falha no Download
+values-b+pt	string	download_not_available_here	-	Indisponível aqui
 values-b+pt	string	download_parallel_settings_des	-	Quantos itens diferentes podem ser baixados em paralelo
 values-b+pt	string	download_path_pref	-	Caminho de transferência
 values-b+pt	string	download_paused	-	Download Pausado
@@ -43530,6 +43577,7 @@ values-b+pt+BR	string	download_canceled	-	Download cancelado
 values-b+pt+BR	string	download_done	-	Download concluído
 values-b+pt+BR	string	download_episode_range	-	Você deseja baixar o episódio%s?
 values-b+pt+BR	string	download_failed	-	Download falhou
+values-b+pt+BR	string	download_not_available_here	-	Indisponível aqui
 values-b+pt+BR	string	download_parallel_settings_des	-	Quantos itens diferentes podem ser baixados em paralelo
 values-b+pt+BR	string	download_path_pref	-	Onde salvar Downloads
 values-b+pt+BR	string	download_paused	-	Download pausado
@@ -44628,6 +44676,7 @@ values-b+qt	string	download_all_plugins_from_repo	-	Warning: ooooggguuhh 3 uuhh 
 values-b+qt	string	download_canceled	-	ooo-ahah aaaghhahooo
 values-b+qt	string	download_done	-	aaaghhaaaaa ohouuhhh
 values-b+qt	string	download_failed	-	aaaghhahhooo-ahahahhha aaaghh
+values-b+qt	string	download_not_available_here	-	aah ooh-ooh
 values-b+qt	string	download_path_pref	-	aaaahhhg aagg
 values-b+qt	string	download_paused	-	aaahhuooo-ahahhaaa
 values-b+qt	string	download_started	-	aaaaa oooohh aauugghh
@@ -45676,6 +45725,7 @@ values-b+ro	string	download_all_plugins_from_repo	-	Descărcați toate plugin-ur
 values-b+ro	string	download_canceled	-	Descărcare anulată
 values-b+ro	string	download_done	-	Descărcare finalizată
 values-b+ro	string	download_failed	-	Descărcare eșuată
+values-b+ro	string	download_not_available_here	-	Indisponibil aici
 values-b+ro	string	download_path_pref	-	Locul descărcării
 values-b+ro	string	download_paused	-	Descărcare oprită
 values-b+ro	string	download_started	-	Descărcare începută
@@ -46789,6 +46839,7 @@ values-b+ru	string	download_canceled	-	Скачивание отменено
 values-b+ru	string	download_done	-	Скачивание закончено
 values-b+ru	string	download_episode_range	-	Вы хотите загрузить эпизод %s?
 values-b+ru	string	download_failed	-	Скачивание не удалось
+values-b+ru	string	download_not_available_here	-	Здесь недоступно
 values-b+ru	string	download_parallel_settings_des	-	Сколько различных элементов можно загружать параллельно
 values-b+ru	string	download_path_pref	-	Путь скачивания
 values-b+ru	string	download_paused	-	Скачивание остановлено
@@ -47910,6 +47961,7 @@ values-b+sk	string	download_all_plugins_from_repo	-	Upozornenie: CloudStream 3 n
 values-b+sk	string	download_canceled	-	Sťahovanie zrušené
 values-b+sk	string	download_done	-	Sťahovanie dokončené
 values-b+sk	string	download_failed	-	Sťahovanie zlyhalo
+values-b+sk	string	download_not_available_here	-	Tu nie je k dispozícii
 values-b+sk	string	download_path_pref	-	Cesta sťahovania
 values-b+sk	string	download_paused	-	Sťahovanie pozastavené
 values-b+sk	string	download_queue	-	Poradie sťahovania
@@ -48795,6 +48847,7 @@ values-b+so	string	download_all_plugins_from_repo	-	Digniin: CloudStream mas'uul
 values-b+so	string	download_canceled	-	Waa la joojiyey dejintan
 values-b+so	string	download_done	-	Way dhamaatay dejintu
 values-b+so	string	download_failed	-	Dejintii ma guulaysan
+values-b+so	string	download_not_available_here	-	Halkan lagama heli karo
 values-b+so	string	download_path_pref	-	Barta kaydka
 values-b+so	string	download_paused	-	Waad hakisey la degista
 values-b+so	string	download_queue	-	Waxa soo degaya
@@ -49778,6 +49831,7 @@ values-b+sq	string	download_canceled	-	Shkarkimi u anulua
 values-b+sq	string	download_done	-	Shkarkimi u krye
 values-b+sq	string	download_episode_range	-	Dëshiron të shkarkosh episodin %s?
 values-b+sq	string	download_failed	-	Shkarkimi dështoi
+values-b+sq	string	download_not_available_here	-	Nuk ofrohet këtu
 values-b+sq	string	download_parallel_settings_des	-	Sa elementë të ndryshëm mund të shkarkohen njëkohësisht
 values-b+sq	string	download_path_pref	-	Destinacioni i shkarkimit
 values-b+sq	string	download_paused	-	Shkarkimi u ndërpre
@@ -50927,6 +50981,7 @@ values-b+sv	string	download_canceled	-	Nerladdning avbruten
 values-b+sv	string	download_done	-	Nerladdning färdig
 values-b+sv	string	download_episode_range	-	Vill du ladda ned avsnitt %s?
 values-b+sv	string	download_failed	-	Nerladdning misslyckades
+values-b+sv	string	download_not_available_here	-	Inte tillgängligt här
 values-b+sv	string	download_parallel_settings_des	-	Mängden av olika föremål som kan bli nedladdat i parallell
 values-b+sv	string	download_path_pref	-	Nerladdningsplats
 values-b+sv	string	download_paused	-	Nerladdning pausad
@@ -52076,6 +52131,7 @@ values-b+ta	string	download_canceled	-	பதிவிறக்கம் ரத�
 values-b+ta	string	download_done	-	பதிவிறக்கம் முடிந்தது
 values-b+ta	string	download_episode_range	-	அத்தியாயம் %s ஐ பதிவிறக்க விரும்புகிறீர்களா?
 values-b+ta	string	download_failed	-	பதிவிறக்கம் தோல்வியடைந்தது
+values-b+ta	string	download_not_available_here	-	இங்கே கிடைக்கவில்லை
 values-b+ta	string	download_parallel_settings_des	-	எத்தனை வெவ்வேறு உருப்படிகளை இணையாக பதிவிறக்கம் செய்யலாம்
 values-b+ta	string	download_path_pref	-	பாதை பதிவிறக்க
 values-b+ta	string	download_paused	-	பதிவிறக்கம் இடைநிறுத்தப்பட்டது
@@ -53039,6 +53095,7 @@ values-b+ti	string	detail_source_resolving	-	ይፈትሕ ኣሎ…
 values-b+ti	string	detail_sources_done	-	ካብ %2$d %1$d መሊሶም
 values-b+ti	string	detail_sources_progress	-	ካብ %2$d %1$d መሊሶም · ይጽዕን ኣሎ…
 values-b+ti	string	detail_start_over	-	ካብ መጀመርታ ጀምር
+values-b+ti	string	download_not_available_here	-	ኣብዚ ኣይርከብን
 values-b+ti	string	downloads_browse_library	-	ቤተ-መጻሕፍቲ ድለ
 values-b+ti	string	downloads_cancel_confirm_body	-	እዚ ክሳብ ሕጂ ዝወረደ %s ይድርብዮ።
 values-b+ti	string	downloads_cancel_confirm_title	-	እዚ ውርዲ ይሰረዝ?
@@ -53519,6 +53576,7 @@ values-b+tl	string	download_all_plugins_from_repo	-	Babala: Walang pananagutan a
 values-b+tl	string	download_canceled	-	Download Canceled
 values-b+tl	string	download_done	-	Download Done
 values-b+tl	string	download_failed	-	Download Failed
+values-b+tl	string	download_not_available_here	-	Hindi available dito
 values-b+tl	string	download_paused	-	Download Paused
 values-b+tl	string	download_queue	-	Nakapila na download
 values-b+tl	string	download_started	-	Download Started
@@ -54337,6 +54395,7 @@ values-b+tr	string	download_canceled	-	İndirme İptal Edildi
 values-b+tr	string	download_done	-	İndirme Tamamlandı
 values-b+tr	string	download_episode_range	-	%s numaralı bölümü indirmek istiyor musunuz?
 values-b+tr	string	download_failed	-	İndirme Başarısız
+values-b+tr	string	download_not_available_here	-	Burada kullanılamaz
 values-b+tr	string	download_parallel_settings_des	-	Aynı anda kaç farklı öğe indirilebilir
 values-b+tr	string	download_path_pref	-	İndirme konumu
 values-b+tr	string	download_paused	-	İndirme Duraklatıldı
@@ -55534,6 +55593,7 @@ values-b+uk	string	download_canceled	-	Завантаження скасован
 values-b+uk	string	download_done	-	Завантаження завершено
 values-b+uk	string	download_episode_range	-	Бажаєте завантажити %s епізод?
 values-b+uk	string	download_failed	-	Не вдалося завантажити
+values-b+uk	string	download_not_available_here	-	Тут недоступно
 values-b+uk	string	download_parallel_settings_des	-	Скільки різних елементів можна завантажити паралельно
 values-b+uk	string	download_path_pref	-	Шлях завантаження
 values-b+uk	string	download_paused	-	Завантаження призупинено
@@ -56644,6 +56704,7 @@ values-b+ur	string	download_all_plugins_from_repo	-	اس ذخیرہ سے تما�
 values-b+ur	string	download_canceled	-	ڈاؤن لوڈ منسوخ ہو گیا
 values-b+ur	string	download_done	-	ڈاؤن لوڈ ہو گیا
 values-b+ur	string	download_failed	-	ڈاؤن لوڈ نہیں ہو پا رہا
+values-b+ur	string	download_not_available_here	-	یہاں دستیاب نہیں
 values-b+ur	string	download_path_pref	-	ڈاؤنلوڈ کی جگہ
 values-b+ur	string	download_paused	-	ڈاؤن لوڈ موقوف
 values-b+ur	string	download_started	-	ڈاؤن لوڈ شروع ہو گیا
@@ -57669,6 +57730,7 @@ values-b+vi	string	download_canceled	-	Tải xuống đã hủy
 values-b+vi	string	download_done	-	Tải xuống thành công
 values-b+vi	string	download_episode_range	-	Bạn có muốn tải xuống tập %s không?
 values-b+vi	string	download_failed	-	Tải xuống thất bại
+values-b+vi	string	download_not_available_here	-	Không có ở đây
 values-b+vi	string	download_parallel_settings_des	-	Số lượng mục khác nhau có thể tải xuống cùng lúc
 values-b+vi	string	download_path_pref	-	Đường dẫn tải xuống
 values-b+vi	string	download_paused	-	Tải xuống đã tạm dừng
@@ -58794,6 +58856,7 @@ values-b+zh	string	download_canceled	-	下载取消
 values-b+zh	string	download_done	-	下载完毕
 values-b+zh	string	download_episode_range	-	要下载第 %s 集吗？
 values-b+zh	string	download_failed	-	下载失败
+values-b+zh	string	download_not_available_here	-	此处不可用
 values-b+zh	string	download_parallel_settings_des	-	可同时下载多少项目
 values-b+zh	string	download_path_pref	-	下载路径
 values-b+zh	string	download_paused	-	下载暂停
@@ -59917,6 +59980,7 @@ values-b+zh+TW	string	download_canceled	-	下載取消
 values-b+zh+TW	string	download_done	-	下載完畢
 values-b+zh+TW	string	download_episode_range	-	需要下載第 %s 集嗎？
 values-b+zh+TW	string	download_failed	-	下載失敗
+values-b+zh+TW	string	download_not_available_here	-	此處無法使用
 values-b+zh+TW	string	download_parallel_settings_des	-	允許同時下載幾個項目
 values-b+zh+TW	string	download_path_pref	-	下載路徑
 values-b+zh+TW	string	download_paused	-	下載暫停

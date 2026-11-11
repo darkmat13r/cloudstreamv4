@@ -217,6 +217,7 @@
 <string name="download_canceled">"ההורדה בוטלה"</string>
 <string name="download_done">"נגן טריילר"</string>
 <string name="download_failed">"ההורדה נכשלה"</string>
+<string name="download_not_available_here">"לא זמין כאן"</string>
 <string name="download_path_pref">"נתיב הורדה"</string>
 <string name="download_paused">"ההורדה מושהית"</string>
 <string name="download_started">"ההורדה התחילה"</string>

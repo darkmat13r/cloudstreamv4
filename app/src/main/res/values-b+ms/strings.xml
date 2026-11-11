@@ -234,6 +234,7 @@
 <string name="download_canceled">"Muat turun dibatalkan"</string>
 <string name="download_done">"Muat turun selesai"</string>
 <string name="download_failed">"Muat turun gagal"</string>
+<string name="download_not_available_here">"Tidak tersedia di sini"</string>
 <string name="download_path_pref">"Laluan muat turun"</string>
 <string name="download_paused">"Muat turun dihentikan"</string>
 <string name="download_started">"Muat turun dimulakan"</string>

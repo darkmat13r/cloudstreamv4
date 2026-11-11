@@ -256,6 +256,7 @@
 <string name="download_canceled">"ডাউনলোড বাতিল"</string>
 <string name="download_done">"ডাউনলোড সম্পন্ন"</string>
 <string name="download_failed">"ডাউনলোড বিফল"</string>
+<string name="download_not_available_here">"ইয়াত উপলব্ধ নহয়"</string>
 <string name="download_path_pref">"ডাউনলোড পথ"</string>
 <string name="download_paused">"ডাউনলোড ৰখা হৈছে"</string>
 <string name="download_started">"ডাউনলোড আৰম্ভ হৈছে"</string>

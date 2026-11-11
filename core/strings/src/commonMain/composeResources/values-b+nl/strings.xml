@@ -68,6 +68,7 @@
 <string name="account_use_pin">PIN gebruiken</string>
 <string name="detail_load_failed_body">De bron is mogelijk niet beschikbaar.</string>
 <string name="detail_load_failed_headline">Deze titel kon niet worden geopend</string>
+<string name="download_not_available_here">Hier niet beschikbaar</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d bezig</item><item quantity="other">%d bezig</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d in wachtrij</item><item quantity="other">%d in wachtrij</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d download verwijderen?</item><item quantity="other">%d downloads verwijderen?</item></plurals>

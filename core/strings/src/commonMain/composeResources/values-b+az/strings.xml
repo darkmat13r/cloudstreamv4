@@ -68,6 +68,7 @@
 <string name="account_use_pin">Əvəzinə PIN istifadə et</string>
 <string name="detail_load_failed_body">Mənbə əlçatmaz ola bilər.</string>
 <string name="detail_load_failed_headline">Bu başlıq açıla bilmədi</string>
+<string name="download_not_available_here">Burada mövcud deyil</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d endirilir</item><item quantity="other">%d endirilir</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d növbədə</item><item quantity="other">%d növbədə</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d endirmə silinsin?</item><item quantity="other">%d endirmə silinsin?</item></plurals>

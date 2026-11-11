@@ -68,6 +68,7 @@
 <string name="account_use_pin">لەبری ئەوە PIN بەکاربهێنە</string>
 <string name="detail_load_failed_body">ڕەنگە سەرچاوەکە بەردەست نەبێت.</string>
 <string name="detail_load_failed_headline">نەتوانرا ئەم ناونیشانە بکرێتەوە</string>
+<string name="download_not_available_here">لێرە بەردەست نییە</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d دادەگیرێت</item><item quantity="other">%d دادەگیرێت</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d لە ڕیزدا</item><item quantity="other">%d لە ڕیزدا</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d داگرتن بسڕدرێتەوە؟</item><item quantity="other">%d داگرتن بسڕدرێتەوە؟</item></plurals>

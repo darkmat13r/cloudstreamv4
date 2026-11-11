@@ -231,6 +231,7 @@
 <string name="download_canceled">"Lejupielāde atcelta"</string>
 <string name="download_done">"Lejupielāde pabeigta"</string>
 <string name="download_failed">"Lejupielāde neizdevās"</string>
+<string name="download_not_available_here">"Šeit nav pieejams"</string>
 <string name="download_path_pref">"Ielādēšanas ceļš"</string>
 <string name="download_paused">"Lejupielāde iepauzēta"</string>
 <string name="download_queue">"Lejupielādes rinda"</string>

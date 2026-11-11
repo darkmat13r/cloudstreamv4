@@ -248,6 +248,7 @@
 <string name="download_canceled">"Descărcare anulată"</string>
 <string name="download_done">"Descărcare finalizată"</string>
 <string name="download_failed">"Descărcare eșuată"</string>
+<string name="download_not_available_here">"Indisponibil aici"</string>
 <string name="download_path_pref">"Locul descărcării"</string>
 <string name="download_paused">"Descărcare oprită"</string>
 <string name="download_started">"Descărcare începută"</string>

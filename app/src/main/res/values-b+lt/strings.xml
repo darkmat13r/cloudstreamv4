@@ -150,6 +150,7 @@
 <string name="download_canceled">"Atsisiuntimas atšauktas"</string>
 <string name="download_done">"Atsisiuntimas baigtas"</string>
 <string name="download_failed">"Atsisiuntimas nepavyko"</string>
+<string name="download_not_available_here">"Čia nepasiekiama"</string>
 <string name="download_path_pref">"Atsiuntimo kelias"</string>
 <string name="download_paused">"Siuntimas sustabdytas"</string>
 <string name="download_queue">"Atsisiuntimų eilė"</string>

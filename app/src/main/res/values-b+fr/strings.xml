@@ -276,6 +276,7 @@
 <string name="download_done">"Téléchargement terminé"</string>
 <string name="download_episode_range" formatted="true">"Voulez-vous télécharger l'épisode %s ?"</string>
 <string name="download_failed">"Échec du téléchargement"</string>
+<string name="download_not_available_here">"Indisponible ici"</string>
 <string name="download_parallel_settings_des">"Combien d'objets différents peuvent être téléchargés en parallèle"</string>
 <string name="download_path_pref">"Emplacement de téléchargement"</string>
 <string name="download_paused">"Téléchargement en pause"</string>

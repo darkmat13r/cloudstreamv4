@@ -240,6 +240,7 @@
 <string name="download_canceled">"ڈاؤن لوڈ منسوخ ہو گیا"</string>
 <string name="download_done">"ڈاؤن لوڈ ہو گیا"</string>
 <string name="download_failed">"ڈاؤن لوڈ نہیں ہو پا رہا"</string>
+<string name="download_not_available_here">"یہاں دستیاب نہیں"</string>
 <string name="download_path_pref">"ڈاؤنلوڈ کی جگہ"</string>
 <string name="download_paused">"ڈاؤن لوڈ موقوف"</string>
 <string name="download_started">"ڈاؤن لوڈ شروع ہو گیا"</string>

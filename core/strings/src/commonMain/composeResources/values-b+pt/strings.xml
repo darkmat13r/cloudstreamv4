@@ -68,6 +68,7 @@
 <string name="account_use_pin">Usar PIN em vez disso</string>
 <string name="detail_load_failed_body">A fonte pode estar indisponível.</string>
 <string name="detail_load_failed_headline">Não foi possível abrir este título</string>
+<string name="download_not_available_here">Indisponível aqui</string>
 <plurals name="downloads_active"><item quantity="one">%d download ativo</item><item quantity="many">%d downloads ativos</item><item quantity="other">%d downloads ativos</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d a transferir</item><item quantity="many">%d a transferir</item><item quantity="other">%d a transferir</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d em fila</item><item quantity="many">%d em fila</item><item quantity="other">%d em fila</item></plurals>

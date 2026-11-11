@@ -68,6 +68,7 @@
 <string name="account_use_pin">Χρήση PIN</string>
 <string name="detail_load_failed_body">Η πηγή ίσως δεν είναι διαθέσιμη.</string>
 <string name="detail_load_failed_headline">Δεν ήταν δυνατό το άνοιγμα αυτού του τίτλου</string>
+<string name="download_not_available_here">Δεν είναι διαθέσιμο εδώ</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d σε λήψη</item><item quantity="other">%d σε λήψη</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d σε αναμονή</item><item quantity="other">%d σε αναμονή</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Διαγραφή %d λήψης;</item><item quantity="other">Διαγραφή %d λήψεων;</item></plurals>

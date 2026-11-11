@@ -68,6 +68,7 @@
 <string name="account_use_pin">استخدم PIN بدالها</string>
 <string name="detail_load_failed_body">يمكن المصدر مو متاح.</string>
 <string name="detail_load_failed_headline">ما قدرنا نفتح هالعنوان</string>
+<string name="download_not_available_here">مو متوفر هنا</string>
 <plurals name="downloads_count_downloading"><item quantity="zero">%d قيد التنزيل</item><item quantity="one">%d قيد التنزيل</item><item quantity="two">%d قيد التنزيل</item><item quantity="few">%d قيد التنزيل</item><item quantity="many">%d قيد التنزيل</item><item quantity="other">%d قيد التنزيل</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="zero">%d في قائمة الانتظار</item><item quantity="one">%d في قائمة الانتظار</item><item quantity="two">%d في قائمة الانتظار</item><item quantity="few">%d في قائمة الانتظار</item><item quantity="many">%d في قائمة الانتظار</item><item quantity="other">%d في قائمة الانتظار</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="zero">حذف %d تنزيل؟</item><item quantity="one">حذف %d تنزيل؟</item><item quantity="two">حذف %d تنزيلين؟</item><item quantity="few">حذف %d تنزيلات؟</item><item quantity="many">حذف %d تنزيلًا؟</item><item quantity="other">حذف %d تنزيل؟</item></plurals>

@@ -260,6 +260,7 @@
 <string name="download_canceled">"Η λήψη ακυρώθηκε"</string>
 <string name="download_done">"Η λήψη ολοκληρώθηκε"</string>
 <string name="download_failed">"Η λήψη απέτυχε"</string>
+<string name="download_not_available_here">"Δεν είναι διαθέσιμο εδώ"</string>
 <string name="download_path_pref">"Διαδρομή λήψης"</string>
 <string name="download_paused">"Η λήψη παύθηκε"</string>
 <string name="download_started">"Η λήψη ξεκίνησε"</string>

@@ -68,6 +68,7 @@
 <string name="account_use_pin">പകരം പിൻ ഉപയോഗിക്കുക</string>
 <string name="detail_load_failed_body">ഉറവിടം ലഭ്യമല്ലായിരിക്കാം.</string>
 <string name="detail_load_failed_headline">ഈ ശീർഷകം തുറക്കാനായില്ല</string>
+<string name="download_not_available_here">ഇവിടെ ലഭ്യമല്ല</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d ഡൗൺലോഡ് ചെയ്യുന്നു</item><item quantity="other">%d ഡൗൺലോഡ് ചെയ്യുന്നു</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d ക്യൂവിൽ</item><item quantity="other">%d ക്യൂവിൽ</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ഡൗൺലോഡുകൾ ഇല്ലാതാക്കണോ?</item><item quantity="other">%d ഡൗൺലോഡുകൾ ഇല്ലാതാക്കണോ?</item></plurals>

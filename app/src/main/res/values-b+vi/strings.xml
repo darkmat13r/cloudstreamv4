@@ -276,6 +276,7 @@
 <string name="download_done">"Tải xuống thành công"</string>
 <string name="download_episode_range" formatted="true">"Bạn có muốn tải xuống tập %s không?"</string>
 <string name="download_failed">"Tải xuống thất bại"</string>
+<string name="download_not_available_here">"Không có ở đây"</string>
 <string name="download_parallel_settings_des">"Số lượng mục khác nhau có thể tải xuống cùng lúc"</string>
 <string name="download_path_pref">"Đường dẫn tải xuống"</string>
 <string name="download_paused">"Tải xuống đã tạm dừng"</string>

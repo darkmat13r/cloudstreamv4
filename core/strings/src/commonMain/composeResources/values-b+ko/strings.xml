@@ -68,6 +68,7 @@
 <string name="account_use_pin">대신 PIN 사용</string>
 <string name="detail_load_failed_body">소스를 사용할 수 없을 수 있습니다.</string>
 <string name="detail_load_failed_headline">이 작품을 열 수 없습니다</string>
+<string name="download_not_available_here">여기서는 사용할 수 없음</string>
 <plurals name="downloads_active"><item quantity="other">%d 활성 다운로드</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="other">%d개 다운로드 중</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d개 대기 중</item></plurals>

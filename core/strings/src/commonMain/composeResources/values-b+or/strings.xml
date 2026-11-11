@@ -68,6 +68,7 @@
 <string name="account_use_pin">ଏହା ବଦଳରେ PIN ବ୍ୟବହାର କରନ୍ତୁ</string>
 <string name="detail_load_failed_body">ଉତ୍ସ ଉପଲବ୍ଧ ନ ହୋଇପାରେ।</string>
 <string name="detail_load_failed_headline">ଏହି ଶୀର୍ଷକ ଖୋଲିହେଲା ନାହିଁ</string>
+<string name="download_not_available_here">ଏଠାରେ ଉପଲବ୍ଧ ନାହିଁ</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d ଡାଉନଲୋଡ୍ ହେଉଛି</item><item quantity="other">%d ଡାଉନଲୋଡ୍ ହେଉଛି</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d ଧାଡ଼ିରେ</item><item quantity="other">%d ଧାଡ଼ିରେ</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ଡାଉନଲୋଡ୍ ଡିଲିଟ୍ କରିବେ?</item><item quantity="other">%d ଡାଉନଲୋଡ୍ ଡିଲିଟ୍ କରିବେ?</item></plurals>

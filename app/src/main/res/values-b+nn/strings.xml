@@ -133,6 +133,7 @@
 <string name="download_canceled">"Nedlasting avbrote"</string>
 <string name="download_done">"Nedlasting ferdig"</string>
 <string name="download_failed">"Nedlasting feila"</string>
+<string name="download_not_available_here">"Ikkje tilgjengeleg her"</string>
 <string name="download_paused">"Nedlasting satt på vent"</string>
 <string name="download_queue">"Nedlastingskø"</string>
 <string name="download_started">"Nedlasting starta"</string>

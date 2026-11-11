@@ -68,6 +68,7 @@
 <string name="account_use_pin">Izmantot PIN kodu</string>
 <string name="detail_load_failed_body">Avots, iespējams, nav pieejams.</string>
 <string name="detail_load_failed_headline">Šo nosaukumu neizdevās atvērt</string>
+<string name="download_not_available_here">Šeit nav pieejams</string>
 <plurals name="downloads_active"><item quantity="zero">%d aktīvas lejupielādes</item><item quantity="one">%d aktīva lejupielāde</item><item quantity="other">%d aktīvas lejupielādes</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="zero">%d lejupielādē</item><item quantity="one">%d lejupielādē</item><item quantity="other">%d lejupielādē</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="zero">%d rindā</item><item quantity="one">%d rindā</item><item quantity="other">%d rindā</item></plurals>

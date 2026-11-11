@@ -68,6 +68,7 @@
 <string name="account_use_pin">Bruk PIN i staden</string>
 <string name="detail_load_failed_body">Kjelda er kanskje ikkje tilgjengeleg.</string>
 <string name="detail_load_failed_headline">Kunne ikkje opne denne tittelen</string>
+<string name="download_not_available_here">Ikkje tilgjengeleg her</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d lastar ned</item><item quantity="other">%d lastar ned</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d i kø</item><item quantity="other">%d i kø</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Slette %d nedlasting?</item><item quantity="other">Slette %d nedlastingar?</item></plurals>

@@ -68,6 +68,7 @@
 <string name="account_use_pin">Gebruik eerder PIN</string>
 <string name="detail_load_failed_body">Die bron is dalk nie beskikbaar nie.</string>
 <string name="detail_load_failed_headline">Kon nie hierdie titel oopmaak nie</string>
+<string name="download_not_available_here">Nie hier beskikbaar nie</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d laai af</item><item quantity="other">%d laai af</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d in die tou</item><item quantity="other">%d in die tou</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Skrap %d aflaai?</item><item quantity="other">Skrap %d aflaaie?</item></plurals>

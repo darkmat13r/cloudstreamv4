@@ -135,6 +135,7 @@ values-b+af/strings.xml	string	download	-	STR	Laai af
 values-b+af/strings.xml	string	download_canceled	-	STR	Aflaai gekanselleer	
 values-b+af/strings.xml	string	download_done	-	STR	Klaar Afgelaai	
 values-b+af/strings.xml	string	download_failed	-	STR	Aflaai het misluk	
+values-b+af/strings.xml	string	download_not_available_here	-	STR	Nie hier beskikbaar nie	
 values-b+af/strings.xml	string	download_paused	-	STR	Aflaai op rus	
 values-b+af/strings.xml	string	download_started	-	STR	Aflaai het begin	
 values-b+af/strings.xml	string	download_storage_text	-	STR	Interne Berging	
@@ -650,6 +651,7 @@ values-b+am/strings.xml	string	download	-	STR	ማውረጃ
 values-b+am/strings.xml	string	download_canceled	-	STR	ማውረድ ተቋርጧል	
 values-b+am/strings.xml	string	download_done	-	STR	ማውረድ ተከናውኗል	
 values-b+am/strings.xml	string	download_failed	-	STR	ማውረድ አልተሳካም	
+values-b+am/strings.xml	string	download_not_available_here	-	STR	እዚህ አይገኝም	
 values-b+am/strings.xml	string	download_paused	-	STR	ማውረድ ቆሟል	
 values-b+am/strings.xml	string	download_started	-	STR	ማውረድ ተጀምሯል	
 values-b+am/strings.xml	string	download_storage_text	-	STR	ውስጣዊ ማከማቻ	
@@ -1320,6 +1322,7 @@ values-b+apc/strings.xml	string	download_canceled	-	STR	نلغى التنزيل
 values-b+apc/strings.xml	string	download_done	-	STR	خُلِص التنزيل	
 values-b+apc/strings.xml	string	download_episode_range	-	STR	بدك تنزل الحلقة %s؟	
 values-b+apc/strings.xml	string	download_failed	-	STR	فِشِل التنزيل	
+values-b+apc/strings.xml	string	download_not_available_here	-	STR	مش متوفر هون	
 values-b+apc/strings.xml	string	download_parallel_settings_des	-	STR	كم شغلة مختلفة فيها تتنزل ب نفس الوقت	
 values-b+apc/strings.xml	string	download_path_pref	-	STR	ممر التنزيل	
 values-b+apc/strings.xml	string	download_paused	-	STR	محطوت پوز على التنزيل	
@@ -2543,6 +2546,7 @@ values-b+ar/strings.xml	string	download_canceled	-	STR	تم إلغاء التن�
 values-b+ar/strings.xml	string	download_done	-	STR	تم التنزيل	
 values-b+ar/strings.xml	string	download_episode_range	-	STR	هل ترغب في تنزيل الحلقة %s ؟	
 values-b+ar/strings.xml	string	download_failed	-	STR	فشل التنزيل	
+values-b+ar/strings.xml	string	download_not_available_here	-	STR	غير متاح هنا	
 values-b+ar/strings.xml	string	download_parallel_settings_des	-	STR	عدد الأصناف المختلفة التي يمكن تنزيلها بالتوازي	
 values-b+ar/strings.xml	string	download_path_pref	-	STR	مسار التنزيل	
 values-b+ar/strings.xml	string	download_paused	-	STR	توقف التنزيل مؤقتًا	
@@ -3663,6 +3667,7 @@ values-b+ars/strings.xml	string	download	-	STR	تحميل
 values-b+ars/strings.xml	string	download_canceled	-	STR	تم إلغاء التنزيل	
 values-b+ars/strings.xml	string	download_done	-	STR	تم التنزيل	
 values-b+ars/strings.xml	string	download_failed	-	STR	التحميل فشل	
+values-b+ars/strings.xml	string	download_not_available_here	-	STR	مو متوفر هنا	
 values-b+ars/strings.xml	string	download_path_pref	-	STR	مسار التحميل	
 values-b+ars/strings.xml	string	download_paused	-	STR	توقف التنزيل	
 values-b+ars/strings.xml	string	download_started	-	STR	بدأ التنزيل	
@@ -4475,6 +4480,7 @@ values-b+as/strings.xml	string	download_all_plugins_from_repo	-	STR	সতর্
 values-b+as/strings.xml	string	download_canceled	-	STR	ডাউনলোড বাতিল	
 values-b+as/strings.xml	string	download_done	-	STR	ডাউনলোড সম্পন্ন	
 values-b+as/strings.xml	string	download_failed	-	STR	ডাউনলোড বিফল	
+values-b+as/strings.xml	string	download_not_available_here	-	STR	ইয়াত উপলব্ধ নহয়	
 values-b+as/strings.xml	string	download_path_pref	-	STR	ডাউনলোড পথ	
 values-b+as/strings.xml	string	download_paused	-	STR	ডাউনলোড ৰখা হৈছে	
 values-b+as/strings.xml	string	download_started	-	STR	ডাউনলোড আৰম্ভ হৈছে	
@@ -5389,6 +5395,7 @@ values-b+az/strings.xml	string	download	-	STR	Yüklə
 values-b+az/strings.xml	string	download_canceled	-	STR	Yükləmə ləğv edildi	
 values-b+az/strings.xml	string	download_done	-	STR	Yükləmə bitdi	
 values-b+az/strings.xml	string	download_failed	-	STR	Yükləmə uğursuz oldu	
+values-b+az/strings.xml	string	download_not_available_here	-	STR	Burada mövcud deyil	
 values-b+az/strings.xml	string	download_paused	-	STR	Yükləmə dayandırıldı	
 values-b+az/strings.xml	string	download_started	-	STR	Yükləmə başladıldı	
 values-b+az/strings.xml	string	downloaded	-	STR	Yükləndi	
@@ -6120,6 +6127,7 @@ values-b+be/strings.xml	string	download_canceled	-	STR	Спампоўванне 
 values-b+be/strings.xml	string	download_done	-	STR	Спампоўванне завершана	
 values-b+be/strings.xml	string	download_episode_range	-	STR	Спампаваць %s серыю?	
 values-b+be/strings.xml	string	download_failed	-	STR	Не ўдалося спампаваць	
+values-b+be/strings.xml	string	download_not_available_here	-	STR	Тут недаступна	
 values-b+be/strings.xml	string	download_parallel_settings_des	-	STR	Колькі разных элементаў можна спампоўваць паралельна	
 values-b+be/strings.xml	string	download_path_pref	-	STR	Шлях спампоўкі	
 values-b+be/strings.xml	string	download_paused	-	STR	Спампоўванне прыпынена	
@@ -7251,6 +7259,7 @@ values-b+bg/strings.xml	string	download_canceled	-	STR	Изтеглянето е
 values-b+bg/strings.xml	string	download_done	-	STR	Изтеглянето е завършено	
 values-b+bg/strings.xml	string	download_episode_range	-	STR	Искаш ли да изтеглиш епизод %s?	
 values-b+bg/strings.xml	string	download_failed	-	STR	Изтеглянето се провали	
+values-b+bg/strings.xml	string	download_not_available_here	-	STR	Не е налично тук	
 values-b+bg/strings.xml	string	download_parallel_settings_des	-	STR	Колко различни елемента могат да бъдат изтеглени паралелно	
 values-b+bg/strings.xml	string	download_path_pref	-	STR	Път за изтегляне	
 values-b+bg/strings.xml	string	download_paused	-	STR	Изтеглянето е на пауза	
@@ -8288,6 +8297,7 @@ values-b+bn/strings.xml	string	download	-	STR	ডাউনলোড
 values-b+bn/strings.xml	string	download_canceled	-	STR	ডাউনলোড বাদ	
 values-b+bn/strings.xml	string	download_done	-	STR	ডাউনলোড শেষ	
 values-b+bn/strings.xml	string	download_failed	-	STR	ডাউনলোড ব্যর্থ	
+values-b+bn/strings.xml	string	download_not_available_here	-	STR	এখানে উপলব্ধ নয়	
 values-b+bn/strings.xml	string	download_path_pref	-	STR	ডাউনলোডের পথ	
 values-b+bn/strings.xml	string	download_paused	-	STR	ডাউনলোড স্থগিত	
 values-b+bn/strings.xml	string	download_queue	-	STR	ডাউনলোড তালিকা	
@@ -9067,6 +9077,7 @@ values-b+ca/strings.xml	string	download	-	STR	Descarregar
 values-b+ca/strings.xml	string	download_canceled	-	STR	Descàrrega cancel·lada	
 values-b+ca/strings.xml	string	download_done	-	STR	Descàrrega completada	
 values-b+ca/strings.xml	string	download_failed	-	STR	Descarrega fallida	
+values-b+ca/strings.xml	string	download_not_available_here	-	STR	No disponible aquí	
 values-b+ca/strings.xml	string	download_paused	-	STR	Descàrrega en espera	
 values-b+ca/strings.xml	string	download_started	-	STR	S'ha iniciat la descàrrega	
 values-b+ca/strings.xml	string	download_storage_text	-	STR	emmagatzematge intern	
@@ -9755,6 +9766,7 @@ values-b+ckb/strings.xml	string	download	-	STR	داونلۆد
 values-b+ckb/strings.xml	string	download_canceled	-	STR	داونلۆد هەڵوەشایەوە	
 values-b+ckb/strings.xml	string	download_done	-	STR	داونلۆد تەواو بووە	
 values-b+ckb/strings.xml	string	download_failed	-	STR	داونلۆدکردن شکستی هێنا	
+values-b+ckb/strings.xml	string	download_not_available_here	-	STR	لێرە بەردەست نییە	
 values-b+ckb/strings.xml	string	download_paused	-	STR	دابەزاندن وەستاوە	
 values-b+ckb/strings.xml	string	download_started	-	STR	داگرتن دەستی پێکرد	
 values-b+ckb/strings.xml	string	download_storage_text	-	STR	کۆگای ناوخۆیی	
@@ -10455,6 +10467,7 @@ values-b+cs/strings.xml	string	download_canceled	-	STR	Stahování zrušeno
 values-b+cs/strings.xml	string	download_done	-	STR	Stahování dokončeno	
 values-b+cs/strings.xml	string	download_episode_range	-	STR	Chcete stáhnout epizodu %s?	
 values-b+cs/strings.xml	string	download_failed	-	STR	Stahování selhalo	
+values-b+cs/strings.xml	string	download_not_available_here	-	STR	Zde není k dispozici	
 values-b+cs/strings.xml	string	download_parallel_settings_des	-	STR	Počet různých položek, které lze stahovat v jednu chvíli	
 values-b+cs/strings.xml	string	download_path_pref	-	STR	Cesta stahování	
 values-b+cs/strings.xml	string	download_paused	-	STR	Stahování pozastaveno	
@@ -11593,6 +11606,7 @@ values-b+de/strings.xml	string	download_canceled	-	STR	Download abgebrochen
 values-b+de/strings.xml	string	download_done	-	STR	Download abgeschlossen	
 values-b+de/strings.xml	string	download_episode_range	-	STR	Möchtest du Episode %s herunter laden?	
 values-b+de/strings.xml	string	download_failed	-	STR	Download fehlgeschlagen	
+values-b+de/strings.xml	string	download_not_available_here	-	STR	Hier nicht verfügbar	
 values-b+de/strings.xml	string	download_parallel_settings_des	-	STR	Wie viele verschiedene Elemente können parallel heruntergeladen werden	
 values-b+de/strings.xml	string	download_path_pref	-	STR	Downloadpfad	
 values-b+de/strings.xml	string	download_paused	-	STR	Download pausiert	
@@ -12712,6 +12726,7 @@ values-b+el/strings.xml	string	download_all_plugins_from_repo	-	STR	Προειδ
 values-b+el/strings.xml	string	download_canceled	-	STR	Η λήψη ακυρώθηκε	
 values-b+el/strings.xml	string	download_done	-	STR	Η λήψη ολοκληρώθηκε	
 values-b+el/strings.xml	string	download_failed	-	STR	Η λήψη απέτυχε	
+values-b+el/strings.xml	string	download_not_available_here	-	STR	Δεν είναι διαθέσιμο εδώ	
 values-b+el/strings.xml	string	download_path_pref	-	STR	Διαδρομή λήψης	
 values-b+el/strings.xml	string	download_paused	-	STR	Η λήψη παύθηκε	
 values-b+el/strings.xml	string	download_started	-	STR	Η λήψη ξεκίνησε	
@@ -13633,6 +13648,7 @@ values-b+eo/strings.xml	string	download	-	STR	Elŝuti
 values-b+eo/strings.xml	string	download_canceled	-	STR	Elŝuto Nuligite	
 values-b+eo/strings.xml	string	download_done	-	STR	Elŝuto Farite	
 values-b+eo/strings.xml	string	download_failed	-	STR	Elŝuto Malsukcesite	
+values-b+eo/strings.xml	string	download_not_available_here	-	STR	Ne disponebla ĉi tie	
 values-b+eo/strings.xml	string	download_paused	-	STR	Elŝuto Paŭzite	
 values-b+eo/strings.xml	string	download_queue	-	STR	Elsûtovico	
 values-b+eo/strings.xml	string	download_started	-	STR	Elŝuto Komencite	
@@ -14396,6 +14412,7 @@ values-b+es/strings.xml	string	download_canceled	-	STR	Descarga Cancelada
 values-b+es/strings.xml	string	download_done	-	STR	Descarga Finalizada	
 values-b+es/strings.xml	string	download_episode_range	-	STR	¿Desea descargar el episodio %s?	
 values-b+es/strings.xml	string	download_failed	-	STR	Descarga fallida	
+values-b+es/strings.xml	string	download_not_available_here	-	STR	No disponible aquí	
 values-b+es/strings.xml	string	download_parallel_settings_des	-	STR	Cuántos elementos diferentes pueden descargarse en paralelo	
 values-b+es/strings.xml	string	download_path_pref	-	STR	Ruta de descarga	
 values-b+es/strings.xml	string	download_paused	-	STR	Descarga pausada	
@@ -15437,6 +15454,7 @@ values-b+fa/strings.xml	string	download	-	STR	دانلود
 values-b+fa/strings.xml	string	download_canceled	-	STR	دانلود لغو شد	
 values-b+fa/strings.xml	string	download_done	-	STR	داتلود پایان یافت	
 values-b+fa/strings.xml	string	download_failed	-	STR	دانلود ناموفق بود	
+values-b+fa/strings.xml	string	download_not_available_here	-	STR	اینجا در دسترس نیست	
 values-b+fa/strings.xml	string	download_path_pref	-	STR	راه دانلود	
 values-b+fa/strings.xml	string	download_paused	-	STR	دانلود متوقف شده	
 values-b+fa/strings.xml	string	download_started	-	STR	دانلود آغاز شد	
@@ -16127,6 +16145,7 @@ values-b+fil/strings.xml	string	download_all_plugins_from_repo	-	STR	Babala: Wal
 values-b+fil/strings.xml	string	download_canceled	-	STR	Kinansela ang pag-download	
 values-b+fil/strings.xml	string	download_done	-	STR	Natapos ang pag-download	
 values-b+fil/strings.xml	string	download_failed	-	STR	Nabigong ma-download	
+values-b+fil/strings.xml	string	download_not_available_here	-	STR	Hindi available dito	
 values-b+fil/strings.xml	string	download_paused	-	STR	Hininto ang pag-download	
 values-b+fil/strings.xml	string	download_queue	-	STR	Nakapila na download	
 values-b+fil/strings.xml	string	download_started	-	STR	Sinimulan ang pag-download	
@@ -16860,6 +16879,7 @@ values-b+fr/strings.xml	string	download_canceled	-	STR	Téléchargement annulé
 values-b+fr/strings.xml	string	download_done	-	STR	Téléchargement terminé	
 values-b+fr/strings.xml	string	download_episode_range	-	STR	Voulez-vous télécharger l'épisode %s ?	
 values-b+fr/strings.xml	string	download_failed	-	STR	Échec du téléchargement	
+values-b+fr/strings.xml	string	download_not_available_here	-	STR	Indisponible ici	
 values-b+fr/strings.xml	string	download_parallel_settings_des	-	STR	Combien d'objets différents peuvent être téléchargés en parallèle	
 values-b+fr/strings.xml	string	download_path_pref	-	STR	Emplacement de téléchargement	
 values-b+fr/strings.xml	string	download_paused	-	STR	Téléchargement en pause	
@@ -17888,6 +17908,7 @@ values-b+gl/strings.xml	string	download	-	STR	Descargar
 values-b+gl/strings.xml	string	download_canceled	-	STR	Descarga Cancelada	
 values-b+gl/strings.xml	string	download_done	-	STR	Descarga rematada	
 values-b+gl/strings.xml	string	download_failed	-	STR	Descarga Fallida	
+values-b+gl/strings.xml	string	download_not_available_here	-	STR	Non dispoñible aquí	
 values-b+gl/strings.xml	string	download_paused	-	STR	Descarga Pausada	
 values-b+gl/strings.xml	string	download_started	-	STR	Descarga comezada	
 values-b+gl/strings.xml	string	download_storage_text	-	STR	Almacenamento Interno	
@@ -18602,6 +18623,7 @@ values-b+hi/strings.xml	string	download	-	STR	डाउनलोड
 values-b+hi/strings.xml	string	download_canceled	-	STR	डाउनलोड रद्द	
 values-b+hi/strings.xml	string	download_done	-	STR	डाउनलोड मुकम्मल	
 values-b+hi/strings.xml	string	download_failed	-	STR	डाउनलोड विफल	
+values-b+hi/strings.xml	string	download_not_available_here	-	STR	यहाँ उपलब्ध नहीं	
 values-b+hi/strings.xml	string	download_path_pref	-	STR	डाउनलोड पथ	
 values-b+hi/strings.xml	string	download_paused	-	STR	डाउनलोड रोका गया	
 values-b+hi/strings.xml	string	download_queue	-	STR	कतार डाउनलोड करें	
@@ -19517,6 +19539,7 @@ values-b+hr/strings.xml	string	download_canceled	-	STR	Preuzimanje otkazano
 values-b+hr/strings.xml	string	download_done	-	STR	Preuzimanje dovršeno	
 values-b+hr/strings.xml	string	download_episode_range	-	STR	Želiš li preuzeti epizodu %s?	
 values-b+hr/strings.xml	string	download_failed	-	STR	Preuzimanje neuspjelo	
+values-b+hr/strings.xml	string	download_not_available_here	-	STR	Ovdje nije dostupno	
 values-b+hr/strings.xml	string	download_parallel_settings_des	-	STR	Koliko se različitih stavki može istovremeno preuzimati	
 values-b+hr/strings.xml	string	download_path_pref	-	STR	Putanja preuzimanja	
 values-b+hr/strings.xml	string	download_paused	-	STR	Preuzimanje pauzirano	
@@ -20617,6 +20640,7 @@ values-b+hu/strings.xml	string	download_all_plugins_from_repo	-	STR	Töltse le a
 values-b+hu/strings.xml	string	download_canceled	-	STR	Letöltés megszakítva	
 values-b+hu/strings.xml	string	download_done	-	STR	Letöltés kész	
 values-b+hu/strings.xml	string	download_failed	-	STR	Letöltés sikertelen	
+values-b+hu/strings.xml	string	download_not_available_here	-	STR	Itt nem érhető el	
 values-b+hu/strings.xml	string	download_path_pref	-	STR	Letöltési útvonal	
 values-b+hu/strings.xml	string	download_paused	-	STR	Letöltés szüneteltetve	
 values-b+hu/strings.xml	string	download_queue	-	STR	Letöltési sor	
@@ -21660,6 +21684,7 @@ values-b+in/strings.xml	string	download_canceled	-	STR	Unduhan diibatalkan
 values-b+in/strings.xml	string	download_done	-	STR	Unduhan selesai	
 values-b+in/strings.xml	string	download_episode_range	-	STR	Apakah kamu ingin mengunduh episode %s?	
 values-b+in/strings.xml	string	download_failed	-	STR	Unduhan gagal	
+values-b+in/strings.xml	string	download_not_available_here	-	STR	Tidak tersedia di sini	
 values-b+in/strings.xml	string	download_parallel_settings_des	-	STR	Berapa banyak item yang bisa diunduh secara paralel	
 values-b+in/strings.xml	string	download_path_pref	-	STR	Lokasi unduhan	
 values-b+in/strings.xml	string	download_paused	-	STR	Unduhan dijeda	
@@ -22822,6 +22847,7 @@ values-b+it/strings.xml	string	download_canceled	-	STR	Download cancellato
 values-b+it/strings.xml	string	download_done	-	STR	Download completato	
 values-b+it/strings.xml	string	download_episode_range	-	STR	Vuoi scaricare l'episodio %s?	
 values-b+it/strings.xml	string	download_failed	-	STR	Download fallito	
+values-b+it/strings.xml	string	download_not_available_here	-	STR	Non disponibile qui	
 values-b+it/strings.xml	string	download_parallel_settings_des	-	STR	Quanti oggetti possono essere scaricati contemporaneamente	
 values-b+it/strings.xml	string	download_path_pref	-	STR	Percorso di download	
 values-b+it/strings.xml	string	download_paused	-	STR	Download in pausa	
@@ -23919,6 +23945,7 @@ values-b+iw/strings.xml	string	download_all_plugins_from_repo	-	STR	הורד א�
 values-b+iw/strings.xml	string	download_canceled	-	STR	ההורדה בוטלה	
 values-b+iw/strings.xml	string	download_done	-	STR	נגן טריילר	
 values-b+iw/strings.xml	string	download_failed	-	STR	ההורדה נכשלה	
+values-b+iw/strings.xml	string	download_not_available_here	-	STR	לא זמין כאן	
 values-b+iw/strings.xml	string	download_path_pref	-	STR	נתיב הורדה	
 values-b+iw/strings.xml	string	download_paused	-	STR	ההורדה מושהית	
 values-b+iw/strings.xml	string	download_started	-	STR	ההורדה התחילה	
@@ -24901,6 +24928,7 @@ values-b+ja/strings.xml	string	download_canceled	-	STR	ダウンロード終了
 values-b+ja/strings.xml	string	download_done	-	STR	ダウンロード完了	
 values-b+ja/strings.xml	string	download_episode_range	-	STR	エピソード %s をダウンロードしますか？	
 values-b+ja/strings.xml	string	download_failed	-	STR	ダウンロード失敗	
+values-b+ja/strings.xml	string	download_not_available_here	-	STR	ここでは利用できません	
 values-b+ja/strings.xml	string	download_parallel_settings_des	-	STR	並行してダウンロードできるアイテム	
 values-b+ja/strings.xml	string	download_path_pref	-	STR	ダウンロードパス	
 values-b+ja/strings.xml	string	download_paused	-	STR	ダウンロードが一時停止	
@@ -25879,6 +25907,7 @@ values-b+kn/strings.xml	string	download	-	STR	ಡೌನ್‌ಲೋಡ್
 values-b+kn/strings.xml	string	download_canceled	-	STR	ಡೌನ್‌ಲೋಡ್ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ	
 values-b+kn/strings.xml	string	download_done	-	STR	ಡೌನ್‌ಲೋಡ್ ಮುಗಿದಿದೆ	
 values-b+kn/strings.xml	string	download_failed	-	STR	ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ	
+values-b+kn/strings.xml	string	download_not_available_here	-	STR	ಇಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ	
 values-b+kn/strings.xml	string	download_paused	-	STR	ಡೌನ್‌ಲೋಡ್ ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ	
 values-b+kn/strings.xml	string	download_started	-	STR	ಡೌನ್‌ಲೋಡ್ ಪ್ರಾರಂಭವಾಗಿದೆ	
 values-b+kn/strings.xml	string	download_storage_text	-	STR	ಇಂಟರ್ನಲ್ ಸ್ಟೋರೇಜ್	
@@ -26541,6 +26570,7 @@ values-b+ko/strings.xml	string	download_canceled	-	STR	다운로드 취소
 values-b+ko/strings.xml	string	download_done	-	STR	다운로드 완료	
 values-b+ko/strings.xml	string	download_episode_range	-	STR	에피소드를 다운로드 하시겠습니까 %s?	
 values-b+ko/strings.xml	string	download_failed	-	STR	다운로드 실패	
+values-b+ko/strings.xml	string	download_not_available_here	-	STR	여기서는 사용할 수 없음	
 values-b+ko/strings.xml	string	download_parallel_settings_des	-	STR	병렬로 다운로드 할 수 있는 아이템의 수	
 values-b+ko/strings.xml	string	download_path_pref	-	STR	다운로드 경로	
 values-b+ko/strings.xml	string	download_paused	-	STR	다운로드 일시정지	
@@ -27587,6 +27617,7 @@ values-b+lt/strings.xml	string	download	-	STR	Atsisiųsti
 values-b+lt/strings.xml	string	download_canceled	-	STR	Atsisiuntimas atšauktas	
 values-b+lt/strings.xml	string	download_done	-	STR	Atsisiuntimas baigtas	
 values-b+lt/strings.xml	string	download_failed	-	STR	Atsisiuntimas nepavyko	
+values-b+lt/strings.xml	string	download_not_available_here	-	STR	Čia nepasiekiama	
 values-b+lt/strings.xml	string	download_path_pref	-	STR	Atsiuntimo kelias	
 values-b+lt/strings.xml	string	download_paused	-	STR	Siuntimas sustabdytas	
 values-b+lt/strings.xml	string	download_queue	-	STR	Atsisiuntimų eilė	
@@ -28385,6 +28416,7 @@ values-b+lv/strings.xml	string	download_all_plugins_from_repo	-	STR	Uzmanību: C
 values-b+lv/strings.xml	string	download_canceled	-	STR	Lejupielāde atcelta	
 values-b+lv/strings.xml	string	download_done	-	STR	Lejupielāde pabeigta	
 values-b+lv/strings.xml	string	download_failed	-	STR	Lejupielāde neizdevās	
+values-b+lv/strings.xml	string	download_not_available_here	-	STR	Šeit nav pieejams	
 values-b+lv/strings.xml	string	download_path_pref	-	STR	Ielādēšanas ceļš	
 values-b+lv/strings.xml	string	download_paused	-	STR	Lejupielāde iepauzēta	
 values-b+lv/strings.xml	string	download_queue	-	STR	Lejupielādes rinda	
@@ -29441,6 +29473,7 @@ values-b+mk/strings.xml	string	download_canceled	-	STR	Преземањето е
 values-b+mk/strings.xml	string	download_done	-	STR	Преземањето е готово	
 values-b+mk/strings.xml	string	download_episode_range	-	STR	Дали сакате да ја преземете епизодата %s?	
 values-b+mk/strings.xml	string	download_failed	-	STR	Преземањето е неуспешно	
+values-b+mk/strings.xml	string	download_not_available_here	-	STR	Не е достапно тука	
 values-b+mk/strings.xml	string	download_parallel_settings_des	-	STR	Колку различни содржини можат да се симнуваат паралелно	
 values-b+mk/strings.xml	string	download_path_pref	-	STR	Патека на преземање	
 values-b+mk/strings.xml	string	download_paused	-	STR	Преземањето е паузирано	
@@ -30451,6 +30484,7 @@ values-b+ml/strings.xml	string	download_all_plugins_from_repo	-	STR	ഈ ശേ�
 values-b+ml/strings.xml	string	download_canceled	-	STR	ഡൌൺലോഡ് റദ്ദാക്കി	
 values-b+ml/strings.xml	string	download_done	-	STR	ഡൌൺലോഡ് പൂർത്തിയായി	
 values-b+ml/strings.xml	string	download_failed	-	STR	ഡൌൺലോഡ് മുടങ്ങി	
+values-b+ml/strings.xml	string	download_not_available_here	-	STR	ഇവിടെ ലഭ്യമല്ല	
 values-b+ml/strings.xml	string	download_paused	-	STR	ഡൌൺലോഡ് നിർത്തി	
 values-b+ml/strings.xml	string	download_queue	-	STR	ഡൗൺലോഡ് ക്യൂ	
 values-b+ml/strings.xml	string	download_started	-	STR	ഡൌൺലോഡ് ആരംഭിച്ചു	
@@ -31193,6 +31227,7 @@ values-b+ms/strings.xml	string	download_all_plugins_from_repo	-	STR	Amaran: Clou
 values-b+ms/strings.xml	string	download_canceled	-	STR	Muat turun dibatalkan	
 values-b+ms/strings.xml	string	download_done	-	STR	Muat turun selesai	
 values-b+ms/strings.xml	string	download_failed	-	STR	Muat turun gagal	
+values-b+ms/strings.xml	string	download_not_available_here	-	STR	Tidak tersedia di sini	
 values-b+ms/strings.xml	string	download_path_pref	-	STR	Laluan muat turun	
 values-b+ms/strings.xml	string	download_paused	-	STR	Muat turun dihentikan	
 values-b+ms/strings.xml	string	download_started	-	STR	Muat turun dimulakan	
@@ -32069,6 +32104,7 @@ values-b+mt/strings.xml	string	download	-	STR	Niżżel
 values-b+mt/strings.xml	string	download_canceled	-	STR	Tniżżil ikkanċellat	
 values-b+mt/strings.xml	string	download_done	-	STR	Lest it-tniżżil	
 values-b+mt/strings.xml	string	download_failed	-	STR	Falla t-tniżżil	
+values-b+mt/strings.xml	string	download_not_available_here	-	STR	Mhux disponibbli hawn	
 values-b+mt/strings.xml	string	download_paused	-	STR	Tniżżila ppawzata	
 values-b+mt/strings.xml	string	download_started	-	STR	Beda t-tniżżil	
 values-b+mt/strings.xml	string	download_storage_text	-	STR	Ħażna Interna	
@@ -32668,6 +32704,7 @@ values-b+my/strings.xml	string	download_all_plugins_from_repo	-	STR	ဤရီပ
 values-b+my/strings.xml	string	download_canceled	-	STR	ဒေါင်းလုဒ် ပယ်ဖျက်ပြီး	
 values-b+my/strings.xml	string	download_done	-	STR	ဒေါင်းလုဒ်ပြီးစီး	
 values-b+my/strings.xml	string	download_failed	-	STR	ဒေါင်းလုဒ် မအောင်မြင်	
+values-b+my/strings.xml	string	download_not_available_here	-	STR	ဤနေရာတွင် မရနိုင်ပါ	
 values-b+my/strings.xml	string	download_path_pref	-	STR	ဒေါင်းလုဒ်လမ်းကြောင်း	
 values-b+my/strings.xml	string	download_paused	-	STR	ဒေါင်းလုဒ် ရပ်ထား	
 values-b+my/strings.xml	string	download_started	-	STR	ဒေါင်းလုဒ်စတင်	
@@ -33489,6 +33526,7 @@ values-b+ne/strings.xml	string	download	-	STR	डाउनलोड
 values-b+ne/strings.xml	string	download_canceled	-	STR	डाउनलोड रद्द गरियो	
 values-b+ne/strings.xml	string	download_done	-	STR	डाउनलोड भयो	
 values-b+ne/strings.xml	string	download_failed	-	STR	डाउनलोड असफल भयो	
+values-b+ne/strings.xml	string	download_not_available_here	-	STR	यहाँ उपलब्ध छैन	
 values-b+ne/strings.xml	string	download_paused	-	STR	डाउनलोड रोकियो	
 values-b+ne/strings.xml	string	download_started	-	STR	डाउनलोड सुरु भयो	
 values-b+ne/strings.xml	string	download_storage_text	-	STR	भित्री स्टोरेज	
@@ -34156,6 +34194,7 @@ values-b+nl/strings.xml	string	download_all_plugins_from_repo	-	STR	Waarschuwing
 values-b+nl/strings.xml	string	download_canceled	-	STR	Download Geannuleerd	
 values-b+nl/strings.xml	string	download_done	-	STR	Download Gereed	
 values-b+nl/strings.xml	string	download_failed	-	STR	Download Mislukt	
+values-b+nl/strings.xml	string	download_not_available_here	-	STR	Hier niet beschikbaar	
 values-b+nl/strings.xml	string	download_parallel_settings_des	-	STR	Hoeveel verschillende items kunnen in parallel gedownload worden	
 values-b+nl/strings.xml	string	download_path_pref	-	STR	Downloadpad	
 values-b+nl/strings.xml	string	download_paused	-	STR	Downloaden Gepauzeerd	
@@ -35114,6 +35153,7 @@ values-b+nn/strings.xml	string	download	-	STR	Nedlasting
 values-b+nn/strings.xml	string	download_canceled	-	STR	Nedlasting avbrote	
 values-b+nn/strings.xml	string	download_done	-	STR	Nedlasting ferdig	
 values-b+nn/strings.xml	string	download_failed	-	STR	Nedlasting feila	
+values-b+nn/strings.xml	string	download_not_available_here	-	STR	Ikkje tilgjengeleg her	
 values-b+nn/strings.xml	string	download_paused	-	STR	Nedlasting satt på vent	
 values-b+nn/strings.xml	string	download_queue	-	STR	Nedlastingskø	
 values-b+nn/strings.xml	string	download_started	-	STR	Nedlasting starta	
@@ -35789,6 +35829,7 @@ values-b+no/strings.xml	string	download_all_plugins_from_repo	-	STR	Last ned all
 values-b+no/strings.xml	string	download_canceled	-	STR	Nedlasting avbrutt	
 values-b+no/strings.xml	string	download_done	-	STR	Last ned Ferdig	
 values-b+no/strings.xml	string	download_failed	-	STR	Nedlasting mislyktes	
+values-b+no/strings.xml	string	download_not_available_here	-	STR	Ikke tilgjengelig her	
 values-b+no/strings.xml	string	download_path_pref	-	STR	Nedlastingssti	
 values-b+no/strings.xml	string	download_paused	-	STR	Nedlasting stoppet midlertidig	
 values-b+no/strings.xml	string	download_started	-	STR	Nedlasting startet	
@@ -36613,6 +36654,7 @@ values-b+or/strings.xml	string	detail_start_over	-	STR	ପୁଣି ଆରମ୍
 values-b+or/strings.xml	string	documentaries	-	STR	ଵୃତ୍ତଚିତ୍ର	
 values-b+or/strings.xml	string	documentaries_singular	-	STR	ଵୃତ୍ତଚିତ୍ର	
 values-b+or/strings.xml	string	dont_show_again	-	STR	ପୁନଃ ଦେଖାଅନି	
+values-b+or/strings.xml	string	download_not_available_here	-	STR	ଏଠାରେ ଉପଲବ୍ଧ ନାହିଁ	
 values-b+or/strings.xml	string	download_storage_text	-	STR	ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍	
 values-b+or/strings.xml	string	download_time_left_hour_min_sec_format	-	STR	%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ	
 values-b+or/strings.xml	string	downloads_browse_library	-	STR	ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର	
@@ -37372,6 +37414,7 @@ values-b+pl/strings.xml	string	download_canceled	-	STR	Anulowano pobieranie
 values-b+pl/strings.xml	string	download_done	-	STR	Zakończono pobieranie	
 values-b+pl/strings.xml	string	download_episode_range	-	STR	Czy chcesz pobrać odcinek %s?	
 values-b+pl/strings.xml	string	download_failed	-	STR	Błąd przy pobieraniu	
+values-b+pl/strings.xml	string	download_not_available_here	-	STR	Niedostępne tutaj	
 values-b+pl/strings.xml	string	download_parallel_settings_des	-	STR	Ile różnych elementów można pobrać równolegle	
 values-b+pl/strings.xml	string	download_path_pref	-	STR	Ścieżka pobierania	
 values-b+pl/strings.xml	string	download_paused	-	STR	Wstrzymano pobieranie	
@@ -38534,6 +38577,7 @@ values-b+pt+BR/strings.xml	string	download_canceled	-	STR	Download cancelado
 values-b+pt+BR/strings.xml	string	download_done	-	STR	Download concluído	
 values-b+pt+BR/strings.xml	string	download_episode_range	-	STR	Você deseja baixar o episódio%s?	
 values-b+pt+BR/strings.xml	string	download_failed	-	STR	Download falhou	
+values-b+pt+BR/strings.xml	string	download_not_available_here	-	STR	Indisponível aqui	
 values-b+pt+BR/strings.xml	string	download_parallel_settings_des	-	STR	Quantos itens diferentes podem ser baixados em paralelo	
 values-b+pt+BR/strings.xml	string	download_path_pref	-	STR	Onde salvar Downloads	
 values-b+pt+BR/strings.xml	string	download_paused	-	STR	Download pausado	
@@ -39693,6 +39737,7 @@ values-b+pt/strings.xml	string	download_canceled	-	STR	Download cancelado
 values-b+pt/strings.xml	string	download_done	-	STR	Download concluído	
 values-b+pt/strings.xml	string	download_episode_range	-	STR	Deseja baixar o episódio %s?	
 values-b+pt/strings.xml	string	download_failed	-	STR	Falha no Download	
+values-b+pt/strings.xml	string	download_not_available_here	-	STR	Indisponível aqui	
 values-b+pt/strings.xml	string	download_parallel_settings_des	-	STR	Quantos itens diferentes podem ser baixados em paralelo	
 values-b+pt/strings.xml	string	download_path_pref	-	STR	Caminho de transferência	
 values-b+pt/strings.xml	string	download_paused	-	STR	Download Pausado	
@@ -40779,6 +40824,7 @@ values-b+qt/strings.xml	string	download_all_plugins_from_repo	-	STR	Warning: ooo
 values-b+qt/strings.xml	string	download_canceled	-	STR	ooo-ahah aaaghhahooo	
 values-b+qt/strings.xml	string	download_done	-	STR	aaaghhaaaaa ohouuhhh	
 values-b+qt/strings.xml	string	download_failed	-	STR	aaaghhahhooo-ahahahhha aaaghh	
+values-b+qt/strings.xml	string	download_not_available_here	-	STR	aah ooh-ooh	
 values-b+qt/strings.xml	string	download_path_pref	-	STR	aaaahhhg aagg	
 values-b+qt/strings.xml	string	download_paused	-	STR	aaahhuooo-ahahhaaa	
 values-b+qt/strings.xml	string	download_started	-	STR	aaaaa oooohh aauugghh	
@@ -41816,6 +41862,7 @@ values-b+ro/strings.xml	string	download_all_plugins_from_repo	-	STR	Descărcați
 values-b+ro/strings.xml	string	download_canceled	-	STR	Descărcare anulată	
 values-b+ro/strings.xml	string	download_done	-	STR	Descărcare finalizată	
 values-b+ro/strings.xml	string	download_failed	-	STR	Descărcare eșuată	
+values-b+ro/strings.xml	string	download_not_available_here	-	STR	Indisponibil aici	
 values-b+ro/strings.xml	string	download_path_pref	-	STR	Locul descărcării	
 values-b+ro/strings.xml	string	download_paused	-	STR	Descărcare oprită	
 values-b+ro/strings.xml	string	download_started	-	STR	Descărcare începută	
@@ -42918,6 +42965,7 @@ values-b+ru/strings.xml	string	download_canceled	-	STR	Скачивание от
 values-b+ru/strings.xml	string	download_done	-	STR	Скачивание закончено	
 values-b+ru/strings.xml	string	download_episode_range	-	STR	Вы хотите загрузить эпизод %s?	
 values-b+ru/strings.xml	string	download_failed	-	STR	Скачивание не удалось	
+values-b+ru/strings.xml	string	download_not_available_here	-	STR	Здесь недоступно	
 values-b+ru/strings.xml	string	download_parallel_settings_des	-	STR	Сколько различных элементов можно загружать параллельно	
 values-b+ru/strings.xml	string	download_path_pref	-	STR	Путь скачивания	
 values-b+ru/strings.xml	string	download_paused	-	STR	Скачивание остановлено	
@@ -44028,6 +44076,7 @@ values-b+sk/strings.xml	string	download_all_plugins_from_repo	-	STR	Upozornenie:
 values-b+sk/strings.xml	string	download_canceled	-	STR	Sťahovanie zrušené	
 values-b+sk/strings.xml	string	download_done	-	STR	Sťahovanie dokončené	
 values-b+sk/strings.xml	string	download_failed	-	STR	Sťahovanie zlyhalo	
+values-b+sk/strings.xml	string	download_not_available_here	-	STR	Tu nie je k dispozícii	
 values-b+sk/strings.xml	string	download_path_pref	-	STR	Cesta sťahovania	
 values-b+sk/strings.xml	string	download_paused	-	STR	Sťahovanie pozastavené	
 values-b+sk/strings.xml	string	download_queue	-	STR	Poradie sťahovania	
@@ -44902,6 +44951,7 @@ values-b+so/strings.xml	string	download_all_plugins_from_repo	-	STR	Digniin: Clo
 values-b+so/strings.xml	string	download_canceled	-	STR	Waa la joojiyey dejintan	
 values-b+so/strings.xml	string	download_done	-	STR	Way dhamaatay dejintu	
 values-b+so/strings.xml	string	download_failed	-	STR	Dejintii ma guulaysan	
+values-b+so/strings.xml	string	download_not_available_here	-	STR	Halkan lagama heli karo	
 values-b+so/strings.xml	string	download_path_pref	-	STR	Barta kaydka	
 values-b+so/strings.xml	string	download_paused	-	STR	Waad hakisey la degista	
 values-b+so/strings.xml	string	download_queue	-	STR	Waxa soo degaya	
@@ -45874,6 +45924,7 @@ values-b+sq/strings.xml	string	download_canceled	-	STR	Shkarkimi u anulua
 values-b+sq/strings.xml	string	download_done	-	STR	Shkarkimi u krye	
 values-b+sq/strings.xml	string	download_episode_range	-	STR	Dëshiron të shkarkosh episodin %s?	
 values-b+sq/strings.xml	string	download_failed	-	STR	Shkarkimi dështoi	
+values-b+sq/strings.xml	string	download_not_available_here	-	STR	Nuk ofrohet këtu	
 values-b+sq/strings.xml	string	download_parallel_settings_des	-	STR	Sa elementë të ndryshëm mund të shkarkohen njëkohësisht	
 values-b+sq/strings.xml	string	download_path_pref	-	STR	Destinacioni i shkarkimit	
 values-b+sq/strings.xml	string	download_paused	-	STR	Shkarkimi u ndërpre	
@@ -47012,6 +47063,7 @@ values-b+sv/strings.xml	string	download_canceled	-	STR	Nerladdning avbruten
 values-b+sv/strings.xml	string	download_done	-	STR	Nerladdning färdig	
 values-b+sv/strings.xml	string	download_episode_range	-	STR	Vill du ladda ned avsnitt %s?	
 values-b+sv/strings.xml	string	download_failed	-	STR	Nerladdning misslyckades	
+values-b+sv/strings.xml	string	download_not_available_here	-	STR	Inte tillgängligt här	
 values-b+sv/strings.xml	string	download_parallel_settings_des	-	STR	Mängden av olika föremål som kan bli nedladdat i parallell	
 values-b+sv/strings.xml	string	download_path_pref	-	STR	Nerladdningsplats	
 values-b+sv/strings.xml	string	download_paused	-	STR	Nerladdning pausad	
@@ -48150,6 +48202,7 @@ values-b+ta/strings.xml	string	download_canceled	-	STR	பதிவிறக்�
 values-b+ta/strings.xml	string	download_done	-	STR	பதிவிறக்கம் முடிந்தது	
 values-b+ta/strings.xml	string	download_episode_range	-	STR	அத்தியாயம் %s ஐ பதிவிறக்க விரும்புகிறீர்களா?	
 values-b+ta/strings.xml	string	download_failed	-	STR	பதிவிறக்கம் தோல்வியடைந்தது	
+values-b+ta/strings.xml	string	download_not_available_here	-	STR	இங்கே கிடைக்கவில்லை	
 values-b+ta/strings.xml	string	download_parallel_settings_des	-	STR	எத்தனை வெவ்வேறு உருப்படிகளை இணையாக பதிவிறக்கம் செய்யலாம்	
 values-b+ta/strings.xml	string	download_path_pref	-	STR	பாதை பதிவிறக்க	
 values-b+ta/strings.xml	string	download_paused	-	STR	பதிவிறக்கம் இடைநிறுத்தப்பட்டது	
@@ -49107,6 +49160,7 @@ values-b+ti/strings.xml	string	detail_source_resolving	-	STR	ይፈትሕ ኣሎ
 values-b+ti/strings.xml	string	detail_sources_done	-	STR	ካብ %2$d %1$d መሊሶም	
 values-b+ti/strings.xml	string	detail_sources_progress	-	STR	ካብ %2$d %1$d መሊሶም · ይጽዕን ኣሎ…	
 values-b+ti/strings.xml	string	detail_start_over	-	STR	ካብ መጀመርታ ጀምር	
+values-b+ti/strings.xml	string	download_not_available_here	-	STR	ኣብዚ ኣይርከብን	
 values-b+ti/strings.xml	string	downloads_browse_library	-	STR	ቤተ-መጻሕፍቲ ድለ	
 values-b+ti/strings.xml	string	downloads_cancel_confirm_body	-	STR	እዚ ክሳብ ሕጂ ዝወረደ %s ይድርብዮ።	
 values-b+ti/strings.xml	string	downloads_cancel_confirm_title	-	STR	እዚ ውርዲ ይሰረዝ?	
@@ -49571,6 +49625,7 @@ values-b+tl/strings.xml	string	download	-	STR	Download
 values-b+tl/strings.xml	string	download_canceled	-	STR	Download Canceled	
 values-b+tl/strings.xml	string	download_done	-	STR	Download Done	
 values-b+tl/strings.xml	string	download_failed	-	STR	Download Failed	
+values-b+tl/strings.xml	string	download_not_available_here	-	STR	Hindi available dito	
 values-b+tl/strings.xml	string	download_paused	-	STR	Download Paused	
 values-b+tl/strings.xml	string	download_started	-	STR	Download Started	
 values-b+tl/strings.xml	string	download_storage_text	-	STR	Internal Storage	
@@ -50339,6 +50394,7 @@ values-b+tr/strings.xml	string	download_canceled	-	STR	İndirme İptal Edildi
 values-b+tr/strings.xml	string	download_done	-	STR	İndirme Tamamlandı	
 values-b+tr/strings.xml	string	download_episode_range	-	STR	%s numaralı bölümü indirmek istiyor musunuz?	
 values-b+tr/strings.xml	string	download_failed	-	STR	İndirme Başarısız	
+values-b+tr/strings.xml	string	download_not_available_here	-	STR	Burada kullanılamaz	
 values-b+tr/strings.xml	string	download_parallel_settings_des	-	STR	Aynı anda kaç farklı öğe indirilebilir	
 values-b+tr/strings.xml	string	download_path_pref	-	STR	İndirme konumu	
 values-b+tr/strings.xml	string	download_paused	-	STR	İndirme Duraklatıldı	
@@ -51525,6 +51581,7 @@ values-b+uk/strings.xml	string	download_canceled	-	STR	Завантаження 
 values-b+uk/strings.xml	string	download_done	-	STR	Завантаження завершено	
 values-b+uk/strings.xml	string	download_episode_range	-	STR	Бажаєте завантажити %s епізод?	
 values-b+uk/strings.xml	string	download_failed	-	STR	Не вдалося завантажити	
+values-b+uk/strings.xml	string	download_not_available_here	-	STR	Тут недоступно	
 values-b+uk/strings.xml	string	download_parallel_settings_des	-	STR	Скільки різних елементів можна завантажити паралельно	
 values-b+uk/strings.xml	string	download_path_pref	-	STR	Шлях завантаження	
 values-b+uk/strings.xml	string	download_paused	-	STR	Завантаження призупинено	
@@ -52624,6 +52681,7 @@ values-b+ur/strings.xml	string	download_all_plugins_from_repo	-	STR	اس ذخی�
 values-b+ur/strings.xml	string	download_canceled	-	STR	ڈاؤن لوڈ منسوخ ہو گیا	
 values-b+ur/strings.xml	string	download_done	-	STR	ڈاؤن لوڈ ہو گیا	
 values-b+ur/strings.xml	string	download_failed	-	STR	ڈاؤن لوڈ نہیں ہو پا رہا	
+values-b+ur/strings.xml	string	download_not_available_here	-	STR	یہاں دستیاب نہیں	
 values-b+ur/strings.xml	string	download_path_pref	-	STR	ڈاؤنلوڈ کی جگہ	
 values-b+ur/strings.xml	string	download_paused	-	STR	ڈاؤن لوڈ موقوف	
 values-b+ur/strings.xml	string	download_started	-	STR	ڈاؤن لوڈ شروع ہو گیا	
@@ -53638,6 +53696,7 @@ values-b+vi/strings.xml	string	download_canceled	-	STR	Tải xuống đã hủy
 values-b+vi/strings.xml	string	download_done	-	STR	Tải xuống thành công	
 values-b+vi/strings.xml	string	download_episode_range	-	STR	Bạn có muốn tải xuống tập %s không?	
 values-b+vi/strings.xml	string	download_failed	-	STR	Tải xuống thất bại	
+values-b+vi/strings.xml	string	download_not_available_here	-	STR	Không có ở đây	
 values-b+vi/strings.xml	string	download_parallel_settings_des	-	STR	Số lượng mục khác nhau có thể tải xuống cùng lúc	
 values-b+vi/strings.xml	string	download_path_pref	-	STR	Đường dẫn tải xuống	
 values-b+vi/strings.xml	string	download_paused	-	STR	Tải xuống đã tạm dừng	
@@ -54751,6 +54810,7 @@ values-b+zh+TW/strings.xml	string	download_canceled	-	STR	下載取消
 values-b+zh+TW/strings.xml	string	download_done	-	STR	下載完畢	
 values-b+zh+TW/strings.xml	string	download_episode_range	-	STR	需要下載第 %s 集嗎？	
 values-b+zh+TW/strings.xml	string	download_failed	-	STR	下載失敗	
+values-b+zh+TW/strings.xml	string	download_not_available_here	-	STR	此處無法使用	
 values-b+zh+TW/strings.xml	string	download_parallel_settings_des	-	STR	允許同時下載幾個項目	
 values-b+zh+TW/strings.xml	string	download_path_pref	-	STR	下載路徑	
 values-b+zh+TW/strings.xml	string	download_paused	-	STR	下載暫停	
@@ -55860,6 +55920,7 @@ values-b+zh/strings.xml	string	download_canceled	-	STR	下载取消
 values-b+zh/strings.xml	string	download_done	-	STR	下载完毕	
 values-b+zh/strings.xml	string	download_episode_range	-	STR	要下载第 %s 集吗？	
 values-b+zh/strings.xml	string	download_failed	-	STR	下载失败	
+values-b+zh/strings.xml	string	download_not_available_here	-	STR	此处不可用	
 values-b+zh/strings.xml	string	download_parallel_settings_des	-	STR	可同时下载多少项目	
 values-b+zh/strings.xml	string	download_path_pref	-	STR	下载路径	
 values-b+zh/strings.xml	string	download_paused	-	STR	下载暂停	
@@ -57128,6 +57189,7 @@ values/strings.xml	string	download_done	-	STR	Download Done
 values/strings.xml	string	download_episode_range	-	STR	Do you want to download episode %s?	
 values/strings.xml	string	download_failed	-	STR	Download Failed	
 values/strings.xml	string	download_format	-	STR	%1$s - %2$s	
+values/strings.xml	string	download_not_available_here	-	STR	Not available here	
 values/strings.xml	string	download_parallel_settings_des	-	STR	How many different items that can be downloaded in parallel	
 values/strings.xml	string	download_path_pref	-	STR	Download path	
 values/strings.xml	string	download_paused	-	STR	Download Paused	

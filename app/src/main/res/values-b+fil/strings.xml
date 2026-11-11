@@ -126,6 +126,7 @@
 <string name="download_canceled">"Kinansela ang pag-download"</string>
 <string name="download_done">"Natapos ang pag-download"</string>
 <string name="download_failed">"Nabigong ma-download"</string>
+<string name="download_not_available_here">"Hindi available dito"</string>
 <string name="download_paused">"Hininto ang pag-download"</string>
 <string name="download_queue">"Nakapila na download"</string>
 <string name="download_started">"Sinimulan ang pag-download"</string>

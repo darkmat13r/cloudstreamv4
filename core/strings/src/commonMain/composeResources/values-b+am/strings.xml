@@ -68,6 +68,7 @@
 <string name="account_use_pin">በምትኩ ፒን ተጠቀም</string>
 <string name="detail_load_failed_body">ምንጩ ላይገኝ ይችላል።</string>
 <string name="detail_load_failed_headline">ይህን ርዕስ መክፈት አልተቻለም</string>
+<string name="download_not_available_here">እዚህ አይገኝም</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d በማውረድ ላይ</item><item quantity="other">%d በማውረድ ላይ</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d በወረፋ</item><item quantity="other">%d በወረፋ</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ውርዶችን ይሰርዙ?</item><item quantity="other">%d ውርዶችን ይሰርዙ?</item></plurals>

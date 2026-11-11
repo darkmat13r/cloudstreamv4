@@ -68,6 +68,7 @@
 <string name="account_use_pin">এর বদলে পিন ব্যবহার করুন</string>
 <string name="detail_load_failed_body">সোর্সটি হয়তো পাওয়া যাচ্ছে না।</string>
 <string name="detail_load_failed_headline">এই শিরোনামটি খোলা যায়নি</string>
+<string name="download_not_available_here">এখানে উপলব্ধ নয়</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%dটি ডাউনলোড হচ্ছে</item><item quantity="other">%dটি ডাউনলোড হচ্ছে</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%dটি সারিতে</item><item quantity="other">%dটি সারিতে</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%dটি ডাউনলোড মুছবেন?</item><item quantity="other">%dটি ডাউনলোড মুছবেন?</item></plurals>

@@ -150,6 +150,7 @@
 <string name="download_canceled">"Descàrrega cancel·lada"</string>
 <string name="download_done">"Descàrrega completada"</string>
 <string name="download_failed">"Descarrega fallida"</string>
+<string name="download_not_available_here">"No disponible aquí"</string>
 <string name="download_paused">"Descàrrega en espera"</string>
 <string name="download_started">"S'ha iniciat la descàrrega"</string>
 <string name="download_storage_text">"emmagatzematge intern"</string>

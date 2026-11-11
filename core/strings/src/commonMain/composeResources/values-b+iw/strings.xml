@@ -68,6 +68,7 @@
 <string name="account_use_pin">שימוש ב-PIN במקום</string>
 <string name="detail_load_failed_body">ייתכן שהמקור אינו זמין.</string>
 <string name="detail_load_failed_headline">לא ניתן לפתוח את הכותר הזה</string>
+<string name="download_not_available_here">לא זמין כאן</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d בהורדה</item><item quantity="two">%d בהורדה</item><item quantity="other">%d בהורדה</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d בתור</item><item quantity="two">%d בתור</item><item quantity="other">%d בתור</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">למחוק %d הורדה?</item><item quantity="two">למחוק %d הורדות?</item><item quantity="other">למחוק %d הורדות?</item></plurals>
