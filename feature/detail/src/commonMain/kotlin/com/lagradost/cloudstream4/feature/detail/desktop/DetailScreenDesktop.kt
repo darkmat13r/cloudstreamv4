@@ -89,6 +89,7 @@ import com.lagradost.cloudstream4.feature.detail.META_SEPARATOR
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.code
 import com.lagradost.cloudstream4.feature.detail.episodeSubtitle
+import com.lagradost.cloudstream4.feature.detail.episodeWatchLabel
 import com.lagradost.cloudstream4.feature.detail.label
 import com.lagradost.cloudstream4.feature.detail.oneDecimal
 import com.lagradost.cloudstream4.feature.detail.resumeCaption
@@ -96,6 +97,7 @@ import com.lagradost.cloudstream4.feature.detail.runtimeLabel
 import com.lagradost.cloudstream4.feature.detail.statusLabel
 import com.lagradost.cloudstream4.feature.detail.toPageUiState
 import com.lagradost.cloudstream4.feature.detail.typeLabel
+import com.lagradost.cloudstream4.feature.detail.watchReadout
 import org.jetbrains.compose.resources.stringResource
 
 /**
@@ -703,7 +705,9 @@ private fun EpisodeRow(
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis,
                 )
-                episodeSubtitle(episode, code, codeInTitle = episode.name == null)?.let { line ->
+                // KMP-63: Watched, or the minutes left, where the runtime was; the runtime when neither.
+                val watch = episodeWatchLabel(episode.watchReadout())
+                episodeSubtitle(episode, code, codeInTitle = episode.name == null, watch = watch)?.let { line ->
                     BasicText(
                         text = line,
                         style = typography.caption.copy(color = colors.muted),
