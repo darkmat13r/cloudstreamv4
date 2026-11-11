@@ -5587,7 +5587,7 @@ Additions only. `app/api/classes-jar.api` gains 60 lines: 7 `R$string` fields, `
 
 ## KMP-63 — Per-episode watch state across the detail seam (board 7i's `WATCHED` and `24 MIN LEFT`) · **measured 2026-11-07**
 
-**Status:** in progress (cloudstream-worker-3), PR 1 of 3 · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
+**Status:** in progress (cloudstream-worker-3), PR 3 of 3 · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
 
 Board 7i draws two readouts on an episode row that nothing in the tree can supply: `WATCHED` on a
 finished episode and `24 MIN LEFT` on a started one. 7i's other two row fields were simply discarded
@@ -5653,6 +5653,23 @@ interface, its `$DefaultImpls` class (`JvmDefaultMode.ENABLE` emits both), the s
 **The split:** PR 1, the contract and the Android host, with no visible change; PR 2, `ListRow`'s trailing slot, the
 TV row and `I18N-25`'s two strings; PR 3, `LibraryDetailSource` and the Mac row's second line, stacked on `KMP-109`.
 Mark watched as an action is not in this task.
+
+**PR 3, the Mac (built 2026-11-11, stacked on `KMP-109` part 2a):**
+- **The host.** `LibraryDetailSource` fills each `DetailEpisode.progress` from the library's positions, matched by
+  the episode's data, with finished ones included so a row can read watched. If two are held, the newer wins. A row
+  the base source already filled keeps its own. A store that cannot be read leaves the rows plain. The Mac has no
+  mark apart from a position, so `markedWatched` stays false there.
+- **The row.** The second line says `Watched` or `24 min left` where the runtime was, and the runtime when it says
+  neither: `S1:E2 · 24 min left`. It uses the same `watchReadout` and words as TV. `episodeSubtitle` takes the label as
+  an optional `watch`, null by default, so TV's line is unchanged. The line is in the row's title column, not
+  `KMP-109`'s cell, which is for downloads.
+- **Not here:** board E2's still and its progress rule on a started row.
+- **Tests (jvm, run):**
+  - `LibraryDetailSourceTest` +3: each row's own position, finished ones included; the newer of two; a row already
+    filled keeps its own. **Red (run):** 2 fail without the fill.
+  - `DetailScreenTest` +2: the three second lines (Watched, 24 min left, the runtime), and a pixel comparison with
+    the same page with no watch state, where every changed pixel is inside the second lines. **Red (run):** both fail
+    without the row change. Render: `detail-e2-watch-state`.
 
 ## KMP-54 — The Mac downloads pages, boards D1 to D6 · **built 2026-11-07, not wired**
 

@@ -39,6 +39,7 @@ internal class LibraryDetailSource(
         val kept = runCatching { store.titles().firstOrNull { it.id == key } }.getOrNull()
         val positions = runCatching { store.positions().filter { it.id == key } }.getOrNull().orEmpty()
         return detail.copy(
+            episodes = withProgress(detail.episodes, positions),
             seasons = detail.seasons.ifEmpty { seasonsOf(detail.episodes) },
             resume = detail.resume ?: resumeOf(detail, positions),
             watchStatus = detail.watchStatus ?: kept?.bucket.toWatchStatus(),
@@ -90,6 +91,26 @@ internal class LibraryDetailSource(
                 else -> null
             } ?: return null
             return DetailResume(data, latest.positionMillis, latest.durationMillis, episode)
+        }
+
+        /**
+         * Each episode's own position as its row's progress (`KMP-63`): finished ones too, which is what makes a row
+         * read watched, so not only the [WatchPosition.resumable] ones Resume chooses from.
+         *
+         * Matched by the episode's opaque `data`, the handle the position was recorded under, so no id of ours is
+         * involved. The store keeps one position per episode; should it hold two, the newer wins. A row the base
+         * source already filled keeps what it said. The title's own position (`episodeData` null) is no row's.
+         */
+        fun withProgress(episodes: List<DetailEpisode>, positions: List<WatchPosition>): List<DetailEpisode> {
+            if (episodes.isEmpty() || positions.isEmpty()) return episodes
+            val newest = positions.filter { it.episodeData != null }
+                .groupBy { it.episodeData }
+                .mapValues { (_, held) -> held.maxBy { it.watchedAt } }
+            return episodes.map { row ->
+                if (row.progress != null) return@map row
+                val held = newest[row.data] ?: return@map row
+                row.copy(progress = DetailResume(row.data, held.positionMillis, held.durationMillis, episode = null))
+            }
         }
 
         /** The seasons the episodes name, in order, each with how many it holds. An episode with none is in none. */

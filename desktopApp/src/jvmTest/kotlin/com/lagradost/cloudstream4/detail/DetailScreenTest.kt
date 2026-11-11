@@ -579,6 +579,53 @@ class DetailScreenTest {
     private fun download(id: Int, state: DownloadEpisodeState, done: Long, total: Long) =
         DownloadEpisode(DownloadEpisodeId(id), 1, id, null, state, bytesDone = done, bytesTotal = total)
 
+    // ---- KMP-63: each episode's own watch state, on its second line ----
+
+    /** The page's first season with one episode marked watched, one 24 minutes from its end, and one not started. */
+    private val watchedSeries = series.copy(
+        episodes = listOf(
+            episodes[0].copy(markedWatched = true),
+            episodes[1].copy(progress = DetailResume("s1e2", 24 * MINUTE, 48 * MINUTE, episode = null)),
+        ) + episodes.drop(2),
+    )
+
+    @Test
+    fun `an episode's second line says Watched or the minutes left where its runtime was (KMP-63)`() {
+        val scene = page(loaded(watchedSeries))
+        assertTrue(scene.has("S1:E1 \u00b7 Watched"), "a watched episode says so")
+        assertTrue(scene.has("S1:E2 \u00b7 24 min left"), "a started one says how long is left")
+        assertTrue(scene.has("S1:E3 \u00b7 48 min"), "one not started keeps its runtime")
+        assertFalse(scene.has("S1:E1 \u00b7 48 min"), "the watched one's runtime is not drawn")
+        scene.save("detail-e2-watch-state")
+        scene.close()
+    }
+
+    @Test
+    fun `the watch state changes only the episodes' second lines, pixel for pixel (KMP-63)`() {
+        val plain = page(loaded(series))
+        val before = plain.bitmap()
+        // The old lines and the new, in case an old one is the wider.
+        val oldLines = listOf("S1:E1 \u00b7 48 min", "S1:E2 \u00b7 48 min").map { plain.boundsOf(it) }
+        plain.close()
+        val scene = page(loaded(watchedSeries))
+        val lines = oldLines + listOf("S1:E1 \u00b7 Watched", "S1:E2 \u00b7 24 min left").map { scene.boundsOf(it) }
+        val after = scene.bitmap()
+        scene.close()
+        var outside = 0
+        var inside = 0
+        for (y in 0 until HEIGHT) for (x in 0 until WIDTH) {
+            if (before.getColor(x, y) == after.getColor(x, y)) continue
+            if (lines.any { it.contains(Offset(x + 0.5f, y + 0.5f)) }) inside++ else outside++
+        }
+        assertEquals(0, outside, "pixels changed outside the second lines")
+        assertTrue(inside > 0, "the second lines changed")
+    }
+
+    private fun ImageComposeScene.bitmap(): Bitmap {
+        settle()
+        return Bitmap.makeFromImage(render(SETTLE_FRAMES * FRAME_NANOS))
+    }
+
     // ---- E3: a film and its sources ----
 
     @Test
