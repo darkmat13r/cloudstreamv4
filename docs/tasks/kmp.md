@@ -5667,9 +5667,9 @@ Mark watched as an action is not in this task.
 - **Tests (jvm, run):**
   - `LibraryDetailSourceTest` +3: each row's own position, finished ones included; the newer of two; a row already
     filled keeps its own. **Red (run):** 2 fail without the fill.
-  - `DetailScreenTest` +2: the three second lines (Watched, 24 min left, the runtime), and a pixel comparison with
-    the same page with no watch state, where every changed pixel is inside the second lines. **Red (run):** both fail
-    without the row change. Render: `detail-e2-watch-state`.
+  - `DetailScreenTest` +2: the three second lines (Watched, the runtime, and 29 min left, which agrees with
+    Resume), and a pixel comparison with the same page with no watch state, where every changed pixel is inside the
+    second lines. **Red (run):** both fail without the row change. Render: `detail-e2-watch-state`.
 
 ## KMP-54 — The Mac downloads pages, boards D1 to D6 · **built 2026-11-07, not wired**
 
@@ -9175,7 +9175,7 @@ Green: `:desktopApp:jvmTest` 834, 0 failed (the 4 render cases skip without a re
 `:core:strings:jvmTest` 53 of 53; the five gates passed, 280 XML results with 0 failures; `:app:checkExtensionApi`
 passed with the 40 new fields and no line removed. All local.
 
-## KMP-109 — A Download on each episode row of the Mac title page, with its states · **part 1 built 2026-11-10; part 2a, the row's slot, built 2026-11-11**; part 2b, the wiring, to come · the PM's task
+## KMP-109 — A Download on each episode row of the Mac title page, with its states · **part 1 built 2026-11-10; part 2a, the row's slot, and part 2b, the wiring, built 2026-11-11** · the PM's task
 
 Board E2's rows on the Mac title page offer a Download per episode. The cell then reads the episode's state and offers
 that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
@@ -9261,7 +9261,41 @@ The wiring starts real downloads from the page, so it is reviewed on its own.
   - **Red (run):** with the slot taken but not drawn, all four fail. Drawn as the row's last child, the placement test
     fails: the cell ends at 1256, and Play starts at 1228.
 
-**Part 2b, the wiring (to come):**
-- `Main.kt` fills the slot with `EpisodeDownloadDesktop`, from a per-episode state flow out of `DesktopDownloads` that
-  does not exist yet.
-- Open, to settle when 2b starts: what the page shows when an enqueue is refused (`AlreadyPresent`, `IdTaken`).
+**Part 2b, the wiring (built 2026-11-11, stacked on `KMP-63` PR 3):**
+- **`PageDownloads`** sits between one title's page and `DesktopDownloads`:
+  - Download builds the request with `episodeDownloadRequest`, which has no link, and enqueues it. The service asks
+    the extension through its resolver, as part 1 does. No new fetch path.
+  - Each row's state comes from the service's own record of the title (`DesktopDownloads.series`), by the episode's
+    id. That flow existed already, so nothing new is read from the service.
+  - **Two guards keep a row to its own episode.** The record must carry the page's title name, so a title holding the
+    same 32-bit title id never shows its download on this page. A refused enqueue is kept for the page.
+  - A downloads file that cannot be read gives rows with no download.
+- **Refusals, the PM's ruling.** No refusal is shown as an error.
+  - `AlreadyPresent` changes nothing: the row shows the episode as the record holds it.
+  - Every `Refused` reason, `IdTaken` included, reads "Not available here", muted, with no verb. `IdTaken` means the
+    id is another title's, so the row never claims a download that is not its own.
+  - The words reuse `account_sync_unavailable`, which is "Not available here" in every locale, so no strings move.
+- **The cell.** `EpisodeDownloadDesktop` takes `unavailable`, false by default. With no download it draws those words
+  in the status column and no verb. A download the service holds is drawn as it is.
+- **`Main.kt`.** `DetailHost` passes the app's service to `rememberEpisodeDownloadCell`, which fills the page's slot.
+  With no service (a test's window), the page draws no cell.
+- **Tests (jvm, run):**
+  - `PageDownloadsTest` (4), through a real `DesktopDownloads` and a loopback server:
+    - Download starts the row's own episode through the resolver, and the row follows it to Done. A second press is
+      `AlreadyPresent` and does not read as refused.
+    - An id held by another title, with the same episode id, is refused `IdTaken`. The row reads unavailable, and never
+      shows the other title's download.
+    - An unreadable downloads file gives no rows and no throw. Download reads unavailable, asks no source and writes
+      nothing over the file.
+    - Pause, Resume and Cancel act on the row's own episode.
+  - `EpisodeDownloadCellTest` (1): the page with the real cell. Download is pressed with pointer events on the hovered
+    row. That episode's source alone is asked for, its file arrives byte for byte, and its row reads Downloaded.
+  - `EpisodeDownloadDesktopTest` +1 and `DetailScreenTest` +1: the refused cell's words and no verb. Render:
+    `detail-e2-download-unavailable`.
+  - **Red (run), one change at a time:**
+    - the cell neither says unavailable nor withholds its verbs: both refused-cell tests fail;
+    - no title-name guard: the other title's download shows on this page's row ("before Download, this row shows
+      nothing");
+    - refusals not kept: the `IdTaken` and unreadable-file tests time out waiting for the unavailable row;
+    - no catch on an unreadable file: that test fails with the service's `IOException`;
+    - the cell never filled: the end-to-end test finds no Download on the hovered row.

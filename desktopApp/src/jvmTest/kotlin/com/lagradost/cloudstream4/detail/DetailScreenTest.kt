@@ -576,25 +576,55 @@ class DetailScreenTest {
         scene.close()
     }
 
+    @Test
+    fun `a refused episode's row says it is not available here and offers no Download (KMP-109 part 2b)`() {
+        val downloads = mapOf(
+            "s1e1" to download(1, DownloadEpisodeState.Done, done = 612 * MB, total = 612 * MB),
+            "s1e2" to download(2, DownloadEpisodeState.Running, done = 240 * MB, total = 598 * MB),
+        )
+        val scene = page(loaded(series)) { episode, shown ->
+            EpisodeDownloadDesktop(
+                download = downloads[episode.data],
+                shown = shown,
+                formatBytes = { "${it / MB} MB" },
+                onDownload = {},
+                onPause = {},
+                onResume = {},
+                onCancel = {},
+                unavailable = episode.data == "s1e3",
+            )
+        }
+        assertEquals(1, scene.nodes("Not available here").size, "the refused row says so before the pointer arrives")
+        scene.hover(scene.centreOf("And the Bag's in the River"))
+        assertFalse(scene.has("Download"), "and offers no Download while hovered")
+        assertEquals(1, scene.nodes("Play Episode").size, "the row still plays")
+        scene.save("detail-e2-download-unavailable")
+        scene.close()
+    }
+
     private fun download(id: Int, state: DownloadEpisodeState, done: Long, total: Long) =
         DownloadEpisode(DownloadEpisodeId(id), 1, id, null, state, bytesDone = done, bytesTotal = total)
 
     // ---- KMP-63: each episode's own watch state, on its second line ----
 
-    /** The page's first season with one episode marked watched, one 24 minutes from its end, and one not started. */
+    /**
+     * The page's first season with one episode marked watched, one not started, and the one Resume plays 19 minutes
+     * in, so its row and Resume's "29m remaining" agree.
+     */
     private val watchedSeries = series.copy(
         episodes = listOf(
             episodes[0].copy(markedWatched = true),
-            episodes[1].copy(progress = DetailResume("s1e2", 24 * MINUTE, 48 * MINUTE, episode = null)),
-        ) + episodes.drop(2),
+            episodes[1],
+            episodes[2].copy(progress = DetailResume("s1e3", 19 * MINUTE, 48 * MINUTE, episode = null)),
+        ) + episodes.drop(3),
     )
 
     @Test
     fun `an episode's second line says Watched or the minutes left where its runtime was (KMP-63)`() {
         val scene = page(loaded(watchedSeries))
         assertTrue(scene.has("S1:E1 \u00b7 Watched"), "a watched episode says so")
-        assertTrue(scene.has("S1:E2 \u00b7 24 min left"), "a started one says how long is left")
-        assertTrue(scene.has("S1:E3 \u00b7 48 min"), "one not started keeps its runtime")
+        assertTrue(scene.has("S1:E2 \u00b7 48 min"), "one not started keeps its runtime")
+        assertTrue(scene.has("S1:E3 \u00b7 29 min left"), "a started one says how long is left, as Resume does")
         assertFalse(scene.has("S1:E1 \u00b7 48 min"), "the watched one's runtime is not drawn")
         scene.save("detail-e2-watch-state")
         scene.close()
@@ -605,10 +635,10 @@ class DetailScreenTest {
         val plain = page(loaded(series))
         val before = plain.bitmap()
         // The old lines and the new, in case an old one is the wider.
-        val oldLines = listOf("S1:E1 \u00b7 48 min", "S1:E2 \u00b7 48 min").map { plain.boundsOf(it) }
+        val oldLines = listOf("S1:E1 \u00b7 48 min", "S1:E3 \u00b7 48 min").map { plain.boundsOf(it) }
         plain.close()
         val scene = page(loaded(watchedSeries))
-        val lines = oldLines + listOf("S1:E1 \u00b7 Watched", "S1:E2 \u00b7 24 min left").map { scene.boundsOf(it) }
+        val lines = oldLines + listOf("S1:E1 \u00b7 Watched", "S1:E3 \u00b7 29 min left").map { scene.boundsOf(it) }
         val after = scene.bitmap()
         scene.close()
         var outside = 0
