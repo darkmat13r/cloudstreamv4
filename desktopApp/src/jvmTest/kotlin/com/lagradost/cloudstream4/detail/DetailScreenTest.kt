@@ -1,6 +1,8 @@
 package com.lagradost.cloudstream4.detail
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -18,8 +20,11 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
@@ -34,6 +39,10 @@ import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
+import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisode
+import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
+import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeState
+import com.lagradost.cloudstream4.feature.downloads.series.desktop.EpisodeDownloadDesktop
 import com.lagradost.cloudstream4.startPosition
 import java.io.File
 import kotlin.test.Test
@@ -110,6 +119,7 @@ class DetailScreenTest {
         width: Int = WIDTH,
         height: Int = HEIGHT,
         backdrop: @Composable (String) -> Unit = {},
+        episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)? = null,
     ) = scene(width, height) {
         DetailScreenDesktop(
             state = state,
@@ -118,6 +128,7 @@ class DetailScreenTest {
             artwork = { Box(Modifier.fillMaxSize().background(ART)) },
             origin = "Home",
             backdrop = backdrop,
+            episodeTrailing = episodeTrailing,
         )
     }
 
@@ -169,6 +180,19 @@ class DetailScreenTest {
     }
 
     private fun ImageComposeScene.has(words: String) = nodes(words).isNotEmpty()
+
+    /**
+     * Where the one piece reading as [words] is drawn, in the unmerged tree: a row is one clickable, so the merged tree
+     * gives its pieces the whole row's bounds.
+     */
+    private fun ImageComposeScene.boundsOf(words: String): Rect {
+        settle()
+        val found = semanticsOwners.flatMap { it.unmergedRootSemanticsNode.all() }.filter { node ->
+            node.config.getOrNull(SemanticsProperties.Text).orEmpty().any { it.text == words } ||
+                node.config.getOrNull(SemanticsProperties.ContentDescription).orEmpty().any { it == words }
+        }
+        return found.singleOrNull()?.boundsInRoot ?: error("expected one piece reading \"$words\", found ${found.size}")
+    }
 
     /** The colour drawn at [x], [y] once the scene has settled. */
     private fun ImageComposeScene.pixel(x: Int, y: Int): Color {
@@ -464,6 +488,97 @@ class DetailScreenTest {
         scene.close()
     }
 
+    // ---- KMP-109: the host's cell on an episode's row ----
+
+    /** A cell that says which episode it was given and whether its row shows its verbs. */
+    private val sayingCell: @Composable (DetailEpisode, Boolean) -> Unit = { episode, shown ->
+        BasicText("cell ${episode.data} ${if (shown) "shown" else "hidden"}")
+    }
+
+    @Test
+    fun `each row draws the host's cell, told its own episode and whether the pointer is on the row (KMP-109)`() {
+        val scene = page(loaded(series), episodeTrailing = sayingCell)
+        listOf("s1e1", "s1e2", "s1e3").forEach { data ->
+            assertTrue(scene.has("cell $data hidden"), "$data's cell, hidden before the pointer arrives")
+        }
+        assertFalse(scene.has("cell s2e1 hidden"), "a season that is not shown draws no cells")
+        scene.hover(scene.centreOf("Cat's in the Bag"))
+        assertTrue(scene.has("cell s1e2 shown"), "the hovered row's cell is told to show its verbs")
+        assertTrue(scene.has("cell s1e1 hidden") && scene.has("cell s1e3 hidden"), "and no other row's")
+        scene.hover(Offset(4f, 4f))
+        assertTrue(scene.has("cell s1e2 hidden"), "the pointer gone, the cell hides its verbs again")
+        scene.close()
+    }
+
+    @Test
+    fun `a row with focus tells its cell to show, as it shows Play (KMP-109, E2)`() {
+        val scene = page(loaded(series), episodeTrailing = sayingCell)
+        var presses = 0
+        while (!scene.has("Play Episode") && presses < MAX_TABS * 2) {
+            scene.press(Key.Tab)
+            presses++
+        }
+        assertEquals(1, scene.nodes("Play Episode").size, "Tab reached a row")
+        val shown = listOf("s1e1", "s1e2", "s1e3").filter { scene.has("cell $it shown") }
+        assertEquals(listOf("s1e1"), shown, "the first row has focus, and only its cell shows")
+        scene.close()
+    }
+
+    @Test
+    fun `the cell sits after the row's words and clear of Play, and the words do not move (KMP-109)`() {
+        val cell: @Composable (DetailEpisode, Boolean) -> Unit = { episode, _ ->
+            Box(Modifier.size(CELL_WIDTH.dp, CELL_HEIGHT.dp).semantics { contentDescription = "cell ${episode.data}" })
+        }
+        val plain = page(loaded(series))
+        plain.hover(plain.centreOf("Cat's in the Bag"))
+        val wordsBefore = plain.boundsOf("Cat's in the Bag")
+        plain.close()
+        val scene = page(loaded(series), episodeTrailing = cell)
+        scene.hover(scene.centreOf("Cat's in the Bag"))
+        val words = scene.boundsOf("Cat's in the Bag")
+        val box = scene.boundsOf("cell s1e2")
+        val play = scene.boundsOf("Play Episode")
+        assertEquals(wordsBefore.left, words.left, "the name starts where it does with no cell")
+        assertEquals(wordsBefore.top, words.top, "and at the same height")
+        assertTrue(box.left >= words.right, "the cell is after the name: cell ${box.left}, name ends ${words.right}")
+        assertTrue(box.right <= play.left, "the cell ends before Play: cell ${box.right}, Play ${play.left}")
+        assertEquals(play.center.y, box.center.y, 1f, "the cell is centred on the row, as Play is")
+        scene.close()
+    }
+
+    @Test
+    fun `part 1's Download cell in the slot says each episode's state, and its verbs only on the hovered row`() {
+        val downloads = mapOf(
+            "s1e1" to download(1, DownloadEpisodeState.Done, done = 612 * MB, total = 612 * MB),
+            "s1e2" to download(2, DownloadEpisodeState.Running, done = 240 * MB, total = 598 * MB),
+        )
+        val scene = page(loaded(series)) { episode, shown ->
+            EpisodeDownloadDesktop(
+                download = downloads[episode.data],
+                shown = shown,
+                formatBytes = { "${it / MB} MB" },
+                onDownload = {},
+                onPause = {},
+                onResume = {},
+                onCancel = {},
+            )
+        }
+        assertFalse(scene.has("Pause") || scene.has("Download"), "no verb before the pointer arrives")
+        scene.hover(scene.centreOf("Cat's in the Bag"))
+        assertEquals(1, scene.nodes("Pause").size, "the downloading row offers Pause")
+        assertEquals(1, scene.nodes("Cancel").size, "and Cancel")
+        assertFalse(scene.has("Download"), "the row with no download is not hovered, so offers nothing")
+        scene.save("detail-e2-download-cells")
+        scene.hover(scene.centreOf("And the Bag's in the River"))
+        assertEquals(1, scene.nodes("Download").size, "the row with no download offers Download")
+        assertFalse(scene.has("Pause"), "and the downloading row's verbs are gone")
+        scene.save("detail-e2-download-cell-none")
+        scene.close()
+    }
+
+    private fun download(id: Int, state: DownloadEpisodeState, done: Long, total: Long) =
+        DownloadEpisode(DownloadEpisodeId(id), 1, id, null, state, bytesDone = done, bytesTotal = total)
+
     // ---- E3: a film and its sources ----
 
     @Test
@@ -579,6 +694,11 @@ class DetailScreenTest {
         const val SETTLE_FRAMES = 30
         const val FRAME_NANOS = 50_000_000L
         const val MINUTE = 60_000L
+        const val MB = 1_000_000L
+
+        /** A cell a little wider than one verb, so its edges are easy to tell from Play's. */
+        const val CELL_WIDTH = 48
+        const val CELL_HEIGHT = 20
 
         /** `DesktopDimens.RelatedGap` and `ReadingWidth`, in pixels at the scene's density of 1. */
         const val RELATED_GAP = 8f
