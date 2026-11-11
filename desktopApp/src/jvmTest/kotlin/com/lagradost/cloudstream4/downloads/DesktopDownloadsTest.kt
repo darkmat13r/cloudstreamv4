@@ -865,7 +865,9 @@ class DesktopDownloadsTest {
         host.close()
         hosts.remove(host)
         val again = host()
-        val reread = again.awaitContents { true }
+        // BUG-102: the read's own end, not the first view. A new host's first view can be built before its load is
+        // published, and is then empty.
+        val reread = again.awaitContents { it.titles.isNotEmpty() }
         assertEquals(listOf(DownloadTitleId(50)), reread.titles.map { it.id })
         assertEquals(listOf(DownloadEpisodeId(12)), again.awaitEpisode(50, 12) { true }.let { listOf(it.id) })
         val stored = stateFile.readText()
