@@ -132,6 +132,38 @@ class HostProtocolTest {
         assertEquals(0L, negative.sequentialDelayMillis)
     }
 
+    /**
+     * `BUG-105`: a private address written as an address, in any spelling a URL can give it, is judged as the address it
+     * is, by the predicate the Mac's clients connect by. Before, only the spellings a pattern knew were refused, and
+     * `[::ffff:127.0.0.1]` or `2130706433` reached the client as a public host.
+     */
+    @Test
+    fun `a private address is refused at the wire in every spelling a URL can write it`() {
+        listOf(
+            "http://[::ffff:127.0.0.1]/x", "https://[::ffff:7f00:1]/x", "https://[::ffff:a00:1]/x", "https://[::127.0.0.1]/x",
+            "https://[0:0:0:0:0:ffff:c0a8:101]/x", "http://2130706433/x", "https://3232235777/x", "https://0x7f000001/x",
+            "https://0177.0.0.1/x", "https://127.1/x", "https://0x0a.0.0.1/x", "https://10.1/x", "https://0/x",
+            "https://0x7f.0.0.1/x", "https://4294967296/x", "https://08.0.0.1/x",
+        ).forEach { url ->
+            assertNull(url.httpUrlOrNull(), url)
+            assertNull(url.httpsUrlOrNull(), url)
+        }
+        // A public address in any spelling, and a name that only looks numeric in part, are kept.
+        listOf("https://93.184.216.34/x", "https://1572395042/x", "https://[2606:2800:220:1:248:1893:25c8:1946]/x",
+            "https://cafe.be/x", "https://0x7f.example/x").forEach { url ->
+            assertEquals(url, url.httpsUrlOrNull(), url)
+        }
+        // End to end: what a host sends for a title's art and cast reaches the page without them.
+        val details = RemoteDetails(
+            name = "A title", url = "u", type = "Movie", plot = null, posterUrl = "https://[::ffff:127.0.0.1]/p.jpg",
+            year = null, dataUrl = null, episodes = emptyList(), backdropUrl = "https://2130706433/b.jpg",
+            cast = listOf(RemoteCastMember(name = "A person", imageUrl = "https://[::ffff:7f00:1]/c.jpg")),
+        ).cleaned()
+        assertNull(details.posterUrl)
+        assertNull(details.backdropUrl)
+        assertNull(details.cast.single().imageUrl)
+    }
+
     @Test
     fun `a poster URL can only point at a public http host`() {
         listOf(

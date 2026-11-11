@@ -6,6 +6,7 @@ import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
+import java.net.InetAddress
 import java.net.URI
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
@@ -624,9 +625,74 @@ internal fun String?.httpsUrlOrNull(): String? = httpUrlOrNull()?.takeIf { url -
     parsed.scheme.equals("https", ignoreCase = true) && parsed.rawUserInfo == null
 }
 
-/** The host as written: a lowercased name or IP literal with no brackets or trailing dot. */
+/**
+ * The host as written: a lowercased name or IP literal with no brackets or trailing dot.
+ *
+ * `BUG-105`: a host written as an address is judged as the address it is, by [SandboxPolicy.isPublicAddress], the
+ * predicate the Mac's clients connect by: `::ffff:127.0.0.1`, `::127.0.0.1`, `2130706433`, `0x7f000001` and `0177.0.0.1`
+ * are all loopback, and the pattern below knows none of them. Nothing is looked up. A host that is written as an address
+ * but is not one any parser agrees on is refused.
+ */
 internal fun isPrivateHostName(host: String): Boolean =
-    host == "localhost" || host.endsWith(".localhost") || host.endsWith(".local") || PRIVATE_ADDRESS.matches(host)
+    host == "localhost" || host.endsWith(".localhost") || host.endsWith(".local") || PRIVATE_ADDRESS.matches(host) ||
+        when (val literal = literalAddress(host)) {
+            Literal.NotOne -> false
+            Literal.Unreadable -> true
+            is Literal.Address -> !SandboxPolicy.isPublicAddress(literal.address)
+        }
+
+/** What [literalAddress] made of a host. */
+private sealed interface Literal {
+    /** A name, to be looked up and checked when it is. */
+    data object NotOne : Literal
+
+    /** Written as an address, but not one: refused rather than guessed at. */
+    data object Unreadable : Literal
+
+    data class Address(val address: InetAddress) : Literal
+}
+
+/**
+ * [host] as an address, if it is written as one, read the way the resolvers the app hands it to read it, and with no
+ * lookup:
+ * - with a colon, IPv6, read in brackets, which Java reads only as a literal and never looks up;
+ * - parts of digits or `0x` hex, joined by dots, IPv4 as `inet_aton` reads it: one to four parts, each decimal, octal
+ *   with a leading `0`, or hex with `0x`, the last filling what is left of the 32 bits.
+ * Anything else (`cafe.be`, `0x7f.example`) is a name.
+ */
+private fun literalAddress(host: String): Literal {
+    if (':' in host) {
+        return runCatching { InetAddress.getByName("[$host]") }.getOrNull()?.let(Literal::Address) ?: Literal.Unreadable
+    }
+    val parts = host.split('.')
+    if (parts.isEmpty() || parts.size > IPV4_PARTS || parts.any { !IPV4_PART.matches(it) }) return Literal.NotOne
+    val values = parts.map { part -> ipv4PartValue(part) ?: return Literal.Unreadable }
+    val last = values.last()
+    val lastBits = Byte.SIZE_BITS * (IPV4_PARTS - (values.size - 1))
+    if (values.dropLast(1).any { it > BYTE_MAX } || last >= (1L shl lastBits)) return Literal.Unreadable
+    val number = values.dropLast(1).fold(0L) { acc, part -> (acc shl Byte.SIZE_BITS) or part }
+        .shl(lastBits) or last
+    val bytes = ByteArray(IPV4_PARTS) { index -> (number shr (Byte.SIZE_BITS * (IPV4_PARTS - 1 - index))).toByte() }
+    return Literal.Address(InetAddress.getByAddress(bytes))
+}
+
+/** One part: hex after `0x`, octal after a leading `0`, else decimal. Null when it is none of those, or too large. */
+private fun ipv4PartValue(part: String): Long? = when {
+    part.startsWith("0x") -> part.drop(2).ifEmpty { "0" }.takeIf { it.length <= MAX_PART_DIGITS }?.toLongOrNull(HEX)
+    part.length > 1 && part.startsWith("0") -> part.drop(1).takeIf { it.length <= MAX_PART_DIGITS }?.toLongOrNull(OCTAL)
+    else -> part.takeIf { it.length <= MAX_PART_DIGITS }?.toLongOrNull()
+}
+
+private const val IPV4_PARTS = 4
+private const val BYTE_MAX = 0xFFL
+private const val HEX = 16
+private const val OCTAL = 8
+
+/** More than a 32-bit part in any base needs, and few enough that a part never overflows a `Long`. */
+private const val MAX_PART_DIGITS = 12
+
+/** A part of an IPv4 literal as written: digits, or `0x` and hex digits. Lowercased already. */
+private val IPV4_PART = Regex("[0-9]+|0x[0-9a-f]*")
 
 /** Loopback, RFC 1918, link-local, the unspecified address, and their IPv6 forms. */
 private val PRIVATE_ADDRESS = Regex(

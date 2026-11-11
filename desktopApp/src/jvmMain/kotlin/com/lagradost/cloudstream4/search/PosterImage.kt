@@ -19,6 +19,7 @@ import kotlinx.coroutines.Dispatchers
 import java.io.IOException
 import java.net.InetAddress
 import java.net.InetSocketAddress
+import java.net.Proxy
 import kotlinx.coroutines.withContext
 import com.lagradost.cloudstream4.detail.extensionImageLoader
 import com.lagradost.cloudstream4.detail.loadBackdrop
@@ -26,6 +27,7 @@ import okhttp3.Dns
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
+import com.lagradost.cloudstream4.net.AddressCheckedSocketFactory
 
 /**
  * A result's poster, through Coil's loader rather than its `AsyncImage`.
@@ -102,16 +104,24 @@ internal val posterLoader: ImageLoader get() = extensionImageLoader
  * Without this, a plugin could reach the user's local network by naming it as a poster, either with
  * a public name resolving to a private address or a public URL redirecting to one.
  *
+ * - The socket factory checks each destination before it connects (`BUG-105`): an IP literal, every
+ *   address a name resolves to, and each redirect hop's. OkHttp does not call [Dns] for an IP literal,
+ *   so before this a private one in any of its spellings opened a TCP connection, and a TLS hello
+ *   reached it, before anything refused it.
  * - The [Dns] filter stops a name before any connection is made.
- * - The network interceptor checks the address actually connected to, before a request is sent. It
- *   runs once per redirect hop, and it is the only check an IP literal meets, since OkHttp does not
- *   call [Dns] for one. So a redirect to a private IP literal opens a TCP connection and sends nothing.
+ * - The network interceptor checks the address actually connected to, before a request is sent, once
+ *   per redirect hop: a layer behind the socket check.
+ * - No proxy, whatever the JVM is set to (`BUG-105`, `BUG-88`). OkHttp connects to a SOCKS proxy with
+ *   `Socket(proxy)`, not through the socket factory, and asks any proxy for the target by name, so with
+ *   one set neither the socket check nor the DNS filter would ever see the target.
  *
  * @param allow decides a connected address; replaceable so a test can use a loopback server.
  */
 internal fun posterHttpClient(
     allow: (InetSocketAddress) -> Boolean = { SandboxPolicy.isPublicAddress(it.address) },
 ): OkHttpClient = OkHttpClient.Builder()
+    .proxy(Proxy.NO_PROXY)
+    .socketFactory(AddressCheckedSocketFactory(allow))
     .dns(
         object : Dns {
             override fun lookup(hostname: String): List<InetAddress> =

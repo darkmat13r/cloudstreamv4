@@ -4441,3 +4441,69 @@ fails publishes the same empty view as before, and the flows still throw on `loa
   empty.
 - **Green:** the new order with the same sleep between `publish` and `complete`: 2 of 2. `DesktopDownloadsTest` and
   `DownloadsHostTest` then pass 10 `--rerun` runs of 10.
+
+## BUG-105 — A plugin's URL could make the Mac connect to a private address written as an address · **medium, security** · fixed in this PR
+
+**Status:** fixed in this PR · found 2026-11-11 while building `KMP-116`'s test that a private still is never fetched.
+
+**What happened.** The Mac's clients for a URL a plugin chose check an address twice: a DNS filter on what a name
+resolves to, and a network interceptor on the address connected to. OkHttp asks the DNS filter only for a name. An
+address written as one is never looked up, so only the interceptor saw it, and only once the TCP connection was open
+and a TLS hello had been sent. The image or stream was refused; the connection, a port probe of this Mac or its
+network, was not. `posterHttpClient`'s own KDoc said so ("opens a TCP connection and sends nothing").
+
+The wire's check (`isPrivateHostName`) was meant to stop these first, but it matched a pattern of spellings. It let
+through, measured on master: `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]`, `[::ffff:a00:1]`, `[::127.0.0.1]`,
+`2130706433`, `3232235777`, `0x7f000001` and `0177.0.0.1`. So a plugin could name one as a poster, a backdrop, a cast
+photo or a recommendation's poster. Through the poster client, which also serves subtitles, skip lookups and downloads,
+and through the media gateway, which serves streams to libVLC, the Mac then connected to it.
+
+**Measured** with the production clients against a server on this Mac counting the connections it was offered. Before:
+- the poster client: one connection for `127.0.0.1`, `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]` and `2130706433`; none
+  for `localhost` (a name, which the DNS filter stops) or `0x7f000001`;
+- the media gateway: one connection for `127.0.0.1` too;
+- the repository client: none. It already refuses an address written as one before connecting (`refusedLiteral`).
+
+**Fix, two layers:**
+1. **At the socket** (`AddressCheckedSocketFactory`, on `posterHttpClient`, the media gateway's client and the
+   repository client): each
+   destination is checked by the client's own `allow` before it connects. That covers an address written as one, every
+   address a name resolves to, and each redirect hop's, since every connection OkHttp makes goes through the socket
+   factory. An unresolved destination is refused too. The DNS filter and the interceptor stay, behind it.
+2. **At the wire** (`isPrivateHostName`): a host written as an address is read as one, with no lookup, and judged by
+   `SandboxPolicy.isPublicAddress`, the predicate the clients connect by. IPv6 is read in brackets, so Java never looks
+   it up. IPv4 is read as `inet_aton` reads it: one to four parts, each decimal, octal or hex. A host written as an
+   address that no reader agrees on (`08.0.0.1`, `4294967296`) is refused. A name stays a name: `cafe.be` and
+   `0x7f.example` are kept.
+
+**No proxy** (the reviewer's should-fix). OkHttp connects to a SOCKS proxy with `Socket(proxy)`, not through the
+socket factory, so with `socksProxyHost` or the system's proxies set the socket check was skipped entirely, and any
+proxy is asked for the target by name, past the DNS filter too. `posterHttpClient` now sets `Proxy.NO_PROXY`, as the
+media gateway and the repository client already did. Measured: with a default selector naming a SOCKS proxy on this
+Mac, the proxy was offered a connection before the line, and neither it nor the private target after. `BUG-88`
+(`#340`) set the same line, so it drops it when it rebases.
+
+**Not refused, on purpose.** The outcome rests on `SandboxPolicy.isPublicAddress`, which since `#358` reads the
+IPv4-mapped and IPv4-compatible forms as the IPv4 address inside. NAT64 (`64:ff9b::/96`) and 6to4 (`2002::/16`) with a
+private IPv4 inside are not refused: they go to a remote translator, never to this Mac's own network.
+
+**Tests** (run, all local):
+- `ConnectTimeAddressCheckTest` (desktopApp, 5): the poster client, the repository client and the media gateway are
+  each pointed at 127.0.0.1 in five spellings (`127.0.0.1`, `[::ffff:127.0.0.1]`, `[::ffff:7f00:1]`, `2130706433`,
+  `0x7f000001`), over http and https. **0 connections** are offered for any. An address the check allows is still
+  connected to. With a JVM SOCKS proxy set, neither the proxy nor the target is offered one. **Red (run)** on master:
+  the poster client and the gateway were each offered a connection, for `http://127.0.0.1:…`; and before the no-proxy
+  line, the SOCKS proxy was.
+- `HostProtocolTest`, +1: sixteen private spellings refused by `httpUrlOrNull` and `httpsUrlOrNull`. Public ones
+  (`93.184.216.34`, `1572395042`, an IPv6 address) and lookalike names are kept. A host's details frame naming three of
+  them for its poster, backdrop and cast photo reaches the page with none. **Red (run)** on master: the first,
+  `[::ffff:127.0.0.1]`, was kept.
+- Measured once over the network, not a test: the fixed poster client fetched a public `https` image, 200 and 5,430
+  bytes of `image/x-icon`.
+
+**Not changed:** the pattern still refuses a name that starts with `127.` or `10.` (`127.example`), as it did.
+
+**Follow-up, not fixed here (the PM's note):** whether Android's image loader can be pointed by a plugin at this
+device's own addresses. It is a different threat model, where the plugin runs in the app's own process. Logged for a
+look.
+
