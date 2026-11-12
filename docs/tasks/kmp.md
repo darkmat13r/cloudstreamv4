@@ -8828,6 +8828,32 @@ with a silent track:
   `WatchRecorder` needs one.
 - Playing a film from the D1 list. D1 has no Play on the Mac board.
 
+## KMP-112 — `:core:http` gains an iOS engine (`iosMain`) · **in pr #342** · 2026-11-10
+
+`:core:http` gains an iOS engine (`iosMain`), so an iOS host can share the HTTP seam.
+
+`HttpClientFactory()` in `iosMain`: one Ktor Darwin engine, so one `NSURLSession`, shared by every client the factory
+makes. That's the same ownership as `OkHttpClientFactory`: `HttpClient(engine)` doesn't own the engine, so closing a
+client leaves it running.
+
+The session keeps nothing on disk and is bounded in time:
+
+- `URLCache = null` and `NSURLRequestReloadIgnoringLocalCacheData`. A default `NSURLSessionConfiguration` uses the shared
+  `NSURLCache`, whose `Cache.db` would hold request URLs (and any token in a query) and response bodies.
+- `timeoutIntervalForRequest` 10 s, mirroring the app client: `app.baseClient` sets no timeouts, so it runs on OkHttp's
+  10 s connect, read and write defaults.
+- `timeoutIntervalForResource` 60 s. The app client has no overall cap (OkHttp's call timeout defaults to none); this
+  gives every request one. Long downloads use their own client (`:media:download`), not this factory.
+
+`ktor-client-darwin` 3.6.0, approved by the owner on 2026-11-10:
+
+- Apache-2.0, JetBrains first-party (`io.ktor`).
+- OSV (queried 2026-11-10) reports no advisories. Maven Central's latest is 3.6.1 (2026-10-29).
+- iOS-only: wired into `iosMain`, which exists only under an iOS gate, so Android, the JVM and `classes.jar` are
+  unchanged.
+
+Test: `DarwinClientFactoryTest` (`iosTest`), run on the `iosSimulatorArm64` simulator by
+`iosSimulatorTest -Pcloudstream.iosTest=true`.
 ## KMP-111 — The sidebar's own tone: `CloudStreamMaterial.Sidebar` · **in review** · the owner's choice, 2026-11-10
 
 **Status:** in review · `:core:theme`, `:core:designsystem`, `:desktopApp`, `:feature:settings`
