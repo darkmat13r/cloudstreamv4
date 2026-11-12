@@ -68,12 +68,14 @@
 <string name="account_use_pin">बरु पिन प्रयोग गर्नुहोस्</string>
 <string name="detail_load_failed_body">स्रोत उपलब्ध नहुन सक्छ।</string>
 <string name="detail_load_failed_headline">यो शीर्षक खोल्न सकिएन</string>
+<string name="download_not_available_here">यहाँ उपलब्ध छैन</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d डाउनलोड हुँदै</item><item quantity="other">%d डाउनलोड हुँदै</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d लाममा</item><item quantity="other">%d लाममा</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d डाउनलोड मेटाउने?</item><item quantity="other">%d डाउनलोड मेटाउने?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d एपिसोड</item><item quantity="other">%d एपिसोड</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d असफल</item><item quantity="other">%d असफल</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d शीर्षक · %2$s</item><item quantity="other">%1$d शीर्षक · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d मिनेट बाँकी</item><item quantity="other">%1$d मिनेट बाँकी</item></plurals>
 <string name="episode_time_left">%1$d मिनेट बाँकी</string>
 <string name="episode_watched">हेरिएको</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d बुकमार्क</item><item quantity="other">%d बुकमार्क</item></plurals>

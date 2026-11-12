@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d dështoi"</item><item quantity="other">"%d dështuan"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d shkarkim në radhë"</item><item quantity="other">"%d shkarkime në radhë"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titull · %2$s"</item><item quantity="other">"%1$d tituj · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Mbeten %1$d min"</item><item quantity="other">"Mbeten %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d TË RUAJTURA"</item><item quantity="other">"%d TË RUAJTURA"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nuk mund të ngarkohej %d seksion"</item><item quantity="other">"Nuk mund të ngarkoheshin %d seksione"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d seksion"</item><item quantity="other">"%d seksione"</item></plurals>
@@ -276,6 +277,7 @@
 <string name="download_done">"Shkarkimi u krye"</string>
 <string name="download_episode_range" formatted="true">"Dëshiron të shkarkosh episodin %s?"</string>
 <string name="download_failed">"Shkarkimi dështoi"</string>
+<string name="download_not_available_here">"Nuk ofrohet këtu"</string>
 <string name="download_parallel_settings_des">"Sa elementë të ndryshëm mund të shkarkohen njëkohësisht"</string>
 <string name="download_path_pref">"Destinacioni i shkarkimit"</string>
 <string name="download_paused">"Shkarkimi u ndërpre"</string>

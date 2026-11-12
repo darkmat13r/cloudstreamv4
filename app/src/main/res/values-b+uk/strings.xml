@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d невдале"</item><item quantity="few">"%d невдалі"</item><item quantity="many">"%d невдалих"</item><item quantity="other">"%d невдалих"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d завантаження в черзі"</item><item quantity="few">"%d завантаження в черзі"</item><item quantity="many">"%d завантажень у черзі"</item><item quantity="other">"%d завантажень у черзі"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d назва · %2$s"</item><item quantity="few">"%1$d назви · %2$s"</item><item quantity="many">"%1$d назв · %2$s"</item><item quantity="other">"%1$d назви · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Залишилося %1$d хв"</item><item quantity="few">"Залишилося %1$d хв"</item><item quantity="many">"Залишилося %1$d хв"</item><item quantity="other">"Залишилося %1$d хв"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ЗАКЛАДКА"</item><item quantity="few">"%d ЗАКЛАДКИ"</item><item quantity="many">"%d ЗАКЛАДОК"</item><item quantity="other">"%d ЗАКЛАДКИ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Не вдалося завантажити %d розділ"</item><item quantity="few">"Не вдалося завантажити %d розділи"</item><item quantity="many">"Не вдалося завантажити %d розділів"</item><item quantity="other">"Не вдалося завантажити %d розділів"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d розділ"</item><item quantity="few">"%d розділи"</item><item quantity="many">"%d розділів"</item><item quantity="other">"%d розділу"</item></plurals>
@@ -276,6 +277,7 @@
 <string name="download_done">"Завантаження завершено"</string>
 <string name="download_episode_range" formatted="true">"Бажаєте завантажити %s епізод?"</string>
 <string name="download_failed">"Не вдалося завантажити"</string>
+<string name="download_not_available_here">"Тут недоступно"</string>
 <string name="download_parallel_settings_des">"Скільки різних елементів можна завантажити паралельно"</string>
 <string name="download_path_pref">"Шлях завантаження"</string>
 <string name="download_paused">"Завантаження призупинено"</string>

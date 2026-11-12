@@ -68,12 +68,14 @@
 <string name="account_use_pin">ಬದಲಿಗೆ ಪಿನ್ ಬಳಸಿ</string>
 <string name="detail_load_failed_body">ಮೂಲ ಲಭ್ಯವಿಲ್ಲದಿರಬಹುದು.</string>
 <string name="detail_load_failed_headline">ಈ ಶೀರ್ಷಿಕೆಯನ್ನು ತೆರೆಯಲು ಸಾಧ್ಯವಾಗಲಿಲ್ಲ</string>
+<string name="download_not_available_here">ಇಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</item><item quantity="other">%d ಡೌನ್‌ಲೋಡ್ ಆಗುತ್ತಿದೆ</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d ಸರದಿಯಲ್ಲಿ</item><item quantity="other">%d ಸರದಿಯಲ್ಲಿ</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</item><item quantity="other">%d ಡೌನ್‌ಲೋಡ್‌ಗಳನ್ನು ಅಳಿಸುವುದೇ?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d ಸಂಚಿಕೆಗಳು</item><item quantity="other">%d ಸಂಚಿಕೆಗಳು</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ವಿಫಲವಾಗಿದೆ</item><item quantity="other">%d ವಿಫಲವಾಗಿವೆ</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item><item quantity="other">%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d ನಿಮಿಷ ಬಾಕಿ</item><item quantity="other">%1$d ನಿಮಿಷ ಬಾಕಿ</item></plurals>
 <string name="episode_time_left">%1$d ನಿಮಿಷ ಬಾಕಿ</string>
 <string name="episode_watched">ವೀಕ್ಷಿಸಲಾಗಿದೆ</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ಬುಕ್‌ಮಾರ್ಕ್</item><item quantity="other">%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು</item></plurals>

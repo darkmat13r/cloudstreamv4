@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d एपिसोड"</item><item quantity="other">"%d एपिसोड"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d विफल"</item><item quantity="other">"%d विफल"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d शीर्षक · %2$s"</item><item quantity="other">"%1$d शीर्षक · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d मिनट बाकी"</item><item quantity="other">"%1$d मिनट बाकी"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d बुकमार्क"</item><item quantity="other">"%d बुकमार्क"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d अनुभाग लोड नहीं हो सका"</item><item quantity="other">"%d अनुभाग लोड नहीं हो सके"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d सेक्शन"</item><item quantity="other">"%d सेक्शन"</item></plurals>
@@ -197,6 +198,7 @@
 <string name="download_canceled">"डाउनलोड रद्द"</string>
 <string name="download_done">"डाउनलोड मुकम्मल"</string>
 <string name="download_failed">"डाउनलोड विफल"</string>
+<string name="download_not_available_here">"यहाँ उपलब्ध नहीं"</string>
 <string name="download_path_pref">"डाउनलोड पथ"</string>
 <string name="download_paused">"डाउनलोड रोका गया"</string>
 <string name="download_queue">"कतार डाउनलोड करें"</string>

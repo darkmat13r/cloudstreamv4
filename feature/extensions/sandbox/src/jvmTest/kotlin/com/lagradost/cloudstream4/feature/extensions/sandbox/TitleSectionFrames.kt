@@ -16,7 +16,8 @@ internal object TitleSectionFrames {
             readDetails { dropped += it }.cleaned { dropped += it }
         }
 
-    fun reply(rest: DataOutputStream.() -> Unit) = HostProtocol.encode {
+    /** [page], then [facts] (an empty section unless given, `KMP-114`), then [rest] as written. */
+    fun reply(facts: DataOutputStream.() -> Unit = { emptyFacts() }, rest: DataOutputStream.() -> Unit) = HostProtocol.encode {
         writeText(page.name)
         writeText(page.url)
         writeText(page.type)
@@ -31,7 +32,7 @@ internal object TitleSectionFrames {
             writeInt(episode.season!!)
             writeInt(episode.episode!!)
         }
-        emptyFacts()
+        facts()
         rest()
     }
 

@@ -68,6 +68,7 @@
 <string name="account_use_pin">Použít raději PIN</string>
 <string name="detail_load_failed_body">Zdroj možná není dostupný.</string>
 <string name="detail_load_failed_headline">Tento titul se nepodařilo otevřít</string>
+<string name="download_not_available_here">Zde není k dispozici</string>
 <plurals name="downloads_active"><item quantity="one">%d aktivní stahování</item><item quantity="few">%d aktivní stahování</item><item quantity="many">%d aktivních stahování</item><item quantity="other">%d aktivních stahování</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">stahuje se %d</item><item quantity="few">stahuje se %d</item><item quantity="many">stahuje se %d</item><item quantity="other">stahuje se %d</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d ve frontě</item><item quantity="few">%d ve frontě</item><item quantity="many">%d ve frontě</item><item quantity="other">%d ve frontě</item></plurals>
@@ -76,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d neúspěšné</item><item quantity="few">%d neúspěšná</item><item quantity="many">%d neúspěšných</item><item quantity="other">%d neúspěšných</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d stahování uloženo do fronty</item><item quantity="few">%d stahování uložena do fronty</item><item quantity="many">%d stahování uloženo do fronty</item><item quantity="other">%d stahování uloženo do fronty</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titul · %2$s</item><item quantity="few">%1$d tituly · %2$s</item><item quantity="many">%1$d titulu · %2$s</item><item quantity="other">%1$d titulů · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Zbývá %1$d min</item><item quantity="few">Zbývá %1$d min</item><item quantity="many">Zbývá %1$d min</item><item quantity="other">Zbývá %1$d min</item></plurals>
 <string name="episode_time_left">Zbývá %1$d min</string>
 <string name="episode_watched">Zhlédnuto</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽEK</item></plurals>

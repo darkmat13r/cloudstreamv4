@@ -68,12 +68,14 @@
 <string name="account_use_pin">استفاده از PIN به‌جای آن</string>
 <string name="detail_load_failed_body">ممکن است منبع در دسترس نباشد.</string>
 <string name="detail_load_failed_headline">این عنوان باز نشد</string>
+<string name="download_not_available_here">اینجا در دسترس نیست</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d در حال بارگیری</item><item quantity="other">%d در حال بارگیری</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d در صف</item><item quantity="other">%d در صف</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d بارگیری حذف شود؟</item><item quantity="other">%d بارگیری حذف شود؟</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d قسمت</item><item quantity="other">%d قسمت</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ناموفق</item><item quantity="other">%d ناموفق</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d عنوان · %2$s</item><item quantity="other">%1$d عنوان · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d دقیقه مانده</item><item quantity="other">%1$d دقیقه مانده</item></plurals>
 <string name="episode_time_left">%1$d دقیقه مانده</string>
 <string name="episode_watched">دیده‌شده</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d نشانک</item><item quantity="other">%d نشانک</item></plurals>

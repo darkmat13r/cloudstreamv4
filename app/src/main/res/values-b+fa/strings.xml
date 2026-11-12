@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d قسمت"</item><item quantity="other">"%d قسمت"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d ناموفق"</item><item quantity="other">"%d ناموفق"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d عنوان · %2$s"</item><item quantity="other">"%1$d عنوان · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d دقیقه مانده"</item><item quantity="other">"%1$d دقیقه مانده"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d نشانک"</item><item quantity="other">"%d نشانک"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d بخش بارگیری نشد"</item><item quantity="other">"%d بخش بارگیری نشد"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d بخش"</item><item quantity="other">"%d بخش"</item></plurals>
@@ -182,6 +183,7 @@
 <string name="download_canceled">"دانلود لغو شد"</string>
 <string name="download_done">"داتلود پایان یافت"</string>
 <string name="download_failed">"دانلود ناموفق بود"</string>
+<string name="download_not_available_here">"اینجا در دسترس نیست"</string>
 <string name="download_path_pref">"راه دانلود"</string>
 <string name="download_paused">"دانلود متوقف شده"</string>
 <string name="download_started">"دانلود آغاز شد"</string>

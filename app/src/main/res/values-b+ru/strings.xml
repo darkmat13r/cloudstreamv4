@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d неудачная"</item><item quantity="few">"%d неудачные"</item><item quantity="many">"%d неудачных"</item><item quantity="other">"%d неудачных"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"Запланировано %d загрузка"</item><item quantity="few">"Запланировано %d загрузки"</item><item quantity="many">"Запланировано %d загрузок"</item><item quantity="other">"Запланировано %d загрузок"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d название · %2$s"</item><item quantity="few">"%1$d названия · %2$s"</item><item quantity="many">"%1$d названий · %2$s"</item><item quantity="other">"%1$d названия · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Осталось %1$d мин"</item><item quantity="few">"Осталось %1$d мин"</item><item quantity="many">"Осталось %1$d мин"</item><item quantity="other">"Осталось %1$d мин"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ЗАКЛАДКА"</item><item quantity="few">"%d ЗАКЛАДКИ"</item><item quantity="many">"%d ЗАКЛАДОК"</item><item quantity="other">"%d ЗАКЛАДКИ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Не удалось загрузить %d раздел"</item><item quantity="few">"Не удалось загрузить %d раздела"</item><item quantity="many">"Не удалось загрузить %d разделов"</item><item quantity="other">"Не удалось загрузить %d разделов"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d раздел"</item><item quantity="few">"%d раздела"</item><item quantity="many">"%d разделов"</item><item quantity="other">"%d раздела"</item></plurals>
@@ -276,6 +277,7 @@
 <string name="download_done">"Скачивание закончено"</string>
 <string name="download_episode_range" formatted="true">"Вы хотите загрузить эпизод %s?"</string>
 <string name="download_failed">"Скачивание не удалось"</string>
+<string name="download_not_available_here">"Здесь недоступно"</string>
 <string name="download_parallel_settings_des">"Сколько различных элементов можно загружать параллельно"</string>
 <string name="download_path_pref">"Путь скачивания"</string>
 <string name="download_paused">"Скачивание остановлено"</string>

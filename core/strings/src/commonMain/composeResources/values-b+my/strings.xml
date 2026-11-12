@@ -68,12 +68,14 @@
 <string name="account_use_pin">PIN ကို အစားသုံးရန်</string>
 <string name="detail_load_failed_body">ရင်းမြစ်ကို မရနိုင်ဘဲ ဖြစ်နေနိုင်သည်။</string>
 <string name="detail_load_failed_headline">ဤခေါင်းစဉ်ကို ဖွင့်၍မရပါ</string>
+<string name="download_not_available_here">ဤနေရာတွင် မရနိုင်ပါ</string>
 <plurals name="downloads_count_downloading"><item quantity="other">%d ခု ဒေါင်းလုဒ်လုပ်နေသည်</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d ခု စောင့်ဆိုင်းနေသည်</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="other">ဒေါင်းလုဒ် %d ခုကို ဖျက်မလား။</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="other">အပိုင်း %d ပိုင်း</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d ခု မအောင်မြင်</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">ခေါင်းစဉ် %1$d ခု · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">%1$d မိနစ် ကျန်</item></plurals>
 <string name="episode_time_left">%1$d မိနစ် ကျန်</string>
 <string name="episode_watched">ကြည့်ပြီး</string>
 <plurals name="home_bookmarks_count"><item quantity="other">စာမှတ် %d ခု</item></plurals>

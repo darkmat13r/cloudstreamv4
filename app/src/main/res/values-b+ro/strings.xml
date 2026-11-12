@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d episod"</item><item quantity="few">"%d episoade"</item><item quantity="other">"%d de episoade"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d a eșuat"</item><item quantity="few">"%d au eșuat"</item><item quantity="other">"%d au eșuat"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titlu · %2$s"</item><item quantity="few">"%1$d titluri · %2$s"</item><item quantity="other">"%1$d de titluri · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Mai sunt %1$d min"</item><item quantity="few">"Mai sunt %1$d min"</item><item quantity="other">"Mai sunt %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d MARCAJ"</item><item quantity="few">"%d MARCAJE"</item><item quantity="other">"%d DE MARCAJE"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nu s-a putut încărca %d secțiune"</item><item quantity="few">"Nu s-au putut încărca %d secțiuni"</item><item quantity="other">"Nu s-au putut încărca %d de secțiuni"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d secțiune"</item><item quantity="few">"%d secțiuni"</item><item quantity="other">"%d de secțiuni"</item></plurals>
@@ -248,6 +249,7 @@
 <string name="download_canceled">"Descărcare anulată"</string>
 <string name="download_done">"Descărcare finalizată"</string>
 <string name="download_failed">"Descărcare eșuată"</string>
+<string name="download_not_available_here">"Indisponibil aici"</string>
 <string name="download_path_pref">"Locul descărcării"</string>
 <string name="download_paused">"Descărcare oprită"</string>
 <string name="download_started">"Descărcare începută"</string>

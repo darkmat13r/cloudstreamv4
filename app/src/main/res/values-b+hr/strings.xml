@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d neuspjelo"</item><item quantity="few">"%d neuspjela"</item><item quantity="other">"%d neuspjelih"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d preuzimanje u redu čekanja"</item><item quantity="few">"%d preuzimanja u redu čekanja"</item><item quantity="other">"%d preuzimanja u redu čekanja"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d naslov · %2$s"</item><item quantity="few">"%1$d naslova · %2$s"</item><item quantity="other">"%1$d naslova · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Još %1$d min"</item><item quantity="few">"Još %1$d min"</item><item quantity="other">"Još %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d OZNAKA"</item><item quantity="few">"%d OZNAKE"</item><item quantity="other">"%d OZNAKA"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nije učitan %d odjeljak"</item><item quantity="few">"Nisu učitana %d odjeljka"</item><item quantity="other">"Nije učitano %d odjeljaka"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d odjeljak"</item><item quantity="few">"%d odjeljka"</item><item quantity="other">"%d odjeljaka"</item></plurals>
@@ -275,6 +276,7 @@
 <string name="download_done">"Preuzimanje dovršeno"</string>
 <string name="download_episode_range" formatted="true">"Želiš li preuzeti epizodu %s?"</string>
 <string name="download_failed">"Preuzimanje neuspjelo"</string>
+<string name="download_not_available_here">"Ovdje nije dostupno"</string>
 <string name="download_parallel_settings_des">"Koliko se različitih stavki može istovremeno preuzimati"</string>
 <string name="download_path_pref">"Putanja preuzimanja"</string>
 <string name="download_paused">"Preuzimanje pauzirano"</string>

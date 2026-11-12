@@ -5587,7 +5587,7 @@ Additions only. `app/api/classes-jar.api` gains 60 lines: 7 `R$string` fields, `
 
 ## KMP-63 — Per-episode watch state across the detail seam (board 7i's `WATCHED` and `24 MIN LEFT`) · **measured 2026-11-07**
 
-**Status:** in progress (cloudstream-worker-3), PR 1 of 3 · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
+**Status:** in progress (cloudstream-worker-3), PR 3 of 3 · **Found by:** `KMP-38`'s PR 2a, measuring board 7i before building it.
 
 Board 7i draws two readouts on an episode row that nothing in the tree can supply: `WATCHED` on a
 finished episode and `24 MIN LEFT` on a started one. 7i's other two row fields were simply discarded
@@ -5653,6 +5653,23 @@ interface, its `$DefaultImpls` class (`JvmDefaultMode.ENABLE` emits both), the s
 **The split:** PR 1, the contract and the Android host, with no visible change; PR 2, `ListRow`'s trailing slot, the
 TV row and `I18N-25`'s two strings; PR 3, `LibraryDetailSource` and the Mac row's second line, stacked on `KMP-109`.
 Mark watched as an action is not in this task.
+
+**PR 3, the Mac (built 2026-11-11, stacked on `KMP-109` part 2a):**
+- **The host.** `LibraryDetailSource` fills each `DetailEpisode.progress` from the library's positions, matched by
+  the episode's data, with finished ones included so a row can read watched. If two are held, the newer wins. A row
+  the base source already filled keeps its own. A store that cannot be read leaves the rows plain. The Mac has no
+  mark apart from a position, so `markedWatched` stays false there.
+- **The row.** The second line says `Watched` or `24 min left` where the runtime was, and the runtime when it says
+  neither: `S1:E2 · 24 min left`. It uses the same `watchReadout` and words as TV. `episodeSubtitle` takes the label as
+  an optional `watch`, null by default, so TV's line is unchanged. The line is in the row's title column, not
+  `KMP-109`'s cell, which is for downloads.
+- **Not here:** board E2's still and its progress rule on a started row.
+- **Tests (jvm, run):**
+  - `LibraryDetailSourceTest` +3: each row's own position, finished ones included; the newer of two; a row already
+    filled keeps its own. **Red (run):** 2 fail without the fill.
+  - `DetailScreenTest` +2: the three second lines (Watched, the runtime, and 29 min left, which agrees with
+    Resume), and a pixel comparison with the same page with no watch state, where every changed pixel is inside the
+    second lines. **Red (run):** both fail without the row change. Render: `detail-e2-watch-state`.
 
 ## KMP-54 — The Mac downloads pages, boards D1 to D6 · **built 2026-11-07, not wired**
 
@@ -9158,7 +9175,7 @@ Green: `:desktopApp:jvmTest` 834, 0 failed (the 4 render cases skip without a re
 `:core:strings:jvmTest` 53 of 53; the five gates passed, 280 XML results with 0 failures; `:app:checkExtensionApi`
 passed with the 40 new fields and no line removed. All local.
 
-## KMP-109 — A Download on each episode row of the Mac title page, with its states · **part 1 built 2026-11-10**; the row's slot waits for `KMP-104` (`#312`) · the PM's task
+## KMP-109 — A Download on each episode row of the Mac title page, with its states · **part 1 built 2026-11-10; part 2a, the row's slot, and part 2b, the wiring, built 2026-11-11** · the PM's task
 
 Board E2's rows on the Mac title page offer a Download per episode. The cell then reads the episode's state and offers
 that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
@@ -9225,7 +9242,155 @@ that state's verb, as D4 does. Mark watched is not here: it waits on `KMP-63`.
   - each state's words.
 - `DownloadSeriesScreenTest` is unchanged and passes: 10 of 10.
 
+**Part 2 is two PRs (the PM's ruling, 2026-11-11).** The slot is mechanical and draws nothing until a host fills it.
+The wiring starts real downloads from the page, so it is reviewed on its own.
+
+**Part 2a, the slot (built 2026-11-11, on master after `#312`):**
+- `DetailScreenDesktop` takes `episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)? = null`. It
+  reaches each `EpisodeRow` through `TitlePage`. `shown` is the row's hovered-or-focused, the same test as its Play.
+- The cell sits after the row's words and before the width kept for Play. As the row's literal last child it would be
+  under Play, which is drawn over the row's end. The title column is not changed.
+- Null, the default, draws nothing. With no cell, all 13 of the page's renders are the same as master's, pixel
+  for pixel.
+- **Tests** (`DetailScreenTest`, +4, jvm, run):
+  - each shown row's cell is told its own episode, and is told to show only while the pointer is on its row;
+  - a row reached with Tab tells its cell to show, as it shows Play;
+  - the cell is after the name and ends before Play, centred as Play is, and the name does not move;
+  - part 1's `EpisodeDownloadDesktop` in the slot: each state's words, and the verbs only on the hovered row. Its two
+    renders are `detail-e2-download-cells` and `detail-e2-download-cell-none`.
+  - **Red (run):** with the slot taken but not drawn, all four fail. Drawn as the row's last child, the placement test
+    fails: the cell ends at 1256, and Play starts at 1228.
+
+**Part 2b, the wiring (built 2026-11-11, stacked on `KMP-63` PR 3):**
+- **`PageDownloads`** sits between one title's page and `DesktopDownloads`:
+  - Download builds the request with `episodeDownloadRequest`, which has no link, and enqueues it. The service asks
+    the extension through its resolver, as part 1 does. No new fetch path.
+  - Each row's state comes from the service's own record of the title (`DesktopDownloads.titleOnPage`), by the
+    episode's id.
+  - **Two guards keep a row to its own episode.**
+    - No record under the title's id may be another title's, by the test enqueue refuses `IdTaken` by: another name,
+      or a kept provider that differs. `DesktopDownloads.ownsTitle` and enqueue's `titleTaken` share one predicate,
+      and the page reads the check and the episodes from one snapshot. So a title that holds the same 32-bit ids never
+      shows its download on this page, and the row's verbs never act on it, even when it copies the name exactly. A
+      finished episode keeps no provider, so it is told apart by its name only, as enqueue tells it apart.
+    - A refused enqueue is kept for the page.
+    - The reviewer found the first guard comparing the name alone. A plugin that collides on both ids and copies the
+      name would have shown its download on the row, under this row's Pause and Cancel.
+  - A downloads file that cannot be read gives rows with no download.
+- **Refusals, the PM's ruling.** No refusal is shown as an error.
+  - `AlreadyPresent` changes nothing: the row shows the episode as the record holds it.
+  - Every `Refused` reason, `IdTaken` included, reads "Not available here", muted, with no verb. `IdTaken` means the
+    id is another title's, so the row never claims a download that is not its own.
+  - The words are `download_not_available_here` (`I18N-27`), a key of its own, with `account_sync_unavailable`'s text
+    in each locale. The PM's ruling: one key per meaning, so an edit to the sync line cannot change this one.
+- **The cell.** `EpisodeDownloadDesktop` takes `unavailable`, false by default. With no download it draws those words
+  in the status column and no verb. A download the service holds is drawn as it is.
+- **`Main.kt`.** `DetailHost` passes the app's service to `rememberEpisodeDownloadCell`, which fills the page's slot.
+  With no service (a test's window), the page draws no cell.
+- **Tests (jvm, run):**
+  - `PageDownloadsTest` (5), through a real `DesktopDownloads` and a loopback server:
+    - Download starts the row's own episode through the resolver, and the row follows it to Done. A second press is
+      `AlreadyPresent` and does not read as refused.
+    - An id held by another title, with the same episode id, is refused `IdTaken`. The row reads unavailable, and never
+      shows the other title's download.
+    - The same, with a title that copies this page's name exactly, from another provider. Its download never shows,
+      and Download reads unavailable.
+    - An unreadable downloads file gives no rows and no throw. Download reads unavailable, asks no source and writes
+      nothing over the file.
+    - Pause, Resume and Cancel act on the row's own episode.
+  - `EpisodeDownloadCellTest` (1): the page with the real cell. Download is pressed with pointer events on the hovered
+    row. That episode's source alone is asked for, its file arrives byte for byte, and its row reads Downloaded.
+  - `EpisodeDownloadDesktopTest` +1 and `DetailScreenTest` +1: the refused cell's words and no verb. Render:
+    `detail-e2-download-unavailable`.
+  - **Red (run), one change at a time:**
+    - the cell neither says unavailable nor withholds its verbs: both refused-cell tests fail;
+    - no page guard: both collision tests show the other title's download on this page's row;
+    - the shared predicate without its provider check: the same-name test shows the other provider's download;
+    - refusals not kept: the `IdTaken` and unreadable-file tests time out waiting for the unavailable row;
+    - no catch on an unreadable file: that test fails with the service's `IOException`;
+    - the cell never filled: the end-to-end test finds no Download on the hovered row.
+
+## KMP-115 — The Mac title page's episode rows draw a still and a progress rule, from board E1 · **115a and 115b built 2026-11-11**; the Mac's stills wait for `KMP-116` · the PM's task
+
+Board `DS-21` E1 (the Mac's boards are drawn at 1 px = 1 dp) draws every episode row 72 tall, with a still at its start:
+96 by 56, radius 8. Along the still's bottom edge, inside it, is a 4-tall rule in `live`, its bottom-left corner rounded
+8, as wide as the progress: the whole still on a watched row, the share watched on a started one (19 of 48 minutes is
+drawn 40 of 96, the share snapped to the 4 step), and none on a row not started. Then 16 to the episode's number. The
+code's row is 56 tall today, with no still.
+
+**The split** (the PM, 2026-11-11):
+- **115a, the contract and the Android host** (this PR): `DetailEpisode.stillUrl`, null by default, and `:app`'s
+  `AndroidDetailSource` filling it from the provider's `Episode.posterUrl`, through the same plain-http(s) filter the
+  cast's photos take. The Mac's host leaves it null. No screen draws it yet, so nothing visible changes.
+- **115b, the Mac row:** the still through the page's existing `thumbnail` slot and `KMP-104`'s bounded loader, the
+  rule from `KMP-63`'s positions, and the 72 row. Tested with fixture stills. Until `KMP-116`, the Mac draws a row's
+  still ground with no image.
+- **`KMP-116`, the Mac's stills:** the sandbox's frame has no still for an episode, so carrying one is a new tagged
+  section on the extension wire, modelled on `KMP-103`'s cast section, with its own caps and its own security review.
+
+**115a's tests** (`AndroidDetailSourceTest`, +2, run):
+- each row carries its own episode's still, and a row with none has null. **Red (run)** before the mapping:
+  "expected [https://…, http://…, null] but was [null, null, null]".
+- a still that is not plain http(s) is dropped: `javascript:`, `file:`, `data:`, `content:`, a leading space, a line
+  break and empty. **Red (run)** with the filter removed: every one of them reached the row.
+
+**`classes-jar.api`: no change.** `:app:checkExtensionApi` exits 0 and a fresh `dumpExtensionApi` is identical.
+`DetailEpisode` is in `:feature:detail`, and `classes.jar` holds no `:feature` class (none of its 4,931 entries), so the
+new constructor parameter, `copy` and `component9` are not part of the extension contract. `AndroidDetailSource`'s
+change is inside a private function.
+
+**115b, the Mac row** (built 2026-11-11, on 115a):
+- `EpisodeRow` starts with `EpisodeStill`: 96 by 56, clipped to `shapes.medium` (8), on the `surface` ground, with the
+  still drawn by the page's `thumbnail` slot (so the host's bounded loader and its address checks) when the episode has
+  one. A row with no still keeps its ground and asks for nothing.
+- Along the still's bottom edge, inside its corners, a `live` rule `MediaCardDefaults.ProgressRuleHeight` (4) tall and
+  `episodeRuleWidth` long: the whole still on a watched episode; on a started one the share watched, snapped to the 4
+  step and never less than one step; none otherwise. Drawn inside the still's clip, a full rule's bottom-right corner
+  follows the still's curve, where the board's separate box squares it.
+- The row is 72 (`EpisodeRowStillHeight`): the still and `RelatedGap` above and below. The still is 16 (`GroupGap`)
+  before the number.
+- **Only in a season with a still** (the PM's ruling on the review, 2026-11-11). Until `KMP-116`, the Mac's host sends
+  no still, and every row would draw an empty box and grow to 72: a page that reads as broken images. So the still
+  column, its rule and the 72 row show only when the season on screen has at least one episode with a still. In one
+  with none, the row is the compact 56 (`EpisodeRowHeight`, unchanged) with no still column: with no still, all 17 of
+  the page's renders are byte-identical to the row's before. A row with no still in a season that has some still
+  draws the ground, as E1 does.
+- **Not changed, a gap for `KMP-58`'s owner** (the PM's call): E1 puts the title 32 after the number's left edge; the
+  built row puts it 40 after (a 24 right-aligned number cell, then the 16 gap). Left as built.
+- **Tests** (`DetailScreenTest`, +3, pixels and unmerged semantics bounds, run):
+  - the still is 96 wide, 16 before the number cell, 56 tall with its rule in its last 4 lines, the rows 72 apart, and
+    the image is asked for with each row's own address;
+  - the rule: the whole still on the watched row, 40 on the row 19 of 48 minutes in, none on the row not started;
+  - a row with no still draws the 96-wide ground and asks for no image.
+  - **Red (run):** on the row as it was, all three fail ("row pitch expected 72 but was 56"). With the rule not snapped
+    to the step, the started row's rule is 38 where 40 is expected.
+  - `KMP-63`'s pixel test now allows the stills too, since the watch state draws the rule there as well. It is
+    otherwise unchanged and passes on the old row and the new.
+  - +2 for the gating: a season with no still keeps 56 rows, no still ground and asks for no image (**red (run)**
+    before the gating: "row pitch expected 56 but was 72"); one still in a season gives every row of it the column,
+    the others the ground.
+  - Render: `detail-e1-episode-stills`. Its fixture's third row is the one Resume plays, so the row and Resume agree.
+
 **Part 2, after `#312`:**
 - the slot on `DetailScreenDesktop`'s episode row;
 - `Main.kt` wiring it to the service;
 - the page's tests, red first.
+
+## KMP-114 — A title's facts are read in place, never copied · **built 2026-11-11**, audit A-4 (`#351`)
+
+The audit's A-4: the facts section was checked only against the frame, then copied whole (`readNBytes(length)`)
+before its own reader bounded anything. Every section after it meets a cap before any copy (`KMP-105`, `KMP-108`).
+At most the frame's 8 MiB, so not unbounded, but against "bounded before copy".
+
+- **Read in place, not capped (the PM's call, 2026-11-11):** `readFacts` parses through a view of its slice (`Slice`:
+  it ends where the slice does, and its `available()` is what is left of it), then steps over whatever the parse did not
+  take, so the reader stays in step. Nothing is copied, so a section of megabytes allocates no more than an honest one.
+- **Why not a cap:** a cap that drops the whole section would change `KMP-76`'s tested contract. A host that sends
+  100,000 tags keeps its first sixteen, with one line of log. Reading in place meets A-4 with no change to that, and its
+  three tests pass unchanged.
+- **Tests:** two in `HostProtocolSectionSkipTest`, through its counting stream:
+  - a 4 MiB facts section of padding costs the facts and keeps the page, and under 4 KiB of it is read;
+  - well-formed facts with a 4 MiB tag after sixteen good ones keep the sixteen and the score, and the big tag is
+    stepped over in place (under 8 KiB read).
+- **Red:** with master's reader, which copies the slice, both fail. `TitleSectionFrames.reply` takes the facts to write
+  (an empty section unless given), so the tests can send their own.

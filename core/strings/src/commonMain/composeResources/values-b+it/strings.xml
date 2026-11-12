@@ -68,6 +68,7 @@
 <string name="account_use_pin">Usa invece il PIN</string>
 <string name="detail_load_failed_body">La fonte potrebbe non essere disponibile.</string>
 <string name="detail_load_failed_headline">Impossibile aprire questo titolo</string>
+<string name="download_not_available_here">Non disponibile qui</string>
 <plurals name="downloads_active"><item quantity="one">%d download attivo</item><item quantity="many">%d download attivi</item><item quantity="other">%d download attivi</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d in download</item><item quantity="many">%d in download</item><item quantity="other">%d in download</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d in coda</item><item quantity="many">%d in coda</item><item quantity="other">%d in coda</item></plurals>
@@ -76,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d fallito</item><item quantity="many">%d falliti</item><item quantity="other">%d falliti</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d download in coda</item><item quantity="many">%d download in coda</item><item quantity="other">%d download in coda</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titolo · %2$s</item><item quantity="many">%1$d titoli · %2$s</item><item quantity="other">%1$d titoli · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Mancano %1$d min</item><item quantity="many">Mancano %1$d min</item><item quantity="other">Mancano %1$d min</item></plurals>
 <string name="episode_time_left">Mancano %1$d min</string>
 <string name="episode_watched">Visto</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d SEGNALIBRO</item><item quantity="many">%d DI SEGNALIBRI</item><item quantity="other">%d SEGNALIBRI</item></plurals>

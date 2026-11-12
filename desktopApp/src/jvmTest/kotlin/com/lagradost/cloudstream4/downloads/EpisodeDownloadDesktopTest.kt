@@ -41,7 +41,7 @@ class EpisodeDownloadDesktopTest {
     private fun download(state: DownloadEpisodeState, failure: DownloadFailure? = null) =
         DownloadEpisode(DownloadEpisodeId(7), 1, 2, "The Second", state, 400 * MB, 1_000 * MB, failure = failure)
 
-    private inner class Harness(download: DownloadEpisode?, shown: Boolean) {
+    private inner class Harness(download: DownloadEpisode?, shown: Boolean, private val unavailable: Boolean = false) {
         var download by mutableStateOf(download)
         var shown by mutableStateOf(shown)
         val calls = mutableListOf<String>()
@@ -57,6 +57,7 @@ class EpisodeDownloadDesktopTest {
                             onPause = { calls += "pause" },
                             onResume = { calls += "resume" },
                             onCancel = { calls += "cancel" },
+                            unavailable = this@Harness.unavailable,
                         )
                     }
                 }
@@ -104,6 +105,22 @@ class EpisodeDownloadDesktopTest {
                 timeMillis = time)
             settle()
         }
+    }
+
+    @Test
+    fun `a refused episode says it is not available here, muted, and offers no verb even while shown (part 2b)`() {
+        listOf(false, true).forEach { shown ->
+            val harness = Harness(download = null, shown = shown, unavailable = true)
+            harness.settle()
+            assertEquals(emptyList(), harness.verbs(), "no verb, shown=$shown")
+            assertEquals("Not available here", harness.words(), "shown=$shown")
+            harness.scene.close()
+        }
+        // A download the service holds is drawn as it is, whatever this page was refused.
+        val held = Harness(download(DownloadEpisodeState.Running), shown = true, unavailable = true)
+        held.settle()
+        assertEquals(listOf("Pause", "Cancel"), held.verbs())
+        held.scene.close()
     }
 
     @Test

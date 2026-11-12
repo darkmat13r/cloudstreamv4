@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d nieudane"</item><item quantity="few">"%d nieudane"</item><item quantity="many">"%d nieudanych"</item><item quantity="other">"%d nieudanych"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d pobieranie w kolejce"</item><item quantity="few">"%d pobierania w kolejce"</item><item quantity="many">"%d pobierań w kolejce"</item><item quantity="other">"%d pobierań w kolejce"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d tytuł · %2$s"</item><item quantity="few">"%1$d tytuły · %2$s"</item><item quantity="many">"%1$d tytułów · %2$s"</item><item quantity="other">"%1$d tytułu · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Zostało %1$d min"</item><item quantity="few">"Zostało %1$d min"</item><item quantity="many">"Zostało %1$d min"</item><item quantity="other">"Zostało %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ZAKŁADKA"</item><item quantity="few">"%d ZAKŁADKI"</item><item quantity="many">"%d ZAKŁADEK"</item><item quantity="other">"%d ZAKŁADKI"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nie udało się załadować %d sekcji"</item><item quantity="few">"Nie udało się załadować %d sekcji"</item><item quantity="many">"Nie udało się załadować %d sekcji"</item><item quantity="other">"Nie udało się załadować %d sekcji"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sekcja"</item><item quantity="few">"%d sekcje"</item><item quantity="many">"%d sekcji"</item><item quantity="other">"%d sekcji"</item></plurals>
@@ -276,6 +277,7 @@
 <string name="download_done">"Zakończono pobieranie"</string>
 <string name="download_episode_range" formatted="true">"Czy chcesz pobrać odcinek %s?"</string>
 <string name="download_failed">"Błąd przy pobieraniu"</string>
+<string name="download_not_available_here">"Niedostępne tutaj"</string>
 <string name="download_parallel_settings_des">"Ile różnych elementów można pobrać równolegle"</string>
 <string name="download_path_pref">"Ścieżka pobierania"</string>
 <string name="download_paused">"Wstrzymano pobieranie"</string>

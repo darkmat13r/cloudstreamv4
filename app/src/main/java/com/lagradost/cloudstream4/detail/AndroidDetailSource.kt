@@ -588,6 +588,8 @@ private fun List<Episode>.toDetailEpisodes(): List<DetailEpisode> =
                 // is carried but not drawn. A non-positive runtime is a provider saying nothing.
                 runTimeMinutes = episode.runTime?.takeIf { it > 0 },
                 airDateMs = episode.date,
+                // KMP-115: the episode's still, a provider's address, through the filter the cast's photos take.
+                stillUrl = episode.posterUrl?.takeIf { it.isPlainHttp() },
             )
         }
 

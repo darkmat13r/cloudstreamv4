@@ -11,6 +11,8 @@ values-b+af/strings.xml	plurals	downloads_failed_count	one	STR	%d het misluk
 values-b+af/strings.xml	plurals	downloads_failed_count	other	STR	%d het misluk	
 values-b+af/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titel · %2$s	
 values-b+af/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titels · %2$s	
+values-b+af/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min oor	
+values-b+af/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min oor	
 values-b+af/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOEKMERK	
 values-b+af/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOEKMERKE	
 values-b+af/strings.xml	plurals	home_sections_failed	one	STR	%d afdeling kon nie laai nie	
@@ -135,6 +137,7 @@ values-b+af/strings.xml	string	download	-	STR	Laai af
 values-b+af/strings.xml	string	download_canceled	-	STR	Aflaai gekanselleer	
 values-b+af/strings.xml	string	download_done	-	STR	Klaar Afgelaai	
 values-b+af/strings.xml	string	download_failed	-	STR	Aflaai het misluk	
+values-b+af/strings.xml	string	download_not_available_here	-	STR	Nie hier beskikbaar nie	
 values-b+af/strings.xml	string	download_paused	-	STR	Aflaai op rus	
 values-b+af/strings.xml	string	download_started	-	STR	Aflaai het begin	
 values-b+af/strings.xml	string	download_storage_text	-	STR	Interne Berging	
@@ -529,6 +532,8 @@ values-b+am/strings.xml	plurals	downloads_failed_count	one	STR	%d አልተሳ�
 values-b+am/strings.xml	plurals	downloads_failed_count	other	STR	%d አልተሳኩም	
 values-b+am/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ርዕሶች · %2$s	
 values-b+am/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ርዕሶች · %2$s	
+values-b+am/strings.xml	plurals	episode_minutes_left	one	STR	%1$d ደቂቃ ቀርቷል	
+values-b+am/strings.xml	plurals	episode_minutes_left	other	STR	%1$d ደቂቃ ቀርቷል	
 values-b+am/strings.xml	plurals	home_bookmarks_count	one	STR	%d ዕልባት	
 values-b+am/strings.xml	plurals	home_bookmarks_count	other	STR	%d ዕልባቶች	
 values-b+am/strings.xml	plurals	home_sections_failed	one	STR	%d ክፍል መጫን አልተቻለም	
@@ -650,6 +655,7 @@ values-b+am/strings.xml	string	download	-	STR	ማውረጃ
 values-b+am/strings.xml	string	download_canceled	-	STR	ማውረድ ተቋርጧል	
 values-b+am/strings.xml	string	download_done	-	STR	ማውረድ ተከናውኗል	
 values-b+am/strings.xml	string	download_failed	-	STR	ማውረድ አልተሳካም	
+values-b+am/strings.xml	string	download_not_available_here	-	STR	እዚህ አይገኝም	
 values-b+am/strings.xml	string	download_paused	-	STR	ማውረድ ቆሟል	
 values-b+am/strings.xml	string	download_started	-	STR	ማውረድ ተጀምሯል	
 values-b+am/strings.xml	string	download_storage_text	-	STR	ውስጣዊ ማከማቻ	
@@ -1039,6 +1045,8 @@ values-b+apc/strings.xml	plurals	downloads_queued	one	STR	مافي شي بعد �
 values-b+apc/strings.xml	plurals	downloads_queued	other	STR	فيه شي واحد بعد بده يبلش يتنزل	
 values-b+apc/strings.xml	plurals	downloads_titles_status	one	STR	%1$d عنوان · %2$s	
 values-b+apc/strings.xml	plurals	downloads_titles_status	other	STR	%1$d عناوين · %2$s	
+values-b+apc/strings.xml	plurals	episode_minutes_left	one	STR	باقي %1$d دقيقة	
+values-b+apc/strings.xml	plurals	episode_minutes_left	other	STR	باقي %1$d دقيقة	
 values-b+apc/strings.xml	plurals	home_bookmarks_count	one	STR	%d إشارة مرجعية	
 values-b+apc/strings.xml	plurals	home_bookmarks_count	other	STR	%d إشارات مرجعية	
 values-b+apc/strings.xml	plurals	home_sections_failed	one	STR	م قدرنا نفتح %d قسم	
@@ -1320,6 +1328,7 @@ values-b+apc/strings.xml	string	download_canceled	-	STR	نلغى التنزيل
 values-b+apc/strings.xml	string	download_done	-	STR	خُلِص التنزيل	
 values-b+apc/strings.xml	string	download_episode_range	-	STR	بدك تنزل الحلقة %s؟	
 values-b+apc/strings.xml	string	download_failed	-	STR	فِشِل التنزيل	
+values-b+apc/strings.xml	string	download_not_available_here	-	STR	مش متوفر هون	
 values-b+apc/strings.xml	string	download_parallel_settings_des	-	STR	كم شغلة مختلفة فيها تتنزل ب نفس الوقت	
 values-b+apc/strings.xml	string	download_path_pref	-	STR	ممر التنزيل	
 values-b+apc/strings.xml	string	download_paused	-	STR	محطوت پوز على التنزيل	
@@ -2202,6 +2211,12 @@ values-b+ar/strings.xml	plurals	downloads_titles_status	two	STR	%1$d عنوان�
 values-b+ar/strings.xml	plurals	downloads_titles_status	few	STR	%1$d عناوين · %2$s	
 values-b+ar/strings.xml	plurals	downloads_titles_status	many	STR	%1$d عنوانًا · %2$s	
 values-b+ar/strings.xml	plurals	downloads_titles_status	other	STR	%1$d عنوان · %2$s	
+values-b+ar/strings.xml	plurals	episode_minutes_left	zero	STR	متبقٍ %1$d دقيقة	
+values-b+ar/strings.xml	plurals	episode_minutes_left	one	STR	متبقٍ %1$d دقيقة	
+values-b+ar/strings.xml	plurals	episode_minutes_left	two	STR	متبقٍ %1$d دقيقة	
+values-b+ar/strings.xml	plurals	episode_minutes_left	few	STR	متبقٍ %1$d دقيقة	
+values-b+ar/strings.xml	plurals	episode_minutes_left	many	STR	متبقٍ %1$d دقيقة	
+values-b+ar/strings.xml	plurals	episode_minutes_left	other	STR	متبقٍ %1$d دقيقة	
 values-b+ar/strings.xml	plurals	home_bookmarks_count	zero	STR	%d إشارة مرجعية	
 values-b+ar/strings.xml	plurals	home_bookmarks_count	one	STR	%d إشارة مرجعية	
 values-b+ar/strings.xml	plurals	home_bookmarks_count	two	STR	%d إشارتان مرجعيتان	
@@ -2543,6 +2558,7 @@ values-b+ar/strings.xml	string	download_canceled	-	STR	تم إلغاء التن�
 values-b+ar/strings.xml	string	download_done	-	STR	تم التنزيل	
 values-b+ar/strings.xml	string	download_episode_range	-	STR	هل ترغب في تنزيل الحلقة %s ؟	
 values-b+ar/strings.xml	string	download_failed	-	STR	فشل التنزيل	
+values-b+ar/strings.xml	string	download_not_available_here	-	STR	غير متاح هنا	
 values-b+ar/strings.xml	string	download_parallel_settings_des	-	STR	عدد الأصناف المختلفة التي يمكن تنزيلها بالتوازي	
 values-b+ar/strings.xml	string	download_path_pref	-	STR	مسار التنزيل	
 values-b+ar/strings.xml	string	download_paused	-	STR	توقف التنزيل مؤقتًا	
@@ -3418,6 +3434,12 @@ values-b+ars/strings.xml	plurals	downloads_titles_status	two	STR	%1$d عنوان
 values-b+ars/strings.xml	plurals	downloads_titles_status	few	STR	%1$d عناوين · %2$s	
 values-b+ars/strings.xml	plurals	downloads_titles_status	many	STR	%1$d عنوانًا · %2$s	
 values-b+ars/strings.xml	plurals	downloads_titles_status	other	STR	%1$d عنوان · %2$s	
+values-b+ars/strings.xml	plurals	episode_minutes_left	zero	STR	باقي %1$d دقيقة	
+values-b+ars/strings.xml	plurals	episode_minutes_left	one	STR	باقي %1$d دقيقة	
+values-b+ars/strings.xml	plurals	episode_minutes_left	two	STR	باقي %1$d دقيقة	
+values-b+ars/strings.xml	plurals	episode_minutes_left	few	STR	باقي %1$d دقيقة	
+values-b+ars/strings.xml	plurals	episode_minutes_left	many	STR	باقي %1$d دقيقة	
+values-b+ars/strings.xml	plurals	episode_minutes_left	other	STR	باقي %1$d دقيقة	
 values-b+ars/strings.xml	plurals	home_bookmarks_count	zero	STR	%d إشارة مرجعية	
 values-b+ars/strings.xml	plurals	home_bookmarks_count	one	STR	%d إشارة مرجعية	
 values-b+ars/strings.xml	plurals	home_bookmarks_count	two	STR	%d إشارتان مرجعيتان	
@@ -3663,6 +3685,7 @@ values-b+ars/strings.xml	string	download	-	STR	تحميل
 values-b+ars/strings.xml	string	download_canceled	-	STR	تم إلغاء التنزيل	
 values-b+ars/strings.xml	string	download_done	-	STR	تم التنزيل	
 values-b+ars/strings.xml	string	download_failed	-	STR	التحميل فشل	
+values-b+ars/strings.xml	string	download_not_available_here	-	STR	مو متوفر هنا	
 values-b+ars/strings.xml	string	download_path_pref	-	STR	مسار التحميل	
 values-b+ars/strings.xml	string	download_paused	-	STR	توقف التنزيل	
 values-b+ars/strings.xml	string	download_started	-	STR	بدأ التنزيل	
@@ -4211,6 +4234,8 @@ values-b+as/strings.xml	plurals	downloads_failed_count	one	STR	%d টা বি�
 values-b+as/strings.xml	plurals	downloads_failed_count	other	STR	%d টা বিফল	
 values-b+as/strings.xml	plurals	downloads_titles_status	one	STR	%1$d টা শিৰোনাম · %2$s	
 values-b+as/strings.xml	plurals	downloads_titles_status	other	STR	%1$d টা শিৰোনাম · %2$s	
+values-b+as/strings.xml	plurals	episode_minutes_left	one	STR	%1$d মিনিট বাকী	
+values-b+as/strings.xml	plurals	episode_minutes_left	other	STR	%1$d মিনিট বাকী	
 values-b+as/strings.xml	plurals	home_bookmarks_count	one	STR	%d টা বুকমাৰ্ক	
 values-b+as/strings.xml	plurals	home_bookmarks_count	other	STR	%d টা বুকমাৰ্ক	
 values-b+as/strings.xml	plurals	home_sections_failed	one	STR	%d টা অংশ লোড কৰিব পৰা নগ'ল	
@@ -4475,6 +4500,7 @@ values-b+as/strings.xml	string	download_all_plugins_from_repo	-	STR	সতর্
 values-b+as/strings.xml	string	download_canceled	-	STR	ডাউনলোড বাতিল	
 values-b+as/strings.xml	string	download_done	-	STR	ডাউনলোড সম্পন্ন	
 values-b+as/strings.xml	string	download_failed	-	STR	ডাউনলোড বিফল	
+values-b+as/strings.xml	string	download_not_available_here	-	STR	ইয়াত উপলব্ধ নহয়	
 values-b+as/strings.xml	string	download_path_pref	-	STR	ডাউনলোড পথ	
 values-b+as/strings.xml	string	download_paused	-	STR	ডাউনলোড ৰখা হৈছে	
 values-b+as/strings.xml	string	download_started	-	STR	ডাউনলোড আৰম্ভ হৈছে	
@@ -5246,6 +5272,8 @@ values-b+az/strings.xml	plurals	downloads_failed_count	one	STR	%d uğursuz
 values-b+az/strings.xml	plurals	downloads_failed_count	other	STR	%d uğursuz	
 values-b+az/strings.xml	plurals	downloads_titles_status	one	STR	%1$d başlıq · %2$s	
 values-b+az/strings.xml	plurals	downloads_titles_status	other	STR	%1$d başlıq · %2$s	
+values-b+az/strings.xml	plurals	episode_minutes_left	one	STR	%1$d dəq qalıb	
+values-b+az/strings.xml	plurals	episode_minutes_left	other	STR	%1$d dəq qalıb	
 values-b+az/strings.xml	plurals	home_bookmarks_count	one	STR	%d ƏLFƏCİN	
 values-b+az/strings.xml	plurals	home_bookmarks_count	other	STR	%d ƏLFƏCİN	
 values-b+az/strings.xml	plurals	home_sections_failed	one	STR	%d bölmə yüklənmədi	
@@ -5389,6 +5417,7 @@ values-b+az/strings.xml	string	download	-	STR	Yüklə
 values-b+az/strings.xml	string	download_canceled	-	STR	Yükləmə ləğv edildi	
 values-b+az/strings.xml	string	download_done	-	STR	Yükləmə bitdi	
 values-b+az/strings.xml	string	download_failed	-	STR	Yükləmə uğursuz oldu	
+values-b+az/strings.xml	string	download_not_available_here	-	STR	Burada mövcud deyil	
 values-b+az/strings.xml	string	download_paused	-	STR	Yükləmə dayandırıldı	
 values-b+az/strings.xml	string	download_started	-	STR	Yükləmə başladıldı	
 values-b+az/strings.xml	string	downloaded	-	STR	Yükləndi	
@@ -5809,6 +5838,10 @@ values-b+be/strings.xml	plurals	downloads_titles_status	one	STR	%1$d назва 
 values-b+be/strings.xml	plurals	downloads_titles_status	few	STR	%1$d назвы · %2$s	
 values-b+be/strings.xml	plurals	downloads_titles_status	many	STR	%1$d назваў · %2$s	
 values-b+be/strings.xml	plurals	downloads_titles_status	other	STR	%1$d назвы · %2$s	
+values-b+be/strings.xml	plurals	episode_minutes_left	one	STR	Засталося %1$d хв	
+values-b+be/strings.xml	plurals	episode_minutes_left	few	STR	Засталося %1$d хв	
+values-b+be/strings.xml	plurals	episode_minutes_left	many	STR	Засталося %1$d хв	
+values-b+be/strings.xml	plurals	episode_minutes_left	other	STR	Засталося %1$d хв	
 values-b+be/strings.xml	plurals	home_bookmarks_count	one	STR	%d ЗАКЛАДКА	
 values-b+be/strings.xml	plurals	home_bookmarks_count	few	STR	%d ЗАКЛАДКІ	
 values-b+be/strings.xml	plurals	home_bookmarks_count	many	STR	%d ЗАКЛАДАК	
@@ -6120,6 +6153,7 @@ values-b+be/strings.xml	string	download_canceled	-	STR	Спампоўванне 
 values-b+be/strings.xml	string	download_done	-	STR	Спампоўванне завершана	
 values-b+be/strings.xml	string	download_episode_range	-	STR	Спампаваць %s серыю?	
 values-b+be/strings.xml	string	download_failed	-	STR	Не ўдалося спампаваць	
+values-b+be/strings.xml	string	download_not_available_here	-	STR	Тут недаступна	
 values-b+be/strings.xml	string	download_parallel_settings_des	-	STR	Колькі разных элементаў можна спампоўваць паралельна	
 values-b+be/strings.xml	string	download_path_pref	-	STR	Шлях спампоўкі	
 values-b+be/strings.xml	string	download_paused	-	STR	Спампоўванне прыпынена	
@@ -6970,6 +7004,8 @@ values-b+bg/strings.xml	plurals	downloads_queued	one	STR	%d изтегляне �
 values-b+bg/strings.xml	plurals	downloads_queued	other	STR	%d изтегляния в опашката	
 values-b+bg/strings.xml	plurals	downloads_titles_status	one	STR	%1$d заглавие · %2$s	
 values-b+bg/strings.xml	plurals	downloads_titles_status	other	STR	%1$d заглавия · %2$s	
+values-b+bg/strings.xml	plurals	episode_minutes_left	one	STR	Остават %1$d мин	
+values-b+bg/strings.xml	plurals	episode_minutes_left	other	STR	Остават %1$d мин	
 values-b+bg/strings.xml	plurals	home_bookmarks_count	one	STR	%d ОТМЕТКА	
 values-b+bg/strings.xml	plurals	home_bookmarks_count	other	STR	%d ОТМЕТКИ	
 values-b+bg/strings.xml	plurals	home_sections_failed	one	STR	%d секция не се зареди	
@@ -7251,6 +7287,7 @@ values-b+bg/strings.xml	string	download_canceled	-	STR	Изтеглянето е
 values-b+bg/strings.xml	string	download_done	-	STR	Изтеглянето е завършено	
 values-b+bg/strings.xml	string	download_episode_range	-	STR	Искаш ли да изтеглиш епизод %s?	
 values-b+bg/strings.xml	string	download_failed	-	STR	Изтеглянето се провали	
+values-b+bg/strings.xml	string	download_not_available_here	-	STR	Не е налично тук	
 values-b+bg/strings.xml	string	download_parallel_settings_des	-	STR	Колко различни елемента могат да бъдат изтеглени паралелно	
 values-b+bg/strings.xml	string	download_path_pref	-	STR	Път за изтегляне	
 values-b+bg/strings.xml	string	download_paused	-	STR	Изтеглянето е на пауза	
@@ -8087,6 +8124,8 @@ values-b+bn/strings.xml	plurals	downloads_failed_count	one	STR	%dটি ব্�
 values-b+bn/strings.xml	plurals	downloads_failed_count	other	STR	%dটি ব্যর্থ	
 values-b+bn/strings.xml	plurals	downloads_titles_status	one	STR	%1$dটি শিরোনাম · %2$s	
 values-b+bn/strings.xml	plurals	downloads_titles_status	other	STR	%1$dটি শিরোনাম · %2$s	
+values-b+bn/strings.xml	plurals	episode_minutes_left	one	STR	%1$d মিনিট বাকি	
+values-b+bn/strings.xml	plurals	episode_minutes_left	other	STR	%1$d মিনিট বাকি	
 values-b+bn/strings.xml	plurals	home_bookmarks_count	one	STR	%d টি বুকমার্ক	
 values-b+bn/strings.xml	plurals	home_bookmarks_count	other	STR	%d টি বুকমার্ক	
 values-b+bn/strings.xml	plurals	home_sections_failed	one	STR	%dটি বিভাগ লোড করা যায়নি	
@@ -8288,6 +8327,7 @@ values-b+bn/strings.xml	string	download	-	STR	ডাউনলোড
 values-b+bn/strings.xml	string	download_canceled	-	STR	ডাউনলোড বাদ	
 values-b+bn/strings.xml	string	download_done	-	STR	ডাউনলোড শেষ	
 values-b+bn/strings.xml	string	download_failed	-	STR	ডাউনলোড ব্যর্থ	
+values-b+bn/strings.xml	string	download_not_available_here	-	STR	এখানে উপলব্ধ নয়	
 values-b+bn/strings.xml	string	download_path_pref	-	STR	ডাউনলোডের পথ	
 values-b+bn/strings.xml	string	download_paused	-	STR	ডাউনলোড স্থগিত	
 values-b+bn/strings.xml	string	download_queue	-	STR	ডাউনলোড তালিকা	
@@ -8894,6 +8934,9 @@ values-b+ca/strings.xml	plurals	downloads_failed_count	other	STR	%d fallides
 values-b+ca/strings.xml	plurals	downloads_titles_status	one	STR	%1$d títol · %2$s	
 values-b+ca/strings.xml	plurals	downloads_titles_status	many	STR	%1$d títols · %2$s	
 values-b+ca/strings.xml	plurals	downloads_titles_status	other	STR	%1$d títols · %2$s	
+values-b+ca/strings.xml	plurals	episode_minutes_left	one	STR	Queden %1$d min	
+values-b+ca/strings.xml	plurals	episode_minutes_left	many	STR	Queden %1$d min	
+values-b+ca/strings.xml	plurals	episode_minutes_left	other	STR	Queden %1$d min	
 values-b+ca/strings.xml	plurals	home_bookmarks_count	one	STR	%d FAVORIT	
 values-b+ca/strings.xml	plurals	home_bookmarks_count	many	STR	%d DE FAVORITS	
 values-b+ca/strings.xml	plurals	home_bookmarks_count	other	STR	%d FAVORITS	
@@ -9067,6 +9110,7 @@ values-b+ca/strings.xml	string	download	-	STR	Descarregar
 values-b+ca/strings.xml	string	download_canceled	-	STR	Descàrrega cancel·lada	
 values-b+ca/strings.xml	string	download_done	-	STR	Descàrrega completada	
 values-b+ca/strings.xml	string	download_failed	-	STR	Descarrega fallida	
+values-b+ca/strings.xml	string	download_not_available_here	-	STR	No disponible aquí	
 values-b+ca/strings.xml	string	download_paused	-	STR	Descàrrega en espera	
 values-b+ca/strings.xml	string	download_started	-	STR	S'ha iniciat la descàrrega	
 values-b+ca/strings.xml	string	download_storage_text	-	STR	emmagatzematge intern	
@@ -9637,6 +9681,8 @@ values-b+ckb/strings.xml	plurals	downloads_failed_count	one	STR	%d شکستی ه
 values-b+ckb/strings.xml	plurals	downloads_failed_count	other	STR	%d شکستی هێنا	
 values-b+ckb/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ناونیشان · %2$s	
 values-b+ckb/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ناونیشان · %2$s	
+values-b+ckb/strings.xml	plurals	episode_minutes_left	one	STR	%1$d خولەک ماوە	
+values-b+ckb/strings.xml	plurals	episode_minutes_left	other	STR	%1$d خولەک ماوە	
 values-b+ckb/strings.xml	plurals	home_bookmarks_count	one	STR	%d ئاماژە	
 values-b+ckb/strings.xml	plurals	home_bookmarks_count	other	STR	%d ئاماژە	
 values-b+ckb/strings.xml	plurals	home_sections_failed	one	STR	%d بەش بار نەکرا	
@@ -9755,6 +9801,7 @@ values-b+ckb/strings.xml	string	download	-	STR	داونلۆد
 values-b+ckb/strings.xml	string	download_canceled	-	STR	داونلۆد هەڵوەشایەوە	
 values-b+ckb/strings.xml	string	download_done	-	STR	داونلۆد تەواو بووە	
 values-b+ckb/strings.xml	string	download_failed	-	STR	داونلۆدکردن شکستی هێنا	
+values-b+ckb/strings.xml	string	download_not_available_here	-	STR	لێرە بەردەست نییە	
 values-b+ckb/strings.xml	string	download_paused	-	STR	دابەزاندن وەستاوە	
 values-b+ckb/strings.xml	string	download_started	-	STR	داگرتن دەستی پێکرد	
 values-b+ckb/strings.xml	string	download_storage_text	-	STR	کۆگای ناوخۆیی	
@@ -10140,6 +10187,10 @@ values-b+cs/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titul · %2
 values-b+cs/strings.xml	plurals	downloads_titles_status	few	STR	%1$d tituly · %2$s	
 values-b+cs/strings.xml	plurals	downloads_titles_status	many	STR	%1$d titulu · %2$s	
 values-b+cs/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titulů · %2$s	
+values-b+cs/strings.xml	plurals	episode_minutes_left	one	STR	Zbývá %1$d min	
+values-b+cs/strings.xml	plurals	episode_minutes_left	few	STR	Zbývá %1$d min	
+values-b+cs/strings.xml	plurals	episode_minutes_left	many	STR	Zbývá %1$d min	
+values-b+cs/strings.xml	plurals	episode_minutes_left	other	STR	Zbývá %1$d min	
 values-b+cs/strings.xml	plurals	home_bookmarks_count	one	STR	%d ZÁLOŽKA	
 values-b+cs/strings.xml	plurals	home_bookmarks_count	few	STR	%d ZÁLOŽKY	
 values-b+cs/strings.xml	plurals	home_bookmarks_count	many	STR	%d ZÁLOŽKY	
@@ -10455,6 +10506,7 @@ values-b+cs/strings.xml	string	download_canceled	-	STR	Stahování zrušeno
 values-b+cs/strings.xml	string	download_done	-	STR	Stahování dokončeno	
 values-b+cs/strings.xml	string	download_episode_range	-	STR	Chcete stáhnout epizodu %s?	
 values-b+cs/strings.xml	string	download_failed	-	STR	Stahování selhalo	
+values-b+cs/strings.xml	string	download_not_available_here	-	STR	Zde není k dispozici	
 values-b+cs/strings.xml	string	download_parallel_settings_des	-	STR	Počet různých položek, které lze stahovat v jednu chvíli	
 values-b+cs/strings.xml	string	download_path_pref	-	STR	Cesta stahování	
 values-b+cs/strings.xml	string	download_paused	-	STR	Stahování pozastaveno	
@@ -11310,6 +11362,8 @@ values-b+de/strings.xml	plurals	downloads_queued	one	STR	%d Download in Wartesch
 values-b+de/strings.xml	plurals	downloads_queued	other	STR	%d Downloads in Warteschlange	
 values-b+de/strings.xml	plurals	downloads_titles_status	one	STR	%1$d Titel · %2$s	
 values-b+de/strings.xml	plurals	downloads_titles_status	other	STR	%1$d Titel · %2$s	
+values-b+de/strings.xml	plurals	episode_minutes_left	one	STR	Noch %1$d Min	
+values-b+de/strings.xml	plurals	episode_minutes_left	other	STR	Noch %1$d Min	
 values-b+de/strings.xml	plurals	home_bookmarks_count	one	STR	%d LESEZEICHEN	
 values-b+de/strings.xml	plurals	home_bookmarks_count	other	STR	%d LESEZEICHEN	
 values-b+de/strings.xml	plurals	home_sections_failed	one	STR	%d Bereich konnte nicht geladen werden	
@@ -11593,6 +11647,7 @@ values-b+de/strings.xml	string	download_canceled	-	STR	Download abgebrochen
 values-b+de/strings.xml	string	download_done	-	STR	Download abgeschlossen	
 values-b+de/strings.xml	string	download_episode_range	-	STR	Möchtest du Episode %s herunter laden?	
 values-b+de/strings.xml	string	download_failed	-	STR	Download fehlgeschlagen	
+values-b+de/strings.xml	string	download_not_available_here	-	STR	Hier nicht verfügbar	
 values-b+de/strings.xml	string	download_parallel_settings_des	-	STR	Wie viele verschiedene Elemente können parallel heruntergeladen werden	
 values-b+de/strings.xml	string	download_path_pref	-	STR	Downloadpfad	
 values-b+de/strings.xml	string	download_paused	-	STR	Download pausiert	
@@ -12444,6 +12499,8 @@ values-b+el/strings.xml	plurals	downloads_failed_count	one	STR	%d απέτυχε
 values-b+el/strings.xml	plurals	downloads_failed_count	other	STR	%d απέτυχαν	
 values-b+el/strings.xml	plurals	downloads_titles_status	one	STR	%1$d τίτλος · %2$s	
 values-b+el/strings.xml	plurals	downloads_titles_status	other	STR	%1$d τίτλοι · %2$s	
+values-b+el/strings.xml	plurals	episode_minutes_left	one	STR	Απομένουν %1$d λεπ.	
+values-b+el/strings.xml	plurals	episode_minutes_left	other	STR	Απομένουν %1$d λεπ.	
 values-b+el/strings.xml	plurals	home_bookmarks_count	one	STR	%d ΣΕΛΙΔΟΔΕΙΚΤΗΣ	
 values-b+el/strings.xml	plurals	home_bookmarks_count	other	STR	%d ΣΕΛΙΔΟΔΕΙΚΤΕΣ	
 values-b+el/strings.xml	plurals	home_sections_failed	one	STR	Αποτυχία φόρτωσης %d ενότητας	
@@ -12712,6 +12769,7 @@ values-b+el/strings.xml	string	download_all_plugins_from_repo	-	STR	Προειδ
 values-b+el/strings.xml	string	download_canceled	-	STR	Η λήψη ακυρώθηκε	
 values-b+el/strings.xml	string	download_done	-	STR	Η λήψη ολοκληρώθηκε	
 values-b+el/strings.xml	string	download_failed	-	STR	Η λήψη απέτυχε	
+values-b+el/strings.xml	string	download_not_available_here	-	STR	Δεν είναι διαθέσιμο εδώ	
 values-b+el/strings.xml	string	download_path_pref	-	STR	Διαδρομή λήψης	
 values-b+el/strings.xml	string	download_paused	-	STR	Η λήψη παύθηκε	
 values-b+el/strings.xml	string	download_started	-	STR	Η λήψη ξεκίνησε	
@@ -13504,6 +13562,8 @@ values-b+eo/strings.xml	plurals	downloads_failed_count	one	STR	%d malsukcesis
 values-b+eo/strings.xml	plurals	downloads_failed_count	other	STR	%d malsukcesis	
 values-b+eo/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titolo · %2$s	
 values-b+eo/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titoloj · %2$s	
+values-b+eo/strings.xml	plurals	episode_minutes_left	one	STR	Restas %1$d min	
+values-b+eo/strings.xml	plurals	episode_minutes_left	other	STR	Restas %1$d min	
 values-b+eo/strings.xml	plurals	home_bookmarks_count	one	STR	%d LEGOSIGNO	
 values-b+eo/strings.xml	plurals	home_bookmarks_count	other	STR	%d LEGOSIGNOJ	
 values-b+eo/strings.xml	plurals	home_sections_failed	one	STR	%d sekcio ne ŝargiĝis	
@@ -13633,6 +13693,7 @@ values-b+eo/strings.xml	string	download	-	STR	Elŝuti
 values-b+eo/strings.xml	string	download_canceled	-	STR	Elŝuto Nuligite	
 values-b+eo/strings.xml	string	download_done	-	STR	Elŝuto Farite	
 values-b+eo/strings.xml	string	download_failed	-	STR	Elŝuto Malsukcesite	
+values-b+eo/strings.xml	string	download_not_available_here	-	STR	Ne disponebla ĉi tie	
 values-b+eo/strings.xml	string	download_paused	-	STR	Elŝuto Paŭzite	
 values-b+eo/strings.xml	string	download_queue	-	STR	Elsûtovico	
 values-b+eo/strings.xml	string	download_started	-	STR	Elŝuto Komencite	
@@ -14097,6 +14158,9 @@ values-b+es/strings.xml	plurals	downloads_queued	other	STR	%d descargas encolada
 values-b+es/strings.xml	plurals	downloads_titles_status	one	STR	%1$d título · %2$s	
 values-b+es/strings.xml	plurals	downloads_titles_status	many	STR	%1$d títulos · %2$s	
 values-b+es/strings.xml	plurals	downloads_titles_status	other	STR	%1$d títulos · %2$s	
+values-b+es/strings.xml	plurals	episode_minutes_left	one	STR	Quedan %1$d min	
+values-b+es/strings.xml	plurals	episode_minutes_left	many	STR	Quedan %1$d min	
+values-b+es/strings.xml	plurals	episode_minutes_left	other	STR	Quedan %1$d min	
 values-b+es/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARCADOR	
 values-b+es/strings.xml	plurals	home_bookmarks_count	many	STR	%d DE MARCADORES	
 values-b+es/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARCADORES	
@@ -14396,6 +14460,7 @@ values-b+es/strings.xml	string	download_canceled	-	STR	Descarga Cancelada
 values-b+es/strings.xml	string	download_done	-	STR	Descarga Finalizada	
 values-b+es/strings.xml	string	download_episode_range	-	STR	¿Desea descargar el episodio %s?	
 values-b+es/strings.xml	string	download_failed	-	STR	Descarga fallida	
+values-b+es/strings.xml	string	download_not_available_here	-	STR	No disponible aquí	
 values-b+es/strings.xml	string	download_parallel_settings_des	-	STR	Cuántos elementos diferentes pueden descargarse en paralelo	
 values-b+es/strings.xml	string	download_path_pref	-	STR	Ruta de descarga	
 values-b+es/strings.xml	string	download_paused	-	STR	Descarga pausada	
@@ -15247,6 +15312,8 @@ values-b+fa/strings.xml	plurals	downloads_failed_count	one	STR	%d ناموفق
 values-b+fa/strings.xml	plurals	downloads_failed_count	other	STR	%d ناموفق	
 values-b+fa/strings.xml	plurals	downloads_titles_status	one	STR	%1$d عنوان · %2$s	
 values-b+fa/strings.xml	plurals	downloads_titles_status	other	STR	%1$d عنوان · %2$s	
+values-b+fa/strings.xml	plurals	episode_minutes_left	one	STR	%1$d دقیقه مانده	
+values-b+fa/strings.xml	plurals	episode_minutes_left	other	STR	%1$d دقیقه مانده	
 values-b+fa/strings.xml	plurals	home_bookmarks_count	one	STR	%d نشانک	
 values-b+fa/strings.xml	plurals	home_bookmarks_count	other	STR	%d نشانک	
 values-b+fa/strings.xml	plurals	home_sections_failed	one	STR	%d بخش بارگیری نشد	
@@ -15437,6 +15504,7 @@ values-b+fa/strings.xml	string	download	-	STR	دانلود
 values-b+fa/strings.xml	string	download_canceled	-	STR	دانلود لغو شد	
 values-b+fa/strings.xml	string	download_done	-	STR	داتلود پایان یافت	
 values-b+fa/strings.xml	string	download_failed	-	STR	دانلود ناموفق بود	
+values-b+fa/strings.xml	string	download_not_available_here	-	STR	اینجا در دسترس نیست	
 values-b+fa/strings.xml	string	download_path_pref	-	STR	راه دانلود	
 values-b+fa/strings.xml	string	download_paused	-	STR	دانلود متوقف شده	
 values-b+fa/strings.xml	string	download_started	-	STR	دانلود آغاز شد	
@@ -15993,6 +16061,8 @@ values-b+fil/strings.xml	plurals	downloads_failed_count	one	STR	%d nabigo
 values-b+fil/strings.xml	plurals	downloads_failed_count	other	STR	%d nabigo	
 values-b+fil/strings.xml	plurals	downloads_titles_status	one	STR	%1$d pamagat · %2$s	
 values-b+fil/strings.xml	plurals	downloads_titles_status	other	STR	%1$d pamagat · %2$s	
+values-b+fil/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min na lang	
+values-b+fil/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min na lang	
 values-b+fil/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOOKMARK	
 values-b+fil/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOOKMARK	
 values-b+fil/strings.xml	plurals	home_sections_failed	one	STR	Hindi na-load ang %d seksyon	
@@ -16127,6 +16197,7 @@ values-b+fil/strings.xml	string	download_all_plugins_from_repo	-	STR	Babala: Wal
 values-b+fil/strings.xml	string	download_canceled	-	STR	Kinansela ang pag-download	
 values-b+fil/strings.xml	string	download_done	-	STR	Natapos ang pag-download	
 values-b+fil/strings.xml	string	download_failed	-	STR	Nabigong ma-download	
+values-b+fil/strings.xml	string	download_not_available_here	-	STR	Hindi available dito	
 values-b+fil/strings.xml	string	download_paused	-	STR	Hininto ang pag-download	
 values-b+fil/strings.xml	string	download_queue	-	STR	Nakapila na download	
 values-b+fil/strings.xml	string	download_started	-	STR	Sinimulan ang pag-download	
@@ -16561,6 +16632,9 @@ values-b+fr/strings.xml	plurals	downloads_queued	other	STR	%d téléchargements 
 values-b+fr/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titre · %2$s	
 values-b+fr/strings.xml	plurals	downloads_titles_status	many	STR	%1$d titres · %2$s	
 values-b+fr/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titres · %2$s	
+values-b+fr/strings.xml	plurals	episode_minutes_left	one	STR	Encore %1$d min	
+values-b+fr/strings.xml	plurals	episode_minutes_left	many	STR	Encore %1$d min	
+values-b+fr/strings.xml	plurals	episode_minutes_left	other	STR	Encore %1$d min	
 values-b+fr/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARQUE-PAGE	
 values-b+fr/strings.xml	plurals	home_bookmarks_count	many	STR	%d DE MARQUE-PAGES	
 values-b+fr/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARQUE-PAGES	
@@ -16860,6 +16934,7 @@ values-b+fr/strings.xml	string	download_canceled	-	STR	Téléchargement annulé
 values-b+fr/strings.xml	string	download_done	-	STR	Téléchargement terminé	
 values-b+fr/strings.xml	string	download_episode_range	-	STR	Voulez-vous télécharger l'épisode %s ?	
 values-b+fr/strings.xml	string	download_failed	-	STR	Échec du téléchargement	
+values-b+fr/strings.xml	string	download_not_available_here	-	STR	Indisponible ici	
 values-b+fr/strings.xml	string	download_parallel_settings_des	-	STR	Combien d'objets différents peuvent être téléchargés en parallèle	
 values-b+fr/strings.xml	string	download_path_pref	-	STR	Emplacement de téléchargement	
 values-b+fr/strings.xml	string	download_paused	-	STR	Téléchargement en pause	
@@ -17711,6 +17786,8 @@ values-b+gl/strings.xml	plurals	downloads_failed_count	one	STR	%d fallida
 values-b+gl/strings.xml	plurals	downloads_failed_count	other	STR	%d fallidas	
 values-b+gl/strings.xml	plurals	downloads_titles_status	one	STR	%1$d título · %2$s	
 values-b+gl/strings.xml	plurals	downloads_titles_status	other	STR	%1$d títulos · %2$s	
+values-b+gl/strings.xml	plurals	episode_minutes_left	one	STR	Quedan %1$d min	
+values-b+gl/strings.xml	plurals	episode_minutes_left	other	STR	Quedan %1$d min	
 values-b+gl/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARCADOR	
 values-b+gl/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARCADORES	
 values-b+gl/strings.xml	plurals	home_sections_failed	one	STR	Non se puido cargar %d sección	
@@ -17888,6 +17965,7 @@ values-b+gl/strings.xml	string	download	-	STR	Descargar
 values-b+gl/strings.xml	string	download_canceled	-	STR	Descarga Cancelada	
 values-b+gl/strings.xml	string	download_done	-	STR	Descarga rematada	
 values-b+gl/strings.xml	string	download_failed	-	STR	Descarga Fallida	
+values-b+gl/strings.xml	string	download_not_available_here	-	STR	Non dispoñible aquí	
 values-b+gl/strings.xml	string	download_paused	-	STR	Descarga Pausada	
 values-b+gl/strings.xml	string	download_started	-	STR	Descarga comezada	
 values-b+gl/strings.xml	string	download_storage_text	-	STR	Almacenamento Interno	
@@ -18397,6 +18475,8 @@ values-b+hi/strings.xml	plurals	downloads_failed_count	one	STR	%d विफल
 values-b+hi/strings.xml	plurals	downloads_failed_count	other	STR	%d विफल	
 values-b+hi/strings.xml	plurals	downloads_titles_status	one	STR	%1$d शीर्षक · %2$s	
 values-b+hi/strings.xml	plurals	downloads_titles_status	other	STR	%1$d शीर्षक · %2$s	
+values-b+hi/strings.xml	plurals	episode_minutes_left	one	STR	%1$d मिनट बाकी	
+values-b+hi/strings.xml	plurals	episode_minutes_left	other	STR	%1$d मिनट बाकी	
 values-b+hi/strings.xml	plurals	home_bookmarks_count	one	STR	%d बुकमार्क	
 values-b+hi/strings.xml	plurals	home_bookmarks_count	other	STR	%d बुकमार्क	
 values-b+hi/strings.xml	plurals	home_sections_failed	one	STR	%d अनुभाग लोड नहीं हो सका	
@@ -18602,6 +18682,7 @@ values-b+hi/strings.xml	string	download	-	STR	डाउनलोड
 values-b+hi/strings.xml	string	download_canceled	-	STR	डाउनलोड रद्द	
 values-b+hi/strings.xml	string	download_done	-	STR	डाउनलोड मुकम्मल	
 values-b+hi/strings.xml	string	download_failed	-	STR	डाउनलोड विफल	
+values-b+hi/strings.xml	string	download_not_available_here	-	STR	यहाँ उपलब्ध नहीं	
 values-b+hi/strings.xml	string	download_path_pref	-	STR	डाउनलोड पथ	
 values-b+hi/strings.xml	string	download_paused	-	STR	डाउनलोड रोका गया	
 values-b+hi/strings.xml	string	download_queue	-	STR	कतार डाउनलोड करें	
@@ -19221,6 +19302,9 @@ values-b+hr/strings.xml	plurals	downloads_queued	other	STR	%d preuzimanja u redu
 values-b+hr/strings.xml	plurals	downloads_titles_status	one	STR	%1$d naslov · %2$s	
 values-b+hr/strings.xml	plurals	downloads_titles_status	few	STR	%1$d naslova · %2$s	
 values-b+hr/strings.xml	plurals	downloads_titles_status	other	STR	%1$d naslova · %2$s	
+values-b+hr/strings.xml	plurals	episode_minutes_left	one	STR	Još %1$d min	
+values-b+hr/strings.xml	plurals	episode_minutes_left	few	STR	Još %1$d min	
+values-b+hr/strings.xml	plurals	episode_minutes_left	other	STR	Još %1$d min	
 values-b+hr/strings.xml	plurals	home_bookmarks_count	one	STR	%d OZNAKA	
 values-b+hr/strings.xml	plurals	home_bookmarks_count	few	STR	%d OZNAKE	
 values-b+hr/strings.xml	plurals	home_bookmarks_count	other	STR	%d OZNAKA	
@@ -19517,6 +19601,7 @@ values-b+hr/strings.xml	string	download_canceled	-	STR	Preuzimanje otkazano
 values-b+hr/strings.xml	string	download_done	-	STR	Preuzimanje dovršeno	
 values-b+hr/strings.xml	string	download_episode_range	-	STR	Želiš li preuzeti epizodu %s?	
 values-b+hr/strings.xml	string	download_failed	-	STR	Preuzimanje neuspjelo	
+values-b+hr/strings.xml	string	download_not_available_here	-	STR	Ovdje nije dostupno	
 values-b+hr/strings.xml	string	download_parallel_settings_des	-	STR	Koliko se različitih stavki može istovremeno preuzimati	
 values-b+hr/strings.xml	string	download_path_pref	-	STR	Putanja preuzimanja	
 values-b+hr/strings.xml	string	download_paused	-	STR	Preuzimanje pauzirano	
@@ -20363,6 +20448,8 @@ values-b+hu/strings.xml	plurals	downloads_failed_count	one	STR	%d sikertelen
 values-b+hu/strings.xml	plurals	downloads_failed_count	other	STR	%d sikertelen	
 values-b+hu/strings.xml	plurals	downloads_titles_status	one	STR	%1$d cím · %2$s	
 values-b+hu/strings.xml	plurals	downloads_titles_status	other	STR	%1$d cím · %2$s	
+values-b+hu/strings.xml	plurals	episode_minutes_left	one	STR	Még %1$d perc	
+values-b+hu/strings.xml	plurals	episode_minutes_left	other	STR	Még %1$d perc	
 values-b+hu/strings.xml	plurals	home_bookmarks_count	one	STR	%d KÖNYVJELZŐ	
 values-b+hu/strings.xml	plurals	home_bookmarks_count	other	STR	%d KÖNYVJELZŐ	
 values-b+hu/strings.xml	plurals	home_sections_failed	one	STR	%d szakasz betöltése sikertelen	
@@ -20617,6 +20704,7 @@ values-b+hu/strings.xml	string	download_all_plugins_from_repo	-	STR	Töltse le a
 values-b+hu/strings.xml	string	download_canceled	-	STR	Letöltés megszakítva	
 values-b+hu/strings.xml	string	download_done	-	STR	Letöltés kész	
 values-b+hu/strings.xml	string	download_failed	-	STR	Letöltés sikertelen	
+values-b+hu/strings.xml	string	download_not_available_here	-	STR	Itt nem érhető el	
 values-b+hu/strings.xml	string	download_path_pref	-	STR	Letöltési útvonal	
 values-b+hu/strings.xml	string	download_paused	-	STR	Letöltés szüneteltetve	
 values-b+hu/strings.xml	string	download_queue	-	STR	Letöltési sor	
@@ -21393,6 +21481,7 @@ values-b+in/strings.xml	plurals	downloads_episode_count	other	STR	%d episode
 values-b+in/strings.xml	plurals	downloads_failed_count	other	STR	%d gagal	
 values-b+in/strings.xml	plurals	downloads_queued	other	STR	%d unduhan dalam antrean	
 values-b+in/strings.xml	plurals	downloads_titles_status	other	STR	%1$d judul · %2$s	
+values-b+in/strings.xml	plurals	episode_minutes_left	other	STR	Sisa %1$d mnt	
 values-b+in/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARKAH	
 values-b+in/strings.xml	plurals	home_sections_failed	other	STR	%d bagian gagal dimuat	
 values-b+in/strings.xml	plurals	home_source_sections	other	STR	%d bagian	
@@ -21660,6 +21749,7 @@ values-b+in/strings.xml	string	download_canceled	-	STR	Unduhan diibatalkan
 values-b+in/strings.xml	string	download_done	-	STR	Unduhan selesai	
 values-b+in/strings.xml	string	download_episode_range	-	STR	Apakah kamu ingin mengunduh episode %s?	
 values-b+in/strings.xml	string	download_failed	-	STR	Unduhan gagal	
+values-b+in/strings.xml	string	download_not_available_here	-	STR	Tidak tersedia di sini	
 values-b+in/strings.xml	string	download_parallel_settings_des	-	STR	Berapa banyak item yang bisa diunduh secara paralel	
 values-b+in/strings.xml	string	download_path_pref	-	STR	Lokasi unduhan	
 values-b+in/strings.xml	string	download_paused	-	STR	Unduhan dijeda	
@@ -22523,6 +22613,9 @@ values-b+it/strings.xml	plurals	downloads_queued	other	STR	%d download in coda
 values-b+it/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titolo · %2$s	
 values-b+it/strings.xml	plurals	downloads_titles_status	many	STR	%1$d titoli · %2$s	
 values-b+it/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titoli · %2$s	
+values-b+it/strings.xml	plurals	episode_minutes_left	one	STR	Mancano %1$d min	
+values-b+it/strings.xml	plurals	episode_minutes_left	many	STR	Mancano %1$d min	
+values-b+it/strings.xml	plurals	episode_minutes_left	other	STR	Mancano %1$d min	
 values-b+it/strings.xml	plurals	home_bookmarks_count	one	STR	%d SEGNALIBRO	
 values-b+it/strings.xml	plurals	home_bookmarks_count	many	STR	%d DI SEGNALIBRI	
 values-b+it/strings.xml	plurals	home_bookmarks_count	other	STR	%d SEGNALIBRI	
@@ -22822,6 +22915,7 @@ values-b+it/strings.xml	string	download_canceled	-	STR	Download cancellato
 values-b+it/strings.xml	string	download_done	-	STR	Download completato	
 values-b+it/strings.xml	string	download_episode_range	-	STR	Vuoi scaricare l'episodio %s?	
 values-b+it/strings.xml	string	download_failed	-	STR	Download fallito	
+values-b+it/strings.xml	string	download_not_available_here	-	STR	Non disponibile qui	
 values-b+it/strings.xml	string	download_parallel_settings_des	-	STR	Quanti oggetti possono essere scaricati contemporaneamente	
 values-b+it/strings.xml	string	download_path_pref	-	STR	Percorso di download	
 values-b+it/strings.xml	string	download_paused	-	STR	Download in pausa	
@@ -23679,6 +23773,9 @@ values-b+iw/strings.xml	plurals	downloads_failed_count	other	STR	%d נכשלו
 values-b+iw/strings.xml	plurals	downloads_titles_status	one	STR	%1$d כותר · %2$s	
 values-b+iw/strings.xml	plurals	downloads_titles_status	two	STR	%1$d כותרים · %2$s	
 values-b+iw/strings.xml	plurals	downloads_titles_status	other	STR	%1$d כותרים · %2$s	
+values-b+iw/strings.xml	plurals	episode_minutes_left	one	STR	נותרו %1$d דק׳	
+values-b+iw/strings.xml	plurals	episode_minutes_left	two	STR	נותרו %1$d דק׳	
+values-b+iw/strings.xml	plurals	episode_minutes_left	other	STR	נותרו %1$d דק׳	
 values-b+iw/strings.xml	plurals	home_bookmarks_count	one	STR	%d סימנייה	
 values-b+iw/strings.xml	plurals	home_bookmarks_count	two	STR	%d סימניות	
 values-b+iw/strings.xml	plurals	home_bookmarks_count	other	STR	%d סימניות	
@@ -23919,6 +24016,7 @@ values-b+iw/strings.xml	string	download_all_plugins_from_repo	-	STR	הורד א�
 values-b+iw/strings.xml	string	download_canceled	-	STR	ההורדה בוטלה	
 values-b+iw/strings.xml	string	download_done	-	STR	נגן טריילר	
 values-b+iw/strings.xml	string	download_failed	-	STR	ההורדה נכשלה	
+values-b+iw/strings.xml	string	download_not_available_here	-	STR	לא זמין כאן	
 values-b+iw/strings.xml	string	download_path_pref	-	STR	נתיב הורדה	
 values-b+iw/strings.xml	string	download_paused	-	STR	ההורדה מושהית	
 values-b+iw/strings.xml	string	download_started	-	STR	ההורדה התחילה	
@@ -24634,6 +24732,7 @@ values-b+ja/strings.xml	plurals	downloads_episode_count	other	STR	%dエピソー
 values-b+ja/strings.xml	plurals	downloads_failed_count	other	STR	%d 件失敗	
 values-b+ja/strings.xml	plurals	downloads_queued	other	STR	%d 件が待機中	
 values-b+ja/strings.xml	plurals	downloads_titles_status	other	STR	%1$d作品 · %2$s	
+values-b+ja/strings.xml	plurals	episode_minutes_left	other	STR	残り%1$d分	
 values-b+ja/strings.xml	plurals	home_bookmarks_count	other	STR	%d 件のブックマーク	
 values-b+ja/strings.xml	plurals	home_sections_failed	other	STR	%d 件のセクションを読み込めませんでした	
 values-b+ja/strings.xml	plurals	home_source_sections	other	STR	%d セクション	
@@ -24901,6 +25000,7 @@ values-b+ja/strings.xml	string	download_canceled	-	STR	ダウンロード終了
 values-b+ja/strings.xml	string	download_done	-	STR	ダウンロード完了	
 values-b+ja/strings.xml	string	download_episode_range	-	STR	エピソード %s をダウンロードしますか？	
 values-b+ja/strings.xml	string	download_failed	-	STR	ダウンロード失敗	
+values-b+ja/strings.xml	string	download_not_available_here	-	STR	ここでは利用できません	
 values-b+ja/strings.xml	string	download_parallel_settings_des	-	STR	並行してダウンロードできるアイテム	
 values-b+ja/strings.xml	string	download_path_pref	-	STR	ダウンロードパス	
 values-b+ja/strings.xml	string	download_paused	-	STR	ダウンロードが一時停止	
@@ -25752,6 +25852,8 @@ values-b+kn/strings.xml	plurals	downloads_failed_count	one	STR	%d ವಿಫಲ�
 values-b+kn/strings.xml	plurals	downloads_failed_count	other	STR	%d ವಿಫಲವಾಗಿವೆ	
 values-b+kn/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s	
 values-b+kn/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s	
+values-b+kn/strings.xml	plurals	episode_minutes_left	one	STR	%1$d ನಿಮಿಷ ಬಾಕಿ	
+values-b+kn/strings.xml	plurals	episode_minutes_left	other	STR	%1$d ನಿಮಿಷ ಬಾಕಿ	
 values-b+kn/strings.xml	plurals	home_bookmarks_count	one	STR	%d ಬುಕ್‌ಮಾರ್ಕ್	
 values-b+kn/strings.xml	plurals	home_bookmarks_count	other	STR	%d ಬುಕ್‌ಮಾರ್ಕ್‌ಗಳು	
 values-b+kn/strings.xml	plurals	home_sections_failed	one	STR	%d ವಿಭಾಗವನ್ನು ಲೋಡ್ ಮಾಡಲಾಗಲಿಲ್ಲ	
@@ -25879,6 +25981,7 @@ values-b+kn/strings.xml	string	download	-	STR	ಡೌನ್‌ಲೋಡ್
 values-b+kn/strings.xml	string	download_canceled	-	STR	ಡೌನ್‌ಲೋಡ್ ರದ್ದುಗೊಳಿಸಲಾಗಿದೆ	
 values-b+kn/strings.xml	string	download_done	-	STR	ಡೌನ್‌ಲೋಡ್ ಮುಗಿದಿದೆ	
 values-b+kn/strings.xml	string	download_failed	-	STR	ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ	
+values-b+kn/strings.xml	string	download_not_available_here	-	STR	ಇಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ	
 values-b+kn/strings.xml	string	download_paused	-	STR	ಡೌನ್‌ಲೋಡ್ ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ	
 values-b+kn/strings.xml	string	download_started	-	STR	ಡೌನ್‌ಲೋಡ್ ಪ್ರಾರಂಭವಾಗಿದೆ	
 values-b+kn/strings.xml	string	download_storage_text	-	STR	ಇಂಟರ್ನಲ್ ಸ್ಟೋರೇಜ್	
@@ -26275,6 +26378,7 @@ values-b+ko/strings.xml	plurals	downloads_episode_count	other	STR	%d화
 values-b+ko/strings.xml	plurals	downloads_failed_count	other	STR	%d개 실패	
 values-b+ko/strings.xml	plurals	downloads_queued	other	STR	%d 다운로드	
 values-b+ko/strings.xml	plurals	downloads_titles_status	other	STR	작품 %1$d개 · %2$s	
+values-b+ko/strings.xml	plurals	episode_minutes_left	other	STR	%1$d분 남음	
 values-b+ko/strings.xml	plurals	home_bookmarks_count	other	STR	북마크 %d개	
 values-b+ko/strings.xml	plurals	home_sections_failed	other	STR	섹션 %d개를 불러오지 못했습니다	
 values-b+ko/strings.xml	plurals	home_source_sections	other	STR	섹션 %d개	
@@ -26541,6 +26645,7 @@ values-b+ko/strings.xml	string	download_canceled	-	STR	다운로드 취소
 values-b+ko/strings.xml	string	download_done	-	STR	다운로드 완료	
 values-b+ko/strings.xml	string	download_episode_range	-	STR	에피소드를 다운로드 하시겠습니까 %s?	
 values-b+ko/strings.xml	string	download_failed	-	STR	다운로드 실패	
+values-b+ko/strings.xml	string	download_not_available_here	-	STR	여기서는 사용할 수 없음	
 values-b+ko/strings.xml	string	download_parallel_settings_des	-	STR	병렬로 다운로드 할 수 있는 아이템의 수	
 values-b+ko/strings.xml	string	download_path_pref	-	STR	다운로드 경로	
 values-b+ko/strings.xml	string	download_paused	-	STR	다운로드 일시정지	
@@ -27399,6 +27504,10 @@ values-b+lt/strings.xml	plurals	downloads_titles_status	one	STR	%1$d pavadinimas
 values-b+lt/strings.xml	plurals	downloads_titles_status	few	STR	%1$d pavadinimai · %2$s	
 values-b+lt/strings.xml	plurals	downloads_titles_status	many	STR	%1$d pavadinimo · %2$s	
 values-b+lt/strings.xml	plurals	downloads_titles_status	other	STR	%1$d pavadinimų · %2$s	
+values-b+lt/strings.xml	plurals	episode_minutes_left	one	STR	Liko %1$d min	
+values-b+lt/strings.xml	plurals	episode_minutes_left	few	STR	Liko %1$d min	
+values-b+lt/strings.xml	plurals	episode_minutes_left	many	STR	Liko %1$d min	
+values-b+lt/strings.xml	plurals	episode_minutes_left	other	STR	Liko %1$d min	
 values-b+lt/strings.xml	plurals	home_bookmarks_count	one	STR	%d ŽYMA	
 values-b+lt/strings.xml	plurals	home_bookmarks_count	few	STR	%d ŽYMOS	
 values-b+lt/strings.xml	plurals	home_bookmarks_count	many	STR	%d ŽYMOS	
@@ -27587,6 +27696,7 @@ values-b+lt/strings.xml	string	download	-	STR	Atsisiųsti
 values-b+lt/strings.xml	string	download_canceled	-	STR	Atsisiuntimas atšauktas	
 values-b+lt/strings.xml	string	download_done	-	STR	Atsisiuntimas baigtas	
 values-b+lt/strings.xml	string	download_failed	-	STR	Atsisiuntimas nepavyko	
+values-b+lt/strings.xml	string	download_not_available_here	-	STR	Čia nepasiekiama	
 values-b+lt/strings.xml	string	download_path_pref	-	STR	Atsiuntimo kelias	
 values-b+lt/strings.xml	string	download_paused	-	STR	Siuntimas sustabdytas	
 values-b+lt/strings.xml	string	download_queue	-	STR	Atsisiuntimų eilė	
@@ -28132,6 +28242,9 @@ values-b+lv/strings.xml	plurals	downloads_failed_count	other	STR	%d neizdevās
 values-b+lv/strings.xml	plurals	downloads_titles_status	zero	STR	%1$d nosaukumu · %2$s	
 values-b+lv/strings.xml	plurals	downloads_titles_status	one	STR	%1$d nosaukums · %2$s	
 values-b+lv/strings.xml	plurals	downloads_titles_status	other	STR	%1$d nosaukumi · %2$s	
+values-b+lv/strings.xml	plurals	episode_minutes_left	zero	STR	Atlikušas %1$d min.	
+values-b+lv/strings.xml	plurals	episode_minutes_left	one	STR	Atlikušas %1$d min.	
+values-b+lv/strings.xml	plurals	episode_minutes_left	other	STR	Atlikušas %1$d min.	
 values-b+lv/strings.xml	plurals	home_bookmarks_count	zero	STR	%d GRĀMATZĪMJU	
 values-b+lv/strings.xml	plurals	home_bookmarks_count	one	STR	%d GRĀMATZĪME	
 values-b+lv/strings.xml	plurals	home_bookmarks_count	other	STR	%d GRĀMATZĪMES	
@@ -28385,6 +28498,7 @@ values-b+lv/strings.xml	string	download_all_plugins_from_repo	-	STR	Uzmanību: C
 values-b+lv/strings.xml	string	download_canceled	-	STR	Lejupielāde atcelta	
 values-b+lv/strings.xml	string	download_done	-	STR	Lejupielāde pabeigta	
 values-b+lv/strings.xml	string	download_failed	-	STR	Lejupielāde neizdevās	
+values-b+lv/strings.xml	string	download_not_available_here	-	STR	Šeit nav pieejams	
 values-b+lv/strings.xml	string	download_path_pref	-	STR	Ielādēšanas ceļš	
 values-b+lv/strings.xml	string	download_paused	-	STR	Lejupielāde iepauzēta	
 values-b+lv/strings.xml	string	download_queue	-	STR	Lejupielādes rinda	
@@ -29160,6 +29274,8 @@ values-b+mk/strings.xml	plurals	downloads_queued	one	STR	%d преземање �
 values-b+mk/strings.xml	plurals	downloads_queued	other	STR	%d преземања во редицата	
 values-b+mk/strings.xml	plurals	downloads_titles_status	one	STR	%1$d наслов · %2$s	
 values-b+mk/strings.xml	plurals	downloads_titles_status	other	STR	%1$d наслови · %2$s	
+values-b+mk/strings.xml	plurals	episode_minutes_left	one	STR	Преостануваат %1$d мин	
+values-b+mk/strings.xml	plurals	episode_minutes_left	other	STR	Преостануваат %1$d мин	
 values-b+mk/strings.xml	plurals	home_bookmarks_count	one	STR	%d ОБЕЛЕЖУВАЧ	
 values-b+mk/strings.xml	plurals	home_bookmarks_count	other	STR	%d ОБЕЛЕЖУВАЧИ	
 values-b+mk/strings.xml	plurals	home_sections_failed	one	STR	%d дел не се вчита	
@@ -29441,6 +29557,7 @@ values-b+mk/strings.xml	string	download_canceled	-	STR	Преземањето е
 values-b+mk/strings.xml	string	download_done	-	STR	Преземањето е готово	
 values-b+mk/strings.xml	string	download_episode_range	-	STR	Дали сакате да ја преземете епизодата %s?	
 values-b+mk/strings.xml	string	download_failed	-	STR	Преземањето е неуспешно	
+values-b+mk/strings.xml	string	download_not_available_here	-	STR	Не е достапно тука	
 values-b+mk/strings.xml	string	download_parallel_settings_des	-	STR	Колку различни содржини можат да се симнуваат паралелно	
 values-b+mk/strings.xml	string	download_path_pref	-	STR	Патека на преземање	
 values-b+mk/strings.xml	string	download_paused	-	STR	Преземањето е паузирано	
@@ -30287,6 +30404,8 @@ values-b+ml/strings.xml	plurals	downloads_failed_count	one	STR	%d പരാജ�
 values-b+ml/strings.xml	plurals	downloads_failed_count	other	STR	%d പരാജയപ്പെട്ടു	
 values-b+ml/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ശീർഷകങ്ങൾ · %2$s	
 values-b+ml/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ശീർഷകങ്ങൾ · %2$s	
+values-b+ml/strings.xml	plurals	episode_minutes_left	one	STR	%1$d മിനിറ്റ് ബാക്കി	
+values-b+ml/strings.xml	plurals	episode_minutes_left	other	STR	%1$d മിനിറ്റ് ബാക്കി	
 values-b+ml/strings.xml	plurals	home_bookmarks_count	one	STR	%d ബുക്ക്‌മാർക്ക്	
 values-b+ml/strings.xml	plurals	home_bookmarks_count	other	STR	%d ബുക്ക്‌മാർക്കുകൾ	
 values-b+ml/strings.xml	plurals	home_sections_failed	one	STR	%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല	
@@ -30451,6 +30570,7 @@ values-b+ml/strings.xml	string	download_all_plugins_from_repo	-	STR	ഈ ശേ�
 values-b+ml/strings.xml	string	download_canceled	-	STR	ഡൌൺലോഡ് റദ്ദാക്കി	
 values-b+ml/strings.xml	string	download_done	-	STR	ഡൌൺലോഡ് പൂർത്തിയായി	
 values-b+ml/strings.xml	string	download_failed	-	STR	ഡൌൺലോഡ് മുടങ്ങി	
+values-b+ml/strings.xml	string	download_not_available_here	-	STR	ഇവിടെ ലഭ്യമല്ല	
 values-b+ml/strings.xml	string	download_paused	-	STR	ഡൌൺലോഡ് നിർത്തി	
 values-b+ml/strings.xml	string	download_queue	-	STR	ഡൗൺലോഡ് ക്യൂ	
 values-b+ml/strings.xml	string	download_started	-	STR	ഡൌൺലോഡ് ആരംഭിച്ചു	
@@ -30966,6 +31086,7 @@ values-b+ms/strings.xml	plurals	downloads_delete_confirm_title	other	STR	Padam %
 values-b+ms/strings.xml	plurals	downloads_episode_count	other	STR	%d episod	
 values-b+ms/strings.xml	plurals	downloads_failed_count	other	STR	%d gagal	
 values-b+ms/strings.xml	plurals	downloads_titles_status	other	STR	%1$d tajuk · %2$s	
+values-b+ms/strings.xml	plurals	episode_minutes_left	other	STR	Tinggal %1$d min	
 values-b+ms/strings.xml	plurals	home_bookmarks_count	other	STR	%d PENANDA HALAMAN	
 values-b+ms/strings.xml	plurals	home_sections_failed	other	STR	%d bahagian gagal dimuatkan	
 values-b+ms/strings.xml	plurals	home_source_sections	other	STR	%d bahagian	
@@ -31193,6 +31314,7 @@ values-b+ms/strings.xml	string	download_all_plugins_from_repo	-	STR	Amaran: Clou
 values-b+ms/strings.xml	string	download_canceled	-	STR	Muat turun dibatalkan	
 values-b+ms/strings.xml	string	download_done	-	STR	Muat turun selesai	
 values-b+ms/strings.xml	string	download_failed	-	STR	Muat turun gagal	
+values-b+ms/strings.xml	string	download_not_available_here	-	STR	Tidak tersedia di sini	
 values-b+ms/strings.xml	string	download_path_pref	-	STR	Laluan muat turun	
 values-b+ms/strings.xml	string	download_paused	-	STR	Muat turun dihentikan	
 values-b+ms/strings.xml	string	download_started	-	STR	Muat turun dimulakan	
@@ -31902,6 +32024,11 @@ values-b+mt/strings.xml	plurals	downloads_titles_status	two	STR	%1$d titli · %2
 values-b+mt/strings.xml	plurals	downloads_titles_status	few	STR	%1$d titli · %2$s	
 values-b+mt/strings.xml	plurals	downloads_titles_status	many	STR	%1$d titli · %2$s	
 values-b+mt/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titli · %2$s	
+values-b+mt/strings.xml	plurals	episode_minutes_left	one	STR	Fadal %1$d min	
+values-b+mt/strings.xml	plurals	episode_minutes_left	two	STR	Fadal %1$d min	
+values-b+mt/strings.xml	plurals	episode_minutes_left	few	STR	Fadal %1$d min	
+values-b+mt/strings.xml	plurals	episode_minutes_left	many	STR	Fadal %1$d min	
+values-b+mt/strings.xml	plurals	episode_minutes_left	other	STR	Fadal %1$d min	
 values-b+mt/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOOKMARK	
 values-b+mt/strings.xml	plurals	home_bookmarks_count	two	STR	%d BOOKMARKS	
 values-b+mt/strings.xml	plurals	home_bookmarks_count	few	STR	%d BOOKMARKS	
@@ -32069,6 +32196,7 @@ values-b+mt/strings.xml	string	download	-	STR	Niżżel
 values-b+mt/strings.xml	string	download_canceled	-	STR	Tniżżil ikkanċellat	
 values-b+mt/strings.xml	string	download_done	-	STR	Lest it-tniżżil	
 values-b+mt/strings.xml	string	download_failed	-	STR	Falla t-tniżżil	
+values-b+mt/strings.xml	string	download_not_available_here	-	STR	Mhux disponibbli hawn	
 values-b+mt/strings.xml	string	download_paused	-	STR	Tniżżila ppawzata	
 values-b+mt/strings.xml	string	download_started	-	STR	Beda t-tniżżil	
 values-b+mt/strings.xml	string	download_storage_text	-	STR	Ħażna Interna	
@@ -32461,6 +32589,7 @@ values-b+my/strings.xml	plurals	downloads_delete_confirm_title	other	STR	ဒေ�
 values-b+my/strings.xml	plurals	downloads_episode_count	other	STR	အပိုင်း %d ပိုင်း	
 values-b+my/strings.xml	plurals	downloads_failed_count	other	STR	%d ခု မအောင်မြင်	
 values-b+my/strings.xml	plurals	downloads_titles_status	other	STR	ခေါင်းစဉ် %1$d ခု · %2$s	
+values-b+my/strings.xml	plurals	episode_minutes_left	other	STR	%1$d မိနစ် ကျန်	
 values-b+my/strings.xml	plurals	home_bookmarks_count	other	STR	စာမှတ် %d ခု	
 values-b+my/strings.xml	plurals	home_sections_failed	other	STR	အပိုင်း %d ခု တင်သွင်း၍မရပါ	
 values-b+my/strings.xml	plurals	home_source_sections	other	STR	ကဏ္ဍ %d ခု	
@@ -32668,6 +32797,7 @@ values-b+my/strings.xml	string	download_all_plugins_from_repo	-	STR	ဤရီပ
 values-b+my/strings.xml	string	download_canceled	-	STR	ဒေါင်းလုဒ် ပယ်ဖျက်ပြီး	
 values-b+my/strings.xml	string	download_done	-	STR	ဒေါင်းလုဒ်ပြီးစီး	
 values-b+my/strings.xml	string	download_failed	-	STR	ဒေါင်းလုဒ် မအောင်မြင်	
+values-b+my/strings.xml	string	download_not_available_here	-	STR	ဤနေရာတွင် မရနိုင်ပါ	
 values-b+my/strings.xml	string	download_path_pref	-	STR	ဒေါင်းလုဒ်လမ်းကြောင်း	
 values-b+my/strings.xml	string	download_paused	-	STR	ဒေါင်းလုဒ် ရပ်ထား	
 values-b+my/strings.xml	string	download_started	-	STR	ဒေါင်းလုဒ်စတင်	
@@ -33367,6 +33497,8 @@ values-b+ne/strings.xml	plurals	downloads_failed_count	one	STR	%d असफल
 values-b+ne/strings.xml	plurals	downloads_failed_count	other	STR	%d असफल	
 values-b+ne/strings.xml	plurals	downloads_titles_status	one	STR	%1$d शीर्षक · %2$s	
 values-b+ne/strings.xml	plurals	downloads_titles_status	other	STR	%1$d शीर्षक · %2$s	
+values-b+ne/strings.xml	plurals	episode_minutes_left	one	STR	%1$d मिनेट बाँकी	
+values-b+ne/strings.xml	plurals	episode_minutes_left	other	STR	%1$d मिनेट बाँकी	
 values-b+ne/strings.xml	plurals	home_bookmarks_count	one	STR	%d बुकमार्क	
 values-b+ne/strings.xml	plurals	home_bookmarks_count	other	STR	%d बुकमार्क	
 values-b+ne/strings.xml	plurals	home_sections_failed	one	STR	%d खण्ड लोड हुन सकेन	
@@ -33489,6 +33621,7 @@ values-b+ne/strings.xml	string	download	-	STR	डाउनलोड
 values-b+ne/strings.xml	string	download_canceled	-	STR	डाउनलोड रद्द गरियो	
 values-b+ne/strings.xml	string	download_done	-	STR	डाउनलोड भयो	
 values-b+ne/strings.xml	string	download_failed	-	STR	डाउनलोड असफल भयो	
+values-b+ne/strings.xml	string	download_not_available_here	-	STR	यहाँ उपलब्ध छैन	
 values-b+ne/strings.xml	string	download_paused	-	STR	डाउनलोड रोकियो	
 values-b+ne/strings.xml	string	download_started	-	STR	डाउनलोड सुरु भयो	
 values-b+ne/strings.xml	string	download_storage_text	-	STR	भित्री स्टोरेज	
@@ -33892,6 +34025,8 @@ values-b+nl/strings.xml	plurals	downloads_failed_count	one	STR	%d mislukt
 values-b+nl/strings.xml	plurals	downloads_failed_count	other	STR	%d mislukt	
 values-b+nl/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titel · %2$s	
 values-b+nl/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titels · %2$s	
+values-b+nl/strings.xml	plurals	episode_minutes_left	one	STR	Nog %1$d min	
+values-b+nl/strings.xml	plurals	episode_minutes_left	other	STR	Nog %1$d min	
 values-b+nl/strings.xml	plurals	home_bookmarks_count	one	STR	%d BLADWIJZER	
 values-b+nl/strings.xml	plurals	home_bookmarks_count	other	STR	%d BLADWIJZERS	
 values-b+nl/strings.xml	plurals	home_sections_failed	one	STR	%d sectie kon niet worden geladen	
@@ -34156,6 +34291,7 @@ values-b+nl/strings.xml	string	download_all_plugins_from_repo	-	STR	Waarschuwing
 values-b+nl/strings.xml	string	download_canceled	-	STR	Download Geannuleerd	
 values-b+nl/strings.xml	string	download_done	-	STR	Download Gereed	
 values-b+nl/strings.xml	string	download_failed	-	STR	Download Mislukt	
+values-b+nl/strings.xml	string	download_not_available_here	-	STR	Hier niet beschikbaar	
 values-b+nl/strings.xml	string	download_parallel_settings_des	-	STR	Hoeveel verschillende items kunnen in parallel gedownload worden	
 values-b+nl/strings.xml	string	download_path_pref	-	STR	Downloadpad	
 values-b+nl/strings.xml	string	download_paused	-	STR	Downloaden Gepauzeerd	
@@ -34973,6 +35109,8 @@ values-b+nn/strings.xml	plurals	downloads_failed_count	one	STR	%d feila
 values-b+nn/strings.xml	plurals	downloads_failed_count	other	STR	%d feila	
 values-b+nn/strings.xml	plurals	downloads_titles_status	one	STR	%1$d tittel · %2$s	
 values-b+nn/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titlar · %2$s	
+values-b+nn/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min att	
+values-b+nn/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min att	
 values-b+nn/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOKMERKE	
 values-b+nn/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOKMERKE	
 values-b+nn/strings.xml	plurals	home_sections_failed	one	STR	%d del kunne ikkje lastast	
@@ -35114,6 +35252,7 @@ values-b+nn/strings.xml	string	download	-	STR	Nedlasting
 values-b+nn/strings.xml	string	download_canceled	-	STR	Nedlasting avbrote	
 values-b+nn/strings.xml	string	download_done	-	STR	Nedlasting ferdig	
 values-b+nn/strings.xml	string	download_failed	-	STR	Nedlasting feila	
+values-b+nn/strings.xml	string	download_not_available_here	-	STR	Ikkje tilgjengeleg her	
 values-b+nn/strings.xml	string	download_paused	-	STR	Nedlasting satt på vent	
 values-b+nn/strings.xml	string	download_queue	-	STR	Nedlastingskø	
 values-b+nn/strings.xml	string	download_started	-	STR	Nedlasting starta	
@@ -35570,6 +35709,8 @@ values-b+no/strings.xml	plurals	downloads_failed_count	one	STR	%d mislyktes
 values-b+no/strings.xml	plurals	downloads_failed_count	other	STR	%d mislyktes	
 values-b+no/strings.xml	plurals	downloads_titles_status	one	STR	%1$d tittel · %2$s	
 values-b+no/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titler · %2$s	
+values-b+no/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min igjen	
+values-b+no/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min igjen	
 values-b+no/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOKMERKE	
 values-b+no/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOKMERKER	
 values-b+no/strings.xml	plurals	home_sections_failed	one	STR	%d del kunne ikke lastes inn	
@@ -35789,6 +35930,7 @@ values-b+no/strings.xml	string	download_all_plugins_from_repo	-	STR	Last ned all
 values-b+no/strings.xml	string	download_canceled	-	STR	Nedlasting avbrutt	
 values-b+no/strings.xml	string	download_done	-	STR	Last ned Ferdig	
 values-b+no/strings.xml	string	download_failed	-	STR	Nedlasting mislyktes	
+values-b+no/strings.xml	string	download_not_available_here	-	STR	Ikke tilgjengelig her	
 values-b+no/strings.xml	string	download_path_pref	-	STR	Nedlastingssti	
 values-b+no/strings.xml	string	download_paused	-	STR	Nedlasting stoppet midlertidig	
 values-b+no/strings.xml	string	download_started	-	STR	Nedlasting startet	
@@ -36480,6 +36622,8 @@ values-b+or/strings.xml	plurals	downloads_failed_count	one	STR	%d ଵିଫଳ �
 values-b+or/strings.xml	plurals	downloads_failed_count	other	STR	%d ଵିଫଳ ହେଲା	
 values-b+or/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ଶୀର୍ଷକ · %2$s	
 values-b+or/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ଶୀର୍ଷକ · %2$s	
+values-b+or/strings.xml	plurals	episode_minutes_left	one	STR	%1$d ମିନିଟ୍ ବାକି	
+values-b+or/strings.xml	plurals	episode_minutes_left	other	STR	%1$d ମିନିଟ୍ ବାକି	
 values-b+or/strings.xml	plurals	home_bookmarks_count	one	STR	%d ବୁକମାର୍କ	
 values-b+or/strings.xml	plurals	home_bookmarks_count	other	STR	%d ବୁକମାର୍କ	
 values-b+or/strings.xml	plurals	home_sections_failed	one	STR	%d ଵିଭାଗ ଲୋଡ୍ ହୋଇପାରିଲା ନାହିଁ	
@@ -36613,6 +36757,7 @@ values-b+or/strings.xml	string	detail_start_over	-	STR	ପୁଣି ଆରମ୍
 values-b+or/strings.xml	string	documentaries	-	STR	ଵୃତ୍ତଚିତ୍ର	
 values-b+or/strings.xml	string	documentaries_singular	-	STR	ଵୃତ୍ତଚିତ୍ର	
 values-b+or/strings.xml	string	dont_show_again	-	STR	ପୁନଃ ଦେଖାଅନି	
+values-b+or/strings.xml	string	download_not_available_here	-	STR	ଏଠାରେ ଉପଲବ୍ଧ ନାହିଁ	
 values-b+or/strings.xml	string	download_storage_text	-	STR	ଅନ୍ତଃ-ଷ୍ଟୋରେଜ୍	
 values-b+or/strings.xml	string	download_time_left_hour_min_sec_format	-	STR	%1$dଘଣ୍ଟା %2$dମିନିଟ୍ %3$dସେକେଣ୍ଡ	
 values-b+or/strings.xml	string	downloads_browse_library	-	STR	ଲାଇବ୍ରେରୀ ବ୍ରାଉଜ୍ କର	
@@ -37057,6 +37202,10 @@ values-b+pl/strings.xml	plurals	downloads_titles_status	one	STR	%1$d tytuł · %
 values-b+pl/strings.xml	plurals	downloads_titles_status	few	STR	%1$d tytuły · %2$s	
 values-b+pl/strings.xml	plurals	downloads_titles_status	many	STR	%1$d tytułów · %2$s	
 values-b+pl/strings.xml	plurals	downloads_titles_status	other	STR	%1$d tytułu · %2$s	
+values-b+pl/strings.xml	plurals	episode_minutes_left	one	STR	Zostało %1$d min	
+values-b+pl/strings.xml	plurals	episode_minutes_left	few	STR	Zostało %1$d min	
+values-b+pl/strings.xml	plurals	episode_minutes_left	many	STR	Zostało %1$d min	
+values-b+pl/strings.xml	plurals	episode_minutes_left	other	STR	Zostało %1$d min	
 values-b+pl/strings.xml	plurals	home_bookmarks_count	one	STR	%d ZAKŁADKA	
 values-b+pl/strings.xml	plurals	home_bookmarks_count	few	STR	%d ZAKŁADKI	
 values-b+pl/strings.xml	plurals	home_bookmarks_count	many	STR	%d ZAKŁADEK	
@@ -37372,6 +37521,7 @@ values-b+pl/strings.xml	string	download_canceled	-	STR	Anulowano pobieranie
 values-b+pl/strings.xml	string	download_done	-	STR	Zakończono pobieranie	
 values-b+pl/strings.xml	string	download_episode_range	-	STR	Czy chcesz pobrać odcinek %s?	
 values-b+pl/strings.xml	string	download_failed	-	STR	Błąd przy pobieraniu	
+values-b+pl/strings.xml	string	download_not_available_here	-	STR	Niedostępne tutaj	
 values-b+pl/strings.xml	string	download_parallel_settings_des	-	STR	Ile różnych elementów można pobrać równolegle	
 values-b+pl/strings.xml	string	download_path_pref	-	STR	Ścieżka pobierania	
 values-b+pl/strings.xml	string	download_paused	-	STR	Wstrzymano pobieranie	
@@ -38235,6 +38385,9 @@ values-b+pt+BR/strings.xml	plurals	downloads_queued	other	STR	%d downloads na se
 values-b+pt+BR/strings.xml	plurals	downloads_titles_status	one	STR	%1$d título · %2$s	
 values-b+pt+BR/strings.xml	plurals	downloads_titles_status	many	STR	%1$d títulos · %2$s	
 values-b+pt+BR/strings.xml	plurals	downloads_titles_status	other	STR	%1$d títulos · %2$s	
+values-b+pt+BR/strings.xml	plurals	episode_minutes_left	one	STR	Faltam %1$d min	
+values-b+pt+BR/strings.xml	plurals	episode_minutes_left	many	STR	Faltam %1$d min	
+values-b+pt+BR/strings.xml	plurals	episode_minutes_left	other	STR	Faltam %1$d min	
 values-b+pt+BR/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARCADOR	
 values-b+pt+BR/strings.xml	plurals	home_bookmarks_count	many	STR	%d DE MARCADORES	
 values-b+pt+BR/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARCADORES	
@@ -38534,6 +38687,7 @@ values-b+pt+BR/strings.xml	string	download_canceled	-	STR	Download cancelado
 values-b+pt+BR/strings.xml	string	download_done	-	STR	Download concluído	
 values-b+pt+BR/strings.xml	string	download_episode_range	-	STR	Você deseja baixar o episódio%s?	
 values-b+pt+BR/strings.xml	string	download_failed	-	STR	Download falhou	
+values-b+pt+BR/strings.xml	string	download_not_available_here	-	STR	Indisponível aqui	
 values-b+pt+BR/strings.xml	string	download_parallel_settings_des	-	STR	Quantos itens diferentes podem ser baixados em paralelo	
 values-b+pt+BR/strings.xml	string	download_path_pref	-	STR	Onde salvar Downloads	
 values-b+pt+BR/strings.xml	string	download_paused	-	STR	Download pausado	
@@ -39397,6 +39551,9 @@ values-b+pt/strings.xml	plurals	downloads_queued	other	STR	%d downloads na fila
 values-b+pt/strings.xml	plurals	downloads_titles_status	one	STR	%1$d título · %2$s	
 values-b+pt/strings.xml	plurals	downloads_titles_status	many	STR	%1$d títulos · %2$s	
 values-b+pt/strings.xml	plurals	downloads_titles_status	other	STR	%1$d títulos · %2$s	
+values-b+pt/strings.xml	plurals	episode_minutes_left	one	STR	Faltam %1$d min	
+values-b+pt/strings.xml	plurals	episode_minutes_left	many	STR	Faltam %1$d min	
+values-b+pt/strings.xml	plurals	episode_minutes_left	other	STR	Faltam %1$d min	
 values-b+pt/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARCADOR	
 values-b+pt/strings.xml	plurals	home_bookmarks_count	many	STR	%d DE MARCADORES	
 values-b+pt/strings.xml	plurals	home_bookmarks_count	other	STR	%d MARCADORES	
@@ -39693,6 +39850,7 @@ values-b+pt/strings.xml	string	download_canceled	-	STR	Download cancelado
 values-b+pt/strings.xml	string	download_done	-	STR	Download concluído	
 values-b+pt/strings.xml	string	download_episode_range	-	STR	Deseja baixar o episódio %s?	
 values-b+pt/strings.xml	string	download_failed	-	STR	Falha no Download	
+values-b+pt/strings.xml	string	download_not_available_here	-	STR	Indisponível aqui	
 values-b+pt/strings.xml	string	download_parallel_settings_des	-	STR	Quantos itens diferentes podem ser baixados em paralelo	
 values-b+pt/strings.xml	string	download_path_pref	-	STR	Caminho de transferência	
 values-b+pt/strings.xml	string	download_paused	-	STR	Download Pausado	
@@ -40533,6 +40691,7 @@ values-b+qt/strings.xml	plurals	downloads_delete_confirm_title	other	STR	oooooah
 values-b+qt/strings.xml	plurals	downloads_episode_count	other	STR	%d ooh	
 values-b+qt/strings.xml	plurals	downloads_failed_count	other	STR	%d oooogg	
 values-b+qt/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ooh · %2$s	
+values-b+qt/strings.xml	plurals	episode_minutes_left	other	STR	%1$d ooh haa ahhh	
 values-b+qt/strings.xml	plurals	home_bookmarks_count	other	STR	%d OOUUH OOH	
 values-b+qt/strings.xml	plurals	home_sections_failed	other	STR	%d oooogg ooh aaahhu	
 values-b+qt/strings.xml	plurals	home_source_sections	other	STR	%d oouh	
@@ -40779,6 +40938,7 @@ values-b+qt/strings.xml	string	download_all_plugins_from_repo	-	STR	Warning: ooo
 values-b+qt/strings.xml	string	download_canceled	-	STR	ooo-ahah aaaghhahooo	
 values-b+qt/strings.xml	string	download_done	-	STR	aaaghhaaaaa ohouuhhh	
 values-b+qt/strings.xml	string	download_failed	-	STR	aaaghhahhooo-ahahahhha aaaghh	
+values-b+qt/strings.xml	string	download_not_available_here	-	STR	aah ooh-ooh	
 values-b+qt/strings.xml	string	download_path_pref	-	STR	aaaahhhg aagg	
 values-b+qt/strings.xml	string	download_paused	-	STR	aaahhuooo-ahahhaaa	
 values-b+qt/strings.xml	string	download_started	-	STR	aaaaa oooohh aauugghh	
@@ -41545,6 +41705,9 @@ values-b+ro/strings.xml	plurals	downloads_failed_count	other	STR	%d au eșuat
 values-b+ro/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titlu · %2$s	
 values-b+ro/strings.xml	plurals	downloads_titles_status	few	STR	%1$d titluri · %2$s	
 values-b+ro/strings.xml	plurals	downloads_titles_status	other	STR	%1$d de titluri · %2$s	
+values-b+ro/strings.xml	plurals	episode_minutes_left	one	STR	Mai sunt %1$d min	
+values-b+ro/strings.xml	plurals	episode_minutes_left	few	STR	Mai sunt %1$d min	
+values-b+ro/strings.xml	plurals	episode_minutes_left	other	STR	Mai sunt %1$d min	
 values-b+ro/strings.xml	plurals	home_bookmarks_count	one	STR	%d MARCAJ	
 values-b+ro/strings.xml	plurals	home_bookmarks_count	few	STR	%d MARCAJE	
 values-b+ro/strings.xml	plurals	home_bookmarks_count	other	STR	%d DE MARCAJE	
@@ -41816,6 +41979,7 @@ values-b+ro/strings.xml	string	download_all_plugins_from_repo	-	STR	Descărcați
 values-b+ro/strings.xml	string	download_canceled	-	STR	Descărcare anulată	
 values-b+ro/strings.xml	string	download_done	-	STR	Descărcare finalizată	
 values-b+ro/strings.xml	string	download_failed	-	STR	Descărcare eșuată	
+values-b+ro/strings.xml	string	download_not_available_here	-	STR	Indisponibil aici	
 values-b+ro/strings.xml	string	download_path_pref	-	STR	Locul descărcării	
 values-b+ro/strings.xml	string	download_paused	-	STR	Descărcare oprită	
 values-b+ro/strings.xml	string	download_started	-	STR	Descărcare începută	
@@ -42603,6 +42767,10 @@ values-b+ru/strings.xml	plurals	downloads_titles_status	one	STR	%1$d назва�
 values-b+ru/strings.xml	plurals	downloads_titles_status	few	STR	%1$d названия · %2$s	
 values-b+ru/strings.xml	plurals	downloads_titles_status	many	STR	%1$d названий · %2$s	
 values-b+ru/strings.xml	plurals	downloads_titles_status	other	STR	%1$d названия · %2$s	
+values-b+ru/strings.xml	plurals	episode_minutes_left	one	STR	Осталось %1$d мин	
+values-b+ru/strings.xml	plurals	episode_minutes_left	few	STR	Осталось %1$d мин	
+values-b+ru/strings.xml	plurals	episode_minutes_left	many	STR	Осталось %1$d мин	
+values-b+ru/strings.xml	plurals	episode_minutes_left	other	STR	Осталось %1$d мин	
 values-b+ru/strings.xml	plurals	home_bookmarks_count	one	STR	%d ЗАКЛАДКА	
 values-b+ru/strings.xml	plurals	home_bookmarks_count	few	STR	%d ЗАКЛАДКИ	
 values-b+ru/strings.xml	plurals	home_bookmarks_count	many	STR	%d ЗАКЛАДОК	
@@ -42918,6 +43086,7 @@ values-b+ru/strings.xml	string	download_canceled	-	STR	Скачивание от
 values-b+ru/strings.xml	string	download_done	-	STR	Скачивание закончено	
 values-b+ru/strings.xml	string	download_episode_range	-	STR	Вы хотите загрузить эпизод %s?	
 values-b+ru/strings.xml	string	download_failed	-	STR	Скачивание не удалось	
+values-b+ru/strings.xml	string	download_not_available_here	-	STR	Здесь недоступно	
 values-b+ru/strings.xml	string	download_parallel_settings_des	-	STR	Сколько различных элементов можно загружать параллельно	
 values-b+ru/strings.xml	string	download_path_pref	-	STR	Путь скачивания	
 values-b+ru/strings.xml	string	download_paused	-	STR	Скачивание остановлено	
@@ -43781,6 +43950,10 @@ values-b+sk/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titul · %2
 values-b+sk/strings.xml	plurals	downloads_titles_status	few	STR	%1$d tituly · %2$s	
 values-b+sk/strings.xml	plurals	downloads_titles_status	many	STR	%1$d titulu · %2$s	
 values-b+sk/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titulov · %2$s	
+values-b+sk/strings.xml	plurals	episode_minutes_left	one	STR	Zostáva %1$d min	
+values-b+sk/strings.xml	plurals	episode_minutes_left	few	STR	Zostáva %1$d min	
+values-b+sk/strings.xml	plurals	episode_minutes_left	many	STR	Zostáva %1$d min	
+values-b+sk/strings.xml	plurals	episode_minutes_left	other	STR	Zostáva %1$d min	
 values-b+sk/strings.xml	plurals	home_bookmarks_count	one	STR	%d ZÁLOŽKA	
 values-b+sk/strings.xml	plurals	home_bookmarks_count	few	STR	%d ZÁLOŽKY	
 values-b+sk/strings.xml	plurals	home_bookmarks_count	many	STR	%d ZÁLOŽKY	
@@ -44028,6 +44201,7 @@ values-b+sk/strings.xml	string	download_all_plugins_from_repo	-	STR	Upozornenie:
 values-b+sk/strings.xml	string	download_canceled	-	STR	Sťahovanie zrušené	
 values-b+sk/strings.xml	string	download_done	-	STR	Sťahovanie dokončené	
 values-b+sk/strings.xml	string	download_failed	-	STR	Sťahovanie zlyhalo	
+values-b+sk/strings.xml	string	download_not_available_here	-	STR	Tu nie je k dispozícii	
 values-b+sk/strings.xml	string	download_path_pref	-	STR	Cesta sťahovania	
 values-b+sk/strings.xml	string	download_paused	-	STR	Sťahovanie pozastavené	
 values-b+sk/strings.xml	string	download_queue	-	STR	Poradie sťahovania	
@@ -44683,6 +44857,8 @@ values-b+so/strings.xml	plurals	downloads_failed_count	one	STR	%d ayaa fashilmay
 values-b+so/strings.xml	plurals	downloads_failed_count	other	STR	%d ayaa fashilmay	
 values-b+so/strings.xml	plurals	downloads_titles_status	one	STR	%1$d cinwaan · %2$s	
 values-b+so/strings.xml	plurals	downloads_titles_status	other	STR	%1$d cinwaan · %2$s	
+values-b+so/strings.xml	plurals	episode_minutes_left	one	STR	%1$d daqiiqo ayaa hadhay	
+values-b+so/strings.xml	plurals	episode_minutes_left	other	STR	%1$d daqiiqo ayaa hadhay	
 values-b+so/strings.xml	plurals	home_bookmarks_count	one	STR	%d CALAAMAD	
 values-b+so/strings.xml	plurals	home_bookmarks_count	other	STR	%d CALAAMADOOD	
 values-b+so/strings.xml	plurals	home_sections_failed	one	STR	Waa ka keeni kari waayey %d qayb	
@@ -44902,6 +45078,7 @@ values-b+so/strings.xml	string	download_all_plugins_from_repo	-	STR	Digniin: Clo
 values-b+so/strings.xml	string	download_canceled	-	STR	Waa la joojiyey dejintan	
 values-b+so/strings.xml	string	download_done	-	STR	Way dhamaatay dejintu	
 values-b+so/strings.xml	string	download_failed	-	STR	Dejintii ma guulaysan	
+values-b+so/strings.xml	string	download_not_available_here	-	STR	Halkan lagama heli karo	
 values-b+so/strings.xml	string	download_path_pref	-	STR	Barta kaydka	
 values-b+so/strings.xml	string	download_paused	-	STR	Waad hakisey la degista	
 values-b+so/strings.xml	string	download_queue	-	STR	Waxa soo degaya	
@@ -45591,6 +45768,8 @@ values-b+sq/strings.xml	plurals	downloads_queued	one	STR	%d shkarkim në radhë
 values-b+sq/strings.xml	plurals	downloads_queued	other	STR	%d shkarkime në radhë	
 values-b+sq/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titull · %2$s	
 values-b+sq/strings.xml	plurals	downloads_titles_status	other	STR	%1$d tituj · %2$s	
+values-b+sq/strings.xml	plurals	episode_minutes_left	one	STR	Mbeten %1$d min	
+values-b+sq/strings.xml	plurals	episode_minutes_left	other	STR	Mbeten %1$d min	
 values-b+sq/strings.xml	plurals	home_bookmarks_count	one	STR	%d TË RUAJTURA	
 values-b+sq/strings.xml	plurals	home_bookmarks_count	other	STR	%d TË RUAJTURA	
 values-b+sq/strings.xml	plurals	home_sections_failed	one	STR	Nuk mund të ngarkohej %d seksion	
@@ -45874,6 +46053,7 @@ values-b+sq/strings.xml	string	download_canceled	-	STR	Shkarkimi u anulua
 values-b+sq/strings.xml	string	download_done	-	STR	Shkarkimi u krye	
 values-b+sq/strings.xml	string	download_episode_range	-	STR	Dëshiron të shkarkosh episodin %s?	
 values-b+sq/strings.xml	string	download_failed	-	STR	Shkarkimi dështoi	
+values-b+sq/strings.xml	string	download_not_available_here	-	STR	Nuk ofrohet këtu	
 values-b+sq/strings.xml	string	download_parallel_settings_des	-	STR	Sa elementë të ndryshëm mund të shkarkohen njëkohësisht	
 values-b+sq/strings.xml	string	download_path_pref	-	STR	Destinacioni i shkarkimit	
 values-b+sq/strings.xml	string	download_paused	-	STR	Shkarkimi u ndërpre	
@@ -46729,6 +46909,8 @@ values-b+sv/strings.xml	plurals	downloads_queued	one	STR	%d nedladdning i kö
 values-b+sv/strings.xml	plurals	downloads_queued	other	STR	%d nedladdningar i kö	
 values-b+sv/strings.xml	plurals	downloads_titles_status	one	STR	%1$d titel · %2$s	
 values-b+sv/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titlar · %2$s	
+values-b+sv/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min kvar	
+values-b+sv/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min kvar	
 values-b+sv/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOKMÄRKE	
 values-b+sv/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOKMÄRKEN	
 values-b+sv/strings.xml	plurals	home_sections_failed	one	STR	%d sektion kunde inte laddas	
@@ -47012,6 +47194,7 @@ values-b+sv/strings.xml	string	download_canceled	-	STR	Nerladdning avbruten
 values-b+sv/strings.xml	string	download_done	-	STR	Nerladdning färdig	
 values-b+sv/strings.xml	string	download_episode_range	-	STR	Vill du ladda ned avsnitt %s?	
 values-b+sv/strings.xml	string	download_failed	-	STR	Nerladdning misslyckades	
+values-b+sv/strings.xml	string	download_not_available_here	-	STR	Inte tillgängligt här	
 values-b+sv/strings.xml	string	download_parallel_settings_des	-	STR	Mängden av olika föremål som kan bli nedladdat i parallell	
 values-b+sv/strings.xml	string	download_path_pref	-	STR	Nerladdningsplats	
 values-b+sv/strings.xml	string	download_paused	-	STR	Nerladdning pausad	
@@ -47867,6 +48050,8 @@ values-b+ta/strings.xml	plurals	downloads_queued	one	STR	%d பதிவிற�
 values-b+ta/strings.xml	plurals	downloads_queued	other	STR	%d பதிவிறக்கங்கள் வரிசையில் உள்ளன	
 values-b+ta/strings.xml	plurals	downloads_titles_status	one	STR	%1$d தலைப்பு · %2$s	
 values-b+ta/strings.xml	plurals	downloads_titles_status	other	STR	%1$d தலைப்புகள் · %2$s	
+values-b+ta/strings.xml	plurals	episode_minutes_left	one	STR	%1$d நிமி மீதம்	
+values-b+ta/strings.xml	plurals	episode_minutes_left	other	STR	%1$d நிமி மீதம்	
 values-b+ta/strings.xml	plurals	home_bookmarks_count	one	STR	%d புக்மார்க்	
 values-b+ta/strings.xml	plurals	home_bookmarks_count	other	STR	%d புக்மார்க்குகள்	
 values-b+ta/strings.xml	plurals	home_sections_failed	one	STR	%d பிரிவை ஏற்ற முடியவில்லை	
@@ -48150,6 +48335,7 @@ values-b+ta/strings.xml	string	download_canceled	-	STR	பதிவிறக்�
 values-b+ta/strings.xml	string	download_done	-	STR	பதிவிறக்கம் முடிந்தது	
 values-b+ta/strings.xml	string	download_episode_range	-	STR	அத்தியாயம் %s ஐ பதிவிறக்க விரும்புகிறீர்களா?	
 values-b+ta/strings.xml	string	download_failed	-	STR	பதிவிறக்கம் தோல்வியடைந்தது	
+values-b+ta/strings.xml	string	download_not_available_here	-	STR	இங்கே கிடைக்கவில்லை	
 values-b+ta/strings.xml	string	download_parallel_settings_des	-	STR	எத்தனை வெவ்வேறு உருப்படிகளை இணையாக பதிவிறக்கம் செய்யலாம்	
 values-b+ta/strings.xml	string	download_path_pref	-	STR	பாதை பதிவிறக்க	
 values-b+ta/strings.xml	string	download_paused	-	STR	பதிவிறக்கம் இடைநிறுத்தப்பட்டது	
@@ -49001,6 +49187,8 @@ values-b+ti/strings.xml	plurals	downloads_failed_count	one	STR	%d ኣይተዓ�
 values-b+ti/strings.xml	plurals	downloads_failed_count	other	STR	%d ኣይተዓወቱን	
 values-b+ti/strings.xml	plurals	downloads_titles_status	one	STR	%1$d ኣርእስቲ · %2$s	
 values-b+ti/strings.xml	plurals	downloads_titles_status	other	STR	%1$d ኣርእስቲ · %2$s	
+values-b+ti/strings.xml	plurals	episode_minutes_left	one	STR	%1$d ደቒቕ ተሪፉ	
+values-b+ti/strings.xml	plurals	episode_minutes_left	other	STR	%1$d ደቒቕ ተሪፉ	
 values-b+ti/strings.xml	plurals	home_bookmarks_count	one	STR	%d ምልክታት	
 values-b+ti/strings.xml	plurals	home_bookmarks_count	other	STR	%d ምልክታት	
 values-b+ti/strings.xml	plurals	home_sections_failed	one	STR	%d ክፍሊ ክጽዓን ኣይከኣለን	
@@ -49107,6 +49295,7 @@ values-b+ti/strings.xml	string	detail_source_resolving	-	STR	ይፈትሕ ኣሎ
 values-b+ti/strings.xml	string	detail_sources_done	-	STR	ካብ %2$d %1$d መሊሶም	
 values-b+ti/strings.xml	string	detail_sources_progress	-	STR	ካብ %2$d %1$d መሊሶም · ይጽዕን ኣሎ…	
 values-b+ti/strings.xml	string	detail_start_over	-	STR	ካብ መጀመርታ ጀምር	
+values-b+ti/strings.xml	string	download_not_available_here	-	STR	ኣብዚ ኣይርከብን	
 values-b+ti/strings.xml	string	downloads_browse_library	-	STR	ቤተ-መጻሕፍቲ ድለ	
 values-b+ti/strings.xml	string	downloads_cancel_confirm_body	-	STR	እዚ ክሳብ ሕጂ ዝወረደ %s ይድርብዮ።	
 values-b+ti/strings.xml	string	downloads_cancel_confirm_title	-	STR	እዚ ውርዲ ይሰረዝ?	
@@ -49403,6 +49592,8 @@ values-b+tl/strings.xml	plurals	downloads_failed_count	one	STR	%d nabigo
 values-b+tl/strings.xml	plurals	downloads_failed_count	other	STR	%d nabigo	
 values-b+tl/strings.xml	plurals	downloads_titles_status	one	STR	%1$d pamagat · %2$s	
 values-b+tl/strings.xml	plurals	downloads_titles_status	other	STR	%1$d pamagat · %2$s	
+values-b+tl/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min na lang	
+values-b+tl/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min na lang	
 values-b+tl/strings.xml	plurals	home_bookmarks_count	one	STR	%d BOOKMARK	
 values-b+tl/strings.xml	plurals	home_bookmarks_count	other	STR	%d BOOKMARK	
 values-b+tl/strings.xml	plurals	home_sections_failed	one	STR	Hindi na-load ang %d seksyon	
@@ -49571,6 +49762,7 @@ values-b+tl/strings.xml	string	download	-	STR	Download
 values-b+tl/strings.xml	string	download_canceled	-	STR	Download Canceled	
 values-b+tl/strings.xml	string	download_done	-	STR	Download Done	
 values-b+tl/strings.xml	string	download_failed	-	STR	Download Failed	
+values-b+tl/strings.xml	string	download_not_available_here	-	STR	Hindi available dito	
 values-b+tl/strings.xml	string	download_paused	-	STR	Download Paused	
 values-b+tl/strings.xml	string	download_started	-	STR	Download Started	
 values-b+tl/strings.xml	string	download_storage_text	-	STR	Internal Storage	
@@ -50056,6 +50248,8 @@ values-b+tr/strings.xml	plurals	downloads_queued	one	STR	%d indirme kuyrukta
 values-b+tr/strings.xml	plurals	downloads_queued	other	STR	%d indirilecekler kuyruğa alındı	
 values-b+tr/strings.xml	plurals	downloads_titles_status	one	STR	%1$d başlık · %2$s	
 values-b+tr/strings.xml	plurals	downloads_titles_status	other	STR	%1$d başlık · %2$s	
+values-b+tr/strings.xml	plurals	episode_minutes_left	one	STR	%1$d dk kaldı	
+values-b+tr/strings.xml	plurals	episode_minutes_left	other	STR	%1$d dk kaldı	
 values-b+tr/strings.xml	plurals	home_bookmarks_count	one	STR	%d YER İMİ	
 values-b+tr/strings.xml	plurals	home_bookmarks_count	other	STR	%d YER İMİ	
 values-b+tr/strings.xml	plurals	home_sections_failed	one	STR	%d kısım yüklenemedi	
@@ -50339,6 +50533,7 @@ values-b+tr/strings.xml	string	download_canceled	-	STR	İndirme İptal Edildi
 values-b+tr/strings.xml	string	download_done	-	STR	İndirme Tamamlandı	
 values-b+tr/strings.xml	string	download_episode_range	-	STR	%s numaralı bölümü indirmek istiyor musunuz?	
 values-b+tr/strings.xml	string	download_failed	-	STR	İndirme Başarısız	
+values-b+tr/strings.xml	string	download_not_available_here	-	STR	Burada kullanılamaz	
 values-b+tr/strings.xml	string	download_parallel_settings_des	-	STR	Aynı anda kaç farklı öğe indirilebilir	
 values-b+tr/strings.xml	string	download_path_pref	-	STR	İndirme konumu	
 values-b+tr/strings.xml	string	download_paused	-	STR	İndirme Duraklatıldı	
@@ -51210,6 +51405,10 @@ values-b+uk/strings.xml	plurals	downloads_titles_status	one	STR	%1$d назва 
 values-b+uk/strings.xml	plurals	downloads_titles_status	few	STR	%1$d назви · %2$s	
 values-b+uk/strings.xml	plurals	downloads_titles_status	many	STR	%1$d назв · %2$s	
 values-b+uk/strings.xml	plurals	downloads_titles_status	other	STR	%1$d назви · %2$s	
+values-b+uk/strings.xml	plurals	episode_minutes_left	one	STR	Залишилося %1$d хв	
+values-b+uk/strings.xml	plurals	episode_minutes_left	few	STR	Залишилося %1$d хв	
+values-b+uk/strings.xml	plurals	episode_minutes_left	many	STR	Залишилося %1$d хв	
+values-b+uk/strings.xml	plurals	episode_minutes_left	other	STR	Залишилося %1$d хв	
 values-b+uk/strings.xml	plurals	home_bookmarks_count	one	STR	%d ЗАКЛАДКА	
 values-b+uk/strings.xml	plurals	home_bookmarks_count	few	STR	%d ЗАКЛАДКИ	
 values-b+uk/strings.xml	plurals	home_bookmarks_count	many	STR	%d ЗАКЛАДОК	
@@ -51525,6 +51724,7 @@ values-b+uk/strings.xml	string	download_canceled	-	STR	Завантаження 
 values-b+uk/strings.xml	string	download_done	-	STR	Завантаження завершено	
 values-b+uk/strings.xml	string	download_episode_range	-	STR	Бажаєте завантажити %s епізод?	
 values-b+uk/strings.xml	string	download_failed	-	STR	Не вдалося завантажити	
+values-b+uk/strings.xml	string	download_not_available_here	-	STR	Тут недоступно	
 values-b+uk/strings.xml	string	download_parallel_settings_des	-	STR	Скільки різних елементів можна завантажити паралельно	
 values-b+uk/strings.xml	string	download_path_pref	-	STR	Шлях завантаження	
 values-b+uk/strings.xml	string	download_paused	-	STR	Завантаження призупинено	
@@ -52376,6 +52576,8 @@ values-b+ur/strings.xml	plurals	downloads_failed_count	one	STR	%d ناکام
 values-b+ur/strings.xml	plurals	downloads_failed_count	other	STR	%d ناکام	
 values-b+ur/strings.xml	plurals	downloads_titles_status	one	STR	%1$d عنوانات · %2$s	
 values-b+ur/strings.xml	plurals	downloads_titles_status	other	STR	%1$d عنوانات · %2$s	
+values-b+ur/strings.xml	plurals	episode_minutes_left	one	STR	%1$d منٹ باقی	
+values-b+ur/strings.xml	plurals	episode_minutes_left	other	STR	%1$d منٹ باقی	
 values-b+ur/strings.xml	plurals	home_bookmarks_count	one	STR	%d بک مارک	
 values-b+ur/strings.xml	plurals	home_bookmarks_count	other	STR	%d بک مارکس	
 values-b+ur/strings.xml	plurals	home_sections_failed	one	STR	%d سیکشن لوڈ نہیں ہو سکا	
@@ -52624,6 +52826,7 @@ values-b+ur/strings.xml	string	download_all_plugins_from_repo	-	STR	اس ذخی�
 values-b+ur/strings.xml	string	download_canceled	-	STR	ڈاؤن لوڈ منسوخ ہو گیا	
 values-b+ur/strings.xml	string	download_done	-	STR	ڈاؤن لوڈ ہو گیا	
 values-b+ur/strings.xml	string	download_failed	-	STR	ڈاؤن لوڈ نہیں ہو پا رہا	
+values-b+ur/strings.xml	string	download_not_available_here	-	STR	یہاں دستیاب نہیں	
 values-b+ur/strings.xml	string	download_path_pref	-	STR	ڈاؤنلوڈ کی جگہ	
 values-b+ur/strings.xml	string	download_paused	-	STR	ڈاؤن لوڈ موقوف	
 values-b+ur/strings.xml	string	download_started	-	STR	ڈاؤن لوڈ شروع ہو گیا	
@@ -53371,6 +53574,7 @@ values-b+vi/strings.xml	plurals	downloads_episode_count	other	STR	%d tập
 values-b+vi/strings.xml	plurals	downloads_failed_count	other	STR	%d thất bại	
 values-b+vi/strings.xml	plurals	downloads_queued	other	STR	%d tải xuống đang chờ	
 values-b+vi/strings.xml	plurals	downloads_titles_status	other	STR	%1$d tựa · %2$s	
+values-b+vi/strings.xml	plurals	episode_minutes_left	other	STR	Còn %1$d phút	
 values-b+vi/strings.xml	plurals	home_bookmarks_count	other	STR	%d MỤC	
 values-b+vi/strings.xml	plurals	home_sections_failed	other	STR	Không tải được %d mục	
 values-b+vi/strings.xml	plurals	home_source_sections	other	STR	%d mục	
@@ -53638,6 +53842,7 @@ values-b+vi/strings.xml	string	download_canceled	-	STR	Tải xuống đã hủy
 values-b+vi/strings.xml	string	download_done	-	STR	Tải xuống thành công	
 values-b+vi/strings.xml	string	download_episode_range	-	STR	Bạn có muốn tải xuống tập %s không?	
 values-b+vi/strings.xml	string	download_failed	-	STR	Tải xuống thất bại	
+values-b+vi/strings.xml	string	download_not_available_here	-	STR	Không có ở đây	
 values-b+vi/strings.xml	string	download_parallel_settings_des	-	STR	Số lượng mục khác nhau có thể tải xuống cùng lúc	
 values-b+vi/strings.xml	string	download_path_pref	-	STR	Đường dẫn tải xuống	
 values-b+vi/strings.xml	string	download_paused	-	STR	Tải xuống đã tạm dừng	
@@ -54485,6 +54690,7 @@ values-b+zh+TW/strings.xml	plurals	downloads_episode_count	other	STR	%d 集
 values-b+zh+TW/strings.xml	plurals	downloads_failed_count	other	STR	%d 個失敗	
 values-b+zh+TW/strings.xml	plurals	downloads_queued	other	STR	佇列中有 %d 個下載	
 values-b+zh+TW/strings.xml	plurals	downloads_titles_status	other	STR	%1$d 部作品 · %2$s	
+values-b+zh+TW/strings.xml	plurals	episode_minutes_left	other	STR	剩下 %1$d 分鐘	
 values-b+zh+TW/strings.xml	plurals	home_bookmarks_count	other	STR	%d 個書籤	
 values-b+zh+TW/strings.xml	plurals	home_sections_failed	other	STR	%d 個分區載入失敗	
 values-b+zh+TW/strings.xml	plurals	home_source_sections	other	STR	%d 個區塊	
@@ -54751,6 +54957,7 @@ values-b+zh+TW/strings.xml	string	download_canceled	-	STR	下載取消
 values-b+zh+TW/strings.xml	string	download_done	-	STR	下載完畢	
 values-b+zh+TW/strings.xml	string	download_episode_range	-	STR	需要下載第 %s 集嗎？	
 values-b+zh+TW/strings.xml	string	download_failed	-	STR	下載失敗	
+values-b+zh+TW/strings.xml	string	download_not_available_here	-	STR	此處無法使用	
 values-b+zh+TW/strings.xml	string	download_parallel_settings_des	-	STR	允許同時下載幾個項目	
 values-b+zh+TW/strings.xml	string	download_path_pref	-	STR	下載路徑	
 values-b+zh+TW/strings.xml	string	download_paused	-	STR	下載暫停	
@@ -55593,6 +55800,7 @@ values-b+zh/strings.xml	plurals	downloads_episode_count	other	STR	%d 集
 values-b+zh/strings.xml	plurals	downloads_failed_count	other	STR	%d 个失败	
 values-b+zh/strings.xml	plurals	downloads_queued	other	STR	队列中有 %d 个下载	
 values-b+zh/strings.xml	plurals	downloads_titles_status	other	STR	%1$d 部作品 · %2$s	
+values-b+zh/strings.xml	plurals	episode_minutes_left	other	STR	剩余 %1$d 分钟	
 values-b+zh/strings.xml	plurals	home_bookmarks_count	other	STR	%d 个书签	
 values-b+zh/strings.xml	plurals	home_sections_failed	other	STR	%d 个分区加载失败	
 values-b+zh/strings.xml	plurals	home_source_sections	other	STR	%d 个版块	
@@ -55860,6 +56068,7 @@ values-b+zh/strings.xml	string	download_canceled	-	STR	下载取消
 values-b+zh/strings.xml	string	download_done	-	STR	下载完毕	
 values-b+zh/strings.xml	string	download_episode_range	-	STR	要下载第 %s 集吗？	
 values-b+zh/strings.xml	string	download_failed	-	STR	下载失败	
+values-b+zh/strings.xml	string	download_not_available_here	-	STR	此处不可用	
 values-b+zh/strings.xml	string	download_parallel_settings_des	-	STR	可同时下载多少项目	
 values-b+zh/strings.xml	string	download_path_pref	-	STR	下载路径	
 values-b+zh/strings.xml	string	download_paused	-	STR	下载暂停	
@@ -56825,6 +57034,8 @@ values/strings.xml	plurals	downloads_queued	one	STR	%d download queued
 values/strings.xml	plurals	downloads_queued	other	STR	%d downloads queued	
 values/strings.xml	plurals	downloads_titles_status	one	STR	%1$d title · %2$s	
 values/strings.xml	plurals	downloads_titles_status	other	STR	%1$d titles · %2$s	
+values/strings.xml	plurals	episode_minutes_left	one	STR	%1$d min left	
+values/strings.xml	plurals	episode_minutes_left	other	STR	%1$d min left	
 values/strings.xml	plurals	episodes	one	REF	string/episode	
 values/strings.xml	plurals	episodes	other	REF	string/episodes	
 values/strings.xml	plurals	ext_repo_header	one	STR	%1$d extension · %2$d installed · updated %3$s	
@@ -57128,6 +57339,7 @@ values/strings.xml	string	download_done	-	STR	Download Done
 values/strings.xml	string	download_episode_range	-	STR	Do you want to download episode %s?	
 values/strings.xml	string	download_failed	-	STR	Download Failed	
 values/strings.xml	string	download_format	-	STR	%1$s - %2$s	
+values/strings.xml	string	download_not_available_here	-	STR	Not available here	
 values/strings.xml	string	download_parallel_settings_des	-	STR	How many different items that can be downloaded in parallel	
 values/strings.xml	string	download_path_pref	-	STR	Download path	
 values/strings.xml	string	download_paused	-	STR	Download Paused	

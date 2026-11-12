@@ -68,6 +68,7 @@
 <string name="account_use_pin">Gunakan PIN saja</string>
 <string name="detail_load_failed_body">Sumbernya mungkin tidak tersedia.</string>
 <string name="detail_load_failed_headline">Tidak dapat membuka judul ini</string>
+<string name="download_not_available_here">Tidak tersedia di sini</string>
 <plurals name="downloads_active"><item quantity="other">%d unduhan aktif</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="other">%d sedang diunduh</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d dalam antrean</item></plurals>
@@ -76,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d gagal</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d unduhan dalam antrean</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d judul · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">Sisa %1$d mnt</item></plurals>
 <string name="episode_time_left">Sisa %1$d mnt</string>
 <string name="episode_watched">Sudah ditonton</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d MARKAH</item></plurals>

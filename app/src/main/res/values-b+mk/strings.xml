@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d неуспешно"</item><item quantity="other">"%d неуспешни"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d преземање во редицата"</item><item quantity="other">"%d преземања во редицата"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d наслов · %2$s"</item><item quantity="other">"%1$d наслови · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Преостануваат %1$d мин"</item><item quantity="other">"Преостануваат %1$d мин"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ОБЕЛЕЖУВАЧ"</item><item quantity="other">"%d ОБЕЛЕЖУВАЧИ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d дел не се вчита"</item><item quantity="other">"%d делови не се вчитаа"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d дел"</item><item quantity="other">"%d делови"</item></plurals>
@@ -275,6 +276,7 @@
 <string name="download_done">"Преземањето е готово"</string>
 <string name="download_episode_range" formatted="true">"Дали сакате да ја преземете епизодата %s?"</string>
 <string name="download_failed">"Преземањето е неуспешно"</string>
+<string name="download_not_available_here">"Не е достапно тука"</string>
 <string name="download_parallel_settings_des">"Колку различни содржини можат да се симнуваат паралелно"</string>
 <string name="download_path_pref">"Патека на преземање"</string>
 <string name="download_paused">"Преземањето е паузирано"</string>

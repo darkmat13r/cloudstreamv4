@@ -1,6 +1,8 @@
 package com.lagradost.cloudstream4.detail
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.text.BasicText
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
@@ -18,12 +20,16 @@ import androidx.compose.ui.input.key.KeyEventType
 import androidx.compose.ui.input.pointer.PointerEventType
 import androidx.compose.ui.semantics.SemanticsNode
 import androidx.compose.ui.semantics.SemanticsProperties
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.semantics.getOrNull
 import androidx.compose.ui.unit.Density
+import androidx.compose.ui.unit.dp
 import com.lagradost.cloudstream4.assertPageBar
 import com.lagradost.cloudstream4.core.designsystem.desktop.desktopTypography
 import com.lagradost.cloudstream4.core.theme.CloudStreamTheme
 import com.lagradost.cloudstream4.core.theme.LocalCloudStreamTypography
+import com.lagradost.cloudstream4.core.theme.cloudStreamDarkColors
 import com.lagradost.cloudstream4.feature.detail.DetailAction
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
 import com.lagradost.cloudstream4.feature.detail.DetailLoad
@@ -34,11 +40,17 @@ import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
 import com.lagradost.cloudstream4.feature.detail.desktop.DetailScreenDesktop
+import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisode
+import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeId
+import com.lagradost.cloudstream4.feature.downloads.series.DownloadEpisodeState
+import com.lagradost.cloudstream4.feature.downloads.series.desktop.EpisodeDownloadDesktop
 import com.lagradost.cloudstream4.startPosition
 import java.io.File
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertFalse
+import kotlin.test.assertNotNull
+import kotlin.test.assertNull
 import kotlin.test.assertTrue
 import org.jetbrains.skia.Bitmap
 import org.jetbrains.skia.EncodedImageFormat
@@ -110,6 +122,8 @@ class DetailScreenTest {
         width: Int = WIDTH,
         height: Int = HEIGHT,
         backdrop: @Composable (String) -> Unit = {},
+        thumbnail: @Composable (String) -> Unit = {},
+        episodeTrailing: (@Composable (DetailEpisode, shown: Boolean) -> Unit)? = null,
     ) = scene(width, height) {
         DetailScreenDesktop(
             state = state,
@@ -118,6 +132,8 @@ class DetailScreenTest {
             artwork = { Box(Modifier.fillMaxSize().background(ART)) },
             origin = "Home",
             backdrop = backdrop,
+            episodeTrailing = episodeTrailing,
+            thumbnail = thumbnail,
         )
     }
 
@@ -169,6 +185,19 @@ class DetailScreenTest {
     }
 
     private fun ImageComposeScene.has(words: String) = nodes(words).isNotEmpty()
+
+    /**
+     * Where the one piece reading as [words] is drawn, in the unmerged tree: a row is one clickable, so the merged tree
+     * gives its pieces the whole row's bounds.
+     */
+    private fun ImageComposeScene.boundsOf(words: String): Rect {
+        settle()
+        val found = semanticsOwners.flatMap { it.unmergedRootSemanticsNode.all() }.filter { node ->
+            node.config.getOrNull(SemanticsProperties.Text).orEmpty().any { it.text == words } ||
+                node.config.getOrNull(SemanticsProperties.ContentDescription).orEmpty().any { it == words }
+        }
+        return found.singleOrNull()?.boundsInRoot ?: error("expected one piece reading \"$words\", found ${found.size}")
+    }
 
     /** The colour drawn at [x], [y] once the scene has settled. */
     private fun ImageComposeScene.pixel(x: Int, y: Int): Color {
@@ -464,6 +493,323 @@ class DetailScreenTest {
         scene.close()
     }
 
+    // ---- KMP-109: the host's cell on an episode's row ----
+
+    /** A cell that says which episode it was given and whether its row shows its verbs. */
+    private val sayingCell: @Composable (DetailEpisode, Boolean) -> Unit = { episode, shown ->
+        BasicText("cell ${episode.data} ${if (shown) "shown" else "hidden"}")
+    }
+
+    @Test
+    fun `each row draws the host's cell, told its own episode and whether the pointer is on the row (KMP-109)`() {
+        val scene = page(loaded(series), episodeTrailing = sayingCell)
+        listOf("s1e1", "s1e2", "s1e3").forEach { data ->
+            assertTrue(scene.has("cell $data hidden"), "$data's cell, hidden before the pointer arrives")
+        }
+        assertFalse(scene.has("cell s2e1 hidden"), "a season that is not shown draws no cells")
+        scene.hover(scene.centreOf("Cat's in the Bag"))
+        assertTrue(scene.has("cell s1e2 shown"), "the hovered row's cell is told to show its verbs")
+        assertTrue(scene.has("cell s1e1 hidden") && scene.has("cell s1e3 hidden"), "and no other row's")
+        scene.hover(Offset(4f, 4f))
+        assertTrue(scene.has("cell s1e2 hidden"), "the pointer gone, the cell hides its verbs again")
+        scene.close()
+    }
+
+    @Test
+    fun `a row with focus tells its cell to show, as it shows Play (KMP-109, E2)`() {
+        val scene = page(loaded(series), episodeTrailing = sayingCell)
+        var presses = 0
+        while (!scene.has("Play Episode") && presses < MAX_TABS * 2) {
+            scene.press(Key.Tab)
+            presses++
+        }
+        assertEquals(1, scene.nodes("Play Episode").size, "Tab reached a row")
+        val shown = listOf("s1e1", "s1e2", "s1e3").filter { scene.has("cell $it shown") }
+        assertEquals(listOf("s1e1"), shown, "the first row has focus, and only its cell shows")
+        scene.close()
+    }
+
+    @Test
+    fun `the cell sits after the row's words and clear of Play, and the words do not move (KMP-109)`() {
+        val cell: @Composable (DetailEpisode, Boolean) -> Unit = { episode, _ ->
+            Box(Modifier.size(CELL_WIDTH.dp, CELL_HEIGHT.dp).semantics { contentDescription = "cell ${episode.data}" })
+        }
+        val plain = page(loaded(series))
+        plain.hover(plain.centreOf("Cat's in the Bag"))
+        val wordsBefore = plain.boundsOf("Cat's in the Bag")
+        plain.close()
+        val scene = page(loaded(series), episodeTrailing = cell)
+        scene.hover(scene.centreOf("Cat's in the Bag"))
+        val words = scene.boundsOf("Cat's in the Bag")
+        val box = scene.boundsOf("cell s1e2")
+        val play = scene.boundsOf("Play Episode")
+        assertEquals(wordsBefore.left, words.left, "the name starts where it does with no cell")
+        assertEquals(wordsBefore.top, words.top, "and at the same height")
+        assertTrue(box.left >= words.right, "the cell is after the name: cell ${box.left}, name ends ${words.right}")
+        assertTrue(box.right <= play.left, "the cell ends before Play: cell ${box.right}, Play ${play.left}")
+        assertEquals(play.center.y, box.center.y, 1f, "the cell is centred on the row, as Play is")
+        scene.close()
+    }
+
+    @Test
+    fun `part 1's Download cell in the slot says each episode's state, and its verbs only on the hovered row`() {
+        val downloads = mapOf(
+            "s1e1" to download(1, DownloadEpisodeState.Done, done = 612 * MB, total = 612 * MB),
+            "s1e2" to download(2, DownloadEpisodeState.Running, done = 240 * MB, total = 598 * MB),
+        )
+        val scene = page(loaded(series)) { episode, shown ->
+            EpisodeDownloadDesktop(
+                download = downloads[episode.data],
+                shown = shown,
+                formatBytes = { "${it / MB} MB" },
+                onDownload = {},
+                onPause = {},
+                onResume = {},
+                onCancel = {},
+            )
+        }
+        assertFalse(scene.has("Pause") || scene.has("Download"), "no verb before the pointer arrives")
+        scene.hover(scene.centreOf("Cat's in the Bag"))
+        assertEquals(1, scene.nodes("Pause").size, "the downloading row offers Pause")
+        assertEquals(1, scene.nodes("Cancel").size, "and Cancel")
+        assertFalse(scene.has("Download"), "the row with no download is not hovered, so offers nothing")
+        scene.save("detail-e2-download-cells")
+        scene.hover(scene.centreOf("And the Bag's in the River"))
+        assertEquals(1, scene.nodes("Download").size, "the row with no download offers Download")
+        assertFalse(scene.has("Pause"), "and the downloading row's verbs are gone")
+        scene.save("detail-e2-download-cell-none")
+        scene.close()
+    }
+
+    @Test
+    fun `a refused episode's row says it is not available here and offers no Download (KMP-109 part 2b)`() {
+        val downloads = mapOf(
+            "s1e1" to download(1, DownloadEpisodeState.Done, done = 612 * MB, total = 612 * MB),
+            "s1e2" to download(2, DownloadEpisodeState.Running, done = 240 * MB, total = 598 * MB),
+        )
+        val scene = page(loaded(series)) { episode, shown ->
+            EpisodeDownloadDesktop(
+                download = downloads[episode.data],
+                shown = shown,
+                formatBytes = { "${it / MB} MB" },
+                onDownload = {},
+                onPause = {},
+                onResume = {},
+                onCancel = {},
+                unavailable = episode.data == "s1e3",
+            )
+        }
+        assertEquals(1, scene.nodes("Not available here").size, "the refused row says so before the pointer arrives")
+        scene.hover(scene.centreOf("And the Bag's in the River"))
+        assertFalse(scene.has("Download"), "and offers no Download while hovered")
+        assertEquals(1, scene.nodes("Play Episode").size, "the row still plays")
+        scene.save("detail-e2-download-unavailable")
+        scene.close()
+    }
+
+    private fun download(id: Int, state: DownloadEpisodeState, done: Long, total: Long) =
+        DownloadEpisode(DownloadEpisodeId(id), 1, id, null, state, bytesDone = done, bytesTotal = total)
+
+    // ---- KMP-63: each episode's own watch state, on its second line ----
+
+    /**
+     * The page's first season with one episode marked watched, one not started, and the one Resume plays 19 minutes
+     * in, so its row and Resume's "29m remaining" agree.
+     */
+    private val watchedSeries = series.copy(
+        episodes = listOf(
+            episodes[0].copy(markedWatched = true),
+            episodes[1],
+            episodes[2].copy(progress = DetailResume("s1e3", 19 * MINUTE, 48 * MINUTE, episode = null)),
+        ) + episodes.drop(3),
+    )
+
+    @Test
+    fun `an episode's second line says Watched or the minutes left where its runtime was (KMP-63)`() {
+        val scene = page(loaded(watchedSeries))
+        assertTrue(scene.has("S1:E1 \u00b7 Watched"), "a watched episode says so")
+        assertTrue(scene.has("S1:E2 \u00b7 48 min"), "one not started keeps its runtime")
+        assertTrue(scene.has("S1:E3 \u00b7 29 min left"), "a started one says how long is left, as Resume does")
+        assertFalse(scene.has("S1:E1 \u00b7 48 min"), "the watched one's runtime is not drawn")
+        scene.save("detail-e2-watch-state")
+        scene.close()
+    }
+
+    /** `BUG-91`: the minutes left are now a plural; one form and the other read the words the string did. */
+    @Test
+    fun `one minute left and twenty-four read as they did, through the plural (BUG-91)`() {
+        val started = series.copy(
+            episodes = listOf(
+                // 9 of 10 minutes: 90%, under the 95% that reads watched, with 1 minute left.
+                episodes[0].copy(progress = DetailResume("s1e1", 9 * MINUTE, 10 * MINUTE, episode = null)),
+                episodes[1].copy(progress = DetailResume("s1e2", 24 * MINUTE, 48 * MINUTE, episode = null)),
+            ) + episodes.drop(2),
+        )
+        val scene = page(loaded(started))
+        assertTrue(scene.has("S1:E1 \u00b7 1 min left"), "one")
+        assertTrue(scene.has("S1:E2 \u00b7 24 min left"), "other")
+        scene.close()
+    }
+
+    @Test
+    fun `the watch state changes only the episodes' second lines and their stills' rules, pixel for pixel (KMP-63)`() {
+        val plain = page(loaded(series))
+        val before = plain.bitmap()
+        // The old lines and the new, in case an old one is the wider.
+        val oldLines = listOf("S1:E1 \u00b7 48 min", "S1:E3 \u00b7 48 min").map { plain.boundsOf(it) }
+        plain.close()
+        val scene = page(loaded(watchedSeries))
+        // KMP-115: the watch state also draws E1's rule along the still of a watched or started row.
+        val stills = listOf("1", "3").map { stillBoxOf(scene.boundsOf(it)) }
+        val lines = oldLines + stills +
+            listOf("S1:E1 \u00b7 Watched", "S1:E3 \u00b7 29 min left").map { scene.boundsOf(it) }
+        val after = scene.bitmap()
+        scene.close()
+        var outside = 0
+        var inside = 0
+        for (y in 0 until HEIGHT) for (x in 0 until WIDTH) {
+            if (before.getColor(x, y) == after.getColor(x, y)) continue
+            if (lines.any { it.contains(Offset(x + 0.5f, y + 0.5f)) }) inside++ else outside++
+        }
+        assertEquals(0, outside, "pixels changed outside the second lines and the stills")
+        assertTrue(inside > 0, "the second lines changed")
+    }
+
+    private fun ImageComposeScene.bitmap(): Bitmap {
+        settle()
+        return Bitmap.makeFromImage(render(SETTLE_FRAMES * FRAME_NANOS))
+    }
+
+    // ---- KMP-115: board E1's still and its progress rule on each episode row ----
+
+    /**
+     * Season 1: a watched episode, one not started with no still, and the one Resume plays, 19 of 48 minutes in, so its
+     * row and Resume's "29m remaining" agree. The first and third have a still.
+     */
+    private val stillSeries = series.copy(
+        episodes = listOf(
+            episodes[0].copy(markedWatched = true, stillUrl = "https://img.example/s1e1.jpg"),
+            episodes[1],
+            episodes[2].copy(
+                stillUrl = "https://img.example/s1e3.jpg",
+                progress = DetailResume("s1e3", 19 * MINUTE, 48 * MINUTE, episode = null),
+            ),
+        ) + episodes.drop(3),
+    )
+
+    private fun stillPage(asked: MutableList<String> = mutableListOf()) =
+        page(loaded(stillSeries), thumbnail = { url ->
+            asked += url
+            Box(Modifier.fillMaxSize().background(STILL))
+        })
+
+    /** A row's still, from its number's cell: E1's 96 by 56, ending 16 before the cell, centred on the row. */
+    private fun stillBoxOf(number: Rect): Rect {
+        val right = number.left - GROUP_GAP
+        val middle = number.center.y
+        return Rect(right - STILL_WIDTH, middle - STILL_HEIGHT / 2f, right, middle + STILL_HEIGHT / 2f)
+    }
+
+    /** The first and last x on line [y] drawn exactly [colour], or null where none is. */
+    private fun Bitmap.runOf(y: Int, colour: Color, from: Int = 0, to: Int = WIDTH): IntRange? {
+        val xs = (from until to).filter { Color(getColor(it, y)) == colour }
+        return if (xs.isEmpty()) null else xs.first()..xs.last()
+    }
+
+    /** The first and last y in column [x] drawn exactly [colour], between [from] and [to]. */
+    private fun Bitmap.columnOf(x: Int, colour: Color, from: Int, to: Int): IntRange? {
+        val ys = (from until to).filter { Color(getColor(x, it)) == colour }
+        return if (ys.isEmpty()) null else ys.first()..ys.last()
+    }
+
+    @Test
+    fun `each row starts with its still, 96 by 56, 16 before its number, and the rows are 72 apart (KMP-115, E1)`() {
+        val asked = mutableListOf<String>()
+        val scene = stillPage(asked)
+        val one = scene.boundsOf("1")
+        val two = scene.boundsOf("2")
+        val image = scene.bitmap()
+        scene.save("detail-e1-episode-stills")
+        scene.close()
+        assertEquals(EPISODE_ROW, (two.top - one.top).toInt(), "row pitch")
+        val across = assertNotNull(image.runOf(one.center.y.toInt(), STILL, to = one.left.toInt()), "the first still")
+        assertEquals(STILL_WIDTH, across.last - across.first + 1, "the still's width")
+        assertEquals(GROUP_GAP, (one.left - (across.last + 1)).toInt(), "from the still to the number cell")
+        val middle = one.center.y.toInt()
+        val down = assertNotNull(image.columnOf(across.first + STILL_WIDTH / 2, STILL, middle - EPISODE_ROW / 2, middle + EPISODE_ROW / 2))
+        // The first row is watched, so its rule takes the still's last 4 lines.
+        assertEquals(STILL_HEIGHT - RULE, down.last - down.first + 1, "the still above its rule")
+        assertEquals(listOf("https://img.example/s1e1.jpg", "https://img.example/s1e3.jpg"), asked.distinct())
+    }
+
+    @Test
+    fun `the rule is the share watched, snapped to the 4 step, the whole still, 40 for 19 of 48, none unstarted (KMP-115)`() {
+        val scene = stillPage()
+        val rows = listOf("1", "2", "3").map { scene.boundsOf(it) }
+        val image = scene.bitmap()
+        scene.close()
+        val live = cloudStreamDarkColors().live
+        val stillLeft = assertNotNull(image.runOf(rows[0].center.y.toInt(), STILL, to = rows[0].left.toInt())).first
+        val stillRight = stillLeft + STILL_WIDTH - 1
+        fun ruleOf(row: Rect): Pair<IntRange, IntRange>? {
+            // Clear of the still's rounded corner, where the rule's edge is blended.
+            val middle = row.center.y.toInt()
+            val down = image.columnOf(stillLeft + CLEAR_OF_CORNER, live, middle - EPISODE_ROW / 2, middle + EPISODE_ROW / 2) ?: return null
+            val across = assertNotNull(image.runOf(down.first, live, from = stillLeft, to = stillRight + 1))
+            return down to across
+        }
+        val (watchedDown, watched) = assertNotNull(ruleOf(rows[0]), "a watched row has a rule")
+        assertEquals(RULE, watchedDown.last - watchedDown.first + 1, "4 tall")
+        // The still's rounded corner takes the last pixels of a full rule's top line.
+        assertTrue(watched.last >= stillRight - RULE, "a watched row's rule runs the whole still: ends ${watched.last}, still ends $stillRight")
+        assertNull(ruleOf(rows[1]), "a row not started has none")
+        val (_, started) = assertNotNull(ruleOf(rows[2]), "a started row has a rule")
+        assertEquals(STARTED_RULE, started.last - stillLeft + 1, "19 of 48 minutes, snapped to the 4 step")
+    }
+
+    /**
+     * The PM's ruling on `#374`: a season with no still keeps the compact row, so a host that sends none (the Mac's,
+     * until `KMP-116`) draws the page as before. No still column, no ground box, nothing asked for.
+     */
+    @Test
+    fun `a season with no still keeps the compact 56 row and draws no still column (KMP-115)`() {
+        val asked = mutableListOf<String>()
+        val scene = page(loaded(series), thumbnail = { url -> asked += url })
+        val one = scene.boundsOf("1")
+        val two = scene.boundsOf("2")
+        val image = scene.bitmap()
+        scene.close()
+        assertEquals(COMPACT_ROW, (two.top - one.top).toInt(), "row pitch")
+        assertNull(image.runOf(one.center.y.toInt(), cloudStreamDarkColors().surface, to = one.left.toInt()), "no still ground")
+        assertTrue(asked.isEmpty(), "no image asked for")
+    }
+
+    /** One still in the season is enough: every row of it takes the still column, and the others draw the ground. */
+    @Test
+    fun `one still in the season gives every row of it the still column (KMP-115)`() {
+        val one = series.copy(episodes = listOf(episodes[0].copy(stillUrl = "https://img.example/s1e1.jpg")) + episodes.drop(1))
+        val scene = page(loaded(one), thumbnail = { Box(Modifier.fillMaxSize().background(STILL)) })
+        val first = scene.boundsOf("1")
+        val second = scene.boundsOf("2")
+        val image = scene.bitmap()
+        scene.close()
+        assertEquals(EPISODE_ROW, (second.top - first.top).toInt(), "row pitch")
+        val ground = assertNotNull(image.runOf(second.center.y.toInt(), cloudStreamDarkColors().surface, to = second.left.toInt()))
+        assertEquals(STILL_WIDTH, ground.last - ground.first + 1, "the second row's still ground")
+    }
+
+    @Test
+    fun `a row with no still draws the still's ground, and its image is never asked for (KMP-115)`() {
+        val asked = mutableListOf<String>()
+        val scene = stillPage(asked)
+        val two = scene.boundsOf("2")
+        val image = scene.bitmap()
+        scene.close()
+        val ground = assertNotNull(image.runOf(two.center.y.toInt(), cloudStreamDarkColors().surface, to = two.left.toInt()))
+        assertEquals(STILL_WIDTH, ground.last - ground.first + 1, "the still's ground, as wide as a still")
+        assertTrue(asked.none { "s1e2" in it }, "nothing asked for a row with no still")
+    }
+
     // ---- E3: a film and its sources ----
 
     @Test
@@ -579,6 +925,11 @@ class DetailScreenTest {
         const val SETTLE_FRAMES = 30
         const val FRAME_NANOS = 50_000_000L
         const val MINUTE = 60_000L
+        const val MB = 1_000_000L
+
+        /** A cell a little wider than one verb, so its edges are easy to tell from Play's. */
+        const val CELL_WIDTH = 48
+        const val CELL_HEIGHT = 20
 
         /** `DesktopDimens.RelatedGap` and `ReadingWidth`, in pixels at the scene's density of 1. */
         const val RELATED_GAP = 8f
@@ -588,6 +939,23 @@ class DetailScreenTest {
         const val READING_WIDTH = 640f
         const val MAX_TABS = 12
         val ART = Color(0xFF00FF80)
+        val STILL = Color(0xFF3060FF)
+
+        /** Board E1's row, in pixels at the scene's density of 1: 72 tall, a 96 by 56 still, a 4 rule, the 16 gap. */
+        const val EPISODE_ROW = 72
+
+        /** The row in a season with no still: the 56 it was before `KMP-115`. */
+        const val COMPACT_ROW = 56
+        const val STILL_WIDTH = 96
+        const val STILL_HEIGHT = 56
+        const val RULE = 4
+        const val GROUP_GAP = 16
+
+        /** Twice the still's corner radius in from its left edge: the rule there is drawn whole. */
+        const val CLEAR_OF_CORNER = 16
+
+        /** 19 of 48 minutes of a 96 still is 38, drawn at 40 on the 4 step, as E1 draws it. */
+        const val STARTED_RULE = 40
         val BACKDROP = Color(0xFFFF8040)
 
         /** `DetailScreenDesktopDefaults.BackdropHeight`, in pixels at the scene's density of 1. */

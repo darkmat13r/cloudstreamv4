@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d epizóda"</item><item quantity="few">"%d epizódy"</item><item quantity="many">"%d epizódy"</item><item quantity="other">"%d epizód"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d neúspešné"</item><item quantity="few">"%d neúspešné"</item><item quantity="many">"%d neúspešných"</item><item quantity="other">"%d neúspešných"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titul · %2$s"</item><item quantity="few">"%1$d tituly · %2$s"</item><item quantity="many">"%1$d titulu · %2$s"</item><item quantity="other">"%1$d titulov · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Zostáva %1$d min"</item><item quantity="few">"Zostáva %1$d min"</item><item quantity="many">"Zostáva %1$d min"</item><item quantity="other">"Zostáva %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ZÁLOŽKA"</item><item quantity="few">"%d ZÁLOŽKY"</item><item quantity="many">"%d ZÁLOŽKY"</item><item quantity="other">"%d ZÁLOŽIEK"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nepodarilo sa načítať %d sekciu"</item><item quantity="few">"Nepodarilo sa načítať %d sekcie"</item><item quantity="many">"Nepodarilo sa načítať %d sekcií"</item><item quantity="other">"Nepodarilo sa načítať %d sekcií"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d sekcia"</item><item quantity="few">"%d sekcie"</item><item quantity="many">"%d sekcie"</item><item quantity="other">"%d sekcií"</item></plurals>
@@ -209,6 +210,7 @@
 <string name="download_canceled">"Sťahovanie zrušené"</string>
 <string name="download_done">"Sťahovanie dokončené"</string>
 <string name="download_failed">"Sťahovanie zlyhalo"</string>
+<string name="download_not_available_here">"Tu nie je k dispozícii"</string>
 <string name="download_path_pref">"Cesta sťahovania"</string>
 <string name="download_paused">"Sťahovanie pozastavené"</string>
 <string name="download_queue">"Poradie sťahovania"</string>

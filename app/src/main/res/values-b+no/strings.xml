@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d episode"</item><item quantity="other">"%d episoder"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d mislyktes"</item><item quantity="other">"%d mislyktes"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d tittel · %2$s"</item><item quantity="other">"%1$d titler · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d min igjen"</item><item quantity="other">"%1$d min igjen"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOKMERKE"</item><item quantity="other">"%d BOKMERKER"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d del kunne ikke lastes inn"</item><item quantity="other">"%d deler kunne ikke lastes inn"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d seksjon"</item><item quantity="other">"%d seksjoner"</item></plurals>
@@ -211,6 +212,7 @@
 <string name="download_canceled">"Nedlasting avbrutt"</string>
 <string name="download_done">"Last ned Ferdig"</string>
 <string name="download_failed">"Nedlasting mislyktes"</string>
+<string name="download_not_available_here">"Ikke tilgjengelig her"</string>
 <string name="download_path_pref">"Nedlastingssti"</string>
 <string name="download_paused">"Nedlasting stoppet midlertidig"</string>
 <string name="download_started">"Nedlasting startet"</string>

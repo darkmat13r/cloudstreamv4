@@ -68,12 +68,14 @@
 <string name="account_use_pin">Bruk PIN i stedet</string>
 <string name="detail_load_failed_body">Kilden er kanskje ikke tilgjengelig.</string>
 <string name="detail_load_failed_headline">Kunne ikke åpne denne tittelen</string>
+<string name="download_not_available_here">Ikke tilgjengelig her</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d lastes ned</item><item quantity="other">%d lastes ned</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d i kø</item><item quantity="other">%d i kø</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Slette %d nedlasting?</item><item quantity="other">Slette %d nedlastinger?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d episode</item><item quantity="other">%d episoder</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d mislyktes</item><item quantity="other">%d mislyktes</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d tittel · %2$s</item><item quantity="other">%1$d titler · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d min igjen</item><item quantity="other">%1$d min igjen</item></plurals>
 <string name="episode_time_left">%1$d min igjen</string>
 <string name="episode_watched">Sett</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMERKE</item><item quantity="other">%d BOKMERKER</item></plurals>

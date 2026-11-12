@@ -68,12 +68,14 @@
 <string name="account_use_pin">Isticmaal PIN</string>
 <string name="detail_load_failed_body">Isha waxaa laga yaabaa inaysan diyaar ahayn.</string>
 <string name="detail_load_failed_headline">Cinwaankan lama furi karo</string>
+<string name="download_not_available_here">Halkan lagama heli karo</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d ayaa la soo dejinayaa</item><item quantity="other">%d ayaa la soo dejinayaa</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d safka ku jira</item><item quantity="other">%d safka ku jira</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Ma tirtirtaa %d soo dejin?</item><item quantity="other">Ma tirtirtaa %d soo dejin?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d qaybood</item><item quantity="other">%d qaybood</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ayaa fashilmay</item><item quantity="other">%d ayaa fashilmay</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d cinwaan · %2$s</item><item quantity="other">%1$d cinwaan · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d daqiiqo ayaa hadhay</item><item quantity="other">%1$d daqiiqo ayaa hadhay</item></plurals>
 <string name="episode_time_left">%1$d daqiiqo ayaa hadhay</string>
 <string name="episode_watched">La daawaday</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d CALAAMAD</item><item quantity="other">%d CALAAMADOOD</item></plurals>

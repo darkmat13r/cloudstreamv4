@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d failed"</item><item quantity="other">"%d failed"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d download queued"</item><item quantity="other">"%d downloads queued"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d title · %2$s"</item><item quantity="other">"%1$d titles · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d min left"</item><item quantity="other">"%1$d min left"</item></plurals>
 <plurals name="episodes"><item quantity="one">@string/episode</item><item quantity="other">@string/episodes</item></plurals>
 <plurals name="ext_repo_header"><item quantity="one">"%1$d extension · %2$d installed · updated %3$s"</item><item quantity="other">"%1$d extensions · %2$d installed · updated %3$s"</item></plurals>
 <plurals name="ext_repo_remove_body"><item quantity="one">"Its %d installed extension is removed from this Mac too. You can add the repository again later."</item><item quantity="other">"Its %d installed extensions are removed from this Mac too. You can add the repository again later."</item></plurals>
@@ -288,6 +289,7 @@
 <string name="download_episode_range" formatted="true">"Do you want to download episode %s?"</string>
 <string name="download_failed">"Download Failed"</string>
 <string name="download_format" formatted="true">"%1$s - %2$s"</string>
+<string name="download_not_available_here">"Not available here"</string>
 <string name="download_parallel_settings_des">"How many different items that can be downloaded in parallel"</string>
 <string name="download_path_pref">"Download path"</string>
 <string name="download_paused">"Download Paused"</string>

@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d episode"</item><item quantity="other">"%d episode"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d nabigo"</item><item quantity="other">"%d nabigo"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d pamagat · %2$s"</item><item quantity="other">"%1$d pamagat · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d min na lang"</item><item quantity="other">"%1$d min na lang"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOOKMARK"</item><item quantity="other">"%d BOOKMARK"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Hindi na-load ang %d seksyon"</item><item quantity="other">"Hindi na-load ang %d seksyon"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d seksyon"</item><item quantity="other">"%d na seksyon"</item></plurals>
@@ -160,6 +161,7 @@
 <string name="download_canceled">"Download Canceled"</string>
 <string name="download_done">"Download Done"</string>
 <string name="download_failed">"Download Failed"</string>
+<string name="download_not_available_here">"Hindi available dito"</string>
 <string name="download_paused">"Download Paused"</string>
 <string name="download_started">"Download Started"</string>
 <string name="download_storage_text">"Internal Storage"</string>

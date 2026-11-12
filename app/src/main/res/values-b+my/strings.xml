@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="other">"အပိုင်း %d ပိုင်း"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">"%d ခု မအောင်မြင်"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">"ခေါင်းစဉ် %1$d ခု · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">"%1$d မိနစ် ကျန်"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"စာမှတ် %d ခု"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"အပိုင်း %d ခု တင်သွင်း၍မရပါ"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"ကဏ္ဍ %d ခု"</item></plurals>
@@ -214,6 +215,7 @@
 <string name="download_canceled">"ဒေါင်းလုဒ် ပယ်ဖျက်ပြီး"</string>
 <string name="download_done">"ဒေါင်းလုဒ်ပြီးစီး"</string>
 <string name="download_failed">"ဒေါင်းလုဒ် မအောင်မြင်"</string>
+<string name="download_not_available_here">"ဤနေရာတွင် မရနိုင်ပါ"</string>
 <string name="download_path_pref">"ဒေါင်းလုဒ်လမ်းကြောင်း"</string>
 <string name="download_paused">"ဒေါင်းလုဒ် ရပ်ထား"</string>
 <string name="download_started">"ဒေါင်းလုဒ်စတင်"</string>

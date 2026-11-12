@@ -68,12 +68,14 @@
 <string name="account_use_pin">Guna PIN sebaliknya</string>
 <string name="detail_load_failed_body">Sumber mungkin tidak tersedia.</string>
 <string name="detail_load_failed_headline">Tajuk ini tidak dapat dibuka</string>
+<string name="download_not_available_here">Tidak tersedia di sini</string>
 <plurals name="downloads_count_downloading"><item quantity="other">%d sedang dimuat turun</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d dalam baris gilir</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="other">Padam %d muat turun?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="other">%d episod</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d gagal</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d tajuk · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">Tinggal %1$d min</item></plurals>
 <string name="episode_time_left">Tinggal %1$d min</string>
 <string name="episode_watched">Sudah ditonton</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d PENANDA HALAMAN</item></plurals>

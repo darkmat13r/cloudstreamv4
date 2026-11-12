@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"%d misslyckades"</item><item quantity="other">"%d misslyckades"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"%d nedladdning i kö"</item><item quantity="other">"%d nedladdningar i kö"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titel · %2$s"</item><item quantity="other">"%1$d titlar · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d min kvar"</item><item quantity="other">"%1$d min kvar"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOKMÄRKE"</item><item quantity="other">"%d BOKMÄRKEN"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d sektion kunde inte laddas"</item><item quantity="other">"%d sektioner kunde inte laddas"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d avsnitt"</item><item quantity="other">"%d avsnitt"</item></plurals>
@@ -276,6 +277,7 @@
 <string name="download_done">"Nerladdning färdig"</string>
 <string name="download_episode_range" formatted="true">"Vill du ladda ned avsnitt %s?"</string>
 <string name="download_failed">"Nerladdning misslyckades"</string>
+<string name="download_not_available_here">"Inte tillgängligt här"</string>
 <string name="download_parallel_settings_des">"Mängden av olika föremål som kan bli nedladdat i parallell"</string>
 <string name="download_path_pref">"Nerladdningsplats"</string>
 <string name="download_paused">"Nerladdning pausad"</string>

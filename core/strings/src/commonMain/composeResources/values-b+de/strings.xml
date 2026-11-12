@@ -68,6 +68,7 @@
 <string name="account_use_pin">Stattdessen PIN verwenden</string>
 <string name="detail_load_failed_body">Die Quelle ist möglicherweise nicht verfügbar.</string>
 <string name="detail_load_failed_headline">Titel konnte nicht geöffnet werden</string>
+<string name="download_not_available_here">Hier nicht verfügbar</string>
 <plurals name="downloads_active"><item quantity="one">%d aktiver Download</item><item quantity="other">%d aktive Downloads</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d wird geladen</item><item quantity="other">%d wird geladen</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d in der Warteschlange</item><item quantity="other">%d in der Warteschlange</item></plurals>
@@ -76,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d fehlgeschlagen</item><item quantity="other">%d fehlgeschlagen</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d Download in Warteschlange</item><item quantity="other">%d Downloads in Warteschlange</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d Titel · %2$s</item><item quantity="other">%1$d Titel · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Noch %1$d Min</item><item quantity="other">Noch %1$d Min</item></plurals>
 <string name="episode_time_left">Noch %1$d Min</string>
 <string name="episode_watched">Gesehen</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d LESEZEICHEN</item><item quantity="other">%d LESEZEICHEN</item></plurals>

@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d എപ്പിസോഡുകൾ"</item><item quantity="other">"%d എപ്പിസോഡുകൾ"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d പരാജയപ്പെട്ടു"</item><item quantity="other">"%d പരാജയപ്പെട്ടു"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d ശീർഷകങ്ങൾ · %2$s"</item><item quantity="other">"%1$d ശീർഷകങ്ങൾ · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d മിനിറ്റ് ബാക്കി"</item><item quantity="other">"%1$d മിനിറ്റ് ബാക്കി"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ബുക്ക്‌മാർക്ക്"</item><item quantity="other">"%d ബുക്ക്‌മാർക്കുകൾ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d വിഭാഗം ലോഡ് ചെയ്യാനായില്ല"</item><item quantity="other">"%d വിഭാഗങ്ങൾ ലോഡ് ചെയ്യാനായില്ല"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d വിഭാഗം"</item><item quantity="other">"%d വിഭാഗങ്ങൾ"</item></plurals>
@@ -156,6 +157,7 @@
 <string name="download_canceled">"ഡൌൺലോഡ് റദ്ദാക്കി"</string>
 <string name="download_done">"ഡൌൺലോഡ് പൂർത്തിയായി"</string>
 <string name="download_failed">"ഡൌൺലോഡ് മുടങ്ങി"</string>
+<string name="download_not_available_here">"ഇവിടെ ലഭ്യമല്ല"</string>
 <string name="download_paused">"ഡൌൺലോഡ് നിർത്തി"</string>
 <string name="download_queue">"ഡൗൺലോഡ് ക്യൂ"</string>
 <string name="download_started">"ഡൌൺലോഡ് ആരംഭിച്ചു"</string>

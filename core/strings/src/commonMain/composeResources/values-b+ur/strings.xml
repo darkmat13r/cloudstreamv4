@@ -68,12 +68,14 @@
 <string name="account_use_pin">اس کے بجائے PIN استعمال کریں</string>
 <string name="detail_load_failed_body">ممکن ہے ذریعہ دستیاب نہ ہو۔</string>
 <string name="detail_load_failed_headline">یہ عنوان نہیں کھل سکا</string>
+<string name="download_not_available_here">یہاں دستیاب نہیں</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d ڈاؤن لوڈ ہو رہے ہیں</item><item quantity="other">%d ڈاؤن لوڈ ہو رہے ہیں</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d قطار میں</item><item quantity="other">%d قطار میں</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d ڈاؤن لوڈز حذف کریں؟</item><item quantity="other">%d ڈاؤن لوڈز حذف کریں؟</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d اقساط</item><item quantity="other">%d اقساط</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d ناکام</item><item quantity="other">%d ناکام</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d عنوانات · %2$s</item><item quantity="other">%1$d عنوانات · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d منٹ باقی</item><item quantity="other">%1$d منٹ باقی</item></plurals>
 <string name="episode_time_left">%1$d منٹ باقی</string>
 <string name="episode_watched">دیکھ لیا</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d بک مارک</item><item quantity="other">%d بک مارکس</item></plurals>

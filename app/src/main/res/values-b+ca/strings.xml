@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d episodi"</item><item quantity="many">"%d episodis"</item><item quantity="other">"%d episodis"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d fallida"</item><item quantity="many">"%d fallides"</item><item quantity="other">"%d fallides"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d títol · %2$s"</item><item quantity="many">"%1$d títols · %2$s"</item><item quantity="other">"%1$d títols · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Queden %1$d min"</item><item quantity="many">"Queden %1$d min"</item><item quantity="other">"Queden %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d FAVORIT"</item><item quantity="many">"%d DE FAVORITS"</item><item quantity="other">"%d FAVORITS"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"No s'ha pogut carregar %d secció"</item><item quantity="many">"No s'han pogut carregar %d seccions"</item><item quantity="other">"No s'han pogut carregar %d seccions"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d secció"</item><item quantity="many">"%d seccions"</item><item quantity="other">"%d seccions"</item></plurals>
@@ -150,6 +151,7 @@
 <string name="download_canceled">"Descàrrega cancel·lada"</string>
 <string name="download_done">"Descàrrega completada"</string>
 <string name="download_failed">"Descarrega fallida"</string>
+<string name="download_not_available_here">"No disponible aquí"</string>
 <string name="download_paused">"Descàrrega en espera"</string>
 <string name="download_started">"S'ha iniciat la descàrrega"</string>
 <string name="download_storage_text">"emmagatzematge intern"</string>

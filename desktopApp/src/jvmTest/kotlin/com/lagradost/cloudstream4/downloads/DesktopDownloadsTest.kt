@@ -541,6 +541,25 @@ class DesktopDownloadsTest {
         ).forEach { refused -> assertNull(DesktopDownloads.posterOf(refused), "kept: $refused") }
     }
 
+    /** `BUG-103`: what a new host loaded is in the very first view any reader gets, never an empty one before it. */
+    @Test
+    fun `a new host's first view already holds what it loaded`() = runBlocking {
+        server.add("first.bin", 64 * 1024)
+        val host = host()
+        host.enqueue(
+            DesktopDownloadRequest(16, 1600, "First View", DownloadTitleKind.Film, null, null, null,
+                DownloadSourceRef("Test Provider", "first-data-16"), DesktopDownloadLink(server.url("first.bin"))),
+        )
+        host.awaitDone(1600, 16)
+        host.close()
+        hosts.remove(host)
+
+        val again = host()
+        // The first value, whatever it is: no waiting for a later one.
+        val first = again.awaitContents { true }
+        assertEquals(listOf(DownloadTitleId(1600)), first.titles.map { it.id }, "the first view was built before the load was published")
+    }
+
     @Test
     fun `a finished download keeps no source in the file, survives a restart, and deletes cleanly`() = runBlocking {
         val body = server.add("clear.bin", 256 * 1024)
@@ -865,7 +884,9 @@ class DesktopDownloadsTest {
         host.close()
         hosts.remove(host)
         val again = host()
-        val reread = again.awaitContents { true }
+        // BUG-102: the read's own end, not the first view. A new host's first view can be built before its load is
+        // published, and is then empty.
+        val reread = again.awaitContents { it.titles.isNotEmpty() }
         assertEquals(listOf(DownloadTitleId(50)), reread.titles.map { it.id })
         assertEquals(listOf(DownloadEpisodeId(12)), again.awaitEpisode(50, 12) { true }.let { listOf(it.id) })
         val stored = stateFile.readText()

@@ -68,6 +68,7 @@
 <string name="account_use_pin">改用 PIN 碼</string>
 <string name="detail_load_failed_body">來源可能無法使用。</string>
 <string name="detail_load_failed_headline">無法開啟此內容</string>
+<string name="download_not_available_here">此處無法使用</string>
 <plurals name="downloads_active"><item quantity="other">%d 個正在下載</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="other">%d 個正在下載</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d 個排隊中</item></plurals>
@@ -76,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d 個失敗</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">佇列中有 %d 個下載</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d 部作品 · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">剩下 %1$d 分鐘</item></plurals>
 <string name="episode_time_left">剩下 %1$d 分鐘</string>
 <string name="episode_watched">已看完</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d 個書籤</item></plurals>

@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">"%d 件失敗"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"%d 件が待機中"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">"%1$d作品 · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">"残り%1$d分"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d 件のブックマーク"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d 件のセクションを読み込めませんでした"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d セクション"</item></plurals>
@@ -276,6 +277,7 @@
 <string name="download_done">"ダウンロード完了"</string>
 <string name="download_episode_range" formatted="true">"エピソード %s をダウンロードしますか？"</string>
 <string name="download_failed">"ダウンロード失敗"</string>
+<string name="download_not_available_here">"ここでは利用できません"</string>
 <string name="download_parallel_settings_des">"並行してダウンロードできるアイテム"</string>
 <string name="download_path_pref">"ダウンロードパス"</string>
 <string name="download_paused">"ダウンロードが一時停止"</string>

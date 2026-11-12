@@ -3199,6 +3199,7 @@ public final static class com/lagradost/cloudstream3/R$plurals : java/lang/Objec
 	public static field downloads_failed_count I
 	public static field downloads_queued I
 	public static field downloads_titles_status I
+	public static field episode_minutes_left I
 	public static field episodes I
 	public static field ext_repo_header I
 	public static field ext_repo_remove_body I
@@ -3509,6 +3510,7 @@ public final static class com/lagradost/cloudstream3/R$string : java/lang/Object
 	public static field download_episode_range I
 	public static field download_failed I
 	public static field download_format I
+	public static field download_not_available_here I
 	public static field download_parallel_key I
 	public static field download_parallel_settings_des I
 	public static field download_path_key I

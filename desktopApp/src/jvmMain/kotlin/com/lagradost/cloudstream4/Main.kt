@@ -76,6 +76,7 @@ import com.lagradost.cloudstream4.downloads.DesktopDownloads
 import com.lagradost.cloudstream4.downloads.DownloadSeriesHost
 import com.lagradost.cloudstream4.downloads.DownloadsHost
 import com.lagradost.cloudstream4.downloads.PlayableDownload
+import com.lagradost.cloudstream4.downloads.rememberEpisodeDownloadCell
 import com.lagradost.cloudstream4.feature.downloads.DownloadTitleId
 import com.lagradost.cloudstream4.feature.downloads.DownloadsViewModel
 import com.lagradost.cloudstream4.home.TopLevelDestination
@@ -593,6 +594,7 @@ internal fun DesktopApp(
                         escape = escape,
                         resume = screen.resume,
                         library = library,
+                        downloads = downloads,
                         // A title opened from another title's More like this goes back to that title, by name.
                         origin = stack.getOrNull(stack.lastIndex - 1)
                             ?.let { below -> (below as? Screen.Detail)?.let { DesktopDetailViewModels.title(it.id) } }
@@ -796,6 +798,7 @@ private fun SearchHost(
  * @param onPlay given what the library needs to record a position, as well as what the player needs.
  *   The episode is the `data` of the last [DetailAction.PlayRequested] to pass through this host, which
  *   is the only place that knows it: `DetailState` does not carry it.
+ * @param downloads the download service, for each episode row's Download (`KMP-109`). Null draws no cell.
  */
 @Composable
 private fun DetailHost(
@@ -804,6 +807,7 @@ private fun DetailHost(
     escape: EscapeHandler,
     resume: LibraryResume?,
     library: LibraryStore,
+    downloads: DesktopDownloads?,
     origin: String?,
     onBack: () -> Unit,
     onPlay: (kept: LibraryTitle, episodeData: String?, title: String, meta: String?, link: StreamLink, startAt: Long) -> Unit,
@@ -884,6 +888,7 @@ private fun DetailHost(
         origin = origin,
         backdrop = { url -> BackdropImage(url = url, modifier = Modifier.fillMaxSize()) },
         thumbnail = { url -> ThumbnailImage(url = url, modifier = Modifier.fillMaxSize()) },
+        episodeTrailing = rememberEpisodeDownloadCell(downloads, id, loaded),
     )
 }
 

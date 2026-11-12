@@ -160,6 +160,11 @@ class FaultSuiteTest : SuiteBase() {
         val body = h.server.bodyRequests()
         assertTrue(body.size >= 2)
         body.forEach { assertTrue((it.info.rangeStart ?: 0L) == 0L, "single stream retry asked from ${it.info.rangeStart}") }
+        // BUG-102: the server counts a chunk after writing it, and the client can have read it, finished and returned
+        // first. Wait (bounded) for the count to catch up; a server that really sent less still fails.
+        kotlinx.coroutines.runBlocking {
+            kotlinx.coroutines.withTimeoutOrNull(5_000) { while (body.last().bytesSent < res.size) kotlinx.coroutines.delay(5) }
+        }
         assertEquals(res.size, body.last().bytesSent, "the last attempt must deliver the whole file")
     }
 
@@ -465,7 +470,8 @@ class FaultSuiteTest : SuiteBase() {
 
         h.assertCompleted(run, res.source)
         assertTrue(run.maxParts >= 32, "planned ${run.maxParts} parts for a 32 part request")
-        assertTrue(h.server.peakConcurrency <= 32, "peak concurrency ${h.server.peakConcurrency} exceeds 32 parts")
+        // BUG-102: counted in the engine's own client, not by the server, whose count lags it (see peakConcurrentCalls).
+        assertTrue(h.peakConcurrentCalls <= 32, "peak concurrency ${h.peakConcurrentCalls} exceeds 32 parts")
     }
 
     @Test
@@ -474,7 +480,7 @@ class FaultSuiteTest : SuiteBase() {
         val run = h.run(h.request(options = suiteOptions(parts = 1000, minPartBytes = MIN_PART)))
 
         h.assertCompleted(run, res.source)
-        assertTrue(h.server.peakConcurrency <= 32, "peak concurrency ${h.server.peakConcurrency}")
+        assertTrue(h.peakConcurrentCalls <= 32, "peak concurrency ${h.peakConcurrentCalls}")
         assertTrue(run.maxParts <= 128, "${run.maxParts} part files")
     }
 

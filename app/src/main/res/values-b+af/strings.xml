@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d episode"</item><item quantity="other">"%d episodes"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d het misluk"</item><item quantity="other">"%d het misluk"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d titel · %2$s"</item><item quantity="other">"%1$d titels · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d min oor"</item><item quantity="other">"%1$d min oor"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d BOEKMERK"</item><item quantity="other">"%d BOEKMERKE"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d afdeling kon nie laai nie"</item><item quantity="other">"%d afdelings kon nie laai nie"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d afdeling"</item><item quantity="other">"%d afdelings"</item></plurals>
@@ -116,6 +117,7 @@
 <string name="download_canceled">"Aflaai gekanselleer"</string>
 <string name="download_done">"Klaar Afgelaai"</string>
 <string name="download_failed">"Aflaai het misluk"</string>
+<string name="download_not_available_here">"Nie hier beskikbaar nie"</string>
 <string name="download_paused">"Aflaai op rus"</string>
 <string name="download_started">"Aflaai het begin"</string>
 <string name="download_storage_text">"Interne Berging"</string>

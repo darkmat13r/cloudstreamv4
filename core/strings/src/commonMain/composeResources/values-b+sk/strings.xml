@@ -68,12 +68,14 @@
 <string name="account_use_pin">Použiť radšej PIN</string>
 <string name="detail_load_failed_body">Zdroj možno nie je dostupný.</string>
 <string name="detail_load_failed_headline">Tento titul sa nepodarilo otvoriť</string>
+<string name="download_not_available_here">Tu nie je k dispozícii</string>
 <plurals name="downloads_count_downloading"><item quantity="one">sťahuje sa %d</item><item quantity="few">sťahuje sa %d</item><item quantity="many">sťahuje sa %d</item><item quantity="other">sťahuje sa %d</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d v poradí</item><item quantity="few">%d v poradí</item><item quantity="many">%d v poradí</item><item quantity="other">%d v poradí</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Odstrániť %d stiahnutý súbor?</item><item quantity="few">Odstrániť %d stiahnuté súbory?</item><item quantity="many">Odstrániť %d stiahnutého súboru?</item><item quantity="other">Odstrániť %d stiahnutých súborov?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d epizóda</item><item quantity="few">%d epizódy</item><item quantity="many">%d epizódy</item><item quantity="other">%d epizód</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d neúspešné</item><item quantity="few">%d neúspešné</item><item quantity="many">%d neúspešných</item><item quantity="other">%d neúspešných</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titul · %2$s</item><item quantity="few">%1$d tituly · %2$s</item><item quantity="many">%1$d titulu · %2$s</item><item quantity="other">%1$d titulov · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Zostáva %1$d min</item><item quantity="few">Zostáva %1$d min</item><item quantity="many">Zostáva %1$d min</item><item quantity="other">Zostáva %1$d min</item></plurals>
 <string name="episode_time_left">Zostáva %1$d min</string>
 <string name="episode_watched">Pozreté</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ZÁLOŽKA</item><item quantity="few">%d ZÁLOŽKY</item><item quantity="many">%d ZÁLOŽKY</item><item quantity="other">%d ZÁLOŽIEK</item></plurals>

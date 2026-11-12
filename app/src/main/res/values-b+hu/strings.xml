@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d epizód"</item><item quantity="other">"%d epizód"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d sikertelen"</item><item quantity="other">"%d sikertelen"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d cím · %2$s"</item><item quantity="other">"%1$d cím · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Még %1$d perc"</item><item quantity="other">"Még %1$d perc"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d KÖNYVJELZŐ"</item><item quantity="other">"%d KÖNYVJELZŐ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d szakasz betöltése sikertelen"</item><item quantity="other">"%d szakasz betöltése sikertelen"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d szakasz"</item><item quantity="other">"%d szakasz"</item></plurals>
@@ -246,6 +247,7 @@
 <string name="download_canceled">"Letöltés megszakítva"</string>
 <string name="download_done">"Letöltés kész"</string>
 <string name="download_failed">"Letöltés sikertelen"</string>
+<string name="download_not_available_here">"Itt nem érhető el"</string>
 <string name="download_path_pref">"Letöltési útvonal"</string>
 <string name="download_paused">"Letöltés szüneteltetve"</string>
 <string name="download_queue">"Letöltési sor"</string>

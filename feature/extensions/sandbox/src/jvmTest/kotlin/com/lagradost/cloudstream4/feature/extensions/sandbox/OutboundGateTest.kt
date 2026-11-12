@@ -99,6 +99,27 @@ class OutboundGateTest {
     }
 
     @Test
+    fun `a write the far end never reads is cut once the tunnel is idle, and the tunnel's slot comes back`() {
+        // BUG-96 (#358's review): idle closed only the side its own read was on, so a write blocked on a peer that had
+        // stopped reading never woke, and the tunnel, its two threads and its slot were held for good.
+        ServerSocket(0, 1, InetAddress.getLoopbackAddress()).use { deaf ->
+            val held = java.util.concurrent.CountDownLatch(1)
+            thread(isDaemon = true) { deaf.accept().use { held.await() } }
+            OutboundGate(allowed = { true }, idleTimeoutMillis = IDLE_MILLIS).use { gate ->
+                proxied(gate).use { socket ->
+                    socket.through(gate, "127.0.0.1", deaf.localPort)
+                    // More than every buffer between here and the deaf end holds, so the gate's write blocks.
+                    thread(isDaemon = true) { runCatching { socket.getOutputStream().write(ByteArray(STUCK_BYTES)) } }
+                    val deadline = System.nanoTime() + TIMEOUT_MILLIS * 1_000_000L
+                    while (gate.openTunnels > 0 && System.nanoTime() < deadline) Thread.sleep(POLL_MILLIS)
+                    assertEquals(0, gate.openTunnels, "the tunnel was never cut")
+                }
+            }
+            held.countDown()
+        }
+    }
+
+    @Test
     fun `a tunnel whose bytes go one way only is not idle, however long the other way is silent`() {
         // A download: the plugin sends nothing for far longer than the idle timeout while its bytes come back.
         ServerSocket(0, 1, InetAddress.getLoopbackAddress()).use { source ->
@@ -145,5 +166,7 @@ class OutboundGateTest {
         const val SLACK_MILLIS = 100L
         const val TRICKLE_BYTES = 10
         const val REPLY_BYTE = 42
+        const val STUCK_BYTES = 32 * 1024 * 1024
+        const val POLL_MILLIS = 20L
     }
 }

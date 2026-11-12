@@ -16,6 +16,9 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertIs
 import kotlin.test.assertTrue
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancelAndJoin
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.runBlocking
 import okhttp3.HttpUrl.Companion.toHttpUrl
 import okhttp3.OkHttpClient
@@ -137,6 +140,8 @@ class SubtitleLoaderTest {
     private companion object {
         const val SLOW_HOP_MILLIS = 300L
         const val CHAIN_LIMIT_MILLIS = 700L
+        const val CANCEL_LIMIT_MILLIS = 5_000L
+        const val CANCEL_PROMPT_MILLIS = 1_000L
     }
 
     private val pluginHeaders = mapOf("Referer" to "https://example.com/?token=t", "User-Agent" to "ua")
@@ -301,6 +306,44 @@ class SubtitleLoaderTest {
         assertFailed(SubtitleFailure.UnsupportedFormat, HttpSubtitleLoader.parse(corrupt, null, null))
         Server { ok(corrupt) }.use { server ->
             assertFailed(SubtitleFailure.UnsupportedFormat, load(loader(server.port), track(server)))
+        }
+    }
+
+    /**
+     * `BUG-98`: cancelled means the request ends now. The call blocks its thread, and the loader used to close it from a
+     * handler that runs when the job completes, which a job blocked in that call cannot do: a cancel waited out the
+     * load's whole time limit, and the server kept its socket.
+     */
+    @Test
+    fun `cancelling a load in the middle of a hop ends it at once, and the server sees the socket close`() {
+        val socket = ServerSocket(0, 8, InetAddress.getLoopbackAddress())
+        val asked = java.util.concurrent.CountDownLatch(1)
+        val closed = java.util.concurrent.CountDownLatch(1)
+        thread(isDaemon = true) {
+            runCatching {
+                socket.accept().use { client ->
+                    client.getOutputStream().write("HTTP/1.1 200 OK\r\nContent-Length: 999\r\n\r\npartial".toByteArray())
+                    client.getOutputStream().flush()
+                    asked.countDown()
+                    // Held open: only the client closing it ends this read.
+                    runCatching { while (client.getInputStream().read() != -1) Unit }
+                    closed.countDown()
+                }
+            }
+        }
+        socket.use {
+            val slow = loader(socket.localPort) { it.newBuilder().callTimeout(CANCEL_LIMIT_MILLIS, TimeUnit.MILLISECONDS).build() }
+            runBlocking {
+                val load = launch(Dispatchers.Default) {
+                    slow.load(SubtitleTrack(SubtitleSource.Remote("http://127.0.0.1:${socket.localPort}/s"), "x"))
+                }
+                assertTrue(asked.await(5, TimeUnit.SECONDS), "the request never arrived")
+                val started = System.nanoTime()
+                load.cancelAndJoin()
+                val took = (System.nanoTime() - started) / 1_000_000
+                assertTrue(took < CANCEL_PROMPT_MILLIS, "the cancelled load took $took ms to end")
+            }
+            assertTrue(closed.await(CANCEL_PROMPT_MILLIS, TimeUnit.MILLISECONDS), "the server never saw the socket close")
         }
     }
 

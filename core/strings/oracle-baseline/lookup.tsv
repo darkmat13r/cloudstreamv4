@@ -15,6 +15,8 @@ values-b+af	plurals	downloads_queued	one	%d download queued
 values-b+af	plurals	downloads_queued	other	%d downloads queued
 values-b+af	plurals	downloads_titles_status	one	%1$d titel · %2$s
 values-b+af	plurals	downloads_titles_status	other	%1$d titels · %2$s
+values-b+af	plurals	episode_minutes_left	one	%1$d min oor
+values-b+af	plurals	episode_minutes_left	other	%1$d min oor
 values-b+af	plurals	episodes	one	Episode
 values-b+af	plurals	episodes	other	Episodes
 values-b+af	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -318,6 +320,7 @@ values-b+af	string	download_done	-	Klaar Afgelaai
 values-b+af	string	download_episode_range	-	Do you want to download episode %s?
 values-b+af	string	download_failed	-	Aflaai het misluk
 values-b+af	string	download_format	-	%1$s - %2$s
+values-b+af	string	download_not_available_here	-	Nie hier beskikbaar nie
 values-b+af	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+af	string	download_path_pref	-	Download path
 values-b+af	string	download_paused	-	Aflaai op rus
@@ -1253,6 +1256,8 @@ values-b+am	plurals	downloads_queued	one	%d download queued
 values-b+am	plurals	downloads_queued	other	%d downloads queued
 values-b+am	plurals	downloads_titles_status	one	%1$d ርዕሶች · %2$s
 values-b+am	plurals	downloads_titles_status	other	%1$d ርዕሶች · %2$s
+values-b+am	plurals	episode_minutes_left	one	%1$d ደቂቃ ቀርቷል
+values-b+am	plurals	episode_minutes_left	other	%1$d ደቂቃ ቀርቷል
 values-b+am	plurals	episodes	one	Episode
 values-b+am	plurals	episodes	other	Episodes
 values-b+am	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -1556,6 +1561,7 @@ values-b+am	string	download_done	-	ማውረድ ተከናውኗል
 values-b+am	string	download_episode_range	-	Do you want to download episode %s?
 values-b+am	string	download_failed	-	ማውረድ አልተሳካም
 values-b+am	string	download_format	-	%1$s - %2$s
+values-b+am	string	download_not_available_here	-	እዚህ አይገኝም
 values-b+am	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+am	string	download_path_pref	-	Download path
 values-b+am	string	download_paused	-	ማውረድ ቆሟል
@@ -2491,6 +2497,8 @@ values-b+apc	plurals	downloads_queued	one	مافي شي بعد بده يبلش �
 values-b+apc	plurals	downloads_queued	other	فيه شي واحد بعد بده يبلش يتنزل
 values-b+apc	plurals	downloads_titles_status	one	%1$d عنوان · %2$s
 values-b+apc	plurals	downloads_titles_status	other	%1$d عناوين · %2$s
+values-b+apc	plurals	episode_minutes_left	one	باقي %1$d دقيقة
+values-b+apc	plurals	episode_minutes_left	other	باقي %1$d دقيقة
 values-b+apc	plurals	episodes	one	حلقة
 values-b+apc	plurals	episodes	other	حلقات
 values-b+apc	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -2794,6 +2802,7 @@ values-b+apc	string	download_done	-	خُلِص التنزيل
 values-b+apc	string	download_episode_range	-	بدك تنزل الحلقة %s؟
 values-b+apc	string	download_failed	-	فِشِل التنزيل
 values-b+apc	string	download_format	-	%1$s - %2$s
+values-b+apc	string	download_not_available_here	-	مش متوفر هون
 values-b+apc	string	download_parallel_settings_des	-	كم شغلة مختلفة فيها تتنزل ب نفس الوقت
 values-b+apc	string	download_path_pref	-	ممر التنزيل
 values-b+apc	string	download_paused	-	محطوت پوز على التنزيل
@@ -3761,6 +3770,12 @@ values-b+ar	plurals	downloads_titles_status	one	%1$d عنوان · %2$s
 values-b+ar	plurals	downloads_titles_status	other	%1$d عنوان · %2$s
 values-b+ar	plurals	downloads_titles_status	two	%1$d عنوانان · %2$s
 values-b+ar	plurals	downloads_titles_status	zero	%1$d عنوان · %2$s
+values-b+ar	plurals	episode_minutes_left	few	متبقٍ %1$d دقيقة
+values-b+ar	plurals	episode_minutes_left	many	متبقٍ %1$d دقيقة
+values-b+ar	plurals	episode_minutes_left	one	متبقٍ %1$d دقيقة
+values-b+ar	plurals	episode_minutes_left	other	متبقٍ %1$d دقيقة
+values-b+ar	plurals	episode_minutes_left	two	متبقٍ %1$d دقيقة
+values-b+ar	plurals	episode_minutes_left	zero	متبقٍ %1$d دقيقة
 values-b+ar	plurals	episodes	one	حلقة
 values-b+ar	plurals	episodes	other	حلقات
 values-b+ar	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -4124,6 +4139,7 @@ values-b+ar	string	download_done	-	تم التنزيل
 values-b+ar	string	download_episode_range	-	هل ترغب في تنزيل الحلقة %s ؟
 values-b+ar	string	download_failed	-	فشل التنزيل
 values-b+ar	string	download_format	-	%1$s - %2$s
+values-b+ar	string	download_not_available_here	-	غير متاح هنا
 values-b+ar	string	download_parallel_settings_des	-	عدد الأصناف المختلفة التي يمكن تنزيلها بالتوازي
 values-b+ar	string	download_path_pref	-	مسار التنزيل
 values-b+ar	string	download_paused	-	توقف التنزيل مؤقتًا
@@ -5083,6 +5099,12 @@ values-b+ars	plurals	downloads_titles_status	one	%1$d عنوان · %2$s
 values-b+ars	plurals	downloads_titles_status	other	%1$d عنوان · %2$s
 values-b+ars	plurals	downloads_titles_status	two	%1$d عنوانان · %2$s
 values-b+ars	plurals	downloads_titles_status	zero	%1$d عنوان · %2$s
+values-b+ars	plurals	episode_minutes_left	few	باقي %1$d دقيقة
+values-b+ars	plurals	episode_minutes_left	many	باقي %1$d دقيقة
+values-b+ars	plurals	episode_minutes_left	one	باقي %1$d دقيقة
+values-b+ars	plurals	episode_minutes_left	other	باقي %1$d دقيقة
+values-b+ars	plurals	episode_minutes_left	two	باقي %1$d دقيقة
+values-b+ars	plurals	episode_minutes_left	zero	باقي %1$d دقيقة
 values-b+ars	plurals	episodes	one	حلقة
 values-b+ars	plurals	episodes	other	الحلقات
 values-b+ars	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -5446,6 +5468,7 @@ values-b+ars	string	download_done	-	تم التنزيل
 values-b+ars	string	download_episode_range	-	Do you want to download episode %s?
 values-b+ars	string	download_failed	-	التحميل فشل
 values-b+ars	string	download_format	-	%1$s - %2$s
+values-b+ars	string	download_not_available_here	-	مو متوفر هنا
 values-b+ars	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+ars	string	download_path_pref	-	مسار التحميل
 values-b+ars	string	download_paused	-	توقف التنزيل
@@ -6381,6 +6404,8 @@ values-b+as	plurals	downloads_queued	one	%d download queued
 values-b+as	plurals	downloads_queued	other	%d downloads queued
 values-b+as	plurals	downloads_titles_status	one	%1$d টা শিৰোনাম · %2$s
 values-b+as	plurals	downloads_titles_status	other	%1$d টা শিৰোনাম · %2$s
+values-b+as	plurals	episode_minutes_left	one	%1$d মিনিট বাকী
+values-b+as	plurals	episode_minutes_left	other	%1$d মিনিট বাকী
 values-b+as	plurals	episodes	one	এপিচ’ড
 values-b+as	plurals	episodes	other	এপিচ’ডসমূহ
 values-b+as	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -6684,6 +6709,7 @@ values-b+as	string	download_done	-	ডাউনলোড সম্পন্ন
 values-b+as	string	download_episode_range	-	Do you want to download episode %s?
 values-b+as	string	download_failed	-	ডাউনলোড বিফল
 values-b+as	string	download_format	-	%1$s - %2$s
+values-b+as	string	download_not_available_here	-	ইয়াত উপলব্ধ নহয়
 values-b+as	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+as	string	download_path_pref	-	ডাউনলোড পথ
 values-b+as	string	download_paused	-	ডাউনলোড ৰখা হৈছে
@@ -7619,6 +7645,8 @@ values-b+az	plurals	downloads_queued	one	%d download queued
 values-b+az	plurals	downloads_queued	other	%d downloads queued
 values-b+az	plurals	downloads_titles_status	one	%1$d başlıq · %2$s
 values-b+az	plurals	downloads_titles_status	other	%1$d başlıq · %2$s
+values-b+az	plurals	episode_minutes_left	one	%1$d dəq qalıb
+values-b+az	plurals	episode_minutes_left	other	%1$d dəq qalıb
 values-b+az	plurals	episodes	one	Episode
 values-b+az	plurals	episodes	other	Episodes
 values-b+az	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -7922,6 +7950,7 @@ values-b+az	string	download_done	-	Yükləmə bitdi
 values-b+az	string	download_episode_range	-	Do you want to download episode %s?
 values-b+az	string	download_failed	-	Yükləmə uğursuz oldu
 values-b+az	string	download_format	-	%1$s - %2$s
+values-b+az	string	download_not_available_here	-	Burada mövcud deyil
 values-b+az	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+az	string	download_path_pref	-	Download path
 values-b+az	string	download_paused	-	Yükləmə dayandırıldı
@@ -8873,6 +8902,10 @@ values-b+be	plurals	downloads_titles_status	few	%1$d назвы · %2$s
 values-b+be	plurals	downloads_titles_status	many	%1$d назваў · %2$s
 values-b+be	plurals	downloads_titles_status	one	%1$d назва · %2$s
 values-b+be	plurals	downloads_titles_status	other	%1$d назвы · %2$s
+values-b+be	plurals	episode_minutes_left	few	Засталося %1$d хв
+values-b+be	plurals	episode_minutes_left	many	Засталося %1$d хв
+values-b+be	plurals	episode_minutes_left	one	Засталося %1$d хв
+values-b+be	plurals	episode_minutes_left	other	Засталося %1$d хв
 values-b+be	plurals	episodes	one	Серыя
 values-b+be	plurals	episodes	other	Серый
 values-b+be	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -9206,6 +9239,7 @@ values-b+be	string	download_done	-	Спампоўванне завершана
 values-b+be	string	download_episode_range	-	Спампаваць %s серыю?
 values-b+be	string	download_failed	-	Не ўдалося спампаваць
 values-b+be	string	download_format	-	%1$s - %2$s
+values-b+be	string	download_not_available_here	-	Тут недаступна
 values-b+be	string	download_parallel_settings_des	-	Колькі разных элементаў можна спампоўваць паралельна
 values-b+be	string	download_path_pref	-	Шлях спампоўкі
 values-b+be	string	download_paused	-	Спампоўванне прыпынена
@@ -10141,6 +10175,8 @@ values-b+bg	plurals	downloads_queued	one	%d изтегляне в опашкат
 values-b+bg	plurals	downloads_queued	other	%d изтегляния в опашката
 values-b+bg	plurals	downloads_titles_status	one	%1$d заглавие · %2$s
 values-b+bg	plurals	downloads_titles_status	other	%1$d заглавия · %2$s
+values-b+bg	plurals	episode_minutes_left	one	Остават %1$d мин
+values-b+bg	plurals	episode_minutes_left	other	Остават %1$d мин
 values-b+bg	plurals	episodes	one	Епизод
 values-b+bg	plurals	episodes	other	Епизоди
 values-b+bg	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -10444,6 +10480,7 @@ values-b+bg	string	download_done	-	Изтеглянето е завършено
 values-b+bg	string	download_episode_range	-	Искаш ли да изтеглиш епизод %s?
 values-b+bg	string	download_failed	-	Изтеглянето се провали
 values-b+bg	string	download_format	-	%1$s - %2$s
+values-b+bg	string	download_not_available_here	-	Не е налично тук
 values-b+bg	string	download_parallel_settings_des	-	Колко различни елемента могат да бъдат изтеглени паралелно
 values-b+bg	string	download_path_pref	-	Път за изтегляне
 values-b+bg	string	download_paused	-	Изтеглянето е на пауза
@@ -11379,6 +11416,8 @@ values-b+bn	plurals	downloads_queued	one	%d download queued
 values-b+bn	plurals	downloads_queued	other	%d downloads queued
 values-b+bn	plurals	downloads_titles_status	one	%1$dটি শিরোনাম · %2$s
 values-b+bn	plurals	downloads_titles_status	other	%1$dটি শিরোনাম · %2$s
+values-b+bn	plurals	episode_minutes_left	one	%1$d মিনিট বাকি
+values-b+bn	plurals	episode_minutes_left	other	%1$d মিনিট বাকি
 values-b+bn	plurals	episodes	one	পর্ব
 values-b+bn	plurals	episodes	other	পর্ব
 values-b+bn	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -11682,6 +11721,7 @@ values-b+bn	string	download_done	-	ডাউনলোড শেষ
 values-b+bn	string	download_episode_range	-	Do you want to download episode %s?
 values-b+bn	string	download_failed	-	ডাউনলোড ব্যর্থ
 values-b+bn	string	download_format	-	%1$s - %2$s
+values-b+bn	string	download_not_available_here	-	এখানে উপলব্ধ নয়
 values-b+bn	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+bn	string	download_path_pref	-	ডাউনলোডের পথ
 values-b+bn	string	download_paused	-	ডাউনলোড স্থগিত
@@ -12623,6 +12663,9 @@ values-b+ca	plurals	downloads_queued	other	%d downloads queued
 values-b+ca	plurals	downloads_titles_status	many	%1$d títols · %2$s
 values-b+ca	plurals	downloads_titles_status	one	%1$d títol · %2$s
 values-b+ca	plurals	downloads_titles_status	other	%1$d títols · %2$s
+values-b+ca	plurals	episode_minutes_left	many	Queden %1$d min
+values-b+ca	plurals	episode_minutes_left	one	Queden %1$d min
+values-b+ca	plurals	episode_minutes_left	other	Queden %1$d min
 values-b+ca	plurals	episodes	one	Episode
 values-b+ca	plurals	episodes	other	Episodes
 values-b+ca	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -12941,6 +12984,7 @@ values-b+ca	string	download_done	-	Descàrrega completada
 values-b+ca	string	download_episode_range	-	Do you want to download episode %s?
 values-b+ca	string	download_failed	-	Descarrega fallida
 values-b+ca	string	download_format	-	%1$s - %2$s
+values-b+ca	string	download_not_available_here	-	No disponible aquí
 values-b+ca	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+ca	string	download_path_pref	-	Download path
 values-b+ca	string	download_paused	-	Descàrrega en espera
@@ -13876,6 +13920,8 @@ values-b+ckb	plurals	downloads_queued	one	%d download queued
 values-b+ckb	plurals	downloads_queued	other	%d downloads queued
 values-b+ckb	plurals	downloads_titles_status	one	%1$d ناونیشان · %2$s
 values-b+ckb	plurals	downloads_titles_status	other	%1$d ناونیشان · %2$s
+values-b+ckb	plurals	episode_minutes_left	one	%1$d خولەک ماوە
+values-b+ckb	plurals	episode_minutes_left	other	%1$d خولەک ماوە
 values-b+ckb	plurals	episodes	one	Episode
 values-b+ckb	plurals	episodes	other	Episodes
 values-b+ckb	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -14179,6 +14225,7 @@ values-b+ckb	string	download_done	-	داونلۆد تەواو بووە
 values-b+ckb	string	download_episode_range	-	Do you want to download episode %s?
 values-b+ckb	string	download_failed	-	داونلۆدکردن شکستی هێنا
 values-b+ckb	string	download_format	-	%1$s - %2$s
+values-b+ckb	string	download_not_available_here	-	لێرە بەردەست نییە
 values-b+ckb	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+ckb	string	download_path_pref	-	Download path
 values-b+ckb	string	download_paused	-	دابەزاندن وەستاوە
@@ -15130,6 +15177,10 @@ values-b+cs	plurals	downloads_titles_status	few	%1$d tituly · %2$s
 values-b+cs	plurals	downloads_titles_status	many	%1$d titulu · %2$s
 values-b+cs	plurals	downloads_titles_status	one	%1$d titul · %2$s
 values-b+cs	plurals	downloads_titles_status	other	%1$d titulů · %2$s
+values-b+cs	plurals	episode_minutes_left	few	Zbývá %1$d min
+values-b+cs	plurals	episode_minutes_left	many	Zbývá %1$d min
+values-b+cs	plurals	episode_minutes_left	one	Zbývá %1$d min
+values-b+cs	plurals	episode_minutes_left	other	Zbývá %1$d min
 values-b+cs	plurals	episodes	one	Epizoda
 values-b+cs	plurals	episodes	other	Epizody
 values-b+cs	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -15465,6 +15516,7 @@ values-b+cs	string	download_done	-	Stahování dokončeno
 values-b+cs	string	download_episode_range	-	Chcete stáhnout epizodu %s?
 values-b+cs	string	download_failed	-	Stahování selhalo
 values-b+cs	string	download_format	-	%1$s - %2$s
+values-b+cs	string	download_not_available_here	-	Zde není k dispozici
 values-b+cs	string	download_parallel_settings_des	-	Počet různých položek, které lze stahovat v jednu chvíli
 values-b+cs	string	download_path_pref	-	Cesta stahování
 values-b+cs	string	download_paused	-	Stahování pozastaveno
@@ -16400,6 +16452,8 @@ values-b+de	plurals	downloads_queued	one	%d Download in Warteschlange
 values-b+de	plurals	downloads_queued	other	%d Downloads in Warteschlange
 values-b+de	plurals	downloads_titles_status	one	%1$d Titel · %2$s
 values-b+de	plurals	downloads_titles_status	other	%1$d Titel · %2$s
+values-b+de	plurals	episode_minutes_left	one	Noch %1$d Min
+values-b+de	plurals	episode_minutes_left	other	Noch %1$d Min
 values-b+de	plurals	episodes	one	Episode
 values-b+de	plurals	episodes	other	Episoden
 values-b+de	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -16703,6 +16757,7 @@ values-b+de	string	download_done	-	Download abgeschlossen
 values-b+de	string	download_episode_range	-	Möchtest du Episode %s herunter laden?
 values-b+de	string	download_failed	-	Download fehlgeschlagen
 values-b+de	string	download_format	-	%1$s - %2$s
+values-b+de	string	download_not_available_here	-	Hier nicht verfügbar
 values-b+de	string	download_parallel_settings_des	-	Wie viele verschiedene Elemente können parallel heruntergeladen werden
 values-b+de	string	download_path_pref	-	Downloadpfad
 values-b+de	string	download_paused	-	Download pausiert
@@ -17638,6 +17693,8 @@ values-b+el	plurals	downloads_queued	one	%d download queued
 values-b+el	plurals	downloads_queued	other	%d downloads queued
 values-b+el	plurals	downloads_titles_status	one	%1$d τίτλος · %2$s
 values-b+el	plurals	downloads_titles_status	other	%1$d τίτλοι · %2$s
+values-b+el	plurals	episode_minutes_left	one	Απομένουν %1$d λεπ.
+values-b+el	plurals	episode_minutes_left	other	Απομένουν %1$d λεπ.
 values-b+el	plurals	episodes	one	Επεισόδιο
 values-b+el	plurals	episodes	other	Επεισόδια
 values-b+el	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -17941,6 +17998,7 @@ values-b+el	string	download_done	-	Η λήψη ολοκληρώθηκε
 values-b+el	string	download_episode_range	-	Do you want to download episode %s?
 values-b+el	string	download_failed	-	Η λήψη απέτυχε
 values-b+el	string	download_format	-	%1$s - %2$s
+values-b+el	string	download_not_available_here	-	Δεν είναι διαθέσιμο εδώ
 values-b+el	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+el	string	download_path_pref	-	Διαδρομή λήψης
 values-b+el	string	download_paused	-	Η λήψη παύθηκε
@@ -18876,6 +18934,8 @@ values-b+eo	plurals	downloads_queued	one	%d download queued
 values-b+eo	plurals	downloads_queued	other	%d downloads queued
 values-b+eo	plurals	downloads_titles_status	one	%1$d titolo · %2$s
 values-b+eo	plurals	downloads_titles_status	other	%1$d titoloj · %2$s
+values-b+eo	plurals	episode_minutes_left	one	Restas %1$d min
+values-b+eo	plurals	episode_minutes_left	other	Restas %1$d min
 values-b+eo	plurals	episodes	one	Epizodo
 values-b+eo	plurals	episodes	other	Epizodoj
 values-b+eo	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -19179,6 +19239,7 @@ values-b+eo	string	download_done	-	Elŝuto Farite
 values-b+eo	string	download_episode_range	-	Do you want to download episode %s?
 values-b+eo	string	download_failed	-	Elŝuto Malsukcesite
 values-b+eo	string	download_format	-	%1$s - %2$s
+values-b+eo	string	download_not_available_here	-	Ne disponebla ĉi tie
 values-b+eo	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+eo	string	download_path_pref	-	Download path
 values-b+eo	string	download_paused	-	Elŝuto Paŭzite
@@ -20122,6 +20183,9 @@ values-b+es	plurals	downloads_queued	other	%d descargas encoladas
 values-b+es	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 values-b+es	plurals	downloads_titles_status	one	%1$d título · %2$s
 values-b+es	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+values-b+es	plurals	episode_minutes_left	many	Quedan %1$d min
+values-b+es	plurals	episode_minutes_left	one	Quedan %1$d min
+values-b+es	plurals	episode_minutes_left	other	Quedan %1$d min
 values-b+es	plurals	episodes	one	Episodio
 values-b+es	plurals	episodes	other	Episodios
 values-b+es	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -20441,6 +20505,7 @@ values-b+es	string	download_done	-	Descarga Finalizada
 values-b+es	string	download_episode_range	-	¿Desea descargar el episodio %s?
 values-b+es	string	download_failed	-	Descarga fallida
 values-b+es	string	download_format	-	%1$s - %2$s
+values-b+es	string	download_not_available_here	-	No disponible aquí
 values-b+es	string	download_parallel_settings_des	-	Cuántos elementos diferentes pueden descargarse en paralelo
 values-b+es	string	download_path_pref	-	Ruta de descarga
 values-b+es	string	download_paused	-	Descarga pausada
@@ -21376,6 +21441,8 @@ values-b+fa	plurals	downloads_queued	one	%d download queued
 values-b+fa	plurals	downloads_queued	other	%d downloads queued
 values-b+fa	plurals	downloads_titles_status	one	%1$d عنوان · %2$s
 values-b+fa	plurals	downloads_titles_status	other	%1$d عنوان · %2$s
+values-b+fa	plurals	episode_minutes_left	one	%1$d دقیقه مانده
+values-b+fa	plurals	episode_minutes_left	other	%1$d دقیقه مانده
 values-b+fa	plurals	episodes	one	قسمت
 values-b+fa	plurals	episodes	other	قسمت‌ها
 values-b+fa	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -21679,6 +21746,7 @@ values-b+fa	string	download_done	-	داتلود پایان یافت
 values-b+fa	string	download_episode_range	-	Do you want to download episode %s?
 values-b+fa	string	download_failed	-	دانلود ناموفق بود
 values-b+fa	string	download_format	-	%1$s - %2$s
+values-b+fa	string	download_not_available_here	-	اینجا در دسترس نیست
 values-b+fa	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+fa	string	download_path_pref	-	راه دانلود
 values-b+fa	string	download_paused	-	دانلود متوقف شده
@@ -22614,6 +22682,8 @@ values-b+fil	plurals	downloads_queued	one	%d download queued
 values-b+fil	plurals	downloads_queued	other	%d downloads queued
 values-b+fil	plurals	downloads_titles_status	one	%1$d pamagat · %2$s
 values-b+fil	plurals	downloads_titles_status	other	%1$d pamagat · %2$s
+values-b+fil	plurals	episode_minutes_left	one	%1$d min na lang
+values-b+fil	plurals	episode_minutes_left	other	%1$d min na lang
 values-b+fil	plurals	episodes	one	Episode
 values-b+fil	plurals	episodes	other	Episodes
 values-b+fil	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -22917,6 +22987,7 @@ values-b+fil	string	download_done	-	Natapos ang pag-download
 values-b+fil	string	download_episode_range	-	Do you want to download episode %s?
 values-b+fil	string	download_failed	-	Nabigong ma-download
 values-b+fil	string	download_format	-	%1$s - %2$s
+values-b+fil	string	download_not_available_here	-	Hindi available dito
 values-b+fil	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+fil	string	download_path_pref	-	Download path
 values-b+fil	string	download_paused	-	Hininto ang pag-download
@@ -23860,6 +23931,9 @@ values-b+fr	plurals	downloads_queued	other	%d téléchargements en attente
 values-b+fr	plurals	downloads_titles_status	many	%1$d titres · %2$s
 values-b+fr	plurals	downloads_titles_status	one	%1$d titre · %2$s
 values-b+fr	plurals	downloads_titles_status	other	%1$d titres · %2$s
+values-b+fr	plurals	episode_minutes_left	many	Encore %1$d min
+values-b+fr	plurals	episode_minutes_left	one	Encore %1$d min
+values-b+fr	plurals	episode_minutes_left	other	Encore %1$d min
 values-b+fr	plurals	episodes	one	Épisode
 values-b+fr	plurals	episodes	other	Épisodes
 values-b+fr	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -24179,6 +24253,7 @@ values-b+fr	string	download_done	-	Téléchargement terminé
 values-b+fr	string	download_episode_range	-	Voulez-vous télécharger l'épisode %s ?
 values-b+fr	string	download_failed	-	Échec du téléchargement
 values-b+fr	string	download_format	-	%1$s - %2$s
+values-b+fr	string	download_not_available_here	-	Indisponible ici
 values-b+fr	string	download_parallel_settings_des	-	Combien d'objets différents peuvent être téléchargés en parallèle
 values-b+fr	string	download_path_pref	-	Emplacement de téléchargement
 values-b+fr	string	download_paused	-	Téléchargement en pause
@@ -25114,6 +25189,8 @@ values-b+gl	plurals	downloads_queued	one	%d download queued
 values-b+gl	plurals	downloads_queued	other	%d downloads queued
 values-b+gl	plurals	downloads_titles_status	one	%1$d título · %2$s
 values-b+gl	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+values-b+gl	plurals	episode_minutes_left	one	Quedan %1$d min
+values-b+gl	plurals	episode_minutes_left	other	Quedan %1$d min
 values-b+gl	plurals	episodes	one	Capítulo
 values-b+gl	plurals	episodes	other	Episodes
 values-b+gl	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -25417,6 +25494,7 @@ values-b+gl	string	download_done	-	Descarga rematada
 values-b+gl	string	download_episode_range	-	Do you want to download episode %s?
 values-b+gl	string	download_failed	-	Descarga Fallida
 values-b+gl	string	download_format	-	%1$s - %2$s
+values-b+gl	string	download_not_available_here	-	Non dispoñible aquí
 values-b+gl	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+gl	string	download_path_pref	-	Download path
 values-b+gl	string	download_paused	-	Descarga Pausada
@@ -26352,6 +26430,8 @@ values-b+hi	plurals	downloads_queued	one	%d download queued
 values-b+hi	plurals	downloads_queued	other	%d downloads queued
 values-b+hi	plurals	downloads_titles_status	one	%1$d शीर्षक · %2$s
 values-b+hi	plurals	downloads_titles_status	other	%1$d शीर्षक · %2$s
+values-b+hi	plurals	episode_minutes_left	one	%1$d मिनट बाकी
+values-b+hi	plurals	episode_minutes_left	other	%1$d मिनट बाकी
 values-b+hi	plurals	episodes	one	प्रकरण
 values-b+hi	plurals	episodes	other	Episodes
 values-b+hi	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -26655,6 +26735,7 @@ values-b+hi	string	download_done	-	डाउनलोड मुकम्मल
 values-b+hi	string	download_episode_range	-	Do you want to download episode %s?
 values-b+hi	string	download_failed	-	डाउनलोड विफल
 values-b+hi	string	download_format	-	%1$s - %2$s
+values-b+hi	string	download_not_available_here	-	यहाँ उपलब्ध नहीं
 values-b+hi	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+hi	string	download_path_pref	-	डाउनलोड पथ
 values-b+hi	string	download_paused	-	डाउनलोड रोका गया
@@ -27598,6 +27679,9 @@ values-b+hr	plurals	downloads_queued	other	%d preuzimanja u redu čekanja
 values-b+hr	plurals	downloads_titles_status	few	%1$d naslova · %2$s
 values-b+hr	plurals	downloads_titles_status	one	%1$d naslov · %2$s
 values-b+hr	plurals	downloads_titles_status	other	%1$d naslova · %2$s
+values-b+hr	plurals	episode_minutes_left	few	Još %1$d min
+values-b+hr	plurals	episode_minutes_left	one	Još %1$d min
+values-b+hr	plurals	episode_minutes_left	other	Još %1$d min
 values-b+hr	plurals	episodes	one	Epizoda
 values-b+hr	plurals	episodes	other	Epizoda
 values-b+hr	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -27916,6 +28000,7 @@ values-b+hr	string	download_done	-	Preuzimanje dovršeno
 values-b+hr	string	download_episode_range	-	Želiš li preuzeti epizodu %s?
 values-b+hr	string	download_failed	-	Preuzimanje neuspjelo
 values-b+hr	string	download_format	-	%1$s - %2$s
+values-b+hr	string	download_not_available_here	-	Ovdje nije dostupno
 values-b+hr	string	download_parallel_settings_des	-	Koliko se različitih stavki može istovremeno preuzimati
 values-b+hr	string	download_path_pref	-	Putanja preuzimanja
 values-b+hr	string	download_paused	-	Preuzimanje pauzirano
@@ -28851,6 +28936,8 @@ values-b+hu	plurals	downloads_queued	one	%d download queued
 values-b+hu	plurals	downloads_queued	other	%d downloads queued
 values-b+hu	plurals	downloads_titles_status	one	%1$d cím · %2$s
 values-b+hu	plurals	downloads_titles_status	other	%1$d cím · %2$s
+values-b+hu	plurals	episode_minutes_left	one	Még %1$d perc
+values-b+hu	plurals	episode_minutes_left	other	Még %1$d perc
 values-b+hu	plurals	episodes	one	Epizód
 values-b+hu	plurals	episodes	other	Epizódok
 values-b+hu	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -29154,6 +29241,7 @@ values-b+hu	string	download_done	-	Letöltés kész
 values-b+hu	string	download_episode_range	-	Do you want to download episode %s?
 values-b+hu	string	download_failed	-	Letöltés sikertelen
 values-b+hu	string	download_format	-	%1$s - %2$s
+values-b+hu	string	download_not_available_here	-	Itt nem érhető el
 values-b+hu	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+hu	string	download_path_pref	-	Letöltési útvonal
 values-b+hu	string	download_paused	-	Letöltés szüneteltetve
@@ -30081,6 +30169,7 @@ values-b+in	plurals	downloads_episode_count	other	%d episode
 values-b+in	plurals	downloads_failed_count	other	%d gagal
 values-b+in	plurals	downloads_queued	other	%d unduhan dalam antrean
 values-b+in	plurals	downloads_titles_status	other	%1$d judul · %2$s
+values-b+in	plurals	episode_minutes_left	other	Sisa %1$d mnt
 values-b+in	plurals	episodes	one	Episode
 values-b+in	plurals	episodes	other	Episode
 values-b+in	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -30368,6 +30457,7 @@ values-b+in	string	download_done	-	Unduhan selesai
 values-b+in	string	download_episode_range	-	Apakah kamu ingin mengunduh episode %s?
 values-b+in	string	download_failed	-	Unduhan gagal
 values-b+in	string	download_format	-	%1$s - %2$s
+values-b+in	string	download_not_available_here	-	Tidak tersedia di sini
 values-b+in	string	download_parallel_settings_des	-	Berapa banyak item yang bisa diunduh secara paralel
 values-b+in	string	download_path_pref	-	Lokasi unduhan
 values-b+in	string	download_paused	-	Unduhan dijeda
@@ -31311,6 +31401,9 @@ values-b+it	plurals	downloads_queued	other	%d download in coda
 values-b+it	plurals	downloads_titles_status	many	%1$d titoli · %2$s
 values-b+it	plurals	downloads_titles_status	one	%1$d titolo · %2$s
 values-b+it	plurals	downloads_titles_status	other	%1$d titoli · %2$s
+values-b+it	plurals	episode_minutes_left	many	Mancano %1$d min
+values-b+it	plurals	episode_minutes_left	one	Mancano %1$d min
+values-b+it	plurals	episode_minutes_left	other	Mancano %1$d min
 values-b+it	plurals	episodes	one	Episodio
 values-b+it	plurals	episodes	other	Episodi
 values-b+it	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -31630,6 +31723,7 @@ values-b+it	string	download_done	-	Download completato
 values-b+it	string	download_episode_range	-	Vuoi scaricare l'episodio %s?
 values-b+it	string	download_failed	-	Download fallito
 values-b+it	string	download_format	-	%1$s - %2$s
+values-b+it	string	download_not_available_here	-	Non disponibile qui
 values-b+it	string	download_parallel_settings_des	-	Quanti oggetti possono essere scaricati contemporaneamente
 values-b+it	string	download_path_pref	-	Percorso di download
 values-b+it	string	download_paused	-	Download in pausa
@@ -32571,6 +32665,9 @@ values-b+iw	plurals	downloads_queued	other	%d downloads queued
 values-b+iw	plurals	downloads_titles_status	one	%1$d כותר · %2$s
 values-b+iw	plurals	downloads_titles_status	other	%1$d כותרים · %2$s
 values-b+iw	plurals	downloads_titles_status	two	%1$d כותרים · %2$s
+values-b+iw	plurals	episode_minutes_left	one	נותרו %1$d דק׳
+values-b+iw	plurals	episode_minutes_left	other	נותרו %1$d דק׳
+values-b+iw	plurals	episode_minutes_left	two	נותרו %1$d דק׳
 values-b+iw	plurals	episodes	one	פרק
 values-b+iw	plurals	episodes	other	פרקים
 values-b+iw	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -32889,6 +32986,7 @@ values-b+iw	string	download_done	-	נגן טריילר
 values-b+iw	string	download_episode_range	-	Do you want to download episode %s?
 values-b+iw	string	download_failed	-	ההורדה נכשלה
 values-b+iw	string	download_format	-	%1$s - %2$s
+values-b+iw	string	download_not_available_here	-	לא זמין כאן
 values-b+iw	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+iw	string	download_path_pref	-	נתיב הורדה
 values-b+iw	string	download_paused	-	ההורדה מושהית
@@ -33816,6 +33914,7 @@ values-b+ja	plurals	downloads_episode_count	other	%dエピソード
 values-b+ja	plurals	downloads_failed_count	other	%d 件失敗
 values-b+ja	plurals	downloads_queued	other	%d 件が待機中
 values-b+ja	plurals	downloads_titles_status	other	%1$d作品 · %2$s
+values-b+ja	plurals	episode_minutes_left	other	残り%1$d分
 values-b+ja	plurals	episodes	one	エピソード
 values-b+ja	plurals	episodes	other	エピソード
 values-b+ja	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -34103,6 +34202,7 @@ values-b+ja	string	download_done	-	ダウンロード完了
 values-b+ja	string	download_episode_range	-	エピソード %s をダウンロードしますか？
 values-b+ja	string	download_failed	-	ダウンロード失敗
 values-b+ja	string	download_format	-	%1$s - %2$s
+values-b+ja	string	download_not_available_here	-	ここでは利用できません
 values-b+ja	string	download_parallel_settings_des	-	並行してダウンロードできるアイテム
 values-b+ja	string	download_path_pref	-	ダウンロードパス
 values-b+ja	string	download_paused	-	ダウンロードが一時停止
@@ -35038,6 +35138,8 @@ values-b+kn	plurals	downloads_queued	one	%d download queued
 values-b+kn	plurals	downloads_queued	other	%d downloads queued
 values-b+kn	plurals	downloads_titles_status	one	%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s
 values-b+kn	plurals	downloads_titles_status	other	%1$d ಶೀರ್ಷಿಕೆಗಳು · %2$s
+values-b+kn	plurals	episode_minutes_left	one	%1$d ನಿಮಿಷ ಬಾಕಿ
+values-b+kn	plurals	episode_minutes_left	other	%1$d ನಿಮಿಷ ಬಾಕಿ
 values-b+kn	plurals	episodes	one	Episode
 values-b+kn	plurals	episodes	other	Episodes
 values-b+kn	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -35341,6 +35443,7 @@ values-b+kn	string	download_done	-	ಡೌನ್‌ಲೋಡ್ ಮುಗಿದ�
 values-b+kn	string	download_episode_range	-	Do you want to download episode %s?
 values-b+kn	string	download_failed	-	ಡೌನ್‌ಲೋಡ್ ವಿಫಲವಾಗಿದೆ
 values-b+kn	string	download_format	-	%1$s - %2$s
+values-b+kn	string	download_not_available_here	-	ಇಲ್ಲಿ ಲಭ್ಯವಿಲ್ಲ
 values-b+kn	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+kn	string	download_path_pref	-	Download path
 values-b+kn	string	download_paused	-	ಡೌನ್‌ಲೋಡ್ ವಿರಾಮಗೊಳಿಸಲಾಗಿದೆ
@@ -36268,6 +36371,7 @@ values-b+ko	plurals	downloads_episode_count	other	%d화
 values-b+ko	plurals	downloads_failed_count	other	%d개 실패
 values-b+ko	plurals	downloads_queued	other	%d 다운로드
 values-b+ko	plurals	downloads_titles_status	other	작품 %1$d개 · %2$s
+values-b+ko	plurals	episode_minutes_left	other	%1$d분 남음
 values-b+ko	plurals	episodes	one	에피소드
 values-b+ko	plurals	episodes	other	에피소드
 values-b+ko	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -36556,6 +36660,7 @@ values-b+ko	string	download_done	-	다운로드 완료
 values-b+ko	string	download_episode_range	-	에피소드를 다운로드 하시겠습니까 %s?
 values-b+ko	string	download_failed	-	다운로드 실패
 values-b+ko	string	download_format	-	%1$s - %2$s
+values-b+ko	string	download_not_available_here	-	여기서는 사용할 수 없음
 values-b+ko	string	download_parallel_settings_des	-	병렬로 다운로드 할 수 있는 아이템의 수
 values-b+ko	string	download_path_pref	-	다운로드 경로
 values-b+ko	string	download_paused	-	다운로드 일시정지
@@ -37503,6 +37608,10 @@ values-b+lt	plurals	downloads_titles_status	few	%1$d pavadinimai · %2$s
 values-b+lt	plurals	downloads_titles_status	many	%1$d pavadinimo · %2$s
 values-b+lt	plurals	downloads_titles_status	one	%1$d pavadinimas · %2$s
 values-b+lt	plurals	downloads_titles_status	other	%1$d pavadinimų · %2$s
+values-b+lt	plurals	episode_minutes_left	few	Liko %1$d min
+values-b+lt	plurals	episode_minutes_left	many	Liko %1$d min
+values-b+lt	plurals	episode_minutes_left	one	Liko %1$d min
+values-b+lt	plurals	episode_minutes_left	other	Liko %1$d min
 values-b+lt	plurals	episodes	one	Serija
 values-b+lt	plurals	episodes	other	Serijos
 values-b+lt	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -37836,6 +37945,7 @@ values-b+lt	string	download_done	-	Atsisiuntimas baigtas
 values-b+lt	string	download_episode_range	-	Do you want to download episode %s?
 values-b+lt	string	download_failed	-	Atsisiuntimas nepavyko
 values-b+lt	string	download_format	-	%1$s - %2$s
+values-b+lt	string	download_not_available_here	-	Čia nepasiekiama
 values-b+lt	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+lt	string	download_path_pref	-	Atsiuntimo kelias
 values-b+lt	string	download_paused	-	Siuntimas sustabdytas
@@ -38778,6 +38888,9 @@ values-b+lv	plurals	downloads_queued	other	%d downloads queued
 values-b+lv	plurals	downloads_titles_status	one	%1$d nosaukums · %2$s
 values-b+lv	plurals	downloads_titles_status	other	%1$d nosaukumi · %2$s
 values-b+lv	plurals	downloads_titles_status	zero	%1$d nosaukumu · %2$s
+values-b+lv	plurals	episode_minutes_left	one	Atlikušas %1$d min.
+values-b+lv	plurals	episode_minutes_left	other	Atlikušas %1$d min.
+values-b+lv	plurals	episode_minutes_left	zero	Atlikušas %1$d min.
 values-b+lv	plurals	episodes	one	Epizode
 values-b+lv	plurals	episodes	other	Epizodes
 values-b+lv	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -39096,6 +39209,7 @@ values-b+lv	string	download_done	-	Lejupielāde pabeigta
 values-b+lv	string	download_episode_range	-	Do you want to download episode %s?
 values-b+lv	string	download_failed	-	Lejupielāde neizdevās
 values-b+lv	string	download_format	-	%1$s - %2$s
+values-b+lv	string	download_not_available_here	-	Šeit nav pieejams
 values-b+lv	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+lv	string	download_path_pref	-	Ielādēšanas ceļš
 values-b+lv	string	download_paused	-	Lejupielāde iepauzēta
@@ -40031,6 +40145,8 @@ values-b+mk	plurals	downloads_queued	one	%d преземање во редица
 values-b+mk	plurals	downloads_queued	other	%d преземања во редицата
 values-b+mk	plurals	downloads_titles_status	one	%1$d наслов · %2$s
 values-b+mk	plurals	downloads_titles_status	other	%1$d наслови · %2$s
+values-b+mk	plurals	episode_minutes_left	one	Преостануваат %1$d мин
+values-b+mk	plurals	episode_minutes_left	other	Преостануваат %1$d мин
 values-b+mk	plurals	episodes	one	Епизода
 values-b+mk	plurals	episodes	other	Епизоди
 values-b+mk	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -40334,6 +40450,7 @@ values-b+mk	string	download_done	-	Преземањето е готово
 values-b+mk	string	download_episode_range	-	Дали сакате да ја преземете епизодата %s?
 values-b+mk	string	download_failed	-	Преземањето е неуспешно
 values-b+mk	string	download_format	-	%1$s - %2$s
+values-b+mk	string	download_not_available_here	-	Не е достапно тука
 values-b+mk	string	download_parallel_settings_des	-	Колку различни содржини можат да се симнуваат паралелно
 values-b+mk	string	download_path_pref	-	Патека на преземање
 values-b+mk	string	download_paused	-	Преземањето е паузирано
@@ -41269,6 +41386,8 @@ values-b+ml	plurals	downloads_queued	one	%d download queued
 values-b+ml	plurals	downloads_queued	other	%d downloads queued
 values-b+ml	plurals	downloads_titles_status	one	%1$d ശീർഷകങ്ങൾ · %2$s
 values-b+ml	plurals	downloads_titles_status	other	%1$d ശീർഷകങ്ങൾ · %2$s
+values-b+ml	plurals	episode_minutes_left	one	%1$d മിനിറ്റ് ബാക്കി
+values-b+ml	plurals	episode_minutes_left	other	%1$d മിനിറ്റ് ബാക്കി
 values-b+ml	plurals	episodes	one	എപ്പിസോഡ്
 values-b+ml	plurals	episodes	other	എപ്പിസോഡുകൾ
 values-b+ml	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -41572,6 +41691,7 @@ values-b+ml	string	download_done	-	ഡൌൺലോഡ് പൂർത്തി�
 values-b+ml	string	download_episode_range	-	Do you want to download episode %s?
 values-b+ml	string	download_failed	-	ഡൌൺലോഡ് മുടങ്ങി
 values-b+ml	string	download_format	-	%1$s - %2$s
+values-b+ml	string	download_not_available_here	-	ഇവിടെ ലഭ്യമല്ല
 values-b+ml	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+ml	string	download_path_pref	-	Download path
 values-b+ml	string	download_paused	-	ഡൌൺലോഡ് നിർത്തി
@@ -42501,6 +42621,7 @@ values-b+ms	plurals	downloads_failed_count	other	%d gagal
 values-b+ms	plurals	downloads_queued	one	%d download queued
 values-b+ms	plurals	downloads_queued	other	%d downloads queued
 values-b+ms	plurals	downloads_titles_status	other	%1$d tajuk · %2$s
+values-b+ms	plurals	episode_minutes_left	other	Tinggal %1$d min
 values-b+ms	plurals	episodes	one	Episod
 values-b+ms	plurals	episodes	other	Episodes
 values-b+ms	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -42789,6 +42910,7 @@ values-b+ms	string	download_done	-	Muat turun selesai
 values-b+ms	string	download_episode_range	-	Do you want to download episode %s?
 values-b+ms	string	download_failed	-	Muat turun gagal
 values-b+ms	string	download_format	-	%1$s - %2$s
+values-b+ms	string	download_not_available_here	-	Tidak tersedia di sini
 values-b+ms	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+ms	string	download_path_pref	-	Laluan muat turun
 values-b+ms	string	download_paused	-	Muat turun dihentikan
@@ -43742,6 +43864,11 @@ values-b+mt	plurals	downloads_titles_status	many	%1$d titli · %2$s
 values-b+mt	plurals	downloads_titles_status	one	%1$d titlu · %2$s
 values-b+mt	plurals	downloads_titles_status	other	%1$d titli · %2$s
 values-b+mt	plurals	downloads_titles_status	two	%1$d titli · %2$s
+values-b+mt	plurals	episode_minutes_left	few	Fadal %1$d min
+values-b+mt	plurals	episode_minutes_left	many	Fadal %1$d min
+values-b+mt	plurals	episode_minutes_left	one	Fadal %1$d min
+values-b+mt	plurals	episode_minutes_left	other	Fadal %1$d min
+values-b+mt	plurals	episode_minutes_left	two	Fadal %1$d min
 values-b+mt	plurals	episodes	one	Episode
 values-b+mt	plurals	episodes	other	Episodes
 values-b+mt	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -44090,6 +44217,7 @@ values-b+mt	string	download_done	-	Lest it-tniżżil
 values-b+mt	string	download_episode_range	-	Do you want to download episode %s?
 values-b+mt	string	download_failed	-	Falla t-tniżżil
 values-b+mt	string	download_format	-	%1$s - %2$s
+values-b+mt	string	download_not_available_here	-	Mhux disponibbli hawn
 values-b+mt	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+mt	string	download_path_pref	-	Download path
 values-b+mt	string	download_paused	-	Tniżżila ppawzata
@@ -45019,6 +45147,7 @@ values-b+my	plurals	downloads_failed_count	other	%d ခု မအောင်မ
 values-b+my	plurals	downloads_queued	one	%d download queued
 values-b+my	plurals	downloads_queued	other	%d downloads queued
 values-b+my	plurals	downloads_titles_status	other	ခေါင်းစဉ် %1$d ခု · %2$s
+values-b+my	plurals	episode_minutes_left	other	%1$d မိနစ် ကျန်
 values-b+my	plurals	episodes	one	အပိုင်း
 values-b+my	plurals	episodes	other	အပိုင်းများ
 values-b+my	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -45307,6 +45436,7 @@ values-b+my	string	download_done	-	ဒေါင်းလုဒ်ပြီးစ
 values-b+my	string	download_episode_range	-	Do you want to download episode %s?
 values-b+my	string	download_failed	-	ဒေါင်းလုဒ် မအောင်မြင်
 values-b+my	string	download_format	-	%1$s - %2$s
+values-b+my	string	download_not_available_here	-	ဤနေရာတွင် မရနိုင်ပါ
 values-b+my	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+my	string	download_path_pref	-	ဒေါင်းလုဒ်လမ်းကြောင်း
 values-b+my	string	download_paused	-	ဒေါင်းလုဒ် ရပ်ထား
@@ -46242,6 +46372,8 @@ values-b+ne	plurals	downloads_queued	one	%d download queued
 values-b+ne	plurals	downloads_queued	other	%d downloads queued
 values-b+ne	plurals	downloads_titles_status	one	%1$d शीर्षक · %2$s
 values-b+ne	plurals	downloads_titles_status	other	%1$d शीर्षक · %2$s
+values-b+ne	plurals	episode_minutes_left	one	%1$d मिनेट बाँकी
+values-b+ne	plurals	episode_minutes_left	other	%1$d मिनेट बाँकी
 values-b+ne	plurals	episodes	one	Episode
 values-b+ne	plurals	episodes	other	Episodes
 values-b+ne	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -46545,6 +46677,7 @@ values-b+ne	string	download_done	-	डाउनलोड भयो
 values-b+ne	string	download_episode_range	-	Do you want to download episode %s?
 values-b+ne	string	download_failed	-	डाउनलोड असफल भयो
 values-b+ne	string	download_format	-	%1$s - %2$s
+values-b+ne	string	download_not_available_here	-	यहाँ उपलब्ध छैन
 values-b+ne	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+ne	string	download_path_pref	-	Download path
 values-b+ne	string	download_paused	-	डाउनलोड रोकियो
@@ -47480,6 +47613,8 @@ values-b+nl	plurals	downloads_queued	one	%d download queued
 values-b+nl	plurals	downloads_queued	other	%d downloads queued
 values-b+nl	plurals	downloads_titles_status	one	%1$d titel · %2$s
 values-b+nl	plurals	downloads_titles_status	other	%1$d titels · %2$s
+values-b+nl	plurals	episode_minutes_left	one	Nog %1$d min
+values-b+nl	plurals	episode_minutes_left	other	Nog %1$d min
 values-b+nl	plurals	episodes	one	Aflevering
 values-b+nl	plurals	episodes	other	afleveringen
 values-b+nl	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -47783,6 +47918,7 @@ values-b+nl	string	download_done	-	Download Gereed
 values-b+nl	string	download_episode_range	-	Do you want to download episode %s?
 values-b+nl	string	download_failed	-	Download Mislukt
 values-b+nl	string	download_format	-	%1$s - %2$s
+values-b+nl	string	download_not_available_here	-	Hier niet beschikbaar
 values-b+nl	string	download_parallel_settings_des	-	Hoeveel verschillende items kunnen in parallel gedownload worden
 values-b+nl	string	download_path_pref	-	Downloadpad
 values-b+nl	string	download_paused	-	Downloaden Gepauzeerd
@@ -48718,6 +48854,8 @@ values-b+nn	plurals	downloads_queued	one	%d download queued
 values-b+nn	plurals	downloads_queued	other	%d downloads queued
 values-b+nn	plurals	downloads_titles_status	one	%1$d tittel · %2$s
 values-b+nn	plurals	downloads_titles_status	other	%1$d titlar · %2$s
+values-b+nn	plurals	episode_minutes_left	one	%1$d min att
+values-b+nn	plurals	episode_minutes_left	other	%1$d min att
 values-b+nn	plurals	episodes	one	Episode
 values-b+nn	plurals	episodes	other	Episodar
 values-b+nn	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -49021,6 +49159,7 @@ values-b+nn	string	download_done	-	Nedlasting ferdig
 values-b+nn	string	download_episode_range	-	Do you want to download episode %s?
 values-b+nn	string	download_failed	-	Nedlasting feila
 values-b+nn	string	download_format	-	%1$s - %2$s
+values-b+nn	string	download_not_available_here	-	Ikkje tilgjengeleg her
 values-b+nn	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+nn	string	download_path_pref	-	Download path
 values-b+nn	string	download_paused	-	Nedlasting satt på vent
@@ -49956,6 +50095,8 @@ values-b+no	plurals	downloads_queued	one	%d download queued
 values-b+no	plurals	downloads_queued	other	%d downloads queued
 values-b+no	plurals	downloads_titles_status	one	%1$d tittel · %2$s
 values-b+no	plurals	downloads_titles_status	other	%1$d titler · %2$s
+values-b+no	plurals	episode_minutes_left	one	%1$d min igjen
+values-b+no	plurals	episode_minutes_left	other	%1$d min igjen
 values-b+no	plurals	episodes	one	Episode
 values-b+no	plurals	episodes	other	Episoder
 values-b+no	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -50259,6 +50400,7 @@ values-b+no	string	download_done	-	Last ned Ferdig
 values-b+no	string	download_episode_range	-	Do you want to download episode %s?
 values-b+no	string	download_failed	-	Nedlasting mislyktes
 values-b+no	string	download_format	-	%1$s - %2$s
+values-b+no	string	download_not_available_here	-	Ikke tilgjengelig her
 values-b+no	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+no	string	download_path_pref	-	Nedlastingssti
 values-b+no	string	download_paused	-	Nedlasting stoppet midlertidig
@@ -51194,6 +51336,8 @@ values-b+or	plurals	downloads_queued	one	%d download queued
 values-b+or	plurals	downloads_queued	other	%d downloads queued
 values-b+or	plurals	downloads_titles_status	one	%1$d ଶୀର୍ଷକ · %2$s
 values-b+or	plurals	downloads_titles_status	other	%1$d ଶୀର୍ଷକ · %2$s
+values-b+or	plurals	episode_minutes_left	one	%1$d ମିନିଟ୍ ବାକି
+values-b+or	plurals	episode_minutes_left	other	%1$d ମିନିଟ୍ ବାକି
 values-b+or	plurals	episodes	one	ଅଧ୍ୟାୟ
 values-b+or	plurals	episodes	other	ଟି ଅଧ୍ୟାୟ
 values-b+or	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -51497,6 +51641,7 @@ values-b+or	string	download_done	-	Download Done
 values-b+or	string	download_episode_range	-	Do you want to download episode %s?
 values-b+or	string	download_failed	-	Download Failed
 values-b+or	string	download_format	-	%1$s - %2$s
+values-b+or	string	download_not_available_here	-	ଏଠାରେ ଉପଲବ୍ଧ ନାହିଁ
 values-b+or	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+or	string	download_path_pref	-	Download path
 values-b+or	string	download_paused	-	Download Paused
@@ -52448,6 +52593,10 @@ values-b+pl	plurals	downloads_titles_status	few	%1$d tytuły · %2$s
 values-b+pl	plurals	downloads_titles_status	many	%1$d tytułów · %2$s
 values-b+pl	plurals	downloads_titles_status	one	%1$d tytuł · %2$s
 values-b+pl	plurals	downloads_titles_status	other	%1$d tytułu · %2$s
+values-b+pl	plurals	episode_minutes_left	few	Zostało %1$d min
+values-b+pl	plurals	episode_minutes_left	many	Zostało %1$d min
+values-b+pl	plurals	episode_minutes_left	one	Zostało %1$d min
+values-b+pl	plurals	episode_minutes_left	other	Zostało %1$d min
 values-b+pl	plurals	episodes	one	Odcinek
 values-b+pl	plurals	episodes	other	Odcinki
 values-b+pl	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -52783,6 +52932,7 @@ values-b+pl	string	download_done	-	Zakończono pobieranie
 values-b+pl	string	download_episode_range	-	Czy chcesz pobrać odcinek %s?
 values-b+pl	string	download_failed	-	Błąd przy pobieraniu
 values-b+pl	string	download_format	-	%1$s - %2$s
+values-b+pl	string	download_not_available_here	-	Niedostępne tutaj
 values-b+pl	string	download_parallel_settings_des	-	Ile różnych elementów można pobrać równolegle
 values-b+pl	string	download_path_pref	-	Ścieżka pobierania
 values-b+pl	string	download_paused	-	Wstrzymano pobieranie
@@ -53726,6 +53876,9 @@ values-b+pt	plurals	downloads_queued	other	%d downloads na fila
 values-b+pt	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 values-b+pt	plurals	downloads_titles_status	one	%1$d título · %2$s
 values-b+pt	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+values-b+pt	plurals	episode_minutes_left	many	Faltam %1$d min
+values-b+pt	plurals	episode_minutes_left	one	Faltam %1$d min
+values-b+pt	plurals	episode_minutes_left	other	Faltam %1$d min
 values-b+pt	plurals	episodes	one	Episódio
 values-b+pt	plurals	episodes	other	Episódios
 values-b+pt	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -54045,6 +54198,7 @@ values-b+pt	string	download_done	-	Download concluído
 values-b+pt	string	download_episode_range	-	Deseja baixar o episódio %s?
 values-b+pt	string	download_failed	-	Falha no Download
 values-b+pt	string	download_format	-	%1$s - %2$s
+values-b+pt	string	download_not_available_here	-	Indisponível aqui
 values-b+pt	string	download_parallel_settings_des	-	Quantos itens diferentes podem ser baixados em paralelo
 values-b+pt	string	download_path_pref	-	Caminho de transferência
 values-b+pt	string	download_paused	-	Download Pausado
@@ -54988,6 +55142,9 @@ values-b+pt+BR	plurals	downloads_queued	other	%d downloads na sequência
 values-b+pt+BR	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 values-b+pt+BR	plurals	downloads_titles_status	one	%1$d título · %2$s
 values-b+pt+BR	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+values-b+pt+BR	plurals	episode_minutes_left	many	Faltam %1$d min
+values-b+pt+BR	plurals	episode_minutes_left	one	Faltam %1$d min
+values-b+pt+BR	plurals	episode_minutes_left	other	Faltam %1$d min
 values-b+pt+BR	plurals	episodes	one	Episódio
 values-b+pt+BR	plurals	episodes	other	Episódios
 values-b+pt+BR	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -55307,6 +55464,7 @@ values-b+pt+BR	string	download_done	-	Download concluído
 values-b+pt+BR	string	download_episode_range	-	Você deseja baixar o episódio%s?
 values-b+pt+BR	string	download_failed	-	Download falhou
 values-b+pt+BR	string	download_format	-	%1$s - %2$s
+values-b+pt+BR	string	download_not_available_here	-	Indisponível aqui
 values-b+pt+BR	string	download_parallel_settings_des	-	Quantos itens diferentes podem ser baixados em paralelo
 values-b+pt+BR	string	download_path_pref	-	Onde salvar Downloads
 values-b+pt+BR	string	download_paused	-	Download pausado
@@ -56236,6 +56394,7 @@ values-b+qt	plurals	downloads_failed_count	other	%d oooogg
 values-b+qt	plurals	downloads_queued	one	%d download queued
 values-b+qt	plurals	downloads_queued	other	%d downloads queued
 values-b+qt	plurals	downloads_titles_status	other	%1$d ooh · %2$s
+values-b+qt	plurals	episode_minutes_left	other	%1$d ooh haa ahhh
 values-b+qt	plurals	episodes	one	ahhhaaahhu
 values-b+qt	plurals	episodes	other	ahhh ooooo
 values-b+qt	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -56524,6 +56683,7 @@ values-b+qt	string	download_done	-	aaaghhaaaaa ohouuhhh
 values-b+qt	string	download_episode_range	-	Do you want to download episode %s?
 values-b+qt	string	download_failed	-	aaaghhahhooo-ahahahhha aaaghh
 values-b+qt	string	download_format	-	%1$s - %2$s
+values-b+qt	string	download_not_available_here	-	aah ooh-ooh
 values-b+qt	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+qt	string	download_path_pref	-	aaaahhhg aagg
 values-b+qt	string	download_paused	-	aaahhuooo-ahahhaaa
@@ -57465,6 +57625,9 @@ values-b+ro	plurals	downloads_queued	other	%d downloads queued
 values-b+ro	plurals	downloads_titles_status	few	%1$d titluri · %2$s
 values-b+ro	plurals	downloads_titles_status	one	%1$d titlu · %2$s
 values-b+ro	plurals	downloads_titles_status	other	%1$d de titluri · %2$s
+values-b+ro	plurals	episode_minutes_left	few	Mai sunt %1$d min
+values-b+ro	plurals	episode_minutes_left	one	Mai sunt %1$d min
+values-b+ro	plurals	episode_minutes_left	other	Mai sunt %1$d min
 values-b+ro	plurals	episodes	one	Episodul
 values-b+ro	plurals	episodes	other	Episoade
 values-b+ro	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -57783,6 +57946,7 @@ values-b+ro	string	download_done	-	Descărcare finalizată
 values-b+ro	string	download_episode_range	-	Do you want to download episode %s?
 values-b+ro	string	download_failed	-	Descărcare eșuată
 values-b+ro	string	download_format	-	%1$s - %2$s
+values-b+ro	string	download_not_available_here	-	Indisponibil aici
 values-b+ro	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+ro	string	download_path_pref	-	Locul descărcării
 values-b+ro	string	download_paused	-	Descărcare oprită
@@ -58734,6 +58898,10 @@ values-b+ru	plurals	downloads_titles_status	few	%1$d названия · %2$s
 values-b+ru	plurals	downloads_titles_status	many	%1$d названий · %2$s
 values-b+ru	plurals	downloads_titles_status	one	%1$d название · %2$s
 values-b+ru	plurals	downloads_titles_status	other	%1$d названия · %2$s
+values-b+ru	plurals	episode_minutes_left	few	Осталось %1$d мин
+values-b+ru	plurals	episode_minutes_left	many	Осталось %1$d мин
+values-b+ru	plurals	episode_minutes_left	one	Осталось %1$d мин
+values-b+ru	plurals	episode_minutes_left	other	Осталось %1$d мин
 values-b+ru	plurals	episodes	one	Серия
 values-b+ru	plurals	episodes	other	Серии
 values-b+ru	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -59069,6 +59237,7 @@ values-b+ru	string	download_done	-	Скачивание закончено
 values-b+ru	string	download_episode_range	-	Вы хотите загрузить эпизод %s?
 values-b+ru	string	download_failed	-	Скачивание не удалось
 values-b+ru	string	download_format	-	%1$s - %2$s
+values-b+ru	string	download_not_available_here	-	Здесь недоступно
 values-b+ru	string	download_parallel_settings_des	-	Сколько различных элементов можно загружать параллельно
 values-b+ru	string	download_path_pref	-	Путь скачивания
 values-b+ru	string	download_paused	-	Скачивание остановлено
@@ -60016,6 +60185,10 @@ values-b+sk	plurals	downloads_titles_status	few	%1$d tituly · %2$s
 values-b+sk	plurals	downloads_titles_status	many	%1$d titulu · %2$s
 values-b+sk	plurals	downloads_titles_status	one	%1$d titul · %2$s
 values-b+sk	plurals	downloads_titles_status	other	%1$d titulov · %2$s
+values-b+sk	plurals	episode_minutes_left	few	Zostáva %1$d min
+values-b+sk	plurals	episode_minutes_left	many	Zostáva %1$d min
+values-b+sk	plurals	episode_minutes_left	one	Zostáva %1$d min
+values-b+sk	plurals	episode_minutes_left	other	Zostáva %1$d min
 values-b+sk	plurals	episodes	one	Epizóda
 values-b+sk	plurals	episodes	other	Epizódy
 values-b+sk	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -60349,6 +60522,7 @@ values-b+sk	string	download_done	-	Sťahovanie dokončené
 values-b+sk	string	download_episode_range	-	Do you want to download episode %s?
 values-b+sk	string	download_failed	-	Sťahovanie zlyhalo
 values-b+sk	string	download_format	-	%1$s - %2$s
+values-b+sk	string	download_not_available_here	-	Tu nie je k dispozícii
 values-b+sk	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+sk	string	download_path_pref	-	Cesta sťahovania
 values-b+sk	string	download_paused	-	Sťahovanie pozastavené
@@ -61284,6 +61458,8 @@ values-b+so	plurals	downloads_queued	one	%d download queued
 values-b+so	plurals	downloads_queued	other	%d downloads queued
 values-b+so	plurals	downloads_titles_status	one	%1$d cinwaan · %2$s
 values-b+so	plurals	downloads_titles_status	other	%1$d cinwaan · %2$s
+values-b+so	plurals	episode_minutes_left	one	%1$d daqiiqo ayaa hadhay
+values-b+so	plurals	episode_minutes_left	other	%1$d daqiiqo ayaa hadhay
 values-b+so	plurals	episodes	one	Xalqad
 values-b+so	plurals	episodes	other	Xalqado
 values-b+so	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -61587,6 +61763,7 @@ values-b+so	string	download_done	-	Way dhamaatay dejintu
 values-b+so	string	download_episode_range	-	Do you want to download episode %s?
 values-b+so	string	download_failed	-	Dejintii ma guulaysan
 values-b+so	string	download_format	-	%1$s - %2$s
+values-b+so	string	download_not_available_here	-	Halkan lagama heli karo
 values-b+so	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+so	string	download_path_pref	-	Barta kaydka
 values-b+so	string	download_paused	-	Waad hakisey la degista
@@ -62522,6 +62699,8 @@ values-b+sq	plurals	downloads_queued	one	%d shkarkim në radhë
 values-b+sq	plurals	downloads_queued	other	%d shkarkime në radhë
 values-b+sq	plurals	downloads_titles_status	one	%1$d titull · %2$s
 values-b+sq	plurals	downloads_titles_status	other	%1$d tituj · %2$s
+values-b+sq	plurals	episode_minutes_left	one	Mbeten %1$d min
+values-b+sq	plurals	episode_minutes_left	other	Mbeten %1$d min
 values-b+sq	plurals	episodes	one	Episodi
 values-b+sq	plurals	episodes	other	Episode
 values-b+sq	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -62825,6 +63004,7 @@ values-b+sq	string	download_done	-	Shkarkimi u krye
 values-b+sq	string	download_episode_range	-	Dëshiron të shkarkosh episodin %s?
 values-b+sq	string	download_failed	-	Shkarkimi dështoi
 values-b+sq	string	download_format	-	%1$s - %2$s
+values-b+sq	string	download_not_available_here	-	Nuk ofrohet këtu
 values-b+sq	string	download_parallel_settings_des	-	Sa elementë të ndryshëm mund të shkarkohen njëkohësisht
 values-b+sq	string	download_path_pref	-	Destinacioni i shkarkimit
 values-b+sq	string	download_paused	-	Shkarkimi u ndërpre
@@ -63760,6 +63940,8 @@ values-b+sv	plurals	downloads_queued	one	%d nedladdning i kö
 values-b+sv	plurals	downloads_queued	other	%d nedladdningar i kö
 values-b+sv	plurals	downloads_titles_status	one	%1$d titel · %2$s
 values-b+sv	plurals	downloads_titles_status	other	%1$d titlar · %2$s
+values-b+sv	plurals	episode_minutes_left	one	%1$d min kvar
+values-b+sv	plurals	episode_minutes_left	other	%1$d min kvar
 values-b+sv	plurals	episodes	one	Avsnitt
 values-b+sv	plurals	episodes	other	Avsnitt
 values-b+sv	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -64063,6 +64245,7 @@ values-b+sv	string	download_done	-	Nerladdning färdig
 values-b+sv	string	download_episode_range	-	Vill du ladda ned avsnitt %s?
 values-b+sv	string	download_failed	-	Nerladdning misslyckades
 values-b+sv	string	download_format	-	%1$s - %2$s
+values-b+sv	string	download_not_available_here	-	Inte tillgängligt här
 values-b+sv	string	download_parallel_settings_des	-	Mängden av olika föremål som kan bli nedladdat i parallell
 values-b+sv	string	download_path_pref	-	Nerladdningsplats
 values-b+sv	string	download_paused	-	Nerladdning pausad
@@ -64998,6 +65181,8 @@ values-b+ta	plurals	downloads_queued	one	%d பதிவிறக்கம் �
 values-b+ta	plurals	downloads_queued	other	%d பதிவிறக்கங்கள் வரிசையில் உள்ளன
 values-b+ta	plurals	downloads_titles_status	one	%1$d தலைப்பு · %2$s
 values-b+ta	plurals	downloads_titles_status	other	%1$d தலைப்புகள் · %2$s
+values-b+ta	plurals	episode_minutes_left	one	%1$d நிமி மீதம்
+values-b+ta	plurals	episode_minutes_left	other	%1$d நிமி மீதம்
 values-b+ta	plurals	episodes	one	அத்தியாயம்
 values-b+ta	plurals	episodes	other	அத்தியாயங்கள்
 values-b+ta	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -65301,6 +65486,7 @@ values-b+ta	string	download_done	-	பதிவிறக்கம் முட�
 values-b+ta	string	download_episode_range	-	அத்தியாயம் %s ஐ பதிவிறக்க விரும்புகிறீர்களா?
 values-b+ta	string	download_failed	-	பதிவிறக்கம் தோல்வியடைந்தது
 values-b+ta	string	download_format	-	%1$s - %2$s
+values-b+ta	string	download_not_available_here	-	இங்கே கிடைக்கவில்லை
 values-b+ta	string	download_parallel_settings_des	-	எத்தனை வெவ்வேறு உருப்படிகளை இணையாக பதிவிறக்கம் செய்யலாம்
 values-b+ta	string	download_path_pref	-	பாதை பதிவிறக்க
 values-b+ta	string	download_paused	-	பதிவிறக்கம் இடைநிறுத்தப்பட்டது
@@ -66236,6 +66422,8 @@ values-b+ti	plurals	downloads_queued	one	%d download queued
 values-b+ti	plurals	downloads_queued	other	%d downloads queued
 values-b+ti	plurals	downloads_titles_status	one	%1$d ኣርእስቲ · %2$s
 values-b+ti	plurals	downloads_titles_status	other	%1$d ኣርእስቲ · %2$s
+values-b+ti	plurals	episode_minutes_left	one	%1$d ደቒቕ ተሪፉ
+values-b+ti	plurals	episode_minutes_left	other	%1$d ደቒቕ ተሪፉ
 values-b+ti	plurals	episodes	one	Episode
 values-b+ti	plurals	episodes	other	Episodes
 values-b+ti	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -66539,6 +66727,7 @@ values-b+ti	string	download_done	-	Download Done
 values-b+ti	string	download_episode_range	-	Do you want to download episode %s?
 values-b+ti	string	download_failed	-	Download Failed
 values-b+ti	string	download_format	-	%1$s - %2$s
+values-b+ti	string	download_not_available_here	-	ኣብዚ ኣይርከብን
 values-b+ti	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+ti	string	download_path_pref	-	Download path
 values-b+ti	string	download_paused	-	Download Paused
@@ -67474,6 +67663,8 @@ values-b+tl	plurals	downloads_queued	one	%d download queued
 values-b+tl	plurals	downloads_queued	other	%d downloads queued
 values-b+tl	plurals	downloads_titles_status	one	%1$d pamagat · %2$s
 values-b+tl	plurals	downloads_titles_status	other	%1$d pamagat · %2$s
+values-b+tl	plurals	episode_minutes_left	one	%1$d min na lang
+values-b+tl	plurals	episode_minutes_left	other	%1$d min na lang
 values-b+tl	plurals	episodes	one	Episode
 values-b+tl	plurals	episodes	other	Episodes
 values-b+tl	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -67777,6 +67968,7 @@ values-b+tl	string	download_done	-	Download Done
 values-b+tl	string	download_episode_range	-	Do you want to download episode %s?
 values-b+tl	string	download_failed	-	Download Failed
 values-b+tl	string	download_format	-	%1$s - %2$s
+values-b+tl	string	download_not_available_here	-	Hindi available dito
 values-b+tl	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+tl	string	download_path_pref	-	Download path
 values-b+tl	string	download_paused	-	Download Paused
@@ -68712,6 +68904,8 @@ values-b+tr	plurals	downloads_queued	one	%d indirme kuyrukta
 values-b+tr	plurals	downloads_queued	other	%d indirilecekler kuyruğa alındı
 values-b+tr	plurals	downloads_titles_status	one	%1$d başlık · %2$s
 values-b+tr	plurals	downloads_titles_status	other	%1$d başlık · %2$s
+values-b+tr	plurals	episode_minutes_left	one	%1$d dk kaldı
+values-b+tr	plurals	episode_minutes_left	other	%1$d dk kaldı
 values-b+tr	plurals	episodes	one	Bölüm
 values-b+tr	plurals	episodes	other	Bölüm
 values-b+tr	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -69015,6 +69209,7 @@ values-b+tr	string	download_done	-	İndirme Tamamlandı
 values-b+tr	string	download_episode_range	-	%s numaralı bölümü indirmek istiyor musunuz?
 values-b+tr	string	download_failed	-	İndirme Başarısız
 values-b+tr	string	download_format	-	%1$s - %2$s
+values-b+tr	string	download_not_available_here	-	Burada kullanılamaz
 values-b+tr	string	download_parallel_settings_des	-	Aynı anda kaç farklı öğe indirilebilir
 values-b+tr	string	download_path_pref	-	İndirme konumu
 values-b+tr	string	download_paused	-	İndirme Duraklatıldı
@@ -69966,6 +70161,10 @@ values-b+uk	plurals	downloads_titles_status	few	%1$d назви · %2$s
 values-b+uk	plurals	downloads_titles_status	many	%1$d назв · %2$s
 values-b+uk	plurals	downloads_titles_status	one	%1$d назва · %2$s
 values-b+uk	plurals	downloads_titles_status	other	%1$d назви · %2$s
+values-b+uk	plurals	episode_minutes_left	few	Залишилося %1$d хв
+values-b+uk	plurals	episode_minutes_left	many	Залишилося %1$d хв
+values-b+uk	plurals	episode_minutes_left	one	Залишилося %1$d хв
+values-b+uk	plurals	episode_minutes_left	other	Залишилося %1$d хв
 values-b+uk	plurals	episodes	one	Епізод
 values-b+uk	plurals	episodes	other	Епізоди
 values-b+uk	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -70301,6 +70500,7 @@ values-b+uk	string	download_done	-	Завантаження завершено
 values-b+uk	string	download_episode_range	-	Бажаєте завантажити %s епізод?
 values-b+uk	string	download_failed	-	Не вдалося завантажити
 values-b+uk	string	download_format	-	%1$s - %2$s
+values-b+uk	string	download_not_available_here	-	Тут недоступно
 values-b+uk	string	download_parallel_settings_des	-	Скільки різних елементів можна завантажити паралельно
 values-b+uk	string	download_path_pref	-	Шлях завантаження
 values-b+uk	string	download_paused	-	Завантаження призупинено
@@ -71236,6 +71436,8 @@ values-b+ur	plurals	downloads_queued	one	%d download queued
 values-b+ur	plurals	downloads_queued	other	%d downloads queued
 values-b+ur	plurals	downloads_titles_status	one	%1$d عنوانات · %2$s
 values-b+ur	plurals	downloads_titles_status	other	%1$d عنوانات · %2$s
+values-b+ur	plurals	episode_minutes_left	one	%1$d منٹ باقی
+values-b+ur	plurals	episode_minutes_left	other	%1$d منٹ باقی
 values-b+ur	plurals	episodes	one	قسط
 values-b+ur	plurals	episodes	other	اقساط
 values-b+ur	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -71539,6 +71741,7 @@ values-b+ur	string	download_done	-	ڈاؤن لوڈ ہو گیا
 values-b+ur	string	download_episode_range	-	Do you want to download episode %s?
 values-b+ur	string	download_failed	-	ڈاؤن لوڈ نہیں ہو پا رہا
 values-b+ur	string	download_format	-	%1$s - %2$s
+values-b+ur	string	download_not_available_here	-	یہاں دستیاب نہیں
 values-b+ur	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 values-b+ur	string	download_path_pref	-	ڈاؤنلوڈ کی جگہ
 values-b+ur	string	download_paused	-	ڈاؤن لوڈ موقوف
@@ -72466,6 +72669,7 @@ values-b+vi	plurals	downloads_episode_count	other	%d tập
 values-b+vi	plurals	downloads_failed_count	other	%d thất bại
 values-b+vi	plurals	downloads_queued	other	%d tải xuống đang chờ
 values-b+vi	plurals	downloads_titles_status	other	%1$d tựa · %2$s
+values-b+vi	plurals	episode_minutes_left	other	Còn %1$d phút
 values-b+vi	plurals	episodes	one	Tập
 values-b+vi	plurals	episodes	other	Tập
 values-b+vi	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -72753,6 +72957,7 @@ values-b+vi	string	download_done	-	Tải xuống thành công
 values-b+vi	string	download_episode_range	-	Bạn có muốn tải xuống tập %s không?
 values-b+vi	string	download_failed	-	Tải xuống thất bại
 values-b+vi	string	download_format	-	%1$s - %2$s
+values-b+vi	string	download_not_available_here	-	Không có ở đây
 values-b+vi	string	download_parallel_settings_des	-	Số lượng mục khác nhau có thể tải xuống cùng lúc
 values-b+vi	string	download_path_pref	-	Đường dẫn tải xuống
 values-b+vi	string	download_paused	-	Tải xuống đã tạm dừng
@@ -73680,6 +73885,7 @@ values-b+zh	plurals	downloads_episode_count	other	%d 集
 values-b+zh	plurals	downloads_failed_count	other	%d 个失败
 values-b+zh	plurals	downloads_queued	other	队列中有 %d 个下载
 values-b+zh	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+values-b+zh	plurals	episode_minutes_left	other	剩余 %1$d 分钟
 values-b+zh	plurals	episodes	one	集
 values-b+zh	plurals	episodes	other	集
 values-b+zh	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -73967,6 +74173,7 @@ values-b+zh	string	download_done	-	下载完毕
 values-b+zh	string	download_episode_range	-	要下载第 %s 集吗？
 values-b+zh	string	download_failed	-	下载失败
 values-b+zh	string	download_format	-	%1$s - %2$s
+values-b+zh	string	download_not_available_here	-	此处不可用
 values-b+zh	string	download_parallel_settings_des	-	可同时下载多少项目
 values-b+zh	string	download_path_pref	-	下载路径
 values-b+zh	string	download_paused	-	下载暂停
@@ -74894,6 +75101,7 @@ values-b+zh+TW	plurals	downloads_episode_count	other	%d 集
 values-b+zh+TW	plurals	downloads_failed_count	other	%d 個失敗
 values-b+zh+TW	plurals	downloads_queued	other	佇列中有 %d 個下載
 values-b+zh+TW	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+values-b+zh+TW	plurals	episode_minutes_left	other	剩下 %1$d 分鐘
 values-b+zh+TW	plurals	episodes	one	集
 values-b+zh+TW	plurals	episodes	other	集
 values-b+zh+TW	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -75182,6 +75390,7 @@ values-b+zh+TW	string	download_done	-	下載完畢
 values-b+zh+TW	string	download_episode_range	-	需要下載第 %s 集嗎？
 values-b+zh+TW	string	download_failed	-	下載失敗
 values-b+zh+TW	string	download_format	-	%1$s - %2$s
+values-b+zh+TW	string	download_not_available_here	-	此處無法使用
 values-b+zh+TW	string	download_parallel_settings_des	-	允許同時下載幾個項目
 values-b+zh+TW	string	download_path_pref	-	下載路徑
 values-b+zh+TW	string	download_paused	-	下載暫停
@@ -76117,6 +76326,8 @@ en	plurals	downloads_queued	one	%d download queued
 en	plurals	downloads_queued	other	%d downloads queued
 en	plurals	downloads_titles_status	one	%1$d title · %2$s
 en	plurals	downloads_titles_status	other	%1$d titles · %2$s
+en	plurals	episode_minutes_left	one	%1$d min left
+en	plurals	episode_minutes_left	other	%1$d min left
 en	plurals	episodes	one	Episode
 en	plurals	episodes	other	Episodes
 en	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -76420,6 +76631,7 @@ en	string	download_done	-	Download Done
 en	string	download_episode_range	-	Do you want to download episode %s?
 en	string	download_failed	-	Download Failed
 en	string	download_format	-	%1$s - %2$s
+en	string	download_not_available_here	-	Not available here
 en	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 en	string	download_path_pref	-	Download path
 en	string	download_paused	-	Download Paused
@@ -77355,6 +77567,8 @@ en-US	plurals	downloads_queued	one	%d download queued
 en-US	plurals	downloads_queued	other	%d downloads queued
 en-US	plurals	downloads_titles_status	one	%1$d title · %2$s
 en-US	plurals	downloads_titles_status	other	%1$d titles · %2$s
+en-US	plurals	episode_minutes_left	one	%1$d min left
+en-US	plurals	episode_minutes_left	other	%1$d min left
 en-US	plurals	episodes	one	Episode
 en-US	plurals	episodes	other	Episodes
 en-US	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -77658,6 +77872,7 @@ en-US	string	download_done	-	Download Done
 en-US	string	download_episode_range	-	Do you want to download episode %s?
 en-US	string	download_failed	-	Download Failed
 en-US	string	download_format	-	%1$s - %2$s
+en-US	string	download_not_available_here	-	Not available here
 en-US	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 en-US	string	download_path_pref	-	Download path
 en-US	string	download_paused	-	Download Paused
@@ -78593,6 +78808,8 @@ en-GB	plurals	downloads_queued	one	%d download queued
 en-GB	plurals	downloads_queued	other	%d downloads queued
 en-GB	plurals	downloads_titles_status	one	%1$d title · %2$s
 en-GB	plurals	downloads_titles_status	other	%1$d titles · %2$s
+en-GB	plurals	episode_minutes_left	one	%1$d min left
+en-GB	plurals	episode_minutes_left	other	%1$d min left
 en-GB	plurals	episodes	one	Episode
 en-GB	plurals	episodes	other	Episodes
 en-GB	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -78896,6 +79113,7 @@ en-GB	string	download_done	-	Download Done
 en-GB	string	download_episode_range	-	Do you want to download episode %s?
 en-GB	string	download_failed	-	Download Failed
 en-GB	string	download_format	-	%1$s - %2$s
+en-GB	string	download_not_available_here	-	Not available here
 en-GB	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 en-GB	string	download_path_pref	-	Download path
 en-GB	string	download_paused	-	Download Paused
@@ -79839,6 +80057,9 @@ pt	plurals	downloads_queued	other	%d downloads na fila
 pt	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 pt	plurals	downloads_titles_status	one	%1$d título · %2$s
 pt	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+pt	plurals	episode_minutes_left	many	Faltam %1$d min
+pt	plurals	episode_minutes_left	one	Faltam %1$d min
+pt	plurals	episode_minutes_left	other	Faltam %1$d min
 pt	plurals	episodes	one	Episódio
 pt	plurals	episodes	other	Episódios
 pt	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -80158,6 +80379,7 @@ pt	string	download_done	-	Download concluído
 pt	string	download_episode_range	-	Deseja baixar o episódio %s?
 pt	string	download_failed	-	Falha no Download
 pt	string	download_format	-	%1$s - %2$s
+pt	string	download_not_available_here	-	Indisponível aqui
 pt	string	download_parallel_settings_des	-	Quantos itens diferentes podem ser baixados em paralelo
 pt	string	download_path_pref	-	Caminho de transferência
 pt	string	download_paused	-	Download Pausado
@@ -81101,6 +81323,9 @@ pt-PT	plurals	downloads_queued	other	%d downloads na fila
 pt-PT	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 pt-PT	plurals	downloads_titles_status	one	%1$d título · %2$s
 pt-PT	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+pt-PT	plurals	episode_minutes_left	many	Faltam %1$d min
+pt-PT	plurals	episode_minutes_left	one	Faltam %1$d min
+pt-PT	plurals	episode_minutes_left	other	Faltam %1$d min
 pt-PT	plurals	episodes	one	Episódio
 pt-PT	plurals	episodes	other	Episódios
 pt-PT	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -81420,6 +81645,7 @@ pt-PT	string	download_done	-	Download concluído
 pt-PT	string	download_episode_range	-	Deseja baixar o episódio %s?
 pt-PT	string	download_failed	-	Falha no Download
 pt-PT	string	download_format	-	%1$s - %2$s
+pt-PT	string	download_not_available_here	-	Indisponível aqui
 pt-PT	string	download_parallel_settings_des	-	Quantos itens diferentes podem ser baixados em paralelo
 pt-PT	string	download_path_pref	-	Caminho de transferência
 pt-PT	string	download_paused	-	Download Pausado
@@ -82363,6 +82589,9 @@ pt-BR	plurals	downloads_queued	other	%d downloads na sequência
 pt-BR	plurals	downloads_titles_status	many	%1$d títulos · %2$s
 pt-BR	plurals	downloads_titles_status	one	%1$d título · %2$s
 pt-BR	plurals	downloads_titles_status	other	%1$d títulos · %2$s
+pt-BR	plurals	episode_minutes_left	many	Faltam %1$d min
+pt-BR	plurals	episode_minutes_left	one	Faltam %1$d min
+pt-BR	plurals	episode_minutes_left	other	Faltam %1$d min
 pt-BR	plurals	episodes	one	Episódio
 pt-BR	plurals	episodes	other	Episódios
 pt-BR	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -82682,6 +82911,7 @@ pt-BR	string	download_done	-	Download concluído
 pt-BR	string	download_episode_range	-	Você deseja baixar o episódio%s?
 pt-BR	string	download_failed	-	Download falhou
 pt-BR	string	download_format	-	%1$s - %2$s
+pt-BR	string	download_not_available_here	-	Indisponível aqui
 pt-BR	string	download_parallel_settings_des	-	Quantos itens diferentes podem ser baixados em paralelo
 pt-BR	string	download_path_pref	-	Onde salvar Downloads
 pt-BR	string	download_paused	-	Download pausado
@@ -83617,6 +83847,8 @@ fil	plurals	downloads_queued	one	%d download queued
 fil	plurals	downloads_queued	other	%d downloads queued
 fil	plurals	downloads_titles_status	one	%1$d pamagat · %2$s
 fil	plurals	downloads_titles_status	other	%1$d pamagat · %2$s
+fil	plurals	episode_minutes_left	one	%1$d min na lang
+fil	plurals	episode_minutes_left	other	%1$d min na lang
 fil	plurals	episodes	one	Episode
 fil	plurals	episodes	other	Episodes
 fil	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -83920,6 +84152,7 @@ fil	string	download_done	-	Natapos ang pag-download
 fil	string	download_episode_range	-	Do you want to download episode %s?
 fil	string	download_failed	-	Nabigong ma-download
 fil	string	download_format	-	%1$s - %2$s
+fil	string	download_not_available_here	-	Hindi available dito
 fil	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 fil	string	download_path_pref	-	Download path
 fil	string	download_paused	-	Hininto ang pag-download
@@ -84855,6 +85088,8 @@ tl	plurals	downloads_queued	one	%d download queued
 tl	plurals	downloads_queued	other	%d downloads queued
 tl	plurals	downloads_titles_status	one	%1$d pamagat · %2$s
 tl	plurals	downloads_titles_status	other	%1$d pamagat · %2$s
+tl	plurals	episode_minutes_left	one	%1$d min na lang
+tl	plurals	episode_minutes_left	other	%1$d min na lang
 tl	plurals	episodes	one	Episode
 tl	plurals	episodes	other	Episodes
 tl	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -85158,6 +85393,7 @@ tl	string	download_done	-	Download Done
 tl	string	download_episode_range	-	Do you want to download episode %s?
 tl	string	download_failed	-	Download Failed
 tl	string	download_format	-	%1$s - %2$s
+tl	string	download_not_available_here	-	Hindi available dito
 tl	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 tl	string	download_path_pref	-	Download path
 tl	string	download_paused	-	Download Paused
@@ -86093,6 +86329,8 @@ fil-PH	plurals	downloads_queued	one	%d download queued
 fil-PH	plurals	downloads_queued	other	%d downloads queued
 fil-PH	plurals	downloads_titles_status	one	%1$d pamagat · %2$s
 fil-PH	plurals	downloads_titles_status	other	%1$d pamagat · %2$s
+fil-PH	plurals	episode_minutes_left	one	%1$d min na lang
+fil-PH	plurals	episode_minutes_left	other	%1$d min na lang
 fil-PH	plurals	episodes	one	Episode
 fil-PH	plurals	episodes	other	Episodes
 fil-PH	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -86396,6 +86634,7 @@ fil-PH	string	download_done	-	Natapos ang pag-download
 fil-PH	string	download_episode_range	-	Do you want to download episode %s?
 fil-PH	string	download_failed	-	Nabigong ma-download
 fil-PH	string	download_format	-	%1$s - %2$s
+fil-PH	string	download_not_available_here	-	Hindi available dito
 fil-PH	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 fil-PH	string	download_path_pref	-	Download path
 fil-PH	string	download_paused	-	Hininto ang pag-download
@@ -87323,6 +87562,7 @@ zh	plurals	downloads_episode_count	other	%d 集
 zh	plurals	downloads_failed_count	other	%d 个失败
 zh	plurals	downloads_queued	other	队列中有 %d 个下载
 zh	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh	plurals	episode_minutes_left	other	剩余 %1$d 分钟
 zh	plurals	episodes	one	集
 zh	plurals	episodes	other	集
 zh	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -87610,6 +87850,7 @@ zh	string	download_done	-	下载完毕
 zh	string	download_episode_range	-	要下载第 %s 集吗？
 zh	string	download_failed	-	下载失败
 zh	string	download_format	-	%1$s - %2$s
+zh	string	download_not_available_here	-	此处不可用
 zh	string	download_parallel_settings_des	-	可同时下载多少项目
 zh	string	download_path_pref	-	下载路径
 zh	string	download_paused	-	下载暂停
@@ -88537,6 +88778,7 @@ zh-CN	plurals	downloads_episode_count	other	%d 集
 zh-CN	plurals	downloads_failed_count	other	%d 个失败
 zh-CN	plurals	downloads_queued	other	队列中有 %d 个下载
 zh-CN	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-CN	plurals	episode_minutes_left	other	剩余 %1$d 分钟
 zh-CN	plurals	episodes	one	集
 zh-CN	plurals	episodes	other	集
 zh-CN	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -88824,6 +89066,7 @@ zh-CN	string	download_done	-	下载完毕
 zh-CN	string	download_episode_range	-	要下载第 %s 集吗？
 zh-CN	string	download_failed	-	下载失败
 zh-CN	string	download_format	-	%1$s - %2$s
+zh-CN	string	download_not_available_here	-	此处不可用
 zh-CN	string	download_parallel_settings_des	-	可同时下载多少项目
 zh-CN	string	download_path_pref	-	下载路径
 zh-CN	string	download_paused	-	下载暂停
@@ -89751,6 +89994,7 @@ zh-Hans-CN	plurals	downloads_episode_count	other	%d 集
 zh-Hans-CN	plurals	downloads_failed_count	other	%d 个失败
 zh-Hans-CN	plurals	downloads_queued	other	队列中有 %d 个下载
 zh-Hans-CN	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-Hans-CN	plurals	episode_minutes_left	other	剩余 %1$d 分钟
 zh-Hans-CN	plurals	episodes	one	集
 zh-Hans-CN	plurals	episodes	other	集
 zh-Hans-CN	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -90038,6 +90282,7 @@ zh-Hans-CN	string	download_done	-	下载完毕
 zh-Hans-CN	string	download_episode_range	-	要下载第 %s 集吗？
 zh-Hans-CN	string	download_failed	-	下载失败
 zh-Hans-CN	string	download_format	-	%1$s - %2$s
+zh-Hans-CN	string	download_not_available_here	-	此处不可用
 zh-Hans-CN	string	download_parallel_settings_des	-	可同时下载多少项目
 zh-Hans-CN	string	download_path_pref	-	下载路径
 zh-Hans-CN	string	download_paused	-	下载暂停
@@ -90965,6 +91210,7 @@ zh-TW	plurals	downloads_episode_count	other	%d 集
 zh-TW	plurals	downloads_failed_count	other	%d 個失敗
 zh-TW	plurals	downloads_queued	other	佇列中有 %d 個下載
 zh-TW	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-TW	plurals	episode_minutes_left	other	剩下 %1$d 分鐘
 zh-TW	plurals	episodes	one	集
 zh-TW	plurals	episodes	other	集
 zh-TW	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -91253,6 +91499,7 @@ zh-TW	string	download_done	-	下載完畢
 zh-TW	string	download_episode_range	-	需要下載第 %s 集嗎？
 zh-TW	string	download_failed	-	下載失敗
 zh-TW	string	download_format	-	%1$s - %2$s
+zh-TW	string	download_not_available_here	-	此處無法使用
 zh-TW	string	download_parallel_settings_des	-	允許同時下載幾個項目
 zh-TW	string	download_path_pref	-	下載路徑
 zh-TW	string	download_paused	-	下載暫停
@@ -92180,6 +92427,7 @@ zh-Hant-TW	plurals	downloads_episode_count	other	%d 集
 zh-Hant-TW	plurals	downloads_failed_count	other	%d 個失敗
 zh-Hant-TW	plurals	downloads_queued	other	佇列中有 %d 個下載
 zh-Hant-TW	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-Hant-TW	plurals	episode_minutes_left	other	剩下 %1$d 分鐘
 zh-Hant-TW	plurals	episodes	one	集
 zh-Hant-TW	plurals	episodes	other	集
 zh-Hant-TW	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -92468,6 +92716,7 @@ zh-Hant-TW	string	download_done	-	下載完畢
 zh-Hant-TW	string	download_episode_range	-	需要下載第 %s 集嗎？
 zh-Hant-TW	string	download_failed	-	下載失敗
 zh-Hant-TW	string	download_format	-	%1$s - %2$s
+zh-Hant-TW	string	download_not_available_here	-	此處無法使用
 zh-Hant-TW	string	download_parallel_settings_des	-	允許同時下載幾個項目
 zh-Hant-TW	string	download_path_pref	-	下載路徑
 zh-Hant-TW	string	download_paused	-	下載暫停
@@ -93395,6 +93644,7 @@ zh-HK	plurals	downloads_episode_count	other	%d 集
 zh-HK	plurals	downloads_failed_count	other	%d 個失敗
 zh-HK	plurals	downloads_queued	other	佇列中有 %d 個下載
 zh-HK	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-HK	plurals	episode_minutes_left	other	剩下 %1$d 分鐘
 zh-HK	plurals	episodes	one	集
 zh-HK	plurals	episodes	other	集
 zh-HK	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -93683,6 +93933,7 @@ zh-HK	string	download_done	-	下載完畢
 zh-HK	string	download_episode_range	-	需要下載第 %s 集嗎？
 zh-HK	string	download_failed	-	下載失敗
 zh-HK	string	download_format	-	%1$s - %2$s
+zh-HK	string	download_not_available_here	-	此處無法使用
 zh-HK	string	download_parallel_settings_des	-	允許同時下載幾個項目
 zh-HK	string	download_path_pref	-	下載路徑
 zh-HK	string	download_paused	-	下載暫停
@@ -94610,6 +94861,7 @@ zh-Hant-HK	plurals	downloads_episode_count	other	%d 集
 zh-Hant-HK	plurals	downloads_failed_count	other	%d 個失敗
 zh-Hant-HK	plurals	downloads_queued	other	佇列中有 %d 個下載
 zh-Hant-HK	plurals	downloads_titles_status	other	%1$d 部作品 · %2$s
+zh-Hant-HK	plurals	episode_minutes_left	other	剩下 %1$d 分鐘
 zh-Hant-HK	plurals	episodes	one	集
 zh-Hant-HK	plurals	episodes	other	集
 zh-Hant-HK	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -94898,6 +95150,7 @@ zh-Hant-HK	string	download_done	-	下載完畢
 zh-Hant-HK	string	download_episode_range	-	需要下載第 %s 集嗎？
 zh-Hant-HK	string	download_failed	-	下載失敗
 zh-Hant-HK	string	download_format	-	%1$s - %2$s
+zh-Hant-HK	string	download_not_available_here	-	此處無法使用
 zh-Hant-HK	string	download_parallel_settings_des	-	允許同時下載幾個項目
 zh-Hant-HK	string	download_path_pref	-	下載路徑
 zh-Hant-HK	string	download_paused	-	下載暫停
@@ -95833,6 +96086,8 @@ no	plurals	downloads_queued	one	%d download queued
 no	plurals	downloads_queued	other	%d downloads queued
 no	plurals	downloads_titles_status	one	%1$d tittel · %2$s
 no	plurals	downloads_titles_status	other	%1$d titler · %2$s
+no	plurals	episode_minutes_left	one	%1$d min igjen
+no	plurals	episode_minutes_left	other	%1$d min igjen
 no	plurals	episodes	one	Episode
 no	plurals	episodes	other	Episoder
 no	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -96136,6 +96391,7 @@ no	string	download_done	-	Last ned Ferdig
 no	string	download_episode_range	-	Do you want to download episode %s?
 no	string	download_failed	-	Nedlasting mislyktes
 no	string	download_format	-	%1$s - %2$s
+no	string	download_not_available_here	-	Ikke tilgjengelig her
 no	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 no	string	download_path_pref	-	Nedlastingssti
 no	string	download_paused	-	Nedlasting stoppet midlertidig
@@ -97071,6 +97327,8 @@ nb	plurals	downloads_queued	one	%d download queued
 nb	plurals	downloads_queued	other	%d downloads queued
 nb	plurals	downloads_titles_status	one	%1$d title · %2$s
 nb	plurals	downloads_titles_status	other	%1$d titles · %2$s
+nb	plurals	episode_minutes_left	one	%1$d min left
+nb	plurals	episode_minutes_left	other	%1$d min left
 nb	plurals	episodes	one	Episode
 nb	plurals	episodes	other	Episodes
 nb	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -97374,6 +97632,7 @@ nb	string	download_done	-	Download Done
 nb	string	download_episode_range	-	Do you want to download episode %s?
 nb	string	download_failed	-	Download Failed
 nb	string	download_format	-	%1$s - %2$s
+nb	string	download_not_available_here	-	Not available here
 nb	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 nb	string	download_path_pref	-	Download path
 nb	string	download_paused	-	Download Paused
@@ -98309,6 +98568,8 @@ nb-NO	plurals	downloads_queued	one	%d download queued
 nb-NO	plurals	downloads_queued	other	%d downloads queued
 nb-NO	plurals	downloads_titles_status	one	%1$d title · %2$s
 nb-NO	plurals	downloads_titles_status	other	%1$d titles · %2$s
+nb-NO	plurals	episode_minutes_left	one	%1$d min left
+nb-NO	plurals	episode_minutes_left	other	%1$d min left
 nb-NO	plurals	episodes	one	Episode
 nb-NO	plurals	episodes	other	Episodes
 nb-NO	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -98612,6 +98873,7 @@ nb-NO	string	download_done	-	Download Done
 nb-NO	string	download_episode_range	-	Do you want to download episode %s?
 nb-NO	string	download_failed	-	Download Failed
 nb-NO	string	download_format	-	%1$s - %2$s
+nb-NO	string	download_not_available_here	-	Not available here
 nb-NO	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 nb-NO	string	download_path_pref	-	Download path
 nb-NO	string	download_paused	-	Download Paused
@@ -99553,6 +99815,9 @@ iw	plurals	downloads_queued	other	%d downloads queued
 iw	plurals	downloads_titles_status	one	%1$d כותר · %2$s
 iw	plurals	downloads_titles_status	other	%1$d כותרים · %2$s
 iw	plurals	downloads_titles_status	two	%1$d כותרים · %2$s
+iw	plurals	episode_minutes_left	one	נותרו %1$d דק׳
+iw	plurals	episode_minutes_left	other	נותרו %1$d דק׳
+iw	plurals	episode_minutes_left	two	נותרו %1$d דק׳
 iw	plurals	episodes	one	פרק
 iw	plurals	episodes	other	פרקים
 iw	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -99871,6 +100136,7 @@ iw	string	download_done	-	נגן טריילר
 iw	string	download_episode_range	-	Do you want to download episode %s?
 iw	string	download_failed	-	ההורדה נכשלה
 iw	string	download_format	-	%1$s - %2$s
+iw	string	download_not_available_here	-	לא זמין כאן
 iw	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 iw	string	download_path_pref	-	נתיב הורדה
 iw	string	download_paused	-	ההורדה מושהית
@@ -100812,6 +101078,9 @@ he	plurals	downloads_queued	other	%d downloads queued
 he	plurals	downloads_titles_status	one	%1$d כותר · %2$s
 he	plurals	downloads_titles_status	other	%1$d כותרים · %2$s
 he	plurals	downloads_titles_status	two	%1$d כותרים · %2$s
+he	plurals	episode_minutes_left	one	נותרו %1$d דק׳
+he	plurals	episode_minutes_left	other	נותרו %1$d דק׳
+he	plurals	episode_minutes_left	two	נותרו %1$d דק׳
 he	plurals	episodes	one	פרק
 he	plurals	episodes	other	פרקים
 he	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -101130,6 +101399,7 @@ he	string	download_done	-	נגן טריילר
 he	string	download_episode_range	-	Do you want to download episode %s?
 he	string	download_failed	-	ההורדה נכשלה
 he	string	download_format	-	%1$s - %2$s
+he	string	download_not_available_here	-	לא זמין כאן
 he	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 he	string	download_path_pref	-	נתיב הורדה
 he	string	download_paused	-	ההורדה מושהית
@@ -102071,6 +102341,9 @@ he-IL	plurals	downloads_queued	other	%d downloads queued
 he-IL	plurals	downloads_titles_status	one	%1$d כותר · %2$s
 he-IL	plurals	downloads_titles_status	other	%1$d כותרים · %2$s
 he-IL	plurals	downloads_titles_status	two	%1$d כותרים · %2$s
+he-IL	plurals	episode_minutes_left	one	נותרו %1$d דק׳
+he-IL	plurals	episode_minutes_left	other	נותרו %1$d דק׳
+he-IL	plurals	episode_minutes_left	two	נותרו %1$d דק׳
 he-IL	plurals	episodes	one	פרק
 he-IL	plurals	episodes	other	פרקים
 he-IL	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -102389,6 +102662,7 @@ he-IL	string	download_done	-	נגן טריילר
 he-IL	string	download_episode_range	-	Do you want to download episode %s?
 he-IL	string	download_failed	-	ההורדה נכשלה
 he-IL	string	download_format	-	%1$s - %2$s
+he-IL	string	download_not_available_here	-	לא זמין כאן
 he-IL	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 he-IL	string	download_path_pref	-	נתיב הורדה
 he-IL	string	download_paused	-	ההורדה מושהית
@@ -103316,6 +103590,7 @@ in	plurals	downloads_episode_count	other	%d episode
 in	plurals	downloads_failed_count	other	%d gagal
 in	plurals	downloads_queued	other	%d unduhan dalam antrean
 in	plurals	downloads_titles_status	other	%1$d judul · %2$s
+in	plurals	episode_minutes_left	other	Sisa %1$d mnt
 in	plurals	episodes	one	Episode
 in	plurals	episodes	other	Episode
 in	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -103603,6 +103878,7 @@ in	string	download_done	-	Unduhan selesai
 in	string	download_episode_range	-	Apakah kamu ingin mengunduh episode %s?
 in	string	download_failed	-	Unduhan gagal
 in	string	download_format	-	%1$s - %2$s
+in	string	download_not_available_here	-	Tidak tersedia di sini
 in	string	download_parallel_settings_des	-	Berapa banyak item yang bisa diunduh secara paralel
 in	string	download_path_pref	-	Lokasi unduhan
 in	string	download_paused	-	Unduhan dijeda
@@ -104530,6 +104806,7 @@ id	plurals	downloads_episode_count	other	%d episode
 id	plurals	downloads_failed_count	other	%d gagal
 id	plurals	downloads_queued	other	%d unduhan dalam antrean
 id	plurals	downloads_titles_status	other	%1$d judul · %2$s
+id	plurals	episode_minutes_left	other	Sisa %1$d mnt
 id	plurals	episodes	one	Episode
 id	plurals	episodes	other	Episode
 id	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -104817,6 +105094,7 @@ id	string	download_done	-	Unduhan selesai
 id	string	download_episode_range	-	Apakah kamu ingin mengunduh episode %s?
 id	string	download_failed	-	Unduhan gagal
 id	string	download_format	-	%1$s - %2$s
+id	string	download_not_available_here	-	Tidak tersedia di sini
 id	string	download_parallel_settings_des	-	Berapa banyak item yang bisa diunduh secara paralel
 id	string	download_path_pref	-	Lokasi unduhan
 id	string	download_paused	-	Unduhan dijeda
@@ -105744,6 +106022,7 @@ id-ID	plurals	downloads_episode_count	other	%d episode
 id-ID	plurals	downloads_failed_count	other	%d gagal
 id-ID	plurals	downloads_queued	other	%d unduhan dalam antrean
 id-ID	plurals	downloads_titles_status	other	%1$d judul · %2$s
+id-ID	plurals	episode_minutes_left	other	Sisa %1$d mnt
 id-ID	plurals	episodes	one	Episode
 id-ID	plurals	episodes	other	Episode
 id-ID	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -106031,6 +106310,7 @@ id-ID	string	download_done	-	Unduhan selesai
 id-ID	string	download_episode_range	-	Apakah kamu ingin mengunduh episode %s?
 id-ID	string	download_failed	-	Unduhan gagal
 id-ID	string	download_format	-	%1$s - %2$s
+id-ID	string	download_not_available_here	-	Tidak tersedia di sini
 id-ID	string	download_parallel_settings_des	-	Berapa banyak item yang bisa diunduh secara paralel
 id-ID	string	download_path_pref	-	Lokasi unduhan
 id-ID	string	download_paused	-	Unduhan dijeda
@@ -106966,6 +107246,8 @@ arz	plurals	downloads_queued	one	%d download queued
 arz	plurals	downloads_queued	other	%d downloads queued
 arz	plurals	downloads_titles_status	one	%1$d title · %2$s
 arz	plurals	downloads_titles_status	other	%1$d titles · %2$s
+arz	plurals	episode_minutes_left	one	%1$d min left
+arz	plurals	episode_minutes_left	other	%1$d min left
 arz	plurals	episodes	one	Episode
 arz	plurals	episodes	other	Episodes
 arz	plurals	ext_repo_header	one	%1$d extension · %2$d installed · updated %3$s
@@ -107269,6 +107551,7 @@ arz	string	download_done	-	Download Done
 arz	string	download_episode_range	-	Do you want to download episode %s?
 arz	string	download_failed	-	Download Failed
 arz	string	download_format	-	%1$s - %2$s
+arz	string	download_not_available_here	-	Not available here
 arz	string	download_parallel_settings_des	-	How many different items that can be downloaded in parallel
 arz	string	download_path_pref	-	Download path
 arz	string	download_paused	-	Download Paused

@@ -1,11 +1,14 @@
 package com.lagradost.cloudstream4.detail
 
 import com.lagradost.cloudstream4.feature.detail.DetailEpisode
+import com.lagradost.cloudstream4.feature.detail.DetailResume
 import com.lagradost.cloudstream4.feature.detail.DetailSeason
 import com.lagradost.cloudstream4.feature.detail.DetailSource
 import com.lagradost.cloudstream4.feature.detail.DetailWatchStatus
+import com.lagradost.cloudstream4.feature.detail.EpisodeWatchReadout
 import com.lagradost.cloudstream4.feature.detail.StreamLink
 import com.lagradost.cloudstream4.feature.detail.TitleDetail
+import com.lagradost.cloudstream4.feature.detail.watchReadout
 import com.lagradost.cloudstream4.feature.library.LibraryBucket
 import com.lagradost.cloudstream4.feature.library.LibraryTitle
 import com.lagradost.cloudstream4.feature.library.LibraryTitleId
@@ -66,6 +69,48 @@ class LibraryDetailSourceTest {
         assertEquals(episodes[1], shown?.episode)
     }
 
+    /**
+     * `KMP-63`: each row reads its own position, matched by its data. A finished one is kept, because that is what
+     * reads watched; a handle the provider no longer lists is no row's, and the title's own position is no row's.
+     */
+    @Test
+    fun `each episode row carries its own position, finished ones included`() = runBlocking {
+        val store = InMemoryLibraryStore(
+            positions = listOf(
+                position("s1e1", 2_390_000L, watchedAt = 1L),
+                position("s1e2", 600_000L, watchedAt = 3L),
+                position("gone", 600_000L, watchedAt = 9L),
+                position(null, 600_000L, watchedAt = 10L),
+            ),
+        )
+        val rows = LibraryDetailSource(Plugins(show), store).details(id).episodes
+        assertEquals(episodes.map { it.data }, rows.map { it.data })
+        assertEquals(DetailResume("s1e2", 600_000L, 2_400_000L, episode = null), rows[1].progress)
+        assertEquals(
+            listOf(EpisodeWatchReadout.Watched, EpisodeWatchReadout.Left(30), EpisodeWatchReadout.None, EpisodeWatchReadout.None),
+            rows.map { it.watchReadout() },
+        )
+        assertEquals(listOf(false, false, false, false), rows.map { it.markedWatched })
+    }
+
+    /** One position per episode is what the store keeps; should a file hold two, the newer is the row's. */
+    @Test
+    fun `two positions for one episode give the row the newer`() = runBlocking {
+        val store = InMemoryLibraryStore(
+            positions = listOf(position("s1e1", 900_000L, watchedAt = 5L), position("s1e1", 300_000L, watchedAt = 2L)),
+        )
+        assertEquals(900_000L, LibraryDetailSource(Plugins(show), store).details(id).episodes[0].progress?.positionMs)
+    }
+
+    /** A provider source that already said where a row is keeps its word. */
+    @Test
+    fun `a row the base source filled keeps its progress`() = runBlocking {
+        val own = DetailResume("s1e1", 60_000L, 2_400_000L, episode = null)
+        val filled = show.copy(episodes = listOf(episodes[0].copy(progress = own)) + episodes.drop(1))
+        val store = InMemoryLibraryStore(positions = listOf(position("s1e1", 900_000L, watchedAt = 5L)))
+        assertEquals(own, LibraryDetailSource(Plugins(filled), store).details(id).episodes[0].progress)
+    }
+
     @Test
     fun `a film resumes on its own data`() = runBlocking {
         val film = show.copy(playData = "film", episodes = emptyList())
@@ -123,5 +168,7 @@ class LibraryDetailSourceTest {
         assertEquals("Show", detail.title)
         assertNull(detail.resume)
         assertEquals(DetailWatchStatus.None, detail.watchStatus)
+        // And the rows say nothing about progress, rather than something wrong (`KMP-63`).
+        assertEquals(episodes, detail.episodes)
     }
 }

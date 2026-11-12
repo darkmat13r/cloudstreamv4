@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">"%d 个失败"</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">"队列中有 %d 个下载"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">"%1$d 部作品 · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">"剩余 %1$d 分钟"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="other">"%d 个书签"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="other">"%d 个分区加载失败"</item></plurals>
 <plurals name="home_source_sections"><item quantity="other">"%d 个版块"</item></plurals>
@@ -276,6 +277,7 @@
 <string name="download_done">"下载完毕"</string>
 <string name="download_episode_range" formatted="true">"要下载第 %s 集吗？"</string>
 <string name="download_failed">"下载失败"</string>
+<string name="download_not_available_here">"此处不可用"</string>
 <string name="download_parallel_settings_des">"可同时下载多少项目"</string>
 <string name="download_path_pref">"下载路径"</string>
 <string name="download_paused">"下载暂停"</string>

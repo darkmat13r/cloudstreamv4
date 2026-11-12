@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d bölüm"</item><item quantity="other">"%d bölüm"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d uğursuz"</item><item quantity="other">"%d uğursuz"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d başlıq · %2$s"</item><item quantity="other">"%1$d başlıq · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d dəq qalıb"</item><item quantity="other">"%1$d dəq qalıb"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ƏLFƏCİN"</item><item quantity="other">"%d ƏLFƏCİN"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d bölmə yüklənmədi"</item><item quantity="other">"%d bölmə yüklənmədi"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d bölmə"</item><item quantity="other">"%d bölmə"</item></plurals>
@@ -135,6 +136,7 @@
 <string name="download_canceled">"Yükləmə ləğv edildi"</string>
 <string name="download_done">"Yükləmə bitdi"</string>
 <string name="download_failed">"Yükləmə uğursuz oldu"</string>
+<string name="download_not_available_here">"Burada mövcud deyil"</string>
 <string name="download_paused">"Yükləmə dayandırıldı"</string>
 <string name="download_started">"Yükləmə başladıldı"</string>
 <string name="downloaded">"Yükləndi"</string>

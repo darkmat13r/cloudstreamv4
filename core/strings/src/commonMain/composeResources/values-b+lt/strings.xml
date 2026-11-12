@@ -68,12 +68,14 @@
 <string name="account_use_pin">Verčiau naudoti PIN</string>
 <string name="detail_load_failed_body">Šaltinis gali būti nepasiekiamas.</string>
 <string name="detail_load_failed_headline">Nepavyko atidaryti šio pavadinimo</string>
+<string name="download_not_available_here">Čia nepasiekiama</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d siunčiama</item><item quantity="few">%d siunčiama</item><item quantity="many">%d siunčiama</item><item quantity="other">%d siunčiama</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d eilėje</item><item quantity="few">%d eilėje</item><item quantity="many">%d eilėje</item><item quantity="other">%d eilėje</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">Ištrinti %d atsisiuntimą?</item><item quantity="few">Ištrinti %d atsisiuntimus?</item><item quantity="many">Ištrinti %d atsisiuntimo?</item><item quantity="other">Ištrinti %d atsisiuntimų?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d serija</item><item quantity="few">%d serijos</item><item quantity="many">%d serijos</item><item quantity="other">%d serijų</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d nepavyko</item><item quantity="few">%d nepavyko</item><item quantity="many">%d nepavyko</item><item quantity="other">%d nepavyko</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d pavadinimas · %2$s</item><item quantity="few">%1$d pavadinimai · %2$s</item><item quantity="many">%1$d pavadinimo · %2$s</item><item quantity="other">%1$d pavadinimų · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Liko %1$d min</item><item quantity="few">Liko %1$d min</item><item quantity="many">Liko %1$d min</item><item quantity="other">Liko %1$d min</item></plurals>
 <string name="episode_time_left">Liko %1$d min</string>
 <string name="episode_watched">Peržiūrėta</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ŽYMA</item><item quantity="few">%d ŽYMOS</item><item quantity="many">%d ŽYMOS</item><item quantity="other">%d ŽYMŲ</item></plurals>

@@ -68,6 +68,7 @@
 <string name="account_use_pin">Dùng mã PIN</string>
 <string name="detail_load_failed_body">Nguồn có thể không khả dụng.</string>
 <string name="detail_load_failed_headline">Không thể mở tựa này</string>
+<string name="download_not_available_here">Không có ở đây</string>
 <plurals name="downloads_active"><item quantity="other">%d đang tải xuống</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="other">%d đang tải xuống</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d đang chờ</item></plurals>
@@ -76,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="other">%d thất bại</item></plurals>
 <plurals name="downloads_queued"><item quantity="other">%d tải xuống đang chờ</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d tựa · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">Còn %1$d phút</item></plurals>
 <string name="episode_time_left">Còn %1$d phút</string>
 <string name="episode_watched">Đã xem</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d MỤC</item></plurals>

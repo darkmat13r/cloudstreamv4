@@ -68,6 +68,7 @@
 <string name="account_use_pin">Використати PIN-код</string>
 <string name="detail_load_failed_body">Джерело може бути недоступним.</string>
 <string name="detail_load_failed_headline">Не вдалося відкрити цю назву</string>
+<string name="download_not_available_here">Тут недоступно</string>
 <plurals name="downloads_active"><item quantity="one">%d активне завантаження</item><item quantity="few">%d активні завантаження</item><item quantity="many">%d активних завантажень</item><item quantity="other">%d активних завантажень</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">завантажується: %d</item><item quantity="few">завантажується: %d</item><item quantity="many">завантажується: %d</item><item quantity="other">завантажується: %d</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">у черзі: %d</item><item quantity="few">у черзі: %d</item><item quantity="many">у черзі: %d</item><item quantity="other">у черзі: %d</item></plurals>
@@ -76,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d невдале</item><item quantity="few">%d невдалі</item><item quantity="many">%d невдалих</item><item quantity="other">%d невдалих</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d завантаження в черзі</item><item quantity="few">%d завантаження в черзі</item><item quantity="many">%d завантажень у черзі</item><item quantity="other">%d завантажень у черзі</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d назва · %2$s</item><item quantity="few">%1$d назви · %2$s</item><item quantity="many">%1$d назв · %2$s</item><item quantity="other">%1$d назви · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Залишилося %1$d хв</item><item quantity="few">Залишилося %1$d хв</item><item quantity="many">Залишилося %1$d хв</item><item quantity="other">Залишилося %1$d хв</item></plurals>
 <string name="episode_time_left">Залишилося %1$d хв</string>
 <string name="episode_watched">Переглянуто</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ЗАКЛАДКА</item><item quantity="few">%d ЗАКЛАДКИ</item><item quantity="many">%d ЗАКЛАДОК</item><item quantity="other">%d ЗАКЛАДКИ</item></plurals>

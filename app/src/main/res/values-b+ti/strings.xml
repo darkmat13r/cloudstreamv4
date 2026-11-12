@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d ክፍልታት"</item><item quantity="other">"%d ክፍልታት"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d ኣይተዓወተን"</item><item quantity="other">"%d ኣይተዓወቱን"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d ኣርእስቲ · %2$s"</item><item quantity="other">"%1$d ኣርእስቲ · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"%1$d ደቒቕ ተሪፉ"</item><item quantity="other">"%1$d ደቒቕ ተሪፉ"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ምልክታት"</item><item quantity="other">"%d ምልክታት"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"%d ክፍሊ ክጽዓን ኣይከኣለን"</item><item quantity="other">"%d ክፍሊ ክጽዓን ኣይከኣለን"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d ክፋል"</item><item quantity="other">"%d ክፋላት"</item></plurals>
@@ -98,6 +99,7 @@
 <string name="detail_sources_done" formatted="true">"ካብ %2$d %1$d መሊሶም"</string>
 <string name="detail_sources_progress" formatted="true">"ካብ %2$d %1$d መሊሶም · ይጽዕን ኣሎ…"</string>
 <string name="detail_start_over">"ካብ መጀመርታ ጀምር"</string>
+<string name="download_not_available_here">"ኣብዚ ኣይርከብን"</string>
 <string name="downloads_browse_library">"ቤተ-መጻሕፍቲ ድለ"</string>
 <string name="downloads_cancel_confirm_body" formatted="true">"እዚ ክሳብ ሕጂ ዝወረደ %s ይድርብዮ።"</string>
 <string name="downloads_cancel_confirm_title">"እዚ ውርዲ ይሰረዝ?"</string>

@@ -120,6 +120,56 @@ appears for all 87 requests, 2,349 cells. `report.txt` moved only in its counts:
 keys 789 -> 816, and 27 more values in each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and
 `ANDROID_FALLBACK` at 172.** `expectedOwn` 33,005 -> 34,679.
 
+## Thirty-seventh move, 2026-11-11 — `BUG-91`, 1 new plural for the minutes left on an episode row
+
+**The ordinal is set when this rides a train**, regenerated from the live generator on that train's master with its
+other moves. The counts below are against master `b723bf154` with `#364`, `#365` and `#367` on it, so after `I18N-27`.
+
+Additive: `episode_minutes_left`, a `<plurals>`, in all 62 directories (`OWN` grows by 62). Each directory has the forms
+its other plurals have, and each form holds that directory's `episode_time_left` text, unchanged (the PM's ruling: the
+shape now, the words at a native review). `episode_time_left` stays, unread (`defects.md`'s retired keys).
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 58,110 | 58,260 | 150 | 0 | 0 |
+| `emitted.tsv` | 60,825 | 60,979 | 154 | 0 | 0 |
+| `lookup.tsv` | 108,276 | 108,472 | 196 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+`decoded.tsv` holds a row per plural form, which is why it grows by 150 for 62 keys. Measured twice, by whole-line set
+difference with `sort | comm` and with a Python multiset that also checked order: no line lost, every earlier line still
+there in the same order, and every added line names the new key. `report.txt` moved only in its counts: `OWN` 56,034 ->
+56,096, visible keys 1,207 -> 1,208, plurals 32 -> 33, and 1 more value in each of the two locale copies.
+**`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn` 56,034 -> 56,096.
+`app/src/main/res`: 62 lines added, 0 removed; `app/api/classes-jar.api` gains `R$plurals.episode_minutes_left` and
+nothing else.
+
+## Thirty-sixth move, 2026-11-11 — `I18N-27`, 1 new key for a refused episode download (`KMP-109`)
+
+**The ordinal is set when this rides a train.** It is regenerated from the live generator on that train's master, with
+the train's other moves, and the heading gets its number then. The counts below are against master `b723bf154`
+(Train 20), with `#364` and `#365` on it, neither of which moves a string.
+
+New keys are approved in general (`I18N-09`). Additive: `download_not_available_here` ("Not available here"), no plural,
+in all 62 directories (`OWN` grows by 62). Each directory's text is its own `account_sync_unavailable`, the same words:
+the key is the download refusal's own, so an edit to the sync line cannot change it (the PM's ruling).
+
+| file | before | after | added | changed | lost |
+|---|---|---|---|---|---|
+| `decoded.tsv` | 58,048 | 58,110 | 62 | 0 | 0 |
+| `emitted.tsv` | 60,761 | 60,825 | 64 | 0 | 0 |
+| `lookup.tsv` | 108,189 | 108,276 | 87 | 0 | 0 |
+| `requests.tsv` | 87 | 87 | 0 | 0 | 0 |
+| `findings.tsv` | 0 | 0 | 0 | 0 | 0 |
+
+Measured twice, by whole-line set difference with `sort | comm` and with a Python multiset that also checked order: no
+line lost, every earlier line still there in the same order, and every added line names the new key. `report.txt` moved
+only in its counts: `OWN` 55,972 -> 56,034, visible keys 1,206 -> 1,207, plurals unchanged at 32, and 1 more value in
+each of the two locale copies. **`REFERENCE_IN_LOCALE` stayed at 500 and `ANDROID_FALLBACK` at 173.** `expectedOwn`
+55,972 -> 56,034. `app/src/main/res`: 62 lines added, 0 removed; `app/api/classes-jar.api` gains the one `R.string`
+field and nothing else.
+
 ## Thirty-fifth move, 2026-11-10 — `I18N-25`, 2 new keys for an episode row's watch state (`KMP-63`)
 
 New keys are approved in general (`I18N-09`). Additive: `episode_watched` ("Watched") and `episode_time_left` ("%1$d min

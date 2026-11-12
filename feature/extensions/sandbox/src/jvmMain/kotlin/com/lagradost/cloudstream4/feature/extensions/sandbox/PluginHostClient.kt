@@ -6,6 +6,7 @@ import java.io.File
 import java.io.IOException
 import java.io.InputStream
 import java.io.OutputStream
+import java.net.InetAddress
 import java.net.URI
 import java.util.concurrent.ConcurrentHashMap
 import java.util.concurrent.TimeUnit
@@ -50,10 +51,9 @@ class HostLauncher internal constructor(
         lowered: Boolean = false,
         input: ProcessBuilder.Redirect? = null,
         mediaGatewayPort: Int? = null,
-        denyCertificateServices: Boolean = false,
     ): Process {
         val profile =
-            profile(readOnlyInputs, writable, network, extraRules, gate, mediaGatewayPort, denyCertificateServices)
+            profile(readOnlyInputs, writable, network, extraRules, gate, mediaGatewayPort)
         val sandboxed = listOf(SeatbeltProfile.SANDBOX_EXEC, "-p", profile, executable.path) + prefixArguments + arguments
         // The same process all the way down, through `exec`, so what this returns is the JVM. A shell because a
         // limit needs one, and outside the sandbox, because the sandbox would not let it run.
@@ -77,24 +77,21 @@ class HostLauncher internal constructor(
         extraRules: List<String>,
         gate: OutboundGate?,
         mediaGatewayPort: Int?,
-        denyCertificateServices: Boolean,
     ): String = SeatbeltProfile.render(
         executable, readable, readOnlyInputs, writable, network, extraRules,
         gatewayPort = gate?.port ?: mediaGatewayPort,
         resolver = mediaGatewayPort == null,
-        denyCertificateServices = denyCertificateServices,
     )
 
-    /** The policy [startMediaHost] gives its host, for a test (`KMP-113`). */
-    internal fun mediaHostProfile(vlcApp: File, writable: File, silent: Boolean, gatewayPort: Int?): String =
+    /** The policy [startMediaHost] gives its host, for a test (`KMP-113`). [nativeLibraries] as [JnaDispatch.prepare] makes it. */
+    internal fun mediaHostProfile(vlcApp: File, writable: File, silent: Boolean, gatewayPort: Int?, nativeLibraries: File): String =
         profile(
-            readOnlyInputs = emptyList(),
+            readOnlyInputs = listOf(File(nativeLibraries, JnaDispatch.LIBRARY)),
             writable = writable,
             network = gatewayPort != null,
-            extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, writable, audio = !silent, tls = false),
+            extraRules = SeatbeltProfile.mediaHostRules(vlcApp.canonicalFile, nativeLibraries, audio = !silent),
             gate = null,
             mediaGatewayPort = gatewayPort,
-            denyCertificateServices = true,
         )
 
     /**
@@ -108,29 +105,37 @@ class HostLauncher internal constructor(
      * @param gatewayPort the media gateway's port (`KMP-113`): the host may then connect to that port on loopback and
      *   nowhere else, and may not use the resolver. Bound before this is called. Null for a host that plays a file,
      *   which then has no network at all. Neither asks the system's certificate services.
+     * @param nativeLibraries where JNA's native part is kept for the host ([JnaDispatch.prepare]): a directory no host
+     *   can write, outside [writable], the one place besides the VLC bundle the host may map as code (`BUG-96`, A-9).
      */
     fun startMediaHost(
         vlcApp: File,
         writable: File,
+        nativeLibraries: File,
         silent: Boolean = false,
         input: ProcessBuilder.Redirect? = null,
         gatewayPort: Int? = null,
     ): Process {
         val app = vlcApp.canonicalFile
+        // Null only where this process has no JNA (the sandbox module's own tests): the host then has none to map, and
+        // `jna.nounpack` still keeps it from unpacking one into [writable].
+        // One canonical directory for the host's read rule, its map rule and JNA's boot path alike.
+        val dispatch = JnaDispatch.prepare(nativeLibraries)?.canonicalFile
         return start(
             arguments = emptyList(),
-            readOnlyInputs = emptyList(),
+            readOnlyInputs = listOfNotNull(dispatch?.let { File(it, JnaDispatch.LIBRARY) }),
             writable = writable,
             // A host behind its gateway reaches that port and nothing else. A host that plays a file reaches nothing:
             // it has its descriptor, and a crafted file that took over its demuxer would find no network (KMP-113).
             network = gatewayPort != null,
-            extraRules = SeatbeltProfile.mediaHostRules(app, writable, audio = !silent, tls = false),
-            jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} " +
-                "-Djna.tmpdir=${writable.path}" + (if (silent) " -D$SILENT_PROPERTY=true" else "") +
+            extraRules = SeatbeltProfile.mediaHostRules(app, dispatch, audio = !silent),
+            // JNA loads its native part from [dispatch] and never unpacks one into [writable] (`BUG-96`, A-9).
+            jvmOptions = "$JVM_OPTIONS -Djava.awt.headless=true -Djava.io.tmpdir=${writable.path} -Djna.nounpack=true" +
+                dispatch?.let { " -Djna.boot.library.path=${it.path}" }.orEmpty() +
+                (if (silent) " -D$SILENT_PROPERTY=true" else "") +
                 if (input != null) " -D$FILE_PROPERTY=true" else "",
             input = input,
             mediaGatewayPort = gatewayPort,
-            denyCertificateServices = true,
         )
     }
 
@@ -562,7 +567,6 @@ class PluginHostClient internal constructor(
                     readOnlyInputs = listOf(cs3),
                     writable = outputDir,
                     network = false,
-                    denyCertificateServices = true,
                 )
                 process.outputStream.close()
                 val errors = HostStderr()
@@ -621,9 +625,74 @@ internal fun String?.httpsUrlOrNull(): String? = httpUrlOrNull()?.takeIf { url -
     parsed.scheme.equals("https", ignoreCase = true) && parsed.rawUserInfo == null
 }
 
-/** The host as written: a lowercased name or IP literal with no brackets or trailing dot. */
+/**
+ * The host as written: a lowercased name or IP literal with no brackets or trailing dot.
+ *
+ * `BUG-105`: a host written as an address is judged as the address it is, by [SandboxPolicy.isPublicAddress], the
+ * predicate the Mac's clients connect by: `::ffff:127.0.0.1`, `::127.0.0.1`, `2130706433`, `0x7f000001` and `0177.0.0.1`
+ * are all loopback, and the pattern below knows none of them. Nothing is looked up. A host that is written as an address
+ * but is not one any parser agrees on is refused.
+ */
 internal fun isPrivateHostName(host: String): Boolean =
-    host == "localhost" || host.endsWith(".localhost") || host.endsWith(".local") || PRIVATE_ADDRESS.matches(host)
+    host == "localhost" || host.endsWith(".localhost") || host.endsWith(".local") || PRIVATE_ADDRESS.matches(host) ||
+        when (val literal = literalAddress(host)) {
+            Literal.NotOne -> false
+            Literal.Unreadable -> true
+            is Literal.Address -> !SandboxPolicy.isPublicAddress(literal.address)
+        }
+
+/** What [literalAddress] made of a host. */
+private sealed interface Literal {
+    /** A name, to be looked up and checked when it is. */
+    data object NotOne : Literal
+
+    /** Written as an address, but not one: refused rather than guessed at. */
+    data object Unreadable : Literal
+
+    data class Address(val address: InetAddress) : Literal
+}
+
+/**
+ * [host] as an address, if it is written as one, read the way the resolvers the app hands it to read it, and with no
+ * lookup:
+ * - with a colon, IPv6, read in brackets, which Java reads only as a literal and never looks up;
+ * - parts of digits or `0x` hex, joined by dots, IPv4 as `inet_aton` reads it: one to four parts, each decimal, octal
+ *   with a leading `0`, or hex with `0x`, the last filling what is left of the 32 bits.
+ * Anything else (`cafe.be`, `0x7f.example`) is a name.
+ */
+private fun literalAddress(host: String): Literal {
+    if (':' in host) {
+        return runCatching { InetAddress.getByName("[$host]") }.getOrNull()?.let(Literal::Address) ?: Literal.Unreadable
+    }
+    val parts = host.split('.')
+    if (parts.isEmpty() || parts.size > IPV4_PARTS || parts.any { !IPV4_PART.matches(it) }) return Literal.NotOne
+    val values = parts.map { part -> ipv4PartValue(part) ?: return Literal.Unreadable }
+    val last = values.last()
+    val lastBits = Byte.SIZE_BITS * (IPV4_PARTS - (values.size - 1))
+    if (values.dropLast(1).any { it > BYTE_MAX } || last >= (1L shl lastBits)) return Literal.Unreadable
+    val number = values.dropLast(1).fold(0L) { acc, part -> (acc shl Byte.SIZE_BITS) or part }
+        .shl(lastBits) or last
+    val bytes = ByteArray(IPV4_PARTS) { index -> (number shr (Byte.SIZE_BITS * (IPV4_PARTS - 1 - index))).toByte() }
+    return Literal.Address(InetAddress.getByAddress(bytes))
+}
+
+/** One part: hex after `0x`, octal after a leading `0`, else decimal. Null when it is none of those, or too large. */
+private fun ipv4PartValue(part: String): Long? = when {
+    part.startsWith("0x") -> part.drop(2).ifEmpty { "0" }.takeIf { it.length <= MAX_PART_DIGITS }?.toLongOrNull(HEX)
+    part.length > 1 && part.startsWith("0") -> part.drop(1).takeIf { it.length <= MAX_PART_DIGITS }?.toLongOrNull(OCTAL)
+    else -> part.takeIf { it.length <= MAX_PART_DIGITS }?.toLongOrNull()
+}
+
+private const val IPV4_PARTS = 4
+private const val BYTE_MAX = 0xFFL
+private const val HEX = 16
+private const val OCTAL = 8
+
+/** More than a 32-bit part in any base needs, and few enough that a part never overflows a `Long`. */
+private const val MAX_PART_DIGITS = 12
+
+/** A part of an IPv4 literal as written: digits, or `0x` and hex digits. Lowercased already. */
+private val IPV4_PART = Regex("[0-9]+|0x[0-9a-f]*")
 
 /** Loopback, RFC 1918, link-local, the unspecified address, and their IPv6 forms. */
 private val PRIVATE_ADDRESS = Regex(

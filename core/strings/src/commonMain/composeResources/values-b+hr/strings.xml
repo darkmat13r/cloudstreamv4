@@ -68,6 +68,7 @@
 <string name="account_use_pin">Koristi PIN</string>
 <string name="detail_load_failed_body">Izvor možda nije dostupan.</string>
 <string name="detail_load_failed_headline">Naslov se nije mogao otvoriti</string>
+<string name="download_not_available_here">Ovdje nije dostupno</string>
 <plurals name="downloads_active"><item quantity="one">%d aktivno preuzimanje</item><item quantity="few">%d aktivna preuzimanja</item><item quantity="other">%d aktivnih preuzimanja</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d se preuzima</item><item quantity="few">%d se preuzima</item><item quantity="other">%d se preuzima</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d u redu</item><item quantity="few">%d u redu</item><item quantity="other">%d u redu</item></plurals>
@@ -76,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d neuspjelo</item><item quantity="few">%d neuspjela</item><item quantity="other">%d neuspjelih</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d preuzimanje u redu čekanja</item><item quantity="few">%d preuzimanja u redu čekanja</item><item quantity="other">%d preuzimanja u redu čekanja</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d naslov · %2$s</item><item quantity="few">%1$d naslova · %2$s</item><item quantity="other">%1$d naslova · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">Još %1$d min</item><item quantity="few">Još %1$d min</item><item quantity="other">Još %1$d min</item></plurals>
 <string name="episode_time_left">Još %1$d min</string>
 <string name="episode_watched">Pogledano</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d OZNAKA</item><item quantity="few">%d OZNAKE</item><item quantity="other">%d OZNAKA</item></plurals>

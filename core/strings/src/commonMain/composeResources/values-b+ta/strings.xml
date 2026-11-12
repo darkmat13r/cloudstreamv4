@@ -68,6 +68,7 @@
 <string name="account_use_pin">பதிலாக முள்ளைப் பயன்படுத்து</string>
 <string name="detail_load_failed_body">மூலம் கிடைக்காமல் இருக்கலாம்.</string>
 <string name="detail_load_failed_headline">இந்தத் தலைப்பைத் திறக்க முடியவில்லை</string>
+<string name="download_not_available_here">இங்கே கிடைக்கவில்லை</string>
 <plurals name="downloads_active"><item quantity="one">%d செயலில் பதிவிறக்கம்</item><item quantity="other">%d செயலில் உள்ள பதிவிறக்கங்கள்</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d பதிவிறக்கப்படுகிறது</item><item quantity="other">%d பதிவிறக்கப்படுகிறது</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d வரிசையில்</item><item quantity="other">%d வரிசையில்</item></plurals>
@@ -76,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d தோல்வி</item><item quantity="other">%d தோல்வி</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d பதிவிறக்கம் வரிசையில் உள்ளது</item><item quantity="other">%d பதிவிறக்கங்கள் வரிசையில் உள்ளன</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d தலைப்பு · %2$s</item><item quantity="other">%1$d தலைப்புகள் · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d நிமி மீதம்</item><item quantity="other">%1$d நிமி மீதம்</item></plurals>
 <string name="episode_time_left">%1$d நிமி மீதம்</string>
 <string name="episode_watched">பார்த்தது</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d புக்மார்க்</item><item quantity="other">%d புக்மார்க்குகள்</item></plurals>

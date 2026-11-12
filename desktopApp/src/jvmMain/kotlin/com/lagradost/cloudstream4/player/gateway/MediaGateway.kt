@@ -1,6 +1,7 @@
 package com.lagradost.cloudstream4.player.gateway
 
 import com.lagradost.cloudstream4.feature.extensions.sandbox.SandboxPolicy
+import com.lagradost.cloudstream4.net.AddressCheckedSocketFactory
 import java.io.BufferedInputStream
 import java.io.Closeable
 import java.io.IOException
@@ -121,6 +122,9 @@ class MediaGateway private constructor(
 
     private val client: OkHttpClient = OkHttpClient.Builder()
         .proxy(Proxy.NO_PROXY)
+        // BUG-105: each destination is checked before connecting, an IP literal included, which the DNS filter
+        // never sees. The filter and the interceptor stay, behind it.
+        .socketFactory(AddressCheckedSocketFactory(allow) { Refused() })
         .dns(
             object : Dns {
                 override fun lookup(hostname: String): List<InetAddress> =

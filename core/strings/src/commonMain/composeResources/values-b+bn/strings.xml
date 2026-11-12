@@ -68,12 +68,14 @@
 <string name="account_use_pin">এর বদলে পিন ব্যবহার করুন</string>
 <string name="detail_load_failed_body">সোর্সটি হয়তো পাওয়া যাচ্ছে না।</string>
 <string name="detail_load_failed_headline">এই শিরোনামটি খোলা যায়নি</string>
+<string name="download_not_available_here">এখানে উপলব্ধ নয়</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%dটি ডাউনলোড হচ্ছে</item><item quantity="other">%dটি ডাউনলোড হচ্ছে</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%dটি সারিতে</item><item quantity="other">%dটি সারিতে</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%dটি ডাউনলোড মুছবেন?</item><item quantity="other">%dটি ডাউনলোড মুছবেন?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%dটি পর্ব</item><item quantity="other">%dটি পর্ব</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%dটি ব্যর্থ</item><item quantity="other">%dটি ব্যর্থ</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$dটি শিরোনাম · %2$s</item><item quantity="other">%1$dটি শিরোনাম · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d মিনিট বাকি</item><item quantity="other">%1$d মিনিট বাকি</item></plurals>
 <string name="episode_time_left">%1$d মিনিট বাকি</string>
 <string name="episode_watched">দেখা হয়েছে</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d টি বুকমার্ক</item><item quantity="other">%d টি বুকমার্ক</item></plurals>

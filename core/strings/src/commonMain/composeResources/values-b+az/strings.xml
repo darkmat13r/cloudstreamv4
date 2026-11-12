@@ -68,12 +68,14 @@
 <string name="account_use_pin">Əvəzinə PIN istifadə et</string>
 <string name="detail_load_failed_body">Mənbə əlçatmaz ola bilər.</string>
 <string name="detail_load_failed_headline">Bu başlıq açıla bilmədi</string>
+<string name="download_not_available_here">Burada mövcud deyil</string>
 <plurals name="downloads_count_downloading"><item quantity="one">%d endirilir</item><item quantity="other">%d endirilir</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d növbədə</item><item quantity="other">%d növbədə</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="one">%d endirmə silinsin?</item><item quantity="other">%d endirmə silinsin?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="one">%d bölüm</item><item quantity="other">%d bölüm</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">%d uğursuz</item><item quantity="other">%d uğursuz</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d başlıq · %2$s</item><item quantity="other">%1$d başlıq · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d dəq qalıb</item><item quantity="other">%1$d dəq qalıb</item></plurals>
 <string name="episode_time_left">%1$d dəq qalıb</string>
 <string name="episode_watched">Baxılıb</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d ƏLFƏCİN</item><item quantity="other">%d ƏLFƏCİN</item></plurals>

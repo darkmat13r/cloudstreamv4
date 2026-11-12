@@ -68,12 +68,14 @@
 <string name="account_use_pin">oog aah ooh</string>
 <string name="detail_load_failed_body">uhaauauau ahuuouaha oooohhaaaghh.</string>
 <string name="detail_load_failed_headline">ahooo uuhh ahhhaauugghh oouuh</string>
+<string name="download_not_available_here">aah ooh-ooh</string>
 <plurals name="downloads_count_downloading"><item quantity="other">%d ouuhhuhooh</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="other">%d uuuugg</item></plurals>
 <plurals name="downloads_delete_confirm_title"><item quantity="other">oooooah %d ouuhhuhooh?</item></plurals>
 <plurals name="downloads_episode_count"><item quantity="other">%d ooh</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="other">%d oooogg</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="other">%1$d ooh · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="other">%1$d ooh haa ahhh</item></plurals>
 <string name="episode_time_left">%1$d ooh haa ahhh</string>
 <string name="episode_watched">oouuh aaahhu</string>
 <plurals name="home_bookmarks_count"><item quantity="other">%d OOUUH OOH</item></plurals>

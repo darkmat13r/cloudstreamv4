@@ -68,6 +68,7 @@
 <string name="account_use_pin">Bunun yerine PIN kullan</string>
 <string name="detail_load_failed_body">Kaynak kullanılamıyor olabilir.</string>
 <string name="detail_load_failed_headline">Bu başlık açılamadı</string>
+<string name="download_not_available_here">Burada kullanılamaz</string>
 <plurals name="downloads_active"><item quantity="one">%d aktif indirme</item><item quantity="other">%d aktif indirmeler</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d indiriliyor</item><item quantity="other">%d indiriliyor</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d sırada</item><item quantity="other">%d sırada</item></plurals>
@@ -76,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d başarısız</item><item quantity="other">%d başarısız</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d indirme kuyrukta</item><item quantity="other">%d indirilecekler kuyruğa alındı</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d başlık · %2$s</item><item quantity="other">%1$d başlık · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d dk kaldı</item><item quantity="other">%1$d dk kaldı</item></plurals>
 <string name="episode_time_left">%1$d dk kaldı</string>
 <string name="episode_watched">İzlendi</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d YER İMİ</item><item quantity="other">%d YER İMİ</item></plurals>

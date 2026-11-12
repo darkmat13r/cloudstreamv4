@@ -9,6 +9,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">"فشل %d"</item><item quantity="other">"فشلوا %d"</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">"مافي شي بعد بده يبلش يتنزل"</item><item quantity="other">"فيه شي واحد بعد بده يبلش يتنزل"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d عنوان · %2$s"</item><item quantity="other">"%1$d عناوين · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"باقي %1$d دقيقة"</item><item quantity="other">"باقي %1$d دقيقة"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d إشارة مرجعية"</item><item quantity="other">"%d إشارات مرجعية"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"م قدرنا نفتح %d قسم"</item><item quantity="other">"م قدرنا نفتح %d أقسام"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d قسم"</item><item quantity="other">"%d أقسام"</item></plurals>
@@ -275,6 +276,7 @@
 <string name="download_done">"خُلِص التنزيل"</string>
 <string name="download_episode_range" formatted="true">"بدك تنزل الحلقة %s؟"</string>
 <string name="download_failed">"فِشِل التنزيل"</string>
+<string name="download_not_available_here">"مش متوفر هون"</string>
 <string name="download_parallel_settings_des">"كم شغلة مختلفة فيها تتنزل ب نفس الوقت"</string>
 <string name="download_path_pref">"ممر التنزيل"</string>
 <string name="download_paused">"محطوت پوز على التنزيل"</string>

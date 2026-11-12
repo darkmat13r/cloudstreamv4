@@ -68,6 +68,7 @@
 <string name="account_use_pin">Använd PIN-kod i stället</string>
 <string name="detail_load_failed_body">Källan kanske inte är tillgänglig.</string>
 <string name="detail_load_failed_headline">Titeln kunde inte öppnas</string>
+<string name="download_not_available_here">Inte tillgängligt här</string>
 <plurals name="downloads_active"><item quantity="one">%d aktiv nedladdning</item><item quantity="other">%d aktiva nedladdningar</item></plurals>
 <plurals name="downloads_count_downloading"><item quantity="one">%d laddas ned</item><item quantity="other">%d laddas ned</item></plurals>
 <plurals name="downloads_count_queued"><item quantity="one">%d i kö</item><item quantity="other">%d i kö</item></plurals>
@@ -76,6 +77,7 @@
 <plurals name="downloads_failed_count"><item quantity="one">%d misslyckades</item><item quantity="other">%d misslyckades</item></plurals>
 <plurals name="downloads_queued"><item quantity="one">%d nedladdning i kö</item><item quantity="other">%d nedladdningar i kö</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">%1$d titel · %2$s</item><item quantity="other">%1$d titlar · %2$s</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">%1$d min kvar</item><item quantity="other">%1$d min kvar</item></plurals>
 <string name="episode_time_left">%1$d min kvar</string>
 <string name="episode_watched">Sedd</string>
 <plurals name="home_bookmarks_count"><item quantity="one">%d BOKMÄRKE</item><item quantity="other">%d BOKMÄRKEN</item></plurals>

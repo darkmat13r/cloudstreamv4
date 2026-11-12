@@ -7,6 +7,7 @@
 <plurals name="downloads_episode_count"><item quantity="one">"%d serija"</item><item quantity="few">"%d serijos"</item><item quantity="many">"%d serijos"</item><item quantity="other">"%d serijų"</item></plurals>
 <plurals name="downloads_failed_count"><item quantity="one">"%d nepavyko"</item><item quantity="few">"%d nepavyko"</item><item quantity="many">"%d nepavyko"</item><item quantity="other">"%d nepavyko"</item></plurals>
 <plurals name="downloads_titles_status"><item quantity="one">"%1$d pavadinimas · %2$s"</item><item quantity="few">"%1$d pavadinimai · %2$s"</item><item quantity="many">"%1$d pavadinimo · %2$s"</item><item quantity="other">"%1$d pavadinimų · %2$s"</item></plurals>
+<plurals name="episode_minutes_left"><item quantity="one">"Liko %1$d min"</item><item quantity="few">"Liko %1$d min"</item><item quantity="many">"Liko %1$d min"</item><item quantity="other">"Liko %1$d min"</item></plurals>
 <plurals name="home_bookmarks_count"><item quantity="one">"%d ŽYMA"</item><item quantity="few">"%d ŽYMOS"</item><item quantity="many">"%d ŽYMOS"</item><item quantity="other">"%d ŽYMŲ"</item></plurals>
 <plurals name="home_sections_failed"><item quantity="one">"Nepavyko įkelti %d skilties"</item><item quantity="few">"Nepavyko įkelti %d skilčių"</item><item quantity="many">"Nepavyko įkelti %d skilties"</item><item quantity="other">"Nepavyko įkelti %d skilčių"</item></plurals>
 <plurals name="home_source_sections"><item quantity="one">"%d skiltis"</item><item quantity="few">"%d skiltys"</item><item quantity="many">"%d skilties"</item><item quantity="other">"%d skilčių"</item></plurals>
@@ -150,6 +151,7 @@
 <string name="download_canceled">"Atsisiuntimas atšauktas"</string>
 <string name="download_done">"Atsisiuntimas baigtas"</string>
 <string name="download_failed">"Atsisiuntimas nepavyko"</string>
+<string name="download_not_available_here">"Čia nepasiekiama"</string>
 <string name="download_path_pref">"Atsiuntimo kelias"</string>
 <string name="download_paused">"Siuntimas sustabdytas"</string>
 <string name="download_queue">"Atsisiuntimų eilė"</string>
